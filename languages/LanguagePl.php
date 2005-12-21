@@ -444,9 +444,7 @@ $2 Pokaż przekierowania   Szukany tekst $3 $9",
 "searchdisabled" => "<p>Ze względu na duże obciążenie serwera wyszukiwanie
 w treści artykułów zostało czasowo wyłączone; mamy nadzieję, że
 po zbliżającej się modyfikacji sprzętu możliwość ta zostanie przywrócona.
-W międzyczasie polecamy wyszukiwanie za pomocą Google:</p>
-
-",
+W międzyczasie polecamy wyszukiwanie za pomocą Google:</p>",
 "blanknamespace" => "(Główna)",
 
 
@@ -569,8 +567,7 @@ Twoje prawo do przesyłania może zostać Ci odebrane, jeśli nadużyjesz system
 "uploadlogpagetext" => "Oto lista ostatnio przesłanych plików.
 Wszystkie czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename" => "Plik",
 "filedesc" => "Opis",
 "copyrightpage" => "{{ns:4}}:Prawa_autorskie",
@@ -794,8 +791,7 @@ Rejestr ostatnio dokonanych kasowań możesz obejrzeć tutaj: $2.",
 "dellogpagetext" => "To jest lista ostatnio wykonanych kasowań.
 Podane czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog" => "rejestr usunięć",
 "reverted" => "Przywrócono starszą wersję",
 "deletecomment" => "Powód usunięcia",

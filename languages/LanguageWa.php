@@ -430,8 +430,7 @@ Li råjhon dnêye est:<br />''$2''<p>Vos ploz contacter $1 oudonbén onk des
 
 Notez ki vos n' poloz nén eployî l' fonccion «emiler a l' uzeu» a moens ki vos åyîz ene adresse emile valide dins vos [[Special:Preferences|preferinces]].
 
-Voste adresse IP est $3. S' i vs plait racsegnoz ciste adresse IP la dins les dmandes ki vos frîz.
-",
+Voste adresse IP est $3. S' i vs plait racsegnoz ciste adresse IP la dins les dmandes ki vos frîz.",
 'whitelistedittitle' => 'S\' elodjî po candjî',
 'whitelistedittext' => 'I vs fåt [[Special:Userlogin|elodjî]] po pleur candjî les årtikes.',
 'whitelistreadtitle' => 'S\' elodjî po lére',
@@ -730,8 +729,7 @@ Po håyner ou cweri des imådjes k' ont ddja stî rçuvowes, alez sol [[Special:
 Po håyner l' imådje dins èn årtike, eployîz on loyén del foûme
 '''<nowiki>[[</nowiki>{{ns:6}}<nowiki>:fitchî.jpg]]</nowiki>''' ou 
 '''<nowiki>[[</nowiki>{{ns:6}}<nowiki>:fitchî.png|thumb|tecse a mete padzo]]</nowiki>''' ou co
-'''<nowiki>[[</nowiki>{{ns:-2}}<nowiki>:fitchî.ogg]]</nowiki>''' po les sons.
-",
+'''<nowiki>[[</nowiki>{{ns:-2}}<nowiki>:fitchî.ogg]]</nowiki>''' po les sons.",
 
 'uploadlog' => 'djournå des eberwetaedjes',
 'uploadlogpage' => 'Djournå_des_eberwetaedjes',
@@ -974,8 +972,7 @@ Si vos vloz bodjî l\' pådje foû di vosse djivêye des shuvous, clitchîz so �
 'notanarticle' => 'Nén èn årtike',
 'watchnochange' => 'Nole des pådjes di vosse djivêye di pådjes a shuve n\' a stî candjeye dins l\' termene di tins dmandêye.',
 'watchdetails' => '* $1 pådjes shuvowes (sins conter les pådjes di copene);
-* vos ploz [[Sipeciås:Watchlist/edit|håyner eyet candjî l\' djivêye etire]].
-',
+* vos ploz [[Sipeciås:Watchlist/edit|håyner eyet candjî l\' djivêye etire]].',
 'wlheader-enotif' => '* Li notifiaedje pa emile est en alaedje.',
 'wlheader-showupdated' => '* Les pådjes k\' ont candjî dispoy vosse dierinne vizite sont metowes e \'\'\'cråssès letes\'\'\'',
 'watchmethod-recent' => 'Cwerant après les pådjes k\' ont stî candjeyes dierinnmint ki sont eto des pådjes shuvowes',
@@ -1410,8 +1407,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'Vey li pådje d\' imådje\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Vey li messaedje ratournåve do sistinme\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vey li modele\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Vey li pådje d\' aidance\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vey li pådje di categoreye\');
-',
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vey li pådje di categoreye\');',
 
 # image deletion
 'deletedrevision' => 'Viye modêye $1 disfacêye.',
@@ -1757,8 +1753,7 @@ e-mail features on {{SITENAME}}, open this link in your browser:
 $3
 
 If this is *not* you, don't follow the link. This confirmation code
-will expire at $4.
-",
+will expire at $4.",
 
 # Inputbox extension, may be useful in other contexts as well
 

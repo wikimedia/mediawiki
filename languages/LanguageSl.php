@@ -345,9 +345,7 @@ Prosimo poskusite z drugim povpraševanjem.",
 Iskanje v imenskem prostoru :<br />
 $1<br />
 $2 Seznam se preusmerja   Iskanje za $3 $9",
-"searchdisabled" => "<p>Oprostite! Iskanje po celotni bazi je zaradi hitrejšega delovanja Wikipedije trenutno onomogočena. Lahko pa se poslužite z Googlovim iskalnikom.</p>
-
-",
+"searchdisabled" => "<p>Oprostite! Iskanje po celotni bazi je zaradi hitrejšega delovanja Wikipedije trenutno onomogočena. Lahko pa se poslužite z Googlovim iskalnikom.</p>",
 "blanknamespace" => "(Osnovno)",
 
 # Preferences page
@@ -469,8 +467,7 @@ in lahko vam zaprejo dostop, če izrabljate sistem.",
 "uploadlogpagetext" => "Spodaj je seznam najpoznejših naloženih datotek.
 Vsi prikazani časi so strežnikov čas (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Imedatoteke",
 "filedesc"		=> "Povzetek",
 
@@ -639,8 +636,7 @@ Glej $2 za zabeležbe nadavnih brisanj.",
 "dellogpagetext" => "Spodaj je seznam nedavnih brisanj.
 Vsi časi so časi strežnika (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "dnevnik brisanja",
 "reverted"	=> "Sprememba v prejšnjo različico",
 "deletecomment"	=> "Razlog za brisanje",

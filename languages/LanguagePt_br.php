@@ -530,8 +530,7 @@ Por favor, note que com as páginas da {{SITENAME}}, outros usuários podem modi
 "uploadlogpagetext" => "Segue uma lista dos uploads mais recentes.
 Todas as datas mostradas são do servidor (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"      => "Nome do arquivo",
 "filedesc"      => "Sumário",
 "copyrightpage" => "{{ns:4}}:Copyrights",
@@ -716,8 +715,7 @@ Veja $2 para um registro de deleções recentes.",
 "dellogpagetext" => "Segue uma lista das deleções mais recentes.
 Todos os horários mostrados estão no horário do servidor (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"   => "registro de deleções",
 "reverted"      => "Revertido para versão mais nova",
 "deletecomment" => "Motivo da deleção",

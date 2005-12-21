@@ -389,8 +389,7 @@ $1',
 'perfcached' => 'Следните данни са извлечени от склада и затова може да не отговарят на текущото състояние:',
 'wrong_wfQuery_params' => 'Невалидни аргументи за wfQuery()<br />
 Функция: $1<br />
-Заявка: $2
-',
+Заявка: $2',
 'viewsource' => 'Защитена страница',
 'protectedtext' => 'Страницата е затворена за промени. Съществуват няколко причини това да е така, моля, вижте [[Project:Защитена_страница]].
 
@@ -1027,8 +1026,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 # TODO съобщението отново е съкратено, да се провери по-късно, може да е нечия грешка
 'watchdetails' => '* $1 наблюдавани страници (без дискусионни), $2 редактирани страници в избраното време
 * Метод на заявката: $3
-* [[Special:Watchlist/edit|Показване и редактиране на пълния списък]]
-',
+* [[Special:Watchlist/edit|Показване и редактиране на пълния списък]]',
 # TODO
 'wlheader-enotif'        => '* Email notification is enabled.',
 'wlheader-showupdated'   => "* Pages which have been changed since you last visited them are shown in '''bold'''",
@@ -1525,8 +1523,7 @@ Feedback and further assistance:
  ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Преглед на системното съобщение\');
  ta[\'ca-nstab-template\'] = new Array(\'c\',\'Преглед на шаблона\');
  ta[\'ca-nstab-help\'] = new Array(\'c\',\'Преглед на помощната страница\');
- ta[\'ca-nstab-category\'] = new Array(\'c\',\'Преглед на категорийната страница\');
-',
+ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Преглед на категорийната страница\');',
 
 # image deletion
 'deletedrevision' => 'Изтрита стара версия $1.',
@@ -1880,8 +1877,7 @@ e-mail features on {{SITENAME}}, open this link in your browser:
 $3
 
 If this is *not* you, don\'t follow the link. This confirmation code
-will expire at $4.
-',
+will expire at $4.',
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Пълно и точно съвпадение',
@@ -1898,8 +1894,7 @@ will expire at $4.
 'trackbackbox' => '<div id="mw_trackbacks">
 Trackbacks for this article:<br/>
 $1
-</div>
-',
+</div>',
 'trackback' => '; $4$5 : [$2 $1]',
 'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => ' ([$1 Изтриване])',

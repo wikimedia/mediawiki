@@ -336,8 +336,7 @@ omskrevet i den nærmeste fremtid (måske af dig, det er jo open source!).",
 'perfcached' => 'Følgende data er gemt i cachen, det er muligvis ikke helt opdateret:',
 'wrong_wfQuery_params' => "Ugyldig parameter til wfQuery()<br />
 Funktion: $1<br />
-Forespørgsel: $2
-",
+Forespørgsel: $2",
 'viewsource' => 'Vis kilden',
 'protectedtext' => "Denne side er skrivebeskyttet for at forhindre ændringer;
 der kan være flere årsager til at det er sket,
@@ -416,8 +415,7 @@ Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mail'
 
 * Du skal have cookies slået til for at kunne logge på.
 
-<nowiki>*</nowiki> Det er valgfrit om du vil oplyse din e-mail-adresse. Men det gør andre brugere i stand til at sende dig en e-mail, uden at du behøver at offentliggøre din e-mail-adresse. Samtidig giver det mulighed for at få sendt en ny adgangskode til din e-mail-adresse. '''Vi videregiver aldrig din e-mail-adresse til nogen som helst.'''
-",
+<nowiki>*</nowiki> Det er valgfrit om du vil oplyse din e-mail-adresse. Men det gør andre brugere i stand til at sende dig en e-mail, uden at du behøver at offentliggøre din e-mail-adresse. Samtidig giver det mulighed for at få sendt en ny adgangskode til din e-mail-adresse. '''Vi videregiver aldrig din e-mail-adresse til nogen som helst.'''",
 'mailerror' => "Fejl ved afsendelse af e-mail: $1",
 'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 kontoer. Du kan ikke oprette flere.',
 'emailauthenticated' 	=> 'Din e-mail-adresse blev bekræftet på $1.',
@@ -466,8 +464,7 @@ $1. Begrundelsen er denne:<br />$2<p>Du kan kontakte $1
 eller en af de andre [[{{ns:project}}:Administratorer|administratorer]] for at diskutere blokeringen.
 
 Din IP-adresse er $3.
-Sørg venligst for at medtage denne IP-adresse i alle henvendelser til en administrator.
-",
+Sørg venligst for at medtage denne IP-adresse i alle henvendelser til en administrator.",
 'whitelistedittitle' => 'Log på for at redigere',
 'whitelistedittext' => 'Du skal [[Special:Userlogin|logge på]] for at kunne rette artikler.',
 'whitelistreadtitle' => 'Log på for at læse',
@@ -787,8 +784,7 @@ slette de filer, du har lagt op, hvis de mener det hjælper {{SITENAME}}, og
 du kan blive blokeret fra at lægge op hvis du misbruger systemet.",
 "uploadlog"		=> "oplægningslog",
 "uploadlogpage" => "Oplægningslog",
-"uploadlogpagetext" => "Herunder en liste over de senest oplagte filer. Alle de viste tider er serverens tid (UTC).
-",
+"uploadlogpagetext" => "Herunder en liste over de senest oplagte filer. Alle de viste tider er serverens tid (UTC).",
 "filename"		=> "Filnavn",
 "filedesc"		=> "Beskrivelse",
 'filestatus' => 'Status på ophavsret',
@@ -1085,8 +1081,7 @@ Se $2 for en fortegnelse over de nyeste sletninger.",
 "deletedarticle" => "slettede \"$1\"",
 "dellogpage"	=> "Sletningslog",
 "dellogpagetext" => "Herunder er en liste over de nyeste sletninger.
-Alle tider er serverens tid (UTC).
-",
+Alle tider er serverens tid (UTC).",
 "deletionlog"	=> "sletningslog",
 "reverted"		=> "Gendannet en tidligere version",
 "deletecomment"	=> "Begrundelse for sletning",
@@ -1507,8 +1502,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'Se billedsiden\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Se systembeskeden\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Se skabelonen\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Se hjælpesiden\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');
-',
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');',
 
 # image deletion
 'deletedrevision' => 'Slettede gammel version $1.',

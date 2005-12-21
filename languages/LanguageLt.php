@@ -425,8 +425,7 @@ po vieną pavadinimą eilutėje, taip pat pasirinkite ar norite eksportuoti ir i
 ar tik dabartinę versiją su paskutinio redagavimo informacija.
 
 Norėdami eksportuoti vieno puslapio dabartinę versiją, galite naudoti nuorodą, pvz. [[{{ns:Special}}:Export/Lietuva]] 
-straipsniui [[Lietuva]].
-',
+straipsniui [[Lietuva]].',
 'extlink_sample' => 'http://www.pavyzdys.lt Nuorodos pavadinimas',
 'extlink_tip' => 'Išorinė nuoroda (nepamirškite http:// prefikso)',
 'faq' => 'DUK',

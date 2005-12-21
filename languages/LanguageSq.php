@@ -310,8 +310,7 @@ MySQL kthehu gabimin "$3: $4".',
 'dellogpagetext' => 'Më poshtë është një listë e grisjeve më të fundit.
 Të gjitha kohët janë sipas orës së shërbyesit (UTC).
 <ul>
-</ul>
-',
+</ul>',
 'destfilename' => 'Emri mbas dhënies',
 'developertext' => 'Veprimi që kërkuat mund bëhet vetëm nga një përdorues me titullin "zhvillues". Shikoni $1.',
 'developertitle' => 'Nevojitet titulli "zhvillues"',
@@ -977,8 +976,7 @@ një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto 
 'uploadlogpagetext' => 'Më poshtë është një listë e skedarëve më të rinj që janë dhënë.
 Të gjitha orët janë me orën e shërbyesit (UTC).
 <ul>
-</ul>
-',
+</ul>',
 'uploadnologin' => 'Nuk keni hyrë brënda',
 'uploadnologintext' => 'Duhet të keni <a href="/wiki/Speciale:Userlogin">hyrë brënda</a> për të dhënë skedarë.',
 'uploadtext' => '\'\'\'NDALO!\'\'\' Përpara se të jepni këtu, lexoni dhe ndiqni [[{{SITENAME}}:Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skedarë për të cilët autori (ose ju) nuk ka dhënë të drejtë për përdorim nën një liçensë të lirë (si psh GNU Free Documentation License ose Creative Commons).

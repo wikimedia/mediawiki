@@ -1121,8 +1121,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'Lihat halaman gambar\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Lihat pesan sistem\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Lihat templat\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Lihat halaman bantuan\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');
-',
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 
 # image deletion
 'deletedrevision' => 'Menghapus revisi tua $1.',

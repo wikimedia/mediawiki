@@ -491,8 +491,7 @@ Môžete sa skontaktovať s $1 alebo s iným [[Project:Administrátori|administr
 
 Uvedomte si, že nemôžete použiť funkciu \"Pošli e-mail redaktorovi\", ak nemáte zaregistrovanú platnú e-mailovú adresu vo vašich [[Špeciálne:Nastavenia|nastaveniach]].
 
-Vaša IP adresa je $3. Prosíme zahrňte túto adresu do každého vášho príkazu na prehľadávanie.
-",
+Vaša IP adresa je $3. Prosíme zahrňte túto adresu do každého vášho príkazu na prehľadávanie.",
 'whitelistedittitle' => 'Na úpravu je nutné prihlásenie',
 'whitelistedittext' => 'Na úpravu článkov musíte byť [[Special:Userlogin|prihlásený/á]].',
 'whitelistreadtitle' => 'Na čítanie článkov je nutné prihlásenie',
@@ -1408,8 +1407,7 @@ vaše potešenie. (Súčasná verzia MediaWiki nepodporuje import).
 
 Zadajte názvy článkov, každý názov na nový riadok a zvoľte, či chcete všetky alebo iba poslednú verziu.
 
-Ak chcete iba posledné úpravy, ako napr. [[Special:Export/Tank]] pre článok [[Tank]].
-',
+Ak chcete iba posledné úpravy, ako napr. [[Special:Export/Tank]] pre článok [[Tank]].',
 'exportcuronly' => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
 
 # Namespace 8 related
@@ -1561,8 +1559,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'Pozrieť si stránku obrázku\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Pozrieť si systémovú stránku\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Pozrieť si šablónu\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Pozrieť si stránku s Pomocou\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriami\');
-',
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriami\');',
 
 # image deletion
 'deletedrevision' => 'Zmazať staré verzie $1.',
@@ -1627,8 +1624,7 @@ e-mailových funkcií na {{GRAMMAR:lokál|{{SITENAME}}}}, otvorte tento odkaz vo
 $3
 
 Ak ste to *neboli* Vy, neotvárajte odkaz. Tento potvrdzovací kód
-vyprší o $4.
-",
+vyprší o $4.",
 
 
 );

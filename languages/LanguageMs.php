@@ -479,8 +479,7 @@ untuk muatnaik fail.",
 "uploadlogpagetext" => "Di bawah ini adalah senarai terkini fail yang dimuatnaik.
 Semua waktu yang ditunjukkan adalah waktu pelayan (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Filename",
 "filedesc"		=> "Ringkasan", #"Summary",
 "copyrightpage" => "Wikipedia:Hak cipta",
@@ -669,8 +668,7 @@ Lihat $2 untuk rekod terkini halaman yang telah dikeluarkan.",
 "dellogpagetext" => "Di bawah ini adalah senarai terkini halaman yang telah dikeluarkan.
 Semua waktu yang ditunjukkan adalah waktu pelayan (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "Log penghapusan", #"deletion log",
 "reverted"		=> "Kembali kepada rujukan yang sebelumnya", #"Reverted to earlier revision",
 "deletecomment"	=> "Sebab penghapusan", #"Reason for deletion",

@@ -340,8 +340,7 @@ MySQL mell den Fehler: <tt>$3: $4</tt>.',
 'perfcached'            => 'Disse Daten kamen ut den Cache un sünd mööglicherwies nich aktuell:',
 'wrong_wfQuery_params'  => 'Falschen Parameter för wfQuery()<br />
 Funktschoon: $1<br />
-Query: $2
-',
+Query: $2',
 'viewsource'            => 'Borntext ankieken',
 'protectedtext'         => 'Disse Siet is för dat Bearbeiden sparrt. Dorför kann dat verschedene Grünn geven; kiek [[{{ns:4}}:Schulte Sieten]].
 
@@ -857,8 +856,7 @@ In $2 kannst du en List vun de letzten Löschen finnen.',
 
 <ul>
 
-</ul>
-',
+</ul>',
 'deletionlog'             => 'Lösch-Logbook',
 'reverted'                          => 'Op en ole Version trüchsett',
 'deletecomment'         => 'Grund vun de Löschen',

@@ -528,8 +528,7 @@ forbarita.",
 "uploadlogpagetext" => "Jen la plej laste alŝutitaj dosieroj.
 Ĉiuj tempoj montriĝas laŭ la horzono UTC.
 <ul>
-</ul>
-",
+</ul>",
 'filename'		=> 'Dosiernomo',
 'filedesc'		=> 'Priskribo',
 'copyrightpage' => '{{ns:4}}:Kopirajto',
@@ -727,8 +726,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'dellogpagetext' => 'Jen listo de la plej lastaj forigoj el la datumaro.
 Ĉiuj tempoj sekvas la horzonon UTC.
 <ul>
-</ul>
-',
+</ul>',
 'deletionlog'	=> 'listo de forigoj',
 'reverted'		=> 'Restarigis antaŭan version',
 'deletecomment'	=> 'Kialo por forigo',

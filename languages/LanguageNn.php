@@ -1402,8 +1402,7 @@ ta[\'ca-nstab-help\']           = new Array(\'c\',\'Vis hjelpeside\');
 ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 /*
 </pre>
-*/
-',
+*/',
 
 # image deletion
 'deletedrevision'      => 'Slett gammal versjon $1.',
@@ -1697,8 +1696,7 @@ blir forelda $4.',
 'trackbackbox'           => "<div id='mw_trackbacks'>
 Attendelenkjer for denne sida:<br />
 $1
-</div>
-",
+</div>",
 'trackback' => "; $4$5 : [$2 $1]",
 'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>",
 'trackbackremove'        => ' ([$1 Slett])',

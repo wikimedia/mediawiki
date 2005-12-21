@@ -491,8 +491,7 @@ contenant tous les termes apparaissent dans les résultats).',
 'powersearchtext' => 'Rechercher dans les espaces :<br />
 $1<br />
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
-'searchdisabled' => '<p>La fonction de recherche sur l\'intégralité du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d\'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
-', // FIXME wikipedia specific
+'searchdisabled' => '<p>La fonction de recherche sur l\'intégralité du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d\'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>', // FIXME wikipedia specific
 'blanknamespace' => '(Principal)',	// FIXME FvdP: translation of "(Main)"
 
 # Preferences page
@@ -619,8 +618,7 @@ N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous
 'uploadlogpagetext' => 'Voici la liste des derniers fichiers copiés sur le serveur.
 L\'heure indiquée est celle du serveur (UTC).
 <ul>
-</ul>
-',
+</ul>',
 'filename'	=> 'Nom',
 'filedesc'	=> 'Description',
 'filestatus'	=> 'Statut du copyright',

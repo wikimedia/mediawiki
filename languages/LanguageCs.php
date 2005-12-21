@@ -1039,8 +1039,7 @@ Rady a kontakt:
 'dellogpage'    => 'Kniha_smazaných_stránek',
 'dellogpagetext' => 'Zde je seznam posledních smazaných z databáze. Všechny časové údaje uvedeny podle časového pásma serveru (UTC).
 <ul>
-</ul>
-',
+</ul>',
 'deletionlog'   => 'kniha smazaných stránek',
 'reverted'              => 'Obnovení předchozí verze',
 'deletecomment' => 'Důvod smazání',

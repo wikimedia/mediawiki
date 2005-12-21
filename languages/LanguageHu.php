@@ -597,8 +597,7 @@ kerülhetsz a felküldési lehetőségről ha visszaélsz a rendszerrel.",
 "uploadlogpagetext" => "Lentebb látható a legutóbbi felküldések listája.
 Minden időpont a server idejében (UTC) van megadva.
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Filenév",
 "filedesc"		=> "Összefoglaló",
 "filestatus" 	=> "Szerzői jogi állapot",
@@ -809,8 +808,7 @@ See $2 for a record of recent deletions.",
 "dellogpagetext" => "Below is a list of the most recent deletions.
 All times shown are server time (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "deletion log",
 "reverted"		=> "Reverted to earlier revision",
 "deletecomment"	=> "Reason for deletion",

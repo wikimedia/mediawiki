@@ -450,8 +450,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 "uploadlogpagetext" => "Hier onder is 'n lys van die mees onlangse lêers wat gelaai is.
 Alle tye is bedienertyd (UGT).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Lêernaam",
 "filedesc"		=> "Opsomming",
 "copyrightpage" => "{{ns:4}}:kopiereg",
@@ -610,8 +609,7 @@ Kyk na $2 vir 'n rekord van onlangse skrappings.",
 "dellogpage"	=> "Skrap_log",
 "dellogpagetext" => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "skrappingslog",
 "reverted"		=> "Het terug gegaan na vroeëre weergawe",
 "deletecomment"	=> "Rede vir skrapping",

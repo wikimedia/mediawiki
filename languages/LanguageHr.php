@@ -352,8 +352,7 @@ Ako to nije slučaj, možda se radi o softverskoj grešci. Molimo da u tom sluč
 "perfcached" => "Sljedeći podaci su iz međuspremnika i možda nisu najsvježiji:",
 "wrong_wfQuery_params" => "Neispravni parametri poslani u wfQuery()<br />
 Funkcija: $1<br />
-Upit: $2
-",
+Upit: $2",
 "viewsource" => "Vidi izvornik",
 "protectedtext" => "Ova je stranica zaključana čime je onemogućeno njeno uređivanje; za ovo postoji nekoliko mogućih razloga, molim pogledajte članak [[{{ns:4}}:Protected page|Zaštićena stranica]].
 
@@ -747,8 +746,7 @@ Na kraju pritisnite dugme \"Postavi datoteku\".
 Da biste na stranicu stavili sliku, koristite poveznice tipa
 '''<nowiki>[[{{ns:6}}:datoteka.jpg]]</nowiki>''',
 '''<nowiki>[[{{ns:6}}:datoteka.png|popratni tekst]]</nowiki>''' ili
-'''<nowiki>[[{{ns:-2}}:datoteka.ogg]]</nowiki>''' za izravnu poveznicu na datoteku.
-",
+'''<nowiki>[[{{ns:-2}}:datoteka.ogg]]</nowiki>''' za izravnu poveznicu na datoteku.",
 'uploadlog' => 'evidencija postavljanja',
 'uploadlogpage' => 'Evidencija_postavljanja',
 'uploadlogpagetext' => 'Dolje je popis nedavno postavljenih slika.',
@@ -1046,8 +1044,7 @@ Vidi $2 za evidenciju nedavnih brisanja.",
 "dellogpagetext" => "Dolje je popis nedavnih brisanja.
 Sva vremena su prema poslužiteljevom vremenu (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "evidencija brisanja",
 "reverted"	=> "Vraćeno na prijašnju inačicu",
 "deletecomment"	=> "Razlog za brisanje",
@@ -1323,8 +1320,7 @@ Odredišni članak "[[$1]]" već postoji. Želite li ga obrisati da biste naprav
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutnu inačicu zajedno sa svim prijašnjima, ili samo trenutnu inačicu s informacijom o zadnjoj promjeni.
 
-U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/Hrvatska]] za članak [[Hrvatska]].
-',
+U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/Hrvatska]] za članak [[Hrvatska]].',
 'exportcuronly' => 'Uključi samo trenutnu inačicu, ne i sve prijašnje',
 
 # Namespace 8 related
@@ -1474,8 +1470,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'Pogledaj stranicu o slici\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Pogledaj sistemske poruke\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Pogledaj predložak\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Pogledaj stranicu za pomoć\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledaj stranicu kategorije\');
-',
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledaj stranicu kategorije\');',
 
 # image deletion
 'deletedrevision' => 'Izbrisana stara inačica $1.',
@@ -1845,8 +1840,7 @@ Valjanost ovog potvrdnog koda istječe $4.',
 'trackbackbox' => "<div id='mw_trackbacks'>
 ''Trackbackovi'' za ovaj članak:<br />
 $1
-</div>
-",
+</div>",
 'trackback' => "; $4$5 : [$2 $1]",
 'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>",
 'trackbackremove' => ' ([$1 izbrisati])',

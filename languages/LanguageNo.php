@@ -529,8 +529,7 @@ du kan bli blokkert fra å laste opp hvis du misbruker systemet.",
 "uploadlogpagetext" => "Her er en liste med de filene som er lastet
 opp sist. Alle de viste tidene er tjenerens tid (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Filnavn",
 "filedesc"		=> "Beskrivelse",
 "copyrightpage" => "Wikipedia:Opphavsrett",
@@ -756,8 +755,7 @@ Se $2 for en oversikt over de nyeste slettinger.",
 "dellogpagetext" => "Her er en liste over de nyeste slettinger.
 Alle tider er serverens tid (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "slettingslogg",
 "reverted"		=> "Gjenopprettet en tidligere versjon",
 "deletecomment"	=> "Begrunnelse for sletting",

@@ -348,8 +348,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "showingresultsnum" => "Hieronder <b>$3</b> resultaten vanaf nummer <b>$2</b>.",
 "nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van veel voorkomende woorden zoals \"de\" en \"het\", die niet geïndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).
 
-Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op {{SITENAME}} NL over dit onderwerp. Mogelijk is het aanwezig in een andere taal. Zoek met de <a HREF=\"http://pliny.wikipedia.org/tools/wikisearch.php\">multi-wikipedia zoeker</a> in de andere {{SITENAME}}'s, of buiten {{SITENAME}} in een <a href=\"http://encyclopedie.zoekhulp.nl/?refer=Wikipedia.nl\">andere encyclopedie</a>. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op {{SITENAME}} NL, zodat de volgende die zoekt wat u zocht het wel kan vinden.
-",
+Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op {{SITENAME}} NL over dit onderwerp. Mogelijk is het aanwezig in een andere taal. Zoek met de <a HREF=\"http://pliny.wikipedia.org/tools/wikisearch.php\">multi-wikipedia zoeker</a> in de andere {{SITENAME}}'s, of buiten {{SITENAME}} in een <a href=\"http://encyclopedie.zoekhulp.nl/?refer=Wikipedia.nl\">andere encyclopedie</a>. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op {{SITENAME}} NL, zodat de volgende die zoekt wat u zocht het wel kan vinden.",
 "powersearch" => "Zoeken",
 "powersearchtext" => "
  Zoek in naamruimten :<br />
@@ -361,8 +360,7 @@ Via google kunt u zoeken op {{SITENAME}}.
 <p> U zal niet alle artikels kunnen vinden maar het zal niet veel schelen.
 Als u zoekt via google op {{SITENAME}} zal u ook treffers vinden op {{SITENAME}} die geen artikels zijn.
 {{SITENAME}} heeft bij de meeste artikels ook een \"overlegpagina\" en diverse soorten dienstpagina's.
-Enkel de pagina's die geen prefix (zoals {{ns:4}}:, Gebruiker: of Overleg:) hebben zijn artikels.
-",
+Enkel de pagina's die geen prefix (zoals {{ns:4}}:, Gebruiker: of Overleg:) hebben zijn artikels.",
 "blanknamespace" => "(encyclopedie)",
 
 # Preferences page
@@ -460,8 +458,7 @@ Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de lijst met de meest recent ge-uploade bestanden. Alle tijden zijn servertijd (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"  => "Bestandsnaam",
 "filedesc"  => "Beschrijving",
 "filestatus" => "Auteursrechtensituatie",

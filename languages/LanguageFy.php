@@ -534,8 +534,7 @@ meitsje fan it systeem..",
 "uploadlogpagetext" => "Liste fan de lêst oanbeane bestannen.
 (Tiid oanjûn as UTC).
 <ul>
-</ul>
-",
+</ul>",
 
 "filename"		=> "Bestânsnamme",
 "filedesc"		=> "Omskriuwing",
@@ -753,8 +752,7 @@ Sjoch \"$2\" foar in list fan wat resint wiske is.",
 "dellogpagetext" => "Dit is wat der resint wiske is.
 (Tiden oanjûn as UTC).
 <ul>
-</ul>
-",
+</ul>",
 
 "deletionlog"	=> "wisk loch",
 "reverted"		=> "Tebekset nei eardere ferzje",

@@ -67,8 +67,7 @@ $wgAllMessagesIs = array(
 /* Stórir stafir í ýmsu */
 #p-personal ul { text-transform: inherit; } /* notandanfn, spjall, stillingar */
 .portlet h5 { text-transform: inherit;}     /* flakk, leit, verkfæri... */
-#p-cactions li a {text-transform: inherit;} /* notandasíða, spjall... */
-",
+#p-cactions li a {text-transform: inherit;} /* notandasíða, spjall... */",
 'Monobook.js' => "/* tooltips and access keys */
 ta = new Object();
 ta['pt-userpage'] = new Array('.','Notendasíðan mín');
