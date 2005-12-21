@@ -1394,6 +1394,12 @@ $wgExtraRandompageSQL = false;
  */
 $wgEnableUnwatchedpages = false;
 
+/**
+ * Users must have this permission to view Special:Unwatchedpages, e.g.
+ * 'protect' for only allowing >sysops. '' for none
+ */
+$wgUnwatchedPagesPermission = '';
+
 /** Allow the "info" action, very inefficient at the moment */
 $wgAllowPageInfo = false;
 
