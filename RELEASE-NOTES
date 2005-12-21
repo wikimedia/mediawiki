@@ -950,6 +950,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4279) Small correction to LanguageDa.php
 * (bug 4267) Switch dv sd ug ks arc languages to RTL
 * (bug 3991) Allow the operation of wikicode on Protect move only text
+* Added AutoAuthenticate hook for external User object suppliers
 
 
 === Caveats ===
