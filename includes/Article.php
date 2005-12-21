@@ -362,6 +362,7 @@ class Article {
 		if ( $this->mContentLoaded ) {
 			return $this->mContent;
 		}
+		
 		$dbr =& $this->getDB();
 		$fname = 'Article::fetchContent';
 
@@ -463,6 +464,8 @@ class Article {
 		$this->mRevIdFetched = $revision->getID();
 		$this->mContentLoaded = true;
 		$this->mRevision =& $revision;
+
+		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ) ;
 
 		return $this->mContent;
 	}
