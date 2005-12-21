@@ -57,6 +57,11 @@ class UnwatchedpagesPage extends QueryPage {
  * constructor
  */
 function wfSpecialUnwatchedpages() {
+	global $wgUser, $wgUnwatchedPagesPermission, $wgOut;
+	
+	if ( ! $wgUser->isAllowed( $wgUnwatchedPagesPermission ) )
+		return $wgOut->permissionRequired( $wgUnwatchedPagesPermission );
+	
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$wpp = new UnwatchedpagesPage();
