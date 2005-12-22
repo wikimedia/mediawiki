@@ -1,4 +1,4 @@
-LINKCACHE.DOC
+linkcache.txt
 
 The LinkCache class maintains a list of article titles and
 the information about whether or not the article exists in

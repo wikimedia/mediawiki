@@ -50,7 +50,7 @@ class UserTalkUpdate {
 
 		$this->mAction = $action;
 		$this->mNamespace = $ns;
-		$this->mTitle = $title; # str_replace( '_', ' ', $title ); # I do not know, why this was needed . T. Gries 23.11.2004
+		$this->mTitle = $title;
 		$this->mSummary = $summary;
 		$this->mMinorEdit = $minoredit;
 		$this->mTimestamp = $timestamp;
@@ -62,7 +62,7 @@ class UserTalkUpdate {
 
 		# If the user talk page is our own, clear the flag
 		# when we are reading it or writing it.
-		if ( 0 == strcmp( $this->mTitle, $wgUser->getName() ) ) {
+		if ( 0 == strcmp( str_replace( '_', ' ', $this->mTitle ), $wgUser->getName() ) ) {
 			$wgUser->setNewtalk( 0 );
 			$wgUser->saveSettings();
 		} else {

@@ -225,6 +225,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
 		$tpl->set( 'headlinks', $out->getHeadLinks() );
+		$tpl->set('headscripts', $out->getScript() );
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
 		$tpl->setRef( 'stylename', $this->stylename );
@@ -362,10 +363,15 @@ class SkinTemplate extends Skin {
 
 		if ( !$wgHideInterlanguageLinks ) {
 			foreach( $wgOut->getLanguageLinks() as $l ) {
+				$tmp = explode( ':', $l, 2 );
+				$class = 'interwiki-' . $tmp[0];
+				unset($tmp);
 				$nt = Title::newFromText( $l );
-				$language_urls[] = array('href' => $nt->getFullURL(),
-				'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
-				'class' => $wgContLang->isRTL() ? 'rtl' : 'ltr');
+				$language_urls[] = array(
+					'href' => $nt->getFullURL(),
+					'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+					'class' => $class
+				);
 			}
 		}
 		if(count($language_urls)) {
@@ -615,14 +621,12 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=delete' )
 					);
 				}
-				if ( $wgUser->isLoggedIn() ) {
-					if ( $this->mTitle->userCanMove()) {
-						$content_actions['move'] = array(
-							'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
-							'text' => wfMsg('move'),
-							'href' => $this->makeSpecialUrl("Movepage/$this->thispage" )
-						);
-					}
+				if ( $this->mTitle->userCanMove()) {
+					$content_actions['move'] = array(
+						'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
+						'text' => wfMsg('move'),
+						'href' => $this->makeSpecialUrl("Movepage/$this->thispage" )
+					);
 				}
 			} else {
 				//article doesn't exist or is deleted
@@ -638,7 +642,7 @@ class SkinTemplate extends Skin {
 			}
 			wfProfileOut( "$fname-live" );
 
-			if( $wgUser->isLoggedIn() and $action != 'submit' ) {
+			if( $this->loggedin ) {
 				if( !$this->mTitle->userIsWatching()) {
 					$content_actions['watch'] = array(
 						'class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : false,
@@ -711,6 +715,8 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		wfRunHooks( 'SkinTemplateContentActions', array(&$content_actions) );
+		
 		wfProfileOut( $fname );
 		return $content_actions;
 	}

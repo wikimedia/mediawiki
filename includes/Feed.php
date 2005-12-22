@@ -240,7 +240,7 @@ class AtomFeed extends ChannelFeed {
 		global $wgVersion, $wgOut;
 		
 		$this->outXmlHeader();
-		?><feed version="0.3" xml:lang="<?php print $this->getLanguage() ?>">	
+		?><feed version="0.3" xmlns="http://purl.org/atom/ns#" xml:lang="<?php print $this->getLanguage() ?>">	
 		<title><?php print $this->getTitle() ?></title>
 		<link rel="alternate" type="text/html" href="<?php print $this->getUrl() ?>"/>
 		<modified><?php print $this->formatTime( wfTimestampNow() ) ?>Z</modified>

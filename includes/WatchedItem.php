@@ -133,13 +133,27 @@ class WatchedItem {
 	}
 
 	/**
+	 * Check if the given title already is watched by the user, and if so
+	 * add watches on a new title. To be used for page renames and such.
+	 *
+	 * @param Title $ot Page title to duplicate entries from, if present
+	 * @param Title $nt Page title to add watches on
 	 * @static
 	 */
 	function duplicateEntries( $ot, $nt ) {
+		WatchedItem::doDuplicateEntries( $ot->getSubjectPage(), $nt->getSubjectPage() );
+		WatchedItem::doDuplicateEntries( $ot->getTalkPage(), $nt->getTalkPage() );
+	}
+	
+	/**
+	 * @static
+	 * @access private
+	 */
+	function doDuplicateEntries( $ot, $nt ) {
 		$fname = "WatchedItem::duplicateEntries";
 		global $wgMemc, $wgDBname;
-		$oldnamespace = $ot->getNamespace() & ~1;
-		$newnamespace = $nt->getNamespace() & ~1;
+		$oldnamespace = $ot->getNamespace();
+		$newnamespace = $nt->getNamespace();
 		$oldtitle = $ot->getDBkey();
 		$newtitle = $nt->getDBkey();
 
@@ -160,6 +174,11 @@ class WatchedItem {
 			);
 		}
 		$dbw->freeResult( $res );
+		
+		if( empty( $values ) ) {
+			// Nothing to do
+			return true;
+		}
 
 		# Perform replace
 		# Note that multi-row replace is very efficient for MySQL but may be inefficient for

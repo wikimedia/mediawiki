@@ -1,5 +1,5 @@
 
-DEFERRED.DOC
+deferred.txt
 
 A few of the database updates required by various functions here
 can be deferred until after the result page is displayed to the
