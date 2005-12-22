@@ -63,19 +63,27 @@ class MonoBookTemplate extends QuickTemplate {
 		<!--[if gte IE 6]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE60Fixes.css";</style><![endif]-->
 		<!--[if IE]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
 		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-		<?php if($this->data['jsvarurl'  ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"><!-- site js --></script><?php } ?>
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php           $this->text('stylepath' ) ?>/common/wikibits.js"><!-- wikibits js --></script>
-		<?php if($this->data['pagecss'   ]) { ?><style type="text/css"><?php   $this->html('pagecss'   ) ?></style><?php    } ?>
-		<?php if($this->data['usercss'   ]) { ?><style type="text/css"><?php   $this->html('usercss'   ) ?></style><?php    } ?>
-		<?php if($this->data['userjs'    ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs'    ) ?>"></script><?php } ?>
-		<?php if($this->data['userjsprev']) { ?><script type="<?php $this->text('jsmimetype') ?>"><?php      $this->html('userjsprev') ?></script><?php   } ?>
-		<?php if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
+<?php	if($this->data['jsvarurl'  ]) { ?>
+		<script type="<?= $this->text('jsmimetype') ?>" src="<?= $this->text('jsvarurl'  ) ?>"><!-- site js --></script>
+<?php	} ?>
+		<script type="<?= $this->text('jsmimetype') ?>" src="<?= $this->text('stylepath' ) ?>/common/wikibits.js"><!-- wikibits js --></script>
+<?php	if($this->data['pagecss'   ]) { ?>
+		<style type="text/css"><?= $this->html('pagecss'   ) ?></style>
+<?php	}
+		if($this->data['usercss'   ]) { ?>
+		<style type="text/css"><?= $this->html('usercss'   ) ?></style>
+<?php	}
+		if($this->data['userjs'    ]) { ?>
+		<script type="<?php $this->text('jsmimetype') ?>" src="<?= $this->text('userjs' ) ?>"></script>
+<?php	}
+		if($this->data['userjsprev']) { ?>
+		<script type="<?php $this->text('jsmimetype') ?>"><?= $this->html('userjsprev') ?></script>
+<?php	}
+		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
 	</head>
-
 <body <?php if($this->data['body_ondblclick']) { ?>ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
 <?php if($this->data['body_onload'    ]) { ?>onload="<?php     $this->text('body_onload')     ?>"<?php } ?>
 <?php if($this->data['nsclass'        ]) { ?>class="<?php      $this->text('nsclass')         ?>"<?php } ?>>
-
 	<div id="globalWrapper">
 		<div id="column-content">
 	<div id="content">
