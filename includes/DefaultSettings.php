@@ -772,12 +772,14 @@ $wgWhitelistRead = false;
  */
 $wgGroupPermissions = array();
 
+// Implicit group for all visitors
 $wgGroupPermissions['*'    ]['createaccount']   = true;
 $wgGroupPermissions['*'    ]['read']            = true;
 $wgGroupPermissions['*'    ]['edit']            = true;
 $wgGroupPermissions['*'    ]['createpage']      = true;
 $wgGroupPermissions['*'    ]['createtalk']      = true;
 
+// Implicit group for all logged-in accounts
 $wgGroupPermissions['user' ]['move']            = true;
 $wgGroupPermissions['user' ]['read']            = true;
 $wgGroupPermissions['user' ]['edit']            = true;
@@ -787,8 +789,15 @@ $wgGroupPermissions['user' ]['upload']          = true;
 $wgGroupPermissions['user' ]['reupload']        = true;
 $wgGroupPermissions['user' ]['reupload-shared'] = true;
 
-$wgGroupPermissions['bot'  ]['bot']             = true;
+// Implicit group for accounts that pass $wgAutoConfirmAge
+$wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
 
+// Users with bot privilege can have their edits hidden
+// from various log pages by default
+$wgGroupPermissions['bot'  ]['bot']             = true;
+$wgGroupPermissions['bot'  ]['autoconfirmed']   = true;
+
+// Most extra permission abilities go to this group
 $wgGroupPermissions['sysop']['block']           = true;
 $wgGroupPermissions['sysop']['createaccount']   = true;
 $wgGroupPermissions['sysop']['delete']          = true;
@@ -803,7 +812,9 @@ $wgGroupPermissions['sysop']['upload']          = true;
 $wgGroupPermissions['sysop']['reupload']        = true;
 $wgGroupPermissions['sysop']['reupload-shared'] = true;
 $wgGroupPermissions['sysop']['unwatchedpages']	= true;
+$wgGroupPermissions['sysop']['autoconfirmed']   = true;
 
+// Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 
 /**
@@ -813,6 +824,35 @@ $wgGroupPermissions['bureaucrat']['userrights'] = true;
  * server.
  */
 # $wgGroupPermissions['developer']['siteadmin'] = true;
+
+
+/**
+ * Set of available actions that can be restricted via Special:Protect
+ * You probably shouldn't change this.
+ */
+$wgRestrictionTypes = array( 'edit', 'move' );
+
+/**
+ * Set of permission keys that can be selected via Special:Protect.
+ * 'autoconfirm' allows all registerd users if $wgAutoConfirmAge is 0.
+ */
+$wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
+
+
+/**
+ * Number of seconds an account is required to age before
+ * it's given the implicit 'autoconfirm' group membership.
+ * This can be used to limit privileges of new accounts.
+ *
+ * Accounts created by earlier versions of the software
+ * may not have a recorded creation date, and will always
+ * be considered to pass the age test.
+ *
+ * When left at 0, all registered accounts will pass.
+ */
+$wgAutoConfirmAge = 0;
+//$wgAutoConfirmAge = 600;     // ten minutes
+//$wgAutoConfirmAge = 3600*24; // one day
 
 
 

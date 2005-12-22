@@ -1208,6 +1208,8 @@ about books you are looking for.",
 'log'		=> 'Logs',
 'alllogstext'	=> 'Combined display of upload, deletion, protection, blocking, and sysop logs.
 You can narrow down the view by selecting a log type, the user name, or the affected page.',
+'logempty' => 'No matching items in log.',
+
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
@@ -1376,6 +1378,15 @@ See [[Project:Protected page]] for more information.",
 'confirmunprotecttext' => 'Do you really want to unprotect this page?',
 'confirmunprotect' => 'Confirm unprotection',
 'unprotectcomment' => 'Reason for unprotecting',
+'protect-unchain' => 'Unlock move permissions',
+'protect-text' => 'You may view and change the protection level here for the page [[$1]].
+Please be sure you are following the [[Project:Protected page|project guidelines]].',
+'protect-viewtext' => 'Your account does not have permission to change
+page protection levels. Here are the current settings for the page [[$1]]:',
+'protect-default' => '(default)',
+'protect-level-autoconfirmed' => 'Block unregistered users',
+'protect-level-sysop' => 'Sysops only',
+
 
 # Undelete
 'undelete' => 'View deleted pages',

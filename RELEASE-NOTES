@@ -341,6 +341,10 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3424) Update page_touched for category members on category page creation
 * (bug 4108, 4336) Remove trailing whitespace from various messages, which
   mucks up message updating to create dupe entries
+* (bug 1735) Revamped protection interface
+* (bug 675) Add page protection level for unregistered/new accounts
+* User::isNewbie now uses the registration date and $wgAutoconfirmAge
+* Log views show message when no matches
 
 
 === Caveats ===

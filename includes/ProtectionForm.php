@@ -1,0 +1,244 @@
+<?php
+/**
+ * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
+ * http://www.mediawiki.org/
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or 
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @package MediaWiki
+ * @subpackage SpecialPage
+ */
+
+class ProtectionForm {
+	var $mRestrictions = array();
+	var $mReason = '';
+	
+	function ProtectionForm( &$article ) {
+		global $wgRequest, $wgUser;
+		global $wgRestrictionTypes, $wgRestrictionLevels;
+		$this->mArticle =& $article;
+		$this->mTitle =& $article->mTitle;
+		
+		if( $this->mTitle ) {
+			foreach( $wgRestrictionTypes as $action ) {
+				// Fixme: this form currently requires individual selections,
+				// but the db allows multiples separated by commas.
+				$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
+			}
+		}
+		
+		// The form will be available in read-only to show levels.
+		$this->disabled = !$wgUser->isAllowed( 'protect' ) || wfReadOnly();
+		$this->disabledAttrib = $this->disabled
+			? array( 'disabled' => 'disabled' )
+			: array();
+		
+		if( $wgRequest->wasPosted() ) {
+			$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
+			foreach( $wgRestrictionTypes as $action ) {
+				$val = $wgRequest->getVal( "mwProtect-level-$action" );
+				if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
+					$this->mRestrictions[$action] = $val;
+				}
+			}
+		}
+	}
+	
+	function show() {
+		global $wgOut;
+		
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+
+		if( is_null( $this->mTitle ) ||
+			!$this->mTitle->exists() ||
+			$this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			$wgOut->fatalError( wfMsg( 'badarticleerror' ) );
+			return;
+		}
+		
+		if( $this->save() ) {
+			$wgOut->redirect( $this->mTitle->getFullUrl() );
+			return;
+		}
+		
+		$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
+		$wgOut->setSubtitle( wfMsg( 'protectsub', $this->mTitle->getPrefixedText() ) );
+		
+		$wgOut->addWikiText(
+			wfMsg( $this->disabled ? "protect-viewtext" : "protect-text",
+				$this->mTitle->getPrefixedText() ) );
+		
+		$wgOut->addHTML( $this->buildForm() );
+		
+		$this->showLogExtract( $wgOut );
+	}
+	
+	function save() {
+		global $wgRequest, $wgUser;
+		if( !$wgRequest->wasPosted() ) {
+			return false;
+		}
+		
+		if( $this->disabled ) {
+			return false;
+		}
+		
+		$token = $wgRequest->getVal( 'wpEditToken' );
+		if( !$wgUser->matchEditToken( $token ) ) {
+			$wgOut->fatalError( wfMsg( 'sessionfailure' ) );
+			return false;
+		}
+		
+		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason );
+		if( !$ok ) {
+			$wgOut->fatalError( "Unknown error at restriction save time." );
+		}
+		return $ok;
+	}
+	
+	function buildForm() {
+		global $wgUser;
+		
+		$out = '';
+		if( !$this->disabled ) {
+			$out .= $this->buildScript();
+			// The submission needs to reenable the move permission selector
+			// if it's in locked mode, or some browsers won't submit the data.
+			$out .= wfOpenElement( 'form', array(
+				'action' => $this->mTitle->getLocalUrl( 'action=protect' ),
+				'method' => 'post',
+				'onsubmit' => 'protectEnable(true)' ) );
+
+			$out .= wfElement( 'input', array(
+				'type' => 'hidden',
+				'name' => 'wpEditToken',
+				'value' => $wgUser->editToken() ) );
+		}
+		
+		$out .= "<table id='mwProtectSet'>";
+		$out .= "<tbody>";
+		$out .= "<tr>\n";
+		foreach( $this->mRestrictions as $action => $required ) {
+			$out .= "<th>" . wfMsgHtml( $action ) . "</th>\n";
+		}
+		$out .= "</tr>\n";
+		$out .= "<tr>\n";
+		foreach( $this->mRestrictions as $action => $selected ) {
+			$out .= "<td>\n";
+			$out .= $this->buildSelector( $action, $selected );
+			$out .= "</td>\n";
+		}
+		$out .= "</tr>\n";
+		
+		// JavaScript will add another row with a value-chaining checkbox
+		
+		$out .= "</tbody>\n";
+		$out .= "</table>\n";
+		
+		if( !$this->disabled ) {
+			$out .= "<table>\n";
+			$out .= "<tbody>\n";
+			$out .= "<tr><td>" . $this->buildReasonInput() . "</td></tr>\n";
+			$out .= "<tr><td></td><td>" . $this->buildSubmit() . "</td></tr>\n";
+			$out .= "</tbody>\n";
+			$out .= "</table>\n";
+			$out .= "</form>\n";
+			$out .= $this->buildCleanupScript();
+		}
+		
+		return $out;
+	}
+	
+	function buildSelector( $action, $selected ) {
+		global $wgRestrictionLevels;
+		$id = 'mwProtect-level-' . $action;
+		$attribs = array(
+			'id' => $id,
+			'name' => $id,
+			'size' => count( $wgRestrictionLevels ),
+			'onchange' => 'protectLevelsUpdate(this)',
+			) + $this->disabledAttrib;
+		
+		$out = wfOpenElement( 'select', $attribs );
+		foreach( $wgRestrictionLevels as $key ) {
+			$out .= $this->buildOption( $key, $selected );
+		}
+		$out .= "</select>\n";
+		return $out;
+	}
+	
+	function buildOption( $key, $selected ) {
+		$text = ( $key == '' )
+			? wfMsg( 'protect-default' )
+			: wfMsg( "protect-level-$key" );
+		$selectedAttrib = ($selected == $key)
+			? array( 'selected' => 'selected' )
+			: array();
+		return wfElement( 'option',
+			array( 'value' => $key ) + $selectedAttrib,
+			$text );
+	}
+	
+	function buildReasonInput() {
+		$id = 'mwProtect-reason';
+		return wfElement( 'label', array(
+				'id' => "$id-label",
+				'for' => $id ),
+				wfMsg( 'protectcomment' ) ) .
+			'</td><td>' .
+			wfElement( 'input', array(
+				'size' => 60,
+				'name' => $id,
+				'id' => $id ) );
+	}
+	
+	function buildSubmit() {
+		return wfElement( 'input', array(
+			'type' => 'submit',
+			'value' => wfMsg( 'confirm' ) ) );
+	}
+	
+	function buildScript() {
+		global $wgStylePath;
+		return '<script type="text/javascript" src="' .
+			htmlspecialchars( $wgStylePath . "/common/protect.js" ) .
+			'"></script>';
+	}
+	
+	function buildCleanupScript() {
+		return '<script type="text/javascript">protectInitialize("mwProtectSet","' .
+			wfEscapeJsString( wfMsg( 'protect-unchain' ) ) . '")</script>';
+	}
+	
+	/**
+	 * @param OutputPage $out
+	 * @access private
+	 */
+	function showLogExtract( &$out ) {
+		# Show relevant lines from the deletion log:
+		$out->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'protect' ) ) . "</h2>\n" );
+		require_once( 'SpecialLog.php' );
+		$logViewer = new LogViewer(
+			new LogReader(
+				new FauxRequest(
+					array( 'page' => $this->mTitle->getPrefixedText(),
+					       'type' => 'protect' ) ) ) );
+		$logViewer->showList( $out );
+	}
+}
+
+
+?>

@@ -14,7 +14,7 @@ require_once( 'WatchedItem.php' );
 define( 'USER_TOKEN_LENGTH', 32 );
 
 # Serialized record version
-define( 'MW_USER_VERSION', 2 );
+define( 'MW_USER_VERSION', 3 );
 
 /**
  *
@@ -36,6 +36,7 @@ class User {
 	var $mHash;
 	var $mGroups;
 	var $mVersion; // serialized version
+	var $mRegistration;
 
 	/** Construct using User:loadDefaults() */
 	function User()	{
@@ -107,7 +108,7 @@ class User {
 		return array( 'mId', 'mName', 'mPassword', 'mEmail', 'mNewtalk',
 			'mEmailAuthenticated', 'mRights', 'mOptions', 'mDataLoaded',
 			'mNewpassword', 'mBlockedby', 'mBlockreason', 'mTouched',
-			'mToken', 'mRealName', 'mHash', 'mGroups' );
+			'mToken', 'mRealName', 'mHash', 'mGroups', 'mRegistration' );
 	}
 
 	/**
@@ -321,6 +322,8 @@ class User {
 			$this->mTouched = '0'; # Allow any pages to be cached
 		}
 
+		$this->mRegistration = wfTimestamp( TS_MW );
+		
 		wfProfileOut( $fname );
 	}
 
@@ -651,7 +654,7 @@ class User {
 		} else {
 			wfDebug( "User::loadFromSession() got from cache!\n" );
 		}
-
+		
 		if ( isset( $_SESSION['wsToken'] ) ) {
 			$passwordCorrect = $_SESSION['wsToken'] == $user->mToken;
 		} else if ( isset( $_COOKIE["{$wgDBname}Token"] ) ) {
@@ -699,7 +702,7 @@ class User {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$s = $dbr->selectRow( 'user', array( 'user_name','user_password','user_newpassword','user_email',
 		  'user_email_authenticated',
-		  'user_real_name','user_options','user_touched', 'user_token' ),
+		  'user_real_name','user_options','user_touched', 'user_token', 'user_registration' ),
 		  array( 'user_id' => $this->mId ), $fname );
 
 		if ( $s !== false ) {
@@ -712,6 +715,7 @@ class User {
 			$this->decodeOptions( $s->user_options );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 			$this->mToken = $s->user_token;
+			$this->mRegistration = wfTimestamp( TS_MW, $s->user_registration );
 
 			$res = $dbr->select( 'user_groups',
 				array( 'ug_group' ),
@@ -721,7 +725,15 @@ class User {
 			while( $row = $dbr->fetchObject( $res ) ) {
 				$this->mGroups[] = $row->ug_group;
 			}
-			$effectiveGroups = array_merge( array( '*', 'user' ), $this->mGroups );
+			$implicitGroups = array( '*', 'user' );
+			
+			global $wgAutoConfirmAge;
+			$accountAge = time() - wfTimestampOrNull( TS_UNIX, $this->mRegistration );
+			if( $accountAge >= $wgAutoConfirmAge ) {
+				$implicitGroups[] = 'autoconfirmed';
+			}
+			
+			$effectiveGroups = array_merge( $implicitGroups, $this->mGroups );
 			$this->mRights = $this->getGroupPermissions( $effectiveGroups );
 		}
 
@@ -1392,7 +1404,8 @@ class User {
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_real_name' => $this->mRealName,
 				'user_options' => $this->encodeOptions(),
-				'user_token' => $this->mToken
+				'user_token' => $this->mToken,
+				'user_registration' => $dbw->timestamp( $this->mRegistration ),
 			), $fname
 		);
 		$this->mId = $dbw->insertId();
@@ -1526,7 +1539,8 @@ class User {
 	 * @return bool True if it is a newbie.
 	 */
 	function isNewbie() {
-		return $this->isAnon() || $this->mId > User::getMaxID() * 0.99 && !$this->isAllowed( 'delete' ) && !$this->isBot();
+		return !$this->isAllowed( 'autoconfirmed' );
+		//return $this->isAnon() || $this->mId > User::getMaxID() * 0.99 && !$this->isAllowed( 'delete' ) && !$this->isBot();
 	}
 
 	/**
@@ -1811,9 +1825,9 @@ class User {
 		global $wgGroupPermissions;
 		return array_diff(
 			array_keys( $wgGroupPermissions ),
-			array( '*', 'user' ) );
+			array( '*', 'user', 'autoconfirmed' ) );
 	}
-
+	
 }
 
 ?>
