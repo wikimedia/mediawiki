@@ -407,7 +407,8 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- The title of the linking page, or an optional override
   -- to determine sort order. Sorting is by binary order, which
   -- isn't always ideal, but collations seem to be an exciting
-  -- and dangerous new world in MySQL...
+  -- and dangerous new world in MySQL... The sortkey is updated
+  -- if no override exists and cl_from is renamed.
   --
   -- For MySQL 4.1+ with charset set to utf8, the sort key *index*
   -- needs cut to be smaller than 1024 bytes (at 3 bytes per char).
