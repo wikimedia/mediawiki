@@ -3,6 +3,27 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.4 ==
+
+December 21, 2005
+
+MediaWiki 1.5.4 is a security and bugfix maintenance release.
+
+A hardcoded internal placeholder string has been replaced with a random
+one. This closes a hole where security checks in inline style attributes
+could be bypassed, injecting JavaScript code that could execute in
+Microsoft Internet Explorer.
+
+Other browsers would not be vulnerable.
+
+Several minor fixes are included in this release, most notably a fix
+to clear the "you have new messages" flag properly for usernames
+containing spaces when e-mail notification is enabled.
+
+See the changelog at the end of the release notes for a full list of
+fixes.
+
+
 == MediaWiki 1.5.3 ==
 
 December 4, 2005
@@ -951,6 +972,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4267) Switch dv sd ug ks arc languages to RTL
 * (bug 3991) Allow the operation of wikicode on Protect move only text
 * Added AutoAuthenticate hook for external User object suppliers
+* Parser internal placeholder string now fully randomized for safety
 
 
 === Caveats ===
