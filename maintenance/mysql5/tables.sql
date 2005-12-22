@@ -119,6 +119,10 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- Expiration date for the user_email_token
   user_email_token_expires CHAR(14) BINARY,
 
+  -- Timestamp of account registration.
+  -- Accounts predating this schema addition may contain NULL.
+  user_registration CHAR(14) BINARY,
+
   PRIMARY KEY user_id (user_id),
   UNIQUE INDEX user_name (user_name),
   INDEX (user_email_token)

@@ -275,7 +275,6 @@ class LogViewer {
 
 	function doShowList( &$out, $result ) {
 		// Rewind result pointer and go through it again, making the HTML
-		$html='';
 		if ($this->numResults > 0) {
 			$html = "\n<ul>\n";
 			$result->seek( 0 );
@@ -283,9 +282,11 @@ class LogViewer {
 				$html .= $this->logLine( $s );
 			}
 			$html .= "\n</ul>\n";
+			$out->addHTML( $html );
+		} else {
+			$out->addWikiText( wfMsg( 'logempty' ) );
 		}
 		$result->free();
-		$out->addHTML( $html );
 	}
 
 	/**

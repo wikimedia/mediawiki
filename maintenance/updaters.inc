@@ -39,6 +39,7 @@ $wgNewFields = array(
 	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
 	array( 'user',          'user_email_token', 'patch-user_email_token.sql' ),
+	array( 'user',          'user_registration','patch-user_registration.sql' ),
  	array( 'logging',       'log_params',       'patch-log_params.sql' ),
  	array( 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
  	array( 'archive',       'ar_text_id',       'patch-archive-text_id.sql' ),

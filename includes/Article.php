@@ -1582,164 +1582,91 @@ class Article {
 	}
 
 	/**
-	 * protect a page
+	 * action=protect handler
 	 */
-	function protect( $limit = 'sysop' ) {
+	function protect() {
+		require_once 'ProtectionForm.php';
+		$form = new ProtectionForm( $this );
+		$form->show();
+	}
+	
+	/**
+	 * action=unprotect handler (alias)
+	 */
+	function unprotect() {
+		$this->protect();
+	}
+	
+	/**
+	 * Update the article's restriction field, and leave a log entry.
+	 *
+	 * @param array $limit set of restriction keys
+	 * @param string $reason
+	 * @return bool true on success
+	 */
+	function updateRestrictions( $limit = array(), $reason = '' ) {
 		global $wgUser, $wgOut, $wgRequest;
 
-		if ( ! $wgUser->isAllowed('protect') ) {
-			$wgOut->sysopRequired();
-			return;
+		if ( !$wgUser->isAllowed( 'protect' ) ) {
+			return false;
 		}
 
-		// bug 2261
-		if ( $this->mTitle->isProtected() && $limit == 'sysop' ) {
-			$this->view();
-			return;
-		}
-
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
+		if( wfReadOnly() ) {
+			return false;
 		}
 
 		$id = $this->mTitle->getArticleID();
 		if ( 0 == $id ) {
-			$wgOut->fatalError( wfMsg( 'badarticleerror' ) );
-			return;
+			return false;
 		}
 
-		$confirm = $wgRequest->wasPosted() &&
-			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
-		$moveonly = $wgRequest->getBool( 'wpMoveOnly' );
-		$reason = $wgRequest->getText( 'wpReasonProtect' );
+		$flat = Article::flattenRestrictions( $limit );
+		$protecting = ($flat != '');
+		
+		if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser,
+			$limit, $reason ) ) ) {
 
-		if ( $confirm ) {
 			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->update( 'page',
 				array( /* SET */
 					'page_touched' => $dbw->timestamp(),
-					'page_restrictions' => (string)$limit
+					'page_restrictions' => $flat
 				), array( /* WHERE */
 					'page_id' => $id
 				), 'Article::protect'
 			);
 
-			$restrictions = "move=" . $limit;
-			if( !$moveonly ) {
-				$restrictions .= ":edit=" . $limit;
+			wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser,
+				$limit, $reason ) );
+
+			$log = new LogPage( 'protect' );
+			if( $protecting ) {
+				$log->addEntry( 'protect', $this->mTitle, trim( $reason . " [$flat]" ) );
+			} else {
+				$log->addEntry( 'unprotect', $this->mTitle, $reason );
 			}
-			if (wfRunHooks('ArticleProtect', array(&$this, &$wgUser, $limit == 'sysop', $reason, $moveonly))) {
-
-				$dbw =& wfGetDB( DB_MASTER );
-				$dbw->update( 'page',
-							  array( /* SET */
-									 'page_touched' => $dbw->timestamp(),
-									 'page_restrictions' => $restrictions
-									 ), array( /* WHERE */
-											   'page_id' => $id
-											   ), 'Article::protect'
-							  );
-
-				wfRunHooks('ArticleProtectComplete', array(&$this, &$wgUser, $limit == 'sysop', $reason, $moveonly));
-
-				$log = new LogPage( 'protect' );
-				if ( $limit === '' ) {
-					$log->addEntry( 'unprotect', $this->mTitle, $reason );
-				} else {
-					$log->addEntry( 'protect', $this->mTitle, $reason );
-				}
-				$wgOut->redirect( $this->mTitle->getFullURL() );
+		}
+		return true;
+	}
+	
+	/**
+	 * Take an array of page restrictions and flatten it to a string
+	 * suitable for insertion into the page_restrictions field.
+	 * @param array $limit
+	 * @return string
+	 * @access private
+	 */
+	function flattenRestrictions( $limit ) {
+		if( !is_array( $limit ) ) {
+			wfDebugDieBacktrace( 'Article::flattenRestrictions given non-array restriction set' );
+		}
+		$bits = array();
+		foreach( $limit as $action => $restrictions ) {
+			if( $restrictions != '' ) {
+				$bits[] = "$action=$restrictions";
 			}
-			return;
-		} else {
-			return $this->confirmProtect( '', '', $limit );
 		}
-	}
-
-	/**
-	 * Output protection confirmation dialog
-	 */
-	function confirmProtect( $par, $reason, $limit = 'sysop'  ) {
-		global $wgOut, $wgUser;
-
-		wfDebug( "Article::confirmProtect\n" );
-
-		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-
-		$check = '';
-		$protcom = '';
-		$moveonly = '';
-
-		if ( $limit === '' ) {
-			$wgOut->setPageTitle( wfMsg( 'confirmunprotect' ) );
-			$wgOut->setSubtitle( wfMsg( 'unprotectsub', $sub ) );
-			$wgOut->addWikiText( wfMsg( 'confirmunprotecttext' ) );
-			$protcom = htmlspecialchars( wfMsg( 'unprotectcomment' ) );
-			$formaction = $this->mTitle->escapeLocalURL( 'action=unprotect' . $par );
-		} else {
-			$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
-			$wgOut->setSubtitle( wfMsg( 'protectsub', $sub ) );
-			$wgOut->addWikiText( wfMsg( 'confirmprotecttext' ) );
-			$moveonly = wfMsg( 'protectmoveonly' ) ; // add it using addWikiText to prevent xss. bug:3991
-			$protcom = htmlspecialchars( wfMsg( 'protectcomment' ) );
-			$formaction = $this->mTitle->escapeLocalURL( 'action=protect' . $par );
-		}
-
-		$confirm = htmlspecialchars( wfMsg( 'protectpage' ) );
-		$token = htmlspecialchars( $wgUser->editToken() );
-
-		$wgOut->addHTML( "
-<form id='protectconfirm' method='post' action=\"{$formaction}\">
-	<table border='0'>
-		<tr>
-			<td align='right'>
-				<label for='wpReasonProtect'>{$protcom}:</label>
-			</td>
-			<td align='left'>
-				<input type='text' size='60' name='wpReasonProtect' id='wpReasonProtect' value=\"" . htmlspecialchars( $reason ) . "\" />
-			</td>
-		</tr>" );
-		if($moveonly != '') {
-			$wgOut->AddHTML( "
-		<tr>
-			<td align='right'>
-				<input type='checkbox' name='wpMoveOnly' value='1' id='wpMoveOnly' />
-			</td>
-			<td align='left'>
-				<label for='wpMoveOnly'> ");
-			$wgOut->addWikiText( $moveonly ); // bug 3991
-			$wgOut->addHTML( "
-				</label>
-			</td>
-		</tr> " );
-		}
-		$wgOut->addHTML( "
-		<tr>
-			<td>&nbsp;</td>
-			<td>
-				<input type='submit' name='wpConfirmProtectB' value=\"{$confirm}\" />
-			</td>
-		</tr>
-	</table>
-	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
-</form>" );
-
-		$wgOut->returnToMain( false );
-	}
-
-	/**
-	 * Unprotect the pages
-	 */
-	function unprotect() {
-		// bug 2261
-		if ( $this->mTitle->isProtected() ) {
-			return $this->protect( '' );
-		} else {
-			$this->view();
-			return;
-		}
+		return implode( ':', $bits );
 	}
 
 	/*
