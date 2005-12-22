@@ -1298,7 +1298,12 @@ function wfGetSiteNotice() {
 		$notice = $wgSiteNotice;
 	}
 	if($notice != '-' && $notice != '') {
-		$notice = $wgOut->parse( $notice );
+		if( is_object( $wgOut ) ) {
+			$notice = $wgOut->parse( $notice );
+		} else {
+			wfDebug( "wfGetSiteNotice called with no \$wgOut available" );
+			$notice = '';
+		}
 	}
 	wfProfileOut( $fname );
 	return $notice;

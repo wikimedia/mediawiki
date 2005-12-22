@@ -345,6 +345,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 675) Add page protection level for unregistered/new accounts
 * User::isNewbie now uses the registration date and $wgAutoconfirmAge
 * Log views show message when no matches
+* Fix raw sitenotice display on database error
 
 
 === Caveats ===

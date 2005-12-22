@@ -1797,11 +1797,8 @@ border=\"0\" ALT=\"Google\"></A>
 
 	wfLogDBError( "Connection error: $error\n" );
 	
-	$msg = wfGetSiteNotice();
-	if($msg == '') {
-		$msg = str_replace( '$1', $error, $noconnect );
-	}
-	$text = $msg;
+	$text = str_replace( '$1', $error, $noconnect );
+	$text .= wfGetSiteNotice();
 
 	if($wgUseFileCache) {
 		if($wgTitle) {
