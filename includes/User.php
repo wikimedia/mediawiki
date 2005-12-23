@@ -715,7 +715,7 @@ class User {
 			$this->decodeOptions( $s->user_options );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 			$this->mToken = $s->user_token;
-			$this->mRegistration = wfTimestamp( TS_MW, $s->user_registration );
+			$this->mRegistration = wfTimestampOrNull( TS_MW, $s->user_registration );
 
 			$res = $dbr->select( 'user_groups',
 				array( 'ug_group' ),
@@ -1534,13 +1534,11 @@ class User {
 
 	/**
 	 * Determine whether the user is a newbie. Newbies are either
-	 * anonymous IPs, or the 1% most recently created accounts.
-	 * Bots and sysops are excluded.
+	 * anonymous IPs, or the most recently created accounts.
 	 * @return bool True if it is a newbie.
 	 */
 	function isNewbie() {
 		return !$this->isAllowed( 'autoconfirmed' );
-		//return $this->isAnon() || $this->mId > User::getMaxID() * 0.99 && !$this->isAllowed( 'delete' ) && !$this->isBot();
 	}
 
 	/**
