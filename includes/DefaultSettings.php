@@ -1053,6 +1053,8 @@ $wgProfileToDatabase = false;
 $wgProfileSampleRate = 1;
 /** If true, print a raw call tree instead of per-function report */
 $wgProfileCallTree = false;
+/** If not empty, specifies profiler type to load */
+$wgProfilerType = '';
 
 /** Detects non-matching wfProfileIn/wfProfileOut calls */
 $wgDebugProfiling = false;

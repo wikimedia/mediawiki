@@ -26,6 +26,13 @@ if( !isset( $wgProfiling ) )
 
 if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 	require_once( 'Profiling.php' );
+	if ($wgProfilerType == "") {
+		$wgProfiler = new Profiler();
+	} else {
+		$prclass="Profiler{$wgProfilerType}";
+		require_once( $prclass.".php" );
+		$wgProfiler = new $prclass();
+	}
 } else {
 	function wfProfileIn( $fn = '' ) {
 		global $hackwhere, $wgDBname;
