@@ -353,6 +353,4 @@ class Profiler {
 
 }
 
-$wgProfiler = new Profiler();
-
 ?>
