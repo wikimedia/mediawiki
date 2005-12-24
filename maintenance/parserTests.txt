@@ -395,6 +395,24 @@ External links: dollar sign in URL (named)
 !!end
 
 !! test
+External links: open square bracket forbidden in URL (bug 4377)
+!! input
+http://example.com/1[2345
+!! result
+<p><a href="http://example.com/1" class='external free' title="http://example.com/1" rel="nofollow">http://example.com/1</a>[2345
+</p>
+!! end
+
+!! test
+External links: open square bracket forbidden in URL (named) (bug 4377)
+!! input
+[http://example.com/1[2345]
+!! result
+<p><a href="http://example.com/1" class='external text' title="http://example.com/1" rel="nofollow">[2345</a>
+</p>
+!!end
+
+!! test
 External image
 !! input
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
