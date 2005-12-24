@@ -151,6 +151,8 @@ class Parser
 		);
 		$this->mRevisionId = null;
 		$this->mUniqPrefix = 'UNIQ' . Parser::getRandomString();
+
+		wfRunHooks( 'ParserClearState', array( &$this ) );
 	}
 
 	/**
