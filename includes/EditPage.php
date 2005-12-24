@@ -303,9 +303,10 @@ class EditPage {
 	 */
 	function previewOnOpen() {
 		global $wgUser;
-		return $wgUser->getOption( 'previewonfirst' ) ||
-			( $this->mTitle->getNamespace() == NS_CATEGORY &&
-				!$this->mTitle->exists() );
+		return $this->section != 'new' &&
+			( $wgUser->getOption( 'previewonfirst' ) ||
+				( $this->mTitle->getNamespace() == NS_CATEGORY &&
+					!$this->mTitle->exists() ) );
 	}
 
 	/**
