@@ -7,7 +7,7 @@
 
 require_once( 'LanguageUtf8.php' );
 
-# Revised 2005-08-25 for MediaWiki 1.6alpha -- Nikerabbit
+# Revised 2005-12-24 for MediaWiki 1.6dev -- Nikerabbit
 
 /* private */ $wgNamespaceNamesFi = array(
 	NS_MEDIA            => 'Media',
@@ -72,7 +72,7 @@ require_once( 'LanguageUtf8.php' );
 
 # User preference toggles
 'tog-underline'       => 'Alleviivaa linkit:',
-'tog-highlightbroken' => 'Näytä linkit puuttuville sivuille <a href="" class="new">näin</a> (vaihtoehtoisesti näin: <a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Näytä linkit puuttuville sivuille <a href="#" class="new">näin</a> (vaihtoehtoisesti näin: <a href="#" class="internal">?</a>).',
 'tog-justify'         => 'Tasaa kappaleet',
 'tog-hideminor'       => 'Piilota pienet muutokset tuoreet muutokset -listasta',
 'tog-usenewrc'        => 'Kehittynyt tuoreet muutokset -listaus (JavaScript)',
@@ -252,7 +252,7 @@ require_once( 'LanguageUtf8.php' );
 'developertext'       => 'Yrittämäsi toiminnon voi suorittaa vain henkilö, jolla on ohjelmistokehittäjänoikeudet. Katso $1.',
 
 'badaccess'           => 'Lupa evätty',
-'badaccesstext'       => 'Toiminto, jonka halusit suorittaa on rajoitettu käyttäjille, joilla on oikeus "$2". Katso $1.',
+'badaccesstext'       => 'Toiminto, jonka halusit suorittaa on rajoitettu käyttäjille, joilla on oikeus ”$2”. Katso $1.',
 
 'versionrequired'     => 'Mediawikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
@@ -267,8 +267,9 @@ require_once( 'LanguageUtf8.php' );
 'pagetitle'           => '$1 — {{SITENAME}}',
 'sitesubtitle'        => '',
 'retrievedfrom'       => 'Haettu osoitteesta $1',
-'newmessages'         => 'Sinulle on $1',
-'newmessageslink'     => 'uusia viestejä.',
+'youhavenewmessages'  => 'Sinulle on $1 ($2).',
+'newmessageslink'     => 'uusia viestejä',
+'newmessagesdifflink' => 'viimeisin muutos',
 'editsection'         => 'muokkaa',
 'toc'                 => 'Sisällysluettelo',
 'showtoc'             => 'näytä',
@@ -303,8 +304,8 @@ require_once( 'LanguageUtf8.php' );
 #
 'error'               => 'Virhe',
 'databaseerror'       => 'Tietokantavirhe',
-'dberrortext'         => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta "<tt>$2</tt>". MySQL palautti virheen "<tt>$3: $4</tt>".',
-'dberrortextcl'       => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: "$1". Se tehtiin funktiosta "$2". MySQL palautti virheen "$3: $4".\n',
+'dberrortext'         => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta ”<tt>$2</tt>”. MySQL palautti virheen ”<tt>$3: $4</tt>”.',
+'dberrortextcl'       => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. MySQL palautti virheen ”$3: $4”.\n',
 'noconnect'           => 'Tietokantaan ei saatu yhteyttä, ole hyvä ja yritä uudestaan.',
 'nodb'                => 'Tietokantaa $1 ei voitu valita',
 'cachederror'         => 'Pyydetystä sivusta näytettiin välimuistissa oleva kopio, ja se saattaa olla vanhentunut.',
@@ -319,7 +320,7 @@ require_once( 'LanguageUtf8.php' );
 'filerenameerror'     => 'Tiedostoa <b>$1</b> ei voitu nimetä uudelleen nimellä <b>$2</b>.',
 'filedeleteerror'     => 'Tiedostoa <b>$1</b> ei voitu poistaa.',
 'filenotfound'        => 'Tiedostoa <b>$1</b> ei löytynyt.',
-'unexpected'          => 'Odottamaton arvo: "$1"="$2".',
+'unexpected'          => 'Odottamaton arvo: ”$1” on ”$2”.',
 'formerror'           => 'Lomakkeen tiedot eivät kelpaa',
 'badarticleerror'     => 'Toimintoa ei voi suorittaa tälle sivulle.',
 'cannotdelete'        => 'Sivun tai tiedoston poisto epäonnistui. Joku muu on saattanut poistaa sen.',
@@ -352,7 +353,7 @@ Sivun lähdekoodi:',
 'loginproblem'        => '<b>Sisäänkirjautuminen ei onnistunut.</b><br />Yritä uudelleen!',
 'alreadyloggedin'     => '<strong>Käyttäjä $1, olet jo kirjautunut sisään!</strong><br />\n',
 'login'               => 'Kirjaudu sisään',
-'loginprompt'         => '<!-- -->',
+'loginprompt'         => '',
 'userlogin'           => 'Kirjaudu sisään tai luo tunnus',
 'logout'              => 'Kirjaudu ulos',
 'userlogout'          => 'Kirjaudu ulos',
@@ -370,7 +371,7 @@ Sivun lähdekoodi:',
 'uid'                 => 'Numero: ',
 'yourrealname'        => 'Nimi:',
 'yourlanguage'        => 'Käyttöliittymän kieli:',
-'yourvariant'         => 'Kielivariantti', // TODO: CHECK ME (language varian)
+'yourvariant'         => 'Kielivariantti',
 'yournick'            => 'Nimimerkki allekirjoituksia varten:',
 'badsig'              => 'Allekirjoitus on epävalidi.',
 'email'               => 'Sähköpostitoiminnot',
@@ -534,7 +535,7 @@ Sivun lähdekoodi:',
 # Search results
 #
 'searchresults'       => 'Hakutulokset',
-'searchresulttext'    => '<!-- -->',
+'searchresulttext'    => '',
 'searchquery'         => 'Haku termeillä $1',
 'badquery'            => 'Kelvoton hakumerkkijono',
 'badquerytext'        => 'Tekemäsi kysely ei ole kelvollinen. Tämä johtuu todennäköisesti siitä, että et ole määritellyt hakumerkkijonoa.',
@@ -570,7 +571,7 @@ Sivun lähdekoodi:',
 'skin'                => 'Ulkonäkö',
 'math'                => 'Matematiikka',
 'dateformat'          => 'Päiväyksen muoto',
-'datedefault' => 'Ei valintaa',
+'datedefault'         => 'Ei valintaa',
 'datetime'            => 'Aika ja päiväys',
 'math_failure'        => 'Jäsentäminen epäonnistui',
 'math_unknown_error'  => 'Tuntematon virhe',
@@ -676,7 +677,7 @@ Sivun lähdekoodi:',
 'reuploaddesc'        => 'Paluu tallennuslomakkeelle.',
 'uploadnologin'       => 'Et ole kirjautunut sisään',
 'uploadnologintext'   => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.',
-'upload_directory_read_only' => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon "$1".',
+'upload_directory_read_only' => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon ”<tt>$1</tt>”.',
 'uploaderror'         => 'Tallennusvirhe',
 'uploadtext'          => '\'\'\'SEIS!\'\'\' Ennen kuin tallennat tiedostoja {{GRAMMAR:illative|{{SITENAME}}}}, tutustu [[Project:Tiedostojen tallennus|sääntöihin]] ja noudata niitä.
 *\'\'Kirjoita tiedoston tietoihin tarkka tieto tiedoston lähteestä.\'\' Jos teit tiedoston itse, sano se. Jos löysit tiedoston Internetistä, varmista, että sitä saa käyttää {{GRAMMAR:inessive|{{SITENAME}}}} laita mukaan linkki kyseiselle sivulle.
@@ -704,7 +705,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'minlength'           => 'Tiedoston nimessä pitää olla vähintään kolme merkkiä.',
 'illegalfilename'     => 'Tiedoston nimessä \'\'\'$1\'\'\' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä tallentamista uudelleen.',
 'badfilename'         => 'Tiedoston nimi vaihdettiin: $1.',
-'badfiletype'         => '".$1" ei ole suositeltava tiedostomuoto.',
+'badfiletype'         => '”<tt>.$1</tt>” ei ole suositeltava tiedostomuoto.',
 'largefile'           => 'Tiedostojen ei tulisi olla yli $1 kilotavun kokoisia. Tiedoston, jonka yritit tallentaa, koko on $2.',
 'largefileserver'     => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'           => 'Tiedosto, jonka yritit tallentaa näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
@@ -849,7 +850,8 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'alphaindexline'      => '$1…$2',
 'version'             => 'Versio',
 'log'                 => 'Lokit',
-'alllogstext'         => 'Yhdistetty tallennus-, poisto-, suojaus-, esto- ja ylläpitolokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
+'alllogstext'         => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
+'logempty'            => 'Ei tapahtumia lokissa.',
 
 # Special:Allpages
 'nextpage'            => 'Seuraava sivu ($1)',
@@ -993,6 +995,13 @@ Palaute ja lisäapu osoitteessa:
 'confirmunprotecttext'=> 'Haluatko varmasti poistaa tämän sivun suojauksen?',
 'confirmunprotect'    => 'Vahvista suojauksen poisto',
 'unprotectcomment'    => 'Syy suojauksen poistoon',
+'protect-unchain'     => 'Käytä siirtosuojausta',
+'protect-text'        => 'Voit katsoa ja muuttaa sivun [[$1]] suojauksia.',
+'protect-viewtext'    => 'Et voi muuttaa sivun [[$1]] suojauksia. Alla näet nykyiset suojaukset.',
+'protect-default'     => '(oletus)',
+'protect-level-autoconfirmed' => 'Estä vain rekisteröimättömät käyttäjät',
+'protect-level-sysop' => 'vain ylläpitäjät',
+
 
 # Undelete
 'undelete'            => 'Palauta poistettuja sivuja',
