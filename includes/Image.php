@@ -1144,15 +1144,22 @@ class Image
 	}
 
 	/**
+	 * Refresh metadata in memcached, but don't touch thumbnails or squid
+	 */
+	function purgeMetadataCache() {
+		clearstatcache();
+		$this->loadFromFile();
+		$this->saveToCache();
+	}
+
+	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
 	 */
 	function purgeCache( $archiveFiles = array(), $shared = false ) {
 		global $wgInternalServer, $wgUseSquid;
 
 		// Refresh metadata cache
-		clearstatcache();
-		$this->loadFromFile();
-		$this->saveToCache();
+		$this->purgeMetadataCache();
 
 		// Delete thumbnails
 		$files = $this->getThumbnails( $shared );
@@ -1502,7 +1509,7 @@ class Image
 		$newver = Exif::version();
 		
 		if ( !count( $ret ) || $purge || $oldver != $newver ) {
-			$this->purgeCache();
+			$this->purgeMetadataCache();
 			$this->updateExifData( $newver );
 		}
 		if ( isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) )
