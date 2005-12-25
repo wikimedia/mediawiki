@@ -350,6 +350,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4368) Don't show useless empty preview on new section creation
 * Don't show useless empty preview on new page creation
 * (bug 4377) "[" is not valid in URLs
+* Don't delete thumbnails when refreshing exif metadata. This caused thumbs
+  to vanish mysteriously from time to time for files that didn't have metadata.
 
 
 === Caveats ===
