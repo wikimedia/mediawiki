@@ -317,6 +317,11 @@ $typeText: array of strings
 'LogPageLogHeader': strings used by wfMsg as a header.
 $headerText: array of strings
 
+'PageRenderingHash': alter the parser cache option hash key
+  A parser extension which depends on user options should install
+  this hook and append its values to the key.
+$hash: reference to a hash key string which can be modified
+
 'TitleMoveComplete': after moving an article (title)
 $old: old title
 $nt: new title

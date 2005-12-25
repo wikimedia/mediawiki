@@ -352,6 +352,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4377) "[" is not valid in URLs
 * Don't delete thumbnails when refreshing exif metadata. This caused thumbs
   to vanish mysteriously from time to time for files that didn't have metadata.
+* Added 'PageRenderingHash' hook for changing the parser cache hash key
+  from an extension that changes rendering based on nonstandard options.
 
 
 === Caveats ===

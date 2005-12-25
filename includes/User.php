@@ -1462,6 +1462,19 @@ class User {
 
 	}
 
+	/**
+	 * Generate a string which will be different for any combination of
+	 * user options which would produce different parser output.
+	 * This will be used as part of the hash key for the parser cache,
+	 * so users will the same options can share the same cached data
+	 * safely.
+	 *
+	 * Extensions which require it should install 'PageRenderingHash' hook,
+	 * which will give them a chance to modify this key based on their own
+	 * settings.
+	 *
+	 * @return string
+	 */
 	function getPageRenderingHash() {
 		global $wgContLang;
 		if( $this->mHash ){
@@ -1480,9 +1493,13 @@ class User {
 		// add in language specific options, if any
 		$extra = $wgContLang->getExtraHashOptions();
 		$confstr .= $extra;
+		
+		// Give a chance for extensions to modify the hash, if they have
+		// extra options or other effects on the parser cache.
+		wfRunHooks( 'PageRenderingHash', array( &$confstr ) );
 
 		$this->mHash = $confstr;
-		return $confstr ;
+		return $confstr;
 	}
 
 	function isAllowedToCreateAccount() {
