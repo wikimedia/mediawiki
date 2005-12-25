@@ -644,7 +644,8 @@ END;
 
 	function getUndeleteLink() {
 		global $wgUser, $wgTitle, $wgContLang, $action;
-		if(	(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
+		if(	$wgUser->isAllowed( 'deletedhistory' ) &&
+			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
 			($n = $wgTitle->isDeleted() ) ) 
 		{
 			if ( $wgUser->isAllowed( 'delete' ) ) {
