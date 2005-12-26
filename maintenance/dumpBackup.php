@@ -92,6 +92,13 @@ Options:
   --skip-header Don't output the <mediawiki> header
   --skip-footer Don't output the </mediawiki> footer
   --stub      Don't perform old_text lookups; for 2-pass dump
+
+Fancy stuff:
+  --plugin=<class>[:<file>]   Load a dump plugin class
+  --output=<type>:<file>      Begin a filtered output stream;
+                              <type>s: file, gzip, bzip2, 7zip
+  --filter=<type>[:<options>] Add a filter on an output branch
+
 END
 );
 }
