@@ -2195,7 +2195,7 @@ class Parser
 	 * @access private
 	 */
 	function variableSubstitution( $matches ) {
-		$fname = 'parser::variableSubstitution';
+		$fname = 'Parser::variableSubstitution';
 		$varname = $matches[1];
 		wfProfileIn( $fname );
 		if ( !$this->mVariables ) {
