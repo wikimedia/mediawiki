@@ -1057,6 +1057,10 @@ $wgProfileCallTree = false;
 /** If not empty, specifies profiler type to load */
 $wgProfilerType = '';
 
+/** Settings for UDP profiler */
+$wgUDPProfilerHost = '127.0.0.1';
+$wgUDPProfilerPort = '3811';
+
 /** Detects non-matching wfProfileIn/wfProfileOut calls */
 $wgDebugProfiling = false;
 /** Output debug message on every wfProfileIn/wfProfileOut */
