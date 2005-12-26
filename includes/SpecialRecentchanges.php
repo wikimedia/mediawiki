@@ -297,6 +297,8 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 
 function rcDoOutputFeed( $rows, &$feed ) {
 	global $wgSitename, $wgFeedClasses, $wgContLanguageCode;
+	$fname = 'rcDoOutputFeed';
+	wfProfileIn( $fname );
 
 	$feed->outHeader();
 
@@ -330,6 +332,7 @@ function rcDoOutputFeed( $rows, &$feed ) {
 		$feed->outItem( $item );
 	}
 	$feed->outFooter();
+	wfProfileOut( $fname );
 }
 
 /**
