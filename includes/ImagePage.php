@@ -494,9 +494,9 @@ END
 
 			# Squid purging
 			if ( $wgUseSquid ) {
-				$urlArr = Array(
+				$urlArr = array(
 					$wgInternalServer.wfImageArchiveUrl( $oldimage ),
-					$wgInternalServer.$this->mTitle->getFullURL()
+					$this->mTitle->getInternalURL()
 				);
 				wfPurgeSquidServers($urlArr);
 			}
@@ -589,7 +589,7 @@ END
 	}
 
 	function revert() {
-		global $wgOut, $wgRequest, $wgUser, $wgUseSquid, $wgInternalServer;
+		global $wgOut, $wgRequest, $wgUser;
 
 		$oldimage = $wgRequest->getText( 'oldimage' );
 		if ( strlen( $oldimage ) < 16 ) {

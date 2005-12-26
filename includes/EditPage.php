@@ -840,7 +840,7 @@ class EditPage {
 			$metadata = $this->mMetaData ;
 			$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $metadata ) ) ;
 			$helppage = Title::newFromText( wfMsg( "metadata_page" ) ) ;
-			$top = wfMsg( 'metadata', $helppage->getInternalURL() );
+			$top = wfMsg( 'metadata', $helppage->getLocalURL() );
 			$metadata = $top . "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
 		}
 		else $metadata = "" ;

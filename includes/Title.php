@@ -769,7 +769,9 @@ class Title {
 	 */
 	function getInternalURL( $query = '' ) {
 		global $wgInternalServer;
-		return $wgInternalServer . $this->getLocalURL( $query );
+		$url = $wgInternalServer . $this->getLocalURL( $query );
+		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query ) );
+		return $url;
 	}
 
 	/**
