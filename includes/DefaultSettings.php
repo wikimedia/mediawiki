@@ -66,7 +66,6 @@ if(    isset( $_SERVER['SERVER_PORT'] )
 
 	$wgServer .= ":" . $_SERVER['SERVER_PORT'];
 }
-unset($wgProto);
 
 
 /**
@@ -1005,6 +1004,7 @@ $wgHTCPMulticastTTL = 1;
  */
 $wgCookieDomain = '';
 $wgCookiePath = '/';
+$wgCookieSecure = ($wgProto == 'https');
 $wgDisableCookieCheck = false;
 
 /**  Whether to allow inline image pointing to other websites */

@@ -17,7 +17,7 @@ if($wgUseTeX) require_once( 'Math.php' );
  * @package MediaWiki
  */
 class OutputPage {
-	var $mHeaders, $mCookies, $mMetatags, $mKeywords;
+	var $mHeaders, $mMetatags, $mKeywords;
 	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
 	var $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
 	var $mSubtitle, $mRedirect, $mStatusCode;
@@ -39,7 +39,7 @@ class OutputPage {
 	 * Initialise private variables
 	 */
 	function OutputPage() {
-		$this->mHeaders = $this->mCookies = $this->mMetatags =
+		$this->mHeaders = $this->mMetatags =
 		$this->mKeywords = $this->mLinktags = array();
 		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
 		$this->mRedirect = $this->mLastModified =
@@ -59,7 +59,6 @@ class OutputPage {
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ) ; }
-	function addCookie( $name, $val ) { array_push( $this->mCookies, array( $name, $val ) ); }
 	function redirect( $url, $responsecode = '302' ) { $this->mRedirect = $url; $this->mRedirectCode = $responsecode; }
 	function setStatusCode( $statusCode ) { $this->mStatusCode = $statusCode; }
 	
@@ -422,7 +421,7 @@ class OutputPage {
 	 * the object, let's actually output it:
 	 */
 	function output() {
-		global $wgUser, $wgCookieExpiration, $wgOutputEncoding;
+		global $wgUser, $wgOutputEncoding;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType, $wgProfiler;
 
 		if( $this->mDoNothing ){
@@ -522,11 +521,6 @@ class OutputPage {
 
 		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		header( 'Content-language: '.$wgContLanguageCode );
-
-		$exp = time() + $wgCookieExpiration;
-		foreach( $this->mCookies as $name => $val ) {
-			setcookie( $name, $val, $exp, '/' );
-		}
 
 		if ($this->mArticleBodyOnly) {
 			$this->out($this->mBodytext);
