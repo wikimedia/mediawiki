@@ -473,7 +473,7 @@ class Revision {
 			# Old revisions kept around in a legacy encoding?
 			# Upconvert on demand.
 			global $wgInputEncoding, $wgContLang;
-			$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding, $text );
+			$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding . '//IGNORE', $text );
 		}
 		wfProfileOut( $fname );
 		return $text;
