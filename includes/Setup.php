@@ -88,6 +88,7 @@ wfProfileIn( $fname.'-misc1' );
 
 $wgIP = false; # Load on demand
 $wgRequest = new WebRequest();
+$wguname = @posix_uname();
 
 # Useful debug output
 if ( $wgCommandLineMode ) {
@@ -131,9 +132,11 @@ if ( $wgDBprefix ) {
 }
 
 if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgDBname.'Token'] ) ) ) {
+	wfIncrStats( 'request_with_session' );
 	User::SetupSession();
 	$wgSessionStarted = true;
 } else {
+	wfIncrStats( 'request_without_session' );
 	$wgSessionStarted = false;
 }
 
