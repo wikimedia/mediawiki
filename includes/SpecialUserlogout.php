@@ -17,7 +17,6 @@ function wfSpecialUserlogout() {
 
 		wfRunHooks('UserLogoutComplete', array(&$wgUser));
 		
-		$wgOut->mCookies = array();
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( wfMsg( 'logouttext' ) );
 		$wgOut->returnToMain();

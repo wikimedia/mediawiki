@@ -360,6 +360,8 @@ fully support the editing toolbar, but was found to be too confusing.
   1.6 dev behavior.
 * Add 'GetInternalURL' hook to match the GetFullURL and GetLocalURL ones
 * (bug 4389) Fix math options on zh-hk and zh-tw (but not localized)
+* Remove unused OutputPage::addCookie()
+* Set cookies to secure mode based on use of HTTPS or $wgCookieSecure
 
 
 === Caveats ===

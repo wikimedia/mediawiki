@@ -381,7 +381,7 @@ class LoginForm {
 	 * @access private
 	 */
 	function mailPasswordInternal( $u ) {
-		global $wgDBname, $wgCookiePath, $wgCookieDomain;
+		global $wgDBname, $wgCookiePath, $wgCookieDomain, $wgCookieSecure;
 
 		if ( '' == $u->getEmail() ) {
 			return wfMsg( 'noemail', $u->getName() );
@@ -390,7 +390,7 @@ class LoginForm {
 		$np = $u->randomPassword();
 		$u->setNewpassword( $np );
 
-		setcookie( "{$wgDBname}Token", '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( "{$wgDBname}Token", '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 
 		$u->saveSettings();
 
