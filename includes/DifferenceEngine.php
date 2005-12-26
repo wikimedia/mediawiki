@@ -324,6 +324,7 @@ CONTROL;
 			$key = "$wgDBname:diff:oldid:{$this->mOldid}:newid:{$this->mNewid}";
 			$difftext = $wgMemc->get( $key );
 			if ( $difftext ) {
+				wfIncrStats( 'diff_cache_hit' );
 				return $difftext;
 			}
 		}
@@ -354,7 +355,10 @@ CONTROL;
 
 		// Save to cache for 7 days
 		if ( $key !== false ) {
+			wfIncrStats( 'diff_cache_miss' );
 			$wgMemc->set( $key, $difftext, 7*86400 );
+		} else {
+			wfIncrStats( 'diff_uncacheable' );
 		}
 		return $difftext;
 	}
