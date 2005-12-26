@@ -358,6 +358,7 @@ fully support the editing toolbar, but was found to be too confusing.
   list via Special:Undelete. Default is off, replicating the 1.5 behavior,
   but it can be turned back on for random users to replicate the previous
   1.6 dev behavior.
+* Add 'GetInternalURL' hook to match the GetFullURL and GetLocalURL ones
 
 
 === Caveats ===
