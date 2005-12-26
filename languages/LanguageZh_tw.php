@@ -917,11 +917,6 @@ class LanguageZh_tw extends LanguageZh_cn {
 		return $wgSkinNamesZh_tw;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesZh_tw;
-		return $wgMathNamesZh_tw;
-	}
-
 	function getMessage( $key ) {
 		global $wgAllMessagesZh_tw;
 		if(array_key_exists($key, $wgAllMessagesZh_tw))
