@@ -738,6 +738,9 @@ class Article {
 			$this->exists() &&
 			empty( $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ($pcache ? 'yes' : 'no' ) . "\n" );
+		if ( $wgUser->getOption( 'stubthreshold' ) ) {
+			wfIncrStats( 'pcache_miss_stub' );
+		}
 
 		$outputDone = false;
 		if ( $pcache ) {
