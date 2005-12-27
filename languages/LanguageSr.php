@@ -61,19 +61,50 @@ require_once( "LanguageUtf8.php" );
 /* NOT USED IN STABLE VERSION */
 /* private */ $wgMagicWordsSr = array(
 #   ID                                 CASE  SYNONYMS
-	MAG_REDIRECT             => array( 0,    "#Преусмери"              ),
-	MAG_NOTOC                => array( 0,    "__БЕЗСАДРЖАЈА__"              ),
-	MAG_START                => array( 0,    "__ПОЧЕТАК__"              ),
-	MAG_CURRENTMONTH         => array( 1,    "{{ТРЕНУТНИМЕСЕЦ}}"       ),
-	MAG_CURRENTMONTHNAME     => array( 1,    "{{ИМЕТРЕНУТНОГМЕСЕЦА}}"   ),
-	MAG_CURRENTDAY           => array( 1,    "{{ТРЕНУТНИДАН}}"         ),
-	MAG_CURRENTDAYNAME       => array( 1,    "{{ИМЕТРЕНУТНОГДАНА}}"     ),
-	MAG_CURRENTYEAR          => array( 1,    "{{ТРЕНУТНАГОДИНА}}"        ),
-	MAG_CURRENTTIME          => array( 1,    "{{ТРЕНУТНОВРЕМЕ}}"        ),
-	MAG_NUMBEROFARTICLES     => array( 1,    "{{БРОЈЧЛАНАКА}}"   ),
-	MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{ГЕНЕРИСАНОИМЕТРЕНУТНОГМЕСЕЦА}}"),
-	MAG_SUBST                => array( 1,    "{{ПОДСТ:$1}}"           ),
-	MAG_MSGNW                => array( 1,    "{{НВПОР:$1}}"           )
+        MAG_REDIRECT             => array( 0, '#redirect', '#преусмери' ),
+        MAG_NOTOC                => array( 0, '__NOTOC__', '__БЕЗСАДРЖАЈА__' ),
+        MAG_FORCETOC             => array( 0, '__FORCETOC__', '__ФОРСИРАНИСАДРЖАЈ__' ),
+        MAG_TOC                  => array( 0, '__TOC__', '__САДРЖАЈ__'      ),
+        MAG_NOEDITSECTION        => array( 0, '__NOEDITSECTION__', '__БЕЗ_ИЗМЕНА__' ),
+        MAG_START                => array( 0, '__START__', '__ПОЧЕТАК__'         ),
+        MAG_CURRENTMONTH         => array( 1, 'CURRENTMONTH', 'ТРЕНУТНИМЕСЕЦ'      ),
+        MAG_CURRENTMONTHNAME     => array( 1, 'CURRENTMONTHNAME', 'ТРЕНУТНИМЕСЕЦИМЕ' ),
+        MAG_CURRENTMONTHNAMEGEN  => array( 1, 'CURRENTMONTHNAMEGEN', 'ТРЕНУТНИМЕСЕЦРОД' ),
+        MAG_CURRENTMONTHABBREV   => array( 1, 'CURRENTMONTHABBREV', 'ТРЕНУТНИМЕСЕЦСКР'    ),
+        MAG_CURRENTDAY           => array( 1, 'CURRENTDAY', 'ТРЕНУТНИДАН'            ),
+        MAG_CURRENTDAYNAME       => array( 1, 'CURRENTDAYNAME', 'ТРЕНУТНИДАНИМЕ'     ),
+        MAG_CURRENTYEAR          => array( 1, 'CURRENTYEAR', 'ТРЕНУТНАГОДИНА'       ),
+        MAG_CURRENTTIME          => array( 1, 'CURRENTTIME', 'ТРЕНУТНОВРЕМЕ'        ),
+        MAG_NUMBEROFARTICLES     => array( 1, 'NUMBEROFARTICLES', 'БРОЈЧЛАНАКА'    ),
+        MAG_NUMBEROFFILES        => array( 1, 'NUMBEROFFILES', 'БРОЈДАТОТЕКА'      ),
+        MAG_PAGENAME             => array( 1, 'PAGENAME', 'СТРАНИЦА'              ),
+        MAG_PAGENAMEE            => array( 1, 'PAGENAMEE', 'СТРАНИЦЕ'            ),
+        MAG_NAMESPACE            => array( 1, 'NAMESPACE', 'ИМЕНСКИПРОСТОР'   ),
+        MAG_SUBST                => array( 0, 'SUBST:', 'ПОДСТ:'            ),
+        MAG_MSGNW                => array( 0, 'MSGNW:', 'НВПОР:'           ),
+        MAG_END                  => array( 0, '', '__КРАЈ__'            ),
+        MAG_IMG_THUMBNAIL        => array( 1, 'thumbnail', 'thumb', 'мини'     ),
+        MAG_IMG_MANUALTHUMB      => array( 1, 'thumbnail=$1', 'thumb=$1', 'мини=$1'),
+        MAG_IMG_RIGHT            => array( 1, 'right', 'десно', 'д'  ),
+        MAG_IMG_LEFT             => array( 1, 'left', 'лево', 'л'   ),
+        MAG_IMG_NONE             => array( 1, 'none', 'н'                  ),
+        MAG_IMG_WIDTH            => array( 1, '$1px', '$1пиксел' , '$1п'         ),
+        MAG_IMG_CENTER           => array( 1, 'center', 'centre', 'центар', 'ц' ),
+        MAG_IMG_FRAMED           => array( 1, 'framed', 'enframed', 'frame', 'оквир', 'рам' ),
+        MAG_INT                  => array( 0, 'INT:'                   ),
+        MAG_SITENAME             => array( 1, 'SITENAME', 'ИМЕСАЈТА'       ),
+        MAG_NS                   => array( 0, 'NS:', 'ИП:'                    ),
+        MAG_LOCALURL             => array( 0, 'LOCALURL:', 'ЛОКАЛНААДРЕСА:'    ),
+        MAG_LOCALURLE            => array( 0, 'LOCALURLE:', 'ЛОКАЛНЕАДРЕСЕ:'  ),
+        MAG_SERVER               => array( 0, 'SERVER', 'СЕРВЕР'       ),
+        MAG_SERVERNAME           => array( 0, 'SERVERNAME', 'ИМЕСЕРВЕРА'    ),
+        MAG_SCRIPTPATH           => array( 0, 'SCRIPTPATH', 'СКРИПТА'    ),
+        MAG_GRAMMAR              => array( 0, 'GRAMMAR:', 'ГРАМАТИКА:' ),
+        MAG_NOTITLECONVERT       => array( 0, '__NOTITLECONVERT__', '__NOTC__'),
+        MAG_NOCONTENTCONVERT     => array( 0, '__NOCONTENTCONVERT__', '__NOCC__'),
+        MAG_CURRENTWEEK          => array( 1, 'CURRENTWEEK', 'ТРЕНУТНАНЕДЕЉА'),
+        MAG_CURRENTDOW           => array( 1, 'CURRENTDOW'   ),
+        MAG_REVISIONID           => array( 1, 'REVISIONID'  ),
 );
 
 $wgAllMessagesSr = array(
@@ -1686,6 +1717,15 @@ class LanguageSr extends LanguageUtf8 {
 			return parent::getMessage($key);
 	}
 
+	/**
+	* Exports $wgMagicWordsSr
+	* @return array
+	*/
+	function getMagicWords()  {
+		global $wgMagicWordsSr;
+		return $wgMagicWordsSr;
+	}
+	
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
@@ -1787,6 +1827,7 @@ class LanguageSr extends LanguageUtf8 {
 	}
 
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+		$count = strtr( $count, '.', '' );
 		if ($count > 10 && floor(($count % 100) / 10) == 1) {
 			return $wordform3;
 		} else {
