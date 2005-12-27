@@ -82,7 +82,7 @@ require_once( "LanguageUtf8.php" );
         MAG_NAMESPACE            => array( 1, 'NAMESPACE', 'ИМЕНСКИПРОСТОР'   ),
         MAG_SUBST                => array( 0, 'SUBST:', 'ПОДСТ:'            ),
         MAG_MSGNW                => array( 0, 'MSGNW:', 'НВПОР:'           ),
-        MAG_END                  => array( 0, '', '__КРАЈ__'            ),
+        MAG_END                  => array( 0, '__END__', '__КРАЈ__'            ),
         MAG_IMG_THUMBNAIL        => array( 1, 'thumbnail', 'thumb', 'мини'     ),
         MAG_IMG_MANUALTHUMB      => array( 1, 'thumbnail=$1', 'thumb=$1', 'мини=$1'),
         MAG_IMG_RIGHT            => array( 1, 'right', 'десно', 'д'  ),
