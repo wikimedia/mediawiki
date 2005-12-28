@@ -381,6 +381,25 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false, $transform = true ) 
 }
 
 /**
+ * This function provides the message source for messages to be edited which are *not* stored in the database
+*/
+
+function wfMsgWeirdKey ( $key ) {
+	$subsource = str_replace ( ' ' , '_' , $key ) ;
+	$source = wfMsg ( $subsource ) ;
+	if ( $source == "&lt;{$subsource}&gt;" ) {
+		# Try again with first char lower case
+		$subsource = strtolower ( substr ( $subsource , 0 , 1 ) ) . substr ( $subsource , 1 ) ;
+		$source = wfMsg ( $subsource ) ;
+	}
+	if ( $source == "&lt;{$subsource}&gt;" ) {
+		# Didn't work either, return blank text
+		$source = "" ;
+	}
+	return $source ;
+}
+
+/**
  * Fetch a message string value, but don't replace any keys yet.
  * @param string $key
  * @param bool $useDB

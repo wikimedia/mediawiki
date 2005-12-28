@@ -106,7 +106,12 @@ class Article {
 			wfProfileOut( $fname );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 			
-			$ret = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				$ret = wfMsgWeirdKey ( $this->mTitle->getText() ) ;
+			} else {
+				$ret = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
+			}
+			
 			return "<div class='noarticletext'>$ret</div>";
 		} else {
 			$this->loadContent( $noredir );
@@ -376,7 +381,7 @@ class Article {
 			$redirect = ($redirect == 'no') ? 'no' : 'yes';
 			$t .= ',redirect='.$redirect;
 		}
-		$this->mContent = wfMsg( 'missingarticle', $t );
+		$this->mContent = wfMsg( 'missingarticle', $t ) ;
 
 		if( $oldid ) {
 			$revision = Revision::newFromId( $oldid );
@@ -2431,7 +2436,11 @@ class Article {
 		# first, see if the page exists at all.
 		$exists = $page->getArticleId() != 0;
 		if( !$exists ) {
-			$wgOut->addHTML( wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' ) );
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				$wgOut->addHTML(wfMsgWeirdKey ( $this->mTitle->getText() ) );
+			} else {
+				$wgOut->addHTML(wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' ) );
+			}
 		} else {
 			$dbr =& $this->getDB( DB_SLAVE );
 			$wl_clause = array(
