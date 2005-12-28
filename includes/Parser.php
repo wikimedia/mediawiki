@@ -1410,7 +1410,7 @@ class Parser
 						$text = $this->replaceInternalLinks($text);
 
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
-						$s .= $prefix . preg_replace( "/\b(" . wfUrlProtocols() . ')/', "{$this->mUniqPrefix}NOPARSE$1", $this->makeImage( $nt, $text) ) . $trail;
+						$s .= $prefix . $this->armorLinks( $this->makeImage( $nt, $text ) ) . $trail;
 						$wgLinkCache->addImageLinkObj( $nt );
 
 						wfProfileOut( "$fname-image" );
@@ -1465,11 +1465,11 @@ class Parser
 			if( $ns == NS_MEDIA ) {
 				$link = $sk->makeMediaLinkObj( $nt, $text );
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
-				$s .= $prefix . str_replace( 'http://', "http{$this->mUniqPrefix}NOPARSE://", $link ) . $trail;
+				$s .= $prefix . $this->armorLinks( $link ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
 				continue;
 			} elseif( $ns == NS_SPECIAL ) {
-				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
+				$s .= $prefix . $this->armorLinks( $sk->makeKnownLinkObj( $nt, $text, '', $trail ) );
 				continue;
 			} elseif( $ns == NS_IMAGE ) {
 				$img = Image::newFromTitle( $nt );
@@ -1477,7 +1477,7 @@ class Parser
 					// Force a blue link if the file exists; may be a remote
 					// upload on the shared repository, and we want to see its
 					// auto-generated page.
-					$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
+					$s .= $prefix . $this->armorLinks( $sk->makeKnownLinkObj( $nt, $text, '', $trail ) );
 					continue;
 				}
 			}
@@ -1517,6 +1517,23 @@ class Parser
 			}
 		}
 		return $retVal;
+	}
+	
+	/**
+	 * Insert a NOPARSE hacky thing into any inline links in a chunk that's
+	 * going to go through further parsing steps before inline URL expansion.
+	 *
+	 * In particular this is important when using action=render, which causes
+	 * full URLs to be included.
+	 *
+	 * Oh man I hate our multi-layer parser!
+	 *
+	 * @param string more-or-less HTML
+	 * @return string less-or-more HTML with NOPARSE bits
+	 */
+	function armorLinks( $text ) {
+		return preg_replace( "/\b(" . wfUrlProtocols() . ')/',
+			"{$this->mUniqPrefix}NOPARSE$1", $text );
 	}
 
 	/**
