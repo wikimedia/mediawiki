@@ -627,7 +627,7 @@ END;
 			# own talk page
 			if( !$wgTitle->equals( $wgUser->getTalkPage() ) ) {
 				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessageslink' ) );
-				$dl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessagesdifflink' ) );
+				$dl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessagesdifflink' ), 'diff=cur' );
 				$s.= ' | <strong>'. wfMsg( 'youhavenewmessages', $tl, $dl ) . '</strong>';
 				# disable caching
 				$wgOut->setSquidMaxage(0);

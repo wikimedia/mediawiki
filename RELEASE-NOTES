@@ -364,6 +364,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Set cookies to secure mode based on use of HTTPS or $wgCookieSecure
 * (bug 4392) Update of LanguageSr.php
 * (bug 4382) Frisian numeric format
+* (bug 4411) Fix messages diff link for classic skin
 
 
 === Caveats ===
