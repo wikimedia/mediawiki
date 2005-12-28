@@ -975,8 +975,8 @@ class LanguageFy extends LanguageUtf8 {
 		$datePreference = $this->dateFormat( $format );
 
 		$month = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
-		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
-		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
+		$day = 0 + substr( $ts, 6, 2 );
+		$year = substr( $ts, 0, 4 );
 
 		switch( $datePreference ) {
 			case MW_DATE_DMY: return "$day $month $year";
@@ -1014,7 +1014,7 @@ class LanguageFy extends LanguageUtf8 {
 		if ( $datePreference == MW_DATE_ISO ) {
 			$t .= $sep . substr( $ts, 12, 2 );
 		}
-		return $this->formatNum( $t );
+		return $t;
 	}
 	
 	function getMessage( $key ) {
