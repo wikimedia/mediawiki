@@ -748,7 +748,12 @@ class OutputPage {
 
 		if( is_string( $source ) ) {
 			if( strcmp( $source, '' ) == 0 ) {
-				$source = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
+				global $wgTitle ;
+				if ( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
+					$source = wfMsgWeirdKey ( $wgTitle->getText() ) ;
+				} else {
+					$source = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
+				}
 			}
 			$rows = $wgUser->getOption( 'rows' );
 			$cols = $wgUser->getOption( 'cols' );
