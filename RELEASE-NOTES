@@ -365,6 +365,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4392) Update of LanguageSr.php
 * (bug 4382) Frisian numeric format
 * (bug 4411) Fix messages diff link for classic skin
+* (bug 4385) Separate parser cache entries for non-editing users, so section
+  edit links don't vanish / appear unwanted on protected pages
 
 
 === Caveats ===
