@@ -95,7 +95,7 @@ class SpecialVersion {
 		# Return tweaked version of $_SERVER['SERVER_SOFTWARE']
 		if( isset( $_SERVER['SERVER_SOFTWARE'] ) ) {
 			$osver = explode( ' ', $_SERVER['SERVER_SOFTWARE'] );
-			$ssoft = "* " . ( count( $osver ) > 1 ? " * " . $osver[0] . ' ' . $osver[1] : $osver[0] );
+			$ssoft = "* " . ( count( $osver ) > 1 ? $osver[0] . ' ' . $osver[1] : $osver[0] );
 		} else {
 			$ssoft = "";
 		}
