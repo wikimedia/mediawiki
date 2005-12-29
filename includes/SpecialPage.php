@@ -79,9 +79,6 @@ $wgSpecialPages = array(
 	'Unwatchedpages' => new SpecialPage( 'Unwatchedpages', 'unwatchedpages' )
 );
 
-if ( $wgUseValidation )
-	$wgSpecialPages['Validate'] = new SpecialPage( 'Validate' );
-
 if( !$wgDisableCounters ) {
 	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
 }

@@ -879,7 +879,6 @@ váš uživatelský účet zablokován.",
 #
 'orphans'               => 'Sirotci',
 'geo'			=> 'Zeměpisné souřadnice',
-'validate'		=> 'Hodnocení stránek',
 'lonelypages'   => 'Sirotčí články',
 'uncategorizedpages'	=> 'Nekategorizované stránky',
 'unusedimages'  => 'Nepoužívané obrázky a soubory',
@@ -1183,54 +1182,6 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'already_sysop'     => 'Tento uživatel už je správce.',
 'already_bureaucrat' => 'Tento uživatel už je byrokrat.',
 'already_steward'   => 'Tento uživatel už je stevard.',
-
-# Validation
-'val_yes' => 'Ano',
-'val_no' => 'Ne',
-'val_of' => '$1 z $2',
-'val_revision' => 'Verze',
-'val_time' => 'Čas',
-'val_user_stats_title' => 'Přehled hodnocení od uživatele $1',
-'val_my_stats_title' => 'Přehled mého hodnocení',
-'val_list_header' => '<th>#</th><th>Téma</th><th>Rozsah</th><th>Činnost</th>',
-'val_add' => 'Přidat',
-'val_del' => 'Smazat',
-'val_show_my_ratings' => 'Zobrazit moje hodnocení',
-'val_revision_number' => 'Revize #$1',
-'val_warning' => '<b><i>Absolutně</i> nikdy tady nic neměňte bez <i>výslovné</i> shody v komunitě!</b>',
-'val_rev_for' => 'Verze ',
-'val_details_th_user' => 'Uživatel $1',
-'val_validation_of' => 'Hodnocení stránky „$1“',
-'val_revision_of' => 'Verze $1',
-'val_revision_changes_ok' => 'Vaše hodnocení bylo uloženo!',
-'val_revision_stats_link' => '(<a href="$1">podrobnosti</a>)',
-'val_iamsure' => 'Jste si opravdu jisti?',
-'val_clear_old' => 'Smazat moje starší hodnocení',
-'val_merge_old' => 'Použít moje předchozí hodnocení tam, kde jsem zvolil „Bez názoru“',
-'val_form_note' => '<b>Rada:</b> Sloučení údajů znamená, že zvolené verze článku,
-které jsou označeny jako <i>bez názoru</i>, budou nastaveny na hodnotu a komentář
-nejnovější verze, pro kterou jste názor vyjádřil(a). Pokud například chcete
-změnit v nové verzi jedinou hodnotu, ale ostatní chcete ponechat, vyberte
-pouze tu hodnotu, kterou chcete <i>změnit</i>. Sloučením se vyplní ostatní
-hodnoty jejich předešlým nastavením.',
-'val_noop' => 'Bez názoru',
-'val_percent' => '<b>$1%</b><br />($2 / $3 bodů<br />$4 uživatelů)',			#TODO: plural
-'val_percent_single' => '<b>$1%</b><br />($2 / $3 bodů<br />jeden uživatel)',	#TODO: plural
-'val_total' => 'Celkem',
-'val_version' => 'Verze',
-'val_tab' => 'Hodnocení',
-'val_this_is_current_version' => 'toto je nejnovější verze',
-'val_version_of' => 'Verze z $1',
-'val_table_header' => "<tr><th>Třída</th>$1<th colspan=4>Názor</th>$1<th>Komentář</th></tr>",
-'val_stat_link_text' => 'Statistiky hodnocení tohoto článku',
-'val_view_version' => 'Prohlédnout tuto verzi',
-'val_validate_version' => 'Hodnotit tuto verzi',
-'val_user_validations' => 'Tento uživatel zhodnotil $1 stran.',					#TODO: plural
-'val_no_anon_validation' => 'Pro hodnocení článků musíte být přihlášen(a).',
-'val_validate_article_namespace_only' => 'Hodnotit lze pouze články. Tato stránka <i>není</i> ve jmenném prostoru článků.',
-'val_validated' => 'Hodnocení uloženo.',
-'val_article_lists' => 'Seznam zhodnocených článků',
-'val_page_validation_statistics' => 'Statistiky hodnocení pro $1',
 
 # Move page
 #

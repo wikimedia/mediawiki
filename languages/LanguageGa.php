@@ -1029,7 +1029,6 @@ taispeántar athsheolaidh nó fo-leathanaigh.",
 #
 "orphans"       => "Leathanaigh dhílleachtacha",
 'geo'	   => 'Comhardanáidí GEO',
-'validate'      => 'Cuir an leathanach i bhailí',
 "lonelypages"   => "Leathanaigh dhílleachtacha",
 'uncategorizedpages'    => 'Leathanaigh gan catagóir',
 'unusedcategories' => 'Catagóirí nach úsáidtear',
@@ -1387,64 +1386,6 @@ Iontráil ainm an úsáideora sa bosca seo agus brúigh an cnaipe chun riarthói
 'already_sysop'     => 'Is oibreoir córais é an usáideoir seo cheana féin',
 'already_bureaucrat' => 'Is maorlathach é an úsáideoir seo cheana féin',
 'already_steward'   => 'Is maor é an úsáideoir seo cheana féin',
-
-# Validation
-'val_yes' => 'Is ea',
-'val_no' => 'Ní hea',
-'val_of' => '$1 as $2',
-'val_revision' => 'Leasú',
-'val_time' => 'Am',
-'val_user_stats_title' => 'Forbhreathnú bailíochtaithe an úsáideora $1',
-'val_my_stats_title' => 'M\'fhorbhreathnú bailíochtaithe',
-'val_list_header' => '<th>#</th><th>Ábhar</th><th>Réimse</th><th>Gníomh</th>',
-'val_add' => 'Cuir leis',
-'val_del' => 'Scrios',
-'val_show_my_ratings' => 'Taispeáin mo chuid bailíochtuithe',
-'val_revision_number' => 'Leasú #$1',
-'val_warning' => '<b>Ná hathraigh rud ar bith anseo <i>go deo</i> muna bhfuil comhaontú
-
-<i>dearfa</i> ann cheana féin ón comhphobal!</b>',
-'val_rev_for' => 'Leasuithe do $1',
-'val_details_th_user' => 'Úsáideoir $1',
-'val_validation_of' => 'Bailíochtú do "$1"',
-'val_revision_of' => 'Leasú ar $1',
-'val_revision_changes_ok' => 'Stóráladh do chuid meastachán!',
-'val_rev_stats' => 'Féach ar an staidreamh bailíochtaithe do "$1" <a href="$2">anseoe</a>',
-'val_revision_stats_link' => 'sonraí',
-'val_iamsure' => 'Gliogáil an ticbhosca seo más mian leat é a dhéanamh go fírinneach!',
-'val_details_th' => '<sub>Úsáideoir</sub> \\ <sup>Ábhar</sup>',
-
-'val_clear_old' => 'Glan mo chuid sonraí bailíochtaithe níos sine do $1',
-'val_merge_old' => 'Úsáid mo measúnacht roimhe seo nuair atá roghnaithe \'Gan tuairim\'',
-'val_form_note' => '<b>Leid:</b> Má chumaiscítear do chuid sonraí, athreofar
-gach sainrogha ina chuir tú <i>gan tuairim</i> don leagan ailt a roghnaíonn
-tú bheith an luach is an trácht atá ag an t-athrú is déanach ina thóg tú
-tuairim. Mar shampla, más maith leat rogha amháin do athrú níos nuaí a
-hathrú, ach ba mhaith leat do roghanna eile don alt a chosaint, ná roghnaigh
-rud ar bith ach amháin an rogha ba mhaith leat a <i>athrú</i>, agus le
-cumaisc líonfar na roghanna eile de réir na roghanna a raibh agat roimhe ré.',
-'val_noop' => 'Gan tuairim',
-'val_topic_desc_page' => 'Tionscadal:Téamaí bailíochtaithe',
-'val_votepage_intro' => 'Athraigh an téacs seo <a href="{{SERVER}}{{localurl:MediaWiki:Val_votepage_intro}}">anseo</a>!',
-'val_percent' => '<b>$1%</b><br>($2 de $3 pointí<br>a rinne $4 úsáideoirí)',
-'val_percent_single' => '<b>$1%</b><br>($2 de $3 pointí<br>a rinne aon úsáideoir)',
-'val_total' => 'Iomlán',
-'val_version' => 'Leagan',
-'val_tab' => 'Bailíochtaigh',
-'val_this_is_current_version' => 'is é seo an t-eagrán is déanaí',
-'val_version_of' => "Leagan ó $1" ,
-'val_table_header' => "<tr><th>Rang</th>$1<th
-
-colspan=4>Tuairim</th>$1<th>Trácht</th></tr>",
-'val_stat_link_text' => 'Staitistic bhailíochta don alt seo',
-'val_view_version' => 'Féach ar an leagan seo',
-'val_validate_version' => 'Bailíochtaigh an leagan seo',
-'val_user_validations' => 'Bhailíochtaigh an úsáideoir seo $1 leathanaigh.',
-'val_no_anon_validation' => 'Caithfidh tú bheith logáilte isteach chun alt a bhailíochtú.',
-'val_validate_article_namespace_only' => 'Ní féidir leathanaigh a bhailíochtú ach amháin ailt. <i>Níl</i> an leathanach seo in ainmspás na n-alt.',
-'val_validated' => 'Tá an bhailíocht críochnaithe.',
-'val_article_lists' => 'Líosta ailt atá déanta bailí',
-'val_page_validation_statistics' => 'Staitisticí bhailíochta ailt do $1',
 
 # Move page
 #

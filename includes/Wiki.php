@@ -285,7 +285,6 @@ class MediaWikiType {
 	function act_unprotect ( $action ) { $this->article_action ( $action ) ; } 
 	function act_info ( $action ) { $this->article_action ( $action ) ; } 
 	function act_markpatrolled ( $action ) { $this->article_action ( $action ) ; } 
-	function act_validate ( $action ) { $this->article_action ( $action ) ; } 
 	function act_render ( $action ) { $this->article_action ( $action ) ; } 
 	function act_deletetrackback ( $action ) { $this->article_action ( $action ) ; } 
 	function act_purge ( $action ) { $this->article_action ( $action ) ; } 

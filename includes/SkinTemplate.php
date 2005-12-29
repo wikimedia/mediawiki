@@ -580,7 +580,7 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildContentActionUrls () {
-		global $wgContLang, $wgUseValidation, $wgDBprefix, $wgValidationForAnons;
+		global $wgContLang, $wgDBprefix;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 
@@ -706,31 +706,6 @@ class SkinTemplate extends Skin {
 			}
 			
 			wfRunHooks( 'SkinTemplateTabs', array( &$this , &$content_actions ) )	;
-
-			if( $this->loggedin || $wgValidationForAnons ) { # and $action != 'submit' ) {
-				# Validate tab. TODO: add validation to logged-in user rights
-				if($wgUseValidation && ( $action == "" || $action=='view' ) ){ # && $wgUser->isAllowed('validate')){
-					if ( $this->mRevisionId ) $oid = intval( $this->mRevisionId ) ; # Use the oldid
-					else
-						{# Trying to get the current article revision through this weird stunt
-						$tid = $this->mTitle->getArticleID();
-						$tns = $this->mTitle->getNamespace();
-						$sql = "SELECT page_latest FROM {$wgDBprefix}page WHERE page_id={$tid} AND page_namespace={$tns}" ;
-						$res = wfQuery( $sql, DB_READ );
-						if( $s = wfFetchObject( $res ) )
-							$oid = $s->page_latest ;
-						else $oid = "" ; # Something's wrong, like the article has been deleted in the last 10 ns
-						}
-					if ( $oid != "" ) {
-						$oid = "&revision={$oid}" ;
-						$content_actions['validate'] = array(
-							'class' => ($action == 'validate') ? 'selected' : false,
-							'text' => wfMsg('val_tab'),
-							'href' => $this->mTitle->getLocalUrl( "action=validate{$oid}" )
-							);
-					}
-				}
-			}
 		} else {
 			/* show special page tab */
 

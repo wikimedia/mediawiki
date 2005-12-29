@@ -90,7 +90,6 @@ $wgAvailableRights = array(
 	'editinterface',
 	'siteadmin',
 	'bot',
-	'validate', 
 	'import',
 	'importupload'
 );

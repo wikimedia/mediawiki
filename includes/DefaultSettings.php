@@ -614,11 +614,6 @@ $wgMsgCacheExpiry	= 86400;
 # Whether to enable language variant conversion.
 $wgDisableLangConversion = false;
 
-# Use article validation feature; turned off by default
-$wgUseValidation = false;
-$wgValidationMaxTopics = 25; # Maximum number of topics
-$wgValidationForAnons = true ;
-
 # Whether to use zhdaemon to perform Chinese text processing
 # zhdaemon is under developement, so normally you don't want to
 # use it unless for testing

@@ -580,7 +580,6 @@ Chest al vûl dî une medie di '''$5''' modifichis par pagjine, e '''$6''' viodu
 'val_version' => "Version",
 'val_version_of' => "Version di $1",
 'val_view_version' => "Cjale cheste version",
-'validate' => "Convalide la pagjine",
 'version' => "Version",
 'viewcount' => "Cheste pagjine e je stade viodude $1 voltis.",
 'viewprevnext' => "Cjale ($1) ($2) ($3).",

@@ -371,6 +371,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3794) Include OS / platform info in Special:Version
 * (bug 4419) Remove obsolete magnify.png.old
 * Fix for short_open_tag off again; please don't break this, guys
+* Removed Special:Validate, it's been superseded by the Review extension
 
 
 === Caveats ===
