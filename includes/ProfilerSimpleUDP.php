@@ -1,4 +1,4 @@
-<?
+<?php
 /* ProfilerSimpleUDP class, that sends out messages for 'udpprofile' daemon
    (the one from wikipedia/udpprofile CVS )
 */

@@ -1,4 +1,4 @@
-<?
+<?php
 /** Portuguese (Português)
  * This translation was made by:
  *  - Yves Marques Junqueira
