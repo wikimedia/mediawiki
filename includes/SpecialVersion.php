@@ -1,12 +1,12 @@
 <?php
 /**#@+
- * Give information about the version of MediaWiki, PHP, the DB and extensions
+ * Give information about the version of MediaWiki, PHP, server software, the DB and extensions
  *
  * @package MediaWiki
  * @subpackage SpecialPage
  *
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
+ * @authors Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Rob Church <robchur@gmail.com>
+ * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Rob Church
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
@@ -29,7 +29,7 @@ class SpecialVersion {
 	 * Constructor
 	 */
 	function SpecialVersion() {
-		// English motherfucker, do you speak it?
+		# Force to English language
 		$this->langObj = setupLangObj( 'LanguageEn' );
 		$this->langObj->initEncoding();
 	}
@@ -84,10 +84,17 @@ class SpecialVersion {
 		
 		* [http://www.mediawiki.org/ MediaWiki]: $wgVersion
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
+		* " . $this->getServerSoftware() . "
 		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion() . "
 		</div>";
 
 		return str_replace( "\t\t", '', $ret );
+	}
+
+	function getServerSoftware() {
+		# Return tweaked version of $_SERVER['SERVER_SOFTWARE']
+		$osver = explode( ' ', $_SERVER['SERVER_SOFTWARE'] );
+		return( count( $osver ) > 1 ? $osver[0] . ' ' . $osver[1] : $osver[0] );
 	}
 
 	function extensionCredits() {
