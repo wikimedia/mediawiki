@@ -13,7 +13,7 @@
  * @subpackage Language
  */
 
-if( defined( 'MEDIAWIKI' ) ) {
+require_once( 'LanguageUtf8.php' );
 
 #
 # In general you should not make customizations in these language files
@@ -21,9 +21,6 @@ if( defined( 'MEDIAWIKI' ) ) {
 # user interface messages through the wiki.
 # See http://meta.wikipedia.org/wiki/MediaWiki_namespace
 #
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 /* private */ $wgNamespaceNamesPt = array(
 	NS_MEDIA            => 'Media', # -2
@@ -72,15 +69,6 @@ if($wgMetaNamespace === FALSE)
 	'chick' => 'Chick'
 ) + $wgSkinNamesEn;
 
-/* private */ $wgMathNamesEn = array(
-	MW_MATH_PNG => 'mw_math_png',
-	MW_MATH_SIMPLE => 'mw_math_simple',
-	MW_MATH_HTML => 'mw_math_html',
-	MW_MATH_SOURCE => 'mw_math_source',
-	MW_MATH_MODERN => 'mw_math_modern',
-	MW_MATH_MATHML => 'mw_math_mathml'
-);
-
 # Whether to use user or default setting in Language::date()
 /* private */ $wgDateFormatsPt = array(
 	'Sem preferência',
@@ -90,33 +78,6 @@ if($wgMetaNamespace === FALSE)
 	'ISO 8601' => '2001-01-15 16:12:34'
 );
 
-/* private */ $wgBookstoreListPt = array(
-	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
-	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
-	'Barnes & Noble' => 'http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
-);
-
-/* private */ $wgWeekdayNamesPt = array(
-	'sunday', 'monday', 'tuesday', 'wednesday', 'thursday',
-	'friday', 'saturday'
-);
-
-/* private */ $wgMonthNamesPt = array(
-	'january', 'february', 'march', 'april', 'may_long', 'june',
-	'july', 'august', 'september', 'october', 'november',
-	'december'
-);
-/* private */ $wgMonthNamesGenPt = array(
-	'january-gen', 'february-gen', 'march-gen', 'april-gen', 'may-gen', 'june-gen',
-	'july-gen', 'august-gen', 'september-gen', 'october-gen', 'november-gen',
-	'december-gen'
-);
-
-/* private */ $wgMonthAbbreviationsPt = array(
-	'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug',
-	'sep', 'oct', 'nov', 'dec'
-);
 
 # Note to translators:
 #   Please include the English words as synonyms.  This allows people
@@ -182,31 +143,6 @@ if($wgMetaNamespace === FALSE)
 global $wgRightsText;
 
 /* private */ $wgAllMessagesPt = array(
-
-# The navigation toolbar, int: is used here to make sure that the appropriate
-# messages are automatically pulled from the user-selected language file.
-
-/* 
-The sidebar for MonoBook is generated from this message, lines that do not
-begin with * or ** are discarded, furthermore lines that do begin with ** and
-do not contain | are also discarded, but don't depend on this behaviour for
-future releases. Also note that since each list value is wrapped in a unique
-XHTML id it should only appear once and include characters that are legal
-XHTML id names.
-
-Note to translators: Do not include this message in the language files you
-submit for inclusion in MediaWiki, it should always be inherited from the
-parent class in order maintain consistency across languages.
-*/
-'sidebar' => '
-* navigation
-** mainpage|mainpage
-** portal-url|portal
-** currentevents-url|currentevents
-** recentchanges-url|recentchanges
-** randompage-url|randompage
-** helppage|help
-** sitesupport-url|sitesupport',
 
 # User preference toggles
 'tog-underline' => 'Sublinhar links',
@@ -2040,8 +1976,6 @@ Por favor confirme que realmente deseja recriar este artigo.',
 'confirm_purge_button' => 'OK',
 );
 
-require_once( 'LanguageUtf8.php' );
-
 class LanguagePt extends LanguageUtf8 {
 
 	function timeanddate( $ts, $adj = false ) {
@@ -2056,51 +1990,12 @@ class LanguagePt extends LanguageUtf8 {
 	}
 
 	/**
-	* Exports $wgBookstoreListPt
-	* @return array
-	*/
-	function getBookstoreList () {
-		global $wgBookstoreListPt;
-		return $wgBookstoreListPt;
-	}
-	
-	/**
 	* Exports $wgNamespaceNamesPt
 	* @return array
 	*/
 	function getNamespaces() {
 		global $wgNamespaceNamesPt;
 		return $wgNamespaceNamesPt;
-	}
-
-	/**
-	* Get a namespace value by key
-	* <code>
-	* $mw_ns = $wgContLang->getNsText( NS_MEDIAWIKI );
-	* echo $mw_ns; // prints 'MediaWiki'
-	* </code>
-	*
-	* @param int $index the array key of the namespace to return
-	* @return string
-	*/
-	function getNsText( $index ) {
-		global $wgNamespaceNamesPt;
-		return $wgNamespaceNamesPt[$index];
-	}
-
-	/**
-	* Get a namespace key by value
-	*
-	* @param string $text
-	* @return mixed An integer if $text is a valid value otherwise false
-	*/
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesPt, $wgNamespaceNamesEn;
-
-		foreach ( $wgNamespaceNamesPt as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
 	}
 	
 	/**
@@ -2119,15 +2014,6 @@ class LanguagePt extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesPt;
 		return $wgSkinNamesPt;
-	}
-
-	/**
-	* Exports $wgValidationTypesPt
-	* @return array
-	*/
-	function getValidationTypes() {
-		global $wgValidationTypesPt;
-		return $wgValidationTypesPt;
 	}
 
 	/**
@@ -2156,6 +2042,5 @@ class LanguagePt extends LanguageUtf8 {
 		global $wgMagicWordsPt;
 		return $wgMagicWordsPt;
 	}
-}
 }
 ?>
