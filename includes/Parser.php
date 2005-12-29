@@ -1469,7 +1469,7 @@ class Parser
 				$wgLinkCache->addImageLinkObj( $nt );
 				continue;
 			} elseif( $ns == NS_SPECIAL ) {
-				$s .= $prefix . $this->armorLinks( $sk->makeKnownLinkObj( $nt, $text, '', $trail ) );
+				$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
 				continue;
 			} elseif( $ns == NS_IMAGE ) {
 				$img = Image::newFromTitle( $nt );
@@ -1477,7 +1477,7 @@ class Parser
 					// Force a blue link if the file exists; may be a remote
 					// upload on the shared repository, and we want to see its
 					// auto-generated page.
-					$s .= $prefix . $this->armorLinks( $sk->makeKnownLinkObj( $nt, $text, '', $trail ) );
+					$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
 					continue;
 				}
 			}
@@ -1517,6 +1517,27 @@ class Parser
 			}
 		}
 		return $retVal;
+	}
+	
+	/**
+	 * Render a forced-blue link inline; protect against double expansion of
+	 * URLs if we're in a mode that prepends full URL prefixes to internal links.
+	 * Since this little disaster has to split off the trail text to avoid
+	 * breaking URLs in the following text without breaking trails on the
+	 * wiki links, it's been made into a horrible function.
+	 *
+	 * @param Title $nt
+	 * @param string $text
+	 * @param string $query
+	 * @param string $trail
+	 * @param string $prefix
+	 * @return string HTML-wikitext mix oh yuck
+	 */
+	function makeKnownLinkHolder( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
+		$sk =& $this->mOptions->getSkin();
+		$link = $sk->makeKnownLinkObj( $nt, $text, $query, $inside, $prefix );
+		return $this->armorLinks( $link ) . $trail;
 	}
 	
 	/**
