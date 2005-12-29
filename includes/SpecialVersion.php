@@ -5,8 +5,8 @@
  * @package MediaWiki
  * @subpackage SpecialPage
  *
- * @authors Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Rob Church <robchur@gmail.com>
- * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Rob Church
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
@@ -84,7 +84,7 @@ class SpecialVersion {
 		
 		* [http://www.mediawiki.org/ MediaWiki]: $wgVersion
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
-		* " . $this->getServerSoftware() . "
+		" . $this->getServerSoftware() . "
 		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion() . "
 		</div>";
 
@@ -93,8 +93,13 @@ class SpecialVersion {
 
 	function getServerSoftware() {
 		# Return tweaked version of $_SERVER['SERVER_SOFTWARE']
-		$osver = explode( ' ', $_SERVER['SERVER_SOFTWARE'] );
-		return( count( $osver ) > 1 ? $osver[0] . ' ' . $osver[1] : $osver[0] );
+		if( isset( $_SERVER['SERVER_SOFTWARE'] ) ) {
+			$osver = explode( ' ', $_SERVER['SERVER_SOFTWARE'] );
+			$ssoft = "* " . ( count( $osver ) > 1 ? " * " . $osver[0] . ' ' . $osver[1] : $osver[0] );
+		} else {
+			$ssoft = "";
+		}
+		return( $ssoft );
 	}
 
 	function extensionCredits() {
