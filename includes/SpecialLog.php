@@ -148,6 +148,9 @@ class LogReader {
 			log_user, user_name,
 			log_namespace, log_title, page_id,
 			log_comment, log_params FROM $user, $logging ";
+		if ($this->type=="" && $this->db->indexExists('logging','times')) {
+			$sql .= ' /*! FORCE INDEX (times) */ ';
+		}
 		if( !empty( $this->joinClauses ) ) {
 			$sql .= implode( ',', $this->joinClauses );
 		}
