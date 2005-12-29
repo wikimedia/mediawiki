@@ -42,16 +42,6 @@
 	'myskin' => 'Мой облик',
 );
 
-# Validation types
-$wgValidationTypesBg = array (
-	'0' => 'Стил|Ужасна|Чудесна|5',//'Style|Awful|Awesome|5',
-	'1' => 'Законност|Незаконна|Законна|5',//'Legal|Illegal|Legal|5',
-	'2' => 'Пълнота|Недоразвита|Обширна и подробна|5',//'Completeness|Stub|Extensive|5',
-	'3' => 'Факти|Съвсем необосновани|Сериозно обосновани|5',//'Facts|Wild guesses|Solid as a rock|5',
-	'4' => 'Подходяща за 1.0 (печат)|Не|Да|2',//'Suitable for 1.0 (paper)|No|Yes|2',
-	'5' => 'Подходяща за 1.0 (компакт-диск)|Не|Да|2',//'Suitable for 1.0 (CD)|No|Yes|2'
-) ;
-
 /* private */ $wgDateFormatsBg = array();
 
 /* private */ $wgBookstoreListBg = array(
@@ -924,7 +914,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 #
 'orphans'    => 'Страници сираци',
 'geo'          => 'Гео-координати',
-'validate'     => 'Validate page',
 'lonelypages'  => 'Страници сираци',
 'uncategorizedpages' => 'Некатегоризирани страници',
 'uncategorizedcategories' => 'Некатегоризирани категории',
@@ -1265,54 +1254,6 @@ Feedback and further assistance:
 'already_bureaucrat'    => 'Този потребител беше вече бюрократ',
 'already_steward'       => 'Този потребител беше вече стюард',
  
-#TODO: превод
-# Validation
-'val_yes' => 'Да',
-'val_no' => 'Не',
-'val_of' => '$1 of $2',
-'val_revision' => 'Версия',
-'val_time' => 'Време',
-'val_user_stats_title' => 'Validation overview of user $1',
-'val_my_stats_title' => 'My validation overview',
-'val_list_header' => '<th>#</th><th>Тема</th><th>Range</th><th>Действие</th>',
-'val_add' => 'Добавяне',
-'val_del' => 'Изтриване',
-'val_show_my_ratings' => 'Show my validations',
-'val_revision_number' => 'Revision #$1',
-'val_warning' => '<b>Никога <i>повече</i> не променяйте нещо тук без <i>изричното</i> съгласие на общността!</b>',
-'val_rev_for' => 'Версии на $1',
-'val_details_th_user' => 'Потребител $1',
-'val_validation_of' => 'Validation of "$1"',
-'val_revision_of' => 'Revision of $1',
-'val_revision_changes_ok' => 'Your ratings have been stored!',
-'val_rev_stats' => 'See the validation statistics for "$1" <a href="$2">here</a>',
-'val_revision_stats_link' => 'подробности',
-'val_iamsure' => 'Check this box if you really mean it!',
-'val_details_th' => '<sub>Потребител</sub> \\ <sup>Тема</sup>',
-'val_clear_old' => 'Clear my older validation data',
-'val_merge_old' => 'Use my previous assessment where selected \'No opinion\'',
-'val_form_note' => "'''Съвет:''' Merging your data means that for the article revision you select, all options where you have specified ''no opinion'' will be set to the value and comment of the most recent revision for which you have expressed an opinion. For example, if you want to change a single option for a newer revision, but also keep your other settings for this article in this revision, just select which option you intend to ''change'', and merging will fill in the other options with your previous settings.",
-'val_noop' => 'Без мнение',
-'val_topic_desc_page' => 'Project:Validation topics',
-'val_votepage_intro' => 'Change this text <a href="{{SERVER}}{{localurl:MediaWiki:Val_votepage_intro}}">here</a>!',
-'val_percent' => '<b>$1%</b><br />($2 от $3 точки<br />от $4 потребители)',
-'val_percent_single' => '<b>$1%</b><br />($2 от $3 точки<br />от един потребител)',
-'val_total' => 'Общо',
-'val_version' => 'Версия',
-'val_tab' => 'Валидиране',
-'val_this_is_current_version' => 'това е последната версия',
-'val_version_of' => 'Версия от $1' ,
-'val_table_header' => '<tr><th>Клас</th>$1<th colspan="4">Мнение</th>$1<th>Коментар</th></tr>',
-'val_stat_link_text' => 'Validation statistics for this article',
-'val_view_version' => 'Преглед на версията',
-'val_validate_version' => 'Валидиране на версията',
-'val_user_validations' => 'Потребителят has validated $1 страници.',
-'val_no_anon_validation' => 'Необходимо е да [[Special:Userlogin|влезете]], за да може да валидирате статия.',
-'val_validate_article_namespace_only' => 'Only articles can be validated. This page is <i>not</i> in the article namespace.',
-'val_validated' => 'Validation done.',
-'val_article_lists' => 'Списък на валидирани страници',
-'val_page_validation_statistics' => 'Page validation statistics за $1',
-
 # Move page
 #
 'movepage'    => 'Преместване на страница',
@@ -1956,15 +1897,6 @@ class LanguageBg extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesBg;
 		return $wgSkinNamesBg;
-	}
-
-	/**
-	* Exports $wgValidationTypesBg
-	* @return array
-	*/
-	function getValidationTypes() {
-		global $wgValidationTypesBg;
-		return $wgValidationTypesBg;
 	}
 
 	/**

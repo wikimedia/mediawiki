@@ -973,34 +973,6 @@ Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donne
 'set_rights_fail'	=> '<b>Les droits de l\'utilisateur « $1 » n\'ont pas pu être mis à jour. (Avez vous entré le nom correctement?)</b>',
 'makesysop'         => 'Donner les droits d\'administrateur à un utilisateur',
 
-# Special:Validate
-'val_article_lists' => 'Liste d\'articles validés',
-'val_clear_old' => 'Supprimer mes données de validation pour $1',
-'val_details_th_user' => 'Utilisateur $1',
-'val_merge_old' => 'Utiliser mes précédents choix pour les choix marqués \'Sans opinion\'',
-'val_no_anon_validation' => 'Vous devez être identifié pour valider un article.',
-'val_no' => 'Non',
-'val_noop' => 'Sans opinion',
-'val_page_validation_statistics' => 'Statistiques de validation pour $1',
-'val_percent' => '<b>$1%</b><br />($2 sur $3 points<br />par $4 utilisateurs)',
-'val_percent_single' => '<b>$1%</b><br />($2 sur $3 points<br />par un utilisateur)',
-'val_rev_for' => 'Correction pour $1',
-'val_revision' => 'Révision',
-'val_show_my_ratings' => 'Voir mes validations',
-'val_stat_link_text' => 'Statistiques de validation pour cet article',
-'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Commentaire</th></tr>",
-'val_tab' => 'Valider',
-'val_this_is_current_version' => 'ceci est la dernière version',
-'val_total' => 'Total',
-'val_user_validations' => 'Cet utilisateur a validé $1 pages.',
-'val_validate_article_namespace_only' => 'Seul les articles peuvent être validés. Cette page n\'est <i>pas</i> un article.',
-'val_validated' => 'Validation effectuée.',
-'val_validate_version' => 'Valider cette version',
-'val_version_of' => 'Version de $1' ,
-'val_version' => 'Version',
-'val_view_version' => 'Voir cette version',
-'val_yes' => 'Oui',
-
 
 # Spam
 #
@@ -1134,7 +1106,6 @@ Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation exp
 'usercssjsyoucanpreview' => "'''Astuce :''' utilisez le bouton '''Prévisualisation''' pour tester votre nouvelle feuille css/js avant de l'enregistrer.",
 'usercsspreview' => "'''Rappelez-vous que vous êtes en train de prévisualiser votre propre feuille css et qu'elle n'a pas encore été enregistrée !'''",
 'userjspreview' => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code javascript et qu'il n'a pas encore été enregistré !'''",
-'validate' => 'Valider la page',
 
 # EXIF
 'exif-imagewidth' => 'Largeur',

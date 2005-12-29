@@ -6,9 +6,6 @@
  * @package MediaWiki
  */
 
-/** */
-include_once ( 'SpecialValidate.php' );
-
 define('DIR_PREV', 0);
 define('DIR_NEXT', 1);
 
@@ -53,7 +50,7 @@ class PageHistory {
 	 * @returns nothing
 	 */
 	function history() {
-		global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgUseValidation;
+		global $wgUser, $wgOut, $wgRequest, $wgTitle;
 
 		/*
 		 * Allow client caching.
@@ -168,12 +165,6 @@ class PageHistory {
 		*/
 		$s .= $this->endHistoryList();
 		$s .= $navbar;
-
-		/*
-		 * Article validation line.
-		 */
-		if ($wgUseValidation)
-			$s .= '<p>' . Validation::getStatisticsLink( $this->mArticle ) . '</p>' ;
 
 		$wgOut->addHTML( $s );
 		wfProfileOut( $fname );

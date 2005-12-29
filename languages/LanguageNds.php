@@ -737,7 +737,6 @@ In Klammern angevene Wöör geven de korrekte Schrievwies weer.',
 #
 'orphans'                              => 'Weetsieten',
 'geo'                       => 'GEO-Koordinaten',
-'validate'                            => 'Siet valideern',
 'lonelypages'                   => 'Weetsieten',
 'uncategorizedpages'        => 'Unkategoriseerte Sieten',
 'uncategorizedcategories'       => 'Unkategoriseerte Kategorien',
@@ -1176,34 +1175,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategoriesiet ankieken\');',
 
 'newimages'                             => 'Galeree vun niege Biller',
 
-
-# Validatschoon
-'val_clear_old'                         => 'Maak mien annere Validatschoonsdaten för $1 weg.',
-'val_merge_old'                         => 'Bruuk mien vörige Bewerten, wo „Keen Meenen“ wählt is.',
-'val_form_note'                         => '<b>Henwies:</b> Tosamenfögen vun dien Daten meent, dat för disse
-wählte Artikelrevision alle Optschonen, bi de du „Keen Meenen“ angeven hest,
-op den Wert un den Kommentar sett warrn, de du ok för de jüngste Revision angeven hest.
-To\'n Bispeel, wenn du en enkelt Optschoon för en jüngere Revision ännern wullst, aver ok dien annere Instellen
-för dissen Artikel in disse Revision beholen wullst, denn wähl de Optschoon, die du ännern wullst un Tosamenfögen
-sett de annern Optschonen mit dien vörige Instellen.',
-'val_noop'                              => 'Keen Meenen',
-'val_percent'                           => '<b>$1 %</b><br />($2 vun $3 Punkten<br />by $4 Brukers)',
-'val_percent_single'                    => '<b>$1 %</b><br />($2 vun $3 Punkten<br />by een Bruker)',
-'val_total'                             => 'All',
-'val_version'                           => 'Version',
-'val_tab'                               => 'Valideern',
-'val_this_is_current_version'           => 'Dit is de aktuelle Version',
-'val_version_of'                        => 'Version vun $1' ,
-'val_table_header'                      => '<tr><th>Klass</th>$1<th colspan=4>Meenen</th>$1<th>Kommentar</th></tr>',
-'val_stat_link_text'                    => 'Validatschoonsstatistik för dissen Artikel',
-'val_view_version'                      => 'Disse Version ankieken',
-'val_validate_version'                  => 'Disse Version valideern',
-'val_user_validations'                  => 'Dit Bruker hett $1 Sieten valideert.',
-'val_no_anon_validation'                => 'Du muttst inloggt ween, üm en Artikel to valideern.',
-'val_validate_article_namespace_only'   => 'Blots Artikels könt valideert warrn. Disse Siet is <i>nich</i> in de Artikel-Naamruum.',
-'val_validated'                         => 'Validatschoon fardig.',
-'val_article_lists'                     => 'List vun valideerte Artikels',
-'val_page_validation_statistics'        => 'Sietenvalideer-Statistik för $1',
 
 # Schalttafel
 'editgroup'                             => 'Grupp bearbeiden',

@@ -41,16 +41,6 @@ $wgNamespaceAlternatesId = array(
 	'standard'    => "Standar",
 ) + $wgSkinNamesEn;
 
-# Validation types
-$wgValidationTypesId = array (
-	'0' => "Gaya tulisan|Sangat buruk|Sangat baik|5",
-	'1' => "Legalitas|Ilegal|Legal|5",
-	'2' => "Kelengkapan|Stub|Sangat lengkap|5",
-	'3' => "Fakta|Meragukan|Kuat|5",
-	'4' => "Layak untuk 1.0 (Cetak)|Tidak|Ya|2",
-	'5' => "Layak untuk 1.0 (CD)|Tidak|Ya|2"
-);
-
 /* private */ $wgDateFormatsId = array();
 
 /* private */ $wgBookstoreListId = array(
@@ -677,7 +667,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 #
 "orphans" => "Halaman Yatim",
 'geo' => 'Koordinat GEO',
-'validate' => 'Sahkan halaman',
 "lonelypages" => "Halaman Yatim",
 'uncategorizedpages' => 'Halaman Tak Berkategori',
 'uncategorizedcategories' => 'Kategori Tak Berkategori',
@@ -922,29 +911,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "unlockdbsuccesssub" => "Pembukaan kunci basis data berhasil",
 "lockdbsuccesstext" => "Basis data telah dikunci. <br />Pastikan Anda membuka kuncinya setelah pemeliharaan selesai.",
 "unlockdbsuccesstext" => "Kunci basis data telah dibuka.",
-
-# Validation
-'val_clear_old' => 'Hapus data pengesahan saya yang lainnya untuk $1',
-'val_merge_old' => 'Gunakan penilaian saya sebelumnya jika saya memilih \'Abstain\'',
-'val_form_note' => '<b>Petunjuk:</b> Menggabungkan data Anda berarti bahwa untuk revisi pengesahan yang Anda pilih, semua pilihan Anda yang <i>Abstain</i> akan diganti dengan pilihan dan komentar dari revisi yang paling baru yang mana untuk pilihan tersebut Anda tidak abstain. Sebagai contoh, jika Anda ingin mengganti pilihan tunggal dengan revisi yang lebih baru, tetapi tidak ingin mengganti pilihan Anda yang lainnya untuk revisi artikel ini, pilih pilihan mana yang ingin anda ubah, dan penggabungan akan mengisi pilihan lainnya dengan pilihan Anda sebelumnya.',
-'val_noop' => 'Abstain',
-'val_percent' => '<b>$1%</b><br />($2 dari $3 poin<br />oleh $4 pengguna)',
-'val_percent_single' => '<b>$1%</b><br />($2 dari $3 poin<br />oleh seorang pengguna)',
-'val_total' => 'Total',
-'val_version' => 'Versi',
-'val_tab' => 'Pengesahan',
-'val_this_is_current_version' => 'ini adalah versi terbaru',
-'val_version_of' => "Version of $1",
-'val_table_header' => "<tr><th>Kelas</th>$1<th colspan=4>Pendapat</th>$1<th>Komentar</th></tr>",
-'val_stat_link_text' => 'Statistik pengesahan artikel ini',
-'val_view_version' => 'Lihat versi ini',
-'val_validate_version' => 'Sahkan versi ini',
-'val_user_validations' => 'Penggung ini telah mengesahkan $1 halaman.',
-'val_no_anon_validation' => 'Anda harus login untuk dapat mengesahkan artikel.',
-'val_validate_article_namespace_only' => 'Hanya artikel saja yang dapat disahkan. Halaman ini <i>tidak</i> berada dalam namespace artikel.',
-'val_validated' => 'Pengesahan selesai.',
-'val_article_lists' => 'Daftar artikel yang telah disahkan',
-'val_page_validation_statistics' => 'Statistik pengesahan halaman untuk $1',
 
 # Move page
 #

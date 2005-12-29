@@ -1150,7 +1150,6 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 # Miscellaneous special pages
 #
 'orphans'		=> 'Orphaned pages',
-'validate'		=> 'Validate page',
 'lonelypages'	=> 'Orphaned pages',
 'uncategorizedpages'	=> 'Uncategorized pages',
 'uncategorizedcategories'	=> 'Uncategorized categories',
@@ -1534,56 +1533,6 @@ Type the name of the user in the box and press the button to make the user an ad
 'already_sysop'     => 'This user is already an administrator',
 'already_bureaucrat' => 'This user is already a bureaucrat',
 'already_steward'   => 'This user is already a steward',
-
-# Validation
-'val_yes' => 'Yes',
-'val_no' => 'No',
-'val_of' => '$1 of $2',
-'val_revision' => 'Revision',
-'val_time' => 'Time',
-'val_user_stats_title' => 'Validation overview of user $1',
-'val_my_stats_title' => 'My validation overview',
-'val_list_header' => '<th>#</th><th>Topic</th><th>Range</th><th>Action</th>',
-'val_add' => 'Add',
-'val_del' => 'Delete',
-'val_show_my_ratings' => 'Show my validations',
-'val_revision_number' => 'Revision #$1',
-'val_warning' => '<b>Never, <i>ever</i>, change something here without <i>explicit</i> community consensus!</b>',
-'val_rev_for' => 'Revisions for $1',
-'val_details_th_user' => 'User $1',
-'val_validation_of' => 'Validation of "$1"',
-'val_revision_of' => 'Revision of $1',
-'val_revision_changes_ok' => 'Your ratings have been stored!',
-'val_rev_stats' => 'See the validation statistics for "$1" <a href="$2">here</a>',
-'val_revision_stats_link' => 'details',
-'val_iamsure' => 'Check this box if you really mean it!',
-'val_details_th' => '<sub>User</sub> \\ <sup>Topic</sup>',
-'val_clear_old' => 'Clear my older validation data',
-'val_merge_old' => 'Use my previous assessment where selected \'No opinion\'',
-'val_form_note' => "'''Hint:''' Merging your data means that for the article revision you select, all options where you have specified ''no opinion'' will be set to the value and comment of the most recent revision for which you have expressed an opinion. For example, if you want to change a single option for a newer revision, but also keep your other settings for this article in this revision, just select which option you intend to ''change'', and merging will fill in the other options with your previous settings.",
-'val_noop' => 'No opinion',
-'val_topic_desc_page' => 'Project:Validation topics',
-'val_votepage_intro' => 'Change this text <a href="{{SERVER}}{{localurl:MediaWiki:Val_votepage_intro}}">here</a>!',
-'val_percent' => '<b>$1%</b><br />($2 of $3 points<br />by $4 users)',
-'val_percent_single' => '<b>$1%</b><br />($2 of $3 points<br />by one user)',
-'val_total' => 'Total',
-'val_version' => 'Version',
-'val_tab' => 'Validate',
-'val_this_is_current_version' => 'this is the latest version',
-'val_version_of' => "Version of $1" ,
-'val_table_header' => '<tr><th>Class</th>$1<th colspan="4">Opinion</th>$1<th>Comment</th></tr>',
-'val_stat_link_text' => 'Validation statistics for this article',
-'val_view_version' => 'View this revision',
-'val_validate_version' => 'Validate this version',
-'val_user_validations' => 'This user has validated $1 pages.',
-'val_no_anon_validation' => 'You have to be logged in to validate an article.',
-'val_validate_article_namespace_only' => 'Only articles can be validated. This page is <i>not</i> in the article namespace.',
-'val_validated' => 'Validation done.',
-'val_article_lists' => 'List of validated articles',
-'val_page_validation_statistics' => 'Page validation statistics for $1',
-'val_max_topics' => 'Maximum number of $1 topics reached',
-'val_no_topics_defined' => 'No topics defined',
-'val_no_topics_defined_text' => 'You have no topics defined which can be rated. Go to [[Special:Validate]], and have an administrator run the "Manage" function to add at least one topic and point range.',
 
 # Move page
 #
@@ -2388,11 +2337,6 @@ class Language {
 	function getDateFormats() {
 		global $wgDateFormatsEn;
 		return $wgDateFormatsEn;
-	}
-
-	function getValidationTypes() {
-		global $wgValidationTypesEn;
-		return $wgValidationTypesEn;
 	}
 
 	function getUserToggles() {

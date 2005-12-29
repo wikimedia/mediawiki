@@ -970,34 +970,6 @@ Lakait anv an implijer er voest ha pouezit war ar bouton evit reiñ ar gwirioù 
 'set_rights_fail'	=> "<b>N\'eus ket bet gallet lakaat e plas gwirioù an implijer(ez) \"$1\". (Ha skrivet hoc\'h eus an anv evel m\'eo dleet?)</b>",
 'makesysop'         => 'Reiñ ar gwirioù merañ d\'un implijer(ez)',
 
-# Special:Validate
-'val_article_lists' => 'Roll pennadoù kadarnaet',
-'val_clear_old' => 'Diverkañ ma roadennoù kadarnaat evit $1',
-'val_details_th_user' => 'implijer(ez) $1',
-'val_merge_old' => 'Implijout ma dibaboù kent evit an dibaboù merket \'Hep soñj\'',
-'val_no_anon_validation' => 'Ret eo deoc\'h bezañ disklêriet evit kadarnaat ur pennad.',
-'val_no' => 'Ket',
-'val_noop' => 'Hep Soñj',
-'val_page_validation_statistics' => 'Stadegoù kadarnaat evit $1',
-'val_percent' => '<b>$1%</b><br />($2 war $3 poent<br />dre $4 implijer(ez))',
-'val_percent_single' => '<b>$1%</b><br />($2 war $3 poent<br />dre un implijer(ez))',
-'val_rev_for' => 'Divankadenn evit $1',
-'val_revision' => 'Divankadenn',
-'val_show_my_ratings' => 'Sellet ouzh ma c\'hadarnadennoù',
-'val_stat_link_text' => 'Stadegoù kadarnaat evit ar pennad-mañ',
-'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Soñj</th>$1<th>Evezhiadenn</th></tr>",
-'val_tab' => 'Kadarnaat',
-'val_this_is_current_version' => 'hemañ eo ar stumm diwezhañ',
-'val_total' => 'Total',
-'val_user_validations' => 'kadarnaet ez eus bet $1 (b/f)pajenn gant an implijer-mañ.',
-'val_validate_article_namespace_only' => 'N\'eus nemet ar pennadoù a c\'hall bezañ kadarnaet. Ar bajenn-mañ n\'eo <i>ket</i> ur pennad.',
-'val_validated' => 'Kadarnadenn graet.',
-'val_validate_version' => 'Kadarnaat ar stumm-mañ',
-'val_version_of' => "Stumm $1" ,
-'val_version' => 'Stumm',
-'val_view_version' => 'Sellet ouzh ar stumm-mañ',
-'val_yes' => 'Ya',
-
 
 # Spam
 #
@@ -1129,7 +1101,6 @@ Ma n\'eo ket bet graet ganeoc\'h na zigorit ket al liamm. Mont a raio ar c\'hod-
 'usercssjsyoucanpreview' => "'''Tun:''' grit gant ar bouton '''Rakwelet''' evit testiñ ho follenn css/js nevez a-raok enrollañ anezhi.",
 'usercsspreview' => "'''Dalc\'hit soñj emaoc\'h o rakwelet ho follenn css deoc\'h ha n\'eo ket bet enrollet c\'hoazh!'''",
 'userjspreview' => "'''Dalc\'hit soñj emaoc\'h o rakwelet pe o testiñ ho kod javascript deoc\'h ha n\'eo ket bet enrollet c\'hoazh!'''",
-'validate' => "Kadarnaat ar bajenn",
 
 # EXIF
 'exif-imagewidth' => 'Led',

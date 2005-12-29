@@ -1195,18 +1195,6 @@ Tapez l\' no d\' l\' uzeu dins l\' boesse di tecse poy clitchîz sol boton po nd
 'already_bureaucrat' => 'Cist uzeu ci a ddja l\' livea di mwaisse-manaedjeu', 
 'already_steward' => 'Cist uzeu ci a ddja l\' livea di mwaisse-manaedjeu so tos les wikis',
 
-# Validation
-'val_yes' => 'Oyi',
-'val_no' => 'Neni',
-'val_of' => '$1 di $2',
-'val_revision' => 'Revision',
-'val_time' => 'Time',
-'val_add' => 'Radjouter',
-'val_del' => 'Disfacer',
-'val_details_th_user' => 'Uzeu $1',
-'val_revision_stats_link' => 'detays',
-'val_total' => 'Totå',
-
 # Move page
 #
 'movepage' => 'Displaecî l\' pådje',

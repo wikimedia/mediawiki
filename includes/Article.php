@@ -1492,34 +1492,6 @@ class Article {
 	}
 
 	/**
-	 * Validate function
-	 */
-	function validate() {
-		global $wgOut, $wgUser, $wgRequest, $wgUseValidation;
-
-		if ( !$wgUseValidation ) # Are we using article validation at all?
-		{
-			$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
-			return ;
-		}
-
-		$wgOut->setRobotpolicy( 'noindex,follow' );
-		$revision = $wgRequest->getVal( 'revision' );
-
-		include_once ( "SpecialValidate.php" ) ; # The "Validation" class
-
-		$v = new Validation ;
-		if ( $wgRequest->getVal ( "mode" , "" ) == "list" )
-			$t = $v->showList ( $this ) ;
-		else if ( $wgRequest->getVal ( "mode" , "" ) == "details" )
-			$t = $v->showDetails ( $this , $wgRequest->getVal( 'revision' ) ) ;
-		else
-			$t = $v->validatePageForm ( $this , $revision ) ;
-
-		$wgOut->addHTML ( $t ) ;
-	}
-
-	/**
 	 * Add this page to $wgUser's watchlist
 	 */
 
