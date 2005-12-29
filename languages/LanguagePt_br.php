@@ -1,4 +1,4 @@
-<?PHP
+<?php
 /** Brazilian Portugese (Portuguêsi do Brasil)
   * @package MediaWiki
   * @subpackage Language

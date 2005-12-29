@@ -1,4 +1,4 @@
-<?
+<?php
 
 $wgUseRootUser = true;
 require_once( 'commandLine.inc' );

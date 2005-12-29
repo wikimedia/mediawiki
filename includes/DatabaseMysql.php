@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * Stub database class for MySQL.
  */
