@@ -1303,9 +1303,11 @@ function swap( &$x, &$y ) {
 }
 
 function wfGetSiteNotice() {
-	global $wgSiteNotice, $wgTitle, $wgOut;
+	global $wgSiteNotice, $wgTitle, $wgOut, $parserMemc, $wgDBname;
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
+
+	$shouldParse=false;
 
 	$notice = wfMsgForContent( 'sitenotice' );
 	if( $notice == '&lt;sitenotice&gt;' || $notice == '-' ) {
@@ -1317,11 +1319,26 @@ function wfGetSiteNotice() {
 		$notice = $wgSiteNotice;
 	}
 	if($notice != '-' && $notice != '') {
-		if( is_object( $wgOut ) ) {
-			$notice = $wgOut->parse( $notice );
+		$cachednotice=$parserMemc->get("{$wgDBname}:sitenotice");
+		if (is_array($cachednotice)) {
+			if (md5($notice)==$cachednotice['hash']) {
+				$notice = $cachednotice['html'];
+			} else {
+				$shouldParse=true;
+			}
 		} else {
-			wfDebug( "wfGetSiteNotice called with no \$wgOut available" );
-			$notice = '';
+			$shouldParse=true;
+		}
+		if ($shouldParse) {
+			if( is_object( $wgOut ) ) {
+				$parsed = $wgOut->parse( $notice );
+				$parserMemc->set("{$wgDBname}:sitenotice",
+					array('html' => $parsed, 'hash' => md5($notice)), 600);
+				$notice = $parsed;
+			} else {
+				wfDebug( "wfGetSiteNotice called with no \$wgOut available" );
+				$notice = '';
+			}
 		}
 	}
 	wfProfileOut( $fname );
