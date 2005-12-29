@@ -1,6 +1,6 @@
 <?php
 /**#@+
- * Give information about the version of MediaWiki, PHP, server software, the DB and extensions
+ * Give information about the version of MediaWiki, PHP, the DB and extensions
  *
  * @package MediaWiki
  * @subpackage SpecialPage
@@ -29,7 +29,7 @@ class SpecialVersion {
 	 * Constructor
 	 */
 	function SpecialVersion() {
-		# Force to English language
+		// English motherfucker, do you speak it?
 		$this->langObj = setupLangObj( 'LanguageEn' );
 		$this->langObj->initEncoding();
 	}
@@ -84,22 +84,10 @@ class SpecialVersion {
 		
 		* [http://www.mediawiki.org/ MediaWiki]: $wgVersion
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
-		" . $this->getServerSoftware() . "
 		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion() . "
 		</div>";
 
 		return str_replace( "\t\t", '', $ret );
-	}
-
-	function getServerSoftware() {
-		# Return tweaked version of $_SERVER['SERVER_SOFTWARE']
-		if( isset( $_SERVER['SERVER_SOFTWARE'] ) ) {
-			$osver = explode( ' ', $_SERVER['SERVER_SOFTWARE'] );
-			$ssoft = "* " . ( count( $osver ) > 1 ? $osver[0] . ' ' . $osver[1] : $osver[0] );
-		} else {
-			$ssoft = "";
-		}
-		return( $ssoft );
 	}
 
 	function extensionCredits() {
