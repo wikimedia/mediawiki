@@ -368,7 +368,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4385) Separate parser cache entries for non-editing users, so section
   edit links don't vanish / appear unwanted on protected pages
 * (bug 2726, 3397) Fix [[Special:]] and [[:Image]] links in action=render
-
+* (bug 3794) Include OS / platform info in Special:Version
 
 === Caveats ===
 
