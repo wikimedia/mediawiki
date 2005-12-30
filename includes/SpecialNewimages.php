@@ -20,6 +20,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$sk = $wgUser->getSkin();
 	$shownav = !$specialPage->including();
 	$hidebots = $wgRequest->getBool('hidebots',1);
+	$singleUser = $wgRequest->getInt('user',0); # Limit images to a single user?
 
 	if($hidebots) {
 
@@ -47,9 +48,12 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$image = $dbr->tableName('image');
 
 	$sql="SELECT img_timestamp from $image";
+
+	# Hide bots?
 	if($hidebots) {
 		$sql.=$joinsql.' WHERE ug_group IS NULL';
 	}
+	
 	$sql.=' ORDER BY img_timestamp DESC LIMIT 1';
 	$res = $dbr->query($sql, 'wfSpecialNewImages');
 	$row = $dbr->fetchRow($res);
@@ -84,6 +88,12 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		}
 	}
 
+	# Single user only?
+	if ( $singleUser > 0 ) {
+		$where[] .= "img_user='{$singleUser}'" ;
+	}
+	
+	
 	$invertSort = false;
 	if( $until = $wgRequest->getVal( 'until' ) ) {
 		$where[] = 'img_timestamp < ' . $dbr->timestamp( $until );
@@ -153,6 +163,15 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$wgOut->addHTML( "<p>{$text}\n</p>" );
 	}
 
+	if ( $singleUser > 0 ) {
+		$u = new User ;
+		$u->setID ( $singleUser ) ;
+		$u->loadFromDatabase () ;
+		$t = $u->getUserPage() ;
+		$uPage = $sk->makeLinkObj( $t ) ;
+		$wgOut->addHTML ( wfMsgForContent ( 'imagelistforuser' , $uPage ) ) ;
+	}
+	
 	$sub = wfMsg( 'ilsubmit' );
 	$titleObj = Title::makeTitle( NS_SPECIAL, 'Newimages' );
 	$action = $titleObj->escapeLocalURL();
