@@ -247,7 +247,7 @@ function logProfilingData() {
 			$forward .= ' from ' . $_SERVER['HTTP_FROM'];
 		if( $forward )
 			$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
-		if( $wgUser->isAnon() )
+		if( is_object($wgUser) && $wgUser->isAnon() )
 			$forward .= ' anon';
 		$log = sprintf( "%s\t%04.3f\t%s\n",
 		  gmdate( 'YmdHis' ), $elapsed,
@@ -547,6 +547,10 @@ function wfAbruptExit( $error = false ){
 	} else {
 		wfDebug('WARNING: Abrupt exit\n');
 	}
+
+	wfProfileClose();
+	logProfilingData();
+
 	if ( !$error ) {
 		$wgLoadBalancer->closeAll();
 	}

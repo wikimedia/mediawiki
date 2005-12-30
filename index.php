@@ -4,6 +4,7 @@
  * @package MediaWiki
  */
 $wgRequestTime = microtime();
+$wgRUstart = getrusage();
 
 unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security...
@@ -285,6 +286,7 @@ foreach ( $wgPostCommitUpdateList as $up ) {
 
 wfProfileOut( 'main-cleanup' );
 
+wfProfileClose();
 logProfilingData();
 $wgLoadBalancer->closeAll();
 wfDebug( "Request ended normally\n" );
