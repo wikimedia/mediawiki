@@ -238,7 +238,7 @@ wywołane zostało przez funkcję \"$2\".
 MySQL zgłosił błąd \"$3: $4\".",
 "noconnect" => "{{SITENAME}} ma chwilowo problemy techniczne. Nie można połączyć się z serwerem bazy danych. Przepraszamy!",
 "nodb" => "Nie można odnaleźć bazy danych $1",
-"cachederror" => "Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już niekatualny.",
+"cachederror" => "Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już nieaktualny.",
 "readonly" => "Baza danych jest zablokowana",
 "enterlockreason" => "Podaj powód zablokowania bazy oraz szacunkowy czas
 jej odblokowania",
@@ -870,7 +870,7 @@ się wandalizmu).",
 "unblockiptext" => "Użyj poniższego formularza by przywrócić prawa zapisu
 dla poprzednio zablokowanego adresu IP.",
 "ipusubmit" => "Odblokuj ten adres",
-"ipusuccess" => "Adress IP \"$1\" został odblokowany",
+"ipusuccess" => "Adres IP \"$1\" został odblokowany",
 "ipblocklist" => "Lista zablokowanych adresów IP",
 "blocklistline" => "$1, $2 zablokował $3 ($4)",
 "blocklink" => "zablokuj",
@@ -905,7 +905,7 @@ Potwierdź, proszę, że to jest zgodne z Twoimi zamiarami.",
 #
 "movepage" => "Przenieś stronę",
 "movepagetext" => "Za pomocą poniższego formularza zmienisz nazwę strony,
-przenosząc jednocześnie jej historę.
+przenosząc jednocześnie jej historię.
 Pod starym tytułem zostanie umieszczona strona przekierowująca.
 Linki do starego tytułu pozostaną niezmienione.
 Upewnij się, że uwzględniasz podwójne
