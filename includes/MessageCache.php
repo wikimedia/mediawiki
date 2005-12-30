@@ -70,7 +70,9 @@ class MessageCache {
 		
 		$filename = "$wgLocalMessageCache/messages-$wgDBname";
 
+		wfSuppressWarnings();
 		$file = fopen( $filename, 'r' );
+		wfRestoreWarnings();
 		if ( !$file ) {
 			return;
 		}
