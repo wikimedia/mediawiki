@@ -88,8 +88,9 @@ wfProfileIn( $fname.'-misc1' );
 
 $wgIP = false; # Load on demand
 $wgRequest = new WebRequest();
-$wguname = @posix_uname();
-
+if ( function_exists( 'posix_uname' ) ) {
+	$wguname = posix_uname();
+}
 # Useful debug output
 if ( $wgCommandLineMode ) {
 	# wfDebug( '"' . implode( '"  "', $argv ) . '"' );
