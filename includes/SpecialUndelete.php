@@ -155,7 +155,7 @@ class PageArchive {
 	 * @return bool
 	 */
 	function undelete( $timestamps ) {
-		global $wgDeferredUpdateList, $wgLinkCache, $wgDBtype;
+		global $wgDeferredUpdateList, $wgParser, $wgDBtype;
 
 		$fname = "doUndeleteArticle";
 		$restoreAll = empty( $timestamps );
@@ -224,6 +224,8 @@ class PageArchive {
 				'ORDER BY' => 'ar_timestamp' )
 			);
 		$revision = null;
+		$newRevId = $previousRevId;
+		
 		while( $row = $dbw->fetchObject( $result ) ) {
 			if( $row->ar_text_id ) {
 				// Revision was deleted in 1.5+; text is in
@@ -248,7 +250,7 @@ class PageArchive {
 				'minor_edit' => $row->ar_minor_edit,
 				'text_id'    => $row->ar_text_id,
 				) );
-			$revision->insertOn( $dbw );
+			$newRevId = $revision->insertOn( $dbw );
 		}
 
 		if( $revision ) {
@@ -258,16 +260,11 @@ class PageArchive {
 				$article->updateRevisionOn( $dbw, $revision, $previousRevId );
 
 				# Finally, clean up the link tables
-				$wgLinkCache = new LinkCache();
-				# Select for update
-				$wgLinkCache->forUpdate( true );
-
-				# Create a dummy OutputPage to update the outgoing links
-				$dummyOut = new OutputPage();
-				$dummyOut->addWikiText( $revision->getText() );
-
-				$u = new LinksUpdate( $newid, $this->title->getPrefixedDBkey() );
-				array_push( $wgDeferredUpdateList, $u );
+				$parserOptions = new ParserOptions;
+				$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options,
+					true, true, $newRevId );
+				$u = new LinksUpdate( $this->title, $parserOutput );
+				$u->doUpdate();
 
 				#TODO: SearchUpdate, etc.
 			}
@@ -278,7 +275,7 @@ class PageArchive {
 				Article::onArticleEdit( $this->title );
 			}
 		} else {
-			# Something went terribly worong!
+			# Something went terribly wrong!
 		}
 
 		# Now that it's safely stored, take it out of the archive

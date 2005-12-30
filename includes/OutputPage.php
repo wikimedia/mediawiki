@@ -214,11 +214,30 @@ class OutputPage {
 	function getCategoryLinks() {
 		return $this->mCategoryLinks;
 	}
-	function addCategoryLinks($newLinkArray) {
-		$this->mCategoryLinks += $newLinkArray;
+
+	/**
+	 * Add an array of categories, with names in the keys
+	 */
+	function addCategoryLinks($categories) {
+		global $wgUser, $wgLinkCache, $wgContLang;
+
+		# Add the links to the link cache in a batch
+		$arr = array( NS_CATEGORY => $categories );
+		$lb = new LinkBatch;
+		$lb->setArray( $arr );
+		$lb->execute( $wgLinkCache );
+
+		$sk =& $wgUser->getSkin();
+		foreach ( $categories as $category => $arbitrary ) {
+			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+			$text = $wgContLang->convertHtml( $title->getText() );
+			$this->mCategoryLinks[] = $sk->makeLinkObj( $title, $text );
+		}
 	}
-	function setCategoryLinks($newLinkArray) {
-		$this->mCategoryLinks += $newLinkArray;
+
+	function setCategoryLinks($categories) {
+		$this->mCategoryLinks = array();
+		$this->addCategoryLinks($categories);
 	}
 
 	function suppressQuickbar() { $this->mSuppressQuickbar = true; }
@@ -268,7 +287,8 @@ class OutputPage {
 		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions,
 			$linestart, true, $this->mRevisionId );
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
-		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+		$this->addCategoryLinks( $parserOutput->getCategories() );
+		$this->addKeywords( $parserOutput );
 		if ( $parserOutput->getCacheTime() == -1 ) {
 			$this->enableClientCache( false );
 		}
@@ -279,20 +299,21 @@ class OutputPage {
 	 * Add wikitext to the buffer, assuming that this is the primary text for a page view
 	 * Saves the text into the parser cache if possible
 	 */
-	function addPrimaryWikiText( $text, $cacheArticle ) {
+	function addPrimaryWikiText( $text, $article, $cache = true ) {
 		global $wgParser, $wgParserCache, $wgUser;
 
-		$parserOutput = $wgParser->parse( $text, $cacheArticle->mTitle,
+		$parserOutput = $wgParser->parse( $text, $article->mTitle,
 			$this->mParserOptions, true, true, $this->mRevisionId );
 
 		$text = $parserOutput->getText();
 
-		if ( $cacheArticle && $parserOutput->getCacheTime() != -1 ) {
-			$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
+		if ( $article && $parserOutput->getCacheTime() != -1 ) {
+			$wgParserCache->save( $parserOutput, $article, $wgUser );
 		}
 
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
-		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+		$this->addCategoryLinks( $parserOutput->getCategories() );
+		$this->addKeywords( $parserOutput );
 		if ( $parserOutput->getCacheTime() == -1 ) {
 			$this->enableClientCache( false );
 		}
@@ -306,7 +327,7 @@ class OutputPage {
 	function addTemplate( &$template ) {
 		ob_start();
 		$template->execute();
-		$this->addHtml( ob_get_contents() );
+		$this->addHTML( ob_get_contents() );
 		ob_end_clean();
 	}
 
@@ -331,7 +352,8 @@ class OutputPage {
 		$parserOutput = $wgParserCache->get( $article, $user );
 		if ( $parserOutput !== false ) {
 			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
-			$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+			$this->addCategoryLinks( $parserOutput->getCategories() );
+			$this->addKeywords( $parserOutput );
 			$this->addHTML( $parserOutput->getText() );
 			$t = $parserOutput->getTitleText();
 			if( !empty( $t ) ) {
@@ -828,21 +850,19 @@ class OutputPage {
 	 * This function takes the title (first item of mGoodLinks), categories, existing and broken links for the page
 	 * and uses the first 10 of them for META keywords
 	 */
-	function addMetaTags () {
-		global $wgLinkCache , $wgOut ;
-		$categories = array_keys ( $wgLinkCache->mCategoryLinks ) ;
-		$good = array_keys ( $wgLinkCache->mGoodLinks ) ;
-		$bad = array_keys ( $wgLinkCache->mBadLinks ) ;
-		$a = array_merge ( array_slice ( $good , 0 , 1 ), $categories, array_slice ( $good , 1 , 9 ) , $bad ) ;
-		$a = array_slice ( $a , 0 , 10 ) ; # 10 keywords max
-		$a = implode ( ',' , $a ) ;
-		$strip = array(
-			"/<.*?>/" => '',
-			"/_/" => ' '
-		);
-		$a = htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),$a ));
-
-		$wgOut->addMeta( 'keywords' , $a ) ;
+	function addKeywords( &$parserOutput ) {
+		global $wgTitle;
+		$this->addKeyword( $wgTitle->getPrefixedText() );
+		$count = 1;
+		$links2d =& $parserOutput->getLinks();
+		foreach ( $links2d as $ns => $dbkeys ) {
+			foreach( $dbkeys as $dbkey => $id ) {
+				$this->addKeyword( $dbkey );
+				if ( ++$count > 10 ) {
+					break 2;
+				}
+			}
+		}
 	}
 
 	/**

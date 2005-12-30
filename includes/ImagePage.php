@@ -53,7 +53,6 @@ class ImagePage extends Article {
 				$wgOut->setArticleFlag( true );
 				$wgOut->setRobotpolicy( 'index,follow' );
 				$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-				$wgOut->addMetaTags();
 				$this->viewUpdates();
 			}
 

@@ -110,14 +110,22 @@ class LinkCache {
 			$wgMemc->delete( $this->getKey( $title ) );
 	}
 
+	/** @deprecated */
 	function suspend() { $this->mActive = false; }
+	/** @deprecated */
 	function resume() { $this->mActive = true; }
+
 	function getPageLinks() { return $this->mPageLinks; }
 	function getGoodLinks() { return $this->mGoodLinks; }
 	function getBadLinks() { return array_keys( $this->mBadLinks ); }
 	function getImageLinks() { return $this->mImageLinks; }
 	function getCategoryLinks() { return $this->mCategoryLinks; }
 
+	/**
+	 * Add a title to the link cache, return the page_id or zero if non-existent
+	 * @param string $title Title to add
+	 * @return integer
+	 */
 	function addLink( $title ) {
 		$nt = Title::newFromDBkey( $title );
 		if( $nt ) {
@@ -126,7 +134,12 @@ class LinkCache {
 			return 0;
 		}
 	}
-
+	
+	/**
+	 * Add a title to the link cache, return the page_id or zero if non-existent
+	 * @param Title $nt Title to add
+	 * @return integer
+	 */
 	function addLinkObj( &$nt ) {
 		global $wgMemc, $wgLinkCacheMemcached, $wgAntiLockFlags;
 		$title = $nt->getPrefixedDBkey();
@@ -188,6 +201,7 @@ class LinkCache {
 	/**
 	 * Bulk-check the pagelinks and page arrays for existence info.
 	 * @param Title $fromtitle
+	 * @deprecated
 	 */
 	function preFill( &$fromtitle ) {
 		global $wgAntiLockFlags;
@@ -238,91 +252,6 @@ class LinkCache {
 		wfProfileOut( $fname );
 	}
 
-	function getGoodAdditions() {
-		return array_diff( $this->mGoodLinks, $this->mOldGoodLinks );
-	}
-
-	function getBadAdditions() {
-		#wfDebug( "mOldBadLinks: " . implode( ', ', array_keys( $this->mOldBadLinks ) ) . "\n" );
-		#wfDebug( "mBadLinks: " . implode( ', ', array_keys( $this->mBadLinks ) ) . "\n" );
-		return array_values( array_diff( array_keys( $this->mBadLinks ), array_keys( $this->mOldBadLinks ) ) );
-	}
-
-	function getImageAdditions() {
-		return array_diff_assoc( $this->mImageLinks, $this->mOldImageLinks );
-	}
-
-	function getGoodDeletions() {
-		return array_diff( $this->mOldGoodLinks, $this->mGoodLinks );
-	}
-
-	function getBadDeletions() {
-		return array_values( array_diff( array_keys( $this->mOldBadLinks ), array_keys( $this->mBadLinks ) ));
-	}
-
-	function getImageDeletions() {
-		return array_diff_assoc( $this->mOldImageLinks, $this->mImageLinks );
-	}
-
-	function getPageAdditions() {
-		$set = array_diff( array_keys( $this->mPageLinks ), array_keys( $this->mOldPageLinks ) );
-		$out = array();
-		foreach( $set as $key ) {
-			$out[$key] = $this->mPageLinks[$key];
-		}
-		return $out;
-	}
-
-	function getPageDeletions() {
-		$set = array_diff( array_keys( $this->mOldPageLinks ), array_keys( $this->mPageLinks ) );
-		$out = array();
-		foreach( $set as $key ) {
-			$out[$key] = $this->mOldPageLinks[$key];
-		}
-		return $out;
-	}
-
-	/**
-	 * Parameters:
-	 * @param $which is one of the LINKCACHE_xxx constants
-	 * @param $del,$add are the incremental update arrays which will be filled.
-	 *
-	 * @return Returns whether or not it's worth doing the incremental version.
-	 *
-	 * For example, if [[List of mathematical topics]] was blanked,
-	 * it would take a long, long time to do incrementally.
-	 */
-	function incrementalSetup( $which, &$del, &$add ) {
-		if ( ! $this->mPreFilled ) {
-			return false;
-		}
-
-		switch ( $which ) {
-			case LINKCACHE_GOOD:
-				$old =& $this->mOldGoodLinks;
-				$cur =& $this->mGoodLinks;
-				$del = $this->getGoodDeletions();
-				$add = $this->getGoodAdditions();
-				break;
-			case LINKCACHE_BAD:
-				$old =& $this->mOldBadLinks;
-				$cur =& $this->mBadLinks;
-				$del = $this->getBadDeletions();
-				$add = $this->getBadAdditions();
-				break;
-			case LINKCACHE_PAGE:
-				$old =& $this->mOldPageLinks;
-				$cur =& $this->mPageLinks;
-				$del = $this->getPageDeletions();
-				$add = $this->getPageAdditions();
-				break;
-			default: # LINKCACHE_IMAGE
-				return false;
-		}
-
-		return true;
-	}
-
 	/**
 	 * Clears cache
 	 */
@@ -339,6 +268,7 @@ class LinkCache {
 
 	/**
 	 * Swaps old and current link registers
+	 * @deprecated
 	 */
 	function swapRegisters() {
 		swap( $this->mGoodLinks, $this->mOldGoodLinks );
@@ -386,46 +316,78 @@ class LinkBatch {
 		$this->data[$ns][$dbkey] = 1;
 	}
 
+	/**
+	 * Set the link list to a given 2-d array
+	 * First key is the namespace, second is the DB key, value arbitrary
+	 */
+	function setArray( $array ) {
+		$this->data = $array;
+	}
+
+	/**
+	 * Do the query and add the results to a LinkCache object
+	 * Return an array mapping PDBK to ID
+	 */
 	function execute( &$cache ) {
 		$fname = 'LinkBatch::execute';
-		$namespaces = array();
-
-		if ( !count( $this->data ) ) {
-			return;
+		wfProfileIn( $fname );
+		// Do query
+		$res = $this->doQuery();
+		if ( !$res ) {
+			wfProfileOut( $fname );
+			return array();
 		}
 
-		wfProfileIn( $fname );
-
-		// Construct query
-		// This is very similar to Parser::replaceLinkHolders
-		$dbr =& wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
-		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE "
-			. $this->constructSet( 'page', $dbr );
-
-		// Do query
-		$res = $dbr->query( $sql, $fname );
-
-		// Process results
 		// For each returned entry, add it to the list of good links, and remove it from $remaining
 
+		$ids = array();
 		$remaining = $this->data;
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		while ( $row = $res->fetchObject() ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$cache->addGoodLinkObj( $row->page_id, $title );
+			$ids[$title->getPrefixedDBkey()] = $row->page_id;
 			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
-		$dbr->freeResult( $res );
+		$res->free();
 
 		// The remaining links in $data are bad links, register them as such
 		foreach ( $remaining as $ns => $dbkeys ) {
 			foreach ( $dbkeys as $dbkey => $nothing ) {
 				$title = Title::makeTitle( $ns, $dbkey );
 				$cache->addBadLinkObj( $title );
+				$ids[$title->getPrefixedDBkey()] = 0;
 			}
 		}
-
 		wfProfileOut( $fname );
+		return $ids;
+	}
+
+	/**
+	 * Perform the existence test query, return a ResultWrapper with page_id fields
+	 */
+	function doQuery() {
+		$fname = 'LinkBatch::execute';
+		$namespaces = array();
+
+		if ( !count( $this->data ) ) {
+			return false;
+		}
+		wfProfileIn( $fname );
+
+		// Construct query
+		// This is very similar to Parser::replaceLinkHolders
+		$dbr =& wfGetDB( DB_SLAVE );
+		$page = $dbr->tableName( 'page' );
+		$set = $this->constructSet( 'page', $dbr );
+		if ( $set === false ) {
+			return false;
+		}
+		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE $set";
+
+		// Do query
+		$res = new ResultWrapper( $dbr,  $dbr->query( $sql, $fname ) );
+		wfProfileOut( $fname );
+		return $res;
 	}
 
 	/**
@@ -436,8 +398,9 @@ class LinkBatch {
 	 * @return string
 	 * @access public
 	 */
-	function constructSet( $prefix, $db ) {
+	function constructSet( $prefix, &$db ) {
 		$first = true;
+		$firstTitle = true;
 		$sql = '';
 		foreach ( $this->data as $ns => $dbkeys ) {
 			if ( !count( $dbkeys ) ) {
@@ -463,7 +426,12 @@ class LinkBatch {
 
 			$sql .= '))';
 		}
-		return $sql;
+		if ( $first && $firstTitle ) {
+			# No titles added
+			return false;
+		} else {
+			return $sql;
+		}
 	}
 }
 

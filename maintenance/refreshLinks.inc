@@ -65,7 +65,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 }
 
 function fixLinksFromArticle( $id ) {
-	global $wgTitle, $wgArticle, $wgLinkCache, $wgOut;
+	global $wgTitle, $wgArticle, $wgOut, $wgParser;
 	
 	$wgTitle = Title::newFromID( $id );
 	$dbw =& wfGetDB( DB_MASTER );
@@ -75,29 +75,15 @@ function fixLinksFromArticle( $id ) {
 	}
 	$dbw->begin();
 
-	$wgArticle = new Article( $wgTitle );
-	$text = $wgArticle->getContent( true );
-	$wgLinkCache = new LinkCache;
-	$wgLinkCache->forUpdate( true );
-	
-	global $wgLinkHolders;
-	$wgLinkHolders = array(
-		'namespaces' => array(),
-		'dbkeys' => array(),
-		'queries' => array(),
-		'texts' => array(),
-		'titles' => array()
-	);
+	$revision = Revision::newFromTitle( $wgTitle );
+	if ( !$revision ) {
+		return;
+	}
 
-
-	# Parse the text and replace links with placeholders
-	$wgOut->addWikiText( $text );
-	
-	# Look up the links in the DB and add them to the link cache
-	$wgOut->clearHTML();
-
-	$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );
-	$linksUpdate->doDumbUpdate();
+	$options = new ParserOptions;
+	$parserOutput = $wgParser->parse( $revision->getText(), $wgTitle, $options, true, true, $revision->getId() );
+	$update = new LinksUpdate( $wgTitle, $parserOutput );
+	$update->doDumbUpdate();
 	$dbw->immediateCommit();
 }
 

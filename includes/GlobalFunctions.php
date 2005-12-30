@@ -90,6 +90,24 @@ if( !function_exists( 'floatval' ) ) {
 	}
 }
 
+if ( !function_exists( 'array_diff_key' ) ) {
+	/**
+	 * Exists in PHP 5.1.0+
+	 * Not quite compatible, two-argument version only
+	 * Null values will cause problems due to this use of isset()
+	 */
+	function array_diff_key( $left, $right ) {
+		$result = $left;
+		foreach ( $left as $key => $value ) {
+			if ( isset( $right[$key] ) ) {
+				unset( $result[$key] );
+			}
+		}
+		return $result;
+	}
+}
+
+
 /**
  * Where as we got a random seed
  * @var bool $wgTotalViews

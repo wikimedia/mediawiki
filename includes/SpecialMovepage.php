@@ -6,11 +6,6 @@
  */
 
 /**
- *
- */
-require_once( "LinksUpdate.php" );
-
-/**
  * Constructor
  */
 function wfSpecialMovepage( $par = null ) {

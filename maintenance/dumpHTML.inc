@@ -357,7 +357,7 @@ class DumpHTML {
 
 	/** Reads the content of a title object, executes the skin and captures the result */
 	function getArticleHTML( &$title ) {
-		global $wgOut, $wgTitle, $wgArticle, $wgUser, $wgUseCategoryMagic, $wgLinkCache;
+		global $wgOut, $wgTitle, $wgArticle, $wgUser, $wgLinkCache;
 		
 		$wgTitle = $title;
 		if ( is_null( $wgTitle ) ) {
@@ -373,7 +373,7 @@ class DumpHTML {
 		} else {
 			if ( $ns == NS_IMAGE ) {
 				$wgArticle = new ImagePage( $wgTitle );
-			} elseif ( $wgUseCategoryMagic && $ns == NS_CATEGORY ) {
+			} elseif ( $ns == NS_CATEGORY ) {
 				$wgArticle = new CategoryPage( $wgTitle );
 			} else {
 				$wgArticle = new Article( $wgTitle );

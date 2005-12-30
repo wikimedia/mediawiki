@@ -101,13 +101,15 @@ class Parser
 	var $mInterwikiLinkHolders, $mLinkHolders, $mUniqPrefix;
 
 	# Temporary:
-	var $mOptions, $mTitle, $mOutputType,
+	var $mOptions,      // ParserOptions object
+		$mTitle,        // Title context, used for self-link rendering and similar things
+		$mOutputType,   // Output type, one of the OT_xxx constants
 	    $mTemplates,	// cache of already loaded templates, avoids
 		                // multiple SQL queries for the same string
-	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
+	    $mTemplatePath,	// stores an unsorted hash of all the templates already loaded
 		                // in this path. Used for loop detection.
-
-	var $mIWTransData = array();
+		$mIWTransData = array(),
+		$mRevisionId;   // ID to display in {{REVISIONID}} tags
 
 	/**#@-*/
 
@@ -155,9 +157,9 @@ class Parser
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 	}
 
-	/**
-	 * First pass--just handle <nowiki> sections, pass the rest off
-	 * to internalParse() which does all the real work.
+	/** 
+	 * Convert wikitext to HTML
+	 * Do not call this function recursively.
 	 *
 	 * @access private
 	 * @param string $text Text we want to parse
@@ -169,6 +171,11 @@ class Parser
 	 * @return ParserOutput a ParserOutput
 	 */
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true, $revid = null ) {
+		/**
+		 * First pass--just handle <nowiki> sections, pass the rest off
+		 * to internalParse() which does all the real work.
+		 */
+		
 		global $wgUseTidy, $wgContLang;
 		$fname = 'Parser::parse';
 		wfProfileIn( $fname );
@@ -193,8 +200,10 @@ class Parser
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$x ) );
 
 		# Hook to suspend the parser in this state
-		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$x ) ) )
+		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$x ) ) ) {
+			wfProfileOut( $fname );
 			return $text ;
+		}
 
 		$text = $this->internalParse( $text );
 
@@ -236,6 +245,7 @@ class Parser
 
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
+
 		return $this->mOutput;
 	}
 
@@ -1394,7 +1404,7 @@ class Parser
 
 				# Interwikis
 				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgContLang->getLanguageName( $iw ) ) {
-					array_push( $this->mOutput->mLanguageLinks, $nt->getFullText() );
+					$this->mOutput->addLanguageLink( $nt->getFullText() );
 					$s = rtrim($s . "\n");
 					$s .= trim($prefix . $trail, "\n") == '' ? '': $prefix . $trail;
 					continue;
@@ -1411,7 +1421,7 @@ class Parser
 
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
 						$s .= $prefix . $this->armorLinks( $this->makeImage( $nt, $text ) ) . $trail;
-						$wgLinkCache->addImageLinkObj( $nt );
+						$this->mOutput->addImage( $nt->getDBkey() ); 
 
 						wfProfileOut( "$fname-image" );
 						continue;
@@ -1422,12 +1432,7 @@ class Parser
 
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( "$fname-category" );
-					$t = $wgContLang->convertHtml( $nt->getText() );
 					$s = rtrim($s . "\n"); # bug 87
-
-					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
-					$t = $sk->makeLinkObj( $nt, $t, '', '' , $prefix );
-					$wgLinkCache->resume();
 
 					if ( $wasblank ) {
 						if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
@@ -1440,8 +1445,7 @@ class Parser
 					}
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
 					$sortkey = $wgContLang->convertCategoryKey( $sortkey );
-					$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
-					$this->mOutput->addCategoryLink( $t );
+					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
 					/**
 					 * Strip the whitespace Category links produce, see bug 87
@@ -1466,7 +1470,7 @@ class Parser
 				$link = $sk->makeMediaLinkObj( $nt, $text );
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
 				$s .= $prefix . $this->armorLinks( $link ) . $trail;
-				$wgLinkCache->addImageLinkObj( $nt );
+				$this->mOutput->addImage( $nt->getDBkey() );
 				continue;
 			} elseif( $ns == NS_SPECIAL ) {
 				$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
@@ -2297,7 +2301,7 @@ class Parser
 	 * @access private
 	 */
 	function braceSubstitution( $piece ) {
-		global $wgLinkCache, $wgContLang;
+		global $wgContLang;
 		$fname = 'Parser::braceSubstitution';
 		wfProfileIn( $fname );
 
@@ -2515,6 +2519,9 @@ class Parser
 							$text = $articleContent;
 							$replaceHeadings = true;
 						}
+						# Register a template reference whether or not the template exists
+						$this->mOutput->addTemplate( $title->getNamespace(), $title->getDBkey(), 
+							$article->getID() );
 					}
 				}
 
@@ -2576,11 +2583,6 @@ class Parser
 				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
 			}
 			$text = $this->replaceVariables( $text, $assocArgs );
-
-			# Resume the link cache and register the inclusion as a link
-			if ( $this->mOutputType == OT_HTML && !is_null( $title ) ) {
-				$wgLinkCache->addLinkObj( $title );
-			}
 
 			# If the template begins with a table or block-level
 			# element, it should be treated as beginning a new line.
@@ -3348,7 +3350,7 @@ class Parser
 
 			# Generate query
 			$query = false;
-			foreach ( $this->mLinkHolders['namespaces'] as $key => $val ) {
+			foreach ( $this->mLinkHolders['namespaces'] as $key => $ns ) {
 				# Make title object
 				$title = $this->mLinkHolders['titles'][$key];
 
@@ -3359,23 +3361,26 @@ class Parser
 				}
 				$pdbk = $pdbks[$key] = $title->getPrefixedDBkey();
 
-				# Check if it's in the link cache already
-				if ( $title->isAlwaysKnown() || $wgLinkCache->getGoodLinkID( $pdbk ) ) {
+				# Check if it's a static known link, e.g. interwiki
+				if ( $title->isAlwaysKnown() ) {
 					$colours[$pdbk] = 1;
+				} elseif ( ( $id = $wgLinkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
+					$colours[$pdbk] = 1;
+					$this->mOutput->addLink( $ns, $this->mLinkHolders['dbkeys'][$key], $id );
 				} elseif ( $wgLinkCache->isBadLink( $pdbk ) ) {
 					$colours[$pdbk] = 0;
 				} else {
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {
-						$current = $val;
+						$current = $ns;
 						$query =  "SELECT page_id, page_namespace, page_title";
 						if ( $threshold > 0 ) {
 							$query .= ', page_len, page_is_redirect';
 						}
-						$query .= " FROM $page WHERE (page_namespace=$val AND page_title IN(";
-					} elseif ( $current != $val ) {
-						$current = $val;
-						$query .= ")) OR (page_namespace=$val AND page_title IN(";
+						$query .= " FROM $page WHERE (page_namespace=$ns AND page_title IN(";
+					} elseif ( $current != $ns ) {
+						$current = $ns;
+						$query .= ")) OR (page_namespace=$ns AND page_title IN(";
 					} else {
 						$query .= ', ';
 					}
@@ -3399,6 +3404,7 @@ class Parser
 					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 					$pdbk = $title->getPrefixedDBkey();
 					$wgLinkCache->addGoodLinkObj( $s->page_id, $title );
+					$this->mOutput->addLink( $s->page_namespace, $s->page_title, $s->page_id );
 
 					if ( $threshold >  0 ) {
 						$size = $s->page_len;
@@ -3424,6 +3430,7 @@ class Parser
 				if ( empty( $colours[$pdbk] ) ) {
 					$wgLinkCache->addBadLinkObj( $title );
 					$colours[$pdbk] = 0;
+					$this->mOutput->addLink( $ns, $this->mLinkHolders['dbkeys'][$key], 0 );
 					$wgOutputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
@@ -3479,7 +3486,7 @@ class Parser
 	 * @return string
 	 */
 	function replaceLinkHoldersText( $text ) {
-		global $wgUser, $wgLinkCache;
+		global $wgUser;
 		global $wgOutputReplace;
 
 		$fname = 'Parser::replaceLinkHoldersText';
@@ -3527,11 +3534,10 @@ class Parser
 	 */
 	function renderImageGallery( $text ) {
 		# Setup the parser
-		global $wgUser, $wgTitle;
-		$parserOptions = ParserOptions::newFromUser( $wgUser );
+		global $wgTitle;
+		$parserOptions = new ParserOptions;
 		$localParser = new Parser();
 
-		global $wgLinkCache;
 		$ig = new ImageGallery();
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
@@ -3560,7 +3566,7 @@ class Parser
 			$html = $html->mText;
 
 			$ig->add( new Image( $nt ), $html );
-			$wgLinkCache->addImageLinkObj( $nt );
+			$this->mOutput->addImage( $nt->getDBkey() );
 		}
 		return $ig->toHTML();
 	}
@@ -3680,43 +3686,77 @@ class Parser
  */
 class ParserOutput
 {
-	var $mText, $mLanguageLinks, $mCategoryLinks, $mContainsOldMagic;
-	var $mCacheTime; # Timestamp on this article, or -1 for uncacheable. Used in ParserCache.
-	var $mVersion;   # Compatibility check
-	var $mTitleText; # title text of the chosen language variant
+	var $mText,             # The output text
+		$mLanguageLinks,    # List of the full text of language links, in the order they appear
+		$mCategories,       # Map of category names to sort keys
+		$mContainsOldMagic, # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
+		$mCacheTime,        # Timestamp on this article, or -1 for uncacheable. Used in ParserCache.
+		$mVersion,          # Compatibility check
+		$mTitleText,        # title text of the chosen language variant
+		$mLinks,            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
+		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
+		$mImages;           # DB keys of the images used, in the array key only
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
 	{
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
-		$this->mCategoryLinks = $categoryLinks;
+		$this->mCategories = $categoryLinks;
 		$this->mContainsOldMagic = $containsOldMagic;
 		$this->mCacheTime = '';
 		$this->mVersion = MW_PARSER_VERSION;
 		$this->mTitleText = $titletext;
+		$this->mLinks = array();
+		$this->mTemplates = array();
+		$this->mImages = array();
 	}
 
 	function getText()                   { return $this->mText; }
 	function getLanguageLinks()          { return $this->mLanguageLinks; }
-	function getCategoryLinks()          { return array_keys( $this->mCategoryLinks ); }
+	function getCategoryLinks()          { return array_keys( $this->mCategories ); }
+	function &getCategories()            { return $this->mCategories; }
 	function getCacheTime()              { return $this->mCacheTime; }
 	function getTitleText()              { return $this->mTitleText; }
+	function &getLinks()                 { return $this->mLinks; }
+	function &getTemplates()             { return $this->mTemplates; }
+	function &getImages()                { return $this->mImages; }
+
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
 	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
-	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategoryLinks, $cl ); }
+	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategories, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
 	function setTitleText( $t )          { return wfSetVar ($this->mTitleText, $t); }
 
-	function addCategoryLink( $c )       { $this->mCategoryLinks[$c] = 1; }
+	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
+	function addImage( $name )           { $this->mImages[$name] = 1; }
+	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
 
+	function addLink( $ns, $t, $id ) { 
+		if ( !isset( $this->mLinks[$ns] ) ) {
+			$this->mLinks[$ns] = array();
+		}
+		$this->mLinks[$ns][$t] = $id; 
+	}
+
+	function addTemplate( $ns, $t, $id ) { 
+		if ( !isset( $this->mTemplates[$ns] ) ) {
+			$this->mTemplates[$ns] = array();
+		}
+		$this->mTemplates[$ns][$t] = $id;
+	}
+
+	/**
+	 * @deprecated
+	 */
+	/*
 	function merge( $other ) {
 		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $other->mLanguageLinks );
-		$this->mCategoryLinks = array_merge( $this->mCategoryLinks, $this->mLanguageLinks );
+		$this->mCategories = array_merge( $this->mCategories, $this->mLanguageLinks );
 		$this->mContainsOldMagic = $this->mContainsOldMagic || $other->mContainsOldMagic;
-	}
+	}*/
 
 	/**
 	 * Return true if this cached output object predates the global or
@@ -3883,7 +3923,7 @@ function wfLoadSiteStats() {
 
 /**
  * Escape html tags
- * Basicly replacing " > and < with HTML entities ( &quot;, &gt;, &lt;)
+ * Basically replacing " > and < with HTML entities ( &quot;, &gt;, &lt;)
  *
  * @param string $in Text that might contain HTML tags
  * @return string Escaped string

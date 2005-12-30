@@ -1069,7 +1069,7 @@ class Database {
 	 * $mode: LIST_COMMA         - comma separated, no field names
 	 *        LIST_AND           - ANDed WHERE clause (without the WHERE)
 	 *        LIST_SET           - comma separated with field names, like a SET clause
-	 *	  LIST_NAMES	     - comma separated field names
+	 *        LIST_NAMES         - comma separated field names
 	 */
 	function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
@@ -1693,7 +1693,7 @@ class ResultWrapper {
 	/**
 	 * @todo document
 	 */
-	function ResultWrapper( $database, $result ) {
+	function ResultWrapper( &$database, $result ) {
 		$this->db =& $database;
 		$this->result =& $result;
 	}
