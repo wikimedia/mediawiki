@@ -1435,6 +1435,7 @@ to perform this function on.',
 'linkshere'		=> 'The following pages link to here:',
 'nolinkshere'	=> 'No pages link to here.',
 'isredirect'	=> 'redirect page',
+'istemplate'	=> 'inclusion',
 
 # Block/unblock IP
 #
@@ -2399,6 +2400,7 @@ class Language {
 	 * @param int   $ts the time in date('YmdHis') format
 	 * @param mixed $tz adjust the time by this amount (default false)
 	 * @return int
+
 	 */
 	function userAdjust( $ts, $tz = false )	{
 		global $wgUser, $wgLocalTZoffset;
@@ -2566,7 +2568,9 @@ class Language {
 	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	* @param bool   $adj whether to adjust the time output according to the
 	*               user configured offset ($timecorrection)
-	* @param mixed  $format true to use user's date format preference
+
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one (default true)
 	* @param string $timecorrection the time offset as returned by
 	*               validateTimeZone() in Special:Preferences
 	* @return string

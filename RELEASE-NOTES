@@ -374,6 +374,14 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4424) Update for Spanish language (es) 100% messages translated
 * (bug 4425) Typos in Polish translation
 * (bug 4426) Add link to user_talk page on image pages
+* Added templatelinks table, to track template inclusions. User-visible effects
+  will be:
+  * (inclusion) tag for inclusions in Special:Whatlinkshere
+  * More accurate list of used templates on the edit page
+  * More reliable cache invalidation when templates outside the template
+    namespace are changed
+* Removed $wgUseCategoryMagic option, categories are now enabled unconditionally
+
 
 === Caveats ===
 

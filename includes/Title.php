@@ -1400,7 +1400,7 @@ class Title {
 	 * @return array the Title objects linking here
 	 * @access public
 	 */
-	function getLinksTo( $options = '' ) {
+	function getLinksTo( $options = '', $table = 'pagelinks', $prefix = 'pl' ) {
 		global $wgLinkCache;
 		$id = $this->getArticleID();
 
@@ -1410,12 +1410,12 @@ class Title {
 			$db =& wfGetDB( DB_SLAVE );
 		}
 
-		$res = $db->select( array( 'page', 'pagelinks' ),
+		$res = $db->select( array( 'page', $table ),
 			array( 'page_namespace', 'page_title', 'page_id' ),
 			array(
-				'pl_from=page_id',
-				'pl_namespace' => $this->getNamespace(),
-				'pl_title'     => $this->getDbKey() ),
+				"{$prefix}_from=page_id",
+				"{$prefix}_namespace" => $this->getNamespace(),
+				"{$prefix}_title"     => $this->getDbKey() ),
 			'Title::getLinksTo',
 			$options );
 
@@ -1430,6 +1430,18 @@ class Title {
 		}
 		$db->freeResult( $res );
 		return $retVal;
+	}
+
+	/**
+	 * Get an array of Title objects using this Title as a template
+	 * Also stores the IDs in the link cache.
+	 *
+	 * @param string $options may be FOR UPDATE
+	 * @return array the Title objects linking here
+	 * @access public
+	 */
+	function getTemplateLinksTo( $options = '' ) {
+		return $this->getLinksTo( $options, 'templatelinks', 'tl' );
 	}
 
 	/**

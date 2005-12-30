@@ -688,6 +688,56 @@ function do_page_random_update() {
 	echo "changed $rows rows\n";
 }
 
+function do_templatelinks_update() {
+	global $wgDatabase, $wgLoadBalancer;
+	$fname = 'do_templatelinks_update';
+	
+	if ( $wgDatabase->tableExists( 'templatelinks' ) ) {
+		echo "...templatelinks table already exists\n";
+		return;
+	}
+	echo "Creating templatelinks table...\n";
+	dbsource( archive('patch-templatelinks.sql'), $wgDatabase );
+	echo "Populating...\n";
+	if ( isset( $wgLoadBalancer ) && $wgLoadBalancer->getServerCount() > 1 ) {
+		// Slow, replication-friendly update
+		$res = $wgDatabase->select( 'pagelinks', array( 'pl_from', 'pl_namespace', 'pl_title' ),
+			array( 'pl_namespace' => NS_TEMPLATE ), $fname );
+		$count = 0;
+		while ( $row = $wgDatabase->fetchObject( $res ) ) {
+			$count = ($count + 1) % 100;
+			if ( $count == 0 ) {
+				if ( function_exists( 'wfWaitForSlaves' ) ) {
+					wfWaitForSlaves( 10 );
+				} else {
+					sleep( 1 );
+				}
+			}
+			$wgDatabase->insert( 'templatelinks', 
+				array( 
+					'tl_from' => $row->pl_from,
+					'tl_namespace' => $row->pl_namespace,
+					'tl_title' => $row->pl_title,
+				), $fname
+			);
+				
+		}
+		$wgDatabase->freeResult( $res );
+	} else {
+		// Fast update
+		$wgDatabase->insertSelect( 'templatelinks', 'pagelinks', 
+			array( 
+				'tl_from' => 'pl_from',
+				'tl_namespace' => 'pl_namespace', 
+				'tl_title' => 'pl_title' 
+			), array(
+				'pl_namespace' => 10
+			), $fname
+		);
+	}
+	echo "Done. Please run maintenance/refreshLinks.php for a more thorough templatelinks update.\n";
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables;
 
@@ -724,7 +774,8 @@ function do_all_updates() {
 	do_namespace_size(); flush();
 
 	do_pagelinks_update(); flush();
-
+	do_templatelinks_update(); flush(); // after pagelinks
+	
 	do_drop_img_type(); flush();
 
 	do_user_unique_update(); flush();

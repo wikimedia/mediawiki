@@ -495,10 +495,9 @@ END;
 
 
 	function getCategoryLinks () {
-		global $wgOut, $wgTitle, $wgUseCategoryMagic, $wgUseCategoryBrowser;
+		global $wgOut, $wgTitle, $wgUseCategoryBrowser;
 		global $wgContLang;
 
-		if( !$wgUseCategoryMagic ) return '' ;
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return '';
 
 		// Use Unicode bidi embedding override characters,

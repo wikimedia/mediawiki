@@ -165,7 +165,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		unset($wgArticle);
 		require_once( 'includes/ImagePage.php' );
 		$wgArticle = new ImagePage( $wgTitle );
-	} elseif ( $wgUseCategoryMagic && $ns == NS_CATEGORY ) {
+	} elseif ( $ns == NS_CATEGORY ) {
 		unset($wgArticle);
 		require_once( 'includes/CategoryPage.php' );
 		$wgArticle = new CategoryPage( $wgTitle );

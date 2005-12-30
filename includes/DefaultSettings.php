@@ -690,12 +690,6 @@ $wgDebugLogGroups       = array();
  */
 $wgShowSQLErrors        = false;
 
-# Should [[Category:Dog]] on a page associate it with the
-# category "Dog"? (a link to that category page will be
-# added to the article, clicking it reveals a list of
-# all articles in the category)
-$wgUseCategoryMagic		= true;
-
 /**
  * disable experimental dmoz-like category browsing. Output things like:
  * Encyclopedia > Music > Style of Music > Jazz

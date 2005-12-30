@@ -828,7 +828,7 @@ class EditPage {
 		if( !$this->preview && !$this->diff ) {
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
-		$templates = $this->getTemplatesUsed();
+		$templates = $this->formatTemplates();
 
 		global $wgLivePreview;
 		if ( $wgLivePreview ) {
@@ -986,27 +986,25 @@ END
 	/**
 	 * Prepare a list of templates used by this page. Returns HTML.
 	 */
-	function getTemplatesUsed() {
+	function formatTemplates() {
 		global $wgUser;
 
-		$fname = 'EditPage::getTemplatesUsed';
+		$fname = 'EditPage::formatTemplates';
 		wfProfileIn( $fname );
 
 		$sk =& $wgUser->getSkin();
 
-		$templates = '';
-		$articleTemplates = $this->mArticle->getUsedTemplates();
-		if ( count( $articleTemplates ) > 0 ) {
-			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
-			foreach ( $articleTemplates as $tpl ) {
-				if ( $titleObj = Title::makeTitle( NS_TEMPLATE, $tpl ) ) {
-					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
-				}
+		$outText = '';
+		$templates = $this->mArticle->getUsedTemplates();
+		if ( count( $templates ) > 0 ) {
+			$outText = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
+			foreach ( $templates as $titleObj ) {
+				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
 			}
-			$templates .= '</ul>';
+			$outText .= '</ul>';
 		}
 		wfProfileOut( $fname );
-		return $templates;
+		return $outText;
 	}
 
 	/**

@@ -36,14 +36,17 @@ class Article {
 	var $mOldId;
 	var $mRevIdFetched;
 	var $mRevision;
+	var $mRedirectUrl;
 	/**#@-*/
 
 	/**
 	 * Constructor and clear the article
-	 * @param mixed &$title
+	 * @param Title &$title
+	 * @param integer $oldId Revision ID, null to fetch from request, zero for current
 	 */
-	function Article( &$title ) {
+	function Article( &$title, $oldId = null ) {
 		$this->mTitle =& $title;
+		$this->mOldId = $oldId;
 		$this->clear();
 	}
 
@@ -71,6 +74,7 @@ class Article {
 		$this->mForUpdate = false;
 		$this->mIsRedirect = false;
 		$this->mRevIdFetched = 0;
+		$this->mRedirectUrl = false;
 	}
 
 	/**
@@ -236,18 +240,22 @@ class Article {
 	}
 
 	/**
-	 * Return the oldid of the article that is to be shown.
-	 * For requests with a "direction", this is not the oldid of the
-	 * query
+	 * Return the oldid of the article that is to be shown, 0 for the current revision
 	 */
 	function getOldID() {
-		global $wgRequest, $wgOut;
-		static $lastid;
-
-		if ( isset( $lastid ) ) {
-			return $lastid;
+		if ( is_null( $this->mOldId ) ) {
+			$this->mOldId = $this->getOldIDFromRequest();
 		}
-		# Query variables :P
+		return $this->mOldId;
+	}
+
+	/**
+	 * Get the old ID from the request, return it.
+	 * Sets $this->mRedirectUrl to a correct URL if the query parameters are incorrect
+	 */
+	function getOldIDFromRequest() {
+		global $wgRequest;
+		$this->mRedirectUrl = false;
 		$oldid = $wgRequest->getVal( 'oldid' );
 		if ( isset( $oldid ) ) {
 			$oldid = intval( $oldid );
@@ -256,7 +264,7 @@ class Article {
 				if ( $nextid  ) {
 					$oldid = $nextid;
 				} else {
-					$wgOut->redirect( $this->mTitle->getFullURL( 'redirect=no' ) );
+					$this->mRedirectUrl = $this->mTitle->getFullURL( 'redirect=no' );
 				}
 			} elseif ( $wgRequest->getVal( 'direction' ) == 'prev' ) {
 				$previd = $this->mTitle->getPreviousRevisionID( $oldid );
@@ -268,12 +276,14 @@ class Article {
 			}
 			$lastid = $oldid;
 		}
-		return @$oldid;	# "@" to be able to return "unset" without PHP complaining
+		if ( !$oldid ) {
+			$oldid = 0;
+		}
+		return $oldid;
 	}
 
-
 	/**
-	 * Load the revision (including cur_text) into this object
+	 * Load the revision (including text) into this object
 	 */
 	function loadContent( $noredir = false ) {
 		global $wgOut, $wgRequest;
@@ -348,12 +358,12 @@ class Article {
 		$this->mTitle->loadRestrictions( $data->page_restrictions );
 		$this->mTitle->mRestrictionsLoaded = true;
 
-		$this->mCounter    = $data->page_counter;
-		$this->mTouched    = wfTimestamp( TS_MW, $data->page_touched );
-		$this->mIsRedirect = $data->page_is_redirect;
-		$this->mLatest     = $data->page_latest;
+		$this->mCounter     = $data->page_counter;
+		$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
+		$this->mIsRedirect  = $data->page_is_redirect;
+		$this->mLatest      = $data->page_latest;
 
-		$this->mDataLoaded = true;
+		$this->mDataLoaded  = true;
 	}
 
 	/**
@@ -615,6 +625,7 @@ class Article {
 			$this->mTimestamp = $this->mLastRevision->getTimestamp();
 			$this->mComment   = $this->mLastRevision->getComment();
 			$this->mMinorEdit = $this->mLastRevision->isMinor();
+			$this->mRevIdFetched = $this->mLastRevision->getID();
 		}
 	}
 
@@ -697,6 +708,14 @@ class Article {
 		wfProfileIn( $fname );
 		# Get variables from query string
 		$oldid = $this->getOldID();
+
+		# getOldID may want us to redirect somewhere else
+		if ( $this->mRedirectUrl ) {
+			$wgOut->redirect( $this->mRedirectUrl );
+			wfProfileOut( $fname );
+			return;
+		}
+
 		$diff = $wgRequest->getVal( 'diff' );
 		$rcid = $wgRequest->getVal( 'rcid' );
 		$rdfrom = $wgRequest->getVal( 'rdfrom' );
@@ -755,6 +774,18 @@ class Article {
 		}
 		if ( !$outputDone ) {
 			$text = $this->getContent( false ); # May change mTitle by following a redirect
+			if ( $text === false ) {
+				# Failed to load, replace text with error message
+				$t = $this->mTitle->getPrefixedText();
+				if( $oldid ) {
+					$t .= ',oldid='.$oldid;
+				}
+				if( isset( $redirect ) ) {
+					$redirect = ($redirect == 'no') ? 'no' : 'yes';
+					$t .= ',redirect='.$redirect;
+				}
+				$text = wfMsg( 'missingarticle', $t );
+			}
 
 			# Another whitelist check in case oldid or redirects are altering the title
 			if ( !$this->mTitle->userCanRead() ) {
@@ -874,9 +905,6 @@ class Article {
 		# Trackbacks
 		if ($wgUseTrackbacks)
 			$this->addTrackbacks();
-
-		# Add link titles as META keywords
-		$wgOut->addMetaTags() ;
 
 		$this->viewUpdates();
 		wfProfileOut( $fname );
@@ -1163,10 +1191,10 @@ class Article {
 			$fname );
 
 		# standard deferred updates
-		$this->editUpdates( $text, $summary, $isminor, $now );
+		$this->editUpdates( $text, $summary, $isminor, $now, $revisionId );
 
 		$oldid = 0; # new article
-		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid, $revisionId );
+		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid );
 
 		wfRunHooks( 'ArticleInsertComplete', array( &$this, &$wgUser, $text,
 			$summary, $isminor,
@@ -1368,6 +1396,9 @@ class Article {
 				// Update caches outside the main transaction
 				Article::onArticleEdit( $this->mTitle );
 			}
+		} else {
+			// Keep the same revision ID, but do some updates on it
+			$revisionId = $this->getRevIdFetched();
 		}
 
 		if( !$wgDBtransactions ) {
@@ -1391,10 +1422,36 @@ class Article {
 				}
 			}
 			# standard deferred updates
-			$this->editUpdates( $text, $summary, $minor, $now );
+			$this->editUpdates( $text, $summary, $minor, $now, $revisionId );
 
 
-			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision, $revisionId );
+			$urls = array();
+			# Invalidate caches of all articles using this article as a template
+			
+			# Template namespace
+			# Purge all articles linking here
+			$titles = $this->mTitle->getTemplateLinksTo();
+			Title::touchArray( $titles );
+			if ( $wgUseSquid ) {
+					foreach ( $titles as $title ) {
+						$urls[] = $title->getInternalURL();
+					}
+			}
+
+			# Squid updates
+			if ( $wgUseSquid ) {
+				$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
+				$u = new SquidUpdate( $urls );
+				array_push( $wgPostCommitUpdateList, $u );
+			}
+
+			# File cache
+			if ( $wgUseFileCache ) {
+				$cm = new CacheManager($this->mTitle);
+				@unlink($cm->fileCacheName());
+			}
+
+			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision );
 		}
 		wfRunHooks( 'ArticleSaveComplete',
 			array( &$this, &$wgUser, $text,
@@ -1408,42 +1465,14 @@ class Article {
 	 * After we've either updated or inserted the article, update
 	 * the link tables and redirect to the new page.
 	 */
-	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid, $newid ) {
-		global $wgUseDumbLinkUpdate, $wgAntiLockFlags, $wgOut, $wgUser, $wgLinkCache;
+	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
+		global $wgOut, $wgUser;
 		global $wgUseEnotif;
 
 		$fname = 'Article::showArticle';
 		wfProfileIn( $fname );
-
-		$wgLinkCache = new LinkCache();
-
-		if ( !$wgUseDumbLinkUpdate ) {
-			# Preload links to reduce lock time
-			if ( $wgAntiLockFlags & ALF_PRELOAD_LINKS ) {
-				$wgLinkCache->preFill( $this->mTitle );
-				$wgLinkCache->clear();
-			}
-		}
-
-		# Parse the text and save it to the parser cache
-		$wgOut = new OutputPage();
-		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
-		$wgOut->setRevisionId( $newid );
-		$wgOut->addPrimaryWikiText( $text, $this );
-
-		if ( !$wgUseDumbLinkUpdate ) {
-			# Move the current links back to the second register
-			$wgLinkCache->swapRegisters();
-
-			# Get old version of link table to allow incremental link updates
-			# Lock this data now since it is needed for an update
-			$wgLinkCache->forUpdate( true );
-			$wgLinkCache->preFill( $this->mTitle );
-
-			# Swap this old version back into its rightful place
-			$wgLinkCache->swapRegisters();
-		}
-
+		
+		# Output the redirect
 		if( $this->isRedirect( $text ) )
 			$r = 'redirect=no';
 		else
@@ -1704,7 +1733,7 @@ class Article {
 			$wgOut->addHTML( $skin->historyLink() .'</b>');
 		}
 
-		# Fetch cur_text
+		# Fetch article text
 		$rev = Revision::newFromTitle( $this->mTitle );
 
 		# Fetch name(s) of contributors
@@ -2076,8 +2105,22 @@ class Article {
 	 * @private
 	 * @param string $text
 	 */
-	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange) {
-		global $wgDeferredUpdateList, $wgMessageCache, $wgUser;
+	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid) {
+		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgParser, $wgParserCache;
+
+		$fname = 'Article::editUpdates';
+		wfProfileIn( $fname );
+		
+		# Parse the text
+		$options = new ParserOptions;
+		$poutput = $wgParser->parse( $text, $this->mTitle, $options, true, true, $newid );
+
+		# Save it to the parser cache
+		$wgParserCache->save( $poutput, $this, $wgUser );
+
+		# Update the links tables
+		$u = new LinksUpdate( $this->mTitle, $poutput );
+		$u->doUpdate();
 
 		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
 			wfSeedRandom();
@@ -2097,32 +2140,35 @@ class Article {
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
 
-		if ( 0 != $id ) {
-			$u = new LinksUpdate( $id, $title );
-			array_push( $wgDeferredUpdateList, $u );
-			$u = new SiteStatsUpdate( 0, 1, $this->mGoodAdjustment, $this->mTotalAdjustment );
-			array_push( $wgDeferredUpdateList, $u );
-			$u = new SearchUpdate( $id, $title, $text );
-			array_push( $wgDeferredUpdateList, $u );
+		if ( 0 == $id ) {
+			wfProfileOut( $fname );
+			return;
+		}
 
-			# If this is another user's talk page, update newtalk
+		$u = new SiteStatsUpdate( 0, 1, $this->mGoodAdjustment, $this->mTotalAdjustment );
+		array_push( $wgDeferredUpdateList, $u );
+		$u = new SearchUpdate( $id, $title, $text );
+		array_push( $wgDeferredUpdateList, $u );
 
-			if ($this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getName()) {
-				$other = User::newFromName( $shortTitle );
-				if( is_null( $other ) && User::isIP( $shortTitle ) ) {
-					// An anonymous user
-					$other = new User();
-					$other->setName( $shortTitle );
-				}
-				if( $other ) {
-					$other->setNewtalk( true );
-				}
+		# If this is another user's talk page, update newtalk
+
+		if ($this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getName()) {
+			$other = User::newFromName( $shortTitle );
+			if( is_null( $other ) && User::isIP( $shortTitle ) ) {
+				// An anonymous user
+				$other = new User();
+				$other->setName( $shortTitle );
 			}
-
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$wgMessageCache->replace( $shortTitle, $text );
+			if( $other ) {
+				$other->setNewtalk( true );
 			}
 		}
+
+		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			$wgMessageCache->replace( $shortTitle, $text );
+		}
+
+		wfProfileOut( $fname );
 	}
 
 	/**
@@ -2212,7 +2258,7 @@ class Article {
 	}
 
 	/**
-	 * Loads cur_touched and returns a value indicating if it should be used
+	 * Loads page_touched and returns a value indicating if it should be used
 	 *
 	 */
 	function checkTouched() {
@@ -2225,6 +2271,21 @@ class Article {
 			}
 		}
 		return !$this->mIsRedirect;
+	}
+
+	/**
+	 * Get the page_touched field
+	 */
+	function getTouched() {
+		# Ensure that page data has been loaded
+		if( !$this->mDataLoaded ) {
+			$dbr =& $this->getDB();
+			$data = $this->pageDataFromId( $dbr, $this->getId() );
+			if( $data ) {
+				$this->loadPageData( $data );
+			}
+		}
+		return $this->mTouched;
 	}
 
 	/**
@@ -2480,29 +2541,27 @@ class Article {
 
 	/**
 	 * Return a list of templates used by this article.
-	 * Uses the links table to find the templates
+	 * Uses the templatelinks table
 	 *
-	 * @return array
+	 * @return array Array of Title objects
 	 */
 	function getUsedTemplates() {
 		$result = array();
 		$id = $this->mTitle->getArticleID();
 
-		$db =& wfGetDB( DB_SLAVE );
-		$res = $db->select( array( 'pagelinks' ),
-			array( 'pl_title' ),
-			array(
-				'pl_from' => $id,
-				'pl_namespace' => NS_TEMPLATE ),
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'templatelinks' ),
+			array( 'tl_namespace', 'tl_title' ),
+			array( 'tl_from' => $id ),
 			'Article:getUsedTemplates' );
 		if ( false !== $res ) {
-			if ( $db->numRows( $res ) ) {
-				while ( $row = $db->fetchObject( $res ) ) {
-					$result[] = $row->pl_title;
+			if ( $dbr->numRows( $res ) ) {
+				while ( $row = $dbr->fetchObject( $res ) ) {
+					$result[] = Title::makeTitle( $row->tl_namespace, $row->tl_title );
 				}
 			}
 		}
-		$db->freeResult( $res );
+		$dbr->freeResult( $res );
 		return $result;
 	}
 }
