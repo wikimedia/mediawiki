@@ -372,6 +372,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix for short_open_tag off again; please don't break this, guys
 * Removed Special:Validate, it's been superseded by the Review extension
 * (bug 4424) Update for Spanish language (es) 100% messages translated
+* (bug 4425) Typos in Polish translation
 
 === Caveats ===
 
