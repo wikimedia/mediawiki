@@ -684,7 +684,7 @@ class ImageHistoryList {
 	}
 
 	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description, $width, $height ) {
-		global $wgUser, $wgLang, $wgTitle;
+		global $wgUser, $wgLang, $wgTitle, $wgContLang;
 
 		$datetime = $wgLang->timeanddate( $timestamp, true );
 		$del = wfMsg( 'deleteimg' );
@@ -724,15 +724,15 @@ class ImageHistoryList {
 		if ( 0 == $user ) {
 			$userlink = $usertext;
 		} else {
-			$userlink = $this->skin->makeLinkObj(
-				Title::makeTitle( NS_USER, $usertext ),
-				$usertext );
+			$userlink = $this->skin->makeLinkObj( Title::makeTitle( NS_USER, $usertext ), $usertext );
+			$usertalk = $this->skin->makeLinkObj( Title::makeTitle( NS_USER_TALK, $usertext), $wgContLang->getNsText( NS_TALK ) );
+			$userdata = $userlink . ' (' . $usertalk . ')';
 		}
 		$nbytes = wfMsg( 'nbytes', $size );
 		$widthheight = wfMsg( 'widthheight', $width, $height );
 		$style = $this->skin->getInternalLinkAttributes( $url, $datetime );
 
-		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$datetime}</a> . . {$userlink} . . {$widthheight} ({$nbytes})";
+		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$datetime}</a> . . {$userdata} . . {$widthheight} ({$nbytes})";
 
 		$s .= $this->skin->commentBlock( $description, $wgTitle );
 		$s .= "</li>\n";
