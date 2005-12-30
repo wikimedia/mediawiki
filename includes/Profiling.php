@@ -109,7 +109,7 @@ class Profiler {
 		global $wgDebugFunctionEntry;
 		$wgDebugFunctionEntry = false;
 
-		if (!count($this->mStack)) {
+		if (!count($this->mStack) && !count($this->mCollated)) {
 			return "No profiling output\n";
 		}
 		$this->close();
@@ -323,6 +323,8 @@ class Profiler {
 
 		$fname = 'Profiler::logToDB';
 		$dbw = & wfGetDB(DB_MASTER);
+		if (!is_object($dbw))
+			return false;
 		$profiling = $dbw->tableName('profiling');
 
 		$name = substr($name, 0, 255);
