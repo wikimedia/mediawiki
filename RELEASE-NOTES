@@ -381,7 +381,7 @@ fully support the editing toolbar, but was found to be too confusing.
   * More reliable cache invalidation when templates outside the template
     namespace are changed
 * Removed $wgUseCategoryMagic option, categories are now enabled unconditionally
-
+* (bug 4359) red [[user:#id]] links generated in [[special:Log]]
 
 === Caveats ===
 
