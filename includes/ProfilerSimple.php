@@ -9,6 +9,23 @@
  * @package MediaWiki
  */
 class ProfilerSimple extends Profiler {
+	function ProfilerSimple() {
+		global $wgRequestTime,$wgRUstart;
+		if (!empty($wgRequestTime) && !empty($wgRUstart)) {
+			$this->mWorkStack[] = array( '-total', 0, $this->getTime($wgRequestTime),$this->getCpuTime($wgRUstart));
+
+			$elapsedcpu = $this->getCpuTime() - $this->getCpuTime($wgRUstart);
+			$elapsedreal = $this->getTime() - $this->getTime($wgRequestTime);
+
+			$entry =& $this->mCollated["-setup"];
+			$entry['cpu'] += $elapsedcpu;
+			$entry['cpu_sq'] += $elapsedcpu*$elapsedcpu;
+			$entry['real'] += $elapsedreal;
+			$entry['real_sq'] += $elapsedreal*$elapsedreal;
+			$entry['count']++;
+		}
+	}
+
 	function profileIn($functionname) {
 		global $wgDebugFunctionEntry;
 		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
@@ -33,6 +50,7 @@ class ProfilerSimple extends Profiler {
 		} else {
 			if ($functionname == 'close') {
 				$message = "Profile section ended by close(): {$ofname}";
+				$functionname = $ofname;
 				wfDebug( "$message\n" );
 			}
 			elseif ($ofname != $functionname) {
@@ -57,13 +75,16 @@ class ProfilerSimple extends Profiler {
 		/* Implement in output subclasses */
 	}
 
-	function getCpuTime() {
-		$ru=getrusage();
+	function getCpuTime($ru=null) {
+		if ($ru==null)
+			$ru=getrusage();
 		return ($ru['ru_utime.tv_sec']+$ru['ru_stime.tv_sec']+($ru['ru_utime.tv_usec']+$ru['ru_stime.tv_usec'])*1e-6);
 	}
 
-	function getTime() {
-		list($a,$b)=explode(" ",microtime());
+	function getTime($time=null) {
+		if ($time==null)
+			$time=microtime();
+		list($a,$b)=explode(" ",$time);
 		return (float)($a+$b);
 	}
 }
