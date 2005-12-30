@@ -178,7 +178,14 @@ class LogPage {
 						$movedTo = Title::newFromText( $params[0] );
 						$params[0] = $skin->makeLinkObj( $movedTo, $params[0] );
 					} else {
-						$titleLink = $skin->makeLinkObj( $title );
+						# Bug 4359: red [[user:#id]] links generated in [[special:Log]]
+						# If it's an autoblock, don't do a link
+						if( $type == 'block' ) {
+							$titletext = $title->getText();
+							$titleLink = ( ( substr( $titletext, 0, 1 ) == '#' ) ? $titletext : $skin->makeLinkObj( $title ) );
+						} else {
+							$titleLink = $skin->makeLinkObj( $title );
+						}
 					}
 				} else {
 					$titleLink = $title->getPrefixedText();
