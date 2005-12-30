@@ -2520,8 +2520,7 @@ class Parser
 							$replaceHeadings = true;
 						}
 						# Register a template reference whether or not the template exists
-						$this->mOutput->addTemplate( $title->getNamespace(), $title->getDBkey(), 
-							$article->getID() );
+						$this->mOutput->addTemplate( $title, $article->getID() );
 					}
 				}
 
@@ -3366,7 +3365,7 @@ class Parser
 					$colours[$pdbk] = 1;
 				} elseif ( ( $id = $wgLinkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
 					$colours[$pdbk] = 1;
-					$this->mOutput->addLink( $ns, $this->mLinkHolders['dbkeys'][$key], $id );
+					$this->mOutput->addLink( $title, $id );
 				} elseif ( $wgLinkCache->isBadLink( $pdbk ) ) {
 					$colours[$pdbk] = 0;
 				} else {
@@ -3404,7 +3403,7 @@ class Parser
 					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 					$pdbk = $title->getPrefixedDBkey();
 					$wgLinkCache->addGoodLinkObj( $s->page_id, $title );
-					$this->mOutput->addLink( $s->page_namespace, $s->page_title, $s->page_id );
+					$this->mOutput->addLink( $title, $s->page_id );
 
 					if ( $threshold >  0 ) {
 						$size = $s->page_len;
@@ -3430,7 +3429,7 @@ class Parser
 				if ( empty( $colours[$pdbk] ) ) {
 					$wgLinkCache->addBadLinkObj( $title );
 					$colours[$pdbk] = 0;
-					$this->mOutput->addLink( $ns, $this->mLinkHolders['dbkeys'][$key], 0 );
+					$this->mOutput->addLink( $title, 0 );
 					$wgOutputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
@@ -3734,18 +3733,22 @@ class ParserOutput
 	function addImage( $name )           { $this->mImages[$name] = 1; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
 
-	function addLink( $ns, $t, $id ) { 
+	function addLink( $title, $id ) { 
+		$ns = $title->getNamespace();
+		$dbk = $title->getDBkey();
 		if ( !isset( $this->mLinks[$ns] ) ) {
 			$this->mLinks[$ns] = array();
 		}
-		$this->mLinks[$ns][$t] = $id; 
+		$this->mLinks[$ns][$dbk] = $id; 
 	}
 
-	function addTemplate( $ns, $t, $id ) { 
+	function addTemplate( $title, $id ) {
+		$ns = $title->getNamespace();
+		$dbk = $title->getDBkey();	
 		if ( !isset( $this->mTemplates[$ns] ) ) {
 			$this->mTemplates[$ns] = array();
 		}
-		$this->mTemplates[$ns][$t] = $id;
+		$this->mTemplates[$ns][$dbk] = $id;
 	}
 
 	/**
