@@ -38,20 +38,7 @@ class Licenses {
 	 */
 	function Licenses( $str = null ) {
 		// PHP sucks, this should be possible in the constructor
-		
-		global $wgLanguageCode ;
-		if ( is_null( $str ) ) {
-			# Try for language-localized license list; if not, try the deault
-			$t = 'licenses/'.$wgLanguageCode ;
-			$s = wfMsgForContent( $t ) ;
-			if ( $s == '&lt;'.$t.'&gt;' )
-				$t = wfMsgForContent( 'licenses' ) ;
-			$this->msg = $s ;
-		} else {
-			# Use passed string
-			$this->msg = $str ;
-		}
-#		$this->msg = is_null( $str ) ? wfMsgForContent( 'licenses' ) : $str; # Old code, do not use!
+		$this->msg = is_null( $str ) ? wfMsgForContent( 'licenses' ) : $str;
 		$this->html = '';
 
 		$this->makeLicenses();
