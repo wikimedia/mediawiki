@@ -1691,4 +1691,47 @@ function wfShellExec( $cmd )
 	return shell_exec( $cmd );
 }
 
+/**
+ * This function works like "use VERSION" in Perl, the program will die with a
+ * backtrace if the current version of PHP is less than the version provided
+ *
+ * This is useful for extensions which due to their nature are not kept in sync
+ * with releases, and might depend on other versions of PHP than the main code
+ *
+ * Note: PHP might die due to parsing errors in some cases before it ever
+ *       manages to call this function, such is life
+ *
+ * @see perldoc -f use
+ *
+ * @param mixed $version The version to check, can be a string, an integer, or
+ *                       a float
+ */
+function wfUsePHP( $req_ver ) {
+	$php_ver = PHP_VERSION;
+	
+	if ( version_compare( $php_ver, (string)$req_ver, '<' ) )
+		 wfDebugDieBacktrace( "PHP $req_ver required--this is only $php_ver" );
+}
+
+/**
+ * This function works like "use VERSION" in Perl except it checks the version
+ * of MediaWiki, the program will die with a backtrace if the current version
+ * of MediaWiki is less than the version provided.
+ *
+ * This is useful for extensions which due to their nature are not kept in sync
+ * with releases
+ *
+ * @see perldoc -f use
+ *
+ * @param mixed $version The version to check, can be a string, an integer, or
+ *                       a float
+ */
+
+function wfUseMW( $req_ver ) {
+	global $wgVersion;
+
+	if ( version_compare( $wgVersion, (string)$req_ver, '<' ) )
+		wfDebugDieBacktrace( "MediaWiki $req_ver required--this is only $wgVersion" );
+}
+
 ?>
