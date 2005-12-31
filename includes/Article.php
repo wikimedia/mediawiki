@@ -975,7 +975,7 @@ class Article {
 	function purge() {
 		global $wgUser, $wgRequest, $wgOut, $wgUseSquid;
 
-		if ( $wgUser->isLoggedIn() || $wgRequest->wasPosted() ) {
+		if ( $wgUser->isLoggedIn() || $wgRequest->wasPosted() || ! wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
 			// Invalidate the cache
 			$this->mTitle->invalidateCache();
 
