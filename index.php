@@ -4,7 +4,13 @@
  * @package MediaWiki
  */
 $wgRequestTime = microtime();
-$wgRUstart = getrusage();
+
+# getrusage() does not exist on the Window$ platform, catching this
+if ( function_exists ( 'getrusage' ) ) {
+	$wgRUstart = getrusage();
+} else {
+	$wgRUstart = array() ;
+}
 
 unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security...
