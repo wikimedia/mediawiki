@@ -15,7 +15,7 @@ require_once( 'HttpFunctions.php' );
  * changes in an incompatible way, so the parser cache
  * can automatically discard old data.
  */
-define( 'MW_PARSER_VERSION', '1.5.0' );
+define( 'MW_PARSER_VERSION', '1.6.0' );
 
 /**
  * Variable substitution O(N^2) attack
