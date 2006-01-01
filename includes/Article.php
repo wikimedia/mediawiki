@@ -857,9 +857,7 @@ class Article {
 				  '<span class="redirectText">'.$link.'</span>' );
 
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
-				$catlinks = $parseout->getCategoryLinks();
-				$wgOut->addCategoryLinks($catlinks);
-				$skin = $wgUser->getSkin();
+				$wgOut->addParserOutputNoText( $parseout );
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
 				$wgOut->setRevisionId( $this->getRevIdFetched() );
@@ -1328,16 +1326,10 @@ class Article {
 
 		$isminor = ( $minor && $wgUser->isLoggedIn() );
 		if ( $this->isRedirect( $text ) ) {
-			# Remove all content but redirect
-			# This could be done by reconstructing the redirect from a title given by
-			# Title::newFromRedirect(), but then we wouldn't know which synonym the user
-			# wants to see
-			if ( preg_match( "/^((" . $wgMwRedir->getBaseRegex() . ')[^\\n]+)/i', $text, $m ) ) {
-				$redir = 1;
-				$text = $m[1] . "\n";
-			}
+			$redir = 1;
+		} else { 
+			$redir = 0; 
 		}
-		else { $redir = 0; }
 
 		$text = $this->preSaveTransform( $text );
 		$dbw =& wfGetDB( DB_MASTER );
