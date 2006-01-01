@@ -833,13 +833,13 @@ class Article {
 			 * trigger when the parser cache is used.
 			 */
 			wfRunHooks( 'ArticleViewHeader', array( &$this ) ) ;
+			$wgOut->setRevisionId( $this->getRevIdFetched() );
 			# wrap user css and user js in pre and don't parse
 			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
 			if (
 				$this->mTitle->getNamespace() == NS_USER &&
 				preg_match('/\\/[\\w]+\\.(css|js)$/', $this->mTitle->getDBkey())
 			) {
-				$wgOut->setRevisionId( $this->getRevIdFetched() );
 				$wgOut->addWikiText( wfMsg('clearyourcache'));
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
@@ -860,7 +860,6 @@ class Article {
 				$wgOut->addParserOutputNoText( $parseout );
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
-				$wgOut->setRevisionId( $this->getRevIdFetched() );
 				$wgOut->addPrimaryWikiText( $text, $this );
 			} else {
 				# Display content, don't attempt to save to parser cache
@@ -869,7 +868,6 @@ class Article {
 				if( !$this->isCurrent() ) {
 					$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
 				}
-				$wgOut->setRevisionId( $this->getRevIdFetched() );
 				$wgOut->addWikiText( $text );
 
 				if( !$this->isCurrent() ) {
