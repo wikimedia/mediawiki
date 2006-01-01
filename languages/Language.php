@@ -2101,7 +2101,7 @@ is collapsed. Others will be hidden by default.
 'edit-externally' => 'Edit this file using an external application',
 'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for more information.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
 'imagelistall' => 'all',
 'watchlistall1' => 'all',

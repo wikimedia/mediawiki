@@ -1762,7 +1762,7 @@ ta['ca-nstab-category'] = new Array('c','カテゴリページを表示');",
 'edit-externally' => '外部アプリケーションを使ってこのファイルを編集する',
 'edit-externally-help' => '詳しい情報は[http://meta.wikimedia.org/wiki/Help:External_editors 外部エディタに関する説明（英語）]をご覧ください。',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'すべて',
 'imagelistall' => 'すべて',
 'watchlistall1' => 'すべて',

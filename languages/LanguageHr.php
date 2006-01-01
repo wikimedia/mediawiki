@@ -1743,7 +1743,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledaj stranicu kategorije\');',
 'edit-externally' => 'Uredi koristeći se vanjskom aplikacijom',
 'edit-externally-help' => 'Vidi [http://meta.wikimedia.org/wiki/Help:External_editors setup upute] za više informacija.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sve',
 'imagelistall' => 'sve',
 'watchlistall1' => 'sve',

@@ -1786,7 +1786,7 @@ Feedback and further assistance:
 'edit-externally' => 'Редактиране на файла чрез външно приложение',
 'edit-externally-help' => 'За повече информация прегледайте [http://meta.wikimedia.org/wiki/Help:External_editors указанията за настройките].',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'всички',
 'imagelistall' => 'всички',
 'watchlistall1' => 'всички',

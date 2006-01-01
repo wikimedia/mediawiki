@@ -1258,7 +1258,7 @@ ta['ca-nstab-category'] = new Array('c','Ver la página de categoría');",
 'edit-externally' => 'Editar este archivo usando una aplicación externa',
 'edit-externally-help' => 'Ver las [http://meta.wikimedia.org/wiki/Help:External_editors instrucciones de configuración] para más información.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todos',
 'imagelistall' => 'todos',
 'watchlistall1' => 'todos',

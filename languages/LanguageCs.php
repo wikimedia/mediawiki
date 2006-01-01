@@ -1710,7 +1710,7 @@ ta['ca-nstab-category'] = new Array('c','Zobrazit kategorii.');",
 'edit-externally' => 'Editovat tento soubor v externím programu',
 'edit-externally-help' => 'Více informací najdete v [http://meta.wikimedia.org/wiki/Help:External_editors nápovědě pro nastavení].',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'všechny',
 'imagelistall' => 'všechny',
 'watchlistall1' => 'všechny',

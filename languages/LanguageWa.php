@@ -1708,7 +1708,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vey li pådje di categoreye\');',
 'edit-externally' => 'Candjî ç\' fitchî ci avou on dfoûtrin programe',
 'edit-externally-help' => 'Loukîz les [http://meta.wikimedia.org/wiki/Help:External_editors instruccions d\' apontiaedje] po pus di racsegnes.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totafwait',
 'imagelistall' => 'totafwait',
 'watchlistall1' => 'totafwait',

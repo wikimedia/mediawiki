@@ -1842,7 +1842,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'edit-externally' => 'Редактировать этот файл используя внешнюю программу',
 'edit-externally-help' => 'Подробности см. на странице [http://meta.wikimedia.org/wiki/Help:External_editors Meta:Help:External_editors].',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'все',
 'imagelistall' => 'все',
 'watchlistall1' => 'все',

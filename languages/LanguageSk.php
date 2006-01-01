@@ -1542,7 +1542,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriam
 'edit-externally' => 'Uprav tento súbor pomocou externého programu',
 'edit-externally-help' => 'Viac informácii je na [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions].',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'všetky',
 'imagelistall' => 'všetky',
 'watchlistall1' => 'všetky',
