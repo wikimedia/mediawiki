@@ -387,7 +387,7 @@ fully support the editing toolbar, but was found to be too confusing.
   Safari: JS will revert to 'non selected' if clicked (but not gray)
   MSIE/Mac: indented items now visible (JS hack)
 * (bug 4436) Update for Turkish language (tr)
-
+* (bug 4061) Update of Slovene Wikipedia (:sl) language file (LanguageSl.php)
 
 === Caveats ===
 

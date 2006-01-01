@@ -37,7 +37,7 @@ require_once( "LanguageUtf8.php" );
 	NS_TEMPLATE       => "Predloga",
 	NS_TEMPLATE_TALK  => "Pogovor_k_predlogi",
 	NS_CATEGORY       => "Kategorija",
-	NS_CATEGORY_TALK  => "Pogovor_k_kategoriji"
+	NS_CATEGORY_TALK  => "Pogovor_h_kategoriji"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSl = array(
