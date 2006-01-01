@@ -217,8 +217,7 @@ class SkinTemplate extends Skin {
 			foreach( $wgFeedClasses as $format => $class ) {
 				$feeds[$format] = array(
 					'text' => $format,
-					'href' => $wgRequest->appendQuery( "feed=$format" ),
-					'ttip' => wfMsg('tooltip-'.$format)
+					'href' => $wgRequest->appendQuery( "feed=$format" )
 				);
 			}
 			$tpl->setRef( 'feeds', $feeds );
