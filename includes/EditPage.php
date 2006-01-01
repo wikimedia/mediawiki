@@ -1116,10 +1116,8 @@ END
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
 					$wgTitle, $parserOptions );
 
-			$previewHTML = $parserOutput->mText;
-
-			$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
-			$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
+			$previewHTML = $parserOutput->getText();
+			$wgOut->addParserOutputNoText( $parserOutput );
 
 			wfProfileOut( $fname );
 			return $previewhead . $previewHTML;
