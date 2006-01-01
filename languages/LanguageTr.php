@@ -995,7 +995,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategori sayfasını göster\');
 
 # external editor support
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'imagelistall' => 'Tümü',
 'watchlistall1' => 'Hepsini göster',
 'watchlistall2' => 'Hepsini göster',

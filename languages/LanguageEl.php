@@ -1871,7 +1871,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Δείτε τη σελίδα κα�
 'edit-externally-help' => 'Για περισσότερες πληροφορίες ακολουθήστε το σύνδεσμο: [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions].',
 
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 #---------------------------------------------------------------------------------------------------------#
 'recentchangesall' => 'όλες',
 'imagelistall' => 'όλες',

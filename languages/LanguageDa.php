@@ -1484,7 +1484,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');',
 'edit-externally' => 'Rediger denne fil med en ekstern editor',
 'edit-externally-help' => 'Se [http://meta.wikimedia.org/wiki/Help:External_editors setup instruktionerne] for mere information.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',
 'imagelistall' => 'alle',
 'watchlistall1' => 'alle',

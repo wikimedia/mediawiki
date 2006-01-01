@@ -1603,7 +1603,7 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 'edit-externally'         => 'Endre denne fila med eit eksternt program',
 'edit-externally-help'    => 'Sjå [[Help:Eksterne program|instruksjonane]] for meir informasjon.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall'        => 'alle',
 'imagelistall'            => 'alle',
 'watchlistall1'           => 'alle',

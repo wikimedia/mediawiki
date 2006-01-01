@@ -1859,7 +1859,7 @@ for minimizada. Outros serão escondidos por defeito.
 'edit-externally' => 'Editar este ficheiro utilizando uma aplicação externa',
 'edit-externally-help' => 'Consulte as [http://meta.wikimedia.org/wiki/Help:External_editors instruções de instalação] para mais informação.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todas',
 'imagelistall' => 'todas',
 'watchlistall1' => 'todas',

@@ -1936,7 +1936,7 @@ cúlra i bhfócas)',
 
 le tuilleadh eolais.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'gach',
 'imagelistall' => 'gach',
 'watchlistall1' => 'gach',
