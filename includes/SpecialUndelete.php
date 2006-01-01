@@ -260,7 +260,7 @@ class PageArchive {
 				$article->updateRevisionOn( $dbw, $revision, $previousRevId );
 
 				# Finally, clean up the link tables
-				$parserOptions = new ParserOptions;
+				$options = new ParserOptions;
 				$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options,
 					true, true, $newRevId );
 				$u = new LinksUpdate( $this->title, $parserOutput );
