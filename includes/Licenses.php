@@ -101,6 +101,7 @@ class Licenses {
 					array(
 						'value' => '',
 						'disabled' => 'disabled',
+						'style' => 'color: GrayText', // for MSIE
 					),
 					$depth
 				);

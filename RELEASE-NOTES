@@ -382,6 +382,11 @@ fully support the editing toolbar, but was found to be too confusing.
     namespace are changed
 * Removed $wgUseCategoryMagic option, categories are now enabled unconditionally
 * (bug 4359) red [[user:#id]] links generated in [[special:Log]]
+* (bug 3318) UI workarounds for disabled items in license selector
+  MSIE/Win: items now grayed out, JS will revert to 'non selected' if clicked
+  Safari: JS will revert to 'non selected' if clicked (but not gray)
+  MSIE/Mac: indented items now visible (JS hack)
+
 
 === Caveats ===
 
