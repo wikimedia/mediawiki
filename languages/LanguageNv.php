@@ -9,9 +9,6 @@
 
 require_once( "LanguageUtf8.php" );
 
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesNv = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
@@ -33,9 +30,6 @@ if($wgMetaNamespace === FALSE)
 	NS_CATEGORY_TALK    => 'T\'ááłáhági_át\'éego_baa_yinísht\'į́'
 );
 
-/* private */ $wgQuickbarSettingsNv = array(
-	'None', 'Fixed left', 'Fixed right', 'Floating left'
-);
 
 /* private */ $wgSkinNamesNv = array(
 	'mono' => 'Łáa\'ígíí',
@@ -72,11 +66,6 @@ class LanguageNv extends LanguageUtf8 {
 	function getNamespaces() {
 		global $wgNamespaceNamesNv;
 		return $wgNamespaceNamesNv;
-	}
-
-	function getQuickbarSettings() {
-		global $wgQuickbarSettingsNv;
-		return $wgQuickbarSettingsNv;
 	}
 
 	function getSkinNames() {
