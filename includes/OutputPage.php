@@ -286,12 +286,20 @@ class OutputPage {
 		global $wgParser;
 		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions,
 			$linestart, true, $this->mRevisionId );
+		$this->addParserOutput( $parserOutput );
+	}
+
+	function addParserOutputNoText( &$parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->addKeywords( $parserOutput );
 		if ( $parserOutput->getCacheTime() == -1 ) {
 			$this->enableClientCache( false );
 		}
+	}
+	
+	function addParserOutput( &$parserOutput ) {
+		$this->addParserOutputNoText( $parserOutput );
 		$this->addHTML( $parserOutput->getText() );
 	}
 
@@ -305,19 +313,11 @@ class OutputPage {
 		$parserOutput = $wgParser->parse( $text, $article->mTitle,
 			$this->mParserOptions, true, true, $this->mRevisionId );
 
-		$text = $parserOutput->getText();
-
 		if ( $article && $parserOutput->getCacheTime() != -1 ) {
 			$wgParserCache->save( $parserOutput, $article, $wgUser );
 		}
 
-		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
-		$this->addCategoryLinks( $parserOutput->getCategories() );
-		$this->addKeywords( $parserOutput );
-		if ( $parserOutput->getCacheTime() == -1 ) {
-			$this->enableClientCache( false );
-		}
-		$this->addHTML( $text );
+		$this->addParserOutput( $parserOutput );
 	}
 
 	/**
