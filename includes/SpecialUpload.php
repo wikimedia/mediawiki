@@ -609,10 +609,13 @@ class UploadForm {
 		<tr>" );
 	
 	if ( $licenseshtml != '' ) {
+		global $wgStylePath;
 		$wgOut->addHTML( "
 			<td align='right'><label for='wpLicense'>$license:</label></td>
 			<td align='left'>
-				<select name='wpLicense' id='wpLicense' tabindex='4'>
+				<script type='text/javascript' src=\"$wgStylePath/common/upload.js\"></script>
+				<select name='wpLicense' id='wpLicense' tabindex='4'
+					onchange='licenseSelectorCheck()'
 					<option value=''>$nolicense</option>
 					$licenseshtml
 				</select>
