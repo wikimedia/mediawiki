@@ -265,9 +265,6 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 
-# required for copyrightwarning
-global $wgRightsText;
-
 /* private */ $wgAllMessagesEn = array(
 /*
 The sidebar for MonoBook is generated from this message, lines that do not
