@@ -665,7 +665,7 @@ class EditPage {
 	 *                      near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback=null ) {
-		global $wgOut, $wgUser, $wgAllowAnonymousMinor, $wgLang, $wgContLang;
+		global $wgOut, $wgUser, $wgLang, $wgContLang;
 
 		$fname = 'EditPage::showEditForm';
 		wfProfileIn( $fname );
@@ -784,7 +784,7 @@ class EditPage {
 
 		$minoredithtml = '';
 
-		if ( $wgUser->isLoggedIn() || $wgAllowAnonymousMinor ) {
+		if ( $wgUser->isAllowed('minoredit') ) {
 			$minoredithtml =
 				"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
 				" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />".

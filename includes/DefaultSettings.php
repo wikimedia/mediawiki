@@ -730,7 +730,6 @@ $wgUseCommaCount = false;
 $wgHitcounterUpdateFreq = 1;
 
 # Basic user rights and block settings
-$wgAllowAnonymousMinor = false; # Allow anonymous users to mark changes as 'minor'
 $wgSysopUserBans        = true; # Allow sysops to ban logged-in users
 $wgSysopRangeBans		= true; # Allow sysops to ban IP ranges
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
@@ -776,6 +775,7 @@ $wgGroupPermissions['user' ]['createtalk']      = true;
 $wgGroupPermissions['user' ]['upload']          = true;
 $wgGroupPermissions['user' ]['reupload']        = true;
 $wgGroupPermissions['user' ]['reupload-shared'] = true;
+$wgGroupPermissions['user' ]['minoredit']       = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;

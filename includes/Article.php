@@ -1142,7 +1142,9 @@ class Article {
 			$text="== {$summary} ==\n\n".$text;
 		}
 		$text = $this->preSaveTransform( $text );
-		$isminor = ( $isminor && $wgUser->isLoggedIn() ) ? 1 : 0;
+
+		/* Silently ignore minoredit if not allowed */
+		$isminor = $isminor && $wgUser->isAllowed('minoredit');
 		$now = wfTimestampNow();
 
 		$dbw =& wfGetDB( DB_MASTER );
@@ -1322,11 +1324,11 @@ class Article {
 			return false;
 		}
 
-		$isminor = ( $minor && $wgUser->isLoggedIn() );
+		$isminor = $minor && $wgUser->isAllowed('minoredit');
 		if ( $this->isRedirect( $text ) ) {
 			$redir = 1;
-		} else { 
-			$redir = 0; 
+		} else {
+			$redir = 0;
 		}
 
 		$text = $this->preSaveTransform( $text );
