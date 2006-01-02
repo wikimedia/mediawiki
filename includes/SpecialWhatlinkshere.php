@@ -113,9 +113,9 @@ class WhatLinksHerePage {
 		// with an is_template field in the output indicating which one the link
 		// came from
 		$sql = "(SELECT page_id,page_namespace, page_title, page_is_redirect, 1 as is_template " .
-		  "FROM page, templatelinks WHERE $tlCond $offsetCond) " .
+		  "FROM page, templatelinks WHERE $tlCond $offsetCond $options) " .
 		  "UNION (SELECT page_id,page_namespace, page_title, page_is_redirect, 0 as is_template " .
-		  "FROM page, pagelinks WHERE $plCond $offsetCond) $options";
+		  "FROM page, pagelinks WHERE $plCond $offsetCond $options) $options";
 		$res = $dbr->query( $sql, $fname );
 		$numRows = $dbr->numRows( $res );
 
