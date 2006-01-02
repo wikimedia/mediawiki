@@ -633,6 +633,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourvariant'  => 'Variant',
 'yournick'		=> 'Nickname:',
 'badsig'		=> 'Invalid raw signature; check HTML tags.',
+'badsig2'		=> 'Your signature contains one or more reserved expressions; please remove them.',
 'email'			=> 'E-mail',
 'emailforlost' => '<div style="width:30em">* Optional. An e-mail lets others contact you on this site without revealing your address, and lets us send you a new password if you forget it.<br /><br />Your real name will be used to give you attribution for your work.</div>',
 'prefs-help-email-enotif' => 'This address is also used to send you e-mail notifications if you enabled the options.',

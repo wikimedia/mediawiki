@@ -227,6 +227,11 @@ class PreferencesForm {
 			$needRedirect = false;
 		}
 
+		if( $this->badNickname() ) {
+			$this->mainPrefsForm( 'error', wfMsg( 'badsig2' ) );
+			return;
+		}
+
 		$wgUser->setOption( 'language', $this->mUserLanguage );
 		$wgUser->setOption( 'variant', $this->mUserVariant );
 		$wgUser->setOption( 'nickname', $this->mNick );
@@ -358,6 +363,19 @@ class PreferencesForm {
 				$this->mSearchNs[$i] = $wgUser->getOption( 'searchNs'.$i );
 			}
 		}
+	}
+	
+	/**
+	 * @access private
+	 */
+	function badNickname() {
+		$search = array( '/~~~/', '/~~~~/', '/~~~~~/', '/{{/', '/}}/' );
+		foreach( $search as $item ) {
+			if( preg_match( $item, $this->mNick ) > 0 ) {
+				return( true );	# We found a reserved expression
+			}
+		} 
+		return( false );
 	}
 
 	/**
