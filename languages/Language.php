@@ -1109,6 +1109,9 @@ this old version, (rev) = revert to this old version.
 #
 'unwatchedpages' => 'Unwatched pages',
 
+# List redirects
+'listredirects' => 'List redirects',
+
 # Statistics
 #
 'statistics'	=> 'Statistics',
