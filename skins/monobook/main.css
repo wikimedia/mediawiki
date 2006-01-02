@@ -605,7 +605,7 @@ span.diffchange {
 special external link styling */
 #bodyContent .plainlinks a {
 	background: none !important;
-	padding: 0;
+	padding: 0 !important;
 }
 /*
 ** Structural Elements
