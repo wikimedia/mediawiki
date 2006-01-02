@@ -76,7 +76,8 @@ $wgSpecialPages = array(
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
 	'MIMEsearch'    => new SpecialPage( 'MIMEsearch' ),
-	'Unwatchedpages' => new SpecialPage( 'Unwatchedpages', 'unwatchedpages' )
+	'Unwatchedpages' => new SpecialPage( 'Unwatchedpages', 'unwatchedpages' ),
+	'Listredirects' => new SpecialPage( 'Listredirects' )
 );
 
 if( !$wgDisableCounters ) {
