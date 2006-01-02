@@ -391,6 +391,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Update for LanguageSr (Serbian): magic words
 * (bug 4371) Disallow tilde character in signatures
 * (bug 1996) Special page to list redirects
+* (bug 137) MediaWiki:Copyrightwarning hardcoding
 
 === Caveats ===
 
