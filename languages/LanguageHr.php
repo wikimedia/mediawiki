@@ -1866,6 +1866,7 @@ class LanguageHr extends LanguageUtf8 {
  	}
 
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+		$count = strtr( $count, '.', '' );
 		if ($count > 10 && floor(($count % 100) / 10) == 1) {
 			return $wordform3;
 		} else {
