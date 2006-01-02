@@ -1418,6 +1418,7 @@ See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 # Contributions
 #
 'contributions' => 'User contributions',
+'userfiles'		=> 'User files',
 'mycontris'     => 'My contributions',
 'contribsub'    => "For $1",
 'nocontribs'    => 'No changes were found matching these criteria.',
