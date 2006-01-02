@@ -392,6 +392,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4371) Disallow tilde character in signatures
 * (bug 1996) Special page to list redirects
 * (bug 137) MediaWiki:Copyrightwarning hardcoding
+* (bug 714) "plainlinks" class issues in IE, Opera
 
 === Caveats ===
 
