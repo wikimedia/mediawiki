@@ -23,8 +23,8 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	# Show only for a single user?
 	$targetUser = isset($par) ? $par : $wgRequest->getVal( 'target' );
-	if ( $targetUser != "" ) { #AND !is_numeric ( $targetUser ) ) { # There might be some ambiguity between this and the $limit later on!
-		$singleUser = User::newFromName ( $targetUser ) ;
+	if ( $targetUser != "" ) {
+		$singleUser = User::newFromName ( urldecode ( $targetUser ) ) ;
 	}
 
 	if($hidebots) {
@@ -73,12 +73,30 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	/** If we were clever, we'd use this to cache. */
 	$latestTimestamp = wfTimestamp( TS_MW, $ts);
 
-	/** Hardcode this for now. */
-	$limit = 48;
+	/** Was a limit set? */
+	$limitvar = NULL ;
+	$offset = NULL ;
+	$limitpar = "" ;
+	$maxlimit = 48 ;
+	$limit = $maxlimit ;
+	list( $limitvar, $offset ) = wfCheckLimits();
+	# Ignoring offset, checking limit
+	if ( isset ( $limitvar ) AND $limitvar != NULL AND $parval = intval( $limitvar ) ) {
+		if ( $parval <= $maxlimit && $parval > 0 ) {
+			$limit = $parval;
+		}
+		if ( $limit != $maxlimit ) {
+			$limitpar = "&limit=" . $limit ;
+		}
+	}
 
+/*
+	# Old limit code
+	$limit = 48;
 	if ( $parval = intval( $par ) )
 		if ( $parval <= $limit && $parval > 0 )
 			$limit = $parval;
+*/
 
 	$where = array();
 	$searchpar = '';
@@ -96,6 +114,9 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	# SQL for single user only?
 	if ( isset ( $singleUser ) ) {
 		$where[] .= "img_user='" . $singleUser->getID() . "'" ;
+		$userpar = "&target=" . urlencode ( $singleUser->getName() ) ;
+	} else {
+		$userpar = "" ;
 	}
 	
 	$invertSort = false;
@@ -207,12 +228,12 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	$prevLink = wfMsg( 'prevn', $wgLang->formatNum( $limit ) );
 	if( $firstTimestamp && $firstTimestamp != $latestTimestamp ) {
-		$prevLink = $sk->makeKnownLinkObj( $titleObj, $prevLink, 'from=' . $firstTimestamp . $botpar . $searchpar );
+		$prevLink = $sk->makeKnownLinkObj( $titleObj, $prevLink, 'from=' . $firstTimestamp . $botpar . $searchpar . $userpar . $limitpar );
 	}
 
 	$nextLink = wfMsg( 'nextn', $wgLang->formatNum( $limit ) );
 	if( $shownImages > $limit && $lastTimestamp ) {
-		$nextLink = $sk->makeKnownLinkObj( $titleObj, $nextLink, 'until=' . $lastTimestamp.$botpar.$searchpar );
+		$nextLink = $sk->makeKnownLinkObj( $titleObj, $nextLink, 'until=' . $lastTimestamp.$botpar.$searchpar.$userpar.$limitpar );
 	}
 
 	$prevnext = '<p>' . $botLink . ' '. wfMsg( 'viewprevnext', $prevLink, $nextLink, $dateLink ) .'</p>';
