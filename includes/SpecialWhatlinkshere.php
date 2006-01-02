@@ -88,59 +88,80 @@ class WhatLinksHerePage {
 		}
 		
 		// Make the query
+		$plConds = array( 
+			'page_id=pl_from',
+			'pl_namespace' => $target->getNamespace(),
+			'pl_title' => $target->getDBkey(),
+		);
+		
+		$tlConds = array( 
+			'page_id=tl_from',
+			'tl_namespace' => $target->getNamespace(),
+			'tl_title' => $target->getDBkey(),
+		);
+			
 		if ( $from ) {
 			if ( 'prev' == $dir ) {
-				$offsetCond = "AND page_id < $from";
-				$options = 'ORDER BY page_id DESC,is_template DESC';
+				$offsetCond = "page_id < $from";
+				$options = array( 'ORDER BY page_id DESC' );
 			} else {
-				$offsetCond = "AND page_id >= $from";
-				$options = 'ORDER BY page_id, is_template DESC';
+				$offsetCond = "page_id >= $from";
+				$options = array( 'ORDER BY page_id' );
 			}
 		} else {
-			$offsetCond = '';
-			$options = 'ORDER BY page_id,is_template DESC';
+			$offsetCond = false;
+			$options = array( 'ORDER BY page_id,is_template DESC' );
 		}
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;
-		$options .= ' LIMIT ' . $queryLimit;
-
-		$ns = $dbr->addQuotes( $target->getNamespace() );
-		$dbk = $dbr->addQuotes( $target->getDBkey() );
-		$plCond = "page_id=pl_from AND pl_namespace=$ns AND pl_title=$dbk";
-		$tlCond = "page_id=tl_from AND tl_namespace=$ns AND tl_title=$dbk";
+		$options['LIMIT'] = $queryLimit;
+		if ( $offsetCond ) {
+			$tlConds[] = $offsetCond;
+			$plConds[] = $offsetCond;
+		}
+		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
 		
-		// Make a union query which will read both templatelinks and pagelinks,
-		// with an is_template field in the output indicating which one the link
-		// came from
-		$sql = "(SELECT page_id,page_namespace, page_title, page_is_redirect, 1 as is_template " .
-		  "FROM page, templatelinks WHERE $tlCond $offsetCond $options) " .
-		  "UNION (SELECT page_id,page_namespace, page_title, page_is_redirect, 0 as is_template " .
-		  "FROM page, pagelinks WHERE $plCond $offsetCond $options) $options";
-		$res = $dbr->query( $sql, $fname );
-		$numRows = $dbr->numRows( $res );
-
-		if ( 0 == $numRows ) {
+		$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields, 
+			$plConds, $fname, $options );
+		$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields, 
+			$tlConds, $fname, $options );
+		
+		if ( !$dbr->numRows( $plRes ) && !$dbr->numRows( $tlRes ) ) {
 			if ( 0 == $level ) {
 				$wgOut->addWikiText( wfMsg( 'nolinkshere' ) );
 			}
 			return;
-		}
+		}		
 
-		// Read the rows into an array
-		$rows = array();
-		while ( $row = $dbr->fetchObject( $res ) ) {
-			$rows[] = $row;
+		// Read the rows into an array and remove duplicates
+		// templatelinks comes second so that the templatelinks row overwrites the 
+		// pagelinks row, so we get (inclusion) rather than nothing
+		while ( $row = $dbr->fetchObject( $plRes ) ) {
+			$row->is_template = 0;
+			$rows[$row->page_id] = $row;
 		}
-		$lastRow = end( $rows );
+		$dbr->freeResult( $plRes );
+		while ( $row = $dbr->fetchObject( $tlRes ) ) {
+			$row->is_template = 1;
+			$rows[$row->page_id] = $row;
+		}
+		$dbr->freeResult( $tlRes );
+
+		// Sort by key and then change the keys to 0-based indices
+		ksort( $rows );
+		$rows = array_values( $rows );
+		
+		$numRows = count( $rows );
+		
 		// Work out the start and end IDs, for prev/next links
 		if ( $dir == 'prev' ) {
 			// Descending order
-			if ( $numRows == $queryLimit ) {
+			if ( $numRows > $limit ) {
 				// More rows available before these ones
-				// Get the ID from the last row in the result set
-				$prevId = $lastRow->page_id;
-				// Remove undisplayed row
-				unset( $rows[$queryLimit - 1] );
+				// Get the ID from the next row past the end of the displayed set
+				$prevId = $rows[$limit]->page_id;
+				// Remove undisplayed rows
+				$rows = array_slice( $rows, 0, $limit );
 			} else {
 				// No more rows available before
 				$prevId = 0;
@@ -148,16 +169,16 @@ class WhatLinksHerePage {
 			// Assume that the ID specified in $from exists, so there must be another page
 			$nextId = $from;
 			
-			// Reverse order
+			// Reverse order ready for display
 			$rows = array_reverse( $rows );
 		} else {
 			// Ascending
-			if ( $numRows == $queryLimit ) {
+			if ( $numRows > $limit ) {
 				// More rows available after these ones
 				// Get the ID from the last row in the result set
-				$nextId = $lastRow->page_id;
-				// Remove undisplayed row
-				unset( $rows[$queryLimit - 1] );
+				$nextId = $rows[$limit]->page_id;
+				// Remove undisplayed rows
+				$rows = array_slice( $rows, 0, $limit );
 			} else {
 				// No more rows after
 				$nextId = false;
@@ -177,18 +198,7 @@ class WhatLinksHerePage {
 		}
 		
 		$wgOut->addHTML( '<ul>' );
-		$linksShown = 0;
-		$lastNs = false;
-		$lastDbk = false;
 		foreach ( $rows as $row ) {
-			if ( $lastNs === $row->page_namespace && $lastDbk === $row->page_title ) {
-				// Skip duplicates
-				continue;
-			} else {
-				$lastNs = $row->page_namespace;
-				$lastDbk = $row->page_title;
-			}
-			
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 			if ( $row->page_is_redirect ) {
