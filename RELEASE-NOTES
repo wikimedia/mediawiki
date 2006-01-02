@@ -389,7 +389,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4436) Update for Turkish language (tr)
 * (bug 4413) Update of Farsi language file (LanguageFa.php)
 * Update for LanguageSr (Serbian): magic words
-
+* (bug 4371) Disallow tilde character in signatures
 
 === Caveats ===
 
