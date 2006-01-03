@@ -381,6 +381,10 @@ class Linker {
 		global $wgContLang, $wgUser, $wgThumbLimits;
 		
 		$img   = new Image( $nt );
+		if ( !$img->allowInlineDisplay() ) {
+			return $this->makeKnownLinkObj( $nt );
+		}
+
 		$url   = $img->getViewURL();
 		$prefix = $postfix = '';
 		
