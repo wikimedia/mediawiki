@@ -1141,7 +1141,9 @@ $wgMimeTypeBlacklist= array(
 	# PHP scripts may execute arbitrary code on the server
 	'application/x-php', 'text/x-php',
 	# Other types that may be interpreted by some servers
-	'text/x-python', 'text/x-perl', 'text/x-bash', 'text/x-sh', 'text/x-csh'
+	'text/x-python', 'text/x-perl', 'text/x-bash', 'text/x-sh', 'text/x-csh',
+	# Windows metafile, client-side vulnerability on some systems
+	'application/x-msmetafile'
 );
 
 /** This is a flag to determine whether or not to check file extensions on upload. */

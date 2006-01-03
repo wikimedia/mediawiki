@@ -339,14 +339,21 @@ class MimeMagic {
 		$fname = 'MimeMagic::guessMimeType';
 		$mime= $this->detectMimeType($file,$useExt);
 		
-		if (strpos($mime,"text/")===0 ||
-		    $mime==="application/xml") {
+		// Read a chunk of the file
+		$f = fopen( $file, "rt" );
+		if( !$f ) return "unknown/unknown";
+		$head = fread( $f, 1024 );
+		fclose( $f );
 		
-			// Read a chunk of the file
-			$f = fopen( $file, "rt" );
-			if( !$f ) return "unknown/unknown";
-			$head = fread( $f, 1024 );
-			fclose( $f );
+		$sub4 =  substr( $head, 0, 4 );
+		if ( $sub4 == "\x01\x00\x09\x00" || $sub4 == "\xd7\xcd\xc6\x9a" ) {
+			// WMF kill kill kill
+			// Note that WMF may have a bare header, no magic number.
+			// The former of the above two checks is theoretically prone to false positives
+			$mime = "application/x-msmetafile";
+		}
+		
+		if (strpos($mime,"text/")===0 || $mime==="application/xml") {
 			
 			$xml_type= NULL;
 			$script_type= NULL;
