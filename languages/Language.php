@@ -2896,6 +2896,22 @@ class Language {
 	 * @see LanguageFi.php for example implementation
 	 */
 	function translateBlockExpiry( $str ) {
+
+		$scBlockExpiryOptions = wfMsg( 'ipboptions' );
+
+		if ( $scBlockExpiryOptions == '-') {
+			return $str;
+		}
+
+		foreach (explode(',', $scBlockExpiryOptions) as $option) {
+			if ( strpos($option, ":") === false )
+				continue;
+			list($show, $value) = explode(":", $option);
+			if ( strcmp ( $str, $value) == 0 )
+				return '<span title="' . htmlspecialchars($str). '">' .
+					htmlspecialchars( trim( $show ) ) . '</span>';
+		}
+
 		return $str;
 	}
 
