@@ -836,6 +836,7 @@ class User {
 	}
 	
 	/**
+	 * Clear the new messages flag for the given user
 	 * @param string $field
 	 * @param mixed $id
 	 * @access private
@@ -1034,7 +1035,7 @@ class User {
 	}
 
 	/**
-	 * Remove the user from the given group.
+	 * Add the user to the given group.
 	 * This takes immediate effect.
 	 * @string $group
 	 */
