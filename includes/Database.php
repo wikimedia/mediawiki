@@ -1582,10 +1582,12 @@ border=\"0\" ALT=\"Google\"></A>
 		header( 'Cache-control: none' );
 		header( 'Pragma: nocache' );
 	}
-	$msg = wfGetSiteNotice();
-	if($msg == '') {
+	
+	// Removed site notice check, was attempting database access -- TS
+	//$msg = wfGetSiteNotice();
+	//if($msg == '') {
 		$msg = str_replace( '$1', $error, $noconnect );
-	}
+	//}
 	$text = $msg;
 
 	if($wgUseFileCache) {
