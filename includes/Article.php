@@ -1499,10 +1499,12 @@ class Article {
 		$rcid = $wgRequest->getVal( 'rcid' );
 		if ( !is_null ( $rcid ) )
 		{
-			RecentChange::markPatrolled( $rcid );
-			$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
-			$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
-
+			if( wfRunHooks( 'MarkPatrolled', array( &$rcid, &$wgUser, $wgOnlySysopsCanPatrol ) ) ) {
+				RecentChange::markPatrolled( $rcid );
+				wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, $wgOnlySysopsCanPatrol ) );
+				$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
+				$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
+			}
 			$rcTitle = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 			$wgOut->returnToMain( false, $rcTitle->getPrefixedText() );
 		}
