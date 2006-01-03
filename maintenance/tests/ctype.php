@@ -1,6 +1,6 @@
 <?php
-define( 'MEDIAWIKI', true );
-$cont = file_get_contents( '../../includes/compatability/ctype.php' );
+require_once '../commandLine.inc';
+$cont = file_get_contents( "$IP/includes/compatability/ctype.php" );
 $cont = preg_replace( '~^<\?php~', '', $cont );
 preg_match_all( '~function (ctype_[a-z]+)~', $cont, $m );
 $cont = preg_replace( '~(function )(ctype_)~', '\1_\2', $cont );
