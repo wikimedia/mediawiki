@@ -841,12 +841,9 @@ class SkinTemplate extends Skin {
 			$ip = false;
 		}
 
-		if($id || $ip) { # both anons and non-anons have contribution list
+		if($id || $ip) { # both anons and non-anons have contri list
 			$nav_urls['contributions'] = array(
 				'href' => $this->makeSpecialUrl('Contributions/' . $this->mTitle->getText() )
-			);
-			$nav_urls['userfiles'] = array(
-				'href' => $this->makeSpecialUrl('Newimages/' . $this->mTitle->getText() )
 			);
 			if ( $wgUser->isAllowed( 'protect' ) )
 				$nav_urls['blockip'] = array(
