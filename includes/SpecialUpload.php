@@ -685,13 +685,22 @@ class UploadForm {
 	 *
 	 * Returns true if IE is likely to mistake the given file for HTML.
 	 *
+	 * Since 1.4.13, also detects WMF files
+	 *
 	 * @param string $filename
 	 * @return bool
 	 */
 	function triggersIEbug( $filename ) {
 		$file = fopen( $filename, 'rb' );
-		$chunk = strtolower( fread( $file, 256 ) );
+		$chunk = fread( $file, 256 );
 		fclose( $file );
+		
+		$sub4 =  substr( $chunk, 0, 4 );
+		if ( $sub4 == "\x01\x00\x09\x00" || $sub4 == "\xd7\xcd\xc6\x9a" ) {
+			// Windows metafile
+			return true;
+		}
+		$chunk = strtolower( $chunk );
 		
 		$tags = array(
 			'<body',
