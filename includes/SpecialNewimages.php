@@ -21,12 +21,6 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$shownav = !$specialPage->including();
 	$hidebots = $wgRequest->getBool('hidebots',1);
 
-	# Show only for a single user?
-	$targetUser = isset($par) ? $par : $wgRequest->getVal( 'target' );
-	if ( $targetUser != "" ) {
-		$singleUser = User::newFromName ( urldecode ( $targetUser ) ) ;
-	}
-
 	if($hidebots) {
 
 		/** Make a list of group names which have the 'bot' flag
@@ -53,12 +47,9 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$image = $dbr->tableName('image');
 
 	$sql="SELECT img_timestamp from $image";
-
-	# Hide bots?
 	if($hidebots) {
 		$sql.=$joinsql.' WHERE ug_group IS NULL';
 	}
-	
 	$sql.=' ORDER BY img_timestamp DESC LIMIT 1';
 	$res = $dbr->query($sql, 'wfSpecialNewImages');
 	$row = $dbr->fetchRow($res);
@@ -73,30 +64,12 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	/** If we were clever, we'd use this to cache. */
 	$latestTimestamp = wfTimestamp( TS_MW, $ts);
 
-	/** Was a limit set? */
-	$limitvar = NULL ;
-	$offset = NULL ;
-	$limitpar = "" ;
-	$maxlimit = 48 ;
-	$limit = $maxlimit ;
-	list( $limitvar, $offset ) = wfCheckLimits();
-	# Ignoring offset, checking limit
-	if ( isset ( $limitvar ) AND $limitvar != NULL AND $parval = intval( $limitvar ) ) {
-		if ( $parval <= $maxlimit && $parval > 0 ) {
-			$limit = $parval;
-		}
-		if ( $limit != $maxlimit ) {
-			$limitpar = "&limit=" . $limit ;
-		}
-	}
-
-/*
-	# Old limit code
+	/** Hardcode this for now. */
 	$limit = 48;
+
 	if ( $parval = intval( $par ) )
 		if ( $parval <= $limit && $parval > 0 )
 			$limit = $parval;
-*/
 
 	$where = array();
 	$searchpar = '';
@@ -111,14 +84,6 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		}
 	}
 
-	# SQL for single user only?
-	if ( isset ( $singleUser ) ) {
-		$where[] .= "img_user='" . $singleUser->getID() . "'" ;
-		$userpar = "&target=" . urlencode ( $singleUser->getName() ) ;
-	} else {
-		$userpar = "" ;
-	}
-	
 	$invertSort = false;
 	if( $until = $wgRequest->getVal( 'until' ) ) {
 		$where[] = 'img_timestamp < ' . $dbr->timestamp( $until );
@@ -188,13 +153,6 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$wgOut->addHTML( "<p>{$text}\n</p>" );
 	}
 
-	# Single user search note
-	if ( isset ( $singleUser ) ) {
-		$t = $singleUser->getUserPage() ;
-		$uPage = $sk->makeLinkObj( $t ) ;
-		$wgOut->addHTML ( wfMsg ( 'imagelistforuser' , $uPage ) ) ;
-	}
-
 	$sub = wfMsg( 'ilsubmit' );
 	$titleObj = Title::makeTitle( NS_SPECIAL, 'Newimages' );
 	$action = $titleObj->escapeLocalURL();
@@ -228,12 +186,12 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	$prevLink = wfMsg( 'prevn', $wgLang->formatNum( $limit ) );
 	if( $firstTimestamp && $firstTimestamp != $latestTimestamp ) {
-		$prevLink = $sk->makeKnownLinkObj( $titleObj, $prevLink, 'from=' . $firstTimestamp . $botpar . $searchpar . $userpar . $limitpar );
+		$prevLink = $sk->makeKnownLinkObj( $titleObj, $prevLink, 'from=' . $firstTimestamp . $botpar . $searchpar );
 	}
 
 	$nextLink = wfMsg( 'nextn', $wgLang->formatNum( $limit ) );
 	if( $shownImages > $limit && $lastTimestamp ) {
-		$nextLink = $sk->makeKnownLinkObj( $titleObj, $nextLink, 'until=' . $lastTimestamp.$botpar.$searchpar.$userpar.$limitpar );
+		$nextLink = $sk->makeKnownLinkObj( $titleObj, $nextLink, 'until=' . $lastTimestamp.$botpar.$searchpar );
 	}
 
 	$prevnext = '<p>' . $botLink . ' '. wfMsg( 'viewprevnext', $prevLink, $nextLink, $dateLink ) .'</p>';
