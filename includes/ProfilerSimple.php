@@ -8,6 +8,8 @@
  * @todo document
  * @package MediaWiki
  */
+require_once('Profiling.php');
+
 class ProfilerSimple extends Profiler {
 	function ProfilerSimple() {
 		global $wgRequestTime,$wgRUstart;
