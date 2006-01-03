@@ -14,7 +14,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @copyright Copyright © 2006, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
  *
- * @link http://perldoc.perl.org/perlre.html perldoc perlre
+ * @link http://www.php.net/manual/en/ref.ctype.php PHP Character Type Functions
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -42,7 +42,7 @@ function ctype_alnum() {
 	$fname = 'ctype_alnum';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -54,7 +54,7 @@ function ctype_alpha() {
 	$fname = 'ctype_alpha';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -66,7 +66,7 @@ function ctype_cntrl() {
 	$fname = 'ctype_cntrl';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -78,7 +78,7 @@ function ctype_digit() {
 	$fname = 'ctype_digit';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -90,7 +90,7 @@ function ctype_graph() {
 	$fname = 'ctype_graph';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -102,7 +102,7 @@ function ctype_lower() {
 	$fname = 'ctype_lower';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -114,7 +114,7 @@ function ctype_print() {
 	$fname = 'ctype_print';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -126,7 +126,7 @@ function ctype_punct() {
 	$fname = 'ctype_punct';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -138,7 +138,7 @@ function ctype_space() {
 	$fname = 'ctype_space';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -152,7 +152,7 @@ function ctype_upper() {
 	$fname = 'ctype_upper';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -165,7 +165,7 @@ function ctype_xdigit() {
 	$fname = 'ctype_xdigit';
 
 	$args = func_get_args();
-	list( $in, $ret ) = _ctype_parse_args( $fname, $args );
+	list( $in, $ret ) = wf_ctype_parse_args( $fname, $args );
 
 	if ( ! is_null( $ret ) )
 		return $ret;
@@ -173,42 +173,38 @@ function ctype_xdigit() {
 		return (bool)preg_match( '~^[[:xdigit:]]+$~i', $in );
 }
 
+/**#@-*/
 
-
-
-function _ctype_parse_args( $fname, $args ) {
+/**
+ * PHP does some munging on ctype_*() like converting  -128 <= x <= -1 to x +=
+ * 256, 0 <= x <= 255 to chr(x) etc. that behavior.
+ *
+ * @param string $fname The name of the caller function
+ * @param array $args The return of the callers func_get_args()
+ * @return array An array with two items, the first is the munged input the
+ *               calling function is supposed to use and a return value it
+ *               should return if it's not null, $in will be null if $ret is
+ *               not null since there's no point in setting it in that case
+ */
+function wf_ctype_parse_args( $fname, $args ) {
 	$ret = null;
 	
 	$cnt = count( $args );
 	
 	if ( $cnt !== 1 )
-		// PHP only throws E_ERROR on this, but fuck it;)
-		wfDebugDieBacktrace( "Error: $fname() expects exactly 1 parameter $cnt given" );
+		trigger_error( "$fname() expects exactly 1 parameter $cnt given", E_USER_WARNING );
 	
 	$in = array_pop( $args );
 
 	if ( is_int( $in ) ) {
 		if ( $in >= 256 )
-			// >= 256 returns false, except in the case of these functions
-			return array(
-				null,
-				$fname === 'ctype_alnum' ||
-				$fname === 'ctype_digit' ||
-				$fname === 'ctype_graph' ||
-				$fname === 'ctype_print' ||
-				$fname === 'ctype_xdigit'
-			);
+			return array( null, false );
 		else if ( $in >= 0 )
 			$in = chr( $in );
 		else if ( $in >= -128 )
 			$in = ord( $in + 256 );
 		else if ( $in < -128 )
-			// <-128 values return false, except in the case of these functions
-			return
-				array(
-					null,
-					$fname === 'ctype_graph' || $fname === 'ctype_print'
-				);
+			return array( null, true );
 	}
 	
 	if ( is_string( $in ) )
