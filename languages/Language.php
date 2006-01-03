@@ -1611,6 +1611,8 @@ history lines, or just the current version with the info about the last edit.
 
 In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] for the page {{Mediawiki:mainpage}}.',
 'exportcuronly'	=> 'Include only the current revision, not the full history',
+'exportnohistory' => "----
+'''Note:''' exporting the full history of pages through this form has been disabled due to performance reasons.",
 
 # Namespace 8 related
 

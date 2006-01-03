@@ -1321,6 +1321,12 @@ $wgCapitalLinks = true;
  */
 $wgImportSources = array();
 
+/**
+ * If set to false, disables the full-history option on Special:Export.
+ * This is currently poorly optimized for long edit histories, so is
+ * disabled on Wikimedia's sites.
+ */
+$wgExportAllowHistory = true;
 
 
 /** Text matching this regular expression will be recognised as spam

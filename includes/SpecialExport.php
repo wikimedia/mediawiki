@@ -31,10 +31,15 @@ require_once( 'Export.php' );
  */
 function wfSpecialExport( $page = '' ) {
 	global $wgOut, $wgRequest;
+	global $wgExportAllowHistory;
 	
 	if( $wgRequest->getVal( 'action' ) == 'submit') {
 		$page = $wgRequest->getText( 'pages' );
-		$curonly = $wgRequest->getCheck( 'curonly' );
+		if( $wgExportAllowHistory ) {
+			$curonly = $wgRequest->getCheck( 'curonly' );
+		} else {
+			$curonly = true;
+		}
 	} else {
 		# Pre-check the 'current version only' box in the UI
 		$curonly = true;
@@ -57,12 +62,18 @@ function wfSpecialExport( $page = '' ) {
 	$wgOut->addWikiText( wfMsg( "exporttext" ) );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Export" );
 	$action = $titleObj->escapeLocalURL( 'action=submit' );
+	if( $wgExportAllowHistory ) {
+		$checkbox = "<label><input type='checkbox' name='curonly' value='true' checked='checked' />
+" . wfMsgHtml( 'exportcuronly' ) . "</label><br />";
+	} else {
+		$checkbox = "";
+		$wgOut->addWikiText( wfMsg( "exportnohistory" ) );
+	}
 	$wgOut->addHTML( "
 <form method='post' action=\"$action\">
 <input type='hidden' name='action' value='submit' />
 <textarea name='pages' cols='40' rows='10'></textarea><br />
-<label><input type='checkbox' name='curonly' value='true' checked='checked' />
-" . wfMsgHtml( 'exportcuronly' ) . "</label><br />
+$checkbox
 <input type='submit' />
 </form>
 " );
