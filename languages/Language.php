@@ -1418,7 +1418,7 @@ See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 # Contributions
 #
 'contributions' => 'User contributions',
-'userfiles'		=> 'User files',
+'userfiles'     => 'User files',
 'mycontris'     => 'My contributions',
 'contribsub'    => "For $1",
 'nocontribs'    => 'No changes were found matching these criteria.',
@@ -2886,7 +2886,7 @@ class Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
-		return $count == 1 ? $wordform1 : $wordform2;
+		return $count == '1' ? $wordform1 : $wordform2;
 	}
 
 	/**

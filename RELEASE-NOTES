@@ -397,6 +397,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Default interface text for "selflinks" tweaked
 * Removed broken wgAllowAnonymousMinor and added new group right minoredit
 * (bug 4457) Update for Portuguese language (pt)
+* convertPlural breakage fixed a little
 
 
 === Caveats ===
