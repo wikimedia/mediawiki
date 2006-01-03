@@ -332,6 +332,18 @@ $typeText: array of strings
 'LogPageLogHeader': strings used by wfMsg as a header.
 $headerText: array of strings
 
+'MarkPatrolled': before an edit is marked patrolled
+$rcid: ID of the revision to be marked patrolled
+$user: the user (object) marking the revision as patrolled
+$wcOnlySysopsCanPatrol: config setting indicating whether the user
+ needs to be a sysop in order to mark an edit patrolled
+
+'MarkPatrolledComplete': after an edit is marked patrolled
+$rcid: ID of the revision marked as patrolled
+$user: user (object) who marked the edit patrolled
+$wcOnlySysopsCanPatrol: config setting indicating whether the user
+ must be a sysop to patrol the edit
+
 'PageRenderingHash': alter the parser cache option hash key
   A parser extension which depends on user options should install
   this hook and append its values to the key.
