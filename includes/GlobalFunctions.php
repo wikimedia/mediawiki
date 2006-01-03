@@ -107,6 +107,10 @@ if ( !function_exists( 'array_diff_key' ) ) {
 	}
 }
 
+// If it doesn't exist no ctype_* stuff will
+if ( ! function_exists( 'ctype_alnum' ) )
+	require_once 'compatability/ctype.php';
+
 
 /**
  * Where as we got a random seed
