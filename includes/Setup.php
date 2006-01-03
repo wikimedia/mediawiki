@@ -24,8 +24,11 @@ if ( !isset( $wgVersion ) ) {
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
-if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
+if ( is_object($wgProfiler) ) {
+	/* nada, everything should be done already */
+} elseif ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 	require_once( 'Profiling.php' );
+	$wgProfiling = true;
 	if ($wgProfilerType == "") {
 		$wgProfiler = new Profiler();
 	} else {
