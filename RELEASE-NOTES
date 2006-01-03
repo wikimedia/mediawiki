@@ -398,7 +398,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Removed broken wgAllowAnonymousMinor and added new group right minoredit
 * (bug 4457) Update for Portuguese language (pt)
 * convertPlural breakage fixed a little
-* Bug 4456: Add hook for marking article patrolled
+* (bug 4456) Add hook for marking article patrolled
+* (bug 3194) default implementation of translateBlockExpiry
+  which uses ipboptions
 
 
 === Caveats ===
