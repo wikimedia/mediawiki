@@ -420,14 +420,14 @@ fós.",
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
 "perfdisabled" => "Tá brón orainn! Díchumasaíodh an gné seo ar feadh tamaill chun luas an bhunachair sonraí a chosaint.",
 "perfdisabledsub" => "Is cóip i dtaisce é seo, ó $1:",
-"wrong_wfQuery_params" => "Paraiméadair míchearta don wfQuery()<br>
-Feidhm: $1<br>
+"wrong_wfQuery_params" => "Paraiméadair míchearta don wfQuery()<br />
+Feidhm: $1<br />
 Iarratas: $2",
 'perfcached' => 'Fuarthas na sonraí seo as dtaisce, agus is dócha nach bhfuil siad suas chun dáta:',
 "viewsource" => "Féach ar fhoinse",
 "protectedtext" => "Glasáladh an leathanach seo chun é a chosaint i gcoinne athruithe. Tá go leor
 cúiseanna féideartha don scéal seo. Féach ar
-[[$wgMetaNamespace:Leathanach glasáilte]] más é do thoil é.
+[[{{ns:project}}:Leathanach glasáilte]] más é do thoil é.
 
 Is féidir leat foinse an leathanaigh seo a féachaint agus a chóipeáil:",
 'sqlhidden' => '(Iarratas SQL folaithe)',
@@ -453,7 +453,7 @@ Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta Vicipéi
 "yourdomainname"       => "D'fhearann",
 'externaldberror'      => 'Bhí earráid bhunachair sonraí ann maidir le fíordheimhniú seachtrach, nóThere was either an external authentication database error or you are not allowed to update your external account.',
 "loginproblem"  => "<b>Bhí fadhb ann maidir leis an logáil isteach.</b><br>Déan iarracht eile!",
-"alreadyloggedin" => "<font color=red><b>A húsáideoir $1, tá tú logáilte isteach cheana féin!</b></font><br>",
+"alreadyloggedin" => "<strong>A húsáideoir $1, tá tú logáilte isteach cheana féin!</strong><br />",
 
 "login"     => "Logáil isteach",
 'loginprompt'   => "Tá fianáin de dhíth chun logáil isteach a dhéanamh ag {{SITENAME}}.",
@@ -616,20 +616,20 @@ Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</st
 "yourdiff"      => "Difríochtaí",
 "copyrightwarning" => "Tabhair faoi dearadh go scaoiltear gach ceart le Vicipéid de réir tearmaí an <i>GNU Free Documentation License</i> (féach ar $1 le haghaidh tuilleadh eolais).
 Munar mian leat go gcuirfí do chuid scríbhinn in eagar go héadrócaireach agus go n-athdálfaí gan teorainn iad, ná
-tabhair isteach anseo iad.<br>
+tabhair isteach anseo iad.<br />
 Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse gan chóipcheart
 é. <strong>NÁ TABHAIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!</strong>",
-"copyrightwarning2" => "Tabhair faoi dearadh gur féidir le cuiditheoirí eile gach dréacht do {{SITENAME}} a chur in eagar, a athrú agus a scriosadh. Munar mian leat go gcuirfí do chuid scríbhinn in eagar go héadrócaireach agus go n-athdálfaí gan teorainn iad, ná tabhair isteach anseo iad.<br> Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse gan chóipcheart é (féach ar $1 le haghaidh tuilleadh eolais). <strong>NÁ TABHAIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!</strong>",
+"copyrightwarning2" => "Tabhair faoi dearadh gur féidir le cuiditheoirí eile gach dréacht do {{SITENAME}} a chur in eagar, a athrú agus a scriosadh. Munar mian leat go gcuirfí do chuid scríbhinn in eagar go héadrócaireach agus go n-athdálfaí gan teorainn iad, ná tabhair isteach anseo iad.<br /> Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse gan chóipcheart é (féach ar $1 le haghaidh tuilleadh eolais). <strong>NÁ TABHAIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!</strong>",
 "longpagewarning" => "AIRE: Tá an leathanach seo $1 cilibheart i bhfad; ní féidir le roinnt brabhsálaithe
-leathanaigh a athrú má tá siad breis agus 32kb, nó níos fada ná sin.
+leathanaigh a athrú má tá siad breis agus $1KiB, nó níos fada ná sin.
 Más féidir, giotaigh an leathanach i gcodanna níos bige.",
 "readonlywarning" => "AIRE: Glasáladh an bunachar sonraí, agus mar sin
 ní féidir leat do chuid athruithe a shábháil díreach anois. B'fhéidir gur mhaith leat an téacs a ghearr is
 ghreamú i gcomhad téacs agus é a úsáid níos déanaí.",
 "protectedpagewarning" => "AIRE:  Glasáladh an leathanach seo, agus ní féidir le duine ar bith é a athrú
 ach amhaín na húsáideoirí le pribhléidí oibreora córais. Bí cinnte go leanann tú na
-<a href='$wgScriptPath/$wgMetaNamespace:Treoirlínte_do_leathanaigh_glasáilte'>treoirlínte do leathanaigh
-glasáilte</a>.",
+[[Project:Treoirlínte_do_leathanaigh_glasáilte|treoirlínte do leathanaigh
+glasáilte]].",
 
 # History pages
 #
@@ -701,31 +701,6 @@ $2 Cuir athsheolaidh in áireamh   Cuardaigh ar $3 $9",
 "searchdisabled" => "<p>Tá brón orainn! Mhíchumasaíodh an cuardach téacs iomlán go sealadach chun luas an tsuímh
 a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a úsáid - b'fhéidir go bhfuil sé as dáta.</p>",
 
-"googlesearch"  => "
-<!-- SiteSearch Google -->
-<!-- Get Irish version of this!!! -->
-<FORM method=GET action=\"http://www.google.com/webhp?hl=ga&tab=iw\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/webhp?hl=ga&tab=iw\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
-<INPUT type=submit name=btnG VALUE=\"Cuardach Google\">
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\">
-<br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-
-value=\"{$wgServer}\"
-
-checked> {$wgServer} <br>
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->",
 "blanknamespace" => "(Gnáth)",
 
 # Preferences page
@@ -1306,7 +1281,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).",
 "ipbreason"     => "Cúis",
 "ipbsubmit"     => "Coisc an úsáideoir seo",
 'ipbother'	      => 'Méid eile ama',
-'ipboptions'	    => '2 uair:2 uair,1 lá amháin:1 lá amháin,3 lá:3 lá,1 sheachtain amháin:1 sheachtain amháin,2 sheachtain:2 sheachtain,1 mhí amháin:1 mhí amháin,3 mhí:3 mhí,6 mhí:6 mhí,1 bhliain amháin:1 bhliain amháin,gan teorainn:gan teorainn',
+'ipboptions'	    => '2 uair:2 hours,1 lá amháin:1 day,3 lá:3 days,1 sheachtain amháin:1 week,2 sheachtain:2 weeks,1 mhí amháin:1 month,3 mhí:3 months,6 mhí:6 months,1 bhliain amháin:1 year,gan teorainn:infinite',
 'ipbotheroption'	=> 'eile',
 "badipaddress"  => "Níl aon úsáideoir ann leis an ainm seo.",
 "blockipsuccesssub" => "D'éirigh leis an cosc",
