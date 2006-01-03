@@ -344,9 +344,10 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'sitetitle'             => "{{SITENAME}}",
 'pagetitle'             => "$1 - {{SITENAME}}",
 'sitesubtitle'  => '',
-'retrievedfrom' => "Retirado de \"$1\"",
-'newmessages' => "Você tem $1.",
+'retrievedfrom' => 'Retirado de "$1"',
+'youhavenewmessages' => "Você tem $1 ($2).",
 'newmessageslink' => 'novas mensagens',
+'newmessagesdifflink' => 'comparar com a penúltima revisão',
 'editsection'=>'editar',
 'toc' => 'Tabela de conteúdo',
 'showtoc' => 'mostrar',
@@ -419,8 +420,8 @@ Por favor, tome nota do URL e comunique o erro a um [[Wikipedia:Administradores|
 'badarticleerror' => 'Esta acção não pode ser realizada nesta página.',
 'cannotdelete'  => 'Não foi possível eliminar a página ou imagem especificada (Pode ter sido já eliminada por outro administrador.)',
 'badtitle'              => 'Título inválido',
-'badtitletext' => "O título de página requisitada era inválido, vazio, ou
-uma ligação incorrecta de inter-linguagem ou título inter-wiki.",
+'badtitletext' => "O título de página requisitada era inválido, vazio, ou uma ligação incorrecta de inter-linguagem ou título inter-wiki.
+No qual pode conter um ou mais caracteres que não podem ser utilizados em títulos.",
 'perfdisabled' => 'Esta opção foi temporariamente desabilitada,
 devido a tornar a base de dados lenta demais a ponto de impossibilitar a wiki.',
 'perfdisabledsub' => "Aqui pode ver uma cópia de $1 salvaguardada:", # obsolete?
@@ -446,7 +447,7 @@ novamente como o mesmo nome de utilizador utilizador ou com um nome de utilizado
 
 A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Preferences|preferências]] na {{SITENAME}}.",
 
-'loginpagetitle' => 'Login de utilizador',
+'loginpagetitle' => 'Autentificação de utilizador',
 'yourname'              => 'Seu nome de utilizador',
 'yourpassword'  => 'Palavra-chave',
 'yourpasswordagain' => 'Reintroduza a sua palavra-chave',
@@ -479,6 +480,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'yourvariant'  => 'Variante',
 'yournick'              => 'Alcunha:',
 'badsig'                => 'Assinatura inválida; verifique o código HTML utilizado.',
+'badsig2'               => 'A sua assinatura contém uma ou mais expressões reservadas; por favor as remova.',
 'email'                 => 'Email',
 'emailforlost'          => "Os campos marcados são opcionais. Colocando o seu endereço de e-mail permite outras pessoas entrem em contacto consigo sem que tenha que revelar o seu e-mail a elas, e também é útil caso se esquecer da sua palavra-chave.<br /><br />O seu nome real, se o indicar, será utilizado para dar atribuição do seu trabalho.",
 'prefs-help-email-enotif' => 'Este endereço é também utilizado para enviar-lhe notificações caso as active nas preferências.',
@@ -568,7 +570,7 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 'whitelistacctext' => 'De modo a poder criar contas de utilizador nesta Wiki terá que se [[Special:Userlogin|autentificar]] e possuir as devidas permissões.',
 'loginreqtitle' => 'Autentificação Requesitada',
 'loginreqlink' => 'autentificar-se',
-'loginreqtext'  => 'Precisa de $1 para visualizar outras páginas.',
+'loginreqpagetext'  => 'Precisa de $1 para visualizar outras páginas.',
 'accmailtitle' => 'Palavra-chave enviada.',
 'accmailtext' => "A palavra-chave para '$1' foi enviada para $2.",
 'newarticle'    => '(Novo)',
@@ -906,6 +908,7 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 #
 'imagelist'             => 'Lista de ficheiros',
 'imagelisttext' => "Segue-se uma lista de $1 ficheiros organizados $2.",
+'imagelistforuser' => "Esta lista apenas mostra imagens carregadas por $1.",
 'getimagelist'  => 'carregando lista de ficheiros',
 'ilsubmit'              => 'Procurar',
 'showlast'              => "Mostrar os $1 ficheiros organizados $2.",
@@ -936,6 +939,9 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 #
 'unwatchedpages' => 'Páginas não vigiadas',
 
+# List redirects
+'listredirects' => 'Listar redireccionamentos',
+
 # Statistics
 #
 'statistics'    => 'Estatísticas',
@@ -963,9 +969,9 @@ Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
 'doubleredirectstext'   => "Cada linha contém ligações para o primeiro e segundo redireccionamento, bem como a primeira linha de conteúdo do segundo redireccionamento, geralmente contendo a página destino \"real\", que devia ser o destino do primeiro redireccionamento.",
 'doubleredirectsarrow'	=> '→',
 'brokenredirects'       => 'Redireccionamentos quebrados',
-'brokenredirectstext'   => 'Os seguintes redireccionamentos ligam para páginas inexistentes.',
+'brokenredirectstext'   => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',
 'selflinks'             => 'Páginas que ligam consigo próprias',
-'selflinkstext'             => 'As páginas seguintes ligam consigo próprias, o que é inútil.',
+'selflinkstext'             => 'As páginas seguintes ligam consigo próprias:',
 'mispeelings'           => 'Páginas com erros ortográficos',
 'mispeelingstext'               => "As páginas seguintes contém erros ortográficos comuns, alguns deles listados em $1. Lá pode encontrar a grafia correcta (assim).",
 'mispeelingspage'       => 'Lista de erros ortográficos comuns',
@@ -1027,6 +1033,7 @@ Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
 'log'           => 'Registos',
 'alllogstext'   => 'Exposição combinada de carregamento de ficheiros, eliminação, protecção, bloqueio, e de direitos.
 Pode diminuir a lista escolhendo um tipo de registo, um nome de utilizar, ou uma página afectada.',
+'logempty' => 'Nenhum item idêntico no registo.',
 
 # Special:Allpages
 'nextpage'          => 'Próxima página ($1)',
@@ -1104,7 +1111,7 @@ Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desint
 'wlshow'                => 'Mostrar',
 'wlhide'                => 'Esconder',
 
-'enotif_mailer'                 => '{{SITENAME}} Notification Mailer',
+'enotif_mailer'                 => '{{SITENAME}} Correio de Notificação',
 'enotif_reset'                  => 'Marcar todas páginas como visitadas',
 'enotif_newpagetext'=> 'Isto é uma nova página.',
 'changed'                       => 'alterada',
@@ -1187,6 +1194,14 @@ Veja [[Project:Página protegida]] para mais informações.",
 'confirmunprotecttext' => 'Deseja realmente desproteger esta página?',
 'confirmunprotect' => 'Confirmar desprotecção',
 'unprotectcomment' => 'Motivo de desprotecção',
+'protect-unchain' => 'Desbloquear permissões de moção',
+'protect-text' => 'Pode ver e alterar aqui, o nível de protecção para a página [[$1]].
+Por favor tenha a certeza que segue as [[Project:Página protegida|normas do projecto]].',
+'protect-viewtext' => 'A sua conta de utilizador não tem permissões para alterar
+os níveis de protecção desta página. Estas são as configurações actuais para a página [[$1]]:',
+'protect-default' => '(padrão)',
+'protect-level-autoconfirmed' => 'Bloquear utilizadores não-registados',
+'protect-level-sysop' => 'Administradores apenas',
 
 # Undelete
 'undelete' => 'Ver páginas eliminadas',
@@ -1212,6 +1227,7 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 # Contributions
 #
 'contributions' => 'Contribuições do utilizador',
+'userfiles'             => 'Ficheiros do utilizador',
 'mycontris'     => 'Minhas contribuições',
 'contribsub'    => "Para $1",
 'nocontribs'    => 'Não foram encontradas mudanças com este critério.',
@@ -1444,7 +1460,7 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'subcategorycount1' => "Existe $1 subcategoria nesta categoria.",
 'categoryarticlecount' => "Existem $1 artigos nesta categoria.",
 'categoryarticlecount1' => "Existe $1 artigo nesta categoria.",
-'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
+'usenewcategorypage' => "1\n\nColoque o primeiro caracter como \"0\" para desactivar o novo layout das páginas de categoria.",
 'listingcontinuesabbrev' => " cont.",
 
 # Info page
