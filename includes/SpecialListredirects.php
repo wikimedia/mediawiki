@@ -34,8 +34,7 @@ class ListredirectsPage extends QueryPage {
 		
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );
-		$rd_link_text = htmlspecialchars( $wgContLang->convert( $rd_title->getPrefixedText() ) );
-		$rd_link = $skin->makeKnownLink( $rd_title->getPrefixedText(), $rd_link_text, 'redirect=no' );
+		$rd_link = $skin->makeKnownLinkObj( $rd_title, '', 'redirect=no' );
 		
 		# Find out where the redirect leads
 		$rd_page = new Article( &$rd_title, 0 );
@@ -43,11 +42,11 @@ class ListredirectsPage extends QueryPage {
 		
 		# Make a link to the destination page
 		$tp_title = Title::newFromRedirect( $rd_text );
-		$tp_link_text = htmlspecialchars( $tp_title->getPrefixedText() );
-		$tp_link = $skin->makeKnownLink( $tp_title->getPrefixedText(), $tp_link_text );
+		$tp_link = $skin->makeKnownLinkObj( $tp_title );
 		
 		# Format the whole thing and return it
 		return( $rd_link . ' &rarr; ' . $tp_link );
+		
 	}
 
 }
