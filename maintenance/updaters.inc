@@ -793,12 +793,12 @@ function do_all_updates() {
 }
 
 function archive($name) {
-	global $wgDBtype;
+	global $wgDBtype, $IP;
 	switch ($wgDBtype) {
 	case "oracle":
-		return "maintenance/oracle/archives/$name";
+		return "$IP/maintenance/oracle/archives/$name";
 	default:
-		return "maintenance/archives/$name";
+		return "$IP/maintenance/archives/$name";
 	}
 }
 ?>
