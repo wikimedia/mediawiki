@@ -974,6 +974,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Added AutoAuthenticate hook for external User object suppliers
 * Parser internal placeholder string now fully randomized for safety
 
+=== Changes since 1.5.4 ===
+
+* Maintenance script to delete unused user accounts
 
 === Caveats ===
 
