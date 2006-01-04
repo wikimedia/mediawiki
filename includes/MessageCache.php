@@ -98,7 +98,9 @@ class MessageCache {
 		}
 		
 		$filename = "$wgLocalMessageCache/messages-$wgDBname";
+		$oldUmask = umask( 0 );
 		wfMkdirParents( $wgLocalMessageCache, 0777 );
+		umask( $oldUmask );
 
 		$file = fopen( $filename, 'w' );
 		if ( !$file ) {
@@ -108,6 +110,7 @@ class MessageCache {
 
 		fwrite( $file, $hash . $serialized );
 		fclose( $file );
+		@chmod( $filename, 0666 );
 	}
 
 
