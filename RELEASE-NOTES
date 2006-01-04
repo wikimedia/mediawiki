@@ -404,7 +404,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4446) $wgExportAllowHistory option to explicitly disable history in
   Special:Export form, 'exportnohistory' message to translate live hack.
 * (bug 4453) fix for __TOC__ dollar-number breakage
-
+* Maintenance script to delete unused user accounts
 
 === Caveats ===
 
