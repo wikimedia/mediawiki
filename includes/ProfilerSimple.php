@@ -8,7 +8,7 @@
  * @todo document
  * @package MediaWiki
  */
-require_once('Profiling.php');
+require_once(dirname(__FILE__).'/Profiling.php');
 
 class ProfilerSimple extends Profiler {
 	function ProfilerSimple() {
@@ -30,8 +30,8 @@ class ProfilerSimple extends Profiler {
 
 	function profileIn($functionname) {
 		global $wgDebugFunctionEntry;
-		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
-			wfDebug(str_repeat(' ', count($this->mWorkStack)).'Entering '.$functionname."\n");
+		if ($wgDebugFunctionEntry) {
+			$this->debug(str_repeat(' ', count($this->mWorkStack)).'Entering '.$functionname."\n");
 		}
 		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), $this->getTime(), $this->getCpuTime());
 	}
@@ -41,23 +41,23 @@ class ProfilerSimple extends Profiler {
 
 		global $wgDebugFunctionEntry;
 
-		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
-			wfDebug(str_repeat(' ', count($this->mWorkStack) - 1).'Exiting '.$functionname."\n");
+		if ($wgDebugFunctionEntry) {
+			$this->debug(str_repeat(' ', count($this->mWorkStack) - 1).'Exiting '.$functionname."\n");
 		}
 
 		list($ofname,$ocount,$ortime,$octime) = array_pop($this->mWorkStack);
 
 		if (!$ofname) {
-			wfDebug("Profiling error: $functionname\n");
+			$this->debug("Profiling error: $functionname\n");
 		} else {
 			if ($functionname == 'close') {
 				$message = "Profile section ended by close(): {$ofname}";
 				$functionname = $ofname;
-				wfDebug( "$message\n" );
+				$this->debug( "$message\n" );
 			}
 			elseif ($ofname != $functionname) {
 				$message = "Profiling error: in({$ofname}), out($functionname)";
-				wfDebug( "$message\n" );
+				$this->debug( "$message\n" );
 			}
 			$entry =& $this->mCollated[$functionname];
 			
@@ -88,6 +88,12 @@ class ProfilerSimple extends Profiler {
 			$time=microtime();
 		list($a,$b)=explode(" ",$time);
 		return (float)($a+$b);
+	}
+	
+	function debug( $s ) {
+		if (function_exists( 'wfDebug' ) ) {
+			wfDebug( $s );
+		}
 	}
 }
 ?>
