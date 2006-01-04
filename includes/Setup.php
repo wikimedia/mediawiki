@@ -24,7 +24,7 @@ if ( !isset( $wgVersion ) ) {
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
-if ( isset($wgProfiler) && is_object($wgProfiler) ) {
+if ( function_exists( 'wfProfileIn' ) ) {
 	/* nada, everything should be done already */
 } elseif ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 	require_once( 'Profiling.php' );
@@ -37,26 +37,7 @@ if ( isset($wgProfiler) && is_object($wgProfiler) ) {
 		$wgProfiler = new $prclass();
 	}
 } else {
-	if (!function_exists('wfProfileIn')) {
-		function wfProfileIn( $fn = '' ) {
-			global $hackwhere, $wgDBname;
-			$hackwhere[] = $fn;
-			if (function_exists("setproctitle"))
-				setproctitle($fn . " [$wgDBname]");
-		}
-	}
-	if (!function_exists('wfProfileOut')) {
-		function wfProfileOut( $fn = '' ) {
-			global $hackwhere, $wgDBname;
-			if (count($hackwhere))
-				array_pop($hackwhere);
-			if (function_exists("setproctitle") && count($hackwhere))
-				setproctitle($hackwhere[count($hackwhere)-1] . " [$wgDBname]");
-		}
-	}
-	function wfGetProfilingOutput( $s, $e ) {}
-	function wfProfileClose() {}
-	function wfLogProfilingData() {}
+	require_once( 'ProfilerStub.php' );
 }
 
 $fname = 'Setup.php';
