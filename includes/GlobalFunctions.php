@@ -1730,7 +1730,6 @@ function wfUsePHP( $req_ver ) {
  * @param mixed $version The version to check, can be a string, an integer, or
  *                       a float
  */
-
 function wfUseMW( $req_ver ) {
 	global $wgVersion;
 
