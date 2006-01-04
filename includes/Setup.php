@@ -52,6 +52,7 @@ require_once( 'User.php' );
 require_once( 'Skin.php' );
 require_once( 'OutputPage.php' );
 require_once( 'LinkCache.php' );
+require_once( 'LinkBatch.php' );
 require_once( 'Title.php' );
 require_once( 'Article.php' );
 require_once( 'MagicWord.php' );
