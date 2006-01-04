@@ -403,6 +403,7 @@ fully support the editing toolbar, but was found to be too confusing.
   which uses ipboptions
 * (bug 4446) $wgExportAllowHistory option to explicitly disable history in
   Special:Export form, 'exportnohistory' message to translate live hack.
+* (bug 4453) fix for __TOC__ dollar-number breakage
 
 
 === Caveats ===
