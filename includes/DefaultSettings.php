@@ -512,7 +512,7 @@ $wgDBmysql5			= false;
 /**
  * Other wikis on this site, can be administered from a single developer
  * account.
- * Array, interwiki prefix => database name
+ * Array numeric key => database name
  */
 $wgLocalDatabases   = array();
 

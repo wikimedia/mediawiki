@@ -18,7 +18,6 @@ class SiteConfiguration {
 	var $suffixes = array();
 	var $wikis = array();
 	var $settings = array();
-	var $localDatabases = array();
 	var $localVHosts = array();
 
 	/** */	
@@ -46,20 +45,29 @@ class SiteConfiguration {
 	}
 
 	/** */
+	function getAll( $wiki, $suffix, $params ) {
+		$localSettings = array();
+		foreach ( $this->settings as $varname => $stuff ) {
+			$value = $this->get( $varname, $wiki, $suffix, $params );
+			if ( !is_null( $value ) ) { 
+				$localSettings[$varname] = $value;
+			}
+		}
+		return $localSettings;
+	}
+
+	/** */
 	function getBool( $setting, $wiki, $suffix ) {
 		return (bool)($this->get( $setting, $wiki, $suffix ));
 	}
 
 	/** */
 	function &getLocalDatabases() {
-		return $this->localDatabases;
+		return $this->wikis;
 	}
 
 	/** */
 	function initialise() {
-		foreach ( $this->wikis as $db ) {
-			$this->localDatabases[$db] = $db;
-		}
 	}
 
 	/** */
