@@ -1737,4 +1737,17 @@ function wfUseMW( $req_ver ) {
 		wfDebugDieBacktrace( "MediaWiki $req_ver required--this is only $wgVersion" );
 }
 
+/**
+ * Escape a string to make it suitable for inclusion in a preg_replace()
+ * replacement parameter.
+ *
+ * @param string $string
+ * @return string
+ */
+function wfRegexReplacement( $string ) {
+	$string = str_replace( '\\', '\\\\', $string );
+	$string = str_replace( '$', '\\$', $string );
+	return $string;
+}
+
 ?>
