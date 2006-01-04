@@ -32,7 +32,7 @@ function addWiki( $lang, $site, $dbName )
 	print "Initialising tables\n";
 	dbsource( "$maintenance/tables.sql", $dbw );
 	dbsource( "$IP/extensions/OAI/update_table.sql", $dbw );
-	$dbw->query( "INSERT INTO site_stats() VALUES ()" );
+	$dbw->query( "INSERT INTO site_stats(ss_row_id) VALUES (1)" );
 
 	$wgTitle = Title::newMainPage();
 	$wgArticle = new Article( $wgTitle );
@@ -161,16 +161,14 @@ See the [http://www.wikipedia.org Wikipedia portal] for other language Wikipedia
 ", '', false, false );
 	
 	print "Adding to dblists\n";
-	# Add to dblists
-	# Site dblist
-	$file = fopen( "$common/$site.dblist", "a" );
-	fwrite( $file, "$dbName\n" );
-	fclose( $file );
 
-	# All dblist
+	# Add to dblist
 	$file = fopen( "$common/all.dblist", "a" );
 	fwrite( $file, "$dbName\n" );
 	fclose( $file );
+	
+	# Update the sublists
+	system("cd $common && ./refresh-dblist");
 
 	print "Constructing interwiki SQL\n";
 	# Rebuild interwiki tables
