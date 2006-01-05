@@ -3,6 +3,29 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.5 ==
+
+January 5, 2006
+
+MediaWiki 1.5.5 is a security and bugfix maintenance release.
+
+Detection for uploads of Windows Metafile (.wmf) images has been added
+to help protect against a client-side vulnerability in unpatched Microsoft
+Windows operating systems.
+
+Sites which have enabled uploads and added non-standard file types
+(such as .ogg, .doc, or .pdf) should upgrade to this release to ensure
+that malicious .wmf files can't be uploaded with a fake extension;
+such files could put visitors to the site at risk.
+
+For more details on this, see:
+http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+
+Additionally, a maintenance script removeUnusedAccounts.php has been added;
+this replaces an older Perl script which had not been updated for the new
+schema in 1.5.
+
+
 == MediaWiki 1.5.4 ==
 
 December 21, 2005
