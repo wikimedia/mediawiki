@@ -132,7 +132,7 @@ class ImagePage extends Article {
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest,
 		       $wgUseImageResize, $wgRepositoryBaseUrl,
 		       $wgUseExternalEditor, $wgServer, $wgFetchCommonsDescriptions;
-		$full_url  = $this->img->getViewURL();
+		$full_url  = $this->img->getURL();
 		$anchoropen = '';
 		$anchorclose = '';
 
@@ -168,25 +168,29 @@ class ImagePage extends Article {
 					$width = floor( $width * $maxHeight / $height );
 					$height = $maxHeight;
 				}
-				if ( !$this->img->mustRender()
-				   && ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) ) {
+				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
 					if( $wgUseImageResize ) {
 						$thumbnail = $this->img->getThumbnail( $width );
 						if ( $thumbnail == null ) {
-							$url = $full_url;
+							$url = $this->img->getViewURL();
 						} else {
-							$url = $thumbnail->getUrl();
+							$url = $thumbnail->getURL();
 						}
 					} else {
 						# No resize ability? Show the full image, but scale
 						# it down in the browser so it fits on the page.
-						$url = $full_url;
+						$url = $this->img->getViewURL();
 					}
 					$anchoropen  = "<a href=\"{$full_url}\">";
-					$anchorclose = "</a><br />\n$anchoropen{$msg}</a>";
+					$anchorclose = "</a><br />";
+					if( $this->img->mustRender() ) {
+						$showLink = true;
+					} else {
+						$anchorclose .= "\n$anchoropen{$msg}</a>";
+					}
 				} else {
-					$url = $full_url;
-					$showLink = $this->img->mustRender();
+					$url = $this->img->getViewURL();
+					$showLink = true;
 				}
 				$wgOut->addHTML( '<div class="fullImageLink" id="file">' . $anchoropen .
 				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
@@ -200,40 +204,35 @@ class ImagePage extends Article {
 					$icon->toHtml() .
 					'</a></div>' );
 				}
-
+				
 				$showLink = true;
 			}
 
 
 			if ($showLink) {
-				$s= $sk->makeMediaLink( $this->img->getName(), '', '', true );
-				$info= wfMsg( 'fileinfo', ceil($this->img->getSize()/1024.0), $this->img->getMimeType() );
-
+				$filename = wfEscapeWikiText( $this->img->getName() );
+				$info = wfMsg( 'fileinfo',
+					ceil($this->img->getSize()/1024.0),
+					$this->img->getMimeType() );
+	
 				if (!$this->img->isSafeFile()) {
-					$wgOut->addHTML("<div class=\"fullMedia\">");
-					$wgOut->addHTML("<span class=\"dangerousLink\">");
-					$wgOut->addHTML($s);
-					$wgOut->addHTML("</span>");
+					$warning = wfMsg( 'mediawarning' );
+					$wgOut->addWikiText( <<<END
+<div class="fullMedia">
+<span class="dangerousLink">[[Media:$filename|$filename]]</span>
+<span class="fileInfo"> ($info)</span>
+</div>
 
-					$wgOut->addHTML("<span class=\"fileInfo\"> (");
-					$wgOut->addWikiText( $info, false );
-					$wgOut->addHTML(")</span>");
-					$wgOut->addHTML("</div>");
-
-					#this should be formated a little nicer. Is CSS sufficient?
-					$wgOut->addHTML("<div class=\"mediaWarning\">");
-					$wgOut->addWikiText( wfMsg( 'mediawarning' ) );
-					$wgOut->addHTML('</div>');
-
+<div class="mediaWarning">$warning</div>
+END
+						);
 				} else {
-					$wgOut->addHTML("<div class=\"fullMedia\">");
-					$wgOut->addHTML($s);
-
-					$wgOut->addHTML("<span class=\"fileInfo\"> (");
-					$wgOut->addWikiText( $info, false );
-					$wgOut->addHTML(")</span>");
-
-					$wgOut->addHTML("</div>");
+					$wgOut->addWikiText( <<<END
+<div class="fullMedia">
+[[Media:$filename|$filename]] <span class="fileInfo"> ($info)</span>
+</div>
+END
+						);
 				}
 			}
 
@@ -367,7 +366,7 @@ class ImagePage extends Article {
 	{
 		global $wgUser, $wgOut, $wgRequest;
 
-		$confirm = $wgRequest->getBool( 'wpConfirmB' );
+		$confirm = $wgRequest->wasPosted();
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 

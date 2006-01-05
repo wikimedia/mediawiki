@@ -6,18 +6,18 @@
 
 /** */
 require_once( 'Revision.php' );
+require_once( 'ExternalStoreDB.php' );
 
 /** @todo document */
-function compressOldPages( $start = 0 ) {
+function compressOldPages( $start = 0, $extdb = '' ) {
 	$fname = 'compressOldPages';
 
 	$chunksize = 50;
 	print "Starting from old_id $start...\n";
 	$dbw =& wfGetDB( DB_MASTER );
-	$old = $dbw->tableName( 'old' );
 	do {
 		$end = $start + $chunksize;
-		$res = $dbw->select( 'old', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
+		$res = $dbw->select( 'text', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
 			"old_id>=$start", $fname, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
 		if( $dbw->numRows( $res ) == 0 ) {
 			break;
@@ -25,7 +25,7 @@ function compressOldPages( $start = 0 ) {
 		$last = $start;
 		while( $row = $dbw->fetchObject( $res ) ) {
 			# print "  {$row->old_id} - {$row->old_namespace}:{$row->old_title}\n";
-			compressPage( $row );
+			compressPage( $row, $extdb );
 			$last = $row->old_id;
 		}
 		$dbw->freeResult( $res );
@@ -35,16 +35,28 @@ function compressOldPages( $start = 0 ) {
 }
 
 /** @todo document */
-function compressPage( $row ) {
+function compressPage( $row, $extdb ) {
 	$fname = 'compressPage';
-	if( false !== strpos( $row->old_flags, "gzip" ) ) {
-		print "Already compressed row {$row->old_id}?\n";
+	if ( false !== strpos( $row->old_flags, 'gzip' ) || false !== strpos( $row->old_flags, 'object' ) ) {
+		#print "Already compressed row {$row->old_id}\n";
 		return false;
 	}
 	$dbw =& wfGetDB( DB_MASTER );
 	$flags = $row->old_flags ? "{$row->old_flags},gzip" : "gzip";
 	$compress = gzdeflate( $row->old_text );
-	$dbw->update( 'old', 
+
+	# Store in external storage if required
+	if ( $extdb !== '' ) {
+		$storeObj = new ExternalStoreDB;
+		$compress = $storeObj->store( $extdb, $compress );
+		if ( $compress === false ) {
+			print "Unable to store object\n";
+			return false;
+		}
+	}
+
+	# Update text row
+	$dbw->update( 'text', 
 		array( /* SET */
 			'old_flags' => $flags,
 			'old_text' => $compress
@@ -71,6 +83,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$maxPageId = $dbr->selectField( 'page', 'max(page_id)', '', $fname );
 	$pageConds = array();
 
+	/*
 	if ( $exclude_ns0 ) {
 		print "Excluding main namespace\n";
 		$pageConds[] = 'page_namespace<>0';
@@ -78,10 +91,13 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	if ( $queryExtra ) {
                 $pageConds[] = $queryExtra;
 	}
+	 */
 
 	# For each article, get a list of revisions which fit the criteria
 	# No recompression, use a condition on old_flags
-	$conds = array("old_flags NOT LIKE '%object%'");
+	$conds = array(
+		"old_flags NOT LIKE '%object%' " .
+		" AND (old_flags NOT LIKE '%external%' OR old_text NOT LIKE 'DB://%/%/%')");
 	
 	if ( $beginDate ) {
 		$conds[] = "rev_timestamp>'" . $beginDate . "'";
@@ -197,7 +213,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 				$dbw->update( 'text',
 					array( /* SET */
 						'old_text' => serialize( $chunk ),
-						'old_flags' => 'object',
+						'old_flags' => 'object,utf-8',
 					), array( /* WHERE */
 						'old_id' => $primaryOldid
 					)
@@ -210,7 +226,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 						$dbw->update( 'text',
 							array( /* SET */
 								'old_text' => $stubs[$j],
-								'old_flags' => 'object',
+								'old_flags' => 'object,utf-8',
 							), array( /* WHERE */
 								'old_id' => $revs[$i + $j]->rev_text_id
 							)

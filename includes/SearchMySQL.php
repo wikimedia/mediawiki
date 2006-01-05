@@ -61,9 +61,9 @@ class SearchMySQL extends SearchEngine {
 	 */
 	function queryRedirect() {
 		if( $this->showRedirects ) {
-			return 'AND cur_is_redirect=0';
-		} else {
 			return '';
+		} else {
+			return 'AND page_is_redirect=0';
 		}
 	}
 	

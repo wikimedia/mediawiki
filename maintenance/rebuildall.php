@@ -30,7 +30,7 @@ rebuildRecentChangesTablePass2();
 # rebuildLinkTables();
 
 # Use the slow incomplete one instead. It's designed to work in the background
-print "\n\n** Rebuilding links tables -- this can take a long time. It should be safe to about via ctrl+C if you get bored.\n";
+print "\n\n** Rebuilding links tables -- this can take a long time. It should be safe to abort via ctrl+C if you get bored.\n";
 refreshLinks( 1 );
 
 print "Done.\n";
