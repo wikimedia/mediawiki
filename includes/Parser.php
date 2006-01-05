@@ -73,7 +73,7 @@ define( 'EXT_IMAGE_REGEX',
  *   performs brace substitution on MediaWiki messages
  *
  * Globals used:
- *    objects:   $wgLang, $wgLinkCache
+ *    objects:   $wgLang
  *
  * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
  *
@@ -1222,7 +1222,7 @@ class Parser
 	 * @access private
 	 */
 	function replaceInternalLinks( $s ) {
-		global $wgContLang, $wgLinkCache;
+		global $wgContLang;
 		static $fname = 'Parser::replaceInternalLinks' ;
 
 		wfProfileIn( $fname );
@@ -3328,7 +3328,7 @@ class Parser
 	 * $options is a bit field, RLH_FOR_UPDATE to select for update
 	 */
 	function replaceLinkHolders( &$text, $options = 0 ) {
-		global $wgUser, $wgLinkCache;
+		global $wgUser;
 		global $wgOutputReplace;
 
 		$fname = 'Parser::replaceLinkHolders';
@@ -3336,7 +3336,8 @@ class Parser
 
 		$pdbks = array();
 		$colours = array();
-		$sk = $this->mOptions->getSkin();
+		$sk =& $this->mOptions->getSkin();
+		$linkCache =& LinkCache::singleton();
 
 		if ( !empty( $this->mLinkHolders['namespaces'] ) ) {
 			wfProfileIn( $fname.'-check' );
@@ -3363,10 +3364,10 @@ class Parser
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
 					$colours[$pdbk] = 1;
-				} elseif ( ( $id = $wgLinkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
+				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
 					$colours[$pdbk] = 1;
 					$this->mOutput->addLink( $title, $id );
-				} elseif ( $wgLinkCache->isBadLink( $pdbk ) ) {
+				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
 					$colours[$pdbk] = 0;
 				} else {
 					# Not in the link cache, add it to the query
@@ -3402,7 +3403,7 @@ class Parser
 				while ( $s = $dbr->fetchObject($res) ) {
 					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 					$pdbk = $title->getPrefixedDBkey();
-					$wgLinkCache->addGoodLinkObj( $s->page_id, $title );
+					$linkCache->addGoodLinkObj( $s->page_id, $title );
 					$this->mOutput->addLink( $title, $s->page_id );
 
 					if ( $threshold >  0 ) {
@@ -3427,7 +3428,7 @@ class Parser
 				$searchkey = "<!--LINK $key-->";
 				$title = $this->mLinkHolders['titles'][$key];
 				if ( empty( $colours[$pdbk] ) ) {
-					$wgLinkCache->addBadLinkObj( $title );
+					$linkCache->addBadLinkObj( $title );
 					$colours[$pdbk] = 0;
 					$this->mOutput->addLink( $title, 0 );
 					$wgOutputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,

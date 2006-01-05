@@ -53,12 +53,10 @@ class WantedPagesPage extends QueryPage {
 	 * Fetch user page links and cache their existence
 	 */
 	function preprocessResults( &$db, &$res ) {
-		global $wgLinkCache;
-
 		$batch = new LinkBatch;
 		while ( $row = $db->fetchObject( $res ) )
 			$batch->addObj( Title::makeTitleSafe( $row->namespace, $row->title ) );
-		$batch->execute( $wgLinkCache );
+		$batch->execute();
 
 		// Back to start for display
 		if ( $db->numRows( $res ) > 0 )

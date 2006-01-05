@@ -18,7 +18,6 @@ require_once( 'Revision.php' );
 function wfSpecialRecentchanges( $par, $specialPage ) {
 	global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
 	global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
-	global $wgLinkCache;
 	$fname = 'wfSpecialRecentchanges';
 
 	# Get query parameters
@@ -168,7 +167,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		# Web output...
 
 		// Run existence checks
-		$batch->execute( $wgLinkCache );
+		$batch->execute();
 
 		// Output header
 		if ( !$specialPage->including() ) {

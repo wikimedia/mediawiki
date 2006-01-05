@@ -1453,7 +1453,6 @@ class Image
 	 * This is mostly copied from Title::getLinksTo()
 	 */
 	function getLinksTo( $options = '' ) {
-		global $wgLinkCache;
 		$fname = 'Image::getLinksTo';
 		wfProfileIn( $fname );
 		
@@ -1462,6 +1461,7 @@ class Image
 		} else {
 			$db =& wfGetDB( DB_SLAVE );
 		}
+		$linkCache =& LinkCache::singleton();
 
 		extract( $db->tableNames( 'page', 'imagelinks' ) );
 		$encName = $db->addQuotes( $this->name );
@@ -1472,7 +1472,7 @@ class Image
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-					$wgLinkCache->addGoodLinkObj( $row->page_id, $titleObj );
+					$linkCache->addGoodLinkObj( $row->page_id, $titleObj );
 					$retVal[] = $titleObj;
 				}
 			}

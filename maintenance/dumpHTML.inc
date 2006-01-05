@@ -193,8 +193,6 @@ class DumpHTML {
 	}
 
 	function doRedirects() {
-		global $wgLinkCache;
-		
 		print "Doing redirects...\n";
 		$fname = 'DumpHTML::doRedirects';
 		$this->setupGlobals();
@@ -357,8 +355,10 @@ class DumpHTML {
 
 	/** Reads the content of a title object, executes the skin and captures the result */
 	function getArticleHTML( &$title ) {
-		global $wgOut, $wgTitle, $wgArticle, $wgUser, $wgLinkCache;
+		global $wgOut, $wgTitle, $wgArticle, $wgUser;
 		
+		$linkCache =& LinkCache::singleton();
+		$linkCache->clear();
 		$wgTitle = $title;
 		if ( is_null( $wgTitle ) ) {
 			return false;
@@ -368,7 +368,6 @@ class DumpHTML {
 		if ( $ns == NS_SPECIAL ) {
 			$wgOut = new OutputPage;
 			$wgOut->setParserOptions( new ParserOptions );
-			$wgLinkCache = new LinkCache;
 			SpecialPage::executePath( $wgTitle );
 		} else {
 			if ( $ns == NS_IMAGE ) {
@@ -384,7 +383,6 @@ class DumpHTML {
 			} else {
 				$wgOut = new OutputPage;
 				$wgOut->setParserOptions( new ParserOptions );
-				$wgLinkCache = new LinkCache;
 		
 				$wgArticle->view();
 			}

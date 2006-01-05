@@ -219,13 +219,13 @@ class OutputPage {
 	 * Add an array of categories, with names in the keys
 	 */
 	function addCategoryLinks($categories) {
-		global $wgUser, $wgLinkCache, $wgContLang;
+		global $wgUser, $wgContLang;
 
 		# Add the links to the link cache in a batch
 		$arr = array( NS_CATEGORY => $categories );
 		$lb = new LinkBatch;
 		$lb->setArray( $arr );
-		$lb->execute( $wgLinkCache );
+		$lb->execute();
 
 		$sk =& $wgUser->getSkin();
 		foreach ( $categories as $category => $arbitrary ) {
