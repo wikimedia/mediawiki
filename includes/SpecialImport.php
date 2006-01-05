@@ -197,8 +197,8 @@ class WikiRevision {
 		}
 
 		// avoid memory leak...?
-		global $wgLinkCache;
-		$wgLinkCache->clear();
+		$linkCache =& LinkCache::singleton();
+		$linkCache->clear();
 		
 		$article = new Article( $this->title );
 		$pageId = $article->getId();

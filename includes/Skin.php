@@ -1276,13 +1276,10 @@ END;
 	}
 
 	function dateLink() {
-		global $wgLinkCache;
 		$t1 = Title::newFromText( gmdate( 'F j' ) );
 		$t2 = Title::newFromText( gmdate( 'Y' ) );
 
-		$wgLinkCache->suspend();
 		$id = $t1->getArticleID();
-		$wgLinkCache->resume();
 
 		if ( 0 == $id ) {
 			$s = $this->makeBrokenLink( $t1->getText() );
@@ -1291,9 +1288,7 @@ END;
 		}
 		$s .= ', ';
 
-		$wgLinkCache->suspend();
 		$id = $t2->getArticleID();
-		$wgLinkCache->resume();
 
 		if ( 0 == $id ) {
 			$s .= $this->makeBrokenLink( $t2->getText() );
@@ -1304,7 +1299,7 @@ END;
 	}
 
 	function talkLink() {
-		global $wgTitle, $wgLinkCache;
+		global $wgTitle;
 
 		if ( NS_SPECIAL == $wgTitle->getNamespace() ) {
 			# No discussion links for special pages
@@ -1334,15 +1329,13 @@ END;
 			$text = wfMsg( 'talkpage' );
 		}
 
-		$wgLinkCache->suspend();
 		$s = $this->makeLinkObj( $link, $text );
-		$wgLinkCache->resume();
 
 		return $s;
 	}
 
 	function commentLink() {
-		global $wgContLang, $wgTitle, $wgLinkCache;
+		global $wgContLang, $wgTitle;
 
 		if ( $wgTitle->getNamespace() == NS_SPECIAL ) {
 			return '';

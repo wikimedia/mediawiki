@@ -66,9 +66,6 @@ $wgContLang
 $wgArticle
 	Article object corresponding to $wgTitle.
 
-$wgLinkCache
-	LinkCache object.
-
 $wgParser
 	Parser object. Parser extensions register their
 	hooks here.

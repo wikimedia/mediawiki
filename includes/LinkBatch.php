@@ -45,12 +45,21 @@ class LinkBatch {
 	function setArray( $array ) {
 		$this->data = $array;
 	}
-
+	
 	/**
-	 * Do the query and add the results to a LinkCache object
+	 * Do the query and add the results to the LinkCache object
 	 * Return an array mapping PDBK to ID
 	 */
-	function execute( &$cache ) {
+	 function execute() {
+	 	$linkCache =& LinkCache::singleton();
+	 	$this->executeInto( $linkCache );
+	 }
+
+	/**
+	 * Do the query and add the results to a given LinkCache object
+	 * Return an array mapping PDBK to ID
+	 */
+	function executeInto( &$cache ) {
 		$fname = 'LinkBatch::execute';
 		wfProfileIn( $fname );
 		// Do query

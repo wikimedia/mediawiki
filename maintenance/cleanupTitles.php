@@ -193,8 +193,8 @@ class TitleCleanup extends FiveUpgrade {
 				),
 				array( 'page_id' => $row->page_id ),
 				'cleanupTitles::moveInconsistentPage' );
-			global $wgLinkCache;
-			$wgLinkCache->clear();
+			$linkCache =& LinkCache::singleton();
+			$linkCache->clear();
 		}
 	}
 	

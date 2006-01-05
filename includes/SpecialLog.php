@@ -241,7 +241,6 @@ class LogViewer {
 	 * @return object database result set
 	 */
 	function getLogRows() {
-		global $wgLinkCache;
 		$result = $this->reader->getRows();
 		$this->numResults = 0;
 
@@ -260,7 +259,7 @@ class LogViewer {
 			}
 			++$this->numResults;
 		}
-		$batch->execute( $wgLinkCache );
+		$batch->execute();
 
 		return $result;
 	}
@@ -298,17 +297,18 @@ class LogViewer {
 	 * @private
 	 */
 	function logLine( $s ) {
-		global $wgLang, $wgLinkCache;
+		global $wgLang;
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$user = Title::makeTitleSafe( NS_USER, $s->user_name );
 		$time = $wgLang->timeanddate( wfTimestamp(TS_MW, $s->log_timestamp), true );
 
 		// Enter the existence or non-existence of this page into the link cache,
 		// for faster makeLinkObj() in LogPage::actionText()
+		$linkCache =& LinkCache::singleton();
 		if( $s->page_id ) {
-			$wgLinkCache->addGoodLinkObj( $s->page_id, $title );
+			$linkCache->addGoodLinkObj( $s->page_id, $title );
 		} else {
-			$wgLinkCache->addBadLinkObj( $title );
+			$linkCache->addBadLinkObj( $title );
 		}
 
 		$userLink = $this->skin->makeLinkObj( $user, htmlspecialchars( $s->user_name ) );

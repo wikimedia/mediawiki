@@ -1099,14 +1099,14 @@ class Title {
 	 * @access public
 	 */
 	function getArticleID( $flags = 0 ) {
-		global $wgLinkCache;
+		$linkCache =& LinkCache::singleton();
 		if ( $flags & GAID_FOR_UPDATE ) {
-			$oldUpdate = $wgLinkCache->forUpdate( true );
-			$this->mArticleID = $wgLinkCache->addLinkObj( $this );
-			$wgLinkCache->forUpdate( $oldUpdate );
+			$oldUpdate = $linkCache->forUpdate( true );
+			$this->mArticleID = $linkCache->addLinkObj( $this );
+			$linkCache->forUpdate( $oldUpdate );
 		} else {
 			if ( -1 == $this->mArticleID ) {
-				$this->mArticleID = $wgLinkCache->addLinkObj( $this );
+				$this->mArticleID = $linkCache->addLinkObj( $this );
 			}
 		}
 		return $this->mArticleID;
@@ -1125,7 +1125,7 @@ class Title {
 
 	/**
 	 * This clears some fields in this object, and clears any associated
-	 * keys in the "bad links" section of $wgLinkCache.
+	 * keys in the "bad links" section of the link cache.
 	 *
 	 * - This is called from Article::insertNewArticle() to allow
 	 * loading of the new page_id. It's also called from
@@ -1135,8 +1135,8 @@ class Title {
 	 * @access public
 	 */
 	function resetArticleID( $newid ) {
-		global $wgLinkCache;
-		$wgLinkCache->clearBadLink( $this->getPrefixedDBkey() );
+		$linkCache =& LinkCache::singleton();
+		$linkCache->clearBadLink( $this->getPrefixedDBkey() );
 
 		if ( 0 == $newid ) { $this->mArticleID = -1; }
 		else { $this->mArticleID = $newid; }
@@ -1401,7 +1401,7 @@ class Title {
 	 * @access public
 	 */
 	function getLinksTo( $options = '', $table = 'pagelinks', $prefix = 'pl' ) {
-		global $wgLinkCache;
+		$linkCache =& LinkCache::singleton();
 		$id = $this->getArticleID();
 
 		if ( $options ) {
@@ -1423,7 +1423,7 @@ class Title {
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-					$wgLinkCache->addGoodLinkObj( $row->page_id, $titleObj );
+					$linkCache->addGoodLinkObj( $row->page_id, $titleObj );
 					$retVal[] = $titleObj;
 				}
 			}
@@ -1452,8 +1452,6 @@ class Title {
 	 * @access public
 	 */
 	function getBrokenLinksFrom( $options = '' ) {
-		global $wgLinkCache;
-
 		if ( $options ) {
 			$db =& wfGetDB( DB_MASTER );
 		} else {
@@ -1642,7 +1640,7 @@ class Title {
 	 * @access private
 	 */
 	function moveOverExistingRedirect( &$nt, $reason = '' ) {
-		global $wgUser, $wgLinkCache, $wgUseSquid, $wgMwRedir;
+		global $wgUser, $wgUseSquid, $wgMwRedir;
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 
@@ -1655,6 +1653,7 @@ class Title {
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
+		$linkCache =& LinkCache::singleton();
 
 		# Delete the old redirect. We don't save it to history since
 		# by definition if we've got here it's rather uninteresting.
@@ -1679,7 +1678,7 @@ class Title {
 			/* WHERE */ array( 'page_id' => $oldid ),
 			$fname
 		);
-		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
+		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Recreate the redirect, this time in the other direction.
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
@@ -1691,7 +1690,7 @@ class Title {
 			'text'    => $redirectText ) );
 		$revid = $redirectRevision->insertOn( $dbw );
 		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
-		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
+		$linkCache->clearLink( $this->getPrefixedDBkey() );
 
 		# Log the move
 		$log = new LogPage( 'move' );
@@ -1722,7 +1721,7 @@ class Title {
 	 * @access private
 	 */
 	function moveToNewTitle( &$nt, &$newid, $reason = '' ) {
-		global $wgUser, $wgLinkCache, $wgUseSquid;
+		global $wgUser, $wgUseSquid;
 		global $wgMwRedir;
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
@@ -1734,8 +1733,8 @@ class Title {
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
 		$now = $dbw->timestamp();
-		wfSeedRandom();
 		$rand = wfRandom();
+		$linkCache =& LinkCache::singleton();
 
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid,
@@ -1755,7 +1754,7 @@ class Title {
 			$fname
 		);
 
-		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
+		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Insert redirect
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
@@ -1767,7 +1766,7 @@ class Title {
 			'text'    => $redirectText ) );
 		$revid = $redirectRevision->insertOn( $dbw );
 		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
-		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
+		$linkCache->clearLink( $this->getPrefixedDBkey() );
 
 		# Log the move
 		$log = new LogPage( 'move' );
