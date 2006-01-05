@@ -8,22 +8,33 @@
  * @subpackage Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
+
+# Options available
+$options = array( 'delete','help' );
  
 require_once( 'commandLine.inc' );
 require_once( 'removeUnusedAccounts.inc' );
-echo( "REMOVE UNUSED ACCOUNTS\nThis script will delete all users who have made no edits.\n\n" );
-echo( "Syntax: removeUnusedAccounts.php [delete]\n	* delete -> delete the accounts\n	* The first user (usually the site owner) is left alone\n\n" );
+
+# Default action (just report):
+$action = ACTION_REPORT;
 
 # Handle parameters
-if( isset( $args[0] ) ) {
-	$param = array_shift( $args );
-	if( $param == 'delete' ) {
-		$action = ACTION_DELETE;
-	} else {
-		$action = ACTION_REPORT;
-	}
-} else {
-	$action = ACTION_REPORT;
+if(@$options['help']) {
+echo <<<END
+This script will delete all users who have made no edits.
+
+usage:removeUnusedAccounts.php [--help|--delete]
+  --delete : delete the unused accounts
+  --help   : this help message
+
+NB: The first user (usually the site owner) is left alone
+
+END;
+die;
+}
+
+if(@$options['delete']) {
+	$action = ACTION_DELETE;
 }
 
 $count = 0;
@@ -45,11 +56,13 @@ foreach( $users as $user ) {
 echo( "done.\n" );
 
 # Purge the inactive accounts we found
-echo( $count . " inactive accounts found." );
+echo( $count . " inactive accounts found.\n" );
 if( ( $action == ACTION_DELETE ) && ( $count > 0 ) ) {
 	echo( " Deleting..." );
 	DeleteUsers( $del );
 	echo( "done.\n" );
+} else {
+	echo "\nYou can delete them by using the '--delete' switch (see help).\n";
 }
 
 ?>
