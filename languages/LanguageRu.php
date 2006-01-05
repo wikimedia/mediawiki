@@ -2030,8 +2030,11 @@ class LanguageRu extends LanguageUtf8 {
 		}
 	}
 
+	/**
+	 * Russian numeric format is 123 456,78
+	 */
 	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($number, '.,', ', ' );
+		return $year ? $number : strtr($this->commafy($number), '.,', ', ' );
 	}
 
 }
