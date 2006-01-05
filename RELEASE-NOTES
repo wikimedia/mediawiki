@@ -3,6 +3,25 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.4.13 ==
+
+(released January 5, 2006)
+
+MediaWiki 1.4.13 is a security maintenance release.
+
+Detection for uploads of Windows Metafile (.wmf) images has been added
+to help protect against a client-side vulnerability in unpatched Microsoft
+Windows operating systems.
+
+Sites which have enabled uploads and added non-standard file types
+(such as .ogg, .doc, or .pdf) should upgrade to this release to ensure
+that malicious .wmf files can't be uploaded with a fake extension;
+such files could put visitors to the site at risk.
+
+For more details on this, see:
+http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+
+
 == MediaWiki 1.4.12 ==
 
 (released 2005-11-02)
