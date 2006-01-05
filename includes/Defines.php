@@ -76,22 +76,23 @@ define( 'MW_MATH_MATHML', 5 );
  * @todo Is this necessary?
  */
 $wgAvailableRights = array(
-	'read',
-	'edit',
-	'move',
-	'delete',
-	'protect',
 	'block',
-	'userrights',
-	'createaccount',
-	'upload',
-	'rollback',
-	'patrol',
-	'editinterface',
-	'siteadmin',
 	'bot',
+	'createaccount',
+	'delete',
+	'edit',
+	'editinterface',
 	'import',
-	'importupload'
+	'importupload',
+	'move',
+	'patrol',
+	'protect',
+	'read',
+	'rollback',
+	'siteadmin',
+	'unwatchedpages',
+	'upload',
+	'userrights',
 );
 
 /**#@+
