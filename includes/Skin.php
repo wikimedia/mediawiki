@@ -35,26 +35,6 @@ unset($matches);
 require_once( 'RecentChange.php' );
 
 /**
- * @todo document
- * @package MediaWiki
- */
-class RCCacheEntry extends RecentChange
-{
-	var $secureName, $link;
-	var $curlink , $difflink, $lastlink , $usertalklink , $versionlink ;
-	var $userlink, $timestamp, $watched;
-
-	function newFromParent( $rc )
-	{
-		$rc2 = new RCCacheEntry;
-		$rc2->mAttribs = $rc->mAttribs;
-		$rc2->mExtra = $rc->mExtra;
-		return $rc2;
-	}
-} ;
-
-
-/**
  * The main skin class that provide methods and properties for all other skins
  * including PHPTal skins.
  * This base class is also the "Standard" skin.
