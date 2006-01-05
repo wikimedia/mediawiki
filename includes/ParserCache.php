@@ -11,6 +11,18 @@
  */
 class ParserCache {
 	/**
+	 * Get an instance of this object
+	 */
+	function &singleton() {
+		static $instance;
+		if ( !isset( $instance ) ) {
+			global $parserMemc;
+			$instance = new ParserCache( $parserMemc );
+		}
+		return $instance;
+	}
+		
+	/**
 	 * Setup a cache pathway with a given back-end storage mechanism.
 	 * May be a memcached client or a BagOStuff derivative.
 	 *

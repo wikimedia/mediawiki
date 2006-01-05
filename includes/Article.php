@@ -701,11 +701,12 @@ class Article {
 	function view()	{
 		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol, $wgParser;
-		global $wgParserCache, $wgUseTrackbacks;
+		global $wgUseTrackbacks;
 		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
 		wfProfileIn( $fname );
+		$parserCache =& ParserCache::singleton();
 		# Get variables from query string
 		$oldid = $this->getOldID();
 
@@ -743,7 +744,7 @@ class Article {
 		}
 
 		if ( empty( $oldid ) && $this->checkTouched() ) {
-			$wgOut->setETag($wgParserCache->getETag($this, $wgUser));
+			$wgOut->setETag($parserCache->getETag($this, $wgUser));
 
 			if( $wgOut->checkLastModified( $this->mTouched ) ){
 				wfProfileOut( $fname );
@@ -2100,7 +2101,7 @@ class Article {
 	 * @param string $text
 	 */
 	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid) {
-		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgParser, $wgParserCache;
+		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgParser;
 
 		$fname = 'Article::editUpdates';
 		wfProfileIn( $fname );
@@ -2110,7 +2111,8 @@ class Article {
 		$poutput = $wgParser->parse( $text, $this->mTitle, $options, true, true, $newid );
 
 		# Save it to the parser cache
-		$wgParserCache->save( $poutput, $this, $wgUser );
+		$parserCache =& ParserCache::singleton();
+		$parserCache->save( $poutput, $this, $wgUser );
 
 		# Update the links tables
 		$u = new LinksUpdate( $this->mTitle, $poutput );

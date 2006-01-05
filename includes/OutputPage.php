@@ -308,13 +308,14 @@ class OutputPage {
 	 * Saves the text into the parser cache if possible
 	 */
 	function addPrimaryWikiText( $text, $article, $cache = true ) {
-		global $wgParser, $wgParserCache, $wgUser;
+		global $wgParser, $wgUser;
 
 		$parserOutput = $wgParser->parse( $text, $article->mTitle,
 			$this->mParserOptions, true, true, $this->mRevisionId );
 
 		if ( $article && $parserOutput->getCacheTime() != -1 ) {
-			$wgParserCache->save( $parserOutput, $article, $wgUser );
+			$parserCache =& ParserCache::singleton();
+			$parserCache->save( $parserOutput, $article, $wgUser );
 		}
 
 		$this->addParserOutput( $parserOutput );
@@ -348,8 +349,8 @@ class OutputPage {
 	 * @return bool
 	 */
 	function tryParserCache( $article, $user ) {
-		global $wgParserCache;
-		$parserOutput = $wgParserCache->get( $article, $user );
+		$parserCache =& ParserCache::singleton();
+		$parserOutput = $parserCache->get( $article, $user );
 		if ( $parserOutput !== false ) {
 			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 			$this->addCategoryLinks( $parserOutput->getCategories() );

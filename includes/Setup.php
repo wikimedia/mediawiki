@@ -281,7 +281,6 @@ $wgPostCommitUpdateList = array();
 
 $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
-$wgParserCache = new ParserCache( $messageMemc );
 
 if ( $wgUseXMLparser ) {
 	require_once( 'ParserXML.php' );
