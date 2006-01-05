@@ -161,14 +161,17 @@ class Title {
 	 * @access public
 	 */
 	function newFromURL( $url ) {
+		global $wgLegalTitleChars;
 		$t = new Title();
 
-		# For compatibility with old buggy URLs. "+" is not valid in titles,
+		# For compatibility with old buggy URLs. "+" is usually not valid in titles,
 		# but some URLs used it as a space replacement and they still come
 		# from some external search tools.
-		$s = str_replace( '+', ' ', $url );
+		if ( strpos( $wgLegalTitleChars, '+' ) === false ) {
+			$url = str_replace( '+', ' ', $url );
+		}
 
-		$t->mDbkeyform = str_replace( ' ', '_', $s );
+		$t->mDbkeyform = str_replace( ' ', '_', $url );
 		if( $t->secureAndSplit() ) {
 			return $t;
 		} else {
