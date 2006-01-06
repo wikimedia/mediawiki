@@ -50,7 +50,7 @@ class MovePageForm {
 		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
 		$this->reason = $wgRequest->getText( 'wpReason' );
 		$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
-		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' );
+		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
 	}
 	
 	function showForm( $err ) {
@@ -90,12 +90,21 @@ class MovePageForm {
 		if ( $err == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
 			$wgOut->addWikiText( wfMsg( 'delete_and_move_text', $encNewTitle ) );
 			$movepagebtn = wfMsgHtml( 'delete_and_move' );
+			$confirmText = wfMsgHtml( 'delete_and_move_confirm' );
 			$submitVar = 'wpDeleteAndMove';
+			$confirm = "
+				<tr>
+					<td align='right'>
+						<input type='checkbox' name='wpConfirm' id='wpConfirm' value=\"true\" />
+					</td>
+					<td align='left'><label for='wpConfirm'>{$confirmText}</label></td>
+				</tr>";
 			$err = '';
 		} else {
 			$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
 			$movepagebtn = wfMsgHtml( 'movepagebtn' );
 			$submitVar = 'wpMove';
+			$confirm = false;
 		}
 
 		if ( !$ot->isTalkPage() ) {
@@ -149,6 +158,7 @@ class MovePageForm {
 		</tr>" );
 		}
 		$wgOut->addHTML( "
+		{$confirm}
 		<tr>
 			<td>&nbsp;</td>
 			<td align='left'>
