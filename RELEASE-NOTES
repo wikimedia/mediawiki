@@ -410,6 +410,7 @@ fully support the editing toolbar, but was found to be too confusing.
   MIME type to the default blacklist. Prevented inline display of images
   which are not of known image types. This is in response to
   http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+* (bug 4507) Adjust FULLPAGENAMEE escaping to standard form
 
 
 === Caveats ===
