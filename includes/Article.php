@@ -1965,10 +1965,16 @@ class Article {
 		global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
 		$fname = 'Article::rollback';
 
-		if ( ! $wgUser->isAllowed('rollback') ) {
+		if( $wgUser->isAllowed( 'rollback' ) ) {
+			if( $wgUser->isBlocked() ) {
+				$wgOut->blockedPage();
+				return;
+			}
+		} else {
 			$wgOut->sysopRequired();
 			return;
 		}
+
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage( $this->getContent( true ) );
 			return;
