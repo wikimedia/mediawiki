@@ -7,7 +7,7 @@
  * - recent changes
  */
 
-
+require_once("RecentChange.php");
 /**
  * @todo document
  * @package MediaWiki
