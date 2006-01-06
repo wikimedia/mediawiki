@@ -362,7 +362,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'newusersonly'       => ' (chỉ dành cho thành viên mới)',
 'remembermypassword' => 'Nhớ mật khẩu (cookie)',
 'loginproblem'       => '<b>Trục trặc đăng nhập.</b><br />Mời thử lại!',
-'alreadyloggedin'    => '<font color=red>\'\'\'$1, bạn đã đăng nhập rồi!\'\'\'</font><br />',
+'alreadyloggedin'    => '\'\'\'$1, bạn đã đăng nhập rồi!\'\'\'<br />',
 
 'login'         => 'Đăng nhập',
 'loginprompt'	=> 'Bạn cần bật cookie để đăng nhập vào {{SITENAME}}.',
@@ -469,10 +469,10 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 "yourdiff"  => "Khác",
 "copyrightwarning" => "*Xin dùng [[{{ns:4}}:Chỗ thử|chỗ thử soạn thảo]] nếu bạn chỉ muốn thử nghiệm.
 *Xin đọc thêm hướng dẫn về [[Trợ giúp:Soạn thảo|soạn thảo]] và [[Trợ giúp:Viết bài mới|viết bài mới]].
-*Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>",
+*Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br /><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>",
 'copyrightwarning2' => "*Xin dùng [[{{ns:4}}:Chỗ thử|chỗ thử soạn thảo]] nếu bạn chỉ muốn thử nghiệm.
 *Xin đọc thêm hướng dẫn về [[Trợ giúp:Soạn thảo|soạn thảo]] và [[Trợ giúp:Viết bài mới|viết bài mới]].
-*Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>",
+*Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br /><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>",
 "longpagewarning" => "<strong>Chú ý : Trang này dài $1 kb; nhiều trình duyệt không tải được trang dài hơn 32 kb. Bạn nên chia nhỏ trang này thành nhiều trang.</strong>",
 "readonlywarning" => "<strong>Chú ý : trang này bị khóa để bảo trì. Bạn chỉ có thể sao nội dung để sửa đổi trên máy cá nhân.</strong>",
 "protectedpagewarning" => "<strong>Chú ý : trang này bị khóa. Chỉ có quản lý viên mới sửa được. Chú ý tuân thủ [[{{ns:4}}:Trang_bị_khóa|quy định về trang bị khóa]].<strong>",
@@ -632,7 +632,7 @@ Xem thêm [[{{ns:4}}:Trợ giúp cho Lựa chọn cá nhân]].",
 'uploadnologin' => 'Chưa đăng nhập',
 'uploadnologintext' => "Bạn phải [[Đặc_biệt:Userlogin|đăng nhập]] để tải lên tệp tin.",
 'uploaderror'  => "Lỗi",
-'uploadtext'   => "'''Chú ý!''': nếu có thể, xin mời bạn truyền hình ảnh lên [[Commons:Wikimedia Commons|kho hình chung Wikimedia]].<br>
+'uploadtext'   => "'''Chú ý!''': nếu có thể, xin mời bạn truyền hình ảnh lên [[Commons:Wikimedia Commons|kho hình chung Wikimedia]].<br />
 Trước khi truyền hình lên:
 *Kiểm tra hình ảnh đã tải lên trước đây tại [[Đặc_biệt:Imagelist|danh sách những hình đã tải lên]].
 Khi truyền hình lên:
@@ -817,7 +817,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'unwatchthispage' => 'Ngừng theo dõi',
 'notanarticle'	=> 'Không phải bài viết',
 'watchnochange' => 'Không có trang nào bạn theo dõi được sửa đổi.',
-'watchdetails' => "* Bạn theo dõi $1 trang không kể trang thảo luận. $3 <br>
+'watchdetails' => "* Bạn theo dõi $1 trang không kể trang thảo luận. $3 <br />
 *[$4 Xem và sửa lại danh sách]", // Looxix
 'watchmethod-recent'=> 'Dưới đây hiện thay đổi mới với các trang theo dõi.',
 'watchmethod-list'  => 'Dưới đây hiện danh sách các trang theo dõi.',
@@ -1062,7 +1062,7 @@ Hãy gõ tên của thành viên cần phong quyền quản lý vào ô này và
 'movepagetext'  => 'Dùng mẫu dưới đây sẽ đổi tên một trang, đồng thời chuyển tất cả lịch sử của nó sang tên mới.
 *Tên cũ sẽ tự động đổi hướng sang tên mới.
 *Trang sẽ <b>không</b> bị chuyển nếu đã có một trang tại tên mới, trừ khi nó rỗng hoặc là trang đổi hướng và không có lịch sử sửa đổi. Điều này có nghĩa là bạn có thể đổi tên một trang lại như trước lúc nó được đổi tên nếu bạn nhầm, và bạn không thể ghi đè một trang đã có sẵn.
-*Những liên kết đến tên trang cũ sẽ không thay đổi; cần [[Đặc_biệt:DoubleRedirects|kiểm tra]] những trang chuyển hướng kép và sai.<br>
+*Những liên kết đến tên trang cũ sẽ không thay đổi; cần [[Đặc_biệt:DoubleRedirects|kiểm tra]] những trang chuyển hướng kép và sai.<br />
 <b>Bạn phải đảm bảo những liên kết tiếp tục trỏ đến đúng trang cần thiết.</b>',
 'movepagetalktext' => 'Trang thảo luận đi kèm nếu có, sẽ được tự động chuyển theo \'\'\'trừ khi:\'\'\'
 *Bạn đang chuyển xuyên qua không gian tên,

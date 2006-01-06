@@ -143,13 +143,13 @@ global $wgRightsText;
 'tog-showtoolbar'		=> 'Taispeáin an barra uirlisí eagair (JavaScript)',
 "tog-editondblclick"	    => "Cuir leathanaigh in eagar le déchliceáil (JavaScript)",
 "tog-editsection"	       =>"Cumasaigh mír-eagarthóireacht le naisc mar seo: [athrú]",
-"tog-editsectiononrightclick"   =>"Cumasaigh mír-eagarthóireacht le deaschliceáil<br> ar ceannteidil (JavaScript)",
+"tog-editsectiononrightclick"   =>"Cumasaigh mír-eagarthóireacht le deaschliceáil<br /> ar ceannteidil (JavaScript)",
 "tog-showtoc"	           =>"Taispeáin an clár ábhair (d'ailt le níos mó ná 3 ceannteidil)",
 "tog-rememberpassword"	  => "Cuimhnigh m'fhocal faire",
 "tog-editwidth"	         => "Cuir uasmhéid ar an mbosca eagair",
 "tog-watchdefault"	      => "Déan faire ar leathanaigh a athraíonn tú",
 "tog-minordefault"	      => "Déan mionathrú de gach aon athrú, mar réamhshocrú",
-"tog-previewontop"	      => "Cuir an réamhamharc os cionn an bhosca eagair, <br>agus ná cuir é taobh thíos de",
+"tog-previewontop"	      => "Cuir an réamhamharc os cionn an bhosca eagair, <br />agus ná cuir é taobh thíos de",
 'tog-previewonfirst'	    => 'Taispeáin réamhamharc don chéad athrú',
 "tog-nocache"	           => "Ciorraigh taisce na leathanach",
 
@@ -452,7 +452,7 @@ Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta Vicipéi
 "remembermypassword" => "Cuimhnigh orm",
 "yourdomainname"       => "D'fhearann",
 'externaldberror'      => 'Bhí earráid bhunachair sonraí ann maidir le fíordheimhniú seachtrach, nóThere was either an external authentication database error or you are not allowed to update your external account.',
-"loginproblem"  => "<b>Bhí fadhb ann maidir leis an logáil isteach.</b><br>Déan iarracht eile!",
+"loginproblem"  => "<b>Bhí fadhb ann maidir leis an logáil isteach.</b><br />Déan iarracht eile!",
 "alreadyloggedin" => "<strong>A húsáideoir $1, tá tú logáilte isteach cheana féin!</strong><br />",
 
 "login"     => "Logáil isteach",
@@ -508,7 +508,7 @@ chun fíordheimhniú a dhéanamh. Chun fíordheimhniú a dhéanamh gur leatsa an
 'acct_creation_throttle_hit' => 'Tá brón orainn, ach tá tú i ndiadh $1 cuntas á chruthú. Ní féidir leat níos mó a dhéanamh.',
 
 'emailauthenticated'    => 'D\'fhíordheimhníodh do sheoladh ríomhphoist ar $1.',
-'emailnotauthenticated' => '<strong>Ní dhearna fíordheimhniú</strong> ar do sheoladh ríomhphoist fós, agu díchumasaítear na hardtréithe ríomhphoist go dtí go fíordheimhneofaí é <strong>(d.c.f.)</strong>.<br>
+'emailnotauthenticated' => '<strong>Ní dhearna fíordheimhniú</strong> ar do sheoladh ríomhphoist fós, agu díchumasaítear na hardtréithe ríomhphoist go dtí go fíordheimhneofaí é <strong>(d.c.f.)</strong>.<br />
 Chun fíordheimhniú a dhéanamh, logáil isteach leis an focal faire neamhbhuan atá seolta chugat, nó iarr ar ceann nua ar an leathanach logála istigh.',
 'invalidemailaddress'   => 'Ní féidir an seoladh ríomhphoist a ghlacadh leis mar is dócha go bhfuil formáid neamhbhailí aige.
 
@@ -555,7 +555,7 @@ téacs sa bhosca eolais le haghaidh gearr agus greamaithe.\\nSámpla:\\nTaispeá
 "showpreview"   => "Taispeáin réamhamharc",
 "blockedtitle"  => "Tá an úsáideoir seo faoi chosc",
 "blockedtext"   => "Chuir $1 cosc ar d'ainm úsáideora nó ar do sheoladh IP.
-Seo é an cúis a thugadh:<br>''$2''<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na
+Seo é an cúis a thugadh:<br />''$2''<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na
 [[{{ns:4}}:Riarthóirí|riarthóirí]] chun an cosc a phléigh.
 
 Tabhair faoi deara nach bhfuil cead agat an gné \"cuir ríomhphost chuig an úsáideoir seo\" a úsáid
@@ -695,8 +695,8 @@ a nach bhfuil innéacsaítear, nó nuair a ceisteann tú níos mó ná téarma a
 taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí cuardaigh).",
 "powersearch" => "Cuardaigh",
 "powersearchtext" => "
-Cuardaigh sna hainmspásanna :<br>
-$1<br>
+Cuardaigh sna hainmspásanna :<br />
+$1<br />
 $2 Cuir athsheolaidh in áireamh   Cuardaigh ar $3 $9",
 "searchdisabled" => "<p>Tá brón orainn! Mhíchumasaíodh an cuardach téacs iomlán go sealadach chun luas an tsuímh
 a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a úsáid - b'fhéidir go bhfuil sé as dáta.</p>",
@@ -942,7 +942,7 @@ uaslódáil é arís, le do thoil.',
 "deleteimgcompletely"     => "Scrios gach leasú don comhad seo",
 "imghistlegend" => "Eochair: (rth) = an leagan láithreach is ea seo, (scr) = scrios an
 seanleagan seo, (ath) = athúsáid an seanleagan seo.
-<br><i>Bruigh an dáta chun feach ar an íomhá mar a suaslódálaíodh é ar an dáta sin</i>.",
+<br /><i>Bruigh an dáta chun feach ar an íomhá mar a suaslódálaíodh é ar an dáta sin</i>.",
 "imagelinks"    => "Naisc íomhá",
 "linkstoimage"  => "Is iad na leathanaigh seo a leanas a nascaíonn chuig an íomhá seo:",
 "nolinkstoimage" => "Níl aon leathanach ann a nascaíonn chuig an íomhá seo.",
@@ -978,12 +978,12 @@ chríochnaíonn tú ;-)",
 "disambiguations"   => "Leathanaigh idirdhealaithe",
 "disambiguationspage"   => "Vicipéid:Naisc_go_leathanaigh_idirdhealaithe",
 "disambiguationstext"   => "Nascaíonn na ailt seo a leanas go <i>leathanach
-idirdhealaithe</i>. Ba chóir dóibh nasc a dhéanamh dón ábhar áirithe atá i gceist.<br>Tugtar
-an teideal \"idirdhealán\" ar leathanach má tá nasc ar $1 dó.<br><i>Ní</i> cuirtear ar
+idirdhealaithe</i>. Ba chóir dóibh nasc a dhéanamh dón ábhar áirithe atá i gceist.<br />Tugtar
+an teideal \"idirdhealán\" ar leathanach má tá nasc ar $1 dó.<br /><i>Ní</i> cuirtear ar
 an liosta seo naisc as na hainmspásanna eile.",
 "doubleredirects"   => "Athsheolaidh dúbailte",
 "doubleredirectstext"   => "<b>Tabhair faoi deara:</b> B'fheidir go bhfuil toraidh bréagacha ar an liosta seo.
-De ghnáth cíallaíonn sé sin go bhfuil téacs breise le naisc thíos sa chéad #REDIRECT no #ATHSHEOLADH.<br>\n Sa
+De ghnáth cíallaíonn sé sin go bhfuil téacs breise le naisc thíos sa chéad #REDIRECT no #ATHSHEOLADH.<br />\n Sa
 gach sraith tá náisc chuig an chéad is an dara athsheoladh, chomh maith le chéad líne an dara téacs athsheolaidh. De
 ghnáth tugann sé sin an sprioc-alt \"fíor\".",
 "brokenredirects"   => "Athsheolaidh Briste",

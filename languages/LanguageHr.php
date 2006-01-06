@@ -467,7 +467,7 @@ Vaša IP adresa je $3. Molimo vas da je spomenete u porukama o ovom predmetu.",
 'accmailtext' => "Lozinka za suradnika '$1' poslana je na adresu $2.", 
 "newarticle"	        => "(Novo)",
 "newarticletext" =>
-"Došli ste na stranicu koja još nema sadržaja.<br>
+"Došli ste na stranicu koja još nema sadržaja.<br />
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta. 
 *Ako vam treba pomoć, idite na [[Project:Pomoć|stranicu za pomoć]]. 
 *Ako ste ovamo dospjeli slučajno, kliknite \"Natrag\" (Back) u svom programu.",
@@ -499,11 +499,11 @@ u u gornjem polju biti sačuvan kad pritisnete \"Snimi stranicu\".",
 ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>",
 "yourdiff"		=> "Razlike",
 "copyrightwarning"      => "Molimo uočite da se svi doprinosi projektu {{SITENAME}} smatraju objavljenima pod uvjetima GNU Free Documentation licence (vidi $1 za detalje).
-Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga slati.<br>
+Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga slati.<br />
 Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencom.
 <strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOZVOLE!</strong>",
 'copyrightwarning2' => 'Molimo uočite da se svi doprinosi projektu {{SITENAME}} smatraju objavljenima pod uvjetima GNU Free Documentation License (vidi $1 za detalje).
-Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br>
+Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br />
 Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencom.
 <strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOZVOLE!</strong>',
 "longpagewarning" => "PAŽNJA: Ova stranica je dugačka $1 kilobajta; neki preglednici bi mogli imati problema pri uređivanju stranica koje se približavaju ili su duže od 32 kb.
@@ -826,7 +826,7 @@ barem jednu unutarnju poveznicu).
 
 Ukupno je <b>$3</b> pregleda stranica, i <b>$4</b> uređivanja članaka od pokretanja projekta {{SITENAME}} na hrvatskom.
 U prosjeku to iznosi <b>$5</b> uređivanja po stranici, i <b>$6</b> pregleda po uređivanju.
-<br>",
+<br />",
 "userstatstext" => "Broj registriranih suradnika je <b>$1</b>. Od toga je <b>$2</b> administratora (vidi $3).",
 
 # Maintenance page

@@ -322,7 +322,7 @@ Vosse conte a stî ahivé.
 'loginproblem' => '\'\'\'Åk n\' a nén stî tot vs elodjant.\'\'\'
 <br />
 Rissayîz s\' i vs plait!',
-'alreadyloggedin' => '<font color=red><b>Uzeu $1, vos estoz ddja elodjî!</b></font><br />',
+'alreadyloggedin' => '<strong>Uzeu $1, vos estoz ddja elodjî!</strong><br />',
 
 'login' => 'S\' elodjî',
 'loginprompt' => 'Vos dvoz permete les coûkes po vs elodjî so {{SITENAME}}.',

@@ -135,7 +135,7 @@ Galima sumažinti rezultatų patikslinant veiksmo rūšį, vartotoją ar susijus
 'already_bureaucrat' => 'Vartotojas jau yra biurokratas',
 'already_steward' => 'Vartotojas jau yra ūkvedys',
 'already_sysop' => 'Vartotojas jau yra administratorius',
-'alreadyloggedin' => '<font color=red><b>Jūs jau esate prisijungęs kaip vartotojas User $1!</b></font><br />',
+'alreadyloggedin' => '<strong>Jūs jau esate prisijungęs kaip vartotojas User $1!</strong><br />',
 'alreadyrolled' => 'Nepavyko atmesti paskutinio [[Vartotojas:$2|$2]] ([[Vartotojo aptarimas:$2|aptarimas]]) daryto straipsnio [[$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą. 
 
 Paskutimas keitimas darytas vartotojo [[Vartotojas:$3|$3]] ([[Vartotojo aptarimas:$3|Aptarimas]]).',
@@ -442,24 +442,6 @@ Prašome nueiti šia nuoroda: $2 į failo aprašymo puslapį ir įrašyti inform
 'formerror' => 'Klaida: nepavyko apdoroti formos duomenų',
 'friday' => 'Penktadienis',
 'go' => 'Rodyk',
-'googlesearch' => '<!-- SiteSearch Google -->
-<FORM method=GET action="http://www.google.com/search">
-<TABLE bgcolor="#FFFFFF"><tr><td>
-<A HREF="http://www.google.com/">
-<IMG SRC="http://www.google.com/logos/Logo_40wht.gif"
-border="0" ALT="Google"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value="$1">
-<INPUT type=submit name=btnG VALUE="Google Paieška">
-<font size=-1>
-<input type=hidden name=domains value="http://lt.wikipedia.org"><br /><input type=radio name=sitesearch value=""> WWW <input type=radio name=sitesearch value="http://lt.wikipedia.org" checked> http://lt.wikipedia.org <br />
-<input type=\'hidden\' name=\'ie\' value=\'$2\'>
-<input type=\'hidden\' name=\'oe\' value=\'$2\'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->',
 'group-admin-name' => 'Administratorius',
 'group-bureaucrat-name' => 'Biurokratas',
 'guesstimezone' => 'Paimti iš naršyklės',
@@ -558,7 +540,7 @@ Elektroninio pašto adresas nėra privalomas - patvirtinimo laiškai nėra siun�
 'loginsuccesstitle' => 'Sėkmingai prisijungėte',
 'logout' => 'Atsijungti',
 'logouttext' => 'Jūs atsijungėte nuo projekto.
-Galite toliau naudoti projektą anonimiškai arba prisijunkite iš naujo tuo pačiu ar kitu vartotoju.<br>
+Galite toliau naudoti projektą anonimiškai arba prisijunkite iš naujo tuo pačiu ar kitu vartotoju.<br />
 P.S.:  kai kuriuose puslapiuose ir toliau gali rodyti lyg būtumėte prisijungęs iki tol, kol išvalysite savo naršyklės išsaugotas puslapių kopijas',
 'lonelypages' => 'Vieniši straipsniai',
 'longpages' => 'Ilgiausi puslapiai',
@@ -637,7 +619,7 @@ kad suprantate visas pasekmes.',
 'newarticletext' => 'Jūs patekote į neegzistuojančio straipsnio puslapį.
 Norėdami sukurti straipsnį, pradėkite žemiau esančiame įvedimo lauke 
 (plačiau [[Help:Kaip pradėti puslapį|apie puslapių kūrimą]]).
-Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką \'atgal\' (\'\'\'back\'\'\').<br>
+Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką \'atgal\' (\'\'\'back\'\'\').<br />
 \'\'\'Nepamirškite\'\'\' straipsnio turinį pateikti taip, kad žmogus suprastu tekstą be konteksto (dažniausiai žmonės pateks į šį puslapį visai kitu keliu, nei patekote jūs).',
 'newimages' => 'Naujausi paveikslėliai',
 'newmessages' => 'Gavote $1.',
