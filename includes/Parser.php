@@ -1961,7 +1961,7 @@ class Parser
 			case MAG_FULLPAGENAME:
 				return $this->mTitle->getPrefixedText();
 			case MAG_FULLPAGENAMEE:
-				return wfUrlencode( $this->mTitle->getPrefixedText() );
+				return $this->mTitle->getPrefixedURL();
 			case MAG_REVISIONID:
 				return $this->mRevisionId;
 			case MAG_NAMESPACE:
