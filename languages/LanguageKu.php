@@ -31,7 +31,7 @@ if ( $wgMetaNamespace == "Wikipedia" ) {
 	NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
 ) + $wgNamespaceNamesEn;
 
-/* private */ $wgAllMessagesKy = array (
+/* private */ $wgAllMessagesKu = array (
 
 # copied from wikipedia
 
@@ -47,7 +47,6 @@ if ( $wgMetaNamespace == "Wikipedia" ) {
 'addedwatch' => 'Hat îlawekirinî listeya şopandinê',
 'addgroup' => 'Komê tevlî bike',
 'administrators' => '{{ns:project}}:Koordînasyon',
-'affirmation' => 'Ez diyar dikim ku xwediya/ê mafên nivîsariya vê dosyayê destûra xwe ji bo weşandinê di bin şertên lîsansê GFDL de daye. Binihêre: $1.',
 'allarticles' => 'Hemû gotar',
 'allmessages' => 'Hemû mesajên sîstemê',
 'allmessagestext' => 'Ev lîsteya hemû mesajên di namespace a MediaWiki: de ye.',
@@ -277,7 +276,6 @@ Ji bo alîkarî binêre: [[{{ns:project}}:Alîkarî|Alîkarî]].<br />
 Eger tu bi şaştî hatî, bizivire rûpela berê.',
 'newbies' => 'ecemî',
 'newimages' => 'Pêşangeha wêneyên nû',
-'newmessages' => '$1 ji bo te heye.',
 'newmessageslink' => 'Nameyên nû',
 'newpage' => 'Rûpela nû',
 'newpageletter' => 'Nû',
@@ -288,7 +286,6 @@ Eger tu bi şaştî hatî, bizivire rûpela berê.',
 'nextn' => '$1 pêş',
 'nextpage' => 'Rûpela pêşî ($1)',
 'nlinks' => '$1 lînk',
-'noaffirmation' => 'Pêwîst e tu teyît bikî ku barkirin mafên nivîsanê îhlal neke.',
 'noarticletext' => '\'\'\'Di {{SITENAME}}yê de rûpeleke bi vî navî hîn tune.\'\'\'
 * \'\'\'[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Dest bi nivîsandina gotara "{{PAGENAME}}" bike]\'\'\'
 * \'\'\'Heke te niha vê rûpelê çekiribe û niha xuya neke, vê demê dereng tê. Bisekine û rûpelê taze bike.\'\'\'
@@ -343,10 +340,6 @@ $2 Ragihandinan nîşan bide &nbsp; Lêbigere: $3 $9',
 'preferences' => 'Tercîhên min',
 'prefs-misc' => 'Eyaren cuda',
 'prefs-personal' => 'Agahiyên bikarhênerê/î',
-'prefslogintext' => 'Te xwe wek "$1" qeyd kir.
-Numareya ID ya te ya întern $2 ye.
-
-Binêre [[{{ns:project}}:Alîkariya tercîhan]] ji bo alîkarî ser tercîhan.',
 'prefsnologin' => 'Xwe qeyd nekir',
 'preview' => 'Pêşdîtin',
 'previewnote' => 'Ji bîr neke ku ev bi tenê çavdêriyek e, ev rûpel hîn nehat qeyd kirin!',
