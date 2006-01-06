@@ -41,7 +41,7 @@ class ProtectionForm {
 		}
 		
 		// The form will be available in read-only to show levels.
-		$this->disabled = !$wgUser->isAllowed( 'protect' ) || wfReadOnly();
+		$this->disabled = !$wgUser->isAllowed( 'protect' ) || wfReadOnly() || $wgUser->isBlocked();
 		$this->disabledAttrib = $this->disabled
 			? array( 'disabled' => 'disabled' )
 			: array();
