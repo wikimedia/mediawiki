@@ -315,7 +315,7 @@ $1',
 'newusersonly'	=> ' (새내기 사용자만)',
 'remembermypassword' => '로그인 상태를 저장합니다.',
 'loginproblem'	=> '<b>로그인에 문제가 있습니다.</b><br />다시 해 보세요!',
-'alreadyloggedin' => '<font color=red><b>이미 $1 계정으로 접속해 있습니다!</b></font><br />\n',
+'alreadyloggedin' => '<strong>이미 $1 계정으로 접속해 있습니다!</strong><br />\n',
 
 'login'		       => '들어가기(로그인)',
 'loginprompt'		=> '{{SITENAME}}에 들어오기 위해서는 웹 브라우저가 쿠키를 사용할 수 있어야 합니다.',

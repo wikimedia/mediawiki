@@ -154,7 +154,7 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'alphaindexline' => '$1 deri në $2',
 'already_bureaucrat' => 'Ky përdorues është bërë burokrat më parë',
 'already_sysop' => 'Ky përdorues është bërë administrues më parë',
-'alreadyloggedin' => '<font color=red><b>Përdorues $1, keni hyrë brënda më parë!</b></font><br>',
+'alreadyloggedin' => '<strong>Përdorues $1, keni hyrë brënda më parë!</strong><br />',
 'alreadyrolled' => 'Nuk munda ta rithej redaktimin e fundit e [[$1]] nga [[Përdoruesi:$2|$2]] ([[Përdoruesi diskutim:$2|Diskutim]]); dikush tjetër e ka redaktuar ose rikthyer këtë faqe.
 
 Redaktimi i fundit është bërë nga [[Përdoruesi:$3|$3]] ([[Përdoruesi diskutim:$3|Diskutim]]).',
@@ -185,7 +185,7 @@ shëmbull "peshku dhe dhe halat". Provoni një pyetje tjetër.',
 'badtitletext' => 'Titulli i faqes që kërkuat nuk ishte i saktë, ishte bosh, ose ishte një lidhje gabim me një titull wiki internacional.',
 'blanknamespace' => '(Kryesore)',
 'blockedtext' => 'Emri juaj ose adresa e IP-së është bllokuar nga $1.
-Arsyeja e dhënë është kjo:<br>\'\'$2\'\'<p>Mund të kontaktoni $1 ose një nga
+Arsyeja e dhënë është kjo:<br />\'\'$2\'\'<p>Mund të kontaktoni $1 ose një nga
 [[{{SITENAME}}:Administruesit|administruesit]] e tjerë për të diskutuar bllokimin.
 
 Vini re se nuk mund të përdorni "dërgoji email këtij përdoruesi" n.q.s. nuk keni një adresë të saktë
@@ -200,7 +200,7 @@ Në qoftë se kjo ju ndodh, ju lutem njoftoni një administrues duke përdorur n
 'blockedtitle' => 'Përdoruesi është bllokuar',
 'blockip' => 'Blloko përdoruesin',
 'blockipsuccesssub' => 'Bllokimi u bë me sukses',
-'blockipsuccesstext' => '"$1" është bllokuar. <br>Shikoni [[Speciale:Ipblocklist|IP blloko listë]] për bllokimet.',
+'blockipsuccesstext' => '"$1" është bllokuar. <br />Shikoni [[Speciale:Ipblocklist|IP blloko listë]] për bllokimet.',
 'blockiptext' => 'Përdorni formularin e mëposhtëm për të hequr lejen e shkrimit për një përdorues ose IP-ë specifike.
 Kjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{SITENAME}}:Rregullat|rregullat e {{SITENAME}}-s]].
 Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u vandalizuan).
@@ -495,7 +495,7 @@ kur të mbaroni së kryeri mirëmbajtjen.',
 'loginend' => '<!-- bosh tani per tani -->',
 'loginerror' => 'Gabim hyrje',
 'loginpagetitle' => 'Hyrje përdoruesi',
-'loginproblem' => '<b>Kishte një problem me hyrjen tuaj.</b><br>Provojeni përsëri!',
+'loginproblem' => '<b>Kishte një problem me hyrjen tuaj.</b><br />Provojeni përsëri!',
 'loginprompt' => 'Duhet të pranoni "biskota" për të hyrë brënda në {{SITENAME}}.',
 'loginreqtitle' => 'Detyrohet hyrja',
 'loginsuccess' => 'Keni hyrë brënda në {{SITENAME}} si "$1".',
@@ -704,8 +704,8 @@ Hyni përsëri mbasi ta kesh marrë.',
 'portal-url' => 'Project:Wikiportal',
 'postcomment' => 'Bëni koment',
 'powersearch' => 'Kërko',
-'powersearchtext' => 'Kërko në hapësirën:<br>
-$1<br>
+'powersearchtext' => 'Kërko në hapësirën:<br />
+$1<br />
 $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'preferences' => 'Parapëlqimet',
 'prefixindex' => 'Treguesi i parashtesave',
@@ -1043,8 +1043,8 @@ i',
 'wlnote' => 'Më poshtë janë $1 ndryshimet e <b>$2</b> orëve së fundmi.',
 'wlsaved' => 'Kjo është një kopje e ruajtur e listës mbikqyrëse tuaj.',
 'wlshowlast' => 'Trego $1 orët $2 ditët $3',
-'wrong_wfQuery_params' => 'Parametra gabim tek wfQuery()<br>
-Funksioni: $1<br>
+'wrong_wfQuery_params' => 'Parametra gabim tek wfQuery()<br />
+Funksioni: $1<br />
 Pyetja: $2',
 'wrongpassword' => 'Fjalëkalimi që futët nuk është i saktë. Provojeni përsëri!',
 'yourdiff' => 'Ndryshimet',
