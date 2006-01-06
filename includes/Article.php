@@ -1686,10 +1686,16 @@ class Article {
 		# This code desperately needs to be totally rewritten
 
 		# Check permissions
-		if( ( !$wgUser->isAllowed( 'delete' ) ) ) {
+		if( $wgUser->isAllowed( 'delete' ) ) {
+			if( $wgUser->isBlocked() ) {
+				$wgOut->blockedPage();
+				return;
+			}
+		} else {
 			$wgOut->sysopRequired();
 			return;
 		}
+		
 		if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;

@@ -319,7 +319,7 @@ class UndeleteForm {
 		if( $par != "" ) {
 			$this->mTarget = $par;
 		}
-		if ( $wgUser->isAllowed( 'delete' ) ) {
+		if ( $wgUser->isAllowed( 'delete' ) && !$wgUser->isBlocked() ) {
 			$this->mAllowed = true;
 		} else {
 			$this->mAllowed = false;
