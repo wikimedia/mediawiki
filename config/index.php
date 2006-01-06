@@ -244,7 +244,6 @@ if( ini_get( "safe_mode" ) ) {
 	$conf->safeMode = false;
 }
 
-
 $sapi = php_sapi_name();
 $conf->prettyURLs = true;
 print "<li>PHP server API is $sapi; ";
@@ -253,14 +252,15 @@ case "apache":
 case "apache2handler":
 	print "ok, using pretty URLs (<tt>index.php/Page_Title</tt>)";
 	break;
+default:
+	print "unknown; ";
 case "cgi":
 case "cgi-fcgi":
 case "apache2filter":
+case "isapi":
 	print "using ugly URLs (<tt>index.php?title=Page_Title</tt>)";
 	$conf->prettyURLs = false;
 	break;
-default:
-	print "unknown; using pretty URLs (<tt>index.php/Page_Title</tt>), if you have trouble change this in <tt>LocalSettings.php</tt>";
 }
 print "</li>\n";
 

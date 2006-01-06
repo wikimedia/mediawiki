@@ -1005,6 +1005,10 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   which are not of known image types. This is in response to
   http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
 
+=== Changes since 1.5.5 ===
+
+* (bug 4258) When installing under IIS, $wgArticlePath = "$wgScript?title=$1" should be set
+
 
 === Caveats ===
 
