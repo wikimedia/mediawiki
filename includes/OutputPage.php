@@ -598,6 +598,31 @@ class OutputPage {
 		$time = wfReportTime();
 		return $time;
 	}
+	
+	/**
+	 * Produce a "user is blocked" page
+	 */
+	function blockedPage() {
+		global $wgUser, $wgContLang;
+
+		$this->setPageTitle( wfMsg( 'blockedtitle' ) );
+		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setArticleRelated( false );
+
+		$id = $wgUser->blockedBy();
+		$reason = $wgUser->blockedFor();
+		$ip = wfGetIP();
+
+		if ( is_numeric( $id ) ) {
+			$name = User::whoIs( $id );
+		} else {
+			$name = $id;
+		}
+		$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
+
+		$this->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name ) );
+		$this->returnToMain( false );
+	}
 
 	/**
 	 * Note: these arguments are keys into wfMsg(), not text!

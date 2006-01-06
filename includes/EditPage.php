@@ -185,7 +185,7 @@ class EditPage {
 			# When previewing, don't check blocked state - will get caught at save time.
 			# Also, check when starting edition is done against slave to improve performance.
 			wfDebug( "$fname: user is blocked\n" );
-			$this->blockedIPpage();
+			$wgOut->blockedPage();
 			wfProfileOut( $fname );
 			return;
 		}
@@ -1128,26 +1128,8 @@ END
 	 * @todo document
 	 */
 	function blockedIPpage() {
-		global $wgOut, $wgUser, $wgContLang;
-
-		$wgOut->setPageTitle( wfMsg( 'blockedtitle' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
-
-		$id = $wgUser->blockedBy();
-		$reason = $wgUser->blockedFor();
-		$ip = wfGetIP();
-
-		if ( is_numeric( $id ) ) {
-			$name = User::whoIs( $id );
-		} else {
-			$name = $id;
-		}
-		$link = '[[' . $wgContLang->getNsText( NS_USER ) .
-		  ":{$name}|{$name}]]";
-
-		$wgOut->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name ) );
-		$wgOut->returnToMain( false );
+		global $wgOut;
+		$wgOut->blockedPage();
 	}
 
 	/**
