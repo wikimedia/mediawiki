@@ -1130,7 +1130,7 @@ an cnaipe 'bain amach le marcanna' ag bun an leathanaigh.",
 'wlshow'		=> 'Taispeáin',
 'wlhide'		=> 'Folaigh',
 
-'updatedmarker'	 => '<span class=\'updatedmarker\'> leasaithe (ó shin mo chuairt dheireanach) </span>',
+'updatedmarker'	 => 'leasaithe (ó shin mo chuairt dheireanach)',
 
 'enotif_mailer' 		=> 'Fógrasheoltóir as {{SITENAME}}',
 'enotif_reset'			=> 'Marcáil gach leathanach bheith tadhlaithe',

@@ -237,7 +237,7 @@
 'go'    => 'Отваряне',
 'history'    => 'История',
 'history_short' => 'История',
-'updatedmarker' => '<span class="updatedmarker">&nbsp;има промяна (от последното ми влизане)&nbsp;</span>',
+'updatedmarker' => 'има промяна (от последното ми влизане)',
 'info_short'    => 'Информация',
 'printableversion' => 'Версия за печат',
 'permalink'     => 'Постоянна препратка',

@@ -824,7 +824,7 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'wlshow'         => 'Zeige ',
 'wlhide'         => 'Verstecke ',
 
-'updatedmarker'			=> '<span class=\'updatedmarker\'>&nbsp;(geändert)&nbsp;</span>',
+'updatedmarker'			=> '(geändert)',
 'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
 'enotif_reset'			=> 'Alle Benachrichtigungsmarker zurücksetzen (alle Seiten als "gesehen" markieren)',
 'enotif_newpagetext'		=> 'Dies ist eine neue Seite.',
