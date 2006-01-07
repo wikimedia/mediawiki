@@ -457,7 +457,7 @@ class MimeMagic {
 	* @param bool $useExt switch for allowing to use the file extension to guess the mime type. true by default.
 	*
 	* @return string the mime type of $file
-	* @private
+	* @access private
 	*/
 	function detectMimeType( $file, $useExt=true ) {
 		$fname = 'MimeMagic::detectMimeType';
@@ -655,7 +655,7 @@ class MimeMagic {
 	* distinguish them from mime types.
 	*
 	* This funktion relies on the mapping defined by $this->mMediaTypes
-	* @private
+	* @access private
 	*/
 	function findMediaType($extMime) {
 		

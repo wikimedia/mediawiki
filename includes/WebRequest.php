@@ -50,7 +50,7 @@ class WebRequest {
 	 * used for undoing the evil that is magic_quotes_gpc.
 	 * @param array &$arr will be modified
 	 * @return array the original array
-	 * @private
+	 * @access private
 	 */
 	function &fix_magic_quotes( &$arr ) {
 		foreach( $arr as $key => $val ) {
@@ -68,7 +68,7 @@ class WebRequest {
 	 * through fix_magic_quotes to strip out the stupid slashes.
 	 * WARNING: This should only be done once! Running a second
 	 * time could damage the values.
-	 * @private
+	 * @access private
 	 */
 	function checkMagicQuotes() {
 		if ( get_magic_quotes_gpc() ) {
@@ -85,7 +85,7 @@ class WebRequest {
 	 * Recursively normalizes UTF-8 strings in the given array.
 	 * @param array $data string or array
 	 * @return cleaned-up version of the given
-	 * @private
+	 * @access private
 	 */
 	function normalizeUnicode( $data ) {
 		if( is_array( $data ) ) {
@@ -105,7 +105,7 @@ class WebRequest {
 	 * @param string $name
 	 * @param mixed $default
 	 * @return mixed
-	 * @private
+	 * @access private
 	 */
 	function getGPCVal( $arr, $name, $default ) {
 		if( isset( $arr[$name] ) ) {

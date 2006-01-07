@@ -8,7 +8,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
 
 /**
  * Definitions of the NS_ constants are in Defines.php
- * @private
+ * @access private
  */
 $wgCanonicalNamespaceNames = array(
 	NS_MEDIA            => 'Media',

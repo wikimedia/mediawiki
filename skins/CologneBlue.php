@@ -172,7 +172,7 @@ class SkinCologneBlue extends Skin {
 
 	/**
 	 * Compute the sidebar
-	 * @private
+	 * @access private
 	 */
 	function quickBar()
 	{

@@ -68,7 +68,7 @@ function wfCreativeCommonsRdf($article) {
 }
 
 /**
- * @private
+ * @access private
  */
 function rdfSetup() {
 	global $wgOut, $_SERVER;
@@ -87,7 +87,7 @@ function rdfSetup() {
 }
 
 /**
- * @private
+ * @access private
  */
 function dcPrologue($url) {
 	global $wgOutputEncoding;
@@ -104,7 +104,7 @@ function dcPrologue($url) {
 }
 
 /**
- * @private
+ * @access private
  */
 function dcEpilogue() {
 	print "
@@ -114,7 +114,7 @@ function dcEpilogue() {
 }
 
 /**
- * @private
+ * @access private
  */
 function dcBasics($article) {
 	global $wgContLanguageCode, $wgSitename;
@@ -146,7 +146,7 @@ function dcBasics($article) {
 }
 
 /**
- * @private
+ * @access private
  */
 function ccPrologue() {
 	global $wgOutputEncoding;
@@ -160,7 +160,7 @@ function ccPrologue() {
 }
 
 /**
- * @private
+ * @access private
  */
 function ccSubPrologue($type, $url) {
 	$url = htmlspecialchars( $url );
@@ -168,14 +168,14 @@ function ccSubPrologue($type, $url) {
 }
 
 /**
- * @private
+ * @access private
  */
 function ccSubEpilogue($type) {
 	echo "  </cc:{$type}>\n";
 }
 
 /**
- * @private
+ * @access private
  */
 function ccLicense($terms) {
 
@@ -202,21 +202,21 @@ function ccLicense($terms) {
 }
 
 /**
- * @private
+ * @access private
  */
 function ccTerm($term, $name) {
 	print "    <cc:{$term} rdf:resource=\"http://web.resource.org/cc/{$name}\" />\n";
 }
 
 /**
- * @private
+ * @access private
  */
 function ccEpilogue() {
 	echo "</rdf:RDF>\n";
 }
 
 /**
- * @private
+ * @access private
  */
 function dcElement($name, $value) {
 	$value = htmlspecialchars( $value );
@@ -224,7 +224,7 @@ function dcElement($name, $value) {
 }
 
 /**
- * @private
+ * @access private
  */
 function dcDate($timestamp) {
 	return substr($timestamp, 0, 4) . '-'
@@ -233,14 +233,14 @@ function dcDate($timestamp) {
 }
 
 /**
- * @private
+ * @access private
  */
 function dcReallyFullUrl($title) {
 	return $title->getFullURL();
 }
 
 /**
- * @private
+ * @access private
  */
 function dcPageOrString($name, $page, $str) {
 	$nt = Title::newFromText($page);
@@ -253,14 +253,14 @@ function dcPageOrString($name, $page, $str) {
 }
 
 /**
- * @private
+ * @access private
  */
 function dcPage($name, $title) {
 	dcUrl($name, dcReallyFullUrl($title));
 }
 
 /**
- * @private
+ * @access private
  */
 function dcUrl($name, $url) {
 	$url = htmlspecialchars( $url );
@@ -268,7 +268,7 @@ function dcUrl($name, $url) {
 }
 
 /**
- * @private
+ * @access private
  */
 function dcPerson($name, $id, $user_name='', $user_real_name='') {
 	global $wgContLang;
@@ -289,7 +289,7 @@ function dcPerson($name, $id, $user_name='', $user_real_name='') {
 /**
  * Takes an arg, for future enhancement with different rights for
  * different pages.
- * @private
+ * @access private
  */
 function dcRights($article) {
 
@@ -307,7 +307,7 @@ function dcRights($article) {
 }
 
 /**
- * @private
+ * @access private
  */
 function ccGetTerms($url) {
 	global $wgLicenseTerms;
@@ -321,7 +321,7 @@ function ccGetTerms($url) {
 }
 
 /**
- * @private
+ * @access private
  */
 function getKnownLicenses() {
 

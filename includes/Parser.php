@@ -3895,7 +3895,7 @@ function wfNumberOfFiles() {
 
 /**
  * Get various statistics from the database
- * @private
+ * @access private
  */
 function wfLoadSiteStats() {
 	global $wgNumberOfArticles, $wgTotalViews, $wgTotalEdits;

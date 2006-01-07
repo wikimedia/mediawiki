@@ -56,7 +56,7 @@ class LogReader {
 	/**
 	 * Basic setup and applies the limiting factors from the WebRequest object.
 	 * @param WebRequest $request
-	 * @private
+	 * @access private
 	 */
 	function setupQuery( $request ) {
 		$page = $this->db->tableName( 'page' );
@@ -76,7 +76,7 @@ class LogReader {
 	/**
 	 * Set the log reader to return only entries of the given type.
 	 * @param string $type A log type ('upload', 'delete', etc)
-	 * @private
+	 * @access private
 	 */
 	function limitType( $type ) {
 		if( empty( $type ) ) {
@@ -90,7 +90,7 @@ class LogReader {
 	/**
 	 * Set the log reader to return only entries by the given user.
 	 * @param string $name (In)valid user name
-	 * @private
+	 * @access private
 	 */
 	function limitUser( $name ) {
 		if ( $name == '' )
@@ -108,7 +108,7 @@ class LogReader {
 	 * Set the log reader to return only entries affecting the given page.
 	 * (For the block and rights logs, this is a user page.)
 	 * @param string $page Title name as text
-	 * @private
+	 * @access private
 	 */
 	function limitTitle( $page ) {
 		$title = Title::newFromText( $page );
@@ -125,7 +125,7 @@ class LogReader {
 	 * Set the log reader to return only entries in a given time range.
 	 * @param string $time Timestamp of one endpoint
 	 * @param string $direction either ">=" or "<=" operators
-	 * @private
+	 * @access private
 	 */
 	function limitTime( $time, $direction ) {
 		# Direction should be a comparison operator
@@ -139,7 +139,7 @@ class LogReader {
 	/**
 	 * Build an SQL query from all the set parameters.
 	 * @return string the SQL query
-	 * @private
+	 * @access private
 	 */
 	function getQuery() {
 		$logging = $this->db->tableName( "logging" );
@@ -294,7 +294,7 @@ class LogViewer {
 	/**
 	 * @param Object $s a single row from the result set
 	 * @return string Formatted HTML list item
-	 * @private
+	 * @access private
 	 */
 	function logLine( $s ) {
 		global $wgLang;
@@ -334,7 +334,7 @@ class LogViewer {
 
 	/**
 	 * @param OutputPage &$out where to send output
-	 * @private
+	 * @access private
 	 */
 	function showHeader( &$out ) {
 		$type = $this->reader->queryType();
@@ -346,7 +346,7 @@ class LogViewer {
 
 	/**
 	 * @param OutputPage &$out where to send output
-	 * @private
+	 * @access private
 	 */
 	function showOptions( &$out ) {
 		global $wgScript;
@@ -364,7 +364,7 @@ class LogViewer {
 
 	/**
 	 * @return string Formatted HTML
-	 * @private
+	 * @access private
 	 */
 	function getTypeMenu() {
 		$out = "<select name='type'>\n";
@@ -379,7 +379,7 @@ class LogViewer {
 
 	/**
 	 * @return string Formatted HTML
-	 * @private
+	 * @access private
 	 */
 	function getUserInput() {
 		$user = htmlspecialchars( $this->reader->queryUser() );
@@ -388,7 +388,7 @@ class LogViewer {
 
 	/**
 	 * @return string Formatted HTML
-	 * @private
+	 * @access private
 	 */
 	function getTitleInput() {
 		$title = htmlspecialchars( $this->reader->queryTitle() );
@@ -397,7 +397,7 @@ class LogViewer {
 
 	/**
 	 * @param OutputPage &$out where to send output
-	 * @private
+	 * @access private
 	 */
 	function showPrevNext( &$out ) {
 		global $wgContLang,$wgRequest;

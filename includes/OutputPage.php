@@ -888,7 +888,7 @@ class OutputPage {
 	}
 
 	/**
- 	 * @private
+ 	 * @access private
 	 * @return string
 	 */
 	function headElement() {

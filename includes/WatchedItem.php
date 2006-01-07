@@ -14,7 +14,7 @@ class WatchedItem {
 	/**
 	 * Create a WatchedItem object with the given user and title
 	 * @todo document
-	 * @private
+	 * @access private
 	 */
 	function &fromUserTitle( &$user, &$title ) {
 		$wl = new WatchedItem;
