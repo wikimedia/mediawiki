@@ -6,6 +6,23 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @package MediaWiki
  */
 
+function wfGetForwardedFor() {
+	if( function_exists( 'apache_request_headers' ) ) {
+		// More reliable than $_SERVER due to case and -/_ folding
+		$set = apache_request_headers();
+		$index = 'X-Forwarded-For';
+	} else {
+		// Subject to spoofing with headers like X_Forwarded_For
+		$set = $_SERVER;
+		$index = 'HTTP_X_FORWARDED_FOR';
+	}
+	if( isset( $set[$index] ) ) {
+		return $set[$index];
+	} else {
+		return null;
+	}
+}
+
 /** Work out the IP address based on various globals */
 function wfGetIP() {
 	global $wgSquidServers, $wgSquidServersNoPurge, $wgIP;
@@ -30,8 +47,9 @@ function wfGetIP() {
 	$trustedProxies = array_flip( array_merge( $wgSquidServers, $wgSquidServersNoPurge ) );
 	if ( count( $trustedProxies ) ) {
 		# Append XFF on to $ipchain
-		if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$xff = array_map( 'trim', explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+		$forwardedFor = wfGetForwardedFor();
+		if ( isset( $forwardedFor ) ) {
+			$xff = array_map( 'trim', explode( ',', $forwardedFor ) );
 			$xff = array_reverse( $xff );
 			$ipchain = array_merge( $ipchain, $xff );
 		}
