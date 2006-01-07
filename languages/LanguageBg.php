@@ -767,7 +767,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'changes' => 'промени',
 'recentchanges' => 'Последни промени',
 'recentchanges-url' => 'Special:Recentchanges',
-# This is the default text, and can be overriden by editing [[{{SITENAME}}:Recentchanges]]
 'recentchangestext' => 'Проследяване на последните промени в {{SITENAME}}.
 
 Легенда: <b>тек</b> = разлика на текущата версия,

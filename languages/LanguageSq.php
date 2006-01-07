@@ -43,85 +43,6 @@ require_once("LanguageUtf8.php");
 $wgAllMessagesSq = array(
 '1movedto2' => '$1 u zhvendos tek $2',
 '1movedto2_redir' => '$1 u zhvendos tek $2 nëpërmjet përcjellimit',
-'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */
-/* Trego "Nga Wikipedia, Enciklopedia e Lirë" */
-#siteSub {
-    display: inline;
-    font-size: 100%;
-    font-weight: normal;
-}
-
- /* Make all non-namespace pages have a light blue content area. This is done by
-        setting the background color for all #content areas to light blue and then
-        overriding it for any #content enclosed in a .ns-0 (main namespace). I then
-        do the same for the "tab" background colors. --Lupo */
- 
- #content,
- #mytabs li.selected a,
- #p-cactions li.selected a {
-        background-color: #F3F3FF; /* ein leichtes blau */
- }
- .ns-0 #content,
- .ns-0 #mytabs li.selected a,
- .ns-0 #p-cactions li.selected a {
-        background-color: white;
- }
- .ns--1 table,
- .ns-2 table,
- .ns-4 table,
- .ns--1 form {
-        background: inherit;
- }',
-'Monobook.js' => '/* tooltips and access keys */
-ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'My user page\');
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');
-ta[\'pt-mytalk\'] = new Array(\'n\',\'My talk page\');
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Discussion about edits from this ip address\');
-ta[\'pt-preferences\'] = new Array(\'\',\'My preferences\');
-ta[\'pt-watchlist\'] = new Array(\'l\',\'The list of pages you\'re monitoring for changes.\');
-ta[\'pt-mycontris\'] = new Array(\'y\',\'List of my contributions\');
-ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
-ta[\'pt-logout\'] = new Array(\'o\',\'Log out\');
-ta[\'ca-talk\'] = new Array(\'t\',\'Discussion about the content page\');
-ta[\'ca-edit\'] = new Array(\'e\',\'You can edit this page. Please use the preview button before saving.\');
-ta[\'ca-addsection\'] = new Array(\'+\',\'Add a comment to this discussion.\');
-ta[\'ca-viewsource\'] = new Array(\'e\',\'This page is protected. You can view its source.\');
-ta[\'ca-history\'] = new Array(\'h\',\'Past versions of this page.\');
-ta[\'ca-protect\'] = new Array(\'=\',\'Protect this page\');
-ta[\'ca-delete\'] = new Array(\'d\',\'Delete this page\');
-ta[\'ca-undelete\'] = new Array(\'d\',\'Restore the edits done to this page before it was deleted\');
-ta[\'ca-move\'] = new Array(\'m\',\'Move this page\');
-ta[\'ca-watch\'] = new Array(\'w\',\'Add this page to your watchlist\');
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Remove this page from your watchlist\');
-ta[\'search\'] = new Array(\'f\',\'Search this wiki\');
-ta[\'p-logo\'] = new Array(\'\',\'Main Page\');
-ta[\'n-mainpage\'] = new Array(\'z\',\'Visit the Main Page\');
-ta[\'n-portal\'] = new Array(\'\',\'About the project, what you can do, where to find things\');
-ta[\'n-currentevents\'] = new Array(\'\',\'Find background information on current events\');
-ta[\'n-recentchanges\'] = new Array(\'r\',\'The list of recent changes in the wiki.\');
-ta[\'n-randompage\'] = new Array(\'x\',\'Load a random page\');
-ta[\'n-help\'] = new Array(\'\',\'The place to find out.\');
-ta[\'n-sitesupport\'] = new Array(\'\',\'Support us\');
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'List of all wiki pages that link here\');
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Recent changes in pages linked from this page\');
-ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\');
-ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\');
-ta[\'t-contributions\'] = new Array(\'\',\'View the list of contributions of this user\');
-ta[\'t-emailuser\'] = new Array(\'\',\'Send a mail to this user\');
-ta[\'t-upload\'] = new Array(\'u\',\'Upload images or media files\');
-ta[\'t-specialpages\'] = new Array(\'q\',\'List of all special pages\');
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\');
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'View the user page\');
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\'t edit the page itself.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'View the project page\');
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 'about' => 'Rreth',
 'aboutpage' => '{{ns:project}}:Rreth',
 'aboutsite' => 'Rreth {{SITENAME}}-s',
@@ -186,7 +107,7 @@ shëmbull "peshku dhe dhe halat". Provoni një pyetje tjetër.',
 'blanknamespace' => '(Kryesore)',
 'blockedtext' => 'Emri juaj ose adresa e IP-së është bllokuar nga $1.
 Arsyeja e dhënë është kjo:<br />\'\'$2\'\'<p>Mund të kontaktoni $1 ose një nga
-[[{{SITENAME}}:Administruesit|administruesit]] e tjerë për të diskutuar bllokimin.
+[[{{ns:project}}:Administruesit|administruesit]] e tjerë për të diskutuar bllokimin.
 
 Vini re se nuk mund të përdorni "dërgoji email këtij përdoruesi" n.q.s. nuk keni një adresë të saktë
 të rregjistruar në [[Speciale:Preferences|parapëlqimet e përdoruesit]].
@@ -202,7 +123,7 @@ Në qoftë se kjo ju ndodh, ju lutem njoftoni një administrues duke përdorur n
 'blockipsuccesssub' => 'Bllokimi u bë me sukses',
 'blockipsuccesstext' => '"$1" është bllokuar. <br />Shikoni [[Speciale:Ipblocklist|IP blloko listë]] për bllokimet.',
 'blockiptext' => 'Përdorni formularin e mëposhtëm për të hequr lejen e shkrimit për një përdorues ose IP-ë specifike.
-Kjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{SITENAME}}:Rregullat|rregullat e {{SITENAME}}-s]].
+Kjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{ns:project}}:Rregullat|rregullat e {{SITENAME}}-s]].
 Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u vandalizuan).
 
 Afati është sipas standardit GNU (http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html), p.sh. "1 hour", "2 days", "next Wednesday", "1 January 2017", ose për ndryshe "indefinite" ose "infinite".',
@@ -219,7 +140,7 @@ kjo listë nuk duhet të shikohet si një rreklamë.',
 'brokenredirects' => 'Përcjellime të prishura',
 'brokenredirectstext' => 'Përcjellimet që vijojnë lidhen tek një artikull që s\'ekziston.',
 'bugreports' => 'Përshtypjet',
-'bugreportspage' => '{{SITENAME}}:Përshtypjet',
+'bugreportspage' => '{{ns:project}}:Përshtypjet',
 'bureaucratlog' => 'Rregjistri burokratik',
 'bureaucratlogentry' => ' i dha $1: titullin $2',
 'bydate' => 'datës',
@@ -242,7 +163,7 @@ kjo listë nuk duhet të shikohet si një rreklamë.',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhura',
 'confirm' => 'Konfirmoni',
 'confirmdelete' => 'Konfirmoni grisjen',
-'confirmdeletetext' => 'Jeni duke grisur \'\'\'përfundimisht\'\'\' një faqe ose një skedar me tër historinë e tij nga rregjistri. Ju lutem konfirmoni që keni ndër mënd ta bëni këtë gjë, që i kuptoni se cilat janë pasojat, dhe që po veproni në përputhje me [[{{SITENAME}}:Rregullat]].',
+'confirmdeletetext' => 'Jeni duke grisur \'\'\'përfundimisht\'\'\' një faqe ose një skedar me tër historinë e tij nga rregjistri. Ju lutem konfirmoni që keni ndër mënd ta bëni këtë gjë, që i kuptoni se cilat janë pasojat, dhe që po veproni në përputhje me [[{{ns:project}}:Rregullat]].',
 'confirmprotect' => 'Konfirmoni mbrojtjen',
 'confirmprotecttext' => 'Dëshironi të mbroni këtë faqe?',
 'confirmrecreate' => 'Përdoruesi [[User:$1|$1]] ([[User talk:$1|diskutime]]) grisi këtë artikull mbasi ju filluat ta redaktoni për arsyen:
@@ -256,16 +177,9 @@ Ju lutem konfirmoni nëse dëshironi me të vertetë ta ri-krijoni këtë artiku
 'contribsub' => 'Për $1',
 'contributions' => 'Redaktimet e përdoruesit',
 'copyright' => 'Përmbajtja është në disponim nëpërmjet liçensës $1.',
-'copyrightpage' => '{{SITENAME}}:Të drejta autori',
+'copyrightpage' => '{{ns:project}}:Të drejta autori',
 'copyrightpagename' => '{{SITENAME}} Të drejta autori',
-'copyrightwarning' => '<small>
-<div class="plainlinks" style="margin-top:10px;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:3px;">
-Disa simbole për të ndihmuar me redaktimin: Ç ç Ë ë « » ose shtypni:
-<charinsert>Ç ç Ë ë « »</charinsert>
-</div>
-</small>
-
-Ju lutem vini re që të gjitha kontributet tek {{SITENAME}} janë të konsideruara të dhëna nën liçensën GNU Free Documentation License (shikoni $1 për detaje). Në qoftë se nuk dëshironi që kontributet tuaja të redaktohen pa mëshirë dhe të jepen kudo, atëherë mos i jepni këtu.
+'copyrightwarning' => 'Ju lutem vini re që të gjitha kontributet tek {{SITENAME}} janë të konsideruara të dhëna nën liçensën GNU Free Documentation License (shikoni $1 për detaje). Në qoftë se nuk dëshironi që kontributet tuaja të redaktohen pa mëshirë dhe të jepen kudo, atëherë mos i jepni këtu.
 
 Gjithashtu, po premtoni që i keni shkruar vetë këto, ose i keni kopjuar nga një faqe nën "public domain" ose nën GFDL.
 
@@ -317,11 +231,11 @@ Të gjitha kohët janë sipas orës së shërbyesit (UTC).
 'diff' => 'ndrysh',
 'difference' => '(Ndryshime midis versioneve)',
 'disambiguations' => 'Faqe qartësuese',
-'disambiguationspage' => '{{SITENAME}}:Lidhje_tek_faqe_qartësuese',
+'disambiguationspage' => '{{ns:project}}:Lidhje_tek_faqe_qartësuese',
 'disambiguationstext' => 'Artikujt që vijojnë lidhen tek një <i>faqe qartësuese</i>. Ato duhet të lidhen tek tema e përshtatshme
 
 <br />Një faqe trajtohet si qartësuese lidhet nga $1.<br />Lidhje nga hapësira të tjera <i>nuk</i> jepen këtu.',
-'disclaimerpage' => '{{SITENAME}}:Shpërnjohjet_e_përgjithshme',
+'disclaimerpage' => '{{ns:project}}:Shpërnjohjet_e_përgjithshme',
 'disclaimers' => 'Shpërnjohjet',
 'doubleredirects' => 'Përcjellime dopjo',
 'doubleredirectstext' => '<b>Kujdes:</b> Kjo listë mund të ketë lidhje gabim. D.m.th. ka tekst dhe lidhje mbas #REDIRECT-it të parë.
@@ -334,7 +248,7 @@ Të gjitha kohët janë sipas orës së shërbyesit (UTC).
 'editcurrent' => 'Redaktoni versionin e tanishëm të kësaj faqeje',
 'editgroup' => 'Grupi Redaktimeve',
 'edithelp' => 'Ndihmë për redaktim',
-'edithelppage' => '{{SITENAME}}:Si_redaktohet_një_faqe',
+'edithelppage' => '{{ns:project}}:Si_redaktohet_një_faqe',
 'editing' => 'Duke redaktuar $1',
 'editingcomment' => 'Duke redaktuar $1 (koment)',
 'editingold' => '<strong>KUJDES: Po redaktoni një version të vjetër të kësaj faqeje. Në qoftë se e ruani, çdo ndryshim i bërë deri tani do të humbet.</strong>',
@@ -342,7 +256,6 @@ Të gjitha kohët janë sipas orës së shërbyesit (UTC).
 'editsection' => 'redaktoni',
 'editthispage' => 'Redaktoni faqen',
 'editusergroup' => 'Redaktoni Grupet e Përdoruesve',
-'emailflag' => 'Bllokoni e-mail nga përdorues të tjerë',
 'emailforlost' => '* Futja e email-it nuk është e detyrueshme. Por lejon përdorues të tjerë tu kontaktojnë nëpërmjet faqes pa u treguar adresën, gjithashtu kjo adresë është e dobishme n.q.s. harroni fjalëkalimin',
 'emailfrom' => 'Nga',
 'emailmessage' => 'Mesazh',
@@ -374,7 +287,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'extlink_sample' => 'http://www.shëmbull.al Titulli i lidhjes',
 'extlink_tip' => 'Lidhje e jashtme (most harro prefiksin http://)',
 'faq' => 'Pyetje e Përgjigje',
-'faqpage' => '{{SITENAME}}:Pyetje_e_Përgjigje',
+'faqpage' => '{{ns:project}}:Pyetje_e_Përgjigje',
 'feb' => 'Shk',
 'february' => 'Shkurt',
 'feedlinks' => 'Ushqyes:',
@@ -394,7 +307,6 @@ informacion për skedarin, si p.sh. ku e gjetët, kur u bë, kush e bëri, dhe �
 'fileuploadsummary' => 'Përshkrimi:',
 'formerror' => 'Gabim: nuk munda të dërgoj formularin',
 'friday' => 'E Premte',
-'geo' => 'Koordinata GEO',
 'getimagelist' => 'duke ngarkuar të gjithë listën e figurave',
 'go' => 'Shko',
 'googlesearch' => '',
@@ -403,7 +315,7 @@ informacion për skedarin, si p.sh. ku e gjetët, kur u bë, kush e bëri, dhe �
 'headline_sample' => 'Titull shëmbull',
 'headline_tip' => 'Titull i nivelit 2',
 'help' => 'Ndihmë',
-'helppage' => '{{SITENAME}}:Ndihmë',
+'helppage' => '{{ns:project}}:Ndihmë',
 'hide' => 'fshih',
 'hidetoc' => 'fshih',
 'histfirst' => 'Së pari',
@@ -508,11 +420,10 @@ kur të mbaroni së kryeri mirëmbajtjen.',
 'longpagewarning' => 'KUJDES: Kjo faqe është $1 kilobytes e gjatë; disa
 shfletues mund të kenë probleme për të redaktuar faqe që afrohen ose janë akoma më shumë se 32kb.
 Konsideroni ta ndani faqen në disa seksione më të vogla.',
-'lucenepowersearchtext' => 'Kërko në hapësirat: $1 për $3 $9',
 'mailerror' => 'Gabim duke dërguar postën: $1',
 'mailmypassword' => 'Më dërgo një fjalëkalim të ri tek adresa ime',
 'mailnologin' => 'S\'ka adresë dërgimi',
-'mailnologintext' => 'Duhet të keni <a href="/wiki/Speciale:Userlogin">hyrë brënda</a> dhe të keni një adresë të saktë në <a href="/wiki/Speciale:Preferences">parapëlqimet</a> për tu dërguar e-mail përdoruesve të tjerë.',
+'mailnologintext' => 'Duhet të keni [[{{ns:special}}:Userlogin|hyrë brënda]] dhe të keni një adresë të saktë në [[{{ns:special}}:Preferences|parapëlqimet]] për tu dërguar e-mail përdoruesve të tjerë.',
 'mainpage' => 'Faqja Kryesore',
 'mainpagetext' => 'Wiki software u instalua me sukses.',
 'maintenance' => 'Faqja mirëmbajtëse',
@@ -523,7 +434,7 @@ Konsideroni ta ndani faqen në disa seksione më të vogla.',
 'makesysopname' => 'Emri i përdoruesit:',
 'makesysopok' => '<b>Përdoruesi \'$1\' u bë administrues</b>',
 'makesysopsubmit' => 'Jepini privilegjin',
-'makesysoptext' => 'Ky formular përdoret për tu dhënë titullin [[{{SITENAME}}:Administruesit|administrues]] një përdoruesi të thjeshtë. Kini kujdes, mbasi të jetë dhënë, vetëm një \'\'zhvillues\'\' mund t\'ia heqi këtë titull një administruesi.',
+'makesysoptext' => 'Ky formular përdoret për tu dhënë titullin [[{{ns:project}}:Administruesit|administrues]] një përdoruesi të thjeshtë. Kini kujdes, mbasi të jetë dhënë, vetëm një \'\'zhvillues\'\' mund t\'ia heqi këtë titull një administruesi.',
 'makesysoptitle' => 'Jepini privilegjin e titullit administrues',
 'march' => 'Mars',
 'matchtotals' => 'Pyetja "$1" u përpuq $2 tituj faqesh
@@ -544,7 +455,7 @@ dhe teksti i $3 artikujve te pasardhshëm.',
 'may_long' => 'Maj',
 'media_sample' => 'Shëmbull.ogg',
 'media_tip' => 'Lidhje skedari medie',
-'metadata_page' => '{{SITENAME}}:Metadata',
+'metadata_page' => '{{ns:project}}:Metadata',
 'mimesearch' => 'Kërkime MIME',
 'mimetype' => 'Lloji MIME:',
 'minlength' => 'Emrat e skedarëve duhet të kenë të paktën tre gërma.',
@@ -609,16 +520,12 @@ Ky mund të jetë një ndryshim i madh dhe gjëra të papritura mund të ndodhin
 </div>',
 'newbies' => 'të njomtët',
 'newimages' => 'Galeria e figurave të reja',
-'newmessages' => 'Keni $1.',
 'newmessageslink' => 'mesazhe të reja',
 'newpage' => 'Faqe e re',
 'newpageletter' => 'R',
 'newpages' => 'Artikuj të rinj',
 'newpassword' => 'Fjalëkalimi i ri',
 'newtitle' => 'Tek titulli i ri',
-'newuserloglog' => 'Hapi llogarinë për përdoruesin [[User:$1|$1]] ([[User talk:$1|$2]] | [[Special:Contributions/$1|$3]])',
-'newuserlogpage' => 'Rregjistri llogarive',
-'newuserlogpagetext' => 'Ky është një rregjistër i llogarive të fundit që janë hapur',
 'newusersonly' => ' (përdoruesit e rinj vetëm)',
 'newwindow' => '(hapet në një dritare të re)',
 'next' => 'mbas',
@@ -712,10 +619,6 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'prefs-misc' => 'Të ndryshme',
 'prefs-personal' => 'Të dhëna përdoruesi',
 'prefs-rc' => 'Rreth ndryshimeve së fundmi dhe cungjeve',
-'prefslogintext' => 'Keni hyrë si "$1".
-Numri juaj i brëndshëm i identifikimit është $2.
-
-Shikoni [[{{SITENAME}}:Ndihmë për parapëlqimet e përdoruesit]] për të mësuar opsionet.',
 'prefsnologin' => 'Nuk keni hyrë brënda',
 'prefsnologintext' => 'Duhet të keni <a href="/wiki/Speciale:Userlogin">hyrë brënda</a> për të ndryshuar parapëlqimet e përdoruesit.',
 'prefsreset' => 'Parapëlqimet janë rikthyer siç ishin.',
@@ -731,14 +634,14 @@ Shikoni [[{{SITENAME}}:Ndihmë për parapëlqimet e përdoruesit]] për të mës
 'protectcomment' => 'Arsyeja për mbrojtjen',
 'protectedarticle' => 'mbrojti [[$1]]',
 'protectedpage' => 'Faqe e mbrojtur',
-'protectedpagewarning' => 'KUJDES: Kjo faqe është bllokuar kështuqë vetëm përdorues me titullin sysop mund ta redaktojnë. Ndiqni rregullat e dhëna tek [[{{SITENAME}}:Rregullat për faqe të bllokuara|faqet e bllokuara]].',
+'protectedpagewarning' => 'KUJDES: Kjo faqe është bllokuar kështuqë vetëm përdorues me titullin sysop mund ta redaktojnë. Ndiqni rregullat e dhëna tek [[{{ns:project}}:Rregullat për faqe të bllokuara|faqet e bllokuara]].',
 'protectedtext' => 'Kjo faqe është e mbrojtur që të mos redaktohet; mund të ketë
 disa arsye përse kjo është bërë, ju lutem shikoni
-[[{{SITENAME}}:Faqe e mbrojtur]].
+[[{{ns:project}}:Faqe e mbrojtur]].
 
 Mund të shikoni dhe kopjoni tekstin e kësaj faqeje:',
 'protectlogpage' => 'Rregjistri mbrojtjeve',
-'protectlogtext' => 'Më poshtë është një listë e "mbrojtjeve/lirimeve" të faqeve. Shikoni [[{{SITENAME}}:Faqe e mbrojtur]] për më shumë informacion.',
+'protectlogtext' => 'Më poshtë është një listë e "mbrojtjeve/lirimeve" të faqeve. Shikoni [[{{ns:project}}:Faqe e mbrojtur]] për më shumë informacion.',
 'protectmoveonly' => 'Mbroje vetëm nga zhvendosjet',
 'protectpage' => 'Mbroje faqen',
 'protectsub' => '(Duke mbrojtur "$1")',
@@ -812,15 +715,11 @@ kështuqë nuk do keni mundësi të ruani redaktimet e tuaja tani. Mund të kopj
 'saveprefs' => 'Ruaj parapëlqimet',
 'search' => 'Kërko',
 'searchdisabled' => '<p>Kërkimi me tekst të plotë është bllokuar tani për tani ngaqë shërbyesi është shumë i ngarkuar; shpresojmë ta nxjerrim prapë në gjendje normale pas disa punimeve. Deri atëherë mund të përdorni Google-in për kërkime:</p>',
-'searchnext' => '<span style=\'font-size: small\'>Më pas</span> &#x00BB;',
-'searchnumber' => '<strong>Përfundimet $1-$2 nga $3</strong>',
-'searchprev' => '&#x00AB; <span style=\'font-size: small\'>Më parë</span>',
+
 'searchquery' => 'Për pyetjen "<a href="/wiki/$1">$1</a>" <a href="/wiki/Special:Allpages/$1">[Treguesi]</a>',
 'searchresults' => 'Përfundimet e kërkimit',
 'searchresultshead' => 'Rreth kërkimit',
 'searchresulttext' => '<!--   -->',
-'searchscore' => 'Përkatësia: $1',
-'searchsize' => '$1KB ($2 fjalë)',
 'selectnewerversionfordiff' => 'Zgjidhni një version më të ri për krahasim',
 'selectolderversionfordiff' => 'Zgjidhni një version më të vjetër për krahasim',
 'selflinks' => 'Faqe që lidhen tek vetëvetja',
@@ -841,15 +740,6 @@ kështuqë nuk do keni mundësi të ruani redaktimet e tuaja tani. Mund të kopj
 'showlast' => 'Trego $1 figurat e fundit të renditura sipas $2.',
 'showpreview' => 'Trego parapamjen',
 'showtoc' => 'trego',
-'sidebar' => '
-* navigation
-** mainpage|mainpage
-** portal-url|portal
-** currentevents-url|currentevents
-** recentchanges-url|recentchanges
-** randompage-url|randompage
-** helppage|help
-** sitesupport-url|sitesupport',
 'sig_tip' => 'Firma juaj me gjithë kohë',
 'sitestats' => 'Statistikat e faqeve',
 'sitesupport' => 'Dhurime',
@@ -917,10 +807,6 @@ kështuqë nuk do keni mundësi të ruani redaktimet e tuaja tani. Mund të kopj
 'tog-watchdefault' => 'Shto faqet që redakton tek lista mbikqyrëse',
 'toolbox' => 'Mjete',
 'trackback' => '; $4$5 : [$2 $1]',
-'trackbackbox' => '<div id=\'mw_trackbacks\'>
-Trackbacks for this article:<br />
-$1
-</div>',
 'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'tuesday' => 'E Martë',
 'uclinks' => 'Shikoni $1 redaktimet e fundit; shikoni $2 ditët e fundit.',
@@ -978,8 +864,8 @@ Të gjitha orët janë me orën e shërbyesit (UTC).
 <ul>
 </ul>',
 'uploadnologin' => 'Nuk keni hyrë brënda',
-'uploadnologintext' => 'Duhet të keni <a href="/wiki/Speciale:Userlogin">hyrë brënda</a> për të dhënë skedarë.',
-'uploadtext' => '\'\'\'NDALO!\'\'\' Përpara se të jepni këtu, lexoni dhe ndiqni [[{{SITENAME}}:Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skedarë për të cilët autori (ose ju) nuk ka dhënë të drejtë për përdorim nën një liçensë të lirë (si psh GNU Free Documentation License ose Creative Commons).
+'uploadnologintext' => 'Duhet të keni [[{{ns:special}}:Userlogin|hyrë brënda]] për të dhënë skedarë.',
+'uploadtext' => '\'\'\'NDALO!\'\'\' Përpara se të jepni këtu, lexoni dhe ndiqni [[{{ns:project}}:Rregullat e përdorimit të figurave]] të {{SITENAME}}-s. Mos jepni skedarë për të cilët autori (ose ju) nuk ka dhënë të drejtë për përdorim nën një liçensë të lirë (si psh GNU Free Documentation License ose Creative Commons).
 
 Për të parë ose për të kërkuar figurat e dhëna më parë,
 shkoni tek [[Speciale:Imagelist|lista e figurave të dhëna]].
@@ -1025,7 +911,7 @@ Vendosni "0" për gërmën e parë për të çaktivizuar planimetrinë e re të 
 'watchmethod-recent' => 'duke parë ndryshime së fundmi për faqe nën mbikqyrje',
 'watchnochange' => 'Asnjë nga artikujt nën mbikqyrje nuk është redaktuar gjatë kohës së dhënë.',
 'watchnologin' => 'Nuk keni hyrë brënda',
-'watchnologintext' => 'Duhet të keni <a href="/wiki/Speciale:Userlogin">hyrë brënda</a> për të ndryshuar listën mbikqyrëse.',
+'watchnologintext' => 'Duhet të keni [[{{ns:special}}:Userlogin|hyrë brënda]] për të ndryshuar listën mbikqyrëse.',
 'watchthis' => 'Mbikqyr këtë faqe',
 'watchthispage' => 'Mbikqyre këtë faqe',
 'wednesday' => 'E Mërkurë',

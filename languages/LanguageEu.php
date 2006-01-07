@@ -1301,10 +1301,10 @@ Please check the URL you used to access this page.', */
 #'searchfulltext' => 'Search full text',
 /* 'searchnearmatch' => '<li>$1</li>', */
 /* 'searchnearmatches' => '<b>These pages have similar titles to your query:</b>', */
-#'searchnext' => '<span style=\'font-size: small\'>Next</span> &#x00BB;',
+
 #'searchnoresults' => 'Sorry, there were no exact matches to your query.',
 #'searchnumber' => '<strong>Results $1-$2 of $3</strong>',
-#'searchprev' => '&#x00AB; <span style=\'font-size: small\'>Prev</span>',
+
 #'searchquery' => 'For query "$1"',
 'searchresults' => 'Bilaketaren emaitza',
 #'searchresultshead' => 'Search',

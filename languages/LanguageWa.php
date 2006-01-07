@@ -1790,10 +1790,10 @@ Cweraedje di: $3 $9', # obsolete?
 
 'renameuserlog' => 'L\' uzeu «[[Uzeu:$1|$1]]» (k\' aveut ddja fwait $3 candjmints) a stî rlomé a «[[Uzeu:$2|$2]]»',
 'searchnearmatches' => '<b>Les pådjes shuvantes ont des tites ki ravizèt çou k\' vos avoz cwerou:</b>',
-'searchnext' => '<span style=\'font-size: small\'>Shuv.</span> →',
+
 'searchnoresults' => 'Mande escuzes, mins i gn a rén ki corespond.',
 'searchnumber' => '<strong>Rizultats: $1-$2 di $3</strong>',
-'searchprev' => '← <span style=\'font-size: small\'>Div.</span>',
+
 ###########
 #=======================
 ###########

@@ -387,7 +387,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 "passwordremindertext" => "Keegi (tõenäoliselt Teie, IP-aadressilt $1),
 palus, et me saadaksime Teile uue parooli süsteemi sisselogimiseks.
 Kasutaja \"$2\" parool on nüüd \"$3\".
-Võiksid sisse logida ja selle ajutise parooli ära muuta. <BR \>
+Võiksid sisse logida ja selle ajutise parooli ära muuta. <br \>
 
 Sinu {{SITENAME}}.",
 "noemail"		=> "Kasutaja \"$1\" meiliaadressi meil kahjuks pole.",
