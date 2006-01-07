@@ -1,12 +1,12 @@
 <?php
 /**
- * 
+ *
  * @package MediaWiki
  *
  * DB accessable external objects
  *
  */
-require_once( 'LoadBalancer.php' ); 
+require_once( 'LoadBalancer.php' );
 
 
 /** @package MediaWiki */

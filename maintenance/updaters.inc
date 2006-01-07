@@ -713,8 +713,8 @@ function do_templatelinks_update() {
 					sleep( 1 );
 				}
 			}
-			$wgDatabase->insert( 'templatelinks', 
-				array( 
+			$wgDatabase->insert( 'templatelinks',
+				array(
 					'tl_from' => $row->pl_from,
 					'tl_namespace' => $row->pl_namespace,
 					'tl_title' => $row->pl_title,
@@ -725,11 +725,11 @@ function do_templatelinks_update() {
 		$wgDatabase->freeResult( $res );
 	} else {
 		// Fast update
-		$wgDatabase->insertSelect( 'templatelinks', 'pagelinks', 
-			array( 
+		$wgDatabase->insertSelect( 'templatelinks', 'pagelinks',
+			array(
 				'tl_from' => 'pl_from',
-				'tl_namespace' => 'pl_namespace', 
-				'tl_title' => 'pl_title' 
+				'tl_namespace' => 'pl_namespace',
+				'tl_title' => 'pl_title'
 			), array(
 				'pl_namespace' => 10
 			), $fname

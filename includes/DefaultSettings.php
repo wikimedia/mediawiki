@@ -133,14 +133,14 @@ $wgUploadBaseUrl    = "";
  *  +         Doesn't work with path to query rewrite rules, corrupted by apache
  *  ?         Enabled by default, but doesn't work with path to PATH_INFO rewrites
  *
- * All three of these punctuation problems can be avoided by using an alias, instead of a 
+ * All three of these punctuation problems can be avoided by using an alias, instead of a
  * rewrite rule of either variety.
  *
- * The problem with % is that when using a path to query rewrite rule, URLs are 
- * double-unescaped: once by Apache's path conversion code, and again by PHP. So 
- * %253F, for example, becomes "?". Our code does not double-escape to compensate 
- * for this, indeed double escaping would break if the double-escaped title was 
- * passed in the query string rather than the path. This is a minor security issue 
+ * The problem with % is that when using a path to query rewrite rule, URLs are
+ * double-unescaped: once by Apache's path conversion code, and again by PHP. So
+ * %253F, for example, becomes "?". Our code does not double-escape to compensate
+ * for this, indeed double escaping would break if the double-escaped title was
+ * passed in the query string rather than the path. This is a minor security issue
  * because articles can be created such that they are hard to view or edit.
  *
  * Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
@@ -462,7 +462,7 @@ $wgSharedDB = null;
 #   max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
 #   max threads: (optional) Maximum number of running threads
 #
-#   These and any other user-defined properties will be assigned to the mLBInfo member 
+#   These and any other user-defined properties will be assigned to the mLBInfo member
 #   variable of the Database object.
 #
 # Leave at false to use the single-server variables above
@@ -677,7 +677,7 @@ $wgDebugDumpSql         = false;
 
 /**
  * Set to an array of log group keys to filenames.
- * If set, wfDebugLog() output for that group will go to that file instead 
+ * If set, wfDebugLog() output for that group will go to that file instead
  * of the regular $wgDebugLogFile. Useful for enabling selective logging
  * in production.
  */
@@ -737,11 +737,11 @@ $wgBlockAllowsUTEdit    = false; # Blocks allow users to edit their own user tal
 
 # Pages anonymous user may see as an array, e.g.:
 # array ( "Main Page", "Special:Userlogin", "Wikipedia:Help");
-# NOTE: This will only work if $wgGroupPermissions['*']['read'] 
+# NOTE: This will only work if $wgGroupPermissions['*']['read']
 # is false -- see below. Otherwise, ALL pages are accessible,
 # regardless of this setting.
 # Also note that this will only protect _pages in the wiki_.
-# Uploaded files will remain readable. Make your upload 
+# Uploaded files will remain readable. Make your upload
 # directory name unguessable, or use .htaccess to protect it.
 $wgWhitelistRead = false;	
 
@@ -752,9 +752,9 @@ $wgWhitelistRead = false;
  * combined with the permissions of all groups that a given user is listed
  * in in the user_groups table.
  *
- * Functionality to make pages inaccessible has not been extensively tested 
+ * Functionality to make pages inaccessible has not been extensively tested
  * for security. Use at your own risk!
- * 
+ *
  * This replaces wgWhitelistAccount and wgWhitelistEdit
  */
 $wgGroupPermissions = array();
@@ -999,12 +999,12 @@ $wgDisableCookieCheck = false;
 /**  Whether to allow inline image pointing to other websites */
 $wgAllowExternalImages = true;
 
-/** If the above is false, you can specify an exception here. Image URLs 
+/** If the above is false, you can specify an exception here. Image URLs
   * that start with this string are then rendered, while all others are not.
   * You can use this to set up a trusted, simple repository of images.
   *
-  * Example: 
-  * $wgAllowExternalImagesFrom = 'http://127.0.0.1/'; 
+  * Example:
+  * $wgAllowExternalImagesFrom = 'http://127.0.0.1/';
   */
 $wgAllowExternalImagesFrom = '';
 
@@ -1092,8 +1092,8 @@ $wgUseDumbLinkUpdate = false;
  *   ALF_PRELOAD_EXISTENCE
  *       Preload cur_id during replaceLinkHolders
  *   ALF_NO_LINK_LOCK
- *       Don't use locking reads when updating the link table. This is 
- *       necessary for wikis with a high edit rate for performance 
+ *       Don't use locking reads when updating the link table. This is
+ *       necessary for wikis with a high edit rate for performance
  *       reasons, but may cause link table inconsistency
  *   ALF_NO_BLOCK_LOCK
  *       As for ALF_LINK_LOCK, this flag is a necessity for high-traffic
@@ -1220,9 +1220,9 @@ $wgSVGConverter = 'ImageMagick';
 $wgSVGConverterPath = '';
 /** Don't scale a SVG larger than this unless its native size is larger */
 $wgSVGMaxSize = 1024;
-/** 
- * Don't thumbnail an image if it will use too much working memory 
- * Default is 50 MB if decompressed to RGBA form, which corresponds to 
+/**
+ * Don't thumbnail an image if it will use too much working memory
+ * Default is 50 MB if decompressed to RGBA form, which corresponds to
  * 12.5 million pixels or 3500x3500
  */
 $wgMaxImageArea = 1.25e7;

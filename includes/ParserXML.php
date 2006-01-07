@@ -1,6 +1,6 @@
-<?php 
+<?php
 /**
- * 
+ *
  * @package MediaWiki
  * @subpackage Experimental
  */
@@ -543,7 +543,7 @@ class ParserXML extends Parser {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @access public
 	 */
 	function ParserXML() {

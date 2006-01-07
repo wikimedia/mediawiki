@@ -7,7 +7,7 @@
  */
 
 /**
- * 
+ *
  * @package MediaWiki
  *
  * Support for external editors to modify both text and files
@@ -19,7 +19,7 @@
  * and save the modified data back to the server.
  *
  */
- 
+
 class ExternalEdit {
 
 	function ExternalEdit ( $article, $mode ) {
@@ -43,11 +43,11 @@ class ExternalEdit {
 		if(!isset($this->mMode)) {		
 			$type="Edit text";		
 			$url=$this->mTitle->getFullURL("action=edit&internaledit=true");
-			# *.wiki file extension is used by some editors for syntax 
+			# *.wiki file extension is used by some editors for syntax
 			# highlighting, so we follow that convention
-			$extension="wiki"; 
+			$extension="wiki";
 		} elseif($this->mMode=="file") {
-			$type="Edit file"; 
+			$type="Edit file";
 			$image = Image::newFromTitle( $this->mTitle );
 			$img_url = $image->getURL();
 			if(strpos($img_url,"://")) {
@@ -57,7 +57,7 @@ class ExternalEdit {
 			}
 			$extension=substr($name, $pos);
 		}
-		$special=$wgLang->getNsText(NS_SPECIAL);		 
+		$special=$wgLang->getNsText(NS_SPECIAL);		
 		$control = <<<CONTROL
 [Process]
 Type=$type

@@ -374,7 +374,7 @@ class PreferencesForm {
 			if( preg_match( $item, $this->mNick ) > 0 ) {
 				return( true );	# We found a reserved expression
 			}
-		} 
+		}
 		return( false );
 	}
 
@@ -829,7 +829,7 @@ class PreferencesForm {
 			) . '</fieldset>'
 		);
 
-		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>' . 
+		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>' .
 					'<label for="wpRecent">' . wfMsg ( 'recentchangescount' ) .
 					"</label> <input type='text' name='wpRecent' id='wpRecent' value=\"$this->mRecent\" size='3' />" .
 			$this->getToggles( array(

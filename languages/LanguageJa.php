@@ -298,7 +298,7 @@ $1 を参照してください。',
 'databaseerror' => 'データベース・エラー',
 'dberrortext' => 'データベース検索の文法エラー。これは恐らくソフトウェアのバグを表しています。
 
-最後に実行を試みた問い合わせ: 
+最後に実行を試みた問い合わせ:
 <blockquote><tt>$1</tt></blockquote>
 
 from within function "<tt>$2</tt>". MySQL returned error "<tt>$3: $4</tt>".',
@@ -1386,53 +1386,53 @@ Set first character to "0" to disable the new category page layout.',
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => "/* tooltips and access keys */
 ta = new Object();
-ta['pt-userpage'] = new Array('.','自分の利用者ページ'); 
-ta['pt-anonuserpage'] = new Array('.','あなたのIPアドレス用の利用者ページ'); 
-ta['pt-mytalk'] = new Array('n','自分の会話ページ'); 
-ta['pt-anontalk'] = new Array('n','あなたのIPアドレスからなされた編集の会話ページ'); 
-ta['pt-preferences'] = new Array('','オプションの変更'); 
-ta['pt-watchlist'] = new Array('l','変更を監視しているページの一覧'); 
-ta['pt-mycontris'] = new Array('y','自分の投稿記録'); 
-ta['pt-login'] = new Array('o','ログインすることが推奨されますが、しなくても構いません。'); 
-ta['pt-anonlogin'] = new Array('o','ログインすることが推奨されますが、しなくても構いません。'); 
-ta['pt-logout'] = new Array('o','ログアウト'); 
-ta['ca-talk'] = new Array('t','項目のノート'); 
-ta['ca-edit'] = new Array('e','このページを編集できます。投稿の前に「プレビューを実行」ボタンを使ってください。'); 
-ta['ca-addsection'] = new Array('+','このページにコメントを加える'); 
-ta['ca-viewsource'] = new Array('e','このページは保護されています。ページのソースを閲覧できます。'); 
-ta['ca-history'] = new Array('h','このページの過去の版'); 
-ta['ca-protect'] = new Array('=','このページを保護'); 
-ta['ca-delete'] = new Array('d','このページを削除'); 
-ta['ca-undelete'] = new Array('d','削除されたページを復帰する'); 
-ta['ca-move'] = new Array('m','このページを移動'); 
-ta['ca-watch'] = new Array('w','このページをウォッチリストへ追加'); 
-ta['ca-unwatch'] = new Array('w','このページをウォッチリストから外す'); 
-ta['search'] = new Array('f','ウィキ内を検索'); 
-ta['p-logo'] = new Array('','メインページ'); 
-ta['n-mainpage'] = new Array('z','メインページに移動'); 
-ta['n-portal'] = new Array('','このプロジェクトについて、あなたのできることを探す場所です'); 
-ta['n-currentevents'] = new Array('','最近の出来事'); 
-ta['n-recentchanges'] = new Array('r','最近更新が行われたページの一覧'); 
-ta['n-randompage'] = new Array('x','ランダムに記事を選んで表示'); 
-ta['n-help'] = new Array('','ヘルプ・使い方'); 
-ta['n-sitesupport'] = new Array('','私たちをサポートしてください'); 
-ta['t-whatlinkshere'] = new Array('j','このページにリンクしているページの一覧'); 
-ta['t-recentchangeslinked'] = new Array('k','最近更新が行われたこのページのリンク先'); 
-ta['feed-rss'] = new Array('','このページのRSSフィード'); 
-ta['feed-atom'] = new Array('','このページのAtomフィード'); 
-ta['t-contributions'] = new Array('','ユーザーの投稿記録'); 
-ta['t-emailuser'] = new Array('','このユーザーにメールを送信'); 
-ta['t-upload'] = new Array('u','画像やメディアファイルをアップロード'); 
-ta['t-specialpages'] = new Array('q','特別ページの一覧'); 
-ta['ca-nstab-main'] = new Array('c','本文を表示'); 
-ta['ca-nstab-user'] = new Array('c','利用者ページを表示'); 
-ta['ca-nstab-media'] = new Array('c','メディアページを表示'); 
-ta['ca-nstab-special'] = new Array('','これは特別ページです。編集することはできません。'); 
-ta['ca-nstab-wp'] = new Array('a','{{SITENAME}}ページを表示'); 
-ta['ca-nstab-image'] = new Array('c','画像ページを表示'); 
-ta['ca-nstab-mediawiki'] = new Array('c','定型文を表示'); 
-ta['ca-nstab-template'] = new Array('c','テンプレートを表示'); 
-ta['ca-nstab-help'] = new Array('c','ヘルプページを表示'); 
+ta['pt-userpage'] = new Array('.','自分の利用者ページ');
+ta['pt-anonuserpage'] = new Array('.','あなたのIPアドレス用の利用者ページ');
+ta['pt-mytalk'] = new Array('n','自分の会話ページ');
+ta['pt-anontalk'] = new Array('n','あなたのIPアドレスからなされた編集の会話ページ');
+ta['pt-preferences'] = new Array('','オプションの変更');
+ta['pt-watchlist'] = new Array('l','変更を監視しているページの一覧');
+ta['pt-mycontris'] = new Array('y','自分の投稿記録');
+ta['pt-login'] = new Array('o','ログインすることが推奨されますが、しなくても構いません。');
+ta['pt-anonlogin'] = new Array('o','ログインすることが推奨されますが、しなくても構いません。');
+ta['pt-logout'] = new Array('o','ログアウト');
+ta['ca-talk'] = new Array('t','項目のノート');
+ta['ca-edit'] = new Array('e','このページを編集できます。投稿の前に「プレビューを実行」ボタンを使ってください。');
+ta['ca-addsection'] = new Array('+','このページにコメントを加える');
+ta['ca-viewsource'] = new Array('e','このページは保護されています。ページのソースを閲覧できます。');
+ta['ca-history'] = new Array('h','このページの過去の版');
+ta['ca-protect'] = new Array('=','このページを保護');
+ta['ca-delete'] = new Array('d','このページを削除');
+ta['ca-undelete'] = new Array('d','削除されたページを復帰する');
+ta['ca-move'] = new Array('m','このページを移動');
+ta['ca-watch'] = new Array('w','このページをウォッチリストへ追加');
+ta['ca-unwatch'] = new Array('w','このページをウォッチリストから外す');
+ta['search'] = new Array('f','ウィキ内を検索');
+ta['p-logo'] = new Array('','メインページ');
+ta['n-mainpage'] = new Array('z','メインページに移動');
+ta['n-portal'] = new Array('','このプロジェクトについて、あなたのできることを探す場所です');
+ta['n-currentevents'] = new Array('','最近の出来事');
+ta['n-recentchanges'] = new Array('r','最近更新が行われたページの一覧');
+ta['n-randompage'] = new Array('x','ランダムに記事を選んで表示');
+ta['n-help'] = new Array('','ヘルプ・使い方');
+ta['n-sitesupport'] = new Array('','私たちをサポートしてください');
+ta['t-whatlinkshere'] = new Array('j','このページにリンクしているページの一覧');
+ta['t-recentchangeslinked'] = new Array('k','最近更新が行われたこのページのリンク先');
+ta['feed-rss'] = new Array('','このページのRSSフィード');
+ta['feed-atom'] = new Array('','このページのAtomフィード');
+ta['t-contributions'] = new Array('','ユーザーの投稿記録');
+ta['t-emailuser'] = new Array('','このユーザーにメールを送信');
+ta['t-upload'] = new Array('u','画像やメディアファイルをアップロード');
+ta['t-specialpages'] = new Array('q','特別ページの一覧');
+ta['ca-nstab-main'] = new Array('c','本文を表示');
+ta['ca-nstab-user'] = new Array('c','利用者ページを表示');
+ta['ca-nstab-media'] = new Array('c','メディアページを表示');
+ta['ca-nstab-special'] = new Array('','これは特別ページです。編集することはできません。');
+ta['ca-nstab-wp'] = new Array('a','{{SITENAME}}ページを表示');
+ta['ca-nstab-image'] = new Array('c','画像ページを表示');
+ta['ca-nstab-mediawiki'] = new Array('c','定型文を表示');
+ta['ca-nstab-template'] = new Array('c','テンプレートを表示');
+ta['ca-nstab-help'] = new Array('c','ヘルプページを表示');
 ta['ca-nstab-category'] = new Array('c','カテゴリページを表示');",
 
 # image deletion
@@ -1791,7 +1791,7 @@ $3
 もし {{SITENAME}} について身に覚えがない場合は、リンクを開かないでください。
 確認用コードは  $4 に期限切れになります。
 
--- 
+--
 {{SITENAME}} メールアドレス確認システム
 {{SERVER}}/',
 

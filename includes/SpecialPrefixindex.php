@@ -90,7 +90,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
-			$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) . 
+			$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
 				$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
 				($s->page_is_redirect ? '</div>' : '' );
 		} else {

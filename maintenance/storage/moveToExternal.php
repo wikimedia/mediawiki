@@ -43,7 +43,7 @@ function moveToExternal( $cluster, $maxID ) {
 			wfWaitForSlaves( 5 );
 		}
 		$row = $dbw->selectRow( 'text', array( 'old_flags', 'old_text' ),
-			array( 
+			array(
 				'old_id' => $id,
 				"old_flags NOT LIKE '%external%'",
 			), $fname );
@@ -54,8 +54,8 @@ function moveToExternal( $cluster, $maxID ) {
 
 		# Resolve stubs
 		$flags = explode( ',', $row->old_flags );
-		if ( in_array( 'object', $flags ) 
-			&& substr( $row->old_text, 0, strlen( STUB_HEADER ) ) === STUB_HEADER ) 
+		if ( in_array( 'object', $flags )
+			&& substr( $row->old_text, 0, strlen( STUB_HEADER ) ) === STUB_HEADER )
 		{
 			resolveStub( $id, $row->old_text, $row->old_flags );
 			continue;
@@ -71,7 +71,7 @@ function moveToExternal( $cluster, $maxID ) {
 		} else {
 			$flags = "{$row->old_flags},external";
 		}
-		$dbw->update( 'text', 
+		$dbw->update( 'text',
 			array( 'old_flags' => $flags, 'old_text' => $url ),
 			array( 'old_id' => $id ), $fname );
 	}

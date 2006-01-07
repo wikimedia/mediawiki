@@ -196,7 +196,7 @@ class GenerateSitemap {
 	 * If the namespace isn't listed on the priority list return the
 	 * default priority for the namespace, varies depending on whether it's
 	 * a talkpage or not.
-	 * 
+	 *
 	 * @param int $namespace The namespace to get the priority for
 	 *
 	 * @return string
@@ -216,7 +216,7 @@ class GenerateSitemap {
 		$fname = 'GenerateSitemap::getPageRes';
 
 		return $this->dbr->select( 'page',
-			array( 
+			array(
 				'page_namespace',
 				'page_title',
 				'page_touched',
@@ -289,7 +289,7 @@ class GenerateSitemap {
 	function write( &$handle, $str ) {
 		if ( $this->compress )
 			gzwrite( $handle, $str );
-		else 
+		else
 			fwrite( $handle, $str );
 	}
 
@@ -365,7 +365,7 @@ class GenerateSitemap {
 		return
 			"\t<sitemap>\n" .
 			"\t\t<loc>$filename</loc>\n" .
-			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" . 
+			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" .
 			"\t</sitemap>\n";
 	}
 

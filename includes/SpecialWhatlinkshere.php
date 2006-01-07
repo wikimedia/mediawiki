@@ -52,7 +52,7 @@ class WhatLinksHerePage {
 			$wgOut->errorpage( 'notargettitle', 'notargettext' );
 			return;
 		}
-		$this->selfTitle = Title::makeTitleSafe( NS_SPECIAL, 
+		$this->selfTitle = Title::makeTitleSafe( NS_SPECIAL,
 			'Whatlinkshere/' . $this->target->getPrefixedDBkey() );
 		$wgOut->setPagetitle( $this->target->getPrefixedText() );
 		$wgOut->setSubtitle( wfMsg( 'linklistsub' ) );
@@ -88,13 +88,13 @@ class WhatLinksHerePage {
 		}
 		
 		// Make the query
-		$plConds = array( 
+		$plConds = array(
 			'page_id=pl_from',
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		);
 		
-		$tlConds = array( 
+		$tlConds = array(
 			'page_id=tl_from',
 			'tl_namespace' => $target->getNamespace(),
 			'tl_title' => $target->getDBkey(),
@@ -121,9 +121,9 @@ class WhatLinksHerePage {
 		}
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
 		
-		$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields, 
+		$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
 			$plConds, $fname, $options );
-		$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields, 
+		$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
 			$tlConds, $fname, $options );
 		
 		if ( !$dbr->numRows( $plRes ) && !$dbr->numRows( $tlRes ) ) {
@@ -134,7 +134,7 @@ class WhatLinksHerePage {
 		}		
 
 		// Read the rows into an array and remove duplicates
-		// templatelinks comes second so that the templatelinks row overwrites the 
+		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
 		while ( $row = $dbr->fetchObject( $plRes ) ) {
 			$row->is_template = 0;
@@ -249,8 +249,8 @@ class WhatLinksHerePage {
 
 		if ( 0 != $prevId ) {
 			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$prevId}&dir=prev" );
-		} else { 
-			$prevLink = $prev; 
+		} else {
+			$prevLink = $prev;
 		}
 		if ( 0 != $nextId ) {
 			$nextLink = $this->makeSelfLink( $next, "limit={$limit}&from={$nextId}" );

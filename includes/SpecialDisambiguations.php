@@ -45,7 +45,7 @@ class DisambiguationsPage extends PageQueryPage {
 			 ." pa.page_title AS title, la.pl_from AS value"
 			 ." FROM {$pagelinks} AS lb, {$page} AS pa, {$pagelinks} AS la"
 			 ." WHERE lb.pl_namespace = $dns AND lb.pl_title = $dtitle" # disambiguation template
-			 ." AND pa.page_id = lb.pl_from"        
+			 ." AND pa.page_id = lb.pl_from"
 			 ." AND pa.page_namespace = la.pl_namespace"
 			 ." AND pa.page_title = la.pl_title";
 		return $sql;

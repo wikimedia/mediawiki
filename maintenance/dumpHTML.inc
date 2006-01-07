@@ -29,7 +29,7 @@ class DumpHTML {
 	# Copy commons images instead of symlinking
 	var $forceCopy = false;
 
-	# Make links assuming the script path is in the same directory as 
+	# Make links assuming the script path is in the same directory as
 	# the destination
 	var $alternateScriptPath = false;
 
@@ -48,8 +48,8 @@ class DumpHTML {
 		}
 	}
 
-	/** 
-	 * Write a set of articles specified by start and end page_id 
+	/**
+	 * Write a set of articles specified by start and end page_id
 	 * Skip categories and images, they will be done separately
 	 */
 	function doArticles( $start, $end = false ) {
@@ -77,7 +77,7 @@ class DumpHTML {
 			$title = Title::newFromID( $id );
 			if ( $title ) {
 				$ns = $title->getNamespace() ;
-				if ( $ns != NS_CATEGORY && $title->getPrefixedDBkey() != $mainPage ) { 
+				if ( $ns != NS_CATEGORY && $title->getPrefixedDBkey() != $mainPage ) {
 					$this->doArticle( $title );
 				}
 			}
@@ -121,8 +121,8 @@ class DumpHTML {
 		
 		$this->setupGlobals();
 
-		/** 
-		 * Dump image description pages that don't have an associated article, but do 
+		/**
+		 * Dump image description pages that don't have an associated article, but do
 		 * have a local image
 		 */
 		$dbr =& wfGetDB( DB_SLAVE );
@@ -138,7 +138,7 @@ class DumpHTML {
 				print "Done $i of $num\r";
 			}
 			$title = Title::makeTitle( NS_IMAGE, $row->img_name );
-			if ( $title->getArticleID() ) { 
+			if ( $title->getArticleID() ) {
 				// Already done by dumpHTML
 				continue;
 			}
@@ -198,7 +198,7 @@ class DumpHTML {
 		$this->setupGlobals();
 		$dbr =& wfGetDB( DB_SLAVE );
 
-		$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ), 
+		$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ),
 			array( 'page_is_redirect' => 1 ), $fname );
 		$num = $dbr->numRows( $res );
 		print "$num redirects to do...\n";
@@ -326,7 +326,7 @@ class DumpHTML {
 		if ( !$this->setupDone ) {
 			$this->oldCopyrightIcon = $wgCopyrightIcon;
 		}
-		$wgCopyrightIcon = str_replace( 'src="/images', 
+		$wgCopyrightIcon = str_replace( 'src="/images',
 			'src="' . htmlspecialchars( $wgScriptPath ) . '/images', $this->oldCopyrightIcon );
 
 
@@ -432,14 +432,14 @@ ENDTEXT;
 	 * This is necessary even if you intend to distribute all of commons, because
 	 * the directory contents is used to work out which image description pages
 	 * are needed.
-	 * 
+	 *
 	 * Also copies math images
 	 *
 	 */
 	function copyImages( $images ) {
 		global $wgSharedUploadPath, $wgSharedUploadDirectory, $wgMathPath, $wgMathDirectory;
 		# Find shared uploads and copy them into the static directory
-		$sharedPathLength = strlen( $wgSharedUploadPath ); 
+		$sharedPathLength = strlen( $wgSharedUploadPath );
 		$mathPathLength = strlen( $wgMathPath );
 		foreach ( $images as $escapedImage => $dummy ) {
 			$image = urldecode( $escapedImage );
@@ -500,7 +500,7 @@ ENDTEXT;
 			if ( $title->getDBkey() == '' ) {
 				$url = str_replace( '$1', "../$iw/index.html", $wgArticlePath );
 			} else {
-				$url = str_replace( '$1', "../$iw/" . wfUrlencode( $this->getHashedFilename( $title ) ), 
+				$url = str_replace( '$1', "../$iw/" . wfUrlencode( $this->getHashedFilename( $title ) ),
 					$wgArticlePath );
 			}
 			return false;
@@ -553,7 +553,7 @@ ENDTEXT;
 			return 'index.html';
 		}
 
-		return $this->getHashedDirectory( $title ) . '/' . 
+		return $this->getHashedDirectory( $title ) . '/' .
 			$this->getFriendlyName( $dbkey ) . '.html';
 	}
 

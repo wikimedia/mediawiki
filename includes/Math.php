@@ -8,7 +8,7 @@
  * Takes LaTeX fragments, sends them to a helper program (texvc) for rendering
  * to rasterized PNG and HTML and MathML approximations. An appropriate
  * rendering form is picked and returned.
- * 
+ *
  * by Tomasz Wegrzanowski, with additions by Brion Vibber (2003, 2004)
  *
  * @package MediaWiki
@@ -53,7 +53,7 @@ class MathRenderer {
 			if( function_exists( 'is_executable' ) && !is_executable( $wgTexvc ) ) {
 				return $this->_error( 'math_notexvc' );
 			}
-			$cmd = $wgTexvc . ' ' . 
+			$cmd = $wgTexvc . ' ' .
 					escapeshellarg( $wgTmpDirectory ).' '.
 					escapeshellarg( $wgTmpDirectory ).' '.
 					escapeshellarg( $this->tex ).' '.
@@ -62,7 +62,7 @@ class MathRenderer {
 			if ( wfIsWindows() ) {
 				# Invoke it within cygwin sh, because texvc expects sh features in its default shell
 				$cmd = 'sh -c ' . wfEscapeShellArg( $cmd );
-			} 
+			}
 
 			wfDebug( "TeX: $cmd\n" );
 			$contents = `$cmd`;
@@ -143,13 +143,13 @@ class MathRenderer {
 				
 				$dbw =& wfGetDB( DB_MASTER );
 				$dbw->replace( 'math', array( 'math_inputhash' ),
-				  array( 
-					'math_inputhash' => $md5_sql, 
+				  array(
+					'math_inputhash' => $md5_sql,
 					'math_outputhash' => $outmd5_sql,
 					'math_html_conservativeness' => $this->conservativeness,
 					'math_html' => $this->html,
 					'math_mathml' => $this->mathml,
-				  ), $fname, array( 'IGNORE' ) 
+				  ), $fname, array( 'IGNORE' )
 				);
 			}
 			
@@ -172,7 +172,7 @@ class MathRenderer {
 
 		$this->md5 = md5( $this->tex );
 		$dbr =& wfGetDB( DB_SLAVE );
-		$rpage = $dbr->selectRow( 'math', 
+		$rpage = $dbr->selectRow( 'math',
 			array( 'math_outputhash','math_html_conservativeness','math_html','math_mathml' ),
 			array( 'math_inputhash' => pack("H32", $this->md5)), # Binary packed, not hex
 			$fname

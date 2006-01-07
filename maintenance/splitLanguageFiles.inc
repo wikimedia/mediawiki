@@ -3,9 +3,9 @@
  * This is an experimental list. It will later be used with a script to split
  * the languages files in several parts then the message system will only load
  * in memory the parts which are actually needed.
- * 
+ *
  * Generated using: grep -r foobar *
- * 
+ *
  * $commonMsg is the default array. Other arrays will only be loaded if needed.
  */
 $installerMsg = array (

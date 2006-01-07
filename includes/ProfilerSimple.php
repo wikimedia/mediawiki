@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Simple profiler base class
  * @package MediaWiki

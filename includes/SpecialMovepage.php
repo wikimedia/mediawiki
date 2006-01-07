@@ -232,7 +232,7 @@ class MovePageForm {
 		
 		# Give back result to user.
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
-		$success = $titleObj->getFullURL( 
+		$success = $titleObj->getFullURL(
 		  'action=success&oldtitle=' . wfUrlencode( $ot->getPrefixedText() ) .
 		  '&newtitle=' . wfUrlencode( $nt->getPrefixedText() ) .
 		  '&talkmoved='.$talkmoved );

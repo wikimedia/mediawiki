@@ -2,7 +2,7 @@
 /**
  * Provide an administration interface
  * DO NOT USE: INSECURE.
- * 
+ *
  * TODO : remove everything related to group editing (SpecialGrouplevels.php)
  * @package MediaWiki
  * @subpackage SpecialPage

@@ -129,7 +129,7 @@ require_once( 'LanguageUtf8.php' );
 	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'),
 	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK'            ),
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
-	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),    
+	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),
 );
 
 #-------------------------------------------------------------------
@@ -430,7 +430,7 @@ devido a tornar a base de dados lenta demais a ponto de impossibilitar a wiki.',
 Function: $1<br />
 Query: $2",
 'viewsource' => 'Ver fonte',
-'protectedtext' => "Esta página foi protegida para não permitir edições; existem inúmeros motivos para 
+'protectedtext' => "Esta página foi protegida para não permitir edições; existem inúmeros motivos para
 ocorrer esta situação, por favor consulte [[Project:Protected page]].
 
 Pode ver e copiar o código fonte desta página:",
@@ -506,8 +506,8 @@ Caso tenha sido outra pessoa a fazer este pedido ou caso você já se tenha lemb
 'noemail'                           => "Não existe um endereço de e-mail associado ao utilizador \"$1\".",
 'passwordsent'  => "Uma nova palavra-chave encontra-se a ser enviada para o endereço de email associado ao utilizador \"$1\".
 Por favor, volte a efectuar a autentificação ao recebê-la.",
-'eauthentsent'             =>  "Um email de confirmação foi enviado para o endereço de correio electrónico nomeado. 
-Antes de qualquer outro email seja enviado para a conta, terá seguir as instruções no email, 
+'eauthentsent'             =>  "Um email de confirmação foi enviado para o endereço de correio electrónico nomeado.
+Antes de qualquer outro email seja enviado para a conta, terá seguir as instruções no email,
 de modo a confirmar que a conta é mesmo sua.",
 'loginend'                          => '',
 'signupend'                         => '{{int:loginend}}',
@@ -590,7 +590,7 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 'updated'               => '(Actualizado)',
 'note'                  => '<strong>Nota:</strong> ',
 'previewnote'   => '<strong>Isto é apenas uma previsão, as modificações ainda não foram salvas!</strong>',
-'session_fail_preview' => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão. 
+'session_fail_preview' => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
 'previewconflict' => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'importing'		=> "Importando $1",
@@ -617,7 +617,7 @@ podem ser editadas, alteradas, ou removidas por outros contribuidores.
 Se não deseja ver as suas contribuições alteradas sem consentimento, não as envie para esta Wiki.<br />
 Adicionalmente, estar-nos-á a dar a sua palavra em como os teus são da sua autoria, ou copiados por fontes de domínio público ou similares (veja mais detalhes em $1).
 <strong>NÃO ENVIE MATERIAL COM DIREITOS DE AUTOR SEM PERMISSÃO!</strong>",
-'longpagewarning' => "<strong>AVISO: Esta página ocupa $1; alguns browsers verificam 
+'longpagewarning' => "<strong>AVISO: Esta página ocupa $1; alguns browsers verificam
 problemas em editar páginas maiores que 32kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>",
 'readonlywarning' => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento. Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>',
@@ -701,7 +701,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
     <input type="hidden" name="num" value="50" />
     <input type="hidden" name="ie" value="$2" />
     <input type="hidden" name="oe" value="$2" />
-    
+
     <input type="text" name="q" size="31" maxlength="255" value="$1" />
     <input type="submit" name="btnG" value="$3" />
   <div>
@@ -778,8 +778,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 # group editing
 'groups-editgroup'          => 'Editar grupo',
 'groups-addgroup'           => 'Adicionar grupo',
-'groups-editgroup-preamble' => 'If the name or description starts with a colon, the 
-remainder will be treated as a message name, and hence the text will be localised 
+'groups-editgroup-preamble' => 'If the name or description starts with a colon, the
+remainder will be treated as a message name, and hence the text will be localised
 using the MediaWiki namespace',
 'groups-editgroup-name'     => 'Nome do grupo: ',
 'groups-editgroup-description' => 'Group description (max 255 characters):<br />',
@@ -803,7 +803,7 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'userrights-logcomment' => 'Alterado membro do grupo de $1 para $2',
 
 # Default group names and descriptions
-# 
+#
 'group-anon-name'       => 'Anónimos',
 'group-anon-desc'       => 'Utilizadores anónimos',
 'group-loggedin-name'   => 'Utilizador',
@@ -858,11 +858,11 @@ para carregar ficheiros.",
 "
 Utilize o formulário abaixo para carregar novos ficheiros,
 para ver ou pesquisar imagens anteriormente carregadas
-consulte a [[Special:Imagelist|lista de ficheiros carregados]], 
+consulte a [[Special:Imagelist|lista de ficheiros carregados]],
 carregamentos e eliminações são também registados no [[Special:Log|registo do projecto]].
 
 Para incluír a imagem numa página, utilize o link na forma de
-'''[[{{ns:6}}:ficheiro.jpg]]''', 
+'''[[{{ns:6}}:ficheiro.jpg]]''',
 '''[[{{ns:6}}:ficheiro.png|texto]]''' ou
 '''[[{{ns:-2}}:ficheiro.ogg]]''' para uma ligação directa ao ficheiro.",
 'uploadlog'             => 'registo de carregamento',
@@ -1055,9 +1055,9 @@ e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|prefe
 para enviar um e-mail a outros utilizadores.",
 'emailuser'             => 'Contactar este utilizador',
 'emailpage'             => 'Contactar utilizador',
-'emailpagetext' => 'Se o utilizador introduziu um endereço válido de e-mail 
+'emailpagetext' => 'Se o utilizador introduziu um endereço válido de e-mail
 nas suas preferências, poderá usar o formulário abaixo para lhe enviar uma mensagem.
-O endereço que introduziu nas suas preferências irá aparecer no campo "From" do e-mail 
+O endereço que introduziu nas suas preferências irá aparecer no campo "From" do e-mail
 para que o destinatário lhe possa responder.',
 'usermailererror' => 'Objecto de correio retornou um erro: ',
 'defemailsubject'  => "E-mail: {{SITENAME}}",
@@ -1368,7 +1368,7 @@ Por favor, escolha outro nome.',
 'movereason'    => 'Motivo',
 'revertmove'    => 'reverter',
 'delete_and_move' => 'Eliminar e mover',
-'delete_and_move_text'  => 
+'delete_and_move_text'  =>
 '==Eliminação necesária==
 O artigo destinatário "[[$1]]" já existe. Deseja o eliminar de modo a poder mover?',
 'delete_and_move_reason' => 'Eliminada para poder mover outra página para este título',
@@ -1555,7 +1555,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'showhidebots' => '($1 robôs)',
 'noimages'  => 'Nada para ver.',
 
-# short names for language variants used for language conversion links. 
+# short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.
 # 'variantname-zh-sg' => 'disable',
 'variantname-zh-cn' => 'cn',

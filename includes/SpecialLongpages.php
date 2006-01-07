@@ -34,7 +34,7 @@ function wfSpecialLongpages()
     list( $limit, $offset ) = wfCheckLimits();
 
     $lpp = new LongPagesPage();
-    
+
     $lpp->doQuery( $offset, $limit );
 }
 

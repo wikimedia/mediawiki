@@ -11,7 +11,7 @@ $wikiadmin_pass = `wikiadmin_pass`;
 $wikisql_pass = `wikisql_pass`;
 
 if ( @$argv[1] == 'yaseo' ) {
-	$hosts = array( 
+	$hosts = array(
 		'localhost',
 		'211.115.107.158',
 		'211.115.107.159',
@@ -37,7 +37,7 @@ if ( @$argv[1] == 'yaseo' ) {
 		'211.115.107.157',
 	);
 } else {
-	$hosts = array( 
+	$hosts = array(
 		'localhost',
 		'207.142.131.194',
 		'207.142.131.195',

@@ -53,7 +53,7 @@ function wfGetIP() {
 	return $ip;
 }
 
-/** 
+/**
  * Given an IP address in dotted-quad notation, returns an unsigned integer.
  * Like ip2long() except that it actually works and has a consistent error return value.
  */
@@ -79,7 +79,7 @@ function wfIP2Hex( $ip ) {
 }
 
 /**
- * Determine if an IP address really is an IP address, and if it is public, 
+ * Determine if an IP address really is an IP address, and if it is public,
  * i.e. not RFC 1918 or similar
  */
 function wfIsIPPublic( $ip ) {
@@ -182,7 +182,7 @@ function wfIsLocallyBlockedProxy( $ip ) {
 	
 	if ( !$wgProxyList ) {
 		return false;
-	} 
+	}
 	wfProfileIn( $fname );
 	
 	if ( !is_array( $wgProxyList ) ) {

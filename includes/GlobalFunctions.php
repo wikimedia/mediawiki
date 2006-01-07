@@ -292,7 +292,7 @@ function wfReadOnly() {
 /**
  * Get a message from anywhere, for the current user language.
  *
- * Use wfMsgForContent() instead if the message should NOT 
+ * Use wfMsgForContent() instead if the message should NOT
  * change depending on the user preferences.
  *
  * Note that the message may contain HTML, and is therefore
@@ -300,7 +300,7 @@ function wfReadOnly() {
  * addWikiText will do the escaping for you. Use wfMsgHtml()
  * if you need an escaped message.
  *
- * @param string lookup key for the message, usually 
+ * @param string lookup key for the message, usually
  *    defined in languages/Language.php
  */
 function wfMsg( $key ) {
@@ -321,23 +321,23 @@ function wfMsgNoTrans( $key ) {
 /**
  * Get a message from anywhere, for the current global language
  * set with $wgLanguageCode.
- * 
- * Use this if the message should NOT change  dependent on the 
- * language set in the user's preferences. This is the case for 
- * most text written into logs, as well as link targets (such as 
- * the name of the copyright policy page). Link titles, on the 
+ *
+ * Use this if the message should NOT change  dependent on the
+ * language set in the user's preferences. This is the case for
+ * most text written into logs, as well as link targets (such as
+ * the name of the copyright policy page). Link titles, on the
  * other hand, should be shown in the UI language.
  *
- * Note that MediaWiki allows users to change the user interface 
- * language in their preferences, but a single installation 
+ * Note that MediaWiki allows users to change the user interface
+ * language in their preferences, but a single installation
  * typically only contains content in one language.
- * 
- * Be wary of this distinction: If you use wfMsg() where you should 
- * use wfMsgForContent(), a user of the software may have to 
+ *
+ * Be wary of this distinction: If you use wfMsg() where you should
+ * use wfMsgForContent(), a user of the software may have to
  * customize over 70 messages in order to, e.g., fix a link in every
  * possible language.
  *
- * @param string lookup key for the message, usually 
+ * @param string lookup key for the message, usually
  *    defined in languages/Language.php
  */
 function wfMsgForContent( $key ) {
@@ -1212,7 +1212,7 @@ define('TS_RFC2822', 3);
 /**
  * ISO 8601 format with no timezone: 1986-02-09T20:00:00Z
  *
- * This is used by Special:Export 
+ * This is used by Special:Export
  */
 define('TS_ISO_8601', 4);
 
@@ -1661,7 +1661,7 @@ function wfIsWellFormedXml( $text ) {
  * @return bool
  */
 function wfIsWellFormedXmlFragment( $text ) {
-	$html = 
+	$html =
 		'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" ' .
 		'"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' .
 		'<html>' .

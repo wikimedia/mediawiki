@@ -57,7 +57,7 @@ class MessageCache {
 		wfProfileOut( $fname );
 	}
 
-	/** 
+	/**
 	 * Try to load the cache from a local file
 	 */
 	function loadFromLocal( $hash ) {
@@ -151,7 +151,7 @@ class MessageCache {
 				$this->mCache = $this->mMemc->get( $this->mMemcKey );
 
 				# Save to local cache
-				if ( $wgLocalMessageCache !== false ) { 
+				if ( $wgLocalMessageCache !== false ) {
 					$serialized = serialize( $this->mCache );
 					if ( !$hash ) {
 						$hash = md5( $serialized );
@@ -184,7 +184,7 @@ class MessageCache {
 					}
 
 					# Save to local cache
-					if ( $wgLocalMessageCache !== false ) { 
+					if ( $wgLocalMessageCache !== false ) {
 						$serialized = serialize( $this->mCache );
 						$hash = md5( $serialized );
 						$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
@@ -248,7 +248,7 @@ class MessageCache {
 		}
 
 		# Negative caching
-		# Go through the language array and the extension array and make a note of 
+		# Go through the language array and the extension array and make a note of
 		# any keys missing from the cache
 		foreach ( $wgAllMessagesEn as $key => $value ) {
 			$uckey = $wgLang->ucfirst( $key );
@@ -298,7 +298,7 @@ class MessageCache {
 			$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
 			
 			# Save to local cache
-			if ( $wgLocalMessageCache !== false ) { 
+			if ( $wgLocalMessageCache !== false ) {
 				$serialized = serialize( $this->mCache );
 				$hash = md5( $serialized );
 				$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );

@@ -10,14 +10,14 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or 
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -53,7 +53,7 @@ class Exif {
 	
 	/**
 	 * Exif tags grouped by category, the tagname itself is the key and the type
-	 * is the value, in the case of more than one possible value type they are 
+	 * is the value, in the case of more than one possible value type they are
 	 * seperated by commas.
 	 */
 	var $mExifTags;
@@ -205,7 +205,7 @@ class Exif {
 				'dateandtime' => array(
 					'DateTimeOriginal' => MW_EXIF_ASCII,			# Date and time of original data generation #p36
 					'DateTimeDigitized' => MW_EXIF_ASCII,			# Date and time of original data generation
-					'SubSecTime' => MW_EXIF_ASCII,				# DateTime subseconds 
+					'SubSecTime' => MW_EXIF_ASCII,				# DateTime subseconds
 					'SubSecTimeOriginal' => MW_EXIF_ASCII,			# DateTimeOriginal subseconds
 					'SubSecTimeDigitized' => MW_EXIF_ASCII,			# DateTimeDigitized subseconds
 				),
@@ -513,7 +513,7 @@ class Exif {
 	 */
 	function validate( $tag, $val ) {
 		$debug = "tag is '$tag'";
-		// Fucks up if not typecast 
+		// Fucks up if not typecast
 		switch( (string)$this->mFlatExifTags[$tag] ) {
 			case (string)MW_EXIF_BYTE:
 				$this->debug( $val, __FUNCTION__, $debug );
@@ -553,7 +553,7 @@ class Exif {
 	 *
 	 * @access private
 	 *
-	 * @param mixed $in 
+	 * @param mixed $in
 	 * @param string $fname
 	 * @param mixed $action
 	 */
@@ -561,11 +561,11 @@ class Exif {
 		$type = gettype( $in );
 		$class = ucfirst( __CLASS__ );
 		if ( $type === 'array' )
-			$in = print_r( $in, true ); 
-	 
+			$in = print_r( $in, true );
+	
 		if ( $action === true )
 			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n");
-		elseif ( $action === false ) 
+		elseif ( $action === false )
 			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)\n");
 		elseif ( $action === null )
 			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)\n");

@@ -130,7 +130,7 @@ function wfSpecialWatchlist( $par ) {
 	        $docutoff = "AND rev_timestamp > '" .
 		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
-                  /* 
+                  /*
                   $sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
                   $res = $dbr->query( $sql, $fname );
                   $s = $dbr->fetchObject( $res );
@@ -222,7 +222,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	# TODO: Consider removing the third parameter
-	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems ), 
+	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems ),
 		$wgLang->formatNum( $npages ), '',
 		$specialTitle->getFullUrl( 'edit=yes' ) );
 	$wgOut->addWikiText( $header );

@@ -1663,7 +1663,7 @@ $1
 Du må stadfesta om du verkjeleg vil nyopprette denne sida.',
 'recreate'               => 'Nyopprett',
 'tooltip-recreate'       => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
- 
+
 'unit-pixel' => 'px',
 
 );

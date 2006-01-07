@@ -377,8 +377,8 @@ class Database {
 			# logging size most of the time. The substr is really just a sanity check.
 
 			# Who's been wasting my precious column space? -- TS
-			#$profName = 'query: ' . $fname . ' ' . substr( Database::generalizeSQL( $sql ), 0, 255 ); 
-			$profName = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 ); 
+			#$profName = 'query: ' . $fname . ' ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
+			$profName = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
 
 			wfProfileIn( 'Database::query' );
 			wfProfileIn( $profName );
@@ -752,7 +752,7 @@ class Database {
 			$tailOpts .= " ORDER BY {$options['ORDER BY']}";
 		}
 		if (isset($options['LIMIT'])) {
-			$tailOpts .= $this->limitResult('', $options['LIMIT'], 
+			$tailOpts .= $this->limitResult('', $options['LIMIT'],
 				isset($options['OFFSET']) ? $options['OFFSET'] : false);
 		}
 		if ( is_numeric( array_search( 'FOR UPDATE', $options ) ) ) {
@@ -1038,7 +1038,7 @@ class Database {
 		$opts = array();
 		if ( in_array( 'LOW_PRIORITY', $options ) )
 			$opts[] = $this->lowPriorityOption();
-		if ( in_array( 'IGNORE', $options ) ) 
+		if ( in_array( 'IGNORE', $options ) )
 			$opts[] = 'IGNORE';
 		return implode(' ', $opts);
 	}

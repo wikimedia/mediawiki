@@ -55,7 +55,7 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 			output( "\n" );
 		} else {
 			# Get cur row
-			$curRow = $dbw->selectRow( 'cur', array( 'cur_namespace', 'cur_title', 'cur_text' ), 
+			$curRow = $dbw->selectRow( 'cur', array( 'cur_namespace', 'cur_title', 'cur_text' ),
 				array( 'cur_id' => $row->rc_cur_id ), $fname, 'FOR UPDATE' );
 			if ( $curRow ) {
 				$titleObj = Title::makeTitle( $curRow->cur_namespace, $curRow->cur_title );

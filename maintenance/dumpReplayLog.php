@@ -50,8 +50,8 @@ function dumpReplayEntry( $row ) {
 		}
 		
 		if( $row->rc_this_oldid ) {
-			$s = $dbr->selectRow( 'old', array( 'old_id as id','old_timestamp as timestamp', 
-				'old_user as user', 'old_user_text as user_text', 'old_comment as comment', 
+			$s = $dbr->selectRow( 'old', array( 'old_id as id','old_timestamp as timestamp',
+				'old_user as user', 'old_user_text as user_text', 'old_comment as comment',
 				'old_text as text', 'old_flags as flags' ),
 				array( 'old_id' => $row->rc_this_oldid ) );
 			$out .= revision2xml( $s, true, false );

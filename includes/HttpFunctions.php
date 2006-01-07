@@ -5,7 +5,7 @@
 
 /**
  * Get the contents of a file by HTTP
- * 
+ *
  * if $timeout is 'default', $wgHTTPTimeout is used
  */
 function wfGetHTTP( $url, $timeout = 'default' ) {

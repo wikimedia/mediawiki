@@ -113,7 +113,7 @@ function convertLinks() {
 			
 			$tuplesAdded = 0; # no tuples added to INSERT yet
 			while ( $row = $dbw->fetchObject($res) ) {
-				$fromTitle = $row->l_from; 
+				$fromTitle = $row->l_from;
 				if ( array_key_exists( $fromTitle, $ids ) ) { # valid title
 					$from = $ids[$fromTitle];
 					$to = $row->l_to;

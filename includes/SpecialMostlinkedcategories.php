@@ -29,7 +29,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 		$name = $dbr->addQuotes( $this->getName() );
 		return
 			"
-			SELECT 
+			SELECT
 				$name as type,
 				" . NS_CATEGORY . " as namespace,
 				cl_to as title,

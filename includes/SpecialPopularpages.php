@@ -54,9 +54,9 @@ class PopularPagesPage extends QueryPage {
  */
 function wfSpecialPopularpages() {
     list( $limit, $offset ) = wfCheckLimits();
-    
+
     $ppp = new PopularPagesPage();
-    
+
     return $ppp->doQuery( $offset, $limit );
 }
 

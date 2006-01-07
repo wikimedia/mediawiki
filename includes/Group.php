@@ -152,8 +152,8 @@ class Group {
 		$wgMemc->delete( Group::getCacheKey( $this->id ) );
 	}
 	
-	/** 
-	 * Get memcached key 
+	/**
+	 * Get memcached key
 	 * @static
 	 */
 	function getCacheKey( $id ) {
@@ -221,14 +221,14 @@ class Group {
 
 		if( $g->getId() != 0 ) {
 			return $g;
-		} else { 
+		} else {
 		 	return null;
 		}
 	}
 
 	/**
 	 * Get an array of Group objects, one for each valid group
-	 * 
+	 *
 	 * @static
 	 */
 	function &getAllGroups() {
@@ -257,9 +257,9 @@ class Group {
 		return $groups;
 	}
 
-	/** 
+	/**
 	 * Get static groups, if they have been defined in LocalSettings.php
-	 * 
+	 *
 	 * @static
 	 */
 	function &getStaticGroups() {
@@ -291,7 +291,7 @@ class Group {
 	}
 
 	/**
-	 * @param string $name Group database name 
+	 * @param string $name Group database name
 	 * @return integer Group database id
 	 */
 	function idFromName($name) {
@@ -324,7 +324,7 @@ class Group {
 		return $this->name;
 	}
 
-	function getExpandedName() { 
+	function getExpandedName() {
 		$this->loadFromDatabase();
 		return $this->getMessage( $this->name );
 	}
@@ -345,7 +345,7 @@ class Group {
 		$this->dataLoaded = false;
 	}
 	
-	function getDescription() { 
+	function getDescription() {
 		return $this->description;
 	}
 
@@ -364,7 +364,7 @@ class Group {
 		$this->rights = $rights;
 	}
 
-	/** 
+	/**
 	 * Gets a message if the text starts with a colon, otherwise returns the text itself
 	 */
 	function getMessage( $text ) {

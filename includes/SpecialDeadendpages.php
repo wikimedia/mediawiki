@@ -45,7 +45,7 @@ class DeadendPagesPage extends PageQueryPage {
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'page', 'pagelinks' ) );
-		return "SELECT 'Deadendpages' as type, page_namespace AS namespace, page_title as title, page_title AS value " . 
+		return "SELECT 'Deadendpages' as type, page_namespace AS namespace, page_title as title, page_title AS value " .
 	"FROM $page LEFT JOIN $pagelinks ON page_id = pl_from " .
 	"WHERE pl_from IS NULL " .
 	"AND page_namespace = 0 " .
@@ -57,11 +57,11 @@ class DeadendPagesPage extends PageQueryPage {
  * Constructor
  */
 function wfSpecialDeadendpages() {
-    
+
     list( $limit, $offset ) = wfCheckLimits();
 
     $depp = new DeadendPagesPage();
-    
+
     return $depp->doQuery( $offset, $limit );
 }
 

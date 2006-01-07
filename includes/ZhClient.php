@@ -96,7 +96,7 @@ class ZhClient {
 	}
 
 	/**
-	 * Convert the input to all possible variants 
+	 * Convert the input to all possible variants
 	 *
 	 * @param string $text input text
 	 * @return array langcode => converted_string

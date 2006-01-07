@@ -41,7 +41,7 @@ END;
  * @return string A dummy header
  */
 function poHeader() {
-return 
+return
 '# SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2005 MediaWiki
 # This file is distributed under the same license as the MediaWiki package.

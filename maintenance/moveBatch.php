@@ -2,8 +2,8 @@
 
 # Move a batch of pages
 # Usage: php moveBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>
-# where 
-# 	<listfile> is a file where each line has two titles separated by a pipe 
+# where
+# 	<listfile> is a file where each line has two titles separated by a pipe
 # character. The first title is the source, the second is the destination.
 #	<user> is the username
 #	<reason> is the move reason

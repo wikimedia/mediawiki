@@ -1,8 +1,8 @@
 <?php
 
-/** 
- * PHP script to stream out an image thumbnail. 
- * If the file exists, we make do with abridged MediaWiki initialisation. 
+/**
+ * PHP script to stream out an image thumbnail.
+ * If the file exists, we make do with abridged MediaWiki initialisation.
  */
 
 define( 'MEDIAWIKI', true );

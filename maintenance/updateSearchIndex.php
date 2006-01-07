@@ -37,7 +37,7 @@ if ( isset( $options['s'] ) ) {
 	$start = @file_get_contents( $posFile );
 	if ( !$start ) {
 		$start = wfTimestamp( TS_MW, time() - 86400 );
-	} 
+	}
 }
 
 if ( isset( $options['l'] ) ) {

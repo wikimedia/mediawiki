@@ -74,7 +74,7 @@ class LinksUpdate {
 
 		# Page links
 		$existing = $this->getExistingLinks();
-		$this->incrTableUpdate( 'pagelinks', 'pl', $this->getLinkDeletions( $existing ), 
+		$this->incrTableUpdate( 'pagelinks', 'pl', $this->getLinkDeletions( $existing ),
 			$this->getLinkInsertions( $existing ) );
 
 		# Template links
@@ -127,11 +127,11 @@ class LinksUpdate {
 	function invalidateCategories( $cats ) {
 		$fname = 'LinksUpdate::invalidateCategories';
 		if ( count( $cats ) ) {
-			$this->mDb->update( 'page', array( 'page_touched' => $this->mDb->timestamp() ), 
+			$this->mDb->update( 'page', array( 'page_touched' => $this->mDb->timestamp() ),
 				array(
 					'page_namespace' => NS_CATEGORY,
 					'page_title IN (' . $this->mDb->makeList( array_keys( $cats ) ) . ')'
-				), $fname 
+				), $fname
 			);
 		}
 	}	
@@ -149,7 +149,7 @@ class LinksUpdate {
 
 	/**
 	 * Make a WHERE clause from a 2-d NS/dbkey array
-	 * 
+	 *
 	 * @param array $arr 2-d array indexed by namespace and DB key
 	 * @param string $prefix Field name prefix, without the underscore
 	 */
@@ -197,14 +197,14 @@ class LinksUpdate {
 	function getLinkInsertions( $existing = array() ) {
 		$arr = array();
 		foreach( $this->mLinks as $ns => $dbkeys ) {
-			# array_diff_key() was introduced in PHP 5.1, there is a compatibility function 
+			# array_diff_key() was introduced in PHP 5.1, there is a compatibility function
 			# in GlobalFunctions.php
 			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
 					'pl_from'      => $this->mId,
 					'pl_namespace' => $ns,
-					'pl_title'     => $dbk 
+					'pl_title'     => $dbk
 				);
 			}
 		}
@@ -223,7 +223,7 @@ class LinksUpdate {
 				$arr[] = array(
 					'tl_from'      => $this->mId,
 					'tl_namespace' => $ns,
-					'tl_title'     => $dbk 
+					'tl_title'     => $dbk
 				);
 			}
 		}
@@ -249,7 +249,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of category insertions
-	 * @param array $existing Array mapping existing category names to sort keys. If both 
+	 * @param array $existing Array mapping existing category names to sort keys. If both
 	 * match a link in $this, the link will be omitted from the output
 	 * @access private
 	 */
@@ -324,7 +324,7 @@ class LinksUpdate {
 	 */
 	function getExistingLinks() {
 		$fname = 'LinksUpdate::getExistingLinks';
-		$res = $this->mDb->select( 'pagelinks', array( 'pl_namespace', 'pl_title' ), 
+		$res = $this->mDb->select( 'pagelinks', array( 'pl_namespace', 'pl_title' ),
 			array( 'pl_from' => $this->mId ), $fname, $this->mOptions );
 		$arr = array();
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
@@ -342,7 +342,7 @@ class LinksUpdate {
 	 */
 	function getExistingTemplates() {
 		$fname = 'LinksUpdate::getExistingTemplates';
-		$res = $this->mDb->select( 'templatelinks', array( 'tl_namespace', 'tl_title' ), 
+		$res = $this->mDb->select( 'templatelinks', array( 'tl_namespace', 'tl_title' ),
 			array( 'tl_from' => $this->mId ), $fname, $this->mOptions );
 		$arr = array();
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
@@ -360,7 +360,7 @@ class LinksUpdate {
 	 */
 	function getExistingImages() {
 		$fname = 'LinksUpdate::getExistingImages';
-		$res = $this->mDb->select( 'imagelinks', array( 'il_to' ), 
+		$res = $this->mDb->select( 'imagelinks', array( 'il_to' ),
 			array( 'il_from' => $this->mId ), $fname, $this->mOptions );
 		$arr = array();
 		while ( $row = $this->mDb->fetchObject( $res ) ) {

@@ -155,8 +155,8 @@ function wfSpecialSelfLinks() {
 
 	list( $limit, $offset ) = wfCheckLimits();
 
-	$sql = "SELECT page_namespace,page_title FROM page,links " . 
-	  "WHERE l_from=l_to AND l_to=page_id " . 
+	$sql = "SELECT page_namespace,page_title FROM page,links " .
+	  "WHERE l_from=l_to AND l_to=page_id " .
 	  "LIMIT {$offset}, {$limit}";
 
 	$res = wfQuery( $sql, DB_SLAVE, $fname );
@@ -183,7 +183,7 @@ function wfSpecialSelfLinks() {
 }
 
 /**
- * 
+ *
  */
 function wfSpecialMispeelings () {
 	global $wgUser, $wgOut, $wgContLang;

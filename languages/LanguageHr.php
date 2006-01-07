@@ -55,7 +55,7 @@ if($wgMetaNamespace === FALSE)
 
 'Monobook.css' =>
 '/** Ovdje idu izmjene monobook stylesheeta */ ',
- 
+
 # User preference toggles
 "tog-underline"            => "Podcrtane poveznice",
 "tog-highlightbroken"      => "Istakni prazne poveznice drugom bojom (inače, upitnikom na kraju).",
@@ -217,7 +217,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 "administrators"        => "Project:Administratori",
 
 "sysoptitle"	        => "Nužne administrativne ovlasti",
-"sysoptext"		=> "Željenu radnju mogu obaviti samo 
+"sysoptext"		=> "Željenu radnju mogu obaviti samo
 suradnici sa statusom \"administrator\".
 Vidi i $1.",
 "developertitle" => "Nužne programerske ovlasti",
@@ -260,9 +260,9 @@ Pogledajte $1.',
 'nstab-image' => 'Slika',
 'nstab-help' => 'Pomoć',
 'nstab-category' => 'Kategorija',
-'nstab-wp' => 'Stranica o projektu', 
+'nstab-wp' => 'Stranica o projektu',
 'nstab-mediawiki' => 'Poruka',
-'nstab-template' => 'Predložak', 
+'nstab-template' => 'Predložak',
 
 # Editier-Werkzeugleiste
 "bold_sample"=>"Podebljani tekst",
@@ -464,12 +464,12 @@ Vaša IP adresa je $3. Molimo vas da je spomenete u porukama o ovom predmetu.",
 'loginreqlink' => 'prijava',
 'loginreqpagetext'	=> 'Morate se $1 da biste vidjeli ostale stranice.',
 'accmailtitle' => 'Lozinka poslana.',
-'accmailtext' => "Lozinka za suradnika '$1' poslana je na adresu $2.", 
+'accmailtext' => "Lozinka za suradnika '$1' poslana je na adresu $2.",
 "newarticle"	        => "(Novo)",
 "newarticletext" =>
 "Došli ste na stranicu koja još nema sadržaja.<br />
-*Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta. 
-*Ako vam treba pomoć, idite na [[Project:Pomoć|stranicu za pomoć]]. 
+*Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.
+*Ako vam treba pomoć, idite na [[Project:Pomoć|stranicu za pomoć]].
 *Ako ste ovamo dospjeli slučajno, kliknite \"Natrag\" (Back) u svom programu.",
 "anontalkpagetext"      => "----''Ovo je stranica za razgovor s anonimnim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom [[IP adresa|IP adresom]] kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste anonimni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:Userlogin|otvorite suradnički račun ili se prijavite]] te tako u budućnosti izbjegnete zamjenu s drugim anonimnim suradnicima.''",
 "noarticletext" => "(Trenutno na ovoj stranici nema teksta)",
@@ -478,7 +478,7 @@ Vaša IP adresa je $3. Molimo vas da je spomenete u porukama o ovom predmetu.",
 '''IE:''' držite ''Ctrl'' i pritisnite ''Refresh'', ili pritisnite ''Ctrl-F5''; '''Konqueror:''': samo pritisnite dugme ''Reload'' ili pritisnite ''F5''; korsnici '''Opere''' možda će morati u potpunosti isprazniti međuspremnik u ''Tools&rarr;Preferences''.",
 'usercssjsyoucanpreview' => "<strong>Savjet:</strong> Koristite dugme 'Pokaži kako će izgledati' za testiranje svog CSS/JS prije snimanja.",
 'usercsspreview' => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS, i da još nije snimljen!'''",
-'userjspreview' => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički JavaScript, i da još nije snimljen!'''", 
+'userjspreview' => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički JavaScript, i da još nije snimljen!'''",
 "updated"		=> "(Ažurirano)",
 "note"			=> "<strong>Napomena:</strong> ",
 "previewnote"	        => "Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da
@@ -487,7 +487,7 @@ stranica još nije snimljena!",
 ako pritisnete \"Sačuvaj stranicu\".",
 "editing"		=> "Uređujete $1",
 'editingsection'		=> "Uređujete $1 (odlomak)",
-'editingcomment'		=> "Uređujete $1 (komentar)", 
+'editingcomment'		=> "Uređujete $1 (komentar)",
 "editconflict"	        => "Istovremeno uređivanje: $1",
 "explainconflict"       => "Netko je u međuvremenu promijenio stranicu. Gornje polje sadrži sadašnji tekst stranice.
 U donjem polju prikazane su vaše promjene. Morat ćete unijeti vaše promjene u sadašnji tekst. <b>Samo</b> će tekst
@@ -595,7 +595,7 @@ $2 Popis se preusmjerava   Traženje za $3 $9",
 #
 "preferences"	        => "Postavke",
 "prefsnologin"          => "Niste prijavljeni",
-"prefsnologintext"	=> "Morate biti [[Special:Userlogin|prijavljeni]] 
+"prefsnologintext"	=> "Morate biti [[Special:Userlogin|prijavljeni]]
 za podešavanje korisničkih postavki.",
 "prefslogintext"        => "Prijavljeni ste kao \"$1\".
 Interni identifikacijski broj je $2.",
@@ -837,7 +837,7 @@ Neke od ovih funkcija opterećuju bazu podataka pa vas zato molimo da ne učitav
 "maintenancebacklink"	=> "Natrag na stranicu za održavanje",
 "disambiguations"	=> "Razdvojbene stranice",
 "disambiguationspage"	=> "Template:disambig",
-"disambiguationstext"	=> "Sljedeći su članci povezani na <i>razdvojbenu stranicu</i>. Morali bi biti povezani 
+"disambiguationstext"	=> "Sljedeći su članci povezani na <i>razdvojbenu stranicu</i>. Morali bi biti povezani
 na odgovarajući sadržaj.<br />Stranica je razdvojbena ako je povezana iz $1.<br />Poveznice
 iz sekundarnih prostora ovdje <i>nisu</i> prikazane.",
 "doubleredirects"	=> "Dvostruko preusmjeravanje",
@@ -1026,7 +1026,7 @@ Za pomoć posjetite:
 "deletepage"	=> "Izbriši stranicu",
 "confirm"	=> "Potvrdi",
 "excontent"     => "sadržaj je bio:",
-'excontentauthor' => "sadržaj je bio: '$1' (a jedini urednik '$2')", 
+'excontentauthor' => "sadržaj je bio: '$1' (a jedini urednik '$2')",
 "exbeforeblank" => "sadržaj prije brisanja je bio: '$1'",
 "exblank"       => "stranica je bila prazna",
 "confirmdelete" => "Potvrdi brisanje",
@@ -1216,14 +1216,14 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 'movepagetext' => 'Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene
 na novo ime.
 Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov.
-Poveznice na stari naslov ostat će iste; bilo bi dobro da 
+Poveznice na stari naslov ostat će iste; bilo bi dobro da
 [[Special:Maintenance|provjerite]] je li preusmjeravanje ispravno.
 Na vama je da se pobrinete da poveznice i dalje vode tamo
 gdje bi trebale.
 
-Stranica se \'\'\'neće\'\'\' premjestiti ako već postoji stranica s novim naslovom, 
-osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema 
-nikakvih starih izmjena. To znači: 1. ako pogriješite, možete opet preimenovati 
+Stranica se \'\'\'neće\'\'\' premjestiti ako već postoji stranica s novim naslovom,
+osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema
+nikakvih starih izmjena. To znači: 1. ako pogriješite, možete opet preimenovati
 stranicu na stari naslov, 2. ne može vam se dogoditi da izbrišete neku postojeću stranicu.
 
 <b>OPREZ!</b>
@@ -1234,7 +1234,7 @@ i zato dobro razmislite prije nego što preimenujete stranicu.',
 *pod novim imenom već postoji stranica za razgovor s nekim sadržajem, ili
 *maknete kvačicu u kućici na dnu ove stranice.
 
-U tim slučajevima ćete morati sami premjestiti ili iskopirati stranicu za razgovor, 
+U tim slučajevima ćete morati sami premjestiti ili iskopirati stranicu za razgovor,
 ako to želite.',
 'movearticle' => 'Premjesti stranicu',
 "movenologin"	=> "Niste prijavljeni",
@@ -1808,7 +1808,7 @@ Potvrdite namjeru vraćanja ovog članka.',
 'recreate' => 'Vrati',
 'tooltip-recreate' => '',
 
-'unusedcategoriestext' => 'Na navedenim stranicama kategorija nema ni jednog članka ili potkategorije.', 
+'unusedcategoriestext' => 'Na navedenim stranicama kategorija nema ni jednog članka ili potkategorije.',
 'unit-pixel' => 'px',
 'sitematrix' => 'Tablica Wikimedijinih projekata',
 );
@@ -1827,12 +1827,12 @@ class LanguageHr extends LanguageUtf8 {
 	function getDateFormats() {
 		return false;
 	}
- 
+
 	function getQuickbarSettings() {
 	 	global $wgQuickbarSettingsHr;
 		return $wgQuickbarSettingsHr;
  	}
- 
+
 	function getSkinNames() {
 		global $wgSkinNamesHr;
 		return $wgSkinNamesHr;
@@ -1847,7 +1847,7 @@ class LanguageHr extends LanguageUtf8 {
 		  substr( $ts, 0, 4 ) . "." ;
 		return $d;
 	}
- 
+
 	function getMessage( $key ) {
 		global $wgAllMessagesHr;
 		if( isset( $wgAllMessagesHr[$key] ) ) {
@@ -1860,7 +1860,7 @@ class LanguageHr extends LanguageUtf8 {
  	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
  	}
-  
+
  	function fallback8bitEncoding() {
 		return "iso-8859-2";
  	}

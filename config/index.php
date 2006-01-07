@@ -30,7 +30,7 @@ header( "Content-type: text/html; charset=utf-8" );
 	<title>MediaWiki installation</title>
 	<style type="text/css">
 
-		@import "../skins/monobook/main.css"; 
+		@import "../skins/monobook/main.css";
 
 		.env-check {
 			font-size: 90%;
@@ -1281,7 +1281,7 @@ function importRequest( $name, $default = "" ) {
 $radioCount = 0;
 
 function aField( &$conf, $field, $text, $type = "text", $value = "" ) {
-	global $radioCount; 
+	global $radioCount;
 	if( $type != "" ) {
 		$xtype = "type=\"$type\"";
 	} else {

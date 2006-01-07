@@ -108,7 +108,7 @@ define( 'CACHE_ACCEL', 3 );      // eAccelerator or Turck, whichever is availabl
 
 
 /**#@+
- * Media types. 
+ * Media types.
  * This defines constants for the value returned by Image::getMediaType()
  */
 define( 'MEDIATYPE_UNKNOWN',    'UNKNOWN' );     // unknown format
@@ -124,7 +124,7 @@ define( 'MEDIATYPE_ARCHIVE',    'ARCHIVE' );     // archive file (zip, tar, etc)
 /**#@-*/
 
 /**#@+
- * Antivirus result codes, for use in $wgAntivirusSetup. 
+ * Antivirus result codes, for use in $wgAntivirusSetup.
  */
 define( 'AV_NO_VIRUS', 0 );  #scan ok, no virus found
 define( 'AV_VIRUS_FOUND', 1 );  #virus found!

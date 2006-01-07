@@ -43,7 +43,7 @@ class SquidUpdate {
 		if ( $dbr->numRows( $res ) <= $this->mMaxTitles ) {
 			while ( $BL = $dbr->fetchObject ( $res ) )
 			{
-				$tobj = Title::makeTitle( $BL->page_namespace, $BL->page_title ) ; 
+				$tobj = Title::makeTitle( $BL->page_namespace, $BL->page_title ) ;
 				$blurlArr[] = $tobj->getInternalURL();
 			}
 		}
@@ -70,7 +70,7 @@ class SquidUpdate {
 	}
 
 	/* Purges a list of Squids defined in $wgSquidServers.
-	$urlArr should contain the full URLs to purge as values 
+	$urlArr should contain the full URLs to purge as values
 	(example: $urlArr[] = 'http://my.host/something')
 	XXX report broken Squids per mail or log */
 
@@ -128,7 +128,7 @@ class SquidUpdate {
 						#$this->debug("...");
 						$res = @fread($socket,512);
 						#$this->debug("\n");
-						/* Squid only returns http headers with 200 or 404 status, 
+						/* Squid only returns http headers with 200 or 404 status,
 						if there's more returned something's wrong */
 						if (strlen($res) > 250) {
 							fclose($socket);
@@ -138,7 +138,7 @@ class SquidUpdate {
 							@stream_set_blocking($socket,false);
 							$sockets[] = $socket;
 						}
-					} 
+					}
 				} else {
 					/* open the remaining sockets for this server */
 					list($server, $port) = explode(':', $wgSquidServers[$ss]);

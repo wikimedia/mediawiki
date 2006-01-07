@@ -77,9 +77,9 @@ function resolveStub( $id, $stubText, $flags ) {
 	}
 
 	# Get the (maybe) external row
-	$externalRow = $dbr->selectRow( 'text', array( 'old_text' ), 
+	$externalRow = $dbr->selectRow( 'text', array( 'old_text' ),
 		array( 'old_id' => $stub->mOldId, "old_flags LIKE '%external%'" ),
-		$fname 
+		$fname
 	);
 
 	if ( !$externalRow ) {
@@ -97,12 +97,12 @@ function resolveStub( $id, $stubText, $flags ) {
 	# Update the row
 	$dbw->update( 'text',
 		array( /* SET */
-			'old_flags' => $newFlags, 
+			'old_flags' => $newFlags,
 			'old_text' => $externalRow->old_text . '/' . $stub->mHash
-		), 
-		array( /* WHERE */ 
-			'old_id' => $id 
-		), $fname 
+		),
+		array( /* WHERE */
+			'old_id' => $id
+		), $fname
 	);
 }
 ?>

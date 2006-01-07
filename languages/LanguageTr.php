@@ -225,7 +225,7 @@ Veritabanını kilitleyen operatörün açıklaması: $1',
 'perfcached' => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir!',
 'perfdisabled' => 'Özür dileriz! Bu özellik, veritabanını kullanılamayacak derecede yavaşlattığı için, geçici olarak kullanımdan çıkarıldı.',
 'viewsource' => 'Kaynağı gör',
-'protectedtext' => 'Bu sayfa değiştirilmemesi için \'\'\'koruma altına alınmıştır\'\'\'. Bunun bir çok değişik sebebi olabilir. [[{{ns:4}}:Koruma altına alınmış sayfa|Koruma altına alınma sebepleri]] ile ilgili sayfaya gözatınız. 
+'protectedtext' => 'Bu sayfa değiştirilmemesi için \'\'\'koruma altına alınmıştır\'\'\'. Bunun bir çok değişik sebebi olabilir. [[{{ns:4}}:Koruma altına alınmış sayfa|Koruma altına alınma sebepleri]] ile ilgili sayfaya gözatınız.
 
 Bu sayfanın kaynak koduna bakıp kopyalayabilirsiniz:',
 
@@ -236,9 +236,9 @@ Bu sayfanın kaynak koduna bakıp kopyalayabilirsiniz:',
 'logouttitle' => 'Oturumu kapat',
 'welcomecreation' => '== Hoşgeldin, $1! ==
 
-Artık \'\'\'kayıtlı bir kullanıcısınız\'\'\'. 
+Artık \'\'\'kayıtlı bir kullanıcısınız\'\'\'.
 
-Hemen \'\'\'sayfa yazmaya/değiştirmeye\'\'\' başlayabilirsiniz. 
+Hemen \'\'\'sayfa yazmaya/değiştirmeye\'\'\' başlayabilirsiniz.
 
 Soldaki [[Yardım:İçindekiler|yardıma]] tıklayarak işe başlayın. Kolay gelsin.',
 'loginpagetitle' => 'Oturum aç',
@@ -346,8 +346,8 @@ IP addresiniz $3. Konuyla ilgili yapacağınız başvuruda lütfen bu adresi de 
 'editconflict' => 'Değişiklik çakışması: $1',
 'editing' => '"$1" sayfasını değiştirmektesiniz',
 'editingsection' => '"$1" sayfasında bölüm değiştirmektesiniz',
-'explainconflict' => 'Siz sayfayı değiştirirken başka biri de değişiklik yaptı. 
-Yukarıdaki yazı sayfanın şu anki halini göstermektedir. 
+'explainconflict' => 'Siz sayfayı değiştirirken başka biri de değişiklik yaptı.
+Yukarıdaki yazı sayfanın şu anki halini göstermektedir.
 Sizin değişiklikleriniz alta gösterilmiştir. Son değişiklerinizi yazının içine eklemeniz gerekecektir. "Sayfayı kaydet"e bastığınızda <b>sadece</b> yukarıdaki yazı kaydedilecektir. <br />',
 'yourtext' => 'Sizin metniniz',
 'editingold' => '\'\'\'Dikkat: Sayfanın eski bir sürümünde değişiklik yapmaktasınız. Kaydettiğinizde bu tarihli sürümden günümüze kadar olan değişiklikler yok olacaktır.\'\'\'',
@@ -499,7 +499,7 @@ Dosya yüklemek için aşağıdaki formu kullanın,
 Önceden yüklenmiş resimleri görmek için  [[Special:Imagelist|resim listesine]] bakın,
 yüklenenler ve silinmişler [[Special:Log/upload|yükleme kaydısayfasında da]] görülebilir.
 
-Sayfaya resim koymak için 
+Sayfaya resim koymak için
 '''<nowiki>[[{{ns:6}}:Örnek.jpg]]</nowiki>''',
 '''<nowiki>[[{{ns:6}}:Örnek.png|açıklama]]</nowiki>'''  veya doğrudan bağlantı için
 '''<nowiki>[[{{ns:-2}}:Örnek.ogg]]</nowiki>''' .",
@@ -518,7 +518,7 @@ Sayfaya resim koymak için
 'fileexists' => 'Bu isimde bir dosya mevcut. Eğer değiştirmekten emin değilseniz ilk önce $1 dosyasına bir gözatın.',
 'fileuploaded' => '$1 dosyası başarı ile yüklendi.
 
-Lütfen $2 bağlantısını takip ederek dosya ile ilgili açıklama yazısı yazınız. Dosya nerden geldi, kim tarafından ne zaman oluşturuldu ya da hakında bildiğiniz diğer bilgiler gibi.  
+Lütfen $2 bağlantısını takip ederek dosya ile ilgili açıklama yazısı yazınız. Dosya nerden geldi, kim tarafından ne zaman oluşturuldu ya da hakında bildiğiniz diğer bilgiler gibi.
 
 Eğer bu bir resim ise <tt><nowiki>[[Resim:$1|thumb|açıklama]]</nowiki></tt> şeklinde sayfaya yerleştirebilirsiniz. (açıklama yerine resim ile ilgili yazı yazınız)',
 'uploadwarning' => 'Yükleme uyarısı',
@@ -617,7 +617,7 @@ Kullanıcılar başlangıçtan de bu yana sayfalarda \'\'\'$4\'\'\' defa değiş
 'categoriespagetext' => 'Vikide aşağıdaki kategoriler mevcuttur.',
 'version' => 'Sürüm',
 'log' => 'Kayıtlar',
-'alllogstext' => 'Yükleme, silme, koruma altına alma, erişim engelleme ve yönetici hareketlerinin tümünün kayıtları. 
+'alllogstext' => 'Yükleme, silme, koruma altına alma, erişim engelleme ve yönetici hareketlerinin tümünün kayıtları.
 Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsiniz.',
 
 # Special:Allpages
@@ -634,7 +634,7 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'emailuser' => 'Kullanıcıya e-posta gönder',
 'emailpage' => 'Kullanıcıya e-posta gönder',
 'emailpagetext' => 'Aşağıdaki form ile, eğer kullanıcı geçerli bir e-posta adresi belirtmişse, kullanıcıya e-posta gönderebilirsiniz.
- 
+
 Yanıt alabilmeniz için "From" (Kimden) kısmına tercih formunda belirttiğiniz e-posta adresiniz otomatik olarak eklenecektir.',
 'defemailsubject' => '{{SITENAME}} e-posta',
 'noemailtitle' => 'e-posta adresi yok',
@@ -667,16 +667,16 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'unwatch' => 'Sayfa izlemeyi durdur',
 'unwatchthispage' => 'Sayfa izlemeyi durdur',
 'watchnochange' => 'Gösterilen zaman aralığında izleme listenizdeki sayfaların hiçbiri güncellenmemiş.',
-'watchdetails' => '* Tartışma sayfaları hariç $1 sayfa izleme listenizdedir  
+'watchdetails' => '* Tartışma sayfaları hariç $1 sayfa izleme listenizdedir
 * [[Special:Watchlist/edit|İzleme listesinin tamamını göster ve yapılandır]]',
 'wlheader-showupdated' => '* Son ziyaretinizden sonraki sayfa değişikleri \'\'\'kalın\'\'\' olarak gösterilmiştir.',
 'watchmethod-recent' => 'son değişiklikler arasında izledğiniz sayfalar aranıyor',
 'watchmethod-list' => 'izleme listenizdeki sayfalar kontrol ediliyor',
 'removechecked' => 'İşaretli sayfaları izleme listesinden sil',
 'watchlistcontains' => 'İzleme listenizde $1 sayfa var.',
-'watcheditlist' => 'İzlediğiniz sayfaların alfabetik listesi aşağıdadır. 
+'watcheditlist' => 'İzlediğiniz sayfaların alfabetik listesi aşağıdadır.
 Sayfaları izleme listesinden çıkarmak için yanlarındaki
-kutucukları işaretleyip sayfanın altındaki \'işaretlenenleri sil\' 
+kutucukları işaretleyip sayfanın altındaki \'işaretlenenleri sil\'
 düğmesini tıklayınız.',
 'removingchecked' => 'İşaretlenen sayfalar izleme listesinden siliniyor...',
 'wlnote' => 'Son <b>$2</b> saatte yapılan $1 değişiklik aşağıdadır.',
@@ -700,7 +700,7 @@ Sayfayı değiştiren kullanıcının erişim bilgileri:
 e-posta: $PAGEEDITOR_EMAIL
 Viki: $PAGEEDITOR_WIKI
 
-Bahsi geçen sayfayı ziyaret etmediğiniz sürece sayfayla ilgili başka değişiklik uyarısı gönderilmeyecektir. Uyarı ayarlarını izleme listenizdeki tüm sayfalar için değiştirebilirsiniz. 
+Bahsi geçen sayfayı ziyaret etmediğiniz sürece sayfayla ilgili başka değişiklik uyarısı gönderilmeyecektir. Uyarı ayarlarını izleme listenizdeki tüm sayfalar için değiştirebilirsiniz.
 
 {{SITENAME}} uyarı sistemi.
 
@@ -899,56 +899,56 @@ Lütfen başka bir isim deneyiniz.',
 <pre>
 */
 
-/* Kısa yol tuşları ve yardım balonları */ 
-ta = new Object(); 
-ta[\'pt-userpage\'] = new Array(\'.\',\'Kişisel sayfam\'); 
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\'); 
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Mesaj sayfam\'); 
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Bu IP adresinden yapılmış değişiklikleri tartış\'); 
-ta[\'pt-preferences\'] = new Array(\'\',\'Ayarlarım\'); 
-ta[\'pt-watchlist\'] = new Array(\'l\',\'İzlemeye aldığım sayfalar\'); 
-ta[\'pt-mycontris\'] = new Array(\'y\',\'Yaptığım katkıların listesi\'); 
-ta[\'pt-login\'] = new Array(\'o\',\'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.\'); 
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.\'); 
-ta[\'pt-logout\'] = new Array(\'o\',\'Sistemden çık\'); 
-ta[\'ca-talk\'] = new Array(\'t\',\'İçerik ile ilgili görüş belirt\'); 
-ta[\'ca-edit\'] = new Array(\'e\',\'Bu sayfayı değiştirebilirsiniz. Kaydetmeden önce önizleme yapmayı unutmayın.\'); 
-ta[\'ca-addsection\'] = new Array(\'+\',\'Bu tartışmaya yorum ekleyin.\'); 
-ta[\'ca-viewsource\'] = new Array(\'e\',\'Bu sayfa kormu altında. Kaynak kodunu sadece görebilirsiniz. Değiştiremezsiniz.\'); 
-ta[\'ca-history\'] = new Array(\'h\',\'Bu sayfanın geçmiş versiyonları.\'); 
-ta[\'ca-protect\'] = new Array(\'=\',\'Bu sayfayı koru\'); 
-ta[\'ca-delete\'] = new Array(\'d\',\'Sayfayı sil\'); 
-ta[\'ca-undelete\'] = new Array(\'d\',\'Sayfayı silinmeden önceki haline geri getirin\'); 
-ta[\'ca-move\'] = new Array(\'m\',\'Sayfanın adını değiştir\'); 
-ta[\'ca-nomove\'] = new Array(\'\',\'Bu sayfanın adını değiştirmeye yetkiniz yok\'); 
-ta[\'ca-watch\'] = new Array(\'w\',\'Bu sayfayı izlemeye al\'); 
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Bu sayfayı izlemeyi bırakın\'); 
-ta[\'search\'] = new Array(\'f\',\'Bu vikide arama yap\'); 
-ta[\'p-logo\'] = new Array(\'\',\'Ana sayfa\'); 
-ta[\'n-mainpage\'] = new Array(\'z\',\'Başlangıç sayfasına dönün\'); 
-ta[\'n-portal\'] = new Array(\'\',\'Proje üzerine, ne nerdedir, neler yapılabilir\'); 
-ta[\'n-currentevents\'] = new Array(\'\',\'Güncel olaylarla ilgili son bilgiler\'); 
-ta[\'n-recentchanges\'] = new Array(\'r\',\'Vikide yapılmış son değişikliklerin listesi.\'); 
-ta[\'n-randompage\'] = new Array(\'x\',\'Rastgele bir maddeye gidin\'); 
-ta[\'n-help\'] = new Array(\'\',\'Yardım almak için.\'); 
-ta[\'n-sitesupport\'] = new Array(\'\',\'Maddi destek\'); 
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Bu sayfaya bağlantı vermiş diğer viki sayfalarının listesi\'); 
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Bu sayfaya bağlantı veren sayfalardaki son değişiklikler\'); 
-ta[\'feed-rss\'] = new Array(\'\',\'Bu sayfa için RSS beslemesi\'); 
-ta[\'feed-atom\'] = new Array(\'\',\'Bu sayfa için atom beslemesi\'); 
-ta[\'t-contributions\'] = new Array(\'\',\'Kullanıcının katkı listesini gör\'); 
-ta[\'t-emailuser\'] = new Array(\'\',\'Kullanıcıya e-posta gönder\'); 
-ta[\'t-upload\'] = new Array(\'u\',\'Sisteme resim ya da medya dosyaları yükleyin\'); 
-ta[\'t-specialpages\'] = new Array(\'q\',\'Tüm özel sayfaların listesini göster\'); 
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'Sayfayı göster\'); 
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'Kullanıcı sayfasını göster\'); 
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'Medya sayfasını göster\'); 
-ta[\'ca-nstab-special\'] = new Array(\'\',\'Bu özel sayfa olduğu için değişiklik yapamazsınız.\'); 
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Proje sayfasını göster\'); 
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'Resim sayfasını göster\'); 
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Sistem mesajını göster\'); 
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'Şablonu göster\'); 
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'Yardım sayfasını görmek için tıklayın\'); 
+/* Kısa yol tuşları ve yardım balonları */
+ta = new Object();
+ta[\'pt-userpage\'] = new Array(\'.\',\'Kişisel sayfam\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Mesaj sayfam\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Bu IP adresinden yapılmış değişiklikleri tartış\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Ayarlarım\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'İzlemeye aldığım sayfalar\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'Yaptığım katkıların listesi\');
+ta[\'pt-login\'] = new Array(\'o\',\'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Sistemden çık\');
+ta[\'ca-talk\'] = new Array(\'t\',\'İçerik ile ilgili görüş belirt\');
+ta[\'ca-edit\'] = new Array(\'e\',\'Bu sayfayı değiştirebilirsiniz. Kaydetmeden önce önizleme yapmayı unutmayın.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Bu tartışmaya yorum ekleyin.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Bu sayfa kormu altında. Kaynak kodunu sadece görebilirsiniz. Değiştiremezsiniz.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Bu sayfanın geçmiş versiyonları.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Bu sayfayı koru\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Sayfayı sil\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Sayfayı silinmeden önceki haline geri getirin\');
+ta[\'ca-move\'] = new Array(\'m\',\'Sayfanın adını değiştir\');
+ta[\'ca-nomove\'] = new Array(\'\',\'Bu sayfanın adını değiştirmeye yetkiniz yok\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Bu sayfayı izlemeye al\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Bu sayfayı izlemeyi bırakın\');
+ta[\'search\'] = new Array(\'f\',\'Bu vikide arama yap\');
+ta[\'p-logo\'] = new Array(\'\',\'Ana sayfa\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Başlangıç sayfasına dönün\');
+ta[\'n-portal\'] = new Array(\'\',\'Proje üzerine, ne nerdedir, neler yapılabilir\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Güncel olaylarla ilgili son bilgiler\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Vikide yapılmış son değişikliklerin listesi.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Rastgele bir maddeye gidin\');
+ta[\'n-help\'] = new Array(\'\',\'Yardım almak için.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Maddi destek\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Bu sayfaya bağlantı vermiş diğer viki sayfalarının listesi\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Bu sayfaya bağlantı veren sayfalardaki son değişiklikler\');
+ta[\'feed-rss\'] = new Array(\'\',\'Bu sayfa için RSS beslemesi\');
+ta[\'feed-atom\'] = new Array(\'\',\'Bu sayfa için atom beslemesi\');
+ta[\'t-contributions\'] = new Array(\'\',\'Kullanıcının katkı listesini gör\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Kullanıcıya e-posta gönder\');
+ta[\'t-upload\'] = new Array(\'u\',\'Sisteme resim ya da medya dosyaları yükleyin\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'Tüm özel sayfaların listesini göster\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'Sayfayı göster\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'Kullanıcı sayfasını göster\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'Medya sayfasını göster\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'Bu özel sayfa olduğu için değişiklik yapamazsınız.\');
+ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Proje sayfasını göster\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'Resim sayfasını göster\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Sistem mesajını göster\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'Şablonu göster\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Yardım sayfasını görmek için tıklayın\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategori sayfasını göster\');
 
 /*
@@ -1005,7 +1005,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategori sayfasını göster\');
 'confirmemail' => 'E-posta adresini onayla',
 'confirmemail_text' => 'Viki\'nin e-posta işlevlerini kullanmadan önce e-posta adresinizin
 doğrulanması gerekiyor. Adresinize onay e-postası göndermek için aşağıdaki
-butonu tıklayın. Gönderilecek iletide adresinizi onaylamak için tarayıcınızla 
+butonu tıklayın. Gönderilecek iletide adresinizi onaylamak için tarayıcınızla
 erişebileceğiniz, onay kodu içeren bir bağlantı olacak.',
 'confirmemail_send' => 'Onay kodu gönder',
 'confirmemail_sent' => 'Onay e-postası gönderildi.',
@@ -1015,12 +1015,12 @@ erişebileceğiniz, onay kodu içeren bir bağlantı olacak.',
 'confirmemail_loggedin' => 'E-posta adresiniz onaylandı.',
 'confirmemail_error' => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
 'confirmemail_subject' => '{{SITENAME}} e-posta adres onayı.',
-'confirmemail_body' => '$1 internet adresinden yapılan erişimle {{SITENAME}}\'da 
-bu e-posta adresi ile ilişkilendirilen $2 kullanıcı hesabı 
-açıldı.  
+'confirmemail_body' => '$1 internet adresinden yapılan erişimle {{SITENAME}}\'da
+bu e-posta adresi ile ilişkilendirilen $2 kullanıcı hesabı
+açıldı.
 
 Bu e-posta adresinin bahsi geçen kullanıcı hesabına ait olduğunu
-onaylamak ve {{SITENAME}}\'daki e-posta işlevlerini aktif hale 
+onaylamak ve {{SITENAME}}\'daki e-posta işlevlerini aktif hale
 getirmek için aşağıdakı bağlantıyı tıklayın.
 
 $3

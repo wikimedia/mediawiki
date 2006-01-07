@@ -56,7 +56,7 @@ function compressPage( $row, $extdb ) {
 	}
 
 	# Update text row
-	$dbw->update( 'text', 
+	$dbw->update( 'text',
 		array( /* SET */
 			'old_flags' => $flags,
 			'old_text' => $compress
@@ -71,7 +71,7 @@ define( 'LS_INDIVIDUAL', 0 );
 define( 'LS_CHUNKED', 1 );
 
 /** @todo document */
-function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, 
+function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate,
 	$endDate, $extdb="", $maxPageId = false )
 {
 	$fname = 'compressWithConcat';
@@ -88,7 +88,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	# Get all articles by page_id
 	if ( !$maxPageId ) {
 		$maxPageId = $dbr->selectField( 'page', 'max(page_id)', '', $fname );
-	} 
+	}
 	print "Starting from $startId of $maxPageId\n";
 	$pageConds = array();
 
@@ -110,7 +110,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	
 	if ( $beginDate ) {
 		$conds[] = "rev_timestamp>'" . $beginDate . "'";
-	} 
+	}
 	if ( $endDate )  {
 		$conds[] = "rev_timestamp<'" . $endDate . "'";
 	}
@@ -135,7 +135,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
 		wfWaitForSlaves( 10 );
 
-		$pageRes = $dbr->select( 'page', array('page_id', 'page_namespace', 'page_title'), 
+		$pageRes = $dbr->select( 'page', array('page_id', 'page_namespace', 'page_title'),
 			$pageConds + array('page_id' => $pageId), $fname );
 		if ( $dbr->numRows( $pageRes ) == 0 ) {
 			continue;
@@ -148,7 +148,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 
 		# Load revisions
 		$revRes = $dbw->select( $tables, $fields,
-			array( 'rev_page' => $pageRow->page_id ) + $conds, 
+			array( 'rev_page' => $pageRow->page_id ) + $conds,
 			$fname,
 			$revLoadOptions
 		);
@@ -184,7 +184,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 				
 				# Get text
 				if ( $loadStyle == LS_INDIVIDUAL ) {
-					$textRow = $dbw->selectRow( 'text', 
+					$textRow = $dbw->selectRow( 'text',
 						array( 'old_flags', 'old_text' ),
 						array( 'old_id' => $oldid ),
 						$fname,
@@ -233,7 +233,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 					}
 					# Store External Storage URLs instead of Stub placeholders
 					foreach ($stubs as $stub) {
-						if ($stub===false) 
+						if ($stub===false)
 							continue;
 						# $stored should provide base path to a BLOB
 						$url = $stored."/".$stub->getHash();

@@ -197,7 +197,7 @@ class UtfUpdater {
 
 		# And convert the rest...
 		$this->convertTable( 'ipblocks', 'ipb_id', array( 'ipb_reason' ) );
-		$this->convertTable( 'user', 'user_id', 
+		$this->convertTable( 'user', 'user_id',
 			array( 'user_name', 'user_real_name', 'user_options' ),
 			'user_touched' );
 		$this->convertTable( 'page', 'page_id',

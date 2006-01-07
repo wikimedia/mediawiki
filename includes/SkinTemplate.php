@@ -483,7 +483,7 @@ class SkinTemplate extends Skin {
 			$personal_urls['logout'] = array(
 				'text' => wfMsg('userlogout'),
 				'href' => $this->makeSpecialUrl( 'Userlogout',
-					$wgTitle->getNamespace() === NS_SPECIAL && $wgTitle->getText() === 'Preferences' ? '' : "returnto={$this->thisurl}" 
+					$wgTitle->getNamespace() === NS_SPECIAL && $wgTitle->getText() === 'Preferences' ? '' : "returnto={$this->thisurl}"
 				)
 			);
 		} else {
@@ -541,7 +541,7 @@ class SkinTemplate extends Skin {
 		
 		$text = wfMsg( $message );
 		if ( $text == "&lt;$message&gt;" ) {
-			$text = html_entity_decode($text); 
+			$text = html_entity_decode($text);
 		}
 		
 		return array(
@@ -805,7 +805,7 @@ class SkinTemplate extends Skin {
 					'href' => ''
 				);
 			} else {
-				if ( !( $revid == 0 )  ) 
+				if ( !( $revid == 0 )  )
 					$nav_urls['permalink'] = array(
 						'text' => wfMsg( 'permalink' ),
 						'href' => $wgTitle->getLocalURL( "oldid=$revid" )

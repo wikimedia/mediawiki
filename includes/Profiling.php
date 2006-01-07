@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * This file is only included if profiling is enabled
  * @package MediaWiki
@@ -335,14 +335,14 @@ class Profiler {
 
 		$rc = $dbw->affectedRows();
 		if ($rc == 0) {
-			$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount, 
+			$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
 				'pf_time' => $timeSum, 'pf_server' => $wguname['nodename'] ), $fname, array ('IGNORE'));
 		}
 		// When we upgrade to mysql 4.1, the insert+update
 		// can be merged into just a insert with this construct added:
 		//     "ON DUPLICATE KEY UPDATE ".
 		//     "pf_count=pf_count + VALUES(pf_count), ".
-		//     "pf_time=pf_time + VALUES(pf_time)"; 
+		//     "pf_time=pf_time + VALUES(pf_time)";
 	}
 
 	/**

@@ -7,7 +7,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or 
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -40,7 +40,7 @@ define( 'MW_CHAR_REFS_REGEX',
  * Allows some... latitude.
  * Used in Sanitizer::fixTagAttributes and Sanitizer::decodeTagAttributes
  */
-$attrib = '[A-Za-z0-9]'; 
+$attrib = '[A-Za-z0-9]';
 $space = '[\x09\x0a\x0d\x20]';
 define( 'MW_ATTRIBS_REGEX',
 	"/(?:^|$space)($attrib+)
@@ -462,7 +462,7 @@ class Sanitizer {
 	 * To avoid leaving blank lines, when a comment is both preceded
 	 * and followed by a newline (ignoring spaces), trim leading and
 	 * trailing spaces and one of the newlines.
-	 * 
+	 *
 	 * @access private
 	 * @param string $text
 	 * @return string
@@ -529,7 +529,7 @@ class Sanitizer {
 		}
 		
 		# Unquoted attribute
-		# Since we quote this later, this can be anything distinguishable 
+		# Since we quote this later, this can be anything distinguishable
 		# from the end of the attribute
 		$pairs = array();
 		if( !preg_match_all(

@@ -47,7 +47,7 @@ class LanguageUtf8 extends Language {
 	}
 
 	function uc( $str, $first = false ) {
-		if ( function_exists( 'mb_strtoupper' ) ) 
+		if ( function_exists( 'mb_strtoupper' ) )
 			return $first ? mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 ) : mb_strtoupper( $str );
 		else {
 			global $wikiUpperChars;

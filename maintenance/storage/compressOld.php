@@ -1,7 +1,7 @@
 <?php
 /**
  * Compress the text of a wiki
- * 
+ *
  * @package MediaWiki
  * @subpackage Maintenance
  */
@@ -9,7 +9,7 @@
 /** */
 
 /**
- * Usage: 
+ * Usage:
  *
  * Non-wikimedia
  * php compressOld.php [options...]
@@ -41,7 +41,7 @@ if( !function_exists( "gzdeflate" ) ) {
 	die();
 }
 
-$defaults = array( 
+$defaults = array(
 	't' => 'concat',
 	'c' => 20,
 	's' => 0,
@@ -67,11 +67,11 @@ if ( $options['extdb'] != '' ) {
 
 $success = true;
 if ( $options['t'] == 'concat' ) {
-    $success = compressWithConcat( $options['s'], $options['c'], $options['f'], $options['h'], $options['b'], 
+    $success = compressWithConcat( $options['s'], $options['c'], $options['f'], $options['h'], $options['b'],
         $options['e'], $options['extdb'], $options['endid'] );
 } else {
 	compressOldPages( $options['s'], $options['extdb'] );
-} 
+}
 
 if ( $success ) {
 	print "Done.\n";
