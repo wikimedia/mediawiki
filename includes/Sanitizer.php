@@ -384,8 +384,7 @@ class Sanitizer {
 						# Closing a tag...
 						if( in_array( $t, $htmlsingleonly ) ) {
 							$badtag = 1;
-						} elseif( !in_array( $t, $htmlsingle ) &&
-						( $ot = @array_pop( $tagstack ) ) != $t ) {
+						} elseif ( ( $ot = @array_pop( $tagstack ) ) != $t ) {
 							@array_push( $tagstack, $ot );
 							$badtag = 1;
 						} else {
@@ -405,7 +404,7 @@ class Sanitizer {
 						} elseif( in_array( $t, $htmlsingleonly ) ) {
 							# Hack to force empty tag for uncloseable elements
 							$brace = '/>';
-						} else if ( ! in_array( $t, $htmlsingle ) ) {
+						} else {
 							if ( $t == 'table' ) {
 								array_push( $tablestack, $tagstack );
 								$tagstack = array();
