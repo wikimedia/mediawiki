@@ -3207,53 +3207,58 @@ class Parser
 	 * @access private
 	 */
 	function getUserSig( &$user ) {
-		$name = $user->getName();
-		$nick = trim( $user->getOption( 'nickname' ) );
-		if ( '' == $nick ) {
-			$nick = $name;
-		}
+		global $wgContLang;
 
+		$username = $user->getName();
+		$nickname = trim( $user->getOption( 'nickname' ) );
+		$nickname = ( $nickname == '' ? $username : $nickname );
+	
 		if( $user->getOption( 'fancysig' ) ) {
-			// A wikitext signature.
-			$valid = $this->validateSig( $nick );
-			if( $valid === false ) {
-				// Fall back to default sig
-				$nick = $name;
-				wfDebug( "Parser::getUserSig: $name has bad XML tags in signature.\n" );
+			# Sig. might contain markup; validate this
+			if( $this->validateSig( $nickname ) ) {
+				# Validated; clean up (if needed) and return it
+				return( $this->cleanSig( $nick ) );
 			} else {
-				return $nick;
+				# Failed to validate; fall back to the default
+				$nickname = $username;
+				wfDebug( "Parser::getUserSig: $name has bad XML tags in signature.\n" );
 			}
 		}
 
-		// Plain text linking to the user's homepage
-		global $wgContLang;
-		$page = $user->getUserPage();
-		return '[[' .
-			$page->getPrefixedText() .
-			"|" .
-			wfEscapeWikIText( $nick ) .
-			"]]";
+		# If we're still here, make it a link to the user page
+		$userpage = $user->getUserPage();
+		return( '[[' . $userpage->getPrefixedText() . '|' . wfEscapeWikiText( $nickname ) . ']]' );
 	}
 
 	/**
-	 * We want to enforce two rules on wikitext sigs here:
-	 * 1) Expand any templates at save time (forced subst:)
-	 * 2) Check for unbalanced XML tags, and reject if so.
+	 * Check that the user's signature contains no bad XML
 	 *
 	 * @param string $text
 	 * @return mixed An expanded string, or false if invalid.
-	 *
-	 * @todo Run brace substitutions
-	 * @todo ?? Check for unbalanced '' and ''' quotes, etc
 	 */
 	function validateSig( $text ) {
-		if( wfIsWellFormedXmlFragment( $text ) ) {
-			return $text;
-		} else {
-			return false;
-		}
+		return( wfIsWellFormedXmlFragment( $text ) ? $text : false );
 	}
-
+	
+	/**
+	 * Clean up signature text
+	 *
+	 * 1) Force transclusions to be substituted
+	 * 2) Strip ~~~, ~~~~ and ~~~~~ out of signatures
+	 *
+	 * @static
+	 * @param string $text
+	 * @return string Text
+	 */
+	function cleanSig( $text ) {
+		$text = str_replace( '{{', '{{subst:', $text );
+		$text = str_replace( '{{subst:subst:', '{{subst:', $text );
+		$text = str_replace( '~~~', '', $text );
+		$text = str_replace( '~~~~', '', $text );
+		$text = str_replace( '~~~~~', '', $text );
+		return( $text );
+	}
+	
 	/**
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
