@@ -1468,7 +1468,7 @@ function &HTMLnamespaceselector($selected = '', $allnamespaces = null) {
 /** Global singleton instance of MimeMagic. This is initialized on demand,
 * please always use the wfGetMimeMagic() function to get the instance.
 *
-* @private
+* @access private
 */
 $wgMimeMagic= NULL;
 

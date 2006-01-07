@@ -164,7 +164,7 @@ class MagicWord {
 	
 	/**
 	 * Preliminary initialisation
-	 * @private
+	 * @access private
 	 */
 	function initRegex() {
 		#$variableClass = Title::legalChars();
@@ -356,7 +356,7 @@ class MagicWord {
 
 /**
  * Used in matchAndRemove()
- * @private
+ * @access private
  **/
 function pregRemoveAndRecord( $match ) {
 	global $wgMagicFound;

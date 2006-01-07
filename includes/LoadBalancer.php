@@ -378,7 +378,7 @@ class LoadBalancer {
 	 * Open a connection to the server given by the specified index
 	 * Index must be an actual index into the array
 	 * Returns success
-	 * @private
+	 * @access private
 	 */
 	function openConnection( $i, $fail = false ) {
 		$fname = 'LoadBalancer::openConnection';
@@ -405,7 +405,7 @@ class LoadBalancer {
 
 	/**
 	 * Test if the specified index represents an open connection
-	 * @private
+	 * @access private
 	 */
 	function isOpen( $index ) {
 		if( !is_integer( $index ) ) {
@@ -422,7 +422,7 @@ class LoadBalancer {
 
 	/**
 	 * Really opens a connection
-	 * @private
+	 * @access private
 	 */
 	function reallyOpenConnection( &$server ) {
 		if( !is_array( $server ) ) {

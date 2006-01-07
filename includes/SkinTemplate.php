@@ -862,7 +862,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * Generate strings used for xml 'id' names
 	 * @return string
-	 * @private
+	 * @access private
 	 */
 	function getNameSpaceKey () {
 		switch ($this->mTitle->getNamespace()) {

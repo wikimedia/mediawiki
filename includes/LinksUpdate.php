@@ -161,7 +161,7 @@ class LinksUpdate {
 
 	/**
 	 * Update a table by doing a delete query then an insert query
-	 * @private
+	 * @access private
 	 */
 	function incrTableUpdate( $table, $prefix, $deletions, $insertions ) {
 		$fname = 'LinksUpdate::incrTableUpdate';
@@ -192,7 +192,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of pagelinks insertions for passing to the DB
 	 * Skips the titles specified by the 2-D array $existing
-	 * @private
+	 * @access private
 	 */
 	function getLinkInsertions( $existing = array() ) {
 		$arr = array();
@@ -213,7 +213,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of template insertions. Like getLinkInsertions()
-	 * @private
+	 * @access private
 	 */
 	function getTemplateInsertions( $existing = array() ) {
 		$arr = array();
@@ -233,7 +233,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of image insertions
 	 * Skips the names specified in $existing
-	 * @private
+	 * @access private
 	 */
 	function getImageInsertions( $existing = array() ) {
 		$arr = array();
@@ -251,7 +251,7 @@ class LinksUpdate {
 	 * Get an array of category insertions
 	 * @param array $existing Array mapping existing category names to sort keys. If both 
 	 * match a link in $this, the link will be omitted from the output
-	 * @private
+	 * @access private
 	 */
 	function getCategoryInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
@@ -269,7 +269,7 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing links, returns those links which are not in $this
 	 * and thus should be deleted.
-	 * @private
+	 * @access private
 	 */
 	function getLinkDeletions( $existing ) {
 		$del = array();
@@ -286,7 +286,7 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing templates, returns those templates which are not in $this
 	 * and thus should be deleted.
-	 * @private
+	 * @access private
 	 */
 	function getTemplateDeletions( $existing ) {
 		$del = array();
@@ -303,7 +303,7 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing images, returns those images which are not in $this
 	 * and thus should be deleted.
-	 * @private
+	 * @access private
 	 */
 	function getImageDeletions( $existing ) {
 		return array_diff_key( $existing, $this->mImages );
@@ -312,7 +312,7 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing categories, returns those categories which are not in $this
 	 * and thus should be deleted.
-	 * @private
+	 * @access private
 	 */
 	function getCategoryDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mCategories );
@@ -320,7 +320,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing links, as a 2-D array
-	 * @private
+	 * @access private
 	 */
 	function getExistingLinks() {
 		$fname = 'LinksUpdate::getExistingLinks';
@@ -338,7 +338,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing templates, as a 2-D array
-	 * @private
+	 * @access private
 	 */
 	function getExistingTemplates() {
 		$fname = 'LinksUpdate::getExistingTemplates';
@@ -356,7 +356,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing images, image names in the keys
-	 * @private
+	 * @access private
 	 */
 	function getExistingImages() {
 		$fname = 'LinksUpdate::getExistingImages';
@@ -371,7 +371,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing categories, with the name in the key and sort key in the value.
-	 * @private
+	 * @access private
 	 */
 	function getExistingCategories() {
 		$fname = 'LinksUpdate::getExistingCategories';
