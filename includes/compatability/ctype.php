@@ -177,7 +177,9 @@ function ctype_xdigit() {
 
 /**
  * PHP does some munging on ctype_*() like converting  -128 <= x <= -1 to x +=
- * 256, 0 <= x <= 255 to chr(x) etc. that behavior.
+ * 256, 0 <= x <= 255 to chr(x) etc, it'll return true if x < -128 and false if
+ * x >= 256, true if the input is an empty string and false if it's of any
+ * other datatype than int or string, this function duplicates that behaviour.
  *
  * @param string $fname The name of the caller function
  * @param array $args The return of the callers func_get_args()
