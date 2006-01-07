@@ -3025,6 +3025,45 @@ MSIE CSS safety test: comment in expression
 
 !! end
 
+###
+### Sanitizer
+###
+!! test
+Sanitizer: Closing of open tags
+!! input
+<s></s><table></table>
+!! result
+<s></s><table></table>
+
+!! end
+
+!! test
+Sanitizer: Closing of open but not closed tags
+!! input
+<s>foo
+!! result
+<p><s>foo</s>
+</p>
+!! end
+
+!! test
+Sanitizer: Closing of closed but not open tags
+!! input
+</s>
+!! result
+<p>&lt;/s&gt;
+</p>
+!! end
+
+!! test
+Sanitizer: Closing of closed but not open table tags
+!! input
+Table not started</td></tr></table>
+!! result
+<p>Table not started&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+</p>
+!! end
+
 
 TODO:
 more images
