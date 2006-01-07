@@ -227,8 +227,14 @@ class PreferencesForm {
 			$needRedirect = false;
 		}
 
-		# Clean up the signature a little
-		$this->mNick = Parser::cleanSig( $this->mNick );
+		# Validate the signature and clean it up as needed
+		if( $this->mToggles['fancysig'] ) {
+			if( Parser::validateSig( $this->mNick ) ) {
+				$this->mNick = Parser::cleanSig( $this->mNick );
+			} else {
+				$this->mainPrefsForm( 'error', wfMsg( 'badsig' ) );
+			}
+		}
 
 		$wgUser->setOption( 'language', $this->mUserLanguage );
 		$wgUser->setOption( 'variant', $this->mUserVariant );

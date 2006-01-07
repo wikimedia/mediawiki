@@ -3133,14 +3133,6 @@ class Parser
 	function pstPass2( $text, &$user ) {
 		global $wgContLang, $wgLocaltimezone;
 
-		# Variable replacement
-		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
-		$text = $this->replaceVariables( $text );
-
-		# Signatures
-		#
-		$sigText = $this->getUserSig( $user );
-
 		/* Note: This is the timestamp saved as hardcoded wikitext to
 		 * the database, we use $wgContLang here in order to give
 		 * everyone the same signiture and use the default one rather
@@ -3156,9 +3148,15 @@ class Parser
 			putenv( 'TZ='.$oldtz );
 		}
 
+		# Signatures
+		$sigText = $this->getUserSig( $user );
 		$text = preg_replace( '/~~~~~/', $d, $text );
 		$text = preg_replace( '/~~~~/', "$sigText $d", $text );
 		$text = preg_replace( '/~~~/', $sigText, $text );
+
+		# Variable replacement
+		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
+		$text = $this->replaceVariables( $text );
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#
