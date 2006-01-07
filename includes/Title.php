@@ -869,7 +869,7 @@ class Title {
 			wfProfileOut( $fname );
 			return false;
 		}
-		
+
 		if( $this->mDbkeyform == '_' ) {
 			# FIXME: Is this necessary? Shouldn't be allowed anyway...
 			wfProfileOut( $fname );
@@ -911,7 +911,7 @@ class Title {
 			wfProfileOut( $fname );
 			return false;
 		}
-		
+
 		if( $action == 'create' ) {
 			if( (  $this->isTalkPage() && !$wgUser->isAllowed( 'createtalk' ) ) ||
 				( !$this->isTalkPage() && !$wgUser->isAllowed( 'createpage' ) ) ) {
@@ -2057,7 +2057,7 @@ class Title {
 			$toucharr[] = $row->pl_from;
 		}
 		$dbw->freeResult( $res );
-		
+
 		if( $this->getNamespace() == NS_CATEGORY ) {
 			// Categories show up in a separate set of links as well
 			$res = $dbw->select( 'categorylinks',
@@ -2069,7 +2069,7 @@ class Title {
 			}
 			$dbw->freeResult( $res );
 		}
-		
+
 		if (!count($toucharr))
 			return;
 		$dbw->update( 'page', /* SET */ array( 'page_touched' => $dbw->timestamp() ),

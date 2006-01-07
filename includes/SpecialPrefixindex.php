@@ -17,7 +17,7 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 	# GET values
 	$from = $wgRequest->getVal( 'from' );
 	$namespace = $wgRequest->getInt( 'namespace' );
-	
+
 	$namespaces = $wgContLang->getNamespaces();
 
 	$indexPage = new SpecialPrefixIndex();
@@ -30,7 +30,7 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 		wfMsg( 'allarticles' )
 		);
 
-	
+
 	if ( isset($par) ) {
 		$indexPage->showChunk( $namespace, $par, $specialPage->including() );
 	} elseif ( isset($from) ) {
@@ -55,7 +55,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	global $wgOut, $wgUser, $wgContLang;
 
 	$fname = 'indexShowChunk';
-	
+
 	$sk = $wgUser->getSkin();
 
 	$fromTitle = Title::newFromURL( $from );
@@ -64,7 +64,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
         }
 
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
-	
+
 	$dbr =& wfGetDB( DB_SLAVE );
 
 	$res = $dbr->select( 'page',
@@ -85,7 +85,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 
 	$n = 0;
 	$out = '<table style="background: inherit;" border="0" width="100%">';
-	
+
 	$namespaces = $wgContLang->getFormattedNamespaces();
 	while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
@@ -109,7 +109,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		$out .= '</tr>';
 	}
 	$out .= '</table>';
-	
+
 	if ( $including ) {
 		$out2 = '';
 	} else {

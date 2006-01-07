@@ -34,14 +34,14 @@ class WikiError {
 	function WikiError( $message ) {
 		$this->mMessage = $message;
 	}
-	
+
 	/**
 	 * @return string Plaintext error message to display
 	 */
 	function getMessage() {
 		return $this->mMessage;
 	}
-	
+
 	/**
 	 * In following PEAR_Error model this could be formatted differently,
 	 * but so far it's not.
@@ -50,7 +50,7 @@ class WikiError {
 	function toString() {
 		return $this->getMessage();
 	}
-	
+
 	/**
 	 * Returns true if the given object is a WikiError-descended
 	 * error object, false otherwise.
@@ -100,7 +100,7 @@ class WikiXmlError extends WikiError {
 		wfDebug( "WikiXmlError: " . $this->getMessage() . "\n" );
 	}
 
-	/** @return string */	
+	/** @return string */
 	function getMessage() {
 		return sprintf( '%s at line %d, col %d (byte %d%s): %s',
 			$this->mMessage,
@@ -110,7 +110,7 @@ class WikiXmlError extends WikiError {
 			$this->mContext,
 			xml_error_string( $this->mXmlError ) );
 	}
-	
+
 	function _extractContext( $context, $offset ) {
 		if( is_null( $context ) ) {
 			return null;

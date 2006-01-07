@@ -35,7 +35,7 @@ class RawPage {
 		} else {
 			$this->mRequest = $request;
 		}
-			
+
 		$ctype = $this->mRequest->getText( 'ctype' );
 		$smaxage = $this->mRequest->getInt( 'smaxage', $wgSquidMaxage );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
@@ -43,7 +43,7 @@ class RawPage {
 		$this->mOldId = $this->mRequest->getInt( 'oldid' );
 		# special case for 'generated' raw things: user css/js
 		$gen = $this->mRequest->getText( 'gen' );
-		
+
 		if($gen == 'css') {
 			$this->mGen = $gen;
 			if($smaxage == '') $smaxage = $wgSquidMaxage;
@@ -64,7 +64,7 @@ class RawPage {
 			$this->mContentType = $ctype;
 		}
 	}
-	
+
 	function view() {
 		global $wgOut, $wgScript;
 
@@ -100,7 +100,7 @@ class RawPage {
 				'Raw pages must be accessed through the primary script entry point.' );
 			return;
 		}
-		
+
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
 		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
@@ -121,11 +121,11 @@ class RawPage {
 		} else {
 			return $this->getArticleText();
 		}
-	}		
+	}
 
 	function getArticleText() {
 		global $wgParser;
-		
+
 		if( $this->mTitle ) {
 			$text = '';
 
@@ -145,7 +145,7 @@ class RawPage {
 
 			return $this->parseArticleText( $text );
 		}
-		
+
 		# Bad title or page does not exist
 		if( $this->mContentType == 'text/x-wiki' ) {
 			# Don't return a 404 response for CSS or JavaScript;
@@ -168,7 +168,7 @@ class RawPage {
 				$parser->Options( new ParserOptions() ); // We don't want this to be user-specific
 				$parser->Title( $wgTitle );
 				$parser->OutputType( OT_HTML );
-				
+
 				return $parser->replaceVariables( $text );
 			} else
 				return $text;

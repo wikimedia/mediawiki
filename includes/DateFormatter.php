@@ -29,16 +29,16 @@ class DateFormatter
 {
 	var $mSource, $mTarget;
 	var $monthNames = '', $rxDM, $rxMD, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
-	
+
 	var $regexes, $pDays, $pMonths, $pYears;
 	var $rules, $xMonths;
-	
+
 	/**
 	 * @todo document
 	 */
 	function DateFormatter() {
 		global $wgContLang;
-		
+
 		$this->monthNames = $this->getMonthRegex();
 		for ( $i=1; $i<=12; $i++ ) {
 			$this->xMonths[$wgContLang->lc( $wgContLang->getMonthName( $i ) )] = $i;
@@ -53,9 +53,9 @@ class DateFormatter
 		$this->prxY = '\[\[(\d{1,4}([ _]BC|))]]';
 		$this->prxISO1 = '\[\[(-?\d{4})]]-\[\[(\d{2})-(\d{2})]]';
 		$this->prxISO2 = '\[\[(-?\d{4})-(\d{2})-(\d{2})]]';
-		
+
 		# Real regular expressions
-		$this->regexes[DF_DMY] = "/{$this->prxDM} *,? *{$this->prxY}{$this->regexTrail}";	
+		$this->regexes[DF_DMY] = "/{$this->prxDM} *,? *{$this->prxY}{$this->regexTrail}";
 		$this->regexes[DF_YDM] = "/{$this->prxY} *,? *{$this->prxDM}{$this->regexTrail}";
 		$this->regexes[DF_MDY] = "/{$this->prxMD} *,? *{$this->prxY}{$this->regexTrail}";
 		$this->regexes[DF_YMD] = "/{$this->prxY} *,? *{$this->prxMD}{$this->regexTrail}";
@@ -63,7 +63,7 @@ class DateFormatter
 		$this->regexes[DF_MD] = "/{$this->prxMD}{$this->regexTrail}";
 		$this->regexes[DF_ISO1] = "/{$this->prxISO1}{$this->regexTrail}";
 		$this->regexes[DF_ISO2] = "/{$this->prxISO2}{$this->regexTrail}";
-		
+
 		# Extraction keys
 		# See the comments in replace() for the meaning of the letters
 		$this->keys[DF_DMY] = 'jFY';
@@ -93,7 +93,7 @@ class DateFormatter
 		$this->rules[DF_ALL][DF_DM] 	= DF_DM;
 		$this->rules[DF_NONE][DF_ISO2] 	= DF_ISO1;
 	}
-	
+
 	/**
 	 * @static
 	 */
@@ -108,8 +108,8 @@ class DateFormatter
 			}
 		}
 		return $dateFormatter;
-	}	
-	
+	}
+
 	/**
 	 * @param $preference
 	 * @param $text
@@ -150,11 +150,11 @@ class DateFormatter
 		}
 
 		$format = $this->targets[$this->mTarget];
-		
+
 		# Construct new date
 		$text = '';
 		$fail = false;
-		
+
 		for ( $p=0; $p < strlen( $format ); $p++ ) {
 			$char = $format{$p};
 			switch ( $char ) {
@@ -220,7 +220,7 @@ class DateFormatter
 		}
 		return $text;
 	}
-	
+
 	/**
 	 * @todo document
 	 */

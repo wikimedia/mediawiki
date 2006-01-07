@@ -14,7 +14,7 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 	# GET values
 	$from = $wgRequest->getVal( 'from' );
 	$namespace = $wgRequest->getInt( 'namespace' );
-	
+
 	$namespaces = $wgContLang->getNamespaces();
 
 	$indexPage = new SpecialAllpages();
@@ -26,7 +26,7 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 		wfMsg( 'allinnamespace', $namespaces[$namespace] ) :
 		wfMsg( 'allarticles' )
 		);
-	
+
 	if ( isset($par) ) {
 		$indexPage->showChunk( $namespace, $par, $specialPage->including() );
 	} elseif ( isset($from) ) {
@@ -57,7 +57,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	$frombox = "<input type='text' size='20' name='from' id='nsfrom' value=\""
 	            . htmlspecialchars ( $from ) . '"/>';
 	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" />';
-	
+
 	$out = "<div class='namespaceoptions'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
@@ -100,14 +100,14 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	global $wgMemc, $wgDBname;
 	$key = "$wgDBname:allpages:ns:$namespace";
 	$lines = $wgMemc->get( $key );
-	
+
 	if( !is_array( $lines ) ) {
 		$firstTitle = $dbr->selectField( 'page', 'page_title', $where, $fname, array( 'LIMIT' => 1 ) );
 		$lastTitle = $firstTitle;
-		
+
 		# This array is going to hold the page_titles in order.
 		$lines = array( $firstTitle );
-		
+
 		# If we are going to show n rows, we need n+1 queries to find the relevant titles.
 		$done = false;
 		for( $i = 0; !$done; ++$i ) {
@@ -146,7 +146,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 		}
 		$wgMemc->add( $key, $lines, 3600 );
 	}
-	
+
 	// If there are only two or less sections, don't even display them.
 	// Instead, display the first section directly.
 	if( count( $lines ) <= 2 ) {
@@ -163,7 +163,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	}
 	$out .= '</table>';
 	$nsForm = $this->namespaceForm ( $namespace, '', false );
-	
+
 	# Is there more?
 	if ( $including ) {
 		$out2 = '';
@@ -214,7 +214,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	global $wgOut, $wgUser, $wgContLang;
 
 	$fname = 'indexShowChunk';
-	
+
 	$sk = $wgUser->getSkin();
 
 	$fromTitle = null;
@@ -228,7 +228,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 			$namespace = $fromNS;
 	}
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
-	
+
 	$dbr =& wfGetDB( DB_SLAVE );
 	$res = $dbr->select( 'page',
 		array( 'page_namespace', 'page_title', 'page_is_redirect' ),

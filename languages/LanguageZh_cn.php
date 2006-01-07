@@ -921,7 +921,7 @@ class LanguageZh_cn extends LanguageUtf8 {
 		global $wgSkinNamesZh_cn;
 		return $wgSkinNamesZh_cn;
 	}
-	
+
 	function getDateFormats() {
 		return false;
 	}

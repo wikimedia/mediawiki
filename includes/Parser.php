@@ -175,7 +175,7 @@ class Parser
 		 * First pass--just handle <nowiki> sections, pass the rest off
 		 * to internalParse() which does all the real work.
 		 */
-		
+
 		global $wgUseTidy, $wgContLang;
 		$fname = 'Parser::parse';
 		wfProfileIn( $fname );
@@ -236,7 +236,7 @@ class Parser
 		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
 
 		$text = Sanitizer::normalizeCharReferences( $text );
-		
+
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
 		}
@@ -498,7 +498,7 @@ class Parser
 		if ( !is_array( $state ) ) {
 			return $text;
 		}
-		
+
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		foreach( array_reverse( $state, true ) as $tag => $contentDict ) {
 			if( $tag != 'nowiki' && $tag != 'html' ) {
@@ -683,7 +683,7 @@ class Parser
 			$fc = substr ( $x , 0 , 1 ) ;
 			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) ) {
 				$indent_level = strlen( $matches[1] );
-				
+
 				$attributes = $this->unstripForHTML( $matches[2] );
 
 				$t[$k] = str_repeat( '<dl><dd>', $indent_level ) .
@@ -1522,7 +1522,7 @@ class Parser
 		}
 		return $retVal;
 	}
-	
+
 	/**
 	 * Render a forced-blue link inline; protect against double expansion of
 	 * URLs if we're in a mode that prepends full URL prefixes to internal links.
@@ -1543,7 +1543,7 @@ class Parser
 		$link = $sk->makeKnownLinkObj( $nt, $text, $query, $inside, $prefix );
 		return $this->armorLinks( $link ) . $trail;
 	}
-	
+
 	/**
 	 * Insert a NOPARSE hacky thing into any inline links in a chunk that's
 	 * going to go through further parsing steps before inline URL expansion.
@@ -2048,14 +2048,14 @@ class Parser
 
 			if ($lastOpeningBrace >= 0) {
 				$pos = strpos ($text, $openingBraceStack[$lastOpeningBrace]['braceEnd'], $i);
-			
+
 				if (false !== $pos && (-1 == $nextPos || $pos < $nextPos)){
 					$rule = null;
 					$nextPos = $pos;
 				}
 
 				$pos = strpos ($text, '|', $i);
-				
+
 				if (false !== $pos && (-1 == $nextPos || $pos < $nextPos)){
 					$rule = null;
 					$nextPos = $pos;
@@ -2116,7 +2116,7 @@ class Parser
 							$matchingCallback = $fn;
 						}
 					}
-					
+
 					if ($matchingCount == 0) {
 						$i += $count - 1;
 						continue;
@@ -2130,7 +2130,7 @@ class Parser
 
 					$pieceStart = $openingBraceStack[$lastOpeningBrace]['startAt'] - $matchingCount;
 					$pieceEnd = $i + $matchingCount;
-					
+
 					if( is_callable( $matchingCallback ) ) {
 						$cbArgs = array (
 										 'text' => substr($text, $pieceStart, $pieceEnd - $pieceStart),
@@ -2181,7 +2181,7 @@ class Parser
 					}
 					else
 						$openingBraceStack[$lastOpeningBrace]['parts'][] = substr($text, $openingBraceStack[$lastOpeningBrace]['partStart'], $i - $openingBraceStack[$lastOpeningBrace]['partStart']);
-					
+
 					$openingBraceStack[$lastOpeningBrace]['partStart'] = $i + 1;
 				}
 			}
@@ -2412,7 +2412,7 @@ class Parser
 			$mwLocalE =& MagicWord::get( MAG_LOCALURLE );
 			$mwFull =& MagicWord::get( MAG_FULLURL );
 			$mwFullE =& MagicWord::get( MAG_FULLURLE );
-			
+
 
 			if ( $mwLocal->matchStartAndRemove( $part1 ) ) {
 				$func = 'getLocalURL';
@@ -2575,7 +2575,7 @@ class Parser
 			# Remove <noinclude> sections and <includeonly> tags
 			$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
 			$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
-			
+
 			if( $this->mOutputType == OT_HTML ) {
 				# Strip <nowiki>, <pre>, etc.
 				$text = $this->strip( $text, $this->mStripState );
@@ -2642,7 +2642,7 @@ class Parser
 			return $text;
 		}
 	}
-	
+
 	/**
 	 * Translude an interwiki link.
 	 */
@@ -3163,7 +3163,7 @@ class Parser
 		global $wgLegalTitleChars;
 		$tc = "[$wgLegalTitleChars]";
 		$np = str_replace( array( '(', ')' ), array( '', '' ), $tc ); # No parens
-		
+
 		$namespacechar = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
 		$conpat = "/^({$np}+) \\(({$tc}+)\\)$/";
 
@@ -3195,7 +3195,7 @@ class Parser
 
 		return $text;
 	}
-	
+
 	/**
 	 * Fetch the user's signature text, if any, and normalize to
 	 * validated, ready-to-insert wikitext.
@@ -3210,7 +3210,7 @@ class Parser
 		if ( '' == $nick ) {
 			$nick = $name;
 		}
-		
+
 		if( $user->getOption( 'fancysig' ) ) {
 			// A wikitext signature.
 			$valid = $this->validateSig( $nick );
@@ -3222,7 +3222,7 @@ class Parser
 				return $nick;
 			}
 		}
-		
+
 		// Plain text linking to the user's homepage
 		global $wgContLang;
 		$page = $user->getUserPage();
@@ -3232,7 +3232,7 @@ class Parser
 			wfEscapeWikIText( $nick ) .
 			"]]";
 	}
-	
+
 	/**
 	 * We want to enforce two rules on wikitext sigs here:
 	 * 1) Expand any templates at save time (forced subst:)
@@ -3309,7 +3309,7 @@ class Parser
 	function setHook( $tag, $callback ) {
 		$oldVal = @$this->mTagHooks[$tag];
 		$this->mTagHooks[$tag] = $callback;
-		
+
 		return $oldVal;
 	}
 
@@ -3646,7 +3646,7 @@ class Parser
 	function disableCache() {
 		$this->mOutput->mCacheTime = -1;
 	}
-	
+
 	/**
 	 * Callback from the Sanitizer for expanding items found in HTML attribute
 	 * values, so they can be safely tested and escaped.
@@ -3660,7 +3660,7 @@ class Parser
 		$text = $this->unstripForHTML( $text );
 		return $text;
 	}
-	
+
 	function unstripForHTML( $text ) {
 		$text = $this->unstrip( $text, $this->mStripState );
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
@@ -3737,7 +3737,7 @@ class ParserOutput
 
 	function addTemplate( $title, $id ) {
 		$ns = $title->getNamespace();
-		$dbk = $title->getDBkey();	
+		$dbk = $title->getDBkey();
 		if ( !isset( $this->mTemplates[$ns] ) ) {
 			$this->mTemplates[$ns] = array();
 		}

@@ -18,7 +18,7 @@ chdir( $oldCwd );
 $sql = getRebuildInterwikiSQL();
 
 # Output
-if ( isset( $options['o'] ) ) {	
+if ( isset( $options['o'] ) ) {
 	# To file specified with -o
 	$file = fopen( $options['o'], "w" );
 	fwrite( $file, $sql );

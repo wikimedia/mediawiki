@@ -177,7 +177,7 @@ class PageHistory {
 		$s = wfMsgWikiHtml( 'histlegend' );
 		$s .= '<form action="' . $wgTitle->escapeLocalURL( '-' ) . '" method="get">';
 		$prefixedkey = htmlspecialchars($wgTitle->getPrefixedDbKey());
-		
+
 		// The following line is SUPPOSED to have double-quotes around the
 		// $prefixedkey variable, because htmlspecialchars() doesn't escape
 		// single-quotes.
@@ -190,7 +190,7 @@ class PageHistory {
 		// consideration and cooperation.
 		//
 		$s .= "<input type='hidden' name='title' value=\"{$prefixedkey}\" />\n";
-		
+
 		$s .= $this->submitButton();
 		$s .= '<ul id="pagehistory">' . "\n";
 		return $s;

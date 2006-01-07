@@ -49,7 +49,7 @@ class MailAddress {
 			$this->name = strval( $name );
 		}
 	}
-	
+
 	/**
 	 * Return formatted and quoted address to insert into SMTP headers
 	 * @return string
@@ -83,7 +83,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 
 		$timestamp = time();
 		$dest = $to->toString();
-		
+
 		$headers['From'] = $from->toString();
 		$headers['To'] = $dest;
 		if ( $replyto ) {
@@ -126,7 +126,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 		}
 
 		$dest = $to->toString();
-		
+
 		$wgErrorString = '';
 		set_error_handler( 'mailErrorHandler' );
 		wfDebug( "Sending mail via internal mail() function to $dest\n" );
@@ -231,7 +231,7 @@ class EmailNotification {
 			if( $userCondition ) {
 				$dbr =& wfGetDB( DB_MASTER );
 				extract( $dbr->tableNames( 'watchlist' ) );
-				
+
 				$res = $dbr->select( 'watchlist', array( 'wl_user' ),
 					array(
 						'wl_title' => $title->getDBkey(),
@@ -239,7 +239,7 @@ class EmailNotification {
 						$userCondition,
 						'wl_notificationtimestamp IS NULL',
 					), $fname );
-	
+
 				# if anyone is watching ... set up the email message text which is
 				# common for all receipients ...
 				if ( $dbr->numRows( $res ) > 0 ) {
@@ -248,13 +248,13 @@ class EmailNotification {
 					$this->summary = $summary;
 					$this->minorEdit = $minorEdit;
 					$this->oldid = $oldid;
-	
+
 					$this->composeCommonMailtext();
 					$watchingUser = new User();
-	
+
 					# ... now do for all watching users ... if the options fit
 					for ($i = 1; $i <= $dbr->numRows( $res ); $i++) {
-	
+
 						$wuser = $dbr->fetchObject( $res );
 						$watchingUser->setID($wuser->wl_user);
 						if ( ( $enotifwatchlistpage && $watchingUser->getOption('enotifwatchlistpages') ) ||
@@ -264,7 +264,7 @@ class EmailNotification {
 							# ... adjust remaining text and page edit time placeholders
 							# which needs to be personalized for each user
 							$this->composeAndSendPersonalisedMail( $watchingUser );
-	
+
 						} # if the watching user has an email address in the preferences
 					}
 				}
@@ -327,7 +327,7 @@ class EmailNotification {
 		$pagetitle = $this->title->getPrefixedText();
 		$keys['$PAGETITLE']          = $pagetitle;
 		$keys['$PAGETITLE_URL']      = $this->title->getFullUrl();
-		
+
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
 
@@ -397,7 +397,7 @@ class EmailNotification {
 		$body = str_replace( '$WATCHINGUSERNAME', $watchingUser->getName() , $this->body );
 
 		$timecorrection = $watchingUser->getOption( 'timecorrection' );
-		
+
 		# $PAGEEDITDATE is the time and date of the page change
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user

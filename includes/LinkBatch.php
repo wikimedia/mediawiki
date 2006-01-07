@@ -45,7 +45,7 @@ class LinkBatch {
 	function setArray( $array ) {
 		$this->data = $array;
 	}
-	
+
 	/**
 	 * Do the query and add the results to the LinkCache object
 	 * Return an array mapping PDBK to ID

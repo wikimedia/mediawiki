@@ -50,7 +50,7 @@ while( $row = $dbw->fetchObject( $result ) ) {
 		echo "$wgDBname $pageId [[$name]] can't find latest rev time?!\n";
 		continue;
 	}
-	
+
 	$revision = Revision::loadFromTimestamp( $dbw, $title, $latestTime );
 	if( is_null( $revision ) ) {
 		echo "$wgDBname $pageId [[$name]] latest time $latestTime, can't find revision id\n";

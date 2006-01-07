@@ -28,7 +28,7 @@ class ShortPagesPage extends QueryPage {
 	function isExpensive() {
 		return true;
 	}
-	
+
 	function isSyndicated() {
 		return false;
 	}
@@ -37,7 +37,7 @@ class ShortPagesPage extends QueryPage {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
 		$name = $dbr->addQuotes( $this->getName() );
-		
+
 		return
 			"SELECT $name as type,
 				page_namespace as namespace,
@@ -46,7 +46,7 @@ class ShortPagesPage extends QueryPage {
 			FROM $page FORCE INDEX (page_len)
 			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0";
 	}
-	
+
 	function sortDescending() {
 		return false;
 	}

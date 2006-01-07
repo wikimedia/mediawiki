@@ -13,7 +13,7 @@ function wfSpecialBlockme()
 	global $wgBlockOpenProxies, $wgOut, $wgProxyKey;
 
 	$ip = wfGetIP();
-	
+
 	if ( !$wgBlockOpenProxies || $_REQUEST['ip'] != md5( $ip . $wgProxyKey ) ) {
 		$wgOut->addWikiText( wfMsg( "disabled" ) );
 		return;

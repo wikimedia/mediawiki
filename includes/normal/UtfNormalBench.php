@@ -96,10 +96,10 @@ function benchmarkForm( &$u, &$data, $form ) {
 	#$delta = (benchTime() - $start) / BENCH_CYCLES;
 	sort( $deltas );
 	$delta = $deltas[0]; # Take shortest time
-	
+
 	$rate = intval( strlen( $data ) / $delta );
 	$same = (0 == strcmp( $data, $out ) );
-	
+
 	printf( " %20s %6.1fms %8d bytes/s (%s)\n", $form, $delta*1000.0, $rate, ($same ? 'no change' : 'changed' ) );
 	return $out;
 }

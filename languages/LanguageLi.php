@@ -870,19 +870,19 @@ class LanguageLi extends LanguageUtf8 {
 		global $wgSkinNamesLi;
 		return $wgSkinNamesLi;
 	}
-	
+
 	function timeBeforeDate( $format ) {
 		return false;
 	}
-	
+
 	function timeDateSeparator( $format ) {
 		return ' ';
 	}
-	
+
 	function formatMonth( $month, $format ) {
 		return $this->getMonthAbbreviation( $month );
 	}
-	
+
 	function getMessage( $key ) {
 		global $wgAllMessagesLi;
 		if( isset( $wgAllMessagesLi[$key] ) ) {

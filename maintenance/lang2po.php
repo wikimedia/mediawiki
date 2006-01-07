@@ -120,7 +120,7 @@ function applyPot($langcode) {
 	$pot = LOCALE_OUTPUT_DIR.'/wfMsg.pot';
 	$dest = $langdir.'/messages.po';
 
-	// Merge template and generate file to get final .po	
+	// Merge template and generate file to get final .po
 	exec(MSGMERGE_BIN.MSGMERGE_OPTIONS." $from $pot -o $dest ");
 	// delete no more needed file
 //	unlink($from);

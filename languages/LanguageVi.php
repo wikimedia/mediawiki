@@ -541,7 +541,7 @@ Tìm trong :<br />
 $1<br />
 $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9",
 'searchdisabled' => "<p>Công cụ tìm kiếm hiện bị khóa. Chức năng này sẽ được mở lại khi có điều kiện lắp thêm máy chủ. Hiện tại có thể tìm với Google:</p>",
-"blanknamespace" => "(Chính)",	
+"blanknamespace" => "(Chính)",
 
 # Preferences page
 #
@@ -644,8 +644,8 @@ Sau khi truyền hình lên:
 *Thông tin tải lên và xóa bỏ được ghi trong [[{{ns:4}}:Nhật trình tải lên|nhật trình tải lên]].
 *Để cho hình vào bài, xem [[{{ns:4}}:Cú pháp hình ảnh|cú pháp hình ảnh]].
 *Người khác có thể sửa hoặc xóa những thông tin bạn tải lên, và bạn có thể bị cấm tải lên nếu lạm dụng hệ thống.",
-"uploadlog"  => "Nhật trình tải lên",		
-"uploadlogpage" => "Nhật_trình_tải_lên",	
+"uploadlog"  => "Nhật trình tải lên",
+"uploadlogpage" => "Nhật_trình_tải_lên",
 "uploadlogpagetext" => "Danh sách các tệp tin đã tải lên, theo giờ máy chủ (UTC).
 <ul>
 </ul>",

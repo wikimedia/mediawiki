@@ -743,7 +743,7 @@ $wgBlockAllowsUTEdit    = false; # Blocks allow users to edit their own user tal
 # Also note that this will only protect _pages in the wiki_.
 # Uploaded files will remain readable. Make your upload
 # directory name unguessable, or use .htaccess to protect it.
-$wgWhitelistRead = false;	
+$wgWhitelistRead = false;
 
 /**
  * Permission keys given to users in each group.

@@ -175,7 +175,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 			// Dump everything here
 			$nondefaults = array();
-		
+
 			wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
@@ -473,7 +473,7 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 		if ($key != 'namespace' && $key != 'invert')
 			$out .= wfElement('input', array( 'type' => 'hidden', 'name' => $key, 'value' => $value));
 	}
-	
+
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
 <div id='nsselect' class='recentchanges'>

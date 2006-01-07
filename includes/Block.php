@@ -178,7 +178,7 @@ class Block
 		# Only scan ranges which start in this /16, this improves search speed
 		# Blocks should not cross a /16 boundary.
 		$range = substr( $iaddr, 0, 4 );
-		
+
 		$options = '';
 		$db =& $this->getDBOptions( $options );
 		$ipblocks = $db->tableName( 'ipblocks' );
@@ -198,7 +198,7 @@ class Block
 				$success = true;
 			}
 		}
-		
+
 		$db->freeResult( $res );
 		return $success;
 	}
@@ -246,7 +246,7 @@ class Block
 				$this->mRangeStart = sprintf( '%08X', $network );
 				$this->mRangeEnd = sprintf( '%08X', $network + (1 << (32 - $bits)) - 1 );
 			}
-		}	
+		}
 	}
 
 	/**

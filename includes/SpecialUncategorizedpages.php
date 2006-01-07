@@ -17,7 +17,7 @@ require_once( "QueryPage.php" );
  */
 class UncategorizedPagesPage extends PageQueryPage {
 	var $requestedNamespace = NS_MAIN;
-	
+
 	function getName() {
 		return "Uncategorizedpages";
 	}
@@ -30,7 +30,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 		return true;
 	}
 	function isSyndicated() { return false; }
-	
+
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'page', 'categorylinks' ) );

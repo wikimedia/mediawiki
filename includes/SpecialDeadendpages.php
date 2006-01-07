@@ -29,7 +29,7 @@ class DeadendPagesPage extends PageQueryPage {
 	function isExpensive( ) {
 		return 1;
 	}
-	
+
 	function isSyndicated() { return false; }
 
 	/**
@@ -38,7 +38,7 @@ class DeadendPagesPage extends PageQueryPage {
 	function sortDescending() {
 		return false;
 	}
-	
+
     /**
 	 * @return string an sqlquery
 	 */

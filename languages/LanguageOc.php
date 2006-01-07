@@ -845,11 +845,11 @@ class LanguageOc extends LanguageUtf8{
 	function formatMonth( $month, $format ) {
 		return $this->getMonthAbbreviation( $month );
 	}
-	
+
 	function timeBeforeDate( $format ) {
 		return false;
 	}
-	
+
 	function timeDateSeparator( $format ) {
 		return " à ";
 	}

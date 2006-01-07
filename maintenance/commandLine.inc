@@ -100,7 +100,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 
 		# If not, work out the language and site the old way
 		if ( is_null( $site ) || is_null( $lang ) ) {
-			if ( !$db ) {	
+			if ( !$db ) {
 				$lang = 'aa';
 			} else {
 				$lang = $db;
@@ -151,7 +151,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	require_once( $IP.'/includes/Defines.php' );
 	require_once( $settingsFile );
 	ini_set( 'include_path', ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
-	
+
 	if ( is_readable( $IP.'/AdminSettings.php' ) ) {
 		require_once( $IP.'/AdminSettings.php' );
 	}

@@ -20,7 +20,7 @@ class SiteConfiguration {
 	var $settings = array();
 	var $localVHosts = array();
 
-	/** */	
+	/** */
 	function get( $setting, $wiki, $suffix, $params = array() ) {
 		if ( array_key_exists( $setting, $this->settings ) ) {
 			if ( array_key_exists( $wiki, $this->settings[$setting] ) ) {
@@ -117,5 +117,5 @@ class SiteConfiguration {
 	}
 }
 }
-	
+
 ?>

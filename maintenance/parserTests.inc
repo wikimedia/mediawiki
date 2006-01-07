@@ -60,11 +60,11 @@ class ParserTest {
 	 */
 	function ParserTest() {
 		global $options;
-		
+
 		# Only colorize output if stdout is a terminal.
 		$this->lightcolor = false;
 		$this->color = !wfIsWindows() && posix_isatty(1);
-		
+
 		if( isset( $options['color'] ) ) {
 			switch( $options['color'] ) {
 			case 'no':
@@ -79,9 +79,9 @@ class ParserTest {
 				break;
 			}
 		}
-		
+
 		$this->showDiffs = !isset( $options['quick'] );
-		
+
 		$this->quiet = isset( $options['quiet'] );
 
 		if (isset($options['regex'])) {
@@ -104,7 +104,7 @@ class ParserTest {
 			return $s;
 		}
 	}
-	
+
 	/**
 	 * Run a series of tests listed in the given text file.
 	 * Each test consists of a brief description, wikitext input,
@@ -122,7 +122,7 @@ class ParserTest {
 		if( !$infile ) {
 			die( "Couldn't open parserTests.txt\n" );
 		}
-		
+
 		$data = array();
 		$section = null;
 		$success = 0;
@@ -257,16 +257,16 @@ class ParserTest {
 
 			$result = $this->tidy($result);
 		}
-		
+
 		$this->teardownGlobals();
-		
+
 		if( $result === $out && $this->wellFormed( $out ) ) {
 			return $this->showSuccess( $desc );
 		} else {
 			return $this->showFailure( $desc, $result, $out );
 		}
 	}
-	
+
 	/**
 	 * Set up the global variables for a consistent environment for each test.
 	 * Ideally this should replace the global configuration entirely.
@@ -283,7 +283,7 @@ class ParserTest {
 		if( !isset( $this->uploadDir ) ) {
 			$this->uploadDir = $this->setupUploadDir();
 		}
-		
+
 		$settings = array(
 			'wgServer' => 'http://localhost',
 			'wgScript' => '/index.php',
@@ -297,7 +297,7 @@ class ParserTest {
 			'wgContLanguageCode' => 'en',
 			'wgDBprefix' => 'parsertest',
 			'wgDefaultUserOptions' => array(),
-			
+
 			'wgLang' => new LanguageUtf8(),
 			'wgContLang' => new LanguageUtf8(),
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
@@ -316,11 +316,11 @@ class ParserTest {
 		$GLOBALS['wgLoadBalancer']->loadMasterPos();
 		$GLOBALS['wgMessageCache']->initialise( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 		$this->setupDatabase();
-		
+
 		global $wgUser;
 		$wgUser = new User();
 	}
-	
+
 	# List of temporary tables to create, without prefix
 	# Some of these probably aren't necessary
 	function listTables() {
@@ -334,7 +334,7 @@ class ParserTest {
 			'objectcache'
 		);
 	}
-	
+
 	/**
 	 * Set up a temporary set of wiki tables to work with for the tests.
 	 * Currently this will only be done once per run, and any changes to
@@ -425,11 +425,11 @@ class ParserTest {
 				'img_major_mime'  => "image",
 				'img_minor_mime'  => "jpeg",
 				) );
-			
+
 			$setupDB = true;
 		}
 	}
-	
+
 	/**
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
@@ -438,23 +438,23 @@ class ParserTest {
 	 */
 	function setupUploadDir() {
 		global $IP;
-		
+
 		$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
 		mkdir( $dir );
 		mkdir( $dir . '/3' );
 		mkdir( $dir . '/3/3a' );
-		
+
 		$img = "$IP/skins/monobook/headbg.jpg";
 		$h = fopen($img, 'r');
 		$c = fread($h, filesize($img));
 		fclose($h);
-		
+
 		$f = fopen( $dir . '/3/3a/Foobar.jpg', 'wb' );
 		fwrite( $f, $c );
 		fclose( $f );
 		return $dir;
 	}
-	
+
 	/**
 	 * Restore default values and perform any necessary clean-up
 	 * after each test runs.
@@ -470,7 +470,7 @@ class ParserTest {
 			unset( $this->uploadDir );
 		}
 	}
-	
+
 	/**
 	 * Remove the dummy uploads directory
 	 * @access private
@@ -488,7 +488,7 @@ class ParserTest {
 		@rmdir( "$dir/thumb" );
 		rmdir( "$dir" );
 	}
-	
+
 	/**
 	 * "Running test $desc..."
 	 * @access private
@@ -496,7 +496,7 @@ class ParserTest {
 	function showTesting( $desc ) {
 		print "Running test $desc... ";
 	}
-	
+
 	/**
 	 * Print a happy success message.
 	 *
@@ -510,7 +510,7 @@ class ParserTest {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Print a failure message and provide some explanatory output
 	 * about what went wrong if so configured.
@@ -536,7 +536,7 @@ class ParserTest {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Run given strings through a diff and return the (colorized) output.
 	 * Requires writable /tmp directory and a 'diff' command in the PATH.
@@ -550,20 +550,20 @@ class ParserTest {
 	 */
 	function quickDiff( $input, $output, $inFileTail='expected', $outFileTail='actual' ) {
 		$prefix = wfTempDir() . "/mwParser-" . mt_rand();
-		
+
 		$infile = "$prefix-$inFileTail";
 		$this->dumpToFile( $input, $infile );
-		
+
 		$outfile = "$prefix-$outFileTail";
 		$this->dumpToFile( $output, $outfile );
-		
+
 		$diff = `diff -au $infile $outfile`;
 		unlink( $infile );
 		unlink( $outfile );
-		
+
 		return $this->colorDiff( $diff );
 	}
-	
+
 	/**
 	 * Write the given string to a file, adding a final newline.
 	 *
@@ -576,7 +576,7 @@ class ParserTest {
 		fwrite( $file, $data . "\n" );
 		fclose( $file );
 	}
-	
+
 	/**
 	 * Return ANSI terminal escape code for changing text attribs/color,
 	 * or empty string if color output is disabled.
@@ -592,7 +592,7 @@ class ParserTest {
 			return $this->color ? "\x1b[{$color}m" : '';
 		}
 	}
-	
+
 	/**
 	 * Return ANSI terminal escape code for restoring default text attributes,
 	 * or empty string if color output is disabled.
@@ -603,7 +603,7 @@ class ParserTest {
 	function termReset() {
 		return $this->color ? "\x1b[0m" : '';
 	}
-	
+
 	/**
 	 * Colorize unified diff output if set for ANSI color output.
 	 * Subtractions are colored blue, additions red.
@@ -661,7 +661,7 @@ class ParserTest {
 		}
 		return $text;
 	}
-	
+
 	/**
 	 * Hack up a private DOCTYPE with HTML's standard entity declarations.
 	 * PHP 4 seemed to know these if you gave it an HTML doctype, but
@@ -678,19 +678,19 @@ class ParserTest {
 		$out .= "]>\n";
 		return $out;
 	}
-	
+
 	function wellFormed( $text ) {
 		$html =
 			$this->hackDocType() .
 			'<html>' .
 			$text .
 			'</html>';
-		
+
 		$parser = xml_parser_create( "UTF-8" );
-		
+
 		# case folding violates XML standard, turn it off
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
-		
+
 		if( !xml_parse( $parser, $html, true ) ) {
 			$err = xml_error_string( xml_get_error_code( $parser ) );
 			$position = xml_get_current_byte_index( $parser );
@@ -702,7 +702,7 @@ class ParserTest {
 		xml_parser_free( $parser );
 		return true;
 	}
-	
+
 	function extractFragment( $text, $position ) {
 		$start = max( 0, $position - 10 );
 		$before = $position - $start;
@@ -726,7 +726,7 @@ class ParserTest {
 			$this->termColor( 0 );
 		return "$display\n$caret";
 	}
-	
+
 }
 
 ?>

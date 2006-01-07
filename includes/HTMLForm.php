@@ -73,7 +73,7 @@ class HTMLForm {
 		}
 		return $this->fieldset( $this->mName.'-'.$varname, $s );
 	}
-	
+
 	/**
 	 * @access private
 	 * @param string $varname Name of the textareabox.
@@ -83,7 +83,7 @@ class HTMLForm {
 	function textareabox ( $varname, $value='', $size=20 ) {
 		if ( $this->mRequest->wasPosted() ) {
 			$value = $this->mRequest->getText( $varname, $value );
-		}	
+		}
 		$value = htmlspecialchars( $value );
 		return '<div><label>'.wfMsg( $this->mName.'-'.$varname ).
 		       "<textarea name=\"{$varname}\" rows=\"5\" cols=\"{$size}\">$value</textarea></label></div>\n";
@@ -122,7 +122,7 @@ class HTMLForm {
 function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=false, $size=6, $reverse=false) {
 	$groups = User::getAllGroups();
 	$out = htmlspecialchars( wfMsg( $selectmsg ) );
-	
+
 	if( $multiple ) {
 		$attribs = array(
 			'name'    => $selectname . '[]',
@@ -132,7 +132,7 @@ function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=
 		$attribs = array( 'name' => $selectname );
 	}
 	$out .= wfElement( 'select', $attribs, null );
-	
+
 	foreach( $groups as $group ) {
 		$attribs = array( 'value' => $group );
 		if( $multiple ) {
@@ -160,13 +160,13 @@ function HTMLSelectRights($selected='') {
 	global $wgAvailableRights;
 	$out = '<select name="editgroup-getrights[]" multiple="multiple">';
 	$groupRights = explode(',',$selected);
-	
+
 	foreach($wgAvailableRights as $right) {
-	
+
 		// check box when right exist
 		if(in_array($right, $groupRights)) { $selected = 'selected="selected" '; }
 		else { $selected = ''; }
-					
+
 		$out .= '<option value="'.$right.'" '.$selected.'>'.$right."</option>\n";
 	}
 	$out .= "</select>\n";

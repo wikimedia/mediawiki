@@ -40,7 +40,7 @@ require_once('QueryPage.php');
 class ListUsersPage extends QueryPage {
 	var $requestedGroup = '';
 	var $requestedUser = '';
-	
+
 	function getName() {
 		return 'Listusers';
 	}
@@ -77,7 +77,7 @@ class ListUsersPage extends QueryPage {
 	 */
 	function getPageHeader( ) {
 		global $wgScript;
-		
+
 		// Various variables used for the form
 		$action = htmlspecialchars( $wgScript );
 		$title = Title::makeTitle( NS_SPECIAL, 'Listusers' );
@@ -90,10 +90,10 @@ class ListUsersPage extends QueryPage {
 
 		// get all group names and IDs
 		$groups = User::getAllGroups();
-		
+
 		// we want a default empty group
 		$out.= '<option value=""></option>';
-		
+
 		// build the dropdown list menu using datas from the database
 		foreach ( $groups as $group ) {
 			$selected = ($group == $this->requestedGroup);
@@ -110,14 +110,14 @@ class ListUsersPage extends QueryPage {
 		// OK button, end of form.
 		$out .= '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" /></form>';
 		// congratulations the form is now build
-		return $out;	
+		return $out;
 	}
-	
+
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$user = $dbr->tableName( 'user' );
 		$user_groups = $dbr->tableName( 'user_groups' );
-		
+
 		// We need to get an 'atomic' list of users, so that we
 		// don't break the list half-way through a user's group set
 		// and so that lists by group will show all group memberships.
@@ -128,7 +128,7 @@ class ListUsersPage extends QueryPage {
 		// For now we'll just grab the number of memberships, so
 		// we can then do targetted checks on those who are in
 		// non-default groups as we go down the list.
-		
+
 		$userspace = NS_USER;
 		$sql = "SELECT 'Listusers' as type, $userspace AS namespace, user_name AS title, " .
 			"user_name as value, user_id, COUNT(ug_group) as numgroups " .
@@ -136,17 +136,17 @@ class ListUsersPage extends QueryPage {
 			"LEFT JOIN $user_groups ON user_id=ug_user " .
 			$this->userQueryWhere( $dbr ) .
 			" GROUP BY user_name";
-		
+
 		return $sql;
 	}
-	
+
 	function userQueryWhere( &$dbr ) {
 		$conds = $this->userQueryConditions();
 		return empty( $conds )
 			? ""
 			: "WHERE " . $dbr->makeList( $conds, LIST_AND );
 	}
-	
+
 	function userQueryConditions() {
 		$conds = array();
 		if( $this->requestedGroup != '' ) {
@@ -157,7 +157,7 @@ class ListUsersPage extends QueryPage {
 		}
 		return $conds;
 	}
-	
+
 	function linkParameters() {
 		$conds = array();
 		if( $this->requestedGroup != '' ) {
@@ -168,16 +168,16 @@ class ListUsersPage extends QueryPage {
 		}
 		return $conds;
 	}
-	
+
 	function sortDescending() {
 		return false;
 	}
 
 	function formatResult( $skin, $result ) {
-		
+
 		$userPage = Title::makeTitle( $result->namespace, $result->title );
 		$name = $skin->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
-		
+
 		if( !isset( $result->numgroups ) || $result->numgroups > 0 ) {
 			$dbr =& wfGetDB( DB_SLAVE );
 			$result = $dbr->select( 'user_groups',
@@ -189,7 +189,7 @@ class ListUsersPage extends QueryPage {
 				$groups[] = User::getGroupName( $row->ug_group );
 			}
 			$dbr->freeResult( $result );
-			
+
 			if( count( $groups ) > 0 ) {
 				$name .= ' (' .
 					$skin->makeLink( wfMsgForContent( 'administrators' ),
@@ -199,7 +199,7 @@ class ListUsersPage extends QueryPage {
 		}
 
 		return $name;
-	}	
+	}
 }
 
 /**
@@ -213,7 +213,7 @@ function wfSpecialListusers( $par = null ) {
 
 
 	$slu = new ListUsersPage();
-	
+
 	/**
 	 * Get some parameters
 	 */

@@ -16,7 +16,7 @@ $wgHooks['ParserTestParser'][] = 'wfParserTestSetup';
 function wfParserTestSetup( &$parser ) {
 	$parser->setHook( 'tag', 'wfParserTestHook' );
 }
-	
+
 function wfParserTestHook( $in, $argv ) {
 	if ( count( $argv ) )
 		return "<pre>\n" . print_r( $argv, true ) . '</pre>';

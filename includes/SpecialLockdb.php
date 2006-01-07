@@ -35,12 +35,12 @@ function wfSpecialLockdb() {
  */
 class DBLockForm {
 	var $reason = '';
-	
+
 	function DBLockForm() {
 		global $wgRequest;
 		$this->reason = $wgRequest->getText( 'wpLockReason' );
 	}
-	
+
 	function showForm( $err ) {
 		global $wgOut, $wgUser;
 

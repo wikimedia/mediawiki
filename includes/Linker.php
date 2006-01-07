@@ -174,7 +174,7 @@ class Linker {
 			}
 
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
-				
+
 			wfProfileOut( $fname );
 			return $t;
 		} elseif ( $nt->isAlwaysKnown() ) {
@@ -238,7 +238,7 @@ class Linker {
 			wfProfileOut( $fname );
 			return $text;
 		}
-		
+
 		$u = $nt->escapeLocalURL( $query );
 		if ( '' != $nt->getFragment() ) {
 			if( $nt->getPrefixedDbkey() == '' ) {
@@ -260,7 +260,7 @@ class Linker {
 		$style = $this->getInternalLinkAttributesObj( $nt, $text );
 
 		if ( $aprops !== '' ) $aprops = ' ' . $aprops;
-		
+
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
 		wfProfileOut( $fname );
@@ -291,7 +291,7 @@ class Linker {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
-		
+
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 
@@ -379,7 +379,7 @@ class Linker {
 	  $thumb = false, $manual_thumb = '' )
 	{
 		global $wgContLang, $wgUser, $wgThumbLimits;
-		
+
 		$img   = new Image( $nt );
 		if ( !$img->allowInlineDisplay() ) {
 			return $this->makeKnownLinkObj( $nt );
@@ -387,9 +387,9 @@ class Linker {
 
 		$url   = $img->getViewURL();
 		$prefix = $postfix = '';
-		
+
 		wfDebug( "makeImageLinkObj: '$width'x'$height'\n" );
-		
+
 		if ( 'center' == $align )
 		{
 			$prefix  = '<div class="center">';
@@ -410,17 +410,17 @@ class Linker {
 				$align = $wgContLang->isRTL() ? 'left' : 'right';
 			}
 
-			
+
 			if ( $width === false ) {
 				$wopt = $wgUser->getOption( 'thumbsize' );
 
 				if( !isset( $wgThumbLimits[$wopt] ) ) {
 					 $wopt = User::getDefaultOption( 'thumbsize' );
 				}
-				
+
 				$width = min( $img->getWidth(), $wgThumbLimits[$wopt] );
 			}
-			
+
 			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
 		}
 
@@ -559,7 +559,7 @@ class Linker {
 		$s .= '  <div class="thumbcaption" '.$textalign.'>'.$zoomicon.$label."</div></div></div>";
 		return str_replace("\n", ' ', $s);
 	}
-	
+
 	/**
 	 * Pass a title object, not a title string
 	 */
@@ -590,7 +590,7 @@ class Linker {
 		wfProfileOut( $fname );
 		return $s;
 	}
-	
+
 	/** @todo document */
 	function makeMediaLink( $name, /* wtf?! */ $url, $alt = '' ) {
 		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
@@ -614,7 +614,7 @@ class Linker {
 			### HOTFIX. Instead of breaking, return empty string.
 			return $text;
 		} else {
-			$name = $title->getDBKey();	
+			$name = $title->getDBKey();
 			$img  = new Image( $title );
 			if( $img->exists() ) {
 				$url  = $img->getURL();
@@ -629,7 +629,7 @@ class Linker {
 				$text = $alt;
 			}
 			$u = htmlspecialchars( $url );
-			return "<a href=\"{$u}\" class='$class' title=\"{$alt}\">{$text}</a>";			
+			return "<a href=\"{$u}\" class='$class' title=\"{$alt}\">{$text}</a>";
 		}
 	}
 
@@ -674,7 +674,7 @@ class Linker {
 	function formatComment($comment, $title = NULL) {
 		$fname = 'Linker::formatComment';
 		wfProfileIn( $fname );
-		
+
 		global $wgContLang;
 		$comment = str_replace( "\n", " ", $comment );
 		$comment = htmlspecialchars( $comment );
@@ -738,7 +738,7 @@ class Linker {
 		wfProfileOut( $fname );
 		return $comment;
 	}
-	
+
 	/**
 	 * Wrap a comment in standard punctuation and formatting if
 	 * it's non-empty, otherwise return empty string.

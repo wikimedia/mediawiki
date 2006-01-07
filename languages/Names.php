@@ -168,7 +168,7 @@
 	'sa' => 'संस्कृत',	# Sanskrit
 	'sc' => 'Sardu',		# Sardinian
 	'scn' => 'Sicilianu',	# Sicilian
-	'sco' => 'Scots',       # Scots	
+	'sco' => 'Scots',       # Scots
 	'sd' => 'सिनधि',	# Sindhi
 	'se' => 'Sámegiella',	# Northern Sami
 	'sg' => 'Sängö',		# Sango, possible alternative is Sangho

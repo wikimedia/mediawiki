@@ -12,9 +12,9 @@ class checkUsernames {
 	function main() {
 		global $wgDBname;
 		$fname = 'checkUsernames::main';
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
-		
+
 		$res = $dbr->select( 'user',
 			array( 'user_id', 'user_name' ),
 			null,

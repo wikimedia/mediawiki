@@ -43,6 +43,6 @@ class languages {
 		}
 	}
 
-	function getList() { return $this->list; }	
+	function getList() { return $this->list; }
 }
 ?>

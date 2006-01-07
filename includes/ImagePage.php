@@ -126,7 +126,7 @@ class ImagePage extends Article {
 		$r .= '|}';
 		return $r;
 	}
-	
+
 	/**
 	 * Get a list of EXIF metadata items which should be displayed when
 	 * the metadata table is collapsed.
@@ -242,7 +242,7 @@ class ImagePage extends Article {
 					$icon->toHtml() .
 					'</a></div>' );
 				}
-				
+
 				$showLink = true;
 			}
 
@@ -252,7 +252,7 @@ class ImagePage extends Article {
 				$info = wfMsg( 'fileinfo',
 					ceil($this->img->getSize()/1024.0),
 					$this->img->getMimeType() );
-	
+
 				if (!$this->img->isSafeFile()) {
 					$warning = wfMsg( 'mediawarning' );
 					$wgOut->addWikiText( <<<END
@@ -329,7 +329,7 @@ END
 
 		$sk = $wgUser->getSkin();
 		$wgOut->addHTML( '<br /><ul>' );
-		if( $wgUser->isAllowed( 'reupload' ) ) {	
+		if( $wgUser->isAllowed( 'reupload' ) ) {
 			$wgOut->addWikiText( "<li>\n<div>". wfMsg( 'uploadnewversion', $this->getUploadUrl() ) ."</div>\n</li>\n" );
 		}
 		$wgOut->addHTML( '<li>' );
@@ -470,7 +470,7 @@ END
 	function doDelete()	{
 		global $wgOut, $wgUser, $wgRequest, $wgUseSquid, $wgInternalServer;
 		global $wgPostCommitUpdateList;
-		
+
 		$fname = 'ImagePage::doDelete';
 
 		$reason = $wgRequest->getVal( 'wpReason' );

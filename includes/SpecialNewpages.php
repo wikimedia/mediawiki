@@ -17,7 +17,7 @@ require_once( 'QueryPage.php' );
  */
 class NewPagesPage extends QueryPage {
 	var $namespace;
-	
+
 	function NewPagesPage( $namespace = NS_MAIN ) {
 		$this->namespace = $namespace;
 	}
@@ -93,7 +93,7 @@ class NewPagesPage extends QueryPage {
 
 		return $s;
 	}
-	
+
 	function feedItemDesc( $row ) {
 		if( isset( $row->rev_id ) ) {
 			$revision = Revision::newFromId( $row->rev_id );
@@ -111,10 +111,10 @@ class NewPagesPage extends QueryPage {
  */
 function wfSpecialNewpages($par, $specialPage) {
 	global $wgRequest, $wgContLang;
-	
+
 	list( $limit, $offset ) = wfCheckLimits();
 	$namespace = NS_MAIN;
-	
+
 	if ( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {

@@ -33,13 +33,13 @@ require_once( 'SearchEngine.php' );
  */
 class SearchTsearch2 extends SearchEngine {
 	var $strictMatching = false;
-	
+
 	function SearchTsearch2( &$db ) {
 		$this->db =& $db;
 		$this->db->setSchema('tsearch');
 		$this->mRanking = true;
 	}
-	
+
 	function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
 	}
@@ -72,7 +72,7 @@ class SearchTsearch2 extends SearchEngine {
 		} else {
 			wfDebug( "Can't understand search query '{$this->filteredText}'\n" );
 		}
-		
+
 		$searchon = preg_replace('/(\s+)/','&',$searchon);
 		$searchon = $this->db->strencode( $searchon );
 		return $searchon;
@@ -86,7 +86,7 @@ class SearchTsearch2 extends SearchEngine {
 		else
 			return "";
 	}
-		
+
 
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );

@@ -527,7 +527,7 @@ class Sanitizer {
 		if( trim( $text ) == '' ) {
 			return '';
 		}
-		
+
 		# Unquoted attribute
 		# Since we quote this later, this can be anything distinguishable
 		# from the end of the attribute
@@ -547,19 +547,19 @@ class Sanitizer {
 			if( !isset( $whitelist[$attribute] ) ) {
 				continue;
 			}
-			
+
 			$raw   = Sanitizer::getTagAttributeCallback( $set );
 			$value = Sanitizer::normalizeAttributeValue( $raw );
-			
+
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
 			if( $attribute == 'style' ) {
 				$stripped = Sanitizer::decodeCharReferences( $value );
-				
+
 				// Remove any comments; IE gets token splitting wrong
 				$stripped = preg_replace( '!/\\*.*?\\*/!S', ' ', $stripped );
 				$value = htmlspecialchars( $stripped );
-				
+
 				// ... and continue checks
 				$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
 					'codepointToUtf8(hexdec("$1"))', $stripped );
@@ -573,7 +573,7 @@ class Sanitizer {
 
 			if ( $attribute === 'id' )
 				$value = Sanitizer::escapeId( $value );
-			
+
 			# Templates and links may be expanded in later parsing,
 			# creating invalid or dangerous output. Suppress this.
 			$value = strtr( $value, array(
@@ -584,13 +584,13 @@ class Sanitizer {
 				'RFC'  => '&#82;FC',
 				'PMID' => '&#80;MID',
 			) );
-			
+
 			# Stupid hack
 			$value = preg_replace_callback(
 				'/(' . wfUrlProtocols() . ')/',
 				array( 'Sanitizer', 'armorLinksCallback' ),
 				$value );
-			
+
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.
 			$attribs[$attribute] = "$attribute=\"$value\"";
@@ -620,12 +620,12 @@ class Sanitizer {
 			'%3A' => ':',
 			'%' => '.'
 		);
-		
+
 		$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
 
 		return str_replace( array_keys( $replace ), array_values( $replace ), $id );
 	}
-	
+
 	/**
 	 * Regex replace callback for armoring links against further processing.
 	 * @param array $matches
@@ -635,7 +635,7 @@ class Sanitizer {
 	function armorLinksCallback( $matches ) {
 		return str_replace( ':', '&#58;', $matches[1] );
 	}
-	
+
 	/**
 	 * Return an associative array of attribute names and values from
 	 * a partial tag string. Attribute names are forces to lowercase,
@@ -646,12 +646,12 @@ class Sanitizer {
 	 */
 	function decodeTagAttributes( $text ) {
 		$attribs = array();
-		
+
 		if( trim( $text ) == '' ) {
 			return $attribs;
 		}
 
-		$pairs = array();	
+		$pairs = array();
 		if( !preg_match_all(
 			MW_ATTRIBS_REGEX,
 			$text,
@@ -667,7 +667,7 @@ class Sanitizer {
 		}
 		return $attribs;
 	}
-	
+
 	/**
 	 * Pick the appropriate attribute value from a match set from the
 	 * MW_ATTRIBS_REGEX matches.
@@ -697,7 +697,7 @@ class Sanitizer {
 			wfDebugDieBacktrace( "Tag conditions not met. This should never happen and is a bug." );
 		}
 	}
-	
+
 	/**
 	 * Normalize whitespace and character references in an XML source-
 	 * encoded text for an attribute value.
@@ -717,7 +717,7 @@ class Sanitizer {
 				' ',
 				Sanitizer::normalizeCharReferences( $text ) ) );
 	}
-	
+
 	/**
 	 * Ensure that any entities and character references are legal
 	 * for XML and XHTML specifically. Any stray bits will be
@@ -759,7 +759,7 @@ class Sanitizer {
 			return $ret;
 		}
 	}
-	
+
 	/**
 	 * If the named entity is defined in the HTML 4.0/XHTML 1.0 DTD,
 	 * return the named entity reference as is. Otherwise, returns
@@ -776,7 +776,7 @@ class Sanitizer {
 			return "&amp;$name;";
 		}
 	}
-	
+
 	function decCharReference( $codepoint ) {
 		$point = intval( $codepoint );
 		if( Sanitizer::validateCodepoint( $point ) ) {
@@ -785,7 +785,7 @@ class Sanitizer {
 			return null;
 		}
 	}
-	
+
 	function hexCharReference( $codepoint ) {
 		$point = hexdec( $codepoint );
 		if( Sanitizer::validateCodepoint( $point ) ) {
@@ -794,7 +794,7 @@ class Sanitizer {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Returns true if a given Unicode codepoint is a valid character in XML.
 	 * @param int $codepoint
@@ -823,7 +823,7 @@ class Sanitizer {
 			array( 'Sanitizer', 'decodeCharReferencesCallback' ),
 			$text );
 	}
-	
+
 	/**
 	 * @param string $matches
 	 * @return string
@@ -841,7 +841,7 @@ class Sanitizer {
 		# Last case should be an ampersand by itself
 		return $matches[0];
 	}
-	
+
 	/**
 	 * Return UTF-8 string for a codepoint if that is a valid
 	 * character reference, otherwise U+FFFD REPLACEMENT CHARACTER.
@@ -856,7 +856,7 @@ class Sanitizer {
 			return UTF8_REPLACEMENT;
 		}
 	}
-	
+
 	/**
 	 * If the named entity is defined in the HTML 4.0/XHTML 1.0 DTD,
 	 * return the UTF-8 encoding of that character. Otherwise, returns
@@ -873,7 +873,7 @@ class Sanitizer {
 			return "&$name;";
 		}
 	}
-	
+
 	/**
 	 * Fetch the whitelist of acceptable attributes for a given
 	 * element name.
@@ -890,7 +890,7 @@ class Sanitizer {
 			? $list[$element]
 			: array();
 	}
-	
+
 	/**
 	 * @return array
 	 */
@@ -909,7 +909,7 @@ class Sanitizer {
 		                    'height', # deprecated
 		                    'bgcolor' # deprecated
 		                    );
-		
+
 		# Numbers refer to sections in HTML 4.01 standard describing the element.
 		# See: http://www.w3.org/TR/html4/
 		$whitelist = array (
@@ -917,7 +917,7 @@ class Sanitizer {
 			'div'        => $block,
 			'center'     => $common, # deprecated
 			'span'       => $block, # ??
-		
+
 			# 7.5.5
 			'h1'         => $block,
 			'h2'         => $block,
@@ -925,13 +925,13 @@ class Sanitizer {
 			'h4'         => $block,
 			'h5'         => $block,
 			'h6'         => $block,
-			
+
 			# 7.5.6
 			# address
-			
+
 			# 8.2.4
 			# bdo
-		
+
 			# 9.2.1
 			'em'         => $common,
 			'strong'     => $common,
@@ -943,64 +943,64 @@ class Sanitizer {
 			'var'        => $common,
 			# abbr
 			# acronym
-			
+
 			# 9.2.2
 			'blockquote' => array_merge( $common, array( 'cite' ) ),
 			# q
-			
+
 			# 9.2.3
 			'sub'        => $common,
 			'sup'        => $common,
-			
+
 			# 9.3.1
 			'p'          => $block,
-			
+
 			# 9.3.2
 			'br'         => array( 'id', 'class', 'title', 'style', 'clear' ),
-			
+
 			# 9.3.4
 			'pre'        => array_merge( $common, array( 'width' ) ),
-			
+
 			# 9.4
 			'ins'        => array_merge( $common, array( 'cite', 'datetime' ) ),
 			'del'        => array_merge( $common, array( 'cite', 'datetime' ) ),
-			
+
 			# 10.2
 			'ul'         => array_merge( $common, array( 'type' ) ),
 			'ol'         => array_merge( $common, array( 'type', 'start' ) ),
 			'li'         => array_merge( $common, array( 'type', 'value' ) ),
-			
+
 			# 10.3
 			'dl'         => $common,
 			'dd'         => $common,
 			'dt'         => $common,
-		
+
 			# 11.2.1
 			'table'      => array_merge( $common,
 								array( 'summary', 'width', 'border', 'frame',
 											 'rules', 'cellspacing', 'cellpadding',
 											 'align', 'bgcolor', 'frame', 'rules',
 											 'border' ) ),
-			
+
 			# 11.2.2
 			'caption'    => array_merge( $common, array( 'align' ) ),
-			
+
 			# 11.2.3
 			'thead'      => array_merge( $common, $tablealign ),
 			'tfoot'      => array_merge( $common, $tablealign ),
 			'tbody'      => array_merge( $common, $tablealign ),
-			
+
 			# 11.2.4
 			'colgroup'   => array_merge( $common, array( 'span', 'width' ), $tablealign ),
 			'col'        => array_merge( $common, array( 'span', 'width' ), $tablealign ),
-			
+
 			# 11.2.5
 			'tr'         => array_merge( $common, array( 'bgcolor' ), $tablealign ),
-			
+
 			# 11.2.6
 			'td'         => array_merge( $common, $tablecell, $tablealign ),
 			'th'         => array_merge( $common, $tablecell, $tablealign ),
-			
+
 			# 15.2.1
 			'tt'         => $common,
 			'b'          => $common,
@@ -1010,14 +1010,14 @@ class Sanitizer {
 			'strike'     => $common,
 			's'          => $common,
 			'u'          => $common,
-		
+
 			# 15.2.2
 			'font'       => array_merge( $common, array( 'size', 'color', 'face' ) ),
 			# basefont
-			
+
 			# 15.3
 			'hr'         => array_merge( $common, array( 'noshade', 'size', 'width' ) ),
-			
+
 			# XHTML Ruby annotation text module, simple ruby only.
 			# http://www.w3c.org/TR/ruby/
 			'ruby'       => $common,
@@ -1029,7 +1029,7 @@ class Sanitizer {
 			);
 		return $whitelist;
 	}
-	
+
 	/**
 	 * Take a fragment of (potentially invalid) HTML and return
 	 * a version with any tags removed, encoded suitably for literal
@@ -1041,17 +1041,17 @@ class Sanitizer {
 	function stripAllTags( $text ) {
 		# Actual <tags>
 		$text = preg_replace( '/ < .*? > /x', '', $text );
-		
+
 		# Normalize &entities and whitespace
 		$text = Sanitizer::normalizeAttributeValue( $text );
-		
+
 		# Will be placed into "double-quoted" attributes,
 		# make sure remaining bits are safe.
 		$text = str_replace(
 			array('<', '>', '"'),
 			array('&lt;', '&gt;', '&quot;'),
 			$text );
-		
+
 		return $text;
 	}
 

@@ -9,7 +9,7 @@ class GlobalTest extends PHPUnit_TestCase {
 	function GlobalTest( $name ) {
 		$this->PHPUnit_TestCase( $name );
 	}
-	
+
 	function setUp() {
 		$this->save = array();
 		$saveVars = array( 'wgReadOnlyFile' );
@@ -20,52 +20,52 @@ class GlobalTest extends PHPUnit_TestCase {
 		}
 		$GLOBALS['wgReadOnlyFile'] = wfTempDir() . '/testReadOnly-' . mt_rand();
 	}
-	
+
 	function tearDown() {
 		foreach( $this->save as $var => $data ) {
 			$GLOBALS[$var] = $data;
 		}
 	}
-	
+
 	function testRandom() {
 		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(
 			wfRandom() == wfRandom() );
 	}
-	
+
 	function testUrlencode() {
 		$this->assertEquals(
 			"%E7%89%B9%E5%88%A5:Contributions/Foobar",
 			wfUrlencode( "\xE7\x89\xB9\xE5\x88\xA5:Contributions/Foobar" ) );
 	}
-	
+
 	function testReadOnlyEmpty() {
 		$this->assertFalse( wfReadOnly() );
 	}
-	
+
 	function testReadOnlySet() {
 		$f = fopen( $GLOBALS['wgReadOnlyFile'], "wt" );
 		fwrite( $f, 'Message' );
 		fclose( $f );
 		$this->assertTrue( wfReadOnly() );
-		
+
 		unlink( $GLOBALS['wgReadOnlyFile'] );
 		$this->assertFalse( wfReadOnly() );
 	}
-	
+
 	function testQuotedPrintable() {
 		$this->assertEquals(
 			"=?UTF-8?Q?=C4=88u=20legebla=3F?=",
 			wfQuotedPrintable( "\xc4\x88u legebla?", "UTF-8" ) );
 	}
-	
+
 	function testTime() {
 		$start = wfTime();
 		$this->assertType( 'double', $start );
 		$end = wfTime();
 		$this->assertTrue( $end > $start, "Time is running backwards!" );
 	}
-	
+
 	function testArrayToCGI() {
 		$this->assertEquals(
 			"baz=AT%26T&foo=bar",
@@ -73,7 +73,7 @@ class GlobalTest extends PHPUnit_TestCase {
 				array( 'baz' => 'AT&T', 'ignore' => '' ),
 				array( 'foo' => 'bar', 'baz' => 'overridden value' ) ) );
 	}
-	
+
 	function testMimeTypeMatch() {
 		$this->assertEquals(
 			'text/html',
@@ -95,7 +95,7 @@ class GlobalTest extends PHPUnit_TestCase {
 				array( 'image/png'     => 1.0,
 				       'image/svg+xml' => 0.5 ) ) );
 	}
-	
+
 	function testNegotiateType() {
 		$this->assertEquals(
 			'text/html',
@@ -136,7 +136,7 @@ class GlobalTest extends PHPUnit_TestCase {
 				array( 'text/*'                => 1.0 ),
 				array( 'application/xhtml+xml' => 1.0 ) ) );
 	}
-	
+
 	function testTimestamp() {
 		$t = gmmktime( 12, 34, 56, 1, 15, 2001 );
 		$this->assertEquals(
@@ -151,7 +151,7 @@ class GlobalTest extends PHPUnit_TestCase {
 			'2001-01-15 12:34:56',
 			wfTimestamp( TS_DB, $t ),
 			'TS_UNIX to TS_DB' );
-		
+
 		$this->assertEquals(
 			'20010115123456',
 			wfTimestamp( TS_MW, '20010115123456' ),
@@ -164,7 +164,7 @@ class GlobalTest extends PHPUnit_TestCase {
 			'2001-01-15 12:34:56',
 			wfTimestamp( TS_DB, '20010115123456' ),
 			'TS_MW to TS_DB' );
-		
+
 		$this->assertEquals(
 			'20010115123456',
 			wfTimestamp( TS_MW, '2001-01-15 12:34:56' ),
@@ -178,7 +178,7 @@ class GlobalTest extends PHPUnit_TestCase {
 			wfTimestamp( TS_DB, '2001-01-15 12:34:56' ),
 			'TS_DB to TS_DB' );
 	}
-	
+
 	/* TODO: many more! */
 }
 

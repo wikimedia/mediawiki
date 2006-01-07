@@ -161,7 +161,7 @@ function do_index_update() {
 
 function do_image_index_update() {
 	global $wgDatabase;
-	
+
 	$meta = $wgDatabase->fieldInfo( "image", "img_major_mime" );
 	if( $meta->multiple_key == 0 ) {
 		echo "Updating indexes to 20050912: ";
@@ -662,7 +662,7 @@ function do_watchlist_null() {
 	# and update old broken items.
 	global $wgDatabase;
 	$info = $wgDatabase->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
-	
+
 	if( $info->not_null ) {
 		echo "Making wl_notificationtimestamp nullable... ";
 		dbsource( 'maintenance/archives/patch-watchlist-null.sql', $wgDatabase );
@@ -684,14 +684,14 @@ function do_page_random_update() {
 	$page = $wgDatabase->tableName( 'page' );
 	$wgDatabase->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", 'do_page_random_update' );
 	$rows = $wgDatabase->affectedRows();
-	
+
 	echo "changed $rows rows\n";
 }
 
 function do_templatelinks_update() {
 	global $wgDatabase, $wgLoadBalancer;
 	$fname = 'do_templatelinks_update';
-	
+
 	if ( $wgDatabase->tableExists( 'templatelinks' ) ) {
 		echo "...templatelinks table already exists\n";
 		return;
@@ -720,7 +720,7 @@ function do_templatelinks_update() {
 					'tl_title' => $row->pl_title,
 				), $fname
 			);
-				
+
 		}
 		$wgDatabase->freeResult( $res );
 	} else {
@@ -775,12 +775,12 @@ function do_all_updates() {
 
 	do_pagelinks_update(); flush();
 	do_templatelinks_update(); flush(); // after pagelinks
-	
+
 	do_drop_img_type(); flush();
 
 	do_user_unique_update(); flush();
 	do_user_groups_update(); flush();
-	
+
 	do_watchlist_null(); flush();
 
 	//do_image_index_update(); flush();

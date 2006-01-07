@@ -39,7 +39,7 @@ class NamespaceConflictChecker {
 	function NamespaceConflictChecker( &$db ) {
 		$this->db =& $db;
 	}
-	
+
 	function checkAll( $fix, $suffix = '' ) {
 		global $wgContLang;
 		$spaces = $wgContLang->getNamespaces();
@@ -49,21 +49,21 @@ class NamespaceConflictChecker {
 		}
 		return $ok;
 	}
-	
+
 	function checkNamespace( $ns, $name, $fix, $suffix = '' ) {
 		echo "Checking namespace $ns: \"$name\"\n";
 		if( $name == '' ) {
 			echo "... skipping article namespace\n";
 			return true;
 		}
-		
+
 		$conflicts = $this->getConflicts( $ns, $name );
 		$count = count( $conflicts );
 		if( $count == 0 ) {
 			echo "... no conflicts detected!\n";
 			return true;
 		}
-		
+
 		echo "... $count conflicts detected:\n";
 		$ok = true;
 		foreach( $conflicts as $row ) {
@@ -75,14 +75,14 @@ class NamespaceConflictChecker {
 		}
 		return $ok;
 	}
-	
+
 	function getConflicts( $ns, $name ) {
 		$page  = $this->newSchema() ? 'page' : 'cur';
 		$table = $this->db->tableName( $page );
-		
+
 		$prefix     = $this->db->strencode( $name );
 		$likeprefix = str_replace( '_', '\\_', $prefix);
-		
+
 		$sql = "SELECT {$page}_id                                  AS id,
 		               {$page}_title                               AS oldtitle,
 		               $ns                                         AS namespace,
@@ -90,18 +90,18 @@ class NamespaceConflictChecker {
 		          FROM {$table}
 		         WHERE {$page}_namespace=0
 		           AND {$page}_title LIKE '$likeprefix:%'";
-		
+
 		$result = $this->db->query( $sql, 'NamespaceConflictChecker::getConflicts' );
-		
+
 		$set = array();
 		while( $row = $this->db->fetchObject( $result ) ) {
 			$set[] = $row;
 		}
 		$this->db->freeResult( $result );
-		
+
 		return $set;
 	}
-	
+
 	function reportConflict( $row, $suffix ) {
 		$newTitle = Title::makeTitle( $row->namespace, $row->title );
 		printf( "... %d (0,\"%s\") -> (%d,\"%s\") [[%s]]\n",
@@ -110,7 +110,7 @@ class NamespaceConflictChecker {
 			$row->namespace,
 			$row->title,
 			$newTitle->getPrefixedText() );
-		
+
 		$id = $newTitle->getArticleId();
 		if( $id ) {
 			echo "...  *** cannot resolve automatically; page exists with ID $id ***\n";
@@ -119,7 +119,7 @@ class NamespaceConflictChecker {
 			return true;
 		}
 	}
-	
+
 	function resolveConflict( $row, $resolvable, $suffix ) {
 		if( !$resolvable ) {
 			$row->title .= $suffix;
@@ -134,7 +134,7 @@ class NamespaceConflictChecker {
 		}
 		return true;
 	}
-	
+
 	function resolveConflictOn( $row, $table ) {
 		$fname = 'NamespaceConflictChecker::resolveConflictOn';
 		echo "... resolving on $table... ";
@@ -151,7 +151,7 @@ class NamespaceConflictChecker {
 		echo "ok.\n";
 		return true;
 	}
-	
+
 	function newSchema() {
 		return class_exists( 'Revision' );
 	}

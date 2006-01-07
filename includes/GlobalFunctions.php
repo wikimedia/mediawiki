@@ -434,7 +434,7 @@ function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 
 	if ( is_object( $wgMessageCache ) )
 		$transstat = $wgMessageCache->getTransform();
-	
+
 	if( is_object( $wgMessageCache ) ) {
 		if ( ! $transform )
 			$wgMessageCache->disableTransform();
@@ -463,7 +463,7 @@ function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 
 	if ( is_object( $wgMessageCache ) && ! $transform )
 		$wgMessageCache->setTransform( $transstat );
-	
+
 	return $message;
 }
 
@@ -490,7 +490,7 @@ function wfMsgReplaceArgs( $message, $args ) {
 			$replacementKeys['$' . ($n + 1)] = $param;
 		$message = strtr( $message, $replacementKeys );
 	}
-	
+
 	return $message;
 }
 
@@ -1523,7 +1523,7 @@ function wfTempDir() {
 function wfMkdirParents( $fullDir, $mode ) {
 	$parts = explode( '/', $fullDir );
 	$path = '';
-	
+
 	foreach ( $parts as $dir ) {
 		$path .= $dir . '/';
 		if ( !is_dir( $path ) ) {
@@ -1621,7 +1621,7 @@ function wfUrlProtocols() {
 	$protocols = array();
 	foreach ($wgUrlProtocols as $protocol)
 		$protocols[] = preg_quote( $protocol, '/' );
-	
+
 	return implode( '|', $protocols );
 }
 
@@ -1636,10 +1636,10 @@ function wfUrlProtocols() {
  */
 function wfIsWellFormedXml( $text ) {
 	$parser = xml_parser_create( "UTF-8" );
-	
+
 	# case folding violates XML standard, turn it off
 	xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
-	
+
 	if( !xml_parse( $parser, $text, true ) ) {
 		$err = xml_error_string( xml_get_error_code( $parser ) );
 		$position = xml_get_current_byte_index( $parser );
@@ -1677,7 +1677,7 @@ function wfIsWellFormedXmlFragment( $text ) {
 function wfShellExec( $cmd )
 {
 	global $IP;
-	
+
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = ini_get( 'max_execution_time' );
 		$mem = ini_get( 'memory_limit' );
@@ -1712,7 +1712,7 @@ function wfShellExec( $cmd )
  */
 function wfUsePHP( $req_ver ) {
 	$php_ver = PHP_VERSION;
-	
+
 	if ( version_compare( $php_ver, (string)$req_ver, '<' ) )
 		 wfDebugDieBacktrace( "PHP $req_ver required--this is only $php_ver" );
 }

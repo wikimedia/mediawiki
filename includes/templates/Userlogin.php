@@ -184,7 +184,7 @@ class UsercreateTemplate extends QuickTemplate {
 	<?php } ?>
 	</table>
 	<?php
-		
+
 		if( $this->data['useemail'] ) {
 			echo '<div id="login-emailforlost">';
 			$this->msgHtml( 'emailforlost' );

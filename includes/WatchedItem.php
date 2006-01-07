@@ -66,7 +66,7 @@ class WatchedItem {
 	function addWatch() {
 		$fname = 'WatchedItem::addWatch';
 		wfProfileIn( $fname );
-		
+
 		// Use INSERT IGNORE to avoid overwriting the notification timestamp
 		// if there's already an entry for this page
 		$dbw =& wfGetDB( DB_MASTER );
@@ -144,7 +144,7 @@ class WatchedItem {
 		WatchedItem::doDuplicateEntries( $ot->getSubjectPage(), $nt->getSubjectPage() );
 		WatchedItem::doDuplicateEntries( $ot->getTalkPage(), $nt->getTalkPage() );
 	}
-	
+
 	/**
 	 * @static
 	 * @access private
@@ -172,7 +172,7 @@ class WatchedItem {
 			);
 		}
 		$dbw->freeResult( $res );
-		
+
 		if( empty( $values ) ) {
 			// Nothing to do
 			return true;

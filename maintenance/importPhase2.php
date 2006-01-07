@@ -66,24 +66,24 @@ require_once( "rebuildtextindex.inc" );
  */
 class Phase2Importer {
 	var $olddb, $titleCache;
-	
+
 	function Phase2Importer( $database ) {
 		$this->olddb = $database;
 		$this->titleCache = new TitleCache;
 	}
-	
+
 	function importAll() {
 		$this->importCurData();
 		$this->fixCurTitles();
-		
+
 		$this->importOldData();
 		$this->fixOldTitles();
-		
+
 		$this->importUserData();
 		$this->fixUserOptions();
-		
+
 		$this->importWatchlists();
-		
+
 		$this->importLinkData();
 
 		/*
@@ -91,21 +91,21 @@ class Phase2Importer {
 		rebuildRecentChangesTablePass1();
 		rebuildRecentChangesTablePass2();
 		*/
-		
+
 		print "Rebuilding search index:\n";
 		dropTextIndex();
 		rebuildTextIndex();
 		createTextIndex();
-		
+
 		initialiseMessages();
 	}
-	
+
 	# Simple import functions; for the most part these are pretty straightforward.
 	# MySQL copies everything over to the new database and tweaks a few things.
 	function importCurData() {
 		print "Clearing pages from default install, if any...\n";
 		wfQuery( "DELETE FROM cur", DB_MASTER );
-		
+
 		print "Importing current revision data...\n";
 		wfQuery( "INSERT INTO cur (cur_id,cur_namespace,cur_title,cur_text,cur_comment,
 			cur_user,cur_user_text,cur_timestamp,cur_restrictions,cur_counter,
@@ -156,7 +156,7 @@ class Phase2Importer {
 		$total = wfNumRows( $res );
 		$n = 0;
 		print " ($total total)\n";
-		
+
 		while( $row = wfFetchObject( $res ) ) {
 			$id = intval( $row->user_id );
 			$list = explode( "\n", $row->user_watch );
@@ -176,7 +176,7 @@ class Phase2Importer {
 		}
 		wfFreeResult( $res );
 	}
-	
+
 	function importLinkData() {
 		# MUST BE CALLED BEFORE! fixCurTitles()
 		print "Clearing links from default install, if any...\n";
@@ -190,7 +190,7 @@ class Phase2Importer {
 					WHERE linked_to=cur_title", DB_MASTER );
 		$n = mysql_affected_rows();
 		print "$n rows imported.\n";
-		
+
 		print "Importing broken links...";
 		wfQuery( "INSERT INTO brokenlinks (bl_from, bl_to)
 					SELECT DISTINCT cur_id,unlinked_to
@@ -204,18 +204,18 @@ class Phase2Importer {
 	function fixCurTitles() {
 		$this->fixTitles( "cur" );
 	}
-	
+
 	function fixOldTitles() {
 		$this->fixTitles( "old" );
 	}
-	
+
 	function fixTitles( $table ) {
 		print "Fixing titles in $table...";
 		$res = wfQuery( "SELECT DISTINCT {$table}_title AS title FROM $table", DB_MASTER );
 		$total = wfNumRows( $res );
 		$n = 0;
 		print " ($total total)\n";
-		
+
 		while( $row = wfFetchObject( $res ) ) {
 			$xt = wfStrencode( $row->title );
 			$title = $this->titleCache->fetch( $row->title );
@@ -238,19 +238,19 @@ class Phase2Importer {
 	{
 		$s = urldecode( $in );
 		$a = explode( "\n", $s );
-	
+
 		foreach ( $a as $l ) {
 			if ( preg_match( "/^([A-Za-z0-9_]+)=(.*)/", $l, $m ) ) {
 				$ops[$m[1]] = $m[2];
 			}
 		}
 		$nops = array();
-	
+
 		$q = strtolower( $ops["quickBar"] );
 		if ( $q == "none" ) { $q = 0; }
 		else { $q = 1; } # Default to left
 		$nops["quickbar"] = $q;
-	
+
 		if ( $ops["markupNewTopics"] == "inverse" ) {
 			$nops["highlightbroken"] = 1;
 		}
@@ -260,15 +260,15 @@ class Phase2Importer {
 		else if ( "colo" == $sk ) { $sk = 2; }
 		else { $sk = 0; }
 		$nops["skin"] = $sk;
-	
+
 		$u = strtolower( $ops["underlineLinks"] );
 		if ( "yes" == $u || "on" == $u ) { $nops["underline"] = 1; }
 		else { $nops["underline"] = 0; }
-	
+
 		$t = ( (int) ($ops["hourDiff"]) );
 		if ( $t < -23 || $t > 23 ) { $t = 0; }
 		if ( 0 != $t ) { $nops["timecorrection"] = $t; }
-	
+
 		$j = strtolower( $ops["justify"] );
 		if ( "yes" == $j || "on" == $j ) { $nops["justify"] = 1; }
 		$n = strtolower( $ops["numberHeadings"] );
@@ -279,7 +279,7 @@ class Phase2Importer {
 		if ( "yes" == $r || "on" == $r ) { $nops["rememberpassword"] = 1; }
 		$s = strtolower( $ops["showHover"] );
 		if ( "yes" == $s || "on" == $s ) { $nops["hover"] = 1; }
-	
+
 		$c = $ops["cols"];
 		if ( $c < 20 || $c > 200 ) { $nops["cols"] = 80; }
 		else { $nops["cols"] = $c; }
@@ -293,7 +293,7 @@ class Phase2Importer {
 		if ( $r < 10 || $r > 1000 ) { $nops["rclimit"] = 50; }
 		else { $nops["rclimit"] = $r; }
 		$nops["rcdays"] = 3;
-	
+
 		$a = array();
 		foreach ( $nops as $oname => $oval ) {
 			array_push( $a, "$oname=$oval" );
@@ -308,7 +308,7 @@ class Phase2Importer {
 		$total = wfNumRows( $res );
 		$n = 0;
 		print " ($total total)\n";
-		
+
 		while( $row = wfFetchObject( $res ) ) {
 			$id = intval( $row->user_id );
 			$option = wfStrencode( $this->rewriteUserOptions( $row->user_options ) );
@@ -319,7 +319,7 @@ class Phase2Importer {
 		}
 		wfFreeResult( $res );
 	}
-	
+
 }
 
 /**
@@ -329,14 +329,14 @@ class Phase2Importer {
  */
 class TitleCache {
 	var $hash = array();
-	
+
 	function &fetch( $dbkey ) {
 		if( !isset( $hash[$dbkey] ) ) {
 			$hash[$dbkey] = Title::newFromDBkey( $dbkey );
 		}
 		return $hash[$dbkey];
 	}
-	
+
 }
 
 #

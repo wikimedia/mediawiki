@@ -538,12 +538,12 @@ class SkinTemplate extends Skin {
 			$classes[] = 'new';
 			$query = 'action=edit';
 		}
-		
+
 		$text = wfMsg( $message );
 		if ( $text == "&lt;$message&gt;" ) {
 			$text = html_entity_decode($text);
 		}
-		
+
 		return array(
 			'class' => implode( ' ', $classes ),
 			'text' => $text,
@@ -700,7 +700,7 @@ class SkinTemplate extends Skin {
 					);
 				}
 			}
-			
+
 			wfRunHooks( 'SkinTemplateTabs', array( &$this , &$content_actions ) )	;
 		} else {
 			/* show special page tab */
@@ -738,7 +738,7 @@ class SkinTemplate extends Skin {
 		}
 
 		wfRunHooks( 'SkinTemplateContentActions', array( &$content_actions ) );
-		
+
 		wfProfileOut( $fname );
 		return $content_actions;
 	}
@@ -811,7 +811,7 @@ class SkinTemplate extends Skin {
 						'href' => $wgTitle->getLocalURL( "oldid=$revid" )
 					);
 			}
-			
+
 			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$oldid, &$revid ) );
 		}
 
@@ -934,9 +934,9 @@ class SkinTemplate extends Skin {
 
 		# If we use the site's dynamic CSS, throw that in, too
 		if ( $wgUseSiteCss ) {
-			$query = "action=raw&ctype=text/css&smaxage=$wgSquidMaxage";		
+			$query = "action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
 			$sitecss .= '@import "' . $this->makeNSUrl('Common.css', $query, NS_MEDIAWIKI) . '";' . "\n";
-			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', $query, NS_MEDIAWIKI) . '";' . "\n";			
+			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', $query, NS_MEDIAWIKI) . '";' . "\n";
 			$sitecss .= '@import "' . $this->makeUrl('-','action=raw&gen=css' . $siteargs) . '";' . "\n";
 		}
 

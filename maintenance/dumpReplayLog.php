@@ -15,7 +15,7 @@ function dumpReplayLog( $start ) {
 	$recentchanges = $dbw->tableName( 'recentchanges' );
 	$result =& $dbw->safeQuery( "SELECT * FROM $recentchanges WHERE rc_timestamp >= "
 		. $dbw->timestamp( $start ) . ' ORDER BY rc_timestamp');
-	
+
 	global $wgInputEncoding;
 	echo '<' . '?xml version="1.0" encoding="' . $wgInputEncoding . '" ?' . ">\n";
 	echo "<wikilog version='experimental'>\n";
@@ -35,10 +35,10 @@ function dumpReplayEntry( $row ) {
 	case RC_NEW:
 		# Edit
 		$dbr =& wfGetDB( DB_MASTER );
-		
+
 		$out = "  <edit>\n";
 		$out .= "    <title>" . xmlsafe( $title->getPrefixedText() ) . "</title>\n";
-		
+
 		# Get previous edit timestamp
 		if( $row->rc_last_oldid ) {
 			$s = $dbr->selectRow( 'old',
@@ -48,7 +48,7 @@ function dumpReplayEntry( $row ) {
 		} else {
 			$out .= "    <newpage/>\n";
 		}
-		
+
 		if( $row->rc_this_oldid ) {
 			$s = $dbr->selectRow( 'old', array( 'old_id as id','old_timestamp as timestamp',
 				'old_user as user', 'old_user_text as user_text', 'old_comment as comment',

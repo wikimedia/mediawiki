@@ -49,7 +49,7 @@ class UploadFormMogile extends UploadForm {
 		} else {
 			$this->mUploadOldVersion = '';
 		}
-		
+
 		if ( $this->mStashed ) {
 			if (!$mfs->rename($tempName,$this->mSavedFile)) {
 				$wgOut->fileRenameError($tempName, $this->mSavedFile );
@@ -89,7 +89,7 @@ class UploadFormMogile extends UploadForm {
 		unlink($tempName);
 		return $stash;
 	}
-	
+
 	/**
 	 * Stash a file in a temporary directory for later processing,
 	 * and save the necessary descriptive info into the session.
@@ -107,7 +107,7 @@ class UploadFormMogile extends UploadForm {
 			# Couldn't save the file.
 			return false;
 		}
-		
+
 		$key = mt_rand( 0, 0x7fffffff );
 		$_SESSION['wsUploadData'][$key] = array(
 			'mUploadTempName' => $stash,

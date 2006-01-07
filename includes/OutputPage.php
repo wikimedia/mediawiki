@@ -57,7 +57,7 @@ class OutputPage {
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ) ; }
 	function redirect( $url, $responsecode = '302' ) { $this->mRedirect = $url; $this->mRedirectCode = $responsecode; }
 	function setStatusCode( $statusCode ) { $this->mStatusCode = $statusCode; }
-	
+
 	# To add an http-equiv meta tag, precede the name with "http:"
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
@@ -168,7 +168,7 @@ class OutputPage {
 				$name .= ' - '.$taction;
 			}
 		}
-		
+
 		$this->setHTMLTitle( wfMsg( 'pagetitle', $name ) );
 	}
 	function getHTMLTitle() { return $this->mHTMLtitle; }
@@ -252,7 +252,7 @@ class OutputPage {
 	function ParserOptions( $options = null ) {
 		return wfSetVar( $this->mParserOptions, $options );
 	}
-	
+
 	/**
 	 * Set the revision ID which will be seen by the wiki text parser
 	 * for things such as embedded {{REVISIONID}} variable use.
@@ -293,7 +293,7 @@ class OutputPage {
 			$this->enableClientCache( false );
 		}
 	}
-	
+
 	function addParserOutput( &$parserOutput ) {
 		$this->addParserOutputNoText( $parserOutput );
 		$this->addHTML( $parserOutput->getText() );
@@ -594,7 +594,7 @@ class OutputPage {
 		$time = wfReportTime();
 		return $time;
 	}
-	
+
 	/**
 	 * Produce a "user is blocked" page
 	 */
@@ -946,7 +946,7 @@ class OutputPage {
 			}
 			$ret .= "<meta $a=\"{$tag[0]}\" content=\"{$tag[1]}\" />\n";
 		}
-		
+
 		$p = $this->mRobotpolicy;
 		if( $p !== '' && $p != 'index,follow' ) {
 			// http://www.robotstxt.org/wc/meta-user.html

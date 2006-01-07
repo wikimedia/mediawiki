@@ -190,12 +190,12 @@ function ctype_xdigit() {
  */
 function wf_ctype_parse_args( $fname, $args ) {
 	$ret = null;
-	
+
 	$cnt = count( $args );
-	
+
 	if ( $cnt !== 1 )
 		trigger_error( "$fname() expects exactly 1 parameter $cnt given", E_USER_WARNING );
-	
+
 	$in = array_pop( $args );
 
 	if ( is_int( $in ) ) {
@@ -208,7 +208,7 @@ function wf_ctype_parse_args( $fname, $args ) {
 		else if ( $in < -128 )
 			return array( null, true );
 	}
-	
+
 	if ( is_string( $in ) )
 		if ( $in === '' )
 			return array( null, true );

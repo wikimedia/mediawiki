@@ -618,7 +618,7 @@ An eur merket eo hini ar servijer (UTC).
 'filename'	=> 'Anv&nbsp;',
 'filedesc'	=> 'Deskrivadur&nbsp;',
 'filestatus'	=> 'Statud ar gwirioù aozer',
-'filesource'	=> 'Mammenn',	
+'filesource'	=> 'Mammenn',
 'copyrightpage' => "{{ns:4}}:Gwirioù aozer (Copyright)",
 'copyrightpagename' => "aotre {{SITENAME}}",
 'uploadedfiles' => "Restroù eilet",
@@ -1199,7 +1199,7 @@ class LanguageBr extends LanguageUtf8 {
 		',' => "\xc2\xa0", // @bug 2749
 		'.' => ','
 	);
-	
+
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), $this->digitTransTable );
 	}
@@ -1212,7 +1212,7 @@ class LanguageBr extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
-	
+
 }
 
 ?>

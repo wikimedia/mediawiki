@@ -46,13 +46,13 @@ function wfSpecialStatistics() {
 		$res = $dbr->query( $sql, $fname );
 		$userRow = $dbr->fetchObject( $res );
 		$users = $userRow->total;
-	} 	
+	} 
 
 	$sql = "SELECT COUNT(*) AS total FROM $user_groups WHERE ug_group='sysop'";
 	$res = $dbr->query( $sql, $fname );
 	$row = $dbr->fetchObject( $res );
 	$admins = $row->total;
-	
+
 	if ($action == 'raw') {
 		$wgOut->disable();
 		header( 'Pragma: nocache' );
@@ -67,9 +67,9 @@ function wfSpecialStatistics() {
 			$wgLang->formatNum( $edits ),
 			$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
 			$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ) );
-	
+
 		$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
-	
+
 		$text .= wfMsg( 'userstatstext',
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
@@ -77,7 +77,7 @@ function wfSpecialStatistics() {
 			// should logically be after #admins, danm backwards compatability!
 			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) )
 		);
-		
+
 		$wgOut->addWikiText( $text );
 	}
 }

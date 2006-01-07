@@ -118,7 +118,7 @@ class LogPage {
 			'move'    => 'movelogpage'
 		);
 		wfRunHooks( 'LogPageLogName', array( &$typeText ) );
-		
+
 		return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
 	}
 
@@ -136,7 +136,7 @@ class LogPage {
 			'move'    => 'movelogpagetext'
 		);
 		wfRunHooks( 'LogPageLogHeader', array( &$headerText ) );
-		
+
 		return wfMsg( $headerText[$type] );
 	}
 
@@ -150,13 +150,13 @@ class LogPage {
 			'block/unblock'     => 'unblocklogentry',
 			'protect/protect'   => 'protectedarticle',
 			'protect/unprotect' => 'unprotectedarticle',
-			
+
 			// TODO: This whole section should be moved to extensions/Makesysop/SpecialMakesysop.php
 			'rights/rights'     => 'bureaucratlogentry',
 			'rights/addgroup'   => 'addgrouplogentry',
 			'rights/rngroup'    => 'renamegrouplogentry',
 			'rights/chgroup'    => 'changegrouplogentry',
-			
+
 			'delete/delete'     => 'deletedarticle',
 			'delete/restore'    => 'undeletedarticle',
 			'upload/upload'     => 'uploadedimage',

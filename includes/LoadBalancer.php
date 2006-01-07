@@ -228,7 +228,7 @@ class LoadBalancer {
 					$this->mErrorConnection = false;
 					$this->mLastError = 'All servers busy';
 				}
-				
+
 				if ( $i !== false && $this->isOpen( $i ) ) {
 					# Wait for the session master pos for a short time
 					if ( $this->mWaitForFile ) {
@@ -595,7 +595,7 @@ class LoadBalancer {
 	 */
 	function getLagTimes() {
 		global $wgDBname;
-		
+
 		$expiry = 5;
 		$requestRate = 10;
 

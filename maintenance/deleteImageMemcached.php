@@ -12,15 +12,15 @@ class DeleteImageCache {
 		$this->sleep = $sleep;
 		$this->report = $report;
 	}
-	
+
 	function main() {
 		global $wgMemc, $wgDBname;
 		$fname = 'DeleteImageCache::main';
 
 		ini_set( 'display_errors', false );
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
-		
+
 		$res = $dbr->select( 'image',
 			array( 'img_name' ),
 			array( "img_timestamp < {$this->until}" ),
@@ -35,14 +35,14 @@ class DeleteImageCache {
 				printf("%s: %13s done (%s)\n", $wgDBname, "$i/$total", wfPercent( $i / $total * 100 ));
 			$md5 = md5( $row->img_name );
 			$wgMemc->delete( "$wgDBname:Image:$md5" );
-			
+
 			if ($this->sleep != 0)
 				usleep( $this->sleep );
 
 			++$i;
 		}
 	}
-	
+
 	function getImageCount() {
 		$fname = 'DeleteImageCache::getImageCount';
 

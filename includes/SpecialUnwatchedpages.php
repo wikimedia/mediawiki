@@ -38,7 +38,7 @@ class UnwatchedpagesPage extends QueryPage {
 			WHERE wl_title IS NULL AND page_is_redirect = 0
 			";
 	}
-	
+
 	function sortDescending() { return false; }
 
 	function formatResult( $skin, $result ) {
@@ -46,10 +46,10 @@ class UnwatchedpagesPage extends QueryPage {
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
-		
+
 		$plink = $skin->makeKnownLinkObj( $nt, htmlspecialchars( $text ) );
 		$wlink = $skin->makeKnownLinkObj( $nt, wfMsgHtml( 'watch' ), 'action=watch' );
-		
+
 		return $plink . ' (' . $wlink . ')';
 	}
 }
@@ -59,10 +59,10 @@ class UnwatchedpagesPage extends QueryPage {
  */
 function wfSpecialUnwatchedpages() {
 	global $wgUser, $wgOut;
-	
+
 	if ( ! $wgUser->isAllowed( 'unwatchedpages' ) )
 		return $wgOut->permissionRequired( 'unwatchedpages' );
-	
+
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$wpp = new UnwatchedpagesPage();

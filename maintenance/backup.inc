@@ -36,23 +36,23 @@ class BackupDumper {
 	var $endId      = 0;
 	var $sink       = null; // Output filters
 	var $stubText   = false; // include rev_text_id instead of text; for 2-pass dump
-	
+
 	function BackupDumper( $args ) {
 		$this->stderr = fopen( "php://stderr", "wt" );
-		
+
 		// Built-in output and filter plugins
 		$this->registerOutput( 'file', 'DumpFileOutput' );
 		$this->registerOutput( 'gzip', 'DumpGZipOutput' );
 		$this->registerOutput( 'bzip2', 'DumpBZip2Output' );
 		$this->registerOutput( '7zip', 'Dump7ZipOutput' );
-		
+
 		$this->registerFilter( 'latest', 'DumpLatestFilter' );
 		$this->registerFilter( 'notalk', 'DumpNotalkFilter' );
 		$this->registerFilter( 'namespace', 'DumpNamespaceFilter' );
-		
+
 		$this->sink = $this->processArgs( $args );
 	}
-	
+
 	/**
 	 * @param string $name
 	 * @param string $class name of output filter plugin class
@@ -60,7 +60,7 @@ class BackupDumper {
 	function registerOutput( $name, $class ) {
 		$this->outputTypes[$name] = $class;
 	}
-	
+
 	/**
 	 * @param string $name
 	 * @param string $class name of filter plugin class
@@ -68,7 +68,7 @@ class BackupDumper {
 	function registerFilter( $name, $class ) {
 		$this->filterTypes[$name] = $class;
 	}
-	
+
 	/**
 	 * Load a plugin and register it
 	 * @param string $class Name of plugin class; must have a static 'register'
@@ -82,7 +82,7 @@ class BackupDumper {
 		$register = array( $class, 'register' );
 		call_user_func_array( $register, array( &$this ) );
 	}
-	
+
 	/**
 	 * @param array $args
 	 * @return array
@@ -118,54 +118,54 @@ class BackupDumper {
 					}
 					$type = $this->filterTypes[$val];
 					$filter = new $type( $sink, $param );
-					
+
 					// references are lame in php...
 					unset( $sink );
 					$sink = $filter;
-					
+
 					break;
 				default:
 					$this->processOption( $opt, $val, $param );
 				}
 			}
 		}
-		
+
 		if( is_null( $sink ) ) {
 			$sink = new DumpOutput();
 		}
 		$sinks[] = $sink;
-		
+
 		if( count( $sinks ) > 1 ) {
 			return new DumpMultiWriter( $sinks );
 		} else {
 			return $sink;
 		}
 	}
-	
+
 	function processOption( $opt, $val, $param ) {
 		// extension point for subclasses to add options
 	}
-	
+
 	function dump( $history, $text = MW_EXPORT_TEXT ) {
 		# This shouldn't happen if on console... ;)
 		header( 'Content-type: text/html; charset=UTF-8' );
-		
+
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.
 		ini_set( 'display_errors', false );
-		
+
 		$this->startTime = wfTime();
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
 		$this->maxCount = $dbr->selectField( 'page', 'MAX(page_id)', '', 'BackupDumper::dump' );
 		$this->startTime = wfTime();
-		
+
 		$db =& $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, MW_EXPORT_STREAM, $text );
-		
+
 		$wrapper = new ExportProgressFilter( $this->sink, $this );
 		$exporter->setOutputSink( $wrapper );
-		
+
 		if( !$this->skipHeader )
 			$exporter->openStream();
 
@@ -181,10 +181,10 @@ class BackupDumper {
 
 		if( !$this->skipFooter )
 			$exporter->closeStream();
-		
+
 		$this->report( true );
 	}
-	
+
 	function &backupDb() {
 		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBname;
@@ -194,7 +194,7 @@ class BackupDumper {
 		$db->query( "SET net_write_timeout=$timeout" );
 		return $db;
 	}
-	
+
 	function backupServer() {
 		global $wgDBserver;
 		return $this->server
@@ -206,17 +206,17 @@ class BackupDumper {
 		$this->pageCount++;
 		$this->report();
 	}
-	
+
 	function revCount() {
 		$this->revCount++;
 	}
-	
+
 	function report( $final = false ) {
 		if( $final xor ( $this->pageCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
 	}
-	
+
 	function showReport() {
 		if( $this->reporting ) {
 			$delta = wfTime() - $this->startTime;
@@ -236,7 +236,7 @@ class BackupDumper {
 			$this->progress( "$now: $wgDBname $this->pageCount, ETA $etats ($rate pages/sec $revrate revs/sec)" );
 		}
 	}
-	
+
 	function progress( $string ) {
 		fwrite( $this->stderr, $string . "\n" );
 	}
@@ -252,7 +252,7 @@ class ExportProgressFilter extends DumpFilter {
 		parent::writeClosePage( $string );
 		$this->progress->reportPage();
 	}
-	
+
 	function writeRevision( $rev, $string ) {
 		parent::writeRevision( $rev, $string );
 		$this->progress->revCount();

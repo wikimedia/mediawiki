@@ -364,7 +364,7 @@ class PreferencesForm {
 			}
 		}
 	}
-	
+
 	/**
 	 * @access private
 	 */
@@ -539,8 +539,8 @@ class PreferencesForm {
 				$wgUser->getID()
 			)
 		);
-				
-		
+
+
 		if ($wgAllowRealName) {
 			$wgOut->addHTML(
 				$this->addRow(
@@ -568,7 +568,7 @@ class PreferencesForm {
 		} else {
 			$invalidSig = '';
 		}
-		
+
 		$wgOut->addHTML(
 			$this->addRow(
 				'<label for="wpNick">' . wfMsg( 'yournick' ) . '</label>',
@@ -592,7 +592,7 @@ class PreferencesForm {
 			$languages[$wgContLanguageCode] = $wgContLanguageCode;
 		}
 		ksort( $languages );
-		
+
 		/**
 		 * If a bogus value is set, default to the content language.
 		 * Otherwise, no default is selected and the user ends up

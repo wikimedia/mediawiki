@@ -1965,7 +1965,7 @@ class LanguagePt extends LanguageUtf8 {
 		global $wgNamespaceNamesPt;
 		return $wgNamespaceNamesPt;
 	}
-	
+
 	/**
 	* Exports $wgQuickbarSettingsPt
 	* @return array

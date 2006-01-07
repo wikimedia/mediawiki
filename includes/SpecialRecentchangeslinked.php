@@ -21,7 +21,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$days = $wgRequest->getInt( 'days' );
 	$target = isset($par) ? $par : $wgRequest->getText( 'target' );
 	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
-	
+
 	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
 	$sk = $wgUser->getSkin();
 
@@ -35,7 +35,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		return;
 	}
 	$id = $nt->getArticleId();
-	
+
 	$wgOut->setSubtitle( htmlspecialchars( wfMsg( 'rclsub', $nt->getPrefixedText() ) ) );
 
 	if ( ! $days ) {
@@ -63,7 +63,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	} else { $cmq = ''; }
 
 	extract( $dbr->tableNames( 'recentchanges', 'categorylinks', 'pagelinks', 'revision', 'page' ) );
-	
+
 	// If target is a Category, use categorylinks and invert from and to
 	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBKey() );
@@ -137,7 +137,7 @@ ORDER BY rc_timestamp DESC
 	$list = ChangesList::newFromUser( $wgUser );
 	$s = $list->beginRecentChangesList();
 	$count = $dbr->numRows( $res );
-	
+
 	$counter = 1;
 	while ( $limit ) {
 		if ( 0 == $count ) { break; }

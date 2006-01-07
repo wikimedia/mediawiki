@@ -49,12 +49,12 @@ END
 		while( $row = $dbw->fetchObject( $res ) ) {
 			$ns = intval( $row->cur_namespace );
 			$title = $dbw->addQuotes( $row->cur_title );
-			
+
 			# Get the first responding ID; that'll be the one we keep.
 			$id = $dbw->selectField( 'cur', 'cur_id', array(
 				'cur_namespace' => $row->cur_namespace,
 				'cur_title'     => $row->cur_title ) );
-			
+
 			echo "$ns:$row->cur_title (canonical ID $id)\n";
 			if( $id != $row->id ) {
 				echo "  ** minimum ID $row->id; ";
@@ -74,7 +74,7 @@ END
 					}
 				}
 			}
-			
+
 			if( $fixthem ) {
 				$dbw->query( <<<END
 INSERT

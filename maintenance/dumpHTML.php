@@ -51,7 +51,7 @@ if ( !empty( $options['e'] ) ) {
 	$end = $options['e'];
 } else {
 	$dbr =& wfGetDB( DB_SLAVE );
-	$end = $dbr->selectField( 'page', 'max(page_id)', false );	
+	$end = $dbr->selectField( 'page', 'max(page_id)', false );
 }
 
 if ( !empty( $options['d'] ) ) {
@@ -89,7 +89,7 @@ if ( $options['special'] ) {
 		$wgHTMLDump->doCategories();
 		$wgHTMLDump->doSpecials();
 	}
-	
+
 	/*
 	if ( $end - $start > CHUNK_SIZE * 2 ) {
 		// Split the problem into smaller chunks, run them in different PHP instances

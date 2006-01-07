@@ -121,7 +121,7 @@ if ( isset($args[0]) ) {
 
 	// Load datas from MediaWiki
 	$testMessages = getMediawikiMessages($lang);
-	$testLanguage = $lang;		
+	$testLanguage = $lang;
 } else {
 	usage();
 	die();

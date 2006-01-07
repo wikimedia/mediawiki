@@ -210,8 +210,8 @@ function wfSpecialWatchlist( $par ) {
 	} else {
 		$andHideBotsOptional = "AND rc_this_oldid=page_latest";
 	}
-		
-	
+
+
 	# Show watchlist header
 	$header = '';
 	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
@@ -226,7 +226,7 @@ function wfSpecialWatchlist( $par ) {
 		$wgLang->formatNum( $npages ), '',
 		$specialTitle->getFullUrl( 'edit=yes' ) );
 	$wgOut->addWikiText( $header );
-	
+
 	if ( $wgEnotifWatchlist && $wgShowUpdatedMarker ) {
 		$wgOut->addHTML( '<form action="' .
 			$specialTitle->escapeLocalUrl() .
@@ -268,7 +268,7 @@ function wfSpecialWatchlist( $par ) {
 			$wgLang->formatNum( round($days*24) ) ) . '<br />' , false );
 
 	$wgOut->addHTML( "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n" );
-	
+
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 		$wgContLang->specialPage( 'Watchlist' ),
@@ -283,7 +283,7 @@ function wfSpecialWatchlist( $par ) {
 		  wfArrayToCGI( array('hideBots' => 1-$hideBots ), $nondefaults ) );
 	  $wgOut->addHTML( wfMsgHtml( "wlhideshowbots", "  $s" ) );
 	}
-	
+
 	if ( $numRows == 0 ) {
 		$wgOut->addWikitext( "<br />" . wfMsg( 'watchnochange' ), false );
 		$wgOut->addHTML( "</p>\n" );

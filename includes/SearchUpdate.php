@@ -40,7 +40,7 @@ class SearchUpdate {
 		require_once( 'SearchEngine.php' );
 		$search = SearchEngine::create();
 		$lc = $search->legalSearchChars() . '&#;';
-		
+
 		if( $this->mText === false ) {
 			$search->updateTitle($this->mId,
 				Title::indexTitle( $this->mNamespace, $this->mTitle ));

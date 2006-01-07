@@ -84,7 +84,7 @@ foreach( $hosts as $host ) {
 	foreach( $databases as $db ) {
 		print "GRANT SELECT, INSERT, UPDATE, DELETE ON `$db`.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
 	}
-	
+
 /*
 	print "\n-- wikisql\n\n";
 	foreach ( $databases as $db ) {
@@ -106,7 +106,7 @@ GRANT SELECT ON `$db`.`brokenlinks` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql
 
 EOS;
 	}*/
-	
+
 	print "\n-- wikiadmin\n\n";
 	print "GRANT PROCESS, REPLICATION CLIENT ON *.* TO 'wikiadmin'@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";
 	print "GRANT ALL PRIVILEGES ON `boardvote`.* TO wikiadmin@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";

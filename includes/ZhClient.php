@@ -101,7 +101,7 @@ class ZhClient {
 	 * @param string $text input text
 	 * @return array langcode => converted_string
 	 * @access public
-	 */	
+	 */
 	function convertToAllVariants($text) {
 		$len = strlen($text);
 		$q = "CONV ALL $len\n$text";

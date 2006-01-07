@@ -75,7 +75,7 @@ class DifferenceEngine {
 		       $wgUseExternalEditor, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
-				
+
 	 	# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
 		# an external diff tool like kompare, kdiff3, etc.
@@ -83,7 +83,7 @@ class DifferenceEngine {
 			global $wgInputEncoding,$wgServer,$wgScript,$wgLang;
 			$wgOut->disable();
 			header ( "Content-type: application/x-external-editor; charset=".$wgInputEncoding );
-			$url1=$this->mTitle->getFullURL("action=raw&oldid=".$this->mOldid);			
+			$url1=$this->mTitle->getFullURL("action=raw&oldid=".$this->mOldid);
 			$url2=$this->mTitle->getFullURL("action=raw&oldid=".$this->mNewid);
 			$special=$wgLang->getNsText(NS_SPECIAL);
 			$control=<<<CONTROL
@@ -128,7 +128,7 @@ CONTROL;
 		if ( $this->mNewRev->isCurrent() ) {
 			$wgOut->setArticleFlag( true );
 		}
-		
+
 		$wgOut->suppressQuickbar();
 
 		$oldTitle = $this->mOldPage->getPrefixedText();
@@ -316,7 +316,7 @@ CONTROL;
 	 */
 	function getDiffBody() {
 		global $wgUseExternalDiffEngine, $wgContLang, $wgMemc, $wgDBname;
-		
+
 		// Cacheable?
 		$key = false;
 		if ( $this->mOldid && $this->mNewid ) {
@@ -328,11 +328,11 @@ CONTROL;
 				return $difftext;
 			}
 		}
-		
+
 		if ( !$this->loadText() ) {
 			return false;
 		}
-		
+
 		$otext = $wgContLang->segmentForDiff($this->mOldtext);
 		$ntext = $wgContLang->segmentForDiff($this->mNewtext);
 		if ( $wgUseExternalDiffEngine ) {
@@ -431,10 +431,10 @@ CONTROL;
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 		}
-			
+
 		$this->mNewUser = $this->mNewRev->getUserText();
 		$this->mNewComment = $this->mNewRev->getComment();
-		
+
 		// Load the old revision object
 		$this->mOldRev = false;
 		if( $this->mOldid ) {
@@ -455,11 +455,11 @@ CONTROL;
 			$oldLink = $this->mOldPage->escapeLocalUrl( 'oldid=' . $this->mOldid );
 			$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) ) . '</a>';
 
-			
+
 			$this->mOldUser = $this->mOldRev->getUserText();
 			$this->mOldComment = $this->mOldRev->getComment();
 		}
-		
+
 		return true;
 	}
 
@@ -473,7 +473,7 @@ CONTROL;
 			// Whether it succeeds or fails, we don't want to try again
 			$this->mTextLoaded = 2;
 		}
-		
+
 		if ( !$this->loadRevisionData() ) {
 			return false;
 		}
@@ -501,8 +501,8 @@ CONTROL;
 		$this->mNewtext = $this->mNewRev->getText();
 		return true;
 	}
-		
-	
+
+
 }
 
 // A PHP diff engine for phpwiki. (Taken from phpwiki-1.3.3)
@@ -645,7 +645,7 @@ class _DiffEngine
 	function diff ($from_lines, $to_lines) {
 		$fname = '_DiffEngine::diff';
 		wfProfileIn( $fname );
-		
+
 		$n_from = sizeof($from_lines);
 		$n_to = sizeof($to_lines);
 
@@ -674,7 +674,7 @@ class _DiffEngine
 		for ($xi = $skip; $xi < $n_from - $endskip; $xi++) {
 			$xhash[$this->_line_hash($from_lines[$xi])] = 1;
 		}
-		
+
 		for ($yi = $skip; $yi < $n_to - $endskip; $yi++) {
 			$line = $to_lines[$yi];
 			if ( ($this->ychanged[$yi] = empty($xhash[$this->_line_hash($line)])) )
@@ -745,7 +745,7 @@ class _DiffEngine
 			return $line;
 		}
 	}
-	
+
 
 	/* Divide the Largest Common Subsequence (LCS) of the sequences
 	 * [XOFF, XLIM) and [YOFF, YLIM) into NCHUNKS approximately equally
@@ -782,12 +782,12 @@ class _DiffEngine
 		else
 			for ($i = $ylim - 1; $i >= $yoff; $i--)
 				$ymatches[$this->yv[$i]][] = $i;
-	
+
 		$this->lcs = 0;
 		$this->seq[0]= $yoff - 1;
 		$this->in_seq = array();
 		$ymids[0] = array();
-	
+
 		$numer = $xlim - $xoff + $nchunks - 1;
 		$x = $xoff;
 		for ($chunk = 0; $chunk < $nchunks; $chunk++) {
@@ -795,7 +795,7 @@ class _DiffEngine
 			if ($chunk > 0)
 				for ($i = 0; $i <= $this->lcs; $i++)
 					$ymids[$i][$chunk-1] = $this->seq[$i];
-	
+
 			$x1 = $xoff + (int)(($numer + ($xlim-$xoff)*$chunk) / $nchunks);
 			for ( ; $x < $x1; $x++) {
 				$line = $flip ? $this->yv[$x] : $this->xv[$x];
@@ -827,7 +827,7 @@ class _DiffEngine
 			}
 			wfProfileOut( "$fname-chunk" );
 		}
-	
+
 		$seps[] = $flip ? array($yoff, $xoff) : array($xoff, $yoff);
 		$ymid = $ymids[$this->lcs];
 		for ($n = 0; $n < $nchunks - 1; $n++) {
@@ -836,7 +836,7 @@ class _DiffEngine
 			$seps[] = $flip ? array($y1, $x1) : array($x1, $y1);
 		}
 		$seps[] = $flip ? array($ylim, $xlim) : array($xlim, $ylim);
-	
+
 		wfProfileOut( $fname );
 		return array($this->lcs, $seps);
 	}
@@ -844,7 +844,7 @@ class _DiffEngine
 	function _lcs_pos ($ypos) {
 		$fname = '_DiffEngine::_lcs_pos';
 		wfProfileIn( $fname );
-		
+
 		$end = $this->lcs;
 		if ($end == 0 || $ypos > $this->seq[$end]) {
 			$this->seq[++$this->lcs] = $ypos;
@@ -861,9 +861,9 @@ class _DiffEngine
 			else
 				$end = $mid;
 		}
-	
+
 		USE_ASSERTS && assert($ypos != $this->seq[$end]);
-	
+
 		$this->in_seq[$this->seq[$end]] = false;
 		$this->seq[$end] = $ypos;
 		$this->in_seq[$ypos] = 1;
@@ -885,7 +885,7 @@ class _DiffEngine
 	function _compareseq ($xoff, $xlim, $yoff, $ylim) {
 		$fname = '_DiffEngine::_compareseq';
 		wfProfileIn( $fname );
-		
+
 		// Slide down the bottom initial diagonal.
 		while ($xoff < $xlim && $yoff < $ylim
 			   && $this->xv[$xoff] == $this->yv[$yoff]) {
@@ -947,11 +947,11 @@ class _DiffEngine
 		wfProfileIn( $fname );
 		$i = 0;
 		$j = 0;
-	
+
 		USE_ASSERTS && assert('sizeof($lines) == sizeof($changed)');
 		$len = sizeof($lines);
 		$other_len = sizeof($other_changed);
-	
+
 		while (1) {
 			/*
 			 * Scan forwards to find beginning of another run of changes.
@@ -966,30 +966,30 @@ class _DiffEngine
 			 */
 			while ($j < $other_len && $other_changed[$j])
 				$j++;
-	
+
 			while ($i < $len && ! $changed[$i]) {
 				USE_ASSERTS && assert('$j < $other_len && ! $other_changed[$j]');
 				$i++; $j++;
 				while ($j < $other_len && $other_changed[$j])
 					$j++;
 			}
-			
+
 			if ($i == $len)
 				break;
-			
+
 			$start = $i;
-			
+
 			// Find the end of this run of changes.
 			while (++$i < $len && $changed[$i])
 				continue;
-			
+
 			do {
 				/*
 				 * Record the length of this run of changes, so that
 				 * we can later determine whether the run has grown.
 				 */
 				$runlength = $i - $start;
-				
+
 				/*
 				 * Move the changed region back, so long as the
 				 * previous unchanged line matches the last changed one.
@@ -1005,14 +1005,14 @@ class _DiffEngine
 						continue;
 					USE_ASSERTS && assert('$j >= 0 && !$other_changed[$j]');
 				}
-	
+
 				/*
 				 * Set CORRESPONDING to the end of the changed run, at the last
 				 * point where it corresponds to a changed run in the other file.
 				 * CORRESPONDING == LEN means no such point has been found.
 				 */
 				$corresponding = $j < $other_len ? $i : $len;
-		
+
 				/*
 				 * Move the changed region forward, so long as the
 				 * first changed line matches the following unchanged one.
@@ -1025,7 +1025,7 @@ class _DiffEngine
 					$changed[$i++] = 1;
 					while ($i < $len && $changed[$i])
 						$i++;
-		
+
 					USE_ASSERTS && assert('$j < $other_len && ! $other_changed[$j]');
 					$j++;
 					if ($j < $other_len && $other_changed[$j]) {
@@ -1035,7 +1035,7 @@ class _DiffEngine
 					}
 				}
 			} while ($runlength != $i - $start);
-	
+
 			/*
 			 * If possible, move the fully-merged run of changes
 			 * back to a corresponding run in the other file.
@@ -1231,7 +1231,7 @@ class MappedDiff extends Diff
 						$mapped_from_lines, $mapped_to_lines) {
 		$fname = 'MappedDiff::MappedDiff';
 		wfProfileIn( $fname );
-		
+
 		assert(sizeof($from_lines) == sizeof($mapped_from_lines));
 		assert(sizeof($to_lines) == sizeof($mapped_to_lines));
 
@@ -1497,7 +1497,7 @@ class WordLevelDiff extends MappedDiff
 	function WordLevelDiff ($orig_lines, $closing_lines) {
 		$fname = 'WordLevelDiff::WordLevelDiff';
 		wfProfileIn( $fname );
-		
+
 		list ($orig_words, $orig_stripped) = $this->_split($orig_lines);
 		list ($closing_words, $closing_stripped) = $this->_split($closing_lines);
 
@@ -1649,7 +1649,7 @@ class TableDiffFormatter extends DiffFormatter
 	function _changed( $orig, $closing ) {
 		$fname = 'TableDiffFormatter::_changed';
 		wfProfileIn( $fname );
-		
+
 		$diff = new WordLevelDiff( $orig, $closing );
 		$del = $diff->orig();
 		$add = $diff->closing();

@@ -28,7 +28,7 @@ if ( isset( $args[0] ) ) {
 function desyncFixPage( $pageID ) {
 	global $numServers;
 	$fname = 'desyncFixPage';
-	
+
 	# Check for a corrupted page_latest
 	$dbw =& wfGetDB( DB_MASTER );
 	$realLatest = $dbw->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ), $fname );
@@ -44,7 +44,7 @@ function desyncFixPage( $pageID ) {
 	if ( $i == $numServers ) {
 		return;
 	}
-	
+
 	# Find the missing revision
 	$res = $dbw->select( 'revision', array( 'rev_id' ), array( 'rev_page' => $pageID ), $fname );
 	$masterIDs = array();
@@ -52,7 +52,7 @@ function desyncFixPage( $pageID ) {
 		$masterIDs[] = $row->rev_id;
 	}
 	$dbw->freeResult( $res );
-	
+
 	$res = $db->select( 'revision', array( 'rev_id' ), array( 'rev_page' => $pageID ), $fname );
 	$slaveIDs = array();
 	while ( $row = $db->fetchObject( $res ) ) {

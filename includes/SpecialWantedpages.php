@@ -17,7 +17,7 @@ require_once 'QueryPage.php';
  */
 class WantedPagesPage extends QueryPage {
 	var $nlinks;
-	
+
 	function WantedPagesPage( $inc = false, $nlinks = true ) {
 		$this->setListoutput( $inc );
 		$this->nlinks = $nlinks;
@@ -63,8 +63,8 @@ class WantedPagesPage extends QueryPage {
 			// If there are no rows we get an error seeking.
 			$db->dataSeek( $res, 0 );
 	}
-	
-	
+
+
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
@@ -73,7 +73,7 @@ class WantedPagesPage extends QueryPage {
 		$plink = $this->isCached() ?
 			$skin->makeLinkObj( $nt, $text ) :
 			$skin->makeBrokenLink( $nt->getPrefixedText(), $text );
-		
+
 		$nl = wfMsg( 'nlinks', $result->value );
 		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ), $nl, 'target=' . $nt->getPrefixedURL() );
 
@@ -86,7 +86,7 @@ class WantedPagesPage extends QueryPage {
  */
 function wfSpecialWantedpages( $par = null, $specialPage ) {
 	$inc = $specialPage->including();
-	
+
 	if ( $inc ) {
 		@list( $limit, $nlinks ) = explode( '/', $par, 2 );
 		$limit = (int)$limit;

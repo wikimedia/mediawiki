@@ -60,7 +60,7 @@ class ProfilerSimple extends Profiler {
 				$this->debug( "$message\n" );
 			}
 			$entry =& $this->mCollated[$functionname];
-			
+
 			$elapsedcpu = $this->getCpuTime() - $octime;
 			$elapsedreal = $this->getTime() - $ortime;
 
@@ -69,11 +69,11 @@ class ProfilerSimple extends Profiler {
 			$entry['real'] += $elapsedreal;
 			$entry['real_sq'] += $elapsedreal*$elapsedreal;
 			$entry['count']++;
-				
+
 		}
 	}
 
-	function getFunctionReport() {		
+	function getFunctionReport() {
 		/* Implement in output subclasses */
 	}
 
@@ -89,7 +89,7 @@ class ProfilerSimple extends Profiler {
 		list($a,$b)=explode(" ",$time);
 		return (float)($a+$b);
 	}
-	
+
 	function debug( $s ) {
 		if (function_exists( 'wfDebug' ) ) {
 			wfDebug( $s );

@@ -24,7 +24,7 @@ class SpecialVersion {
 	 * @access private
 	 */
 	var $langObj;
-	
+
 	/**
 	 * Constructor
 	 */
@@ -39,7 +39,7 @@ class SpecialVersion {
 	 */
 	function execute() {
 		global $wgOut;
-		
+
 		$wgOut->addWikiText(
 			$this->MediaWikiCredits() .
 			$this->extensionCredits() .
@@ -51,37 +51,37 @@ class SpecialVersion {
 	/**#@+
 	 * @access private
 	 */
-	
+
 	/**
 	 * @static
 	 */
 	function MediaWikiCredits() {
 		global $wgVersion;
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
-		
+
 		$ret =
 		"__NOTOC__
 		<div dir='ltr'>
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
 		copyright (C) 2001-2006 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, and others.
-		
+
 		MediaWiki is free software; you can redistribute it and/or modify
 		it under the terms of the GNU General Public License as published by
 		the Free Software Foundation; either version 2 of the License, or
 		(at your option) any later version.
-		
+
 		MediaWiki is distributed in the hope that it will be useful,
 		but WITHOUT ANY WARRANTY; without even the implied warranty of
 		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 		GNU General Public License for more details.
-		
+
 		You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License]
 		along with this program; if not, write to the Free Software
 		Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 		or [http://www.gnu.org/copyleft/gpl.html read it online]
-		
+
 		* [http://www.mediawiki.org/ MediaWiki]: $wgVersion
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
 		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion() . "
@@ -92,7 +92,7 @@ class SpecialVersion {
 
 	function extensionCredits() {
 		global $wgExtensionCredits, $wgExtensionFunctions, $wgSkinExtensionFunction;
-		
+
 		if ( ! count( $wgExtensionCredits ) && ! count( $wgExtensionFunctions ) && ! count( $wgSkinExtensionFunction ) )
 			return '';
 
@@ -103,14 +103,14 @@ class SpecialVersion {
 			'other' => 'Other',
 		);
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
-		
+
 		$out = "\n* Extensions:\n";
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( count( @$wgExtensionCredits[$type] ) ) {
 				$out .= "** $text:\n";
-				
+
 				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
-				
+
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
 					wfSuppressWarnings();
 					$out .= $this->formatCredits(
@@ -174,7 +174,7 @@ class SpecialVersion {
 		$ret = "* Hooks:\n";
 		foreach ($myWgHooks as $hook => $hooks)
 			$ret .= "** $hook:" . $this->langObj->listToText( $hooks ) . "\n";
-		
+
 		return $ret;
 	}
 
@@ -185,7 +185,7 @@ class SpecialVersion {
 		$ip =  str_replace( '--', ' - ', htmlspecialchars( wfGetIP() ) );
 		return "<!-- visited from $ip -->\n";
 	}
-	
+
 	/**#@-*/
 }
 

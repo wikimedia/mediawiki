@@ -12,15 +12,15 @@ function wfSpecialUserlogout() {
 	global $wgUser, $wgOut;
 
 	if (wfRunHooks('UserLogout', array(&$wgUser))) {
-		
+
 		$wgUser->logout();
 
 		wfRunHooks('UserLogoutComplete', array(&$wgUser));
-		
+
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( wfMsg( 'logouttext' ) );
 		$wgOut->returnToMain();
-		
+
 	}
 }
 

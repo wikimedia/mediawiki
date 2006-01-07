@@ -56,7 +56,7 @@ importPages();
 function importPages()
 {
 	global $wgRootDirectory;
-	
+
 	$gt = '>';
 	echo <<<END
 <?xml version="1.0" encoding="UTF-8" ?$gt
@@ -121,16 +121,16 @@ function useModFilename( $title ) {
 function fetchPage( $title )
 {
 	global $FS,$FS1,$FS2,$FS3, $wgRootDirectory;
-	
+
 	$fname = $wgRootDirectory . "/page/" . useModFilename( $title ) . ".db";
 	if( !file_exists( $fname ) ) {
 		die( "Couldn't open file '$fname' for page '$title'.\n" );
 	}
-	
+
 	$page = splitHash( $FS1, file_get_contents( $fname ) );
 	$section = splitHash( $FS2, $page["text_default"] );
 	$text = splitHash( $FS3, $section["data"] );
-	
+
 	return array2object( array( "text" => $text["text"] , "summary" => $text["summary"] ,
 		"minor" => $text["minor"] , "ts" => $section["ts"] ,
 		"username" => $section["username"] , "host" => $section["host"] ) );
@@ -139,13 +139,13 @@ function fetchPage( $title )
 function fetchKeptPages( $title )
 {
 	global $FS,$FS1,$FS2,$FS3, $wgRootDirectory, $wgTimezoneCorrection;
-	
+
 	$fname = $wgRootDirectory . "/keep/" . useModFilename( $title ) . ".kp";
 	if( !file_exists( $fname ) ) return array();
-	
+
 	$keptlist = explode( $FS1, file_get_contents( $fname ) );
 	array_shift( $keptlist ); # Drop the junk at beginning of file
-	
+
 	$revisions = array();
 	foreach( $keptlist as $rev ) {
 		$section = splitHash( $FS2, $rev );
@@ -197,12 +197,12 @@ function checkUserCache( $name, $host )
 function importPage( $title )
 {
 	global $usercache;
-	
+
 	echo "\n<!-- Importing page " . xmlCommentSafe( $title ) . " -->\n";
 	$page = fetchPage( $title );
 
 	$newtitle = xmlsafe( str_replace( '_', ' ', recodeText( $title ) ) );
-	
+
 	$munged = mungeFormat( $page->text );
 	if( $munged != $page->text ) {
 		/**
@@ -235,7 +235,7 @@ END;
 	if(count( $revisions ) == 0 ) {
 		return $sql;
 	}
-	
+
 	foreach( $revisions as $rev ) {
 		$text      = xmlsafe( recodeText( $rev->text ) );
 		$minor     = ($rev->minor ? '<minor/>' : '');
@@ -243,7 +243,7 @@ END;
 		$username  = xmlsafe( recodeText( $username ) );
 		$timestamp = xmlsafe( timestamp2ISO8601( $rev->ts ) );
 		$comment   = xmlsafe( recodeText( $rev->summary ) );
-		
+
 		$xml .= <<<END
 		<revision>
 			<timestamp>$timestamp</timestamp>
@@ -303,7 +303,7 @@ function xmlsafe( $string ) {
 	 * XML output invalid, so be sure to strip them out.
 	 */
 	$string = UtfNormal::cleanUp( $string );
-	
+
 	$string = htmlspecialchars( $string );
 	return $string;
 }
@@ -331,7 +331,7 @@ function mungeFormat( $text ) {
 	$staged = preg_replace_callback(
 		'/(<nowiki>.*?<\\/nowiki>|(?:http|https|ftp):\\S+|\[\[[^]\\n]+]])/s',
 		'nowikiPlaceholder', $text );
-	
+
 	# This is probably not  100% correct, I'm just
 	# glancing at the UseModWiki code.
 	$upper   = "[A-Z]";
@@ -340,10 +340,10 @@ function mungeFormat( $text ) {
 	$camel   = "(?:$upper+$lower+$upper+$any*)";
 	$subpage = "(?:\\/$any+)";
 	$substart = "(?:\\/$upper$any*)";
-	
+
 	$munged = preg_replace( "/(?!\\[\\[)($camel$subpage*|$substart$subpage*)\\b(?!\\]\\]|>)/",
 		'[[$1]]', $staged );
-	
+
 	$final = preg_replace( '/' . preg_quote( placeholder() ) . '/es',
 		'array_shift( $nowiki )', $munged );
 	return $final;

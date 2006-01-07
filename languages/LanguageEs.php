@@ -1939,15 +1939,15 @@ class LanguageEs extends LanguageUtf8 {
 		global $wgSkinNamesEs;
 		return $wgSkinNamesEs;
 	}
-	
+
 	function formatMonth( $month, $format ) {
 		return $this->getMonthAbbreviation( $month );
 	}
-	
+
 	function timeDateSeparator( $format ) {
 		return ' ';
 	}
-	
+
 
 	function getMessage( $key ) {
 		global $wgAllMessagesEs;

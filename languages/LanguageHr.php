@@ -1818,7 +1818,7 @@ Potvrdite namjeru vraćanja ovog članka.',
 #--------------------------------------------------------------------------
 
 class LanguageHr extends LanguageUtf8 {
-	
+
 	function getNamespaces() {
 		global $wgNamespaceNamesHr;
 		return $wgNamespaceNamesHr;
@@ -1837,7 +1837,7 @@ class LanguageHr extends LanguageUtf8 {
 		global $wgSkinNamesHr;
 		return $wgSkinNamesHr;
  	}
-	
+
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 

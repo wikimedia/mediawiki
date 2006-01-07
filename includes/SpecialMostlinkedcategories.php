@@ -38,7 +38,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 			GROUP BY cl_to
 			";
 	}
-	
+
 	function sortDescending() { return true; }
 
 	/**
@@ -61,9 +61,9 @@ class MostlinkedCategoriesPage extends QueryPage {
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
-		
+
 		$plink = $skin->makeLinkObj( $nt, htmlspecialchars( $text ) );
-		
+
 		$nlinks = wfMsg( 'nlinks', $result->value );
 		return "$plink ($nlinks)";
 	}

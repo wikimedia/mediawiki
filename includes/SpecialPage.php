@@ -345,7 +345,7 @@ class SpecialPage
 	function getFile() { return $this->mFile; }
 	function isListed() { return $this->mListed; }
 	/**#@-*/
-	
+
 	/**#@+
 	  * Accessor and mutator
 	  */
@@ -357,7 +357,7 @@ class SpecialPage
 	function includable( $x = NULL ) { return wfSetVar( $this->mIncludable, $x ); }
 	function including( $x = NULL ) { return wfSetVar( $this->mIncluding, $x ); }
 	/**#@-*/
-	
+
 	/**
 	 * Checks if the given user (identified by an object) can execute this
 	 * special page (as defined by $mRestriction)

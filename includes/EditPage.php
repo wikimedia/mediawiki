@@ -154,10 +154,10 @@ class EditPage {
 	 */
 	function edit() {
 		global $wgOut, $wgUser, $wgRequest, $wgTitle;
-		
+
 		if ( ! wfRunHooks( 'AlternateEdit', array( &$this  ) ) )
 			return;
-		
+
 		$fname = 'EditPage::edit';
 		wfProfileIn( $fname );
 		wfDebug( "$fname: enter\n" );
@@ -238,11 +238,11 @@ class EditPage {
 		}
 
 		wfProfileIn( "$fname-business-end" );
-		
+
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
 		$this->isCssJsSubpage = $wgTitle->isCssJsSubpage();
-		
+
 		/* Notice that we can't use isDeleted, because it returns true if article is ever deleted
 		 * no matter it's current state
 		 */
@@ -263,7 +263,7 @@ class EditPage {
 				}
 			}
 		}
-		
+
 		if(!$this->mTitle->getArticleID() && ('initial' == $this->formtype || $this->firsttime )) { # new article
 			$this->showIntro();
 		}
@@ -283,7 +283,7 @@ class EditPage {
 				return;
 			}
 		}
-		
+
 		# First time through: get contents, set time for conflict
 		# checking, etc.
 		if ( 'initial' == $this->formtype || $this->firsttime ) {
@@ -340,7 +340,7 @@ class EditPage {
 			} else {
 				$this->preview = $request->getCheck( 'wpPreview' );
 				$this->diff = $request->getCheck( 'wpDiff' );
-				
+
 				if( !$this->preview ) {
 					if ( $this->tokenOk( $request ) ) {
 						# Some browsers will not report any submit button
@@ -364,7 +364,7 @@ class EditPage {
 			if( !preg_match( '/^\d{14}$/', $this->starttime )) {
 				$this->starttime = null;
 			}
-	
+
 			$this->recreate  = $request->getCheck( 'wpRecreate' );
 
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
@@ -393,7 +393,7 @@ class EditPage {
 
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro' );
-		
+
 		wfProfileOut( $fname );
 	}
 
@@ -443,7 +443,7 @@ class EditPage {
 	 */
 	function attemptSave() {
 		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut;
-		
+
 		$fname = 'EditPage::attemptSave';
 		wfProfileIn( $fname );
 		wfProfileIn( "$fname-checks" );
@@ -514,9 +514,9 @@ class EditPage {
 			wfProfileOut( $fname );
 			return true;
 		}
-		
+
 		wfProfileOut( "$fname-checks" );
-		
+
 		# If article is new, insert it.
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 		if ( 0 == $aid ) {
@@ -527,7 +527,7 @@ class EditPage {
 				wfProfileOut( $fname );
 				return;
 			}
-			
+
 			# Don't save a new article if it's blank.
 			if ( ( '' == $this->textbox1 ) ) {
 					$wgOut->redirect( $this->mTitle->getFullURL() );
@@ -538,7 +538,7 @@ class EditPage {
 			$isComment=($this->section=='new');
 			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
 				$this->minoredit, $this->watchthis, false, $isComment);
-			
+
 			wfProfileOut( $fname );
 			return false;
 		}
@@ -547,7 +547,7 @@ class EditPage {
 
 		$this->mArticle->clear(); # Force reload of dates, etc.
 		$this->mArticle->forUpdate( true ); # Lock the article
-		
+
 		if( $this->mArticle->getTimestamp() != $this->edittime ) {
 			$this->isConflict = true;
 			if( $this->section == 'new' ) {
@@ -600,12 +600,12 @@ class EditPage {
 				}
 			}
 		}
-		
+
 		if ( $this->isConflict ) {
 			wfProfileOut( $fname );
 			return true;
 		}
-		
+
 		# All's well
 		wfProfileIn( "$fname-sectionanchor" );
 		$sectionanchor = '';
@@ -671,9 +671,9 @@ class EditPage {
 		wfProfileIn( $fname );
 
 		$sk =& $wgUser->getSkin();
-		
+
 		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) ) ;
-		
+
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		# Enabled article-related sidebar, toplinks, etc.
@@ -701,7 +701,7 @@ class EditPage {
 						if( !empty( $matches[2] ) ) {
 							$this->summary = "/* ". trim($matches[2])." */ ";
 						}
-					}					
+					}
 				}
 			} else {
 				$s = wfMsg( 'editing', $this->mTitle->getPrefixedText() );
@@ -896,7 +896,7 @@ END
 </textarea>
 
 		" );
-		
+
 		$wgOut->addWikiText( $copywarn );
 
 		$wgOut->addHTML( "
@@ -962,7 +962,7 @@ END
 
 		wfProfileOut( $fname );
 	}
-	
+
 	/**
 	 * Append preview output to $wgOut.
 	 * Includes category rendering if this is a category page.
@@ -1028,7 +1028,7 @@ END
 			'editform.wpTextbox1.value,' .
 			htmlspecialchars( '"' . $liveAction . '"' ) . ')"';
 	}
-	
+
 	function getLastDelete() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$fname = 'EditPage::getLastDelete';
@@ -1104,13 +1104,13 @@ END
 			}
 
 			$toparse = $this->textbox1;
-			
+
 			# If we're adding a comment, we need to show the
 			# summary as the headline
 			if($this->section=="new" && $this->summary!="") {
 				$toparse="== {$this->summary} ==\n\n".$toparse;
 			}
-			
+
 			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
 
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
@@ -1435,7 +1435,7 @@ END
 			? $this->unmakesafe( $text )
 			: $text;
 	}
-	
+
 	/**
 	 * Filter an output field through a Unicode armoring process if it is
 	 * going to an old browser with known broken Unicode editing issues.
@@ -1451,7 +1451,7 @@ END
 			? $codedText
 			: $this->makesafe( $codedText );
 	}
-	
+
 	/**
 	 * A number of web browsers are known to corrupt non-ASCII characters
 	 * in a UTF-8 text editing environment. To protect against this,
@@ -1468,7 +1468,7 @@ END
 	function makesafe( $invalue ) {
 		// Armor existing references for reversability.
 		$invalue = strtr( $invalue, array( "&#x" => "&#x0" ) );
-		
+
 		$bytesleft = 0;
 		$result = "";
 		$working = 0;
@@ -1497,7 +1497,7 @@ END
 		}
 		return $result;
 	}
-	
+
 	/**
 	 * Reverse the previously applied transliteration of non-ASCII characters
 	 * back to UTF-8. Used to protect data from corruption by broken web browsers
@@ -1517,7 +1517,7 @@ END
 					$hexstring .= $invalue{$i};
 					$i++;
 				} while( ctype_xdigit( $invalue{$i} ) && ( $i < strlen( $invalue ) ) );
-				
+
 				// Do some sanity checks. These aren't needed for reversability,
 				// but should help keep the breakage down if the editor
 				// breaks one of the entities whilst editing.
@@ -1534,7 +1534,7 @@ END
 		// reverse the transform that we made for reversability reasons.
 		return strtr( $result, array( "&#x0" => "&#x" ) );
 	}
-	
+
 	function noCreatePermission() {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'nocreatetitle' ) );

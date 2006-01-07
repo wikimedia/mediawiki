@@ -246,7 +246,7 @@ class Database {
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		global $wguname;
-		
+
 		# Test for missing mysql.so
 		# First try to load it
 		if (!@extension_loaded('mysql')) {
@@ -302,14 +302,14 @@ class Database {
 		if ( !$success ) {
 			$this->reportConnectionError();
 		}
-		
+
 		global $wgDBmysql5;
 		if( $wgDBmysql5 ) {
 			// Tell the server we're communicating with it in UTF-8.
 			// This may engage various charset conversions.
 			$this->query( 'SET NAMES utf8' );
 		}
-		
+
 		$this->mOpened = $success;
 		return $success;
 	}
@@ -343,7 +343,7 @@ class Database {
 		if ( $myError ) {
 			$error = $myError;
 		}
-		
+
 		if ( $this->mFailFunction ) {
 			if ( !is_int( $this->mFailFunction ) ) {
 				$ff = $this->mFailFunction;
@@ -1042,7 +1042,7 @@ class Database {
 			$opts[] = 'IGNORE';
 		return implode(' ', $opts);
 	}
-	
+
 	/**
 	 * UPDATE wrapper, takes a condition array and a SET array
 	 *
@@ -1226,7 +1226,7 @@ class Database {
 		$s=str_replace(array('%','_'),array('\%','\_'),$s);
 		return $s;
 	}
-		
+
 	/**
 	 * Returns an appropriately quoted sequence value for inserting a new row.
 	 * MySQL has autoincrement fields, so this is just NULL. But the PostgreSQL
@@ -1800,7 +1800,7 @@ border=\"0\" ALT=\"Google\"></A>
 	}
 
 	wfLogDBError( "Connection error: $error\n" );
-	
+
 	$text = str_replace( '$1', $error, $noconnect );
 	$text .= wfGetSiteNotice();
 

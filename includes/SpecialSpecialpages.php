@@ -10,10 +10,10 @@
  */
 function wfSpecialSpecialpages() {
 	global $wgOut, $wgUser, $wgAvailableRights;
-	
+
 	$wgOut->setRobotpolicy( 'index,nofollow' );
 	$sk = $wgUser->getSkin();
-	
+
 	# Get listable pages, in a 2-d array with the first dimension being user right
 	$pages = SpecialPage::getPages();
 
@@ -47,7 +47,7 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 		# Yeah, that was pointless. Thanks for coming.
 		return;
 	}
-	
+
 	/** Put them into a sortable array */
 	$sortedPages = array();
 	foreach ( $pages as $name => $page ) {
@@ -55,7 +55,7 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 			$sortedPages[$page->getDescription()] = $page->getTitle();
 		}
 	}
-	
+
 	/** Sort */
 	if ( $wgSortSpecialPages ) {
 		ksort( $sortedPages );

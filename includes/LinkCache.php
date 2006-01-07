@@ -88,7 +88,7 @@ class LinkCache {
 	function getPageLinks() { return $this->mPageLinks; }
 	function getGoodLinks() { return $this->mGoodLinks; }
 	function getBadLinks() { return array_keys( $this->mBadLinks ); }
-	
+
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 * @param string $title Title to add
@@ -102,7 +102,7 @@ class LinkCache {
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 * @param Title $nt Title to add

@@ -62,7 +62,7 @@ class WebRequest {
 		}
 		return $arr;
 	}
-	
+
 	/**
 	 * If magic_quotes_gpc option is on, run the global arrays
 	 * through fix_magic_quotes to strip out the stupid slashes.
@@ -80,7 +80,7 @@ class WebRequest {
 			$this->fix_magic_quotes( $_SERVER );
 		}
 	}
-	
+
 	/**
 	 * Recursively normalizes UTF-8 strings in the given array.
 	 * @param array $data string or array
@@ -97,7 +97,7 @@ class WebRequest {
 		}
 		return $data;
 	}
-	
+
 	/**
 	 * Fetch a value from the given array or return $default if it's not set.
 	 *
@@ -144,7 +144,7 @@ class WebRequest {
 			return (string)$val;
 		}
 	}
-	
+
 	/**
 	 * Fetch an array from the input or return $default if it's not set.
 	 * If source was scalar, will return an array with a single element.
@@ -174,7 +174,7 @@ class WebRequest {
 	function getInt( $name, $default = 0 ) {
 		return intval( $this->getVal( $name, $default ) );
 	}
-	
+
 	/**
 	 * Fetch an integer value from the input or return null if empty.
 	 * Guaranteed to return an integer or null; non-numeric input will
@@ -188,7 +188,7 @@ class WebRequest {
 			? intval( $val )
 			: null;
 	}
-	
+
 	/**
 	 * Fetch a boolean value from the input or return $default if not set.
 	 * Guaranteed to return true or false, with normal PHP semantics for
@@ -200,7 +200,7 @@ class WebRequest {
 	function getBool( $name, $default = false ) {
 		return $this->getVal( $name, $default ) ? true : false;
 	}
-	
+
 	/**
 	 * Return true if the named value is set in the input, whatever that
 	 * value is (even "0"). Return false if the named value is not set.
@@ -214,7 +214,7 @@ class WebRequest {
 		$val = $this->getVal( $name, NULL );
 		return isset( $val );
 	}
-	
+
 	/**
 	 * Fetch a text string from the given array or return $default if it's not
 	 * set. \r is stripped from the text, and with some language modules there
@@ -231,13 +231,13 @@ class WebRequest {
 		return str_replace( "\r\n", "\n",
 			$wgContLang->recodeInput( $val ) );
 	}
-	
+
 	/**
 	 * Extracts the given named values into an array.
 	 * If no arguments are given, returns all input values.
 	 * No transformation is performed on the values.
 	 */
-	function getValues() {	
+	function getValues() {
 		$names = func_get_args();
 		if ( count( $names ) == 0 ) {
 			$names = array_keys( $_REQUEST );
@@ -265,7 +265,7 @@ class WebRequest {
 	function wasPosted() {
 		return $_SERVER['REQUEST_METHOD'] == 'POST';
 	}
-	
+
 	/**
 	 * Returns true if there is a session cookie set.
 	 * This does not necessarily mean that the user is logged in!
@@ -275,7 +275,7 @@ class WebRequest {
 	function checkSessionCookie() {
 		return isset( $_COOKIE[ini_get('session.name')] );
 	}
-	
+
 	/**
 	 * Return the path portion of the request URI.
 	 * @return string
@@ -289,7 +289,7 @@ class WebRequest {
 			return preg_replace( '!^[^:]+://[^/]+/!', '/', $base );
 		}
 	}
-	
+
 	/**
 	 * Return the request URI with the canonical service and hostname.
 	 * @return string
@@ -298,7 +298,7 @@ class WebRequest {
 		global $wgServer;
 		return $wgServer . $this->getRequestURL();
 	}
-	
+
 	/**
 	 * Take an arbitrary query and rewrite the present URL to include it
 	 * @param string $query Query string fragment; do not include initial '?'
@@ -312,12 +312,12 @@ class WebRequest {
 			$basequery .= '&' . urlencode( $var ) . '=' . urlencode( $val );
 		}
 		$basequery .= '&' . $query;
-		
+
 		# Trim the extra &
 		$basequery = substr( $basequery, 1 );
 		return $wgTitle->getLocalURL( $basequery );
 	}
-	
+
 	/**
 	 * HTML-safe version of appendQuery().
 	 * @param string $query Query string fragment; do not include initial '?'
@@ -326,7 +326,7 @@ class WebRequest {
 	function escapeAppendQuery( $query ) {
 		return htmlspecialchars( $this->appendQuery( $query ) );
 	}
-	
+
 	/**
 	 * Check for limit and offset parameters on the input, and return sensible
 	 * defaults if not given. The limit must be positive and is capped at 5000.
@@ -338,7 +338,7 @@ class WebRequest {
 	 */
 	function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
 		global $wgUser;
-	
+
 		$limit = $this->getInt( 'limit', 0 );
 		if( $limit < 0 ) $limit = 0;
 		if( ( $limit == 0 ) && ( $optionname != '' ) ) {
@@ -346,13 +346,13 @@ class WebRequest {
 		}
 		if( $limit <= 0 ) $limit = $deflimit;
 		if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
-	
+
 		$offset = $this->getInt( 'offset', 0 );
 		if( $offset < 0 ) $offset = 0;
-	
+
 		return array( $limit, $offset );
 	}
-	
+
 	/**
 	 * Return the path to the temporary file where PHP has stored the upload.
 	 * @param string $key
@@ -364,7 +364,7 @@ class WebRequest {
 		}
 		return $_FILES[$key]['tmp_name'];
 	}
-	
+
 	/**
 	 * Return the size of the upload, or 0.
 	 * @param string $key
@@ -376,7 +376,7 @@ class WebRequest {
 		}
 		return $_FILES[$key]['size'];
 	}
-	
+
 	/**
 	 * Return the upload error or 0
 	 * @param string $key
@@ -388,7 +388,7 @@ class WebRequest {
 		}
 		return $_FILES[$key]['error'];
 	}
-	
+
 	/**
 	 * Return the original filename of the uploaded file, as reported by
 	 * the submitting user agent. HTML-style character entities are
@@ -405,7 +405,7 @@ class WebRequest {
 			return NULL;
 		}
 		$name = $_FILES[$key]['name'];
-		
+
 		# Safari sends filenames in HTML-encoded Unicode form D...
 		# Horrid and evil! Let's try to make some kind of sense of it.
 		$name = Sanitizer::decodeCharReferences( $name );
@@ -423,7 +423,7 @@ class WebRequest {
 class FauxRequest extends WebRequest {
 	var $data = null;
 	var $wasPosted = false;
-	
+
 	function FauxRequest( $data, $wasPosted = false ) {
 		if( is_array( $data ) ) {
 			$this->data = $data;
@@ -436,32 +436,32 @@ class FauxRequest extends WebRequest {
 	function getVal( $name, $default = NULL ) {
 		return $this->getGPCVal( $this->data, $name, $default );
 	}
-	
+
 	function getText( $name, $default = '' ) {
 		# Override; don't recode since we're using internal data
 		return $this->getVal( $name, $default );
 	}
-	
-	function getValues() {	
+
+	function getValues() {
 		return $this->data;
 	}
 
 	function wasPosted() {
 		return $this->wasPosted;
 	}
-	
+
 	function checkSessionCookie() {
 		return false;
 	}
-	
+
 	function getRequestURL() {
 		wfDebugDieBacktrace( 'FauxRequest::getRequestURL() not implemented' );
 	}
-	
+
 	function appendQuery( $query ) {
 		wfDebugDieBacktrace( 'FauxRequest::appendQuery() not implemented' );
 	}
-	
+
 }
 
 ?>

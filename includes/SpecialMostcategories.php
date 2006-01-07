@@ -44,9 +44,9 @@ class MostcategoriesPage extends QueryPage {
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
-		
+
 		$plink = $skin->makeKnownLink( $nt->getPrefixedText(), $text );
-		
+
 		$nl = wfMsg( 'ncategories', $result->value );
 		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Categories' ), $nl, 'article=' . $nt->getPrefixedURL() );
 

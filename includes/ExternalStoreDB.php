@@ -44,7 +44,7 @@ class ExternalStoreDB {
 		}
 		return $wgExternalLoadBalancers[$cluster];
 	}
-	
+
 	function &getSlave( $cluster ) {
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_SLAVE );
@@ -53,7 +53,7 @@ class ExternalStoreDB {
 	function &getMaster( $cluster ) {
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_MASTER );
-	}		
+	}
 
 	function getTable( &$db ) {
 		$table = $db->getLBInfo( 'blobs table' );
@@ -62,7 +62,7 @@ class ExternalStoreDB {
 		}
 		return $table;
 	}
-	
+
 	function fetchFromURL($url) {
 		global $wgExternalServers;
 		#
@@ -84,7 +84,7 @@ class ExternalStoreDB {
 		}
 		return $ret;
 	}
-	
+
 	/**
 	 * Fetch a blob item out of the database; a cache of the last-loaded
 	 * blob will be kept so that multiple loads out of a multi-item blob
@@ -99,16 +99,16 @@ class ExternalStoreDB {
 			wfDebug( "ExternalStoreDB::fetchBlob cache hit on $cacheID\n" );
 			return $wgExternalBlobCache[$cacheID];
 		}
-		
+
 		wfDebug( "ExternalStoreDB::fetchBlob cache miss on $cacheID\n" );
-		
+
 		$dbr =& $this->getSlave( $cluster );
 		$ret = $dbr->selectField( $this->getTable( $dbr ), 'blob_text', array( 'blob_id' => $id ) );
 		if( $itemID !== false ) {
 			// Unserialise object; caller extracts item
 			$ret = unserialize( $ret );
 		}
-		
+
 		$wgExternalBlobCache = array( $cacheID => &$ret );
 		return $ret;
 	}

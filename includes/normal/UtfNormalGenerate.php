@@ -95,13 +95,13 @@ while( false !== ($line = fgets( $in ) ) ) {
 	$name = $columns[1];
 	$canonicalCombiningClass = $columns[3];
 	$decompositionMapping = $columns[5];
-	
+
 	$source = codepointToUtf8( hexdec( $codepoint ) );
 
 	if( $canonicalCombiningClass != 0 ) {
 		$combiningClass[$source] = intval( $canonicalCombiningClass );
 	}
-	
+
 	if( $decompositionMapping === '' ) continue;
 	if( preg_match( '/^<(.+)> (.*)$/', $decompositionMapping, $matches ) ) {
 		# Compatibility decomposition
@@ -114,7 +114,7 @@ while( false !== ($line = fgets( $in ) ) ) {
 	}
 	$total++;
 	$dest = hexSequenceToUtf8( $decompositionMapping );
-	
+
 	$compatibilityDecomp[$source] = $dest;
 	if( $canonical ) {
 		$canonicalDecomp[$source] = $dest;

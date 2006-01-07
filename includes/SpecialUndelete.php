@@ -91,7 +91,7 @@ class PageArchive {
 	 */
 	function getTextFromRow( $row ) {
 		$fname = 'PageArchive::getTextFromRow';
-		
+
 		if( is_null( $row->ar_text_id ) ) {
 			// An old row from MediaWiki 1.4 or previous.
 			// Text is embedded in this row in classic compression format.
@@ -106,7 +106,7 @@ class PageArchive {
 			return Revision::getRevisionText( $text );
 		}
 	}
-		
+
 
 	/**
 	 * Fetch (and decompress if necessary) the stored text of the most
@@ -225,7 +225,7 @@ class PageArchive {
 			);
 		$revision = null;
 		$newRevId = $previousRevId;
-		
+
 		while( $row = $dbw->fetchObject( $result ) ) {
 			if( $row->ar_text_id ) {
 				// Revision was deleted in 1.5+; text is in
@@ -344,7 +344,7 @@ class UndeleteForm {
 	}
 
 	function execute() {
-		
+
 		if( is_null( $this->mTargetObj ) ) {
 			return $this->showList();
 		}

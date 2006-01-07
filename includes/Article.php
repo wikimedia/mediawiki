@@ -108,13 +108,13 @@ class Article {
 			}
 			wfProfileOut( $fname );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
-			
+
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$ret = wfMsgWeirdKey ( $this->mTitle->getText() ) ;
 			} else {
 				$ret = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
 			}
-			
+
 			return "<div class='noarticletext'>$ret</div>";
 		} else {
 			$this->loadContent( $noredir );
@@ -394,7 +394,7 @@ class Article {
 		if ( $this->mContentLoaded ) {
 			return $this->mContent;
 		}
-		
+
 		$dbr =& $this->getDB();
 		$fname = 'Article::fetchContent';
 
@@ -836,7 +836,7 @@ class Article {
 					$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '', 'redirect=no' );
 					$s = wfMsg( 'redirectedfrom', $redir );
 					$wgOut->setSubtitle( $s );
-					
+
 					// Check the parser cache again, for the target page
 					if( $pcache ) {
 						if( $wgOut->tryParserCache( $this, $wgUser ) ) {
@@ -996,7 +996,7 @@ class Article {
 		$wgOut->setArticleBodyOnly(true);
 		$this->view();
 	}
-	
+
 	function purge() {
 		global $wgUser, $wgRequest, $wgOut, $wgUseSquid;
 
@@ -1159,7 +1159,7 @@ class Article {
 			wfProfileOut( $fname );
 			return false;
 		}
-		
+
 		$this->mGoodAdjustment = (int)$this->isCountable( $text );
 		$this->mTotalAdjustment = 1;
 
@@ -1390,7 +1390,7 @@ class Article {
 				'minor_edit' => $isminor,
 				'text'       => $text
 				) );
-			
+
 			$dbw->immediateCommit();
 			$dbw->begin();
 			$revisionId = $revision->insertOn( $dbw );
@@ -1409,7 +1409,7 @@ class Article {
 					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 					$revisionId );
 				$dbw->commit();
-				
+
 				// Update caches outside the main transaction
 				Article::onArticleEdit( $this->mTitle );
 			}
@@ -1444,7 +1444,7 @@ class Article {
 
 			$urls = array();
 			# Invalidate caches of all articles using this article as a template
-			
+
 			# Template namespace
 			# Purge all articles linking here
 			$titles = $this->mTitle->getTemplateLinksTo();
@@ -1488,14 +1488,14 @@ class Article {
 
 		$fname = 'Article::showArticle';
 		wfProfileIn( $fname );
-		
+
 		# Output the redirect
 		if( $this->isRedirect( $text ) )
 			$r = 'redirect=no';
 		else
 			$r = '';
 		$wgOut->redirect( $this->mTitle->getFullURL( $r ).$sectionanchor );
-		
+
 		wfProfileOut( $fname );
 	}
 
@@ -1617,14 +1617,14 @@ class Article {
 		$form = new ProtectionForm( $this );
 		$form->show();
 	}
-	
+
 	/**
 	 * action=unprotect handler (alias)
 	 */
 	function unprotect() {
 		$this->protect();
 	}
-	
+
 	/**
 	 * Update the article's restriction field, and leave a log entry.
 	 *
@@ -1650,7 +1650,7 @@ class Article {
 
 		$flat = Article::flattenRestrictions( $limit );
 		$protecting = ($flat != '');
-		
+
 		if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser,
 			$limit, $reason ) ) ) {
 
@@ -1676,7 +1676,7 @@ class Article {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Take an array of page restrictions and flatten it to a string
 	 * suitable for insertion into the page_restrictions field.
@@ -1719,7 +1719,7 @@ class Article {
 			$wgOut->sysopRequired();
 			return;
 		}
-		
+
 		if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
@@ -2141,7 +2141,7 @@ class Article {
 
 		$fname = 'Article::editUpdates';
 		wfProfileIn( $fname );
-		
+
 		# Parse the text
 		$options = new ParserOptions;
 		$poutput = $wgParser->parse( $text, $this->mTitle, $options, true, true, $newid );
@@ -2159,7 +2159,7 @@ class Article {
 			if ( 0 == mt_rand( 0, 999 ) ) {
 				# Periodically flush old entries from the recentchanges table.
 				global $wgRCMaxAge;
-				
+
 				$dbw =& wfGetDB( DB_MASTER );
 				$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 				$recentchanges = $dbw->tableName( 'recentchanges' );
@@ -2434,9 +2434,9 @@ class Article {
 
 	function onArticleDelete( $title ) {
 		global $wgMessageCache;
-		
+
 		$title->touchLinks();
-		
+
 		if( $title->getNamespace() == NS_MEDIAWIKI) {
 			$wgMessageCache->replace( $title->getDBkey(), false );
 		}
@@ -2447,9 +2447,9 @@ class Article {
 	 */
 	function onArticleEdit( $title ) {
 		global $wgUseSquid, $wgPostCommitUpdateList, $wgUseFileCache;
-		
+
 		$urls = array();
-		
+
 		// Template namespace? Purge all articles linking here.
 		// FIXME: When a templatelinks table arrives, use it for all includes.
 		if ( $title->getNamespace() == NS_TEMPLATE) {

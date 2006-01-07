@@ -39,7 +39,7 @@ class LinksUpdate {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
 		$this->mDb =& wfGetDB( DB_MASTER );
-			
+
 		if ( !is_object( $title ) ) {
 			wfDebugDieBacktrace( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
 				"Please see Article::editUpdates() for an invocation example.\n" );
@@ -53,7 +53,7 @@ class LinksUpdate {
 		$this->mImages =& $this->mParserOutput->getImages();
 		$this->mTemplates =& $this->mParserOutput->getTemplates();
 		$this->mCategories =& $this->mParserOutput->getCategories();
-		
+
 	}
 
 	/**
@@ -91,13 +91,13 @@ class LinksUpdate {
 		$existing = $this->getExistingCategories();
 		$this->incrTableUpdate( 'categorylinks', 'cl', $this->getCategoryDeletions( $existing ),
 			$this->getCategoryInsertions( $existing ) );
-		
+
 		# I think this works out to a set XOR operation, the idea is to invalidate all
 		# categories which were added, deleted or changed
 		# FIXME: surely there's a more appropriate place to put this update?
 		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
 		$this->invalidateCategories( $categoryUpdates );
-		
+
 		wfProfileOut( $fname );
 	}
 
@@ -112,7 +112,7 @@ class LinksUpdate {
 
 		$existing = $this->getExistingCategories();
 		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
-		
+
 		$this->dumbTableUpdate( 'pagelinks',     $this->getLinkInsertions(),     'pl_from' );
 		$this->dumbTableUpdate( 'imagelinks',    $this->getImageInsertions(),    'il_from' );
 		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
@@ -120,7 +120,7 @@ class LinksUpdate {
 
 		# Update the cache of all the category pages
 		$this->invalidateCategories( $categoryUpdates );
-		
+
 		wfProfileOut( $fname );
 	}
 
@@ -134,7 +134,7 @@ class LinksUpdate {
 				), $fname
 			);
 		}
-	}	
+	}
 
 	function dumbTableUpdate( $table, $insertions, $fromField ) {
 		$fname = 'LinksUpdate::dumbTableUpdate';
@@ -308,7 +308,7 @@ class LinksUpdate {
 	function getImageDeletions( $existing ) {
 		return array_diff_key( $existing, $this->mImages );
 	}
-	
+
 	/**
 	 * Given an array of existing categories, returns those categories which are not in $this
 	 * and thus should be deleted.

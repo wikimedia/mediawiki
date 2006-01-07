@@ -19,7 +19,7 @@ class WhatLinksHerePage {
 	var $request, $par;
 	var $limit, $from, $dir, $target;
 	var $selfTitle, $skin;
-	
+
 	function WhatLinksHerePage( &$request, $par = null ) {
 		global $wgUser;
 		$this->request =& $request;
@@ -29,7 +29,7 @@ class WhatLinksHerePage {
 
 	function execute() {
 		global $wgUser, $wgOut;
-		
+
 		$this->limit = min( $this->request->getInt( 'limit', 50 ), 5000 );
 		if ( $this->limit <= 0 ) {
 			$this->limit = 50;
@@ -39,7 +39,7 @@ class WhatLinksHerePage {
 		if ( $this->dir != 'prev' ) {
 			$this->dir = 'next';
 		}
-		
+
 		$targetString = isset($this->par) ? $this->par : $this->request->getVal( 'target' );
 
 		if (is_null($targetString)) {
@@ -77,7 +77,7 @@ class WhatLinksHerePage {
 		$fname = 'WhatLinksHerePage::showIndirectLinks';
 
 		$dbr =& wfGetDB( DB_READ );
-		
+
 		extract( $dbr->tableNames( 'pagelinks', 'templatelinks', 'page' ) );
 
 		// Some extra validation
@@ -86,20 +86,20 @@ class WhatLinksHerePage {
 			// Before start? No make sense
 			$dir = 'next';
 		}
-		
+
 		// Make the query
 		$plConds = array(
 			'page_id=pl_from',
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		);
-		
+
 		$tlConds = array(
 			'page_id=tl_from',
 			'tl_namespace' => $target->getNamespace(),
 			'tl_title' => $target->getDBkey(),
 		);
-			
+
 		if ( $from ) {
 			if ( 'prev' == $dir ) {
 				$offsetCond = "page_id < $from";
@@ -120,18 +120,18 @@ class WhatLinksHerePage {
 			$plConds[] = $offsetCond;
 		}
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
-		
+
 		$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
 			$plConds, $fname, $options );
 		$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
 			$tlConds, $fname, $options );
-		
+
 		if ( !$dbr->numRows( $plRes ) && !$dbr->numRows( $tlRes ) ) {
 			if ( 0 == $level ) {
 				$wgOut->addWikiText( wfMsg( 'nolinkshere' ) );
 			}
 			return;
-		}		
+		}
 
 		// Read the rows into an array and remove duplicates
 		// templatelinks comes second so that the templatelinks row overwrites the
@@ -150,9 +150,9 @@ class WhatLinksHerePage {
 		// Sort by key and then change the keys to 0-based indices
 		ksort( $rows );
 		$rows = array_values( $rows );
-		
+
 		$numRows = count( $rows );
-		
+
 		// Work out the start and end IDs, for prev/next links
 		if ( $dir == 'prev' ) {
 			// Descending order
@@ -168,7 +168,7 @@ class WhatLinksHerePage {
 			}
 			// Assume that the ID specified in $from exists, so there must be another page
 			$nextId = $from;
-			
+
 			// Reverse order ready for display
 			$rows = array_reverse( $rows );
 		} else {
@@ -185,18 +185,18 @@ class WhatLinksHerePage {
 			}
 			$prevId = $from;
 		}
-		
+
 		if ( 0 == $level ) {
 			$wgOut->addWikiText( wfMsg( 'linkshere' ) );
 		}
 		$isredir = wfMsg( 'isredirect' );
 		$istemplate = wfMsg( 'istemplate' );
-		
+
 		if( $level == 0 ) {
 			$prevnext = $this->getPrevNext( $limit, $prevId, $nextId );
 			$wgOut->addHTML( $prevnext );
 		}
-		
+
 		$wgOut->addHTML( '<ul>' );
 		foreach ( $rows as $row ) {
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -222,7 +222,7 @@ class WhatLinksHerePage {
 				// FIXME? Cultural assumption, hard-coded punctuation
 				$wgOut->addHTML( ' (' . implode( ', ', $props ) . ') ' );
 			}
-			
+
 			if ( $row->page_is_redirect ) {
 				if ( $level < 2 ) {
 					$this->showIndirectLinks( $level + 1, $nt, 500 );
@@ -231,7 +231,7 @@ class WhatLinksHerePage {
 			$wgOut->addHTML( "</li>\n" );
 		}
 		$wgOut->addHTML( "</ul>\n" );
-		
+
 		if( $level == 0 ) {
 			$wgOut->addHTML( $prevnext );
 		}

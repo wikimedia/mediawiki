@@ -31,12 +31,12 @@ require_once( 'WikiError.php' );
  */
 function wfSpecialImport( $page = '' ) {
 	global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgImportSources;
-	
+
 	###
 #	$wgOut->addWikiText( "Special:Import is not ready for this beta release, sorry." );
 #	return;
 	###
-	
+
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
 		switch( $wgRequest->getVal( "source" ) ) {
 		case "upload":
@@ -54,7 +54,7 @@ function wfSpecialImport( $page = '' ) {
 		default:
 			$source = new WikiError( "Unknown import source type" );
 		}
-		
+
 		if( WikiError::isError( $source ) ) {
 			$wgOut->addWikiText( wfEscapeWikiText( $source->getMessage() ) );
 		} else {
@@ -69,9 +69,9 @@ function wfSpecialImport( $page = '' ) {
 			}
 		}
 	}
-	
+
 	$action = $wgTitle->escapeLocalUrl( 'action=submit' );
-	
+
 	if( $wgUser->isAllowed( 'importupload' ) ) {
 		$wgOut->addWikiText( wfMsg( "importtext" ) );
 		$wgOut->addHTML( "
@@ -91,7 +91,7 @@ function wfSpecialImport( $page = '' ) {
 			$wgOut->addWikiText( wfMsg( 'importnosources' ) );
 		}
 	}
-	
+
 	if( !empty( $wgImportSources ) ) {
 		$wgOut->addHTML( "
 <fieldset>
@@ -128,56 +128,56 @@ class WikiRevision {
 	var $text = "";
 	var $comment = "";
 	var $minor = false;
-	
+
 	function setTitle( $text ) {
 		$this->title = Title::newFromText( $text );
 	}
-	
+
 	function setTimestamp( $ts ) {
 		# 2003-08-05T18:30:02Z
 		$this->timestamp = wfTimestamp( TS_MW, $ts );
 	}
-	
+
 	function setUsername( $user ) {
 		$this->user_text = $user;
 	}
-	
+
 	function setUserIP( $ip ) {
 		$this->user_text = $ip;
 	}
-	
+
 	function setText( $text ) {
 		$this->text = $text;
 	}
-	
+
 	function setComment( $text ) {
 		$this->comment = $text;
 	}
-	
+
 	function setMinor( $minor ) {
 		$this->minor = (bool)$minor;
 	}
-	
+
 	function getTitle() {
 		return $this->title;
 	}
-	
+
 	function getTimestamp() {
 		return $this->timestamp;
 	}
-	
+
 	function getUser() {
 		return $this->user_text;
 	}
-	
+
 	function getText() {
 		return $this->text;
 	}
-	
+
 	function getComment() {
 		return $this->comment;
 	}
-	
+
 	function getMinor() {
 		return $this->minor;
 	}
@@ -185,7 +185,7 @@ class WikiRevision {
 	function importOldRevision() {
 		$fname = "WikiImporter::importOldRevision";
 		$dbw =& wfGetDB( DB_MASTER );
-		
+
 		# Sneak a single revision into place
 		$user = User::newFromName( $this->getUser() );
 		if( $user ) {
@@ -199,22 +199,22 @@ class WikiRevision {
 		// avoid memory leak...?
 		$linkCache =& LinkCache::singleton();
 		$linkCache->clear();
-		
+
 		$article = new Article( $this->title );
 		$pageId = $article->getId();
 		if( $pageId == 0 ) {
 			# must create the page...
 			$pageId = $article->insertOn( $dbw );
 		}
-		
+
 		# FIXME: Check for exact conflicts
 		# FIXME: Use original rev_id optionally
 		# FIXME: blah blah blah
-		
+
 		#if( $numrows > 0 ) {
 		#	return wfMsg( "importhistoryconflict" );
 		#}
-		
+
 		# Insert the row
 		$revision = new Revision( array(
 			'page'       => $pageId,
@@ -227,7 +227,7 @@ class WikiRevision {
 			) );
 		$revId = $revision->insertOn( $dbw );
 		$article->updateIfNewerOn( $dbw, $revision );
-		
+
 		return true;
 	}
 
@@ -243,32 +243,32 @@ class WikiImporter {
 	var $mPageCallback = null;
 	var $mRevisionCallback = null;
 	var $lastfield;
-	
+
 	function WikiImporter( $source ) {
 		$this->setRevisionCallback( array( &$this, "importRevision" ) );
 		$this->mSource = $source;
 	}
-	
+
 	function throwXmlError( $err ) {
 		$this->debug( "FAILURE: $err" );
 		wfDebug( "WikiImporter XML error: $err\n" );
 	}
-	
+
 	# --------------
-	
+
 	function doImport() {
 		if( empty( $this->mSource ) ) {
 			return new WikiErrorMsg( "importnotext" );
 		}
-		
+
 		$parser = xml_parser_create( "UTF-8" );
-		
+
 		# case folding violates XML standard, turn it off
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
-		
+
 		xml_set_object( $parser, $this );
 		xml_set_element_handler( $parser, "in_start", "" );
-		
+
 		$offset = 0; // for context extraction on error reporting
 		do {
 			$chunk = $this->mSource->readChunk();
@@ -279,14 +279,14 @@ class WikiImporter {
 			$offset += strlen( $chunk );
 		} while( $chunk !== false && !$this->mSource->atEnd() );
 		xml_parser_free( $parser );
-		
+
 		return true;
 	}
-	
+
 	function debug( $data ) {
 		#wfDebug( "IMPORT: $data\n" );
 	}
-	
+
 	function notice( $data ) {
 		global $wgCommandLineMode;
 		if( $wgCommandLineMode ) {
@@ -296,7 +296,7 @@ class WikiImporter {
 			$wgOut->addHTML( "<li>$data</li>\n" );
 		}
 	}
-	
+
 	/**
 	 * Sets the action to perform as each new page in the stream is reached.
 	 * @param callable $callback
@@ -307,7 +307,7 @@ class WikiImporter {
 		$this->mPageCallback = $callback;
 		return $previous;
 	}
-	
+
 	/**
 	 * Sets the action to perform as each page revision is reached.
 	 * @param callable $callback
@@ -318,7 +318,7 @@ class WikiImporter {
 		$this->mRevisionCallback = $callback;
 		return $previous;
 	}
-	
+
 	/**
 	 * Default per-revision callback, performs the import.
 	 * @param WikiRevision $revision
@@ -346,7 +346,7 @@ class WikiImporter {
 		$this->debug( "-- Comment: " . $revision->comment );
 		$this->debug( "-- Text: " . $revision->text );
 	}
-	
+
 	/**
 	 * Notify the callback function when a new <page> is reached.
 	 * @param Title $title
@@ -357,13 +357,13 @@ class WikiImporter {
 			call_user_func( $this->mPageCallback, $title );
 		}
 	}
-	
-	
+
+
 	# XML parser callbacks from here out -- beware!
 	function donothing( $parser, $x, $y="" ) {
 		#$this->debug( "donothing" );
 	}
-	
+
 	function in_start( $parser, $name, $attribs ) {
 		$this->debug( "in_start $name" );
 		if( $name != "mediawiki" ) {
@@ -371,7 +371,7 @@ class WikiImporter {
 		}
 		xml_set_element_handler( $parser, "in_mediawiki", "out_mediawiki" );
 	}
-	
+
 	function in_mediawiki( $parser, $name, $attribs ) {
 		$this->debug( "in_mediawiki $name" );
 		if( $name == 'siteinfo' ) {
@@ -389,8 +389,8 @@ class WikiImporter {
 		}
 		xml_set_element_handler( $parser, "donothing", "donothing" );
 	}
-	
-	
+
+
 	function in_siteinfo( $parser, $name, $attribs ) {
 		// no-ops for now
 		$this->debug( "in_siteinfo $name" );
@@ -406,13 +406,13 @@ class WikiImporter {
 			return $this->throwXMLerror( "Element <$name> not allowed in <siteinfo>." );
 		}
 	}
-	
+
 	function out_siteinfo( $parser, $name ) {
 		if( $name == "siteinfo" ) {
 			xml_set_element_handler( $parser, "in_mediawiki", "out_mediawiki" );
 		}
 	}
-	
+
 
 	function in_page( $parser, $name, $attribs ) {
 		$this->debug( "in_page $name" );
@@ -435,18 +435,18 @@ class WikiImporter {
 			return $this->throwXMLerror( "Element <$name> not allowed in a <page>." );
 		}
 	}
-	
+
 	function out_page( $parser, $name ) {
 		$this->debug( "out_page $name" );
 		if( $name != "page" ) {
 			return $this->throwXMLerror( "Expected </page>, got </$name>" );
 		}
 		xml_set_element_handler( $parser, "in_mediawiki", "out_mediawiki" );
-		
+
 		$this->workTitle = NULL;
 		$this->workRevision = NULL;
 	}
-	
+
 	function in_nothing( $parser, $name, $attribs ) {
 		$this->debug( "in_nothing $name" );
 		return $this->throwXMLerror( "No child elements allowed here; got <$name>" );
@@ -462,7 +462,7 @@ class WikiImporter {
 		}
 		xml_set_element_handler( $parser, "in_$this->parenttag", "out_$this->parenttag" );
 		xml_set_character_data_handler( $parser, "donothing" );
-		
+
 		switch( $this->appendfield ) {
 		case "title":
 			$this->workTitle = $this->appenddata;
@@ -492,7 +492,7 @@ class WikiImporter {
 		$this->appendfield = "";
 		$this->appenddata = "";
 	}
-	
+
 	function in_revision( $parser, $name, $attribs ) {
 		$this->debug( "in_revision $name" );
 		switch( $name ) {
@@ -513,14 +513,14 @@ class WikiImporter {
 			return $this->throwXMLerror( "Element <$name> not allowed in a <revision>." );
 		}
 	}
-	
+
 	function out_revision( $parser, $name ) {
 		$this->debug( "out_revision $name" );
 		if( $name != "revision" ) {
 			return $this->throwXMLerror( "Expected </revision>, got </$name>" );
 		}
 		xml_set_element_handler( $parser, "in_page", "out_page" );
-		
+
 		$out = call_user_func_array( $this->mRevisionCallback,
 			array( &$this->workRevision, &$this ) );
 		if( !empty( $out ) ) {
@@ -528,7 +528,7 @@ class WikiImporter {
 			$wgOut->addHTML( "<li>" . $out . "</li>\n" );
 		}
 	}
-	
+
 	function in_contributor( $parser, $name, $attribs ) {
 		$this->debug( "in_contributor $name" );
 		switch( $name ) {
@@ -544,7 +544,7 @@ class WikiImporter {
 			$this->throwXMLerror( "Invalid tag <$name> in <contributor>" );
 		}
 	}
-	
+
 	function out_contributor( $parser, $name ) {
 		$this->debug( "out_contributor $name" );
 		if( $name != "contributor" ) {
@@ -561,11 +561,11 @@ class ImportStringSource {
 		$this->mString = $string;
 		$this->mRead = false;
 	}
-	
+
 	function atEnd() {
 		return $this->mRead;
 	}
-	
+
 	function readChunk() {
 		if( $this->atEnd() ) {
 			return false;
@@ -581,15 +581,15 @@ class ImportStreamSource {
 	function ImportStreamSource( $handle ) {
 		$this->mHandle = $handle;
 	}
-	
+
 	function atEnd() {
 		return feof( $this->mHandle );
 	}
-	
+
 	function readChunk() {
 		return fread( $this->mHandle, 32768 );
 	}
-	
+
 	function newFromFile( $filename ) {
 		$file = @fopen( $filename, 'rt' );
 		if( !$file ) {
@@ -600,9 +600,9 @@ class ImportStreamSource {
 
 	function newFromUpload( $fieldname = "xmlimport" ) {
 		global $wgOut;
-		
+
 		$upload =& $_FILES[$fieldname];
-		
+
 		if( !isset( $upload ) ) {
 			return new WikiErrorMsg( 'importnofile' );
 		}
@@ -616,7 +616,7 @@ class ImportStreamSource {
 			return new WikiErrorMsg( 'importnofile' );
 		}
 	}
-	
+
 	function newFromURL( $url ) {
 		# fopen-wrappers are normally turned off for security.
 		ini_set( "allow_url_fopen", true );
@@ -624,7 +624,7 @@ class ImportStreamSource {
 		ini_set( "allow_url_fopen", false );
 		return $ret;
 	}
-	
+
 	function newFromInterwiki( $interwiki, $page ) {
 		$base = Title::getInterwikiLink( $interwiki );
 		if( empty( $base ) ) {

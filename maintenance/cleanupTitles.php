@@ -37,17 +37,17 @@ require_once( 'FiveUpgrade.inc' );
 class TitleCleanup extends FiveUpgrade {
 	function TitleCleanup( $dryrun = false ) {
 		parent::FiveUpgrade();
-		
+
 		$this->maxLag = 10; # if slaves are lagged more than 10 secs, wait
 		$this->dryrun = $dryrun;
 	}
-	
+
 	function cleanup() {
 		$this->runTable( 'page',
 			'', //'WHERE page_namespace=0',
 			array( &$this, 'processPage' ) );
 	}
-	
+
 	function init( $count, $table ) {
 		$this->processed = 0;
 		$this->updated = 0;
@@ -55,7 +55,7 @@ class TitleCleanup extends FiveUpgrade {
 		$this->startTime = wfTime();
 		$this->table = $table;
 	}
-	
+
 	function progress( $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
@@ -64,12 +64,12 @@ class TitleCleanup extends FiveUpgrade {
 		}
 		$portion = $this->processed / $this->count;
 		$updateRate = $this->updated / $this->processed;
-		
+
 		$now = wfTime();
 		$delta = $now - $this->startTime;
 		$estimatedTotalTime = $delta / $portion;
 		$eta = $this->startTime + $estimatedTotalTime;
-		
+
 		global $wgDBname;
 		printf( "%s %s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
 			$wgDBname,
@@ -83,50 +83,50 @@ class TitleCleanup extends FiveUpgrade {
 			$updateRate * 100.0 );
 		flush();
 	}
-	
+
 	function runTable( $table, $where, $callback ) {
 		$fname = 'CapsCleanup::buildTable';
-		
+
 		$count = $this->dbw->selectField( $table, 'count(*)', '', $fname );
 		$this->init( $count, 'page' );
 		$this->log( "Processing $table..." );
-		
+
 		$tableName = $this->dbr->tableName( $table );
 		$sql = "SELECT * FROM $tableName $where";
 		$result = $this->dbr->query( $sql, $fname );
-		
+
 		while( $row = $this->dbr->fetchObject( $result ) ) {
 			$updated = call_user_func( $callback, $row );
 		}
 		$this->log( "Finished $table... $this->updated of $this->processed rows updated" );
 		$this->dbr->freeResult( $result );
 	}
-	
+
 	function processPage( $row ) {
 		global $wgContLang;
-		
+
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
-		
+
 		$verified = UtfNormal::cleanUp( $display );
-		
+
 		$title = Title::newFromText( $verified );
-		
+
 		if( is_null( $title ) ) {
 			$this->log( "page $row->page_id ($display) is illegal." );
 			$this->moveIllegalPage( $row );
 			return $this->progress( 1 );
 		}
-		
+
 		if( !$title->equals( $current ) ) {
 			$this->log( "page $row->page_id ($display) doesn't match self." );
 			$this->moveInconsistentPage( $row, $title );
 			return $this->progress( 1 );
 		}
-		
+
 		$this->progress( 0 );
 	}
-	
+
 	function moveIllegalPage( $row ) {
 		$legal = 'A-Za-z0-9_/\\\\-';
 		$legalized = preg_replace_callback( "!([^$legal])!",
@@ -135,7 +135,7 @@ class TitleCleanup extends FiveUpgrade {
 		if( $legalized == '.' ) $legalized = '(dot)';
 		if( $legalized == '_' ) $legalized = '(space)';
 		$legalized = 'Broken/' . $legalized;
-		
+
 		$title = Title::newFromText( $legalized );
 		if( is_null( $title ) ) {
 			$clean = 'Broken/id:' . $row->page_id;
@@ -146,7 +146,7 @@ class TitleCleanup extends FiveUpgrade {
 			$this->log( "Legalized for '$legalized' exists; using '$clean'" );
 			$title = Title::newFromText( $clean );
 		}
-		
+
 		$dest = $title->getDbKey();
 		if( $this->dryrun ) {
 			$this->log( "DRY RUN: would rename $row->page_id ($row->page_namespace,'$row->page_title') to ($row->page_namespace,'$dest')" );
@@ -159,7 +159,7 @@ class TitleCleanup extends FiveUpgrade {
 				'cleanupTitles::moveInconsistentPage' );
 		}
 	}
-	
+
 	function moveInconsistentPage( $row, $title ) {
 		if( $title->exists() || $title->getInterwiki() ) {
 			if( $title->getInterwiki() ) {
@@ -197,7 +197,7 @@ class TitleCleanup extends FiveUpgrade {
 			$linkCache->clear();
 		}
 	}
-	
+
 	function hexChar( $matches ) {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );
 	}

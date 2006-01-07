@@ -29,19 +29,19 @@ class ExternalEdit {
 		$this->mCharset = $wgInputEncoding;
 		$this->mMode = $mode;
 	}
-	
+
 	function edit() {
 		global $wgOut, $wgScript, $wgScriptPath, $wgServer, $wgLang;
 		$wgOut->disable();
 		$name=$this->mTitle->getText();
 		$pos=strrpos($name,".")+1;
 		header ( "Content-type: application/x-external-editor; charset=".$this->mCharset );
-		
+
 		# $type can be "Edit text", "Edit file" or "Diff text" at the moment
 		# See the protocol specifications at [[m:Help:External editors/Tech]] for
 		# details.
-		if(!isset($this->mMode)) {		
-			$type="Edit text";		
+		if(!isset($this->mMode)) {
+			$type="Edit text";
 			$url=$this->mTitle->getFullURL("action=edit&internaledit=true");
 			# *.wiki file extension is used by some editors for syntax
 			# highlighting, so we follow that convention
@@ -57,7 +57,7 @@ class ExternalEdit {
 			}
 			$extension=substr($name, $pos);
 		}
-		$special=$wgLang->getNsText(NS_SPECIAL);		
+		$special=$wgLang->getNsText(NS_SPECIAL);
 		$control = <<<CONTROL
 [Process]
 Type=$type

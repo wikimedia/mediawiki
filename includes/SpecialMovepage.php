@@ -42,7 +42,7 @@ function wfSpecialMovepage( $par = null ) {
 class MovePageForm {
 	var $oldTitle, $newTitle, $reason; # Text input
 	var $moveTalk, $deleteAndMove;
-		
+
 	function MovePageForm( $par ) {
 		global $wgRequest;
 		$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
@@ -52,7 +52,7 @@ class MovePageForm {
 		$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
 	}
-	
+
 	function showForm( $err ) {
 		global $wgOut, $wgUser;
 
@@ -64,7 +64,7 @@ class MovePageForm {
 			return;
 		}
 		$oldTitle = $ot->getPrefixedText();
-		
+
 		$encOldTitle = htmlspecialchars( $oldTitle );
 		if( $this->newTitle == '' ) {
 			# Show the current title as a default
@@ -126,7 +126,7 @@ class MovePageForm {
 		}
 
 		$moveTalkChecked = $this->moveTalk ? ' checked="checked"' : '';
-		
+
 		$wgOut->addHTML( "
 <form id=\"movepage\" method=\"post\" action=\"{$action}\">
 	<table border='0'>
@@ -174,12 +174,12 @@ class MovePageForm {
 	function doSubmit() {
 		global $wgOut, $wgUser, $wgRequest;
 		$fname = "MovePageForm::doSubmit";
-		
+
 		if ( $wgUser->pingLimiter( 'move' ) ) {
 			$wgOut->rateLimited();
 			return;
 		}
-		
+
 		# Variables beginning with 'o' for old article 'n' for new article
 
 		$ot = Title::newFromText( $this->oldTitle );
@@ -205,7 +205,7 @@ class MovePageForm {
 		}
 
 		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ot , &$nt ) )	;
-		
+
 		# Move talk page if
 		# (1) the checkbox says to,
 		# (2) the namespaces are not themselves talk namespaces, and of course
@@ -213,7 +213,7 @@ class MovePageForm {
 		if ( ( $wgRequest->getVal('wpMovetalk') == 1 ) &&
 		     !$ot->isTalkPage() &&
 		     !$nt->isTalkPage() ) {
-			
+
 			$ott = $ot->getTalkPage();
 			$ntt = $nt->getTalkPage();
 
@@ -229,7 +229,7 @@ class MovePageForm {
 			# Stay silent on the subject of talk.
 			$talkmoved = '';
 		}
-		
+
 		# Give back result to user.
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 		$success = $titleObj->getFullURL(
@@ -250,7 +250,7 @@ class MovePageForm {
 		$talkmoved = $wgRequest->getVal('talkmoved');
 
 		$text = wfMsg( 'pagemovedtext', $oldtitle, $newtitle );
-		
+
 		# Temporarily disable raw html wikitext option out of XSS paranoia
 		$marchingantofdoom = $wgRawHtml;
 		$wgRawHtml = false;

@@ -13,17 +13,17 @@
 class ChangePassword {
 	var $dbw;
 	var $user, $password;
-	
+
 	function ChangePassword( $user, $password ) {
 		$this->user = User::newFromName( $user );
 		$this->password = $password;
-		
+
 		$this->dbw =& wfGetDB( DB_MASTER );
 	}
 
 	function main() {
 		$fname = 'ChangePassword::main';
-		
+
 		$this->dbw->update( 'user',
 			array(
 				'user_password' => wfEncryptPassword( $this->user->getID(), $this->password )

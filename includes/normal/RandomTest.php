@@ -51,7 +51,7 @@ function donorm( $str ) {
 	$str = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', UTF8_REPLACEMENT, $str );
 	$str = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $str );
 	$str = str_replace( UTF8_FFFF, UTF8_REPLACEMENT, $str );
-	
+
 	# UnicodeString constructor fails if the string ends with a head byte.
 	# Add a junk char at the end, we'll strip it off
 	return rtrim( utf8_normalize( $str . "\x01", UNORM_NFC ), "\x01" );
@@ -64,7 +64,7 @@ function wfMsg($x) {
 function showDiffs( $a, $b ) {
 	$ota = explode( "\n", str_replace( "\r\n", "\n", $a ) );
 	$nta = explode( "\n", str_replace( "\r\n", "\n", $b ) );
-	
+
 	$diffs =& new Diff( $ota, $nta );
 	$formatter =& new TableDiffFormatter();
 	$funky = $formatter->format( $diffs );
@@ -80,7 +80,7 @@ $n = 0;
 while( true ) {
 	$n++;
 	echo "$n\n";
-	
+
 	$str = randomString( $size, true);
 	$clean = UtfNormal::cleanUp( $str );
 	$norm = donorm( $str );
@@ -97,8 +97,8 @@ while( true ) {
 		showDiffs( $clean, $norm );
 		die();
 	}
-	
-	
+
+
 	$str = '';
 	$clean = '';
 	$norm = '';

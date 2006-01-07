@@ -1,7 +1,7 @@
 <?php
 
-$wgNoDBParam = true;	
-	
+$wgNoDBParam = true;
+
 require_once( "commandLine.inc" );
 require_once( "rebuildInterwiki.inc" );
 require_once( "languages/Names.php" );
@@ -28,7 +28,7 @@ function addWiki( $lang, $site, $dbName )
 	$dbw->query( "SET table_type=Innodb" );
 	$dbw->query( "CREATE DATABASE $dbName" );
 	$dbw->selectDB( $dbName );
-	
+
 	print "Initialising tables\n";
 	dbsource( "$maintenance/tables.sql", $dbw );
 	dbsource( "$IP/extensions/OAI/update_table.sql", $dbw );
@@ -159,14 +159,14 @@ See the [http://www.wikipedia.org Wikipedia portal] for other language Wikipedia
 [[zh:]]
 [[zu:]]
 ", '', false, false );
-	
+
 	print "Adding to dblists\n";
 
 	# Add to dblist
 	$file = fopen( "$common/all.dblist", "a" );
 	fwrite( $file, "$dbName\n" );
 	fclose( $file );
-	
+
 	# Update the sublists
 	system("cd $common && ./refresh-dblist");
 

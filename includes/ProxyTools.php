@@ -122,7 +122,7 @@ function wfProxyCheck() {
 	}
 
 	$ip = wfGetIP();
-	
+
 	# Get MemCached key
 	$skip = false;
 	if ( $wgUseMemCached ) {
@@ -179,17 +179,17 @@ function wfParseCIDR( $range ) {
 function wfIsLocallyBlockedProxy( $ip ) {
 	global $wgProxyList;
 	$fname = 'wfIsLocallyBlockedProxy';
-	
+
 	if ( !$wgProxyList ) {
 		return false;
 	}
 	wfProfileIn( $fname );
-	
+
 	if ( !is_array( $wgProxyList ) ) {
 		# Load from the specified file
 		$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
 	}
-	
+
 	if ( !is_array( $wgProxyList ) ) {
 		$ret = false;
 	} elseif ( array_search( $ip, $wgProxyList ) !== false ) {

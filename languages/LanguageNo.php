@@ -951,15 +951,15 @@ class LanguageNo extends LanguageUtf8 {
 		global $wgSkinNamesNo;
 		return $wgSkinNamesNo;
 	}
-	
+
 	function formatMonth( $month, $format ) {
 		return $this->getMonthAbbreviation( $month );
 	}
-	
+
 	function formatDay( $day, $format ) {
 		return parent::formatDay( $day, $format ) . '.';
 	}
-	
+
 	function timeanddate( $ts, $adj = false, $format = false, $timecorrection = false ) {
 		$format = $this->dateFormat( $format );
 		if( $format == MW_DATE_ISO ) {

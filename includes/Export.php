@@ -60,7 +60,7 @@ class WikiExporter {
 		$this->sink    = new DumpOutput();
 		$this->text    = $text;
 	}
-	
+
 	/**
 	 * Set the DumpOutput or DumpFilter object which will receive
 	 * various row objects and XML output for filtering. Filters
@@ -71,7 +71,7 @@ class WikiExporter {
 	function setOutputSink( &$sink ) {
 		$this->sink =& $sink;
 	}
-	
+
 	function openStream() {
 		$output = $this->writer->openStream();
 		$this->sink->writeOpenStream( $output );
@@ -90,7 +90,7 @@ class WikiExporter {
 	function allPages() {
 		return $this->dumpFrom( '' );
 	}
-	
+
 	/**
 	 * Dumps a series of page and revision records for those pages
 	 * in the database falling within the page_id range given.
@@ -105,7 +105,7 @@ class WikiExporter {
 		}
 		return $this->dumpFrom( $condition );
 	}
-	
+
 	/**
 	 * @param Title $title
 	 */
@@ -114,7 +114,7 @@ class WikiExporter {
 			'page_namespace=' . $title->getNamespace() .
 			' AND page_title=' . $this->db->addQuotes( $title->getDbKey() ) );
 	}
-	
+
 	function pageByName( $name ) {
 		$title = Title::newFromText( $name );
 		if( is_null( $title ) ) {
@@ -123,24 +123,24 @@ class WikiExporter {
 			return $this->pageByTitle( $title );
 		}
 	}
-	
+
 	function pagesByName( $names ) {
 		foreach( $names as $name ) {
 			$this->pageByName( $name );
 		}
 	}
 
-	
+
 	// -------------------- private implementation below --------------------
-	
+
 	function dumpFrom( $cond = '' ) {
 		$fname = 'WikiExporter::dumpFrom';
 		wfProfileIn( $fname );
-		
+
 		$page     = $this->db->tableName( 'page' );
 		$revision = $this->db->tableName( 'revision' );
 		$text     = $this->db->tableName( 'text' );
-		
+
 		if( $this->history == MW_EXPORT_FULL ) {
 			$join = 'page_id=rev_page';
 		} elseif( $this->history == MW_EXPORT_CURRENT ) {
@@ -150,7 +150,7 @@ class WikiExporter {
 			return new WikiError( "$fname given invalid history dump type." );
 		}
 		$where = ( $cond == '' ) ? '' : "$cond AND";
-		
+
 		if( $this->buffer == MW_EXPORT_STREAM ) {
 			$prev = $this->db->bufferResults( false );
 		}
@@ -179,14 +179,14 @@ class WikiExporter {
 		$result = $this->db->query( $sql, $fname );
 		$wrapper = $this->db->resultObject( $result );
 		$this->outputStream( $wrapper );
-		
+
 		if( $this->buffer == MW_EXPORT_STREAM ) {
 			$this->db->bufferResults( $prev );
 		}
-		
+
 		wfProfileOut( $fname );
 	}
-	
+
 	/**
 	 * Runs through a query result set dumping page and revision records.
 	 * The result set should be sorted/grouped by page to avoid duplicate
@@ -226,7 +226,7 @@ class WikiExporter {
 }
 
 class XmlDumpWriter {
-	
+
 	/**
 	 * Returns the export schema version.
 	 * @return string
@@ -234,7 +234,7 @@ class XmlDumpWriter {
 	function schemaVersion() {
 		return "0.3";
 	}
-	
+
 	/**
 	 * Opens the XML output stream's root <mediawiki> element.
 	 * This does not include an xml directive, so is safe to include
@@ -259,7 +259,7 @@ class XmlDumpWriter {
 			"\n" .
 			$this->siteInfo();
 	}
-	
+
 	function siteInfo() {
 		$info = array(
 			$this->sitename(),
@@ -271,29 +271,29 @@ class XmlDumpWriter {
 			implode( "\n    ", $info ) .
 			"\n  </siteinfo>\n";
 	}
-	
+
 	function sitename() {
 		global $wgSitename;
 		return wfElement( 'sitename', array(), $wgSitename );
 	}
-	
+
 	function generator() {
 		global $wgVersion;
 		return wfElement( 'generator', array(), "MediaWiki $wgVersion" );
 	}
-	
+
 	function homelink() {
 		$page = Title::newFromText( wfMsgForContent( 'mainpage' ) );
 		return wfElement( 'base', array(), $page->getFullUrl() );
 	}
-	
+
 	function caseSetting() {
 		global $wgCapitalLinks;
 		// "case-insensitive" option is reserved for future
 		$sensitivity = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
 		return wfElement( 'case', array(), $sensitivity );
 	}
-	
+
 	function namespaces() {
 		global $wgContLang;
 		$spaces = "  <namespaces>\n";
@@ -303,7 +303,7 @@ class XmlDumpWriter {
 		$spaces .= "    </namespaces>";
 		return $spaces;
 	}
-	
+
 	/**
 	 * Closes the output stream with the closing root element.
 	 * Call when finished dumping things.
@@ -312,7 +312,7 @@ class XmlDumpWriter {
 		return "</mediawiki>\n";
 	}
 
-	
+
 	/**
 	 * Opens a <page> section on the output stream, with data
 	 * from the given database row.
@@ -332,7 +332,7 @@ class XmlDumpWriter {
 		}
 		return $out;
 	}
-	
+
 	/**
 	 * Closes a <page> section on the output stream.
 	 *
@@ -341,7 +341,7 @@ class XmlDumpWriter {
 	function closePage() {
 		return "  </page>\n";
 	}
-	
+
 	/**
 	 * Dumps a <revision> section on the output stream, with
 	 * data filled in from the given database row.
@@ -353,13 +353,13 @@ class XmlDumpWriter {
 	function writeRevision( $row ) {
 		$fname = 'WikiExporter::dumpRev';
 		wfProfileIn( $fname );
-		
+
 		$out  = "    <revision>\n";
 		$out .= "      " . wfElement( 'id', null, strval( $row->rev_id ) ) . "\n";
-		
+
 		$ts = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
 		$out .= "      " . wfElement( 'timestamp', null, $ts ) . "\n";
-		
+
 		$out .= "      <contributor>\n";
 		if( $row->rev_user ) {
 			$out .= "        " . wfElementClean( 'username', null, strval( $row->rev_user_text ) ) . "\n";
@@ -368,14 +368,14 @@ class XmlDumpWriter {
 			$out .= "        " . wfElementClean( 'ip', null, strval( $row->rev_user_text ) ) . "\n";
 		}
 		$out .= "      </contributor>\n";
-		
+
 		if( $row->rev_minor_edit ) {
 			$out .=  "      <minor/>\n";
 		}
 		if( $row->rev_comment != '' ) {
 			$out .= "      " . wfElementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
 		}
-		
+
 		if( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
 			$text = strval( Revision::getRevisionText( $row ) );
@@ -388,9 +388,9 @@ class XmlDumpWriter {
 				array( 'id' => $row->rev_text_id ),
 				"" ) . "\n";
 		}
-		
+
 		$out .= "    </revision>\n";
-		
+
 		wfProfileOut( $fname );
 		return $out;
 	}
@@ -405,23 +405,23 @@ class DumpOutput {
 	function writeOpenStream( $string ) {
 		$this->write( $string );
 	}
-	
+
 	function writeCloseStream( $string ) {
 		$this->write( $string );
 	}
-	
+
 	function writeOpenPage( $page, $string ) {
 		$this->write( $string );
 	}
-	
+
 	function writeClosePage( $string ) {
 		$this->write( $string );
 	}
-	
+
 	function writeRevision( $rev, $string ) {
 		$this->write( $string );
 	}
-	
+
 	/**
 	 * Override to write to a different stream type.
 	 * @return bool
@@ -436,11 +436,11 @@ class DumpOutput {
  */
 class DumpFileOutput extends DumpOutput {
 	var $handle;
-	
+
 	function DumpFileOutput( $file ) {
 		$this->handle = fopen( $file, "wt" );
 	}
-	
+
 	function write( $string ) {
 		fputs( $this->handle, $string );
 	}
@@ -499,35 +499,35 @@ class DumpFilter {
 	function DumpFilter( &$sink ) {
 		$this->sink =& $sink;
 	}
-	
+
 	function writeOpenStream( $string ) {
 		$this->sink->writeOpenStream( $string );
 	}
-	
+
 	function writeCloseStream( $string ) {
 		$this->sink->writeCloseStream( $string );
 	}
-	
+
 	function writeOpenPage( $page, $string ) {
 		$this->sendingThisPage = $this->pass( $page, $string );
 		if( $this->sendingThisPage ) {
 			$this->sink->writeOpenPage( $page, $string );
 		}
 	}
-	
+
 	function writeClosePage( $string ) {
 		if( $this->sendingThisPage ) {
 			$this->sink->writeClosePage( $string );
 			$this->sendingThisPage = false;
 		}
 	}
-	
+
 	function writeRevision( $rev, $string ) {
 		if( $this->sendingThisPage ) {
 			$this->sink->writeRevision( $rev, $string );
 		}
 	}
-	
+
 	/**
 	 * Override for page-based filter types.
 	 * @return bool
@@ -552,10 +552,10 @@ class DumpNotalkFilter extends DumpFilter {
 class DumpNamespaceFilter extends DumpFilter {
 	var $invert = false;
 	var $namespaces = array();
-	
+
 	function DumpNamespaceFilter( &$sink, $param ) {
 		parent::DumpFilter( $sink );
-		
+
 		$constants = array(
 			"NS_MAIN"           => NS_MAIN,
 			"NS_TALK"           => NS_TALK,
@@ -573,12 +573,12 @@ class DumpNamespaceFilter extends DumpFilter {
 			"NS_HELP_TALK"      => NS_HELP_TALK,
 			"NS_CATEGORY"       => NS_CATEGORY,
 			"NS_CATEGORY_TALK"  => NS_CATEGORY_TALK );
-		
+
 		if( $param{0} == '!' ) {
 			$this->invert = true;
 			$param = substr( $param, 1 );
 		}
-		
+
 		foreach( explode( ',', $param ) as $key ) {
 			$key = trim( $key );
 			if( isset( $constants[$key] ) ) {
@@ -592,7 +592,7 @@ class DumpNamespaceFilter extends DumpFilter {
 			}
 		}
 	}
-	
+
 	function pass( $page ) {
 		$match = isset( $this->namespaces[$page->page_namespace] );
 		return $this->invert xor $match;
@@ -605,12 +605,12 @@ class DumpNamespaceFilter extends DumpFilter {
  */
 class DumpLatestFilter extends DumpFilter {
 	var $page, $pageString, $rev, $revString;
-	
+
 	function writeOpenPage( $page, $string ) {
 		$this->page = $page;
 		$this->pageString = $string;
 	}
-	
+
 	function writeClosePage( $string ) {
 		if( $this->rev ) {
 			$this->sink->writeOpenPage( $this->page, $this->pageString );
@@ -622,7 +622,7 @@ class DumpLatestFilter extends DumpFilter {
 		$this->page = null;
 		$this->pageString = null;
 	}
-	
+
 	function writeRevision( $rev, $string ) {
 		if( $rev->rev_id == $this->page->page_latest ) {
 			$this->rev = $rev;
@@ -639,31 +639,31 @@ class DumpMultiWriter {
 		$this->sinks = $sinks;
 		$this->count = count( $sinks );
 	}
-	
+
 	function writeOpenStream( $string ) {
 		for( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeOpenStream( $string );
 		}
 	}
-	
+
 	function writeCloseStream( $string ) {
 		for( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeCloseStream( $string );
 		}
 	}
-	
+
 	function writeOpenPage( $page, $string ) {
 		for( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeOpenPage( $page, $string );
 		}
 	}
-	
+
 	function writeClosePage( $string ) {
 		for( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeClosePage( $string );
 		}
 	}
-	
+
 	function writeRevision( $rev, $string ) {
 		for( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->writeRevision( $rev, $string );
@@ -674,14 +674,14 @@ class DumpMultiWriter {
 function xmlsafe( $string ) {
 	$fname = 'xmlsafe';
 	wfProfileIn( $fname );
-	
+
 	/**
 	 * The page may contain old data which has not been properly normalized.
 	 * Invalid UTF-8 sequences or forbidden control characters will make our
 	 * XML output invalid, so be sure to strip them out.
 	 */
 	$string = UtfNormal::cleanUp( $string );
-	
+
 	$string = htmlspecialchars( $string );
 	wfProfileOut( $fname );
 	return $string;

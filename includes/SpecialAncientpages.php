@@ -24,7 +24,7 @@ class AncientPagesPage extends QueryPage {
 	function isExpensive() {
 		return true;
 	}
-	
+
 	function isSyndicated() { return false; }
 
 	function getSQL() {
@@ -41,7 +41,7 @@ class AncientPagesPage extends QueryPage {
 			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0
 			  AND page_latest=rev_id";
 	}
-	
+
 	function sortDescending() {
 		return false;
 	}

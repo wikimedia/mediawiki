@@ -31,7 +31,7 @@ class MacBinary {
 		$this->open( $filename );
 		$this->loadHeader();
 	}
-	
+
 	/**
 	 * The file must be seekable, such as local filesystem.
 	 * Remote URLs probably won't work.
@@ -46,7 +46,7 @@ class MacBinary {
 		$this->resourceLength = 0;
 		$this->handle = fopen( $filename, 'rb' );
 	}
-	
+
 	/**
 	 * Does this appear to be a valid MacBinary archive?
 	 * @return bool
@@ -54,7 +54,7 @@ class MacBinary {
 	function isValid() {
 		return $this->valid;
 	}
-	
+
 	/**
 	 * Get length of data fork
 	 * @return int
@@ -62,7 +62,7 @@ class MacBinary {
 	function dataForkLength() {
 		return $this->dataLength;
 	}
-	
+
 	/**
 	 * Copy the data fork to an external file or resource.
 	 * @param resource $destination
@@ -72,21 +72,21 @@ class MacBinary {
 		if( !$this->isValid() ) {
 			return false;
 		}
-		
+
 		// Data fork appears immediately after header
 		fseek( $this->handle, 128 );
 		return $this->copyBytesTo( $destination, $this->dataLength );
 	}
-	
+
 	/**
 	 *
 	 */
 	function close() {
 		fclose( $this->handle );
 	}
-	
+
 	// --------------------------------------------------------------
-	
+
 	/**
 	 * Check if the given file appears to be MacBinary-encoded,
 	 * as Internet Explorer on Mac OS may provide for unknown types.
@@ -98,21 +98,21 @@ class MacBinary {
 	 */
 	function loadHeader() {
 		$fname = 'MacBinary::loadHeader';
-		
+
 		fseek( $this->handle, 0 );
 		$head = fread( $this->handle, 128 );
 		$this->hexdump( $head );
-		
+
 		if( strlen( $head ) < 128 ) {
 			wfDebug( "$fname: couldn't read full MacBinary header\n" );
 			return false;
 		}
-		
+
 		if( $head{0} != "\x00" || $head{74} != "\x00" ) {
 			wfDebug( "$fname: header bytes 0 and 74 not null\n" );
 			return false;
 		}
-		
+
 		$signature = substr( $head, 102, 4 );
 		$a = unpack( "ncrc", substr( $head, 124, 2 ) );
 		$storedCRC = $a['crc'];
@@ -139,34 +139,34 @@ class MacBinary {
 				return false;
 			}
 		}
-		
+
 		$nameLength = ord( $head{1} );
 		if( $nameLength < 1 || $nameLength > 63 ) {
 			wfDebug( "$fname: invalid filename size $nameLength\n" );
 			return false;
 		}
 		$this->filename = substr( $head, 2, $nameLength );
-		
+
 		$forks = unpack( "Ndata/Nresource", substr( $head, 83, 8 ) );
 		$this->dataLength = $forks['data'];
 		$this->resourceLength = $forks['resource'];
 		$maxForkLength = 0x7fffff;
-		
+
 		if( $this->dataLength < 0 || $this->dataLength > $maxForkLength ) {
 			wfDebug( "$fname: invalid data fork length $this->dataLength\n" );
 			return false;
 		}
-		
+
 		if( $this->resourceLength < 0 || $this->resourceLength > $maxForkLength ) {
 			wfDebug( "$fname: invalid resource fork size $this->resourceLength\n" );
 			return false;
 		}
-		
+
 		wfDebug( "$fname: appears to be MacBinary $this->version, data length $this->dataLength\n" );
 		$this->valid = true;
 		return true;
 	}
-	
+
 	/**
 	 * Calculate a 16-bit CRC value as for MacBinary headers.
 	 * Adapted from perl5 Convert::BinHex by Eryq,
@@ -225,7 +225,7 @@ class MacBinary {
 		}
 		return $crc;
 	}
-	
+
 	/**
 	 * @param resource $destination
 	 * @param int $bytesToCopy
@@ -240,7 +240,7 @@ class MacBinary {
 			fwrite( $destination, $buffer );
 		}
 	}
-	
+
 	/**
 	 * Hex dump of the header for debugging
 	 * @access private
@@ -248,7 +248,7 @@ class MacBinary {
 	function hexdump( $data ) {
 		global $wgDebugLogFile;
 		if( !$wgDebugLogFile ) return;
-		
+
 		$width = 16;
 		$at = 0;
 		for( $remaining = strlen( $data ); $remaining > 0; $remaining -= $width ) {

@@ -34,7 +34,7 @@ class MostlinkedPage extends QueryPage {
 				pl_namespace AS namespace,
 				pl_title AS title,
 				COUNT(*) AS value,
-				
+
 				page_namespace
 			FROM $pagelinks
 			LEFT JOIN $page ON pl_namespace=page_namespace AND pl_title=page_title
@@ -47,7 +47,7 @@ class MostlinkedPage extends QueryPage {
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
-		
+
 		if ( $this->isCached() )
 			$plink = $skin->makeKnownLink( $nt->getPrefixedText(), $text );
 		else {
@@ -55,7 +55,7 @@ class MostlinkedPage extends QueryPage {
 				? $skin->makeBrokenLink( $nt->getPrefixedText(), $text )
 				: $skin->makeKnownLink( $nt->getPrefixedText(), $text );
 		}
-		
+
 		$nl = wfMsg( 'nlinks', $result->value );
 		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ), $nl, 'target=' . $nt->getPrefixedURL() );
 

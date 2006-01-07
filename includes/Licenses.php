@@ -18,7 +18,7 @@ class Licenses {
 	 * @var string
 	 */
 	var $msg;
-	
+
 	/**
 	 * @var array
 	 */
@@ -29,7 +29,7 @@ class Licenses {
 	 */
 	var $html;
 	/**#@-*/
-	
+
 	/**
 	 * Constrictor
 	 *
@@ -45,20 +45,20 @@ class Licenses {
 		$tmp = $this->getLicenses();
 		$this->makeHtml( $tmp );
 	}
-	
+
 	/**#@+
 	 * @access private
 	 */
 	function makeLicenses() {
 		$levels = array();
 		$lines = explode( "\n", $this->msg );
-		
+
 		foreach ( $lines as $line ) {
 			if ( strpos( $line, '*' ) !== 0 )
 				continue;
 			else {
 				list( $level, $line ) = $this->trimStars( $line );
-				
+
 				if ( strpos( $line, '|' ) !== false ) {
 					$obj = new License( $line );
 					$this->stackItem( $this->licenses, $levels, $obj );
@@ -73,18 +73,18 @@ class Licenses {
 			}
 		}
 	}
-	
+
 	function trimStars( $str ) {
 		$i = $count = 0;
-		
+
 		wfSuppressWarnings();
 		while ($str[$i++] == '*')
 			++$count;
 		wfRestoreWarnings();
-	
+
 		return array( $count, ltrim( $str, '* ' ) );
 	}
-	
+
 	function stackItem( &$list, $path, $item ) {
 		$position =& $list;
 		if ( $path )
@@ -122,14 +122,14 @@ class Licenses {
 		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $val;
 		return str_repeat( "\t", $depth ) . wfElement( 'option', $attribs, $val ) . "\n";
 	}
-	
+
 	function msg( $str ) {
 		$out = wfMsg( $str );
 		return wfEmptyMsg( $str, $out ) ? $str : $out;
 	}
-	
+
 	/**#@-*/
-	
+
 	/**
 	 *  Accessor for $this->licenses
 	 *
@@ -150,7 +150,7 @@ class License {
 	 * @var string
 	 */
 	var $template;
-	
+
 	/**
 	 * @var string
 	 */
@@ -163,7 +163,7 @@ class License {
 	 */
 	function License( $str ) {
 		list( $text, $template ) = explode( '|', strrev( $str ), 2 );
-		
+
 		$this->template = strrev( $template );
 		$this->text = strrev( $text );
 	}

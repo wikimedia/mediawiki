@@ -10,10 +10,10 @@ class SanitizerTest extends PHPUnit_TestCase {
 	function SanitizerTest( $name ) {
 		$this->PHPUnit_TestCase( $name );
 	}
-	
+
 	function setUp() {
 	}
-	
+
 	function tearDown() {
 	}
 
@@ -28,13 +28,13 @@ class SanitizerTest extends PHPUnit_TestCase {
 			"\xc4\x88io bonas dans l'\xc3\xa9cole!",
 			Sanitizer::decodeCharReferences( "&#x108;io bonas dans l'&#233;cole!" ) );
 	}
-	
+
 	function testDecodeMixed() {
 		$this->assertEquals(
 			"\xc4\x88io bonas dans l'\xc3\xa9cole!",
 			Sanitizer::decodeCharReferences( "&#x108;io bonas dans l'&eacute;cole!" ) );
 	}
-	
+
 	function testDecodeMixedComplex() {
 		$this->assertEquals(
 			"\xc4\x88io bonas dans l'\xc3\xa9cole! (mais pas &#x108;io dans l'&eacute;cole)",
@@ -46,19 +46,19 @@ class SanitizerTest extends PHPUnit_TestCase {
 			"a & b",
 			Sanitizer::decodeCharReferences( "a & b" ) );
 	}
-	
+
 	function testDecodeInvalidNamed() {
 		$this->assertEquals(
 			"&foo;",
 			Sanitizer::decodeCharReferences( "&foo;" ) );
 	}
-	
+
 	function testDecodeInvalidNumbered() {
 		$this->assertEquals(
 			UTF8_REPLACEMENT,
 			Sanitizer::decodeCharReferences( "&#88888888888888;" ) );
 	}
-	
+
 	/* TODO: many more! */
 }
 

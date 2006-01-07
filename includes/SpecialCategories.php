@@ -43,7 +43,7 @@ class CategoriesPage extends QueryPage {
 			   GROUP BY cl_to";
 		return $s;
 	}
-	
+
 	function sortDescending() {
 		return false;
 	}

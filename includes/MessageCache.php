@@ -67,7 +67,7 @@ class MessageCache {
 		if ( $wgLocalMessageCache === false ) {
 			return;
 		}
-		
+
 		$filename = "$wgLocalMessageCache/messages-$wgDBname";
 
 		wfSuppressWarnings();
@@ -96,7 +96,7 @@ class MessageCache {
 		if ( $wgLocalMessageCache === false ) {
 			return;
 		}
-		
+
 		$filename = "$wgLocalMessageCache/messages-$wgDBname";
 		$oldUmask = umask( 0 );
 		wfMkdirParents( $wgLocalMessageCache, 0777 );
@@ -228,7 +228,7 @@ class MessageCache {
 	 */
 	function loadFromDB() {
 		global $wgAllMessagesEn, $wgLang;
-		
+
 		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( !$dbr ) {
@@ -261,7 +261,7 @@ class MessageCache {
 			if ( !array_key_exists( $uckey, $this->mCache ) ) {
 				$this->mCache[$uckey] = false;
 			}
-		}	
+		}
 
 		$dbr->freeResult( $res );
 	}
@@ -296,7 +296,7 @@ class MessageCache {
 		if ( is_array( $this->mCache ) ) {
 			$this->mCache[$title] = $text;
 			$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
-			
+
 			# Save to local cache
 			if ( $wgLocalMessageCache !== false ) {
 				$serialized = serialize( $this->mCache );
