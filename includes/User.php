@@ -1149,9 +1149,6 @@ class User {
 			$fname = 'User::getSkin';
 			wfProfileIn( $fname );
 
-			# get all skin names available
-			$skinNames = Skin::getSkinNames();
-
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
 			$userSkin = $wgRequest->getVal('useskin', $userSkin);
