@@ -3064,6 +3064,14 @@ Table not started</td></tr></table>
 </p>
 !! end
 
+!! test
+Sanitizer: Escaping of spaces, multibyte characters, colons & other stuff in id=""
+!! input
+<span id="æ: v">byte</span>[[#æ: v|backlink]]
+!! result
+<p><span id=".C3.A6:_v">byte</span><a href="#.C3.A6:_v" title="">backlink</a>
+</p>
+!! end
 
 TODO:
 more images
