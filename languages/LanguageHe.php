@@ -49,7 +49,7 @@ $wgExtraNamespaces = array(
 /* private */ $wgBookstoreListHe = array(
 	"מיתוס" => "http://www.mitos.co.il/ ",
 	"ibooks" => "http://www.ibooks.co.il/",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
+	"Barnes & Noble" => "http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
