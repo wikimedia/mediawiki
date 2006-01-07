@@ -357,7 +357,7 @@ $wgEmergencyContact = 'wikiadmin@' . $wgServerName;
  * Default to apache@SERVER_NAME
  * @global string $wgPasswordSender
  */
-$wgPasswordSender	= 'Wikipedia Mail <apache@' . $wgServerName . '>';
+$wgPasswordSender	= 'MediaWiki Mail <apache@' . $wgServerName . '>';
 
 /**
  * dummy address which should be accepted during mail send action
@@ -1247,7 +1247,7 @@ if( !isset( $wgCommandLineMode ) ) {
 #
 
 /** Log IP addresses in the recentchanges table */
-$wgPutIPinRC = false;
+$wgPutIPinRC = true;
 
 /**
  * Recentchanges items are periodically purged; entries older than this many
