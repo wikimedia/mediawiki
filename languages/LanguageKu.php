@@ -6,10 +6,6 @@
 
 require_once( "LanguageUtf8.php" );
 
-if ( $wgMetaNamespace == "Wikipedia" ) {
-	$wgMetaNamespace = "Wîkîpediya";
-}
-
 /* private */ $wgNamespaceNamesKu = array(
 	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Taybet',
