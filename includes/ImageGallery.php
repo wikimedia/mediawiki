@@ -1,13 +1,10 @@
 <?php
+if ( ! defined( 'MEDIAWIKI' ) )
+	die();
+	
 /**
  * @package MediaWiki
  */
-
-/**
- * This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
- */
-if( defined( 'MEDIAWIKI' ) ) {
-
 
 /**
  * Image gallery
@@ -152,9 +149,4 @@ class ImageGallery
 	}
 
 } //class
-
-
-
-
-} // defined( 'MEDIAWIKI' )
 ?>

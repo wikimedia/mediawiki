@@ -1,12 +1,10 @@
 <?php
+if ( ! defined( 'MEDIAWIKI' ) )
+	die();
 /**
  * Functions for dealing with proxies
  * @package MediaWiki
  */
-
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die();
-}
 
 /** Work out the IP address based on various globals */
 function wfGetIP() {

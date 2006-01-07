@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'MEDIAWIKI' ) )
+	die();
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -31,12 +33,6 @@
  * @package MediaWiki
  * @subpackage Skins
  */
-
-/**
- * This is not a valid entry point, perform no further processing unless
- * MEDIAWIKI is defined
- */
-if( defined( 'MEDIAWIKI' ) ) {
 
 require_once 'GlobalFunctions.php';
 require_once 'SkinTemplate.php';
@@ -151,5 +147,4 @@ class PHPTAL_version_bridge {
 
 } // end of if( class_exists( 'PHPTAL' ) )
 } // end of if( class_exists( 'PEAR' ) )
-} // end of if( defined( 'MEDIAWIKI' ) ) 
 ?>

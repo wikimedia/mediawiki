@@ -1,14 +1,10 @@
 <?php
+if ( ! defined( 'MEDIAWIKI' ) )
+	die();
 /**
  * Provide things related to namespaces
  * @package MediaWiki
  */
-
-/**
- * This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
- */
-if( defined( 'MEDIAWIKI' ) ) {
-
 
 /**
  * Definitions of the NS_ constants are in Defines.php
@@ -123,7 +119,5 @@ class Namespace {
 			return NULL;
 		}
 	}
-}
-
 }
 ?>

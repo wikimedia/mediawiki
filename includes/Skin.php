@@ -1,15 +1,12 @@
 <?php
+if ( ! defined( 'MEDIAWIKI' ) )
+	die();
 
 /**
  *
  * @package MediaWiki
  * @subpackage Skins
  */
-
-/**
- * This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
- */
-if( defined( "MEDIAWIKI" ) ) {
 
 # See skin.txt
 require_once( 'Linker.php' );
@@ -1436,7 +1433,5 @@ END;
 		wfProfileOut( $fname );
 		return $bar;
 	}
-}
-
 }
 ?>
