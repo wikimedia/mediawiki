@@ -1954,6 +1954,8 @@ class Parser
 				return $varCache[$index] = $wgContLang->getMonthAbbreviation( date( 'n', $ts ) );
 			case MAG_CURRENTDAY:
 				return $varCache[$index] = $wgContLang->formatNum( date( 'j', $ts ) );
+			case MAG_CURRENTDAY2:
+				return $varCache[$index] = $wgContLang->formatNum( date( 'd', $ts ) );
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
 			case MAG_PAGENAMEE:
