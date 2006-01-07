@@ -1,6 +1,6 @@
 <?php
 /**
- * (X)HTML sanitizer for MediaWiki
+ * XHTML sanitizer for MediaWiki
  *
  * Copyright (C) 2002-2005 Brion Vibber <brion@pobox.com> et al
  * http://www.mediawiki.org/
@@ -570,6 +570,9 @@ class Sanitizer {
 					continue;
 				}
 			}
+
+			if ( $attribute === 'id' )
+				$value = Sanitizer::escapeId( $value );
 			
 			# Templates and links may be expanded in later parsing,
 			# creating invalid or dangerous output. Suppress this.
@@ -592,11 +595,35 @@ class Sanitizer {
 			// Output should only have one attribute of each name.
 			$attribs[$attribute] = "$attribute=\"$value\"";
 		}
-		if( empty( $attribs ) ) {
-			return '';
-		} else {
-			return ' ' . implode( ' ', $attribs );
-		}
+
+		return count( $attribs ) ? ' ' . implode( ' ', $attribs ) : '';
+	}
+
+	/**
+	 * Given a value escape it so that it can be used in an id attribute and
+	 * return it, this does not validate the value however (see first link)
+	 *
+	 * @link http://www.w3.org/TR/html401/types.html#type-name Valid characters
+	 *                                                          in the id and
+	 *                                                          name attributes
+	 * @link http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
+	 *
+	 * @bug 4461
+	 *
+	 * @static
+	 *
+	 * @param string $id
+	 * @return string
+	 */
+	function escapeId( $id ) {
+		static $replace = array(
+			'%3A' => ':',
+			'%' => '.'
+		);
+		
+		$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
+
+		return str_replace( array_keys( $replace ), array_values( $replace ), $id );
 	}
 	
 	/**
@@ -1013,7 +1040,7 @@ class Sanitizer {
 	 */
 	function stripAllTags( $text ) {
 		# Actual <tags>
-		$text = preg_replace( '/<[^>]*>/', '', $text );
+		$text = preg_replace( '/ < .*? > /x', '', $text );
 		
 		# Normalize &entities and whitespace
 		$text = Sanitizer::normalizeAttributeValue( $text );
