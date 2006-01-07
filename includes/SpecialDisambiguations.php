@@ -29,25 +29,31 @@ class DisambiguationsPage extends PageQueryPage {
 		$sk = $wgUser->getSkin();
 
 		#FIXME : probably need to add a backlink to the maintenance page.
-		return '<p>'.wfMsg("disambiguationstext", $sk->makeKnownLink(wfMsgForContent('disambiguationspage')) )."</p><br />\n";
+		return '<p>'.wfMsg('disambiguationstext', $sk->makeKnownLink(wfMsgForContent('disambiguationspage')) )."</p><br />\n";
 	}
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'page', 'pagelinks' ) );
+		extract( $dbr->tableNames( 'page', 'pagelinks', 'templatelinks' ) );
 
-		$dp = Title::newFromText(wfMsgForContent("disambiguationspage"));
+		$dp = Title::newFromText(wfMsgForContent('disambiguationspage'));
 		$id = $dp->getArticleId();
         $dns = $dp->getNamespace();
         $dtitle = $dbr->addQuotes( $dp->getDBkey() );
 
-		$sql = "SELECT 'Disambiguations' AS type, pa.page_namespace AS namespace,"
+		if($dns != NS_TEMPLATE) {
+			# FIXME we assume the disambiguation message is a template but
+			# the page can potentially be from another namespace :/
+			wfDebug("Mediawiki:disambiguationspage message does not refer to a template!\n");
+		}
+
+		$sql = "SELECT 'Disambiguations' AS 'type', pa.page_namespace AS namespace,"
 			 ." pa.page_title AS title, la.pl_from AS value"
-			 ." FROM {$pagelinks} AS lb, {$page} AS pa, {$pagelinks} AS la"
-			 ." WHERE lb.pl_namespace = $dns AND lb.pl_title = $dtitle" # disambiguation template
-			 ." AND pa.page_id = lb.pl_from"
-			 ." AND pa.page_namespace = la.pl_namespace"
-			 ." AND pa.page_title = la.pl_title";
+			 ." FROM {$templatelinks} AS lb, {$page} AS pa, {$pagelinks} AS la"
+			 ." WHERE lb.tl_namespace = $dns AND lb.tl_title = $dtitle" # disambiguation template
+			 .' AND pa.page_id = lb.tl_from'
+			 .' AND pa.page_namespace = la.pl_namespace'
+			 .' AND pa.page_title = la.pl_title';
 		return $sql;
 	}
 
