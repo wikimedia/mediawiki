@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'MEDIAWIKI' ) )
+	die();
 /**
  * Hooks.php -- a tool for running hook functions
  * Copyright 2004, 2005 Evan Prodromou <evan@wikitravel.org>.
@@ -22,119 +24,116 @@
  * @see hooks.txt
  */
 
-if (defined('MEDIAWIKI')) {
+
+/** 
+ * Because programmers assign to $wgHooks, we need to be very
+ * careful about its contents. So, there's a lot more error-checking
+ * in here than would normally be necessary.
+ */
+function wfRunHooks($event, $args = null) {
 	
-	/** 
-	 * Because programmers assign to $wgHooks, we need to be very
-	 * careful about its contents. So, there's a lot more error-checking
-	 * in here than would normally be necessary.
-	 */
-	
-	function wfRunHooks($event, $args = null) {
-		
-		global $wgHooks;
-		$fname = 'wfRunHooks';
-		wfProfileIn( $fname );
+	global $wgHooks;
+	$fname = 'wfRunHooks';
+	wfProfileIn( $fname );
 
-		if (!is_array($wgHooks)) {
-			wfDebugDieBacktrace("Global hooks array is not an array!\n");
-			wfProfileOut( $fname );
-			return false;
-		}
+	if (!is_array($wgHooks)) {
+		wfDebugDieBacktrace("Global hooks array is not an array!\n");
+		wfProfileOut( $fname );
+		return false;
+	}
 
-		if (!array_key_exists($event, $wgHooks)) {
-			wfProfileOut( $fname );
-			return true;
-		}
-		
-		if (!is_array($wgHooks[$event])) {
-			wfDebugDieBacktrace("Hooks array for event '$event' is not an array!\n");
-			wfProfileOut( $fname );
-			return false;
-		}
-		
-		foreach ($wgHooks[$event] as $index => $hook) {
-			
-			$object = NULL;
-			$method = NULL;
-			$func = NULL;
-			$data = NULL;
-			$have_data = false;
-			
-			/* $hook can be: a function, an object, an array of $function and $data,
-			 * an array of just a function, an array of object and method, or an
-			 * array of object, method, and data.
-			 */
-			
-			if (is_array($hook)) {
-				if (count($hook) < 1) {
-					wfDebugDieBacktrace("Empty array in hooks for " . $event . "\n");
-				} else if (is_object($hook[0])) {
-					$object =& $wgHooks[$event][$index][0];
-					if (count($hook) < 2) {
-						$method = "on" . $event;
-					} else {
-						$method = $hook[1];
-						if (count($hook) > 2) {
-							$data = $hook[2];
-							$have_data = true;
-						}
-					}
-				} else if (is_string($hook[0])) {
-					$func = $hook[0];
-					if (count($hook) > 1) {
-						$data = $hook[1];
-						$have_data = true;
-					}
-				} else {
-					wfDebugDieBacktrace("Unknown datatype in hooks for " . $event . "\n");
-				}
-			} else if (is_string($hook)) { # functions look like strings, too
-				$func = $hook;
-			} else if (is_object($hook)) {
-				$object =& $wgHooks[$event][$index];
-				$method = "on" . $event;
-			} else {
-				wfDebugDieBacktrace("Unknown datatype in hooks for " . $event . "\n");
-			}
-			
-			/* We put the first data element on, if needed. */
-			
-			if ($have_data) {
-				$hook_args = array_merge(array($data), $args);
-			} else {
-				$hook_args = $args;
-			}
-			
-			
-			if ( isset( $object ) ) {
-				$func = get_class( $object ) . '::' . $method;
-			}
-
-			/* Call the hook. */
-			wfProfileIn( $func );
-			if( isset( $object ) ) {
-				$retval = call_user_func_array(array(&$object, $method), $hook_args);
-			} else {
-				$retval = call_user_func_array($func, $hook_args);
-			}
-			wfProfileOut( $func );
-			
-			/* String return is an error; false return means stop processing. */
-			
-			if (is_string($retval)) {
-				global $wgOut;
-				$wgOut->fatalError($retval);
-				wfProfileOut( $fname );
-				return false;
-			} else if (!$retval) {
-				wfProfileOut( $fname );
-				return false;
-			}
-		}
-		
+	if (!array_key_exists($event, $wgHooks)) {
 		wfProfileOut( $fname );
 		return true;
 	}
-} /* if defined(MEDIAWIKI) */ 
+	
+	if (!is_array($wgHooks[$event])) {
+		wfDebugDieBacktrace("Hooks array for event '$event' is not an array!\n");
+		wfProfileOut( $fname );
+		return false;
+	}
+	
+	foreach ($wgHooks[$event] as $index => $hook) {
+		
+		$object = NULL;
+		$method = NULL;
+		$func = NULL;
+		$data = NULL;
+		$have_data = false;
+		
+		/* $hook can be: a function, an object, an array of $function and $data,
+		 * an array of just a function, an array of object and method, or an
+		 * array of object, method, and data.
+		 */
+		
+		if (is_array($hook)) {
+			if (count($hook) < 1) {
+				wfDebugDieBacktrace("Empty array in hooks for " . $event . "\n");
+			} else if (is_object($hook[0])) {
+				$object =& $wgHooks[$event][$index][0];
+				if (count($hook) < 2) {
+					$method = "on" . $event;
+				} else {
+					$method = $hook[1];
+					if (count($hook) > 2) {
+						$data = $hook[2];
+						$have_data = true;
+					}
+				}
+			} else if (is_string($hook[0])) {
+				$func = $hook[0];
+				if (count($hook) > 1) {
+					$data = $hook[1];
+					$have_data = true;
+				}
+			} else {
+				wfDebugDieBacktrace("Unknown datatype in hooks for " . $event . "\n");
+			}
+		} else if (is_string($hook)) { # functions look like strings, too
+			$func = $hook;
+		} else if (is_object($hook)) {
+			$object =& $wgHooks[$event][$index];
+			$method = "on" . $event;
+		} else {
+			wfDebugDieBacktrace("Unknown datatype in hooks for " . $event . "\n");
+		}
+		
+		/* We put the first data element on, if needed. */
+		
+		if ($have_data) {
+			$hook_args = array_merge(array($data), $args);
+		} else {
+			$hook_args = $args;
+		}
+		
+		
+		if ( isset( $object ) ) {
+			$func = get_class( $object ) . '::' . $method;
+		}
+
+		/* Call the hook. */
+		wfProfileIn( $func );
+		if( isset( $object ) ) {
+			$retval = call_user_func_array(array(&$object, $method), $hook_args);
+		} else {
+			$retval = call_user_func_array($func, $hook_args);
+		}
+		wfProfileOut( $func );
+		
+		/* String return is an error; false return means stop processing. */
+		
+		if (is_string($retval)) {
+			global $wgOut;
+			$wgOut->fatalError($retval);
+			wfProfileOut( $fname );
+			return false;
+		} else if (!$retval) {
+			wfProfileOut( $fname );
+			return false;
+		}
+	}
+	
+	wfProfileOut( $fname );
+	return true;
+}
 ?>
