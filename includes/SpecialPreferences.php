@@ -227,10 +227,8 @@ class PreferencesForm {
 			$needRedirect = false;
 		}
 
-		if( $this->badNickname() ) {
-			$this->mainPrefsForm( 'error', wfMsg( 'badsig2' ) );
-			return;
-		}
+		# Clean up the signature a little
+		$this->mNick = Parser::cleanSig( $this->mNick );
 
 		$wgUser->setOption( 'language', $this->mUserLanguage );
 		$wgUser->setOption( 'variant', $this->mUserVariant );
