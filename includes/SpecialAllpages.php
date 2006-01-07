@@ -66,7 +66,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 		<td align='right'>" . wfMsgHtml($this->nsfromMsg) . "</td>
 		<td align='left'><label for='nsfrom'>$frombox</label></td>
 	</tr>
-	<tr>    
+	<tr>
 		<td align='right'><label for='namespace'>" . wfMsgHtml('namespace') . "</label></td>
 		<td align='left'>
 			$namespaceselect $submitbutton

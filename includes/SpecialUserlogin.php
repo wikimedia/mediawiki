@@ -69,7 +69,7 @@ class LoginForm {
 			$this->mDomain = 'invaliddomain';
 		}
 		$wgAuth->setDomain( $this->mDomain );
- 
+
 		# When switching accounts, it sucks to get automatically logged out
 		if( $this->mReturnto == $wgLang->specialPage( 'Userlogout' ) ) {
 			$this->mReturnto = '';
@@ -191,8 +191,8 @@ class LoginForm {
 		}
 
 		$ip = wfGetIP();
-		if ( $wgEnableSorbs && !in_array( $ip, $wgProxyWhitelist ) && 
-		  $wgUser->inSorbsBlacklist( $ip ) ) 
+		if ( $wgEnableSorbs && !in_array( $ip, $wgProxyWhitelist ) &&
+		  $wgUser->inSorbsBlacklist( $ip ) )
 		{
 			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $ip ) . ')' );
 			return;
@@ -510,7 +510,7 @@ class LoginForm {
 		global $wgDisableCookieCheck;
 		return ( $wgDisableCookieCheck ) ? true : ( isset( $_COOKIE[session_name()] ) );
 	}
-	  
+	
 	/**
 	 * @access private
 	 */

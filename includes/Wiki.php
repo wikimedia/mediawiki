@@ -48,7 +48,7 @@ class MediaWikiType {
 		}
 	}
 	
-	function act_creativecommons ( $action ) { 
+	function act_creativecommons ( $action ) {
 		global $wgArticle , $wgEnableCreativeCommonsRdf ;
 		if( !$wgEnableCreativeCommonsRdf ) {
 			wfHttpError( 403, 'Forbidden', wfMsg('nocreativecommons') );
@@ -58,13 +58,13 @@ class MediaWikiType {
 		}
 	}
 	
-	function act_credits ( $action ) { 
+	function act_credits ( $action ) {
 		global $wgArticle ;
 		require_once( 'includes/Credits.php' );
 		showCreditsPage( $wgArticle );
 	}
 	
-	function act_submit ( $action ) { 
+	function act_submit ( $action ) {
 		global $wgCommandLineMode , $wgRequest ;
 		if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
 			# Send a cookie so anons get talk message notifications
@@ -73,7 +73,7 @@ class MediaWikiType {
 		$this->act_edit ( $action ) ;
 	}
 	
-	function act_edit ( $action ) { 
+	function act_edit ( $action ) {
 		global $wgRequest , $wgUseExternalEditor , $wgUser , $wgArticle ;
 		$internal = $wgRequest->getVal( 'internaledit' );
 		$external = $wgRequest->getVal( 'externaledit' );
@@ -92,7 +92,7 @@ class MediaWikiType {
 		}
 	}
 	
-	function act_history ( $action ) { 
+	function act_history ( $action ) {
 		global $wgTitle , $wgArticle , $wgSquidMaxage ;
 		if ($_SERVER['REQUEST_URI'] == $wgTitle->getInternalURL('action=history')) {
 			$wgOut->setSquidMaxage( $wgSquidMaxage );
@@ -102,7 +102,7 @@ class MediaWikiType {
 		$history->history();
 	}
 	
-	function act_raw ( $action ) { 
+	function act_raw ( $action ) {
 		global $wgArticle ;
 		require_once( 'includes/RawPage.php' );
 		$raw = new RawPage( $wgArticle );
@@ -118,18 +118,18 @@ class MediaWikiType {
 	}
 	
 	
-	function act_watch ( $action ) { $this->article_action ( $action ) ; } 
-	function act_unwatch ( $action ) { $this->article_action ( $action ) ; } 
-	function act_delete ( $action ) { $this->article_action ( $action ) ; } 
-	function act_revert ( $action ) { $this->article_action ( $action ) ; } 
-	function act_rollback ( $action ) { $this->article_action ( $action ) ; } 
-	function act_protect ( $action ) { $this->article_action ( $action ) ; } 
-	function act_unprotect ( $action ) { $this->article_action ( $action ) ; } 
-	function act_info ( $action ) { $this->article_action ( $action ) ; } 
-	function act_markpatrolled ( $action ) { $this->article_action ( $action ) ; } 
-	function act_render ( $action ) { $this->article_action ( $action ) ; } 
-	function act_deletetrackback ( $action ) { $this->article_action ( $action ) ; } 
-	function act_purge ( $action ) { $this->article_action ( $action ) ; } 
+	function act_watch ( $action ) { $this->article_action ( $action ) ; }
+	function act_unwatch ( $action ) { $this->article_action ( $action ) ; }
+	function act_delete ( $action ) { $this->article_action ( $action ) ; }
+	function act_revert ( $action ) { $this->article_action ( $action ) ; }
+	function act_rollback ( $action ) { $this->article_action ( $action ) ; }
+	function act_protect ( $action ) { $this->article_action ( $action ) ; }
+	function act_unprotect ( $action ) { $this->article_action ( $action ) ; }
+	function act_info ( $action ) { $this->article_action ( $action ) ; }
+	function act_markpatrolled ( $action ) { $this->article_action ( $action ) ; }
+	function act_render ( $action ) { $this->article_action ( $action ) ; }
+	function act_deletetrackback ( $action ) { $this->article_action ( $action ) ; }
+	function act_purge ( $action ) { $this->article_action ( $action ) ; }
 
 	function article_action ( $action ) {
 		global $wgArticle ;

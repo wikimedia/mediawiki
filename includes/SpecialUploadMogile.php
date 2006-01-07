@@ -41,7 +41,7 @@ class UploadFormMogile extends UploadForm {
 
 		if( $mfs->getPaths( $this->mSavedFile )) {
 			$this->mUploadOldVersion = gmdate( 'YmdHis' ) . "!{$saveName}";
-			if( !$mfs->rename( $this->mSavedFile, "archive!{$this->mUploadOldVersion}" ) ) { 
+			if( !$mfs->rename( $this->mSavedFile, "archive!{$this->mUploadOldVersion}" ) ) {
 				$wgOut->fileRenameError( $this->mSavedFile,
 				  "archive!{$this->mUploadOldVersion}" );
 				return false;

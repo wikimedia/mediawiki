@@ -3,7 +3,7 @@
  * Copyright (C) 2004 Gabriel Wicke <gw@wikidev.net>
  * http://www.aulinx.de/
  * Based on PageHistory and SpecialExport
- * 
+ *
  * License: GPL (http://www.gnu.org/copyleft/gpl.html)
  *
  * @author Gabriel Wicke <gw@wikidev.net>
@@ -30,7 +30,7 @@ class RawPage {
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
 
-		if ( $request === false ) { 
+		if ( $request === false ) {
 			$this->mRequest =& $wgRequest;
 		} else {
 			$this->mRequest = $request;

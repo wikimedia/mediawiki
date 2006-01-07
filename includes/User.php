@@ -815,7 +815,7 @@ class User {
 	}
 	
 	/**
-	 * Add or update the 
+	 * Add or update the
 	 * @param string $field
 	 * @param mixed $id
 	 * @access private

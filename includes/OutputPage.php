@@ -728,7 +728,7 @@ class OutputPage {
 		$this->mBodytext = '';
 		$loginpage = Title::makeTitle(NS_SPECIAL, 'Userlogin');
 		$sk = $wgUser->getSkin();
-		$loginlink = $sk->makeKnownLinkObj($loginpage, wfMsg('loginreqlink'), 
+		$loginlink = $sk->makeKnownLinkObj($loginpage, wfMsg('loginreqlink'),
 			'returnto=' . htmlspecialchars($wgTitle->getPrefixedDBkey()));
 		$this->addHTML( wfMsgHtml( 'loginreqpagetext', $loginlink ) );
 

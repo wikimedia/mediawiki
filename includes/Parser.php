@@ -157,7 +157,7 @@ class Parser
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 	}
 
-	/** 
+	/**
 	 * Convert wikitext to HTML
 	 * Do not call this function recursively.
 	 *
@@ -1206,7 +1206,7 @@ class Parser
 		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
 		$imagesexception = !empty($imagesfrom);
 		$text = false;
-		if ( $this->mOptions->getAllowExternalImages() 
+		if ( $this->mOptions->getAllowExternalImages()
 		     || ( $imagesexception && strpos( $url, $imagesfrom ) === 0 ) ) {
 			if ( preg_match( EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
@@ -1421,7 +1421,7 @@ class Parser
 
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
 						$s .= $prefix . $this->armorLinks( $this->makeImage( $nt, $text ) ) . $trail;
-						$this->mOutput->addImage( $nt->getDBkey() ); 
+						$this->mOutput->addImage( $nt->getDBkey() );
 
 						wfProfileOut( "$fname-image" );
 						continue;
@@ -2075,14 +2075,14 @@ class Parser
 							   'title' => '',
 							   'parts' => null);
 
-				# count openning brace characters 
+				# count openning brace characters
 				while ($i+1 < strlen($text) && $text[$i+1] == $piece['brace']) {
 					$piece['count']++;
 					$i++;
 				}
 
-				$piece['startAt'] = $i+1; 
-				$piece['partStart'] = $i+1; 
+				$piece['startAt'] = $i+1;
+				$piece['partStart'] = $i+1;
 
 				# we need to add to stack only if openning brace count is enough for any given rule
 				foreach ($rule['cb'] as $cnt => $fn) {
@@ -3640,7 +3640,7 @@ class Parser
 	}
 
 	/**
-	 * Set a flag in the output object indicating that the content is dynamic and 
+	 * Set a flag in the output object indicating that the content is dynamic and
 	 * shouldn't be cached.
 	 */
 	function disableCache() {
@@ -3726,13 +3726,13 @@ class ParserOutput
 	function addImage( $name )           { $this->mImages[$name] = 1; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
 
-	function addLink( $title, $id ) { 
+	function addLink( $title, $id ) {
 		$ns = $title->getNamespace();
 		$dbk = $title->getDBkey();
 		if ( !isset( $this->mLinks[$ns] ) ) {
 			$this->mLinks[$ns] = array();
 		}
-		$this->mLinks[$ns][$dbk] = $id; 
+		$this->mLinks[$ns][$dbk] = $id;
 	}
 
 	function addTemplate( $title, $id ) {

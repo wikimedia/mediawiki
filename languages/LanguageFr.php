@@ -469,7 +469,7 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 'searchquery' => 'Pour la requête « $1 »',
 'badquery'  => 'Requête mal formulée',
 'badquerytext' => 'Nous n\'avons pas pu traiter votre requête.
-Vous avez probablement recherché un mot d\'une longueur inférieure à trois lettres, ce qui n\'est pas encore possible. Vous avez aussi pu faire une erreur de syntaxe, telle que « poisson et écailles ». 
+Vous avez probablement recherché un mot d\'une longueur inférieure à trois lettres, ce qui n\'est pas encore possible. Vous avez aussi pu faire une erreur de syntaxe, telle que « poisson et écailles ».
 Veuillez essayer une autre requête.', // FIXME
 'matchtotals' => 'La requête « $1 » correspond à $2 titre(s) d\'article et au texte de $3 article(s).',
 'nogomatch' => 'Aucune page avec ce titre n\'existe, essai avec la recherche complète.

@@ -84,8 +84,8 @@ class EmailUserForm {
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
 		$wgOut->addWikiText( wfMsg( "emailpagetext" ) );
 
-		if ( $this->subject === "" ) { 
-			$this->subject = wfMsg( "defemailsubject" ); 
+		if ( $this->subject === "" ) {
+			$this->subject = wfMsg( "defemailsubject" );
 		}
 
 		$emf = wfMsg( "emailfrom" );
@@ -128,7 +128,7 @@ class EmailUserForm {
 
 	function doSubmit() {
 		global $wgOut, $wgUser;
-	    
+	
 		$to = new MailAddress( $this->target );
 		$from = new MailAddress( $wgUser );
 		$subject = $this->subject;

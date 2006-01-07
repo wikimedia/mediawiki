@@ -31,14 +31,14 @@ class HistoryBlob
 	 */
 	function addItem() {}
 
-	/** 
+	/**
 	 * Get item by hash
 	 */
 	function getItem( $hash ) {}
 	
 	# Set the "default text"
 	# This concept is an odd property of the current DB schema, whereby each text item has a revision
-	# associated with it. The default text is the text of the associated revision. There may, however, 
+	# associated with it. The default text is the text of the associated revision. There may, however,
 	# be other revisions in the same object
 	function setText() {}
 
@@ -111,7 +111,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 	}
 
 	/** @todo document */
-	function uncompress() { 
+	function uncompress() {
 		if ( $this->mCompressed ) {
 			$this->mItems = unserialize( gzinflate( $this->mItems ) );
 			$this->mCompressed = false;

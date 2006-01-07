@@ -1018,7 +1018,7 @@ class Article {
 			$msg = $wgOut->parse( wfMsg( 'confirm_purge' ) );
 			$action = $this->mTitle->escapeLocalURL( 'action=purge' );
 			$button = htmlspecialchars( wfMsg( 'confirm_purge_button' ) );
-			$msg = str_replace( '$1', 
+			$msg = str_replace( '$1',
 				"<form method=\"post\" action=\"$action\">\n" .
 				"<input type=\"submit\" name=\"submit\" value=\"$button\" />\n" .
 				"</form>\n", $msg );

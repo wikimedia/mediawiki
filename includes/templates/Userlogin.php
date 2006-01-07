@@ -139,7 +139,7 @@ class UsercreateTemplate extends QuickTemplate {
 			<td align='right'><label for='wpRetype'><?php $this->msg('yourpasswordagain') ?>:</label></td>
 			<td align='left'>
 				<input type='password' class='loginPassword' name="wpRetype" id="wpRetype"
-					value="<?php $this->text('retype') ?>" 
+					value="<?php $this->text('retype') ?>"
 					size='20' />
 			</td>
 		</tr>

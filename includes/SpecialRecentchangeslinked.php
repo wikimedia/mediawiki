@@ -67,7 +67,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	// If target is a Category, use categorylinks and invert from and to
 	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBKey() );
-		$sql = "SELECT /* wfSpecialRecentchangeslinked */ 
+		$sql = "SELECT /* wfSpecialRecentchangeslinked */
         			rc_id,
         			rc_cur_id,
         			rc_namespace,
@@ -95,7 +95,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
  ";
 	} else {
 		$sql =
-"SELECT /* wfSpecialRecentchangeslinked */ 
+"SELECT /* wfSpecialRecentchangeslinked */
 			rc_id,
 			rc_cur_id,
 			rc_namespace,

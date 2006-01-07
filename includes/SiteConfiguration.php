@@ -1,12 +1,12 @@
 <?php
 /**
- * This is a class used to hold configuration settings, particularly for multi-wiki sites. 
+ * This is a class used to hold configuration settings, particularly for multi-wiki sites.
  *
  * @package MediaWiki
  */
 
 /**
- * The include paths change after this file is included from commandLine.inc, 
+ * The include paths change after this file is included from commandLine.inc,
  * meaning that require_once() fails to detect that it is including the same
  * file again. We use DIY C-style protection as a workaround.
  */
@@ -49,7 +49,7 @@ class SiteConfiguration {
 		$localSettings = array();
 		foreach ( $this->settings as $varname => $stuff ) {
 			$value = $this->get( $varname, $wiki, $suffix, $params );
-			if ( !is_null( $value ) ) { 
+			if ( !is_null( $value ) ) {
 				$localSettings[$varname] = $value;
 			}
 		}

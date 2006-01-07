@@ -34,7 +34,7 @@ class CategoriesPage extends QueryPage {
 		$NScat = NS_CATEGORY;
 		$dbr =& wfGetDB( DB_SLAVE );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
-		$s= "SELECT 'Categories' as type, 
+		$s= "SELECT 'Categories' as type,
 				{$NScat} as namespace,
 				cl_to as title,
 				1 as value,

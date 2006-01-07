@@ -593,7 +593,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
     <input type="hidden" name="num" value="50" />
     <input type="hidden" name="ie" value="$2" />
     <input type="hidden" name="oe" value="$2" />
-    
+
     <input type="text" name="q" size="31" maxlength="255" value="$1" />
     <input type="submit" name="btnG" value="Vyhledat Googlem" />
   </div>

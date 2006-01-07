@@ -1,17 +1,17 @@
 <?php
 # Copyright (C) 2004 Magnus Manske <magnus.manske@web.de>
 # http://www.mediawiki.org/
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -653,8 +653,8 @@ class Validation {
 		$title = $article->getTitle();
 		$wgOut->setPageTitle( wfMsg( 'val_validation_of', $title->getPrefixedText() ) );
 		
-		$offset = $wgRequest->getVal ( "offset" , 0 ) ; 
-		$limit = $wgRequest->getVal ( "limit" , 25 ) ; 
+		$offset = $wgRequest->getVal ( "offset" , 0 ) ;
+		$limit = $wgRequest->getVal ( "limit" , 25 ) ;
 		
 		# Collecting statistic data
 		# Unfortunately, it has to read all the data, though it will only display a part
@@ -741,7 +741,7 @@ class Validation {
 		$base .= "limit={$limit}&offset=" ;
 		
 		if ( $offset > 0 ) {
-			$o = $offset - $limit ; 
+			$o = $offset - $limit ;
 			$t = $offset-$limit+1 ;
 			$r[] = $sk->makeKnownLinkObj( $nt, "{$t} <<" , $base.$o );
 		}
@@ -751,7 +751,7 @@ class Validation {
 		$r[] = $s1 . " - " . $s2 ;
 		
 		if ( $lastcount == $limit ) {
-			$o = $offset + $limit ; 
+			$o = $offset + $limit ;
 			$t = $offset+$limit+1 ;
 			$r[] = $sk->makeKnownLinkObj( $nt, ">> {$t}" , $base.$o );
 		}

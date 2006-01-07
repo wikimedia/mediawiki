@@ -1,12 +1,12 @@
 <?php
 /**
- * 
+ *
  * @package MediaWiki
  *
  * Example class for HTTP accessable external objects
  *
  */
- 
+
 class ExternalStoreHttp {
 	/* Fetch data from given URL */
 	function fetchFromURL($url) {
@@ -16,8 +16,8 @@ class ExternalStoreHttp {
 		return $ret;
 	}
 
-	/* XXX: may require other methods, for store, delete, 
-	 * whatever, for initial ext storage  
+	/* XXX: may require other methods, for store, delete,
+	 * whatever, for initial ext storage
 	 */
 }
 ?>

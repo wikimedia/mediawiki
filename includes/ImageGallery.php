@@ -8,7 +8,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
 
 /**
  * Image gallery
- * 
+ *
  * Add images to the gallery using add(), then render that list to HTML using toHTML().
  *
  * @package MediaWiki
@@ -17,7 +17,7 @@ class ImageGallery
 {
 	var $mImages, $mShowBytes, $mShowFilename;
 
-	/** 
+	/**
 	 * Create a new image gallery object.
 	 */
 	function ImageGallery( ) {
@@ -57,7 +57,7 @@ class ImageGallery
 	/**
 	 * Enable/Disable showing of the file size of an image in the gallery.
 	 * Enabled by default.
-	 * 
+	 *
 	 * @param boolean $f	set to false to disable
 	 */
 	function setShowBytes( $f ) {
@@ -67,7 +67,7 @@ class ImageGallery
 	/**
 	 * Enable/Disable showing of the filename of an image in the gallery.
 	 * Enabled by default.
-	 * 
+	 *
 	 * @param boolean $f	set to false to disable
 	 */
 	function setShowFilename( $f ) {
@@ -76,7 +76,7 @@ class ImageGallery
 
 	/**
 	 * Return a HTML representation of the image gallery
-	 * 
+	 *
 	 * For each image in the gallery, display
 	 * - a thumbnail
 	 * - the image name

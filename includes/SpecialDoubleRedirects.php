@@ -6,7 +6,7 @@
  */
 
 /**
- * 
+ *
  */
 require_once('QueryPage.php');
 

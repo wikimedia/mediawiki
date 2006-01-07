@@ -260,7 +260,7 @@ Të gjitha kohët janë sipas orës së shërbyesit (UTC).
 'emailfrom' => 'Nga',
 'emailmessage' => 'Mesazh',
 'emailpage' => 'Dërgo e-mail përdoruesve',
-'emailpagetext' => 'Në qoftë se ky përdorues ka dhënë një adresë të saktë në parapëlqimet, formulari më poshtë do t\'i dërgojë një mesazh. 
+'emailpagetext' => 'Në qoftë se ky përdorues ka dhënë një adresë të saktë në parapëlqimet, formulari më poshtë do t\'i dërgojë një mesazh.
 
 Adresa e email-it që keni dhënë në parapëlqimet do të duket si pjesa "From" e adresës së mesazhit, kështuqë marrësi do të ketë mundësi tu përgjigjet.',
 'emailsend' => 'Dërgo',
@@ -871,7 +871,7 @@ Për të parë ose për të kërkuar figurat e dhëna më parë,
 shkoni tek [[Speciale:Imagelist|lista e figurave të dhëna]].
 Dhëniet dhe grisjet janë të rregjistruara në [[Speciale:Log|faqen e rregjistrave]].
 
-Përdorni formularin e më poshtëm për të dhënë skedarë të figurave të reja për tu përdorur në illustrimet e artikujve. Për shumicën e shfletuesve, do të shihni një "Browse..." buton, i cili do të hapi dialogun standart të skedarëve të operating system që përdorni. 
+Përdorni formularin e më poshtëm për të dhënë skedarë të figurave të reja për tu përdorur në illustrimet e artikujve. Për shumicën e shfletuesve, do të shihni një "Browse..." buton, i cili do të hapi dialogun standart të skedarëve të operating system që përdorni.
 
 Për të vendosur një figurë në një artikull, përdorni lidhjen sipas formës \'\'\'<nowiki>[[figura:skedar.jpg]]</nowiki>\'\'\' ose \'\'\'<nowiki>[[figura:skedar.png|tekst përshkrues]]</nowiki>\'\'\'
 ose \'\'\'<nowiki>[[media:skedar.ogg]]</nowiki> të tjerë.

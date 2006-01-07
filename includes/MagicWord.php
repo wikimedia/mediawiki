@@ -107,12 +107,12 @@ if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
  * This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.
  * Usage:
  *     if (MagicWord::get( MAG_REDIRECT )->match( $text ) )
- * 
- * Possible future improvements: 
+ *
+ * Possible future improvements:
  *   * Simultaneous searching for a number of magic words
  *   * $wgMagicWords in shared memory
  *
- * Please avoid reading the data out of one of these objects and then writing 
+ * Please avoid reading the data out of one of these objects and then writing
  * special case code. If possible, add another match()-like function here.
  *
  * @package MediaWiki
@@ -177,7 +177,7 @@ class MagicWord {
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
 		$this->mVariableRegex = str_replace( "\\$1", "(.*?)", $this->mRegex );
-		$this->mVariableStartToEndRegex = str_replace( "\\$1", "(.*?)", 
+		$this->mVariableStartToEndRegex = str_replace( "\\$1", "(.*?)",
 			"/^(?:{$this->mBaseRegex})$/{$case}" );
 	}
 	
@@ -294,7 +294,7 @@ class MagicWord {
 	function getVariableRegex()	{
 		if ( $this->mVariableRegex == '' ) {
 			$this->initRegex();
-		} 
+		}
 		return $this->mVariableRegex;
 	}
 
@@ -304,7 +304,7 @@ class MagicWord {
 	function getVariableStartToEndRegex() {
 		if ( $this->mVariableStartToEndRegex == '' ) {
 			$this->initRegex();
-		} 
+		}
 		return $this->mVariableStartToEndRegex;
 	}
 
@@ -316,7 +316,7 @@ class MagicWord {
 	}
 
 	/**
-	 * Returns true if the last call to replace() or substituteCallback() 
+	 * Returns true if the last call to replace() or substituteCallback()
 	 * returned a modified text, otherwise false.
 	 */
 	function getWasModified(){
@@ -328,7 +328,7 @@ class MagicWord {
 	 * This method uses the php feature to do several replacements at the same time,
 	 * thereby gaining some efficiency. The result is placed in the out variable
 	 * $result. The return value is true if something was replaced.
-	 * @static 
+	 * @static
 	 **/
 	function replaceMultiple( $magicarr, $subject, &$result ){
 		$search = array();

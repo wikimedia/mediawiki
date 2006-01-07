@@ -223,7 +223,7 @@
 # Metadata in edit box
 'metadata' => '<b>Метаданни</b> (<a href="$1">разяснение</a>)',
 'metadata_page' => 'Project:Метаданни',
- 
+
 'currentevents' => 'Текущи събития',
 'currentevents-url' => 'Текущи събития',
 'disclaimers' => 'Условия за ползване',
@@ -650,7 +650,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 			<input type="submit" name="btnG" value="Google Search" />
 		</div>
 		<div style="font-size:90%">
-			<input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" 
+			<input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}"
 				checked="checked" /><label for="gwiki">{{SITENAME}}</label>
 			<input type="radio" name="sitesearch" id="gWWW" value="" />
 			<label for="gWWW">Мрежата</label>
@@ -722,7 +722,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'addgroup' => 'Добавяне на група',
 
 'userrights-lookup-user' => 'Управляване на потребителските групи',#Manage user groups
-'userrights-user-editname' => 'Въведете потребителско име: ',#Enter a username: 
+'userrights-user-editname' => 'Въведете потребителско име: ',#Enter a username:
 'editusergroup' => 'Редактиране на потребителските групи',#Edit User Groups
 
 # group editing
@@ -1252,7 +1252,7 @@ Feedback and further assistance:
 'already_sysop'         => 'Този потребител беше вече администратор',
 'already_bureaucrat'    => 'Този потребител беше вече бюрократ',
 'already_steward'       => 'Този потребител беше вече стюард',
- 
+
 # Move page
 #
 'movepage'    => 'Преместване на страница',
@@ -1779,7 +1779,7 @@ Feedback and further assistance:
 
 // Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'True direction',
-'exif-gpsdirection-m' => 'Magnetic direction', 
+'exif-gpsdirection-m' => 'Magnetic direction',
 
 # external editor support
 'edit-externally' => 'Редактиране на файла чрез външно приложение',

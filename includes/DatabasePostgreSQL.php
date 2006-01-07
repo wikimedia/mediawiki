@@ -2,8 +2,8 @@
 
 /**
  * This is PostgreSQL database abstraction layer.
- * 
- * As it includes more generic version for DB functions, 
+ *
+ * As it includes more generic version for DB functions,
  * than MySQL ones, some of them should be moved to parent
  * Database class.
  *
@@ -26,13 +26,13 @@ class DatabasePgsql extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
 
-	function DatabasePgsql($server = false, $user = false, $password = false, $dbName = false, 
+	function DatabasePgsql($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
 		Database::Database( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
 	}
 
-	/* static */ function newFromParams( $server = false, $user = false, $password = false, $dbName = false, 
+	/* static */ function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
 		return new DatabasePgsql( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
@@ -70,7 +70,7 @@ class DatabasePgsql extends Database {
 				wfDebug( "DB connection error\n" );
 				wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 				wfDebug( $this->lastError()."\n" );
-			} else { 
+			} else {
 				$this->setSchema();
 				$this->mOpened = true;
 			}
@@ -127,7 +127,7 @@ class DatabasePgsql extends Database {
 	}
 
 	function numRows( $res ) {
-		@$n = pg_num_rows( $res ); 
+		@$n = pg_num_rows( $res );
 		if( pg_last_error($this->mConn) ) {
 			wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
@@ -139,7 +139,7 @@ class DatabasePgsql extends Database {
 	/**
 	 * This must be called after nextSequenceVal
 	 */
-	function insertId() { 
+	function insertId() {
 		return $this->mInsertId;
 	}
 
@@ -147,8 +147,8 @@ class DatabasePgsql extends Database {
 	function lastError() { return pg_last_error(); }
 	function lastErrno() { return 1; }
 
-	function affectedRows() { 
-		return pg_affected_rows( $this->mLastResult ); 
+	function affectedRows() {
+		return pg_affected_rows( $this->mLastResult );
 	}
 	
 	/**
@@ -176,7 +176,7 @@ class DatabasePgsql extends Database {
 		$res = $this->query( $sql, $fname );
 		if ( !$res )
 			return NULL;
-		while ($row = $this->fetchObject( $res )) 
+		while ($row = $this->fetchObject( $res ))
 			return true;
 		return false;
 		
@@ -201,12 +201,12 @@ class DatabasePgsql extends Database {
 	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
 		# PostgreSQL doesn't support options
 		# We have a go at faking one of them
-		# TODO: DELAYED, LOW_PRIORITY 
+		# TODO: DELAYED, LOW_PRIORITY
 
 		if ( !is_array($options))
 			$options = array($options);
 
-		if ( in_array( 'IGNORE', $options ) ) 
+		if ( in_array( 'IGNORE', $options ) )
 			$oldIgnore = $this->ignoreErrors( true );
 
 		# IGNORE is performed using single-row inserts, ignoring errors in each
@@ -221,7 +221,7 @@ class DatabasePgsql extends Database {
 		$this->ignoreErrors( $oldIgnore );
 		$retVal = true;
 
-		if ( in_array( 'IGNORE', $options ) ) 
+		if ( in_array( 'IGNORE', $options ) )
 			$this->ignoreErrors( $oldIgnore );
 
 		return $retVal;
@@ -277,11 +277,11 @@ class DatabasePgsql extends Database {
 	# REPLACE query wrapper
 	# PostgreSQL simulates this with a DELETE followed by INSERT
 	# $row is the row to insert, an associative array
-	# $uniqueIndexes is an array of indexes. Each element may be either a 
+	# $uniqueIndexes is an array of indexes. Each element may be either a
 	# field name or an array of field names
 	#
-	# It may be more efficient to leave off unique indexes which are unlikely to collide. 
-	# However if you do this, you run the risk of encountering errors which wouldn't have 
+	# It may be more efficient to leave off unique indexes which are unlikely to collide.
+	# However if you do this, you run the risk of encountering errors which wouldn't have
 	# occurred in MySQL
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'Database::replace' ) {
 		$table = $this->tableName( $table );
@@ -310,7 +310,7 @@ class DatabasePgsql extends Database {
 					if ( is_array( $index ) ) {
 						$first2 = true;
 						foreach ( $index as $col ) {
-							if ( $first2 ) { 
+							if ( $first2 ) {
 								$first2 = false;
 							} else {
 								$sql .= ' AND ';
@@ -353,8 +353,8 @@ class DatabasePgsql extends Database {
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SELECT t.typname as ftype,a.atttypmod as size
-			FROM pg_class c, pg_attribute a, pg_type t 
-			WHERE relname='$table' AND a.attrelid=c.oid AND 
+			FROM pg_class c, pg_attribute a, pg_type t
+			WHERE relname='$table' AND a.attrelid=c.oid AND
 				a.atttypid=t.oid and a.attname='$field'";
 		$res =$this->query($sql);
 		$row=$this->fetchObject($res);

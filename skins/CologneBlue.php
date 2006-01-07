@@ -131,8 +131,8 @@ class SkinCologneBlue extends Skin {
 		$rt = $wgTitle->getPrefixedURL();
 		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
 			$q = "";
-		} else { 
-			$q = "returnto={$rt}"; 
+		} else {
+			$q = "returnto={$rt}";
 		}
 		
 		$s = "" .
@@ -224,7 +224,7 @@ class SkinCologneBlue extends Skin {
 
 			$s .= $this->menuHead( "qbpageoptions" );
 			$s .= $this->talkLink()
-			  . $sep . $this->commentLink() 
+			  . $sep . $this->commentLink()
 			  . $sep . $this->printableLink();
 			if ( $wgUser->isLoggedIn() ) {
 				$s .= $sep . $this->watchThisPage();
@@ -236,7 +236,7 @@ class SkinCologneBlue extends Skin {
 			  . $this->historyLink()
 			  . $sep . $this->whatLinksHere()
 			  . $sep . $this->watchPageLinksLink();
-			  
+			
 			if( $tns == NS_USER || $tns == NS_USER_TALK ) {
 				$id=User::idFromName($wgTitle->getText());
 				if ($id != 0) {
@@ -271,9 +271,9 @@ class SkinCologneBlue extends Skin {
 		}
 
 		$s .= $this->menuHead( "qbspecialpages" )
-		  . $this->specialLink( "newpages" ) 
-		  . $sep . $this->specialLink( "imagelist" ) 
-		  . $sep . $this->specialLink( "statistics" ) 
+		  . $this->specialLink( "newpages" )
+		  . $sep . $this->specialLink( "imagelist" )
+		  . $sep . $this->specialLink( "statistics" )
 		  . $sep . $this->bugReportsLink();
 		if ( $wgUser->isLoggedIn() && $wgEnableUploads ) {
 			$s .= $sep . $this->specialLink( "upload" );

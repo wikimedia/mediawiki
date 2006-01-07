@@ -1,17 +1,17 @@
 <?php
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -22,7 +22,7 @@
  * regression checks for known problems.
  *
  * Requires PHPUnit.
- * 
+ *
  * @package UtfNormal
  * @access private
  */
@@ -114,7 +114,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 						"U+$x should be decomposed" );
 				} else {
 					$this->assertEquals(
-						bin2hex( $char ), 
+						bin2hex( $char ),
 						bin2hex( $clean ),
 						"U+$x should be intact" );
 				}
@@ -143,7 +143,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 			    $i == 0x000d ||
 			    ($i > 0x001f && $i < 0x80) ) {
 				$this->assertEquals(
-					bin2hex( $char ), 
+					bin2hex( $char ),
 					bin2hex( $clean ),
 					"ASCII byte $x should be intact" );
 				if( $char != $clean ) return;
@@ -180,7 +180,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 				    $second < 0xc0 ) {
 				    $norm = UtfNormal::NFC( $char );
 					$this->assertEquals(
-						bin2hex( $norm ), 
+						bin2hex( $norm ),
 						bin2hex( $clean ),
 						"Pair $x should be intact" );
 				    if( $norm != $clean ) return;
@@ -227,18 +227,18 @@ class CleanUpTest extends PHPUnit_TestCase {
 						$third < 0xc0 ) {
 						if( $first == 0xe0 && $second < 0xa0 ) {
 							$this->assertEquals(
-								bin2hex( $head . UTF8_REPLACEMENT . $tail ), 
+								bin2hex( $head . UTF8_REPLACEMENT . $tail ),
 								bin2hex( $clean ),
 								"Overlong triplet $x should be rejected" );
-						} elseif( $first == 0xed && 
+						} elseif( $first == 0xed &&
 							( chr( $first ) . chr( $second ) . chr( $third ))  >= UTF8_SURROGATE_FIRST ) {
 							$this->assertEquals(
-								bin2hex( $head . UTF8_REPLACEMENT . $tail ), 
+								bin2hex( $head . UTF8_REPLACEMENT . $tail ),
 								bin2hex( $clean ),
 								"Surrogate triplet $x should be rejected" );
 						} else {
 							$this->assertEquals(
-								bin2hex( UtfNormal::NFC( $char ) ), 
+								bin2hex( UtfNormal::NFC( $char ) ),
 								bin2hex( $clean ),
 								"Triplet $x should be intact" );
 						}
@@ -282,14 +282,14 @@ class CleanUpTest extends PHPUnit_TestCase {
 	function testChunkRegression() {
 		# Check for regression against a chunking bug
 		$text   = "\x46\x55\xb8" .
-		          "\xdc\x96" . 
+		          "\xdc\x96" .
 		          "\xee" .
 		          "\xe7" .
 		          "\x44" .
 		          "\xaa" .
 		          "\x2f\x25";
 		$expect = "\x46\x55\xef\xbf\xbd" .
-		          "\xdc\x96" . 
+		          "\xdc\x96" .
 		          "\xef\xbf\xbd" .
 		          "\xef\xbf\xbd" .
 		          "\x44" .

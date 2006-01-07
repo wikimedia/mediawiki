@@ -1364,7 +1364,7 @@ páginas vigiladas.
 
              El sistema de notificación de {{SITENAME}}.
 
--- 
+--
 Cambie las opciones de su lista de seguimiento en:
 {{SERVER}}{{localurl:Especial:Watchlist|edit=yes}}',
 'enotif_lastvisited'	=> 'Vaya a {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} para ver todos los cambios desde su última visita.',
@@ -1626,7 +1626,7 @@ Cambie las opciones de su lista de seguimiento en:
     <input type="hidden" name="num" value="50" />
     <input type="hidden" name="ie" value="$2" />
     <input type="hidden" name="oe" value="$2" />
-    
+
     <input type="text" name="q" size="31" maxlength="255" value="$1" />
     <input type="submit" name="btnG" value="Búsqueda en Google" />
   </div>
@@ -1678,7 +1678,7 @@ Cambie las opciones de su lista de seguimiento en:
 'metadata'	=> 'Metadatos',
 'metadata-collapse'	=> 'Ocultar datos detallados',
 'metadata-expand'	=> 'Mostrar datos detallados',
-'metadata-fields'	=> 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto y que podrán desplegarse. 
+'metadata-fields'	=> 'Los campos de metadatos EXIF que se listan en este mensaje se mostrarán en la página de descripción de la imagen aún cuando la tabla de metadatos esté plegada. Existen otros campos que se mantendrán ocultos por defecto y que podrán desplegarse.
 * make
 * model
 * datetimeoriginal
@@ -1717,7 +1717,7 @@ Cambie las opciones de su lista de seguimiento en:
 'protectcomment'	=> 'Razón para proteger',
 'protect-default'	=> '(por defecto)',
 'protectedarticle'	=> 'protegió [[$1]]',
-'protectedtext'	=> 'Esta página ha sido protegida para impedir su modificación; hay varias razones para que esto sea así, por favor vea 
+'protectedtext'	=> 'Esta página ha sido protegida para impedir su modificación; hay varias razones para que esto sea así, por favor vea
 [[{{ns:project}}:Esta página está protegida]].
 
 Puedes ver y copiar el texto fuente de esta página:',

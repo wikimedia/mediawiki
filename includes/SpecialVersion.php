@@ -63,15 +63,15 @@ class SpecialVersion {
 		$ret =
 		"__NOTOC__
 		<div dir='ltr'>
-		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',  
+		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
 		copyright (C) 2001-2006 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, and others.
-		 
+		
 		MediaWiki is free software; you can redistribute it and/or modify
 		it under the terms of the GNU General Public License as published by
 		the Free Software Foundation; either version 2 of the License, or
 		(at your option) any later version.
-		 
+		
 		MediaWiki is distributed in the hope that it will be useful,
 		but WITHOUT ANY WARRANTY; without even the implied warranty of
 		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the

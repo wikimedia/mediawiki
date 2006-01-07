@@ -35,7 +35,7 @@ function getRebuildInterwikiSQL() {
 
 	# Multi-language sites
 	# db suffix => db suffix, iw prefix, hostname
-	$sites = array( 
+	$sites = array(
 		'wiki' => new Site( 'wiki', 'w', 'wikipedia.org' ),
 		'wiktionary' => new Site( 'wiktionary', 'wikt', 'wiktionary.org' ),
 		'wikiquote' => new Site( 'wikiquote', 'q', 'wikiquote.org' ),
@@ -52,7 +52,7 @@ function getRebuildInterwikiSQL() {
 	$dblist = array_map( "trim", file( "/home/wikipedia/common/all.dblist" ) );
 	
 	# Special-case hostnames
-	$specials = array( 
+	$specials = array(
 		'sourceswiki' => 'sources.wikipedia.org',
 		'quotewiki' => 'wikiquote.org',
 		'textbookwiki' => 'wikibooks.org',
@@ -70,7 +70,7 @@ function getRebuildInterwikiSQL() {
 
 	# Language aliases, usually configured as redirects to the real wiki in apache
 	# Interlanguage links are made directly to the real wiki
-	# Something horrible happens if you forget to list an alias here, I can't 
+	# Something horrible happens if you forget to list an alias here, I can't
 	#   remember what
 	$languageAliases = array(
 		'zh-cn' => 'zh',
@@ -134,7 +134,7 @@ function getRebuildInterwikiSQL() {
 			$host = $specials[$db];
 			$sql .= "\n--$host\n\n";
 			$sql .= "USE $db;\n" .
-					"TRUNCATE TABLE interwiki;\n" . 
+					"TRUNCATE TABLE interwiki;\n" .
 					"INSERT INTO interwiki (iw_prefix, iw_url, iw_local) VALUES \n";
 			$first = true;
 			
@@ -183,8 +183,8 @@ function getRebuildInterwikiSQL() {
 			# Intermap links
 			foreach ( $iwArray as $iwEntry ) {
 				# Suppress links with the same name as the site
-				if ( ( $suffix == 'wiki' && $iwEntry['iw_prefix'] != 'wikipedia' ) || 
-				  ( $suffix != 'wiki' && $suffix != $iwEntry['iw_prefix'] ) ) 
+				if ( ( $suffix == 'wiki' && $iwEntry['iw_prefix'] != 'wikipedia' ) ||
+				  ( $suffix != 'wiki' && $suffix != $iwEntry['iw_prefix'] ) )
 				{
 					$sql .= makeLink( $iwEntry, $first, $db );
 				}
@@ -208,7 +208,7 @@ function getRebuildInterwikiSQL() {
 			}
 			
 			# Extra links
-			foreach ( $extraLinks as $link ){ 
+			foreach ( $extraLinks as $link ){
 					$sql .= makeLink( $link, $first, $db );
 			}
 			$sql .= ";\n\n";

@@ -11,7 +11,7 @@
 define( 'ACTION_REPORT', 0 );
 define( 'ACTION_DELETE', 1 );
 
-# Count the number of edits the specified user has made 
+# Count the number of edits the specified user has made
 function CountEdits( $user_id ) {
 	# We've *got* to pull this stuff off the master. If the user *has* made an edit, but it hasn't
 	# been replicated to the slaves yet, we'll end up falsely marking them as inactive. This could

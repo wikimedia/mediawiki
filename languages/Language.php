@@ -744,7 +744,7 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'updated' => '(Updated)',
 'note' => '<strong>Note:</strong> ',
 'previewnote' => '<strong>This is only a preview; changes have not yet been saved!</strong>',
-'session_fail_preview' => '<strong>Sorry! We could not process your edit due to a loss of session data. 
+'session_fail_preview' => '<strong>Sorry! We could not process your edit due to a loss of session data.
 Please try again. If it still doesn\'t work, try logging out and logging back in.</strong>',
 'previewconflict' => 'This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.',
@@ -1401,8 +1401,8 @@ can be restored. The archive may be periodically cleaned out.',
 If a new page with the same name has been created since the deletion, the restored
 revisions will appear in the prior history, and the current revision of the live page
 will not be automatically replaced.',
-'undeletehistorynoadmin' => 'This article has been deleted. The reason for deletion is 
-shown in the summary below, along with details of the users who had edited this page 
+'undeletehistorynoadmin' => 'This article has been deleted. The reason for deletion is
+shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
 'undeleterevision' => "Deleted revision as of $1",
 'undeletebtn' => 'Restore!',
@@ -2879,7 +2879,7 @@ class Language {
 	 * Invoked by putting {{plural:count|wordform1|wordform2}}
 	 * or {{plural:count|wordform1|wordform2|wordform3}}
 	 *
-	 * Example: {{plural:{{NUMBEROFARTICLES}}|article|articles}} 
+	 * Example: {{plural:{{NUMBEROFARTICLES}}|article|articles}}
 	 *
 	 * @param integer $count
 	 * @param string $wordform1

@@ -28,7 +28,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 	if ( $newOnly ) {
 		print "Refreshing links from ";
 		$res = $dbr->select( 'page',
-			array( 'page_id' ), 
+			array( 'page_id' ),
 			array(
 				'page_is_new' => 1,
 				"page_id > $start" ),
@@ -94,7 +94,7 @@ function deleteLinksFromNonexistent( $maxLag = 0 ) {
 
 	$dbw =& wfGetDB( DB_WRITE );
 	
-	$linksTables = array( 
+	$linksTables = array(
 		'pagelinks' => 'pl_from',
 		'imagelinks' => 'il_from',
 		'categorylinks' => 'cl_from',

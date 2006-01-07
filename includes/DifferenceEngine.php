@@ -1,7 +1,7 @@
 <?php
 /**
  * See diff.doc
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 
@@ -14,7 +14,7 @@ define( 'MAX_DIFF_XREF_LENGTH', 10000 );
 /**
  * @todo document
  * @access public
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class DifferenceEngine {
@@ -37,7 +37,7 @@ class DifferenceEngine {
 	 * Constructor
 	 * @param Title $titleObj Title object that the diff is associated with
 	 * @param integer $old Old ID we want to show and diff with.
-	 * @param string $new Either 'prev' or 'next'. 
+	 * @param string $new Either 'prev' or 'next'.
 	 * @param integer $rcid ??? (default 0)
 	 */
 	function DifferenceEngine( $titleObj = null, $old = 0, $new = 0, $rcid = 0 ) {
@@ -379,7 +379,7 @@ CONTROL;
 		return $out;
 	}
 
-	/** 
+	/**
 	 * Use specified text instead of loading from the database
 	 */
 	function setText( $oldText, $newText ) {
@@ -392,11 +392,11 @@ CONTROL;
 	 * Load revision metadata for the specified articles. If newid is 0, then compare
 	 * the old article in oldid to the current article; if oldid is 0, then
 	 * compare the current article to the immediately previous one (ignoring the
-	 * value of newid). 
+	 * value of newid).
 	 *
-	 * If oldid is false, leave the corresponding revision object set 
-	 * to false. This is impossible via ordinary user input, and is provided for 
-	 * API convenience. 
+	 * If oldid is false, leave the corresponding revision object set
+	 * to false. This is impossible via ordinary user input, and is provided for
+	 * API convenience.
 	 */
 	function loadRevisionData() {
 		global $wgLang;
@@ -516,7 +516,7 @@ define('USE_ASSERTS', function_exists('assert'));
 /**
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class _DiffOp {
@@ -540,7 +540,7 @@ class _DiffOp {
 /**
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class _DiffOp_Copy extends _DiffOp {
@@ -561,7 +561,7 @@ class _DiffOp_Copy extends _DiffOp {
 /**
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class _DiffOp_Delete extends _DiffOp {
@@ -580,7 +580,7 @@ class _DiffOp_Delete extends _DiffOp {
 /**
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class _DiffOp_Add extends _DiffOp {
@@ -599,7 +599,7 @@ class _DiffOp_Add extends _DiffOp {
 /**
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class _DiffOp_Change extends _DiffOp {
@@ -637,7 +637,7 @@ class _DiffOp_Change extends _DiffOp {
  *
  * @author Geoffrey T. Dairiki, Tim Starling
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class _DiffEngine
@@ -1057,7 +1057,7 @@ class _DiffEngine
  * Class representing a 'diff' between two sequences of strings.
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class Diff
@@ -1199,7 +1199,7 @@ class Diff
  * FIXME: bad name.
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class MappedDiff extends Diff
@@ -1263,7 +1263,7 @@ class MappedDiff extends Diff
  * to obtain fancier outputs.
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class DiffFormatter
@@ -1430,7 +1430,7 @@ define('NBSP', '&#160;');			// iso-8859-x non-breaking space.
 /**
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class _HWLDF_WordAccumulator {
@@ -1489,7 +1489,7 @@ class _HWLDF_WordAccumulator {
 /**
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class WordLevelDiff extends MappedDiff
@@ -1527,7 +1527,7 @@ class WordLevelDiff extends MappedDiff
 				$stripped[] = $line;
 			} else {
 				if (preg_match_all('/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
-					$line, $m)) 
+					$line, $m))
 				{
 					$words = array_merge( $words, $m[0] );
 					$stripped = array_merge( $stripped, $m[1] );
@@ -1575,7 +1575,7 @@ class WordLevelDiff extends MappedDiff
  *	Wikipedia Table style diff formatter.
  * @todo document
  * @access private
- * @package MediaWiki 
+ * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class TableDiffFormatter extends DiffFormatter

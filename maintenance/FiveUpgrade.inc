@@ -367,7 +367,7 @@ class FiveUpgrade {
   			rev_timestamp char(14) binary NOT NULL default '',
   			rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
 			rev_deleted tinyint(1) unsigned NOT NULL default '0',
-  
+
   			PRIMARY KEY rev_page_id (rev_page, rev_id),
   			UNIQUE INDEX rev_id (rev_id),
   			INDEX rev_timestamp (rev_timestamp),
@@ -514,14 +514,14 @@ class FiveUpgrade {
 CREATE TABLE $pagelinks (
   -- Key to the page_id of the page containing the link.
   pl_from int(8) unsigned NOT NULL default '0',
-  
+
   -- Key to page_namespace/page_title of the target page.
   -- The target page may or may not exist, and due to renames
   -- and deletions may refer to different page records as time
   -- goes by.
   pl_namespace int NOT NULL default '0',
   pl_title varchar(255) binary NOT NULL default '',
-  
+
   UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
   KEY (pl_namespace,pl_title)
 
@@ -650,7 +650,7 @@ CREATE TABLE $1 (
   img_user int(5) unsigned NOT NULL default '0',
   img_user_text varchar(255) binary NOT NULL default '',
   img_timestamp char(14) binary NOT NULL default '',
-  
+
   PRIMARY KEY img_name (img_name),
   INDEX img_size (img_size),
   INDEX img_timestamp (img_timestamp)
@@ -814,11 +814,11 @@ END;
 CREATE TABLE $1 (
   -- Base filename: key to image.img_name
   oi_name varchar(255) binary NOT NULL default '',
-  
+
   -- Filename of the archived file.
   -- This is generally a timestamp and '!' prepended to the base name.
   oi_archive_name varchar(255) binary NOT NULL default '',
-  
+
   -- Other fields as in image...
   oi_size int(8) unsigned NOT NULL default 0,
   oi_width int(5) NOT NULL default 0,
@@ -876,18 +876,18 @@ END;
 "CREATE TABLE $watchlist_temp (
   -- Key to user_id
   wl_user int(5) unsigned NOT NULL,
-  
+
   -- Key to page_namespace/page_title
   -- Note that users may watch patches which do not exist yet,
   -- or existed in the past but have been deleted.
   wl_namespace int NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
-  
+
   -- Timestamp when user was last sent a notification e-mail;
   -- cleared when the user visits the page.
   -- FIXME: add proper null support etc
   wl_notificationtimestamp varchar(14) binary NOT NULL default '0',
-  
+
   UNIQUE KEY (wl_user, wl_namespace, wl_title),
   KEY namespace_title (wl_namespace,wl_title)
 
@@ -938,21 +938,21 @@ CREATE TABLE $1 (
   -- action field, but only the type controls categorization.
   log_type char(10) NOT NULL default '',
   log_action char(10) NOT NULL default '',
-  
+
   -- Timestamp. Duh.
   log_timestamp char(14) NOT NULL default '19700101000000',
-  
+
   -- The user who performed this action; key to user_id
   log_user int unsigned NOT NULL default 0,
-  
+
   -- Key to the page affected. Where a user is the target,
   -- this will point to the user page.
   log_namespace int NOT NULL default 0,
   log_title varchar(255) binary NOT NULL default '',
-  
+
   -- Freeform text. Interpreted as edit history comments.
   log_comment varchar(255) NOT NULL default '',
-  
+
   -- LF separated list of miscellaneous parameters
   log_params blob NOT NULL default '',
 
@@ -980,18 +980,18 @@ CREATE TABLE $1 (
   ar_namespace int NOT NULL default '0',
   ar_title varchar(255) binary NOT NULL default '',
   ar_text mediumblob NOT NULL default '',
-  
+
   ar_comment tinyblob NOT NULL default '',
   ar_user int(5) unsigned NOT NULL default '0',
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp char(14) binary NOT NULL default '',
   ar_minor_edit tinyint(1) NOT NULL default '0',
-  
+
   ar_flags tinyblob NOT NULL default '',
 
   ar_rev_id int(8) unsigned,
   ar_text_id int(8) unsigned,
-  
+
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
 ) TYPE=InnoDB
@@ -1018,12 +1018,12 @@ END;
 CREATE TABLE $1 (
   -- Key to page_id of the page containing the image / media link.
   il_from int(8) unsigned NOT NULL default '0',
-  
+
   -- Filename of target image.
   -- This is also the page_title of the file's description page;
   -- all such pages are in namespace 6 (NS_IMAGE).
   il_to varchar(255) binary NOT NULL default '',
-  
+
   UNIQUE KEY il_from(il_from,il_to),
   KEY (il_to)
 
@@ -1045,7 +1045,7 @@ CREATE TABLE $1 (
   cl_to varchar(255) binary NOT NULL default '',
   cl_sortkey varchar(86) binary NOT NULL default '',
   cl_timestamp timestamp NOT NULL,
-  
+
   UNIQUE KEY cl_from(cl_from,cl_to),
   KEY cl_sortkey(cl_to,cl_sortkey),
   KEY cl_timestamp(cl_to,cl_timestamp)
@@ -1100,31 +1100,31 @@ CREATE TABLE $1 (
   rc_id int(8) NOT NULL auto_increment,
   rc_timestamp varchar(14) binary NOT NULL default '',
   rc_cur_time varchar(14) binary NOT NULL default '',
-  
+
   rc_user int(10) unsigned NOT NULL default '0',
   rc_user_text varchar(255) binary NOT NULL default '',
-  
+
   rc_namespace int NOT NULL default '0',
   rc_title varchar(255) binary NOT NULL default '',
-  
+
   rc_comment varchar(255) binary NOT NULL default '',
   rc_minor tinyint(3) unsigned NOT NULL default '0',
-  
+
   rc_bot tinyint(3) unsigned NOT NULL default '0',
   rc_new tinyint(3) unsigned NOT NULL default '0',
-  
+
   rc_cur_id int(10) unsigned NOT NULL default '0',
   rc_this_oldid int(10) unsigned NOT NULL default '0',
   rc_last_oldid int(10) unsigned NOT NULL default '0',
-  
+
   rc_type tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_ns tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_title varchar(255) binary NOT NULL default '',
-  
+
   rc_patrolled tinyint(3) unsigned NOT NULL default '0',
-  
+
   rc_ip char(15) NOT NULL default '',
-  
+
   PRIMARY KEY rc_id (rc_id),
   INDEX rc_timestamp (rc_timestamp),
   INDEX rc_namespace_title (rc_namespace, rc_title),
@@ -1163,14 +1163,14 @@ END;
 CREATE TABLE $1 (
   -- A key name, generally the base name of of the special page.
   qc_type char(32) NOT NULL,
-  
+
   -- Some sort of stored value. Sizes, counts...
   qc_value int(5) unsigned NOT NULL default '0',
-  
+
   -- Target namespace+title
   qc_namespace int NOT NULL default '0',
   qc_title char(255) binary NOT NULL default '',
-  
+
   KEY (qc_type,qc_value)
 
 ) TYPE=InnoDB

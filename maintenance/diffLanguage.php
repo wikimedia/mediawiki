@@ -30,11 +30,11 @@
  *
  * The goal is to get a list of messages not yet localised in a languageXX.php
  * file using the language.php file as reference.
- * 
+ *
  * The script then print a list of wgAllMessagesXX keys that aren't localised, a
  * percentage of messages correctly localised and the number of messages to be
  * translated.
- * 
+ *
  * @package MediaWiki
  * @subpackage Maintenance
  */
@@ -50,7 +50,7 @@ $wgLanguageCode = ucfirstlcrest($wgLanguageCode);
 $referenceMessages = $wgAllMessagesEn;
 $referenceLanguage = 'En';
 $referenceFilename = 'Language'.$referenceLanguage.'.php';
-/** Language messages we will test. */ 
+/** Language messages we will test. */
 $testMessages = array();
 $testLanguage = '';
 /** whereas we use an external language file */

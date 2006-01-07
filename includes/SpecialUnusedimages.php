@@ -31,7 +31,7 @@ class UnusedimagesPage extends QueryPage {
 			extract( $dbr->tableNames( 'page', 'image', 'imagelinks', 'categorylinks' ) );
 		
 			return 'SELECT img_name as title, img_user, img_user_text, img_timestamp as value, img_description
-					FROM ((('.$page.' AS I LEFT JOIN '.$categorylinks.' AS L ON I.page_id = L.cl_from) 
+					FROM ((('.$page.' AS I LEFT JOIN '.$categorylinks.' AS L ON I.page_id = L.cl_from)
 						LEFT JOIN '.$imagelinks.' AS P ON I.page_title = P.il_to)
 						INNER JOIN '.$image.' AS G ON I.page_title = G.img_name)
 					WHERE I.page_namespace = '.NS_IMAGE.' AND L.cl_from IS NULL AND P.il_to IS NULL';

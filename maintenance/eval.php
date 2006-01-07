@@ -9,7 +9,7 @@
  * are evaluated separately, so blocks need to be input without a line break.
  * Fatal errors such as use of undeclared functions can kill the shell.
  *
- * To get decent line editing behavior, you should compile PHP with support 
+ * To get decent line editing behavior, you should compile PHP with support
  * for GNU readline (pass --with-readline to configure).
  *
  * @package MediaWiki

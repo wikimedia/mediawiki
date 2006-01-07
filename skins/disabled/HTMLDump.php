@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * Default skin for HTML dumps, based on MonoBook.php
  */
 
@@ -61,7 +61,7 @@ class SkinHTMLDump extends SkinTemplate {
 		if ( isset( $wgHTMLDump ) ) {
 			$content_actions['current'] = array(
 				'text' => wfMsg( 'currentrev' ),
-				'href' => str_replace( '$1', wfUrlencode( $this->mTitle->getPrefixedDBkey() ), 
+				'href' => str_replace( '$1', wfUrlencode( $this->mTitle->getPrefixedDBkey() ),
 					$wgHTMLDump->oldArticlePath ),
 				'class' => false
 			);
@@ -124,7 +124,7 @@ class HTMLDumpTemplate extends QuickTemplate {
     <?php if($this->data['userjs'    ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs'    ) ?>"></script><?php } ?>
     <?php if($this->data['userjsprev']) { ?><script type="<?php $this->text('jsmimetype') ?>"><?php      $this->html('userjsprev') ?></script><?php   } ?>
   </head>
-  <body 
+  <body
     <?php if($this->data['nsclass'        ]) { ?>class="<?php      $this->text('nsclass')         ?>"<?php } ?>>
     <div id="globalWrapper">
       <div id="column-content">

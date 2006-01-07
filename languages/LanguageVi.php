@@ -86,9 +86,9 @@ if($wgMetaNamespace === FALSE)
 	MAG_SERVERNAME           => array( 0,    'SERVERNAME' , 'TÊNMÁYCHỦ'            ),
 	MAG_SCRIPTPATH           => array( 0,    'SCRIPTPATH'  , ''           ),
 	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'   , 'NGỮPHÁP'            ),
-	MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', 
+	MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__',
 '__NOTC__', '__KHÔNGCHUYỂNTÊN__'),
-	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', 
+	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__',
 '__NOCC__', '__KHÔNGCHUYỂNNỘIDUNG__'),
 	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK' , 'TUẦNNÀY'           ),
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
@@ -179,7 +179,7 @@ global $wgRightsText;
 'subcategorycount' => 'Thể loại này có $1 tiểu thể loại.',
 'subcategorycount1' => 'Thể loại này có $1 tiểu thể loại.',
 'allarticles'   => 'Mọi bài',
-'linktrail'     => 
+'linktrail'     =>
 "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD",
 'mainpage'      => 'Trang đầu',
 'mainpagetext'	=> 'Phần mềm {{SITENAME}} đã cài đặt.',
@@ -385,7 +385,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'nocookieslogin' => " Xin bật cookies và đăng nhập lại.",
 'noname'        => "Chưa nhập tên.",
 'loginsuccesstitle' => "Đăng nhập thành công.",
-'loginsuccess'  => "Bạn đã đăng nhập vào {{SITENAME}} với tên 
+'loginsuccess'  => "Bạn đã đăng nhập vào {{SITENAME}} với tên
 \"$1\".",
 'nosuchuser'    => "Thành viên \"$1\" không tồn tại. Xin kiểm tra lại tên, hoặc mở tài khoản mới.",
 'nosuchusershort' => 'Không có « $1 ». Xin kiểm tra lại.',
@@ -663,8 +663,8 @@ Sau khi truyền hình lên:
 'largefile'  => 'Kích thước tập tin không nên vượt quá 100Kb.',
 'successfulupload' => 'Đã tải xong',
 'fileuploaded' => "Tập tin \"$1\" đã được tải lên thành công.
-Xin hãy theo liên kết: $2 đến trang mô tả và điền vào thông tin về tập tin, chẳng hạn như nó đến từ đâu, được tạo ra khi nào và bởi ai, và các chi tiết khác mà bạn biết về nó. 
-Nếu đây là hình ảnh, bạn có thể cho vào trong trang như sau: 
+Xin hãy theo liên kết: $2 đến trang mô tả và điền vào thông tin về tập tin, chẳng hạn như nó đến từ đâu, được tạo ra khi nào và bởi ai, và các chi tiết khác mà bạn biết về nó.
+Nếu đây là hình ảnh, bạn có thể cho vào trong trang như sau:
 <tt><nowiki>[[Image:$1|thumb|Mô tả hình]]</nowiki></tt>.",
 'uploadwarning' => 'Chú ý!',
 'savefile'  => 'Lưu tệp tin',
@@ -982,7 +982,7 @@ Chức năng này chỉ nên dùng để ngăn những hành vi phá hoại, và
 'autoblocker'   => "Bị tự động cấm vì dùng chung địa chỉ IP với \"$1\". Lý do \"$2\".",
 'blocklogpage'  => 'Nhật trình cấm',
 'blocklogentry' => 'đã cấm "$1", thời hạn $2',
-'blocklogtext'  => 'Nhật trình lưu những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê. Xem thêm 
+'blocklogtext'  => 'Nhật trình lưu những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê. Xem thêm
 [[Đặc_biệt:Ipblocklist|danh sách cấm]].',
 'unblocklogentry'   => 'đã hết cấm "$1"',
 'range_block_disabled'  => 'Không được cấm hàng loạt.',

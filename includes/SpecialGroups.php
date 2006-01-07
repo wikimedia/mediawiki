@@ -77,14 +77,14 @@ class GroupsForm extends HTMLForm {
 				$wgOut->redirect( $this->location );
 			} else {			
 				$this->switchForm();
-				$this->editGroupForm( $this->mId ); 
+				$this->editGroupForm( $this->mId );
 			}
 		} elseif ( $this->mAdd ) {
 			if ( $this->mPosted ) {
 				$wgOut->redirect( $this->location );
 			} else {
 				$this->switchForm();
-				$this->editGroupForm( ); 
+				$this->editGroupForm( );
 			}
 		} else {
 			$this->showAllGroups();
@@ -131,8 +131,8 @@ class GroupsForm extends HTMLForm {
 		// save stuff
 		$g->setName($this->mNewName);
 		$g->setDescription($this->mDescription);
-		if( is_array( $this->mRights ) ) { 
-			$g->setRights( implode(',',$this->mRights) ); 
+		if( is_array( $this->mRights ) ) {
+			$g->setRights( implode(',',$this->mRights) );
 		}
 		
 		$g->save();
@@ -145,7 +145,7 @@ class GroupsForm extends HTMLForm {
 		} else {
 			if ( $this->mOldName != $this->mNewName ) {
 				// Abbreviated action name, must be less than 10 bytes
-				$log->addEntry( 'rngroup', $dummyTitle, '', array( Group::getMessageForContent( $this->mOldName ), 
+				$log->addEntry( 'rngroup', $dummyTitle, '', array( Group::getMessageForContent( $this->mOldName ),
 				$g->getNameForContent() ) );
 			} else {
 				$log->addEntry( 'chgroup', $dummyTitle, '', array( $g->getNameForContent() ) );
@@ -234,7 +234,7 @@ class GroupsForm extends HTMLForm {
 		foreach ( $groups as $group ) {
 			$s .= "|-\n| " . $group->getId() . ' || ' .
 				$group->getExpandedName() . ' || ' .
-				$group->getExpandedDescription() . ' || '. 
+				$group->getExpandedDescription() . ' || '.
 				// Insert spaces to make it wrap
 				str_replace( ',', ', ', $group->getRights() ) . "\n";
 		}

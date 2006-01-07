@@ -36,7 +36,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 		extract( $dbr->tableNames( 'page', 'categorylinks' ) );
 		$name = $dbr->addQuotes( $this->getName() );
 
-		return 
+		return
 			"
 			SELECT
 				$name as type,

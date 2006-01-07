@@ -2,7 +2,7 @@
 /**
  * Script to initialise the MediaWiki namespace
  *
- * This script is included from update.php and install.php. Do not run it 
+ * This script is included from update.php and install.php. Do not run it
  * by itself.
  *
  * @deprecated
@@ -19,7 +19,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgLanguageNames;
 	global $IP;
 
-	# overwrite language conversion	option so that all variants 
+	# overwrite language conversion	option so that all variants
 	# of the messages are initialised
 	$wgDisableLangConversion = false;
 
@@ -92,7 +92,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	$fname = 'initialiseMessages';
 	$ns = NS_MEDIAWIKI;
 	# cur_user_text responsible for the modifications
-	# Don't change it unless you're prepared to update the DBs accordingly, otherwise the 
+	# Don't change it unless you're prepared to update the DBs accordingly, otherwise the
 	# default messages won't be overwritte
 	$username = 'MediaWiki default';
 

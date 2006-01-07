@@ -35,7 +35,7 @@ function wfSpecialIpblocklist() {
 }
 
 /**
- * 
+ *
  * @package MediaWiki
  * @subpackage SpecialPage
  */

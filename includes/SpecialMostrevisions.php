@@ -1,6 +1,6 @@
 <?php
 /**
- * A special page to show pages in the 
+ * A special page to show pages in the
  *
  * @package MediaWiki
  * @subpackage SpecialPage

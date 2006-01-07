@@ -548,7 +548,7 @@ class Title {
 	 * @return string
 	 * @access public
 	 */
-	function getNsText() { 
+	function getNsText() {
 		global $wgContLang;
 		return $wgContLang->getNsText( $this->mNamespace );
 	}
@@ -712,7 +712,7 @@ class Title {
 				global $wgActionPaths;
 				$url = false;
 				if( !empty( $wgActionPaths ) &&
-					preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) ) 
+					preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) )
 				{
 					$action = urldecode( $matches[2] );
 					if( isset( $wgActionPaths[$action] ) ) {

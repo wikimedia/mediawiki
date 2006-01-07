@@ -142,10 +142,10 @@ class EditPage {
 	}
 
 	/**
-	 * This is the function that gets called for "action=edit". It 
-	 * sets up various member variables, then passes execution to 
+	 * This is the function that gets called for "action=edit". It
+	 * sets up various member variables, then passes execution to
 	 * another function, usually showEditForm()
-	 * 
+	 *
 	 * The edit form is self-submitting, so that when things like
 	 * preview and edit conflicts occur, we get the same form back
 	 * with the extra stuff added.  Only when the final submission
@@ -430,7 +430,7 @@ class EditPage {
 			}
 		}
 		if($addstandardintro) {
-			if ( $wgUser->isLoggedIn() ) 
+			if ( $wgUser->isLoggedIn() )
 				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
 			else
 				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
@@ -1010,11 +1010,11 @@ END
 	/**
 	 * Live Preview lets us fetch rendered preview page content and
 	 * add it to the page without refreshing the whole page.
-	 * If not supported by the browser it will fall through to the normal form 
+	 * If not supported by the browser it will fall through to the normal form
 	 * submission method.
-	 * 
-	 * This function outputs a script tag to support live preview, and 
-	 * returns an onclick handler which should be added to the attributes 
+	 *
+	 * This function outputs a script tag to support live preview, and
+	 * returns an onclick handler which should be added to the attributes
 	 * of the preview button
 	 */
 	function doLivePreviewScript() {
@@ -1519,9 +1519,9 @@ END
 				} while( ctype_xdigit( $invalue{$i} ) && ( $i < strlen( $invalue ) ) );
 				
 				// Do some sanity checks. These aren't needed for reversability,
-				// but should help keep the breakage down if the editor 
+				// but should help keep the breakage down if the editor
 				// breaks one of the entities whilst editing.
-				if ((substr($invalue,$i,1)==";") and (strlen($hexstring) <= 6)) { 
+				if ((substr($invalue,$i,1)==";") and (strlen($hexstring) <= 6)) {
 					$codepoint = hexdec($hexstring);
 					$result .= codepointToUtf8( $codepoint );
 				} else {

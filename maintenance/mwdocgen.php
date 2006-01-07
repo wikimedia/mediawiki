@@ -41,8 +41,8 @@ $pdOutput = "{$here}docs" . DIRECTORY_SEPARATOR . 'html';
 # This will be used as the default for all files that don't have a package,
 # it's useful to set it to something like 'untagged' to hunt down and fix files
 # that don't have a package name declared.
-$pdOthers = " -dn MediaWiki"; 
-$pdOthers .= ' --title "MediaWiki generated documentation"'; 
+$pdOthers = " -dn MediaWiki";
+$pdOthers .= ' --title "MediaWiki generated documentation"';
 $pdOthers .= ' --output "HTML:Smarty:HandS"'; #,HTML:Smarty:HandS"'; ###### HTML:frames:DOM/earthli
 $pdOthers .= ' --ignore AdminSettings.php,LocalSettings.php,tests/LocalTestSettings.php';
 $pdOthers .= ' --parseprivate on';
@@ -124,7 +124,7 @@ case 0:
 case 1:
 	$command .= "-d $mwPathI";
 	break;
-case 2: 
+case 2:
 	$command .= "-d $mwPathL";
 	break;
 case 3:

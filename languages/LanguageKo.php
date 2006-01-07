@@ -294,7 +294,7 @@ $1',
 'filedeleteerror'	=> 'Could not delete file \'$1\'.',
 'filenotfound'		=> 'Could not find file \'$1\'.',
 'unexpected'		=> 'Unexpected value: \'$1\'=\'$2\'.',
-'formerror'		=> 'Error: could not submit form', 
+'formerror'		=> 'Error: could not submit form',
 'badarticleerror'	=> 'This action cannot be performed on this page.',
 'cannotdelete'		=> 'Could not delete the page or image specified.',
 
@@ -501,7 +501,7 @@ text editing area as it will appear if you choose to save.',
 법적문제로 프로젝트가 위협받을 수 있습니다. 저작권 문제에 각별히 유의해 주세요.
 자세한 내용은 [[{{ns:4}}:저작권|저작권]]을 참고하세요.
 
-[http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도 
+[http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도
 읽어 보시고, 국제적인 위키백과 공동체에 참여해 보세요.',
 'rcloaderr'	   => '최근 바뀜을 받고 있습니다.',
 'rcnote'	      => '다음이 최근 <strong>$2</strong>일간 바뀐  <strong>$1</strong>개의 문서입니다.',

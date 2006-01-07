@@ -47,54 +47,54 @@ $wgAllMessagesLt = array(
 '1movedto2_redir' => '\'$1\' pervadintas į \'$2\' (anksčiau buvo nukreipiamasis)',
 'Monobook.js' => '/* tooltips and access keys */
 ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'Mano vartotojo puslapis\'); 
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Vartotojo puslapis jūsų ip ardesui\'); 
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Mano aptarimų puslapis\'); 
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Pakeitimų aptarimas, darytus naudojant šį IP adresą\'); 
-ta[\'pt-preferences\'] = new Array(\'\',\'Mano nustatymai\'); 
-ta[\'pt-watchlist\'] = new Array(\'l\',\'Sąrašas straipsnių, kuriuos jūs pasirinkote stebėti.\'); 
-ta[\'pt-mycontris\'] = new Array(\'y\',\'Mano darytų keitimų sąrašas\'); 
-ta[\'pt-login\'] = new Array(\'o\',\'Rekomenduojame prisijungti, nors tai nėra privaloma.\'); 
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'Rekomenduojame prisijungti, nors tai nėra privaloma.\'); 
-ta[\'pt-logout\'] = new Array(\'o\',\'Atsijungti\'); 
-ta[\'ca-talk\'] = new Array(\'t\',\'Straipsnio aptarimas\'); 
-ta[\'ca-edit\'] = new Array(\'e\',\'Jūs galite redaguoti šį straipsnį. Nepamirškite peržiūrėti pakeitimų prieš užsaugodami.\'); 
-ta[\'ca-addsection\'] = new Array(\'+\',\'Pradėti naują aptarimo temą.\'); 
-ta[\'ca-viewsource\'] = new Array(\'e\',\'Puslapis yra užrakintas. Galite tik pažiūrėti turinį.\'); 
-ta[\'ca-history\'] = new Array(\'h\',\'Ankstesnės puslapio versijos.\'); 
-ta[\'ca-protect\'] = new Array(\'=\',\'Uždrausti šį puslapį\'); 
-ta[\'ca-delete\'] = new Array(\'d\',\'Ištrinti šį puslapį\'); 
-ta[\'ca-undelete\'] = new Array(\'d\',\'Atstatyti puslapį su visais darytais keitimais\'); 
-ta[\'ca-move\'] = new Array(\'m\',\'Pervadinti straipsnį\'); 
-ta[\'ca-nomove\'] = new Array(\'\',\'Neturite teisių pervadinti šį straipsnį\'); 
-ta[\'ca-watch\'] = new Array(\'w\',\'Pridėti straipsnį į stebimųjų sąrašą\'); 
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Išimti straipsnį iš stebimųjų sąrašo\'); 
-ta[\'search\'] = new Array(\'f\',\'Ieškoti projekte {{SITENAME}}\'); 
-ta[\'p-logo\'] = new Array(\'\',\'Į pradinį puslapį\'); 
-ta[\'n-mainpage\'] = new Array(\'z\',\'Apsilankykite pradiniame puslapyje\'); 
-ta[\'n-portal\'] = new Array(\'\',\'Apie projektą, ką galima daryti, kur ką rasti\'); 
-ta[\'n-currentevents\'] = new Array(\'\',\'Find background information on current events\'); 
-ta[\'n-recentchanges\'] = new Array(\'r\',\'Sąrašas paskutinių keitimų.\'); 
-ta[\'n-randompage\'] = new Array(\'x\',\'Parinkti atsitiktinį straipsnį\'); 
-ta[\'n-help\'] = new Array(\'\',\'Vieta, kur rasite rūpimus atsakymus.\'); 
-ta[\'n-sitesupport\'] = new Array(\'\',\'Aukokite projektui\'); 
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Sąrašas straipsnių, rodančių į čia\'); 
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Paskutiniai keitimai straipsniuose, pasiekiamuose iš šio straipsnio\'); 
-ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\'); 
-ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\'); 
-ta[\'t-contributions\'] = new Array(\'\',\'Pažiūrėti vartotojo įnašą - darytus keitimus\'); 
-ta[\'t-emailuser\'] = new Array(\'\',\'Siųsti el.laišką vartotojui\'); 
-ta[\'t-upload\'] = new Array(\'u\',\'Įdėti paveikslėlį ar media failą\'); 
-ta[\'t-specialpages\'] = new Array(\'q\',\'Specialiųjų puslapių sąrašas\'); 
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'Pereiti į straipsnio turinį\'); 
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'Rodyti vartotojo puslapį\'); 
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'Rodyti media puslapį\'); 
-ta[\'ca-nstab-special\'] = new Array(\'\',\'Šis puslapis yra specialusis - jo negalima redaguoti.\'); 
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Rodyti projekto puslapį\'); 
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'Rodyti paveikslėlio puslapį\'); 
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Rodyti sisteminį pranešimą\'); 
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'Rodyti šabloną\'); 
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'Rodyti pagalbos puslapį\'); 
+ta[\'pt-userpage\'] = new Array(\'.\',\'Mano vartotojo puslapis\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Vartotojo puslapis jūsų ip ardesui\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Mano aptarimų puslapis\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Pakeitimų aptarimas, darytus naudojant šį IP adresą\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Mano nustatymai\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'Sąrašas straipsnių, kuriuos jūs pasirinkote stebėti.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'Mano darytų keitimų sąrašas\');
+ta[\'pt-login\'] = new Array(\'o\',\'Rekomenduojame prisijungti, nors tai nėra privaloma.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'Rekomenduojame prisijungti, nors tai nėra privaloma.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Atsijungti\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Straipsnio aptarimas\');
+ta[\'ca-edit\'] = new Array(\'e\',\'Jūs galite redaguoti šį straipsnį. Nepamirškite peržiūrėti pakeitimų prieš užsaugodami.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Pradėti naują aptarimo temą.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Puslapis yra užrakintas. Galite tik pažiūrėti turinį.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Ankstesnės puslapio versijos.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Uždrausti šį puslapį\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Ištrinti šį puslapį\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Atstatyti puslapį su visais darytais keitimais\');
+ta[\'ca-move\'] = new Array(\'m\',\'Pervadinti straipsnį\');
+ta[\'ca-nomove\'] = new Array(\'\',\'Neturite teisių pervadinti šį straipsnį\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Pridėti straipsnį į stebimųjų sąrašą\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Išimti straipsnį iš stebimųjų sąrašo\');
+ta[\'search\'] = new Array(\'f\',\'Ieškoti projekte {{SITENAME}}\');
+ta[\'p-logo\'] = new Array(\'\',\'Į pradinį puslapį\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Apsilankykite pradiniame puslapyje\');
+ta[\'n-portal\'] = new Array(\'\',\'Apie projektą, ką galima daryti, kur ką rasti\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Find background information on current events\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Sąrašas paskutinių keitimų.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Parinkti atsitiktinį straipsnį\');
+ta[\'n-help\'] = new Array(\'\',\'Vieta, kur rasite rūpimus atsakymus.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Aukokite projektui\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Sąrašas straipsnių, rodančių į čia\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Paskutiniai keitimai straipsniuose, pasiekiamuose iš šio straipsnio\');
+ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\');
+ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\');
+ta[\'t-contributions\'] = new Array(\'\',\'Pažiūrėti vartotojo įnašą - darytus keitimus\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Siųsti el.laišką vartotojui\');
+ta[\'t-upload\'] = new Array(\'u\',\'Įdėti paveikslėlį ar media failą\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'Specialiųjų puslapių sąrašas\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'Pereiti į straipsnio turinį\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'Rodyti vartotojo puslapį\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'Rodyti media puslapį\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'Šis puslapis yra specialusis - jo negalima redaguoti.\');
+ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Rodyti projekto puslapį\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'Rodyti paveikslėlio puslapį\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Rodyti sisteminį pranešimą\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'Rodyti šabloną\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Rodyti pagalbos puslapį\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Rodyti kategorijos puslapį\');',
 
 'about' => 'Apie',
@@ -136,7 +136,7 @@ Galima sumažinti rezultatų patikslinant veiksmo rūšį, vartotoją ar susijus
 'already_steward' => 'Vartotojas jau yra ūkvedys',
 'already_sysop' => 'Vartotojas jau yra administratorius',
 'alreadyloggedin' => '<strong>Jūs jau esate prisijungęs kaip vartotojas User $1!</strong><br />',
-'alreadyrolled' => 'Nepavyko atmesti paskutinio [[Vartotojas:$2|$2]] ([[Vartotojo aptarimas:$2|aptarimas]]) daryto straipsnio [[$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą. 
+'alreadyrolled' => 'Nepavyko atmesti paskutinio [[Vartotojas:$2|$2]] ([[Vartotojo aptarimas:$2|aptarimas]]) daryto straipsnio [[$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas vartotojo [[Vartotojas:$3|$3]] ([[Vartotojo aptarimas:$3|Aptarimas]]).',
 'ancientpages' => 'Seniausi straipsniai',
@@ -163,8 +163,8 @@ leidžiamas tik vartotojiems turintiems šią privilegiją - "$2".
 'badfiletype' => '".$1" yra nerekomenduojamas paveikslėlio bylos formatas.',
 'badipaddress' => 'Neteisingas IP adresas',
 'badquery' => 'Bloga paieškos užklausa',
-'badquerytext' => 'Nepavyko apdoroti Jūsų paieškos užklausos. 
-Tai galėjo būti dėl trumpesnio nei trijų simbolių paieškos rakto, arba neteisingai suformuotos užklausos (pavyzdžiui "namas and and tvartas"). 
+'badquerytext' => 'Nepavyko apdoroti Jūsų paieškos užklausos.
+Tai galėjo būti dėl trumpesnio nei trijų simbolių paieškos rakto, arba neteisingai suformuotos užklausos (pavyzdžiui "namas and and tvartas").
 Pamėginkite kitokią užklausą.',
 'badretype' => 'Įvesti slaptažodžiai nesutampa.',
 'badtitle' => 'Blogas pavadinimas',
@@ -226,7 +226,7 @@ Nurodykite tikslią priežastį apačioje (pavyzdžiui nurodydami sugadintus pus
 kartu su visa istorija iš duomenų bazės.
 Prašome patvirtinti kad jūs norite tai padaryti,
 žinote kokios yra veiksmo pasekmės,
-ir kad jūs tai darote nenusižengdamas 
+ir kad jūs tai darote nenusižengdamas
 [[Wikipedia:Policy|Wikipedijos Politikai]].',
 'confirmemail' => 'Patvirtinkite el.pašto adresą',
 'confirmemail_body' => 'Kažkas (tikriausiai jūs) IP adresu užregistravo
@@ -300,7 +300,7 @@ Paskutinė mėginta duomenų bazės užklausa buvo:
 <blockquote><tt>$1</tt></blockquote>
 iš funkcijos: "<tt>$2</tt>".
 Klaida: "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'Įvyko duomenų bazės užklausos klaida. 
+'dberrortextcl' => 'Įvyko duomenų bazės užklausos klaida.
 Paskutinė mėginta duomenų bazės užklausa buvo:
 
     $1
@@ -424,7 +424,7 @@ Norėdami eksportuoti puslapius, įveskite pavadinimus žemiau esančiame teksti
 po vieną pavadinimą eilutėje, taip pat pasirinkite ar norite eksportuoti ir istoriją
 ar tik dabartinę versiją su paskutinio redagavimo informacija.
 
-Norėdami eksportuoti vieno puslapio dabartinę versiją, galite naudoti nuorodą, pvz. [[{{ns:Special}}:Export/Lietuva]] 
+Norėdami eksportuoti vieno puslapio dabartinę versiją, galite naudoti nuorodą, pvz. [[{{ns:Special}}:Export/Lietuva]]
 straipsniui [[Lietuva]].',
 'extlink_sample' => 'http://www.pavyzdys.lt Nuorodos pavadinimas',
 'extlink_tip' => 'Išorinė nuoroda (nepamirškite http:// prefikso)',
@@ -617,7 +617,7 @@ kad suprantate visas pasekmes.',
 'nchanges' => '$1 pakeitimai',
 'newarticle' => '(Naujas)',
 'newarticletext' => 'Jūs patekote į neegzistuojančio straipsnio puslapį.
-Norėdami sukurti straipsnį, pradėkite žemiau esančiame įvedimo lauke 
+Norėdami sukurti straipsnį, pradėkite žemiau esančiame įvedimo lauke
 (plačiau [[Help:Kaip pradėti puslapį|apie puslapių kūrimą]]).
 Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką \'atgal\' (\'\'\'back\'\'\').<br />
 \'\'\'Nepamirškite\'\'\' straipsnio turinį pateikti taip, kad žmogus suprastu tekstą be konteksto (dažniausiai žmonės pateks į šį puslapį visai kitu keliu, nei patekote jūs).',
@@ -714,7 +714,7 @@ Jūsų vidinis numeris yra $2.
 'protectedpage' => 'Užrakintas puslapis',
 'protectedpagewarning' => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys vartotojai. Nepamirškite laikytis
 [[Wikipedija:Puslapių rakinimas|užrakintų puslapių]] taisyklių.</strong>',
-'protectedtext' => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo; 
+'protectedtext' => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo;
 tai gali būti padaryta dėl skirtingų priežasčių, plačiau -
 [[Wikipedia:Puslapių rakinimas|Puslapių rakinimas]].
 
@@ -964,7 +964,7 @@ Jei jūsų interneto ryšys nėra greitas, įkėlimas gali šiek tiek užtrukti.
 Rekomenduojami formatai yra: JPEG - fotografijoms, PNG -
 schemoms ir kitiems ikoniniams paveikslėliams, OGG - garsams.
 Prašome failus vardinti vienareikšmiai, kad nekiltų painiavos.
-Norėdami panaudoti įkeltą paveikslėlį straipsnyje, naudokite tokio tipo nuorodas - 
+Norėdami panaudoti įkeltą paveikslėlį straipsnyje, naudokite tokio tipo nuorodas -
 \'\'\'<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>\'\'\' arba
 \'\'\'<nowiki>[[{{ns:6}}:file.png|paveikslėlio pavadinimas]]</nowiki>\'\'\' arba
 \'\'\'<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>\'\'\' garsams.

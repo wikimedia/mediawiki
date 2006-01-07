@@ -25,7 +25,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
  */
 
 
-/** 
+/**
  * Because programmers assign to $wgHooks, we need to be very
  * careful about its contents. So, there's a lot more error-checking
  * in here than would normally be necessary.

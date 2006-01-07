@@ -60,8 +60,8 @@ if ( !empty( $options['d'] ) ) {
 	$dest = 'static';
 }
 
-$wgHTMLDump = new DumpHTML( array( 
-	'dest' => $dest, 
+$wgHTMLDump = new DumpHTML( array(
+	'dest' => $dest,
 	'forceCopy' => $options['force-copy'],
 	'alternateScriptPath' => $options['interlang'],
 	'interwiki' => $options['interlang'],

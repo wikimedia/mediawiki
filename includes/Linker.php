@@ -375,8 +375,8 @@ class Linker {
 	}
 
 	/** @todo document */
-	function makeImageLinkObj( $nt, $label, $alt, $align = '', $width = false, $height = false, $framed = false, 
-	  $thumb = false, $manual_thumb = '' ) 
+	function makeImageLinkObj( $nt, $label, $alt, $align = '', $width = false, $height = false, $framed = false,
+	  $thumb = false, $manual_thumb = '' )
 	{
 		global $wgContLang, $wgUser, $wgThumbLimits;
 		
@@ -487,7 +487,7 @@ class Linker {
 		if ( $img->exists() ) {
 			$width  = $img->getWidth();
 			$height = $img->getHeight();
-		} 
+		}
 		if ( 0 == $width || 0 == $height ) {
 			$width = $height = 200;
 		}
@@ -795,7 +795,7 @@ class Linker {
 		global $wgJsMimeType;
 		$title =  wfMsgForContent('toc') ;
 		return
-		   '<table id="toc" class="toc" summary="' . $title .'"><tr><td>' 
+		   '<table id="toc" class="toc" summary="' . $title .'"><tr><td>'
 		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
 		 . $toc
 		 . "</ul>\n</td></tr></table>\n"
@@ -844,10 +844,10 @@ class Linker {
 		return "<div class=\"editsection\" style=\"float:$farside;margin-$nearside:5px;\">[".$url."]</div>";
 	}
 
-	/** 
+	/**
 	 * Split a link trail, return the "inside" portion and the remainder of the trail
 	 * as a two-element array
-	 * 
+	 *
 	 * @static
 	 */
 	function splitTrail( $trail ) {

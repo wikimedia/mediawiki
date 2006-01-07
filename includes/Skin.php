@@ -621,7 +621,7 @@ END;
 		global $wgUser, $wgTitle, $wgContLang, $action;
 		if(	$wgUser->isAllowed( 'deletedhistory' ) &&
 			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
-			($n = $wgTitle->isDeleted() ) ) 
+			($n = $wgTitle->isDeleted() ) )
 		{
 			if ( $wgUser->isAllowed( 'delete' ) ) {
 				$msg = 'thisisdeleted';

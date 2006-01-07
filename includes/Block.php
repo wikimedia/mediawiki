@@ -67,7 +67,7 @@ class Block
 	/**
 	 * Get the DB object and set the reference parameter to the query options
 	 */
-	function &getDBOptions( &$options ) 
+	function &getDBOptions( &$options )
 	{
 		global $wgAntiLockFlags;
 		if ( $this->mForUpdate || $this->mFromMaster ) {
@@ -162,7 +162,7 @@ class Block
 	}
 
 	/**
-	 * Search the database for any range blocks matching the given address, and 
+	 * Search the database for any range blocks matching the given address, and
 	 * load the row if one is found.
 	 */
 	function loadRange( $address, $killExpired = true )
@@ -196,7 +196,7 @@ class Block
 			if ( !$killExpired || !$this->deleteIfExpired() ) {
 				# No, return true
 				$success = true;
-			} 
+			}
 		}
 		
 		$db->freeResult( $res );

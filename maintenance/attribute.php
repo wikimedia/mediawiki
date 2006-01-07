@@ -44,7 +44,7 @@ $sqlfile = fopen( "attribute.sql", "a" );
 
 fwrite( $logfile, "* $source &rarr; $dest\n" );
 
-fwrite( $sqlfile, 
+fwrite( $sqlfile,
 "-- Changing attribution SQL file
 -- Generated with attribute.php
 -- $source -> $dest ($uid)

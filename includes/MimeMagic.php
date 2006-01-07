@@ -6,7 +6,7 @@
 
  /** Defines a set of well known mime types
  * This is used as a fallback to mime.types files.
- * An extensive list of well known mime types is provided by 
+ * An extensive list of well known mime types is provided by
  * the file mime.types in the includes directory.
  */
 define('MM_WELL_KNOWN_MIME_TYPES',<<<END_STRING
@@ -26,7 +26,7 @@ image/png png
 image/svg+xml svg
 image/tiff tiff tif
 text/plain txt
-text/html html htm 
+text/html html htm
 video/ogg ogm ogg
 video/mpeg mpg mpeg
 END_STRING
@@ -34,7 +34,7 @@ END_STRING
 
  /** Defines a set of well known mime info entries
  * This is used as a fallback to mime.info files.
- * An extensive list of well known mime types is provided by 
+ * An extensive list of well known mime types is provided by
  * the file mime.info in the includes directory.
  */
 define('MM_WELL_KNOWN_MIME_INFO', <<<END_STRING
@@ -60,19 +60,19 @@ unknown/unknown application/octet-stream application/x-empty [UNKNOWN]
 END_STRING
 );
 
-#note: because this file is possibly included by a function, 
+#note: because this file is possibly included by a function,
 #we need to access the global scope explicitely!
 global $wgLoadFileinfoExtension;
 
-if ($wgLoadFileinfoExtension) { 
+if ($wgLoadFileinfoExtension) {
 	if(!extension_loaded('fileinfo')) dl('fileinfo.' . PHP_SHLIB_SUFFIX);
 }
 
-/** Implements functions related to mime types such as detection and mapping to 
+/** Implements functions related to mime types such as detection and mapping to
 * file extension,
 *
 * Instances of this class are stateles, there only needs to be one global instance
-* of MimeMagic. Please use wfGetMimeMagic to get that instance. 
+* of MimeMagic. Please use wfGetMimeMagic to get that instance.
 * @package MediaWiki
 */
 class MimeMagic {
@@ -81,7 +81,7 @@ class MimeMagic {
 	* Mapping of media types to arrays of mime types.
 	* This is used by findMediaType and getMediaType, respectively
 	*/
-	var $mMediaTypes= NULL; 
+	var $mMediaTypes= NULL;
 	
 	/** Map of mime type aliases
 	*/
@@ -89,13 +89,13 @@ class MimeMagic {
 	
 	/** map of mime types to file extensions (as a space seprarated list)
 	*/
-	var $mMimeToExt= NULL; 
+	var $mMimeToExt= NULL;
 	
 	/** map of file extensions types to mime types (as a space seprarated list)
 	*/
-	var $mExtToMime= NULL; 
+	var $mExtToMime= NULL;
 	
-	/** Initializes the MimeMagic object. This is called by wfGetMimeMagic when instantiation 
+	/** Initializes the MimeMagic object. This is called by wfGetMimeMagic when instantiation
 	* the global MimeMagic singleton object.
 	*
 	* This constructor parses the mime.types and mime.info files and build internal mappings.
@@ -266,7 +266,7 @@ class MimeMagic {
 	
 	
 	/** tests if the extension matches the given mime type.
-	* returns true if a match was found, NULL if the mime type is unknown, 
+	* returns true if a match was found, NULL if the mime type is unknown,
 	* and false if the mime type is known but no matches where found.
 	*/
 	function isMatchingExtension($extension,$mime) {
@@ -291,15 +291,15 @@ class MimeMagic {
 	*/
 	function isPHPImageType( $mime ) {
 		#as defined by imagegetsize and image_type_to_mime
-		static $types = array( 
-			'image/gif', 'image/jpeg', 'image/png', 
+		static $types = array(
+			'image/gif', 'image/jpeg', 'image/png',
 			'image/x-bmp', 'image/xbm', 'image/tiff',
-			'image/jp2', 'image/jpeg2000', 'image/iff', 
+			'image/jp2', 'image/jpeg2000', 'image/iff',
 			'image/xbm', 'image/x-xbitmap',
-			'image/vnd.wap.wbmp', 'image/vnd.xiff', 
+			'image/vnd.wap.wbmp', 'image/vnd.xiff',
 			'image/x-photoshop',
 			'application/x-shockwave-flash',
-		); 
+		);
 		
 		return in_array( $mime, $types );
 	}
@@ -367,10 +367,10 @@ class MimeMagic {
 			    $mime==="text/xml" ||
 		            $mime==="application/xml") {
 			
-				if (substr($head,0,5)=="<?xml") $xml_type= "ASCII"; 
-				elseif (substr($head,0,8)=="\xef\xbb\xbf<?xml") $xml_type= "UTF-8"; 
-				elseif (substr($head,0,10)=="\xfe\xff\x00<\x00?\x00x\x00m\x00l") $xml_type= "UTF-16BE"; 
-				elseif (substr($head,0,10)=="\xff\xfe<\x00?\x00x\x00m\x00l\x00") $xml_type= "UTF-16LE"; 
+				if (substr($head,0,5)=="<?xml") $xml_type= "ASCII";
+				elseif (substr($head,0,8)=="\xef\xbb\xbf<?xml") $xml_type= "UTF-8";
+				elseif (substr($head,0,10)=="\xfe\xff\x00<\x00?\x00x\x00m\x00l") $xml_type= "UTF-16BE";
+				elseif (substr($head,0,10)=="\xff\xfe<\x00?\x00x\x00m\x00l\x00") $xml_type= "UTF-16LE";
 				
 				if ($xml_type) {
 					if ($xml_type!=="UTF-8" && $xml_type!=="ASCII") $head= iconv($xml_type,"ASCII//IGNORE",$head);
@@ -400,10 +400,10 @@ class MimeMagic {
 				$script_type= NULL;
 				
 				#detect by shebang
-				if (substr($head,0,2)=="#!") $script_type= "ASCII"; 
-				elseif (substr($head,0,5)=="\xef\xbb\xbf#!") $script_type= "UTF-8"; 
-				elseif (substr($head,0,7)=="\xfe\xff\x00#\x00!") $script_type= "UTF-16BE"; 
-				elseif (substr($head,0,7)=="\xff\xfe#\x00!") $script_type= "UTF-16LE"; 
+				if (substr($head,0,2)=="#!") $script_type= "ASCII";
+				elseif (substr($head,0,5)=="\xef\xbb\xbf#!") $script_type= "UTF-8";
+				elseif (substr($head,0,7)=="\xfe\xff\x00#\x00!") $script_type= "UTF-16BE";
+				elseif (substr($head,0,7)=="\xff\xfe#\x00!") $script_type= "UTF-16LE";
 				
 				if ($script_type) {
 					if ($script_type!=="UTF-8" && $script_type!=="ASCII") $head= iconv($script_type,"ASCII//IGNORE",$head);
@@ -422,18 +422,18 @@ class MimeMagic {
 			*/
 			if( !$xml_type && !$script_type ) {
 			
-				if( ( strpos( $head, '<?php' ) !== false ) || 
+				if( ( strpos( $head, '<?php' ) !== false ) ||
 				    ( strpos( $head, '<? ' ) !== false ) ||
 				    ( strpos( $head, "<?\n" ) !== false ) ||
 				    ( strpos( $head, "<?\t" ) !== false ) ||
 				    ( strpos( $head, "<?=" ) !== false ) ||
 				
-				    ( strpos( $head, "<\x00?\x00p\x00h\x00p" ) !== false ) || 
+				    ( strpos( $head, "<\x00?\x00p\x00h\x00p" ) !== false ) ||
 				    ( strpos( $head, "<\x00?\x00 " ) !== false ) ||
 				    ( strpos( $head, "<\x00?\x00\n" ) !== false ) ||
 				    ( strpos( $head, "<\x00?\x00\t" ) !== false ) ||
 				    ( strpos( $head, "<\x00?\x00=" ) !== false ) ) {
-				    
+				
 					$mime= "application/x-php";
 				}
 			}
@@ -446,10 +446,10 @@ class MimeMagic {
 		return $mime;
 	}
 	
-	/** Internal mime type detection, please use guessMimeType() for application code instead. 
+	/** Internal mime type detection, please use guessMimeType() for application code instead.
 	* Detection is done using an external program, if $wgMimeDetectorCommand is set.
-	* Otherwise, the fileinfo extension and mime_content_type are tried (in this order), if they are available. 
-	* If the dections fails and $useExt is true, the mime type is guessed from the file extension, using guessTypesForExtension. 
+	* Otherwise, the fileinfo extension and mime_content_type are tried (in this order), if they are available.
+	* If the dections fails and $useExt is true, the mime type is guessed from the file extension, using guessTypesForExtension.
 	* If the mime type is still unknown, getimagesize is used to detect the mime type if the file is an image.
 	* If no mime type can be determined, this function returns "unknown/unknown".
 	*
@@ -475,7 +475,7 @@ class MimeMagic {
 			# see http://pecl.php.net/package/fileinfo
 			# This must be compiled into PHP
 			#
-			# finfo is the official replacement for the deprecated 
+			# finfo is the official replacement for the deprecated
 			# mime_content_type function, see below.
 			#
 			# If you may need to load the fileinfo extension at runtime, set
@@ -490,7 +490,7 @@ class MimeMagic {
 			}
 			else wfDebug("$fname: finfo_open failed on ".FILEINFO_MIME."!\n");
 		}
-		else if (function_exists("mime_content_type")) { 
+		else if (function_exists("mime_content_type")) {
 			
 			# NOTE: this function is available since PHP 4.3.0, but only if
 			# PHP was compiled with --with-mime-magic or, before 4.3.2, with --enable-mime-magic.
@@ -505,7 +505,7 @@ class MimeMagic {
 		}
 		else wfDebug("$fname: no magic mime detector found!\n");
 	
-		if ($m) { 
+		if ($m) {
 			#normalize
 			$m= preg_replace('![;, ].*$!','',$m); #strip charset, etc
 			$m= trim($m);
@@ -560,8 +560,8 @@ class MimeMagic {
 			
 			$m= $this->guessTypesForExtension($e);
 			
-			#TODO: if $notAnImage is set, do not trust the file extension if 
-			# the results is one of the image types that should have been recognized 
+			#TODO: if $notAnImage is set, do not trust the file extension if
+			# the results is one of the image types that should have been recognized
 			# by getimagesize
 			
 			if ($m) {
@@ -579,16 +579,16 @@ class MimeMagic {
 	* Determine the media type code for a file, using its mime type, name and possibly
 	* its contents.
 	*
-	* This function relies on the findMediaType(), mapping extensions and mime 
+	* This function relies on the findMediaType(), mapping extensions and mime
 	* types to media types.
 	*
-	* @todo analyse file if need be 
+	* @todo analyse file if need be
 	* @todo look at multiple extension, separately and together.
 	*
-	* @param string $path full path to the image file, in case we have to look at the contents 
+	* @param string $path full path to the image file, in case we have to look at the contents
 	*        (if null, only the mime type is used to determine the media type code).
 	* @param string $mime mime type. If null it will be guessed using guessMimeType.
-	* 
+	*
 	* @return (int?string?) a value to be used with the MEDIATYPE_xxx constants.
 	*/
 	function getMediaType($path=NULL,$mime=NULL) {
@@ -651,7 +651,7 @@ class MimeMagic {
 	}
 	
 	/** returns a media code matching the given mime type or file extension.
-	* File extensions are represented by a string starting with a dot (.) to 
+	* File extensions are represented by a string starting with a dot (.) to
 	* distinguish them from mime types.
 	*
 	* This funktion relies on the mapping defined by $this->mMediaTypes

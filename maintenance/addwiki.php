@@ -9,7 +9,7 @@ if ( count( $args ) != 3 ) {
 	die( "Usage: php addwiki.php <language> <site> <dbname>\n" );
 }
 
-addWiki( $args[0], $args[1], $args[2] ); 
+addWiki( $args[0], $args[1], $args[2] );
 
 # -----------------------------------------------------------------
 
@@ -50,7 +50,7 @@ For help, see '''[[m:Help:How to start a new Wikipedia|how to start a new Wikipe
 ==Sister projects==
 [http://meta.wikipedia.org Meta-Wikipedia] | [http://www.wiktionary.org Wikitonary] | [http://www.wikibooks.org Wikibooks] | [http://www.wikinews.org Wikinews] | [http://www.wikiquote.org Wikiquote] | [http://www.wikisource.org Wikisource]
 
-See the [http://www.wikipedia.org Wikipedia portal] for other language Wikipedias. 
+See the [http://www.wikipedia.org Wikipedia portal] for other language Wikipedias.
 
 [[aa:]]
 [[af:]]

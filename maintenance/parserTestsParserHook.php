@@ -18,7 +18,7 @@ function wfParserTestSetup( &$parser ) {
 }
 	
 function wfParserTestHook( $in, $argv ) {
-	if ( count( $argv ) ) 
+	if ( count( $argv ) )
 		return "<pre>\n" . print_r( $argv, true ) . '</pre>';
 	else
 		return $in;
