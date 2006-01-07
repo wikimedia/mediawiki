@@ -1008,7 +1008,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 === Changes since 1.5.5 ===
 
 * (bug 4258) When installing under IIS, $wgArticlePath = "$wgScript?title=$1" should be set
-
+* (bug 4510) Correct Barnes & Noble bookstore URLs
 
 === Caveats ===
 
