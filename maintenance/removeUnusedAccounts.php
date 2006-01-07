@@ -16,11 +16,11 @@ require_once( 'removeUnusedAccounts.inc' );
 echo( "Remove Unused Accounts\nThis script will delete all users who have made no edits.\n\n" );
 
 # Check parameters
-if( $options['help'] ) {
+if( @$options['help'] ) {
 	echo( "USAGE: removeUnusedAccounts.php [--help|--delete]\n\nThe first (default) account is ignored.\n\n" );
 	die();
 } else {
-	$delete = ( $options['delete'] ? true : false );
+	$delete = @$options['delete'] ? true : false ;
 }
 
 $count = 0;
@@ -43,14 +43,12 @@ echo( "done.\n" );
 
 # Purge the inactive accounts we found
 echo( $count . " inactive accounts found.\n" );
-if( $count > 0 ) {
-	if( ( $delete ) || ( $count > 0 ) ) {
-		echo( " Deleting..." );
-		DeleteUsers( $del );
-		echo( "done.\n" );
-	} else {
-		echo "Run the script with the --delete option to remove them from the database.\n";
-	}
+if( ( $delete ) and ( $count > 0 ) ) {
+	echo( " Deleting..." );
+	DeleteUsers( $del );
+	echo( "done.\n" );
+} else {
+	echo "Run the script with the --delete option to remove them from the database.\n";
 }
 echo( "\n" );
 
