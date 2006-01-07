@@ -68,7 +68,7 @@ $exceptions = array(
 	# Tests that should mark invalid characters due to using long
 	# sequences beyond what is now considered legal.
 	'2.1.5', '2.1.6', '2.2.4', '2.2.5', '2.2.6', '2.3.5',
-	
+
 	# Literal 0xffff, which is illegal
 	'2.2.3' );
 
@@ -127,15 +127,15 @@ function testLine( $test, $line, &$total, &$success, &$failed ) {
 	if( $len == 0 ) {
 		$len = strlen( substr( $stripped, 0, strpos( $stripped, '|' ) ) );
 	}
-	
+
 	global $columns;
 	$ok = $same ^ ($test >= 3 );
 
 	global $exceptions;
 	$ok ^= in_array( $test, $exceptions );
-	
+
 	$ok &= ($columns == $len);
-	
+
 	$total++;
 	if( $ok ) {
 		$success++;

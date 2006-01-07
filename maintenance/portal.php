@@ -49,7 +49,7 @@ function get_numbers ( $filename )
 		}
 	return $r ;
 	}
-	
+
 /** Make shades for pref. language(s) */
 function getshades ( $l )
 	{
@@ -60,7 +60,7 @@ function getshades ( $l )
 		$y = explode ( ";" , $x ) ;
 		if ( count ( $y ) == 2 ) $weight = array_pop ( explode ( "=" , $y[1] ) ) ;
 		else $weight = "1.0" ;
-		
+
 		$lang = array_shift ( $y ) ;
 		$lang = explode ( "-" , $lang ) ;
 		$lang = trim ( strtolower ( array_shift ( $lang ) ) ) ;
@@ -109,7 +109,7 @@ foreach ( $t AS $x )
 	}
 if ( $count != 0 ) $l .= "</tr>" ;
 $l .= "</table>" ;
-	
+
 print "<html><head></head><body>" ;
 print $l ;
 print "</body></html>" ;

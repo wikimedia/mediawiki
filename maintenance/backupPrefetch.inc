@@ -21,12 +21,12 @@ class BaseDump {
 	var $atPageEnd = false;
 	var $lastPage = 0;
 	var $lastRev = 0;
-	
+
 	function BaseDump( $infile ) {
 		$this->reader = new XMLReader();
 		$this->reader->open( $infile );
 	}
-	
+
 	/**
 	 * Attempts to fetch the text of a particular page revision
 	 * from the dump stream. May return null if the page is
@@ -59,13 +59,13 @@ class BaseDump {
 			return null;
 		}
 	}
-	
+
 	function debug( $str ) {
 		wfDebug( $str . "\n" );
 		//global $dumper;
 		//$dumper->progress( $str );
 	}
-	
+
 	/**
 	 * @access private
 	 */
@@ -80,7 +80,7 @@ class BaseDump {
 			$this->atEnd = true;
 		}
 	}
-	
+
 	/**
 	 * @access private
 	 */
@@ -93,7 +93,7 @@ class BaseDump {
 			$this->atPageEnd = true;
 		}
 	}
-	
+
 	/**
 	 * @access private
 	 */
@@ -101,7 +101,7 @@ class BaseDump {
 		$this->skipTo( 'text' );
 		return strval( $this->nodeContents() );
 	}
-	
+
 	/**
 	 * @access private
 	 */
@@ -122,7 +122,7 @@ class BaseDump {
 		}
 		return $this->close();
 	}
-	
+
 	/**
 	 * Shouldn't something like this be built-in to XMLReader?
 	 * Fetches text contents of the current element, assuming
@@ -151,7 +151,7 @@ class BaseDump {
 		}
 		return $this->close();
 	}
-	
+
 	/**
 	 * @access private
 	 */

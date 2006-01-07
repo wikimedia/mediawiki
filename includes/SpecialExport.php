@@ -32,7 +32,7 @@ require_once( 'Export.php' );
 function wfSpecialExport( $page = '' ) {
 	global $wgOut, $wgRequest;
 	global $wgExportAllowHistory;
-	
+
 	if( $wgRequest->getVal( 'action' ) == 'submit') {
 		$page = $wgRequest->getText( 'pages' );
 		if( $wgExportAllowHistory ) {
@@ -44,12 +44,12 @@ function wfSpecialExport( $page = '' ) {
 		# Pre-check the 'current version only' box in the UI
 		$curonly = true;
 	}
-	
+
 	if( $page != '' ) {
 		$wgOut->disable();
 		header( "Content-type: application/xml; charset=utf-8" );
 		$pages = explode( "\n", $page );
-		
+
 		$db =& wfGetDB( DB_SLAVE );
 		$history = $curonly ? MW_EXPORT_CURRENT : MW_EXPORT_FULL;
 		$exporter = new WikiExporter( $db, $history );
@@ -58,7 +58,7 @@ function wfSpecialExport( $page = '' ) {
 		$exporter->closeStream();
 		return;
 	}
-	
+
 	$wgOut->addWikiText( wfMsg( "exporttext" ) );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Export" );
 	$action = $titleObj->escapeLocalURL( 'action=submit' );

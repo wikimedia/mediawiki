@@ -69,7 +69,7 @@ if ( $row ) {
 */
 	fwrite( $logfile, "**Revision IDs: " );
 	fwrite( $sqlfile, "UPDATE $revision SET rev_user=$uid, rev_user_text='$eDest' WHERE rev_id IN (\n" );
-	
+
 	for ( $first=true; $row; $row = $dbr->fetchObject( $res ) ) {
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$fullTitle = $title->getPrefixedDbKey();
@@ -79,7 +79,7 @@ if ( $row ) {
 
 		print "$fullTitle\n";
 		$url = $title->getFullUrl( "oldid={$row->rev_id}" );
-		
+
 		# Output
 		fwrite( $sqlfile, "      " );
 		if ( $first ) {

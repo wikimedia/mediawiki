@@ -77,7 +77,7 @@ class Validation {
 		$db =& wfGetDB( DB_SLAVE );
 
 		$topics = array();
-		
+
 		# NOTE : This query returns only the topics to vote on
 		$res = $db->select( 'validate', '*', array( 'val_page' => 0 ), 'SpecialValidate::getTopicList' );
 		while( $topic = $db->fetchObject($res) ) {
@@ -88,7 +88,7 @@ class Validation {
 		ksort( $topics );
 		return $topics;
 	}
-	
+
 	# Merges one dataset into another
 	function mergeInto( &$source, &$dest ) {
 		$ret = false;
@@ -128,7 +128,7 @@ class Validation {
 			$this->setRevision( $article, $revision, $data );
 		}
 	}
-	
+
 	# Clears all votes prior to the given revision
 	function clearOldRevisions( &$article, $revision ) {
 		$tmp = $this->voteCache;
@@ -139,11 +139,11 @@ class Validation {
 			}
 		}
 	}
-	
+
 	# Updates the votes for the given revision from the FORM data
 	function updateRevision( &$article, $revision ) {
 		global $wgRequest;
-		
+
 		if( isset( $this->voteCache[$this->getRevisionTimestamp( $revision )] ) ) {
 			$data = $this->voteCache[$this->getRevisionTimestamp( $revision )];
 		} else {
@@ -151,16 +151,16 @@ class Validation {
 		}
 		$nv = $wgRequest->getArray( "re_v_{$revision}", array() );
 		$nc = $wgRequest->getArray( "re_c_{$revision}", array() );
-		
+
 		foreach( $nv as $x => $y ) {
 			$data[$x]->value = $y;
 			$data[$x]->comment = $nc[$x];
 		}
 		krsort( $data );
-		
+
 		$this->setRevision( $article, $revision, $data );
 	}
-	
+
 	# Sets a specific revision to both cache and database
 	function setRevision( &$article, $revision, &$data ) {
 		global $wgUser;
@@ -184,7 +184,7 @@ class Validation {
 			}
 		}
 	}
-	
+
 	# Returns a map identifying the current user
 	function identifyUser( $user = "" ) {
 		global $wgUser;
@@ -193,7 +193,7 @@ class Validation {
 			? array( 'val_user' => 0, 'val_ip' => $user )
 			: array( 'val_user' => $user );
 	}
-	
+
 	# Deletes a specific vote set in both cache and database
 	function deleteRevisionVote( &$article, $revision ) {
 		$ts = $this->getRevisionTimestamp( $revision );
@@ -214,11 +214,11 @@ class Validation {
 
 		unset( $this->voteCache[$ts] );
 	}
-	
+
 	# Reads the entire vote list for this user for the given article
 	function getVoteList( $id, $user = "" ) {
 		$db =& wfGetDB( DB_SLAVE );
-		
+
 		# NOTE : This query gets the votes for a single user on a single page.
 		# Assuming most people will use the "merge" feature,
 		# this will be only a single entry.
@@ -237,23 +237,23 @@ class Validation {
 
 		return $revisions;
 	}
-	
+
 	# Reads a partial vote list for this user for all articles
 	function getAllVoteLists( $user , $offset , $limit ) {
 		$db =& wfGetDB( DB_SLAVE );
 		$a = $this->identifyUser($user) ;
 		$b = array ( "ORDER BY" => "val_page,val_revision" , "OFFSET" => $offset , "LIMIT" => $limit ) ;
 		$res = $db->select( 'validate', '*', $a , 'getAllVotesList' , $b );
-		
+
 		$votes = array();
 		while( $vote = $db->fetchObject($res) ) {
 			$votes[$vote->val_page][$vote->val_revision][$vote->val_type] = $vote;
 		}
 		$db->freeResult($res);
-		
+
 		return $votes ;
 	}
-	
+
 	# This functions adds a topic to the database
 	function addTopic( $topic, $limit ) {
 		$db =& wfGetDB( DB_MASTER );
@@ -293,7 +293,7 @@ class Validation {
 		$db->delete( 'validate', array( 'val_type' => $id ), 'SpecialValidate::deleteTopic' );
 		unset( $this->topicList[$id] );
 	}
-	
+
 	# This function returns a link text to the page validation statistics
 	function getStatisticsLink( &$article ) {
 		global $wgUser;
@@ -335,7 +335,7 @@ class Validation {
 
 
 	# HTML generation functions from this point on
-	
+
 	# Returns the metadata string for a revision
 	function getMetadata( $rev_id, &$article ) {
 		global $wgUser;
@@ -357,7 +357,7 @@ class Validation {
 		$metadata .= ': '. $sk->commentBlock( $x->rev_comment, $article->getTitle() );
 		return $metadata;
 	}
-	
+
 	# Generates a link to the topic description
 	function getTopicLink($s) {
 		$t = Title::newFromText ( wfMsg ( 'val_topic_desc_page' ) ) ;
@@ -368,7 +368,7 @@ class Validation {
 		$r .= "\">{$s}</a>" ;
 		return $r ;
 	}
-		
+
 	# Generates HTML from a wiki text, e.g., a wfMsg
 	function getParsedWiki ( $text ) {
 		global $wgOut, $wgTitle, $wgParser ;
@@ -387,8 +387,8 @@ class Validation {
 				$data[$x]->comment = "";
 			}
 		}
-		ksort( $data ) ;		
-	
+		ksort( $data ) ;
+
 		# Generate form
 		$table_class = $focus ? 'revisionform_focus' : 'revisionform_default';
 		$ret = "<form method='post'><table class='{$table_class}'>\n";
@@ -405,7 +405,7 @@ class Validation {
 			$ret .= "<th>\n";
 			$ret .= $this->getTopicLink ( $this->topicList[$x]->val_comment ) ;
 			$ret .= "</th>\n";
-			
+
 			$tlx = $this->topicList[$x];
 			$vote = "";
 			$max = $tlx->val_value;
@@ -428,9 +428,9 @@ class Validation {
 				if ( $a == 0 ) {
 					$vote .= " &nbsp; ";
 				}
-			}			
+			}
 			$ret .= "<td nowrap>{$vote}</td>\n";
-			
+
 			$ret .= "<td width='100%'><input size='50' style='width:98%' maxlength='250' type='text' name='re_c{$idx}' value='{$y->comment}'/>";
 			$ret .= "</td></tr>\n";
 		}
@@ -439,24 +439,24 @@ class Validation {
 		$ret .= "<input type='checkbox' name='re_merge_{$revision}' value='1'{$checked} />" . $this->getParsedWiki( wfMsg( 'val_merge_old' ) ) . " \n";
 		$ret .= "<input type='checkbox' name='re_clear_{$revision}' value='1'{$checked} />" . $this->getParsedWiki( wfMsg( 'val_clear_old' ) ) . " \n";
 		$ret .= "<input type='submit' name='re_submit[{$revision}]' value=\"" . wfMsgHtml( "ok" ) . "\" />\n";
-		
+
 		if( $focus ) $ret .= "<br/>\n<small>" . $this->getParsedWiki ( wfMsg( "val_form_note" ) ) . "</small>";
 		$ret .= "</td></tr>\n";
 		$ret .= "</table></form>\n\n";
 		return $ret;
 	}
-	
+
 
 	# Generates the page from the validation tab
 	function validatePageForm( &$article, $revision ) {
 		global $wgOut, $wgRequest, $wgUser;
-		
+
 		$ret = "";
 		$this->page_id = $article->getID();
 		$this->topicList = $this->getTopicList();
 		if ( $this->getNoTopicsWarning() ) return "" ;
 		$this->voteCache = $this->getVoteList( $article->getID() );
-		
+
 		# Check for POST data
 		$re = $wgRequest->getArray( 're_submit' );
 		if ( isset( $re ) ) {
@@ -475,17 +475,17 @@ class Validation {
 		} else {
 			$ret .= $this->getParsedWiki( wfMsg ('val_votepage_intro') );
 		}
-		
+
 		# Make sure the requested revision exists
 		$rev = $this->getRevisionFromId($revision);
 		$ts = $rev->rev_timestamp;
 		if( !isset( $this->voteCache[$ts] ) ) {
 			$this->voteCache[$ts] = array();
 		}
-		
+
 		# Sort revisions list, newest first
 		krsort( $this->voteCache );
-		
+
 		# Output
 		$title = $article->getTitle();
 		$title = $title->getPrefixedText();
@@ -496,17 +496,17 @@ class Validation {
 		}
 		$ret .= $this->getStatisticsLink( $article );
 		$ret .= "<p>" . $this->getUserRatingsLink( $wgUser->getID(), wfMsg( 'val_show_my_ratings' ) ) . "</p>";
-		return $ret ;	
+		return $ret ;
 	}
-	
+
 	# This function performs the "management" mode on Special:Validate
 	function manageTopics() {
 		global $wgRequest, $wgValidationMaxTopics;
 		$this->topicList = $this->getTopicList();
-		
+
 		$r = "" ; # Return value
 		$iamsure = true ; # Sure by default, see checkbox below # $wgRequest->getVal( "iamsure", "0" ) == 1;
-		
+
 		if( $iamsure && $wgRequest->getVal( "m_add", "--" ) != "--" ) {
 			if ( count ( $this->topicList ) >= $wgValidationMaxTopics ) { # Catching this in case someone tries a manually edited URL...
 				$ret .= "<p><b>" . wfMsg ( 'val_max_topics' , $wgValidationMaxTopics ) . "</b></p>" ;
@@ -525,7 +525,7 @@ class Validation {
 			$id = array_shift( $id );
 			$this->deleteTopic( $id );
 		}
-		
+
 		# FIXME: Wikitext this
 		$r .= "<p>" . $this->getParsedWiki( wfMsg( 'val_warning' ) ) . "</p>\n";
 		$r .= "<form method='post'>\n";
@@ -539,7 +539,7 @@ class Validation {
 			$r .= "<td><input type='submit' name='m_del[" . intval( $x ) . "]' value='" . htmlspecialchars( wfMsg( 'val_del' ) ) . "'/></td>\n";
 			$r .= "</tr>\n";
 		}
-		
+
 		# Add topic, or too-many-topics warning
 		if ( count ( $this->topicList ) >= $wgValidationMaxTopics ) {
 			$r .= "<tr><td colspan='4' align='center'>" ;
@@ -555,17 +555,17 @@ class Validation {
 			$r .= '</td>' . "\n";
 			$r .= "</tr>" ;
 			}
-		
+
 		$r .= "</table>\n";
 
-#		This is fot the checkbox "I am sure" for actions, which was found to be unituitive		
+#		This is fot the checkbox "I am sure" for actions, which was found to be unituitive
 #		$r .= '<p><input type="checkbox" name="iamsure" id="iamsure" value="1"/>';
 #		$r .= '<label for="iamsure">' . $this->getParsedWiki( wfMsg( 'val_iamsure' ) ) . "</label></p>\n";
 
 		$r .= "</form>\n";
 		return $r;
 	}
-	
+
 	# Generates an ID for both logged-in users and anons; $res is an object from an SQL query
 	function make_user_id( &$res ) {
 		return $res->val_user == 0 ? $res->val_ip : $res->val_user;
@@ -580,7 +580,7 @@ class Validation {
 		$sk = $wgUser->getSkin();
 		$title = $article->getTitle();
 		$wgOut->setPageTitle( str_replace( '$1', $title->getPrefixedText(), wfMsg( 'val_validation_of' ) ) );
-		
+
 		$data = array();
 		$users = array();
 		$topics = array();
@@ -594,20 +594,20 @@ class Validation {
 			$topics[$x->val_type] = true;
 		}
 		$db->freeResult($res);
-		
+
 		# Sorting lists of topics and users
 		ksort( $users );
 		ksort( $topics );
-		
+
 		$ts = $this->getRevisionTimestamp( $revision );
 		$url = $this->getRevisionLink( $article, $revision, wfTimestamp( TS_DB, $ts ) );
 
 		# Table headers
-		$ret = "" ;			
+		$ret = "" ;
 		$ret .= "<p><b>" . str_replace( '$1', $url, wfMsg( 'val_revision_of' ) ) . "</b></p>\n";
 		$ret .= "<table>\n";
 		$ret .= "<tr><th>" . $this->getParsedWiki ( wfMsg('val_details_th') ) . "</th>" ;
-		
+
 		foreach( $topics as $t => $dummy ) {
 			$ret .= '<th>' . $sk->commentBlock( $this->topicList[$t]->val_comment, $article->getTitle() ) . '</th>';
 		}
@@ -640,10 +640,10 @@ class Validation {
 		$ret .= "</table>";
 		$ret .= "<p>" . $this->getStatisticsLink( $article ) . "</p>";
 		$ret .= "<p>" . $this->getUserRatingsLink( $wgUser->getID(), wfMsg( 'val_show_my_ratings' ) ) . "</p>";
-		
+
 		return $ret;
 	}
-	
+
 	function showList( &$article ) {
 		global $wgOut, $wgUser , $wgRequest;
 		$this->page_id = $article->getID();
@@ -652,10 +652,10 @@ class Validation {
 
 		$title = $article->getTitle();
 		$wgOut->setPageTitle( wfMsg( 'val_validation_of', $title->getPrefixedText() ) );
-		
+
 		$offset = $wgRequest->getVal ( "offset" , 0 ) ;
 		$limit = $wgRequest->getVal ( "limit" , 25 ) ;
-		
+
 		# Collecting statistic data
 		# Unfortunately, it has to read all the data, though it will only display a part
 		$db =& wfGetDB( DB_SLAVE );
@@ -683,7 +683,7 @@ class Validation {
 
 		# Paging
 		$statistics = array_slice ( $statistics , $offset , $limit ) ;
-		
+
 		foreach( $statistics as $ts => $data ) {
 			$rev_id = $this->getRevisionId( $ts );
 			$revision_link = $this->getRevisionLink( $article, $rev_id, wfTimestamp( TS_DB, $ts ) );
@@ -710,7 +710,7 @@ class Validation {
 
 		return $ret;
 	}
-	
+
 	function getRatingText( $value, $max ) {
 		if( $max == 2 && $value == 1 ) {
 			$ret = wfMsg ( "val_no" ) . " ";
@@ -729,47 +729,47 @@ class Validation {
 		$sk = $wgUser->getSkin();
 		$r = array () ;
 		$user = $wgRequest->getVal( "user" );
-		
+
 		if ( $mode == "userstats" ) {
 			$nt = Title::newFromText( 'Special:Validate' );
 		} else {
 			$nt = $wgTitle ;
 		}
-		
+
 		$base = "action=validate&mode={$mode}&" ;
 		if ( $user != "" ) $base .= "user={$user}&" ;
 		$base .= "limit={$limit}&offset=" ;
-		
+
 		if ( $offset > 0 ) {
 			$o = $offset - $limit ;
 			$t = $offset-$limit+1 ;
 			$r[] = $sk->makeKnownLinkObj( $nt, "{$t} <<" , $base.$o );
 		}
-		
+
 		$s1 = $offset + 1 ;
 		$s2 = $s1 + $lastcount - 1 ;
 		$r[] = $s1 . " - " . $s2 ;
-		
+
 		if ( $lastcount == $limit ) {
 			$o = $offset + $limit ;
 			$t = $offset+$limit+1 ;
 			$r[] = $sk->makeKnownLinkObj( $nt, ">> {$t}" , $base.$o );
 		}
-		
+
 		$r = implode ( " | " , $r ) ;
 		return $r ;
 	}
-	
-	function showUserStats( $user ) {		
+
+	function showUserStats( $user ) {
 		global $wgOut, $wgUser, $wgRequest;
 		$this->topicList = $this->getTopicList();
 		if ( $this->getNoTopicsWarning() ) return "" ;
 		$sk = $wgUser->getSkin();
-		
+
 		$offset = $wgRequest->getVal( "offset" , 0 );
 		$limit = $wgRequest->getVal( "limit" , 25 );
 		$data = $this->getAllVoteLists( $user , $offset , $limit ) ;
-		
+
 		if( $user == $wgUser->getID() ) {
 			$wgOut->setPageTitle ( wfMsg ( 'val_my_stats_title' ) );
 		} elseif( !User::IsIP( $user ) ) {
@@ -777,10 +777,10 @@ class Validation {
 		} else {
 			$wgOut->setPageTitle( wfMsg( 'val_user_stats_title', $user ) );
 		}
-		
+
 		$ret = "" ;
 		$ret = "<table>\n";
-		
+
 		$linecount = 0 ;
 		$lastpage = -1 ;
 		$lastrevision = -1 ;
@@ -824,14 +824,14 @@ class Validation {
 			$ret .= "</tr>";
 		}
 		$ret .= "</table>";
-		
-		
+
+
 		$s = $this->navBar ( $offset , $limit , $linecount ) ;
 		if ( $s != "" ) $ret = $s . "<br/>" . $ret . "<br/>" . $s ;
-		
+
 		return $ret;
 	}
-	
+
 	function getNoTopicsWarning () {
 		global $wgOut ;
 		if ( !isset ( $this->topicList ) ) # Just making sure, shouldn't be necessary...
@@ -848,7 +848,7 @@ class Validation {
  */
 function wfSpecialValidate( $page = '' ) {
 	global $wgOut, $wgRequest, $wgUseValidation, $wgUser;
-	
+
 	if( !$wgUseValidation ) {
 		$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
 		return;

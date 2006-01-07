@@ -41,7 +41,7 @@ class LanguageUtf8 extends Language {
 	# or compiled and character mapping arrays otherwise.
 	# In case of language-specific character mismatch
 	# it should be dealt with in Language classes.
-	
+
 	function ucfirst( $str ) {
 		return $this->uc( $str, true );
 	}

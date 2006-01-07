@@ -20,7 +20,7 @@ function CountEdits( $user_id ) {
 	$sql = 'SELECT COUNT(rev_id) AS count FROM ' . $dbw->tableName( 'revision' ) . ' WHERE rev_user = ' . $user_id;
 	$res = $dbw->query( $sql );
 	$row = $dbw->fetchObject( $res );
-	return( $row->count );	
+	return( $row->count );
 }
 
 # Return an array containing all valid user IDs

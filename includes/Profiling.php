@@ -44,7 +44,7 @@ if (!function_exists('memory_get_usage')) {
 class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
 	var $mCalls = array (), $mTotals = array ();
-	
+
 	function Profiler()
 	{
 		// Push an entry for the pre-profile setup time onto the stack
@@ -55,7 +55,7 @@ class Profiler {
 		} else {
 			$this->profileIn( '-total' );
 		}
-			
+
 	}
 
 	function profileIn($functionname) {
@@ -172,12 +172,12 @@ class Profiler {
 			trim( sprintf( "%7.3f", $delta * 1000.0 ) ),
 			$space, $fname );
 	}
-	
+
 	function micro2Float( $micro ) {
 		list( $whole, $fractional ) = explode( ' ', $micro );
 		return (float)$whole + (float)$fractional;
 	}
-	
+
 	function microDelta( $start, $end ) {
 		return $this->micro2Float( $end ) -
 		       $this->micro2Float( $start );
@@ -193,7 +193,7 @@ class Profiler {
 		return $ru['ru_utime.tv_sec'].' '.$ru['ru_utime.tv_usec'] / 1e6;
 	}
 
-	function getFunctionReport() {		
+	function getFunctionReport() {
 		$width = 140;
 		$nameWidth = $width - 65;
 		$format =      "%-{$nameWidth}s %6d %13.3f %13.3f %13.3f%% %9d  (%13.3f -%13.3f) [%d]\n";

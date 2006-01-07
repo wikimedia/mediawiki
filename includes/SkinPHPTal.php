@@ -87,7 +87,7 @@ class SkinPHPTal extends SkinTemplate {
 			return new PHPTAL( $file . '.pt', $repository, $cache_dir );
 		}
 	}
-	
+
 	/**
 	 * Output the string, or print error message if it's
 	 * an error object of the appropriate type.
@@ -116,19 +116,19 @@ class PHPTAL_version_bridge {
 			$this->tpl->setTemplateRepository( $repository );
 		}
 	}
-	
+
 	function set( $name, $value ) {
 		$this->tpl->$name = $value;
 	}
-	
+
 	function setRef($name, &$value) {
 		$this->set( $name, $value );
 	}
-	
+
 	function setTranslator( &$t ) {
 		$this->tpl->setTranslator( $t );
 	}
-	
+
 	function execute() {
 		/*
 		try {

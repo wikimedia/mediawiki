@@ -32,7 +32,7 @@ class UtfUpdater {
 
 	/**
 	 * @param string $string A string to be converted to UTF-8
-	 */	
+	 */
 	function toUtf8( $string ) {
 		if( function_exists( 'iconv' ) ) {
 			# There are likely to be Windows code page 1252 chars in there.
@@ -53,7 +53,7 @@ class UtfUpdater {
 		$tableName = $this->db->tableName( $table );
 		$this->db->query( 'TRUNCATE $tableName' );
 	}
-	
+
 	/**
 	 * @param string $table Table to be converted
 	 * @param string $key Primary key, to identify fields in the UPDATE. If NULL, all fields will be used to match.
@@ -107,7 +107,7 @@ class UtfUpdater {
 				$keyCond,
 				$fname );
 			if( ++$n % 100 == 0 ) echo "$n\n";
-			
+
 			if( is_callable( $callback ) ) {
 				call_user_func( $callback, $s );
 			}
@@ -115,7 +115,7 @@ class UtfUpdater {
 		echo "$n done.\n";
 		$this->db->freeResult( $res );
 	}
-	
+
 	/**
 	 * @param object $row
 	 * @access private
@@ -123,7 +123,7 @@ class UtfUpdater {
 	function imageRenameCallback( $row ) {
 		$this->renameFile( $row->img_name, 'wfImageDir' );
 	}
-	
+
 	/**
 	 * @param object $row
 	 * @access private
@@ -131,7 +131,7 @@ class UtfUpdater {
 	function oldimageRenameCallback( $row ) {
 		$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir' );
 	}
-	
+
 	/**
 	 * Rename a given image or archived image file to the converted filename,
 	 * leaving a symlink for URL compatibility.
@@ -146,10 +146,10 @@ class UtfUpdater {
 			// No need to rename; another field triggered this row.
 			return;
 		}
-		
+
 		$oldpath = call_user_func( $subdirCallback, $oldname ) . '/' . $oldname;
 		$newpath = call_user_func( $subdirCallback, $newname ) . '/' . $newname;
-		
+
 		echo "Renaming $oldpath to $newpath... ";
 		if( rename( $oldpath, $newpath ) ) {
 			echo "ok\n";
@@ -163,7 +163,7 @@ class UtfUpdater {
 			echo " rename failed!\n";
 		}
 	}
-	
+
 	/**
 	 * Lock tables.
 	 * @param array $tables An array of table to be locked.
@@ -180,14 +180,14 @@ class UtfUpdater {
 
 	/**
 	 * @todo document
-	 */	
+	 */
 	function updateAll() {
 		$this->lockTables( array(
 			'objectcache', 'searchindex', 'querycache',
 			'ipblocks', 'user', 'page', 'revision', 'recentchanges',
 			'brokenlinks', 'categorylinks', 'imagelinks', 'watchlist',
 			'image', 'oldimage', 'archive' ) );
-		
+
 		# These are safe to clear out:
 		$this->clearTable( 'objectcache' );
 
@@ -204,15 +204,15 @@ class UtfUpdater {
 			array( 'page_title' ), 'page_touched' );
 		$this->convertTable( 'revision', 'rev_id',
 			array( 'rev_user_text', 'rev_comment' ) );
-		
+
 		$this->convertTable( 'recentchanges', 'rc_id',
 			array( 'rc_user_text', 'rc_title', 'rc_comment' ) );
-		
+
 		$this->convertTable( 'pagelinks', 'pl_title' );
 		$this->convertTable( 'categorylinks', 'cl_to' );
 		$this->convertTable( 'imagelinks', 'il_to' );
 		$this->convertTable( 'watchlist', 'wl_title' );
-		
+
 		# We'll also need to change the files.
 		$this->convertTable( 'image', 'img_name',
 			array( 'img_name', 'img_description', 'img_user_text' ),
@@ -222,14 +222,14 @@ class UtfUpdater {
 			array( 'oi_name', 'oi_archive_name', 'oi_description', 'oi_user_text' ),
 			null,
 			array( &$this, 'oldimageRenameCallback' ) );
-		
+
 		# Don't change the ar_text entries; use $wgLegacyEncoding to read them at runtime
 		$this->convertTable( 'archive', null,
 			array( 'ar_title', 'ar_comment', 'ar_user_text' ) );
 		echo "Not converting text table: be sure to set \$wgLegacyEncoding!\n";
-		
+
 		$this->db->query( 'UNLOCK TABLES' );
 	}
-	
+
 }
 ?>

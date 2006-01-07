@@ -80,7 +80,7 @@ class SearchEngine {
 		if ( $title->exists() ) {
 			return $title;
 		}
-		
+
 		# Now try Word-Caps-Breaking-At-Word-Breaks, for hyphenated names etc
 		$title = Title::newFromText( preg_replace_callback(
 			'/\b([\w\x80-\xff]+)\b/',
@@ -92,7 +92,7 @@ class SearchEngine {
 		if ( $title->exists() ) {
 			return $title;
 		}
-		
+
 		global $wgCapitalLinks, $wgContLang;
 		if( !$wgCapitalLinks ) {
 			// Catch differs-by-first-letter-case-only

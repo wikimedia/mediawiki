@@ -50,7 +50,7 @@ class Exif {
 	 * @var array
 	 * @access private
 	 */
-	
+
 	/**
 	 * Exif tags grouped by category, the tagname itself is the key and the type
 	 * is the value, in the case of more than one possible value type they are
@@ -79,14 +79,14 @@ class Exif {
 	 * Filtered and formatted Exif data, see FormatExif::getFormattedData()
 	 */
 	var $mFormattedExifData;
-	
+
 	/**#@-*/
-	
+
 	/**#@+
 	 * @var string
 	 * @access private
 	 */
-	
+
 	/**
 	 * The file being processed
 	 */
@@ -96,12 +96,12 @@ class Exif {
 	 * The basename of the file being processed
 	 */
 	var $basename;
-	
+
 	/**
 	 * The private log to log to
 	 */
 	var $log = 'exif';
-	
+
 	/**#@-*/
 
 	/**
@@ -136,7 +136,7 @@ class Exif {
 					'YResolution' => MW_EXIF_RATIONAL,			# Image resolution in height direction
 					'ResolutionUnit' => MW_EXIF_SHORT,			# Unit of X and Y resolution #(p26)
 				),
-				
+
 				# Tags relating to recording offset
 				'offset' => array(
 					'StripOffsets' => MW_EXIF_SHORT.','.MW_EXIF_LONG,			# Image data location
@@ -145,7 +145,7 @@ class Exif {
 					'JPEGInterchangeFormat' => MW_EXIF_SHORT.','.MW_EXIF_LONG,		# Offset to JPEG SOI
 					'JPEGInterchangeFormatLength' => MW_EXIF_SHORT.','.MW_EXIF_LONG,	# Bytes of JPEG data
 				),
-			
+
 				# Tags relating to image data characteristics
 				'characteristics' => array(
 					'TransferFunction' => MW_EXIF_SHORT,		# Transfer function
@@ -154,7 +154,7 @@ class Exif {
 					'YCbCrCoefficients' => MW_EXIF_RATIONAL,	# Color space transformation matrix coefficients #p27
 					'ReferenceBlackWhite' => MW_EXIF_RATIONAL	# Pair of black and white reference values
 				),
-			
+
 				# Other tags
 				'other' => array(
 					'DateTime' => MW_EXIF_ASCII,            # File change date and time
@@ -166,7 +166,7 @@ class Exif {
 					'Copyright' => MW_EXIF_ASCII,           # Copyright holder
 				),
 			),
-		
+
 			# Exif IFD Attribute Information (p30-31)
 			'exif' => array(
 				# Tags relating to version
@@ -176,12 +176,12 @@ class Exif {
 					'ExifVersion' => MW_EXIF_UNDEFINED,	# Exif version
 					'FlashpixVersion' => MW_EXIF_UNDEFINED, # Supported Flashpix version #p32
 				),
-				
+
 				# Tags relating to Image Data Characteristics
 				'characteristics' => array(
 					'ColorSpace' => MW_EXIF_SHORT,		# Color space information #p32
 				),
-		
+
 				# Tags relating to image configuration
 				'configuration' => array(
 					'ComponentsConfiguration' => MW_EXIF_UNDEFINED,		# Meaning of each component #p33
@@ -189,18 +189,18 @@ class Exif {
 					'PixelYDimension' => MW_EXIF_SHORT.','.MW_EXIF_LONG,	# Valid image width
 					'PixelXDimension' => MW_EXIF_SHORT.','.MW_EXIF_LONG,	# Valind image height
 				),
-				
+
 				# Tags relating to related user information
 				'user' => array(
 					'MakerNote' => MW_EXIF_UNDEFINED,			# Manufacturer notes
 					'UserComment' => MW_EXIF_UNDEFINED,			# User comments #p34
 				),
-		
+
 				# Tags relating to related file information
 				'related' => array(
 					'RelatedSoundFile' => MW_EXIF_ASCII,			# Related audio file
 				),
-		
+
 				# Tags relating to date and time
 				'dateandtime' => array(
 					'DateTimeOriginal' => MW_EXIF_ASCII,			# Date and time of original data generation #p36
@@ -209,7 +209,7 @@ class Exif {
 					'SubSecTimeOriginal' => MW_EXIF_ASCII,			# DateTimeOriginal subseconds
 					'SubSecTimeDigitized' => MW_EXIF_ASCII,			# DateTimeDigitized subseconds
 				),
-				
+
 				# Tags relating to picture-taking conditions (p31)
 				'conditions' => array(
 					'ExposureTime' => MW_EXIF_RATIONAL,			# Exposure time
@@ -253,12 +253,12 @@ class Exif {
 					'DeviceSettingDescription' => MW_EXIF_UNDEFINED,	# Desice settings description
 					'SubjectDistanceRange' => MW_EXIF_SHORT,		# Subject distance range #p51
 				),
-				
+
 				'other' => array(
 					'ImageUniqueID' => MW_EXIF_ASCII,	# Unique image ID
 				),
 			),
-		
+
 			# GPS Attribute Information (p52)
 			'gps' => array(
 				'GPSVersionID' => MW_EXIF_BYTE,			# GPS tag version
@@ -297,9 +297,9 @@ class Exif {
 
 		$this->file = $file;
 		$this->basename = basename( $this->file );
-		
+
 		$this->makeFlatExifTags();
-		
+
 		$this->debugFile( $this->basename, __FUNCTION__, true );
 		wfSuppressWarnings();
 		$data = exif_read_data( $this->file );
@@ -310,13 +310,13 @@ class Exif {
 		 * containing random gibberish.
 		 */
 		$this->mRawExifData = $data ? $data : array();
-		
+
 		$this->makeFilteredData();
 		$this->makeFormattedData();
-		
+
 		$this->debugFile( __FUNCTION__, false );
 	}
-	
+
 	/**#@+
 	 * @access private
 	 */
@@ -326,7 +326,7 @@ class Exif {
 	function makeFlatExifTags() {
 		$this->extractTags( $this->mExifTags );
 	}
-	
+
 	/**
 	 * A recursing extractor function used by makeFlatExifTags()
 	 *
@@ -342,13 +342,13 @@ class Exif {
 			}
 		}
 	}
-	
+
 	/**
 	 * Make $this->mFilteredExifData
 	 */
 	function makeFilteredData() {
 		$this->mFilteredExifData = $this->mRawExifData;
-		
+
 		foreach( $this->mFilteredExifData as $k => $v ) {
 			if ( !in_array( $k, array_keys( $this->mFlatExifTags ) ) ) {
 				$this->debug( $v, __FUNCTION__, "'$k' is not a valid Exif tag" );
@@ -394,7 +394,7 @@ class Exif {
 		return $this->mFormattedExifData;
 	}
 	/**#@-*/
-	
+
 	/**
 	 * The version of the output format
 	 *
@@ -428,18 +428,18 @@ class Exif {
 			return false;
 		}
 	}
-	
+
 	function isASCII( $in ) {
 		if ( preg_match( "/[^\x0a\x20-\x7e]/", $in ) ) {
 			$this->debug( $in, __FUNCTION__, 'found a character not in our whitelist' );
 			return false;
 		}
-		
+
 		if ( preg_match( "/^\s*$/", $in ) ) {
 			$this->debug( $in, __FUNCTION__, 'input consisted solely of whitespace' );
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -462,7 +462,7 @@ class Exif {
 			return false;
 		}
 	}
-	
+
 	function isRational( $in ) {
 		if ( @preg_match( "/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/", $in, $m ) ) { # Avoid division by zero
 			return $this->isLong( $m[1] ) && $this->isLong( $m[2] );
@@ -562,7 +562,7 @@ class Exif {
 		$class = ucfirst( __CLASS__ );
 		if ( $type === 'array' )
 			$in = print_r( $in, true );
-	
+
 		if ( $action === true )
 			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n");
 		elseif ( $action === false )
@@ -604,7 +604,7 @@ class FormatExif {
 	 * @access private
 	 */
 	var $mExif;
-	
+
 	/**
 	 * Constructor
 	 *
@@ -614,7 +614,7 @@ class FormatExif {
 	function FormatExif( $exif ) {
 		$this->mExif = $exif;
 	}
-	
+
 	/**
 	 * Numbers given by Exif user agents are often magical, that is they
 	 * should be replaced by a detailed explanation depending on their
@@ -625,12 +625,12 @@ class FormatExif {
 	 */
 	function getFormattedData() {
 		global $wgLang;
-		
+
 		$tags =& $this->mExif;
 
 		$resolutionunit = !isset( $tags['ResolutionUnit'] ) || $tags['ResolutionUnit'] == 2 ? 2 : 3;
 		unset( $tags['ResolutionUnit'] );
-		
+
 		foreach( $tags as $tag => $val ) {
 			switch( $tag ) {
 			case 'Compression':
@@ -643,7 +643,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'PhotometricInterpretation':
 				switch( $val ) {
 				case 2: case 6:
@@ -654,7 +654,7 @@ class FormatExif {
 					break;
 				}
 				break;
-			
+
 			case 'Orientation':
 				switch( $val ) {
 				case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
@@ -665,7 +665,7 @@ class FormatExif {
 					break;
 				}
 				break;
-			
+
 			case 'PlanarConfiguration':
 				switch( $val ) {
 				case 1: case 2:
@@ -676,10 +676,10 @@ class FormatExif {
 					break;
 				}
 				break;
-			
+
 			// TODO: YCbCrSubSampling
 			// TODO: YCbCrPositioning
-			
+
 			case 'XResolution':
 			case 'YResolution':
 				switch( $resolutionunit ) {
@@ -694,12 +694,12 @@ class FormatExif {
 						break;
 				}
 				break;
-				
+
 			// TODO: YCbCrCoefficients  #p27 (see annex E)
 			case 'ExifVersion': case 'FlashpixVersion':
 				$tags[$tag] = "$val"/100;
 				break;
-			
+
 			case 'ColorSpace':
 				switch( $val ) {
 				case 1: case 'FFFF.H':
@@ -710,7 +710,7 @@ class FormatExif {
 					break;
 				}
 				break;
-			
+
 			case 'ComponentsConfiguration':
 				switch( $val ) {
 				case 0: case 1: case 2: case 3: case 4: case 5: case 6:
@@ -721,13 +721,13 @@ class FormatExif {
 					break;
 				}
 				break;
-			
+
 			case 'DateTime':
 			case 'DateTimeOriginal':
 			case 'DateTimeDigitized':
 				$tags[$tag] = $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
 				break;
-			
+
 			case 'ExposureProgram':
 				switch( $val ) {
 				case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
@@ -742,7 +742,7 @@ class FormatExif {
 			case 'SubjectDistance':
 				$tags[$tag] = $this->msg( $tag, '', $this->formatNum( $val ) );
 				break;
-	
+
 			case 'MeteringMode':
 				switch( $val ) {
 				case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 255:
@@ -753,7 +753,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'LightSource':
 				switch( $val ) {
 				case 0: case 1: case 2: case 3: case 4: case 9: case 10: case 11:
@@ -766,7 +766,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			// TODO: Flash
 			case 'FocalPlaneResolutionUnit':
 				switch( $val ) {
@@ -778,7 +778,7 @@ class FormatExif {
 					break;
 				}
 				break;
-						
+
 			case 'SensingMethod':
 				switch( $val ) {
 				case 1: case 2: case 3: case 4: case 5: case 7: case 8:
@@ -789,7 +789,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'FileSource':
 				switch( $val ) {
 				case 3:
@@ -800,7 +800,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'SceneType':
 				switch( $val ) {
 				case 1:
@@ -811,7 +811,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'CustomRendered':
 				switch( $val ) {
 				case 0: case 1:
@@ -822,7 +822,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'ExposureMode':
 				switch( $val ) {
 				case 0: case 1: case 2:
@@ -833,7 +833,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'WhiteBalance':
 				switch( $val ) {
 				case 0: case 1:
@@ -844,7 +844,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'SceneCaptureType':
 				switch( $val ) {
 				case 0: case 1: case 2: case 3:
@@ -855,7 +855,7 @@ class FormatExif {
 					break;
 				}
 				break;
-	
+
 			case 'GainControl':
 				switch( $val ) {
 				case 0: case 1: case 2: case 3: case 4:
@@ -866,7 +866,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'Contrast':
 				switch( $val ) {
 				case 0: case 1: case 2:
@@ -877,7 +877,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'Saturation':
 				switch( $val ) {
 				case 0: case 1: case 2:
@@ -888,7 +888,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'Sharpness':
 				switch( $val ) {
 				case 0: case 1: case 2:
@@ -899,7 +899,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'SubjectDistanceRange':
 				switch( $val ) {
 				case 0: case 1: case 2: case 3:
@@ -910,7 +910,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'GPSLatitudeRef':
 			case 'GPSDestLatitudeRef':
 				switch( $val ) {
@@ -922,7 +922,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'GPSLongitudeRef':
 			case 'GPSDestLongitudeRef':
 				switch( $val ) {
@@ -934,7 +934,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'GPSStatus':
 				switch( $val ) {
 				case 'A': case 'V':
@@ -945,7 +945,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'GPSMeasureMode':
 				switch( $val ) {
 				case 2: case 3:
@@ -956,7 +956,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'GPSSpeedRef':
 			case 'GPSDestDistanceRef':
 				switch( $val ) {
@@ -968,7 +968,7 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'GPSTrackRef':
 			case 'GPSImgDirectionRef':
 			case 'GPSDestBearingRef':
@@ -981,11 +981,11 @@ class FormatExif {
 					break;
 				}
 				break;
-				
+
 			case 'GPSDateStamp':
 				$tags[$tag] = $wgLang->date( substr( $val, 0, 4 ) . substr( $val, 5, 2 ) . substr( $val, 8, 2 ) . '000000' );
 				break;
-	
+
 			// This is not in the Exif standard, just a special
 			// case for our purposes which enables wikis to wikify
 			// the make, model and software name to link to their articles.
@@ -994,23 +994,23 @@ class FormatExif {
 			case 'Software':
 				$tags[$tag] = $this->msg( $tag, '', $val );
 				break;
-			
+
 			case 'ExposureTime':
 				// Show the pretty fraction as well as decimal version
 				$tags[$tag] = wfMsg( 'exif-exposuretime-format',
 					$this->formatFraction( $val ), $this->formatNum( $val ) );
 				break;
-			
+
 			case 'FNumber':
 				$tags[$tag] = wfMsg( 'exif-fnumber-format',
 					$this->formatNum( $val ) );
 				break;
-			
+
 			case 'FocalLength':
 				$tags[$tag] = wfMsg( 'exif-focallength-format',
 					$this->formatNum( $val ) );
 				break;
-			
+
 			default:
 				$tags[$tag] = $this->formatNum( $val );
 				break;
@@ -1032,7 +1032,7 @@ class FormatExif {
 	 */
 	function msg( $tag, $val, $arg = null ) {
 		global $wgContLang;
-		
+
 		if ($val === '')
 			$val = 'value';
 		return wfMsg( $wgContLang->lc( "exif-$tag-$val" ), $arg );
@@ -1053,7 +1053,7 @@ class FormatExif {
 		else
 			return $num;
 	}
-	
+
 	/**
 	 * Format a rational number, reducing fractions
 	 *
@@ -1094,7 +1094,7 @@ class FormatExif {
 		*/
 		while( $b != 0 ) {
 			$remainder = $a % $b;
-			
+
 			// tail recursion...
 			$a = $b;
 			$b = $remainder;

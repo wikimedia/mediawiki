@@ -35,7 +35,7 @@ class GenerateSitemap {
 	 * @var int
 	 */
 	var $size_limit;
-	
+
 	/**
 	 * The path to prepend to the filename
 	 *
@@ -49,14 +49,14 @@ class GenerateSitemap {
 	 * @var string
 	 */
 	var $path;
-	
+
 	/**
 	 * Whether or not to use compression
 	 *
 	 * @var bool
 	 */
 	var $compress;
-	
+
 	/**
 	 * The number of entries to save in each sitemap file
 	 *
@@ -113,14 +113,14 @@ class GenerateSitemap {
 	 * @var object
 	 */
 	var $dbr;
-	
+
 	/**
 	 * A resource pointing to the sitemap index file
 	 *
 	 * @var resource
 	 */
 	var $findex;
-	
+
 
 	/**
 	 * A resource pointing to a sitemap file
@@ -146,7 +146,7 @@ class GenerateSitemap {
 	 */
 	function GenerateSitemap( $fspath, $path, $compress ) {
 		global $wgDBname, $wgScriptPath;
-		
+
 		$this->url_limit = 50000;
 		$this->size_limit = pow( 2, 20 ) * 10;
 		$this->fspath = isset( $fspath ) ? $fspath : '';
@@ -165,7 +165,7 @@ class GenerateSitemap {
 	 */
 	function generateNamespaces() {
 		$fname = 'GenerateSitemap::generateNamespaces';
-		
+
 		$res = $this->dbr->select( 'page',
 			array( 'page_namespace' ),
 			array(),
@@ -235,14 +235,14 @@ class GenerateSitemap {
 		global $wgDBname, $wgContLang;
 
 		fwrite( $this->findex, $this->openIndex() );
-		
+
 		foreach ( $this->namespaces as $namespace ) {
 			$res = $this->getPageRes( $namespace );
 			$this->file = false;
 			$this->generateLimit( $namespace );
 			$length = $this->limit[0];
 			$i = $smcount = 0;
-			
+
 			$fns = $wgContLang->getFormattedNsText( $namespace );
 			$this->debug( "$namespace ($fns)" );
 			while ( $row = $this->dbr->fetchObject( $res ) ) {
@@ -282,7 +282,7 @@ class GenerateSitemap {
 	function open( $file, $flags ) {
 		return $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
 	}
-	
+
 	/**
 	 * gzwrite() / fwrite() wrapper
 	 */
@@ -315,9 +315,9 @@ class GenerateSitemap {
 	 */
 	function sitemapFilename( $namespace, $count ) {
 		global $wgDBname;
-		
+
 		$ext = $this->compress ? '.gz' : '';
-		
+
 		return "sitemap-$wgDBname-NS_$namespace-$count.xml$ext";
 	}
 
@@ -431,7 +431,7 @@ class GenerateSitemap {
 	 */
 	function generateLimit( $namespace ) {
 		$title = Title::makeTitle( $namespace, str_repeat( "\xf0\xa8\xae\x81", 63 ) . "\xe5\x96\x83" );
-		
+
 		$this->limit = array(
 			strlen( $this->openFile() ),
 			strlen( $this->fileEntry( $title->getFullUrl(), wfTimestamp( TS_ISO_8601, wfTimestamp() ), $this->priority( $namespace ) ) ),

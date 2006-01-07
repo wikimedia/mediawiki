@@ -19,10 +19,10 @@ function wfSpecialAllmessages() {
 
 	$fname = "wfSpecialAllMessages";
 	wfProfileIn( $fname );
-	
+
 	wfProfileIn( "$fname-setup");
 	$ot = $wgRequest->getText( 'ot' );
-	
+
 	$navText = wfMsg( 'allmessagestext' );
 
 
@@ -40,7 +40,7 @@ function wfSpecialAllmessages() {
 
 	$wgMessageCache->enableTransform();
 	wfProfileOut( "$fname-setup" );
-	
+
 	wfProfileIn( "$fname-output" );
 	if ($ot == 'php') {
 		$navText .= makePhp($messages);
@@ -51,7 +51,7 @@ function wfSpecialAllmessages() {
 		$wgOut->addHTML( makeHTMLText( $messages ) );
 	}
 	wfProfileOut( "$fname-output" );
-	
+
 	wfProfileOut( $fname );
 }
 
@@ -90,7 +90,7 @@ function makeHTMLText( $messages ) {
 	global $wgLang, $wgUser, $wgLanguageCode, $wgContLanguageCode;
 	$fname = "makeHTMLText";
 	wfProfileIn( $fname );
-	
+
 	$sk =& $wgUser->getSkin();
 	$talk = $wgLang->getNsText( NS_TALK );
 	$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
@@ -104,7 +104,7 @@ function makeHTMLText( $messages ) {
 	<tr>
 		<th>" . wfMsgHtml('allmessagescurrent') . "</th>
 	</tr>";
-	
+
 	wfProfileIn( "$fname-check" );
 	# This is a nasty hack to avoid doing independent existence checks
 	# without sending the links and table through the slow wiki parser.
@@ -136,7 +136,7 @@ function makeHTMLText( $messages ) {
 		$changed = ($m['statmsg'] != $m['msg']);
 		$message = htmlspecialchars( $m['statmsg'] );
 		$mw = htmlspecialchars( $m['msg'] );
-		
+
 		#$pageLink = $sk->makeLinkObj( $titleObj, htmlspecialchars( $key ) );
 		#$talkLink = $sk->makeLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		if( isset( $pageExists[NS_MEDIAWIKI][$title] ) ) {

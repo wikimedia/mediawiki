@@ -46,7 +46,7 @@ class IPBlockForm {
 		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry', wfMsg('ipbotheroption') );
 		$this->BlockOther = $wgRequest->getVal( 'wpBlockOther', '' );
 	}
-	
+
 	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgRequest, $wgSysopUserBans;
 
@@ -94,7 +94,7 @@ class IPBlockForm {
 		}
 
 		$token = htmlspecialchars( $wgUser->editToken() );
-		
+
 		$wgOut->addHTML( "
 <form id=\"blockip\" method=\"post\" action=\"{$action}\">
 	<table border='0'>
@@ -143,7 +143,7 @@ class IPBlockForm {
 
 	function doSubmit() {
 		global $wgOut, $wgUser, $wgSysopUserBans, $wgSysopRangeBans;
-		
+
 		$userId = 0;
 		$this->BlockAddress = trim( $this->BlockAddress );
 		$rxIP = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
@@ -164,7 +164,7 @@ class IPBlockForm {
 				}
 			} else {
 				# Username block
-				if ( $wgSysopUserBans ) {	
+				if ( $wgSysopUserBans ) {
 					$userId = User::idFromName( $this->BlockAddress );
 					if ( $userId == 0 ) {
 						$this->showForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->BlockAddress ) ) );
@@ -196,23 +196,23 @@ class IPBlockForm {
 				$this->showForm( wfMsg( 'ipb_expiry_invalid' ) );
 				return;
 			}
-			
+
 			$expiry = wfTimestamp( TS_MW, $expiry );
 
 		}
-		
+
 		# Create block
 		# Note: for a user block, ipb_address is only for display purposes
 
 		$ban = new Block( $this->BlockAddress, $userId, $wgUser->getID(),
 			$this->BlockReason, wfTimestampNow(), 0, $expiry );
-		
+
 		if (wfRunHooks('BlockIp', array(&$ban, &$wgUser))) {
-			
+
 			$ban->insert();
-			
+
 			wfRunHooks('BlockIpComplete', array($ban, $wgUser));
-			
+
 			# Make log entry
 			$log = new LogPage( 'block' );
 			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ),

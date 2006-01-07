@@ -12,13 +12,13 @@
  */
 function wfSpecialBooksources( $par ) {
 	global $wgRequest;
-	
+
 	$isbn = $par;
 	if( empty( $par ) ) {
 		$isbn = $wgRequest->getVal( 'isbn' );
 	}
 	$isbn = preg_replace( '/[^0-9X]/', '', $isbn );
-	
+
 	$bsl = new BookSourceList( $isbn );
 	$bsl->show();
 }
@@ -45,24 +45,24 @@ class BookSourceList {
 			$this->showList();
 		}
 	}
-	
+
 	function showList() {
 		global $wgOut, $wgContLang;
 		$fname = "BookSourceList::showList()";
-		
+
 		# First, see if we have a custom list setup in
 		# [[Wikipedia:Book sources]] or equivalent.
 		$bstitle = Title::makeTitleSafe( NS_PROJECT, wfMsg( "booksources" ) );
 		$bsarticle = new Article( $bstitle );
 		if( $bsarticle->exists() ) {
 			$bstext = $bsarticle->getContent( false );
-			if( $bstext ) {	
+			if( $bstext ) {
 				$bstext = str_replace( "MAGICNUMBER", $this->mIsbn, $bstext );
 				$wgOut->addWikiText( $bstext );
 				return;
 			}
 		}
-		
+
 		# Otherwise, use the list of links in the default Language.php file.
 		$s = wfMsgWikiHtml( 'booksourcetext' ) . "<ul>\n";
 		$bs = $wgContLang->getBookstoreList() ;
@@ -88,11 +88,11 @@ class BookSourceList {
 
 		$wgOut->addHTML( $s );
 	}
-	
+
 	function askForm() {
 		global $wgOut, $wgTitle;
 		$fname = "BookSourceList::askForm()";
-		
+
 		$action = $wgTitle->escapeLocalUrl();
 		$isbn = htmlspecialchars( wfMsg( "isbn" ) );
 		$go = htmlspecialchars( wfMsg( "go" ) );

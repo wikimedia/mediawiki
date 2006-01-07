@@ -173,7 +173,7 @@ class RecentChange
 				socket_close( $conn );
 			}
 		}
-		
+
 		// E-mail notifications
 		global $wgUseEnotif;
 		if( $wgUseEnotif ) {
@@ -187,7 +187,7 @@ class RecentChange
 				$this->mAttribs['rc_minor'],
 				$this->mAttribs['rc_last_oldid'] );
 		}
-		
+
 	}
 
 	# Marks a certain row as patrolled

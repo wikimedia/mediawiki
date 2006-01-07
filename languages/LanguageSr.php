@@ -1680,7 +1680,7 @@ class LanguageSr extends LanguageUtf8 {
 		global $wgMagicWordsSr;
 		return $wgMagicWordsSr;
 	}
-	
+
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}

@@ -134,7 +134,7 @@ class UtfNormal {
 				$string );
 			$string = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $string );
 			$string = str_replace( UTF8_FFFF, UTF8_REPLACEMENT, $string );
-			
+
 			# UnicodeString constructor fails if the string ends with a
 			# head byte. Add a junk char at the end, we'll strip it off.
 			return rtrim( utf8_normalize( $string . "\x01", UNORM_NFC ), "\x01" );
@@ -162,7 +162,7 @@ class UtfNormal {
 		else
 			return UtfNormal::NFC( $string );
 	}
-	
+
 	/**
 	 * Convert a UTF-8 string to normal form D, canonical decomposition.
 	 * Fast return for pure ASCII strings.
@@ -178,7 +178,7 @@ class UtfNormal {
 		else
 			return $string;
 	}
-	
+
 	/**
 	 * Convert a UTF-8 string to normal form KC, compatibility composition.
 	 * This may cause irreversible information loss, use judiciously.
@@ -195,7 +195,7 @@ class UtfNormal {
 		else
 			return $string;
 	}
-	
+
 	/**
 	 * Convert a UTF-8 string to normal form KD, compatibility decomposition.
 	 * This may cause irreversible information loss, use judiciously.
@@ -212,7 +212,7 @@ class UtfNormal {
 		else
 			return $string;
 	}
-	
+
 	/**
 	 * Load the basic composition data if necessary
 	 * @access private
@@ -223,7 +223,7 @@ class UtfNormal {
 			require_once( 'UtfNormalData.inc' );
 		}
 	}
-	
+
 	/**
 	 * Returns true if the string is _definitely_ in NFC.
 	 * Returns false if not or uncertain.
@@ -234,7 +234,7 @@ class UtfNormal {
 		# ASCII is always valid NFC!
 		# If it's pure ASCII, let it through.
 		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
-		
+
 		UtfNormal::loadData();
 		global $utfCheckNFC, $utfCombiningClass;
 		$len = strlen( $string );
@@ -273,18 +273,18 @@ class UtfNormal {
 	function quickIsNFCVerify( &$string ) {
 		# Screen out some characters that eg won't be allowed in XML
 		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', UTF8_REPLACEMENT, $string );
-		
+
 		# ASCII is always valid NFC!
 		# If we're only ever given plain ASCII, we can avoid the overhead
 		# of initializing the decomposition tables by skipping out early.
 		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
-		
+
 		static $checkit = null, $tailBytes = null, $utfCheckOrCombining = null;
 		if( !isset( $checkit ) ) {
 			# Load/build some scary lookup tables...
 			UtfNormal::loadData();
 			global $utfCheckNFC, $utfCombiningClass;
-			
+
 			$utfCheckOrCombining = array_merge( $utfCheckNFC, $utfCombiningClass );
 
 			# Head bytes for sequences which we should do further validity checks
@@ -292,7 +292,7 @@ class UtfNormal {
 					array( 0xc0, 0xc1, 0xe0, 0xed, 0xef,
 						   0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
 						   0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff ) ) );
-			
+
 			# Each UTF-8 head byte is followed by a certain
 			# number of tail bytes.
 			$tailBytes = array();
@@ -315,7 +315,7 @@ class UtfNormal {
 				$tailBytes[chr($n)] = $remaining;
 			}
 		}
-		
+
 		# Chop the text into pure-ASCII and non-ASCII areas;
 		# large ASCII parts can be handled much more quickly.
 		# Don't chop up Unicode areas for punctuation, though,
@@ -323,30 +323,30 @@ class UtfNormal {
 		preg_match_all(
 			'/([\x00-\x7f]+|[\x80-\xff][\x00-\x40\x5b-\x5f\x7b-\xff]*)/',
 			$string, $matches );
-		
+
 		$looksNormal = true;
 		$base = 0;
 		$replace = array();
 		foreach( $matches[1] as $str ) {
 			$chunk = strlen( $str );
-			
+
 			if( $str{0} < "\x80" ) {
 				# ASCII chunk: guaranteed to be valid UTF-8
 				# and in normal form C, so skip over it.
 				$base += $chunk;
 				continue;
 			}
-			
+
 			# We'll have to examine the chunk byte by byte to ensure
 			# that it consists of valid UTF-8 sequences, and to see
 			# if any of them might not be normalized.
 			#
 			# Since PHP is not the fastest language on earth, some of
 			# this code is a little ugly with inner loop optimizations.
-			
+
 			$head = '';
 			$len = $chunk + 1; # Counting down is faster. I'm *so* sorry.
-			
+
 			for( $i = -1; --$len; ) {
 				if( $remaining = $tailBytes[$c = $str{++$i}] ) {
 					# UTF-8 head byte!
@@ -386,7 +386,7 @@ class UtfNormal {
 							# 0xed is relatively frequent in Korean, which
 							# abuts the surrogate area, so we're doing
 							# this check separately to speed things up.
-							
+
 							if( $sequence >= UTF8_SURROGATE_FIRST ) {
 								# Surrogates are legal only in UTF-16 code.
 								# They are totally forbidden here in UTF-8
@@ -410,16 +410,16 @@ class UtfNormal {
 							       ($n  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
 								|| ($n == 0xe0 && $sequence <= UTF8_OVERLONG_B)
 								|| ($n == 0xf0 && $sequence <= UTF8_OVERLONG_C)
-								
+
 								# U+FFFE and U+FFFF are explicitly forbidden in Unicode.
 								|| ($n == 0xef &&
 									   ($sequence == UTF8_FFFE)
 									|| ($sequence == UTF8_FFFF) )
-								
+
 								# Unicode has been limited to 21 bits; longer
 								# sequences are not allowed.
 								|| ($n >= 0xf0 && $sequence > UTF8_MAX) ) {
-								
+
 								$replace[] = array( UTF8_REPLACEMENT,
 								                    $base + $i + 1 - strlen( $sequence ),
 								                    strlen( $sequence ) );
@@ -428,14 +428,14 @@ class UtfNormal {
 							}
 						}
 					}
-					
+
 					if( isset( $utfCheckOrCombining[$sequence] ) ) {
 						# If it's NO or MAYBE, we'll have to rip
 						# the string apart and put it back together.
 						# That's going to be mighty slow.
 						$looksNormal = false;
 					}
-					
+
 					# The sequence is legal!
 					$head = '';
 				} elseif( $c < "\x80" ) {
@@ -479,7 +479,7 @@ class UtfNormal {
 		}
 		return $looksNormal;
 	}
-	
+
 	# These take a string and run the normalization on them, without
 	# checking for validity or any optimization etc. Input must be
 	# VALID UTF-8!
@@ -491,7 +491,7 @@ class UtfNormal {
 	function NFC( $string ) {
 		return UtfNormal::fastCompose( UtfNormal::NFD( $string ) );
 	}
-	
+
 	/**
 	 * @param string $string
 	 * @return string
@@ -503,7 +503,7 @@ class UtfNormal {
 		return UtfNormal::fastCombiningSort(
 			UtfNormal::fastDecompose( $string, $utfCanonicalDecomp ) );
 	}
-	
+
 	/**
 	 * @param string $string
 	 * @return string
@@ -512,7 +512,7 @@ class UtfNormal {
 	function NFKC( $string ) {
 		return UtfNormal::fastCompose( UtfNormal::NFKD( $string ) );
 	}
-	
+
 	/**
 	 * @param string $string
 	 * @return string
@@ -526,8 +526,8 @@ class UtfNormal {
 		return UtfNormal::fastCombiningSort(
 			UtfNormal::fastDecompose( $string, $utfCompatibilityDecomp ) );
 	}
-	
-	
+
+
 	/**
 	 * Perform decomposition of a UTF-8 string into either D or KD form
 	 * (depending on which decomposition map is passed to us).
@@ -724,7 +724,7 @@ class UtfNormal {
 						$hangulPoint = UNICODE_HANGUL_FIRST +
 							UNICODE_HANGUL_TCOUNT *
 							(UNICODE_HANGUL_VCOUNT * $lIndex + $vIndex);
-						
+
 						# Hardcode the limited-range UTF-8 conversion:
 						$startChar = chr( $hangulPoint >> 12 & 0x0f | 0xe0 ) .
 									 chr( $hangulPoint >>  6 & 0x3f | 0x80 ) .
@@ -739,7 +739,7 @@ class UtfNormal {
 						# $tIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_TBASE;
 						$tIndex = ord( $c{2} ) - 0xa7;
 						if( $tIndex < 0 ) $tIndex = ord( $c{2} ) - 0x80 + (0x11c0 - 0x11a7);
-						
+
 						# Increment the code point by $tIndex, without
 						# the function overhead of decoding and recoding UTF-8
 						#
@@ -754,7 +754,7 @@ class UtfNormal {
 							$startChar{1} = chr( $mid );
 						}
 						$startChar{2} = chr( $tail );
-						
+
 						# If there's another jamo char after this, *don't* try to merge it.
 						$lastHangul = 1;
 						continue;
@@ -771,7 +771,7 @@ class UtfNormal {
 		$out .= $startChar . $combining;
 		return $out;
 	}
-	
+
 	/**
 	 * This is just used for the benchmark, comparing how long it takes to
 	 * interate through a string without really doing anything of substance.

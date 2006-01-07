@@ -13,22 +13,22 @@ class FiveUpgrade {
 	function FiveUpgrade() {
 		global $wgDatabase;
 		$this->conversionTables = $this->prepareWindows1252();
-		
+
 		$this->dbw =& $this->newConnection();
 		$this->dbr =& $this->streamConnection();
-		
+
 		$this->cleanupSwaps = array();
 		$this->emailAuth = false; # don't preauthenticate emails
 		$this->maxLag    = 10; # if slaves are lagged more than 10 secs, wait
 	}
-	
+
 	function doing( $step ) {
 		return is_null( $this->step ) || $step == $this->step;
 	}
-	
+
 	function upgrade( $step ) {
 		$this->step = $step;
-		
+
 		$tables = array(
 			'page',
 			'links',
@@ -49,13 +49,13 @@ class FiveUpgrade {
 				$this->$method();
 			}
 		}
-		
+
 		if( $this->doing( 'cleanup' ) ) {
 			$this->upgradeCleanup();
 		}
 	}
-	
-	
+
+
 	/**
 	 * Open a connection to the master server with the admin rights.
 	 * @return Database
@@ -67,7 +67,7 @@ class FiveUpgrade {
 		$db =& new Database( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 		return $db;
 	}
-	
+
 	/**
 	 * Open a second connection to the master server, with buffering off.
 	 * This will let us stream large datasets in and write in chunks on the
@@ -83,7 +83,7 @@ class FiveUpgrade {
 		$db->query( "SET net_write_timeout=$timeout" );
 		return $db;
 	}
-	
+
 	/**
 	 * Prepare a conversion array for converting Windows Code Page 1252 to
 	 * UTF-8. This should provide proper conversion of text that was miscoded
@@ -137,7 +137,7 @@ class FiveUpgrade {
 		}
 		return $pairs;
 	}
-	
+
 	/**
 	 * Convert from 8-bit Windows-1252 to UTF-8 if necessary.
 	 * @param string $text
@@ -152,7 +152,7 @@ class FiveUpgrade {
 				? strtr( $text, $this->conversionTables )
 				: $text );
 	}
-	
+
 	/**
 	 * Dump timestamp and message to output
 	 * @param string $message
@@ -163,7 +163,7 @@ class FiveUpgrade {
 		echo $wgDBname . ' ' . wfTimestamp( TS_DB ) . ': ' . $message . "\n";
 		flush();
 	}
-	
+
 	/**
 	 * Initialize the chunked-insert system.
 	 * Rows will be inserted in chunks of the given number, rather
@@ -188,7 +188,7 @@ class FiveUpgrade {
 		$this->chunkTable = $table;
 		$this->chunkFunction = $fname;
 	}
-	
+
 	/**
 	 * Chunked inserts: perform an insert if we've reached the chunk limit.
 	 * Prints a progress report with estimated completion time.
@@ -202,22 +202,22 @@ class FiveUpgrade {
 	function addChunk( &$chunk, $key = null ) {
 		if( count( $chunk ) >= $this->chunkSize ) {
 			$this->insertChunk( $chunk );
-		
+
 			$this->chunkCount += count( $chunk );
 			$now = wfTime();
 			$delta = $now - $this->chunkStartTime;
 			$rate = $this->chunkCount / $delta;
-			
+
 			if( is_null( $key ) ) {
 				$completed = $this->chunkCount;
 			} else {
 				$completed = $key;
 			}
 			$portion = $completed / $this->chunkFinal;
-			
+
 			$estimatedTotalTime = $delta / $portion;
 			$eta = $this->chunkStartTime + $estimatedTotalTime;
-			
+
 			printf( "%s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec\n",
 				wfTimestamp( TS_DB, intval( $now ) ),
 				$portion * 100.0,
@@ -227,11 +227,11 @@ class FiveUpgrade {
 				$this->chunkFinal,
 				$rate );
 			flush();
-			
+
 			$chunk = array();
 		}
 	}
-	
+
 	/**
 	 * Chunked inserts: perform an insert unconditionally, at the end, and log.
 	 * @param array &$chunk -- This will be emptied if an insert is done.
@@ -244,7 +244,7 @@ class FiveUpgrade {
 		}
 		$this->log( "100.00% done on $this->chunkTable (last chunk $n rows)." );
 	}
-	
+
 	/**
 	 * Chunked inserts: perform an insert.
 	 * @param array &$chunk -- This will be emptied if an insert is done.
@@ -255,8 +255,8 @@ class FiveUpgrade {
 		wfWaitForSlaves( $this->maxLag );
 		$this->dbw->insert( $this->chunkTable, $chunk, $this->chunkFunction, $this->chunkOptions );
 	}
-	
-	
+
+
 	/**
 	 * Copy and transcode a table to table_temp.
 	 * @param string $name Base name of the source table
@@ -272,21 +272,21 @@ class FiveUpgrade {
 	 */
 	function copyTable( $name, $tabledef, $fields, $callback = null ) {
 		$fname = 'FiveUpgrade::copyTable';
-		
+
 		$name_temp = $name . '_temp';
 		$this->log( "Migrating $name table to $name_temp..." );
 
 		$table      = $this->dbw->tableName( $name );
 		$table_temp = $this->dbw->tableName( $name_temp );
-		
+
 		// Create temporary table; we're going to copy everything in there,
 		// then at the end rename the final tables into place.
 		$def = str_replace( '$1', $table_temp, $tabledef );
 		$this->dbw->query( $def, $fname );
-		
+
 		$numRecords = $this->dbw->selectField( $name, 'COUNT(*)', '', $fname );
 		$this->setChunkScale( 100, $numRecords, $name_temp, $fname );
-		
+
 		// Pull all records from the second, streaming database connection.
 		$sourceFields = array_keys( array_filter( $fields,
 			create_function( '$x', 'return $x !== MW_UPGRADE_NULL;' ) ) );
@@ -294,7 +294,7 @@ class FiveUpgrade {
 			$sourceFields,
 			'',
 			$fname );
-		
+
 		$add = array();
 		while( $row = $this->dbr->fetchObject( $result ) ) {
 			$copy = array();
@@ -317,25 +317,25 @@ class FiveUpgrade {
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
-		
+
 		$this->log( "Done converting $name." );
 		$this->cleanupSwaps[] = $name;
 	}
-	
+
 	function upgradePage() {
 		$fname = "FiveUpgrade::upgradePage";
 		$chunksize = 100;
-		
+
 		if( $this->dbw->tableExists( 'page' ) ) {
 			$this->log( 'Page table already exists; aborting.' );
 			die( -1 );
 		}
-		
+
 		$this->log( "Checking cur table for unique title index and applying if necessary" );
 		checkDupes( true );
 
 		$this->log( "...converting from cur/old to page/revision/text DB structure." );
-		
+
 		extract( $this->dbw->tableNames( 'cur', 'old', 'page', 'revision', 'text' ) );
 
 		$this->log( "Creating page and revision tables..." );
@@ -396,7 +396,7 @@ class FiveUpgrade {
 
 		$maxcur = $this->dbw->selectField( 'cur', 'max(cur_id)', '', $fname );
 		$this->log( "Last cur entry is $maxcur" );
-		
+
 		/**
 		 * Copy placeholder records for each page's current version into old
 		 * Don't do any conversion here; text records are converted at runtime
@@ -425,7 +425,7 @@ class FiveUpgrade {
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
-		
+
 		/**
 		 * Copy revision metadata from old into revision.
 		 * We'll also do UTF-8 conversion of usernames and comments.
@@ -435,7 +435,7 @@ class FiveUpgrade {
 		#$countold = $this->dbw->selectField( 'old', 'count(old_id)', '', $fname );
 		$countold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
 		$this->setChunkScale( $chunksize, $countold, 'revision', $fname );
-		
+
 		$this->log( "......Setting up revision table." );
 		$result = $this->dbr->query(
 			"SELECT old_id, cur_id, old_comment, old_user, old_user_text,
@@ -458,7 +458,7 @@ class FiveUpgrade {
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
-		
+
 
 		/**
 		 * Copy page metadata from cur into page.
@@ -491,15 +491,15 @@ class FiveUpgrade {
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
-		
+
 		$this->log( "...done with cur/old -> page/revision." );
 	}
-	
+
 	function upgradeLinks() {
 		$fname = 'FiveUpgrade::upgradeLinks';
 		$chunksize = 200;
 		extract( $this->dbw->tableNames( 'links', 'brokenlinks', 'pagelinks', 'cur' ) );
-		
+
 		$this->log( 'Checking for interwiki table change in case of bogus items...' );
 		if( $this->dbw->fieldExists( 'interwiki', 'iw_trans' ) ) {
 			$this->log( 'interwiki has iw_trans.' );
@@ -508,7 +508,7 @@ class FiveUpgrade {
 			dbsource( 'maintenance/archives/patch-interwiki-trans.sql', $this->dbw );
 			$this->log( 'added iw_trans.' );
 		}
-		
+
 		$this->log( 'Creating pagelinks table...' );
 		$this->dbw->query( "
 CREATE TABLE $pagelinks (
@@ -547,7 +547,7 @@ CREATE TABLE $pagelinks (
 		} else {
 			$this->log( 'no links!' );
 		}
-		
+
 		$this->log( 'Importing brokenlinks -> pagelinks' );
 		$nbrokenlinks = $this->dbw->selectField( 'brokenlinks', 'count(*)', '', $fname );
 		if( $nbrokenlinks ) {
@@ -573,10 +573,10 @@ CREATE TABLE $pagelinks (
 		} else {
 			$this->log( 'no brokenlinks!' );
 		}
-		
+
 		$this->log( 'Done with links.' );
 	}
-	
+
 	function upgradeUser() {
 		// Apply unique index, if necessary:
 		$duper = new UserDupes( $this->dbw );
@@ -588,7 +588,7 @@ CREATE TABLE $pagelinks (
 				$this->log( "WARNING: Duplicate user accounts, may explode!" );
 			}
 		}
-		
+
 		$tabledef = <<<END
 CREATE TABLE $1 (
   user_id int(5) unsigned NOT NULL auto_increment,
@@ -626,14 +626,14 @@ END;
 		$this->copyTable( 'user', $tabledef, $fields,
 			array( &$this, 'userCallback' ) );
 	}
-	
+
 	function userCallback( $row, $copy ) {
 		$now = $this->dbw->timestamp();
 		$copy['user_touched'] = $now;
 		$copy['user_email_authenticated'] = $this->emailAuth ? $now : null;
 		return $copy;
 	}
-	
+
 	function upgradeImage() {
 		$tabledef = <<<END
 CREATE TABLE $1 (
@@ -673,13 +673,13 @@ END;
 		$this->copyTable( 'image', $tabledef, $fields,
 			array( &$this, 'imageCallback' ) );
 	}
-	
+
 	function imageCallback( $row, $copy ) {
 		global $options;
 		if( !isset( $options['noimage'] ) ) {
 			// Fill in the new image info fields
 			$info = $this->imageInfo( $row->img_name );
-			
+
 			$copy['img_width'     ] = $info['width'];
 			$copy['img_height'    ] = $info['height'];
 			$copy['img_metadata'  ] = ""; // loaded on-demand
@@ -688,13 +688,13 @@ END;
 			$copy['img_major_mime'] = $info['major'];
 			$copy['img_minor_mime'] = $info['minor'];
 		}
-		
+
 		// If doing UTF8 conversion the file must be renamed
 		$this->renameFile( $row->img_name, 'wfImageDir' );
-		
+
 		return $copy;
 	}
-	
+
 	function imageInfo( $name, $subdirCallback='wfImageDir', $basename = null ) {
 		if( is_null( $basename ) ) $basename = $name;
 		$dir = call_user_func( $subdirCallback, $basename );
@@ -706,13 +706,13 @@ END;
 			'media'  => '',
 			'major'  => '',
 			'minor'  => '' );
-		
+
 		$magic =& wfGetMimeMagic();
 		$mime = $magic->guessMimeType( $filename, true );
 		list( $info['major'], $info['minor'] ) = explode( '/', $mime );
-		
+
 		$info['media'] = $magic->getMediaType( $filename, $mime );
-		
+
 		# Height and width
 		$gis = false;
 		if( $mime == 'image/svg' ) {
@@ -729,10 +729,10 @@ END;
 		if( isset( $gis['bits'] ) ) {
 			$info['bits'] = $gis['bits'];
 		}
-		
+
 		return $info;
 	}
-	
+
 
 	/**
 	 * Truncate a table.
@@ -743,7 +743,7 @@ END;
 		$tableName = $this->db->tableName( $table );
 		$this->db->query( 'TRUNCATE $tableName' );
 	}
-	
+
 	/**
 	 * Rename a given image or archived image file to the converted filename,
 	 * leaving a symlink for URL compatibility.
@@ -758,12 +758,12 @@ END;
 			// No need to rename; another field triggered this row.
 			return false;
 		}
-		
+
 		if( is_null( $basename ) ) $basename = $oldname;
 		$ubasename = $this->conv( $basename );
 		$oldpath = call_user_func( $subdirCallback, $basename ) . '/' . $oldname;
 		$newpath = call_user_func( $subdirCallback, $ubasename ) . '/' . $newname;
-		
+
 		$this->log( "$oldpath -> $newpath" );
 		if( rename( $oldpath, $newpath ) ) {
 			$relpath = $this->relativize( $newpath, dirname( $oldpath ) );
@@ -776,7 +776,7 @@ END;
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Generate a relative path name to the given file.
 	 * Assumes Unix-style paths, separators, and semantics.
@@ -790,25 +790,25 @@ END;
 	function relativize( $path, $from ) {
 		$pieces  = explode( '/', dirname( $path ) );
 		$against = explode( '/', $from );
-		
+
 		// Trim off common prefix
 		while( count( $pieces ) && count( $against )
 			&& $pieces[0] == $against[0] ) {
 			array_shift( $pieces );
 			array_shift( $against );
 		}
-		
+
 		// relative dots to bump us to the parent
 		while( count( $against ) ) {
 			array_unshift( $pieces, '..' );
 			array_shift( $against );
 		}
-		
+
 		array_push( $pieces, basename( $path ) );
-		
+
 		return implode( '/', $pieces );
 	}
-	
+
 	function upgradeOldImage() {
 		$tabledef = <<<END
 CREATE TABLE $1 (
@@ -847,7 +847,7 @@ END;
 		$this->copyTable( 'oldimage', $tabledef, $fields,
 			array( &$this, 'oldimageCallback' ) );
 	}
-	
+
 	function oldimageCallback( $row, $copy ) {
 		global $options;
 		if( !isset( $options['noimage'] ) ) {
@@ -857,20 +857,20 @@ END;
 			$copy['oi_height'] = $info['height'];
 			$copy['oi_bits'  ] = $info['bits'  ];
 		}
-		
+
 		// If doing UTF8 conversion the file must be renamed
 		$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
-		
+
 		return $copy;
 	}
-	
+
 
 	function upgradeWatchlist() {
 		$fname = 'FiveUpgrade::upgradeWatchlist';
 		$chunksize = 100;
-		
+
 		extract( $this->dbw->tableNames( 'watchlist', 'watchlist_temp' ) );
-		
+
 		$this->log( 'Migrating watchlist table to watchlist_temp...' );
 		$this->dbw->query(
 "CREATE TABLE $watchlist_temp (
@@ -896,7 +896,7 @@ END;
 		// Fix encoding for Latin-1 upgrades, add some fields,
 		// and double article to article+talk pairs
 		$numwatched = $this->dbw->selectField( 'watchlist', 'count(*)', '', $fname );
-		
+
 		$this->setChunkScale( $chunksize, $numwatched * 2, 'watchlist_temp', $fname );
 		$result = $this->dbr->select( 'watchlist',
 			array(
@@ -905,7 +905,7 @@ END;
 				'wl_title' ),
 			'',
 			$fname );
-		
+
 		$add = array();
 		while( $row = $this->dbr->fetchObject( $result ) ) {
 			$now = $this->dbw->timestamp();
@@ -915,7 +915,7 @@ END;
 				'wl_title'     =>           $this->conv( $row->wl_title ),
 				'wl_notificationtimestamp' =>            '0' );
 			$this->addChunk( $add );
-			
+
 			$add[] = array(
 				'wl_user'      =>                        $row->wl_user,
 				'wl_namespace' =>    Namespace::getTalk( $row->wl_namespace ),
@@ -925,7 +925,7 @@ END;
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
-		
+
 		$this->log( 'Done converting watchlist.' );
 		$this->cleanupSwaps[] = 'watchlist';
 	}
@@ -1010,7 +1010,7 @@ END;
 			'ar_text_id'    => MW_UPGRADE_NULL );
 		$this->copyTable( 'archive', $tabledef, $fields );
 	}
-	
+
 	function upgradeImagelinks() {
 		global $wgUseLatin1;
 		if( $wgUseLatin1 ) {
@@ -1059,7 +1059,7 @@ END;
 			$this->copyTable( 'categorylinks', $tabledef, $fields );
 		}
 	}
-	
+
 	function upgradeIpblocks() {
 		global $wgUseLatin1;
 		if( $wgUseLatin1 ) {
@@ -1092,7 +1092,7 @@ END;
 			$this->copyTable( 'ipblocks', $tabledef, $fields );
 		}
 	}
-	
+
 	function upgradeRecentchanges() {
 		// There's a format change in the namespace field
 		$tabledef = <<<END
@@ -1156,7 +1156,7 @@ END;
 			'rc_ip'             => MW_UPGRADE_COPY );
 		$this->copyTable( 'recentchanges', $tabledef, $fields );
 	}
-	
+
 	function upgradeQuerycache() {
 		// There's a format change in the namespace field
 		$tabledef = <<<END
@@ -1182,7 +1182,7 @@ END;
 			'qc_title'     => MW_UPGRADE_ENCODE );
 		$this->copyTable( 'querycache', $tabledef, $fields );
 	}
-	
+
 	/**
 	 * Rename all our temporary tables into final place.
 	 * We've left things in place so a read-only wiki can continue running
@@ -1190,12 +1190,12 @@ END;
 	 */
 	function upgradeCleanup() {
 		$this->renameTable( 'old', 'text' );
-		
+
 		foreach( $this->cleanupSwaps as $table ) {
 			$this->swap( $table );
 		}
 	}
-	
+
 	function renameTable( $from, $to ) {
 		$this->log( "Renaming $from to $to..." );
 
@@ -1203,12 +1203,12 @@ END;
 		$totable   = $this->dbw->tableName( $to );
 		$this->dbw->query( "ALTER TABLE $fromtable RENAME TO $totable" );
 	}
-	
+
 	function swap( $base ) {
 		$this->renameTable( $base, "{$base}_old" );
 		$this->renameTable( "{$base}_temp", $base );
 	}
-	
+
 }
 
 ?>

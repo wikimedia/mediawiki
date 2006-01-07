@@ -1941,17 +1941,17 @@ class LanguageEl extends LanguageUtf8 {
 		global $wgNamespaceNamesEl;
 		return $wgNamespaceNamesEl;
 	}
-	
+
 	function getMessage( $key ) {
 		global $wgAllMessagesEl;
 
 		return isset( $wgAllMessagesEl[$key] ) ? $wgAllMessagesEl[$key] : parent::getMessage( $key );
 	}
-	
+
 	function fallback8bitEncoding() {
 		return 'iso-8859-7';
 	}
-	
+
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy( $number ), '.,', ',.' );
 	}

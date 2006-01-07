@@ -70,7 +70,7 @@ function resolveStub( $id, $stubText, $flags ) {
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	$dbw =& wfGetDB( DB_MASTER );
-	
+
 	if ( get_class( $stub ) !== 'historyblobstub' ) {
 		print "Error, invalid stub object\n";
 		return;

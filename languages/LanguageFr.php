@@ -1181,11 +1181,11 @@ class LanguageFr extends LanguageUtf8 {
 		global $wgSkinNamesFr;
 		return $wgSkinNamesFr;
 	}
-	
+
 	function timeBeforeDate( $format ) {
 		return false;
 	}
-	
+
 	function timeDateSeparator( $format ) {
 		return " à ";
 	}

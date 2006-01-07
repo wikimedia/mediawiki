@@ -31,7 +31,7 @@ class ExternalStore {
 		/* Preloaded modules might exist, especially ones serving multiple protocols */
 		if (!class_exists($class)) {
 			if (!include_once($class.'.php'))
-				return false;	
+				return false;
 		}
 		$store=new $class();
 		return $store->fetchFromURL($url);

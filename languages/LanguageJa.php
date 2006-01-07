@@ -1863,29 +1863,29 @@ class LanguageJa extends LanguageUtf8 {
 		global $wgDateFormatsJa;
 		return $wgDateFormatsJa;
 	}
-	
+
 	function date( $ts, $adj = false, $format = true, $tc = false ) {
 		global $wgWeekdayAbbreviationsJa;
-		
+
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $tc ); }
 		$datePreference = $this->dateFormat( $format );
-		
+
 		if( $datePreference == MW_DATE_ISO ) {
 			$d = substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .
 					substr($ts, 6, 2);
 			return $d;
 		}
-		
+
 		$year = (int)substr( $ts, 0, 4 );
 		$month = (int)substr( $ts, 4, 2 );
 		$mday = (int)substr( $ts, 6, 2 );
 		$hour = (int)substr( $ts, 8, 2 );
 		$minute = (int)substr( $ts, 10, 2 );
 		$second = (int)substr( $ts, 12, 2 );
-		
+
 		$time = mktime( $hour, $minute, $second, $month, $mday, $year );
 		$date = getdate( $time );
-		
+
 		$d = $year . "年" .
 				$this->getMonthAbbreviation( $month ) .
 				$mday . "日 (" .
@@ -1896,12 +1896,12 @@ class LanguageJa extends LanguageUtf8 {
 	function time( $ts, $adj = false, $format = true, $tc = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $tc ); }
 		$datePreference = $this->dateFormat( $format );
-		
+
 		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
 		if ( $datePreference == MW_DATE_ISO ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
-		
+
 		return $t;
 	}
 

@@ -39,7 +39,7 @@ class ChangesList {
 		$this->skin =& $skin;
 		$this->preCacheMessages();
 	}
-	
+
 	function newFromUser( &$user ) {
 		$sk =& $user->getSkin();
 		if( $user->getOption('usenewrc') ) {
@@ -192,7 +192,7 @@ class ChangesList {
 			$s .= $this->skin->commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
 		}
 	}
-	
+
 	/**
 	 * Check whether to enable RC-Patrol features
 	 * @return bool
@@ -202,7 +202,7 @@ class ChangesList {
 		return $wgUseRCPatrol && $wgUser->isLoggedIn() &&
 		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed( 'patrol' ) );
 	}
-	
+
 	/**
 	 * Make user link (or user contributions for unregistered users)
 	 * @param int $userId
@@ -221,7 +221,7 @@ class ChangesList {
 			return $this->skin->makeLinkObj( $userPage, $encName );
 		}
 	}
-	
+
 	/**
 	 * @param int $userId
 	 * @param string $userText
@@ -232,7 +232,7 @@ class ChangesList {
 		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = ( $wgSysopUserBans || 0 == $userId );
-		
+
 		$items = array();
 		if( $talkable ) {
 			$items[] = $this->userTalkLink( $userId, $userText );
@@ -240,14 +240,14 @@ class ChangesList {
 		if( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = $this->blockLink( $userId, $userText );
 		}
-		
+
 		if( $items ) {
 			return ' (' . implode( ' | ', $items ) . ')';
 		} else {
 			return '';
 		}
 	}
-	
+
 	/**
 	 * @param int $userId
 	 * @param string $userText
@@ -257,12 +257,12 @@ class ChangesList {
 	function userTalkLink( $userId, $userText ) {
 		global $wgContLang;
 		$talkname = $wgContLang->getNsText( NS_TALK ); # use the shorter name
-		
+
 		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
 		$userTalkLink = $this->skin->makeLinkObj( $userTalkPage, $talkname );
 		return $userTalkLink;
 	}
-	
+
 	/**
 	 * @param int $userId
 	 * @param string $userText
@@ -430,7 +430,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$rc->userlink = $this->userLink( $rc_user, $rc_user_text );
-		
+
 		$rc->lastlink = $lastLink;
 		$rc->curlink  = $curLink;
 		$rc->difflink = $diffLink;
@@ -452,7 +452,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		return $ret;
 	}
-	
+
 	/**
 	 * Enhanced RC group
 	 */
@@ -575,7 +575,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->rcCacheIndex++;
 		return $r;
 	}
-	
+
 	function maybeWatchedLink( $link, $watched=false ) {
 		if( $watched ) {
 			// FIXME: css style might be more appropriate
@@ -584,7 +584,7 @@ class EnhancedChangesList extends ChangesList {
 			return $link;
 		}
 	}
-	
+
 	/**
 	 * Generate HTML for an arrow or placeholder graphic
 	 * @param string $dir one of '', 'd', 'l', 'r'
@@ -598,7 +598,7 @@ class EnhancedChangesList extends ChangesList {
 		$encAlt = htmlspecialchars( $alt );
 		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" alt=\"$encAlt\" />";
 	}
-	
+
 	/**
 	 * Generate HTML for a right- or left-facing arrow,
 	 * depending on language direction.
@@ -610,7 +610,7 @@ class EnhancedChangesList extends ChangesList {
 		$dir = $wgContLang->isRTL() ? 'l' : 'r';
 		return $this->arrow( $dir, '+' );
 	}
-	
+
 	/**
 	 * Generate HTML for a down-facing arrow
 	 * depending on language direction.
@@ -620,7 +620,7 @@ class EnhancedChangesList extends ChangesList {
 	function downArrow() {
 		return $this->arrow( 'd', '-' );
 	}
-	
+
 	/**
 	 * Generate HTML for a spacer image
 	 * @return string HTML <img> tag

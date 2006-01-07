@@ -16,7 +16,7 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 
 	$dbw =& wfGetDB( DB_MASTER );
 	$recentchanges = $dbw->tableName( 'recentchanges' );
-	
+
 	output( "Updating searchindex between $start and $end\n" );
 
 	# Select entries from recentchanges which are on top and between the specified times
@@ -68,7 +68,7 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 			}
 		}
 	}
-	
+
 	# Unlock searchindex
 	if ( $maxLockTime ) {
 		unlockSearchindex();

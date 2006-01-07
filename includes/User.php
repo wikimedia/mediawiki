@@ -202,7 +202,7 @@ class User {
 		|| strlen( $name ) > $wgMaxNameChars
 		|| $name != $wgContLang->ucfirst( $name ) )
 			return false;
-		
+
 		// Ensure that the name can't be misresolved as a different title,
 		// such as with extra namespace keys at the start.
 		$parsed = Title::newFromText( $name );
@@ -323,7 +323,7 @@ class User {
 		}
 
 		$this->mRegistration = wfTimestamp( TS_MW );
-		
+
 		wfProfileOut( $fname );
 	}
 
@@ -654,7 +654,7 @@ class User {
 		} else {
 			wfDebug( "User::loadFromSession() got from cache!\n" );
 		}
-		
+
 		if ( isset( $_SESSION['wsToken'] ) ) {
 			$passwordCorrect = $_SESSION['wsToken'] == $user->mToken;
 		} else if ( isset( $_COOKIE["{$wgDBname}Token"] ) ) {
@@ -726,13 +726,13 @@ class User {
 				$this->mGroups[] = $row->ug_group;
 			}
 			$implicitGroups = array( '*', 'user' );
-			
+
 			global $wgAutoConfirmAge;
 			$accountAge = time() - wfTimestampOrNull( TS_UNIX, $this->mRegistration );
 			if( $accountAge >= $wgAutoConfirmAge ) {
 				$implicitGroups[] = 'autoconfirmed';
 			}
-			
+
 			$effectiveGroups = array_merge( $implicitGroups, $this->mGroups );
 			$this->mRights = $this->getGroupPermissions( $effectiveGroups );
 		}
@@ -813,7 +813,7 @@ class User {
 			array( $field => $id ), $fname );
 		return $ok !== false;
 	}
-	
+
 	/**
 	 * Add or update the
 	 * @param string $field
@@ -834,7 +834,7 @@ class User {
 		wfDebug( "$fname: set on ($field, $id)\n" );
 		return true;
 	}
-	
+
 	/**
 	 * Clear the new messages flag for the given user
 	 * @param string $field
@@ -854,7 +854,7 @@ class User {
 		wfDebug( "$fname: killed on ($field, $id)\n" );
 		return true;
 	}
-	
+
 	/**
 	 * Update the 'You have new messages!' status.
 	 * @param bool $val
@@ -863,12 +863,12 @@ class User {
 		if( wfReadOnly() ) {
 			return;
 		}
-		
+
 		$this->loadFromDatabase();
 		$this->mNewtalk = $val;
 
 		$fname = 'User::setNewtalk';
-		
+
 		if( $this->isAnon() ) {
 			$field = 'user_ip';
 			$id = $this->getName();
@@ -876,13 +876,13 @@ class User {
 			$field = 'user_id';
 			$id = $this->getId();
 		}
-		
+
 		if( $val ) {
 			$changed = $this->updateNewtalk( $field, $id );
 		} else {
 			$changed = $this->deleteNewtalk( $field, $id );
 		}
-		
+
 		if( $changed ) {
 			if( $this->isAnon() ) {
 				// Anons have a separate memcached space, since
@@ -1152,7 +1152,7 @@ class User {
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
 			$userSkin = $wgRequest->getVal('useskin', $userSkin);
-			
+
 			$this->mSkin =& Skin::newFromKey( $userSkin );
 			wfProfileOut( $fname );
 		}
@@ -1202,7 +1202,7 @@ class User {
 			$title->getText() == $this->getName() ) {
 			$this->setNewtalk( false );
 		}
-		
+
 		if( !$wgUseEnotif ) {
 			return;
 		}
@@ -1491,7 +1491,7 @@ class User {
 		// add in language specific options, if any
 		$extra = $wgContLang->getExtraHashOptions();
 		$confstr .= $extra;
-		
+
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
 		wfRunHooks( 'PageRenderingHash', array( &$confstr ) );
@@ -1840,7 +1840,7 @@ class User {
 			array_keys( $wgGroupPermissions ),
 			array( '*', 'user', 'autoconfirmed' ) );
 	}
-	
+
 }
 
 ?>

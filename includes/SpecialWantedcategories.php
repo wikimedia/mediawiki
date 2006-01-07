@@ -40,7 +40,7 @@ class WantedCategoriesPage extends QueryPage {
 			GROUP BY cl_to
 			";
 	}
-	
+
 	function sortDescending() { return true; }
 
 	/**
@@ -63,11 +63,11 @@ class WantedCategoriesPage extends QueryPage {
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
-		
+
 		$plink = $this->isCached() ?
 			$skin->makeLinkObj( $nt, htmlspecialchars( $text ) ) :
 			$skin->makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
-		
+
 		$nlinks = wfMsg( 'nlinks', $result->value );
 		return "$plink ($nlinks)";
 	}

@@ -201,7 +201,7 @@ class UploadForm {
 		if( !$nt->userCanEdit() ) {
 			return $this->uploadError( wfMsgWikiHtml( 'protectedpage' ) );
 		}
-		
+
 		/**
 		 * In some cases we may forbid overwriting of existing files.
 		 */
@@ -232,7 +232,7 @@ class UploadForm {
 				return $this->uploadError( $veri->toString() );
 			}
 		}
-		
+
 		/**
 		 * Provide an opportunity for extensions to add futher checks
 		 */
@@ -247,7 +247,7 @@ class UploadForm {
 		 */
 		if ( ! $this->mIgnoreWarning ) {
 			$warning = '';
-			
+
 			global $wgCapitalLinks;
 			if( $wgCapitalLinks ) {
 				$filtered = ucfirst( $filtered );
@@ -572,7 +572,7 @@ class UploadForm {
 		$license = wfMsgHtml( 'license' );
 		$nolicense = wfMsgHtml( 'nolicense' );
 		$licenseshtml = $licenses->getHtml();
-		
+
 		$ulb = wfMsgHtml( 'uploadbtn' );
 
 
@@ -584,7 +584,7 @@ class UploadForm {
 		$watchChecked = $wgUser->getOption( 'watchdefault' )
 			? 'checked="checked"'
 			: '';
-		
+
 		$wgOut->addHTML( "
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
 		<table border='0'>
@@ -607,7 +607,7 @@ class UploadForm {
 			</td>
 		</tr>
 		<tr>" );
-	
+
 	if ( $licenseshtml != '' ) {
 		global $wgStylePath;
 		$wgOut->addHTML( "
@@ -630,7 +630,7 @@ class UploadForm {
 		$copystatus =  htmlspecialchars( $this->mUploadCopyStatus );
 		$filesource = wfMsgHtml ( 'filesource' );
 		$uploadsource = htmlspecialchars( $this->mUploadSource );
-		
+
 		$wgOut->addHTML( "
 			        <td align='right' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
 			        <td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' value=\"$copystatus\" size='40' /></td>
@@ -642,8 +642,8 @@ class UploadForm {
 			<tr>
 		");
 	}
-	
-	
+
+
 	$wgOut->addHtml( "
 		<td></td>
 		<td>
@@ -660,7 +660,7 @@ class UploadForm {
 		<td></td>
 		<td align='left'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
 	</tr>
-	
+
 	<tr>
 		<td></td>
 		<td align='left'>
@@ -669,7 +669,7 @@ class UploadForm {
 	$wgOut->addHTML( "
 		</td>
 	</tr>
-		
+
 	</table>
 	</form>" );
 	}
@@ -1022,7 +1022,7 @@ class UploadForm {
 			unlink( $this->mUploadTempName );
 		}
 	}
-	
+
 	/**
 	 * Check if there's an overwrite conflict and, if so, if restrictions
 	 * forbid this user from performing the upload.
@@ -1037,7 +1037,7 @@ class UploadForm {
 			// But if it does, fall through to previous behavior
 			return false;
 		}
-		
+
 		$error = '';
 		if( $img->exists() ) {
 			global $wgUser, $wgOut;
@@ -1052,12 +1052,12 @@ class UploadForm {
 				}
 			}
 		}
-		
+
 		if( $error ) {
 			$errorText = wfMsg( $error, wfEscapeWikiText( $img->getName() ) );
 			return new WikiError( $wgOut->parse( $errorText ) );
 		}
-		
+
 		// Rockin', go ahead and upload
 		return true;
 	}

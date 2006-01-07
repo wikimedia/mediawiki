@@ -59,7 +59,7 @@ class Skin extends Linker {
 		global $wgValidSkinNames;
 		return $wgValidSkinNames;
 	}
-	
+
 	/**
 	 * Normalize a skin preference value to a form that can be loaded.
 	 * If a skin can't be found, it will fall back to the configured
@@ -71,7 +71,7 @@ class Skin extends Linker {
 	function normalizeKey( $key ) {
 		global $wgDefaultSkin;
 		$skinNames = Skin::getSkinNames();
-		
+
 		if( $key == '' ) {
 			// Don't return the default immediately;
 			// in a misconfiguration we need to fall back.
@@ -81,7 +81,7 @@ class Skin extends Linker {
 		if( isset( $skinNames[$key] ) ) {
 			return $key;
 		}
-		
+
 		// Older versions of the software used a numeric setting
 		// in the user preferences.
 		$fallback = array(
@@ -92,7 +92,7 @@ class Skin extends Linker {
 		if( isset( $fallback[$key] ) ){
 			$key = $fallback[$key];
 		}
-		
+
 		if( isset( $skinNames[$key] ) ) {
 			return $key;
 		} else {
@@ -100,7 +100,7 @@ class Skin extends Linker {
 			return 'standard';
 		}
 	}
-	
+
 	/**
 	 * Factory method for loading a skin of a given type
 	 * @param string $key 'monobook', 'standard', etc
@@ -109,10 +109,10 @@ class Skin extends Linker {
 	 */
 	function &newFromKey( $key ) {
 		$key = Skin::normalizeKey( $key );
-		
+
 		$skinNames = Skin::getSkinNames();
 		$skinName = $skinNames[$key];
-		
+
 		global $IP;
 
 		# Grab the skin class and initialise it. Each skin checks for PHPTal
@@ -159,7 +159,7 @@ class Skin extends Linker {
 		$out->addLink( array( 'rel' => 'shortcut icon', 'href' => '/favicon.ico' ) );
 
 		$this->addMetadataLinks($out);
-		
+
 		$this->mRevisionId = $out->mRevisionId;
 
 		wfProfileOut( $fname );
@@ -309,7 +309,7 @@ class Skin extends Linker {
 		global $wgUser, $wgContLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
 
 		$s = '';
-		
+
 		if( $wgAllowUserCss && $wgUser->isLoggedIn() ) { # logged in
 			if($wgTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
 				$s .= $wgRequest->getText('wpTextbox1');
@@ -482,7 +482,7 @@ END;
 		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
 		$t = $embed . implode ( "$pop | $embed" , $wgOut->mCategoryLinks ) . $pop;
-		
+
 		$msg = count( $wgOut->mCategoryLinks ) === 1 ? 'categories1' : 'categories';
 		$s = $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Categories' ),
 			wfMsg( $msg ), 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
@@ -1076,7 +1076,7 @@ END;
 		}
 		return $s;
 	}
-	
+
 	/**
 	 * Return URL options for the 'edit page' link.
 	 * This may include an 'oldid' specifier, if the current page view is such.
@@ -1086,7 +1086,7 @@ END;
 	 */
 	function editUrlOptions() {
 		global $wgArticle;
-		
+
 		if( $this->mRevisionId && ! $wgArticle->isCurrent() ) {
 			return "action=edit&oldid=" . intval( $this->mRevisionId );
 		} else {

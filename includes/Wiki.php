@@ -26,18 +26,18 @@ class MediaWikiType {
 
 #____________________________________________________________________________________
 #Action methods
-	
+
 	function act_view ( $action ) {
 		global $wgOut , $wgSquidMaxage , $wgArticle ;
 		$wgOut->setSquidMaxage( $wgSquidMaxage );
 		$wgArticle->view();
 	}
-	
+
 	function act_print ( $action ) {
 		global $wgArticle ;
 		$wgArticle->view () ;
 	}
-	
+
 	function act_dublincore ( $action ) {
 		global $wgArticle , $wgEnableDublinCoreRdf ;
 		if( !$wgEnableDublinCoreRdf ) {
@@ -47,7 +47,7 @@ class MediaWikiType {
 			wfDublinCoreRdf( $wgArticle );
 		}
 	}
-	
+
 	function act_creativecommons ( $action ) {
 		global $wgArticle , $wgEnableCreativeCommonsRdf ;
 		if( !$wgEnableCreativeCommonsRdf ) {
@@ -57,13 +57,13 @@ class MediaWikiType {
 			wfCreativeCommonsRdf( $wgArticle );
 		}
 	}
-	
+
 	function act_credits ( $action ) {
 		global $wgArticle ;
 		require_once( 'includes/Credits.php' );
 		showCreditsPage( $wgArticle );
 	}
-	
+
 	function act_submit ( $action ) {
 		global $wgCommandLineMode , $wgRequest ;
 		if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
@@ -72,7 +72,7 @@ class MediaWikiType {
 		}
 		$this->act_edit ( $action ) ;
 	}
-	
+
 	function act_edit ( $action ) {
 		global $wgRequest , $wgUseExternalEditor , $wgUser , $wgArticle ;
 		$internal = $wgRequest->getVal( 'internaledit' );
@@ -91,7 +91,7 @@ class MediaWikiType {
 			$extedit->edit();
 		}
 	}
-	
+
 	function act_history ( $action ) {
 		global $wgTitle , $wgArticle , $wgSquidMaxage ;
 		if ($_SERVER['REQUEST_URI'] == $wgTitle->getInternalURL('action=history')) {
@@ -101,23 +101,23 @@ class MediaWikiType {
 		$history = new PageHistory( $wgArticle );
 		$history->history();
 	}
-	
+
 	function act_raw ( $action ) {
 		global $wgArticle ;
 		require_once( 'includes/RawPage.php' );
 		$raw = new RawPage( $wgArticle );
 		$raw->view();
 	}
-	
-	
+
+
 	function action_unknown ( $action ) {
 		global $wgArticle , $wgOut ;
 		if (wfRunHooks('UnknownAction', array($action, $wgArticle))) {
 			$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 		}
 	}
-	
-	
+
+
 	function act_watch ( $action ) { $this->article_action ( $action ) ; }
 	function act_unwatch ( $action ) { $this->article_action ( $action ) ; }
 	function act_delete ( $action ) { $this->article_action ( $action ) ; }
@@ -136,7 +136,7 @@ class MediaWikiType {
 		$wgArticle->$action() ;
 	}
 
-	
+
 } ; # end of class MediaWikiType
 
 
@@ -145,7 +145,7 @@ $wgTheWiki = new MediaWikiType ;
 
 
 
-	
+
 #global $wgRequest , $wgOut , $wgTitle , $wgContLang ;
 #global $action , $title , $curid ;
 OutputPage::setEncodings(); # Not really used yet
@@ -282,7 +282,7 @@ foreach ( $wgDeferredUpdateList as $up ) {
 	$up->doUpdate();
 }
 wfProfileOut( 'main-updates' );
-	
+
 
 #global $wgLoadBalancer , $wgOut , $wgPostCommitUpdateList ;
 wfProfileIn( 'main-cleanup' );
@@ -304,6 +304,6 @@ $wgLoadBalancer->closeAll();
 wfDebug( "Request ended normally\n" );
 
 
-	
+
 ?>
 

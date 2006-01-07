@@ -1255,7 +1255,7 @@ class LanguageNds extends LanguageUtf8 {
 	function formatMonth( $month, $format ) {
 		return $this->getMonthAbbreviation( $month );
 	}
-	
+
 	function formatDay( $day, $format ) {
 		return parent::formatDay( $day, $format ) . '.';
 	}

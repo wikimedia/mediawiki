@@ -76,7 +76,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 {
 	$fname = 'compressWithConcat';
 	$loadStyle = LS_CHUNKED;
-	
+
 	$dbr =& wfGetDB( DB_SLAVE );
 	$dbw =& wfGetDB( DB_MASTER );
 
@@ -107,7 +107,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$conds = array(
 		"old_flags NOT LIKE '%object%' " .
 		" AND (old_flags NOT LIKE '%external%' OR old_text NOT LIKE 'DB://%/%/%')");
-	
+
 	if ( $beginDate ) {
 		$conds[] = "rev_timestamp>'" . $beginDate . "'";
 	}
@@ -124,7 +124,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		$fields = array( 'rev_id', 'rev_text_id' );
 		$revLoadOptions = array();
 	}
-	
+
 	# Don't work with current revisions
 	$tables[] = 'page';
 	$conds[] = 'page_id=rev_page AND rev_id != page_latest';
@@ -156,7 +156,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		while ( $revRow = $dbw->fetchObject( $revRes ) ) {
 			$revs[] = $revRow;
 		}
-		
+
 		if ( count( $revs ) < 2) {
 			# No revisions matching, no further processing
 			print "\n";
@@ -177,11 +177,11 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			$dbw->begin();
 			$usedChunk = false;
 			$primaryOldid = $revs[$i]->rev_text_id;
-			
+
 			# Get the text of each revision and add it to the object
 			for ( $j = 0; $j < $thisChunkSize && $chunk->isHappy( $maxChunkFactor, $factorThreshold ); $j++ ) {
 				$oldid = $revs[$i + $j]->rev_text_id;
-				
+
 				# Get text
 				if ( $loadStyle == LS_INDIVIDUAL ) {
 					$textRow = $dbw->selectRow( 'text',
@@ -221,7 +221,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 				}
 			}
 			$thisChunkSize = $j;
-			
+
 			# If we couldn't actually use any stubs because the pages were too small, do nothing
 			if ( $usedChunk ) {
 				if ( $extdb != "" ) {

@@ -644,7 +644,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 			<input type="hidden" name="domains" value="{{SERVER}}" />
 			<input type="hidden" name="num" value="50" />
 			<input type="hidden" name="ie" value="$2" />
-	
+
 			<input type="hidden" name="oe" value="$2" />
 			<input type="text" name="q" size="31" maxlength="255" value="$1" />
 			<input type="submit" name="btnG" value="Google Search" />
@@ -1870,7 +1870,7 @@ class LanguageBg extends LanguageUtf8 {
 		global $wgBookstoreListBg;
 		return $wgBookstoreListBg;
 	}
-	
+
 	/**
 	* Exports $wgNamespaceNamesBg
 	* @return array
@@ -1924,7 +1924,7 @@ class LanguageBg extends LanguageUtf8 {
 		global $wgMagicWordsBg;
 		return $wgMagicWordsBg;
 	}
-	
+
 
 	/**
 	 * Translation table for numbers

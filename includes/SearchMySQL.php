@@ -52,8 +52,8 @@ class SearchMySQL extends SearchEngine {
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
 		return new MySQLSearchResultSet( $resultSet, $this->searchTerms );
 	}
-	
-	
+
+
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
 	 * @return string
@@ -66,7 +66,7 @@ class SearchMySQL extends SearchEngine {
 			return 'AND page_is_redirect=0';
 		}
 	}
-	
+
 	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
 	 * @return string
@@ -79,7 +79,7 @@ class SearchMySQL extends SearchEngine {
 		}
 		return 'AND page_namespace IN (' . $namespaces . ')';
 	}
-	
+
 	/**
 	 * Return a LIMIT clause to limit results on the query.
 	 * @return string
@@ -98,7 +98,7 @@ class SearchMySQL extends SearchEngine {
 	function queryRanking( $filteredTerm, $fulltext ) {
 		return '';
 	}
-	
+
 	/**
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
@@ -172,7 +172,7 @@ class SearchMySQL extends SearchEngine {
 	 */
     function updateTitle( $id, $title ) {
 		$dbw =& wfGetDB( DB_MASTER );
-		
+
 		$dbw->update( 'searchindex',
 			array( 'si_title' => $title ),
 			array( 'si_page'  => $id ),
@@ -187,15 +187,15 @@ class MySQLSearchResultSet extends SearchResultSet {
 		$this->mResultSet = $resultSet;
 		$this->mTerms = $terms;
 	}
-	
+
 	function termMatches() {
 		return $this->mTerms;
 	}
-	
+
 	function numRows() {
 		return $this->mResultSet->numRows();
 	}
-	
+
 	function next() {
 		$row = $this->mResultSet->fetchObject();
 		if( $row === false ) {

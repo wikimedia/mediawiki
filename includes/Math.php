@@ -21,11 +21,11 @@ class MathRenderer {
 	var $html = '';
 	var $mathml = '';
 	var $conservativeness = 0;
-	
+
 	function MathRenderer( $tex ) {
 		$this->tex = $tex;
  	}
-	
+
 	function setOutputMode( $mode ) {
 		$this->mode = $mode;
 	}
@@ -34,12 +34,12 @@ class MathRenderer {
 		global $wgTmpDirectory, $wgInputEncoding;
 		global $wgTexvc;
 		$fname = 'MathRenderer::render';
-	
+
 		if( $this->mode == MW_MATH_SOURCE ) {
 			# No need to render or parse anything more!
 			return ('$ '.htmlspecialchars( $this->tex ).' $');
 		}
-		
+
 		if( !$this->_recall() ) {
 			# Ensure that the temp and output directories are available before continuing...
 			if( !file_exists( $wgTmpDirectory ) ) {
@@ -49,7 +49,7 @@ class MathRenderer {
 			} elseif( !is_dir( $wgTmpDirectory ) || !is_writable( $wgTmpDirectory ) ) {
 				return $this->_error( 'math_bad_tmpdir' );
 			}
-			
+
 			if( function_exists( 'is_executable' ) && !is_executable( $wgTexvc ) ) {
 				return $this->_error( 'math_notexvc' );
 			}
@@ -58,7 +58,7 @@ class MathRenderer {
 					escapeshellarg( $wgTmpDirectory ).' '.
 					escapeshellarg( $this->tex ).' '.
 					escapeshellarg( $wgInputEncoding );
-					
+
 			if ( wfIsWindows() ) {
 				# Invoke it within cygwin sh, because texvc expects sh features in its default shell
 				$cmd = 'sh -c ' . wfEscapeShellArg( $cmd );
@@ -67,11 +67,11 @@ class MathRenderer {
 			wfDebug( "TeX: $cmd\n" );
 			$contents = `$cmd`;
 			wfDebug( "TeX output:\n $contents\n---\n" );
-		
+
 			if (strlen($contents) == 0) {
 				return $this->_error( 'math_unknown_error' );
 			}
-			
+
 			$retval = substr ($contents, 0, 1);
 			if (($retval == 'C') || ($retval == 'M') || ($retval == 'L')) {
 				if ($retval == 'C')
@@ -81,9 +81,9 @@ class MathRenderer {
 				else
 					$this->conservativeness = 0;
 				$outdata = substr ($contents, 33);
-		
+
 				$i = strpos($outdata, "\000");
-		
+
 				$this->html = substr($outdata, 0, $i);
 				$this->mathml = substr($outdata, $i+1);
 			} else if (($retval == 'c') || ($retval == 'm') || ($retval == 'l'))  {
@@ -112,16 +112,16 @@ class MathRenderer {
 					default:  return $this->_error( 'math_unknown_error', $errbit );
 				}
 			}
-		
+
 			$this->hash = substr ($contents, 1, 32);
 			if (!preg_match("/^[a-f0-9]{32}$/", $this->hash)) {
 				return $this->_error( 'math_unknown_error' );
 			}
-		
+
 			if( !file_exists( "$wgTmpDirectory/{$this->hash}.png" ) ) {
 				return $this->_error( 'math_image_error' );
 			}
-			
+
 			$hashpath = $this->_getHashPath();
 			if( !file_exists( $hashpath ) ) {
 				if( !@wfMkdirParents( $hashpath, 0755 ) ) {
@@ -130,17 +130,17 @@ class MathRenderer {
 			} elseif( !is_dir( $hashpath ) || !is_writable( $hashpath ) ) {
 				return $this->_error( 'math_bad_output' );
 			}
-			
+
 			if( !rename( "$wgTmpDirectory/{$this->hash}.png", "$hashpath/{$this->hash}.png" ) ) {
 				return $this->_error( 'math_output_error' );
 			}
-			
+
 			# Now save it back to the DB:
 			if ( !wfReadOnly() ) {
 				$outmd5_sql = pack('H32', $this->hash);
-			
+
 				$md5_sql = pack('H32', $this->md5); # Binary packed, not hex
-				
+
 				$dbw =& wfGetDB( DB_MASTER );
 				$dbw->replace( 'math', array( 'math_inputhash' ),
 				  array(
@@ -152,12 +152,12 @@ class MathRenderer {
 				  ), $fname, array( 'IGNORE' )
 				);
 			}
-			
+
 		}
-		
+
 		return $this->_doRender();
 	}
-	
+
 	function _error( $msg, $append = '' ) {
 		$mf   = htmlspecialchars( wfMsg( 'math_failure' ) );
 		$munk = htmlspecialchars( wfMsg( 'math_unknown_error' ) );
@@ -165,7 +165,7 @@ class MathRenderer {
 		$source = htmlspecialchars($this->tex);
 		return "<strong class='error'>$mf ($errmsg$append): $source</strong>\n";
 	}
-	
+
 	function _recall() {
 		global $wgMathDirectory;
 		$fname = 'MathRenderer::_recall';
@@ -182,11 +182,11 @@ class MathRenderer {
 			# Tailing 0x20s can get dropped by the database, add it back on if necessary:
 			$xhash = unpack( 'H32md5', $rpage->math_outputhash . "                " );
 			$this->hash = $xhash ['md5'];
-			
+
 			$this->conservativeness = $rpage->math_html_conservativeness;
 			$this->html = $rpage->math_html;
 			$this->mathml = $rpage->math_mathml;
-			
+
 			if( file_exists( $this->_getHashPath() . "/{$this->hash}.png" ) ) {
 				return true;
 			}
@@ -209,9 +209,9 @@ class MathRenderer {
 							$hashpath . "/{$this->hash}.png" );
 				}
 			}
-				
+
 		}
-		
+
 		# Missing from the database and/or the render cache
 		return false;
 	}

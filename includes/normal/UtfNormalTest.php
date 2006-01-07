@@ -32,7 +32,7 @@ if( defined( 'PRETTY_UTF8' ) ) {
 		return preg_replace( '/([\x00-\xff])/e',
 			'sprintf("%02X", ord("$1"))',
 			$string );
-	}	
+	}
 } else {
 	/**
 	 * @ignore
@@ -41,7 +41,7 @@ if( defined( 'PRETTY_UTF8' ) ) {
 		return trim( preg_replace( '/(.)/use',
 			'sprintf("%04X ", utf8ToCodepoint("$1"))',
 			$string ) );
-	}	
+	}
 }
 
 if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
@@ -80,10 +80,10 @@ while( false !== ( $line = fgets( $in ) ) ) {
 		print "Part {$matches[1]}: $comment";
 		continue;
 	}
-	
+
 	$columns = array_map( "hexSequenceToUtf8", explode( ";", $data ) );
 	array_unshift( $columns, '' );
-	
+
 	$testedChars[$columns[1]] = true;
 	$total++;
 	if( testNormals( $normalizer, $columns, $comment ) ) {
@@ -159,7 +159,7 @@ function testNormals( &$u, $c, $comment, $reportFailure = false ) {
 	$result = testNFKC( $u, $c, $comment, $reportFailure ) && $result;
 	$result = testNFKD( $u, $c, $comment, $reportFailure ) && $result;
 	$result = testCleanUp( $u, $c, $comment, $reportFailure ) && $result;
-	
+
 	global $verbose;
 	if( $verbose && !$result && !$reportFailure ) {
 		print $comment;

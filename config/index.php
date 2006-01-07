@@ -987,7 +987,7 @@ if( count( $errs ) ) {
 
 		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
 	</div>
-	
+
 	<div class="config-input"><label class="column">Database charset</label>
 		<div>Select one:</div>
 		<ul class="plain">
@@ -1290,10 +1290,10 @@ function aField( &$conf, $field, $text, $type = "text", $value = "" ) {
 
 	if(!(isset($id)) or ($id == "") ) $id = $field;
 	$nolabel = ($type == "radio") || ($type == "hidden");
-	
+
 	if ($type == 'radio')
 		$id .= $radioCount++;
-	
+
 	if( $nolabel ) {
 		echo "\t\t<label>";
 	} else {

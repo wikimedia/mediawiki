@@ -1008,7 +1008,7 @@ class LanguageFy extends LanguageUtf8 {
 		} else {
 			$sep = '.';
 		}
-		
+
 		$t = substr( $ts, 8, 2 ) . $sep . substr( $ts, 10, 2 );
 
 		if ( $datePreference == MW_DATE_ISO ) {
@@ -1016,7 +1016,7 @@ class LanguageFy extends LanguageUtf8 {
 		}
 		return $t;
 	}
-	
+
 	function getMessage( $key ) {
 		global $wgAllMessagesFy;
 		if( isset( $wgAllMessagesFy[$key] ) ) {

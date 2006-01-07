@@ -44,11 +44,11 @@ function checkOrphans( $fix ) {
 	$dbw =& wfGetDB( DB_MASTER );
 	$page = $dbw->tableName( 'page' );
 	$revision = $dbw->tableName( 'revision' );
-	
+
 	if( $fix ) {
 		$dbw->query( "LOCK TABLES $page WRITE, $revision WRITE" );
 	}
-	
+
 	echo "Checking for orphan revision table entries... (this may take a while on a large wiki)\n";
 	$result = $dbw->query( "
 		SELECT *
@@ -80,7 +80,7 @@ function checkOrphans( $fix ) {
 	} else {
 		echo "No orphans! Yay!\n";
 	}
-	
+
 	if( $fix ) {
 		$dbw->query( "UNLOCK TABLES" );
 	}
@@ -95,11 +95,11 @@ function checkWidows( $fix ) {
 	$dbw =& wfGetDB( DB_MASTER );
 	$page = $dbw->tableName( 'page' );
 	$revision = $dbw->tableName( 'revision' );
-	
+
 	if( $fix ) {
 		$dbw->query( "LOCK TABLES $page WRITE, $revision WRITE" );
 	}
-	
+
 	echo "\nChecking for childless page table entries... (this may take a while on a large wiki)\n";
 	$result = $dbw->query( "
 		SELECT *
@@ -127,7 +127,7 @@ function checkWidows( $fix ) {
 	} else {
 		echo "No childless pages! Yay!\n";
 	}
-	
+
 	if( $fix ) {
 		$dbw->query( "UNLOCK TABLES" );
 	}
@@ -139,11 +139,11 @@ function checkSeparation( $fix ) {
 	$page     = $dbw->tableName( 'page' );
 	$revision = $dbw->tableName( 'revision' );
 	$text     = $dbw->tableName( 'text' );
-	
+
 	if( $fix ) {
 		$dbw->query( "LOCK TABLES $page WRITE, $revision WRITE, $text WRITE" );
 	}
-	
+
 	echo "\nChecking for pages whose page_latest links are incorrect... (this may take a while on a large wiki)\n";
 	$result = $dbw->query( "
 		SELECT *
@@ -189,7 +189,7 @@ function checkSeparation( $fix ) {
 			echo "wtf\n";
 		}
 	}
-	
+
 	if( $found ) {
 		echo "Found $found pages with incorrect latest revision.\n";
 	} else {
@@ -198,7 +198,7 @@ function checkSeparation( $fix ) {
 	if( !$fix && $found > 0 ) {
 		echo "Run again with --fix to remove these entries automatically.\n";
 	}
-	
+
 	if( $fix ) {
 		$dbw->query( "UNLOCK TABLES" );
 	}

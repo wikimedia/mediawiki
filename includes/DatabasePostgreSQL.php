@@ -56,9 +56,9 @@ class DatabasePgsql extends Database {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 		$this->mSchemas = array($wgDBschema,'public');
-		
+
 		$success = false;
-		
+
 		if ( '' != $dbName ) {
 			# start a database connection
 			$hstring="";
@@ -77,7 +77,7 @@ class DatabasePgsql extends Database {
 		}
 		return $this->mConn;
 	}
-	
+
 	/**
 	 * Closes a database connection, if it is open
 	 * Returns success, true if already closed
@@ -90,25 +90,25 @@ class DatabasePgsql extends Database {
 			return true;
 		}
 	}
-	
+
 	function doQuery( $sql ) {
 		return $this->mLastResult=pg_query( $this->mConn , $sql);
 	}
-		
+
 	function queryIgnore( $sql, $fname = '' ) {
 		return $this->query( $sql, $fname, true );
 	}
-	
+
 	function freeResult( $res ) {
 		if ( !@pg_free_result( $res ) ) {
 			wfDebugDieBacktrace( "Unable to free PostgreSQL result\n" );
 		}
 	}
-	
+
 	function fetchObject( $res ) {
 		@$row = pg_fetch_object( $res );
 		# FIXME: HACK HACK HACK HACK debug
-		
+
 		# TODO:
 		# hashar : not sure if the following test really trigger if the object
 		#          fetching failled.
@@ -135,7 +135,7 @@ class DatabasePgsql extends Database {
 	}
 	function numFields( $res ) { return pg_num_fields( $res ); }
 	function fieldName( $res, $n ) { return pg_field_name( $res, $n ); }
-	
+
 	/**
 	 * This must be called after nextSequenceVal
 	 */
@@ -150,7 +150,7 @@ class DatabasePgsql extends Database {
 	function affectedRows() {
 		return pg_affected_rows( $this->mLastResult );
 	}
-	
+
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
@@ -161,7 +161,7 @@ class DatabasePgsql extends Database {
 		if ( !$res ) {
 			return NULL;
 		}
-		
+
 		while ( $row = $this->fetchObject( $res ) ) {
 			if ( $row->Key_name == $index ) {
 				return $row;
@@ -179,7 +179,7 @@ class DatabasePgsql extends Database {
 		while ($row = $this->fetchObject( $res ))
 			return true;
 		return false;
-		
+
 	}
 
 	function fieldInfo( $table, $field ) {
@@ -226,7 +226,7 @@ class DatabasePgsql extends Database {
 
 		return $retVal;
 	}
-	
+
 	/** @todo FIXME */
 	function startTimer( $timeout ) {
 		wfDebugDieBacktrace( 'Database::startTimer() error : mysql_thread_id() not implemented for postgre' );
@@ -247,7 +247,7 @@ class DatabasePgsql extends Database {
 			case 'old':
 			case 'group':
 				return '"' . $name . '"';
-			
+
 			default:
 				return $name;
 		}
@@ -285,7 +285,7 @@ class DatabasePgsql extends Database {
 	# occurred in MySQL
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'Database::replace' ) {
 		$table = $this->tableName( $table );
-	
+
 		if (count($rows)==0) {
 			return;
 		}
@@ -359,14 +359,14 @@ class DatabasePgsql extends Database {
 		$res =$this->query($sql);
 		$row=$this->fetchObject($res);
 		if ($row->ftype=="varchar") {
-			$size=$row->size-4;	
+			$size=$row->size-4;
 		} else {
 			$size=$row->size;
 		}
 		$this->freeResult( $res );
 		return $size;
 	}
-	
+
 	function lowPriorityOption() {
 		return '';
 	}
@@ -374,7 +374,7 @@ class DatabasePgsql extends Database {
 	function limitResult($sql, $limit,$offset) {
         	return "$sql LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
 	}
-	
+
 	/**
 	 * Returns an SQL expression for a simple conditional.
 	 * Uses CASE on PostgreSQL.
@@ -420,7 +420,7 @@ class DatabasePgsql extends Database {
 	function getSoftwareLink() {
 		return "[http://www.postgresql.org/ PostgreSQL]";
 	}
-	
+
 	/**
 	 * @return string Version information from the database
 	 */

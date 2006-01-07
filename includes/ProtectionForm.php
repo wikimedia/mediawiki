@@ -25,13 +25,13 @@
 class ProtectionForm {
 	var $mRestrictions = array();
 	var $mReason = '';
-	
+
 	function ProtectionForm( &$article ) {
 		global $wgRequest, $wgUser;
 		global $wgRestrictionTypes, $wgRestrictionLevels;
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
-		
+
 		if( $this->mTitle ) {
 			foreach( $wgRestrictionTypes as $action ) {
 				// Fixme: this form currently requires individual selections,
@@ -39,13 +39,13 @@ class ProtectionForm {
 				$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
 			}
 		}
-		
+
 		// The form will be available in read-only to show levels.
 		$this->disabled = !$wgUser->isAllowed( 'protect' ) || wfReadOnly() || $wgUser->isBlocked();
 		$this->disabledAttrib = $this->disabled
 			? array( 'disabled' => 'disabled' )
 			: array();
-		
+
 		if( $wgRequest->wasPosted() ) {
 			$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
 			foreach( $wgRestrictionTypes as $action ) {
@@ -56,10 +56,10 @@ class ProtectionForm {
 			}
 		}
 	}
-	
+
 	function show() {
 		global $wgOut;
-		
+
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		if( is_null( $this->mTitle ) ||
@@ -68,50 +68,50 @@ class ProtectionForm {
 			$wgOut->fatalError( wfMsg( 'badarticleerror' ) );
 			return;
 		}
-		
+
 		if( $this->save() ) {
 			$wgOut->redirect( $this->mTitle->getFullUrl() );
 			return;
 		}
-		
+
 		$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
 		$wgOut->setSubtitle( wfMsg( 'protectsub', $this->mTitle->getPrefixedText() ) );
-		
+
 		$wgOut->addWikiText(
 			wfMsg( $this->disabled ? "protect-viewtext" : "protect-text",
 				$this->mTitle->getPrefixedText() ) );
-		
+
 		$wgOut->addHTML( $this->buildForm() );
-		
+
 		$this->showLogExtract( $wgOut );
 	}
-	
+
 	function save() {
 		global $wgRequest, $wgUser;
 		if( !$wgRequest->wasPosted() ) {
 			return false;
 		}
-		
+
 		if( $this->disabled ) {
 			return false;
 		}
-		
+
 		$token = $wgRequest->getVal( 'wpEditToken' );
 		if( !$wgUser->matchEditToken( $token ) ) {
 			$wgOut->fatalError( wfMsg( 'sessionfailure' ) );
 			return false;
 		}
-		
+
 		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason );
 		if( !$ok ) {
 			$wgOut->fatalError( "Unknown error at restriction save time." );
 		}
 		return $ok;
 	}
-	
+
 	function buildForm() {
 		global $wgUser;
-		
+
 		$out = '';
 		if( !$this->disabled ) {
 			$out .= $this->buildScript();
@@ -127,7 +127,7 @@ class ProtectionForm {
 				'name' => 'wpEditToken',
 				'value' => $wgUser->editToken() ) );
 		}
-		
+
 		$out .= "<table id='mwProtectSet'>";
 		$out .= "<tbody>";
 		$out .= "<tr>\n";
@@ -142,12 +142,12 @@ class ProtectionForm {
 			$out .= "</td>\n";
 		}
 		$out .= "</tr>\n";
-		
+
 		// JavaScript will add another row with a value-chaining checkbox
-		
+
 		$out .= "</tbody>\n";
 		$out .= "</table>\n";
-		
+
 		if( !$this->disabled ) {
 			$out .= "<table>\n";
 			$out .= "<tbody>\n";
@@ -158,10 +158,10 @@ class ProtectionForm {
 			$out .= "</form>\n";
 			$out .= $this->buildCleanupScript();
 		}
-		
+
 		return $out;
 	}
-	
+
 	function buildSelector( $action, $selected ) {
 		global $wgRestrictionLevels;
 		$id = 'mwProtect-level-' . $action;
@@ -171,7 +171,7 @@ class ProtectionForm {
 			'size' => count( $wgRestrictionLevels ),
 			'onchange' => 'protectLevelsUpdate(this)',
 			) + $this->disabledAttrib;
-		
+
 		$out = wfOpenElement( 'select', $attribs );
 		foreach( $wgRestrictionLevels as $key ) {
 			$out .= $this->buildOption( $key, $selected );
@@ -179,7 +179,7 @@ class ProtectionForm {
 		$out .= "</select>\n";
 		return $out;
 	}
-	
+
 	function buildOption( $key, $selected ) {
 		$text = ( $key == '' )
 			? wfMsg( 'protect-default' )
@@ -191,7 +191,7 @@ class ProtectionForm {
 			array( 'value' => $key ) + $selectedAttrib,
 			$text );
 	}
-	
+
 	function buildReasonInput() {
 		$id = 'mwProtect-reason';
 		return wfElement( 'label', array(
@@ -204,25 +204,25 @@ class ProtectionForm {
 				'name' => $id,
 				'id' => $id ) );
 	}
-	
+
 	function buildSubmit() {
 		return wfElement( 'input', array(
 			'type' => 'submit',
 			'value' => wfMsg( 'confirm' ) ) );
 	}
-	
+
 	function buildScript() {
 		global $wgStylePath;
 		return '<script type="text/javascript" src="' .
 			htmlspecialchars( $wgStylePath . "/common/protect.js" ) .
 			'"></script>';
 	}
-	
+
 	function buildCleanupScript() {
 		return '<script type="text/javascript">protectInitialize("mwProtectSet","' .
 			wfEscapeJsString( wfMsg( 'protect-unchain' ) ) . '")</script>';
 	}
-	
+
 	/**
 	 * @param OutputPage $out
 	 * @access private

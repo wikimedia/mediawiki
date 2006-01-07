@@ -20,14 +20,14 @@ class DisambiguationsPage extends PageQueryPage {
 	function getName() {
 		return 'Disambiguations';
 	}
-	
+
 	function isExpensive( ) { return true; }
 	function isSyndicated() { return false; }
 
 	function getPageHeader( ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
-		
+
 		#FIXME : probably need to add a backlink to the maintenance page.
 		return '<p>'.wfMsg("disambiguationstext", $sk->makeKnownLink(wfMsgForContent('disambiguationspage')) )."</p><br />\n";
 	}
@@ -35,7 +35,7 @@ class DisambiguationsPage extends PageQueryPage {
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'page', 'pagelinks' ) );
-		
+
 		$dp = Title::newFromText(wfMsgForContent("disambiguationspage"));
 		$id = $dp->getArticleId();
         $dns = $dp->getNamespace();
@@ -54,7 +54,7 @@ class DisambiguationsPage extends PageQueryPage {
 	function getOrder() {
 		return '';
 	}
-	
+
 	function formatResult( $skin, $result ) {
 		$title = Title::newFromId( $result->value );
         $dp = Title::makeTitle( $result->namespace, $result->title );
@@ -62,7 +62,7 @@ class DisambiguationsPage extends PageQueryPage {
 		$from = $skin->makeKnownLinkObj( $title,'');
 		$edit = $skin->makeBrokenLinkObj( $title, "(".wfMsg("qbedit").")" , 'redirect=no');
 		$to   = $skin->makeKnownLinkObj( $dp,'');
-		
+
 		return "$from $edit => $to";
 	}
 }
@@ -72,9 +72,9 @@ class DisambiguationsPage extends PageQueryPage {
  */
 function wfSpecialDisambiguations() {
 	list( $limit, $offset ) = wfCheckLimits();
-	
+
 	$sd = new DisambiguationsPage();
-	
+
 	return $sd->doQuery( $offset, $limit );
 }
 ?>

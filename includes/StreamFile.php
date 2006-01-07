@@ -24,16 +24,16 @@ does not.</p>
 			return;
 		}
 	}
-	
+
 	header( 'Content-Length: ' . $stat['size'] );
-	
+
 	$type = wfGetType( $fname );
 	if ( $type and $type!="unknown/unknown") {
 		header("Content-type: $type");
 	} else {
 		header('Content-type: application/x-wiki');
 	}
-	
+
 	readfile( $fname );
 }
 
@@ -45,14 +45,14 @@ function wfGetType( $filename ) {
 	# used for thumbnails (thumb.php)
 	if ($wgTrivialMimeDetection) {
 		$ext= strtolower(strrchr($filename, '.'));
-		
+
 		switch ($ext) {
 			case '.gif': return 'image/gif';
 			case '.png': return 'image/png';
 			case '.jpg': return 'image/jpeg';
 			case '.jpeg': return 'image/jpeg';
 		}
-		
+
 		return 'unknown/unknown';
 	}
 	else {

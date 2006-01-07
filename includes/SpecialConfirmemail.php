@@ -35,7 +35,7 @@ class ConfirmationForm {
 		}
 	}
 
-	/** */	
+	/** */
 	function confirmAndShow( $user ) {
 		if( $user->confirmEmail() ) {
 			$this->showSuccess();
@@ -66,15 +66,15 @@ class ConfirmationForm {
 	function showEmpty( $err ) {
 		require_once( 'templates/Confirmemail.php' );
 		global $wgOut, $wgUser;
-		
+
 		$tpl = new ConfirmemailTemplate();
 		$tpl->set( 'error', $err );
 		$tpl->set( 'edittoken', $wgUser->editToken() );
-		
+
 		$title = Title::makeTitle( NS_SPECIAL, 'Confirmemail' );
 		$tpl->set( 'action', $title->getLocalUrl() );
-		
-		
+
+
 		$wgOut->addTemplate( $tpl );
 	}
 
@@ -93,7 +93,7 @@ class ConfirmationForm {
 	/** */
 	function showSuccess() {
 		global $wgOut, $wgRequest, $wgUser;
-		
+
 		if( $wgUser->isLoggedIn() ) {
 			$wgOut->addWikiText( wfMsg( 'confirmemail_loggedin' ) );
 		} else {

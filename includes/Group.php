@@ -22,7 +22,7 @@ class Group {
 	/** string $rights Contain rights values : "foo,bar,bla" */
 	var $rights;
 	/**#@-*/
-	
+
 	/** Constructor */
 	function Group() {
 		$this->clear();
@@ -48,7 +48,7 @@ class Group {
 
 		// be sure it's an integer
 		$this->id = intval($this->id);
-		
+
 		if($this->id) {
 			// By ID
 			$dbr =& wfGetDB( DB_SLAVE );
@@ -85,8 +85,8 @@ class Group {
 		$this->description = $row->gr_description;
 		$this->rights = $row->gr_rights;
 		$this->dataLoaded = true;
-	}		
-	
+	}
+
 	/** Initialise a new row in the database */
 	function addToDatabase() {
 		if ( Group::getStaticGroups() ) {
@@ -113,10 +113,10 @@ class Group {
 			wfDebugDieBacktrace( "Can't modify groups in static mode" );
 		}
 		if($this->id == 0) { return; }
-		
+
 		$fname = 'Group::save';
 		$dbw =& wfGetDB( DB_MASTER );
-		
+
 		$dbw->update( 'groups',
 			array( /* SET */
 				'gr_name' => $this->name,
@@ -126,7 +126,7 @@ class Group {
 				'gr_id' => $this->id
 			), $fname
 		);
-	
+
 		$wgMemc->set( Group::getCacheKey( $this->id ), $this, 3600 );
 	}
 
@@ -139,7 +139,7 @@ class Group {
 			wfDebugDieBacktrace( "Can't modify groups in static mode" );
 		}
 		if($this->id == 0) { return; }
-		
+
 		$fname = 'Group::delete';
 		$dbw =& wfGetDB( DB_MASTER );
 
@@ -151,7 +151,7 @@ class Group {
 
 		$wgMemc->delete( Group::getCacheKey( $this->id ) );
 	}
-	
+
 	/**
 	 * Get memcached key
 	 * @static
@@ -169,7 +169,7 @@ class Group {
 	function newFromId($id) {
 		global $wgMemc, $wgDBname;
 		$fname = 'Group::newFromId';
-		
+
 		$staticGroups =& Group::getStaticGroups();
 		if ( $staticGroups ) {
 			if ( array_key_exists( $id, $staticGroups ) ) {
@@ -185,7 +185,7 @@ class Group {
 			wfDebug( "$fname loaded group $id from cache\n" );
 			return $group;
 		}
-		
+
 		$group = new Group();
 		$group->id = $id;
 		$group->loadFromDatabase();
@@ -204,7 +204,7 @@ class Group {
 	/** @param string $name Group database name */
 	function newFromName($name) {
 		$fname = 'Group::newFromName';
-		
+
 		$staticGroups =& Group::getStaticGroups();
 		if ( $staticGroups ) {
 			$id = Group::idFromName( $name );
@@ -214,7 +214,7 @@ class Group {
 				return null;
 			}
 		}
-		
+
 		$g = new Group();
 		$g->name = $name;
 		$g->loadFromDatabase();
@@ -328,7 +328,7 @@ class Group {
 		$this->loadFromDatabase();
 		return $this->getMessage( $this->name );
 	}
-	
+
 	function getNameForContent() {
 		$this->loadFromDatabase();
 		return $this->getMessageForContent( $this->name );
@@ -338,13 +338,13 @@ class Group {
 		$this->loadFromDatabase();
 		$this->name = $name;
 	}
-	
+
 	function getId() { return $this->id; }
 	function setId($id) {
 		$this->id = intval($id);
 		$this->dataLoaded = false;
 	}
-	
+
 	function getDescription() {
 		return $this->description;
 	}

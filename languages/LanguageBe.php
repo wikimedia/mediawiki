@@ -553,7 +553,7 @@ class LanguageBe extends LanguageUtf8 {
 		global $wgMagicWordsBe;
 		return $wgMagicWordsBe;
 	}
-	
+
 	function getDateFormats() {
 		return $wgDateFormatsBe = array(
 			MW_DATE_DEFAULT => MW_DATE_DEFAULT,

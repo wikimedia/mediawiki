@@ -1784,7 +1784,7 @@ class LanguageCs extends LanguageUtf8 {
 	function formatMonth( $month, $format ) {
 		return intval( $month ) . '.';
 	}
-	
+
 	function formatDay( $day, $format ) {
 		return intval( $day ) . '.';
 	}

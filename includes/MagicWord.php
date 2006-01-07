@@ -123,7 +123,7 @@ class MagicWord {
 	 */
 	var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
 	var $mRegexStart, $mBaseRegex, $mVariableRegex;
-	var $mModified;	
+	var $mModified;
 	/**#@-*/
 
 	function MagicWord($id = 0, $syn = '', $cs = false) {
@@ -143,7 +143,7 @@ class MagicWord {
 	 */
 	function &get( $id ) {
 		global $wgMagicWords;
-		
+
 		if ( !is_array( $wgMagicWords ) ) {
 			wfDebugDieBacktrace( "Incorrect initialisation order, \$wgMagicWords does not exist\n" );
 		}
@@ -154,14 +154,14 @@ class MagicWord {
 		}
 		return $wgMagicWords[$id];
 	}
-	
+
 	# Initialises this object with an ID
 	function load( $id ) {
-		global $wgContLang;		
+		global $wgContLang;
 		$this->mId = $id;
 		$wgContLang->getMagic( $this );
 	}
-	
+
 	/**
 	 * Preliminary initialisation
 	 * @access private
@@ -180,7 +180,7 @@ class MagicWord {
 		$this->mVariableStartToEndRegex = str_replace( "\\$1", "(.*?)",
 			"/^(?:{$this->mBaseRegex})$/{$case}" );
 	}
-	
+
 	/**
 	 * Gets a regex representing matching the word
 	 */
@@ -210,7 +210,7 @@ class MagicWord {
 		}
 		return $this->mBaseRegex;
 	}
-		
+
 	/**
 	 * Returns true if the text contains the word
 	 * @return bool
@@ -265,7 +265,7 @@ class MagicWord {
 		$wgMagicFound = false;
 		$text = preg_replace_callback( $this->getRegexStart(), 'pregRemoveAndRecord', $text );
 		return $wgMagicFound;
-	}		
+	}
 
 
 	/**

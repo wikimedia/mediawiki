@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'MEDIAWIKI' ) )
 	die();
-	
+
 /**
  * @package MediaWiki
  */
@@ -120,7 +120,7 @@ class ImageGallery
 			} else {
 				$nb = '';
 			}
-				
+
 			$textlink = $this->mShowFilename ?
 				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . "<br />\n" :
 				'' ;
@@ -129,7 +129,7 @@ class ImageGallery
 			$thumb = $img->getThumbnail( 120, 120 );
 			$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
 			$s .= '<td><div class="gallerybox">' . '<div class="thumb" style="padding: ' . $vpad . 'px 0;">';
-			
+
 			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
 			# in version 4.8.6 generated crackpot html in its absence, see:
 			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar

@@ -41,13 +41,13 @@ require_once( 'LogPage.php' );
  */
 class LogImporter {
 	var $dummy = false;
-	
+
 	function LogImporter( $type ) {
 		$this->type = $type;
 		$this->db =& wfGetDB( DB_MASTER );
 		$this->actions = $this->setupActions();
 	}
-	
+
 	function setupActions() {
 		$actions = array();
 		foreach( LogPage::validActions( $this->type ) as $action ) {
@@ -56,11 +56,11 @@ class LogImporter {
 		}
 		return $actions;
 	}
-	
+
 	function makeLineRegexp( $type, $action ) {
 		$linkRegexp = '(?:\[\[)?([^|\]]+?)(?:\|[^\]]+?)?(?:\]\])?';
 		$linkRegexp2 = '\[\[([^|\]]+?)(?:\|[^\]]+?)?\]\]';
-		
+
 		$text = LogPage::actionText( $type, $action );
 		$text = preg_quote( $text, '/' );
 		$text = str_replace( '\$1', $linkRegexp, $text );
@@ -69,7 +69,7 @@ class LogImporter {
 		$text = "/$text/";
 		return $text;
 	}
-	
+
 	function importText( $text ) {
 		if( $this->dummy ) {
 			print $text;
@@ -82,7 +82,7 @@ class LogImporter {
 			}
 		}
 	}
-	
+
 	function fixDate( $date ) {
 		# Yuck! Parsing multilingual date formats??!!!!???!!??!
 		# 01:55, 23 Aug 2004 - won't take in strtotimr
@@ -96,7 +96,7 @@ class LogImporter {
 		$timestamp = wfTimestamp( TS_MW, $n );
 		return $timestamp;
 	}
-	
+
 	function importLine( $line ) {
 		foreach( $this->actions as $action => $regexp ) {
 			if( preg_match( $regexp, $line, $matches ) ) {
@@ -111,7 +111,7 @@ class LogImporter {
 				} else {
 					$comment = '';
 				}
-				
+
 				$insert = array(
 					'log_type' => $this->type,
 					'log_action' => preg_replace( '!^.*/!', '', $action ),

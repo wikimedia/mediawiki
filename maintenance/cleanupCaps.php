@@ -37,23 +37,23 @@ require_once( 'FiveUpgrade.inc' );
 class CapsCleanup extends FiveUpgrade {
 	function CapsCleanup( $dryrun = false, $namespace=0 ) {
 		parent::FiveUpgrade();
-		
+
 		$this->maxLag = 10; # if slaves are lagged more than 10 secs, wait
 		$this->dryrun = $dryrun;
 		$this->namespace = intval( $namespace );
 	}
-	
+
 	function cleanup() {
 		global $wgCapitalLinks;
 		if( $wgCapitalLinks ) {
 			echo "\$wgCapitalLinks is on -- no need for caps links cleanup.\n";
 			return false;
 		}
-		
+
 		$this->runTable( 'page', 'WHERE page_namespace=' . $this->namespace,
 			array( &$this, 'processPage' ) );
 	}
-	
+
 	function init( $count, $table ) {
 		$this->processed = 0;
 		$this->updated = 0;
@@ -61,7 +61,7 @@ class CapsCleanup extends FiveUpgrade {
 		$this->startTime = wfTime();
 		$this->table = $table;
 	}
-	
+
 	function progress( $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
@@ -70,12 +70,12 @@ class CapsCleanup extends FiveUpgrade {
 		}
 		$portion = $this->processed / $this->count;
 		$updateRate = $this->updated / $this->processed;
-		
+
 		$now = wfTime();
 		$delta = $now - $this->startTime;
 		$estimatedTotalTime = $delta / $portion;
 		$eta = $this->startTime + $estimatedTotalTime;
-		
+
 		printf( "%s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
 			wfTimestamp( TS_DB, intval( $now ) ),
 			$portion * 100.0,
@@ -87,28 +87,28 @@ class CapsCleanup extends FiveUpgrade {
 			$updateRate * 100.0 );
 		flush();
 	}
-	
+
 	function runTable( $table, $where, $callback ) {
 		$fname = 'CapsCleanup::buildTable';
-		
+
 		$count = $this->dbw->selectField( $table, 'count(*)', '', $fname );
 		$this->init( $count, 'page' );
 		$this->log( "Processing $table..." );
-		
+
 		$tableName = $this->dbr->tableName( $table );
 		$sql = "SELECT * FROM $tableName $where";
 		$result = $this->dbr->query( $sql, $fname );
-		
+
 		while( $row = $this->dbr->fetchObject( $result ) ) {
 			$updated = call_user_func( $callback, $row );
 		}
 		$this->log( "Finished $table... $this->updated of $this->processed rows updated" );
 		$this->dbr->freeResult( $result );
 	}
-	
+
 	function processPage( $row ) {
 		global $wgContLang;
-		
+
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 		$upper = $row->page_title;
@@ -117,14 +117,14 @@ class CapsCleanup extends FiveUpgrade {
 			$this->log( "\"$display\" already lowercase." );
 			return $this->progress( 0 );
 		}
-		
+
 		$target = Title::makeTitle( $row->page_namespace, $lower );
 		$targetDisplay = $target->getPrefixedText();
 		if( $target->exists() ) {
 			$this->log( "\"$display\" skipped; \"$targetDisplay\" already exists" );
 			return $this->progress( 0 );
 		}
-		
+
 		if( $this->dryrun ) {
 			$this->log( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED" );
 			$ok = true;
@@ -134,7 +134,7 @@ class CapsCleanup extends FiveUpgrade {
 		}
 		if( $ok === true ) {
 			$this->progress( 1 );
-			
+
 			if( $row->page_namespace == $this->namespace ) {
 				$talk = $target->getTalkPage();
 				$xrow = $row;

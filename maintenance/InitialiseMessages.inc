@@ -28,7 +28,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	} else {
 		$sortedArray = $wgAllMessagesEn;
 	}
-	
+
 	ksort( $sortedArray );
 	$messages=array();
 
@@ -84,7 +84,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	$wgUser = new User;
 	$wgUser->setLoaded( true ); # Don't load from DB
 	$wgUser->setName( 'MediaWiki default' );
-	
+
 	# Don't try to draw messages from the database we're initialising
 	$wgMessageCache->disable();
 	$wgMessageCache->disableTransform();
@@ -96,10 +96,10 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	# default messages won't be overwritte
 	$username = 'MediaWiki default';
 
-	
+
 	print "Initialising \"MediaWiki\" namespace...\n";
 
-	
+
 	$dbr =& wfGetDB( DB_SLAVE );
 	$dbw =& wfGetDB( DB_MASTER );
 	$page = $dbr->tableName( 'page' );
@@ -115,7 +115,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	} else {
 		$sortedArray = $wgAllMessagesEn;
 	}
-	
+
 	ksort( $sortedArray );
 
 	# SELECT all existing messages
@@ -153,7 +153,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 		while ($row = $dbr->fetchObject($res))
 			$rows[] = $row;
 	}
-	
+
 	# Read the results into an array
 	# Decide whether or not each one needs to be overwritten
 	$existingTitles = array();
@@ -170,7 +170,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	$arr = array();
 	$talk = $wgContLang->getNsText( NS_TALK );
 	$mwtalk = $wgContLang->getNsText( NS_MEDIAWIKI_TALK );
-	
+
 	# Merge these into a single transaction for speed
 	$dbw->begin();
 

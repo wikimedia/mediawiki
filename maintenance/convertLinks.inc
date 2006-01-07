@@ -12,12 +12,12 @@ function convertLinks() {
 		print "Links table already ok on PostgreSQL.\n";
 		return;
 	}
-	
+
 	print "Converting links table to ID-ID...\n";
-	
+
 	global $wgLang, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
 	global $noKeys, $logPerformance, $fh;
-	
+
 	$numRows = $tuplesAdded = $numBadLinks = $curRowsRead = 0; #counters etc
 	$totalTuplesInserted = 0; # total tuples INSERTed into links_temp
 
@@ -42,7 +42,7 @@ function convertLinks() {
 	$logPerformance = false; # output performance data to a file
 	$perfLogFilename = "convLinksPerf.txt";
 	#--------------------------------------------------------------------
-	
+
 	$dbw =& wfGetDB( DB_MASTER );
 	extract( $dbw->tableNames( 'cur', 'links', 'links_temp', 'links_backup' ) );
 
@@ -51,7 +51,7 @@ function convertLinks() {
 		print "Schema already converted\n";
 		return;
 	}
-	
+
 	$res = $dbw->query( "SELECT COUNT(*) AS count FROM $links" );
 	$row = $dbw->fetchObject($res);
 	$numRows = $row->count;
@@ -67,7 +67,7 @@ function convertLinks() {
 		print "Loading IDs from $cur table...\n";
 		performanceLog ( "Reading $numRows rows from cur table...\n" );
 		performanceLog ( "rows read vs seconds elapsed:\n" );
-		
+
 		$dbw->bufferResults( false );
 		$res = $dbw->query( "SELECT cur_namespace,cur_title,cur_id FROM $cur" );
 		$ids = array();
@@ -82,7 +82,7 @@ function convertLinks() {
 			if ($reportCurReadProgress) {
 				if (($curRowsRead % $curReadReportInterval) == 0) {
 					performanceLog( $curRowsRead . " " . (getMicroTime() - $baseTime) . "\n" );
-					print "\t$curRowsRead rows of $cur table read.\n";	
+					print "\t$curRowsRead rows of $cur table read.\n";
 				}
 			}
 		}
@@ -100,7 +100,7 @@ function convertLinks() {
 		print "Processing $numRows rows from $links table...\n";
 		performanceLog( "Processing $numRows rows from $links table...\n" );
 		performanceLog( "rows inserted vs seconds elapsed:\n" );
-		
+
 		for ($rowOffset = $initialRowOffset; $rowOffset < $numRows; $rowOffset += $linksConvInsertInterval) {
 			$sqlRead = "SELECT * FROM $links ";
 			$sqlRead = $dbw->limitResult($sqlRead, $linksConvInsertInterval,$rowOffset);
@@ -110,7 +110,7 @@ function convertLinks() {
 			} else {
 				$sqlWrite = array("INSERT IGNORE INTO $links_temp (l_from,l_to) VALUES ");
 			}
-			
+
 			$tuplesAdded = 0; # no tuples added to INSERT yet
 			while ( $row = $dbw->fetchObject($res) ) {
 				$fromTitle = $row->l_from;
@@ -121,7 +121,7 @@ function convertLinks() {
 						$sqlWrite[] = ",";
 					}
 					$sqlWrite[] = "($from,$to)";
-					$tuplesAdded++;				
+					$tuplesAdded++;
 				} else { # invalid title
 					$numBadLinks++;
 				}
@@ -156,12 +156,12 @@ function convertLinks() {
 		print "Dropping backup links table if it exists...";
 		$dbConn->query( "DROP TABLE IF EXISTS $links_backup", DB_MASTER);
 		print " done.\n";
-		
+
 		# Swap in the new table, and move old links table to links_backup
 		print "Swapping tables '$links' to '$links_backup'; '$links_temp' to '$links'...";
 		$dbConn->query( "RENAME TABLE links TO $links_backup, $links_temp TO $links", DB_MASTER );
 		print " done.\n\n";
-		
+
 		$dbConn->close();
 		print "Conversion complete. The old table remains at $links_backup;\n";
 		print "delete at your leisure.\n";
@@ -177,17 +177,17 @@ function createTempTable() {
 	global $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
 	global $noKeys;
 	$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
-	
+
 	if (!($dbConn->isOpen())) {
 		print "Opening connection to database failed.\n";
 		return;
 	}
 	$links_temp = $dbConn->tableName( 'links_temp' );
-	
+
 	print "Dropping temporary links table if it exists...";
 	$dbConn->query( "DROP TABLE IF EXISTS $links_temp");
 	print " done.\n";
-	
+
 	print "Creating temporary links table...";
 	if ( $noKeys ) {
 		$dbConn->query( "CREATE TABLE $links_temp ( " .

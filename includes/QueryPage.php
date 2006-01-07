@@ -129,7 +129,7 @@ class QueryPage {
 	 */
 	function isCached() {
 		global $wgMiserMode;
-		
+
 		return $this->isExpensive() && $wgMiserMode;
 	}
 
@@ -256,7 +256,7 @@ class QueryPage {
 	 */
 	function doQuery( $offset, $limit, $shownavigation=true ) {
 		global $wgUser, $wgOut, $wgContLang;
-		
+
 		$sname = $this->getName();
 		$fname = get_class($this) . '::doQuery';
 		$sql = $this->getSQL();
@@ -345,7 +345,7 @@ class QueryPage {
 	 */
 	function doFeed( $class = '' ) {
 		global $wgFeedClasses;
-		
+
 		if( isset($wgFeedClasses[$class]) ) {
 			$feed = new $wgFeedClasses[$class](
 				$this->feedTitle(),

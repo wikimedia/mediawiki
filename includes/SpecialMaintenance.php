@@ -26,7 +26,7 @@ function wfSpecialMaintenance( $par=NULL ) {
 		$wgOut->addWikiText( wfMsg( 'perfdisabled' ) );
 		return;
 	}
-	
+
 	# Get parameters from the URL
 	$submitmll = $wgRequest->getVal( 'submitmll' );
 
@@ -39,24 +39,24 @@ function wfSpecialMaintenance( $par=NULL ) {
 	# Call the subfunction requested by the user
 	switch( $subfunction ) {
 	case 'disambiguations': return wfSpecialDisambiguations();
-	
+
 	# doubleredirects & brokenredirects are old maintenance subpages.
 	case 'doubleredirects': return wfSpecialDoubleRedirects();
 	case 'brokenredirects': return wfSpecialBrokenRedirects();
-	
+
 	case 'selflinks':       return wfSpecialSelfLinks()      ;
 	case 'mispeelings':     return wfSpecialMispeelings()    ;
 	case 'missinglanguagelinks': return wfSpecialMissingLanguageLinks();
 	}
-	
+
 	if ( !is_null( $submitmll ) ) return wfSpecialMissingLanguageLinks() ;
 
 	$sk = $wgUser->getSkin();
 
 	# Generate page output
-	
+
 	$r = wfMsg('maintnancepagetext') ;
-	
+
 	# Links to subfunctions
 	$r .= "<ul>\n" ;
 	$r .= "<li>".$sk->makeKnownLink( sns().':Disambiguations', wfMsg('disambiguations')) . "</li>\n";
@@ -78,7 +78,7 @@ function wfSpecialMaintenance( $par=NULL ) {
 	$r .= htmlspecialchars(wfMsg('missinglanguagelinksbutton'), ENT_QUOTES);
 	$r .= "\" />\n" ;
 	$r .= "<select name=\"thelang\">\n" ;
-	
+
 	$a = $wgContLang->getLanguageNames();
 	$ak = array_keys ( $a ) ;
 	foreach ( $ak AS $k ) {
@@ -109,7 +109,7 @@ function getMaintenancePageBacklink( $subfunction ) {
 		$wgContLang->getNsText( NS_SPECIAL ) . ':Maintenance',
 		wfMsg( 'maintenancebacklink' ) ) ;
 	$t = wfMsg ( $subfunction ) ;
-	
+
 	$s = '<table width="100%" border="0"><tr><td>';
 	$s .= '<h2>'.$t.'</h2></td><td align="right">';
 	$s .= "{$r}</td></tr></table>\n" ;
@@ -256,7 +256,7 @@ function wfSpecialMispeelings () {
  */
 function wfSpecialMissingLanguageLinks() {
 	global $wgUser, $wgOut, $wgContLang, $wgRequest;
-	
+
 	$fname = 'wfSpecialMissingLanguageLinks';
 	$thelang = $wgRequest->getText( 'thelang' );
 	if ( $thelang == 'w' ) $thelang = 'en' ; # Fix for international wikis

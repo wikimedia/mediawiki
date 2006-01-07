@@ -103,7 +103,7 @@ class csvStatsOutput extends statsOutput {
 
 function redundant(&$arr) {
 	global $wgAllMessagesEn;
-	
+
 	$redundant = 0;
 	foreach(array_keys($arr) as $key) {
 		if ( @$wgAllMessagesEn[$key] === null )

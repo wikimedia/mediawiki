@@ -50,7 +50,7 @@ class SkinHTMLDump extends SkinTemplate {
 			$this->mTitle->getSubjectPage(),
 			$nskey,
 			!$this->mTitle->isTalkPage() );
-		
+
 		$content_actions['talk'] = $this->tabAction(
 			$this->mTitle->getTalkPage(),
 			'talk',
@@ -73,11 +73,11 @@ class SkinHTMLDump extends SkinTemplate {
 		if ( !isset( $nt ) ) {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
-		
+
 		if ( $nt->getNamespace() == NS_CATEGORY ) {
 			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		}
-		
+
 		if ( $text == '' ) {
 			$text = $nt->getPrefixedText();
 		}

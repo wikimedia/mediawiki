@@ -50,7 +50,7 @@ class AuthPlugin {
 		# Override this!
 		return false;
 	}
-	
+
 	/**
 	 * Check if a username+password pair is a valid login.
 	 * The name will be normalized to MediaWiki's requirements, so
@@ -66,7 +66,7 @@ class AuthPlugin {
 		# Override this!
 		return false;
 	}
-	
+
 	/**
 	 * Modify options in the login template.
 	 *
@@ -134,7 +134,7 @@ class AuthPlugin {
 	function autoCreate() {
 		return false;
 	}
-	
+
 	/**
 	 * Set the given password in the authentication database.
 	 * Return true if successful.
@@ -195,7 +195,7 @@ class AuthPlugin {
 	function strict() {
 		return false;
 	}
-	
+
 	/**
 	 * When creating a user account, optionally fill in preferences and such.
 	 * For instance, you might pull the email address or real name from the
@@ -210,7 +210,7 @@ class AuthPlugin {
 	function initUser( &$user ) {
 		# Override this to do something.
 	}
-	
+
 	/**
 	 * If you want to munge the case of an account name before the final
 	 * check, now is your chance.

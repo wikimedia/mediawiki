@@ -77,7 +77,7 @@ do {
 
 	$line = readconsole( '> ' );
 	if ($line === false) exit;
-	
+
 	$args = explode( ' ', $line );
 	$command = array_shift( $args );
 

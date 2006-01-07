@@ -87,7 +87,7 @@ class SquidUpdate {
 
 		$fname = 'SquidUpdate::purge';
 		wfProfileIn( $fname );
-		
+
 		$maxsocketspersquid = 8; //  socket cap per Squid
 		$urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
 		$firsturl = $urlArr[0];

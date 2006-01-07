@@ -1241,11 +1241,11 @@ class LanguageDe extends LanguageUtf8 {
 		global $wgSkinNamesDe;
 		return $wgSkinNamesDe;
 	}
-	
+
 	function formatMonth( $month, $format ) {
 		return $this->getMonthAbbreviation( $month );
 	}
-	
+
 	function formatDay( $day, $format ) {
 		return parent::formatDay( $day, $format ) . '.';
 	}

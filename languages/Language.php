@@ -2518,11 +2518,11 @@ class Language {
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 		$datePreference = $this->dateFormat( $format );
-		
+
 		$sep = ($datePreference == MW_DATE_ISO)
 			? ':'
 			: $this->timeSeparator( $format );
-		
+
 		$t = substr( $ts, 8, 2 ) . $sep . substr( $ts, 10, 2 );
 
 		if ( $datePreference == MW_DATE_ISO ) {
@@ -2530,7 +2530,7 @@ class Language {
 		}
 		return $t;
 	}
-	
+
 	/**
 	 * Default separator character between hours, minutes, and seconds.
 	 * Will be used by Language::time() for non-ISO formats.
@@ -2540,7 +2540,7 @@ class Language {
 	function timeSeparator( $format ) {
 		return ':';
 	}
-	
+
 	/**
 	 * String to insert between the time and the date in a combined
 	 * string. Should include any relevant whitespace.
@@ -2549,7 +2549,7 @@ class Language {
 	function timeDateSeparator( $format ) {
 		return ', ';
 	}
-	
+
 	/**
 	 * Return true if the time should display before the date.
 	 * @return bool
@@ -2562,7 +2562,7 @@ class Language {
 	function formatMonth( $month, $format ) {
 		return $this->getMonthName( $month );
 	}
-	
+
 	function formatDay( $day, $format ) {
 		return $this->formatNum( 0 + $day );
 	}
@@ -2751,7 +2751,7 @@ class Language {
 		$raw = $this->getMagicWords();
 
 		wfRunHooks( 'LanguageGetMagic', array( &$raw ) );
-		
+
 		if( !isset( $raw[$mw->mId] ) ) {
 			# Fall back to English if local list is incomplete
 			$raw =& Language::getMagicWords();

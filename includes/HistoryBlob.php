@@ -35,7 +35,7 @@ class HistoryBlob
 	 * Get item by hash
 	 */
 	function getItem( $hash ) {}
-	
+
 	# Set the "default text"
 	# This concept is an odd property of the current DB schema, whereby each text item has a revision
 	# associated with it. The default text is the text of the associated revision. There may, however,
@@ -188,7 +188,7 @@ class HistoryBlobStub {
 	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
 		$this->mHash = $hash;
 	}
-	
+
 	/**
 	 * Sets the location (old_id) of the main object to which this object
 	 * points
@@ -237,7 +237,7 @@ class HistoryBlobStub {
 			if( !in_array( 'object', $flags ) ) {
 				return false;
 			}
-			
+
 			if( in_array( 'gzip', $flags ) ) {
 				// This shouldn't happen, but a bug in the compress script
 				// may at times gzip-compress a HistoryBlob object row.
@@ -245,12 +245,12 @@ class HistoryBlobStub {
 			} else {
 				$obj = unserialize( $row->old_text );
 			}
-			
+
 			if( !is_object( $obj ) ) {
 				// Correct for old double-serialization bug.
 				$obj = unserialize( $obj );
 			}
-			
+
 			// Save this item for reference; if pulling many
 			// items in a row we'll likely use it again.
 			$obj->uncompress();
@@ -283,7 +283,7 @@ class HistoryBlobCurStub {
 	function HistoryBlobCurStub( $curid = 0 ) {
 		$this->mCurId = $curid;
 	}
-	
+
 	/**
 	 * Sets the location (cur_id) of the main object to which this object
 	 * points

@@ -17,7 +17,7 @@ function rebuildRecentChangesTablePass1()
 	$dbw->delete( 'recentchanges', '*' );
 
 	print( "Loading from page and revision tables...\n" );
-	
+
 	global $wgRCMaxAge;
 	$cutoff = time() - $wgRCMaxAge;
 	$dbw->insertSelect( 'recentchanges', array( 'page', 'revision' ),

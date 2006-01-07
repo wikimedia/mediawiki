@@ -21,7 +21,7 @@ class ParserCache {
 		}
 		return $instance;
 	}
-		
+
 	/**
 	 * Setup a cache pathway with a given back-end storage mechanism.
 	 * May be a memcached client or a BagOStuff derivative.

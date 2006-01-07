@@ -24,16 +24,16 @@ class MIMEsearchPage extends QueryPage {
 		$this->major = $major;
 		$this->minor = $minor;
 	}
-	
+
 	function getName() { return 'MIMEsearch'; }
-	
+
 	/**
 	 * Due to this page relying upon extra fields being passed in the SELECT it
 	 * will fail if it's set as expensive and misermode is on
 	 */
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
-	
+
 	function linkParameters() {
 		$arr = array( $this->major, $this->minor );
 		$mime = implode( '/', $arr );
@@ -45,13 +45,13 @@ class MIMEsearchPage extends QueryPage {
 		$image = $dbr->tableName( 'image' );
 		$major = $dbr->addQuotes( $this->major );
 		$minor = $dbr->addQuotes( $this->minor );
-		
+
 		return
 			"SELECT 'MIMEsearch' AS type,
 				" . NS_IMAGE . " AS namespace,
 				img_name AS title,
 				img_major_mime AS value,
-				
+
 				img_size,
 				img_width,
 				img_height,
@@ -74,7 +74,7 @@ class MIMEsearchPage extends QueryPage {
 		$dimensions = wfMsg( 'widthheight', $result->img_width, $result->img_height );
 		$user = $skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
 		$time = $wgLang->timeanddate( $result->img_timestamp );
-		
+
 		return "($download) $plink .. $dimensions .. $bytes .. $user .. $time";
 	}
 }
@@ -121,7 +121,7 @@ function wfSpecialMIMEsearch( $par = null ) {
 	if ( $major == '' or $minor == '' or !wfSpecialMIMEsearchValidType( $major ) )
 		return;
 	$wpp = new MIMEsearchPage( $major, $minor );
-	
+
 	list( $limit, $offset ) = wfCheckLimits();
 	$wpp->doQuery( $offset, $limit );
 }

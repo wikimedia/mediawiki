@@ -16,13 +16,13 @@ class DumpHTML {
 
 	# Show interlanguage links?
 	var $interwiki = true;
-	
+
 	# Depth of HTML directory tree
 	var $depth = 3;
 
 	# Directory that commons images are copied into
 	var $sharedStaticPath;
-	
+
 	# Relative path to image directory
 	var $imageRel = 'upload';
 
@@ -41,7 +41,7 @@ class DumpHTML {
 
 	# List of raw pages used in the current article
 	var $rawPages;
-	
+
 	function DumpHTML( $settings ) {
 		foreach ( $settings as $var => $value ) {
 			$this->$var = $value;
@@ -54,9 +54,9 @@ class DumpHTML {
 	 */
 	function doArticles( $start, $end = false ) {
 		$fname = 'DumpHTML::doArticles';
-		
+
 		$this->setupGlobals();
-		
+
 		if ( $end === false ) {
 			$dbr =& wfGetDB( DB_SLAVE );
 			$end = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
@@ -65,7 +65,7 @@ class DumpHTML {
 		$mainPageObj = Title::newMainPage();
 		$mainPage = $mainPageObj->getPrefixedDBkey();
 
-		
+
 		for ($id = $start; $id <= $end; $id++) {
 			wfWaitForSlaves( 20 );
 			if ( !($id % REPORTING_INTERVAL) ) {
@@ -83,7 +83,7 @@ class DumpHTML {
 			}
 		}
 		print "\n";
-	}	
+	}
 
 	function doSpecials() {
 		$this->doMainPage();
@@ -116,9 +116,9 @@ class DumpHTML {
 
 	function doImageDescriptions() {
 		global $wgSharedUploadDirectory;
-		
+
 		$fname = 'DumpHTML::doImageDescriptions';
-		
+
 		$this->setupGlobals();
 
 		/**
@@ -151,7 +151,7 @@ class DumpHTML {
 		 */
 		print "Writing description pages for commons images\n";
 		$i = 0;
-		for ( $hash = 0; $hash < 256; $hash++ ) {				
+		for ( $hash = 0; $hash < 256; $hash++ ) {
 			$dir = sprintf( "%01x/%02x", intval( $hash / 16 ), $hash );
 			$paths = array_merge( glob( "{$this->sharedStaticPath}/$dir/*" ),
 				glob( "{$this->sharedStaticPath}/thumb/$dir/*" ) );
@@ -268,7 +268,7 @@ class DumpHTML {
 			print("Can't open file $fullName for writing\n");
 			return;
 		}
-		
+
 		fwrite( $file, $text );
 		fclose( $file );
 	}
@@ -282,7 +282,7 @@ class DumpHTML {
 		global $wgRightsUrl, $wgRightsText, $wgCopyrightIcon;
 
 		static $oldLogo = NULL;
-		
+
 		if ( !$this->setupDone ) {
 			$wgHooks['GetLocalURL'][] =& $this;
 			$wgHooks['GetFullURL'][] =& $this;
@@ -292,7 +292,7 @@ class DumpHTML {
 		if ( is_null( $currentDepth ) ) {
 			$currentDepth = $this->depth;
 		}
-		
+
 		if ( $this->alternateScriptPath ) {
 			if ( $currentDepth == 0 ) {
 				$wgScriptPath = '.';
@@ -339,7 +339,7 @@ class DumpHTML {
 		$wgThumbnailScriptPath = $wgSharedThumbnailScriptPath = false;
 		$wgEnableParserCache = false;
 		$wgMathPath = "$wgScriptPath/math";
-		
+
 		if ( !empty( $wgRightsText ) ) {
 			$wgRightsUrl = "$wgScriptPath/COPYING.html";
 		}
@@ -356,14 +356,14 @@ class DumpHTML {
 	/** Reads the content of a title object, executes the skin and captures the result */
 	function getArticleHTML( &$title ) {
 		global $wgOut, $wgTitle, $wgArticle, $wgUser;
-		
+
 		$linkCache =& LinkCache::singleton();
 		$linkCache->clear();
 		$wgTitle = $title;
 		if ( is_null( $wgTitle ) ) {
 			return false;
 		}
-		
+
 		$ns = $wgTitle->getNamespace();
 		if ( $ns == NS_SPECIAL ) {
 			$wgOut = new OutputPage;
@@ -383,7 +383,7 @@ class DumpHTML {
 			} else {
 				$wgOut = new OutputPage;
 				$wgOut->setParserOptions( new ParserOptions );
-		
+
 				$wgArticle->view();
 			}
 		}
@@ -419,7 +419,7 @@ ENDTEXT;
 		global $wgOutputEncoding, $wgDumpImages;
 		$parser = xml_parser_create( $wgOutputEncoding );
 		xml_set_element_handler( $parser, 'wfDumpStartTagHandler', 'wfDumpEndTagHandler' );
-		
+
 		$wgDumpImages = array();
 		xml_parse( $parser, $text );
 		xml_parser_free( $parser );
@@ -508,7 +508,7 @@ ENDTEXT;
 			return true;
 		}
 	}
-	
+
 	function onGetLocalURL( &$title, &$url, $query ) {
 		global $wgArticlePath;
 
@@ -537,7 +537,7 @@ ENDTEXT;
 		if ( $url === false ) {
 			$url = str_replace( '$1', wfUrlencode( $this->getHashedFilename( $title ) ), $wgArticlePath );
 		}
-		
+
 		return false;
 	}
 
@@ -580,7 +580,7 @@ ENDTEXT;
 
 		return $friendlyName;
 	}
-	
+
 	/**
 	 * Get a relative directory for putting a title into
 	 */

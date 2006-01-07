@@ -46,9 +46,9 @@ class MostrevisionsPage extends QueryPage {
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
-		
+
 		$plink = $skin->makeKnownLinkObj( $nt, $text );
-		
+
 		$nl = wfMsg( 'nrevisions', $result->value );
 		$nlink = $skin->makeKnownLinkObj( $nt, $nl, 'action=history' );
 

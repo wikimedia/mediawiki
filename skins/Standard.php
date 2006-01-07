@@ -40,7 +40,7 @@ class SkinStandard extends Skin {
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$s .= "<style type='text/css'>\n" .
 			  "@import '{$wgStylePath}/common/quickbar.css';\n</style>\n";
-		} else if ( 4 == $this->qbSetting() ) { # Floating right	
+		} else if ( 4 == $this->qbSetting() ) { # Floating right
 			$s .= "<style type='text/css'>\n" .
 			  "@import '{$wgStylePath}/common/quickbar-right.css';\n</style>\n";
 		}
@@ -68,7 +68,7 @@ class SkinStandard extends Skin {
 		} else if ( 4 == $qb) {
 			$s .= "#quickbar { border-right: 1px solid gray; }\n" .
 			  "#article { margin-right: 152px; margin-left: 4px; }\n";
-		}	
+		}
 		return $s;
 	}
 
@@ -151,7 +151,7 @@ class SkinStandard extends Skin {
 		$s .= "\n" . $this->logoText() . "\n<hr class='sep' />";
 
 		$sep = "\n<br />";
-		
+
 		# Use the first heading from the Monobook sidebar as the "browse" section
 		$bar = $this->buildSidebar();
 		$browseLinks = reset( $bar );

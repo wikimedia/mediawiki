@@ -31,7 +31,7 @@ require_once( 'SearchMySQL.php' );
  */
 class SearchMySQL4 extends SearchMySQL {
 	var $strictMatching = true;
-	
+
 	/** @todo document */
 	function SearchMySQL4( &$db ) {
 		$this->db =& $db;
@@ -66,7 +66,7 @@ class SearchMySQL4 extends SearchMySQL {
 		} else {
 			wfDebug( "Can't understand search query '{$filteredText}'\n" );
 		}
-		
+
 		$searchon = $this->db->strencode( $searchon );
 		$field = $this->getIndexField( $fulltext );
 		return " MATCH($field) AGAINST('$searchon' IN BOOLEAN MODE) ";

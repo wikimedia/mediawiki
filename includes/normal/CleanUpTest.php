@@ -278,7 +278,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 		}
 	}
 
-	/** @todo document */	
+	/** @todo document */
 	function testChunkRegression() {
 		# Check for regression against a chunking bug
 		$text   = "\x46\x55\xb8" .
@@ -316,7 +316,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 		          "\xad" .		# bad tail
 		          "\x7d" .
 		          "\xd9\x95";
-	
+
 		$expect = "\x4e\x30" .
 		          "\xef\xbf\xbd" .
 		          "\x3a" .
@@ -330,13 +330,13 @@ class CleanUpTest extends PHPUnit_TestCase {
 		          "\xef\xbf\xbd" .
 		          "\x7d" .
 		          "\xd9\x95";
-		
+
 		$this->assertEquals(
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */	
+	/** @todo document */
 	function testOverlongRegression() {
 		$text   = "\x67" .
 		          "\x1a" . # forbidden ascii
@@ -361,7 +361,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */	
+	/** @todo document */
 	function testSurrogateRegression() {
 		$text   = "\xed\xb4\x96" . # surrogate 0xDD16
 		          "\x83" . # bad tail

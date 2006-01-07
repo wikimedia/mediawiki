@@ -42,9 +42,9 @@ class MostimagesPage extends QueryPage {
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
-		
+
 		$plink = $skin->makeKnownLink( $nt->getPrefixedText(), $text );
-		
+
 		$nl = wfMsg( 'nlinks', $result->value );
 		$nlink = $skin->makeKnownLink( $nt->getPrefixedText() . '#filelinks', $nl );
 
