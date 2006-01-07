@@ -212,6 +212,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
 	MAG_CURRENTMONTHABBREV   => array( 1,    'CURRENTMONTHABBREV'     ),
 	MAG_CURRENTDAY           => array( 1,    'CURRENTDAY'             ),
+	MAG_CURRENTDAY2          => array( 1,    'CURRENTDAY2'            ),
 	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
 	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
 	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
