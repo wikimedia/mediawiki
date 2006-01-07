@@ -426,7 +426,7 @@ class Parser
 		foreach( $gallery_content as $marker => $content ) {
 			require_once( 'ImageGallery.php' );
 			if ( $render ) {
-				$gallery_content[$marker] = Parser::renderImageGallery( $content );
+				$gallery_content[$marker] = $this->renderImageGallery( $content );
 			} else {
 				$gallery_content[$marker] = '<gallery>'.$content.'</gallery>';
 			}
@@ -3529,12 +3529,9 @@ class Parser
 	 * given as text will return the HTML of a gallery with two images,
 	 * labeled 'The number "1"' and
 	 * 'A tree'.
-	 *
-	 * @static
 	 */
 	function renderImageGallery( $text ) {
 		# Setup the parser
-		global $wgTitle;
 		$parserOptions = new ParserOptions;
 		$localParser = new Parser();
 
@@ -3551,7 +3548,7 @@ class Parser
 			if ( count( $matches ) == 0 ) {
 				continue;
 			}
-			$nt = Title::newFromURL( $matches[1] );
+			$nt =& Title::newFromText( $matches[1] );
 			if( is_null( $nt ) ) {
 				# Bogus title. Ignore these so we don't bomb out later.
 				continue;
@@ -3562,8 +3559,8 @@ class Parser
 				$label = '';
 			}
 
-			$html = $localParser->parse( $label , $wgTitle, $parserOptions );
-			$html = $html->mText;
+			$pout = $localParser->parse( $label , $this->mTitle, $parserOptions );
+			$html = $pout->getText();
 
 			$ig->add( new Image( $nt ), $html );
 			$this->mOutput->addImage( $nt->getDBkey() );
