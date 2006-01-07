@@ -2897,11 +2897,7 @@ class Parser
 			# strip out HTML
 			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
 			$tocline = trim( $canonized_headline );
-			$canonized_headline = urlencode( Sanitizer::decodeCharReferences( str_replace(' ', '_', $tocline) ) );
-			$replacearray = array(
-				'%3A' => ':',
-				'%' => '.'
-			);
+			$canonized_headline = Sanitizer::escapeId( $tocline );
 			$canonized_headline = str_replace(array_keys($replacearray),array_values($replacearray),$canonized_headline);
 			$refers[$headlineCount] = $canonized_headline;
 
