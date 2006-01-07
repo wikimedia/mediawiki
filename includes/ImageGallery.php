@@ -106,6 +106,7 @@ class ImageGallery
 				$s .= '<td><div class="gallerybox" style="height: 152px;">' .
 					htmlspecialchars( $nt->getText() ) . '</div></td>' .  (($i%4==3) ? "</tr>\n" : '');
 				$i++;
+				var_dump( $nt );
 
 				continue;
 			}
