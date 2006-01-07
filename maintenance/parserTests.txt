@@ -3073,6 +3073,14 @@ Sanitizer: Escaping of spaces, multibyte characters, colons & other stuff in id=
 </p>
 !! end
 
+!! test
+Sanitizer: Validating the contents of the id attribute (bug 4515)
+!! input
+<br id=9 />
+!! result
+Something, but defenetly not <br id="9" />...
+!! end
+
 TODO:
 more images
 more tables
