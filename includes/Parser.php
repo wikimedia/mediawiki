@@ -2898,7 +2898,6 @@ class Parser
 			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
 			$tocline = trim( $canonized_headline );
 			$canonized_headline = Sanitizer::escapeId( $tocline );
-			$canonized_headline = str_replace(array_keys($replacearray),array_values($replacearray),$canonized_headline);
 			$refers[$headlineCount] = $canonized_headline;
 
 			# count how many in assoc. array so we can track dupes in anchors
