@@ -52,7 +52,6 @@ class Article {
 
 	/**
 	 * get the title object of the article
-	 * @public
 	 */
 	function getTitle() {
 		return $this->mTitle;
@@ -60,7 +59,7 @@ class Article {
 
 	/**
 	  * Clear the object
-	  * @private
+	  * @access private
 	  */
 	function clear() {
 		$this->mDataLoaded    = false;
@@ -149,24 +148,33 @@ class Article {
 	}
 
 	/**
-		This function accepts a title string as parameter
-		($preload). If this string is non-empty, it attempts
-		to fetch the current revision text. It respects
-		<includeonly>.
-	*/
+	 * Get the contents of a page from its title and remove includeonly tags
+	 *
+	 * TODO FIXME: This is only here because of the inputbox extension and
+	 * should be moved there
+	 *
+	 * @deprecated
+	 *
+	 * @param string The title of the page
+	 * @return string The contents of the page
+	 */
 	function getPreloadedText($preload) {
-		if($preload) {
-			$preloadTitle=Title::newFromText($preload);
-			if(isset($preloadTitle) && $preloadTitle->userCanRead()) {
-			$rev=Revision::newFromTitle($preloadTitle);
-			if($rev) {
-				$text=$rev->getText();
-				$text=preg_replace('/<\/?includeonly>/i','',$text);
-				return $text;
-				}
+		if ( $preload === '' )
+			return '';
+		else {
+			$preloadTitle = Title::newFromText( $preload );
+			if ( isset( $preloadTitle ) && $preloadTitle->userCanRead() ) {
+				$rev=Revision::newFromTitle($preloadTitle);
+				if ( is_object( $rev ) ) {
+					$text = $rev->getText();
+					// TODO FIXME: AAAAAAAAAAA, this shouldn't be implementing
+					// its own mini-parser! -ævar
+					$text = preg_replace( '~</?includeonly>~', '', $text );
+					return $text;
+				} else
+					return '';
 			}
 		}
-		return '';
 	}
 
 	/**
@@ -194,14 +202,14 @@ class Article {
 		# split it up by section
 		$secs =
 		  preg_split(
-		  '/(^=+.+?=+|^<h[1-6].*?' . '>.*?<\/h[1-6].*?' . '>)(?!\S)/mi',
+		  '/(^=+.+?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)(?!\S)/mi',
 		  $striptext, -1,
 		  PREG_SPLIT_DELIM_CAPTURE);
 		if($section==0) {
 			$rv=$secs[0];
 		} else {
 			$headline=$secs[$section*2-1];
-			preg_match( '/^(=+).+?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>(?!\S)/mi',$headline,$matches);
+			preg_match( '/^(=+).+?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>(?!\S)/mi',$headline,$matches);
 			$hlevel=$matches[1];
 
 			# translate wiki heading into level
@@ -216,7 +224,7 @@ class Article {
 			while(!empty($secs[$count*2-1]) && !$break) {
 
 				$subheadline=$secs[$count*2-1];
-				preg_match( '/^(=+).+?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>(?!\S)/mi',$subheadline,$matches);
+				preg_match( '/^(=+).+?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>(?!\S)/mi',$subheadline,$matches);
 				$subhlevel=$matches[1];
 				if(strpos($subhlevel,'=')!==false) {
 					$subhlevel=strlen($subhlevel);
@@ -240,7 +248,8 @@ class Article {
 	}
 
 	/**
-	 * Return the oldid of the article that is to be shown, 0 for the current revision
+	 * @return int The oldid of the article that is to be shown, 0 for the
+	 *             current revision
 	 */
 	function getOldID() {
 		if ( is_null( $this->mOldId ) ) {
@@ -250,8 +259,9 @@ class Article {
 	}
 
 	/**
-	 * Get the old ID from the request, return it.
 	 * Sets $this->mRedirectUrl to a correct URL if the query parameters are incorrect
+	 *
+	 * @return int The old id for the request
 	 */
 	function getOldIDFromRequest() {
 		global $wgRequest;
@@ -336,15 +346,22 @@ class Article {
 		return $row ;
 	}
 
+	/**
+	 * @param Database $dbr
+	 * @param Title $title
+	 */
 	function pageDataFromTitle( &$dbr, $title ) {
 		return $this->pageData( $dbr, array(
 			'page_namespace' => $title->getNamespace(),
 			'page_title'     => $title->getDBkey() ) );
 	}
 
+	/**
+	 * @param Database $dbr
+	 * @param int $id
+	 */
 	function pageDataFromId( &$dbr, $id ) {
-		return $this->pageData( $dbr, array(
-			'page_id' => intval( $id ) ) );
+		return $this->pageData( $dbr, array( 'page_id' => $id ) );
 	}
 
 	/**
@@ -487,9 +504,12 @@ class Article {
 
 	/**
 	 * Gets the article text without using so many damn globals
-	 * Returns false on error
 	 *
-	 * @param integer $oldid
+	 * Used by maintenance/importLogs.php
+	 *
+	 * @param int $oldid
+	 * @param bool $noredir Whether to follow redirects
+	 * @return mixed the content (string) or false on error
 	 */
 	function getContentWithoutUsingSoManyDamnGlobals( $oldid = 0, $noredir = false ) {
 		return $this->fetchContent( $oldid, $noredir, false );
@@ -497,6 +517,8 @@ class Article {
 
 	/**
 	 * Read/write accessor to select FOR UPDATE
+	 *
+	 * @param mixed $x
 	 */
 	function forUpdate( $x = NULL ) {
 		return wfSetVar( $this->mForUpdate, $x );
@@ -504,21 +526,24 @@ class Article {
 
 	/**
 	 * Get the database which should be used for reads
+	 *
+	 * This is deprecated, just use wfGetDB() instead
+	 *
+	 * @deprecated
+	 *
+	 * @return Database
 	 */
 	function &getDB() {
 		$ret =& wfGetDB( DB_MASTER );
-		return $ret;
-		#if ( $this->mForUpdate ) {
-			$ret =& wfGetDB( DB_MASTER );
-		#} else {
-		#	$ret =& wfGetDB( DB_SLAVE );
-		#}
 		return $ret;
 	}
 
 	/**
 	 * Get options for all SELECT statements
-	 * Can pass an option array, to which the class-wide options will be appended
+	 *
+	 * @param array $options an optional options array which'll be appended to
+	 *                       the default
+	 * @return array Options
 	 */
 	function getSelectOptions( $options = '' ) {
 		if ( $this->mForUpdate ) {
@@ -532,7 +557,7 @@ class Article {
 	}
 
 	/**
-	 * Return the Article ID
+	 * @return int Page ID
 	 */
 	function getID() {
 		if( $this->mTitle ) {
@@ -543,20 +568,19 @@ class Article {
 	}
 
 	/**
-	 * Returns true if this article exists in the database.
-	 * @return bool
+	 * @return bool Whether or not the page exists in the database
 	 */
 	function exists() {
 		return $this->getId() != 0;
 	}
 
 	/**
-	 * Get the view count for this article
+	 * @return int The view count for the page
 	 */
 	function getCount() {
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
-			$dbr =& $this->getDB();
+			$dbr =& wfGetDB( DB_SLAVE );
 			$this->mCounter = $dbr->selectField( 'page', 'page_counter', array( 'page_id' => $id ),
 				'Article::getCount', $this->getSelectOptions() );
 		}
@@ -564,23 +588,27 @@ class Article {
 	}
 
 	/**
-	 * Would the given text make this article a "good" article (i.e.,
-	 * suitable for including in the article count)?
+	 * Determine whether a page  would be suitable for being counted as an
+	 * article in the site_stats table based on the title & its content
+	 *
 	 * @param string $text Text to analyze
-	 * @return integer 1 if it can be counted else 0
+	 * @return bool
 	 */
 	function isCountable( $text ) {
 		global $wgUseCommaCount;
 
-		if ( NS_MAIN != $this->mTitle->getNamespace() ) { return 0; }
-		if ( $this->isRedirect( $text ) ) { return 0; }
-		$token = ($wgUseCommaCount ? ',' : '[[' );
-		if ( false === strstr( $text, $token ) ) { return 0; }
-		return 1;
+		$token = $wgUseCommaCount ? ',' : '[[';
+		return
+			$this->mTitle->getNamespace() == NS_MAIN
+			&& ! $this->isRedirect( $text )
+			&& in_string( $token, $text );
 	}
 
 	/**
 	 * Tests if the article text represents a redirect
+	 *
+	 * @param string $text
+	 * @return bool
 	 */
 	function isRedirect( $text = false ) {
 		if ( $text === false ) {
@@ -606,7 +634,7 @@ class Article {
 	/**
 	 * Loads everything except the text
 	 * This isn't necessary for all uses, so it's only done if needed.
-	 * @private
+	 * @access private
 	 */
 	function loadLastEdit() {
 		global $wgOut;
@@ -666,7 +694,7 @@ class Article {
 
 		$title = $this->mTitle;
 		$contribs = array();
-		$dbr =& $this->getDB();
+		$dbr =& wfGetDB( DB_SLAVE );
 		$revTable = $dbr->tableName( 'revision' );
 		$userTable = $dbr->tableName( 'user' );
 		$encDBkey = $dbr->addQuotes( $title->getDBkey() );
@@ -1043,12 +1071,12 @@ class Article {
 	 * Update the page record to point to a newly saved revision.
 	 *
 	 * @param Database $dbw
-	 * @param Revision $revision -- for ID number, and text used to set
-	                                length and redirect status fields
-	 * @param int $lastRevision -- if given, will not overwrite the page field
-	 *                             when different from the currently set value.
-	 *                             Giving 0 indicates the new page flag should
-	 *                             be set on.
+	 * @param Revision $revision For ID number, and text used to set
+	                             length and redirect status fields
+	 * @param int $lastRevision If given, will not overwrite the page field
+	 *                          when different from the currently set value.
+	 *                          Giving 0 indicates the new page flag should
+	 *                          be set on.
 	 * @return bool true on success, false on failure
 	 * @access private
 	 */
@@ -1117,7 +1145,7 @@ class Article {
 	 * functions for after display, but that's taking a big leap
 	 * of faith, and we want to be able to report database
 	 * errors at some point.
-	 * @private
+	 * @access private
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
 		global $wgOut, $wgUser, $wgUseSquid;
@@ -1132,7 +1160,7 @@ class Article {
 			return false;
 		}
 		
-		$this->mGoodAdjustment = $this->isCountable( $text );
+		$this->mGoodAdjustment = (int)$this->isCountable( $text );
 		$this->mTotalAdjustment = 1;
 
 		$ns = $this->mTitle->getNamespace();
@@ -1246,7 +1274,7 @@ class Article {
 				# split it up
 				# Unfortunately we can't simply do a preg_replace because that might
 				# replace the wrong section, so we have to use the section counter instead
-				$secs=preg_split('/(^=+.+?=+|^<h[1-6].*?' . '>.*?<\/h[1-6].*?' . '>)(?!\S)/mi',
+				$secs=preg_split('/(^=+.+?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)(?!\S)/mi',
 				  $oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
 				$secs[$section*2]=$text."\n\n"; // replace with edited
 
@@ -1258,7 +1286,7 @@ class Article {
 					# be erased, as the mother section has been replaced with
 					# the text of all subsections.
 					$headline=$secs[$section*2-1];
-					preg_match( '/^(=+).+?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>(?!\S)/mi',$headline,$matches);
+					preg_match( '/^(=+).+?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>(?!\S)/mi',$headline,$matches);
 					$hlevel=$matches[1];
 
 					# determine headline level for wikimarkup headings
@@ -1273,7 +1301,7 @@ class Article {
 
 						$subheadline=$secs[$count*2-1];
 						preg_match(
-						 '/^(=+).+?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>(?!\S)/mi',$subheadline,$matches);
+						 '/^(=+).+?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>(?!\S)/mi',$subheadline,$matches);
 						$subhlevel=$matches[1];
 						if(strpos($subhlevel,'=')!==false) {
 							$subhlevel=strlen($subhlevel);
@@ -1326,11 +1354,7 @@ class Article {
 		}
 
 		$isminor = $minor && $wgUser->isAllowed('minoredit');
-		if ( $this->isRedirect( $text ) ) {
-			$redir = 1;
-		} else {
-			$redir = 0;
-		}
+		$redir = (int)$this->isRedirect( $text );
 
 		$text = $this->preSaveTransform( $text );
 		$dbw =& wfGetDB( DB_MASTER );
@@ -1352,8 +1376,8 @@ class Article {
 		$revisionId = 0;
 
 		if ( 0 != strcmp( $text, $oldtext ) ) {
-			$this->mGoodAdjustment = $this->isCountable( $text )
-			  - $this->isCountable( $oldtext );
+			$this->mGoodAdjustment = (int)$this->isCountable( $text )
+			  - (int)$this->isCountable( $oldtext );
 			$this->mTotalAdjustment = 0;
 			$now = wfTimestampNow();
 
@@ -1716,7 +1740,7 @@ class Article {
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
 		# we select the text because it might be useful below
-		$dbr =& $this->getDB();
+		$dbr =& wfGetDB( DB_SLAVE );
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
 		$revisions = $dbr->select( array( 'page', 'revision' ),
@@ -1886,7 +1910,7 @@ class Article {
 			return false;
 		}
 
-		$u = new SiteStatsUpdate( 0, 1, -$this->isCountable( $this->getContent( true ) ), -1 );
+		$u = new SiteStatsUpdate( 0, 1, -(int)$this->isCountable( $this->getContent( true ) ), -1 );
 		array_push( $wgDeferredUpdateList, $u );
 
 		$linksTo = $this->mTitle->getLinksTo();
@@ -2087,7 +2111,7 @@ class Article {
 
 	/**
 	 * Do standard deferred updates after page view
-	 * @private
+	 * @access private
 	 */
 	function viewUpdates() {
 		global $wgDeferredUpdateList;
@@ -2109,7 +2133,7 @@ class Article {
 	/**
 	 * Do standard deferred updates after page edit.
 	 * Every 1000th edit, prune the recent changes table.
-	 * @private
+	 * @access private
 	 * @param string $text
 	 */
 	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid) {
@@ -2181,7 +2205,7 @@ class Article {
 
 	/**
 	 * @todo document this function
-	 * @private
+	 * @access private
 	 * @param string $oldid		Revision ID of this article revision
 	 */
 	function setOldSubtitle( $oldid=0 ) {
