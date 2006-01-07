@@ -1009,7 +1009,7 @@ END
 	 * The necessary JavaScript code can be found in style/wikibits.js.
 	 */
 	function getEditToolbar() {
-		global $wgStylePath, $wgLang, $wgMimeType, $wgJsMimeType;
+		global $wgStylePath, $wgContLang, $wgMimeType, $wgJsMimeType;
 
 		/**
 		 * toolarray an array of arrays which each include the filename of
@@ -1059,14 +1059,14 @@ END
 					'key'	=>	'H'
 				),
 			array(	'image'=>'button_image.png',
-					'open'	=>	'[['.$wgLang->getNsText(NS_IMAGE).":",
+					'open'	=>	'[['.$wgContLang->getNsText(NS_IMAGE).":",
 					'close'	=>	']]',
 					'sample'=>	wfMsg('image_sample'),
 					'tip'	=>	wfMsg('image_tip'),
 					'key'	=>	'D'
 				),
 			array(	'image'	=>'button_media.png',
-					'open'	=>	'[['.$wgLang->getNsText(NS_MEDIA).':',
+					'open'	=>	'[['.$wgContLang->getNsText(NS_MEDIA).':',
 					'close'	=>	']]',
 					'sample'=>	wfMsg('media_sample'),
 					'tip'	=>	wfMsg('media_tip'),
