@@ -366,19 +366,6 @@ class PreferencesForm {
 	/**
 	 * @access private
 	 */
-	function badNickname() {
-		$search = array( '/~~~/', '/~~~~/', '/~~~~~/', '/{{/', '/}}/' );
-		foreach( $search as $item ) {
-			if( preg_match( $item, $this->mNick ) > 0 ) {
-				return( true );	# We found a reserved expression
-			}
-		}
-		return( false );
-	}
-
-	/**
-	 * @access private
-	 */
 	function namespacesCheckboxes() {
 		global $wgContLang, $wgUser;
 
