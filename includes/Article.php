@@ -527,10 +527,6 @@ class Article {
 	/**
 	 * Get the database which should be used for reads
 	 *
-	 * This is deprecated, just use wfGetDB() instead
-	 *
-	 * @deprecated
-	 *
 	 * @return Database
 	 */
 	function &getDB() {
@@ -580,7 +576,7 @@ class Article {
 	function getCount() {
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr =& $this->getDB();
 			$this->mCounter = $dbr->selectField( 'page', 'page_counter', array( 'page_id' => $id ),
 				'Article::getCount', $this->getSelectOptions() );
 		}
@@ -694,7 +690,7 @@ class Article {
 
 		$title = $this->mTitle;
 		$contribs = array();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();		
 		$revTable = $dbr->tableName( 'revision' );
 		$userTable = $dbr->tableName( 'user' );
 		$encDBkey = $dbr->addQuotes( $title->getDBkey() );
@@ -1740,7 +1736,7 @@ class Article {
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
 		# we select the text because it might be useful below
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
 		$revisions = $dbr->select( array( 'page', 'revision' ),
