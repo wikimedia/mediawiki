@@ -1,5 +1,6 @@
 <?php
-/**
+/** Kurdish language file ( كوردي )
+  *
   * @package MediaWiki
   * @subpackage Language
   */
