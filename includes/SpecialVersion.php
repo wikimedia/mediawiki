@@ -5,6 +5,8 @@
  * @package MediaWiki
  * @subpackage SpecialPage
  *
+ * @bug 4531
+ *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -91,7 +93,7 @@ class SpecialVersion {
 	}
 
 	function extensionCredits() {
-		global $wgExtensionCredits, $wgExtensionFunctions, $wgSkinExtensionFunction;
+		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser, $wgSkinExtensionFunction;
 
 		if ( ! count( $wgExtensionCredits ) && ! count( $wgExtensionFunctions ) && ! count( $wgSkinExtensionFunction ) )
 			return '';
@@ -128,6 +130,13 @@ class SpecialVersion {
 		if ( count( $wgExtensionFunctions ) ) {
 			$out .= "** Extension functions:\n";
 			$out .= '***' . $this->langObj->listToText( $wgExtensionFunctions ) . "\n";
+		}
+
+		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
+			for ( $i = 0; $i < $cnt; ++$i )
+				$tags[$i] = "&lt;{$tags[$i]}&gt;";
+			$out .= "** Parser extension tags:\n";
+			$out .= '***' . $this->langObj->listToText( $tags ). "\n";
 		}
 
 		if ( count( $wgSkinExtensionFunction ) ) {
