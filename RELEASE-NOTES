@@ -192,6 +192,7 @@ i18n / Languages:
 * convertPlural breakage fixed a little
 
 Parser:
+* (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
 * (bug 3210) Fix Media: links with remote image URL path
 * (bug 3405) Don't use raw letters as aliases of MSGNW: and SUBST:
 * (bug 3412) Clean up date format handling so ~~~~-sigs work with default
