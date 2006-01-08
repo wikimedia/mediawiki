@@ -3667,7 +3667,7 @@ class Parser
 		$this->mOutput->mCacheTime = -1;
 	}
 
-	/**
+	/**#@+ 
 	 * Callback from the Sanitizer for expanding items found in HTML attribute
 	 * values, so they can be safely tested and escaped.
 	 * @param string $text
@@ -3686,10 +3686,21 @@ class Parser
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 		return $text;
 	}
+	/**#@-*/
 
+	/**#@+
+	 * Accessor/mutator
+	 */
 	function Title( $x = NULL ) { return wfSetVar( $this->mTitle, $x ); }
 	function Options( $x = NULL ) { return wfSetVar( $this->mOptions, $x ); }
 	function OutputType( $x = NULL ) { return wfSetVar( $this->mOutputType, $x ); }
+	/**#@-*/
+
+	/**#@+
+	 * Accessor
+	 */
+	function getTags() { return array_keys( $this->mTagHooks ); }
+	/**#@-*/
 }
 
 /**
