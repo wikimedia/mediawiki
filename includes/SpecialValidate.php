@@ -22,8 +22,6 @@
  * @package MediaWiki
  * @subpackage SpecialPage
  */
-
-
 class Validation {
 	var $topicList;
 	var $voteCache;
@@ -388,10 +386,12 @@ class Validation {
 			}
 		}
 		ksort( $data ) ;
+		$token = htmlspecialchars( $wgUser->editToken() );
 
 		# Generate form
 		$table_class = $focus ? 'revisionform_focus' : 'revisionform_default';
-		$ret = "<form method='post'><table class='{$table_class}'>\n";
+		$ret = "<form method='post'><table class='{$table_class}'>\n"
+			. '<input type="hidden" name="wpEditToken" value="' . $token .'" />';
 		$head = "Revision #" . $revision;
 		$link = $this->getRevisionLink( $article, $revision );
 		$metadata = $this->getMetadata( $revision, $article );
@@ -863,15 +863,19 @@ function wfSpecialValidate( $page = '' ) {
 	$mode = $wgRequest->getVal( "mode" );
 	$skin = $wgUser->getSkin();
 
-	if( $mode == "manage" ) {
-		$v = new Validation();
-		$html = $v->manageTopics();
-	} elseif( $mode == "userstats" ) {
-		$v = new Validation();
-		$user = $wgRequest->getVal( "user" );
-		$html = $v->showUserStats( $user );
+	$token = $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
+
+	if( $token ) {
+		if( $mode == "manage" ) {
+			$v = new Validation();
+			$html = $v->manageTopics();
+		} elseif( $mode == "userstats" ) {
+			$v = new Validation();
+			$user = $wgRequest->getVal( "user" );
+			$html = $v->showUserStats( $user );
+		}
 	} else {
-		$html = "$mode";
+		$html = htmlspecialchars( $mode );
 		$html .= "<ul>\n";
 
 		$t = Title::newFromText( "Special:Validate" );
