@@ -286,6 +286,7 @@ Special Pages:
 * (bug 4359) red [[user:#id]] links generated in [[special:Log]]
 * (bug 1996) Special page to list redirects
 * (bug 4334) Add "watch" links to Special:Unwatchedpages
+* (bug 3835) Add a 'Cancel' backlink on Special:Movepage
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
