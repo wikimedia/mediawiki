@@ -16,6 +16,8 @@ if( !defined( 'MEDIAWIKI' ) )
  * @subpackage Skins
  */
 class SkinCologneBlue extends Skin {
+	# We have several search form. Make sure they have different id
+	var $searchFormCount = '' ;
 
 	function getStylesheet() {
 		return "common/cologneblue.css?1";
@@ -300,17 +302,17 @@ class SkinCologneBlue extends Skin {
 
 	function searchForm( $label = "" )
 	{
-		global $wgRequest;
+		global $wgRequest, $searchFormCount;
 
 		$search = $wgRequest->getText( 'search' );
 		$action = $this->escapeSearchLink();
-		$s = "<form id=\"search\" method=\"get\" class=\"inline\" action=\"$action\">";
+		$s = "<form id=\"searchForm{$searchFormCount}\" method=\"get\" class=\"inline\" action=\"$action\">";
 		if ( "" != $label ) { $s .= "{$label}: "; }
 
-		$s .= "<input type='text' name=\"search\" size='14' value=\""
+		$s .= "<input type='text' name=\"searchInput{$searchFormCount}\" size='14' value=\""
 		  . htmlspecialchars(substr($search,0,256)) . "\" />"
 		  . "<br /><input type='submit' name=\"go\" value=\"" . htmlspecialchars( wfMsg( "go" ) ) . "\" /> <input type='submit' name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( "search" ) ) . "\" /></form>";
-
+		$searchFormCount++;
 		return $s;
 	}
 }
