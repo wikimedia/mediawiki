@@ -190,6 +190,7 @@ i18n / Languages:
 * (bug 137) MediaWiki:Copyrightwarning hardcoding
 * (bug 4457) Update for Portuguese language (pt)
 * convertPlural breakage fixed a little
+* (bug 4144) Support for Sudanese language (Basa Sunda)
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
