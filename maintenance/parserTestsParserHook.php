@@ -17,6 +17,8 @@ $wgHooks['ParserTestParser'][] = 'wfParserTestSetup';
 
 function wfParserTestSetup( &$parser ) {
 	$parser->setHook( 'tag', 'wfParserTestHook' );
+
+	return true;
 }
 
 function wfParserTestHook( $in, $argv ) {
