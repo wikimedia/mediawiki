@@ -526,9 +526,12 @@ class Validation {
 			$this->deleteTopic( $id );
 		}
 
+		$token = htmlspecialchars( $wgUser->editToken() );
+
 		# FIXME: Wikitext this
 		$r .= "<p>" . $this->getParsedWiki( wfMsg( 'val_warning' ) ) . "</p>\n";
 		$r .= "<form method='post'>\n";
+		$r .= '<input type="hidden" name="wpEditToken" value="' . $token .'" />';
 		$r .= "<table>\n";
 		$r .= "<tr>" . wfMsg( 'val_list_header' ) . "</tr>\n";
 		foreach( $this->topicList as $x => $y ) {
