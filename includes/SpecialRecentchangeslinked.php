@@ -62,7 +62,9 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$cmq = 'AND rc_minor=0';
 	} else { $cmq = ''; }
 
-	extract( $dbr->tableNames( 'recentchanges', 'categorylinks', 'pagelinks', 'revision', 'page' ) );
+	extract( $dbr->tableNames( 'recentchanges', 'categorylinks', 'pagelinks', 'revision', 'page' , "watchlist" ) );
+
+	$uid = $wgUser->getID();
 
 	// If target is a Category, use categorylinks and invert from and to
 	if( $nt->getNamespace() == NS_CATEGORY ) {
@@ -82,7 +84,9 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 					rc_new,
 					rc_patrolled,
 					rc_type
+" . ($uid ? ",wl_user" : "") . "
             FROM $categorylinks, $recentchanges
+" . ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
            WHERE rc_timestamp > '{$cutoff}'
              {$cmq}
              AND cl_from=rc_cur_id
@@ -110,7 +114,9 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 			rc_new,
 			rc_patrolled,
 			rc_type
-    FROM $pagelinks, $recentchanges
+" . ($uid ? ",wl_user" : "") . "
+   FROM $pagelinks, $recentchanges
+" . ($uid ? " LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
    WHERE rc_timestamp > '{$cutoff}'
 	{$cmq}
      AND pl_namespace=rc_namespace
@@ -143,10 +149,12 @@ ORDER BY rc_timestamp DESC
 		if ( 0 == $count ) { break; }
 		$obj = $dbr->fetchObject( $res );
 		--$count;
+#		print_r ( $obj ) ;
+#		print "<br/>\n" ;
 
 		$rc = RecentChange::newFromRow( $obj );
 		$rc->counter = $counter++;
-		$s .= $list->recentChangesLine( $rc );
+		$s .= $list->recentChangesLine( $rc , !empty( $obj->wl_user) );
 		--$limit;
 	}
 	$s .= $list->endRecentChangesList();
