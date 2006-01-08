@@ -986,6 +986,10 @@ class User {
 		$this->mRealName = $str;
 	}
 
+	/**
+	 * @param string $oname The option to check
+	 * @return string
+	 */
 	function getOption( $oname ) {
 		$this->loadFromDatabase();
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
@@ -993,6 +997,14 @@ class User {
 		} else {
 			return '';
 		}
+	}
+
+	/**
+	 * @param string $oname The option to check
+	 * @return bool False if the option is not selected, true if it is
+	 */
+	function getBoolOption( $oname ) {
+		return (bool)$this->getOption( $oname );
 	}
 
 	function setOption( $oname, $val ) {
