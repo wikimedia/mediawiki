@@ -576,7 +576,7 @@ class Article {
 	function getCount() {
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
-			$dbr =& $this->getDB();
+			$dbr =& wfGetDB( DB_SLAVE );
 			$this->mCounter = $dbr->selectField( 'page', 'page_counter', array( 'page_id' => $id ),
 				'Article::getCount', $this->getSelectOptions() );
 		}
@@ -690,7 +690,7 @@ class Article {
 
 		$title = $this->mTitle;
 		$contribs = array();
-		$dbr =& $this->getDB();		
+		$dbr =& wfGetDB( DB_SLAVE );
 		$revTable = $dbr->tableName( 'revision' );
 		$userTable = $dbr->tableName( 'user' );
 		$encDBkey = $dbr->addQuotes( $title->getDBkey() );
@@ -1721,9 +1721,13 @@ class Article {
 			return;
 		}
 
-		# Better double-check that it hasn't been deleted yet!
 		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
-		if( !$this->mTitle->exists() ) {
+		
+		# Better double-check that it hasn't been deleted yet!
+		$dbw =& wfGetDB( DB_MASTER );
+		$conds = $this->mTitle->pageCond();
+		$latest = $dbw->selectField( 'page', 'page_latest', $conds, $fname );
+		if ( $latest === false ) {
 			$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
 			return;
 		}
@@ -1735,38 +1739,30 @@ class Article {
 
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
-		# we select the text because it might be useful below
-		$dbr =& $this->getDB();
-		$ns = $this->mTitle->getNamespace();
-		$title = $this->mTitle->getDBkey();
-		$revisions = $dbr->select( array( 'page', 'revision' ),
-			array( 'rev_id', 'rev_user_text' ),
-			array(
-				'page_namespace' => $ns,
-				'page_title' => $title,
-				'rev_page = page_id'
-			), $fname, $this->getSelectOptions( array( 'ORDER BY' => 'rev_timestamp DESC' ) )
-		);
-
-		if( $dbr->numRows( $revisions ) > 1 && !$confirm ) {
+		$maxRevisions = 20;
+		$authors = $this->getLastNAuthors( $maxRevisions, $latest );
+		
+		if( count( $authors ) > 1 && !$confirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML('<b>'.wfMsg('historywarning'));
 			$wgOut->addHTML( $skin->historyLink() .'</b>');
 		}
 
-		# Fetch article text
-		$rev = Revision::newFromTitle( $this->mTitle );
-
-		# Fetch name(s) of contributors
-		$rev_name = '';
-		$all_same_user = true;
-		while( $row = $dbr->fetchObject( $revisions ) ) {
-			if( $rev_name != '' && $rev_name != $row->rev_user_text ) {
-				$all_same_user = false;
-			} else {
-				$rev_name = $row->rev_user_text;
+		# If a single user is responsible for all revisions, find out who they are
+		if ( count( $authors ) == $maxRevisions ) {
+			// Query bailed out, too many revisions to find out if they're all the same
+			$authorOfAll = false;
+		} else {
+			$authorOfAll = reset( $authors );
+			foreach ( $authors as $author ) {
+				if ( $authorOfAll != $author ) {
+					$authorOfAll = false;
+					break;
+				}
 			}
 		}
+		# Fetch article text
+		$rev = Revision::newFromTitle( $this->mTitle );
 
 		if( !is_null( $rev ) ) {
 			# if this is a mini-text, we can paste part of it into the deletion reason
@@ -1800,10 +1796,10 @@ class Article {
 				$text = preg_replace( "/[\n\r]/", '', $text );
 
 				if( !$blanked ) {
-					if( !$all_same_user ) {
+					if( $authorOfAll === false ) {
 						$reason = wfMsgForContent( 'excontent', $text );
 					} else {
-						$reason = wfMsgForContent( 'excontentauthor', $text, $rev_name );
+						$reason = wfMsgForContent( 'excontentauthor', $text, $authorOfAll );
 					}
 				} else {
 					$reason = wfMsgForContent( 'exbeforeblank', $text );
@@ -1814,6 +1810,53 @@ class Article {
 		return $this->confirmDelete( '', $reason );
 	}
 
+	/**
+	 * Get the last N authors 
+	 * @param int $num Number of revisions to get
+	 * @param string $revLatest The latest rev_id, selected from the master (optional)
+	 * @return array Array of authors, duplicates not removed
+	 */
+	function getLastNAuthors( $num, $revLatest = 0 ) {
+		$fname = 'Article::getLastNAuthors';
+		wfProfileIn( $fname );
+
+		// First try the slave
+		// If that doesn't have the latest revision, try the master
+		$continue = 2;
+		$db =& wfGetDB( DB_SLAVE );
+		do {
+			$res = $db->select( array( 'page', 'revision' ),
+				array( 'rev_id', 'rev_user_text' ),
+				array(
+					'page_namespace' => $this->mTitle->getNamespace(),
+					'page_title' => $this->mTitle->getDBkey(),
+					'rev_page = page_id'
+				), $fname, $this->getSelectOptions( array( 
+					'ORDER BY' => 'rev_timestamp DESC',
+					'LIMIT' => $num
+				) )
+			);
+			if ( !$res ) {
+				wfProfileOut( $fname );
+				return array();
+			}
+			$row = $db->fetchObject( $res );
+			if ( $continue == 2 && $revLatest && $row->rev_id != $revLatest ) {
+				$db =& wfGetDB( DB_MASTER );
+				$continue--;
+			} else {
+				$continue = 0;
+			}
+		} while ( $continue );
+
+		$authors = array( $row->rev_user_text );
+		while ( $row = $db->fetchObject( $res ) ) {
+			$authors[] = $row->rev_user_text;
+		}
+		wfProfileOut( $fname );
+		return $authors;
+	}
+	
 	/**
 	 * Output deletion confirmation dialog
 	 */
@@ -2503,7 +2546,7 @@ class Article {
 				$wgOut->addHTML(wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' ) );
 			}
 		} else {
-			$dbr =& $this->getDB( DB_SLAVE );
+			$dbr =& wfGetDB( DB_SLAVE );
 			$wl_clause = array(
 				'wl_title'     => $page->getDBkey(),
 				'wl_namespace' => $page->getNamespace() );
@@ -2545,7 +2588,7 @@ class Article {
 			return false;
 		}
 
-		$dbr =& $this->getDB( DB_SLAVE );
+		$dbr =& wfGetDB( DB_SLAVE );
 
 		$rev_clause = array( 'rev_page' => $id );
 		$fname = 'Article::pageCountInfo';
