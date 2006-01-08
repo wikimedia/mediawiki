@@ -3249,12 +3249,27 @@ class Parser
 	 * @return string Text
 	 */
 	function cleanSig( $text ) {
-		$text = str_replace( '{{', '{{subst:', $text );
-		$text = str_replace( '{{subst:subst:', '{{subst:', $text );
-		$text = str_replace( '~~~', '', $text );
-		$text = str_replace( '~~~~', '', $text );
-		$text = str_replace( '~~~~~', '', $text );
-		return( $text );
+		$mw = MagicWord::get( MAG_SUBST );
+		$substre = $mw->getBaseRegex();
+		$subst = $mw->getSynonym( 0 );
+		$i = $mw->getRegexCase();
+
+		$text = preg_replace(
+			"/
+				\{\{
+					(?!
+						(?:
+							$substre
+						)
+					)
+			/x$i",
+			'{{' . $subst,
+			$text
+		);
+		
+		$text = preg_replace( '/~{3,5}/', '', $text );
+	
+		return $text;
 	}
 	
 	/**
