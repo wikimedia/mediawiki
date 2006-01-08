@@ -505,6 +505,7 @@ See $1.',
 'restorelink' => '$1 deleted edits',
 'feedlinks' => 'Feed:',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
+'namespacebanner'	=> 'Namespacebanner',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Article',
