@@ -34,6 +34,7 @@ require_once( "$IP/includes/BagOStuff.php" );
 require_once( "$IP/languages/LanguageUtf8.php" );
 require_once( "$IP/includes/Hooks.php" );
 require_once( "$IP/maintenance/parserTestsParserHook.php" );
+require_once( "$IP/maintenance/parserTestsParserTime.php" );
 
 /**
  * @package MediaWiki
@@ -241,6 +242,7 @@ class ParserTest {
 
 		$parser =& new Parser();
 		wfRunHooks( 'ParserTestParser', array( &$parser ) );
+		
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
 		if (preg_match('/\\bpst\\b/i', $opts)) {
@@ -248,7 +250,7 @@ class ParserTest {
 		} elseif (preg_match('/\\bmsg\\b/i', $opts)) {
 			$out = $parser->transformMsg( $input, $options );
 		} else {
-			$output = $parser->parse( $input, $title, $options );
+			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$out = $output->getText();
 
 			if (preg_match('/\\bill\\b/i', $opts)) {
@@ -295,6 +297,7 @@ class ParserTest {
 			'wgUploadDirectory' => $this->uploadDir,
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
+			'wgServerName' => 'Britney Spears',
 			'wgLanguageCode' => 'en',
 			'wgContLanguageCode' => 'en',
 			'wgDBprefix' => 'parsertest',
