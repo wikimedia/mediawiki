@@ -199,6 +199,18 @@ class MagicWord {
 	}
 
 	/**
+	 * Gets the regexp case modifier to use, i.e. i or nothing, to be used if
+	 * one is using MagicWord::getBaseRegex(), otherwise it'll be included in
+	 * the complete expression
+	 */
+	function getRegexCase() {
+		if ( $this->mRegex === '' )
+			$this->initRegex();
+
+		return $this->mCaseSensitive ? '' : 'i';
+	}
+
+	/**
 	 * Gets a regex matching the word, if it is at the string start
 	 */
 	function getRegexStart() {
