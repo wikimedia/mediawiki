@@ -247,10 +247,12 @@ Comment semantics and delimiters, redux
 !! test
 Comment semantics and delimiters: directors cut
 !! input
-<!-- ... However we're purely an XML shop you see, so we eat everything
-starting with < followed by !-- until the first -- and > we see, observe: -->-->
+<!-- ... However we like to keep things simple and somewhat XML-ish so we eat
+everything starting with < followed by !-- until the first -- and > we see,
+that wouldn't be valid XML however, since in XML -- has to terminate a comment
+-->-->
 !! result
-<p>--&gt;
+<p>-->
 </p>
 !! end
 
@@ -259,7 +261,7 @@ Comment semantics: nesting
 !! input
 <!--<!-- no, we're not going to do anything fancy here -->-->
 !! result
-<p>--&gt;
+<p>-->
 </p>
 !! end
 
