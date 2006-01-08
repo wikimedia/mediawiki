@@ -53,6 +53,7 @@ class RecentChange
 {
 	var $mAttribs = array(), $mExtra = array();
 	var $mTitle = false, $mMovedToTitle = false;
+	var $numberofWatchingusers = 0 ; # Dummy to prevent error message in SpecialRecentchangeslinked
 
 	# Factory methods
 
