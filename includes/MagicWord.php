@@ -173,8 +173,13 @@ class MagicWord {
 		# This was used for matching "$1" variables, but different uses of the feature will have
 		# different restrictions, which should be checked *after* the MagicWord has been matched,
 		# not here. - IMSoP
-		$escSyn = array_map( 'preg_quote', $this->mSynonyms );
+		
+		$escSyn = array();
+		foreach ( $this->mSynonyms as $synonym )
+			// In case a magic word contains /, like that's going to happen;)
+			$escSyn[] = preg_quote( $synonym, '/' );
 		$this->mBaseRegex = implode( '|', $escSyn );
+		
 		$case = $this->mCaseSensitive ? '' : 'i';
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
