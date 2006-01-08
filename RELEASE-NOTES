@@ -10,230 +10,356 @@ Misc work going on.....
 Big things to note:
 * MySQL 3.23.x is no longer supported.
 * PHP 4.1/4.2 is no longer supported.
-
+* Experimental Oracle support
+* SVG support with rsvg
+* Installer now use monobook skin
+* New protection (bug 1735), preferences and userlogin designs
+* Category system is always enabled.
 
 == Changes since 1.5 ==
 
 * please fill in for the last couple weeks
-* Rearranged Special:Movepage form to reduce confusion between destination
-  title and reason input boxes
-* (bug 2527) Always set destination filename when new file is selected
-* (bug 3056) MySQL 3 compatibility fix: USE INDEX instead of FORCE INDEX
-* PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
-  if running prior to 4.2.0 as it causes the call to fail
-* (bug 3117) Fix display of upload size and type with tidy on
-* (bug 3076) Support MacBinary-encoded uploads from IE/Mac
-* (bug 2323) Remove "last" tabindex from history page
-* (bug 3141) Partial support for Breton language (thanks Fulup).
-* Partial support for Basque language (from wikipedia and meta)
-* (bug 3116) Division by zero on [[Image:Foo.png|123x123px|]]
-* Fix display of read-only lockfile message
-* Update all stats fields on recount.sql
-* Include software-visible client IP address in Special:Version comment
-  as a proxy debugging aid
-* (bug 3170) Page Title failed to obey MediaWiki:Pagetitle.
-  wikititlesuffix was removed
-* (bug 3177) Estonian date formats not implemented in LanguageEt.php
-* Add ability to break off certain debug topics into additional log files;
-  use $wgDebugLogGroups to configure and wfDebugLog() to log.
-* Finnish date format was hardcoded, now implemented properly
-* (bug 3190) Added some date format choices for language sr
-* (bug 1334) LanguageGa.php update
-* (bug 1020) Changing user interface language does not work immediately
-* (bug 2753) Some namespaces were not translated in LanguageTa.php (Tamil)
-* (bug 3204) Fix typo breaking special pages in fy localization
+* (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
+
+Code quality:
+* Use strval() to make sure we don't accidentally get null on bad revision
+  text loads or other fields mucking up XML export output
+* Clean up duplicate code for selection of changeslist style
+* Correct blob caching to reduce redundant blob loads on backups
+* (bug 3182) Clear link cache during import to prevent memory leak
+* Fixed possible infinite loop in formatComment
+* Wrap message page insertions in a transaction to speed up installation
+* Avoid notice warning on edit with no User-Agent header
+* (bug 3649) Remove obsolete, broken moveCustomMessages script
+* Avoid numerous redundant latest-revision lookups in history
+* Require PHP 4.3.2 or higher strictly now.
+* Tweak infinite-template-handling loop for PHP 5.1.1 string handling change
+* Remove unused OutputPage::addCookie()
+* Fix for short_open_tag off again; please don't break this, guys
+* (bug 4507) Adjust FULLPAGENAMEE escaping to standard form
+
+Database:
+* Finally dropped MySQL 3.23.x support
 * Oracle support
-* Edit conflict on recreation of deleted page
-* (bug 3210) Fix Media: links with remote image URL path
-* (bug 1956) Hide bot uploads from Special:Newimages
-* (bug 3216) Don't show empty warning page when no warnings.
-* (bug 3218) Use proper quoting on history Compare Revisions button
-* (bug 3220) Fix escaping of block URLs in Recentchanges
+* (bug 3056) MySQL 3 compatibility fix: USE INDEX instead of FORCE INDEX
+* Update all stats fields on recount.sql
 * (bug 3227) Fix SQL injection introduced in experimental code
+* Fix table prefix usage in Block::enumBlocks
+* (bug 3448) Set page_len on undelete
+* (bug 3506) Avoid MySQL error when Listusers returns no results
+* Skip update of disused 'rc_cur_time' field (todo: discard the field)
+* (bug 3735) Fix to run under MySQL 5's strict mode
+* (bug 3786) Experimental support for MySQL 4.1/5.0 utf8 charset mode
+  NOTE: Enabling this may break existing wikis, and still doesn't
+  work for all Unicode characters due to MySQL limitations.
+* MySQL 5.0 strict mode fix for moving unwatched pages
+* Ability to set the table name for external storage servers
+* Update ipblocks table in MySQL 5 table defs
+* Removed FulltextStoplist.php, no longer used (was for MySQL 3.x workaround)
+* Added templatelinks table, to track template inclusions. User-visible effects
+  will be:
+  * (inclusion) tag for inclusions in Special:Whatlinkshere
+  * More accurate list of used templates on the edit page
+  * More reliable cache invalidation when templates outside the template
+    namespace are changed
+
+Documentation:
+* (bug 3306) Document $wgLocalTZoffset
+
+Hooks:
+(list not complete)
 * Move ArticleSave hook execution into Article insert/update functions,
   so they get called on non-EditPage actions that use these functions
   to create or update pages.
-* Fix table prefix usage in Block::enumBlocks
-* (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
-* Fix upgrade from 1.4 due to version number check breakage [for rc future]
-* Fix upgrade from 1.4 with no old revisions
-* Remove "info" editing toolbar that was shown in browsers which do not
-fully support the editing toolbar, but was found to be too confusing.
-* (bug 2554) Tell users they are uploading too large file
-* (bug 3271) Updated LanguageNn.php for HEAD
-* (bug 3280) Respect 'move' group permission on page moves
-* (bug 2613) Clear saved passwords from the form
-* Finally dropped MySQL 3.23.x support
-* Experimental feature to allow translation of block expiry times
-  Implementation only for Finnish currently
-* (bug 3284) Ipblocklist paging, substring search
-* Allow filtering of robot edits in Special:Watchlist by stting 
-  $wgFilterRobotsWL = true.
-* (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
-* Fix interlanguage links on special pages when extra namespaces configured
-* IP privacy fix for blocklist search on autoblocks
-* Support for a license selection box on Special:Upload, configurable from MediaWiki:Licenses
-* Security fix for <math>
-* Security fix for tables
-* Security fix for Special:Upload license selection list
-* Don't override edit conflict suppression on section edits; section merging
-  should provide the expected transparency here and fits usage patterns better.
-* (bug 3292) Fix move-over-redirect test when current entries are not plaintext
-* (bug 2078) Don't hide watch tab on preview
-* (bug 3306) Document $wgLocalTZoffset
-* (bug 3304) Language file for Croatian (LanguageHr.php)
-* (bug 2143) Update Vietnamese interface
-* Add 'reupload' and 'reupload-shared' permission keys to restrict new uploads
-  overwriting existing files; default is the old behavior (allowed).
-* Use strval() to make sure we don't accidentally get null on bad revision
-  text loads or other fields mucking up XML export output
-* Add UploadVerification hook for custom file upload validation/security checks
-* (bug 3063) Remove some hardcodings from Hebrew localisation
+* Added EditFilter hook, and output callback on EditPage::showEditForm()
+  for a place to add in captcha-type extensions in the edit flow
+* (bug 3684) Fix typo in fatal error backtraces in Hooks.php
+* Fix for hook callbacks on objects containing no fields
+* Add a hook for additional user creation throttle / limiter extensions
+* Use $wgOut->parse() in wfGetSiteNotice() instead of creating a new parser
+  instance. This allows use of extension hooks if required.
+* Added AutoAuthenticate hook for external User object suppliers
+* Added 'PageRenderingHash' hook for changing the parser cache hash key
+  from an extension that changes rendering based on nonstandard options.
+* Add 'GetInternalURL' hook to match the GetFullURL and GetLocalURL ones
+* (bug 4456) Add hook for marking article patrolled
+
+Images:
 * Support SVG rendering with rsvg
 * Cap arbitrary SVG renders to given image size or $wgSVGMaxSize pixels wide
 * (bug 3127) Render large SVGs at image page size correctly
-* Fix regressions in ChangesList traditional layout
-* Fix edit on double-click for move-protected pages in Classic skin
 * Fix scaling of non-integer SVG unit sizes
-* (bug 3408) Bulgarian formatNum corrected
-* (bug 3448) Set page_len on undelete
-* (bug 3405) Don't use raw letters as aliases of MSGNW: and SUBST:
 * (bug 2800) Don't scale up small images on |thumb| without explicit size
 * Use the real file link instead of the default-size rasterized version for
   large SVG images on image description page
 * Include the file name/type/size line for non-resized images
+* (bug 3489) PHP 5.1 compat problem with captioned images
+* (bug 3643) Fix image page display of large images with resizing disabled
+* Added a limit to the size of image files which can be thumbnailed
+* (bug 3806) Gracefully fall back to client-side scaling on |thumb| image
+  that passes $wgMaxImageArea
+* (bug 153) Adjust thumbnail size calculations to match consistently;
+  patch by David Benbennick
+* (bug 4162) Add $wgThumbnailEpoch timestamp to force old thumbs to
+  be rerendered on demand, sitewide
+* (bug 1850) Additional fixes so existing local and remote images
+  get a blue link even if there's no local description page
+* Avoid FATAL ERROR when creating thumbnail of non-existing image
+* (bug 4207) Wrong image size when using 100x200px syntax to scale image up
+  patch by David Benbennick
+* Don't delete thumbnails when refreshing exif metadata. This caused thumbs
+  to vanish mysteriously from time to time for files that didn't have metadata.
+* (bug 4426) Add link to user_talk page on image pages
+
+Installer:
+* (bug 3782) Throw fatal installation warning if mbstring.func_overload on.
+  Why do people invent these crazy options that change language semantics?
+
+i18n / Languages:
+* Partial support for Basque language (from wikipedia and meta)
+* (bug 3141) Partial support for Breton language (thanks Fulup).
+* Support for venitian language
+* (bug 1334) LanguageGa.php update
+* Finnish date format was hardcoded, now implemented properly
+* (bug 3190) Added some date format choices for language sr
+* (bug 2753) Some namespaces were not translated in LanguageTa.php (Tamil)
+* (bug 3204) Fix typo breaking special pages in fy localization
+* (bug 3177) Estonian date formats not implemented in LanguageEt.php
+* (bug 1020) Changing user interface language does not work immediately
+* (bug 3271) Updated LanguageNn.php for HEAD
+* Experimental feature to allow translation of block expiry times
+  Implementation only for Finnish currently
+* (bug 3304) Language file for Croatian (LanguageHr.php)
+* (bug 2143) Update Vietnamese interface
+* (bug 3063) Remove some hardcodings from Hebrew localisation
+* (bug 3408) Bulgarian formatNum corrected
 * (bug 1512) Disable x-code interp on Esperanto URLs for now, it does more
   harm than good under current system by breaking incoming URLs with "ux".
   (Editing is not affected, just URLs.)
-* (bug 3412) Clean up date format handling so ~~~~-sigs work with default
-  format as designed. Documentation comments updated.
 * (bug 1423) LanguageJa.php update
-* Clean up duplicate code for selection of changeslist style
-* (bug 3475) anon contrib links on Special:Newpages
-* Correct blob caching to reduce redundant blob loads on backups
-* (bug 3485) Fix bogus warning about filename capitalization when off
-* (bug 2792) Update rebuildrecentchanges.inc for new schema
-* Special:Import/importDump fixes: report XML parse errors, accept <minor/>
-* (bug 3489) PHP 5.1 compat problem with captioned images
-* (bug 2570) Add 'watch this page' checkbox on uploads, watch uploads
-  by default when 'watchdefault' option is on
-* Skip update of disused 'rc_cur_time' field (todo: discard the field)
-* (bug 3506) Avoid MySQL error when Listusers returns no results
-* (bug 3182) Clear link cache during import to prevent memory leak
-* Add options to dumpBackup.php for making split/partial dumps by page id
 * Fix language name for dv
 * (bug 3503) Update LanguageSq.php from sq.wikipedia.org messages
-* Added EditFilter hook, and output callback on EditPage::showEditForm()
-  for a place to add in captcha-type extensions in the edit flow
-* Added filter options, compression piping, and multiple output streams for
-  dumpBackup.php
-* (bug 3595) Warn and abort if importDump.php called in read-only mode.
-* (bug 3598) Update message cache on message page deletion, patch by Tietew
-* Added separate noarticletext and newarticletext messages for logged in and anon users.
-* Blacklist additional MSIE CSS safety tricks
-* (bug 3332) Installation now uses Monobook, validates, plus usability improvements.
 * (bug 3629) Fix date & time format for Frisian
-* (bug 3643) Fix image page display of large images with resizing disabled
 * (bug 3334) Namespace changes for Polish
-* (bug 3660) Update diff3 detection to work with Windows/Cygwin
-* Fix meta robots tag on Special:Version again to avoid listing vulnerable
-  versions for convenient harvesting by automated worms
 * (bug 3580) Change default Dutch language file to more neutral
 * (bug 3656) LanguageHr.php - added convertPlural
 * (bug 3414) LanguageBe.php - added convertPlural
 * (bug 3163) Full translation of LanguageBr
 * (bug 3617) Update for portuguese language (pt)
 * Namespaces hacks on LanguagePl
-* New preferences design and reorganisation
-* (bug 3684) Fix typo in fatal error backtraces in Hooks.php
 * (bug 3682) LanguageSr.php - added convertPlural
 * (bug 3694) LanguageTr.php update
-* (bug 2369) Add separate message for input box on Special:Prefixindex
-* Fix for hook callbacks on objects containing no fields
 * (bug 3711) Removed invisible unicode characters from LanguageHu
+* (bug 2981) Linktrail for Tamil (ta)
+* (bug 3722) Update of Arabic language (ar) Namespace changes
+* Removed hardcoded Norwegian (no) project namespaces
+* (bug 2324) image for redirects should be without text and oriented according to content language
+* (bug 3666) Don't spew PHP warnings in prefs on unrecognized site language
+* (bug 3817) Use localized date formats in preferences; 'no preference' option
+  localizable as 'datedefault' message. Tweaked lots of languages files...
+* (bug 2721) Regression: Use European number separators for vi: wikis
+* (bug 3961) minor languageDe changes
+* (bug 1984) LanguageKo.php (Korean) update
+* (bug 3804) update of LanguageWa.php file
+* (bug 3886) Update for Portuguese language (pt)
+* (bug 4020) Update namespaces for ms
+* (bug 3922) bidi embedding overrides on category links
+* (bug 4061) Update of Slovene namespace names (LanguageSl.php)
+* (bug 4064) LanguageDe comma changes
+* (bug 3922) Further tweaks to bidi overrides in category list for old
+  versions of Safari and Konqueror
+* Fix custom namespaces on wikis set for Portuguese
+* (bug 4153) Fix block length localizations in Greek
+* (bug 3844) ab: av: ba: ce: & kv: now inherit from LanguageRu.php
+             ii: & za: now inherit from LanguageZn_cn.php
+* (bug 4165) Correct validation for user language selection (data taint)
+* (bug 4192) Remove silly 'The Free Encyclopedia' default sitesubtitle
+* Use content-lang for sitenotice
+* (bug 4233) Update LanguageJa.php
+* (bug 4279) Small correction to LanguageDa.php
+* (bug 4108, 4336) Remove trailing whitespace from various messages, which
+  mucks up message updating to create dupe entries
+* (bug 4389) Fix math options on zh-hk and zh-tw (but not localized)
+* (bug 4392) Update of LanguageSr.php
+* (bug 4382) Frisian numeric format
+* (bug 4424) Update for Spanish language (es) 100% messages translated
+* (bug 4425) Typos in Polish translation
+* (bug 4436) Update for Turkish language (tr)
+* (bug 4413) Update of Farsi language file (LanguageFa.php)
+* Update for LanguageSr (Serbian): magic words
+* (bug 137) MediaWiki:Copyrightwarning hardcoding
+* (bug 4457) Update for Portuguese language (pt)
+* convertPlural breakage fixed a little
+
+Parser:
+* (bug 3210) Fix Media: links with remote image URL path
+* (bug 3405) Don't use raw letters as aliases of MSGNW: and SUBST:
+* (bug 3412) Clean up date format handling so ~~~~-sigs work with default
+  format as designed. Documentation comments updated.
+* Fix Parser::unstrip on PHP 5.1.0RC4
+* (bug 3797) Don't expand variables and sigs in comments
+* Allow parser cache on redirect targets
+* Run wikitext-escaping on plaintext sigs (no wiki markup, just name)
+* Check for unbalanced HTML tags on raw sigs (markup allowed, but show
+  a warning in prefs and use default sig if not balanced)
+* Respect <noinclude> and <includeonly> during {{subst:}} expansion as well as
+  ordinary templates.
+* Support <includeonly> in templates loaded through preload= parameter
+* (bug 3979) Save correct {{REVISIONID}} into parser cache on edit
+* Substitute {{REVISIONID}} correctly in diff display
+* (bug 1850) Allow red-links on image pages linked with [[:image:foo]]
+* Fix XML validity checks in parser tests on PHP 5.1
+* (bug 4377) "[" is not valid in URLs
+* (bug 4453) fix for __TOC__ dollar-number breakage
+
+Upload:
+* (bug 2527) Always set destination filename when new file is selected
+* (bug 3076) Support MacBinary-encoded uploads from IE/Mac
+* (bug 2554) Tell users they are uploading too large file
+* Support for a license selection box on Special:Upload, configurable from MediaWiki:Licenses
+* Add 'reupload' and 'reupload-shared' permission keys to restrict new uploads
+  overwriting existing files; default is the old behavior (allowed).
+
+Security:
+* (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
+* (bug 3280) Respect 'move' group permission on page moves
+* (bug 2613) Clear saved passwords from the form
+* IP privacy fix for blocklist search on autoblocks
+* Security fix for <math>
+* Security fix for tables
+* Security fix for Special:Upload license selection list
+* Add UploadVerification hook for custom file upload validation/security checks
+* Blacklist additional MSIE CSS safety tricks
+* Fix meta robots tag on Special:Version again to avoid listing vulnerable
+  versions for convenient harvesting by automated worms
+* Sanitizer CSS comment processing order fix
+* Forbid usernames that can be interpreted as titles with namespaces, as that
+  leads to hard-to-manage names.
+* (bug 4071) Generate passwords long enough for $wgMinimalPasswordLength
+* Add createpage and createtalk permission keys, allowing a quick
+  switch to disable page creation for anonymous users.
+* (bug 675) Add page protection level for unregistered/new accounts
+* User::isNewbie now uses the registration date and $wgAutoconfirmAge
+* Add 'deletedhistory' permission key for ability to view deleted history
+  list via Special:Undelete. Default is off, replicating the 1.5 behavior,
+  but it can be turned back on for random users to replicate the previous
+  1.6 dev behavior.
+* Set cookies to secure mode based on use of HTTPS or $wgCookieSecure
+* (bug 4371) Disallow tilde character in signatures
+* Removed broken wgAllowAnonymousMinor and added new group right minoredit
+* Added detection for WMF files (application/x-msmetafile), added this 
+  MIME type to the default blacklist. Prevented inline display of images
+  which are not of known image types. This is in response to
+  http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+* Blocked users can no longer roll back, change the protection of, or delete/undelete pages
+* Protect against spoofing of X-Forwarded-For header
+
+Special Pages:
+* Rearranged Special:Movepage form to reduce confusion between destination
+  title and reason input boxes
+* (bug 1956) Hide bot uploads from Special:Newimages
+* (bug 3220) Fix escaping of block URLs in Recentchanges
+* (bug 3284) Ipblocklist paging, substring search
+* Allow filtering of robot edits in Special:Watchlist by stting 
+  $wgFilterRobotsWL = true.
+* Fix interlanguage links on special pages when extra namespaces configured
+* (bug 3475) anon contrib links on Special:Newpages
+* Special:Import/importDump fixes: report XML parse errors, accept <minor/>
+* (bug 2369) Add separate message for input box on Special:Prefixindex
+* (bug 3798) DoubleRedirects no longer has hard coded arrows
+* (bug 3803) Fix links on Special:Wantedcategories with miser mode off
+* Fix Special:BrokenRedirects on MySQL 5.0
+* (bug 3807) Fix 'all' in namespaces drop-down on contribs, rc
+* Fail gracefully on invalid namespace in Special:Newpages
+* (bug 3762) Define missing Special:Import UI messages
+* (bug 3761) Avoid deprecation warnings in Special:Import
+* (bug 2894) Enhanced Recent Changes link fixes
+* (bug 4059) fix 'hide minor edits' on Recentchangeslinked
+* (bug 146) List number of category members in Special:Categories
+  (patch by Joel Nothman)
+* (bug 4090) Fix diff links in Special:Recentchangeslinked
+* (bug 4093) '&bot=1' in Special:Contributions now propagate to other links
+* Fix display of old recentchanges records for page moves
+* (bug 360) Let Whatlinkshere track [[:image:foo]] links
+* (bug 3073) Keep search parameter on paging in Special:Newimages
+* Removed Special:Validate, it's been superseded by the Review extension
+* (bug 4359) red [[user:#id]] links generated in [[special:Log]]
+* (bug 1996) Special page to list redirects
+* (bug 4334) Add "watch" links to Special:Unwatchedpages
+
+Misc.:
+* PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
+  if running prior to 4.2.0 as it causes the call to fail
+* (bug 3117) Fix display of upload size and type with tidy on
+* (bug 2323) Remove "last" tabindex from history page
+* (bug 3116) Division by zero on [[Image:Foo.png|123x123px|]]
+* Fix display of read-only lockfile message
+* Include software-visible client IP address in Special:Version comment
+  as a proxy debugging aid
+* (bug 3170) Page Title failed to obey MediaWiki:Pagetitle.
+  wikititlesuffix was removed
+* Add ability to break off certain debug topics into additional log files;
+  use $wgDebugLogGroups to configure and wfDebugLog() to log.
+* Edit conflict on recreation of deleted page
+* (bug 3216) Don't show empty warning page when no warnings.
+* (bug 3218) Use proper quoting on history Compare Revisions button
+* Fix upgrade from 1.4 due to version number check breakage [for rc future]
+* Fix upgrade from 1.4 with no old revisions
+* Remove "info" editing toolbar that was shown in browsers which do not
+fully support the editing toolbar, but was found to be too confusing.
+* Don't override edit conflict suppression on section edits; section merging
+  should provide the expected transparency here and fits usage patterns better.
+* (bug 3292) Fix move-over-redirect test when current entries are not plaintext
+* (bug 2078) Don't hide watch tab on preview
+* Fix regressions in ChangesList traditional layout
+* Fix edit on double-click for move-protected pages in Classic skin
+* (bug 3485) Fix bogus warning about filename capitalization when off
+* (bug 2570) Add 'watch this page' checkbox on uploads, watch uploads
+  by default when 'watchdefault' option is on
+* Add options to dumpBackup.php for making split/partial dumps by page id
+* Added filter options, compression piping, and multiple output streams for
+  dumpBackup.php
+* (bug 3595) Warn and abort if importDump.php called in read-only mode.
+* (bug 3598) Update message cache on message page deletion, patch by Tietew
+* Added separate noarticletext and newarticletext messages for logged in and anon users.
+* (bug 3332) Installation now uses Monobook, validates, plus usability improvements.
+* (bug 3660) Update diff3 detection to work with Windows/Cygwin
 * (bug 2330) Don't do funny thinks with "links" in MediaWiki:Undeletedtext
 * Two-pass data dump for friendliness to the DB (--stub, then dumpTextPass.php)
 * Data dump 'prefetch' mode to read normalized text from a prior dump
   (requires PHP 5, XMLReader extension)
 * (bug 2773) Print style sheet no longer overrides RTL text direction
 * (bug 2938) Update MediaWiki:Exporttext to be more general
-* Fixed possible infinite loop in formatComment
-* Added a limit to the size of image files which can be thumbnailed
-* (bug 2981) Linktrail for Tamil (ta)
-* (bug 3722) Update of Arabic language (ar) Namespace changes
-* Wrap message page insertions in a transaction to speed up installation
-* Avoid notice warning on edit with no User-Agent header
 * Various fixes
 * Fix wfMsg*() replacements; args containing literal $[2-9] were wiped
 * Added @import for [[MediaWiki:Common.css]] to all skins
-* Removed hardcoded Norwegian (no) project namespaces
-* (bug 3735) Fix to run under MySQL 5's strict mode
-* (bug 3786) Experimental support for MySQL 4.1/5.0 utf8 charset mode
-  NOTE: Enabling this may break existing wikis, and still doesn't
-  work for all Unicode characters due to MySQL limitations.
-* Sanitizer CSS comment processing order fix
 * Edit box now remembers scrollbar position on preview
-* (bug 3798) DoubleRedirects no longer has hard coded arrows
-* (bug 2324) image for redirects should be without text and oriented according to content language
-* (bug 3803) Fix links on Special:Wantedcategories with miser mode off
-* Fix Special:BrokenRedirects on MySQL 5.0
-* (bug 3807) Fix 'all' in namespaces drop-down on contribs, rc
-* Fail gracefully on invalid namespace in Special:Newpages
-* (bug 3806) Gracefully fall back to client-side scaling on |thumb| image
-  that passes $wgMaxImageArea
-* MySQL 5.0 strict mode fix for moving unwatched pages
 * (bug 3816) Throw edit conflict instead of fatal error when a page is
   moved or deleted during section edit
-* (bug 3782) Throw fatal installation warning if mbstring.func_overload on.
-  Why do people invent these crazy options that change language semantics?
-* (bug 3762) Define missing Special:Import UI messages
 * (bug 3771) Handle internal functions in backtrace in wfAbruptExit()
-* (bug 3649) Remove obsolete, broken moveCustomMessages script
 * (bug 3291) 'last' diff link for last history line when not at end
-* Avoid numerous redundant latest-revision lookups in history
-* Ability to set the table name for external storage servers
 * (bug 3667) Add missing global in page move code
-* (bug 3761) Avoid deprecation warnings in Special:Import
 * (bug 2885) Remove unnecessary reference parameter which broke classic skin
   talk notification on PHP 5.0.5
-* Fix Parser::unstrip on PHP 5.1.0RC4
 * (bug 3852) "Redirected from" link no longer obscured on double-redirects
-* (bug 3845) Update attribute.php for 1.5 schema
 * changed directory hierarchy in images/math/. System upgrades from old to
   new hierarchy on the fly.
 * (bug 3487) Fix category edit preview with preview-on-bottom
 * (bug 918) Search index incorrectly joined words at == headings ==
 * (bug 3877) Render math images into temp directory, then move to hashed
   subdir so you can render new math images and have them work
-* (bug 3797) Don't expand variables and sigs in comments
-* (bug 3666) Don't spew PHP warnings in prefs on unrecognized site language
 * (bug 2392) Fix Atom items content type, upgrade to Atom 1.0
 * Allow $wgFeedCacheTimeout of 0 to disable feed caching
 * Fix WebRequest::getRequestURL() to strip off the host bits squid prepends
 * Require POST for action=purge, to stop bots from purging the cache
-* (bug 3817) Use localized date formats in preferences; 'no preference' option
-  localizable as 'datedefault' message. Tweaked lots of languages files...
 * Added local message cache feature ($wgLocalMessageCache), to reduce bandwidth
   requirements to the memcached server.
-* Forbid usernames that can be interpreted as titles with namespaces, as that
-  leads to hard-to-manage names.
-* (bug 2721) Regression: Use European number separators for vi: wikis
-* Allow parser cache on redirect targets
 * (bug 3562) for go search, try Caps-Variants-Broken-At-Non-Whitespace
 * (bug 2569) Use PATH_SEPARATOR instead of trying to guess based on
   DIRECTORY_SEPARATOR (was wrong on NetWare)
-* Require PHP 4.3.2 or higher strictly now.
-* Run wikitext-escaping on plaintext sigs (no wiki markup, just name)
-* Check for unbalanced HTML tags on raw sigs (markup allowed, but show
-  a warning in prefs and use default sig if not balanced)
 * (bug 2740) Accept image deletions on 'enter' submit from MSIE
 * (bug 3939) Don't try to load text for interwiki redirect target
-* Respect <noinclude> and <includeonly> during {{subst:}} expansion as well as
-  ordinary templates.
 * (bug 3948) Avoid notice warning in debug statement in bad search
-* (bug 3961) minor languageDe changes
-* (bug 1984) LanguageKo.php (Korean) update
-* (bug 3804) update of LanguageWa.php file
 * Recognize Special:Search consistently so read whitelist works
 * (bug 3999) Change atom 1.0 feed id; had been unnecessarily complex due to
   unclear language in the spec. Now using the URL, same as the permalink,
@@ -241,78 +367,34 @@ fully support the editing toolbar, but was found to be too confusing.
   enough or something.
 * (bug 4014) Fix include mode for Allpages on small page sets
 * (bug 3996) Fix text for new entries in RC RSS/Atom feed
-* (bug 3886) Update for Portuguese language (pt)
-* (bug 4020) Update namespaces for ms
-* (bug 2894) Enhanced Recent Changes link fixes
-* (bug 4059) fix 'hide minor edits' on Recentchangeslinked
-* (bug 3922) bidi embedding overrides on category links
-* (bug 146) List number of category members in Special:Categories
-  (patch by Joel Nothman)
-* (bug 4061) Update of Slovene namespace names (LanguageSl.php)
-* (bug 4064) LanguageDe comma changes
 * (bug 3065) Update both watched namespaces when renaming pages
 * Changed mail form to have a bigger message entry box (like for editing
   a page
-* Support <includeonly> in templates loaded through preload= parameter
 * Fix ulimit parameters for wfShellExec when memory_limit is specified in 'm'
-* (bug 3979) Save correct {{REVISIONID}} into parser cache on edit
-* Substitute {{REVISIONID}} correctly in diff display
-* (bug 4090) Fix diff links in Special:Recentchangeslinked
-* (bug 4093) '&bot=1' in Special:Contributions now propagate to other links
-* Fix display of old recentchanges records for page moves
 * (bug 2111) Collapsable exif metadata table, clean up display
 * Reduce fractions in display of exif exposure time
 * (bug 4048) Optional footer link to site privacy policy
-* (bug 3922) Further tweaks to bidi overrides in category list for old
-  versions of Safari and Konqueror
 * Don't die() when update.php reaches the end of the warning count
-* (bug 4071) Generate passwords long enough for $wgMinimalPasswordLength
 * (bug 1915) Fix edit links when 'direction' used with 'oldid';
   using revision ID reported via OutputPage; Skin::editUrlOptions()
 * Remove obsolete 'redirect=no' on some edit links
 * Include oldid for the second revision on edit link on diff view
 * (bug 4035) Fix prev/next revision links on edit page
-* Fix custom namespaces on wikis set for Portuguese
-* Major overhaul of Special:Userlogin
-* Update ipblocks table in MySQL 5 table defs
 * (bug 4100, 3049) Add 'edittools' message to hold edit tools, put it
   on Special:Upload as well as edit, rearrange edit page pieces a bit.
   Copyright warning now above the buttons to ensure it's visible,
   template list at the bottom so it can grow.
-* Tweak infinite-template-handling loop for PHP 5.1.1 string handling change
-* (bug 1850) Allow red-links on image pages linked with [[:image:foo]]
-* (bug 360) Let Whatlinkshere track [[:image:foo]] links
-* (bug 4153) Fix block length localizations in Greek
-* Fix XML validity checks in parser tests on PHP 5.1
-* (bug 3844) ab: av: ba: ce: & kv: now inherit from LanguageRu.php
-             ii: & za: now inherit from LanguageZn_cn.php
 * Optional summary parameter to action=rollback, for user javascript
-* (bug 153) Adjust thumbnail size calculations to match consistently;
-  patch by David Benbennick
-* (bug 4162) Add $wgThumbnailEpoch timestamp to force old thumbs to
-  be rerendered on demand, sitewide
-* (bug 4165) Correct validation for user language selection (data taint)
-* Add createpage and createtalk permission keys, allowing a quick
-  switch to disable page creation for anonymous users.
 * (bug 4167) Fix regression caused by patch for bug 153
-* (bug 1850) Additional fixes so existing local and remote images
-  get a blue link even if there's no local description page
 * (bug 4169) Use $wgLegalTitleChars in pipe trick conversions
 * (bug 4170) Decode HTML character escapes in sort key
-* Avoid FATAL ERROR when creating thumbnail of non-existing image
-* (bug 4192) Remove silly 'The Free Encyclopedia' default sitesubtitle
 * (bug 4201) Fix user-talk mode for Enotif, and general code cleanup
-* (bug 4207) Wrong image size when using 100x200px syntax to scale image up
-  patch by David Benbennick
 * (bug 4214) Skip redundant action text inserts into the HTML <title>
 * (bug 4212) Skip redundant meta-robots tag for default settings
-* Use content-lang for sitenotice
-* (bug 4233) Update LanguageJa.php
 * Fix regression: old version missing from edit links in Nostalgia skin
 * (bug 1600) Trigger edit conflict on duplicate section=new submissions
 * (bug 4001) Use local variables properly in wikibits.js akeytt()
 * Fix regression: old version missing from edit links on CSS/JS pages
-* (bug 3073) Keep search parameter on paging in Special:Newimages
 * (bug 3211) Include Date, To mail headers when using PEAR::Mail
 * (bug 3407) Fix encoding of subject and from/to headers on notification
   mails; userMailer() now takes a MailAddress wrapper object instead of
@@ -322,98 +404,40 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fixed --server override on dumpTextPass.php
 * Added plugin interface for dumpBackup, so additional filters and output
   sink types can be registered at runtime from an extension
-* (bug 4279) Small correction to LanguageDa.php
 * (bug 349) Fix for some numeric differences not being highlighted
   patch by Andrius Ramanauskas
-* Removed FulltextStoplist.php, no longer used (was for MySQL 3.x workaround)
 * (bug 4298) Include rc_id on enhanced RC singleton diff links for patrolling
 * Did some refactoring on ChangesList.php merging dupe code
 * (bug 1586) Fix interwiki generator for wikimedia obscure domains
 * (bug 3493) Mark edits patrolled when they are reverted
   patch by Leon Planken
-* Add a hook for additional user creation throttle / limiter extensions
-* Use $wgOut->parse() in wfGetSiteNotice() instead of creating a new parser
-  instance. This allows use of extension hooks if required.
 * Removed experimental Amethyst skin from default set
 * Upgrade old skin preferences properly at Special:Preferences
   (used to spontaneously switch to Classic skin for old numeric pref records)
-* Added AutoAuthenticate hook for external User object suppliers
 * (bug 3424) Update page_touched for category members on category page creation
-* (bug 4108, 4336) Remove trailing whitespace from various messages, which
-  mucks up message updating to create dupe entries
-* (bug 1735) Revamped protection interface
-* (bug 675) Add page protection level for unregistered/new accounts
-* User::isNewbie now uses the registration date and $wgAutoconfirmAge
 * Log views show message when no matches
 * Fix raw sitenotice display on database error
 * Fix autoconfirm check for old accounts
 * (bug 4368) Don't show useless empty preview on new section creation
 * Don't show useless empty preview on new page creation
-* (bug 4377) "[" is not valid in URLs
-* Don't delete thumbnails when refreshing exif metadata. This caused thumbs
-  to vanish mysteriously from time to time for files that didn't have metadata.
-* Added 'PageRenderingHash' hook for changing the parser cache hash key
-  from an extension that changes rendering based on nonstandard options.
-* Add 'deletedhistory' permission key for ability to view deleted history
-  list via Special:Undelete. Default is off, replicating the 1.5 behavior,
-  but it can be turned back on for random users to replicate the previous
-  1.6 dev behavior.
-* Add 'GetInternalURL' hook to match the GetFullURL and GetLocalURL ones
-* (bug 4389) Fix math options on zh-hk and zh-tw (but not localized)
-* Remove unused OutputPage::addCookie()
-* Set cookies to secure mode based on use of HTTPS or $wgCookieSecure
-* (bug 4392) Update of LanguageSr.php
-* (bug 4382) Frisian numeric format
 * (bug 4411) Fix messages diff link for classic skin
 * (bug 4385) Separate parser cache entries for non-editing users, so section
   edit links don't vanish / appear unwanted on protected pages
 * (bug 2726, 3397) Fix [[Special:]] and [[:Image]] links in action=render
 * (bug 4419) Remove obsolete magnify.png.old
-* Fix for short_open_tag off again; please don't break this, guys
-* Removed Special:Validate, it's been superseded by the Review extension
-* (bug 4424) Update for Spanish language (es) 100% messages translated
-* (bug 4425) Typos in Polish translation
-* (bug 4426) Add link to user_talk page on image pages
-* Added templatelinks table, to track template inclusions. User-visible effects
-  will be:
-  * (inclusion) tag for inclusions in Special:Whatlinkshere
-  * More accurate list of used templates on the edit page
-  * More reliable cache invalidation when templates outside the template
-    namespace are changed
 * Removed $wgUseCategoryMagic option, categories are now enabled unconditionally
-* (bug 4359) red [[user:#id]] links generated in [[special:Log]]
 * (bug 3318) UI workarounds for disabled items in license selector
   MSIE/Win: items now grayed out, JS will revert to 'non selected' if clicked
   Safari: JS will revert to 'non selected' if clicked (but not gray)
   MSIE/Mac: indented items now visible (JS hack)
-* (bug 4436) Update for Turkish language (tr)
-* (bug 4413) Update of Farsi language file (LanguageFa.php)
-* Update for LanguageSr (Serbian): magic words
-* (bug 4371) Disallow tilde character in signatures
-* (bug 1996) Special page to list redirects
-* (bug 137) MediaWiki:Copyrightwarning hardcoding
 * (bug 714) "plainlinks" class issues in IE, Opera
 * (bug 4317) Inconsistent "broken redirects" messages
 * Default interface text for "selflinks" tweaked
-* Removed broken wgAllowAnonymousMinor and added new group right minoredit
-* (bug 4457) Update for Portuguese language (pt)
-* convertPlural breakage fixed a little
-* (bug 4456) Add hook for marking article patrolled
 * (bug 3194) default implementation of translateBlockExpiry
   which uses ipboptions
 * (bug 4446) $wgExportAllowHistory option to explicitly disable history in
   Special:Export form, 'exportnohistory' message to translate live hack.
-* (bug 4453) fix for __TOC__ dollar-number breakage
 * Maintenance script to delete unused user accounts
-* (bug 4334) Add "watch" links to Special:Unwatchedpages
-* Added detection for WMF files (application/x-msmetafile), added this 
-  MIME type to the default blacklist. Prevented inline display of images
-  which are not of known image types. This is in response to
-  http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
-* (bug 4507) Adjust FULLPAGENAMEE escaping to standard form
-* Blocked users can no longer roll back, change the protection of, or delete/undelete pages
-* Protect against spoofing of X-Forwarded-For header
-* Support for venitian language
 
 === Caveats ===
 
