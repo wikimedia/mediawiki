@@ -1065,7 +1065,8 @@ div.prefsectiontip {
 	margin-top: 2em;
 }
 
-#userloginForm {
+div#userloginForm form,
+div#userlogin form#userlogin2 {
 	margin: 0 3em 1em 0;
 	border: 1px solid #aaa;
 	clear: both;
@@ -1074,13 +1075,17 @@ div.prefsectiontip {
 	float: left;
 }
 
-#userloginForm table {
+div#userloginForm table,
+div#userlogin form#userlogin2 table {
 	background-color: #f9f9f9;
 }
 
-#userloginForm h2 {
+div#userloginForm h2,
+div#userlogin form#userlogin2 h2 {
 	padding-top: 0;
 }
+
+
 
 #userloginprompt {
 	font-size: 85%;
