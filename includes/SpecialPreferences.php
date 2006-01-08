@@ -229,7 +229,7 @@ class PreferencesForm {
 
 		# Validate the signature and clean it up as needed
 		if( $this->mToggles['fancysig'] ) {
-			if( Parser::validateSig( $this->mNick ) ) {
+			if( Parser::validateSig( $this->mNick ) !== false ) {
 				$this->mNick = Parser::cleanSig( $this->mNick );
 			} else {
 				$this->mainPrefsForm( 'error', wfMsg( 'badsig' ) );
