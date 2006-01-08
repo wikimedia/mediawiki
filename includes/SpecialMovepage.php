@@ -116,9 +116,6 @@ class MovePageForm {
 		$movetalk = wfMsgHtml( 'movetalk' );
 		$movereason = wfMsgHtml( 'movereason' );
 
-		$sk =& $wgUser->getSkin();
-		$cancel = $sk->makeKnownLink( $oldTitle, wfMsg('cancel') );
-
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
 		$token = htmlspecialchars( $wgUser->editToken() );
@@ -166,7 +163,6 @@ class MovePageForm {
 			<td>&nbsp;</td>
 			<td align='left'>
 				<input type='submit' name=\"{$submitVar}\" value=\"{$movepagebtn}\" />
-				{$cancel}
 			</td>
 		</tr>
 	</table>
