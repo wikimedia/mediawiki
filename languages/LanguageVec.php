@@ -32,6 +32,12 @@ require_once( 'LanguageIt.php' );
 	'Nessun', 'Fisso a sinistra', 'Fisso a destra', 'Fluttuante a sinistra'
 );
 
+/* private */ $wgAllMessagesVec = array(
+
+# no messages yet
+
+);
+
 class LanguageVec extends LanguageIt {
 	#FIXME: inherit almost everything for now
 
