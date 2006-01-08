@@ -27,11 +27,6 @@ require_once("LanguageUtf8.php");
 	NS_CATEGORY_TALK  => "שיחת_קטגוריה",
 ) + $wgNamespaceNamesEn;
 
-/* Custom namespaces for portal and portal_talk */
-$wgExtraNamespaces = array(
-	100 => "פורטל",
-	101 => "שיחת_פורטל");
-
 /* private */ $wgQuickbarSettingsHe = array(
 	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל"
 );
