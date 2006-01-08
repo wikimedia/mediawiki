@@ -3211,15 +3211,15 @@ class Parser
 		$nickname = trim( $user->getOption( 'nickname' ) );
 		$nickname = ( $nickname == '' ? $username : $nickname );
 	
-		if( $user->getOption( 'fancysig' ) ) {
+		if( $user->getOption( 'fancysig' ) !== false ) {
 			# Sig. might contain markup; validate this
-			if( $this->validateSig( $nickname ) ) {
+			if( $this->validateSig( $nickname ) !== false ) {
 				# Validated; clean up (if needed) and return it
-				return( $this->cleanSig( $nick ) );
+				return( $this->cleanSig( $nickname ) );
 			} else {
 				# Failed to validate; fall back to the default
 				$nickname = $username;
-				wfDebug( "Parser::getUserSig: $name has bad XML tags in signature.\n" );
+				wfDebug( "Parser::getUserSig: $username has bad XML tags in signature.\n" );
 			}
 		}
 
