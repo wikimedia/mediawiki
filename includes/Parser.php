@@ -3208,10 +3208,10 @@ class Parser
 		global $wgContLang;
 
 		$username = $user->getName();
-		$nickname = trim( $user->getOption( 'nickname' ) );
-		$nickname = ( $nickname == '' ? $username : $nickname );
+		$nickname = $user->getOption( 'nickname' );
+		$nickname = $nickname === '' ? $username : $nickname;
 	
-		if( $user->getOption( 'fancysig' ) !== false ) {
+		if( $user->getBoolOption( 'fancysig' ) !== false ) {
 			# Sig. might contain markup; validate this
 			if( $this->validateSig( $nickname ) !== false ) {
 				# Validated; clean up (if needed) and return it
