@@ -1327,10 +1327,233 @@ List items are not parsed correctly following a <pre> block (bug 785)
 !! end
 
 ###
-### Magic variables
+### Magic Words
 ###
+
 !! test
-Magic variables
+Magic Word: {{CURRENTDAY}}
+!! input
+{{CURRENTDAY}}
+!! result
+<p>1
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTDAY2}}
+!! input
+{{CURRENTDAY2}}
+!! result
+<p>01
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTDAYNAME}}
+!! input
+{{CURRENTDAYNAME}}
+!! result
+<p>Thursday
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTDOW}}
+!! input
+{{CURRENTDOW}}
+!! result
+<p>4
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTH}}
+!! input
+{{CURRENTMONTH}}
+!! result
+<p>01
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTHABBREV}}
+!! input
+{{CURRENTMONTHABBREV}}
+!! result
+<p>Jan
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTHNAME}}
+!! input
+{{CURRENTMONTHNAME}}
+!! result
+<p>January
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTHNAMEGEN}}
+!! input
+{{CURRENTMONTHNAMEGEN}}
+!! result
+<p>January
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTTIME}}
+!! input
+{{CURRENTTIME}}
+!! result
+<p>00:02
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTWEEK}}
+!! input
+{{CURRENTWEEK}}
+!! result
+<p>01
+</p>
+!! end
+
+!! test
+Magic Word: {{CURRENTYEAR}}
+!! input
+{{CURRENTYEAR}}
+!! result
+<p>1970
+</p>
+!! end
+
+!! test
+Magic Word: {{FULLPAGENAME}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{FULLPAGENAME}}
+!! result
+<p>User:Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{FULLPAGENAMEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{FULLPAGENAMEE}}
+!! result
+<p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{NAMESPACE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+disabled # FIXME
+!! input
+{{NAMESPACE}}
+!! result
+<p>User
+</p>
+!! end
+
+!! test
+Magic Word: {{NAMESPACEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+disabled # FIXME
+!! input
+{{NAMESPACEE}}
+!! result
+<p>User
+</p>
+!! end
+
+!! test
+Magic Word: {{NUMBEROFARTICLES}}
+!! input
+{{NUMBEROFARTICLES}}
+!! result
+<p>-1
+</p>
+!! end
+
+!! test
+Magic Word: {{NUMBEROFFILES}}
+!! input
+{{NUMBEROFFILES}}
+!! result
+<p>1
+</p>
+!! end
+
+!! test
+Magic Word: {{PAGENAME}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+disabled # FIXME
+!! input
+{{PAGENAME}}
+!! result
+<p>Ævar Arnfjörð Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{PAGENAMEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{PAGENAMEE}}
+!! result
+<p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! end
+
+!! test
+Magic Word: {{REVISIONID}}
+!! input
+{{REVISIONID}}
+!! result
+<p>1337
+</p>
+!! end
+
+!! test
+Magic Word: {{SCRIPTPATH}}
+!! input
+{{SCRIPTPATH}}
+!! result
+<p>/
+</p>
+!! end
+
+!! test
+Magic Word: {{SERVER}}
+!! input
+{{SERVER}}
+!! result
+<p><a href="http://localhost" class='external free' title="http://localhost" rel="nofollow">http://localhost</a>
+</p>
+!! end
+
+!! test
+Magic Word: {{SERVERNAME}}
+!! input
+{{SERVERNAME}}
+!! result
+<p>Britney Spears
+</p>
+!! end
+
+!! test
+Magic Word: {{SITENAME}}
 !! input
 {{SITENAME}}
 !! result
