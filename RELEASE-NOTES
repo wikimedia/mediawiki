@@ -1011,6 +1011,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4510) Correct Barnes & Noble bookstore URLs
 * (bug 4504) Use site language for namespace name resolution
 * (bug 4530) Fix Kurdish language name
+* (bug 2571) Duplicate anchors and missing form id tag in search form on
+  Cologne Blue skin
 
 === Caveats ===
 
