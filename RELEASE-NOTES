@@ -413,7 +413,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4507) Adjust FULLPAGENAMEE escaping to standard form
 * Blocked users can no longer roll back, change the protection of, or delete/undelete pages
 * Protect against spoofing of X-Forwarded-For header
-
+* Support for venitian language
 
 === Caveats ===
 
