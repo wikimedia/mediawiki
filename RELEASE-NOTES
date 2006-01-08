@@ -439,6 +439,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4446) $wgExportAllowHistory option to explicitly disable history in
   Special:Export form, 'exportnohistory' message to translate live hack.
 * Maintenance script to delete unused user accounts
+* (bug 912) Search box easier to reach in text browsers (lynx, links)
 
 === Caveats ===
 
