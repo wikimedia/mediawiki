@@ -237,6 +237,8 @@ class ParserTest {
 			$titleText = 'Parser test';
 		}
 
+		$noxml = (bool)preg_match( '~\\b noxml \\b~x', $opts );
+
 		$parser =& new Parser();
 		wfRunHooks( 'ParserTestParser', array( &$parser ) );
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
@@ -260,7 +262,7 @@ class ParserTest {
 
 		$this->teardownGlobals();
 
-		if( $result === $out && $this->wellFormed( $out ) ) {
+		if( $result === $out && ( $noxml === true || $this->wellFormed( $out ) ) ) {
 			return $this->showSuccess( $desc );
 		} else {
 			return $this->showFailure( $desc, $result, $out );
