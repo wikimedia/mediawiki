@@ -29,8 +29,6 @@ while (false !== ($file = $skinDir->read())) {
 $skinDir->close();
 unset($matches);
 
-require_once( 'RecentChange.php' );
-
 /**
  * The main skin class that provide methods and properties for all other skins
  * including PHPTal skins.
