@@ -128,7 +128,11 @@ class ExternalStoreDB {
 
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
 		$dbw->insert( $this->getTable( $dbw ), array( 'blob_id' => $id, 'blob_text' => $data ), $fname );
-		return "DB://$cluster/" . $dbw->insertId();
+		$id = $dbw->insertId();
+		if ( $dbw->getFlag( DBO_TRX ) ) {
+			$dbw->immediateCommit();
+		}
+		return "DB://$cluster/$id";
 	}
 }
 ?>

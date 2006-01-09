@@ -1749,6 +1749,12 @@ $wgExternalStores = false;
 $wgExternalServers = array();
 
 /**
+ * The place to put new revisions, false to put them in the local text table.
+ * Part of a URL, e.g. DB://cluster1
+ */
+$wgDefaultExternalStore = false;
+
+/**
 * list of trusted media-types and mime types.
 * Use the MEDIATYPE_xxx constants to represent media types.
 * This list is used by Image::isSafeFile
