@@ -1794,7 +1794,7 @@ class LanguageCs extends LanguageUtf8 {
 			'.' => ','
 	);
 
-	function formatNum( $number, $year ) {
+	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), $this->digitTransTable);
 	}
 
