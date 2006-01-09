@@ -524,6 +524,8 @@ $wgMainCacheType = CACHE_NONE;
 $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
+$wgParserCacheExpireTime = 86400;
+
 $wgSessionsInMemcached = false;
 $wgLinkCacheMemcached = false; # Not fully tested
 
