@@ -626,17 +626,7 @@ Katerangan: (kiw) = bédana jeung vérsi kiwari,
 'laggedslavemode' => 'Awas: kandungan kaca bisa baé teu mutahir.',
 'largefile' => 'Dianjurkeun sangkan ukuran gambar teu leuwih ti 100k.',
 'last' => 'ahir',
-'lastmodified' => 'Kaca ieu panungtungan dirobah $1.
-
-<!-- Start of StatCounter Code -->
-<script type="text/javascript" language="javascript">
-var sc_project=637758; 
-var sc_partition=5; 
-var sc_security="8b473cd8"; 
-</script>
-
-<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c6.statcounter.com/counter.php?sc_project=637758&amp;java=0&amp;security=8b473cd8" alt="web page hit counter" border="0"></a> </noscript>
-<!-- End of StatCounter Code -->',
+'lastmodified' => 'Kaca ieu panungtungan dirobah $1.',
 'lastmodifiedby' => 'Kaca ieu panungtungan dirobah $1 ku $2.',
 'lineno' => 'Baris ka-$1:',
 'link_sample' => 'Judul tumbu',
