@@ -5,7 +5,7 @@
  * @package MediaWiki
  * @subpackage SpecialPage
  *
- * @bug 4531
+ * @bug 2019, 4531
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
@@ -22,32 +22,19 @@ function wfSpecialVersion() {
 
 class SpecialVersion {
 	/**
-	 * @var object
-	 * @access private
-	 */
-	var $langObj;
-
-	/**
-	 * Constructor
-	 */
-	function SpecialVersion() {
-		// English motherfucker, do you speak it?
-		$this->langObj = setupLangObj( 'LanguageEn' );
-		$this->langObj->initEncoding();
-	}
-
-	/**
 	 * main()
 	 */
 	function execute() {
 		global $wgOut;
 
+		$wgOut->addHTML( '<div dir="ltr">' );
 		$wgOut->addWikiText(
 			$this->MediaWikiCredits() .
 			$this->extensionCredits() .
 			$this->wgHooks()
 		);
 		$wgOut->addHTML( $this->IPInfo() );
+		$wgOut->addHTML( '</div>' );
 	}
 
 	/**#@+
@@ -64,7 +51,6 @@ class SpecialVersion {
 
 		$ret =
 		"__NOTOC__
-		<div dir='ltr'>
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
 		copyright (C) 2001-2006 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, and others.
@@ -86,8 +72,7 @@ class SpecialVersion {
 
 		* [http://www.mediawiki.org/ MediaWiki]: $wgVersion
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
-		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion() . "
-		</div>";
+		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion();
 
 		return str_replace( "\t\t", '', $ret );
 	}
@@ -129,19 +114,19 @@ class SpecialVersion {
 
 		if ( count( $wgExtensionFunctions ) ) {
 			$out .= "** Extension functions:\n";
-			$out .= '***' . $this->langObj->listToText( $wgExtensionFunctions ) . "\n";
+			$out .= '***' . $this->listToText( $wgExtensionFunctions ) . "\n";
 		}
 
 		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
 			for ( $i = 0; $i < $cnt; ++$i )
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
 			$out .= "** Parser extension tags:\n";
-			$out .= '***' . $this->langObj->listToText( $tags ). "\n";
+			$out .= '***' . $this->listToText( $tags ). "\n";
 		}
 
 		if ( count( $wgSkinExtensionFunction ) ) {
 			$out .= "** Skin extension functions:\n";
-			$out .= '***' . $this->langObj->listToText( $wgSkinExtensionFunction ) . "\n";
+			$out .= '***' . $this->listToText( $wgSkinExtensionFunction ) . "\n";
 		}
 
 		return $out;
@@ -151,7 +136,7 @@ class SpecialVersion {
 		if ( $a['name'] === $b['name'] )
 			return 0;
 		else
-			return $this->langObj->lc( $a['name'] ) > $this->langObj->lc( $b['name'] ) ? 1 : -1;
+			return LanguageUtf8::lc( $a['name'] ) > LanguageUtf8::lc( $b['name'] ) ? 1 : -1;
 	}
 
 	function formatCredits( $name, $version = null, $author = null, $url = null, $description = null) {
@@ -169,11 +154,14 @@ class SpecialVersion {
 		if ( isset( $description ) && isset( $author ) )
 			$ret .= ', ';
 		if ( isset( $author ) )
-			$ret .= ' by ' . $this->langObj->listToText( (array)$author );
+			$ret .= ' by ' . $this->listToText( (array)$author );
 
 		return "$ret\n";
 	}
 
+	/**
+	 * @return string
+	 */
 	function wgHooks() {
 		global $wgHooks;
 
@@ -182,17 +170,54 @@ class SpecialVersion {
 
 		$ret = "* Hooks:\n";
 		foreach ($myWgHooks as $hook => $hooks)
-			$ret .= "** $hook:" . $this->langObj->listToText( $hooks ) . "\n";
+			$ret .= "** $hook: " . $this->listToText( $hooks ) . "\n";
 
 		return $ret;
 	}
 
 	/**
 	 * @static
+	 *
+	 * @return string
 	 */
 	function IPInfo() {
 		$ip =  str_replace( '--', ' - ', htmlspecialchars( wfGetIP() ) );
 		return "<!-- visited from $ip -->\n";
+	}
+
+	/**
+	 * @param array $list
+	 * @return string
+	 */
+	function listToText( $list ) {
+		$cnt = count( $list );
+
+	    if ( $cnt == 1 )
+			// Enforce always returning a string
+			return (string)$this->arrayToString( $list[0] );
+	    else {
+			$t = array_slice( $list, 0, $cnt - 1 );
+			$one = array_map( array( &$this, 'arrayToString' ), $t );
+			$two = $this->arrayToString( $list[$cnt - 1] );
+			
+			return implode( ',', $one ) . " and $two";
+	    }
+	}
+
+	/**
+	 * @static
+	 *
+	 * @param mixed $list Will convert an array to string if given and return
+	 *                    the paramater unaltered otherwise
+	 * @return mixed
+	 */
+	function arrayToString( $list ) {
+		if ( ! is_array( $list ) )
+			return $list;
+		else {
+			$class = get_class( $list[0] );
+			return "($class, {$list[1]})";
+		}
 	}
 
 	/**#@-*/
