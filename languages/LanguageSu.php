@@ -9,7 +9,7 @@
 
 require_once( 'LanguageUtf8.php' );
 
-/* private */ $wgNamespaceNamesEn = array(
+/* private */ $wgNamespaceNamesSu = array(
 	NS_MEDIA			=> 'Média',
 	NS_SPECIAL			=> 'Husus',
 	NS_MAIN				=> '',
