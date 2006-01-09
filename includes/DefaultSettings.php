@@ -1807,4 +1807,9 @@ $wgUseTrackbacks = false;
 
 $wgFilterRobotsWL = false;
 
+/**
+ * Enable filtering of categories in Recentchanges
+ */
+$wgAllowCategorizedRecentChanges = false ;
+
 ?>
