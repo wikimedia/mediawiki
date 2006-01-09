@@ -1901,7 +1901,7 @@ class LanguageGa extends LanguageUtf8 {
 	function LanguageGa() {
 		global $wgNamespaceNamesGa, $wgMetaNamespace;
 		LanguageUtf8::LanguageUtf8();
-		$wgNamespaceNamesGa[NS_PROJECT_TALK] = 'Plé_' . $this->convertGrammar( $wgMetaNamespace, 'genivite' );
+		$wgNamespaceNamesGa[NS_PROJECT_TALK] = 'Plé_' . $this->convertGrammar( $wgMetaNamespace, 'genitive' );
 	}
 
 	function getNamespaces() {
@@ -1972,13 +1972,13 @@ class LanguageGa extends LanguageUtf8 {
 		switch ( $what ) {
 		case 'genitive':
 			switch ($word) {
-			case 'Vicipéid':     $word = 'Vicipéide';
-			case 'Vicífhoclóir': $word = 'Vicífhoclóra';
-			case 'Vicíleabhair': $word = 'Vicíleabhar';
-			case 'Vicíshliocht': $word = 'Vicíshleachta';
-			case 'Vicífhoinse':  $word = 'Vicífhoinse';
-			case 'Vicíghnéithe': $word = 'Vicíghnéithe';
-			case 'Vicínuacht':   $word = 'Vicínuachta';
+			case 'Vicipéid':     $word = 'Vicipéide'; break;
+			case 'Vicífhoclóir': $word = 'Vicífhoclóra'; break;
+			case 'Vicíleabhair': $word = 'Vicíleabhar'; break;
+			case 'Vicíshliocht': $word = 'Vicíshleachta'; break;
+			case 'Vicífhoinse':  $word = 'Vicífhoinse'; break;
+			case 'Vicíghnéithe': $word = 'Vicíghnéithe'; break;
+			case 'Vicínuacht':   $word = 'Vicínuachta'; break;
 			}
 
 		case 'ainmlae':
