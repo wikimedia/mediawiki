@@ -157,7 +157,6 @@ Cjale $2 par une liste des ultimis eliminazions.",
 'editingsection' => "Modificant $1 (sezion)",
 'editsection' => "modifiche",
 'editthispage' => "Modifiche cheste pagjine",
-'emailflag'		=> 'No vueli email da altris utents',
 'emailmessage' => "Messaç",
 'emailuser' => "Messaç di pueste a chest utent",
 'error' => "Erôr",
@@ -245,7 +244,7 @@ cheste vecje version, (rip) = torne a ripristinâ cheste vecje version.
 'jul' => "Lui",
 'jun' => "Zug",
 'june' => "Zugn",
-'largefile' => "Si racomande che lis figuris no sedin pi grandis di 100KB.",
+'largefile' => "Si racomande che lis figuris no sedin pi grandis di $1KB ($2).",
 'last' => "ultime",
 'lastmodified' => "Modificât par l'ultime volte il ai $1",
 'lastmodifiedby' => "Modificât par l'ultime volte ai $1 di",
@@ -328,8 +327,6 @@ tu âs di cognossi lis conseguencis prime di lâ indevant.',
 'newarticle' => "(Gnûf)",
 'newarticletext' => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[Jutori:Contignûts|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
 'newimages' => "Galarie dai gnûfs files",
-'newmessages' => "Tu âs $1.",
-'newmessageslink' => "gnûf(s) messaç(s)",
 'newpage' => "Gnove pagjine",
 'newpageletter' => "G",
 'newpages' => "Gnovis pagjinis",
@@ -393,10 +390,6 @@ $2 Liste redirezions &nbsp; Cîr $3 $9",
 'prefs-misc' => 'Variis',
 'prefs-help-realname' 	=> "* Non vêr (opzionâl): se tu sielzis di inserîlu al vignarà doprât par dâti un ricognossiment dal tô lavôr.",
 'prefs-help-email'      => "* Email (opzionâl): Permet ai altris di contatâti vie la to pagjine utent o di discussion cence scugnî mostrâ a ducj la tô identitât.",
-'prefslogintext' => "Tu sês jentrât come \"$1\".
-Il to numar identificatîf interni al è $2.
-
-Cjale [[Project:Preferencis utent]] par un aiût a lis diviersis opzions.",
 'preview' => "Anteprime",
 'previewnote' => "Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!",
 'previousdiff' => "&larr; Difarence precedente",
@@ -576,10 +569,6 @@ Chest al vûl dî une medie di '''$5''' modifichis par pagjine, e '''$6''' viodu
 'userpage' => "Cjale pagjine dal utent",
 'userstats' => "Statistichis dai utents",
 'userstatstext'  => "A son '''$1''' utents regjistrâts, di chescj '''$2''' (il '''$4%''') a son aministradôrs (cjale $3).",
-'val_tab' => "Convalide",
-'val_version' => "Version",
-'val_version_of' => "Version di $1",
-'val_view_version' => "Cjale cheste version",
 'version' => "Version",
 'viewcount' => "Cheste pagjine e je stade viodude $1 voltis.",
 'viewprevnext' => "Cjale ($1) ($2) ($3).",
@@ -663,8 +652,8 @@ class LanguageFur extends LanguageUtf8 {
 		'.' => ','
 	);
 
-	function formatNum( $number ) {
-		return strtr($number, $this->digitTransTable);
+	function formatNum( $number, $year = false ) {
+		return $year? $number : strtr($this->commafy($number), $this->digitTransTable);
 	}
 
 

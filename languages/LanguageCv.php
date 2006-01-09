@@ -12,9 +12,6 @@
 
 require_once( "LanguageRu.php" );
 
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesCv = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Ятарлă',
@@ -136,8 +133,6 @@ if($wgMetaNamespace === FALSE)
 'toolbox' => 'Ĕç хатĕрĕсем',
 'trackback' => '; $4$5 : [$2 $1]',
 'uctop' => ' (пуçламăш)',
-'val_total' => 'Пĕтĕмпе',
-'val_version_of' => '$1 версиĕ',
 'watchthis' => 'Ку страницăна кĕртекен  улшăнусем  хыççăн сăнамалла',
 'whatlinkshere' => 'Кунта килекен ссылкăсем',
 );

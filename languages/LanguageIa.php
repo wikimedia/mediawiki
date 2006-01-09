@@ -4,7 +4,6 @@
   * @subpackage Language
   */
 
-/** TODO: fixme */
 /* private */ $wgNamespaceNamesIa = array(
 	NS_MEDIA          => "Media",
 	NS_SPECIAL        => "Special",
@@ -12,8 +11,8 @@
 	NS_TALK           => "Discussion",
 	NS_USER           => "Usator",
 	NS_USER_TALK      => "Discussion_Usator",
-	NS_PROJECT        => "Wikipedia",
-	NS_PROJECT_TALK   => "Discussion_Wikipedia",
+	NS_PROJECT        => $wgMetaNamespace,
+	NS_PROJECT_TALK   => "Discussion_". $wgMetaNamespace,
 	NS_IMAGE          => "Imagine",
 	NS_IMAGE_TALK     => "Discussion_Imagine",
 	NS_MEDIAWIKI      => "MediaWiki",
@@ -91,16 +90,16 @@
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Frontispicio",
 "about"			=> "A proposito",
-"aboutsite"      => "A proposito de Wikipedia",
-"aboutpage"		=> "Wikipedia:A_proposito",
+"aboutsite"      => "A proposito de {{SITENAME}}",
+"aboutpage"		=> "{{ns:project}}:A_proposito",
 "help"			=> "Adjuta",
-"helppage"		=> "Wikipedia:Adjuta",
+"helppage"		=> "{{ns:project}}:Adjuta",
 "bugreports"	=> "Reportos de disfunctiones",
-"bugreportspage" => "Wikipedia:Reportos_de_disfunctiones",
+"bugreportspage" => "{{ns:project}}:Reportos_de_disfunctiones",
 "faq"			=> "Questiones frequente",
-"faqpage"		=> "Wikipedia:Questiones_frequente",
+"faqpage"		=> "{{ns:project}}:Questiones_frequente",
 "edithelp"		=> "Adjuta al edition",
-"edithelppage"	=> "Wikipedia:Como_editar_un_pagina",
+"edithelppage"	=> "{{ns:project}}:Como_editar_un_pagina",
 "cancel"		=> "Cancellar",
 "qbfind"		=> "Trovar",
 "qbbrowse"		=> "Foliar",
@@ -113,7 +112,6 @@
 "currentevents" => "Actualitates",
 "errorpagetitle" => "Error",
 "returnto"		=> "Retornar a $1.",
-"tagline"      	=> "De Wikipedia, le encyclopedia libere.",
 "whatlinkshere"	=> "Referentias a iste pagina",
 "help"			=> "Adjuta",
 "search"		=> "Recercar",
@@ -138,7 +136,7 @@
 "viewcount"		=> "Iste pagina esseva accessate $1 vices.",
 "printsubtitle" => "(De {{SERVER}})",
 "protectedpage" => "Pagina protegite",
-"administrators" => "Wikipedia:Administratores",
+"administrators" => "{{ns:project}}:Administratores",
 "sysoptitle"	=> "Reservate a Sysops",
 "sysoptext"		=> "Solo usatores con status de \"sysop\"
 pote effectuar iste action.
@@ -150,21 +148,18 @@ Vide $1.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Ir",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipedia",
-"sitesubtitle"	=> "",
 "retrievedfrom" => "Recuperate de \"$1\"",
-"newmessages" => "Tu ha $1.",
 "newmessageslink" => "messages nove",
 
 # Main script and global functions
 #
 "nosuchaction"	=> "Action inexistente",
 "nosuchactiontext" => "Le action specificate in le URL non es
-recognoscite per le systema de Wikipedia.",
+recognoscite per le systema de Mediawiki.",
 "nosuchspecialpage" => "Pagina special inexistente",
 "nospecialpagetext" => "
 Tu demandava un pagina special que non es
-recognoscite per le systema de Wikipedia.",
+recognoscite per le systema de Mediawiki.",
 
 # General errors
 #
@@ -180,7 +175,7 @@ MySQL retornava le error \"<tt>$3: $4</tt>\".",
 "readonly"		=> "Base de datos blocate",
 "enterlockreason" => "Describe le motivo del blocage, includente un estimation
 de quando illo essera terminate",
-"readonlytext"	=> "Actualmente le base de datos de Wikipedia es blocate pro nove
+"readonlytext"	=> "Actualmente le base de datos de {{SITENAME}} es blocate pro nove
 entratas e altere modificationes, probabilemente pro mantenentia
 routinari del base de datos, post le qual illo retornara al normal.
 Le administrator responsabile dava iste explication:
@@ -211,12 +206,12 @@ retorna inter 02:00 e 14:00 UTC e tenta de nove.",
 #
 "logouttitle"	=> "Fin de session",
 "logouttext"	=> "Tu claudeva tu session.
-Tu pote continuar a usar Wikipedia anonymemente, o initiar un
+Tu pote continuar a usar {{SITENAME}} anonymemente, o initiar un
 nove session como le mesme o como un altere usator.",
 
 "welcomecreation" => "<h2>Benvenite, $1!</h2>
 <p>Tu conto de usator esseva create.
-Non oblida personalisar Wikipedia secundo tu preferentias.",
+Non oblida personalisar {{SITENAME}} secundo tu preferentias.",
 
 "loginpagetitle" => "Aperir session",
 "yourname"		=> "Tu nomine de usator",
@@ -240,15 +235,15 @@ Non oblida personalisar Wikipedia secundo tu preferentias.",
 "loginerror"	=> "Error in le apertura del session",
 "noname"		=> "Tu non specificava un nomine de usator valide.",
 "loginsuccesstitle" => "Session aperte con successo",
-"loginsuccess"	=> "Tu es identificate in Wikipedia como \"$1\".",
+"loginsuccess"	=> "Tu es identificate in {{SITENAME}} como \"$1\".",
 "nosuchuser"	=> "Non existe usator registrate con le nomine \"$1\".
 Verifica le orthographia, o usa le formulario infra pro crear un nove conto de usator.",
 "wrongpassword"	=> "Le contrasigno que tu scribeva es incorrecte. Per favor tenta de nove.",
 "mailmypassword" => "Demandar un nove contrasigno via e-mail",
-"passwordremindertitle" => "Nove contrasigno in Wikipedia",
+"passwordremindertitle" => "Nove contrasigno in {{SITENAME}}",
 "passwordremindertext" => "Alcuno (probabilemente tu, con adresse de IP $1)
 
-demandava inviar te un nove contrasigno pro Wikipedia.
+demandava inviar te un nove contrasigno pro {{SITENAME}}.
 Le contrasigno pro le usator \"$2\" ora es \"$3\".
 Nos consilia que tu initia un session e cambia le contrasigno le plus tosto possibile.",
 "noemail"		=> "Non existe adresse de e-mail registrate pro le usator \"$1\".",
@@ -267,12 +262,12 @@ Per favor initia un session post reciper lo.",
 "blockedtitle"	=> "Le usator es blocate",
 "blockedtext"	=> "Tu nomine de usator o adresse de IP ha essite blocate per $1.
 Le motivo presentate es iste:<br />''$2''<p>Tu pote contactar $1 o un del altere
-[[Wikipedia:administratores|administratores]] pro discuter le bloco.",
+[[{{ns:project}}:administratores|administratores]] pro discuter le bloco.",
 "newarticle"	=> "(Nove)",
 "newarticletext" =>
 "Tu ha sequite un ligamine a un pagina que ancora non existe.
 Pro crear un nove pagina, comencia a scriber in le cassa infra.
-(Vide le [[Wikipedia:Adjuta|pagina de adjuta]] pro plus information.)
+(Vide le [[{{ns:project}}:Adjuta|pagina de adjuta]] pro plus information.)
 Si tu es hic per error, simplemente clicca le button '''Retornar''' de tu navigator.",
 "anontalkpagetext" => "---- ''Iste es le pagina de discussion pro un usator anonyme qui ancora non ha create un conto o qui non lo usa. Consequentemente nos debe usar le [[adresse de IP]] numeric pro identificar le/la. Un tal adresse de IP pote esser usate in commun per varie personas. Si tu es un usator anonyme e senti que commentarios irrelevante ha essite dirigite a te, per favor [[Special:Userlogin|crea un conto o aperi un session]] pro evitar futur confusiones con altere usatores anonyme.'' ",
 "noarticletext" => "(Actualmente il non ha texto in iste pagina)",
@@ -296,7 +291,7 @@ quando tu premera \"Salvar pagina\".<br />",
 un version obsolete de iste pagina.
 Si tu lo salvara, tote le modificationes facite post iste revision essera perdite.</strong>",
 "yourdiff"		=> "Differentias",
-"copyrightwarning" => "Nota que tote le contributiones a Wikipedia es
+"copyrightwarning" => "Nota que tote le contributiones a {{SITENAME}} es
 considerate public secundo le terminos del Licentia de Documentation Libere GNU
 (vide plus detalios in $1).
 Si tu non vole que tu scripto sia modificate impietosemente e redistribuite
@@ -375,8 +370,6 @@ $2 Listar redireciones &nbsp; Recercar pro $3 $9",
 "prefsnologin" => "Session non aperte",
 "prefsnologintext"	=> "Tu debe [[Special:Userlogin|aperir un session]]
 pro definir tu preferentias.",
-"prefslogintext" => "Tu es identificate como \"$1\".
-Tu numero interne de ID es $2.",
 "prefsreset"	=> "Tu preferentias salvate previemente ha essite restaurate.",
 "qbsettings"	=> "Configuration del barra de utensiles",
 "changepassword" => "Cambiar contrasigno",
@@ -406,22 +399,21 @@ Tu numero interne de ID es $2.",
 e illo del servitor (UTC).",
 "localtime"	=> "Hora local",
 "timezoneoffset" => "Differentia de fuso horari",
-"emailflag"		=> "Non reciper e-mail de altere usatores",
 
 # Recent changes
 #
 "changes" => "modificationes",
 "recentchanges" => "Modificationes recente",
-"recentchangestext" => "Seque le plus recente modificationes a Wikipedia in iste pagina.
-[[Wikipedia:Benvenite,_novicios|Benvenite, novicios]]!
-Per favor lege equalmente iste paginas: [[wikipedia:Questiones_frequente|Questiones frequente super Wikipedia]],
-[[Wikipedia:Politicas e directivas|Politica de Wikipedia]]
-(specialmente [[wikipedia:Conventiones de nomenclatura|conventiones de nomenclatura]],
-[[wikipedia:Neutralitate e objectivitate|neutralitate e objectivitate]]),
-e [[wikipedia:Le passos false plus commun|le passos false plus commun]].
+"recentchangestext" => "Seque le plus recente modificationes a {{SITENAME}} in iste pagina.
+[[{{ns:project}}:Benvenite,_novicios|Benvenite, novicios]]!
+Per favor lege equalmente iste paginas: [[{{ns:project}}:Questiones_frequente|Questiones frequente super {{SITENAME}}]],
+[[{{ns:project}}:Politicas e directivas|Politica de {{SITENAME}}]]
+(specialmente [[{{ns:project}}:Conventiones de nomenclatura|conventiones de nomenclatura]],
+[[{{ns:project}}:Neutralitate e objectivitate|neutralitate e objectivitate]]),
+e [[{{ns:project}}:Le passos false plus commun|le passos false plus commun]].
 
-Si tu vole que Wikipedia habe successo, es multo importante que tu non
-include material protegite per [[wikipedia:Copyright|derectos de autor]].
+Si tu vole que {{SITENAME}} habe successo, es multo importante que tu non
+include material protegite per [[{{ns:project}}:Copyright|derectos de autor]].
 Le aspectos legal connexe poterea prejudicar gravemente le projecto,
 alora per favor non lo face.",
 "rcloaderr"		=> "Carga del modificationes recente",
@@ -454,7 +446,7 @@ pro poter cargar files.",
 "uploaderror"	=> "Error de carga",
 "uploadtext"	=> "'''STOP!''' Ante cargar files al servitor,
 prende cognoscentia del
-[[Project:Image_use_policy|politica de Wikipedia super le uso de imagines]],
+[[Project:Image_use_policy|politica de {{SITENAME}} super le uso de imagines]],
 e assecura te de respectar lo.
 
 Pro vider o recercar imagines cargate previemente,
@@ -484,7 +476,7 @@ le forma '''<nowiki>[[image:file.jpg]]</nowiki>''' o
 '''<nowiki>[[image:file.png|texto alternative]]</nowiki>''' o
 '''<nowiki>[[media:file.ogg]]</nowiki>''' pro sonos.
 
-Nota que, justo como occurre con le paginas de Wikipedia, alteros
+Nota que, justo como occurre con le paginas de {{SITENAME}}, alteros
 pote modificar o eliminar le files cargate si illes considera que
 isto beneficia le encyclopedia, e tu pote haber tu derecto
 de carga blocate si tu abusa del systema.",
@@ -496,8 +488,8 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).
 </ul>",
 "filename"		=> "Nomine del file",
 "filedesc"		=> "Description",
-"copyrightpage" => "Wikipedia:Copyright",
-"copyrightpagename" => "Wikipedia e derectos de autor (copyright)",
+"copyrightpage" => "{{ns:project}}:Copyright",
+"copyrightpagename" => "{{SITENAME}} e derectos de autor (copyright)",
 "uploadedfiles"	=> "Files cargate",
 "minlength"		=> "Le nomines de imagines debe haber al minus tres litteras.",
 "badfilename"	=> "Le nomine del imagine esseva cambiate a \"$1\".",
@@ -543,7 +535,7 @@ iste version antique, (rev) = reverte a iste version antique.
 "sitestats"		=> "Statisticas de accesso",
 "userstats"		=> "Statisticas de usator",
 "sitestatstext" => "Le base de datos contine un total de <b>$1</b> paginas.
-Iste numero include paginas de \"discussion\", paginas super Wikipedia, paginas de \"residuo\"
+Iste numero include paginas de \"discussion\", paginas super {{SITENAME}}, paginas de \"residuo\"
 minime, paginas de redirection, e alteres que probabilemente non se qualifica como articulos.
 A parte de istes, il ha <b>$2</b> paginas que probabilemente es
 articulos legitime.<p>
@@ -561,7 +553,7 @@ Alcunes del functiones tende a tensionar le base de datos, pro isto per favor
 non preme \"Reload\" post cata item reparate. ;-)",
 "maintenancebacklink"	=> "Retornar al pagina de mantenentia",
 "disambiguations"	=> "Paginas de disambiguation",
-"disambiguationspage"	=> "Wikipedia:Ligamines_a_paginas_de_disambiguation",
+"disambiguationspage"	=> "{{ns:project}}:Ligamines_a_paginas_de_disambiguation",
 "disambiguationstext"	=> "Le articulos sequente se liga a un <i>pagina de disambiguation</i>.
 Illos deberea ligar se directemente al topico appropriate.<br />
 Un pagina es tractate como un pagina de disambiguation si existe un ligamine
@@ -607,14 +599,14 @@ al qual le prime redirection deberea referer se.",
 "newpages"		=> "Nove paginas",
 "movethispage"	=> "Mover iste pagina",
 "unusedimagestext" => "<p>Nota que altere sitos del web
-tal como le Wikipedias international pote ligar se a un imagine
+tal como le {{SITENAME}}s international pote ligar se a un imagine
 con un URL directe, e consequentemente illos pote esser listate
 hic malgrado esser in uso active.",
 "booksources"	=> "Fornitores de libros",
 "booksourcetext" => "Infra es un lista de ligamines a altere sitos que
 vende libros nove e usate, e pote haber information ulterior super
 libros que tu cerca.
-Wikipedia non es associate a iste interprisas, e iste lista
+{{SITENAME}} non es associate a iste interprisas, e iste lista
 non debe esser interpretate como alcun appoio special.",
 
 # Email this user
@@ -673,7 +665,7 @@ facilitar su identification.</p>
 "confirmdeletetext" => "Tu es a puncto de eliminar permanentemente un pagina
 o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
 Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
-e tu lo face de accordo con [[Wikipedia:Policy]].",
+e tu lo face de accordo con [[{{ns:project}}:Policy]].",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.",
@@ -707,7 +699,7 @@ non essera automaticamente substituite.",
 "undeletebtn" => "Restautar!",
 "undeletedarticle" => "\"$1\" restaurate",
 "undeletedtext"   => "Le articulo [[:$1|$1]] ha essite restaurate con successo.
-Vide [[Wikipedia:Registro_de_eliminationes]] pro un registro de eliminationes e restaurationes recente.",
+Vide [[{{ns:project}}:Registro_de_eliminationes]] pro un registro de eliminationes e restaurationes recente.",
 
 # Contributions
 #
@@ -736,7 +728,7 @@ executar iste function.",
 "blockiptext"	=> "Usa le formulario infra pro blocar le accesso de scriptura
 a partir de un adresse IP specific.
 Isto debe esser facite solmente pro impedir vandalismo, e de
-accordo con le [[Wikipedia:Policy|politica de Wikipedia]].
+accordo con le [[{{ns:project}}:Policy|politica de {{SITENAME}}]].
 Scribe un motivo specific infra (per exemplo, citante paginas
 specific que ha essite vandalisate).",
 "ipaddress"		=> "Adresse IP",
@@ -777,9 +769,9 @@ Per favor confirma que iste es tu intention.",
 "locknoconfirm" => "Tu non ha marcate le quadrato de confirmation.",
 "lockdbsuccesssub" => "Base de datos blocate con successo",
 "unlockdbsuccesssub" => "Base de datos disblocate con successo",
-"lockdbsuccesstext" => "Le base de datos de Wikipedia ha essite blocate.
+"lockdbsuccesstext" => "Le base de datos de {{SITENAME}} ha essite blocate.
 <br />Rememora te de disblocar lo post completar tu mantenentia.",
-"unlockdbsuccesstext" => "Le base de datos de Wikipedia ha essite disblocate.",
+"unlockdbsuccesstext" => "Le base de datos de {{SITENAME}} ha essite disblocate.",
 
 # Move page
 #
@@ -857,12 +849,14 @@ class LanguageIa extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesIa, $wgAllMessagesEn;
-		$m = $wgAllMessagesIa[$key];
-
-		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-		else return $m;
+		global $wgAllMessagesIa;
+		if( isset( $wgAllMessagesIa[$key] ) ) {
+			return $wgAllMessagesIa[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
 	}
+
 
 }
 

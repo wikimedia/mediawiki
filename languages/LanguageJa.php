@@ -260,7 +260,6 @@ $1 を参照してください。',
 'pagetitle' => '$1 - {{SITENAME}}',
 # 'sitesubtitle' => '',
 'retrievedfrom' => ' "$1" より作成',
-'newmessages' => '$1が届いています。',
 'newmessageslink' => '新しいメッセージ',
 'editsection' => '編集',
 'toc' => '目次',
@@ -302,11 +301,6 @@ $1 を参照してください。',
 <blockquote><tt>$1</tt></blockquote>
 
 from within function "<tt>$2</tt>". MySQL returned error "<tt>$3: $4</tt>".',
-'dberrortextcl' => 'A database query syntax error has occurred.
-The last attempted database query was:
-"$1"
-from within function "$2".
-MySQL returned error "$3: $4".',
 'noconnect' => '申し訳ありません。何らかの問題によりデータベースに接続できません。<br/>$1',
 'nodb' => 'データベース $1 を選択できません。',
 'cachederror' => 'あなたがアクセスしたページのコピーを保存したものを表示しています。また、コピーは更新されません。',
@@ -657,30 +651,11 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 # User levels special page
 #
 
-# switching pan
-# 'groups-lookup-group' => '',
-# 'groups-group-edit' => '',
-# 'editgroup' => '',
-# 'addgroup' => '',
-
 'userrights-lookup-user' => 'ユーザーの所属グループの管理',
 'userrights-user-editname' => 'ユーザー名:',
 'editusergroup' => '編集',
 
-# group editing
-# 'groups-editgroup' => '',
-# 'groups-addgroup' => '',
-# 'groups-editgroup-preamble' => '',
 'groups-editgroup-name' => 'グループ名:',
-# 'groups-editgroup-description' => '',
-# 'savegroup' => '',
-# 'groups-tableheader' => '',
-# 'groups-existing' => '',
-# 'groups-noname' => '',
-# 'groups-already-exists' => '',
-# 'addgrouplogentry' => '',
-# 'changegrouplogentry' => '',
-# 'renamegrouplogentry' => '',
 
 # user groups editing
 #
@@ -690,19 +665,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'userrights-groupsavailable' => '有効なグループ:',
 'userrights-groupshelp' => 'このユーザーから削除したい、またはこのユーザーに追加したいグループを選択してください。選択されていないグループは変更されません。選択を解除するには [CTRL]+[左クリック] です。',
 # 'userrights-logcomment' => '',
-
-# Default group names and descriptions
-#
-# 'group-anon-name' => '',
-# 'group-anon-desc' => '',
-# 'group-loggedin-name' => '',
-# 'group-loggedin-desc' => '',
-# 'group-admin-name' => '',
-# 'group-admin-desc' => '',
-# 'group-bureaucrat-name' => '',
-# 'group-bureaucrat-desc' => '',
-# 'group-steward-name' => '',
-# 'group-steward-desc' => '',
 
 
 # Recent changes

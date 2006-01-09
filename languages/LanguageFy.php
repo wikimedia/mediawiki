@@ -6,9 +6,6 @@
 
 require_once( "LanguageUtf8.php" );
 
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( " ", "_", $wgSitename );
-
 /* private */ $wgNamespaceNamesFy = array(
 	NS_MEDIA          => "Media",
 	NS_SPECIAL        => "Wiki",
@@ -134,7 +131,6 @@ if($wgMetaNamespace === FALSE)
 "currentevents" 	=> "Hjoeddeis",
 "errorpagetitle" 	=> "Fout",
 "returnto"		=> "Werom nei \"$1\".",
-"tagline"      	=> "Fan {{SITENAME}}, de frije ensyklopedy.", # FIXME
 "whatlinkshere"	=> "Siden mei in keppeling hjirhinne",
 "help"		=> "Help",
 "search"		=> "Sykje",
@@ -167,11 +163,7 @@ if($wgMetaNamespace === FALSE)
 "nbytes"		=> "$1 byte",
 "go"			=> "Side",
 "ok"			=> "Goed",
-"sitetitle"		=> '{{SITENAME}}',
-"sitesubtitle"	=> "",
 "retrievedfrom" 	=> "Untfongen fan \"$1\"",
-"newmessages" 	=> "Jo hawwe $1.",
-"newmessageslink" => "nije berjochten",
 "editsection"	=> "edit",
 "toc" 		=> "Ynhâld",
 "showtoc" 		=> "sjen litte",
@@ -241,7 +233,7 @@ dat gjinien de wiki brûke kin.",
 "logouttitle" 	=> "Ofmelde",
 "logouttext"	=> "Jo binne no ôfmeld.
 Jo kinne de {{SITENAME}} fierders anonym brûke,
-of jo op 'e nij [[Wiki:Userlogin|oanmelde]] ûnder in oare namme.",
+of jo op 'e nij [[{{ns:special}}:Userlogin|oanmelde]] ûnder in oare namme.",
 "welcomecreation" => "<h2>Wolkom, $1!</h2><p>Jo ynstellings bin oanmakke.
 Ferjit net se oan jo foarkar oan te passen.",
 
@@ -310,7 +302,7 @@ Sorry, foar it ûngemak.)
 Jo Ynternet-adres is: $3. Nim dat op yn jo berjocht.
 
 Tink derom, dat \"skriuw nei dizze brûker\" allinich wol as jo in
-e-postadres opjûn hawwe in jo [[Wiki:Preferences|ynstellings]].",
+e-postadres opjûn hawwe in jo [[{{ns:special}}:Preferences|ynstellings]].",
 
 "newarticle"	=> "(Nij)",
 "newarticletext" =>
@@ -323,7 +315,7 @@ Oars kinne jo tebek mei de tebek-knop fan jo blêdzjer.",
 dy't sich net oanmeld hat. Om't der gjin namme is wurd it Ynternet-adres brûkt om
 oan te jaan wa. Mar faak is it sa dat sa'n adres net altid troch deselde brûkt wurdt.
 As jo it idee hawwe dat jo as ûnbekinde brûker opmerkings foar in oar krije, dan kinne
-jo jo [[Wiki:Userlogin|oanmelde]], dat jo allinnich opmerkings foar josels krije.'' ",
+jo jo [[{{ns:special}}:Userlogin|oanmelde]], dat jo allinnich opmerkings foar josels krije.'' ",
 "noarticletext" => "(Der stjit noch gjin tekst op dizze side.)",
 "updated"		=> "(Bewurke)",
 "note"		=> "<strong>Opmerking:</strong> ",
@@ -427,12 +419,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 #
 "preferences"		=> "Ynstellings",
 "prefsnologin" 		=> "Net oanmeld",
-"prefsnologintext"	=> "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om jo ynstellings te feroarjen.",
-
-"prefslogintext" 		=> "Jo binne oanmeld, $1.
-Jo Wiki-nûmer is $2.
-
-([[{{ns:project}}:Ynstelling-rie|Help by de ynstellings]].",
+"prefsnologintext"	=> "Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om jo ynstellings te feroarjen.",
 
 "prefsreset"		=> "De ynstellings binne tebek set sa't se fêstlein wienen.",
 "qbsettings"		=> "Menu",
@@ -466,14 +453,12 @@ Jo Wiki-nûmer is $2.
 "timezoneoffset" 		=> "Ferskil",
 "servertime"		=> "UTC",
 "guesstimezone" 		=> "Freegje de blêdzjer",
-"emailflag"			=> "Gjin post fan oare brûkers",
 "defaultns"			=> "Nammeromten dy't normaal trochsykje wurde:",
 
 # Recent changes
 #
 "changes" 			=> "feroarings",
 "recentchanges" 		=> "Koarts feroare",
-# This is the default text, and can be overriden by editing [[{{ns:project}}::Recentchanges]]
 "recentchangestext" 	=> "De lêste feroarings fan de {{SITENAME}}.",
 "rcloaderr"			=> "Koarts feroare ...",
 "rcnote"			=> "Dit binne de lêste <strong>$1</strong> feroarings yn de lêste <strong>$2</strong> dagen.",
@@ -500,7 +485,7 @@ Jo Wiki-nûmer is $2.
 "reupload"		=> "Op 'e nij oanbiede",
 "reuploaddesc"	=> "Werom nei oanbied-side.",
 "uploadnologin" 	=> "Net oanmelde",
-"uploadnologintext" => "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om in bestân oanbieden te kinnen.",
+"uploadnologintext" => "Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om in bestân oanbieden te kinnen.",
 
 "uploaderror"	=> "Oanbied-fout",
 "uploadtext"	=> "'''STOP!''' Lês ear't jo eat oanbiede
@@ -669,8 +654,8 @@ an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze li
 # Email this brûker
 #
 "mailnologin"	=> "Gjin adres beskikber",
-"mailnologintext" => "Jo moatte [[Wiki:Userlogin|oanmeld]]
-wêze, en in jildich e-postadres [[Wiki:Preferences|ynsteld]]
+"mailnologintext" => "Jo moatte [[{{ns:special}}:Userlogin|oanmeld]]
+wêze, en in jildich e-postadres [[{{ns:special}}:Preferences|ynsteld]]
 hawwe, om oan oare brûkers e-post stjoere te kinnen.",
 
 "emailuser"		=> "Skriuw dizze brûker",
@@ -696,14 +681,14 @@ of hat oanjaan gjin post fan oare brûkers krije te wollen.",
 "watchlistsub"	=> "(foar brûker \"$1\")",
 "nowatchlist"	=> "Jo hawwe gjin siden op jo folchlist.",
 "watchnologin"	=> "Not oanmeld in",
-"watchnologintext"=> "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om jo folchlist te feroarjen.",
+"watchnologintext"=> "Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om jo folchlist te feroarjen.",
 
 "addedwatch"	=> "Oan folchlist tafoege",
 "addedwatchtext"	=> "De side \"$1\" is tafoege oan jo <a href=\""
-. "{{localurle:Wiki:Watchlist}}\">folchlist</a>.
+. "{{localurle:{{ns:special}}:Watchlist}}\">folchlist</a>.
 As dizze side sels, of de oerlisside, feroare wurd, dan komt dat dêr yn,
 en de side stiet dan ek <b>fet</b> yn de <a href=\"" .
-  "{{localurle:Wiki:Recentchanges}}\">Koarts feroare</a> list.
+  "{{localurle:{{ns:special}}:Recentchanges}}\">Koarts feroare</a> list.
 
 <p>As jo letter in side net mear folgje wolle, dan brûke jo \"Ferjit dizze side\".",
 "removedwatch"	=> "Net mear folgje",
@@ -820,7 +805,7 @@ Meld de krekte reden! Begelyk, neam de siden dy't oantaaste waarden.",
 "badipaddress"	=> "Dy brûker bestiet net",
 "blockipsuccesssub" => "Utsluting slagge",
 "blockipsuccesstext" => "Brûker \"$1\" is útsletten.<br />
-(List fan [[Wiki:Ipblocklist|útslette brûkers]].)",
+(List fan [[{{ns:special}}:Ipblocklist|útslette brûkers]].)",
 "unblockip"		=> "Lit brûker der wer yn",
 "unblockiptext"	=> "Brûk dizze fjilden om in brûker wer skriuwtagong te jaan.",
 "ipusubmit"		=> "Lit dizze brûker der wer yn",
@@ -877,7 +862,7 @@ In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle
 
 "movearticle"	=> "Werneam side",
 "movenologin"	=> "Net oameld",
-"movenologintext" => "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om in side wer te neamen.",
+"movenologintext" => "Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om in side wer te neamen.",
 
 "newtitle"		=> "As nij titel",
 "movepagebtn"	=> "Werneam side",
@@ -926,7 +911,6 @@ class LanguageFy extends LanguageUtf8 {
 		}
 		if ( 0 == strcasecmp( "Brûker", $text ) ) return 2;
 		if ( 0 == strcasecmp( "Brûker_oerlis", $text ) ) return 3;
-		if ( 0 == strcasecmp( "Special", $text ) ) return -1;
 		return false;
 	}
 

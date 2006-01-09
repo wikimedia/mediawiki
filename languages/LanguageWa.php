@@ -153,7 +153,6 @@ require_once( "LanguageUtf8.php" );
 #'disclaimerpage' => 'Project:General_disclaimer',
 'errorpagetitle' => 'Aroke',
 'returnto' => 'Rivni al pådje «$1».',
-#'tagline' => 'Èn årtike di {{SITENAME}}, li libe eciclopedeye.',
 'tagline' => 'Èn årtike di {{SITENAME}}.',
 'whatlinkshere' => 'Pådjes ki loynut chal',
 'help' => 'Aidance',
@@ -232,7 +231,6 @@ Loukîz a $1.',
 'pagetitle' => '$1 - {{SITENAME}}',
 'sitesubtitle' => '',
 'retrievedfrom' => 'Prin del pådje «$1»',
-'newmessages' => 'Vos avoz des $1.',
 'newmessageslink' => 'noveas messaedjes',
 'editsection' => 'candjî',
 'toc' => 'Ådvins',
@@ -243,7 +241,6 @@ Loukîz a $1.',
 'restorelink1' => 'on candjmint disfacé',
 'restorelink' => '$1 candjmints disfacés',
 'feedlinks' => 'Sindicåcion:',
-#'sitenotice' => '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Årtike',
@@ -1149,30 +1146,6 @@ po vey les blocaedjes d\' adresses IP do moumint.',
 'sorbsreason' => 'Voste adresse IP si trove dins l\' djivêye des procsis å lådje di [http://www.sorbs.net SORBS DNSBL].',
 'sorbs_create_account_reason' => 'Voste adresse IP si trove dins l\' djivêye des procsis å lådje di [http://www.sorbs.net SORBS DNSBL]. Vos n\' poloz nén ahiver on conte d\' uzeu.',
 
-# Developer tools
-#
-'lockdb'		=> 'Lock database',
-'unlockdb'		=> 'Unlock database',
-'lockdbtext'	=> 'Locking the database will suspend the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do, and that you will
-unlock the database when your maintenance is done.',
-'unlockdbtext'	=> 'Unlocking the database will restore the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do.',
-'lockconfirm'	=> 'Yes, I really want to lock the database.',
-'unlockconfirm'	=> 'Yes, I really want to unlock the database.',
-'lockbtn'		=> 'Lock database',
-'unlockbtn'		=> 'Unlock database',
-'locknoconfirm' => 'You did not check the confirmation box.',
-'lockdbsuccesssub' => 'Database lock succeeded',
-'unlockdbsuccesssub' => 'Database lock removed',
-'lockdbsuccesstext' => 'The database has been locked.
-<br />Remember to remove the lock after your maintenance is complete.',
-'unlockdbsuccesstext' => 'The database has been unlocked.',
-
 # Make sysop
 'makesysoptitle' => 'Diner a èn uzeu on livea di manaedjeu',
 'makesysoptext' => 'Cisse pådje ci c\' est po les mwaisses-manaedjeus («burocrates») poleur hôssî l\' livea d\' èn uzeu do livea d\' simpe uzeu eredjîstré, å ci d\' manaedjeu.
@@ -1732,16 +1705,6 @@ acertinez ki l\' adresse emile est djusse tot dnant l\' côde.',
 
 
 'confirmemail_subject' => 'Acertinaedje di l\' adresse emile po {{SITENAME}}',
-'confirmemail_body' => "Someone, probably you from IP address $1, has registered an
-account \"$2\" with this e-mail address on {{SITENAME}}.
-
-To confirm that this account really does belong to you and activate
-e-mail features on {{SITENAME}}, open this link in your browser:
-
-$3
-
-If this is *not* you, don't follow the link. This confirmation code
-will expire at $4.",
 
 # Inputbox extension, may be useful in other contexts as well
 
@@ -1778,10 +1741,9 @@ Acertinez s\' i vs plait ki vos vloz vormint rifé cist årtike ci.',
 #
 # Intrêyes di rawete di Wikipedia
 # (extra Wikipedia entries)
+# NO IT'S NOT WIKIPEDIA - THOSE ARE EXTENSION MESSAGES! --Nikerabbit
 #
 #####################
-'lucenepowersearchtext' => 'Cweraedje dins les espåces di lomaedje: $1 <br />
-Cweraedje di: $3 $9', # obsolete?
 'newuserlogpage' => 'Djournå des noveas uzeus',
 'newuserlogpagetxt' => 'Chal pa dzo c\' est ene djivêye des uzeus novelmint eredjîstrés.',
 'newuserloglog' => 'ahivaedje di l\' uzeu [[User:$1|$1]] ([[User talk:$1|$2]] | [[Special:Contributions/$1|$3]])',

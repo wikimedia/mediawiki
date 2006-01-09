@@ -9,9 +9,6 @@
 
 require_once("LanguageUtf8.php");
 
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( " ", "_", $wgSitename );
-
 # suffixed project name (Wikipédia -> Wikipédiá) -- ról, ba, k
 $wgSitenameROL = $wgSitename . "ról";
 $wgSitenameBA = $wgSitename . "ba";
@@ -58,8 +55,6 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 	NS_CATEGORY_TALK	=> "Kategória_vita"
 ) + $wgNamespaceNamesEn;
 
-/* Inherit default options; make specific changes via
-   custom getDefaultUserOptions() if needed. */
 
 /* private */ $wgQuickbarSettingsHu = array(
 	"Nincs", "Fix baloldali", "Fix jobboldali", "Lebegő baloldali"
@@ -167,7 +162,6 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 "currentevents" => "Friss események",
 "errorpagetitle" => "Hiba",
 "returnto"		=> "Vissza a $1 cikkhez.",
-"tagline"      	=> "A Wikipediából, a szabad enciklopédiából.",
 "whatlinkshere"	=> "Lapok, melyek ide mutatnak",
 "help"			=> "Segítség",
 "search"		=> "Keresés",
@@ -191,24 +185,14 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 "redirectedfrom" => "(Átirányítva $1 cikkből)",
 "lastmodified"	=> "A lap utolsó módosítása $1.",
 "viewcount"		=> "Ezt a lapot eddig $1 alkalommal látogatták.",
-"printsubtitle" => "(From {{SERVER}})",
 "protectedpage" => "Védett lap",
 "administrators" => "{{ns:project}}:Adminisztrátorok",
 "sysoptitle"	=> "Sysop hozzáférés szükséges",
 "sysoptext"		=> "Az általad kért tevékenységet csak \"sysopok\" végezhetik el.
 Lásd $1.",
-"developertitle" => "Developer access required",
-"developertext"	=> "The action you have requested can only be
-performed by users with \"developer\" status.
-See $1.",
 "nbytes"		=> "$1 byte",
 "go"			=> "Menj",
 "ok"			=> "OK",
-"sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	=> "",
-"retrievedfrom" => "Retrieved from \"$1\"",
-"newmessages" 	=> "$1 van.",
-"newmessageslink" => "Új üzeneted",
 "editsection"	=> "szerkesztés",
 "toc" 			=> "Tartalomjegyzék",
 "showtoc" 		=> "mutat",
@@ -473,8 +457,6 @@ $2 Átirányítások listája &nbsp; Keresés:$3 $9",
 "prefsnologin"	=> "Nem vagy belépve",
 "prefsnologintext"	=> "Ahhoz hogy a
 beállításaidat rögzíthesd [[Speciális:Belépés|be kell lépned]].",
-"prefslogintext" => "Be vagy lépve \"$1\" néven.
-A belső azonosítód $2.",
 "prefsreset"	=> "A beállítások törlődtek a tárolóból vett értékekre.",
 "qbsettings"	=> "Gyorsmenü beállítások",
 "changepassword" => "Jelszó változtatása",
@@ -509,7 +491,6 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
 "timezoneoffset" => "Eltérés",
 "servertime"	=> "A server ideje most",
 "guesstimezone" => "Töltse ki a böngésző",
-"emailflag"		=> "Email küldés letiltása más userektől",
 "defaultns"		=> "Alapértelmezésben az alábbi névterekben keressünk:",
 
 # Recent changes  'legutóbbi változtatások', 'friss v.'
@@ -523,7 +504,7 @@ Légy szíves ismerkedj meg az alábbi lapokkal: [[{{ns:project}}:GyIK|{{SITENAM
 [[{{ns:project}}:Irányelvek]] (különösen az [[{{ns:project}}:Elnevezési szokások|elnevezési szokásokat]],
 a [[{{ns:project}}:Semleges nézőpont|semleges nézőpontot]]), és a
 [[{{ns:project}}:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
-Ha azt szeretnéd hogy a Wikipedia sikeres legyen akkor nagyon fontos, hogy
+Ha azt szeretnéd hogy a {{SITENAME}} sikeres legyen akkor nagyon fontos, hogy
 soha ne add hozzá mások [[{{ns:project}}:Copyright|jogvédett és nem felhasználható]]
 anyagait.
 A jogi problémák komolyan árthatnak a projektnek ezért kérünk arra, hogy ne tegyél
@@ -532,9 +513,6 @@ ilyet.",
 "rcnote"		=> "Lentebb az utolsó <strong>$2</strong> nap <strong>$1</strong> változtatása látható.",
 "rcnotefrom"	=> "Lentebb láthatóak a <b>$2</b> óta történt változások (<b>$1</b>-ig).",
 "rclistfrom"	=> "Az új változtatások kijelzése $1 után",
-# "rclinks"		=> "Show last $1 changes in last $2 hours / last $3 days",
-# "rclinks"		=> "Show last $1 changes in last $2 days.",
-# azért kell a 'db' mert ha nincs egy sem, akkor üres $3, és hülyén néz ki.
 "rclinks"		=> "Az utolsó $1 változtatás látszik az elmúlt $2 napon; $3 db apró módosítással",
 "rchide"		=> "$4 formában; $1 apró módosítás; $2 másodlagos névtér; $3 többszörös módosítás.",
 "rcliu"			=> "; $1 módosítás ismert userektől",
@@ -668,19 +646,7 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "maintenancebacklink" => "Vissza a karbantartás lapra",
 "disambiguations" => "Egyértelműsítő lapok",
 "disambiguationspage" => "{{ns:project}}:Egyértelműsítő lapok",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
-"doubleredirects"	=> "Double Redirects",
-"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
-"brokenredirects"	=> "Broken Redirects",
-"brokenredirectstext"	=> "The following redirects link to a non-existing article.",
-"selflinks"	=> "Pages with Self Links",
-"selflinkstext"	=> "The following pages contain a link to themselves, which they should not.",
-"mispeelings"           => "Pages with misspellings",
-"mispeelingstext"	=> "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
 "mispeelingspage"	=> "{{ns:project}}:Gyakori elírások listája",
-"missinglanguagelinks"  => "Missing Language Links",
-"missinglanguagelinksbutton"    => "Find missing language links for",
-"missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
 
 
 # Miscellaneous special pages
@@ -690,8 +656,6 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "unusedimages"	=> "Nem használt képek",
 "popularpages"	=> "Népszerű lapok",
 "nviews"		=> "$1 megnézés",
-# FIXME
-"wantedpages"	=> "Wanted pages",
 "nlinks"		=> "$1 link",
 "allpages"		=> "Minden lap",
 "randompage"	=> "Lap találomra",
@@ -785,63 +749,6 @@ gombot a lap alján.",
 "wlnote" => "Lentebb az utolsó <b>$2</b> óra $1 változtatása látható.",
 "wlshowlast" => "Módosítások az utolsó $1 órában $2 napon $3",
 
-# Delete/protect/revert
-#
-"deletepage"	=> "Delete page",
-"confirm"		=> "Confirm",
-"excontent" 	=> "content was: '$1'",
-"exbeforeblank" => "content before blanking was: '$1'",
-"exblank"		=> "page was empty",
-"confirmdelete" => "Confirm delete",
-"deletesub"		=> "(Deleting \"$1\")",
-"historywarning" => "Warning: The page you are about to delete has a history: ",
-"confirmdeletetext" => "You are about to permanently delete a page
-or image along with all of its history from the database.
-Please confirm that you intend to do this, that you understand the
-consequences, and that you are doing this in accordance with
-[[Wikipedia:Policy]].",
-"actioncomplete" => "Action complete",
-"deletedtext"	=> "\"$1\" has been deleted.
-See $2 for a record of recent deletions.",
-"deletedarticle" => "deleted \"$1\"",
-"dellogpage"	=> "Deletion_log",
-"dellogpagetext" => "Below is a list of the most recent deletions.
-All times shown are server time (UTC).
-<ul>
-</ul>",
-"deletionlog"	=> "deletion log",
-"reverted"		=> "Reverted to earlier revision",
-"deletecomment"	=> "Reason for deletion",
-"imagereverted" => "Revert to earlier version was successful.",
-"rollback"		=> "Roll back edits",
-"rollbacklink"	=> "rollback",
-"rollbackfailed" => "Rollback failed",
-"cantrollback"	=> "Cannot revert edit; last contributor is only author of this article.",
-"alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already.
-
-Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
-#   only shown if there is an edit comment
-"editcomment" => "The edit comment was: \"<i>$1</i>\".",
-"revertpage"	=> "Reverted to last edit by $1",
-
-# Undelete
-"undelete" => "Restore deleted page",
-"undeletepage" => "View and restore deleted pages",
-"undeletepagetext" => "The following pages have been deleted but are still in the archive and
-can be restored. The archive may be periodically cleaned out.",
-"undeletearticle" => "Restore deleted article",
-"undeleterevisions" => "$1 revisions archived",
-"undeletehistory" => "If you restore the page, all revisions will be restored to the history.
-If a new page with the same name has been created since the deletion, the restored
-revisions will appear in the prior history, and the current revision of the live page
-will not be automatically replaced.",
-"undeleterevision" => "Deleted revision as of $1",
-"undeletebtn" => "Restore!",
-"undeletedarticle" => "restored \"$1\"",
-"undeletedtext"   => "The article [[:$1|$1]] has been successfully restored.
-See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
-
 # Contributions
 #
 "contributions"	=> "User közreműködései",
@@ -849,8 +756,6 @@ See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations
 "contribsub"	=> "$1 cikkhez",
 "nocontribs"	=> "Nem találtam a feltételnek megfelelő módosítást.",
 "ucnote"		=> "Lentebb <b>$1</b> módosításai láthatóak az elmúlt <b>$2</b> napban.",
-"uclinks"		=> "View the last $1 changes; view the last $2 days.",
-"uctop"			=> " (top)",
 
 # What links here
 #
@@ -861,66 +766,6 @@ See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations
 "linkshere"		=> "Az alábbi lapok hivatkoznak erre:",
 "nolinkshere"	=> "Erre a lapra senki nem hivatkozik.",
 "isredirect"	=> "átirányítás",
-
-# Block/unblock IP
-#
-#FIXME:
-"blockip"		=> "Block IP address",
-"blockiptext"	=> "Use the form below to block write access
-from a specific IP address.
-This should be done only only to prevent vandalism, and in
-accordance with [[Wikipedia:Policy|Wikipedia policy]].
-Fill in a specific reason below (for example, citing particular
-pages that were vandalized).",
-"ipaddress"		=> "IP Address",
-"ipbreason"		=> "Reason",
-"ipbsubmit"		=> "Block this address",
-"badipaddress"	=> "The IP address is badly formed.",
-"blockipsuccesssub" => "Block succeeded",
-"blockipsuccesstext" => "The IP address \"$1\" has been blocked.
-<br />See [[Speciális:Ipblocklist|IP block list]] to review blocks.",
-"unblockip"		=> "Unblock IP address",
-"unblockiptext"	=> "Use the form below to restore write access
-to a previously blocked IP address.",
-"ipusubmit"		=> "Unblock this address",
-"ipusuccess"	=> "IP address \"$1\" unblocked",
-"ipblocklist"	=> "List of blocked IP addresses",
-"blocklistline"	=> "$1, $2 blocked $3 ($4)",
-"blocklink"		=> "block",
-"unblocklink"	=> "unblock",
-"contribslink"	=> "contribs",
-"autoblocker"	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
-"blocklogpage"	=> "Block_log",
-"blocklogentry"	=> 'blocked "$1"',
-"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically
-blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
-the list of currently operational bans and blocks.",
-"unblocklogentry"	=> 'unblocked "$1"',
-
-# Developer tools
-#
-"lockdb"		=> "Lock database",
-"unlockdb"		=> "Unlock database",
-"lockdbtext"	=> "Locking the database will suspend the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do, and that you will
-unlock the database when your maintenance is done.",
-"unlockdbtext"	=> "Unlocking the database will restore the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do.",
-"lockconfirm"	=> "Yes, I really want to lock the database.",
-"unlockconfirm"	=> "Yes, I really want to unlock the database.",
-"lockbtn"		=> "Lock database",
-"unlockbtn"		=> "Unlock database",
-"locknoconfirm" => "You did not check the confirmation box.",
-"lockdbsuccesssub" => "Database lock succeeded",
-
-"unlockdbsuccesssub" => "Database lock removed",
-"lockdbsuccesstext" => "The Wikipedia database has been locked.
-<br />Remember to remove the lock after your maintenance is complete.",
-"unlockdbsuccesstext" => "The Wikipedia database has been unlocked.",
 
 # Move page
 #
@@ -996,19 +841,6 @@ class LanguageHu extends LanguageUtf8 {
 		return $wgNamespaceNamesHu;
 	}
 
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesHu;
-
-		foreach ( $wgNamespaceNamesHu as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		# Compatbility with old names:
-		if( 0 == strcasecmp( "Special", $text ) ) { return -1; }
-		if( 0 == strcasecmp( "Wikipedia", $text ) ) { return 4; }
-		if( 0 == strcasecmp( "Wikipedia_talk", $text ) ) { return 5; }
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsHu;
 		return $wgQuickbarSettingsHu;
@@ -1050,9 +882,8 @@ class LanguageHu extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($this->commafy($number), '.,', ',.' ) : $number;
 	}
 
 }

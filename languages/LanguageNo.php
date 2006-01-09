@@ -110,19 +110,19 @@
 
 "linktrail"		=> "/^((?:[a-z]|æ|ø|å)+)(.*)\$/sD",
 "mainpage"		=> "Hovedside",
-"mainpagetext"	=> "Wiki-programvare er nå installert.",
+"mainpagetext"	=> "Mediawiki-programvare er nå installert.",
 "about"			=> "Om",
-"aboutsite"      => "Om Wikipedia",
-"aboutpage"		=> "Wikipedia:Om",
+"aboutsite"      => "Om {{SITENAME}}",
+"aboutpage"		=> "{{ns:project}}:Om",
 "help"			=> "Hjelp",
-"helppage"		=> "Wikipedia:Hjelp",
+"helppage"		=> "{{ns:project}}:Hjelp",
 "bugreports"	=> "Feilmeldinger",
-"bugreportspage" => "Wikipedia:Feilmeldinger",
+"bugreportspage" => "{{ns:project}}:Feilmeldinger",
 "sitesupport"   => "Donasjoner",
 "faq"			=> "OSS",
-"faqpage"		=> "Wikipedia:OSS",
+"faqpage"		=> "{{ns:project}}:OSS",
 "edithelp"		=> "Hjelp til redigering",
-"edithelppage"	=> "Wikipedia:Hvordan_redigere",
+"edithelppage"	=> "{{ns:project}}:Hvordan_redigere",
 "cancel"		=> "Avbryt",
 "qbfind"		=> "Finn",
 "qbbrowse"		=> "Søk",
@@ -135,7 +135,7 @@
 "currentevents" => "Aktuelt",
 "errorpagetitle" => "Feil",
 "returnto"		=> "Tilbake til $1.",
-"tagline"      	=> "Fra Wikipedia, den frie encyklopedi.",
+"tagline"      	=> "{{SITENAME}}",
 "whatlinkshere"	=> "Lenker hit",
 "help"			=> "Hjelp",
 "search"		=> "Søk",
@@ -161,7 +161,7 @@
 "viewcount"		=> "Denne siden er vist $1 ganger.",
 "printsubtitle" => "(fra {{SERVER}})",
 "protectedpage" => "Beskyttet side",
-"administrators" => "Wikipedia:Administratorer",
+"administrators" => "{{ns:project}}:Administratorer",
 "sysoptitle"	=> "Sysop-rettigheter kreves",
 "sysoptext"		=> "Funksjonen kan kun utføres av brukere med \"sysop\"-status.
 Se $1.",
@@ -171,10 +171,9 @@ Se $1.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Utfør",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipedia",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "",
 "retrievedfrom" => "Hentet fra \"$1\"",
-"newmessages" => "Du har $1.",
 "newmessageslink" => "nye meldinger",
 "editsection"=>"rediger",
 "toc" => "Innholdsfortegnelse",
@@ -186,10 +185,10 @@ Se $1.",
 # Main script and global functions
 #
 "nosuchaction"	=> "Funksjonen finnes ikke",
-"nosuchactiontext" => " Wikipedia-programvaren klarer ikke å
+"nosuchactiontext" => " Mediawiki-programvaren klarer ikke å
 gjenkjenne funksjonen som er spesifisert i URL-en",
 "nosuchspecialpage" => "En slik spesialside finnes ikke",
-"nospecialpagetext" => "Du har bedt om en spesialside som Wikipedia-programvaren ikke
+"nospecialpagetext" => "Du har bedt om en spesialside som Mediawiki-programvaren ikke
 klarer å gjenkjenne.",
 
 # General errors
@@ -226,13 +225,13 @@ Send en rapport om dette til en administrator, oppgi adresse til siden.",
 "badarticleerror" => "Handlingen kan ikke utføres på denne siden.",
 "cannotdelete"	=> "Kunne ikke slette filen. (den kan være slettet av noen andre.)",
 "badtitle"		=> "Feil tittel",
-"badtitletext"	=> "Den ønskede tittel var ulovlig, tom eller er galt lenket fra en Wikipedia på et annet språk.",
+"badtitletext"	=> "Den ønskede tittel var ulovlig, tom eller er galt lenket på et annet språk.",
 "perfdisabled" => "Beklager! Denne funksjon er midlertidig avbrutt av vedlikeholdsgrunner.",
 "perfdisabledsub" => "Her er en lagret kopi fra $1:",
 "viewsource" => "Vis kildekode",
 "protectedtext" => "Denne siden er sperret for å hindre redigering; det
 kan være flere grunner til dette, se
-[[Wikipedia:Beskyttet side]].
+[[{{ns:project}}:Beskyttet side]].
 
 Du kan se og kopiere kildekoden til denne siden:",
 
@@ -240,10 +239,10 @@ Du kan se og kopiere kildekoden til denne siden:",
 #
 "logouttitle"	=> "Logg ut",
 "logouttext"	=> "Du er nå logget ut.
-Du kan fortsette å bruke Wikipedia anonymt, eller du kan logge inn
+Du kan fortsette å bruke {{SITENAME}} anonymt, eller du kan logge inn
 igjen med samme konto eller med en annen en.",
 
-"welcomecreation" => "<h2>Hjertelig velkommen til Wikipedia, $1!</h2><p>Vi har opprettet din brukerkonto.
+"welcomecreation" => "<h2>Hjertelig velkommen til {{SITENAME}}, $1!</h2><p>Vi har opprettet din brukerkonto.
 Hvis du vil, kan du personliggjøre brukerinnstillingene.",
 
 "loginpagetitle" => "Logg inn",
@@ -275,9 +274,9 @@ Hvis du vil, kan du personliggjøre brukerinnstillingene.",
 Sjekk stavemåten, eller opprett en ny konto.",
 "wrongpassword"	=> "Du har oppgitt et ugyldig passord. Prøv igjen.",
 "mailmypassword" => "Send nytt passord.",
-"passwordremindertitle" => "Nytt passord til Wikipedia",
+"passwordremindertitle" => "Nytt passord til {{SITENAME}}",
 "passwordremindertext" => "Noen (antagelig deg, fra IP-adressen $1)
-ba oss sende deg et nytt passord til Wikipedia..
+ba oss sende deg et nytt passord til {{SITENAME}}..
 Passord for bruker \"$2\" er nå \"$3\".
 Du bør logge inn og endre passordet nå.",
 "noemail"		=> "Det er ikke registrert noen e-postadresse på bruker \"$1\".",
@@ -296,12 +295,12 @@ Logg inn når du har mottatt det nye passordet.",
 "blockedtitle"	=> "Brukeren er blokkert",
 "blockedtext"	=> "Ditt brukernavn eller din IP-adresse er blokkert av $1.
 Følgende begrunnelse ble gitt:<br />''$2''<p>Du kan kontakte $1 eller en annen
-[[Wikipedia:Administratorer|administrator]] for å diskutere utestengelsen.",
+[[{{ns:project}}:Administratorer|administrator]] for å diskutere utestengelsen.",
 "newarticle"	=> "(Ny)",
 "newarticletext" =>
 "Artikkelen inneholder ingen tekst.
 Du kan begynne på en artikkel ved å skrive i boksen under
-(se [[Wikipedia:Hjelp|hjelpsiden]] for mere informasjon).
+(se [[{{ns:project}}:Hjelp|hjelpsiden]] for mere informasjon).
 Hvis du ikke vil redigere siden, klikk på '''tilbake''' i nettleseren.",
 "anontalkpagetext" => "---- ''Dette er en diskusjonsside for en anonym bruker som ikke har opprettet en konto eller ikke bruker den. Vi er derfor nødt til å bruke den numeriske IP-adressen til å identifisere ham eller henne. En IP-adresse kan være delt mellom flere brukere. Hvis du er en anonym bruker og synes at du har fått irrelevante kommentarer på en slik side, [[Spesial:Innlogging|logg på]] så vi unngår fremtidige forvekslinger med andre anonyme brukere.'' ",
 "noarticletext" => "(Det er for øyeblikket ingen tekst på denne siden.)",
@@ -326,7 +325,7 @@ av denne siden.
 Hvis du lagrer den, vil alle endringer foretatt siden denne revisjonen bli
 overskrevet.</strong>",
 "yourdiff"		=> "Forskjeller",
-"copyrightwarning" => "Legg merke til at alle bidrag til Wikipedia er
+"copyrightwarning" => "Legg merke til at alle bidrag til {{SITENAME}} er
 å betrakte som utgitt under GNU fri dokumentasjonslisens
 (se $1 for detaljer).
 Hvis du ikke vil ha teksten redigert uten nåde og kopiert etter
@@ -372,7 +371,7 @@ versjonen, (forrige) = forskjell fra den forrige versjonen, M = mindre endring",
 # Search results
 #
 "searchresults" => "Søkeresultater",
-"searchresulttext" => "For mer informasjon om søking i Wikipedia, se
+"searchresulttext" => "For mer informasjon om søking i {{SITENAME}}, se
 $1.",
 "searchquery"	=> "For forespørsel \"$1\"",
 "badquery"		=> "Galt utformet forespørsel",
@@ -413,12 +412,6 @@ oppgradert programvaren. I mellomtiden kan du søke via Google:</p>",
 #
 "preferences"	=> "Innstillinger",
 "prefsnologin" => "Ikke logget inn",
-"prefsnologintext"	=> "Du må være [[Spesial:Userlogin|logget inn]]
-for å endre brukerinnstillingene.",
-"prefslogintext" => "Du logget inn som \"$1\".
-Ditt interne ID-nummer er $2.
-
-Se [[Wikipedia:Hvordan stille inn brukerinnstillinger]] for en forklaring på de forskjellige brukerinnstillingene.",
 "prefsreset"	=> "Brukerinnstillingene er tilbakestilt.",
 "qbsettings"	=> "Brukerinnstillinger for hurtigmeny",
 "changepassword" => "Skift passord",
@@ -451,15 +444,13 @@ fra tjenerens tid.",
 "timezoneoffset" => "Forskjell",
 "servertime"	=> "Tjenerens tid er nå",
 "guesstimezone" => "Hent tidssone fra nettleseren",
-"emailflag"	=> "Ikke ta imot e-post fra andre brukere",
 "defaultns"		=> "Søk som standard i disse navnerom:",
 
 # Recent changes
 #
 "changes" => "endringer",
 "recentchanges" => "Siste endringer",
-# This is the default text, and can be overriden by editing [[Wikipedia::Recentchanges]]
-"recentchangestext" => "Se de sist endrede sider i Wikipedia på denne siden.",
+"recentchangestext" => "Se de sist endrede sider i {{SITENAME}} på denne siden.",
 "rcloaderr"		=> "Laster sist endrede sider",
 "rcnote"		=> "Nedenfor er de siste <strong>$1</strong> endringer i de
 siste <strong>$2</strong> dagene.",
@@ -490,7 +481,7 @@ siste <strong>$2</strong> dagene.",
 for å kunne laste opp filer.",
 "uploaderror"	=> "Feil under opplasting av fil",
 "uploadtext"	=> "'''STOPP!''' Før du laster opp filer her,
-vær sikker på du har lest og følger Wikipedias
+vær sikker på du har lest og følger {{SITENAME}}s
 [[Project:Retningslinjer for billedbruk|retningslinjer for billedbruk]].
 
 For å se eller søke i bilder som tidligere er lastet opp,
@@ -520,7 +511,7 @@ For å bruke bildet i en artikkel, bruk en lenke av dette slaget:
 '''<nowiki>[[bilde:fil.png|alternativ tekst]]</nowiki>''' eller
 '''<nowiki>[[medium:fil.ogg]]</nowiki>''' for lyd.
 
-Legg merke til at akkurat som med Wikipedia-sider, kan andre gjerne
+Legg merke til at akkurat som med {{SITENAME}}-sider, kan andre gjerne
 redigere eller
 slette de filene du har lastet opp, hvis de mener det hjelper encyklopedien, og
 du kan bli blokkert fra å laste opp hvis du misbruker systemet.",
@@ -532,8 +523,8 @@ opp sist. Alle de viste tidene er tjenerens tid (UTC).
 </ul>",
 "filename"		=> "Filnavn",
 "filedesc"		=> "Beskrivelse",
-"copyrightpage" => "Wikipedia:Opphavsrett",
-"copyrightpagename" => "Wikipedia opphavsrett",
+"copyrightpage" => "{{ns:project}}:Opphavsrett",
+"copyrightpagename" => "{{SITENAME}} opphavsrett",
 "uploadedfiles"	=> "Filer som er lastet opp",
 "minlength"		=> "Navnet på filen må bestå av minst tre bokstaver.",
 "badfilename"	=> "Navnet på filen er blitt endret til \"$1\".",
@@ -576,10 +567,10 @@ og av hvem, og andre ting du vet om filen.",
 # Statistics
 #
 "statistics"	=> "Statistikk",
-"sitestats"		=> "Wikipedia-statistikk",
+"sitestats"		=> "{{SITENAME}}-statistikk",
 "userstats"		=> "Brukerstatistikk",
 "sitestatstext" => "Der er i alt <b>$1</b> sider i databasen.
-Dette inkluderer diskusjonssider, sider om Wikipedia,
+Dette inkluderer diskusjonssider, sider om {{SITENAME}},
 omdirigeringssider, og andre som sikkert ikke kvalifiserer til å være artikler.
 Hvis man ekskluderer disse, er det <b>$2</b> sider som sannsynligvis er
 ordinære artikler.<p>
@@ -594,12 +585,12 @@ og <b>$6</b> visninger per redigering.",
 #
 "maintenance"		=> "Vedlikeholdsside",
 "maintnancepagetext"	=> "På denne siden er det forskjellige
-verktøyer for å vedlikeholde Wikipedia. Noen av disse funksjonene er
+verktøyer for å vedlikeholde {{SITENAME}}. Noen av disse funksjonene er
 harde for databasen (de tar lang tid), så la være å oppdatere siden
 hver gang du har rettet en enkelt ting",
 "maintenancebacklink"	=> "Tilbake til vedlikeholdssiden",
 "disambiguations"	=> "Artikler med flertydige titler",
-"disambiguationspage"	=> "Wikipedia:Lenker til artikler med flertydige titler",
+"disambiguationspage"	=> "{{ns:template}}:Lenker til artikler med flertydige titler",
 "disambiguationstext"	=> "De følgende artikler har lenker til
 <i>artikler med flertydige titler</i>. De burde ha lenke til en ikke-flertydig
 tittel i stedet.<br />En artikkel blir behandlet som flertydig hvis den har
@@ -654,15 +645,13 @@ lenker til den samme artikkel i $1. Omdirigeringer og underartikler er
 "intl"		=> "Språklenker",
 "movethispage"	=> "Flytt side",
 "unusedimagestext" => "<p>Legg merke til at andre internettsider
-slik som de andre internasjonale Wikipediaene kanskje har lenker til et bilde med
+slik som de andre internasjonale {{SITENAME}}ene kanskje har lenker til et bilde med
 en direkte URL, og kan være listet opp her, selv om det er
 i aktiv bruk.",
 "booksources"	=> "Bokkilder",
 "booksourcetext" => "Her er en liste over lenker til steder som
 låner ut og/eller selger nye og brukte bøker, og som kanskje også har
-ytterligere informasjon om bøker du leter etter.
-Wikipedia er ikke assosiert med noen av disse stedene,
-og denne listen skal ikke sees på som en anbefaling av disse.",
+ytterligere informasjon om bøker du leter etter.",
 "alphaindexline" => "$1 til $2",
 
 # Email this user
@@ -746,7 +735,7 @@ i bunnen av skjermen.",
 eller et bilde sammen med hele den tilhørende historikken fra databasen.
 Bekreft at du virkelig vil gjøre dette, at du forstår
 konsekvensene, og at du gjør dette i overensstemmelse med
-[[Wikipedia:Retningslinjer]].",
+[[{{ns:project}}:Retningslinjer]].",
 "actioncomplete" => "Gjennomført",
 "deletedtext"	=> "\"$1\" er slettet.
 Se $2 for en oversikt over de nyeste slettinger.",
@@ -775,7 +764,7 @@ Den siste redigeringen er foretatt av [[Bruker:$3|$3]] ([[Brukerdiskusjon:$3|dis
 "revertpage"	=> "Gjenopprettet siden til tidligere versjon redigert av $1",
 "protectlogpage" => "Beskyttelseslogg",
 "protectlogtext" => "Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen.
-Se [[Wikipedia:Beskyttet side]] for mer informasjon.",
+Se [[{{ns:project}}:Beskyttet side]] for mer informasjon.",
 "protectedarticle" => "beskyttet [[$1]]",
 "unprotectedarticle" => "fjernet beskyttelse for [[$1]]",
 
@@ -795,7 +784,7 @@ på siden.",
 "undeletebtn" => "Gjenopprett!",
 "undeletedarticle" => "gjenopprettet \"$1\"",
 "undeletedtext"   => "Artikkelen [[:$1|$1]] er gjenopprettet.
-Se [[Wikipedia:Slettingslogg]] for en oversikt over nylige
+Se [[{{ns:project}}:Slettingslogg]] for en oversikt over nylige
 slettinger og gjenopprettelser.",
 
 # Contributions
@@ -827,7 +816,7 @@ siste <b>$2</b> dagene.",
 "blockiptext"	=> "Bruk skjemaet nedenunder for å blokkere skriveadgangen
 fra en spesifikk IP-adresse.
 Dette må kun gjøres for at forhindre vandalisme, og i
-overensstemmelse med [[Wikipedia:Retningslinjer|retningslinjene]].
+overensstemmelse med [[{{ns:project}}:Retningslinjer|retningslinjene]].
 Fyll ut en spesiell begrunnelse nedenunder (for eksempel med et sitat fra
 sider som har vært utsatt for vandalisme).",
 "ipaddress"		=> "IP-adresse",
@@ -869,9 +858,9 @@ Bekreft at du har til hensikt å gjøre dette.",
 "locknoconfirm" => "Du har ikke bekreftet handlingen.",
 "lockdbsuccesssub" => "Databasen er nå låst",
 "unlockdbsuccesssub" => "Databasen er nå låst opp",
-"lockdbsuccesstext" => "Wikipedia-databasen er låst.
+"lockdbsuccesstext" => "Databasen er låst.
 <br />Husk å fjerne låsen når du er ferdig med vedlikeholdet.",
-"unlockdbsuccesstext" => "Wikipedia-databasen er låst opp.",
+"unlockdbsuccesstext" => "Databasen er låst opp.",
 
 # Move page
 #
@@ -971,9 +960,8 @@ class LanguageNo extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($number, '.,', ',.' ) : $number;
 	}
 
 	function getMessage( $key ) {

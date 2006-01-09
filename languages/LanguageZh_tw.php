@@ -73,21 +73,21 @@ require_once( "LanguageZh_cn.php" );
 # Bits of text used by many pages:
 #
 "categories" => "頁面分類",
- 	 "category" => "分類",
- 	 "category_header" => "類別”$1“中的條目",
- 	 "subcategories" => "子分類",
+"category" => "分類",
+"category_header" => "類別”$1“中的條目",
+"subcategories" => "子分類",
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "首頁",
 "about"			=> "關於",
-"aboutpage"		=> "維基百科:關於",
+"aboutpage"		=> "{{ns:project}}:關於",
 "help"			=> "幫助",
-"helppage"		=> "維基百科:幫助",
+"helppage"		=> "{{ns:project}}:幫助",
 "bugreports"	=> "錯誤報告",
-"bugreportspage" => "維基百科:錯誤報告",
+"bugreportspage" => "{{ns:project}}:錯誤報告",
 "faq"			=> "常見問題解答",
-"faqpage"		=> "維基百科:常見問題解答",
+"faqpage"		=> "{{ns:project}}:常見問題解答",
 "edithelp"		=> "編輯幫助",
-"edithelppage"	=> "維基百科:如何編輯頁面",
+"edithelppage"	=> "{{ns:project}}:如何編輯頁面",
 "cancel"		=> "取消",
 "qbfind"		=> "尋找",
 "qbbrowse"		=> "瀏覽",
@@ -125,7 +125,7 @@ require_once( "LanguageZh_cn.php" );
 "viewcount"		=> "本頁面已經被瀏覽$1次。",
 "printsubtitle" => "(來自 {{SERVER}})",
 "protectedpage" => "被保護頁",
-"administrators" => "維基百科:管理員",
+"administrators" => "{{ns:project}}:管理員",
 "sysoptitle"	=> "需要管理員權限",
 "sysoptext"		=> "您剛才的請求只有擁有管理員權限的用戶才可使用。
 參見$1。",
@@ -135,13 +135,12 @@ require_once( "LanguageZh_cn.php" );
 "nbytes"		=> "$1字節",
 "go"			=> "進入",
 "ok"			=> "好",
-"sitetitle"		=> "維基百科",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "",
 "retrievedfrom" => "取自\"$1\"",
-"newmessages" => "您有$1。",
 "newmessageslink" => "新信息",
- "editsection"=>"編輯",
- "toc" => "目錄",
+"editsection"=>"編輯",
+"toc" => "目錄",
 "showtoc" => "顯示",
  	 "hidetoc" => "隱藏",
 
@@ -183,10 +182,10 @@ require_once( "LanguageZh_cn.php" );
 # Main script and global functions
 #
 "nosuchaction"	=> "沒有這個命令",
-"nosuchactiontext" => "URL請求的命令無法被維基百科軟件識別。",
+"nosuchactiontext" => "URL請求的命令無法被{{SITENAME}}軟件識別。",
 "nosuchspecialpage" => "沒有這個特殊頁。",
 
-"nospecialpagetext" => "您請求的頁面無法被維基百科軟件識別。",
+"nospecialpagetext" => "您請求的頁面無法被{{SITENAME}}軟件識別。",
 
 # General errors
 #
@@ -203,7 +202,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "nodb"			=> "無法選擇數據庫 $1",
 "readonly"		=> "數據庫禁止訪問",
 "enterlockreason" => "請輸入禁止訪問原因, 包括估計重新開放的時間",
-"readonlytext"	=> "維基百科數據庫目前禁止輸入新內容及更改，
+"readonlytext"	=> "{{SITENAME}}數據庫目前禁止輸入新內容及更改，
 這很可能是由於數據庫正在維修，之後即可恢復。
 管理員有如下解釋:
 <p>$1",
@@ -231,9 +230,9 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 #
 "logouttitle"	=> "用戶退出",
 "logouttext"	=> "您現在已經退出。
-您可以繼續以匿名方式使用維基百科，或再次以相同或不同用戶身份登錄。",
+您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同用戶身份登錄。",
 
-"welcomecreation" => "<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置維基百科個人參數。",
+"welcomecreation" => "<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置{{SITENAME}}個人參數。",
 
 "loginpagetitle" => "用戶登錄",
 "yourname"		=> "您的用戶名",
@@ -258,13 +257,13 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "loginerror"	=> "登錄錯誤",
 "noname"		=> "你沒有輸入一個有效的用戶名。",
 "loginsuccesstitle" => "登錄成功",
-"loginsuccess"	=> "你現在以 \"$1\"的身份登錄維基百科。",
+"loginsuccess"	=> "你現在以 \"$1\"的身份登錄{{SITENAME}}。",
 "nosuchuser"	=> "找不到用戶 \"$1\"。
 檢查您的拼寫，或者用下面的表格建立一個新帳號。",
 "wrongpassword"	=> "您輸入的密碼錯誤，請再試一次。",
 "mailmypassword" => "將新密碼寄給我",
-"passwordremindertitle" => "維基百科密碼提醒",
-"passwordremindertext" => "有人（可能是您，來自網址$1)要求我們將新的維基百科登錄密碼寄給你。
+"passwordremindertitle" => "{{SITENAME}}密碼提醒",
+"passwordremindertext" => "有人（可能是您，來自網址$1)要求我們將新的{{SITENAME}}登錄密碼寄給你。
 用戶 \"$2\" 的密碼現在是 \"$3\"。
 請立即登錄並更改密碼。",
 "noemail"		=> "用戶\"$1\"沒有登記電子郵件地址。",
@@ -282,7 +281,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "showpreview"	=> "顯示預覽",
 "blockedtitle"	=> "用戶被封",
 "blockedtext"	=> "您的用戶名或網址已被$1封。
-理由是：<br />'''$2'''<p>您可以與$1向其他任何[[維基百科:管理員|管理員]]詢問。",
+理由是：<br />'''$2'''<p>您可以與$1向其他任何[[{{ns:project}}:管理員|管理員]]詢問。",
  "whitelistedittitle" => "登錄後才可編輯",
  	 "whitelistedittext" => "您必須先[[特殊:登錄]]才可編輯頁面。",
  	 "whitelistreadtitle" => "登錄後才可閱讀",
@@ -294,7 +293,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "newarticle"	=> "（新）",
 "newarticletext" =>
 "您從一個鏈接進入了一個並不存在的頁面。
-要創建該頁面，請在下面的編輯框中輸入內容（詳情參見[[維基百科:幫助|幫助頁面]]）。
+要創建該頁面，請在下面的編輯框中輸入內容（詳情參見[[{{ns:project}}:幫助|幫助頁面]]）。
 如果您不小心來到本頁面，直接點擊您瀏覽器中的“返回”按鈕。",
 
 "anontalkpagetext" => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用[[網址]]來與他／她聯絡。該網址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[特殊:登錄|創建新帳號或登錄]]以避免在未來於其他匿名用戶混淆。''",
@@ -317,7 +316,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "editingold"	=> "<strong>警告：你正在編輯的是本頁的舊版本。
 如果你保存它的話，在本版本之後的任何修改都會丟失。</strong>",
 "yourdiff"		=> "差別",
-"copyrightwarning" => "請注意對W維基百科的任何貢獻都將被認為是在GNU自由文檔協議證書下發佈。
+"copyrightwarning" => "請注意對W{{SITENAME}}的任何貢獻都將被認為是在GNU自由文檔協議證書下發佈。
 (細節請見$1).
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也向我們保證你所提交的內容是你自己所作，或得自一個不受版權保護或相似自由的來源。
@@ -355,7 +354,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 # Search results
 #
 "searchresults" => "搜索結果",
-"searchresulttext" => "有關搜索維基百科的更多詳情,參見$1。",
+"searchresulttext" => "有關搜索{{SITENAME}}的更多詳情,參見$1。",
 "searchquery"	=> "查詢\"$1\"",
 "badquery"		=> "搜索查詢不正確",
 "badquerytext"	=> "我們無法處理您的查詢。
@@ -379,9 +378,9 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "powersearchtext" => "
 搜索名字空間：<br />$1<br />$2列出重定向頁面；搜索$3 $9",
 
-"searchdisabled" => "<p>維基百科內部搜索功能由於高峰時段服務器超載而停止使用。
+"searchdisabled" => "<p>{{SITENAME}}內部搜索功能由於高峰時段服務器超載而停止使用。
 您可以暫時通過
-<a href=\"http://google.com.tw/\">google</a>搜索維基百科。
+<a href=\"http://google.com.tw/\">google</a>搜索{{SITENAME}}。
 謝謝您的耐心。",
 
 # Preferences page
@@ -389,8 +388,6 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "preferences"	=> "參數設置",
 "prefsnologin" => "還未登錄",
 "prefsnologintext"	=> "您必須先[[Special:Userlogin|登錄]]才能設置個人參數。",
-"prefslogintext" => "你已經以\"$1\"的身份登錄。
-你的內部ID是$2。",
 "prefsreset"	=> "參數重新設置。",
 "qbsettings"	=> "快速導航條設置",
 "changepassword" => "更改密碼",
@@ -419,24 +416,22 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "timezonetext"	=> "輸入當地時間與服務器時間的時差。",
 "localtime"	=> "當地時間",
 "timezoneoffset" => "時差",
-"emailflag"		=> "禁止其他用戶發電子郵件給我",
 
 # Recent changes
 #
 "changes" => "更改",
 "recentchanges" => "最近更改",
-"recentchangestext" => "本頁跟蹤維基百科內最新的更改。
-[[維基百科:歡迎，新來者|歡迎，新來者]]！
-請參見這些頁面：[[維基百科:常見問題解答|維基百科常見問題解答]]、
-[[維基百科:守則與指導|維基百科守則]]
-（特別是[[維基百科:命名常規|命名常規]]、
-[[維基百科:中性的觀點|中立觀點]]）
-和[[維基百科:最常見失禮行為|最常見失禮行為]]。
+"recentchangestext" => "本頁跟蹤{{SITENAME}}內最新的更改。
+[[{{ns:project}}:歡迎，新來者|歡迎，新來者]]！
+請參見這些頁面：[[{{ns:project}}:常見問題解答|{{SITENAME}}常見問題解答]]、
+[[{{ns:project}}:守則與指導|{{SITENAME}}守則]]
+（特別是[[{{ns:project}}:命名常規|命名常規]]、
+[[{{ns:project}}:中性的觀點|中立觀點]]）
+和[[{{ns:project}}:最常見失禮行為|最常見失禮行為]]。
 
-如果您希望維基百科成功，那麼請您不要增加受其它[[維基百科:版權信息|版權]]
+如果您希望{{SITENAME}}成功，那麼請您不要增加受其它[[{{ns:project}}:版權信息|版權]]
 限制的材料，這一點將非常重要。相關的法律責任會傷害本項工程，所以請不要這樣做。
-此外請參見
-[http://meta.wikipedia.org/wiki/Special:Recentchanges 最近的元維基討論]。",
+此外請參見",
 
 "rcloaderr"		=> "載入最近更改",
 "rcnote"		=> "下面是最近<strong>$2</strong>天內最新的<strong>$1</strong>次改動。",
@@ -465,13 +460,13 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "uploadnologintext"	=> "您必須先[[Special:Userlogin|登錄]]
 才能上載文件。",
 "uploaderror"	=> "上載錯誤",
-"uploadtext"	=> "<strong>停止！</strong>在您上載之前，請先閱讀並遵守維基百科<a href=\"" .
-"{{localurle:Wikipedia:Image use policy}}\">圖像使用守則</a>。
+"uploadtext"	=> "<strong>停止！</strong>在您上載之前，請先閱讀並遵守{{SITENAME}}<a href=\"" .
+"{{localurle:Project:Image use policy}}\">圖像使用守則</a>。
 <p>如果您要查看或搜索之前上載的圖像，
 請到<a href=\"" . "{{localurle:Special:Imagelist}}" .
 "\">已上載圖像列表</a>.
 所有上載與刪除行為都被記錄在<a href=\"" .
-"{{localurle:Wikipedia:Upload image}}\">上載紀錄</a>內。
+"{{localurle:Project:Upload image}}\">上載紀錄</a>內。
 <p>使用下面的表單來上載用在條目內新的圖像文件。
 在絕大多數瀏覽器內，你會看到一個\"瀏覽...\"按鈕，點擊它後就會跳出一個打開文件對話框。
 選擇一個文件後文件名將出現在按鈕旁邊的文字框中。
@@ -483,7 +478,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 要在文章中加入圖像，使用以下形式的連接：
 <b>[[圖像:檔案.jpg]]</b>或者<b>[[圖像:檔案.png|解釋文字]]</b>
 或<b>[[媒體:檔案.ogg]]</b>來連接音像文件。
-<p>請注意在維基百科頁面中，其他人可能會為了百科全書的利益而編輯或刪除您的上載文件，
+<p>請注意在{{SITENAME}}頁面中，其他人可能會為了百科全書的利益而編輯或刪除您的上載文件，
 而如果您濫用上載系統，您則有可能被禁止使用上載功能。",
 "uploadlog"		=> "上載紀錄",
 "uploadlogpage" => "上載紀錄",
@@ -493,8 +488,8 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 </ul>",
 "filename"		=> "文件名",
 "filedesc"		=> "簡述",
-"copyrightpage" => "維基百科:版權信息",
-"copyrightpagename" => "維基百科版權",
+"copyrightpage" => "{{ns:project}}:版權信息",
+"copyrightpagename" => "{{SITENAME}}版權",
 "uploadedfiles"	=> "已上載文件",
 "minlength"		=> "圖像名字必須至少有三個字母。",
 "badfilename"	=> "圖像名已被改為\"$1\"。",
@@ -538,7 +533,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "sitestats"		=> "站點統計",
 "userstats"		=> "用戶統計",
 "sitestatstext" => "數據庫中共有 <b>$1</b> 頁頁面；
-其中包括對話頁、關於維基百科的頁面、最少量的\"stub\"頁、重定向的頁面，
+其中包括對話頁、關於{{SITENAME}}的頁面、最少量的\"stub\"頁、重定向的頁面，
 以及未達到條目質量的頁面；除此之外還有 <b>$2</b> 頁可能是合乎標準的條目。
 <p>從系統軟件升級以來，全站點共有頁面瀏覽 <b>$3</b> 次，
 頁面編輯 <b>$4</b> 次，每頁平均編輯 <b>$5</b> 次，
@@ -547,12 +542,12 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 # Maintenance Page
 #
 "maintenance"		=> "維護頁",
-"maintnancepagetext"	=> "這頁面提供了幾個幫助維基百科日常維護的工具。
+"maintnancepagetext"	=> "這頁面提供了幾個幫助{{SITENAME}}日常維護的工具。
 但其中幾個會對我們的數據庫造成壓力，
 所以請您不要在每修理好幾個項目後就按重新載入 ;-)",
 "maintenancebacklink"	=> "返回維護頁",
 "disambiguations"	=> "消含糊頁",
-"disambiguationspage"	=> "維基百科:鏈接到消歧義的頁面",
+"disambiguationspage"	=> "{{ns:project}}:鏈接到消歧義的頁面",
 "disambiguationstext"	=> "以下的條目都有到消含糊頁的鏈接，但它們應該是鏈到適當的題目。<br />一個頁面會被視為消含糊頁如果它是鏈自$1.<br />由其它他名字空間來的鏈接<i>不會</i>在這兒被列出來。",
 "doubleredirects"	=> "雙重重定向",
 "doubleredirectstext"	=> "<b>請注意：</b> 這列表可能包括不正確的反應。
@@ -594,12 +589,12 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "newpages"		=> "新頁面",
 "intl"		=> "跨語言鏈接",
 "movethispage"	=> "移動本頁",
-"unusedimagestext" => "<p>請注意其他網站（例如其他語言版本的維基百科）
+"unusedimagestext" => "<p>請注意其他網站（例如其他語言版本的{{SITENAME}}）
 有可能直接鏈接本圖像，所以這裏列出的圖像有可能依然被使用。",
 "booksources"	=> "戰外書源",
 "booksourcetext" => "以下是鏈接到銷售書籍的網站列表，
 因此有可能擁有您所尋找的圖書的進一步資料。
-維基百科與這些公司並沒有任何商業關係，因此本表不應該
+{{SITENAME}}與這些公司並沒有任何商業關係，因此本表不應該
 被看作是一種背書。",
 "alphaindexline" => "$1 到 $2",
 
@@ -668,7 +663,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "confirmdelete" => "確認刪除",
 "deletesub"		=> "（正在刪除“$1”）",
 "confirmdeletetext" => "您即將從數據庫中永遠刪除一個頁面或圖像以及其歷史。
-請確定您要進行此項操作，並且瞭解其後果，同時您的行為符合[[維基百科:守則與指導]]。",
+請確定您要進行此項操作，並且瞭解其後果，同時您的行為符合[[{{ns:project}}:守則與指導]]。",
 "actioncomplete" => "操作完成",
 "deletedtext"	=> "“$1”已經被刪除。
 最近刪除的紀錄請參見$2。",
@@ -702,7 +697,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "undeletebtn" => "恢復！",
 "undeletedarticle" => "已經恢復“$1”",
 "undeletedtext"   => "[[:$1|$1]]已經被成功復原。
-有關維基百科最近的刪除與復原，參見[[維基百科:刪除紀錄]]",
+有關{{SITENAME}}最近的刪除與復原，參見[[{{ns:project}}:刪除紀錄]]",
 
 # Contributions
 #
@@ -728,7 +723,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 #
 "blockip"		=> "查封網址",
 "blockiptext"	=> "用下面的表單來禁止來自某一特定網址的修改權限。
-只有在為防止破壞，及符合[[維基百科:守則與指導]]的情況下才可採取此行動。
+只有在為防止破壞，及符合[[{{ns:project}}:守則與指導]]的情況下才可採取此行動。
 請在下面輸入一個具體的理由（例如引述一個被破壞的頁面）。",
 "ipaddress"		=> "網址",
 "ipbreason"		=> "原因",
@@ -763,9 +758,9 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "lockdbsuccesssub" => "數據庫成功上鎖",
 
 "unlockdbsuccesssub" => "數據庫開放",
-"lockdbsuccesstext" => "維基百科數據庫已經上鎖。
+"lockdbsuccesstext" => "{{SITENAME}}數據庫已經上鎖。
 <br />請記住在維護完成後重新開放數據庫。",
-"unlockdbsuccesstext" => "維基百科數據庫重新開放。",
+"unlockdbsuccesstext" => "{{SITENAME}}數據庫重新開放。",
 
 # Move page
 #
@@ -874,7 +869,7 @@ email address to them, and it can be used to send you a new password if you forg
 "tog-fancysig" => "使用原始簽名 (不產生自動連結)",
 "tog-previewonfirst" => "第一次編輯時顯示原文內容的預覽",
 "copyright" => "本站所有內容允許以下方式利用: $1",
-"loginprompt" => "您必須允許瀏覽器紀錄Cookie才能成功登入 Wikipedia 並順利進行操作",
+"loginprompt" => "您必須允許瀏覽器紀錄Cookie才能成功登入 {{SITENAME}} 並順利進行操作",
 );
 
 class LanguageZh_tw extends LanguageZh_cn {
@@ -896,13 +891,9 @@ class LanguageZh_tw extends LanguageZh_cn {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		# Aliases
-		if ( 0 == strcasecmp( "特殊", $text ) ) { return -1; }
-		if ( 0 == strcasecmp( "", $text ) ) { return ; }
 		if ( 0 == strcasecmp( "對話", $text ) ) { return 1; }
-		if ( 0 == strcasecmp( "用戶", $text ) ) { return 2; }
 		if ( 0 == strcasecmp( "用戶對話", $text ) ) { return 3; }
 		if ( 0 == strcasecmp( "維基百科對話", $text ) ) { return 5; }
-		if ( 0 == strcasecmp( "圖像", $text ) ) { return 6; }
 		if ( 0 == strcasecmp( "圖像對話", $text ) ) { return 7; }
 		return false;
 	}

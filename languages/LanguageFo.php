@@ -13,8 +13,8 @@ require_once( 'LanguageUtf8.php');
 	NS_TALK             => "Kjak",
 	NS_USER             => "Brúkari",
 	NS_USER_TALK        => "Brúkari_kjak",
-	NS_PROJECT          => "Wikipedia",
-	NS_PROJECT_TALK     => "Wikipedia_kjak",
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_kjak',
 	NS_IMAGE            => "Mynd",
 	NS_IMAGE_TALK       => "Mynd_kjak",
 	NS_MEDIAWIKI        => "MidiaWiki",
@@ -150,11 +150,12 @@ class LanguageFo extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-	    global $wgAllMessagesFo, $wgAllMessagesEn;
-	    $m = $wgAllMessagesFo[$key];
-
-	    if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-	    else return $m;
+		global $wgAllMessagesFo;
+		if( isset( $wgAllMessagesFo[$key] ) ) {
+			return $wgAllMessagesFo[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
 	}
 
 }

@@ -118,7 +118,6 @@ require_once( "LanguageUtf8.php" );
 'bugreports' => 'Hata Raporları',
 'bugreportspage' => '{{ns:4}}:Hata raporları',
 'sitesupport' => 'Bağışlar',
-'sitesupport-url' => 'http://wikimediafoundation.org/wiki/Fundraising',
 'faq' => 'SSS',
 'faqpage' => '{{ns:4}}:SSS',
 'edithelp' => 'Nasıl değiştirilir?',
@@ -807,9 +806,6 @@ Daha fazla bilgi için [[{{ns:4}}:Koruma altına alınmış sayfa]] sayfasına b
 'already_bureaucrat' => 'Bu kullanıcı zaten bürokrat',
 'already_steward' => 'Bu kullanıcı zaten steward',
 
-# Validation
-'val_version' => 'Sürüm',
-
 # Move page
 #
 'movepage' => 'İsim değişikliği',
@@ -1067,7 +1063,7 @@ class LanguageTr extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesTr, $wgAllMessagesEn;
+		global $wgAllMessagesTr;
 		if( isset( $wgAllMessagesTr[$key] ) ) {
 			return $wgAllMessagesTr[$key];
 		} else {
@@ -1075,7 +1071,7 @@ class LanguageTr extends LanguageUtf8 {
 		}
 	}
 
-        function getDateFormats() {
+	function getDateFormats() {
 		global $wgDateFormatsTr;
 		return $wgDateFormatsTr;
 	}

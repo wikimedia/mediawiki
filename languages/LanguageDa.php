@@ -8,14 +8,6 @@
 /** */
 require_once( 'LanguageUtf8.php' );
 
-#--------------------------------------------------------------------------
-# Language-specific text
-#--------------------------------------------------------------------------
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesDa = array(
 	NS_MEDIA			=> 'Media',
 	NS_SPECIAL			=> 'Speciel',
@@ -133,11 +125,8 @@ require_once( 'LanguageUtf8.php' );
 "linktrail"		=> '/^([a-zæøå]+)(.*)$/sDu',
 "mainpage"		=> "Forside",
 "mainpagetext"	=> "MediaWiki er nu installeret.",
-"mainpagedocfooter" => "Se vores engelsksprogede [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentation om tilpasning af brugergrænsefladen]
-og [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.",
-
-# NOTE: To turn off "Community portal" in the title links,
-# set "portal" => "-"
+"mainpagedocfooter" => "Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentation om tilpasning af brugergrænsefladen]
+og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.",
 
 'portal'		=> 'Forside for skribenter',
 'portal-url'		=> '{{ns:4}}:Forside',
@@ -150,7 +139,7 @@ og [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 "bugreports"	=> "Fejlrapporter",
 "bugreportspage" => "{{ns:4}}:Fejlrapporter",
 "sitesupport"   => "Donation",
-'sitesupport-url' => '{{ns:4}}:Donation', # If not set, won't appear. Can be wiki page or URL
+'sitesupport-url' => '{{ns:4}}:Donation',
 "faq"			=> "OSS",
 "faqpage"		=> "{{ns:4}}:OSS",
 "edithelp"		=> "Hjælp til redigering",
@@ -174,20 +163,13 @@ og [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 'metadata' => '<b>Metadata</b> (for en foklaring se <a href="$1">her</a>)',
 'metadata_page' => '{{ns:4}}:Metadata',
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
 "currentevents" => "Aktuelle begivenheder",
 'currentevents-url' => 'Aktuelle begivenheder',
-
-# NOTE: To turn off "Disclaimers" in the title links,
-# set "disclaimers" => "-"
 
 'disclaimers' => 'Forbehold',
 "disclaimerpage" => "{{ns:4}}:Generelle forbehold",
 "errorpagetitle" => "Fejl",
 "returnto"		=> "Tilbage til $1.",
-"tagline"      	=> "Fra {{SITENAME}}, den frie encyklopædi",
 "whatlinkshere"	=> "Hvad henviser hertil",
 "help"			=> "Hjælp",
 "search"		=> "Søg",
@@ -243,11 +225,7 @@ See $1.',
 'nbytes'		=> '$1 bytes',
 "go"			=> "Gå til",
 "ok"			=> "OK",
-"sitetitle"		=> "{{SITENAME}}",
-'pagetitle'		=> "$1 - {{SITENAME}}",
-"sitesubtitle"	=> "",
 "retrievedfrom" => "Hentet fra \"$1\"",
-"newmessages" => "Du har $1.",
 "newmessageslink" => "nye beskeder",
 "editsection"=>"redigér",
 "toc" => "Indholdsfortegnelse",
@@ -444,9 +422,6 @@ Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at be
 'media_tip'=>'Henvisning til multimediefil',
 'sig_tip'=>'Din signatur med tidsstempel',
 'hr_tip'=>'Horisontal linje (brug den sparsomt)',
-'infobox'=>'Tryk på en knap for at få et teksteksempel',
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert'=>"Indtast teksten du ønsker formatteret.\\n Den vil blive vist i infoboksen så den kan klippe-klistres.\\nEksempel:\\n$1\\nbliver:\\n$2",
 
 # Edit pages
 #
@@ -558,7 +533,6 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring",
 #
 "searchresults" => "Søgeresultater",
 "searchresulttext" => "For mere information om søgning på {{SITENAME}}, se [[Project:Søgning|Søgning på {{SITENAME}}]].",
-"searchquery"	=> "<big><div class=\"plainlinks\">Du søgte efter \"$1\": <a href=\"/wiki/$1\">Gå til</a> | <b><a href=\"/w/wiki.phtml?title=$1&action=edit\">Redigér</a></b> | <a href=\"/w/wiki.phtml?title=$1&action=history\">Historik</a> | <a href=\"/w/wiki.phtml?title=Speciel:Whatlinkshere&target=$1\">Hvad henviser hertil</a> | <a href=\"http://da.wiktionary.org/wiki/Special:Search?search=$1&go=G%E5+til\">Søg Wiktionary</a></div></big>",
 "badquery"		=> "Forkert udformet forespørgsel",
 "badquerytext"	=> "Vi kunne ikke udføre din forespørgsel.
 Det er sandsynligvis fordi du har forsøgt at søge efter et ord med
@@ -594,10 +568,6 @@ $2 List omdirigeringer &nbsp; Søg efter $3 $9",
 "prefsnologin" => "Ikke logget på",
 "prefsnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]]
 for at ændre brugerindstillinger.",
-"prefslogintext" => "Du logget på som \"[[Bruger:$1|$1]]\" ([[Bruger_diskussion:$1|Diskussion]], [[Speciel:Contributions/$1|bidrag]]).
-Dit interne ID-nummer er $2.
-
-Se [[Project:Hvordan sætter jeg mine indstillinger]] for en forklaring på de forskellige indstillinger.",
 "prefsreset"	=> "Indstillingerne er blevet gendannet fra lageret.",
 "qbsettings"	=> "Hurtigmenu",
 "changepassword" => "Skift adgangskode",
@@ -640,7 +610,6 @@ ellers skulle man for eksempel for dansk vintertid, indtaste \"1\"
 "timezoneoffset" => "Forskel",
 "servertime"	=> "Serverens tid er nu",
 "guesstimezone" => "Hent tidszone fra browseren",
-"emailflag"	=> "Fravælg muligheden for at få e-mail fra andre brugere",
 "defaultns"		=> "Søg som standard i disse navnerum:",
 'default'		=> 'standard',
 'files'			=> 'Filer',
@@ -704,10 +673,6 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 "changes" => "ændringer",
 "recentchanges" => "Seneste ændringer",
 'recentchanges-url' => 'Speciel:Recentchanges',
-"recentchangestext" => "{|border=\"0\" class=\"plainlinks\" |-valign=\"top\" |align=\"right\"|<small>Seneste&nbsp;ændringer&nbsp;for:&nbsp;</small>
-|align=\"left\"|<small>[http://da.wiktionary.org/wiki/Speciel:Recentchanges Wikiordbog] - [http://da.wikiquote.org/wiki/Speciel:Recentchanges Wikiquote] - [http://da.wikibooks.org/wiki/Speciel:Recentchanges Wikibooks] - [http://wikisource.org/wiki/Special:Recentchanges Wikisource] - [http://meta.wikipedia.org/wiki/Special%3ARecentchanges Meta] - [http://commons.wikimedia.org/wiki/Special:Recentchanges Commons] - ([[Project:Hvordan bruger jeg seneste ændringer siden|hjælp]] | [http://da.wikipedia.org/w/wiki.phtml?title=MediaWiki:Recentchangestext&action=edit rediger])</small>
-|-valign=\"top\" |align=\"right\"|<small>[[Project:Om|Om {{SITENAME}}]]:'''&nbsp;</small>
-|align=\"left\"|<small>[[Project:Velkommen nybegynder|Velkommen nybegynder]] - [[Project:OSS|Ofte stillede spørgsmål]] - [[Project:Bekendtgørelser|Bekendtgørelser]] - [[Project:Landsbybrønden|Landsbybrønden]] - [[Project:Stilmanual|Stilmanual]] - [[Project:Navngivning|Navngivning]]</small> |}",
 "rcloaderr"		=> "Indlæser seneste ændrede sider",
 "rcnote"		=> "Nedenfor er de seneste <strong>$1</strong> ændringer i de
 sidste <strong>$2</strong> dage.",
@@ -740,14 +705,7 @@ sidste <strong>$2</strong> dage.",
 "uploadnologin" => "Ikke logget på",
 "uploadnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]] for at kunne lægge filer op.",
 "uploaderror"	=> "Fejl under oplægning af fil",
-"uploadtext"	=> "[[Billede:Commons_without_text-35px.png|thumb|right|35px|Wiki-C]] Hvis du har billeder som kan være til nytte både her og på andre Wiki'er,
-anbefales det at lægge det op på '''[[Commons:Forside|Wikimedia Commons]]''' der er en fælles base for frie billeder og andre filer til alle Wikimedia-projekterne.
-For at lægge en fil op på Commons skal man oprette en brugerkonto der, på samme måde som på den danske {{SITENAME}}.
-Der er en oversat [[Commons:Commons:Første skridt|vejledning]], og en dansksproget [[Commons:Forside|forside]].
-Når du skal bruge et billede fra Commons skal du bare udskifte ''image:fexxx.jpg'' med ''billede:fexxx.jpg'' i koden.
-Logoet ovenfor til højre er hentet fra Commons, og sat ind her med denne kode: :<nowiki>[[Billede:Commons_without_text-35px.png|thumb|right|35px|Wiki-C]]</nowiki>
-
-<div style=\"border: 1px solid grey; background: \#ddf; padding: 7px; margin: 0 auto;\">
+"uploadtext"	=> "<div style=\"border: 1px solid grey; background: \#ddf; padding: 7px; margin: 0 auto;\">
 <strong>STOP!</strong> Før du lægger filer op her,
 så vær sikker på du har læst og følger {{SITENAME}}s
 [[{{NS:4}}:Politik om brug af billeder|politik om brug af billeder]].
@@ -796,7 +754,7 @@ du kan blive blokeret fra at lægge op hvis du misbruger systemet.",
 'illegalfilename'	=> 'Filnavnet "$1" indeholder tegn, der ikke er tilladte i sidetitler. Omdøb filen og prøv at lægge den op igen.',
 "badfilename"	=> "Navnet på filen er blevet ændret til \"$1\".",
 "badfiletype"	=> "\".$1\" er ikke et af de anbefalede filformater.",
-"largefile"		=> "Det anbefales, at filer ikke fylder mere end 100kb.",
+"largefile"		=> "Det anbefales, at filer ikke fylder mere end $1kb ($2).",
 'emptyfile'		=> 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
 'fileexists'		=> 'En fil med det navn findes allerede, tjek venligst $1 om du er sikker på du vil ændre den.',
 "successfulupload" => "Oplægning er gennemført med succes",
@@ -835,7 +793,6 @@ og af hvem, og andre ting du ved om filen.",
 "imagelinks"	=> "Billedehenvisninger",
 "linkstoimage"	=> "De følgende sider henviser til dette billede:",
 "nolinkstoimage" => "Der er ingen sider der henviser til dette billede.",
-'sharedupload' => '<br clear=all> {| border="0" cellpadding="5" style="font-weight:normal; float:center; border:solid #008 1px;margin-left:5px;margin-bottom:5px" |- |[[Billede:CommonsLogo.png|50px|none|Commons|<nowiki></nowiki>]] |Denne fil er fra [[Commons:Forside|Wikimedia Commons]], en samling af [[åbent indhold]] som [[Wikimedia Foundation]] er vært for.<br />Se venligst siden med [[Commons:Image:{{PAGENAME}}|beskrivelse af billedet]] for information om ophavsret. |} <br clear=all>.',
 'shareduploadwiki' => 'Se venligst $1 for yderligere information.',
 'shareduploadwiki-linktext' => 'siden med billedbeskrivelsen',
 'noimage'       => 'Der eksisterer ingen fil med dette navn, du kan $1',
@@ -851,15 +808,7 @@ og af hvem, og andre ting du ved om filen.",
 Dette tal indeholder \"diskussion\"-sider, sider om {{SITENAME}}, omdirigeringssider og andre sider der sikkert ikke kan kaldes artikler.
 Hvis man udelader disse, så er der '''$2''' sider som sandsynligvis er rigtige artikler.
 Der har i alt været '''$4''' sideredigeringer siden programmellet blev opdateret den 25. september 2002.
-Det vil sige, at der har været '''$5''' gennemsnitlige redigeringer pr. side.
-For mere udførlige statistikker se:
-*[http://www.wikipedia.org/wikistats/DA/Sitemap.htm Omfattende Wikipedia-statistik]
-*[http://wikimedia.org/stats/da.wikipedia.org Antal besøgende på Wikipedia]
-*[http://wikimedia.org/stats/live Aktuelle grafer over servertrafikken]
-*[[{{ns:4}}:Statistik|Statistik over væksten]] .",
-"userstatstext" => "Der er '''$1''' registrerede brugere.
-'''$2''' (eller '''$4%''') af disse er administratorer (se $3).
-* [http://www.wikipedia.org/wikistats/DA/TablesWikipediaDA.htm#wikipedians Aktive brugere].",
+Det vil sige, at der har været '''$5''' gennemsnitlige redigeringer pr. side.",
 
 # Maintenance Page
 #
@@ -903,7 +852,6 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 # Miscellaneous special pages
 #
 "orphans"		=> "Forældreløse artikler",
-'geo'		=> 'GEO-koordinater',
 "lonelypages"	=> "Forældreløse artikler",
 'uncategorizedpages'	=> 'Ukategoriserede sider',
 'uncategorizedcategories'	=> 'Ukategoriserede kategorier',
@@ -1212,8 +1160,8 @@ Bekræft venligst at du har til hensigt at gøre dette.",
 "locknoconfirm" => "Du har ikke bekræftet handlingen.",
 "lockdbsuccesssub" => "Databasen er nu låst",
 "unlockdbsuccesssub" => "Databasen er nu låst op",
-"lockdbsuccesstext" => "MediaWikidatabasen er låst. <br />Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
-"unlockdbsuccesstext" => "MediaWikidatabasen er låst op.",
+"lockdbsuccesstext" => "Mediawikidatabasen er låst. <br />Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
+"unlockdbsuccesstext" => "Mediawikidatabasen er låst op.",
 
 # Make sysop
 'makesysoptitle'	=> 'Gør en bruger til administrator - sysop ',
@@ -1376,7 +1324,6 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 'subcategorycount1' => "Der er $1 underkategori i denne kategori.",
 'categoryarticlecount' => "Der er $1 artikler i denne kategori.",
 'categoryarticlecount1' => "Der er $1 artikel i denne kategori.",
-'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
 'listingcontinuesabbrev' => " forts.",
 
 # Info page
@@ -1449,7 +1396,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Se indholdet\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Se brugersiden\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Se mediasiden\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Dette er en speciel side; man kan ikke redigere sådanne sider.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Se Wikipediasiden\');
+/*ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Se Wikipediasiden\');*/
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Se billedsiden\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Se systembeskeden\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Se skabelonen\');
@@ -1543,8 +1490,8 @@ class LanguageDa extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number ) {
-		return strtr($number, '.,', ',.' );
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
 
 }

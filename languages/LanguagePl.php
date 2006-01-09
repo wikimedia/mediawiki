@@ -5,8 +5,6 @@
   */
 require_once("LanguageUtf8.php");
 
-# FIXME: Lots of hardcoded Wikipedia-related text needs to be cleaned up.
-
 # Yucky hardcoding hack as polish grammar need tweaking :o)
 switch( $wgMetaNamespace ) {
 case 'Wikipedia':
@@ -163,7 +161,6 @@ default:
 "currentevents" => "-",
 "errorpagetitle" => "Błąd",
 "returnto" => "Wróć do strony: $1.",
-"tagline"       => "Z Wikipedii, wolnej encyklopedii.",
 "whatlinkshere" => "Strony, które odwołują się do tej",
 "help" => "Pomoc",
 "search" => "Szukaj",
@@ -204,7 +201,6 @@ Zobacz $1.",
 "sitetitle" => "{{SITENAME}}",
 "sitesubtitle" => "",
 "retrievedfrom" => "Źródło: \"$1\"",
-"newmessages" => "Masz $1.",
 "newmessageslink" => "Nowe wiadomości",
 "editsection" => "Edytuj",
 "toc" => "Spis treści",
@@ -454,9 +450,6 @@ W międzyczasie polecamy wyszukiwanie za pomocą Google:</p>",
 "prefsnologin" => "Brak logowania",
 "prefsnologintext" => "Musisz się [[Specjalna:Userlogin|zalogować]]
 przez zmianą swoich preferencji.",
-"prefslogintext" => "Zalogowano Cię jako \"$1\". Twój numer identyfikacyjny to $2.
-
-Zobacz [[{{ns:4}}:Preferencje]], aby poznać znaczenie poszczególnych opcji.",
 "prefsreset" => "Preferencje domyślne zostały odtworzone.",
 "qbsettings" => "Pasek szybkiego dostępu",
 "changepassword" => "Zmiana hasła",
@@ -489,7 +482,6 @@ lub \"1\" (czas zimowy).",
 "timezoneoffset" => "Różnica",
 "servertime" => "Aktualny czas serwera",
 "guesstimezone" => "Pobierz z przeglądarki",
-"emailflag" => "Nie chcę otrzymywać e-maili od innych użytkowników",
 "defaultns" => "Przeszukuj następujące przestrzenie nazw domyślnie:",
 
 # Recent changes
@@ -991,9 +983,8 @@ class LanguagePl extends LanguageUtf8 {
 		'.' => ','
 	);
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, $this->digitTransTable ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($number, $this->digitTransTable ) : $number;
 	}
 }
 

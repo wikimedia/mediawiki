@@ -95,17 +95,7 @@
 	MAG_CURRENTDOW           => array( 1, 'CURRENTDOW'             ),
 	MAG_REVISIONID           => array( 1, 'REVISIONID'             ),
 );
-
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
-
 /* private */ $wgAllMessagesBg = array(
-# The navigation toolbar, int: is used here to make sure that the appropriate
-# messages are automatically pulled from the user-selected language file.
 
 # User toggles
 'tog-underline'      => 'Подчертаване на препратките',
@@ -126,12 +116,6 @@
 'tog-previewontop'   => 'Показване на предварителния преглед преди текстовата кутия, а не след нея',
 'tog-previewonfirst' => 'Показване на предварителен преглед при първа редакция',
 'tog-nocache'        => 'Без складиране на страниците',
-'tog-enotifwatchlistpages'      => 'Send me an email on page changes',
-'tog-enotifusertalkpages'       => 'Send me an email when my user talk page is changed',
-'tog-enotifminoredits'          => 'Send me an email also for minor edits of pages',
-'tog-enotifrevealaddr'          => 'Reveal my email address in notification mails',
-'tog-shownumberswatching'       => 'Show the number of watching users',
-'tog-showupdated'               => 'Show update marker ',
 'tog-fancysig' => 'Без превръщане на подписа в препратка към потребителската страница',
 'tog-externaleditor' => 'Използване на външен редактор по подразбиране',
 'tog-externaldiff' => 'Използване на външна програма за разлики по подразбиране',
@@ -187,8 +171,6 @@
 'mainpagedocfooter' => 'Моля, разгледайте [http://meta.wikimedia.org/wiki/MediaWiki_i18n документацията] и [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide ръководството] за подробна информация относно МедияУики.
 
 Актуална версия на българския езиков файл можете да откриете на [http://meta.wikimedia.org/wiki/LanguageBg.php Мета].',
-# БЕЛЕЖКА: За да изключите „Портала за общността“ в заглавните препратки,
-# въведете 'portal' => '-'
 'portal'     => 'Портал за общността',
 'portal-url' => 'Project:Портал',
 'about'      => 'За {{SITENAME}}',
@@ -252,10 +234,6 @@
 'protectthispage' => 'Защита',
 'unprotect' => 'Сваляне на защитата',
 'unprotectthispage' => 'Сваляне на защитата',
-'verify' => 'Одобряване', # Verify
-'verifythispage' => 'Одобряване на страницата',
-'unverify' => 'Неодобряване', # Unverify
-'unverifythispage' => 'Неодобряване на страницата',
 'newpage' => 'Нова страница',
 'talkpage'    => 'Дискусионна страница',
 'specialpage' => 'Специална страница',
@@ -279,7 +257,6 @@
 'poweredby'     => '{{SITENAME}} се задвижва от [http://www.mediawiki.org/ МедияУики], софтуер за уики с отворен код.',
 'printsubtitle' => '(от {{SERVER}})',
 'protectedpage' => 'Защитена страница',
-'verifiedpage' => 'Страницата е в процес на одобрение от администраторите. Версиите, които все още не са одобрени, няма да бъдат показвани. <br/> Можете да разгледате текущата версия: $1',
 'administrators' => 'Project:Администратори',
 'sysoptitle'  => 'Изискване на администраторски права',
 'sysoptext'    => 'Желаното действие може да се изпълни само от администратори.
@@ -294,11 +271,7 @@
 'versionrequiredtext' => 'За да използвате тази страница, е необходима версия $1 на МедияУики. Вижте [[Special:Version]].',
 'nbytes'    => '$1 байта',
 'ok'      => 'Добре',
-'sitetitle'    => '{{SITENAME}}',
-'pagetitle'    => '$1 — {{SITENAME}}',
-'sitesubtitle' => '',
 'retrievedfrom' => 'Взето от „$1“.',
-'newmessages' => 'Имате $1.',
 'newmessageslink' => 'нови съобщения',
 'editsection' => 'редактиране',
 'toc' => 'Съдържание',
@@ -309,7 +282,6 @@
 'restorelink1' => 'една изтрита редакция',
 'restorelink' => '$1 изтрити редакции',
 'feedlinks' => 'Feed:',
-'sitenotice' => '', # равностойността на wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Страница',
@@ -551,7 +523,6 @@ Before any other mail is sent to the account, you will have to follow the instru
 'editingold'  => '<strong>ВНИМАНИЕ: Редактирате остаряла версия на страницата.
 Ако съхраните, всякакви промени, направени след тази версия, ще бъдат изгубени.</strong>',
 'yourdiff'    => 'Разлики',
-# REPLACE THE COPYRIGHT WARNING IF YOUR SITE ISN'T GFDL!
 'copyrightwarning' => '<div style="color:black; background-color:#FFFFEE; border:thin solid #999; padding:0.5em">
 Моля, обърнете внимание на това, че всички приноси към {{SITENAME}} се публикуват при условията на $2 (за подробности вижте $1).
 Ако не сте съгласни Вашата писмена работа да бъде променяна и разпространявана без ограничения, не я публикувайте.<br />
@@ -665,10 +636,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'preferences'  => 'Настройки',
 'prefsnologin' => 'Не сте влезли',
 'prefsnologintext'  => 'Необходимо е да [[Special:Userlogin|влезете]], за да може да променяте потребителските си настройки.',
-'prefslogintext' => 'Влязохте като „$1“.
-Вашият вътрешен номер e $2.
-
-Вижте [[Project:Настройки|помощта за потребителските настройки]], за да се ориентирате при избора.',
 'prefsreset'  => 'Стандартните настройки бяха възстановени.',
 'qbsettings'  => 'Лента за бърз избор',
 'changepassword' => 'Смяна на парола',
@@ -708,7 +675,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'timezoneoffset' => 'Отместване¹',
 'servertime'  => 'Време на сървъра',
 'guesstimezone' => 'Попълване чрез браузъра',
-'emailflag'    => 'Забраняване на писма от други потребители',
 'defaultns'    => 'Търсене в тези именни пространства по подразбиране:',
 'default'      => 'по подразбиране',
 'files'        => 'Файлове',
@@ -912,7 +878,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 # Miscellaneous special pages
 #
 'orphans'    => 'Страници сираци',
-'geo'          => 'Гео-координати',
 'lonelypages'  => 'Страници сираци',
 'uncategorizedpages' => 'Некатегоризирани страници',
 'uncategorizedcategories' => 'Некатегоризирани категории',
@@ -1041,29 +1006,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'created'        => 'създадена',
 'enotif_subject' 	=> '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
 'enotif_lastvisited' => 'Прегледайте $1 за всички промени след последното ви посещение.',
-'enotif_body' => 'Dear $WATCHINGUSERNAME,
-
-the {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
-
-$NEWPAGE
-
-Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
-
-Contact the editor:
-mail: $PAGEEDITOR_EMAIL
-wiki: $PAGEEDITOR_WIKI
-
-There will be no other notifications in case of further changes unless you visit this page.
-You could also reset the notification flags for all your watched pages on your watchlist.
-
-              Your friendly {{SITENAME}} notification system
-
---
-To change your watchlist settings, visit
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
-
-Feedback and further assistance:
-{{SERVER}}{{localurl:Help:Contents}}',
 
 # Delete/protect/revert
 #
@@ -1179,7 +1121,6 @@ Feedback and further assistance:
 'ipboptions'   => 'Два часа:2 hours,Един ден:1 day,Три дни:3 days,Една седмица:1 week,Две седмици:2 weeks,Един месец:1 month,Три месеца:3 months,Шест месеца:6 months,Една година:1 year,Докато свят светува:infinite',
 'ipbotheroption' => 'друг',
 'badipaddress'  => 'Невалиден IP-адрес или грешно име на потребител',
-'noblockreason' => 'Необходимо е да посочите причина за блокирането.',
 'blockipsuccesssub' => 'Блокирането беше успешно',
 'blockipsuccesstext' => '„[[{{ns:Special}}:Contributions/$1|$1]]“ беше блокиран.
 <br />Вижте [[{{ns:Special}}:Ipblocklist|списъка на блокираните IP-адреси]], за да прегледате всички блокирания.',
@@ -1507,279 +1448,8 @@ Feedback and further assistance:
 # Exif tags
 'exif-imagewidth' =>'Ширина',
 'exif-imagelength' =>'Височина',
-'exif-bitspersample' =>'Bits per component',
-'exif-compression' =>'Compression scheme',
-'exif-photometricinterpretation' =>'Pixel composition',
-'exif-orientation' =>'Orientation',
-'exif-samplesperpixel' =>'Number of components',
-'exif-planarconfiguration' =>'Data arrangement',
-'exif-ycbcrsubsampling' =>'Subsampling ratio of Y to C',
-'exif-ycbcrpositioning' =>'Y and C positioning',
-'exif-xresolution' =>'Horizontal direction',
-'exif-yresolution' =>'Vertical resolution',
-'exif-resolutionunit' =>'Unit of X and Y resolution',
-'exif-stripoffsets' =>'Image data location',
-'exif-rowsperstrip' =>'Number of rows per strip',
-'exif-stripbytecounts' =>'Bytes per compressed strip',
-'exif-jpeginterchangeformat' =>'Offset to JPEG SOI',
-'exif-jpeginterchangeformatlength' =>'Bytes of JPEG data',
-'exif-transferfunction' =>'Transfer function',
-'exif-whitepoint' =>'White point chromaticity',
-'exif-primarychromaticities' =>'Chromaticities of primarities',
-'exif-ycbcrcoefficients' =>'Color space transformation matrix coefficients',
-'exif-referenceblackwhite' =>'Pair of black and white reference values',
-'exif-datetime' =>'File change date and time',
-'exif-imagedescription' =>'Image title',
-'exif-make' =>'Camera manufacturer',
-'exif-model' =>'Camera model',
-'exif-software' =>'Software used',
 'exif-artist' =>'Автор',
-'exif-copyright' =>'Copyright holder',
-'exif-exifversion' =>'Exif version',
-'exif-flashpixversion' =>'Supported Flashpix version',
-'exif-colorspace' =>'Color space',
-'exif-componentsconfiguration' =>'Meaning of each component',
-'exif-compressedbitsperpixel' =>'Image compression mode',
-'exif-pixelydimension' =>'Valid image width',
-'exif-pixelxdimension' =>'Valind image height',
-'exif-makernote' =>'Manufacturer notes',
-'exif-usercomment' =>'User comments',
-'exif-relatedsoundfile' =>'Related audio file',
-'exif-datetimeoriginal' =>'Date and time of data generation',
-'exif-datetimedigitized' =>'Date and time of digitizing',
-'exif-subsectime' =>'DateTime subseconds',
-'exif-subsectimeoriginal' =>'DateTimeOriginal subseconds',
-'exif-subsectimedigitized' =>'DateTimeDigitized subseconds',
-'exif-exposuretime' =>'Exposure time',
-'exif-fnumber' =>'F Number',
-'exif-exposureprogram' =>'Exposure Program',
-'exif-spectralsensitivity' =>'Spectral sensitivity',
-'exif-isospeedratings' =>'ISO speed rating',
-'exif-oecf' =>'Optoelectronic conversion factor',
-'exif-shutterspeedvalue' =>'Shutter speed',
-'exif-aperturevalue' =>'Aperture',
-'exif-brightnessvalue' =>'Brightness',
-'exif-exposurebiasvalue' =>'Exposure bias',
-'exif-maxaperturevalue' =>'Maximum land aperture',
-'exif-subjectdistance' =>'Subject distance',
-'exif-meteringmode' =>'Metering mode',
-'exif-lightsource' =>'Light source',
-'exif-flash' =>'Flash',
-'exif-focallength' =>'Lens focal length',
-'exif-subjectarea' =>'Subject area',
-'exif-flashenergy' =>'Flash energy',
-'exif-spatialfrequencyresponse' =>'Spatial frequency response',
-'exif-focalplanexresolution' =>'Focal plane X resolution',
-'exif-focalplaneyresolution' =>'Focal plane Y resolution',
-'exif-focalplaneresolutionunit' =>'Focal plane resolution unit',
-'exif-subjectlocation' =>'Subject location',
-'exif-exposureindex' =>'Exposure index',
-'exif-sensingmethod' =>'Sensing method',
-'exif-filesource' =>'File source',
-'exif-scenetype' =>'Scene type',
-'exif-cfapattern' =>'CFA pattern',
-'exif-customrendered' =>'Custom image processing',
-'exif-exposuremode' =>'Exposure mode',
-'exif-whitebalance' =>'White Balance',
-'exif-digitalzoomratio' =>'Digital zoom ratio',
-'exif-focallengthin35mmfilm' =>'Focal length in 35 mm film',
-'exif-scenecapturetype' =>'Scene capture type',
-'exif-gaincontrol' =>'Scene control',
-'exif-contrast' =>'Contrast',
-'exif-saturation' =>'Saturation',
-'exif-sharpness' =>'Sharpness',
-'exif-devicesettingdescription' =>'Device settings description',
-'exif-subjectdistancerange' =>'Subject distance range',
-'exif-imageuniqueid' =>'Unique image ID',
-'exif-gpsversionid' =>'GPS tag version',
-'exif-gpslatituderef' =>'North or South Latitude',
-'exif-gpslatitude' =>'Latitude',
-'exif-gpslongituderef' =>'East or West Longitude',
-'exif-gpslongitude' =>'Longitude',
-'exif-gpsaltituderef' =>'Altitude reference',
-'exif-gpsaltitude' =>'Altitude',
-'exif-gpstimestamp' =>'GPS time (atomic clock)',
-'exif-gpssatellites' =>'Satellites used for measurement',
-'exif-gpsstatus' =>'Receiver status',
-'exif-gpsmeasuremode' =>'Measurement mode',
-'exif-gpsdop' =>'Measurement precision',
-'exif-gpsspeedref' =>'Speed unit',
-'exif-gpsspeed' =>'Speed of GPS receiver',
-'exif-gpstrackref' =>'Reference for direction of movement',
-'exif-gpstrack' =>'Direction of movement',
-'exif-gpsimgdirectionref' =>'Reference for direction of image',
-'exif-gpsimgdirection' =>'Direction of image',
-'exif-gpsmapdatum' =>'Geodetic survey data used',
-'exif-gpsdestlatituderef' =>'Reference for latitude of destination',
-'exif-gpsdestlatitude' =>'Latitude destination',
-'exif-gpsdestlongituderef' =>'Reference for longitude of destination',
-'exif-gpsdestlongitude' =>'Longitude of destination',
-'exif-gpsdestbearingref' =>'Reference for bearing of destination',
-'exif-gpsdestbearing' =>'Bearing of destination',
-'exif-gpsdestdistanceref' =>'Reference for distance to destination',
-'exif-gpsdestdistance' =>'Distance to destination',
-'exif-gpsprocessingmethod' =>'Name of GPS processing method',
-'exif-gpsareainformation' =>'Name of GPS area',
-'exif-gpsdatestamp' =>'GPS date',
-'exif-gpsdifferential' =>'GPS differential correction',
 
-# Make & model, can be wikified in order to link to the camera and model name
-
-'exif-make-value' => '$1',
-'exif-model-value' =>'$1',
-'exif-software-value' => '$1',
-
-# Exif attributes
-
-'exif-compression-1' => 'Uncompressed',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-1' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
-
-'exif-orientation-1' => 'Normal', // 0th row: top; 0th column: left
-'exif-orientation-2' => 'Flipped horizontally', // 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotated 180°', // 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Flipped vertically', // 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically', // 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotated 90° CW', // 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotated 90° CW and flipped vertically', // 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotated 90° CCW', // 0th row: left; 0th column: bottom
-
-'exif-planarconfiguration-1' => 'chunky format',
-'exif-planarconfiguration-2' => 'planar format',
-
-'exif-resolutionunit-i' => '$1 dpi',
-'exif-resolutionunit-c' => '$1 dpc',
-
-'exif-colorspace-1' => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
-'exif-componentsconfiguration-0' => 'does not exist',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
-
-'exif-exposureprogram-0' => 'Not defined',
-'exif-exposureprogram-1' => 'Manual',
-'exif-exposureprogram-2' => 'Normal program',
-'exif-exposureprogram-3' => 'Aperture priority',
-'exif-exposureprogram-4' => 'Shutter priority',
-'exif-exposureprogram-5' => 'Creative program (biased toward depth of field)',
-'exif-exposureprogram-6' => 'Action program (biased toward fast shutter speed)',
-'exif-exposureprogram-7' => 'Portrait mode (for closeup photos with the background out of focus)',
-'exif-exposureprogram-8' => 'Landscape mode (for landscape photos with the background in focus)',
-
-'exif-subjectdistance-value' => '$1 metres',
-
-'exif-meteringmode-0' => 'Unknown',
-'exif-meteringmode-1' => 'Average',
-'exif-meteringmode-2' => 'CenterWeightedAverage',
-'exif-meteringmode-3' => 'Spot',
-'exif-meteringmode-4' => 'MultiSpot',
-'exif-meteringmode-5' => 'Pattern',
-'exif-meteringmode-6' => 'Partial',
-'exif-meteringmode-255' => 'Other',
-
-'exif-lightsource-0' => 'Unknown',
-'exif-lightsource-1' => 'Daylight',
-'exif-lightsource-2' => 'Fluorescent',
-'exif-lightsource-3' => 'Tungsten (incandescent light)',
-'exif-lightsource-4' => 'Flash',
-'exif-lightsource-9' => 'Fine weather',
-'exif-lightsource-10' => 'Clody weather',
-'exif-lightsource-11' => 'Shade',
-'exif-lightsource-12' => 'Daylight fluorescent (D 5700–7100K)',
-'exif-lightsource-13' => 'Day white fluorescent (N 4600–5400K)',
-'exif-lightsource-14' => 'Cool white fluorescent (W 3900–4500K)',
-'exif-lightsource-15' => 'White fluorescent (WW 3200–3700K)',
-'exif-lightsource-17' => 'Standard light A',
-'exif-lightsource-18' => 'Standard light B',
-'exif-lightsource-19' => 'Standard light C',
-'exif-lightsource-20' => 'D55',
-'exif-lightsource-21' => 'D65',
-'exif-lightsource-22' => 'D75',
-'exif-lightsource-23' => 'D50',
-'exif-lightsource-24' => 'ISO studio tungsten',
-'exif-lightsource-255' => 'Other light source',
-
-'exif-focalplaneresolutionunit-2' => 'inches',
-
-'exif-sensingmethod-1' => 'Undefined',
-'exif-sensingmethod-2' => 'One-chip color area sensor',
-'exif-sensingmethod-3' => 'Two-chip color area sensor',
-'exif-sensingmethod-4' => 'Three-chip color area sensor',
-'exif-sensingmethod-5' => 'Color sequential area sensor',
-'exif-sensingmethod-7' => 'Trilinear sensor',
-'exif-sensingmethod-8' => 'Color sequential linear sensor',
-
-'exif-filesource-3' => 'DSC',
-
-'exif-scenetype-1' => 'A directly photographed image',
-
-'exif-customrendered-0' => 'Normal process',
-'exif-customrendered-1' => 'Custom process',
-
-'exif-exposuremode-0' => 'Auto exposure',
-'exif-exposuremode-1' => 'Manual exposure',
-'exif-exposuremode-2' => 'Auto bracket',
-
-'exif-whitebalance-0' => 'Auto white balance',
-'exif-whitebalance-1' => 'Manual white balance',
-
-'exif-scenecapturetype-0' => 'Standard',
-'exif-scenecapturetype-1' => 'Landscape',
-'exif-scenecapturetype-2' => 'Portrait',
-'exif-scenecapturetype-3' => 'Night scene',
-
-'exif-gaincontrol-0' => 'None',
-'exif-gaincontrol-1' => 'Low gain up',
-'exif-gaincontrol-2' => 'High gain up',
-'exif-gaincontrol-3' => 'Low gain down',
-'exif-gaincontrol-4' => 'High gain down',
-
-'exif-contrast-0' => 'Normal',
-'exif-contrast-1' => 'Soft',
-'exif-contrast-2' => 'Hard',
-
-'exif-saturation-0' => 'Normal',
-'exif-saturation-1' => 'Low saturation',
-'exif-saturation-2' => 'High saturation',
-
-'exif-sharpness-0' => 'Normal',
-'exif-sharpness-1' => 'Soft',
-'exif-sharpness-2' => 'Hard',
-
-'exif-subjectdistancerange-0' => 'Unknown',
-'exif-subjectdistancerange-1' => 'Macro',
-'exif-subjectdistancerange-2' => 'Close view',
-'exif-subjectdistancerange-3' => 'Distant view',
-
-// Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => 'North latitude',
-'exif-gpslatitude-s' => 'South latitude',
-
-// Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
-'exif-gpslongitude-e' => 'East longitude',
-'exif-gpslongitude-w' => 'West longitude',
-
-'exif-gpsstatus-a' => 'Measurement in progress',
-'exif-gpsstatus-v' => 'Measurement interoperability',
-
-'exif-gpsmeasuremode-2' => '2-dimensional measurement',
-'exif-gpsmeasuremode-3' => '3-dimensional measurement',
-
-// Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
-'exif-gpsspeed-k' => 'Kilometres per hour',
-'exif-gpsspeed-m' => 'Miles per hour',
-'exif-gpsspeed-n' => 'Knots',
-
-// Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
-'exif-gpsdirection-t' => 'True direction',
-'exif-gpsdirection-m' => 'Magnetic direction',
 
 # external editor support
 'edit-externally' => 'Редактиране на файла чрез външно приложение',
@@ -1794,41 +1464,14 @@ Feedback and further assistance:
 
 # TODO
 # E-mail address confirmation
-'confirmemail' => 'Confirm E-mail address',
-'confirmemail_text' => 'This wiki requires that you validate your e-mail address
-before using e-mail features. Activate the button below to send a confirmation
-mail to your address. The mail will include a link containing a code; load the
-link in your browser to confirm that your e-mail address is valid.',
-'confirmemail_send' => 'Mail a confirmation code',
-'confirmemail_sent' => 'Confirmation e-mail sent.',
-'confirmemail_sendfailed' => 'Could not send confirmation mail. Check address for invalid characters.',
 'confirmemail_invalid' => 'Грешен код за потвърждение. Вероятно кодът за потвърждение е остарял.',
 'confirmemail_success' => 'Адресът ви за електронна поща беше потвърден. Вече можете да влезете и да се наслаждавате на уикито.',
 'confirmemail_loggedin' => 'Адресът ви за електронна поща беше потвърден.',
-'confirmemail_error' => 'Something went wrong saving your confirmation.',
-
-'confirmemail_subject' => '{{SITENAME}} e-mail address confirmation',
-'confirmemail_body' => 'Someone, probably you from IP address $1, has registered an
-account "$2" with this e-mail address on {{SITENAME}}.
-
-To confirm that this account really does belong to you and activate
-e-mail features on {{SITENAME}}, open this link in your browser:
-
-$3
-
-If this is *not* you, don\'t follow the link. This confirmation code
-will expire at $4.',
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Пълно и точно съвпадение',
 'searchfulltext' => 'Претърсване на целия текст',
 'createarticle' => 'Създаване на статия',
-
-# TODO
-# Scary transclusion
-'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
-'scarytranscludefailed' => '[Template fetch failed for $1; sorry]',
-'scarytranscludetoolong' => '[URL is too long; sorry]',
 
 # Trackbacks
 'trackbackbox' => '<div id="mw_trackbacks">
@@ -1838,8 +1481,8 @@ $1
 'trackback' => '; $4$5 : [$2 $1]',
 'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => ' ([$1 Изтриване])',
-'trackbacklink' => 'Trackback',
-'trackbackdeleteok' => 'The trackback was successfully deleted.',
+#'trackbacklink' => 'Trackback',
+#'trackbackdeleteok' => 'The trackback was successfully deleted.',
 
 # delete conflict
 
@@ -1941,7 +1584,7 @@ class LanguageBg extends LanguageUtf8 {
 	 * @param string $number
 	 * @return string
 	 */
-	function formatNum( $number ) {
+	function formatNum( $number, $year = false ) {
 		if ( preg_match('/^\d{5}/', $number) ) {
 			$number = $this->commafy($number);
 		}

@@ -6,13 +6,6 @@
 
 require_once( "LanguageUtf8.php" );
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesSr = array(
 	NS_MEDIA            => "Медија",
 	NS_SPECIAL          => "Посебно",
@@ -453,7 +446,6 @@ MySQL је вратио грешку "$3: $4".',
 'email' => 'Е-пошта',
 'emailauthenticated' => 'Ваша адреса е-поште је проверена на $1.',
 'emailconfirmlink' => 'Потврдите вашу адресу е-поште',
-'emailflag' => 'Онемогући примање е-поште од осталих корисника',
 'emailforlost' => '* Уношење адресе е-поште није обавезно. Међутим, унос ће омогућити људима да Вас контатирају кроз сајт, а да не морате да им откријете своју адресу. Такође ће Вам помоћи уколико заборавите вашу лозинку.',
 'emailfrom' => 'Од',
 'emailmessage' => 'Порука',
@@ -766,7 +758,6 @@ $NEWPAGE
 'fileuploadsummary' => 'Опис:',
 'formerror' => 'Грешка: не могу да пошаљем упитник',
 'friday' => 'петак',
-'geo' => 'GEO координате',
 'getimagelist' => 'прибављам списак слика',
 'go' => 'Иди',
 'group-admin-desc' => 'Корисници којима се верује, могу да блокирају кориснике и бришу чланке',
@@ -1046,7 +1037,6 @@ $NEWPAGE
 'mytalk' => 'Мој разговор',
 'namespace' => 'Именски простор:',
 'namespacesall' => 'сви',
-'' => 'навигација',
 'nbytes' => '$1 бајтова',
 'nchanges' => '$1 промена',
 'newarticle' => '(Нови)',
@@ -1054,7 +1044,6 @@ $NEWPAGE
 * Да бисте започели страницу, почните да куцате у пољу испод. Ако сте овде дошли грешком, само притисните \'\'\'back\'\'\' дугме вашег браузера.<br /> \'\'Погледајте [[Помоћ:Садржај|\'\'\'\'\'помоћ\'\'\'\'\']] за више информација.\'\'',
 'newbies' => 'новајлије',
 'newimages' => 'Галерија нових слика',
-'newmessages' => 'Имате $1.',
 'newmessageslink' => 'нових порука',
 'newpage' => 'Нова страница',
 'newpageletter' => 'Н',
@@ -1184,10 +1173,6 @@ $2 Излистај преусмерења &nbsp; Тражи $3 $9',
 'prefs-misc' => 'Разна подешавања',
 'prefs-personal' => 'Корисничка подешавања',
 'prefs-rc' => 'Подешавање скорашњих измена',
-'prefslogintext' => 'Пријављени сте као "[[{{ns:2}}:$1|$1]]" ([[{{ns:3}}:$1|разговор]], [[{{ns:-1}}:Contributions/$1|прилози]]).
-Ваш интерни ИД број је $2.
-
-Погледајте [[meta:Help:Preferences]] за објашњење око подешавања.',
 'prefsnologin' => 'Нисте пријављени',
 'prefsnologintext' => 'Морате бити [[{{ns:-1}}:Userlogin|пријављени]]
 да бисте подешавали корисничка подешавања.',
@@ -1635,33 +1620,23 @@ $3...)<br />
 class LanguageSr extends LanguageUtf8 {
 
 	function getNamespaces() {
-	global $wgNamespaceNamesSr;
-	return $wgNamespaceNamesSr;
-	}
-
-	function getNsIndex( $text ) {
-	global $wgNamespaceNamesSr;
-
-	foreach ( $wgNamespaceNamesSr as $i => $n ) {
-		if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-	}
-	if( 0 == strcasecmp( "Wikipedia", $text ) ) { return 4; }
-	return false;
+		global $wgNamespaceNamesSr;
+		return $wgNamespaceNamesSr;
 	}
 
 	function getQuickbarSettings() {
-	global $wgQuickbarSettingsSr;
-	return $wgQuickbarSettingsSr;
+		global $wgQuickbarSettingsSr;
+		return $wgQuickbarSettingsSr;
 	}
 
 	function getSkinNames() {
-	global $wgSkinNamesSr;
-	return $wgSkinNamesSr;
+		global $wgSkinNamesSr;
+		return $wgSkinNamesSr;
 	}
 
 	function getDateFormats() {
-	global $wgDateFormatsSr;
-	return $wgDateFormatsSr;
+		global $wgDateFormatsSr;
+		return $wgDateFormatsSr;
 	}
 
 	function getMessage( $key ) {

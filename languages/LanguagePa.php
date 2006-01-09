@@ -89,9 +89,6 @@ require_once('LanguageUtf8.php');
 'mainpage'		=> 'ਮੁੱਖ ਪੰਨਾ',
 'mainpagetext'	=> 'ਵਿਕਿ ਸਾਫ਼ਟਵੇਅਰ ਚੰਗੀ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੋ ਗਿਆ ਹੈ',
 
-# NOTE: To turn off 'Community portal' in the title links,
-# set 'portal' => '-'
-
 'portal'		=> 'ਸਮੂਹ ਦ੍ਵਾਰ',
 'portal-url'		=> 'Project:ਸਮੂਹ ਦ੍ਵਾਰ',
 'about'		=> 'ਜਾਣਕਾਰੀ',
@@ -167,7 +164,6 @@ require_once('LanguageUtf8.php');
 'lastmodified'	=> 'ਅਖੀਰਲਾ ਬਦਲਾਵ $1',
 'viewcount'		=> 'ਇਹ ਪੰਨਾ $1 ਵਾਰ ਵੇਖਿਆ ਗਿਆ ਹੈ',
 'copyright'		=> 'ਵਿਸ਼ਾ-ਵਸਤੂ $1 ਤਹਿਤ ਉਪਲੱਬਧ ਹੈ',
-'poweredby'		=> '{{SITENAME}} is powered by [http://www.mediawiki.org/ MediaWiki], an open source wiki engine.',
 'printsubtitle'	=> '({{SERVER}} ਤੋਂ)',
 'protectedpage'	=> 'ਸੁਰੱਖਿਅਤ ਪੰਨਾ',
 'administrators'	=> 'Project:ਪ੍ਰਸ਼ਾਸਕ',
@@ -182,16 +178,12 @@ require_once('LanguageUtf8.php');
 'pagetitle'		=> '$1 - {{SITENAME}}',
 'sitesubtitle'	=> '',
 'retrievedfrom'	=> '\'$1\' ਤੋਂ ਪ੍ਰਾਪਤ ਕੀਤਾ ਗਿਆ ਹੈ',
-'newmessages'		=> 'ਤੁਹਾਡੇ ਲਈ $1 ਹਨ',
 'newmessageslink'	=> 'ਨਵੇਂ ਸੰਦੇਸ਼',
 'editsection'		=> 'ਬਦਲੋ',
 'toc'			=> 'ਵਿਸ਼ਾ-ਸੂਚੀ',
 'showtoc'		=> 'ਦਿਖਾਓ',
 'hidetoc'		=> 'ਛੁਪਾਓ',
 'thisisdeleted'	=> 'ਵੇਖੋ ਜਾਂ ਮੁੜ ਵਾਪਿਸ ਲਿਆਓ $1?',
-'restorelink'		=> '$1 deleted edits',
-'feedlinks'		=> 'Feed:',
-'sitenotice'		=> '',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'		=> 'ਲੇਖ',

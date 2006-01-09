@@ -128,21 +128,17 @@ ta['ca-nstab-category'] = new Array('c','Vezi categoria');",
 'aboutpage' => "Project:Despre",
 'accesskey-compareselectedversions' => "o",
 'accesskey-minoredit' => "m",
-#'accesskey-preview' => "p",
-#'accesskey-save' => "s",
 'accesskey-search' => "c",
 'accmailtext' => "Parola pentru '$1' a fost trimisă la $2.",
 'accmailtitle' => "Parola a fost trimisă.",
-#'acct_creation_throttle_hit' => "Ne pară rău, ai creat deja $1 conturi. Nu poţi să-ţi mai faci altul.",
 'actioncomplete' => "Acţiune finalizată",
 'addedwatch' => "Adăugată la lista de pagini urmărite",
-'addedwatchtext' => "Pagina \"$1\" a fost adăugată la lista ta de <a href=\"/wiki/Special:Watchlist\">articole urmărite</a>.
+'addedwatchtext' => "Pagina \"$1\" a fost adăugată la lista ta de [[Special:Watchlist|articole urmărite]].
 Modificările viitoare ale acestei pagini şi a paginii asociate de discuţii
-vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de <a href=\"/wiki/Special:Recentchanges\">modificări recente</a> pentru evidenţiere.</p>
+vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de [[Special:Recentchanges|modificări recente]] pentru evidenţiere.</p>
 
 <p>Dacă doreşti să elimini această pagină din lista ta de pagini urmărite
 în viitor, apasă pe \"Nu mai urmări\" în bara de comenzi în timp ce această pagină este vizibilă.",
-#'addsection' => "+",
 'administrators' => "Project:Administratori",
 'allmessages' => "Toate_mesajele",
 'allmessagestext' => "Aceasta este lista completă a mesajelor disponibile în domeniul \"MediaWiki:\"",
@@ -218,12 +214,9 @@ iar lista de mai jos nu constituie nici un fel de garanţie sau validare a servi
 'categories' => "Categorii de pagini",
 'category' => "categorie",
 'category_header' => "Articole din categoria \"$1\"",
-#'categoryarticlecount' => "Sunt $1 articole în această categorie.",
 'changepassword' => "Schimbă parola",
 'changes' => "schimbări",
-#'clearyourcache' => "'''Notă:''' După salvare, poţi să-ţi goleşti fişierele din cache pentru a vedea schimbările: '''Mozilla:''' apasă ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'columns' => "Coloane",
-'commentedit' => " (comentariu)",
 'compareselectedversions' => "Compară versiunile selectate",
 'confirm' => "Confirmă",
 'confirmdelete' => "Confirmă ştergere",
@@ -312,7 +305,6 @@ Fiecare rând care conţine legături către prima sau a doua redirijare, ca şi
 'editingold' => "<strong>ATENŢIE! Editezi o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune şi până la cea curentă se vor pierde!</strong>",
 'editsection' => "editează",
 'editthispage' => "Editează pagina",
-'emailflag' => "Dezactivează serviciul de e-mail de la alţi utilizatori",
 'emailforlost' => "Dacă ţi-ai pierdut parola, poţi cere să ţi se trimită una nouă la adresa de e-mail.",
 'emailfrom' => "De la",
 'emailmessage' => "Mesaj",
@@ -326,7 +318,6 @@ de origine a mesajului, astfel încât destinatarul să îţi poată răspunde d
 'emailsubject' => "Subiect",
 'emailto' => "Către",
 'emailuser' => "Trimite e-mail acestui utilizator",
-#'emptyfile' => "Fişierul pe care l-ai trimis pare să fie gol. Acest lucru s-ar putea datora unei greşeli în numele fişierului. Verifică acest lucru dacă mai doreşti să trimiţi fişierul.",
 'enterlockreason' => "Introdu motivul pentru blocare, incluzând o estimare a termenului de deblocare a bazei de date",
 'error' => "Eroare",
 'errorpagetitle' => "Eroare",
@@ -347,11 +338,9 @@ pate fi transformat sau păstrat pur şi simplu fiindcă doreşti tu să-l păst
 'extlink_tip' => "Legătură externă (nu uita prefixul http://)",
 'faq' => "Întrebări frecvente",
 'faqpage' => "Project:Întrebări frecvente",
-#'feedlinks' => "Alimentare flux:",
 'filecopyerror' => "Fişierul \"$1\" nu a putut fi copiat la \"$2\".",
 'filedeleteerror' => "Fişierul \"$1\" nu a putut fi şters.",
 'filedesc' => "Sumar",
-#'fileexists' => "Un fişier cu acest nume există deja, vezi $1 dacă nu eşti sigur că vrei să-l modifici.",
 'filename' => "Nume fişier",
 'filenotfound' => "Fişierul \"$1\" nu a putut fi găsit.",
 'filerenameerror' => "Fişierul \"$1\" nu a putut fi mutat la \"$2\".",
@@ -373,11 +362,9 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'histlegend' => "Legendă: (actuală) = diferenţe faţă de versiunea curentă,
 (prec) = diferenţe faţă de versiunea precedentă, M = editare minoră",
 'history' => "Versiuni mai vechi",
-#'history_copyright' => "-",
 'history_short' => "Istoric",
 'historywarning' => "Atenţie! Pagina pe care o ştergi are istorie: ",
 'hr_tip' => "Linie orizontală (foloseşte-o cumpătat)",
-#'illegalfilename' => "Numele fişierului \"$1\" conţine caractere care nu sunt permise în titlurile paginilor. Redenumeşte fişierul şi încearcă să-l trimiţi din nou.",
 'ilsubmit' => "Caută",
 'image_sample' => "Exemplu.jpg",
 'image_tip' => "Inserează imagine",
@@ -387,7 +374,6 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'imagepage' => "Vezi pagina imaginii",
 'imagereverted' => "S-a revenit la o versiune veche.",
 'imgdelete' => "şterge",
-#'imgdesc' => "desc",
 'imghistlegend' => "Legendă: (actuală) = versiunea curentă a imaginii, (şterg) = şterge această versiune veche, (rev) = revino la această versiune veche.
 <br /><i>Apasă pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
 'imghistory' => "Istoria imaginii",
@@ -398,10 +384,6 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'importnotext' => "Gol sau fără text",
 'importsuccess' => "Import reuşit!",
 'importtext' => "Te rog exportă fişierul din sursa wiki folosind funcţia Special:Export, salvează-l pe discul tău şi încarcă-l aici.",
-#'info_short' => "Informaţii",
-'infobox' => "Apasă acest buton pentru a vedea un exemplu de text",
-'infobox_alert' => "Introdu textul pe care vrei să-l formatezi.\n Va apărea în infobox pentru copiere şi lipire.\nExemplu:\n$1\nva deveni:\n$2",
-#'infosubtitle' => "Informaţii pentru pagină",
 'internalerror' => "Eroare internă",
 'intl' => "Legături între limbi",
 'ip_range_invalid' => "Serie IP invalidă.",
@@ -413,7 +395,6 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'ipbsubmit' => "Blochează această adresă",
 'ipusubmit' => "Deblochează adresa",
 'ipusuccess' => "Adresa IP \"$1\" a fost deblocată",
-#'isbn' => "ISBN",
 'isredirect' => "pagină de redirijare",
 'italic_sample' => "Text cursiv",
 'italic_tip' => "Text cursiv",
@@ -567,18 +548,15 @@ te rugăm, asigură-te că înţelegi toate consecinţele înainte de a continua
 Pentru a o crea, începe să scri în caseta de mai jos
 (vezi [[Project:Ajutor|pagina de ajutor]] pentru mai multe informaţii).
 Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ului tău",
-'newmessages' => "Ai $1.",
-'newmessageslink' => "mesaje noi",
 'newpage' => "Pagină nouă",
-#'newpageletter' => "N",
 'newpages' => "Pagini noi",
 'newpassword' => "Parola nouă",
 'newtitle' => "Titlul nou",
 'newusersonly' => " (doar pentru utilizatori noi)",
-#'newwindow' => "(se deschide în altă fereastră)",
+'newwindow' => "(se deschide în altă fereastră)",
 'next' => "următoarea",
 'nextn' => "următoarele $1",
-#'nextpage' => "Pagina următoare ($1)",
+'nextpage' => "Pagina următoare ($1)",
 'nlinks' => "$1 legături",
 'noarticletext' => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} nu are încă un articol cu acest nume'''
 * Pentru a începe articolul, fă clic pe '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} editează pagina]'''.
@@ -589,7 +567,7 @@ Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ul
 'nocookieslogin' => "{{SITENAME}} foloseşte module cookie pentru a autentifica utilizatorii. Browser-ul tău are modulele cookie dezactivate. Te rugăm să le activezi şi să încerci din nou.",
 'nocookiesnew' => "Contul a fost creat, dar tu nu eşti autentificat(ă). {{SITENAME}} foloseşte module cookie pentru a reţine utilizatorii autentificaţi. Browser-ul tău are modulele cookie dezactivate. Te rugăm să le activezi şi să te reautentifici folosind noul nume de utilizator şi noua parolă.",
 'nocreativecommons' => "Metadatele Creative Commons RDF dezactivate pentru acest server.",
-#'nocredits' => "Această pagină nu este atribuită vreunui autor.",
+'nocredits' => "Această pagină nu este atribuită vreunui autor.",
 'nodb' => "Nu s-a putut selecta baza de date $1",
 'nodublincore' => "Metadatele Dublin Core RDF sunt dezactivate pentru acest server.",
 'noemail' => "Nu este nici o adresă de e-mail înregistrată pentru utilizatorul \"$1\".",
@@ -671,9 +649,6 @@ $2 Redirijări&nbsp; Căutări după $3 $9",
 'prefs-help-email' => "* <strong>Adresa de e-mail</strong> (opţional): Permite altor utilizatori să te contacteze folosind {{SITENAME}}, fără a fi necesar să le pui la dispoziţie adresa reală de mail. În plus, aici ţi se poate trimite o nouă parolă în caz că o pierzi pe cea existentă.",
 'prefs-misc' => "Diverse reglări",
 'prefs-personal' => "Date de utilizator",
-#'prefs-rc' => "Schimbări recente şi afişare cioturi",
-'prefslogintext' => "Eşti autentificat ca \"$1\".
-Numărul intern de identificare este $2 (nu trebuie să-l reţi decât dacă ai probleme).",
 'prefsnologin' => "Neautentificat",
 'prefsnologintext' => "Trebuie să fii [[Special:Userlogin|autentificat]]
 pentru a-ţi putea salva preferinţele.",
@@ -755,13 +730,11 @@ Este foarte important să nu adaugi în {{SITENAME}} materiale protejate de [[dr
 'reupload' => "Re-trimite",
 'reuploaddesc' => "Întoarcere la formularul de trimitere.",
 'reverted' => "Revenit la o versiune mai veche",
-#'revertimg' => "rev",
 'revertpage' => "Revenit la ultima editare de către $1",
 'revhistory' => "Istoria versiunilor",
 'revisionasof' => "Versiunea de la data $1",
 'revnotfound' => "Versiunea nu a fost găsită",
 'revnotfoundtext' => "Versiunea mai veche a paginii pe care ai cerut-o nu a fost găsită. Te rugăm să verifici legătura pe care ai folosit-o pentru a accesa această pagină.",
-#'rfcurl' => "http://www.faqs.org/rfcs/rfc$1.html",
 'rights' => "Drepturi:",
 'rollback' => "Editări de revenire",
 'rollback_short' => "Revenire",
@@ -818,35 +791,11 @@ de la ultima actualizare a programului (July 20, 2002).
 'storedversion' => "Versiunea curentă",
 'stubthreshold' => "Limita de caractere pentru un ciot",
 'subcategories' => "Subcategorii",
-#'subcategorycount' => "Această categorie are $1 subcategorii.",
+'subcategorycount' => "Această categorie are $1 subcategorii.",
 'subject' => "Subiect/titlu",
 'subjectpage' => "Vezi subiectul",
 'successfulupload' => "Fişierul a fost trimis",
-'summary' => "<!-- <p style=\"color:red; font-weight:bold;\">NU FACEŢI TESTE AICI!</p> -->
-<div id=\"my-buttons\">
-<a href=\"javascript:insertTags('ă', '', '')\" title=\"Introdu 'ă'\">&nbsp;ă&nbsp;</a>
-<a href=\"javascript:insertTags('â', '', '')\" title=\"Introdu 'â'\">&nbsp;â&nbsp;</a>
-<a href=\"javascript:insertTags('î', '', '')\" title=\"Introdu 'î'\">&nbsp;î&nbsp;</a>
-<a href=\"javascript:insertTags('ş', '', '')\" title=\"Introdu 'ş'\">&nbsp;ş&nbsp;</a>
-<a href=\"javascript:insertTags('ţ', '', '')\" title=\"Introdu 'ţ'\">&nbsp;ţ&nbsp;</a>
-<a href=\"javascript:insertTags('Ă', '', '')\" title=\"Introdu 'Ă'\">&nbsp;Ă&nbsp;</a>
-<a href=\"javascript:insertTags('Â', '', '')\" title=\"Introdu 'Â'\">&nbsp;Â&nbsp;</a>
-<a href=\"javascript:insertTags('Î', '', '')\" title=\"Introdu 'Î'\">&nbsp;Î&nbsp;</a>
-<a href=\"javascript:insertTags('Ş', '', '')\" title=\"Introdu 'Ş'\">&nbsp;Ş&nbsp;</a>
-<a href=\"javascript:insertTags('Ţ', '', '')\" title=\"Introdu 'Ţ'\">&nbsp;Ţ&nbsp;</a>
-<a href=\"javascript:insertTags('†', '', '')\" title=\"Introdu '†'\">&nbsp;†&nbsp;</a>
-<a href=\"javascript:insertTags('<sub'+'>', '</sub>', 'indice')\" title=\"Transformă textul selectat în indice\">X<sub>2</sub></a>
-<a href=\"javascript:insertTags('<sup'+'>', '</sup>', 'exponent')\" title=\"Transformă textul selectat în exponent\">X<sup>2</sup></a>
-<a href=\"javascript:insertTags('„', '“', 'text')\" title=\"Pune în ghilimele textul selectat\">„ ...“</a>
-<a href=\"javascript:insertTags('{' + '{', '}}', '')\" title=\"Pune între acolade duble textul selectat\">{{}}</a>
-<a href=\"javascript:insertTags('<', '>', 'text')\" title=\"Pune între semne de comparaţie textul selectat\"><></a>
-<a href=\"javascript:insertTags('[' + '[', ']]', '')\" title=\"Pune între paranteze drepte duble textul selectat\">[[]]</a>
-<a href=\"javascript:insertTags('€', '', '')\" title=\"Introdu simbolul monedei Euro\">&nbsp;€&nbsp;</a>
-<a href=\"javascript:insertTags('<', '', '')\" title=\"Introdu semnul 'mai mic'\">&nbsp;<&nbsp;</a>
-<a href=\"javascript:insertTags('>', '', '')\" title=\"Introdu semnul 'mai mare'\">&nbsp;>&nbsp;</a>
-</div>
-
-Sumar",
+'summary' => "Sumar",
 'sysoptext' => "Acţiunea pe care ai încercat-o necesită drepturi de operator.
 Vezi $1.",
 'sysoptitle' => "Ai nevoie de acces ca operator",
@@ -858,12 +807,11 @@ să unifici manual cele două pagini de discuţii.",
 'talkpage' => "Discută pagina",
 'talkpagemoved' => "Şi pagina de discuţii asociată a fost mutată.",
 'talkpagenotmoved' => "Pagina asociată de discuţii <strong>nu</strong> a fost mutată.",
-#'talkpagetext' => "<!-- MediaWiki:talkpagetext -->",
 'textboxsize' => "Dimensiunile casetei de text",
 'textmatches' => "Rezultate în textele articolelor",
 'thisisdeleted' => "Vezi sau recuperează $1?",
 'thumbnail-more' => "Extinde",
-#'timezonelegend' => "Fus orar",
+'timezonelegend' => "Fus orar",
 'timezoneoffset' => "Diferenţa",
 'timezonetext' => "Introdu numărul de ore diferenţă între ora locală şi ora serverului (UTC, timp universal - pentru România, cifra este 3).",
 'titlematches' => "Rezultate în titluri de articole",
@@ -960,9 +908,6 @@ Pentru a include o imagine într-un articol, foloseşti o legătură de forma <b
 sau <b>[[media:fişier.ogg]]</b> pentru fişiere de sunet.
 <p>Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENAME}}, alte persoane pot edita sau şterge fişierele pe care le trimiţi dacă e în interesul enciclopediei, şi ţi se poate chiar bloca accesul la trimiterea de fişiere dacă abuzezi de sistem.",
 'uploadwarning' => "Avertizare la trimiterea fişierului",
-/* 'usenewcategorypage' => "1
-
-Set first character to \"0\" to disable the new category page layout.", */
 'user_rights_set' => "<b>Drepturi de utilizator pentru \"$1\" actualizate</b>",
 'usercssjsyoucanpreview' => "<strong>Sfat:</strong> Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
 'usercsspreview' => "'''Reţine că urmăreşti doar o previzualizare a css-ului tău de utilizator, acesta nu este încă salvat!'''",

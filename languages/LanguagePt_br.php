@@ -7,13 +7,6 @@
 require_once( 'LanguageUtf8.php' );
 /** Inherit some stuff from Portuguese: */
 require_once( 'LanguagePt.php' );
-
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
 #
 # This translation was made by Yves Marques Junqueira
 # and Rodrigo Calanca Nishino from Portuguese Wikipedia
@@ -141,7 +134,6 @@ require_once( 'LanguagePt.php' );
 "currentevents" => "Eventos atuais",
 "errorpagetitle" => "Erro",
 "returnto"      => "Retorna para $1.",
-"tagline"       => "Origem: {{SITENAME}}, a enciclopédia livre.",
 "whatlinkshere" => "Páginas que se ligam a essa",
 "help"          => "Ajuda",
 "search"        => "Busca",
@@ -182,7 +174,6 @@ Veja $1.",
 "sitetitle"     => "{{SITENAME}}",
 "sitesubtitle"  => "",
 "retrievedfrom" => "Retirado de  \"$1\"",
-"newmessages" => "You have $1.",
 "newmessageslink" => "novas mensagens",
 "editsection"=>"editar",
 "toc" => "Conteúdo",
@@ -418,10 +409,6 @@ $2 Lista redireciona &nbsp; Procura por $3 $9",
 "prefsnologin" => "Não autenticado",
 "prefsnologintext"  => "Você precisa estar [[Special:Userlogin|autenticado]]
 para definir suas preferências.",
-"prefslogintext" => "Você está autenticado como \"$1\".
-Seu número identificador interno é $2.
-
-veja [[{{ns:4}}:Ajuda_preferências_de_usuários]] para aprender a decifrar as opções.",
 "prefsreset"    => "Preferências foram reconfiguradas.",
 "qbsettings"    => "Configurações da Barra Rápida",
 "changepassword" => "Mudar senha",
@@ -453,7 +440,6 @@ veja [[{{ns:4}}:Ajuda_preferências_de_usuários]] para aprender a decifrar as o
 "timezoneoffset" => "Offset",
 "servertime"    => "Horário do servidor é",
 "guesstimezone" => "Colocar no navegador",
-"emailflag"     => "Desabilitar e-mail de outros usuários",
 "defaultns"     => "Procurar nestes namespaces por padrão:",
 
 # Recent changes
@@ -469,14 +455,11 @@ Por favor, dê uma olhada nestas páginas: [[{{ns:4}}:FAQ|FAQ da {{SITENAME}}]],
 e [[{{ns:4}}:Most common {{SITENAME}} faux pas|most common {{SITENAME}} faux pas]].
 
 Se você quer ver a {{SITENAME}} crescer, é muito importante que você não adicione material restrito por outras [[{{ns:4}}:Copyrights|copyrights]].
-Um problema legal poderia realmente prejudicar o projeto de maneira que pedimos, por avor, não faça isso.
-Veja também [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
+Um problema legal poderia realmente prejudicar o projeto de maneira que pedimos, por avor, não faça isso.",
 "rcloaderr"     => "Carregando alterações recentes",
 "rcnote"        => "Abaixo estão as últimas <strong>$1</strong> alterações nos últimos <strong>$2</strong> dias.",
 "rcnotefrom"    => "Abaixo estão as mudanças desde <b>$2</b> (até <b>$1</b> mostradas).",
 "rclistfrom"    => "Mostrar as novas alterações a partir de $1",
-# "rclinks"     => "Mostrar as últimas $1 alterações nas últimas $2 hours / últimos $3 dias",
-# "rclinks"     => "Mostrar as últimas $1 mudanças nos últimos $2 dias.",
 "rclinks"       => "Mostrar as últimas $1 mudanças nos últimos $2 dias; $3 edições minoritárias",
 "rchide"        => "em $4 formulários; $1 edições minoritárias; $2 namespaces secundários; $3 múltiplas edições.",
 "rcliu"         => "; $1 edições de usuários autenticados",

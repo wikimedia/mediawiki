@@ -19,7 +19,7 @@ require_once( 'LanguageUtf8.php' );
 # In general you should not make customizations in these language files
 # directly, but should use the MediaWiki: special namespace to customize
 # user interface messages through the wiki.
-# See http://meta.wikipedia.org/wiki/MediaWiki_namespace
+# See http://meta.wikimedia.org/wiki/MediaWiki_namespace
 #
 
 /* private */ $wgNamespaceNamesPt = array(
@@ -27,8 +27,8 @@ require_once( 'LanguageUtf8.php' );
 	NS_SPECIAL          => 'Especial', # -1
 	NS_MAIN             => '', # 0
 	NS_TALK             => 'Discussão', # 1
-    NS_USER             => 'Usuário',
-    NS_USER_TALK        => 'Usuário_Discussão',
+	NS_USER             => 'Usuário',
+	NS_USER_TALK        => 'Usuário_Discussão',
 /*
 	Above entries are for PT_br. The following entries should
     be used instead. But:
@@ -132,16 +132,6 @@ require_once( 'LanguageUtf8.php' );
 	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),
 );
 
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
-
-# required for copyrightwarning
-global $wgRightsText;
-
 /* private */ $wgAllMessagesPt = array(
 
 # User preference toggles
@@ -225,8 +215,8 @@ global $wgRightsText;
 'linkprefix'            => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'              => 'Página principal',
 'mainpagetext'  => 'Software Wiki instalado com sucesso.',
-"mainpagedocfooter" => "Por favor consultar a [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentação de modo a alterar o interface]
-e o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizadores] para ajuda sobre a configuração.",
+"mainpagedocfooter" => "Por favor consultar a [http://meta.wikimedia.org/wiki/MediaWiki_i18n documentação de modo a alterar o interface]
+e o [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizadores] para ajuda sobre a configuração.",
 
 'portal'                => 'Portal comunitário',
 'portal-url'            => 'Project:Portal comunitário',
@@ -261,7 +251,7 @@ e o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizador
 
 # Metadata in edit box
 'metadata' => '<b>Metadata</b> (para uma explicação ver <a href="$1">aqui</a>)',
-'metadata_page' => 'Wikipedia:Metadata',
+'metadata_page' => '{{ns:project}}:Metadata',
 
 'currentevents' => 'Eventos actuais',
 'currentevents-url' => 'Eventos actuais',
@@ -272,7 +262,6 @@ e o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizador
 'privacypage' => 'Project:Política_de_privacidade',
 'errorpagetitle' => "Erro",
 'returnto'              => "Retornar para $1.",
-'tagline'       => "Origem: {{SITENAME}}, a enciclopédia livre",
 'whatlinkshere' => 'Artigos afluentes',
 'help'                  => 'Ajuda',
 'search'                => 'Pesquisa',
@@ -408,7 +397,7 @@ O administrador que fez o bloqueio oferece a seguinte explicação: $1",
 Isto é geralmente causado pela procura de uma diferença num antigo ou num histórico que leva a uma página que foi eliminada.
 
 Se este não for o caso, você pode ter encontrado um ''bug'' no software.
-Por favor, tome nota do URL e comunique o erro a um [[Wikipedia:Administradores|administrador]].",
+Por favor, tome nota do URL e comunique o erro a um [[{{ns:project}}:Administradores|administrador]].",
 'readonly_lag' => "A base de dados foi automaticamente bloqueada para sincronização",
 'internalerror' => 'Erro interno',
 'filecopyerror' => "Não foi possível copiar o ficheiro \"$1\" para \"$2\".",
@@ -480,7 +469,6 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'yourvariant'  => 'Variante',
 'yournick'              => 'Alcunha:',
 'badsig'                => 'Assinatura inválida; verifique o código HTML utilizado.',
-'badsig2'               => 'A sua assinatura contém uma ou mais expressões reservadas; por favor as remova.',
 'email'                 => 'Email',
 'emailforlost'          => "Os campos marcados são opcionais. Colocando o seu endereço de e-mail permite outras pessoas entrem em contacto consigo sem que tenha que revelar o seu e-mail a elas, e também é útil caso se esquecer da sua palavra-chave.<br /><br />O seu nome real, se o indicar, será utilizado para dar atribuição do seu trabalho.",
 'prefs-help-email-enotif' => 'Este endereço é também utilizado para enviar-lhe notificações caso as active nas preferências.',
@@ -695,20 +683,6 @@ $2 Lista redirecciona   Procurar por $3 $9",
 "searchdisabled" => 'O motor de pesquisa na {{SITENAME}} foi desactivado por motivos de desempenho. Enquanto isso pode fazer a sua pesquisa através do Google ou do Yahoo!.<br />
 Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desactualizados.',
 
-'googlesearch' => '
-<form method="get" action="http://www.google.com/search" id="googlesearch">
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="$3" />
-  <div>
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
-</form>',
 'blanknamespace' => '(Principal)',
 
 # Preferences page
@@ -1227,7 +1201,6 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 # Contributions
 #
 'contributions' => 'Contribuições do utilizador',
-'userfiles'             => 'Ficheiros do utilizador',
 'mycontris'     => 'Minhas contribuições',
 'contribsub'    => "Para $1",
 'nocontribs'    => 'Não foram encontradas mudanças com este critério.',
@@ -1765,50 +1738,12 @@ for minimizada. Outros serão escondidos por defeito.
 'exif-subjectdistance-value' => '$1 metros',
 
 
-'exif-meteringmode-0' => 'Unknown',
-'exif-meteringmode-1' => 'Average',
-'exif-meteringmode-2' => 'CenterWeightedAverage',
-'exif-meteringmode-3' => 'Spot',
-'exif-meteringmode-4' => 'MultiSpot',
-'exif-meteringmode-5' => 'Pattern',
-'exif-meteringmode-6' => 'Partial',
-'exif-meteringmode-255' => 'Other',
-
 'exif-lightsource-0' => 'Desconhecida',
 'exif-lightsource-1' => 'Luz do dia',
 'exif-lightsource-2' => 'Fluorescente',
-'exif-lightsource-3' => 'Tungsten (incandescent light)',
-'exif-lightsource-4' => 'Flash',
-'exif-lightsource-9' => 'Fine weather',
 'exif-lightsource-10' => 'Tempo nublado',
-'exif-lightsource-11' => 'Shade',
-'exif-lightsource-12' => 'Daylight fluorescent (D 5700 â€“ 7100K)',
-'exif-lightsource-13' => 'Day white fluorescent (N 4600 â€“ 5400K)',
-'exif-lightsource-14' => 'Cool white fluorescent (W 3900 â€“ 4500K)',
-'exif-lightsource-15' => 'White fluorescent (WW 3200 â€“ 3700K)',
-'exif-lightsource-17' => 'Standard light A',
-'exif-lightsource-18' => 'Standard light B',
-'exif-lightsource-19' => 'Standard light C',
-'exif-lightsource-20' => 'D55',
-'exif-lightsource-21' => 'D65',
-'exif-lightsource-22' => 'D75',
-'exif-lightsource-23' => 'D50',
-'exif-lightsource-24' => 'ISO studio tungsten',
-'exif-lightsource-255' => 'Other light source',
 
 'exif-focalplaneresolutionunit-2' => 'polegadas',
-
-'exif-sensingmethod-1' => 'Undefined',
-'exif-sensingmethod-2' => 'One-chip color area sensor',
-'exif-sensingmethod-3' => 'Two-chip color area sensor',
-'exif-sensingmethod-4' => 'Three-chip color area sensor',
-'exif-sensingmethod-5' => 'Color sequential area sensor',
-'exif-sensingmethod-7' => 'Trilinear sensor',
-'exif-sensingmethod-8' => 'Color sequential linear sensor',
-
-'exif-filesource-3' => 'DSC',
-
-'exif-scenetype-1' => 'A directly photographed image',
 
 'exif-customrendered-0' => 'Processo normal',
 'exif-customrendered-1' => 'Processo personalizado',
@@ -1817,59 +1752,15 @@ for minimizada. Outros serão escondidos por defeito.
 'exif-exposuremode-1' => 'Exposição manual',
 'exif-exposuremode-2' => 'Auto bracket',
 
-'exif-whitebalance-0' => 'Auto white balance',
-'exif-whitebalance-1' => 'Manual white balance',
-
-'exif-scenecapturetype-0' => 'Standard',
-'exif-scenecapturetype-1' => 'Landscape',
-'exif-scenecapturetype-2' => 'Portrait',
-'exif-scenecapturetype-3' => 'Night scene',
-
-'exif-gaincontrol-0' => 'None',
-'exif-gaincontrol-1' => 'Low gain up',
-'exif-gaincontrol-2' => 'High gain up',
-'exif-gaincontrol-3' => 'Low gain down',
-'exif-gaincontrol-4' => 'High gain down',
-
-'exif-contrast-0' => 'Normal',
-'exif-contrast-1' => 'Soft',
-'exif-contrast-2' => 'Hard',
-
-'exif-saturation-0' => 'Normal',
-'exif-saturation-1' => 'Low saturation',
-'exif-saturation-2' => 'High saturation',
-
-'exif-sharpness-0' => 'Normal',
-'exif-sharpness-1' => 'Soft',
-'exif-sharpness-2' => 'Hard',
-
 'exif-subjectdistancerange-0' => 'Desconhecida',
 'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Vista próxima',
 'exif-subjectdistancerange-3' => 'Vista distante',
 
-// Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => 'North latitude',
-'exif-gpslatitude-s' => 'South latitude',
-
-// Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
-'exif-gpslongitude-e' => 'East longitude',
-'exif-gpslongitude-w' => 'West longitude',
-
-'exif-gpsstatus-a' => 'Measurement in progress',
-'exif-gpsstatus-v' => 'Measurement interoperability',
-
-'exif-gpsmeasuremode-2' => '2-dimensional measurement',
-'exif-gpsmeasuremode-3' => '3-dimensional measurement',
-
 // Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milhas por hora',
 'exif-gpsspeed-n' => 'Nós',
-
-// Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
-'exif-gpsdirection-t' => 'True direction',
-'exif-gpsdirection-m' => 'Magnetic direction',
 
 # external editor support
 'edit-externally' => 'Editar este ficheiro utilizando uma aplicação externa',
@@ -1908,11 +1799,6 @@ irá expirar a $4.",
 'tryexact' => 'Try exact match',
 'searchfulltext' => 'Pesquisar no texto completo',
 'createarticle' => 'Criar artigo',
-
-# Scary transclusion
-'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
-'scarytranscludefailed' => '[Template fetch failed for $1; sorry]',
-'scarytranscludetoolong' => '[URL is too long; sorry]',
 
 # Trackbacks
 'trackbackbox' => "<div id='mw_trackbacks'>

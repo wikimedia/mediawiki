@@ -8,9 +8,6 @@
 
 require_once( "LanguageRu.php" );
 
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesOs = array(
 	NS_MEDIA            => 'Media', //чтоб не писать "Мультимедия"
 	NS_SPECIAL          => 'Сæрмагонд',
@@ -132,7 +129,6 @@ if($wgMetaNamespace === FALSE)
 'nchanges' => "$1 ивддзинад(ы)",
 'newarticle' => "(Ног)",
 'newimages' => "Ног нывты галерей",
-'newmessages' => "Райстай $1.",
 'newmessageslink' => "ног фыстæгтæ",
 'newpage' => "Ног фарс",
 'newpageletter' => "Н",
@@ -259,9 +255,8 @@ class LanguageOs extends LanguageRu {
 		return "windows-1251";
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ', ' ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($number, '.,', ', ' ) : $number;
 	}
 
 }

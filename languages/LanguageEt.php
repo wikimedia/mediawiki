@@ -162,8 +162,8 @@ $wgNamespaceNamesEt = array(
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Esileht",
 "mainpagetext"	=> "Wiki tarkvara installeeritud.",
-"mainpagedocfooter" => "Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentatsiooni liidese kohaldamisest]
-ning [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].",
+"mainpagedocfooter" => "Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentatsiooni liidese kohaldamisest]
+ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].",
 'portal'                =>  'Kogukonnavärav', # Kirjutajate portaal?
 'portal-url'            => '{{ns:4}}:Kogukonnavärav',
 "about"			=> "Tiitelandmed",
@@ -250,12 +250,7 @@ Vaata $1.",
 "nbytes"		=> "$1 baiti",
 "go"			=> "Mine",
 "ok"			=> "OK",
-"sitetitle"		=> "{{SITENAME}}",
-'pagetitle'             => "$1 - {{SITENAME}}",
-"sitesubtitle"	=> "",
 "retrievedfrom" => "Välja otsitud andmebaasist \"$1\"", # parandaks sõnastust?
-"newmessages" => "Teile on uusi sõnumeid ($1).",
-"newmessageslink" => "Vaata sõnumeid.",
 'editsection'=>'redigeeri',
 'toc' => 'Sisukord',
 'showtoc' => 'näita',
@@ -263,7 +258,6 @@ Vaata $1.",
 'thisisdeleted' => "Vaata või taasta $1?", # View or restore...
 'restorelink' => "Kustutatud muudatuste arv: $1",
 'feedlinks' => 'Sööde:', # See sõna ei meeldi, aga paremat ei tea.
-'sitenotice'    => '', # the equivalent to wgSiteNotice
 
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
@@ -419,11 +413,6 @@ Pärast parooli saamist logige palun sisse.",
 'media_tip'=>'Meediafail',
 'sig_tip'=>'Sinu allkiri koos ajatempliga',
 'hr_tip'=>'Horisontaaljoon',
-'infobox'=>'Näidisteksti saamiseks vajuta nupule',
-# alert box shown in browsers where text selection does not work, test e.g. with konqueror
-'infobox_alert'=>"Sisesta palun tekst, mida tahad formaatida.\\n See ilmub kopeerimiseks ja kleepimiseks
-infokasti.\\nNäide:\\n$1\\nmuutub selliseks:\\n$2",
-
 
 # Edit pages
 #
@@ -561,8 +550,6 @@ $2 Loetle ümbersuunamisi &nbsp; Otsi $3 $9",
 "prefsnologin" => "Te ei ole sisse loginud",
 "prefsnologintext"	=> "Et oma eelistusi seada, [[Special:Userlogin|tuleb Teil]]
 sisse logida.",
-"prefslogintext" => "Te olete sisse loginud kasutajanimega \"$1\".
-Teie sisemine ID-number on $2.",
 "prefsreset"	=> "Teie eelistused on arvutimälu järgi taastatud.",
 "qbsettings"	=> "Kiirriba sätted",
 "changepassword" => "Muuda parool",
@@ -593,7 +580,6 @@ Teie sisemine ID-number on $2.",
 "timezonetext"	=> "Kohaliku aja ja serveri aja (maailmaaja) vahe tundides.",
 "localtime"	=> "Kohalik aeg",
 "timezoneoffset" => "Ajavahe",
-"emailflag"		=> "Blokeeri e-kirjad teistelt kasutajatelt",
 
 
 # Recent changes
@@ -605,7 +591,6 @@ Teie sisemine ID-number on $2.",
 "rcnote"		=> "Allpool on esitatud viimased <strong>$1</strong> muudatust viimase <strong>$2</strong> päeva jooksul.",
 "rcnotefrom"	=> "Allpool on esitatud muudatused alates <b>$2</b> (näidatakse kuni <b>$1</b> muudatust).",
 "rclistfrom"	=> "Näita muudatusi alates $1",
-# "rclinks"		=> "Näita viimast $1 muudatust viimase $2 tunni / viimase $3 päeva jooksul",
 "rclinks"		=> "Näita viimast $1 muudatust viimase $2 päeva jooksul.",
 "rchide"		=> "in $4 form; $1 pisiparandust; $2 sekundaarset nimeruumi; $3 multiple edits.", ##MIS SEE ON?
 "diff"			=> "erin",
@@ -723,23 +708,10 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
 # Maintenance Page
 #
 "maintenance"		=> "Hoolduslehekülg",
-"maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "Tagasi hooldusleheküljele",
-"disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
-"doubleredirects"	=> "Double Redirects",
-"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
-"brokenredirects"	=> "Broken Redirects",
-"brokenredirectstext"	=> "The following redirects link to a non-existing article.",
+
 "selflinks"		=> "Iseendale viitavad leheküljed",
 "selflinkstext"		=> "Järgmised leheküljed sisaldavad viita iseendale, mis ei ole soovitatav.",
-"mispeelings"           => "Pages with misspellings",
-"mispeelingstext"               => "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
-"mispeelingspage"       => "List of common misspellings",
-"missinglanguagelinks"  => "Missing Language Links",
-"missinglanguagelinksbutton"    => "Find missing language links for",
-"missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
 
 # Miscellaneous special pages
 #
@@ -776,26 +748,9 @@ saitidesse, mis müüvad uusi ja kasutatud raamatuid ning võivad
 omada lisainfot otsitavate raamatute kohta.
 {{ns:4}} ei ole nende ettevõtmistega seotud ja seda nimekirja
 ei tohiks konstrueerida reklaami tegemiseks.",
-"alphaindexline" => "$1 to $2",
 
 # Email this user
 #
-"mailnologin"	=> "No send address",
-"mailnologintext" => "You must be [[Special:Userlogin|logged in]]
-and have a valid e-mail address in your [[Special:Preferences|preferences]]
-to send e-mail to other users.",
-"emailuser"		=> "E-mail this user",
-"emailpage"		=> "E-mail user",
-"emailpagetext"	=> "If this user has entered a valid e-mail address in
-his or her user preferences, the form below will send a single message.
-The e-mail address you entered in your user preferences will appear
-as the \"From\" address of the mail, so the recipient will be able
-to reply.",
-"noemailtitle"	=> "No e-mail address",
-"noemailtext"	=> "This user has not specified a valid e-mail address,
-or has chosen not to receive e-mail from other users.",
-"emailfrom"		=> "From",
-"emailto"		=> "To",
 "emailsubject"	=> "Subject",
 "emailmessage"	=> "Sõnum",
 "emailsend"		=> "Saada",
@@ -831,7 +786,7 @@ ning [[Special:Recentchanges||viimaste muudatuste lehel]] tuuakse ta esile
 "confirmdeletetext" => "Sa oled andmebaasist jäädavalt kustutamas lehte või pilti
 koos kogu tema ajalooga. Palud kinnita, et sa tahad seda tõepoolest teha, et
 sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse
-[[{{ns:4}}:Policy|sisekorraga]].", # Wikipedia:Policy tuleks ka tõlkida
+[[{{ns:4}}:Policy|sisekorraga]].", # Project:Policy tuleks ka tõlkida
 "actioncomplete" => "Toiming sooritatud",
 "deletedtext"	=> "\"$1\" on kustutatud.
 Viimaste kustutuste loendit näed siit: $2.",
@@ -892,7 +847,7 @@ Viimaste kustutamiste ja taastamiste logi on esitatud lehel [[{{ns:4}}:Kustutatu
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent vandalism, and in
-accordance with [[Wikipedia:Policy|Wikipedia policy]].
+accordance with [[{{ns:project}}:Policy|{{SITENAME}} policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP-aadress",
@@ -917,17 +872,6 @@ to a previously blocked IP address.",
 #
 "lockdb"		=> "Lukusta andmebaas",
 "unlockdb"		=> "Tee andmebaas lukust lahti",
-"lockdbtext"	=> "Locking the database will suspend the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do, and that you will
-unlock the database when your maintenance is done.",
-"unlockdbtext"	=> "Unlocking the database will restore the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do.",
-"lockconfirm"	=> "Yes, I really want to lock the database.",
-"unlockconfirm"	=> "Yes, I really want to unlock the database.",
 "lockbtn"		=> "Võta andmebaas kirjutuskaitse alla",
 "unlockbtn"		=> "Taasta andmebaasi kirjutuspääs",
 "locknoconfirm" => "You did not check the confirmation box.",

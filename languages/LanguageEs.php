@@ -715,9 +715,9 @@ de los cuales '''$2''' (o '''$4%''') son administradores (ver $3).",
 "intl"                  => "Enlaces interlenguaje",
 "movethispage"	=> "Trasladar esta página",
 "unusedimagestext" => "<p>Por favor note que otros sitios web
-tales como otras wikipedias pueden enlazar a una imagen
+tales como otras {{SITENAME}}s pueden enlazar a una imagen
 con un URL directo, y de esa manera todavía estar listada aquí
-a pesar de estar en uso activo.",
+a pesar de estar en uso activo.", // TODO: grammar
 "booksources"   => "Fuentes de libros",
 "booksourcetext" => "A continuación hay una lista de enlaces a otros sitios que venden libros nuevos y usados, y también pueden contener información adicional acerca de los libros que estás buscando.
 {{SITENAME}} no está relacionada con ninguno de estos negocios, y esta lista no debe ser considerada un patrocinio de los mismos.",
@@ -1074,9 +1074,6 @@ En el último caso puedes usar un enlace, por ejemplo [[{{ns:Special}}:Export/{{
 'media_tip'	=> 'Enlace a archivo multimedia',
 'sig_tip' => "Firma, fecha y hora",
 'hr_tip' => "Línea horizontal (utilízala con moderación)",
-'infobox' => "Pulsa un botón para ver un texto de ejemplo",
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert' => "Escribe el texto al que quieres dar formato.\n Se mostrará en la caja de información para poder copiar y pegar.\nEjemplo:\n$1\nse convertirá en:\n$2",
 
 # Special:Allpages
 'nextpage'          => 'Siguiente página ($1)',
@@ -1674,7 +1671,7 @@ Cambie las opciones de su lista de seguimiento en:
 'listingcontinuesabbrev'	=> ' cont.',
 'loginreqlink'	=> 'ingresar',
 'mailerror'	=> 'Error al enviar correo: $1',
-'mainpagedocfooter'	=> 'Por favor, lee [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface] y [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide] para conocer su configuración y uso.',
+'mainpagedocfooter'	=> 'Por favor, lee [http://meta.wikimedia.org/wiki/MediaWiki_i18n documentation on customizing the interface] y [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide] para conocer su configuración y uso.',
 'metadata'	=> 'Metadatos',
 'metadata-collapse'	=> 'Ocultar datos detallados',
 'metadata-expand'	=> 'Mostrar datos detallados',
