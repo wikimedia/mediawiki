@@ -200,7 +200,7 @@ class SpecialVersion {
 			$one = array_map( array( &$this, 'arrayToString' ), $t );
 			$two = $this->arrayToString( $list[$cnt - 1] );
 			
-			return implode( ',', $one ) . " and $two";
+			return implode( ', ', $one ) . " and $two";
 	    }
 	}
 
