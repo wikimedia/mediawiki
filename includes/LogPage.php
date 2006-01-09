@@ -83,6 +83,7 @@ class LogPage {
 					$rcComment .= ': ' . $this->comment;
 			}
 
+			require_once( 'RecentChange.php' );
 			RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment );
 		}
 		return true;

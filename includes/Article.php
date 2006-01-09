@@ -1193,6 +1193,7 @@ class Article {
 
 		Article::onArticleCreate( $this->mTitle );
 		if(!$suppressRC) {
+			require_once( 'RecentChange.php' );
 			RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default',
 			  '', strlen( $text ), $revisionId );
 		}
@@ -1400,6 +1401,7 @@ class Article {
 				$dbw->rollback();
 			} else {
 				# Update recentchanges and purge cache and whatnot
+				require_once( 'RecentChange.php' );
 				$bot = (int)($wgUser->isBot() || $forceBot);
 				RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
 					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
@@ -1521,6 +1523,7 @@ class Article {
 		if ( !is_null ( $rcid ) )
 		{
 			if( wfRunHooks( 'MarkPatrolled', array( &$rcid, &$wgUser, $wgOnlySysopsCanPatrol ) ) ) {
+				require_once( 'RecentChange.php' );
 				RecentChange::markPatrolled( $rcid );
 				wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, $wgOnlySysopsCanPatrol ) );
 				$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );

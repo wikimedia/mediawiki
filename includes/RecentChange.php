@@ -5,16 +5,6 @@
  */
 
 /**
- * Various globals
- */
-define( 'RC_EDIT', 0);
-define( 'RC_NEW', 1);
-define( 'RC_MOVE', 2);
-define( 'RC_LOG', 3);
-define( 'RC_MOVE_OVER_REDIRECT', 4);
-
-
-/**
  * Utility class for creating new RC entries
  * mAttribs:
  * 	rc_id           id of the row in the recentchanges table

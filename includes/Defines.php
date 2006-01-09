@@ -153,4 +153,16 @@ define( 'MW_DATE_YMD', '3' );
 define( 'MW_DATE_ISO', 'ISO 8601' );
 /**#@-*/
 
+/**#@+
+ * RecentChange type identifiers
+ * This may be obsolete; log items are now used for moves?
+ */
+define( 'RC_EDIT', 0);
+define( 'RC_NEW', 1);
+define( 'RC_MOVE', 2);
+define( 'RC_LOG', 3);
+define( 'RC_MOVE_OVER_REDIRECT', 4);
+/**#@-*/
+
+
 ?>

@@ -449,6 +449,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Maintenance script to delete unused user accounts
 * (bug 912) Search box easier to reach in text browsers (lynx, links)
 * $wgParserCacheExpireTime added
+* Skip loading of RecentChange.php except where needed
+
 
 === Caveats ===
 
