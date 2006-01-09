@@ -130,9 +130,7 @@ require_once( 'LanguageUtf8.php' );
 'helppage'      => '{{ns:help}}:Aide',
 'bugreports'    => 'Rapport d\'erreurs',
 'bugreportspage' => '{{ns:4}}:Rapport d\'erreurs',
-'sitesupport'	=> 'Participer en faisant un don',
 'sitesupport'	=> 'Faire un don',
-'sitesupportpage'	=> '{{ns:4}}:Dons',
 'faq'           => 'FAQ',
 'faqpage'       => '{{ns:4}}:FAQ',
 'edithelp'      => 'Aide',
@@ -202,14 +200,9 @@ Voir $1.',
 'nbytes'        => '$1 octets',
 'go'            => 'Consulter',
 'ok'            => 'OK',
-'pagetitle'	=> '$1 - {{SITENAME}}',
 'history'	=> 'Historique de la page',
 'history_short' => 'Historique',
-'sitetitle'     => '{{SITENAME}}',
-'sitesubtitle'  => '',
 'retrievedfrom' => 'Récupérée de « $1 »',
-'newmessages'   => 'Vous avez de $1.',
-'newmessageslink' => 'nouveaux messages',
 'editsection'	=> 'modifier',
 'toc'		=> 'Sommaire',
 'showtoc'	=> 'afficher',
@@ -217,7 +210,6 @@ Voir $1.',
 'thisisdeleted' => 'Désirez-vous Afficher ou restaurer $1 ?',
 'restorelink'	=> '$1 modification(s) effacée(s)',
 'feedlinks'	=> 'Flux',
-'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Article',
@@ -368,8 +360,6 @@ Veuillez vous identifier dès que vous l\'aurez reçu.',
 'media_tip'     => 'Lien fichier média',
 'sig_tip'       => 'Votre signature avec la date',
 'hr_tip'        => 'Lien horizontal (ne pas en abuser)',
-'infobox'       => 'Cliquez ce bouton pour avoir un exemple de texte',
-'infobox_alert'	=> "Veuillez entrer le texte que vous voulez formater.\\n Il sera affiché dans la boîte pour être copié et collé.\\nExemple\\n$1\\ndeviendra:\\n$2",
 
 # Edit pages
 #
@@ -499,9 +489,6 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
 'preferences'       => 'Préférences',
 'prefsnologin'      => 'Non connecté',
 'prefsnologintext'  => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier vos préférences d\'utilisateur.',
-'prefslogintext' => 'Je suis connecté(e) en tant que $1 avec le numéro d\'utilisateur $2.
-
-Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant les options.',
 'prefsreset'        => 'Les préférences ont été rétablies à partir de la version enregistrée.',
 'qbsettings'        => 'Personnalisation de la barre outils',
 'changepassword'    => 'Modification du mot de passe',
@@ -541,7 +528,6 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 'timezoneoffset'    => 'Décalage horaire',
 'servertime'	    => 'Heure du serveur',
 'guesstimezone'     => 'Utiliser la valeur du navigateur',
-'emailflag'         => 'Ne pas recevoir d\'email<br /> des autres utilisateurs',
 'defaultns'         => 'Par défaut, rechercher dans ces espaces :',
 'yourlanguage' => 'Langue de l\'interface',
 
@@ -562,8 +548,6 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 'rcnote'  => 'Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.',
 'rcnotefrom'	=> 'Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).',
 'rclistfrom'	=> 'Afficher les nouvelles modifications depuis le $1.',
-# "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
-# "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
 'showhideminor' => '$1 modifications mineures | $2 robots | $3 utilisateurs enregistrés | $4 patrolled edits',
 'rclinks'	=> 'Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.',
 'rchide'  => 'in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.', // FIXME
@@ -1050,7 +1034,6 @@ Veuillez [[{{ns:Special}}:Whatlinkshere/$2|vérifier]] que ce renommage n\'a pas
 # Keyboard access keys for power users
 'accesskey-compareselectedversions' => 'V',
 'accesskey-minoredit'		=> 'I',
-'accesskey-preferences'		=> '',
 'accesskey-preview'			=> 'P',
 'accesskey-save'			=> 'S',
 'accesskey-search'			=> 'F',
@@ -1166,7 +1149,6 @@ class LanguageFr extends LanguageUtf8 {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		if( $wgSitename == 'Wikipédia' ) {
-			if( 0 == strcasecmp( 'Wikipedia', $text ) ) return 4;
 			if( 0 == strcasecmp( 'Discussion_Wikipedia', $text ) ) return 5;
 		}
 		return false;
@@ -1195,9 +1177,8 @@ class LanguageFr extends LanguageUtf8 {
 		'.' => ','
 	);
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, $this->digitTransTable ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($number, $this->digitTransTable ) : $number;
 	}
 
 	function getMessage( $key ) {

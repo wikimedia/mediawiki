@@ -136,7 +136,6 @@ require_once( 'LanguageUtf8.php' );
 "currentevents" => "Поточні події",
 "errorpagetitle" => "Помилка",
 "returnto"		=> "Повернутися до $1.",
-"tagline"      	=> "Матеріал з Вікіпедії - вільної енциклопедії.",
 "whatlinkshere"	=> "Статті, що вказують на дану",
 "help"			=> "Довідка",
 "search"		=> "Пошук",
@@ -173,7 +172,6 @@ require_once( 'LanguageUtf8.php' );
 "sitetitle"		=> '{{SITENAME}}',
 "sitesubtitle"	=> "",
 "retrievedfrom" => "Отримано від \"$1\"",
-"newmessages" => "Ви отримали $1.",
 "newmessageslink" => "нові повідомлення",
 "editsection"=>"ред.",
 "toc" => "Зміст",
@@ -406,10 +404,6 @@ $2 Показувати перенаправлення   Пошук на $3 $9",
 "prefsnologin" => "Ви не ввійшли в систему",
 "prefsnologintext"	=> "Ви повинні [[Спеціальні:Вхід_в_систему|ввійти в систему]]
 щоб змінити настройки користувача.",
-"prefslogintext" => "Ви ввійшли в систему як \"$1\".
-Ваш внутрішній ідентифікаційний номер - $2.
-
-Див. [[{{ns:project}}:Допомога по настройкам]] що розібратися з настройками.",
 "prefsreset"	=> "Настройки були повернуті в стандартний стан.",
 "qbsettings"	=> "Настройки панелі навігації",
 "changepassword" => "Змінити пароль",
@@ -442,7 +436,6 @@ $2 Показувати перенаправлення   Пошук на $3 $9",
 "timezoneoffset" => "Зміщення",
 "servertime"	=> "Час сервера",
 "guesstimezone" => "Заповнити з браузера",
-"emailflag"		=> "Не приймати електронні листи від інших користувачів",
 "defaultns"		=> "По замовчанню, шукати в таких просторах імен:",
 
 # Recent changes
@@ -904,9 +897,8 @@ class LanguageUk extends LanguageUtf8 {
 		return "windows-1251";
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($number, '.,', ',.' ) : $number;
 	}
 
 }

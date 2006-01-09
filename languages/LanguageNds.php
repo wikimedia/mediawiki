@@ -6,16 +6,7 @@
 #
 # Low Saxon (Plattdüütsch) localisation for MediaWiki
 #
-# This file is encoded in UTF-8, no byte order mark.
-# For compatibility with Latin-1 installations, please
-# don't add literal characters above U+00ff.
-#
 require_once( 'LanguageUtf8.php' );
-
-# See Language.php for notes.
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 /* private */ $wgNamespaceNamesNds = array(
 	NS_MEDIA            => 'Media',
@@ -202,7 +193,6 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'disclaimerpage'                      => '{{ns:4}}:Lizenzbestimmen',
 'errorpagetitle'        => 'Fehler',
 'returnto'                      => 'Trüch to $1.',
-'tagline'               => 'ut {{SITENAME}}, de fre\'e Wetensdatenbank',
 'whatlinkshere'         => 'Wat wiest hierher',
 'help'                          => 'Hülp',
 'search'                        => 'Söök',
@@ -247,12 +237,7 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'nbytes'                              => '$1 Bytes',
 'go'                                     => 'Los',
 'ok'                                    => 'OK',
-'sitetitle'                        => '{{SITENAME}}',
-'sitesubtitle'          => '',
-'pagetitle'                        => '$1 - {{SITENAME}}',
-
 'retrievedfrom'         => 'Vun „$1“',
-'newmessages'           => 'Du hest $1.',
 'newmessageslink'       => 'niege Norichten',
 'editsection'           => 'bearbeiden',
 'toc'                   => 'Inholtsverteken',
@@ -551,8 +536,6 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'preferences'          => 'Instellen',
 'prefsnologin'       => 'Nich anmellt',
 'prefsnologintext'   => 'Du muttst [[Special:Userlogin|anmellt]] ween, üm dien Instellen to ännern.',
-'prefslogintext'     => 'Du büst anmellt as „$1“.
-Dien interne ID-Nummer is $2.',
 'prefsreset'            => 'Instellen sünd op Standard trüchsett.',
 'qbsettings'         => 'Sietenliest',
 'changepassword'     => 'Password ännern',
@@ -585,7 +568,6 @@ Dien interne ID-Nummer is $2.',
 'timezoneoffset'     => 'Ünnerscheed',
 'servertime'         => 'Aktuelle Tied op den Server',
 'guesstimezone'      => 'Ut den Browser övernehmen',
-'emailflag'                     => 'Kene E-Mail vun annere Bruker kriegen',
 'defaultns'                     => 'In disse Naamrüüm schall standardmatig söökt warrn:',
 
 # letzte Ännern
@@ -736,7 +718,6 @@ In Klammern angevene Wöör geven de korrekte Schrievwies weer.',
 # Verscheden Spezialsieten
 #
 'orphans'                              => 'Weetsieten',
-'geo'                       => 'GEO-Koordinaten',
 'lonelypages'                   => 'Weetsieten',
 'uncategorizedpages'        => 'Unkategoriseerte Sieten',
 'uncategorizedcategories'       => 'Unkategoriseerte Kategorien',
@@ -983,7 +964,7 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'talkpagenotmoved'      => 'De Diskuschoonssiet is <strong>nich</strong> schuven worrn.',
 
 'export'                => 'Sieten exporteern',
-'exporttext'            => 'Du kannst de Text un de Bearbeidenshistorie vun een oder mehr Sieten no XML exporteern. Dat Resultat kann in en annern Wiki mit WikiMedia-Software inspeelt warrn, bearbeid oder archiveert warrn.',
+'exporttext'            => 'Du kannst de Text un de Bearbeidenshistorie vun een oder mehr Sieten no XML exporteern. Dat Resultat kann in en annern Wiki mit Mediawiki-Software inspeelt warrn, bearbeid oder archiveert warrn.',
 'exportcuronly'         => 'Blots de aktuelle Version vun de Siet exporteern',
 'missingimage'          => '<b>Bild fehlt</b><br /><i>$1</i>',
 
@@ -1074,8 +1055,6 @@ Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat mö�
 'unwatch'               => 'nich mehr oppassen',
 'edit'                  => 'ännern',
 'talk'                  => 'Diskuschoon',
-'infobox'               => 'Klick en Knoop, üm en Bispeeltext wiest to kriegen.',
-'infobox_alert'         => 'Giff den Text in, den du formateert hebben wullst.\He warrt denn in de Infobox wiest un du kannst den Text denn kopeern.\Bispeel:\$1\warrt to\$2',
 'nocookiesnew'          => 'De Brukertogang is anleggt, aver du büst nich inloggt. {{SITENAME}} bruukt för disse Funktschoon Cookies, aktiveer de Cookies un logg di denn mit dien nieg Brukernaam un den Password in.',
 'nocookieslogin'        => '{{SITENAME}} bruukt Cookies för dat Inloggen vun de Bruker. Du hest Cookies deaktiveert, aktiveer de Cookies un versöök dat noch eenmal.',
 'subcategorycount'      => 'Disse Kategorie hett $1 Ünnerkategorien.',

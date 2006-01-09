@@ -207,14 +207,9 @@ Voir $1.',
 'nbytes'        => '$1 eizhbit',
 'go'            => 'Kas',
 'ok'            => 'Mat eo',
-'pagetitle'	=> '$1 - {{SITENAME}}',
 'history'	=> 'Istor ar bajenn',
 'history_short' => 'Istor',
-'sitetitle'     => '{{SITENAME}}',
-'sitesubtitle'  => '',
 'retrievedfrom' => 'Adtapet diwar « $1 »',
-'newmessageslink' => 'Kemennoù nevez',
-'newmessages'   => 'zo ganeoc\'h $1.',
 'editsection'	=> 'kemmañ',
 'toc'		=> 'Taolenn',
 'showtoc'	=> 'diskouez',
@@ -222,7 +217,6 @@ Voir $1.',
 'thisisdeleted' => 'Diskouez pe diziverkañ $1 ?',
 'restorelink'	=> '1 c\'hemm diverket',
 'feedlinks'	=> 'Lusk:',
-'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Pennad',
@@ -537,7 +531,6 @@ $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9",
 'timezoneoffset'    => 'Linkadur eur',
 'servertime'	    => 'Eur ar servijer',
 'guesstimezone'     => 'Ober gant talvoudenn ar merdeer',
-"emailflag"         => "Na resev posteloù<br /> a-berzh an implijerien all",
 "defaultns"         => "Klask en esaouennoù-mañ dre ziouer :",
 'yourlanguage' => "Yezh an etrefas&nbsp;",
 
@@ -558,8 +551,6 @@ Mar fell deoc\'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ da
 'rcnote'  => "Setu aze an/ar <strong>$1</strong> (g/c\'h)kemm diwezhañ bet c\'hoarvezet e-pad an/ar <strong>$2</strong> deiz diwezhañ.",
 'rcnotefrom'	=> "Setu aze roll ar c\'hemmoù c\'hoarvezet abaoe an/ar <strong>$2</strong> (<b>$1</b> d\'ar muiañ).",
 'rclistfrom'	=> "Diskouez ar c\'hemmoù diwezhañ abaoe an/ar $1.",
-# "rclinks"  => "Diskouez an/ar $1 (g/c\'h)kemm diwezhañ bet c\'hoarvezet e-pad an/ar $2 eurvezh tremenet / $3 deiz paseet",
-# "rclinks"  => "Diskouez an/ar $1 (g/c\'h)kemm diwezhañ bet c\'hoarvezet e-pad an/ar $2 devezh diwezhañ.",
 'showhideminor' => "$1 (g/c\'h)kemm dister | $2 robot | $3 implijerien enrollet | $4 patrolled edits",
 'rclinks'	=> "Diskouez an/ar $1 (g/c\'h)kemm diwezhañ c\'hoarvezet e-pad an/ar $2 devezh diwezhañ; $3 kemmoù dister.",	// Looxix
 'rchide'  => "in $4 form; $1 kemmoù dister; $2 esaouennoù a eil renk; $3 kemmoù lies.", // FIXME
@@ -729,7 +720,7 @@ En o zouez, <b>$2</b> zo ganto ar statud merour (sellet ouzh $3).',
 'ancientpages'	=> 'Pennadoù koshañ',
 'move'		=> 'adenvel',
 'movethispage'  => 'Adenvel ar bajenn',
-'unusedimagestext' => "<p>Na zisoñjit e c\'hall lec\'hiennoù all, wikipediaoù all, kaout ul liamm eeun war-du ar skeudenn-mañ hag e c\'hall neuze ar skeudenn-mañ bezañ bet lakaet war ar roll-mañ tra m\'emañ implijet e lec\'h all.",
+'unusedimagestext' => "<p>Na zisoñjit e c\'hall lec\'hiennoù all, {{SITENAME}}où all, kaout ul liamm eeun war-du ar skeudenn-mañ hag e c\'hall neuze ar skeudenn-mañ bezañ bet lakaet war ar roll-mañ tra m\'emañ implijet e lec\'h all.", // TODO: grammar
 'booksources'   => "Oberennoù dave",
 'booksourcetext' => "Setu ur rollad liammoù etrezek lec\'hiennoù all a werzh levrioù nevez pe eildorn a gavot enno, marteze, titouroù war an oberennoù a glaskit. N\'eo ket stag {{SITENAME}} ouzh hini ebet eus ar c\'hevredadoù-se, n\'eo ket en sell e mod ebet da vrudañ anezho.",
 'alphaindexline' => '$1 da $2',
@@ -1165,7 +1156,6 @@ class LanguageBr extends LanguageUtf8 {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		if( $wgSitename == "Wikipedia" ) {
-			if( 0 == strcasecmp( "Wikipedia", $text ) ) return 4;
 			if( 0 == strcasecmp( "Discussion_Wikipedia", $text ) ) return 5;
 		}
 		return false;

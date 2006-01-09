@@ -84,18 +84,8 @@ require_once('LanguageUtf8.php');
 'tog-editwidth' => '편집상자 너비 최대',
 'tog-watchdefault' => '고치는 글을 항상 주시 목록에 추가함',
 'tog-minordefault' => '\'사소한 편집\'을 항상 선택함',
-'tog-previewontop' => 'Show preview before edit box',
 'tog-previewonfirst' => '고칠 때마다 미리 보기를 항상 보임',
-'tog-nocache' => 'Disable page caching',
-'tog-enotifwatchlistpages' 	=> 'Email me on page changes',
-'tog-enotifusertalkpages' 	=> 'Email me when my user talk page is changed',
-'tog-enotifminoredits' 		=> 'Email me also for minor edits of pages',
-'tog-enotifrevealaddr' 		=> 'Reveal my email address in notification mails',
-'tog-shownumberswatching' 	=> 'Show the number of watching users',
 'tog-fancysig' => '서명에 고리를 걸지 않음',
-'tog-externaleditor' => 'Use external editor by default',
-'tog-externaldiff' => 'Use external diff by default',
-'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 
 'underline-always' => '항상',
 'underline-never' => '치지 않음',
@@ -148,7 +138,6 @@ require_once('LanguageUtf8.php');
 'about'	        => '소개',
 'aboutsite'      => '{{SITENAME}}란',
 'aboutpage'    => '{{ns:4}}:소개',
-'article'		=> 'Content page',
 'help'	 	=> '도움말',
 'helppage'     => '{{ns:4}}:도움말',
 'bugreports' => '버그 신고',
@@ -170,16 +159,12 @@ require_once('LanguageUtf8.php');
 'mypage'		=> '나의 사용자 문서',
 'mytalk'		=> '나의 토론',
 'anontalk'		=> '익명 사용자 토론',
-'navigation'		=> 'Navigation',
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
 "currentevents"		=> "요즘 화제",
 "currentevents-url"	=> "요즘 화제",
 
 'errorpagetitle' => '오류',
 'returnto'	    => '$1(으)로 돌아가기.',
-'tagline'	     => '{{SITENAME}}, 우리 모두의 백과사전.',
 'whatlinkshere'       => '여길 가리키는 문서',
 'help'			=> '도움말',
 'search'	      => '찾기',
@@ -196,18 +181,8 @@ require_once('LanguageUtf8.php');
 'unprotectthispage' => '문서 보호 해제하기',
 'newpage'	    => '새 문서',
 'talkpage'	    => '토론',
-'specialpage' => 'Special Page',
-'personaltools' => 'Personal tools',
-'postcomment'   => 'Post a comment',
 'addsection'   => '+',
 'subjectpage' => '본 문서',
-'talk' => 'Discussion',
-'views' => 'Views',
-'toolbox' => 'Toolbox',
-'userpage' => 'View user page',
-'wikipediapage' => 'View project page',
-'imagepage' => 	'View image page',
-'viewtalkpage' => 'View discussion',
 'otherlanguages' => '다른 언어',
 'redirectedfrom' => '($1에서 넘어옴.)',
 'lastmodified'	=> '이 문서는 $1에 마지막으로바뀌었습니다.',
@@ -224,19 +199,12 @@ $1을(를) 보십시오.',
 'nbytes'	      => '$1 바이트',
 'go'		  => '가기',
 'ok'		  => '확인',
-'sitetitle'	   => '{{SITENAME}}',
-'sitesubtitle'	=> '',
 'retrievedfrom' => '원본 주소 - \'$1\'',
-'newmessages'		=> '$1에 메시지가 들어왔습니다.',
 'newmessageslink'	=> '사용자 토론',
 'editsection'		=> '편집',
 'toc'			=> '목차',
 'showtoc'		=> '보이기',
 'hidetoc'		=> '숨기기',
-'thisisdeleted'		=> 'View or restore $1?',
-'restorelink'		=> '$1 deleted edits',
-'feedlinks'		=> 'Feed:',
-'sitenotice'		=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'		=> '문서',
@@ -289,14 +257,6 @@ $1',
 <p>만약 그렇지 않다면, 이것은 소프트웨어의 버그일 수 있습니다.
 관리자에게 URL과 함께 신고해 주십시오.',
 'internalerror'		=> '내부 오류',
-'filecopyerror'		=> 'Could not copy file \'$1\' to \'$2\'.',
-'filerenameerror'	=> 'Could not rename file \'$1\' to \'$2\'.',
-'filedeleteerror'	=> 'Could not delete file \'$1\'.',
-'filenotfound'		=> 'Could not find file \'$1\'.',
-'unexpected'		=> 'Unexpected value: \'$1\'=\'$2\'.',
-'formerror'		=> 'Error: could not submit form',
-'badarticleerror'	=> 'This action cannot be performed on this page.',
-'cannotdelete'		=> 'Could not delete the page or image specified.',
 
 # Login and logout pages
 #
@@ -331,10 +291,6 @@ $1',
 'yourvariant'		=> 'Variant',
 'yournick'	    => '별명(서명용)',
 'emailforlost'		=> '전자우편은 선택사항입니다. 전자우편 주소를 넣으면 다른 사용자들이 전자우편 주소를 알지 못한 상태에서 전자우편을 보낼 수 있습니다. 암호를 잊었을 때, 새 암호를 전자우편으로 받을 수 있습니다.<br /><br />본명은 참여한 사람을 밝히는 데에 쓰일 수 있습니다.',
-'prefs-help-email-enotif' => 'This address is also used to send you email notifications if you enabled the options.',
-'prefs-help-realname' 	=> '¹ Real name (optional): if you choose to provide it this will be used for giving you attribution for your work.',
-'loginerror'	=> 'Login error',
-'prefs-help-email'      => '² Email (optional): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
 'loginerror'		=> '로그인 오류',
 'noname'	      => '계정 이름이 올바르지 않습니다.',
 'loginsuccesstitle' => '로그인 성공',
@@ -343,9 +299,7 @@ $1',
 '철자가 맞는지 확인하고, 아직 계정이 없다면 아래를 채워 새로이 만드십시오.',
 'wrongpassword'       => '암호가 틀립니다. 다시 시도하세요.',
 'mailmypassword' => '새 암호를 전자우편로 보냅니다.',
-'mailmypasswordauthent' => '새 암호를 전자우편로 보냅니다.',
 'passwordremindertitle' => '{{SITENAME}}에서 보내는 새 암호',
-'passwordremindermailsubject'	=> '{{SITENAME}} 전자우편 인증과 임시 로그인',
 'passwordremindertext'	=> 'IP 주소 $1에서 새 {{SITENAME}} 암호를 보내 달라고 요청했습니다.
  \'$2\' 계정의 암호는 이제 \'$4\'입니다.
 
@@ -377,8 +331,6 @@ $1',
 'updated'	     => '(바뀜)',
 'note'			=> '<strong>주의:</strong> ',
 'previewnote' => '지금 미리보기로 보고 있는 내용은 아직 저장되지 않았습니다!',
-'previewconflict' => 'This preview reflects the text in the upper
-text editing area as it will appear if you choose to save.',
 'editing'	     => '$1 고쳐쓰기',
 'editconflict'	=> '고치기 충돌: $1',
 'explainconflict' => '문서를 고쳐쓰는 동안, 문서가 바뀌었습니다.
@@ -459,7 +411,6 @@ text editing area as it will appear if you choose to save.',
 'preferences' => '개인 설정',
 'prefsnologin' => '로그인해야 합니다',
 'prefsnologintext'    => '[[Special:Userlogin|로그인]]한 상태에서만 개인 설정을 할 수 있습니다.',
-'prefslogintext' => '당신의 계정은 \"$1\"이고, 내부 아이디 번호는 $2입니다.',
 'prefsreset'  => '개인 맞춤을 기본값으로 되돌렸습니다.',
 'qbsettings'  => '빨리가기 맞춤',
 'changepassword' => '암호 바꾸기',
@@ -483,7 +434,6 @@ text editing area as it will appear if you choose to save.',
 'timezonetext'	=> '현지 시간과 서버 시간(UTC)과 차이를 써 넣으세요.',
 'localtime'   => '현지 시각',
 'timezoneoffset' => '시간차',
-'emailflag'	   => '다른 사용자에게서 전자우편을 받지 않음',
 
 # Recent changes
 #
@@ -499,10 +449,7 @@ text editing area as it will appear if you choose to save.',
 
 위키백과 프로젝트의 성공을 위해선, 여러분이 저작권에 저촉되는 내용을 이곳에 써 넣지 않아야 합니다.
 법적문제로 프로젝트가 위협받을 수 있습니다. 저작권 문제에 각별히 유의해 주세요.
-자세한 내용은 [[{{ns:4}}:저작권|저작권]]을 참고하세요.
-
-[http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도
-읽어 보시고, 국제적인 위키백과 공동체에 참여해 보세요.',
+자세한 내용은 [[{{ns:4}}:저작권|저작권]]을 참고하세요.',
 'rcloaderr'	   => '최근 바뀜을 받고 있습니다.',
 'rcnote'	      => '다음이 최근 <strong>$2</strong>일간 바뀐  <strong>$1</strong>개의 문서입니다.',
 'rclinks'	     => '최근 $2일 동안에 바뀐 $1개의 문서를 봅니다.',
@@ -561,11 +508,9 @@ OGG형식을 더 좋아합니다.
 </ul>',
 'filename'	    => '파일이름',
 'filedesc'	    => '짧은설명',
-'affirmation' => '파일의 저작권자가 $1의 조건으로 사용을 허가했음을 확인합니다.',
 'copyrightpage' => '{{ns:4}}:저작권',
 'copyrightpagename' => '{{SITENAME}} 저작권',
 'uploadedfiles'       => '파일 올리기',
-'noaffirmation' => '올리는 파일이 어떤 저작권에도 저촉되지 않음을 확인해야 합니다.',
 'ignorewarning'       => '경고 무시하고, 파일 저장',
 
 # three alphabets. two Korean character.
@@ -573,7 +518,7 @@ OGG형식을 더 좋아합니다.
 
 'badfilename' => '그림이름이 \'$1\'로 바뀌었습니다.',
 'badfiletype' => '\'.$1\' 형식은 권장하지 않습니다.',
-'largefile'	   => '그림크기는 100KB 이하를 권장합니다.',
+'largefile'	   => '그림크기는 $1 KB 이하를 권장합니다 ($2).',
 'successfulupload' => '올리기 성공',
 'fileuploaded'	=> '\'$1\'가 올라갔습니다.
 다음 고리($2)를 따라 가서, 설명문서에 파일에 대한 정보를(어디서 구했는지,
@@ -702,36 +647,12 @@ OGG형식을 더 좋아합니다.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
 [[위키백과:Policy]].',
-'confirmcheck'        => 'Yes, I really want to delete this.',
-
-'actioncomplete' => 'Action complete',
-'deletedtext' => '\'$1\' has been deleted.
-See $2 for a record of recent deletions.',
-'deletedarticle' => 'deleted \'$1\'',
-'dellogpage'  => 'Deletion_log',
-'dellogpagetext' => 'Below is a list of the most recent deletions.
-All times shown are server time (UTC).
-<ul>
-</ul>',
 'deletionlog' => '삭제 목록',
 'reverted'            => '이전판으로 되돌렸습니다.',
 'deletecomment'       => '삭제 이유',
 'imagereverted' => '이전판으로 되돌렸습니다.',
 'undelete' => '삭제된 글 복구',
 'undeletepage' => '삭제된 글을 복구합니다.',
-'undeletepagetext' => 'The following pages have been deleted but are still in the archive and
-can be restored. The archive may be periodically cleaned out.',
-'undeletearticle' => 'Restore deleted article',
-'undeleterevisions' => '$1 revisions archived',
-'undeletehistory' => 'If you restore the page, all revisions will be restored to the history.
-If a new page with the same name has been created since the deletion, the restored
-revisions will appear in the prior history, and the current revision of the live page
-will not be automatically replaced.',
-'undeleterevision' => 'Deleted revision as of $1',
-'undeletebtn' => 'Restore!',
-'undeletedarticle' => 'restored \'$1\'',
-'undeletedtext'   => 'The article [[$1]] has been successfully restored.
-See [[위키백과:Deletion_log]] for a record of recent deletions and restorations.',
 
 # Contributions
 #

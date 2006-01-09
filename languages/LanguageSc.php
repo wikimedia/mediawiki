@@ -312,8 +312,6 @@ $2 Elenca i redirects &nbsp; cerca per $3 $9",
 "prefsnologin" => "Non hai eseguito il login",
 "prefsnologintext"	=> "Devi avere eseguito il [[Special:Userlogin|login]]
 per poter personalizzare le tue preferenze.",
-"prefslogintext" => "Sei connesso a {{SITENAME}} come \"$1\".
-Il tuo numero identificativo (ID) interno è $2.",
 "prefsreset"	=> "Le tue Preferenze sono state ripescate dalla memoria di sistema del potente server di {{SITENAME}}.",
 "qbsettings"	=> "Settaggio della barra menu",
 "changepassword" => "Cambia password",
@@ -336,21 +334,10 @@ Il tuo numero identificativo (ID) interno è $2.",
 "timezonetext"	=> "Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).",
 "localtime"	=> "Ora Locale",
 "timezoneoffset" => "Offset",
-"emailflag"		=> "Nascondi la mia e-mail agli altri utenti",
 
 # Recent changes
 #
 "recentchanges" => "Ultime Modifiche",
-"recentchangestext" => "Segui in questa pagina le ultime modifiche apportate agli articoli di {{SITENAME}}.
-[[{{ns:project}}:Welcome,_newcomers|Benvenuto]]!
-Leggi anche queste pagine: [[{{ns:project}}:FAQ|Wikipedia FAQ]],
-[[{{ns:project}}:Policies and guidelines|la policy di Wikipedia]]
-(specialmente [[{{ns:project}}:Convenzioni di nomenclatura| Convenzioni di nomenclatura]],
-[[{{ns:project}}:Neutral point of view|oggettività e neutralità]]),
-e [[{{ns:project}}:Most common Wikipedia faux pas|facili errori nell'uso di Wikipedia]].
-
-Se tieni al successo di questo progetto, è molto importante che eviti di immettere materiale coperto da diritti di autore ([[{{ns:project}}:Copyrights|copyrights]]).
-Gli aspetti legali connessi potrebbero dare fastidio a noi ed a te personalmente, perciò controlla bene che quanto scrivi sia di [[pubblico dominio]], o prova ad ottenere le relative autorizzazioni, che in genere vengono concesse molto facilmente. Vedi anche [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
 "rcloaderr"		=> "Caricamento modifiche recenti ",
 "rcnote"		=> "Qui di seguito sono elencate le ultime <strong>$1</strong> pagine modificate negli ultimi <strong>$2</strong> giorni.",
 "rcnotefrom"	=> " Qui di seguito sono elencate le modifiche da <b>$2</b> (fino a <b>$1</b>).",
@@ -457,7 +444,7 @@ Questa cifra comprende le pagine \"talk\" (discussione), pagine su {{SITENAME}},
 Escludendo queste, ci sono ben  <b>$2</b> pagine che sono con buona probabilità propriamente degli articoli.<p>
 Ci sono state un totale di <b>$3</b> pagine viste, e <b>$4</b> modifiche agli articoli da quando il software è stato potenziato (Dicembre, 2002).
 Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per ciascun articolo, e che l'articolo è stato letto <b>$6</b> volte per ciascuna modifica.",
-"userstatstext" => "Ci sono <b>$1</b> Utenti registrati ([[Wikipediani]]).
+"userstatstext" => "Ci sono <b>$1</b> Utenti registrati.
 <b>$2</b> di questi hanno il grado di amministratori (vedi $3).",
 
 # Maintenance Page
@@ -504,13 +491,7 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "debug"			=> "Debug",
 "newpages"		=> "Pagine nuove",
 "movethispage"	=> "Sposta questa pagina",
-"unusedimagestext" => "<p>Nota che altri siti web, come la Wikipedia internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.",
-"booksources"	=> "Book sources",
-"booksourcetext" => "Below is a list of links to other sites that
-sell new and used books, and may also have further information
-about books you are looking for.
-Wikipedia is not affiliated with any of these businesses, and
-this list should not be construed as an endorsement.",
+"unusedimagestext" => "<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.",
 
 # Email this user
 #

@@ -8,11 +8,6 @@
 /** */
 require_once( 'LanguageUtf8.php' );
 
-# See Language.php for notes.
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 # Yucky hardcoding hack
 switch( $wgMetaNamespace ) {
 case 'Wikipedie':
@@ -153,7 +148,7 @@ default:
 'linktrail'     => '/^((?:[a-z]|á|č|ď|é|ě|í|ň|ó|ř|š|ť|ú|ů|ý|ž)+)(.*)$/sD',
 'mainpage'              => 'Hlavní strana',
 'mainpagetext'  => 'Wiki software úspěšně nainstalován.',
-'mainpagedocfooter' => 'Podívejte se prosím do [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentace k nastavení rozhraní] a [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide uživatelské příručky] pro nápovědu k použití a nastavení.',
+'mainpagedocfooter' => 'Podívejte se prosím do [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentace k nastavení rozhraní] a [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide uživatelské příručky] pro nápovědu k použití a nastavení.',
 'portal'                => 'Portál {{grammar:2sg|{{SITENAME}}}}',
 'portal-url'            => '{{ns:4}}:Portál {{grammar:2sg|{{SITENAME}}}}',
 'about'                 => 'Úvod',
@@ -170,7 +165,7 @@ default:
 'faqpage'               => '{{ns:12}}:Často kladené otázky',
 'edithelp'              => 'Pomoc při editování',
 'newwindow'             => '(otevře se v novém okně)',
-'edithelppage'  => '{{ns:12}}:Jak_editovat_stránku',
+'edithelppage'  => '{{ns:help}}:Jak_editovat_stránku',
 'cancel'                => 'Storno',
 'qbfind'                => 'Hledání',
 'qbbrowse'              => 'Listování',
@@ -246,11 +241,7 @@ default:
 'developertext'  => 'Žádaný úkon může provést jen vývojář. Podívejte se prosím na $1.',
 'nbytes'          => '$1 B',
 'ok'              => 'OK',
-'sitetitle'       => '{{SITENAME}}',
-'pagetitle'       => '$1 – {{SITENAME}}',
-'sitesubtitle'  => '',
 'retrievedfrom' => 'Citováno z „$1“', #FIXME: Ukazuje se po tisku strany
-'newmessages' => 'Máte $1.',
 'newmessageslink' => 'nové zprávy',
 'editsection'=>'editovat',
 'toc' => 'Obsah',
@@ -259,7 +250,6 @@ default:
 'thisisdeleted' => '$1 – prohlédnout nebo obnovit?',
 'restorelink' => 'Počet smazaných editací: $1',		#TODO: plural
 'feedlinks' => 'Kanály:',
-'sitenotice'    => '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Článek',
@@ -426,9 +416,6 @@ Pro ověření se přihlašte dočasným heslem, které vám bylo posláno e-mai
 'media_tip'=>'Odkaz na mediální soubor',
 'sig_tip'=>'Váš podpis s časovým údajem',
 'hr_tip'=>'Vodorovná čára (používejte střídmě)',
-'infobox'=>'Stiskněte tlačítko pro zobrazení příkladu',
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert'=>'Prosím vložte text, který chcete naformátovat.\nUkáže se v informačním rámečku, aby ho šlo zkopírovat.\nPříklad:\n$1\nse stane:\n$2',
 
 # Edit pages
 #
@@ -611,9 +598,6 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'preferences'   => 'Nastavení',
 'prefsnologin' => 'Nejste přihlášen(a)!',
 'prefsnologintext'      => 'Pro nastavení se musíte [[Special:Userlogin|přihlásit]].',
-'prefslogintext' => 'Jste přihlášen jako „$1“. Vaše interní identifikační číslo je $2.
-
-Podívejte se na [[{{ns:12}}:Uživatelské nastavení]] pro popis možností.',
 'prefsreset'    => 'Nastavení vráceno.', #FIXME: Hmm...
 'qbsettings'    => 'Nastavení lišty nástrojů',
 'changepassword' => 'Změna hesla',
@@ -654,7 +638,6 @@ Podívejte se na [[{{ns:12}}:Uživatelské nastavení]] pro popis možností.',
 'timezoneoffset' => 'Posun',
 'servertime'	=> 'Aktuální čas na serveru',
 'guesstimezone' => 'Načíst z prohlížeče',
-'emailflag'     => 'Zakázat e-maily od jiných uživatelů',
 'defaultns'     => 'Implicitně hledat v těchto jmenných prostorech:',
 'default'		=> 'implicitní',
 'files'			=> 'Soubory',
@@ -837,15 +820,6 @@ váš uživatelský účet zablokován.",
 'noimage-linktext' => 'načíst',
 'uploadnewversion' => '[$1 Načíst novou verzi tohoto souboru]',
 
-# User list
-# Obsolote??? 2005-08-15
-'userlist'		=> 'Seznam uživatelů',
-'userlisttext'	=> 'Níže je seznam $1 uživatelů, setříděných $2.',
-'ulshowmatch'	=> 'Ukázat uživatele, jejichž jména vyhovují',
-'ulsubmit'		=> 'Hledat',
-'ulshowlast'	=> 'Ukázat posledních $1 uživatelů tříděných $2.',
-'byrights'		=> 'podle oprávnění',
-
 # Statistics
 #
 'statistics'    => 'Statistika',
@@ -878,7 +852,6 @@ váš uživatelský účet zablokován.",
 # Miscellaneous special pages
 #
 'orphans'               => 'Sirotci',
-'geo'			=> 'Zeměpisné souřadnice',
 'lonelypages'   => 'Sirotčí články',
 'uncategorizedpages'	=> 'Nekategorizované stránky',
 'unusedimages'  => 'Nepoužívané obrázky a soubory',
@@ -1566,7 +1539,6 @@ ta['ca-nstab-category'] = new Array('c','Zobrazit kategorii.');",
 'exif-compression-1' => 'Nekomprimovaný',
 'exif-compression-6' => 'JPEG',
 
-'exif-photometricinterpretation-1' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-orientation-1' => 'Normální', // 0th row: top; 0th column: left
@@ -1822,8 +1794,8 @@ class LanguageCs extends LanguageUtf8 {
 			'.' => ','
 	);
 
-	function formatNum( $number ) {
-		return strtr($number, $this->digitTransTable);
+	function formatNum( $number, $year ) {
+		return $year ? $number : strtr($this->commafy($number), $this->digitTransTable);
 	}
 
 		# Grammatical transformations, needed for inflected languages

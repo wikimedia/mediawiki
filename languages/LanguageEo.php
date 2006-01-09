@@ -66,7 +66,7 @@ require_once('LanguageUtf8.php');
 'tog-watchdefault' => 'Priatentu paĝojn de vi redaktintajn',
 'tog-minordefault' => 'Marku ĉiujn redaktojn malgrandaj',
 'tog-previewontop' => 'Montru antaŭrigardon antaŭ redaktilo',
-'tog-altencoding' => 'Montru supersignojn X-sisteme', # FIXME: forpreni cxi tiun; estas cimoplena
+
 # Dates
 
 'sunday' => 'dimanĉo',
@@ -139,7 +139,6 @@ require_once('LanguageUtf8.php');
 'currentevents' => 'Aktualaĵoj', #FIXME - Novaĵoj? Aktualaj novaĵoj? Aktualaj eventoj?
 'errorpagetitle' => 'Eraro', #FIXME - Arero? ;)
 'returnto'		=> 'Revenu al $1.',
-'tagline'      	=> 'El {{SITENAME}}, la libera enciklopedio.',
 'whatlinkshere'	=> 'Paĝoj kiuj ligas ĉi tien',
 'help'			=> 'Helpo',
 'search'		=> 'Serĉu',
@@ -179,11 +178,6 @@ Vidu $1.',
 'nbytes'		=> '$1 bitokoj',
 'go'			=> 'Ek!', #FIXME
 'ok'			=> 'Ek!', #FIXME
-'sitetitle'		=> '{{SITENAME}}',
-'pagetitle'		=> '$1 - {{SITENAME}}',
-'sitesubtitle'	=> '',
-'retrievedfrom' => 'Citita el "$1"', #FIXME: Aperas post presita paĝo
-'newmessages'	=> 'Jen $1 por vi.',
 'newmessageslink' => 'nova mesaĝo',
 'editsection'   => 'redaktu',
 'toc'           => 'Enhavo',
@@ -425,8 +419,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per google:</p>',
 'prefsnologin' => 'Ne jam salutis!',
 'prefsnologintext'	=> '[[Special:Userlogin|Ensalutu]]
 kaj vi povos ŝanĝi viajn preferojn.',
-'prefslogintext' => 'Vi ensalutis kiel "$1".
-Via interna identeconumero estas $2.',
 'prefsreset'	=> 'Preferoj reprenitaj el la registro.', #FIXME: Hmm...
 'qbsettings'	=> 'Preferoj pri ilaro',
 'changepassword' => 'Ŝanĝu pasvorton',
@@ -463,7 +455,6 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'timezoneoffset' => 'Malsamo', #FIXME (?)
 'servertime'	=> 'Norma tempo aktuale',
 'guesstimezone'	=> 'Petu al foliumilo',
-'emailflag'     => 'Malakceptu retmesaĝojn de aliaj vikipediistoj',
 'defaultns'		=> 'Serĉu la jenajn sekciojn:',
 
 # Recent changes
@@ -792,7 +783,6 @@ vandalumitaj).",
 'ipbreason'		=> 'Kialo',
 'ipbsubmit'		=> 'Forbaru la adreson',
 'badipaddress'	=> 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
-'noblockreason' => 'Vi nepre klarigu kialon pri la forbaro.',
 'blockipsuccesssub' => 'Sukcesis forbari',
 'blockipsuccesstext' => '"$1" estas forbarita.
 <br />Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].',

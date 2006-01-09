@@ -8,9 +8,6 @@
 
 require_once( "LanguageRu.php" );
 
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesUdm = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Панель',
@@ -84,9 +81,8 @@ class LanguageUdm extends LanguageRu {
 		return "windows-1251";
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ', ' ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($number, '.,', ', ' ) : $number;
 	}
 
 }

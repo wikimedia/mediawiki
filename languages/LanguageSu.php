@@ -123,7 +123,7 @@ ta[\'ca-nstab-template\'] = new Array(\'c\',\'Témbongkeun citakan\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Témbongkeun kaca pitulung\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Témbongkeun kaca kategori\');',
 'about' => 'Ngeunaan',
-'aboutpage' => 'Wikipédia:Ngeunaan',
+'aboutpage' => '{{ns:project}}:Ngeunaan',
 'aboutsite' => 'Ngeunaan {{SITENAME}}',
 'accmailtext' => 'Sandi keur \'$1\' geus dikirim ka $2.',
 'accmailtitle' => 'Sandi geus dikirim.',
@@ -135,7 +135,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 
 <p>Mun jaga anjeun moal deui ngawaskeun parobahan na kaca éta, klik tumbu "Eureun ngawaskeun" na lajursisi.',
 'addgroup' => 'Tambahkeun Golongan',
-'administrators' => 'Wikipédia:Kuncén',
+'administrators' => '{{ns:project}}:Kuncén',
 'allarticles' => 'Sadaya artikel',
 'allinnamespace' => 'Sadaya kaca ($1 ngaranspasi)',
 'alllogstext' => 'Témbongan gabungan log muatan, hapusan, koncian, peungpeukan, jeung kuncén. Bisa dipondokkeun ku cara milih tipe log, ngaran pamaké, atawa kaca nu dimaksud.',
@@ -158,7 +158,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'already_bureaucrat' => 'Pamaké ieu geus boga kalungguhan birokrat',
 'already_steward' => 'Pamaké ieu mémang geus jadi \'\'steward\'\'',
 'already_sysop' => 'Pamaké ieu geus boga kalungguhan kuncén',
-'alreadyloggedin' => '<font color=red><b>Pamaké $1, anjeun geus asup log!</b></font><br />',
+'alreadyloggedin' => '<strong>Pamaké $1, anjeun geus asup log!</strong><br />',
 'alreadyrolled' => 'Teu bisa mulangkeun édit ahir [[$1]] ku [[User:$2|$2]] ([[User talk:$2|Obrolan]]); geus aya nu ngédit atawa mulangkeun kacana. 
 
 Édit ahir ku [[User:$3|$3]] ([[User talk:$3|Obrolan]]).',
@@ -166,7 +166,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'and' => 'jeung',
 'anontalk' => 'Obrolan pikeun IP ieu',
 'anontalkpagetext' => '----\'\'Ieu mangrupa kaca sawala pikeun pamaké anonim nu can (henteu) nyieun rekening, kusabab kitu [[alamat IP]] dipaké dina hal ieu pikeun nyirikeun anjeunna. Alamat IP ieu bisa dipaké ku sababaraha urang. Mun anjeun salasahiji pamaké anonim sarta ngarasa aya koméntar nu teu pakait geus ditujukeun ka anjeun, leuwih hadé [[Special:Userlogin|nyieun rekening atawa asup log]] sangkan teu pahili jeung pamaké anonim séjén.\'\'',
-'anonymous' => 'Pamaké anonim Wikipédia',
+'anonymous' => 'Pamaké anonim {{SITENAME}}',
 'article' => 'Kaca eusi',
 'articleexists' => 'Kaca nu ngaranna kitu geus aya, atawa ngaran nu dipilih ku anjeun teu sah. Mangga pilih ngaran séjén.',
 'articlepage' => 'Témbongkeun kaca eusi',
@@ -183,7 +183,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'badtitle' => 'Judul goréng',
 'badtitletext' => 'Judul kaca nu dipénta teu sah, kosong, atawa judul antarbasa atawa antarwikina salah tumbu.',
 'blanknamespace' => '(Utama)',
-'blockedtext' => 'Ngaran pamaké atawa alamat IP anjeun dipeungpeuk ku $1. Alesanana:<br />\'\'$2\'\'<p>Anjeun bisa nepungan $1 atawa salasahiji [[Wikipédia:Kuncén|Kuncén]] séjén pikeun nyawalakeun hal ieu.
+'blockedtext' => 'Ngaran pamaké atawa alamat IP anjeun dipeungpeuk ku $1. Alesanana:<br />\'\'$2\'\'<p>Anjeun bisa nepungan $1 atawa salasahiji [[{{ns:project}}:Kuncén|Kuncén]] séjén pikeun nyawalakeun hal ieu.
 
 Catet yén anjeun teu bisa maké fungsi "surélékan pamaké ieu" mun anjeun teu ngadaptarkeun alamat surélék nu sah kana [[Special:Preferences|préferénsi pamaké]] anjeun.
 
@@ -193,7 +193,7 @@ Alamat IP anjeun $3, lampirkeun alamat ieu dina unggal \'\'query\'\' anjeun.',
 'blockipsuccesssub' => 'Meungpeuk geus hasil',
 'blockipsuccesstext' => '"$1" dipeungpeuk.
 <br />Tempo [[Special:Ipblocklist|daptar peungpeuk IP]] pikeun nempoan deui peungpeuk.',
-'blockiptext' => 'Paké formulir di handap pikeun meungpeuk aksés nulis ti alamat IP atawa ngaran pamaké husus. Ieu sakuduna ditujukeun pikeun nyegah vandalisme, sarta saluyu jeung [[Wikipédia:Kawijakan|kawijakan]]. Eusi alesan nu jéntré (misal, ngarujuk kaca tinangtu nu geus diruksak).',
+'blockiptext' => 'Paké formulir di handap pikeun meungpeuk aksés nulis ti alamat IP atawa ngaran pamaké husus. Ieu sakuduna ditujukeun pikeun nyegah vandalisme, sarta saluyu jeung [[{{ns:project}}:Kawijakan|kawijakan]]. Eusi alesan nu jéntré (misal, ngarujuk kaca tinangtu nu geus diruksak).',
 'blocklink' => 'peungpeuk',
 'blocklistline' => '$1, $2 dipeungpeuk $3 (kadaluwarsa $4)',
 'blocklogentry' => 'dipeungpeuk "$1" nepi ka $2',
@@ -202,7 +202,7 @@ Alamat IP anjeun $3, lampirkeun alamat ieu dina unggal \'\'query\'\' anjeun.',
 'bold_sample' => 'Téks kandel',
 'bold_tip' => 'Téks kandel',
 'booksources' => 'Sumber buku',
-'booksourcetext' => 'Di handap ieu daptar tumbu ka situs séjén nu ngajual buku anyar tur urut, sarta bisa jadi boga iber ngeunaan buku nu ditéang. Wikipédia teu aya patalina jeung salasahiji bisnis ieu, sarta daptar ieu ulah dianggap salaku iklan.',
+'booksourcetext' => 'Di handap ieu daptar tumbu ka situs séjén nu ngajual buku anyar tur urut, sarta bisa jadi boga iber ngeunaan buku nu ditéang. {{SITENAME}} teu aya patalina jeung salasahiji bisnis ieu, sarta daptar ieu ulah dianggap salaku iklan.',
 'brokenredirects' => 'Alihan buntu',
 'brokenredirectstext' => 'Alihan di handap numbu ka kaca nu teu aya.',
 'bugreports' => 'Laporan kutu',
@@ -226,63 +226,6 @@ Alamat IP anjeun $3, lampirkeun alamat ieu dina unggal \'\'query\'\' anjeun.',
 'changed' => 'geus robah',
 'changepassword' => 'Robah sandi',
 'changes' => 'robahan',
-'cite' => 'Cutat',
-'cite_article_link' => 'Cutat artikel ieu',
-'cite_page' => 'Kaca:',
-'cite_submit' => 'Cutat',
-'cite_text' => '__NOTOC__
-<div style="width: 90%; text-align: center; font-size: 85%; margin: 10px auto;">Eusi: [[#Gaya APA|APA]] | [[#Gaya MLA|MLA]] | [[#Gaya MHRA|MHRA]] | [[#Gaya Chicago|Chicago]] | [[#Gaya CBE/CSE|CSE]] | [[#Gaya Bluebook|Bluebook]] | [[#Éntri BibTeX|BibTeX]]</div>
-<div style="border: 1px solid grey; background: #E6E8FA; width: 90%; padding: 15px 30px 15px 30px; margin: 10px auto;">
-
-== Dadaran bibliografis pikeun "{{FULLPAGENAME}}" ==
-
-* Ngaran kaca: {{FULLPAGENAME}}
-* Ditulis ku: kontributor {{SITENAME}}
-* Pamedal: \'\'{{SITENAME}}, {{int:sitesubtitle}}\'\'.
-* Titimangsa révisi ahir: {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}} {{CURRENTTIME}} UTC
-* Titimangsa disalin: <citation>{{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}} {{CURRENTTIME}} UTC</citation>
-* URL permanén: {{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}}
-* ID vérsi kaca: {{REVISIONID}}
-
-Kadé pariksa rumpakana, luyukeun jeung kaperluan anjeun. Pikeun leuwih jéntré, mangga buka \'\'\'[[Wikipédia:Nyutat Wikipédia|Nyutat Wikipédia]]\'\'\'.
-
-</div>
-<div class="plainlinks" style="border: 1px solid grey; width: 90%; padding: 15px 30px 15px 30px; margin: 10px auto;"> 
-
-== Gaya cutatan pikeun {{FULLPAGENAME}} ==
-=== [[Gaya APA]] ===
-{{FULLPAGENAME}}. ({{CURRENTYEAR}}, {{CURRENTMONTHNAME}} {{CURRENTDAY}}). \'\'{{SITENAME}}, {{int:sitesubtitle}}\'\'. Disalin <citation>{{CURRENTTIME}}, {{CURRENTMONTHNAME}} {{CURRENTDAY}}, {{CURRENTYEAR}}</citation> ti {{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}}.
-=== [[Manual gaya MLA|Gaya MLA]] ===
-"{{FULLPAGENAME}}." \'\'{{SITENAME}}, {{int:sitesubtitle}}\'\'. {{CURRENTDAY}} {{CURRENTMONTHABBREV}} {{CURRENTYEAR}}, {{CURRENTTIME}} UTC. <citation>{{CURRENTDAY}} {{CURRENTMONTHABBREV}} {{CURRENTYEAR}}, {{CURRENTTIME}}</citation> &lt;{{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}}&gt;. 
-=== [[Tungtunan gaya MHRA|Gaya MHRA]] === 
-Kontributor {{SITENAME}}, \'{{FULLPAGENAME}}\', \'\'{{SITENAME}}, {{int:sitesubtitle}},\'\' {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}, {{CURRENTTIME}} UTC, &lt;{{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}}&gt; [diaksés <citation>{{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}</citation>] 
-=== [[Manuah gaya Chicago|Gaya Chicago]] === 
-Kontributor {{SITENAME}}, "{{FULLPAGENAME}}," \'\'{{SITENAME}}, {{int:sitesubtitle}},\'\' {{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}} (diaksés <citation>{{CURRENTMONTHNAME}} {{CURRENTDAY}}, {{CURRENTYEAR}}</citation>). 
-=== [[Council of Science Editors|Gaya CBE/CSE]] === 
-Kontributor {{SITENAME}}. {{FULLPAGENAME}} [Internét]. {{SITENAME}}, {{int:sitesubtitle}}; {{CURRENTYEAR}} {{CURRENTMONTHABBREV}} {{CURRENTDAY}}, {{CURRENTTIME}} UTC [dicutat <citation>{{CURRENTYEAR}} {{CURRENTMONTHABBREV}} {{CURRENTDAY}}</citation>]. Tiasa dibuka di: {{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}}. 
-=== [[Bluebook|Gaya Bluebook]] === 
-{{FULLPAGENAME}}, {{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}} (Panungtungan dibuka <citation>{{CURRENTMONTHNAME}} {{CURRENTDAY}}, {{CURRENTYEAR}}</citation>). 
-=== Éntri [[BibTeX]] === 
-
-  @misc{ wiki:xxx,
-    author = "{{SITENAME}}",
-    title = "{{FULLPAGENAME}} --- {{SITENAME}}{,} {{MediaWiki:Sitesubtitle}}",
-    year = "{{CURRENTYEAR}}",
-    url = "{{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}}",
-    note = "[Online; diaksés <citation>{{CURRENTDAY}}-{{CURRENTMONTHNAME}}-{{CURRENTYEAR}}</citation>]"
-  }
-
-Nalika migunakeun url pakét [[LaTeX]] (<code>\usepackage{url}</code> di mana waé dina pamuka) nu condong némbongkeun format alamat ramat nu alus, sigana mending nu di handap ieu:
-
-  @misc{ wiki:xxx,
-    author = "{{SITENAME}}",
-    title = "{{FULLPAGENAME}} --- {{SITENAME}}{,} {{MediaWiki:Sitesubtitle}}",
-    year = "{{CURRENTYEAR}}",
-    url = "\'\'\'\url{\'\'\'{{fullurl:{{FULLPAGENAME}}|oldid={{REVISIONID}}}}\'\'\'}\'\'\'",
-    note = "[Online; diaksés <citation>{{CURRENTDAY}}-{{CURRENTMONTHNAME}}-{{CURRENTYEAR}}</citation>]"
-  }
-
-</div> <!--closing "Citation styles" div-->',
 'clearyourcache' => '\'\'\'Catetan:\'\'\' Sanggeus nyimpen, anjeun perlu ngosongkeun \'\'cache\'\' panyungsi anjeun pikeun nempo parobahanana:
 \'\'\'Mozilla/Safari/Konqueror:\'\'\' pencét & tahan \'\'Shift\'\' bari ngaklik \'\'Reload\'\' (atawa pencét \'\'Ctrl-Shift-R\'\'), \'\'\'IE:\'\'\' pencét \'\'Ctrl-F5\'\', \'\'\'Opera:\'\'\' pencét \'\'F5\'\'.',
 'columns' => 'Kolom',
@@ -293,7 +236,7 @@ Nalika migunakeun url pakét [[LaTeX]] (<code>\usepackage{url}</code> di mana wa
 $1',
 'confirm_purge_button' => 'Heug',
 'confirmdelete' => 'Konfirmasi ngahapus',
-'confirmdeletetext' => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina database, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[Wikipédia:Kawijakan|kawijakan Wikipédia]].',
+'confirmdeletetext' => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina database, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{ns:project}}:Kawijakan|kawijakan {{SITENAME}}]].',
 'confirmemail' => 'Konfirmasi alamat surélék',
 'confirmemail_body' => 'Aya, sigana mah anjeun ti alamat IP $1, geus ngadaptarkeun rekening "$2" maké alamat surélék ieu na {{SITENAME}}.
 
@@ -324,50 +267,13 @@ mangga pastikeun yén anjeun rék nyieun deui artikel ieu.',
 'contribslink' => 'sumbang',
 'contribsub' => 'Pikeun $1',
 'contributions' => 'Kontribusi pamaké',
-'copyright' => 'Sadaya kandungan ieu loka aya dina panangtayungan <a class=\'internal\' href="{{localurle:Wikipédia:Téks_Lisénsi Dokumén Bébas GNU}}">Lisénsi Dokumén Bébas GNU</a> (tingal <b><a class=\'internal\' href="{{localurle:Wikipédia:Hak cipta}}">Hak cipta</a></b> sangkan leuwih jéntré).<br />',
-'copyrightpage' => 'Wikipédia:Hak cipta',
-'copyrightpagename' => 'Hak cipta Wikipédia',
-'copyrightwarning' => '<div id="editpage-specialchars" class="plainlinks" style="margin-top:15px;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:2px;">
-<small>
-Asupkeun:
-<charinsert> Á á É é Í í Ó ó Ú ú </charinsert> &nbsp;
-<charinsert> À à È è Ì ì Ò ò Ù ù </charinsert> &nbsp;
-<charinsert> Â â Ê ê Î î Ô ô Û û </charinsert> &nbsp;
-<charinsert> Ä ä Ë ë Ï ï Ö ö Ü ü </charinsert> &nbsp;
-<charinsert> ß </charinsert> &nbsp;
-<charinsert> Ã ã Ñ ñ Õ õ </charinsert> &nbsp;
-<charinsert> Ç ç Ģ ģ Ķ ķ Ļ ļ Ņ ņ Ŗ ŗ Ş ş Ţ ţ </charinsert> &nbsp;
-<charinsert> Ć ć Ĺ ĺ Ń ń Ŕ ŕ Ś ś Ý ý Ź ź </charinsert> &nbsp;
-<charinsert> Đ đ </charinsert> &nbsp;
-<charinsert> Ů ů </charinsert> &nbsp;
-<charinsert> Č č Ď ď Ľ ľ Ň ň Ř ř Š š Ť ť Ž ž </charinsert> &nbsp;
-<charinsert> Ǎ ǎ Ě ě Ǐ ǐ Ǒ ǒ Ǔ ǔ </charinsert> &nbsp;
-<charinsert> Ā ā Ē ē Ī ī Ō ō Ū ū </charinsert> &nbsp;
-<charinsert> ǖ ǘ ǚ ǜ </charinsert> &nbsp;
-<charinsert> Ĉ ĉ Ĝ ĝ Ĥ ĥ Ĵ ĵ Ŝ ŝ Ŵ ŵ Ŷ ŷ </charinsert> &nbsp;
-<charinsert> Ă ă Ğ ğ Ŭ ŭ </charinsert> &nbsp;
-<charinsert> Ċ ċ Ė ė Ġ ġ İ ı Ż ż </charinsert> &nbsp;
-<charinsert> Ą ą Ę ę Į į Ų ų; </charinsert> &nbsp;
-<charinsert> Ł ł </charinsert> &nbsp;
-<charinsert> Ő ő Ű ű </charinsert> &nbsp;
-<charinsert> Ŀ ŀ </charinsert> &nbsp;
-<charinsert> Ħ ħ </charinsert> &nbsp;
-<charinsert> Ð ð Þ þ </charinsert> &nbsp;
-<charinsert> Œ œ </charinsert> &nbsp;
-<charinsert> Æ æ Ø ø Å å </charinsert> &nbsp;
-<charinsert> – — … </charinsert> &nbsp;
-<charinsert> [+] [[+]] {{+}} </charinsert> &nbsp;
-<charinsert> ~ | ° → </charinsert> &nbsp;
-<charinsert> ± − × ¹ ² ³ </charinsert> &nbsp;
-<charinsert> ‘ “ ’ ” </charinsert> &nbsp;
-<charinsert> € </charinsert> &nbsp;
-</small>
-</div>
-<div style="margin-top:2em">
-<div style="font-weight: bold; font-size: 120%;">Parobahan jieunan anjeun bakal geuwat katémbong.</div>
-* Pikeun nyoba-nyoba, mangga pigunakeun [[Wikipédia:Kotrétan|kotrétan]].
+'copyright' => 'Sadaya kandungan ieu loka aya dina panangtayungan <a class=\'internal\' href="{{localurle:{{ns:project}}:Téks_Lisénsi Dokumén Bébas GNU}}">Lisénsi Dokumén Bébas GNU</a> (tingal <b><a class=\'internal\' href="{{localurle:{{ns:project}}:Hak cipta}}">Hak cipta</a></b> sangkan leuwih jéntré).<br />',
+'copyrightpage' => '{{ns:project}}:Hak cipta',
+'copyrightpagename' => 'Hak cipta {{SITENAME}}',
+'copyrightwarning' => 'Parobahan jieunan anjeun bakal geuwat katémbong.
+* Pikeun nyoba-nyoba, mangga pigunakeun [[{{ns:project}}:Kotrétan|kotrétan]].
 * Anjeun dirojong pisan pikeun nyieun, ngembangkeun, sarta ngaronjatkeun mutu artikel; tapi, éditan goréng bakal kaawaskeun sahingga bisa geuwat dihapus/diropéa deui.
-* \'\'\'Mangga\'\' [[Wikipédia:Cutat rujukan|cutat rujukan anjeun]]\'\' sahingga nu séjén bisa mariksa karya anjeun.
+* \'\'\'Mangga\'\' [[{{ns:project}}:Cutat rujukan|cutat rujukan anjeun]]\'\' sahingga nu séjén bisa mariksa karya anjeun.
 ----
 Perhatikeun yén sadaya kontribusi ka MediaWiki dianggap medal dina panangtayungan Lisénsi Dokumén Bébas GNU (tempo $1 pikeun jéntréna). Mun anjeun teu miharep tulisan anjeun dirobah sarta disebarkeun deui, ulah dilebetkeun ka dieu.<br />
 Anjeun ogé jangji yén tulisan ieu dijieun ku sorangan, atawa disalin ti \'\'domain\'\' umum atawa sumberdaya bébas séjénna. <strong>ULAH NGALEBETKEUN KARYA NU MIBANDA HAK CIPTA TANPA IDIN!</strong>',
@@ -403,7 +309,7 @@ Kasalahan MySQL nu mulang "$3: $4".',
 'deadendpages' => 'Kaca buntu',
 'default' => 'ti dituna',
 'defaultns' => 'Téang ti antara spasingaran ieu luyu jeung ti dituna:',
-'defemailsubject' => 'Surélék Wikipédia',
+'defemailsubject' => 'Surélék {{SITENAME}}',
 'delete' => 'Hapus',
 'delete_and_move' => 'Hapus jeung pindahkeun',
 'delete_and_move_reason' => 'Hapus sangkan bisa mindahkeun',
@@ -434,7 +340,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'disambiguations' => 'Kaca disambiguasi',
 'disambiguationspage' => 'Project:Tumbu_ka_kaca_disambiguasi',
 'disambiguationstext' => 'Kaca ieu numbu ka <i>kaca disambiguasi</i>, nu sakuduna mah numbu ka kaca nu ditujul.<br />Hiji kaca dianggap salaku disambiguasi mun numbu ti $1.<br />Tumbu ti ngaranspasi séjén <i>teu</i> dibéréndélkeun di dieu.',
-'disclaimerpage' => 'Wikipédia:Bantahan_umum',
+'disclaimerpage' => '{{ns:project}}:Bantahan_umum',
 'disclaimers' => 'Bantahan',
 'doubleredirects' => 'Alihan ganda',
 'doubleredirectstext' => 'Unggal baris ngandung tumbu ka pangalihan kahiji jeung kadua, kitu ogé téks dina baris kahiji pangalihan kadua, nu biasana méré kaca tujuan nu bener, nu sakuduna ditujul dina pangalihan kahiji.',
@@ -491,7 +397,7 @@ Mun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun.
 Pikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:Special:Watchlist|edit=yes}}
 
 Asupan jeung bantuan salajengna:
-{{SERVER}}{{localurl:Wikipédia:Pitulung}}',
+{{SERVER}}{{localurl:{{ns:project}}:Pitulung}}',
 'enotif_lastvisited' => 'Tempo {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} pikeun sadaya parobahan ti saprak anjeun ninggalkeun ieu kaca.',
 'enotif_mailer' => 'Surat Émbaran {{SITENAME}}',
 'enotif_newpagetext' => 'Kaca ieu anyar.',
@@ -514,7 +420,7 @@ Asupan jeung bantuan salajengna:
 'extlink_sample' => 'Judul tumbu http://www.conto.com',
 'extlink_tip' => 'Tumbu kaluar (inget awalan http://)',
 'faq' => 'NLD',
-'faqpage' => 'Wikipédia:NLD',
+'faqpage' => '{{ns:project}}:NLD',
 'feedlinks' => 'Asupan:',
 'filecopyerror' => 'Teu bisa nyalin koropak "$1" ka "$2".',
 'filedeleteerror' => 'Teu bisa ngahapus koropak "$1".',
@@ -533,24 +439,6 @@ Asupan jeung bantuan salajengna:
 'fileuploadsummary' => 'Ringkesan:',
 'formerror' => 'Kasalahan: teu bisa ngirim formulir',
 'go' => 'Jung',
-'googlesearch' => '<!-- SiteSearch Google -->
-<FORM method=GET action="http://www.google.co.id/intl/su/search">
-<TABLE bgcolor="#FFFFFF"><tr><td>
-<A HREF="http://www.google.co.id/intl/su/">
-<IMG SRC="http://www.google.co.id/logos/Logo_40wht.gif"
-border="0" ALT="Google"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value="$1">
-<INPUT type=submit name=btnG VALUE="Panyungsi Google">
-<font size=-1>
-<input type=hidden name=domains value="{{SERVER}}"><br /><input type=radio name=sitesearch value=""> WWW <input type=radio name=sitesearch value="{{SERVER}}" checked> {{SERVER}} <br />
-<input type=\'hidden\' name=\'ie\' value=\'$2\'>
-<input type=\'hidden\' name=\'oe\' value=\'$2\'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->',
 'group-admin-desc' => 'Pamaké nu kapercaya bisa meungpeuk pamaké sarta ngahapus artikel',
 'group-admin-name' => 'Kuncén',
 'group-anon-desc' => 'Pamaké anonim',
@@ -562,7 +450,7 @@ border="0" ALT="Google"></A>
 'headline_sample' => 'Téks judul',
 'headline_tip' => 'Judul tingkat 2',
 'help' => 'Pitulung',
-'helppage' => 'Wikipédia:Pitulung',
+'helppage' => '{{ns:project}}:Pitulung',
 'hide' => 'sumputkeun',
 'hidetoc' => 'sumputkeun',
 'hist' => 'juj',
@@ -657,10 +545,10 @@ Katerangan: (kiw) = bédana jeung vérsi kiwari,
 'loginreqlink' => 'asup log',
 'loginreqpagetext' => 'Muné hayang muka kaca séjénna, Anjeun kudu $1.',
 'loginreqtitle' => 'Kudu asup log',
-'loginsuccess' => 'Anjeun ayeuna geus asup log ka Wikipédia salaku "$1".',
+'loginsuccess' => 'Anjeun ayeuna geus asup log ka {{SITENAME}} salaku "$1".',
 'loginsuccesstitle' => 'Asup log geus hasil',
 'logout' => 'Kaluar log',
-'logouttext' => 'Anjeun ayeuna geus kaluar log. Anjeun bisa neruskeun migunakeun Wikipédia bari anonim, atawa bisa asup log deui maké pamaké nu sarua atawa nu béda. Perlu dicatet yén sababaraha kaca bakal terus némbongan saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun \'\'cache\'\' panyungsi anjeun.',
+'logouttext' => 'Anjeun ayeuna geus kaluar log. Anjeun bisa neruskeun migunakeun {{SITENAME}} bari anonim, atawa bisa asup log deui maké pamaké nu sarua atawa nu béda. Perlu dicatet yén sababaraha kaca bakal terus némbongan saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun \'\'cache\'\' panyungsi anjeun.',
 'logouttitle' => 'Kaluar log pamaké',
 'lonelypages' => 'Kaca-kaca nunggelis',
 'longpages' => 'Kaca-kaca paranjang',
@@ -756,7 +644,7 @@ proceeding.',
 'newarticle' => '(Anyar)',
 'newarticletext' => 'Anjeun geus nuturkeun tumbu ka kaca nu can aya.
 Pikeun nyieun kaca, mimitian ku ngetik jeroeun kotak di handap 
-(tempo [[Wikipédia:Pitulung|kaca pitulung]] pikeun leuwih écés).
+(tempo [[{{ns:project}}:Pitulung|kaca pitulung]] pikeun leuwih écés).
 Mun anjeun ka dieu teu ngahaja, klik baé tombol \'\'\'back\'\'\' na panyungsi anjeun.',
 'newbies' => 'anyaran',
 'newimages' => 'Galeri gambar anyar',
@@ -766,9 +654,6 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol \'\'\'back\'\'\' na panyungsi a
 'newpages' => 'Kaca anyar',
 'newpassword' => 'Sandi anyar',
 'newtitle' => 'Ka judul anyar',
-'newuserloglog' => 'Pamaké anyar ([[User talk:$1|$2]] | [[Special:Contributions/$1|$3]] | [[Special:Block/$1|$4]])',
-'newuserlogpage' => 'Log pamaké anyar',
-'newuserlogpagetext' => 'Di handap ieu béréndélan pamaké nu kakara ngadaptar.',
 'newusersonly' => ' (pamaké anyar wungkul)',
 'newwindow' => '(buka na jandéla anyar)',
 'next' => 'salajengna',
@@ -781,7 +666,7 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol \'\'\'back\'\'\' na panyungsi a
 'noconnect' => 'Punten! Wiki ngalaman sababaraha kasusah téhnis sarta teu bisa ngontak server database.',
 'nocontribs' => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
 'nocookieslogin' => '{{SITENAME}} migunakeun \'\'cookies\'\' pikeun ngasupkeun pamaké kana log. Anjeun boga \'\'cookies\'\' nu ditumpurkeun. Mangga pungsikeun sarta cobian deui.',
-'nocookiesnew' => 'Rekening pamaké geus dijieun, tapi anjeun can asup log. Wikipédia maké \'\'cookies\'\' pikeun ngasupkeun log pamaké. Anjeun boga \'\'cookies\'\' nu ditumpurkeun. Mangga fungsikeun, teras asup log migunakeun ngaran pamaké sarta sandi nu anyar.',
+'nocookiesnew' => 'Rekening pamaké geus dijieun, tapi anjeun can asup log. {{SITENAME}} maké \'\'cookies\'\' pikeun ngasupkeun log pamaké. Anjeun boga \'\'cookies\'\' nu ditumpurkeun. Mangga fungsikeun, teras asup log migunakeun ngaran pamaké sarta sandi nu anyar.',
 'nocredits' => 'Teu aya émbaran pangajén pikeun kaca ieu.',
 'nodb' => 'Teu bisa milih database $1',
 'noemail' => 'Teu aya alamat surélék karékam pikeun "$1".',
@@ -791,9 +676,9 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol \'\'\'back\'\'\' na panyungsi a
 'nogomatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Teu aya kaca nu judulna kitu</span>
 
 <span style="display: block; margin: 1.5em 2em">
-Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel nu judulna kitu]]\'\'\' atawa [[Wikipédia:Artikel pamundut|mundut dijieunna éta artikel]].
+Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel nu judulna kitu]]\'\'\' atawa [[{{ns:project}}:Artikel pamundut|mundut dijieunna éta artikel]].
 
-<span style="display:block; font-size: 89%; margin-left:.2em">Mangga sungsi Wikipédia saméméh nyieun artikel anyar, pikeun ngahindarkeun artikel ganda nu ukur béda éjahan/ngaran.</span>
+<span style="display:block; font-size: 89%; margin-left:.2em">Mangga sungsi {{SITENAME}} saméméh nyieun artikel anyar, pikeun ngahindarkeun artikel ganda nu ukur béda éjahan/ngaran.</span>
 </span>',
 'nohistory' => 'Teu aya jujutan édit pikeun kaca ieu.',
 'noimages' => 'Taya nanaon.',
@@ -848,9 +733,9 @@ Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel 
 'others' => 'Séjénna',
 'pagemovedsub' => 'Mindahkeun geus hasil!',
 'pagemovedtext' => 'Kaca "[[$1]]" dipindahkeun ka "[[$2]]".',
-'pagetitle' => '$1 - Wikipédia',
-'passwordremindertext' => 'Aya (jigana anjeun ti alamat IP $1) nu ménta sangkan dikiriman sandi anyar asup log Wikipédia. Sandi keur pamaké "$2" ayeuna nyaéta "$3". Anjeun kudu asup log sarta ngarobah sandi anjeun ayeuna.',
-'passwordremindertitle' => 'Pangéling sandi ti Wikipédia',
+'pagetitle' => '$1 - {{SITENAME}}',
+'passwordremindertext' => 'Aya (jigana anjeun ti alamat IP $1) nu ménta sangkan dikiriman sandi anyar asup log {{SITENAME}}. Sandi keur pamaké "$2" ayeuna nyaéta "$3". Anjeun kudu asup log sarta ngarobah sandi anjeun ayeuna.',
+'passwordremindertitle' => 'Pangéling sandi ti {{SITENAME}}',
 'passwordsent' => 'Sandi anyar geus dikirim ka alamat surélék nu kadaptar pikeun "$1". Mangga asup log deui satutasna katarima.',
 'passwordtooshort' => 'Sandi anjeun pondok teuing, sahanteuna kudu $1 karakter.',
 'perfcached' => 'Data di handap ieu di-\'\'cache\'\' sarta meureun teu mutahir:',
@@ -860,9 +745,9 @@ Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel 
 'personaltools' => 'Parabot pribadi',
 'popularpages' => 'Kaca-kaca kawentar',
 'portal' => 'Panglawungan',
-'portal-url' => 'Wikipédia: Panglawungan',
+'portal-url' => '{{ns:project}}: Panglawungan',
 'postcomment' => 'Kirim koméntar',
-'poweredby' => 'Wikipédia dipatéakeun ku [http://www.mediawiki.org/ MédiaWiki], mesin wiki nembrak.',
+'poweredby' => '{{SITENAME}} dipatéakeun ku [http://www.mediawiki.org/ MédiaWiki], mesin wiki nembrak.',
 'powersearch' => 'Téang',
 'powersearchtext' => 'Téang na spasi-ngaran:<br />
 $1<br />
@@ -892,12 +777,12 @@ $2 Daptarkeun alihan &nbsp; Téang $3 $9',
 'protectcomment' => 'Alesan ngonci',
 'protectedarticle' => 'ngonci $1',
 'protectedpage' => 'Kaca nu dikonci',
-'protectedpagewarning' => '<strong>PERHATOSAN: Kaca ieu dikonci sahingga ngan bisa dirobah ku pamaké nu statusna kuncén. Pastikeun yén anjeun tumut kana [[Wikipédia:tungtunan_kaca_nu_dikonci\'|tungtunan kaca nu dikonci]].</strong>',
-'protectedtext' => 'Kaca ieu dikonci tina ngédit; aya sababaraha alesan pangna dikonci, mangga tingal [[Wikipédia:Kaca nu dikonci|kaca nu dikonci]].
+'protectedpagewarning' => '<strong>PERHATOSAN: Kaca ieu dikonci sahingga ngan bisa dirobah ku pamaké nu statusna kuncén. Pastikeun yén anjeun tumut kana [[{{ns:project}}:tungtunan_kaca_nu_dikonci\'|tungtunan kaca nu dikonci]].</strong>',
+'protectedtext' => 'Kaca ieu dikonci tina ngédit; aya sababaraha alesan pangna dikonci, mangga tingal [[{{ns:project}}:Kaca nu dikonci|kaca nu dikonci]].
 
 Anjeun bisa muka sarta nyalin sumber kaca ieu:',
 'protectlogpage' => 'Log_koncian',
-'protectlogtext' => 'Di handap ieu mangrupa daptar koncian kaca. Tempo [[Wikipédia:Kaca nu dikonci|kaca nu dikonci]] pikeun iber leuwih lengkep.',
+'protectlogtext' => 'Di handap ieu mangrupa daptar koncian kaca. Tempo [[{{ns:project}}:Kaca nu dikonci|kaca nu dikonci]] pikeun iber leuwih lengkep.',
 'protectmoveonly' => 'Konci tina dipindahkeun wungkul',
 'protectpage' => 'Konci kaca',
 'protectsub' => '(Ngonci "$1")',
@@ -933,12 +818,7 @@ Anjeun bisa muka sarta nyalin sumber kaca ieu:',
 'recentchangesall' => 'sadaya',
 'recentchangescount' => 'Jumlah judul nu anyar robah',
 'recentchangeslinked' => 'Parobahan nu patali',
-'recentchangestext' => 'Lacak parobahan ka wiki panganyarna na kaca ieu.
-
-[[en:Special:Recentchanges]]
-[[id:Special:Recentchanges]]
-[[jv:Special:Recentchanges]]
-[[ms:Special:Recentchanges]]',
+'recentchangestext' => 'Lacak parobahan ka wiki panganyarna na kaca ieu.',
 'redirectedfrom' => '(Dialihkeun ti $1)',
 'remembermypassword' => 'Inget sandi kuring liwat sési.',
 'removechecked' => 'Kaluarkeun nu dicontang tina awaskeuneun',
@@ -976,15 +856,12 @@ Please check the URL you used to access this page.',
 'saveprefs' => 'Simpen préferénsi',
 'saveusergroups' => 'Simpen Grup Pamaké',
 'search' => 'Téang',
-'searchdisabled' => '<p style="margin: 1.5em 2em 1em">Punten! Néangan téks lengkep di Wikipédia kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu.
-<span style="font-size: 89%; display: block; margin-left: .2em">Catet yén indéxna ngeunaan eusi Wikipédia bisa jadi teu mutahir.</span></p>',
-'searchnoresults' => 'Punten, taya nu ciples cocog sareng pamundut salira.',
+'searchdisabled' => '<p style="margin: 1.5em 2em 1em">Punten! Néangan téks lengkep di {{SITENAME}} kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu.
+<span style="font-size: 89%; display: block; margin-left: .2em">Catet yén indéxna ngeunaan eusi {{SITENAME}} bisa jadi teu mutahir.</span></p>',
 'searchquery' => 'Pikeun pamundut "$1"',
 'searchresults' => 'Hasil néangan',
 'searchresultshead' => 'Aturan hasil néang',
-'searchresulttext' => 'Pikeun iber nu leuwih lengkep ngeunaan nyaksrak di Wikipédia, buka [[Wikipédia:Nyaksrak|Nyaksrak Wikipédia]].',
-'searchscore' => 'Relevansi: $1',
-'searchsize' => '$1KB ($2 kecap)',
+'searchresulttext' => 'Pikeun iber nu leuwih lengkep ngeunaan nyaksrak di {{SITENAME}}, buka [[{{ns:project}}:Nyaksrak|Nyaksrak {{SITENAME}}]].',
 'selectnewerversionfordiff' => 'Pilih vérsi nu leuwih anyar pikeun babandingan',
 'selectolderversionfordiff' => 'Pilih vérsi nu leuwih heubeul pikeun babandingan',
 'selflinks' => 'Kaca-kaca nu numbu ka kacana sorangan',
@@ -996,13 +873,6 @@ Please check the URL you used to access this page.',
 'set_rights_fail' => '<b>HAk pamaké pikeun "$1" teu bisa diatur. (Ngaran nu diasupkeun geus bener can?)</b>',
 'set_user_rights' => 'Atur hak pamaké',
 'setbureaucratflag' => 'Atur bandéra birokrat',
-'sharedupload' => '<br clear=both>
-{| align=center border=0 cellpadding=3 cellspacing=3 style="border: solid #aaa 1px; background: #f9f9f9; font-size: 100%;"
-|- 
-| [[Image:Commons without text.png|20px|Lambang Wikimedia Commons]]
-|Koropak ieu asalna ti \'\'[[Commons:Main Page|Wikimedia Commons]]\'\'. Tempo \'\'\'[[Commons:Image:{{PAGENAME}}|kaca dadaranana]]\'\'\' pikeun leuwih jéntré.
-|}
-<br />',
 'shareduploadwiki' => 'Mangga aos $1 pikeun émbaran leuwih jéntré.',
 'shortpages' => 'Kaca-kaca parondok',
 'show' => 'témbongkeun',
@@ -1015,20 +885,16 @@ Please check the URL you used to access this page.',
 'showpreview' => 'Témbongkeun sawangan',
 'showtoc' => 'témbongkeun',
 'sig_tip' => 'Tawis leungeun anjeun tur cap wanci',
-'sitematrix' => 'Béréndélan wiki Wikimédia',
-'sitenotice' => '<div name="fundraising" id="fundraising" style="margin-top:5px;">\'\'\'\'\'[[Wikimedia:Wikimédia butuh pitulung anjeun|Wikimédia butuh pitulung anjeun]]\'\'\' dina pangumpulan dana ayeuna. Mangga tingal [[Wikimedia:Ngumpulkeun dana|kaca pangumpulan dana]] pikeun leuwih jéntré\'\'.</div>
-[http://fundraising.wikimedia.org/2005q4/ <fundraising/>]</div><div style="font-size:90%">[[wikimedia:Fund drives/2005/Q4/Daily report|Laporan poéan]]</div>
-</div>',
-'sitestats' => 'Statistika Wikipédia',
+'sitestats' => 'Statistika {{SITENAME}}',
 'sitestatstext' => 'Jumlah-jamléh aya \'\'\'$1\'\'\' kaca na database, kaasup kaca "obrolan", kaca-kaca ngeunaan MédiaWiki, kaca "tukung", alihan, sarta nu séjénna nu meureun teu kaasup artikel. Lian ti nu éta, aya \'\'\'$2\'\'\' kaca nu dianggap artikel nu bener.
 
 jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan ti saprak Wiki ieu ngadeg. Jadi hartina aya rata-rata \'\'\'$5\'\'\' éditan per kaca sarta \'\'\'$6\'\'\' ulasan per édit.',
 'sitesubtitle' => 'Énsiklopédi Bébas',
 'sitesupport' => 'Sumbangan',
 'sitesupport-url' => 'Project:Ngarojong loka',
-'sitetitle' => 'Wikipédia',
-'siteuser' => 'Pamaké $1 Wikipédia',
-'siteusers' => 'Pamaké $1 Wikipédia',
+'sitetitle' => '{{SITENAME}}',
+'siteuser' => 'Pamaké $1 {{SITENAME}}',
+'siteusers' => 'Pamaké $1 {{SITENAME}}',
 'skin' => 'Kulit',
 'speciallogtitlelabel' => 'Judul:',
 'specialloguserlabel' => 'Pamaké:',
@@ -1047,7 +913,6 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'sysoptext' => 'Peta nu dipénta ku anjeun ngan bisa dipigawé ku pamaké nu statusna kuncén. Tempo $1.',
 'sysoptitle' => 'Kudu ku kuncén',
 'tableform' => 'tabel',
-'tagline' => 'Ti Wikipédia Sunda, énsiklopédi bébas basa Sunda',
 'talk' => 'Sawala',
 'talkexists' => 'Kacana geus hasil dipindahkeun, ngan kaca obrolanana teu bisa dipindahkeun sabab geus aya nu anyar na judul anyar. Mangga gabungkeun sacara manual.',
 'talkpage' => 'Sawalakeun kaca ieu',
@@ -1102,7 +967,7 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'undeletedrevisions' => '$1 révisi disimpen deui',
 'undeletedtext' => '[[$1]] geus réngsé disimpen ulang. Tempo [[Special:Log/delete]] pikeun catetan hapusan jeung panyimpenan ulang anyar.',
 'undeletehistory' => 'Mun anjeun nyimpen deui kacana, sadaya révisi bakal disimpen deui dina jujutan. Mun aya kaca anyar nu ngaranna sarua dijieun deui satutasna dihapus, révisi nu disimpen tadi bakal némbongan salaku jujutan nu ti heula, sarta révisi kiwari kaca nu hirup moal otomatis kaganti.',
-'undeletehistorynoadmin' => 'Artikel ieu geus dihapus. Alesanana bisa dibaca dina katrangan di handap, katut saha waé nu geus ngédit ieu artikel saméméh dihapus. Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku [[Wikipédia:Kuncén|kuncén]].',
+'undeletehistorynoadmin' => 'Artikel ieu geus dihapus. Alesanana bisa dibaca dina katrangan di handap, katut saha waé nu geus ngédit ieu artikel saméméh dihapus. Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku [[{{ns:project}}:Kuncén|kuncén]].',
 'undeletepage' => 'Témbongkeun atawa simpen deui kaca nu geus dihapus',
 'undeletepagetext' => 'Kaca di handap ieu geus dihapus tapi masih kénéh aya na arsip sarta bisa disimpen deui. Arsip aya kalana dibersihan.',
 'undeleterevision' => 'Révisi nu dihapus sakumaha $1',
@@ -1188,7 +1053,7 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'watchnologintext' => 'Anjeun kudu [[Special:Userlogin|asup log]] pikeun ngarobah awaskeuneun.',
 'watchthis' => 'Awaskeun kaca ieu',
 'watchthispage' => 'Awaskeun kaca ieu',
-'welcomecreation' => '<h2>Wilujeng sumping, $1!</h2><p>Rekening anjeun geus dijieun. Tong hilap ngarobih préferénsi Wikipédia anjeun.',
+'welcomecreation' => '<h2>Wilujeng sumping, $1!</h2><p>Rekening anjeun geus dijieun. Tong hilap ngarobih préferénsi {{SITENAME}} anjeun.',
 'whatlinkshere' => 'Nu numbu ka dieu',
 'whitelistacctext' => 'Sangkan diwenangkeun nyieun rekening na wiki ieu, anjeun kudu asup [[Special:Userlogin|log]] sarta boga kawenangan nu cukup.',
 'whitelistacctitle' => 'Anjeun teu diwenangkeun nyieun rekening',

@@ -126,7 +126,6 @@ require_once( "LanguageUtf8.php" );
 "currentevents"         => "Trenutni dogodki",
 "errorpagetitle"        => "Napaka",
 "returnto"		=> "Vrni se k $1.",
-"tagline"      	        => "Iz Wikipedije, proste enciklopedije.",
 "whatlinkshere"	        => "Strani, ki so vezane sem",
 "help"			=> "Pomoč",
 "search"		=> "Išči",
@@ -162,7 +161,6 @@ require_once( "LanguageUtf8.php" );
 "sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	        => '',
 "retrievedfrom"         => "Vzpostavljeno iz \"$1\"",
-"newmessages"           => "Imaš $1.",
 "newmessageslink"       => "novih sporočil",
 "editsection"=>"spremeni",
 "toc" => "Vsebina",
@@ -355,8 +353,6 @@ $2 Seznam se preusmerja   Iskanje za $3 $9",
 "prefsnologintext"	=> "Morate biti <a href=\"" .
   "{{localurle:Special:Userlogin}}\">vpisani</a>
 za ponastavljanje uporabniških nastavitev.",
-"prefslogintext"        => "Vpisani ste kot \"$1\".
-Notranja ID števka je $2.",
 "prefsreset"	        => "Nastavitve so bile ponastavljene iz shrambe.",
 "qbsettings"	        => "Postavitve hitre vrstice",
 "changepassword"        => "Sprememba gesla",
@@ -385,7 +381,6 @@ Notranja ID števka je $2.",
 "timezonetext"	        => "Vnesite za koliko ur se vaš krajevni čas razlikuje od strežnikovega časa (UTC).",
 "localtime"	        => "Krajevni čas",
 "timezoneoffset"        => "Izravnava",
-"emailflag"		=> "Ne prikažem elektronske pošte drugim uporabnikom",
 "defaultns"  => "Ponavadi išči na naslednjih imenskih področjih:",
 
 # Recent changes
@@ -782,19 +777,6 @@ class LanguageSl extends LanguageUtf8 {
 	function getNamespaces() {
 		global $wgNamespaceNamesSl;
 		return $wgNamespaceNamesSl;
-	}
-
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesSl;
-
-		foreach ( $wgNamespaceNamesSl as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		if( 0 == strcasecmp( "Special", $text ) ) { return -1; }
-		if( 0 == strcasecmp( "User", $text ) ) { return 2; }
-		if( 0 == strcasecmp( "Wikipedia", $text ) ) { return 4; }
-		return false;
 	}
 
 	function getQuickbarSettings() {

@@ -116,7 +116,6 @@ require_once( 'LanguageUtf8.php' );
 "currentevents" => "Huidige gebeure",
 "errorpagetitle" => "Fout",
 "returnto"		=> "Keer terug na $1.",
-"tagline"      	=> "Van {{SITENAME}} &#8212; die gratis ensiklopedie.",
 "whatlinkshere"	=> "Bladsye wat hierheen skakel",
 "help"			=> "Hulp",
 "search"		=> "Soek",
@@ -151,10 +150,7 @@ require_once( 'LanguageUtf8.php' );
 "nbytes"		=> "$1 grepe",
 "go"			=> "Doen",
 "ok"			=> "Aanvaar", #fixMe
-"sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	=> "",
 "retrievedfrom" => "Ontsluit van \"$1\"",
-"newmessages" => "Jy het $1.",
 "newmessageslink" => "nuwe boodskappe",
 
 # Main script and global functions
@@ -348,8 +344,6 @@ $2 List redirects   Search for $3 $9", #fixMe
 "prefsnologin" => "Nie ingeteken nie",
 "prefsnologintext"	=> "Jy moet [[Special:Userlogin|ingeteken wees]]
 om voorkeure te spesifiseer.",
-"prefslogintext" => "Jy is ingeteken as \"$1\".
-Jou internet ID-nommer is $2.",
 "prefsreset"	=> "Voorkeure is herstel.",
 "qbsettings"	=> "Snelbalkvoorkeure", #fixMe Quickbar settings
 "changepassword" => "Verander wagwoord",
@@ -378,7 +372,6 @@ Jou internet ID-nommer is $2.",
 "timezonetext"	=> "Aantal ure wat plaaslike tyd verskil van UGT.",
 "localtime"	=> "Plaaslike tyd",
 "timezoneoffset" => "Teenrekening",
-"emailflag"		=> "Keer e-pos van ander gebruikers",
 
 # Recent changes
 #
@@ -390,16 +383,15 @@ Kyk asb. ook na hierdie bladsye: [[{{ns:4}}:FAQ|{{ns:4}} FAQ]],
 [[{{ns:4}}:beleid|beleid]]
 (veral [[{{ns:4}}:styl|styl]],
 [[{{ns:4}}:neutrale standpunt|neutrale standpunt]]),
-en [[{{ns:4}}:mees algemene Wikipedia foute|mees algemene Wikipedia foute]].
+en [[{{ns:4}}:mees algemene {{SITENAME}} foute|mees algemene {{SITENAME}} foute]].
 
-As jy wil hê dat Wikipedia suksesvol moet wees, is dit belangrik dat jy nie
+As jy wil hê dat {{SITENAME}} suksesvol moet wees, is dit belangrik dat jy nie
 materiaal byvoeg wat deur [[{{ns:4}}:kopiereg|kopiereg]] beperk word nie.
 Die wetlike onderhewigheid kan die projek skade aandoen.", #fixMeContinue
 "rcloaderr"		=> "Laai onlangse wysigings",
 "rcnote"		=> "Hier onder is die laaste <strong>$1</strong> wysigings gedurende die laaste <strong>$2</strong> dae.",
 "rcnotefrom"	=> "Hier onder is die wysigings sedert <b>$2</b> (tot by <b>$1</b> word gewys).",
 "rclistfrom"	=> "Wys nuwe wysigings en begin by $1",
-# "rclinks"		=> "Wys die laaste $1 wysigings in die laaste $2 ure / laaste $3 dae",
 "rclinks"		=> "Wys die laaste $1 wysigings in die laaste $2 dae.",
 "rchide"		=> "in $4 vorm; $1 klein veranderinge; $2 sekondêre naamspasies; $3 veelvuldige wysigings.",
 "diff"			=> "verskil",
@@ -548,7 +540,7 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "debug"			=> "Ontfout",
 "newpages"		=> "Nuwe bladsye",
 "movethispage"	=> "Skuif hierdie bladsy",
-"unusedimagestext" => "<p>Let asseblief op dat ander webwerwe, soos die internasionale Wikipedias, dalk met 'n direkte URL na 'n prent skakel, so die prent sal dus hier verskyn al word dit aktief gebruik.",
+"unusedimagestext" => "<p>Let asseblief op dat ander webwerwe, soos die internasionale {{SITENAME}}s, dalk met 'n direkte URL na 'n prent skakel, so die prent sal dus hier verskyn al word dit aktief gebruik.", // TODO: grammar
 "booksources"	=> "Boekbronne",
 "booksourcetext" => "Hier onder is 'n lys van skakels na ander werwe wat nuwe en tweede handse boeke verkoop, en wat dalk ook verdere inligting het oor boeke waarna jy soek.
 {{SITENAME}} is nie geaffilieer aan enige van hierdie besighede nie en die lys moet nie as 'n aanbeveling gesien word nie.",
@@ -733,12 +725,12 @@ Kies asseblief 'n ander naam.",
 "talkpagenotmoved" => "Die ooreenkomstige bespreekbladsy is <strong>nie</strong> geskuif nie.",
 
 #Math
-	'mw_math_png' => "Gebruik altyd PNG.",
-	'mw_math_simple' => "Gebruik HTML indien dit eenvoudig is, andersins PNG.",
-	'mw_math_html' => "Gebruik HTML wanneer moontlik, andersins PNG.",
-	'mw_math_source' => "Los as TeX (vir teks blaaiers).",
-	'mw_math_modern' => "Moderne blaaiers.",
-	'mw_math_mathml' => 'MathML',
+'mw_math_png' => "Gebruik altyd PNG.",
+'mw_math_simple' => "Gebruik HTML indien dit eenvoudig is, andersins PNG.",
+'mw_math_html' => "Gebruik HTML wanneer moontlik, andersins PNG.",
+'mw_math_source' => "Los as TeX (vir teks blaaiers).",
+'mw_math_modern' => "Moderne blaaiers.",
+'mw_math_mathml' => 'MathML',
 
 );
 
@@ -759,8 +751,7 @@ class LanguageAf extends LanguageUtf8 {
 		return $wgSkinNamesAf;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesAf;
 		if( isset( $wgAllMessagesAf[$key] ) ) {
 			return $wgAllMessagesAf[$key];
@@ -769,9 +760,8 @@ class LanguageAf extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($this->commafy($number), '.,', ',.' ) : $number;
 	}
 
 }

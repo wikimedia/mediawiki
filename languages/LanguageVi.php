@@ -8,12 +8,7 @@
   * Last update 28 August 2005 (UTC)
   */
 
-if( defined( 'MEDIAWIKI' ) ) {
-
 require_once( 'LanguageUtf8.php' );
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 /* private */ $wgNamespaceNamesVi = array(
 	NS_MEDIA			=> 'Phương_tiện',
@@ -267,7 +262,6 @@ global $wgRightsText;
 'sitetitle'     => '{{SITENAME}}',
 'sitesubtitle'  => '',
 'retrievedfrom' => 'Lấy từ « $1 »',
-'newmessages'   => 'Bạn có $1.',
 'newmessageslink' => 'tin nhắn mới',
 'editsection'	=> 'Sửa',
 'toc'		=> 'Mục lục',
@@ -425,8 +419,6 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'media_tip'     => 'Liên kết phương tiện',
 'sig_tip'       => 'Ký tên có ngày',
 'hr_tip'        => 'Dòng kẻ ngang (không nên lạm dụng)',
-'infobox'       => 'Ấn nút để xem ví dụ',
-'infobox_alert'	=> "Xin nhập dòng chữ cần thử vào đây.\\n Nó sẽ hiện ra trong hộp để sao chép.\\nVí dụ\\n$1\\nthành:\\n$2",
 
 # Edit pages
 'summary'      => 'Tóm tắt&nbsp;',
@@ -445,7 +437,6 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'whitelistacctitle' => 'Bạn không được phép mở tài khoản.',
 'whitelistacctext' => 'Bạn cần [[Đặc_biệt:Userlogin|đăng nhập]] để mở tài khoản.', // Looxix
 'loginreqtitle'	=> 'Cần nhập tên',
-'loginreqtext'	=> "Bạn cần [[Đặc_biệt:Userlogin|đăng nhập]] để đọc các bài khác.",
 'accmailtitle' => 'Đã gửi mật khẩu.',
 'accmailtext' => 'Mật khẩu của « $1 » đã được gửi đến $2.',
 
@@ -548,9 +539,6 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9",
 'preferences'       => 'Lựa chọn cá nhân',
 'prefsnologin'      => 'Chưa đăng nhập',
 'prefsnologintext'  => "Bạn phải [[Đặc_biệt:Userlogin|đăng nhập]] để sửa các Lựa chọn cá nhân của bạn.",
-"prefslogintext" => "Đăng nhập với tên $1 và số thành viên $2.
-
-Xem thêm [[{{ns:4}}:Trợ giúp cho Lựa chọn cá nhân]].",
 'prefsreset'        => 'Các Lựa chọn cá nhân đã được mặc định lại.',
 'qbsettings'        => 'Các lựa chọn cho thanh công cụ',
 'changepassword'    => 'Đổi mật khẩu',
@@ -591,7 +579,6 @@ Xem thêm [[{{ns:4}}:Trợ giúp cho Lựa chọn cá nhân]].",
 'timezoneoffset'    => 'Chênh giờ¹',
 'servertime'	    => 'Giờ máy chủ',
 'guesstimezone'     => 'Dùng giờ của trình duyệt',
-"emailflag"         => "Không nhận thư điện tử",
 "defaultns"         => "Mặc định tìm kiếm trong không gian tên :",
 'yourlanguage' => "Ngôn ngữ&nbsp;",
 
@@ -604,9 +591,6 @@ Xem thêm [[{{ns:4}}:Trợ giúp cho Lựa chọn cá nhân]].",
 'rcnote'  => "<strong>$1</strong> thay đổi của <strong>$2</strong> ngày qua.",
 'rcnotefrom'	=> "Thay đổi từ <strong>$2</strong> (<b>$1</b> tối đa).",
 'rclistfrom'	=> "Xem thay đổi từ $1.",
-# "rclinks"  => "Xem $1 thay đổi của $2 giờ / $3 ngày qua",
-# "rclinks"  => "Xem $1 thay đổi của $2 ngày qua.",
-# 'showhideminor' => "$1 sửa nhỏ", // simple version of Wikipedia
 'showhideminor' => "$1 sửa nhỏ | $2 robot | $3 thành viên | $4 tuần tra", // Full version
 'rclinks'	=> "Xem $1 thay đổi của $2 ngày qua; $3.",	// Looxix
 'rchide'  => "trong $4 mẫu; $1 sửa nhỏ; $2 không gian phụ; $3 sửa gộp.", // FIXME
@@ -632,8 +616,7 @@ Xem thêm [[{{ns:4}}:Trợ giúp cho Lựa chọn cá nhân]].",
 'uploadnologin' => 'Chưa đăng nhập',
 'uploadnologintext' => "Bạn phải [[Đặc_biệt:Userlogin|đăng nhập]] để tải lên tệp tin.",
 'uploaderror'  => "Lỗi",
-'uploadtext'   => "'''Chú ý!''': nếu có thể, xin mời bạn truyền hình ảnh lên [[Commons:Wikimedia Commons|kho hình chung Wikimedia]].<br />
-Trước khi truyền hình lên:
+'uploadtext'   => "Trước khi truyền hình lên:
 *Kiểm tra hình ảnh đã tải lên trước đây tại [[Đặc_biệt:Imagelist|danh sách những hình đã tải lên]].
 Khi truyền hình lên:
 *Tuân thủ [[{{ns:4}}:Quy định về hình ảnh|quy định về sử dụng hình ảnh]].
@@ -738,7 +721,6 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 'missinglanguagelinkstext'      => "Những trang này <i>không</i> liên kết đến các trang tương đương của chúng trong $1. Các trang chuyển hướng hoặc các liên kết đến nó <i>không</i> được hiển thị.",
 
 # Miscellaneous special pages
-'geo'       => 'Tọa độ GEO',
 'uncategorizedpages'    => 'Trang chưa xếp thể loại',
 'uncategorizedcategories'   => 'Thể loại chưa phân loại',
 'unusedimages'  => 'Hình chưa dùng',
@@ -1350,7 +1332,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'ipbother' => 'Thời hạn khác',
 'ipbotheroption' => 'khác',
 'log' => 'Nhật trình',
-"mainpagedocfooter" => "Xin đọc [http://meta.wikipedia.org/wiki/MediaWiki_i18n tài liệu hướng dẫn cách tùy biến giao diện] và [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Cẩm nang sử dụng] (bằng tiếng Anh) để biết cách dùng và thiết lập thông số.",
+"mainpagedocfooter" => "Xin đọc [http://meta.wikimedia.org/wiki/MediaWiki_i18n tài liệu hướng dẫn cách tùy biến giao diện] và [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Cẩm nang sử dụng] (bằng tiếng Anh) để biết cách dùng và thiết lập thông số.",
 'mediawarning' => " '''Cảnh báo''': Tệp tin này có thể làm hại máy tính của bạn. <hr>",
 'movelogpage' => 'Nhật trình đổi tên',
 'movelogpagetext' => 'Các trang bị đổi tên.',
@@ -1406,14 +1388,12 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'groups' => 'Các nhóm',
 'noimage' => 'Không có hình này, bạn có thể [$1 tải nó lên]',
 'setstewardflag' => 'Đặt cờ tiếp viên',
-'val_time' => 'Thời gian',
 'proxyblocksuccess'	=> "Xong.",
 
 'namespacesall' => 'tất cả',
 'fileuploadsummary' => 'tóm tắt',
 'prefixindex' => 'Mục lục theo không gian tên',
 'mostlinked'=>'Trang được liên kết đến nhiều nhất',
-'sitematrix' => 'Danh sách wiki của Wikimedia',
 'unusedcategories' => 'Thể loại chưa dùng',
 'permalink' => 'Liên kết thường trực',
 'noimage-linktext' => 'tải lên',
@@ -1435,19 +1415,6 @@ class LanguageVi extends LanguageUtf8 {
 	function getNamespaces() {
 		global $wgNamespaceNamesVi;
 		return $wgNamespaceNamesVi;
-	}
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesVi, $wgSitename;
-
-		foreach ( $wgNamespaceNamesVi as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		if( $wgSitename == "Wikipedia" ) {
-			if( 0 == strcasecmp( "Wikipedia", $text ) ) return 4;
-			if( 0 == strcasecmp( "Wikipedia_talk", $text ) ) return 5;
-		}
-		return false;
 	}
 
 	function getQuickbarSettings() {
@@ -1542,5 +1509,5 @@ class LanguageVi extends LanguageUtf8 {
 	}
 
 }
-}
+
 ?>

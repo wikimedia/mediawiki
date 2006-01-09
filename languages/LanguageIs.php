@@ -99,7 +99,7 @@ ta['n-currentevents'] = new Array('','Líðandi stund');
 ta['n-recentchanges'] = new Array('r','Listi yfir nýlegar breytingar.');
 ta['n-randompage'] = new Array('x','Handahófsvalin síða');
 ta['n-help'] = new Array('','Efnisyfirlit yfir hjálparsíður.');
-ta['n-sitesupport'] = new Array('','Fjárframlagssíða Wikimedia');
+ta['n-sitesupport'] = new Array('','Fjárframlagssíða');
 ta['t-whatlinkshere'] = new Array('j','Listi yfir síður sem tengjast í þessa');
 ta['t-recentchangeslinked'] = new Array('k','Nýlegar breitingar á ítengdum síðum');
 ta['feed-rss'] = new Array('','RSS fyrir þessa síðu');
@@ -174,8 +174,6 @@ the list of currently operational bans and blocks.",
 'bold_sample' => "Feitletraður texti",
 'bold_tip' => "Feitletraður texti",
 'booksources' => "Bókabúðir",
-'bureaucrattext' => "[[{{ns:4}}:Möppudýr|Möppudýrsréttindi]] eru skilyrði fyrir því að nota þessa kerfissíðu.",
-'bureaucrattitle' => "Möppudýrsréttinda þörf",
 'bydate' => "eftir dagsetningu",
 'byname' => "eftir nafni",
 'bysize' => "eftir stærð",
@@ -247,7 +245,6 @@ the list of currently operational bans and blocks.",
 'editingsection' => "Breyti $1 (hluta)",
 'editsection' => "breyta",
 'editthispage' => "Breyta þessari síðu",
-'emailflag' => "Loka fyrir tölvupóst frá öðrum notendum",
 'emailforlost' => "Ekki er nauðsynlegt að gefa upp netfang. Ef þú gefur upp netfang getur fólk sent þér tölvupóst í gegnum {{SITENAME}} án þess að sjá netfangið þitt og þú getur fengið nýtt lykilorð sent ef það gleymist. Einnig er mögulegt fyrir nýja notendur að skrá sig með því að fylla bara út í reiti fyrir notendanafn og tölvupóst og smella svo á „með netfangi“ takkan, þá verður lykilorð sent á viðkomandi netfang.",
 'emailfrom' => "Frá",
 'emailmessage' => "Skilaboð",
@@ -408,7 +405,6 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'navigation' => "Flakk",
 'newarticle' => "(Ný)",
 'newimages' => "Gallerí nýlegra skráa",
-'newmessages' => "Þér hafa borist $1.",
 'newmessageslink' => "ný skilaboð",
 'newpages' => "Nýjar síður",
 'newpassword' => "Nýja lykilorðið",
@@ -418,10 +414,9 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'nextdiff' => "Næsta breyting →",
 'nextn' => "næstu $1",
 'nextrevision' => "Næsta útgáfa→",
-'noarticletext' => "<div style=\"border: 1px solid #ccc; padding: 7px; background: white;\">'''Það er ekki enn grein undir þessu nafni á [[{{SITENAME}}]].'''
+'noarticletext' => "<div style=\"border: 1px solid #ccc; padding: 7px; background: white;\">'''Það er ekki enn grein undir þessu nafni á {{SITENAME}}.'''
 * '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Skrifa grein undir nafninu „{{PAGENAME}}“]'''
 * [[{{ns:special}}:Search/{{PAGENAME}}|Leita að „{{PAGENAME}}“]] í öðrum greinum og síðum.
-* [[Wiktionary:is:{{NAMESPACE}}:{{PAGENAME}}|Fara á „{{PAGENAME}}“]] á Wiktionary, systurorðabókaverkefninu.
 </div>",
 'noemailtext' => "Notandi þessi hefur kosið að fá ekki tölvupóst frá öðrum notendum eða hefur ekki fyllt út netfang sitt í stillingum.",
 'noemailtitle' => "Ekkert póstfang",
@@ -465,10 +460,6 @@ $2 Sýna tilvísarnir &nbsp; Leita að $3 $9",
 'prefs-misc' => "Aðrar stillingar",
 'prefs-personal' => "Notendaupplýsingar",
 'prefs-rc' => "Nýlegar breytingar og stubbar",
-'prefslogintext' => "Notandanafn þitt er „[[Notandi:$1|$1]]“ ([[Notandaspjall:$1|Spjall]], [[Kerfissíða:Contributions/$1|framlög]]) og kenninúmerið þitt er $2.
-
-[[m:Help:Preferences|Stillingarhjálpin]] (á ensku)
-inniheldur útskýringu á valmöguleikunum.",
 'prefsnologintext' => "You must be [[Special:Userlogin|logged in]]
 to set user preferences.",
 'preview' => "Forskoða",
@@ -534,11 +525,6 @@ to set user preferences.",
 'september' => "september",
 'servertime' => "Tími netþjóns",
 'setbureaucratflag' => "Einnig möppudýr",
-'sharedupload' => "<br style=\"clear:both\">
-{| align=center width=50% cellpadding=3 cellspacing=3 style=\"border: solid #aaaaaa 1px; background: #f9f9f9; margin-bottom: 1em; font-size: 100%\"
-| [[Image:Commons-trans 135px ohne text.png|30px|Wikimedia Commons Logo]]
-|Skrá þessi er af [[Commons:Forsíða|Wikimedia Commons]], sjá '''[[Commons:Image:{{PAGENAME}}|skráarsíðuna þar]]''' fyrir leyfisupplýsingar og annað.
-|}",
 'shortpages' => "Stuttar síður",
 'show' => "Sýna",
 'showhideminor' => "$1 minniháttar breytingar | $2 breytingar eftir vélmenni | $3 breytingar eftir notendur | $4 patrolled edits",
@@ -557,13 +543,8 @@ to set user preferences.",
 '''$3''' síður hafa verið skoðaðar og '''$4''' breytingar hafa verið gerðar
 síðan vefurinn var settur up. Það reiknast sem '''$5''' breytingar
 á hverja síðu að meðaltali, og '''$6''' fléttingar fyrir hverja breytingu.",
-'sitesubtitle' => "",
 'sitesupport' => "Framlög",
-'sitetitle' => "Wikipedia",
 'skin' => "Þema",
-'spamprotectiontext' => "The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site.
-
-You might want to check the following regular expression for patterns that are currently blocked:",
 'specialpage' => "Kerfissíða",
 'specialpages' => "Kerfissíður",
 'spheading' => "Almennar",
@@ -577,7 +558,6 @@ You might want to check the following regular expression for patterns that are c
 'successfulupload' => "Innhlaðning tókst",
 'summary' => "Breytingar",
 'sunday' => "sunnudagur",
-'tagline' => "Úr Wikipedia, frjálsu alfræðiorðabókinni",
 'talk' => "Spjall",
 'talkpage' => "Ræða um þessa síðu",
 'talkpagenotmoved' => "Samsvarandi spjallsíða var <strong>ekki</strong> færð.",
@@ -649,10 +629,7 @@ to upload files.",
 
 '''Eftir að skrá er hlaðið inn''':
 * Veittu nákvæmar upplýsingar um skránna á skráarsíðunni, t.d. um myndina (hvenær hún er tekin, hvar o.s.f.)
-* Gefðu upplýsingar um leyfið sem hún er undir, <code><nowiki>{{</nowiki>GFDL<nowiki>}}</nowiki></code> fyrir [[commons:Commons:Copyright tags#GNU Licenses|GNU FDL]] og <code><nowiki>{{</nowiki>Óhöfundaréttvarið<nowiki>}}</nowiki></code> ef hún er óvernduð af alþjóða höfundarlögum.
-
-<div align=center border=0 cellpadding=6 cellspacing=2 style=\"border: 3px solid red; background-color: #FFE4E1; margin-top:1em; margin-bottom:1em; padding:3px;\"><big>'''Helst ekki''' hlaða skrám inn hér heldur á [[commons:|Wikimedia Commons]]</big><br />
-Þá verður hún aðgengileg á '''öllum''' Wikimedia verkefnunum, ekki bara íslensku Wikipedia</div>",
+* Gefðu upplýsingar um leyfið sem hún er undir, <code><nowiki>{{</nowiki>GFDL<nowiki>}}</nowiki></code> fyrir [[commons:Commons:Copyright tags#GNU Licenses|GNU FDL]] og <code><nowiki>{{</nowiki>Óhöfundaréttvarið<nowiki>}}</nowiki></code> ef hún er óvernduð af alþjóða höfundarlögum.",
 'uploadwarning' => "Aðvörun",
 'usercssjsyoucanpreview' => "<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript kóða áður en hann er vistaður.",
 'userlogin' => "Innskrá",
@@ -665,7 +642,6 @@ to upload files.",
 'viewtalkpage' => "Skoða umræðu",
 'wantedpages' => "Eftirsóttar síður",
 'watch' => "Vakta",
-'val_tab' => 'Votta',
 'watchdetails' => "Fyrir utan spjallsíður eru $1 síða/síður á vaktlistanum þínum. Hægt er að
 [$4 sýna heildarlistann og breyta honum].",
 'watcheditlist' => "Þetta er listi yfir þínar vöktuðu síður raðað í
@@ -684,7 +660,7 @@ neðst á skjánum.",
 'watchthispage' => "Vakta þessa síðu",
 'wednesday' => "miðvikudagur",
 'welcomecreation' => "<h2>Velkomin(n), $1!</h2><p>Aðgangurinn þinn hefur verið búinn til.
-Ekki gleyma að breyta Wikipedia stillingunum þínum.",
+Ekki gleyma að breyta {{SITENAME}} stillingunum þínum.",
 'whatlinkshere' => "Hvað tengist hingað",
 'whitelistacctext' => "Til að geta búið til aðganga í þessu Wiki, verður þú að [[Special:Userlogin|innskrá]] og hafa viðkomandi réttindi.",
 'whitelistacctitle' => "Þér er óheimilt að skrá þig sem notanda.",

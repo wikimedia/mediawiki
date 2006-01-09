@@ -2,27 +2,6 @@
 
 /* Gaeilge - Irish */
 
-/*
-Seo é an dara leagan den comhad LanguageGa.php. Úsáidtear an iomaí foclóirí agus
-achmhainní idirlín - má tá aon contrárthacht, pléigh é ar an leathanch phlé ach
-NA HATHRAIGH É GO DÍREACH É, MÁS É DO THOIL É!
-
-
-
-This is the second version of the LanguageGa.php file. Multiple dictionaries and
-internet resources have been utilised - if there is any inconsistency or other
-error, discuss it on the talk page but PLEASE DO NOT CHANGE IT DIRECTLY WITHOUT
-DISCUSSION!
-
-*/
-
-# FIXME: Use $wgSitename, $wgMetaNamespace etc
-#  - that could be hard:
-#
-# NOTE TO DEVELOPERS - a genitive version of the sitename Vicipéid
-# is needed for "of" uses etc. The genitive varies for each sitename.
-# How can this be incorporated?
-
 /* private */ $wgNamespaceNamesGa = array(
 	NS_MEDIA	    => 'Meán',
 	NS_SPECIAL          => 'Speisialta',
@@ -30,14 +9,8 @@ DISCUSSION!
 	NS_TALK             => 'Plé',
 	NS_USER             => 'Úsáideoir',
 	NS_USER_TALK        => 'Plé_úsáideora',
-	NS_PROJECT          => 'Vicipéid',
-	NS_PROJECT_TALK     => 'Plé_Vicipéide',
-
- # NOTE TO DEVELOPERS: A different genitive spelling is needed for
- # each Wiki name, as can be seen. So the $wgMetaNamespace tag has not been used
- # here for the moment in some cases, and in other places with a FIXME flag.
- # Perhaps we'll just have to customise each project file.
-
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => FALSE,  # Set in constructor
 	NS_IMAGE            => 'Íomhá',
 	NS_IMAGE_TALK       => 'Plé_íomhá',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -214,9 +187,6 @@ global $wgRightsText;
 "mainpagedocfooter" => "Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_i18n doiciméid um conas an chomhéadán a athrú]
 agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.",
 
-# NOTE: To turn off "Community portal" in the title links,
-# set "portal" => "-"
-
 'portal'	        => 'Ionad pobail',
 'portal-url'	    => '{{ns:4}}:Ionad pobail',
 "about"     => "Maidir leis",
@@ -233,7 +203,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "faqpage"       => "{{ns:4}}:Ceisteanna_Coiteanta",
 "edithelp"      => "Cabhair eagarthóireachta",
 "newwindow"     => "(osclaítear i bhfuinneog eile é)",
-"edithelppage"  => "Cabhair:Eagarthóireacht",
+"edithelppage"  => "{{ns:help}}:Eagarthóireacht",
 "cancel"	=> "Cealaigh",
 "qbfind"	=> "Aimsigh",
 "qbbrowse"      => "Brabhsáil",
@@ -252,14 +222,8 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'metadata' => '<b>Meiteashonraí</b> (féach ar <a href="$1">here</a> le haghaidh a thuilleadh eolais)',
 'metadata_page' => '{{ns:4}}:Meiteashonraí',
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
 "currentevents" => "Cursaí reatha",
 'currentevents-url' => 'Cursaí reatha',
-
-# NOTE: To turn off "Disclaimers" in the title links,
-# set "disclaimers" => "-"
 
 'disclaimers' => 'Séanadh',
 "disclaimerpage" => "{{ns:4}}:Séanadh_ginearálta",
@@ -330,12 +294,6 @@ See $1.',
 "nbytes"	=> "$1 beart",
 "go"	    => "Téir",
 "ok"	    => "Déan",
-"sitetitle"     => "{{SITENAME}}",
-'pagetitle'	     => "$1 - {{SITENAME}}",
-"sitesubtitle"  => "",
-"retrievedfrom" => "Fuarthas ar ais ó \"$1\"",
-"newmessages"   => "Tá $1 agat.",
-"newmessageslink" => "teachtaireachtaí nua",
 "editsection"   => "athraigh",
 "toc"	   => "Clár ábhair",
 "showtoc"       => "taispeáin",
@@ -343,7 +301,6 @@ See $1.',
 "thisisdeleted" => "Breathnaigh nó cuir ar ais $1?",
 "restorelink"   => "$1 athruithe scriosaithe",
 'feedlinks' => 'Fotha:',
-'sitenotice'    => '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Alt',
@@ -390,7 +347,7 @@ láithreach).",
 "readonly"      => "Bunachar sonraí glasáilte",
 "enterlockreason" => "Iontráil cúis don glasáil, agus meastachán
 den uair a díghlasálfar an bunachar sonraí.",
-"readonlytext"  => "Tá an bunachar sonraí Vicipéide glasáilte anois do iontráilí agus athruithe nua
+"readonlytext"  => "Tá an bunachar sonraí {{GRAMMAR:genitive|{{SITENAME}}}} glasáilte anois do iontráilí agus athruithe nua
 (is dócha go bhfuil sé do gnáthchothabháil).
 Tar éis seo, díghlasálfar an bunachar sonraí arís.
 Tugadh an míniú seo ag an riarthóir a ghlasáil é:
@@ -442,7 +399,7 @@ leathanaigh mar atá tú logtha ann fós, go dtí go ghlanfá amach do thaisce b
 
 "welcomecreation" => "== Tá fáilte romhat, $1! ==
 
-Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta Vicipéide a hathrú.",
+Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta {{GRAMMAR:genitive|{{SITENAME}}}} a hathrú.",
 
 "loginpagetitle" => "Logáil isteach",
 "yourname"      => "D'ainm úsáideora",
@@ -486,7 +443,7 @@ do chuid dreachtaí a chur i leith tusa.',
 isteach. Tá fianáin díchumasaithe agat. Cumasaigh iad agus déan athiarracht, le do thoil.",
 "noname"	=> "Níor shonraigh tú ainm úsáideora bailí.",
 "loginsuccesstitle" => "Logáil isteach rathúil",
-"loginsuccess"  => "Tá tú logáilte isteach anois sa Vicipéid mar \"$1\".",
+"loginsuccess"  => "Tá tú logáilte isteach anois sa {{SITENAME}} mar \"$1\".",
 "nosuchuser"    => "Níl aon úsáideoir ann leis an ainm \"$1\".
 Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora nua a chruthú.",
 'nosuchusershort'       => "Níl aon úsáideoir ann leis an ainm \"$1\". Cinntigh do litriú.",
@@ -494,7 +451,7 @@ Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora
 "mailmypassword" => "Seol m'fhocal faire chugam.",
 'passwordremindertitle' => "Cuimneachán an fhocail faire ó {{SITENAME}}",
 'passwordremindertext' => "D'iarr duine éigin (tusa de réir cosúlachta, ón seoladh IP $1)
-go sheolfaimis focal faire Vicipéide nua.
+go sheolfaimis focal faire {{GRAMMAR:genitive|{{SITENAME}}}} nua.
 \"$3\" an focal faire don úsáideoir \"$2\" anois.
 Ba chóir duit lógail isteach anois agus d'fhocal faire a athrú.",
 
@@ -535,14 +492,6 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'media_tip'=>'Nasc chuig comhad meáin',
 'sig_tip'=>'Do shíniú le stampa ama',
 'hr_tip'=>'Líne cothrománach (inúsáidte go coigilteach)',
-'infobox'=>'Roghnaigh cnaipe chun téacs sámpla a fháil',
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert'=>"Más mhaith leat téacs a fhormáidigh, cuir isteach anseo é.\\n
-
-Taispeánfar an
-téacs sa bhosca eolais le haghaidh gearr agus greamaithe.\\nSámpla:\\nTaispeánfar\\n$1
-
-\\nmar sin:\\n$2",
 
 # Edit pages
 #
@@ -576,7 +525,7 @@ isteach]] agus caithfidh go bhfuil an cead riachtanach agat.",
 "newarticletext" =>
 "Lean tú nasc chuig leathanach a nach bhfuil ann fós.
 Chun an leathanach a chruthú, tosaigh ag clóscríobh san bosca anseo thíos
-(féach ar an [[Vicipéid:Cabhair|leathanach cabhrach]] chun a thuilleadh eolais a fháil).
+(féach ar an [[{{ns:project}}:Cabhair|leathanach cabhrach]] chun a thuilleadh eolais a fháil).
 Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do líonléitheoir.",
 'talkpagetext' => '<!-- MediaWiki:teacsphlé -->',
 "anontalkpagetext" => "---- ''Is é seo an leathanach plé do úsáideoir gan ainm nach chruthaigh
@@ -614,7 +563,7 @@ amháin</b> an téacs sa bhosca thuas.<p>",
 "editingold"    => "<strong>AIRE: Tá tú ag athrú eagrán an leathanaigh atá as dáta.
 Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</strong>",
 "yourdiff"      => "Difríochtaí",
-"copyrightwarning" => "Tabhair faoi dearadh go scaoiltear gach ceart le Vicipéid de réir tearmaí an <i>GNU Free Documentation License</i> (féach ar $1 le haghaidh tuilleadh eolais).
+"copyrightwarning" => "Tabhair faoi dearadh go scaoiltear gach ceart le {{SITENAME}} de réir tearmaí an <i>GNU Free Documentation License</i> (féach ar $1 le haghaidh tuilleadh eolais).
 Munar mian leat go gcuirfí do chuid scríbhinn in eagar go héadrócaireach agus go n-athdálfaí gan teorainn iad, ná
 tabhair isteach anseo iad.<br />
 Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse gan chóipcheart
@@ -670,7 +619,7 @@ Eochair: (rth) = difríocht leis an leagan láithreach,
 # Search results
 #
 "searchresults" => "Torthaí an chuardaigh",
-"searchresulttext" => "Féach ar [[Vicipéid:Cuardach|Cuardach sa Vicipéid]] chun a thuilleadh eolais a fháil maidir le cuardaigh Vicipéide.",
+"searchresulttext" => "Féach ar [[{{ns:project}}:Cuardach|Cuardach sa {{SITENAME}}]] chun a thuilleadh eolais a fháil maidir le cuardaigh {{GRAMMAR:genitive|{{SITENAME}}}}.",
 "searchquery"   => "Don iarratas \"$1\"",
 "badquery"      => "Iarratas fiosraithe neamhbhailí",
 "badquerytext"  => "Nior éirigh linn d'iarratas a phróiseáil.
@@ -708,11 +657,7 @@ a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a 
 "preferences"   => "Sainroghanna",
 "prefsnologin" => "Níl tú logáilte isteach",
 "prefsnologintext"  => "Ní mór duit [[Speisialta:Userlogin|logáil isteach]] chun do chuid sainroghanna phearsanta a shocrú.",
-"prefslogintext" => "Tá tú logáilte isteach mar \"$1\".
-Is é $2 d'uimhir aitheantais inmhéanach.
-
-Féach ar [[{{ns:4}}:Cabhair do sainroghanna úsáideora]] chun cabhair a fháil mar gheall ar na roghanna.",
- "prefsreset"    => "D'athraíodh do chuid sainroghanna ar ais chuig an leagan bunúsach ón stóras.",
+"prefsreset"    => "D'athraíodh do chuid sainroghanna ar ais chuig an leagan bunúsach ón stóras.",
 "qbsettings"    => "Sainroghanna an bosca uirlisí",
 "changepassword" => "Athraigh d'fhocal faire",
 "skin"	  => "Craiceann",
@@ -754,7 +699,6 @@ den am an freastalaí (UTC).",
 "timezoneoffset" => "Difear",
 "servertime"    => "Am an freastalaí anois",
 "guesstimezone" => "Líon ón líonléitheoir",
-"emailflag"     => "Coisc ríomhphost a sheolann úsáideoirí eile",
 "defaultns"     => "Cuardaigh sna ranna seo a los éagmaise:",
 'default'	       => 'réamhshocrú',
 'files'			=> 'Comhaid',
@@ -855,14 +799,14 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 chun comhaid a huaslódáil.",
 "uploaderror"   => "Earráid uaslódála",
 "uploadtext"    => "'''STOP!''' Sul má dhéanann tú uaslódáil anseo,
-bí cinnte an [[Vicipéid:Polasaí_úsáide_íomhá|polasaí úsáide íomhá]] atá ag Vicipéid a léamh agus géilleadh dó.
+bí cinnte an [[{{ns:project}}:Polasaí_úsáide_íomhá|polasaí úsáide íomhá]] atá ag {{SITENAME}} a léamh agus géilleadh dó.
 
 Má tá comhad ann cheana leis an ainm céanna atá tú ag tabhairt don chomhad nua, cuirfear an comhad nua
 in áit an sean-chomhaid gan fógra.
 Mar sin, muna roghnaíonn tú comhad, is fearr féachaint an bhfuil comhad leis an ainm chéanna ann cheana féin.
 
 Le breathnú nó cuardach a dhéanamh ar íomhánna a uaslódáladh cheana féin, téigh go dtí an
-[[Speisialta:Imagelist|liosta íomhánna]] uaslódáilte. Déantar liosta de uaslódála agus scriosaidh ar an [[Vicipéid:Liosta_uaslódála|liosta uaslódála]].
+[[Speisialta:Imagelist|liosta íomhánna]] uaslódáilte. Déantar liosta de uaslódála agus scriosaidh ar an [[{{ns:project}}:Liosta_uaslódála|liosta uaslódála]].
 
 Bain úsáid as an bhfoirm thíos chun íomhá-chomhaid nua a uaslódáil. Is féidir leat na h-íomhánna a úsáid i do chuid alt.
 Ar an gcuid is mó de na líonléitheoirí, feicfidh tú cnaipe \"Brabhsáil...\" nó rud éigin mar sin.
@@ -880,7 +824,7 @@ amú a sheachaint. Chun an íomhá a úsáid san alt, úsáid nasc mar seo:
 nó '''[[{{ns:6}}:íomhá.png|téacs eile]]''',
 nó '''[[{{ns:-2}}:comhad.ogg]]''' d'fhuaimeanna.
 
-Mar is fíor maidir le leathanaigh Vicipéide, is féidir le daoine eile do chuid comhad
+Mar is fíor maidir le leathanaigh {{GRAMMAR:genitive|{{SITENAME}}}}, is féidir le daoine eile do chuid comhad
 
 uaslódáilte a athrú nó a
 scriosadh, má shíltear go bhfuil sé i gcabhair don ciclipéid. Má bhaineann tú mí-úsáid as an gcóras tá seans
@@ -897,7 +841,7 @@ Is am an freastalaí (UTC) iad na hamanna atá anseo thíos.
 "filestatus" => "Stádas cóipchirt",
 "filesource" => "Foinse",
 "copyrightpage" => "{{ns:4}}:Cóipchearta",
-"copyrightpagename" => "Cóipcheart Vicipéide",
+"copyrightpagename" => "Cóipcheart {{GRAMMAR:genitive|{{SITENAME}}}}",
 "uploadedfiles" => "Comhaid uaslódáilte",
 "minlength"     => "Caithfidh trí litreacha ar a laghad bheith ann sa comhadainm.",
 'illegalfilename'       => 'Tá litreacha san comhadainm  "$1" nach ceadaítear in ainm leathanaigh. Athainmnigh
@@ -958,11 +902,11 @@ seanleagan seo, (ath) = athúsáid an seanleagan seo.
 "sitestats"     => "Staidreamh do {{SITENAME}}",
 "userstats"     => "Staidreamh úsáideora",
 "sitestatstext" => "Is é '''$1''' líon na leathanach sa bunachar sonraí.
-Cuirtear leathanaigh \"phlé\", leathanaigh a bhaineann le Vicipéid í fhéin, ailt \"stumpaí\"
+Cuirtear leathanaigh \"phlé\", leathanaigh a bhaineann le {{SITENAME}} í fhéin, ailt \"stumpaí\"
 íosmhéadacha, athsheolaidh, agus leathanaigh eile nach cáileann mar ailt i ndáiríre, san áireamh.
 Ag fágáil na leathanaigh seo as, tá '''$2''' leathanaigh ann atá ina nailt dlisteanacha, is dócha.
 
-In iomlán tá '''$3''' radhairc leathanaigh, agus ''''$4''' athruithe leathanaigh sa Vicipéid
+In iomlán tá '''$3''' radhairc leathanaigh, agus ''''$4''' athruithe leathanaigh sa {{SITENAME}}
 ó thus athchóiriú an vicí (25 Eanáir, 2004).
 Is é sin '''$5''' athruithe ar meán do gach leathanach, agus '''$6''' radhairc do gach athrú.",
 "userstatstext" => "Tá '''$1''' úsáideoirí cláraithe anseo.
@@ -976,7 +920,7 @@ de na feidhmeanna seo an bunachar sonraí a cuir strus ar, mar sin ná athbhruig
 chríochnaíonn tú ;-)",
 "maintenancebacklink"   => "Ar ais go dtí an Leathanach Cothabhála",
 "disambiguations"   => "Leathanaigh idirdhealaithe",
-"disambiguationspage"   => "Vicipéid:Naisc_go_leathanaigh_idirdhealaithe",
+"disambiguationspage"   => "{{ns:project}}:Naisc_go_leathanaigh_idirdhealaithe",
 "disambiguationstext"   => "Nascaíonn na ailt seo a leanas go <i>leathanach
 idirdhealaithe</i>. Ba chóir dóibh nasc a dhéanamh dón ábhar áirithe atá i gceist.<br />Tugtar
 an teideal \"idirdhealán\" ar leathanach má tá nasc ar $1 dó.<br /><i>Ní</i> cuirtear ar
@@ -1003,7 +947,6 @@ taispeántar athsheolaidh nó fo-leathanaigh.",
 # Miscellaneous special pages
 #
 "orphans"       => "Leathanaigh dhílleachtacha",
-'geo'	   => 'Comhardanáidí GEO',
 "lonelypages"   => "Leathanaigh dhílleachtacha",
 'uncategorizedpages'    => 'Leathanaigh gan catagóir',
 'unusedcategories' => 'Catagóirí nach úsáidtear',
@@ -1075,7 +1018,7 @@ ina chuid sainroghanna úsáideora, cuirfidh an foirm anseo thíos teachtaireach
 Beidh do seoladh ríomhphoist a d'iontráil tú i do chuid sainroghanna úsáideora
 sa bhosca \"Seoltóir\" an riomhphoist, agus mar sin ba féidir léis an faighteoir ríomhphost eile a chur leatsa.",
 'usermailererror' => 'Earráid leis an píosa ríomhphoist: ',
-'defemailsubject'  => "Ríomhphost Vicipéide",
+'defemailsubject'  => "Ríomhphost {{GRAMMAR:genitive|{{SITENAME}}}}",
 "noemailtitle"  => "Níl aon seoladh ríomhphoist ann",
 "noemailtext"   => "Níor thug an úsáideoir seo seoladh ríomhphoist bhailí, nó shocraigh sé nach
 mian leis ríomhphost a fháil ón úsáideoirí eile.",
@@ -1176,7 +1119,7 @@ Aiseolas agus a thuilleadh cabhrach:
 "confirmdeletetext" => "Tá tú ar tí leathanach nó íomhá a scrios,
 chomh maith leis a chuid stair, ón bunachar sonraí.
 Cinntigh go mian leis an méid seo a dhéanamh, go dtuigeann tú na
-iarmhairtaí, agus go ndéanann tú é dar le [[Vicipéid:Polasaí]].",
+iarmhairtaí, agus go ndéanann tú é dar le [[{{ns:project}}:Polasaí]].",
 "actioncomplete" => "Gníomh críochnaithe",
 "deletedtext"   => "scriosadh \"$1\".
 Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.",
@@ -1273,7 +1216,7 @@ chun an gníomh seo a dhéanamh ar.",
 "blockiptext"   => "Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó
 seoladh IP nó ainm úsáideora áirithe.
 Is féidir leat an rud seo a dhéanamh amháin chun an chreachadóireacht a chosc, de réir
-mar a deirtear sa [[Vicipéid:Polasaí|polasaí Vicipéide]].
+mar a deirtear sa [[{{ns:project}}:Polasaí|polasaí {{GRAMMAR:genitive|{{SITENAME}}}}]].
 Líonaigh cúis áirithe anseo thíos (mar shampla, is féidir leat a luaigh
 leathanaigh áirithe a rinne an duine damáiste ar).",
 "ipaddress"     => "Seoladh IP / ainm úsáideora",
@@ -1336,9 +1279,9 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 "locknoconfirm" => "Níor mharcáil tú an bosca daingnithe.",
 "lockdbsuccesssub" => "D'éirigh le glasáil an bhunachair sonraí",
 "unlockdbsuccesssub" => "D'éirigh le díghlasáil an bhunachair sonraí",
-"lockdbsuccesstext" => "Glasáladh an bunachar sonraí Vicipéide.
+"lockdbsuccesstext" => "Glasáladh an bunachar sonraí {{GRAMMAR:genitive|{{SITENAME}}}}.
 <br />Cuimhnigh nach mór duit é a dhíghlasáil tar éis do chuid cothabháil.",
-"unlockdbsuccesstext" => "Díghlasáladh an bunachar sonraí Vicipéide.",
+"unlockdbsuccesstext" => "Díghlasáladh an bunachar sonraí {{GRAMMAR:genitive|{{SITENAME}}}}.",
 
 # SQL query
 
@@ -1604,18 +1547,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Féach ar an leathanach catagóire
 'newimages' => 'Gailearaí na n-íomhánna nua',
 'noimages'  => 'Níl aon rud le feiscint.',
 
-# short names for language variants used for language conversion links.
-# to disable showing a particular link, set it to 'disable', e.g.
-# 'variantname-zh-sg' => 'disable',
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh' => 'zh',
-
-'variantname-is' => 'is',
-'variantname-iz' => 'iz',
-
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Úsáideoir: ',
 'speciallogtitlelabel' => 'Teideal: ',
@@ -1761,17 +1692,16 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Féach ar an leathanach catagóire
 'exif-compression-1' => 'Neamh-chomhbhrúite',
 'exif-compression-6' => 'JPEG',
 
-'exif-photometricinterpretation-1' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-orientation-1' => 'Gnáth', // 0th row: top; 0th column: left
 'exif-orientation-2' => 'Iompaithe go cothrománach', // 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rothlaithe trí 180Â°', // 0th row: bottom; 0th column: right
+'exif-orientation-3' => 'Rothlaithe trí 180°', // 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Iompaithe go hingearach', // 0th row: bottom; 0th olumn: left
-'exif-orientation-5' => 'Rothlaithe trí 90Â° CCW agus iompaithe go hingearach', // 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rothlaithe trí 90Â° CW', // 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rothlaithe trí 90Â° CW agus iompaithe go hingearach', // 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rothlaithe trí 90Â° CCW', // 0th row: left; 0th column: bottom
+'exif-orientation-5' => 'Rothlaithe trí 90° CCW agus iompaithe go hingearach', // 0th row: left; 0th column: top
+'exif-orientation-6' => 'Rothlaithe trí 90° CW', // 0th row: right; 0th column: top
+'exif-orientation-7' => 'Rothlaithe trí 90° CW agus iompaithe go hingearach', // 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Rothlaithe trí 90° CCW', // 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'Formáid shmutánach',
 'exif-planarconfiguration-2' => 'Formáid phlánach',
@@ -1968,6 +1898,11 @@ seo as feidhm ag $4.",
 require_once( "LanguageUtf8.php" );
 
 class LanguageGa extends LanguageUtf8 {
+	function LanguageGa() {
+		global $wgNamespaceNamesGa, $wgMetaNamespace;
+		LanguageUtf8::LanguageUtf8();
+		$wgNamespaceNamesGa[NS_PROJECT_TALK] = 'Plé_' . $this->convertGrammar( $wgMetaNamespace, 'genivite' );
+	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesGa;
@@ -2005,10 +1940,8 @@ class LanguageGa extends LanguageUtf8 {
 
 		if ( strcasecmp( 'Plé_í­omhá', $text) == 0) return NS_IMAGE_TALK;
 		if ( strcasecmp( 'Múnla', $text) == 0) return NS_TEMPLATE;
-		if ( strcasecmp( 'Múnla', $text) == 0) return NS_TEMPLATE;
 		if ( strcasecmp( 'Plé_múnla', $text) == 0) return NS_TEMPLATE_TALK;
 		if ( strcasecmp( 'Rang', $text) == 0) return NS_CATEGORY;
-		if ( strcasecmp( 'Catagóir', $text) == 0) return NS_CATEGORY_TALK;
 
 		return false;
 	}
@@ -2037,6 +1970,17 @@ class LanguageGa extends LanguageUtf8 {
 	# Invoked with {{GRAMMAR:transformation|word}}
 	function convertGrammar( $word, $what ) {
 		switch ( $what ) {
+		case 'genitive':
+			switch ($word) {
+			case 'Vicipéid':     $word = 'Vicipéide';
+			case 'Vicífhoclóir': $word = 'Vicífhoclóra';
+			case 'Vicíleabhair': $word = 'Vicíleabhar';
+			case 'Vicíshliocht': $word = 'Vicíshleachta';
+			case 'Vicífhoinse':  $word = 'Vicífhoinse';
+			case 'Vicíghnéithe': $word = 'Vicíghnéithe';
+			case 'Vicínuacht':   $word = 'Vicínuachta';
+			}
+
 		case 'ainmlae':
 			switch ($word) {
 			case 'an Domhnach':

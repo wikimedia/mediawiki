@@ -109,16 +109,16 @@ require_once( 'LanguageUtf8.php' );
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "首页",
 "about"			=> "关于",
-"aboutsite"      => "关于Wikipedia",
-"aboutpage"		=> "Wikipedia:关于",
+"aboutsite"      => "关于{{SITENAME}}",
+"aboutpage"		=> "{{ns:project}}:关于",
 "help"			=> "帮助",
-"helppage"		=> "Wikipedia:帮助",
+"helppage"		=> "{{ns:project}}:帮助",
 "bugreports"	=> "错误报告",
-"bugreportspage" => "Wikipedia:错误报告",
+"bugreportspage" => "{{ns:project}}:错误报告",
 "faq"			=> "常见问题解答",
-"faqpage"		=> "Wikipedia:常见问题解答",
+"faqpage"		=> "{{ns:project}}:常见问题解答",
 "edithelp"		=> "编辑帮助",
-"edithelppage"	=> "Wikipedia:如何编辑页面",
+"edithelppage"	=> "{{ns:project}}:如何编辑页面",
 "cancel"		=> "取消",
 "qbfind"		=> "寻找",
 "qbbrowse"		=> "浏览",
@@ -131,7 +131,6 @@ require_once( 'LanguageUtf8.php' );
 "currentevents" => "新闻动态",
 "errorpagetitle" => "错误",
 "returnto"		=> "返回到$1.",
-"tagline"      	=> "Wikipedia，自由的百科全书",
 "whatlinkshere"	=> "链入页面",
 "help"			=> "帮助",
 "search"		=> "搜索",
@@ -157,7 +156,7 @@ require_once( 'LanguageUtf8.php' );
 "viewcount"		=> "本页面已经被浏览$1次。",
 "printsubtitle" => "(来自 {{SERVER}})",
 "protectedpage" => "被保护页",
-"administrators" => "Wikipedia:管理员",
+"administrators" => "{{ns:project}}:管理员",
 "sysoptitle"	=> "需要管理员权限",
 "sysoptext"		=> "您刚才的请求只有拥有管理员权限的用户才可使用。
 参见$1。",
@@ -167,23 +166,21 @@ require_once( 'LanguageUtf8.php' );
 "nbytes"		=> "$1字节",
 "go"			=> "进入",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipedia",
 "sitesubtitle"	=> "",
 "retrievedfrom" => "取自\"$1\"",
-"newmessages" => "您有$1。",
 "newmessageslink" => "新信息",
- "editsection"=>"编辑",
- "toc" => "目录",
+"editsection"=>"编辑",
+"toc" => "目录",
 "showtoc" => "显示",
- 	 "hidetoc" => "隐藏",
+"hidetoc" => "隐藏",
 
 # Main script and global functions
 #
 "nosuchaction"	=> "没有这个命令",
-"nosuchactiontext" => "URL请求的命令无法被 Wikipedia 软件识别。",
+"nosuchactiontext" => "URL请求的命令无法被 {{SITENAME}} 软件识别。",
 "nosuchspecialpage" => "没有这个特殊页。",
 
-"nospecialpagetext" => "您请求的页面无法被 Wikipedia 软件识别。",
+"nospecialpagetext" => "您请求的页面无法被 {{SITENAME}} 软件识别。",
 
 # General errors
 #
@@ -200,7 +197,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "nodb"			=> "无法选择数据库 $1",
 "readonly"		=> "数据库禁止访问",
 "enterlockreason" => "请输入禁止访问原因, 包括估计重新开放的时间",
-"readonlytext"	=> "Wikipedia数据库目前禁止输入新内容及更改，
+"readonlytext"	=> "{{SITENAME}}数据库目前禁止输入新内容及更改，
 这很可能是由于数据库正在维修，之后即可恢复。
 管理员有如下解释:
 <p>$1",
@@ -230,7 +227,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "logouttext"	=> "您现在已经退出。
 您可以继续以匿名方式使用Wikipeida，或再次以相同或不同用户身份登录。",
 
-"welcomecreation" => "<h2>欢迎，$1!</h2><p>您的帐号已经建立，不要忘记设置Wikipedia个人参数。",
+"welcomecreation" => "<h2>欢迎，$1!</h2><p>您的帐号已经建立，不要忘记设置{{SITENAME}}个人参数。",
 
 "loginpagetitle" => "用户登录",
 "yourname"		=> "您的用户名",
@@ -255,13 +252,13 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "loginerror"	=> "登录错误",
 "noname"		=> "你没有输入一个有效的用户名。",
 "loginsuccesstitle" => "登录成功",
-"loginsuccess"	=> "你现在以 \"$1\"的身份登录Wikipedia。",
+"loginsuccess"	=> "你现在以 \"$1\"的身份登录{{SITENAME}}。",
 "nosuchuser"	=> "找不到用户 \"$1\"。
 检查您的拼写，或者用下面的表格建立一个新帐号。",
 "wrongpassword"	=> "您输入的密码错误，请再试一次。",
 "mailmypassword" => "将新密码寄给我",
-"passwordremindertitle" => "Wikipedia密码提醒",
-"passwordremindertext" => "有人（可能是您，来自IP地址$1)要求我们将新的Wikipedia登录密码寄给你。
+"passwordremindertitle" => "{{SITENAME}}密码提醒",
+"passwordremindertext" => "有人（可能是您，来自IP地址$1)要求我们将新的{{SITENAME}}登录密码寄给你。
 用户 \"$2\" 的密码现在是 \"$3\"。
 请立即登录并更改密码。",
 "noemail"		=> "用户\"$1\"没有登记电子邮件地址。",
@@ -279,7 +276,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "showpreview"	=> "显示预览",
 "blockedtitle"	=> "用户被封",
 "blockedtext"	=> "您的用户名或IP地址已被$1封。
-理由是：<br />'''$2'''<p>您可以与$1向其他任何[[Wikipedia:管理员|管理员]]询问。",
+理由是：<br />'''$2'''<p>您可以与$1向其他任何[[{{ns:project}}:管理员|管理员]]询问。",
  "whitelistedittitle" => "登录后才可编辑",
  	 "whitelistedittext" => "您必须先[[Special:Userlogin|登录]]才可编辑页面。",
  	 "whitelistreadtitle" => "登录后才可阅读",
@@ -291,7 +288,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "newarticle"	=> "（新）",
 "newarticletext" =>
 "您从一个链接进入了一个并不存在的页面。
-要创建该页面，请在下面的编辑框中输入内容（详情参见Wikipedia:帮助|帮助页面]]）。
+要创建该页面，请在下面的编辑框中输入内容（详情参见{{ns:project}}:帮助|帮助页面]]）。
 如果您不小心来到本页面，直接点击您浏览器中的“返回”按钮。",
 
 "anontalkpagetext" => "---- ''这是一个还未建立帐号的匿名用户的对话页。我们因此只能用[[IP地址]]来与他／她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为本页上的评语与您无关，请[[Special:Userlogin|创建新帐号或登录]]以避免在未来于其他匿名用户混淆。''",
@@ -314,7 +311,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "editingold"	=> "<strong>警告：你正在编辑的是本页的旧版本。
 如果你保存它的话，在本版本之后的任何修改都会丢失。</strong>",
 "yourdiff"		=> "差别",
-"copyrightwarning" => "请注意对Wikipedia的任何贡献都将被认为是在GNU自由文档协议证书下发布。
+"copyrightwarning" => "请注意对{{SITENAME}}的任何贡献都将被认为是在GNU自由文档协议证书下发布。
 (细节请见$1).
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
 您同时也向我们保证你所提交的内容是你自己所作，或得自一个不受版权保护或相似自由的来源。
@@ -376,9 +373,9 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "powersearchtext" => "
 搜索名字空间：<br />$1<br />$2列出重定向页面；搜索$3 $9",
 
-"searchdisabled" => "<p>Wikipedia内部搜索功能由于高峰时段服务器超载而停止使用。
+"searchdisabled" => "<p>{{SITENAME}}内部搜索功能由于高峰时段服务器超载而停止使用。
 您可以暂时通过
-<a href=\"http://google.com/\">google</a>搜索Wikipedia。
+<a href=\"http://google.com/\">google</a>搜索{{SITENAME}}。
 谢谢您的耐心。",
 
 # Preferences page
@@ -386,8 +383,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "preferences"	=> "参数设置",
 "prefsnologin" => "还未登录",
 "prefsnologintext"	=> "您必须先[[Special:Userlogin|登录]]才能设置个人参数。",
-"prefslogintext" => "你已经以\"$1\"的身份登录。
-你的内部ID是$2。",
 "prefsreset"	=> "参数重新设置。",
 "qbsettings"	=> "快速导航条设置",
 "changepassword" => "更改密码",
@@ -416,24 +411,22 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "timezonetext"	=> "输入当地时间与服务器时间(UTC)的时差。",
 "localtime"	=> "当地时间",
 "timezoneoffset" => "差",
-"emailflag"		=> "禁止其他用户发e-mail给我",
 
 # Recent changes
 #
 "changes" => "更改",
 "recentchanges" => "最近更改",
-"recentchangestext" => "本页跟踪Wikipedia内最新的更改。
-[[Wikipedia:欢迎，新来者|欢迎，新来者]]！
-请参见这些页面：[[wikipedia:常见问题解答|Wikipedia常见问题解答]]、
-[[Wikipedia:守则与指导|Wikipedia守则]]
-（特别是[[wikipedia:命名常规|命名常规]]、
-[[wikipedia:中性的观点|中立观点]]）
-和[[wikipedia:最常见失礼行为|最常见失礼行为]]。
+"recentchangestext" => "本页跟踪{{SITENAME}}内最新的更改。
+[[{{ns:project}}:欢迎，新来者|欢迎，新来者]]！
+请参见这些页面：[[{{ns:project}}:常见问题解答|{{SITENAME}}常见问题解答]]、
+[[{{ns:project}}:守则与指导|{{SITENAME}}守则]]
+（特别是[[{{ns:project}}:命名常规|命名常规]]、
+[[{{ns:project}}:中性的观点|中立观点]]）
+和[[{{ns:project}}:最常见失礼行为|最常见失礼行为]]。
 
-如果您希望 Wikipedia 成功，那么请您不要增加受其它[[wikipedia:版权信息|版权]]
+如果您希望 {{SITENAME}} 成功，那么请您不要增加受其它[[{{ns:project}}:版权信息|版权]]
 限制的材料，这一点将非常重要。相关的法律责任会伤害本项工程，所以请不要这样做。
-此外请参见
-[http://meta.wikipedia.org/wiki/Special:Recentchanges 最近的 meta 讨论]。",
+此外请参见",
 
 "rcloaderr"		=> "载入最近更改",
 "rcnote"		=> "下面是最近<strong>$2</strong>天内最新的<strong>$1</strong>次改动。",
@@ -462,7 +455,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "uploadnologintext"	=> "您必须先[[Special:Userlogin|登录]]
 才能上载文件。",
 "uploaderror"	=> "上载错误",
-"uploadtext"	=> "'''停止！'''在您上载之前，请先阅读并遵守Wikipedia
+"uploadtext"	=> "'''停止！'''在您上载之前，请先阅读并遵守{{SITENAME}}
 [[Project:Image use policy|图像使用守则]]。
 
 如果您要查看或搜索之前上载的图像，
@@ -484,7 +477,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 '''<nowiki>[[图像:file.png|解释文字]]</nowiki>'''
 或'''<nowiki>[[media:file.ogg]]</nowiki>'''来连接音像文件。
 
-请注意在Wikipedia页面中，其他人可能会为了百科全书的利益而编辑或删除您的上载文件，
+请注意在{{SITENAME}}页面中，其他人可能会为了百科全书的利益而编辑或删除您的上载文件，
 而如果您滥用上载系统，您则有可能被禁止使用上载功能。",
 "uploadlog"		=> "上载纪录",
 "uploadlogpage" => "上载纪录",
@@ -494,8 +487,8 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 </ul>",
 "filename"		=> "文件名",
 "filedesc"		=> "简述",
-"copyrightpage" => "Wikipedia:版权信息",
-"copyrightpagename" => "Wikipedia版权",
+"copyrightpage" => "{{ns:project}}:版权信息",
+"copyrightpagename" => "{{SITENAME}}版权",
 "uploadedfiles"	=> "已上载文件",
 "minlength"		=> "图像名字必须至少有三个字母。",
 "badfilename"	=> "图像名已被改为\"$1\"。",
@@ -540,7 +533,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "sitestats"		=> "站点统计",
 "userstats"		=> "用户统计",
 "sitestatstext" => "数据库中共有 <b>$1</b> 页页面；
-其中包括对话页、关于 Wikipedia 的页面、最少量的\"stub\"页、重定向的页面，
+其中包括对话页、关于 {{SITENAME}} 的页面、最少量的\"stub\"页、重定向的页面，
 以及未达到条目质量的页面；除此之外还有 <b>$2</b> 页可能是合乎标准的条目。
 <p>从系统软件升级以来，全站点共有页面浏览 <b>$3</b> 次，
 页面编辑 <b>$4</b> 次，每页平均编辑 <b>$5</b> 次，
@@ -549,12 +542,12 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 # Maintenance Page
 #
 "maintenance"		=> "维护页",
-"maintnancepagetext"	=> "这页面提供了几个帮助Wikipedia日常维护的工具。
+"maintnancepagetext"	=> "这页面提供了几个帮助{{SITENAME}}日常维护的工具。
 但其中几个会对我们的数据库造成压力，
 所以请您不要在每修理好几个项目后就按重新载入 ;-)",
 "maintenancebacklink"	=> "返回维护页",
 "disambiguations"	=> "消含糊页",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{{ns:project}}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "以下的条目都有到消含糊页的链接，但它们应该是链到适当的题目。<br />一个页面会被视为消含糊页如果它是链自$1.<br />由其它他名字空间来的链接<i>不会</i>在这儿被列出来。",
 "doubleredirects"	=> "双重重定向",
 "doubleredirectstext"	=> "<b>请注意：</b> 这列表可能包括不正确的反应。
@@ -597,12 +590,12 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "newpages"		=> "新页面",
 "intl"		=> "跨语言链接",
 "movethispage"	=> "移动本页",
-"unusedimagestext" => "<p>请注意其他网站（例如其他语言版本的Wikipedia）
+"unusedimagestext" => "<p>请注意其他网站（例如其他语言版本的{{SITENAME}}）
 有可能直接链接本图像，所以这里列出的图像有可能依然被使用。",
 "booksources"	=> "战外书源",
 "booksourcetext" => "以下是链接到销售书籍的网站列表，
 因此有可能拥有您所寻找的图书的进一步资料。
-Wikipedia与这些公司并没有任何商业关系，因此本表不应该
+{{SITENAME}}与这些公司并没有任何商业关系，因此本表不应该
 被看作是一种背书。",
 "alphaindexline" => "$1 到 $2",
 
@@ -671,7 +664,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "confirmdelete" => "确认删除",
 "deletesub"		=> "（正在删除“$1”）",
 "confirmdeletetext" => "您即将从数据库中永远删除一个页面或图像以及其历史。
-请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[Wikipedia:守则与指导]]。",
+请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{ns:project}}:守则与指导]]。",
 "actioncomplete" => "操作完成",
 "deletedtext"	=> "“$1”已经被删除。
 最近删除的纪录请参见$2。",
@@ -705,7 +698,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "undeletebtn" => "恢复！",
 "undeletedarticle" => "已经恢复“$1”",
 "undeletedtext"   => "[[:$1|$1]]已经被成功复原。
-有关Wikipedia最近的删除与复原，参见[[Wikipedia:删除纪录]]",
+有关{{SITENAME}}最近的删除与复原，参见[[{{ns:project}}:删除纪录]]",
 
 # Contributions
 #
@@ -731,7 +724,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 #
 "blockip"		=> "查封IP地址",
 "blockiptext"	=> "用下面的表单来禁止来自某一特定IP地址的修改权限。
-只有在为防止破坏，及符合[[Wikipedia:守则与指导]]的情况下才可采取此行动。
+只有在为防止破坏，及符合[[{{ns:project}}:守则与指导]]的情况下才可采取此行动。
 请在下面输入一个具体的理由（例如引述一个被破坏的页面）。",
 "ipaddress"		=> "IP地址",
 "ipbreason"		=> "原因",
@@ -766,9 +759,9 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "lockdbsuccesssub" => "数据库成功上锁",
 
 "unlockdbsuccesssub" => "数据库开放",
-"lockdbsuccesstext" => "Wikipedia数据库已经上锁。
+"lockdbsuccesstext" => "{{SITENAME}}数据库已经上锁。
 <br />请记住在维护完成后重新开放数据库。",
-"unlockdbsuccesstext" => "Wikipedia数据库重新开放。",
+"unlockdbsuccesstext" => "{{SITENAME}}数据库重新开放。",
 
 # Move page
 #
@@ -906,7 +899,7 @@ class LanguageZh_cn extends LanguageUtf8 {
 		if ( 0 == strcasecmp( "对话", $text ) ) { return 1; }
 		if ( 0 == strcasecmp( "用户", $text ) ) { return 2; }
 		if ( 0 == strcasecmp( "用户对话", $text ) ) { return 3; }
-		if ( 0 == strcasecmp( "Wikipedia_对话", $text ) ) { return 5; }
+		if ( 0 == strcasecmp( "{{SITENAME}}_对话", $text ) ) { return 5; }
 		if ( 0 == strcasecmp( "图像", $text ) ) { return 6; }
 		if ( 0 == strcasecmp( "图像对话", $text ) ) { return 7; }
 		return false;

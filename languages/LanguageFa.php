@@ -13,7 +13,6 @@ require_once('LanguageUtf8.php');
 # Language-specific text
 #--------------------------------------------------------------------------
 
-/** TODO: fix me! */
 /* private */ $wgNamespaceNamesFa = array(
 	NS_MEDIA          => "مدیا",
 	NS_SPECIAL        => "ویژه",
@@ -143,7 +142,6 @@ require_once('LanguageUtf8.php');
 'disclaimerpage'		=> "{{ns:project}}:تکذیب‌نامه‌ی عمومی",
 'errorpagetitle' => "خطا",
 'returnto'		=> "بازگشت به $1.",
-'tagline'      	=> "از {{SITENAME}}، دایرةالمعارف آزاد.",
 'whatlinkshere'	=> "صفحاتی که به اینجا پیوند دارند",
 'help'			=> "راهنما",
 'search'		=> "جستجو شود",
@@ -179,11 +177,7 @@ require_once('LanguageUtf8.php');
 'nbytes'		=> "$1 بایت",
 'go'			=> "برو",
 'ok'			=> "باشد",
-'sitetitle'		=> "{{SITENAME}}",
-'sitesubtitle'	=> "",
 'retrievedfrom' => "گرفته شده از «$1»",
-'newmessages' => "$1 دارید.",
-'newmessageslink' => "پیغام جدید",
 'editsection'=>"ویرایش",
 'toc' => "فهرست مندرجات",
 'showtoc' => "نمایش داده شود",
@@ -325,7 +319,6 @@ cookieها را از کار انداخته‌اید. لطفاً cookieها را 
 'media_tip'=>"پیوند پرونده‌ی رسانه",
 'sig_tip'=>"امضای شما و برچسب زمان",
 'hr_tip'=>"خط افقی (با صرفه‌جویی استفاده کنید)",
-'infobox'=>"برای درج متن نمونه روی یک دکمه کلیک کنید",
 
 # Edit pages
 #
@@ -478,10 +471,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9",
 'preferences'	=> "ترجیحات",
 'prefsnologin' => "به سیستم وارد نشده‌اید",
 'prefsnologintext'	=> "برای تنظیم ترجیحات کاربر باید [[ویژه:Userlogin|به سیستم وارد شوید]].",
-'prefslogintext' => "شما با نام «$1» وارد سیستم شده‌اید.
-شماره‌ی شناسایی داخلی شما $2 است.
-
-برای راهنمایی در فهمیدن گزینه‌ها، به [[{{ns:project}}:راهنمای ترجیحات کاربر]] مراجعه کنید.",
 'prefsreset'	=> "ترجیحات از حافظه میزان شد.",
 'qbsettings'	=> "تنظیمات نوار سریع",
 'changepassword' => "تغییر کلمه‌ی عبور",
@@ -514,7 +503,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9",
 'timezoneoffset' => "تفاوت",
 'servertime'	=> "زمان فعلی خادم",
 'guesstimezone' => "از مرورگر گرفته شود",
-'emailflag'		=> "از کار انداختن پست الکترونیکی از کاربران دیگر",
 'defaultns'		=> "به طور پیشفرض در این فضاهای نام جستجو شود:",
 
 # Recent changes
@@ -526,8 +514,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9",
 'rcnote'		=> "در زیر آخرین <strong>$1</strong> تغییر در <strong>$2</strong> روز اخیر آمده است.",
 'rcnotefrom'	=> "در زیر تغییرات از تاریخ <b>$2</b> آمده‌اند (تا <b>$1</b> مورد نشان داده می‌شود).",
 'rclistfrom'	=> "نمایش تغییرات جدید با شروع از $1",
-# 'rclinks'		=> "نمایش آخرین $1 تغییر در $2 ساعت اخیر / $3 روز اخیر",
-# 'rclinks'		=> "نمایش آخرین $1 تغییر در $2 روز اخیر.",
 'showhideminor'         => "ویرایش‌های جزئی $1 | $2 bots | $3 logged in users | $4 patrolled edits",
 'rclinks'		=> "نمایش آخرین $1 تغییر در $2 روز اخیر؛ $3",
 'rchide'		=> "به شکل $4؛ $1 ویرایش جزئی؛ $2 فضای نام ثانویه؛ $3 ویرایش چندگانه.",
@@ -659,14 +645,12 @@ you may be blocked from uploading if you abuse the system.",
 # Maintenance Page
 #
 'maintenance'		=> "صفحه‌ی نگهداری",
-'maintnancepagetext'	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 'maintenancebacklink'	=> "بازگشت به صفحه‌ی نگهداری",
 'disambiguations'	=> "صفحات رفع ابهام",
 'disambiguationspage'	=> "{{ns:project}}:پیوند به صفحات رفع ابهام",
 'disambiguationstext'	=> "مقاله‌های زیر به یک <i>صفحه‌ی رفع ابهام</i> پیوند دارند. به جای این، این صفحات باید به
 They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 'doubleredirects'	=> "تغییرمسیرهای دوتایی",
-'doubleredirectstext'	=> "<b>توجه:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 'brokenredirects'	=> "تغییرمسیرهای خراب",
 'brokenredirectstext'	=> "تغییرمسیرهای زیر به یک صفحه‌ی ناموجود پیوند دارند.",
 'selflinks'		=> "صفحات با پیوند به خود",
@@ -783,17 +767,10 @@ $3...
 #
 'deletepage'	=> "حذف صفحه",
 'confirm'		=> "تأیید",
-'excontent' => "content was: '$1'",
-'exbeforeblank' => "content before blanking was: '$1'",
 'exblank' => "صفحه خالی بود",
 'confirmdelete' => "تأیید حذف",
 'deletesub'		=> "(در حال حذف «$1»)",
 'historywarning' => "هشدار: صفحه‌ای که دارید حذف می‌کند تاریخچه‌ای دارد: ",
-'confirmdeletetext' => "You are about to permanently delete a page
-or image along with all of its history from the database.
-Please confirm that you intend to do this, that you understand the
-consequences, and that you are doing this in accordance with
-[[{{ns:project}}:Policy]].",
 'actioncomplete' => "عمل انجام شد",
 'deletedtext'	=> "«$1» حذف شده است.
 برای سابقه‌ی حذف‌های اخیر به $2 مراجعه کنید.",
@@ -807,9 +784,6 @@ consequences, and that you are doing this in accordance with
 'reverted'		=> "به نسخه‌ی قدیمی‌تر برگردانده شد",
 'deletecomment'	=> "دلیل حذف",
 'imagereverted' => "برگرداندن به نسخه‌ی قدیمی‌تر با موفقیت انجام شد.",
-'rollback'		=> 'Roll back edits',
-'rollbacklink'	=> 'rollback',
-'rollbackfailed' => 'Rollback failed',
 'cantrollback'	=> "نمی‌توان ویرایش را برگرداند؛ آخرین مشارکت‌کننده تنها مؤلف این مقاله است.",
 'alreadyrolled'	=> "Cannot rollback last edit of [[$1]]
 by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already.
@@ -897,15 +871,6 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 #
 'lockdb'		=> "قفل کردن پایگاه داده",
 'unlockdb'		=> "از قفل در آوردن پایگاه داده",
-'lockdbtext'	=> "Locking the database will suspend the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do, and that you will
-unlock the database when your maintenance is done.",
-'unlockdbtext'	=> "Unlocking the database will restore the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do.",
 'lockconfirm'	=> "بله، من جداً می‌خواهم پایگاه داده را قفل کنم.",
 'unlockconfirm'	=> "بله، من جداً می‌خواهم پایگاه داده را از قفل در آورم.",
 'lockbtn'		=> "قفل کردن پایگاه داده",
@@ -935,12 +900,6 @@ Please confirm that this is what you intend to do.",
 <b>هشدار!</b>
 این کار ممکن است تغییر اساسی و غیرمنتظره‌ای برای صفحات محبوب باشد؛
 لطفاً مطمئن شوید که قبل از ادامه دادن عواقب این کار را درک می‌کنید.",
-'movepagetalktext' => "The associated talk page, if any, will be automatically moved along with it '''unless:'''
-*You are moving the page across namespaces,
-*A non-empty talk page already exists under the new name, or
-*You uncheck the box below.
-
-In those cases, you will have to move or merge the page manually if desired.",
 'movearticle'	=> "انتقال صفحه",
 'movenologin'	=> "به سیستم وارد نشده‌اید",
 'movenologintext' => "برای انتقال صفحات باید کاربر ثبت‌شده بوده و

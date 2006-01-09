@@ -191,6 +191,13 @@ i18n / Languages:
 * (bug 4457) Update for Portuguese language (pt)
 * convertPlural breakage fixed a little
 * (bug 4144) Support for Sudanese language (Basa Sunda)
+* Big cleanup:
+ - Removed obsolote, badly or untranslated messages
+ - Removed references to wikipedia/wikimedia etc in messages
+ - Other cleanup, like removing html and javascript and extension calls
+ - Removed hardcoded namespaces: Tt, Ms, Ia, Ga, Fo, Bn, Csb, He, Nv, Oc, Tlh
+ - Removed some useless backwards compatibility hacks
+ - Fixed formatnum on many languages
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits

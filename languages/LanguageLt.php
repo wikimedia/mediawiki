@@ -112,7 +112,7 @@ taip pat bus \'\'\'paryškinti\'\'\' [[Special:Recentchanges|naujausių keitimų
 <p>Jei bet kuriuo metu užsinorėtumėte nustoti stebėti straipsnį, spustelkite "nebestebėti" viršutiniame meniu.',
 'addgroup' => 'Pridėti grupę',
 'addgrouplogentry' => 'Pridėta grupė $2',
-'administrators' => 'Wikipedia:Administratoriai',
+'administrators' => '{{ns:project}}:Administratoriai',
 'allarticles' => 'Visi straipsniai',
 'allinnamespace' => 'Visi puslapiai (sritis - $1)',
 'alllogstext' => 'Bendra įdėtų failų, ištrynimų, užrakinimų, blokavimų ir teisių suteikimų istorija.
@@ -172,7 +172,7 @@ Pamėginkite kitokią užklausą.',
 'blanknamespace' => '(straipsniai)',
 'blockedtext' => 'Jūsų vartotojo vardą arba IP adresą užblokavo $1.
 Nurodyta priežastis:<br />\'\'$2\'\'<p>Jūs galite susisiekti su $1 arba kuriuo nors kitu
-[[Wikipedia:Administrators|administratoriumi]] aptarti neaiškumus dėl blokavimo.
+[[{{ns:project}}:Administrators|administratoriumi]] aptarti neaiškumus dėl blokavimo.
 
 Atkreipkite dėmesį, kad negalėsite išsiųsti el. laiško, jei nesate užsiregistravę ir pateikę realaus savo el. pašto adreso vartotojo [[Special:Preferences|nustatymuose]].
 
@@ -182,14 +182,13 @@ Jūsų IP adresas yra $3. Prašome nurodyti šį adresą visais atvejais kai kre
 'blockipsuccesssub' => 'Užblokavimas pavyko',
 'blockipsuccesstext' => '"$1" buvo užblokuotas.
 <br />Aplankykite [[Special:Ipblocklist|IP blokų sąrašą]] norėdami jį peržiūrėti.',
-'blockiptext' => 'Naudokite šią formą, norėdami uždrausti rašymo teises iš nurodytų IP adresų ar vartotojų. Tai turėtų būti atliekama tiktai sustabdyti vandalizmui, bei priderinant [[Wikipedia:Policy|politiką]].
+'blockiptext' => 'Naudokite šią formą, norėdami uždrausti rašymo teises iš nurodytų IP adresų ar vartotojų. Tai turėtų būti atliekama tiktai sustabdyti vandalizmui, bei priderinant [[{{ns:project}}:Policy|politiką]].
 Nurodykite tikslią priežastį apačioje (pavyzdžiui nurodydami sugadintus puslapius).',
 'blocklink' => 'blokuoti',
 'blocklistline' => '$1, $2 blokavo $3 (galioja iki $4)',
 'blocklogentry' => 'blokavo "$1", blokavimo laikas - $2',
 'blocklogpage' => 'Blokavimų_sąrašas',
 'blocklogtext' => 'Čia yra vartotojų blokavimo ir atblokavimo registras. Automatiškai blokuoti IP adresai neišvardinti.  Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:Ipblocklist|IP blokavimų sąrašą]].',
-'boardvote' => 'Wikimedia tarybos rinkimai',
 'bold_sample' => 'Paryškintas tekstas',
 'bold_tip' => 'Paryškinti tekstą',
 'booksources' => 'Knygų paieška',
@@ -216,7 +215,6 @@ Nurodykite tikslią priežastį apačioje (pavyzdžiui nurodydami sugadintus pus
 'changegrouplogentry' => 'Pakeitė grupę $2',
 'changepassword' => 'Pakeisti slaptažodį',
 'changes' => 'pasikeitimai',
-'checkuser' => 'Patikrinti vartotoją',
 'clearyourcache' => '\'\'\'Dėmesio:\'\'\' Išsaugoję turite išvalyti naršyklės spartinančią saugyklą (cache): \'\'\'Mozilla/Safari/Konqueror:\'\'\' spausdami \'\'Shift\'\' pasirinkite \'\'reload\'\' (arba \'\'Ctrl-Shift-R\'\'), \'\'\'IE:\'\'\' \'\'Ctrl-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\'.',
 'columns' => 'Stulpeliai',
 'compareselectedversions' => 'Palyginti pasirinktas versijas',
@@ -227,7 +225,7 @@ kartu su visa istorija iš duomenų bazės.
 Prašome patvirtinti kad jūs norite tai padaryti,
 žinote kokios yra veiksmo pasekmės,
 ir kad jūs tai darote nenusižengdamas
-[[Wikipedia:Policy|Wikipedijos Politikai]].',
+[[{{ns:project}}:Policy|{{SITENAME}}jos Politikai]].', // TODO: grammar
 'confirmemail' => 'Patvirtinkite el.pašto adresą',
 'confirmemail_body' => 'Kažkas (tikriausiai jūs) IP adresu užregistravo
 vartotoją "$2" susietą su šiuo el.pašto adresu projekte {{SITENAME}}.
@@ -266,20 +264,18 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti straipsnį.',
 'contribsub' => 'Vartotojo $1',
 'contributions' => 'Vartotojo indėlis',
 'copyright' => 'Turinys pateikiamas su $1 licencija.',
-'copyrightpage' => 'Wikipedia:Copyrights',
-'copyrightpagename' => 'Wikipedia copyright',
-'copyrightwarning' => '
-<div style="font-weight: bold; font-size: 120%;">Jūsų pakeitimai įsigalios iškart.</div>
-* Jei norite tik išmėginti redagavimą, naudokite [[Wikipedia:Sandbox|smėlio dėžę]].
+'copyrightpage' => '{{ns:project}}:Copyrights',
+'copyrightpagename' => '{{SITENAME}} copyright',
+'copyrightwarning' => 'ūsų pakeitimai įsigalios iškart.</div>
+* Jei norite tik išmėginti redagavimą, naudokite [[{{ns:project}}:Sandbox|smėlio dėžę]].
 * Kūrimas, redagavimas ir tobulinimas yra skatinami; tačiau, netikę keitimai bus greitai atmesti.
 * \'\'\'Nepamirškite \'\'cituoti šaltinių\'\', kad kiti galėtų įsitikinti, kad pakeitimai teisingi.
 ----
-<div style="font-weight: bold; font-size: 120%;">NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!</div>
+NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!
 
 *Viskam, kas patenka į projektąą, yra taikoma GNU Laisvos Documentacijos Licencija (detaliau - $1).
 *\'\'\'Jei nepageidaujate, kad jūsų įvestas turinys būtų negailestingai redaguojamas ir platinamas, nerašykite čia.\'\'\'
-* Jūs taip pat pasižadate, kad tai jūsų pačių rašytas turinys arba kopijuotas iš viešų ar panašių nemokamų šaltinių (dauguma internetinių puslapių nepatenka į viešų šaltinių kategoriją).
-</div>',
+* Jūs taip pat pasižadate, kad tai jūsų pačių rašytas turinys arba kopijuotas iš viešų ar panašių nemokamų šaltinių (dauguma internetinių puslapių nepatenka į viešų šaltinių kategoriją).',
 'couldntremove' => 'Nepavyko pašalinti \'$1\'...',
 'createaccount' => 'Sukurti vartotoją',
 'createaccountmail' => 'el.paštu',
@@ -310,7 +306,7 @@ iš funkcijos: "$2". Klaida: "$3: $4".',
 'dec' => 'Gru',
 'december' => 'Gruodžio',
 'defaultns' => 'Pagal nutylėjimą ieškoti šiose vardų erdvėse:',
-'defemailsubject' => 'Wikipedia e-mail',
+'defemailsubject' => '{{SITENAME}} e-mail',
 'delete' => 'trinti',
 'delete_and_move' => 'Perkelti ištrinant',
 'delete_and_move_reason' => 'Ištrinta perkeliant Deleted',
@@ -333,9 +329,7 @@ iš funkcijos: "$2". Klaida: "$3: $4".',
 'diff' => 'skirt',
 'difference' => '(Skirtumai tarp versijų)',
 'disambiguations' => 'Nukreipiamieji puslapiai',
-'disambiguationspage' => 'Wikipedia:Links_to_disambiguating_pages',
 'disambiguationstext' => 'Žemiau išvardinti straipsniai, rodantys į <i>nukreipiamuosius puslapius</i>. Nuorodos turėtų būti patikslintos kad rodytų į konkretų straipsnį.<br />Puslapis skaitomas nukreipiamuoju, jei nuoroda į jį yra $1.<br />',
-'disclaimerpage' => 'Wikipedia:General_disclaimer',
 'disclaimers' => 'Jokių Garantijų',
 'doubleredirects' => 'Dvigubi peradresavimai',
 'doubleredirectstext' => 'Kiekvienoje eilutėje išvardintas pirmasis ir antrasis peradresavimai, taip pat pirma antrojo peradresavimo eilutė, paprastai rodanti į "teisingą" puslapį, į kurį turi būti rodoma.',
@@ -359,7 +353,6 @@ Jei išsaugosite savo keitimus, prieš tai daryti pakeitimai pradings.</strong>'
 'editusergroup' => 'Redaguoti naudotojo gruoes',
 'email' => 'El. paštas',
 'emailconfirmlink' => 'Patvirtinkite savo el.pašto adresą',
-'emailflag' => 'Uždrausti el. paštą iš kitų vartotojų',
 'emailforlost' => '<!--* Elektroninio pašto adresas nėra privalomas. Tačiau jei įvesite, kiti vartotojai galės siųsti jums laiškus nesužinodami adreso. Taip pat pašto adresas gelbsti pamiršus slaptažodį.
 -->',
 'emailfrom' => 'Nuo',
@@ -622,14 +615,10 @@ Norėdami sukurti straipsnį, pradėkite žemiau esančiame įvedimo lauke
 Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką \'atgal\' (\'\'\'back\'\'\').<br />
 \'\'\'Nepamirškite\'\'\' straipsnio turinį pateikti taip, kad žmogus suprastu tekstą be konteksto (dažniausiai žmonės pateks į šį puslapį visai kitu keliu, nei patekote jūs).',
 'newimages' => 'Naujausi paveikslėliai',
-'newmessages' => 'Gavote $1.',
 'newmessageslink' => 'naujų žinučių',
 'newpages' => 'Naujausi straipsniai',
 'newpassword' => 'Naujas slaptažodis',
 'newtitle' => 'Naujas pavadinimas',
-'newuserloglog' => 'Sukurtas vartotojas [[User:$1|$1]] ([[User talk:$1|$2]] | [[Special:Contributions/$1|$3]])',
-'newuserlogpage' => 'Sukurti vartotojai',
-'newuserlogpagetext' => 'Čia pateikiamas sukurtų vartotojų sąrašas',
 'newusersonly' => ' (tik naujiems vartotojams)',
 'newwindow' => '(atsidaro naujame lange)',
 'next' => 'sekantis',
@@ -687,7 +676,7 @@ Galite \'\'\'[[:<nowiki>$1</nowiki>|sukurti straipsnį šiuo pavadinimu]]\'\'\'.
 'permalink' => 'Nuolatinė nuoroda',
 'personaltools' => 'Asmeniniai įrankiai',
 'portal' => 'Bendruomenė',
-'portal-url' => 'Wikipedia:Bendruomenė',
+'portal-url' => '{{ns:project}}:Bendruomenė',
 'postcomment' => 'Rašyti komentarą',
 'preferences' => 'Nustatymai',
 'prefixindex' => 'Rodyklė pagal pavadinimo pradžią',
@@ -697,31 +686,27 @@ Galite \'\'\'[[:<nowiki>$1</nowiki>|sukurti straipsnį šiuo pavadinimu]]\'\'\'.
 'prefs-misc' => 'Įvairūs nustatymai',
 'prefs-personal' => 'Vartotojo duomenys',
 'prefs-rc' => 'Naujausių pasikeitimų vaizdavimas',
-'prefslogintext' => 'Jūs esate prisijungęs kaip "$1".
-Jūsų vidinis numeris yra $2.
-
-<!--See [[Wikipedia:User preferences help]] for help deciphering the options.-->',
 'preview' => 'Peržiūra',
 'previewnote' => 'Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!',
 'previousdiff' => '← Prieš tai darytas keitimas',
 'previousrevision' => '←Prieš tai buvusi versija',
 'prevn' => 'ankstesnius $1',
 'printableversion' => 'Versija spausdinimui',
-'printsubtitle' => '(Iš http://lt.wikipedia.org)',
+'printsubtitle' => '(Iš {{SERVER}})',
 'protect' => 'Užrakinti',
 'protectcomment' => 'Rakinimo priežastis',
 'protectedarticle' => 'užrakino $1',
 'protectedpage' => 'Užrakintas puslapis',
 'protectedpagewarning' => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys vartotojai. Nepamirškite laikytis
-[[Wikipedija:Puslapių rakinimas|užrakintų puslapių]] taisyklių.</strong>',
+[[{{ns:project}}:Puslapių rakinimas|užrakintų puslapių]] taisyklių.</strong>',
 'protectedtext' => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo;
 tai gali būti padaryta dėl skirtingų priežasčių, plačiau -
-[[Wikipedia:Puslapių rakinimas|Puslapių rakinimas]].
+[[{{ns:project}}:Puslapių rakinimas|Puslapių rakinimas]].
 
 Jūs galite žiūrėti straipsnio turinį arba jį kopijuoti:',
 'protectlogpage' => 'Rakinimų_sąrašas',
 'protectlogtext' => 'Žemiau yra užrakinimų bei atrakinimų sąrašas.
-Daugiau informacijos puslapyje [[Wikipedia:Puslapių rakinimas|Puslapių rakinimas]].',
+Daugiau informacijos puslapyje [[{{ns:project}}:Puslapių rakinimas|Puslapių rakinimas]].',
 'protectmoveonly' => 'Uždrausti tik perkėlimus',
 'protectpage' => 'Rakinti puslapį',
 'protectsub' => '(Rakinamas "$1")',
@@ -752,17 +737,12 @@ Užrakinusiojo administratoriaus pateiktas rakinimo aprašymas:
 'recentchangesall' => 'visos',
 'recentchangescount' => 'Kiek pakeitimų rodoma naujausių keitimų sąraše',
 'recentchangeslinked' => 'Susiję keitimai',
-'recentchangestext' => '{{Wikipedia:Recentchanges}}',
 'redirectedfrom' => '(Nukreipta iš puslapio $1)',
 'remembermypassword' => 'Atsiminti slaptažodį.',
 'removechecked' => 'Išmesti pažymėtus straipsnius iš stebimų sąrašo',
 'removedwatch' => 'Išmesta iš stebimų',
 'removedwatchtext' => 'Straipsnis "$1" išmestas iš jūsų stebimų straipsnių sąrašo.',
 'removingchecked' => 'Pasirinkti straipsniai išmetami iš stebimų sąrašo...',
-'renameuser' => 'Pervadinti vartotoją',
-'renameusernew' => 'Naujas vartotojo vardas:',
-'renameuserold' => 'Senas vartotojo vardas:',
-'renameusersubmit' => 'Pervadinti',
 'resetprefs' => 'Atšaukti nustatymus',
 'restorelink' => 'ištrintų versijų: $1',
 'restorelink1' => 'vieną ištrinta versiją',
@@ -792,7 +772,6 @@ Patikrinkite adresą (URL), kurio patekote į šį puslapį.',
 'search' => 'Paieška',
 'searchdisabled' => '<p style="margin: 1.5em 2em 1em">Projekto \'{{SITENAME}}\' paieška yra uždrausta dėl techninių kliūčių. Galite mėginti ieškoti Google paieškos sistemoje.
 <span style="font-size: 89%; display: block; margin-left: .2em">Išorinėse paieškos sistemose (kaip Google) Vikipedijos gali būti šiek tiek pasenę duomenys.</span></p>',
-'searchnumber' => '<strong>Rezultatai $1-$2 iš $3</strong>',
 'searchquery' => 'Ieškoma "$1"',
 'searchresults' => 'Paieškos rezultatai',
 'searchresultshead' => 'Paieškos nustatymai',
@@ -800,7 +779,6 @@ Patikrinkite adresą (URL), kurio patekote į šį puslapį.',
 'sep' => 'Rgs',
 'september' => 'Rugsėjo',
 'servertime' => 'Serverio laikas yra',
-'sharedupload' => 'Šis failas yra iš bendros [[Commons:Main Page|Wikimedia Commons]] nemokamų resursų duomenų bazės, palaikomos [[Wikimedia Foundation]] organizacijos. Norėdami sužinoti licencijavimo smulkmenas, prašome žiūrėti [[Commons:Image:{{PAGENAME}}|paveikslėlio aprašymą]].',
 'shortpages' => 'Trumpiausi straipsniai',
 'show' => 'Rodyti',
 'showbigimage' => 'Rodyti geresnės raiškos versiją ($1x$2, $3 KB)',
@@ -810,16 +788,6 @@ Patikrinkite adresą (URL), kurio patekote į šį puslapį.',
 'showlast' => 'Rodyti paskutinius $1 paveikslėlių, rūšiuojant $2.',
 'showpreview' => 'Kaip atrodys',
 'showtoc' => 'rodyti',
-'sidebar' => '
-* navigation
-** mainpage|mainpage
-** portal-url|portal
-** currentevents-url|currentevents
-** recentchanges-url|recentchanges
-** randompage-url|randompage
-** helppage|help
-** sitesupport-url|sitesupport',
-'sitematrix' => 'Wikimedia svetainių sąrašas',
 'sitestats' => 'Tinklalapio statistika',
 'sitestatstext' => 'Duomenų bazėje šiuo metu esančių puslapių - \'\'\'$1\'\'\'.
 Į šį skaičių įeina aptarimų puslapiai, pagalbiniai projekto puslapiai, peradresavimo puslapiai ir kiti, neskaičiuojami kaip straipsniai.
@@ -830,7 +798,6 @@ Nuo wiki pradžios yra atlikta \'\'\'$4\'\'\' puslapių redagavimų - vidutiniš
 <!-- peržiūrėta: $3 vidutiniškai puslapiui: $6 -->',
 'sitesubtitle' => '',
 'sitesupport' => 'Parama',
-'sitesupport-url' => 'Wikimedia:Fundraising',
 'skin' => 'Išvaizda',
 'sourcefilename' => 'Įkeliamas failas',
 'speciallogtitlelabel' => 'Pavadinimas:',
@@ -1056,8 +1023,8 @@ class LanguageLt extends LanguageUtf8  {
 		return $wgAllMessagesLt;
 	}
 
-	function formatNum( $number ) {
-		return strtr($number, '.,', ',.' );
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
 
 }

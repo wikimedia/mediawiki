@@ -120,7 +120,7 @@ $wgNamespaceAlternatesId = array(
 "linktrail" => "/^([a-z]+)(.*)\$/sD",
 "mainpage" => "Halaman Utama",
 "mainpagetext" => "Perangkat lunak wiki berhasil dipasang.",
-"mainpagedocfooter" => "Silakan lihat [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentasi tentang kastamisasi antarmuka] dan [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide petunjuk pengguna] untuk bantuan pemakaian dan konfigurasi.",
+"mainpagedocfooter" => "Silakan lihat [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentasi tentang kastamisasi antarmuka] dan [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide petunjuk pengguna] untuk bantuan pemakaian dan konfigurasi.",
 
 'portal' => 'Portal Komunitas',
 'portal-url' => 'Project:Portal_Komunitas',
@@ -132,7 +132,6 @@ $wgNamespaceAlternatesId = array(
 "helppage" => "Help:Isi",
 "bugreports" => "Laporan Bug",
 "bugreportspage" => "Project:Laporan_Bug",
-"sitesupport" => "-", # "-" untuk mematikan
 "sitesupport-url" => "Project:Sumbangan",
 "faq" => "FAQ",
 "faqpage" => "Project:FAQ",
@@ -205,11 +204,8 @@ $wgNamespaceAlternatesId = array(
 "developertext" => "Tindakan yang Anda minta hanya dapat dilakukan oleh pengguna dengan status \"pengembang\". Lihat $1.",
 "nbytes" => "$1 byte",
 "ok" => "OK",
-"sitetitle" => "{{SITENAME}}",
-"pagetitle" => "$1 - {{SITENAME}}",
 "sitesubtitle" => "",
 "retrievedfrom" => "Diperoleh dari \"$1\"",
-"newmessages" => "Anda mendapatkan $1.",
 "newmessageslink" => "pesan baru",
 "editsection" => "sunting",
 "toc" => "Daftar isi",
@@ -348,9 +344,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "media_tip" => "Pautan file media",
 "sig_tip" => "Tanda tangan Anda dengan tanda waktu",
 "hr_tip" => "Garis horisontal (gunakan dengan hemat)",
-"infobox" => "Klik sebuah tombol untuk mendapatkan teks contoh",
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-"infobox_alert" => "Silakan masukkan teks yang ingin diformat.\\n Teks tersebut akan ditampilkan di infobox untuk penyalinan dan penempelan.\\nContoh:\\n$1\\nakan menjadi:\\n$2",
 
 # Edit pages
 #
@@ -486,7 +479,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "preferences" => "Konfigurasi",
 "prefsnologin" => "Belum login",
 "prefsnologintext" => "Anda harus [[Special:Userlogin|login]] untuk menetapkan konfigurasi Anda.",
-"prefslogintext" => "Anda telah login sebagai \"$1\".\nNomor ID Anda adalah $2.\n\nLihat [[Project:Bantuan Konfigurasi]] untuk cara mengatur konfigurasi Anda.",
 
 "prefsreset" => "Konfigurasi telah dikembalikan ke asal dari storage.",
 "qbsettings" => "Pengaturan quickbar",
@@ -527,7 +519,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "timezoneoffset" => "Perbedaan",
 "servertime" => "Waktu server sekarang adalah",
 "guesstimezone" => "Isikan dari browser",
-"emailflag" => "Matikan e-mail dari pengguna lain",
 "defaultns" => "Cari dalam namespace berikut ini secara baku:",
 'default' => 'baku',
 
@@ -666,7 +657,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 # Miscellaneous special pages
 #
 "orphans" => "Halaman Yatim",
-'geo' => 'Koordinat GEO',
 "lonelypages" => "Halaman Yatim",
 'uncategorizedpages' => 'Halaman Tak Berkategori',
 'uncategorizedcategories' => 'Kategori Tak Berkategori',
@@ -777,7 +767,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "confirmdelete" => "Konfirmasi Penghapusan",
 "deletesub" => "(Menghapus \"$1\")",
 "historywarning" => "Peringatan: Halaman yang ingin Anda hapus mempunyai sejarah:",
-"confirmdeletetext" => "Anda akan menghapus halaman atau gambar ini secara permanen berikut semua sejarahnya dari basis data.  Pastikan bahwa Anda memang ingin berbuat demikian, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[Project:Kebijaksanaan|kebijaksanaan Wikipedia]].",
+"confirmdeletetext" => "Anda akan menghapus halaman atau gambar ini secara permanen berikut semua sejarahnya dari basis data.  Pastikan bahwa Anda memang ingin berbuat demikian, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[Project:Kebijaksanaan|kebijaksanaan {{SITENAME}}]].",
 "actioncomplete" => "Proses selesai",
 "deletedtext" => "\"$1\" telah dihapus. Lihat $2 untuk catatan terkini halaman yang telah dihapus.",
 "deletedarticle" => "menghapus \"$1\"",
@@ -847,7 +837,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 # Block/unblock IP
 #
 "blockip" => "Blokir IP",
-"blockiptext" => "Gunakan formulir di bawah untuk memblokir kemampuan menulis sebuah alamat IP atau pengguna tertentu. Ini perlu dilakukan untuk mencegah vandalisme, dan sejalan dengan [[Project:Kebijaksanaan|kebijaksanaan Wikipedia]]. Masukkan alasan Anda di bawah (contohnya mengambil halaman tertentu yang telah dirusak).",
+"blockiptext" => "Gunakan formulir di bawah untuk memblokir kemampuan menulis sebuah alamat IP atau pengguna tertentu. Ini perlu dilakukan untuk mencegah vandalisme, dan sejalan dengan [[Project:Kebijaksanaan|kebijaksanaan {{SITENAME}}]]. Masukkan alasan Anda di bawah (contohnya mengambil halaman tertentu yang telah dirusak).",
 "ipaddress" => "Alamat IP atau pengguna",
 "ipbexpiry" => "Kadaluwarsa",
 "ipbreason" => "Alasan",
@@ -1162,9 +1152,8 @@ class LanguageId extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	function formatNum( $number, $year = false ) {
+		return !$year ? strtr($this->commafy($number), '.,', ',.' ) : $number;
 	}
 
 }

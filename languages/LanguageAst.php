@@ -8,12 +8,6 @@
 /** */
 require_once( 'LanguageUtf8.php' );
 
-# See Language.php for notes.
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
-/* $wgMetaNamespace == 'Uiquipedia' */
 /* private */ $wgNamespaceNamesAst = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Especial',

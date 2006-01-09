@@ -289,7 +289,6 @@ $2 Toon redirects   Zoek: $3 $9",
 "preferences" => "Voorkeuren",
 "prefsnologin" => "Niet aangemeld",
 "prefsnologintext" => "U dient [[Special:Userlogin|aangemeld]] te zijn om voorkeuren te kunnen instellen.",
-"prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen",
 "changepassword" => "Wachtwoord wijzigen",
@@ -312,20 +311,14 @@ $2 Toon redirects   Zoek: $3 $9",
 "timezonetext" => "De tied van de server is UTC (Coordinated Universal Time) Geef aan hoeveel uur de plaatselijke tied in uw woonplaats verschilt met die van de server. Voor o.a. België en Nederland: +1 (+2 zomertied); voor Suriname en voor de Nederlandse Antillen: -4; voor Zuid-Afrika: +2.",
 "localtime" => "Plaatselijke tied",
 "timezoneoffset" => "tiedsverschil",
-"emailflag"  => "E-mail ontvangen van andere gebruiken uitschakelen",
 
 # Recent changes
 # Recente wijzigingen
 "recentchanges" => "Recente wijzigingen",
-"recentchangestext" => "Deze pagina toont de meest recente wijzigingen aan {{SITENAME}}.
-Mocht u hier nieuw zijn, dan welkom bij {{SITENAME}}! Bekijk AUB de volgende pagina's eens: [[{{ns:project}}:Veel gestelde vragen|Veel gestelde vragen]], [[{{ns:project}}:Instructies|Instructies]], [[{{ns:project}}:Objectiviteit|Objectiviteit]] en [[{{ns:project}}:Wat je neet moet doen|Wat je NIET moet doen]].
-Als u pagina's wilt verwijderen, ga naar [[{{ns:project}}:Te verwijderen pagina's|Te verwijderen pagina's]], als u iets wilt bediscussiëren, ga naar [[Wikipedia:euverlik gewenst|euverlik gewenst]]. Er is ook een email-liest voor WikipediaNL: [http://www.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l].
-<br />Om Wikipedia te laten slagen is het erg belangrijk '''geen''' materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij u daartoe toestemming heeft. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming zwaar kunnen schaden.",
 "rcloaderr"  => "Meest recente wijzigingen laden",
 "rcnote"  => "Hieronder zijn de <strong>$1</strong> laatste wijzigingen gedaan in de laatste <strong>$2</strong> dagen.",
 "rcnotefrom"  => "Veranderingen sinds <b>$2</b> (met een maximum van <b>$1</b> veranderingen).",
 "rclistfrom"  => "Toon de veranderingen beginnend vanaf $1",
-# "rclinks"  => "Bekijk de $1 laatste wijzigingen in de laatste $2 uren / laatste $3 dagen.",
 "rclinks"  => "Bekijk de $1 laatste wijzigingen in de laatste $2 dagen.",
 "rchide"  => "in $4 vorm; $1 kleine wijzigingen; $2 wijzigingen op speciale pagina's zoals euverlik- en gebroekerspagina's; $3 meervoudige wijzigingen.",
 "diff"   => "wijz",
@@ -376,7 +369,7 @@ Vergeet neet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "minlength"  => "De naam van het bestand moet uit ten minste drie tekens bestaan.",
 "badfilename" => "De naam van het bestand is gewijzigd in \"$1\".",
 "badfiletype" => "\".$1\" is geen aanbevolen afbeeldings bestandsformaat.",
-"largefile"  => "Aanbeveling: maak afbeeldingen neet groter dan 100k",
+"largefile"  => "Aanbeveling: maak afbeeldingen neet groter dan $1 KiB ($2)",
 "successfulupload" => "De upload was succesvol",
 "fileuploaded" => "<b>Het uploaden van bestand \"$1\" is geslaagd.</b> Gelieve deze link naar de omschrijvingspagina te volgen: ($2). Vul daar informatie in over dit bestand, bijvoorbeeld de oorsprong, wanneer en door wie het gemaakt is en wat u verder er nog over te vertellen heeft.",
 "uploadwarning" => "Upload waarschuwing ",
@@ -410,7 +403,7 @@ Vergeet neet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "statistics" => "Statistieken",
 "sitestats"  => "Statistieken betreffende {{SITENAME}} LI",
 "userstats"  => "Statistieken betreffende gebroekers",
-"sitestatstext" => "Er zijn <b>$1</b> pagina's in de database. Hierbij zijn inbegrepen \"euverlik\" pagina's, pagina's over Wikipedia, extreem korte \"stub\" pagina's, redirects, en diverse andere pagina's die waarschijnlijk neet als artikel moeten worden geteld. Na uitsluiting daarvan, is er een geschat aantal van <b>$2</b> artikels.<p>
+"sitestatstext" => "Er zijn <b>$1</b> pagina's in de database. Hierbij zijn inbegrepen \"euverlik\" pagina's, pagina's over {{SITENAME}}, extreem korte \"stub\" pagina's, redirects, en diverse andere pagina's die waarschijnlijk neet als artikel moeten worden geteld. Na uitsluiting daarvan, is er een geschat aantal van <b>$2</b> artikels.<p>
 Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat geeft een gemiddelde van $5 bewerkingen per pagina, en $6 paginabezoeken per wijziging.",
 "userstatstext" => "Er zijn momenteel $1 geregistreerde gebroekers; hiervan zijn er $2 systeembeheerders (zie $3).",
 
@@ -656,16 +649,6 @@ De kins ouch 'n log type, de gebroekersname of de betriffende pazjena selectiere
 'changes' => "verangeringe",
 'clearyourcache' => "'''Mèrk op:''' Nao 't opsjlaon, kins e diene browsercache wisse om de verangeringe te zeen: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''' ''F5''.",
 'compareselectedversions' => "Vergeliek geselecteerde versies",
-'confirmemail_body' => "Someone, probably you from IP address $1, has registered an
-account \"$2\" with this e-mail address on {{SITENAME}}.
-
-To confirm that this account really does belong to you and activate
-e-mail features on {{SITENAME}}, open this link in your browser:
-
-$3
-
-If this is *not* you, don't follow the link. This confirmation code
-will expire at $4.",
 'confirmprotect' => "Bevèstig besjerme",
 'confirmprotecttext' => "Wits e zeker das e dees pazjena wils besjerme?",
 'confirmunprotect' => "Bevèstig vriegaeve van besjèrming",
@@ -701,9 +684,6 @@ De beluifs os auch das e dees tèks zelf höbs gesjreve, of gekopieerd van 'n [[
 'fileexists' => "D'r is al e besjtand mit dees naam, bekiek $1 of se dat besjtand mesjien wils vervange.",
 'filemissing' => "Besjtand ontbrik",
 'filesource' => "Bron",
-'geo' => "GEO coördinate",
-'groups-editgroup-name' => "Group name:",
-'groups-group-edit' => "Existing groups:",
 'guesstimezone' => "Invulle van browser",
 'hidetoc' => "verberg",
 'history_short' => "Historie",
@@ -737,7 +717,6 @@ De beluifs os auch das e dees tèks zelf höbs gesjreve, of gekopieerd van 'n [[
 'namespace' => "Naamruumde:",
 'navigation' => "Navegatie",
 'newimages' => "Nuui plaetjes",
-'newmessages' => "De höbs $1.",
 'newmessageslink' => "nuui berichte",
 'newpage' => "Nuui pazjena",
 'newwindow' => "(in nuui venster)",

@@ -8,11 +8,6 @@
 /** */
 require_once( 'LanguageUtf8.php' );
 
-# See Language.php for notes.
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesHr = array(
  NS_MEDIA           => "Mediji",
  NS_SPECIAL         => "Posebno",
@@ -135,7 +130,6 @@ if($wgMetaNamespace === FALSE)
 "mainpagedocfooter" => "Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentaciju o prilagodbi sučelja]
 i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.",
 "portal"		=> "Portal zajednice",
-"portalurl"		=> "{{ns:4}}:Portal zajednice",
 "about"			=> "O",
 "aboutsite"             => "O projektu {{SITENAME}}",
 "aboutpage"		=> "Project:O_projektu_{{SITENAME}}",
@@ -235,12 +229,7 @@ Pogledajte $1.',
 
 "nbytes"		=> "$1 bajtova",
 "ok"			=> "U redu",
-"sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	        => "",
-"pagetitle"		=> "$1 - {{SITENAME}}",
 "retrievedfrom"         => "Dobavljeno iz \"$1\"",
-"newmessages"           => "Imaš $1.",
-"newmessageslink"       => "novih poruka",
 "editsection"		=>"uredi",
 "toc" => "Sadržaj",
 "showtoc" => "prikaži",
@@ -249,8 +238,6 @@ Pogledajte $1.',
 'viewdeleted' => 'Vidi $1?',
 'restorelink1' => 'jedna pobrisana izmjena',
 "restorelink" => "$1 pobrisanih izmjena",
-"feedlinks" => "Feed:",
-'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Kurzworte für jeden Namespace, u.a. von MonoBook verwendet
 'nstab-main' => 'Članak',
@@ -575,20 +562,6 @@ Traženje u prostoru :<br />
 $1<br />
 $2 Popis se preusmjerava   Traženje za $3 $9",
 "searchdisabled" => "<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutno onomogućena. Možete se poslužiti tražilicom Google.</p>",
-'googlesearch' => '
-<form method="get" action="http://www.google.com/search" id="googlesearch">
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="$3" />
-  <div>
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
-</form>',
 "blanknamespace" => "(Glavni)",
 
 # Preferences page
@@ -597,8 +570,6 @@ $2 Popis se preusmjerava   Traženje za $3 $9",
 "prefsnologin"          => "Niste prijavljeni",
 "prefsnologintext"	=> "Morate biti [[Special:Userlogin|prijavljeni]]
 za podešavanje korisničkih postavki.",
-"prefslogintext"        => "Prijavljeni ste kao \"$1\".
-Interni identifikacijski broj je $2.",
 "prefsreset"	        => "Postavke su vraćene na prvotne vrijednosti.",
 "qbsettings"	        => "Traka",
 "changepassword"        => "Promjena lozinke",
@@ -638,7 +609,6 @@ Interni identifikacijski broj je $2.",
 "timezoneoffset"        => "Razlika",
 'servertime'	=> 'Vrijeme na poslužitelju',
 'guesstimezone' => 'Vrijeme dobiveno od preglednika',
-"emailflag"		=> "Nemoj drugim suradnicima prikazati moju e-mail adresu",
 "defaultns"  => "Ako ne navedem drugačije, traži u ovim prostorima:",
 'default'		=> 'prvotno',
 'files'			=> 'Datoteke',
@@ -731,7 +701,6 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 "reuploaddesc"	        => "Vratite se u obrazac za postavljanje.",
 "uploadnologin"         => "Niste prijavljeni",
 "uploadnologintext"	=> "Za postavljanje datoteka morate biti  [[Special:Userlogin|prijavljeni].",
-"uploadfile"	        => "Postavi datoteku",
 'upload_directory_read_only' => 'Server ne može pisati u direktorij za postavljanje ($1).',
 "uploaderror"	        => "Greška kod postavljanja",
 "uploadtext"	=> "'''STANITE!''' Prije nego što postavite sliku pročitajte i slijedite upute
@@ -862,7 +831,6 @@ podstranice <i>nisu</i> prikazane.",
 # Miscellaneous special pages
 #
 "orphans"	=> "Stranice siročad",
-'geo'		=> 'GEO koordinate',
 "lonelypages"	=> "Stranice siročad",
 'uncategorizedpages'	=> 'Nekategorizirane stranice',
 'uncategorizedcategories'	=> 'Nekategorizirane kategorije',
@@ -1034,7 +1002,6 @@ Za pomoć posjetite:
 "historywarning" => "UPOZORENJE: Stranica koju želite obrisati ima prijašnje inačice: ",
 "confirmdeletetext" => "Zauvijek ćete izbrisati stranicu ili sliku zajedno s prijašnjim inačicama.
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu s [[Project:Pravila|pravilima]].",
-"confirmcheck"	 => "Da, sigurno želim izbrisati stranicu.",
 "actioncomplete" => "Zahvat završen",
 "deletedtext"	 => "\"$1\" je izbrisana.
 Vidi $2 za evidenciju nedavnih brisanja.",
@@ -1438,15 +1405,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledaj stranicu kategorije\');',
 'showhidebots' => '($1 botova)',
 'noimages'  => 'Nema slika.',
 
-# short names for language variants used for language conversion links.
-# to disable showing a particular link, set it to 'disable', e.g.
-# 'variantname-zh-sg' => 'disable',
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh' => 'zh',
-
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Suradnik: ',
 'speciallogtitlelabel' => 'Naslov: ',
@@ -1592,7 +1550,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledaj stranicu kategorije\');',
 'exif-compression-1' => 'Nesažeto',
 'exif-compression-6' => 'JPEG',
 
-'exif-photometricinterpretation-1' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-orientation-1' => 'Normalno', // 0th row: top; 0th column: left
@@ -1810,7 +1767,6 @@ Potvrdite namjeru vraćanja ovog članka.',
 
 'unusedcategoriestext' => 'Na navedenim stranicama kategorija nema ni jednog članka ili potkategorije.',
 'unit-pixel' => 'px',
-'sitematrix' => 'Tablica Wikimedijinih projekata',
 );
 
 #--------------------------------------------------------------------------

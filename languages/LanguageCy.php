@@ -137,9 +137,9 @@
 "subcategories" => "Is-categorïau",
 "linktrail" => "/^((?:à|á|â|è|é|ê|ì|í|î|ï|ò|ó|ô|û|ŵ|ŷ|[a-z])+)(.*)\$/sD",
 "mainpage" => "Prif tudalen",
-"mainpagetext" => "Meddalwedd Wicipedia wedi sefydlu'n llwyddiannus",
+"mainpagetext" => "Meddalwedd {{SITENAME}} wedi sefydlu'n llwyddiannus",
 "about"	=> "Amdano",
-"aboutsite"      => "Amdano Wicipedia",
+"aboutsite"      => "Amdano {{SITENAME}}",
 "aboutpage" => "{{ns:project}}:Amdano",
 "help" => "Help",
 "helppage" => "{{ns:project}}:Help",
@@ -166,7 +166,6 @@
 "currentevents" => "Digwyddiadau presennol",
 "errorpagetitle" => "Gwall",
 "returnto" => "Ewch yn ôl i $1.",
-"tagline"      	=> "Oddiwrth Wicipedia, y gwyddoniadur rhad.",
 "whatlinkshere"	=> "Tudalennau sydd yn cysyllti fan hyn",
 "help" => "Help",
 "search" => "Chwilio",
@@ -202,10 +201,8 @@ Gwelwch $1.",
 "nbytes" => "$1 bytes",
 "go" => "Mynd",
 "ok" => "OK",
-"sitetitle" => "Wicipedia",
 "sitesubtitle" => "",
 "retrievedfrom" => "Wedi dod o \"$1\"",
-"newmessages" => "Mae gen ti $1.",
 "newmessageslink" => "Neges(eueon) newydd",
 "editsection" => "golygu",
 "toc" => "Taflen Cynnwys",
@@ -217,9 +214,9 @@ Gwelwch $1.",
 # Main script and global functions
 #
 "nosuchaction" => "Does dim gweithred",
-"nosuchactiontext" => "Dydy'r meddalwedd Wicipedia ddim yn deallt y gweithrediad mae'r URL yn gofyn iddo fe gwneud",
+"nosuchactiontext" => "Dydy'r meddalwedd Mediawiki ddim yn deallt y gweithrediad mae'r URL yn gofyn iddo fe gwneud",
 "nosuchspecialpage" => "Does dim tudalen arbennig",
-"nospecialpagetext" => "Yr ydych wedi gofyn am tudalen arbennig dydy'r meddalwedd Wicipedia ddim yn adnabod.",
+"nospecialpagetext" => "Yr ydych wedi gofyn am tudalen arbennig dydy'r meddalwedd Mediawiki ddim yn adnabod.",
 
 # General errors
 #
@@ -240,7 +237,7 @@ Dwedodd MySQL mae 'ne côd gwall \"$3: $4\".",
 "cachederror" => "Dyma copi o'r stôr o'r tudalen rydych wedi gofyn, ac efallai dydi hi ddim yn cyfoes.",
 "readonly" => "Databas ar gloi",
 "enterlockreason" => "Rhowch reswm am paham mae'r databas yn cael eu gloi, yn cynnwys amcangyfrif pryd fydd y databas yn cael eu di-gloi",
-"readonlytext" => "Mae'r databas Wicipedia wedi eu cloi yn erbyn erthyglau newydd ac adnewidiadau eraill, yn tebygol am gofalaeth trefn y databas -- fydd y databas yn ôl cyn bo hir.
+"readonlytext" => "Mae'r databas {{SITENAME}} wedi eu cloi yn erbyn erthyglau newydd ac adnewidiadau eraill, yn tebygol am gofalaeth trefn y databas -- fydd y databas yn ôl cyn bo hir.
 Mae'r gweinyddwr wedi dweud yr achos cloi'r databas oedd:
 <p>$1",
 "missingarticle" => "Dydi'r databas ddim wedi dod o hyd i testun tudalen ddyler hi ffindio, sef \"$1\".
@@ -272,9 +269,9 @@ Ellwch gweld a copïo'r ffynhonnell y tudalen hon:",
 #
 "logouttitle" => "Allgofnodi'r defnyddwr",
 "logouttext" => "Yr ydych wedi allgofnodi.
-Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto fel yr un defnyddwr neu un arall.",
+Gallwch chi defnyddio'r {{SITENAME}} yn anhysbys, neu gallwch chi mewngofnodi eto fel yr un defnyddwr neu un arall.",
 
-"welcomecreation" => "<h2>Croeso, $1!</h2><p>Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich ffafraethau defnyddwr Wicipedia.",
+"welcomecreation" => "<h2>Croeso, $1!</h2><p>Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich ffafraethau defnyddwr {{SITENAME}}.",
 "loginpagetitle" => "Mewngofnodi'r defnyddwr",
 "yourname" => "Eich enw defnyddwr",
 "yourpassword" => "Eich allweddair",
@@ -302,13 +299,13 @@ Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto f
 "nocookieslogin" => "Mae {{SITENAME}} yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, a triwch eto.",
 "noname" => "Dydi chi ddim wedi enwi enw defnyddwr dilys.",
 "loginsuccesstitle" => "Mewngofnod llwyddiannus",
-"loginsuccess" => "Yr ydych wedi mewngofnodi i Wicipedia fel \"$1\".",
+"loginsuccess" => "Yr ydych wedi mewngofnodi i {{SITENAME}} fel \"$1\".",
 "nosuchuser" => "Does dim defnyddwr gyda'r enw \"$1\".
 Sicrhau rydych chi wedi sillafu'n iawn, neu creuwch accownt newydd gyda'r ffurflen isod.",
 "wrongpassword"	=> "Mae'r allweddair rydych wedi teipio ddim yn cywir. Triwch eto, os gwelwch yn dda.",
 "mailmypassword" => "E-postiwch allweddair newydd i fi",
-"passwordremindertitle" => "Nodyn atgoffa allweddair oddiwrth Wicipedia",
-"passwordremindertext" => "Mae rhywun (chi, yn tebygol, oddiwrth cyfeiriad IP $1) wedi gofyn iddi ni danfon allweddair mewngofnodi newydd Wicipedia.
+"passwordremindertitle" => "Nodyn atgoffa allweddair oddiwrth {{SITENAME}}",
+"passwordremindertext" => "Mae rhywun (chi, yn tebygol, oddiwrth cyfeiriad IP $1) wedi gofyn iddi ni danfon allweddair mewngofnodi newydd {{SITENAME}}.
 Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid yr allweddair.",
 "noemail" => "Does dim cyfeiriad e-bost wedi cofrestru dros defnyddwr \"$1\".",
 "passwordsent" => "Mae allweddair newydd wedi gael eu ddanfon at y cyfeiriad e-bost cofrestredig am \"$1\". Mewngofnodwch eto, os gwelwch yn dda, ar ol i chi dderbyn yr allweddair.",
@@ -335,7 +332,6 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 "media_tip" => "Cyswllt ffeil media",
 "sig_tip" => "Eich llofnod gyda stamp amser",
 "hr_tip" => "Llinell llorweddol (defnyddiwch yn cynnil)",
-"infobox" => "Cliciwch botwm i cael testun enghraifft",
 
 # Edit pages
 #
@@ -348,7 +344,7 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 "showpreview" => "Gweler blaenwelediad",
 "blockedtitle"	=> "Mae'r defnyddwr wedi gael eu blocio",
 "blockedtext" => "Mae eich enw defnyddwr neu cyfeiriad IP wedi gael eu blocio gan $1. Y rheswm yw:<br />''$2''<p>Ellwch cysylltu $1 neu un o'r
-[[Wicipedia:administrators|swyddogion]] eraill i trafodi'r bloc.",
+[[{{ns:project}}:administrators|swyddogion]] eraill i trafodi'r bloc.",
 "whitelistedittitle" => "Rhaid mewngofnodi i golygu",
 "whitelistedittext" => "Rhaid i chi [[Special:Userlogin|mewngofnodi]] i olygu erthyglau.",
 "whitelistreadtitle" => "Rhaid mewngofnodi i ddarllen",
@@ -361,7 +357,7 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 "newarticletext" =>
 "Yr ydych wedi dilyn cysylltiad i tudalen sydd ddim wedi gael eu creu eto.
 I creuo'r tudalen, dechreuwch teipio yn y bocs isaf
-(gwelwch y [[Wicipedia:Help|tudalen help]] am mwy o hysbys).
+(gwelwch y [[{{ns:project}}:Help|tudalen help]] am mwy o hysbys).
 Os ydych yma trwy camgymeriad, cliciwch eich botwm '''nol'''.",
 "anontalkpagetext" => "---- ''Dyma tudalen sgwrsio am defnyddwr sydd ddim eto wedi creu accownt, neu ddim yn eu defnyddio. Rhaid i ni defnyddio'r [[cyfeiriad IP]] rhifiadol i adnabod fe neu hi. Mae'n posib i llawer o bobl siario'r un cyfeiriad IP. Os ydych chi'n defnyddwr anhysbys ac yn teimlo mae esboniadau amherthynol wedi cael eu gwneud arnach chi, creuwch accownt neu mewngofnodwch i osgoi anhrefn gyda defnyddwyr anhysbys yn y dyfodol.'' ",
 "noarticletext" => "(Does dim testun yn y tudalen hon eto)",
@@ -380,7 +376,7 @@ Fydd rhaid i chi ymsoddi eich newidiadau i mewn i'r testun sydd mewn bod.
 "storedversion" => "Fersiwn wedi cadw",
 "editingold" => "<strong>RHYBUDD: Rydych yn golygu hen fersiwn y tudalen hon. Os cadwch hi, fydd unrhyw newidiadau hwyrach yn gael eu colli!.</strong>",
 "yourdiff" => "Gwahaniaethau",
-"copyrightwarning" => "Sylwch mae pob cyfraniad i Wicipedia yn gael eu rhyddhau o dan termau'r Trwydded Dogfen Rhydd GNU (gwelwch $1 am manylion).
+"copyrightwarning" => "Sylwch mae pob cyfraniad i {{SITENAME}} yn gael eu rhyddhau o dan termau'r Trwydded Dogfen Rhydd GNU (gwelwch $1 am manylion).
 Os nid ydych chi'n fodlon cael eich ysgrifeniad eu golygu heb trugaredd, a creu copïau dros y wê, peidiwch cyfranu'r ysgrifeniad yma.<br />
 Hefyd, rydych chi'n addo chi yw'r awdur y cyfraniad, neu rydych chi wedi copïo fe oddiwrth y parth cyhoeddus neu rhyw modd rhydd tebyg.
 <strong>PEIDIWCH CYFRANNU GWAITH O DAN HAWLFRAINT HEB CANIATÂD!</strong>",
@@ -419,7 +415,7 @@ gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
 # Search results
 #
 "searchresults" => "Canlyniadau chwiliad",
-"searchresulttext" => "Am mwy o hysbys amdano chwilio Wicipedia, gwelwch [[Wicipedia: Yn chwilio|Yn chwilio Wicipedia]].",
+"searchresulttext" => "Am mwy o hysbys amdano chwilio {{SITENAME}}, gwelwch [[{{ns:project}}:Yn chwilio|Yn chwilio {{SITENAME}}]].",
 "searchquery" => "Am gofyniad \"$1\"",
 "badquery" => "Gofyniad chwilio drwg",
 "badquerytext" => "Roedd yn amhosibl i prosesu'ch gofyniad.
@@ -451,8 +447,6 @@ $2 Rhestrwch ail-cyfeiriadau &nbsp; Chwiliwch am $3 $9",
 "prefsnologin" => "Nid wedi mewngofnodi",
 "prefsnologintext" => "Rhaid i chi [[Special:Userlogin|mewngofnodi]]
 i setio ffafraethau defnyddwr.",
-"prefslogintext"  => "Yr ydych wedi mewngofnodi fel \"$1\".
-$2 yw eich rhif hunaniaith mewnol.",
 "prefsreset" => "Mae ffafraethau wedi gael eu ail-setio oddiwrth y storfa.",
 "qbsettings" => "Gosodiadau bar-gyflym",
 "changepassword" => "Newydwch allweddair",
@@ -483,19 +477,17 @@ $2 yw eich rhif hunaniaith mewnol.",
 "timezoneoffset" => "Atred",
 "servertime" => "Amser y gwasanaethwr yw",
 "guesstimezone" => "Llenwch oddiwrth y porwr",
-"emailflag" => "Anablo e-bost oddiwrth defnyddwyr eraill",
 "defaultns" => "Gwyliwch yn llefydd-enw rhain:",
 
 # Recent changes
 #
 "changes" => "newidiadau",
 "recentchanges" => "Newidiadau diweddar",
-"recentchangestext" => "Traciwch y newidiadau mor diweddar i'r Wicipedia ac i'r tudalen hon.",
+"recentchangestext" => "Traciwch y newidiadau mor diweddar i'r {{SITENAME}} ac i'r tudalen hon.",
 "rcloaderr" => "Yn llwytho newidiadau diweddar",
 "rcnote" => "Isod yw'r newidiadau <strong>$1</strong> olaf yn y <strong>$2</strong> dyddiau olaf.",
 "rcnotefrom" => "Isod yw'r newidiadau ers <b>$2</b> (dangosir i fynu i <b>$1</b>).",
 "rclistfrom" => "Dangos newidiadau newydd yn dechrau oddiwrth $1",
-# "rclinks" => "Dangos y $1 newidiadau olaf yn y $2 oriau olaf / $3 dyddiau olaf",
 "showhideminor" => "$1 golygiadau bach | $2 botiau | $3 defnyddwyr wedi mewngofnodi | $4 patrolled edits",
 "rclinks" => "Dangos y $1 newidiadau olaf yn y $2 dyddiau olaf.",
 "rchide" => "yn ffurf $4; $1 golygiadon bach; $2 llefydd enw eilaidd; $3 golygiadon lluosrif.",
@@ -521,7 +513,7 @@ $2 yw eich rhif hunaniaith mewnol.",
 "uploadnologintext" => "Rhaid i chi bod wedi [[Special:Userlogin|mewngofnodi]]
 i lwytho ffeiliau i fynu.",
 "uploaderror" => "Gwall yn llwytho ffeil i fynu",
-"uploadtext" => "'''STOPIWCH!''' Cyn iddich chi llwytho lluniau yma, darllenwch a dilynwch [[Project:Polisi_defnyddio_lluniau|polisi defnyddio lluniau]] Wicipedia os gwelwch yn dda.
+"uploadtext" => "'''STOPIWCH!''' Cyn iddich chi llwytho lluniau yma, darllenwch a dilynwch [[Project:Polisi_defnyddio_lluniau|polisi defnyddio lluniau]] {{SITENAME}} os gwelwch yn dda.
 
 I gweld neu chwilio hen lluniau ewch i'r
 [[Arbennig:Imagelist|rhestr lluniau wedi llwytho]].
@@ -543,7 +535,7 @@ I cynnwys y llun mewn erthygl, defnyddwch cysylltiad yn y ffurf
 '''<nowiki>[[llun:ffeil.png|testun arall]]</nowiki>''' neu
 '''<nowiki>[[media:ffeil.ogg]]</nowiki>''' am sain.
 
-Sylwch -- fel efo tudalennau Wicipedia, ellith pobl eraill golygu neu dileu eich ffeil os ydyn nhw'n meddwl fyddynt yn helpu'r gwyddoniadur, ac ellwch chi cael eich gwaharddio os ydych chi'n sarhau'r system.",
+Sylwch -- fel efo tudalennau {{SITENAME}}, ellith pobl eraill golygu neu dileu eich ffeil os ydyn nhw'n meddwl fyddynt yn helpu'r gwyddoniadur, ac ellwch chi cael eich gwaharddio os ydych chi'n sarhau'r system.",
 "uploadlog" => "log llwytho i fynu",
 "uploadlogpage" => "log_llwytho_i_fynu",
 "uploadlogpagetext" => "Isod mae rhestr o'r llwythu ffeil diweddarach.
@@ -598,7 +590,7 @@ Dilynwch y cyswllt hon: ($2) i'r tudalen disgrifiad a llenwch gwybodaeth amdano'
 "sitestats" => "Ystadegau'r seit",
 "userstats" => "Ystadegau defnyddwyr",
 "sitestatstext" => "Mae <b>$1</b> tudalennau ar y databas.
-Mae hyn yn cynnwys tudalennau \"sgwrs\", tudalennau amdano Wicipedia, tudalennau \"stwbyn\" bach, ail-cyfeirnodau, ac eraill sydd dim yn cymwysoli fel erthyglau. Ag eithrio y rheini, mae <b>$2</b> tudalennau yn tebyg yn erthyglau iawn.<p>
+Mae hyn yn cynnwys tudalennau \"sgwrs\", tudalennau amdano {{SITENAME}}, tudalennau \"stwbyn\" bach, ail-cyfeirnodau, ac eraill sydd dim yn cymwysoli fel erthyglau. Ag eithrio y rheini, mae <b>$2</b> tudalennau yn tebyg yn erthyglau iawn.<p>
 Mae 'ne wedi bod <b>$3</b> golygon o tudalennau, a <b>$4</b> tudalennau wedi golygu ers i'r meddalwedd gael eu sefydliad (12 Gorffennaf 2003).
 Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob golygiad.",
 "userstatstext" => "Mae 'ne <b>$1</b> defnyddwyr wedi cofrestru.
@@ -629,10 +621,10 @@ Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob 
 "ancientpages" => "Erthyglau hynach",
 "intl" => "Cysylltiadau rhwng ieithau",
 "movethispage"	=> "Symydwch tudalen hon",
-"unusedimagestext" => "<p>Sylwch mae gwefannau eraill, e.e. y Wicipediau Rhwngwladol, yn medru cysylltu at llun gyda URL uniongychol, felly mae'n bosibl dangos enw ffeil yma er gwaethaf mae hi'n dal mewn iws.",
+"unusedimagestext" => "<p>Sylwch mae gwefannau eraill, e.e. y {{SITENAME}}u Rhwngwladol, yn medru cysylltu at llun gyda URL uniongychol, felly mae'n bosibl dangos enw ffeil yma er gwaethaf mae hi'n dal mewn iws.", // TODO: grammar
 "booksources" => "Ffynonellau llyfrau",
 "booksourcetext" => "Isod mae rhestr cysylltiadau i gwefannau eraill sydd yn gwerthu llyfrau newydd ac ail-law, ac wyrach mae ganddynt gwybodaeth am y llyfrau rydych yn chwilio amdano.
-Does gan Wicipedia dim cysylltiad gyda unrhyw o'r masnachau, a dydy rhestr hon ddim yn cymeradwyaeth o honnynt.",
+Does gan {{SITENAME}} dim cysylltiad gyda unrhyw o'r masnachau, a dydy rhestr hon ddim yn cymeradwyaeth o honnynt.",
 "alphaindexline" => "$1 i $2",
 "version" => "Fersiwn",
 
@@ -706,7 +698,7 @@ y botwm 'dileu' ar gwaelod y sgrîn.",
 "deletesub" => "(Yn dileuo \"$1\")",
 "historywarning" => "Rhubydd: Mae hanes gan y tudalen yr ydych yn mynd i dileuo: ",
 "confirmdeletetext" => "Rydych chi'n mynd i dileu erthygl neu llun yn parhaol, hefyd gyda'u hanes, oddiwrth y databas.
-Cadarnhaewch yr ydych yn bwriadu gwneud hwn, ac yr ydych yn ddeallt y canlyniad, ac yr ydych yn gwneud hwn yn ôl [[Wicipedia:Polisi]].",
+Cadarnhaewch yr ydych yn bwriadu gwneud hwn, ac yr ydych yn ddeallt y canlyniad, ac yr ydych yn gwneud hwn yn ôl [[{{ns:project}}:Polisi]].",
 "actioncomplete" => "Gweithred llwyr",
 "deletedtext" => "Mae \"$1\" wedi eu dileu.
 Gwelwch $2 am cofnod o dileuon diweddar.",
@@ -747,7 +739,7 @@ Gwelwch [[{{ns:project}}:Tudalen amddiffynol]] am mwy o wybodaeth.",
 "undeletedarticle" => "wedi adferio \"$1\"",
 
 "undeletedtext" => "Mae'r erthygl [[:$1|$1]] wedi cael eu adferio'n llwyddiannus.
-Gwyliwch [[Wicipedia:Log_dileuon]] am record dileuon ac adferion diweddar.",
+Gwyliwch [[{{ns:project}}:Log_dileuon]] am record dileuon ac adferion diweddar.",
 
 # Contributions
 #
@@ -773,7 +765,7 @@ Gwyliwch [[Wicipedia:Log_dileuon]] am record dileuon ac adferion diweddar.",
 #
 "blockip" => "Blociwch cyfeiriad IP",
 "blockiptext" => "Defnyddwch y ffurflen isod i blocio mynedfa ysgrifenol oddiwrth cyfeiriad IP cymharol.
-Ddylwch dim ond gwneud hwn i stopio fandaliaeth, yn dilyn a  [[Wicipedia:Polisi|polisi Wicipedia]].
+Ddylwch dim ond gwneud hwn i stopio fandaliaeth, yn dilyn a  [[{{ns:project}}:Polisi|polisi {{SITENAME}}]].
 Llenwch rheswm am y bloc, isod (e.e. enwch y tudalennau a oedd wedi fandalo).",
 "ipaddress" => "Cyfeiriad IP",
 "ipbexpiry" => "Diwedd",

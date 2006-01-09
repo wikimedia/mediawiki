@@ -283,7 +283,6 @@ Pozri $1.",
 'pagetitle' => "$1 - {{SITENAME}}",
 'sitesubtitle' => '',
 'retrievedfrom' => "Zdroj: \"$1\"",
-'newmessages' => "Máte $1.",
 'newmessageslink' => 'nové správy',
 'editsection' => 'upraviť',
 'toc' => 'Obsah',
@@ -470,8 +469,6 @@ nástroje nebudú prístupné.',
 'media_tip' => 'Odkaz na media súbor',
 'sig_tip' => 'Váš podpis s dátumom a časom',
 'hr_tip' => 'Horizontálna čiara (používajte zriedka)',
-'infobox' => 'Na získanie textu príkladu kliknite na tlačidlo',
-'infobox_alert' => "Prosím zadajte text, ktorý chcete, aby bol naformátovaný.\n Zobrazí sa ako text príkladu na kopírovanie a vkladanie.\nPríklad:\n$1\nsa stane:\n$2",
 
 # Edit pages
 #
@@ -638,9 +635,6 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9",
 'prefsnologin' => 'Nie ste prihlásený/á',
 'prefsnologintext' => "Musíte byť [[Special:Userlogin|prihlásený/á]],
 aby ste mohli zmeniť vaše nastavenia.",
-'prefslogintext' => "Ste prihlásený ako \"[[Redaktor:$1|$1]]\" ([[Komentár k redaktorovi:$1|Diskusia]], [[Špeciálne:Contributions/$1|príspevky]]). Vaše interné číslo ID je $2.
-
-Pozri [[m:Help:Preferences|Nastavenia]] na vysvetlenie volieb.",
 'prefsreset' => 'Boli obnovené pôvodné nastavenia.',
 'qbsettings' => 'Nastavenia pre bočné menu',
 'changepassword' => 'Zmeniť heslo',
@@ -682,7 +676,6 @@ od času na serveri (UTC).',
 'timezoneoffset' => 'Rozdiel¹',
 'servertime' => 'Aktuálny čas na serveri',
 'guesstimezone' => 'Prevziať z prehliadača',
-'emailflag' => 'Zakázať prijímanie e-mailov od druhých redaktorov',
 'defaultns' => 'Štandardne vyhľadávaj v týchto menných priestoroch:',
 'default' => 'štandardne',
 'files' => 'Súbory',
@@ -878,14 +871,6 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 'imagelinks' => 'Odkazy na obrázok',
 'linkstoimage' => 'Na tento obrázok odkazujú nasledujúce články:',
 'nolinkstoimage' => 'Žiadne články neobsahujú odkazy na tento obrázok.',
-'sharedupload' => "Tento súbor je [[:commons:Main_Page|zdieľaný zdroj]] a môže byť použitý v iných wiki.
-
-<br clear=both>
-{| align=center border=0 cellpadding=3 cellspacing=3 style=\"border: solid #aaa 1px; background: #f9f9f9; font-size: 100%;\"
-|-
-| [[Image:Commons without text.png|20px|Wikimedia Commons Logo]]
-|Toto je súbor z [[Commons:Main Page|Wikimedia Commons]]. Prosíme pozrite si jeho '''[[Commons:Image:{{PAGENAME}}|popisnú stránku ]]''' <!--on the Commons-->.
-|}",
 'shareduploadwiki' => "Ďalšie informácie pozrite na $1.",
 'shareduploadwiki-linktext' => "stránka opisu súboru",
 'noimage' => 'Súbor s takým menom neexistuje, môžete ho $1',
@@ -933,7 +918,6 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $3).",
 # Miscellaneous special pages
 #
 'orphans' => 'Opustené články',
-'geo' => 'GEO súradnice',
 'lonelypages' => 'Opustené články',
 'uncategorizedpages' => 'Nekategorizované články',
 'uncategorizedcategories' => 'Nekategorizované kategórie',
@@ -1411,13 +1395,13 @@ Ak chcete iba posledné úpravy, ako napr. [[Special:Export/Tank]] pre článok 
 
 # Attribution
 
-'anonymous' => "Anonymný redaktor/i {{GRAMMAR:genitív{{SITENAME}}}}",
-'siteuser' => "Redaktor {{GRAMMAR:genitív{{SITENAME}}}} $1",
+'anonymous' => "Anonymný redaktor/i {{GRAMMAR:genitív|{{SITENAME}}}}",
+'siteuser' => "Redaktor {{GRAMMAR:genitív|{{SITENAME}}}} $1",
 'lastmodifiedby' => "Táto stránka bola naposledy upravovaná $1 redaktorom $2.",
 'and' => 'a',
 'othercontribs' => "Založené na práci redaktora $1.",
 'others' => 'iné',
-'siteusers' => "Redaktori {{GRAMMAR:genitív{{SITENAME}}}} $1",
+'siteusers' => "Redaktori {{GRAMMAR:genitív|{{SITENAME}}}} $1",
 'creditspage' => 'Ocenenia za stránku', #LEPSI PREKLAD?
 'nocredits' => 'Pre tento článok neexistujú žiadne dostupné ocenenia.', #LEPSI PREKLAD?
 
@@ -1643,8 +1627,8 @@ class LanguageSk extends LanguageUtf8 {
 		'.' => ','
 	);
 
-	function formatNum( $number ) {
-		return strtr($number, $this->digitTransTable );
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), $this->digitTransTable );
 	}
 
 	# Convert from the nominative form of a noun to some other case

@@ -8,11 +8,6 @@
 /** */
 require_once( 'LanguageUtf8.php' );
 
-# See Language.php for notes.
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesKa = array(
 	NS_MEDIA            => 'მედია',
 	NS_SPECIAL          => 'სპეციალური',

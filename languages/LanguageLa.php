@@ -121,7 +121,6 @@ class LanguageLa extends LanguageUtf8 {
 
 		# Backwards compatibility hacks
 		if( $wgMetaNamespace == 'Vicipaedia' || $wgMetaNamespace == 'Victionarium' ) {
-			if( 0 == strcasecmp( 'Wikipedia', $text ) ) return NS_PROJECT;
 			if( 0 == strcasecmp( 'Disputatio_Wikipedia', $text ) ) return NS_PROJECT_TALK;
 		}
 		return false;

@@ -6,10 +6,6 @@
 #
 # Swedish localisation for MediaWiki
 #
-# This file is encoded in UTF-8, no byte order mark.
-# For compatibility with Latin-1 installations, please
-# don't add literal characters above U+00ff.
-#
 
 require_once( "LanguageUtf8.php" );
 
@@ -117,14 +113,14 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "{{ns:4}}:Om",
 'article'               => 'Artikel',
 "help"                  => "Hjälp",
-"helppage"              => "Wikipedia:Hjälp",
+"helppage"              => "{{ns:project}}:Hjälp",
 "bugreports"            => "Felrapporter",
-"bugreportspage"        => "Wikipedia:Felrapporter",
+"bugreportspage"        => "{{ns:project}}:Felrapporter",
 "sitesupport"           => "Donationer",
 "faq"                   => "FAQ",
-"faqpage"               => "Wikipedia:FAQ",
+"faqpage"               => "{{ns:project}}:FAQ",
 "edithelp"              => "Redigeringshjälp",
-"edithelppage"          => "Wikipedia:Hur_redigerar_jag_en_sida",
+"edithelppage"          => "{{ns:project}}:Hur_redigerar_jag_en_sida",
 "cancel"                => "Avbryt",
 "qbfind"                => "SnabbSök",
 "qbbrowse"              => "Genomsök",
@@ -137,7 +133,7 @@ require_once( "LanguageUtf8.php" );
 "currentevents"         => "-",
 "errorpagetitle"        => "Fel",
 "returnto"              => "Tillbaka till $1.",
-"tagline"               => "Från Wikipedia, den fria encyklopedin.",
+"tagline"               => "{{SITENAME}}",
 "whatlinkshere"         => "Vilka sidor länkar hit?",
 "help"                  => "Hjälp",
 "search"                => "Sök",
@@ -173,7 +169,7 @@ require_once( "LanguageUtf8.php" );
 "poweredby"	        => "{{SITENAME}} körs med hjälp av [http://www.mediawiki.org/ MediaWiki], en öppen källkods-wikimotor.",
 "printsubtitle"         => "(Från {{SERVER}})",
 "protectedpage"         => "Skyddad sida",
-"administrators"        => "Wikipedia:Administratörer",
+"administrators"        => "{{ns:project}}:Administratörer",
 "sysoptitle"            => "Sysop-behörighet krävs",
 "sysoptext"             => "Den här funktionen kan bara utföras av användare med \"sysop\" status.
 Se $1.",
@@ -187,7 +183,6 @@ Se $1.",
 "pagetitle"		=> "$1 - {{SITENAME}}",
 "sitesubtitle"          => "",
 "retrievedfrom"         => "Hämtad från \"$1\"",
-"newmessages"           => "Du har $1.",
 "newmessageslink"       => "nya meddelanden",
 "editsection"           => "edit",
 "toc"                   => "Innehåll",
@@ -214,10 +209,10 @@ Se $1.",
 //
 "nosuchaction"          => "Funktionen finns inte",
 "nosuchactiontext"      => "Den funktion som specificerats i URL:en kan inte
-hittas av Wikipediaprogramvaran",
+hittas av programvaran",
 "nosuchspecialpage"     => "Sådan specialsida finns inte",
 "nospecialpagetext"     => "Du har önskat en specialsida som inte
-hittas av Wikipediaprogramvaran.",
+hittas av programvaran.",
 
 // General errors
 //
@@ -233,7 +228,7 @@ MySQL returnerade felen \"$3<tt>: $4</tt>\".",
 "readonly"              => "Databasen är skrivskyddad",
 "enterlockreason"       => "Skriv en grund för skrivskyddet, inklusive
 en uppskattning på när skrivskyddet skall upphävas",
-"readonlytext"          => "Wikipediadatabasen är för ögonblicket skrivskyddad för
+"readonlytext"          => "Databasen är för ögonblicket skrivskyddad för
 nya sidor och andra modifikationer, beroende på rutinmässigt
 underhåll av databasen, varefter den återgår till normalstatus.
 Den administratör som skrivskyddade den har gett följande förklaring:
@@ -254,17 +249,17 @@ URL:en.",
 "cannotdelete"          => "Kunde inte radera sidan, eller filen som specificerades.",
 "badtitle"              => "Felaktig titel",
 "badtitletext"          => "Den önskade sidans titel var inte tillåten, tom eller sidan
-är felaktigt länkad från en Wikipedia på ett annat språk.",
+är felaktigt länkad på ett annat språk.",
 
 
 // Login and logout pages
 //
 "logouttitle"           => "Logga ut Användare",
 "logouttext"            => "Du är nu utloggad.
-Du kan fortsätta som anonym Wikipediaanvändare, eller så kan du logga in
+Du kan fortsätta som anonym användare, eller så kan du logga in
 igen som samma eller annan användare.",
 
-"welcomecreation"       => "<h2>Välkommen, $1!</h2><p>Ditt konto har skapats. Glöm inte att anpassa dina Wikipediainställningar.",
+"welcomecreation"       => "<h2>Välkommen, $1!</h2><p>Ditt konto har skapats. Glöm inte att anpassa dina inställningar.",
 
 "loginpagetitle"        => "Logga in Användare",
 "yourname"              => "Ditt användarnamn",
@@ -289,14 +284,14 @@ igen som samma eller annan användare.",
 "loginerror"            => "Inloggningsproblem",
 "noname"                => "Det användarnamn som du angett finns inte",
 "loginsuccesstitle"     => "Inloggningen lyckades",
-"loginsuccess"          => "Du är nu inloggad på wikipedia med användarnamnet \"$1\".",
+"loginsuccess"          => "Du är nu inloggad på {{SITENAME}} med användarnamnet \"$1\".",
 "nosuchuser"            => "Det finns ingen användare med namnet \"$1\".
 Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt konto.",
 "wrongpassword"         => "Lösenordet du skrev är felaktigt. Pröva igen",
 "mailmypassword"        => "Sänd mig ett nytt lösenord",
-"passwordremindertitle" => "Nytt lösenord från Wikipedia",
+"passwordremindertitle" => "Nytt lösenord från {{SITENAME}}",
 "passwordremindertext"  => "Någon (förmodligen du, med IP-numret $1)
-har bett oss sända dig ett nytt lösenord för din Wikipedia-inloggning
+har bett oss sända dig ett nytt lösenord för din {{SITENAME}}-inloggning
 Lösenordet för användare \"$2\" är nu \"$3\".
 Du ska logga in på din användare och byta lösenord.",
 "noemail"               => "Det finns ingen e-postadress registrerad för användare \"$1\".",
@@ -315,7 +310,7 @@ Var snäll och logga in igen när du fått meddelandet.",
 "blockedtitle"          => "Användaren är spärrad",
 "blockedtext"           => "Ditt användarnamn har blivit spärrat av $1.
 Anledning är att:<br />''$2''<p>Ta kontakt med $1 eller en av de andra
-[[Wikipedia:Administratörer|administratörerna]] för att diskutera varför du blivit spärrad", // "
+[[{{ns:project}}:Administratörer|administratörerna]] för att diskutera varför du blivit spärrad", // "
 "newarticle"            => "(Ny)",
 "newarticletext"        => "Du har klickat på en röd länk, en sida som inte finns ännu. Du kan hjälpa till genom att själv skriva vad du vet om ämnet i fältet nedan. Om du inte vill skriva något kan du bara trycka på \"tillbaka\" i din webbläsare.",
 "anontalkpagetext"      => "---- ''Detta är en diskussionssida för en anonym användare, en användare som inte har skapat sig ett konto, eller som inte har loggat in på det. Vi måste därför använda personens numeriska [[IP-adress]] för identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du är en anonym användare och ser meddelanden på den här sidan som inte tycks vara riktade till dig, var vänlig [[Special:Userlogin|logga in]] så du undviker förväxling med andra anonyma användare i framtiden.'' ",
@@ -338,7 +333,7 @@ Du måste infoga dina ändringar i den existerande texten.
 "editingold"            => "<strong>VARNING: Du redigerar en gammal version
 av den här sidan. Om du sparar den, kommer alla ändringar på denns sida föregående revison att bli överskrivna.</strong>",
 "yourdiff"              => "Skillnader",
-"copyrightwarning"      => "Observera att alla bidrag till Wikipedia är
+"copyrightwarning"      => "Observera att alla bidrag till {{SITENAME}} är
 att betrakta som utgivna under GNU Free Documentation License
 (se $1 för detaljer).
 Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade så skall du inte skriva någon text här.<br />
@@ -414,8 +409,6 @@ $2 List redirects &nbsp; Sök efter $3 $9",
 "prefsnologin"          => "Du är inte inloggad",
 "prefsnologintext"      => "Du måste vara [[Special:Userlogin|inloggad]]
 för att kunna ändra i inställningar.",
-"prefslogintext"        => "Du är inloggad som \"$1\".
-Ditt IP-nummer är $2.",
 "prefsreset"            => "Inställningar har blivit återställda från minne.",
 "qbsettings"            => "Inställningar för snabbmeny",
 "changepassword"        => "Byt lösenord",
@@ -440,12 +433,11 @@ serverns klocka (UTC).
 Den blir automatiskt inställd efter svensk tid eller skulle man till exempel för svensk vintertid, endast ha \"1\" (och \"2\" när vi har sommartid).",
 "localtime"             => "Lokal tid",
 "timezoneoffset"        => "Utjämna",
-"emailflag"             => "Hindra andra användare från att skicka e-post till dig",
 
 // Recent changes
 //
 "recentchanges"         => "Senaste ändringarna",
-"recentchangestext"     => "Se de senaste redigerade sidorna i Wikipedia på den här sidan.",
+"recentchangestext"     => "Se de senaste redigerade sidorna i {{SITENAME}} på den här sidan.",
 "rcloaderr"             => "Läser senaste redigerade sidor",
 "rcnote"                => "Nedanför är de senaste <strong>$1</strong> ändringarna under de sista <strong>$2</strong> dagarna.",
 "rcnotefrom"            => "Nedanför är ändringarna från <b>$2</b> till <b>$1</b> visade.",
@@ -476,7 +468,7 @@ Den blir automatiskt inställd efter svensk tid eller skulle man till exempel f�
 för att kunna ladda upp filer.",
 "uploaderror"           => "Uppladdnings fel",
 "uploadtext"            => "'''STOPP!''' Innan du laddar upp här,
-så måste du ha läst och följa Wikipedias
+så måste du ha läst och följa {{SITENAME}}s
 [[Project:Policy om bruk av bilder|policy om hur bilder får användas]].
 
 För att visa eller söka tidigare uppladdade bilder gå till
@@ -506,13 +498,13 @@ Alla tider visas efter serverns tid (UTC).
 </ul>",
 "filename"              => "Filnamn",
 "filedesc"              => "Beskrivning",
-"copyrightpage"         => "Wikipedia:copyright",
-"copyrightpagename"     => "Wikipedia copyright",
+"copyrightpage"         => "{{ns:project}}:copyright",
+"copyrightpagename"     => "{{SITENAME}} copyright",
 "uploadedfiles"         => "Uppladdade filer",
 "minlength"             => "Namnet på bildfilen ska vara minst tre bokstäver",
 "badfilename"           => "Bildnamn har blivit ändrat till \"$1\".",
 "badfiletype"           => "\".$1\" är inte ett rekomenderat bildformat.",
-"largefile"             => "Bilder ska helst inte vara större än 100k.",
+"largefile"             => "Bilder ska helst inte vara större än $1 KiB.",
 "successfulupload"      => "Uppladdningen lyckades",
 "fileuploaded"          => "Filen \"$1\" laddades upp korrekt.
 Följ den här länken: ($2) till beskrivningssidan och fyll i
@@ -552,7 +544,7 @@ när den skapades och vem som gjort den och allt annat du vet om den.",
 "sitestats"             => "Statistiksida",
 "userstats"             => "Användarstatistik",
 "sitestatstext"         => "Det är <b>$1</b> sidor i databasen.
-Detta inkluderer diskussionssidorna, sidor om Wikipedia, mycket korta\"stub\"
+Detta inkluderer diskussionssidorna, sidor om {{SITENAME}}, mycket korta\"stub\"
 sidor, omdirigeringssidor, och andra sidor som kvalificerar sig som artiklar.
 Om man tar bort ovanstående så är det <b>$2</b> sidor som anses som riktiga artiklar.<p>
 Det har varit totalt <b>$3</b> sidvisningar och det har varit <b>$4</b> sidor som har ändrats
@@ -568,7 +560,7 @@ och <b>$6</b> sidvisningar per ändring.",
 "maintnancepagetext"    => "Den här sidan innehåller flera verktyg för att sköta sidan. Vissa av dessa funktioner tenderar att stressa databasen (allt tar lång tid), så var snäll och  tryck inte på reloadknappen varje gång du gjort en liten ändring.",
 "maintenancebacklink"   => "Tillbaka till underhållssidorna",
 "disambiguations"       => "Sidor med tvetydiga länkar",
-"disambiguationspage"   => "Wikipedia:Länkar till sidor med tvetydiga titlar",
+"disambiguationspage"   => "{{ns:project}}:Länkar till sidor med tvetydiga titlar",
 "disambiguationstext"   => "Följande artiklar länkar till en <i>sidor med tvetydliga titlar</i>. De ska länka till en sidor med en korrekt titel.<br />En sida behandlar som tvetydig om den länkar från $1. <br />Länkar från andra namngrupper är <i>inte</i> listade här.",
 "doubleredirects"       => "Dubbla omdirigeringar",
 "doubleredirectstext"   => "<b>OBS:</b> Den här listan kan innehålla falska resultat. Detta betyder normalt att det finns ytterligare text under den första #REDIRECT.<br />\n Varje rad innehåller en länk till den första och andra omdirigering och den första raden av den andra omdirigeringen ger oftast den \"riktiga\" artikeln, vilket egentligen den första omdirigeringen ska peka på.",
@@ -607,12 +599,11 @@ till deras i $1. Redirects och undersidor visas <i>inte</i>.",
 "newpages"              => "Nya sidor",
 "movethispage"          => "Flytta den här sidan",
 "unusedimagestext"      => "<p>Lägg märket till att andra hemsidor
-som till exempel de internationella wikipedias kan länka till bilder
+som till exempel de internationella {{SITENAME}}s kan länka till bilder
 med en direkt URL, och kan därför bli listade här trots att de används kontinuerligt.",
 "booksources"           => "Bokkällor",
 "booksourcetext"        => "Nedan följer en lista över länkar till hemsidor som säljer
-nya och begagnade böcker, och mycket annan information om de böcker du söker.
-Wikipedia har <b>inget</b> affärssamarbete med ovanstående företag och ska inte heller tolkas som en uppmuntran.",
+nya och begagnade böcker, och mycket annan information om de böcker du söker.",
 
 // Email this user
 //
@@ -677,7 +668,7 @@ och sidan kommer att markeras med <b>fet stil</b> i <a href=\"" .
 eller bild med all dess historia från databasen.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser
 detta leder till, och att det följer
-[[Wikipedia:Policy]].",
+[[{{ns:project}}:Policy]].",
 "actioncomplete"        => "Genomfört",
 "deletedtext"           => "\"$1\" har blivit borttagen.
 Se $2 för lista över senaste borttagningar",
@@ -707,7 +698,7 @@ hamna i den äldre versionshanteraren och den senaste versionen av sidan kommer 
 "undeletebtn"           => "Återställd!",
 "undeletedarticle"      => "återställd \"$1\"",
 "undeletedtext"         => "Artikeln [[:$1|$1]] har blivit återställd
-Se [[Wikipedia:Borttagningslogg]] för en lista över nyligen gjorda borttagningar och återställningar",
+Se [[{{ns:project}}:Borttagningslogg]] för en lista över nyligen gjorda borttagningar och återställningar",
 
 // Contributions
 //
@@ -736,7 +727,7 @@ för att genomföra den här funktionen.",
 "blockiptext"           => "Använd formuläret nedan för att blockera skrivåtkomst
 från en viss IP-adress
 Detta ska bara genomföras för att stoppa klotter och
-överstämma med [[Wikipedia:Politik|Wikipedia politik]].
+överstämma med [[{{ns:project}}:Politik|{{SITENAME}} politik]].
 Fyll i anledningen till blockering nedan (till exempel vilka artiklar som klottrats ner).",
 "ipaddress"             => "IP-adress",
 "ipbreason"             => "Anledning",
@@ -771,9 +762,9 @@ Bekräfta att du vill göra detta.",
 "locknoconfirm"         => "Du har inte bekräftat låsningen.",
 "lockdbsuccesssub"      => "Databasen har låsts",
 "unlockdbsuccesssub"    => "Databasen har låsts upp",
-"lockdbsuccesstext"     => "Wikipediadatabasen är låst.
+"lockdbsuccesstext"     => "Databasen är låst.
 <br />Kom ihåg att ta bort låsningen när du är färdig med ditt underhåll.",
-"unlockdbsuccesstext"   => "Wikipediadatabasen är upplåst.",
+"unlockdbsuccesstext"   => "Databasen är upplåst.",
 
 // Move page
 //
@@ -800,53 +791,6 @@ för att kunna flytta en sida.",
 "movetalk"              => "Flytta även diskussionssidan, om den finns.",
 "talkpagemoved"         => "Sidans diskussionssida flyttades också.",
 "talkpagenotmoved"      => "Sidans diskussionssida flyttades <strong>inte</strong>.",
-
-# Move page
-#
-"movepage"		=> "Move page",
-"movepagetext"	=> "Using the form below will rename a page, moving all
-of its history to the new name.
-The old title will become a redirect page to the new title.
-Links to the old page title will not be changed; be sure to
-check for double or broken redirects.
-You are responsible for making sure that links continue to
-point where they are supposed to go.
-
-Note that the page will '''not''' be moved if there is already
-a page at the new title, unless it is empty or a redirect and has no
-past edit history. This means that you can rename a page back to where
-it was just renamed from if you make a mistake, and you cannot overwrite
-an existing page.
-
-<b>WARNING!</b>
-This can be a drastic and unexpected change for a popular page;
-please be sure you understand the consequences of this before
-proceeding.",
-"movepagetalktext" => "The associated talk page, if any, will be automatically moved along with it '''unless:'''
-*You are moving the page across namespaces,
-*A non-empty talk page already exists under the new name, or
-*You uncheck the box below.
-
-In those cases, you will have to move or merge the page manually if desired.",
-"movearticle"	=> "Move page",
-"movenologin"	=> "Not logged in",
-"movenologintext" => "You must be a registered user and [[Special:Userlogin|logged in]]
-to move a page.",
-"newtitle"		=> "To new title",
-"movepagebtn"	=> "Move page",
-"pagemovedsub"	=> "Move succeeded",
-"pagemovedtext" => "Page \"[[$1]]\" moved to \"[[$2]]\".",
-"articleexists" => "A page of that name already exists, or the
-name you have chosen is not valid.
-Please choose another name.",
-"talkexists"	=> "The page itself was moved successfully, but the
-talk page could not be moved because one already exists at the new
-title. Please merge them manually.",
-"movedto"		=> "moved to",
-"movetalk"		=> "Move \"talk\" page as well, if applicable.",
-"talkpagemoved" => "The corresponding talk page was also moved.",
-"talkpagenotmoved" => "The corresponding talk page was <strong>not</strong> moved.",
-"1movedto2"		=> "$1 moved to $2",
 
 // Export
 

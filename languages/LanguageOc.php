@@ -106,20 +106,20 @@ require_once( "LanguageUtf8.php" );
 
 "linktrail"     => "/^([a-zàâçéèêîôû]+)(.*)\$/sD",
 "mainpage"      => "Accueil",
-"mainpagetext"  => "Logiciel Wikipédia installé.",
+"mainpagetext"  => "Logiciel {{SITENAME}} installé.",
 "about"         => "À propos",
-"aboutsite"     => "À propos de Wikipédia",
-"aboutpage"     => "Wikipédia:À propos",
+"aboutsite"     => "À propos de {{SITENAME}}",
+"aboutpage"     => "{{ns:project}}:À propos",
 "help"          => "Aide",
-"helppage"      => "Wikipédia:Aide",
+"helppage"      => "{{ns:project}}:Aide",
 "bugreports"    => "Rapport d'erreurs",
-"bugreportspage" => "Wikipédia:Rapport d'erreurs",
+"bugreportspage" => "{{ns:project}}:Rapport d'erreurs",
 "sitesupport"   => "Participer en faisant un don",
 
 "faq"           => "FAQ",
-"faqpage"       => "Wikipédia:FAQ",
+"faqpage"       => "{{ns:project}}:FAQ",
 "edithelp"      => "Aide",
-"edithelppage"  => "Wikipédia:Comment éditer une page",
+"edithelppage"  => "{{ns:project}}:Comment éditer une page",
 "cancel"        => "Annuler",
 "qbfind"        => "Rechercher",
 "qbbrowse"      => "Défiler",
@@ -132,7 +132,6 @@ require_once( "LanguageUtf8.php" );
 "currentevents" => "Actualités",
 "errorpagetitle" => "Erreur",
 "returnto"      => "Revenir à la page $1.",
-"tagline"       => "Un article de Wikipédia, l'encyclopédie libre.",
 "whatlinkshere" => "Références à cette page",
 "help"          => "Aide",
 "search"        => "Rechercher",
@@ -157,7 +156,7 @@ require_once( "LanguageUtf8.php" );
 "viewcount"     => "Cette page a été consultée $1 fois.",
 "printsubtitle" => "(de {{SERVER}})",
 "protectedpage" => "Page protégée",
-"administrators" => "Wikipédia:Administrateurs",
+"administrators" => "{{ns:project}}:Administrateurs",
 "sysoptitle"    => "Accès administrateur requis",
 "sysoptext"     => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d'\"administrateur\".
 Voir $1.",
@@ -167,10 +166,9 @@ Voir $1.",
 "nbytes"        => "$1 octets",
 "go"            => "Consulter",			// Looxix "OK",
 "ok"            => "OK",
-"sitetitle"     => "Wikipédia",
+"sitetitle"     => "{{SITENAME}}",
 "sitesubtitle"  => "",
 "retrievedfrom" => "Récupérée de \"$1\"",
-"newmessages"   => "Vous avez des $1.",
 "newmessageslink" => "nouveaux messages",
 "editsection"	=> "modifier",
 "toc"		=> "Sommaire",			// Looxix "Table"
@@ -182,9 +180,9 @@ Voir $1.",
 # Main script and global functions
 #
 "nosuchaction"	=> "Action inconnue",
-"nosuchactiontext" => "L'action spécifiée dans l'Url n'est pas reconnue par le logiciel Wikipédia.",
+"nosuchactiontext" => "L'action spécifiée dans l'Url n'est pas reconnue par le logiciel {{SITENAME}}.",
 "nosuchspecialpage" => "Page spéciale inexistante",
-"nospecialpagetext" => "Vous avez demandé une page spéciale qui n'est pas reconnue par le logiciel Wikipédia.",
+"nospecialpagetext" => "Vous avez demandé une page spéciale qui n'est pas reconnue par le logiciel {{SITENAME}}.",
 
 # General errors
 #
@@ -199,10 +197,10 @@ MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
 "cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour", // Looxix
 "readonly"	=> "Mises à jour bloquées sur la base de données",
 "enterlockreason" => "Indiquez la raison du blocage, ainsi qu'une estimation de la durée de blocage ",
-"readonlytext"	=> "Les ajouts et mises à jour sur la base de données Wikipédia sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
+"readonlytext"	=> "Les ajouts et mises à jour sur la base de données {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
 <p>$1",
 "missingarticle" => "La base de données n'a pas pu trouver le texte d'une page existante, dont le titre est \"$1\".
-Ce n'est pas une erreur de la base de données, mais plus probablement un bogue du logiciel Wikipédia.
+Ce n'est pas une erreur de la base de données, mais plus probablement un bogue du logiciel {{SITENAME}}.
 Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse de la page fautive.",
 "internalerror" => "Erreur interne",
 "filecopyerror" => "Impossible de copier \"$1\" vers \"$2\".",
@@ -221,16 +219,16 @@ car elle ralentit la base de données à un point tel que plus personne
 ne peut utiliser le wiki.", // Looxix
 "perfdisabledsub" => "Ceci est une copie de sauvegarde de $1:", // Looxix
 "viewsource"	=> "Voir le texte source",
-"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[Wikipédia:Page protégée]] pour voir les différentes raisons possibles.", // Looxix
+"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[{{ns:project}}:Page protégée]] pour voir les différentes raisons possibles.", // Looxix
 
 # Login and logout pages
 #
 "logouttitle"	=> "Déconnexion",
 "logouttext"	=> "Vous êtes à présent déconnecté(e).
-Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.",
+Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.",
 
 "welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a été créé.
-N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences.",
+N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préférences.",
 
 "loginpagetitle"     => "Votre identifiant",
 "yourname"           => "Votre nom d'utilisateur",
@@ -255,13 +253,13 @@ N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préféren
 "loginerror"    => "Problème d'identification",
 "noname"        => "Vous n'avez pas saisi de nom d'utilisateur.",
 "loginsuccesstitle" => "Identification réussie.",
-"loginsuccess"  => "Vous êtes actuellement connecté(e) sur Wikipédia en tant que \"$1\".",
+"loginsuccess"  => "Vous êtes actuellement connecté(e) sur {{SITENAME}} en tant que \"$1\".",
 "nosuchuser"    => "L'utilisateur \"$1\" n'existe pas.
 Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.",
 "wrongpassword" => "Le mot de passe est incorrect. Essayez à nouveau.",
 "mailmypassword" => "Envoyez-moi un nouveau mot de passe",
-"passwordremindertitle" => "Votre nouveau mot de passe sur Wikipédia",
-"passwordremindertext" => "Quelqu'un (probablement vous) ayant l'adresse IP $1 a demandé à ce qu'un nouveau mot de passe vous soit envoyé pour votre accès à Wikipédia.
+"passwordremindertitle" => "Votre nouveau mot de passe sur {{SITENAME}}",
+"passwordremindertext" => "Quelqu'un (probablement vous) ayant l'adresse IP $1 a demandé à ce qu'un nouveau mot de passe vous soit envoyé pour votre accès à {{SITENAME}}.
 Le mot de passe de l'utilisateur \"$2\" est à présent \"$3\".
 Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible.",
 "noemail"  => "Aucune adresse électronique n'a été enregistrée pour l'utilisateur \"$1\".",
@@ -304,7 +302,7 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actue
 "storedversion" => "Version enregistrée",
 "editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>",
 "yourdiff"  => "Différences",
-"copyrightwarning" => "Toutes les contributions à Wikipédia sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</b>",
+"copyrightwarning" => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</b>",
 "longpagewarning" => "<strong>AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.</strong>", // Panoramix
@@ -379,9 +377,6 @@ $2 Inclure les page de redirections   Rechercher $3 $9",
 "prefsnologin"      => "Non connecté",
 "prefsnologintext"  => "Vous devez être [[Special:Userlogin|connecté]]
 pour modifier vos préférences d'utilisateur.",
-"prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.
-
-Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant les options.", // Looxix
 "prefsreset"        => "Les préférences ont été rétablies à partir de la version enregistrée.",
 "qbsettings"        => "Personnalisation de la barre outils",
 "changepassword"    => "Modification du mot de passe",
@@ -413,22 +408,21 @@ Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant
 "timezoneoffset"    => "Décalage horaire",
 "servertime"	    => "Heure du serveur", //Looxix (Server time is now)
 "guesstimezone"     => "Utiliser la valeur du navigateur", //Looxix (Fill in from browser)
-"emailflag"         => "Ne pas recevoir de courrier électronique<br /> des autres utilisateurs",
 "defaultns"         => "Par défaut, rechercher dans ces espaces :", //Looxix (Search in these namespaces by default)
 
 # Recent changes
 #
 "changes"	=> "modifications",
 "recentchanges" => "Modifications récentes",
-"recentchangestext" => "Suivez sur cette page les dernières modifications de Wikipédia.
-[[Wikipédia:Bienvenue|Bienvenue]] aux nouveaux participants !
-Jetez un coup d'\x{0153}il sur ces pages : [[Wikipédia:FAQ|foire aux questions]],
-[[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]]
-(notamment [[Wikipédia:Règles de nommage|conventions de nommage]],
-[[Wikipédia:La neutralité de point de vue|la neutralité de point de vue]]),
-et [[Wikipédia:Les faux-pas les plus courants|les faux-pas les plus courants]].
+"recentchangestext" => "Suivez sur cette page les dernières modifications de {{SITENAME}}.
+[[{{ns:project}}:Bienvenue|Bienvenue]] aux nouveaux participants !
+Jetez un coup d'\x{0153}il sur ces pages : [[{{ns:project}}:FAQ|foire aux questions]],
+[[{{ns:project}}:Recommandations et règles à suivre|recommandations et règles à suivre]]
+(notamment [[{{ns:project}}:Règles de nommage|conventions de nommage]],
+[[{{ns:project}}:La neutralité de point de vue|la neutralité de point de vue]]),
+et [[{{ns:project}}:Les faux-pas les plus courants|les faux-pas les plus courants]].
 
-Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[Wikipédia:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
+Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[{{ns:project}}:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
 "rcloaderr"  => "Chargement des dernières modifications",
 "rcnote"  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
 "rcnotefrom"	=> "Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
@@ -460,7 +454,7 @@ Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pa
 pour copier des fichiers sur le serveur.",
 "uploaderror"  => "Erreur",
 "uploadtext"   => "'''STOP !''' Avant de copier votre fichier sur le serveur,
-prenez connaissance des [[Project:règles d'utilisation des images|règles d'utilisation des images]] de Wikipédia et assurez-vous que vous les respectez.<br />N'oubliez pas de remplir la [[Project:Page de description d'une image|page de description de l'image]] quand celle-ci sera sur le serveur.
+prenez connaissance des [[Project:règles d'utilisation des images|règles d'utilisation des images]] de {{SITENAME}} et assurez-vous que vous les respectez.<br />N'oubliez pas de remplir la [[Project:Page de description d'une image|page de description de l'image]] quand celle-ci sera sur le serveur.
 
 Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
 allez à la [[Special:Imagelist|liste des images]].
@@ -481,7 +475,7 @@ Pour incorporer l'image dans un article, placez dans celui-ci un lien rédigé c
 '''<nowiki>[[image:nom_du_fichier.png|autre texte]]</nowiki>''' ou
 '''<nowiki>[[media:nom_du_fichier.ogg]]</nowiki>''' pour les sons.
 
-N'oubliez pas que, comme toutes les pages de Wikipédia, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
+N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
 "uploadlog"  => "log d'upload",		// FIXME
 "uploadlogpage" => "Log_d'upload",	// FIXME
 "uploadlogpagetext" => "Voici la liste des derniers fichiers copiés sur le serveur.
@@ -490,8 +484,8 @@ L'heure indiquée est celle du serveur (UTC).
 </ul>",
 "filename"  => "Nom",
 "filedesc"  => "Description",
-"copyrightpage" => "Wikipédia:Copyright",
-"copyrightpagename" => "licence Wikipédia",
+"copyrightpage" => "{{ns:project}}:Copyright",
+"copyrightpagename" => "licence {{SITENAME}}",
 "uploadedfiles" => "Fichiers copiés",
 "minlength"  => "Les noms des images doivent comporter au moins trois lettres.",
 "badfilename" => "L'image a été renommée \"$1\".",
@@ -535,7 +529,7 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 "userstats"  => "Statistiques utilisateur",
 "sitestatstext" => "La base de données contient actuellement <b>$1</b> pages.
 
-Ce chiffre inclut les pages \"discussion\", les pages relatives à Wikipédia, les pages minimales (\"bouchons\"),  les pages de redirection, ainsi que d'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
+Ce chiffre inclut les pages \"discussion\", les pages relatives à {{SITENAME}}, les pages minimales (\"bouchons\"),  les pages de redirection, ainsi que d'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
 Si l'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de véritables articles.<p>
 <b>$3</b> pages ont été consultées et <b>$4</b> pages modifiées
 
@@ -551,7 +545,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "maintnancepagetext"	=> "Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.",
 "maintenancebacklink"	=> "Retour à la page de maintenance",
 "disambiguations"	=> "Pages d'homonymie",
-"disambiguationspage"	=> "Wikipédia:Liens_aux_pages_d'homonymie",
+"disambiguationspage"	=> "{{ns:project}}:Liens_aux_pages_d'homonymie",
 "disambiguationstext"	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br />Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br />Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
 "doubleredirects"	=> "Double redirection",
 "doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
@@ -591,9 +585,9 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "ancientpages"	=> "Articles les plus anciens",	// Looxix
 // "intl"		    => "Liens inter-langues",
 "movethispage"  => "Déplacer la page",
-"unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
+"unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains {{SITENAME}}s non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 "booksources"   => "Ouvrages de référence",
-"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Wikipédia n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire les objets d'une préférence particulière.",
+"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire les objets d'une préférence particulière.",
 "alphaindexline" => "$1 à $2",
 
 # Email this user
@@ -663,7 +657,7 @@ Les prochaines modifications de cette page et de la page discussion associée se
 "historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ",
 "confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
 ou une image, ainsi que toutes ses versions antérieures.
-Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[Wikipédia:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
+Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{ns:project}}:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
 "actioncomplete" => "Suppression effectuée",
 "deletedtext"	=> "\"$1\" a été supprimé.
 Voir $2 pour une liste des suppressions récentes.",
@@ -706,7 +700,7 @@ les révisions restaurées apparaîtront dans l'historique antérieur et la vers
 "undeletebtn"	=> "Restaurer !", // Looxix "Restore!",
 "undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
 "undeletedtext"   => "L'article [[:$1|$1]] a été restauré avec succès.
-Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.", // Looxix
+Voir [[{{ns:project}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.", // Looxix
 # Contributions
 #
 "contributions"	=> "Contributions",
@@ -731,7 +725,7 @@ Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des r
 #
 "blockip"	=> "Bloquer une adresse IP",
 "blockiptext"	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
-Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]].
+Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[{{ns:project}}:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
 "ipaddress"	=> "Adresse IP",
 "ipbreason"	=> "Motif",
@@ -769,10 +763,10 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 "locknoconfirm" => "Vous n'avez pas coché la case de confirmation.",
 "lockdbsuccesssub" => "Verrouillage de la base réussi.",
 "unlockdbsuccesssub" => "Base déverrouillée.",
-"lockdbsuccesstext" => "La base de données de Wikipédia est verrouillée.
+"lockdbsuccesstext" => "La base de données de {{SITENAME}} est verrouillée.
 
 <br />N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
-"unlockdbsuccesstext" => "La base de données de Wikipédia est déverrouillée.",
+"unlockdbsuccesstext" => "La base de données de {{SITENAME}} est déverrouillée.",
 
 # Move page
 #
@@ -855,13 +849,14 @@ class LanguageOc extends LanguageUtf8{
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesOc, $wgAllMessagesEn;
-		$m = $wgAllMessagesOc[$key];
-
-		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-		else return $m;
-
+		global $wgAllMessagesOc;
+		if( isset( $wgAllMessagesOc[$key] ) ) {
+			return $wgAllMessagesOc[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
 	}
+
 }
 
 ?>

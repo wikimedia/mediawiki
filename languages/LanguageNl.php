@@ -6,10 +6,6 @@
 #
 # Nederlands localisation for MediaWiki
 #
-# This file is encoded in UTF-8, no byte order mark.
-# For compatibility with Latin-1 installations, please
-# don't add literal characters above U+00ff.
-#
 
 require_once( "LanguageUtf8.php" );
 
@@ -168,10 +164,7 @@ require_once( "LanguageUtf8.php" );
 "nbytes"  => "$1 bytes",
 "go"   => "OK",
 "ok"   => "OK",
-"sitetitle"  => "<span style=\"text-transform: none\">{{SITENAME}} NL</span>", # Okay, HERE's an ugly hack. There should be a cleaner way to do this.
 "sitesubtitle" => "",
-"retrievedfrom" => "Afkomstig van {{SITENAME}} NL, de Vrije Encyclopedie. \"$1\"",
-"newmessages" => "U heeft $1.",
 "newmessageslink" => "een nieuw bericht",
 "editsection" => "bewerken",
 "toc" => "Inhoud",
@@ -229,7 +222,7 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 "logouttext" => "U bent nu afgemeld.
 U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.",
 
-"welcomecreation" => "<h2>Welkom, $1!</h2><p>Uw gebruikersprofiel is aangemaakt. U kunt nu uw persoonlijke voorkeuren instellen.",
+"welcomecreation" => "<h2>Welkom, $1!</h2><p>Uw gebruikersprofiel is aangemaakt. U kunt nu uw persoonlijke voorkeuren instellen.</p>",
 
 "loginpagetitle" => "Gebruikersnaam",
 "yourname"  => "Uw gebruikersnaam",
@@ -255,12 +248,12 @@ U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder deze
 "loginerror" => "Inlogfout",
 "noname"  => "U dient een gebruikersnaam op te geven.",
 "loginsuccesstitle" => "Aanmelden gelukt.",
-"loginsuccess" => "U bent nu aangemeld bij {{SITENAME}} NL als \"$1\".",
+"loginsuccess" => "U bent nu aangemeld bij {{SITENAME}} als \"$1\".",
 "nosuchuser" => "Er bestaat geen gebruiker met de naam \"$1\". Controleer uw spelling, of gebruik onderstaand formulier om een nieuw gebruikersprofiel aan te maken.",
 "wrongpassword" => "Het ingegeven wachtwoord is niet juist. Probeer het opnieuw.",
 "mailmypassword" => "Stuur mij een nieuw wachtwoord op",
-"passwordremindertitle" => "Herinnering wachtwoord {{SITENAME}} NL",
-"passwordremindertext" => "Iemand (waarschijnlijk uzelf) vanaf IP-adres $1 heeft verzocht u een nieuw wachtwoord voor {{SITENAME}} NL toe te zenden. Het nieuwe wachtwoord voor gebruiker \"$2\" is \"$3\". Advies: nu aanmelden en uw wachtwoord wijzigigen.",
+"passwordremindertitle" => "Herinnering wachtwoord {{SITENAME}}",
+"passwordremindertext" => "Iemand (waarschijnlijk uzelf) vanaf IP-adres $1 heeft verzocht u een nieuw wachtwoord voor {{SITENAME}} toe te zenden. Het nieuwe wachtwoord voor gebruiker \"$2\" is \"$3\". Advies: nu aanmelden en uw wachtwoord wijzigigen.",
 "noemail"  => "Er is geen e-mailadres geregistreerd voor \"$1\".",
 "passwordsent" => "Er is een nieuw wachtwoord verzonden naar het e-mailadres wat geregistreerd staat voor \"$1\".
 Gelieve na ontvangst opnieuw aan te melden.",
@@ -334,7 +327,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "searchresulttext" => "Voor meer informatie over zoeken op {{SITENAME}}: zie [[Project:Zoeken|Zoeken op {{SITENAME}}]].",
 "searchquery" => "Voor zoekopdracht \"$1\"",
 "badquery"  => "Slecht geformuleerde zoekopdracht",
-"badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een 'woord' van 1 letter te zoeken, of 1 van de <a HREF=\"http://nl.wikipedia.org/wiki/{{ns:4}}:Verboden_woorden\">Verboden woorden</a>.",
+"badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd.",
 "matchtotals" => "De zoekterm \"$1\" is gevonden in $2 paginatitels en in de tekst van $3 pagina's.",
 "nogomatch" => "Er bestaat geen pagina met deze titel, op zoek naar pagina's waarin de tekst voorkomt.",
 "titlematches" => "Overeenkomst met volgende titels",
@@ -346,9 +339,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "viewprevnext" => "($1) ($2) ($3) bekijken.",
 "showingresults" => "Hieronder <b>$1</b> resultaten vanaf nummer <b>$2</b>.",
 "showingresultsnum" => "Hieronder <b>$3</b> resultaten vanaf nummer <b>$2</b>.",
-"nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van veel voorkomende woorden zoals \"de\" en \"het\", die niet geïndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).
-
-Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op {{SITENAME}} NL over dit onderwerp. Mogelijk is het aanwezig in een andere taal. Zoek met de <a HREF=\"http://pliny.wikipedia.org/tools/wikisearch.php\">multi-wikipedia zoeker</a> in de andere {{SITENAME}}'s, of buiten {{SITENAME}} in een <a href=\"http://encyclopedie.zoekhulp.nl/?refer=Wikipedia.nl\">andere encyclopedie</a>. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op {{SITENAME}} NL, zodat de volgende die zoekt wat u zocht het wel kan vinden.",
+"nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van veel voorkomende woorden zoals \"de\" en \"het\", die niet geïndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).",
 "powersearch" => "Zoeken",
 "powersearchtext" => "
  Zoek in naamruimten :<br />
@@ -368,9 +359,6 @@ Enkel de pagina's die geen prefix (zoals {{ns:4}}:, Gebruiker: of Overleg:) hebb
 "preferences" => "Voorkeuren",
 "prefsnologin" => "Niet aangemeld",
 "prefsnologintext" => "U dient [[Special:Userlogin|aangemeld]] te zijn om voorkeuren te kunnen instellen.",
-"prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.
-
-Een beschrijving van de verschillende opties staat op [[{{ns:4}}:Voorkeuren]].",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen",
 "changepassword" => "Wachtwoord wijzigen",
@@ -403,7 +391,6 @@ Een beschrijving van de verschillende opties staat op [[{{ns:4}}:Voorkeuren]].",
 "timezoneoffset" => "Tijdsverschil",
 "servertime" => "De locale tijd van de {{SITENAME}}-server:",
 "guesstimezone" => "Vanuit de browser toe te voegen",
-"emailflag" => "E-mail ontvangen van andere gebruikers uitschakelen",
 "defaultns" => "Naamruimten om direct in te zoeken:",
 
 # Recent changes
@@ -440,7 +427,7 @@ Een beschrijving van de verschillende opties staat op [[{{ns:4}}:Voorkeuren]].",
 om bestanden te uploaden.",
 "uploaderror" => "upload fout",
 "uploadtext" => "'''STOP!''' Voor u iets hier upload,
-wees zeker dat het in overeenkomst is met het {{SITENAME}} NL
+wees zeker dat het in overeenkomst is met het {{SITENAME}}
 [[Project:Beleid_voor_gebruik_van_afbeeldingen|afbeeldingsbeleid]].
 
 Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de
@@ -453,7 +440,7 @@ Gebruik het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbes
 Gebruik bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid.
 Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  '''<nowiki>[[afbeelding:uw_foto.jpg]]</nowiki>''' of '''<nowiki>[[afbeelding:uw_logo.png|alt text]]</nowiki>''' of '''<nowiki>[[media:uw_geluid.ogg]]</nowiki>''' voor audio.
 
-Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot {{SITENAME}} NL ontzegd worden.",
+Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot {{SITENAME}} ontzegd worden.",
 "uploadlog"  => "upload logboek",
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de lijst met de meest recent ge-uploade bestanden. Alle tijden zijn servertijd (UTC).
@@ -464,7 +451,7 @@ Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "filestatus" => "Auteursrechtensituatie",
 "filesource" => "Auteur/bron",
 "copyrightpage" => "{{ns:4}}:Auteursrechten",
-"copyrightpagename" => "{{SITENAME}} NL auteursrechten",
+"copyrightpagename" => "{{SITENAME}} auteursrechten",
 "uploadedfiles" => "Ge-uploade bestanden",
 "minlength"  => "De naam van het bestand moet uit ten minste drie tekens bestaan.",
 "badfilename" => "De naam van het bestand is gewijzigd in \"$1\".",
@@ -503,7 +490,7 @@ Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 # Statistics
 # Statistieken
 "statistics" => "Statistieken",
-"sitestats"  => "Statistieken betreffende {{SITENAME}} NL",
+"sitestats"  => "Statistieken betreffende {{SITENAME}}",
 "userstats"  => "Statistieken betreffende gebruikers",
 "sitestatstext" => "Er zijn <b>$1</b> pagina's in de database. Hierbij zijn inbegrepen \"Overleg\" pagina's, pagina's over {{SITENAME}}, extreem korte \"stub\" pagina's, redirects, en diverse andere pagina's die waarschijnlijk niet als artikel moeten worden geteld. Na uitsluiting daarvan, is er een geschat aantal van <b>$2</b> artikels.<p>
 Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat geeft een gemiddelde van $5 bewerkingen per pagina, en $6 paginabezoeken per wijziging.",
@@ -556,7 +543,7 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "movethispage" => "Verplaats deze pagina",
 "unusedimagestext" => "<p>Let op! Het zou kunnen dat er via een directe link verwezen wordt naar een afbeelding, bijvoorbeeld vanuit een anderstalige {{SITENAME}}. Het is daarom mogelijk dat een afbeelding hier vermeld staat terwijl het wel degelijk gebruikt wordt.",
 "booksources" => "Boekhandels",
-"booksourcetext" => "Hieronder is een lijst van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kunt u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. {{SITENAME}} NL heeft <u>geen enkele</u> relatie met deze websites.",
+"booksourcetext" => "Hieronder is een lijst van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kunt u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. {{SITENAME}} heeft <u>geen enkele</u> relatie met deze websites.",
 "alphaindexline" => "$1 tot $2",
 
 # Email this user
@@ -711,9 +698,9 @@ Zie de [[speciaal:Ipblocklist|Lijst van geblokkeerde IP-adressen]].",
 "locknoconfirm" => "U heeft niet het vakje aangevinkt om uw keuze te bevestigen.",
 "lockdbsuccesssub" => "Blokkering database succesvol",
 "unlockdbsuccesssub" => "Blokkering van de database opgeheven",
-"lockdbsuccesstext" => "De database van {{SITENAME}} NL is geblokkeerd.
+"lockdbsuccesstext" => "De database van {{SITENAME}} is geblokkeerd.
 Vergeet niet de database opnieuw te de-blokkeren zodra u klaar bent met uw onderhoud.",
-"unlockdbsuccesstext" => "Blokkering van de database van {{SITENAME}} NL is opgeheven.",
+"unlockdbsuccesstext" => "Blokkering van de database van {{SITENAME}} is opgeheven.",
 
 # Move page
 # Verplaats pagina

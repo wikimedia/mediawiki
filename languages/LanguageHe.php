@@ -62,9 +62,6 @@ require_once("LanguageUtf8.php");
 "tog-numberheadings" => "מספר ראשי-פרקים אוטומטית",
 "tog-showtoolbar" => "Show edit toolbar",
 "tog-editondblclick" => "ערוך דפים בלחיצה כפולה (דורש ג'אווה סקריפט)",
-"tog-editsection"=>"Enable section editing via [edit] links",
-"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br /> on section titles (JavaScript)",
-"tog-showtoc"=>"Show table of contents<br />(for articles with more than 3 headings",
 "tog-rememberpassword" => "זכור את הסיסמא שלי בפעמים הבאות",
 "tog-editwidth" => "תיבת העריכה ברוחב מלא",
 "tog-watchdefault" => "עקוב אחרי מאמרים שערכתי או יצרתי",
@@ -175,8 +172,6 @@ require_once("LanguageUtf8.php");
 'pagetitle'		=> "$1 - {{SITENAME}}",
 "sitesubtitle"	=> "",
 "retrievedfrom" => "מקור: $1",
-"newmessages" => "יש לך $1",
-"newmessageslink" => "הודעות חדשות",
 "editsection" => "עריכה",
 
 # Main script and global functions
@@ -352,7 +347,6 @@ $3 $9",
 "preferences"	=> "העדפות",
 "prefsnologin" => "לא נרשמת באתר",
 "prefsnologintext"	=> "עליך להיכנס לחשבון כדי לשנות העדפות משתמש",
-"prefslogintext" => "נכנסת בשם \"$1\", מספרך הסידורי הוא $2.",
 "prefsreset"	=> "העדפותיך שוחזרו מברירת המחדל.",
 "qbsettings"	=> "הגדרות סרגל מהיר",
 "changepassword" => "שנה סיסמא",
@@ -383,7 +377,6 @@ $3 $9",
 "timezoneoffset" => "הפרש",
 "servertime"	=> "השעה הנוכחית בשרת היא",
 "guesstimezone" => "מלא מהדפדפן",
-"emailflag"		=> "הסתר כתובת דואר-אלקטרוני ממשתמשים אחרים.",
 
 # Recent changes
 #

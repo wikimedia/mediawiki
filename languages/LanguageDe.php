@@ -8,11 +8,6 @@
 /** */
 require_once( 'LanguageUtf8.php' );
 
-# See Language.php for notes.
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesDe = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Spezial',
@@ -171,7 +166,6 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "disclaimerpage"		=> "{{ns:4}}:Lizenzbestimmungen",
 "errorpagetitle" => "Fehler",
 "returnto"		=> "Zurück zu $1.",
-"tagline"      	=> "aus {{SITENAME}}, der freien Wissensdatenbank",
 "whatlinkshere"	=> "Was zeigt hierhin",
 "help"			=> "Hilfe",
 "search"		=> "Suche",
@@ -215,12 +209,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "nbytes"		=> "$1 Byte",
 "go"			=> "Los",
 "ok"			=> "OK",
-"sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	=> "",
-"pagetitle"		=> "$1 - {{SITENAME}}",
-"sitesubtitle"	=> "Die freie Wissensdatenbank",
 'retrievedfrom' => 'Von "$1"',
-"newmessages" => "Sie haben $1.",
 "newmessageslink" => "neue Nachrichten",
 "editsection" => "bearbeiten",
 "toc" => "Inhaltsverzeichnis",
@@ -333,8 +322,6 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "login"			=> "Anmelden",
 "loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
 "userlogin"		=> "Anmelden",
-'disabled_on_this_wiki'	=> '<div class="error"><b>Diese Funktion ist bei diesem Wiki dauerhaft abeschaltet.
-Durch die automatische Anmeldung beim Benutzerkonto sind eigene Benutzer-Anmeldung oder -Abmeldung nicht erforderlich.</b></div>',
 "logout"		=> "Abmelden",
 "userlogout"	=> "Abmelden",
 "notloggedin" => "Nicht angemeldet",
@@ -358,24 +345,9 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporä
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
 "mailmypassword" => "Ein neues (temporäres) Passwort schicken",
-'mailmypasswordauthent'	=> 'Ein neues (temporäres) Passwort schicken, auch für Authentifizierung der E-Mailadresse',
-'passwordremindermailsubject' => "E-Mail-Adressenauthentifizierung und temporäres Passwort für {{SITENAME}}",
-'passwordremindermailbody' 	=> "Jemand, vielleicht Sie, hat von IP-Adresse $1
-um ein temporäres Einmal-Passwort für die Anmeldung bei {{SITENAME}} gebeten.
-
-Das Passwort für Benutzer \"$2\" lautet nun \"$3\".
-
-Bitte melden Sie sich nun mit diesem temporären Passwort an, das gleichzeitig der Authentifizierung
-Ihrer E-Mail-Adresse dient. Für weitere Anmeldungen verwenden Sie bitte wieder Ihr altes Passwort.
-Alternativ können Sie auch ein neues eintragen, zum Beispiel, wenn Sie das alte vergessen haben.,
-
-{{SERVER}}{{localurl:Special:Userlogin|wpName=$2&wpPassword=$3&returnto=Special:Preferences}}",
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
 "passwordsent"	=> "Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.",
-'passwordsentforemailauthentication'
-	=> "Ein temporäres Passwort wurde an die gerade neu eingetragene E-Mail-Adresse des Benutzers \"$1\" gesendet.
-Bitte melden Sie sich damit an, um die Adressauthentifizierung durchzuführen.",
 "loginend"		=> "&nbsp;",
 "mailerror" => "Fehler beim Senden von Mail: $1",
 'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
@@ -384,7 +356,6 @@ Bitte melden Sie sich damit an, um die Adressauthentifizierung durchzuführen.",
 'emailnotauthenticated'	=> 'Ihre E-Mail-Adresse ist <strong>noch nicht authentifiziert</strong> und die erweiterten E-Mailfunktionen sind bis zur Authentifizierung ohne Funktion <strong>(aus)</strong>.<br />
 Für die Authentifizierung melden Sie sich bitte mit dem per E-Mail geschickten temporären Passwort an, oder fordern Sie auf der Anmeldeseite ein neues an.',
 'invalidemailaddress'	=> 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte geben Sie eine Adresse in einem gültigen Format ein, oder leeren Sie das Feld.',
-'disableduntilconfirmation'	=> '<strong>(aus)</strong>',
 'noemailprefs'	=> '<strong>Sie haben keine E-Mail-Adresse angegeben</strong>, die folgenden
 Funktionen sind zur Zeit deshalb nicht möglich.',
 
@@ -529,8 +500,6 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "preferences"	=> "Einstellungen",
 "prefsnologin" => "Nicht angemeldet",
 "prefsnologintext"	=> "Sie müssen [[Special:Userlogin|angemeldet]] sein, um Ihre Einstellungen zu ändern.",
-"prefslogintext" => "Sie sind angemeldet als \"$1\".
-Ihre interne ID-Nummer ist $2.",
 "prefsreset"	=> "Einstellungen wurden auf Standard zurückgesetzt.",
 "qbsettings"	=> "Seitenleiste",
 "changepassword" => "Passwort ändern",
@@ -563,8 +532,6 @@ Ihre interne ID-Nummer ist $2.",
 "timezoneoffset" => "Unterschied",
 "servertime" => "Aktuelle Zeit auf dem Server",
 "guesstimezone" => "Einfügen aus dem Browser",
-"emailflag"		=> "Keine E-Mail von anderen Benutzern erhalten",
-'enotifnewpages'	=> 'Sende mir eine Benachrichtigungsmail, wenn jemand eine neue Seite anlegt.',
 "defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
 
 # Recent changes
@@ -832,7 +799,6 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'created' 			=> 'neu angelegt',
 'enotif_subject' 		=> 'Die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => '$1 zeigt alle Änderungen auf einen Blick.',
-'enotif_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
 'enotif_body' => 'Liebe/r $WATCHINGUSERNAME,
 
 die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED,
@@ -1017,7 +983,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "talkpagenotmoved" => "Die \"Diskussions\"-Seite wurde <strong>nicht</strong> verschoben.",
 
 "export"        => "Seiten exportieren",
-"exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit WikiMedia Software eingespielt werden, bearbeitet oder archiviert werden.",
+"exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit Mediawiki Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 "missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>",
 
@@ -1107,19 +1073,17 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'move' => "verschieben",
 'edit' => 'bearbeiten',
 'talk' => 'Diskussion',
-"infobox" => "Klicken Sie einen Button, um einen Beispieltext zu erhalten.",
-"infobox_alert" => "Bitte geben Sie den Text ein, den Sie formatiert haben möchten.\\nEr wird dann zum Kopieren in der Infobox angezeigt.\\nBeispiel:\\n$1\\nwird zu\\n$2",
 "nocookiesnew" => "Der Benutzerzugang wurde erstellt, aber Sie sind nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und loggen sich dann mit Ihrem neuen Benutzernamen und dem Passwort ein.",
 "nocookieslogin" => "{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.",
 "subcategorycount" => "Diese Kategorie hat $1 Unterkategorien.",
 "categoryarticlecount" => "Dieser Kategorie gehören $1 Artikel an.",
 # math
-	'mw_math_png' => "Immer als PNG darstellen",
-	'mw_math_simple' => "Einfaches TeX als HTML darstellen, sonst PNG",
-	'mw_math_html' => "Wenn möglich als HTML darstellen, sonst PNG",
-	'mw_math_source' =>"Als TeX belassen (für Textbrowser)",
-	'mw_math_modern' => "Empfehlenswert für moderne Browser",
-	'mw_math_mathml' => 'MathML (experimentell)',
+'mw_math_png' => "Immer als PNG darstellen",
+'mw_math_simple' => "Einfaches TeX als HTML darstellen, sonst PNG",
+'mw_math_html' => "Wenn möglich als HTML darstellen, sonst PNG",
+'mw_math_source' =>"Als TeX belassen (für Textbrowser)",
+'mw_math_modern' => "Empfehlenswert für moderne Browser",
+'mw_math_mathml' => 'MathML (experimentell)',
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Benutzer: ',
 'speciallogtitlelabel' => 'Titel: ',
@@ -1259,8 +1223,8 @@ class LanguageDe extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number ) {
-		return strtr($number, '.,', ',.' );
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
 
 }

@@ -15,9 +15,6 @@
 
 require_once( 'LanguageUtf8.php' );
 
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesNn = array(
 	NS_MEDIA          => 'Filpeikar',
 	NS_SPECIAL        => 'Spesial',
@@ -81,7 +78,7 @@ if($wgMetaNamespace === FALSE)
 	MAG_NOTOC                => array( 0,    '__NOTOC__', '__INGAINNHALDSLISTE__', '__INGENINNHOLDSLISTE__'         ),
 	MAG_FORCETOC             => array( 0,    '__FORCETOC__', '__ALLTIDINNHALDSLISTE__', '__ALLTIDINNHOLDSLISTE__'   ),
 	MAG_TOC                  => array( 0,    '__TOC__', '__INNHALDSLISTE__', '__INNHOLDSLISTE__'                    ),
-    MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__INGABOLKENDRING__', '__INGABOLKREDIGERING__', '__INGENDELENDRING__'),
+	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__INGABOLKENDRING__', '__INGABOLKREDIGERING__', '__INGENDELENDRING__'),
 	MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'MÅNADNO', 'MÅNEDNÅ'                                   ),
 	MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME', 'MÅNADNONAMN', 'MÅNEDNÅNAVN'                       ),
 	MAG_CURRENTMONTHABBREV   => array( 1,    'CURRENTMONTHABBREV', 'MÅNADNOKORT', 'MÅNEDNÅKORT'                     ),
@@ -90,7 +87,7 @@ if($wgMetaNamespace === FALSE)
 	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR', 'ÅRNO', 'ÅRNÅ'                                          ),
 	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME', 'TIDNO', 'TIDNÅ'                                        ),
 	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES', 'INNHALDSSIDETAL', 'INNHOLDSSIDETALL'              ),
-    MAG_NUMBEROFFILES        => array( 1,    'NUMBEROFFILES', 'FILTAL'                                              ),
+	MAG_NUMBEROFFILES        => array( 1,    'NUMBEROFFILES', 'FILTAL'                                              ),
 	MAG_PAGENAME             => array( 1,    'PAGENAME', 'SIDENAMN', 'SIDENAVN'                                     ),
 	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE', 'SIDENAMNE', 'SIDENAVNE'                                  ),
 	MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAMNEROM', 'NAVNEROM'                                    ),
@@ -98,7 +95,7 @@ if($wgMetaNamespace === FALSE)
 	MAG_MSGNW                => array( 0,    'MSGNW:', 'IKWIKMELD:'                                                 ),
 	MAG_END                  => array( 0,    '__END__', '__SLUTT__'                                                 ),
 	MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'mini', 'miniatyr'                               ),
-    MAG_IMG_MANUALTHUMB      => array( 1,    'thumbnail=$1', 'thumb=$1', 'mini=$1', 'miniatyr=$1'                   ),
+	MAG_IMG_MANUALTHUMB      => array( 1,    'thumbnail=$1', 'thumb=$1', 'mini=$1', 'miniatyr=$1'                   ),
 	MAG_IMG_RIGHT            => array( 1,    'right', 'høgre', 'høyre'                                              ),
 	MAG_IMG_LEFT             => array( 1,    'left', 'venstre'                                                      ),
 	MAG_IMG_NONE             => array( 1,    'none', 'ingen'                                                        ),
@@ -300,11 +297,8 @@ if($wgMetaNamespace === FALSE)
 'versionrequiredtext'     => 'For å bruke denne sida trengst MediaWiki versjon $1. Sjå [[{{ns:special}}:Version]]',
 'nbytes'		  => '$1 byte',
 'ok'			  => 'OK',
-'sitetitle'		  => '{{SITENAME}}',
-'pagetitle'		  => '$1 - {{SITENAME}}',
 'sitesubtitle'	          => '',
 'retrievedfrom'           => 'Henta frå «$1»',
-'newmessages'             => 'Du har $1.',
 'newmessageslink'         => 'nye meldingar',
 'editsection'             => 'endre',
 'toc'                     => 'Innhaldsliste',
@@ -463,9 +457,6 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'media_tip'               => 'Filpeikar',
 'sig_tip'                 => 'Signaturen din med tidsstempel',
 'hr_tip'                  => 'Vassrett line',
-'infobox'                 => 'Klikk på ein knapp for å få eksempeltekst',
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert'           => "Skriv inn teksten du vil ha formatert.\n Han vil bli vist i boksen slik at han kan kopierast og limast inn.\nEksempel:\n$1\nblir til:\n$2",
 
 # Edit pages
 #
@@ -599,9 +590,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'preferences'	        => 'Innstillingar',
 'prefsnologin'          => 'Ikkje innlogga',
 'prefsnologintext'	    => 'Du lyt vera [[Special:Userlogin|innlogga]] for å endre brukarinnstillingane dine.',
-'prefslogintext'        => 'Du er innlogga som «$1». Det interne ID-nummeret ditt er $2.
-
-Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstillingane.',
 'prefsreset'	        => 'Innstillingane er tilbakestilte til siste lagra versjon.',
 'qbsettings'	        => 'Snøggmeny',
 'changepassword'        => 'Skift passord',
@@ -642,7 +630,6 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'timezoneoffset'        => 'Skilnad',
 'servertime'	        => 'Tenartid',
 'guesstimezone'         => 'Hent tidssone frå nettlesaren',
-'emailflag'	        => 'Ikkje godtak e-post frå andre brukarar',
 'defaultns'		=> 'Søk som standard i desse namneromma:',
 'default'		=> 'standard',
 'files'                 => 'Filer',
@@ -836,7 +823,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 # Miscellaneous special pages
 #
 'orphans'		=> 'Foreldrelause sider',
-'geo'		        => 'GEO-koordinat',
 'lonelypages'	        => 'Foreldrelause sider',
 'uncategorizedpages'	=> 'Ikkje kategoriserte sider',
 'uncategorizedcategories' => 'Ikkje kategoriserte kategoriar',

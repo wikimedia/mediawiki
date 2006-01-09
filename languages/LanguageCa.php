@@ -4,10 +4,6 @@
   * @subpackage Language
   */
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesCa = array(
 	NS_MEDIA			=> 'Media',
 	NS_SPECIAL			=> 'Especial',
@@ -52,17 +48,11 @@
 "tog-hideminor" => "Amaga edicions menors en canvis recents",
 "tog-usenewrc" => "Canvis recents remarcats (no per tots els navegadors)",
 "tog-numberheadings" => "Autoenumera encapçalaments",
-"tog-showtoolbar" => "Show edit toolbar",
 "tog-rememberpassword" => "Recorda la contrasenya entre sessions",
 "tog-editwidth" => "La caixa d'edició té l'ample màxim",
 "tog-editondblclick" => "Edita pàgines amb un doble clic (JavaScript)",
-"tog-editsection"=>"Enable section editing via [edit] links",
-"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br /> on section titles (JavaScript)",
-"tog-showtoc"=>"Show table of contents<br />(for articles with more than 3 headings)",
 "tog-watchdefault" => "Vigila articles nous i modificats",
 "tog-minordefault" => "Marca totes les edicions com menors per defecte",
-"tog-previewontop" => "Show preview before edit box and not after it",
-"tog-nocache" => "Disable page caching",
 #Dates
 
 'sunday' => 'Diumenge',
@@ -158,7 +148,6 @@ Vegeu $1.",
 "go"			=> "Vés-hi",
 "ok"			=> "D'acord",
 "sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	=> "L'Enciclopèdia Lliure",
 "retrievedfrom" => "Obtingut de \"$1\"",
 
 # Main script and global functions
@@ -347,8 +336,6 @@ $2 Llista redireccions   Cerca $3 $9",
 "prefsnologin" => "No heu entrat",
 "prefsnologintext"	=> "Has haver [[Especial:Userlogin|entrat]]
 per seleccionar preferències d'usuari.",
-"prefslogintext" => "Heu entrat amb el nom \"$1\".
-El vostre número d'identificació intern és $2.",
 "prefsreset"	=> "Les preferències han estat respostes des d'emmagatzematge.",
 "qbsettings"	=> "Preferències de \"Quickbar\"",
 "changepassword" => "Canvia contrasenya",
@@ -378,7 +365,6 @@ El vostre número d'identificació intern és $2.",
 i l'hora del servidor (UTC).",
 "localtime"	=> "Hora local",
 "timezoneoffset" => "Diferència",
-"emailflag"     => "No voleu rebre correu electrònic d'altres usuaris",
 
 # Recent changes
 #
