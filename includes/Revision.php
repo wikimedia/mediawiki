@@ -517,19 +517,36 @@ class Revision {
 	 * @return int
 	 */
 	function insertOn( &$dbw ) {
+		global $wgDefaultExternalStore;
+		
 		$fname = 'Revision::insertOn';
 		wfProfileIn( $fname );
 
-		$mungedText = $this->mText;
-		$flags = Revision::compressRevisionText( $mungedText );
+		$data = $this->mText;
+		$flags = Revision::compressRevisionText( $data );
 
-		# Record the text to the text table
+		# Write to external storage if required
+		if ( $wgDefaultExternalStore ) {
+			require_once('ExternalStore.php');
+			// Store and get the URL
+			$data = ExternalStore::insert( $wgDefaultExternalStore, $data );
+			if ( !$data ) {
+				# This should only happen in the case of a configuration error, where the external store is not valid
+				wfDebugDieBacktrace( "Unable to store text to external storage $wgDefaultExternalStore" );
+			}
+			if ( $flags ) {
+				$flags .= ',';
+			}
+			$flags .= 'external';
+		}
+
+		# Record the text (or external storage URL) to the text table
 		if( !isset( $this->mTextId ) ) {
 			$old_id = $dbw->nextSequenceValue( 'text_old_id_val' );
 			$dbw->insert( 'text',
 				array(
 					'old_id'    => $old_id,
-					'old_text'  => $mungedText,
+					'old_text'  => $data,
 					'old_flags' => $flags,
 				), $fname
 			);
