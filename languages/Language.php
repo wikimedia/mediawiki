@@ -1787,6 +1787,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 'newimages' => 'Gallery of new files',
 'showhidebots' => '($1 bots)',
 'noimages'  => 'Nothing to see.',
+'filelist'	=> 'File list',
+'filelist_show_list' => 'Show text list',
+'filelist_show_gallery' => 'Show thumbnails',
 
 # short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.

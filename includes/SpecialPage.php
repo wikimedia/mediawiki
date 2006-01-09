@@ -77,7 +77,8 @@ $wgSpecialPages = array(
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
 	'MIMEsearch'    => new SpecialPage( 'MIMEsearch' ),
 	'Unwatchedpages' => new SpecialPage( 'Unwatchedpages', 'unwatchedpages' ),
-	'Listredirects' => new SpecialPage( 'Listredirects' )
+	'Listredirects' => new SpecialPage( 'Listredirects' ),
+	'Filelist' => new SpecialPage( 'Filelist' )
 );
 
 if( !$wgDisableCounters ) {
