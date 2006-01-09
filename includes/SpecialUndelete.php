@@ -181,13 +181,11 @@ class PageArchive {
 			$newid             = 0;
 			$pageId            = $page->page_id;
 			$previousRevId     = $page->page_latest;
-			$previousTimestamp = $page->rev_timestamp;
 		} else {
 			# Have to create a new article...
 			$newid  = $article->insertOn( $dbw );
 			$pageId = $newid;
 			$previousRevId = 0;
-			$previousTimestamp = 0;
 		}
 
 		if( $restoreAll ) {
