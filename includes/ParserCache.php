@@ -93,6 +93,7 @@ class ParserCache {
 	}
 
 	function save( $parserOutput, &$article, &$user ){
+                global $wgParserCacheExpireTime;
 		$key = $this->getKey( $article, $user );
 		$now = wfTimestampNow();
 		$parserOutput->setCacheTime( $now );
@@ -102,7 +103,7 @@ class ParserCache {
 		if( $parserOutput->containsOldMagic() ){
 			$expire = 3600; # 1 hour
 		} else {
-			$expire = 86400; # 1 day
+			$expire = $wgParserCacheExpireTime;
 		}
 		$this->mMemc->set( $key, $parserOutput, $expire );
 	}
