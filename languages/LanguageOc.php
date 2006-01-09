@@ -14,13 +14,16 @@ require_once( "LanguageUtf8.php" );
 	NS_USER_TALK      => "Discutida_Utilisator",
 	NS_PROJECT        => $wgMetaNamespace,
 	NS_PROJECT_TALK   => 'Discutida_'.$wgMetaNamespace,
-	NS_IMAGE          => "Image",
-	NS_IMAGE_TALK     => "Discutida_Image",
-	NS_MEDIAWIKI      => "MediaWiki",
-	NS_MEDIAWIKI_TALK => "MediaWiki_talk",
-	NS_TEMPLATE       => "Template",
-	NS_TEMPLATE_TALK  => "Template_talk"
-
+	NS_IMAGE          => "Imatge",
+	NS_IMAGE_TALK     => "Discutida_Imatge",
+	NS_MEDIAWIKI      => "Mediaòiqui",
+	NS_MEDIAWIKI_TALK => "Discutida_Mediaòiqui",
+	NS_TEMPLATE       => "Modèl",
+	NS_TEMPLATE_TALK  => "Discutida_Modèl",
+	NS_HELP => 'Ajuda',
+	NS_HELP_TALK => 'Discutida_Ajuda',
+	NS_CATEGORY => 'Categoria',
+	NS_CATEGORY_TALK=> 'Discutida_Categoria',
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsOc = array(
