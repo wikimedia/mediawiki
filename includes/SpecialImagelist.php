@@ -5,22 +5,10 @@
  * @subpackage SpecialPage
  */
 
-
-require_once ( "SpecialFilelist.php" ) ;
-
-function wfSpecialImagelist( $par, $specialPage ) {
-	wfSpecialFilelist ( $par , $specialPage , false ) ;
-}
-
-# _____________________________________________
-# The rest of this file is obsolete
-# _____________________________________________
-
-
 /**
  *
  */
-function OLD_wfSpecialImagelist() {
+function wfSpecialImagelist() {
 	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMiserMode;
 
 	$sort = $wgRequest->getVal( 'sort' );
