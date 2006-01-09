@@ -18,6 +18,7 @@ require_once( 'Revision.php' );
 function wfSpecialRecentchanges( $par, $specialPage ) {
 	global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
 	global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
+	global $wgAllowCategorizedRecentChanges ;
 	$fname = 'wfSpecialRecentchanges';
 
 	# Get query parameters
@@ -33,6 +34,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	/* text */ 'from' => '',
 	/* text */ 'namespace' => null,
 	/* bool */ 'invert' => false,
+	/* bool */ 'categories_any' => true,
 	);
 
 	extract($defaults);
@@ -168,6 +170,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 		// Run existence checks
 		$batch->execute();
+		$any = $wgRequest->getBool ( 'categories_any' , false ) ;
 
 		// Output header
 		if ( !$specialPage->including() ) {
@@ -185,6 +188,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 			wfAppendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'categories_any', $any, $defaults, $nondefaults);
 
 			// Add end of the texts
 			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) . "\n" );
@@ -196,6 +200,13 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$wgOut->setSyndicated( true );
 
 		$list = ChangesList::newFromUser( $wgUser );
+		
+		if ( $wgAllowCategorizedRecentChanges ) {
+			$categories = trim ( $wgRequest->getVal ( 'categories' , "" ) ) ;
+			$categories = str_replace ( "|" , "\n" , $categories ) ;
+			$categories = explode ( "\n" , $categories ) ;
+			rcFilterByCategories ( $rows , $categories , $any ) ;
+		}
 
 		$s = $list->beginRecentChangesList();
 		$counter = 1;
@@ -232,6 +243,53 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$s .= $list->endRecentChangesList();
 		$wgOut->addHTML( $s );
 	}
+}
+
+function rcFilterByCategories ( &$rows , $categories , $any ) {
+	require_once ( 'Categoryfinder.php' ) ;
+	
+	# Filter categories
+	$cats = array () ;
+	foreach ( $categories AS $cat ) {
+		$cat = trim ( $cat ) ;
+		if ( $cat == "" ) continue ;
+		$cats[] = $cat ;
+	}
+	
+	# Filter articles
+	$articles = array () ;
+	$a2r = array () ;
+	foreach ( $rows AS $k => $r ) {
+		$nt = Title::newFromText ( $r->rc_title , $r->rc_namespace ) ;
+		$id = $nt->getArticleID() ;
+		if ( $id == 0 ) continue ; # Page might have been deleted...
+		if ( !in_array ( $id , $articles ) ) {
+			$articles[] = $id ;
+		}
+		if ( !isset ( $a2r[$id] ) ) {
+			$a2r[$id] = array() ;
+		}
+		$a2r[$id][] = $k ;
+	}
+	
+	# Shortcut?
+	if ( count ( $articles ) == 0 OR count ( $cats ) == 0 )
+		return ;
+	
+	# Look up
+	$c = new Categoryfinder ;
+	$c->seed ( $articles , $cats , $any ? "OR" : "AND" ) ;
+	$match = $c->run () ;
+	
+	# Filter
+	$newrows = array () ;
+	foreach ( $match AS $id ) {
+		foreach ( $a2r[$id] AS $rev ) {
+			$k = $rev ;
+			$newrows[$k] = $rows[$k] ;
+		}
+	}
+	$rows = $newrows ;
 }
 
 function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
@@ -460,13 +518,28 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
  * @return string
  */
 function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
-	global $wgContLang, $wgScript;
+	global $wgContLang, $wgScript, $wgAllowCategorizedRecentChanges, $wgRequest;
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
 	$namespaceselect = HTMLnamespaceselector($namespace, '');
 	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . "\" />\n";
 	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
-
+	
+	if ( $wgAllowCategorizedRecentChanges ) {
+		$categories = trim ( $wgRequest->getVal ( 'categories' , "" ) ) ;
+		$any = $wgRequest->getBool ( 'categories_any' , true ) ;
+		$cb_arr = array( 'type' => 'checkbox', 'name' => 'categories_any', 'value' => "1" ) ;
+		if ( $any ) $cb_arr['checked'] = "checked" ;
+		$catbox = "<br/>" ;
+		$catbox .= wfMsg('rc_categories') . " ";
+		$catbox .= wfElement('input', array( 'type' => 'text', 'name' => 'categories', 'value' => $categories));
+		$catbox .= " &nbsp;" ;
+		$catbox .= wfElement('input', $cb_arr );
+		$catbox .= wfMsg('rc_categories_any');
+	} else {
+		$catbox = "" ;
+	}
+	
 	$out = "<div class='namespacesettings'><form method='get' action='{$wgScript}'>\n";
 
 	foreach ( $nondefaults as $key => $value ) {
@@ -478,7 +551,7 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 	$out .= "
 <div id='nsselect' class='recentchanges'>
 	<label for='namespace'>" . wfMsgHtml('namespace') . "</label>
-	{$namespaceselect}{$submitbutton}{$invertbox} <label for='nsinvert'>" . wfMsgHtml('invert') . "</label>\n</div>";
+	{$namespaceselect}{$submitbutton}{$invertbox} <label for='nsinvert'>" . wfMsgHtml('invert') . "</label>{$catbox}\n</div>";
 	$out .= '</form></div>';
 	return $out;
 }
