@@ -1956,26 +1956,13 @@ class Title {
 
 	/**
 	 * Get an associative array for selecting this title from
-	 * the "cur" table
+	 * the "page" table
 	 *
 	 * @return array
 	 * @access public
 	 */
-	function curCond() {
-		wfDebugDieBacktrace( 'curCond called' );
-		return array( 'cur_namespace' => $this->mNamespace, 'cur_title' => $this->mDbkeyform );
-	}
-
-	/**
-	 * Get an associative array for selecting this title from the
-	 * "old" table
-	 *
-	 * @return array
-	 * @access public
-	 */
-	function oldCond() {
-		wfDebugDieBacktrace( 'oldCond called' );
-		return array( 'old_namespace' => $this->mNamespace, 'old_title' => $this->mDbkeyform );
+	function pageCond() {
+		return array( 'page_namespace' => $this->mNamespace, 'page_title' => $this->mDbkeyform );
 	}
 
 	/**
