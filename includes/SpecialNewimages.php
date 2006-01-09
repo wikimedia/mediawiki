@@ -5,13 +5,24 @@
  * @subpackage SpecialPage
  */
 
+require_once ( "SpecialFilelist.php" ) ;
+
+function wfSpecialNewimages( $par, $specialPage ) {
+	wfSpecialFilelist ( $par , $specialPage , true ) ;
+}
+
+# _____________________________________________
+# The rest of this file is obsolete
+# _____________________________________________
+
+
 /** */
 require_once( 'ImageGallery.php' );
 
 /**
  *
  */
-function wfSpecialNewimages( $par, $specialPage ) {
+function OLD_wfSpecialNewimages( $par, $specialPage ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest,
 	       $wgGroupPermissions;
 
