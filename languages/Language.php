@@ -2495,7 +2495,7 @@ class Language {
 
 		$datePreference = $this->dateFormat( $format );
 		if( $datePreference == MW_DATE_DEFAULT ) {
-			return $wgAmericanDates ? MW_DATE_MDY : MW_DATE_DMY;
+			$datePreference = $wgAmericanDates ? MW_DATE_MDY : MW_DATE_DMY;
 		}
 
 		$month = $this->formatMonth( substr( $ts, 4, 2 ), $datePreference );
