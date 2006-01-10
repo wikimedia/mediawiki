@@ -1,13 +1,23 @@
 <?php
+/**
+ * MediaWiki is the to-be base class for this whole project
+*/
+
 
 class MediaWiki {
 
 	var $params = array();
-	
+
+	/**
+	 * Stores parameters (to avoid using globals)
+	 */
 	function setVal( $key, &$value ) {
 		$this->param[strtolower( $key )] = $value;
 	}
-	
+
+	/**
+	 * Retrieves parameters
+	 */
 	function getVal( $key, $default = "" ) {
 		$key = strtolower( $key );
 		if( isset( $this->params[$key] ) ) {
@@ -16,7 +26,11 @@ class MediaWiki {
 		return $default;
 	}
 
-	function initializeArticle( &$title, $request, $action ) {
+	/**
+	 * Creates the article to be known as $wgArticle
+	 */
+	function initializeArticle( &$title, &$request, $action ) {
+		// Fix Media namespace
 		if( NS_MEDIA == $title->getNamespace() ) {
 			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
 		}
@@ -31,22 +45,31 @@ class MediaWiki {
 				# Reload from the page pointed to later
 				$article->mContentLoaded = false;
 				$ns = $rTitle->getNamespace();
+				$wasRedirected = true;
 			}
 		}
 
 		// Categories and images are handled by a different class
 		if( $ns == NS_IMAGE ) {
+			$b4 = $title->getPrefixedText();
 			unset($article);
 			require_once( 'includes/ImagePage.php' );
-			return new ImagePage( $title );
+			$article = new ImagePage( $title );
+			if( isset( $wasRedirected ) ) {
+				$article->mTitle = $rTitle;
+				$article->mRedirectedFrom = $b4;
+			}
 		} elseif( $ns == NS_CATEGORY ) {
 			unset($article);
 			require_once( 'includes/CategoryPage.php' );
-			return new CategoryPage( $title );
+			$article = new CategoryPage( $title );
 		}
 		return $article;
 	}
 
+	/**
+	 * Performs any of a wide range of passed actions
+	 */
 	function performAction( $action, &$output, &$article, &$title, &$user, &$request ) {
 		switch( $action ) {
 			case 'view':
