@@ -213,6 +213,7 @@ class HistoryBlobStub {
 
 	/** @todo document */
 	function getText() {
+		$fname = 'HistoryBlob::getText';
 		global $wgBlobCache;
 		if( isset( $wgBlobCache[$this->mOldId] ) ) {
 			$obj = $wgBlobCache[$this->mOldId];

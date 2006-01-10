@@ -1583,7 +1583,7 @@ class Title {
 			$this->moveOverExistingRedirect( $nt, $reason );
 			$pageCountChange = 0;
 		} else { # Target didn't exist, do normal move.
-			$this->moveToNewTitle( $nt, $newid, $reason );
+			$this->moveToNewTitle( $nt, $reason );
 			$pageCountChange = 1;
 		}
 		$redirid = $this->getArticleID();
@@ -1723,10 +1723,9 @@ class Title {
 	/**
 	 * Move page to non-existing title.
 	 * @param Title &$nt the new Title
-	 * @param int &$newid set to be the new article ID
 	 * @access private
 	 */
-	function moveToNewTitle( &$nt, &$newid, $reason = '' ) {
+	function moveToNewTitle( &$nt, $reason = '' ) {
 		global $wgUser, $wgUseSquid;
 		global $wgMwRedir;
 		$fname = 'MovePageForm::moveToNewTitle';
