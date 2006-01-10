@@ -16,6 +16,20 @@ class MediaWiki {
 		return $default ;
 	}
 
+	function setCorrectArticleClass ( &$article , &$title , $namespace ) {
+		// Categories and images are handled by a different class
+		if ( $namespace == NS_IMAGE ) {
+			unset($article);
+			require_once( 'includes/ImagePage.php' );
+			return new ImagePage( $title );
+		} elseif ( $namespace == NS_CATEGORY ) {
+			unset($article);
+			require_once( 'includes/CategoryPage.php' );
+			return new CategoryPage( $title );
+		}
+		return $article ;
+	}
+
 	function performAction ( $action , &$output , &$article , &$title , &$user , &$request ) {
 		switch( $action ) {
 			case 'view':
