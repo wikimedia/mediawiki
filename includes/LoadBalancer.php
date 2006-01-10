@@ -198,7 +198,7 @@ class LoadBalancer {
 							unset( $loads[$i] );
 							$sleepTime = 0;
 						} else {
-							$status = $this->mConnections[$i]->getStatus();
+							$status = $this->mConnections[$i]->getStatus("Thread%");
 							if ( isset( $this->mServers[$i]['max threads'] ) &&
 							  $status['Threads_running'] > $this->mServers[$i]['max threads'] )
 							{
@@ -615,7 +615,9 @@ class LoadBalancer {
 
 		$times = array();
 		foreach ( $this->mServers as $i => $conn ) {
-			if ( $this->openConnection( $i ) ) {
+			if ($i==0) { # Master
+				$times[$i] = 0;
+			} elseif ( $this->openConnection( $i ) ) {
 				$times[$i] = $this->mConnections[$i]->getLag();
 			}
 		}

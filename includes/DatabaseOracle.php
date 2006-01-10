@@ -513,7 +513,7 @@ class DatabaseOracle extends Database {
 	function getLag() {
 		return false;
 	}
-	function getStatus() {
+	function getStatus($which=null) {
 		$result = array('Threads_running' => 0, 'Threads_connected' => 0);
 		return $result;
 	}
