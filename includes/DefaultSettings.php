@@ -885,6 +885,8 @@ $wgCachePages       = true;
 /**
  * Set this to current time to invalidate all prior cached pages. Affects both
  * client- and server-side caching.
+ * You can get the current date on your server by using the command:
+ *   date +%Y%m%d%H%M%S
  */
 $wgCacheEpoch = '20030516000000';
 
