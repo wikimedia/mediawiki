@@ -16,10 +16,9 @@ class MediaWiki {
 		return $default ;
 	}
 
-	function performAction ( $action , &$output , &$article , &$user ) {
+	function performAction ( $action , &$output , &$article , &$title , &$user ) {
 		global $wgRequest ; # Unavoidable for now
 		
-		$title = &$article->getTitle() ;
 		switch( $action ) {
 			case 'view':
 				$output->setSquidMaxage( $this->getVal('SquidMaxage') );
