@@ -150,28 +150,12 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	# actions that need to be made when we have a special pages
 	SpecialPage::executePath( $wgTitle );
 } else {
-	if ( NS_MEDIA == $wgTitle->getNamespace() ) {
-		$wgTitle = Title::makeTitle( NS_IMAGE, $wgTitle->getDBkey() );
-	}
-
-	$ns = $wgTitle->getNamespace();
-
-	// Namespace might change when using redirects
-	if($action == 'view' && !$wgRequest->getVal( 'oldid' ) ) {
-		$wgArticle = new Article( $wgTitle );
-		$rTitle = Title::newFromRedirect( $wgArticle->fetchContent() );
-		if($rTitle) {
-			# Reload from the page pointed to later
-			$wgArticle->mContentLoaded = false;
-			$ns = $rTitle->getNamespace();
-		}
-	}
 
 
 	require_once ( "includes/Wiki.php" ) ;
 	$mediaWiki = new MediaWiki() ;
 
-	$wgArticle =& $mediaWiki->setCorrectArticleClass ( $wgArticle , $wgTitle , $ns ) ;
+	$wgArticle =& $mediaWiki->initializeArticle ( $wgTitle , $action ) ;
 
 	if ( in_array( $action, $wgDisabledActions ) ) {
 		$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
