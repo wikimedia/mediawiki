@@ -2469,9 +2469,11 @@ class Language {
 			$datePreference = (string)$usePrefs;
 		}
 
-		if( $datePreference == MW_DATE_DEFAULT || $datePreference == '' ) {
-			return $wgAmericanDates ? MW_DATE_MDY : MW_DATE_DMY;
+		// return int
+		if( $datePreference == '' ) {
+			return MW_DATE_DEFAULT;
 		}
+		
 		return $datePreference;
 	}
 
@@ -2492,6 +2494,9 @@ class Language {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
 		$datePreference = $this->dateFormat( $format );
+		if( $datePreference == MW_DATE_DEFAULT ) {
+			return $wgAmericanDates ? MW_DATE_MDY : MW_DATE_DMY;
+		}
 
 		$month = $this->formatMonth( substr( $ts, 4, 2 ), $datePreference );
 		$day = $this->formatDay( substr( $ts, 6, 2 ), $datePreference );
