@@ -2489,7 +2489,7 @@ class Language {
 	 * @return string
 	 */
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		global $wgUser;
+		global $wgUser, $wgAmericanDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
