@@ -535,15 +535,7 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
 #
 'changes'	=> 'modifications',
 'recentchanges' => 'Modifications récentes',
-'recentchangestext' => "Suivez sur cette page les dernières modifications de {{SITENAME}}.
-[[{{ns:4}}:Bienvenue|Bienvenue]] aux nouveaux participants!
-Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[{{ns:4}}:FAQ|foire aux questions]],
-[[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]]
-(notamment [[{{ns:4}}:Règles de nommage|conventions de nommage]],
-[[{{ns:4}}:La neutralité de point de vue|la neutralité de point de vue]]),
-et [[{{ns:4}}:Les faux-pas les plus courants|les faux-pas les plus courants]].
-
-Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[{{ns:4}}:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
+'recentchangestext' => "Suivez sur cette page les dernières modifications de {{SITENAME}}.",
 'rcloaderr'  => 'Chargement des dernières modifications',
 'rcnote'  => 'Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.',
 'rcnotefrom'	=> 'Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).',
@@ -614,7 +606,7 @@ L\'heure indiquée est celle du serveur (UTC).
 'illegalfilename'	=> 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le copier à nouveau.',
 'badfilename' => 'L\'image a été renommée « $1 ».',
 'badfiletype' => '« .$1 » n\'est pas un format recommandé pour les fichiers images.',
-'largefile'  => 'La taille maximale conseillée pour les images est de 100 ko.',
+'largefile'  => 'La taille maximale conseillée pour les images est de $1 ko ($2).',
 'successfulupload' => 'Copie réussie',
 'fileuploaded' => 'Le fichier « $1 » a été copié sur le serveur.
 Suivez ce lien ($2) pour accéder à la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de création, son auteur, ou tout autre renseignement en votre possession.',
@@ -1149,7 +1141,8 @@ class LanguageFr extends LanguageUtf8 {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		if( $wgSitename == 'Wikipédia' ) {
-			if( 0 == strcasecmp( 'Discussion_Wikipedia', $text ) ) return 5;
+			if( 0 == strcasecmp( 'Wikipedia', $text ) ) return NS_PROJECT;
+			if( 0 == strcasecmp( 'Discussion_Wikipedia', $text ) ) return NS_PROJECT_TALK;
 		}
 		return false;
 	}
