@@ -43,7 +43,6 @@ class Upgrader {
 	var $data_loaded = false ;
 	var $db_transaction = false ;
 	var $dbr = NULL ;
-	var $dba = NULL ;
 	
 	function loadVersionInfoFromDatabase () {
 		global $wgAllowUpgrader ;
