@@ -152,20 +152,20 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 } else {
 
 
-	require_once ( "includes/Wiki.php" ) ;
+	require_once( "includes/Wiki.php" ) ;
 	$mediaWiki = new MediaWiki() ;
 
-	$wgArticle =& $mediaWiki->initializeArticle ( $wgTitle , $action ) ;
+	$wgArticle =& $mediaWiki->initializeArticle( $wgTitle, $wgRequest, $action );
 
-	if ( in_array( $action, $wgDisabledActions ) ) {
+	if( in_array( $action, $wgDisabledActions ) ) {
 		$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 	} else {
-		$mediaWiki->setVal ( "SquidMaxage" , $wgSquidMaxage ) ;
-		$mediaWiki->setVal ( "EnableDublinCoreRdf" , $wgEnableDublinCoreRdf ) ;
-		$mediaWiki->setVal ( "EnableCreativeCommonsRdf" , $wgEnableCreativeCommonsRdf ) ;
-		$mediaWiki->setVal ( "CommandLineMode" , $wgCommandLineMode ) ;
-		$mediaWiki->setVal ( "UseExternalEditor" , $wgUseExternalEditor ) ;
-		$mediaWiki->performAction ( $action , $wgOut , $wgArticle , $wgTitle , $wgUser , $wgRequest ) ;
+		$mediaWiki->setVal( "SquidMaxage", $wgSquidMaxage );
+		$mediaWiki->setVal( "EnableDublinCoreRdf", $wgEnableDublinCoreRdf );
+		$mediaWiki->setVal( "EnableCreativeCommonsRdf", $wgEnableCreativeCommonsRdf );
+		$mediaWiki->setVal( "CommandLineMode", $wgCommandLineMode );
+		$mediaWiki->setVal( "UseExternalEditor", $wgUseExternalEditor );
+		$mediaWiki->performAction( $action, $wgOut, $wgArticle, $wgTitle, $wgUser, $wgRequest );
 	}
 
 
@@ -176,7 +176,7 @@ wfProfileOut( 'main-action' );
 # user, and that means doing this before OutputPage::output(). Note that for page saves,
 # the client will wait until the script exits anyway before following the redirect.
 wfProfileIn( 'main-updates' );
-foreach ( $wgDeferredUpdateList as $up ) {
+foreach( $wgDeferredUpdateList as $up ) {
 	$up->doUpdate();
 }
 wfProfileOut( 'main-updates' );
@@ -189,7 +189,7 @@ $wgLoadBalancer->commitAll();
 
 $wgOut->output();
 
-foreach ( $wgPostCommitUpdateList as $up ) {
+foreach( $wgPostCommitUpdateList as $up ) {
 	$up->doUpdate();
 }
 

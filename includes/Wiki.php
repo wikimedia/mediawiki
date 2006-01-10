@@ -2,23 +2,22 @@
 
 class MediaWiki {
 
-	var $params = array () ;
+	var $params = array();
 	
-	function setVal ( $key , &$value ) {
-		$this->param[strtolower($key)] = $value ;
+	function setVal( $key, &$value ) {
+		$this->param[strtolower( $key )] = $value;
 	}
 	
-	function getVal ( $key , $default = "" ) {
-		$key = strtolower ( $key ) ;
-		if ( isset ( $this->params[$key] ) ) {
-			return $this->params[$key] ;
+	function getVal( $key, $default = "" ) {
+		$key = strtolower( $key );
+		if( isset( $this->params[$key] ) ) {
+			return $this->params[$key];
 		}
-		return $default ;
+		return $default;
 	}
 
-	function initializeArticle ( &$title , $action ) {
-		global $wgRequest ;
-		if ( NS_MEDIA == $title->getNamespace() ) {
+	function initializeArticle( &$title, $request, $action ) {
+		if( NS_MEDIA == $title->getNamespace() ) {
 			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
 		}
 	
@@ -36,19 +35,19 @@ class MediaWiki {
 		}
 
 		// Categories and images are handled by a different class
-		if ( $ns == NS_IMAGE ) {
+		if( $ns == NS_IMAGE ) {
 			unset($article);
 			require_once( 'includes/ImagePage.php' );
 			return new ImagePage( $title );
-		} elseif ( $ns == NS_CATEGORY ) {
+		} elseif( $ns == NS_CATEGORY ) {
 			unset($article);
 			require_once( 'includes/CategoryPage.php' );
 			return new CategoryPage( $title );
 		}
-		return $article ;
+		return $article;
 	}
 
-	function performAction ( $action , &$output , &$article , &$title , &$user , &$request ) {
+	function performAction( $action, &$output, &$article, &$title, &$user, &$request ) {
 		switch( $action ) {
 			case 'view':
 				$output->setSquidMaxage( $this->getVal('SquidMaxage') );
@@ -104,11 +103,11 @@ class MediaWiki {
 				$section = $request->getVal( 'section' );
 				$oldid = $request->getVal( 'oldid' );
 				if(!$this->getVal('UseExternalEditor') || $action=='submit' || $internal ||
-				   $section || $oldid || (!$user->getOption('externaleditor') && !$external)) {
+				   $section || $oldid ||(!$user->getOption('externaleditor') && !$external)) {
 					require_once( 'includes/EditPage.php' );
 					$editor = new EditPage( $article );
 					$editor->submit();
-				} elseif($this->getVal('UseExternalEditor') && ($external || $user->getOption('externaleditor'))) {
+				} elseif($this->getVal('UseExternalEditor') &&($external || $user->getOption('externaleditor'))) {
 					require_once( 'includes/ExternalEdit.php' );
 					$mode = $request->getVal( 'mode' );
 					$extedit = new ExternalEdit( $article, $mode );
@@ -116,7 +115,7 @@ class MediaWiki {
 				}
 				break;
 			case 'history':
-				if ($_SERVER['REQUEST_URI'] == $title->getInternalURL('action=history')) {
+				if($_SERVER['REQUEST_URI'] == $title->getInternalURL('action=history')) {
 					$output->setSquidMaxage( $this->getVal('SquidMaxage') );
 				}
 				require_once( 'includes/PageHistory.php' );
@@ -129,13 +128,13 @@ class MediaWiki {
 				$raw->view();
 				break;
 			default:
-				if (wfRunHooks('UnknownAction', array($action, $article))) {
+				if(wfRunHooks('UnknownAction', array($action, $article))) {
 					$output->errorpage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
 	}
 
-} ; # End of class MediaWiki
+}; # End of class MediaWiki
 
 ?>
 
