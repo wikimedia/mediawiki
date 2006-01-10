@@ -1653,8 +1653,8 @@ class Database {
 	/**
 	 * Get status information from SHOW STATUS in an associative array
 	 */
-	function getStatus() {
-		$res = $this->query( 'SHOW STATUS' );
+	function getStatus($which="%") {
+		$res = $this->query( "SHOW STATUS LIKE '{$which}'" );
 		$status = array();
 		while ( $row = $this->fetchObject( $res ) ) {
 			$status[$row->Variable_name] = $row->Value;
