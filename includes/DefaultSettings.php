@@ -1220,7 +1220,7 @@ $wgSVGConverters = array(
 $wgSVGConverter = 'ImageMagick';
 /** If not in the executable PATH, specify */
 $wgSVGConverterPath = '';
-/** Don't scale a SVG larger than this unless its native size is larger */
+/** Don't scale a SVG larger than this */
 $wgSVGMaxSize = 1024;
 /**
  * Don't thumbnail an image if it will use too much working memory
