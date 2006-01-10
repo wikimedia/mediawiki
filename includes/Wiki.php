@@ -16,13 +16,31 @@ class MediaWiki {
 		return $default ;
 	}
 
-	function setCorrectArticleClass ( &$article , &$title , $namespace ) {
+	function initializeArticle ( &$title , $action ) {
+		global $wgRequest ;
+		if ( NS_MEDIA == $title->getNamespace() ) {
+			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
+		}
+	
+		$ns = $title->getNamespace();
+	
+		// Namespace might change when using redirects
+		$article = new Article( $title );
+		if($action == 'view' && !$wgRequest->getVal( 'oldid' ) ) {
+			$rTitle = Title::newFromRedirect( $article->fetchContent() );
+			if($rTitle) {
+				# Reload from the page pointed to later
+				$article->mContentLoaded = false;
+				$ns = $rTitle->getNamespace();
+			}
+		}
+
 		// Categories and images are handled by a different class
-		if ( $namespace == NS_IMAGE ) {
+		if ( $ns == NS_IMAGE ) {
 			unset($article);
 			require_once( 'includes/ImagePage.php' );
 			return new ImagePage( $title );
-		} elseif ( $namespace == NS_CATEGORY ) {
+		} elseif ( $ns == NS_CATEGORY ) {
 			unset($article);
 			require_once( 'includes/CategoryPage.php' );
 			return new CategoryPage( $title );
