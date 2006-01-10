@@ -1812,4 +1812,10 @@ $wgFilterRobotsWL = false;
  */
 $wgAllowCategorizedRecentChanges = false ;
 
+/**
+ * Include upgrader
+ */
+$wgAllowUpgrader = false ;
+require_once ( "Upgrader.php" ) ;
+
 ?>
