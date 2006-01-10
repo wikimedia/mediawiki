@@ -198,6 +198,8 @@ i18n / Languages:
  - Removed hardcoded namespaces: Tt, Ms, Ia, Ga, Fo, Bn, Csb, He, Nv, Oc, Tlh
  - Removed some useless backwards compatibility hacks
  - Fixed formatnum on many languages
+* wgAmericanDates check produced incorrect results in languages that don't have
+  a such distinction
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
