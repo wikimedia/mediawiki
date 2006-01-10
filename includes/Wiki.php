@@ -16,9 +16,7 @@ class MediaWiki {
 		return $default ;
 	}
 
-	function performAction ( $action , &$output , &$article , &$title , &$user ) {
-		global $wgRequest ; # Unavoidable for now
-		
+	function performAction ( $action , &$output , &$article , &$title , &$user , &$request ) {
 		switch( $action ) {
 			case 'view':
 				$output->setSquidMaxage( $this->getVal('SquidMaxage') );
@@ -63,16 +61,16 @@ class MediaWiki {
 				showCreditsPage( $article );
 				break;
 			case 'submit':
-				if( !$this->getVal('CommandLineMode') && !$wgRequest->checkSessionCookie() ) {
+				if( !$this->getVal('CommandLineMode') && !$request->checkSessionCookie() ) {
 					# Send a cookie so anons get talk message notifications
 					User::SetupSession();
 				}
 				# Continue...
 			case 'edit':
-				$internal = $wgRequest->getVal( 'internaledit' );
-				$external = $wgRequest->getVal( 'externaledit' );
-				$section = $wgRequest->getVal( 'section' );
-				$oldid = $wgRequest->getVal( 'oldid' );
+				$internal = $request->getVal( 'internaledit' );
+				$external = $request->getVal( 'externaledit' );
+				$section = $request->getVal( 'section' );
+				$oldid = $request->getVal( 'oldid' );
 				if(!$this->getVal('UseExternalEditor') || $action=='submit' || $internal ||
 				   $section || $oldid || (!$user->getOption('externaleditor') && !$external)) {
 					require_once( 'includes/EditPage.php' );
@@ -80,7 +78,7 @@ class MediaWiki {
 					$editor->submit();
 				} elseif($this->getVal('UseExternalEditor') && ($external || $user->getOption('externaleditor'))) {
 					require_once( 'includes/ExternalEdit.php' );
-					$mode = $wgRequest->getVal( 'mode' );
+					$mode = $request->getVal( 'mode' );
 					$extedit = new ExternalEdit( $article, $mode );
 					$extedit->edit();
 				}
