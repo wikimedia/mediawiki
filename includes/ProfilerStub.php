@@ -2,17 +2,21 @@
 
 # Stub profiling functions
 
+$haveProctitle=function_exists("setproctitle");
 function wfProfileIn( $fn = '' ) {
-	global $hackwhere, $wgDBname;
-	$hackwhere[] = $fn;
-	if (function_exists("setproctitle"))
+	global $hackwhere, $wgDBname, $haveProctitle;
+	if ($haveProctitle) {
+	        $hackwhere[] = $fn;
 		setproctitle($fn . " [$wgDBname]");
+        }
 }
 function wfProfileOut( $fn = '' ) {
-	global $hackwhere, $wgDBname;
-	if (count($hackwhere))
+	global $hackwhere, $wgDBname, $haveProctitle;
+        if (!$haveProctitle)
+                return;
+        if (count($hackwhere))
 		array_pop($hackwhere);
-	if (function_exists("setproctitle") && count($hackwhere))
+	if (count($hackwhere))
 		setproctitle($hackwhere[count($hackwhere)-1] . " [$wgDBname]");
 }
 function wfGetProfilingOutput( $s, $e ) {}
