@@ -945,11 +945,9 @@ class Image
 			return null;
 		}
 
-		$maxsize = $this->mustRender()
-			? max( $this->width, $wgSVGMaxSize )
-			: $this->width - 1;
+		# Don't make an image bigger than the source, or wgMaxSVGSize for SVGs
+		$maxsize = $this->mustRender() ? $wgSVGMaxSize : $this->width - 1;
 		if( $width > $maxsize ) {
-			# Don't make an image bigger than the source
 			$thumb = new ThumbnailImage( $this->getViewURL(), $this->getWidth(), $this->getHeight() );
 			wfProfileOut( $fname );
 			return $thumb;
