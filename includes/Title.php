@@ -135,12 +135,15 @@ class Title {
 		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
 		$t->mDefaultNamespace = $defaultNamespace;
 
+		static $cachedcount = 0 ;
 		if( $t->secureAndSplit() ) {
 			if( $defaultNamespace == NS_MAIN ) {
-				if( count( $wgTitleCache ) >= MW_TITLECACHE_MAX ) {
+				if( $cachedcount >= MW_TITLECACHE_MAX ) {
 					# Avoid memory leaks on mass operations...
 					$wgTitleCache = array();
+					$cachedcount=0;
 				}
+				$cachedcount++;
 				$wgTitleCache[$text] =& $t;
 			}
 			wfProfileOut( $fname );
