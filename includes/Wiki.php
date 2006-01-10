@@ -25,7 +25,7 @@ class MediaWiki {
 	
 		// Namespace might change when using redirects
 		$article = new Article( $title );
-		if($action == 'view' && !$wgRequest->getVal( 'oldid' ) ) {
+		if($action == 'view' && !$request->getVal( 'oldid' ) ) {
 			$rTitle = Title::newFromRedirect( $article->fetchContent() );
 			if($rTitle) {
 				# Reload from the page pointed to later
