@@ -167,19 +167,11 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		}
 	}
 
-	// Categories and images are handled by a different class
-	if ( $ns == NS_IMAGE ) {
-		unset($wgArticle);
-		require_once( 'includes/ImagePage.php' );
-		$wgArticle = new ImagePage( $wgTitle );
-	} elseif ( $ns == NS_CATEGORY ) {
-		unset($wgArticle);
-		require_once( 'includes/CategoryPage.php' );
-		$wgArticle = new CategoryPage( $wgTitle );
-	}
 
 	require_once ( "includes/Wiki.php" ) ;
 	$mediaWiki = new MediaWiki() ;
+
+	$wgArticle =& $mediaWiki->setCorrectArticleClass ( $wgArticle , $wgTitle , $ns ) ;
 
 	if ( in_array( $action, $wgDisabledActions ) ) {
 		$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
