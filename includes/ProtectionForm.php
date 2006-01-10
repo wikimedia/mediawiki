@@ -87,7 +87,7 @@ class ProtectionForm {
 	}
 
 	function save() {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgOut;
 		if( !$wgRequest->wasPosted() ) {
 			return false;
 		}
