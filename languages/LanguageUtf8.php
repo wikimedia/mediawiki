@@ -43,39 +43,59 @@ class LanguageUtf8 extends Language {
 	# it should be dealt with in Language classes.
 
 	function ucfirst( $str ) {
-		return $this->uc( $str, true );
+		return LanguageUtf8::uc( $str, true );
 	}
 
 	function uc( $str, $first = false ) {
 		if ( function_exists( 'mb_strtoupper' ) )
-			return $first ? mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 ) : mb_strtoupper( $str );
-		else {
-			global $wikiUpperChars;
-			$x = $first ? '^' : '';
-			return preg_replace(
-				"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"strtr( \"\$1\" , \$wikiUpperChars )",
-				$str
-			);
-		}
+			if ( $first )
+				if ( LanguageUtf8::isMultibyte( $str ) )
+					return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
+				else
+					return ucfirst( $str );
+			else
+				return LanguageUtf8::isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
+		else
+			if ( LanguageUtf8::isMultibyte( $str ) ) {
+				global $wikiUpperChars;
+				$x = $first ? '^' : '';
+				return preg_replace(
+					"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
+					"strtr( \"\$1\" , \$wikiUpperChars )",
+					$str
+				);
+			} else
+				return $first ? ucfirst( $str ) : strtoupper( $str );
 	}
 
 	function lcfirst( $str ) {
-		return $this->lc( $str, true );
+		return LanguageUtf8::lc( $str, true );
 	}
 
 	function lc( $str, $first = false ) {
 		if ( function_exists( 'mb_strtolower' ) )
-			return $first ? mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 ) : mb_strtolower( $str );
-		else {
-			global $wikiLowerChars;
-			$x = $first ? '^' : '';
-			return preg_replace(
-				"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"strtr( \"\$1\" , \$wikiLowerChars )",
-				$str
-			);
-		}
+			if ( $first )
+				if ( LanguageUtf8::isMultibyte( $str ) )
+					return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
+				else
+					return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
+			else
+				return LanguageUtf8::isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
+		else
+			if ( LanguageUtf8::isMultibyte( $str ) ) {
+				global $wikiLowerChars;
+				$x = $first ? '^' : '';
+				return preg_replace(
+					"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
+					"strtr( \"\$1\" , \$wikiLowerChars )",
+					$str
+				);
+			} else
+				return $first ? strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 ) : strtolower( $str );
+	}
+
+	function isMultibyte( $str ) {
+		return (bool)preg_match( '/^[\x80-\xff]/', $str );
 	}
 
 	function stripForSearch( $string ) {
