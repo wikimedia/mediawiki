@@ -200,6 +200,7 @@ i18n / Languages:
  - Fixed formatnum on many languages
 * wgAmericanDates check produced incorrect results in languages that don't have
   a such distinction
+* (bug 4548) Update for Portuguese language (pt): time format
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits

@@ -71,11 +71,11 @@ require_once( 'LanguageUtf8.php' );
 
 # Whether to use user or default setting in Language::date()
 /* private */ $wgDateFormatsPt = array(
-	'Sem preferência',
-	'16:12, Janeiro 15, 2001',
-	'16:12, 15 Janeiro 2001',
-	'16:12, 2001 Janeiro 15',
-	'ISO 8601' => '2001-01-15 16:12:34'
+	MW_DATE_DEFAULT => 'Sem preferência',
+	MW_DATE_DMY => '16:12, 15 Janeiro 2001',
+	MW_DATE_MDY => '16:12, Janeiro 15, 2001',
+	MW_DATE_YMD => '16:12, 2001 Janeiro 15',
+	MW_DATE_ISO => '2001-01-15 16:12:34'
 );
 
 
@@ -1831,10 +1831,6 @@ Por favor confirme que realmente deseja recriar este artigo.',
 );
 
 class LanguagePt extends LanguageUtf8 {
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj );
-	}
 
 	/**
 	 * Portuguese numeric format is 123 456,78
