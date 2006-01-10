@@ -134,6 +134,7 @@ function wfIsIPPublic( $ip ) {
 function wfProxyCheck() {
 	global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
 	global $wgUseMemCached, $wgMemc, $wgDBname, $wgProxyMemcExpiry;
+	global $wgProxyKey;
 
 	if ( !$wgBlockOpenProxies ) {
 		return;

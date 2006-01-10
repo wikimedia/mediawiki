@@ -385,7 +385,7 @@ class OutputPage {
 	}
 
 	function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI;
+		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
 
 		if ($this->mETag)
 			header("ETag: $this->mETag");
