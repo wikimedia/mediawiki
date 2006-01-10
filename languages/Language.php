@@ -2456,7 +2456,7 @@ class Language {
 	 * @return string
 	 */
 	function dateFormat( $usePrefs = true ) {
-		global $wgUser, $wgAmericanDates;
+		global $wgUser;
 
 		if( is_bool( $usePrefs ) ) {
 			if( $usePrefs ) {
