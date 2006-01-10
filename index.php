@@ -151,7 +151,6 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	SpecialPage::executePath( $wgTitle );
 } else {
 
-
 	require_once( "includes/Wiki.php" ) ;
 	$mediaWiki = new MediaWiki() ;
 
