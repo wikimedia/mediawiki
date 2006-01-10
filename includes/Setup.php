@@ -246,7 +246,6 @@ $wgMessageCache->initialise( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExp
 
 wfProfileOut( $fname.'-MessageCache' );
 
-
 #
 # I guess the warning about UI switching might still apply...
 #
@@ -312,30 +311,6 @@ foreach ( $wgExtensionFunctions as $func ) {
 wfDebug( "\n" );
 $wgFullyInitialised = true;
 wfProfileOut( $fname.'-extensions' );
-
-
-
-wfProfileIn( $fname.'-upgrades' );
-
-# Upgrade MediaWiki
-$wgUpgrader->setUpgradeFunction ( "MediaWiki" , "wfMediaWikiUpgrade" ) ;
-
-function wfMediaWikiUpgrade ( &$upgrader ) {
-
-	if ( $upgrader->needsUpgrade ( "MediaWiki" , "1.6" ) ) {
-		$upgrader->startTransaction() ;
-		# Do something
-		$upgrader->endTransaction() ;
-	}
-
-}
-
-
-# Upgrade software, if necessary
-$wgUpgrader->run() ;
-
-wfProfileOut( $fname.'-upgrades' );
-
 wfProfileOut( $fname );
 
 }
