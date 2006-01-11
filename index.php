@@ -142,7 +142,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
 		$wgOut->errorpage( 'badtitle', 'badtitletext' );
 	}
-} else if ( $mediaWiki->initializeSpecialCases( $wgTitle , $wgOutput , $action ) ) {
+} else if ( $mediaWiki->initializeSpecialCases( $wgTitle , $wgOut , $action ) ) {
 	# Do nothing, everything was already done by $mediaWiki
 
 } else {
