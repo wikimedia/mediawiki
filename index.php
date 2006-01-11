@@ -9,7 +9,7 @@ $wgRequestTime = microtime();
 if ( function_exists ( 'getrusage' ) ) {
 	$wgRUstart = getrusage();
 } else {
-	$wgRUstart = array() ;
+	$wgRUstart = array();
 }
 
 unset( $IP );
@@ -120,29 +120,22 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 wfProfileIn( 'main-action' );
 
 # Initialize MediaWiki base class
-require_once( "includes/Wiki.php" ) ;
-$mediaWiki = new MediaWiki() ;
+require_once( "includes/Wiki.php" );
+$mediaWiki = new MediaWiki();
 
 $mediaWiki->setVal( "Server", $wgServer );
 $mediaWiki->setVal( "DisableInternalSearch", $wgDisableInternalSearch );
+$mediaWiki->setVal( "Search", $search );
+$mediaWiki->setVal( "action", $action );
+$mediaWiki->setVal( "SquidMaxage", $wgSquidMaxage );
+$mediaWiki->setVal( "EnableDublinCoreRdf", $wgEnableDublinCoreRdf );
+$mediaWiki->setVal( "EnableCreativeCommonsRdf", $wgEnableCreativeCommonsRdf );
+$mediaWiki->setVal( "CommandLineMode", $wgCommandLineMode );
+$mediaWiki->setVal( "UseExternalEditor", $wgUseExternalEditor );
+$mediaWiki->setVal( "DisabledActions", $wgDisabledActions );
 
-if ( !$mediaWiki->initializeSpecialCases( $wgTitle , $wgOut , $wgRequest , $action , $search ) ) {
+$wgArticle = $mediaWiki->initialize ( $wgTitle, $wgOut, $wgUser, $wgRequest );
 
-	$wgArticle = $mediaWiki->initializeArticle( $wgTitle, $wgRequest, $action );
-
-	if( in_array( $action, $wgDisabledActions ) ) {
-		$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
-	} else {
-		$mediaWiki->setVal( "SquidMaxage", $wgSquidMaxage );
-		$mediaWiki->setVal( "EnableDublinCoreRdf", $wgEnableDublinCoreRdf );
-		$mediaWiki->setVal( "EnableCreativeCommonsRdf", $wgEnableCreativeCommonsRdf );
-		$mediaWiki->setVal( "CommandLineMode", $wgCommandLineMode );
-		$mediaWiki->setVal( "UseExternalEditor", $wgUseExternalEditor );
-		$mediaWiki->performAction( $action, $wgOut, $wgArticle, $wgTitle, $wgUser, $wgRequest );
-	}
-
-
-}
 wfProfileOut( 'main-action' );
 
 # Deferred updates aren't really deferred anymore. It's important to report errors to the
