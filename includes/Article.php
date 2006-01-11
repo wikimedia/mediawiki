@@ -1504,21 +1504,23 @@ class Article {
 		global $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgUseRCPatrol, $wgUser;
 		$wgOut->setRobotpolicy( 'noindex,follow' );
 
-		if ( !$wgUseRCPatrol )
-		{
-			$wgOut->errorpage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
+		# Check RC patrol config. option
+		if( !$wgUseRCPatrol ) {
+			$wgOut->errorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
 		}
-		if ( $wgUser->isAnon() )
-		{
+		
+		# Check permissions
+		if( $wgUser->isLoggedIn() ) {
+			if( !$wgUser->isAllowed( 'patrol' ) ) {
+				$wgOut->permissionRequired( 'patrol' );
+				return;
+			}
+		} else {
 			$wgOut->loginToUse();
 			return;
 		}
-		if ( $wgOnlySysopsCanPatrol && !$wgUser->isAllowed('patrol') )
-		{
-			$wgOut->sysopRequired();
-			return;
-		}
+		
 		$rcid = $wgRequest->getVal( 'rcid' );
 		if ( !is_null ( $rcid ) )
 		{
@@ -1715,7 +1717,7 @@ class Article {
 				return;
 			}
 		} else {
-			$wgOut->sysopRequired();
+			$wgOut->permissionRequired( 'delete' );
 			return;
 		}
 
@@ -2043,7 +2045,7 @@ class Article {
 				return;
 			}
 		} else {
-			$wgOut->sysopRequired();
+			$wgOut->permissionRequired( 'rollback' );
 			return;
 		}
 
