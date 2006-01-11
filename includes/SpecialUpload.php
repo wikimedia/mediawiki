@@ -99,17 +99,29 @@ class UploadForm {
 		global $wgUser, $wgOut;
 		global $wgEnableUploads, $wgUploadDirectory;
 
-		/** Show an error message if file upload is disabled */
-		if( ! $wgEnableUploads ) {
-			$wgOut->addWikiText( wfMsg( 'uploaddisabled' ) );
+		# Check uploading enabled
+		if( !$wgEnableUploads ) {
+			$wgOut->errorPage( 'uploaddisabled', 'uploaddisabledtext' );
 			return;
 		}
 
-		/** Various rights checks */
-		if( !$wgUser->isAllowed( 'upload' ) || $wgUser->isBlocked() ) {
-			$wgOut->errorpage( 'uploadnologin', 'uploadnologintext' );
+		# Check permissions
+		if( $wgUser->isLoggedIn() ) {
+			if( !$wgUser->isAllowed( 'upload' ) ) {
+				$wgOut->permissionRequired( 'upload' );
+				return;
+			}
+		} else {
+			$wgOut->errorPage( 'uploadnologin', 'uploadnologintext' );
+			return;
+		}	
+
+		# Check blocks
+		if( $wgUser->isBlocked() ) {
+			$wgOut->blockedPage();
 			return;
 		}
+
 		if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
