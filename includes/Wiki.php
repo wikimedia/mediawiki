@@ -42,6 +42,7 @@ class MediaWiki {
 	 */
 	function initialize ( &$title, &$output, &$user, $request ) {
 		wfProfileIn( 'MediaWiki::initialize' );
+		$this->preliminaryChecks ( $title , $output , $request ) ;
 		$article = NULL;
 		if ( !$this->initializeSpecialCases( $title, $output, $request ) ) {
 			$article = $this->initializeArticle( $title, $request );
@@ -49,6 +50,30 @@ class MediaWiki {
 		}
 		wfProfileOut( 'MediaWiki::initialize' );
 		return $article;
+	}
+	
+	function preliminaryChecks ( &$title , &$output , $request ) {
+	
+		# Debug statement for user levels
+		// print_r($wgUser);
+		
+		$search = $request->getText( 'search' );
+		if( !is_null( $search ) && $search !== '' ) {
+			// Compatibility with old search URLs which didn't use Special:Search
+			// Do this above the read whitelist check for security...
+			$title = Title::makeTitle( NS_SPECIAL, 'Search' );
+		}
+		$this->setVal( "Search", $search );
+
+		# If the user is not logged in, the Namespace:title of the article must be in
+		# the Read array in order for the user to see it. (We have to check here to
+		# catch special pages etc. We check again in Article::view())
+		if ( !is_null( $title ) && !$title->userCanRead() ) {
+			$output->loginToUse();
+			$output->output();
+			exit;
+		}
+		
 	}
 	
 	/**
@@ -144,6 +169,42 @@ class MediaWiki {
 		}
 		wfProfileOut( 'MediaWiki::initializeArticle' );
 		return $article;
+	}
+
+	/**
+	 * Cleaning up by doing deferred updates, calling loadbalancer and doing the output
+	 */
+	function finalCleanup ( &$deferredUpdates , &$loadBalancer , &$output ) {
+		wfProfileIn( 'MediaWiki::finalCleanup' );
+		$this->doUpdates( $deferredUpdates );
+		$loadBalancer->saveMasterPos();
+		# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
+		$loadBalancer->commitAll();
+		$output->output();
+		wfProfileOut( 'MediaWiki::finalCleanup' );
+	}
+
+	/**
+	 * Deferred updates aren't really deferred anymore. It's important to report errors to the
+	 * user, and that means doing this before OutputPage::output(). Note that for page saves,
+	 * the client will wait until the script exits anyway before following the redirect.
+	 */
+	function doUpdates ( &$updates ) {
+		wfProfileIn( 'MediaWiki::doUpdates' );
+		foreach( $updates as $up ) {
+			$up->doUpdate();
+		}
+		wfProfileOut( 'MediaWiki::doUpdates' );		
+	}
+	
+	/**
+	 * Ends this task peacefully
+	 */
+	function restInPeace ( &$loadBalancer ) {
+		wfProfileClose();
+		logProfilingData();
+		$loadBalancer->closeAll();
+		wfDebug( "Request ended normally\n" );
 	}
 
 	/**
@@ -243,8 +304,9 @@ class MediaWiki {
 					$output->errorpage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		wfProfileOut( 'MediaWiki::performAction' );
+	}
 
-		}
+	
 	}
 
 }; /* End of class MediaWiki */
