@@ -15,10 +15,19 @@ class MediaWiki {
 		$this->GET = $_GET;
 	}
 	
+	/**
+	 * Stores key/value pairs to circumvent global variables
+	 * Note that keys are case-insensitive!
+	 */
 	function setVal( $key, &$value ) {
-		$this->param[strtolower( $key )] = $value;
+		$key = strtolower( $key );
+		$this->params[$key] =& $value;
 	}
 	
+	/**
+	 * Retieves key/value pairs to circumvent global variables
+	 * Note that keys are case-insensitive!
+	 */
 	function getVal( $key, $default = "" ) {
 		$key = strtolower( $key );
 		if( isset( $this->params[$key] ) ) {
@@ -28,10 +37,29 @@ class MediaWiki {
 	}
 	
 	/**
+	 * Initialization of ... everything
+	 @return Article either the object to become $wgArticle, or NULL
+	 */
+	function initialize ( &$title, &$output, &$user, $request ) {
+		wfProfileIn( 'MediaWiki::initialize' );
+		$article = NULL;
+		if ( !$this->initializeSpecialCases( $title, $output, $request ) ) {
+			$article = $this->initializeArticle( $title, $request );
+			$this->performAction( $output, $article, $title, $user, $request );
+		}
+		wfProfileOut( 'MediaWiki::initialize' );
+		return $article;
+	}
+	
+	/**
 	 * Initialize the object to be known as $wgArticle for special cases
 	 */
-	function initializeSpecialCases ( &$title , &$output , $request , $action , &$search ) {
+	function initializeSpecialCases ( &$title, &$output, $request ) {
+
 		wfProfileIn( 'MediaWiki::initializeSpecialCases' );
+		
+		$search = $this->getVal('Search');
+		$action = $this->getVal('Action');
 		if( !$this->getVal('DisableInternalSearch') && !is_null( $search ) && $search !== '' ) {
 			require_once( 'includes/SpecialSearch.php' );
 			$title = Title::makeTitle( NS_SPECIAL, 'Search' );
@@ -75,9 +103,11 @@ class MediaWiki {
 	/**
 	 * Initialize the object to be known as $wgArticle for "standard" actions
 	 */
-	function initializeArticle( &$title, $request, $action ) {
+	function initializeArticle( &$title, $request ) {
 
 		wfProfileIn( 'MediaWiki::initializeArticle' );
+		
+		$action = $this->getVal('Action');
 
 		if( NS_MEDIA == $title->getNamespace() ) {
 			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
@@ -119,9 +149,15 @@ class MediaWiki {
 	/**
 	 * Perform one of the "standard" actions
 	 */
-	function performAction( $action, &$output, &$article, &$title, &$user, &$request ) {
+	function performAction( &$output, &$article, &$title, &$user, &$request ) {
 
 		wfProfileIn( 'MediaWiki::performAction' );
+
+		$action = $this->getVal('Action');
+		if( in_array( $action, $this->getVal('DisabledActions',array()) ) ) {
+			/* No such action; this will switch to the default case */
+			$action = "nosuchaction"; 
+		}
 
 		switch( $action ) {
 			case 'view':
