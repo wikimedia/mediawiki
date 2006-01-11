@@ -997,6 +997,14 @@ END
 		$outText = '';
 		$templates = $this->mArticle->getUsedTemplates();
 		if ( count( $templates ) > 0 ) {
+			# Do a batch existence check
+			$batch = new LinkBatch;
+			foreach( $templates as $title ) {
+				$batch->addObj( $title );
+			}
+			$batch->execute();
+
+			# Construct the HTML
 			$outText = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
 			foreach ( $templates as $titleObj ) {
 				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
