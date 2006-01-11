@@ -15,7 +15,7 @@ addWiki( $args[0], $args[1], $args[2] );
 
 function addWiki( $lang, $site, $dbName )
 {
-	global $IP, $wgLanguageNames;
+	global $IP, $wgLanguageNames, $wgDefaultExternalStore;
 
 	$name = $wgLanguageNames[$lang];
 
@@ -24,6 +24,7 @@ function addWiki( $lang, $site, $dbName )
 	$maintenance = "$IP/maintenance";
 
 	print "Creating database $dbName for $lang.$site\n";
+	
 	# Set up the database
 	$dbw->query( "SET table_type=Innodb" );
 	$dbw->query( "CREATE DATABASE $dbName" );
@@ -33,6 +34,26 @@ function addWiki( $lang, $site, $dbName )
 	dbsource( "$maintenance/tables.sql", $dbw );
 	dbsource( "$IP/extensions/OAI/update_table.sql", $dbw );
 	$dbw->query( "INSERT INTO site_stats(ss_row_id) VALUES (1)" );
+
+	# Initialise external storage
+	if ( $wgDefaultExternalStore && preg_match( '!^DB://(.*)$!', $wgDefaultExternalStore, $m ) ) {
+		print "Initialising external storage...\n";
+		require_once( 'ExternalStoreDB.php' );
+		global $wgDBuser, $wgDBpassword, $wgExternalServers;
+		$cluster = $m[1];
+		
+		# Hack
+		$wgExternalServers[$cluster][0]['user'] = $wgDBuser;
+		$wgExternalServers[$cluster][0]['password'] = $wgDBpassword;
+		
+		$store = new ExternalStoreDB;
+		$extdb =& $store->getMaster( $cluster );
+		$extdb->query( "SET table_type=InnoDB" );
+		$extdb->query( "CREATE DATABASE $dbName" );
+		$extdb->selectDB( $dbName );
+		dbsource( "$maintenance/storage/blobs.sql", $extdb );
+		$extdb->immediateCommit();
+	}
 
 	$wgTitle = Title::newMainPage();
 	$wgArticle = new Article( $wgTitle );
