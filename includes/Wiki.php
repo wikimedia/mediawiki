@@ -1,4 +1,7 @@
 <?php
+/**
+ * MediaWiki is the to-be base class for this whole project
+ */
 
 class MediaWiki {
 
@@ -31,18 +34,24 @@ class MediaWiki {
 				# Reload from the page pointed to later
 				$article->mContentLoaded = false;
 				$ns = $rTitle->getNamespace();
-			}
+				$wasRedirected = true;
+				}
 		}
 
 		// Categories and images are handled by a different class
 		if( $ns == NS_IMAGE ) {
+			$b4 = $title->getPrefixedText();
 			unset( $article );
 			require_once( 'includes/ImagePage.php' );
-			return new ImagePage( $title );
+			$article = new ImagePage( $title );
+			if( isset( $wasRedirected ) && $request->getVal( 'redirect' ) != 'no' ) {
+				$article->mTitle = $rTitle;
+				$article->mRedirectedFrom = $b4;
+			}
 		} elseif( $ns == NS_CATEGORY ) {
 			unset( $article );
 			require_once( 'includes/CategoryPage.php' );
-			return new CategoryPage( $title );
+			$article = new CategoryPage( $title );
 		}
 		return $article;
 	}
