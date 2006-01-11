@@ -106,7 +106,7 @@
 	'ko' => '한국어',	# Korean
 	'kr' => 'Kanuri',		# Kanuri (FIXME!)
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
-	'ku' => 'كوردي',	# Kurdish
+	'ku' => 'Kurdî',	# Kurdish
 	'kv' => 'Коми', 	# Komi, cyrillic is common script but also written in latin script
 	'kw' => 'Kernewek',		# Cornish
 	'ky' => 'Kırgızca',	# Kirghiz
