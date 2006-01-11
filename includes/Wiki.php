@@ -25,9 +25,9 @@ class MediaWiki {
 	
 		// Namespace might change when using redirects
 		$article = new Article( $title );
-		if($action == 'view' && !$request->getVal( 'oldid' ) ) {
+		if( $action == 'view' && !$request->getVal( 'oldid' ) ) {
 			$rTitle = Title::newFromRedirect( $article->fetchContent() );
-			if($rTitle) {
+			if( $rTitle ) {
 				# Reload from the page pointed to later
 				$article->mContentLoaded = false;
 				$ns = $rTitle->getNamespace();
@@ -36,11 +36,11 @@ class MediaWiki {
 
 		// Categories and images are handled by a different class
 		if( $ns == NS_IMAGE ) {
-			unset($article);
+			unset( $article );
 			require_once( 'includes/ImagePage.php' );
 			return new ImagePage( $title );
 		} elseif( $ns == NS_CATEGORY ) {
-			unset($article);
+			unset( $article );
 			require_once( 'includes/CategoryPage.php' );
 			return new CategoryPage( $title );
 		}
@@ -50,7 +50,7 @@ class MediaWiki {
 	function performAction( $action, &$output, &$article, &$title, &$user, &$request ) {
 		switch( $action ) {
 			case 'view':
-				$output->setSquidMaxage( $this->getVal('SquidMaxage') );
+				$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				$article->view();
 				break;
 			case 'watch':
@@ -72,7 +72,7 @@ class MediaWiki {
 				$article->view();
 				break;
 			case 'dublincore':
-				if( !$this->getVal('EnableDublinCoreRdf') ) {
+				if( !$this->getVal( 'EnableDublinCoreRdf' ) ) {
 					wfHttpError( 403, 'Forbidden', wfMsg( 'nodublincore' ) );
 				} else {
 					require_once( 'includes/Metadata.php' );
@@ -80,8 +80,8 @@ class MediaWiki {
 				}
 				break;
 			case 'creativecommons':
-				if( !$this->getVal('EnableCreativeCommonsRdf') ) {
-					wfHttpError( 403, 'Forbidden', wfMsg('nocreativecommons') );
+				if( !$this->getVal( 'EnableCreativeCommonsRdf' ) ) {
+					wfHttpError( 403, 'Forbidden', wfMsg( 'nocreativecommons' ) );
 				} else {
 					require_once( 'includes/Metadata.php' );
 					wfCreativeCommonsRdf( $article );
@@ -92,7 +92,7 @@ class MediaWiki {
 				showCreditsPage( $article );
 				break;
 			case 'submit':
-				if( !$this->getVal('CommandLineMode') && !$request->checkSessionCookie() ) {
+				if( !$this->getVal( 'CommandLineMode' ) && !$request->checkSessionCookie() ) {
 					# Send a cookie so anons get talk message notifications
 					User::SetupSession();
 				}
@@ -102,12 +102,12 @@ class MediaWiki {
 				$external = $request->getVal( 'externaledit' );
 				$section = $request->getVal( 'section' );
 				$oldid = $request->getVal( 'oldid' );
-				if(!$this->getVal('UseExternalEditor') || $action=='submit' || $internal ||
-				   $section || $oldid ||(!$user->getOption('externaleditor') && !$external)) {
+				if( !$this->getVal( 'UseExternalEditor' ) || $action=='submit' || $internal ||
+				   $section || $oldid ||( !$user->getOption( 'externaleditor' ) && !$external ) ) {
 					require_once( 'includes/EditPage.php' );
 					$editor = new EditPage( $article );
 					$editor->submit();
-				} elseif($this->getVal('UseExternalEditor') &&($external || $user->getOption('externaleditor'))) {
+				} elseif( $this->getVal( 'UseExternalEditor' ) && ( $external || $user->getOption( 'externaleditor' ) ) ) {
 					require_once( 'includes/ExternalEdit.php' );
 					$mode = $request->getVal( 'mode' );
 					$extedit = new ExternalEdit( $article, $mode );
@@ -115,8 +115,8 @@ class MediaWiki {
 				}
 				break;
 			case 'history':
-				if($_SERVER['REQUEST_URI'] == $title->getInternalURL('action=history')) {
-					$output->setSquidMaxage( $this->getVal('SquidMaxage') );
+				if( $_SERVER['REQUEST_URI'] == $title->getInternalURL( 'action=history' ) ) {
+					$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				}
 				require_once( 'includes/PageHistory.php' );
 				$history = new PageHistory( $article );
@@ -128,7 +128,7 @@ class MediaWiki {
 				$raw->view();
 				break;
 			default:
-				if(wfRunHooks('UnknownAction', array($action, $article))) {
+				if( wfRunHooks( 'UnknownAction', array( $action, $article ) ) ) {
 					$output->errorpage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
