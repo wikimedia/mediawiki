@@ -12,10 +12,11 @@
 function wfSpecialBlockip( $par ) {
 	global $wgUser, $wgOut, $wgRequest;
 
-	if ( ! $wgUser->isAllowed('block') ) {
-		$wgOut->sysopRequired();
+	if( !$wgUser->isAllowed( 'block' ) ) {
+		$wgOut->permissionRequired( 'block' );
 		return;
 	}
+
 	$ipb = new IPBlockForm( $par );
 
 	$action = $wgRequest->getVal( 'action' );
