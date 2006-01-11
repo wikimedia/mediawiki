@@ -119,6 +119,9 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 
 wfProfileIn( 'main-action' );
 
+require_once( "includes/Wiki.php" ) ;
+$mediaWiki = new MediaWiki() ;
+
 if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	require_once( 'includes/SpecialSearch.php' );
 	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Search' );
@@ -146,13 +149,11 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->setSquidMaxage( 1200 );
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
-} else if ( NS_SPECIAL == $wgTitle->getNamespace() ) {
-	# actions that need to be made when we have a special pages
-	SpecialPage::executePath( $wgTitle );
+} else if ( $mediaWiki->initializeSpecialCases( $wgTitle ) ) {
+	# Do nothing, everything was already done by $mediaWiki
+
 } else {
 
-	require_once( "includes/Wiki.php" ) ;
-	$mediaWiki = new MediaWiki() ;
 
 	$wgArticle =& $mediaWiki->initializeArticle( $wgTitle, $wgRequest, $action );
 
