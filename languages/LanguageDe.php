@@ -3,6 +3,8 @@
   *
   * @package MediaWiki
   * @subpackage Language
+  *
+  * @bug 4563
   */
 
 /** */
@@ -184,7 +186,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "newpage" => "Neue Seite",
 "talkpage"		=> "Diskussion",
 "specialpage" => "Spezialseite",
-"personaltools" => "'Persönliche Werkzeuge",
+"personaltools" => "Persönliche Werkzeuge",
 "postcomment" => "Kommentar hinzufügen",
 "addsection"   => "+",
 "articlepage"	=> "Artikel",
@@ -192,6 +194,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "wikipediapage" => "Meta-Text",
 "userpage" => "Benutzerseite",
 "imagepage" => "Bildseite",
+"view" => "Ansicht",
 "viewtalkpage" => "Diskussion",
 "otherlanguages" => "Andere Sprachen",
 "redirectedfrom" => "(Weitergeleitet von $1)",
