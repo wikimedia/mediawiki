@@ -5,14 +5,14 @@
 
 class MediaWiki {
 
-	var $GET ; # Stores the $_GET variables at time of creation, can be changed
+	var $GET; /* Stores the $_GET variables at time of creation, can be changed */
 	var $params = array();
 	
 	/**
 	 * Constructor
 	 */
 	function MediaWiki () {
-		$this->GET = $_GET ;
+		$this->GET = $_GET;
 	}
 	
 	function setVal( $key, &$value ) {
@@ -30,14 +30,22 @@ class MediaWiki {
 	/**
 	 * Initialize the object to be known as $wgArticle for special cases
 	 */
-	function initializeSpecialCases ( &$title , &$output , $request , $action ) {
-		if ( $title->getInterwiki() != '' ) {
+	function initializeSpecialCases ( &$title , &$output , $request , $action , &$search ) {
+		wfProfileIn( 'MediaWiki::initializeSpecialCases' );
+		if( !$this->getVal('DisableInternalSearch') && !is_null( $search ) && $search !== '' ) {
+			require_once( 'includes/SpecialSearch.php' );
+			$title = Title::makeTitle( NS_SPECIAL, 'Search' );
+			wfSpecialSearch();
+		} else if( !$title or $title->getDBkey() == '' ) {
+			$title = Title::newFromText( wfMsgForContent( 'badtitle' ) );
+			$output->errorpage( 'badtitle', 'badtitletext' );
+		} else if ( $title->getInterwiki() != '' ) {
 			if( $rdfrom = $request->getVal( 'rdfrom' ) ) {
 				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
 			} else {
 				$url = $title->getFullURL();
 			}
-			# Check for a redirect loop
+			/* Check for a redirect loop */
 			if ( !preg_match( '/^' . preg_quote( $this->getVal('Server'), '/' ) . '/', $url ) && $title->isLocal() ) {
 				$output->redirect( $url );
 			} else {
@@ -52,13 +60,15 @@ class MediaWiki {
 			$output->setSquidMaxage( 1200 );
 			$output->redirect( $title->getFullURL(), '301');
 		} else if ( NS_SPECIAL == $title->getNamespace() ) {
-			# actions that need to be made when we have a special pages
+			/* actions that need to be made when we have a special pages */
 			SpecialPage::executePath( $title );
 		} else {
 			/* No match to special cases */
+			wfProfileOut( 'MediaWiki::initializeSpecialCases' );
 			return false;
 		}
 		/* Did match a special case */
+		wfProfileOut( 'MediaWiki::initializeSpecialCases' );
 		return true;
 	}
 
@@ -66,6 +76,9 @@ class MediaWiki {
 	 * Initialize the object to be known as $wgArticle for "standard" actions
 	 */
 	function initializeArticle( &$title, $request, $action ) {
+
+		wfProfileIn( 'MediaWiki::initializeArticle' );
+
 		if( NS_MEDIA == $title->getNamespace() ) {
 			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
 		}
@@ -77,7 +90,7 @@ class MediaWiki {
 		if( $action == 'view' && !$request->getVal( 'oldid' ) ) {
 			$rTitle = Title::newFromRedirect( $article->fetchContent() );
 			if( $rTitle ) {
-				# Reload from the page pointed to later
+				/* Reload from the page pointed to later */
 				$article->mContentLoaded = false;
 				$ns = $rTitle->getNamespace();
 				$wasRedirected = true;
@@ -99,6 +112,7 @@ class MediaWiki {
 			require_once( 'includes/CategoryPage.php' );
 			$article = new CategoryPage( $title );
 		}
+		wfProfileOut( 'MediaWiki::initializeArticle' );
 		return $article;
 	}
 
@@ -106,6 +120,9 @@ class MediaWiki {
 	 * Perform one of the "standard" actions
 	 */
 	function performAction( $action, &$output, &$article, &$title, &$user, &$request ) {
+
+		wfProfileIn( 'MediaWiki::performAction' );
+
 		switch( $action ) {
 			case 'view':
 				$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
@@ -151,17 +168,17 @@ class MediaWiki {
 				break;
 			case 'submit':
 				if( !$this->getVal( 'CommandLineMode' ) && !$request->checkSessionCookie() ) {
-					# Send a cookie so anons get talk message notifications
+					/* Send a cookie so anons get talk message notifications */
 					User::SetupSession();
 				}
-				# Continue...
+				/* Continue... */
 			case 'edit':
 				$internal = $request->getVal( 'internaledit' );
 				$external = $request->getVal( 'externaledit' );
 				$section = $request->getVal( 'section' );
 				$oldid = $request->getVal( 'oldid' );
 				if( !$this->getVal( 'UseExternalEditor' ) || $action=='submit' || $internal ||
-				   $section || $oldid ||( !$user->getOption( 'externaleditor' ) && !$external ) ) {
+				   $section || $oldid || ( !$user->getOption( 'externaleditor' ) && !$external ) ) {
 					require_once( 'includes/EditPage.php' );
 					$editor = new EditPage( $article );
 					$editor->submit();
@@ -189,10 +206,12 @@ class MediaWiki {
 				if( wfRunHooks( 'UnknownAction', array( $action, $article ) ) ) {
 					$output->errorpage( 'nosuchaction', 'nosuchactiontext' );
 				}
+		wfProfileOut( 'MediaWiki::performAction' );
+
 		}
 	}
 
-}; # End of class MediaWiki
+}; /* End of class MediaWiki */
 
 ?>
 
