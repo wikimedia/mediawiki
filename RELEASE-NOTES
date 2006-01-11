@@ -455,6 +455,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Skip loading of RecentChange.php except where needed
 * Enforce $wgSVGMaxSize when rendering, even for SVGs with a very large source 
   size. This is necessary to limit server memory usage.
+* Cleanup and error checking on Special:Listredirects
 
 
 === Caveats ===

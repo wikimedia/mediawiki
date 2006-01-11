@@ -37,15 +37,23 @@ class ListredirectsPage extends QueryPage {
 		$rd_link = $skin->makeKnownLinkObj( $rd_title, '', 'redirect=no' );
 
 		# Find out where the redirect leads
-		$rd_page = new Article( &$rd_title, 0 );
-		$rd_text = $rd_page->getContent( true ); # Don't follow the redirect
-
-		# Make a link to the destination page
-		$tp_title = Title::newFromRedirect( $rd_text );
-		$tp_link = $skin->makeKnownLinkObj( $tp_title );
+		$revision = Revision::newFromTitle( $rd_title );
+		if( $revision ) {
+			# Make a link to the destination page
+			$target = Title::newFromRedirect( $revision->getText() );
+			if( $target ) {
+				$targetLink = $skin->makeKnownLinkObj( $target );
+			} else {
+				/** @todo Put in some decent error display here */
+				$targetLink = '*';
+			}
+		} else {
+			/** @todo Put in some decent error display here */
+			$targetLink = '*';
+		}
 
 		# Format the whole thing and return it
-		return( $rd_link . ' &rarr; ' . $tp_link );
+		return( $rd_link . ' &rarr; ' . $targetLink );
 
 	}
 
