@@ -460,6 +460,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Cleanup and error checking on Special:Listredirects
 * Clear up some instances of old OutputPage::sysopRequired() function usage
 * Improve "upload disabled" notice
+* Move parts of index.php to include/Wiki.php in an attempt to both cleanup index.php 
+  and create a MediaWiki-class mediaWiki base object
 
 === Caveats ===
 

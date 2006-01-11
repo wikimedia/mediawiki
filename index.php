@@ -98,34 +98,14 @@ if ( '' == $title && 'delete' != $action ) {
 }
 wfProfileOut( 'main-misc-setup' );
 
-# Debug statement for user levels
-// print_r($wgUser);
-
-$search = $wgRequest->getText( 'search' );
-if( !is_null( $search ) && $search !== '' ) {
-	// Compatibility with old search URLs which didn't use Special:Search
-	// Do this above the read whitelist check for security...
-	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Search' );
-}
-
-# If the user is not logged in, the Namespace:title of the article must be in
-# the Read array in order for the user to see it. (We have to check here to
-# catch special pages etc. We check again in Article::view())
-if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
-	$wgOut->loginToUse();
-	$wgOut->output();
-	exit;
-}
-
-wfProfileIn( 'main-action' );
 
 # Initialize MediaWiki base class
 require_once( "includes/Wiki.php" );
 $mediaWiki = new MediaWiki();
 
+# Setting global variables in mediaWiki
 $mediaWiki->setVal( "Server", $wgServer );
 $mediaWiki->setVal( "DisableInternalSearch", $wgDisableInternalSearch );
-$mediaWiki->setVal( "Search", $search );
 $mediaWiki->setVal( "action", $action );
 $mediaWiki->setVal( "SquidMaxage", $wgSquidMaxage );
 $mediaWiki->setVal( "EnableDublinCoreRdf", $wgEnableDublinCoreRdf );
@@ -135,34 +115,10 @@ $mediaWiki->setVal( "UseExternalEditor", $wgUseExternalEditor );
 $mediaWiki->setVal( "DisabledActions", $wgDisabledActions );
 
 $wgArticle = $mediaWiki->initialize ( $wgTitle, $wgOut, $wgUser, $wgRequest );
+$mediaWiki->finalCleanup ( $wgDeferredUpdateList , $wgLoadBalancer , $wgOut ) ;
 
-wfProfileOut( 'main-action' );
+# Not sure when $wgPostCommitUpdateList gets set, so I keep this separate from finalCleanup
+$mediaWiki->doUpdates( $wgPostCommitUpdateList );
 
-# Deferred updates aren't really deferred anymore. It's important to report errors to the
-# user, and that means doing this before OutputPage::output(). Note that for page saves,
-# the client will wait until the script exits anyway before following the redirect.
-wfProfileIn( 'main-updates' );
-foreach( $wgDeferredUpdateList as $up ) {
-	$up->doUpdate();
-}
-wfProfileOut( 'main-updates' );
-
-wfProfileIn( 'main-cleanup' );
-$wgLoadBalancer->saveMasterPos();
-
-# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
-$wgLoadBalancer->commitAll();
-
-$wgOut->output();
-
-foreach( $wgPostCommitUpdateList as $up ) {
-	$up->doUpdate();
-}
-
-wfProfileOut( 'main-cleanup' );
-
-wfProfileClose();
-logProfilingData();
-$wgLoadBalancer->closeAll();
-wfDebug( "Request ended normally\n" );
+$mediaWiki->restInPeace( $wgLoadBalancer );
 ?>
