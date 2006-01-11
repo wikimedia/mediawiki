@@ -1367,18 +1367,6 @@ function wfGetSiteNotice() {
 			}
 		}
 	}
-	
-	# Namespacebanner
-	$key = wfMsg('namespacebanner') ;
-	$ns = $wgTitle->getNsText() . '-' ;
-	if ( $ns != "" ) {
-		$key .= str_replace ( '_' , '-' , $ns ) ;
-	}
-	$nsbanner = wfMsg ( $key ) ;
-	if ( $nsbanner != "&lt;".$key."&gt;" ) {
-		$notice .= '<div id="namespacebanner">' . $nsbanner . "</div>" ;
-	}
-	
 	wfProfileOut( $fname );
 	return $notice;
 }
