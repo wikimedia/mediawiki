@@ -5,7 +5,15 @@
 
 class MediaWiki {
 
+	var $GET ; # Stores the $_GET variables at time of creation, can be changed
 	var $params = array();
+	
+	/**
+	 * Constructor
+	 */
+	function MediaWiki () {
+		$this->GET = $_GET ;
+	}
 	
 	function setVal( $key, &$value ) {
 		$this->param[strtolower( $key )] = $value;
@@ -22,8 +30,15 @@ class MediaWiki {
 	/**
 	 * Initialize the object to be known as $wgArticle for special cases
 	 */
-	function initializeSpecialCases ( &$title ) {
-		if ( NS_SPECIAL == $title->getNamespace() ) {
+	function initializeSpecialCases ( &$title , &$output , $action ) {
+		if ( ( $action == 'view' ) &&
+			(!isset( $this->GET['title'] ) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
+			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
+		{
+			/* Redirect to canonical url, make it a 301 to allow caching */
+			$output->setSquidMaxage( 1200 );
+			$output->redirect( $title->getFullURL(), '301');
+		} else if ( NS_SPECIAL == $title->getNamespace() ) {
 			# actions that need to be made when we have a special pages
 			SpecialPage::executePath( $title );
 		} else {
