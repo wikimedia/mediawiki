@@ -30,8 +30,21 @@ class MediaWiki {
 	/**
 	 * Initialize the object to be known as $wgArticle for special cases
 	 */
-	function initializeSpecialCases ( &$title , &$output , $action ) {
-		if ( ( $action == 'view' ) &&
+	function initializeSpecialCases ( &$title , &$output , $request , $action ) {
+		if ( $title->getInterwiki() != '' ) {
+			if( $rdfrom = $request->getVal( 'rdfrom' ) ) {
+				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
+			} else {
+				$url = $title->getFullURL();
+			}
+			# Check for a redirect loop
+			if ( !preg_match( '/^' . preg_quote( $this->getVal('Server'), '/' ) . '/', $url ) && $title->isLocal() ) {
+				$output->redirect( $url );
+			} else {
+				$title = Title::newFromText( wfMsgForContent( 'badtitle' ) );
+				$output->errorpage( 'badtitle', 'badtitletext' );
+			}
+		} else if ( ( $action == 'view' ) &&
 			(!isset( $this->GET['title'] ) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{

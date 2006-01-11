@@ -122,6 +122,8 @@ wfProfileIn( 'main-action' );
 require_once( "includes/Wiki.php" ) ;
 $mediaWiki = new MediaWiki() ;
 
+$mediaWiki->setVal( "Server", $wgServer );
+
 if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	require_once( 'includes/SpecialSearch.php' );
 	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Search' );
@@ -129,20 +131,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 } else if( !$wgTitle or $wgTitle->getDBkey() == '' ) {
 	$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
 	$wgOut->errorpage( 'badtitle', 'badtitletext' );
-} else if ( $wgTitle->getInterwiki() != '' ) {
-	if( $rdfrom = $wgRequest->getVal( 'rdfrom' ) ) {
-		$url = $wgTitle->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
-	} else {
-		$url = $wgTitle->getFullURL();
-	}
-	# Check for a redirect loop
-	if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url ) && $wgTitle->isLocal() ) {
-		$wgOut->redirect( $url );
-	} else {
-		$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
-		$wgOut->errorpage( 'badtitle', 'badtitletext' );
-	}
-} else if ( $mediaWiki->initializeSpecialCases( $wgTitle , $wgOut , $action ) ) {
+} else if ( $mediaWiki->initializeSpecialCases( $wgTitle , $wgOut , $wgRequest , $action ) ) {
 	# Do nothing, everything was already done by $mediaWiki
 
 } else {
