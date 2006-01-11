@@ -2514,15 +2514,12 @@ class Parser
 							$this->disableCache();
 						}
 					} else {
-						$article = new Article( $title );
-						$articleContent = $article->fetchContent(0, false);
+						$articleContent = $this->fetchTemplate( $title );
 						if ( $articleContent !== false ) {
 							$found = true;
 							$text = $articleContent;
 							$replaceHeadings = true;
 						}
-						# Register a template reference whether or not the template exists
-						$this->mOutput->addTemplate( $title, $article->getID() );
 					}
 				}
 
@@ -2643,6 +2640,28 @@ class Parser
 			wfProfileOut( $fname );
 			return $text;
 		}
+	}
+
+	/**
+	 * Fetch the unparsed text of a template and register a reference to it. 
+	 */
+	function fetchTemplate( $title ) {
+		$text = false;
+		// Loop to fetch the article, with up to 1 redirect
+		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
+			$rev = Revision::newFromTitle( $title );
+			$this->mOutput->addTemplate( $title, $title->getArticleID() );
+			if ( !$rev ) {
+				break;
+			}
+			$text = $rev->getText();
+			if ( $text === false ) {
+				break;
+			}
+			// Redirect?
+			$title = Title::newFromRedirect( $text );
+		}
+		return $text;
 	}
 
 	/**
