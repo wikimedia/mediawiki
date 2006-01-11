@@ -18,7 +18,25 @@ class MediaWiki {
 		}
 		return $default;
 	}
+	
+	/**
+	 * Initialize the object to be known as $wgArticle for special cases
+	 */
+	function initializeSpecialCases ( &$title ) {
+		if ( NS_SPECIAL == $title->getNamespace() ) {
+			# actions that need to be made when we have a special pages
+			SpecialPage::executePath( $title );
+		} else {
+			/* No match to special cases */
+			return false;
+		}
+		/* Did match a special case */
+		return true;
+	}
 
+	/**
+	 * Initialize the object to be known as $wgArticle for "standard" actions
+	 */
 	function initializeArticle( &$title, $request, $action ) {
 		if( NS_MEDIA == $title->getNamespace() ) {
 			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
@@ -26,7 +44,7 @@ class MediaWiki {
 	
 		$ns = $title->getNamespace();
 	
-		// Namespace might change when using redirects
+		/* Namespace might change when using redirects */
 		$article = new Article( $title );
 		if( $action == 'view' && !$request->getVal( 'oldid' ) ) {
 			$rTitle = Title::newFromRedirect( $article->fetchContent() );
@@ -38,7 +56,7 @@ class MediaWiki {
 				}
 		}
 
-		// Categories and images are handled by a different class
+		/* Categories and images are handled by a different class */
 		if( $ns == NS_IMAGE ) {
 			$b4 = $title->getPrefixedText();
 			unset( $article );
@@ -56,6 +74,9 @@ class MediaWiki {
 		return $article;
 	}
 
+	/**
+	 * Perform one of the "standard" actions
+	 */
 	function performAction( $action, &$output, &$article, &$title, &$user, &$request ) {
 		switch( $action ) {
 			case 'view':
