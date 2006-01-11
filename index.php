@@ -119,23 +119,14 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 
 wfProfileIn( 'main-action' );
 
+# Initialize MediaWiki base class
 require_once( "includes/Wiki.php" ) ;
 $mediaWiki = new MediaWiki() ;
 
 $mediaWiki->setVal( "Server", $wgServer );
+$mediaWiki->setVal( "DisableInternalSearch", $wgDisableInternalSearch );
 
-if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
-	require_once( 'includes/SpecialSearch.php' );
-	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Search' );
-	wfSpecialSearch();
-} else if( !$wgTitle or $wgTitle->getDBkey() == '' ) {
-	$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
-	$wgOut->errorpage( 'badtitle', 'badtitletext' );
-} else if ( $mediaWiki->initializeSpecialCases( $wgTitle , $wgOut , $wgRequest , $action ) ) {
-	# Do nothing, everything was already done by $mediaWiki
-
-} else {
-
+if ( !$mediaWiki->initializeSpecialCases( $wgTitle , $wgOut , $wgRequest , $action , $search ) ) {
 
 	$wgArticle = $mediaWiki->initializeArticle( $wgTitle, $wgRequest, $action );
 
