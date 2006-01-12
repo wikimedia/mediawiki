@@ -3236,7 +3236,7 @@ class Parser
 			# Sig. might contain markup; validate this
 			if( $this->validateSig( $nickname ) !== false ) {
 				# Validated; clean up (if needed) and return it
-				return( $this->cleanSig( $nickname, true ) );
+				return( $this->cleanSig( $nickname ) );
 			} else {
 				# Failed to validate; fall back to the default
 				$nickname = $username;
@@ -3269,7 +3269,8 @@ class Parser
 	 * @param string $text
 	 * @return string Text
 	 */
-	function cleanSig( $text, $parsing = false ) {
+	function cleanSig( $text ) {
+	
 		$mw = MagicWord::get( MAG_SUBST );
 		$substre = $mw->getBaseRegex();
 		$subst = $mw->getSynonym( 0 );
@@ -3289,11 +3290,7 @@ class Parser
 		);
 		
 		$text = preg_replace( '/~{3,5}/', '', $text );
-		
-		# TODO: Fix this, it's an ugly hack
-		if( $parsing ) {
-			$text = $this->replaceVariables( $text );
-		}
+		$text = $this->replaceVariables( $text );
 	
 		return $text;
 	}
