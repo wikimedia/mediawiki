@@ -190,7 +190,7 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function savePreferences() {
-		global $wgUser, $wgLang, $wgOut;
+		global $wgUser, $wgLang, $wgOut, $wgParser;
 		global $wgEnableUserEmail, $wgEnableEmail;
 		global $wgEmailAuthentication, $wgMinimalPasswordLength;
 		global $wgAuth;
@@ -230,7 +230,7 @@ class PreferencesForm {
 		# Validate the signature and clean it up as needed
 		if( $this->mToggles['fancysig'] ) {
 			if( Parser::validateSig( $this->mNick ) !== false ) {
-				$this->mNick = Parser::cleanSig( $this->mNick );
+				$this->mNick = $wgParser->cleanSig( $this->mNick );
 			} else {
 				$this->mainPrefsForm( 'error', wfMsg( 'badsig' ) );
 			}
