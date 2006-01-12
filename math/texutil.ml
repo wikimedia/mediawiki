@@ -435,7 +435,7 @@ let find = function
     | "\\ddot"             -> FUN_AR1 "\\ddot "
     | "\\breve"            -> FUN_AR1 "\\breve "
     | "\\tilde"            -> FUN_AR1 "\\tilde "
-    | "\\not"              -> FUN_AR1 "\\not "
+    | "\\not"              -> LITERAL (TEX_ONLY "\\not ")
     | "\\choose"           -> FUN_INFIX "\\choose "
     | "\\atop"             -> FUN_INFIX "\\atop "
     | "\\binom"            -> FUN_AR2 "\\binom "
