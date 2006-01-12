@@ -36,10 +36,12 @@ type encoding_t = LATIN1 | LATIN2 | UTF8
 let modules_ams = ref false
 let modules_nonascii = ref false
 let modules_encoding = ref UTF8
+let modules_color = ref false
 
 let tex_use_ams ()     = modules_ams := true
 let tex_use_nonascii () = modules_nonascii := true
-let tex_mod_reset ()   = (modules_ams := false; modules_nonascii := false; modules_encoding := UTF8)
+let tex_use_color ()  = modules_color := true
+let tex_mod_reset ()   = (modules_ams := false; modules_nonascii := false; modules_encoding := UTF8; modules_color := false)
 
 let get_encoding = function
     UTF8 -> "\\usepackage{ucs}\n\\usepackage[utf8]{inputenc}\n"
@@ -49,7 +51,8 @@ let get_encoding = function
 let get_preface ()  = "\\nonstopmode\n\\documentclass[12pt]{article}\n" ^
               (if !modules_nonascii then get_encoding !modules_encoding else "") ^
               (if !modules_ams then "\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n" else "") ^
-              "\\pagestyle{empty}\n\\begin{document}\n$$\n"
+			  (if !modules_color then "\\usepackage[dvips]{color}\n" else "") ^              
+			  "\\pagestyle{empty}\n\\begin{document}\n$$\n"
 let get_footer  ()  = "\n$$\n\\end{document}\n"
 
 let set_encoding = function
@@ -474,4 +477,5 @@ let find = function
     | "\\mbox"             -> raise (Failure "malformatted \\mbox")
     | "\\vbox"             -> raise (Failure "malformatted \\vbox")
     | "\\hbox"             -> raise (Failure "malformatted \\hbox")
+	| "\\color"            -> (tex_use_color (); LITERAL (TEX_ONLY "\\color"))
     | s                    -> raise (Illegal_tex_function s)
