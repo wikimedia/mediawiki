@@ -946,9 +946,10 @@ class Image
 		}
 
 		# Don't make an image bigger than the source, or wgMaxSVGSize for SVGs
-		$maxsize = $this->mustRender() ? $wgSVGMaxSize : $this->width - 1;
-		if( $width > $maxsize ) {
-			$thumb = new ThumbnailImage( $this->getViewURL(), $this->getWidth(), $this->getHeight() );
+		if ( $this->mustRender() ) {
+			$width = min( $width, $wgSVGMaxSize );
+		} elseif ( $width > $this->width - 1 ) {
+			$thumb = new ThumbnailImage( $this->getURL(), $this->getWidth(), $this->getHeight() );
 			wfProfileOut( $fname );
 			return $thumb;
 		}
