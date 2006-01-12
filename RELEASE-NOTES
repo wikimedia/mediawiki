@@ -462,6 +462,10 @@ fully support the editing toolbar, but was found to be too confusing.
 * Improve "upload disabled" notice
 * Move parts of index.php to include/Wiki.php in an attempt to both cleanup index.php 
   and create a MediaWiki-class mediaWiki base object
+* (bug 4104) Added OutputPageBeforeHTML hook for tweaking primary wiki output
+  HTML on final output (cached or not)
+* Avoid PHP notice on command-line scripts if empty argument is passed ('')
+
 
 === Caveats ===
 
