@@ -3167,15 +3167,17 @@ class Parser
 			putenv( 'TZ='.$oldtz );
 		}
 
-		# Signatures
-		$sigText = $this->getUserSig( $user );
-		$text = preg_replace( '/~~~~~/', $d, $text );
-		$text = preg_replace( '/~~~~/', "$sigText $d", $text );
-		$text = preg_replace( '/~~~/', $sigText, $text );
-
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
 		$text = $this->replaceVariables( $text );
+		
+		# Signatures
+		$sigText = $this->getUserSig( $user );
+		$text = strtr( $text, array( 
+			'~~~~~' => $d,
+			'~~~~' => "$sigText $d",
+			'~~~' => $sigText
+		) );
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#
@@ -3287,6 +3289,8 @@ class Parser
 		);
 		
 		$text = preg_replace( '/~{3,5}/', '', $text );
+		$text = $this->replaceVariables( $text );
+
 	
 		return $text;
 	}
