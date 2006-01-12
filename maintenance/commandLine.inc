@@ -55,7 +55,7 @@ for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
 			}
 			$options[$option] = $param;
 		}
-	} elseif ( $arg{0} == '-' ) {
+	} elseif ( substr( $arg, 0, 1 ) == '-' ) {
 		# Short options
 		for ( $p=1; $p<strlen( $arg ); $p++ ) {
 			$option = $arg{$p};
