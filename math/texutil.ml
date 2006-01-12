@@ -186,6 +186,7 @@ let find = function
     | "\\models"           -> LITERAL (TEX_ONLY "\\models ")
     | "\\vdash"            -> LITERAL (TEX_ONLY "\\vdash ")
     | "\\triangle"         -> LITERAL (TEX_ONLY "\\triangle ")
+	| "\\bowtie"           -> LITERAL (TEX_ONLY "\\bowtie ")
     | "\\wr"               -> LITERAL (TEX_ONLY "\\wr ")
     | "\\triangleleft"     -> LITERAL (TEX_ONLY "\\triangleleft ")
     | "\\triangleright"    -> LITERAL (TEX_ONLY "\\triangleright ")
