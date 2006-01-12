@@ -627,7 +627,7 @@ class UploadForm {
 			<td align='left'>
 				<script type='text/javascript' src=\"$wgStylePath/common/upload.js\"></script>
 				<select name='wpLicense' id='wpLicense' tabindex='4'
-					onchange='licenseSelectorCheck()'
+					onchange='licenseSelectorCheck()'>
 					<option value=''>$nolicense</option>
 					$licenseshtml
 				</select>
