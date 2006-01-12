@@ -312,6 +312,7 @@ class ParserTest {
 			'wgNoFollowLinks' => true,
 			'wgThumbnailScriptPath' => false,
 			'wgUseTeX' => false,
+			'wgLocaltimezone' => 'UTC',
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
