@@ -467,6 +467,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Avoid PHP notice on command-line scripts if empty argument is passed ('')
 * (bug 4571) Partial fix hack for {{fulllurl:}} in action=render
 * (bug 3502) Bowtie symbol for TeX
+* (bug 4000) Support for \textstyle et al. in <math>
 
 
 === Caveats ===
