@@ -665,10 +665,16 @@ class Title {
 	 * @access public
 	 */
 	function getFullURL( $query = '' ) {
-		global $wgContLang, $wgServer;
+		global $wgContLang, $wgServer, $wgRequest;
 
 		if ( '' == $this->mInterwiki ) {
-			$url = $wgServer . $this->getLocalUrl( $query );
+			$url = $this->getLocalUrl( $query );
+
+			// Ugly quick hack to avoid duplicate prefixes (bug 4571 etc)
+			// Correct fix would be to move the prepending elsewhere.
+			if ($wgRequest->getVal('action') != 'render') {
+				$url = $wgServer . $url;
+			}
 		} else {
 			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
 
@@ -732,8 +738,10 @@ class Title {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
-
-			if ($wgRequest->getText('action') == 'render') {
+			
+			// FIXME: this causes breakage in various places when we
+			// actually expected a local URL and end up with dupe prefixes.
+			if ($wgRequest->getVal('action') == 'render') {
 				$url = $wgServer . $url;
 			}
 		}

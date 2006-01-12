@@ -465,6 +465,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4104) Added OutputPageBeforeHTML hook for tweaking primary wiki output
   HTML on final output (cached or not)
 * Avoid PHP notice on command-line scripts if empty argument is passed ('')
+* (bug 4571) Partial fix hack for {{fulllurl:}} in action=render
 
 
 === Caveats ===
