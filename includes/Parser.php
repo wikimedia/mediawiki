@@ -3289,9 +3289,8 @@ class Parser
 		);
 		
 		$text = preg_replace( '/~{3,5}/', '', $text );
-		if( $parsing) {
-			$text = $this->replaceVariables( $text );
-		}
+		# TODO: Fix this, it's an ugly hack
+		if( $parsing ) { $text = $this->replaceVariables( $text ); }
 
 	
 		return $text;
