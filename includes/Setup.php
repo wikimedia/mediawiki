@@ -66,7 +66,6 @@ require_once( 'ProxyTools.php' );
 require_once( 'ObjectCache.php' );
 require_once( 'WikiError.php' );
 require_once( 'SpecialPage.php' );
-require_once( 'RequestRate.php' );
 
 if ( $wgUseDynamicDates ) {
 	require_once( 'DateFormatter.php' );
@@ -298,14 +297,6 @@ wfSeedRandom();
 # Placeholders in case of DB error
 $wgTitle = Title::makeTitle( NS_SPECIAL, 'Error' );
 $wgArticle = new Article($wgTitle);
-
-# Update request rate
-/*
-if ( !mt_rand( 0, $wgRequestRateDefaultFraction - 1 ) ) {
-	require_once( 'RequestRate.php' );
-	$rr =& RequestRate::singleton();
-	$rr->increment();
-}*/
 
 wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
