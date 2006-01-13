@@ -477,6 +477,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 1103) Fix up redirect handling for images, categories
   Redirects are now followed from the top-level, outside of the Article
   content loading and viewing, for clarity and consistency.
+* (bug 4104) 'OutputPageBeforeHTML' hook to postprocess article HTML on
+  page view (comes after parser cache, if used). Patch by ThomasV.
 
 
 === Caveats ===

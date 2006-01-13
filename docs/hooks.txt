@@ -344,6 +344,11 @@ $user: user (object) who marked the edit patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user
  must be a sysop to patrol the edit
 
+'OutputPageBeforeHTML': a page has been processed by the parser and
+the resulting HTML is about to be displayed.  
+$parserOutput: the parserOutput (object) that corresponds to the page 
+$text: the text that will be displayed, in HTML (string)
+
 'PageRenderingHash': alter the parser cache option hash key
   A parser extension which depends on user options should install
   this hook and append its values to the key.
