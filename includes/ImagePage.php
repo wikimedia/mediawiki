@@ -20,10 +20,14 @@ class ImagePage extends Article {
 	/* private */ var $img;  // Image object this page is shown for
 	var $mExtraDescription = false;
 
+	/**
+	 * Handler for action=render
+	 * Include body text only; none of the image extras
+	 */
 	function render() {
 		global $wgOut;
-		$wgOut->setArticleBodyOnly(true);
-		$wgOut->addWikitext($this->getContent(true));
+		$wgOut->setArticleBodyOnly( true );
+		$wgOut->addWikitext( $this->getContent() );
 	}
 
 	function view() {
@@ -147,16 +151,15 @@ class ImagePage extends Article {
 
 	/**
 	 * Overloading Article's getContent method.
-	 * Omit noarticletext if sharedupload
-	 *
-	 * @param $noredir If true, do not follow redirects
+	 * 
+	 * Omit noarticletext if sharedupload; text will be fetched from the
+	 * shared upload server if possible.
 	 */
-	function getContent( $noredir )
-	{
-		if ( $this->img && $this->img->fromSharedDirectory && 0 == $this->getID() ) {
+	function getContent() {
+		if( $this->img && $this->img->fromSharedDirectory && 0 == $this->getID() ) {
 			return '';
 		}
-		return Article::getContent( $noredir );
+		return Article::getContent();
 	}
 
 	function openShowImage() {

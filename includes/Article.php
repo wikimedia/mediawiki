@@ -49,6 +49,59 @@ class Article {
 		$this->mOldId = $oldId;
 		$this->clear();
 	}
+	
+	/**
+	 * Tell the page view functions that this view was redirected
+	 * from another page on the wiki.
+	 * @param Title $from
+	 */
+	function setRedirectedFrom( $from ) {
+		$this->mRedirectedFrom = $from;
+	}
+	
+	/**
+	 * @return mixed false, Title of in-wiki target, or string with URL
+	 */
+	function followRedirect() {
+		$text = $this->getContent();
+		$rt = Title::newFromRedirect( $text );
+		
+		# process if title object is valid and not special:userlogout
+		if( $rt ) {
+			if( $rt->getInterwiki() != '' ) {
+				if( $rt->isLocal() ) {
+					// Offsite wikis need an HTTP redirect.
+					//
+					// This can be hard to reverse and may produce loops,
+					// so they may be disabled in the site configuration.
+					
+					$source = $this->mTitle->getFullURL( 'redirect=no' );
+					return $rt->getFullURL( 'rdfrom=' . urlencode( $source ) );
+				}
+			} else {
+				if( $rt->getNamespace() == NS_SPECIAL ) {
+					// Gotta hand redirects to special pages differently:
+					// Fill the HTTP response "Location" header and ignore
+					// the rest of the page we're on.
+					//
+					// This can be hard to reverse, so they may be disabled.
+					
+					if( $rt->getNamespace() == NS_SPECIAL && $rt->getText() == 'Userlogout' ) {
+						// rolleyes
+					} else {
+						return $rt->getFullURL();
+					}
+				} elseif( $rt->exists() ) {
+					// Internal redirects can be handled relatively gracefully.
+					// We may have to change to another Article subclass, though.
+					return $rt;
+				}
+			}
+		}
+		
+		// No or invalid redirect
+		return false;
+	}
 
 	/**
 	 * get the title object of the article
@@ -66,7 +119,8 @@ class Article {
 		$this->mContentLoaded = false;
 
 		$this->mCurID = $this->mUser = $this->mCounter = -1; # Not loaded
-		$this->mRedirectedFrom = $this->mUserText =
+		$this->mRedirectedFrom = null; # Title object if set
+		$this->mUserText =
 		$this->mTimestamp = $this->mComment = $this->mFileCache = '';
 		$this->mGoodAdjustment = $this->mTotalAdjustment = 0;
 		$this->mTouched = '19700101000000';
@@ -77,13 +131,17 @@ class Article {
 	}
 
 	/**
-	 * Note that getContent/loadContent may follow redirects if
-	 * not told otherwise, and so may cause a change to mTitle.
+	 * Note that getContent/loadContent do not follow redirects anymore.
+	 * If you need to fetch redirectable content easily, try
+	 * the shortcut in Article::followContent()
 	 *
-	 * @param $noredir
+	 * @fixme There are still side-effects in this!
+	 *        In general, you should use the Revision class, not Article,
+	 *        to fetch text for purposes other than page views.
+	 *
 	 * @return Return the text of this revision
 	*/
-	function getContent( $noredir ) {
+	function getContent() {
 		global $wgRequest, $wgUser, $wgOut;
 
 		# Get variables from query string :P
@@ -117,7 +175,7 @@ class Article {
 
 			return "<div class='noarticletext'>$ret</div>";
 		} else {
-			$this->loadContent( $noredir );
+			$this->loadContent();
 			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 			if ( $this->mTitle->getNamespace() == NS_USER_TALK &&
 			  $wgUser->isIP($this->mTitle->getText()) &&
@@ -295,14 +353,13 @@ class Article {
 	/**
 	 * Load the revision (including text) into this object
 	 */
-	function loadContent( $noredir = false ) {
+	function loadContent() {
 		global $wgOut, $wgRequest;
 
 		if ( $this->mContentLoaded ) return;
 
 		# Query variables :P
 		$oldid = $this->getOldID();
-		$redirect = $wgRequest->getVal( 'redirect' );
 
 		$fname = 'Article::loadContent';
 
@@ -311,10 +368,8 @@ class Article {
 
 		$t = $this->mTitle->getPrefixedText();
 
-		$noredir = $noredir || ($wgRequest->getVal( 'redirect' ) == 'no')
-			|| $wgRequest->getCheck( 'rdfrom' );
 		$this->mOldId = $oldid;
-		$this->fetchContent( $oldid, $noredir, true );
+		$this->fetchContent( $oldid );
 	}
 
 
@@ -385,12 +440,11 @@ class Article {
 
 	/**
 	 * Get text of an article from database
+	 * Does *NOT* follow redirects.
 	 * @param int $oldid 0 for whatever the latest revision is
-	 * @param bool $noredir Set to false to follow redirects
-	 * @param bool $globalTitle Set to true to change the global $wgTitle object when following redirects or other unexpected title changes
 	 * @return string
 	 */
-	function fetchContent( $oldid = 0, $noredir = true, $globalTitle = false ) {
+	function fetchContent( $oldid = 0 ) {
 		if ( $this->mContentLoaded ) {
 			return $this->mContent;
 		}
@@ -403,10 +457,6 @@ class Article {
 		$t = $this->mTitle->getPrefixedText();
 		if( $oldid ) {
 			$t .= ',oldid='.$oldid;
-		}
-		if( isset( $redirect ) ) {
-			$redirect = ($redirect == 'no') ? 'no' : 'yes';
-			$t .= ',redirect='.$redirect;
 		}
 		$this->mContent = wfMsg( 'missingarticle', $t ) ;
 
@@ -439,53 +489,6 @@ class Article {
 			}
 		}
 
-		# If we got a redirect, follow it (unless we've been told
-		# not to by either the function parameter or the query
-		if ( !$oldid && !$noredir ) {
-			$rt = Title::newFromRedirect( $revision->getText() );
-			# process if title object is valid and not special:userlogout
-			if ( $rt && ! ( $rt->getNamespace() == NS_SPECIAL && $rt->getText() == 'Userlogout' ) ) {
-				# Gotta hand redirects to special pages differently:
-				# Fill the HTTP response "Location" header and ignore
-				# the rest of the page we're on.
-				global $wgDisableHardRedirects;
-				if( $globalTitle && !$wgDisableHardRedirects ) {
-					global $wgOut;
-					if ( $rt->getInterwiki() != '' && $rt->isLocal() ) {
-						$source = $this->mTitle->getFullURL( 'redirect=no' );
-						$wgOut->redirect( $rt->getFullURL( 'rdfrom=' . urlencode( $source ) ) ) ;
-						return false;
-					}
-					if ( $rt->getNamespace() == NS_SPECIAL ) {
-						$wgOut->redirect( $rt->getFullURL() );
-						return false;
-					}
-				}
-				if( $rt->getInterwiki() == '' ) {
-					$redirData = $this->pageDataFromTitle( $dbr, $rt );
-					if( $redirData ) {
-						$redirRev = Revision::newFromId( $redirData->page_latest );
-						if( !is_null( $redirRev ) ) {
-							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
-							$this->mTitle = $rt;
-							$data = $redirData;
-							$this->loadPageData( $data );
-							$revision = $redirRev;
-						}
-					}
-				}
-			}
-		}
-
-		# if the title's different from expected, update...
-		if( $globalTitle ) {
-			global $wgTitle;
-			if( !$this->mTitle->equals( $wgTitle ) ) {
-				$wgTitle = $this->mTitle;
-			}
-		}
-
-		# Back to the business at hand...
 		$this->mContent   = $revision->getText();
 
 		$this->mUser      = $revision->getUser();
@@ -500,19 +503,6 @@ class Article {
 		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ) ;
 
 		return $this->mContent;
-	}
-
-	/**
-	 * Gets the article text without using so many damn globals
-	 *
-	 * Used by maintenance/importLogs.php
-	 *
-	 * @param int $oldid
-	 * @param bool $noredir Whether to follow redirects
-	 * @return mixed the content (string) or false on error
-	 */
-	function getContentWithoutUsingSoManyDamnGlobals( $oldid = 0, $noredir = false ) {
-		return $this->fetchContent( $oldid, $noredir, false );
 	}
 
 	/**
@@ -791,6 +781,30 @@ class Article {
 			wfIncrStats( 'pcache_miss_stub' );
 		}
 
+		$wasRedirected = false;
+		if ( isset( $this->mRedirectedFrom ) ) {
+			// This is an internally redirected page view.
+			// We'll need a backlink to the source page for navigation.
+			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
+				$sk = $wgUser->getSkin();
+				$redir = $sk->makeKnownLinkObj( $this->mRedirectedFrom, '', 'redirect=no' );
+				$s = wfMsg( 'redirectedfrom', $redir );
+				$wgOut->setSubtitle( $s );
+				$wasRedirected = true;
+			}
+		} elseif ( !empty( $rdfrom ) ) {
+			// This is an externally redirected view, from some other wiki.
+			// If it was reported from a trusted site, supply a backlink.
+			global $wgRedirectSources;
+			if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
+				$sk = $wgUser->getSkin();
+				$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
+				$s = wfMsg( 'redirectedfrom', $redir );
+				$wgOut->setSubtitle( $s );
+				$wasRedirected = true;
+			}
+		}
+		
 		$outputDone = false;
 		if ( $pcache ) {
 			if ( $wgOut->tryParserCache( $this, $wgUser ) ) {
@@ -798,21 +812,17 @@ class Article {
 			}
 		}
 		if ( !$outputDone ) {
-			$text = $this->getContent( false ); # May change mTitle by following a redirect
+			$text = $this->getContent();
 			if ( $text === false ) {
 				# Failed to load, replace text with error message
 				$t = $this->mTitle->getPrefixedText();
 				if( $oldid ) {
 					$t .= ',oldid='.$oldid;
 				}
-				if( isset( $redirect ) ) {
-					$redirect = ($redirect == 'no') ? 'no' : 'yes';
-					$t .= ',redirect='.$redirect;
-				}
 				$text = wfMsg( 'missingarticle', $t );
 			}
 
-			# Another whitelist check in case oldid or redirects are altering the title
+			# Another whitelist check in case oldid is altering the title
 			if ( !$this->mTitle->userCanRead() ) {
 				$wgOut->loginToUse();
 				$wgOut->output();
@@ -824,32 +834,6 @@ class Article {
 			if ( !empty( $oldid ) ) {
 				$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
 				$wgOut->setRobotpolicy( 'noindex,follow' );
-			}
-			$wasRedirected = false;
-			if ( '' != $this->mRedirectedFrom ) {
-				if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
-					$sk = $wgUser->getSkin();
-					$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '', 'redirect=no' );
-					$s = wfMsg( 'redirectedfrom', $redir );
-					$wgOut->setSubtitle( $s );
-
-					// Check the parser cache again, for the target page
-					if( $pcache ) {
-						if( $wgOut->tryParserCache( $this, $wgUser ) ) {
-							$outputDone = true;
-						}
-					}
-					$wasRedirected = true;
-				}
-			} elseif ( !empty( $rdfrom ) ) {
-				global $wgRedirectSources;
-				if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
-					$sk = $wgUser->getSkin();
-					$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
-					$s = wfMsg( 'redirectedfrom', $redir );
-					$wgOut->setSubtitle( $s );
-					$wasRedirected = true;
-				}
 			}
 		}
 		if( !$outputDone ) {
@@ -1366,7 +1350,7 @@ class Article {
 			$userAbort = ignore_user_abort( true );
 		}
 
-		$oldtext = $this->getContent( true );
+		$oldtext = $this->getContent();
 		$oldsize = strlen( $oldtext );
 		$newsize = strlen( $text );
 		$lastRevision = 0;
@@ -1954,7 +1938,7 @@ class Article {
 			return false;
 		}
 
-		$u = new SiteStatsUpdate( 0, 1, -(int)$this->isCountable( $this->getContent( true ) ), -1 );
+		$u = new SiteStatsUpdate( 0, 1, -(int)$this->isCountable( $this->getContent() ), -1 );
 		array_push( $wgDeferredUpdateList, $u );
 
 		$linksTo = $this->mTitle->getLinksTo();
@@ -2050,7 +2034,7 @@ class Article {
 		}
 
 		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage( $this->getContent( true ) );
+			$wgOut->readOnlyPage( $this->getContent() );
 			return;
 		}
 		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'token' ),

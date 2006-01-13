@@ -17,7 +17,7 @@ foreach( LogPage::validTypes() as $type ) {
 
 	$page = LogPage::logName( $type );
 	$log = new Article( Title::makeTitleSafe( NS_PROJECT, $page ) );
-	$text = $log->getContentWithoutUsingSoManyDamnGlobals();
+	$text = $log->fetchContent();
 
 	$importer = new LogImporter( $type );
 	$importer->dummy = true;
