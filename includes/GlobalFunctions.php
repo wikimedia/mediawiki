@@ -111,6 +111,19 @@ if ( !function_exists( 'array_diff_key' ) ) {
 if ( ! function_exists( 'ctype_alnum' ) )
 	require_once 'compatability/ctype.php';
 
+/**
+ * Wrapper for clone() for PHP 4, for the moment.
+ * PHP 5 won't let you declare a 'clone' function, even conditionally,
+ * so it has to be a wrapper with a different name.
+ */
+function wfClone( $object ) {
+	// WARNING: clone() is not a function in PHP 5, so function_exists fails.
+	if( version_compare( PHP_VERSION, '5.0' ) < 0 ) {
+		return $object;
+	} else {
+		return clone( $object );
+	}
+}
 
 /**
  * Where as we got a random seed
