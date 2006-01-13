@@ -130,9 +130,9 @@ class RawPage {
 			$text = '';
 
 			// If it's a MediaWiki message we can just hit the message cache
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI )
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$text = wfMsgForContentNoTrans( $this->mTitle->getDbkey() );
-			else {
+			} else {
 				// Get it from the DB
 				$rev = Revision::newFromTitle( $this->mTitle, $this->mOldId );
 				if ( $rev ) {
