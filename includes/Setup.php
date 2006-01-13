@@ -66,6 +66,7 @@ require_once( 'ProxyTools.php' );
 require_once( 'ObjectCache.php' );
 require_once( 'WikiError.php' );
 require_once( 'SpecialPage.php' );
+require_once( 'RequestRate.php' );
 
 if ( $wgUseDynamicDates ) {
 	require_once( 'DateFormatter.php' );
@@ -189,9 +190,12 @@ wfProfileIn( $fname.'-User' );
 # Skin setup functions
 # Entries can be added to this variable during the inclusion
 # of the extension file. Skins can then perform any necessary initialisation.
+# 
+# require_once is slow even on the second call, so this needs to be outside the loop
+if ( count( $wgSkinExtensionFunctions ) ) {
+	require_once( 'PersistentObject.php' );
+}
 foreach ( $wgSkinExtensionFunctions as $func ) {
-	require_once 'PersistentObject.php';
-
 	call_user_func( $func );
 }
 
@@ -295,6 +299,14 @@ wfSeedRandom();
 $wgTitle = Title::makeTitle( NS_SPECIAL, 'Error' );
 $wgArticle = new Article($wgTitle);
 
+# Update request rate
+/*
+if ( !mt_rand( 0, $wgRequestRateDefaultFraction - 1 ) ) {
+	require_once( 'RequestRate.php' );
+	$rr =& RequestRate::singleton();
+	$rr->increment();
+}*/
+
 wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
 
@@ -302,9 +314,10 @@ wfProfileIn( $fname.'-extensions' );
 # Entries should be added to this variable during the inclusion
 # of the extension file. This allows the extension to perform
 # any necessary initialisation in the fully initialised environment
+if ( count( $wgExtensionFunctions ) ) {
+	require_once( 'PersistentObject.php' );
+}
 foreach ( $wgExtensionFunctions as $func ) {
-	require_once 'PersistentObject.php';
-
 	call_user_func( $func );
 }
 
