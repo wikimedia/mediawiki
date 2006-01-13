@@ -46,7 +46,13 @@ class MediaWiki {
 		$article = NULL;
 		if ( !$this->initializeSpecialCases( $title, $output, $request ) ) {
 			$article = $this->initializeArticle( $title, $request );
-			$this->performAction( $output, $article, $title, $user, $request );
+			if( is_object( $article ) ) {
+				$this->performAction( $output, $article, $title, $user, $request );
+			} elseif( is_string( $article ) ) {
+				$output->redirect( $article );
+			} else {
+				wfDebugDieBacktrace( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
+			}
 		}
 		wfProfileOut( 'MediaWiki::initialize' );
 		return $article;
@@ -158,46 +164,60 @@ class MediaWiki {
 	}
 
 	/**
-	 * Initialize the object to be known as $wgArticle for "standard" actions
+	 * Create an Article object of the appropriate class for the given page.
+	 * @param Title $title
+	 * @return Article
 	 */
-	function initializeArticle( &$title, $request ) {
-
-		wfProfileIn( 'MediaWiki::initializeArticle' );
-		
-		$action = $this->getVal('Action');
-
+	function articleFromTitle( $title ) {
 		if( NS_MEDIA == $title->getNamespace() ) {
+			// FIXME: where should this go?
 			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
 		}
 	
-		$ns = $title->getNamespace();
-	
-		/* Namespace might change when using redirects */
-		$article = new Article( $title );
-		if( $action == 'view' && !$request->getVal( 'oldid' ) ) {
-			$rTitle = Title::newFromRedirect( $article->fetchContent() );
-			if( $rTitle ) {
-				/* Reload from the page pointed to later */
-				$article->mContentLoaded = false;
-				$ns = $rTitle->getNamespace();
-				$wasRedirected = true;
-				}
-		}
-
-		/* Categories and images are handled by a different class */
-		if( $ns == NS_IMAGE ) {
-			$b4 = $title->getPrefixedText();
-			unset( $article );
+		switch( $title->getNamespace() ) {
+		case NS_IMAGE:
 			require_once( 'includes/ImagePage.php' );
-			$article = new ImagePage( $title );
-			if( isset( $wasRedirected ) && $request->getVal( 'redirect' ) != 'no' ) {
-				$article->mTitle = $rTitle;
-				$article->mRedirectedFrom = $b4;
-			}
-		} elseif( $ns == NS_CATEGORY ) {
-			unset( $article );
+			return new ImagePage( $title );
+		case NS_CATEGORY:
 			require_once( 'includes/CategoryPage.php' );
-			$article = new CategoryPage( $title );
+			return new CategoryPage( $title );
+		default:
+			return new Article( $title );
+		}
+	}
+	
+	/**
+	 * Initialize the object to be known as $wgArticle for "standard" actions
+	 * Create an Article object for the page, following redirects if needed.
+	 * @param Title $title
+	 * @param Request $request
+	 * @param string $action
+	 * @return mixed an Article, or a string to redirect to another URL
+	 */
+	function initializeArticle( $title, $request ) {
+		wfProfileIn( 'MediaWiki::initializeArticle' );
+		
+		$action = $this->getVal('Action');
+		$article = $this->articleFromTitle( $title );
+		
+		// Namespace might change when using redirects
+		if( $action == 'view' && !$request->getVal( 'oldid' ) && $request->getVal( 'redirect' ) != 'no' ) {
+			$target = $article->followRedirect();
+			if( is_string( $target ) ) {
+				global $wgDisableHardRedirects;
+				if( !$wgDisableHardRedirects ) {
+					// we'll need to redirect
+					return $target;
+				}
+			}
+			if( is_object( $target ) ) {
+				// evil globals hack!
+				global $wgTitle;
+				$wgTitle = $target;
+				
+				$article = $this->articleFromTitle( $target );
+				$article->setRedirectedFrom( $title );
+			}
 		}
 		wfProfileOut( 'MediaWiki::initializeArticle' );
 		return $article;

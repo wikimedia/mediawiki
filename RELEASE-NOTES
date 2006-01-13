@@ -474,6 +474,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Override $wgLocaltimezone in parser tests for us outside Iceland and UK
 * Fix extra whitespace at end of Wiki.php, DESTROYS XML OUTPUT
 * Remove redundant 'echo' statements from MonoBook.php
+* (bug 1103) Fix up redirect handling for images, categories
+  Redirects are now followed from the top-level, outside of the Article
+  content loading and viewing, for clarity and consistency.
 
 
 === Caveats ===

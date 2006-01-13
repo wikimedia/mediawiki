@@ -53,7 +53,7 @@ class EditPage {
 		if ( !$wgUseMetadataEdit ) return ;
 		if ( $wgMetadataWhitelist == '' ) return ;
 		$s = '' ;
-		$t = $this->mArticle->getContent ( true ) ;
+		$t = $this->mArticle->getContent();
 
 		# MISSING : <nowiki> filtering
 
@@ -90,7 +90,7 @@ class EditPage {
 		$sat = array () ; # stand-alone-templates; must be lowercase
 		$wl_title = Title::newFromText ( $wgMetadataWhitelist ) ;
 		$wl_article = new Article ( $wl_title ) ;
-		$wl = explode ( "\n" , $wl_article->getContent(true) ) ;
+		$wl = explode ( "\n" , $wl_article->getContent() ) ;
 		foreach ( $wl AS $x )
 		{
 			$isentry = false ;
@@ -176,7 +176,7 @@ class EditPage {
 
 		if ( ! $this->mTitle->userCanEdit() ) {
 			wfDebug( "$fname: user can't edit\n" );
-			$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
+			$wgOut->readOnlyPage( $this->mArticle->getContent(), true );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -197,7 +197,7 @@ class EditPage {
 				return;
 			} else {
 				wfDebug( "$fname: read-only page\n" );
-				$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
+				$wgOut->readOnlyPage( $this->mArticle->getContent(), true );
 				wfProfileOut( $fname );
 				return;
 			}
@@ -215,7 +215,7 @@ class EditPage {
 			} else if ( $this->diff ) {
 				$this->formtype = 'diff';
 			} else {
-				$wgOut->readOnlyPage( $this->mArticle->getContent( true ) );
+				$wgOut->readOnlyPage( $this->mArticle->getContent() );
 				wfProfileOut( $fname );
 				return;
 			}
@@ -651,7 +651,7 @@ class EditPage {
 	 */
 	function initialiseForm() {
 		$this->edittime = $this->mArticle->getTimestamp();
-		$this->textbox1 = $this->mArticle->getContent( true );
+		$this->textbox1 = $this->mArticle->getContent();
 		$this->summary = '';
 		if ( !$this->mArticle->exists() && $this->mArticle->mTitle->getNamespace() == NS_MEDIAWIKI )
 			$this->textbox1 = wfMsgWeirdKey ( $this->mArticle->mTitle->getText() ) ;
@@ -685,7 +685,7 @@ class EditPage {
 			$wgOut->addWikiText( wfMsg( 'explainconflict' ) );
 
 			$this->textbox2 = $this->textbox1;
-			$this->textbox1 = $this->mArticle->getContent( true );
+			$this->textbox1 = $this->mArticle->getContent();
 			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
 
@@ -1108,7 +1108,7 @@ END
 		} else {
 			# if user want to see preview when he edit an article
 			if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
-				$this->textbox1 = $this->mArticle->getContent(true);
+				$this->textbox1 = $this->mArticle->getContent();
 			}
 
 			$toparse = $this->textbox1;

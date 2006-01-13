@@ -370,6 +370,7 @@ class DumpHTML {
 			$wgOut->setParserOptions( new ParserOptions );
 			SpecialPage::executePath( $wgTitle );
 		} else {
+			/** @todo merge with Wiki.php code */
 			if ( $ns == NS_IMAGE ) {
 				$wgArticle = new ImagePage( $wgTitle );
 			} elseif ( $ns == NS_CATEGORY ) {
