@@ -473,6 +473,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4576) Missing '>' broke license selector's first option in IE, Opera
 * Override $wgLocaltimezone in parser tests for us outside Iceland and UK
 * Fix extra whitespace at end of Wiki.php, DESTROYS XML OUTPUT
+* Remove redundant 'echo' statements from MonoBook.php
 
 
 === Caveats ===
