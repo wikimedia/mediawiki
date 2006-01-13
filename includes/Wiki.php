@@ -37,6 +37,28 @@ class MediaWiki {
 	}
 	
 	/**
+	 * Wrapper for getrusage, if it exists
+	 * getrusage() does not exist on the Window$ platform, catching this
+	 */
+	function getRUsage() {
+		if ( function_exists ( 'getrusage' ) ) {
+			return getrusage();
+		} else {
+			return array();
+		}
+	}
+	
+	/**
+	 * CHeck for $GLOBALS vulnerability
+	 */
+	function ckeckGlobalsVulnerability() {
+		@ini_set( 'allow_url_fopen', 0 ); # For security...
+		if ( isset( $_REQUEST['GLOBALS'] ) ) {
+			die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+		}
+	}
+	
+	/**
 	 * Checks if the wiki is set up at all, or configured but not activated
 	 */
 	function checkSetup() {
@@ -56,22 +78,32 @@ class MediaWiki {
 			$msg = "Please <a href='config/index.php' title='setup'>setup the wiki</a> first.";
 		}
 		$out = str_replace( "$2", $msg, $out );
-		echo $out ;
+		echo $out;
 		die();
+	}
+	
+	/**
+	 * Reads title and action values from request
+	 */
+	function initializeActionTitle () {
+		$request = $this->getVal( 'Request' );
+		$this->setVal( 'action', $request->getVal( 'action', 'view' ) );
+		$this->setVal( 'urltitle', $request->getVal( 'title' ) );
 	}
 	
 	/**
 	 * Initialization of ... everything
 	 @return Article either the object to become $wgArticle, or NULL
 	 */
-	function initialize ( &$title, &$output, &$user, $request) {
+	function initialize ( &$title, &$output, &$user ) {
 		wfProfileIn( 'MediaWiki::initialize' );
-		$this->preliminaryChecks ( $title, $output, $request ) ;
+		$request = $this->getVal( 'Request' );
+		$this->preliminaryChecks ( $title, $output );
 		$article = NULL;
-		if ( !$this->initializeSpecialCases( $title, $output, $request ) ) {
-			$article = $this->initializeArticle( $title, $request );
+		if ( !$this->initializeSpecialCases( $title, $output ) ) {
+			$article = $this->initializeArticle( $title );
 			if( is_object( $article ) ) {
-				$this->performAction( $output, $article, $title, $user, $request );
+				$this->performAction( $output, $article, $title, $user );
 			} elseif( is_string( $article ) ) {
 				$output->redirect( $article );
 			} else {
@@ -84,15 +116,17 @@ class MediaWiki {
 	
 	/**
 	 * Checks some initial queries
-	 * Note that $title here is *not* a Title object, but a string!
 	 */
-	function checkInitialQueries( $title,$action,&$output,$request, $lang) {
+	function checkInitialQueries( &$output, $lang) {
 		wfProfileIn( 'MediaWiki::checkInitialQueries' );
+		$request = $this->getVal( 'Request' );
+		$action = $this->getVal( 'action' );
+		$title = $this->getVal( 'urltitle' );
 		if ($request->getVal( 'printable' ) == 'yes') {
 			$output->setPrintable();
 		}
 		
-		$ret = NULL ;
+		$ret = NULL;
 		
 		
 		if ( '' == $title && 'delete' != $action ) {
@@ -110,14 +144,14 @@ class MediaWiki {
 		
 		}
 		wfProfileOut( 'MediaWiki::checkInitialQueries' );
-		return $ret ;
+		return $ret;
 	}
 	
 	/**
 	 * Checks for search query and anon-cannot-read case
 	 */
-	function preliminaryChecks ( &$title, &$output, $request ) {
-	
+	function preliminaryChecks ( &$title, &$output ) {
+		$request = $this->getVal( 'Request' );
 		# Debug statement for user levels
 		// print_r($wgUser);
 		
@@ -143,9 +177,9 @@ class MediaWiki {
 	/**
 	 * Initialize the object to be known as $wgArticle for special cases
 	 */
-	function initializeSpecialCases ( &$title, &$output, $request ) {
-
+	function initializeSpecialCases ( &$title, &$output ) {
 		wfProfileIn( 'MediaWiki::initializeSpecialCases' );
+		$request = $this->getVal( 'Request' );
 		
 		$search = $this->getVal('Search');
 		$action = $this->getVal('Action');
@@ -216,13 +250,12 @@ class MediaWiki {
 	 * Initialize the object to be known as $wgArticle for "standard" actions
 	 * Create an Article object for the page, following redirects if needed.
 	 * @param Title $title
-	 * @param Request $request
-	 * @param string $action
 	 * @return mixed an Article, or a string to redirect to another URL
 	 */
-	function initializeArticle( $title, $request ) {
+	function initializeArticle( $title ) {
 		wfProfileIn( 'MediaWiki::initializeArticle' );
 		
+		$request = $this->getVal( 'Request' );
 		$action = $this->getVal('Action');
 		$article = $this->articleFromTitle( $title );
 		
@@ -288,10 +321,10 @@ class MediaWiki {
 	/**
 	 * Perform one of the "standard" actions
 	 */
-	function performAction( &$output, &$article, &$title, &$user, &$request ) {
-
+	function performAction( &$output, &$article, &$title, &$user ) {
 		wfProfileIn( 'MediaWiki::performAction' );
-
+		
+		$request = $this->getVal( 'Request' );
 		$action = $this->getVal('Action');
 		if( in_array( $action, $this->getVal('DisabledActions',array()) ) ) {
 			/* No such action; this will switch to the default case */
