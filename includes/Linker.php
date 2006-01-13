@@ -663,7 +663,7 @@ class Linker {
 	 * comments. It escapes any HTML in the comment, but adds some CSS to format
 	 * auto-generated comments (from section editing) and formats [[wikilinks]].
 	 *
-	 * The &$title parameter must be a title OBJECT. It is used to generate a
+	 * The $title parameter must be a title OBJECT. It is used to generate a
 	 * direct link to the section in the autocomment.
 	 * @author Erik Moeller <moeller@scireview.de>
 	 *
@@ -688,14 +688,15 @@ class Linker {
 			$auto=$match[2];
 			$post=$match[3];
 			$link='';
-			if($title) {
-				$section=$auto;
+			if( $title ) {
+				$section = $auto;
 
 				# This is hackish but should work in most cases.
-				$section=str_replace('[[','',$section);
-				$section=str_replace(']]','',$section);
-				$title->mFragment=$section;
-				$link=$this->makeKnownLinkObj($title,wfMsg('sectionlink'));
+				$section = str_replace( '[[', '', $section );
+				$section = str_replace( ']]', '', $section );
+				$sectionTitle = clone( $title );
+				$sectionTitle->mFragment = $section;
+				$link = $this->makeKnownLinkObj( $sectionTitle, wfMsg( 'sectionlink' ) );
 			}
 			$sep='-';
 			$auto=$link.$auto;
