@@ -37,6 +37,30 @@ class MediaWiki {
 	}
 	
 	/**
+	 * Checks if the wiki is set up at all, or configured but not activated
+	 */
+	function checkSetup() {
+		if ( file_exists( './LocalSettings.php' ) ) {
+			/* LocalSettings exists, commerce normally */
+			return;
+		}
+		
+		/* LocalSettings is not in the right place, do something */
+		$IP = ".";
+		require_once( 'includes/DefaultSettings.php' ); # used for printing the version
+		$out = file_get_contents( "./setup_message.html" );
+		$out = str_replace( "$1", $wgVersion, $out );
+		if ( file_exists( 'config/LocalSettings.php' ) ) {
+			$msg = "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory.";
+		} else {
+			$msg = "Please <a href='config/index.php' title='setup'>setup the wiki</a> first.";
+		}
+		$out = str_replace( "$2", $msg, $out );
+		echo $out ;
+		die();
+	}
+	
+	/**
 	 * Initialization of ... everything
 	 @return Article either the object to become $wgArticle, or NULL
 	 */
@@ -63,6 +87,7 @@ class MediaWiki {
 	 * Note that $title here is *not* a Title object, but a string!
 	 */
 	function checkInitialQueries( $title,$action,&$output,$request, $lang) {
+		wfProfileIn( 'MediaWiki::checkInitialQueries' );
 		if ($request->getVal( 'printable' ) == 'yes') {
 			$output->setPrintable();
 		}
@@ -84,6 +109,7 @@ class MediaWiki {
 				$lang->findVariantLink( $title, $ret );
 		
 		}
+		wfProfileOut( 'MediaWiki::checkInitialQueries' );
 		return $ret ;
 	}
 	

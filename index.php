@@ -25,58 +25,17 @@ if ( isset( $_REQUEST['GLOBALS'] ) ) {
 # it becomes an entry point, thereby defeating its purpose.
 define( 'MEDIAWIKI', true );
 require_once( './includes/Defines.php' );
-
-if( !file_exists( 'LocalSettings.php' ) ) {
-	$IP = ".";
-	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
-	<head>
-		<title>MediaWiki <?php echo $wgVersion ?></title>
-		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		<style type='text/css' media='screen, projection'>
-			html, body {
-				color: #000;
-				background-color: #fff;
-				font-family: sans-serif;
-				text-align: center;
-			}
-
-			h1 {
-				font-size: 150%;
-			}
-		</style>
-	</head>
-	<body>
-		<img src='skins/common/images/mediawiki.png' alt='The MediaWiki logo' />
-
-		<h1>MediaWiki <?php echo $wgVersion ?></h1>
-		<div class='error'>
-		<?php
-		if ( file_exists( 'config/LocalSettings.php' ) ) {
-			echo( "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory." );
-		} else {
-			echo( "Please <a href='config/index.php' title='setup'>setup the wiki</a> first." );
-		}
-		?>
-
-		</div>
-	</body>
-</html>
-<?php
-	die();
-}
-
-require_once( './LocalSettings.php' );
-require_once( 'includes/Setup.php' );
+@include_once( './LocalSettings.php' ); # Will die later if not included anyway
 
 
 # Initialize MediaWiki base class
 require_once( "includes/Wiki.php" );
 $mediaWiki = new MediaWiki();
 
-wfProfileIn( 'main-misc-setup' );
+
+$mediaWiki->checkSetup();
+require_once( 'includes/Setup.php' ); # This can't be done in mdiaWiki.php for some weird reason
+
 OutputPage::setEncodings(); # Not really used yet
 
 # Query string fields
@@ -84,11 +43,11 @@ $action = $wgRequest->getVal( 'action', 'view' );
 $title = $wgRequest->getVal( 'title' );
 
 $wgTitle = $mediaWiki->checkInitialQueries( $title,$action,$wgOut, $wgRequest, $wgContLang );
+
+# Is this necessary? Who knows...
 if ($wgTitle == NULL) {
 	unset( $wgTitle );
 }
-
-wfProfileOut( 'main-misc-setup' );
 
 # Setting global variables in mediaWiki
 $mediaWiki->setVal( "Server", $wgServer );
