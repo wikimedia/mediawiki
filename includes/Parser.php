@@ -1977,7 +1977,9 @@ class Parser
 			case MAG_CURRENTTIME:
 				return $varCache[$index] = $wgContLang->time( wfTimestamp( TS_MW, $ts ), false, false );
 			case MAG_CURRENTWEEK:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'W', $ts ) );
+				// @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
+				// int to remove the padding
+				return $varCache[$index] = $wgContLang->formatNum( (int)date( 'W', $ts ) );
 			case MAG_CURRENTDOW:
 				return $varCache[$index] = $wgContLang->formatNum( date( 'w', $ts ) );
 			case MAG_NUMBEROFARTICLES:

@@ -1413,11 +1413,11 @@ Magic Word: {{CURRENTTIME}}
 !! end
 
 !! test
-Magic Word: {{CURRENTWEEK}}
+Magic Word: {{CURRENTWEEK}} (@bug 4594)
 !! input
 {{CURRENTWEEK}}
 !! result
-<p>01
+<p>1
 </p>
 !! end
 
