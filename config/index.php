@@ -80,7 +80,7 @@ header( "Content-type: text/html; charset=utf-8" );
  </center>
 
  <p><strong><a href="http://www.mediawiki.org/">MediaWiki</a></strong> is
- Copyright (C) 2001-2005 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
+ Copyright (C) 2001-2006 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
  Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
 
  <ul>

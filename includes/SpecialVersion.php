@@ -48,7 +48,7 @@ class SpecialVersion {
 		"__NOTOC__
 		<div dir='ltr'>
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',  
-		copyright (C) 2001-2005 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
+		copyright (C) 2001-2006 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, and others.
 		 
 		MediaWiki is free software; you can redistribute it and/or modify
