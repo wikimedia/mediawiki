@@ -27,7 +27,7 @@ if(isset( $options['help'] ) ) {
 print <<<END
 usage: namespaceDupes.php [--fix] [--suffix=<text>] [--help]
     --help          : this help message
-    --fix           : attempt to automaticly fix errors
+    --fix           : attempt to automatically fix errors
     --suffix=<text> : dupes will be renamed with correct namespace with <text>
                       appended after the article name.
 
