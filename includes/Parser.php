@@ -3262,33 +3262,18 @@ class Parser
 	/**
 	 * Clean up signature text
 	 *
-	 * 1) Force transclusions to be substituted
-	 * 2) Strip ~~~, ~~~~ and ~~~~~ out of signatures
+	 * 1) Strip ~~~, ~~~~ and ~~~~~ out of signatures
+	 * 2) Substitute all transclusions
 	 *
-	 * @static
 	 * @param string $text
-	 * @return string Text
+	 * @return string Signature text
 	 */
 	function cleanSig( $text ) {
-	
-		$mw = MagicWord::get( MAG_SUBST );
-		$substre = $mw->getBaseRegex();
-		$subst = $mw->getSynonym( 0 );
-		$i = $mw->getRegexCase();
+		$substWord = MagicWord::get( MAG_SUBST );
+		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
+		$substText = '{{' . $substWord->getSynonym( 0 );
 
-		$text = preg_replace(
-			"/
-				\{\{
-					(?!
-						(?:
-							$substre
-						)
-					)
-			/x$i",
-			'{{' . $subst,
-			$text
-		);
-		
+		$text = preg_replace( $substRegex, $substText, $text );
 		$text = preg_replace( '/~{3,5}/', '', $text );
 		$text = $this->replaceVariables( $text );
 	
