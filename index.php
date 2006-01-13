@@ -3,13 +3,21 @@
  * Main wiki script; see docs/design.txt
  * @package MediaWiki
  */
-
-# In the beginning...
-require_once( "./includes/Wiki.php" );
 $wgRequestTime = microtime();
-$wgRUstart = MediaWiki::getRUsage();
+
+# getrusage() does not exist on the Window$ platform, catching this
+if ( function_exists ( 'getrusage' ) ) {
+	$wgRUstart = getrusage();
+} else {
+	$wgRUstart = array();
+}
+
 unset( $IP );
-MediaWiki::ckeckGlobalsVulnerability();
+@ini_set( 'allow_url_fopen', 0 ); # For security...
+
+if ( isset( $_REQUEST['GLOBALS'] ) ) {
+	die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+}
 
 # Valid web server entry point, enable includes.
 # Please don't move this line to includes/Defines.php. This line essentially defines
@@ -18,34 +26,74 @@ MediaWiki::ckeckGlobalsVulnerability();
 define( 'MEDIAWIKI', true );
 require_once( './includes/Defines.php' );
 
+if( !file_exists( 'LocalSettings.php' ) ) {
+	$IP = ".";
+	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+	<head>
+		<title>MediaWiki <?php echo $wgVersion ?></title>
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+		<style type='text/css' media='screen, projection'>
+			html, body {
+				color: #000;
+				background-color: #fff;
+				font-family: sans-serif;
+				text-align: center;
+			}
 
-# Initialize MediaWiki base class
-$mediaWiki = new MediaWiki();
-$mediaWiki->checkSetup();
+			h1 {
+				font-size: 150%;
+			}
+		</style>
+	</head>
+	<body>
+		<img src='skins/common/images/mediawiki.png' alt='The MediaWiki logo' />
 
-# These can't be done in mdiaWiki.php for some weird reason
+		<h1>MediaWiki <?php echo $wgVersion ?></h1>
+		<div class='error'>
+		<?php
+		if ( file_exists( 'config/LocalSettings.php' ) ) {
+			echo( "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory." );
+		} else {
+			echo( "Please <a href='config/index.php' title='setup'>setup the wiki</a> first." );
+		}
+		?>
+
+		</div>
+	</body>
+</html>
+<?php
+	die();
+}
+
 require_once( './LocalSettings.php' );
 require_once( 'includes/Setup.php' );
 
+
+# Initialize MediaWiki base class
+require_once( "includes/Wiki.php" );
+$mediaWiki = new MediaWiki();
+
+wfProfileIn( 'main-misc-setup' );
 OutputPage::setEncodings(); # Not really used yet
 
-$mediaWiki->setVal( "Request", $wgRequest );
-
 # Query string fields
-$mediaWiki->initializeActionTitle();
-$action = $mediaWiki->getVal( 'action' ); # Global might be needed somewhere, sadly...
+$action = $wgRequest->getVal( 'action', 'view' );
+$title = $wgRequest->getVal( 'title' );
 
-# Run initial queries
-$wgTitle = $mediaWiki->checkInitialQueries( $wgOut, $wgContLang );
-
-# Is this necessary? Who knows...
+$wgTitle = $mediaWiki->checkInitialQueries( $title,$action,$wgOut, $wgRequest, $wgContLang );
 if ($wgTitle == NULL) {
 	unset( $wgTitle );
 }
 
+wfProfileOut( 'main-misc-setup' );
+
 # Setting global variables in mediaWiki
 $mediaWiki->setVal( "Server", $wgServer );
 $mediaWiki->setVal( "DisableInternalSearch", $wgDisableInternalSearch );
+$mediaWiki->setVal( "action", $action );
 $mediaWiki->setVal( "SquidMaxage", $wgSquidMaxage );
 $mediaWiki->setVal( "EnableDublinCoreRdf", $wgEnableDublinCoreRdf );
 $mediaWiki->setVal( "EnableCreativeCommonsRdf", $wgEnableCreativeCommonsRdf );
@@ -53,8 +101,11 @@ $mediaWiki->setVal( "CommandLineMode", $wgCommandLineMode );
 $mediaWiki->setVal( "UseExternalEditor", $wgUseExternalEditor );
 $mediaWiki->setVal( "DisabledActions", $wgDisabledActions );
 
-$wgArticle = $mediaWiki->initialize ( $wgTitle, $wgOut, $wgUser );
+$wgArticle = $mediaWiki->initialize ( $wgTitle, $wgOut, $wgUser, $wgRequest );
 $mediaWiki->finalCleanup ( $wgDeferredUpdateList, $wgLoadBalancer, $wgOut );
+
+# Not sure when $wgPostCommitUpdateList gets set, so I keep this separate from finalCleanup
 $mediaWiki->doUpdates( $wgPostCommitUpdateList );
+
 $mediaWiki->restInPeace( $wgLoadBalancer );
 ?>
