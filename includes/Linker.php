@@ -694,7 +694,7 @@ class Linker {
 				# This is hackish but should work in most cases.
 				$section = str_replace( '[[', '', $section );
 				$section = str_replace( ']]', '', $section );
-				$sectionTitle = clone( $title );
+				$sectionTitle = wfClone( $title );
 				$sectionTitle->mFragment = $section;
 				$link = $this->makeKnownLinkObj( $sectionTitle, wfMsg( 'sectionlink' ) );
 			}
