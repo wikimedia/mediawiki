@@ -479,6 +479,8 @@ fully support the editing toolbar, but was found to be too confusing.
   content loading and viewing, for clarity and consistency.
 * (bug 4104) 'OutputPageBeforeHTML' hook to postprocess article HTML on
   page view (comes after parser cache, if used). Patch by ThomasV.
+* Linker::formatComment corrupted the passed title object on PHP 5
+  if the comment included a section link. Use clone() to make a safe copy.
 
 
 === Caveats ===
