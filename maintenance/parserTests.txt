@@ -1220,9 +1220,9 @@ Failing to transform badly formed HTML into correct XHTML
 <br clear=right>
 <br clear=all>
 !! result
-<p><br style="clear:left;" />
-<br style="clear:right;" />
-<br style="clear:both;" />
+<p><br clear="left" />
+<br clear="right" />
+<br clear="all" />
 </p>
 !!end
 
@@ -1237,6 +1237,7 @@ foo <hr
 <hr />
 <hr />
 foo <hr /> bar
+
 !! end
 
 ###
@@ -1995,9 +1996,9 @@ disabled
 !! test
 int keyword
 !! input
-{{int:newmessages|lots of money}}
+{{int:youhavenewmessages|lots of money|not!}}
 !! result
-<p>You have lots of money.
+<p>You have lots of money (not!).
 </p>
 !! end
 
@@ -2505,7 +2506,7 @@ title=[[Parser test script]]
 Some text
 ===Another headline===
 !! result
-<table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Contents</h2></div>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id='toctitle'><h2>Contents</h2></div>
 <ul>
 <li class='toclevel-1'><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
 <ul>
@@ -2554,7 +2555,7 @@ Handling of sections up to level 6 and beyond
 ========= Level 9 Heading=========
 ========== Level 10 Heading==========
 !! result
-<table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Contents</h2></div>
+<table id="toc" class="toc" summary="Contents"><tr><td><div id='toctitle'><h2>Contents</h2></div>
 <ul>
 <li class='toclevel-1'><a href="#Level_1_Heading"><span class="tocnumber">1</span> <span class="toctext">Level 1 Heading</span></a>
 <ul>
