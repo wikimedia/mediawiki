@@ -1113,25 +1113,6 @@ class Database {
 	}
 
 	/**
-	 * Starts a timer which will kill the DB thread after $timeout seconds
-	 */
-	function startTimer( $timeout ) {
-		global $IP;
-		if( function_exists( 'mysql_thread_id' ) ) {
-			# This will kill the query if it's still running after $timeout seconds.
-			$tid = mysql_thread_id( $this->mConn );
-			exec( "php $IP/includes/killthread.php $timeout $tid &>/dev/null &" );
-		}
-	}
-
-	/**
-	 * Stop a timer started by startTimer()
-	 * Currently unimplemented.
-	 *
-	 */
-	function stopTimer() { }
-
-	/**
 	 * Format a table name ready for use in constructing an SQL query
 	 *
 	 * This does two important things: it quotes table names which as necessary,
