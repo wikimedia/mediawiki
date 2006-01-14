@@ -3308,11 +3308,15 @@ class Parser
 		global $wgTitle;
 		static $executing = false;
 
+		$fname = "Parser::transformMsg";
+
 		# Guard against infinite recursion
 		if ( $executing ) {
 			return $text;
 		}
 		$executing = true;
+
+		wfProfileIn($fname);
 
 		$this->mTitle = $wgTitle;
 		$this->mOptions = $options;
@@ -3321,6 +3325,7 @@ class Parser
 		$text = $this->replaceVariables( $text );
 
 		$executing = false;
+		wfProfileOut($fname);
 		return $text;
 	}
 
