@@ -1393,11 +1393,25 @@ END;
 	 * @access private
 	 */
 	function buildSidebar() {
-		global $wgTitle, $action;
+		global $wgTitle, $action, $wgDBname, $parserMemc;
+		global $wgLanguageCode, $wgContLanguageCode;
 
 		$fname = 'SkinTemplate::buildSidebar';
-		$pageurl = $wgTitle->getLocalURL();
+
 		wfProfileIn( $fname );
+
+		if ($wgLanguageCode == $wgContLanguageCode)
+			$cacheSidebar = true;
+		else
+			$cacheSidebar = false;
+		
+		if ($cacheSidebar) {
+			$cachedsidebar=$parserMemc->get("{$wgDBname}:sidebar");
+			if ($cachedsidebar!="") {
+				wfProfileOut($fname);
+				return $cachedsidebar;
+			}
+		}
 
 		$bar = array();
 		$lines = explode( "\n", wfMsgForContent( 'sidebar' ) );
@@ -1422,12 +1436,13 @@ END;
 						'text' => $text,
 						'href' => $href,
 						'id' => 'n-' . strtr($line[1], ' ', '-'),
-						'active' => $pageurl == $href
+						'active' => false
 					);
 				} else { continue; }
 			}
 		}
-
+		if ($cacheSidebar)
+			$cachednotice=$parserMemc->set("{$wgDBname}:sidebar",$bar,86400);
 		wfProfileOut( $fname );
 		return $bar;
 	}
