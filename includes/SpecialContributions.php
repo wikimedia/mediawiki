@@ -256,6 +256,7 @@ function wfSpecialContributions( $par = null ) {
 	$nsform .= '<p>';
 	$nsform .= wfMsgHtml('namespace');
 
+	$nsform .= ' ';
 	$nsform .= HTMLnamespaceselector( $ns, '' );
 
 	$nsform .= wfElement('input', array(
