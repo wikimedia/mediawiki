@@ -195,28 +195,42 @@ class MediaWiki {
 	 * @return mixed an Article, or a string to redirect to another URL
 	 */
 	function initializeArticle( $title, $request ) {
+		global $wgTitle;
 		wfProfileIn( 'MediaWiki::initializeArticle' );
 		
 		$action = $this->getVal('Action');
 		$article = $this->articleFromTitle( $title );
 		
 		// Namespace might change when using redirects
-		if( $action == 'view' && !$request->getVal( 'oldid' ) && $request->getVal( 'redirect' ) != 'no' ) {
-			$target = $article->followRedirect();
-			if( is_string( $target ) ) {
-				global $wgDisableHardRedirects;
-				if( !$wgDisableHardRedirects ) {
-					// we'll need to redirect
-					return $target;
+		if( $action == 'view' && !$request->getVal( 'oldid' ) && 
+						$request->getVal( 'redirect' ) != 'no' ) {
+			$dbr=&wfGetDB(DB_SLAVE);
+			$article->loadPageData($article->pageDataFromTitle($dbr,$title));
+			
+			/* Follow redirects only for... redirects */
+			if ($article->mIsRedirect) {
+				$target = $article->followRedirect();
+				if( is_string( $target ) ) {
+					global $wgDisableHardRedirects;
+					if( !$wgDisableHardRedirects ) {
+						// we'll need to redirect
+						return $target;
+					}
 				}
-			}
-			if( is_object( $target ) ) {
-				// evil globals hack!
-				global $wgTitle;
-				$wgTitle = $target;
-				
-				$article = $this->articleFromTitle( $target );
-				$article->setRedirectedFrom( $title );
+				if( is_object( $target ) ) {
+					/* Rewrite environment to redirected article */
+					$rarticle = $this->articleFromTitle($target);
+					$rarticle->loadPageData($rarticle->pageDataFromTitle($dbr,$target));
+					if ($rarticle->mTitle->mArticleID) {
+						$article = $rarticle;
+						$wgTitle = $target;
+						$article->setRedirectedFrom( $title );
+					} else {
+						$wgTitle = $title;
+					}
+				}
+			} else {
+				$wgTitle = $article->mTitle;
 			}
 		}
 		wfProfileOut( 'MediaWiki::initializeArticle' );
