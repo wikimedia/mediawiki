@@ -91,8 +91,11 @@ class Article {
 					} else {
 						return $rt->getFullURL();
 					}
-				} 
-				return $rt;
+				} elseif( $rt->exists() ) {
+					// Internal redirects can be handled relatively gracefully.
+					// We may have to change to another Article subclass, though.
+					return $rt;
+				}
 			}
 		}
 		
@@ -424,7 +427,6 @@ class Article {
 	 * @access private
 	 */
 	function loadPageData( $data ) {
-		$this->mTitle->mArticleID = $data->page_id;
 		$this->mTitle->loadRestrictions( $data->page_restrictions );
 		$this->mTitle->mRestrictionsLoaded = true;
 
