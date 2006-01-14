@@ -4,13 +4,6 @@
  * @subpackage Cache
  */
 
-/** */
-if (!defined('MEDIAWIKI')) {
-	echo "Not a valid entry point\n";
-	die( -1 );
-}
-
-
 /**
  * FakeMemCachedClient imitates the API of memcached-client v. 0.1.2.
  * It acts as a memcached server with no RAM, that is, all objects are

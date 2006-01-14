@@ -21,8 +21,6 @@ Example use :
 */
 
 
-if( !defined( 'MEDIAWIKI' ) ) die( -1 );
-
 class Categoryfinder {
 
 	var $articles = array () ; # The original article IDs passed to the seed function
