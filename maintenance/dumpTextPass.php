@@ -32,6 +32,7 @@ require_once( 'maintenance/backup.inc' );
 
 class TextPassDumper extends BackupDumper {
 	var $prefetch = null;
+	var $input = "php://stdin";
 
 	function dump() {
 		# This shouldn't happen if on console... ;)
@@ -49,7 +50,7 @@ class TextPassDumper extends BackupDumper {
 
 		$this->egress = new ExportProgressFilter( $this->sink, $this );
 
-		$input = fopen( "php://stdin", "rt" );
+		$input = fopen( $this->input, "rt" );
 		$result = $this->readDump( $input );
 
 		if( WikiError::isError( $result ) ) {
@@ -60,22 +61,29 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function processOption( $opt, $val, $param ) {
-		if( $opt == 'prefetch' ) {
+		$url = $this->processFileOpt( $val, $param );
+		
+		switch( $opt ) {
+		case 'prefetch':
 			require_once 'maintenance/backupPrefetch.inc';
-			switch( $val ) {
-			case "file":
-				$filename = $param;
-				break;
-			case "gzip":
-				$filename = "compress.gzip://$param";
-				break;
-			case "bzip2":
-				$filename = "compress.bzip2://$param";
-				break;
-			default:
-				$filename = $val;
-			}
-			$this->prefetch = new BaseDump( $filename );
+			$this->prefetch = new BaseDump( $url );
+			break;
+		case 'stub':
+			$this->input = $url;
+			break;
+		}
+	}
+	
+	function processFileOpt( $val, $param ) {
+		switch( $val ) {
+		case "file":
+			return $param;
+		case "gzip":
+			return "compress.zlib://$param";
+		case "bzip2":
+			return "compress.bzip2://$param";
+		default:
+			return $val;
 		}
 	}
 
@@ -211,7 +219,9 @@ XML output is sent to stdout; progress reports are sent to stderr.
 
 Usage: php dumpTextPass.php [<options>]
 Options:
-  --prefetch <file>  Use a prior dump file as a text source where possible.
+  --stub=<type>:<file> To load a compressed stub dump instead of stdin
+  --prefetch=<type>:<file> Use a prior dump file as a text source, to save
+              pressure on the database.
               (Requires PHP 5.0+ and the XMLReader PECL extension)
   --quiet     Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
