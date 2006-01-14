@@ -102,7 +102,7 @@ function getRebuildInterwikiSQL() {
 	$lines = array_map( 'trim', explode( "\n", trim( $intermap ) ) );
 
 	if ( !$lines || count( $lines ) < 2 ) {
-		die( "m:Interwiki_map not found" );
+		wfDie( "m:Interwiki_map not found" );
 	}
 
 	$iwArray = array();

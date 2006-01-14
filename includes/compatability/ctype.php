@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 /**
  * PHP <4.2.0 doesn't build ctype_ functions by default and Gentoo doesn't
  * build it by default, and that probably applies for some other distributions

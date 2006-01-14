@@ -45,7 +45,7 @@ class DatabasePgsql extends Database {
 	function open( $server, $user, $password, $dbName ) {
 		# Test for PostgreSQL support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
-			die( "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
+			wfDie( "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
 		}
 
 		global $wgDBschema;

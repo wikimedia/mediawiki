@@ -582,6 +582,16 @@ function wfErrorExit() {
 }
 
 /**
+ * Print a simple message and die, returning nonzero to the shell if any.
+ * Plain die() fails to return nonzero to the shell if you pass a string.
+ * @param string $msg
+ */
+function wfDie( $msg='' ) {
+	echo $msg;
+	die( -1 );
+}
+
+/**
  * Die with a backtrace
  * This is meant as a debugging aid to track down where bad data comes from.
  * Shouldn't be used in production code except maybe in "shouldn't happen" areas.
@@ -1762,5 +1772,6 @@ function wfRegexReplacement( $string ) {
 	$string = str_replace( '$', '\\$', $string );
 	return $string;
 }
+
 
 ?>

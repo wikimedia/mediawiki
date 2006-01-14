@@ -40,7 +40,7 @@ $optionsWithArgs = array( 'user', 'password' );
 require_once 'commandLine.inc';
 
 if( in_array( '--help', $argv ) )
-	die(
+	wfDie(
 		"Usage: php changePassword.php [--user=user --password=password | --help]\n" .
 		"\toptions:\n" .
 		"\t\t--help\tshow this message\n" .

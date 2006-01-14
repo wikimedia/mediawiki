@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 /**
  * A basic extension that's used by the parser tests to test date magic words
  *

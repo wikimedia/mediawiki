@@ -6,7 +6,7 @@ require_once( "commandLine.inc" );
 require_once( "rebuildInterwiki.inc" );
 require_once( "languages/Names.php" );
 if ( count( $args ) != 3 ) {
-	die( "Usage: php addwiki.php <language> <site> <dbname>\n" );
+	wfDie( "Usage: php addwiki.php <language> <site> <dbname>\n" );
 }
 
 addWiki( $args[0], $args[1], $args[2] );
@@ -197,7 +197,7 @@ See the [http://www.wikipedia.org Wikipedia portal] for other language Wikipedia
 	$tempname = tempnam( '/tmp', 'addwiki' );
 	$file = fopen( $tempname, 'w' );
 	if ( !$file ) {
-		die( "Error, unable to open temporary file $tempname\n" );
+		wfDie( "Error, unable to open temporary file $tempname\n" );
 	}
 	fwrite( $file, $sql );
 	fclose( $file );

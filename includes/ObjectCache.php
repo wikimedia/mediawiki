@@ -5,7 +5,10 @@
  */
 
 /** */
-if (!defined('MEDIAWIKI')) die( "Not a valid entry point\n");
+if (!defined('MEDIAWIKI')) {
+	echo "Not a valid entry point\n";
+	die( -1 );
+}
 
 
 /**

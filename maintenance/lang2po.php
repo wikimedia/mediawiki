@@ -22,7 +22,7 @@ define('MSGMERGE_OPTIONS', ' -v ');
 define('LOCALE_OUTPUT_DIR', $IP.'/locale');
 
 
-if( isset($options['help']) ) { usage(); die(); }
+if( isset($options['help']) ) { usage(); wfDie(); }
 // default output is WikiText
 if( !isset($options['lang']) ) { $options['lang'] = ALL_LANGUAGES; }
 

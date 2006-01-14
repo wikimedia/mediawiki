@@ -5,7 +5,7 @@
  */
 
 if( php_sapi_name() != 'cli' ) {
-	die('');
+	die( -1 );
 }
 
 /**

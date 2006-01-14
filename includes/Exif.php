@@ -1,5 +1,5 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) ) die();
+if ( !defined( 'MEDIAWIKI' ) ) die( -1 );
 /**
  * @package MediaWiki
  * @subpackage Metadata

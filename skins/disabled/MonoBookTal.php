@@ -15,7 +15,7 @@
  */
 
 if( !defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 
 /** */
 require_once('includes/SkinPHPTal.php');

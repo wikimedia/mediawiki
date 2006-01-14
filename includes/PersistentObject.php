@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 /**
  * Sometimes one wants to make an extension that defines a class that one wants
  * to backreference somewhere else in the code, doing something like:

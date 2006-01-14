@@ -27,7 +27,8 @@
  */
 
 if( php_sapi_name() != 'cli' ) {
-	die( "Please customize the settings and run me from the command line." );
+	echo "Please customize the settings and run me from the command line.";
+	die( -1 );
 }
 
 /** Set these correctly! */
@@ -124,7 +125,8 @@ function fetchPage( $title )
 
 	$fname = $wgRootDirectory . "/page/" . useModFilename( $title ) . ".db";
 	if( !file_exists( $fname ) ) {
-		die( "Couldn't open file '$fname' for page '$title'.\n" );
+		echo "Couldn't open file '$fname' for page '$title'.\n";
+		die( -1 );
 	}
 
 	$page = splitHash( $FS1, file_get_contents( $fname ) );

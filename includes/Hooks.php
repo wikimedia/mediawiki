@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 /**
  * Hooks.php -- a tool for running hook functions
  * Copyright 2004, 2005 Evan Prodromou <evan@wikitravel.org>.

@@ -588,7 +588,7 @@ class DumpNamespaceFilter extends DumpFilter {
 				$ns = intval( $key );
 				$this->namespaces[$ns] = true;
 			} else {
-				die( "Unrecognized namespace key '$key'\n" );
+				wfDie( "Unrecognized namespace key '$key'\n" );
 			}
 		}
 	}

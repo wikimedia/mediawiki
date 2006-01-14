@@ -7,7 +7,7 @@
  */
 
 if( !defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 
 global $wgCategoryMagicGallery;
 if( $wgCategoryMagicGallery )

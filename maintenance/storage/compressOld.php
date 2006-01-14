@@ -38,7 +38,7 @@ require_once( "compressOld.inc" );
 if( !function_exists( "gzdeflate" ) ) {
 	print "You must enable zlib support in PHP to compress old revisions!\n";
 	print "Please see http://www.php.net/manual/en/ref.zlib.php\n\n";
-	die();
+	wfDie();
 }
 
 $defaults = array(

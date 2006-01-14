@@ -6,7 +6,7 @@
  */
 
 if( !defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 
 /**
  * Entry point that create the "Preferences" object

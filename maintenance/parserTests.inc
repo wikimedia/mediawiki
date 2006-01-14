@@ -121,7 +121,7 @@ class ParserTest {
 	function runTestsFromFile( $filename ) {
 		$infile = fopen( $filename, 'rt' );
 		if( !$infile ) {
-			die( "Couldn't open parserTests.txt\n" );
+			wfDie( "Couldn't open parserTests.txt\n" );
 		}
 
 		$data = array();
@@ -135,10 +135,10 @@ class ParserTest {
 				$section = strtolower( $matches[1] );
 				if( $section == 'endarticle') {
 					if( !isset( $data['text'] ) ) {
-						die( "'endarticle' without 'text' at line $n\n" );
+						wfDie( "'endarticle' without 'text' at line $n\n" );
 					}
 					if( !isset( $data['article'] ) ) {
-						die( "'endarticle' without 'article' at line $n\n" );
+						wfDie( "'endarticle' without 'article' at line $n\n" );
 					}
 					$this->addArticle($this->chomp($data['article']), $this->chomp($data['text']), $n);
 					$data = array();
@@ -147,13 +147,13 @@ class ParserTest {
 				}
 				if( $section == 'end' ) {
 					if( !isset( $data['test'] ) ) {
-						die( "'end' without 'test' at line $n\n" );
+						wfDie( "'end' without 'test' at line $n\n" );
 					}
 					if( !isset( $data['input'] ) ) {
-						die( "'end' without 'input' at line $n\n" );
+						wfDie( "'end' without 'input' at line $n\n" );
 					}
 					if( !isset( $data['result'] ) ) {
-						die( "'end' without 'result' at line $n\n" );
+						wfDie( "'end' without 'result' at line $n\n" );
 					}
 					if( !isset( $data['options'] ) ) {
 						$data['options'] = '';
@@ -181,7 +181,7 @@ class ParserTest {
 					continue;
 				}
 				if ( isset ($data[$section] ) ) {
-					die ( "duplicate section '$section' at line $n\n" );
+					wfDie( "duplicate section '$section' at line $n\n" );
 				}
 				$data[$section] = '';
 				continue;
@@ -201,7 +201,7 @@ class ParserTest {
 			print $this->termReset() . "\n";
 			return ($success == $total);
 		} else {
-			die( "No tests found.\n" );
+			wfDie( "No tests found.\n" );
 		}
 	}
 
@@ -386,7 +386,7 @@ class ParserTest {
 						. $wgDBprefix . $tbl .'`', $create);
 					if ($create === $create_tmp) {
 						# Couldn't do replacement
-						die("could not create temporary table $tbl");
+						wfDie("could not create temporary table $tbl");
 					}
 					$db->query($create_tmp);
 				}
@@ -638,12 +638,12 @@ class ParserTest {
 		$this->setupGlobals();
 		$title = Title::newFromText( $name );
 		if ( is_null($title) ) {
-			die( "invalid title at line $line\n" );
+			wfDie( "invalid title at line $line\n" );
 		}
 
 		$aid = $title->getArticleID( GAID_FOR_UPDATE );
 		if ($aid != 0) {
-			die( "duplicate article at line $line\n" );
+			wfDie( "duplicate article at line $line\n" );
 		}
 
 		$art = new Article($title);

@@ -52,7 +52,7 @@ class DatabaseOracle extends Database {
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		if ( !function_exists( 'oci_connect' ) ) {
-			die( "Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n" );
+			wfDie( "Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n" );
 		}
 		$this->close();
 		$this->mServer = $server;

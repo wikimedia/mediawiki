@@ -10,7 +10,7 @@
  */
 
 if( !defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 
 /** Skin reuse monobook template */
 require_once('MonoBook.php');

@@ -39,7 +39,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	foreach ($variants as $v) {
 		$langclass = 'Language'. str_replace( '-', '_', ucfirst( $v ) );
 		if( !class_exists($langclass) ) {
-			die ("class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?");
+			wfDie( "class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?" );
 		}
 		$lang = new $langclass;
 

@@ -293,14 +293,14 @@ class SqlBagOStuff extends BagOStuff {
 		return $str;
 	}
 	function _doinsert($table, $vals) {
-		die( 'abstract function SqlBagOStuff::_doinsert() must be defined' );
+		wfDie( 'abstract function SqlBagOStuff::_doinsert() must be defined' );
 	}
 	function _doquery($sql) {
-		die( 'abstract function SqlBagOStuff::_doquery() must be defined' );
+		wfDie( 'abstract function SqlBagOStuff::_doquery() must be defined' );
 	}
 
 	function _fetchrow($res) {
-		die( 'abstract function SqlBagOStuff::_fetchrow() must be defined' );
+		wfDie( 'abstract function SqlBagOStuff::_fetchrow() must be defined' );
 	}
 
 	function _freeresult($result) {
@@ -314,11 +314,11 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	function _maxdatetime() {
-		die( 'abstract function SqlBagOStuff::_maxdatetime() must be defined' );
+		wfDie( 'abstract function SqlBagOStuff::_maxdatetime() must be defined' );
 	}
 
 	function _fromunixtime() {
-		die( 'abstract function SqlBagOStuff::_fromunixtime() must be defined' );
+		wfDie( 'abstract function SqlBagOStuff::_fromunixtime() must be defined' );
 	}
 
 	function garbageCollect() {
@@ -427,7 +427,7 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 			/* This is actually a hack, we should be able
 			   to use Language classes here... or not */
 			if (!$dbw)
-				die("Could not connect to database");
+				wfDie("Could not connect to database");
 			$this->table = $dbw->tableName( $this->table );
 			$this->tableInitialised = true;
 		}

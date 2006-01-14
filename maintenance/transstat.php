@@ -15,7 +15,7 @@
 require_once('commandLine.inc');
 require_once('languages.inc');
 
-if( isset($options['help']) ) { usage(); die(); }
+if( isset($options['help']) ) { usage(); wfDie(); }
 // default output is WikiText
 if( !isset($options['output']) ) { $options['output']='wiki'; }
 
@@ -121,7 +121,7 @@ switch ($options['output']) {
 	case 'wiki':
 		$out = new wikiStatsOutput(); break;
 	default:
-		usage(); die();
+		usage(); wfDie();
 	break;
 }
 
