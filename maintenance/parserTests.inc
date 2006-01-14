@@ -668,26 +668,9 @@ class ParserTest {
 		return $text;
 	}
 
-	/**
-	 * Hack up a private DOCTYPE with HTML's standard entity declarations.
-	 * PHP 4 seemed to know these if you gave it an HTML doctype, but
-	 * PHP 5.1 doesn't.
-	 * @return string
-	 * @access private
-	 */
-	function hackDocType() {
-		global $wgHtmlEntities;
-		$out = "<!DOCTYPE html [\n";
-		foreach( $wgHtmlEntities as $entity => $codepoint ) {
-			$out .= "<!ENTITY $entity \"&#$codepoint;\">";
-		}
-		$out .= "]>\n";
-		return $out;
-	}
-
 	function wellFormed( $text ) {
 		$html =
-			$this->hackDocType() .
+			Sanitizer::hackDocType() .
 			'<html>' .
 			$text .
 			'</html>';

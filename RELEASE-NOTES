@@ -487,6 +487,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Allow input of the stub from a compressed file instead of stdin
   for dumpTextPass.php; easier to get errors back on the shell
 * Added an attractive space on the namespace selector on contribs
+* Move PHP 5-friendly XHTML doctype hack to Sanitizer, use for sig checks.
+  Fixes use of named entities in sigs on PHP 5
 
 
 === Caveats ===
