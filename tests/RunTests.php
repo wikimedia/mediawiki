@@ -1,7 +1,8 @@
 <?php
 
 if( php_sapi_name() != 'cli' ) {
-	die( 'Must be run from the command line.' );
+	echo 'Must be run from the command line.';
+	die( -1 );
 }
 
 error_reporting( E_ALL );
@@ -74,7 +75,7 @@ function &buildTestDatabase( $serverType, $tables ) {
 					. $wgDBprefix . '\\1`', $create);
 				if ($create === $create_tmp) {
 					# Couldn't do replacement
-					die("could not create temporary table $tbl");
+					wfDie( "could not create temporary table $tbl" );
 				}
 				$db->query($create_tmp);
 			}

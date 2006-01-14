@@ -177,7 +177,7 @@ class TitleCleanup extends FiveUpgrade {
 			$title = $verified;
 		}
 		if( is_null( $title ) ) {
-			die( "Something awry; empty title.\n" );
+			wfDie( "Something awry; empty title.\n" );
 		}
 		$ns = $title->getNamespace();
 		$dest = $title->getDbKey();

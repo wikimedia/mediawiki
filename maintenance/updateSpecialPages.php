@@ -13,7 +13,7 @@ if(@$options['help']) {
 	print "  --help      : this help message\n";
 	print "  --list      : list special pages names\n";
 	print "  --only=page : only update 'page'. Ex: --only=BrokenRedirects\n";
-	die();
+	wfDie();
 }
 
 $wgOut->disable();

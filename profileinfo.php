@@ -49,19 +49,21 @@ $wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgEnableProfile
 define("MEDIAWIKI", 1);
 if ( isset( $_REQUEST['GLOBALS'] ) ) {
 	print $GLOBALS;
-	die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+	echo '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>';
+	die( -1 );
 }
 
 require_once("./includes/Defines.php");
 require_once("./LocalSettings.php");
 require_once("./AdminSettings.php");
 
-if (!$wgEnableProfileInfo)
-	die("disabled");
+if (!$wgEnableProfileInfo) {
+	wfDie("disabled");
+}
 
 foreach (array("wgDBadminuser", "wgDBadminpassword", "wgDBserver", "wgDBname") as $var)
 	if ($$var === false)
-		die("AdminSettings.php not correct");
+		wfDie("AdminSettings.php not correct");
 
 $expand = array();
 if (isset($_REQUEST['expand']))
@@ -155,13 +157,13 @@ if (isset($_REQUEST['sort']) && in_array($_REQUEST['sort'], $sorts))
 	$sort = $_REQUEST['sort'];
 
 $dbh = mysql_connect($wgDBserver, $wgDBadminuser, $wgDBadminpassword)
-	or die("mysql server failed: " . mysql_error());
-mysql_select_db($wgDBname, $dbh) or die(mysql_error($dbh));
+	or wfDie("mysql server failed: " . mysql_error());
+mysql_select_db($wgDBname, $dbh) or wfDie(mysql_error($dbh));
 $res = mysql_query("
 	SELECT pf_count, pf_time, pf_name
 	FROM profiling
 	ORDER BY pf_name ASC
-", $dbh) or die("query failed: " . mysql_error());
+", $dbh) or wfDie("query failed: " . mysql_error());
 
 if (isset($_REQUEST['filter']))
 	$filter = $_REQUEST['filter'];

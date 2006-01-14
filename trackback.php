@@ -8,7 +8,8 @@
 unset($IP);
 define('MEDIAWIKI', true);
 if ( isset( $_REQUEST['GLOBALS'] ) ) {
-	die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+	echo '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>';
+	die( -1 );
 }
 
 require_once('./includes/Defines.php');

@@ -434,7 +434,7 @@ class LanguageConverter {
      */
 	function loadDefaultTables() {
 		$name = get_class($this);
-		die("Must implement loadDefaultTables() method in class $name");
+		wfDie("Must implement loadDefaultTables() method in class $name");
 	}
 
 	/**

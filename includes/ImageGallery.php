@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 
 /**
  * @package MediaWiki

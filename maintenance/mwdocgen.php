@@ -23,7 +23,8 @@
 #
 
 if( php_sapi_name() != 'cli' ) {
-	die( "Run me from the command line." );
+	echo "Run me from the command line.";
+	die( -1 );
 }
 
 /** Phpdoc script with full path */

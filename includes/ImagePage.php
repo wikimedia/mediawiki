@@ -7,7 +7,7 @@
  *
  */
 if( !defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 
 require_once( 'Image.php' );
 

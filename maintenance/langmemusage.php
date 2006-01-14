@@ -11,7 +11,7 @@ require_once('languages.inc');
 $langtool = new languages();
 
 if ( ! function_exists( 'memory_get_usage' ) )
-	die( "You must compile PHP with --enable-memory-limit\n" );
+	wfDie( "You must compile PHP with --enable-memory-limit\n" );
 
 $memlast = $memstart = memory_get_usage();
 

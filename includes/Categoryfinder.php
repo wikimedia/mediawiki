@@ -21,7 +21,7 @@ Example use :
 */
 
 
-if( !defined( 'MEDIAWIKI' ) ) die();
+if( !defined( 'MEDIAWIKI' ) ) die( -1 );
 
 class Categoryfinder {
 

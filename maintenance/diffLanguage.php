@@ -43,7 +43,7 @@
 require_once( 'parserTests.inc' );
 require_once( 'commandLine.inc' );
 
-if( isset($options['help']) ) { usage(); die(); }
+if( isset($options['help']) ) { usage(); wfDie(); }
 
 $wgLanguageCode = ucfirstlcrest($wgLanguageCode);
 /** Language messages we will use as reference. By default 'en' */
@@ -85,7 +85,7 @@ function getMediawikiMessages($languageCode = 'En') {
 			print "Including $langFile\n";
 			global $wgNamespaceNamesEn;
 			include($langFile);
-		} else die("ERROR: The file $langFile does not exist !\n");
+		} else wfDie("ERROR: The file $langFile does not exist !\n");
 	}
 	return $$foo;
 }
@@ -124,7 +124,7 @@ if ( isset($args[0]) ) {
 	$testLanguage = $lang;
 } else {
 	usage();
-	die();
+	wfDie();
 }
 
 /** parsertest is used to do differences */

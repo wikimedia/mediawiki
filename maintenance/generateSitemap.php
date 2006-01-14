@@ -441,7 +441,7 @@ class GenerateSitemap {
 }
 
 if ( in_array( '--help', $argv ) )
-	die(
+	wfDie(
 		"Usage: php generateSitemap.php [host] [options]\n" .
 		"\thost = hostname\n" .
 		"\toptions:\n" .

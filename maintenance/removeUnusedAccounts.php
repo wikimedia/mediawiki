@@ -18,7 +18,7 @@ echo( "Remove Unused Accounts\nThis script will delete all users who have made n
 # Check parameters
 if( @$options['help'] ) {
 	echo( "USAGE: removeUnusedAccounts.php [--help|--delete]\n\nThe first (default) account is ignored.\n\n" );
-	die();
+	wfDie();
 } else {
 	$delete = @$options['delete'] ? true : false ;
 }

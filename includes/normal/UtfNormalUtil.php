@@ -47,7 +47,8 @@ function codepointToUtf8( $codepoint ) {
 									 chr($codepoint >>	6 & 0x3f | 0x80) .
 									 chr($codepoint		  & 0x3f | 0x80);
 
-	die("Asked for code outside of range ($codepoint)\n");
+	echo "Asked for code outside of range ($codepoint)\n";
+	die( -1 );
 }
 
 /**

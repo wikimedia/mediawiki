@@ -103,7 +103,7 @@ class BackupDumper {
 						$sinks[] = $sink;
 					}
 					if( !isset( $this->outputTypes[$val] ) ) {
-						die( "Unrecognized output sink type '$val'\n" );
+						wfDie( "Unrecognized output sink type '$val'\n" );
 					}
 					$type = $this->outputTypes[$val];
 					$sink = new $type( $param );
@@ -114,7 +114,7 @@ class BackupDumper {
 						$sink = new DumpOutput();
 					}
 					if( !isset( $this->filterTypes[$val] ) ) {
-						die( "Unrecognized filter type '$val'\n" );
+						wfDie( "Unrecognized filter type '$val'\n" );
 					}
 					$type = $this->filterTypes[$val];
 					$filter = new $type( $sink, $param );

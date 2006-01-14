@@ -484,6 +484,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Add wfClone() wrapper since we're still using PHP 4 on some servers.
 * Fixed installer bugs 921 and 3914 (issues with using root and so forth)
 * Remove obsolete killthread.php
+* Added wfDie() wrapper, and some manual die(-1), to force the return code
+  to the shell to return nonzero when we crap out with an error.
 
 
 === Caveats ===

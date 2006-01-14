@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'MEDIAWIKI' ) )
-	die();
+	die( -1 );
 /**
  * Provide things related to namespaces
  * @package MediaWiki

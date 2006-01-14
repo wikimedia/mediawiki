@@ -255,7 +255,7 @@ class Database {
 
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysql_connect' ) ) {
-			die( "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
+			wfDie( "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
 		}
 
 		$this->close();

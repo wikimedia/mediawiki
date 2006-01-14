@@ -3,7 +3,7 @@
  * @package MediaWiki
  * @subpackage Templates
  */
-if( !defined( 'MEDIAWIKI' ) ) die();
+if( !defined( 'MEDIAWIKI' ) ) die( -1 );
 
 /** */
 require_once( 'includes/SkinTemplate.php' );

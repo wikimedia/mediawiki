@@ -47,7 +47,7 @@ function randomTitle() {
 }
 
 if( !$wgUseSquid ) {
-	die( "Squid purge benchmark doesn't do much without squid support on.\n" );
+	wfDie( "Squid purge benchmark doesn't do much without squid support on.\n" );
 } else {
 	printf( "There are %d defined squid servers:\n", count( $wgSquidServers ) );
 	#echo implode( "\n", $wgSquidServers ) . "\n";

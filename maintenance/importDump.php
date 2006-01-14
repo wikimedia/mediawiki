@@ -112,7 +112,7 @@ class BackupReader {
 }
 
 if( wfReadOnly() ) {
-	die( "Wiki is in read-only mode; you'll need to disable it for import to work.\n" );
+	wfDie( "Wiki is in read-only mode; you'll need to disable it for import to work.\n" );
 }
 
 $reader = new BackupReader();
