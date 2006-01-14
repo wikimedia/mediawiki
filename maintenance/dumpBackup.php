@@ -48,8 +48,7 @@ if ( isset( $options['pagelist'] ) ) {
 	$pages = file( $options['pagelist'] );
 	chdir( $olddir );
 	if ( $pages === false ) {
-		print "Unable to open file {$options['pagelist']}\n";
-		exit;
+		wfDie( "Unable to open file {$options['pagelist']}\n" );
 	}
 	$pages = array_map( 'trim', $pages );
 	$dumper->pages = array_filter( $pages, create_function( '$x', 'return $x !== "";' ) );

@@ -550,7 +550,7 @@ function wfAbruptExit( $error = false ){
 	global $wgLoadBalancer;
 	static $called = false;
 	if ( $called ){
-		exit();
+		exit( -1 );
 	}
 	$called = true;
 
@@ -571,7 +571,7 @@ function wfAbruptExit( $error = false ){
 	if ( !$error ) {
 		$wgLoadBalancer->closeAll();
 	}
-	exit();
+	exit( -1 );
 }
 
 /**

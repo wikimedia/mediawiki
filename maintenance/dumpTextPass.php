@@ -54,7 +54,7 @@ class TextPassDumper extends BackupDumper {
 		$result = $this->readDump( $input );
 
 		if( WikiError::isError( $result ) ) {
-			$this->progress( $result->getMessage() );
+			wfDie( $result->getMessage() );
 		}
 
 		$this->report( true );
@@ -113,6 +113,8 @@ class TextPassDumper extends BackupDumper {
 			$offset += strlen( $chunk );
 		} while( $chunk !== false && !feof( $input ) );
 		xml_parser_free( $parser );
+		
+		return true;
 	}
 
 	function getText( $id ) {
