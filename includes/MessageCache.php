@@ -289,11 +289,10 @@ class MessageCache {
 	}
 
 	function replace( $title, $text ) {
-		global $wgLocalMessageCache, $parserMemc, $wgDBname;
+		global $wgLocalMessageCache;
 
 		$this->lock();
 		$this->load();
-		$parserMemc->delete("$wgDBname:sidebar");
 		if ( is_array( $this->mCache ) ) {
 			$this->mCache[$title] = $text;
 			$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
