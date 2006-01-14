@@ -486,6 +486,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Remove obsolete killthread.php
 * Added wfDie() wrapper, and some manual die(-1), to force the return code
   to the shell to return nonzero when we crap out with an error.
+* Allow input of the stub from a compressed file instead of stdin
+  for dumpTextPass.php; easier to get errors back on the shell
 
 
 === Caveats ===
