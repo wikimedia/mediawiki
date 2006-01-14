@@ -971,7 +971,8 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupPageCss';
 		wfProfileIn( $fname );
 		$out = false;
-		wfRunHooks( 'SkinTemplateSetupPageCss', array( &$out, $this->mTitle->isProtected() ) );
+		wfRunHooks( 'SkinTemplateSetupPageCss', array( &$out ) );
+		
 		wfProfileOut( $fname );
 		return $out;
 	}
