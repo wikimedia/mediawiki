@@ -502,60 +502,69 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b></li>\n";
 		}
 		$dbc = new $dbclass;
-		if ($conf->DBtype == 'mysql') {
-			print "<li>Trying to connect to database server on $wgDBserver as root...\n";
-			$wgDatabase = $dbc->newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
-
+		
+		# Attempt to connect with the specific credentials *first*
+		# This is a quick fix to bug 921 ("Install script always attempts to connect to database as root")
+				
+		if( $conf->DBtype == 'mysql' ) {
+			$ok = true; # Let's be optimistic
+			echo( "<li>Attempting to connect to database server..." );	
+			$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
 			if( $wgDatabase->isOpen() ) {
-				$myver = get_db_version();
-				$wgDatabase->ignoreErrors(true);
-				$conf->Root = true;
-				print "<ul><li>Connected as root (automatic)</li></ul></li>\n";
+				# Whee, we're in
+				$conf->Root = false;
+				$wgDBadminuser = $wgDBuser;
+				$wgDBadminpassword = $wgDBpassword;
+				echo( "success. Connected as $wgDBuser.</li>\n" );
 			} else {
-				print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
-					": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
-				$ok = false;
-				switch( $err ) {
-				case 1045:
-				case 2000:
-					if( $conf->Root ) {
-						$errs["RootPW"] = "Check password";
-					} else {
-						print "<li>Trying regular user...\n";
-						/* Try the regular user... */
-						$wgDBadminuser = $wgDBuser;
-						$wgDBadminpassword = $wgDBpassword;
-						/* Wait one second for connection rate limiting, present on some systems */
-						sleep(1);
-						$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
-						if( !$wgDatabase->isOpen() ) {
-							print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
-								": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
+				# Right, work out what's up
+				$errno = mysql_errno();
+				$errtx = htmlspecialchars( mysql_error() );
+				switch( $errno ) {
+					case 2002:
+					case 2003:
+						# Connection to server failed
+						$ok = false;
+						echo( "failed with error [$errno] $errtx.</li>\n" );
+						$errs["DBserver"] = "Connection failed";
+						break;
+					case 1045:
+					case 2000:
+						# Authentication error, attempt to use root
+						sleep( 1 ); # Rate limiting
+						$wgDatabase = $dbc->newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
+						if( $wgDatabase->isOpen() ) {
+							# Whee, fixed
+							$conf->Root = true;
+							echo( "success. Connected as root.</li>\n" );
+						} else {
+							# That didn't work either
+							$ok = false;
+							echo( "failed due to authentication errors. Check passwords.</li>" );
 							$errs["DBuser"] = "Check name/pass";
 							$errs["DBpassword"] = "or enter root";
 							$errs["DBpassword2"] = "password below";
 							$errs["RootPW"] = "Got root?";
-						} else {
-							$myver = mysql_get_server_info( $wgDatabase->mConn );
-							$wgDatabase->ignoreErrors(true);
-							$conf->Root = false;
-							$conf->RootPW = "";
-							print " ok.</li>\n";
-							# And keep going...
-							$ok = true;
 						}
 						break;
-					}
-				case 2002:
-				case 2003:
-					$errs["DBserver"] = "Connection failed";
-					break;
-				default:
-					$errs["DBserver"] = "Couldn't connect to database";
-					break;
-				}
-				if( !$ok ) continue;
+					default:
+						# Something vicious and undocumented happened
+						# Panic and run our little installer ass off
+						$ok = false;
+						echo( "failed with error [$errno] $errtx.</li>\n" );
+						$errs["DBserver"] = "Couldn't connect to database";
+						break;
+				} # switch
+			} # norm. conn. attempt
+			
+			if( $ok ) {
+				# Set the version info. and ignore errors
+				$wgDatabase->ignoreErrors( true );
+				$myver = mysql_get_server_info( $wgDatabase->mConn );
+			} else {
+				continue;
 			}
+
 		} else /* not mysql */ {
 			print "<li>Connecting to SQL server...";
 			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1);
