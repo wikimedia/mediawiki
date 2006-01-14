@@ -395,7 +395,8 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->DBpassword2 = importPost( "DBpassword2" );
 	$conf->DBprefix = importPost( "DBprefix" );
 	$conf->DBmysql5 = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
-	$conf->RootPW = importPost( "RootPW" );
+	$conf->RootUser = importPost( "RootUser", "root" );
+	$conf->RootPW = importPost( "RootPW", "-" );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
@@ -503,67 +504,65 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		$dbc = new $dbclass;
 		
-		# Attempt to connect with the specific credentials *first*
-		# This is a quick fix to bug 921 ("Install script always attempts to connect to database as root")
-				
 		if( $conf->DBtype == 'mysql' ) {
 			$ok = true; # Let's be optimistic
-			echo( "<li>Attempting to connect to database server..." );	
-			$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
-			if( $wgDatabase->isOpen() ) {
-				# Whee, we're in
-				$conf->Root = false;
-				$wgDBadminuser = $wgDBuser;
-				$wgDBadminpassword = $wgDBpassword;
-				echo( "success. Connected as $wgDBuser.</li>\n" );
-			} else {
-				# Right, work out what's up
-				$errno = mysql_errno();
-				$errtx = htmlspecialchars( mysql_error() );
-				switch( $errno ) {
-					case 2002:
-					case 2003:
-						# Connection to server failed
-						$ok = false;
-						echo( "failed with error [$errno] $errtx.</li>\n" );
-						$errs["DBserver"] = "Connection failed";
-						break;
-					case 1045:
-					case 2000:
-						# Authentication error, attempt to use root
-						sleep( 1 ); # Rate limiting
-						$wgDatabase = $dbc->newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
-						if( $wgDatabase->isOpen() ) {
-							# Whee, fixed
-							$conf->Root = true;
-							echo( "success. Connected as root.</li>\n" );
-						} else {
-							# That didn't work either
-							$ok = false;
-							echo( "failed due to authentication errors. Check passwords.</li>" );
-							$errs["DBuser"] = "Check name/pass";
-							$errs["DBpassword"] = "or enter root";
-							$errs["DBpassword2"] = "password below";
-							$errs["RootPW"] = "Got root?";
-						}
-						break;
-					default:
-						# Something vicious and undocumented happened
-						# Panic and run our little installer ass off
-						$ok = false;
-						echo( "failed with error [$errno] $errtx.</li>\n" );
-						$errs["DBserver"] = "Couldn't connect to database";
-						break;
-				} # switch
-			} # norm. conn. attempt
 			
-			if( $ok ) {
-				# Set the version info. and ignore errors
+			# Decide if we're going to use the superuser or the regular database user
+			if( $conf->RootPW == '-' ) {
+				# Regular user
+				$conf->Root = false;
+				$db_user = $wgDBuser;
+				$db_pass = $wgDBpassword;
+			} else {
+				# Superuser
+				$conf->Root = true;
+				$db_user = $conf->RootUser;
+				$db_pass = $conf->RootPW;
+			}
+			
+			# Attempt to connect
+			echo( "<li>Attempting to connect to database server as $db_user..." );
+			$wgDatabase = Database::newFromParams( $wgDBserver, $db_user, $db_pass, '', 1 );
+			
+			# Check the connection and respond to errors
+			if( $wgDatabase->isOpen() ) {
+				# Seems OK
+				$ok = true;
+				$wgDBadminuser = $db_user;
+				$wgDBadminpassword = $wgDBpassword;
+				echo( "success.</li>\n" );
 				$wgDatabase->ignoreErrors( true );
 				$myver = mysql_get_server_info( $wgDatabase->mConn );
 			} else {
-				continue;
-			}
+				# There were errors, report them and back out
+				$ok = false;
+				$errno = mysql_errno();
+				$errtx = htmlspecialchars( mysql_error() );
+				switch( $errno ) {
+					case 1045:
+					case 2000:
+						echo( "failed due to authentication errors. Check passwords.</li>" );
+						if( $conf->Root ) {
+							# The superuser details are wrong
+							$errs["RootUser"] = "Check username";
+							$errs["RootPW"] = "and password";
+						} else {
+							# The regular user details are wrong
+							$errs["DBuser"] = "Check username";
+							$errs["DBpassword"] = "and password";
+						}
+						break;
+					case 2002:
+					case 2003:
+					default:
+						# General connection problem
+						echo( "failed with error [$errno] $errtx.</li>\n" );
+						$errs["DBserver"] = "Connection failed";
+						break;
+				} # switch
+			} #conn. att.
+		
+			if( !$ok ) { continue; }
 
 		} else /* not mysql */ {
 			print "<li>Connecting to SQL server...";
@@ -678,12 +677,23 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				       'ss_total_views'   => 0,
 				       'ss_total_edits'   => 0,
 				       'ss_good_articles' => 0 ) );
-			# setting up the db user
+					   
+			# Set up the "regular user" account *if we can, and if we need to*
 			if( $conf->Root ) {
-				print "<li>Granting user permissions...</li>\n";
-				dbsource( "../maintenance/users.sql", $wgDatabase );
+				# See if we need to
+				$wgDatabase2 = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, '', 1 );
+				if( $wgDatabase2->isOpen() ) {
+					# Nope, just close the test connection and continue
+					$wgDatabase2->close();
+					echo( "<li>User $wgDBuser exists. Skipping grants.</li>" );
+				} else {
+					# Yes, so run the grants
+					echo( "<li>Granting user permissions to $wgDBuser on $wgDBname..." );
+					dbsource( "../maintenance/users.sql", $wgDatabase );
+					echo( "success.</li>" );
+				}
 			}
-
+					   
 			if( $conf->SysopName ) {
 				$u = User::newFromName( $conf->getSysopName() );
 				if ( 0 == $u->idForName() ) {
@@ -985,6 +995,10 @@ if( count( $errs ) ) {
 		enter those here. If you have database root access (see below)
 		you can specify new accounts/databases to be created.
 	</p>
+	<p>
+		This account will not be created if it pre-exists. If this is the case, ensure that it
+		has SELECT, INSERT, UPDATE and DELETE permissions on the MediaWiki database.
+	</p>
 
 	<div class="config-input"><?php
 		aField( $conf, "DBprefix", "Database table prefix:" );
@@ -1013,15 +1027,19 @@ if( count( $errs ) ) {
 
 	<div class="config-input">
 		<?php
-		aField( $conf, "RootPW", "DB root password:", "password" );
+		aField( $conf, "RootUser", "Superuser account:", "superuser" );
 		?>
 	</div>
+	<div class="config-input">
+		<?php
+		aField( $conf, "RootPW", "Superuser password:", "password" );
+		?>
+	</div>
+	
 	<p class="config-desc">
-		You will only need this if the database and/or user account
-		above don't already exist.
-		Do <em>not</em> type in your machine's root password! MySQL
-		has its own "root" user with a separate password. (It might
-		even be blank, depending on your configuration.)
+		If the database user specified above does not exist, or does not have access to create
+		the database (if needed) or tables within it, please provide details of a superuser account,
+		such as <strong>root</strong>, which does. Leave the password set to <strong>-</strong> if this is not needed.
 	</p>
 
 	<div class="config-input" style="padding:2em 0 3em">

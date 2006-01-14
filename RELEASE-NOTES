@@ -114,6 +114,14 @@ Images:
 Installer:
 * (bug 3782) Throw fatal installation warning if mbstring.func_overload on.
   Why do people invent these crazy options that change language semantics?
+* Fixed installer bugs 921 and 3914 (issues with using root and so forth)
+* (bug 4258) Use ugly urls for ISAPI by default
+  patch by Rob Church
+* Improve installer 
+	* Use a superuser account (such as root), if specifed, to create tables
+	* Don't overwrite conservative permissions on the mySQL user with ALL
+	  permissions, if said user exists
+	* Changes to some of the wording of explanations for fields
 
 i18n / Languages:
 * Partial support for Basque language (from wikipedia and meta)
@@ -413,8 +421,6 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3407) Fix encoding of subject and from/to headers on notification
   mails; userMailer() now takes a MailAddress wrapper object instead of
   a raw string to abstract things a level.
-* (bug 4258) Use ugly urls for ISAPI by default
-  patch by Rob Church
 * Fixed --server override on dumpTextPass.php
 * Added plugin interface for dumpBackup, so additional filters and output
   sink types can be registered at runtime from an extension
@@ -480,7 +486,6 @@ fully support the editing toolbar, but was found to be too confusing.
 * Linker::formatComment corrupted the passed title object on PHP 5
   if the comment included a section link. Use clone() to make a safe copy.
 * Add wfClone() wrapper since we're still using PHP 4 on some servers.
-* Fixed installer bugs 921 and 3914 (issues with using root and so forth)
 * Remove obsolete killthread.php
 * Added wfDie() wrapper, and some manual die(-1), to force the return code
   to the shell to return nonzero when we crap out with an error.
