@@ -875,8 +875,7 @@ class Article {
 				if( !$this->isCurrent() ) {
 					$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
 				}
-				# Display content and don't save to parser cache
-				$wgOut->addPrimaryWikiText( $text, $this, false );
+				$wgOut->addWikiText( $text );
 
 				if( !$this->isCurrent() ) {
 					$wgOut->mParserOptions->setEditSection( $oldEditSectionSetting );
