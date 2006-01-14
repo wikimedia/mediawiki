@@ -279,14 +279,6 @@ class DatabaseOracle extends Database {
 		return true;
 	}
 
-	/** @todo FIXME */
-	function startTimer( $timeout ) {
-		wfDebugDieBacktrace( 'Database::startTimer() error : mysql_thread_id() not implemented for postgre' );
-		/*$tid = mysql_thread_id( $this->mConn );
-		exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );*/
-	}
-
-	/** */
 	function tableName($name, $forddl = false) {
 		# First run any transformations from the parent object
 		$name = parent::tableName( $name );
