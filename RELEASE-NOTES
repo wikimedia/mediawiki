@@ -486,6 +486,7 @@ fully support the editing toolbar, but was found to be too confusing.
   to the shell to return nonzero when we crap out with an error.
 * Allow input of the stub from a compressed file instead of stdin
   for dumpTextPass.php; easier to get errors back on the shell
+* Added an attractive space on the namespace selector on contribs
 
 
 === Caveats ===
