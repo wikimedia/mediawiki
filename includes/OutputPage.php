@@ -309,16 +309,12 @@ class OutputPage {
 		$parserOutput = $wgParser->parse( $text, $article->mTitle,
 			$this->mParserOptions, true, true, $this->mRevisionId );
 
-		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
+		if ( $article && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache =& ParserCache::singleton();
 			$parserCache->save( $parserOutput, $article, $wgUser );
 		}
 
-		$this->addParserOutputNoText( $parserOutput );
-		$text =	$parserOutput->getText();
-		wfRunHooks( 'OutputPageBeforeHTML',array( &$this, &$text ) );
-		$parserOutput->setText( $text );
-		$this->addHTML( $parserOutput->getText() );
+		$this->addParserOutput( $parserOutput );
 	}
 
 	/**
@@ -355,9 +351,7 @@ class OutputPage {
 			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 			$this->addCategoryLinks( $parserOutput->getCategories() );
 			$this->addKeywords( $parserOutput );
-			$text = $parserOutput->getText();
-			wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
-			$this->addHTML( $text );
+			$this->addHTML( $parserOutput->getText() );
 			$t = $parserOutput->getTitleText();
 			if( !empty( $t ) ) {
 				$this->setPageTitle( $t );
