@@ -764,15 +764,6 @@ class SkinTemplate extends Skin {
 		$diff = $wgRequest->getVal( 'diff' );
 
 		$nav_urls = array();
-		$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
-		$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Random'));
-		$nav_urls['recentchanges'] = array('href' => $this->makeSpecialUrl('Recentchanges'));
-		$nav_urls['currentevents'] = (wfMsgForContent('currentevents') != '-') ? array('href' => $this->makeI18nUrl('currentevents')) : false;
-		$nav_urls['portal'] =  (wfMsgForContent('portal') != '-') ? array('href' => $this->makeI18nUrl('portal-url')) : false;
-		$nav_urls['bugreports'] = array('href' => $this->makeI18nUrl('bugreportspage'));
-		// $nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
-		$nav_urls['sitesupport'] = array('href' => $wgSiteSupportPage);
-		$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
 		if( $wgEnableUploads ) {
 			if ($wgUploadNavigationUrl) {
 				$nav_urls['upload'] = array('href' => $wgUploadNavigationUrl );
