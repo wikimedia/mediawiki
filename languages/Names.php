@@ -218,6 +218,7 @@
 	'wa' => 'Walon',		# Walloon
 	'war' => 'Samar-Leyte Visayan', # Waray-Waray
 	'wo' => 'Wollof',		# Wolof
+	'xal' => 'Хальмг',		# Kalmyk
 	'xh' => 'isiXhosa',		# Xhosan
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
