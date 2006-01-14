@@ -1,6 +1,4 @@
 <?php
-if ( ! defined( 'MEDIAWIKI' ) )
-	die( -1 );
 /**
  * Functions for dealing with proxies
  * @package MediaWiki

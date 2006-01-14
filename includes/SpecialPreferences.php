@@ -5,9 +5,6 @@
  * @subpackage SpecialPage
  */
 
-if( !defined( 'MEDIAWIKI' ) )
-	die( -1 );
-
 /**
  * Entry point that create the "Preferences" object
  */
