@@ -764,6 +764,7 @@ class SkinTemplate extends Skin {
 		$diff = $wgRequest->getVal( 'diff' );
 
 		$nav_urls = array();
+                $nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
 		if( $wgEnableUploads ) {
 			if ($wgUploadNavigationUrl) {
 				$nav_urls['upload'] = array('href' => $wgUploadNavigationUrl );
