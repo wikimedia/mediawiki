@@ -279,8 +279,6 @@ function wfSpecialContributions( $par = null ) {
 	$atstart = (!count($contribs) || $late == $contribs[0]->rev_timestamp);
 	$atend = (!count($contribs) || $early == $lastts);
 
-	$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
-
 	$firsttext = wfMsgHtml('histfirst');
 	$lasttext = wfMsgHtml('histlast');
 
