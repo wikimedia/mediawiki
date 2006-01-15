@@ -205,7 +205,13 @@ class MediaWiki {
 		if( $action == 'view' && !$request->getVal( 'oldid' ) && 
 						$request->getVal( 'redirect' ) != 'no' ) {
 			$dbr=&wfGetDB(DB_SLAVE);
-			$article->loadPageData($article->pageDataFromTitle($dbr,$title));
+			
+			// If we don't check for existance we'll get "Trying to get
+			// property of non-object" E_NOTICE in Article::loadPageData() when
+			// viewing a page that does not exist
+			if ( $article->exists() ) {
+				$article->loadPageData($article->pageDataFromTitle($dbr,$title));
+			}
 			
 			/* Follow redirects only for... redirects */
 			if ($article->mIsRedirect) {
