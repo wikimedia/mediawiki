@@ -227,6 +227,9 @@ class IPUnblockForm {
 			$target .= ' (' . $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $msg['contribslink'], 'target=' . $block->mAddress ) . ')';
 		}
 		
+		# Prep the address for the unblock link, masking autoblocks as before
+		$addr = $block->mAuto ? '#' . $block->mID : $block->mAddress;
+		
 		$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 
 		if ( $block->mExpiry === "" ) {
