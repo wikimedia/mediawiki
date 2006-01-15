@@ -1,6 +1,7 @@
 <?php
+
 # MediaWiki web-based config/installation
-# Copyright (C) 2004 Brion Vibber <brion@pobox.com>
+# Copyright (C) 2004 Brion Vibber <brion@pobox.com>, 2006 Rob Church <robchur@gmail.com>
 # http://www.mediawiki.org/
 #
 # This program is free software; you can redistribute it and/or modify
@@ -28,7 +29,7 @@ header( "Content-type: text/html; charset=utf-8" );
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="robots" content="noindex,nofollow">
-	<title>MediaWiki installation</title>
+	<title>MediaWiki 1.5 Installation</title>
 	<style type="text/css">
 	#credit {
 		float: right;
@@ -382,6 +383,7 @@ print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</t
 	$conf->DBpassword2 = importPost( "DBpassword2" );
 	$conf->DBprefix = importPost( "DBprefix" );
 	$conf->DBmysql5 = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
+	$conf->RootUser = importPost( "RootUser", "root" );
 	$conf->RootPW = importPost( "RootPW" );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
@@ -480,87 +482,82 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
 			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b></li>\n";
 		}
-		print "<li>Trying to connect to MySQL on $wgDBserver as root...\n";
-		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
-
-		if( $wgDatabase->isOpen() ) {
-			$myver = mysql_get_server_info( $wgDatabase->mConn );
-			$wgDatabase->ignoreErrors(true);
-			$conf->Root = true;
-			print "<ul><li>Connected as root (automatic)</li></ul></li>\n";
+		
+		# Determine how we're going to connect to the database
+		if( $conf->RootPW == '-' ) {
+			# Regular user
+			$conf->Root = false;
+			$db_user = $wgDBuser;
+			$db_pass = $wgDBpassword;
 		} else {
-			print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
-				": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
+			# Superuser
+			$conf->Root = true;
+			$db_user = $conf->RootUser;
+			$db_pass = $conf->RootPW;
+		}
+		
+		# Now attempt the connection
+		echo( "<li>Connecting to $wgDBname on $wgDBserver as $db_user..." );
+		$wgDatabase = Database::newFromParams( $wgDBserver, $db_user, $db_pass, "", 1 );
+		if( $wgDatabase->isOpen() ) {
+			# We're in; set up a few variables
+			$ok = true;
+			echo( "success.</li>\n" );
+			$wgDatabase->ignoreErrors( true );
+			$myver = mysql_get_server_info( $wgDatabase->mConn );
+			$wgDBadminuser = $db_user;
+			$wfDBadminpassword = $db_pass;
+		} else {
+			# There was an error; if we recognise it, give some useful feedback
 			$ok = false;
-			switch( $err ) {
-			case 1045:
-			case 2000:
-				if( $conf->Root ) {
-					$errs["RootPW"] = "Check password";
-				} else {
-					print "<li>Trying regular user...\n";
-					/* Try the regular user... */
-					$wgDBadminuser = $wgDBuser;
-					$wgDBadminpassword = $wgDBpassword;
-					/* Wait one second for connection rate limiting, present on some systems */
-					sleep(1);
-					$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
-					if( !$wgDatabase->isOpen() ) {
-						print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
-							": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
-						$errs["DBuser"] = "Check name/pass";
-						$errs["DBpassword"] = "or enter root";
-						$errs["DBpassword2"] = "password below";
-						$errs["RootPW"] = "Got root?";
+			$errno = mysql_errno();
+			$errtx = htmlspecialchars( mysql_error() );
+			echo( "failed with error $errno: $errtx.</li>\n" );
+			switch( $errno ) {
+				case 1045:
+				case 2000:
+					# Authentication
+					if( $conf->Root ) {
+						# The superuser details are wrong
+						$errs["RootUser"] = "Check username";
+						$errs["RootPW"] = "and password";
 					} else {
-						$myver = mysql_get_server_info( $wgDatabase->mConn );
-						$wgDatabase->ignoreErrors(true);
-						$conf->Root = false;
-						$conf->RootPW = "";
-						print " ok.</li>\n";
-						# And keep going...
-						$ok = true;
+						# The regular user details are wrong
+						$errs["DBuser"] = "Check username";
+						$errs["DBpassword"] = "and password";
 					}
 					break;
-				}
-			case 2002:
-			case 2003:
-				$errs["DBserver"] = "Connection failed";
-				break;
-			default:
-				$errs["DBserver"] = "Couldn't connect to database ($err)";
-				break;
-			}
-			if( !$ok ) continue;
-		}
+				default:
+					# Something else
+					$errs["DBserver"] = "Couldn't connect to database";
+					break;
+			} # switch
+		} # conn att
 
-		if ( !$wgDatabase->isOpen() ) {
-			$errs["DBserver"] = "Couldn't connect to database";
-			continue;
-		}
+		if( !$ok ) continue;
 
-		print "<li>Connected to $myver";
+		# Print out the mySQL version and enable mySQL 4 enhancements as needed
+		echo( "<li>Connected to $myver" );
 		if( version_compare( $myver, "4.0.0" ) >= 0 ) {
-			print "; enabling MySQL 4 enhancements";
+			echo( "; using enhancements for mySQL 4.</li>" );
 			$conf->DBmysql4 = true;
 			$local = writeLocalSettings( $conf );
 		}
-		$mysqlNewAuth   = version_compare( $myver, "4.1.0", "ge" );
+		
+		# Check for possible authentication problems re. password encryption in newer mySQL versions
+		$mysqlNewAuth = version_compare( $myver, "4.1.0", "ge" );
 		if( $mysqlNewAuth && $mysqlOldClient ) {
-			print "; <b class='error'>You are using MySQL 4.1 server, but PHP is linked
-			 	to old client libraries; if you have trouble with authentication, see
-			 	<a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
-			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
+			echo( "<li><span class=\"error\"><strong>You are using mySQL 4.1, however, PHP is linked to older client libraries. If you encounter authentication problems, see <a href=\"http://dev.mysql.com/doc/mysql/en/old-client.html\">http://dev.mysql.com/doc/mysql/en/old-client.html</a> for pertinent solutions.</strong></span></li>\n" );
 		}
+		
+		# Check versions with regards to character sets, cough up an error if there are inconsistencies
 		if( $wgDBmysql5 ) {
 			if( $mysqlNewAuth ) {
-				print "; enabling MySQL 4.1/5.0 charset mode";
+				echo( "<li>Enabling mySQL 4.1/5.0 character set mode.</li>\n" );
 			} else {
-				print "; <b class='error'>MySQL 4.1/5.0 charset mode enabled,
-					but older version detected; will likely fail.</b>";
+				echo( "<li><span class=\"error\"><strong>mySQL 4.1/5.0 character set mode has been enabled, however, an older version of mySQL has been detected. This will likely cause the installation to fail.</li>\n" );
 			}
 		}
-		print "</li>\n";
 
 		@$sel = mysql_select_db( $wgDBname, $wgDatabase->mConn );
 		if( $sel ) {
@@ -976,15 +973,19 @@ if( count( $errs ) ) {
 
 	<dd>
 		<?php
-		aField( $conf, "RootPW", "DB root password", "password" );
+		aField( $conf, "RootUser", "Super user:", "text" );
+		?>
+	</dd>
+
+	<dd>
+		<?php
+		aField( $conf, "RootPW", "Password:", "password" );
 		?>
 	</dd>
 	<dt>
-		You will only need this if the database and/or user account
-		above don't already exist.
-		Do <em>not</em> type in your machine's root password! MySQL
-		has its own "root" user with a separate password. (It might
-		even be blank, depending on your configuration.)
+		If the database user specified above does not exist, or does not have permissions to create
+		the database or tables required, please provide details of a superuser account, such as <strong>root</strong>,
+		which does. If this is not needed, leave the password set to <strong>-</strong>.
 	</dt>
 
 	<dd>
