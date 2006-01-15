@@ -213,7 +213,7 @@ class IPUnblockForm {
 		}
 
 		# Hide addresses blocked by User::spreadBlocks, for privacy
-		$addr = $block->mAuto ? "#{$block->mId}" : $block->mAddress;
+		$addr = $block->mAuto ? "#{$block->mId}" : $sk->makeKnownLinkObj( Title::makeTitle( NS_USER, $block->mAddress ), $block->mAddress );
 
 		$name = $block->getByName();
 		$ulink = $sk->makeKnownLinkObj( Title::makeTitle( NS_USER, $name ), $name );
