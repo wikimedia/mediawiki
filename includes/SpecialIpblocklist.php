@@ -136,7 +136,7 @@ class IPUnblockForm {
 
 		$search = $this->searchForm();
 		$wgOut->addHTML( $search );
-
+		
 		$wgOut->addHTML( "<ul>" );
 		if( !Block::enumBlocks( array( &$this, "addRow" ), 0 ) ) {
 			// FIXME hack to solve #bug 1487
@@ -210,13 +210,23 @@ class IPUnblockForm {
 				$msg[$key] = wfMsgHtml( $key );
 			}
 			$msg['blocklistline'] = wfMsg( 'blocklistline' );
+			$msg['contribslink'] = wfMsg( 'contribslink' );
 		}
 
-		# Hide addresses blocked by User::spreadBlocks, for privacy
-		$addr = $block->mAuto ? "#{$block->mId}" : $sk->makeKnownLinkObj( Title::makeTitle( NS_USER, $block->mAddress ), $block->mAddress );
 
-		$name = $block->getByName();
-		$ulink = $sk->makeKnownLinkObj( Title::makeTitle( NS_USER, $name ), $name );
+		# Prepare links to the blocker's user and talk pages
+		$blocker_name = $block->getByName();
+		$blocker = $sk->MakeKnownLinkObj( Title::makeTitle( NS_USER, $blocker_name ), $blocker_name );
+		$blocker .= ' (' . $sk->makeKnownLinkObj( Title::makeTitle( NS_USER_TALK, $blocker_name ), $wgLang->getNsText( NS_TALK ) ) . ')';
+
+		# Prepare links to the block target's user and contribs. pages (as applicable, don't do it for autoblocks)
+		if( $block->mAuto ) {
+			$target = '#' . $block->mID; # Hide the IP addresses of auto-blocks; privacy
+		} else {
+			$target = $sk->makeKnownLinkObj( Title::makeTitle( NS_USER, $block->mAddress ), $block->mAddress );
+			$target .= ' (' . $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $msg['contribslink'], 'target=' . $block->mAddress ) . ')';
+		}
+		
 		$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 
 		if ( $block->mExpiry === "" ) {
@@ -226,14 +236,9 @@ class IPUnblockForm {
 				array( $wgLang->timeanddate( $block->mExpiry, true ) ) );
 		}
 
-		$line = wfMsgReplaceArgs( $msg['blocklistline'], array( $formattedTime, $ulink, $addr, $formattedExpiry ) );
+		$line = wfMsgReplaceArgs( $msg['blocklistline'], array( $formattedTime, $blocker, $target, $formattedExpiry ) );
 
 		$wgOut->addHTML( "<li>{$line}" );
-
-		if ( !$block->mAuto ) {
-			$titleObj = Title::makeTitle( NS_SPECIAL, "Contributions" );
-			$wgOut->addHTML( ' (' . $sk->makeKnownLinkObj($titleObj, $msg['contribslink'], "target={$block->mAddress}") . ')' );
-		}
 
 		if ( $wgUser->isAllowed('block') ) {
 			$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
