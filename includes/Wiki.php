@@ -28,7 +28,7 @@ class MediaWiki {
 	 * Retieves key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
 	 */
-	function getVal( $key, $default = "" ) {
+	function getVal( $key, $default = '' ) {
 		$key = strtolower( $key );
 		if( isset( $this->params[$key] ) ) {
 			return $this->params[$key];
@@ -101,7 +101,7 @@ class MediaWiki {
 			// Do this above the read whitelist check for security...
 			$title = Title::makeTitle( NS_SPECIAL, 'Search' );
 		}
-		$this->setVal( "Search", $search );
+		$this->setVal( 'Search', $search );
 
 		# If the user is not logged in, the Namespace:title of the article must be in
 		# the Read array in order for the user to see it. (We have to check here to
@@ -289,7 +289,7 @@ class MediaWiki {
 		$action = $this->getVal('Action');
 		if( in_array( $action, $this->getVal('DisabledActions',array()) ) ) {
 			/* No such action; this will switch to the default case */
-			$action = "nosuchaction"; 
+			$action = 'nosuchaction';
 		}
 
 		switch( $action ) {
