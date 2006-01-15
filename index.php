@@ -27,7 +27,7 @@ define( 'MEDIAWIKI', true );
 require_once( './includes/Defines.php' );
 
 if( !file_exists( 'LocalSettings.php' ) ) {
-	$IP = ".";
+	$IP = '.';
 	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -55,9 +55,9 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 		<div class='error'>
 		<?php
 		if ( file_exists( 'config/LocalSettings.php' ) ) {
-			echo( "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory." );
+			echo( 'To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory.' );
 		} else {
-			echo( "Please <a href='config/index.php' title='setup'>setup the wiki</a> first." );
+			echo( 'Please <a href="config/index.php" title="setup">setup the wiki</a> first.' );
 		}
 		?>
 
@@ -91,15 +91,15 @@ if ($wgTitle == NULL) {
 wfProfileOut( 'main-misc-setup' );
 
 # Setting global variables in mediaWiki
-$mediaWiki->setVal( "Server", $wgServer );
-$mediaWiki->setVal( "DisableInternalSearch", $wgDisableInternalSearch );
-$mediaWiki->setVal( "action", $action );
-$mediaWiki->setVal( "SquidMaxage", $wgSquidMaxage );
-$mediaWiki->setVal( "EnableDublinCoreRdf", $wgEnableDublinCoreRdf );
-$mediaWiki->setVal( "EnableCreativeCommonsRdf", $wgEnableCreativeCommonsRdf );
-$mediaWiki->setVal( "CommandLineMode", $wgCommandLineMode );
-$mediaWiki->setVal( "UseExternalEditor", $wgUseExternalEditor );
-$mediaWiki->setVal( "DisabledActions", $wgDisabledActions );
+$mediaWiki->setVal( 'Server', $wgServer );
+$mediaWiki->setVal( 'DisableInternalSearch', $wgDisableInternalSearch );
+$mediaWiki->setVal( 'action', $action );
+$mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
+$mediaWiki->setVal( 'EnableDublinCoreRdf', $wgEnableDublinCoreRdf );
+$mediaWiki->setVal( 'EnableCreativeCommonsRdf', $wgEnableCreativeCommonsRdf );
+$mediaWiki->setVal( 'CommandLineMode', $wgCommandLineMode );
+$mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
+$mediaWiki->setVal( 'DisabledActions', $wgDisabledActions );
 
 $wgArticle = $mediaWiki->initialize ( $wgTitle, $wgOut, $wgUser, $wgRequest );
 $mediaWiki->finalCleanup ( $wgDeferredUpdateList, $wgLoadBalancer, $wgOut );
