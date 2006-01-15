@@ -498,6 +498,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Added an attractive space on the namespace selector on contribs
 * Move PHP 5-friendly XHTML doctype hack to Sanitizer, use for sig checks.
   Fixes use of named entities in sigs on PHP 5
+* (bug 4482) Include move comment on the null edit as well as the redirect
 
 
 === Caveats ===
