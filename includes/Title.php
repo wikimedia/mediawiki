@@ -1676,9 +1676,7 @@ class Title {
 		$dbw->delete( 'page', array( 'page_id' => $newid ), $fname );
 
 		# Save a null revision in the page's history notifying of the move
-		$nullRevision = Revision::newNullRevision( $dbw, $oldid,
-			wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() ),
-			true );
+		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
 
 		# Change the name of the target page:
@@ -1750,9 +1748,7 @@ class Title {
 		$linkCache =& LinkCache::singleton();
 
 		# Save a null revision in the page's history notifying of the move
-		$nullRevision = Revision::newNullRevision( $dbw, $oldid,
-			wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() ),
-			true );
+		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
 
 		# Rename cur entry
