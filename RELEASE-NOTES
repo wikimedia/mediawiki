@@ -308,6 +308,7 @@ Special Pages:
 * (bug 4359) red [[user:#id]] links generated in [[special:Log]]
 * (bug 1996) Special page to list redirects
 * (bug 4334) Add "watch" links to Special:Unwatchedpages
+* Generate user page links in Special:Ipblocklist where appropriate (i.e. not an autoblock)
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
