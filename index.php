@@ -5,7 +5,7 @@
  */
 $wgRequestTime = microtime();
 
-# getrusage() does not exist on the Window$ platform, catching this
+# getrusage() does not exist on the Microsoft Windows platforms, catching this
 if ( function_exists ( 'getrusage' ) ) {
 	$wgRUstart = getrusage();
 } else {
@@ -20,12 +20,18 @@ if ( isset( $_REQUEST['GLOBALS'] ) ) {
 }
 
 # Valid web server entry point, enable includes.
-# Please don't move this line to includes/Defines.php. This line essentially defines
-# a valid entry point. If you put it in includes/Defines.php, then any script that includes
-# it becomes an entry point, thereby defeating its purpose.
+# Please don't move this line to includes/Defines.php. This line essentially
+# defines a valid entry point. If you put it in includes/Defines.php, then
+# any script that includes it becomes an entry point, thereby defeating
+# its purpose.
 define( 'MEDIAWIKI', true );
+
+# Load up some global defines.
 require_once( './includes/Defines.php' );
 
+# LocalSettings.php is the per site customization file. If it does not exit
+# the wiki installer need to be launched or the generated file moved from
+# ./config/ to ./
 if( !file_exists( 'LocalSettings.php' ) ) {
 	$IP = '.';
 	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
@@ -68,9 +74,10 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 	die();
 }
 
+# Include this site setttings
 require_once( './LocalSettings.php' );
+# Prepare MediaWiki
 require_once( 'includes/Setup.php' );
-
 
 # Initialize MediaWiki base class
 require_once( "includes/Wiki.php" );
