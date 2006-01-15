@@ -115,10 +115,15 @@ wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
 wfProfileOut( $fname.'-memcached' );
 wfProfileIn( $fname.'-SetupSession' );
 
-if ( $wgDBprefix ) {
+# If session.auto_start is there, we can't touch session name
+#
+
+if (!ini_get('session.auto_start')) {
+    if ( $wgDBprefix ) {
 	session_name( $wgDBname . '_' . $wgDBprefix . '_session' );
-} else {
+    } else {
 	session_name( $wgDBname . '_session' );
+    }
 }
 
 if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgDBname.'Token'] ) ) ) {
