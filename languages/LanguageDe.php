@@ -975,7 +975,7 @@ um eine Seite zu verschieben.",
 "newtitle"		=> "Zu neuem Titel",
 "movepagebtn"	=> "Artikel verschieben",
 "pagemovedsub"	=> "Verschiebung erfolgreich",
-"pagemovedtext" => "Artikel \"$1\" wurde nach \"$2\" verschoben.",
+"pagemovedtext" => "Artikel \"[[$1]]\" wurde nach \"[[$2]]\" verschoben.",
 "articleexists" => "Unter diesem Namen existiert bereits ein Artikel.
 Bitte wählen Sie einen anderen Namen.",
 "talkexists"    => "Die Seite selbst wurde erfolgreich verschoben, aber die

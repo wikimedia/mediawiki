@@ -241,22 +241,21 @@ class MovePageForm {
 	}
 
 	function showSuccess() {
-		global $wgOut, $wgRequest, $wgUser;
-		$skin = $wgUser->getSkin();
+		global $wgOut, $wgRequest, $wgRawHtml;
 		
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 		$wgOut->setSubtitle( wfMsg( 'pagemovedsub' ) );
-		
+
 		$oldText = $wgRequest->getVal('oldtitle');
 		$newText = $wgRequest->getVal('newtitle');
-		
-		$oldLink = $skin->makeKnownLinkObj( Title::newFromText( $oldText ), $oldText, 'redirect=no' );
-		$newLink = $skin->makeKnownLinkObj( Title::newFromText( $newText ), $newText );
-		
 		$talkmoved = $wgRequest->getVal('talkmoved');
 
-		$text = wfMsgHtml( 'pagemovedtext', $oldLink, $newLink );
-		$wgOut->addHTML( '<p>' . $text . '</p>' );
+		$text = wfMsg( 'pagemovedtext', $oldText, $newText );
+		
+		$allowHTML = $wgRawHtml;
+		$wgRawHtml = false;
+		$wgOut->addWikiText( $text );
+		$wgRawHtml = $allowHTML;
 
 		if ( $talkmoved == 1 ) {
 			$wgOut->addWikiText( wfMsg( 'talkpagemoved' ) );

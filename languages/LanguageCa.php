@@ -764,7 +764,7 @@ per reanomenar una pàgina.",
 "newtitle"		=> "A títol nou",
 "movepagebtn"	=> "Reanomena pàgina",
 "pagemovedsub"	=> "Reanomenament amb èxit",
-"pagemovedtext" => "Pàgina \"$1\" reanomenada a \"$2\".",
+"pagemovedtext" => "Pàgina \"[[$1]]\" reanomenada a \"[[$2]]\".",
 "articleexists" => "Ja existeix una pàgina amb aquest nom, o el nom que heu
 escollit no és vàlid.
 Escolliu un altre nom, si us plau.",
