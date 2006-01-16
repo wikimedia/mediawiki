@@ -1351,47 +1351,64 @@ function swap( &$x, &$y ) {
 	$y = $z;
 }
 
-function wfGetSiteNotice() {
-	global $wgSiteNotice, $wgTitle, $wgOut, $parserMemc, $wgDBname;
-	$fname = 'wfGetSiteNotice';
+function wfGetCachedNotice( $name ) {
+	global $wgOut, $parserMemc, $wgDBname;
+	$fname = 'wfGetCachedNotice';
 	wfProfileIn( $fname );
-
-	$shouldParse=false;
-
-	$notice = wfMsgForContent( 'sitenotice' );
-	if( $notice == '&lt;sitenotice&gt;' || $notice == '-' ) {
-		$notice = '';
+	
+	$needParse = false;
+	$notice = wfMsgForContent( $name );
+	if( $notice == '&lt;'. $name . ';&gt' || $notice == '-' ) {
+		wfProfileOut( $fname );
+		return( false );
 	}
-	if( $notice == '' ) {
-		# We may also need to override a message with eg downtime info
-		# FIXME: make this work!
-		$notice = $wgSiteNotice;
-	}
-	if($notice != '-' && $notice != '') {
-		$cachednotice=$parserMemc->get("{$wgDBname}:sitenotice");
-		if (is_array($cachednotice)) {
-			if (md5($notice)==$cachednotice['hash']) {
-				$notice = $cachednotice['html'];
-			} else {
-				$shouldParse=true;
-			}
+	
+	$cachedNotice = $parserMemc->get( $wgDBname . ':' . $name );
+	if( is_array( $cachedNotice ) ) {
+		if( md5( $notice ) == $cachedNotice['hash'] ) {
+			$notice = $cachedNotice['html'];
 		} else {
-			$shouldParse=true;
+			$needParse = true;
 		}
-		if ($shouldParse) {
-			if( is_object( $wgOut ) ) {
-				$parsed = $wgOut->parse( $notice );
-				$parserMemc->set("{$wgDBname}:sitenotice",
-					array('html' => $parsed, 'hash' => md5($notice)), 600);
-				$notice = $parsed;
-			} else {
-				wfDebug( "wfGetSiteNotice called with no \$wgOut available" );
-				$notice = '';
-			}
+	} else {
+		$needParse = true;
+	}
+	
+	if( $needParse ) {
+		if( is_object( $wgOut ) ) {
+			$parsed = $wgOut->parse( $notice );
+			$parserMemc->set( $wgDBname . ':' . $name, array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
+			$notice = $parsed;
+		} else {
+			wfDebug( 'wfGetCachedNotice called for ' . $name . ' with no $wgOut available' );
+			$notice = '';
 		}
 	}
+	
 	wfProfileOut( $fname );
 	return $notice;
+}
+
+function wfGetSiteNotice() {
+	global $wgUser, $wgSiteNotice;
+	$fname = 'wfGetSiteNotice';
+	wfProfileIn( $fname );
+	
+	if( $wgUser->isLoggedIn() ) {
+		$siteNotice = wfGetCachedNotice( 'sitenotice' );
+		$siteNotice = !$siteNotice ? $wgSiteNotice : $siteNotice;
+	} else {
+		$anonNotice = wfGetCachedNotice( 'anonnotice' );
+		if( !$anonNotice ) {
+			$siteNotice = wfGetCachedNotice( 'sitenotice' );
+			$siteNotice = !$siteNotice ? $wgSiteNotice : $siteNotice;
+		} else {
+			$siteNotice = $anonNotice;
+		}
+	}
+	
+	wfProfileOut( $fname );
+	return( $siteNotice );
 }
 
 /**
