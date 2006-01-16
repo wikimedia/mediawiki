@@ -999,7 +999,7 @@ En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c\'hwi hoc\'h-unan ma ka
 'newtitle'	=> "anv nevez",
 'movepagebtn'	=> "Adenvel ar pennad",
 'pagemovedsub' => "Dilec\'hiadenn kaset da benn vat",
-'pagemovedtext' => "Adkaset eo bet ar pennad \"$1\" da \"$2\".",
+'pagemovedtext' => "Adkaset eo bet ar pennad \"[[$1]]\" da \"[[$2]]\".",
 'articleexists' => "Ur pennad gantañ an anv-se zo dija pe n\'eo ket reizh an titl hoc\'h eus dibabet.
 Dibabit unan all mar plij.",
 'talkexists'	=> "Dilec\'hiet mat eo bet ar bajenn hec\'h-unan met chomet eo ar bajenn gaozeal rak unan all a oa dija gant an anv nevez-se. Kendeuzit anezho c\'hwi hoc\'h-unan mar plij.",

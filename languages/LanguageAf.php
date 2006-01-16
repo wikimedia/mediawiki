@@ -715,7 +715,7 @@ wees om 'n bladsy te skuif.",
 "newtitle"		=> "Na nuwe titel",
 "movepagebtn"	=> "Skuif bladsy",
 "pagemovedsub"	=> "Verskuiwing het geslaag",
-"pagemovedtext" => "Bladsy \"$1\" geskuif na \"$2\".",
+"pagemovedtext" => "Bladsy \"[[$1]]\" geskuif na \"[[$2]]\".",
 "articleexists" => "'n Bladsy met daardie naam bestaan reeds, of die naam wat jy gekies het, is nie geldig nie.
 Kies asseblief 'n ander naam.",
 "talkexists"	=> "Die bladsy self is suksesvol verskuif, maar die bespreekbladsy kon nie geskuif word nie omdat een reeds bestaan met die nuwe titel. Smelt hulle asseblief met die hand saam.",
