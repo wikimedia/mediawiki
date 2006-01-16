@@ -123,6 +123,10 @@ Installer:
 	  permissions, if said user exists
 	* Changes to some of the wording of explanations for fields
 
+Maintenance:
+* Fix problem reported on mailing list where re-initialising stats didn't work (can't insert
+  duplicate rows with the same id field)
+
 i18n / Languages:
 * Partial support for Basque language (from wikipedia and meta)
 * (bug 3141) Partial support for Breton language (thanks Fulup).
