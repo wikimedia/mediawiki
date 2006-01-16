@@ -35,13 +35,13 @@ $wgAllMessagesNah = array(
 	'thursday' => 'Tezcatlipotonal',
 	'friday' => 'Quetzalcoatonal',
 	'saturday' => 'Tlaloctitonal',
-	'sunday' => 'Tonatiutonal'
+	'sunday' => 'Tonatiutonal',
 	
 	# Preferences etc.
 	'userlogin' => 'Calaqui / Registrarse',
 	'yourlanguage' => 'Tlahtolli:',
 	'yourpassword' => 'Tlahtolichtacayo',
-	'yourpasswordagain' => 'Tlahtolichtacayo zapa',
+	'yourpasswordagain' => 'Tlahtolichtacayo zapa'
 
 );
 
