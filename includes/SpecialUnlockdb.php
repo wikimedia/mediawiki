@@ -10,21 +10,17 @@
  */
 function wfSpecialUnlockdb() {
 	global $wgUser, $wgOut, $wgRequest;
-
-	if ( ! $wgUser->isAllowed('siteadmin') ) {
-		$wgOut->developerRequired();
-		return;
-	}
-	$action = $wgRequest->getVal( 'action' );
-	$f = new DBUnlockForm();
-
-	if ( "success" == $action ) {
-		$f->showSuccess();
-	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
-		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-		$f->doSubmit();
+	if( $wgUser->isAllowed( 'siteadmin' ) ) {
+		$form = new DBUnlockForm();
+		if( $action == 'success' ) {
+			$form->showSuccess();
+		} else if( $action == 'submit' && wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+			$form->doSubmit();
+		} else {
+			$form->showForm();
 	} else {
-		$f->showForm( "" );
+		$wgOut->permissionRequired( 'siteadmin' );
+		return;
 	}
 }
 
@@ -34,17 +30,17 @@ function wfSpecialUnlockdb() {
  * @subpackage SpecialPage
  */
 class DBUnlockForm {
-	function showForm( $err )
-	{
+
+	function showForm( $error = false ) {
 		global $wgOut, $wgUser;
-
-		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );
-		$wgOut->addWikiText( wfMsg( "unlockdbtext" ) );
-
-		if ( "" != $err ) {
-			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
+		$wgOut->setPagetitle( wfMsg( 'unlockdb' ) );
+		$wgOut->addWikiText( wfMsg( 'unlockdbtext' ) );
+		
+		if( $error ) {
+			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
+			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $error ) . "</p>\n" );
 		}
+	
 		$lc = htmlspecialchars( wfMsg( "unlockconfirm" ) );
 		$lb = htmlspecialchars( wfMsg( "unlockbtn" ) );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
