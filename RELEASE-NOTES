@@ -122,6 +122,7 @@ Installer:
 	* Don't overwrite conservative permissions on the mySQL user with ALL
 	  permissions, if said user exists
 	* Changes to some of the wording of explanations for fields
+* (bug 1734) granting db permissions failed with db usernames containg '-'
 
 Maintenance:
 * Fix problem reported on mailing list where re-initialising stats didn't work (can't insert
@@ -215,6 +216,10 @@ i18n / Languages:
 * (bug 4548) Update for Portuguese language (pt): time format
 * (bug 4530) Use consistent name for Kurdish
 * Tweak default "upload disabled" text
+* (bug 4504) Use site language for namespace name resolution
+* (bug 4510) Correct Barnes & Noble bookstore URLs
+* (bug 3991) Allow the operation of wikicode on Protect move only text
+* (bug 4267) Switch dv sd ug ks arc languages to RTL
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
@@ -279,6 +284,7 @@ Security:
   http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
 * Blocked users can no longer roll back, change the protection of, or delete/undelete pages
 * Protect against spoofing of X-Forwarded-For header
+* XSS issue : now sanitize search query input (fixed in 1.5rc3)
 
 Special Pages:
 * Rearranged Special:Movepage form to reduce confusion between destination
@@ -314,6 +320,10 @@ Special Pages:
 * (bug 4334) Add "watch" links to Special:Unwatchedpages
 * Generate target user page links in Special:Ipblocklist where appropriate (i.e. not an autoblock)
 * Generate link to talk page of the blocker in Special:Ipblocklist, move contribs. link of the target next to their name
+* (bug 2714) Backlink from special:whatlinkshere was hard set as 'existing'
+* Move parentheses out of <a> link in Special:Contributions
+* (bug 3192): properly check 'limit' parameter on Special:Contributions
+* (bug 3187) watchlist text refer to unexistent "Stop watching" action
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
@@ -519,6 +529,12 @@ fully support the editing toolbar, but was found to be too confusing.
   when the configuration is edited.
 * Fix $wgCacheEpoch's effect on client-side caching.
 * (bug 1122) gray out 'older revision' when viewing first article revision.
+* Clearer message in DefaultSettings.php: edit LocalSettings.php instead
+* MonoBook skin top link id changed from "contentTop" to "top" (shared with
+  name attribute)
+* (bug 3350) Missing label for move talk page checkbox.
+* (bug 2108) Sort entries when using category browser
+* (bug 2393) Fix MIME type for Atom feeds ( application/rss+atom )
 
 
 === Caveats ===
