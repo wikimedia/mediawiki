@@ -2231,7 +2231,11 @@ class Article {
 	}
 
 	/**
-	 * @todo document this function
+	 * Generate the navigation links when browsing through an article revisions
+	 * It shows the information as:
+	 *   Revision as of <date>; view current revision
+	 *   <- Previous version | Next Version ->
+	 *
 	 * @access private
 	 * @param string $oldid		Revision ID of this article revision
 	 */
@@ -2244,7 +2248,10 @@ class Article {
 		$lnk = $current
 			? wfMsg( 'currentrevisionlink' )
 			: $lnk = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
-		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid );
+		$prev = $this->mTitle->getPreviousRevisionID( $oldid ) ;
+		$prevlink = $prev
+			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid )
+			: wfMsg( 'previousrevision' );
 		$nextlink = $current
 			? wfMsg( 'nextrevision' )
 			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
