@@ -318,7 +318,7 @@ class Block
 		} else {
 			$condition = array( 'ipb_address' => $this->mAddress );
 		}
-		$dbw->delete( 'ipblocks', $condition, $fname );
+		return( $dbw->delete( 'ipblocks', $condition, $fname ) > 0 ? true : false );
 	}
 
 	function insert()

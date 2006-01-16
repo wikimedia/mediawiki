@@ -1,6 +1,7 @@
 <?php
+
 # MediaWiki web-based config/installation
-# Copyright (C) 2004 Brion Vibber <brion@pobox.com>
+# Copyright (C) 2004 Brion Vibber <brion@pobox.com>, 2006 Rob Church <robchur@gmail.com>
 # http://www.mediawiki.org/
 #
 # This program is free software; you can redistribute it and/or modify
@@ -22,12 +23,27 @@ error_reporting( E_ALL );
 header( "Content-type: text/html; charset=utf-8" );
 @ini_set( "display_errors", true );
 
-?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+# Attempt to set up the include path, to fix problems with relative includes
+$IP = dirname( dirname( __FILE__ ) );
+$sep = PATH_SEPARATOR;
+if( !ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages" ) ) {
+	set_include_path( ".$sep$IP$sep$IP/includes$sep$IP/languages" );
+}
+
+# Define an entry point and include some files
+define( "MEDIAWIKI", true );
+define( "MEDIAWIKI_INSTALL", true );
+require_once( "includes/Defines.php" );
+require_once( "includes/DefaultSettings.php" );
+require_once( "includes/MagicWord.php" );
+require_once( "includes/Namespace.php" );
+
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>MediaWiki installation</title>
+	<title>MediaWiki <?php echo( $wgVersion ); ?> Installation</title>
 	<style type="text/css">
 
 		@import "../skins/monobook/main.css";
@@ -114,30 +130,7 @@ header( "Content-type: text/html; charset=utf-8" );
 <div id="content">
 <div id="bodyContent">
 
-
-<?php
-
-# Relative includes seem to break if a parent directory is not readable;
-# this is common for public_html subdirs under user home directories.
-#
-# As a dirty hack, we'll try to set up the include path first.
-#
-$IP = dirname( dirname( __FILE__ ) );
-$sep = PATH_SEPARATOR;
-if( !ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages" ) ) {
-	set_include_path( ".$sep$IP$sep$IP/includes$sep$IP/languages" );
-}
-
-
-define( "MEDIAWIKI", true );
-define( "MEDIAWIKI_INSTALL", true );
-require_once( "includes/Defines.php" );
-require_once( "includes/DefaultSettings.php" );
-require_once( "includes/MagicWord.php" );
-require_once( "includes/Namespace.php" );
-?>
-
-<h1>MediaWiki <?php print $wgVersion ?> installation</h1>
+<h1>MediaWiki <?php print $wgVersion ?> Installation</h1>
 
 <?php
 
@@ -239,7 +232,7 @@ if( ini_get( "mbstring.func_overload" ) ) {
 }
 
 if( $fatal ) {
-	dieout( "</ul><p>Cannot install Mediawiki.</p>" );
+	dieout( "</ul><p>Cannot install MediaWiki.</p>" );
 }
 
 if( ini_get( "safe_mode" ) ) {
@@ -253,7 +246,6 @@ if( ini_get( "safe_mode" ) ) {
 } else {
 	$conf->safeMode = false;
 }
-
 
 $sapi = php_sapi_name();
 $conf->prettyURLs = true;
@@ -371,11 +363,9 @@ if( $conf->HaveGD ) {
 
 $conf->UseImageResize = $conf->HaveGD || $conf->ImageMagick;
 
-# $conf->IP = "/Users/brion/Sites/inplace";
 $conf->IP = dirname( dirname( __FILE__ ) );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
-# $conf->ScriptPath = "/~brion/inplace";
 $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["PHP_SELF"] ); # was SCRIPT_NAME
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
@@ -624,7 +614,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 			$wgDatabase->selectDB( $wgDBname );
 		}
-
 
 		if( $wgDatabase->tableExists( "cur" ) || $wgDatabase->tableExists( "revision" ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
