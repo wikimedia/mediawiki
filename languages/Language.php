@@ -1463,7 +1463,7 @@ pages that were vandalized).",
 'badipaddress'	=> 'Invalid IP address',
 'blockipsuccesssub' => 'Block succeeded',
 'blockipsuccesstext' => '[[{{ns:Special}}:Contributions/$1|$1]] has been blocked.
-<br />See[[{{ns:Special}}:Ipblocklist|IP block list]] to review blocks.',
+<br />See [[{{ns:Special}}:Ipblocklist|IP block list]] to review blocks.',
 'unblockip'		=> 'Unblock user',
 'unblockiptext'	=> 'Use the form below to restore write access
 to a previously blocked IP address or username.',
