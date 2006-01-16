@@ -518,7 +518,6 @@ fully support the editing toolbar, but was found to be too confusing.
   For typical usage this will be a light burden and should reduce confusion
   when the configuration is edited.
 * Fix $wgCacheEpoch's effect on client-side caching.
-* (bug 1122) gray out 'older revision' when viewing first article revision.
 
 
 === Caveats ===
