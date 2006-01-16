@@ -494,14 +494,17 @@ function wfMsgReplaceArgs( $message, $args ) {
 	$message = str_replace( "\r", '', $message );
 
 	// Replace arguments
-	if ( count( $args ) )
-		if ( is_array( $args[0] ) )
-			foreach ( $args[0] as $key => $val )
+	if ( count( $args ) ) {
+		if ( is_array( $args[0] ) ) {
+			foreach ( $args[0] as $key => $val ) {
 				$message = str_replace( '$' . $key, $val, $message );
-	else {
-		foreach( $args as $n => $param )
-			$replacementKeys['$' . ($n + 1)] = $param;
-		$message = strtr( $message, $replacementKeys );
+			}
+		} else {
+			foreach( $args as $n => $param ) {
+				$replacementKeys['$' . ($n + 1)] = $param;
+			}
+			$message = strtr( $message, $replacementKeys );
+		}
 	}
 
 	return $message;
@@ -730,7 +733,6 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 		}
 	}
 
-	$sk = $wgUser->getSkin();
 	if ( 0 != $offset ) {
 		$po = $offset - $limit;
 		if ( $po < 0 ) { $po = 0; }
