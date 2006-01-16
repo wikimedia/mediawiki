@@ -101,7 +101,7 @@ which is basically:
 2. texvc does its magic, which is basically to check for invalid latex code.
 3. texvc takes the user input if valid and creates a latex file containing it, see
    get_preface in texutil.ml
-4. latex(1) gets called to create a .dvi file, the a .ps file is created from the
+4. latex(1) gets called to create a .dvi file, then a .ps file is created from the
    .dvi file using dvips(1), and finally convert(1) creates a .png file from
    the .ps file. See render.ml for this process (commenting out the removal of
    the temporary file is useful for debugging).
