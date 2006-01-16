@@ -88,7 +88,7 @@ class OutputPage {
 	 * returns true iff cache-ok headers was sent.
 	 */
 	function checkLastModified ( $timestamp ) {
-		global $wgCachePages, $wgUser;
+		global $wgCachePages, $wgCacheEpoch, $wgUser;
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
 			wfDebug( "CACHE DISABLED, NO TIMESTAMP\n" );
 			return;
@@ -103,7 +103,7 @@ class OutputPage {
 		}
 
 		$timestamp=wfTimestamp(TS_MW,$timestamp);
-		$lastmod = wfTimestamp( TS_RFC2822, max( $timestamp, $wgUser->mTouched ) );
+		$lastmod = wfTimestamp( TS_RFC2822, max( $timestamp, $wgUser->mTouched, $wgCacheEpoch ) );
 
 		if( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 			# IE sends sizes after the date like this:
@@ -114,17 +114,17 @@ class OutputPage {
 			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
 			wfDebug( "-- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "--  we might send Last-Modified : $lastmod\n", false );
-			if( ($ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) ) {
+			if( ($ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
 				# Make sure you're in a place you can leave when you call us!
 				header( "HTTP/1.0 304 Not Modified" );
 				$this->mLastModified = $lastmod;
 				$this->sendCacheControl();
-				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
+				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
 				$this->disable();
 				@ob_end_clean(); // Don't output compressed blob
 				return true;
 			} else {
-				wfDebug( "READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
+				wfDebug( "READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
 				$this->mLastModified = $lastmod;
 			}
 		} else {
