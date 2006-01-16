@@ -165,14 +165,17 @@ class SpecialVersion {
 	function wgHooks() {
 		global $wgHooks;
 
-		$myWgHooks = $wgHooks;
-		ksort( $myWgHooks );
-
-		$ret = "* Hooks:\n";
-		foreach ($myWgHooks as $hook => $hooks)
-			$ret .= "** $hook: " . $this->listToText( $hooks ) . "\n";
-
-		return $ret;
+		if ( count( $wgHooks ) ) {
+			$myWgHooks = $wgHooks;
+			ksort( $myWgHooks );
+			
+			$ret = "* Hooks:\n";
+			foreach ($myWgHooks as $hook => $hooks)
+				$ret .= "** $hook: " . $this->listToText( $hooks ) . "\n";
+			
+			return $ret;
+		} else
+			return '';
 	}
 
 	/**
