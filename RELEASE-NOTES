@@ -506,6 +506,15 @@ fully support the editing toolbar, but was found to be too confusing.
   This is displayed instead of the regular sitenotice, if it exists. If not, the
   regular sitenotice shows. If that doesn't exist, the value of $wgSiteNotice is used,
   and if that's null, then nothing is shown.
+* Spit the generated LocalSettings code out during the installer as an aid
+  to debugging issues. (Keep this?)
+* Use __FILE__ to form path in new LocalSettings.php, so it stays accurate
+  when the directory is relocated for typical usage.
+* Auto-update $wgCacheEpoch when LocalSettings.php changes on new installs.
+  For typical usage this will be a light burden and should reduce confusion
+  when the configuration is edited.
+* Fix $wgCacheEpoch's effect on client-side caching.
+
 
 === Caveats ===
 

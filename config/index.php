@@ -25,6 +25,7 @@ header( "Content-type: text/html; charset=utf-8" );
 
 # Attempt to set up the include path, to fix problems with relative includes
 $IP = dirname( dirname( __FILE__ ) );
+define( 'MW_INSTALL_PATH', $IP );
 $sep = PATH_SEPARATOR;
 if( !ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages" ) ) {
 	set_include_path( ".$sep$IP$sep$IP/includes$sep$IP/languages" );
@@ -463,6 +464,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		/* Load up the settings and get installin' */
 		$local = writeLocalSettings( $conf );
+		echo "<p><b>Generating configuration file...</b></p>\n";
+		echo "<pre>" . htmlspecialchars( $local ) . "</pre>\n";
+		
 		$wgCommandLineMode = false;
 		chdir( ".." );
 		eval($local);
@@ -1159,10 +1163,17 @@ function writeLocalSettings( $conf ) {
 # and their default values, but don't forget to make changes in _this_
 # file, not there.
 
-\$IP = \"{$slconf['IP']}\";
-if( !ini_set( \"include_path\", \".$sep\$IP$sep\$IP/includes$sep\$IP/languages\" ) ) {
-	set_include_path( \".$sep\$IP$sep\$IP/includes$sep\$IP/languages\" );
+# If you customize your file layout, set \$IP to the directory that contains
+# the other MediaWiki files. It will be used as a base to locate files.
+if( defined( 'MW_INSTALL_PATH' ) ) {
+	\$IP = MW_INSTALL_PATH;
+} else {
+	\$IP = dirname( __FILE__ );
 }
+
+\$path = array( \$IP, \"\$IP/includes\", \"\$IP/languages\" );
+set_include_path( implode( PATH_SEPARATOR, \$path ) );
+
 require_once( \"includes/DefaultSettings.php\" );
 
 # If PHP's memory limit is very low, some operations may fail.
@@ -1183,7 +1194,9 @@ if ( \$wgCommandLineMode ) {
 \$wgScript           = \"\$wgScriptPath/index.php\";
 \$wgRedirectScript   = \"\$wgScriptPath/redirect.php\";
 
-## If using PHP as a CGI module, use the ugly URLs
+## For more information on customizing the URLs please see:
+## http://meta.wikimedia.org/wiki/Eliminating_index.php_from_the_url
+## If using PHP as a CGI module, the ?title= style usually must be used.
 {$pretty}\$wgArticlePath      = \"\$wgScript/\$1\";
 {$ugly}\$wgArticlePath      = \"\$wgScript?title=\$1\";
 
@@ -1224,8 +1237,8 @@ if ( \$wgCommandLineMode ) {
 \$wgMemCachedServers = $mcservers;
 
 ## To enable image uploads, make sure the 'images' directory
-## is writable, then uncomment this:
-# \$wgEnableUploads		= true;
+## is writable, then set this to true:
+\$wgEnableUploads		= false;
 \$wgUseImageResize		= {$conf->UseImageResize};
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$convert}\";
@@ -1238,7 +1251,7 @@ if ( \$wgCommandLineMode ) {
 
 ## If you have the appropriate support software installed
 ## you can enable inline LaTeX equations:
-# \$wgUseTeX			= true;
+\$wgUseTeX	         = false;
 \$wgMathPath         = \"{\$wgUploadPath}/math\";
 \$wgMathDirectory    = \"{\$wgUploadDirectory}/math\";
 \$wgTmpDirectory     = \"{\$wgUploadDirectory}/tmp\";
@@ -1251,7 +1264,7 @@ if ( \$wgCommandLineMode ) {
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
-# \$wgDefaultSkin = 'monobook';
+\$wgDefaultSkin = 'monobook';
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
@@ -1264,6 +1277,11 @@ if ( \$wgCommandLineMode ) {
 # \$wgRightsCode = \"{$slconf['RightsCode']}\"; # Not yet used
 
 \$wgDiff3 = \"{$slconf['diff3']}\";
+
+# When you make changes to this configuration file, this will make
+# sure that cached pages are cleared.
+\$configdate = gmdate( 'YmdHis', @filemtime( __FILE__ ) );
+\$wgCacheEpoch = max( \$wgCacheEpoch, \$configdate );
 ";
 	// Keep things in Unix line endings internally;
 	// the system will write out as local text type.
