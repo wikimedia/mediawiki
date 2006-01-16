@@ -1209,7 +1209,7 @@ ako to želite.',
 'newtitle' => 'Na novi naslov',
 "movepagebtn"	=> "Premjesti stranicu",
 "pagemovedsub"	=> "Premještanje uspjelo",
-'pagemovedtext' => 'Stranica "[[$1]]" premještena je na "[[$2]]".',
+'pagemovedtext' => 'Stranica "$1" premještena je na "$2".',
 'articleexists' => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
 Molimo odaberite drugo ime.',
 'talkexists' => '\'\'\'Sama stranica je uspješno prenesena, ali stranicu za razgovor nije bilo moguće prenijeti jer na odredištu već postoji stranica za razgovor. Molimo da ih ručno spojite.\'\'\'',

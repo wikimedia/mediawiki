@@ -830,7 +830,7 @@ to move a page.",
 "newtitle" => "i teitl newydd",
 "movepagebtn" => "Symud tudalen",
 "pagemovedsub"	=> "Symud yn llwyddiannus",
-"pagemovedtext" => "Mae tudalen \"[[$1]]\" wedi symud i \"[[$2]]\".",
+"pagemovedtext" => "Mae tudalen \"$1\" wedi symud i \"$2\".",
 "articleexists" => "Mae tudalen gyda'r enw newydd yn bodoli'n barod, neu mae eich enw newydd ddim yn dilys.
 Dewiswch enw newydd os gwelwch yn dda.",
 "talkexists" => "Mae'r tudalen wedi symud yn llwyddiannus, ond roedd hi'n amhosibl symud y tudalen sgwrs am achos roedd ne un efo'r teitl newydd yn bodoli'n barod. Cysylltwch nhw eich hun, os gwelwch yn dda.",

@@ -369,7 +369,7 @@ public domain or similar free resource.<br />
 'orphans' => 'Старонкі-сіраціны',
 'otherlanguages' => 'На іншых мовах',
 'others' => 'іншыя',
-'pagemovedtext' => 'Старонка «[[$1]]» перанесеная ў «[[$2]]».',
+'pagemovedtext' => 'Старонка «$1» перанесеная ў «$2».',
 'pagetitle' => '$1 - {{SITENAME}}',
 'popularpages' => 'Папулярныя старонкі',
 'portal' => 'Суполка',
