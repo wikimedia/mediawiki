@@ -33,6 +33,21 @@ function GetUsers() {
 	return( $users );
 }
 
+# Resolve a username to a user ID
+function GetUserID( $username ) {
+	$dbr =& wfGetDB( DB_SLAVE );
+	$sql = 'SELECT user_id FROM ' . $dbr->tableName( 'user' ) . ' WHERE user_name = "' . $username . '"';
+	$res = $dbr->query( $sql );
+	if( $res !== false ) {
+		while( $row = $dbr->fetchObject( $res ) ) {
+			$ret = $row->user_id;
+		}
+	} else {
+		$ret = false;
+	}
+	return( $ret );
+}
+
 # Delete one or more users
 function DeleteUsers( $users ) {
 	# Need a master, obviously
@@ -44,6 +59,24 @@ function DeleteUsers( $users ) {
 		$dbw->query( 'DELETE FROM ' . $table . ' WHERE user_id = ' . $user . ' LIMIT 1' );
 	}
 	$dbw->commit();
+}
+
+/**
+ * Add a user to the named group(s)
+ *
+ * @param integer $user User ID
+ * @param mixed $groups Single string or array of strings corresponding to group names
+ * @return bool
+ */
+function SetUserGroups( $user, $groups ) {
+	$dbw =& wfGetDB( DB_MASTER );
+	foreach( $groups as $group ) {
+		$row = array( 'ug_user' => $user, 'ug_group' => $group );
+		if( !$dbw->insert( 'user_groups', $row, 'SetUserGroups' ) ) {
+			return( false );
+		}
+	}
+	return( true );
 }
 
 ?>
