@@ -1012,6 +1012,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4504) Use site language for namespace name resolution
 * Installer fixes from HEAD backported; now uses a more sensible method of establishing which
   mySQL user to use, which clears up bug 921 et al. Minor changes to installer.
+* Fix problem reported on mailing list where re-initialising stats didn't work (can't insert
+  duplicate rows with the same id field)
 
 === Caveats ===
 
