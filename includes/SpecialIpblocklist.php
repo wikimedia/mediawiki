@@ -221,14 +221,14 @@ class IPUnblockForm {
 
 		# Prepare links to the block target's user and contribs. pages (as applicable, don't do it for autoblocks)
 		if( $block->mAuto ) {
-			$target = '#' . $block->mID; # Hide the IP addresses of auto-blocks; privacy
+			$target = '#' . $block->mId; # Hide the IP addresses of auto-blocks; privacy
 		} else {
 			$target = $sk->makeKnownLinkObj( Title::makeTitle( NS_USER, $block->mAddress ), $block->mAddress );
 			$target .= ' (' . $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $msg['contribslink'], 'target=' . $block->mAddress ) . ')';
 		}
 		
 		# Prep the address for the unblock link, masking autoblocks as before
-		$addr = $block->mAuto ? '#' . $block->mID : $block->mAddress;
+		$addr = $block->mAuto ? '#' . $block->mId : $block->mAddress;
 		
 		$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 
