@@ -1575,7 +1575,7 @@ to move a page.",
 'newtitle'		=> 'To new title',
 'movepagebtn'	=> 'Move page',
 'pagemovedsub'	=> 'Move succeeded',
-'pagemovedtext' => "Page \"[[$1]]\" moved to \"[[$2]]".",
+'pagemovedtext' => "Page \"[[$1]]\" moved to \"[[$2]]\".",
 'articleexists' => 'A page of that name already exists, or the
 name you have chosen is not valid.
 Please choose another name.',
