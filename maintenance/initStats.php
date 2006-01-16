@@ -16,6 +16,7 @@ $pages = $dbr->selectField( 'page', 'COUNT(page_id)',
 echo "$wgDBname: setting edits $edits, pages $pages\n";
 
 $dbw =& wfGetDB( DB_MASTER );
+$dbw->delete( 'site_stats', array( 'ss_row_id' => 1 ) );
 $dbw->insert( 'site_stats',
 	array( 'ss_row_id'=> 1,
 	       'ss_total_views'   => 0,
