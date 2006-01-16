@@ -310,6 +310,7 @@ Special Pages:
 * (bug 4334) Add "watch" links to Special:Unwatchedpages
 * Generate target user page links in Special:Ipblocklist where appropriate (i.e. not an autoblock)
 * Generate link to talk page of the blocker in Special:Ipblocklist, move contribs. link of the target next to their name
+* (bug 2757) 'Page move completed' screen should contain link to original page with &redirect=no
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect

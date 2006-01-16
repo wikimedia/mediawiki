@@ -241,29 +241,30 @@ class MovePageForm {
 	}
 
 	function showSuccess() {
-		global $wgOut, $wgRequest, $wgRawHtml;
-
+		global $wgOut, $wgRequest, $wgUser;
+		$skin = $wgUser->getSkin();
+		
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 		$wgOut->setSubtitle( wfMsg( 'pagemovedsub' ) );
-		$oldtitle = $wgRequest->getVal('oldtitle');
-		$newtitle = $wgRequest->getVal('newtitle');
+		
+		$oldText = $wgRequest->getVal('oldtitle');
+		$newText = $wgRequest->getVal('newtitle');
+		
+		$oldLink = $skin->makeKnownLinkObj( Title::newFromText( $oldText ), $oldText, 'redirect=no' );
+		$newLink = $skin->makeKnownLinkObj( Title::newFromText( $newText ), $newText );
+		
 		$talkmoved = $wgRequest->getVal('talkmoved');
 
-		$text = wfMsg( 'pagemovedtext', $oldtitle, $newtitle );
-
-		# Temporarily disable raw html wikitext option out of XSS paranoia
-		$marchingantofdoom = $wgRawHtml;
-		$wgRawHtml = false;
-		$wgOut->addWikiText( $text );
-		$wgRawHtml = $marchingantofdoom;
+		$text = wfMsgHtml( 'pagemovedtext', $oldLink, $newLink );
+		$wgOut->addHTML( '<p>' . $text . '</p>' );
 
 		if ( $talkmoved == 1 ) {
 			$wgOut->addWikiText( wfMsg( 'talkpagemoved' ) );
 		} elseif( 'articleexists' == $talkmoved ) {
 			$wgOut->addWikiText( wfMsg( 'talkexists' ) );
 		} else {
-			$ot = Title::newFromURL( $oldtitle );
-			if ( ! $ot->isTalkPage() ) {
+			$oldTitle = Title::newFromText( $oldText );
+			if ( !$oldTitle->isTalkPage() ) {
 				$wgOut->addWikiText( wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) ) );
 			}
 		}

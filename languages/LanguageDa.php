@@ -1219,7 +1219,7 @@ for at flytte en side.",
 "newtitle"		=> "Til ny titel",
 "movepagebtn"	=> "Flyt side",
 "pagemovedsub"	=> "Flytning gennemført",
-"pagemovedtext" => "Siden \"[[$1]]\" er flyttet til \"[[$2]]\".",
+"pagemovedtext" => "Siden \"$1\" er flyttet til \"$2\".",
 "articleexists" => "En side med det navn eksisterer allerede, eller det
 navn du har valgt er ikke gyldigt. Vælg et andet navn.",
 "talkexists"	=> "Siden blev flyttet korrekt, men den tilhørende

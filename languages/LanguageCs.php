@@ -1172,7 +1172,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'newtitle'              => 'Na nový název',
 'movepagebtn'   => 'Přesunout stránku',
 'pagemovedsub'  => 'Úspěšně přesunuto',
-'pagemovedtext' => "Stránka „[[$1]]“ přesunuta na „[[$2]]“.
+'pagemovedtext' => "Stránka „$1“ přesunuta na „$2“.
 
 '''Nyní''' následujte odkaz [[Speciální:Whatlinkshere/$1]]: pokud se v seznamu vyskytnou nějaké přesměrovače, je třeba je upravit tak, aby ukazovaly na nový název ($2), jinak nebudou fungovat.",
 'articleexists' => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
