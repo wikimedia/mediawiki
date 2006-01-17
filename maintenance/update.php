@@ -32,7 +32,13 @@ if( !isset( $options['quick'] ) ) {
 	echo "\n";
 }
 
-do_all_updates();
+if ( isset( $options['doshared'] ) ) {
+	$doShared = true;
+} else {
+	$doShared = false;
+}
+
+do_all_updates( $doShared );
 
 print "Done.\n";
 

@@ -87,71 +87,25 @@ function readconsole( $prompt = '' ) {
 	}
 }
 
-function replacevars( $ins ) {
-	$varnames = array(
-		'wgDBserver', 'wgDBname', 'wgDBintlname', 'wgDBuser',
-		'wgDBpassword', 'wgDBsqluser', 'wgDBsqlpassword',
-		'wgDBadminuser', 'wgDBadminpassword', 'wgDBprefix'
-	);
-
-	foreach ( $varnames as $var ) {
-		if( isset( $GLOBALS[$var] ) ) {
-			$val = addslashes( $GLOBALS[$var] );
-			$ins = str_replace( '{$' . $var . '}', $val, $ins );
-			$ins = str_replace( '/*$' . $var . '*/`', '`' . $val, $ins );
-			$ins = str_replace( '/*$' . $var . '*/', $val, $ins );
-		}
-	}
-	return $ins;
-}
-
 #
 # Read and execute SQL commands from a file
 #
-function dbsource( $fname, $database = false ) {
-	$fp = fopen( $fname, 'r' );
-	if ( false === $fp ) {
-		print "Could not open \"{$fname}\".\n";
-		exit();
-	}
-
-	$cmd = "";
-	$done = false;
-
-	while ( ! feof( $fp ) ) {
-		$line = trim( fgets( $fp, 1024 ) );
-		$sl = strlen( $line ) - 1;
-
-		if ( $sl < 0 ) { continue; }
-		if ( '-' == $line{0} && '-' == $line{1} ) { continue; }
-
-		if ( ';' == $line{$sl} && ($sl < 2 || ';' != $line{$sl - 1})) {
-			$done = true;
-			$line = substr( $line, 0, $sl );
-		}
-
-		if ( '' != $cmd ) { $cmd .= ' '; }
-		$cmd .= "$line\n";
-
-		if ( $done ) {
-			$cmd = str_replace(';;', ";", $cmd);
-			$cmd = replacevars( $cmd );
-			if( $database )
-				$res = $database->query( $cmd, 'dbsource', true );
-			else
-				$res = mysql_query( $cmd );
-
-			if ( false === $res ) {
-				$err = mysql_error();
-				print "Query \"{$cmd}\" failed with error code \"$err\".\n";
-				exit();
-			}
-
-			$cmd = '';
-			$done = false;
+function dbsource( $fname, $db = false ) {
+	if ( !$db ) {
+		// Try $wgDatabase, which is used in the install and update scripts
+		global $wgDatabase;
+		if ( isset( $wgDatabase ) ) {
+			$db =& $wgDatabase;
+		} else {
+			// No? Well, we must be outside of those scripts, so use the standard method
+			$db =& wfGetDB( DB_MASTER );
 		}
 	}
-	fclose( $fp );
+	$error = $db->sourceFile( $fname );
+	if ( $error !== true ) {
+		print $error;
+		exit(1);
+	}
 }
 
 # Obsolete, use Database::fieldExists()
