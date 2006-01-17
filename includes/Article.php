@@ -1120,10 +1120,7 @@ class Article {
 	}
 
 	/**
-	 * Theoretically we could defer these whole insert and update
-	 * functions for after display, but that's taking a big leap
-	 * of faith, and we want to be able to report database
-	 * errors at some point.
+	 * Insert a new article into the database
 	 * @access private
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
