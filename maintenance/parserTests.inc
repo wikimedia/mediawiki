@@ -300,7 +300,7 @@ class ParserTest {
 			'wgServerName' => 'Britney Spears',
 			'wgLanguageCode' => 'en',
 			'wgContLanguageCode' => 'en',
-			'wgDBprefix' => 'parsertest',
+			'wgDBprefix' => 'parsertest_',
 			'wgDefaultUserOptions' => array(),
 
 			'wgLang' => new LanguageUtf8(),
@@ -330,7 +330,7 @@ class ParserTest {
 	# List of temporary tables to create, without prefix
 	# Some of these probably aren't necessary
 	function listTables() {
-		return array('user', 'page', 'revision', 'text',
+		$tables = array('user', 'page', 'revision', 'text',
 			'pagelinks', 'imagelinks', 'categorylinks', 'templatelinks',
 			'site_stats', 'hitcounter',
 			'ipblocks', 'image', 'oldimage',
@@ -339,6 +339,16 @@ class ParserTest {
 			'interwiki', 'querycache',
 			'objectcache'
 		);
+
+		// FIXME manually adding additional table for the tasks extension
+		// we probably need a better software wide system to register new
+		// tables.
+		global $wgExtensionFunctions;
+		if( in_array('wfTasksExtension' , $wgExtensionFunctions ) ) {
+			$tables[] = 'tasks';
+		}
+
+		return $tables;
 	}
 
 	/**
@@ -353,7 +363,7 @@ class ParserTest {
 		global $wgDBprefix;
 
 		# Make sure we don't mess with the live DB
-		if (!$setupDB && $wgDBprefix === 'parsertest') {
+		if (!$setupDB && $wgDBprefix === 'parsertest_') {
 			# oh teh horror
 			$GLOBALS['wgLoadBalancer'] = LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] );
 			$db =& wfGetDB( DB_MASTER );
