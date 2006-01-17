@@ -888,7 +888,7 @@ class User {
 				// Anons have a separate memcached space, since
 				// user records aren't kept for them.
 				global $wgDBname, $wgMemc;
-				$key = "$wgDBname:newtalk:ip:$value";
+				$key = "$wgDBname:newtalk:ip:$val";
 				$wgMemc->set( $key, $val ? 1 : 0 );
 			} else {
 				if( $val ) {
