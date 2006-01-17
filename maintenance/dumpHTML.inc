@@ -174,9 +174,8 @@ class DumpHTML {
 		$this->setupGlobals();
 
 		$dbr =& wfGetDB( DB_SLAVE );
-		$categorylinks = $dbr->tableName( 'categorylinks' );
 		print "Selecting categories...";
-		$sql = 'SELECT DISTINCT cl_to FROM categorylinks';
+		$sql = 'SELECT DISTINCT cl_to FROM ' . $dbr->tableName( 'categorylinks' );
 		$res = $dbr->query( $sql, $fname );
 
 		print "\nWriting " . $dbr->numRows( $res ).  " category pages\n";

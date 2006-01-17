@@ -62,6 +62,7 @@ Database:
   * More accurate list of used templates on the edit page
   * More reliable cache invalidation when templates outside the template
     namespace are changed
+* Respect database prefix in dumpHTML.inc
 
 Documentation:
 * (bug 3306) Document $wgLocalTZoffset
