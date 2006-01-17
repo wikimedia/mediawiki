@@ -23,6 +23,7 @@ define("MEDIAWIKI",true);
 if ( !isset( $optionsWithArgs ) ) {
 	$optionsWithArgs = array();
 }
+$optionsWithArgs[] = 'conf'; # For specifying the location of LocalSettings.php
 
 $self = array_shift( $argv );
 $self = __FILE__;
@@ -132,7 +133,11 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	}
 } else {
 	$wgWikiFarm = false;
-	$settingsFile = "$IP/LocalSettings.php";
+	if ( isset( $options['conf'] ) ) {
+		$settingsFile = $options['conf'];
+	} else {
+		$settingsFile = "$IP/LocalSettings.php";
+	}
 
 	if ( ! is_readable( $settingsFile ) ) {
 		print "A copy of your installation's LocalSettings.php\n" .
