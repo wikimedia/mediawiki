@@ -705,7 +705,7 @@ class Database {
 		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET $var = '" .
 		  $this->strencode( $value ) . "' WHERE ($cond)";
-		return (bool)$this->query( $sql, DB_MASTER, $fname );
+		return (bool)$this->query( $sql, $fname );
 	}
 
 	/**
@@ -870,7 +870,7 @@ class Database {
 	 */
 	function fieldExists( $table, $field, $fname = 'Database::fieldExists' ) {
 		$table = $this->tableName( $table );
-		$res = $this->query( 'DESCRIBE '.$table, DB_SLAVE, $fname );
+		$res = $this->query( 'DESCRIBE '.$table, $fname );
 		if ( !$res ) {
 			return NULL;
 		}
