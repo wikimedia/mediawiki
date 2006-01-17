@@ -1653,6 +1653,87 @@ class Database {
 	function encodeBlob($b) {
 		return $b;
 	}
+
+	/**
+	 * Read and execute SQL commands from a file. 
+	 * Returns true on success, error string on failure
+	 */
+	function sourceFile( $filename ) {
+		$fp = fopen( $filename, 'r' );
+		if ( false === $fp ) {
+			return "Could not open \"{$fname}\".\n";
+		}
+
+		$cmd = "";
+		$done = false;
+
+		while ( ! feof( $fp ) ) {
+			$line = trim( fgets( $fp, 1024 ) );
+			$sl = strlen( $line ) - 1;
+
+			if ( $sl < 0 ) { continue; }
+			if ( '-' == $line{0} && '-' == $line{1} ) { continue; }
+
+			if ( ';' == $line{$sl} && ($sl < 2 || ';' != $line{$sl - 1})) {
+				$done = true;
+				$line = substr( $line, 0, $sl );
+			}
+
+			if ( '' != $cmd ) { $cmd .= ' '; }
+			$cmd .= "$line\n";
+
+			if ( $done ) {
+				$cmd = str_replace(';;', ";", $cmd);
+				$cmd = $this->replaceVars( $cmd );
+				$res = $this->query( $cmd, 'dbsource', true );
+
+				if ( false === $res ) {
+					$err = $this->mLastError();
+					return "Query \"{$cmd}\" failed with error code \"$err\".\n";
+				}
+
+				$cmd = '';
+				$done = false;
+			}
+		}
+		fclose( $fp );
+		return true;
+	}
+
+	/**
+	 * Replace variables in sourced SQL
+	 */
+	function replaceVars( $ins ) {
+		$varnames = array(
+			'wgDBserver', 'wgDBname', 'wgDBintlname', 'wgDBuser',
+			'wgDBpassword', 'wgDBsqluser', 'wgDBsqlpassword',
+			'wgDBadminuser', 'wgDBadminpassword',
+		);
+
+		// Ordinary variables
+		foreach ( $varnames as $var ) {
+			if( isset( $GLOBALS[$var] ) ) {
+				$val = addslashes( $GLOBALS[$var] );
+				$ins = str_replace( '{$' . $var . '}', $val, $ins );
+				$ins = str_replace( '/*$' . $var . '*/`', '`' . $val, $ins );
+				$ins = str_replace( '/*$' . $var . '*/', $val, $ins );
+			}
+		}
+
+		// Table prefixes
+		$ins = preg_replace_callback( '/\/\*(?:\$wgDBprefix|_)\*\/([a-z_]*)/', 
+			array( &$this, 'tableNameCallback' ), $ins );
+		return $ins;
+	}
+
+	/**
+	 * Table name callback
+	 * @access private
+	 */
+	function tableNameCallback( $matches ) {
+		return $this->tableName( $matches[1] );
+	}
+
 }
 
 /**
@@ -1716,7 +1797,9 @@ class ResultWrapper {
 	function seek( $row ) {
 		$this->db->dataSeek( $this->result, $row );
 	}
+
 }
+
 
 #------------------------------------------------------------------------------
 # Global functions
