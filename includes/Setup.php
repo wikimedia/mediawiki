@@ -241,6 +241,8 @@ if( $wgLangClass == $wgContLangClass ) {
 	$wgLang = &$wgContLang;
 } else {
 	wfSuppressWarnings();
+	// Preload base classes to work around APC/PHP5 bug
+	include_once("$IP/languages/$wgLangClass.deps.php");
 	include_once("$IP/languages/$wgLangClass.php");
 	wfRestoreWarnings();
 

@@ -21,7 +21,8 @@ $skinDir = dir($IP.'/skins');
 
 # while code from www.php.net
 while (false !== ($file = $skinDir->read())) {
-	if(preg_match('/^([^.].*)\.php$/',$file, $matches)) {
+	// Skip non-PHP files, hidden files, and '.dep' includes
+	if(preg_match('/^([^.]*)\.php$/',$file, $matches)) {
 		$aSkin = $matches[1];
 		$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
 	}
@@ -115,6 +116,10 @@ class Skin extends Linker {
 
 		# Grab the skin class and initialise it. Each skin checks for PHPTal
 		# and will not load if it's not enabled.
+		wfSuppressWarnings();
+		// Preload base classes to work around APC/PHP5 bug
+		include_once( $IP.'/skins/'.$skinName.'.deps.php' );
+		wfRestoreWarnings();
 		require_once( $IP.'/skins/'.$skinName.'.php' );
 
 		# Check if we got if not failback to default skin

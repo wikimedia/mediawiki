@@ -3054,8 +3054,14 @@ class Language {
 
 }
 
+# FIXME: Merge all UTF-8 support code into Language base class.
+# We no longer support Latin-1 charset.
+require_once( 'LanguageUtf8.php' );
+
 # This should fail gracefully if there's not a localization available
 wfSuppressWarnings();
+// Preload base classes to work around APC/PHP5 bug
+include_once( 'Language' . str_replace( '-', '_', ucfirst( $wgLanguageCode ) ) . '.deps.php' );
 include_once( 'Language' . str_replace( '-', '_', ucfirst( $wgLanguageCode ) ) . '.php' );
 wfRestoreWarnings();
 

@@ -536,6 +536,10 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3350) Missing label for move talk page checkbox.
 * (bug 2108) Sort entries when using category browser
 * (bug 2393) Fix MIME type for Atom feeds ( application/rss+atom )
+* Add ".deps.php" include-file preloaders for some dynamically-loaded
+  language and skin classes. Should help with the broken base-class
+  problem under PHP 5 with APC as opcode cache. See details:
+  http://mail.wikipedia.org/pipermail/wikitech-l/2006-January/033660.html
 
 
 === Caveats ===
