@@ -1015,6 +1015,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix problem reported on mailing list where re-initialising stats didn't work (can't insert
   duplicate rows with the same id field)
 * (bug 1122) gray out 'older revision' when viewing first article revision.
+* Respect database prefix in dumpHTML.inc
 
 === Caveats ===
 
