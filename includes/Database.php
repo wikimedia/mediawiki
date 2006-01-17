@@ -1688,7 +1688,7 @@ class Database {
 				$res = $this->query( $cmd, 'dbsource', true );
 
 				if ( false === $res ) {
-					$err = $this->mLastError();
+					$err = $this->lastError();
 					return "Query \"{$cmd}\" failed with error code \"$err\".\n";
 				}
 
