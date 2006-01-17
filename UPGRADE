@@ -14,7 +14,8 @@ Basically, to upgrade a wiki you:
   great, but it should work to extract over the old files too. This may
   be easier if you have images etc in place and don't want to move them
   around, but remember to back up first!
-* Run the installer to upgrade the database schema (if necessary).
+* Run the installer to upgrade the database schema (if necessary,
+  see sections below for details).
 
 
 == IMPORTANT: Upgrading to 1.5 ==
