@@ -42,7 +42,7 @@ class ListredirectsPage extends QueryPage {
 			# Make a link to the destination page
 			$target = Title::newFromRedirect( $revision->getText() );
 			if( $target ) {
-				$targetLink = $skin->makeKnownLinkObj( $target );
+				$targetLink = $skin->makeLinkObj( $target );
 			} else {
 				/** @todo Put in some decent error display here */
 				$targetLink = '*';
