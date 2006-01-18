@@ -8,21 +8,33 @@
  * @subpackage Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
- 
+
+define( 'ACTION_REPORT', 0 );
+define( 'ACTION_DELETE', 1 );
+$options = array( 'delete','help' );
 require_once( 'commandLine.inc' );
-require_once( 'removeUnusedAccounts.inc' );
-echo( "REMOVE UNUSED ACCOUNTS\nThis script will delete all users who have made no edits.\n\n" );
+require_once( 'userFunctions.inc' );
+
+echo( "Remove Unused Accounts\nThis script will delete all users who have made no edits.\n\n" );
+
+# Check parameters
+if( @$options['help'] ) {
+	echo( "USAGE: removeUnusedAccounts.php [--help|--delete]\n\nThe first (default) account is ignored.\n\n" );
+	wfDie();
+} else {
+	$delete = @$options['delete'] ? true : false ;
+}
 
 $count = 0;
 $del = array();
 
 # Right, who needs deleting?
 $users = GetUsers();
-echo( "Found " . count( $users ) . " accounts.\n" );
+echo( "Found " . count( $users ) . " accounts.\n\n" );
 echo( "Locating inactive users..." );
 foreach( $users as $user ) {
 	if( $user != 1 ) {	# Don't *touch* the first user account, ever
-		if( CountEdits( $user ) == 0 ) {
+		if( CountEdits( $user, false ) == 0 ) {
 			# User has no edits, mark them for deletion
 			$del[] = $user;
 			$count++;
@@ -32,11 +44,17 @@ foreach( $users as $user ) {
 echo( "done.\n" );
 
 # Purge the inactive accounts we found
-echo( $count . " inactive accounts found. Deleting..." );
-DeleteUsers( $del );
-echo( "done.\n" );
-
-# We're done
-echo( "Complete.\n" );
+echo( $count . " inactive accounts found.\n" );
+if( $count > 0 ) {
+	if( $delete ) {
+		echo( "Deleting..." );
+		DeleteUsers( $del );
+		echo( "done.\n" );
+	} else {
+		echo "Run the script with the --delete option to remove them from the database.\n";
+	}
+}
+		
+echo( "\n" );
 
 ?>

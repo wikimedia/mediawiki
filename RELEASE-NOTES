@@ -1016,6 +1016,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   duplicate rows with the same id field)
 * (bug 1122) gray out 'older revision' when viewing first article revision.
 * Respect database prefix in dumpHTML.inc
+* Minor improvements to removeUnusedAccounts.php maintenance script
 
 === Caveats ===
 
