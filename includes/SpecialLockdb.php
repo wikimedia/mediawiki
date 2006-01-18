@@ -10,17 +10,21 @@
  */
 function wfSpecialLockdb() {
 	global $wgUser, $wgOut, $wgRequest;
-	if( $wgUser->isAllowed( 'siteadmin' ) ) {
-		$form = new DBLockForm();
-		if( $action == 'success' ) {
-			$form->showSuccess();
-		} else if( $action == 'submit' && wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-			$form->doSubmit();
-		} else {
-			$form->showForm();
-	} else {
-		$wgOut->permissionRequired( 'siteadmin' );
+
+	if ( ! $wgUser->isAllowed('siteadmin') ) {
+		$wgOut->developerRequired();
 		return;
+	}
+	$action = $wgRequest->getVal( 'action' );
+	$f = new DBLockForm();
+
+	if ( 'success' == $action ) {
+		$f->showSuccess();
+	} else if ( 'submit' == $action && $wgRequest->wasPosted() &&
+		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		$f->doSubmit();
+	} else {
+		$f->showForm( '' );
 	}
 }
 
