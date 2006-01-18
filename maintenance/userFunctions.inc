@@ -8,24 +8,28 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-# Count the number of edits the specified user has made
-function CountEdits( $user_id ) {
-	# We've *got* to pull this stuff off the master. If the user *has* made an edit, but it hasn't
-	# been replicated to the slaves yet, we'll end up falsely marking them as inactive. This could
-	# (and usually would) lead to their deletion.
-	$dbw =& wfGetDB( DB_MASTER );
-	$sql = 'SELECT COUNT(rev_id) AS count FROM ' . $dbw->tableName( 'revision' ) . ' WHERE rev_user = ' . $user_id;
-	$res = $dbw->query( $sql );
+/**
+ * Count the number of edits the specified user has made
+ *
+ * @param integer $user User ID
+ * @param bool $slave Whether or not a slave can be used
+ * @return integer
+ */
+function CountEdits( $user, $slave = true ) {
+	$dbw =& wfGetDB( $slave ? DB_SLAVE: DB_MASTER );
+	$res = $dbw->select( 'revision', 'COUNT(rev_id) AS count', array( 'rev_user' => $user ) );
 	$row = $dbw->fetchObject( $res );
 	return( $row->count );
 }
 
-# Return an array containing all valid user IDs
+/**
+ * Retrieve all valid user IDs
+ *
+ * @return array
+ */
 function GetUsers() {
-	# We're safe enough pulling this off a slave
 	$dbr =& wfGetDB( DB_SLAVE );
-	$sql = 'SELECT user_id FROM ' . $dbr->tableName( 'user' );
-	$res = $dbr->query( $sql );
+	$res = $dbr->select( 'user', 'user_id' );
 	$users = array();
 	while( $row = $dbr->fetchObject( $res ) ) {
 		$users[] = $row->user_id;
@@ -33,32 +37,37 @@ function GetUsers() {
 	return( $users );
 }
 
-# Resolve a username to a user ID
+/**
+ * Resolve a username to a user ID
+ *
+ * @param string $username Username
+ * @return mixed
+ */
 function GetUserID( $username ) {
 	$dbr =& wfGetDB( DB_SLAVE );
-	$sql = 'SELECT user_id FROM ' . $dbr->tableName( 'user' ) . ' WHERE user_name = "' . $username . '"';
-	$res = $dbr->query( $sql );
+	$res = $dbr->select( 'user', 'user_id', array( 'user_name' => '"' . $username . '"' ) );
 	if( $res !== false ) {
-		while( $row = $dbr->fetchObject( $res ) ) {
-			$ret = $row->user_id;
-		}
+		$row = $dbr->fetchObject( $res );
+		return( $row->user_id );
 	} else {
-		$ret = false;
+		return( false );
 	}
-	return( $ret );
 }
 
-# Delete one or more users
+/**
+ * Delete one or more users
+ *
+ * @param mixed $users Single integer or array of integers corresponding to user IDs
+ * @return bool
+ */
 function DeleteUsers( $users ) {
-	# Need a master, obviously
 	$dbw =& wfGetDB( DB_MASTER );
-	# We'll do it all in one go, for speed
 	$dbw->begin();
-	$table = $dbw->tableName( 'user' );
 	foreach( $users as $user ) {
-		$dbw->query( 'DELETE FROM ' . $table . ' WHERE user_id = ' . $user . ' LIMIT 1' );
+		$dbw->delete( 'user', array( 'user_id' => $user ) );
 	}
 	$dbw->commit();
+	return( true );
 }
 
 /**
