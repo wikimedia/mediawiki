@@ -4,5 +4,6 @@
 // cache on PHP 5, where cached code can break if the include order
 // changed on a subsequent page view.
 
+require_once( "LanguageZh_cn.php" );
 require_once( "LanguageZh_tw.php" );
 ?>
