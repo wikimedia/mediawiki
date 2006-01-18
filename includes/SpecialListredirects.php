@@ -25,8 +25,7 @@ class ListredirectsPage extends QueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'page' ) );
-		return( 'SELECT page_title AS title, page_namespace AS namespace, page_namespace AS value FROM ' . $page . ' WHERE page_is_redirect = 1' );
+		return( 'SELECT page_title AS title, page_namespace AS namespace, page_namespace AS value FROM ' . $dbr->tableName( 'page' ) . ' WHERE page_is_redirect = 1' );
 	}
 
 	function formatResult( $skin, $result ) {
