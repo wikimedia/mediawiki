@@ -827,16 +827,28 @@ class Title {
 	 * @return boolean
 	 * @access public
 	 */
-	function isProtected($action = '') {
+	function isProtected( $action = '' ) {
+		global $wgRestrictionLevels;
 		if ( -1 == $this->mNamespace ) { return true; }
-		if($action == 'edit' || $action == '') {
-			$a = $this->getRestrictions("edit");
-			if ( in_array( 'sysop', $a ) ) { return true; }
+				
+		if( $action == 'edit' || $action == '' ) {
+			$r = $this->getRestrictions( 'edit' );
+			foreach( $wgRestrictionLevels as $level ) {
+				if( in_array( $level, $r ) && $level != '' ) {
+					return( true );
+				}
+			}
 		}
-		if($action == 'move' || $action == '') {
-			$a = $this->getRestrictions("move");
-			if ( in_array( 'sysop', $a ) ) { return true; }
+		
+		if( $action == 'move' || $action == '' ) {
+			$r = $this->getRestrictions( 'move' );
+			foreach( $wgRestrictionLevels as $level ) {
+				if( in_array( $level, $r ) && $level != '' ) {
+					return( true );
+				}
+			}
 		}
+
 		return false;
 	}
 
