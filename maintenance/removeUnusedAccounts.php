@@ -34,7 +34,7 @@ echo( "Found " . count( $users ) . " accounts.\n\n" );
 echo( "Locating inactive users..." );
 foreach( $users as $user ) {
 	if( $user != 1 ) {	# Don't *touch* the first user account, ever
-		if( CountEdits( $user ) == 0 ) {
+		if( CountEdits( $user, false ) == 0 ) {
 			# User has no edits, mark them for deletion
 			$del[] = $user;
 			$count++;
@@ -45,13 +45,16 @@ echo( "done.\n" );
 
 # Purge the inactive accounts we found
 echo( $count . " inactive accounts found.\n" );
-if( ( $delete ) and ( $count > 0 ) ) {
-	echo( " Deleting..." );
-	DeleteUsers( $del );
-	echo( "done.\n" );
-} else {
-	echo "Run the script with the --delete option to remove them from the database.\n";
+if( $count > 0 ) {
+	if( $delete ) {
+		echo( "Deleting..." );
+		DeleteUsers( $del );
+		echo( "done.\n" );
+	} else {
+		echo "Run the script with the --delete option to remove them from the database.\n";
+	}
 }
+		
 echo( "\n" );
 
 ?>
