@@ -1909,7 +1909,7 @@ class Parser
 			case MAG_CURRENTTIME:
 				return $varCache[$index] = $wgContLang->time( wfTimestampNow(), false );
 			case MAG_CURRENTWEEK:
-				return $varCache[$index] = $wgContLang->formatNum( date('W') );
+				return $varCache[$index] = $wgContLang->formatNum( intval( date('W') ) );
 			case MAG_CURRENTDOW:
 				return $varCache[$index] = $wgContLang->formatNum( date('w') );
 			case MAG_NUMBEROFARTICLES:
