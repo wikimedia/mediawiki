@@ -395,7 +395,11 @@ class Revision {
 	 */
 	function getPrevious() {
 		$prev = $this->mTitle->getPreviousRevisionID( $this->mId );
-		return Revision::newFromTitle( $this->mTitle, $prev );
+		if ( $prev ) {
+			return Revision::newFromTitle( $this->mTitle, $prev );
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -403,7 +407,11 @@ class Revision {
 	 */
 	function getNext() {
 		$next = $this->mTitle->getNextRevisionID( $this->mId );
-		return Revision::newFromTitle( $this->mTitle, $next );
+		if ( $next ) {
+			return Revision::newFromTitle( $this->mTitle, $next );
+		} else {
+			return null;
+		}
 	}
 	/**#@-*/
 
