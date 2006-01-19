@@ -637,6 +637,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				} else {
 					print "<li>Granting user permissions...</li>\n";
 					dbsource( "../maintenance/users.sql", $wgDatabase );
+					$db->close();
 				}
 			}
 
