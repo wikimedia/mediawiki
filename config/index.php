@@ -627,10 +627,17 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				       'ss_total_views'   => 0,
 				       'ss_total_edits'   => 0,
 				       'ss_good_articles' => 0 ) );
-			# setting up the db user
+
+
+			# Set up the DB user if we (i) can and (ii) need to
 			if( $conf->Root ) {
-				print "<li>Granting user permissions...</li>\n";
-				dbsource( "../maintenance/users.sql", $wgDatabase );
+				$db = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
+				if( $db->isOpen() ) {
+					$db->close();
+				} else {
+					print "<li>Granting user permissions...</li>\n";
+					dbsource( "../maintenance/users.sql", $wgDatabase );
+				}
 			}
 
 			if( $conf->SysopName ) {
