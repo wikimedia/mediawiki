@@ -384,7 +384,7 @@ print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</t
 	$conf->DBprefix = importPost( "DBprefix" );
 	$conf->DBmysql5 = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
 	$conf->RootUser = importPost( "RootUser", "root" );
-	$conf->RootPW = importPost( "RootPW" );
+	$conf->RootPW = importPost( "RootPW", "-" );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
