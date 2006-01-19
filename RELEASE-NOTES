@@ -3,6 +3,23 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.6 ==
+
+January 19, 2006
+
+MediaWiki 1.5.6 is a security and bugfix maintenance release.
+
+A bug in edit comment formatting could send PHP into an infinite loop
+if certain malformed links were included. In most installations, this
+would cause the script to fail after PHP's 30-second failsafe timeout.
+
+Some improvements have been made to the installer which should make
+installation possible on a system with a broken MySQL "root" account.
+
+For several other minor fixes, see the complete changelog at the end
+of this file.
+
+
 == MediaWiki 1.5.5 ==
 
 January 5, 2006
