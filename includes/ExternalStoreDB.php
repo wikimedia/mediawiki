@@ -79,7 +79,7 @@ class ExternalStoreDB {
 
 		$ret =& $this->fetchBlob( $cluster, $id, $itemID );
 
-		if ( $itemID !== false ) {
+		if ( $itemID !== false && $ret !== false ) {
 			return $ret->getItem( $itemID );
 		}
 		return $ret;
@@ -104,7 +104,12 @@ class ExternalStoreDB {
 
 		$dbr =& $this->getSlave( $cluster );
 		$ret = $dbr->selectField( $this->getTable( $dbr ), 'blob_text', array( 'blob_id' => $id ) );
-		if( $itemID !== false ) {
+		if ( $ret === false ) {
+			// Try the master
+			$dbw =& $this->getMaster( $cluster );
+			$ret = $dbr->selectField( $this->getTable( $dbr ), 'blob_text', array( 'blob_id' => $id ) );
+		}
+		if( $itemID !== false && $ret !== false ) {
 			// Unserialise object; caller extracts item
 			$ret = unserialize( $ret );
 		}
