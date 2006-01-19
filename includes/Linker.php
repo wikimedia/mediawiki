@@ -732,9 +732,7 @@ class Linker {
 					$match[1] = substr($match[1], 1);
 				$thelink = $this->makeLink( $match[1], $text, "", $trail );
 			}
-			# Quote backreferences, then run preg_replace
-			$thelink = strtr( $thelink, array( "\\" => "\\\\", '$' => "\\$" ) );
-			$comment = preg_replace( $linkRegexp, $thelink, $comment, 1 );
+			$comment = preg_replace( $linkRegexp, wfRegexReplacement( $thelink ), $comment, 1 );
 		}
 		wfProfileOut( $fname );
 		return $comment;
