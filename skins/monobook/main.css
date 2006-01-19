@@ -5,7 +5,7 @@
 **
 ** Loosely based on http://www.positioniseverything.net/ordered-floats.html by Big John
 ** and the Plone 2.0 styles, see http://plone.org/ (Alexander Limi,Joe Geldart & Tom Croucher,
-** Michael Zeltner and Geir BÃ¦kholt)
+** Michael Zeltner and Geir Býkholt)
 ** All you guys rock :)
 */
 
@@ -841,7 +841,7 @@ li#pt-login {
 #p-cactions {
 	position: absolute;
 	top: 1.3em;
-	left: 11.5em;
+	left: 10.5em;
 	margin: 0;
 	white-space: nowrap;
 	width: 76%;
@@ -866,10 +866,9 @@ li#pt-login {
 	padding: 0 0 .1em 0;
 	margin: 0 .3em 0 0;
 	overflow: visible;
-	background: white;
+
 }
 #p-cactions li.selected {
-	border-color: #fabd23;
 	padding: 0 0 .2em 0;
 	font-weight: bold;
 }
