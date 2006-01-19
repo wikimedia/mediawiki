@@ -1024,16 +1024,22 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 
 === Changes since 1.5.5 ===
 
-* (bug 4258) When installing under IIS, $wgArticlePath = "$wgScript?title=$1" should be set
+* (bug 4258) When installing under IIS, $wgArticlePath = "$wgScript?title=$1" 
+  should be set
 * (bug 4510) Correct Barnes & Noble bookstore URLs
 * (bug 4504) Use site language for namespace name resolution
-* Installer fixes from HEAD backported; now uses a more sensible method of establishing which
-  mySQL user to use, which clears up bug 921 et al. Minor changes to installer.
-* Fix problem reported on mailing list where re-initialising stats didn't work (can't insert
-  duplicate rows with the same id field)
+* Installer fixes from HEAD backported; now uses a more sensible method of 
+  establishing which mySQL user to use, which clears up bug 921 et al. Minor 
+  changes to installer.
+* Fix problem reported on mailing list where re-initialising stats didn't work 
+  (can't insert duplicate rows with the same id field)
 * (bug 1122) gray out 'older revision' when viewing first article revision.
 * Respect database prefix in dumpHTML.inc
 * Minor improvements to removeUnusedAccounts.php maintenance script
+* Fix for single-digit week numbers from {{CURRENTWEEK}}, broken by PHP 4.4.1
+* Removed read-only check from Database::query()
+* Added --conf option to command line scripts, allowing the user to specify a 
+  different LocalSettings.php.
 
 === Caveats ===
 
