@@ -449,31 +449,28 @@ class Revision {
 			$text=ExternalStore::fetchFromURL($url);
 		}
 
-		if( in_array( 'gzip', $flags ) ) {
-			# Deal with optional compression of archived pages.
-			# This can be done periodically via maintenance/compressOld.php, and
-			# as pages are saved if $wgCompressRevisions is set.
-			$text = gzinflate( $text );
-		}
-
-		if( in_array( 'object', $flags ) ) {
-			# Generic compressed storage
-			$obj = unserialize( $text );
-
-			# Bugger, corrupted my test database by double-serializing
-			if ( !is_object( $obj ) ) {
-				$obj = unserialize( $obj );
+		// If the text was fetched without an error, convert it
+		if ( $text !== false ) {
+			if( in_array( 'gzip', $flags ) ) {
+				# Deal with optional compression of archived pages.
+				# This can be done periodically via maintenance/compressOld.php, and
+				# as pages are saved if $wgCompressRevisions is set.
+				$text = gzinflate( $text );
 			}
 
-			$text = $obj->getText();
-		}
+			if( in_array( 'object', $flags ) ) {
+				# Generic compressed storage
+				$obj = unserialize( $text );
+				$text = $obj->getText();
+			}
 
-		global $wgLegacyEncoding;
-		if( $wgLegacyEncoding && !in_array( 'utf-8', $flags ) ) {
-			# Old revisions kept around in a legacy encoding?
-			# Upconvert on demand.
-			global $wgInputEncoding, $wgContLang;
-			$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding . '//IGNORE', $text );
+			global $wgLegacyEncoding;
+			if( $wgLegacyEncoding && !in_array( 'utf-8', $flags ) ) {
+				# Old revisions kept around in a legacy encoding?
+				# Upconvert on demand.
+				global $wgInputEncoding, $wgContLang;
+				$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding . '//IGNORE', $text );
+			}
 		}
 		wfProfileOut( $fname );
 		return $text;
