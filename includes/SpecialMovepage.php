@@ -17,7 +17,7 @@ function wfSpecialMovepage( $par = null ) {
 	global $wgUser, $wgOut, $wgRequest, $action, $wgOnlySysopMayMove;
 
 	# check rights. We don't want newbies to move pages to prevents possible attack
-	if ( $wgUser->isAnon() or $wgUser->isBlocked() or ($wgOnlySysopMayMove and $wgUser->isNewbie())) {
+	if ( !$wgUser->isAllowed( 'move' ) or $wgUser->isBlocked() or ($wgOnlySysopMayMove and $wgUser->isNewbie())) {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
 		return;
 	}
@@ -138,9 +138,9 @@ class MovePageForm {
 			</td>
 		</tr>
 		<tr>
-			<td align='right'>{$movereason}:</td>
-			<td align='left'>
-				<input type='text' size='40' name=\"wpReason\" value=\"{$encReason}\" />
+			<td align='right' valign='top'><br />{$movereason}:</td>
+			<td align='left' valign='top'><br />
+				<textarea cols='60' rows='2' name='wpReason' id='wpReason'>{$encReason}</textarea>
 			</td>
 		</tr>" );
 
@@ -148,9 +148,9 @@ class MovePageForm {
 			$wgOut->addHTML( "
 		<tr>
 			<td align='right'>
-				<input type='checkbox' name=\"wpMovetalk\"{$moveTalkChecked} value=\"1\" />
+				<input type='checkbox' id=\"wpMovetalk\" name=\"wpMovetalk\"{$moveTalkChecked} value=\"1\" />
 			</td>
-			<td>{$movetalk}</td>
+			<td><label for=\"wpMovetalk\">{$movetalk}</label></td>
 		</tr>" );
 		}
 		$wgOut->addHTML( "

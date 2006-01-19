@@ -159,6 +159,9 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	$talk = $wgContLang->getNsText( NS_TALK );
 	$mwtalk = $wgContLang->getNsText( NS_MEDIAWIKI_TALK );
 	
+	# Merge these into a single transaction for speed
+	$dbw->begin();
+
 	# Process each message
 	foreach ( $sortedArray as $key => $enMsg ) {
 		if ( $key == '' ) {
@@ -199,6 +202,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 			$article->updateRevisionOn( $dbw, $revision );
 		}
 	}
+	$dbw->commit();
 
 	# Clear the relevant memcached key
 	print 'Clearing message cache...';

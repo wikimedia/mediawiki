@@ -373,6 +373,10 @@ class Linker {
 		global $wgContLang, $wgUser, $wgThumbLimits;
 		
 		$img   = new Image( $nt );
+		if ( !$img->allowInlineDisplay() ) {
+			return $this->makeKnownLinkObj( $nt );
+		}
+
 		$url   = $img->getViewURL();
 		$prefix = $postfix = '';
 		
@@ -406,7 +410,7 @@ class Linker {
 					 $wopt = User::getDefaultOption( 'thumbsize' );
 				}
 				
-				$width = $wgThumbLimits[$wopt];
+				$width = min( $img->getWidth(), $wgThumbLimits[$wopt] );
 			}
 			
 			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
@@ -591,7 +595,7 @@ class Linker {
 	 * @access public
 	 * @todo Handle invalid or missing images better.
 	 */
-	function makeMediaLinkObj( $title, $text = '', $nourl=false ) {
+	function makeMediaLinkObj( $title, $text = '' ) {
 		if( is_null( $title ) ) {
 			### HOTFIX. Instead of breaking, return empty string.
 			return $text;
@@ -600,9 +604,6 @@ class Linker {
 			$img  = new Image( $title );
 			if( $img->exists() ) {
 				$url  = $img->getURL();
-				if( $nourl ) {
-					$url = str_replace( "http://", "http-noparse://", $url );
-				}
 				$class = 'internal';
 			} else {
 				$upload = Title::makeTitle( NS_SPECIAL, 'Upload' );
@@ -716,6 +717,8 @@ class Linker {
 					$match[1] = substr($match[1], 1);
 				$thelink = $this->makeLink( $match[1], $text, "", $trail );
 			}
+			# Quote backreferences, then run preg_replace
+			$thelink = strtr( $thelink, array( "\\" => "\\\\", '$' => "\\$" ) );
 			$comment = preg_replace( $linkRegexp, $thelink, $comment, 1 );
 		}
 		wfProfileOut( $fname );

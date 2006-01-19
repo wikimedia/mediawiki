@@ -1,4 +1,4 @@
-#!/usr/bin/evn perl
+#!/usr/bin/env perl
 # Takes STDIN and converts Converts hexadecimal, decimal and named HTML
 # entities to their respective literals.
 #

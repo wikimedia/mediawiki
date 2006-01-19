@@ -1,5 +1,4 @@
 <?php
-# $Header$
 #
 # Print SQL to insert namespace names into database.
 # This source code is in the public domain.
