@@ -816,8 +816,10 @@ class Article {
 				$t = $this->mTitle->getPrefixedText();
 				if( $oldid ) {
 					$t .= ',oldid='.$oldid;
+					$text = wfMsg( 'missingarticle', $t );
+				} else {
+					$text = wfMsg( 'noarticletext', $t );
 				}
-				$text = wfMsg( 'missingarticle', $t );
 			}
 
 			# Another whitelist check in case oldid is altering the title
