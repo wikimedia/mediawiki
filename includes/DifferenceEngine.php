@@ -325,6 +325,7 @@ CONTROL;
 			$difftext = $wgMemc->get( $key );
 			if ( $difftext ) {
 				wfIncrStats( 'diff_cache_hit' );
+				$difftext .= "\n<!-- diff cache key $key -->\n"; 
 				return $difftext;
 			}
 		}
@@ -479,9 +480,15 @@ CONTROL;
 		}
 		if ( $this->mOldRev ) {
 			$this->mOldtext = $this->mOldRev->getText();
+			if ( $this->mOldtext === false ) {
+				return false;
+			}
 		}
 		if ( $this->mNewRev ) {
 			$this->mNewtext = $this->mNewRev->getText();
+			if ( $this->mNewtext === false ) {
+				return false;
+			}
 		}
 		return true;
 	}
