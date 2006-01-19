@@ -63,6 +63,7 @@ Database:
   * More reliable cache invalidation when templates outside the template
     namespace are changed
 * Respect database prefix in dumpHTML.inc
+* Removed read-only check from Database::query()
 
 Documentation:
 * (bug 3306) Document $wgLocalTZoffset
@@ -128,6 +129,8 @@ Installer:
 Maintenance:
 * Fix problem reported on mailing list where re-initialising stats didn't work (can't insert
   duplicate rows with the same id field)
+* Added --conf option to command line scripts, allowing the user to specify a 
+  different LocalSettings.php.
 
 i18n / Languages:
 * Partial support for Basque language (from wikipedia and meta)
