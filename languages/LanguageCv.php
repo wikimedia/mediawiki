@@ -153,6 +153,31 @@ class LanguageCv extends LanguageRu {
 		return isset($wgAllMessagesCv[$key]) ? $wgAllMessagesCv[$key] : parent::getMessage($key);
 	}
 
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+
+		global $wgUser;
+
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+
+		$datePreference = $this->dateFormat( $format );
+		if( $datePreference == MW_DATE_DEFAULT ) {
+			$datePreference = MW_DATE_YMD;
+		}
+
+		$month = $this->formatMonth( substr( $ts, 4, 2 ), $datePreference );
+		$day = $this->formatDay( substr( $ts, 6, 2 ), $datePreference );
+		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
+
+		switch( $datePreference ) {
+			case MW_DATE_DMY: return "$day $month $year";
+			case MW_DATE_YMD: return "$year, $month, $day";
+			case MW_DATE_ISO: return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+			default: return "$year, $month, $day";
+		}
+
+
+	}
+
 	//only for quotation mark
 	function linkPrefixExtension() { return true; }
 }
