@@ -8,6 +8,8 @@ if( php_sapi_name() != 'cli' ) {
 error_reporting( E_ALL );
 define( "MEDIAWIKI", true );
 
+set_include_path( get_include_path() . PATH_SEPARATOR . 'PHPUnit' );
+set_include_path( get_include_path() . PATH_SEPARATOR . '..' );
 require_once( 'PHPUnit.php' );
 
 $testOptions = array(
@@ -33,6 +35,7 @@ $tests = array(
 	'SearchMySQL4Test',
 	'ArticleTest',
 	'SanitizerTest',
+	'CtypeTest'
 	);
 foreach( $tests as $test ) {
 	require_once( $test . '.php' );
