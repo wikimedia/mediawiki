@@ -368,8 +368,8 @@ parent class in order maintain consistency across languages.
 'linktrail'		=> '/^([a-z]+)(.*)$/sD',
 'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'		=> 'Main Page',
-'mainpagetext'	=> 'Wiki software successfully installed.',
-'mainpagedocfooter' => 'Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface] and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide] for usage and configuration help.',
+'mainpagetext'	=> "'''MediaWiki has been successfully installed.'''",
+'mainpagedocfooter' => "Consult the [http://www.mediawiki.org/wiki/Help:Configuration_settings configuration settings list] and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for information on customising and using the wiki software.",
 
 'portal'		=> 'Community portal',
 'portal-url'	=> 'Project:Community Portal',
