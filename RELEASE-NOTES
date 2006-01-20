@@ -544,6 +544,10 @@ fully support the editing toolbar, but was found to be too confusing.
   problem under PHP 5 with APC as opcode cache. See details:
   http://mail.wikipedia.org/pipermail/wikitech-l/2006-January/033660.html
 * Small changes to tabs in Monobook skin c/o Chris Ware
+* (bug 4679) Work around buggy basename() function in PHP5, which breaks
+  uploads of files starting with multibyte characters on Linux.
+  wfBaseName() doesn't suffer this bug, and understands backslash on
+  both Unix and Windows.
 
 
 === Caveats ===

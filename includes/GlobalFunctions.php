@@ -1791,5 +1791,23 @@ function wfRegexReplacement( $string ) {
 	return $string;
 }
 
+/**
+ * Return the final portion of a pathname.
+ * Reimplemented because PHP5's basename() is buggy with multibyte text.
+ * http://bugs.php.net/bug.php?id=33898
+ *
+ * PHP's basename() only considers '\' a pathchar on Windows and Netware.
+ * We'll consider it so always, as we don't want \s in our Unix paths either.
+ * 
+ * @param string $path
+ * @return string
+ */
+function wfBaseName( $path ) {
+	if( preg_match( '#([^/\\\\]*)[/\\\\]*$#', $path, $matches ) ) {
+		return $matches[1];
+	} else {
+		return '';
+	}
+}
 
 ?>

@@ -171,9 +171,9 @@ class UploadForm {
 
 		# Chop off any directories in the given filename
 		if ( $this->mDestFile ) {
-			$basename = basename( $this->mDestFile );
+			$basename = wfBaseName( $this->mDestFile );
 		} else {
-			$basename = basename( $this->mOname );
+			$basename = wfBaseName( $this->mOname );
 		}
 
 		/**

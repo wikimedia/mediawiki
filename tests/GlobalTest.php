@@ -178,6 +178,32 @@ class GlobalTest extends PHPUnit_TestCase {
 			wfTimestamp( TS_DB, '2001-01-15 12:34:56' ),
 			'TS_DB to TS_DB' );
 	}
+	
+	function testBasename() {
+		$sets = array(
+			'' => '',
+			'/' => '',
+			'\\' => '',
+			'//' => '',
+			'\\\\' => '',
+			'a' => 'a',
+			'aaaa' => 'aaaa',
+			'/a' => 'a',
+			'\\a' => 'a',
+			'/aaaa' => 'aaaa',
+			'\\aaaa' => 'aaaa',
+			'/aaaa/' => 'aaaa',
+			'\\aaaa\\' => 'aaaa',
+			'\\aaaa\\' => 'aaaa',
+			'/mnt/upload3/wikipedia/en/thumb/8/8b/Zork_Grand_Inquisitor_box_cover.jpg/93px-Zork_Grand_Inquisitor_box_cover.jpg' => '93px-Zork_Grand_Inquisitor_box_cover.jpg',
+			'C:\\Progra~1\\Wikime~1\\Wikipe~1\\VIEWER.EXE' => 'VIEWER.EXE',
+			'Östergötland_coat_of_arms.png' => 'Östergötland_coat_of_arms.png',
+			);
+		foreach( $sets as $from => $to ) {
+			$this->assertEquals( $to, wfBaseName( $from ),
+				"wfBaseName('$from') => '$to'");
+		}
+	}
 
 	/* TODO: many more! */
 }
