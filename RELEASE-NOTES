@@ -548,6 +548,7 @@ fully support the editing toolbar, but was found to be too confusing.
   uploads of files starting with multibyte characters on Linux.
   wfBaseName() doesn't suffer this bug, and understands backslash on
   both Unix and Windows.
+* (bug 3603) headscripts variable not hooked up to MonoBook skin
 
 
 === Caveats ===
