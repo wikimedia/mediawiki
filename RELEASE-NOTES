@@ -1041,6 +1041,10 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Added --conf option to command line scripts, allowing the user to specify a 
   different LocalSettings.php.
 
+=== Changes since 1.5.6 ===
+
+* Default main page content improved per bug 4690
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
