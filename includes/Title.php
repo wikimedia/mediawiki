@@ -395,7 +395,7 @@ class Title {
 
 		if ($wgInterwikiCache) {
 			wfProfileOut( $fname );
-			return $this->getInterwikiCached( $key );
+			return Title::getInterwikiCached( $key );
 		}
 
 		$s = $wgMemc->get( $k );
@@ -442,7 +442,7 @@ class Title {
 		global $wgDBname, $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
 		global $wgTitleInterwikiCache;
 		static $db, $site;
-		if (!db)
+		if (!$db)
 			$db=dba_open($wgInterwikiCache,'r','cdb');
 		/* Resolve site name */
 		if ($wgInterwikiScopes>=3 and !$site) {
