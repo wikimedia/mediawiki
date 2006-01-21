@@ -379,7 +379,8 @@ class Title {
 	 * @access public
 	 */
 	function getInterwikiLink( $key )  {
-		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgInterwikiCache;
+		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
+		global $wgInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
 
 		wfProfileIn( $fname );
@@ -394,7 +395,7 @@ class Title {
 
 		if ($wgInterwikiCache) {
 			wfProfileOut( $fname );
-			return getInterwikiCached( $key );
+			return $this->getInterwikiCached( $key );
 		}
 
 		$s = $wgMemc->get( $k );
