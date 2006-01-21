@@ -551,6 +551,8 @@ fully support the editing toolbar, but was found to be too confusing.
   both Unix and Windows.
 * (bug 3603) headscripts variable not hooked up to MonoBook skin
 * Allow local cdb-based interwiki cache
+* Use the "block", not the "protect" permission, when determining whether to
+  show a "block user" link in the toolbox
 
 
 === Caveats ===
