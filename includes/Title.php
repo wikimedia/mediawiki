@@ -442,6 +442,7 @@ class Title {
 		global $wgDBname, $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
 		global $wgTitleInterwikiCache;
 		static $db, $site;
+
 		if (!$db)
 			$db=dba_open($wgInterwikiCache,'r','cdb');
 		/* Resolve site name */
@@ -457,7 +458,7 @@ class Title {
 		}
 		if ($value=='' and $wgInterwikiScopes>=2) { 
 			/* try globals */
-			$value = dba_fetch("__globals:{$key}", $db);
+			$value = dba_fetch("__global:{$key}", $db);
 		}
 		if ($value=='undef')
 			$value='';
@@ -468,7 +469,7 @@ class Title {
 		if ($value!='') {
 			list($local,$url)=explode(' ',$value,2);
 			$s->iw_url=$url;
-			$s->iw_local=$local;
+			$s->iw_local=(int)$local;
 		}
 		$wgTitleInterwikiCache[$wgDBname.':interwiki:'.$key] = $s;
 		return $s->iw_url;
