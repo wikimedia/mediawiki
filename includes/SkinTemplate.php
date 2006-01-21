@@ -834,7 +834,7 @@ class SkinTemplate extends Skin {
 			$nav_urls['contributions'] = array(
 				'href' => $this->makeSpecialUrl('Contributions/' . $this->mTitle->getText() )
 			);
-			if ( $wgUser->isAllowed( 'protect' ) )
+			if ( $wgUser->isAllowed( 'block' ) )
 				$nav_urls['blockip'] = array(
 					'href' => $this->makeSpecialUrl( 'Blockip/' . $this->mTitle->getText() )
 				);
