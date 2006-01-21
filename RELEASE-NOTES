@@ -550,6 +550,7 @@ fully support the editing toolbar, but was found to be too confusing.
   wfBaseName() doesn't suffer this bug, and understands backslash on
   both Unix and Windows.
 * (bug 3603) headscripts variable not hooked up to MonoBook skin
+* Allow local cdb-based interwiki cache
 
 
 === Caveats ===

@@ -379,7 +379,7 @@ class Title {
 	 * @access public
 	 */
 	function getInterwikiLink( $key )  {
-		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
+		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
 
 		wfProfileIn( $fname );
@@ -390,6 +390,11 @@ class Title {
 		if( array_key_exists( $k, $wgTitleInterwikiCache ) ) {
 			wfProfileOut( $fname );
 			return $wgTitleInterwikiCache[$k]->iw_url;
+		}
+
+		if ($wgInterwikiCache) {
+			wfProfileOut( $fname );
+			return getInterwikiCached( $key );
 		}
 
 		$s = $wgMemc->get( $k );
@@ -423,7 +428,50 @@ class Title {
 		wfProfileOut( $fname );
 		return $s->iw_url;
 	}
-
+	
+	/**
+	 * Fetch interwiki prefix data from local cache in constant database
+	 *
+	 * More logic is explained in DefaultSettings
+	 *
+	 * @return string URL of interwiki site
+	 * @access public
+	 */
+	function getInterwikiCached( $key ) {
+		global $wgDBname, $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
+		global $wgTitleInterwikiCache;
+		static $db, $site;
+		if (!db)
+			$db=dba_open($wgInterwikiCache,'r','cdb');
+		/* Resolve site name */
+		if ($wgInterwikiScopes>=3 and !$site) {
+			$site = dba_fetch("__sites:{$wgDBname}", $db);
+			if ($site=="")
+				$site = $wgInterwikiFallbackSite;
+		}
+		$value = dba_fetch("{$wgDBname}:{$key}", $db);
+		if ($value=='' and $wgInterwikiScopes>=3) { 
+			/* try site-level */
+			$value = dba_fetch("_{$site}:{$key}", $db);
+		}
+		if ($value=='' and $wgInterwikiScopes>=2) { 
+			/* try globals */
+			$value = dba_fetch("__globals:{$key}", $db);
+		}
+		if ($value=='undef')
+			$value='';
+		$s = (object)false;
+		$s->iw_url = '';
+		$s->iw_local = 0;
+		$s->iw_trans = 0;
+		if ($value!='') {
+			list($local,$url)=explode(' ',$value,2);
+			$s->iw_url=$url;
+			$s->iw_local=$local;
+		}
+		$wgTitleInterwikiCache[$wgDBname.':interwiki:'.$key] = $s;
+		return $s->iw_url;
+	}
 	/**
 	 * Determine whether the object refers to a page within
 	 * this project.
