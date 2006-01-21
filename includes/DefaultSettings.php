@@ -696,6 +696,10 @@ $wgDebugRawPage         = false; # Avoid overlapping debug entries by leaving ou
 $wgDebugComments        = false;
 $wgReadOnly             = false;
 $wgLogQueries           = false;
+
+/**
+ * Write SQL queries to the debug log
+ */
 $wgDebugDumpSql         = false;
 
 /**
