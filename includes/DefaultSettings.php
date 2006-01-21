@@ -544,6 +544,11 @@ $wgMemCachedDebug   = false;
  */
 $wgLocalMessageCache = false;
 
+/**
+ * Directory for compiled constant message array databases
+ * WARNING: turning anything on will just break things, aaaaaah!!!!
+ */
+$wgCachedMessageArrays = false;
 
 # Language settings
 #
