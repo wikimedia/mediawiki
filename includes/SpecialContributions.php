@@ -229,7 +229,7 @@ function wfSpecialContributions( $par = null ) {
 			if( $wgUser->isAllowed( 'block' ) ) {
 				$ul .= ' | ' . $sk->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . $nt->getText() ), wfMsgHtml( 'blocklink' ) );
 			}
-			$ul .= ' | ' . $sk->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), LogPage::logName( 'block' ), 'type=block&page=' . $nt->getPrefixedText() );
+			$ul .= ' | ' . $sk->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), LogPage::logName( 'block' ), 'type=block&page=' . urlencode( $nt->getPrefixedText() ) );
 		}
 		$ul .= ')';
 	}
