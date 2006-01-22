@@ -555,6 +555,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Use the "block", not the "protect" permission, when determining whether to
   show a "block user" link in the toolbox
 * Fix backup dump text prefetch for XMLReader constant changes in PHP 5.1
+* Suppress useless percentage indicator on output from 7za during dumps
 
 
 === Caveats ===
