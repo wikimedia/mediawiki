@@ -292,7 +292,7 @@ Query: $2",
 ocorrer esta situação, por favor consulte [[Project:Protected page]].
 
 Pode ver e copiar o código fonte desta página:",
-'sqlhidden' => '(Query SQL escondida)',
+'sqlhidden' => '(Consulta SQL escondida)',
 
 # Login and logout pages
 #
@@ -331,8 +331,8 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'badretype'             => 'As palavras-chaves que introduziu não são iguais.',
 'userexists'    => 'O nome de utilizador que introduziu já existe. Por favor, escolha um nome diferente.',
 'youremail'             => 'Email *',
-'username'              => 'Utilizador: ',
-'uid'                   => 'Identificação: ',
+'username'              => 'Nome de utilizador:',
+'uid'                   => 'Número de identificação:',
 'yourrealname'          => 'Nome verdadeiro *',
 'yourlanguage'  => 'Idioma:',
 'yourvariant'  => 'Variante',
@@ -344,8 +344,8 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'prefs-help-realname'   => '* Nome verdadeiro (opcional): caso decida indicar, este será utilizado para lhe dar atributo do seu trabalho.',
 'loginerror'    => 'Erro de autentificação',
 'prefs-help-email'      => '* Email (opcional): Permite às pessoas que entrem em contacto consigo sem que tenha que revelar o seu endereço de e-mail a elas.',
-'nocookiesnew'  => "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
-'nocookieslogin'        => "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
+'nocookiesnew'  => "A conta de utilizador foi criada, mas você não foi ligado à conta. Tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active, depois autentifique-se com o seu nome de utilizador e a sua palavra-chave.",
+'nocookieslogin'        => "Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active e tente novamente.",
 'noname'                => 'Não colocou um nome de utilizador válido.',
 'loginsuccesstitle' => 'Login bem sucedido',
 'loginsuccess'  => "'''Encontra-se agora ligado à {{SITENAME}} como \"$1\"'''.",
@@ -445,7 +445,7 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 'usercsspreview' => "'''Lembre-se que está apenas a prever o seu CSS particular, e que ainda não foi salvo!'''",
 'userjspreview' => "'''Lembre-se que está apenas a testar/prever o seu JavaScript particular, e que ainda não foi salvo!'''",
 'updated'               => '(Actualizado)',
-'note'                  => '<strong>Nota:</strong> ',
+'note'                  => '<strong>Nota:</strong>',
 'previewnote'   => '<strong>Isto é apenas uma previsão, as modificações ainda não foram salvas!</strong>',
 'session_fail_preview' => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
@@ -546,9 +546,9 @@ e $3 artigos com o texto procurado.",
 que não são indexadas, ou pela especificação de mais de um termo (somente as páginas contendo todos os termos aparecerão nos resultados).",
 'powersearch' => 'Pesquisa',
 'powersearchtext' => "
-Procurar nos namespaces :<br />
+Pesquisar nos domínios:<br />
 $1<br />
-$2 Lista redirecciona   Procurar por $3 $9",
+$2 Lista redirecciona &nbsp; Pesquisar por $3 $9",
 "searchdisabled" => 'O motor de pesquisa na {{SITENAME}} foi desactivado por motivos de desempenho. Enquanto isso pode fazer a sua pesquisa através do Google ou do Yahoo!.<br />
 Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desactualizados.',
 
@@ -569,7 +569,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'datetime'              => 'Data e hora',
 'math_failure'          => 'Falhou ao verificar gramática',
 'math_unknown_error'    => 'Erro desconhecido',
-'math_unknown_function' => 'Função desconhecida ',
+'math_unknown_function' => 'Função desconhecida',
 'math_lexing_error'     => 'Erro léxico',
 'math_syntax_error'     => 'Erro de sintaxe',
 'math_image_error'      => 'Erro na conversão para PNG; Verifique a instalação do latex, dvips, gs e convert',
@@ -610,22 +610,22 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 
 # switching pan
 'groups-lookup-group' => 'Gerir privilégios de grupo',
-'groups-group-edit' => 'Grupos existentes: ',
+'groups-group-edit' => 'Grupos existentes:',
 'editgroup' => 'Editar Grupo',
 'addgroup' => 'Adicionar Grupo',
 
 'userrights-lookup-user' => 'Gerir grupos de utilizadores',
-'userrights-user-editname' => 'Intruduza um nome de utilizador: ',
+'userrights-user-editname' => 'Intruduza um nome de utilizador:',
 'editusergroup' => 'Editar Grupos de Utilizadores',
 
 # group editing
 'groups-editgroup'          => 'Editar grupo',
 'groups-addgroup'           => 'Adicionar grupo',
-'groups-editgroup-preamble' => 'If the name or description starts with a colon, the
-remainder will be treated as a message name, and hence the text will be localised
-using the MediaWiki namespace',
-'groups-editgroup-name'     => 'Nome do grupo: ',
-'groups-editgroup-description' => 'Group description (max 255 characters):<br />',
+'groups-editgroup-preamble' => 'Caso o nome ou a descrição comece com dois pontos, o
+restante será tratado como o nome de uma mensagem de sistema, e como resultado o texto será localizado
+utilizando o domínio MediaWiki',
+'groups-editgroup-name'     => 'Nome do grupo:',
+'groups-editgroup-description' => 'Descrição do grupo (máximo de 255 caracteres):<br />',
 'savegroup'                 => 'Salvar Grupo',
 'groups-tableheader'        => 'ID || Nome || Descrição || Direitos',
 'groups-existing'           => 'Grupos existentes',
@@ -668,7 +668,7 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'rcnote'                => "Abaixo estão as últimas <strong>$1</strong> alterações nos últimos <strong>$2</strong> dias.",
 'rcnotefrom'    => "Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).",
 'rclistfrom'    => "Mostrar as novas alterações a partir de $1",
-'showhideminor' => "$1 edições menores | $2 robôs | $3 utilizadores autentificados | $4 edições verificadas ",
+'showhideminor' => "$1 edições menores | $2 robôs | $3 utilizadores autentificados | $4 edições verificadas",
 'rclinks'               => "Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3",
 'rchide'                => "em forma $4; $1 edições menores; $2 domínios secundários; $3 edições múltiplas.",
 'rcliu'                 => "; $1 edições de utilizadores autentificados",
@@ -684,6 +684,8 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'sectionlink' => '→',
 'number_of_watching_users_RCview'       => '[$1]',
 'number_of_watching_users_pageview'     => '[$1 utilizador/es a vigiar]',
+'rc_categories'	=> 'Limite para categorias (separar com "|")',
+'rc_categories_any'	=> 'Qualquer',
 
 # Upload
 #
@@ -737,7 +739,8 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'uploadwarning' => 'Aviso de envio',
 'savefile'              => 'Salvar ficheiro',
 'uploadedimage' => "carregado \"[[$1]]\"",
-'uploaddisabled' => 'Pedimos desculpas, o carregamento de ficheiros encontra-se desactivado.',
+'uploaddisabled' => 'Carregamentos desactivados',
+'uploaddisabledtext' => 'O carregamento de ficheiros encontra-se desactivado nesta wiki.',
 'uploadscripted' => 'This file contains HTML or script code that my be erroneously be interpreted by a web browser.',
 'uploadcorrupt' => 'O ficheiro encontra-se corrompido ou tem uma extensão não permitida. Corrija o ficheiro e tente novamento.',
 'uploadvirus' => 'O ficheiro contém vírus! Detalhes: $1',
@@ -767,7 +770,7 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'deleteimgcompletely'           => 'Eliminar todas revisões deste ficheiro',
 'imghistlegend' => 'Legenda: (actu) = imagem actual, (eli) = eliminar versão antiga, (rev) = reverter para versão antiga.
 <br /><i>Clique na data para ver as imagens carregadas nessa data</i>.',
-'imagelinks'    => 'Links',
+'imagelinks'    => 'Ligações',
 'linkstoimage'  => 'As seguintes páginas apontam para este ficheiro:',
 'nolinkstoimage' => 'Nenhuma página aponta para este ficheiro.',
 'sharedupload' => 'Este ficheiro encontra-se partilhado e pode ser utilizado por outros projectos.',
@@ -902,7 +905,7 @@ para enviar um e-mail a outros utilizadores.",
 nas suas preferências, poderá usar o formulário abaixo para lhe enviar uma mensagem.
 O endereço que introduziu nas suas preferências irá aparecer no campo "From" do e-mail
 para que o destinatário lhe possa responder.',
-'usermailererror' => 'Objecto de correio retornou um erro: ',
+'usermailererror' => 'Objecto de correio retornou um erro:',
 'defemailsubject'  => "E-mail: {{SITENAME}}",
 'noemailtitle'  => 'Sem endereço de e-mail',
 'noemailtext'   => 'Este utilizador não especificou um endereço de e-mail válido, ou optou por não receber e-mail de outros utilizadores.',
@@ -920,7 +923,7 @@ para que o destinatário lhe possa responder.',
 'watchlistsub'          => "(do utilizador \"$1\")",
 'nowatchlist'           => 'Não existem itens na sua lista de artigos vigiados.',
 'watchnologin'          => 'Não está autentificado',
-'watchnologintext'      => 'Deve estar [[Special:Userlogin|autentificado]] para modificar sua lista de artigos vigiados.',
+'watchnologintext'      => 'Deve estar [[Special:Userlogin|autentificado]] para modificar a sua lista de artigos vigiados.',
 'addedwatch'            => 'Adicionado à lista',
 'addedwatchtext'        => "A página \"$1\" foi adicionada à sua [[Special:Watchlist|lista de artigos vigiados]].
 Modificações futuras neste artigo e páginas de discussão associadas serão listadas lá e a página aparecerá a <b>negrito</b> na [[Especial:Recentchanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.
@@ -994,7 +997,7 @@ Contacto e assistência
 'exblank' => 'página esvaziada',
 'confirmdelete' => 'Confirmar eliminação',
 'deletesub'             => "(Eliminando \"$1\")",
-'historywarning' => 'Aviso: A página que está prestes a eliminar possui um histórico: ',
+'historywarning' => 'Aviso: A página que está prestes a eliminar possui um histórico:',
 'confirmdeletetext' => "Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico da base de dados.
 Por favor confirme que entende fazer isto, e que compreende as consequências, e que encontra-se a fazer isto de acordo com a [[Project:Política de eliminação|Política de eliminação]] do projecto.",
 'actioncomplete' => 'Acção completada',
@@ -1015,7 +1018,7 @@ Consulte $2 para um registo de eliminações recentes.",
 'alreadyrolled' => "Não foi possível reverter as edições de [[$1]]
 por [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Discussão]]); alguém editou ou já reverteu o artigo.
 
-A última edição foi de [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Discussão]]). ",
+A última edição foi de [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Discussão]]).",
 
 #   only shown if there is an edit comment
 'editcomment' => "O sumário de edição era: \"<i>$1</i>\".",
@@ -1158,8 +1161,8 @@ Introduza o nome do utilizador na caixa e clique no botão para tornar o utiliza
 'makesysopsubmit'       => 'Tornar este utilizador num administrador',
 'makesysopok'           => "<b>Utilizador \"$1\" é agora um administrador</b>",
 'makesysopfail'         => "<b>Não foi possível tornar o utilizador \"$1\" num administrador. (Introduziu o nome correctamente?)</b>",
-'setbureaucratflag' => 'Colocar flag de burocrata',
-'setstewardflag'    => 'Colocar flag de steward',
+'setbureaucratflag' => 'Atribuir flag de burocrata',
+'setstewardflag'    => 'Atribuir flag de steward',
 'bureaucratlog'         => 'Registo de acções burocráticas',
 'rightslogtext'         => 'Este é um registo de mudanças nos direitos dos utilizadores.',
 'bureaucratlogentry'    => "Alterado grupo do membro de $1 de $2 para $3",
@@ -1211,8 +1214,9 @@ Por favor, escolha outro nome.',
 'revertmove'    => 'reverter',
 'delete_and_move' => 'Eliminar e mover',
 'delete_and_move_text'  =>
-'==Eliminação necesária==
+'==Eliminação necessária==
 O artigo destinatário "[[$1]]" já existe. Deseja o eliminar de modo a poder mover?',
+'delete_and_move_confirm' => 'Sim, eliminar a página',
 'delete_and_move_reason' => 'Eliminada para poder mover outra página para este título',
 'selfmove' => "O título fonte e o título destinatário são os mesmos; não é possível mover uma página para o mesmo sítio.",
 'immobile_namespace' => "O título destinatário é de um tipo especial; não é possível mover páginas para esse domínio.",
@@ -1226,6 +1230,8 @@ Para exportar páginas, introduza os títulos na caixa de texto abaixo, um títu
 
 Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] para o artigo [[{{Mediawiki:mainpage}}]].',
 'exportcuronly' => 'Incluir apenas a revisão actual, não o histórico inteiro',
+'exportnohistory' => "----
+'''Nota:''' a exportação da história completa das páginas através deste formulário foi desactivada devido a motivos de performance.",
 
 # Namespace 8 related
 
@@ -1234,8 +1240,8 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'allmessagesdefault' => 'Texto padrão',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext'       => 'Esta é uma lista de todas mensagens de sistema disponíveis no domínio MediaWiki:.',
-'allmessagesnotsupportedUI' => 'O seu actual idioma de interface <b>$1</b> não é suportado pelo {{ns:special}}:AllMessages deste sítio. ',
-'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages não encontra-se operacional devido ao wgUseDatabaseMessages encontrar-se desligado.',
+'allmessagesnotsupportedUI' => 'O seu actual idioma de interface <b>$1</b> não é suportado pelo {{ns:special}}:Allmessages deste sítio.',
+'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages não encontra-se operacional devido ao wgUseDatabaseMessages encontrar-se desligado.',
 
 # Thumbnails
 
@@ -1268,7 +1274,7 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'tooltip-minoredit' => 'Marcar como edição menor [alt-i]',
 'tooltip-save' => 'Salvar as alterações [alt-s]',
 'tooltip-preview' => 'Prever as alterações, por favor utilizar antes de salvar! [alt-p]',
-'tooltip-diff' => 'Mostrar alterações que fez a este texto. [alt-d]',
+'tooltip-diff' => 'Mostrar alterações que fez a este texto. [alt-v]',
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões seleccionadas desta página. [alt-v]',
 'tooltip-watch' => 'Adicionar esta página à sua lista de artigos vigiados [alt-w]',
 
@@ -1389,8 +1395,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'previousdiff' => '← Ver a alteração anterior',
 'nextdiff' => 'Ver a alteração posterior →',
 
-'imagemaxsize' => 'Limitar imagens nas página de descrição a: ',
-'thumbsize'     => 'Tamanho de miniaturas: ',
+'imagemaxsize' => 'Limitar imagens nas páginas de descrição a:',
+'thumbsize'     => 'Tamanho de miniaturas:',
 'showbigimage' => 'Descarregar versão de maior resolução ($1x$2, $3 KB)',
 
 'newimages' => 'Galeria de novos ficheiros',
@@ -1407,8 +1413,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'variantname-zh' => 'zh',
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Utilizador: ',
-'speciallogtitlelabel' => 'Título: ',
+'specialloguserlabel' => 'Utilizador:',
+'speciallogtitlelabel' => 'Título:',
 
 'passwordtooshort' => 'A sua palavra-chave é demasiado curta. Deve ter no mínimo $1 caracteres.',
 

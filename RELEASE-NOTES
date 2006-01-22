@@ -225,6 +225,7 @@ i18n / Languages:
 * (bug 3991) Allow the operation of wikicode on Protect move only text
 * (bug 4267) Switch dv sd ug ks arc languages to RTL
 * Default main page content improved per bug 4690
+* (bug 4615) Update for Portuguese language (pt)
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
