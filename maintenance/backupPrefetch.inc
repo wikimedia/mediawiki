@@ -1,5 +1,43 @@
 <?php
 
+// Some smart guy removed XMLReader's global constants from PHP 5.1
+// and replaced them with class constants. Breaking source compatibility
+// is SUPER awesome, and I love languages which do this constantly!
+$xmlReaderConstants = array(
+	"NONE",
+	"ELEMENT",
+	"ATTRIBUTE", 
+	"TEXT",
+	"CDATA",
+	"ENTITY_REF",
+	"ENTITY",
+	"PI",
+	"COMMENT",
+	"DOC",
+	"DOC_TYPE",
+	"DOC_FRAGMENT",
+	"NOTATION",
+	"WHITESPACE",
+	"SIGNIFICANT_WHITESPACE",
+	"END_ELEMENT",
+	"END_ENTITY",
+	"XML_DECLARATION",
+	"LOADDTD",
+	"DEFAULTATTRS",
+	"VALIDATE",
+	"SUBST_ENTITIES" );
+foreach( $xmlReaderConstants as $name ) {
+	$fullName = "XMLREADER_$name";
+	$newName = "XMLReader::$name";
+	if( !defined( $fullName ) ) {
+		if( defined( $newName ) ) {
+			define( $fullName, constant( $newName ) );
+		} else {
+			// broken or missing the extension...
+		}
+	}
+}
+
 /**
  * Readahead helper for making large MediaWiki data dumps;
  * reads in a previous XML dump to sequentially prefetch text
