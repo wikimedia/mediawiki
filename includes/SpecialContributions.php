@@ -225,8 +225,11 @@ function wfSpecialContributions( $par = null ) {
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
 		$ul .= ' (' . $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
-		if( $wgUser->isAllowed( 'block' ) ) {
-			$ul .= ' | ' . $sk->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . $nt->getText() ), wfMsgHtml( 'blocklink' ) );
+		if( ( $id != 0 ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
+			if( $wgUser->isAllowed( 'block' ) ) {
+				$ul .= ' | ' . $sk->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . $nt->getText() ), wfMsgHtml( 'blocklink' ) );
+			}
+			$ul .= ' | ' . $sk->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), LogPage::logName( 'block' ), 'type=block&page=' . $nt->getPrefixedText() );
 		}
 		$ul .= ')';
 	}
