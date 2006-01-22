@@ -1396,7 +1396,7 @@ function wfGetSiteNotice() {
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
 	
-	if( $wgUser->isLoggedIn() ) {
+	if( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
 		$siteNotice = wfGetCachedNotice( 'sitenotice' );
 		$siteNotice = !$siteNotice ? $wgSiteNotice : $siteNotice;
 	} else {
