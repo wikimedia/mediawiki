@@ -483,7 +483,7 @@ class DumpBZip2Output extends DumpPipeOutput {
  */
 class Dump7ZipOutput extends DumpPipeOutput {
 	function Dump7ZipOutput( $file ) {
-		$command = "7za a -si " . wfEscapeShellArg( $file );
+		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
 		parent::DumpPipeOutput( $command );
 	}
 }
