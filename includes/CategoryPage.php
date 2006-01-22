@@ -176,6 +176,12 @@ class CategoryPage extends Article {
 			$r.= $ig->toHTML();
 		}
 
+		if( $until != '' ) {
+			$r .= $this->pagingLinks( $this->mTitle, $nextPage, $until, $limit );
+		} elseif( $nextPage != '' || $from != '' ) {
+			$r .= $this->pagingLinks( $this->mTitle, $from, $nextPage, $limit );
+		}
+
 		wfProfileOut( $fname );
 		return $r;
 	}
