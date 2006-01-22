@@ -80,7 +80,7 @@
 'linktrail'           => '/^((?:[a-z]|ä|ö)+)(.*)$/sD',
 'mainpage'            => 'Etusivu',
 'mainpagetext'        => 'Mediawiki on onnistuneesti asennettu.',
-'mainpagedocfooter'   => 'Lisätietoja käytöstä ja asetusten tekoa varten on sivuilla [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface] ja [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide].<br />Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LanguageFi.php:n <tt>convertGrammar</tt>-funktioon.<br />{{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).',
+'mainpagedocfooter'   => 'Lisätietoja käytöstä ja asetusten teosta on sivuilla [http://www.mediawiki.org/wiki/Help:Configuration_settings configuration settings list] ja [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide].<br />Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LanguageFi.php:n <tt>convertGrammar</tt>-funktioon.<br />{{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).',
 'portal'              => 'Kahvihuone',
 'portal-url'          => 'Project:Kahvihuone',
 'about'               => 'Tietoja',
@@ -1071,7 +1071,7 @@ Saatat olla tekemässä huomattavaa ja odottamatonta muutosta suositulle sivulle
 'movepagetalktext'    => 'Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, \'\'\'paitsi jos\'\'\':
 *Siirrät sivua nimiavaruudesta toiseen
 *Kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai
-*Kumoat allaolevan ruudun asetuksen.
+*Kumoat alla olevan ruudun asetuksen.
 
 Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'movearticle'         => 'Siirrä sivu',
