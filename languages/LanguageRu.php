@@ -203,13 +203,14 @@ class LanguageRu extends LanguageUtf8 {
 	}
 
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+		$count = str_replace (' ', '', $count);
 		if ($count > 10 && floor(($count % 100) / 10) == 1) {
 			return $wordform3;
 		} else {
 			switch ($count % 10) {
 				case 1: return $wordform1;
-				case 2: return $wordform2;
-				case 3: return $wordform2;
+				case 2: 
+				case 3: 
 				case 4: return $wordform2;
 				default: return $wordform3;
 			}
