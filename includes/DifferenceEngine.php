@@ -42,6 +42,7 @@ class DifferenceEngine {
 	 */
 	function DifferenceEngine( $titleObj = null, $old = 0, $new = 0, $rcid = 0 ) {
 		$this->mTitle = $titleObj;
+		wfDebug("DifferenceEngine old '$old' new '$new' rcid '$rcid'\n");
 
 		if ( 'prev' == $new ) {
 			# Show diff between revision $old and the previous one.
@@ -105,15 +106,6 @@ CONTROL;
 			return;
 		}
 
-		# mOldid is false if the difference engine is called with a "vague" query for
-		# a diff between a version V and its previous version V' AND the version V
-		# is the first version of that article. In that case, V' does not exist.
-		if ( $this->mOldid === false ) {
-			$this->showFirstRevision();
-			wfProfileOut( $fname );
-			return;
-		}
-
 		$t = $this->mTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 		  "{$this->mNewid})";
 		$mtext = wfMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
@@ -127,6 +119,15 @@ CONTROL;
 		}
 		if ( $this->mNewRev->isCurrent() ) {
 			$wgOut->setArticleFlag( true );
+		}
+
+		# mOldid is false if the difference engine is called with a "vague" query for
+		# a diff between a version V and its previous version V' AND the version V
+		# is the first version of that article. In that case, V' does not exist.
+		if ( $this->mOldid === false ) {
+			$this->showFirstRevision();
+			wfProfileOut( $fname );
+			return;
 		}
 
 		$wgOut->suppressQuickbar();
@@ -441,8 +442,15 @@ CONTROL;
 		if( $this->mOldid ) {
 			$this->mOldRev = Revision::newFromId( $this->mOldid );
 		} elseif ( $this->mOldid === 0 ) {
-			$this->mOldRev = $this->mNewRev->getPrevious();
-			$this->mOldid = $this->mOldRev->getId();
+			$rev = $this->mNewRev->getPrevious();
+			if( $rev ) {
+				$this->mOldid = $rev->getId();
+				$this->mOldRev = $rev;
+			} else {
+				// No previous revision; mark to show as first-version only.
+				$this->mOldid = false;
+				$this->mOldRev = false;
+			}
 		}/* elseif ( $this->mOldid === false ) leave mOldRev false; */
 
 		if( is_null( $this->mOldRev ) ) {
