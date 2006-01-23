@@ -176,7 +176,7 @@ class Parser
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgContLang;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang;
 		$fname = 'Parser::parse';
 		wfProfileIn( $fname );
 
@@ -237,7 +237,7 @@ class Parser
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
-		if ($wgUseTidy and $this->mOptions->mTidy) {
+		if (($wgUseTidy and $this->mOptions->mTidy) or $wgAlwaysUseTidy) {
 			$text = Parser::tidy($text);
 		}
 
