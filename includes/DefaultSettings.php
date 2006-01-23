@@ -1400,6 +1400,7 @@ $wgRawHtml = false;
  *   'extension=tidy.so' to php.ini.
  */
 $wgUseTidy = false;
+$wgAlwaysUseTidy = false;
 $wgTidyBin = 'tidy';
 $wgTidyConf = $IP.'/extensions/tidy/tidy.conf';
 $wgTidyOpts = '';
