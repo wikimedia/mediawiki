@@ -237,7 +237,7 @@ class Parser
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
-		if ($wgUseTidy and $this->mOptions->getTidy()) {
+		if ($wgUseTidy and $this->mOptions->mTidy) {
 			$text = Parser::tidy($text);
 		}
 
@@ -3837,7 +3837,7 @@ class ParserOptions
 	var $mEditSection;               # Create "edit section" links
 	var $mNumberHeadings;            # Automatically number headings
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
-	var $mTidy;						 # Ask for tidy cleanup
+	var $mTidy;	        	 # Ask for tidy cleanup
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -3849,7 +3849,7 @@ class ParserOptions
 	function getEditSection()                   { return $this->mEditSection; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
-	function getTidy()							{ return $this->mTidy; }
+	function getTidy()		            { return $this->mTidy; }
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
@@ -3860,7 +3860,7 @@ class ParserOptions
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
 	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
-	function setTidy( $x )						{ return wfSetVar( $this->mTidy, $x); }
+	function setTidy( $x )			    { return wfSetVar( $this->mTidy, $x); }
 	function setSkin( &$x ) { $this->mSkin =& $x; }
 
 	function ParserOptions() {
