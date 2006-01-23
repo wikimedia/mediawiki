@@ -207,7 +207,7 @@ CONTROL;
 		if( is_object( $this->mNewRev ) ) {
 			$wgOut->setRevisionId( $this->mNewRev->getId() );
 		}
-		$wgOut->addWikiText( $this->mNewtext );
+		$wgOut->addSecondaryWikiText( $this->mNewtext );
 
 		if( !$this->mNewRev->isCurrent() ) {
 			$wgOut->mParserOptions->setEditSection( $oldEditSectionSetting );
@@ -275,7 +275,7 @@ CONTROL;
 		if( is_object( $this->mNewRev ) ) {
 			$wgOut->setRevisionId( $this->mNewRev->getId() );
 		}
-		$wgOut->addWikiText( $this->mNewtext );
+		$wgOut->addSecondaryWikiText( $this->mNewtext );
 
 		wfProfileOut( $fname );
 	}
