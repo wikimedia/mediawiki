@@ -2170,6 +2170,7 @@ class Article {
 
 		# Parse the text
 		$options = new ParserOptions;
+                $options->setTidy(true);
 		$poutput = $wgParser->parse( $text, $this->mTitle, $options, true, true, $newid );
 
 		# Save it to the parser cache
