@@ -51,7 +51,7 @@ body { font-size: xx-small; }
 	border-width: 1px 1px 0;
 }
 #p-cactions li.selected a {
-	border-color: #aaa;
+	border-color: #fabd23;
 	padding-bottom: 0.17em;
 }
 #p-cactions li a:hover {
