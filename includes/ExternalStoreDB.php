@@ -42,6 +42,7 @@ class ExternalStoreDB {
 		if ( !array_key_exists( $cluster, $wgExternalLoadBalancers ) ) {
 			$wgExternalLoadBalancers[$cluster] = LoadBalancer::newFromParams( $wgExternalServers[$cluster] );
 		}
+		$wgExternalLoadBalancers[$cluster]->allowLagged(true);
 		return $wgExternalLoadBalancers[$cluster];
 	}
 
