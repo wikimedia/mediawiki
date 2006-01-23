@@ -34,7 +34,7 @@ define( 'AVG_STATUS_POLL', 2000 );
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads, $mGroupLoads;
 	/* private */ var $mFailFunction, $mErrorConnection;
-	/* private */ var $mForce, $mReadIndex, $mLastIndex;
+	/* private */ var $mForce, $mReadIndex, $mLastIndex, $mAllowLagged;
 	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
 
@@ -47,6 +47,7 @@ class LoadBalancer {
 		$this->mForce = -1;
 		$this->mLastIndex = -1;
 		$this->mErrorConnection = false;
+		$this->mAllowLag = false;
 	}
 
 	function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
@@ -178,7 +179,7 @@ class LoadBalancer {
 				$done = false;
 				$totalElapsed = 0;
 				do {
-					if ( $wgReadOnly ) {
+					if ( $wgReadOnly or $this->mAllowLagged ) {
 						$i = $this->pickRandom( $loads );
 					} else {
 						$i = $this->getRandomNonLagged( $loads );
@@ -556,6 +557,13 @@ class LoadBalancer {
 
 	function getLaggedSlaveMode() {
 		return $this->mLaggedSlaveMode;
+	}
+
+	/* Disables/enables lag checks */
+	function allowLagged($mode=null) {
+		if ($mode===null)
+			return $this->mAllowLagged;
+		$this->mAllowLagged=$mode;
 	}
 
 	function pingAll() {
