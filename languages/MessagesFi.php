@@ -273,7 +273,7 @@ Sivun lähdekoodi:',
 #
 'logouttitle'         => 'Uloskirjautuminen',
 'logouttext'          => 'Olet nyt kirjautunut ulos {{GRAMMAR:elative|{{SITENAME}}}}. Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai kirjautua uudelleen sisään.',
-'welcomecreation'     => '== Tervetuloa, $1! == <p>Käyttäjätunnuksesi on luotu. Älä unohda virittää [[{{ns:special}}:Preferences|{{GRAMMAR:genitive|{{SITENAME}}]] asetuksiasi]].</p>',
+'welcomecreation'     => '== Tervetuloa, $1! == Käyttäjätunnuksesi on luotu. Älä unohda virittää [[{{ns:special}}:Preferences|{{GRAMMAR:genitive|{{SITENAME}}}} asetuksiasi]].',
 'loginpagetitle'      => 'Sisäänkirjautuminen',
 'yourname'            => 'Käyttäjätunnus',
 'yourpassword'        => 'Salasana',
