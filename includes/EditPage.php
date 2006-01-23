@@ -424,7 +424,7 @@ class EditPage {
 			if(isset($introtitle) && $introtitle->userCanRead()) {
 				$rev=Revision::newFromTitle($introtitle);
 				if($rev) {
-					$wgOut->addWikiText($rev->getText());
+					$wgOut->addSecondaryWikiText($rev->getText());
 					$addstandardintro=false;
 				}
 			}

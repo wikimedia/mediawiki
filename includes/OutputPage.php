@@ -306,9 +306,10 @@ class OutputPage {
 	function addPrimaryWikiText( $text, $article, $cache = true ) {
 		global $wgParser, $wgUser;
 
+		$this->mParserOptions->setTidy(true);
 		$parserOutput = $wgParser->parse( $text, $article->mTitle,
 			$this->mParserOptions, true, true, $this->mRevisionId );
-
+		$this->mParserOptions->setTidy(false);
 		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache =& ParserCache::singleton();
 			$parserCache->save( $parserOutput, $article, $wgUser );
@@ -320,6 +321,17 @@ class OutputPage {
 		$parserOutput->setText( $text );
 		$this->addHTML( $parserOutput->getText() );
 	}
+
+	/**
+	 * For anything that isn't primary text or interface message
+	 */
+	function addSecondaryWikiText( $text, $linestart = true ) {
+		global $wgTitle;
+		$this->mParserOptions->setTidy(true);
+		$this->addWikiTextTitle($text, $wgTitle, $linestart);
+		$this->mParserOptions->setTidy(false);
+	}
+
 
 	/**
 	 * Add the output of a QuickTemplate to the output buffer
