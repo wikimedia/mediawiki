@@ -1101,6 +1101,7 @@ END
 			} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
 				$previewtext = wfMsg('userjspreview');
 			}
+                        $parserOptions->setTidy(true);
 			$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 			$wgOut->addHTML( $parserOutput->mText );
 			wfProfileOut( $fname );
@@ -1120,7 +1121,7 @@ END
 			}
 
 			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
-
+                        $parserOptions->setTidy(true);
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
 					$wgTitle, $parserOptions );
 
