@@ -135,8 +135,17 @@ class LanguageConverter {
 		if(!in_array($toVariant, $this->mVariants))
 			return $text;
 
-
-		$reg = '/<[^>]+>|&[a-z#][a-z0-9]+;|'.UNIQ_PREFIX.'-[a-zA-Z0-9]+/';
+		/* we convert everything except:
+		   1. html markups (anything between < and >)
+		   2. html entities
+		   3. place holders created by the parser
+		*/
+		global $wgParser;
+		if (isset($wgParser))
+			$marker = '|' . $wgParser->UniqPrefix() . '[\-a-zA-Z0-9]+';
+		else
+			$marker = "";
+		$reg = '/<[^>]+>|&[a-z#][a-z0-9]+;' . $marker . '/';
 		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
 

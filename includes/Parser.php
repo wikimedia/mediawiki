@@ -154,6 +154,15 @@ class Parser
 	}
 
 	/**
+	 * Accessor for mUniqPrefix.
+	 *
+	 * @access public
+	 */
+	function UniqPrefix() {
+		return $this->mUniqPrefix;
+	}
+
+	/**
 	 * First pass--just handle <nowiki> sections, pass the rest off
 	 * to internalParse() which does all the real work.
 	 *
