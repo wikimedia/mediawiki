@@ -560,7 +560,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4633) Add (previous 200) (next 200) also above catlinks
 * (bug 4686) Fix regression where ?diff=0&oldid=0 caused fatal error on
   pages with only one revision. Fixes message diff link on first edit.
-
+* Fix dependence on hardcoded UNIQ_PREFIX in LanguageConverter.php
 
 === Caveats ===
 
