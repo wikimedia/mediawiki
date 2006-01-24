@@ -158,6 +158,15 @@ class Parser
 	}
 
 	/**
+	 * Accessor for mUniqPrefix.
+	 *
+	 * @access public
+	 */
+	function UniqPrefix() {
+		return $this->mUniqPrefix;
+	}
+
+	/**
 	 * Convert wikitext to HTML
 	 * Do not call this function recursively.
 	 *
