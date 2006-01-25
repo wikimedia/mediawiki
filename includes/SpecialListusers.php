@@ -88,8 +88,8 @@ class ListUsersPage extends QueryPage {
 				'<input type="hidden" name="title" value="'.$special.'" />' .
 				wfMsgHtml( 'groups-editgroup-name' ) . '<select name="group">';
 
-		// get all group names and IDs
-		$groups = User::getAllGroups();
+		// get group names
+		$groups = User::getVisibleGroups();
 
 		// we want a default empty group
 		$out.= '<option value=""></option>';
@@ -174,7 +174,6 @@ class ListUsersPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-
 		$userPage = Title::makeTitle( $result->namespace, $result->title );
 		$name = $skin->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
 
@@ -186,7 +185,9 @@ class ListUsersPage extends QueryPage {
 				'ListUsersPage::formatResult' );
 			$groups = array();
 			while( $row = $dbr->fetchObject( $result ) ) {
-				$groups[] = User::getGroupName( $row->ug_group );
+				if ( User::isVisibleGroup( $row->ug_group ) ) {
+					$groups[] = User::getGroupName( $row->ug_group );
+				}
 			}
 			$dbr->freeResult( $result );
 

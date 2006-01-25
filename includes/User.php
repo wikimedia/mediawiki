@@ -1853,6 +1853,25 @@ class User {
 			array( '*', 'user', 'autoconfirmed' ) );
 	}
 
+	/**
+	 * Return the set of groups which are not marked "invisible"
+	 * @return array
+	 * @static
+	 */
+	function getVisibleGroups() {
+		global $wgGroupPermissions, $wgInvisibleGroups;
+		return array_diff( User::getAllGroups(), $wgInvisibleGroups );
+	}
+
+	/**
+	 * Determine if a given group name is a valid, visible group
+	 * @param string name
+	 * @return bool
+	 */
+	function isVisibleGroup( $group ) {
+		global $wgGroupPermissions, $wgInvisibleGroups;
+		return isset( $wgGroupPermissions[$group] ) && !in_array( $group, $wgInvisibleGroups );
+	}
 }
 
 ?>
