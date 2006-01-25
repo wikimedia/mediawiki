@@ -23,6 +23,7 @@ $wgQueryPages = array(
 	array( 'DisambiguationsPage',		'Disambiguations'		),
 	array( 'DoubleRedirectsPage',		'DoubleRedirects'		),
 	array( 'ListUsersPage',			'Listusers'			),
+	array( 'ListredirectsPage', 'Listredirects' ),
 	array( 'LonelyPagesPage',		'Lonelypages'			),
 	array( 'LongPagesPage',			'Longpages'			),
 	array( 'MostcategoriesPage',		'Mostcategories'		),
