@@ -107,7 +107,6 @@ class Title {
 	function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		global $wgTitleCache;
 		$fname = 'Title::newFromText';
-		wfProfileIn( $fname );
 
 		if( is_object( $text ) ) {
 			wfDebugDieBacktrace( 'Title::newFromText given an object' );
@@ -122,7 +121,6 @@ class Title {
 		 * In theory these are value objects and won't get changed...
 		 */
 		if( $defaultNamespace == NS_MAIN && isset( $wgTitleCache[$text] ) ) {
-			wfProfileOut( $fname );
 			return $wgTitleCache[$text];
 		}
 
@@ -146,10 +144,8 @@ class Title {
 				$cachedcount++;
 				$wgTitleCache[$text] =& $t;
 			}
-			wfProfileOut( $fname );
 			return $t;
 		} else {
-			wfProfileOut( $fname );
 			$ret = NULL;
 			return $ret;
 		}
@@ -383,18 +379,14 @@ class Title {
 		global $wgInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
 
-		wfProfileIn( $fname );
-
 		$key = strtolower( $key );
 
 		$k = $wgDBname.':interwiki:'.$key;
 		if( array_key_exists( $k, $wgTitleInterwikiCache ) ) {
-			wfProfileOut( $fname );
 			return $wgTitleInterwikiCache[$k]->iw_url;
 		}
 
 		if ($wgInterwikiCache) {
-			wfProfileOut( $fname );
 			return Title::getInterwikiCached( $key );
 		}
 
@@ -402,7 +394,6 @@ class Title {
 		# Ignore old keys with no iw_local
 		if( $s && isset( $s->iw_local ) && isset($s->iw_trans)) {
 			$wgTitleInterwikiCache[$k] = $s;
-			wfProfileOut( $fname );
 			return $s->iw_url;
 		}
 
@@ -411,7 +402,6 @@ class Title {
 			array( 'iw_url', 'iw_local', 'iw_trans' ),
 			array( 'iw_prefix' => $key ), $fname );
 		if( !$res ) {
-			wfProfileOut( $fname );
 			return '';
 		}
 
@@ -426,7 +416,6 @@ class Title {
 		$wgMemc->set( $k, $s, $wgInterwikiExpiry );
 		$wgTitleInterwikiCache[$k] = $s;
 
-		wfProfileOut( $fname );
 		return $s->iw_url;
 	}
 	
@@ -1285,7 +1274,6 @@ class Title {
 	/* private */ function secureAndSplit() {
 		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
 		$fname = 'Title::secureAndSplit';
- 		wfProfileIn( $fname );
 
 		# Initialisation
 		static $rxTc = false;
@@ -1303,13 +1291,11 @@ class Title {
 		$t = trim( $t, '_' );
 
 		if ( '' == $t ) {
-			wfProfileOut( $fname );
 			return false;
 		}
 
 		if( false !== strpos( $t, UTF8_REPLACEMENT ) ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
-			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -1340,7 +1326,6 @@ class Title {
 					if( !$firstPass ) {
 						# Can't make a local interwiki link to an interwiki link.
 						# That's just crazy!
-						wfProfileOut( $fname );
 						return false;
 					}
 
@@ -1352,7 +1337,6 @@ class Title {
 					if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
 						if( $t == '' ) {
 							# Can't have an empty self-link
-							wfProfileOut( $fname );
 							return false;
 						}
 						$this->mInterwiki = '';
@@ -1385,7 +1369,6 @@ class Title {
 		# Reject illegal characters.
 		#
 		if( preg_match( $rxTc, $r ) ) {
-			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -1401,14 +1384,12 @@ class Title {
 		       strpos( $r, '/./' ) !== false ||
 		       strpos( $r, '/../' ) !== false ) )
 		{
-			wfProfileOut( $fname );
 			return false;
 		}
 
 		# We shouldn't need to query the DB for the size.
 		#$maxSize = $dbr->textFieldSize( 'page', 'page_title' );
 		if ( strlen( $r ) > 255 ) {
-			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -1434,7 +1415,6 @@ class Title {
 		if( $t == '' &&
 			$this->mInterwiki == '' &&
 			$this->mNamespace != NS_MAIN ) {
-			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -1444,7 +1424,6 @@ class Title {
 
 		$this->mTextform = str_replace( '_', ' ', $t );
 
-		wfProfileOut( $fname );
 		return true;
 	}
 
