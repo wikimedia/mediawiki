@@ -331,6 +331,7 @@ Special Pages:
 * (bug 3192): properly check 'limit' parameter on Special:Contributions
 * (bug 3187) watchlist text refer to unexistent "Stop watching" action
 * Add block link and a link to the block log to Special:Contributions
+* Added $wgInvisibleGroups, to hide groups from Special:Listusers
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
