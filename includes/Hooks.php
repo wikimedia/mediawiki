@@ -32,22 +32,18 @@ function wfRunHooks($event, $args = null) {
 
 	global $wgHooks;
 	$fname = 'wfRunHooks';
-	wfProfileIn( $fname );
 
 	if (!is_array($wgHooks)) {
 		wfDebugDieBacktrace("Global hooks array is not an array!\n");
-		wfProfileOut( $fname );
 		return false;
 	}
 
 	if (!array_key_exists($event, $wgHooks)) {
-		wfProfileOut( $fname );
 		return true;
 	}
 
 	if (!is_array($wgHooks[$event])) {
 		wfDebugDieBacktrace("Hooks array for event '$event' is not an array!\n");
-		wfProfileOut( $fname );
 		return false;
 	}
 
@@ -85,6 +81,7 @@ function wfRunHooks($event, $args = null) {
 					$have_data = true;
 				}
 			} else {
+				var_dump( $wgHooks );
 				wfDebugDieBacktrace("Unknown datatype in hooks for " . $event . "\n");
 			}
 		} else if (is_string($hook)) { # functions look like strings, too
@@ -123,15 +120,12 @@ function wfRunHooks($event, $args = null) {
 		if (is_string($retval)) {
 			global $wgOut;
 			$wgOut->fatalError($retval);
-			wfProfileOut( $fname );
 			return false;
 		} else if (!$retval) {
-			wfProfileOut( $fname );
 			return false;
 		}
 	}
 
-	wfProfileOut( $fname );
 	return true;
 }
 ?>
