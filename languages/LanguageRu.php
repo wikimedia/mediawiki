@@ -218,10 +218,19 @@ class LanguageRu extends LanguageUtf8 {
 	}
 
 	/**
-	 * Russian numeric format is 123 456,78
+	 * Russian numeric format is "12 345,67" but "1234,56"
 	 */
 	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ', ' );
+		if ($year) {
+			return $number;
+		}
+		else {
+			//not strtr because of 2-byte unicode nbsp char
+			$commafied_number = str_replace('.', ',', str_replace(',', ' ', $this->commafy($number)));
+			return ($number<10000) ? str_replace(' ', '', $commafied_number) : $commafied_number;
+		}
+
+
 	}
 
 }
