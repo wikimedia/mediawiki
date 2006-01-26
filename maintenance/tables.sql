@@ -450,6 +450,34 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
 ) TYPE=InnoDB;
 
 --
+-- Track links to external URLs
+--
+CREATE TABLE /*$wgDBprefix*/externallinks (
+  -- page_id of the referring page
+  el_from int(8) unsigned NOT NULL default '0',
+
+  -- The URL
+  el_to blob NOT NULL default '',
+
+  -- In the case of HTTP URLs, this is the URL with any username or password
+  -- removed, and with the labels in the hostname reversed and converted to 
+  -- lower case. An extra dot is added to allow for matching of either
+  -- example.com or *.example.com in a single scan.
+  -- Example: 
+  --      http://user:password@sub.example.com/page.html
+  --   becomes
+  --      http://com.example.sub./page.html
+  -- which allows for fast searching for all pages under example.com with the
+  -- clause: 
+  --      WHERE el_index LIKE 'http://com.example.%'
+  el_index blob NOT NULL default '',
+  
+  KEY (el_from, el_to(40)),
+  KEY (el_to(60), el_from),
+  KEY (el_index(60))
+) TYPE=InnoDB;
+
+--
 -- Contains a single row with some aggregate info
 -- on the state of the site.
 --

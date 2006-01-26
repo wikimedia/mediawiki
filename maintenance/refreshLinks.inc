@@ -69,7 +69,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0 ) {
 }
 
 function fixLinksFromArticle( $id ) {
-	global $wgTitle, $wgArticle, $wgOut, $wgParser, $wgLinkCache;
+	global $wgTitle, $wgArticle, $wgOut, $wgParser;
 	
 	$wgTitle = Title::newFromID( $id );
 	$dbw =& wfGetDB( DB_MASTER );
@@ -105,6 +105,8 @@ function deleteLinksFromNonexistent( $maxLag = 0 ) {
 		'pagelinks' => 'pl_from',
 		'imagelinks' => 'il_from',
 		'categorylinks' => 'cl_from',
+		'templatelinks' => 'tl_from',
+		'externallinks' => 'el_from',
 	);
 
 	$page = $dbw->tableName( 'page' );
