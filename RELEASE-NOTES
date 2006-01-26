@@ -1046,6 +1046,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Default main page content improved per bug 4690
 * Fix dependence on hardcoded UNIQ_PREFIX in LanguageConverter.php 
 * Fixed Special:Unlockdb
+* Maintenance script to delete unused text records
+* Maintenance script to delete non-current revisions
+* Maintenance script to wipe a page and all revisions from the database
 
 === Caveats ===
 
