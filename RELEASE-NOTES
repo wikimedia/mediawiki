@@ -1045,6 +1045,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 
 * Default main page content improved per bug 4690
 * Fix dependence on hardcoded UNIQ_PREFIX in LanguageConverter.php 
+* Fixed Special:Unlockdb
 
 === Caveats ===
 

@@ -245,20 +245,19 @@ function logProfilingData() {
 function wfReadOnly() {
 	global $wgReadOnlyFile, $wgReadOnly;
 
-	if ( $wgReadOnly ) {
-		return true;
+	if ( !is_null( $wgReadOnly ) ) {
+		return (bool)$wgReadOnly;
 	}
 	if ( '' == $wgReadOnlyFile ) {
 		return false;
 	}
 	
-	// Set $wgReadOnly and unset $wgReadOnlyFile, for faster access next time
+	// Set $wgReadOnly for faster access next time
 	if ( is_file( $wgReadOnlyFile ) ) {
 		$wgReadOnly = file_get_contents( $wgReadOnlyFile );
 	} else {
 		$wgReadOnly = false;
 	}
-	$wgReadOnlyFile = '';
 	return $wgReadOnly;
 }
 
