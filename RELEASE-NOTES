@@ -135,6 +135,7 @@ Maintenance:
 * Maintenance script to delete unused text records
 * Maintenance script to delete non-current revisions
 * Maintenance script to wipe a page and all revisions from the database
+* Maintenance script to reassign edits from one user to another
 
 i18n / Languages:
 * Partial support for Basque language (from wikipedia and meta)
