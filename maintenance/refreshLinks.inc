@@ -7,9 +7,10 @@
 
 /** */
 define( "REPORTING_INTERVAL", 100 );
+#define( "REPORTING_INTERVAL", 1 );
 
-function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
-	global $wgUser, $wgParser, $wgUseImageResize;
+function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0 ) {
+	global $wgUser, $wgParser, $wgUseImageResize, $wgUseTidy;
 
 	$fname = 'refreshLinks';
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -24,6 +25,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 
 	# Don't generate thumbnail images
 	$wgUseImageResize = false;
+	$wgUseTidy = false;
 
 	if ( $newOnly ) {
 		print "Refreshing links from ";
@@ -48,7 +50,9 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 		}
 	} else {
 		print "Refreshing link table.\n";
-		$end = $dbr->selectField( 'page', 'max(page_id)', false );
+		if ( !$end ) {
+			$end = $dbr->selectField( 'page', 'max(page_id)', false );
+		}
 		print("Starting from page_id $start of $end.\n");
 
 		for ($id = $start; $id <= $end; $id++) {
@@ -65,11 +69,14 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 }
 
 function fixLinksFromArticle( $id ) {
-	global $wgTitle, $wgArticle, $wgOut, $wgParser;
-
+	global $wgTitle, $wgArticle, $wgOut, $wgParser, $wgLinkCache;
+	
 	$wgTitle = Title::newFromID( $id );
 	$dbw =& wfGetDB( DB_MASTER );
 
+	$linkCache =& LinkCache::singleton();
+	$linkCache->clear();
+	
 	if ( is_null( $wgTitle ) ) {
 		return;
 	}
@@ -83,7 +90,7 @@ function fixLinksFromArticle( $id ) {
 	$options = new ParserOptions;
 	$parserOutput = $wgParser->parse( $revision->getText(), $wgTitle, $options, true, true, $revision->getId() );
 	$update = new LinksUpdate( $wgTitle, $parserOutput );
-	$update->doDumbUpdate();
+	$update->doUpdate();
 	$dbw->immediateCommit();
 }
 
