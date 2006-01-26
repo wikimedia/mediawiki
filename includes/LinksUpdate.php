@@ -19,6 +19,7 @@ class LinksUpdate {
 		$mLinks,         # Map of title strings to IDs for the links in the document
 		$mImages,        # DB keys of the images used, in the array key only
 		$mTemplates,     # Map of title strings to IDs for the template references, including broken ones
+		$mExternals,     # URLs of external links, array key only
 		$mCategories,    # Map of category names to sort keys
 		$mDb,            # Database connection reference
 		$mOptions;       # SELECT options to be used (array)
@@ -52,6 +53,7 @@ class LinksUpdate {
 		$this->mLinks =& $this->mParserOutput->getLinks();
 		$this->mImages =& $this->mParserOutput->getImages();
 		$this->mTemplates =& $this->mParserOutput->getTemplates();
+		$this->mExternals =& $this->mParserOutput->getExternalLinks();
 		$this->mCategories =& $this->mParserOutput->getCategories();
 
 	}
@@ -87,6 +89,11 @@ class LinksUpdate {
 		$this->incrTableUpdate( 'imagelinks', 'il', $this->getImageDeletions( $existing ),
 			$this->getImageInsertions( $existing ) );
 
+		# External links
+		$existing = $this->getExistingExternals();
+		$this->incrTableUpdate( 'externallinks', 'el', $this->getExternalDeletions( $existing ),
+			$this->getExternalInsertions( $existing ) );
+		
 		# Category links
 		$existing = $this->getExistingCategories();
 		$this->incrTableUpdate( 'categorylinks', 'cl', $this->getCategoryDeletions( $existing ),
@@ -117,6 +124,7 @@ class LinksUpdate {
 		$this->dumbTableUpdate( 'imagelinks',    $this->getImageInsertions(),    'il_from' );
 		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
 		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
+		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
 
 		# Update the cache of all the category pages
 		$this->invalidateCategories( $categoryUpdates );
@@ -238,10 +246,27 @@ class LinksUpdate {
 	function getImageInsertions( $existing = array() ) {
 		$arr = array();
 		$diffs = array_diff_key( $this->mImages, $existing );
-		foreach( $diffs as $iname => $val ) {
+		foreach( $diffs as $iname => $dummy ) {
 			$arr[] = array(
 				'il_from' => $this->mId,
 				'il_to'   => $iname
+			);
+		}
+		return $arr;
+	}
+
+	/**
+	 * Get an array of externallinks insertions. Skips the names specified in $existing
+	 * @access private
+	 */
+	function getExternalInsertions( $existing = array() ) {
+		$arr = array();
+		$diffs = array_diff_key( $this->mExternals, $existing );
+		foreach( $diffs as $url => $dummy ) {
+			$arr[] = array(
+				'el_from'   => $this->mId,
+				'el_to'     => $url,
+				'el_index'  => wfMakeUrlIndex( $url ),
 			);
 		}
 		return $arr;
@@ -309,6 +334,15 @@ class LinksUpdate {
 		return array_diff_key( $existing, $this->mImages );
 	}
 
+	/** 
+	 * Given an array of existing external links, returns those links which are not 
+	 * in $this and thus should be deleted.
+	 * @access private
+	 */
+	function getExternalDeletions( $existing ) {
+		return array_diff_key( $existing, $this->mExternals );
+	}
+
 	/**
 	 * Given an array of existing categories, returns those categories which are not in $this
 	 * and thus should be deleted.
@@ -333,6 +367,7 @@ class LinksUpdate {
 			}
 			$arr[$row->pl_namespace][$row->pl_title] = 1;
 		}
+		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -351,6 +386,7 @@ class LinksUpdate {
 			}
 			$arr[$row->tl_namespace][$row->tl_title] = 1;
 		}
+		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -366,6 +402,23 @@ class LinksUpdate {
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
 			$arr[$row->il_to] = 1;
 		}
+		$this->mDb->freeResult( $res );
+		return $arr;
+	}
+
+	/**
+	 * Get an array of existing external links, URLs in the keys
+	 * @access private
+	 */
+	function getExistingExternals() {
+		$fname = 'LinksUpdate::getExistingExternals';
+		$res = $this->mDb->select( 'externallinks', array( 'el_to' ),
+			array( 'el_from' => $this->mId ), $fname, $this->mOptions );
+		$arr = array();
+		while ( $row = $this->mDb->fetchObject( $res ) ) {
+			$arr[$row->el_to] = 1;
+		}
+		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -381,6 +434,7 @@ class LinksUpdate {
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
 			$arr[$row->cl_to] = $row->cl_sortkey;
 		}
+		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 }

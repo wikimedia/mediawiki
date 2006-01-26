@@ -1121,19 +1121,23 @@ class Parser
 
 			# Replace &amp; from obsolete syntax with &.
 			# All HTML entities will be escaped by makeExternalLink()
-			# or maybeMakeExternalImage()
 			$url = str_replace( '&amp;', '&', $url );
+			# Replace unnecessary URL escape codes with the referenced character
+			# This prevents spammers from hiding links from the filters
+			$url = Parser::replaceUnusualEscapes( $url );
 
 			# Process the trail (i.e. everything after this link up until start of the next link),
 			# replacing any non-bracketed links
 			$trail = $this->replaceFreeExternalLinks( $trail );
-
 
 			# Use the encoded URL
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
 			$s .= $sk->makeExternalLink( $url, $text, false, $linktype ) . $dtrail . $trail;
+
+			# Register link in the output object
+			$this->mOutput->addExternalLink( $url );
 		}
 
 		wfProfileOut( $fname );
@@ -1189,12 +1193,16 @@ class Parser
 				# All HTML entities will be escaped by makeExternalLink()
 				# or maybeMakeExternalImage()
 				$url = str_replace( '&amp;', '&', $url );
+				# Replace unnecessary URL escape codes with their equivalent characters
+				$url = Parser::replaceUnusualEscapes( $url );
 
 				# Is this an external image?
 				$text = $this->maybeMakeExternalImage( $url );
 				if ( $text === false ) {
 					# Not an image, make a link
 					$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free' );
+					# Register it in the output object
+					$this->mOutput->addExternalLink( $url );
 				}
 				$s .= $text . $trail;
 			} else {
@@ -1203,6 +1211,36 @@ class Parser
 		}
 		wfProfileOut( $fname );
 		return $s;
+	}
+
+	/**
+	 * Replace unusual URL escape codes with their equivalent characters
+	 * @param string 
+	 * @return string
+	 * @static
+	 */
+	function replaceUnusualEscapes( $url ) {
+		return preg_replace_callback( '/%[0-9A-Fa-f]{2}/', 
+			array( 'Parser', 'replaceUnusualEscapesCallback' ), $url );
+	}
+
+	/**
+	 * Callback function used in replaceUnusualEscapes().
+	 * Replaces unusual URL escape codes with their equivalent character
+	 * @static
+	 * @access private
+	 */
+	function replaceUnusualEscapesCallback( $matches ) {
+		$char = urldecode( $matches[0] );
+		$ord = ord( $char );
+		// Is it an unsafe or HTTP reserved character according to RFC 1738?
+		if ( $ord > 32 && $ord < 127 && strpos( '<>"#{}|\^~[]`;/?', $char ) === false ) {
+			// No, shouldn't be escaped
+			return $char;
+		} else {
+			// Yes, leave it escaped
+			return $matches[0];
+		}
 	}
 
 	/**
@@ -3742,7 +3780,8 @@ class ParserOutput
 		$mTitleText,        # title text of the chosen language variant
 		$mLinks,            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
 		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
-		$mImages;           # DB keys of the images used, in the array key only
+		$mImages,           # DB keys of the images used, in the array key only
+		$mExternalLinks;    # External link URLs, in the key only
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -3757,6 +3796,7 @@ class ParserOutput
 		$this->mLinks = array();
 		$this->mTemplates = array();
 		$this->mImages = array();
+		$this->mExternalLinks = array();
 	}
 
 	function getText()                   { return $this->mText; }
@@ -3768,6 +3808,7 @@ class ParserOutput
 	function &getLinks()                 { return $this->mLinks; }
 	function &getTemplates()             { return $this->mTemplates; }
 	function &getImages()                { return $this->mImages; }
+	function &getExternalLinks()         { return $this->mExternalLinks; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -3780,6 +3821,7 @@ class ParserOutput
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addImage( $name )           { $this->mImages[$name] = 1; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
+	function addExternalLink( $url )     { $this->mExternalLinks[$url] = 1; }
 
 	function addLink( $title, $id ) {
 		$ns = $title->getNamespace();

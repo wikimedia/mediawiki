@@ -64,6 +64,7 @@ Database:
     namespace are changed
 * Respect database prefix in dumpHTML.inc
 * Removed read-only check from Database::query()
+* Added externallinks table, to track links to arbitrary URLs
 
 Documentation:
 * (bug 3306) Document $wgLocalTZoffset
@@ -251,6 +252,9 @@ Parser:
 * Fix XML validity checks in parser tests on PHP 5.1
 * (bug 4377) "[" is not valid in URLs
 * (bug 4453) fix for __TOC__ dollar-number breakage
+* Convert unnecessary URL escape codes in external links to their equivalent
+  character before doing anything with them. This prevents certain kinds of
+  spam filter evasion.
 
 Upload:
 * (bug 2527) Always set destination filename when new file is selected

@@ -1808,4 +1808,34 @@ function wfBaseName( $path ) {
 	}
 }
 
+/**
+ * Make a URL index, appropriate for the el_index field of externallinks.
+ */
+function wfMakeUrlIndex( $url ) {
+	wfSuppressWarnings();
+	$bits = parse_url( $url );
+	wfRestoreWarnings();
+	if ( !$bits || $bits['scheme'] !== 'http' ) {
+		return false;
+	}
+	// Reverse the labels in the hostname, convert to lower case
+	$reversedHost = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
+	// Add an extra dot to the end
+	if ( substr( $reversedHost, -1 ) !== '.' ) {
+		$reversedHost .= '.';
+	}
+	// Reconstruct the pseudo-URL
+	$index = "http://$reversedHost";
+	// Leave out user and password. Add the port, path, query and fragment
+	if ( isset( $bits['port'] ) )      $index .= ':' . $bits['port'];
+	if ( isset( $bits['path'] ) ) {
+		$index .= $bits['path'];
+	} else {
+		$index .= '/';
+	}
+	if ( isset( $bits['query'] ) )     $index .= '?' . $bits['query'];
+	if ( isset( $bits['fragment'] ) )  $index .= '#' . $bits['fragment'];
+	return $index;
+}
+
 ?>

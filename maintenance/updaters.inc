@@ -26,6 +26,7 @@ $wgNewTables = array(
 	array( 'user_newtalk',  'patch-usernewtalk2.sql' ),
 	array( 'transcache',	'patch-transcache.sql' ),
 	array( 'trackbacks',	'patch-trackbacks.sql' ),
+	array( 'externallinks', 'patch-externallinks.sql' ),
 );
 
 $wgNewFields = array(
