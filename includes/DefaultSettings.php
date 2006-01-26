@@ -699,7 +699,7 @@ $wgDebugRedirects		= false;
 $wgDebugRawPage         = false; # Avoid overlapping debug entries by leaving out CSS
 
 $wgDebugComments        = false;
-$wgReadOnly             = false;
+$wgReadOnly             = null;
 $wgLogQueries           = false;
 
 /**
