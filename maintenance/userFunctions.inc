@@ -17,9 +17,16 @@
  */
 function CountEdits( $user, $slave = true ) {
 	$dbw =& wfGetDB( $slave ? DB_SLAVE: DB_MASTER );
+	# Count current edits
 	$res = $dbw->select( 'revision', 'COUNT(rev_id) AS count', array( 'rev_user' => $user ) );
 	$row = $dbw->fetchObject( $res );
-	return( $row->count );
+	$count = $row->count;
+	# Count deleted edits
+	$res = $dbw->select( 'archive', 'COUNT(*) AS count', array( 'ar_user' => $user ) );
+	$row = $dbw->fetchObject( $res );
+	$count += $row->count;
+	# Done
+	return( $count );
 }
 
 /**
