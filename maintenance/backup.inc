@@ -154,11 +154,7 @@ class BackupDumper {
 		# relatively harmless.
 		ini_set( 'display_errors', false );
 
-		$this->startTime = wfTime();
-
-		$dbr =& wfGetDB( DB_SLAVE );
-		$this->maxCount = $dbr->selectField( 'page', 'MAX(page_id)', '', 'BackupDumper::dump' );
-		$this->startTime = wfTime();
+		$this->initProgress( $history );
 
 		$db =& $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, MW_EXPORT_STREAM, $text );
@@ -184,6 +180,21 @@ class BackupDumper {
 
 		$this->report( true );
 	}
+	
+	/**
+	 * Initialise starting time and maximum revision count.
+	 * We'll make ETA calculations based an progress, assuming relatively
+	 * constant per-revision rate.
+	 * @param int $history MW_EXPORT_CURRENT or MW_EXPORT_FULL
+	 */
+	function initProgress( $history = MW_EXPORT_FULL ) {
+		$table = ($history == MW_EXPORT_CURRENT) ? 'page' : 'revision';
+		$field = ($history == MW_EXPORT_CURRENT) ? 'page_id' : 'rev_id';
+		
+		$dbr =& wfGetDB( DB_SLAVE );
+		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', 'BackupDumper::dump' );
+		$this->startTime = wfTime();
+	}
 
 	function &backupDb() {
 		global $wgDBadminuser, $wgDBadminpassword;
@@ -205,15 +216,15 @@ class BackupDumper {
 
 	function reportPage() {
 		$this->pageCount++;
-		$this->report();
 	}
 
 	function revCount() {
 		$this->revCount++;
+		$this->report();
 	}
 
 	function report( $final = false ) {
-		if( $final xor ( $this->pageCount % $this->reportingInterval == 0 ) ) {
+		if( $final xor ( $this->revCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
 	}
@@ -225,7 +236,7 @@ class BackupDumper {
 			if( $delta ) {
 				$rate = $this->pageCount / $delta;
 				$revrate = $this->revCount / $delta;
-				$portion = $this->pageCount / $this->maxCount;
+				$portion = $this->revCount / $this->maxCount;
 				$eta = $this->startTime + $delta / $portion;
 				$etats = wfTimestamp( TS_DB, intval( $eta ) );
 			} else {
@@ -234,7 +245,8 @@ class BackupDumper {
 				$etats = '-';
 			}
 			global $wgDBname;
-			$this->progress( "$now: $wgDBname $this->pageCount, ETA $etats ($rate pages/sec $revrate revs/sec)" );
+			$this->progress( sprintf( "%s: %s %d pages (%0.3f/sec), %d revs (%0.3f/sec), ETA %s [max %d]",
+				$now, $wgDBname, $this->pageCount, $rate, $this->revCount, $revrate, $etats, $this->maxCount ) );
 		}
 	}
 

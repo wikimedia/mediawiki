@@ -33,6 +33,7 @@ require_once( 'maintenance/backup.inc' );
 class TextPassDumper extends BackupDumper {
 	var $prefetch = null;
 	var $input = "php://stdin";
+	var $history = MW_EXPORT_FULL;
 
 	function dump() {
 		# This shouldn't happen if on console... ;)
@@ -42,11 +43,9 @@ class TextPassDumper extends BackupDumper {
 		# relatively harmless.
 //		ini_set( 'display_errors', false );
 
-		$this->startTime = wfTime();
+		$this->initProgress( $this->history );
 
 		$this->db =& $this->backupDb();
-		$this->maxCount = $this->db->selectField( 'page', 'MAX(page_id)', '', 'BackupDumper::dump' );
-		$this->startTime = wfTime();
 
 		$this->egress = new ExportProgressFilter( $this->sink, $this );
 
@@ -70,6 +69,12 @@ class TextPassDumper extends BackupDumper {
 			break;
 		case 'stub':
 			$this->input = $url;
+			break;
+		case 'current':
+			$this->history = MW_EXPORT_CURRENT;
+			break;
+		case 'full':
+			$this->history = MW_EXPORT_FULL;
 			break;
 		}
 	}
@@ -229,6 +234,7 @@ Options:
   --report=n  Report position and speed after every n pages processed.
               (Default: 100)
   --server=h  Force reading from MySQL server h
+  --current   Base ETA on number of pages in database instead of all revisions
 END
 );
 }
