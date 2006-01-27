@@ -1821,7 +1821,7 @@ function wfMakeUrlIndex( $url ) {
 	// Reverse the labels in the hostname, convert to lower case
 	$reversedHost = strtolower( implode( '.', array_reverse( explode( '.', $bits['host'] ) ) ) );
 	// Add an extra dot to the end
-	if ( substr( $reversedHost, -1 ) !== '.' ) {
+	if ( substr( $reversedHost, -1, 1 ) !== '.' ) {
 		$reversedHost .= '.';
 	}
 	// Reconstruct the pseudo-URL
@@ -1836,6 +1836,23 @@ function wfMakeUrlIndex( $url ) {
 	if ( isset( $bits['query'] ) )     $index .= '?' . $bits['query'];
 	if ( isset( $bits['fragment'] ) )  $index .= '#' . $bits['fragment'];
 	return $index;
+}
+
+/**
+ * Do any deferred updates and clear the list
+ * TODO: This could be in Wiki.php if that class made any sense at all
+ */
+function wfDoUpdates()
+{
+	global $wgPostCommitUpdateList, $wgDeferredUpdateList;
+	foreach ( $wgDeferredUpdateList as $update ) { 
+		$update->doUpdate();
+	}
+	foreach ( $wgPostCommitUpdateList as $update ) {
+		$update->doUpdate();
+	}
+	$wgDeferredUpdateList = array();
+	$wgPostCommitUpdateList = array();
 }
 
 ?>
