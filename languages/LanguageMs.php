@@ -11,29 +11,30 @@
 	NS_MEDIA          => "Media",
 	NS_SPECIAL        => "Istimewa", #Special
 	NS_MAIN           => "",
+	NS_TALK           => "Perbualan",#Talk
+	NS_USER           => "Pengguna",#User
+	NS_USER_TALK      => "Perbualan_Pengguna",#User_talk
+	NS_PROJECT        => $wgMetaNamespace,#Wikipedia
+	NS_PROJECT_TALK   => "Perbualan_" . $wgMetaNamespace,#Wikipedia_talk
+	NS_IMAGE          => "Imej",#Image
+	NS_IMAGE_TALK     => "Imej_Perbualan",#Image_talk
+	NS_MEDIAWIKI      => "MediaWiki",#MediaWiki
+	NS_MEDIAWIKI_TALK => "MediaWiki_Perbualan",#MediaWiki_talk
+	NS_TEMPLATE       => "Templat",#Template
+	NS_TEMPLATE_TALK  => "Perbualan_Templat",#Template_talk
 	NS_CATEGORY       => "Kategori",#Category
 	NS_CATEGORY_TALK  => "Perbualan_Kategori",#Category_talk
 	NS_HELP           => "Bantuan",#Help
-	NS_HELP_TALK      => "Perbualan_Bantuan", #Help_talk
-	NS_TALK           => "Perbualan", #Talk
-	NS_USER           => "Pengguna", #User
-	NS_USER_TALK      => "Perbualan_Pengguna", #User_talk
-	NS_PROJECT        => "Wikipedia", #Wikipedia
-	NS_PROJECT_TALK   => "Perbualan_Wikipedia", #Wikipedia_talk
-	NS_IMAGE          => "Imej", #Image
-	NS_IMAGE_TALK     => "Perbualan_Imej", #Image_talk
-	NS_MEDIAWIKI      => "MediaWiki",
-	NS_MEDIAWIKI_TALK => "Perbualan_MediaWiki", #MediaWiki_talk
-	NS_TEMPLATE       => "Templat", #Template
-	NS_TEMPLATE_TALK  => "Perbualan_Templat" #Template_talk
+	NS_HELP_TALK      => "Perbualan_Bantuan" #Help_talk
+
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsMs = array(
-	"Tiada", "Kiri", "Kanan", "Mengapung ke kiri", "Mengapung ke kanan",
+	"Tiada", "Tetap sebelah kiri", "Tetap sebelah kanan", "Berubah-ubah sebelah kiri"
 );
 
 /* private */ $wgDateFormatsMs = array(
-#	"Tiada kecenderungan", # "No preference",
+#	"Tiada pilihan", # "No preference",
 );
 
 if (!$wgCachedMessageArrays) {
