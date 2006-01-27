@@ -1051,6 +1051,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Maintenance script to wipe a page and all revisions from the database
 * (bug 4768) Wrong Russian translation (typo)
 * Performance bugfix: propagate equality manually for Revision fetches
+* (bug 4773) PHP fatal error when invalid title passed to Special:Export
+
 
 === Caveats ===
 
