@@ -1438,6 +1438,9 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'categoryarticlecount1' => "There is $1 article in this category.",
 'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
 'listingcontinuesabbrev' => " cont.",
+'spambot_username' => 'MediaWiki spam cleanup',
+'spam_reverting' => 'Reverting to last version not containing links to $1',
+'spam_blanking' => 'All revisions contained links to $1, blanking',
 
 # Info page
 'infosubtitle' => 'Information for page',

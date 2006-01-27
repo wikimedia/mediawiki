@@ -136,6 +136,7 @@ Maintenance:
 * Maintenance script to delete non-current revisions
 * Maintenance script to wipe a page and all revisions from the database
 * Maintenance script to reassign edits from one user to another
+* Maintenance script to find and remove links to a given domain (cleanupSpam.php)
 
 i18n / Languages:
 * Partial support for Basque language (from wikipedia and meta)
