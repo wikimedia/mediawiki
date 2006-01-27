@@ -1052,7 +1052,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4768) Wrong Russian translation (typo)
 * Performance bugfix: propagate equality manually for Revision fetches
 * (bug 4773) PHP fatal error when invalid title passed to Special:Export
-
+* Added missing table defs. for transcache (were in updaters, but not install schema)
 
 === Caveats ===
 
