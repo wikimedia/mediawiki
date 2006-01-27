@@ -63,16 +63,13 @@ class Revision {
 	 * @access public
 	 */
 	function loadFromPageId( &$db, $pageid, $id = 0 ) {
+		$conds=array('page_id=rev_page','rev_page'=>intval( $pageid ), 'page_id'=>intval( $pageid ));
 		if( $id ) {
-			$matchId = IntVal( $id );
+			$conds['rev_id']=intval($id);
 		} else {
-			$matchId = 'page_latest';
+			$conds[]='rev_id=page_latest';
 		}
-		return Revision::loadFromConds(
-			$db,
-			array( "rev_id=$matchId",
-			       'rev_page' => IntVal( $pageid ),
-			       'page_id=rev_page' ) );
+		return Revision::loadFromConds( $db, $conds );
 	}
 	
 	/**

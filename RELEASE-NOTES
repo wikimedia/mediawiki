@@ -1050,6 +1050,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Maintenance script to delete non-current revisions
 * Maintenance script to wipe a page and all revisions from the database
 * (bug 4768) Wrong Russian translation (typo)
+* Performance bugfix: propagate equality manually for Revision fetches
 
 === Caveats ===
 
