@@ -578,7 +578,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Use revision rate for ETA in dump generation; it tends to be more stable
   than the per-page count for full-history dumps.
 * Include timestamp in wfDebugLog breakouts
-
+* (bug 4469) Namespace-specific notice to be displayed below site-notice
+  Edit messages like "MediaWiki:Namespacenotice-" plus namespace name
+  which is blank for main namespace, or like e.g. "User_talk"
 
 === Caveats ===
 
