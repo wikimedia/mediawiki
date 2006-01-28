@@ -223,7 +223,8 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
 	global $wgDebugLogGroups, $wgDBname;
 	if( $text{strlen( $text ) - 1} != "\n" ) $text .= "\n";
 	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
-		@error_log( "$wgDBname: $text", 3, $wgDebugLogGroups[$logGroup] );
+		$time = wfTimestamp( TS_DB );
+		@error_log( "$time $wgDBname: $text", 3, $wgDebugLogGroups[$logGroup] );
 	} else if ( $public === true ) {
 		wfDebug( $text, true );
 	}
