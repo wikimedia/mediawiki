@@ -2423,7 +2423,7 @@ class Parser
 			# Check for NS: (namespace expansion)
 			$mwNs = MagicWord::get( MAG_NS );
 			if ( $mwNs->matchStartAndRemove( $part1 ) ) {
-				if ( intval( $part1 ) ) {
+				if ( intval( $part1 ) || $part1 == "0" ) {
 					$text = $linestart . $wgContLang->getNsText( intval( $part1 ) );
 					$found = true;
 				} else {
