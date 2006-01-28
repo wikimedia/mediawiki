@@ -1390,6 +1390,28 @@ function wfGetCachedNotice( $name ) {
 	return $notice;
 }
 
+function wfGetNamespaceNotice() {
+	global $wgTitle;
+	
+	# Paranoia
+	if ( !isset( $wgTitle ) || !is_object( $wgTitle ) )
+		return "";
+
+	$fname = 'wfGetNamespaceNotice';
+	wfProfileIn( $fname );
+	
+	$key = "namespacenotice-" . $wgTitle->getNsText();
+	$namespaceNotice = wfGetCachedNotice( $key );
+	if ( $namespaceNotice && substr ( $namespaceNotice , 0 ,7 ) != "<p>&lt;" ) {
+		 $namespaceNotice = '<div id="namespacebanner">' . $namespaceNotice . "</div>";
+	} else {
+		$namespaceNotice = "";
+	}
+
+	wfProfileOut( $fname );
+	return $namespaceNotice;
+}
+
 function wfGetSiteNotice() {
 	global $wgUser, $wgSiteNotice;
 	$fname = 'wfGetSiteNotice';
@@ -1407,6 +1429,7 @@ function wfGetSiteNotice() {
 			$siteNotice = $anonNotice;
 		}
 	}
+	$siteNotice .= wfGetNamespaceNotice();
 	
 	wfProfileOut( $fname );
 	return( $siteNotice );
