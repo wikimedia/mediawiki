@@ -577,6 +577,7 @@ fully support the editing toolbar, but was found to be too confusing.
   optimizer for revision fetches (avoids index scans)
 * Use revision rate for ETA in dump generation; it tends to be more stable
   than the per-page count for full-history dumps.
+* Include timestamp in wfDebugLog breakouts
 
 
 === Caveats ===
