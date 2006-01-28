@@ -2003,6 +2003,8 @@ class Article {
 		$dbw->delete( 'pagelinks', array( 'pl_from' => $id ) );
 		$dbw->delete( 'imagelinks', array( 'il_from' => $id ) );
 		$dbw->delete( 'categorylinks', array( 'cl_from' => $id ) );
+		$dbw->delete( 'templatelinks', array( 'tl_from' => $id ) );
+		$dbw->delete( 'externallinks', array( 'el_from' => $id ) );
 
 		# Log the deletion
 		$log = new LogPage( 'delete' );
