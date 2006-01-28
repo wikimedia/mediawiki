@@ -1562,6 +1562,59 @@ Magic Word: {{SITENAME}}
 </p>
 !! end
 
+!! test
+Namespace 1 {{ns:1}}
+!! input
+{{ns:1}}
+!! result
+<p>Talk
+</p>
+!! end
+
+!! test
+Namespace 1 {{ns:01}}
+!! input
+{{ns:01}}
+!! result
+<p>Talk
+</p>
+!! end
+
+!! test
+Namespace 0 {{ns:0}} (bug 4783)
+!! input
+{{ns:0}}
+!! result
+
+!! end
+
+!! test
+Namespace 0 {{ns:00}} (bug 4783)
+!! input
+{{ns:00}}
+!! result
+
+!! end
+
+!! test
+Namespace -1 {{ns:-1}}
+!! input
+{{ns:-1}}
+!! result
+<p>Special
+</p>
+!! end
+
+!! test
+Namespace Project {{ns:User}}
+!! input
+{{ns:User}}
+!! result
+<p>User
+</p>
+!! end
+
+
 ###
 ### Magic links
 ###
