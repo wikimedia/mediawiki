@@ -331,7 +331,7 @@ class ParserTest {
 	# Some of these probably aren't necessary
 	function listTables() {
 		$tables = array('user', 'page', 'revision', 'text',
-			'pagelinks', 'imagelinks', 'categorylinks', 'templatelinks',
+			'pagelinks', 'imagelinks', 'categorylinks', 'templatelinks', 'externallinks',
 			'site_stats', 'hitcounter',
 			'ipblocks', 'image', 'oldimage',
 			'recentchanges',
