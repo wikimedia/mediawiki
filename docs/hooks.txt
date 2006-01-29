@@ -239,6 +239,7 @@ you're going to add events to the MediaWiki code.
 
 'AbortNewAccount': Return false to cancel account creation.
 $user: the User object about to be created (read-only, incomplete)
+$message: out parameter: error message to display on abort
 
 'AddNewAccount': after a user account is created
 null: This hook passes null as an argument
@@ -379,9 +380,15 @@ string $saveName: destination file name
 string $tempName: filesystem path to the temporary file for checks
 string &$error: output: HTML error to show if upload canceled by returning false
 
+'UserCreateForm': change to manipulate the login form
+$template: SimpleTemplate instance for the form
+
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
 		    
+'UserLoginForm': change to manipulate the login form
+$template: SimpleTemplate instance for the form
+
 'UserLogout': before a user logs out
 $user: the user object that is about to be logged out
        

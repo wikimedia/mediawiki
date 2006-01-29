@@ -238,9 +238,11 @@ class LoginForm {
 			}
 		}
 
-		if( !wfRunHooks( 'AbortNewAccount', array( $u ) ) ) {
+		$abortError = '';
+		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
+			$this->mainLoginForm( $abortError );
 			return false;
 		}
 
@@ -479,6 +481,7 @@ class LoginForm {
 		$link .= '</a>';
 
 		$template->set( 'link', wfMsgHtml( $linkmsg, $link ) );
+		$template->set( 'header', '' );
 
 		$template->set( 'name', $this->mName );
 		$template->set( 'password', $this->mPassword );
@@ -495,7 +498,14 @@ class LoginForm {
 		$template->set( 'userealname', $wgAllowRealName );
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
+		
+		// Give authentication and captcha plugins a chance to modify the form
 		$wgAuth->modifyUITemplate( $template );
+		if ( $this->mType == 'signup' ) {
+			wfRunHooks( 'UserCreateForm', array( &$template ) );
+		} else {
+			wfRunHooks( 'UserLoginForm', array( &$template ) );
+		}
 
 		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
