@@ -173,21 +173,25 @@ class LogPage {
 				$rv=wfMsg( $actions[$key] );
 			} else {
 				if( $skin ) {
-					if ( $type == 'move' ) {
-						$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
-						// Change $param[0] into a link to the title specified in $param[0]
-						$movedTo = Title::newFromText( $params[0] );
-						$params[0] = $skin->makeLinkObj( $movedTo, $params[0] );
-					} else {
-						# Bug 4359: red [[user:#id]] links generated in [[special:Log]]
-						# If it's an autoblock, don't do a link
-						if( $type == 'block' ) {
-							$titletext = $title->getText();
-							$titleLink = ( ( substr( $titletext, 0, 1 ) == '#' ) ? $titletext : $skin->makeLinkObj( $title ) );
-						} else {
+
+					switch( $type ) {
+						case 'move':
+							$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
+							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), $params[0] );
+							break;
+						case 'block':
+							$titleText = $title->getText();
+							if( substr( $titleText, 0, 1 ) == '#' ) {
+								$titleLink = $titleText;
+							} else {
+								$titleLink = $skin->makeLinkObj( $title, $titleText );
+								$titleLink .= ' (' . $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions/' . urlencode( $titleText ) ), wfMsg( 'contribslink' ) ) . ')';
+							}
+							break;
+						default:
 							$titleLink = $skin->makeLinkObj( $title );
-						}
 					}
+
 				} else {
 					$titleLink = $title->getPrefixedText();
 				}
