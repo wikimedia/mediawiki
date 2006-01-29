@@ -105,6 +105,7 @@ class UsercreateTemplate extends QuickTemplate {
 <form name="userlogin2" id="userlogin2" method="post" action="<?php $this->text('action') ?>">
 	<h2><?php $this->msg('createaccount') ?></h2>
 	<p id="userloginlink"><?php $this->html('link') ?></p>
+	<?php $this->html('header'); /* pre-table point for form plugins... */ ?>
 	<table>
 		<tr>
 			<td align='right'><label for='wpName2'><?php $this->msg('yourname') ?>:</label></td>
