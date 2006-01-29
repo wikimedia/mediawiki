@@ -1,8 +1,7 @@
 <?php
 /** Russian (русский язык)
   *
-  * Based on Language.php 1.772
-  * and ru.wikipedia MediaWiki namespace (2006-01-06)
+  * You can contact Alexander Sigachov (alexander.sigachov at Googgle Mail)
   *
   * @package MediaWiki
   * @subpackage Language
@@ -74,6 +73,7 @@ require_once( 'LanguageUtf8.php' );
 	MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦАРОД'),
 	MAG_CURRENTMONTHABBREV   => array( 1,    'CURRENTMONTHABBREV', 'НАЗВАНИЕТЕКУЩЕГОМЕСЯЦААБР'),
 	MAG_CURRENTDAY           => array( 1,    'CURRENTDAY','ТЕКУЩИЙДЕНЬ'),
+	MAG_CURRENTDAY2          => array( 1,    'CURRENTDAY2','ТЕКУЩИЙДЕНЬ2'),
 	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME','НАЗВАНИЕТЕКУЩЕГОДНЯ'),
 	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR','ТЕКУЩИЙГОД'),
 	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME','ТЕКУЩЕЕВРЕМЯ'),
@@ -203,7 +203,7 @@ class LanguageRu extends LanguageUtf8 {
 	}
 
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
-		$count = str_replace (' ', '', $count);
+		$count = str_replace (' ', '', $count);
 		if ($count > 10 && floor(($count % 100) / 10) == 1) {
 			return $wordform3;
 		} else {
