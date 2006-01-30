@@ -406,11 +406,9 @@ function wfMsgNoDBForContent( $key ) {
  */
 function wfMsgReal( $key, $args, $useDB, $forContent=false, $transform = true ) {
 	$fname = 'wfMsgReal';
-	wfProfileIn( $fname );
 
 	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
-	wfProfileOut( $fname );
 	return $message;
 }
 
@@ -1429,8 +1427,7 @@ function wfGetSiteNotice() {
 			$siteNotice = $anonNotice;
 		}
 	}
-	$siteNotice .= wfGetNamespaceNotice();
-	
+
 	wfProfileOut( $fname );
 	return( $siteNotice );
 }
@@ -1604,6 +1601,19 @@ function wfMkdirParents( $fullDir, $mode ) {
  */
 function wfIncrStats( $key ) {
 	global $wgDBname, $wgMemc;
+        /* LIVE HACK AVOID MEMCACHED ACCESSES DURING HIGH LOAD */
+        if ($wgDBname != 'enwiki' and $wgDBname != 'dewiki' and $wgDBname != 'commonswiki' and $wgDBname != 'testwiki')
+            return true;
+        static $socket;
+        if (!$socket) {
+            $socket=socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+            $statline="{$wgDBname} - 1 1 1 1 1 -total\n";
+            socket_sendto($socket,$statline,strlen($statline),0,"webster","3811");
+        }
+        $statline="{$wgDBname} - 1 1 1 1 1 {$key}\n";
+        socket_sendto($socket,$statline,strlen($statline),0,"webster","3811");
+        return true;
+
 	$key = "$wgDBname:stats:$key";
 	if ( is_null( $wgMemc->incr( $key ) ) ) {
 		$wgMemc->add( $key, 1 );
