@@ -584,6 +584,7 @@ fully support the editing toolbar, but was found to be too confusing.
   Edit messages like "MediaWiki:Namespacenotice-" plus namespace name
   which is blank for main namespace, or like e.g. "User_talk"
 * Adjust user login/creation form hooks to work with a captcha plugin
+* (bug 1284) Inline styles for diffs in Recent Changes RSS/Atom feeds
 
 
 === Caveats ===
