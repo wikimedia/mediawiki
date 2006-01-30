@@ -453,10 +453,10 @@ let find = function
     | "\\rm"               -> DECLh ("\\rm ", FONTFORCE_RM)
     | "\\it"               -> DECLh ("\\it ", FONTFORCE_IT)
     | "\\cal"              -> DECL "\\cal "
-	| "\\displaystyle"     -> LITERAL (TEX_ONLY  "\\displaystyle ")
-	| "\\scriptstyle"      -> LITERAL (TEX_ONLY "\\scriptstyle ")
-	| "\\textstyle"        -> LITERAL (TEX_ONLY "\\textstyle ")
-	| "\\scriptscriptstyle"-> LITERAL (TEX_ONLY "\\scriptscriptstyle ")
+    | "\\displaystyle"     -> LITERAL (TEX_ONLY  "\\displaystyle ")
+    | "\\scriptstyle"      -> LITERAL (TEX_ONLY "\\scriptstyle ")
+    | "\\textstyle"        -> LITERAL (TEX_ONLY "\\textstyle ")
+    | "\\scriptscriptstyle"-> LITERAL (TEX_ONLY "\\scriptscriptstyle ")
     | "\\bf"               -> DECL "\\bf "
     | "\\big"              -> BIG "\\big "
     | "\\Big"              -> BIG "\\Big "
