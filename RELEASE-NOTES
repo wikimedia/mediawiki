@@ -341,7 +341,6 @@ Special Pages:
 * (bug 3192): properly check 'limit' parameter on Special:Contributions
 * (bug 3187) watchlist text refer to unexistent "Stop watching" action
 * Add block link and a link to the block log to Special:Contributions
-* Added $wgInvisibleGroups, to hide groups from Special:Listusers
 * Add contributions link to block log items
 
 Misc.:

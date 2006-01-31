@@ -847,11 +847,6 @@ $wgGroupPermissions['bureaucrat']['userrights'] = true;
 # $wgGroupPermissions['developer']['siteadmin'] = true;
 
 /**
- * List of groups which won't appear in Special:Listusers
- */
-$wgInvisibleGroups = array();
-
-/**
  * Set of available actions that can be restricted via Special:Protect
  * You probably shouldn't change this.
  */

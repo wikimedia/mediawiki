@@ -89,7 +89,7 @@ class ListUsersPage extends QueryPage {
 				wfMsgHtml( 'groups-editgroup-name' ) . '<select name="group">';
 
 		// get group names
-		$groups = User::getVisibleGroups();
+		$groups = User::getAllGroups();
 
 		// we want a default empty group
 		$out.= '<option value=""></option>';
@@ -185,9 +185,7 @@ class ListUsersPage extends QueryPage {
 				'ListUsersPage::formatResult' );
 			$groups = array();
 			while( $row = $dbr->fetchObject( $result ) ) {
-				if ( User::isVisibleGroup( $row->ug_group ) ) {
-					$groups[] = User::getGroupName( $row->ug_group );
-				}
+				$groups[] = User::getGroupName( $row->ug_group );
 			}
 			$dbr->freeResult( $result );
 
