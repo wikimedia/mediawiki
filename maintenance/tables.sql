@@ -838,6 +838,16 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
 
 ) TYPE=InnoDB;
 
+--
+-- Cache of interwiki transclusion
+--
+CREATE TABLE /*$wgDBprefix*/transcache (
+	tc_url		VARCHAR(255) NOT NULL,
+	tc_contents	TEXT,
+	tc_time		INT NOT NULL,
+	UNIQUE INDEX tc_url_idx(tc_url)
+) TYPE=InnoDB;
+
 -- For article validation
 CREATE TABLE /*$wgDBprefix*/validate (
   val_user int(11) NOT NULL default '0',

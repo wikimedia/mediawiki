@@ -1831,6 +1831,10 @@ $wgHTTPProxy = false;
  * Enable interwiki transcluding.  Only when iw_trans=1.
  */
 $wgEnableScaryTranscluding = false;
+/**
+ * Expiry time for interwiki transclusion
+ */
+$wgTranscludeCacheExpiry = 3600;
 
 /**
  * Support blog-style "trackbacks" for articles.  See

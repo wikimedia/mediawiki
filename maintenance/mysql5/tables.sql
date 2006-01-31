@@ -851,6 +851,16 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
 
 ) TYPE=InnoDB, DEFAULT CHARSET=utf8;
 
+--
+-- Cache of interwiki transclusion
+--
+CREATE TABLE /*$wgDBprefix*/transcache (
+	tc_url		VARCHAR(255) NOT NULL,
+	tc_contents	TEXT,
+	tc_time		INT NOT NULL,
+	UNIQUE INDEX tc_url_idx(tc_url)
+) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+
 -- For article validation
 CREATE TABLE /*$wgDBprefix*/validate (
   val_user int(11) NOT NULL default '0',
