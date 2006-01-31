@@ -51,7 +51,7 @@ let get_encoding = function
 let get_preface ()  = "\\nonstopmode\n\\documentclass[12pt]{article}\n" ^
               (if !modules_nonascii then get_encoding !modules_encoding else "") ^
               (if !modules_ams then "\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n" else "") ^
-              (if !modules_color then "\\usepackage[dvips]{color}\n" else "") ^              
+              (if !modules_color then "\\usepackage[dvips,usenames]{color}\n" else "") ^
               "\\pagestyle{empty}\n\\begin{document}\n$$\n"
 let get_footer  ()  = "\n$$\n\\end{document}\n"
 
