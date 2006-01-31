@@ -9,20 +9,22 @@
  * if $timeout is 'default', $wgHTTPTimeout is used
  */
 function wfGetHTTP( $url, $timeout = 'default' ) {
-	global $wgHTTPTimeout, $wgHTTPProxy;
+	global $wgHTTPTimeout, $wgHTTPProxy, $wgVersion;
 
 	# Use curl if available
 	if ( function_exists( 'curl_init' ) ) {
 		$c = curl_init( $url );
 		if ( wfIsLocalURL( $url ) ) {
 			curl_setopt( $c, CURLOPT_PROXY, 'localhost:80' );
-		} else if ($wgHTTPProxy)
+		} else if ($wgHTTPProxy) {
 			curl_setopt($c, CURLOPT_PROXY, $wgHTTPProxy);
+		}
 
 		if ( $timeout == 'default' ) {
 			$timeout = $wgHTTPTimeout;
 		}
 		curl_setopt( $c, CURLOPT_TIMEOUT, $timeout );
+		curl_setopt( $c, CURLOPT_USERAGENT, "MediaWiki/$wgVersion" );
 		ob_start();
 		curl_exec( $c );
 		$text = ob_get_contents();

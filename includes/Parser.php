@@ -2359,6 +2359,8 @@ class Parser
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
+		$replaceHeadings = false;
+		$isHTML = false;
 
 		$title = NULL;
 
@@ -2531,8 +2533,6 @@ class Parser
 		}
 
 		# Load from database
-		$replaceHeadings = false;
-		$isHTML = false;
 		$lastPathLevel = $this->mTemplatePath;
 		if ( !$found ) {
 			$ns = NS_TEMPLATE;
@@ -2542,46 +2542,51 @@ class Parser
 			}
 			$title = Title::newFromText( $part1, $ns );
 
-			if ($title) {
-				$interwiki = Title::getInterwikiLink($title->getInterwiki());
-				if ($interwiki != '' && $title->isTrans()) {
-					return $this->scarytransclude($title, $interwiki);
-				}
-			}
-
-			if ( !is_null( $title ) && !$title->isExternal() ) {
-				# Check for excessive inclusion
-				$dbk = $title->getPrefixedDBkey();
-				if ( $this->incrementIncludeCount( $dbk ) ) {
-					if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() ) {
-						# Capture special page output
-						$text = SpecialPage::capturePath( $title );
-						if ( is_string( $text ) ) {
-							$found = true;
-							$noparse = true;
-							$isHTML = true;
-							$this->disableCache();
-						}
-					} else {
-						$articleContent = $this->fetchTemplate( $title );
-						if ( $articleContent !== false ) {
-							$found = true;
-							$text = $articleContent;
-							$replaceHeadings = true;
+			if ( !is_null( $title ) ) {
+				if ( !$title->isExternal() ) {
+					# Check for excessive inclusion
+					$dbk = $title->getPrefixedDBkey();
+					if ( $this->incrementIncludeCount( $dbk ) ) {
+						if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() ) {
+							# Capture special page output
+							$text = SpecialPage::capturePath( $title );
+							if ( is_string( $text ) ) {
+								$found = true;
+								$noparse = true;
+								$isHTML = true;
+								$this->disableCache();
+							}
+						} else {
+							$articleContent = $this->fetchTemplate( $title );
+							if ( $articleContent !== false ) {
+								$found = true;
+								$text = $articleContent;
+								$replaceHeadings = true;
+							}
 						}
 					}
-				}
 
-				# If the title is valid but undisplayable, make a link to it
-				if ( $this->mOutputType == OT_HTML && !$found ) {
-					$text = '[['.$title->getPrefixedText().']]';
+					# If the title is valid but undisplayable, make a link to it
+					if ( $this->mOutputType == OT_HTML && !$found ) {
+						$text = '[['.$title->getPrefixedText().']]';
+						$found = true;
+					}
+
+					# Template cache array insertion
+					if( $found ) {
+						$this->mTemplates[$part1] = $text;
+						$text = $linestart . $text;
+					}
+				} elseif ( $title->isTrans() ) {
+					// Interwiki transclusion
+					if ( $this->mOutputType == OT_HTML ) {
+						$text = $this->interwikiTransclude( $title, 'render' );
+						$isHTML = true;
+						$noparse = true;
+					} else {
+						$text = $this->interwikiTransclude( $title, 'raw' );
+					}
 					$found = true;
-				}
-
-				# Template cache array insertion
-				if( $found ) {
-					$this->mTemplates[$part1] = $text;
-					$text = $linestart . $text;
 				}
 			}
 		}
@@ -2714,41 +2719,49 @@ class Parser
 	}
 
 	/**
-	 * Translude an interwiki link.
+	 * Transclude an interwiki link.
 	 */
-	function scarytransclude($title, $interwiki) {
-		global $wgEnableScaryTranscluding;
+	function interwikiTransclude( $title, $action ) {
+		global $wgEnableScaryTranscluding, $wgCanonicalNamespaceNames;
 
 		if (!$wgEnableScaryTranscluding)
 			return wfMsg('scarytranscludedisabled');
 
-		$articlename = "Template:" . $title->getDBkey();
-		$url = str_replace('$1', urlencode($articlename), $interwiki);
+		// The namespace will actually only be 0 or 10, depending on whether there was a leading :
+		// But we'll handle it generally anyway
+		if ( $title->getNamespace() ) {
+			// Use the canonical namespace, which should work anywhere
+			$articleName = $wgCanonicalNamespaceNames[$title->getNamespace()] . ':' . $title->getDBkey();
+		} else {
+			$articleName = $title->getDBkey();
+		}
+
+		$url = str_replace('$1', urlencode($articleName), Title::getInterwikiLink($title->getInterwiki()));
+		$url .= "?action=$action";
 		if (strlen($url) > 255)
 			return wfMsg('scarytranscludetoolong');
-		$text = $this->fetchScaryTemplateMaybeFromCache($url);
-		$this->mIWTransData[] = $text;
-		return "<!--IW_TRANSCLUDE ".(count($this->mIWTransData) - 1)."-->";
+		return $this->fetchScaryTemplateMaybeFromCache($url);
 	}
 
 	function fetchScaryTemplateMaybeFromCache($url) {
+		global $wgTranscludeCacheExpiry;
 		$dbr =& wfGetDB(DB_SLAVE);
 		$obj = $dbr->selectRow('transcache', array('tc_time', 'tc_contents'),
 				array('tc_url' => $url));
 		if ($obj) {
 			$time = $obj->tc_time;
 			$text = $obj->tc_contents;
-			if ($time && $time < (time() + (60*60))) {
+			if ($time && time() < $time + $wgTranscludeCacheExpiry ) {
 				return $text;
 			}
 		}
 
-		$text = wfGetHTTP($url . '?action=render');
+		$text = wfGetHTTP($url);
 		if (!$text)
 			return wfMsg('scarytranscludefailed', $url);
 
 		$dbw =& wfGetDB(DB_MASTER);
-		$dbw->replace('transcache', array(), array(
+		$dbw->replace('transcache', array('tc_url'), array(
 			'tc_url' => $url,
 			'tc_time' => time(),
 			'tc_contents' => $text));
