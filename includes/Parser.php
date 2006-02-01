@@ -2253,9 +2253,10 @@ class Parser
 	 *
 	 * @param string $tex The text to transform
 	 * @param array $args Key-value pairs representing template parameters to substitute
+	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not double-brace expansion
 	 * @access private
 	 */
-	function replaceVariables( $text, $args = array() ) {
+	function replaceVariables( $text, $args = array(), $argsOnly = false ) {
 		# Prevent too big inclusions
 		if( strlen( $text ) > MAX_INCLUDE_SIZE ) {
 			return $text;
@@ -2268,7 +2269,9 @@ class Parser
 		array_push( $this->mArgStack, $args );
 
 		$braceCallbacks = array();
-		$braceCallbacks[2] = array( &$this, 'braceSubstitution' );
+		if ( !$argsOnly ) {
+			$braceCallbacks[2] = array( &$this, 'braceSubstitution' );
+		}
 		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI ) {
 			$braceCallbacks[3] = array( &$this, 'argSubstitution' );
 		}
@@ -2356,12 +2359,16 @@ class Parser
 		$fname = 'Parser::braceSubstitution';
 		wfProfileIn( $fname );
 
-		$found = false;
-		$nowiki = false;
-		$noparse = false;
-		$replaceHeadings = false;
-		$isHTML = false;
+		# Flags 
+		$found = false;             # $text has been filled
+		$nowiki = false;            # wiki markup in $text should be escaped
+		$noparse = false;           # Unsafe HTML tags should not be stripped, etc.
+		$noargs = false;            # Don't replace triple-brace arguments in $text
+		$replaceHeadings = false;   # Make the edit section links go to the template not the article
+		$isHTML = false;            # $text is HTML, armour it against wikitext transformation
+		$forceRawInterwiki = false; # Force interwiki transclusion to be done in raw mode not rendered
 
+		# Title object, where $text came from
 		$title = NULL;
 
 		$linestart = '';
@@ -2378,6 +2385,7 @@ class Parser
 				$text = $replaceWith;
 				$found = true;
 				$noparse = true;
+				$noargs = true;
 			}
 		}
 
@@ -2395,10 +2403,11 @@ class Parser
 				$text = $piece['text'];
 				$found = true;
 				$noparse = true;
+				$noargs = true;
 			}
 		}
 
-		# MSG, MSGNW and INT
+		# MSG, MSGNW, INT and RAW
 		if ( !$found ) {
 			# Check for MSGNW:
 			$mwMsgnw =& MagicWord::get( MAG_MSGNW );
@@ -2409,7 +2418,13 @@ class Parser
 				$mwMsg =& MagicWord::get( MAG_MSG );
 				$mwMsg->matchStartAndRemove( $part1 );
 			}
-
+			
+			# Check for RAW:
+			$mwRaw =& MagicWord::get( MAG_RAW );
+			if ( $mwRaw->matchStartAndRemove( $part1 ) ) {
+				$forceRawInterwiki = true;
+			}
+			
 			# Check if it is an internal message
 			$mwInt =& MagicWord::get( MAG_INT );
 			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
@@ -2515,12 +2530,13 @@ class Parser
 
 		# Did we encounter this template already? If yes, it is in the cache
 		# and we need to check for loops.
-		if ( !$found && isset( $this->mTemplates[$part1] ) ) {
+		if ( !$found && isset( $this->mTemplates[$piece['title']] ) ) {
 			$found = true;
 
 			# Infinite loop test
 			if ( isset( $this->mTemplatePath[$part1] ) ) {
 				$noparse = true;
+				$noargs = true;
 				$found = true;
 				$text = $linestart .
 					'{{' . $part1 . '}}' .
@@ -2528,7 +2544,7 @@ class Parser
 				wfDebug( "$fname: template loop broken at '$part1'\n" );
 			} else {
 				# set $text to cached message.
-				$text = $linestart . $this->mTemplates[$part1];
+				$text = $linestart . $this->mTemplates[$piece['title']];
 			}
 		}
 
@@ -2553,6 +2569,7 @@ class Parser
 							if ( is_string( $text ) ) {
 								$found = true;
 								$noparse = true;
+								$noargs = true;
 								$isHTML = true;
 								$this->disableCache();
 							}
@@ -2571,22 +2588,25 @@ class Parser
 						$text = '[['.$title->getPrefixedText().']]';
 						$found = true;
 					}
-
-					# Template cache array insertion
-					if( $found ) {
-						$this->mTemplates[$part1] = $text;
-						$text = $linestart . $text;
-					}
 				} elseif ( $title->isTrans() ) {
 					// Interwiki transclusion
-					if ( $this->mOutputType == OT_HTML ) {
+					if ( $this->mOutputType == OT_HTML && !$forceRawInterwiki ) {
 						$text = $this->interwikiTransclude( $title, 'render' );
 						$isHTML = true;
 						$noparse = true;
 					} else {
 						$text = $this->interwikiTransclude( $title, 'raw' );
+						$replaceHeadings = true;
 					}
 					$found = true;
+				}
+				
+				# Template cache array insertion
+				# Use the original $piece['title'] not the mangled $part1, so that
+				# modifiers such as RAW: produce separate cache entries
+				if( $found ) {
+					$this->mTemplates[$piece['title']] = $text;
+					$text = $linestart . $text;
 				}
 			}
 		}
@@ -2595,51 +2615,60 @@ class Parser
 		# Only for HTML output
 		if ( $nowiki && $found && $this->mOutputType == OT_HTML ) {
 			$text = wfEscapeWikiText( $text );
-		} elseif ( ($this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI) && $found && !$noparse) {
-			# Clean up argument array
-			$assocArgs = array();
-			$index = 1;
-			foreach( $args as $arg ) {
-				$eqpos = strpos( $arg, '=' );
-				if ( $eqpos === false ) {
-					$assocArgs[$index++] = $arg;
-				} else {
-					$name = trim( substr( $arg, 0, $eqpos ) );
-					$value = trim( substr( $arg, $eqpos+1 ) );
-					if ( $value === false ) {
-						$value = '';
-					}
-					if ( $name !== false ) {
-						$assocArgs[$name] = $value;
+		} elseif ( ($this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI) && $found ) {
+			if ( !$noargs ) {
+				# Clean up argument array
+				$assocArgs = array();
+				$index = 1;
+				foreach( $args as $arg ) {
+					$eqpos = strpos( $arg, '=' );
+					if ( $eqpos === false ) {
+						$assocArgs[$index++] = $arg;
+					} else {
+						$name = trim( substr( $arg, 0, $eqpos ) );
+						$value = trim( substr( $arg, $eqpos+1 ) );
+						if ( $value === false ) {
+							$value = '';
+						}
+						if ( $name !== false ) {
+							$assocArgs[$name] = $value;
+						}
 					}
 				}
+
+				# Add a new element to the templace recursion path
+				$this->mTemplatePath[$part1] = 1;
 			}
 
-			# Add a new element to the templace recursion path
-			$this->mTemplatePath[$part1] = 1;
+			if ( !$noparse ) {
+				# If there are any <onlyinclude> tags, only include them
+				if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
+					preg_match_all( '/<onlyinclude>(.*?)\n?<\/onlyinclude>/s', $text, $m );
+					$text = '';
+					foreach ($m[1] as $piece)
+						$text .= $piece;
+				}
+				# Remove <noinclude> sections and <includeonly> tags
+				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
+				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
 
-			# If there are any <onlyinclude> tags, only include them
-			if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
-				preg_match_all( '/<onlyinclude>(.*?)\n?<\/onlyinclude>/s', $text, $m );
-				$text = '';
-				foreach ($m[1] as $piece)
-					$text .= $piece;
-			}
-			# Remove <noinclude> sections and <includeonly> tags
-			$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
-			$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
+				if( $this->mOutputType == OT_HTML ) {
+					# Strip <nowiki>, <pre>, etc.
+					$text = $this->strip( $text, $this->mStripState );
+					$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
+				}
+				$text = $this->replaceVariables( $text, $assocArgs );
 
-			if( $this->mOutputType == OT_HTML ) {
-				# Strip <nowiki>, <pre>, etc.
-				$text = $this->strip( $text, $this->mStripState );
-				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
-			}
-			$text = $this->replaceVariables( $text, $assocArgs );
-
-			# If the template begins with a table or block-level
-			# element, it should be treated as beginning a new line.
-			if (!$piece['lineStart'] && preg_match('/^({\\||:|;|#|\*)/', $text)) {
-				$text = "\n" . $text;
+				# If the template begins with a table or block-level
+				# element, it should be treated as beginning a new line.
+				if (!$piece['lineStart'] && preg_match('/^({\\||:|;|#|\*)/', $text)) {
+					$text = "\n" . $text;
+				}
+			} elseif ( !$noargs ) {
+				# $noparse and !$noargs
+				# Just replace the arguments, not any double-brace items
+				# This is used for rendered interwiki transclusion
+				$text = $this->replaceVariables( $text, $assocArgs, true );
 			}
 		}
 		# Prune lower levels off the recursion check path

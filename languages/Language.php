@@ -253,10 +253,11 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_PLURAL               => array( 0,    'PLURAL:'                ),
 	MAG_FULLURL              => array( 0,    'FULLURL:'               ),
 	MAG_FULLURLE             => array( 0,    'FULLURLE:'              ),
-	MAG_LCFIRST		 => array( 0,    'LCFIRST:'               ),
-	MAG_UCFIRST		 => array( 0,    'UCFIRST:'               ),
-	MAG_LC			 => array( 0,    'LC:'                    ),
-	MAG_UC			 => array( 0,    'UC:'                    ),
+	MAG_LCFIRST              => array( 0,    'LCFIRST:'               ),
+	MAG_UCFIRST              => array( 0,    'UCFIRST:'               ),
+	MAG_LC                   => array( 0,    'LC:'                    ),
+	MAG_UC                   => array( 0,    'UC:'                    ),
+	MAG_RAW                  => array( 0,    'RAW:'                   ),
 );
 
 if (!$wgCachedMessageArrays) {

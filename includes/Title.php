@@ -494,7 +494,7 @@ class Title {
 	function isTrans() {
 		global $wgTitleInterwikiCache, $wgDBname;
 
-		if ($this->mInterwiki == '' || !$this->isLocal())
+		if ($this->mInterwiki == '')
 			return false;
 		# Make sure key is loaded into cache
 		$this->getInterwikiLink( $this->mInterwiki );
@@ -752,6 +752,13 @@ class Title {
 
 		if ( $this->isExternal() ) {
 			$url = $this->getFullURL();
+			if ( $query ) {
+				// This is currently only used for edit section links in the 
+				// context of interwiki transclusion. In theory we should 
+				// append the query to the end of any existing query string,
+				// but interwiki transclusion is already broken in that case.
+				$url .= "?$query";
+			}
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
@@ -1343,6 +1350,13 @@ class Title {
 						$firstPass = false;
 						# Do another namespace split...
 						continue;
+					}
+
+					# If there's an initial colon after the interwiki, that also 
+					# resets the default namespace
+					if ( $t !== '' && $t[0] == ':' ) {
+						$this->mNamespace = NS_MAIN;
+						$t = substr( $t, 1 );
 					}
 				}
 				# If there's no recognized interwiki or namespace,
