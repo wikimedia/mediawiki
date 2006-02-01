@@ -77,8 +77,15 @@ class Linker {
 	}
 
 	/**
-	 * Note: This function MUST call getArticleID() on the link,
-	 * otherwise the cache won't get updated properly.  See LINKCACHE.DOC.
+	 * This function is a shortcut to makeLinkObj(Title::newFromText($title),...). Do not call
+	 * it if you already have a title object handy. See makeLinkObj for further documentation.
+	 *
+	 * @param string $title The text of the title
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after 
+	 *                      the end of the link.
 	 */
 	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
 		wfProfileIn( 'Linker::makeLink' );
@@ -94,7 +101,17 @@ class Linker {
 		return $result;
 	}
 
-	/** @todo document */
+	/**
+	 * This function is a shortcut to makeKnownLinkObj(Title::newFromText($title),...). Do not call
+	 * it if you already have a title object handy. See makeKnownLinkObj for further documentation.
+	 * 
+	 * @param string $title The text of the title
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after 
+	 *                      the end of the link.
+	 */
 	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '',$aprops = '') {
 		$nt = Title::newFromText( $title );
 		if ($nt) {
@@ -105,7 +122,17 @@ class Linker {
 		}
 	}
 
-	/** @todo document */
+	/**
+	 * This function is a shortcut to makeBrokenLinkObj(Title::newFromText($title),...). Do not call
+	 * it if you already have a title object handy. See makeBrokenLinkObj for further documentation.
+	 * 
+	 * @param string $title The text of the title
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after 
+	 *                      the end of the link.
+	 */
 	function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
 		$nt = Title::newFromText( $title );
 		if ($nt) {
@@ -116,7 +143,17 @@ class Linker {
 		}
 	}
 
-	/** @todo document */
+	/**
+	 * This function is a shortcut to makeStubLinkObj(Title::newFromText($title),...). Do not call
+	 * it if you already have a title object handy. See makeStubLinkObj for further documentation.
+	 * 
+	 * @param string $title The text of the title
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after 
+	 *                      the end of the link.
+	 */
 	function makeStubLink( $title, $text = '', $query = '', $trail = '' ) {
 		$nt = Title::newFromText( $title );
 		if ($nt) {
@@ -128,7 +165,16 @@ class Linker {
 	}
 
 	/**
-	 * Pass a title object, not a title string
+	 * Make a link for a title which may or may not be in the database. If you need to 
+	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
+	 * call to this will result in a DB query.
+	 * 
+	 * @param string $title The text of the title
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after 
+	 *                      the end of the link.
 	 */
 	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
@@ -220,7 +266,10 @@ class Linker {
 	}
 
 	/**
-	 * Pass a title object, not a title string
+	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because 
+	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
+	 * pages.
+	 *
 	 * @param object Title of target page
 	 * @param string Text to replace the title
 	 * @param string Link target
@@ -268,7 +317,14 @@ class Linker {
 	}
 
 	/**
-	 * Pass a title object, not a title string
+	 * Make a red link to the edit page of a given title.
+	 * 
+	 * @param string $title The text of the title
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after 
+	 *                      the end of the link.
 	 */
 	function makeBrokenLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		# Fail gracefully
@@ -300,7 +356,14 @@ class Linker {
 	}
 
 	/**
- 	 * Pass a title object, not a title string
+	 * Make a brown link to a short article.
+	 * 
+	 * @param string $title The text of the title
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after 
+	 *                      the end of the link.
 	 */
 	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		$link = $nt->getPrefixedURL();
@@ -339,9 +402,12 @@ class Linker {
 		}
 	}
 
-	/** @todo document */
+	/** 
+	 * Make appropriate markup for a link to the current article. This is currently rendered
+	 * as the bold link text. The calling sequence is the same as the other make*LinkObj functions,
+	 * despite $query not being used.
+	 */
 	function makeSelfLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		$u = $nt->escapeLocalURL( $query );
 		if ( '' == $text ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
@@ -811,9 +877,9 @@ class Linker {
 	function editSectionLinkForOther( $title, $section ) {
 		global $wgContLang;
 
-		$title = Title::newFromText($title);
+		$title = Title::newFromText( $title );
 		$editurl = '&section='.$section;
-		$url = $this->makeKnownLink($title->getPrefixedText(),wfMsg('editsection'),'action=edit'.$editurl);
+		$url = $this->makeKnownLinkObj( $title, wfMsg('editsection'), 'action=edit'.$editurl );
 
 		if( $wgContLang->isRTL() ) {
 			$farside = 'left';
@@ -831,7 +897,7 @@ class Linker {
 		global $wgContLang;
 
 		$editurl = '&section='.$section;
-		$url = $this->makeKnownLink($nt->getPrefixedText(),wfMsg('editsection'),'action=edit'.$editurl);
+		$url = $this->makeKnownLinkObj( $nt, wfMsg('editsection'), 'action=edit'.$editurl );
 
 		if( $wgContLang->isRTL() ) {
 			$farside = 'left';
