@@ -69,6 +69,7 @@ $magicWords = array(
 	'MAG_UC',
 	'MAG_FULLPAGENAME',
 	'MAG_FULLPAGENAMEE',
+	'MAG_RAW',
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );

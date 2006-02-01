@@ -258,6 +258,7 @@ Parser:
   character before doing anything with them. This prevents certain kinds of
   spam filter evasion.
 * (bug 4783) : Fix for "{{ns:0}} does not render"
+* Improved support for interwiki transclusion
 
 Upload:
 * (bug 2527) Always set destination filename when new file is selected
