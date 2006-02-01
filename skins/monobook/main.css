@@ -562,7 +562,7 @@ span.diffchange {
 ** keep the whitespace in front of the ^=, hides rule from konqueror
 ** this is css3, the validator doesn't like it when validating as css2
 */
-#bodyContent a[href ^="http://"],
+#bodyContent a.external,
 #bodyContent a[href ^="gopher://"] {
 	background: url(external.png) center right no-repeat;
 	padding-right: 13px;
