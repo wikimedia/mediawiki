@@ -585,6 +585,9 @@ fully support the editing toolbar, but was found to be too confusing.
   which is blank for main namespace, or like e.g. "User_talk"
 * Adjust user login/creation form hooks to work with a captcha plugin
 * (bug 1284) Inline styles for diffs in Recent Changes RSS/Atom feeds
+* (bug 4824) IE7 beta 2 broke compatibility with PNG logo workarounds,
+  and seems to work ok with other bits. No longer including the IE
+  workarounds JavaScript for IE 7 and above.
 
 
 === Caveats ===
