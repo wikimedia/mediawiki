@@ -1053,6 +1053,10 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Performance bugfix: propagate equality manually for Revision fetches
 * (bug 4773) PHP fatal error when invalid title passed to Special:Export
 * Added missing table defs. for transcache (were in updaters, but not install schema)
+* (bug 4824) IE7 beta 2 broke compatibility with PNG logo workarounds,
+  and seems to work ok with other bits. No longer including the IE
+  workarounds JavaScript for IE 7 and above.
+
 
 === Caveats ===
 
