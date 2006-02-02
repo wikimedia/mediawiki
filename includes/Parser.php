@@ -99,16 +99,16 @@ class Parser
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
 	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	var $mInterwikiLinkHolders, $mLinkHolders, $mUniqPrefix;
+	var $mTemplates,	// cache of already loaded templates, avoids
+		                // multiple SQL queries for the same string
+	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
+		                // in this path. Used for loop detection.
 
-	# Temporary:
+	# Temporary
+	# These are variables reset at least once per parse regardless of $clearState
 	var $mOptions,      // ParserOptions object
 		$mTitle,        // Title context, used for self-link rendering and similar things
 		$mOutputType,   // Output type, one of the OT_xxx constants
-	    $mTemplates,	// cache of already loaded templates, avoids
-		                // multiple SQL queries for the same string
-	    $mTemplatePath,	// stores an unsorted hash of all the templates already loaded
-		                // in this path. Used for loop detection.
-		$mIWTransData = array(),
 		$mRevisionId;   // ID to display in {{REVISIONID}} tags
 
 	/**#@-*/
@@ -119,8 +119,6 @@ class Parser
 	 * @access public
 	 */
 	function Parser() {
- 		$this->mTemplates = array();
- 		$this->mTemplatePath = array();
 		$this->mTagHooks = array();
 		$this->clearState();
 	}
@@ -153,6 +151,10 @@ class Parser
 		);
 		$this->mRevisionId = null;
 		$this->mUniqPrefix = 'UNIQ' . Parser::getRandomString();
+
+		# Clear these on every parse, bug 4549
+ 		$this->mTemplates = array();
+ 		$this->mTemplatePath = array();
 
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 	}
@@ -829,16 +831,8 @@ class Parser
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 
-		$regex = '/<!--IW_TRANSCLUDE (\d+)-->/';
-		$text = preg_replace_callback($regex, array(&$this, 'scarySubstitution'), $text);
-
 		wfProfileOut( $fname );
 		return $text;
-	}
-
-	function scarySubstitution($matches) {
-#		return "[[".$matches[0]."]]";
-		return $this->mIWTransData[(int)$matches[0]];
 	}
 
 	/**
