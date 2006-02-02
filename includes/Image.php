@@ -960,12 +960,40 @@ class Image
 		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
 		$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ).'/'.$thumbName;
 
+		if ( is_dir( $thumbPath ) ) {
+			// Directory where file should be
+			// This happened occasionally due to broken migration code in 1.5
+			// Rename to broken-*
+			global $wgUploadDirectory;
+			for ( $i = 0; $i < 100 ; $i++ ) {
+				$broken = "$wgUploadDirectory/broken-$i-$thumbName";
+				if ( !file_exists( $broken ) ) {
+					rename( $thumbPath, $broken );
+					break;
+				}
+			}
+			// Code below will ask if it exists, and the answer is now no
+			clearstatcache();
+		}
+
 		if ( !file_exists( $thumbPath ) ) {
 			$oldThumbPath = wfDeprecatedThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).
 				'/'.$thumbName;
 			$done = false;
-			if ( file_exists( $oldThumbPath ) ) {
+
+			// Migration from old directory structure
+			if ( is_file( $oldThumbPath ) ) {
 				if ( filemtime($oldThumbPath) >= filemtime($this->imagePath) ) {
+					if ( file_exists( $thumbPath ) ) {
+						if ( !is_dir( $thumbPath ) ) {
+							// Old image in the way of rename
+							unlink( $thumbPath );
+						} else {
+							// This should have been dealt with already
+							wfDebugDieBacktrace( "Directory where image should be: $thumbPath" );
+						}
+					}
+					// Rename the old image into the new location
 					rename( $oldThumbPath, $thumbPath );
 					$done = true;
 				} else {
@@ -1542,7 +1570,11 @@ function wfImageThumbDir( $fname, $shared = false ) {
 			umask( $oldumask );
 		}
 
-		if ( ! is_dir( $dir ) ) { 
+		if ( ! is_dir( $dir ) ) {
+			if ( is_file( $dir ) ) {
+				// Old thumbnail in the way of directory creation, kill it
+				unlink( $dir );
+			}
 			$oldumask = umask(0);
 			@mkdir( $dir, 0777 ); 
 			umask( $oldumask );

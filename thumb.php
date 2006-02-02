@@ -44,7 +44,7 @@ if ( $pre_render ) {
 }
 $thumbPath = wfImageThumbDir( $fileName ) . '/' . $thumbName;
 
-if ( file_exists( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath ) ) {
+if ( is_file( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath ) ) {
 	wfStreamFile( $thumbPath );
 	exit;
 }
