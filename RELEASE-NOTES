@@ -591,6 +591,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix extra namespace for Bulgarian
 * (bug 4303) Add $wgFavicon to change the shorticon icon link from
   the default /favicon.ico or disable it (if set to false)
+* (bug 3347) strip linebreaks in math error source
 
 
 === Caveats ===
