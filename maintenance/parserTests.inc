@@ -546,9 +546,9 @@ class ParserTest {
 		print $this->termColor( '1;31' ) . 'FAILED!' . $this->termReset() . "\n";
 		if( $this->showDiffs ) {
 			print $this->quickDiff( $result, $html );
-		}
-		if( !$this->wellFormed( $html ) ) {
-			print "XML error: $this->mXmlError\n";
+			if( !$this->wellFormed( $html ) ) {
+				print "XML error: $this->mXmlError\n";
+			}
 		}
 		return false;
 	}
