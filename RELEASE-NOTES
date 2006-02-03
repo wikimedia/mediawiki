@@ -589,6 +589,8 @@ fully support the editing toolbar, but was found to be too confusing.
   and seems to work ok with other bits. No longer including the IE
   workarounds JavaScript for IE 7 and above.
 * Fix extra namespace for Bulgarian
+* (bug 4303) Add $wgFavicon to change the shorticon icon link from
+  the default /favicon.ico or disable it (if set to false)
 
 
 === Caveats ===
