@@ -588,6 +588,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4824) IE7 beta 2 broke compatibility with PNG logo workarounds,
   and seems to work ok with other bits. No longer including the IE
   workarounds JavaScript for IE 7 and above.
+* Fix extra namespace for Bulgarian
 
 
 === Caveats ===
