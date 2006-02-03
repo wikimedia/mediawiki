@@ -710,6 +710,7 @@ class Parser
 				$l = array_pop ( $ltd ) ;
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
+				if ( $l == "" ) $z = "<tr><td/></tr>" . $z ;
 				array_pop ( $ltr ) ;
 				$t[$k] = $z . str_repeat( '</dd></dl>', $indent_level );
 			}
@@ -781,6 +782,8 @@ class Parser
 		# Closing open td, tr && table
 		while ( count ( $td ) > 0 )
 		{
+			$l = array_pop ( $ltd ) ;
+			if ( $l == "" ) $t[] = "<tr><td/></tr>" ;
 			if ( array_pop ( $td ) ) $t[] = '</td>' ;
 			if ( array_pop ( $tr ) ) $t[] = '</tr>' ;
 			$t[] = '</table>' ;
