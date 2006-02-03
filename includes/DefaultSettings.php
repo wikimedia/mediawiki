@@ -118,6 +118,7 @@ $wgUploadPath       = "{$wgScriptPath}/upload";
 $wgUploadDirectory	= "{$IP}/upload";
 $wgHashedUploadDirectory	= true;
 $wgLogo				= "{$wgUploadPath}/wiki.png";
+$wgFavicon			= '/favicon.ico';
 $wgMathPath         = "{$wgUploadPath}/math";
 $wgMathDirectory    = "{$wgUploadDirectory}/math";
 $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
