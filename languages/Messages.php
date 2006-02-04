@@ -450,6 +450,7 @@ format. Please enter a well-formatted address or empty that field.',
 'preview'		=> 'Preview',
 'showpreview'	=> 'Show preview',
 'showdiff'	=> 'Show changes',
+'anoneditwarning' => 'You are not logged in. Your IP address will be recorded in this page\'s edit history.',
 'blockedtitle'	=> 'User is blocked',
 'blockedtext'	=> 'Your user name or IP address has been blocked by $1.
 The reason given is this:<br />\'\'$2\'\'<p>You may contact $1 or one of the other

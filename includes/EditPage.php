@@ -722,7 +722,10 @@ class EditPage {
 			$wgOut->addWikiText( wfMsg( 'readonlywarning' ) );
 		} else if ( $this->isCssJsSubpage and 'preview' != $this->formtype) {
 			$wgOut->addWikiText( wfMsg( 'usercssjsyoucanpreview' ));
+		} else if( $wgUser->isAnon() && $this->formtype != 'preview' ) {
+			$wgOut->addWikiText( wfMsg( 'anoneditwarning' ) );
 		}
+		
 		if( $this->mTitle->isProtected('edit') ) {
 			$wgOut->addWikiText( wfMsg( 'protectedpagewarning' ) );
 		}
