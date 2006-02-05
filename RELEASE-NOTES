@@ -597,7 +597,7 @@ fully support the editing toolbar, but was found to be too confusing.
   showing a bogus current timestamp
 * Reset $wgActionPaths during parser test; corrects some false failures
   in the automated test report.
-
+* (bug 4875) Define a div containing the shared image description
 
 === Caveats ===
 

@@ -60,11 +60,13 @@ class ImagePage extends Article {
 				$this->viewUpdates();
 			}
 
-			if ($this->mExtraDescription) {
-				$fol = wfMsg('shareddescriptionfollows');
-				if ($fol != '-')
-					$wgOut->addWikiText(wfMsg('shareddescriptionfollows'));
-				$wgOut->addHTML($this->mExtraDescription);
+			# Show shared description, if needed
+			if( $this->mExtraDescription ) {
+				$fol = wfMsg( 'shareddescriptionfollows' );
+				if( $fol != '-' ) {
+					$wgOut->addWikiText( $fol );
+				}
+				$wgOut->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . '</div>' );
 			}
 
 			$this->closeShowImage();
