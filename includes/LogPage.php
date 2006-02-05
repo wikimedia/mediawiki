@@ -180,12 +180,11 @@ class LogPage {
 							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), $params[0] );
 							break;
 						case 'block':
-							$titleText = $title->getText();
-							if( substr( $titleText, 0, 1 ) == '#' ) {
-								$titleLink = $titleText;
+							if( substr( $title->getText(), 0, 1 ) == '#' ) {
+								$titleLink = $$title->getText();
 							} else {
-								$titleLink = $skin->makeLinkObj( $title, $titleText );
-								$titleLink .= ' (' . $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions/' . urlencode( $titleText ) ), wfMsg( 'contribslink' ) ) . ')';
+								$titleLink = $skin->makeLinkObj( $title, $title->getText() );
+								$titleLink .= ' (' . $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions/' . urlencode( $title->getDBkey() ) ), wfMsg( 'contribslink' ) ) . ')';
 							}
 							break;
 						default:
