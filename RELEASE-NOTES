@@ -1057,6 +1057,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   and seems to work ok with other bits. No longer including the IE
   workarounds JavaScript for IE 7 and above.
 * (bug 2532) Image directory structure migration bug
+* (bug 4881) Correction to the fix for 1487; Ipblocklist showed 'no blocks'
+  message at the end of the list even if there were blocks.
+
 
 === Caveats ===
 
