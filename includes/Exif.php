@@ -724,7 +724,9 @@ class FormatExif {
 			case 'DateTime':
 			case 'DateTimeOriginal':
 			case 'DateTimeDigitized':
-				$tags[$tag] = $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
+				if( preg_match( "/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/", $val ) ) {
+					$tags[$tag] = $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
+				}
 				break;
 
 			case 'ExposureProgram':
