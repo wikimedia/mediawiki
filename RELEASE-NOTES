@@ -598,6 +598,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Reset $wgActionPaths during parser test; corrects some false failures
   in the automated test report.
 * (bug 4875) Define a div containing the shared image description
+* (bug 4860) Expose Title->userCan() as Hooks
 
 === Caveats ===
 
