@@ -293,6 +293,7 @@ class ParserTest {
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
+			'wgActionPaths' => array(),
 			'wgUploadPath' => 'http://example.com/images',
 			'wgUploadDirectory' => $this->uploadDir,
 			'wgStyleSheetPath' => '/skins',
