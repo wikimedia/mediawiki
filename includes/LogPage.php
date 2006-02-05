@@ -181,7 +181,7 @@ class LogPage {
 							break;
 						case 'block':
 							if( substr( $title->getText(), 0, 1 ) == '#' ) {
-								$titleLink = $$title->getText();
+								$titleLink = $title->getText();
 							} else {
 								$titleLink = $skin->makeLinkObj( $title, $title->getText() );
 								$titleLink .= ' (' . $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions/' . urlencode( $title->getDBkey() ) ), wfMsg( 'contribslink' ) ) . ')';
