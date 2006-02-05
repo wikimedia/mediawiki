@@ -142,8 +142,12 @@ class LanguageCs extends LanguageUtf8 {
 
 	function getMonthNameGen( $key ) {
 		#TODO: převést na return $this->convertGrammar( $this->getMonthName( $key ), '2sg' );
-		global $wgMonthNamesGenEn;
-		return wfMsg( $wgMonthNamesGenEn[$key-1] );
+		global $wgMonthNamesGenEn, $wgContLang;
+		// see who called us and use the correct message function
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
+			return wfMsgForContent( $wgMonthNamesGenEn[$key-1] );
+		else
+			return wfMsg( $wgMonthNamesGenEn[$key-1] );
 	}
 
 	function formatMonth( $month, $format ) {

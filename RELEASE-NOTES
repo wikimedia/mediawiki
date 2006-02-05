@@ -599,6 +599,8 @@ fully support the editing toolbar, but was found to be too confusing.
   in the automated test report.
 * (bug 4875) Define a div containing the shared image description
 * (bug 4860) Expose Title->userCan() as Hooks
+* (bug 4828) Fix genitive month-name variable for cs, pl, uk
+
 
 === Caveats ===
 
