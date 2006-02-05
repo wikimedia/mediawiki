@@ -927,6 +927,13 @@ class Title {
 		wfProfileIn( $fname );
 
 		global $wgUser;
+
+		$result = true;
+		if ( !wfRunHooks( 'userCan', array( &$this, &$wgUser, $action, &$result ) ) ) {
+			wfProfileOut( $fname );
+			return $result;
+		}
+
 		if( NS_SPECIAL == $this->mNamespace ) {
 			wfProfileOut( $fname );
 			return false;
@@ -1029,6 +1036,11 @@ class Title {
 	 */
 	function userCanRead() {
 		global $wgUser;
+
+		$result = true;
+			if ( !wfRunHooks( 'userCan', array( &$this, &$wgUser, "read", &$result ) ) ) {
+			return $result;
+		}
 
 		if( $wgUser->isAllowed('read') ) {
 			return true;
