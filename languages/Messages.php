@@ -524,6 +524,7 @@ Please consider breaking the page into smaller sections.</strong>",
 so you will not be able to save your edits right now. You may wish to cut-n-paste
 the text into a text file and save it for later.</strong>',
 'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it. Be sure you are following the [[Project:Protected_page_guidelines|protected page guidelines]].</strong>",
+'semiprotectedpagewarning' => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'templatesused'	=> 'Templates used on this page:',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'nocreatetitle' => 'Page creation limited',

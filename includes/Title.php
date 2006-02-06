@@ -867,6 +867,23 @@ class Title {
 	function isExternal() { return ( '' != $this->mInterwiki ); }
 
 	/**
+	 * Is this page "semi-protected" - the *only* protection is autoconfirm?
+	 *
+	 * @param string Action to check (default: edit)
+	 * @return bool
+	 */
+	function isSemiProtected( $action = 'edit' ) {
+		$restrictions = $this->getRestrictions( $action );
+		# We do a full compare because this could be an array
+		foreach( $restrictions as $restriction ) {
+			if( strtolower( $restriction ) != 'autoconfirmed' ) {
+				return( false );
+			}
+		}
+		return( true );
+	}
+
+	/**
 	 * Does the title correspond to a protected article?
 	 * @param string $what the action the page is protected from,
 	 *	by default checks move and edit
