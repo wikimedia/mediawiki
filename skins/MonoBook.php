@@ -154,7 +154,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<?php } ?>
 	<div id="p-search" class="portlet">
 		<h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
-		<div class="pBody">
+		<div id="searchBody" class="pBody">
 			<form action="<?php $this->text('searchaction') ?>" id="searchform"><div>
 				<input id="searchInput" name="search" type="text" <?php
 					if($this->haveMsg('accesskey-search')) {
