@@ -956,7 +956,28 @@ function wfEscapeShellArg( ) {
 		}
 
 		if ( wfIsWindows() ) {
-			$retVal .= '"' . str_replace( '"','\"', $arg ) . '"';
+			// Escaping for an MSVC-style command line parser
+			// Ref: http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
+			// Double the backslashes before any double quotes. Escape the double quotes.
+			$tokens = preg_split( '/(\\\\*")/', $arg, -1, PREG_SPLIT_DELIM_CAPTURE );
+			$arg = '';
+			$delim = false;
+			foreach ( $tokens as $token ) {
+				if ( $delim ) {
+					$arg .= str_replace( '\\', '\\\\', substr( $token, 0, -1 ) ) . '\\"';
+				} else {
+					$arg .= $token;
+				}
+				$delim = !$delim;
+			}
+			// Double the backslashes before the end of the string, because 
+			// we will soon add a quote
+			if ( preg_match( '/^(.*?)(\\\\+)$/', $arg, $m ) ) {
+				$arg = $m[1] . str_replace( '\\', '\\\\', $m[2] );
+			}
+
+			// Add surrounding quotes
+			$retVal .= '"' . $arg . '"';
 		} else {
 			$retVal .= escapeshellarg( $arg );
 		}
