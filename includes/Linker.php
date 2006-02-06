@@ -452,7 +452,7 @@ class Linker {
 		}
 
 		$url   = $img->getViewURL();
-		$prefix = $postfix = '';
+		$error = $prefix = $postfix = '';
 
 		wfDebug( "makeImageLinkObj: '$width'x'$height'\n" );
 
@@ -514,6 +514,8 @@ class Linker {
 
 					wfDebug( "makeImageLinkObj: client-size set to '$width x $height'\n" );
 					$url = $thumb->getUrl();
+				} else {
+					$error = htmlspecialchars( $img->getLastError() );
 				}
 			}
 		} else {
@@ -523,7 +525,9 @@ class Linker {
 
 		wfDebug( "makeImageLinkObj2: '$width'x'$height'\n" );
 		$u = $nt->escapeLocalURL();
-		if ( $url == '' ) {
+		if ( $error ) {
+			$s = $error;
+		} elseif ( $url == '' ) {
 			$s = $this->makeBrokenImageLinkObj( $img->getTitle() );
 			//$s .= "<br />{$alt}<br />{$url}<br />\n";
 		} else {
@@ -548,6 +552,7 @@ class Linker {
 		global $wgStylePath, $wgContLang;
 		$url  = $img->getViewURL();
 		$thumbUrl = '';
+		$error = '';
 
 		$width = $height = 0;
 		if ( $img->exists() ) {
@@ -574,6 +579,8 @@ class Linker {
 					$thumbUrl = $thumb->getUrl();
 					$boxwidth = $thumb->width;
 					$boxheight = $thumb->height;
+				} else {
+					$error = $img->getLastError();
 				}
 			}
 		}
@@ -605,7 +612,10 @@ class Linker {
 			// Couldn't generate thumbnail? Scale the image client-side.
 			$thumbUrl = $url;
 		}
-		if( !$img->exists() ) {
+		if ( $error ) {
+			$s .= htmlspecialchars( $error );
+			$zoomicon = '';
+		} elseif( !$img->exists() ) {
 			$s .= $this->makeBrokenImageLinkObj( $img->getTitle() );
 			$zoomicon = '';
 		} else {
