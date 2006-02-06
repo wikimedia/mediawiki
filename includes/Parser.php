@@ -687,6 +687,7 @@ class Parser
 		$ltd = array () ; # Was it TD or TH?
 		$tr = array () ; # Is currently a tr tag open?
 		$ltr = array () ; # tr attributes
+		$has_opened_tr = array(); # Did this table open a <tr> element?
 		$indent_level = 0; # indent level of the table
 		foreach ( $t AS $k => $x )
 		{
@@ -703,14 +704,15 @@ class Parser
 				array_push ( $ltd , '' ) ;
 				array_push ( $tr , false ) ;
 				array_push ( $ltr , '' ) ;
+				array_push ( $has_opened_tr, false );
 			}
 			else if ( count ( $td ) == 0 ) { } # Don't do any of the following
 			else if ( '|}' == substr ( $x , 0 , 2 ) ) {
 				$z = "</table>" . substr ( $x , 2);
 				$l = array_pop ( $ltd ) ;
+				if ( !array_pop ( $has_opened_tr ) ) $z = "<tr><td></td></tr>" . $z ;
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
-				if ( $l == "" ) $z = "<tr><td/></tr>" . $z ;
 				array_pop ( $ltr ) ;
 				$t[$k] = $z . str_repeat( '</dd></dl>', $indent_level );
 			}
@@ -719,6 +721,8 @@ class Parser
 				while ( $x != '' && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
 				$z = '' ;
 				$l = array_pop ( $ltd ) ;
+				array_pop ( $has_opened_tr );
+				array_push ( $has_opened_tr , true ) ;
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
 				array_pop ( $ltr ) ;
@@ -750,6 +754,8 @@ class Parser
 						if ( !array_pop ( $tr ) ) $z = '<tr'.$tra.">\n" ;
 						array_push ( $tr , true ) ;
 						array_push ( $ltr , '' ) ;
+						array_pop ( $has_opened_tr );
+						array_push ( $has_opened_tr , true ) ;
 					}
 
 					$l = array_pop ( $ltd ) ;
@@ -783,9 +789,9 @@ class Parser
 		while ( count ( $td ) > 0 )
 		{
 			$l = array_pop ( $ltd ) ;
-			if ( $l == "" ) $t[] = "<tr><td/></tr>" ;
 			if ( array_pop ( $td ) ) $t[] = '</td>' ;
 			if ( array_pop ( $tr ) ) $t[] = '</tr>' ;
+			if ( array_pop ( $has_opened_tr ) ) $t[] = "<tr><td></td></tr>" ;
 			$t[] = '</table>' ;
 		}
 
