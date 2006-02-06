@@ -47,8 +47,9 @@ class Image
 		$type,          # MEDIATYPE_xxx (bitmap, drawing, audio...)
 		$mime,          # MIME type, determined by MimeMagic::guessMimeType
 		$size,          # Size in bytes (loadFromXxx)
-		$metadata,	# Metadata
-		$dataLoaded;    # Whether or not all this has been loaded from the database (loadFromXxx)
+		$metadata,      # Metadata
+		$dataLoaded,    # Whether or not all this has been loaded from the database (loadFromXxx)
+		$lastError;     # Error string associated with a thumbnail display error
 
 
 	/**#@-*/
@@ -983,6 +984,7 @@ class Image
 			clearstatcache();
 		}
 
+		$done = true;
 		if ( !file_exists( $thumbPath ) ||
 			filemtime( $thumbPath ) < wfTimestamp( TS_UNIX, $wgThumbnailEpoch ) ) {
 			$oldThumbPath = wfDeprecatedThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).
@@ -1009,7 +1011,10 @@ class Image
 				}
 			}
 			if ( !$done ) {
-				$this->reallyRenderThumb( $thumbPath, $width, $height );
+				$this->lastError = $this->reallyRenderThumb( $thumbPath, $width, $height );
+				if ( $this->lastError === true ) {
+					$done = true;
+				}
 
 				# Purge squid
 				# This has to be done after the image is updated and present for all machines on NFS,
@@ -1025,7 +1030,11 @@ class Image
 			}
 		}
 
-		$thumb = new ThumbnailImage( $url, $width, $height, $thumbPath );
+		if ( $done ) {
+			$thumb = new ThumbnailImage( $url, $width, $height, $thumbPath );
+		} else {
+			$thumb = null;
+		}
 		wfProfileOut( $fname );
 		return $thumb;
 	} // END OF function renderThumb
@@ -1034,6 +1043,10 @@ class Image
 	 * Really render a thumbnail
 	 * Call this only for images for which canRender() returns true.
 	 *
+	 * @param string $thumbPath Path to thumbnail
+	 * @param int $width Desired width in pixels
+	 * @param int $height Desired height in pixels
+	 * @return bool True on error, false or error string on failure.
 	 * @access private
 	 */
 	function reallyRenderThumb( $thumbPath, $width, $height ) {
@@ -1042,6 +1055,7 @@ class Image
 
 		$this->load();
 
+		$err = false;
 		if( $this->mime === "image/svg" ) {
 			#Right now we have only SVG
 
@@ -1058,26 +1072,34 @@ class Image
 					$wgSVGConverters[$wgSVGConverter] );
 				wfProfileIn( 'rsvg' );
 				wfDebug( "reallyRenderThumb SVG: $cmd\n" );
-				$conv = wfShellExec( $cmd );
+				$err = wfShellExec( $cmd );
 				wfProfileOut( 'rsvg' );
-			} else {
-				$conv = false;
 			}
 		} elseif ( $wgUseImageMagick ) {
 			# use ImageMagick
+			
+			if ( $this->mime == 'image/jpeg' ) {
+				$quality = "-quality 80"; // 80%
+			} elseif ( $this->mime == 'image/png' ) {
+				$quality = "-quality 95"; // zlib 9, adaptive filtering
+			} else {
+				$quality = ''; // default
+			}
+
 			# Specify white background color, will be used for transparent images
 			# in Internet Explorer/Windows instead of default black.
 
 			# Note, we specify "-size {$width}" and NOT "-size {$width}x{$height}".
 			# It seems that ImageMagick has a bug wherein it produces thumbnails of
 			# the wrong size in the second case.
-			$cmd  =  $wgImageMagickConvertCommand .
-				" -quality 85 -background white -size {$width} ".
-				wfEscapeShellArg($this->imagePath) . " -resize {$width}x{$height} " .
-				wfEscapeShellArg($thumbPath);
+			
+			$cmd  =  wfEscapeShellArg($wgImageMagickConvertCommand) .
+				" {$quality} -background white -size {$width} ".
+				wfEscapeShellArg($this->imagePath) . " -resize {$width}x{$height} -depth 8 " .
+				wfEscapeShellArg($thumbPath) . " 2>&1";
 			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
 			wfProfileIn( 'convert' );
-			$conv = wfShellExec( $cmd );
+			$err = wfShellExec( $cmd );
 			wfProfileOut( 'convert' );
 		} else {
 			# Use PHP's builtin GD library functions.
@@ -1134,8 +1156,20 @@ class Image
 			$thumbstat = stat( $thumbPath );
 			if( $thumbstat['size'] == 0 ) {
 				unlink( $thumbPath );
+			} else {
+				// All good
+				$err = true;
 			}
 		}
+		if ( $err !== true ) {
+			return wfMsg( 'thumbnail_error', $err );
+		} else {
+			return true;
+		}
+	}
+
+	function getLastError() {
+		return $this->lastError;
 	}
 
 	function imageJpegWrapper( $dst_image, $thumbPath ) {

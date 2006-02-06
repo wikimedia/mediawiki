@@ -1377,6 +1377,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'thumbnail-more'	=> 'Enlarge',
 'missingimage'		=> '<b>Missing image</b><br /><i>$1</i>',
 'filemissing'		=> 'File missing',
+'thumbnail_error'   => 'Error creating thumbnail: $1',
 
 # Special:Import
 'import'	=> 'Import pages',
