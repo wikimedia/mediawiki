@@ -726,10 +726,18 @@ class EditPage {
 			$wgOut->addWikiText( wfMsg( 'anoneditwarning' ) );
 		}
 		
-		if( $this->mTitle->isProtected('edit') ) {
-			$wgOut->addWikiText( wfMsg( 'protectedpagewarning' ) );
+		if( $this->mTitle->isProtected( 'edit' ) ) {
+			if( $this->mTitle->isSemiProtected() ) {
+				$notice = wfMsg( 'semiprotectedpagewarning' );
+				if( wfEmptyMsg( 'semiprotectedpagewarning', $notice ) || $notice == '-' ) {
+					$notice = '';
+				}
+			} else {
+				$notice = wfMsg( 'protectedpagewarning' );
+			}
+			$wgOut->addWikiText( $notice );
 		}
-
+		
 		$kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		if( $kblength > 29 ) {
 			$wgOut->addWikiText( wfMsg( 'longpagewarning', $wgLang->formatNum( $kblength ) ) );
