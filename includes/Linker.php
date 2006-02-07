@@ -447,7 +447,7 @@ class Linker {
 		global $wgContLang, $wgUser, $wgThumbLimits;
 
 		$img   = new Image( $nt );
-		if ( !$img->allowInlineDisplay() ) {
+		if ( !$img->allowInlineDisplay() && $img->exists() ) {
 			return $this->makeKnownLinkObj( $nt );
 		}
 

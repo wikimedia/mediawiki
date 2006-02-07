@@ -1,4 +1,4 @@
-# MediaWiki Parser test cases
+﻿# MediaWiki Parser test cases
 # Some taken from http://meta.wikimedia.org/wiki/Parser_testing
 # All (C) their respective authors and released under the GPL
 #
@@ -670,9 +670,9 @@ BUG 289: literal double quote in bracketed URL
 !! test
 External links: invalid character
 !! input
-[http://www.example.com  test]
+[http://www.example.com  test]
 !! result
-<p>[<a href="http://www.example.com" class='external free' title="http://www.example.com" rel="nofollow">http://www.example.com</a>  test]
+<p>[<a href="http://www.example.com" class='external free' title="http://www.example.com" rel="nofollow">http://www.example.com</a>  test]
 </p>
 !! end
 
