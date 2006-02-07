@@ -534,6 +534,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= $users;
 
 		if($block[0]->numberofWatchingusers > 0) {
+			global $wgContLang;
 			$r .= wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($block[0]->numberofWatchingusers));
 		}
 		$r .= "<br />\n";
