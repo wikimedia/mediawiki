@@ -623,6 +623,11 @@ class Parser
 		$pipes = array();
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
+			// Theoretically, this style of communication could cause a deadlock
+			// here. If the stdout buffer fills up, then writes to stdin could 
+			// block. This doesn't appear to happen with tidy, because tidy only
+			// writes to stdout after it's finished reading from stdin. Search 
+			// for tidyParseStdin and tidySaveStdout in console/tidy.c
 			fwrite($pipes[0], $text);
 			fclose($pipes[0]);
 			while (!feof($pipes[1])) {
