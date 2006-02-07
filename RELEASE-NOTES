@@ -259,6 +259,7 @@ Parser:
   spam filter evasion.
 * (bug 4783) : Fix for "{{ns:0}} does not render"
 * Improved support for interwiki transclusion
+* (bug 1850) Image link to nonexistent file fixed.
 
 Upload:
 * (bug 2527) Always set destination filename when new file is selected
