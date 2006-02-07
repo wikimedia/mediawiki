@@ -139,7 +139,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	// Perform query
 	$sql2 = "SELECT * FROM $recentchanges FORCE INDEX (rc_timestamp) " .
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
-	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
+	  "WHERE rc_timestamp >= '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC";
 	$sql2 = $dbr->limitResult($sql2, $limit, 0);
 	$res = $dbr->query( $sql2, $fname );
