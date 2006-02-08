@@ -326,6 +326,7 @@ CONTROL;
 			$difftext = $wgMemc->get( $key );
 			if ( $difftext ) {
 				wfIncrStats( 'diff_cache_hit' );
+				$difftext = $this->localiseLineNumbers( $difftext );
 				$difftext .= "\n<!-- diff cache key $key -->\n"; 
 				return $difftext;
 			}
@@ -362,7 +363,22 @@ CONTROL;
 		} else {
 			wfIncrStats( 'diff_uncacheable' );
 		}
+		// Replace line numbers with the text in the user's language
+		$difftext = $this->localiseLineNumbers( $difftext );
 		return $difftext;
+	}
+
+	/**
+	 * Replace line numbers with the text in the user's language
+	 */
+	function localiseLineNumbers( $text ) {
+		return preg_replace_callback( '/<!--LINE (\d+)-->/', 
+			array( &$this, 'localiseLineNumbersCb' ), $text );
+	}
+
+	function localiseLineNumbersCb( $matches ) {
+		global $wgLang;
+		return wfMsg( 'lineno', $wgLang->formatNum( $matches[1] ) );
 	}
 
 	/**
@@ -1601,11 +1617,8 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function _block_header( $xbeg, $xlen, $ybeg, $ylen ) {
-		$l1 = wfMsg( 'lineno', $xbeg );
-		$l2 = wfMsg( 'lineno', $ybeg );
-
-		$r = '<tr><td colspan="2" align="left"><strong>'.$l1."</strong></td>\n" .
-		  '<td colspan="2" align="left"><strong>'.$l2."</strong></td></tr>\n";
+		$r = '<tr><td colspan="2" align="left"><strong><!--LINE '.$xbeg."--></strong></td>\n" .
+		  '<td colspan="2" align="left"><strong><!--LINE '.$ybeg."--></strong></td></tr>\n";
 		return $r;
 	}
 
