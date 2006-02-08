@@ -604,6 +604,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4842) Fix 'show number of watching users' with enhanced RC
 * (bug 4889) Fix image talk namespace for Tamil
 * (bug 4147) Added cleanupWatchlist.php to clear out bogus watchlist entries
+* (partial bug 3456) Disable auto redirect to Main Page after account creation
 
 
 === Caveats ===

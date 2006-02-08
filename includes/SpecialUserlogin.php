@@ -151,7 +151,7 @@ class LoginForm {
 		wfRunHooks( 'AddNewAccount' );
 
 		if( $this->hasSessionCookie() ) {
-			return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ) );
+			return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ), false );
 		} else {
 			return $this->cookieRedirectCheck( 'new' );
 		}
@@ -407,10 +407,11 @@ class LoginForm {
 
 
 	/**
-	 * @param string $msg Message that will be shown on success.
+	 * @param string $msg Message that will be shown on success
+	 * @param bool $auto Toggle auto-redirect to main page; default true
 	 * @access private
 	 */
-	function successfulLogin( $msg ) {
+	function successfulLogin( $msg, $auto = true ) {
 		global $wgUser;
 		global $wgOut;
 
@@ -422,7 +423,7 @@ class LoginForm {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->addWikiText( $msg );
-		$wgOut->returnToMain();
+		$wgOut->returnToMain( $auto );
 	}
 
 	/** */
