@@ -606,6 +606,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4147) Added cleanupWatchlist.php to clear out bogus watchlist entries
 * (partial bug 3456) Disable auto redirect to Main Page after account creation
 * (bug 4824) Separate out IE7 CSS compat hacks, fix for RTL pages
+* Separated MessagesSl.php as the other languages.
 
 
 === Caveats ===
