@@ -1474,8 +1474,8 @@ $wgAllowPageInfo = false;
 /** Maximum indent level of toc. */
 $wgMaxTocLevel = 999;
 
-/** Use external C++ diff engine (module wikidiff from the extensions package) */
-$wgUseExternalDiffEngine = false;
+/** Name of the external diff engine to use */
+$wgExternalDiffEngine = false;
 
 /** Use RC Patrolling to check for vandalism */
 $wgUseRCPatrol = true;

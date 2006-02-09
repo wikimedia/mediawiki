@@ -44,7 +44,7 @@ class DifferenceEngine {
 		$this->mTitle = $titleObj;
 		wfDebug("DifferenceEngine old '$old' new '$new' rcid '$rcid'\n");
 
-		if ( 'prev' == $new ) {
+		if ( 'prev' === $new ) {
 			# Show diff between revision $old and the previous one.
 			# Get previous one from DB.
 			#
@@ -52,7 +52,7 @@ class DifferenceEngine {
 
 			$this->mOldid = $this->mTitle->getPreviousRevisionID( $this->mNewid );
 
-		} elseif ( 'next' == $new ) {
+		} elseif ( 'next' === $new ) {
 			# Show diff between revision $old and the previous one.
 			# Get previous one from DB.
 			#
@@ -316,8 +316,10 @@ CONTROL;
 	 * Returns false on error
 	 */
 	function getDiffBody() {
-		global $wgUseExternalDiffEngine, $wgContLang, $wgMemc, $wgDBname;
-
+		global $wgExternalDiffEngine, $wgContLang, $wgMemc, $wgDBname;
+		$fname = 'DifferenceEngine::getDiffBody';
+		wfProfileIn( $fname );
+		
 		// Cacheable?
 		$key = false;
 		if ( $this->mOldid && $this->mNewid ) {
@@ -328,17 +330,19 @@ CONTROL;
 				wfIncrStats( 'diff_cache_hit' );
 				$difftext = $this->localiseLineNumbers( $difftext );
 				$difftext .= "\n<!-- diff cache key $key -->\n"; 
+				wfProfileOut( $fname );
 				return $difftext;
 			}
 		}
 
 		if ( !$this->loadText() ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 
 		$otext = $wgContLang->segmentForDiff($this->mOldtext);
 		$ntext = $wgContLang->segmentForDiff($this->mNewtext);
-		if ( $wgUseExternalDiffEngine ) {
+		if ( $wgExternalDiffEngine == 'wikidiff' ) {
 			# For historical reasons, external diff engine expects
 			# input text to be HTML-escaped already
 			$otext = str_replace( "\r\n", "\n", htmlspecialchars ( $otext ) );
@@ -347,6 +351,43 @@ CONTROL;
 				dl('php_wikidiff.so');
 			}
 			$difftext = wikidiff_do_diff( $otext, $ntext, 2 );
+		} elseif ( $wgExternalDiffEngine == 'wikidiff2' ) {
+			# Better external diff engine, the 2 may some day be dropped
+			# This one does the escaping itself
+			$otext = str_replace( "\r\n", "\n", $otext );
+			$ntext = str_replace( "\r\n", "\n", $ntext );			
+			if ( !function_exists( 'wikidiff2_do_diff' ) ) {
+				dl('php_wikidiff2.so');
+			}
+			$difftext = wikidiff2_do_diff( $otext, $ntext, 2 );
+		} elseif ( $wgExternalDiffEngine !== false ) {
+			# Diff via the shell
+			global $wgTmpDirectory;
+			$otext = str_replace( "\r\n", "\n", $otext );
+			$ntext = str_replace( "\r\n", "\n", $ntext );
+			$tempName1 = tempnam( $wgTmpDirectory, 'diff_' );
+			$tempName2 = tempnam( $wgTmpDirectory, 'diff_' );
+
+			$tempFile1 = fopen( $tempName1, "w" );
+			if ( !$tempFile1 ) {
+				wfProfileOut( $fname );
+				return false;
+			}
+			$tempFile2 = fopen( $tempName2, "w" );
+			if ( !$tempFile2 ) {
+				wfProfileOut( $fname );
+				return false;
+			}
+			fwrite( $tempFile1, $otext );
+			fwrite( $tempFile2, $ntext );
+			fclose( $tempFile1 );
+			fclose( $tempFile2 );
+			$cmd = wfEscapeShellArg( $wgExternalDiffEngine, $tempName1, $tempName2 );
+			wfProfileIn( "$fname-shellexec" );
+			$difftext = wfShellExec( $cmd );
+			wfProfileOut( "$fname-shellexec" );
+			unlink( $tempName1 );
+			unlink( $tempName2 );
 		} else {
 			$ota = explode( "\n", str_replace( "\r\n", "\n", $otext ) );
 			$nta = explode( "\n", str_replace( "\r\n", "\n", $ntext ) );
@@ -365,6 +406,7 @@ CONTROL;
 		}
 		// Replace line numbers with the text in the user's language
 		$difftext = $this->localiseLineNumbers( $difftext );
+		wfProfileOut( $fname );
 		return $difftext;
 	}
 

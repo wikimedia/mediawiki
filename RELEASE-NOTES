@@ -232,6 +232,7 @@ i18n / Languages:
 * (bug 4267) Switch dv sd ug ks arc languages to RTL
 * Default main page content improved per bug 4690
 * (bug 4615) Update for Portuguese language (pt)
+* Separated MessagesSl.php as the other languages.
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
@@ -606,7 +607,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4147) Added cleanupWatchlist.php to clear out bogus watchlist entries
 * (partial bug 3456) Disable auto redirect to Main Page after account creation
 * (bug 4824) Separate out IE7 CSS compat hacks, fix for RTL pages
-* Separated MessagesSl.php as the other languages.
+* Added support for wikidiff2 and similar external diff engines.
 
 
 === Caveats ===
