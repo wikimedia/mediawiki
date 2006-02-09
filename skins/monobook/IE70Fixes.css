@@ -9,13 +9,13 @@
 	height: 1%;
 }
 
-html.rtl #column-one {
+.rtl #column-one {
 	/* For some reason it tries to inherit the padding-top into every div,
 	 * and I can't figure out how to get it back off.
 	 */
 	padding-top: 0;
 }
-html.rtl #column-one #p-navigation {
+.rtl #column-one #p-navigation {
 	margin-top: 160px;
 }
 
