@@ -153,7 +153,8 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgUser, $wgRequest, $wgTitle;
+		global $wgOut, $wgUser, $wgRequest, $wgTitle,
+		       $wgEmailConfirmToEdit;
 
 		if ( ! wfRunHooks( 'AlternateEdit', array( &$this  ) ) )
 			return;
@@ -201,6 +202,12 @@ class EditPage {
 				wfProfileOut( $fname );
 				return;
 			}
+		}
+		if ($wgEmailConfirmToEdit && !$wgUser->isEmailConfirmed()) {
+			wfDebug("$fname: user must confirm e-mail address\n");
+			$this->userNotConfirmedPage();
+			wfProfileOut($fname);
+			return;
 		}
 		if ( !$this->mTitle->userCan( 'create' ) && !$this->mTitle->exists() ) {
 			wfDebug( "$fname: no create permission\n" );
@@ -1163,6 +1170,17 @@ END
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( 'whitelistedittext' ) );
+		$wgOut->returnToMain( false );
+	}
+
+	function userNotConfirmedPage() {
+
+		global $wgOut;
+
+		$wgOut->setPageTitle( wfMsg( 'confirmedittitle' ) );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setArticleRelated( false );
+		$wgOut->addWikiText( wfMsg( 'confirmedittext' ) );
 		$wgOut->returnToMain( false );
 	}
 
