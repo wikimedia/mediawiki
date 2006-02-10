@@ -778,6 +778,12 @@ $wgBlockAllowsUTEdit    = false; # Blocks allow users to edit their own user tal
 # directory name unguessable, or use .htaccess to protect it.
 $wgWhitelistRead = false;
 
+/** 
+ * Should editors be required to have a validated e-mail
+ * address before being allowed to edit?
+ */
+$wgEmailConfirmToEdit=false;
+
 /**
  * Permission keys given to users in each group.
  * All users are implicitly in the '*' group including anonymous visitors;
