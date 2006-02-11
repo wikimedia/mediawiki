@@ -233,6 +233,7 @@ i18n / Languages:
 * Default main page content improved per bug 4690
 * (bug 4615) Update for Portuguese language (pt)
 * Separated MessagesSl.php as the other languages.
+* (bug 4960) Add additional namespaces variants to Yiddish for compatibility
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
