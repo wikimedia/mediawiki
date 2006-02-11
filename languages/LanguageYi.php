@@ -46,6 +46,34 @@ class LanguageYi extends LanguageUtf8 {
 	function isRTL() {
 		return true;
 	}
+
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesYi, $wgSitename;
+
+		foreach ( $wgNamespaceNamesYi as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		if( $wgSitename == 'װיקיפּעדיע' ) {
+			if( 0 == strcasecmp( 'וויקיפעדיע', $text ) ) return NS_PROJECT;
+			if( 0 == strcasecmp( 'וויקיפעדיע_רעדן', $text ) ) return NS_PROJECT_TALK;
+		}
+		if( $wgSitename == 'װיקיביבליאָטעק' ) {
+			if( 0 == strcasecmp( 'וויקיביבליאטעק', $text ) ) return NS_PROJECT;
+			if( 0 == strcasecmp( 'וויקיביבליאטעק_רעדן', $text ) ) return NS_PROJECT_TALK;
+		}
+		if( $wgSitename == 'װיקיװערטערבוך' ) {
+			if( 0 == strcasecmp( 'וויקיווערטערבוך', $text ) ) return NS_PROJECT;
+			if( 0 == strcasecmp( 'וויקיווערטערבוך_רעדן', $text ) ) return NS_PROJECT_TALK;
+		}
+		if( 0 == strcasecmp( 'באזונדער', $text ) ) return NS_SPECIAL;
+		if( 0 == strcasecmp( 'באנוצער', $text ) ) return NS_USER;
+		if( 0 == strcasecmp( 'באנוצער_רעדן', $text ) ) return NS_USER_TALK;
+		if( 0 == strcasecmp( 'מעדיעוויקי', $text ) ) return NS_MEDIAWIKI;
+		if( 0 == strcasecmp( 'מעדיעוויקי_רעדן', $text ) ) return NS_MEDIAWIKI_TALK;
+		if( 0 == strcasecmp( 'קאטעגאריע', $text ) ) return NS_CATEGORY;
+		if( 0 == strcasecmp( 'קאטעגאריע_רעדן', $text ) ) return NS_CATEGORY_TALK;
+		return false;
+	}
 }
 
 ?>
