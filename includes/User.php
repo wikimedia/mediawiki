@@ -293,7 +293,7 @@ class User {
 		$fname = 'User::loadDefaults' . $n;
 		wfProfileIn( $fname );
 
-		global $wgContLang, $wgDBname;
+		global $wgContLang, $wgCookiePrefix;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = 0;
@@ -315,8 +315,8 @@ class User {
 		$this->setToken(); # Random
 		$this->mHash = false;
 
-		if ( isset( $_COOKIE[$wgDBname.'LoggedOut'] ) ) {
-			$this->mTouched = wfTimestamp( TS_MW, $_COOKIE[$wgDBname.'LoggedOut'] );
+		if ( isset( $_COOKIE[$wgCookiePrefix.'LoggedOut'] ) ) {
+			$this->mTouched = wfTimestamp( TS_MW, $_COOKIE[$wgCookiePrefix.'LoggedOut'] );
 		}
 		else {
 			$this->mTouched = '0'; # Allow any pages to be cached
@@ -617,7 +617,7 @@ class User {
 	 * @static
 	 */
 	function loadFromSession() {
-		global $wgMemc, $wgDBname;
+		global $wgMemc, $wgDBname, $wgCookiePrefix;
 
 		if ( isset( $_SESSION['wsUserID'] ) ) {
 			if ( 0 != $_SESSION['wsUserID'] ) {
@@ -625,16 +625,16 @@ class User {
 			} else {
 				return new User();
 			}
-		} else if ( isset( $_COOKIE["{$wgDBname}UserID"] ) ) {
-			$sId = intval( $_COOKIE["{$wgDBname}UserID"] );
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserID"] ) ) {
+			$sId = intval( $_COOKIE["{$wgCookiePrefix}UserID"] );
 			$_SESSION['wsUserID'] = $sId;
 		} else {
 			return new User();
 		}
 		if ( isset( $_SESSION['wsUserName'] ) ) {
 			$sName = $_SESSION['wsUserName'];
-		} else if ( isset( $_COOKIE["{$wgDBname}UserName"] ) ) {
-			$sName = $_COOKIE["{$wgDBname}UserName"];
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserName"] ) ) {
+			$sName = $_COOKIE["{$wgCookiePrefix}UserName"];
 			$_SESSION['wsUserName'] = $sName;
 		} else {
 			return new User();
@@ -657,8 +657,8 @@ class User {
 
 		if ( isset( $_SESSION['wsToken'] ) ) {
 			$passwordCorrect = $_SESSION['wsToken'] == $user->mToken;
-		} else if ( isset( $_COOKIE["{$wgDBname}Token"] ) ) {
-			$passwordCorrect = $user->mToken == $_COOKIE["{$wgDBname}Token"];
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}Token"] ) ) {
+			$passwordCorrect = $user->mToken == $_COOKIE["{$wgCookiePrefix}Token"];
 		} else {
 			return new User(); # Can't log in from session
 		}
