@@ -345,6 +345,7 @@ Special Pages:
 * (bug 3187) watchlist text refer to unexistent "Stop watching" action
 * Add block link and a link to the block log to Special:Contributions
 * Add contributions link to block log items
+* Added optional "hide own edits" feature to Special:Recentchanges
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect

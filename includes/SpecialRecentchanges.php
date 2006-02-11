@@ -31,6 +31,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	/* bool */ 'hidebots' => true,
 	/* bool */ 'hideliu' => false,
 	/* bool */ 'hidepatrolled' => false,
+	/* bool */ 'hidemyself' => false,
 	/* text */ 'from' => '',
 	/* text */ 'namespace' => null,
 	/* bool */ 'invert' => false,
@@ -51,9 +52,8 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$limit = $wgRequest->getInt( 'limit', $limit );
 
 	/* order of selection: url > preferences > default */
-	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );
-
-
+	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );		
+	
 	# As a feed, use limited settings only
 	if( $feedFormat ) {
 		global $wgFeedLimit;
@@ -68,7 +68,8 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$hidebots = $wgRequest->getBool( 'hidebots', $defaults['hidebots'] );
 		$hideliu = $wgRequest->getBool( 'hideliu', $defaults['hideliu'] );
 		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', $defaults['hidepatrolled'] );
-		$from = $wgRequest->getVal( 'from', $defaults['from'] );
+		$hidemyself = $wgRequest->getBool ( 'hidemyself', $defaults['hidemyself'] );
+		$from = $wgRequest->getVal( 'from', $defaults['from'] );	
 
 		# Get query parameters from path
 		if( $par ) {
@@ -80,6 +81,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 				if ( 'minor' == $bit ) $hideminor = 0;
 				if ( 'hideliu' == $bit ) $hideliu = 1;
 				if ( 'hidepatrolled' == $bit ) $hidepatrolled = 1;
+				if ( 'hidemyself' == $bit ) $hidemyself = 1;
 
 				if ( is_numeric( $bit ) ) {
 					$limit = $bit;
@@ -128,8 +130,15 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 	$hidem  = $hideminor ? 'AND rc_minor=0' : '';
 	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
-	$hidem .= $hideliu ? ' AND rc_user=0' : '';
+	$hidem .= ( $hideliu && !$hidemyself ) ? ' AND rc_user=0' : '';
 	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
+	if ( $hidemyself ) {
+		if ( $wgUser->getID() ) {
+			$hidem .= ' AND rc_user <> '.$wgUser->getID();
+		} else {
+			$hidem .= ' AND rc_user_text<>' . $dbr->addQuotes( $wgUser->getName() );
+		}
+	}
 	$hidem .= is_null( $namespace ) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 
 	// This is the big thing!
@@ -185,6 +194,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 			wfAppendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hidemyself', $hidemyself, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
@@ -420,7 +430,7 @@ function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
  * Used by Recentchangeslinked
  */
 function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall = false, $minorLink = '',
-	$botLink = '', $liuLink = '', $patrLink = '' ) {
+	$botLink = '', $liuLink = '', $patrLink = '', $myselfLink = '' ) {
 	if ($more != '') $more .= '&';
 	$cl = rcCountLink( 50, $days, $page, $more ) . ' | ' .
 	  rcCountLink( 100, $days, $page, $more  ) . ' | ' .
@@ -433,7 +443,7 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 	  rcDaysLink( $limit, 14, $page, $more  ) . ' | ' .
 	  rcDaysLink( $limit, 30, $page, $more  ) .
 	  ( $doall ? ( ' | ' . rcDaysLink( $limit, 0, $page, $more ) ) : '' );
-	$shm = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink );
+	$shm = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink );
 	$note = wfMsg( 'rclinks', $cl, $dl, $shm );
 	return $note;
 }
@@ -492,9 +502,10 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		array( 'hideliu' => 1-$options['hideliu'] ), $nondefaults);
 	$patrLink  = makeOptionsLink( $showhide[1-$options['hidepatrolled']],
 		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults);
-
-	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink );
-
+	$myselfLink = makeOptionsLink( $showhide[1-$options['hidemyself']], 
+		array( 'hidemyself' => 1-$options['hidemyself'] ), $nondefaults);
+	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink );
+	
 	// show from this onward link
 	$now = $wgLang->timeanddate( wfTimestampNow(), true );
 	$tl =  makeOptionsLink( $now, array( 'from' => wfTimestampNow()), $nondefaults );
