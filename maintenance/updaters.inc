@@ -626,8 +626,10 @@ function do_user_groups_reformat() {
 }
 
 function do_all_updates() {
-	global $wgNewTables, $wgNewFields, $wgRenamedTables;
+	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDBname;
 	
+	$doUser = !$wgSharedDB || $wgSharedDB == $wgDBname;
+
 	# Rename tables
 	foreach ( $wgRenamedTables as $tableRecord ) {
 		rename_table( $tableRecord[0], $tableRecord[1], $tableRecord[2] );
@@ -641,7 +643,10 @@ function do_all_updates() {
 
 	# Add missing fields
 	foreach ( $wgNewFields as $fieldRecord ) {
-		add_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
+		# Don't update shared DB
+		if ( $doUser || $fieldRecord[0] != 'user') {
+			add_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
+		}
 		flush();
 	}
 	
@@ -651,7 +656,9 @@ function do_all_updates() {
 	do_old_links_update(); flush();
 	do_image_name_unique_update(); flush();
 	do_watchlist_update(); flush();
-	do_user_update(); flush();
+	if ( $doUser ) {
+		do_user_update(); flush();
+	}
 ######	do_copy_newtalk_to_watchlist(); flush();
 	do_logging_encoding(); flush();
 	
@@ -664,7 +671,9 @@ function do_all_updates() {
 	
 	do_drop_img_type(); flush();
 	
-	do_user_unique_update(); flush();
+	if ( $doUser ) {
+		do_user_unique_update(); flush();
+	}
 	do_user_groups_update(); flush();
 	
 	initialiseMessages(); flush();
