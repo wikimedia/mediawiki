@@ -901,4 +901,4 @@ CREATE TABLE /*$wgDBprefix*/trackbacks (
 	tb_name varchar(255),
 
 	INDEX (tb_page)
-);
+) TYPE=InnoDB;
