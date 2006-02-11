@@ -115,18 +115,21 @@ wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
 wfProfileOut( $fname.'-memcached' );
 wfProfileIn( $fname.'-SetupSession' );
 
-# If session.auto_start is there, we can't touch session name
-#
-
-if (!ini_get('session.auto_start')) {
-    if ( $wgDBprefix ) {
-	session_name( $wgDBname . '_' . $wgDBprefix . '_session' );
-    } else {
-	session_name( $wgDBname . '_session' );
-    }
+if ( $wgDBprefix ) {
+	$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
+} elseif ( $wgSharedDB ) {
+	$wgCookiePrefix = $wgSharedDB;
+} else {
+	$wgCookiePrefix = $wgDBname;
 }
 
-if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgDBname.'Token'] ) ) ) {
+# If session.auto_start is there, we can't touch session name
+#
+if (!ini_get('session.auto_start')) {
+	session_name( $wgCookiePrefix . '_session' );
+}
+
+if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
 	wfIncrStats( 'request_with_session' );
 	User::SetupSession();
 	$wgSessionStarted = true;

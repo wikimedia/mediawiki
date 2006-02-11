@@ -608,6 +608,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (partial bug 3456) Disable auto redirect to Main Page after account creation
 * (bug 4824) Separate out IE7 CSS compat hacks, fix for RTL pages
 * Added support for wikidiff2 and similar external diff engines.
+* Allow cookies to be shared between multiple wikis with a shared user database
 
 
 === Caveats ===
