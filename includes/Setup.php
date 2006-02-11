@@ -118,12 +118,16 @@ wfProfileOut( $fname.'-memcached' );
 wfProfileIn( $fname.'-SetupSession' );
 
 if ( $wgDBprefix ) {
-	session_name( $wgDBname . '_' . $wgDBprefix . '_session' );
+	$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
+} elseif ( $wgSharedDB ) {
+	$wgCookiePrefix = $wgSharedDB;
 } else {
-	session_name( $wgDBname . '_session' );
+	$wgCookiePrefix = $wgDBname;
 }
 
-if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgDBname.'Token'] ) ) ) {
+session_name( $wgCookiePrefix . '_session' );
+
+if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
 	User::SetupSession();
 	$wgSessionStarted = true;
 } else {
