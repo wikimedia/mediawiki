@@ -1327,15 +1327,20 @@ class Database {
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
 	 */
-	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect' ) {
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect', 
+		$options = array() ) 
+	{
 		$destTable = $this->tableName( $destTable );
-                if( is_array( $srcTable ) ) {
-                        $srcTable =  implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
-		} else {
+		if ( is_array( $options ) ) {
+			$options = implode( ' ', $options );
+		}
+		if( is_array( $srcTable ) ) {
+			$srcTable =  implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
+		} else { 
 			$srcTable = $this->tableName( $srcTable );
 		}
-		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
-			' SELECT ' . implode( ',', $varMap ) .
+		$sql = "INSERT $options INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
+			' SELECT ' . implode( ',', $varMap ) . 
 			" FROM $srcTable";
 		if ( $conds != '*' ) {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
