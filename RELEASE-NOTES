@@ -613,6 +613,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Allow cookies to be shared between multiple wikis with a shared user database
 * Blocking some Unicode whitespace characters in usernames. Should check
   if some or all should be blocked from all page titles.
+* Unknown log types no longer throw notices everywhere in RecentChanges
 
 
 === Caveats ===

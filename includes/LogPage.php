@@ -120,7 +120,12 @@ class LogPage {
 		);
 		wfRunHooks( 'LogPageLogName', array( &$typeText ) );
 
-		return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
+		if( isset( $typeText[$type] ) ) {
+			return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
+		} else {
+			// Bogus log types? Perhaps an extension was removed.
+			return $type;
+		}
 	}
 
 	/**
