@@ -813,7 +813,7 @@ class User {
 	/**
 	 * Return the talk page(s) this user has new messages on.
 	 */
-	function getTalkPages() {
+	function getNewMessageLinks() {
 	global	$wgDBname;
 		$talks = array();
 		if (!wfRunHooks('UserRetrieveNewTalks', array(&$this, &$talks)))
