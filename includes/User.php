@@ -811,6 +811,23 @@ class User {
 	}
 
 	/**
+	 * Return the talk page(s) this user has new messages on.
+	 */
+	function getTalkPages() {
+	global	$wgDBname;
+		$talks = array();
+		if (!wfRunHooks('UserRetrieveNewTalks', array(&$this, &$talks)))
+			return $talks;
+
+		if (!$this->getNewtalk())
+			return array();
+		$up = $this->getUserPage();
+		$utp = $up->getTalkPage();
+		return array(array("wiki" => $wgDBname, "link" => $utp->getLocalURL()));
+	}
+
+		
+	/**
 	 * Perform a user_newtalk check on current slaves; if the memcached data
 	 * is funky we don't want newtalk state to get stuck on save, as that's
 	 * damn annoying.
@@ -1224,8 +1241,11 @@ class User {
 	function clearNotification( &$title ) {
 		global $wgUser, $wgUseEnotif;
 
+
 		if ($title->getNamespace() == NS_USER_TALK &&
 			$title->getText() == $this->getName() ) {
+			if (!wfRunHooks('UserClearNewTalkNotification', array(&$this)))
+				return;
 			$this->setNewtalk( false );
 		}
 

@@ -147,6 +147,7 @@ class SkinTemplate extends Skin {
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgUseTrackbacks;
+		global $wgDBname;
 
 		$fname = 'SkinTemplate::outputPage';
 		wfProfileIn( $fname );
@@ -269,7 +270,9 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set('jsvarurl', false);
 		}
-		if( $wgUser->getNewtalk() ) {
+		$newtalks = $wgUser->getTalkPages();
+
+		if (count($newtalks) == 1 && $newtalks[0]["wiki"] === $wgDBname) {
 			$usertitle = $this->mUser->getUserPage();
 			$usertalktitle = $usertitle->getTalkPage();
 			if( !$usertalktitle->equals( $this->mTitle ) ) {
@@ -287,6 +290,16 @@ class SkinTemplate extends Skin {
 				# Disable Cache
 				$wgOut->setSquidMaxage(0);
 			}
+		} else if (count($newtalks)) {
+			$sep = wfMsg("newtalkseperator");
+			$msgs = array();
+			foreach ($newtalks as $newtalk) {
+				$msgs[] = wfElement("a", 
+					array('href' => $newtalk["link"]), $newtalk["wiki"]);
+			}
+			$parts = implode($sep, $msgs);
+			$ntl = wfMsgHtml('youhavenewmessagesmulti', $parts);
+			$wgOut->setSquidMaxage(0);
 		} else {
 			$ntl = '';
 		}
