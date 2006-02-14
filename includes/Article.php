@@ -2214,14 +2214,16 @@ class Article {
 		# If this is another user's talk page, update newtalk
 
 		if ($this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getName()) {
-			$other = User::newFromName( $shortTitle );
-			if( is_null( $other ) && User::isIP( $shortTitle ) ) {
-				// An anonymous user
-				$other = new User();
-				$other->setName( $shortTitle );
-			}
-			if( $other ) {
-				$other->setNewtalk( true );
+			if (wfRunHooks('ArticleEditUpdateNewTalk', array(&$this)) ) {
+				$other = User::newFromName( $shortTitle );
+				if( is_null( $other ) && User::isIP( $shortTitle ) ) {
+					// An anonymous user
+					$other = new User();
+					$other->setName( $shortTitle );
+				}
+				if( $other ) {
+					$other->setNewtalk( true );
+				}
 			}
 		}
 

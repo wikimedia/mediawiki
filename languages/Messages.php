@@ -1932,6 +1932,8 @@ Please confirm that really want to recreate this article.',
 'confirm_purge' => "Clear the cache of this page?\n\n$1",
 'confirm_purge_button' => 'OK',
 
+'youhavenewmessagesmulti' => "You have new messages on $1",
+'newtalkseperator' => ', ',
 );
 
 
