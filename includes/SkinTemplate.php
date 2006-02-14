@@ -270,7 +270,7 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set('jsvarurl', false);
 		}
-		$newtalks = $wgUser->getTalkPages();
+		$newtalks = $wgUser->getNewMessageLinks();
 
 		if (count($newtalks) == 1 && $newtalks[0]["wiki"] === $wgDBname) {
 			$usertitle = $this->mUser->getUserPage();
@@ -291,7 +291,7 @@ class SkinTemplate extends Skin {
 				$wgOut->setSquidMaxage(0);
 			}
 		} else if (count($newtalks)) {
-			$sep = wfMsg("newtalkseperator");
+			$sep = wfMsgHtml("newtalkseperator");
 			$msgs = array();
 			foreach ($newtalks as $newtalk) {
 				$msgs[] = wfElement("a", 
