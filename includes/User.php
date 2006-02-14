@@ -785,6 +785,22 @@ class User {
 		return ( 0 != $this->mNewtalk );
 	}
 
+	/**
+	 * Return the talk page(s) this user has new messages on.
+	 */
+	function getNewMessageLinks() {
+	global	$wgDBname;
+		$talks = array();
+		if (!wfRunHooks('UserRetrieveNewTalks', array(&$this, &$talks)))
+			return $talks;
+
+		if (!$this->getNewtalk())
+			return array();
+		$up = $this->getUserPage();
+		$utp = $up->getTalkPage();
+		return array(array("wiki" => $wgDBname, "link" => $utp->getLocalURL()));
+	}
+
 	function setNewtalk( $val ) {
 		$this->loadFromDatabase();
 		$this->mNewtalk = $val;

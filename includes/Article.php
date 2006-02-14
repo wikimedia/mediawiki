@@ -2070,21 +2070,27 @@ class Article {
 		# Update newtalk status if user is reading their own
 		# talk page
 
-		global $wgUser;
-		if ($this->mTitle->getNamespace() == NS_USER_TALK &&
-			$this->mTitle->getText() == $wgUser->getName())
-		{
-			if ( $wgUseEnotif ) {
-				require_once( 'UserTalkUpdate.php' );
-				$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(), $this->mTitle->getDBkey(), false, false, false );
-			} else {
-				$wgUser->setNewtalk(0);
-				$wgUser->saveNewtalk();
-			}
-		} elseif ( $wgUseEnotif ) {
-			$wgUser->clearNotification( $this->mTitle );
-		}
+		if (!wfRunHooks('UserClearNewTalkNotification', array(&$this)))
+			return;
 
+		global $wgUser;
+		if (wfRunHooks('ArticleEditUpdateNewTalk', array(&$this)) ) {
+			if ($this->mTitle->getNamespace() == NS_USER_TALK &&
+				$this->mTitle->getText() == $wgUser->getName())
+			{
+
+				if ( $wgUseEnotif ) {
+					require_once( 'UserTalkUpdate.php' );
+					$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(),
+						$this->mTitle->getDBkey(), false, false, false );
+				} else {
+					$wgUser->setNewtalk(0);
+					$wgUser->saveNewtalk();
+				}
+			} elseif ( $wgUseEnotif ) {
+				$wgUser->clearNotification( $this->mTitle );
+			}
+		}
 	}
 
 	/**
