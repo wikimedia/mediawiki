@@ -2128,7 +2128,7 @@ $1
 'unit-pixel' => 'px',
 
 'youhavenewmessagesmulti' => "You have new messages on $1",
-'newtalkseperator' => ', ',
+'newtalkseperator' => ',_',
 );
 
 /* a fake language converter */
