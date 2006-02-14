@@ -291,7 +291,7 @@ class SkinTemplate extends Skin {
 				$wgOut->setSquidMaxage(0);
 			}
 		} else if (count($newtalks)) {
-			$sep = wfMsgHtml("newtalkseperator");
+			$sep = str_replace("_", " ", wfMsgHtml("newtalkseperator"));
 			$msgs = array();
 			foreach ($newtalks as $newtalk) {
 				$msgs[] = wfElement("a", 

@@ -1933,7 +1933,7 @@ Please confirm that really want to recreate this article.',
 'confirm_purge_button' => 'OK',
 
 'youhavenewmessagesmulti' => "You have new messages on $1",
-'newtalkseperator' => ', ',
+'newtalkseperator' => ',_',
 );
 
 
