@@ -1059,6 +1059,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2532) Image directory structure migration bug
 * (bug 4881) Correction to the fix for 1487; Ipblocklist showed 'no blocks'
   message at the end of the list even if there were blocks.
+* (bug 4805) Removed more wikipedia-references from LanguageUk.php
 
 
 === Caveats ===
