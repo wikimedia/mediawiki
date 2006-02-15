@@ -234,6 +234,7 @@ i18n / Languages:
 * (bug 4615) Update for Portuguese language (pt)
 * Separated MessagesSl.php as the other languages.
 * (bug 4960) Add additional namespaces variants to Yiddish for compatibility
+* (bug 4805) Removed more wikipedia-references from MessagesUk.php
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
