@@ -24,6 +24,9 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	# Get query parameters
 	$feedFormat = $wgRequest->getVal( 'feed' );
 
+	/* Checkbox values can't be true be default, because
+	 * we cannot differentiate between unset and not set at all
+	 */
 	$defaults = array(
 	/* int  */ 'days' => $wgUser->getDefaultOption('rcdays'),
 	/* int  */ 'limit' => $wgUser->getDefaultOption('rclimit'),
@@ -35,7 +38,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	/* text */ 'from' => '',
 	/* text */ 'namespace' => null,
 	/* bool */ 'invert' => false,
-	/* bool */ 'categories_any' => true,
+	/* bool */ 'categories_any' => false,
 	);
 
 	extract($defaults);
@@ -52,7 +55,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$limit = $wgRequest->getInt( 'limit', $limit );
 
 	/* order of selection: url > preferences > default */
-	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );		
+	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );
 	
 	# As a feed, use limited settings only
 	if( $feedFormat ) {
@@ -179,7 +182,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 		// Run existence checks
 		$batch->execute();
-		$any = $wgRequest->getBool ( 'categories_any' , false ) ;
+		$any = $wgRequest->getBool( 'categories_any', $defaults['categories_any']);
 
 		// Output header
 		if ( !$specialPage->including() ) {
@@ -202,7 +205,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 			// Add end of the texts
 			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) . "\n" );
-			$wgOut->addHTML( rcNamespaceForm( $namespace, $invert, $nondefaults) . '</div>'."\n");
+			$wgOut->addHTML( rcNamespaceForm( $namespace, $invert, $nondefaults, $any ) . '</div>'."\n");
 		}
 
 		// And now for the content
@@ -525,10 +528,11 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
  *              if there is none
  * @param bool $invert Whether to invert the namespace selection
  * @param array $nondefaults An array of non default options to be remembered
+ * @param bool $categories_any Default value for the checkbox
  *
  * @return string
  */
-function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
+function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
 	global $wgContLang, $wgScript, $wgAllowCategorizedRecentChanges, $wgRequest;
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
@@ -538,9 +542,8 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 	
 	if ( $wgAllowCategorizedRecentChanges ) {
 		$categories = trim ( $wgRequest->getVal ( 'categories' , "" ) ) ;
-		$any = $wgRequest->getBool ( 'categories_any' , true ) ;
 		$cb_arr = array( 'type' => 'checkbox', 'name' => 'categories_any', 'value' => "1" ) ;
-		if ( $any ) $cb_arr['checked'] = "checked" ;
+		if ( $categories_any ) $cb_arr['checked'] = "checked" ;
 		$catbox = "<br/>" ;
 		$catbox .= wfMsg('rc_categories') . " ";
 		$catbox .= wfElement('input', array( 'type' => 'text', 'name' => 'categories', 'value' => $categories));
