@@ -619,7 +619,7 @@ fully support the editing toolbar, but was found to be too confusing.
   on Special:Undelete by default; show source, with an optional preview.
   The revisions list no longer shows the latest text by default, so it can
   still be operated if the text is hostile.
-
+* (bug 5013) Check for existence on "return to" links
 
 === Caveats ===
 
