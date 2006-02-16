@@ -876,7 +876,7 @@ class OutputPage {
 		if ( '' == $returnto ) {
 			$returnto = wfMsgForContent( 'mainpage' );
 		}
-		$link = $sk->makeKnownLink( $returnto, '' );
+		$link = $sk->makeLinkObj( Title::newFromText( $returnto ), '' );
 
 		$r = wfMsg( 'returnto', $link );
 		if ( $auto ) {
