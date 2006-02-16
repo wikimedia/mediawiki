@@ -311,9 +311,12 @@ class UndeleteForm {
 		$this->mAction = $request->getText( 'action' );
 		$this->mTarget = $request->getText( 'target' );
 		$this->mTimestamp = $request->getText( 'timestamp' );
-		$this->mRestore = $request->getCheck( 'restore' ) &&
-			$request->wasPosted() &&
+		
+		$posted = $request->wasPosted() &&
 			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
+		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
+		
 		if( $par != "" ) {
 			$this->mTarget = $par;
 		}
@@ -399,7 +402,46 @@ class UndeleteForm {
 
 		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 		$wgOut->addWikiText( "(" . wfMsg( "undeleterevision",
-			$wgLang->date( $timestamp ) ) . ")\n<hr />\n" . $text );
+			$wgLang->date( $timestamp ) ) . ")\n" );
+		
+		if( $this->mPreview ) {
+			$wgOut->addHtml( "<hr />\n" );
+			$wgOut->addWikiText( $text );
+		}
+		
+		$self = Title::makeTitle( NS_SPECIAL, "Undelete" );
+		
+		$wgOut->addHtml(
+			wfElement( 'textarea', array(
+					'readonly' => true,
+					'cols' => intval( $wgUser->getOption( 'cols' ) ),
+					'rows' => intval( $wgUser->getOption( 'rows' ) ) ),
+				$text ) .
+			wfOpenElement( 'div' ) .
+			wfOpenElement( 'form', array(
+				'method' => 'post',
+				'action' => $self->getLocalURL( "action=submit" ) ) ) .
+			wfElement( 'input', array(
+				'type' => 'hidden',
+				'name' => 'target',
+				'value' => $this->mTargetObj->getPrefixedUrl() ) ) .
+			wfElement( 'input', array(
+				'type' => 'hidden',
+				'name' => 'timestamp',
+				'value' => $timestamp ) ) .
+			wfElement( 'input', array(
+				'type' => 'hidden',
+				'name' => 'wpEditToken',
+				'value' => $wgUser->editToken() ) ) .
+			wfElement( 'input', array(
+				'type' => 'hidden',
+				'name' => 'preview',
+				'value' => '1' ) ) .
+			wfElement( 'input', array(
+				'type' => 'submit',
+				'value' => wfMsg( 'preview' ) ) ) .
+			wfCloseElement( 'form' ) .
+			wfCloseElement( 'div' ) );
 	}
 
 	/* private */ function showHistory() {
@@ -419,7 +461,7 @@ class UndeleteForm {
 			return;
 		}
 		if ( $this->mAllowed ) {
-			$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n----\n" . $text );
+			$wgOut->addWikiText( wfMsg( "undeletehistory" ) );
 		} else {
 			$wgOut->addWikiText( wfMsg( "undeletehistorynoadmin" ) );
 		}
