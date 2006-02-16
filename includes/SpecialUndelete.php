@@ -424,7 +424,7 @@ class UndeleteForm {
 			wfElement( 'input', array(
 				'type' => 'hidden',
 				'name' => 'target',
-				'value' => $this->mTargetObj->getPrefixedUrl() ) ) .
+				'value' => $this->mTargetObj->getPrefixedDbKey() ) ) .
 			wfElement( 'input', array(
 				'type' => 'hidden',
 				'name' => 'timestamp',
@@ -439,7 +439,7 @@ class UndeleteForm {
 				'value' => '1' ) ) .
 			wfElement( 'input', array(
 				'type' => 'submit',
-				'value' => wfMsg( 'preview' ) ) ) .
+				'value' => wfMsg( 'showpreview' ) ) ) .
 			wfCloseElement( 'form' ) .
 			wfCloseElement( 'div' ) );
 	}
