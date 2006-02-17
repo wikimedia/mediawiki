@@ -237,6 +237,7 @@ i18n / Languages:
 * (bug 4805) Removed more wikipedia-references from MessagesUk.php
 * (bug 5015) Update magic words translation in LanguageBe.php
 * (bug 4859) Update for Portuguese messages (pt)
+* (bug 4788) One string for MessagesPl
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits

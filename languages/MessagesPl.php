@@ -10,7 +10,7 @@
 "tog-hideminor" => "Ukryj drobne zmiany w \"Ostatnich zmianach\"",
 "tog-usenewrc" => "Konsolidacja ostatnich zmian (JavaScript)",
 "tog-numberheadings" => "Automatyczna numeracja nagłówków",
-"tog-showtoolbar" => "Show edit toolbar",
+"tog-showtoolbar" => "Pokaż narzędzia",
 "tog-editondblclick" => "Podwójne kliknięcie rozpoczyna edycję (JavaScript)",
 "tog-editsection" => "Możliwość edycji poszczególnych sekcji strony",
 "tog-editsectiononrightclick" => "Kliknięcie prawym klawiszem na tytule sekcji<br />rozpoczyna jej edycję (JavaScript)",
