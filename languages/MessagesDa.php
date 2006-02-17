@@ -69,7 +69,7 @@
 
 # Bits of text used by many pages:
 #
-"categories" => "Kategorier ",
+"categories" => "Kategorier",
 "category" => "kategori",
 "category_header" => 'Artikler i kategorien "$1"',
 "subcategories" => "Underkategorier",
@@ -149,7 +149,7 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 "articlepage"	=> "Se artiklen",
 "subjectpage"	=> "Se emnesiden",
 'talk' => 'Diskussion',
-'toolbox' => 'Værktøjer ',
+'toolbox' => 'Værktøjer',
 "userpage" => "Se brugersiden",
 "wikipediapage" => "Se metasiden",
 "imagepage" => 	"Se billedsiden",
@@ -406,14 +406,14 @@ Sørg venligst for at medtage denne IP-adresse i alle henvendelser til en admini
 "newarticle"	=> "(Ny)",
 "newarticletext" => "<div style=\"font-size:small;color:\#003333;border-width:1px;border-style:solid;border-color:\#aaaaaa;padding:3px\">'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{ns:4}}:Hjælp|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[{{ns:-1}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen. '''Dit bidrag til {{SITENAME}} vil fremkomme omgående''', så hvis du bare vil teste tingene, så brug venligst [[{{ns:4}}:Sandkassen|sandkassen]]!</div>",
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
-"anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske [[IP-adresse]] til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Speciel:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.'' ",
+"anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske [[IP-adresse]] til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Speciel:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
 "noarticletext" => "<div style=\"border: 1px solid \#ccc; padding: 7px; background-color: \#fff; color: \#000\">'''{{SITENAME}} har ikke nogen side med præcis dette navn.''' * Du kan se om {{PAGENAME}} findes i [[Wiktionary:{{NAMESPACE}}:{{PAGENAME}}|wikiordbogen]] eller på '''[[:no:{{PAGENAME}}|norsk]]''', '''[[:nn:{{PAGENAME}}|nynorsk]]''', eller '''[[:sv:{{PAGENAME}}|svensk]]'''. * Du kan '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} starte siden {{PAGENAME}}]''' * Eller [[{{ns:special}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}}]] i andre artikler ---- * Hvis du har oprettet denne artikel indenfor de sidste få minutter, så kan de skyldes at der er lidt forsinkelse i opdateringen af {{SITENAME}}s cache. Vent venligst og tjek igen senere om artiklen dukker op, inden du forsøger at oprette artiklen igen. </div>",
 'clearyourcache' => "'''Bemærk''', efter at have gemt, er du nødt til at tømme din browsers cache for at kunne se ændringerne. '''Mozilla / Firefox / Safari''': hold ''shifttasten'' nede og klik på ''reload'' eller tryk på ''control-shift-r'' (Mac: ''cmd-shift-r''); '''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''; '''Konqueror''': klik på ''reload'' eller tryk på ''F5''",
 'usercssjsyoucanpreview' => "<strong>Tip:</strong> Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
 'usercsspreview' => "'''Husk at du kun tester/forhåndsviser dit eget css, den er ikke gemt endnu!'''",
 'userjspreview' => "'''Husk at du kun tester/forhåndsviser dit eget javascript, det er ikke gemt endnu!'''",
 "updated"		=> "(Opdateret)",
-'note'			=> '<strong>Bemærk:</strong> ',
+'note'			=> '<strong>Bemærk:</strong>',
 "previewnote"	=> "Husk at dette er kun en forhåndsvisning, siden er ikke
 gemt endnu!",
 "previewconflict" => "Denne forhåndsvisning er resultatet af den
@@ -528,7 +528,7 @@ for at ændre brugerindstillinger.",
 "dateformat"	=> "Datoformat",
 "math_failure"		=> "Fejl i matematikken",
 "math_unknown_error"	=> "ukendt fejl",
-"math_unknown_function"	=> "ukendt funktion ",
+"math_unknown_function"	=> "ukendt funktion",
 "math_lexing_error"	=> "lexerfejl",
 "math_syntax_error"	=> "syntaksfejl",
 'math_image_error'	=> 'PNG-konvertering mislykkedes; undersøg om latex, dvips, gs og convert er installeret korrekt',
@@ -571,12 +571,12 @@ ellers skulle man for eksempel for dansk vintertid, indtaste \"1\"
 
 # switching pan
 'groups-lookup-group' => 'Administrér grupperettigheder',
-'groups-group-edit' => 'Eksisterende grupper: ',
+'groups-group-edit' => 'Eksisterende grupper:',
 'editgroup' => 'Redigér gruppe',
 'addgroup' => 'Tilføj gruppe',
 
 'userrights-lookup-user' => 'Administrér brugergrupper',
-'userrights-user-editname' => 'Skriv et brugernavn: ',
+'userrights-user-editname' => 'Skriv et brugernavn:',
 'editusergroup' => 'Redigér brugergrupper',
 
 # group editing
@@ -585,7 +585,7 @@ ellers skulle man for eksempel for dansk vintertid, indtaste \"1\"
 'groups-editgroup-preamble' => 'Hvis navn eller beskrivelse starter med et kolon, så vil
 resten blive behandlet som et navn på en besked, og derfor vil teksten blive behandlet som
 en besked i MediaWiki navnerummet',
-'groups-editgroup-name' => 'Gruppenavn: ',
+'groups-editgroup-name' => 'Gruppenavn:',
 'groups-editgroup-description' => 'Gruppebeskrivelse (max 255 tegn):<br />',
 'savegroup' => 'Gem gruppe',
 'groups-tableheader'        => 'ID || Navn || Beskrivelse || Rettigheder',
@@ -630,7 +630,7 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 sidste <strong>$2</strong> dage.",
 "rcnotefrom"	=> "Nedenfor er ændringerne fra <b>$2</b> indtil <b>$1</b> vist.",
 "rclistfrom"	=> "Vis nye ændringer startende fra $1",
-'showhideminor' => "$1 mindre ændringer | $2 robotter | $3 brugere der er logget på | $4 patruljerede ændringer ",
+'showhideminor' => "$1 mindre ændringer | $2 robotter | $3 brugere der er logget på | $4 patruljerede ændringer",
 "rclinks"		=> "Vis seneste $1 ændringer i de sidste $2 dage<br />$3",
 "rchide"		=> "i $4 form; $1 mindre ændringer; $2 andre navnerum; $3 mere end en redigering.",
 "rcliu"			=> "; $1 redigeringer fra brugere der er logget på",
@@ -875,7 +875,7 @@ sine brugerindstillinger, så vil formularen herunder sende en enkelt
 besked.
 Den e-mailadresse, du har sat i dine brugerindstillinger, vil dukke op
 i \"Fra\" feltet på denne mail, så modtageren er i stand til at svare.",
-'usermailererror' => 'E-mail-modulet returnerede en fejl: ',
+'usermailererror' => 'E-mail-modulet returnerede en fejl:',
 'defemailsubject'  => "{{SITENAME}} e-mail",
 "noemailtitle"	=> "Ingen e-mail-adresse",
 "noemailtext"	=> "Denne bruger har ikke angivet en gyldig e-mail-adresse,
@@ -968,7 +968,7 @@ Tilbagemelding og yderligere hjælp:
 "exblank" => "siden var tom",
 "confirmdelete" => "Bekræft sletning",
 "deletesub"		=> "(Sletter \"$1\")",
-"historywarning" => "Advarsel: Siden du er ved at slette har en historie: ",
+"historywarning" => "Advarsel: Siden du er ved at slette har en historie:",
 "confirmdeletetext" => "Du er ved permanent at slette en side
 eller et billede sammen med hele den tilhørende historie fra databasen.
 Bekræft venligst at du virkelig vil gøre dette, at du forstår
@@ -992,7 +992,7 @@ succes.",
 "rollbackfailed" => "Kunne ikke fjerne redigeringen",
 "cantrollback"	=> "Kan ikke fjerne redigering;
 den sidste bruger er den eneste forfatter.",
-"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[$1]] foretaget af [[Bruger:$2|$2]] ([[Bruger diskussion:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|diskussion]]). ",
+"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[$1]] foretaget af [[Bruger:$2|$2]] ([[Bruger diskussion:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|diskussion]]).",
 #   only shown if there is an edit comment
 "editcomment" => "Kommentaren til redigeringen var: \"<i>$1</i>\".",
 "revertpage"	=> "Gendannelse til seneste version ved $1, fjerner ændringer fra $2",
@@ -1116,7 +1116,7 @@ Bekræft venligst at du har til hensigt at gøre dette.",
 "unlockdbsuccesstext" => "Mediawikidatabasen er låst op.",
 
 # Make sysop
-'makesysoptitle'	=> 'Gør en bruger til administrator - sysop ',
+'makesysoptitle'	=> 'Gør en bruger til administrator - sysop',
 'makesysoptext'		=> 'Denne formular bruges af bureaukrater til at gøre almindelige brugere til administratorer og/eller tildele andre rettigheder til en bruger.
 Indsæt navnet på brugeren i tekstboksen og tryk på knappen for at ændre rettighederne (i.e. gøre brugeren til administrator',
 'makesysopname'		=> 'Brugerens navn:',
@@ -1210,12 +1210,12 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 'allmessagesdefault' => 'Standard tekst',
 'allmessagescurrent' => 'Nuværende tekst',
 'allmessagestext'	=> 'Dette er en liste over alle beskeder i MediaWiki: navnerummet.',
-'allmessagesnotsupportedUI' => 'Dit aktuelle grænsefladesprog <b>$1</b> er ikke understøttet af Special:AllMessages på dette websted. ',
+'allmessagesnotsupportedUI' => 'Dit aktuelle grænsefladesprog <b>$1</b> er ikke understøttet af Special:AllMessages på dette websted.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages ikke understøttet fordi wgUseDatabaseMessages er slået fra.',
 
 # Thumbnails
 
-'thumbnail-more'	=> 'Forstør ',
+'thumbnail-more'	=> 'Forstør',
 'missingimage'		=> "<b>Mangler billede</b><br /><i>$1</i>",
 'filemissing'		=> 'Filen mangler',
 
@@ -1362,8 +1362,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');',
 'previousdiff' => '← Gå til forrige forskel',
 'nextdiff' => 'Gå til næste forskel →',
 
-'imagemaxsize' => 'Begræns størrelsen af billeder på billedsiderne til: ',
-'thumbsize'	=> 'Thumbnail størrelse : ',
+'imagemaxsize' => 'Begræns størrelsen af billeder på billedsiderne til:',
+'thumbsize'	=> 'Thumbnail størrelse :',
 'showbigimage' => 'Download en version i høj opløsning ($1x$2, $3 KB)',
 
 'newimages' => 'Galleri med de nyeste billeder',
@@ -1371,8 +1371,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');',
 
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Bruger: ',
-'speciallogtitlelabel' => 'Titel: ',
+'specialloguserlabel' => 'Bruger:',
+'speciallogtitlelabel' => 'Titel:',
 
 'passwordtooshort' => 'Dit kodeord er for kort. Det skal være mindst $1 tegn langt.',
 

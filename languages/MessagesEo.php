@@ -266,7 +266,7 @@ eviti tiajn maltrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj ĉe via re
 bonvolu [[Special:Userlogin|kreu konton aŭ ensalutu]].',
 'noarticletext' => '(La paĝo nun estas malplena)', #FIXME
 'updated'		=> '(Ŝanĝo registrita)', #FIXME: ?
-'note'			=> '<strong>Noto:</strong> ', #FIXME: Where does this come from?
+'note'			=> '<strong>Noto:</strong>', #FIXME: Where does this come from?
 'previewnote'	=> 'Memoru, ke ĉi tio estas nur antaŭrigardo kaj ne jam konservita!',
 'previewconflict' => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.', #FIXME
@@ -342,7 +342,7 @@ esprimon'.
 '. Bonvolu reserĉi per alia mendo.',
 'matchtotals'	=> 'La serĉmendo "$1" liveris $2 artikolojn laŭ titolo
 kaj $3 artikolojn laŭ enhavo.',
-'nogomatch'	=> 'Neniu paĝo havas precize la titolon; provas tekstoserĉon... ',
+'nogomatch'	=> 'Neniu paĝo havas precize la titolon; provas tekstoserĉon...',
 'titlematches'	=> 'Trovitaj laŭ titolo',
 'notitlematches' => 'Neniu trovita laŭ titolo',
 'textmatches'	=> 'Trovitaj laŭ enhavo',
@@ -657,7 +657,7 @@ Elektu forigotajn paĝojn kaj alklaku "forprenu elektitajn" sube.',
 'exblank'       => 'estis malplena',
 'confirmdelete' => 'Konfirmu forigadon',
 'deletesub'		=> '(Forigas "$1")',
-'historywarning' => 'Averto: la forigota paĝo havas historion: ',
+'historywarning' => 'Averto: la forigota paĝo havas historion:',
 "confirmdeletetext" => "Vi forigos la artikolon aŭ dosieron kaj
 forviŝos ĝian tutan historion el la datumaro.<br />
 Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas
@@ -683,7 +683,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 de [[Vikipediisto:$2|$2]] ([[Vikipediista diskuto:$2|diskuto]]) pro tio,
 ke oni intertempe redaktis la paĝon.
 
-Lasta redaktinto estas [[Vikipediisto:$3|$3]] ([[Vikipediista diskuto:$3|diskuto]]). ",
+Lasta redaktinto estas [[Vikipediisto:$3|$3]] ([[Vikipediista diskuto:$3|diskuto]]).",
 'editcomment' => 'La komento estis: \'<i>$1</i>\'.',
 'revertpage'	=> 'Restarigis lastan redakton de $1',
 

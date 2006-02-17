@@ -413,7 +413,7 @@ Vaša IP adresa je $3. Prosíme zahrňte túto adresu do každého vášho prík
 'usercsspreview' => "'''Nezabudnite, že toto je iba náhľad Vášho užívateľského CSS, ešte nebolo uložené!'''",
 'userjspreview' => "'''Nezabudnite, že iba testujete/náhľad vášho užívateľského JavaScriptu, ešte nebol uložený!'''",
 'updated' => '(Aktualizované)',
-'note' => '<strong>Poznámka: </strong> ',
+'note' => '<strong>Poznámka: </strong>',
 'previewnote' => 'Nezabudnite, toto je len náhľad vami upravovaného článku. Článok ešte nie je uložený!',
 'previewconflict' => 'Tento náhľad upraveného článku zobrazuje
 text z horného okna na úpravy tak, ako sa zobrazí potom, keď ho uložíte.',
@@ -542,7 +542,7 @@ aby ste mohli zmeniť vaše nastavenia.",
 'datedefault' => 'Default',
 'math_failure' => 'Syntaktická analýza (parsing) neúspešná',
 'math_unknown_error' => 'neznáma chyba',
-'math_unknown_function' => 'neznáma funkcia ',
+'math_unknown_function' => 'neznáma funkcia',
 'math_lexing_error' => 'lexingová chyba',
 'math_syntax_error' => 'syntaktická chyba',
 'math_image_error' => 'PNG konverzia neúspešná; skontrolujte správnosť inštalácie programov: latex, dvips, gs a convert',
@@ -583,12 +583,12 @@ od času na serveri (UTC).',
 
 # switching pan
 'groups-lookup-group' => 'Spravuj práva skupiny',
-'groups-group-edit' => 'Existujúce skupiny: ',
+'groups-group-edit' => 'Existujúce skupiny:',
 'editgroup' => 'Uprav skupinu',
 'addgroup' => 'Pridaj skupinu',
 
 'userrights-lookup-user' => 'Spravuj skupiny redaktorov',
-'userrights-user-editname' => 'Napíš meno redaktora: ',
+'userrights-user-editname' => 'Napíš meno redaktora:',
 'editusergroup' => 'Uprav redaktorské skupiny',
 
 # group editing
@@ -596,7 +596,7 @@ od času na serveri (UTC).',
 'groups-addgroup' => 'Pridaj skupinu',
 'groups-editgroup-preamble' => 'Ak opis začína čiarkou, zvyšok sa bude považovať za
 názov systémovej správy a text bude lokalizovateľný pomocou menného priestoru MediaWiki',
-'groups-editgroup-name' => 'Meno skupiny: ',
+'groups-editgroup-name' => 'Meno skupiny:',
 'groups-editgroup-description' => 'Opis skupiny (max. 255 znakov):<br />',
 'savegroup' => 'Ulož skupinu',
 'groups-tableheader' => 'ID || Meno || Opis || Práva',
@@ -651,7 +651,7 @@ Pozrite aj [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta dis
 'rcnote' => "Tu je posledných <strong>$1</strong> úprav počas posledných <strong>$2</strong> dní.",
 'rcnotefrom' => "Tu sú posledné zmeny od '''$2''' (zobrazených '''$1''' záznamov).",
 'rclistfrom' => "Zobraz nové úpravy počnúc od $1",
-'showhideminor' => "$1 drobné úpravy | $2 robotov | $3 prihlásených redaktorov ",
+'showhideminor' => "$1 drobné úpravy | $2 robotov | $3 prihlásených redaktorov",
 'rclinks' => "Zobraz posledných $1 úprav v posledných $2 dňoch<br />$3",
 'rchide' => "vo forme $4; $1 drobné úpravy; $2 druhotné menné priestory; $3 viacnásobné úpravy.",
 'rcliu' => "; $1 úprav od prihlásených redaktorov",
@@ -891,7 +891,7 @@ môžete mu pomocou dole uvedeného formulára poslať e-mail.
 E-mailová adresa, ktorú ste zadali vo vašich nastaveniach sa zobrazí
 ako adresa odosielateľa e-mailu, aby bol príjemca schopný vám
 odpovedať.',
-'usermailererror' => 'Mail objekt vrátil chybu: ',
+'usermailererror' => 'Mail objekt vrátil chybu:',
 'defemailsubject' => "{{SITENAME}} e-mail",
 'noemailtitle' => 'Chýba e-mailová adresa',
 'noemailtext' => 'Tento redaktor nezadal platnú e-mailovú adresu,
@@ -988,7 +988,7 @@ Návrhy a ďalšia pomoc:
 'exblank' => 'stránka bola prázdna',
 'confirmdelete' => 'Potvrdiť zmazanie',
 'deletesub' => "(Mažem \"$1\")",
-'historywarning' => 'POZOR: Stránka, ktorú chcete zmazať má históriu: ',
+'historywarning' => 'POZOR: Stránka, ktorú chcete zmazať má históriu:',
 'confirmdeletetext' => "Idete trvalo zmazať z databázy stránku alebo obrázok
 spolu so všetkými jeho/jej predchádzajúcimi verziami.
 Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý
@@ -1248,7 +1248,7 @@ Ak chcete iba posledné úpravy, ako napr. [[Special:Export/Tank]] pre článok 
 'allmessagesdefault' => 'štandardný text',
 'allmessagescurrent' => 'aktuálny text',
 'allmessagestext' => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.',
-'allmessagesnotsupportedUI' => "Special:AllMessages na tejto lokalite (site) nepodporuje jazyk pre vaše rozhranie ('''$1'''). ",
+'allmessagesnotsupportedUI' => "Special:AllMessages na tejto lokalite (site) nepodporuje jazyk pre vaše rozhranie ('''$1''').",
 'allmessagesnotsupportedDB' => 'Special:AllMessages nie je podporované, pretože je vypnuté wgUseDatabaseMessages.',
 
 # Thumbnails
@@ -1399,16 +1399,16 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriam
 'previousdiff' => '← Choď na predchádzajúcu verziu',
 'nextdiff' => 'Choď na ďalšiu verziu →',
 
-'imagemaxsize' => 'Obmedzte obrázky na stránke opisu s obrázkami na: ',
-'thumbsize' => 'Veľkosť náhľadu: ',
+'imagemaxsize' => 'Obmedzte obrázky na stránke opisu s obrázkami na:',
+'thumbsize' => 'Veľkosť náhľadu:',
 'showbigimage' => 'Stiahnuť tento obrázok vo väčšom rozlíšení ($1x$2, $3 KB)',
 
 'newimages' => 'Galéria nových obrázkov',
 'noimages' => 'Nič na zobrazenie.',
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Redaktor: ',
-'speciallogtitlelabel' => 'Názov: ',
+'specialloguserlabel' => 'Redaktor:',
+'speciallogtitlelabel' => 'Názov:',
 
 'passwordtooshort' => 'Vaše heslo je príliš krátke. Musí mať dĺžku aspoň $1 znakov.',
 

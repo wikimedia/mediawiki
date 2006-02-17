@@ -620,6 +620,8 @@ fully support the editing toolbar, but was found to be too confusing.
   The revisions list no longer shows the latest text by default, so it can
   still be operated if the text is hostile.
 * (bug 5013) Check for existence on "return to" links
+* Removed trailing whitespace on a bunch more messages.
+
 
 === Caveats ===
 

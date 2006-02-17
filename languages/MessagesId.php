@@ -265,7 +265,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 
 "noemail" => "Tidak ada alamat e-mail yang tercatat untuk pengguna \"$1\".",
 "passwordsent" => "Kata sandi baru telah dikirimkan kepada e-mail yang didaftarkan untuk \"$1\". Silakan login kembali setelah menerima e-mail tersebut.", #Please log in again after you receive it.",
-"loginend" => " ",
+"loginend" => "",
 "mailerror" => "Kesalahan dalam mengirimkan e-mail: $1",
 'acct_creation_throttle_hit' => 'Maaf, Anda telah membuat $1 akun. Anda tidak dapat membuat akun lagi.',
 
@@ -316,14 +316,14 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "newarticle" => "(Baru)",
 "newarticletext" => "Anda mengikuti pautan ke halaman yang belum ada.\nUntuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini\n(lihat [[Project:Bantuan|halaman bantuan]] untuk informasi lebih lanjut).\nJika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di browser anda.",
 "talkpagetext" => "<!-- MediaWiki:talkpagetext -->",
-"anontalkpagetext" => "---- ''Ini adalah halaman diskusi seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena Ia tidak membuat akun, kami terpaksa harus memakai [[alamat IP]]-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[Special:Userlogin|membuat akun atau login]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.'' ",
+"anontalkpagetext" => "---- ''Ini adalah halaman diskusi seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena Ia tidak membuat akun, kami terpaksa harus memakai [[alamat IP]]-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[Special:Userlogin|membuat akun atau login]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.''",
 "noarticletext" => "(Tidak ada teks dalam halaman ini)",
 'clearyourcache' => "'''Catatan:''' Setelah menyimpan konfigurasi, Anda perlu membersihkan cache browser Anda untuk melihat perubahan: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview' => "<strong>Tips:</strong> Gunakan tombol 'Tampilkan pratilik' untuk menguji css/js baru Anda sebelum menyimpannya.", #<strong>Tip:</strong> Use the 'Show preview' button to test your new css/js before saving.
 'usercsspreview' => "'''Ingatlah bahwa yang Anda lihat hanyalah pratilik CSS Anda, dan bahwa pratilik tersebut belum disimpan!'''", #'''Remember that you are only previewing your user css, it has not yet been saved!'''
 'userjspreview' => "'''Ingatlah bahwa yang Anda lihat hanyalah pratilik JavaScript Anda, dan bahwa pratilik tersebut belum disimpan!'''", #'''Remember that you are only testing/previewing your user javascript, it has not yet been saved!'''
 "updated" => "(Diperbarui)",
-"note" => "<strong>Catatan:</strong> ",
+"note" => "<strong>Catatan:</strong>",
 "previewnote" => "Ingatlah bahwa ini hanyalah pratilik yang belum disimpan!",
 "previewconflict" => "Pratilik ini mencerminkan teks pada bagian atas sebagaimana Ia akan terlihat bila Anda menyimpannya.",
 "editing" => "Menyunting $1",
@@ -334,7 +334,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'nonunicodebrowser' => "<strong>PERINGATAN: Browser Anda tidak mendukung Unicode, silakan ganti browser Anda sebelum menyunting artikel.</strong>",
 "editingold" => "<strong>PERINGATAN: Anda menyunting revisi lama suatu halaman. Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hilang.</strong>",
 "yourdiff" => "Perbedaan",
-"copyrightwarning" => "Perhatikan bahwa semua sumbangan terhadap {{SITENAME}} dianggap dilisensikan di bawah lisensi $2 (lihat $1 untuk informasi lebih lanjut). Jika Anda tidak menginginkan tulisan Anda disunting dan disebarkan ke halaman web yang lain, jangan kirimkan artikel Anda ke sini.<br /> Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau Anda menyalinnya dari sumber milik umum atau sumber bebas yang lain. <p><strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong></p> <p><strong>JANGAN SALIN ARTIKEL DARI HALAMAN WEB LAIN.</strong></p> ",
+"copyrightwarning" => "Perhatikan bahwa semua sumbangan terhadap {{SITENAME}} dianggap dilisensikan di bawah lisensi $2 (lihat $1 untuk informasi lebih lanjut). Jika Anda tidak menginginkan tulisan Anda disunting dan disebarkan ke halaman web yang lain, jangan kirimkan artikel Anda ke sini.<br /> Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau Anda menyalinnya dari sumber milik umum atau sumber bebas yang lain. <p><strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong></p> <p><strong>JANGAN SALIN ARTIKEL DARI HALAMAN WEB LAIN.</strong></p>",
 'copyrightwarning2' => "Perhatikan bahwa semua sumbangan terhadap {{SITENAME}} dapat disunting, diubah, atau dihapus oleh penyumbang lainnya. Jika Anda tidak ingin artikel anda disunting, jangan kirimkan artikel Anda ke sini.<br /> Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain (lihat $1 untuk informasi lebih lanjut).<strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>",
 "longpagewarning" => "<strong>PERINGATAN: Halaman ini panjangnya adalah $1 kilobyte; beberapa browser mungkin mengalami masalah dalam menyunting halaman yang panjangnya 32 kB atau lebih. Pertimbangkan memecah halaman menjadi beberapa halaman kecil.</strong>",
 "readonlywarning" => "<strong>PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak akan dapat menyimpan hasil penyuntingan Anda. Anda mungkin perlu memindahkan hasil penyuntingan Anda ini ke tempat lain untuk disimpan belakangan.</strong>",
@@ -434,7 +434,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "dateformat" => "Format tanggal",
 "math_failure" => "Gagal memparse",
 "math_unknown_error" => "Kesalahan yang tidak diketahui",
-"math_unknown_function" => "fungsi yang tidak diketahui ",
+"math_unknown_function" => "fungsi yang tidak diketahui",
 "math_lexing_error" => "kesalahan lexing",
 "math_syntax_error" => "kesalahan sintaks",
 "math_image_error" => "Konversi PNG gagal; periksa apakah latex, dvips, gs, dan convert terinstal dengan benar",
@@ -659,7 +659,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "emailpage" => "e-mail pengguna",
 "emailpagetext" => "Jika pengguna ini memasukkan alamat e-mail yang sah dalam konfigurasinya, formulir dibawah ini akan mengirimkan sebuah e-mail. Alamat e-mail yg terdapat pada konfigurasi Anda akan muncul sebagai alamat \"From\" dalam e-mail tersebut, sehingga penerima dapat membalas e-mail tersebut.",
 
-"usermailererror" => "Kesalahan objek mail: ",
+"usermailererror" => "Kesalahan objek mail:",
 "defemailsubject" => "e-mail {{SITENAME}}",
 "noemailtitle" => "Tidak Ada Alamat e-mail",
 
@@ -1032,15 +1032,15 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'previousdiff' => '← Ke diff sebelumnya',
 'nextdiff' => 'Ke diff selanjutnya →',
 
-'imagemaxsize' => 'Batasi gambar dalam halaman deskripsi gambar sampai: ',
+'imagemaxsize' => 'Batasi gambar dalam halaman deskripsi gambar sampai:',
 'showbigimage' => 'Download versi resolusi tinggi ($1x$2, $3 KB)',
 
 'newimages' => 'Galeri-Gambar Baru',
 'noimages'  => 'Tidak ada yang dilihat.',
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Pengguna: ',
-'speciallogtitlelabel' => 'Judul: ',
+'specialloguserlabel' => 'Pengguna:',
+'speciallogtitlelabel' => 'Judul:',
 
 );
 

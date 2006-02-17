@@ -367,8 +367,8 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'badretype'		=> 'The passwords you entered do not match.',
 'userexists'	=> 'Username entered already in use. Please choose a different name.',
 'youremail'		=> 'E-mail *',
-'username'		=> 'Username: ',
-'uid'			=> 'User ID: ',
+'username'		=> 'Username:',
+'uid'			=> 'User ID:',
 'yourrealname'		=> 'Real name *',
 'yourlanguage'	=> 'Language:',
 'yourvariant'  => 'Variant',
@@ -480,7 +480,7 @@ To create the page, start typing in the box below
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon' => '{{int:newarticletext}}',
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
-'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
+'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
 'noarticletext' => 'There is currently no text in this page, you can [[{{ns:special}}:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon' => '{{int:noarticletext}}',
 'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools&rarr;Preferences''.",
@@ -488,7 +488,7 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'usercsspreview' => '\'\'\'Remember that you are only previewing your user CSS, it has not yet been saved!\'\'\'',
 'userjspreview' => '\'\'\'Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!\'\'\'',
 'updated' => '(Updated)',
-'note' => '<strong>Note:</strong> ',
+'note' => '<strong>Note:</strong>',
 'previewnote' => '<strong>This is only a preview; changes have not yet been saved!</strong>',
 'session_fail_preview' => '<strong>Sorry! We could not process your edit due to a loss of session data.
 Please try again. If it still doesn\'t work, try logging out and logging back in.</strong>',
@@ -635,7 +635,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 'datetime'		=> 'Date and time',
 'math_failure'		=> 'Failed to parse',
 'math_unknown_error'	=> 'unknown error',
-'math_unknown_function'	=> 'unknown function ',
+'math_unknown_function'	=> 'unknown function',
 'math_lexing_error'	=> 'lexing error',
 'math_syntax_error'	=> 'syntax error',
 'math_image_error'	=> 'PNG conversion failed; check for correct installation of latex, dvips, gs, and convert',
@@ -681,7 +681,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 'addgroup' => 'Add Group',
 
 'userrights-lookup-user' => 'Manage user groups',
-'userrights-user-editname' => 'Enter a username: ',
+'userrights-user-editname' => 'Enter a username:',
 'editusergroup' => 'Edit User Groups',
 
 # group editing
@@ -735,7 +735,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'rcnote'		=> "Below are the last <strong>$1</strong> changes in last <strong>$2</strong> days.",
 'rcnotefrom'	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
 'rclistfrom'	=> "Show new changes starting from $1",
-'showhideminor' => "$1 minor edits | $2 bots | $3 logged in users | $4 patrolled edits ",
+'showhideminor' => "$1 minor edits | $2 bots | $3 logged in users | $4 patrolled edits",
 'rclinks'		=> "Show last $1 changes in last $2 days<br />$3",
 'rchide'		=> "in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
 'rcliu'			=> "; $1 edits from logged in users",
@@ -849,7 +849,7 @@ this old version, (rev) = revert to this old version.
 # Mime search
 #
 'mimesearch' => 'MIME search',
-'mimetype' => 'MIME type: ',
+'mimetype' => 'MIME type:',
 'download' => 'download',
 
 # Unwatchedpages
@@ -987,7 +987,7 @@ his or her user preferences, the form below will send a single message.
 The e-mail address you entered in your user preferences will appear
 as the "From" address of the mail, so the recipient will be able
 to reply.',
-'usermailererror' => 'Mail object returned error: ',
+'usermailererror' => 'Mail object returned error:',
 'defemailsubject'  => "{{SITENAME}} e-mail",
 'noemailtitle'	=> 'No e-mail address',
 'noemailtext'	=> 'This user has not specified a valid e-mail address,
@@ -1084,7 +1084,7 @@ Feedback and further assistance:
 'exblank' => 'page was empty',
 'confirmdelete' => 'Confirm delete',
 'deletesub'		=> "(Deleting \"$1\")",
-'historywarning' => 'Warning: The page you are about to delete has a history: ',
+'historywarning' => 'Warning: The page you are about to delete has a history:',
 'confirmdeletetext' => "You are about to permanently delete a page
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
@@ -1108,7 +1108,7 @@ See $2 for a record of recent deletions.",
 'alreadyrolled'	=> "Cannot rollback last edit of [[$1]]
 by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
 
-Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
+Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 #   only shown if there is an edit comment
 'editcomment' => "The edit comment was: \"<i>$1</i>\".",
 'revertpage'	=> "Reverted edit of $2, changed back to last version by $1",
@@ -1372,7 +1372,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'allmessagesdefault' => 'Default text',
 'allmessagescurrent' => 'Current text',
 'allmessagestext'	=> 'This is a list of system messages available in the MediaWiki: namespace.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site. ',
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails
@@ -1531,8 +1531,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 'previousdiff' => '← Previous diff',
 'nextdiff' => 'Next diff →',
 
-'imagemaxsize' => 'Limit images on image description pages to: ',
-'thumbsize'	=> 'Thumbnail size: ',
+'imagemaxsize' => 'Limit images on image description pages to:',
+'thumbsize'	=> 'Thumbnail size:',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'Gallery of new files',
@@ -1549,8 +1549,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 'variantname-zh' => 'zh',
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'User: ',
-'speciallogtitlelabel' => 'Title: ',
+'specialloguserlabel' => 'User:',
+'speciallogtitlelabel' => 'Title:',
 
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 

@@ -4,7 +4,7 @@
 /* private */ $wgAllMessagesHr = array(
 
 'Monobook.css' =>
-'/** Ovdje idu izmjene monobook stylesheeta */ ',
+'/** Ovdje idu izmjene monobook stylesheeta */',
 
 # User preference toggles
 "tog-underline"            => "Podcrtane poveznice",
@@ -16,7 +16,7 @@
 "tog-showtoolbar"          => "Prikaži traku s alatima za uređivanje",
 "tog-editondblclick"       => "Dvoklik otvara uređivanje stranice (JavaScript)",
 "tog-editsection"             => "Prikaži poveznice za uređivanje pojedinih odlomaka",
-"tog-editsectiononrightclick" => "Pritiskom na desnu tipku miša otvori uređivanje pojedinih odlomaka (JavaScript) ",
+"tog-editsectiononrightclick" => "Pritiskom na desnu tipku miša otvori uređivanje pojedinih odlomaka (JavaScript)",
 "tog-showtoc"                 => "U člancima s više od tri odlomka prikaži tablicu sadržaja.",
 "tog-rememberpassword"     => "Zapamti lozinku između prijava",
 "tog-editwidth"            => "Okvir za uređivanje zauzima cijelu širinu",
@@ -422,7 +422,7 @@ Vaša IP adresa je $3. Molimo vas da je spomenete u porukama o ovom predmetu.",
 'usercsspreview' => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS, i da još nije snimljen!'''",
 'userjspreview' => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički JavaScript, i da još nije snimljen!'''",
 "updated"		=> "(Ažurirano)",
-"note"			=> "<strong>Napomena:</strong> ",
+"note"			=> "<strong>Napomena:</strong>",
 "previewnote"	        => "Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da
 stranica još nije snimljena!",
 "previewconflict"       => "Ovaj pregled odražava stanje u gornjem polju za unos koje će biti sačuvano
@@ -533,7 +533,7 @@ za podešavanje korisničkih postavki.",
 'dateformat'		=> 'Format datuma',
 "math_failure"		=> "Obrada nije uspjela.",
 "math_unknown_error"	=> "nepoznata greška",
-"math_unknown_function"	=> "nepoznata funkcija ",
+"math_unknown_function"	=> "nepoznata funkcija",
 "math_lexing_error"	=> "rječnička greška (lexing error)",
 "math_syntax_error"	=> "sintaksna greška",
 'math_image_error' => 'Konverzija u PNG nije uspjela; provjerite jesu li dobro instalirani latex, dvips, gs, i convert',
@@ -630,7 +630,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 "rcnote"		=> "Slijedi zadnjih <strong>$1</strong> promjena u zadnjih <strong>$2</strong> dana.",
 "rcnotefrom"		=> "Slijede promjene od <b>$2</b> (prikazano ih je do <b>$1</b>).",
 "rclistfrom"		=> "Prikaži nove promjene počevši od $1",
-'showhideminor' => "<br />$1 manje promjene | $2 botove | $3 prijavljene suradnike | $4 nadzirana uređivanja ",
+'showhideminor' => "<br />$1 manje promjene | $2 botove | $3 prijavljene suradnike | $4 nadzirana uređivanja",
 "rclinks"		=> "Prikaži zadnjih $1 promjena u zadnjih $2 dana; $3",
 "rchide"		=> "u $4 obliku; $1 manjih promjena; $2 promjena u sekundarnim prostorima; $3 višekratnih uređivanja.",
 'rcliu'			=> "; $1 uređivanja prijavljenih suradnika",
@@ -839,7 +839,7 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'allarticles' => 'Svi članci',
 'allnonarticles' => 'Svi ne-članci',
 'allinnamespace' => 'Svi članci (prostor $1)',
-'allnotinnamespace' => 'Sve stranice koje nisu u prostoru $1 ',
+'allnotinnamespace' => 'Sve stranice koje nisu u prostoru $1',
 'allpagesprev' => 'Prijašnje',
 'allpagesnext' => 'Sljedeće',
 'allpagessubmit' => 'Kreni',
@@ -855,7 +855,7 @@ da bi mogli slati poštu drugim suradnicima.",
 "emailpagetext"	=> "Ako je suradnik unio valjanu e-mail adresu u svojim postavkama,
 bit će mu poslana poruka s tekstom iz donjeg obrasca.
 E-mail adresa iz vaših postavki nalazit će se u \"From\" polju poruke i primatelj će vam moći odgovoriti.",
-'usermailererror' => 'Sustav pošte se vratio s greškom: ',
+'usermailererror' => 'Sustav pošte se vratio s greškom:',
 'defemailsubject'  => "{{SITENAME}} e-mail",
 "noemailtitle"	=> "Nema adrese primaoca",
 "noemailtext"	=> "Ovaj suradnik nije unio valjanu e-mail adresu ili se odlučio na neće primati poštu od drugih suradnika.",
@@ -954,7 +954,7 @@ Za pomoć posjetite:
 "exblank"       => "stranica je bila prazna",
 "confirmdelete" => "Potvrdi brisanje",
 "deletesub"	=> "(Brišem \"$1\")",
-"historywarning" => "UPOZORENJE: Stranica koju želite obrisati ima prijašnje inačice: ",
+"historywarning" => "UPOZORENJE: Stranica koju želite obrisati ima prijašnje inačice:",
 "confirmdeletetext" => "Zauvijek ćete izbrisati stranicu ili sliku zajedno s prijašnjim inačicama.
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu s [[Project:Pravila|pravilima]].",
 "actioncomplete" => "Zahvat završen",
@@ -978,7 +978,7 @@ Sva vremena su prema poslužiteljevom vremenu (UTC).
 "alreadyrolled" => "Ne mogu ukloniti posljednju promjenu članka [[$1]] koju je napravio suradnik [[User:$2|$2]]
 ([[User talk:$2|Talk]]); netko je već promijenio stranicu ili uklonio promjenu.
 
-Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
+Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 #   only shown if there is an edit comment
 "editcomment"  => "Komentar promjene je: \"<i>$1</i>\".",
 "revertpage"   => "Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1",
@@ -1203,7 +1203,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'allmessagesdefault' => 'Prvotni tekst',
 'allmessagescurrent' => 'Trenutni tekst',
 'allmessagestext' => 'Ovo je popis svih sistemskih poruka u prostoru MediaWiki: .',
-'allmessagesnotsupportedUI' => 'Trenutno odabrani jezik, <b>$1</b>, nije podržan u popisu Special:AllMessages na ovom mjestu. ',
+'allmessagesnotsupportedUI' => 'Trenutno odabrani jezik, <b>$1</b>, nije podržan u popisu Special:AllMessages na ovom mjestu.',
 'allmessagesnotsupportedDB' => 'Uređivanje Special:AllMessages trenutno nije podržano jer je isključen parametar wgUseDatabaseMessages.',
 
 # Thumbnails
@@ -1352,8 +1352,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledaj stranicu kategorije\');',
 'previousdiff' => '← Usporedba s prethodnom',
 'nextdiff' => 'Usporedba sa sljedećom →',
 
-'imagemaxsize' => 'Ograniči veličinu slike na stranici s opisom: ',
-'thumbsize'	=> 'Veličina sličice (umanjene inačice slike): ',
+'imagemaxsize' => 'Ograniči veličinu slike na stranici s opisom:',
+'thumbsize'	=> 'Veličina sličice (umanjene inačice slike):',
 'showbigimage' => 'Učitaj u punoj veličini ($1x$2, $3 KB)',
 
 'newimages' => 'Galerija novih datoteka',
@@ -1361,8 +1361,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledaj stranicu kategorije\');',
 'noimages'  => 'Nema slika.',
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Suradnik: ',
-'speciallogtitlelabel' => 'Naslov: ',
+'specialloguserlabel' => 'Suradnik:',
+'speciallogtitlelabel' => 'Naslov:',
 
 'passwordtooshort' => 'Vaša je lozinka prekratka. Lozinke moraju sadržavati najmanje $1 znakova.',
 

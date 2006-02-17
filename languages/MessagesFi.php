@@ -299,8 +299,8 @@ Sivun lähdekoodi:',
 'badretype'           => 'Syöttämäsi salasanat ovat erilaiset.',
 'userexists'          => 'Pyytämäsi käyttäjänimi on jo käytössä. Ole hyvä ja valitse toinen käyttäjänimi.',
 'youremail'           => 'Sähköpostiosoite:',
-'username'            => 'Tunnus: ',
-'uid'                 => 'Numero: ',
+'username'            => 'Tunnus:',
+'uid'                 => 'Numero:',
 'yourrealname'        => 'Nimi:',
 'yourlanguage'        => 'Käyttöliittymän kieli:',
 'yourvariant'         => 'Kielivariantti',
@@ -407,7 +407,7 @@ Sivun lähdekoodi:',
 'usercsspreview'      => '\'\'\'Tämä on vasta CSS:n testaus ja esikatselu.\'\'\'',
 'userjspreview'       => '\'\'\'Tämä on vasta JavaScriptin testaus ja esikatselu.\'\'\'',
 'updated'             => '(Päivitetty)',
-'note'                => 'Huomautus: ', // TODO: NO WIKI MARKUP
+'note'                => 'Huomautus:', // TODO: NO WIKI MARKUP
 'previewnote'         => '<strong>Tämä on vasta sivun esikatselu. Sivua ei ole vielä tallennettu!</strong>',
 'session_fail_preview'=> '<strong>Muokkaustasi ei voitu tallentaa, koska sessiosi tiedot ovat kadonneet. Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisään.</strong>',
 'previewconflict'     => 'Tämä esikatselu näyttää miltä muokkausalueella oleva teksti näyttää tallennettuna.',
@@ -548,12 +548,12 @@ Sivun lähdekoodi:',
 
 # switching pan
 /*'groups-lookup-group' => 'Manage group rights',
-'groups-group-edit' => 'Existing groups: ',
+'groups-group-edit' => 'Existing groups:',
 'editgroup' => 'Edit Group',
 'addgroup' => 'Add Group',*/
 
 'userrights-lookup-user'   => 'Käyttöoikeuksien hallinta',
-'userrights-user-editname' => 'Käyttäjätunnus: ',
+'userrights-user-editname' => 'Käyttäjätunnus:',
 'editusergroup'            => 'Muokkaa käyttäjän ryhmiä',
 
 # user groups editing
@@ -586,7 +586,7 @@ Sivun lähdekoodi:',
 'showhideminor'       => '$1 pienet muutokset | $2 botit | $3 kirjautuneet | $4 tarkastetut',
 'rclinks'             => 'Näytä $1 tuoretta muutosta viimeisten $2 päivän ajalta.<br />$3',
 'rchide'              => 'muodossa $4 ; $1 pientä muutosta; $2 toissijaista nimiavaruutta; $3 moninkertaista muutosta.',
-'rcliu'               => ' ; $1 muokkausta sisäänkirjautuneilta ',
+'rcliu'               => ' ; $1 muokkausta sisäänkirjautuneilta',
 'diff'                => 'ero',
 'hist'                => 'historia',
 'hide'                => 'piilota',
@@ -690,7 +690,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 # Mime search
 #
 'mimesearch'          => 'MIME-haku',
-'mimetype'            => 'MIME-tyyppi: ',
+'mimetype'            => 'MIME-tyyppi:',
 'download'            => 'lataa',
 
 # Unwatchedpages
@@ -794,7 +794,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'allpagesprev'        => 'Edellinen',
 'allpagesnext'        => 'Seuraava',
 'allpagessubmit'      => 'Vaihda',
-'allpagesprefix'      => 'Näytä sivut, jotka alkavat merkkijonolla ',
+'allpagesprefix'      => 'Näytä sivut, jotka alkavat merkkijonolla',
 
 # Email this user
 #
@@ -803,7 +803,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'emailuser'           => 'Lähetä sähköpostia tälle käyttäjälle',
 'emailpage'           => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext'       => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakeella voi lähettää yhden viestin hänelle. Omissa asetuksissasi annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi vastata viestiin.',
-'usermailererror'     => 'Postitus palautti virheen: ',
+'usermailererror'     => 'Postitus palautti virheen:',
 'defemailsubject'     => '{{SITENAME}}-sähköposti',
 'noemailtitle'        => 'Ei sähköpostiosoitetta',
 'noemailtext'         => 'Tämä käyttäjä ei ole määritellyt kelpoa sähköpostiosoitetta tai ei halua postia muilta käyttäjiltä.',
@@ -892,7 +892,7 @@ Palaute ja lisäapu osoitteessa:
 'exblank'             => 'oli tyhjä',
 'confirmdelete'       => 'Vahvista poisto',
 'deletesub'           => 'Sivun $1 poisto',
-'historywarning'      => 'Varoitus: Sivulla, jonka aiot poistaa on muokkaushistoria: ',
+'historywarning'      => 'Varoitus: Sivulla, jonka aiot poistaa on muokkaushistoria:',
 'confirmdeletetext'   => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} käytäntöjen mukaisesti.',
 'actioncomplete'      => 'Toiminto suoritettu',
 'deletedtext'         => '\'\'\'[[{{ns:special}}:Undelete/$1|$1]]\'\'\' on poistettu. Katso $2 nähdäksesi listan viimeaikaisista poistoista.',
@@ -1273,8 +1273,8 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'previousdiff'        => '← Edellinen muutos',
 'nextdiff'            => 'Seuraava muutos →',
 
-'imagemaxsize'        => 'Rajoita kuvien koko kuvien kuvaussivuilla arvoon ',
-'thumbsize'           => 'Pikkukuvien koko: ',
+'imagemaxsize'        => 'Rajoita kuvien koko kuvien kuvaussivuilla arvoon',
+'thumbsize'           => 'Pikkukuvien koko:',
 'showbigimage'        => 'Lataa korkeatarkkuuksinen versio ($1×$2, $3 KiB)',
 
 'newimages'           => 'Uudet kuvat',
@@ -1282,8 +1282,8 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'noimages'            => 'Ei uusia kuvia.',
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Käyttäjä: ',
-'speciallogtitlelabel'=> 'Kohde: ',
+'specialloguserlabel' => 'Käyttäjä:',
+'speciallogtitlelabel'=> 'Kohde:',
 
 'passwordtooshort'    => 'Salasanasi on liian lyhyt. Salasanan pitää olla vähintään $1 merkkiä pitkä.',
 

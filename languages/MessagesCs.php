@@ -298,8 +298,8 @@ Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|n
 'badretype'             => 'Vámi napsaná hesla nesouhlasí.',
 'userexists'    => 'Uživatel se stejným jménem je už registrován. Zvolte jiné jméno.',
 'youremail'             => 'Vaše e-mailová adresa *)',
-'username'		=> 'Uživatelské jméno: ',
-'uid'			=> 'Uživatelské ID: ',
+'username'		=> 'Uživatelské jméno:',
+'uid'			=> 'Uživatelské ID:',
 'yourrealname'          => 'Vaše skutečné jméno **)',
 'yourlanguage'	=> 'Jazyk rozhraní',
 'yourvariant'  => 'Jazyková varianta',
@@ -565,7 +565,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'datetime'		=> 'Datum a čas',
 'math_failure'          => 'Nelze pochopit',
 'math_unknown_error'    => 'neznámá chyba',
-'math_unknown_function' => 'neznámá funkce ',
+'math_unknown_function' => 'neznámá funkce',
 'math_lexing_error'     => 'chyba při lexingu',   #FIXME
 'math_syntax_error'     => 'syntaktická chyba',
 'math_image_error'      => 'Selhala konverze do PNG; zkontrolujte správnou instalaci latexu, dvips, gs a convertu',
@@ -606,12 +606,12 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 
 # switching pan
 'groups-lookup-group' => 'Spravovat práva skupin',
-'groups-group-edit' => 'Existující skupiny: ',
+'groups-group-edit' => 'Existující skupiny:',
 'editgroup' => 'Upravit skupinu',
 'addgroup' => 'Přidat skupinu',
 
 'userrights-lookup-user' => 'Spravovat uživatelské skupiny',
-'userrights-user-editname' => 'Zadejte uživatelské jméno: ',
+'userrights-user-editname' => 'Zadejte uživatelské jméno:',
 'editusergroup' => 'Upravit uživatelskou skupinu',
 
 # group editing
@@ -620,7 +620,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'groups-editgroup-preamble' => 'Pokud název či popis začínají dvojtečkou, bude
 zbytek chápán jako označení zprávy, takže bude text lokalizován pomocí
 jmenného prostoru MediaWiki.',
-'groups-editgroup-name' => 'Název skupiny: ',
+'groups-editgroup-name' => 'Název skupiny:',
 'groups-editgroup-description' => 'Popis skupiny (max. 255 znaků):<br />',
 'savegroup' => 'Uložit skupinu',
 'groups-tableheader'        => 'ID || Název || Popis || Práva',
@@ -795,7 +795,7 @@ váš uživatelský účet zablokován.",
 # Mime search
 #
 'mimesearch' => 'Hledání podle MIME typu',
-'mimetype' => 'MIME typ: ',
+'mimetype' => 'MIME typ:',
 'download' => 'download',
 
 # Unwatchedpages
@@ -892,8 +892,8 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'logempty' => 'Protokol neobsahuje žádný odpovídající záznam.',
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Uživatel: ',
-'speciallogtitlelabel' => 'Název: ',
+'specialloguserlabel' => 'Uživatel:',
+'speciallogtitlelabel' => 'Název:',
 
 # Special:Allpages
 'nextpage'          => 'Další stránka ($1)',
@@ -914,7 +914,7 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'emailuser'             => 'Poslat e-mail',
 'emailpage'             => 'Poslat e-mail',
 'emailpagetext' => 'Pokud tento uživatel uvedl platnou e-mailovou adresu ve svém nastavení, tímto formulářem mu lze poslat zprávu. E-mailová adresa, kterou máte uvedenu v nastavení, se objeví jako adresa odesílatele pošty, aby adresát mohl odpovědět.',
-'usermailererror' => 'Chyba poštovního programu: ',
+'usermailererror' => 'Chyba poštovního programu:',
 'defemailsubject'  => 'E-mail z {{grammar:2sg|{{SITENAME}}}}',
 'noemailtitle'  => 'Bez e-mailové adresy',
 'noemailtext'   => 'Tento uživatel buď nezadal platnou adresu nebo zakázal přijímat zprávy od jiných uživatelů.',
@@ -1300,11 +1300,11 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 
 # Info page
 'infosubtitle' => 'Informace o stránce',
-'numedits' => 'Počet editací (článek): ',
-'numtalkedits' => 'Počet editací (diskusní stránka): ',
-'numwatchers' => 'Počet sledujících uživatelů: ',
-'numauthors' => 'Počet různých autorů (článek): ',
-'numtalkauthors' => 'Počet rozdílných autorů (diskusní stránka): ',
+'numedits' => 'Počet editací (článek):',
+'numtalkedits' => 'Počet editací (diskusní stránka):',
+'numwatchers' => 'Počet sledujících uživatelů:',
+'numauthors' => 'Počet různých autorů (článek):',
+'numtalkauthors' => 'Počet rozdílných autorů (diskusní stránka):',
 
 # Math options
 'mw_math_png' => 'Vždy jako PNG',
@@ -1417,8 +1417,8 @@ ta['ca-nstab-category'] = new Array('c','Zobrazit kategorii.');",
 'previousdiff' => '← Předchozí porovnání',
 'nextdiff' => 'Následující porovnání →',
 
-'imagemaxsize' => 'Omezit obrázky na stránkách s popiskem na: ',
-'thumbsize'	=> 'Velikost náhledu: ',
+'imagemaxsize' => 'Omezit obrázky na stránkách s popiskem na:',
+'thumbsize'	=> 'Velikost náhledu:',
 'showbigimage' => 'Stáhnout verzi s vysokým rozlišením ($1&times;$2, $3 KB)',
 
 'newimages' => 'Galerie nových obrázků',
