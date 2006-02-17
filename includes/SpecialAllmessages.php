@@ -149,13 +149,16 @@ function makeHTMLText( $messages ) {
 		} else {
 			$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		}
+		
+		$anchor = strtolower( $title );
+		$anchor = "<a id=\"$anchor\" name=\"$anchor\"></a>";
 
 		if($changed) {
 
 			$txt .=
 	"<tr class='orig'>
 		<td rowspan='2'>
-			$pageLink<br />$talkLink
+			$anchor$pageLink<br />$talkLink
 		</td><td>
 $message
 		</td>
@@ -169,7 +172,7 @@ $mw
 			$txt .=
 	"<tr class='def'>
 		<td>
-			$pageLink<br />$talkLink
+			$anchor$pageLink<br />$talkLink
 		</td><td>
 $mw
 		</td>
