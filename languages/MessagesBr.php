@@ -205,7 +205,7 @@ adkaset eo bet ar fazi "$3 : $4" gant MySQL.',
 'nodb'		=> 'Dibosupl dibab ar bank roadennoù $1',
 'cachederror'	=> 'Un eilenn eus ar bajenn goulennet eo homañ; marteze n\'eo ket bet hizivaet',
 'readonly'	=> 'Hizivadurioù stanket war ar bank roadennoù',
-'enterlockreason' => 'Merkit perak eo stanket hag istimit pegeit e chomo evel-henn ',
+'enterlockreason' => 'Merkit perak eo stanket hag istimit pegeit e chomo evel-henn',
 'readonlytext'	=> "Stanket eo an ouzhpennadennoù hag an hizivadurioù war bank roadennoù {{SITENAME}}; moarvat peogwir emeur oc'\h ober war-dro ar bank. Goude-se e vo plaen pep tra en-dro. Setu perak eo bet stanket ar bank gant ar merour :
 <p>$1",
 'missingarticle' => 'N\'eo ket bet ar bank roadennoù evit kavout testenn ur bajenn zo anezhi c\'hoazh gant an titl "$1".
@@ -343,7 +343,7 @@ Trugarez deoc\'h evit en em zisklêriañ kerkent ha ma vo bet resevet ganeoc\'h.
 'noarticletext' => "(N\'eus evit poent tamm skrid ebet war ar bajenn-mañ)",
 'clearyourcache'    => "'''Notenn:''' Goude bezañ enrollet ho pajenn e rankit adkargañ anezhi a-ratozh evit gwelet ar c\'hemmoù : '''Internet Explorer''' : ''ctrl-f5'', '''Mozilla / Firefox''' : ''ctrl-shift-r'', '''Safari''' : ''cmd-shift-r'', '''Konqueror''' : ''f5''.",
 'updated'      => '(Hizivaet)',
-'note'         => '<strong>Notenn :</strong> ',
+'note'         => '<strong>Notenn :</strong>',
 'previewnote'  => "Diwallit mat, n\'eus eus an destenn-mañ nemet ur rakweladenn ha n\'eo ket bet enrollet c\'hoazh!",
 'previewconflict' => "Gant ar rakweladenn e teu testenn ar bajenn war wel evel ma vo pa vo bet enrollet.",
 'editing'         => 'oc\'h aozañ $1',
@@ -495,7 +495,7 @@ Taolit ur sell war ar pajennoù-mañ&nbsp;: [[{{ns:4}}:FAG|foar ar goulennoù]],
 [[{{ns:4}}:Ur savboent neptu|ur savboent neptu]]),
 hag [[{{ns:4}}:Ar fazioù stankañ|ar fazioù stankañ]].
 
-Mar fell deoc\'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ dafar gwarezet gant [[{{ns:4}}:Copyright|gwirioù aozer (copyrights)]]. An atebegezh wiraouel a c\'hallfe ober gaou d\'ar raktres. ",
+Mar fell deoc\'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ dafar gwarezet gant [[{{ns:4}}:Copyright|gwirioù aozer (copyrights)]]. An atebegezh wiraouel a c\'hallfe ober gaou d\'ar raktres.",
 'rcloaderr'  => "O kargañ ar c\'hemmoù diwezhañ",
 'rcnote'  => "Setu aze an/ar <strong>$1</strong> (g/c\'h)kemm diwezhañ bet c\'hoarvezet e-pad an/ar <strong>$2</strong> deiz diwezhañ.",
 'rcnotefrom'	=> "Setu aze roll ar c\'hemmoù c\'hoarvezet abaoe an/ar <strong>$2</strong> (<b>$1</b> d\'ar muiañ).",
@@ -748,7 +748,7 @@ Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet ama
 'exblank'	=> 'pajenn c\'houllo',
 'confirmdelete' => 'Kadarnaat an diverkañ',
 'deletesub'	=> '(O tiverkañ "$1")',
-'historywarning' => 'Diwallit: War-nes diverkañ ur bajenn ganti un istor emaoc\'h : ',
+'historywarning' => 'Diwallit: War-nes diverkañ ur bajenn ganti un istor emaoc\'h :',
 'confirmdeletetext' => "War-nes diverkañ da vat ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc\'h. Diverket e vo ivez an holl stummoù kozh stag outi.
 Kadarnait, mar plij, eo mat an dra-se hoc\'h eus c\'hoant, e komprenit mat an heuliadoù, hag e rit se diouzh an [[{{ns:4}}:Erbedadennoù ha reolennoù da heuliañ|erbedadennoù ha reolennoù da heuliañ]].",
 'actioncomplete' => 'Diverkadenn kaset da benn',
@@ -1010,7 +1010,7 @@ Dibabit unan all mar plij.",
 'creditspage' => 'Pajennoù kredoù',
 
 # confirmemail
-'confirmemail' => 'Kadarnaat ar postel ',
+'confirmemail' => 'Kadarnaat ar postel',
 'confirmemail_text' => 'Rankout a ra ar wiki-mañ bezañ gwiriet ho chomlec\'h postel a-raok gallout implijout nep arc\'hwel postel. Implijit ar bouton a-is evit kas ur postel kadarnaat d\'ho chomlec\'h. Ul liamm ennañ ur c\'hod a vo er postel. Kargit al liamm-se en o merdeer evit kadarnaat ho chomlec\'h.',
 'confirmemail_send' => 'Kas ur c\'hod kadarnaat',
 'confirmemail_sent' => 'Postel kadarnaat kaset',

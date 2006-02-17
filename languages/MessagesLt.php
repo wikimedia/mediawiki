@@ -82,7 +82,7 @@ Galima sumažinti rezultatų patikslinant veiksmo rūšį, vartotoją ar susijus
 'allmessagesdefault' => 'Reikšmė pagal nutylėjimą',
 'allmessagesname' => 'Pavadinimas',
 'allmessagesnotsupportedDB' => 'Specialus:AllMessages nepalaikoma, nes nustatymas wgUseDatabaseMessages yra išjungtas.',
-'allmessagesnotsupportedUI' => 'Jūsų pasirinkta kalba (<b>$1</b>) nėra palaikoma šiame projekte. ',
+'allmessagesnotsupportedUI' => 'Jūsų pasirinkta kalba (<b>$1</b>) nėra palaikoma šiame projekte.',
 'allmessagestext' => 'Čia pateikiami visi sisteminiai tekstai bei pranešimai, esantys MediaWiki: vardų ervėje.',
 'allnonarticles' => 'Visi ne straipsniai',
 'allnotinnamespace' => 'Visi puslapiai (nesantys šioje srityje - $1)',

@@ -228,7 +228,7 @@ Päring: $2",
 'protectedtext' => "See lehekülg on lukustatud, et muudatusi vältida. Selleks võib olla
 mitmesuguseid põhjusi, vaata palun artiklit
 [[{{ns:4}}:Lukustatud lehekülg]].
-Sa saad aga vaadata ja kopeerida selle lehekülje lähteteksti -- ",
+Sa saad aga vaadata ja kopeerida selle lehekülje lähteteksti --",
 
 
 
@@ -285,7 +285,7 @@ Sinu {{SITENAME}}.",
 "noemail"		=> "Kasutaja \"$1\" meiliaadressi meil kahjuks pole.",
 "passwordsent"	=> "Uus parool on saadetud kasutaja \"$1\" registreeritud meiliaadressil.
 Pärast parooli saamist logige palun sisse.",
-'loginend'              => ' ',
+'loginend'              => '',
 'mailerror' => "Viga kirja saatmisel: $1",
 'acct_creation_throttle_hit' => 'Vabandame, aga te olete loonud juba $1 kontot. Rohkem te ei saa.',
 
@@ -349,7 +349,7 @@ Teie IP on $3. Lisage see aadress kõigile järelpärimistele, mida kavatsete te
 Lehekülje loomiseks hakake kirjutama all olevasse boksi
 (lisainfo saamiseks vaadake [[{{ns:4}}:Juhend|juhendit]]).
 Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule.",
-"anontalkpagetext" => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema [[IP-aadress]]i. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[{{ns:4}}:Kasutaja sisselogimine|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.'' ",
+"anontalkpagetext" => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema [[IP-aadress]]i. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[{{ns:4}}:Kasutaja sisselogimine|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.''",
 "noarticletext" => "(See lehekülg on praegu tühi)",
 'clearyourcache' => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'usercssjsyoucanpreview' => "<strong>Vihje:</strong> Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
@@ -357,7 +357,7 @@ Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule.",
 'userjspreview' => "'''Ärge unustage, et see versioon teie isiklikust javascriptist on alles salvestamata!'''",
 
 "updated"		=> "(Värskendatud)",
-"note"			=> "<strong>Meeldetuletus:</strong> ",
+"note"			=> "<strong>Meeldetuletus:</strong>",
 "previewnote"	=> "Ärge unustage, et see versioon ei ole veel salvestatud!",
 "previewconflict" => "See eelvaade näitab, kuidas ülemises toimetuskastis olev tekst hakkab välja nägema, kui otsustate salvestada.", ## redaktoriboks?
 "editing"		=> "Redigeerimisel on $1",
@@ -457,7 +457,7 @@ sisse logida.",
 'datedefault' => 'Eelistus puudub',
 "math_failure"		=> "Arusaamatu süntaks",
 "math_unknown_error"	=> "Tundmatu viga",
-"math_unknown_function"	=> "Tundmatu funktsioon ",
+"math_unknown_function"	=> "Tundmatu funktsioon",
 "math_lexing_error"	=> "Väljalugemisviga",
 "math_syntax_error"	=> "Süntaksiviga",
 "saveprefs"		=> "Salvesta eelistused",

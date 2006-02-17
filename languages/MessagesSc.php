@@ -54,7 +54,7 @@
 #
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 'mainpage'		=> 'Pàggina principali',
-'about'			=> 'A proposito di ',
+'about'			=> 'A proposito di',
 'aboutsite'      => 'A proposito di {{SITENAME}}',
 'aboutpage'		=> '{{ns:project}}:About',
 'help'			=> 'Aiuto',
@@ -87,11 +87,11 @@
 "deletethispage" => "Cancella questa pagina",
 "protectthispage" => "Proteggi questa pagina",
 "unprotectthispage" => "Togli la protezione a questa pagina",
-"talkpage"		=> "Discussione sull'articolo ",
+"talkpage"		=> "Discussione sull'articolo",
 "articlepage"	=> "Leggi articolo",
 "subjectpage"	=> "Vedi articolo ", # For compatibility
 "userpage" => "Vedi pagina Utente",
-"wikipediapage" => "Vedi pagina meta ",
+"wikipediapage" => "Vedi pagina meta",
 "imagepage" => 	"Vedi pagina immagine",
 "otherlanguages" => "Altre lingue",
 "redirectedfrom" => "(Reindirizzamento da $1)",
@@ -123,7 +123,7 @@ Vedi $1.",
 # General errors
 #
 "error"			=> "Errore",
-"databaseerror" => "Errore del database ",
+"databaseerror" => "Errore del database",
 "dberrortext"	=> "Errore di sintassi nella richiesta inoltrata al database.
 L'ultima richiesta inoltrata al database è stata:
 <blockquote><tt>$1</tt></blockquote>
@@ -212,7 +212,7 @@ La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi co
 "newarticletext" => "Scrivi qui il tuo testo.",
 "noarticletext" => "(L'articolo è vuoto, potresti gentilmente iniziare l'articolo oppure richiedere la cancellazione di questa pagina)",
 "updated"		=> "(Aggiornato)",
-"note"			=> "<strong>Nota:</strong> ",
+"note"			=> "<strong>Nota:</strong>",
 "previewnote"	=> "Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!",
 "previewconflict" => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà n questa forma se sceglierai di salvare la pagina.",
 "editing"		=> "Modifica di $1",
@@ -237,7 +237,7 @@ Con l'invio di questo testo stai garantendo, a tua responsabilità, che il testo
 #
 "revhistory"	=> "Cronologia delle versioni di questa pagina.",
 "nohistory"		=> "Cronologia delle versioni di questa pagina non reperibile.",
-"revnotfound"	=> "Versione non trovata ",
+"revnotfound"	=> "Versione non trovata",
 "revnotfoundtext" => "La versione precedente di questo articolo che hai richiesto, non è stata trovata.
 Controlla per favore la URL che hai usato per accedere a questa pagina.",
 "loadhist"		=> "Caricamento cronologia di questa pagina",
@@ -262,7 +262,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.",
 "searchresults" => "Risultato della ricerca",
 "searchresulttext" => "Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[Project:Ricerca|Ricerca in {{SITENAME}}]].",
 "searchquery"	=> "Richiesta \"$1\"",
-"badquery"		=> "Richiesta mal inoltrata ",
+"badquery"		=> "Richiesta mal inoltrata",
 "badquerytext"	=> "La tua richiesta non ha potuto essere processata.
 Questo potrebbe dipendere dall'aver ricercato una parola di meno di tre caratteri.
 Oppure potresti aver scritto male la richiesta, per esempio \"pesce and and azzurro\".
@@ -270,7 +270,7 @@ Per favore, riprova.",
 "matchtotals"	=> "La ricerca per la voce \"$1\" ha trovato<br />$2 riscontri nei titoli degli articoli e<br />$3 riscontri nei testi degli articoli.",
 "titlematches"	=> "Nei titoli degli articoli",
 "notitlematches" => "Voce richiesta non trovata in titoli di articolo",
-"textmatches"	=> "Nel testo degli articoli ",
+"textmatches"	=> "Nel testo degli articoli",
 "notextmatches"	=> "Voce richiesta non trovata in testi di articolo",
 "prevn"			=> "precedenti $1",
 "nextn"			=> "successivi $1",
@@ -299,15 +299,15 @@ per poter personalizzare le tue preferenze.",
 "oldpassword"	=> "Vecchia password",
 "newpassword"	=> "Nuova password",
 "retypenew"		=> "Riscrivi qui la nuova password",
-"textboxsize"	=> "Dimensione della casella di edizione ",
+"textboxsize"	=> "Dimensione della casella di edizione",
 "rows"			=> "Righe",
 "columns"		=> "Colonne",
-"searchresultshead" => "Settaggio delle preferenze per la ricerca ",
+"searchresultshead" => "Settaggio delle preferenze per la ricerca",
 "resultsperpage" => "Risultati da visualizzare per pagina",
 "contextlines"	=> "Righe di testo da mostrare per ciascun risultato",
 "contextchars"	=> "Caratteri per linea",
 "stubthreshold" => "Threshold for stub display",
-"recentchangescount" => "Numero di titoli nelle \"modifiche recenti\" ",
+"recentchangescount" => "Numero di titoli nelle \"modifiche recenti\"",
 "savedprefs"	=> "Le tue preferenze sono state salvate.",
 "timezonetext"	=> "Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).",
 "localtime"	=> "Ora Locale",
@@ -316,7 +316,7 @@ per poter personalizzare le tue preferenze.",
 # Recent changes
 #
 "recentchanges" => "Ultime Modifiche",
-"rcloaderr"		=> "Caricamento modifiche recenti ",
+"rcloaderr"		=> "Caricamento modifiche recenti",
 "rcnote"		=> "Qui di seguito sono elencate le ultime <strong>$1</strong> pagine modificate negli ultimi <strong>$2</strong> giorni.",
 "rcnotefrom"	=> " Qui di seguito sono elencate le modifiche da <b>$2</b> (fino a <b>$1</b>).",
 "rclistfrom"	=> "Mostra modifiche a partire da $1",
@@ -384,7 +384,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 "largefile"		=> "Il peso raccomandato per le immagini deve essere inferiore a 100kb.",
 "successfulupload" => "Caricamento completato",
 "fileuploaded"	=> "File \"$1\" correttamente caricato sul server.
-Segui questo link: ($2) per modificare la pagina di descrizione del file che hai appena caricato, e immetti le informazioni che ritieni opportune (cosa rappresenta, dove lo hai trovato, chi lo ha creato e quando, etc) oltre ad una nota circa la situazione di copyright sul file. Non omettere la nota sul copytright, o il file verrebbe cancellato molto presto. ",
+Segui questo link: ($2) per modificare la pagina di descrizione del file che hai appena caricato, e immetti le informazioni che ritieni opportune (cosa rappresenta, dove lo hai trovato, chi lo ha creato e quando, etc) oltre ad una nota circa la situazione di copyright sul file. Non omettere la nota sul copytright, o il file verrebbe cancellato molto presto.",
 "uploadwarning" => "Avviso di Upload",
 "savefile"		=> "Salva file",
 "uploadedimage" => "caricato \"[[$1]]\"",
@@ -393,7 +393,7 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 #
 "imagelist"		=> "Lista delle immagini",
 "imagelisttext"	=> "Qui di seguito una lista di $1 immagini, ordinate per $2.",
-"getimagelist"	=> "ricerca nella lista delle immagini ",
+"getimagelist"	=> "ricerca nella lista delle immagini",
 "ilsubmit"		=> "Cerca",
 "showlast"		=> "Mostra le ultime $1 immagini ordinate per $2.",
 "byname"		=> "nome",
@@ -439,11 +439,11 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "brokenredirectstext"	=> "I seguenti redirects puntano ad articoli non ancora creati.",
 "selflinks"		=> "Pagine con Auto-Links",
 "selflinkstext"		=> "Le pagine seguenti contengono link che puntano a sé stesse, e in questo caso occorre eliminare questi auto-links.",
-"mispeelings"           => "Pagine con errori di ortografia ",
-"mispeelingstext"               => "Le pagine che seguono contengono errori comuni di ortografia, che sono elencati alla pagina $1. ",
+"mispeelings"           => "Pagine con errori di ortografia",
+"mispeelingstext"               => "Le pagine che seguono contengono errori comuni di ortografia, che sono elencati alla pagina $1.",
 "mispeelingspage"       => "Lista di comuni errori di ortografia",
 "missinglanguagelinks"  => "Link interlinguistici mancanti",
-"missinglanguagelinksbutton"    => "Trova i Link interlinguistici da aggiungere per ",
+"missinglanguagelinksbutton"    => "Trova i Link interlinguistici da aggiungere per",
 "missinglanguagelinkstext"      => "Questi articoli <i>non</i> hanno link verso i corrispondenti articoli in $1. Redirects e sub-pagine <i>non</i> sono elencati.",
 
 
@@ -463,7 +463,7 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "listusers"		=> "Elenco degli Utenti",
 "specialpages"	=> "Pagine speciali",
 "spheading"		=> "Pagine speciali",
-"protectpage"	=> "Proteggi questa pagina ",
+"protectpage"	=> "Proteggi questa pagina",
 "recentchangeslinked" => "Modifiche correlate",
 "rclsub"		=> "(alle pagine linkate da \"$1\")",
 "debug"			=> "Debug",
@@ -533,7 +533,7 @@ Tutti i tempi sono in ora del server (UTC).
 </ul>",
 "deletionlog"	=> "deletion log",
 "reverted"		=> "Ripristinata versione precedente",
-"deletecomment"	=> "Motivazione della cancellazione ",
+"deletecomment"	=> "Motivazione della cancellazione",
 "imagereverted" => "Versione precedente correttamente ripristinata.",
 "rollback"		=> "Usa una revisione precdente",
 "cantrollback"	=> "Impossibile tornare ad una versione precedente: l'ultima modifica è stata apportata dall'unico utente che abbia lavorato a questo articolo.",
@@ -541,7 +541,7 @@ Tutti i tempi sono in ora del server (UTC).
 
 # Undelete
 "undelete" => "Recupera una pagina cancellata",
-"undeletepage" => "Vedi e recupera pagine cancellate ",
+"undeletepage" => "Vedi e recupera pagine cancellate",
 "undeletepagetext" => "Le pagine qui di seguito indicate sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate. L'archivio viene svuotato periodicamente.",
 "undeletearticle" => "Recupera un articolo cancellato",
 "undeleterevisions" => "$1 revisioni in archivio",
@@ -570,7 +570,7 @@ Vedi [[{{ns:project}}:Deletion_log]] per un elenco delle pagine cancellate e rec
 "linklistsub"	=> "(Lista di links)",
 "linkshere"		=> "Le seguenti pagine contengono link che puntano qui:",
 "nolinkshere"	=> "Nessuna pagina contiene links che puntano a questa.",
-"isredirect"	=> "redirect ",
+"isredirect"	=> "redirect",
 
 # Block/unblock IP
 #
@@ -636,14 +636,14 @@ In questi casi, se lo ritieni opportuno, dovrai spostare o aggiungere manualment
 "movenologin"	=> "Non hai effettuato il login",
 "movenologintext" => "Devi essere un Utente registrato ed aver effettuato il [[Special:Userlogin|login]]
 per poter spostare una pagina.",
-"newtitle"		=> "Al nuovo titolo di ",
+"newtitle"		=> "Al nuovo titolo di",
 "movepagebtn"	=> "Sposta questa pagina",
 "pagemovedsub"	=> "Spostamento effettuato con successo",
 "pagemovedtext" => "Pagina \"[[$1]]\" rinominata in \"[[$2]]\".",
 "articleexists" => "Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br />
 Scegli, per cortesia, un titolo diverso per l'articolo.",
 "talkexists"	=> "La pagina è stata spostata correttamente, ma la pagina di dicussione non poteva essere spostata perché ne esiste già un'altra con il nuovo titolo. Per favore, modifica manualmente i contenuti delle due pagine discussione, così da mantenerle entrambe per non perdere potenzialmente interessanti riflessioni.",
-"movedto"		=> "spostata a ",
+"movedto"		=> "spostata a",
 "movetalk"		=> "Sposta anche la corrispondente pagina \"discussione\", se possibile.",
 "talkpagemoved" => "Anche la corrispondente pagina di discussione è stata spostata.",
 "talkpagenotmoved" => "La corrispondente pagina di discussione <strong>non è stata spostata</strong>."

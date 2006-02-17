@@ -205,7 +205,7 @@ MySQL a retourné l\'erreur « $3 : $4 ».',
 'nodb'		=> 'Sélection impossible de la base de données $1',
 'cachederror'	=> 'Ceci est une copie de la page demandée et peut ne pas être à jour',
 'readonly'	=> 'Mises à jour bloquées sur la base de données',
-'enterlockreason' => 'Indiquez la raison du blocage, ainsi qu\'une estimation de la durée de blocage ',
+'enterlockreason' => 'Indiquez la raison du blocage, ainsi qu\'une estimation de la durée de blocage',
 'readonlytext'	=> 'Les ajouts et mises à jour sur la base de donnée {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l\'ordre. Voici la raison pour laquelle l\'administrateur a bloqué la base :
 <p>$1',
 'missingarticle' => 'La base de données n\'a pas pu trouver le texte d\'une page existante, dont le titre est « $1 ».
@@ -346,7 +346,7 @@ Veuillez vous identifier dès que vous l\'aurez reçu.',
 'noarticletext' => '(Il n\'y a pour l\'instant aucun texte sur cette page)',
 'clearyourcache'    => '\'\'\'Note :\'\'\' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : \'\'\'Mozilla / Konqueror / Firefox\'\'\' : \'\'ctrl-shift-r\'\', \'\'\'IE\'\'\' : \'\'ctrl-f5\'\', \'\'\'Safari\'\'\' : \'\'cmd-shift-r\'\'; \'\'\'Konqueror\'\'\' : \'\'f5\'\'.',
 'updated'      => '(Mis à jour)',
-'note'         => '<strong>Note :</strong> ',
+'note'         => '<strong>Note :</strong>',
 'previewnote'  => 'Attention, ce texte n\'est qu\'une prévisualisation et n\'a pas encore été sauvegardé !',
 'previewconflict' => 'La prévisualisation montre le texte de cette page tel qu\'il apparaîtra une fois sauvegardé.',
 'editing'         => 'modification de $1',
@@ -742,7 +742,7 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « Ne plus suivre
 'exblank'	=> 'page vide',
 'confirmdelete' => 'Confirmer la suppression',
 'deletesub'	=> '(Suppression de « $1 »)',
-'historywarning' => 'Attention : La page que vous êtes sur le point de supprimer a un historique : ',
+'historywarning' => 'Attention : La page que vous êtes sur le point de supprimer a un historique :',
 'confirmdeletetext' => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures.
 
 Veuillez confirmer que c\'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{ns:4}}:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].',

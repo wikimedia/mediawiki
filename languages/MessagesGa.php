@@ -364,7 +364,7 @@ Ba chóir duit lógail isteach anois agus d'fhocal faire a athrú.",
 Nuair atá sé agat, logáil isteach arís le do thoil chun fíordheimhniu a dhéanamh.",
 'eauthentsent'	     =>  "Cuireadh teachtaireacht ríomhphoist chuig an seoladh
 chun fíordheimhniú a dhéanamh. Chun fíordheimhniú a dhéanamh gur leatsa an cuntas, caithfidh tú glac leis an teachtaireacht sin nó ní sheolfar aon rud eile chuig do chuntas.",
-'loginend'	      => ' ',
+'loginend'	      => '',
 'mailerror' => "Tharlaigh earráid leis an seoladh: $1",
 'acct_creation_throttle_hit' => 'Tá brón orainn, ach tá tú i ndiadh $1 cuntas á chruthú. Ní féidir leat níos mó a dhéanamh.',
 
@@ -437,7 +437,7 @@ cuntas fós nó nach úsáideann a chuntas phéarsanta. Dá bhrí sin, caithfimi
 chun é/í a ionannaigh. Is féidir cuid mhaith úsáideoirí an seoladh IP céanna a úsáid. Má tá tú
 i do úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe neamhfheidhmeacha fút,
 [[Special:Userlogin|cruthaigh cuntas nó logáil isteach]] le do thoil chun mearbhall a héalú
-le húsáideoirí eile gan ainmneacha amach anseo.'' ",
+le húsáideoirí eile gan ainmneacha amach anseo.''",
 "noarticletext" => "(Níl aon téacs ar an leathanach seo faoi láthair)",
 'clearyourcache' => "'''Tabhair faoi deara:''' Tar éis duit ábhar a shábháil, ní mór duit
 taisce do líonléitheora chun na hathruithe a fheiceáil After saving, you have to clear your
@@ -450,7 +450,7 @@ níor sábháladh é go fóill!'''",
 'userjspreview' => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do JavaScript úsáideora
 - níor sábháladh é go fóill!'''",
 "updated"       => "(Leasaithe)",
-"note"	  => "<strong>Tabhair faoi deara:</strong> ",
+"note"	  => "<strong>Tabhair faoi deara:</strong>",
 "previewnote"   => "Cuimhnigh nach bhfuil seo ach réamhamharc, agus nach sábháladh é fós!",
 "previewconflict" => "San réamhamharc seo, feachann tú an téacs dé réir an eagarbhosca
 thuas mar a taispeáinfear é má sábháilfear é.",
@@ -570,7 +570,7 @@ a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a 
 'datedefault' => 'Is cuma liom',
 "math_failure"      => "Theip anailís an fhoirmle",
 "math_unknown_error"    => "earráid anaithnid",
-"math_unknown_function" => "foirmle anaithnid ",
+"math_unknown_function" => "foirmle anaithnid",
 "math_lexing_error" => "Theipeadh anailís an fhoclóra",
 "math_syntax_error" => "earráid comhréire",
 'math_image_error'      => 'Theipeadh aistriú an PNG; tástáil má tá na ríomhchláir latex, dvips, gs, agus convert
@@ -627,7 +627,7 @@ den am an freastalaí (UTC).",
 'groups-editgroup-preamble' => 'Má thosaíonn an ainm nó an cur síos le hidirstad,
 measfar go bhfuil ainm teachtaireacha ann sa chuid eile, agus mar sin
 beidh an téacs san ainmspás MediaWiki.',
-'groups-editgroup-name'     => 'Ainm an ghrúpa: ',
+'groups-editgroup-name'     => 'Ainm an ghrúpa:',
 'groups-editgroup-description' => 'Cur síos ar an ngrúpa (255 carachtar an uasmhéid):<br/>',
 'savegroup'	         => 'Sábháil an Ghrúpa',
 'groups-tableheader'	=> 'ID || Ainm || Cur Síos || Cearta',
@@ -921,7 +921,7 @@ más mian leat ríomhphost a sheoladh chuig úsáideoirí eile.",
 ina chuid sainroghanna úsáideora, cuirfidh an foirm anseo thíos teachtaireacht amháin do.
 Beidh do seoladh ríomhphoist a d'iontráil tú i do chuid sainroghanna úsáideora
 sa bhosca \"Seoltóir\" an riomhphoist, agus mar sin ba féidir léis an faighteoir ríomhphost eile a chur leatsa.",
-'usermailererror' => 'Earráid leis an píosa ríomhphoist: ',
+'usermailererror' => 'Earráid leis an píosa ríomhphoist:',
 'defemailsubject'  => "Ríomhphost {{GRAMMAR:genitive|{{SITENAME}}}}",
 "noemailtitle"  => "Níl aon seoladh ríomhphoist ann",
 "noemailtext"   => "Níor thug an úsáideoir seo seoladh ríomhphoist bhailí, nó shocraigh sé nach
@@ -1019,7 +1019,7 @@ Aiseolas agus a thuilleadh cabhrach:
 "exblank" => "bhí an leathanach folamh",
 "confirmdelete" => "Cinntigh an scriosadh",
 "deletesub"     => "(Ag scriosadh \"$1\")",
-"historywarning" => "Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scriosadh: ",
+"historywarning" => "Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scriosadh:",
 "confirmdeletetext" => "Tá tú ar tí leathanach nó íomhá a scrios,
 chomh maith leis a chuid stair, ón bunachar sonraí.
 Cinntigh go mian leis an méid seo a dhéanamh, go dtuigeann tú na
@@ -1045,7 +1045,7 @@ Is in am an freastalaí (UTC) iad na hamanna anseo thíos.
 le [[Úsáideoir:$2|$2]] ([[Plé úsáideora:$2|Plé]]) a athúsáid; d'athraigh duine eile é cheana fein, nó
 d'athúsáid duine eile eagrán níos luaí cheana féin.
 
-[[Úsáideoir:$3|$3]] ([[Plé úsáideora:$3|Plé]]) an té a rinne an athrú is déanaí. ",
+[[Úsáideoir:$3|$3]] ([[Plé úsáideora:$3|Plé]]) an té a rinne an athrú is déanaí.",
 #   only shown if there is an edit comment
 "editcomment" => "Seo a raibh an mínithe athraithe: \"<i>$1</i>\".",
 "revertpage"    => "D'athúsáideadh an athrú seo caite le $1",
@@ -1444,16 +1444,16 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Féach ar an leathanach catagóire
 'previousdiff' => '&larr; An difríocht roimhe seo',
 'nextdiff' => 'An difríocht i ndiadh seo &rarr;',
 
-'imagemaxsize' => 'Cuir an teorann seo ar na íomhánna atá le fáil ar leathanaigh cuir síos íomhánna: ',
-'thumbsize'	=> 'Méid mionshamhla : ',
+'imagemaxsize' => 'Cuir an teorann seo ar na íomhánna atá le fáil ar leathanaigh cuir síos íomhánna:',
+'thumbsize'	=> 'Méid mionshamhla :',
 'showbigimage' => 'Íoslódáil leagan ardtaifigh ($1x$2, $3 kb)',
 
 'newimages' => 'Gailearaí na n-íomhánna nua',
 'noimages'  => 'Níl aon rud le feiscint.',
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Úsáideoir: ',
-'speciallogtitlelabel' => 'Teideal: ',
+'specialloguserlabel' => 'Úsáideoir:',
+'speciallogtitlelabel' => 'Teideal:',
 
 'passwordtooshort' => 'Tá d\'fhocal faire ró-ghearr. Caithfidh go bhfuil $1 carachtar ann ar a laghad.',
 
@@ -1490,7 +1490,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Féach ar an leathanach catagóire
 'exif-primarychromaticities' =>'Crómatachta na bpríomhacht',
 'exif-ycbcrcoefficients' =>'Comhéifeachtaí mhaitrís trasfhoirmithe an dathspáis',
 'exif-referenceblackwhite' =>'Péire luachanna tagartha don dubh is don bán',
-'exif-datetime' =>'Dáta agus am athrú an chomhaid ',
+'exif-datetime' =>'Dáta agus am athrú an chomhaid',
 'exif-imagedescription' =>'Íomhátheideal',
 'exif-make' =>'Déantóir an ceamara',
 'exif-model' =>'Déanamh an ceamara',

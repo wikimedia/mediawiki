@@ -210,7 +210,7 @@ MySQL báo lỗi "$3 : $4".',
 'nodb'		=> 'Không thấy cơ sở dữ liệu $1',
 'cachederror'	=> 'Đây là bản sao của trang bạn yêu cầu, có thể không cập nhật.',
 'readonly'	=> 'Cơ sở dữ liệu bị khóa',
-'enterlockreason' => 'Nêu lý do khóa, thời gian khóa ',
+'enterlockreason' => 'Nêu lý do khóa, thời gian khóa',
 'readonlytext'	=> "Cơ sở dữ liệu {{SITENAME}} hiện bị khóa, có thể để bảo trì, sau đó sẽ trở lại bìn thường. Lý do khóa :
 <p>$1",
 'missingarticle' => 'Cơ sở dữ liệu không thấy trang "$1".
@@ -348,7 +348,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'noarticletext' => "(Trang này hiện chưa có gì)",
 'clearyourcache'    => "'''Chú ý:''' Sau khi lưu, bạn cần tái truy cập để xem sự thay đổi : Mozilla / Konqueror : ctrl-r, Firefox / IE / Opera : ctrl-f5, Safari : cmd-r.",
 'updated'      => '(Cập nhật)',
-'note'         => '<strong>Chú ý :</strong> ',
+'note'         => '<strong>Chú ý :</strong>',
 'previewnote'  => "Chú ý, đây chỉ là thử nghiệm, chưa lưu!",
 'previewconflict' => "Trang này có vẻ như đã được lưu bởi người khác sau khi bạn bắt đầu sửa.",
 'editing'         => 'Soạn thảo $1',
@@ -712,7 +712,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'couldntremove'     => "Không thể ngưng theo dõi trang '$1'...",
 'iteminvalidname'   => "Tên trang '$1' không hợp lệ...",
 'wlnote'            => "$1 sửa đổi mới trong <b>$2</b> giờ qua.",
-'wlshowlast'        => "Xem $1 giờ $2 ngày qua, hoặc $3 ",
+'wlshowlast'        => "Xem $1 giờ $2 ngày qua, hoặc $3",
 'wlsaved'           => 'Đây là bản lưu danh sách theo dõi.',
 
 # Delete/protect/revert
@@ -724,7 +724,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'exblank' => 'trang rỗng',
 'confirmdelete' => 'Khẳng định xóa',
 'deletesub'     => "(Xóa  \"$1\")",
-'historywarning' => '<b>Chú ý</b>: trang bạn sắp xóa đã có lịch sử: ',
+'historywarning' => '<b>Chú ý</b>: trang bạn sắp xóa đã có lịch sử:',
 'confirmdeletetext' => "Bạn sắp xóa hẳn một trang hoặc hình cùng với tất cả lịch sử của nó khỏi cơ sở dữ liệu. Xin khẳng định bạn hiểu rõ hậu quả có thể xảy ra, và bạn thực hiện đúng [[{{ns:4}}:Quy_định|quy định]].",
 'actioncomplete' => 'Xong',
 'deletedtext'   => "\"$1\" đã được xóa. Xem danh sách các xóa bỏ gần nhất tại $2.",
@@ -771,7 +771,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'groups-group-edit' => 'Các nhóm hiện nay:',
 
 'userrights-lookup-user' => 'Quản lý nhóm thành viên',
-'userrights-user-editname' => 'Nhập tên thành viên: ',
+'userrights-user-editname' => 'Nhập tên thành viên:',
 
 # group editing
 'groups-editgroup'          => 'Sửa nhóm',
@@ -986,7 +986,7 @@ Xin hãy hợp nhất chúng lại.',
 'allmessagesdefault' => 'Nội dung mặc định',
 'allmessagescurrent' => 'Nội dung hiện thời',
 'allmessagestext'   => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki: .',
-'allmessagesnotsupportedUI' => 'Ngôn ngữ giao diện hiện tại của bạn <b>$1</b> không được Đặc_biệt:AllMessages hỗ trợ tại đây. ',
+'allmessagesnotsupportedUI' => 'Ngôn ngữ giao diện hiện tại của bạn <b>$1</b> không được Đặc_biệt:AllMessages hỗ trợ tại đây.',
 'allmessagesnotsupportedDB' => 'Đặc_biệt:AllMessages không được hỗ trợ vì wgUseDatabaseMessages bị tắt.',
 
 # Thumbnails
@@ -1178,8 +1178,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Xem trang thể loại\');',
 "numtalkauthors" => "Số người sửa đổi khác nhau (trang thảo luận): $1",
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Thành viên: ',
-'speciallogtitlelabel' => 'Tên bài: ',
+'specialloguserlabel' => 'Thành viên:',
+'speciallogtitlelabel' => 'Tên bài:',
 
 #Logs
 'alllogstext' => 'Xem nhật trình tải lên, xóa, khóa, cấm, quản lý. Có thể xem theo từng loại, theo tên thành viên, hoặc tên trang.',

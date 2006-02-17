@@ -598,7 +598,7 @@ $2 Håyner les redjiblaedjes &nbsp; Cweri après $3 $9',
 'addgroup' => 'Radjouter groupe',
 
 'userrights-lookup-user' => 'Manaedjî les groupes d\' uzeus',
-'userrights-user-editname' => 'Tapez on no d\' uzeu: ',
+'userrights-user-editname' => 'Tapez on no d\' uzeu:',
 'editusergroup' => 'Candjî les groupes d\' uzeus',
 
 # group editing
@@ -765,7 +765,7 @@ cisse viye modêye la, (mod.) = rivni a cisse viye modêye la.
 # Mime search
 #
 'mimesearch' => 'cweraedje MIME',
-'mimetype' => 'sôre MIME: ',
+'mimetype' => 'sôre MIME:',
 'download' => 'aberweter',
 
 # Unwatchedpages

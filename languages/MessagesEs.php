@@ -260,11 +260,11 @@ La razón dada es la que sigue:<br />$2<p> Puedes contactar a $1 o a otro de los
 discutir el bloqueo.",
 "newarticle"	=> "(Nuevo)",
 "newarticletext" => "Has seguido un enlace a una página que aún no existe. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Para más información consulta la [[Project:Ayuda|página de ayuda]]. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.",
-"anontalkpagetext" => "---- ''Esta es la página de discusión para un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP numérica para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y sientes que comentarios irrelevantes han sido dirigidos a ti, por favor [[Especial:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.'' ",
+"anontalkpagetext" => "---- ''Esta es la página de discusión para un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP numérica para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y sientes que comentarios irrelevantes han sido dirigidos a ti, por favor [[Especial:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.''",
 "noarticletext" => "(En este momento no hay texto en esta página)",
 
 "updated"		=> "(Actualizado)",
-"note"			=> "<strong>Nota:</strong> ",
+"note"			=> "<strong>Nota:</strong>",
 "previewnote"	=> "Recuerda que esto es sólo una previsualización, y ¡no ha sido grabada todavía!",
 "previewconflict" => "Esta previsualización refleja el texto en el área
 de edición superior como aparecerá si eliges grabar.",
@@ -422,7 +422,7 @@ y la hora del servidor (UTC).",
 'addgroup' => 'Añadir grupo',
 
 'userrights-lookup-user' => 'Configurar grupos de usuarios',
-'userrights-user-editname' => 'Escribe un nombre de usuario: ',
+'userrights-user-editname' => 'Escribe un nombre de usuario:',
 'editusergroup' => 'Modificar grupos de usuarios',
 
 # group editing
@@ -602,7 +602,7 @@ esta versión antigua, (rev) = revertir a esta versión antigua.
 # Mime search
 #
 'mimesearch' => 'Búsqueda MIME',
-'mimetype' => 'Tipo MIME: ',
+'mimetype' => 'Tipo MIME:',
 'download' => 'descargar',
 
 
@@ -762,7 +762,7 @@ pulsa el botón 'Eliminar artículos seleccionados' al final de la página.",
 "exblank" => "página estaba vacía",
 "confirmdelete" => "Confirma el borrado",
 "deletesub"		=> "(Borrando \"$1\")",
-"historywarning" => "Atención: La página que estás por borrar tiene un historial: ",
+"historywarning" => "Atención: La página que estás por borrar tiene un historial:",
 "confirmdeletetext" => "Estás a punto de borrar una página o imagen
 en forma permanente,
 así como todo su historial, de la base de datos.
@@ -788,7 +788,7 @@ Todos los tiempos se muestran en hora del servidor (UTC).
 "alreadyrolled"	=> "No se puede revertir la última edición de [[$1]]
 por [[Usuario:$2|$2]] ([[Usuario Discusión:$2|Discusión]]); alguien más ya ha editado o revertido esa página.
 
-La última edición fue hecha por [[Usuario:$3|$3]] ([[Usuario Discusión:$3|Discusión]]). ",
+La última edición fue hecha por [[Usuario:$3|$3]] ([[Usuario Discusión:$3|Discusión]]).",
 #   only shown if there is an edit comment
 "editcomment" => "El resumen de la edición fue: \"<i>$1</i>\".",
 "revertpage"	=> "Revertida a la última edición por $1",
@@ -981,7 +981,7 @@ En el último caso puedes usar un enlace, por ejemplo [[{{ns:Special}}:Export/{{
 'allmessagesdefault' => 'Texto predeterminado',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext'	=> 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:.',
-'allmessagesnotsupportedUI' => 'Tu lengua de interfaz actual (<b>$1</b>) no está disponible en Special:AllMessages en este sitio. ',
+'allmessagesnotsupportedUI' => 'Tu lengua de interfaz actual (<b>$1</b>) no está disponible en Special:AllMessages en este sitio.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages no está disponible porque wgUseDatabaseMessages está deshabilitado.',
 
 # Math
@@ -1077,11 +1077,11 @@ En el último caso puedes usar un enlace, por ejemplo [[{{ns:Special}}:Export/{{
 'rcpatroldisabled'      => "Revisión de los Cambios Recientes deshabilitada",
 'rcpatroldisabledtext'  => "La capacidad de revisar los Cambios Recientes está deshabilitada en este momento.",
 
-'showhideminor' => "$1 ediciones menores | $2 bots | $3 usuarios registrados | $4 ediciones revisadas ",
+'showhideminor' => "$1 ediciones menores | $2 bots | $3 usuarios registrados | $4 ediciones revisadas",
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Usuario: ',
-'speciallogtitlelabel' => 'Título: ',
+'specialloguserlabel' => 'Usuario:',
+'speciallogtitlelabel' => 'Título:',
 
 'passwordtooshort' => 'Tu contraseña es muy corta. Debe tener al menos $1 caracteres.',
 
@@ -1133,7 +1133,7 @@ En el último caso puedes usar un enlace, por ejemplo [[{{ns:Special}}:Export/{{
 'importnofile' => 'No se subieron archivos de importación.',
 'importuploaderror' => 'La subida del archivo de importación ha fallado; quizá el archivo es mayor que el tamaño de subida permitido.',
 
-'imagemaxsize' => 'Limitar imágenes en las páginas de descripción a: ',
+'imagemaxsize' => 'Limitar imágenes en las páginas de descripción a:',
 'showbigimage' => 'Descargar versión de alta resolución ($1×$2, $3 KB)',
 
 'newimages' => 'Galería de imágenes nuevas',
@@ -1659,7 +1659,7 @@ Cambie las opciones de su lista de seguimiento en:
 'noemailprefs'	=> '<strong>Especifica una dirección electrónica para que funcionen estas características.</strong>',
 'nonunicodebrowser'	=> '<strong>AVISO: Tu navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que te permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.</strong>',
 'notacceptable'	=> 'El servidor wiki no puede proveer los datos en un formato que tu cliente (navegador) pueda entender.',
-'note'	=> '<strong>Nota:</strong> ',
+'note'	=> '<strong>Nota:</strong>',
 'prefixindex'	=> 'Páginas por prefijo',
 'prefs-help-email'	=> '* Correo (opcional): Permite a otros usuarios escribirte por correo desde tu página de usuario o tu página de discusión sin la necesidad de revelar tu identidad.',
 'prefs-help-email-enotif'	=> 'Esta dirección también se usa para mandarte notificaciones por correo si tienes habilitadas las opciones correspondientes.',
@@ -1759,7 +1759,7 @@ Pon el primer carácter a "0" para deshabilitar la nueva disposición de página
 'usercssjsyoucanpreview'	=> '<strong>Consejo:</strong> Usa el botón «Mostrar previsualización» para probar tu nuevo css/js antes de grabarlo.',
 'usercsspreview'	=> '\'\'\'¡Recuerda que sólo estás previsualizando tu css de usuario, aún no se ha grabado!\'\'\'',
 'userjspreview'	=> '\'\'\'¡Recuerda que sólo estás previsualizando tu javascript de usuario, y que todavía no se ha grabado!\'\'\'',
-'usermailererror'	=> 'El objeto de correo devolvió un error: ',
+'usermailererror'	=> 'El objeto de correo devolvió un error:',
 'variantname-zh'	=> 'zh',
 'variantname-zh-cn'	=> 'cn',
 'variantname-zh-hk'	=> 'hk',
@@ -1871,7 +1871,7 @@ Consulta: $2',
 'proxyblocker'	=> 'Bloqueador de proxies',
 'qbspecialpages'	=> 'Páginas especiales',
 'signupend'	=> '{{int:loginend}}',
-'thumbsize'	=> 'Tamaño de diapositivas: ',
+'thumbsize'	=> 'Tamaño de diapositivas:',
 'tog-enotifwatchlistpages'	=> 'Enviame un correo cuando haya cambios de página',
 'uid'	=> 'ID de usuario:',
 'username'	=> 'Nombre de usuario:',
