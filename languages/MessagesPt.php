@@ -1279,8 +1279,8 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'tooltip-watch' => 'Adicionar esta página à sua lista de artigos vigiados [alt-w]',
 
 # stylesheets
-'Monobook.css' => '/* edite este ficheiro para alterar a skin monobook para o site inteiro */',
-#'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
+'Monobook.css' => '/* edite este ficheiro para alterar o tema monobook para o site inteiro */',
+#'Monobook.js' => '/* edite este ficheiro para alterar as configurações js no tema monobook */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF metadata disabled for this server.',
@@ -1310,6 +1310,9 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'categoryarticlecount1' => "Existe $1 artigo nesta categoria.",
 'usenewcategorypage' => "1\n\nColoque o primeiro caracter como \"0\" para desactivar o novo layout das páginas de categoria.",
 'listingcontinuesabbrev' => " cont.",
+'spambot_username' => 'MediaWiki limpeza de spam',
+'spam_reverting' => 'Revertendo para a última versão não contendo hiperligações para $1',
+'spam_blanking' => 'Todas revisões contendo hiperligações para $1, limpando',
 
 # Info page
 'infosubtitle' => 'Informação para página',
@@ -1328,13 +1331,13 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'mw_math_mathml' => 'MathML se possível (experimental)',
 
 # Patrolling
-'markaspatrolleddiff'   => "Mark as patrolled",
+'markaspatrolleddiff'   => "Marcar como verificado",
 'markaspatrolledlink'   => "[$1]",
-'markaspatrolledtext'   => "Mark this article as patrolled",
-'markedaspatrolled'     => "Marked as patrolled",
-'markedaspatrolledtext' => "The selected revision has been marked as patrolled.",
-'rcpatroldisabled'      => "Recent Changes Patrol disabled",
-'rcpatroldisabledtext'  => "The Recent Changes Patrol feature is currently disabled.",
+'markaspatrolledtext'   => "Marcar este artigo como verificado",
+'markedaspatrolled'     => "Marcado como verificado",
+'markedaspatrolledtext' => "A revisão seleccionada foi marcada como verificada.",
+'rcpatroldisabled'      => "Edições verificadas nas Mudanças Recentes desactivadas",
+'rcpatroldisabledtext'  => "A funcionalidade de Edições verificadas nas Mudanças Recentes está actualmente desactivada.",
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
@@ -1389,7 +1392,7 @@ ta[\'ca-nstab-help\'] = new Array(\'c\',\'Ver a página de ajuda\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 
 # image deletion
-'deletedrevision' => 'Versão antiga $1 apagada.',
+'deletedrevision' => 'Apagada versão antiga $1.',
 
 # browsing diffs
 'previousdiff' => '← Ver a alteração anterior',
