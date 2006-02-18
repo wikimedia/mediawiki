@@ -627,6 +627,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Removed trailing whitespace on a bunch more messages.
 * Fix missing bad title check in Special:Booksources
 * Remove empty booksources string in fy
+* Avoid corrupting <gallery> inside <!-- comment -->
 
 
 === Caveats ===

@@ -2224,13 +2224,23 @@ Template:dangerous
 !! end
 
 !! test
-pre-save transform: comment containing extension (bug 5024)
+pre-save transform: comment containing gallery (bug 5024)
 !! options
 pst
 !! input
 <!-- <gallery>data</gallery> -->
 !!result
 <!-- <gallery>data</gallery> -->
+!!end
+
+!! test
+pre-save transform: comment containing extension
+!! options
+pst
+!! input
+<!-- <tag>data</tag> -->
+!!result
+<!-- <tag>data</tag> -->
 !!end
 
 !! test

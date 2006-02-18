@@ -478,8 +478,8 @@ class Parser
 			$state['nowiki'] = $state['nowiki'] + $nowiki_content;
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
-			$state['comment'] = $state['comment'] + $comment_content;
 			$state['gallery'] = $state['gallery'] + $gallery_content;
+			$state['comment'] = $state['comment'] + $comment_content;
 
 			foreach( $ext_content as $tag => $array ) {
 				if ( array_key_exists( $tag, $state ) ) {
@@ -492,8 +492,8 @@ class Parser
 			  'nowiki' => $nowiki_content,
 			  'math' => $math_content,
 			  'pre' => $pre_content,
-			  'comment' => $comment_content,
 			  'gallery' => $gallery_content,
+			  'comment' => $comment_content,
 			) + $ext_content;
 		}
 		return $text;
