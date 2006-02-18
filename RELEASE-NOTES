@@ -628,6 +628,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix missing bad title check in Special:Booksources
 * Remove empty booksources string in fy
 * Avoid corrupting <gallery> inside <!-- comment -->
+* Remove legacy PHPTal code, hasn't been maintained in ages.
+* Tweak Userlogin include order for APC issue
 
 
 === Caveats ===

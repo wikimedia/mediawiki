@@ -31,8 +31,7 @@ $skinDir->close();
 unset($matches);
 
 /**
- * The main skin class that provide methods and properties for all other skins
- * including PHPTal skins.
+ * The main skin class that provide methods and properties for all other skins.
  * This base class is also the "Standard" skin.
  * @package MediaWiki
  */
@@ -114,8 +113,7 @@ class Skin extends Linker {
 
 		global $IP;
 
-		# Grab the skin class and initialise it. Each skin checks for PHPTal
-		# and will not load if it's not enabled.
+		# Grab the skin class and initialise it.
 		wfSuppressWarnings();
 		// Preload base classes to work around APC/PHP5 bug
 		include_once( $IP.'/skins/'.$skinName.'.deps.php' );
@@ -275,7 +273,7 @@ class Skin extends Linker {
 			$wgRequest->getVal( 'wpEditToken' ) );
 	}
 
-	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
+	# get the user/site-specific stylesheet, SkinTemplate loads via RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
 		global $wgOut, $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage;
 		$sheet = $this->getStylesheet();
@@ -1328,7 +1326,7 @@ END;
 			wfMsg( 'postcomment' ), 'action=edit&section=new' );
 	}
 
-	/* these are used extensively in SkinPHPTal, but also some other places */
+	/* these are used extensively in SkinTemplate, but also some other places */
 	/*static*/ function makeSpecialUrl( $name, $urlaction='' ) {
 		$title = Title::makeTitle( NS_SPECIAL, $name );
 		return $title->getLocalURL( $urlaction );
