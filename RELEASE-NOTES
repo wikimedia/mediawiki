@@ -636,6 +636,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Remove legacy PHPTal code, hasn't been maintained in ages.
 * Tweak Userlogin include order for APC issue
 * Don't try to link to current page on protection tab
+* More exact checking in Title::equals() to fox moves of numerically similar
+  page titles. (Odd hex title bug on 64-bit.)
 
 
 === Caveats ===

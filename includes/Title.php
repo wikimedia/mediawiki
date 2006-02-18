@@ -2088,9 +2088,10 @@ class Title {
 	 * @return bool
 	 */
 	function equals( $title ) {
-		return $this->getInterwiki() == $title->getInterwiki()
+		// Note: === is necessary for proper matching of number-like titles.
+		return $this->getInterwiki() === $title->getInterwiki()
 			&& $this->getNamespace() == $title->getNamespace()
-			&& $this->getDbkey() == $title->getDbkey();
+			&& $this->getDbkey() === $title->getDbkey();
 	}
 
 	/**
