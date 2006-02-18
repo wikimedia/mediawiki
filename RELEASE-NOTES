@@ -342,8 +342,10 @@ Special Pages:
 * (bug 4359) red [[user:#id]] links generated in [[special:Log]]
 * (bug 1996) Special page to list redirects
 * (bug 4334) Add "watch" links to Special:Unwatchedpages
-* Generate target user page links in Special:Ipblocklist where appropriate (i.e. not an autoblock)
-* Generate link to talk page of the blocker in Special:Ipblocklist, move contribs. link of the target next to their name
+* Generate target user page links in Special:Ipblocklist where appropriate
+  (i.e. not an autoblock)
+* Generate link to talk page of the blocker in Special:Ipblocklist, move
+  contribs. link of the target next to their name
 * (bug 2714) Backlink from special:whatlinkshere was hard set as 'existing'
 * Move parentheses out of <a> link in Special:Contributions
 * (bug 3192): properly check 'limit' parameter on Special:Contributions
@@ -352,6 +354,8 @@ Special Pages:
 * Add contributions link to block log items
 * Added optional "hide own edits" feature to Special:Recentchanges
 * (bug 5018) Anchors for each message in Special:Allmessages
+* Introduce $wgWantedPagesThreshold per bug 5011; Special:Wantedpages will not
+  list pages with less than this number of links. Defaults to 1.
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
