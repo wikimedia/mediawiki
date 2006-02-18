@@ -2174,7 +2174,6 @@ pst
 This is a test template with parameter "something else"
 !! end
 
-
 !! article
 Template:nowikitest
 !! text
@@ -2223,6 +2222,36 @@ Template:dangerous
 <p><span>Oh no</span>
 </p>
 !! end
+
+!! test
+pre-save transform: comment containing extension (bug 5024)
+!! options
+pst
+!! input
+<!-- <gallery>data</gallery> -->
+!!result
+<!-- <gallery>data</gallery> -->
+!!end
+
+!! test
+pre-save transform: comment containing nowiki
+!! options
+pst
+!! input
+<!-- <nowiki>data</nowiki> -->
+!!result
+<!-- <nowiki>data</nowiki> -->
+!!end
+
+!! test
+pre-save transform: comment containing math
+!! options
+pst
+!! input
+<!-- <math>data</math> -->
+!!result
+<!-- <math>data</math> -->
+!!end
 
 
 ###
