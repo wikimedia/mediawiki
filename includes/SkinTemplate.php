@@ -27,10 +27,6 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * to the computations individual esi snippets need. Most importantly no body
  * parsing for most of those of course.
  *
- * PHPTAL support has been moved to a subclass in SkinPHPTal.php,
- * and is optional. You'll need to install PHPTAL manually to use
- * skins that depend on it.
- *
  * @package MediaWiki
  * @subpackage Skins
  */
@@ -96,9 +92,6 @@ class SkinTemplate extends Skin {
 	/**
 	 * For QuickTemplate, the name of the subclass which
 	 * will actually fill the template.
-	 *
-	 * In PHPTal mode, name of PHPTal template to be used.
-	 * '.pt' will be automaticly added to it on PHPTAL object creation
 	 */
 	var $template;
 
@@ -327,7 +320,7 @@ class SkinTemplate extends Skin {
 				$sql = "SELECT COUNT(*) AS n FROM $watchlist
 					WHERE wl_title='" . $dbr->strencode($this->mTitle->getDBKey()) .
 					"' AND  wl_namespace=" . $this->mTitle->getNamespace() ;
-				$res = $dbr->query( $sql, 'SkinPHPTal::outputPage');
+				$res = $dbr->query( $sql, 'SkinTemplate::outputPage');
 				$x = $dbr->fetchObject( $res );
 				$numberofwatchingusers = $x->n;
 				if ($numberofwatchingusers > 0) {
