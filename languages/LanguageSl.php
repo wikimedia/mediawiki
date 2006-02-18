@@ -20,24 +20,25 @@
 
 require_once( "LanguageUtf8.php" );
 
-/** TODO: fixme, remove wikipedia
 /* private */ $wgNamespaceNamesSl = array(
-	NS_MEDIA          => "Media",
-	NS_SPECIAL        => "Posebno",
-	NS_MAIN           => "",
-	NS_TALK           => "Pogovor",
-	NS_USER           => "Uporabnik",
-	NS_USER_TALK      => "Uporabniški_pogovor",
-	NS_PROJECT        => "Wikipedija",
-	NS_PROJECT_TALK   => "Pogovor_k_Wikipediji",
-	NS_IMAGE          => "Slika",
-	NS_IMAGE_TALK     => "Pogovor_k_sliki",
-	NS_MEDIAWIKI      => "MediaWiki",
-	NS_MEDIAWIKI_TALK => "MediaWiki_talk",
-	NS_TEMPLATE       => "Predloga",
-	NS_TEMPLATE_TALK  => "Pogovor_k_predlogi",
-	NS_CATEGORY       => "Kategorija",
-	NS_CATEGORY_TALK  => "Pogovor_k_kategoriji"
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Posebno',
+	NS_MAIN           => '',
+	NS_TALK           => 'Pogovor',
+	NS_USER           => 'Uporabnik',
+	NS_USER_TALK      => 'Uporabniški_pogovor',
+	NS_PROJECT        => $wgMetaNamespace,
+	NS_PROJECT_TALK   => FALSE,  # Set in constructor
+	NS_IMAGE          => 'Slika',
+	NS_IMAGE_TALK     => 'Pogovor_o_sliki',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Pogovor_o_MediaWiki',
+	NS_TEMPLATE       => 'Predloga',
+	NS_TEMPLATE_TALK  => 'Pogovor_o_predlogi',
+	NS_HELP           => 'Pomoč',
+	NS_HELP_TALK      => 'Pogovor_o_pomoči',
+	NS_CATEGORY       => 'Kategorija',
+	NS_CATEGORY_TALK  => 'Pogovor_o_kategoriji'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSl = array(
@@ -57,6 +58,11 @@ if (!$wgCachedMessageArrays) {
 #--------------------------------------------------------------------------
 
 class LanguageSl extends LanguageUtf8 {
+	function LanguageSl() {
+		global $wgNamespaceNamesSl, $wgMetaNamespace;
+		LanguageUtf8::LanguageUtf8();
+		$wgNamespaceNamesSl[NS_PROJECT_TALK] = 'Pogovor_o_' . $this->convertGrammar( $wgMetaNamespace, 'orodnik' );
+	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesSl;
@@ -88,6 +94,90 @@ class LanguageSl extends LanguageUtf8 {
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
-}
 
+	# Convert from the nominative form of a noun to some other case
+	# Invoked with {{GRAMMAR:case|word}}
+	function convertGrammar( $word, $case ) {
+		switch ( $case ) {
+			case 'rodilnik': # genitive
+				if ( $word == 'Wikipedija' ) {
+					$word = 'Wikipedije';
+				} elseif ( $word == 'Wikiknjige' ) {
+					$word = 'Wikiknjig';
+				} elseif ( $word == 'Wikinovice' ) {
+					$word = 'Wikinovic';
+				} elseif ( $word == 'Wikinavedek' ) {
+					$word = 'Wikinavedka';
+				} elseif ( $word == 'Wikivir' ) {
+					$word = 'Wikivira';
+				} elseif ( $word == 'Wikislovar' ) {
+					$word = 'Wikislovarja';
+				}
+			break;
+			case 'dajalnik': # dativ
+				if ( $word == 'Wikipedija' ) {
+					$word = 'Wikipediji';
+				} elseif ( $word == 'Wikiknjige' ) {
+					$word = 'Wikiknjigam';
+				} elseif ( $word == 'Wikinovice' ) {
+					$word = 'Wikinovicam';
+				} elseif ( $word == 'Wikinavedek' ) {
+					$word = 'Wikinavedku';
+				} elseif ( $word == 'Wikivir' ) {
+					$word = 'Wikiviru';
+				} elseif ( $word == 'Wikislovar' ) {
+					$word = 'Wikislovarju';
+				}
+			break;
+			case 'tožilnik': # akuzatív
+				if ( $word == 'Wikipedija' ) {
+					$word = 'Wikipedijo';
+				} elseif ( $word == 'Wikiknjige' ) {
+					$word = 'Wikiknjige';
+				} elseif ( $word == 'Wikinovice' ) {
+					$word = 'Wikinovice';
+				} elseif ( $word == 'Wikinavedek' ) {
+					$word = 'Wikinavedek';
+				} elseif ( $word == 'Wikivir' ) {
+					$word = 'Wikivir';
+				} elseif ( $word == 'Wikislovar' ) {
+					$word = 'Wikislovar';
+				}
+			break;
+			case 'mestnik': # locative
+				if ( $word == 'Wikipedija' ) {
+					$word = 'z Wikipedijo';
+				} elseif ( $word == 'Wikiknjige' ) {
+					$word = 'z Wikiknjigami';
+				} elseif ( $word == 'Wikinovice' ) {
+					$word = 'z Wikinovicami';
+				} elseif ( $word == 'Wikinavedek' ) {
+					$word = 'z Wikinavedkom';
+				} elseif ( $word == 'Wikivir' ) {
+					$word = 'z Wikivirom';
+				} elseif ( $word == 'Wikislovar' ) {
+					$word = 'z Wikislovarjem';
+				}
+			break;
+			case 'orodnik': # instrumental
+				if ( $word == 'Wikipedija' ) {
+					$word = 'o Wikipediji';
+				} elseif ( $word == 'Wikiknjige' ) {
+					$word = 'o Wikiknjigah';
+				} elseif ( $word == 'Wikinovice' ) {
+					$word = 'o Wikinovicah';
+				} elseif ( $word == 'Wikinavedek' ) {
+					$word = 'o Wikinavedku';
+				} elseif ( $word == 'Wikivir' ) {
+					$word = 'o Wikiviru';
+				} elseif ( $word == 'Wikislovar' ) {
+					$word = 'o Wikislovarju';
+				}
+			break;
+		}
+
+		return $word; # this will return the original value for 'imenovalnik' (nominativ) and all undefined case values
+	}
+
+}
 ?>

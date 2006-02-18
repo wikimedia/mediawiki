@@ -239,6 +239,8 @@ i18n / Languages:
 * (bug 4859) Update for Portuguese messages (pt)
 * (bug 4788) One string for MessagesPl
 * Restriction types now use restriction-* messages instead of ui messages
+* (bug 4685) Slovenian LanguageSl.php hardcodes project namespace
+
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
