@@ -132,7 +132,8 @@ class ProtectionForm {
 		$out .= "<tbody>";
 		$out .= "<tr>\n";
 		foreach( $this->mRestrictions as $action => $required ) {
-			$out .= "<th>" . wfMsgHtml( $action ) . "</th>\n";
+			/* Not all languages have V_x <-> N_x relation */
+			$out .= "<th>" . wfMsgHtml( 'restriction-' . $action ) . "</th>\n";
 		}
 		$out .= "</tr>\n";
 		$out .= "<tr>\n";

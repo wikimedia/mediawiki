@@ -1130,13 +1130,17 @@ See [[Project:Protected page]] for more information.",
 'confirmunprotect' => 'Confirm unprotection',
 'unprotectcomment' => 'Reason for unprotecting',
 'protect-unchain' => 'Unlock move permissions',
-'protect-text' => 'You may view and change the protection level here for the page [[$1]].
+'protect-text' => 'You may view and change the protection level here for the page <strong>$1</strong>.
 Please be sure you are following the [[Project:Protected page|project guidelines]].',
 'protect-viewtext' => 'Your account does not have permission to change
-page protection levels. Here are the current settings for the page [[$1]]:',
+page protection levels. Here are the current settings for the page <strong>$1</strong>:',
 'protect-default' => '(default)',
 'protect-level-autoconfirmed' => 'Block unregistered users',
 'protect-level-sysop' => 'Sysops only',
+
+# restrictions (nouns)
+'restriction-edit' => 'Edit',
+'restriction-move' => 'Move',
 
 
 # Undelete
@@ -1934,6 +1938,7 @@ Please confirm that really want to recreate this article.',
 
 'youhavenewmessagesmulti' => "You have new messages on $1",
 'newtalkseperator' => ',_',
+
 );
 
 

@@ -921,17 +921,21 @@ Palaute ja lisäapu osoitteessa:
 'confirmprotecttext'  => 'Haluatko varmasti suojata tämän sivun?',
 'confirmprotect'      => 'Vahvista suojaus',
 'protectmoveonly'     => 'Suojaa vain siirroilta',
-'protectcomment'      => 'Suojauksen syy',
+'protectcomment'      => 'Suojauksen syy:',
 'unprotectsub'        => 'Suojauksen poisto sivulta $1',
 'confirmunprotecttext'=> 'Haluatko varmasti poistaa tämän sivun suojauksen?',
 'confirmunprotect'    => 'Vahvista suojauksen poisto',
 'unprotectcomment'    => 'Syy suojauksen poistoon',
 'protect-unchain'     => 'Käytä siirtosuojausta',
-'protect-text'        => 'Voit katsoa ja muuttaa sivun [[$1]] suojauksia.',
-'protect-viewtext'    => 'Et voi muuttaa sivun [[$1]] suojauksia. Alla näet nykyiset suojaukset.',
-'protect-default'     => '(oletus)',
-'protect-level-autoconfirmed' => 'Estä vain rekisteröimättömät käyttäjät',
-'protect-level-sysop' => 'vain ylläpitäjät',
+'protect-text'        => 'Voit katsoa ja muuttaa sivun ”<strong>$1</strong>” suojauksia:',
+'protect-viewtext'    => 'Et voi muuttaa sivun ”<strong>$1</strong>” suojauksia. Alla on sivun nykyiset suojaukset:',
+'protect-default'     => '(ei rajoituksia)',
+'protect-level-autoconfirmed' => 'Estä uudet ja anonyymit käyttäjät',
+'protect-level-sysop' => 'Vain ylläpitäjät',
+
+# restrictions (nouns)
+'restriction-edit'    => 'muokkaus',
+'restriction-move'    => 'siirto',
 
 
 # Undelete
@@ -1644,6 +1648,4 @@ Ole hyvä ja varmista, että haluat luoda sivun uudelleen.',
 
 
 );
-
-
 ?>
