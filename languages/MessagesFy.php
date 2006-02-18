@@ -598,8 +598,6 @@ Dêr soe ek stean moatte hoe't it (goed skreaun) wurdt.",
 parten fan it meartaliche projekt mei in keppeling nei in direkte URL nei
 an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze list.",
 
-"booksources"	=> "",
-"booksourcetext" 	=> "",
 "alphaindexline" 	=> "$1 oan't $2",
 
 
