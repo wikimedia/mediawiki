@@ -640,6 +640,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Don't try to link to current page on protection tab
 * More exact checking in Title::equals() to fox moves of numerically similar
   page titles. (Odd hex title bug on 64-bit.)
+* Fix explicit s-maxage=0 on raw pages; should help with proxy issues in
+  generated stylesheets... hopefully...
 
 
 === Caveats ===

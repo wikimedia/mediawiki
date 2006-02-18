@@ -36,27 +36,27 @@ class RawPage {
 			$this->mRequest = $request;
 		}
 
-		$ctype = $this->mRequest->getText( 'ctype' );
-		$smaxage = $this->mRequest->getInt( 'smaxage', $wgSquidMaxage );
+		$ctype = $this->mRequest->getVal( 'ctype' );
+		$smaxage = $this->mRequest->getIntOrNull( 'smaxage', $wgSquidMaxage );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
-		$this->mExpandTemplates = $this->mRequest->getText( 'templates' ) === 'expand';
+		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
 		$this->mOldId = $this->mRequest->getInt( 'oldid' );
 		# special case for 'generated' raw things: user css/js
-		$gen = $this->mRequest->getText( 'gen' );
+		$gen = $this->mRequest->getVal( 'gen' );
 
 		if($gen == 'css') {
 			$this->mGen = $gen;
-			if($smaxage == '') $smaxage = $wgSquidMaxage;
+			if( is_null( $smaxage ) ) $smaxage = $wgSquidMaxage;
 			if($ctype == '') $ctype = 'text/css';
-		} else if ($gen == 'js') {
+		} elseif ($gen == 'js') {
 			$this->mGen = $gen;
-			if($smaxage == '') $smaxage = $wgSquidMaxage;
+			if( is_null( $smaxage ) ) $smaxage = $wgSquidMaxage;
 			if($ctype == '') $ctype = $wgJsMimeType;
 		} else {
 			$this->mGen = false;
 		}
 		$this->mCharset = $wgInputEncoding;
-		$this->mSmaxage = $smaxage;
+		$this->mSmaxage = intval( $smaxage );
 		$this->mMaxage = $maxage;
 		if ( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
 			$this->mContentType = 'text/x-wiki';
