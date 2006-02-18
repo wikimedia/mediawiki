@@ -920,6 +920,8 @@ $wgDisableQueryPages = false;
 $wgUseWatchlistCache = false;
 /** The hour or so mentioned above */
 $wgWLCacheTimeout = 3600;
+/** Minimum number of links to a page required before it appears on Special:Wantedpages */
+$wgWantedPagesThreshold = 1;
 
 /**
  * To use inline TeX, you need to compile 'texvc' (in the 'math' subdirectory of

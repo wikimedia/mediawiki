@@ -1052,7 +1052,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4768) Wrong Russian translation (typo)
 * Performance bugfix: propagate equality manually for Revision fetches
 * (bug 4773) PHP fatal error when invalid title passed to Special:Export
-* Added missing table defs. for transcache (were in updaters, but not install schema)
+* Added missing table defs. for transcache to installer schemas
 * (bug 4824) IE7 beta 2 broke compatibility with PNG logo workarounds,
   and seems to work ok with other bits. No longer including the IE
   workarounds JavaScript for IE 7 and above.
@@ -1060,7 +1060,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4881) Correction to the fix for 1487; Ipblocklist showed 'no blocks'
   message at the end of the list even if there were blocks.
 * (bug 4805) Removed more wikipedia-references from LanguageUk.php
-
+* Introduce $wgWantedPagesThreshold per bug 5011; Special:Wantedpages will not
+  list pages with less than this number of links. Defaults to 1.
 
 === Caveats ===
 
