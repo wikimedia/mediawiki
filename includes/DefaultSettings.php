@@ -856,6 +856,7 @@ $wgGroupPermissions['bureaucrat']['userrights'] = true;
 /**
  * Set of available actions that can be restricted via Special:Protect
  * You probably shouldn't change this.
+ * Translated trough restriction-* messages.
  */
 $wgRestrictionTypes = array( 'edit', 'move' );
 

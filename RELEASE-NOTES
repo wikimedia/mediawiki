@@ -238,6 +238,7 @@ i18n / Languages:
 * (bug 5015) Update magic words translation in LanguageBe.php
 * (bug 4859) Update for Portuguese messages (pt)
 * (bug 4788) One string for MessagesPl
+* Restriction types now use restriction-* messages instead of ui messages
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
@@ -634,6 +635,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Avoid corrupting <gallery> inside <!-- comment -->
 * Remove legacy PHPTal code, hasn't been maintained in ages.
 * Tweak Userlogin include order for APC issue
+* Don't try to link to current page on protection tab
 
 
 === Caveats ===
