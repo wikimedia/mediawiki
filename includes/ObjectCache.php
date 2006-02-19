@@ -35,7 +35,7 @@ $wgCaches = array();
 
 /** @todo document */
 function &wfGetCache( $inputType ) {
-	global $wgCaches, $wgMemCachedServers, $wgMemCachedDebug;
+	global $wgCaches, $wgMemCachedServers, $wgMemCachedDebug, $wgMemCachedPersistent;
 	$cache = false;
 
 	if ( $inputType == CACHE_ANYTHING ) {
@@ -61,7 +61,7 @@ function &wfGetCache( $inputType ) {
 			}
 
 			$wgCaches[CACHE_DB] = new MemCachedClientforWiki(
-				array('persistant' => false, 'compress_threshold' => 1500 ) );
+				array('persistant' => $wgMemCachedPersistent, 'compress_threshold' => 1500 ) );
 			$cache =& $wgCaches[CACHE_DB];
 			$cache->set_servers( $wgMemCachedServers );
 			$cache->set_debug( $wgMemCachedDebug );
