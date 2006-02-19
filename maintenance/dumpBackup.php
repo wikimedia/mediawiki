@@ -24,7 +24,7 @@
 
 $originalDir = getcwd();
 
-$optionsWithArgs = array( 'server', 'pagelist', 'start', 'end' );
+$optionsWithArgs = array( 'pagelist', 'start', 'end' );
 
 require_once( 'commandLine.inc' );
 require_once( 'SpecialExport.php' );
@@ -34,12 +34,6 @@ $dumper = new BackupDumper( $argv );
 
 if( isset( $options['quiet'] ) ) {
 	$dumper->reporting = false;
-}
-if( isset( $options['report'] ) ) {
-	$dumper->reportingInterval = intval( $options['report'] );
-}
-if( isset( $options['server'] ) ) {
-	$dumper->server = $options['server'];
 }
 
 if ( isset( $options['pagelist'] ) ) {

@@ -24,8 +24,6 @@
 
 $originalDir = getcwd();
 
-$optionsWithArgs = array( 'server', 'pagelist', 'start', 'end' );
-
 require_once( 'commandLine.inc' );
 require_once( 'SpecialExport.php' );
 require_once( 'maintenance/backup.inc' );
@@ -210,9 +208,6 @@ class TextPassDumper extends BackupDumper {
 
 
 $dumper = new TextPassDumper( $argv );
-if( isset( $options['server'] ) ) {
-	$dumper->server = $options['server'];
-}
 
 if( true ) {
 	$dumper->dump();

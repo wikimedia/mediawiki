@@ -124,6 +124,12 @@ class BackupDumper {
 					$sink = $filter;
 
 					break;
+				case "report":
+					$this->reportingInterval = intval( $val );
+					break;
+				case "server":
+					$this->server = $val;
+					break;
 				default:
 					$this->processOption( $opt, $val, $param );
 				}
