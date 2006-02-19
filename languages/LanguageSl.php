@@ -61,7 +61,9 @@ class LanguageSl extends LanguageUtf8 {
 	function LanguageSl() {
 		global $wgNamespaceNamesSl, $wgMetaNamespace;
 		LanguageUtf8::LanguageUtf8();
-		$wgNamespaceNamesSl[NS_PROJECT_TALK] = 'Pogovor_o_' . $this->convertGrammar( $wgMetaNamespace, 'orodnik' );
+		$wgNamespaceNamesSl[NS_PROJECT_TALK] = 'Pogovor_' .
+			str_replace( ' ', '_',
+				$this->convertGrammar( $wgMetaNamespace, 'orodnik' ) );
 	}
 
 	function getNamespaces() {
@@ -157,6 +159,8 @@ class LanguageSl extends LanguageUtf8 {
 					$word = 'z Wikivirom';
 				} elseif ( $word == 'Wikislovar' ) {
 					$word = 'z Wikislovarjem';
+				} else {
+					$word = 'z ' . $word;
 				}
 			break;
 			case 'orodnik': # instrumental
@@ -172,6 +176,8 @@ class LanguageSl extends LanguageUtf8 {
 					$word = 'o Wikiviru';
 				} elseif ( $word == 'Wikislovar' ) {
 					$word = 'o Wikislovarju';
+				} else {
+					$word = 'o ' . $word;
 				}
 			break;
 		}

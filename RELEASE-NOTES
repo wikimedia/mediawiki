@@ -642,6 +642,7 @@ fully support the editing toolbar, but was found to be too confusing.
   page titles. (Odd hex title bug on 64-bit.)
 * Fix explicit s-maxage=0 on raw pages; should help with proxy issues in
   generated stylesheets... hopefully...
+* (bug 4685) More fixes for Slovenian project namespace
 
 
 === Caveats ===
