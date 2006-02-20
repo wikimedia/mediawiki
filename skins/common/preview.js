@@ -18,7 +18,9 @@ function openXMLHttpRequest() {
 function livePreview(target, text, postUrl) {
 	prevTarget = target;
 	if( !target ) {
-		window.alert('crash and burn');
+		window.alert('Live preview failed!\nTry normal preview.');
+		var fallback = document.getElementById('wpPreview');
+		if ( fallback ) { fallback.style.display = 'inline'; }
 	}
 	prevReq = openXMLHttpRequest();
 	if( !prevReq ) return false;
@@ -39,7 +41,13 @@ function updatePreviewText() {
 	if( prevReq.status != 200 ) {
 		window.alert('Failed to connect: ' + prevReq.status +
 			' "' + prevReq.statusText + '"');
+		var fallback = document.getElementById('wpPreview');
+		if ( fallback ) { fallback.style.display = 'inline'; }
 		return;
 	}
 	prevTarget.innerHTML = prevReq.responseText;
+
+	/* Hide the active diff if it exists */
+	var diff = document.getElementById('wikiDiff');
+	if ( diff ) { diff.style.display = 'none'; }
 }
