@@ -341,20 +341,19 @@ CONTROL;
 			return false;
 		}
 
-		$otext = $wgContLang->segmentForDiff($this->mOldtext);
-		$ntext = $wgContLang->segmentForDiff($this->mNewtext);
-		$difftext = $this->generateDiffBody( $otext, $ntext );
-		$difftext = $wgContLang->unsegmentForDiff($difftext);
-
+		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
+		
 		// Save to cache for 7 days
-		if ( $key !== false ) {
+		if ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );
 			$wgMemc->set( $key, $difftext, 7*86400 );
 		} else {
 			wfIncrStats( 'diff_uncacheable' );
 		}
 		// Replace line numbers with the text in the user's language
-		$difftext = $this->localiseLineNumbers( $difftext );
+		if ( $difftext !== false ) {
+			$difftext = $this->localiseLineNumbers( $difftext );
+		}
 		wfProfileOut( $fname );
 		return $difftext;
 	}
@@ -364,24 +363,26 @@ CONTROL;
 	 * $otext and $ntext must be already segmented
 	 */
 	function generateDiffBody( $otext, $ntext ) {
-		global $wgExternalDiffEngine;
+		global $wgExternalDiffEngine, $wgContLang;
 		$fname = 'DifferenceEngine::generateDiffBody';
+
+		$otext = str_replace( "\r\n", "\n", $otext );
+		$ntext = str_replace( "\r\n", "\n", $ntext );
+		
 		if ( $wgExternalDiffEngine == 'wikidiff' ) {
 			# For historical reasons, external diff engine expects
 			# input text to be HTML-escaped already
-			$otext = str_replace( "\r\n", "\n", htmlspecialchars ( $otext ) );
-			$ntext = str_replace( "\r\n", "\n", htmlspecialchars ( $ntext ) );
+			$otext = htmlspecialchars ( $wgContLang->segmentForDiff( $otext ) );
+			$ntext = htmlspecialchars ( $wgContLang->segmentForDiff( $ntext ) );
 			if( !function_exists( 'wikidiff_do_diff' ) ) {
 				dl('php_wikidiff.so');
 			}
-			return wikidiff_do_diff( $otext, $ntext, 2 );
+			return $wgContLang->unsegementForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) );
 		} 
 		
 		if ( $wgExternalDiffEngine == 'wikidiff2' ) {
 			# Better external diff engine, the 2 may some day be dropped
-			# This one does the escaping itself
-			$otext = str_replace( "\r\n", "\n", $otext );
-			$ntext = str_replace( "\r\n", "\n", $ntext );			
+			# This one does the escaping and segmenting itself
 			if ( !function_exists( 'wikidiff2_do_diff' ) ) {
 				@dl('php_wikidiff2.so');
 			}
@@ -392,8 +393,6 @@ CONTROL;
 		if ( $wgExternalDiffEngine !== false ) {
 			# Diff via the shell
 			global $wgTmpDirectory;
-			$otext = str_replace( "\r\n", "\n", $otext );
-			$ntext = str_replace( "\r\n", "\n", $ntext );
 			$tempName1 = tempnam( $wgTmpDirectory, 'diff_' );
 			$tempName2 = tempnam( $wgTmpDirectory, 'diff_' );
 
@@ -421,11 +420,11 @@ CONTROL;
 		}
 		
 		# Native PHP diff
-		$ota = explode( "\n", str_replace( "\r\n", "\n", $otext ) );
-		$nta = explode( "\n", str_replace( "\r\n", "\n", $ntext ) );
+		$ota = explode( "\n", $wgContLang->segmentForDiff( $otext ) );
+		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
 		$diffs =& new Diff( $ota, $nta );
 		$formatter =& new TableDiffFormatter();
-		return $formatter->format( $diffs );
+		return $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) );
 	}
 		
 
