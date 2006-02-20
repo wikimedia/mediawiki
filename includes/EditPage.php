@@ -345,7 +345,8 @@ class EditPage {
 				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
 				$this->preview  = true;
 			} else {
-				$this->preview = $request->getCheck( 'wpPreview' );
+				/* Fallback for live preview */
+				$this->preview = $request->getCheck( 'wpPreview' ) || $request->getCheck( 'wpLivePreview' );
 				$this->diff = $request->getCheck( 'wpDiff' );
 
 				if( !$this->preview ) {
@@ -765,9 +766,6 @@ class EditPage {
 		$subject = wfMsg('subject');
 		$minor   = wfMsg('minoredit');
 		$watchthis = wfMsg ('watchthis');
-		$save = wfMsg('savearticle');
-		$prev = wfMsg('showpreview');
-		$diff = wfMsg('showdiff');
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 				wfMsg('cancel') );
@@ -821,11 +819,15 @@ class EditPage {
 
 		$checkboxhtml = $minoredithtml . $watchhtml;
 
-		if ( 'preview' == $this->formtype && $wgUser->getOption( 'previewontop' ) ) {
-			$this->showPreview();
-		}
-		if ( 'diff' == $this->formtype ) {
-			if ( $wgUser->getOption('previewontop' ) ) {
+		if ( $wgUser->getOption( 'previewontop' ) ) {
+
+			if ( 'preview' == $this->formtype ) {
+				$this->showPreview();
+			} else {
+				$wgOut->addHTML( '<div id="wikiPreview"></div>' );
+			}
+
+			if ( 'diff' == $this->formtype ) {
 				$wgOut->addHTML( $this->getDiff() );
 			}
 		}
@@ -847,13 +849,6 @@ class EditPage {
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
 		$templates = $this->formatTemplates();
-
-		global $wgLivePreview;
-		if ( $wgLivePreview ) {
-			$liveOnclick = $this->doLivePreviewScript();
-		} else {
-			$liveOnclick = '';
-		}
 
 		global $wgUseMetadataEdit ;
 		if ( $wgUseMetadataEdit ) {
@@ -882,6 +877,65 @@ class EditPage {
 			}
 		}
 
+		$temp = array(
+			'id'        => 'wpSave',
+			'name'      => 'wpSave',
+			'type'      => 'submit',
+			'tabindex'  => '5',
+			'value'     => wfMsg('savearticle'),
+			'accesskey' => wfMsg('accesskey-save'),
+			'title'     => wfMsg('tooltip-save'),
+		);
+		$buttons['save'] = wfElement('input', $temp, '');
+		$temp = array(
+			'id'        => 'wpDiff',
+			'name'      => 'wpDiff',
+			'type'      => 'submit',
+			'tabindex'  => '7',
+			'value'     => wfMsg('showdiff'),
+			'accesskey' => wfMsg('accesskey-diff'),
+			'title'     => wfMsg('tooltip-diff'),
+		);
+		$buttons['diff'] = wfElement('input', $temp, '');
+
+		global $wgLivePreview;
+		if ( $wgLivePreview ) {
+			$temp = array(
+				'id'        => 'wpPreview',
+				'name'      => 'wpPreview',
+				'type'      => 'submit',
+				'tabindex'  => '6',
+				'value'     => wfMsg('showpreview'),
+				'accesskey' => '',
+				'title'     => wfMsg('tooltip-preview'),
+				'style'     => 'display: none;',
+			);
+			$buttons['preview'] = wfElement('input', $temp, '');
+			$temp = array(
+				'id'        => 'wpLivePreview',
+				'name'      => 'wpLivePreview',
+				'type'      => 'submit',
+				'tabindex'  => '6',
+				'value'     => wfMsg('showlivepreview'),
+				'accesskey' => wfMsg('accesskey-preview'),
+				'title'     => '',
+				'onclick'   => $this->doLivePreviewScript(),
+			);
+			$buttons['live'] = wfElement('input', $temp, '');
+		} else {
+			$temp = array(
+				'id'        => 'wpPreview',
+				'name'      => 'wpPreview',
+				'type'      => 'submit',
+				'tabindex'  => '6',
+				'value'     => wfMsg('showpreview'),
+				'accesskey' => wfMsg('accesskey-preview'),
+				'title'     => wfMsg('tooltip-preview'),
+			);
+			$buttons['preview'] = wfElement('input', $temp, '');
+			$buttons['live'] = '';
+		}
+
 		$safemodehtml = $this->checkUnicodeCompliantBrowser()
 			? ""
 			: "<input type='hidden' name=\"safemode\" value='1' />\n";
@@ -892,6 +946,7 @@ class EditPage {
 enctype="multipart/form-data">
 END
 );
+
 		if( is_callable( $formCallback ) ) {
 			call_user_func_array( $formCallback, array( &$wgOut ) );
 		}
@@ -912,11 +967,9 @@ END
 . htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) ) .
 "
 </textarea>
-
 		" );
 
 		$wgOut->addWikiText( $copywarn );
-
 		$wgOut->addHTML( "
 {$metadata}
 {$editsummary}
@@ -924,16 +977,15 @@ END
 {$safemodehtml}
 ");
 
-		$wgOut->addHTML( "
+		$wgOut->addHTML("
 <div class='editButtons'>
-<input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
-" title=\"".wfMsg('tooltip-save')."\"/>
-<input tabindex='6' id='wpPreview' type='submit' $liveOnclick value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
-" title=\"".wfMsg('tooltip-preview')."\"/>
-<input tabindex='7' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
-" title=\"".wfMsg('tooltip-diff')."\"/> <span class='editHelp'>{$cancel} | {$edithelp}</span></div>
-</div>
-" );
+	{$buttons['save']}
+	{$buttons['preview']}
+	{$buttons['live']}
+	{$buttons['diff']}
+	<span class='editHelp'>{$cancel} | {$edithelp}</span>
+</div><!-- editButtons -->
+</div><!-- editOptions -->");
 
 		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
 
@@ -970,12 +1022,18 @@ END
 				. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox2 ) ) . "\n</textarea>" );
 		}
 		$wgOut->addHTML( "</form>\n" );
-		if ( $this->formtype == 'preview' && !$wgUser->getOption( 'previewontop' ) ) {
-			$this->showPreview();
-		}
-		if ( $this->formtype == 'diff' && !$wgUser->getOption( 'previewontop' ) ) {
-			#$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
-			$wgOut->addHTML( $this->getDiff() );
+		if ( !$wgUser->getOption( 'previewontop' ) ) {
+
+			if ( $this->formtype == 'preview') {
+				$this->showPreview();
+			} else {
+				$wgOut->addHTML( '<div id="wikiPreview"></div>' );
+			}
+		
+			if ( $this->formtype == 'diff') {
+				$wgOut->addHTML( $this->getDiff() );
+			}
+
 		}
 
 		wfProfileOut( $fname );
@@ -1044,15 +1102,15 @@ END
 	 * of the preview button
 	 */
 	function doLivePreviewScript() {
-		global $wgStylePath, $wgJsMimeType, $wgOut;
+		global $wgStylePath, $wgJsMimeType, $wgOut, $wgTitle;
 		$wgOut->addHTML( '<script type="'.$wgJsMimeType.'" src="' .
 			htmlspecialchars( $wgStylePath . '/common/preview.js' ) .
 			'"></script>' . "\n" );
 		$liveAction = $wgTitle->getLocalUrl( 'action=submit&wpPreview=true&live=true' );
-		return 'onclick="return !livePreview('.
-			'getElementById(\'wikiPreview\'),' .
-			'editform.wpTextbox1.value,' .
-			htmlspecialchars( '"' . $liveAction . '"' ) . ')"';
+		return "return !livePreview(" .
+			"getElementById('wikiPreview')," .
+			"editform.wpTextbox1.value," .
+			'"' . $liveAction . '"' . ")";
 	}
 
 	function getLastDelete() {
@@ -1430,7 +1488,9 @@ END
 		header( 'Content-type: text/xml' );
 		header( 'Cache-control: no-cache' );
 		# FIXME
-		echo $this->getPreviewText( false, false );
+		echo $this->getPreviewText( );
+		/* To not shake screen up and down between preview and live-preview */
+		echo "<br style=\"clear:both;\" />\n";
 	}
 
 

@@ -644,6 +644,7 @@ fully support the editing toolbar, but was found to be too confusing.
   generated stylesheets... hopefully...
 * (bug 4685) More fixes for Slovenian project namespace
 * Fix --report interval option for dumpTextPass
+* Fixed and enhanced a little the Live Preview, which had been broken for some time
 
 
 === Caveats ===
