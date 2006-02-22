@@ -1250,10 +1250,8 @@ class User {
 		$_SESSION['wsToken'] = $this->mToken;
 		  global $wgOut;
 		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
-		  $wgOut->addHTML("<font size=-2>[+]</font>");
 			setcookie( $wgCookiePrefix.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain );
 		} else {
-		  $wgOut->addHTML("<font size=-2>[-]</font>");
 			setcookie( $wgCookiePrefix.'Token', '', time() - 3600 );
 		}
 	}
