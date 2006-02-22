@@ -137,6 +137,7 @@ Maintenance:
 * Maintenance script to wipe a page and all revisions from the database
 * Maintenance script to reassign edits from one user to another
 * Maintenance script to find and remove links to a given domain (cleanupSpam.php)
+* Fix --report interval option for dumpTextPass
 
 i18n / Languages:
 * Partial support for Basque language (from wikipedia and meta)
@@ -643,8 +644,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix explicit s-maxage=0 on raw pages; should help with proxy issues in
   generated stylesheets... hopefully...
 * (bug 4685) More fixes for Slovenian project namespace
-* Fix --report interval option for dumpTextPass
 * Fixed and enhanced a little the Live Preview, which had been broken for some time
+* Added article size limit, $wgMaxArticleSize
 
 
 === Caveats ===

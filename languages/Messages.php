@@ -523,6 +523,8 @@ public domain or similar free resource (see $1 for details).
 'longpagewarning' => "<strong>WARNING: This page is $1 kilobytes long; some
 browsers may have problems editing pages approaching or longer than 32kb.
 Please consider breaking the page into smaller sections.</strong>",
+'longpageerror' => "<strong>ERROR: The text you have submitted is $1 kilobytes 
+long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>",
 'readonlywarning' => '<strong>WARNING: The database has been locked for maintenance,
 so you will not be able to save your edits right now. You may wish to cut-n-paste
 the text into a text file and save it for later.</strong>',

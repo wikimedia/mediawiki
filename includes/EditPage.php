@@ -24,6 +24,8 @@ class EditPage {
 	var $firsttime;
 	var $lastDelete;
 	var $mTokenOk = true;
+	var $tooBig = false;
+	var $kblength = false;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -451,6 +453,7 @@ class EditPage {
 	 */
 	function attemptSave() {
 		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut;
+		global $wgMaxArticleSize;
 
 		$fname = 'EditPage::attemptSave';
 		wfProfileIn( $fname );
@@ -486,7 +489,15 @@ class EditPage {
 			wfProfileOut( $fname );
 			return false;
 		}
-
+		$this->kblength = (int)(strlen( $this->textbox1 ) / 1024);
+		if ( $this->kblength > $wgMaxArticleSize ) {
+			// Error will be displayed by showEditForm()
+			$this->tooBig = true;
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
+			return true;
+		}
+		
 		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
 				$this->userNotLoggedInPage();
@@ -641,6 +652,14 @@ class EditPage {
 		$this->textbox1 = $text;
 		$this->section = '';
 
+		// Check for length errors again now that the section is merged in
+		$this->kblength = (int)(strlen( $text ) / 1024);
+		if ( $this->kblength > $wgMaxArticleSize ) {
+			$this->tooBig = true;
+			wfProfileOut( $fname );
+			return true;
+		}
+
 		# update the article here
 		if( $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
 			$this->watchthis, '', $sectionanchor ) ) {
@@ -673,7 +692,7 @@ class EditPage {
 	 *                      near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback=null ) {
-		global $wgOut, $wgUser, $wgLang, $wgContLang;
+		global $wgOut, $wgUser, $wgLang, $wgContLang, $wgMaxArticleSize;
 
 		$fname = 'EditPage::showEditForm';
 		wfProfileIn( $fname );
@@ -745,10 +764,14 @@ class EditPage {
 			}
 			$wgOut->addWikiText( $notice );
 		}
-		
-		$kblength = (int)(strlen( $this->textbox1 ) / 1024);
-		if( $kblength > 29 ) {
-			$wgOut->addWikiText( wfMsg( 'longpagewarning', $wgLang->formatNum( $kblength ) ) );
+
+		if ( $this->kblength === false ) {
+			$this->kblength = (int)(strlen( $this->textbox1 ) / 1024);
+		}
+		if ( $this->tooBig || $this->kblength > $wgMaxArticleSize ) {
+			$wgOut->addWikiText( wfMsg( 'longpageerror', $wgLang->formatNum( $this->kblength ), $wgMaxArticleSize ) );
+		} elseif( $this->kblength > 29 ) {
+			$wgOut->addWikiText( wfMsg( 'longpagewarning', $wgLang->formatNum( $this->kblength ) ) );
 		}
 
 		$rows = $wgUser->getOption( 'rows' );
