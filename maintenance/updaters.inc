@@ -199,6 +199,7 @@ function do_logging_timestamp_index() {
 
 function do_watchlist_update() {
 	global $wgDatabase;
+	$fname = 'do_watchlist_update';
 	if( $wgDatabase->fieldExists( 'watchlist', 'wl_notificationtimestamp' ) ) {
 		echo "The watchlist table is already set up for email notification.\n";
 	} else {
@@ -206,6 +207,24 @@ function do_watchlist_update() {
 		/* ALTER TABLE watchlist ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0'); */
 		dbsource( "maintenance/archives/patch-email-notification.sql", $wgDatabase );
 		echo "ok\n";
+	}
+	# Check if we need to add talk page rows to the watchlist
+	$talk = $wgDatabase->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', $fname );
+	$nontalk = $wgDatabase->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', $fname );
+	if ( $talk != $nontalk ) {
+		echo "Adding missing watchlist talk page rows... ";
+		flush();
+
+		$wgDatabase->insertSelect( 'watchlist', 'watchlist', 
+			array(
+				'wl_user' => 'wl_user',
+				'wl_namespace' => 'wl_namespace | 1',
+				'wl_title' => 'wl_title',
+				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
+			), array( 'NOT (wl_namespace & 1)' ), $fname, 'IGNORE' );
+		echo "ok\n";
+	} else {
+		echo "...watchlist talk page rows already present\n";
 	}
 }
 
