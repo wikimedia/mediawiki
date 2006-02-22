@@ -796,7 +796,7 @@ class Parser
 			$l = array_pop ( $ltd ) ;
 			if ( array_pop ( $td ) ) $t[] = '</td>' ;
 			if ( array_pop ( $tr ) ) $t[] = '</tr>' ;
-			if ( array_pop ( $has_opened_tr ) ) $t[] = "<tr><td></td></tr>" ;
+			if ( !array_pop ( $has_opened_tr ) ) $t[] = "<tr><td></td></tr>" ;
 			$t[] = '</table>' ;
 		}
 
