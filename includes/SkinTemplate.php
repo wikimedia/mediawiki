@@ -272,7 +272,8 @@ class SkinTemplate extends Skin {
 				$ntl = wfMsg( 'youhavenewmessages',
 					$this->makeKnownLinkObj(
 						$usertalktitle,
-						wfMsgHtml( 'newmessageslink' )
+						wfMsgHtml( 'newmessageslink' ),
+						'redirect=no'
 					),
 					$this->makeKnownLinkObj(
 						$usertalktitle,
