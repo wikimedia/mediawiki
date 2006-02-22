@@ -485,9 +485,8 @@ class LoginForm {
 		$link .= '</a>';
 
 		# Don't show a "create account" link if the user can't
-		#if( $this->mType == 'signup' || ( $this->mType == 'login' && $wgUser->isAllowedToCreateAccount() ) ) {
+		if( $this->showCreateOrLoginLink( $wgUser ) )
 			$template->set( 'link', wfMsgHtml( $linkmsg, $link ) );
-		#}		
 		
 		$template->set( 'header', '' );
 		$template->set( 'name', $this->mName );
@@ -518,6 +517,19 @@ class LoginForm {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->addTemplate( $template );
+	}
+	
+	/**
+	 * @access private
+	 */
+	function showCreateOrLoginLink( &$user ) {
+		if( $this->mType == 'signup' ) {
+			return( true );
+		} elseif( $user->isAllowedToCreateAccount() ) {
+			return( true );
+		} else {
+			return( false );
+		}
 	}
 
 	/**
