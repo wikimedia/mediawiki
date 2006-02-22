@@ -360,6 +360,8 @@ Special Pages:
 * (bug 5018) Anchors for each message in Special:Allmessages
 * Introduce $wgWantedPagesThreshold per bug 5011; Special:Wantedpages will not
   list pages with less than this number of links. Defaults to 1.
+* (bug 4319) Don't show a "create account" link on the login form when
+  account creation is disabled.
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
