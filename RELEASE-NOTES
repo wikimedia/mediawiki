@@ -648,7 +648,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4685) More fixes for Slovenian project namespace
 * Fixed and enhanced a little the Live Preview, which had been broken for some time
 * Added article size limit, $wgMaxArticleSize
-
+* (bug 4974) Don't follow redirected talk page on "new messages" link
 
 === Caveats ===
 
