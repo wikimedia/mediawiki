@@ -484,9 +484,12 @@ class LoginForm {
 		$link .= wfMsgHtml( $linkmsg . 'link' );
 		$link .= '</a>';
 
-		$template->set( 'link', wfMsgHtml( $linkmsg, $link ) );
+		# Don't show a "create account" link if the user can't
+		if( $this->mType == 'signup' || ( $this->mType == 'login' && $wgUser->isAllowedToCreateAccount() ) ) {
+			$template->set( 'link', wfMsgHtml( $linkmsg, $link ) );
+		}		
+		
 		$template->set( 'header', '' );
-
 		$template->set( 'name', $this->mName );
 		$template->set( 'password', $this->mPassword );
 		$template->set( 'retype', $this->mRetype );
