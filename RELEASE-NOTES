@@ -242,7 +242,6 @@ i18n / Languages:
 * Restriction types now use restriction-* messages instead of ui messages
 * (bug 4685) Slovenian LanguageSl.php hardcodes project namespace
 
-
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
 * (bug 3210) Fix Media: links with remote image URL path
@@ -649,6 +648,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fixed and enhanced a little the Live Preview, which had been broken for some time
 * Added article size limit, $wgMaxArticleSize
 * (bug 4974) Don't follow redirected talk page on "new messages" link
+* (bug 4970) Make category paging limits configurable
 
 === Caveats ===
 
