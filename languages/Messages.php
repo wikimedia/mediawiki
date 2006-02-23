@@ -1478,6 +1478,8 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'markedaspatrolledtext' => "The selected revision has been marked as patrolled.",
 'rcpatroldisabled'      => "Recent Changes Patrol disabled",
 'rcpatroldisabledtext'  => "The Recent Changes Patrol feature is currently disabled.",
+'markedaspatrollederror'  => "Cannot mark as patrolled",
+'markedaspatrollederrortext' => "You need to specify a revision to mark as patrolled.",
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
