@@ -930,7 +930,7 @@ class EditPage {
 		$buttons['diff'] = wfElement('input', $temp, '');
 
 		global $wgLivePreview;
-		if ( $wgLivePreview ) {
+		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
 			$temp = array(
 				'id'        => 'wpPreview',
 				'name'      => 'wpPreview',
