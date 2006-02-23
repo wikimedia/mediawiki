@@ -1062,6 +1062,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4805) Removed more wikipedia-references from LanguageUk.php
 * Introduce $wgWantedPagesThreshold per bug 5011; Special:Wantedpages will not
   list pages with less than this number of links. Defaults to 1.
+* Allow customisation of paging limits for items in categories using the
+  $wgCategoryPagingLimit global, per bug 4970.
 
 === Caveats ===
 
