@@ -59,6 +59,7 @@ parent class in order maintain consistency across languages.
 'tog-externaleditor' => 'Use external editor by default',
 'tog-externaldiff' => 'Use external diff by default',
 'tog-showjumplinks' => 'Enable "jump to" accessibility links',
+'tog-uselivepreview' => 'Use live preview (JavaScript) (Experimental)',
 
 'underline-always' => 'Always',
 'underline-never' => 'Never',

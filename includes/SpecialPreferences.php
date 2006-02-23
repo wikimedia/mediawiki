@@ -813,7 +813,8 @@ class PreferencesForm {
 				'watchdefault',
 				'minordefault',
 				'externaleditor',
-				'externaldiff' )
+				'externaldiff',
+				'uselivepreview', )
 			) . '</fieldset>'
 		);
 

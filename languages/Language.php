@@ -83,6 +83,7 @@ if(isset($wgExtraNamespaces)) {
 	'externaldiff' 		=> 0,
 	'showjumplinks'		=> 1,
 	'numberheadings'	=> 0,
+	'uselivepreview'	=> 0,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -156,6 +157,7 @@ $wgDateFormatsEn = array(
 	'externaleditor',
 	'externaldiff',
 	'showjumplinks',
+	'uselivepreview',
 );
 
 /* private */ $wgBookstoreListEn = array(
