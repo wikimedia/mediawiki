@@ -797,6 +797,7 @@ class PreferencesForm {
 
 		# Editing
 		#
+		global $wgLivePreview;
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'textboxsize' ) . '</legend>
 			<div>
 				<label for="wpRows">' . wfMsg( 'rows' ) . "</label> <input type='text' name='wpRows' id='wpRows' value=\"{$this->mRows}\" size='3' />
@@ -814,7 +815,7 @@ class PreferencesForm {
 				'minordefault',
 				'externaleditor',
 				'externaldiff',
-				'uselivepreview', )
+				$wgLivePreview ? 'uselivepreview' : false, )
 			) . '</fieldset>'
 		);
 
