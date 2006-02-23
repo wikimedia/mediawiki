@@ -1562,6 +1562,11 @@ $wgThumbLimits = array(
 $wgCategoryMagicGallery = true;
 
 /**
+ * Paging limit for categories
+ */
+$wgCategoryPagingLimit = 200;
+
+/**
  * Browser Blacklist for unicode non compliant browsers
  * Contains a list of regexps : "/regexp/"  matching problematic browsers
  */
