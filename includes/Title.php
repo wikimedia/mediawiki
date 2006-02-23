@@ -1106,6 +1106,22 @@ class Title {
 		return ( NS_USER == $this->mNamespace and preg_match("/\\.(css|js)$/", $this->mTextform ) );
 	}
 	/**
+	 * Is this a *valid* .css or .js subpage of a user page?
+	 * Check that the corresponding skin exists
+	 */
+	function isValidCssJsSubpage() {
+		global $wgValidSkinNames;
+		return( $this->isCssJsSubpage() && array_key_exists( $this->getSkinFromCssJsSubpage(), $wgValidSkinNames ) );
+	}
+	/**
+	 * Trim down a .css or .js subpage title to get the corresponding skin name
+	 */
+	function getSkinFromCssJsSubpage() {
+		$subpage = explode( '/', $this->mTextform );
+		$subpage = $subpage[ count( $subpage ) - 1 ];
+		return( str_replace( array( '.css', '.js' ), array( '', '' ), $subpage ) );
+	}
+	/**
 	 * Is this a .css subpage of a user page?
 	 * @return bool
 	 * @access public

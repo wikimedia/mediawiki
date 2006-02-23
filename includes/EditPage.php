@@ -250,7 +250,8 @@ class EditPage {
 
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
-		$this->isCssJsSubpage = $wgTitle->isCssJsSubpage();
+		$this->isCssJsSubpage      = $wgTitle->isCssJsSubpage();
+		$this->isValidCssJsSubpage = $wgTitle->isValidCssJsSubpage();
 
 		/* Notice that we can't use isDeleted, because it returns true if article is ever deleted
 		 * no matter it's current state
@@ -747,12 +748,19 @@ class EditPage {
 
 		if( wfReadOnly() ) {
 			$wgOut->addWikiText( wfMsg( 'readonlywarning' ) );
-		} else if ( $this->isCssJsSubpage and 'preview' != $this->formtype) {
-			$wgOut->addWikiText( wfMsg( 'usercssjsyoucanpreview' ));
-		} else if( $wgUser->isAnon() && $this->formtype != 'preview' ) {
+		} elseif( $wgUser->isAnon() && $this->formtype != 'preview' ) {
 			$wgOut->addWikiText( wfMsg( 'anoneditwarning' ) );
+		} else {
+			if( $this->isCssJsSubpage && $this->formtype != 'preview' ) {
+				# Check the skin exists
+				if( $this->isValidCssJsSubpage ) {
+					$wgOut->addWikiText( wfMsg( 'usercssjsyoucanpreview' ) );
+				} else {
+					$wgOut->addWikiText( wfMsg( 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ) );
+				}
+			}
 		}
-		
+			
 		if( $this->mTitle->isProtected( 'edit' ) ) {
 			if( $this->mTitle->isSemiProtected() ) {
 				$notice = wfMsg( 'semiprotectedpagewarning' );
