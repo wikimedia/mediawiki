@@ -49,7 +49,6 @@ class Job {
 		// Pop an item off the front of the queue
 		// Method due to Domas, may not work on all DBMSes
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->immediateBegin();
 		$jobTable = $dbw->tableName( 'job' );
 		$dbw->query( "DELETE FROM $jobTable WHERE " .
 			'(job_cmd = @job_cmd := job_cmd) AND ' .
