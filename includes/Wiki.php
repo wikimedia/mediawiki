@@ -249,6 +249,7 @@ class MediaWiki {
 	function finalCleanup ( &$deferredUpdates, &$loadBalancer, &$output ) {
 		wfProfileIn( 'MediaWiki::finalCleanup' );
 		$this->doUpdates( $deferredUpdates );
+		$this->doJobs();
 		$loadBalancer->saveMasterPos();
 		# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
 		$loadBalancer->commitAll();
@@ -267,6 +268,38 @@ class MediaWiki {
 			$up->doUpdate();
 		}
 		wfProfileOut( 'MediaWiki::doUpdates' );		
+	}
+
+	/**
+	 * Do a job from the job queue
+	 */
+	function doJobs() {
+		global $wgJobLogFile, $wgJobRunRate;
+		
+		if ( $wgJobRunRate <= 0 ) {
+			return;
+		}
+		if ( $wgJobRunRate < 1 ) {
+			$max = mt_getrandmax();
+			if ( mt_rand( 0, $max ) < $max * $wgJobRunRate ) {
+				return;
+			}
+			$n = 1;
+		} else {
+			$n = intval( $wgJobRunRate );
+		}
+
+		require_once( 'JobQueue.php' );
+
+		while ( $n-- && false != ($job = Job::pop())) {
+			$output = $job->toString() . "\n";
+			if ( !$job->run() ) {
+				$output .= "Error: " . $job->getLastError() . "\n";
+			}
+			if ( $wgJobLogFile ) {
+				error_log( $output, 3, $wgJobLogFile );
+			}
+		}
 	}
 	
 	/**

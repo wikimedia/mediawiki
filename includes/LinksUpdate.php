@@ -15,7 +15,6 @@ class LinksUpdate {
 	 */
 	var $mId,            # Page ID of the article linked from
 		$mTitle,         # Title object of the article linked from
-		$mParserOutput,  # Parser output containing the links to be inserted into the database
 		$mLinks,         # Map of title strings to IDs for the links in the document
 		$mImages,        # DB keys of the images used, in the array key only
 		$mTemplates,     # Map of title strings to IDs for the template references, including broken ones
@@ -47,14 +46,12 @@ class LinksUpdate {
 		}
 		$this->mTitle = $title;
 		$this->mId = $title->getArticleID();
-		$this->mParserOutput = $parserOutput;
 
-		// Shortcut aliases
-		$this->mLinks =& $this->mParserOutput->getLinks();
-		$this->mImages =& $this->mParserOutput->getImages();
-		$this->mTemplates =& $this->mParserOutput->getTemplates();
-		$this->mExternals =& $this->mParserOutput->getExternalLinks();
-		$this->mCategories =& $this->mParserOutput->getCategories();
+		$this->mLinks = $parserOutput->getLinks();
+		$this->mImages = $parserOutput->getImages();
+		$this->mTemplates = $parserOutput->getTemplates();
+		$this->mExternals = $parserOutput->getExternalLinks();
+		$this->mCategories = $parserOutput->getCategories();
 
 	}
 
@@ -79,11 +76,6 @@ class LinksUpdate {
 		$this->incrTableUpdate( 'pagelinks', 'pl', $this->getLinkDeletions( $existing ),
 			$this->getLinkInsertions( $existing ) );
 
-		# Template links
-		$existing = $this->getExistingTemplates();
-		$this->incrTableUpdate( 'templatelinks', 'tl', $this->getTemplateDeletions( $existing ),
-			$this->getTemplateInsertions( $existing ) );
-
 		# Image links
 		$existing = $this->getExistingImages();
 		$this->incrTableUpdate( 'imagelinks', 'il', $this->getImageDeletions( $existing ),
@@ -93,7 +85,19 @@ class LinksUpdate {
 		$existing = $this->getExistingExternals();
 		$this->incrTableUpdate( 'externallinks', 'el', $this->getExternalDeletions( $existing ),
 			$this->getExternalInsertions( $existing ) );
-		
+
+		# Template links
+		$existing = $this->getExistingTemplates();
+		$this->incrTableUpdate( 'templatelinks', 'tl', $this->getTemplateDeletions( $existing ),
+			$this->getTemplateInsertions( $existing ) );
+
+		# Refresh links of all pages including this page
+		$tlto = $this->mTitle->getTemplateLinksTo();
+		if ( count( $tlto ) ) {
+			require_once( 'JobQueue.php' );
+			Job::queueLinksJobs( $tlto );
+		}
+
 		# Category links
 		$existing = $this->getExistingCategories();
 		$this->incrTableUpdate( 'categorylinks', 'cl', $this->getCategoryDeletions( $existing ),
@@ -117,8 +121,16 @@ class LinksUpdate {
 		$fname = 'LinksUpdate::doDumbUpdate';
 		wfProfileIn( $fname );
 
+		# Refresh category pages
 		$existing = $this->getExistingCategories();
 		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
+
+		# Refresh links of all pages including this page
+		$tlto = $this->mTitle->getTemplateLinksTo();
+		if ( count( $tlto ) ) {
+			require_once( 'JobQueue.php' );
+			Job::queueLinksJobs( $tlto );
+		}
 
 		$this->dumbTableUpdate( 'pagelinks',     $this->getLinkInsertions(),     'pl_from' );
 		$this->dumbTableUpdate( 'imagelinks',    $this->getImageInsertions(),    'il_from' );
