@@ -16,7 +16,7 @@
 
 include_once( "LanguageDe.php" );
 
-class LanguageGem_alsatian extends LanguageDe {
+class LanguageGsw extends LanguageDe {
 	/* Inherit everything. */
 }
 

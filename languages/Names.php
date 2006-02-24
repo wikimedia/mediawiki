@@ -8,7 +8,7 @@
 	'ab' => 'Аҧсуа',	# Abkhaz, should possibly add ' бысжѡа'
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akana',		# Akan
-	'als' => 'Alemannisch',	# Alemannic
+	'als' => 'Alemannisch',	# Alemannic -- not a valid code, for compatibility
 	'am' => 'አማርኛ',	# Amharic
 	'an' => 'Aragonés',	# Aragonese
 	'ang' => 'Anglo Saxon',	# Old English
@@ -69,6 +69,7 @@
 	'gl' => 'Galego',		# Gallegan
 	'gn' => 'Avañe\'ẽ',	# Guarani
 	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
+	'gsw' => 'Alemannisch',	# Alemannic
 	'gu' => 'ગુજરાતી',	# Gujarati
 	'gv' => 'Gaelg',		# Manx
 	'ha' => 'هَوُسَ',	# Hausa
