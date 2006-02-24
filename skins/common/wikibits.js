@@ -547,3 +547,47 @@ function scrollEditBox() {
 }
 
 hookEvent("load", scrollEditBox);
+
+function allmessagesfilter() {
+	text = document.getElementById('allmessagesinput').value;
+	k = document.getElementById('allmessagestable');
+	if (!k) { return;}
+	items = k.getElementsByTagName('span');
+	for (var i = 0; i< items.length; i++) {
+		var hItem = items[i].getAttribute('id');
+		if (hItem.substring(0,17) == 'sp-allmessages-i-') {
+			if (items[i].firstChild && items[i].firstChild.nodeName == '#text' && items[i].firstChild.nodeValue.match(text)) {
+				document.getElementById( hItem.replace('i', 'r1') ).style.display = '';
+				var row = document.getElementById( hItem.replace('i', 'r2') );
+				if (row) { row.style.display = ''; }
+			} else {
+				document.getElementById( hItem.replace('i', 'r1') ).style.display = 'none';
+				var row = document.getElementById( hItem.replace('i', 'r2') );
+				if (row) { row.style.display = 'none'; }
+			}
+		}
+	}
+}
+
+function allmessagesmodified() {
+	checked = document.getElementById('allmessagescheckbox').getAttribute('checked');
+	k = document.getElementById('allmessagestable');
+	if (!k) { return;}
+	items = k.getElementsByTagName('tr');
+	for (var i = 0; i< items.length; i++) {
+		if (items[i].getAttribute('class') == 'def') {
+			if (checked == '') {
+				items[i].style.display = '';
+			} else {
+				items[i].style.display = 'none';
+			}
+		}
+	}
+}
+
+function allmessagesshow() {
+	k = document.getElementById('allmessagesfilter');
+	if (k) { k.style.display = ''; }
+}
+
+hookEvent("load", allmessagesshow);

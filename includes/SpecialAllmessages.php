@@ -107,7 +107,7 @@ function makeHTMLText( $messages ) {
 		'onclick' => 'allmessagesmodified()',),
 		'');
 
-	$txt = '<span id="allmessagesfilter" style="display:none";>' .
+	$txt = '<span id="allmessagesfilter" style="display:none;">' .
 		wfMsgHtml('allmessagesfilter') . " {$input}{$checkbox} " .
 		wfMsgHtml( 'allmessagesmodified' ) . '</span>';
 
