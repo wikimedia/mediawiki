@@ -95,7 +95,23 @@ function makeHTMLText( $messages ) {
 	$talk = $wgLang->getNsText( NS_TALK );
 	$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
 	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
-	$txt = "
+
+	$input = wfElement( 'input', array(
+		'type'    => 'text',
+		'id'      => 'allmessagesinput',
+		'onkeyup' => 'allmessagesfilter()',),
+		'');
+	$checkbox = wfElement( 'input', array(
+		'type'    => 'checkbox',
+		'id'      => 'allmessagescheckbox',
+		'onclick' => 'allmessagesmodified()',),
+		'');
+
+	$txt = '<span id="allmessagesfilter" style="display:none";>' .
+		wfMsgHtml('allmessagesfilter') . " {$input}{$checkbox} " .
+		wfMsgHtml( 'allmessagesmodified' ) . '</span>';
+
+	$txt .= "
 <table border='1' cellspacing='0' width='100%' id='allmessagestable'>
 	<tr>
 		<th rowspan='2'>" . wfMsgHtml('allmessagesname') . "</th>
@@ -124,6 +140,8 @@ function makeHTMLText( $messages ) {
 
 	wfProfileIn( "$fname-output" );
 
+	$i = 0;
+
 	foreach( $messages as $key => $m ) {
 
 		$title = $wgLang->ucfirst( $key );
@@ -140,9 +158,9 @@ function makeHTMLText( $messages ) {
 		#$pageLink = $sk->makeLinkObj( $titleObj, htmlspecialchars( $key ) );
 		#$talkLink = $sk->makeLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		if( isset( $pageExists[NS_MEDIAWIKI][$title] ) ) {
-			$pageLink = $sk->makeKnownLinkObj( $titleObj, htmlspecialchars( $key ) );
+			$pageLink = $sk->makeKnownLinkObj( $titleObj, "<span id='sp-allmessages-i-$i'>" .  htmlspecialchars( $key ) . "</span>" );
 		} else {
-			$pageLink = $sk->makeBrokenLinkObj( $titleObj, htmlspecialchars( $key ) );
+			$pageLink = $sk->makeBrokenLinkObj( $titleObj, "<span id='sp-allmessages-i-$i'>" .  htmlspecialchars( $key ) . "</span>" );
 		}
 		if( isset( $pageExists[NS_MEDIAWIKI_TALK][$title] ) ) {
 			$talkLink = $sk->makeKnownLinkObj( $talkPage, htmlspecialchars( $talk ) );
@@ -155,22 +173,22 @@ function makeHTMLText( $messages ) {
 
 		if($changed) {
 
-			$txt .=
-	"<tr class='orig'>
+			$txt .= "
+	<tr class='orig' id='sp-allmessages-r1-$i'>
 		<td rowspan='2'>
 			$anchor$pageLink<br />$talkLink
 		</td><td>
 $message
 		</td>
-	</tr><tr class='new'>
+	</tr><tr class='new' id='sp-allmessages-r2-$i'>
 		<td>
 $mw
 		</td>
 	</tr>";
 		} else {
 
-			$txt .=
-	"<tr class='def'>
+			$txt .= "
+	<tr class='def' id='sp-allmessages-r1-$i'>
 		<td>
 			$anchor$pageLink<br />$talkLink
 		</td><td>
@@ -179,6 +197,7 @@ $mw
 	</tr>";
 
 		}
+	$i++;
 	}
 	$txt .= "</table>";
 	wfProfileOut( "$fname-output" );
