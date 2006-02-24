@@ -27,6 +27,7 @@ $wgNewTables = array(
 	array( 'transcache',	'patch-transcache.sql' ),
 	array( 'trackbacks',	'patch-trackbacks.sql' ),
 	array( 'externallinks', 'patch-externallinks.sql' ),
+	array( 'job',           'patch-job.sql' ),
 );
 
 $wgNewFields = array(
