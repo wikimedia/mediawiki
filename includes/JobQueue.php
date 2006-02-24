@@ -49,13 +49,14 @@ class Job {
 		// Pop an item off the front of the queue
 		// Method due to Domas, may not work on all DBMSes
 		$dbw =& wfGetDB( DB_MASTER );
+		$dbw->immediateBegin();
 		$jobTable = $dbw->tableName( 'job' );
 		$dbw->query( "DELETE FROM $jobTable WHERE " .
 			'(job_cmd = @job_cmd := job_cmd) AND ' .
 			'(job_namespace = @job_namespace := job_namespace) AND ' .
 			'(job_title = @job_title := job_title) AND ' .
 			'(job_params = @job_params := job_params) ' .
-			'ORDER BY job_id LIMIT 1', $fname );
+			'LIMIT 1', $fname );
 		$affected = $dbw->affectedRows();
 		// Commit now before 100 other threads pile up behind us
 		$dbw->immediateCommit();
