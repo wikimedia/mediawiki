@@ -281,7 +281,7 @@ class MediaWiki {
 		}
 		if ( $wgJobRunRate < 1 ) {
 			$max = mt_getrandmax();
-			if ( mt_rand( 0, $max ) < $max * $wgJobRunRate ) {
+			if ( mt_rand( 0, $max ) > $max * $wgJobRunRate ) {
 				return;
 			}
 			$n = 1;
@@ -408,8 +408,8 @@ class MediaWiki {
 				if( wfRunHooks( 'UnknownAction', array( $action, $article ) ) ) {
 					$output->errorpage( 'nosuchaction', 'nosuchactiontext' );
 				}
+		}
 		wfProfileOut( 'MediaWiki::performAction' );
-	}
 
 	
 	}
