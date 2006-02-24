@@ -651,6 +651,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4970) Make category paging limits configurable
 * (bug 4535) Warn user when editing CSS or JS subpage of a skin that doesn't exist
 * Make Live Preview an user preference, still controllable by the global variable
+* Make links to categories in the catlinks box blue whether the target page exists 
+  or not.
 
 === Caveats ===
 
