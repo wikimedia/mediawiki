@@ -556,17 +556,23 @@ function allmessagesfilter() {
 	for (var i = 0; i< items.length; i++) {
 		var hItem = items[i].getAttribute('id');
 		if (hItem.substring(0,17) == 'sp-allmessages-i-') {
-			if (items[i].firstChild && items[i].firstChild.nodeName == '#text' && items[i].firstChild.nodeValue.match(text)) {
-				document.getElementById( hItem.replace('i', 'r1') ).style.display = '';
-				var row = document.getElementById( hItem.replace('i', 'r2') );
-				if (row) { row.style.display = ''; }
+			if (items[i].firstChild && items[i].firstChild.nodeName == '#text' && items[i].firstChild.nodeValue.indexOf(text) != -1) {
+				var s = "allmessageshelper(\"" + hItem + "\",'')";
+				var k = window.setTimeout(s,i);
 			} else {
-				document.getElementById( hItem.replace('i', 'r1') ).style.display = 'none';
-				var row = document.getElementById( hItem.replace('i', 'r2') );
-				if (row) { row.style.display = 'none'; }
+				var s = "allmessageshelper(\"" + hItem + "\",'none')";
+				var k = window.setTimeout(s,i);
 			}
 		}
 	}
+}
+
+function allmessageshelper(hItem, style) {
+				document.getElementById( hItem.replace('i', 'r1') ).style.display = style;
+				var row = document.getElementById( hItem.replace('i', 'r2') );
+				if (row) { row.style.display = style; }
+			return;
+
 }
 
 function allmessagesmodified() {
