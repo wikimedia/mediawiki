@@ -60,7 +60,7 @@ class LinkBatch {
 	 * Return an array mapping PDBK to ID
 	 */
 	function executeInto( &$cache ) {
-		$fname = 'LinkBatch::execute';
+		$fname = 'LinkBatch::executeInto';
 		wfProfileIn( $fname );
 		// Do query
 		$res = $this->doQuery();
@@ -97,7 +97,7 @@ class LinkBatch {
 	 * Perform the existence test query, return a ResultWrapper with page_id fields
 	 */
 	function doQuery() {
-		$fname = 'LinkBatch::execute';
+		$fname = 'LinkBatch::doQuery';
 		$namespaces = array();
 
 		if ( !count( $this->data ) ) {
@@ -111,6 +111,7 @@ class LinkBatch {
 		$page = $dbr->tableName( 'page' );
 		$set = $this->constructSet( 'page', $dbr );
 		if ( $set === false ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE $set";
