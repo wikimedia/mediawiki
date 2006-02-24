@@ -552,22 +552,41 @@ function allmessagesfilter() {
 	text = document.getElementById('allmessagesinput').value;
 	k = document.getElementById('allmessagestable');
 	if (!k) { return;}
-	items = k.getElementsByTagName('span');
-	for (var i = 0; i< items.length; i++) {
-		var hItem = items[i].getAttribute('id');
-		if (hItem.substring(0,17) == 'sp-allmessages-i-') {
-			if (items[i].firstChild && items[i].firstChild.nodeName == '#text' && items[i].firstChild.nodeValue.indexOf(text) != -1) {
-				var s = "allmessageshelper(\"" + hItem + "\",'')";
-				var k = window.setTimeout(s,i);
-			} else {
-				var s = "allmessageshelper(\"" + hItem + "\",'none')";
-				var k = window.setTimeout(s,i);
+
+	var items = k.getElementsByTagName('span');
+	
+	if ( text.length > allmessages_prev.length ) {
+		for (var i = items.length-1, j = 0; i >= 0; i--) {
+			j = allmessagesforeach(items, i, j);
+		}
+	} else {
+		for (var i = 0, j = 0; i < items.length; i++) {
+			j = allmessagesforeach(items, i, j);
+		}
+	}
+	allmessages_prev = text;
+}
+
+function allmessagesforeach(items, i, j) {
+	var hItem = items[i].getAttribute('id');
+	if (hItem.substring(0,17) == 'sp-allmessages-i-') {
+		if (items[i].firstChild && items[i].firstChild.nodeName == '#text' && items[i].firstChild.nodeValue.indexOf(text) != -1) {
+			if ( document.getElementById( hItem.replace('i', 'r1') ).style.display != '' ) {
+				var s = "allmessageshider(\"" + hItem + "\",'')";
+				var k = window.setTimeout(s,j++*5);
+			}
+		} else {
+			if ( document.getElementById( hItem.replace('i', 'r1') ).style.display != 'none' ) {
+				var s = "allmessageshider(\"" + hItem + "\",'none')";
+				var k = window.setTimeout(s,j++*5);
 			}
 		}
 	}
+	return j;
 }
 
-function allmessageshelper(hItem, style) {
+
+function allmessageshider(hItem, style) {
 				document.getElementById( hItem.replace('i', 'r1') ).style.display = style;
 				var row = document.getElementById( hItem.replace('i', 'r2') );
 				if (row) { row.style.display = style; }
@@ -594,6 +613,8 @@ function allmessagesmodified() {
 function allmessagesshow() {
 	k = document.getElementById('allmessagesfilter');
 	if (k) { k.style.display = ''; }
+
+	allmessages_prev = '';
 }
 
 hookEvent("load", allmessagesshow);
