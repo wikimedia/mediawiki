@@ -657,6 +657,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Make Live Preview an user preference, still controllable by the global variable
 * Make links to categories in the catlinks box blue whether the target page exists 
   or not.
+* Rename the stub LanguageAls / LanguageGem_alsation to LanguageGsw to follow
+  updated language code assignments
+
 
 === Caveats ===
 
