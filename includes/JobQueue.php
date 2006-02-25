@@ -181,7 +181,7 @@ class Job {
 
 		$options = new ParserOptions;
 		$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options, true, true, $revision->getId() );
-		$update = new LinksUpdate( $this->title, $parserOutput );
+		$update = new LinksUpdate( $this->title, $parserOutput, false );
 		$update->doUpdate();
 		return true;
 	}
