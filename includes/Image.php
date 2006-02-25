@@ -1244,6 +1244,10 @@ class Image
 	}
 
 	function checkDBSchema(&$db) {
+                global $wgCheckDBSchema;
+		if (!$wgCheckDBSchema) {
+			return;
+		}
 		# img_name must be unique
 		if ( !$db->indexUnique( 'image', 'img_name' ) && !$db->indexExists('image','PRIMARY') ) {
 			wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
