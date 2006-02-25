@@ -38,44 +38,63 @@ class Job {
 		$fname = 'Job::pop';
 		wfProfileIn( $fname );
 
-		// First check to see if there are any jobs in the slave DB
 		$dbr =& wfGetDB( DB_SLAVE );
-		$id = $dbr->selectField( 'job', 'job_id', '', $fname, array( 'LIMIT' => 1 ) );
-		if ( $id === false ) {
+
+		// Get a job from the slave
+		$row = $dbr->selectRow( 'job', '*', '', $fname, 
+			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 )
+		);
+
+		if ( $row === false ) {
 			wfProfileOut( $fname );
 			return false;
 		}
 
-		// Pop an item off the front of the queue
-		// Method due to Domas, may not work on all DBMSes
+		// Try to delete it from the master
 		$dbw =& wfGetDB( DB_MASTER );
-		$jobTable = $dbw->tableName( 'job' );
-		$dbw->query( "DELETE FROM $jobTable WHERE " .
-			'(job_cmd = @job_cmd := job_cmd) AND ' .
-			'(job_namespace = @job_namespace := job_namespace) AND ' .
-			'(job_title = @job_title := job_title) AND ' .
-			'(job_params = @job_params := job_params) ' .
-			'LIMIT 1', $fname );
+		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), $fname );
 		$affected = $dbw->affectedRows();
-		// Commit now before 100 other threads pile up behind us
 		$dbw->immediateCommit();
+
 		if ( !$affected ) {
-			wfProfileOut( $fname );
-			return false;
+			// Failed, someone else beat us to it
+			// Try getting a random row
+			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob', 
+				'MAX(job_id) as maxjob' ), $fname );
+			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
+				// No jobs to get
+				wfProfileOut( $fname );
+				return false;
+			}
+			// Get the random row
+			$row = $dbw->selectRow( 'job', '*', 
+				array( 'job_id' => mt_rand( $row->minjob, $row->maxjob ) ),	$fname );
+			if ( $row === false ) {
+				// Random job gone before we got the chance to select it
+				// Give up
+				wfProfileOut( $fname );
+				return false;
+			}
+			// Delete the random row
+			$dbw->delete( 'job', array( 'job_id' => $row->job_id ), $fname );
+			$affected = $dbw->affectedRows();
+			$dbw->immediateCommit();
+			
+			if ( !$affected ) {
+				// Random job gone before we exclusively deleted it
+				// Give up
+				wfProfileOut( $fname );
+				return false;
+			}				
 		}
-
-		$res = $dbw->query( "SELECT @job_cmd, @job_namespace, @job_title, @job_params", $fname );
-		$row = $dbw->fetchRow( $res );
-		if ( !$row ) {
-			wfProfileOut( $fname );
-			return false;
-		}
-
-		$command = $row['@job_cmd'];
-		$namespace = $row['@job_namespace'];
-		$dbkey = $row['@job_title'];
+		
+		// If execution got to here, there's a row in $row that has been deleted from the database
+		// by this thread. Hence the concurrent pop was successful.
+		$command = $row->job_cmd;
+		$namespace = $row->job_namespace;
+		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
-		$params = $row['@job_params'];
+		$params = $row->job_params;
 		$job = new Job( $command, $title, $params );
 		wfProfileOut( $fname );
 		return $job;
