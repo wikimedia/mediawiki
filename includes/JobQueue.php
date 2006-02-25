@@ -8,6 +8,7 @@ class Job {
 	var $command,
 		$title,
 		$params, 
+		$id,
 		$removeDuplicates, 
 		$error;
 
@@ -60,7 +61,7 @@ class Job {
 			// Failed, someone else beat us to it
 			// Try getting a random row
 			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob', 
-				'MAX(job_id) as maxjob' ), $fname );
+				'MAX(job_id) as maxjob' ), '', $fname );
 			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
 				// No jobs to get
 				wfProfileOut( $fname );
@@ -90,12 +91,10 @@ class Job {
 		
 		// If execution got to here, there's a row in $row that has been deleted from the database
 		// by this thread. Hence the concurrent pop was successful.
-		$command = $row->job_cmd;
 		$namespace = $row->job_namespace;
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
-		$params = $row->job_params;
-		$job = new Job( $command, $title, $params );
+		$job = new Job( $row->job_cmd, $title, $row->job_params, $row->job_id );
 		wfProfileOut( $fname );
 		return $job;
 	}
@@ -104,10 +103,11 @@ class Job {
 	 * Non-static functions
 	 *------------------------------------------------------------------------*/
 
-	function Job( $command, $title, $params = '' ) {
+	function Job( $command, $title, $params = '', $id = 0 ) {
 		$this->command = $command;
 		$this->title = $title;
 		$this->params = $params;
+		$this->id = $id;
 
 		// A bit of premature generalisation
 		// Oh well, the whole class is premature generalisation really
