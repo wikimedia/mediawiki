@@ -21,7 +21,8 @@ class LinksUpdate {
 		$mExternals,     # URLs of external links, array key only
 		$mCategories,    # Map of category names to sort keys
 		$mDb,            # Database connection reference
-		$mOptions;       # SELECT options to be used (array)
+		$mOptions,       # SELECT options to be used (array)
+		$mRecursive;     # Whether to queue jobs for recursive updates
 	/**#@-*/
 
 	/**
@@ -30,7 +31,7 @@ class LinksUpdate {
 	 * @param integer $id
 	 * @param string $title
 	 */
-	function LinksUpdate( $title, $parserOutput ) {
+	function LinksUpdate( $title, $parserOutput, $recursive = true ) {
 		global $wgAntiLockFlags;
 
 		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
@@ -52,6 +53,7 @@ class LinksUpdate {
 		$this->mTemplates = $parserOutput->getTemplates();
 		$this->mExternals = $parserOutput->getExternalLinks();
 		$this->mCategories = $parserOutput->getCategories();
+		$this->mRecursive = $recursive;
 
 	}
 
@@ -92,10 +94,12 @@ class LinksUpdate {
 			$this->getTemplateInsertions( $existing ) );
 
 		# Refresh links of all pages including this page
-		$tlto = $this->mTitle->getTemplateLinksTo();
-		if ( count( $tlto ) ) {
-			require_once( 'JobQueue.php' );
-			Job::queueLinksJobs( $tlto );
+		if ( $this->mRecursive ) {
+			$tlto = $this->mTitle->getTemplateLinksTo();
+			if ( count( $tlto ) ) {
+				require_once( 'JobQueue.php' );
+				Job::queueLinksJobs( $tlto );
+			}
 		}
 
 		# Category links
@@ -126,10 +130,12 @@ class LinksUpdate {
 		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
 
 		# Refresh links of all pages including this page
-		$tlto = $this->mTitle->getTemplateLinksTo();
-		if ( count( $tlto ) ) {
-			require_once( 'JobQueue.php' );
-			Job::queueLinksJobs( $tlto );
+		if ( $this->mRecursive ) {
+			$tlto = $this->mTitle->getTemplateLinksTo();
+			if ( count( $tlto ) ) {
+				require_once( 'JobQueue.php' );
+				Job::queueLinksJobs( $tlto );
+			}
 		}
 
 		$this->dumbTableUpdate( 'pagelinks',     $this->getLinkInsertions(),     'pl_from' );
