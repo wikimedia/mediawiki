@@ -227,7 +227,7 @@ class OutputPage {
 		foreach ( $categories as $category => $arbitrary ) {
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$text = $wgContLang->convertHtml( $title->getText() );
-			$this->mCategoryLinks[] = $sk->makeKnownLinkObj( $title, $text );
+			$this->mCategoryLinks[] = $sk->makeLinkObj( $title, $text );
 		}
 	}
 
