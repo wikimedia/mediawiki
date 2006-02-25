@@ -432,6 +432,8 @@ $wgDBprefix         = '';
 $wgDBschema	    = 'mediawiki';
 /**#@-*/
 
+/** Live high performance sites should disable this - some checks acquire giant mysql locks */
+$wgCheckDBSchema = true;
 
 
 /**
