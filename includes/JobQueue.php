@@ -162,6 +162,8 @@ class Job {
 	 */
 	function refreshLinks() {
 		global $wgParser;
+		$fname = 'Job::refreshLinks';
+		wfProfileIn( $fname );
 		
 		$dbw =& wfGetDB( DB_MASTER );
 
@@ -170,19 +172,26 @@ class Job {
 		
 		if ( is_null( $this->title ) ) {
 			$this->error = "refreshLinks: Invalid title";
+			wfProfileOut( $fname );
 			return false;
 		}
 
 		$revision = Revision::newFromTitle( $this->title );
 		if ( !$revision ) {
 			$this->error = 'refreshLinks: Article not found "' . $this->title->getPrefixedDBkey() . '"';
+			wfProfileOut( $fname );
 			return false;
 		}
 
+		wfProfileIn( "$fname-parse" );
 		$options = new ParserOptions;
 		$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options, true, true, $revision->getId() );
+		wfProfileOut( "$fname-parse" );
+		wfProfileIn( "$fname-update" );
 		$update = new LinksUpdate( $this->title, $parserOutput, false );
 		$update->doUpdate();
+		wfProfileOut( "$fname-update" );
+		wfProfileOut( $fname );
 		return true;
 	}
 
