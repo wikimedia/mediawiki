@@ -108,7 +108,10 @@ class Job {
 		$dbw =& wfGetDB( DB_MASTER );
 		
 		if ( $this->removeDuplicates ) {
-			$dbw->delete( 'job', $fields, $fname );
+			$res = $dbw->select( 'job', array( '1' ), $fields, $fname );
+			if ( $dbw->numRows( $res ) ) {
+				return;
+			}
 		}
 		$fields['job_id'] = $dbw->nextSequenceValue( 'job_job_id_seq' );
 		$dbw->insert( 'job', $fields, $fname );
