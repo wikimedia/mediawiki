@@ -51,7 +51,7 @@ define( 'EXT_LINK_URL_CLASS', '[^][<>"\\x00-\\x20\\x7F]' );
 define( 'EXT_LINK_TEXT_CLASS', '[^\]\\x00-\\x1F\\x7F]' );
 define( 'EXT_IMAGE_FNAME_CLASS', '[A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]' );
 define( 'EXT_IMAGE_EXTENSIONS', 'gif|png|jpg|jpeg' );
-define( 'EXT_LINK_BRACKETED',  '/\[(\b(' . wfUrlProtocols() . ')'.EXT_LINK_URL_CLASS.'+)( *)('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
+define( 'EXT_LINK_BRACKETED',  '/\[(\b(' . wfUrlProtocols() . ')'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
 define( 'EXT_IMAGE_REGEX',
 	'/^('.HTTP_PROTOCOLS.')'.  # Protocol
 	'('.EXT_LINK_URL_CLASS.'+)\\/'.  # Hostname and path
@@ -1085,7 +1085,6 @@ class Parser
 		while ( $i<count( $bits ) ) {
 			$url = $bits[$i++];
 			$protocol = $bits[$i++];
-			$spaces = $bits[$i++];
 			$text = $bits[$i++];
 			$trail = $bits[$i++];
 
@@ -1143,13 +1142,7 @@ class Parser
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
-			if ( strlen ( $spaces ) < 2 ) {
-				# Normal case
-				$s .= $sk->makeExternalLink( $url, $text, false, $linktype ) . $dtrail . $trail;
-			} else {
-				# Fix for [url  text] (notice the two blanks)
-				$s .= '[' . $sk->makeExternalLink( $url, $url, false, "free" ) . $spaces . $text . ']' . $dtrail . $trail;
-			}
+			$s .= $sk->makeExternalLink( $url, $text, false, $linktype ) . $dtrail . $trail;
 
 			# Register link in the output object
 			$this->mOutput->addExternalLink( $url );

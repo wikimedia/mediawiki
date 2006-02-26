@@ -677,6 +677,15 @@ External links: invalid character
 !! end
 
 !! test
+External links: multiple legal whitespace is fine, Magnus. Don't break it please. (bug 5081)
+!! input
+[http://www.example.com  test]
+!! result
+<p><a href="http://www.example.com" class='external text' title="http://www.example.com" rel="nofollow">test</a>
+</p>
+!! end
+
+!! test
 BUG 787: Links with one slash after the url protocol are invalid
 !! input
 http:/example.com
