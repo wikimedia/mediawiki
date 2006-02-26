@@ -877,7 +877,9 @@ content pages.
 
 There have been a total of '''$3''' page views, and '''$4''' page edits
 since the wiki was setup.
-That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
+That comes to '''$5''' average edits per page, and '''$6''' views per edit.
+
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
 'userstatstext' => "There are '''$1''' registered users, of which
 '''$2''' (or '''$4%''') are administrators (see $3).",
 

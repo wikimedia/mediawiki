@@ -48,10 +48,8 @@ function wfSpecialStatistics() {
 		$users = $userRow->total;
 	} 
 
-	$sql = "SELECT COUNT(*) AS total FROM $user_groups WHERE ug_group='sysop'";
-	$res = $dbr->query( $sql, $fname );
-	$row = $dbr->fetchObject( $res );
-	$admins = $row->total;
+	$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), $fname );
+	$numJobs = $dbr->selectField( 'job', 'COUNT(*)', '', $fname );
 
 	if ($action == 'raw') {
 		$wgOut->disable();
@@ -66,7 +64,9 @@ function wfSpecialStatistics() {
 			$wgLang->formatNum( $views ),
 			$wgLang->formatNum( $edits ),
 			$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
-			$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ) );
+			$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ),
+			$wgLang->formatNum( $numJobs )
+	   	);
 
 		$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
 
