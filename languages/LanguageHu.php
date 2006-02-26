@@ -124,7 +124,7 @@ class LanguageHu extends LanguageUtf8 {
 	}
 
 	function formatNum( $number, $year = false ) {
-		return !$year ? strtr($this->commafy($number), '.,', ',.' ) : $number;
+		return !$year ? strtr($this->commafy($number), array( '.' => ',', ',' => "\xc2\xa0" )) : $number;
 	}
 
 }

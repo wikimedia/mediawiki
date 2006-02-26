@@ -244,6 +244,7 @@ i18n / Languages:
 * (bug 4788) One string for MessagesPl
 * Restriction types now use restriction-* messages instead of ui messages
 * (bug 4685) Slovenian LanguageSl.php hardcodes project namespace
+* (bug 5097) Fix Hungarian language (hu): thousands separator
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
