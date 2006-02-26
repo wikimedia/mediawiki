@@ -40,7 +40,21 @@ class RawPage {
 		$smaxage = $this->mRequest->getIntOrNull( 'smaxage', $wgSquidMaxage );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
 		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
-		$this->mOldId = $this->mRequest->getInt( 'oldid' );
+		
+		$oldid = $this->mRequest->getInt( 'oldid' );
+		switch ( $wgRequest->getText( 'direction' ) ) {
+			case 'next': 
+				$oldid = $this->mTitle->getNextRevisionId( $oldid );
+				break;
+			case 'prev': 
+				$oldid = $this->mTitle->getPreviousRevisionId( $oldid );
+				break;
+			case 'cur':
+				$oldid = 0;
+				break;
+		}
+		$this->mOldId = $oldid;
+		
 		# special case for 'generated' raw things: user css/js
 		$gen = $this->mRequest->getVal( 'gen' );
 
