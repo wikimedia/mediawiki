@@ -657,6 +657,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Make Live Preview an user preference, still controllable by the global variable
 * Rename the stub LanguageAls / LanguageGem_alsation to LanguageGsw to follow
   updated language code assignments
+* (bug 5081) Remove bogus fix for invalid characters in links which simply
+  broke use of legitimate multiple whitespace characters in bracketed link.
 
 
 === Caveats ===
