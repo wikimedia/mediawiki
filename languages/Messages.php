@@ -1385,7 +1385,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'allmessagestext'	=> 'This is a list of system messages available in the MediaWiki: namespace.',
 'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages not supported because wgUseDatabaseMessages is off.',
-'allmessagesfilter' => 'Regular expression filter:',
+'allmessagesfilter' => 'Message name filter:',
 'allmessagesmodified' => 'Show only modified',
 
 

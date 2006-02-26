@@ -102,14 +102,14 @@ function makeHTMLText( $messages ) {
 		'onkeyup' => 'allmessagesfilter()',),
 		'');
 	$checkbox = wfElement( 'input', array(
-		'type'    => 'checkbox',
+		'type'    => 'button',
+		'value'   => wfMsgHtml( 'allmessagesmodified' ),
 		'id'      => 'allmessagescheckbox',
 		'onclick' => 'allmessagesmodified()',),
 		'');
 
 	$txt = '<span id="allmessagesfilter" style="display:none;">' .
-		wfMsgHtml('allmessagesfilter') . " {$input}{$checkbox} " .
-		wfMsgHtml( 'allmessagesmodified' ) . '</span>';
+		wfMsgHtml('allmessagesfilter') . " {$input}{$checkbox} " . '</span>';
 
 	$txt .= "
 <table border='1' cellspacing='0' width='100%' id='allmessagestable'>
