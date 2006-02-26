@@ -16,6 +16,7 @@ function NukePage( $name, $delete = false ) {
 	$dbw->begin();
 	
 	$tbl_pag = $dbw->tableName( 'page' );
+	$tbl_rec = $dbw->tableName( 'recentchanges' );
 	$tbl_rev = $dbw->tableName( 'revision' );
 	
 	# Get page ID
@@ -35,10 +36,13 @@ function NukePage( $name, $delete = false ) {
 		$count = count( $revs );
 		echo( "found $count.\n" );
 		
-		# Delete the page itself
+		# Delete the page record and associated recent changes entries
 		if( $delete ) {
 			echo( "Deleting page record..." );
 			$dbw->query( "DELETE FROM $tbl_pag WHERE page_id = $id" );
+			echo( "done.\n" );
+			echo( "Cleaning up recent changes..." );
+			$dbw->query( "DELETE FROM $tbl_rec WHERE rc_cur_id = $id" );
 			echo( "done.\n" );
 		}
 
