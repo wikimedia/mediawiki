@@ -660,7 +660,8 @@ fully support the editing toolbar, but was found to be too confusing.
   updated language code assignments
 * (bug 5081) Remove bogus fix for invalid characters in links which simply
   broke use of legitimate multiple whitespace characters in bracketed link.
-
+* (bug 4838) Add relative oldids (prev, next, cur) for raw pages
+  Patch by Lupin
 
 === Caveats ===
 
