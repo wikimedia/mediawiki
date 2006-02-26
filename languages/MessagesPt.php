@@ -31,6 +31,7 @@
 'tog-externaleditor' => 'Utilizar editor externo por padrão',
 'tog-externaldiff' => 'Utilizar diferenças externas por padrão',
 'tog-showjumplinks' => 'Activar hiperligações de acessibilidade "ir para"',
+'tog-uselivepreview' => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -330,7 +331,7 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'createaccountmail'     => 'por email',
 'badretype'             => 'As palavras-chaves que introduziu não são iguais.',
 'userexists'    => 'O nome de utilizador que introduziu já existe. Por favor, escolha um nome diferente.',
-'youremail'             => 'Email *',
+'youremail'             => 'Endereço de email *',
 'username'              => 'Nome de utilizador:',
 'uid'                   => 'Número de identificação:',
 'yourrealname'          => 'Nome verdadeiro *',
@@ -338,8 +339,8 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'yourvariant'  => 'Variante',
 'yournick'              => 'Alcunha:',
 'badsig'                => 'Assinatura inválida; verifique o código HTML utilizado.',
-'email'                 => 'Email',
-'emailforlost'          => "Os campos marcados são opcionais. Colocando o seu endereço de e-mail permite outras pessoas entrem em contacto consigo sem que tenha que revelar o seu e-mail a elas, e também é útil caso se esquecer da sua palavra-chave.<br /><br />O seu nome real, se o indicar, será utilizado para dar atribuição do seu trabalho.",
+'email'                 => 'Correio electrónico',
+'emailforlost'          => "Os campos marcados são opcionais. Colocando o seu endereço de correio electrónico permite que outras pessoas entrem em contacto consigo sem que tenha que revelar o esse mesmo endereço a elas, e também é útil caso se esquecer da sua palavra-chave.<br /><br />O seu nome real, se o indicar, será utilizado para dar atribuição do seu trabalho.",
 'prefs-help-email-enotif' => 'Este endereço é também utilizado para enviar-lhe notificações caso as active nas preferências.',
 'prefs-help-realname'   => '* Nome verdadeiro (opcional): caso decida indicar, este será utilizado para lhe dar atributo do seu trabalho.',
 'loginerror'    => 'Erro de autentificação',
@@ -354,14 +355,14 @@ Verifique o nome que introduziu, ou crie uma nova conta de utilizador.",
 'nosuchusershort'       => "Não existe um utilizador com o nome \"$1\". Verifique o nome que introduziu.",
 'wrongpassword'         => 'A palavra-chave que introduziu é inválida. Por favor tente novamente.',
 'wrongpasswordempty'            => 'Palavra-chave introduzida está em branco. Por favor tente novamente.',
-'mailmypassword'        => 'Enviar uma nova palavra-chave por e-mail',
+'mailmypassword'        => 'Enviar uma nova palavra-chave por correio electrónico',
 'passwordremindertitle' => "Lembrador de palavras-chave da {{SITENAME}}",
 'passwordremindertext' => "Alguém (provavelmente você, do endereço de IP $1) solicitou que fosse lhe envido uma nova palavra-chave para {{SERVERNAME}}.
 A palavra para o utilizador \"$2\" é a partir de agora \"$3\". Pode agora entrar na sua conta e alterar a palavra-chave.
 
 Caso tenha sido outra pessoa a fazer este pedido ou caso você já se tenha lembrado da sua palavra-chave e se não a desejar alterar, pode ignorar esta mensagem e continuar a utilizar a palavra-chave antiga.",
-'noemail'                           => "Não existe um endereço de e-mail associado ao utilizador \"$1\".",
-'passwordsent'  => "Uma nova palavra-chave encontra-se a ser enviada para o endereço de email associado ao utilizador \"$1\".
+'noemail'                           => "Não existe um endereço de correio electrónico associado ao utilizador \"$1\".",
+'passwordsent'  => "Uma nova palavra-chave encontra-se a ser enviada para o endereço de correio electrónico associado ao utilizador \"$1\".
 Por favor, volte a efectuar a autentificação ao recebê-la.",
 'eauthentsent'             =>  "Um email de confirmação foi enviado para o endereço de correio electrónico nomeado.
 Antes de qualquer outro email seja enviado para a conta, terá seguir as instruções no email,
@@ -370,11 +371,11 @@ de modo a confirmar que a conta é mesmo sua.",
 'signupend'                         => '{{int:loginend}}',
 'mailerror'                 => "Erro a enviar o mail: $1",
 'acct_creation_throttle_hit' => 'Pedimos desculpa, mas já foram criadas $1 contas por si. Não lhe é possível criar mais nenhuma.',
-'emailauthenticated'        => 'O seu endereço de e-mail foi autenticado em $1.',
-'emailnotauthenticated'     => 'O seu endereço de e-mail <strong>ainda não foi autenticado</strong>. Não lhe será enviado nenhum correio sobre nenhuma das seguintes funcionalidades.',
-'noemailprefs'              => '<strong>Nenhum endereço de e-mail foi especificado</strong>, as seguintes funcionalidades não irão funcionar.',
-'emailconfirmlink' => 'Confirme o seu endereço de e-mail',
-'invalidemailaddress'   => 'O endereço de email não pode ser aceite devido a possuír um formato inválido. Por favor introduza um endereço bem formatado ou esvazie o campo.',
+'emailauthenticated'        => 'O seu endereço de correio electrónico foi autenticado em $1.',
+'emailnotauthenticated'     => 'O seu endereço de correio electrónico <strong>ainda não foi autenticado</strong>. Não lhe será enviado nenhum correio sobre nenhuma das seguintes funcionalidades.',
+'noemailprefs'              => '<strong>Nenhum endereço de correio electrónico foi especificado</strong>, as seguintes funcionalidades não irão funcionar.',
+'emailconfirmlink' => 'Confirme o seu endereço de correio electrónico',
+'invalidemailaddress'   => 'O endereço de correio electrónico não pode ser aceite devido a possuír um formato inválido. Por favor introduza um endereço bem formatado ou esvazie o campo.',
 
 # Edit page toolbar
 #
@@ -408,7 +409,9 @@ de modo a confirmar que a conta é mesmo sua.",
 'savearticle'   => 'Salvar página',
 'preview'               => 'Prever',
 'showpreview'   => 'Mostrar previsão',
+'showlivepreview'       => 'Pré-visualização em tempo real',
 'showdiff'      => 'Mostrar alterações',
+'anoneditwarning' => 'Não encontra-se autenticado. O seu endereço de IP será registado no histórico de edições desta página.',
 'blockedtitle'  => 'Utilizador está bloqueado',
 'blockedtext'   => "O seu nome de utilizador ou endereço de IP foi bloqueado por $1.<br />
 O motivo é: ''$2''
@@ -425,6 +428,8 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 'whitelistreadtext' => 'Precisa de se [[Special:Userlogin|autentificar]] para poder visualizar páginas.',
 'whitelistacctitle' => 'Não lhe é permitido criar uma conta',
 'whitelistacctext' => 'De modo a poder criar contas de utilizador nesta Wiki terá que se [[Special:Userlogin|autentificar]] e possuir as devidas permissões.',
+'confirmedittitle' => 'Confirmação por correio electrónico necessária para editar',
+'confirmedittext' => 'Precisa de confirmar o seu endereço de correio electrónico antes de começar a editar páginas. Por favor introduza e valide o seu endereço de correio electrónico através das suas [[Especial:Preferences|preferências de utilizador]].',
 'loginreqtitle' => 'Autentificação Requesitada',
 'loginreqlink' => 'autentificar-se',
 'loginreqpagetext'  => 'Precisa de $1 para visualizar outras páginas.',
@@ -444,6 +449,7 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 'usercssjsyoucanpreview' => "<strong>Dica:</strong> Utilize o botão \"Mostrar previsão\" para testar seu novo CSS/JS antes de salvar.",
 'usercsspreview' => "'''Lembre-se que está apenas a prever o seu CSS particular, e que ainda não foi salvo!'''",
 'userjspreview' => "'''Lembre-se que está apenas a testar/prever o seu JavaScript particular, e que ainda não foi salvo!'''",
+'userinvalidcssjstitle' => "'''Aviso:''' Não existe um tema \"$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: Utilizador:Silva/monobook.css aposto a Utilizador:Silva/Monobook.css.",
 'updated'               => '(Actualizado)',
 'note'                  => '<strong>Nota:</strong>',
 'previewnote'   => '<strong>Isto é apenas uma previsão, as modificações ainda não foram salvas!</strong>',
@@ -477,8 +483,11 @@ Adicionalmente, estar-nos-á a dar a sua palavra em como os teus são da sua aut
 'longpagewarning' => "<strong>AVISO: Esta página ocupa $1; alguns browsers verificam
 problemas em editar páginas maiores que 32kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>",
+'longpageerror' => "<strong>ERRO: A página que submeteu tem mais de $1 kilobytes
+em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode salva.</strong>",
 'readonlywarning' => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento. Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>',
 'protectedpagewarning' => "<strong>AVISO: Esta página foi protegida e apenas poderá ser editada por utilizadores com privilégios sysop (administradores). Certifique-se que está a respeitar as [[Project:Protected_page_guidelines|linhas de orientação para páginas protegidas]].</strong>",
+'semiprotectedpagewarning' => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
 'templatesused' => 'Predefinições utilizadas nesta página:',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'nocreatetitle' => 'Limitada a criação de páginas',
@@ -532,7 +541,7 @@ exemplo "peixes <strong>e e</strong> escalas".
 Por favor realize outro pedido de pesquisa.',
 'matchtotals'   => "A pesquisa \"$1\" resultou $2 títulos de artigos
 e $3 artigos com o texto procurado.",
-'nogomatch' => 'Nenhuma página exactamente com [[$1|este título]] existe, tente com a pesquisa de texto completo.',
+'nogomatch' => 'Não existe uma página com o título \"$1\". Pode criar [[$1|esta página]].',
 'titlematches'  => 'Resultados nos títulos dos artigos',
 'notitlematches' => 'Nenhum título de página coincide',
 'textmatches'   => 'Resultados dos textos dos artigos',
@@ -1041,13 +1050,17 @@ Veja [[Project:Página protegida]] para mais informações.",
 'confirmunprotect' => 'Confirmar desprotecção',
 'unprotectcomment' => 'Motivo de desprotecção',
 'protect-unchain' => 'Desbloquear permissões de moção',
-'protect-text' => 'Pode ver e alterar aqui, o nível de protecção para a página [[$1]].
+'protect-text' => 'Pode ver e alterar aqui, o nível de protecção para a página <strong>$1</strong>.
 Por favor tenha a certeza que segue as [[Project:Página protegida|normas do projecto]].',
 'protect-viewtext' => 'A sua conta de utilizador não tem permissões para alterar
-os níveis de protecção desta página. Estas são as configurações actuais para a página [[$1]]:',
+os níveis de protecção desta página. Estas são as configurações actuais para a página <strong>$1</strong>:',
 'protect-default' => '(padrão)',
 'protect-level-autoconfirmed' => 'Bloquear utilizadores não-registados',
 'protect-level-sysop' => 'Administradores apenas',
+
+# restrictions (nouns)
+'restriction-edit' => 'Editar',
+'restriction-move' => 'Mover',
 
 # Undelete
 'undelete' => 'Ver páginas eliminadas',
@@ -1242,12 +1255,15 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'allmessagestext'       => 'Esta é uma lista de todas mensagens de sistema disponíveis no domínio MediaWiki:.',
 'allmessagesnotsupportedUI' => 'O seu actual idioma de interface <b>$1</b> não é suportado pelo {{ns:special}}:Allmessages deste sítio.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages não encontra-se operacional devido ao wgUseDatabaseMessages encontrar-se desligado.',
+'allmessagesfilter' => 'Filtro de expressões regulares:',
+'allmessagesmodified' => 'Mostrar apenas modificados',
 
 # Thumbnails
 
 'thumbnail-more'        => 'Ampliar',
 'missingimage'          => "<b>Imagem não encontrada</b><br /><i>$1</i>",
 'filemissing'           => 'Ficheiro não encontrado',
+'thumbnail_error'   => 'Erro ao criar miniatura: $1',
 
 # Special:Import
 'import'        => 'Importar páginas',
@@ -1338,6 +1354,8 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'markedaspatrolledtext' => "A revisão seleccionada foi marcada como verificada.",
 'rcpatroldisabled'      => "Edições verificadas nas Mudanças Recentes desactivadas",
 'rcpatroldisabledtext'  => "A funcionalidade de Edições verificadas nas Mudanças Recentes está actualmente desactivada.",
+'markedaspatrollederror'  => "Não pode marcar como verificado",
+'markedaspatrollederrortext' => "Precisa de especificar uma revisão para marcar como verificado.",
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
@@ -1706,6 +1724,9 @@ Por favor confirme que realmente deseja recriar este artigo.',
 # action=purge
 'confirm_purge' => "Limpar a memória cache desta página?\n\n$1",
 'confirm_purge_button' => 'OK',
+
+'youhavenewmessagesmulti' => "Tem novas mensagens em $1",
+'newtalkseperator' => ',_',
 );
 
 
