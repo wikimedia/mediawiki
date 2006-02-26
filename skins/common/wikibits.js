@@ -571,13 +571,17 @@ function allmessagesforeach(items, i, j) {
 	var hItem = items[i].getAttribute('id');
 	if (hItem.substring(0,17) == 'sp-allmessages-i-') {
 		if (items[i].firstChild && items[i].firstChild.nodeName == '#text' && items[i].firstChild.nodeValue.indexOf(text) != -1) {
-			if ( document.getElementById( hItem.replace('i', 'r1') ).style.display != '' ) {
-				var s = "allmessageshider(\"" + hItem + "\",'')";
+			var itemA = document.getElementById( hItem.replace('i', 'r1') );
+			var itemB = document.getElementById( hItem.replace('i', 'r2') );
+			if ( itemA.style.display != '' ) {
+				var s = "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", \"" + hItem.replace('i', 'r2') + "\", '')";
 				var k = window.setTimeout(s,j++*5);
 			}
 		} else {
-			if ( document.getElementById( hItem.replace('i', 'r1') ).style.display != 'none' ) {
-				var s = "allmessageshider(\"" + hItem + "\",'none')";
+			var itemA = document.getElementById( hItem.replace('i', 'r1') );
+			var itemB = document.getElementById( hItem.replace('i', 'r2') );
+			if ( itemA.style.display != 'none' ) {
+				var s = "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", \"" + hItem.replace('i', 'r2') + "\", 'none')";
 				var k = window.setTimeout(s,j++*5);
 			}
 		}
@@ -586,25 +590,28 @@ function allmessagesforeach(items, i, j) {
 }
 
 
-function allmessageshider(hItem, style) {
-				document.getElementById( hItem.replace('i', 'r1') ).style.display = style;
-				var row = document.getElementById( hItem.replace('i', 'r2') );
-				if (row) { row.style.display = style; }
-			return;
-
+function allmessageshider(idA, idB, cstyle) {
+	var itemA = document.getElementById( idA );
+	var itemB = document.getElementById( idB );
+	if (itemA) { itemA.style.display = cstyle; }
+	if (itemB) { itemB.style.display = cstyle; }
 }
 
 function allmessagesmodified() {
-	checked = document.getElementById('allmessagescheckbox').getAttribute('checked');
+	allmessages_modified = !allmessages_modified;
 	k = document.getElementById('allmessagestable');
 	if (!k) { return;}
-	items = k.getElementsByTagName('tr');
-	for (var i = 0; i< items.length; i++) {
-		if (items[i].getAttribute('class') == 'def') {
-			if (checked == '') {
-				items[i].style.display = '';
-			} else {
-				items[i].style.display = 'none';
+	var items = k.getElementsByTagName('tr');
+	for (var i = 0, j = 0; i< items.length; i++) {
+		if (!allmessages_modified ) {
+			if ( items[i].style.display != '' ) {
+				var s = "allmessageshider(\"" + items[i].getAttribute('id') + "\", null, '')";
+				var k = window.setTimeout(s,j++*5);
+			}
+		} else if (items[i].getAttribute('class') == 'def' && allmessages_modified) {
+			if ( items[i].style.display != 'none' ) {
+				var s = "allmessageshider(\"" + items[i].getAttribute('id') + "\", null, 'none')";
+				var k = window.setTimeout(s,j++*5);
 			}
 		}
 	}
@@ -615,6 +622,7 @@ function allmessagesshow() {
 	if (k) { k.style.display = ''; }
 
 	allmessages_prev = '';
+	allmessages_modified = false;
 }
 
 hookEvent("load", allmessagesshow);
