@@ -3456,6 +3456,30 @@ array(4) {
 </p>
 !! end
 
+###
+### (see maintenance/parserTestsStaticParserHook.php for the <statictag> extension)
+###
+
+!! test
+Parser hook: static parser hook not inside a comment
+!! input
+<statictag>hello, world</statictag>
+<statictag action=flush/>
+!! result
+<p>hello, world
+</p>
+!! end
+
+
+!! test
+Parser hook: static parser hook inside a comment
+!! input
+<!-- <statictag>hello, world</statictag> -->
+<statictag action=flush/>
+!! result
+<p><br />
+</p>
+!! end
 
 # Nested template calls; this case was broken by Parser.php rev 1.506,
 # since reverted.
