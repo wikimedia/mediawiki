@@ -666,6 +666,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 5086) Force image resize dimensions on ImageMagick, as for instance
   "-resize 100x35!"; some thumbs were off due to differences in rounding and
   would be generated smaller than expected.
+* (bug 5062) Width sometimes one pixel short when using maximum heights
 
 
 === Caveats ===

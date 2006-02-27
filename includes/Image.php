@@ -867,10 +867,7 @@ class Image
 
 		if ($this->canRender()) {
 			if ( $width > $this->width * $height / $this->height )
-				$width = floor( $this->width * $height / $this->height );
-				# Note this is the largest width such that the thumbnail's
-				# height is at most $height.
-
+				$width = wfFitBoxWidth( $this->width, $this->height, $height );
 			$thumb = $this->renderThumb( $width );
 		}
 		else $thumb= NULL; #not a bitmap or renderable image, don't try.
@@ -1919,4 +1916,22 @@ class ThumbnailImage {
 	}
 
 }
+
+/**
+ * Calculate the largest thumbnail width for a given original file size
+ * such that the thumbnail's height is at most $maxHeight.
+ * @param int $boxWidth
+ * @param int $boxHeight
+ * @param int $maxHeight
+ * @return int
+ */
+function wfFitBoxWidth( $boxWidth, $boxHeight, $maxHeight ) {
+	$idealWidth = $boxWidth * $maxHeight / $boxHeight;
+	$roundedUp = ceil( $idealWidth );
+	if( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight )
+		return floor( $idealWidth );
+	else
+		return $roundedUp;
+}
+
 ?>
