@@ -774,7 +774,7 @@ La dernière modificaion a été effectuée par [[{{ns:user}}:$3|$3]] ([[{{ns:us
 'unprotectedarticle' => 'a déprotégé « $1 »',
 
 'protectsub' => '(Protéger « $1 »)',
-'confirmprotect' => 'Confimer la protection',
+'confirmprotect' => 'Confirmer la protection',
 'confirmprotecttext' => 'Voulez-vous réellement protéger cette page ?',
 'protectcomment' => 'Raison de la protection',
 
