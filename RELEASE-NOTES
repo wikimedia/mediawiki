@@ -1065,6 +1065,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Allow customisation of paging limits for items in categories using the
   $wgCategoryPagingLimit global, per bug 4970.
 * Improve "nogomatch" text to make it more obvious that a page can be created.
+* (bug 5113) Spelling error in French language file
 
 === Caveats ===
 
