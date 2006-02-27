@@ -34,6 +34,7 @@ require_once( "$IP/includes/BagOStuff.php" );
 require_once( "$IP/languages/LanguageUtf8.php" );
 require_once( "$IP/includes/Hooks.php" );
 require_once( "$IP/maintenance/parserTestsParserHook.php" );
+require_once( "$IP/maintenance/parserTestsStaticParserHook.php" );
 require_once( "$IP/maintenance/parserTestsParserTime.php" );
 
 /**
