@@ -13,15 +13,15 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-$wgHooks['ParserTestParser'][] = 'wfParserTestSetup';
+$wgHooks['ParserTestParser'][] = 'wfParserTestParserHookSetup';
 
-function wfParserTestSetup( &$parser ) {
-	$parser->setHook( 'tag', 'wfParserTestHook' );
+function wfParserTestParserHookSetup( &$parser ) {
+	$parser->setHook( 'tag', 'wfParserTestParserHookHook' );
 
 	return true;
 }
 
-function wfParserTestHook( $in, $argv ) {
+function wfParserTestParserHookHook( $in, $argv ) {
 	ob_start();
 	var_dump(
 		$in,
@@ -31,3 +31,4 @@ function wfParserTestHook( $in, $argv ) {
 
 	return "<pre>\n$ret</pre>";
 }
+?>
