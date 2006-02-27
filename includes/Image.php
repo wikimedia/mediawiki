@@ -1095,7 +1095,12 @@ class Image
 			
 			$cmd  =  wfEscapeShellArg($wgImageMagickConvertCommand) .
 				" {$quality} -background white -size {$width} ".
-				wfEscapeShellArg($this->imagePath) . " -resize {$width}x{$height} -depth 8 " .
+				wfEscapeShellArg($this->imagePath) .
+				// For the -resize option a "!" is needed to force exact size,
+				// or ImageMagick may decide your ratio is wrong and slice off
+				// a pixel.
+				" -resize " . wfEscapeShellArg( "{$width}x{$height}!" ) .
+				" -depth 8 " .
 				wfEscapeShellArg($thumbPath) . " 2>&1";
 			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
 			wfProfileIn( 'convert' );
