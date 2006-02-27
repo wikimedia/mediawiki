@@ -35,8 +35,15 @@ $tests = array(
 	'SearchMySQL4Test',
 	'ArticleTest',
 	'SanitizerTest',
-	'CtypeTest'
+	'CtypeTest',
+	'ImageTest'
 	);
+
+if( isset( $_SERVER['argv'][1] ) ) {
+	// to override...
+	$tests = array( $_SERVER['argv'][1] );
+}
+
 foreach( $tests as $test ) {
 	require_once( $test . '.php' );
 	$suite = new PHPUnit_TestSuite( $test );
