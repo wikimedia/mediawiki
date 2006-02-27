@@ -843,7 +843,7 @@ La dernière modificaion a été effectuée par [[User:$3|$3]] ([[User talk:$3|T
 'unprotectedarticle' => 'a déprotégé [[$1]]',
 
 'protectsub' => '(Protéger « $1 »)',
-'confirmprotect' => 'Confimer la protection',
+'confirmprotect' => 'Confirmer la protection',
 'confirmprotecttext' => 'Voulez-vous réellement protéger cette page ?',
 'protectcomment' => 'Raison du bloquage',
 
