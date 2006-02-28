@@ -167,8 +167,8 @@ class LinksUpdate {
 		$this->mDb->delete( $table, array( $fromField => $this->mId ), $fname );
 		if ( count( $insertions ) ) {
 			# The link array was constructed without FOR UPDATE, so there may be collisions
-			# Ignoring for now, I'm not sure if that causes problems or not, but I'm fairly
-			# sure it's better than without IGNORE
+			# This may cause minor link table inconsistencies, which is better than 
+			# crippling the site with lock contention.
 			$this->mDb->insert( $table, $insertions, $fname, array( 'IGNORE' ) );
 		}
 	}
