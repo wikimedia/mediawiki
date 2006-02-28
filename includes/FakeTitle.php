@@ -85,3 +85,4 @@ class FakeTitle {
 	function trackbackRDF() { $this->error(); }
 }
 
+?>
