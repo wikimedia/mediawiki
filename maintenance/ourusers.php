@@ -45,6 +45,7 @@ if ( @$argv[1] == 'yaseo' ) {
 		'207.142.131.197',
 		'207.142.131.198',
 		'207.142.131.199',
+		'207.142.131.221',
 		'207.142.131.226',
 		'207.142.131.227',
 		'207.142.131.228',
@@ -81,6 +82,7 @@ foreach( $hosts as $host ) {
 	print "--\n-- $host\n--\n\n-- wikiuser\n\n";
 	print "GRANT REPLICATION CLIENT,PROCESS ON *.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
 	print "GRANT ALL PRIVILEGES ON `boardvote`.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
+	print "GRANT ALL PRIVILEGES ON `boardvote2005`.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
 	foreach( $databases as $db ) {
 		print "GRANT SELECT, INSERT, UPDATE, DELETE ON `$db`.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
 	}
@@ -110,6 +112,7 @@ EOS;
 	print "\n-- wikiadmin\n\n";
 	print "GRANT PROCESS, REPLICATION CLIENT ON *.* TO 'wikiadmin'@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";
 	print "GRANT ALL PRIVILEGES ON `boardvote`.* TO wikiadmin@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";
+	print "GRANT ALL PRIVILEGES ON `boardvote2005`.* TO wikiadmin@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";
 	foreach ( $databases as $db ) {
 		print "GRANT ALL PRIVILEGES ON `$db`.* TO wikiadmin@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";
 	}

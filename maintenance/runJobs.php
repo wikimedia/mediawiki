@@ -7,11 +7,13 @@ require_once( "$IP/includes/FakeTitle.php" );
 // Trigger errors on inappropriate use of $wgTitle
 $wgTitle = new FakeTitle;
 
-while ( false != ($job = Job::pop()) ) {
-	wfWaitForSlaves( 5 );
-	print $job->toString() . "\n";
-	if ( !$job->run() ) {
-		print "Error: {$job->error}\n";
+$dbw =& wfGetDB( DB_MASTER );
+while ( $dbw->selectField( 'job', 'count(*)', '', 'runJobs.php' ) ) {
+	while ( false != ($job = Job::pop()) ) {
+		wfWaitForSlaves( 5 );
+		print $job->id . "  " . $job->toString() . "\n";
+		if ( !$job->run() ) {
+			print "Error: {$job->error}\n";
+		}
 	}
 }
-
