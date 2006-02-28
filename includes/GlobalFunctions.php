@@ -1713,11 +1713,17 @@ function in_string( $needle, $str ) {
 function wfUrlProtocols() {
 	global $wgUrlProtocols;
 
-	$protocols = array();
-	foreach ($wgUrlProtocols as $protocol)
-		$protocols[] = preg_quote( $protocol, '/' );
+	// Support old-style $wgUrlProtocols strings, for backwards compatibility 
+	// with LocalSettings files from 1.5
+	if ( is_array( $wgUrlProtocols ) ) {
+		$protocols = array();
+		foreach ($wgUrlProtocols as $protocol)
+			$protocols[] = preg_quote( $protocol, '/' );
 
-	return implode( '|', $protocols );
+		return implode( '|', $protocols );
+	} else {
+		return $wgUrlProtocols;
+	}
 }
 
 /**
