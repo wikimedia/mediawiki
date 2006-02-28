@@ -237,9 +237,15 @@ class Parser
 		$this->replaceLinkHolders( $text );
 
 		# the position of the convert() call should not be changed. it
-		# assumes that the links are all replaces and the only thing left
+		# assumes that the links are all replaced and the only thing left
 		# is the <nowiki> mark.
 		$text = $wgContLang->convert($text);
+
+		# FIXME: Unexpected data flow
+		# Set the title text in mOutput to a converted version of the global 
+		# title. The title is stored in $wgContLang from a previous call to 
+		# OutputPage::setPageTitle(). If no call has been made, this will be 
+		# blank, a condition which Parser callers are expected to ignore.
 		$this->mOutput->setTitleText($wgContLang->getParsedTitle());
 
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
@@ -269,6 +275,9 @@ class Parser
 	function getRandomString() {
 		return dechex(mt_rand(0, 0x7fffffff)) . dechex(mt_rand(0, 0x7fffffff));
 	}
+
+	function &getTitle() { return $this->mTitle; }
+	function getOptions() { return $this->mOptions; }
 
 	/**
 	 * Replaces all occurrences of <$tag>content</$tag> in the text
@@ -3428,8 +3437,11 @@ class Parser
 
 	/**
 	 * Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
-	 * Callback will be called with the text within
-	 * Transform and return the text within
+	 * The callback should have the following form:
+	 *    function myParserHook( $text, $params, &$parser ) { ... }
+	 *
+	 * Transform and return $text. Use $parser for any required context, e.g. use
+	 * $parser->getTitle() and $parser->getOptions() not $wgTitle or $wgOut->mParserOptions
 	 *
 	 * @access public
 	 *
