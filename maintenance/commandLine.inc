@@ -28,7 +28,7 @@ $optionsWithArgs[] = 'conf'; # For specifying the location of LocalSettings.php
 $self = array_shift( $argv );
 $self = __FILE__;
 $IP = realpath( dirname( $self ) . '/..' );
-chdir( $IP );
+#chdir( $IP );
 
 $options = array();
 $args = array();
@@ -91,10 +91,11 @@ if (!isset( $wgUseNormalUser ) ) {
 
 if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	$wgWikiFarm = true;
-	require_once( $IP.'/includes/SiteConfiguration.php' );
+	$cluster = trim( file_get_contents( '/etc/cluster' ) );
+	require_once( "$IP/includes/SiteConfiguration.php" );
 
-	# Get $conf
-	require( $IP.'/InitialiseSettings.php' );
+	# Get $wgConf
+	require( "$IP/wgConf.php" );
 
 	if ( empty( $wgNoDBParam ) ) {
 		# Check if we were passed a db name
@@ -130,15 +131,17 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	$DP = $IP;
 	ini_set( 'include_path', ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
 
+	require_once( $IP.'/includes/ProfilerStub.php' );
 	require_once( $IP.'/includes/Defines.php' );
 	require_once( $IP.'/CommonSettings.php' );
 
+	$bin = '/home/wikipedia/bin';
 	if ( $wgUseRootUser ) {
 		$wgDBuser = $wgDBadminuser = 'root';
-		$wgDBpassword = $wgDBadminpassword = trim(`mysql_root_pass`);
+		$wgDBpassword = $wgDBadminpassword = trim(`$bin/mysql_root_pass`);
 	} elseif ( !$wgUseNormalUser ) {
 		$wgDBuser = $wgDBadminuser = 'wikiadmin';
-		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
+		$wgDBpassword = $wgDBadminpassword = trim(`$bin/wikiadmin_pass`);
 	}
 } else {
 	$wgWikiFarm = false;
@@ -155,6 +158,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	}
 	$wgCommandLineMode = true;
 	$DP = $IP;
+	require_once( $IP.'/includes/ProfilerStub.php' );
 	require_once( $IP.'/includes/Defines.php' );
 	require_once( $settingsFile );
 	ini_set( 'include_path', ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );

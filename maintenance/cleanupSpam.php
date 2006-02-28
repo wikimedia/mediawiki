@@ -53,6 +53,9 @@ function cleanupArticle( $id, $domain ) {
 }
 //------------------------------------------------------------------------------
 
+
+
+
 $username = wfMsg( 'spambot_username' );
 $fname = $username;
 $wgUser = User::newFromName( $username );
@@ -74,15 +77,36 @@ if ( !$like ) {
 
 $dbr =& wfGetDB( DB_SLAVE );
 
-$res = $dbr->select( 'externallinks', array( 'el_from' ), 
-	array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), $fname );
-$count = $dbr->numRows( $res );
-print "Found $count articles containing $spec\n";
-while ( $row = $dbr->fetchObject( $res ) ) {
-	cleanupArticle( $row->el_from, $spec );
-}
-if ( $count ) {
-	print "Done\n";
+if ( $options['all'] ) {
+	// Clean up spam on all wikis
+	$dbr =& wfGetDB( DB_SLAVE );
+	print "Finding spam on " . count($wgLocalDatabases) . " wikis\n";
+	$found = false;
+	foreach ( $wgLocalDatabases as $db ) {
+		$count = $dbr->selectField( "`$db`.externallinks", 'COUNT(*)', 
+			array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), $fname );
+		if ( $count ) {
+			$found = true;
+			passthru( "php cleanupSpam.php $db $spec | sed s/^/$db:  /" );
+		}
+	}
+	if ( $found ) {
+		print "All done\n";
+	} else {
+		print "None found\n";
+	}
+} else {
+	// Clean up spam on this wiki
+	$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ), 
+		array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), $fname );
+	$count = $dbr->numRows( $res );
+	print "Found $count articles containing $spec\n";
+	while ( $row = $dbr->fetchObject( $res ) ) {
+		cleanupArticle( $row->el_from, $spec );
+	}
+	if ( $count ) {
+		print "Done\n";
+	}
 }
 
 ?>
