@@ -321,7 +321,7 @@ class LinksUpdate {
 				'cl_from'    => $this->mId,
 				'cl_to'      => $name,
 				'cl_sortkey' => $sortkey,
-				'cl_timestamp' => 0
+				'cl_timestamp' => $this->mDb->timestamp()
 			);
 		}
 		return $arr;
