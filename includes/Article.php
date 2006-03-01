@@ -978,23 +978,16 @@ class Article {
 		$this->view();
 	}
 
+	/**
+	 * Handle action=purge
+	 */
 	function purge() {
-		global $wgUser, $wgRequest, $wgOut, $wgUseSquid;
+		global $wgUser, $wgRequest, $wgOut;
 
-		if ( $wgUser->isLoggedIn() || $wgRequest->wasPosted() || ! wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
-			// Invalidate the cache
-			$this->mTitle->invalidateCache();
-
-			if ( $wgUseSquid ) {
-				// Commit the transaction before the purge is sent
-				$dbw = wfGetDB( DB_MASTER );
-				$dbw->immediateCommit();
-
-				// Send purge
-				$update = SquidUpdate::newSimplePurge( $this->mTitle );
-				$update->doUpdate();
+		if ( $wgUser->isLoggedIn() || $wgRequest->wasPosted() ) {
+			if( wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
+				$this->doPurge();
 			}
-			$this->view();
 		} else {
 			$msg = $wgOut->parse( wfMsg( 'confirm_purge' ) );
 			$action = $this->mTitle->escapeLocalURL( 'action=purge' );
@@ -1008,6 +1001,26 @@ class Article {
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 			$wgOut->addHTML( $msg );
 		}
+	}
+	
+	/**
+	 * Perform the actions of a page purging
+	 */
+	function doPurge() {
+		global $wgUseSquid;
+		// Invalidate the cache
+		$this->mTitle->invalidateCache();
+
+		if ( $wgUseSquid ) {
+			// Commit the transaction before the purge is sent
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->immediateCommit();
+
+			// Send purge
+			$update = SquidUpdate::newSimplePurge( $this->mTitle );
+			$update->doUpdate();
+		}
+		$this->view();
 	}
 
 	/**
