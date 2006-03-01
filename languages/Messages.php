@@ -453,6 +453,7 @@ format. Please enter a well-formatted address or empty that field.',
 'showlivepreview'	=> 'Live preview',
 'showdiff'	=> 'Show changes',
 'anoneditwarning' => 'You are not logged in. Your IP address will be recorded in this page\'s edit history.',
+'missingcommenttext' => 'Please enter a comment below.',
 'blockedtitle'	=> 'User is blocked',
 'blockedtext'	=> 'Your user name or IP address has been blocked by $1.
 The reason given is this:<br />\'\'$2\'\'<p>You may contact $1 or one of the other
