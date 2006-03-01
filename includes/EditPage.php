@@ -26,6 +26,7 @@ class EditPage {
 	var $mTokenOk = true;
 	var $tooBig = false;
 	var $kblength = false;
+	var $missingComment = false;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -630,6 +631,10 @@ class EditPage {
 		wfProfileIn( "$fname-sectionanchor" );
 		$sectionanchor = '';
 		if( $this->section == 'new' ) {
+			if ( $this->textbox1 == '' ) {
+				$this->missingComment = true;
+				return true;
+			}
 			if( $this->summary != '' ) {
 				$sectionanchor = $this->sectionAnchor( $this->summary );
 			}
@@ -735,6 +740,11 @@ class EditPage {
 				$s = wfMsg( 'editing', $this->mTitle->getPrefixedText() );
 			}
 			$wgOut->setPageTitle( $s );
+
+			if ( $this->missingComment ) {
+				$wgOut->addWikiText( wfMsg( 'missingcommenttext' ) );
+			}
+
 			if ( !$this->checkUnicodeCompliantBrowser() ) {
 				$wgOut->addWikiText( wfMsg( 'nonunicodebrowser') );
 			}
