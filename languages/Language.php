@@ -271,6 +271,7 @@ class fakeConverter {
 	var $mLang;
 	function fakeConverter($langobj) {$this->mLang = $langobj;}
 	function convert($t, $i) {return $t;}
+	function parserConvert($t, $p) {return $t;}
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() {return $this->mLang->getCode(); }
 	function findVariantLink(&$l, &$n) {}
@@ -1032,6 +1033,11 @@ class Language {
 	# convert text to different variants of a language.
 	function convert( $text, $isTitle = false) {
 		return $this->mConverter->convert($text, $isTitle);
+	}
+
+	# Convert text from within Parser
+	function parserConvert( $text, &$parser ) {
+		return $this->mConverter->parserConvert( $text, $parser );
 	}
 
 	/**

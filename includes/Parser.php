@@ -73,7 +73,7 @@ define( 'EXT_IMAGE_REGEX',
  *   performs brace substitution on MediaWiki messages
  *
  * Globals used:
- *    objects:   $wgLang
+ *    objects:   $wgLang, $wgContLang
  *
  * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
  *
@@ -236,17 +236,11 @@ class Parser
 
 		$this->replaceLinkHolders( $text );
 
-		# the position of the convert() call should not be changed. it
+		# the position of the parserConvert() call should not be changed. it
 		# assumes that the links are all replaced and the only thing left
 		# is the <nowiki> mark.
-		$text = $wgContLang->convert($text);
-
-		# FIXME: Unexpected data flow
-		# Set the title text in mOutput to a converted version of the global 
-		# title. The title is stored in $wgContLang from a previous call to 
-		# OutputPage::setPageTitle(). If no call has been made, this will be 
-		# blank, a condition which Parser callers are expected to ignore.
-		$this->mOutput->setTitleText($wgContLang->getParsedTitle());
+		# Side-effects: this calls $this->mOutput->setTitleText()
+		$text = $wgContLang->parserConvert( $text, $this );
 
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 

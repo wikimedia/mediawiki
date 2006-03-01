@@ -183,6 +183,26 @@ class LanguageConverter {
 	}
 
 	/**
+	 * Convert text using a parser object for context
+	 */
+	function parserConvert( $text, &$parser ) {
+		global $wgDisableLangConversion;
+		/* don't do anything if this is the conversion table */
+		if ( $parser->mTitle->getNamespace() == NS_MEDIAWIKI &&
+			strpos($parser->mTitle->getText, "Conversiontable") !== false ) 
+		{
+			return $text;
+		}
+
+		if($wgDisableLangConversion)
+			return $text;
+
+		$text = $this->convert( $text );
+		$parser->mOutput->setTitleText( $this->mTitleDisplay );
+		return $text;
+	}
+
+	/**
 	 * convert text to different variants of a language. the automatic
 	 * conversion is done in autoConvert(). here we parse the text
 	 * marked with -{}-, which specifies special conversions of the
@@ -198,17 +218,6 @@ class LanguageConverter {
      * @access public
      */
 	function convert( $text , $isTitle=false) {
-		global $wgDisableLangConversion;
-		global $wgTitle;
-
-		/* don't do anything if this is the conversion table */
-		if($wgTitle->getNamespace() == NS_MEDIAWIKI &&
-		   strpos($wgTitle->getText(), "Conversiontable")!==false)
-			return $text;
-
-		if($wgDisableLangConversion)
-			return $text;
-
 		$mw =& MagicWord::get( MAG_NOTITLECONVERT );
 		if( $mw->matchAndRemove( $text ) )
 			$this->mDoTitleConvert = false;
