@@ -669,6 +669,8 @@ fully support the editing toolbar, but was found to be too confusing.
   would be generated smaller than expected.
 * (bug 5062) Width sometimes one pixel short when using maximum heights
 * Purge thumbnails and metadata cache for action=purge on an image page
+* (bug 4273) Bounce back with a message when attempting to submit a new comment 
+  with an empty main textbox (user probably hit Enter in subject field)
 
 
 === Caveats ===
