@@ -83,6 +83,10 @@ class LinksUpdate {
 		$this->incrTableUpdate( 'imagelinks', 'il', $this->getImageDeletions( $existing ),
 			$this->getImageInsertions( $existing ) );
 
+		# Invalidate all image description pages which had links added or removed
+		$imageUpdates = array_diff_key( $existing, $this->mImages ) + array_diff_key( $this->mImages, $existing );
+		$this->invalidateImageDescriptions( $imageUpdates );
+
 		# External links
 		$existing = $this->getExistingExternals();
 		$this->incrTableUpdate( 'externallinks', 'el', $this->getExternalDeletions( $existing ),
@@ -107,9 +111,7 @@ class LinksUpdate {
 		$this->incrTableUpdate( 'categorylinks', 'cl', $this->getCategoryDeletions( $existing ),
 			$this->getCategoryInsertions( $existing ) );
 
-		# I think this works out to a set XOR operation, the idea is to invalidate all
-		# categories which were added, deleted or changed
-		# FIXME: surely there's a more appropriate place to put this update?
+		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
 		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
 		$this->invalidateCategories( $categoryUpdates );
 
@@ -125,9 +127,11 @@ class LinksUpdate {
 		$fname = 'LinksUpdate::doDumbUpdate';
 		wfProfileIn( $fname );
 
-		# Refresh category pages
+		# Refresh category pages and image description pages
 		$existing = $this->getExistingCategories();
 		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
+		$existing = $this->getExistingImages();
+		$imageUpdates = array_diff_key( $existing, $this->mImages ) + array_diff_key( $this->mImages, $existing );
 
 		# Refresh links of all pages including this page
 		if ( $this->mRecursive ) {
@@ -144,8 +148,9 @@ class LinksUpdate {
 		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
 		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
 
-		# Update the cache of all the category pages
+		# Update the cache of all the category pages and image description pages which were changed
 		$this->invalidateCategories( $categoryUpdates );
+		$this->invalidateImageDescriptions( $imageUpdates );
 
 		wfProfileOut( $fname );
 	}
@@ -157,6 +162,18 @@ class LinksUpdate {
 				array(
 					'page_namespace' => NS_CATEGORY,
 					'page_title IN (' . $this->mDb->makeList( array_keys( $cats ) ) . ')'
+				), $fname
+			);
+		}
+	}
+
+	function invalidateImageDescriptions( $images ) {
+		$fname = 'LinksUpdate::invalidateImageDescriptions';
+		if ( count( $images ) ) {
+			$this->mDb->update( 'page', array( 'page_touched' => $this->mDb->timestamp() ),
+				array(
+					'page_namespace' => NS_IMAGE,
+					'page_title IN (' . $this->mDb->makeList( array_keys( $images ) ) . ')'
 				), $fname
 			);
 		}
