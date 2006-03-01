@@ -664,6 +664,22 @@ END
 		$edit = new EditPage( $this );
 		return $edit->blockedIPpage();
 	}
+	
+	/**
+	 * Override handling of action=purge
+	 */
+	function doPurge() {
+		$this->img = new Image( $this->mTitle );
+		if( $this->img->exists() ) {
+			wfDebug( "ImagePage::doPurge purging " . $this->img->getName() . "\n" );
+			$linksTo = $this->img->getLinksTo();
+			Title::touchArray( $linksTo );
+			$this->img->purgeCache();
+		} else {
+			wfDebug( "ImagePage::doPurge no image\n" );
+		}
+		parent::doPurge();
+	}
 
 }
 
