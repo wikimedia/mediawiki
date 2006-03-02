@@ -487,6 +487,8 @@ class LoginForm {
 		# Don't show a "create account" link if the user can't
 		if( $this->showCreateOrLoginLink( $wgUser ) )
 			$template->set( 'link', wfMsgHtml( $linkmsg, $link ) );
+		else
+			$template->set( 'link', '' );
 		
 		$template->set( 'header', '' );
 		$template->set( 'name', $this->mName );
