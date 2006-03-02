@@ -9,9 +9,15 @@ March 2, 2006
 
 MediaWiki 1.5.7 is a bugfix maintenance release.
 
-Most importantly, a bug in the installer has been fixed which sometimes
-caused MySQL's administrator account password to be changed. This bug
-only affected new installations of 1.5.6 using a root account.
+Most importantly, a security issue in the installer has been fixed. The bug 
+affects new installations of 1.5.6 only. If the user specified the MySQL root 
+password, to allow the installer to create an unprivileged account, the 
+installer would not only create the new account but also change the root 
+password to be equal to the password of the new account. 
+
+Anyone affected by this bug will need to change the root password back 
+manually. For information about how to change passwords in MySQL please see:
+http://dev.mysql.com/doc/refman/5.1/en/passwords.html
 
 This version includes fixes for compatibility with Internet Explorer 7
 beta 2, and various other bugs; see the full changelog at the end of
