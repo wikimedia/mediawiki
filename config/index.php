@@ -523,7 +523,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				# Seems OK
 				$ok = true;
 				$wgDBadminuser = $db_user;
-				$wgDBadminpassword = $wgDBpassword;
+				$wgDBadminpassword = $db_pass;
 				echo( "success.</li>\n" );
 				$wgDatabase->ignoreErrors( true );
 				$myver = mysql_get_server_info( $wgDatabase->mConn );
