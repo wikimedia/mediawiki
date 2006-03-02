@@ -3,6 +3,21 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.7 ==
+
+March 2, 2006
+
+MediaWiki 1.5.7 is a bugfix maintenance release.
+
+Most importantly, a bug in the installer has been fixed which sometimes
+caused MySQL's administrator account password to be changed. This bug
+only affected new installations of 1.5.6 using a root account.
+
+This version includes fixes for compatibility with Internet Explorer 7
+beta 2, and various other bugs; see the full changelog at the end of
+the release notes.
+
+
 == MediaWiki 1.5.6 ==
 
 January 19, 2006
@@ -1067,6 +1082,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Improve "nogomatch" text to make it more obvious that a page can be created.
 * (bug 5113) Spelling error in French language file
 * Don't change the password of the MySQL root user.
+
 
 === Caveats ===
 
