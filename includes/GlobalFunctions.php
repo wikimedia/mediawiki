@@ -176,6 +176,22 @@ function wfDebug( $text, $logonly = false ) {
 }
 
 /**
+ * Send a line to a supplementary debug log file, if configured, or main debug log if not.
+ * $wgDebugLogGroups[$logGroup] should be set to a filename to send to a separate log.
+ * @param string $logGroup
+ * @param string $text
+ */
+function wfDebugLog( $logGroup, $text ) {
+	global $wgDebugLogGroups, $wgDBname;
+	if( $text{strlen( $text ) - 1} != "\n" ) $text .= "\n";
+	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
+		@error_log( "$wgDBname: $text", 3, $wgDebugLogGroups[$logGroup] );
+	} else {
+		wfDebug( $text, true );
+	}
+}
+
+/**
  * Log for database errors
  * @param string $text Database error message.
  */
@@ -229,20 +245,19 @@ function logProfilingData() {
 function wfReadOnly() {
 	global $wgReadOnlyFile, $wgReadOnly;
 
-	if ( $wgReadOnly ) {
-		return true;
+	if ( !is_null( $wgReadOnly ) ) {
+		return (bool)$wgReadOnly;
 	}
 	if ( '' == $wgReadOnlyFile ) {
 		return false;
 	}
 	
-	// Set $wgReadOnly and unset $wgReadOnlyFile, for faster access next time
+	// Set $wgReadOnly for faster access next time
 	if ( is_file( $wgReadOnlyFile ) ) {
-		$wgReadOnly = true;
+		$wgReadOnly = file_get_contents( $wgReadOnlyFile );
 	} else {
 		$wgReadOnly = false;
 	}
-	$wgReadOnlyFile = '';
 	return $wgReadOnly;
 }
 
@@ -402,8 +417,8 @@ function wfAbruptExit( $error = false ){
 	if( function_exists( 'debug_backtrace' ) ){ // PHP >= 4.3
 		$bt = debug_backtrace();
 		for($i = 0; $i < count($bt) ; $i++){
-			$file = $bt[$i]['file'];
-			$line = $bt[$i]['line'];
+			$file = isset($bt[$i]['file']) ? $bt[$i]['file'] : "unknown";
+			$line = isset($bt[$i]['line']) ? $bt[$i]['line'] : "unknown";
 			wfDebug("WARNING: Abrupt exit in $file at line $line\n");
 		}
 	} else {
@@ -523,7 +538,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	if( is_object( $link ) ) {
 		$title =& $link;
 	} else {
-		$title =& Title::newFromText( $link );
+		$title = Title::newFromText( $link );
 		if( is_null( $title ) ) {
 			return false;
 		}
@@ -774,6 +789,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	# This check may also protect against code injection in
 	# case of broken installations.
 	if(! file_exists( $wgDiff3 ) ){
+		wfDebug( "diff3 not found\n" );
 		return false;
 	}
 
@@ -788,7 +804,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	fwrite( $yourtextFile, $yours ); fclose( $yourtextFile );
 
 	# Check for a conflict
-	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a --overlap-only ' .
+	$cmd = $wgDiff3 . ' -a --overlap-only ' .
 	  wfEscapeShellArg( $mytextName ) . ' ' .
 	  wfEscapeShellArg( $oldtextName ) . ' ' .
 	  wfEscapeShellArg( $yourtextName );
@@ -802,7 +818,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	pclose( $handle );
 
 	# Merge differences
-	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a -e --merge ' .
+	$cmd = $wgDiff3 . ' -a -e --merge ' .
 	  wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 	$result = '';
@@ -815,6 +831,11 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	} while ( true );
 	pclose( $handle );
 	unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
+
+	if ( $result === '' && $old !== '' && $conflict == false ) {
+		wfDebug( "Unexpected null result from diff3. Command: $cmd\n" );
+		$conflict = true;
+	}
 	return ! $conflict;
 }
 
@@ -1042,8 +1063,9 @@ define('TS_EXIF', 4);
  * @return string Time in the format specified in $outputtype
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
-	if ($ts==0) { 
-		$uts=time(); 
+	$uts = 0;
+	if ($ts==0) {
+		$uts=time();
 	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {
 		# TS_DB
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
@@ -1151,7 +1173,7 @@ function wfGetSiteNotice() {
  *
  * @param string $element
  * @param array $attribs Name=>value pairs. Values will be escaped.
- * @param bool $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+ * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
  * @return string
  */
 function wfElement( $element, $attribs = null, $contents = '') {
@@ -1182,7 +1204,7 @@ function wfElement( $element, $attribs = null, $contents = '') {
  *
  * @param string $element
  * @param array $attribs Name=>value pairs. Values will be escaped.
- * @param bool $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+ * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
  * @return string
  */
 function wfElementClean( $element, $attribs = array(), $contents = '') {
@@ -1193,6 +1215,37 @@ function wfElementClean( $element, $attribs = array(), $contents = '') {
 		$contents = UtfNormal::cleanUp( $contents );
 	}
 	return wfElement( $element, $attribs, $contents );
+}
+
+/**
+ * Create a namespace selector
+ *
+ * @param mixed $selected The namespace which should be selected, default ''
+ * @param string $allnamespaces Value of a special item denoting all namespaces. Null to not include (default)
+ * @return Html string containing the namespace selector
+ */
+function &HTMLnamespaceselector($selected = '', $allnamespaces = null) {
+	global $wgContLang;
+	$s = "<select name='namespace' class='namespaceselector'>\n";
+	$arr = $wgContLang->getFormattedNamespaces();
+	if( !is_null($allnamespaces) ) {
+		$arr = array($allnamespaces => wfMsgHtml('namespacesall')) + $arr;
+	}
+	foreach ($arr as $index => $name) {
+		if ($index < NS_MAIN) continue;
+
+		$name = $index !== 0 ? $name : wfMsgHtml('blanknamespace');
+
+		if ($index === $selected) {
+			$s .= wfElement("option",
+					array("value" => $index, "selected" => "selected"),
+					$name);
+		} else {
+			$s .= wfElement("option", array("value" => $index), $name);
+		}
+	}
+	$s .= "</select>\n";
+	return $s;
 }
 
 /** Global singleton instance of MimeMagic. This is initialized on demand,
@@ -1304,4 +1357,28 @@ function wfEncryptPassword( $userid, $password ) {
 		return $p;
 }
 
+/**
+ * Appends to second array if $value differs from that in $default
+ */
+function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
+	if ( is_null( $changed ) ) {
+		wfDebugDieBacktrace('GlobalFunctions::wfAppendToArrayIfNotDefault got null');
+	}
+	if ( $default[$key] !== $value ) {
+		$changed[$key] = $value;
+	}
+}
+
+/**
+ * Since wfMsg() and co suck, they don't return false if the message key they
+ * looked up didn't exist but a XHTML string, this function checks for the
+ * nonexistance of messages by looking at wfMsg() output
+ *
+ * @param $msg      The message key looked up
+ * @param $wfMsgOut The output of wfMsg*()
+ * @return bool
+ */
+function wfNoMsg( $msg, $wfMsgOut ) {
+	return $wfMsgOut === "&lt;$msg&gt;";
+}
 ?>

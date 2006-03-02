@@ -170,6 +170,7 @@ class Block
 	
 	/**
 	 * Callback with a Block object for every block
+	 * @return integer number of blocks;
 	 */
 	/*static*/ function enumBlocks( $callback, $tag, $flags = 0 ) 
 	{
@@ -192,6 +193,7 @@ class Block
 		
 		$sql = "SELECT * FROM $ipblocks ORDER BY ipb_timestamp DESC $options";
 		$res = $db->query( $sql, 'Block::enumBans' );
+		$num_rows = $db->numRows( $res );
 
 		while ( $row = $db->fetchObject( $res ) ) {
 			$block->initFromRow( $row );
@@ -204,6 +206,7 @@ class Block
 			}
 		}
 		wfFreeResult( $res );
+		return $num_rows;
 	}
 
 	function delete() 

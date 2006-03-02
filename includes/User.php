@@ -50,8 +50,6 @@ class User {
 	 * @static
 	 */
 	function newFromName( $name ) {
-		$u = new User();
-
 		# Force usernames to capital
 		global $wgContLang;
 		$name = $wgContLang->ucfirst( $name );
@@ -71,6 +69,7 @@ class User {
 			return null;
 		}
 
+		$u = new User();
 		$u->setName( $canonicalName );
 		$u->setId( $u->idFromName( $canonicalName ) );
 		return $u;
@@ -252,13 +251,16 @@ class User {
 	 * @todo Check what is doing really [AV]
 	 */
 	function randomPassword() {
+		global $wgMinimalPasswordLength;
 		$pwchars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz';
 		$l = strlen( $pwchars ) - 1;
 
-		$np = $pwchars{mt_rand( 0, $l )} . $pwchars{mt_rand( 0, $l )} .
-		  $pwchars{mt_rand( 0, $l )} . chr( mt_rand(48, 57) ) .
-		  $pwchars{mt_rand( 0, $l )} . $pwchars{mt_rand( 0, $l )} .
-		  $pwchars{mt_rand( 0, $l )};
+		$pwlength = max( 7, $wgMinimalPasswordLength );
+		$digit = mt_rand(0, $pwlength - 1);
+		$np = '';
+		for ( $i = 0; $i < $pwlength; $i++ ) {
+			$np .= $i == $digit ? chr( mt_rand(48, 57) ) : $pwchars{ mt_rand(0, $l)};
+		}
 		return $np;
 	}
 
@@ -273,7 +275,7 @@ class User {
 		$fname = 'User::loadDefaults' . $n;
 		wfProfileIn( $fname );
 
-		global $wgContLang, $wgIP, $wgDBname;
+		global $wgContLang, $wgIP, $wgCookiePrefix;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = 0;
@@ -295,8 +297,8 @@ class User {
 		$this->setToken(); # Random
 		$this->mHash = false;
 
-		if ( isset( $_COOKIE[$wgDBname.'LoggedOut'] ) ) {
-			$this->mTouched = wfTimestamp( TS_MW, $_COOKIE[$wgDBname.'LoggedOut'] );
+		if ( isset( $_COOKIE[$wgCookiePrefix.'LoggedOut'] ) ) {
+			$this->mTouched = wfTimestamp( TS_MW, $_COOKIE[$wgCookiePrefix.'LoggedOut'] );
 		}
 		else {
 			$this->mTouched = '0'; # Allow any pages to be cached
@@ -587,7 +589,7 @@ class User {
 	 * @static
 	 */
 	function loadFromSession() {
-		global $wgMemc, $wgDBname;
+		global $wgMemc, $wgDBname, $wgCookiePrefix;
 
 		if ( isset( $_SESSION['wsUserID'] ) ) {
 			if ( 0 != $_SESSION['wsUserID'] ) {
@@ -595,16 +597,16 @@ class User {
 			} else {
 				return new User();
 			}
-		} else if ( isset( $_COOKIE["{$wgDBname}UserID"] ) ) {
-			$sId = IntVal( $_COOKIE["{$wgDBname}UserID"] );
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserID"] ) ) {
+			$sId = IntVal( $_COOKIE["{$wgCookiePrefix}UserID"] );
 			$_SESSION['wsUserID'] = $sId;
 		} else {
 			return new User();
 		}
 		if ( isset( $_SESSION['wsUserName'] ) ) {
 			$sName = $_SESSION['wsUserName'];
-		} else if ( isset( $_COOKIE["{$wgDBname}UserName"] ) ) {
-			$sName = $_COOKIE["{$wgDBname}UserName"];
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserName"] ) ) {
+			$sName = $_COOKIE["{$wgCookiePrefix}UserName"];
 			$_SESSION['wsUserName'] = $sName;
 		} else {
 			return new User();
@@ -627,8 +629,8 @@ class User {
 
 		if ( isset( $_SESSION['wsToken'] ) ) {
 			$passwordCorrect = $_SESSION['wsToken'] == $user->mToken;
-		} else if ( isset( $_COOKIE["{$wgDBname}Token"] ) ) {
-			$passwordCorrect = $user->mToken == $_COOKIE["{$wgDBname}Token"];
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}Token"] ) ) {
+			$passwordCorrect = $user->mToken == $_COOKIE["{$wgCookiePrefix}Token"];
 		} else {
 			return new User(); # Can't log in from session
 		}
@@ -781,6 +783,22 @@ class User {
 		}
 
 		return ( 0 != $this->mNewtalk );
+	}
+
+	/**
+	 * Return the talk page(s) this user has new messages on.
+	 */
+	function getNewMessageLinks() {
+	global	$wgDBname;
+		$talks = array();
+		if (!wfRunHooks('UserRetrieveNewTalks', array(&$this, &$talks)))
+			return $talks;
+
+		if (!$this->getNewtalk())
+			return array();
+		$up = $this->getUserPage();
+		$utp = $up->getTalkPage();
+		return array(array("wiki" => $wgDBname, "link" => $utp->getLocalURL()));
 	}
 
 	function setNewtalk( $val ) {
@@ -1028,7 +1046,7 @@ class User {
 	 * @todo FIXME : need to check the old failback system [AV]
 	 */
 	function &getSkin() {
-		global $IP, $wgRequest;
+		global $IP, $wgRequest, $wgStyleDirectory;
 		if ( ! isset( $this->mSkin ) ) {
 			$fname = 'User::getSkin';
 			wfProfileIn( $fname );
@@ -1039,7 +1057,7 @@ class User {
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
 			$userSkin = $wgRequest->getText('useskin', $userSkin);
-			if ( $userSkin == '' ) { $userSkin = 'standard'; }
+			if ( $userSkin == '' ) { $userSkin = 'monobook'; }
 
 			if ( !isset( $skinNames[$userSkin] ) ) {
 				# in case the user skin could not be found find a replacement
@@ -1056,7 +1074,7 @@ class User {
 				if(is_numeric($userSkin) && isset( $fallback[$userSkin]) ){
 					$sn = $fallback[$userSkin];
 				} else {
-					$sn = 'Standard';
+					$sn = $fallback[0];
 				}
 			} else {
 				# The user skin is available
@@ -1065,7 +1083,7 @@ class User {
 
 			# Grab the skin class and initialise it. Each skin checks for PHPTal
 			# and will not load if it's not enabled.
-			require_once( $IP.'/skins/'.$sn.'.php' );
+			require_once( $wgStyleDirectory.'/'.$sn.'.php' );
 
 			# Check if we got if not failback to default skin
 			$className = 'Skin'.$sn;
@@ -1075,7 +1093,7 @@ class User {
 				# except by SQL manipulation if a previously valid skin name
 				# is no longer valid.
 				$className = 'SkinStandard';
-				require_once( $IP.'/skins/Standard.php' );
+ 				require_once( $wgStyleDirectory.'/Standard.php' );
 			}
 			$this->mSkin =& new $className;
 			wfProfileOut( $fname );
@@ -1218,22 +1236,23 @@ class User {
 	}
 
 	function setCookies() {
-		global $wgCookieExpiration, $wgCookiePath, $wgCookieDomain, $wgDBname;
+		global $wgCookieExpiration, $wgCookiePath, $wgCookieDomain, $wgCookiePrefix;
 		if ( 0 == $this->mId ) return;
 		$this->loadFromDatabase();
 		$exp = time() + $wgCookieExpiration;
 
 		$_SESSION['wsUserID'] = $this->mId;
-		setcookie( $wgDBname.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgCookiePrefix.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain );
 
 		$_SESSION['wsUserName'] = $this->mName;
-		setcookie( $wgDBname.'UserName', $this->mName, $exp, $wgCookiePath, $wgCookieDomain );
-
+		setcookie( $wgCookiePrefix.'UserName', $this->mName, $exp, $wgCookiePath, $wgCookieDomain );
+	
 		$_SESSION['wsToken'] = $this->mToken;
+		  global $wgOut;
 		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
-			setcookie( $wgDBname.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain );
+			setcookie( $wgCookiePrefix.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain );
 		} else {
-			setcookie( $wgDBname.'Token', '', time() - 3600 );
+			setcookie( $wgCookiePrefix.'Token', '', time() - 3600 );
 		}
 	}
 
@@ -1242,17 +1261,17 @@ class User {
 	 * It will clean the session cookie
 	 */
 	function logout() {
-		global $wgCookiePath, $wgCookieDomain, $wgDBname, $wgIP;
+		global $wgCookiePath, $wgCookieDomain, $wgIP, $wgCookiePrefix;
 		$this->loadDefaults();
 		$this->setLoaded( true );
 
 		$_SESSION['wsUserID'] = 0;
 
-		setcookie( $wgDBname.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
-		setcookie( $wgDBname.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgCookiePrefix.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgCookiePrefix.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
 
-		# Remember when user logged out, to prevent seeing cached pages
-		setcookie( $wgDBname.'LoggedOut', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain );
+ 		# Remember when user logged out, to prevent seeing cached pages
+ 		setcookie( $wgCookiePrefix.'LoggedOut', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain );
 	}
 
 	/**

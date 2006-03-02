@@ -27,6 +27,8 @@ class WantedPagesPage extends QueryPage {
 	function isSyndicated() { return false; }
 
 	function getSQL() {
+		global $wgWantedPagesThreshold;
+		$count = $wgWantedPagesThreshold - 1;
 		$dbr =& wfGetDB( DB_SLAVE );
 		$pagelinks = $dbr->tableName( 'pagelinks' );
 		$page      = $dbr->tableName( 'page' );
@@ -40,7 +42,7 @@ class WantedPagesPage extends QueryPage {
 			 ON pl_namespace=page_namespace AND pl_title=page_title
 			 WHERE page_namespace IS NULL
 			 GROUP BY pl_namespace,pl_title
-			 HAVING COUNT(*) > 1";
+			 HAVING COUNT(*) > $count";
 	}
 
 	function formatResult( $skin, $result ) {

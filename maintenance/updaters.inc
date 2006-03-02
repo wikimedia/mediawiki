@@ -170,6 +170,7 @@ function do_image_name_unique_update() {
 
 function do_watchlist_update() {
 	global $wgDatabase;
+	$fname = 'do_watchlist_update';
 	if( $wgDatabase->fieldExists( 'watchlist', 'wl_notificationtimestamp' ) ) {
 		echo "The watchlist table is already set up for email notification.\n";
 	} else {
@@ -177,6 +178,24 @@ function do_watchlist_update() {
 		/* ALTER TABLE watchlist ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0'); */
 		dbsource( "maintenance/archives/patch-email-notification.sql", $wgDatabase );
 		echo "ok\n";
+	}
+	# Check if we need to add talk page rows to the watchlist
+	$talk = $wgDatabase->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', $fname );
+	$nontalk = $wgDatabase->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', $fname );
+	if ( $talk != $nontalk ) {
+		echo "Adding missing watchlist talk page rows... ";
+		flush();
+
+		$wgDatabase->insertSelect( 'watchlist', 'watchlist', 
+			array(
+				'wl_user' => 'wl_user',
+				'wl_namespace' => 'wl_namespace | 1',
+				'wl_title' => 'wl_title',
+				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
+			), array( 'NOT (wl_namespace & 1)' ), $fname, 'IGNORE' );
+		echo "ok\n";
+	} else {
+		echo "...watchlist talk page rows already present\n";
 	}
 }
 
@@ -361,7 +380,7 @@ function do_schema_restructuring() {
 		echo "......Locking tables.\n";
 		$wgDatabase->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", $fname );
 
-		$maxold = $wgDatabase->selectField( 'old', 'max(old_id)', '', $fname );
+		$maxold = intval( $wgDatabase->selectField( 'old', 'max(old_id)', '', $fname ) );
 		echo wfTimestamp();
 		echo "......maxold is {$maxold}\n";
 
@@ -626,8 +645,10 @@ function do_user_groups_reformat() {
 }
 
 function do_all_updates() {
-	global $wgNewTables, $wgNewFields, $wgRenamedTables;
+	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDBname;
 	
+	$doUser = !$wgSharedDB || $wgSharedDB == $wgDBname;
+
 	# Rename tables
 	foreach ( $wgRenamedTables as $tableRecord ) {
 		rename_table( $tableRecord[0], $tableRecord[1], $tableRecord[2] );
@@ -641,7 +662,10 @@ function do_all_updates() {
 
 	# Add missing fields
 	foreach ( $wgNewFields as $fieldRecord ) {
-		add_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
+		# Don't update shared DB
+		if ( $doUser || $fieldRecord[0] != 'user') {
+			add_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
+		}
 		flush();
 	}
 	
@@ -651,7 +675,9 @@ function do_all_updates() {
 	do_old_links_update(); flush();
 	do_image_name_unique_update(); flush();
 	do_watchlist_update(); flush();
-	do_user_update(); flush();
+	if ( $doUser ) {
+		do_user_update(); flush();
+	}
 ######	do_copy_newtalk_to_watchlist(); flush();
 	do_logging_encoding(); flush();
 	
@@ -664,7 +690,9 @@ function do_all_updates() {
 	
 	do_drop_img_type(); flush();
 	
-	do_user_unique_update(); flush();
+	if ( $doUser ) {
+		do_user_unique_update(); flush();
+	}
 	do_user_groups_update(); flush();
 	
 	initialiseMessages(); flush();

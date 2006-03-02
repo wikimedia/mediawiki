@@ -32,7 +32,7 @@ function wfSpecialWhatlinkshere($par = NULL) {
 	$sk = $wgUser->getSkin();
 	$isredir = ' (' . wfMsg( 'isredirect' ) . ")\n";
 
-	$wgOut->addHTML('&lt; '.$sk->makeKnownLinkObj($nt, '', 'redirect=no' )."<br />\n");
+	$wgOut->addHTML('&lt; '.$sk->makeLinkObj($nt, '', 'redirect=no' )."<br />\n");
 
 	wfShowIndirectLinks( 0, $nt, $limit, $offset );
 }

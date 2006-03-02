@@ -33,6 +33,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	/* bool */ 'hidebots' => true,
 	/* bool */ 'hideliu' => false,
 	/* bool */ 'hidepatrolled' => false,
+	/* bool */ 'hidemyself' => false,
 	/* text */ 'from' => '',
 	/* text */ 'namespace' => null,
 	/* bool */ 'invert' => false,
@@ -52,8 +53,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$limit = $wgRequest->getInt( 'limit', $limit );
 
 	/* order of selection: url > preferences > default */
-	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );	
-
+	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );		
 	
 	# As a feed, use limited settings only
 	if( $feedFormat ) {
@@ -69,6 +69,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$hidebots = $wgRequest->getBool( 'hidebots', $defaults['hidebots'] );
 		$hideliu = $wgRequest->getBool( 'hideliu', $defaults['hideliu'] );
 		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', $defaults['hidepatrolled'] );
+		$hidemyself = $wgRequest->getBool ( 'hidemyself', $defaults['hidemyself'] );
 		$from = $wgRequest->getVal( 'from', $defaults['from'] );	
 
 		# Get query parameters from path
@@ -81,6 +82,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 				if ( 'minor' == $bit ) $hideminor = 0;
 				if ( 'hideliu' == $bit ) $hideliu = 1;
 				if ( 'hidepatrolled' == $bit ) $hidepatrolled = 1;
+				if ( 'hidemyself' == $bit ) $hidemyself = 1;
 
 				if ( is_numeric( $bit ) ) {
 					$limit = $bit;
@@ -129,16 +131,18 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 	$hidem  = $hideminor ? 'AND rc_minor=0' : '';
 	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
-	$hidem .= $hideliu ? ' AND rc_user=0' : '';
+	$hidem .= ( $hideliu && !$hidemyself ) ? ' AND rc_user=0' : '';
 	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
-	$hidem .= is_null( $namespace ) ?  ''	: ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
+	$hidem .= $hidemyself  ? ' AND rc_user <> '.$wgUser->getID() : '';
+	$hidem .= is_null( $namespace ) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 
 	// This is the big thing!
 
 	$uid = $wgUser->getID();
+        $notifts = ($wgShowUpdatedMarker?",wl_notificationtimestamp":"");
 
 	// Perform query
-	$sql2 = "SELECT *" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
+	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user".$notifts : "") . " FROM $recentchanges " .
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
@@ -176,15 +180,16 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 			// Dump everything here
 			$nondefaults = array();
 		
-			appendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hidemyself', $hidemyself, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
 
 			// Add end of the texts
 			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) );
@@ -357,7 +362,7 @@ function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
  * Used by Recentchangeslinked
  */
 function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall = false, $minorLink = '',
-	$botLink = '', $liuLink = '', $patrLink = '' ) {
+	$botLink = '', $liuLink = '', $patrLink = '', $myselfLink = '' ) {
 	if ($more != '') $more .= '&';
 	$cl = rcCountLink( 50, $days, $page, $more ) . ' | ' .
 	  rcCountLink( 100, $days, $page, $more  ) . ' | ' .
@@ -370,7 +375,7 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 	  rcDaysLink( $limit, 14, $page, $more  ) . ' | ' .
 	  rcDaysLink( $limit, 30, $page, $more  ) .
 	  ( $doall ? ( ' | ' . rcDaysLink( $limit, 0, $page, $more ) ) : '' );
-	$shm = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink );
+	$shm = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink );
 	$note = wfMsg( 'rclinks', $cl, $dl, $shm );
 	return $note;
 }
@@ -429,8 +434,9 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		array( 'hideliu' => 1-$options['hideliu'] ), $nondefaults);
 	$patrLink  = makeOptionsLink( $showhide[1-$options['hidepatrolled']],
 		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults);
-
-	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink );
+	$myselfLink = makeOptionsLink( $showhide[1-$options['hidemyself']], 
+		array( 'hidemyself' => 1-$options['hidemyself'] ), $nondefaults);
+	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink );
 	
 	// show from this onward link
 	$now = $wgLang->timeanddate( wfTimestampNow(), true );
@@ -458,34 +464,22 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
-	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
-	$namespaceselect .= '<option value="" ' . ($namespace === '' ? ' selected="selected"' : '') . '>' . wfMsg( 'contributionsall' ) . '</option>';
-	$arr =  $wgContLang->getFormattedNamespaces();
-	foreach ( $arr as $ns => $name ) {
-		if( $ns < NS_MAIN )
-			continue;
-		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
-		$sel = $namespace === (string) $ns ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
-	}
-	$namespaceselect .= '</select>';
+	$namespaceselect = HTMLnamespaceselector($namespace, '');
+	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" />';
+	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 
-	$out = '';
-	$out .= "<div class='namespaceselector'><form method='get' action='{$wgScript}'>\n";
+	$out = "<div class='namespacesettings'><form method='get' action='{$wgScript}'>\n";
+
 	foreach ( $nondefaults as $key => $value ) {
 		if ($key != 'namespace' && $key != 'invert')
-			$out .= "<input type='hidden' name='$key' value='$value' />";
+			$out .= wfElement('input', array( 'type' => 'hidden', 'name' => $key, 'value' => $value));
 	}
 
-	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
-	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
-	
-	
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
 <div id='nsselect' class='recentchanges'>
-	<label for='nsselectbox'>" . wfMsg('namespace') . "</label>
-	$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsg('invert') . "</label>
+	<label for='namespace'>" . wfMsgHtml('namespace') . "</label>
+	$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsgHtml('invert') . "</label>
 </div>";
 	$out .= '</form></div>';
 	return $out;
@@ -551,7 +545,13 @@ function rcFormatDiff( $row ) {
 			}
 			wfProfileOut( "$fname-dodiff" );
 		} else {
-			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' . 
+			$rev = Revision::newFromId( $row->rc_this_oldid );
+			if( is_null( $rev ) ) {
+				$newtext = '';
+			} else {
+				$newtext = $rev->getText();
+			}
+			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
 				'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
 		}
 		
@@ -561,20 +561,6 @@ function rcFormatDiff( $row ) {
 	
 	wfProfileOut( $fname );
 	return $comment;	
-}
-
-
-/**
- * Appends to second array if $value differs from that in $default
- */
-function appendToArrayIfNotDefault( $key, $value, $default, &$changed )
-{
-	if ( is_null( $changed ) ) {
-		die();
-	}
-	if ( $default[$key] !== $value ) {
-		$changed[$key] = $value;
-	}
 }
 
 ?>

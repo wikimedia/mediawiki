@@ -118,12 +118,16 @@ wfProfileOut( $fname.'-memcached' );
 wfProfileIn( $fname.'-SetupSession' );
 
 if ( $wgDBprefix ) {
-	session_name( $wgDBname . '_' . $wgDBprefix . '_session' );
+	$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
+} elseif ( $wgSharedDB ) {
+	$wgCookiePrefix = $wgSharedDB;
 } else {
-	session_name( $wgDBname . '_session' );
+	$wgCookiePrefix = $wgDBname;
 }
 
-if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgDBname.'Token'] ) ) ) {
+session_name( $wgCookiePrefix . '_session' );
+
+if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
 	User::SetupSession();
 	$wgSessionStarted = true;
 } else {
@@ -152,7 +156,7 @@ wfProfileIn( $fname.'-language1' );
 
 require_once( "$IP/languages/Language.php" );
 
-function setupLangObj(&$langclass) {
+function setupLangObj($langclass) {
 	global $IP;
 
 	if( ! class_exists( $langclass ) ) {
@@ -206,7 +210,11 @@ if( $wgCommandLineMode ) {
 	# Prevent loading User settings from the DB.
 	$wgUser->setLoaded( true );
 } else {
-	$wgUser = User::loadFromSession();
+        $wgUser = null;
+	wfRunHooks('AutoAuthenticate',array(&$wgUser));
+	if ($wgUser === null) {
+		$wgUser = User::loadFromSession();
+	}
 }
 
 wfProfileOut( $fname.'-User' );
@@ -217,7 +225,7 @@ $wgLanguageCode = $wgRequest->getText('uselang', '');
 if ($wgLanguageCode == '')
 	$wgLanguageCode = $wgUser->getOption('language');
 # Validate $wgLanguageCode, which will soon be sent to an eval()
-if( empty( $wgLanguageCode ) || preg_match( '/^[^a-z-]*$/', $wgLanguageCode ) ) {
+if( empty( $wgLanguageCode ) || !preg_match( '/^[a-z]+(-[a-z]+)?$/', $wgLanguageCode ) ) {
 	$wgLanguageCode = $wgContLanguageCode;
 }
 

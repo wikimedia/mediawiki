@@ -245,10 +245,12 @@ class Profiler {
 			$subcalls = $this->calltreeCount($this->mStack, $index);
 
 			if (!preg_match('/^-overhead/', $fname)) {
-				# Adjust for profiling overhead
-				$elapsed -= $overheadInternal;
-				$elapsed -= ($subcalls * $overheadTotal);
-				$memory -= ($subcalls * $overheadMemory);
+				# Adjust for profiling overhead (except special values with elapsed=0
+				if ( $elapsed ) {
+					$elapsed -= $overheadInternal;
+					$elapsed -= ($subcalls * $overheadTotal);
+					$memory -= ($subcalls * $overheadMemory);
+				}
 			}
 
 			if (!array_key_exists($fname, $this->mCollated)) {

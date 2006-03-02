@@ -582,7 +582,7 @@ class Image
 		
 		if (!$mime || $mime==='unknown' || $mime==='unknown/unknown') return false;
 		
-		#if it's SVG, check if ther's a converter enabled    
+		#if it's SVG, check if there's a converter enabled    
 		if ($mime === 'image/svg') {
 			global $wgSVGConverters, $wgSVGConverter;
 			
@@ -854,7 +854,7 @@ class Image
 	 * @return ThumbnailImage
 	 * @access public
 	 */
-	function &getThumbnail( $width, $height=-1 ) {
+	function getThumbnail( $width, $height=-1 ) {
 		if ( $height == -1 ) {
 			return $this->renderThumb( $width );
 		}
@@ -915,6 +915,9 @@ class Image
 	function renderThumb( $width, $useScript = true ) {
 		global $wgUseSquid, $wgInternalServer;
 		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
+
+		$fname = 'Image::renderThumb';
+		wfProfileIn( $fname );
 		
 		$width = IntVal( $width );
 
@@ -922,18 +925,26 @@ class Image
 		if ( ! $this->exists() )
 		{
 			# If there is no image, there will be no thumbnail
+			wfProfileOut( $fname );
 			return null;
 		}
 		
 		# Sanity check $width
 		if( $width <= 0 || $this->width <= 0) {
 			# BZZZT
+			wfProfileOut( $fname );
 			return null;
 		}
 
-		if( $width >= $this->width && !$this->mustRender() ) {
+		global $wgSVGMaxSize;
+		$maxsize = $this->mustRender()
+			? max( $this->width, $wgSVGMaxSize )
+			: $this->width - 1;
+		if( $width > $maxsize ) {
 			# Don't make an image bigger than the source
-			return new ThumbnailImage( $this->getViewURL(), $this->getWidth(), $this->getHeight() );
+			$thumb = new ThumbnailImage( $this->getViewURL(), $this->getWidth(), $this->getHeight() );
+			wfProfileOut( $fname );
+			return $thumb;
 		}
 		
 		$height = floor( $this->height * ( $width/$this->width ) );
@@ -941,18 +952,48 @@ class Image
 		list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
 		if ( $isScriptUrl && $useScript ) {
 			// Use thumb.php to render the image
-			return new ThumbnailImage( $url, $width, $height );
+			$thumb = new ThumbnailImage( $url, $width, $height );
+			wfProfileOut( $fname );
+			return $thumb;
 		}
 
 		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
 		$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ).'/'.$thumbName;
 
+		if ( is_dir( $thumbPath ) ) {
+			// Directory where file should be
+			// This happened occasionally due to broken migration code in 1.5
+			// Rename to broken-*
+			global $wgUploadDirectory;
+			for ( $i = 0; $i < 100 ; $i++ ) {
+				$broken = "$wgUploadDirectory/broken-$i-$thumbName";
+				if ( !file_exists( $broken ) ) {
+					rename( $thumbPath, $broken );
+					break;
+				}
+			}
+			// Code below will ask if it exists, and the answer is now no
+			clearstatcache();
+		}
+
 		if ( !file_exists( $thumbPath ) ) {
 			$oldThumbPath = wfDeprecatedThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).
 				'/'.$thumbName;
 			$done = false;
-			if ( file_exists( $oldThumbPath ) ) {
+
+			// Migration from old directory structure
+			if ( is_file( $oldThumbPath ) ) {
 				if ( filemtime($oldThumbPath) >= filemtime($this->imagePath) ) {
+					if ( file_exists( $thumbPath ) ) {
+						if ( !is_dir( $thumbPath ) ) {
+							// Old image in the way of rename
+							unlink( $thumbPath );
+						} else {
+							// This should have been dealt with already
+							wfDebugDieBacktrace( "Directory where image should be: $thumbPath" );
+						}
+					}
+					// Rename the old image into the new location
 					rename( $oldThumbPath, $thumbPath );
 					$done = true;
 				} else {
@@ -976,7 +1017,9 @@ class Image
 			}
 		}
 		
-		return new ThumbnailImage( $url, $width, $height, $thumbPath );
+		$thumb = new ThumbnailImage( $url, $width, $height, $thumbPath );
+		wfProfileOut( $fname );
+		return $thumb;
 	} // END OF function renderThumb
 
 	/**
@@ -998,12 +1041,14 @@ class Image
 			if( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
 				global $wgSVGConverterPath;
 				$cmd = str_replace(
-					array( '$path/', '$width', '$input', '$output' ),
-					array( $wgSVGConverterPath,
-						   $width,
+					array( '$path/', '$width', '$height', '$input', '$output' ),
+					array( $wgSVGConverterPath ? "$wgSVGConverterPath/" : "",
+						   intval( $width ),
+						   intval( $height ),
 						   wfEscapeShellArg( $this->imagePath ),
 						   wfEscapeShellArg( $thumbPath ) ),
 					$wgSVGConverters[$wgSVGConverter] );
+				wfDebug( "reallyRenderThumb SVG: $cmd\n" );
 				$conv = shell_exec( $cmd );
 			} else {
 				$conv = false;
@@ -1016,7 +1061,7 @@ class Image
 				" -quality 85 -background white -geometry {$width} ".
 				wfEscapeShellArg($this->imagePath) . " " .
 				wfEscapeShellArg($thumbPath);				
-			wfDebug("reallyRenderThumb: running ImageMagick: $cmd");
+			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
 			$conv = shell_exec( $cmd );
 		} else {
 			# Use PHP's builtin GD library functions.
@@ -1244,7 +1289,7 @@ class Image
 	/**
 	 * Record an image upload in the upload log and the image table
 	 */
-	function recordUpload( $oldver, $desc, $copyStatus = '', $source = '' ) {
+	function recordUpload( $oldver, $desc, $copyStatus = '', $source = '', $watch = false ) {
 		global $wgUser, $wgLang, $wgTitle, $wgDeferredUpdateList;
 		global $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
 
@@ -1304,15 +1349,7 @@ class Image
 		$descTitle = $this->getTitle();
 		$purgeURLs = array();
 
-		if ( $dbw->affectedRows() ) {
-			# Successfully inserted, this is a new image
-			$id = $descTitle->getArticleID();
-
-			if ( $id == 0 ) {
-				$article = new Article( $descTitle );
-				$article->insertNewArticle( $textdesc, $desc, false, false, true );
-			}
-		} else {
+		if( $dbw->affectedRows() == 0 ) {
 			# Collision, this is an update of an image
 			# Insert previous contents into oldimage
 			$dbw->insertSelect( 'oldimage', 'image', 
@@ -1349,12 +1386,27 @@ class Image
 					'img_name' => $this->name
 				), $fname
 			);
+		}
+
+		$article = new Article( $descTitle );
+		$minor = false;
+		$watch = $watch || $wgUser->isWatched( $descTitle );
+		$suppressRC = true; // There's already a log entry, so don't double the RC load
+		
+		if( $descTitle->exists() ) {
+			// TODO: insert a null revision into the page history for this update.
+			if( $watch ) {
+				$wgUser->addWatch( $descTitle );
+			}
 			
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
 			$purgeURLs[] = $descTitle->getInternalURL();
+		} else {
+			// New image; create the description page.
+			$article->insertNewArticle( $textdesc, $desc, $minor, $watch, $suppressRC );
 		}
-
+		
 		# Invalidate cache for all pages using this image
 		$linksTo = $this->getLinksTo();
 		
@@ -1518,7 +1570,11 @@ function wfImageThumbDir( $fname, $shared = false ) {
 			umask( $oldumask );
 		}
 
-		if ( ! is_dir( $dir ) ) { 
+		if ( ! is_dir( $dir ) ) {
+			if ( is_file( $dir ) ) {
+				// Old thumbnail in the way of directory creation, kill it
+				unlink( $dir );
+			}
 			$oldumask = umask(0);
 			@mkdir( $dir, 0777 ); 
 			umask( $oldumask );

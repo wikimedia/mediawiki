@@ -1,5 +1,5 @@
 
-USER.DOC
+user.txt
 
 Documenting the MediaWiki User object.
 

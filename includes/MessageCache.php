@@ -306,6 +306,9 @@ class MessageCache
 			}
 		}
 
+		# Call message Hooks, in case they are defined
+		wfRunHooks('MessagesPreLoad',array($title,&$message));
+
 		# If it wasn't in the cache, load each message from the DB individually
 		if ( !$message ) {
 			$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
