@@ -4,13 +4,6 @@
 -- from local settings.
 --
 
-GRANT ALL ON `{$wgDBname}`.*
- TO '{$wgDBadminuser}'@'%' IDENTIFIED BY '{$wgDBadminpassword}';
-GRANT ALL ON `{$wgDBname}`.*
- TO '{$wgDBadminuser}'@localhost IDENTIFIED BY '{$wgDBadminpassword}';
-GRANT ALL ON `{$wgDBname}`.*
- TO '{$wgDBadminuser}'@localhost.localdomain IDENTIFIED BY '{$wgDBadminpassword}';
-
 GRANT DELETE,INSERT,SELECT,UPDATE ON `{$wgDBname}`.*
  TO '{$wgDBuser}'@'%' IDENTIFIED BY '{$wgDBpassword}';
 GRANT DELETE,INSERT,SELECT,UPDATE ON `{$wgDBname}`.*
