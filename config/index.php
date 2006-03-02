@@ -506,7 +506,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$wgDatabase->ignoreErrors( true );
 			$myver = mysql_get_server_info( $wgDatabase->mConn );
 			$wgDBadminuser = $db_user;
-			$wfDBadminpassword = $db_pass;
+			$wgDBadminpassword = $db_pass;
 		} else {
 			# There was an error; if we recognise it, give some useful feedback
 			$ok = false;
