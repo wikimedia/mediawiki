@@ -1,7 +1,7 @@
 <?php
 
 
-$wgAllMessagesSr = array(
+$wgAllMessagesSr_ec = array(
 '1movedto2' => 'чланку [[$1]] је промењено име у [[$2]]',
 '1movedto2_redir' => 'чланку [[$1]] је промењено име у [[$2]] путем преусмерења',
 'Monobook.css' => '/*
@@ -1501,6 +1501,11 @@ $3...)<br />
 'yourrealname' => 'Ваше право име*',
 'yourtext' => 'Ваш текст',
 'yourvariant' => 'Варијанта језика',
+'variantname-sr-ec' => 'екав',
+'variantname-sr-el' => 'ekav',
+'variantname-sr-jc' => 'јекав',
+'variantname-sr-jl' => 'jekav',
+'variantname-sr' => 'српски',
 );
 
 

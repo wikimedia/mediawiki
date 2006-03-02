@@ -1564,6 +1564,12 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 'variantname-zh-hk' => 'hk',
 'variantname-zh-sg' => 'sg',
 'variantname-zh' => 'zh',
+# variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr-jc' => 'sr-jc',
+'variantname-sr-jl' => 'sr-jl',
+'variantname-sr' => 'sr',
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'User:',
