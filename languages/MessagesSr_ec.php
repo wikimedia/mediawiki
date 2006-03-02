@@ -1505,7 +1505,7 @@ $3...)<br />
 'variantname-sr-el' => 'ekav',
 'variantname-sr-jc' => 'јекав',
 'variantname-sr-jl' => 'jekav',
-'variantname-sr' => 'српски',
+'variantname-sr' => 'disable',
 );
 
 
