@@ -1066,6 +1066,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   $wgCategoryPagingLimit global, per bug 4970.
 * Improve "nogomatch" text to make it more obvious that a page can be created.
 * (bug 5113) Spelling error in French language file
+* Don't change the password of the MySQL root user.
 
 === Caveats ===
 
