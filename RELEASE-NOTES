@@ -67,7 +67,7 @@ Database:
 * Added externallinks table, to track links to arbitrary URLs
 * Added job table, for deferred processing of jobs. The immediate application is 
   to complete the link table refresh operation when templates are changed.
-
+* Don't change the password of the MySQL root user.
 
 Documentation:
 * (bug 3306) Document $wgLocalTZoffset
