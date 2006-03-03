@@ -1525,7 +1525,7 @@ function &HTMLnamespaceselector($selected = '', $allnamespaces = null) {
 			$selected = intval( $selected );
 		}
 	}
-	$s = "<select name='namespace' class='namespaceselector'>\n\t";
+	$s = "<select id='namespace' name='namespace' class='namespaceselector'>\n\t";
 	$arr = $wgContLang->getFormattedNamespaces();
 	if( !is_null($allnamespaces) ) {
 		$arr = array($allnamespaces => wfMsgHtml('namespacesall')) + $arr;
