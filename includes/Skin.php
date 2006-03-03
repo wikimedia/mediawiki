@@ -697,7 +697,7 @@ END;
 					$c++;
 					if ($c<count($links)) {
 						$growinglink .= $link;
-						$getlink = $this->makeLink( $growinglink, $link );
+						$getlink = $this->makeLink( $growinglink, htmlspecialchars( $link ) );
 						if(preg_match('/class="new"/i',$getlink)) { break; } # this is a hack, but it saves time
 						if ($c>1) {
 							$subpages .= ' | ';
