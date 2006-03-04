@@ -70,6 +70,7 @@ $magicWords = array(
 	'MAG_FULLPAGENAME',
 	'MAG_FULLPAGENAMEE',
 	'MAG_RAW',
+	'MAG_SUBPAGENAME',
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
@@ -102,6 +103,7 @@ $wgVariableIDs = array(
 	MAG_CURRENTWEEK,
 	MAG_CURRENTDOW,
 	MAG_REVISIONID,
+	MAG_SUBPAGENAME
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordwgVariableIDs', array( &$wgVariableIDs ) );

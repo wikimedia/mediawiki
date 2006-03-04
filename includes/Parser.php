@@ -2022,6 +2022,8 @@ class Parser
 				return $this->mTitle->getPrefixedText();
 			case MAG_FULLPAGENAMEE:
 				return $this->mTitle->getPrefixedURL();
+			case MAG_SUBPAGENAME:
+				return $this->mTitle->getSubpageText();
 			case MAG_REVISIONID:
 				return $this->mRevisionId;
 			case MAG_NAMESPACE:
