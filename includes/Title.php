@@ -677,6 +677,20 @@ class Title {
 	}
 
 	/**
+	 * Get the lowest-level subpage name, i.e. the rightmost part after /
+	 * @return string Subpage name
+	 */
+	function getSubpageText() {
+		global $wgNamespacesWithSubpages;
+		if( $wgNamespacesWithSubpages[ $this->mNamespace ] ) {
+			$parts = explode( '/', $this->mTextform );
+			return( $parts[ count( $parts ) - 1 ] );
+		} else {
+			return( $this->mTextform );
+		}
+	}
+
+	/**
 	 * Get a URL-encoded title (not an actual URL) including interwiki
 	 * @return string the URL-encoded form
 	 * @access public
