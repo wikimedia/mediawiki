@@ -3020,6 +3020,8 @@ class Parser
 			# strip out HTML
 			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
 			$tocline = trim( $canonized_headline );
+			# Save headline for section edit hint before it's escaped
+			$headline_hint = trim( $canonized_headline ); 
 			$canonized_headline = Sanitizer::escapeId( $tocline );
 			$refers[$headlineCount] = $canonized_headline;
 
@@ -3048,7 +3050,7 @@ class Parser
 				if( $istemplate )
 					$head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
 				else
-					$head[$headlineCount] .= $sk->editSectionLink($this->mTitle, $sectionCount+1);
+					$head[$headlineCount] .= $sk->editSectionLink($this->mTitle, $sectionCount+1, $headline_hint);
 			}
 
 			# give headline the correct <h#> tag

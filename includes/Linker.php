@@ -270,15 +270,16 @@ class Linker {
 	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
 	 * pages.
 	 *
-	 * @param object Title of target page
-	 * @param string Text to replace the title
-	 * @param string Link target
-	 * @param string Text after link
-	 * @param string Text before link text
-	 * @param string Extra attributes to the a-element
+	 * @param object $nt Title of target page
+	 * @param string $text Text to replace the title
+	 * @param string $query Link target
+	 * @param string $trail Text after link
+	 * @param string $prefix Text before link text
+	 * @param string $aprops Extra attributes to the a-element
+	 * @param string $style Style to apply - if empty, use getInternalLinkAttributesObj instead
 	 * @return the a-element
 	 */
-	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
+	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
 
 		$fname = 'Linker::makeKnownLinkObj';
 		wfProfileIn( $fname );
@@ -289,7 +290,7 @@ class Linker {
 		}
 
 		$u = $nt->escapeLocalURL( $query );
-		if ( '' != $nt->getFragment() ) {
+		if ( $nt->getFragment() != '' ) {
 			if( $nt->getPrefixedDbkey() == '' ) {
 				$u = '';
 				if ( '' == $text ) {
@@ -303,10 +304,12 @@ class Linker {
 			);
 			$u .= '#' . str_replace(array_keys($replacearray),array_values($replacearray),$anchor);
 		}
-		if ( '' == $text ) {
+		if ( $text == '' ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
-		$style = $this->getInternalLinkAttributesObj( $nt, $text );
+		if ( $style == '' ) {
+			$style = $this->getInternalLinkAttributesObj( $nt, $text );
+		}
 
 		if ( $aprops !== '' ) $aprops = ' ' . $aprops;
 
@@ -902,12 +905,17 @@ class Linker {
 
 	}
 
-	/** @todo document */
-	function editSectionLink( $nt, $section ) {
+	/** 
+	 * @param Title $title
+	 * @param integer $section
+	 * @param string $hint Link title, or default if omitted or empty
+	 */
+	function editSectionLink( $nt, $section, $hint='' ) {
 		global $wgContLang;
 
 		$editurl = '&section='.$section;
-		$url = $this->makeKnownLinkObj( $nt, wfMsg('editsection'), 'action=edit'.$editurl );
+		$hint = ( $hint=='' ) ? '' : ' title="' . wfMsgHtml( 'editsectionhint', htmlspecialchars( $hint ) ) . '"';
+		$url = $this->makeKnownLinkObj( $nt, wfMsg('editsection'), 'action=edit'.$editurl, '', '', '',  $hint );
 
 		if( $wgContLang->isRTL() ) {
 			$farside = 'left';
