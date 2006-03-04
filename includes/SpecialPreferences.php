@@ -464,6 +464,7 @@ class PreferencesForm {
 		$this->mUsedToggles[ 'enotifusertalkpages' ] = true;
 		$this->mUsedToggles[ 'enotifminoredits' ] = true;
 		$this->mUsedToggles[ 'enotifrevealaddr' ] = true;
+		$this->mUsedToggles[ 'uselivepreview' ] = true;
 
 		# Enotif
 		# <FIXME>
