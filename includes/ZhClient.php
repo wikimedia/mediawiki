@@ -119,7 +119,7 @@ class ZhClient {
 			$i+=$len;
 		}
 		return $ret;
-    }
+	}
 	/**
 	 * Perform word segmentation
 	 *

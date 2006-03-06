@@ -620,9 +620,9 @@ class UploadForm {
 		</tr>
 		<tr>" );
 
-	if ( $licenseshtml != '' ) {
-		global $wgStylePath;
-		$wgOut->addHTML( "
+		if ( $licenseshtml != '' ) {
+			global $wgStylePath;
+			$wgOut->addHTML( "
 			<td align='right'><label for='wpLicense'>$license:</label></td>
 			<td align='left'>
 				<script type='text/javascript' src=\"$wgStylePath/common/upload.js\"></script>
@@ -635,15 +635,15 @@ class UploadForm {
 			</tr>
 			<tr>
 		");
-	}
+		}
 
-	if ( $wgUseCopyrightUpload ) {
-		$filestatus = wfMsgHtml ( 'filestatus' );
-		$copystatus =  htmlspecialchars( $this->mUploadCopyStatus );
-		$filesource = wfMsgHtml ( 'filesource' );
-		$uploadsource = htmlspecialchars( $this->mUploadSource );
-
-		$wgOut->addHTML( "
+		if ( $wgUseCopyrightUpload ) {
+			$filestatus = wfMsgHtml ( 'filestatus' );
+			$copystatus =  htmlspecialchars( $this->mUploadCopyStatus );
+			$filesource = wfMsgHtml ( 'filesource' );
+			$uploadsource = htmlspecialchars( $this->mUploadSource );
+			
+			$wgOut->addHTML( "
 			        <td align='right' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
 			        <td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' value=\"$copystatus\" size='40' /></td>
 		        </tr>
@@ -653,10 +653,10 @@ class UploadForm {
 			</tr>
 			<tr>
 		");
-	}
+		}
 
 
-	$wgOut->addHtml( "
+		$wgOut->addHtml( "
 		<td></td>
 		<td>
 			<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
@@ -677,8 +677,8 @@ class UploadForm {
 		<td></td>
 		<td align='left'>
 		" );
-	$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
-	$wgOut->addHTML( "
+		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
+		$wgOut->addHTML( "
 		</td>
 	</tr>
 
