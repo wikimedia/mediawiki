@@ -1089,6 +1089,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 5113) Spelling error in French language file
 * Don't change the password of the MySQL root user.
 
+=== Changes since 1.5.7 ===
+
+* (bug 5180) User login page shows inappropriate email blurb
 
 === Caveats ===
 
