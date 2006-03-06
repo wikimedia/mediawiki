@@ -678,6 +678,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 5150 and related) Fix missing ID attribute in HTML namespace selector
 * (bug 5152) Proper HTML escaping on subpage breadcrumbs
 * (bug 4855) Section edit links now have the section name in the title attribute.
+* (bug 2115) Support shift-selecting multiple checkboxes with JavaScript.
 
 
 === Caveats ===
