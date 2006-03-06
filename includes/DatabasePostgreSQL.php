@@ -120,7 +120,7 @@ class DatabasePgsql extends Database {
 
 	function fetchRow( $res ) {
 		@$row = pg_fetch_array( $res );
-                if( pg_last_error($this->mConn) ) {
+		if( pg_last_error($this->mConn) ) {
                         wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
                 }
 		return $row;

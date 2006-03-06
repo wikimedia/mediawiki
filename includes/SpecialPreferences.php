@@ -656,7 +656,7 @@ class PreferencesForm {
 
 		# <FIXME>
 		# Enotif
-                if ($wgEnableEmail) {
+		if ($wgEnableEmail) {
 			$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'email' ) . '</legend>' );
                         $wgOut->addHTML(
                                 $emailauthenticated.
