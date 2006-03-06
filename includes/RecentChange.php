@@ -340,7 +340,8 @@ class RecentChange
 
 	# A log entry is different to an edit in that previous revisions are
 	# not kept
-	/*static*/ function notifyLog( $timestamp, &$title, &$user, $comment, $ip='' )
+	/*static*/ function notifyLog( $timestamp, &$title, &$user, $comment, $ip='',
+	   $type, $action, $target, $logComment, $params )
 	{
 		if ( !$ip ) {
 			$ip = wfGetIP();
@@ -372,7 +373,12 @@ class RecentChange
 		);
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
-			'lastTimestamp' => 0
+			'lastTimestamp' => 0,
+			'logType' => $type,
+			'logAction' => $action,
+			'logComment' => $logComment,
+			'logTarget' => $target,
+			'logParams' => $params
 		);
 		$rc->save();
 	}
@@ -434,6 +440,10 @@ class RecentChange
 		return $trail;
 	}
 
+	function cleanupForIRC( $text ) {
+		return str_replace(array("\n", "\r"), array("", ""), $text);
+	}
+
 	function getIRCLine() {
 		global $wgUseRCPatrol;
 
@@ -441,13 +451,16 @@ class RecentChange
 		extract($this->mExtra);
 
 		$titleObj =& $this->getTitle();
+		if ( $rc_type == RC_LOG ) {
+			$title = Namespace::getCanonicalName( $titleObj->getNamespace() ) . $titleObj->getText();
+		} else {
+			$title = $titleObj->getPrefixedText();
+		}
+		$title = $this->cleanupForIRC( $title );
 
-		$bad = array("\n", "\r");
-		$empty = array("", "");
-		$title = $titleObj->getPrefixedText();
-		$title = str_replace($bad, $empty, $title);
-
-		if ( $rc_new && $wgUseRCPatrol ) {
+		if ( $rc_type == RC_LOG ) {
+			$url = '';
+		} elseif ( $rc_new && $wgUseRCPatrol ) {
 			$url = $titleObj->getFullURL("rcid=$rc_id");
 		} else if ( $rc_new ) {
 			$url = $titleObj->getFullURL();
@@ -469,16 +482,22 @@ class RecentChange
 			$szdiff = '';
 		}
 
-		$comment = str_replace($bad, $empty, $rc_comment);
-		$user = str_replace($bad, $empty, $rc_user_text);
-		$flag = ($rc_minor ? "M" : "") . ($rc_new ? "N" : "");
-		# see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003,
+		$user = $this->cleanupForIRC( $rc_user_text );
+
+		if ( $rc_type == RC_LOG ) {
+			$logTargetText = $logTarget->getPrefixedText();
+			$comment = $this->cleanupForIRC( str_replace( $logTargetText, "\00302$logTargetText\003 ", $rc_comment ) );
+			$flag = $logAction;
+		} else {
+			$comment = $this->cleanupForIRC( $rc_comment );
+			$flag = ($rc_minor ? "M" : "") . ($rc_new ? "N" : "");
+		}
+		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
 		# no colour (\003) switches back to the term default
-		$comment = preg_replace("/\/\* (.*) \*\/(.*)/", "\00315\$1\003 - \00310\$2\003", $comment);
 		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
 		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
-
 		return $fullString;
 	}
+
 }
 ?>
