@@ -33,6 +33,7 @@ function runOnloadHook() {
 	tabbedprefs();
 	akeytt();
 	scrollEditBox();
+	setupCheckboxShiftClick();
 
 	// Run any added-on functions
 	for (var i = 0; i < onloadFuncts.length; i++)
@@ -98,7 +99,7 @@ function histrowinit() {
 }
 
 // check selection and tweak visibility/class onclick
-function diffcheck() { 
+function diffcheck() {
 	var dli = false; // the li where the diff radio is checked
 	var oli = false; // the li where the oldid radio is checked
 	hf = document.getElementById('pagehistory');
@@ -114,7 +115,7 @@ function diffcheck() {
 				if (oli) { // it's the second checked radio
 					if (inputs[1].checked) {
 						oli.className = "selected";
-						return false 
+						return false
 					}
 				} else if (inputs[0].checked) {
 					return false;
@@ -288,7 +289,7 @@ function changeText(el, newText) {
 	else if (el.firstChild && el.firstChild.nodeValue)
 		el.firstChild.nodeValue = newText;
 }
-  
+
 function toggleToc() {
 	var toc = document.getElementById('toc').getElementsByTagName('ul')[0];
 	var toggleLink = document.getElementById('togglelink')
@@ -357,11 +358,11 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		var areas = document.getElementsByTagName('textarea');
 		var txtarea = areas[0];
 	}
-	
+
 	// IE
 	if (document.selection  && !is_gecko) {
 		var theSelection = document.selection.createRange().text;
-		if (!theSelection) 
+		if (!theSelection)
 			theSelection=sampleText;
 		txtarea.focus();
 		if (theSelection.charAt(theSelection.length - 1) == " ") { // exclude ending space char, if any
@@ -396,9 +397,9 @@ function insertTags(tagOpen, tagClose, sampleText) {
 			txtarea.selectionStart = cPos;
 			txtarea.selectionEnd = cPos;
 		} else {
-			txtarea.selectionStart = startPos+tagOpen.length;   
+			txtarea.selectionStart = startPos+tagOpen.length;
 			txtarea.selectionEnd = startPos+tagOpen.length+myText.length;
-		}	
+		}
 		txtarea.scrollTop = scrollTop;
 
 	// All other browsers get no toolbar.
@@ -469,17 +470,17 @@ function addRightClickEditHandler(el) {
 		var link = el.childNodes[i];
 		if (link.nodeType == 1 && link.nodeName.toLowerCase() == 'a') {
 			var editHref = link.getAttribute('href');
-			
+
 			// find the following a
 			var next = el.nextSibling;
 			while (next.nodeType != 1)
 				next = next.nextSibling;
-			
+
 			// find the following header
 			next = next.nextSibling;
 			while (next.nodeType != 1)
 				next = next.nextSibling;
-			
+
 			if (next && next.nodeType == 1 &&
 				next.nodeName.match(/^[Hh][1-6]$/)) {
 				next.oncontextmenu = function() {
@@ -489,6 +490,68 @@ function addRightClickEditHandler(el) {
 			}
 		}
 	}
+}
+
+function setupCheckboxShiftClick() {
+	if (document.getElementsByTagName) {
+		var uls = document.getElementsByTagName('ul');
+		var len = uls.length;
+		for (var i = 0; i < len; ++i) {
+			addCheckboxClickHandlers(uls[i]);
+		}
+	}
+}
+
+function addCheckboxClickHandlers(ul) {
+	if ( !ul.childNodes ) {
+		return;
+	}
+	var len = ul.childNodes.length;
+	if (len < 2) {
+		return;
+	}
+	ul.checkboxes = [];
+	ul.lastCheckbox = null;
+	for (var i = 0; i<len; ++i) {
+		var child = ul.childNodes[i];
+		if ( child && child.childNodes && child.childNodes[0] ) {
+			var cb = child.childNodes[0];
+			if ( !cb.nodeName || cb.nodeName.toLowerCase() != 'input' ||
+			     !cb.type || cb.type.toLowerCase() != 'checkbox' ) {
+				continue;
+			}
+			cb.index = ul.checkboxes.push(cb) - 1;
+			cb.container = ul;
+			cb.onmouseup = checkboxMouseupHandler;
+		}
+	}
+}
+
+function checkboxMouseupHandler(e) {
+	if (typeof e == 'undefined') {
+		e = window.event;
+	}
+	if ( !e.shiftKey || this.container.lastCheckbox === null ) {
+		this.container.lastCheckbox = this.index;
+		return true;
+	}
+	var endState = !this.checked;
+	if ( is_opera ) { // opera has already toggled the checkbox by this point
+		endState = !endState;
+	}
+	var start, finish;
+	if ( this.index < this.container.lastCheckbox ) {
+		start = this.index + 1;
+		finish = this.container.lastCheckbox;
+	} else {
+		start = this.container.lastCheckbox;
+		finish = this.index - 1;
+	}
+	for (var i = start; i <= finish; ++i ) {
+		this.container.checkboxes[i].checked = endState;
+	}
+	this.container.lastCheckbox = this.index;
+	return true;
 }
 
 function fillDestFilename() {
@@ -515,7 +578,7 @@ function fillDestFilename() {
 	if (destFile)
 		destFile.value = fname;
 }
-	
+
 
 function considerChangingExpiryFocus() {
 	if (!document.getElementById)
@@ -554,7 +617,7 @@ function allmessagesfilter() {
 	if (!k) { return;}
 
 	var items = k.getElementsByTagName('span');
-	
+
 	if ( text.length > allmessages_prev.length ) {
 		for (var i = items.length-1, j = 0; i >= 0; i--) {
 			j = allmessagesforeach(items, i, j);
