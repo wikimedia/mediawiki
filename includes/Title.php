@@ -50,8 +50,8 @@ class Title {
 	var $mRestrictionsLoaded; # Boolean for initialisation on demand
 	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
 	var $mDefaultNamespace;   # Namespace index when there is no namespace
-			      # Zero except in {{transclusion}} tags
-	var $mWatched;	    # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
+	                    # Zero except in {{transclusion}} tags
+	var $mWatched;      # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
 	/**#@-*/
 
 

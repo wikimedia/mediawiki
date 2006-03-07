@@ -38,8 +38,8 @@ class DisambiguationsPage extends PageQueryPage {
 
 		$dp = Title::newFromText(wfMsgForContent('disambiguationspage'));
 		$id = $dp->getArticleId();
-	$dns = $dp->getNamespace();
-	$dtitle = $dbr->addQuotes( $dp->getDBkey() );
+		$dns = $dp->getNamespace();
+		$dtitle = $dbr->addQuotes( $dp->getDBkey() );
 
 		if($dns != NS_TEMPLATE) {
 			# FIXME we assume the disambiguation message is a template but
@@ -63,7 +63,7 @@ class DisambiguationsPage extends PageQueryPage {
 
 	function formatResult( $skin, $result ) {
 		$title = Title::newFromId( $result->value );
-	$dp = Title::makeTitle( $result->namespace, $result->title );
+		$dp = Title::makeTitle( $result->namespace, $result->title );
 
 		$from = $skin->makeKnownLinkObj( $title,'');
 		$edit = $skin->makeBrokenLinkObj( $title, "(".wfMsg("qbedit").")" , 'redirect=no');

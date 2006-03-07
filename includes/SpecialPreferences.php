@@ -447,7 +447,7 @@ class PreferencesForm {
 		} else if ( '' != $status ) {
 			$wgOut->addWikitext( $message . "\n----" );
 		}
-		
+
 		$qbs = $wgLang->getQuickbarSettings();
 		$skinNames = $wgLang->getSkinNames();
 		$mathopts = $wgLang->getMathNames();
@@ -891,7 +891,7 @@ class PreferencesForm {
 	</div></form>\n" );
 
 		$wgOut->addWikiText( '<div class="prefcache">' . wfMsg('clearyourcache') . '</div>' );
-	
+
 	}
 }
 ?>
