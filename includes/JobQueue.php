@@ -211,3 +211,4 @@ class Job {
 		return $this->error;
 	}
 }
+?>

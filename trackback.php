@@ -78,3 +78,4 @@ $dbw->insert('trackbacks', array(
 
 XMLsuccess();
 exit;
+?>

@@ -50,3 +50,4 @@ if( in_array( '--help', $argv ) )
 
 $cp = new ChangePassword( @$options['user'], @$options['password'] );
 $cp->main();
+?>

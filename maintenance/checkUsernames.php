@@ -34,3 +34,4 @@ class checkUsernames {
 
 $cun = new checkUsernames();
 $cun->main();
+?>

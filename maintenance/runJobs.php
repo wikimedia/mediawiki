@@ -17,3 +17,4 @@ while ( $dbw->selectField( 'job', 'count(*)', '', 'runJobs.php' ) ) {
 		}
 	}
 }
+?>

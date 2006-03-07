@@ -47,3 +47,4 @@ class PersistentObject {
 		$wgPersistentObjects[] = $obj;
 	}
 }
+?>

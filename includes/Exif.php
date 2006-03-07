@@ -1103,3 +1103,4 @@ class FormatExif {
 		return $a;
 	}
 }
+?>

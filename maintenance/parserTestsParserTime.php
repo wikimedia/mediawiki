@@ -23,3 +23,4 @@ function wfParserTimeSetup( &$parser, &$ts ) {
 	
 	return true;
 }
+?>
