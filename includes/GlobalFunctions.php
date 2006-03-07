@@ -716,7 +716,7 @@ function wfShowingResultsNum( $offset, $limit, $num ) {
  * @todo document
  */
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
-	global $wgUser, $wgLang;
+	global $wgLang;
 	$fmtLimit = $wgLang->formatNum( $limit );
 	$prev = wfMsg( 'prevn', $fmtLimit );
 	$next = wfMsg( 'nextn', $fmtLimit );
@@ -760,7 +760,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
  * @todo document
  */
 function wfNumLink( $offset, $limit, &$title, $query = '' ) {
-	global $wgUser, $wgLang;
+	global $wgLang;
 	if ( '' == $query ) { $q = ''; }
 	else { $q = $query.'&'; }
 	$q .= 'limit='.$limit.'&offset='.$offset;
@@ -1275,8 +1275,8 @@ define('TS_ORACLE', 6);
 
 /**
  * @param mixed $outputtype A timestamp in one of the supported formats, the
- *                          function will autodetect which format is supplied
-                            and act accordingly.
+ * 			    function will autodetect which format is supplied
+			    and act accordingly.
  * @return string Time in the format specified in $outputtype
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
@@ -1620,26 +1620,26 @@ function wfMkdirParents( $fullDir, $mode ) {
 /**
  * Increment a statistics counter
  */
-function wfIncrStats( $key ) {
-	global $wgDBname, $wgMemc;
-        /* LIVE HACK AVOID MEMCACHED ACCESSES DURING HIGH LOAD */
-        if ($wgDBname != 'enwiki' and $wgDBname != 'dewiki' and $wgDBname != 'commonswiki' and $wgDBname != 'testwiki')
-            return true;
-        static $socket;
-        if (!$socket) {
-            $socket=socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-            $statline="{$wgDBname} - 1 1 1 1 1 -total\n";
-            socket_sendto($socket,$statline,strlen($statline),0,"webster","3811");
-        }
-        $statline="{$wgDBname} - 1 1 1 1 1 {$key}\n";
-        socket_sendto($socket,$statline,strlen($statline),0,"webster","3811");
-        return true;
+ function wfIncrStats( $key ) {
+	 global $wgDBname, $wgMemc;
+	 /* LIVE HACK AVOID MEMCACHED ACCESSES DURING HIGH LOAD */
+	 if ($wgDBname != 'enwiki' and $wgDBname != 'dewiki' and $wgDBname != 'commonswiki' and $wgDBname != 'testwiki')
+		 return true;
+	 static $socket;
+	 if (!$socket) {
+		 $socket=socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+		 $statline="{$wgDBname} - 1 1 1 1 1 -total\n";
+		 socket_sendto($socket,$statline,strlen($statline),0,"webster","3811");
+	 }
+	 $statline="{$wgDBname} - 1 1 1 1 1 {$key}\n";
+	 socket_sendto($socket,$statline,strlen($statline),0,"webster","3811");
+	 return true;
 
-	$key = "$wgDBname:stats:$key";
-	if ( is_null( $wgMemc->incr( $key ) ) ) {
-		$wgMemc->add( $key, 1 );
-	}
-}
+	 $key = "$wgDBname:stats:$key";
+	 if ( is_null( $wgMemc->incr( $key ) ) ) {
+		 $wgMemc->add( $key, 1 );
+	 }
+ }
 
 /**
  * @param mixed $nr The number to format

@@ -359,7 +359,7 @@ class Database {
 	 * If errors are explicitly ignored, returns success
 	 */
 	function query( $sql, $fname = '', $tempIgnore = false ) {
-		global $wgProfiling, $wgCommandLineMode;
+		global $wgProfiling;
 
 		if ( $wgProfiling ) {
 			# generalizeSQL will probably cut down the query to reasonable

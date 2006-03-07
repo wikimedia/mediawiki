@@ -212,8 +212,7 @@ class Image
 	 * Load metadata from the file itself
 	 */
 	function loadFromFile() {
-		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgContLang,
-		       $wgShowEXIF;
+		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgContLang, $wgShowEXIF;
 		$fname = 'Image::loadFromFile';
 		wfProfileIn( $fname );
 		$this->imagePath = $this->getFullPath();
@@ -742,8 +741,8 @@ class Image
 			$base = $wgUploadBaseUrl;
 			$path = $wgUploadPath;
 		}
-        	$url = "{$base}{$path}" .  wfGetHashPath($name, $fromSharedDirectory) . "{$name}";
-        	return wfUrlencode( $url );
+		$url = "{$base}{$path}" .  wfGetHashPath($name, $fromSharedDirectory) . "{$name}";
+		return wfUrlencode( $url );
 	}
 
 	/**
@@ -909,7 +908,6 @@ class Image
 	 */
 	function renderThumb( $width, $useScript = true ) {
 		global $wgUseSquid, $wgInternalServer;
-		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
 		global $wgSVGMaxSize, $wgMaxImageArea, $wgThumbnailEpoch;
 
 		$fname = 'Image::renderThumb';
@@ -1047,8 +1045,8 @@ class Image
 	 * @access private
 	 */
 	function reallyRenderThumb( $thumbPath, $width, $height ) {
-		global $wgSVGConverters, $wgSVGConverter,
-			$wgUseImageMagick, $wgImageMagickConvertCommand;
+		global $wgSVGConverters, $wgSVGConverter;
+		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 
 		$this->load();
 
@@ -1246,7 +1244,7 @@ class Image
 	}
 
 	function checkDBSchema(&$db) {
-                global $wgCheckDBSchema;
+		global $wgCheckDBSchema;
 		if (!$wgCheckDBSchema) {
 			return;
 		}
@@ -1711,8 +1709,8 @@ function wfDeprecatedThumbDir( $thumbName , $subdir='thumb', $shared=false) {
  * @access public
  */
 function wfImageArchiveDir( $fname , $subdir='archive', $shared=false ) {
-	global $wgUploadDirectory, $wgHashedUploadDirectory,
-	       $wgSharedUploadDirectory, $wgHashedSharedUploadDirectory;
+	global $wgUploadDirectory, $wgHashedUploadDirectory;
+	global $wgSharedUploadDirectory, $wgHashedSharedUploadDirectory;
 	$dir = $shared ? $wgSharedUploadDirectory : $wgUploadDirectory;
 	$hashdir = $shared ? $wgHashedSharedUploadDirectory : $wgHashedUploadDirectory;
 	if (!$hashdir) { return $dir.'/'.$subdir; }

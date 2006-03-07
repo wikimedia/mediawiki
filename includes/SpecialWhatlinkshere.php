@@ -28,7 +28,7 @@ class WhatLinksHerePage {
 	}
 
 	function execute() {
-		global $wgUser, $wgOut;
+		global $wgOut;
 
 		$this->limit = min( $this->request->getInt( 'limit', 50 ), 5000 );
 		if ( $this->limit <= 0 ) {
@@ -73,7 +73,7 @@ class WhatLinksHerePage {
 	 * @access private
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $dir = 'next' ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 		$fname = 'WhatLinksHerePage::showIndirectLinks';
 
 		$dbr =& wfGetDB( DB_READ );

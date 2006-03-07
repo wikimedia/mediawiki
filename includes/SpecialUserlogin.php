@@ -132,7 +132,7 @@ class LoginForm {
 	 * @access private
 	 */
 	function addNewAccount() {
-		global $wgUser, $wgOut, $wgEmailAuthentication;
+		global $wgUser, $wgEmailAuthentication;
 
 		$u = $this->addNewAccountInternal();
 
@@ -351,8 +351,6 @@ class LoginForm {
 	 * @access private
 	 */
 	function mailPassword() {
-		global $wgUser, $wgDBname;
-
 		if ( '' == $this->mName ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
@@ -383,7 +381,6 @@ class LoginForm {
 	 * @access private
 	 */
 	function mailPasswordInternal( $u ) {
-		global $wgPasswordSender, $wgIP;
 		global $wgCookiePath, $wgCookieDomain, $wgCookiePrefix, $wgCookieSecure;
 
 		if ( '' == $u->getEmail() ) {
@@ -444,7 +441,7 @@ class LoginForm {
 	 * @access private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut;
 		global $wgAllowRealName, $wgEnableEmail;
 		global $wgCookiePrefix;
 		global $wgAuth;
@@ -546,7 +543,7 @@ class LoginForm {
 	 * @access private
 	 */
 	function cookieRedirectCheck( $type ) {
-		global $wgOut, $wgLang;
+		global $wgOut;
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
 		$check = $titleObj->getFullURL( 'wpCookieCheck='.$type );

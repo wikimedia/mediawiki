@@ -366,7 +366,6 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 }
 
 function rcDoOutputFeed( $rows, &$feed ) {
-	global $wgSitename, $wgFeedClasses, $wgContLanguageCode;
 	$fname = 'rcDoOutputFeed';
 	wfProfileIn( $fname );
 
@@ -456,7 +455,7 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
  * Makes change an option link which carries all the other options
  */
 function makeOptionsLink( $title, $override, $options ) {
-	global $wgUser, $wgLang, $wgContLang;
+	global $wgUser, $wgContLang;
 	$sk = $wgUser->getSkin();
 	return $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 		$title, wfArrayToCGI( $override, $options ) );
@@ -533,7 +532,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
  * @return string
  */
 function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
-	global $wgContLang, $wgScript, $wgAllowCategorizedRecentChanges, $wgRequest;
+	global $wgScript, $wgAllowCategorizedRecentChanges, $wgRequest;
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
 	$namespaceselect = HTMLnamespaceselector($namespace, '');

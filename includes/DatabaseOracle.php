@@ -454,12 +454,12 @@ class DatabaseOracle extends Database {
 #		return "TO_TIMESTAMP('" . $this->strencode(wfTimestamp(TS_DB, $ts)) . "', 'RRRR-MM-DD HH24:MI:SS')";
 	}
 
-        /**
-         * Return aggregated value function call
-         */
-        function aggregateValue ($valuedata,$valuename='value') {
-                return $valuedata;
-        }
+	/**
+	 * Return aggregated value function call
+	 */
+	function aggregateValue ($valuedata,$valuename='value') {
+		return $valuedata;
+	}
 
 
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
@@ -497,7 +497,7 @@ class DatabaseOracle extends Database {
 	function immediateCommit( $fname = 'Database::immediateCommit' ) {
 		oci_commit($this->mConn);
 		$this->mTrxLevel = 0;
-        }
+	}
 	function rollback( $fname = 'Database::rollback' ) {
 		oci_rollback($this->mConn);
 		$this->mTrxLevel = 0;

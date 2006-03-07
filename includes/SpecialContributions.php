@@ -155,8 +155,7 @@ class contribs_finder {
  * @param	string	$par	(optional) user name of the user for which to show the contributions
  */
 function wfSpecialContributions( $par = null ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle,
-	       $wgScript;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle, $wgScript;
 	$fname = 'wfSpecialContributions';
 
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
@@ -206,7 +205,7 @@ function wfSpecialContributions( $par = null ) {
 	}
 
 	if ($wgRequest->getText('go') == 'first' && $target != 'newbies') {
-                $prevts = $finder->get_first_offset_for_paging();
+		$prevts = $finder->get_first_offset_for_paging();
 		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl$boturl");
 		$wgOut->redirect($prevurl);
 		return;
@@ -306,11 +305,11 @@ function wfSpecialContributions( $par = null ) {
 		$firstlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl$boturl&amp;go=first\">$firsttext</a>";
 		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit$xnsurl$boturl\">$nexttext</a>";
 	}
-        if ($target == 'newbies') {
-            $firstlast ="($lastlink)";
-        } else {
-            $firstlast = "($lastlink | $firstlink)";
-        }
+	if ($target == 'newbies') {
+		$firstlast ="($lastlink)";
+	} else {
+		$firstlast = "($lastlink | $firstlink)";
+	}
 
 	$urls = array();
 	foreach (array(20, 50, 100, 250, 500) as $num)
@@ -351,7 +350,7 @@ function ucListEdit( $sk, $row ) {
 	$fname = 'ucListEdit';
 	wfProfileIn( $fname );
 
-	global $wgLang, $wgOut, $wgUser, $wgRequest;
+	global $wgLang, $wgUser, $wgRequest;
 	static $messages;
 	if( !isset( $messages ) ) {
 		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {

@@ -225,7 +225,7 @@ class SpecialPage
 	 * @param $including      output is being captured for use in {{special:whatever}}
 	 */
 	function executePath( &$title, $including = false ) {
-		global $wgSpecialPages, $wgOut, $wgTitle;
+		global $wgOut, $wgTitle;
 		$fname = 'SpecialPage::executePath';
 		wfProfileIn( $fname );
 
@@ -397,7 +397,7 @@ class SpecialPage
 	 * Checks user permissions, calls the function given in mFunction
 	 */
 	function execute( $par ) {
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser;
 
 		$this->setHeaders();
 

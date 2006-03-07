@@ -76,7 +76,7 @@ END
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgRequest, $wgReadOnlyFile;
+		global $wgOut, $wgRequest, $wgReadOnlyFile;
 
 		$wpLockConfirm = $wgRequest->getCheck( 'wpLockConfirm' );
 		if ( ! $wpLockConfirm ) {
@@ -93,7 +93,7 @@ END
 	}
 
 	function showSuccess() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 		global $ip;
 
 		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );

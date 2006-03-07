@@ -167,7 +167,7 @@ class Group {
 	 * @param integer $id Group database id
 	 */
 	function newFromId($id) {
-		global $wgMemc, $wgDBname;
+		global $wgMemc;
 		$fname = 'Group::newFromId';
 
 		$staticGroups =& Group::getStaticGroups();

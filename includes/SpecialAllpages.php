@@ -49,7 +49,7 @@ class SpecialAllpages {
  * @param string $from Article name we are starting listing at.
  */
 function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
-	global $wgContLang, $wgScript;
+	global $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, $this->name );
 
 	$namespaceselect = HTMLnamespaceselector($namespace, null);
@@ -82,7 +82,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
  * @param integer $namespace (default NS_MAIN)
  */
 function showToplevel ( $namespace = NS_MAIN, $including = false ) {
-	global $wgOut, $wgContLang, $wgRequest, $wgUser;
+	global $wgOut, $wgUser;
 	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
 
@@ -188,7 +188,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
  * @param integer $namespace (Default NS_MAIN)
  */
 function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
-	global $wgOut, $wgUser;
+	global $wgUser;
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
 

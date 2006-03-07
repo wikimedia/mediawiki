@@ -155,7 +155,7 @@ class PageArchive {
 	 * @return bool
 	 */
 	function undelete( $timestamps ) {
-		global $wgDeferredUpdateList, $wgParser, $wgDBtype;
+		global $wgParser, $wgDBtype;
 
 		$fname = "doUndeleteArticle";
 		$restoreAll = empty( $timestamps );

@@ -12,8 +12,7 @@ require_once( 'ImageGallery.php' );
  *
  */
 function wfSpecialNewimages( $par, $specialPage ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest,
-	       $wgGroupPermissions;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgGroupPermissions;
 
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
 	$dbr =& wfGetDB( DB_SLAVE );

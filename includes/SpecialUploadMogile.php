@@ -15,9 +15,9 @@ require_once( 'MogileFS.php' );
  * Entry point
  */
 function wfSpecialUploadMogile() {
-        global $wgRequest;
-        $form = new UploadFormMogile( $wgRequest );
-        $form->execute();
+	global $wgRequest;
+	$form = new UploadFormMogile( $wgRequest );
+	$form->execute();
 }
 
 /** @package MediaWiki */

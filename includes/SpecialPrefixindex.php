@@ -60,8 +60,8 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 
 	$fromTitle = Title::newFromURL( $from );
 	if ($namespace == NS_MAIN and $fromTitle) {
-                $namespace = $fromTitle->getNamespace();
-        }
+		$namespace = $fromTitle->getNamespace();
+	}
 
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 

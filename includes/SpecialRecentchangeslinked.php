@@ -70,32 +70,32 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBKey() );
 		$sql = "SELECT /* wfSpecialRecentchangeslinked */
-        			rc_id,
-        			rc_cur_id,
-        			rc_namespace,
-        			rc_title,
-        			rc_this_oldid,
-        			rc_last_oldid,
-        			rc_user,
-        			rc_comment,
-                 	rc_user_text,
-        			rc_timestamp,
-        			rc_minor,
-					rc_new,
-					rc_patrolled,
-					rc_type
+				rc_id,
+				rc_cur_id,
+				rc_namespace,
+				rc_title,
+				rc_this_oldid,
+				rc_last_oldid,
+				rc_user,
+				rc_comment,
+				rc_user_text,
+				rc_timestamp,
+				rc_minor,
+				rc_new,
+				rc_patrolled,
+				rc_type
 " . ($uid ? ",wl_user" : "") . "
-            FROM $categorylinks, $recentchanges
+	    FROM $categorylinks, $recentchanges
 " . ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
-           WHERE rc_timestamp > '{$cutoff}'
-             {$cmq}
-             AND cl_from=rc_cur_id
-             AND cl_to=$catkey
-        GROUP BY rc_cur_id,rc_namespace,rc_title,
-                 rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,
-                 rc_new
-        ORDER BY rc_timestamp DESC
-           LIMIT {$limit};
+	   WHERE rc_timestamp > '{$cutoff}'
+	     {$cmq}
+	     AND cl_from=rc_cur_id
+	     AND cl_to=$catkey
+	GROUP BY rc_cur_id,rc_namespace,rc_title,
+	 	rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,
+	 	rc_new
+		ORDER BY rc_timestamp DESC
+	LIMIT {$limit};
  ";
 	} else {
 		$sql =
@@ -104,7 +104,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 			rc_cur_id,
 			rc_namespace,
 			rc_title,
-         	rc_user,
+			rc_user,
 			rc_comment,
 			rc_user_text,
 			rc_this_oldid,
@@ -123,8 +123,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
      AND pl_title=rc_title
      AND pl_from=$id
 GROUP BY rc_cur_id,rc_namespace,rc_title,
-         rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,
-         rc_new
+	 rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,
+	 rc_new
 ORDER BY rc_timestamp DESC
    LIMIT {$limit}";
 	}
@@ -135,8 +135,8 @@ ORDER BY rc_timestamp DESC
 	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
 
 	$note = rcDayLimitlinks( $days, $limit, "Recentchangeslinked",
-                                 "target=" . $nt->getPrefixedURL() . "&hideminor={$hideminor}",
-                                 false, $mlink );
+				 "target=" . $nt->getPrefixedURL() . "&hideminor={$hideminor}",
+				 false, $mlink );
 
 	$wgOut->addHTML( $note."\n" );
 

@@ -293,7 +293,6 @@ class SpecialSearch {
 		$tm = $wgContLang->convertForSearchResult( $matches->termMatches() );
 		$terms = implode( '|', $tm );
 
-		global $wgOut;
 		$off = $this->offset + 1;
 		$out = "<ol start='{$off}'>\n";
 

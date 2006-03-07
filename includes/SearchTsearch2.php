@@ -99,8 +99,8 @@ class SearchTsearch2 extends SearchEngine {
 			" $field @@ to_tsquery ('$match') " ;
 	}
 
-        function update( $id, $title, $text ) {
-                $dbw=& wfGetDB(DB_MASTER);
+	function update( $id, $title, $text ) {
+	        $dbw=& wfGetDB(DB_MASTER);
 		$searchindex = $dbw->tableName( 'searchindex' );
 		$sql = "DELETE FROM $searchindex WHERE si_page={$id}";
 		$dbw->query($sql,"SearchTsearch2:update");
@@ -110,17 +110,17 @@ class SearchTsearch2 extends SearchEngine {
 				"'),to_tsvector('".
 				$dbw->strencode( $text)."')) ";
 		$dbw->query($sql,"SearchTsearch2:update");
-        }
+	}
 
-        function updateTitle($id,$title) {
-                $dbw=& wfGetDB(DB_MASTER);
-                $searchindex = $dbw->tableName( 'searchindex' );
-                $sql = "UPDATE $searchindex SET si_title=to_tsvector('" .
-                          $db->strencode( $title ) .
-                          "') WHERE si_page={$id}";
+	function updateTitle($id,$title) {
+	        $dbw=& wfGetDB(DB_MASTER);
+	        $searchindex = $dbw->tableName( 'searchindex' );
+	        $sql = "UPDATE $searchindex SET si_title=to_tsvector('" .
+	                  $db->strencode( $title ) .
+	                  "') WHERE si_page={$id}";
 
-                $dbw->query( $sql, "SearchMySQL4::updateTitle" );
-        }
+	        $dbw->query( $sql, "SearchMySQL4::updateTitle" );
+	}
 
 }
 

@@ -49,7 +49,7 @@ class IPBlockForm {
 	}
 
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgRequest, $wgSysopUserBans;
+		global $wgOut, $wgUser, $wgSysopUserBans;
 
 		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
 		$wgOut->addWikiText( wfMsg( 'blockiptext' ) );
@@ -227,7 +227,7 @@ class IPBlockForm {
 	}
 
 	function showSuccess() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
 		$wgOut->setSubtitle( wfMsg( 'blockipsuccesssub' ) );

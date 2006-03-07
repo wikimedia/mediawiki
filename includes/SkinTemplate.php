@@ -447,7 +447,7 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildPersonalUrls() {
-		global $wgTitle, $wgShowIPinHeader, $wgContLang;
+		global $wgTitle, $wgShowIPinHeader;
 
 		$fname = 'SkinTemplate::buildPersonalUrls';
 		$pageurl = $wgTitle->getLocalURL();
@@ -583,7 +583,7 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildContentActionUrls () {
-		global $wgContLang, $wgDBprefix;
+		global $wgContLang;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 
@@ -764,14 +764,14 @@ class SkinTemplate extends Skin {
 		wfProfileIn( $fname );
 
 		global $wgUser, $wgRequest;
-		global $wgSiteSupportPage, $wgEnableUploads, $wgUploadNavigationUrl;
+		global $wgEnableUploads, $wgUploadNavigationUrl;
 
 		$action = $wgRequest->getText( 'action' );
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
 
 		$nav_urls = array();
-                $nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
+		$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
 		if( $wgEnableUploads ) {
 			if ($wgUploadNavigationUrl) {
 				$nav_urls['upload'] = array('href' => $wgUploadNavigationUrl );
@@ -993,7 +993,6 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::getUserStylesheet';
 		wfProfileIn( $fname );
 
-		global $wgUser;
 		$s = "/* generated user stylesheet */\n";
 		$s .= $this->reallyDoGetUserStyles();
 		wfProfileOut( $fname );

@@ -175,8 +175,8 @@ class ChangesList {
 
 	function insertTimestamp(&$s, &$rc) {
 		global $wgLang;
-        # Timestamp
-        $s .= '; ' . $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
+		# Timestamp
+		$s .= '; ' . $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
@@ -287,7 +287,7 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 */
 	function recentChangesLine( &$rc, $watched = false ) {
-		global $wgLang, $wgContLang, $wgUser, $wgSysopUserBans;
+		global $wgContLang;
 
 		$fname = 'ChangesList::recentChangesLineOld';
 		wfProfileIn( $fname );
@@ -351,7 +351,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
 	function recentChangesLine( &$baseRC, $watched = false ) {
-		global $wgLang, $wgContLang, $wgUser, $wgSysopUserBans;
+		global $wgLang, $wgContLang;
 
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC );
