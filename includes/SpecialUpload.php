@@ -920,7 +920,7 @@ class UploadForm {
 	*         If textual feedback is missing but a virus was found, this function returns true.
 	*/
 	function detectVirus($file) {
-		global $wgAntivirus, $wgAntivirusSetup, $wgAntivirusRequired;
+		global $wgAntivirus, $wgAntivirusSetup, $wgAntivirusRequired, $wgOut;
 
 		$fname= "SpecialUpload::detectVirus";
 

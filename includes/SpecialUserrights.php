@@ -74,6 +74,7 @@ class UserrightsForm extends HTMLForm {
 	 *
 	 */
 	function saveUserGroups( $username, $removegroup, $addgroup) {
+		global $wgOut;
 		$u = User::newFromName($username);
 
 		if(is_null($u)) {
