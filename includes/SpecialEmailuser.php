@@ -149,7 +149,7 @@ class EmailUserForm {
 	}
 
 	function showSuccess() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$wgOut->setPagetitle( wfMsg( "emailsent" ) );
 		$wgOut->addHTML( wfMsg( "emailsenttext" ) );

@@ -29,8 +29,6 @@ class ListredirectsPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
-
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );
 		$rd_link = $skin->makeKnownLinkObj( $rd_title, '', 'redirect=no' );

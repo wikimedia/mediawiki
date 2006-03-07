@@ -275,7 +275,7 @@ class Skin extends Linker {
 
 	# get the user/site-specific stylesheet, SkinTemplate loads via RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
-		global $wgOut, $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage;
+		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
@@ -298,7 +298,6 @@ class Skin extends Linker {
 	 * Return html code that include User stylesheets
 	 */
 	function getUserStyles() {
-		global $wgOut, $wgStylePath;
 		$s = "<style type='text/css'>\n";
 		$s .= "/*/*/ /*<![CDATA[*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
 		$s .= $this->getUserStylesheet();
@@ -311,7 +310,7 @@ class Skin extends Linker {
 	 * Some styles that are set by user through the user settings interface.
 	 */
 	function doGetUserStyles() {
-		global $wgUser, $wgContLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
+		global $wgUser, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
 
 		$s = '';
 
@@ -413,7 +412,7 @@ END;
 	}
 
 	function doBeforeContent() {
-		global $wgOut, $wgTitle, $wgContLang;
+		global $wgContLang;
 		$fname = 'Skin::doBeforeContent';
 		wfProfileIn( $fname );
 
@@ -571,7 +570,7 @@ END;
 	function doAfterContent() { }
 
 	function pageTitleLinks() {
-		global $wgOut, $wgTitle, $wgUser, $wgContLang, $wgRequest;
+		global $wgOut, $wgTitle, $wgUser, $wgRequest;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		$action = $wgRequest->getText( 'action' );
@@ -664,7 +663,7 @@ END;
 	}
 
 	function pageTitle() {
-		global $wgOut, $wgTitle, $wgUser;
+		global $wgOut;
 
 		$s = '<h1 class="pagetitle">' . htmlspecialchars( $wgOut->getPageTitle() ) . '</h1>';
 		return $s;
@@ -920,7 +919,7 @@ END;
 	}
 
 	function getCopyrightIcon() {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgCopyrightIcon;
+		global $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgCopyrightIcon;
 		$out = '';
 		if ( isset( $wgCopyrightIcon ) && $wgCopyrightIcon ) {
 			$out = $wgCopyrightIcon;
@@ -984,7 +983,7 @@ END;
 	 * @TODO crash bug913. Need to be rewrote completly.
 	 */
 	function specialPagesList() {
-		global $wgUser, $wgOut, $wgContLang, $wgServer, $wgRedirectScript, $wgAvailableRights;
+		global $wgUser, $wgContLang, $wgServer, $wgRedirectScript, $wgAvailableRights;
 		require_once('SpecialPage.php');
 		$a = array();
 		$pages = SpecialPage::getPages();
@@ -1066,7 +1065,7 @@ END;
 	}
 
 	function editThisPage() {
-		global $wgOut, $wgTitle, $wgRequest;
+		global $wgOut, $wgTitle;
 
 		if ( ! $wgOut->isArticleRelated() ) {
 			$s = wfMsg( 'protectedpage' );
@@ -1100,7 +1099,7 @@ END;
 	}
 
 	function deleteThisPage() {
-		global $wgUser, $wgOut, $wgTitle, $wgRequest;
+		global $wgUser, $wgTitle, $wgRequest;
 
 		$diff = $wgRequest->getVal( 'diff' );
 		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isAllowed('delete') ) {
@@ -1114,7 +1113,7 @@ END;
 	}
 
 	function protectThisPage() {
-		global $wgUser, $wgOut, $wgTitle, $wgRequest;
+		global $wgUser, $wgTitle, $wgRequest;
 
 		$diff = $wgRequest->getVal( 'diff' );
 		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isAllowed('protect') ) {
@@ -1133,7 +1132,7 @@ END;
 	}
 
 	function watchThisPage() {
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgOut, $wgTitle;
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->userIsWatching() ) {
@@ -1221,7 +1220,7 @@ END;
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgContLang, $wgTitle, $wgHideInterlanguageLinks;
+		global $wgOut, $wgContLang, $wgHideInterlanguageLinks;
 
 		if ( $wgHideInterlanguageLinks ) {
 			return '';
@@ -1317,7 +1316,7 @@ END;
 	}
 
 	function commentLink() {
-		global $wgContLang, $wgTitle;
+		global $wgTitle;
 
 		if ( $wgTitle->getNamespace() == NS_SPECIAL ) {
 			return '';
@@ -1400,7 +1399,7 @@ END;
 	 * @access private
 	 */
 	function buildSidebar() {
-		global $wgTitle, $action, $wgDBname, $parserMemc;
+		global $wgDBname, $parserMemc;
 		global $wgLanguageCode, $wgContLanguageCode;
 
 		$fname = 'SkinTemplate::buildSidebar';

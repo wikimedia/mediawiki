@@ -65,7 +65,6 @@ class ExternalStoreDB {
 	}
 
 	function fetchFromURL($url) {
-		global $wgExternalServers;
 		#
 		# URLs have the form DB://cluster/id or DB://cluster/id/itemid for concatenated storage
 		#
@@ -127,7 +126,6 @@ class ExternalStoreDB {
 	 * @return string URL
 	 */
 	function store( $cluster, $data ) {
-		global $wgExternalServers;
 		$fname = 'ExternalStoreDB::store';
 
 		$dbw =& $this->getMaster( $cluster );

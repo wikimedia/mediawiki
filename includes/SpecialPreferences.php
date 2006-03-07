@@ -187,7 +187,7 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function savePreferences() {
-		global $wgUser, $wgLang, $wgOut, $wgParser;
+		global $wgUser, $wgOut, $wgParser;
 		global $wgEnableUserEmail, $wgEnableEmail;
 		global $wgEmailAuthentication, $wgMinimalPasswordLength;
 		global $wgAuth;
@@ -370,7 +370,7 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function namespacesCheckboxes() {
-		global $wgContLang, $wgUser;
+		global $wgContLang;
 
 		# Determine namespace checkboxes
 		$namespaces = $wgContLang->getNamespaces();
@@ -447,7 +447,7 @@ class PreferencesForm {
 		} else if ( '' != $status ) {
 			$wgOut->addWikitext( $message . "\n----" );
 		}
-
+		
 		$qbs = $wgLang->getQuickbarSettings();
 		$skinNames = $wgLang->getSkinNames();
 		$mathopts = $wgLang->getMathNames();
@@ -658,12 +658,12 @@ class PreferencesForm {
 		# Enotif
 		if ($wgEnableEmail) {
 			$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'email' ) . '</legend>' );
-                        $wgOut->addHTML(
-                                $emailauthenticated.
-                                $enotifrevealaddr.
-                                $enotifwatchlistpages.
-                                $enotifusertalkpages.
-                                $enotifminoredits );
+			$wgOut->addHTML(
+					$emailauthenticated.
+					$enotifrevealaddr.
+					$enotifwatchlistpages.
+					$enotifusertalkpages.
+					$enotifminoredits );
 			if ($wgEnableUserEmail) {
 			$emf = wfMsg( 'allowemail' );
 				$disabled = $disableEmailPrefs ? ' disabled="disabled"' : '';
@@ -672,7 +672,7 @@ class PreferencesForm {
 			}
 
 			$wgOut->addHTML( '</fieldset>' );
-                }
+		}
 		# </FIXME>
 
 		if ($wgAllowRealName || $wgEnableEmail) {
@@ -755,8 +755,8 @@ class PreferencesForm {
 			}
 			$wgOut->addHTML( "{$imageThumbOptions}</select></div></fieldset>\n\n");
 
-                # Date format
-                #
+		# Date format
+		#
 		# Date/Time
 		#
 
@@ -890,8 +890,8 @@ class PreferencesForm {
 	<input type='hidden' name='wpEditToken' value='{$token}' />
 	</div></form>\n" );
 
-	$wgOut->addWikiText( '<div class="prefcache">' . wfMsg('clearyourcache') . '</div>' );
-
+		$wgOut->addWikiText( '<div class="prefcache">' . wfMsg('clearyourcache') . '</div>' );
+	
 	}
 }
 ?>

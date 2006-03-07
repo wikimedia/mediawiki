@@ -307,7 +307,7 @@ class User {
 		$fname = 'User::loadDefaults' . $n;
 		wfProfileIn( $fname );
 
-		global $wgContLang, $wgCookiePrefix;
+		global $wgCookiePrefix;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = 0;
@@ -1387,7 +1387,7 @@ class User {
 	 * Save object settings into database
 	 */
 	function saveSettings() {
-		global $wgMemc, $wgDBname, $wgUseEnotif;
+		global $wgMemc, $wgDBname;
 		$fname = 'User::saveSettings';
 
 		if ( wfReadOnly() ) { return; }

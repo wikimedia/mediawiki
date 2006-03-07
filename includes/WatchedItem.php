@@ -151,7 +151,6 @@ class WatchedItem {
 	 */
 	function doDuplicateEntries( $ot, $nt ) {
 		$fname = "WatchedItem::duplicateEntries";
-		global $wgMemc, $wgDBname;
 		$oldnamespace = $ot->getNamespace();
 		$newnamespace = $nt->getNamespace();
 		$oldtitle = $ot->getDBkey();

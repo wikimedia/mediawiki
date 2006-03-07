@@ -237,7 +237,7 @@ class AtomFeed extends ChannelFeed {
 	 * @todo document
 	 */
 	function outHeader() {
-		global $wgVersion, $wgOut;
+		global $wgVersion;
 
 		$this->outXmlHeader();
 		?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="<?php print $this->getLanguage() ?>">

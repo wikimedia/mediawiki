@@ -93,7 +93,7 @@ class IPUnblockForm {
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$block = new Block();
 		$this->ip = trim( $this->ip );

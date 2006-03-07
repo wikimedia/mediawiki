@@ -473,7 +473,7 @@ END
 	}
 
 	function doDelete()	{
-		global $wgOut, $wgUser, $wgRequest, $wgUseSquid, $wgInternalServer;
+		global $wgOut, $wgRequest, $wgUseSquid, $wgInternalServer;
 		global $wgPostCommitUpdateList;
 
 		$fname = 'ImagePage::doDelete';

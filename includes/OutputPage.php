@@ -668,8 +668,6 @@ class OutputPage {
 	 * @param mixed $version The version of MediaWiki needed to use the page
 	 */
 	function versionRequired( $version ) {
-		global $wgUser;
-
 		$this->setPageTitle( wfMsg( 'versionrequired', $version ) );
 		$this->setHTMLTitle( wfMsg( 'versionrequired', $version ) );
 		$this->setRobotpolicy( 'noindex,nofollow' );
@@ -911,7 +909,7 @@ class OutputPage {
 	 */
 	function headElement() {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
-		global $wgUser, $wgContLang, $wgRequest, $wgUseTrackbacks, $wgTitle;
+		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle;
 
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
 			$ret = "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
@@ -953,7 +951,7 @@ class OutputPage {
 	}
 
 	function getHeadLinks() {
-		global $wgRequest, $wgStylePath;
+		global $wgRequest;
 		$ret = '';
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {

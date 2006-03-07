@@ -121,8 +121,8 @@ class DatabasePgsql extends Database {
 	function fetchRow( $res ) {
 		@$row = pg_fetch_array( $res );
 		if( pg_last_error($this->mConn) ) {
-                        wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
-                }
+			wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
+		}
 		return $row;
 	}
 
@@ -365,7 +365,7 @@ class DatabasePgsql extends Database {
 	}
 
 	function limitResult($sql, $limit,$offset) {
-        	return "$sql LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
+		return "$sql LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
 	}
 
 	/**
@@ -391,12 +391,12 @@ class DatabasePgsql extends Database {
 		return wfTimestamp(TS_DB,$ts);
 	}
 
-        /**
-         * Return aggregated value function call
-         */
-        function aggregateValue ($valuedata,$valuename='value') {
-                return $valuedata;
-        }
+	/**
+	 * Return aggregated value function call
+	 */
+	function aggregateValue ($valuedata,$valuename='value') {
+		return $valuedata;
+	}
 
 
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {

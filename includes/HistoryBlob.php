@@ -200,16 +200,16 @@ class HistoryBlobStub {
       /**
        * Sets the location (old_id) of the referring object
        */
-      function setReferrer( $id ) {
-              $this->mRef = $id;
-      }
+	function setReferrer( $id ) {
+		$this->mRef = $id;
+	}
 
       /**
        * Gets the location of the referring object
        */
-      function getReferrer() {
-              return $this->mRef;
-      }
+	function getReferrer() {
+		return $this->mRef;
+	}
 
 	/** @todo document */
 	function getText() {

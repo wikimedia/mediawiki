@@ -72,8 +72,8 @@ class DifferenceEngine {
 	}
 
 	function showDiffPage() {
-		global $wgUser, $wgOut, $wgContLang, $wgOnlySysopsCanPatrol,
-		       $wgUseExternalEditor, $wgUseRCPatrol;
+		global $wgUser, $wgOut, $wgContLang, $wgOnlySysopsCanPatrol;
+		global $wgUseExternalEditor, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
 
@@ -317,7 +317,7 @@ CONTROL;
 	 * Returns false on error
 	 */
 	function getDiffBody() {
-		global $wgContLang, $wgMemc, $wgDBname;
+		global $wgMemc, $wgDBname;
 		$fname = 'DifferenceEngine::getDiffBody';
 		wfProfileIn( $fname );
 		
@@ -1683,7 +1683,6 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function _start_block( $header ) {
-		global $wgOut;
 		echo $header;
 	}
 

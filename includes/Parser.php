@@ -815,7 +815,6 @@ class Parser
 	 * @access private
 	 */
 	function internalParse( $text ) {
-		global $wgContLang;
 		$args = array();
 		$isMain = true;
 		$fname = 'Parser::internalParse';
@@ -3332,8 +3331,6 @@ class Parser
 	 * @access private
 	 */
 	function getUserSig( &$user ) {
-		global $wgContLang;
-
 		$username = $user->getName();
 		$nickname = $user->getOption( 'nickname' );
 		$nickname = $nickname === '' ? $username : $nickname;
@@ -3623,9 +3620,6 @@ class Parser
 	 * @return string
 	 */
 	function replaceLinkHoldersText( $text ) {
-		global $wgUser;
-		global $wgOutputReplace;
-
 		$fname = 'Parser::replaceLinkHoldersText';
 		wfProfileIn( $fname );
 
@@ -3709,7 +3703,7 @@ class Parser
 	 * Parse image options text and use it to make an image
 	 */
 	function makeImage( &$nt, $options ) {
-		global $wgContLang, $wgUseImageResize, $wgUser;
+		global $wgUseImageResize;
 
 		$align = '';
 
@@ -3991,8 +3985,8 @@ class ParserOptions
 
 	/** Get user options */
 	function initialiseFromUser( &$userInput ) {
-		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages,
-		       $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion;
+		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
+		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {

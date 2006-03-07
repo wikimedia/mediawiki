@@ -46,12 +46,12 @@ class Title {
 	var $mArticleID;          # Article ID, fetched from the link cache on demand
 	var $mLatestID;         # ID of most recent revision
 	var $mRestrictions;       # Array of groups allowed to edit this article
-                              # Only null or "sysop" are supported
+	                        # Only null or "sysop" are supported
 	var $mRestrictionsLoaded; # Boolean for initialisation on demand
 	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
 	var $mDefaultNamespace;   # Namespace index when there is no namespace
-                              # Zero except in {{transclusion}} tags
-	var $mWatched;            # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
+			      # Zero except in {{transclusion}} tags
+	var $mWatched;	    # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
 	/**#@-*/
 
 
@@ -651,7 +651,6 @@ class Title {
 	 * @access public
 	 */
 	function getPrefixedText() {
-		global $wgContLang;
 		if ( empty( $this->mPrefixedText ) ) { // FIXME: bad usage of empty() ?
 			$s = $this->prefix( $this->mTextform );
 			$s = str_replace( '_', ' ', $s );
@@ -668,7 +667,6 @@ class Title {
 	 * @access public
 	 */
 	function getFullText() {
-		global $wgContLang;
 		$text = $this->getPrefixedText();
 		if( '' != $this->mFragment ) {
 			$text .= '#' . $this->mFragment;
@@ -855,8 +853,6 @@ class Title {
 	 * @access public
 	 */
 	function getEditURL() {
-		global $wgServer, $wgScript;
-
 		if ( '' != $this->mInterwiki ) { return ''; }
 		$s = $this->getLocalURL( 'action=edit' );
 
@@ -985,7 +981,7 @@ class Title {
 
 		# protect global styles and js
 		if ( NS_MEDIAWIKI == $this->mNamespace
-	         && preg_match("/\\.(css|js)$/", $this->mTextform )
+		 && preg_match("/\\.(css|js)$/", $this->mTextform )
 		     && !$wgUser->isAllowed('editinterface') ) {
 			wfProfileOut( $fname );
 			return false;
@@ -1594,7 +1590,7 @@ class Title {
 			      AND pl_title=page_title
 			    WHERE pl_from=?
 			      AND page_namespace IS NULL
-			          !",
+				  !",
 			$db->tableName( 'pagelinks' ),
 			$db->tableName( 'page' ),
 			$this->getArticleId(),
@@ -1645,7 +1641,6 @@ class Title {
 	 * @access public
 	 */
 	function isValidMoveOperation( &$nt, $auth = true ) {
-		global $wgUser;
 		if( !$this or !$nt ) {
 			return 'badtitletext';
 		}
@@ -1768,7 +1763,7 @@ class Title {
 	 * @access private
 	 */
 	function moveOverExistingRedirect( &$nt, $reason = '' ) {
-		global $wgUser, $wgUseSquid, $wgMwRedir;
+		global $wgUseSquid, $wgMwRedir;
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 
@@ -1846,7 +1841,7 @@ class Title {
 	 * @access private
 	 */
 	function moveToNewTitle( &$nt, $reason = '' ) {
-		global $wgUser, $wgUseSquid;
+		global $wgUseSquid;
 		global $wgMwRedir;
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
@@ -1983,7 +1978,6 @@ class Title {
 	 * @access public
 	 */
 	function createRedirect( $dest, $comment ) {
-		global $wgUser;
 		if ( $this->getArticleID() ) {
 			return false;
 		}
@@ -2023,7 +2017,7 @@ class Title {
 	 * @access public
 	 */
 	function getParentCategories() {
-		global $wgContLang,$wgUser;
+		global $wgContLang;
 
 		$titlekey = $this->getArticleId();
 		$dbr =& wfGetDB( DB_SLAVE );

@@ -50,7 +50,7 @@ class PageHistory {
 	 * @returns nothing
 	 */
 	function history() {
-		global $wgUser, $wgOut, $wgRequest, $wgTitle;
+		global $wgOut, $wgRequest, $wgTitle;
 
 		/*
 		 * Allow client caching.
@@ -429,7 +429,6 @@ class PageHistory {
 
 	/** @todo document */
 	function fetchRevisions($limit, $offset, $direction) {
-		global $wgUser, $wgShowUpdatedMarker;
 		$fname = 'PageHistory::fetchRevisions';
 
 		$dbr =& wfGetDB( DB_SLAVE );
@@ -490,7 +489,7 @@ class PageHistory {
 
 	/** @todo document */
 	function makeNavbar($revisions, $offset, $limit, $direction) {
-		global $wgTitle, $wgLang;
+		global $wgLang;
 
 		$revisions = array_slice($revisions, 0, $limit);
 

@@ -89,11 +89,11 @@ function wfSpecialWatchlist( $par ) {
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'page', 'revision', 'watchlist', 'recentchanges' ) );
 
-               	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
-        	$res = $dbr->query( $sql, $fname );
-        	$s = $dbr->fetchObject( $res );
-
-        #	Patch *** A1 *** (see A2 below)
+	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
+	$res = $dbr->query( $sql, $fname );
+	$s = $dbr->fetchObject( $res );
+	
+#	Patch *** A1 *** (see A2 below)
 #	adjust for page X, talk:page X, which are both stored separately, but treated together
 	$nitems = floor($s->n / 2);
 #	$nitems = $s->n;
@@ -130,13 +130,13 @@ function wfSpecialWatchlist( $par ) {
 	        $docutoff = "AND rev_timestamp > '" .
 		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
-                  /*
-                  $sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
-                  $res = $dbr->query( $sql, $fname );
-                  $s = $dbr->fetchObject( $res );
-                  $npages = $s->n;
-                  */
-                  $npages = 40000 * $days;
+	          /*
+	          $sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
+	          $res = $dbr->query( $sql, $fname );
+	          $s = $dbr->fetchObject( $res );
+	          $npages = $s->n;
+	          */
+	          $npages = 40000 * $days;
 
 	}
 
@@ -236,23 +236,23 @@ function wfSpecialWatchlist( $par ) {
 			"\n\n" );
 	}
 
-        $sql = "SELECT
-          rc_namespace page_namespace,rc_title page_title,
-          rc_comment rev_comment, rc_cur_id page_id,
-          rc_user rev_user,rc_user_text rev_user_text,
-          rc_timestamp rev_timestamp,rc_minor rev_minor_edit,
-          rc_this_oldid rev_id,
-          rc_last_oldid,
-          rc_new page_is_new,wl_notificationtimestamp
-          FROM $watchlist,$recentchanges,$page
-          WHERE wl_user=$uid
-          AND wl_namespace=rc_namespace
-          AND wl_title=rc_title
-          AND rc_timestamp > '$cutoff'
-          AND rc_cur_id=page_id
-          $andHideOwn
-          $andHideBotsOptional
-          ORDER BY rc_timestamp DESC";
+	$sql = "SELECT
+	  rc_namespace page_namespace,rc_title page_title,
+	  rc_comment rev_comment, rc_cur_id page_id,
+	  rc_user rev_user,rc_user_text rev_user_text,
+	  rc_timestamp rev_timestamp,rc_minor rev_minor_edit,
+	  rc_this_oldid rev_id,
+	  rc_last_oldid,
+	  rc_new page_is_new,wl_notificationtimestamp
+	  FROM $watchlist,$recentchanges,$page
+	  WHERE wl_user=$uid
+	  AND wl_namespace=rc_namespace
+	  AND wl_title=rc_title
+	  AND rc_timestamp > '$cutoff'
+	  AND rc_cur_id=page_id
+	  $andHideOwn
+	  $andHideBotsOptional
+	  ORDER BY rc_timestamp DESC";
 
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );

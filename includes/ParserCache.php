@@ -93,7 +93,7 @@ class ParserCache {
 	}
 
 	function save( $parserOutput, &$article, &$user ){
-                global $wgParserCacheExpireTime;
+		global $wgParserCacheExpireTime;
 		$key = $this->getKey( $article, $user );
 		$now = wfTimestampNow();
 		$parserOutput->setCacheTime( $now );

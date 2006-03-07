@@ -156,8 +156,8 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgUser, $wgRequest, $wgTitle,
-		       $wgEmailConfirmToEdit;
+		global $wgOut, $wgUser, $wgRequest, $wgTitle;
+		global $wgEmailConfirmToEdit;
 
 		if ( ! wfRunHooks( 'AlternateEdit', array( &$this  ) ) )
 			return;
@@ -1218,7 +1218,7 @@ END
 			} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
 				$previewtext = wfMsg('userjspreview');
 			}
-                        $parserOptions->setTidy(true);
+			$parserOptions->setTidy(true);
 			$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 			$wgOut->addHTML( $parserOutput->mText );
 			wfProfileOut( $fname );
@@ -1238,7 +1238,7 @@ END
 			}
 
 			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
-                        $parserOptions->setTidy(true);
+			$parserOptions->setTidy(true);
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
 					$wgTitle, $parserOptions );
 
@@ -1545,8 +1545,6 @@ END
 	 * @return string HTML
 	 */
 	function getDiff() {
-		global $wgUser;
-
 		require_once( 'DifferenceEngine.php' );
 		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->replaceSection(

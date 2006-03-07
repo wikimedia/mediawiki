@@ -151,8 +151,6 @@ class RawPage {
 	}
 
 	function getArticleText() {
-		global $wgParser;
-
 		if( $this->mTitle ) {
 			$text = '';
 

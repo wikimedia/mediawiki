@@ -599,8 +599,6 @@ class ImportStreamSource {
 	}
 
 	function newFromUpload( $fieldname = "xmlimport" ) {
-		global $wgOut;
-
 		$upload =& $_FILES[$fieldname];
 
 		if( !isset( $upload ) ) {

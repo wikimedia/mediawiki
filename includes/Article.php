@@ -351,8 +351,6 @@ class Article {
 	 * Load the revision (including text) into this object
 	 */
 	function loadContent() {
-		global $wgOut, $wgRequest;
-
 		if ( $this->mContentLoaded ) return;
 
 		# Query variables :P
@@ -621,8 +619,6 @@ class Article {
 	 * @access private
 	 */
 	function loadLastEdit() {
-		global $wgOut;
-
 		if ( -1 != $this->mUser )
 			return;
 
@@ -1139,7 +1135,7 @@ class Article {
 	 * @access private
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
-		global $wgOut, $wgUser, $wgUseSquid;
+		global $wgUser;
 
 		$fname = 'Article::insertNewArticle';
 		wfProfileIn( $fname );
@@ -1330,7 +1326,7 @@ class Article {
 	 * first set $wgUser, and clean up $wgDeferredUpdates after each edit.
 	 */
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
-		global $wgOut, $wgUser, $wgDBtransactions, $wgMwRedir, $wgUseSquid;
+		global $wgUser, $wgDBtransactions, $wgUseSquid;
 		global $wgPostCommitUpdateList, $wgUseFileCache;
 
 		$fname = 'Article::updateArticle';
@@ -1476,8 +1472,7 @@ class Article {
 	 * the link tables and redirect to the new page.
 	 */
 	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
-		global $wgOut, $wgUser;
-		global $wgUseEnotif;
+		global $wgOut;
 
 		$fname = 'Article::showArticle';
 		wfProfileIn( $fname );
@@ -1629,7 +1624,7 @@ class Article {
 	 * @return bool true on success
 	 */
 	function updateRestrictions( $limit = array(), $reason = '' ) {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgUser;
 
 		if ( !$wgUser->isAllowed( 'protect' ) ) {
 			return false;
@@ -1905,7 +1900,7 @@ class Article {
 	 * Perform a deletion and output success or failure messages
 	 */
 	function doDelete( $reason ) {
-		global $wgOut, $wgUser, $wgContLang;
+		global $wgOut, $wgUser;
 		$fname = 'Article::doDelete';
 		wfDebug( $fname."\n" );
 
@@ -1934,7 +1929,7 @@ class Article {
 	 * Returns success
 	 */
 	function doDeleteArticle( $reason ) {
-		global $wgUser, $wgUseSquid, $wgDeferredUpdateList;
+		global $wgUseSquid, $wgDeferredUpdateList;
 		global $wgPostCommitUpdateList, $wgUseTrackbacks;
 
 		$fname = 'Article::doDeleteArticle';
@@ -2185,7 +2180,7 @@ class Article {
 
 		# Parse the text
 		$options = new ParserOptions;
-                $options->setTidy(true);
+		$options->setTidy(true);
 		$poutput = $wgParser->parse( $text, $this->mTitle, $options, true, true, $newid );
 
 		# Save it to the parser cache
@@ -2305,7 +2300,6 @@ class Article {
 			$touched = $this->mTouched;
 			$cache = new CacheManager( $this->mTitle );
 			if($cache->isFileCacheGood( $touched )) {
-				global $wgOut;
 				wfDebug( " tryFileCache() - about to load\n" );
 				$cache->loadFromFileCache();
 				return true;

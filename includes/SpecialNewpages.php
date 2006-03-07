@@ -41,19 +41,19 @@ class NewPagesPage extends QueryPage {
 		# FIXME: text will break with compression
 		return
 			"SELECT 'Newpages' as type,
-			        rc_namespace AS namespace,
-			        rc_title AS title,
-			        rc_cur_id AS cur_id,
-			        rc_user AS user,
-			        rc_user_text AS user_text,
-			        rc_comment as comment,
-			        rc_timestamp AS timestamp,
-                                rc_timestamp AS value,
-			        '{$usepatrol}' as usepatrol,
-			        rc_patrolled AS patrolled,
-			        rc_id AS rcid,
-			        page_len as length,
-			        page_latest as rev_id
+				rc_namespace AS namespace,
+				rc_title AS title,
+				rc_cur_id AS cur_id,
+				rc_user AS user,
+				rc_user_text AS user_text,
+				rc_comment as comment,
+				rc_timestamp AS timestamp,
+				rc_timestamp AS value,
+				'{$usepatrol}' as usepatrol,
+				rc_patrolled AS patrolled,
+				rc_id AS rcid,
+				page_len as length,
+				page_latest as rev_id
 			FROM $recentchanges,$page
 			WHERE rc_cur_id=page_id AND rc_new=1
 			AND rc_namespace=" . $this->namespace . " AND page_is_redirect=0";
