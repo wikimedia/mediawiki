@@ -2625,6 +2625,9 @@ class Article {
 	function getUsedTemplates() {
 		$result = array();
 		$id = $this->mTitle->getArticleID();
+		if( $id == 0 ) {
+			return array();
+		}
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'templatelinks' ),
