@@ -1275,8 +1275,8 @@ define('TS_ORACLE', 6);
 
 /**
  * @param mixed $outputtype A timestamp in one of the supported formats, the
- * 			    function will autodetect which format is supplied
-			    and act accordingly.
+ *                          function will autodetect which format is supplied
+ *                          and act accordingly.
  * @return string Time in the format specified in $outputtype
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
