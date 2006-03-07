@@ -39,3 +39,4 @@ function wfParserTestStaticParserHookHook( $in, $argv ) {
 			" <statictag action=flush/>, not in any other way.\n"
 		);
 }
+?>

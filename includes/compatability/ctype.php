@@ -218,3 +218,4 @@ function wf_ctype_parse_args( $fname, $args ) {
 		// Like PHP
 		return array( null, false );
 }
+?>
