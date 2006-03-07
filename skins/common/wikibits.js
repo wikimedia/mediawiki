@@ -502,7 +502,10 @@ function setupCheckboxShiftClick() {
 	}
 }
 
-function addCheckboxClickHandlers(ul) {
+function addCheckboxClickHandlers(ul, start, finish) {
+	if (ul.checkboxHandlersTimer) {
+		clearInterval(ul.checkboxHandlersTimer);
+	}
 	if ( !ul.childNodes ) {
 		return;
 	}
@@ -510,20 +513,27 @@ function addCheckboxClickHandlers(ul) {
 	if (len < 2) {
 		return;
 	}
-	ul.checkboxes = [];
-	ul.lastCheckbox = null;
-	for (var i = 0; i<len; ++i) {
+	start = start || 0;
+	finish = finish || start + 250;
+	if ( finish > len ) { finish = len; }
+	ul.checkboxes = ul.checkboxes || [];
+	ul.lastCheckbox = ul.lastCheckbox || null;
+	for (var i = start; i<finish; ++i) {
 		var child = ul.childNodes[i];
 		if ( child && child.childNodes && child.childNodes[0] ) {
 			var cb = child.childNodes[0];
 			if ( !cb.nodeName || cb.nodeName.toLowerCase() != 'input' ||
 			     !cb.type || cb.type.toLowerCase() != 'checkbox' ) {
-				continue;
+				return;
 			}
 			cb.index = ul.checkboxes.push(cb) - 1;
 			cb.container = ul;
 			cb.onmouseup = checkboxMouseupHandler;
 		}
+	}
+	if (finish < len) {
+	  var f=function(){ addCheckboxClickHandlers(ul, finish, finish+250); };
+	  ul.checkboxHandlersTimer=setInterval(f, 200);
 	}
 }
 
