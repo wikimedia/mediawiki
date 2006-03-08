@@ -237,6 +237,11 @@ protocol came about after MediaWiki 1.4rc1.
 This is a list of known events and parameters; please add to it if
 you're going to add events to the MediaWiki code.
 
+'AbortNewAccount': Prior to user account creation
+$user: User object representing the account to be created
+$abortError: Error message that will be passed back to the form if
+account creation is cancelled
+
 'AddNewAccount': after a user account is created
 null: This hook passes null as an argument
 

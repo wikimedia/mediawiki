@@ -1092,6 +1092,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 === Changes since 1.5.7 ===
 
 * (bug 5180) User login page shows inappropriate email blurb
+* Add the "AbortNewAccount" hook on account creation; see hooks.txt for more info.
 
 === Caveats ===
 

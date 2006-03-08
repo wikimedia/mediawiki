@@ -146,7 +146,7 @@ class LoginForm {
 		if( $wgEmailAuthentication && $wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) {
 			$wgUser->sendConfirmationMail();
 		}
-
+		
 		wfRunHooks( 'AddNewAccount' );
 
 		if( $this->hasSessionCookie() ) {
@@ -234,6 +234,13 @@ class LoginForm {
 				$this->throttleHit( $wgAccountCreationThrottle );
 				return false;
 			}
+		}
+
+		$abortError = '';
+		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
+			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
+			$this->mainLoginForm( $abortError );
+			return false;
 		}
 
 		if( !$wgAuth->addUser( $u, $this->mPassword ) ) {
