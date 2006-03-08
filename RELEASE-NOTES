@@ -249,6 +249,7 @@ i18n / Languages:
 * (bug 5113) Spelling error in French language file
 * (bug 5105) Magic words for LanguageAr.php
 * (bug 3993) Variants for Serbian language
+* Typo in English messages file
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits

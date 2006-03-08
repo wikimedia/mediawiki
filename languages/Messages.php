@@ -812,7 +812,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 'uploadedimage' => "uploaded \"[[$1]]\"",
 'uploaddisabled' => 'Uploads disabled',
 'uploaddisabledtext' => 'File uploads are disabled on this wiki.',
-'uploadscripted' => 'This file contains HTML or script code that my be erroneously be interpreted by a web browser.',
+'uploadscripted' => 'This file contains HTML or script code that may be erroneously be interpreted by a web browser.',
 'uploadcorrupt' => 'The file is corrupt or has an incorrect extension. Please check the file and upload again.',
 'uploadvirus' => 'The file contains a virus! Details: $1',
 'sourcefilename' => 'Source filename',
