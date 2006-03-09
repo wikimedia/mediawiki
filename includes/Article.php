@@ -205,11 +205,6 @@ class Article {
 	/**
 	 * Get the contents of a page from its title and remove includeonly tags
 	 *
-	 * TODO FIXME: This is only here because of the inputbox extension and
-	 * should be moved there
-	 *
-	 * @deprecated
-	 *
 	 * @param string The title of the page
 	 * @return string The contents of the page
 	 */
