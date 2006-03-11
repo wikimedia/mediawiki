@@ -681,6 +681,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4855) Section edit links now have the section name in the title attribute.
 * (bug 2115) Support shift-selecting multiple checkboxes with JavaScript.
 * (bug 5161) Don't try to load template list for nonexistent pages
+* (bug 5228) Workaround for broken LanguageConverter title overrides; avoid
+  unnecessary hidden UI work when watch/unwatch is performed on edit
 
 
 === Caveats ===
