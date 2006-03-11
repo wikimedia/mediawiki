@@ -440,16 +440,17 @@ class GenerateSitemap {
 	}
 }
 
-if ( in_array( '--help', $argv ) )
-	wfDie(
+if ( in_array( '--help', $argv ) ) {
+	echo
 		"Usage: php generateSitemap.php [host] [options]\n" .
 		"\thost = hostname\n" .
 		"\toptions:\n" .
 		"\t\t--help\tshow this message\n" .
 		"\t\t--fspath\tThe file system path to save to, e.g /tmp/sitemap/\n" .
 		"\t\t--path\tThe http path to use, e.g. /wiki\n" .
-		"\t\t--compress=[yes|no]\tcompress the sitemap files, default yes\n"
-	);
+		"\t\t--compress=[yes|no]\tcompress the sitemap files, default yes\n";
+	die( -1 );
+}
 
 if ( isset( $argv[1] ) && strpos( $argv[1], '--' ) !== 0 )
 	$_SERVER['SERVER_NAME'] = $argv[1];
