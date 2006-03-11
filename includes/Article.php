@@ -1185,10 +1185,10 @@ class Article {
 		}
 
 		if ($watchthis) {
-			if(!$this->mTitle->userIsWatching()) $this->watch();
+			if(!$this->mTitle->userIsWatching()) $this->doWatch();
 		} else {
 			if ( $this->mTitle->userIsWatching() ) {
-				$this->unwatch();
+				$this->doUnwatch();
 			}
 		}
 
@@ -1411,14 +1411,14 @@ class Article {
 				if (!$this->mTitle->userIsWatching()) {
 					$dbw->immediateCommit();
 					$dbw->begin();
-					$this->watch();
+					$this->doWatch();
 					$dbw->commit();
 				}
 			} else {
 				if ( $this->mTitle->userIsWatching() ) {
 					$dbw->immediateCommit();
 					$dbw->begin();
-					$this->unwatch();
+					$this->doUnwatch();
 					$dbw->commit();
 				}
 			}
@@ -1526,7 +1526,7 @@ class Article {
 	}
 
 	/**
-	 * Add this page to $wgUser's watchlist
+	 * User-interface handler for the "watch" action
 	 */
 
 	function watch() {
@@ -1541,14 +1541,8 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-
-		if (wfRunHooks('WatchArticle', array(&$wgUser, &$this))) {
-
-			$wgUser->addWatch( $this->mTitle );
-			$wgUser->saveSettings();
-
-			wfRunHooks('WatchArticleComplete', array(&$wgUser, &$this));
-
+		
+		if( $this->doWatch() ) {
 			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
 			$wgOut->setRobotpolicy( 'noindex,follow' );
 
@@ -1559,11 +1553,30 @@ class Article {
 
 		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
 	}
+	
+	/**
+	 * Add this page to $wgUser's watchlist
+	 * @return bool true on successful watch operation
+	 */
+	function doWatch() {
+		global $wgUser;
+		if( $wgUser->isAnon() ) {
+			return false;
+		}
+		
+		if (wfRunHooks('WatchArticle', array(&$wgUser, &$this))) {
+			$wgUser->addWatch( $this->mTitle );
+			$wgUser->saveSettings();
+
+			return wfRunHooks('WatchArticleComplete', array(&$wgUser, &$this));
+		}
+		
+		return false;
+	}
 
 	/**
-	 * Stop watching a page
+	 * User interface handler for the "unwatch" action.
 	 */
-
 	function unwatch() {
 
 		global $wgUser, $wgOut;
@@ -1576,14 +1589,8 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-
-		if (wfRunHooks('UnwatchArticle', array(&$wgUser, &$this))) {
-
-			$wgUser->removeWatch( $this->mTitle );
-			$wgUser->saveSettings();
-
-			wfRunHooks('UnwatchArticleComplete', array(&$wgUser, &$this));
-
+		
+		if( $this->doUnwatch() ) {
 			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
 			$wgOut->setRobotpolicy( 'noindex,follow' );
 
@@ -1593,6 +1600,26 @@ class Article {
 		}
 
 		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
+	}
+	
+	/**
+	 * Stop watching a page
+	 * @return bool true on successful unwatch
+	 */
+	function doUnwatch() {
+		global $wgUser;
+		if( $wgUser->isAnon() ) {
+			return false;
+		}
+
+		if (wfRunHooks('UnwatchArticle', array(&$wgUser, &$this))) {
+			$wgUser->removeWatch( $this->mTitle );
+			$wgUser->saveSettings();
+
+			return wfRunHooks('UnwatchArticleComplete', array(&$wgUser, &$this));
+		}
+		
+		return false;
 	}
 
 	/**
