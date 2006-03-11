@@ -53,8 +53,8 @@ class ExternalStore {
 
 	/**
 	 * Store a data item to an external store, identified by a partial URL
-	 * The protocol part is used to identify the class, the rest is passed to the 
-	 * class itself as a parameter. 
+	 * The protocol part is used to identify the class, the rest is passed to the
+	 * class itself as a parameter.
 	 * Returns the URL of the stored data item, or false on error
 	 */
 	function insert( $url, $data ) {

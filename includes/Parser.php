@@ -627,9 +627,9 @@ class Parser
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
 			// Theoretically, this style of communication could cause a deadlock
-			// here. If the stdout buffer fills up, then writes to stdin could 
+			// here. If the stdout buffer fills up, then writes to stdin could
 			// block. This doesn't appear to happen with tidy, because tidy only
-			// writes to stdout after it's finished reading from stdin. Search 
+			// writes to stdout after it's finished reading from stdin. Search
 			// for tidyParseStdin and tidySaveStdout in console/tidy.c
 			fwrite($pipes[0], $text);
 			fclose($pipes[0]);
@@ -1225,12 +1225,12 @@ class Parser
 
 	/**
 	 * Replace unusual URL escape codes with their equivalent characters
-	 * @param string 
+	 * @param string
 	 * @return string
 	 * @static
 	 */
 	function replaceUnusualEscapes( $url ) {
-		return preg_replace_callback( '/%[0-9A-Fa-f]{2}/', 
+		return preg_replace_callback( '/%[0-9A-Fa-f]{2}/',
 			array( 'Parser', 'replaceUnusualEscapesCallback' ), $url );
 	}
 
@@ -2371,7 +2371,7 @@ class Parser
 		$fname = 'Parser::braceSubstitution';
 		wfProfileIn( $fname );
 
-		# Flags 
+		# Flags
 		$found = false;             # $text has been filled
 		$nowiki = false;            # wiki markup in $text should be escaped
 		$noparse = false;           # Unsafe HTML tags should not be stripped, etc.
@@ -2738,7 +2738,7 @@ class Parser
 	}
 
 	/**
-	 * Fetch the unparsed text of a template and register a reference to it. 
+	 * Fetch the unparsed text of a template and register a reference to it.
 	 */
 	function fetchTemplate( $title ) {
 		$text = false;
@@ -3022,7 +3022,7 @@ class Parser
 			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
 			$tocline = trim( $canonized_headline );
 			# Save headline for section edit hint before it's escaped
-			$headline_hint = trim( $canonized_headline ); 
+			$headline_hint = trim( $canonized_headline );
 			$canonized_headline = Sanitizer::escapeId( $tocline );
 			$refers[$headlineCount] = $canonized_headline;
 
@@ -3278,7 +3278,7 @@ class Parser
 		
 		# Signatures
 		$sigText = $this->getUserSig( $user );
-		$text = strtr( $text, array( 
+		$text = strtr( $text, array(
 			'~~~~~' => $d,
 			'~~~~' => "$sigText $d",
 			'~~~' => $sigText
@@ -3783,7 +3783,7 @@ class Parser
 		$this->mOutput->mCacheTime = -1;
 	}
 
-	/**#@+ 
+	/**#@+
 	 * Callback from the Sanitizer for expanding items found in HTML attribute
 	 * values, so they can be safely tested and escaped.
 	 * @param string $text

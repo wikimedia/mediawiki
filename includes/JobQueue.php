@@ -7,9 +7,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class Job {
 	var $command,
 		$title,
-		$params, 
+		$params,
 		$id,
-		$removeDuplicates, 
+		$removeDuplicates,
 		$error;
 
 	/*-------------------------------------------------------------------------
@@ -17,7 +17,7 @@ class Job {
 	 *------------------------------------------------------------------------*/
 	/**
 	 * Add an array of refreshLinks jobs to the queue
-	 * @param array $titles Array of title objects. 
+	 * @param array $titles Array of title objects.
 	 * @static
 	 */
 	function queueLinksJobs( $titles ) {
@@ -42,7 +42,7 @@ class Job {
 		$dbr =& wfGetDB( DB_SLAVE );
 
 		// Get a job from the slave
-		$row = $dbr->selectRow( 'job', '*', '', $fname, 
+		$row = $dbr->selectRow( 'job', '*', '', $fname,
 			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 )
 		);
 
@@ -60,7 +60,7 @@ class Job {
 		if ( !$affected ) {
 			// Failed, someone else beat us to it
 			// Try getting a random row
-			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob', 
+			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob',
 				'MAX(job_id) as maxjob' ), '', $fname );
 			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
 				// No jobs to get
@@ -68,7 +68,7 @@ class Job {
 				return false;
 			}
 			// Get the random row
-			$row = $dbw->selectRow( 'job', '*', 
+			$row = $dbw->selectRow( 'job', '*',
 				array( 'job_id' => mt_rand( $row->minjob, $row->maxjob ) ),	$fname );
 			if ( $row === false ) {
 				// Random job gone before we got the chance to select it
@@ -86,7 +86,7 @@ class Job {
 				// Give up
 				wfProfileOut( $fname );
 				return false;
-			}				
+			}
 		}
 		
 		// If execution got to here, there's a row in $row that has been deleted from the database
@@ -204,7 +204,7 @@ class Job {
 			return $s;
 		} else {
 			return "{$this->command} {$this->params}";
-		}			
+		}
 	}
 
 	function getLastError() {

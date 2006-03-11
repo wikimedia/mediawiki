@@ -84,7 +84,7 @@ class Linker {
 	 * @param string $text Link text
 	 * @param string $query Optional query part
 	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after 
+	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
 	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
@@ -109,7 +109,7 @@ class Linker {
 	 * @param string $text Link text
 	 * @param string $query Optional query part
 	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after 
+	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
 	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '',$aprops = '') {
@@ -130,7 +130,7 @@ class Linker {
 	 * @param string $text Link text
 	 * @param string $query Optional query part
 	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after 
+	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
 	function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
@@ -151,7 +151,7 @@ class Linker {
 	 * @param string $text Link text
 	 * @param string $query Optional query part
 	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after 
+	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
 	function makeStubLink( $title, $text = '', $query = '', $trail = '' ) {
@@ -165,7 +165,7 @@ class Linker {
 	}
 
 	/**
-	 * Make a link for a title which may or may not be in the database. If you need to 
+	 * Make a link for a title which may or may not be in the database. If you need to
 	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
 	 * call to this will result in a DB query.
 	 * 
@@ -173,7 +173,7 @@ class Linker {
 	 * @param string $text Link text
 	 * @param string $query Optional query part
 	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after 
+	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
 	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
@@ -266,7 +266,7 @@ class Linker {
 	}
 
 	/**
-	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because 
+	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because
 	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
 	 * pages.
 	 *
@@ -326,7 +326,7 @@ class Linker {
 	 * @param string $text Link text
 	 * @param string $query Optional query part
 	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after 
+	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
 	function makeBrokenLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
@@ -365,7 +365,7 @@ class Linker {
 	 * @param string $text Link text
 	 * @param string $query Optional query part
 	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after 
+	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
 	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {

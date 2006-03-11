@@ -1327,8 +1327,8 @@ class Database {
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
 	 */
-	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect', 
-		$options = array() ) 
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect',
+		$options = array() )
 	{
 		$destTable = $this->tableName( $destTable );
 		if ( is_array( $options ) ) {
@@ -1336,11 +1336,11 @@ class Database {
 		}
 		if( is_array( $srcTable ) ) {
 			$srcTable =  implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
-		} else { 
+		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
 		$sql = "INSERT $options INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
-			' SELECT ' . implode( ',', $varMap ) . 
+			' SELECT ' . implode( ',', $varMap ) .
 			" FROM $srcTable";
 		if ( $conds != '*' ) {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
@@ -1649,7 +1649,7 @@ class Database {
 	}
 
 	/**
-	 * Read and execute SQL commands from a file. 
+	 * Read and execute SQL commands from a file.
 	 * Returns true on success, error string on failure
 	 */
 	function sourceFile( $filename ) {
@@ -1715,7 +1715,7 @@ class Database {
 		}
 
 		// Table prefixes
-		$ins = preg_replace_callback( '/\/\*(?:\$wgDBprefix|_)\*\/([a-z_]*)/', 
+		$ins = preg_replace_callback( '/\/\*(?:\$wgDBprefix|_)\*\/([a-z_]*)/',
 			array( &$this, 'tableNameCallback' ), $ins );
 		return $ins;
 	}

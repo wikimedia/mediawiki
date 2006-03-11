@@ -330,7 +330,7 @@ CONTROL;
 			if ( $difftext ) {
 				wfIncrStats( 'diff_cache_hit' );
 				$difftext = $this->localiseLineNumbers( $difftext );
-				$difftext .= "\n<!-- diff cache key $key -->\n"; 
+				$difftext .= "\n<!-- diff cache key $key -->\n";
 				wfProfileOut( $fname );
 				return $difftext;
 			}
@@ -378,7 +378,7 @@ CONTROL;
 				dl('php_wikidiff.so');
 			}
 			return $wgContLang->unsegementForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) );
-		} 
+		}
 		
 		if ( $wgExternalDiffEngine == 'wikidiff2' ) {
 			# Better external diff engine, the 2 may some day be dropped
@@ -432,7 +432,7 @@ CONTROL;
 	 * Replace line numbers with the text in the user's language
 	 */
 	function localiseLineNumbers( $text ) {
-		return preg_replace_callback( '/<!--LINE (\d+)-->/', 
+		return preg_replace_callback( '/<!--LINE (\d+)-->/',
 			array( &$this, 'localiseLineNumbersCb' ), $text );
 	}
 
