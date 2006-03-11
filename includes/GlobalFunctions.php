@@ -970,7 +970,7 @@ function wfEscapeShellArg( ) {
 				}
 				$delim = !$delim;
 			}
-			// Double the backslashes before the end of the string, because 
+			// Double the backslashes before the end of the string, because
 			// we will soon add a quote
 			if ( preg_match( '/^(.*?)(\\\\+)$/', $arg, $m ) ) {
 				$arg = $m[1] . str_replace( '\\', '\\\\', $m[2] );
@@ -1713,7 +1713,7 @@ function in_string( $needle, $str ) {
 function wfUrlProtocols() {
 	global $wgUrlProtocols;
 
-	// Support old-style $wgUrlProtocols strings, for backwards compatibility 
+	// Support old-style $wgUrlProtocols strings, for backwards compatibility
 	// with LocalSettings files from 1.5
 	if ( is_array( $wgUrlProtocols ) ) {
 		$protocols = array();
@@ -1910,7 +1910,7 @@ function wfMakeUrlIndex( $url ) {
 function wfDoUpdates()
 {
 	global $wgPostCommitUpdateList, $wgDeferredUpdateList;
-	foreach ( $wgDeferredUpdateList as $update ) { 
+	foreach ( $wgDeferredUpdateList as $update ) {
 		$update->doUpdate();
 	}
 	foreach ( $wgPostCommitUpdateList as $update ) {

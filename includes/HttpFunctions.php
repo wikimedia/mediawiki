@@ -29,7 +29,7 @@ function wfGetHTTP( $url, $timeout = 'default' ) {
 		# Set the referer to $wgTitle, even in command-line mode
 		# This is useful for interwiki transclusion, where the foreign
 		# server wants to know what the referring page is.
-		# $_SERVER['REQUEST_URI'] gives a less reliable indication of the 
+		# $_SERVER['REQUEST_URI'] gives a less reliable indication of the
 		# referring page.
 		if ( is_object( $wgTitle ) ) {
 			curl_setopt( $c, CURLOPT_REFERER, $wgTitle->getFullURL() );

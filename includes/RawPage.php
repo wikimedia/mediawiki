@@ -43,14 +43,14 @@ class RawPage {
 		
 		$oldid = $this->mRequest->getInt( 'oldid' );
 		switch ( $wgRequest->getText( 'direction' ) ) {
-			case 'next': 
+			case 'next':
 				# output next revision, or nothing if there isn't one
 				if ( $oldid ) {
 					$oldid = $this->mTitle->getNextRevisionId( $oldid );
 				}
 				$oldid = $oldid ? $oldid : -1;
 				break;
-			case 'prev': 
+			case 'prev':
 				# output previous revision, or nothing if there isn't one
 				if ( ! $oldid ) {
 					# get the current revision so we can get the penultimate one

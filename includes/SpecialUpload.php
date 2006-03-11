@@ -114,7 +114,7 @@ class UploadForm {
 		} else {
 			$wgOut->errorPage( 'uploadnologin', 'uploadnologintext' );
 			return;
-		}	
+		}
 
 		# Check blocks
 		if( $wgUser->isBlocked() ) {

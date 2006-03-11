@@ -184,7 +184,7 @@ class LinksUpdate {
 		$this->mDb->delete( $table, array( $fromField => $this->mId ), $fname );
 		if ( count( $insertions ) ) {
 			# The link array was constructed without FOR UPDATE, so there may be collisions
-			# This may cause minor link table inconsistencies, which is better than 
+			# This may cause minor link table inconsistencies, which is better than
 			# crippling the site with lock contention.
 			$this->mDb->insert( $table, $insertions, $fname, array( 'IGNORE' ) );
 		}
@@ -371,7 +371,7 @@ class LinksUpdate {
 	}
 
 	/** 
-	 * Given an array of existing external links, returns those links which are not 
+	 * Given an array of existing external links, returns those links which are not
 	 * in $this and thus should be deleted.
 	 * @access private
 	 */

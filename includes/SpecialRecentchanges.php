@@ -72,7 +72,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$hideliu = $wgRequest->getBool( 'hideliu', $defaults['hideliu'] );
 		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', $defaults['hidepatrolled'] );
 		$hidemyself = $wgRequest->getBool ( 'hidemyself', $defaults['hidemyself'] );
-		$from = $wgRequest->getVal( 'from', $defaults['from'] );	
+		$from = $wgRequest->getVal( 'from', $defaults['from'] );
 
 		# Get query parameters from path
 		if( $par ) {
@@ -504,7 +504,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		array( 'hideliu' => 1-$options['hideliu'] ), $nondefaults);
 	$patrLink  = makeOptionsLink( $showhide[1-$options['hidepatrolled']],
 		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults);
-	$myselfLink = makeOptionsLink( $showhide[1-$options['hidemyself']], 
+	$myselfLink = makeOptionsLink( $showhide[1-$options['hidemyself']],
 		array( 'hidemyself' => 1-$options['hidemyself'] ), $nondefaults);
 	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink );
 	

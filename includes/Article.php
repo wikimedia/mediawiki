@@ -91,7 +91,7 @@ class Article {
 					} else {
 						return $rt->getFullURL();
 					}
-				} 
+				}
 				return $rt;
 			}
 		}
@@ -1828,7 +1828,7 @@ class Article {
 	}
 
 	/**
-	 * Get the last N authors 
+	 * Get the last N authors
 	 * @param int $num Number of revisions to get
 	 * @param string $revLatest The latest rev_id, selected from the master (optional)
 	 * @return array Array of authors, duplicates not removed
@@ -1848,7 +1848,7 @@ class Article {
 					'page_namespace' => $this->mTitle->getNamespace(),
 					'page_title' => $this->mTitle->getDBkey(),
 					'rev_page = page_id'
-				), $fname, $this->getSelectOptions( array( 
+				), $fname, $this->getSelectOptions( array(
 					'ORDER BY' => 'rev_timestamp DESC',
 					'LIMIT' => $num
 				) )

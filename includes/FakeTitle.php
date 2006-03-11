@@ -15,15 +15,15 @@ class FakeTitle {
 	function isLocal() { $this->error(); }
 	function isTrans() { $this->error(); }
 	function touchArray( $titles, $timestamp = '' ) { $this->error(); }
-	function getText() { $this->error(); } 
-	function getPartialURL() { $this->error(); } 
+	function getText() { $this->error(); }
+	function getPartialURL() { $this->error(); }
 	function getDBkey() { $this->error(); }
 	function getNamespace() { $this->error(); }
 	function getNsText() { $this->error(); }
 	function getSubjectNsText() { $this->error(); }
-	function getInterwiki() { $this->error(); } 
-	function getFragment() { $this->error(); } 
-	function getDefaultNamespace() { $this->error(); } 
+	function getInterwiki() { $this->error(); }
+	function getFragment() { $this->error(); }
+	function getDefaultNamespace() { $this->error(); }
 	function getIndexTitle() { $this->error(); }
 	function getPrefixedDBkey() { $this->error(); }
 	function getPrefixedText() { $this->error(); }
@@ -36,7 +36,7 @@ class FakeTitle {
 	function getInternalURL() { $this->error(); }
 	function getEditURL() { $this->error(); }
 	function getEscapedText() { $this->error(); }
-	function isExternal() { $this->error(); } 
+	function isExternal() { $this->error(); }
 	function isSemiProtected() { $this->error(); }
 	function isProtected() { $this->error(); }
 	function userIsWatching() { $this->error(); }

@@ -441,11 +441,11 @@ class Title {
 				$site = $wgInterwikiFallbackSite;
 		}
 		$value = dba_fetch("{$wgDBname}:{$key}", $db);
-		if ($value=='' and $wgInterwikiScopes>=3) { 
+		if ($value=='' and $wgInterwikiScopes>=3) {
 			/* try site-level */
 			$value = dba_fetch("_{$site}:{$key}", $db);
 		}
-		if ($value=='' and $wgInterwikiScopes>=2) { 
+		if ($value=='' and $wgInterwikiScopes>=2) {
 			/* try globals */
 			$value = dba_fetch("__global:{$key}", $db);
 		}
@@ -765,8 +765,8 @@ class Title {
 		if ( $this->isExternal() ) {
 			$url = $this->getFullURL();
 			if ( $query ) {
-				// This is currently only used for edit section links in the 
-				// context of interwiki transclusion. In theory we should 
+				// This is currently only used for edit section links in the
+				// context of interwiki transclusion. In theory we should
 				// append the query to the end of any existing query string,
 				// but interwiki transclusion is already broken in that case.
 				$url .= "?$query";
@@ -1407,7 +1407,7 @@ class Title {
 						continue;
 					}
 
-					# If there's an initial colon after the interwiki, that also 
+					# If there's an initial colon after the interwiki, that also
 					# resets the default namespace
 					if ( $t !== '' && $t[0] == ':' ) {
 						$this->mNamespace = NS_MAIN;

@@ -46,7 +46,7 @@ function wfSpecialStatistics() {
 		$res = $dbr->query( $sql, $fname );
 		$userRow = $dbr->fetchObject( $res );
 		$users = $userRow->total;
-	} 
+	}
 
 	$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), $fname );
 	$numJobs = $dbr->selectField( 'job', 'COUNT(*)', '', $fname );

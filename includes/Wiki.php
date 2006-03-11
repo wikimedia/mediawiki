@@ -202,7 +202,7 @@ class MediaWiki {
 		$article = $this->articleFromTitle( $title );
 		
 		// Namespace might change when using redirects
-		if( $action == 'view' && !$request->getVal( 'oldid' ) && 
+		if( $action == 'view' && !$request->getVal( 'oldid' ) &&
 						$request->getVal( 'redirect' ) != 'no' ) {
 			$dbr=&wfGetDB(DB_SLAVE);
 			
@@ -267,7 +267,7 @@ class MediaWiki {
 		foreach( $updates as $up ) {
 			$up->doUpdate();
 		}
-		wfProfileOut( 'MediaWiki::doUpdates' );		
+		wfProfileOut( 'MediaWiki::doUpdates' );
 	}
 
 	/**

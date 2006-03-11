@@ -288,7 +288,7 @@ class SkinTemplate extends Skin {
 			$sep = str_replace("_", " ", wfMsgHtml("newtalkseperator"));
 			$msgs = array();
 			foreach ($newtalks as $newtalk) {
-				$msgs[] = wfElement("a", 
+				$msgs[] = wfElement("a",
 					array('href' => $newtalk["link"]), $newtalk["wiki"]);
 			}
 			$parts = implode($sep, $msgs);
