@@ -19,13 +19,13 @@ CREATE TABLE ilinks (
  title_from tinyblob,
  title_to tinyblob,
  target_exists tinyint(1) default NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE recentchanges (
  user_name tinyblob,
  user_lang varchar(5) default NULL,
  date timestamp(14) NOT NULL,
  message tinyblob
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
