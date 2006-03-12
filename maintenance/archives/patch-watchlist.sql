@@ -14,7 +14,7 @@ CREATE TABLE watchlist2 (
   wl_namespace tinyint(2) unsigned NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
   UNIQUE KEY (wl_user, wl_namespace, wl_title)
-) TYPE=MyISAM PACK_KEYS=1;
+) ENGINE=MyISAM PACK_KEYS=1;
 
 INSERT INTO watchlist2 (wl_user,wl_namespace,wl_title)
   SELECT DISTINCT wl_user,(cur_namespace | 1) - 1,cur_title

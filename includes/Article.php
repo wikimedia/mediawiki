@@ -2455,7 +2455,7 @@ class Article {
 			$old_user_abort = ignore_user_abort( true );
 
 			$dbw->query("LOCK TABLES $hitcounterTable WRITE");
-			$dbw->query("CREATE TEMPORARY TABLE $acchitsTable TYPE=HEAP ".
+			$dbw->query("CREATE TEMPORARY TABLE $acchitsTable ENGINE=HEAP ".
 				"SELECT hc_id,COUNT(*) AS hc_n FROM $hitcounterTable ".
 				'GROUP BY hc_id');
 			$dbw->query("DELETE FROM $hitcounterTable");
