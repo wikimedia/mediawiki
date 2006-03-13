@@ -18,14 +18,16 @@ require_once 'QueryPage.php';
 
 class ListredirectsPage extends QueryPage {
 
-	function getName() { return( 'listredirects' ); }
+	function getName() { return( 'Listredirects' ); }
 	function isExpensive() { return( true ); }
 	function isSyndicated() { return( false ); }
 	function sortDescending() { return( false ); }
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		return( 'SELECT page_title AS title, page_namespace AS namespace, page_namespace AS value FROM ' . $dbr->tableName( 'page' ) . ' WHERE page_is_redirect = 1' );
+		$page = $dbr->tableName( 'page' );
+		$sql = "SELECT 'Listredirects' AS type, page_title AS title, page_namespace AS namespace, 0 AS value FROM $page WHERE page_is_redirect = 1";
+		return( $sql );
 	}
 
 	function formatResult( $skin, $result ) {
