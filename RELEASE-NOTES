@@ -684,7 +684,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 5228) Workaround for broken LanguageConverter title overrides; avoid
   unnecessary hidden UI work when watch/unwatch is performed on edit
 * Fixed bogus master fallback in external storage
-
+* (bug 5246) Add speak:none to "hiddenStructure" class in main.css
 
 === Caveats ===
 
