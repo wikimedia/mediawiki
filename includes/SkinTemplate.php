@@ -599,7 +599,7 @@ class SkinTemplate extends Skin {
 			$subjpage = $this->mTitle->getSubjectPage();
 			$talkpage = $this->mTitle->getTalkPage();
 
-			$nskey = $this->getNameSpaceKey();
+			$nskey = $this->mTitle->getNamespaceKey();
 			$content_actions[$nskey] = $this->tabAction(
 				$subjpage,
 				$nskey,
@@ -790,7 +790,7 @@ class SkinTemplate extends Skin {
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
 		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
-			$revid = $wgArticle->getRevIdFetched();
+			$revid = $wgArticle->getLatest();
 			if ( !( $revid == 0 )  )
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),
@@ -856,46 +856,6 @@ class SkinTemplate extends Skin {
 		}
 		wfProfileOut( $fname );
 		return $nav_urls;
-	}
-
-	/**
-	 * Generate strings used for xml 'id' names
-	 * @return string
-	 * @access private
-	 */
-	function getNameSpaceKey () {
-		switch ($this->mTitle->getNamespace()) {
-			case NS_MAIN:
-			case NS_TALK:
-				return 'nstab-main';
-			case NS_USER:
-			case NS_USER_TALK:
-				return 'nstab-user';
-			case NS_MEDIA:
-				return 'nstab-media';
-			case NS_SPECIAL:
-				return 'nstab-special';
-			case NS_PROJECT:
-			case NS_PROJECT_TALK:
-				return 'nstab-wp';
-			case NS_IMAGE:
-			case NS_IMAGE_TALK:
-				return 'nstab-image';
-			case NS_MEDIAWIKI:
-			case NS_MEDIAWIKI_TALK:
-				return 'nstab-mediawiki';
-			case NS_TEMPLATE:
-			case NS_TEMPLATE_TALK:
-				return 'nstab-template';
-			case NS_HELP:
-			case NS_HELP_TALK:
-				return 'nstab-help';
-			case NS_CATEGORY:
-			case NS_CATEGORY_TALK:
-				return 'nstab-category';
-			default:
-				return 'nstab-' . strtolower( $this->mTitle->getSubjectNsText() );
-		}
 	}
 
 	/**
