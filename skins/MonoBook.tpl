@@ -13,8 +13,8 @@
 	<!--[if IE 7]><style type="text/css">@import "{~ stylepath}/{~ stylename}/IE70Fixes.css?1";</style><![endif]-->
 	<!--[if lt IE 7]><script type="{jsmimetype}" src="{~ stylepath}/common/IEFixes.js"></script>
 	<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-	{if jsvarurl {<script type="{jsmimetype}" src="{jsvarurl}"><!-- site js --></script>}}
 	<script type="{jsmimetype}" src="{~ stylepath}/common/wikibits.js"><!-- wikibits js --></script>
+	{if jsvarurl {<script type="{jsmimetype}" src="{jsvarurl}"><!-- site js --></script>}}
 	{if pagecss {<style type="text/css">{pagecss}</style>}}
 	{usercss}
 	{sitecss}

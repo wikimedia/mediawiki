@@ -114,11 +114,11 @@ class HTMLDumpTemplate extends QuickTemplate {
     <!--[if IE 6]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE60Fixes.css";</style><![endif]-->
     <!--[if IE]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-    <?php if($this->data['jsvarurl'  ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"></script><?php } ?>
     <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js"></script>
     <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/htmldump/md5.js"></script>
     <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/htmldump/utf8.js"></script>
     <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/htmldump/lookup.js"></script>
+    <?php if($this->data['jsvarurl'  ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"></script><?php } ?>
     <?php if($this->data['pagecss'   ]) { ?><style type="text/css"><?php              $this->html('pagecss'   ) ?></style><?php    } ?>
     <?php if($this->data['usercss'   ]) { ?><style type="text/css"><?php              $this->html('usercss'   ) ?></style><?php    } ?>
     <?php if($this->data['userjs'    ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs'    ) ?>"></script><?php } ?>
