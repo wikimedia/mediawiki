@@ -61,7 +61,7 @@
 'category'              => 'Kategorie',
 'category_header'       => 'Sieten in de Kategorie $1',
 'subcategories'         => 'Ünnerkategorien',
-'linktrail'                        => '/^((?:ä|ö|ü|ß|[a-z])+)(.*)$/sD',
+'linktrail'                        => '/^([äöüßa-z]+)(.*)$/sDu',
 'mainpage'                      => 'Hööftsiet',
 'mainpagetext'          => 'De Wiki-Software is mit Spood installeert worrn.',
 'mainpagedocfooter'     => 'Kiek de [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentatschoon för dat Anpassen vun de Brukerböversiet]

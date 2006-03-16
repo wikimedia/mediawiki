@@ -69,7 +69,7 @@ global $wgRightsText;
 	"category"			=>	"категорија",
 	"category_header"		=>	"Статии во категорија \"$1\"",
 	"subcategories"			=>	"Подкатегории",
-	'linktrail'			=>	"/^((?:[a-z]|а|б|в|г|д|ѓ|е|ж|з|ѕ|и|ј|к|л|љ|м|н|њ|о|п|р|с|т|ќ|у|ф|х|ц|ч|џ|ш)+)(.*)$/sD",
+	'linktrail'			=>	"/^([a-zабвгдѓежзѕијклљмнњопрстќуфхцчџш]+)(.*)$/sDu",
 	'mainpage'			=>	'Почетна страна',
 	'mainpagetext'			=>	'Вики софтверот е успешно инсталиран.',
 	'mainpagedocfooter'		=>	'Ве молиме, видете ја [http://meta.wikimedia.org/wiki/MediaWiki_i18n документацијата] и [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide водичот] за подетална информација односно МедијаВики. Актуелната верзија на македонската јазична датотека можете да најдете на [http://meta.wikimedia.org/wiki/LanguageMk.php Мета].',

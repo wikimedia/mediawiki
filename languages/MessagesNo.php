@@ -65,7 +65,7 @@
 "category_header" => "Artikler i kategorien \"$1\"",
 "subcategories" => "Underkategorier",
 
-"linktrail"		=> "/^((?:[a-z]|æ|ø|å)+)(.*)\$/sD",
+"linktrail"		=> "/^([a-zæøå]+)(.*)\$/sDu",
 "mainpage"		=> "Hovedside",
 "mainpagetext"	=> "Mediawiki-programvare er nå installert.",
 "about"			=> "Om",

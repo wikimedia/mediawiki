@@ -73,7 +73,7 @@
 'category_header' => 'články v kategórii "$1"',
 'subcategories' => 'podkategórie',
 
-"linktrail" => "/^((?:[a-z]|á|ä|č|ď|é|í|ľ|ĺ|ň|ó|ô|ŕ|š|ť|ú|ý|ž)+)(.*)$/sD",
+"linktrail" => "/^([a-záäčďéíľĺňóôŕšťúýž]+)(.*)$/sDu",
 "mainpage" => "Hlavná stránka",
 'mainpagetext' => 'Wiki sofvér úspešne nainštalovaný.',
 "mainpagedocfooter" => "Prosím prečítajte si [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentáciu ako upraviť rozhranie]

@@ -66,7 +66,7 @@
 "category" 		=> "kategória",
 "category_header" => "Cikkek a(z) \"$1\" kategóriában",
 "subcategories" => "Alkategóriák",
-"linktrail"		=> "/^((?:[a-z]|á|é|í|ú|ó|ö|ü|ő|ű|Á|É|Í|Ó|Ú|Ö|Ü|Ő|Ű)+)(.*)\$/sD",
+"linktrail"		=> "/^([a-záéíúóöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)\$/sDu",
 "mainpage"		=> "Kezdőlap",
 "mainpagetext"	=> "Wiki szoftver sikeresen telepítve.",
 "about"			=> "Névjegy",
