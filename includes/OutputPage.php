@@ -360,7 +360,7 @@ class OutputPage {
 	 *
 	 * @return bool
 	 */
-	function tryParserCache( $article, $user ) {
+	function tryParserCache( &$article, $user ) {
 		$parserCache =& ParserCache::singleton();
 		$parserOutput = $parserCache->get( $article, $user );
 		if ( $parserOutput !== false ) {
