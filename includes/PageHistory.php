@@ -222,93 +222,101 @@ class PageHistory {
 
 	/** @todo document */
 	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false, $latest = false, $firstInList = false ) {
-
-		if ( 0 == $row->rev_user ) {
-			$contribsPage =& Title::makeTitle( NS_SPECIAL, 'Contributions' );
-			$ul = $this->mSkin->makeKnownLinkObj( $contribsPage,
-				htmlspecialchars( $row->rev_user_text ),
-				'target=' . urlencode( $row->rev_user_text ) );
-		} else {
-			$userPage =& Title::makeTitle( NS_USER, $row->rev_user_text );
-			$ul = $this->mSkin->makeLinkObj( $userPage , htmlspecialchars( $row->rev_user_text ) );
-		}
+		global $wgUser;
+		$rev = new Revision( $row );
 
 		$s = '<li>';
-		/* This feature is not yet used according to schema */
-		if( $row->rev_deleted ) {
-			$s .= '<span class="history-deleted">';
-		}
-		$curlink = $this->curLink( $row, $latest );
-		$lastlink = $this->lastLink( $row, $next, $counter );
-		$arbitrary = $this->diffButtons( $row, $firstInList, $counter );
-		$link = $this->revLink( $row );
+		$curlink = $this->curLink( $rev, $latest );
+		$lastlink = $this->lastLink( $rev, $next, $counter );
+		$arbitrary = $this->diffButtons( $rev, $firstInList, $counter );
+		$link = $this->revLink( $rev );
+		$user = $this->mSkin->revUserLink( $rev );
 
-		$s .= "($curlink) ($lastlink) $arbitrary $link <span class='history-user'>$ul</span>";
+		$s .= "($curlink) ($lastlink) $arbitrary";
+		
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			$revdel = Title::makeTitle( NS_SPECIAL, 'Revisiondelete' );
+			if( $firstInList ) {
+				// We don't currently handle well changing the top revision's settings
+				$del = wfMsgHtml( 'rev-delundel' );
+			} else {
+				$del = $this->mSkin->makeKnownLinkObj( $revdel,
+					wfMsg( 'rev-delundel' ),
+					'target=' . urlencode( $this->mTitle->getPrefixedDbkey() ) .
+					'&oldid=' . urlencode( $rev->getId() ) );
+			}
+			$s .= "(<small>$del</small>) ";
+		}
+		
+		$s .= " $link <span class='history-user'>$user</span>";
 
 		if( $row->rev_minor_edit ) {
 			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsgHtml( 'minoreditletter') );
 		}
 
-		$s .= $this->mSkin->commentBlock( $row->rev_comment, $this->mTitle );
+		$s .= $this->mSkin->revComment( $rev );
 		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
 			$s .= ' <span class="updatedmarker">' .  wfMsgHtml( 'updatedmarker' ) . '</span>';
 		}
-		if( $row->rev_deleted ) {
-			$s .= '</span> ' . wfMsgHtml( 'deletedrev' );
+		if( $row->rev_deleted & MW_REV_DELETED_TEXT ) {
+			$s .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
 		$s .= "</li>\n";
 
 		return $s;
 	}
-
+	
 	/** @todo document */
-	function revLink( $row ) {
+	function revLink( $rev ) {
 		global $wgUser, $wgLang;
-		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $row->rev_timestamp), true );
-		if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
-			return $date;
+		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $rev->getTimestamp()), true );
+		if( $rev->userCan( MW_REV_DELETED_TEXT ) ) {
+			$link = $this->mSkin->makeKnownLinkObj(
+				$this->mTitle, $date, "oldid=" . $rev->getId() );
 		} else {
-			return $this->mSkin->makeKnownLinkObj(
-				$this->mTitle, $date, "oldid={$row->rev_id}" );
+			$link = $date;
 		}
+		if( $rev->isDeleted( MW_REV_DELETED_TEXT ) ) {
+			return '<span class="history-deleted">' . $link . '</span>';
+		}
+		return $link;
 	}
 
 	/** @todo document */
-	function curLink( $row, $latest ) {
+	function curLink( $rev, $latest ) {
 		global $wgUser;
 		$cur = wfMsgHtml( 'cur' );
-		if( $latest
-			|| ( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) ) {
+		if( $latest || !$rev->userCan( MW_REV_DELETED_TEXT ) ) {
 			return $cur;
 		} else {
 			return $this->mSkin->makeKnownLinkObj(
 				$this->mTitle, $cur,
 				'diff=' . $this->getLatestID() .
-				"&oldid={$row->rev_id}" );
+				"&oldid=" . $rev->getId() );
 		}
 	}
 
 	/** @todo document */
-	function lastLink( $row, $next, $counter ) {
+	function lastLink( $rev, $next, $counter ) {
 		global $wgUser;
 		$last = htmlspecialchars( wfMsg( 'last' ) );
 		if( is_null( $next ) ) {
-			if( $row->rev_timestamp == $this->getEarliestOffset() ) {
+			if( $rev->getTimestamp() == $this->getEarliestOffset() ) {
 				return $last;
 			} else {
 				// Cut off by paging; there are more behind us...
 				return $this->mSkin->makeKnownLinkObj(
 					$this->mTitle,
 					$last,
-					"diff={$row->rev_id}&oldid=prev" );
+					"diff=" . $rev->getId() . "&oldid=prev" );
 			}
-		} elseif( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
+		} elseif( !$rev->userCan( MW_REV_DELETED_TEXT ) ) {
 			return $last;
 		} else {
 			return $this->mSkin->makeKnownLinkObj(
 				$this->mTitle,
 				$last,
-				"diff={$row->rev_id}&oldid={$next->rev_id}"
+				"diff=" . $rev->getId() . "&oldid={$next->rev_id}"
 				/*,
 				'',
 				'',
@@ -317,17 +325,17 @@ class PageHistory {
 	}
 
 	/** @todo document */
-	function diffButtons( $row, $firstInList, $counter ) {
+	function diffButtons( $rev, $firstInList, $counter ) {
 		global $wgUser;
 		if( $this->linesonpage > 1) {
 			$radio = array(
 				'type'  => 'radio',
-				'value' => $row->rev_id,
+				'value' => $rev->getId(),
 # do we really need to flood this on every item?
 #				'title' => wfMsgHtml( 'selectolderversionfordiff' )
 			);
 
-			if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
+			if( !$rev->userCan( MW_REV_DELETED_TEXT ) ) {
 				$radio['disabled'] = 'disabled';
 			}
 
@@ -447,7 +455,7 @@ class PageHistory {
 
 		$res = $dbr->select(
 			'revision',
-			array('rev_id', 'rev_user', 'rev_comment', 'rev_user_text',
+			array('rev_id', 'rev_page', 'rev_text_id', 'rev_user', 'rev_comment', 'rev_user_text',
 				'rev_timestamp', 'rev_minor_edit', 'rev_deleted'),
 			array_merge(array("rev_page=$page_id"), $offsets),
 			$fname,

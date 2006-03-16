@@ -685,6 +685,11 @@ fully support the editing toolbar, but was found to be too confusing.
   unnecessary hidden UI work when watch/unwatch is performed on edit
 * Fixed bogus master fallback in external storage
 * (bug 5246) Add speak:none to "hiddenStructure" class in main.css
+* Further work on rev_deleted; changed to a bitfield with several data-hiding
+  options. Not yet ready for production use; Special:Revisiondelete is
+  incomplete, and the flags are not preserved across page deletion/undeletion.
+  To try it; add the 'deleterevision' permission to a privileged group.
+
 
 === Caveats ===
 

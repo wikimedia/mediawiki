@@ -128,7 +128,7 @@ class contribs_finder {
 		$use_index = $this->dbr->useIndexClause($index);
 		$sql = "SELECT
 			page_namespace,page_title,page_is_new,page_latest,
-			rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text,
+			rev_id,rev_page,rev_text_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user,rev_user_text,
 			rev_deleted
 			FROM $page,$revision $use_index
 			WHERE page_id=rev_page AND $userCond $nscond $offsetQuery
@@ -358,8 +358,10 @@ function ucListEdit( $sk, $row ) {
 		}
 	}
 
-	$page =& Title::makeTitle( $row->page_namespace, $row->page_title );
-	$link = $sk->makeKnownLinkObj( $page, '' );
+	$rev = new Revision( $row );
+	
+	$page = Title::makeTitle( $row->page_namespace, $row->page_title );
+	$link = $sk->makeKnownLinkObj( $page );
 	$difftext = $topmarktext = '';
 	if( $row->rev_id == $row->page_latest ) {
 		$topmarktext .= '<strong>' . $messages['uctop'] . '</strong>';
@@ -379,15 +381,19 @@ function ucListEdit( $sk, $row ) {
 		}
 
 	}
-	if( $row->rev_deleted && !$wgUser->isAllowed( 'delete' ) ) {
-		$difftext = '(' . $messages['diff'] . ')';
-	} else {
+	if( $rev->userCan( MW_REV_DELETED_TEXT ) ) {
 		$difftext = '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
+	} else {
+		$difftext = '(' . $messages['diff'] . ')';
 	}
 	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
-	$comment = $sk->commentBlock( $row->rev_comment, $page, (bool)$row->rev_deleted );
+	$comment = $sk->revComment( $rev );
 	$d = $wgLang->timeanddate( wfTimestamp(TS_MW, $row->rev_timestamp), true );
+	
+	if( $rev->isDeleted( MW_REV_DELETED_TEXT ) ) {
+		$d = '<span class="history-deleted">' . $d . '</span>';
+	}
 
 	if( $row->rev_minor_edit ) {
 		$mflag = '<span class="minor">' . $messages['minoreditletter'] . '</span> ';
@@ -396,8 +402,8 @@ function ucListEdit( $sk, $row ) {
 	}
 
 	$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}";
-	if( $row->rev_deleted ) {
-		$ret = "<span class='deleted'>$ret</span>";
+	if( $rev->isDeleted( MW_REV_DELETED_TEXT ) ) {
+		$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 	}
 	$ret = "<li>$ret</li>\n";
 	wfProfileOut( $fname );

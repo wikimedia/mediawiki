@@ -849,6 +849,10 @@ $wgGroupPermissions['sysop']['autoconfirmed']   = true;
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 
+// Experimental permissions, not ready for production use
+//$wgGroupPermissions['sysop']['deleterevision'] = true;
+//$wgGroupPermissions['bureaucrat']['hiderevision'] = true;
+
 /**
  * The developer group is deprecated, but can be activated if need be
  * to use the 'lockdb' and 'unlockdb' special pages. Those require
