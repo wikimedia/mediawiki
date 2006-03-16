@@ -109,7 +109,7 @@ class RevisionDeleteForm {
 	 * @param Revision $rev
 	 * @returns string
 	 */
-	private function historyLine( $rev ) {
+	function historyLine( $rev ) {
 		global $wgContLang;
 		$date = $wgContLang->timeanddate( $rev->getTimestamp() );
 		return
