@@ -66,7 +66,7 @@
 "category_header" => "பகுப்புகளிலுள்ள கட்டுரைகள் \"$1\"",
 "subcategories" => "துணை வகைகள்",
 
-'linktrail'		=> '/^([\xE0\xAE\x80-\xE0\xAE\xFF]+)(.*)$/sD',
+'linktrail'		=> '/^([\xE0\xAE\x80-\xE0\xAE\xFF]+)(.*)$/sDu',
 "mainpage"		=> "முதற் பக்கம்",
 "mainpagetext"	=> "விக்கி மென்பொருள் வெற்றிகரமாக உள்ளிடப்பட்டது.",
 "about"			=> "விபரம்",

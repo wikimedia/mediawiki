@@ -73,7 +73,7 @@
 'subcategorycount1' => '$1 isrummad zo d\'ar rummad-mañ.',
 
 'allarticles'   => 'An holl bennadoù',
-'linktrail'     => "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD",
+'linktrail'     => "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu",
 'mainpage'      => 'Degemer',
 'mainpagetext'	=> 'Meziant {{SITENAME}} staliet.',
 'portal'        => 'Porched ar gumuniezh',
