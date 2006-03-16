@@ -60,7 +60,7 @@
 'dec' => '12.',
 
 # Písmena, která se mají objevit jako část odkazu ve formě '[[jazyk]]y' atd:
-'linktrail'     => '/^((?:[a-z]|á|č|ď|é|ě|í|ň|ó|ř|š|ť|ú|ů|ý|ž)+)(.*)$/sD',
+'linktrail'     => '/^([a-záčďéěíňóřšťúůýž]+)(.*)$/sDu',
 'mainpage'              => 'Hlavní strana',
 'mainpagetext'  => 'Wiki software úspěšně nainstalován.',
 'mainpagedocfooter' => 'Podívejte se prosím do [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentace k nastavení rozhraní] a [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide uživatelské příručky] pro nápovědu k použití a nastavení.',

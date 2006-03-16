@@ -77,7 +77,7 @@
 'category'            => 'Luokka',
 'category_header'     => 'Sivut, jotka ovat luokassa $1',
 'subcategories'       => 'Alaluokat',
-'linktrail'           => '/^((?:[a-z]|ä|ö)+)(.*)$/sD',
+'linktrail'           => '/^([a-zäö]+)(.*)$/sDu',
 'mainpage'            => 'Etusivu',
 'mainpagetext'        => 'Mediawiki on onnistuneesti asennettu.',
 'mainpagedocfooter'   => 'Lisätietoja käytöstä ja asetusten teosta on sivuilla [http://www.mediawiki.org/wiki/Help:Configuration_settings configuration settings list] ja [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide].<br />Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LanguageFi.php:n <tt>convertGrammar</tt>-funktioon.<br />{{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).',

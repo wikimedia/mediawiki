@@ -56,8 +56,7 @@
 
 # Bits of text used by many pages:
 #
-#"linktrail"		=> "/^([àáèéìíòóùúâêîôûäëïöüa-z]+)(.*)\$/sD",
-"linktrail"		=> "/^((?:[a-z]|à|á|è|é|ì|í|ò|ó|ù|ú|â|ê|î|ô|û|ä|ë|ï|ö|ü)+)(.*)\$/sD",
+"linktrail"		=> "/^([a-zàáèéìíòóùúâêîôûäëïöü]+)(.*)\$/sDu",
 "mainpage"		=> "Haadside",
 "mainpagetext"	=> "Wiki-programma goed installearre.",
 "about"		=> "Ynfo",

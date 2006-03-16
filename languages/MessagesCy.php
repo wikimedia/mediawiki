@@ -62,7 +62,7 @@
 "category" => "categori",
 "category_header" => "Erthyglau mewn categori \"$1\"",
 "subcategories" => "Is-categorïau",
-"linktrail" => "/^((?:à|á|â|è|é|ê|ì|í|î|ï|ò|ó|ô|û|ŵ|ŷ|[a-z])+)(.*)\$/sD",
+"linktrail" => "/^([àáâèéêìíîïòóôûŵŷa-z]+)(.*)\$/sDu",
 "mainpage" => "Prif tudalen",
 "mainpagetext" => "Meddalwedd {{SITENAME}} wedi sefydlu'n llwyddiannus",
 "about"	=> "Amdano",

@@ -61,7 +61,7 @@
 "category" => "rubriek",
 "category_header" => "Artikelen in rubriek \"$1\"",
 "subcategories" => "Onderrubrieken",
-"linktrail" => "/^((?:[a-z]|ä|ö|ü|ï|ë|é|è|à)+)(.*)\$/sD",
+"linktrail" => "/^([a-zäöüïëéèà]+)(.*)\$/sDu",
 "mainpage"  => "Hoofdpagina",
 "mainpagetext" => "Installatie van de Wiki software geslaagd.",
 "about"   => "Info",
