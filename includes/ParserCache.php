@@ -78,8 +78,10 @@ class ParserCache {
 				}
 				$this->mMemc->delete( $key );
 				$value = false;
-
 			} else {
+				if ( isset( $value->mTimestamp ) ) {
+					$article->mTimestamp = $value->mTimestamp;
+				}
 				wfIncrStats( "pcache_hit" );
 			}
 		} else {
@@ -97,6 +99,10 @@ class ParserCache {
 		$key = $this->getKey( $article, $user );
 		$now = wfTimestampNow();
 		$parserOutput->setCacheTime( $now );
+
+		// Save the timestamp so that we don't have to load the revision row on view
+		$parserOutput->mTimestamp = $article->getTimestamp();
+		
 		$parserOutput->mText .= "\n<!-- Saved in parser cache with key $key and timestamp $now -->\n";
 		wfDebug( "Saved in parser cache with key $key and timestamp $now\n" );
 
