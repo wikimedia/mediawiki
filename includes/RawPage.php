@@ -163,7 +163,7 @@ class RawPage {
 				if ( $rev ) {
 					$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 					header( "Last-modified: $lastmod" );
-					$text = $rev->isDeleted() ? '' : $rev->getText();
+					$text = $rev->getText();
 				} else
 					$text = '';
 			}

@@ -24,8 +24,6 @@ class DifferenceEngine {
 	var $mOldid, $mNewid, $mTitle;
 	var $mOldtitle, $mNewtitle, $mPagetitle;
 	var $mOldtext, $mNewtext;
-	var $mOldUser, $mNewUser;
-	var $mOldComment, $mNewComment;
 	var $mOldPage, $mNewPage;
 	var $mRcidMarkPatrolled;
 	var $mOldRev, $mNewRev;
@@ -153,21 +151,11 @@ CONTROL;
 		$talk = $wgContLang->getNsText( NS_TALK );
 		$contribs = wfMsg( 'contribslink' );
 
-		$this->mOldComment = $sk->formatComment($this->mOldComment);
-		$this->mNewComment = $sk->formatComment($this->mNewComment);
-
-		$oldUserLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER, $this->mOldUser ), $this->mOldUser );
-		$newUserLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER, $this->mNewUser ), $this->mNewUser );
-		$oldUTLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER_TALK, $this->mOldUser ), $talk );
-		$newUTLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER_TALK, $this->mNewUser ), $talk );
-		$oldContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $contribs,
-			'target=' . urlencode($this->mOldUser) );
-		$newContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $contribs,
-			'target=' . urlencode($this->mNewUser) );
 		if ( $this->mNewRev->isCurrent() && $wgUser->isAllowed('rollback') ) {
+			$username = $this->mNewRev->getUserText();
 			$rollback = '&nbsp;&nbsp;&nbsp;<strong>[' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'rollbacklink' ),
-				'action=rollback&from=' . urlencode($this->mNewUser) .
-				'&token=' . urlencode( $wgUser->editToken( array( $this->mTitle->getPrefixedText(), $this->mNewUser ) ) ) ) .
+				'action=rollback&from=' . urlencode( $username ) .
+				'&token=' . urlencode( $wgUser->editToken( array( $this->mTitle->getPrefixedText(), $username ) ) ) ) .
 				']</strong>';
 		} else {
 			$rollback = '';
@@ -190,12 +178,14 @@ CONTROL;
 				'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
 		}
 
-		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />$oldUserLink " .
-			"($oldUTLink | $oldContribs)<br />" . $this->mOldComment .
-			'<br />' . $prevlink;
-		$newHeader = "<strong>{$this->mNewtitle}</strong><br />$newUserLink " .
-			"($newUTLink | $newContribs) $rollback<br />" . $this->mNewComment .
-			'<br />' . $nextlink . $patrol;
+		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />" .
+			$sk->revUserTools( $this->mOldRev ) . "<br />" .
+			$sk->revComment( $this->mOldRev ) . "<br />" .
+			$prevlink;
+		$newHeader = "<strong>{$this->mNewtitle}</strong><br />" .
+			$sk->revUserTools( $this->mNewRev ) . " $rollback<br />" .
+			$sk->revComment( $this->mNewRev ) . "<br />" .
+			$nextlink . $patrol;
 
 		$this->showDiff( $oldHeader, $newHeader );
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
@@ -255,19 +245,16 @@ CONTROL;
 		#
 		$sk = $wgUser->getSkin();
 
-		$uTLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER_TALK, $this->mOldUser ),  $wgLang->getNsText( NS_TALK ) );
-		$userLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER, $this->mOldUser ), $this->mOldUser );
-		$contribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), wfMsg( 'contribslink' ),
-			'target=' . urlencode($this->mOldUser) );
 		$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
-		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />$userLink " .
-			"($uTLink | $contribs)<br />" . $this->mOldComment .
-			'<br />' . $nextlink. "</div>\n";
+		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />" .
+			$sk->revUserTools( $this->mNewRev ) . "<br />" .
+			$sk->revComment( $this->mNewRev ) . "<br />" .
+			$nextlink . "</div>\n";
 
 		$wgOut->addHTML( $header );
 
 		$wgOut->setSubtitle( wfMsg( 'difference' ) );
-		$wgOut->setRobotpolicy( 'noindex,follow' );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 
 		# Show current revision
@@ -289,7 +276,7 @@ CONTROL;
 		global $wgOut;
 		$diff = $this->getDiff( $otitle, $ntitle );
 		if ( $diff === false ) {
-			$wgOut->addWikitext( wfMsg( 'missingarticle', "<nowiki>$t</nowiki>" ) );
+			$wgOut->addWikitext( wfMsg( 'missingarticle', "<nowiki>(fixme, bug)</nowiki>" ) );
 			return false;
 		} else {
 			$wgOut->addHTML( $diff );
@@ -510,9 +497,6 @@ CONTROL;
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 		}
 
-		$this->mNewUser = $this->mNewRev->getUserText();
-		$this->mNewComment = $this->mNewRev->getComment();
-
 		// Load the old revision object
 		$this->mOldRev = false;
 		if( $this->mOldid ) {
@@ -539,10 +523,6 @@ CONTROL;
 			$t = $wgLang->timeanddate( $this->mOldRev->getTimestamp(), true );
 			$oldLink = $this->mOldPage->escapeLocalUrl( 'oldid=' . $this->mOldid );
 			$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) ) . '</a>';
-
-
-			$this->mOldUser = $this->mOldRev->getUserText();
-			$this->mOldComment = $this->mOldRev->getComment();
 		}
 
 		return true;
@@ -563,6 +543,7 @@ CONTROL;
 			return false;
 		}
 		if ( $this->mOldRev ) {
+			// FIXME: permission tests
 			$this->mOldtext = $this->mOldRev->getText();
 			if ( $this->mOldtext === false ) {
 				return false;

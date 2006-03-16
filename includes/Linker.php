@@ -737,6 +737,115 @@ class Linker {
 	}
 
 	/**
+	 * Make user link (or user contributions for unregistered users)
+	 * @param int $userId
+	 * @param string $userText
+	 * @return string HTML fragment
+	 * @access private
+	 */
+	function userLink( $userId, $userText ) {
+		$encName = htmlspecialchars( $userText );
+		if( $userId == 0 ) {
+			$contribsPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
+			return $this->makeKnownLinkObj( $contribsPage,
+				$encName, 'target=' . urlencode( $userText ) );
+		} else {
+			$userPage = Title::makeTitle( NS_USER, $userText );
+			return $this->makeLinkObj( $userPage, $encName );
+		}
+	}
+
+	/**
+	 * @param int $userId
+	 * @param string $userText
+	 * @return string HTML fragment with talk and/or block links
+	 * @access private
+	 */
+	function userToolLinks( $userId, $userText ) {
+		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans;
+		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
+		$blockable = ( $wgSysopUserBans || 0 == $userId );
+
+		$items = array();
+		if( $talkable ) {
+			$items[] = $this->userTalkLink( $userId, $userText );
+		}
+		if( $blockable && $wgUser->isAllowed( 'block' ) ) {
+			$items[] = $this->blockLink( $userId, $userText );
+		}
+
+		if( $items ) {
+			return ' (' . implode( ' | ', $items ) . ')';
+		} else {
+			return '';
+		}
+	}
+
+	/**
+	 * @param int $userId
+	 * @param string $userText
+	 * @return string HTML fragment with user talk link
+	 * @access private
+	 */
+	function userTalkLink( $userId, $userText ) {
+		global $wgContLang;
+		$talkname = $wgContLang->getNsText( NS_TALK ); # use the shorter name
+
+		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
+		$userTalkLink = $this->makeLinkObj( $userTalkPage, $talkname );
+		return $userTalkLink;
+	}
+
+	/**
+	 * @param int $userId
+	 * @param string $userText
+	 * @return string HTML fragment with block link
+	 * @access private
+	 */
+	function blockLink( $userId, $userText ) {
+		$blockPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
+		$blockLink = $this->makeKnownLinkObj( $blockPage,
+			wfMsgHtml( 'blocklink' ), 'ip=' . urlencode( $userText ) );
+		return $blockLink;
+	}
+	
+	/**
+	 * Generate a user link if the current user is allowed to view it
+	 * @param Revision $rev
+	 * @return string HTML
+	 */
+	function revUserLink( $rev ) {
+		if( $rev->userCan( MW_REV_DELETED_USER ) ) {
+			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() );
+		} else {
+			$link = wfMsgHtml( 'rev-deleted-user' );
+		}
+		if( $rev->isDeleted( MW_REV_DELETED_USER ) ) {
+			return '<span class="history-deleted">' . $link . '</span>';
+		}
+		return $link;
+	}
+
+	/**
+	 * Generate a user tool link cluster if the current user is allowed to view it
+	 * @param Revision $rev
+	 * @return string HTML
+	 */
+	function revUserTools( $rev ) {
+		if( $rev->userCan( MW_REV_DELETED_USER ) ) {
+			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() ) .
+				' ' .
+				$this->userToolLinks( $rev->getRawUser(), $rev->getRawUserText() );
+		} else {
+			$link = wfMsgHtml( 'rev-deleted-user' );
+		}
+		if( $rev->isDeleted( MW_REV_DELETED_USER ) ) {
+			return '<span class="history-deleted">' . $link . '</span>';
+		}
+		return $link;
+	}
+	
+	/**
 	 * This function is called by all recent changes variants, by the page history,
 	 * and by the user contributions list. It is responsible for formatting edit
 	 * comments. It escapes any HTML in the comment, but adds some CSS to format
@@ -823,24 +932,38 @@ class Linker {
 	 *
 	 * @param string $comment
 	 * @param Title $title
-	 * @param bool $deleted
 	 *
 	 * @return string
 	 */
-	function commentBlock( $comment, $title = NULL, $deleted = false ) {
+	function commentBlock( $comment, $title = NULL ) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
 		// compatability, acc. to brion -ævar
 		if( $comment == '' || $comment == '*' ) {
 			return '';
 		} else {
-			if ( $deleted )
-				return " <span class='comment'>(...)</span>";
-			else {
-				$formatted = $this->formatComment( $comment, $title );
-				return " <span class='comment'>($formatted)</span>";
-			}
+			$formatted = $this->formatComment( $comment, $title );
+			return " <span class='comment'>($formatted)</span>";
 		}
+	}
+	
+	/**
+	 * Wrap and format the given revision's comment block, if the current
+	 * user is allowed to view it.
+	 * @param Revision $rev
+	 * @return string HTML
+	 */
+	function revComment( $rev ) {
+		if( $rev->userCan( MW_REV_DELETED_COMMENT ) ) {
+			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle() );
+		} else {
+			$block = " <span class='comment'>" .
+				wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
+		}
+		if( $rev->isDeleted( MW_REV_DELETED_COMMENT ) ) {
+			return " <span class='history-deleted'>$block</span>";
+		}
+		return $block;
 	}
 
 	/** @todo document */

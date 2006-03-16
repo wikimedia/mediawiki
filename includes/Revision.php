@@ -8,6 +8,13 @@
 require_once( 'Database.php' );
 require_once( 'Article.php' );
 
+/** @+ */
+define( 'MW_REV_DELETED_TEXT',       1 );
+define( 'MW_REV_DELETED_COMMENT',    2 );
+define( 'MW_REV_DELETED_USER',       4 );
+define( 'MW_REV_DELETED_RESTRICTED', 8 );
+/** @- */
+
 /**
  * @package MediaWiki
  * @todo document
@@ -246,9 +253,14 @@ class Revision {
 			$this->mTimestamp =         $row->rev_timestamp;
 			$this->mDeleted   = intval( $row->rev_deleted );
 
-			$this->mCurrent   = ( $row->rev_id == $row->page_latest );
-			$this->mTitle     = Title::makeTitle( $row->page_namespace,
-			                                      $row->page_title );
+			if( isset( $row->page_latest ) ) {
+				$this->mCurrent   = ( $row->rev_id == $row->page_latest );
+				$this->mTitle     = Title::makeTitle( $row->page_namespace,
+				                                      $row->page_title );
+			} else {
+				$this->mCurrent = false;
+				$this->mTitle = null;
+			}
 
 			if( isset( $row->old_text ) ) {
 				$this->mText  = $this->getRevisionText( $row );
@@ -327,23 +339,62 @@ class Revision {
 	}
 
 	/**
+	 * Fetch revision's user id if it's available to all users
 	 * @return int
 	 */
 	function getUser() {
+		if( $this->isDeleted( MW_REV_DELETED_USER ) ) {
+			return 0;
+		} else {
+			return $this->mUser;
+		}
+	}
+
+	/**
+	 * Fetch revision's user id without regard for the current user's permissions
+	 * @return string
+	 */
+	function getRawUser() {
 		return $this->mUser;
 	}
 
 	/**
+	 * Fetch revision's username if it's available to all users
 	 * @return string
 	 */
 	function getUserText() {
-		return $this->mUserText;
+		if( $this->isDeleted( MW_REV_DELETED_USER ) ) {
+			return "";
+		} else {
+			return $this->mUserText;
+		}
 	}
 
 	/**
+	 * Fetch revision's username without regard for view restrictions
+	 * @return string
+	 */
+	function getRawUserText() {
+		return $this->mUserText;
+	}
+	
+	/**
+	 * Fetch revision comment if it's available to all users
 	 * @return string
 	 */
 	function getComment() {
+		if( $this->isDeleted( MW_REV_DELETED_COMMENT ) ) {
+			return "";
+		} else {
+			return $this->mComment;
+		}
+	}
+
+	/**
+	 * Fetch revision comment without regard for the current user's permissions
+	 * @return string
+	 */
+	function getRawComment() {
 		return $this->mComment;
 	}
 
@@ -355,16 +406,30 @@ class Revision {
 	}
 
 	/**
+	 * int $field one of MW_REV_DELETED_* bitfield constants
 	 * @return bool
 	 */
-	function isDeleted() {
-		return (bool)$this->mDeleted;
+	function isDeleted( $field ) {
+		return ($this->mDeleted & $field) == $field;
 	}
 
 	/**
+	 * Fetch revision text if it's available to all users
 	 * @return string
 	 */
 	function getText() {
+		if( $this->isDeleted( MW_REV_DELETED_TEXT ) ) {
+			return "";
+		} else {
+			return $this->getRawText();
+		}
+	}
+	
+	/**
+	 * Fetch revision text without regard for view restrictions
+	 * @return string
+	 */
+	function getRawText() {
 		if( is_null( $this->mText ) ) {
 			// Revision text is immutable. Load on demand:
 			$this->mText = $this->loadText();
@@ -650,6 +715,28 @@ class Revision {
 		wfProfileOut( $fname );
 		return $revision;
 	}
+	
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this revision, if it's marked as deleted.
+	 * @param int $field one of MW_REV_DELETED_TEXT,
+	 *                          MW_REV_DELETED_COMMENT,
+	 *                          MW_REV_DELETED_USER
+	 * @return bool
+	 */
+	function userCan( $field ) {
+		if( ( $this->mDeleted & $field ) == $field ) {
+			global $wgUser;
+			$permission = ( $this->mDeleted & MW_REV_DELETED_RESTRICTED ) == MW_REV_DELETED_RESTRICTED
+				? 'hiderevision'
+				: 'deleterevision';
+			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
+			return $wgUser->isAllowed( $permission );
+		} else {
+			return true;
+		}
+	}
 
 }
+
 ?>

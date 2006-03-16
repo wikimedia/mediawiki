@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2003, 2005 Brion Vibber <brion@pobox.com>
+# Copyright (C) 2003, 2005, 2006 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 #
 # This program is free software; you can redistribute it and/or modify
@@ -232,7 +232,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function schemaVersion() {
-		return "0.3";
+		return "0.3"; // FIXME: upgrade to 0.4 when updated XSD is ready, for the revision deletion bits
 	}
 
 	/**
@@ -360,23 +360,31 @@ class XmlDumpWriter {
 		$ts = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
 		$out .= "      " . wfElement( 'timestamp', null, $ts ) . "\n";
 
-		$out .= "      <contributor>\n";
-		if( $row->rev_user ) {
-			$out .= "        " . wfElementClean( 'username', null, strval( $row->rev_user_text ) ) . "\n";
-			$out .= "        " . wfElement( 'id', null, strval( $row->rev_user ) ) . "\n";
+		if( $row->rev_deleted & MW_REV_DELETED_USER ) {
+			$out .= "      " . wfElement( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
-			$out .= "        " . wfElementClean( 'ip', null, strval( $row->rev_user_text ) ) . "\n";
+			$out .= "      <contributor>\n";
+			if( $row->rev_user ) {
+				$out .= "        " . wfElementClean( 'username', null, strval( $row->rev_user_text ) ) . "\n";
+				$out .= "        " . wfElement( 'id', null, strval( $row->rev_user ) ) . "\n";
+			} else {
+				$out .= "        " . wfElementClean( 'ip', null, strval( $row->rev_user_text ) ) . "\n";
+			}
+			$out .= "      </contributor>\n";
 		}
-		$out .= "      </contributor>\n";
 
 		if( $row->rev_minor_edit ) {
 			$out .=  "      <minor/>\n";
 		}
-		if( $row->rev_comment != '' ) {
+		if( $row->rev_deleted & MW_REV_DELETED_COMMENT ) {
+			$out .= "      " . wfElement( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
+		} elseif( $row->rev_comment != '' ) {
 			$out .= "      " . wfElementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
 		}
 
-		if( isset( $row->old_text ) ) {
+		if( $row->rev_deleted & MW_REV_DELETED_TEXT ) {
+			$out .= "      " . wfElement( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
+		} elseif( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
 			$text = strval( Revision::getRevisionText( $row ) );
 			$out .= "      " . wfElementClean( 'text',

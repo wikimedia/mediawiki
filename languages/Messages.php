@@ -565,6 +565,38 @@ Legend: (cur) = difference with current version,
 'deletedrev' => '[deleted]',
 'histfirst' => 'Earliest',
 'histlast' => 'Latest',
+'rev-deleted-comment' => '(comment removed)',
+'rev-deleted-user' => '(username removed)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+This page revision has been removed from the public archives.
+There may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} deletion log].
+</div>',
+'rev-deleted-text-view' => '<div class="mw-warning plainlinks">
+This page revision has been removed from the public archives.
+As an administrator on this site you can view it;
+there may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} deletion log].
+</div>',
+#'rev-delundel' => 'del/undel',
+'rev-delundel' => 'show/hide',
+
+# Revision deletion
+#
+'revisiondelete' => 'Delete/undelete revisions',
+'revdelete-selected' => 'Selected revision of [[:$1]]:',
+'revdelete-text' => "Deleted revisions will still appear in the page history,
+but their text contents will be inaccessible to the public.
+
+Other admins on this wiki will still be able to access the hidden content and can
+undelete it again through this same interface, unless an additional restriction
+is placed by the site operators.",
+'revdelete-legend' => 'Set revision restrictions:',
+'revdelete-hide-text' => 'Hide revision text',
+'revdelete-hide-comment' => 'Hide edit comment',
+'revdelete-hide-user' => 'Hide editor\'s username/IP',
+'revdelete-hide-restricted' => 'Apply these restrictions to sysops as well as others',
+'revdelete-log' => 'Log comment:',
+'revdelete-submit' => 'Apply to selected revision',
+'revdelete-logentry' => 'changed revision visibility for [[$1]]',
 
 # Diffs
 #

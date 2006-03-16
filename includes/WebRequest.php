@@ -162,6 +162,24 @@ class WebRequest {
 			return (array)$val;
 		}
 	}
+	
+	/**
+	 * Fetch an array of integers, or return $default if it's not set.
+	 * If source was scalar, will return an array with a single element.
+	 * If no source and no default, returns NULL.
+	 * If an array is returned, contents are guaranteed to be integers.
+	 *
+	 * @param string $name
+	 * @param array $default option default (or NULL)
+	 * @return array of ints
+	 */
+	function getIntArray( $name, $default = NULL ) {
+		$val = $this->getArray( $name, $default );
+		if( is_array( $val ) ) {
+			$val = array_map( 'intval', $val );
+		}
+		return $val;
+	}
 
 	/**
 	 * Fetch an integer value from the input or return $default if not set.

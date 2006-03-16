@@ -166,6 +166,7 @@ class LogPage {
 
 			'delete/delete'     => 'deletedarticle',
 			'delete/restore'    => 'undeletedarticle',
+			'delete/revision'   => 'revdelete-logentry',
 			'upload/upload'     => 'uploadedimage',
 			'upload/revert'     => 'uploadedimage',
 			'move/move'         => '1movedto2',

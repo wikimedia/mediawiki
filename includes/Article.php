@@ -495,7 +495,10 @@ class Article {
 			}
 		}
 
-		$this->mContent   = $revision->getText();
+		// FIXME: Horrible, horrible! This content-loading interface just plain sucks.
+		// We should instead work with the Revision object when we need it...
+		$this->mContent = $revision->userCan( MW_REV_DELETED_TEXT ) ? $revision->getRawText() : "";
+		//$this->mContent   = $revision->getText();
 
 		$this->mUser      = $revision->getUser();
 		$this->mUserText  = $revision->getUserText();
@@ -767,7 +770,7 @@ class Article {
 			wfProfileOut( $fname );
 			return;
 		}
-
+		
 		if ( empty( $oldid ) && $this->checkTouched() ) {
 			$wgOut->setETag($parserCache->getETag($this, $wgUser));
 
@@ -846,7 +849,18 @@ class Article {
 
 			if ( !empty( $oldid ) ) {
 				$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
-				$wgOut->setRobotpolicy( 'noindex,follow' );
+				$wgOut->setRobotpolicy( 'noindex,nofollow' );
+				if( $this->mRevision->isDeleted( MW_REV_DELETED_TEXT ) ) {
+					if( !$this->mRevision->userCan( MW_REV_DELETED_TEXT ) ) {
+						$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
+						$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+						return;
+					} else {
+						$wgOut->addWikiText( wfMsg( 'rev-deleted-text-view' ) );
+						// and we are allowed to see...
+					}
+				}
+
 			}
 		}
 		if( !$outputDone ) {

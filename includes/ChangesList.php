@@ -181,8 +181,8 @@ class ChangesList {
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
 	function insertUserRelatedLinks(&$s, &$rc) {
-		$s .= $this->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
-		$s .= $this->userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+		$s .= $this->skin->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+		$s .= $this->skin->userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 	}
 
 	/** insert a formatted comment */
@@ -203,78 +203,6 @@ class ChangesList {
 		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed( 'patrol' ) );
 	}
 
-	/**
-	 * Make user link (or user contributions for unregistered users)
-	 * @param int $userId
-	 * @param string $userText
-	 * @return string HTML fragment
-	 * @access private
-	 */
-	function userLink( $userId, $userText ) {
-		$encName = htmlspecialchars( $userText );
-		if( $userId == 0 ) {
-			$contribsPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
-			return $this->skin->makeKnownLinkObj( $contribsPage,
-				$encName, 'target=' . urlencode( $userText ) );
-		} else {
-			$userPage = Title::makeTitle( NS_USER, $userText );
-			return $this->skin->makeLinkObj( $userPage, $encName );
-		}
-	}
-
-	/**
-	 * @param int $userId
-	 * @param string $userText
-	 * @return string HTML fragment with talk and/or block links
-	 * @access private
-	 */
-	function userToolLinks( $userId, $userText ) {
-		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans;
-		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
-		$blockable = ( $wgSysopUserBans || 0 == $userId );
-
-		$items = array();
-		if( $talkable ) {
-			$items[] = $this->userTalkLink( $userId, $userText );
-		}
-		if( $blockable && $wgUser->isAllowed( 'block' ) ) {
-			$items[] = $this->blockLink( $userId, $userText );
-		}
-
-		if( $items ) {
-			return ' (' . implode( ' | ', $items ) . ')';
-		} else {
-			return '';
-		}
-	}
-
-	/**
-	 * @param int $userId
-	 * @param string $userText
-	 * @return string HTML fragment with user talk link
-	 * @access private
-	 */
-	function userTalkLink( $userId, $userText ) {
-		global $wgContLang;
-		$talkname = $wgContLang->getNsText( NS_TALK ); # use the shorter name
-
-		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
-		$userTalkLink = $this->skin->makeLinkObj( $userTalkPage, $talkname );
-		return $userTalkLink;
-	}
-
-	/**
-	 * @param int $userId
-	 * @param string $userText
-	 * @return string HTML fragment with block link
-	 * @access private
-	 */
-	function blockLink( $userId, $userText ) {
-		$blockPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
-		$blockLink = $this->skin->makeKnownLinkObj( $blockPage,
-			$this->message['blocklink'], 'ip=' . urlencode( $userText ) );
-		return $blockLink;
-	}
 
 }
 
@@ -429,13 +357,13 @@ class EnhancedChangesList extends ChangesList {
 			  $curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid . $rcIdQuery );
 		}
 
-		$rc->userlink = $this->userLink( $rc_user, $rc_user_text );
+		$rc->userlink = $this->skin->userLink( $rc_user, $rc_user_text );
 
 		$rc->lastlink = $lastLink;
 		$rc->curlink  = $curLink;
 		$rc->difflink = $diffLink;
 
-		$rc->usertalklink = $this->userToolLinks( $rc_user, $rc_user_text );
+		$rc->usertalklink = $this->skin->userToolLinks( $rc_user, $rc_user_text );
 
 		# Put accumulated information into the cache, for later display
 		# Page moves go on their own line
