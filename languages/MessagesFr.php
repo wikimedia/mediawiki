@@ -73,7 +73,7 @@
 'subcategorycount1' => 'Cette catégorie possède $1 sous-catégorie.',
 
 'allarticles'   => 'Tous les articles',
-'linktrail'     => '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD',
+'linktrail'     => '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu',
 'mainpage'      => 'Accueil',
 'mainpagetext'	=> 'Logiciel {{SITENAME}} installé.',
 'portal'        => 'Communauté',

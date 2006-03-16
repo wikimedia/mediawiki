@@ -79,7 +79,7 @@
 "category"              => "Kategorija",
 "category_header"       => "Članci u kategoriji \"$1\"",
 "subcategories"         => "Potkategorije",
-"linktrail"             => "/^([č|š|ž|ć|đ|ß|a-z]+)(.*)\$/sD",
+"linktrail"             => "/^([čšžćđßa-z]+)(.*)\$/sDu",
 "mainpage"              => "Glavna stranica",
 "mainpagetext"          => "Softver Wiki je uspješno instaliran.",
 "mainpagedocfooter" => "Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentaciju o prilagodbi sučelja]

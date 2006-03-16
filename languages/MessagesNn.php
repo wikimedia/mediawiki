@@ -79,7 +79,7 @@
 'category_header'         => 'Artiklar i kategorien «$1»',
 'subcategories'           => 'Underkategoriar',
 
-'linktrail'		  => '/^([æøåa-z]+)(.*)$/sD',
+'linktrail'		  => '/^([æøåa-z]+)(.*)$/sDu',
 'mainpage'		  => 'Hovudside',
 'mainpagetext'	          => 'MediaWiki er no installert.',
 'mainpagedocfooter'       => 'Sjå [http://meta.wikipedia.org/wiki/MediaWiki_localization dokumentasjon for å tilpasse brukargrensesnittet] og [http://meta.wikipedia.org/wiki/Help:Contents brukarmanualen] for bruk og konfigurasjonshjelp.',

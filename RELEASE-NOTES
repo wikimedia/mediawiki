@@ -689,6 +689,7 @@ fully support the editing toolbar, but was found to be too confusing.
   options. Not yet ready for production use; Special:Revisiondelete is
   incomplete, and the flags are not preserved across page deletion/undeletion.
   To try it; add the 'deleterevision' permission to a privileged group.
+* (bug 5270) Fix broken linktrail for br, cv, fr, hr, nn, oc, ta, wa
 
 
 === Caveats ===

@@ -67,7 +67,7 @@
 "subcategories"	=> "Sous-catégories", // Looxix "Subcategories",
 
 
-"linktrail"     => "/^([a-zàâçéèêîôû]+)(.*)\$/sD",
+"linktrail"     => "/^([a-zàâçéèêîôû]+)(.*)\$/sDu",
 "mainpage"      => "Accueil",
 "mainpagetext"  => "Logiciel {{SITENAME}} installé.",
 "about"         => "À propos",
