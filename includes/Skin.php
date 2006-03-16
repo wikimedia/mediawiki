@@ -127,6 +127,7 @@ class Skin extends Linker {
 			# scripts and can cause a user account to be unrecoverable
 			# except by SQL manipulation if a previously valid skin name
 			# is no longer valid.
+			wfDebug( "Skin class does not exist: $className\n" );
 			$className = 'SkinStandard';
 			require_once( $IP.'/skins/Standard.php' );
 		}
@@ -166,10 +167,31 @@ class Skin extends Linker {
 		$this->addMetadataLinks($out);
 
 		$this->mRevisionId = $out->mRevisionId;
+		
+		$this->preloadExistence();
 
 		wfProfileOut( $fname );
 	}
 
+	/**
+	 * Preload the existence of three commonly-requested pages in a single query
+	 */
+	function preloadExistence() {
+		global $wgUser, $wgTitle;
+
+		if ( $wgTitle->isTalkPage() ) {
+			$otherTab = $wgTitle->getSubjectPage();
+		} else {
+			$otherTab = $wgTitle->getTalkPage();
+		}
+		$lb = new LinkBatch( array( 
+			$wgUser->getUserPage(),
+			$wgUser->getTalkPage(),
+			$otherTab
+		));
+		$lb->execute();
+	}
+	
 	function addMetadataLinks( &$out ) {
 		global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
 		global $wgRightsPage, $wgRightsUrl;
@@ -892,14 +914,21 @@ END;
 		return $s . ' ' .  $this->getCopyright();
 	}
 
-	function getCopyright() {
+	function getCopyright( $type = 'detect' ) {
 		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRequest;
 
+		if ( $type == 'detect' ) {
+			$oldid = $wgRequest->getVal( 'oldid' );
+			$diff = $wgRequest->getVal( 'diff' );
 
-		$oldid = $wgRequest->getVal( 'oldid' );
-		$diff = $wgRequest->getVal( 'diff' );
+			if ( !is_null( $oldid ) && is_null( $diff ) && wfMsgForContent( 'history_copyright' ) !== '-' ) {
+				$type = 'history';
+			} else {
+				$type = 'normal';
+			}
+		}
 
-		if ( !is_null( $oldid ) && is_null( $diff ) && wfMsgForContent( 'history_copyright' ) !== '-' ) {
+		if ( $type == 'history' ) {
 			$msg = 'history_copyright';
 		} else {
 			$msg = 'copyright';
