@@ -37,6 +37,7 @@ class Article {
 	var $mRevIdFetched;
 	var $mRevision;
 	var $mRedirectUrl;
+	var $mLatest;
 	/**#@-*/
 
 	/**
@@ -125,6 +126,7 @@ class Article {
 		$this->mIsRedirect = false;
 		$this->mRevIdFetched = 0;
 		$this->mRedirectUrl = false;
+		$this->mLatest = false;
 	}
 
 	/**
@@ -416,15 +418,28 @@ class Article {
 	 * @param object $data
 	 * @access private
 	 */
-	function loadPageData( $data ) {
-		$this->mTitle->mArticleID = $data->page_id;
-		$this->mTitle->loadRestrictions( $data->page_restrictions );
-		$this->mTitle->mRestrictionsLoaded = true;
+	function loadPageData( $data = 'fromdb' ) {
+		if ( $data === 'fromdb' ) {
+			$dbr =& $this->getDB();
+			$data = $this->pageDataFromId( $dbr, $this->getId() );
+		}
+			
+		$lc =& LinkCache::singleton();
+		if ( $data ) {
+			$lc->addGoodLinkObj( $data->page_id, $this->mTitle );
 
-		$this->mCounter     = $data->page_counter;
-		$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
-		$this->mIsRedirect  = $data->page_is_redirect;
-		$this->mLatest      = $data->page_latest;
+			$this->mTitle->mArticleID = $data->page_id;
+			$this->mTitle->loadRestrictions( $data->page_restrictions );
+			$this->mTitle->mRestrictionsLoaded = true;
+
+			$this->mCounter     = $data->page_counter;
+			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
+			$this->mIsRedirect  = $data->page_is_redirect;
+			$this->mLatest      = $data->page_latest;
+		} else {
+			$lc->addBadLinkObj( $this->mTitle );
+			$this->mTitle->mArticleID = 0;
+		}
 
 		$this->mDataLoaded  = true;
 	}
@@ -557,9 +572,13 @@ class Article {
 	function getCount() {
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
-			$dbr =& wfGetDB( DB_SLAVE );
-			$this->mCounter = $dbr->selectField( 'page', 'page_counter', array( 'page_id' => $id ),
-				'Article::getCount', $this->getSelectOptions() );
+			if ( $id == 0 ) {
+				$this->mCounter = 0;
+			} else {
+				$dbr =& wfGetDB( DB_SLAVE );
+				$this->mCounter = $dbr->selectField( 'page', 'page_counter', array( 'page_id' => $id ),
+					'Article::getCount', $this->getSelectOptions() );
+			}
 		}
 		return $this->mCounter;
 	}
@@ -633,7 +652,10 @@ class Article {
 	}
 
 	function getTimestamp() {
-		$this->loadLastEdit();
+		// Check if the field has been filled by ParserCache::get()
+		if ( !$this->mTimestamp ) {
+			$this->loadLastEdit();
+		}
 		return wfTimestamp(TS_MW, $this->mTimestamp);
 	}
 
@@ -2363,11 +2385,7 @@ class Article {
 	function checkTouched() {
 		$fname = 'Article::checkTouched';
 		if( !$this->mDataLoaded ) {
-			$dbr =& $this->getDB();
-			$data = $this->pageDataFromId( $dbr, $this->getId() );
-			if( $data ) {
-				$this->loadPageData( $data );
-			}
+			$this->loadPageData();
 		}
 		return !$this->mIsRedirect;
 	}
@@ -2378,13 +2396,19 @@ class Article {
 	function getTouched() {
 		# Ensure that page data has been loaded
 		if( !$this->mDataLoaded ) {
-			$dbr =& $this->getDB();
-			$data = $this->pageDataFromId( $dbr, $this->getId() );
-			if( $data ) {
-				$this->loadPageData( $data );
-			}
+			$this->loadPageData();
 		}
 		return $this->mTouched;
+	}
+
+	/**
+	 * Get the page_latest field
+	 */
+	function getLatest() {
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+		return $this->mLatest;
 	}
 
 	/**
