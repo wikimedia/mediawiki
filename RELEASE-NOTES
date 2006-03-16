@@ -690,6 +690,8 @@ fully support the editing toolbar, but was found to be too confusing.
   incomplete, and the flags are not preserved across page deletion/undeletion.
   To try it; add the 'deleterevision' permission to a privileged group.
 * (bug 5270) Fix broken linktrail for br, cv, fr, hr, nn, oc, ta, wa
+* Add a clickable contribs link in user tool links (rc, watchlist, diff view)
+  to see how people like it. (There was one in the old hacked-up diff view.)
 
 
 === Caveats ===

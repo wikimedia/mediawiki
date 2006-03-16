@@ -770,6 +770,11 @@ class Linker {
 		if( $talkable ) {
 			$items[] = $this->userTalkLink( $userId, $userText );
 		}
+		if( $userId ) {
+			$contribsPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
+			$items[] = $this->makeKnownLinkObj( $contribsPage,
+				wfMsgHtml( 'contribslink' ), 'target=' . urlencode( $userText ) );
+		}
 		if( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = $this->blockLink( $userId, $userText );
 		}
