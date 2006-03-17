@@ -706,6 +706,35 @@ Bug 2702: Mismatched <i> and <a> tags are invalid
 </p>
 !! end
 
+
+!! test
+Bug 4781: %26 in URL
+!! input
+http://www.example.com/?title=AT%26T
+!! result
+<p><a href="http://www.example.com/?title=AT%26T" class='external free' title="http://www.example.com/?title=AT%26T" rel="nofollow">http://www.example.com/?title=AT%26T</a>
+</p>
+!! end
+
+!! test
+Bug 4781, 5267: %26 in URL
+!! input
+http://www.example.com/?title=100%25_Bran
+!! result
+<p><a href="http://www.example.com/?title=100%25_Bran" class='external free' title="http://www.example.com/?title=100%25_Bran" rel="nofollow">http://www.example.com/?title=100%25_Bran</a>
+</p>
+!! end
+
+!! test
+Bug 4781, 5267: %28, %29 in URL
+!! input
+http://www.example.com/?title=Ben-Hur_%281959_film%29
+!! result
+<p><a href="http://www.example.com/?title=Ben-Hur_%281959_film%29" class='external free' title="http://www.example.com/?title=Ben-Hur_%281959_film%29" rel="nofollow">http://www.example.com/?title=Ben-Hur_%281959_film%29</a>
+</p>
+!! end
+
+
 ###
 ### Quotes
 ###
