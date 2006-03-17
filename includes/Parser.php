@@ -1132,9 +1132,6 @@ class Parser
 			# Replace &amp; from obsolete syntax with &.
 			# All HTML entities will be escaped by makeExternalLink()
 			$url = str_replace( '&amp;', '&', $url );
-			# Replace unnecessary URL escape codes with the referenced character
-			# This prevents spammers from hiding links from the filters
-			$url = Parser::replaceUnusualEscapes( $url );
 
 			# Process the trail (i.e. everything after this link up until start of the next link),
 			# replacing any non-bracketed links
@@ -1146,8 +1143,11 @@ class Parser
 			# This was changed in August 2004
 			$s .= $sk->makeExternalLink( $url, $text, false, $linktype ) . $dtrail . $trail;
 
-			# Register link in the output object
-			$this->mOutput->addExternalLink( $url );
+			# Register link in the output object.
+			# Replace unnecessary URL escape codes with the referenced character
+			# This prevents spammers from hiding links from the filters
+			$pasteurized = Parser::replaceUnusualEscapes( $url );
+			$this->mOutput->addExternalLink( $pasteurized );
 		}
 
 		wfProfileOut( $fname );
@@ -1203,16 +1203,16 @@ class Parser
 				# All HTML entities will be escaped by makeExternalLink()
 				# or maybeMakeExternalImage()
 				$url = str_replace( '&amp;', '&', $url );
-				# Replace unnecessary URL escape codes with their equivalent characters
-				$url = Parser::replaceUnusualEscapes( $url );
 
 				# Is this an external image?
 				$text = $this->maybeMakeExternalImage( $url );
 				if ( $text === false ) {
 					# Not an image, make a link
 					$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free' );
-					# Register it in the output object
-					$this->mOutput->addExternalLink( $url );
+					# Register it in the output object...
+					# Replace unnecessary URL escape codes with their equivalent characters
+					$pasteurized = Parser::replaceUnusualEscapes( $url );
+					$this->mOutput->addExternalLink( $pasteurized );
 				}
 				$s .= $text . $trail;
 			} else {
@@ -1228,6 +1228,10 @@ class Parser
 	 * @param string
 	 * @return string
 	 * @static
+	 * @fixme This can merge genuinely required bits in the path or query string,
+	 *        breaking legit URLs. A proper fix would treat the various parts of
+	 *        the URL differently; as a workaround, just use the output for
+	 *        statistical records, not for actual linking/output.
 	 */
 	function replaceUnusualEscapes( $url ) {
 		return preg_replace_callback( '/%[0-9A-Fa-f]{2}/',
