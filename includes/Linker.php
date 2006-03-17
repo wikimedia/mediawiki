@@ -30,6 +30,17 @@ class Linker {
 	function getExternalLinkAttributes( $link, $text, $class='' ) {
 		global $wgContLang;
 
+		$link = htmlspecialchars( $link );
+
+		$r = ($class != '') ? " class='$class'" : " class='external'";
+
+		$r .= " title=\"{$link}\"";
+		return $r;
+	}
+
+	function getInterwikiLinkAttributes( $link, $text, $class='' ) {
+		global $wgContLang;
+
 		$same = ($link == $text);
 		$link = urldecode( $link );
 		$link = $wgContLang->checkTitleEncoding( $link );
@@ -194,7 +205,7 @@ class Linker {
 			$u = $nt->getFullURL();
 			$link = $nt->getPrefixedURL();
 			if ( '' == $text ) { $text = $nt->getPrefixedText(); }
-			$style = $this->getExternalLinkAttributes( $link, $text, 'extiw' );
+			$style = $this->getInterwikiLinkAttributes( $link, $text, 'extiw' );
 
 			$inside = '';
 			if ( '' != $trail ) {

@@ -735,6 +735,62 @@ http://www.example.com/?title=Ben-Hur_%281959_film%29
 !! end
 
 
+!! test
+Bug 4781: %26 in autonumber URL
+!! input
+[http://www.example.com/?title=AT%26T]
+!! result
+<p><a href="http://www.example.com/?title=AT%26T" class='external autonumber' title="http://www.example.com/?title=AT%26T" rel="nofollow">[1]</a>
+</p>
+!! end
+
+!! test
+Bug 4781, 5267: %26 in autonumber URL
+!! input
+[http://www.example.com/?title=100%25_Bran]
+!! result
+<p><a href="http://www.example.com/?title=100%25_Bran" class='external autonumber' title="http://www.example.com/?title=100%25_Bran" rel="nofollow">[1]</a>
+</p>
+!! end
+
+!! test
+Bug 4781, 5267: %28, %29 in autonumber URL
+!! input
+[http://www.example.com/?title=Ben-Hur_%281959_film%29]
+!! result
+<p><a href="http://www.example.com/?title=Ben-Hur_%281959_film%29" class='external autonumber' title="http://www.example.com/?title=Ben-Hur_%281959_film%29" rel="nofollow">[1]</a>
+</p>
+!! end
+
+
+!! test
+Bug 4781: %26 in bracketed URL
+!! input
+[http://www.example.com/?title=AT%26T link]
+!! result
+<p><a href="http://www.example.com/?title=AT%26T" class='external text' title="http://www.example.com/?title=AT%26T" rel="nofollow">link</a>
+</p>
+!! end
+
+!! test
+Bug 4781, 5267: %26 in bracketed URL
+!! input
+[http://www.example.com/?title=100%25_Bran link]
+!! result
+<p><a href="http://www.example.com/?title=100%25_Bran" class='external text' title="http://www.example.com/?title=100%25_Bran" rel="nofollow">link</a>
+</p>
+!! end
+
+!! test
+Bug 4781, 5267: %28, %29 in bracketed URL
+!! input
+[http://www.example.com/?title=Ben-Hur_%281959_film%29 link]
+!! result
+<p><a href="http://www.example.com/?title=Ben-Hur_%281959_film%29" class='external text' title="http://www.example.com/?title=Ben-Hur_%281959_film%29" rel="nofollow">link</a>
+</p>
+!! end
+
+
 ###
 ### Quotes
 ###

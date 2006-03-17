@@ -695,6 +695,12 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 5236) Load wikibits.js before site-customized javascript
 * (bug 4119) Workaround for <nowiki> following link in Walloon; remove capitals
   from linktrail, as they're not used anywhere else.
+* (bug 4781) Output links with the percent-encoding they're supplied with;
+  save the normalization for internal link storage. The normalization is a bit
+  buggy and can make incorrect foldings in the query string and such, so isn't
+  reliable beyond the hostname where it's used for the spam bulk checker.
+* Don't URL-decode in the title attribute for URL links; it can produce false
+  results that don't code back to their original values.
 
 
 === Caveats ===
