@@ -159,6 +159,7 @@ $wgDateFormatsEn = array(
 	'externaldiff',
 	'showjumplinks',
 	'uselivepreview',
+	'autopatrol',
 );
 
 /* private */ $wgBookstoreListEn = array(

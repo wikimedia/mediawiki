@@ -116,10 +116,8 @@ class RecentChange
 		# Insert new row
 		$dbw->insert( 'recentchanges', $this->mAttribs, $fname );
 
-		if ( $wgUseRCPatrol ) {
-			# Retrieve the id assigned by the db, but only if we'll use it later
-			$this->mAttribs['rc_id'] = $dbw->insertId();
-		}
+		# Set the ID
+		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Update old rows, if necessary
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
@@ -242,6 +240,7 @@ class RecentChange
 			'newSize'       => $newSize,
 		);
 		$rc->save();
+		return( $rc->mAttribs['rc_id'] );
 	}
 
 	# Makes an entry in the database corresponding to page creation
