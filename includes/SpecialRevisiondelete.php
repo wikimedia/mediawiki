@@ -10,7 +10,7 @@
  */
 
 function wfSpecialRevisiondelete( $par = null ) {
-	global $wgOut, $wgRequest, $wgUser, $wgContLang;
+	global $wgOut, $wgRequest, $wgUser;
 	
 	$target = $wgRequest->getVal( 'target' );
 	$oldid = $wgRequest->getInt( 'oldid' );

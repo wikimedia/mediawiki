@@ -268,7 +268,7 @@ class PageHistory {
 	
 	/** @todo document */
 	function revLink( $rev ) {
-		global $wgUser, $wgLang;
+		global $wgLang;
 		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $rev->getTimestamp()), true );
 		if( $rev->userCan( MW_REV_DELETED_TEXT ) ) {
 			$link = $this->mSkin->makeKnownLinkObj(
@@ -284,7 +284,6 @@ class PageHistory {
 
 	/** @todo document */
 	function curLink( $rev, $latest ) {
-		global $wgUser;
 		$cur = wfMsgHtml( 'cur' );
 		if( $latest || !$rev->userCan( MW_REV_DELETED_TEXT ) ) {
 			return $cur;
@@ -298,7 +297,6 @@ class PageHistory {
 
 	/** @todo document */
 	function lastLink( $rev, $next, $counter ) {
-		global $wgUser;
 		$last = htmlspecialchars( wfMsg( 'last' ) );
 		if( is_null( $next ) ) {
 			if( $rev->getTimestamp() == $this->getEarliestOffset() ) {
@@ -326,7 +324,6 @@ class PageHistory {
 
 	/** @todo document */
 	function diffButtons( $rev, $firstInList, $counter ) {
-		global $wgUser;
 		if( $this->linesonpage > 1) {
 			$radio = array(
 				'type'  => 'radio',
