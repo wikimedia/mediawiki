@@ -817,9 +817,11 @@ class PreferencesForm {
 				'minordefault',
 				'externaleditor',
 				'externaldiff',
-				$wgLivePreview ? 'uselivepreview' : false, )
+				$wgLivePreview ? 'uselivepreview' : false,
+				$wgUser->isAllowed( 'patrol' ) ? 'autopatrol' : false, )
 			) . '</fieldset>'
 		);
+		$this->mUsedToggles['autopatrol'] = true; # Don't show this up for users who can't; the handler below is dumb and doesn't know it
 
 		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>' .
 					'<label for="wpRecent">' . wfMsg ( 'recentchangescount' ) .

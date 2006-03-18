@@ -1215,8 +1215,12 @@ class Article {
 		Article::onArticleCreate( $this->mTitle );
 		if(!$suppressRC) {
 			require_once( 'RecentChange.php' );
-			RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default',
+			$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default',
 			  '', strlen( $text ), $revisionId );
+			# Mark as patrolled if the user can and has the option set
+			if( $wgUser->isAllowed( 'patrol' ) && $wgUser->getOption( 'autopatrol' ) ) {
+				RecentChange::markPatrolled( $rcid );
+			}
 		}
 
 		if ($watchthis) {
@@ -1424,9 +1428,15 @@ class Article {
 				# Update recentchanges and purge cache and whatnot
 				require_once( 'RecentChange.php' );
 				$bot = (int)($wgUser->isBot() || $forceBot);
-				RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
+				$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
 					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 					$revisionId );
+					
+				# Mark as patrolled if the user can do so and has it set in their options
+				if( $wgUser->isAllowed( 'patrol' ) && $wgUser->getOption( 'autopatrol' ) ) {
+					RecentChange::markPatrolled( $rcid );
+				}
+					
 				$dbw->commit();
 
 				// Update caches outside the main transaction
