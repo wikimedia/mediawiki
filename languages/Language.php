@@ -143,6 +143,7 @@ $wgDateFormatsEn = array(
 	'showtoc',
 	'rememberpassword',
 	'editwidth',
+	'watchcreations',
 	'watchdefault',
 	'minordefault',
 	'previewontop',

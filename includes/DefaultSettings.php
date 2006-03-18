@@ -1435,6 +1435,7 @@ $wgDefaultSkin = 'monobook';
  *
  */
 $wgDefaultUserOptions = array();
+$wgDefaultUserOptions['watchcreations'] = 1;
 
 /** Whether or not to allow and use real name fields. Defaults to true. */
 $wgAllowRealName = true;
