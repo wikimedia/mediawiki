@@ -727,7 +727,7 @@ class Article {
 	 * the given title.
 	*/
 	function view()	{
-		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgContLang;
+		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol, $wgParser;
 		global $wgUseTrackbacks;
 		$sk = $wgUser->getSkin();
@@ -920,12 +920,7 @@ class Article {
 
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
-		if ( $wgUseRCPatrol
-			&& !is_null($rcid)
-			&& $rcid != 0
-			&& $wgUser->isLoggedIn()
-			&& ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) )
-		{
+		if ( $wgUseRCPatrol && !is_null( $rcid ) && $rcid != 0 && $wgUser->isAllowed( 'patrol' ) ) {
 			$wgOut->addHTML(
 				"<div class='patrollink'>" .
 					wfMsg ( 'markaspatrolledlink',
@@ -1522,7 +1517,7 @@ class Article {
 	 * Mark this particular edit as patrolled
 	 */
 	function markpatrolled() {
-		global $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgUseRCPatrol, $wgUser;
+		global $wgOut, $wgRequest, $wgUseRCPatrol, $wgUser;
 		$wgOut->setRobotpolicy( 'noindex,follow' );
 
 		# Check RC patrol config. option
@@ -1532,31 +1527,24 @@ class Article {
 		}
 		
 		# Check permissions
-		if( $wgUser->isLoggedIn() ) {
-			if( !$wgUser->isAllowed( 'patrol' ) ) {
-				$wgOut->permissionRequired( 'patrol' );
-				return;
-			}
-		} else {
-			$wgOut->loginToUse();
+		if( !$wgUser->isAllowed( 'patrol' ) ) {
+			$wgOut->permissionRequired( 'patrol' );
 			return;
 		}
 		
 		$rcid = $wgRequest->getVal( 'rcid' );
-		if ( !is_null ( $rcid ) )
-		{
-			if( wfRunHooks( 'MarkPatrolled', array( &$rcid, &$wgUser, $wgOnlySysopsCanPatrol ) ) ) {
+		if ( !is_null ( $rcid ) ) {
+			if( wfRunHooks( 'MarkPatrolled', array( &$rcid, &$wgUser, false ) ) ) {
 				require_once( 'RecentChange.php' );
 				RecentChange::markPatrolled( $rcid );
-				wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, $wgOnlySysopsCanPatrol ) );
+				wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, false ) );
 				$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
 				$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
 			}
 			$rcTitle = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 			$wgOut->returnToMain( false, $rcTitle->getPrefixedText() );
 		}
-		else
-		{
+		else {
 			$wgOut->errorpage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
 		}
 	}

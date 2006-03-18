@@ -70,8 +70,7 @@ class DifferenceEngine {
 	}
 
 	function showDiffPage() {
-		global $wgUser, $wgOut, $wgContLang, $wgOnlySysopsCanPatrol;
-		global $wgUseExternalEditor, $wgUseRCPatrol;
+		global $wgUser, $wgOut, $wgContLang, $wgUseExternalEditor, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
 
@@ -160,11 +159,8 @@ CONTROL;
 		} else {
 			$rollback = '';
 		}
-		if ( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->isLoggedIn() &&
-		     ( $wgUser->isAllowed('rollback') || !$wgOnlySysopsCanPatrol ) )
-		{
-			$patrol = ' [' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'markaspatrolleddiff' ),
-				"action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']';
+		if( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->isAllowed( 'patrol' ) ) {
+			$patrol = ' [' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'markaspatrolleddiff' ), "action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']';
 		} else {
 			$patrol = '';
 		}
