@@ -212,7 +212,7 @@ CONTROL;
 	 * contrast to normal "old revision" display style.
 	 */
 	function showFirstRevision() {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser;
 
 		$fname = 'DifferenceEngine::showFirstRevision';
 		wfProfileIn( $fname );
