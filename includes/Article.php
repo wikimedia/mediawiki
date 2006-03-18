@@ -848,16 +848,20 @@ class Article {
 			# We're looking at an old revision
 
 			if ( !empty( $oldid ) ) {
-				$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
 				$wgOut->setRobotpolicy( 'noindex,nofollow' );
-				if( $this->mRevision->isDeleted( MW_REV_DELETED_TEXT ) ) {
-					if( !$this->mRevision->userCan( MW_REV_DELETED_TEXT ) ) {
-						$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
-						$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-						return;
-					} else {
-						$wgOut->addWikiText( wfMsg( 'rev-deleted-text-view' ) );
-						// and we are allowed to see...
+				if( is_null( $this->mRevision ) ) {
+					// FIXME: This would be a nice place to load the 'no such page' text.
+				} else {
+					$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
+					if( $this->mRevision->isDeleted( MW_REV_DELETED_TEXT ) ) {
+						if( !$this->mRevision->userCan( MW_REV_DELETED_TEXT ) ) {
+							$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
+							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+							return;
+						} else {
+							$wgOut->addWikiText( wfMsg( 'rev-deleted-text-view' ) );
+							// and we are allowed to see...
+						}
 					}
 				}
 
