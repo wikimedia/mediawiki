@@ -45,6 +45,7 @@ parent class in order maintain consistency across languages.
 'tog-showtoc'			=> 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword' => 'Remember across sessions',
 'tog-editwidth' => 'Edit box has full width',
+'tog-watchcreations' => 'Add pages you create to your watchlist',
 'tog-watchdefault' => 'Add pages you edit to your watchlist',
 'tog-minordefault' => 'Mark all edits minor by default',
 'tog-previewontop' => 'Show preview before edit box',

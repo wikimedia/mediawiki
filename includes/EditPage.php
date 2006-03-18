@@ -830,13 +830,19 @@ class EditPage {
 
 		// activate checkboxes if user wants them to be always active
 		if( !$this->preview && !$this->diff ) {
-			if( $wgUser->getOption( 'watchdefault' ) ) $this->watchthis = true;
+			# Sort out the "watch" checkbox
+			if( $wgUser->getOption( 'watchdefault' ) ) {
+				# Watch all edits
+				$this->watchthis = true;
+			} elseif( $wgUser->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
+				# Watch creations
+				$this->watchthis = true;
+			} elseif( $this->mTitle->userIsWatching() ) {
+				# Already watched
+				$this->watchthis = true;
+			}
+			
 			if( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
-
-			// activate checkbox also if user is already watching the page,
-			// require wpWatchthis to be unset so that second condition is not
-			// checked unnecessarily
-			if( !$this->watchthis && $this->mTitle->userIsWatching() ) $this->watchthis = true;
 		}
 
 		$minoredithtml = '';

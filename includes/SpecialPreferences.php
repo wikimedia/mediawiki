@@ -812,6 +812,7 @@ class PreferencesForm {
 				'showtoolbar',
 				'previewonfirst',
 				'previewontop',
+				'watchcreations',
 				'watchdefault',
 				'minordefault',
 				'externaleditor',
