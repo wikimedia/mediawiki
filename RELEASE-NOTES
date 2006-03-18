@@ -322,6 +322,8 @@ Security:
 * Blocked users can no longer roll back, change the protection of, or delete/undelete pages
 * Protect against spoofing of X-Forwarded-For header
 * XSS issue : now sanitize search query input (fixed in 1.5rc3)
+* Remove deprecated $wgOnlySysopsCanPatrol references; use User::isAllowed( 'patrol' )
+  per bug 5282. Patch by Alan Harder.
 
 Special Pages:
 * Rearranged Special:Movepage form to reduce confusion between destination

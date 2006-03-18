@@ -194,13 +194,12 @@ class ChangesList {
 	}
 
 	/**
-	 * Check whether to enable RC-Patrol features
+	 * Check whether to enable recent changes patrol features
 	 * @return bool
 	 */
 	function usePatrol() {
-		global $wgUseRCPatrol, $wgOnlySysopsCanPatrol, $wgUser;
-		return $wgUseRCPatrol && $wgUser->isLoggedIn() &&
-		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed( 'patrol' ) );
+		global $wgUseRCPatrol, $wgUser;
+		return( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) );
 	}
 
 
