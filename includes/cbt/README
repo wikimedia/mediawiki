@@ -1,0 +1,55 @@
+Template syntax
+---------------
+
+There are two modes: text mode and function mode. The brace characters "{" 
+and "}" are the only reserved characters. Either one of them will switch from
+text mode to function mode wherever they appear, no exceptions. 
+
+In text mode, all characters are passed through to the output. In function
+mode, text is split into tokens, delimited either by whitespace or by 
+matching pairs of braces. The first token is taken to be a function name. The
+other tokens are first processed in function mode themselves, then they are 
+passed to the named function as parameters. The return value of the function
+is passed through to the output.
+
+Example:
+   {escape {"hello"}}
+
+First brace switches to function mode. The function name is escape, the first
+and only parameter is {"hello"}. This parameter is executed. The braces around
+the parameter cause the parser to switch to text mode, thus the string "hello",
+including the quotes, is passed back and used as an argument to the escape 
+function. 
+
+Example:
+   {if title {<h1>{title}</h1>}}
+
+The function name is "if". The first parameter is the result of calling the 
+function "title". The second parameter is a level 1 HTML heading containing
+the result of the function "title". "if" is a built-in function which will 
+return the second parameter only if the first is non-blank, so the effect of
+this is to return a heading element only if a title exists.
+
+As a shortcut for generation of HTML attributes, if a function mode segment is
+surrounded by double quotes, quote characters in the return value will be 
+escaped. This only applies if the quote character immediately precedes the 
+opening brace, and immediately follows the closing brace, with no whitespace.
+
+User callback functions are defined by passing a function object to the 
+template processor. Function names appearing in the text are first checked
+against built-in function names, then against the method names in the function
+object. The function object forms a sandbox for execution of the template, so 
+security-conscious users may wish to avoid including functions that allow
+arbitrary filesystem access or code execution.
+
+The callback function will receive its parameters as strings. If the 
+result of the function depends only on the arguments, and certain things 
+understood to be "static", such as the source code, then the callback function
+should return a string. If the result depends on other things, then the function
+should return an object:
+
+   return new CBTValue( $text, $deps );
+
+where $deps is an array of string tokens, each one naming a dependency. As a 
+shortcut, if there is only one dependency, $deps may be a string.
+
