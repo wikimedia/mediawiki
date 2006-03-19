@@ -1244,14 +1244,26 @@ $wgUseImageResize		= false;
 
 /**
  * Resizing can be done using PHP's internal image libraries or using
- * ImageMagick. The later supports more file formats than PHP, which only
- * supports PNG, GIF, JPG, XBM and WBMP.
+ * ImageMagick or another third-party converter, e.g. GraphicMagick.
+ * These support more file formats than PHP, which only supports PNG,
+ * GIF, JPG, XBM and WBMP.
  *
  * Use Image Magick instead of PHP builtin functions.
  */
 $wgUseImageMagick		= false;
 /** The convert command shipped with ImageMagick */
 $wgImageMagickConvertCommand    = '/usr/bin/convert';
+
+/**
+ * Use another resizing converter, e.g. GraphicMagick
+ * %s will be replaced with the source path, %d with the destination
+ * %w and %h will be replaced with the width and height
+ *
+ * An example is provided for GraphicMagick
+ * Leave as false to skip this
+ */
+#$wgCustomConvertCommand = "gm convert %s -resize %wx%h %d"
+$wgCustomConvertCommand = false;
 
 # Scalable Vector Graphics (SVG) may be uploaded as images.
 # Since SVG support is not yet standard in browsers, it is

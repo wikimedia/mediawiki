@@ -116,6 +116,8 @@ Images:
 * Don't delete thumbnails when refreshing exif metadata. This caused thumbs
   to vanish mysteriously from time to time for files that didn't have metadata.
 * (bug 4426) Add link to user_talk page on image pages
+* Support a custom convert command for thumbnailing. See DefaultSettings.php
+  and the comments for $wgCustomConvertCommand, for more information.
 
 Installer:
 * (bug 3782) Throw fatal installation warning if mbstring.func_overload on.

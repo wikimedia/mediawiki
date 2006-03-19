@@ -1047,6 +1047,7 @@ class Image
 	function reallyRenderThumb( $thumbPath, $width, $height ) {
 		global $wgSVGConverters, $wgSVGConverter;
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
+		global $wgCustomConvertCommand;
 
 		$this->load();
 
@@ -1098,6 +1099,18 @@ class Image
 				" -depth 8 " .
 				wfEscapeShellArg($thumbPath) . " 2>&1";
 			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
+			wfProfileIn( 'convert' );
+			$err = wfShellExec( $cmd );
+			wfProfileOut( 'convert' );
+		} elseif( $wgCustomConvertCommand ) {
+			# Use a custom convert command
+			# Variables: %s %d %w %h
+			$src = wfEscapeShellArg( $this->imagePath );
+			$dst = wfEscapeShellArg( $thumbPath );
+			$cmd = $wgCustomConvertCommand;
+			$cmd = str_replace( '%s', $src, str_replace( '%d', $dst, $cmd ) ); # Filenames
+			$cmd = str_replace( '%h', $height, str_replace( '%w', $width, $cmd ) ); # Size
+			wfDebug( "reallyRenderThumb: Running custom convert command $cmd\n" );
 			wfProfileIn( 'convert' );
 			$err = wfShellExec( $cmd );
 			wfProfileOut( 'convert' );
