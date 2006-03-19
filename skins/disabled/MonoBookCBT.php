@@ -4,7 +4,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
 }
 
-require_once( dirname(__FILE__) . '/../includes/CBTProcessor.php' );
+require_once( dirname(__FILE__) . '/../includes/cbt/CBTProcessor.php' );
+require_once( dirname(__FILE__) . '/../includes/cbt/CBTCompiler.php' );
 require_once( dirname(__FILE__) . '/../includes/SkinTemplate.php' );
 
 
@@ -26,8 +27,6 @@ require_once( dirname(__FILE__) . '/../includes/SkinTemplate.php' );
  * much as possible. In fact, the only SkinTemplate dependencies I know of at the 
  * moment are the functions to generate the gen=css and gen=js files. 
  * 
- * It assumes that $wgMemc is valid, if not, performance will be glacial as it will 
- * compile the skin on every invocation. 
  */
 class SkinMonoBookCBT extends SkinTemplate {
 	var $mOut, $mTitle;
@@ -62,7 +61,9 @@ class SkinMonoBookCBT extends SkinTemplate {
 			$text = $this->executeTemplate( $template );
 		} else {
 			$compiled = $this->getCompiledTemplate( $sourceFile );
-			$text = $this->executeTemplate( $compiled );
+			
+			#$text = $this->executeTemplate( $compiled );
+			$text = eval( $compiled );
 		}
 		wfProfileOut( $fname );
 		return $text;
@@ -94,9 +95,9 @@ class SkinMonoBookCBT extends SkinTemplate {
 
 		$recompile = $wgRequest->getVal( 'recompile' );
 		if ( !$recompile ) { 
-			$compiled = $parserMemc->get( $cacheKey );
+			$php = $parserMemc->get( $cacheKey );
 		}
-		if ( $recompile || !$compiled ) {
+		if ( $recompile || !$php ) {
 			$template = file_get_contents( $sourceFile );
 
 			$ignore = array( 'lang', 'loggedin', 'user' );
@@ -124,10 +125,22 @@ class SkinMonoBookCBT extends SkinTemplate {
 			// more sure it is safe here.
 			$compiled = preg_replace( '/^[ \t]+/m', '', $compiled );
 			$compiled = preg_replace( '/[\r\n]+/', "\n", $compiled );
-			$parserMemc->set( $cacheKey, $compiled, 3600 );
+
+			// Compile to PHP
+			$compiler = new CBTCompiler( $compiled );
+			$compiler->compile();
+			$php = 'return ' . $compiler->generatePHP( '$this' ) . ";\n";
+			/*
+			if ( !php_check_syntax( $php, $error ) ) {
+				print "$error <pre>" . htmlspecialchars( $php )  . '</pre>';
+				exit;
+			}*/
+				
+
+			$parserMemc->set( $cacheKey, $php, 3600 );
 		}
 		wfProfileOut( $fname );
-		return $compiled;
+		return $php;
 	}
 
 	function executeTemplate( $template ) {
@@ -155,14 +168,14 @@ class SkinMonoBookCBT extends SkinTemplate {
 	function mimetype() { return $GLOBALS['wgMimeType']; }
 	function charset() { return $GLOBALS['wgOutputEncoding']; }
 	function headlinks() { 
-		return new TplValue( $this->mOut->getHeadLinks(), 'dynamic' );
+		return new CBTValue( $this->mOut->getHeadLinks(), 'dynamic' );
 	}
 	function headscripts() { 
-		return new TplValue( $this->mOut->getScript(), 'dynamic' );
+		return new CBTValue( $this->mOut->getScript(), 'dynamic' );
 	}
 	
 	function pagetitle() { 
-		return new TplValue( $this->mOut->getHTMLTitle(), array( 'title', 'lang' ) ); 
+		return new CBTValue( $this->mOut->getHTMLTitle(), array( 'title', 'lang' ) ); 
 	}
 	
 	function stylepath() { return $GLOBALS['wgStylePath']; }
@@ -170,7 +183,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 	
 	function notprintable() {
 		global $wgRequest;
-		return new TplValue( !$wgRequest->getBool( 'printable' ), 'nonview dynamic' );
+		return new CBTValue( !$wgRequest->getBool( 'printable' ), 'nonview dynamic' );
 	}
 	
 	function jsmimetype() { return $GLOBALS['wgJsMimeType']; }
@@ -184,7 +197,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$url = $this->makeUrl('-','action=raw&gen=js');
 		}
-		return new TplValue( $url, 'loggedin' );
+		return new CBTValue( $url, 'loggedin' );
 	}
 	
 	function pagecss() {
@@ -194,7 +207,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		wfRunHooks( 'SkinTemplateSetupPageCss', array( &$out ) );
 
 		// Unknown dependencies
-		return new TplValue( $out, 'dynamic' );
+		return new CBTValue( $out, 'dynamic' );
 	}
 	
 	function usercss() {
@@ -207,7 +220,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		}
 
 		// Dynamic when not an ordinary page view, also depends on the username
-		return new TplValue( $usercss, array( 'nonview dynamic', 'user' ) );
+		return new CBTValue( $usercss, array( 'nonview dynamic', 'user' ) );
 	}
 	
 	function sitecss() {
@@ -257,12 +270,12 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else { 
 			$deps = array();
 		}
-		return new TplValue( $link, $deps, $isTemplate );
+		return new CBTValue( $link, $deps, $isTemplate );
 	}
 	
 	function user_touched() {
 		global $wgUser;
-		return new TplValue( $wgUser->mTouched, 'dynamic' );
+		return new CBTValue( $wgUser->mTouched, 'dynamic' );
 	}
 		
 	function userjs() {
@@ -274,7 +287,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$url = $this->makeUrl($this->getUserPageText().'/'.$this->mStyleName.'.js', 'action=raw&ctype='.$wgJsMimeType.'&dontcountme=s');
 		}
-		return new TplValue( $url, array( 'nonview dynamic', 'user' ) );
+		return new CBTValue( $url, array( 'nonview dynamic', 'user' ) );
 	}
 	
 	function userjsprev() {
@@ -285,7 +298,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$js = '';
 		}
-		return new TplValue( $js, array( 'nonview dynamic' ) );
+		return new CBTValue( $js, array( 'nonview dynamic' ) );
 	}
 	
 	function trackbackhtml() {
@@ -297,7 +310,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$tb = '';
 		}
-		return new TplValue( $tb, 'dynamic' );
+		return new CBTValue( $tb, 'dynamic' );
 	}
 	
 	function body_ondblclick() {
@@ -309,10 +322,10 @@ class SkinMonoBookCBT extends SkinTemplate {
 		}
 
 		if ( User::getDefaultOption('editondblclick') ) {
-			return new TplValue( $js, 'user', 'title' );
+			return new CBTValue( $js, 'user', 'title' );
 		} else {
 			// Optimise away for logged-out users
-			return new TplValue( $js, 'loggedin dynamic' );
+			return new CBTValue( $js, 'loggedin dynamic' );
 		}
 	}
 	
@@ -323,29 +336,29 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$js = '';
 		}
-		return new TplValue( $js, 'loggedin dynamic' );
+		return new CBTValue( $js, 'loggedin dynamic' );
 	}
 	
 	function nsclass() {
-		return new TplValue( 'ns-' . $this->mTitle->getNamespace(), 'title' );
+		return new CBTValue( 'ns-' . $this->mTitle->getNamespace(), 'title' );
 	}
 	
 	function sitenotice() {
 		// Perhaps this could be given special dependencies using our knowledge of what 
 		// wfGetSiteNotice() depends on.
-		return new TplValue( wfGetSiteNotice(), 'dynamic' );
+		return new CBTValue( wfGetSiteNotice(), 'dynamic' );
 	}
 	
 	function title() {
-		return new TplValue( $this->mOut->getPageTitle(), array( 'title', 'lang' ) );
+		return new CBTValue( $this->mOut->getPageTitle(), array( 'title', 'lang' ) );
 	}
 
 	function title_urlform() {
-		return new TplValue( $this->getThisTitleUrlForm(), 'title' );
+		return new CBTValue( $this->getThisTitleUrlForm(), 'title' );
 	}
 
 	function title_userurl() {
-		return new TplValue( urlencode( $this->mTitle->getDBkey() ), 'title' );
+		return new CBTValue( urlencode( $this->mTitle->getDBkey() ), 'title' );
 	}
 
 	function subtitle() {
@@ -355,11 +368,11 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = $this->mOut->getSubtitle();
 		}
-		return new TplValue( $s, array( 'title', 'nonview dynamic' ) );
+		return new CBTValue( $s, array( 'title', 'nonview dynamic' ) );
 	}
 	
 	function undelete() {
-		return new TplValue( $this->getUndeleteLink(), array( 'title', 'lang' ) );
+		return new CBTValue( $this->getUndeleteLink(), array( 'title', 'lang' ) );
 	}
 	
 	function newtalk() {
@@ -398,20 +411,20 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$ntl = '';
 		}
-		return new TplValue( $ntl, 'dynamic' );
+		return new CBTValue( $ntl, 'dynamic' );
 	}
 	
 	function showjumplinks() {
 		global $wgUser;
-		return new TplValue( $wgUser->getOption( 'showjumplinks' ) ? 'true' : '', 'user' );
+		return new CBTValue( $wgUser->getOption( 'showjumplinks' ) ? 'true' : '', 'user' );
 	}
 	
 	function bodytext() {
-		return new TplValue( $this->mOut->getHTML(), 'dynamic' );
+		return new CBTValue( $this->mOut->getHTML(), 'dynamic' );
 	}
 	
 	function catlinks() {
-		return new TplValue( $this->getCategories(), 'dynamic' );
+		return new CBTValue( $this->getCategories(), 'dynamic' );
 	}
 	
 	function extratabs( $itemTemplate ) {
@@ -434,19 +447,19 @@ class SkinMonoBookCBT extends SkinTemplate {
 				$vcount ++;
 			}
 		}
-		return new TplValue( $s, array(), true );
+		return new CBTValue( $s, array(), true );
 	}
 
-	function is_special() { return new TplValue( $this->mTitle->getNamespace() == NS_SPECIAL, 'title' ); }
-	function can_edit() { return new TplValue( (string)($this->mTitle->userCanEdit()), 'dynamic' ); }
-	function can_move() { return new TplValue( (string)($this->mTitle->userCanMove()), 'dynamic' ); }
-	function is_talk() { return new TplValue( (string)($this->mTitle->isTalkPage()), 'title' ); }
-	function is_protected() { return new TplValue( (string)$this->mTitle->isProtected(), 'dynamic' ); }
-	function nskey() { return new TplValue( $this->mTitle->getNamespaceKey(), 'title' ); }
+	function is_special() { return new CBTValue( $this->mTitle->getNamespace() == NS_SPECIAL, 'title' ); }
+	function can_edit() { return new CBTValue( (string)($this->mTitle->userCanEdit()), 'dynamic' ); }
+	function can_move() { return new CBTValue( (string)($this->mTitle->userCanMove()), 'dynamic' ); }
+	function is_talk() { return new CBTValue( (string)($this->mTitle->isTalkPage()), 'title' ); }
+	function is_protected() { return new CBTValue( (string)$this->mTitle->isProtected(), 'dynamic' ); }
+	function nskey() { return new CBTValue( $this->mTitle->getNamespaceKey(), 'title' ); }
 
 	function request_url() {
 		global $wgRequest;
-		return new TplValue( $wgRequest->getRequestURL(), 'dynamic' );
+		return new CBTValue( $wgRequest->getRequestURL(), 'dynamic' );
 	}
 
 	function subject_url() { 
@@ -456,7 +469,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$url = $title->getLocalUrl( 'action=edit' );
 		}
-		return new TplValue( $url, 'title' ); 
+		return new CBTValue( $url, 'title' ); 
 	}
 
 	function talk_url() {
@@ -466,19 +479,19 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$url = $title->getLocalUrl( 'action=edit' );
 		}
-		return new TplValue( $url, 'title' );
+		return new CBTValue( $url, 'title' );
 	}
 
 	function edit_url() {
-		return new TplValue( $this->getEditUrl(), array( 'title', 'nonview dynamic' ) );
+		return new CBTValue( $this->getEditUrl(), array( 'title', 'nonview dynamic' ) );
 	}
 
 	function move_url() {
-		return new TplValue( $this->makeSpecialParamUrl( 'Movepage' ), array(), true );
+		return new CBTValue( $this->makeSpecialParamUrl( 'Movepage' ), array(), true );
 	}
 
 	function localurl( $query ) {
-		return new TplValue( $this->mTitle->getLocalURL( $query ), 'title' );
+		return new CBTValue( $this->mTitle->getLocalURL( $query ), 'title' );
 	}
 
 	function selecttab( $tab, $extraclass = '' ) {
@@ -528,19 +541,19 @@ class SkinMonoBookCBT extends SkinTemplate {
 				$s = '';
 			}
 		}
-		return new TplValue( $s, array( 'nonview dynamic', 'title' ) );
+		return new CBTValue( $s, array( 'nonview dynamic', 'title' ) );
 	}
 
 	function subject_newclass() {
 		$title = $this->getSubjectPage();
 		$class = $title->exists() ? '' : 'new';
-		return new TplValue( $class, 'dynamic' );
+		return new CBTValue( $class, 'dynamic' );
 	}
 
 	function talk_newclass() {
 		$title = $this->getTalkPage();
 		$class = $title->exists() ? '' : 'new';
-		return new TplValue( $class, 'dynamic' );
+		return new CBTValue( $class, 'dynamic' );
 	}	
 
 	function ca_variant( $code, $name, $index, $template ) {
@@ -556,11 +569,11 @@ class SkinMonoBookCBT extends SkinTemplate {
 			'$text' => $name,
 			'$href' => htmlspecialchars( $this->mTitle->getLocalUrl( $actstr . 'variant=' . $code ) )
 		));
-		return new TplValue( $s, 'dynamic' );
+		return new CBTValue( $s, 'dynamic' );
 	}
 
 	function is_watching() {
-		return new TplValue( (string)$this->mTitle->userIsWatching(), array( 'dynamic' ) );
+		return new CBTValue( (string)$this->mTitle->userIsWatching(), array( 'dynamic' ) );
 	}
 
 	
@@ -592,7 +605,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 			$s .= "{login {{$etpl}}\n";
 		}
 		// No dependencies
-		return new TplValue( $s, array(), true /*this is a template*/ );
+		return new CBTValue( $s, array(), true /*this is a template*/ );
 	}
 
 	function userpage( $itemTemplate ) {
@@ -603,7 +616,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = '';
 		}
-		return new TplValue( $s, 'user' );
+		return new CBTValue( $s, 'user' );
 	}
 	
 	function mytalk( $itemTemplate ) {
@@ -615,7 +628,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = '';
 		}
-		return new TplValue( $s, 'user' );
+		return new CBTValue( $s, 'user' );
 	}
 	
 	function preferences( $itemTemplate ) {
@@ -625,7 +638,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = '';
 		}
-		return new TplValue( $s, array( 'loggedin', 'lang' ) );
+		return new CBTValue( $s, array( 'loggedin', 'lang' ) );
 	}
 	
 	function watchlist( $itemTemplate ) {
@@ -635,7 +648,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = '';
 		}
-		return new TplValue( $s, array( 'loggedin', 'lang' ) );
+		return new CBTValue( $s, array( 'loggedin', 'lang' ) );
 	}
 	
 	function mycontris( $itemTemplate ) {
@@ -646,7 +659,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = '';
 		}
-		return new TplValue( $s, 'user' );
+		return new CBTValue( $s, 'user' );
 	}
 	
 	function logout( $itemTemplate ) {
@@ -658,7 +671,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = '';
 		}
-		return new TplValue( $s, 'loggedin dynamic' );
+		return new CBTValue( $s, 'loggedin dynamic' );
 	}
 	
 	function anonuserpage( $itemTemplate ) {
@@ -669,7 +682,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 			$userPage = $this->getUserPageTitle();
 			$s = $this->makeTemplateLink( $itemTemplate, 'userpage', $userPage, $wgUser->getName() );
 		}
-		return new TplValue( $s, '!loggedin dynamic' );
+		return new CBTValue( $s, '!loggedin dynamic' );
 	}
 	
 	function anontalk( $itemTemplate ) {
@@ -680,7 +693,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 			$talkPage = $userPage->getTalkPage();
 			$s = $this->makeTemplateLink( $itemTemplate, 'mytalk', $talkPage, wfMsg('anontalk') );
 		}
-		return new TplValue( $s, '!loggedin dynamic' );
+		return new CBTValue( $s, '!loggedin dynamic' );
 	}
 	
 	function anonlogin( $itemTemplate ) {
@@ -690,7 +703,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 			$s = $this->makeSpecialTemplateLink( $itemTemplate, 'anonlogin', 'Userlogin', 
 				wfMsg( 'userlogin' ), 'returnto=' . urlencode( $this->getThisPDBK() ) );
 		}
-		return new TplValue( $s, '!loggedin dynamic' );
+		return new CBTValue( $s, '!loggedin dynamic' );
 	}
 	
 	function login( $itemTemplate ) {
@@ -700,7 +713,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 			$s = $this->makeSpecialTemplateLink( $itemTemplate, 'login', 'Userlogin', 
 				wfMsg( 'userlogin' ), 'returnto=' . urlencode( $this->getThisPDBK() ) );
 		}
-		return new TplValue( $s, '!loggedin dynamic' );
+		return new CBTValue( $s, '!loggedin dynamic' );
 	}
 	
 	function logopath() { return $GLOBALS['wgLogo']; }
@@ -756,7 +769,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		}
 
 		// Depends on user language only
-		return new TplValue( $s, 'lang' );
+		return new CBTValue( $s, 'lang' );
 	}
 	
 	function searchaction() {
@@ -766,23 +779,23 @@ class SkinMonoBookCBT extends SkinTemplate {
 	
 	function search() {
 		global $wgRequest;
-		return new TplValue( trim( $this->getSearch() ), 'special dynamic' );
+		return new CBTValue( trim( $this->getSearch() ), 'special dynamic' );
 	}
 	
 	function notspecialpage() {
-		return new TplValue( $this->mTitle->getNamespace() != NS_SPECIAL, 'special' );
+		return new CBTValue( $this->mTitle->getNamespace() != NS_SPECIAL, 'special' );
 	}
 	
 	function nav_whatlinkshere() {
-		return new TplValue( $this->makeSpecialParamUrl('Whatlinkshere' ), array(), true );
+		return new CBTValue( $this->makeSpecialParamUrl('Whatlinkshere' ), array(), true );
 	}
 
 	function article_exists() {
-		return new TplValue( (string)($this->mTitle->getArticleId() !== 0), 'title' );
+		return new CBTValue( (string)($this->mTitle->getArticleId() !== 0), 'title' );
 	}
 	
 	function nav_recentchangeslinked() {
-		return new TplValue( $this->makeSpecialParamUrl('Recentchangeslinked' ), array(), true );
+		return new CBTValue( $this->makeSpecialParamUrl('Recentchangeslinked' ), array(), true );
 	}
 	
 	function feeds( $itemTemplate = '' ) {
@@ -803,36 +816,36 @@ class SkinMonoBookCBT extends SkinTemplate {
 					) );
 			}
 		}
-		return new TplValue( $feeds, 'special dynamic' );
+		return new CBTValue( $feeds, 'special dynamic' );
 	}
 
 	function is_userpage() {
 		list( $id, $ip ) = $this->getUserPageIdIp();
-		return new TplValue( (string)($id || $ip), 'title' );
+		return new CBTValue( (string)($id || $ip), 'title' );
 	}
 
 	function is_ns_mediawiki() {
-		return new TplValue( (string)$this->mTitle->getNamespace() == NS_MEDIAWIKI, 'title' );
+		return new CBTValue( (string)$this->mTitle->getNamespace() == NS_MEDIAWIKI, 'title' );
 	}
 
 	function is_loggedin() {
 		global $wgUser;
-		return new TplValue( (string)($wgUser->isLoggedIn()), 'loggedin' );
+		return new CBTValue( (string)($wgUser->isLoggedIn()), 'loggedin' );
 	}
 
 	function nav_contributions() {
 		$url = $this->makeSpecialParamUrl( 'Contributions', '', '{title_userurl}' );
-		return new TplValue( $url, array(), true );
+		return new CBTValue( $url, array(), true );
 	}
 
 	function is_allowed( $right ) {
 		global $wgUser;
-		return new TplValue( (string)$wgUser->isAllowed( $right ), 'user' );
+		return new CBTValue( (string)$wgUser->isAllowed( $right ), 'user' );
 	}
 	
 	function nav_blockip() {
 		$url = $this->makeSpecialParamUrl( 'Blockip', '', '{title_userurl}' );
-		return new TplValue( $url, array(), true );
+		return new CBTValue( $url, array(), true );
 	}
 	
 	function nav_emailuser() {
@@ -840,7 +853,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		if ( !$wgEnableEmail || !$wgEnableUserEmail ) return '';
 		
 		$url = $this->makeSpecialParamUrl( 'Emailuser', '', '{title_userurl}' );
-		return new TplValue( $url, array(), true );
+		return new CBTValue( $url, array(), true );
 	}
 	
 	function nav_upload() {
@@ -870,23 +883,23 @@ class SkinMonoBookCBT extends SkinTemplate {
 				$url = $wgRequest->appendQuery( 'printable=yes' );
 			}
 		}
-		return new TplValue( $url, array( 'nonview dynamic', 'title' ) );
+		return new CBTValue( $url, array( 'nonview dynamic', 'title' ) );
 	}
 	
 	function nav_permalink() {
 		$url = (string)$this->getPermalink();
-		return new TplValue( $url, 'dynamic' );
+		return new CBTValue( $url, 'dynamic' );
 	}
 
 	function nav_trackbacklink() {
 		global $wgUseTrackbacks;
 		if ( !$wgUseTrackbacks ) return '';
 
-		return new TplValue( $this->mTitle->trackbackURL(), 'title' );
+		return new CBTValue( $this->mTitle->trackbackURL(), 'title' );
 	}
 	
 	function is_permalink() {
-		return new TplValue( (string)($this->getPermalink() === false), 'nonview dynamic' );
+		return new CBTValue( (string)($this->getPermalink() === false), 'nonview dynamic' );
 	}
 	
 	function toolboxend() {
@@ -915,7 +928,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 			}
 			$s = str_replace( '$body', $s, $outer );
 		}
-		return new TplValue( $s, 'dynamic' );
+		return new CBTValue( $s, 'dynamic' );
 	}
 	
 	function poweredbyico() { return $this->getPoweredBy(); }
@@ -930,7 +943,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = '';
 		}
-		return new TplValue( $s, 'dynamic' );
+		return new CBTValue( $s, 'dynamic' );
 	}
 	
 	function viewcount() {
@@ -948,7 +961,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$viewcount = '';
 		}
-		return new TplValue( $viewcount, 'dynamic' );
+		return new CBTValue( $viewcount, 'dynamic' );
    	}
 	
 	function numberofwatchingusers() {
@@ -968,7 +981,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$s = '';
 		}
-		return new TplValue( $s, 'dynamic' );
+		return new CBTValue( $s, 'dynamic' );
 	}
 	
 	function credits() {
@@ -982,7 +995,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		} else {
 			$credits = '';
 		}
-		return new TplValue( $credits, 'view dynamic' );
+		return new CBTValue( $credits, 'view dynamic' );
 	}
 	
 	function normalcopyright() {
@@ -995,7 +1008,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 
 	function is_currentview() {
 		global $wgRequest;
-		return new TplValue( (string)$this->isCurrentArticleView(), 'view' );
+		return new CBTValue( (string)$this->isCurrentArticleView(), 'view' );
 	}
 
 	function usehistorycopyright() {
@@ -1005,17 +1018,17 @@ class SkinMonoBookCBT extends SkinTemplate {
 		$oldid = $this->getOldId();
 		$diff = $this->getDiff();
 		$use = (string)(!is_null( $oldid ) && is_null( $diff ));
-		return new TplValue( $use, 'nonview dynamic' );
+		return new CBTValue( $use, 'nonview dynamic' );
 	}
 	
 	function privacy() {
-		return new TplValue( $this->privacyLink(), 'lang' );
+		return new CBTValue( $this->privacyLink(), 'lang' );
 	}
 	function about() {
-		return new TplValue( $this->aboutLink(), 'lang' );
+		return new CBTValue( $this->aboutLink(), 'lang' );
 	}
 	function disclaimer() {
-		return new TplValue( $this->disclaimerLink(), 'lang' );
+		return new CBTValue( $this->disclaimerLink(), 'lang' );
 	}
 	function tagline() { 
 		# A reference to this tag existed in the old MonoBook.php, but the
@@ -1023,11 +1036,11 @@ class SkinMonoBookCBT extends SkinTemplate {
 		return ''; 
 	}
 	function reporttime() {
-		return new TplValue( $this->mOut->reportTime(), 'dynamic' );
+		return new CBTValue( $this->mOut->reportTime(), 'dynamic' );
 	}
 	
 	function msg( $name ) {
-		return new TplValue( wfMsg( $name ), 'lang' );
+		return new CBTValue( wfMsg( $name ), 'lang' );
 	}
 	
 	function fallbackmsg( $name, $fallback ) {
@@ -1035,7 +1048,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		if ( wfEmptyMsg( $name, $text ) ) {
 			$text = $fallback;
 		}
-		return new TplValue( $text,  'lang' );
+		return new CBTValue( $text,  'lang' );
 	}
 
 	/******************************************************
