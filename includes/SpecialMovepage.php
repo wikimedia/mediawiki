@@ -107,7 +107,10 @@ class MovePageForm {
 			$confirm = false;
 		}
 
-		if ( !$ot->isTalkPage() ) {
+		$oldTalk = $ot->getTalkPage();
+		$considerTalk = ( !$ot->isTalkPage() && $oldTalk->exists() );
+
+		if ( $considerTalk ) {
 			$wgOut->addWikiText( wfMsg( 'movepagetalktext' ) );
 		}
 
@@ -148,7 +151,7 @@ class MovePageForm {
 			</td>
 		</tr>" );
 
-		if ( ! $ot->isTalkPage() ) {
+		if ( $considerTalk ) {
 			$wgOut->addHTML( "
 		<tr>
 			<td align='right'>
@@ -206,28 +209,26 @@ class MovePageForm {
 
 		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ot , &$nt ) )	;
 
-		# Move talk page if
-		# (1) the checkbox says to,
-		# (2) the namespaces are not themselves talk namespaces, and of course
-		# (3) it exists.
-		if ( ( $wgRequest->getVal('wpMovetalk') == 1 ) &&
-		     !$ot->isTalkPage() &&
-		     !$nt->isTalkPage() ) {
-
-			$ott = $ot->getTalkPage();
-			$ntt = $nt->getTalkPage();
-
-			# Attempt the move
-			$error = $ott->moveTo( $ntt, true, $this->reason );
-			if ( $error === true ) {
-				$talkmoved = 1;
-				wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ott , &$ntt ) )	;
+		# Move the talk page if relevant, if it exists, and if we've been told to
+		$ott = $ot->getTalkPage();
+		if( $ott->exists() ) {
+			if( $wgRequest->getVal( 'wpMovetalk' ) == 1 && !$ot->isTalkPage() && !$nt->isTalkPage() ) {
+				$ntt = $nt->getTalkPage();
+	
+				# Attempt the move
+				$error = $ott->moveTo( $ntt, true, $this->reason );
+				if ( $error === true ) {
+					$talkmoved = 1;
+					wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ott , &$ntt ) )	;
+				} else {
+					$talkmoved = $error;
+				}
 			} else {
-				$talkmoved = $error;
+				# Stay silent on the subject of talk.
+				$talkmoved = '';
 			}
 		} else {
-			# Stay silent on the subject of talk.
-			$talkmoved = '';
+			$talkmoved = 'notalkpage';
 		}
 
 		# Give back result to user.
@@ -263,7 +264,7 @@ class MovePageForm {
 			$wgOut->addWikiText( wfMsg( 'talkexists' ) );
 		} else {
 			$oldTitle = Title::newFromText( $oldText );
-			if ( !$oldTitle->isTalkPage() ) {
+			if ( !$oldTitle->isTalkPage() && $talkmoved != 'notalkpage' ) {
 				$wgOut->addWikiText( wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) ) );
 			}
 		}
