@@ -70,11 +70,11 @@
 					{if article_exists {
 						<li id="ca-history" {selecttab {history}}><a href="{localurl {action=history}}">{msg {history_short}}</a></li>
 						{if {{ is_allowed {protect} }} {
-							{if is_ns_mediawiki {
+							{if is_ns_mediawiki {} {
 								{if is_protected {
-									<li id="ca-protect" {selecttab {protect}}><a href="{localurl {action=protect}}">{msg {protect}}</a></li>
-								} {
 									<li id="ca-protect" {selecttab {protect}}><a href="{localurl {action=unprotect}}">{msg {unprotect}}</a></li>
+								} {
+									<li id="ca-protect" {selecttab {protect}}><a href="{localurl {action=protect}}">{msg {protect}}</a></li>
 								}}
 							}}
 						}}
