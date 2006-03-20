@@ -128,7 +128,11 @@ class SkinMonoBookCBT extends SkinTemplate {
 
 			// Compile to PHP
 			$compiler = new CBTCompiler( $compiled );
-			$compiler->compile();
+			$ret = $compiler->compile();
+			if ( $ret !== true ) {
+				echo $ret;
+				wfErrorExit();
+			}
 			$php = $compiler->generatePHP( '$this' );
 
 			$parserMemc->set( $cacheKey, $php, 3600 );
@@ -589,7 +593,6 @@ class SkinMonoBookCBT extends SkinTemplate {
 			{logout {{$etpl}}}
 		";
 
-
 		if ( $wgShowIPinHeader ) {
 			$s .= "
 				{anonuserpage {{$etpl}}}
@@ -597,7 +600,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 				{anonlogin {{$etpl}}}
 			";
 		} else {
-			$s .= "{login {{$etpl}}\n";
+			$s .= "{login {{$etpl}}}\n";
 		}
 		// No dependencies
 		return cbt_value( $s, array(), true /*this is a template*/ );
