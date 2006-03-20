@@ -859,6 +859,15 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Generate strings used for xml 'id' names
+	 * @return string
+	 * @access private
+	 */
+	function getNameSpaceKey () {
+		return $this->mTitle->getNamespaceKey();
+	}
+
+	/**
 	 * @access private
 	 */
 	function setupUserCss() {
