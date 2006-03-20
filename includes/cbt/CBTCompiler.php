@@ -284,6 +284,8 @@ class CBTCompiler {
 	}
 
 	function generatePHP( $functionObj ) {
+		$fname = 'CBTCompiler::generatePHP';
+		wfProfileIn( $fname );
 		$stack = array();
 
 		foreach( $this->mOps as $index => $op ) {
@@ -330,11 +332,11 @@ class CBTCompiler {
 								$result = "htmlspecialchars({$args[0]})";
 							} else {
 								// Known function name
-								$result = "{$functionObj}->{$func}(" . implode( ', ', $args ) . ')->mText';
+								$result = "{$functionObj}->{$func}(" . implode( ', ', $args ) . ')';
 							}
 						} else {
 							// Unknown function name
-							$result = "call_user_func(array($functionObj, $func), " . implode( ', ', $args ) . ' )->mText';
+							$result = "call_user_func(array($functionObj, $func), " . implode( ', ', $args ) . ' )';
 						}
 					}
 					array_push( $stack, $result );
@@ -347,10 +349,17 @@ class CBTCompiler {
 					return "Unknown opcode {$op->opcode}\n";
 			}
 		}
+		wfProfileOut( $fname );
 		if ( count( $stack ) !== 1 ) {
 			return "Error, stack count incorrect\n";
 		}
-		return $stack[0];
+		return '
+			global $cbtExecutingGenerated;
+			++$cbtExecutingGenerated;
+			$output = ' . $stack[0] . ';
+			--$cbtExecutingGenerated;
+			return $output;
+			';
 	}
 }
 ?>

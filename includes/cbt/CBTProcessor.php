@@ -11,6 +11,8 @@ define( 'CBT_BRACE', '{}' );
 define( 'CBT_DELIM', CBT_WHITE . CBT_BRACE );
 define( 'CBT_DEBUG', 0 );
 
+$GLOBALS['cbtExecutingGenerated'] = 0;
+
 /**
  * Attempting to be a MediaWiki-independent module
  */
@@ -24,8 +26,20 @@ if ( !function_exists( 'wfProfileOut' ) ) {
 /**
  * Escape text for inclusion in template
  */
-function templateEscape( $text ) {
+function cbt_escape( $text ) {
 	return strtr( $text, array( '{' => '{[}', '}' => '{]}' ) );
+}
+
+/**
+ * Create a CBTValue
+ */
+function cbt_value( $text = '', $deps = array(), $isTemplate = false ) {
+	global $cbtExecutingGenerated;
+	if ( $cbtExecutingGenerated ) {
+		return $text;
+	} else {
+		return new CBTValue( $text, $deps, $isTemplate );
+	}
 }
 
 /**
@@ -111,7 +125,7 @@ class CBTValue {
 	/** If the value is plain text, escape it for inclusion in a template */
 	function templateEscape() {
 		if ( !$this->mIsTemplate ) {
-			$this->mText = templateEscape( $this->mText );
+			$this->mText = cbt_escape( $this->mText );
 		}
 	}
 
@@ -208,7 +222,7 @@ class CBTProcessor {
 	 */
 	 function templateEscape( $text ) {
 		if ( $this->mCompiling ) {
-			return templateEscape( $text );
+			return cbt_escape( $text );
 		} else {
 			return $text;
 		}

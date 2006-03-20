@@ -46,9 +46,9 @@ The callback function will receive its parameters as strings. If the
 result of the function depends only on the arguments, and certain things 
 understood to be "static", such as the source code, then the callback function
 should return a string. If the result depends on other things, then the function
-should return an object:
+should call cbt_value() to get a return value:
 
-   return new CBTValue( $text, $deps );
+   return cbt_value( $text, $deps );
 
 where $deps is an array of string tokens, each one naming a dependency. As a 
 shortcut, if there is only one dependency, $deps may be a string.
