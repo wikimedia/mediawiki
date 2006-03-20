@@ -114,8 +114,13 @@ class CBTValue {
 			$myProcessor = new CBTProcessor( $this->mText,  $processor->mFunctionObj, $processor->mIgnorableDeps );
 			$myProcessor->mCompiling = $processor->mCompiling;
 			$val = $myProcessor->doText( 0, strlen( $this->mText ) );
-			$this->mText = $val->mText;
-			$this->addDeps( $val );
+			if ( $myProcessor->getLastError() ) {
+				$processor->error( $myProcessor->getLastError() );
+				$this->mText = '';
+			} else {
+				$this->mText = $val->mText;
+				$this->addDeps( $val );
+			}
 			if ( !$processor->mCompiling ) {
 				$this->mIsTemplate = false;
 			}
@@ -144,6 +149,8 @@ class CBTProcessor {
 		$mCompiling = false,        # True if compiling to a template, false if executing to text
 		$mIgnorableDeps = array(),  # Dependency names which should be treated as static
 		$mFunctionCache = array(),  # A cache of function results keyed by argument hash
+		$mLastError = false,        # Last error message or false for no error
+		$mErrorPos = 0,             # Last error position
 
 		/** Built-in functions */
 		$mBuiltins = array(
