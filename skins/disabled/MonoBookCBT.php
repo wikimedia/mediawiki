@@ -4,10 +4,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
 }
 
-require_once( dirname(__FILE__) . '/../includes/cbt/CBTProcessor.php' );
-require_once( dirname(__FILE__) . '/../includes/cbt/CBTCompiler.php' );
-require_once( dirname(__FILE__) . '/../includes/SkinTemplate.php' );
-
+require_once( 'includes/cbt/CBTProcessor.php' );
+require_once( 'includes/cbt/CBTCompiler.php' );
+require_once( 'includes/SkinTemplate.php' );
 
 /**
  * MonoBook clone using the new dependency-tracking template processor.
@@ -437,6 +436,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 				if ( $name == 'disable' ) {
 					continue;
 				}
+				$code = cbt_escape( $code );
 				$name = cbt_escape( $name );
 				$s .= "{ca_variant {{$code}} {{$name}} {{$vcount}} {{$etpl}}}\n";
 				$vcount ++;
