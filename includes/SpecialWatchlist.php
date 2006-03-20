@@ -177,9 +177,10 @@ function wfSpecialWatchlist( $par ) {
 						htmlspecialchars( $s->wl_title ) . '" in namespace ' . $s->wl_namespace . " -->\n"
 					);
 				} else {
+					global $wgContLang;
 					$t = $t->getPrefixedText();
 					$wgOut->addHTML(
-						'<li><input type="checkbox" name="id[]" value="' . htmlspecialchars($t) . '" />' .
+						'<li><input type="checkbox" name="id[]" value="' . htmlspecialchars($t) . '" />' . ' ' . ($wgContLang->isRTL() ? '&rlm;' : '&lrm;') .
 						$sk->makeLink( $t, $t ) .
 						"</li>\n"
 					);
