@@ -31,6 +31,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 	var $mOut, $mTitle;
 	var $mStyleName = 'monobook';
 	var $mCompiling = false;
+	var $mFunctionCache = array();
 
 	/******************************************************
 	 * General functions                                  *
@@ -73,6 +74,8 @@ class SkinMonoBookCBT extends SkinTemplate {
 		global $wgDBname, $wgMemc, $wgRequest, $wgUser, $parserMemc;
 		$fname = 'SkinMonoBookCBT::getCompiledTemplate';
 
+		$expiry = 3600;
+		
 		// Sandbox template execution
 		if ( $this->mCompiling ) {
 			return;
@@ -94,11 +97,40 @@ class SkinMonoBookCBT extends SkinTemplate {
 		$cacheKey = "$wgDBname:monobookcbt:$type:" . $wgUser->getId();
 
 		$recompile = $wgRequest->getVal( 'recompile' );
-		if ( !$recompile ) { 
+		if ( $recompile == 'user' ) {
+			$recompileUser = true;
+			$recompileGeneric = false;
+		} elseif ( $recompile ) {
+			$recompileUser = true;
+			$recompileGeneric = true;
+		} else {
+			$recompileUser = false;
+			$recompileGeneric = false;
+		}
+		
+		if ( !$recompileUser ) { 
 			$php = $parserMemc->get( $cacheKey );
 		}
-		if ( $recompile || !$php ) {
-			$template = file_get_contents( $sourceFile );
+		if ( $recompileUser || !$php ) {
+			if ( $wgUser->isLoggedIn() ) {
+				// Perform staged compilation
+				// First compile a generic template for all logged-in users
+				$genericKey = "$wgDBname:monobookcbt:$type:loggedin";
+				if ( !$recompileGeneric ) {
+					$template = $parserMemc->get( $genericKey );
+				}
+				if ( $recompileGeneric || !$template ) {
+					$template = file_get_contents( $sourceFile );
+					$ignore = array( 'loggedin', '!loggedin dynamic' );
+					if ( $type == 'view' ) {
+						$ignore[] = 'nonview dynamic';
+					}
+					$template = $this->compileTemplate( $template, $ignore );
+					$parserMemc->set( $genericKey, $template, $expiry );
+				}
+			} else {
+				$template = file_get_contents( $sourceFile );
+			}
 
 			$ignore = array( 'lang', 'loggedin', 'user' );
 			if ( $wgUser->isLoggedIn() ) {
@@ -109,16 +141,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 			if ( $type == 'view' ) {
 				$ignore[] = 'nonview dynamic';
 			}
-			$tp = new CBTProcessor( $template, $this, $ignore );
-			$this->mCompiling = true;
-			$compiled = $tp->compile();
-			$this->mCompiling = false;
-			if ( $tp->getLastError() ) {
-				// If there was a compile error, don't save the template
-				// Instead just print the error and exit
-				echo $compiled;
-				wfErrorExit();
-			}
+			$compiled = $this->compileTemplate( $template, $ignore );
 
 			// Reduce whitespace
 			// This is done here instead of in CBTProcessor because we can be 
@@ -135,19 +158,41 @@ class SkinMonoBookCBT extends SkinTemplate {
 			}
 			$php = $compiler->generatePHP( '$this' );
 
-			$parserMemc->set( $cacheKey, $php, 3600 );
+			$parserMemc->set( $cacheKey, $php, $expiry );
 		}
 		wfProfileOut( $fname );
 		return $php;
+	}
+
+	function compileTemplate( $template, $ignore ) {
+		$tp = new CBTProcessor( $template, $this, $ignore );
+		$tp->mFunctionCache = $this->mFunctionCache;
+
+		$this->mCompiling = true;
+		$compiled = $tp->compile();
+		$this->mCompiling = false;
+
+		if ( $tp->getLastError() ) {
+			// If there was a compile error, don't save the template
+			// Instead just print the error and exit
+			echo $compiled;
+			wfErrorExit();
+		}
+		$this->mFunctionCache = $tp->mFunctionCache;
+		return $compiled;
 	}
 
 	function executeTemplate( $template ) {
 		$fname = 'SkinMonoBookCBT::executeTemplate';
 		wfProfileIn( $fname );
 		$tp = new CBTProcessor( $template, $this );
+		$tp->mFunctionCache = $this->mFunctionCache;
+		
 		$this->mCompiling = true;
 		$text = $tp->execute();
 		$this->mCompiling = false;
+
+		$this->mFunctionCache = $tp->mFunctionCache;
 		wfProfileOut( $fname );
 		return $text;
 	}
@@ -422,7 +467,10 @@ class SkinMonoBookCBT extends SkinTemplate {
 	}
 	
 	function catlinks() {
-		return cbt_value( $this->getCategories(), 'dynamic' );
+		if ( !isset( $this->mCatlinks ) ) {
+			$this->mCatlinks = $this->getCategories();
+		}
+		return cbt_value( $this->mCatlinks, 'dynamic' );
 	}
 	
 	function extratabs( $itemTemplate ) {
@@ -936,12 +984,14 @@ class SkinMonoBookCBT extends SkinTemplate {
 		global $wgMaxCredits;
 		if ( $wgMaxCredits ) return '';
 
-		if ( $this->isCurrentArticleView() ) {
-			$s = $this->lastModified(); 
-		} else {
-			$s = '';
+		if ( !isset( $this->mLastmod ) ) {
+			if ( $this->isCurrentArticleView() ) {
+				$this->mLastmod = $this->lastModified(); 
+			} else {
+				$this->mLastmod = '';
+			}
 		}
-		return cbt_value( $s, 'dynamic' );
+		return cbt_value( $this->mLastmod, 'dynamic' );
 	}
 	
 	function viewcount() {
