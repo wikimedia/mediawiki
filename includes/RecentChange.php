@@ -464,9 +464,9 @@ class RecentChange
 		} else if ( $rc_new ) {
 			$url = $titleObj->getFullURL();
 		} else if ( $wgUseRCPatrol ) {
-			$url = $titleObj->getFullURL("diff=0&oldid=$rc_last_oldid&rcid=$rc_id");
+			$url = $titleObj->getFullURL("diff=$rc_this_oldid&oldid=$rc_last_oldid&rcid=$rc_id");
 		} else {
-			$url = $titleObj->getFullURL("diff=0&oldid=$rc_last_oldid");
+			$url = $titleObj->getFullURL("diff=$rc_this_oldid&oldid=$rc_last_oldid");
 		}
 
 		if ( isset( $oldSize ) && isset( $newSize ) ) {
