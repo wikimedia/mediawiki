@@ -83,8 +83,7 @@ class contribs_finder {
 
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
-			"rev_user_text = " . $this->dbr->addQuotes($this->username)
-			. $nscond;
+			$usercond . $nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC";
 		$sql = $this->dbr->limitResult($sql, $this->limit, 0);
 		$res = $this->dbr->query($sql);
@@ -102,8 +101,7 @@ class contribs_finder {
 		$nscond = $this->get_namespace_cond();
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND " .
-			"rev_user_text = " . $this->dbr->addQuotes($this->username)
-			. $nscond;
+			$usercond . $nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC";
 		$sql = $this->dbr->limitResult($sql, $this->limit, 0);
 		$res = $this->dbr->query($sql);
