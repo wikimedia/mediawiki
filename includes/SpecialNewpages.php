@@ -65,14 +65,10 @@ class NewPagesPage extends QueryPage {
 
 		$length = wfMsg( 'nbytes', $wgLang->formatNum( $result->length ) );
 
-		if ( $u == 0 ) { # not by a logged-in user
-			$userPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
-			$linkParams = 'target=' . urlencode( $ut );
-		} else {
-			$userPage = Title::makeTitle( NS_USER, $ut );
-			$linkParams = '';
-		}
-		$ul = $skin->makeLinkObj( $userPage, htmlspecialchars( $ut ), $linkParams );
+		$userLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER, $ut ), htmlspecialchars( $ut ) );
+		$talkLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER_TALK, $ut ), $wgLang->getNsText( NS_TALK ) );
+		$contLink  = $skin->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), wfMsg( 'contribslink' ), 'target=' . urlencode( $ut ) );
+		$userTools = "$userLink ($talkLink | $contLink)";
 
 		$d = $wgLang->timeanddate( $result->timestamp, true );
 
@@ -85,7 +81,7 @@ class NewPagesPage extends QueryPage {
 			$link = $skin->makeKnownLink( $ns . ':' . $result->title, '' );
 		}
 
-		$s = "{$d} {$link} ({$length}) . . {$ul}";
+		$s = "{$d} {$link} ({$length}) . . {$userTools}";
 		$s .= $skin->commentBlock( $result->comment );
 		return $s;
 	}
