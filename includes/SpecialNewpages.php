@@ -63,7 +63,7 @@ class NewPagesPage extends QueryPage {
 		$linkBatch = new LinkBatch();
 		while( $row = $dbo->fetchObject( $res ) ) {
 			$linkBatch->addObj( Title::makeTitleSafe( NS_USER, $res->user_text ) );
-			$linkBatch->addObj( Title::makeTitleSafe( NS_USER_TALK, $res_user_text ) );
+			$linkBatch->addObj( Title::makeTitleSafe( NS_USER_TALK, $res->user_text ) );
 		}
 		$linkBatch->execute();
 		# Seek to start
