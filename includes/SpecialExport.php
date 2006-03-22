@@ -44,6 +44,9 @@ function wfSpecialExport( $page = '' ) {
 		# Pre-check the 'current version only' box in the UI
 		$curonly = true;
 	}
+	
+	$list_authors = $wgRequest->getCheck( 'listauthors' );
+	if ( !$curonly ) $list_authors = false ;
 
 	if( $page != '' ) {
 		$wgOut->disable();
@@ -53,6 +56,7 @@ function wfSpecialExport( $page = '' ) {
 		$db =& wfGetDB( DB_SLAVE );
 		$history = $curonly ? MW_EXPORT_CURRENT : MW_EXPORT_FULL;
 		$exporter = new WikiExporter( $db, $history );
+		$exporter->list_authors = $list_authors ;
 		$exporter->openStream();
 		$exporter->pagesByName( $pages );
 		$exporter->closeStream();
