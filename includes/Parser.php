@@ -3833,7 +3833,7 @@ class ParserOutput
 		$mLanguageLinks,    # List of the full text of language links, in the order they appear
 		$mCategories,       # Map of category names to sort keys
 		$mContainsOldMagic, # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
-		$mCacheTime,        # Timestamp on this article, or -1 for uncacheable. Used in ParserCache.
+		$mCacheTime,        # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
 		$mVersion,          # Compatibility check
 		$mTitleText,        # title text of the chosen language variant
 		$mLinks,            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
