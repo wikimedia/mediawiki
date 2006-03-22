@@ -70,6 +70,10 @@ class CBTCompiler {
 		$this->mText = $text;
 	}
 
+	/**
+	 * Compile the text.
+	 * Returns true on success, error message on failure
+	 */
 	function compile() {
 		$fname = 'CBTProcessor::compile';
 		$this->mLastError = false;

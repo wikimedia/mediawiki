@@ -144,7 +144,7 @@ class CBTValue {
  * Template processor, for compilation and execution
  */
 class CBTProcessor {
-	var $mText,                     # The text being processed. This is immutable.
+	var $mText,                     # The text being processed
 		$mFunctionObj,              # The object containing callback functions
 		$mCompiling = false,        # True if compiling to a template, false if executing to text
 		$mIgnorableDeps = array(),  # Dependency names which should be treated as static
