@@ -57,6 +57,19 @@ class NewPagesPage extends QueryPage {
 			WHERE rc_cur_id=page_id AND rc_new=1
 			AND rc_namespace=" . $this->namespace . " AND page_is_redirect=0";
 	}
+	
+	function preprocessResults( &$dbo, &$res ) {
+		# Do a batch existence check on the user and talk pages
+		$linkBatch = new LinkBatch();
+		while( $row = $dbo->fetchObject( $res ) ) {
+			$linkBatch->addObj( Title::makeTitleSafe( NS_USER, $res->user_text ) );
+			$linkBatch->addObj( Title::makeTitleSafe( NS_USER_TALK, $res_user_text ) );
+		}
+		$linkBatch->execute();
+		# Seek to start
+		if( $dbo->numRows( $res ) > 0 )
+			$dbo->dataSeek( $res, 0 );
+	}
 
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol;
@@ -67,7 +80,7 @@ class NewPagesPage extends QueryPage {
 
 		$userLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER, $ut ), htmlspecialchars( $ut ) );
 		$talkLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER_TALK, $ut ), htmlspecialchars( $wgLang->getNsText( NS_TALK ) ) );
-		$contLink  = $skin->makeLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions/$ut" ), wfMsgHtml( 'contribslink' ) );
+		$contLink  = $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions/$ut" ), wfMsgHtml( 'contribslink' ) );
 		$userTools = "$userLink ($talkLink | $contLink)";
 
 		$d = $wgLang->timeanddate( $result->timestamp, true );
