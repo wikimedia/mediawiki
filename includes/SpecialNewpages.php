@@ -63,11 +63,11 @@ class NewPagesPage extends QueryPage {
 		$u = $result->user;
 		$ut = $result->user_text;
 
-		$length = wfMsg( 'nbytes', $wgLang->formatNum( $result->length ) );
+		$length = wfMsgHtml( 'nbytes', htmlspecialchars( $wgLang->formatNum( $result->length ) ) );
 
 		$userLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER, $ut ), htmlspecialchars( $ut ) );
-		$talkLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER_TALK, $ut ), $wgLang->getNsText( NS_TALK ) );
-		$contLink  = $skin->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), wfMsg( 'contribslink' ), 'target=' . urlencode( $ut ) );
+		$talkLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER_TALK, $ut ), htmlspecialchars( $wgLang->getNsText( NS_TALK ) ) );
+		$contLink  = $skin->makeLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions/$ut" ), wfMsgHtml( 'contribslink' ) );
 		$userTools = "$userLink ($talkLink | $contLink)";
 
 		$d = $wgLang->timeanddate( $result->timestamp, true );
