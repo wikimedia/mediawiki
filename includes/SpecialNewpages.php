@@ -77,12 +77,6 @@ class NewPagesPage extends QueryPage {
 		$ut = $result->user_text;
 
 		$length = wfMsgHtml( 'nbytes', htmlspecialchars( $wgLang->formatNum( $result->length ) ) );
-
-		$userLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER, $ut ), htmlspecialchars( $ut ) );
-		$talkLink  = $skin->makeLinkObj( Title::makeTitle( NS_USER_TALK, $ut ), htmlspecialchars( $wgLang->getNsText( NS_TALK ) ) );
-		$contLink  = $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions/$ut" ), wfMsgHtml( 'contribslink' ) );
-		$userTools = "$userLink ($talkLink | $contLink)";
-
 		$d = $wgLang->timeanddate( $result->timestamp, true );
 
 		# Since there is no diff link, we need to give users a way to
@@ -93,6 +87,8 @@ class NewPagesPage extends QueryPage {
 		} else {
 			$link = $skin->makeKnownLink( $ns . ':' . $result->title, '' );
 		}
+
+		$userTools = $skin->userLink( $u, $ut ) . $skin->userToolLinks( $u, $ut );
 
 		$s = "{$d} {$link} ({$length}) . . {$userTools}";
 		$s .= $skin->commentBlock( $result->comment );
