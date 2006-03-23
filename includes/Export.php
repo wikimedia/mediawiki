@@ -40,6 +40,10 @@ define( 'MW_EXPORT_STUB',     1 );
  * @subpackage SpecialPage
  */
 class WikiExporter {
+	
+	var $list_authors = false ; # Return distinct author list (when not returning full history)
+	var $author_list = "" ;
+	
 	/**
 	 * If using MW_EXPORT_STREAM to stream a large amount of data,
 	 * provide a database connection which is not managed by
@@ -133,6 +137,30 @@ class WikiExporter {
 
 	// -------------------- private implementation below --------------------
 
+	# Generates the distinct list of authors of an article
+	# Not called by default (depends on $this->list_authors)
+	# Can be set by Special:Export when not exporting whole history
+	function do_list_authors ( $page , $revision , $cond ) {
+		$fname = "do_list_authors" ;
+		wfProfileIn( $fname );
+		$this->author_list = "<contributors>";
+		$sql = "SELECT DISTINCT rev_user_text,rev_user FROM {$page},{$revision} WHERE page_id=rev_page AND " . $cond ;
+		$result = $this->db->query( $sql, $fname );
+		$resultset = $this->db->resultObject( $result );
+		while( $row = $resultset->fetchObject() ) {
+			$this->author_list .= "<contributor>" . 
+				"<username>" . 
+				htmlentities( $row->rev_user_text )  . 
+				"</username>" . 
+				"<id>" . 
+				$row->rev_user .
+				"</id>" . 
+				"</contributor>";
+		}
+		wfProfileOut( $fname );
+		$this->author_list .= "</contributors>";
+	}
+
 	function dumpFrom( $cond = '' ) {
 		$fname = 'WikiExporter::dumpFrom';
 		wfProfileIn( $fname );
@@ -140,10 +168,13 @@ class WikiExporter {
 		$page     = $this->db->tableName( 'page' );
 		$revision = $this->db->tableName( 'revision' );
 		$text     = $this->db->tableName( 'text' );
-
+		
 		if( $this->history == MW_EXPORT_FULL ) {
 			$join = 'page_id=rev_page';
 		} elseif( $this->history == MW_EXPORT_CURRENT ) {
+			if ( $this->list_authors && $cond != '' )  { // List authors, if so desired
+				$this->do_list_authors ( $page , $revision , $cond );
+			}
 			$join = 'page_id=rev_page AND page_latest=rev_id';
 		} else {
 			wfProfileOut( $fname );
@@ -179,6 +210,10 @@ class WikiExporter {
 		$result = $this->db->query( $sql, $fname );
 		$wrapper = $this->db->resultObject( $result );
 		$this->outputStream( $wrapper );
+		
+		if ( $this->list_authors ) {
+			$this->outputStream( $wrapper );
+		}
 
 		if( $this->buffer == MW_EXPORT_STREAM ) {
 			$this->db->bufferResults( $prev );
@@ -218,7 +253,7 @@ class WikiExporter {
 			$this->sink->writeRevision( $row, $output );
 		}
 		if( isset( $last ) ) {
-			$output = $this->writer->closePage();
+			$output = $this->author_list . $this->writer->closePage();
 			$this->sink->writeClosePage( $output );
 		}
 		$resultset->free();
