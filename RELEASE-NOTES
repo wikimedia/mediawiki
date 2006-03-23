@@ -253,6 +253,7 @@ i18n / Languages:
 * (bug 3993) Variants for Serbian language
 * Typo in English messages file
 * (bug 4114) Spacing in watchlist rows (in editing mode)
+* Update default "exporttext" to reflect that Special:Import exists
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits

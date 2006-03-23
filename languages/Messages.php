@@ -1397,9 +1397,8 @@ The destination article "[[$1]]" already exists. Do you want to delete it to mak
 
 'export'		=> 'Export pages',
 'exporttext'	=> 'You can export the text and editing history of a particular page or
-set of pages wrapped in some XML. In the future, this may then be imported into another
-wiki running MediaWiki software, although there is no support for this feature in the
-current version.
+set of pages wrapped in some XML. This can be imported into another wiki using MediaWiki
+via the Special:Import page.
 
 To export pages, enter the titles in the text box below, one title per line, and
 select whether you want the current version as well as all old versions, with the page
