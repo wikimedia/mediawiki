@@ -1390,6 +1390,7 @@ $wgImportSources = array();
  * disabled on Wikimedia's sites.
  */
 $wgExportAllowHistory = true;
+$wgExportAllowListContributors = false ;
 
 
 /** Text matching this regular expression will be recognised as spam
