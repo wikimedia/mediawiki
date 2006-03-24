@@ -1416,7 +1416,9 @@ class Parser
 					$m[3] = $n[1];
 				}
 				# fix up urlencoded title texts
-				if(preg_match('/%/', $m[1] )) $m[1] = urldecode($m[1]);
+				if(preg_match('/%/', $m[1] )) 
+					# Should anchors '#' also be rejected?
+					$m[1] = str_replace( array('<', '>'), array('&lt;', '&gt;'), urldecode($m[1]) );
 				$trail = $m[3];
 			} elseif( preg_match($e1_img, $line, $m) ) { # Invalid, but might be an image with a link in its caption
 				$might_be_img = true;
