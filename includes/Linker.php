@@ -572,10 +572,10 @@ class Linker {
 			$height = $img->getHeight();
 		}
 		if ( 0 == $width || 0 == $height ) {
-			$width = $height = 200;
+			$width = $height = 180;
 		}
 		if ( $boxwidth == 0 ) {
-			$boxwidth = 200;
+			$boxwidth = 180;
 		}
 		if ( $framed ) {
 			// Use image dimensions, don't scale
