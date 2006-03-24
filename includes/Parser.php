@@ -1407,7 +1407,11 @@ class Parser
 				# Still some problems for cases where the ] is meant to be outside punctuation,
 				# and no image is in sight. See bug 2095.
 				#
-				if( $text !== '' && preg_match( "/^\](.*)/s", $m[3], $n ) ) {
+				if( $text !== '' && 
+					preg_match( "/^\](.*)/s", $m[3], $n ) && 
+					strpos($text, '[') !== false 
+				) 
+				{
 					$text .= ']'; # so that replaceExternalLinks($text) works later
 					$m[3] = $n[1];
 				}
