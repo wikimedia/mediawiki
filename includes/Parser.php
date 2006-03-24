@@ -1207,6 +1207,19 @@ class Parser
 				$url = $protocol . $m[1];
 				$trail = $m[2];
 
+				# special case: handle urls as url args:
+				# http://www.example.com/foo?=http://www.example.com/bar
+				if(strlen($trail) == 0 && 
+					isset($bits[$i]) &&
+					preg_match('/^'. wfUrlProtocols() . '$/S', $bits[$i]) &&
+					preg_match( '/^('.EXT_LINK_URL_CLASS.'+)(.*)$/s', $bits[$i + 1], $m )) 
+				{
+					# add protocol, arg
+					$url .= $bits[$i] . $bits[$i + 1]; # protocol, url as arg to previous link
+					$i += 2;
+					$trail = $m[2];
+				}
+
 				# The characters '<' and '>' (which were escaped by
 				# removeHTMLtags()) should not be included in
 				# URLs, per RFC 2396.
