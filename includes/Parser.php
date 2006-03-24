@@ -830,6 +830,9 @@ class Parser
 		}
 
 		$t = implode ( "\n" , $t ) ;
+		# special case: don't return empty table
+		if($t == "<table>\n<tr><td></td></tr>\n</table>")
+			$t = '';
 		wfProfileOut( $fname );
 		return $t ;
 	}
