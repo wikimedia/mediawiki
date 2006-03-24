@@ -127,18 +127,28 @@ h4 { font-size: 116%; }
 h5 { font-size: 100%; }
 h6 { font-size: 80%;  }
 
-ul {
+ul,
+*[dir=ltr] ul {
 	line-height: 1.5em;
 	list-style-type: square;
 	margin: .3em 0 0 1.5em;
 	padding: 0;
 	list-style-image: url(bullet.gif);
 }
-ol {
+*[dir=rtl] ul {
+	margin-left: 0;
+	margin-right: 1.5em;
+}
+ol,
+*[dir=ltr] ol {
 	line-height: 1.5em;
 	margin: .3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
+}
+*[dir=rtl] ol { 
+	margin-left: 0;
+	margin-right: 2.4em;
 }
 li {
 	margin-bottom: .1em;
@@ -151,10 +161,16 @@ dl {
 	margin-top: .2em;
 	margin-bottom: .5em;
 }
-dd {
+dd,
+*[dir=ltr] dd {
 	line-height: 1.5em;
 	margin-left: 2em;
+	margin-right: 0;
 	margin-bottom: .1em;
+}
+*[dir=rtl] dd {
+	margin-left: 0;
+	margin-right: 1.6em;
 }
 
 fieldset {
@@ -386,7 +402,10 @@ table.small {
 }
 
 /* images */
-div.floatright, table.floatright {
+div.floatright,
+*[dir=ltr] div.floatright,
+table.floatright,
+*[dir=ltr] table.floatright {
 	clear: right;
 	float: right;
 	position: relative;
@@ -398,7 +417,10 @@ div.floatright, table.floatright {
 */
 }
 div.floatright p { font-style: italic; }
-div.floatleft, table.floatleft {
+div.floatleft,
+*[dir=ltr] div.floatleft,
+table.floatleft,
+*[dir=ltr] table.floatleft {
 	float: left;
 	position: relative;
 	margin: 0 .5em .5em 0;
@@ -444,17 +466,28 @@ div.magnify a, div.magnify img {
 	border: none !important;
 	background: none !important;
 }
-div.tright {
+div.tright,
+*[dir=ltr] div.tright {
 	clear: right;
 	float: right;
 	border-width: .5em 0 .8em 1.4em;
 }
-div.tleft {
+*[dir=rtl] div.tright, 
+*[dir=rtl] div.floatright,
+*[dir=rtl] table.floatright {
+	clear:none;
+}
+div.tleft,
+*[dir=ltr] div.tleft {
 	float: left;
 	margin-right: .5em;
 	border-width: .5em 1.4em .8em 0;
 }
-
+*[dir=rtl] div.tleft,
+*[dir=rtl] div.floatleft,
+*[dir=rtl] table.floatleft {
+	clear: left;
+}
 .hiddenStructure {
 	display: none;
 	speak: none;
@@ -610,7 +643,8 @@ span.diffchange {
 }
 /* this can be used in the content area to switch off
 special external link styling */
-#bodyContent .plainlinks a {
+#bodyContent .plainlinks a,
+#bodyContent *[dir="rtl"] a {
 	background: none !important;
 	padding: 0 !important;
 }
