@@ -622,6 +622,9 @@ class Sanitizer {
 		);
 
 		$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
+		# *must* start with letters (a-zA-Z), so prefix with something
+		# informative
+		$id = preg_replace('/^([0-9])/','iHaveToStartWithALetter-\\1', $id); 
 
 		return str_replace( array_keys( $replace ), array_values( $replace ), $id );
 	}
