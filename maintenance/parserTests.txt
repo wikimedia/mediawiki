@@ -332,9 +332,9 @@ Definition list with URL link
 !! test
 Definition list with bracketed URL link
 !! input
-;[http://www.google.com/ Google]:Number one search engine
+;[http://www.example.com/ Example]:Something about it
 !! result
-<dl><dt><a href="http://www.google.com/" class='external text' title="http://www.google.com/" rel="nofollow">Google</a></dt><dd>Number one search engine
+<dl><dt><a href="http://www.example.com/" class='external text' title="http://www.example.com/" rel="nofollow">Example</a></dt><dd>Something about it
 </dd></dl>
 
 !! end
@@ -669,6 +669,9 @@ BUG 289: literal double quote in bracketed URL
 
 !! test
 External links: invalid character
+Fixme: the missing char seems to have gone missing
+'' options
+disabled
 !! input
 [http://www.example.com  test]
 !! result
@@ -686,6 +689,15 @@ External links: multiple legal whitespace is fine, Magnus. Don't break it please
 !! end
 
 !! test
+External links: wiki links within external link (Bug 3695)
+!! input
+[http://example.com [[wikilink]] embedded in ext link]
+!! result
+<p><a href="http://example.com" class='external text' title="http://example.com" rel="nofollow"></a><a href="/index.php?title=Wikilink&amp;action=edit" class="new" title="Wikilink">wikilink</a><a href="http://example.com" class='external text' title="http://example.com" rel="nofollow"> embedded in ext link</a>
+</p>
+!! end
+
+!! test
 BUG 787: Links with one slash after the url protocol are invalid
 !! input
 http:/example.com
@@ -698,11 +710,19 @@ http:/example.com
 !! end
 
 !! test
-Bug 2702: Mismatched <i> and <a> tags are invalid
+Bug 2702: Mismatched <i>, <b> and <a> tags are invalid
 !! input
 ''[http://example.com text'']
+[http://example.com '''text]'''
+''Something [http://example.com in italic'']
+''Something [http://example.com mixed''''', even bold]'''
+'''''Now [http://example.com both''''']
 !! result
-<p><i><a href="http://example.com" class='external text' title="http://example.com" rel="nofollow">text</a></i>
+<p><a href="http://example.com" class='external text' title="http://example.com" rel="nofollow"><i>text</i></a>
+<a href="http://example.com" class='external text' title="http://example.com" rel="nofollow"><b>text</b></a>
+<i>Something </i><a href="http://example.com" class='external text' title="http://example.com" rel="nofollow"><i>in italic</i></a>
+<i>Something </i><a href="http://example.com" class='external text' title="http://example.com" rel="nofollow"><i>mixed</i><b>, even bold</b></a>
+<i><b>Now </b></i><a href="http://example.com" class='external text' title="http://example.com" rel="nofollow"><i><b>both</b></i></a>
 </p>
 !! end
 
@@ -833,7 +853,7 @@ Normal text.
 <p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
 </p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
 </p><p><b>Bold text..</b>
-</p><p>..spanning two paragraphs (should not work).<b></b>
+</p><p>..spanning two paragraphs (should not work).
 </p><p><b>Bold tag left open</b>
 </p><p><i>Italic tag left open</i>
 </p><p>Normal text.
@@ -869,10 +889,8 @@ A table with nothing but a caption
 !! result
 <table>
 <caption> caption
-</caption>
-<tr>
-<td>
-</td></tr></table>
+</caption><tr><td></td></tr></table>
+
 !! end
 
 !! test
@@ -2421,11 +2439,13 @@ Image with frame and link
 !! end
 
 !! test
-Link to image page
+Link to image page- image page normally doesn't exists, hence edit link
+TODO: Add test with existing image page
+#<p><a href="/wiki/Image:Test" title="Image:Test">Image:test</a>
 !! input
 [[:Image:test]]
 !! result
-<p><a href="/wiki/Image:Test" title="Image:Test">Image:test</a>
+<p><a href="/index.php?title=Image:Test&amp;action=edit" class="new" title="Image:Test">Image:test</a>
 </p>
 !! end
 
@@ -2452,15 +2472,47 @@ BUG 1887: A ISBN with a thumbnail
 !! input
 [[Image:foobar.jpg|thumb|ISBN 12354]]
 !! result
-<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="ISBN 12354"><img src="http://example.com/images/3/3a/Foobar.jpg" alt="ISBN 12354" longdesc="/wiki/Image:Foobar.jpg" height="180" width="180"></a>  <div class="thumbcaption"><div class="magnify" style="float:right;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge"></a></div><a href="index.php?title=Special:Booksources&amp;isbn=12354" class="internal">ISBN 12354</a></div></div></div>
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="ISBN 12354"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="ISBN 12354" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><a href="/index.php?title=Special:Booksources&amp;isbn=12354" class="internal">ISBN 12354</a></div></div></div>
+
 !! end
 
 !! test
-BUG 1887: A <math> with a thumbnail
+BUG 1887: A RFC with a thumbnail
+!! input
+[[Image:foobar.jpg|thumb|This is RFC 12354]]
+!! result
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is RFC 12354"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="This is RFC 12354" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div>This is <a href='http://www.ietf.org/rfc/rfc12354.txt' class='external' title="http://www.ietf.org/rfc/rfc12354.txt">RFC 12354</a></div></div></div>
+
+!! end
+
+!! test
+BUG 1887: A mailto link with a thumbnail
+!! input
+[[Image:foobar.jpg|thumb|Please mailto:nobody@example.com]]
+!! result
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Please mailto:nobody@example.com"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="Please mailto:nobody@example.com" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div>Please <a href="mailto:nobody@example.com" class='external free' title="mailto:nobody@example.com" rel="nofollow">mailto:nobody@example.com</a></div></div></div>
+
+!! end
+
+!! test
+BUG 1887: A <math> with a thumbnail- we don't render math in the parsertests by default,
+so math is not stripped and turns up as escaped &lt;math&gt; tags.
 !! input
 [[Image:foobar.jpg|thumb|<math>2+2</math>]]
 !! result
-<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="2+2"><img src="http://example.com/images/3/3a/Foobar.jpg" alt="2+2" longdesc="/wiki/Image:Foobar.jpg" height="180" width="180"></a>  <div class="thumbcaption"><div class="magnify" style="float:right;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge"></a></div>&lt;math&gt;2+2&lt;math&gt;</div></div></div>
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="&lt;math&gt;2+2&lt;/math&gt;"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="&lt;math&gt;2+2&lt;/math&gt;" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div>&lt;math&gt;2+2&lt;/math&gt;</div></div></div>
+
+!! end
+
+!! test
+BUG 1887, part 2: A <math> with a thumbnail- math enabled
+!! options
+math
+!! input
+[[Image:foobar.jpg|thumb|<math>2+2</math>]]
+!! result
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="2 + 2"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="2 + 2" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><span class="texhtml">2 + 2</span></div></div></div>
+
 !! end
 
 # Pending resolution to bug 368
@@ -2631,7 +2683,7 @@ Simple category
 !! options
 cat
 !! input
-[[Category: MediaWiki User's Guide]]
+[[Category:MediaWiki User's Guide]]
 !! result
 <a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
@@ -2667,13 +2719,13 @@ More
 ===Smaller headline===
 Blah blah
 !! result
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Headline_1"></a><h2> Headline 1 </h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</div><a name="Headline_1"></a><h2> Headline 1 </h2>
 <p>Some text
 </p>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Headline_2"></a><h2>Headline 2</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Edit section: Headline 2">edit</a>]</div><a name="Headline_2"></a><h2>Headline 2</h2>
 <p>More
 </p>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Parser test script">edit</a>]</div><a name="Smaller_headline"></a><h3>Smaller headline</h3>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Edit section: Smaller headline">edit</a>]</div><a name="Smaller_headline"></a><h3>Smaller headline</h3>
 <p>Blah blah
 </p>
 !! end
@@ -2713,16 +2765,15 @@ Some text
 </ul>
 </li>
 </ul>
-</td></tr></table>
-<script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Headline_1"></a><h2> Headline 1 </h2>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Subheadline_1"></a><h3> Subheadline 1 </h3>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Parser test script">edit</a>]</div><a name="Skipping_a_level"></a><h5> Skipping a level </h5>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=4" title="Parser test script">edit</a>]</div><a name="Skipping_a_level_2"></a><h6> Skipping a level </h6>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=5" title="Parser test script">edit</a>]</div><a name="Headline_2"></a><h2> Headline 2 </h2>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</div><a name="Headline_1"></a><h2> Headline 1 </h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Edit section: Subheadline 1">edit</a>]</div><a name="Subheadline_1"></a><h3> Subheadline 1 </h3>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Edit section: Skipping a level">edit</a>]</div><a name="Skipping_a_level"></a><h5> Skipping a level </h5>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=4" title="Edit section: Skipping a level">edit</a>]</div><a name="Skipping_a_level_2"></a><h6> Skipping a level </h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=5" title="Edit section: Headline 2">edit</a>]</div><a name="Headline_2"></a><h2> Headline 2 </h2>
 <p>Some text
 </p>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=6" title="Parser test script">edit</a>]</div><a name="Another_headline"></a><h3>Another headline</h3>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=6" title="Edit section: Another headline">edit</a>]</div><a name="Another_headline"></a><h3>Another headline</h3>
 
 !! end
 
@@ -2769,19 +2820,17 @@ Handling of sections up to level 6 and beyond
 </ul>
 </li>
 </ul>
-</td></tr></table>
-<p><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
-</p>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Parser test">edit</a>]</div><a name="Level_1_Heading"></a><h1> Level 1 Heading</h1>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Parser test">edit</a>]</div><a name="Level_2_Heading"></a><h2> Level 2 Heading</h2>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Parser test">edit</a>]</div><a name="Level_3_Heading"></a><h3> Level 3 Heading</h3>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Parser test">edit</a>]</div><a name="Level_4_Heading"></a><h4> Level 4 Heading</h4>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Parser test">edit</a>]</div><a name="Level_5_Heading"></a><h5> Level 5 Heading</h5>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Parser test">edit</a>]</div><a name="Level_6_Heading"></a><h6> Level 6 Heading</h6>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=7" title="Parser test">edit</a>]</div><a name=".3D_Level_7_Heading.3D"></a><h6>= Level 7 Heading=</h6>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=8" title="Parser test">edit</a>]</div><a name=".3D.3D_Level_8_Heading.3D.3D"></a><h6>== Level 8 Heading==</h6>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=9" title="Parser test">edit</a>]</div><a name=".3D.3D.3D_Level_9_Heading.3D.3D.3D"></a><h6>=== Level 9 Heading===</h6>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=10" title="Parser test">edit</a>]</div><a name=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D"></a><h6>==== Level 10 Heading====</h6>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Level 1 Heading">edit</a>]</div><a name="Level_1_Heading"></a><h1> Level 1 Heading</h1>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Level 2 Heading">edit</a>]</div><a name="Level_2_Heading"></a><h2> Level 2 Heading</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Level 3 Heading">edit</a>]</div><a name="Level_3_Heading"></a><h3> Level 3 Heading</h3>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Level 4 Heading">edit</a>]</div><a name="Level_4_Heading"></a><h4> Level 4 Heading</h4>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Level 5 Heading">edit</a>]</div><a name="Level_5_Heading"></a><h5> Level 5 Heading</h5>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Level 6 Heading">edit</a>]</div><a name="Level_6_Heading"></a><h6> Level 6 Heading</h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=7" title="Edit section: = Level 7 Heading=">edit</a>]</div><a name=".3D_Level_7_Heading.3D"></a><h6>= Level 7 Heading=</h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=8" title="Edit section: == Level 8 Heading==">edit</a>]</div><a name=".3D.3D_Level_8_Heading.3D.3D"></a><h6>== Level 8 Heading==</h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=9" title="Edit section: === Level 9 Heading===">edit</a>]</div><a name=".3D.3D.3D_Level_9_Heading.3D.3D.3D"></a><h6>=== Level 9 Heading===</h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=10" title="Edit section: ==== Level 10 Heading====">edit</a>]</div><a name=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D"></a><h6>==== Level 10 Heading====</h6>
 
 !! end
 
@@ -2793,8 +2842,8 @@ title=[[Parser test script]]
 == Foo bar ==
 == Foo bar ==
 !! result
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Foo_bar"></a><h2> Foo bar </h2>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Foo_bar_2"></a><h2> Foo bar </h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</div><a name="Foo_bar"></a><h2> Foo bar </h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Edit section: Foo bar">edit</a>]</div><a name="Foo_bar_2"></a><h2> Foo bar </h2>
 
 !! end
 
@@ -2815,10 +2864,10 @@ __NOTOC__
 {{sections}}
 ==Section 4==
 !! result
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Section_0"></a><h2>Section 0</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Edit section: Section 0">edit</a>]</div><a name="Section_0"></a><h2>Section 0</h2>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=1" title="Template:Sections">edit</a>]</div><a name="Section_1"></a><h3>Section 1</h3>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=2" title="Template:Sections">edit</a>]</div><a name="Section_2"></a><h2>Section 2</h2>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Section_4"></a><h2>Section 4</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a>]</div><a name="Section_4"></a><h2>Section 4</h2>
 
 !! end
 
@@ -2841,7 +2890,7 @@ title=[[Parser test script]]
 !! input
 ==Section with a [[Main Page|link]] in it==
 !! result
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Section_with_a_link_in_it"></a><h2>Section with a <a href="/wiki/Main_Page" title="Main Page">link</a> in it</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Edit section: Section with a link in it">edit</a>]</div><a name="Section_with_a_link_in_it"></a><h2>Section with a <a href="/wiki/Main_Page" title="Main Page">link</a> in it</h2>
 
 !! end
 
@@ -3024,11 +3073,12 @@ Media link with text
 # FIXME: this is still bad HTML tag nesting
 !! test
 Media link with nasty text
+fixme: doBlockLevels won't wrap this in a paragraph because it contains a div
 !! input
 [[Media:Foobar.jpg|Safe Link<div style=display:none>" onmouseover="alert(document.cookie)" onfoo="</div>]]
 !! result
-<p><a href="http://example.com/images/3/3a/Foobar.jpg" class='internal' title="Foobar.jpg">Safe Link<div style="display:none">" onmouseover="alert(document.cookie) onfoo="</div></a>
-</p>
+<a href="http://example.com/images/3/3a/Foobar.jpg" class='internal' title="Foobar.jpg">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a>
+
 !! end
 
 !! test
@@ -3138,6 +3188,15 @@ Bug 2095: link with pipe and three closing brackets
 [[Main Page|link]]]
 !! result
 <p><a href="/wiki/Main_Page" title="Main Page">link</a>]
+</p>
+!! end
+
+!! test
+Bug 2095: link with pipe and three closing brackets, version 2
+!! input
+[[Main Page|[http://example.com/]]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">[http://example.com/]</a>
 </p>
 !! end
 
@@ -3644,7 +3703,8 @@ Sanitizer: Validating the contents of the id attribute (bug 4515)
 !! input
 <br id=9 />
 !! result
-Something, but defenetly not <br id="9" />...
+<p><br id="iHaveToStartWithALetter-9" />
+</p>
 !! end
 
 TODO:
