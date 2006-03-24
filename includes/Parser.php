@@ -2616,7 +2616,11 @@ class Parser
 		$lastPathLevel = $this->mTemplatePath;
 		if ( !$found ) {
 			$ns = NS_TEMPLATE;
-			$part1 = $this->maybeDoSubpageLink( $part1, $subpage='' );
+			# declaring $subpage directly in the function call
+			# does not work correctly with references and breaks
+			# {{/subpage}}-style inclusions
+			$subpage = '';
+			$part1 = $this->maybeDoSubpageLink( $part1, $subpage );
 			if ($subpage !== '') {
 				$ns = $this->mTitle->getNamespace();
 			}
