@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright (C) 2004 Gabriel Wicke <gw@wikidev.net>
- * http://www.aulinx.de/
+ * Copyright (C) 2004 Gabriel Wicke <wicke@wikidev.net>
+ * http://wikidev.net/
  * Based on PageHistory and SpecialExport
  *
  * License: GPL (http://www.gnu.org/copyleft/gpl.html)
  *
- * @author Gabriel Wicke <gw@wikidev.net>
+ * @author Gabriel Wicke <wicke@wikidev.net>
  * @package MediaWiki
  */
 
