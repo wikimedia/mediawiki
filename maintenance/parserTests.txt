@@ -670,7 +670,7 @@ BUG 289: literal double quote in bracketed URL
 !! test
 External links: invalid character
 Fixme: the missing char seems to have gone missing
-'' options
+!! options
 disabled
 !! input
 [http://www.example.com  test]
