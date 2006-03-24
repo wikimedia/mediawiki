@@ -250,6 +250,32 @@ class Parser
 
 		if (($wgUseTidy and $this->mOptions->mTidy) or $wgAlwaysUseTidy) {
 			$text = Parser::tidy($text);
+		} else {
+			# attempt to sanitize at least some nesting problems
+			# (bug #2702 and quite a few others)
+			$tidyregs = array(	
+				# ''Something [http://www.cool.com cool''] --> 
+				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
+				'/(<([bi])>)(<([bi])>)?([^<]*)(<\/?a[^<]*>)([^<]*)(<\/\\4>)?(<\/\\2>)/' =>
+				'\\1\\3\\5\\8\\9\\6\\1\\3\\7\\8\\9',
+				# fix up an anchor inside another anchor, only
+				# at least for a single single nested link (bug 3695)
+				'/(<a[^>]+>)([^<]*)(<a[^>]+>[^<]*)<\/a>(.*)<\/a>/' =>
+				'\\1\\2</a>\\3</a>\\1\\4</a>',
+				# fix div inside inline elements- doBlockLevels won't wrap a line which
+				# contains a div, so fix it up here; replace
+				# div with escaped text
+				'/(<([aib]) [^>]+>)([^<]*)(<div([^>]*)>)(.*)(<\/div>)([^<]*)(<\/\\2>)/' =>
+				'\\1\\3&lt;div\\5&gt;\\6&lt;/div&gt;\\8\\9',
+				# remove empty italic or bold tag pairs, some
+				# introduced by rules above
+				'/<([bi])><\/\\1>/' => '' 
+			);
+
+			$text = preg_replace( 
+				array_keys( $tidyregs ),
+				array_values( $tidyregs ),
+				$text );
 		}
 
 		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
