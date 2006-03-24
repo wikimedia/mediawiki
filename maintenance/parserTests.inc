@@ -257,7 +257,9 @@ class ParserTest {
 			if (preg_match('/\\bill\\b/i', $opts)) {
 				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
 			} else if (preg_match('/\\bcat\\b/i', $opts)) {
-				$out = $this->tidy ( implode( ' ', $output->getCategoryLinks() ) );
+				global $wgOut;
+				$wgOut->addCategoryLinks($output->getCategories());
+				$out = $this->tidy ( implode( ' ', $wgOut->getCategoryLinks() ) );
 			}
 
 			$result = $this->tidy($result);
@@ -497,6 +499,8 @@ class ParserTest {
 		unlink( "$dir/3/3a/Foobar.jpg" );
 		rmdir( "$dir/3/3a" );
 		rmdir( "$dir/3" );
+		@rmdir( "$dir/thumb/6/65" );
+		@rmdir( "$dir/thumb/6" );
 
 		@unlink( "$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" );
 		@rmdir( "$dir/thumb/3/3a/Foobar.jpg" );
