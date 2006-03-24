@@ -1174,11 +1174,12 @@ Link containing % as a double hex sequence interpreted to hex sequence
 !!end
 
 !! test
-Link containing "#<" and "#>" % as a hex sequences
+Link containing "#<" and "#>" % as a hex sequences- these are valid section anchors
+Example for such a section: == < ==
 !! input
-[[%23%3c]]<!-- Render this as "[[#%3c]]" maybe.. ? -->[[%23%3e]]<!-- ..."[[#%3e]]" ? -->
+[[%23%3c]][[%23%3e]]
 !! result
-<p>[[%23%3c]][[%23%3e]]
+<p><a href="#.3C" title="">#&lt;</a><a href="#.3E" title="">#&gt;</a>
 </p>
 !! end
 
