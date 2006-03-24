@@ -101,7 +101,7 @@ li#ca-watch,li#ca-unwatch {
 	margin-right: 1.6em !important;
 }
 
-/* Fix margins */
+/* Fix margins for non-css2 browsers */
 /* top right bottom left */
 
 ul {
@@ -124,16 +124,10 @@ dd {
 	margin-left: 0;
 	margin-right: 2em;
 }
-div.tright {
+div.tright, div.floatright, table.floatright {
 	clear: none;
 }
-div.tleft {
-	clear: left;
-}
-div.floatright, table.floatright {
-	clear: none;
-}
-div.floatleft, table.floatleft {
+div.tleft, div.floatleft, table.floatleft {
 	clear: left;
 }
 div.townBox {
