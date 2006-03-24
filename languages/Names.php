@@ -20,6 +20,7 @@
 	'ay' => 'Aymar',		# Aymara, should possibly be Aymará
 	'az' => 'Azərbaycan',	# Azerbaijani
 	'ba' => 'Башҡорт',	# Bashkir
+	'bat-smg' => 'Žemaitėška', # Samogitian 
 	'be' => 'Беларуская',	# Belarusian ''or'' Byelarussian
 	'bg' => 'Български',	# Bulgarian
 	'bh' => 'भोजपुरी',	# Bihara
@@ -62,6 +63,7 @@
 	'fj' => 'Na Vosa Vakaviti',	# Fijian
 	'fo' => 'Føroyskt',	# Faroese
 	'fr' => 'Français',	# French
+	'frp' => 'Arpitan',	# Franco-Provençal/Arpitan
 	'fur' => 'Furlan',		# Friulian
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
@@ -107,6 +109,7 @@
 	'ko' => '한국어',	# Korean
 	'kr' => 'Kanuri',		# Kanuri (FIXME!)
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
+	'ksh' => 'Ripoarisch', 	# Ripuarian 
 	'ku' => 'Kurdî / كوردي',	# Kurdish
 	'kv' => 'Коми', 	# Komi, cyrillic is common script but also written in latin script
 	'kw' => 'Kernewek',		# Cornish
@@ -116,11 +119,13 @@
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
+	'lij' => 'Líguru',	# Ligurian
 	'lmo' => 'Lumbaart',	# Lombard
 	'ln' => 'Lingala',		# Lingala
 	'lo' => 'ລາວ',# Laotian
 	'lt' => 'Lietuvių',	# Lithuanian
 	'lv' => 'Latviešu',	# Latvian
+	'map-bms' => 'Basa Banyumasan', # Banyumasan 
 	'mg' => 'Malagasy',		# Malagasy
 	'mh' => 'Ebon',			# Marshallese
 	'mi' => 'Māori',	# Maori
@@ -139,12 +144,14 @@
 	'nap' => 'Nnapulitano',	# Neapolitan
 	'nb' => 'Norsk (bokmål)',		# Norwegian (Bokmal)
 	'nds' => 'Plattdüütsch',	# Low German ''or'' Low Saxon
+	'nds-nl' => 'Nedersaksisch',	# Dutch Low Saxon
 	'ne' => 'नेपाली',	# Nepali
 	'ng' => 'Oshiwambo',		# Ndonga
 	'nl' => 'Nederlands',	# Dutch
 	'nn' => 'Norsk (nynorsk)'	,	# Norwegian (Nynorsk)
 	'no' => 'Norsk (bokmål)',		# Norwegian
 	'non' => 'Norrǿna',		# Old Norse
+	'nrm' => 'Nouormand',	# Norman
 	'nv' => 'Diné bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
 	'oc' => 'Occitan',		# Occitan
@@ -153,6 +160,8 @@
 	'os' => 'Иронау', # Ossetic
 	'pa' => 'ਪੰਜਾਬੀ', # Punjabi
 	'pam' => 'Pampangan',   # Pampanga
+	'pap' => 'Papiamentu',	# Papiamentu
+	'pdc' => 'Deitsch', 	# Pennsylvania German
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pi' => 'पािऴ',	# Pali
 	'pl' => 'Polski',		# Polish
@@ -161,6 +170,7 @@
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
 	'qu' => 'Runa Simi',	# Quechua
 	'rm' => 'Rumantsch',	# Raeto-Romance
+	'rmy' => 'Romani',	# Vlax Romany
 	'rn' => 'Kirundi',		# Kirundi
 	'ro' => 'Română',	# Romanian
 	'roa-rup' => 'Armâneashti', # Aromanian
@@ -194,6 +204,7 @@
 	'sw' => 'Kiswahili',	# Swahili
 	'ta' => 'தமிழ்',	# Tamil
 	'te' => 'తెలుగు',	# Telugu
+	'tet' => 'Tetun',	# Tetun
 	'tg' => 'Тоҷикӣ',	# Tajik
 	'th' => 'ไทย',	# Thai
 	'ti' => 'ትግርኛ',		# Tigrinya
@@ -219,6 +230,7 @@
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'Vèneto',	# Venetian
 	'vi' => 'Tiếng Việt',	# Vietnamese
+	'vls' => 'West-Vlaoms', # West Flemish
 	'vo' => 'Volapük',	# Volapük
 	'wa' => 'Walon',		# Walloon
 	'war' => 'Samar-Leyte Visayan', # Waray-Waray
@@ -235,6 +247,7 @@
 	'zh-min-nan' => 'Bân-lâm-gú', # Min-nan
 	'zh-sg' => '中文(简体)', # Simplified (Singapore)
 	'zh-tw' => '中文(繁體)',	# Traditional
+	'zh-yue' => '粵語',	# Cantonese
 	'zu' => 'isiZulu'		# Zulu
 );
 ?>

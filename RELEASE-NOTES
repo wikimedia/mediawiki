@@ -713,6 +713,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4611) Add user preference (default on) to add new pages to creators's watchlist
 * (bug 5286) Fix regression in display of missing/bad revision IDs
 * (bug 4729) Add user preference that marks a user's edits as patrolled if user is able to
+* (bug 4497,4704,5010) Added some new language codes.
 
 === Caveats ===
 
