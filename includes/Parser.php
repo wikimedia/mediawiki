@@ -3173,6 +3173,13 @@ class Parser
 		$valid = '0123456789-Xx';
 
 		foreach ( $a as $x ) {
+			# hack: don't replace inside thumbnail title/alt
+			# attributes
+			if(preg_match('/<[^>]+(alt|title)="[^">]*$/', $text)) {
+				$text .= "ISBN $x";
+				continue;
+			}
+
 			$isbn = $blank = '' ;
 			while ( ' ' == $x{0} ) {
 				$blank .= ' ';
@@ -3195,7 +3202,7 @@ class Parser
 			} else {
 				$titleObj = Title::makeTitle( NS_SPECIAL, 'Booksources' );
 				$text .= '<a href="' .
-				$titleObj->escapeLocalUrl( 'isbn='.$num ) .
+					$titleObj->escapeLocalUrl( 'isbn='.$num ) .
 					"\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
 			}
@@ -3239,6 +3246,13 @@ class Parser
 				continue;
 				}
 
+			# hack: don't replace inside thumbnail title/alt
+			# attributes
+			if(preg_match('/<[^>]+(alt|title)="[^">]*$/', $text)) {
+				$text .= $keyword . $x;
+				continue;
+			}
+			
 			$id = $blank = '' ;
 
 			/** remove and save whitespaces in $blank */
@@ -3824,6 +3838,11 @@ class Parser
 		}
 		# Strip bad stuff out of the alt text
 		$alt = $this->replaceLinkHoldersText( $caption );
+
+		# make sure there are no placeholders in thumbnail attributes
+		# that are later expanded to html- so expand them now and
+		# remove the tags
+		$alt = $this->unstrip($alt, $this->mStripState); 
 		$alt = Sanitizer::stripAllTags( $alt );
 
 		# Linker does the rest
