@@ -160,6 +160,7 @@ $wgDateFormatsEn = array(
 	'showjumplinks',
 	'uselivepreview',
 	'autopatrol',
+	'forceeditsummary',
 );
 
 /* private */ $wgBookstoreListEn = array(

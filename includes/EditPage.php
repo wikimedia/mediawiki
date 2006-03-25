@@ -27,6 +27,8 @@ class EditPage {
 	var $tooBig = false;
 	var $kblength = false;
 	var $missingComment = false;
+	var $missingSummary = false;
+	var $allowBlankSummary = false;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -381,6 +383,8 @@ class EditPage {
 
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
+			$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' );
+			
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( "$fname: Not a posted form.\n" );
@@ -627,6 +631,13 @@ class EditPage {
 			return true;
 		}
 
+		# Handle the user preference to force summaries here
+		if( trim( $this->summary ) == '' && !$this->allowBlankSummary  && $wgUser->getOption( 'forceeditsummary' ) ) {
+			$this->missingSummary = true;
+			wfProfileOut( $fname );
+			return( true );
+		}					
+
 		# All's well
 		wfProfileIn( "$fname-sectionanchor" );
 		$sectionanchor = '';
@@ -743,6 +754,10 @@ class EditPage {
 
 			if ( $this->missingComment ) {
 				$wgOut->addWikiText( wfMsg( 'missingcommenttext' ) );
+			}
+			
+			if( $this->missingSummary ) {
+				$wgOut->addWikiText( wfMsg( 'missingsummary' ) );
 			}
 
 			if ( !$this->checkUnicodeCompliantBrowser() ) {
@@ -1055,6 +1070,12 @@ END
 			$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 		}
 
+		# If there's no summary, slip in a hidden tag here
+		# If the user doesn't want to provide one, hitting Save a second time will cause it to go
+		# through without further hassle
+		if( $this->missingSummary ) {
+			$wgOut->addHTML( "<input type=\"hidden\" name=\"wpIgnoreBlankSummary\" value=\"1\" />\n" );
+		}
 
 		if ( $this->isConflict ) {
 			require_once( "DifferenceEngine.php" );

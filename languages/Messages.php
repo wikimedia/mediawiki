@@ -62,6 +62,7 @@ parent class in order maintain consistency across languages.
 'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 'tog-uselivepreview' => 'Use live preview (JavaScript) (Experimental)',
 'tog-autopatrol' => 'Mark edits you make as patrolled',
+'tog-forceeditsummary' => 'Prompt me when entering a blank edit summary',
 
 'underline-always' => 'Always',
 'underline-never' => 'Never',
@@ -456,6 +457,7 @@ format. Please enter a well-formatted address or empty that field.',
 'showlivepreview'	=> 'Live preview',
 'showdiff'	=> 'Show changes',
 'anoneditwarning' => 'You are not logged in. Your IP address will be recorded in this page\'s edit history.',
+'missingsummary' => "'''Reminder:''' You have not provided an edit summary. If you click Save again, your edit will be saved without one.",
 'missingcommenttext' => 'Please enter a comment below.',
 'blockedtitle'	=> 'User is blocked',
 'blockedtext'	=> 'Your user name or IP address has been blocked by $1.
