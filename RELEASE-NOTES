@@ -254,6 +254,7 @@ i18n / Languages:
 * Typo in English messages file
 * (bug 4114) Spacing in watchlist rows (in editing mode)
 * Update default "exporttext" to reflect that Special:Import exists
+* (bug 4960) Add additional namespaces variants to Yi projects: Yiddish Wikinews fix
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits

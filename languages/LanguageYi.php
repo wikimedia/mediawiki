@@ -65,6 +65,10 @@ class LanguageYi extends LanguageUtf8 {
 			if( 0 == strcasecmp( 'וויקיווערטערבוך', $text ) ) return NS_PROJECT;
 			if( 0 == strcasecmp( 'וויקיווערטערבוך_רעדן', $text ) ) return NS_PROJECT_TALK;
 		}
+		if( $wgSitename == 'װיקינײַעס' ) {
+			if( 0 == strcasecmp( 'וויקינייעס', $text ) ) return NS_PROJECT;
+			if( 0 == strcasecmp( 'וויקינייעס_רעדן', $text ) ) return NS_PROJECT_TALK;
+		}
 		if( 0 == strcasecmp( 'באזונדער', $text ) ) return NS_SPECIAL;
 		if( 0 == strcasecmp( 'באנוצער', $text ) ) return NS_USER;
 		if( 0 == strcasecmp( 'באנוצער_רעדן', $text ) ) return NS_USER_TALK;
