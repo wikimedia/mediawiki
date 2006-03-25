@@ -1094,6 +1094,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 5180) User login page shows inappropriate email blurb
 * Add the "AbortNewAccount" hook on account creation; see hooks.txt for more info.
 * Update default "exporttext" to reflect that Special:Import exists
+* Add links to useful material to the default main page content
 
 === Caveats ===
 
