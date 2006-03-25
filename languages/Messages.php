@@ -114,8 +114,14 @@ parent class in order maintain consistency across languages.
 'linktrail'		=> '/^([a-z]+)(.*)$/sD',
 'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'		=> 'Main Page',
-'mainpagetext'	=> "'''MediaWiki has been successfully installed.'''",
-'mainpagedocfooter' => "Consult the [http://www.mediawiki.org/wiki/Help:Configuration_settings configuration settings list] and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for information on customising and using the wiki software.",
+'mainpagetext'	=> "<big>'''MediaWiki has been successfully installed.'''</big>",
+'mainpagedocfooter' => "Consult the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for information on using the wiki software.
+
+== Getting started ==
+
+* [http://www.mediawiki.org/wiki/Help:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
+* [http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'portal'		=> 'Community portal',
 'portal-url'	=> 'Project:Community Portal',
