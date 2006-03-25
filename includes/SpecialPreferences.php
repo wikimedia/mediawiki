@@ -818,8 +818,9 @@ class PreferencesForm {
 				'externaleditor',
 				'externaldiff',
 				$wgLivePreview ? 'uselivepreview' : false,
-				$wgUser->isAllowed( 'patrol' ) ? 'autopatrol' : false, )
-			) . '</fieldset>'
+				$wgUser->isAllowed( 'patrol' ) ? 'autopatrol' : false,
+				'forceeditsummary',
+			) ) . '</fieldset>'
 		);
 		$this->mUsedToggles['autopatrol'] = true; # Don't show this up for users who can't; the handler below is dumb and doesn't know it
 
