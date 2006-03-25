@@ -29,6 +29,7 @@ class EditPage {
 	var $missingComment = false;
 	var $missingSummary = false;
 	var $allowBlankSummary = false;
+	var $autoSumm = '';
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -384,7 +385,7 @@ class EditPage {
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 			$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' );
-			
+			$this->autoSumm = $request->getText( 'wpAutoSummary' );			
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( "$fname: Not a posted form.\n" );
@@ -632,11 +633,13 @@ class EditPage {
 		}
 
 		# Handle the user preference to force summaries here
-		if( trim( $this->summary ) == '' && !$this->allowBlankSummary  && $wgUser->getOption( 'forceeditsummary' ) ) {
-			$this->missingSummary = true;
-			wfProfileOut( $fname );
-			return( true );
-		}					
+		if( !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
+			if( md5( $this->summary ) == $this->autoSumm ) {
+				$this->missingSummary = true;
+				wfProfileOut( $fname );
+				return( true );
+			}
+		}
 
 		# All's well
 		wfProfileIn( "$fname-sectionanchor" );
@@ -1070,12 +1073,18 @@ END
 			$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 		}
 
-		# If there's no summary, slip in a hidden tag here
-		# If the user doesn't want to provide one, hitting Save a second time will cause it to go
-		# through without further hassle
+		# If a blank edit summary was previously provided, and the appropriate
+		# user preference is active, pass a hidden tag here. This will stop the
+		# user being bounced back more than once in the event that a summary
+		# is not required.
 		if( $this->missingSummary ) {
 			$wgOut->addHTML( "<input type=\"hidden\" name=\"wpIgnoreBlankSummary\" value=\"1\" />\n" );
 		}
+		
+		# For a bit more sophisticated detection of blank summaries, hash the
+		# automatic one and pass that in a hidden field.
+		$autosumm = md5( $this->summary );
+		$wgOut->addHTML( "<input type=\"hidden\" name=\"wpAutoSummary\" value=\"$autosumm\" />\n" );
 
 		if ( $this->isConflict ) {
 			require_once( "DifferenceEngine.php" );
