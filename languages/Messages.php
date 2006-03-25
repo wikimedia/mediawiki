@@ -921,27 +921,16 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'userstatstext' => "There are '''$1''' registered users, of which
 '''$2''' (or '''$4%''') are administrators (see $3).",
 
-# Maintenance Page
-#
-'maintenance'		=> 'Maintenance page',
-'maintnancepagetext'	=> 'This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)',
-'maintenancebacklink'	=> 'Back to Maintenance Page',
 'disambiguations'	=> 'Disambiguation pages',
 'disambiguationspage'	=> 'Template:disambig',
 'disambiguationstext'	=> "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as disambiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
+
 'doubleredirects'	=> 'Double redirects',
 'doubleredirectstext'	=> "Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" target page, which the first redirect should point to.",
 'doubleredirectsarrow'	=> '→',
+
 'brokenredirects'	=> 'Broken redirects',
 'brokenredirectstext'	=> 'The following redirects link to non-existent pages:',
-'selflinks'		=> 'Self-linking pages',
-'selflinkstext'		    => 'The following pages link to themselves:',
-'mispeelings'           => 'Pages with misspellings',
-'mispeelingstext'               => "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
-'mispeelingspage'       => 'List of common misspellings',
-'missinglanguagelinks'  => 'Missing Language Links',
-'missinglanguagelinksbutton'    => 'Find missing language links for',
-'missinglanguagelinkstext'      => "These pages do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
 
 
 # Miscellaneous special pages
