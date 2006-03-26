@@ -1897,5 +1897,10 @@ $wgJobRunRate = 1;
  */
 $wgJobLogFile = false;
 
+/**
+ * Enable use of AJAX features, currently auto suggestion for the search bar
+ */
+$wgUseAjax = false;
+
 
 ?>
