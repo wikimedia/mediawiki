@@ -14,7 +14,7 @@ IE/mac bugs:
 * The thing barfs on Hebrew and Arabic anyway, so no point testing.
 
 Missing features due to lack of support:
-* external link icons, icon next to user name
+* external link icons
 
 To test:
 * Opera6
@@ -153,12 +153,6 @@ li#ca-watch {
 	float: left;
 }
 /* Fix link icons */
-li#pt-userpage,
-li#pt-anonuserpage,
-li#pt-login {
-	background: none;
-	padding-left: 0;
-}
 .external {
 	padding: 0 !important;
 	background: none !important;
