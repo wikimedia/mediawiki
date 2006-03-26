@@ -79,7 +79,7 @@
 'subcategories'       => 'Alaluokat',
 'linktrail'           => '/^([a-zäö]+)(.*)$/sDu',
 'mainpage'            => 'Etusivu',
-'mainpagetext'        => 'Mediawiki on onnistuneesti asennettu.',
+'mainpagetext'        => '\'\'\'Mediawiki on onnistuneesti asennettu.\'\'\'',
 'mainpagedocfooter'   => 'Lisätietoja käytöstä ja asetusten teosta on sivuilla [http://www.mediawiki.org/wiki/Help:Configuration_settings configuration settings list] ja [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide].<br />Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LanguageFi.php:n <tt>convertGrammar</tt>-funktioon.<br />{{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).',
 'portal'              => 'Kahvihuone',
 'portal-url'          => 'Project:Kahvihuone',
@@ -208,7 +208,7 @@
 'hidetoc'             => 'piilota',
 'thisisdeleted'       => 'Näytä tai palauta $1.',
 'viewdeleted'         => 'Näytä $1?',
-'restorelink1'        => 'yksi poistettu muokkaus.',
+'restorelink1'        => 'yksi poistettu muokkaus',
 'restorelink'         => '$1 poistettua muokkausta',
 'feedlinks'           => 'Uutissyötteet:',
 'sitenotice'          => '', # the equivalent to wgSiteNotice
@@ -1066,12 +1066,7 @@ Palaute ja lisäapu osoitteessa:
 # Move page
 #
 'movepage'            => 'Siirrä sivu',
-'movepagetext'        => 'Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee uudelleenohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten uudellenohjausten varalta. Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.
-
-Huomaa, että sivua \'\'\'ei\'\'\' siirretä mikäli uusi otsikko on olemassaolevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai uudelleenohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers|ylläpitäjään]].
-
-\'\'\'HUOMIO!\'\'\'
-Saatat olla tekemässä huomattavaa ja odottamatonta muutosta suositulle sivulle. Ole varma, että ymmärrät seuraukset ennen kuin jatkat.',
+'movepagetext'        => 'Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee uudelleenohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten uudellenohjausten varalta. \'\'\'Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.\'\'\'<br \>Huomaa, että sivua \'\'\'ei\'\'\' siirretä mikäli uusi otsikko on olemassaolevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai uudelleenohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[{{ns:special}}:Listusers|ylläpitäjään]].',
 'movepagetalktext'    => 'Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, \'\'\'paitsi jos\'\'\':
 *Siirrät sivua nimiavaruudesta toiseen
 *Kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai
@@ -1086,9 +1081,9 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'pagemovedsub'        => 'Siirto onnistui',
 'pagemovedtext'       => 'Sivu \'\'\'[[$1]]\'\'\' siirrettiin nimelle \'\'\'[[$2]]\'\'\'.',
 'articleexists'       => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
-'talkexists'          => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Ole hyvä ja yhdistä keskustelusivujen sisältö käsin.',
+'talkexists'          => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
 'movedto'             => 'Siirretty uudelle otsikolle',
-'movetalk'            => 'Siirrä myös keskustelusivu, jos mahdollista.',
+'movetalk'            => 'Siirrä myös keskustelusivu.',
 'talkpagemoved'       => 'Myös sivun keskustelusivu siirrettiin.',
 'talkpagenotmoved'    => 'Sivun keskustelusivua \'\'\'ei\'\'\' siirretty.',
 '1movedto2'           => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
@@ -1099,6 +1094,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'revertmove'          => 'kumoa',
 'delete_and_move'     => 'Poista kohdesivu ja siirrä',
 'delete_and_move_text'   => 'Kohdesivu [[$1]] on jo olemassa. Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
+'delete_and_move_confirm'=> 'Poista sivu',
 'delete_and_move_reason' => 'Sivu on siirron tiellä.',
 'selfmove'            => 'Lähde- ja kohdenimi ovat samat.',
 'immobile_namespace'  => 'Sivuja ei voi siirtää tähän nimiavaruuteen.',
@@ -1106,11 +1102,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 # Export
 
 'export'              => 'Sivujen vienti',
-'exporttext'          => 'Voit viedä sivun tai sivujen tekstiä ja muokkaushistoriaa XML-muodossa. Tulevaisuudessa tämä tieto voidaan tuoda johonkin toiseen wikiin, jossa käytetään MediaWiki-ohjelmistoa. Nykyisessä MediaWikin versiossa tätä ei tosin vielä tueta.
-
-Syötä sivujen otsikoita riveittäin alla olevaan laatikkoon. Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.
-
-Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun {{Mediawiki:mainpage}} saa vietyä linkistä [[Special:Export/{{Mediawiki:mainpage}}]].',
+'exporttext'          => 'Voit viedä sivun tai sivujen tekstiä ja muokkaushistoriaa XML-muodossa. Tämä tieto voidaan tuoda johonkin toiseen wikiin, jossa käytetään MediaWiki-ohjelmistoa.<br \>Syötä sivujen otsikoita riveittäin alla olevaan laatikkoon. Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.<br \>Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun {{Mediawiki:mainpage}} saa vietyä linkistä [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]].',
 'exportcuronly'       => 'Liitä mukaan ainoastaan uusin versio, ei koko historiaa.',
 
 # Namespace 8 related
@@ -1576,7 +1568,7 @@ This file contains additional information, probably added from the digital camer
 
 // Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Itäistä pituutta',
-'exif-gpslongitude-w' => 'Läntistä pituustta',
+'exif-gpslongitude-w' => 'Läntistä pituutta',
 
 'exif-gpsstatus-a'    => 'Mittaus käynnissä',
 'exif-gpsstatus-v'    => 'Ristiinmittaus',
