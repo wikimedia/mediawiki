@@ -4,7 +4,7 @@
 /* private */ $wgAllMessagesPt = array(
 
 # User preference toggles
-'tog-underline' => 'Sublinhar links',
+'tog-underline' => 'Sublinhar hiperligações',
 'tog-highlightbroken' => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'   => 'Justificar parágrafos',
 'tog-hideminor' => 'Esconder edições secundárias nas mudanças recentes',
@@ -17,7 +17,8 @@
 'tog-showtoc'                   => 'Mostrar Tabela de Conteúdos (para artigos com mais de 3 cabeçalhos)',
 'tog-rememberpassword' => 'Lembrar palavra-chave entre sessões',
 'tog-editwidth' => 'Caixa de edição com largura completa',
-'tog-watchdefault' => 'Adicionar páginas editadas à sua lista de artigos vigiados',
+'tog-watchcreations' => 'Adicionar páginas criadas por mim à minha lista de artigos vigiados',
+'tog-watchdefault' => 'Adicionar páginas editadas por mim à minha lista de artigos vigiados',
 'tog-minordefault' => 'Marcar todas as edições como secundárias, por padrão',
 'tog-previewontop' => 'Mostrar Previsão antes da caixa de edição ao invés de ser após',
 'tog-previewonfirst' => 'Mostrar Previsão na primeira edição',
@@ -32,6 +33,8 @@
 'tog-externaldiff' => 'Utilizar diferenças externas por padrão',
 'tog-showjumplinks' => 'Activar hiperligações de acessibilidade "ir para"',
 'tog-uselivepreview' => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
+'tog-autopatrol' => 'Marcar as minhas edições como verificadas',
+'tog-forceeditsummary' => 'Avisar-me ao introduzir um sumário vazio',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -193,7 +196,7 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'badaccess'     => 'Erro de permissão',
 'badaccesstext' => 'A acção que requesitou está limitada a utilizadores com permissão de "$2". Ver $1.',
 
-'versionrequired' => 'Necessãria versão $1 do MediaWiki',
+'versionrequired' => 'Necessária versão $1 do MediaWiki',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para ser utilizada. Consulte [[Special:Version]]',
 
 'nbytes'                => '$1 bytes',
@@ -208,6 +211,7 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'newmessageslink' => 'novas mensagens',
 'newmessagesdifflink' => 'comparar com a penúltima revisão',
 'editsection'=>'editar',
+'editsectionhint' => 'Editar secção: $1',
 'toc' => 'Tabela de conteúdo',
 'showtoc' => 'mostrar',
 'hidetoc' => 'esconder',
@@ -412,6 +416,8 @@ de modo a confirmar que a conta é mesmo sua.",
 'showlivepreview'       => 'Pré-visualização em tempo real',
 'showdiff'      => 'Mostrar alterações',
 'anoneditwarning' => 'Não encontra-se autenticado. O seu endereço de IP será registado no histórico de edições desta página.',
+'missingsummary' => "'''Atenção:''' Não introduziu um sumário de edição. Se carregar em Salvar novamente, a sua edição será salva sem um sumário.",
+'missingcommenttext' => 'Por favor introduzida um comentário abaixo.',
 'blockedtitle'  => 'Utilizador está bloqueado',
 'blockedtext'   => "O seu nome de utilizador ou endereço de IP foi bloqueado por $1.<br />
 O motivo é: ''$2''
@@ -606,7 +612,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'timezonelegend' => 'Fuso horário',
 'timezonetext'  => 'Número de horas que o seu horário local difere do horário do servidor (UTC).',
 'localtime'     => 'Hora local',
-'timezoneoffset' => 'Diferença horária',
+'timezoneoffset' => 'Diferença horária¹',
 'servertime'    => 'Horário do servidor',
 'guesstimezone' => 'Preencher a partir do navegador (browser)',
 'allowemail'             => 'Permitir email de outros utilizadores',
@@ -750,7 +756,7 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'uploadedimage' => "carregado \"[[$1]]\"",
 'uploaddisabled' => 'Carregamentos desactivados',
 'uploaddisabledtext' => 'O carregamento de ficheiros encontra-se desactivado nesta wiki.',
-'uploadscripted' => 'This file contains HTML or script code that my be erroneously be interpreted by a web browser.',
+'uploadscripted' => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um navegador web.',
 'uploadcorrupt' => 'O ficheiro encontra-se corrompido ou tem uma extensão não permitida. Corrija o ficheiro e tente novamento.',
 'uploadvirus' => 'O ficheiro contém vírus! Detalhes: $1',
 'sourcefilename' => 'Nome do ficheiro de origem',
@@ -808,7 +814,9 @@ Excluindo estas, há '''$2''' páginas que provavelmente são artigos legítimos
 
 Há um total de '''$3''' páginas vistas, e '''$4''' edições em páginas
 desde a instalação do software.
-O que nos leva a aproximadamente '''$5''' edições por página, e '''$6''' vistas por edição.",
+O que nos leva a aproximadamente '''$5''' edições por página, e '''$6''' vistas por edição.
+
+O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é de actualmente '''$7'''.",
 'userstatstext' => "Há actualmente '''$1''' utilizadores registados.
 Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
 
@@ -1216,7 +1224,7 @@ para mover uma página.",
 Por favor, escolha outro nome.',
 'talkexists'    => "'''A página em si foi movida com sucesso, porém a página de discussão não pode ser movida, pois, já existe uma com este título. Por favor, mescle-as manualmente.'''",
 'movedto'               => 'movido para',
-'movetalk'              => 'Mover também a página de "discussão", se aplicável.',
+'movetalk'              => 'Mover também a página de discussão associada.',
 'talkpagemoved' => 'A página de \"discussão\" correspondente foi movida com sucesso.',
 'talkpagenotmoved' => 'A página de discussão correspondente <strong>não</strong> foi movida.',
 '1movedto2'             => "[[$1]] movido para [[$2]]",
@@ -1237,7 +1245,7 @@ O artigo destinatário "[[$1]]" já existe. Deseja o eliminar de modo a poder mo
 # Export
 
 'export'                => 'Exportação de páginas',
-'exporttext'    => 'É possível exportar o texto e o histórico de edições de uma página em particular num ficheiro XML. Poderá então importar esse conteúdo em outra wiki que utilize o software MediaWiki, ou transformar o conteúdo (via XSLT), ou ainda manter o ficheiro por motivos particulares.
+'exporttext'    => 'É possível exportar o texto e o histórico de edições de uma página em particular num ficheiro XML. Poderá então importar esse conteúdo noutra wiki que utilize o software MediaWiki através da página Especial:Import, ou transformar o conteúdo (via XSLT), ou ainda manter o ficheiro por motivos particulares.
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo, um título por linha, e seleccione se deseja apenas a versão actual ou todas versões.
 
@@ -1255,7 +1263,7 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'allmessagestext'       => 'Esta é uma lista de todas mensagens de sistema disponíveis no domínio MediaWiki:.',
 'allmessagesnotsupportedUI' => 'O seu actual idioma de interface <b>$1</b> não é suportado pelo {{ns:special}}:Allmessages deste sítio.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages não encontra-se operacional devido ao wgUseDatabaseMessages encontrar-se desligado.',
-'allmessagesfilter' => 'Filtro de expressões regulares:',
+'allmessagesfilter' => 'Filtro de nome de mensagem:',
 'allmessagesmodified' => 'Mostrar apenas modificados',
 
 # Thumbnails

@@ -259,6 +259,7 @@ i18n / Languages:
 * (bug 5156) Update for Hebrew language (he)
 * (bug 4497,4704,5010) Added some new language codes.
 * (bug 5362) Piedmontese added
+* (bug 5349) Update for Portuguese messages (pt)
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
