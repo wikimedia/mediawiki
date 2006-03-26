@@ -899,6 +899,7 @@ pages for purposes of page relevancy ranking.
 * (bug 4824) IE7 beta 2 broke compatibility with PNG logo workarounds,
   and seems to work ok with other bits. No longer including the IE
   workarounds JavaScript for IE 7 and above.
+* Fix fragment HTML injection
 
 
 === Caveats ===
