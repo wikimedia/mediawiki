@@ -473,11 +473,9 @@ class Parser
 		}
 
 		# Comments
-		if($stripcomments) {
-			$text = Parser::extractTags(STRIP_COMMENTS, $text, $comment_content, $uniq_prefix);
-			foreach( $comment_content as $marker => $content ){
-				$comment_content[$marker] = '<!--'.$content.'-->';
-			}
+		$text = Parser::extractTags(STRIP_COMMENTS, $text, $comment_content, $uniq_prefix);
+		foreach( $comment_content as $marker => $content ){
+			$comment_content[$marker] = '<!--'.$content.'-->';
 		}
 
 		# Extensions
@@ -499,6 +497,16 @@ class Parser
 					}
 				}
 			}
+		}
+
+		# Unstrip comments unless explicitly told otherwise.
+		# (The comments are always stripped prior to this point, so as to
+		# not invoke any extension tags / parser hooks contained within
+		# a comment.)
+		if ( !$stripcomments ) {
+			$tempstate = array( 'comment' => $comment_content );
+			$text = $this->unstrip( $text, $tempstate );
+			$comment_content = array();
 		}
 
 		# Merge state with the pre-existing state, if there is one
