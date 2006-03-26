@@ -32,7 +32,7 @@ if ( $wgMetaNamespace == "Wikipedia" ) {
 	NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
 ) + $wgNamespaceNamesEn;
 
-/* private */ $wgAllMessagesKy = array (
+/* private */ $wgAllMessagesKu = array (
 
 # copied from wikipedia
 

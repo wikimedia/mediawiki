@@ -1110,6 +1110,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Add links to useful material to the default main page content
 * Fix fragment HTML injection
 
+=== Changes since 1.5.8 ===
+* Fixed obvious mistakes in Finnish (fi) translation
+* Fixed obvious mistakes in Kurdish (ku) translation
 
 === Caveats ===
 

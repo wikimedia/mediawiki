@@ -236,7 +236,7 @@ require_once( 'LanguageUtf8.php' );
 'badaccesstext'       => 'Toiminto, jonka halusit suorittaa on rajoitettu käyttäjille, joilla on oikeus "$2". Katso $1.',
 
 'versionrequired'     => 'Mediawikistä tarvitaan vähintään versio $1',
-'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
+'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]].',
 
 'nbytes'              => '$1 tavua',
 'go'                  => 'Siirry',
@@ -253,7 +253,7 @@ require_once( 'LanguageUtf8.php' );
 'hidetoc'             => 'piilota',
 'thisisdeleted'       => 'Näytä tai palauta $1.',
 'viewdeleted'         => 'Näytä $1?',
-'restorelink1'        => 'yksi poistettu muokkaus.',
+'restorelink1'        => 'yksi poistettu muokkaus',
 'restorelink'         => '$1 poistettua muokkausta',
 'feedlinks'           => 'Uutissyötteet:',
 'sitenotice'          => '', # the equivalent to wgSiteNotice
@@ -318,7 +318,7 @@ Sivun lähdekoodi:',
 #
 'logouttitle'         => 'Uloskirjautuminen',
 'logouttext'          => 'Olet nyt kirjautunut ulos {{GRAMMAR:elative|{{SITENAME}}}}. Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai kirjautua uudelleen sisään.',
-'welcomecreation'     => '== Tervetuloa, $1! == <p>Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{GRAMMAR:genitive|{{SITENAME}}]] asetuksiasi]].</p>',
+'welcomecreation'     => '== Tervetuloa, $1! == <p>Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{GRAMMAR:genitive|{{SITENAME}}}} asetuksiasi]].</p>',
 'loginpagetitle'      => 'Sisäänkirjautuminen',
 'yourname'            => 'Käyttäjätunnus',
 'yourpassword'        => 'Salasana',
@@ -677,7 +677,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'uploadwarning'       => 'Tallennusvaroitus',
 'savefile'            => 'Tallenna',
 'uploadedimage'       => 'tallensi tiedoston [[$1]]',
-'uploaddisabled'      => 'Tiedostojen tallentaminen ei ole käytöstä.',
+'uploaddisabled'      => 'Tiedostojen tallentaminen ei ole käytössä.',
 'uploadscripted'      => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'       => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
 'uploadvirus'         => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
@@ -1007,7 +1007,7 @@ Palaute ja lisäapu osoitteessa:
 'proxyblockreason'    => 'IP-osoitteestasi on estetty muokkaukset, koska se on avoin välityspalvelin. Ota yhteyttä Internet-palveluntarjoajaasi tai tekniseen tukeen ja kerro heillä tästä tietoturvaongelmasta.',
 'proxyblocksuccess'   => 'Valmis.',
 'sorbs'               => 'SORBS DNSBL',
-'sorbsreason'         => 'IP-osoitteesti on listattu avoimena välityspalvelimena [http://www.sorbs.net SORBSin] mustalla listalla.',
+'sorbsreason'         => 'IP-osoitteesi on listattu avoimena välityspalvelimena [http://www.sorbs.net SORBSin] mustalla listalla.',
 
 # Developer tools
 #
@@ -1294,7 +1294,7 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'confirmemail_sendfailed' => 'Varmennusviestin lähettäminen epäonnistui. Tarkista, onko osoitteessa kiellettyjä merkkejä.',
 'confirmemail_invalid'    => 'Varmennuskoodi ei kelpaa. Koodi on voinut vanhentua.',
 'confirmemail_success'    => 'Sähköpostiosoitteesi on nyt varmennettu. Voit kirjautua sisään.',
-'confirmemail_loggedin'   => 'Sähköpostiosoitteesti on nyt varmennettu.',
+'confirmemail_loggedin'   => 'Sähköpostiosoitteesi on nyt varmennettu.',
 'confirmemail_error'  => 'Jokin epäonnistui varmennnuksen tallentamisessa.',
 'confirmemail_subject'=> '{{GRAMMAR:genitive|{{SITENAME}}}} sähköpostiosoitteen varmennus',
 'confirmemail_body'   => 'Joku IP-osoitteesta $1 on rekisteröinyt {{GRAMMAR:inessive|{{SITENAME}}}} tunnuksen $2 tällä sähköpostiosoitteella.
