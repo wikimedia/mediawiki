@@ -17,8 +17,8 @@ require_once("LanguageUtf8.php");
 	NS_PROJECT_TALK   => "שיחת_" . $wgMetaNamespace,
 	NS_IMAGE          => "תמונה",
 	NS_IMAGE_TALK     => "שיחת_תמונה",
-	NS_MEDIAWIKI      => "MediaWiki",
-	NS_MEDIAWIKI_TALK => "שיחת_MediaWiki",
+	NS_MEDIAWIKI      => "מדיה_ויקי",
+	NS_MEDIAWIKI_TALK => "שיחת_מדיה_ויקי",
 	NS_TEMPLATE       => "תבנית",
 	NS_TEMPLATE_TALK  => "שיחת_תבנית",
 	NS_HELP           => "עזרה",
@@ -28,22 +28,25 @@ require_once("LanguageUtf8.php");
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsHe = array(
-	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל"
+	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל", "צף מימין"
 );
 
 /* private */ $wgSkinNamesHe = array(
 	'standard' => "רגיל",
 	'nostalgia' => "נוסטלגי",
 	'cologneblue' => "מים כחולים",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
+	'davinci' => "דה-וינצ'י",
+	'mono' => 'Mono',
+	'monobook' => 'MonoBook',
+	'myskin' => 'MySkin',
+	'chick' => 'Chick'
 ) + $wgSkinNamesEn;
 
 
 
 /* private */ $wgBookstoreListHe = array(
 	"מיתוס" => "http://www.mitos.co.il/ ",
-	"ibooks" => "http://www.ibooks.co.il/",
+	"iBooks" => "http://www.ibooks.co.il/",
 	"Barnes & Noble" => "http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
