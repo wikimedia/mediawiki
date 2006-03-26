@@ -165,6 +165,7 @@
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pi' => 'पािऴ',	# Pali
 	'pl' => 'Polski',		# Polish
+	'pms' => 'Piemontèis', 	# Piedmontese
 	'ps' => 'پښتو',	# Pashto
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
