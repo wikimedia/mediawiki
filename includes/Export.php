@@ -188,19 +188,21 @@ class WikiExporter {
 		if( $cond == '' ) {
 			// Optimization hack for full-database dump
 			$pageindex = 'FORCE INDEX (PRIMARY)';
-			$revindex = 'FORCE INDEX(page_timestamp)';
+			$revindex = 'FORCE INDEX (PRIMARY)';
+			$straight = ' /*! STRAIGHT_JOIN */ ';
 		} else {
 			$pageindex = '';
 			$revindex = '';
+			$straight = '';
 		}
 		if( $this->text == MW_EXPORT_STUB ) {
-			$sql = "SELECT * FROM
+			$sql = "SELECT $straight * FROM
 					$page $pageindex,
 					$revision $revindex
 					WHERE $where $join
 					ORDER BY page_id";
 		} else {
-			$sql = "SELECT * FROM
+			$sql = "SELECT $straight * FROM
 					$page $pageindex,
 					$revision $revindex,
 					$text
