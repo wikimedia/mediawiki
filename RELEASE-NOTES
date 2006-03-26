@@ -3,6 +3,19 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.8 ==
+
+March 26, 2006
+
+MediaWiki 1.5.8 is a security and bugfix maintenance release.
+
+A bug in decoding of certain encoded links could allow injection of raw
+HTML into page output; this could potentially lead to XSS attacks.
+
+Some minor UI fixes were also made, see the change log at the bottom of
+this file.
+
+
 == MediaWiki 1.5.7 ==
 
 March 2, 2006
@@ -1095,6 +1108,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Add the "AbortNewAccount" hook on account creation; see hooks.txt for more info.
 * Update default "exporttext" to reflect that Special:Import exists
 * Add links to useful material to the default main page content
+* Fix fragment HTML injection
+
 
 === Caveats ===
 
