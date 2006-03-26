@@ -3701,11 +3701,12 @@ Sanitizer: Escaping of spaces, multibyte characters, colons & other stuff in id=
 
 !! test
 Sanitizer: Validating the contents of the id attribute (bug 4515)
+!! options
+disabled
 !! input
 <br id=9 />
 !! result
-<p><br id="iHaveToStartWithALetter-9" />
-</p>
+Something, but defenetly not <br id="9" />...
 !! end
 
 TODO:
