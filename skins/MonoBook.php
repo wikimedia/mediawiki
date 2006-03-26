@@ -61,7 +61,7 @@ class MonoBookTemplate extends QuickTemplate {
     <!--[if lt IE 5.5000]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE50Fixes.css";</style><![endif]-->
     <!--[if IE 5.5000]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE55Fixes.css";</style><![endif]-->
     <!--[if gte IE 6]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE60Fixes.css";</style><![endif]-->
-    <!--[if IE]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
+    <!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
     <?php if($this->data['jsvarurl'  ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"></script><?php } ?>
     <script type="<?php $this->text('jsmimetype') ?>" src="<?php                                   $this->text('stylepath' ) ?>/common/wikibits.js"></script>
@@ -76,7 +76,7 @@ class MonoBookTemplate extends QuickTemplate {
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">
-	  <a name="top" id="contentTop"></a>
+	  <a name="top" id="top"></a>
 	  <?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 	  <h1 class="firstHeading"><?php $this->text('title') ?></h1>
 	  <div id="bodyContent">
@@ -126,7 +126,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 	<?php foreach ($this->data['sidebar'] as $bar => $cont) { ?>
 	<div class='portlet' id='p-<?php echo htmlspecialchars($bar) ?>'>
-	  <h5><?php $this->msg( $bar ) ?></h5>
+	  <h5><?php $out = wfMsg( $bar ); if (wfNoMsg($bar, $out)) echo $bar; else echo $out; ?></h5>
 	  <div class='pBody'>
 	    <ul>
 	    <?php foreach($cont as $key => $val) { ?>
@@ -189,7 +189,7 @@ class MonoBookTemplate extends QuickTemplate {
 	  <div class="pBody">
 	    <ul>
 	      <?php foreach($this->data['language_urls'] as $langlink) { ?>
-	      <li>
+	      <li class="<?php echo htmlspecialchars($langlink['class'])?>">
 	      <a href="<?php echo htmlspecialchars($langlink['href'])
 	        ?>"><?php echo $langlink['text'] ?></a>
 	      </li>

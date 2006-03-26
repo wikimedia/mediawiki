@@ -44,13 +44,14 @@ if ( $pre_render ) {
 }
 $thumbPath = wfImageThumbDir( $fileName ) . '/' . $thumbName;
 
-if ( file_exists( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath ) ) {
+if ( is_file( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath ) ) {
 	wfStreamFile( $thumbPath );
 	exit;
 }
 
 // OK, no valid thumbnail, time to get out the heavy machinery
 require_once( 'Setup.php' );
+wfProfileIn( 'thumb.php' );
 
 $img = Image::newFromName( $fileName );
 if ( $img ) {
@@ -71,6 +72,8 @@ if ( $thumb && $thumb->path ) {
 <p>$badtitletext</p>
 </body></html>";
 }
+
+wfProfileOut( 'thumb.php' );
 
 
 ?>

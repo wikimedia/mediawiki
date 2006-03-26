@@ -3,6 +3,368 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.8 ==
+
+March 26, 2006
+
+MediaWiki 1.5.8 is a security and bugfix maintenance release.
+
+A bug in decoding of certain encoded links could allow injection of raw
+HTML into page output; this could potentially lead to XSS attacks.
+
+Some minor UI fixes were also made, see the change log at the bottom of
+this file.
+
+
+== MediaWiki 1.5.7 ==
+
+March 2, 2006
+
+MediaWiki 1.5.7 is a bugfix maintenance release.
+
+Most importantly, a security issue in the installer has been fixed. The bug 
+affects new installations of 1.5.6 only. If the user specified the MySQL root 
+password, to allow the installer to create an unprivileged account, the 
+installer would not only create the new account but also change the root 
+password to be equal to the password of the new account. 
+
+Anyone affected by this bug will need to change the root password back 
+manually. For information about how to change passwords in MySQL please see:
+http://dev.mysql.com/doc/refman/5.1/en/passwords.html
+
+This version includes fixes for compatibility with Internet Explorer 7
+beta 2, and various other bugs; see the full changelog at the end of
+the release notes.
+
+
+== MediaWiki 1.5.6 ==
+
+January 19, 2006
+
+MediaWiki 1.5.6 is a security and bugfix maintenance release.
+
+A bug in edit comment formatting could send PHP into an infinite loop
+if certain malformed links were included. In most installations, this
+would cause the script to fail after PHP's 30-second failsafe timeout.
+
+Some improvements have been made to the installer which should make
+installation possible on a system with a broken MySQL "root" account.
+
+For several other minor fixes, see the complete changelog at the end
+of this file.
+
+
+== MediaWiki 1.5.5 ==
+
+January 5, 2006
+
+MediaWiki 1.5.5 is a security and bugfix maintenance release.
+
+Detection for uploads of Windows Metafile (.wmf) images has been added
+to help protect against a client-side vulnerability in unpatched Microsoft
+Windows operating systems.
+
+Sites which have enabled uploads and added non-standard file types
+(such as .ogg, .doc, or .pdf) should upgrade to this release to ensure
+that malicious .wmf files can't be uploaded with a fake extension;
+such files could put visitors to the site at risk.
+
+For more details on this, see:
+http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+
+Additionally, a maintenance script removeUnusedAccounts.php has been added;
+this replaces an older Perl script which had not been updated for the new
+schema in 1.5.
+
+
+== MediaWiki 1.5.4 ==
+
+December 21, 2005
+
+MediaWiki 1.5.4 is a security and bugfix maintenance release.
+
+A hardcoded internal placeholder string has been replaced with a random
+one. This closes a hole where security checks in inline style attributes
+could be bypassed, injecting JavaScript code that could execute in
+Microsoft Internet Explorer.
+
+Other browsers would not be vulnerable.
+
+Several minor fixes are included in this release, most notably a fix
+to clear the "you have new messages" flag properly for usernames
+containing spaces when e-mail notification is enabled.
+
+See the changelog at the end of the release notes for a full list of
+fixes.
+
+
+== MediaWiki 1.5.3 ==
+
+December 4, 2005
+
+MediaWiki 1.5.3 is a security and bugfix maintenance release.
+
+Validation of the user language option was broken by a code change in
+May 2005, opening the possibility of remote code execution as this
+parameter is used in forming a class name dynamically created with
+eval().
+
+The validation has been corrected in this version. All prior 1.5 release
+and prelease versions are affected; 1.4 and earlier and not affected.
+
+Additionally several bugs have been fixed; see the changelog later in
+this file for a complete list.
+
+
+== MediaWiki 1.5.2 ==
+
+November 2, 2005
+
+MediaWiki 1.5.2 is a bugfix maintenance release.
+
+A change in PHP 4.4.1 and PHP 5.1.0RC broke handling of extension and
+<pre> sections, causing garbage data to be inserted in output and saved
+edits. This version works around the change.
+
+Several other glitches with MySQL 5.0 and PHP 5.0.5 were also fixed;
+see the change log below for a complete list.
+
+
+== MediaWiki 1.5.1 ==
+
+October 26, 2005
+
+MediaWiki 1.5.1 is a bugfix and security maintenance release, and is a
+recommended upgrade for all installations.
+
+This release includes further corrections to the inline CSS style sanitation
+which works around a JavaScript "feature" on Microsoft Internet Explorer.
+Users of Microsoft Internet Explorer for Windows may be vulnerable to
+XSS injections on prior versions; users of standards-compliant browsers
+are not vulnerable.
+
+Major fixes include:
+* Image pages work again with resizing disabled
+* Works in MySQL 5.0 strict mode
+
+There is experimental support in this release for explicitly declaring
+the UTF-8 charset in the database; this has been tested with MySQL 5.0.15
+but should work on 4.1 as well.
+
+IMPORTANT: Changing this setting on an existing wiki may produce interesting
+data corruption, depending on server configuration. Page contents should,
+usually, be unaffected, but page titles and other items may be. Limitations
+in MySQL's Unicode support mean that characters outside the BMP cannot be used
+in page titles or various other fields when using this mode.
+
+Table definitions are in maintenance/mysql5/tables.sql, and the runtime
+option to send 'SET NAMES utf8' is set by $wgDBmysql5 = true.
+
+(MySQL 3.23.x and 4.0.x do not support character set declarations; on these
+versions MediaWiki simply works with UTF-8 data and MySQL is blissfully
+unaware of it.)
+
+
+
+== MediaWiki 1.5.0 final ==
+
+October 5, 2005
+
+MediaWiki 1.5.0 is the new stable release branch of MediaWiki, and is
+recommended for all new installations.
+
+Any wikis running a 1.5 beta or release candidate are strongly recommended
+to upgrade to the final release, which includes a number of bug fixes and
+a security fix for CSS bugs in Microsoft Internet Explorer.
+
+IMPORTANT: Running a 1.3 or 1.4 wiki and don't want to jump to 1.5 yet?
+Be sure to upgrade to 1.3.17 or 1.4.11, also released today. Versions
+prior to 1.3.16 and 1.4.10 have a serious data corruption bug which is
+triggered by a spambot known to operate in the wild.
+
+
+=== What's new in 1.5? ===
+
+Schema:
+  The core table schema has changed significantly. This should make better
+  use of the database's cache and disk I/O, and make significantly speed up
+  rename and delete operations on pages with very long edit histories.
+  
+  Unfortunately this does mean upgrading a wiki of size from 1.4 will require
+  some downtime for the schema restructuring, but future storage backend
+  changes should be able to integrate into the new system more easily.
+
+Permalinks:
+  The current revision of a page now has a permanent 'oldid' number assigned
+  immediately, and the id numbers are now preserved across deletion/undeletion.
+  A permanent reference to the current revision of a page is now just a matter
+  of going to the 'history' tab and copying the first link in the list.
+
+Page move log:
+  Renames of pages are now recorded in Special:Log and the page history.
+  A handy revert link is available from the log for sysops.
+
+Editing diff:
+  Ever lost track of what you'd done so far during an edit? A 'Show diff'
+  button on the edit page now makes it easy to remember.
+
+Uploads:
+  It's now possible to specify the final filename of an upload distinct
+  from the original filename on your disk.
+  
+  An image link for a missing file will now take you straight to the upload page.
+  
+  More metadata is pre-extracted from uploaded images, which will ease pressure
+  on disk or NFS volumes used to store images. EXIF metadata is displayed on
+  the image description page if PHP is configured with the necessary module.
+  
+  If .svg files are added to the upload whitelist, you can choose to render
+  them to rasterized .png images for inline display using one of several
+  external helper programs. See DefaultSettings.php for SVG options.
+
+User accounts:
+  There are some changes to the user permissions system, with assignable
+  groups. Note that this does *not* allow you to make pages which are only
+  accessible to certain groups.
+  
+  For details see: http://meta.wikimedia.org/wiki/Help:User_rights
+
+E-mail:
+  User-to-user e-mail can now be restricted to require a mail-back confirmation
+  first to reduce potential for abuse with false addresses.
+  
+  Updates to user talk pages and watchlist entries can optionally send e-mail
+  notifications.
+
+External hooks:
+  A somewhat experimental interface for hooking in an external editor
+  application is included.
+
+And...
+  A bunch of stuff we forgot to mention.
+
+
+=== What's gone? ===
+
+Latin-1:
+  Wikis must now be encoded in Unicode UTF-8; this has been the default for
+  some time, but some languages could optionally be installed in Latin-1 mode.
+  This is no longer supported.
+  
+  You can check if your current wiki is in Latin-1 mode by using your browser's
+  "view source"; look for a line like this:
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  If it says charset=utf-8, you're ready. If it says charset=iso8859-1,
+  you may need to convert your data. (English-language wikis avoiding
+  any accented characters may be able to get away without conversion.)
+
+MySQL 3.x:
+  Some optimization hacks for MySQL 3.x have been removed as part of the schema
+  clean-up (specifically, the inverse_timestamp fields).
+  
+  MediaWiki 1.5 may still run on 3.x, but wikis of non-trivial size should
+  very seriously consider upgrading to a more modern release. MySQL 3.x support
+  will probably be entirely dropped in the next major release.
+
+Special:Maintenance
+  These tools were, ironically enough, not really maintained. This special
+  page has been removed; insofar as some of its pieces were useful and haven't
+  already been supplanted by other special pages they should be rewritten in
+  an efficient and safe manner in the future.
+
+
+=== Caveats ===
+
+Upgrade:
+  Wikis in Latin-1 encoding are no longer supported; only Unicode UTF-8.
+  A new option $wgLegacyEncoding is provided to allow on-the-fly recoding of
+  old page text entries, but other metadata fields (titles, comments etc) need
+  to be pre-converted. The standard upgrade process does not yet fully automate
+  this, but you can try the alternate partial-upgrader in upgrade1_5.php.
+  
+  The upgrade from 1.4 to 1.5 schema has not been tested for all cases, so
+  it's possible you may experience problems in some combinations.
+
+Backups:
+  The text entries of deleted pages are no longer removed from the main
+  text table on deletion. If you provide public backup dumps of your databases,
+  you will probably want to use the new XML-format dump generator, available
+  as maintenance/dumpBackup.php.
+  
+  For more information on how we run our own public data dumps at Wikimedia,
+  see http://meta.wikimedia.org/wiki/Data_dumps
+
+PostgreSQL:
+  The table definitions for PostgreSQL install are out of date. PostgreSQL
+  support may return in later releases, pending appropriate patches.
+
+MySQL 4.1+:
+  Some users may encounter installation problems with MySQL 4.1 or higher
+  due to strange charset encoding / collation configurations. Try setting
+  to 'latin1' or 'utf8' if you encounter problems.
+
+
+
+== MediaWiki 1.5 release candidate 4 ==
+
+August 29, 2005
+
+MediaWiki 1.5rc4 is a preview release of the new 1.5 release series.
+It fixes compatibility with PHP 5.1, and corrects two cross-site scripting
+security bugs:
+
+* <math> tags were handled incorrectly when TeX rendering support is off,
+  as in the default configuration.
+* Extension or <nowiki> sections in Wiki table syntax could bypass HTML
+  style attribute restrictions for cross-site scripting attacks against
+  Microsoft Internet Explorer
+
+Wikis where the optional math support has been *enabled* are not vulnerable
+to the first, but are vulnerable to the second.
+
+
+
+== MediaWiki 1.5 release candidate 3 ==
+
+August 24, 2005
+
+MediaWiki 1.5rc3 is a preview release of the new 1.5 release series.
+It fixes several major problems in 1.5rc2:
+
+* Fixed a cross-site scripting injection in the search form
+  (broken since 1.5beta1)
+
+* Fixed upgrades from 1.4 database schema
+  (broken since 1.5rc2)
+
+1.3 and 1.4 releases are not vulnerable to the XSS bug, but anyone
+running an earlier 1.5 beta or release candidate should upgrade
+immediately.
+
+
+== MediaWiki 1.5 release candidate 2 ==
+
+August 23, 2005
+
+MediaWiki 1.5rc2 is a preview release of the new 1.5 release series.
+Numerous bug fixes since last beta, plus a security fix; see change
+log below for full details.
+
+A flaw in the interaction between extensions and HTML attribute
+sanitization was discovered which could allow unauthorized use
+of offsite resources in style sheets, and possible exploitation
+of a JavaScript injection feature on Microsoft Internet Explorer.
+
+This version expands the returned text and properly checks it
+before output.
+
+A 1.5rc1 release was mistakenly made from the incorrect source code
+branch; 1.5rc2 is identical to the actual 1.5rc1 in revision control
+except for version number.
+
+
 == MediaWiki 1.5 beta 4 ==
 
 July 30, 2005
@@ -109,117 +471,7 @@ NOT to run a live production web site on this alpha release.
 **  DON'T SAY WE DIDN'T WARN YOU, MAN. WE TOTALLY DID RIGHT HERE.  **
 
 
-=== Big changes ===
-
-Schema:
-  The core table schema has changed significantly. This should make better
-  use of the database's cache and disk I/O, and make significantly speed up
-  rename and delete operations on pages with very long edit histories.
-  
-  Unfortunately this does mean upgrading a wiki of size from 1.4 will require
-  some downtime for the schema restructuring, but future storage backend
-  changes should be able to integrate into the new system more easily.
-
-Permalinks:
-  The current revision of a page now has a permanent 'oldid' number assigned
-  immediately, and the id numbers are now preserved across deletion/undeletion.
-  A permanent reference to the current revision of a page is now just a matter
-  of going to the 'history' tab and copying the first link in the list.
-
-Page move log:
-  Renames of pages are now recorded in Special:Log and the page history.
-  A handy revert link is available from the log for sysops.
-
-Editing diff:
-  Ever lost track of what you'd done so far during an edit? A 'Show diff'
-  button on the edit page now makes it easy to remember.
-
-Uploads:
-  It's now possible to specify the final filename of an upload distinct
-  from the original filename on your disk.
-  
-  An image link for a missing file will now take you straight to the upload page.
-  
-  More metadata is pre-extracted from uploaded images, which will ease pressure
-  on disk or NFS volumes used to store images. EXIF metadata is displayed on
-  the image description page if PHP is configured with the necessary module.
-
-User accounts:
-  There are some changes to the user permissions system, with assignable
-  groups. This is still somewhat in flux; do not rely on the present system
-  that you see in this alpha to still be there.
-
-E-mail:
-  User-to-user e-mail can now be restricted to require a mail-back confirmation
-  first to reduce potential for abuse with false addresses.
-  
-  Updates to user talk pages and watchlist entries can optionally send e-mail
-  notifications.
-
-External hooks:
-  A somewhat experimental interface for hooking in an external editor
-  application is included. This may not be on by default in final release,
-  depending on support.
-
-And...
-  A bunch of stuff we forgot to mention.
-
-
-=== What's gone? ===
-
-Latin-1:
-  Wikis must now be encoded in Unicode UTF-8; this has been the default for
-  some time, but some languages could optionally be installed in Latin-1 mode.
-  This is no longer supported.
-
-MySQL 3.x:
-  Some optimization hacks for MySQL 3.x have been removed as part of the schema
-  clean-up (specifically, the inverse_timestamp fields). MediaWiki 1.5 should
-  still run, but wikis of significant size should very seriously consider
-  upgrading to a more modern release. MySQL 3.x support will probably be
-  entirely dropped in the next major release later this year.
-
-Special:Maintenance
-  These tools were, ironically enough, not really maintained. This special
-  page has been removed; insofar as some of its pieces were useful and haven't
-  already been supplanted by other special pages they should be rewritten in
-  an efficient and safe manner in the future.
-
-
-=== What's still waiting? ===
-
-These things should be fixed by the time 1.5.0 final is released:
-
-Upgrade:
-  Wikis in Latin-1 encoding are no longer supported; only Unicode UTF-8.
-  A new option $wgLegacyEncoding is provided to allow on-the-fly recoding of
-  old page text entries, but other metadata fields (titles, comments etc) need
-  to be pre-converted. The upgrade process does not yet fully automate this.
-  
-  In general the upgrade from 1.4 to 1.5 schema has not been tested for all
-  cases, and there may be problems.
-
-Backups:
-  The text entries of deleted pages are no longer removed from the main
-  text table on deletion. If you provide public backup dumps of your databases,
-  you will probably want to use the new XML-format dump generator... but
-  this hasn't been finished yet.
-
-PostgreSQL:
-  The table definitions for PostgreSQL install are out of date, and patches
-  to support PostgreSQL from the main installer are still pending.
-
-MySQL 4.1+:
-  Proper charset encoding / collation configuration for installs on MySQL 4.1
-  and higher still needs to be fiddled with. Some bits may fail on the UTF-8
-  setting due to some long field keys.
-
-Authentication plugin fixes:
-  The AuthPlugin interface needs some improvements to work better with LDAP,
-  HTTP basic auth, and other such environments. Some patches are pending.
-
-
-=== Smaller changes ===
+=== Smaller changes since 1.4 ===
 
 Various bugfixes, small features, and a few experimental things:
 
@@ -631,6 +883,232 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 === Changes since 1.5beta4 ===
 
 * Fix Special:Allmessages under PHP 5
+* (bug 2911) Special:Watchlist allowed only one type of limit at a time
+* (bug 693) Special:Allmessages is excessively wide and redundant
+* (bug 3001) Updated and applied live hack for recentchanges-based watchlist
+* (bug 145) Finish 'exclude redirect' implementation in search form
+* Rearranged Special:Movepage form to reduce confusion between destination
+  title and reason input boxes
+* (bug 2527) Always set destination filename when new file is selected
+* (bug 3056) MySQL 3 compatibility fix: USE INDEX instead of FORCE INDEX
+* PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
+  if running prior to 4.2.0 as it causes the call to fail
+* (bug 3117) Fix display of upload size and type with tidy on
+* (bug 1487) invalid html on empty list in banlist
+* (bug 3017) Hotkey conflict for delete and show changes
+* made pixel unit translateable and blocklistline now eats infiniteblock
+  and expiringblock
+* (bug 3092) Wrong numerical separator for big numbers in Serbian.
+* (bug 2855) Credit for a uniq author showed its realname even with
+  $wgAllowRealName=false.
+* New special page: SpecialMostlinked
+* (bug 2393) Fix MIME type for Atom feeds ( application/rss+atom )
+* Fix display of read-only lockfile message
+* Added a new hook, 'AddNewAccount', which is run after account creation
+* Update all stats fields on recount.sql
+* Include software-visible client IP address in Special:Version comment
+  as a proxy debugging aid
+* (bug 3162) Fix 'undefined property page_is_new' error on watchlist
+* (bug 1734) granting db permissions failed with db usernames containg '-'
+* (bug 3170) wikititlesuffix was removed, use pagetitle instead
+* (bug 3187) watchlist text refer to unexistent "Stop watching" action
+* (bug 3190) Added some date format choices for language sr
+* (bug 1334) LanguageGa.php update
+* (bug 1020) Changing user interface language does not work immediately
+* (bug 2753) Some namespaces were not translated in LanguageTa.php (Tamil)
+* (bug 3204) Fix typo breaking special pages in fy localization
+* (bug 3210) Fix Media: links with remote image URL path
+* (bug 3220) Fix escaping of block URLs in Recentchanges
+* (bug 3238): Updated LanguageNn.php for 1_5 branch
+* (bug 3192): properly check 'limit' parameter on Special:Contributions
+* (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
+* Fix URL sanitization in HTML attributes, which broke in this branch
+* (bug 3475) anon contrib links on Special:Newpages
+
+
+=== Changes since 1.5rc2 ===
+
+* Fix upgrade from 1.4 due to version number check breakage
+* Fix upgrade from 1.4 with no old revisions
+* (bug 2108) Sort entries when using category browser
+* XSS issue : now sanitize search query input
+
+
+=== Changes since 1.5rc3 ===
+
+* (bug 3280) Respect 'move' group permission on page moves
+* (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
+* Security fix for <math>
+* Security fix for tables
+
+
+=== Changes since 1.5rc4 ===
+
+* (bug 3292) Fix move-over-redirect test when current entries are not plaintext
+* (bug 2078) Don't hide watch tab on preview
+* (bug 3306) Document $wgLocalTZoffset
+* Support SVG rendering with rsvg
+* Cap arbitrary SVG renders to given image size or $wgSVGMaxSize pixels wide
+* (bug 3127) Render large SVGs at image page size correctly
+* (bug 3448) Set page_len on undelete
+* (bug 2800) Don't scale up small iamges on |thumb| without explicit size
+* Use the real file link instead of the default-size rasterized version for
+  large SVG images on image description page
+* Include the file name/type/size line for non-resized images
+* (bug 3412) Clean up date format handling so ~~~~-sigs work with default
+  format as designed. Documentation comments updated.
+* (bug 1423) LanguageJa.php update
+* (bug 3405) Don't use raw letters as aliases of MSGNW: and SUBST:
+* (bug 3485) Fix bogus warning about filename capitalization when off
+* (bug 2792) Update rebuildrecentchanges.inc for new schema
+* Special:Import/importDump fixes: report XML parse errors, accept <minor/>
+* (bug 3489) PHP 5.1 compat problem with captioned images
+* (bug 3350) Missing label for move talk page checkbox.
+* (bug 2570) Add 'watch this page' checkbox on uploads, watch uploads
+  by default when 'watchdefault' option is on
+* (bug 3182) Clear link cache during import to prevent memory leak
+* (bug 3573) Full Greek Translation
+* (bug 3595) Warn and abort if importDump.php called in read-only mode.
+* (bug 3598) Update message cache on message page deletion, patch by Tietew
+* Blacklist additional MSIE CSS safety tricks
+
+
+=== Changes since 1.5.0 ===
+
+* (bug 3629) Fix date & time format for Frisian
+* (bug 3641) Fix handling of unrecognized file uploads with known extensions
+* (bug 3643) Fix image page display of large images with resizing disabled
+* Fix meta robots tag on Special:Version again to avoid listing vulnerable
+  versions for convenient harvesting by automated worms
+* (bug 3684) Fix typo in fatal error backtraces in Hooks.php
+* Backport fix for reference usage notice in Special:Search on PHP 4.4.0
+* Backport database connect error display fix from HEAD
+* (bug 2773) Print style sheet no longer overrides RTL text direction
+* MonoBook skin top link id changed from "contentTop" to "top" (shared with
+  name attribute)
+* Wrap message page insertions in a transaction to speed up installation
+* Fix Special:MovePage invalid HTML attribute for reason textarea
+* Avoid notice warning on edit with no User-Agent header
+* (bug 3734) Swapped out obsolete recount.sql with initStats.php
+* (bug 3735) Fix to run under MySQL 5's strict mode
+* (bug 3786) Experimental support for MySQL 4.1/5.0 utf8 charset mode
+  NOTE: Enabling this may break existing wikis, and still doesn't
+  work for all Unicode characters due to MySQL limitations.
+* Sanitizer CSS comment processing order fix
+
+
+=== Changes since 1.5.1 ===
+
+* Fix Special:BrokenRedirects on MySQL 5.0
+* (bug 3809) Backport fix for detecting diff3 failure
+* MySQL 5.0 strict mode fix for moving unwatched pages
+* (bug 3782) Throw fatal installation warning if mbstring.func_overload on.
+  Why do people invent these crazy options that change language semantics?
+* (bug 3762) Define missing Special:Import UI messages
+* (bug 3771) Handle internal functions in backtrace in wfAbruptExit()
+* (bug 3649) Remove obsolete, broken moveCustomMessages script
+* (bug 3667) Add missing global in page move code
+* (bug 3761) Avoid deprecation warnings in Special:Import
+* (bug 2885) Remove unnecessary reference parameter which broke classic skin
+  talk notification on PHP 5.0.5
+* (bug 3845) Update attribute.php for 1.5 schema
+* Fix Parser::unstrip on PHP 4.4.1 and PHP 5.1.0RC4
+
+
+=== Changes since 1.5.2 ===
+
+* (bug 3612) Remove old broken version of maintenance/compressOld.php
+  The working version is in maintenance/storage/compressOld.php
+* (bug 2740) Accept image deletions on 'enter' submit from MSIE
+* (bug 3933) specify XML namespace for Atom 0.3 feeds
+* (bug 3939) Don't try to load text for interwiki redirect target
+* (bug 3948) Avoid notice warning in debug statement in bad search
+* Recognize Special:Search consistently so read whitelist works
+* (bug 4013) typo in fr
+* (bug 3996) Fix text for new entries in RC RSS/Atom feed
+* (bug 2894) Enhanced Recent Changes link fixes
+* (bug 3065) Update both watched namespaces when renaming pages
+* Move parentheses out of <a> link in Special:Contributions
+* (bug 4071) Generate passwords long enough for $wgMinimalPasswordLength
+* (bug 4035) Fix prev/next revision links on edit page
+* (bug 4165) Correct validation for user language selection (data taint)
+* Clearer message in DefaultSettings.php: edit LocalSettings.php instead
+
+
+=== Changes since 1.5.3 ===
+
+* (bug 3805) Clear 'new messages' flag properly in enotif mode
+  for usernames containing spaces
+* (bug 2714) Backlink from special:whatlinkshere was hard set as 'existing'
+* (bug 4249) Typo in entities2literals.pl
+* (bug 4233) Update for japanese language
+* (bug 4279) Small correction to LanguageDa.php
+* (bug 4267) Switch dv sd ug ks arc languages to RTL
+* (bug 3991) Allow the operation of wikicode on Protect move only text
+* Added AutoAuthenticate hook for external User object suppliers
+* Parser internal placeholder string now fully randomized for safety
+
+=== Changes since 1.5.4 ===
+
+* Maintenance script to delete unused user accounts
+* Added detection for WMF files (application/x-msmetafile), added this 
+  MIME type to the default blacklist. Prevented inline display of images
+  which are not of known image types. This is in response to
+  http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+
+=== Changes since 1.5.5 ===
+
+* (bug 4258) When installing under IIS, $wgArticlePath = "$wgScript?title=$1" 
+  should be set
+* (bug 4510) Correct Barnes & Noble bookstore URLs
+* (bug 4504) Use site language for namespace name resolution
+* Installer fixes from HEAD backported; now uses a more sensible method of 
+  establishing which mySQL user to use, which clears up bug 921 et al. Minor 
+  changes to installer.
+* Fix problem reported on mailing list where re-initialising stats didn't work 
+  (can't insert duplicate rows with the same id field)
+* (bug 1122) gray out 'older revision' when viewing first article revision.
+* Respect database prefix in dumpHTML.inc
+* Minor improvements to removeUnusedAccounts.php maintenance script
+* Fix for single-digit week numbers from {{CURRENTWEEK}}, broken by PHP 4.4.1
+* Removed read-only check from Database::query()
+* Added --conf option to command line scripts, allowing the user to specify a 
+  different LocalSettings.php.
+
+=== Changes since 1.5.6 ===
+
+* Default main page content improved per bug 4690
+* Fix dependence on hardcoded UNIQ_PREFIX in LanguageConverter.php 
+* Fixed Special:Unlockdb
+* Maintenance script to delete unused text records
+* Maintenance script to delete non-current revisions
+* Maintenance script to wipe a page and all revisions from the database
+* (bug 4768) Wrong Russian translation (typo)
+* Performance bugfix: propagate equality manually for Revision fetches
+* (bug 4773) PHP fatal error when invalid title passed to Special:Export
+* Added missing table defs. for transcache to installer schemas
+* (bug 4824) IE7 beta 2 broke compatibility with PNG logo workarounds,
+  and seems to work ok with other bits. No longer including the IE
+  workarounds JavaScript for IE 7 and above.
+* (bug 2532) Image directory structure migration bug
+* (bug 4881) Correction to the fix for 1487; Ipblocklist showed 'no blocks'
+  message at the end of the list even if there were blocks.
+* (bug 4805) Removed more wikipedia-references from LanguageUk.php
+* Introduce $wgWantedPagesThreshold per bug 5011; Special:Wantedpages will not
+  list pages with less than this number of links. Defaults to 1.
+* Allow customisation of paging limits for items in categories using the
+  $wgCategoryPagingLimit global, per bug 4970.
+* Improve "nogomatch" text to make it more obvious that a page can be created.
+* (bug 5113) Spelling error in French language file
+* Don't change the password of the MySQL root user.
+
+=== Changes since 1.5.7 ===
+
+* (bug 5180) User login page shows inappropriate email blurb
+* Add the "AbortNewAccount" hook on account creation; see hooks.txt for more info.
+* Update default "exporttext" to reflect that Special:Import exists
+* Add links to useful material to the default main page content
+* Fix fragment HTML injection
 
 
 === Caveats ===

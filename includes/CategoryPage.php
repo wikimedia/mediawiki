@@ -64,7 +64,7 @@ class CategoryPage extends Article {
 	 * @access private
 	 */
 	function doCategoryMagic( $from = '', $until = '' ) {
-		global $wgContLang,$wgUser, $wgCategoryMagicGallery;
+		global $wgContLang,$wgUser, $wgCategoryMagicGallery, $wgCategoryPagingLimit;
 		$fname = 'CategoryPage::doCategoryMagic';
 		wfProfileIn( $fname );
 
@@ -88,7 +88,7 @@ class CategoryPage extends Article {
 			$pageCondition = '1';
 			$flip = false;
 		}
-		$limit = 200;
+		$limit = $wgCategoryPagingLimit;
 		$res = $dbr->select(
 			array( 'page', 'categorylinks' ),
 			array( 'page_title', 'page_namespace', 'page_len', 'cl_sortkey' ),

@@ -49,6 +49,7 @@ function getRebuildInterwikiSQL() {
 		'textbookwiki' => 'wikibooks.org',
 		'sep11wiki' => 'sep11.wikipedia.org',
 		'metawiki' => 'meta.wikimedia.org',
+		'commonswiki' => 'commons.wikimedia.org',
 	);
 
 	$extraLinks = array(
@@ -77,7 +78,8 @@ function getRebuildInterwikiSQL() {
 	}
 
 	# Extract the intermap from meta
-	$lines = file( 'http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw' );
+	$intermap = wfGetHTTP( 'http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw' );
+	$lines = array_map( 'trim', explode( "\n", trim( $intermap ) ) );
 
 	if ( !$lines ) {
 		die( "m:Interwiki_map not found" );

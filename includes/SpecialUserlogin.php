@@ -146,6 +146,8 @@ class LoginForm {
 		if( $wgEmailAuthentication && $wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) {
 			$wgUser->sendConfirmationMail();
 		}
+		
+		wfRunHooks( 'AddNewAccount' );
 
 		if( $this->hasSessionCookie() ) {
 			return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ) );
@@ -232,6 +234,13 @@ class LoginForm {
 				$this->throttleHit( $wgAccountCreationThrottle );
 				return false;
 			}
+		}
+
+		$abortError = '';
+		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
+			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
+			$this->mainLoginForm( $abortError );
+			return false;
 		}
 
 		if( !$wgAuth->addUser( $u, $this->mPassword ) ) {
@@ -374,8 +383,8 @@ class LoginForm {
 	 * @access private
 	 */
 	function mailPasswordInternal( $u ) {
-		global $wgPasswordSender, $wgDBname, $wgIP;
-		global $wgCookiePath, $wgCookieDomain;
+		global $wgPasswordSender, $wgIP;
+		global $wgCookiePath, $wgCookieDomain, $wgCookiePrefix;
 
 		if ( '' == $u->getEmail() ) {
 			return wfMsg( 'noemail', $u->getName() );
@@ -384,7 +393,7 @@ class LoginForm {
 		$np = $u->randomPassword();
 		$u->setNewpassword( $np );
 
-		setcookie( "{$wgDBname}Token", '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( "{$wgCookiePrefix}Token", '', time() - 3600, $wgCookiePath, $wgCookieDomain );
 
 		$u->saveSettings();
 
@@ -435,14 +444,15 @@ class LoginForm {
 	 */
 	function mainLoginForm( $err ) {
 		global $wgUser, $wgOut, $wgLang;
-		global $wgDBname, $wgAllowRealName, $wgEnableEmail;
+		global $wgAllowRealName, $wgEnableEmail;
+		global $wgCookiePrefix;
 		global $wgAuth;
 
 		if ( '' == $this->mName ) {
 			if ( $wgUser->isLoggedIn() ) {
 				$this->mName = $wgUser->getName();
 			} else {
-				$this->mName = @$_COOKIE[$wgDBname.'UserName'];
+				$this->mName = @$_COOKIE[$wgCookiePrefix.'UserName'];
 			}
 		}
 

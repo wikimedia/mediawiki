@@ -173,6 +173,7 @@ class Article {
 		$striparray=array();
 		$parser=new Parser();
 		$parser->mOutputType=OT_WIKI;
+		$parser->mOptions = new ParserOptions();
 		$striptext=$parser->strip($text, $striparray, true);
 
 		# now that we can be sure that no pseudo-sections are in the source,
@@ -428,15 +429,17 @@ class Article {
 						return false;
 					}
 				}
-				$redirData = $this->pageDataFromTitle( $dbr, $rt );
-				if( $redirData ) {
-					$redirRev = Revision::newFromId( $redirData->page_latest );
-					if( !is_null( $redirRev ) ) {
-						$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
-						$this->mTitle = $rt;
-						$data = $redirData;
-						$this->loadPageData( $data );
-						$revision = $redirRev;
+				if( $rt->getInterwiki() == '' ) {
+					$redirData = $this->pageDataFromTitle( $dbr, $rt );
+					if( $redirData ) {
+						$redirRev = Revision::newFromId( $redirData->page_latest );
+						if( !is_null( $redirRev ) ) {
+							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
+							$this->mTitle = $rt;
+							$data = $redirData;
+							$this->loadPageData( $data );
+							$revision = $redirRev;
+						}
 					}
 				}
 			}
@@ -755,14 +758,14 @@ class Article {
 				$wgOut->setRobotpolicy( 'noindex,follow' );
 			}
 			if ( '' != $this->mRedirectedFrom ) {
-				$sk = $wgUser->getSkin();
-				$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '',
-				  'redirect=no' );
-				$s = wfMsg( 'redirectedfrom', $redir );
-				$wgOut->setSubtitle( $s );
-
-				# Can't cache redirects
-				$pcache = false;
+				if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
+					$sk = $wgUser->getSkin();
+					$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '', 'redirect=no' );
+					$s = wfMsg( 'redirectedfrom', $redir );
+					$wgOut->setSubtitle( $s );
+					# Can't cache redirects
+					$pcache = false;
+				}
 			} elseif ( !empty( $rdfrom ) ) {
 				global $wgRedirectSources;
 				if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
@@ -864,7 +867,7 @@ class Article {
 
 		$tbtext = "";
 		while ($o = $dbr->fetchObject($tbs)) {
-			$rmvtext = "";
+			$rmvtxt = "";
 			if ($wgUser->isSysop()) {
 				$delurl = $this->mTitle->getFullURL("action=deletetrackback&tbid="
 						. $o->tb_id . "&token=" . $wgUser->editToken());
@@ -939,6 +942,7 @@ class Article {
 			'page_random'       => wfRandom(),
 			'page_touched'      => $dbw->timestamp(),
 			'page_latest'       => 0, # Fill this in shortly...
+			'page_len'          => 0, # Fill this in shortly...
 		), $fname );
 		$newid = $dbw->insertId();
 
@@ -970,13 +974,14 @@ class Article {
 			# An extra check against threads stepping on each other
 			$conditions['page_latest'] = $lastRevision;
 		}
+
 		$text = $revision->getText();
 		$dbw->update( 'page',
 			array( /* SET */
 				'page_latest'      => $revision->getId(),
 				'page_touched'     => $dbw->timestamp(),
 				'page_is_new'      => ($lastRevision === 0) ? 1 : 0,
-				'page_is_redirect' => Article::isRedirect( $text ),
+				'page_is_redirect' => Article::isRedirect( $text ) ? 1 : 0,
 				'page_len'         => strlen( $text ),
 			),
 			$conditions,
@@ -1118,6 +1123,7 @@ class Article {
 				$striparray=array();
 				$parser=new Parser();
 				$parser->mOutputType=OT_WIKI;
+				$parser->mOptions = new ParserOptions();
 				$oldtext=$parser->strip($oldtext, $striparray, true);
 
 				# now that we can be sure that no pseudo-sections are in the source,
@@ -1582,7 +1588,7 @@ class Article {
 
 		wfDebug( "Article::confirmProtect\n" );
 
-		$sub = $this->mTitle->getPrefixedText();
+		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$check = '';
@@ -1599,7 +1605,7 @@ class Article {
 			$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
 			$wgOut->setSubtitle( wfMsg( 'protectsub', $sub ) );
 			$wgOut->addWikiText( wfMsg( 'confirmprotecttext' ) );
-			$moveonly = htmlspecialchars( wfMsg( 'protectmoveonly' ) );
+			$moveonly = wfMsg( 'protectmoveonly' ) ; // add it using addWikiText to prevent xss. bug:3991
 			$protcom = htmlspecialchars( wfMsg( 'protectcomment' ) );
 			$formaction = $this->mTitle->escapeLocalURL( 'action=protect' . $par );
 		}
@@ -1625,7 +1631,10 @@ class Article {
 				<input type='checkbox' name='wpMoveOnly' value='1' id='wpMoveOnly' />
 			</td>
 			<td align='left'>
-				<label for='wpMoveOnly'>{$moveonly}</label>
+				<label for='wpMoveOnly'> ");
+			$wgOut->addWikiText( $moveonly ); // bug 3991
+			$wgOut->addHTML( "
+				</label>
 			</td>
 		</tr> " );
 		}
@@ -1706,7 +1715,7 @@ class Article {
 		}
 
 		# Fetch cur_text
-		$rev =& Revision::newFromTitle( $this->mTitle );
+		$rev = Revision::newFromTitle( $this->mTitle );
 
 		# Fetch name(s) of contributors
 		$rev_name = '';
@@ -2061,21 +2070,27 @@ class Article {
 		# Update newtalk status if user is reading their own
 		# talk page
 
-		global $wgUser;
-		if ($this->mTitle->getNamespace() == NS_USER_TALK &&
-			$this->mTitle->getText() == $wgUser->getName())
-		{
-			if ( $wgUseEnotif ) {
-				require_once( 'UserTalkUpdate.php' );
-				$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(), $this->mTitle->getDBkey(), false, false, false );
-			} else {
-				$wgUser->setNewtalk(0);
-				$wgUser->saveNewtalk();
-			}
-		} elseif ( $wgUseEnotif ) {
-			$wgUser->clearNotification( $this->mTitle );
-		}
+		if (!wfRunHooks('UserClearNewTalkNotification', array(&$this)))
+			return;
 
+		global $wgUser;
+		if (wfRunHooks('ArticleEditUpdateNewTalk', array(&$this)) ) {
+			if ($this->mTitle->getNamespace() == NS_USER_TALK &&
+				$this->mTitle->getText() == $wgUser->getName())
+			{
+
+				if ( $wgUseEnotif ) {
+					require_once( 'UserTalkUpdate.php' );
+					$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(),
+						$this->mTitle->getDBkey(), false, false, false );
+				} else {
+					$wgUser->setNewtalk(0);
+					$wgUser->saveNewtalk();
+				}
+			} elseif ( $wgUseEnotif ) {
+				$wgUser->clearNotification( $this->mTitle );
+			}
+		}
 	}
 
 	/**
@@ -2141,8 +2156,12 @@ class Article {
 	}
 
 	/**
-	 * @todo document this function
-	 * @private
+	 * Generate the navigation links when browsing through an article revisions
+	 * It shows the information as:
+	 *   Revision as of <date>; view current revision
+	 *   <- Previous version | Next Version ->
+	 *
+	 * @access private
 	 * @param string $oldid		Revision ID of this article revision
 	 */
 	function setOldSubtitle( $oldid=0 ) {
@@ -2154,7 +2173,10 @@ class Article {
 		$lnk = $current
 			? wfMsg( 'currentrevisionlink' )
 			: $lnk = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
-		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid );
+		$prev = $this->mTitle->getPreviousRevisionID( $oldid ) ;
+		$prevlink = $prev
+			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid )
+			: wfMsg( 'previousrevision' );
 		$nextlink = $current
 			? wfMsg( 'nextrevision' )
 			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
@@ -2354,8 +2376,14 @@ class Article {
 		}
 	}
 
-	function onArticleDelete($title_obj) {
-		$title_obj->touchLinks();
+	function onArticleDelete( $title ) {
+		global $wgMessageCache;
+		
+		$title->touchLinks();
+		
+		if( $title->getNamespace() == NS_MEDIAWIKI) {
+			$wgMessageCache->replace( $title->getDBkey(), false );
+		}
 	}
 
 	function onArticleEdit($title_obj) {

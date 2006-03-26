@@ -526,13 +526,12 @@ class EditPage {
 			}
 			$wgOut->setPageTitle( $s );
 			if ( !$this->checkUnicodeCompliantBrowser() ) {
-				$this->mArticle->setOldSubtitle();
 				$wgOut->addWikiText( wfMsg( 'nonunicodebrowser') );
 			}
 			if ( isset( $this->mArticle )
 			     && isset( $this->mArticle->mRevision )
 			     && !$this->mArticle->mRevision->isCurrent() ) {
-				$this->mArticle->setOldSubtitle();
+				$this->mArticle->setOldSubtitle( $this->mArticle->mRevision->getId() );
 				$wgOut->addWikiText( wfMsg( 'editingold' ) );
 			}
 		}
@@ -960,9 +959,19 @@ END
 		}
 	}
 
-
+	/**
+	 * Check if the browser is on a blacklist of user-agents known to
+	 * mangle UTF-8 data on form submission. Returns true if Unicode
+	 * should make it through, false if it's known to be a problem.
+	 * @return bool
+	 * @access private
+	 */
 	function checkUnicodeCompliantBrowser() {
 		global $wgBrowserBlackList;
+		if( empty( $_SERVER["HTTP_USER_AGENT"] ) ) {
+			// No User-Agent header sent? Trust it by default...
+			return true;
+		}
 		$currentbrowser = $_SERVER["HTTP_USER_AGENT"];
 		foreach ( $wgBrowserBlackList as $browser ) {
 			if ( preg_match($browser, $currentbrowser) ) {
@@ -1000,7 +1009,7 @@ END
 	 * The necessary JavaScript code can be found in style/wikibits.js.
 	 */
 	function getEditToolbar() {
-		global $wgStylePath, $wgLang, $wgMimeType, $wgJsMimeType;
+		global $wgStylePath, $wgContLang, $wgMimeType, $wgJsMimeType;
 
 		/**
 		 * toolarray an array of arrays which each include the filename of
@@ -1050,14 +1059,14 @@ END
 					'key'	=>	'H'
 				),
 			array(	'image'=>'button_image.png',
-					'open'	=>	'[['.$wgLang->getNsText(NS_IMAGE).":",
+					'open'	=>	'[['.$wgContLang->getNsText(NS_IMAGE).":",
 					'close'	=>	']]',
 					'sample'=>	wfMsg('image_sample'),
 					'tip'	=>	wfMsg('image_tip'),
 					'key'	=>	'D'
 				),
 			array(	'image'	=>'button_media.png',
-					'open'	=>	'[['.$wgLang->getNsText(NS_MEDIA).':',
+					'open'	=>	'[['.$wgContLang->getNsText(NS_MEDIA).':',
 					'close'	=>	']]',
 					'sample'=>	wfMsg('media_sample'),
 					'tip'	=>	wfMsg('media_tip'),

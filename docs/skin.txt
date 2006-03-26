@@ -1,5 +1,5 @@
 
-SKIN.DOC
+skin.txt
 
 This document describes the overall architecture of MediaWiki's HTML rendering
 code as well as some history about the skin system. It is placed here rather
