@@ -256,6 +256,7 @@ i18n / Languages:
 * Update default "exporttext" to reflect that Special:Import exists
 * (bug 4960) Add additional namespaces variants to Yi projects: Yiddish Wikinews fix
 * (bug 5357) Add the icon near the user name also in RTL interfaces
+* (bug 5156) Update for Hebrew language (he)
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
