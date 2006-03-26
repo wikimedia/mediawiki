@@ -460,6 +460,7 @@ class OutputPage {
 	function output() {
 		global $wgUser, $wgOutputEncoding;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType, $wgProfiler;
+		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgScriptPath, $wgServer;
 
 		if( $this->mDoNothing ){
 			return;
@@ -467,6 +468,14 @@ class OutputPage {
 		$fname = 'OutputPage::output';
 		wfProfileIn( $fname );
 		$sk = $wgUser->getSkin();
+
+		if ( $wgUseAjax ) {
+			$this->addScript( "<script type=\"{$wgJsMimeType}\">
+				var wgScriptPath=\"{$wgScriptPath}\";
+				var wgServer=\"{$wgServer}\";
+			</script>" );
+			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajax.js\"></script>\n" );
+		}
 
 		if ( '' != $this->mRedirect ) {
 			if( substr( $this->mRedirect, 0, 4 ) != 'http' ) {

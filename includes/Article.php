@@ -490,7 +490,7 @@ class Article {
 			}
 			$revision = Revision::newFromId( $this->mLatest );
 			if( is_null( $revision ) ) {
-				wfDebug( "$fname failed to retrieve current page, rev_id $data->page_latest\n" );
+				wfDebug( "$fname failed to retrieve current page, rev_id {$data->page_latest}\n" );
 				return false;
 			}
 		}

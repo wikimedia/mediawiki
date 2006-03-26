@@ -1986,6 +1986,10 @@ Please confirm that really want to recreate this article.',
 
 'youhavenewmessagesmulti' => "You have new messages on $1",
 'newtalkseperator' => ',_',
+'searchcontaining' => "Search for articles containing ''$1''.",
+'searchnamed' => "Search for articles named ''$1''.",
+'articletitles' => "Articles starting with ''$1''",
+'hideresults' => 'Hide results',
 
 );
 

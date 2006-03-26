@@ -717,6 +717,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4729) Add user preference that marks a user's edits as patrolled if user is able to
 * (bug 4497,4704,5010) Added some new language codes.
 * (bug 4630) Add user preference to prompt users when entering blank edit summaries
+* Added optional suggest feature for the search box. Set wgUseAjax to true to
+  enable it.
 
 === Caveats ===
 

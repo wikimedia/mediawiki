@@ -1127,7 +1127,12 @@ $3
 Wenn Sie *nicht* $2 sind, folgen Sie dem Link bitte nicht.
 
 Der Bestätigungskode läuft am $4 ab.
-"
+",
+'searchcontaining' => "Suche nach Artikeln, in denen ''$1'' vorkommt.",
+'searchnamed' => "Suche nach Artikeln, deren Name ''$1'' enthält.",
+'articletitles' => "Artikel, die mit ''$1'' beginnen",
+'hideresults' => 'Verbergen',
+
 
 );
 
