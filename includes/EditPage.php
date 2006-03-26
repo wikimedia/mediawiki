@@ -633,7 +633,7 @@ class EditPage {
 		}
 
 		# Handle the user preference to force summaries here
-		if( !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
+		if( $this->section != 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
 			if( md5( $this->summary ) == $this->autoSumm ) {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
