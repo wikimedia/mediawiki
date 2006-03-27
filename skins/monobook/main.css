@@ -739,9 +739,6 @@ special external link styling */
 	position: relative;
 	z-index: 3;
 }
-#p-search .pBody {
-	text-align: center;
-}
 input.searchButton {
 	margin-top: 1px;
 	font-size: 95%;
@@ -758,6 +755,7 @@ input.searchButton {
 }
 #p-search .pBody {
 	padding: .5em .4em .4em .4em;
+	text-align: center;
 }
 
 /*
