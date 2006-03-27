@@ -108,9 +108,6 @@ if ( !function_exists( 'array_diff_key' ) ) {
 	}
 }
 
-// If it doesn't exist no ctype_* stuff will
-if ( ! function_exists( 'ctype_alnum' ) )
-	require_once 'compatability/ctype.php';
 
 /**
  * Wrapper for clone() for PHP 4, for the moment.
