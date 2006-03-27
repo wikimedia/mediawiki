@@ -1821,6 +1821,12 @@ $wgExternalServers = array();
 /**
  * The place to put new revisions, false to put them in the local text table.
  * Part of a URL, e.g. DB://cluster1
+ *
+ * Can be an array instead of a single string, to enable data distribution. Keys 
+ * must be consecutive integers, starting at zero. Example:
+ *
+ * $wgDefaultExternalStore = array( 'DB://cluster1', 'DB://cluster2' );
+ *
  */
 $wgDefaultExternalStore = false;
 

@@ -593,12 +593,18 @@ class Revision {
 
 		# Write to external storage if required
 		if ( $wgDefaultExternalStore ) {
+			if ( is_array( $wgDefaultExternalStore ) ) {
+				// Distribute storage across multiple clusters
+				$store = $wgDefaultExternalStore[mt_rand(0, count( $wgDefaultExternalStore ) - 1)];
+			} else {
+				$store = $wgDefaultExternalStore;
+			}
 			require_once('ExternalStore.php');
 			// Store and get the URL
-			$data = ExternalStore::insert( $wgDefaultExternalStore, $data );
+			$data = ExternalStore::insert( $store, $data );
 			if ( !$data ) {
 				# This should only happen in the case of a configuration error, where the external store is not valid
-				wfDebugDieBacktrace( "Unable to store text to external storage $wgDefaultExternalStore" );
+				wfDebugDieBacktrace( "Unable to store text to external storage $store" );
 			}
 			if ( $flags ) {
 				$flags .= ',';
