@@ -39,7 +39,7 @@ function sajax_do_call(func_name, args) {
 	var i, x, n;
 	var uri;
 	var post_data;
-	uri = wgServer + "/" + wgScriptPath + "/ajax.php";
+	uri = wgServer + "/" + wgScriptPath + "/index.php?action=ajax";
 	if (sajax_request_type == "GET") {
 		if (uri.indexOf("?") == -1)
 			uri = uri + "?rs=" + escape(func_name);
@@ -47,7 +47,7 @@ function sajax_do_call(func_name, args) {
 			uri = uri + "&rs=" + escape(func_name);
 		for (i = 0; i < args.length-1; i++)
 			uri = uri + "&rsargs[]=" + escape(args[i]);
-		uri = uri + "&rsrnd=" + new Date().getTime();
+		//uri = uri + "&rsrnd=" + new Date().getTime();
 		post_data = null;
 	} else {
 		post_data = "rs=" + escape(func_name);
