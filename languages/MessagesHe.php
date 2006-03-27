@@ -1559,6 +1559,10 @@ $1",
 
 "youhavenewmessagesmulti" => "יש לך הודעות חדשות ב־$1",
 "newtalkseperator"        => ",_",
+"searchcontaining"        => "חפש דפים המכילים את הטקסט '''$1'''.",
+"searchnamed"             => "חפש דפים בשם '''$1'''.",
+"articletitles"           => "חפש דפים המתחילים עם '''$1'''",
+"hideresults"             => "הסתר תוצאות",
 
 );
 
