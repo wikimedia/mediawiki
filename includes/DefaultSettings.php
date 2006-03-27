@@ -1908,5 +1908,10 @@ $wgJobLogFile = false;
  */
 $wgUseAjax = false;
 
+/**
+ * List of Ajax-callable functions
+ */
+$wgAjaxExportList = array( 'wfSajaxSearch' );
+
 
 ?>
