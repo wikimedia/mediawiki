@@ -35,7 +35,6 @@ $tests = array(
 	'SearchMySQL4Test',
 	'ArticleTest',
 	'SanitizerTest',
-	'CtypeTest',
 	'ImageTest'
 	);
 
