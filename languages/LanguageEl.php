@@ -32,23 +32,23 @@ require_once( 'LanguageUtf8.php' );
 
 $wgNamespaceNamesEl = array(
 	NS_MEDIA            => 'Μέσον',
-	NS_SPECIAL          => 'Ειδικό',
+	NS_SPECIAL          => 'Special',
 	NS_MAIN	            => '',
 	NS_TALK	            => 'Συζήτηση',
 	NS_USER             => 'Χρήστης',
-	NS_USER_TALK        => 'Συζήτηση_χρήστη',
+	NS_USER_TALK        => 'Συζήτηση_χρηστών',
 	NS_PROJECT          => $wgMetaNamespace,
 	NS_PROJECT_TALK     => $wgMetaNamespace . '_συζήτηση',
-	NS_IMAGE            => 'Εικόνα',
-	NS_IMAGE_TALK       => 'Συζήτηση_εικόνας',
+	NS_IMAGE            => 'Εικόνες',
+	NS_IMAGE_TALK       => 'Συζήτηση_εικόνων',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
 	NS_TEMPLATE         => 'Πρότυπο',
-	NS_TEMPLATE_TALK    => 'Συζήτηση_προτύπου',
+	NS_TEMPLATE_TALK    => 'Συζήτηση_προτύπων',
 	NS_HELP             => 'Βοήθεια',
 	NS_HELP_TALK        => 'Συζήτηση_βοήθειας',
 	NS_CATEGORY         => 'Κατηγορία',
-	NS_CATEGORY_TALK    => 'Συζήτηση_κατηγορίας',
+	NS_CATEGORY_TALK    => 'Συζήτηση_κατηγοριών',
 ) + $wgNamespaceNamesEn;
 
 if (!$wgCachedMessageArrays) {
@@ -62,10 +62,23 @@ class LanguageEl extends LanguageUtf8 {
 		global $wgNamespaceNamesEl;
 		return $wgNamespaceNamesEl;
 	}
+	
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesEl;
+		foreach ( $wgNamespaceNamesEl as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		if( 0 == strcasecmp( 'Ειδικό', $text ) ) return NS_SPECIAL;
+		if( 0 == strcasecmp( 'Συζήτηση_χρήστη', $text ) ) return NS_USER_TALK;
+		if( 0 == strcasecmp( 'Εικόνα', $text ) ) return NS_IMAGE;
+		if( 0 == strcasecmp( 'Συζήτηση_εικόνας', $text ) ) return NS_IMAGE_TALK;
+		if( 0 == strcasecmp( 'Συζήτηση_προτύπου', $text ) ) return NS_TEMPLATE_TALK;
+		if( 0 == strcasecmp( 'Συζήτηση_κατηγορίας', $text ) ) return NS_CATEGORY_TALK;
+		return false;
+	}
 
 	function getMessage( $key ) {
 		global $wgAllMessagesEl;
-
 		return isset( $wgAllMessagesEl[$key] ) ? $wgAllMessagesEl[$key] : parent::getMessage( $key );
 	}
 
