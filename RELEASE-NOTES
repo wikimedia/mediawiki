@@ -37,6 +37,7 @@ Code quality:
 * Remove unused OutputPage::addCookie()
 * Fix for short_open_tag off again; please don't break this, guys
 * (bug 4507) Adjust FULLPAGENAMEE escaping to standard form
+* (bug 5302) Merge the two #p-search .pBody statements in monobook css.
 
 Database:
 * Finally dropped MySQL 3.23.x support
