@@ -913,7 +913,7 @@ alebo sa rozhodol, že nebude prijímať e-maily od druhých redaktorov.',
 'watchnologintext' => "Musíte byť [[Special:Userlogin|prihlásený/á]],
 aby ste mohli modifikovať vaše sledované články.",
 'addedwatch' => 'Pridaný do sledovaných článkov',
-'addedwatchtext' => "Stránka [[$1]] bola pridaná do [[Špeciálne:Watchlist|sledovaných článkov]].
+'addedwatchtext' => "Stránka [[:$1]] bola pridaná do [[Špeciálne:Watchlist|sledovaných článkov]].
 Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie
 a stránka bude zobrazená '''tučne''' v [[Špeciálne:Recentchanges|zozname posledných úprav]], aby ste ju ľahšie našli.
 

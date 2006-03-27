@@ -620,7 +620,7 @@ aŭ elektis ne ricevi retpoŝton de aliaj vikipediistoj.',
 'watchnologintext'	=> 'Nepras [[Special:Userlogin|saluti]]
 por ŝanĝi vian atentaron.',
 'addedwatch'	=> 'Aldonis al atentaro',
-"addedwatchtext" => "La paĝo \"[[$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]].
+"addedwatchtext" => "La paĝo \"[[:$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]].
 Estontaj ŝanĝoj al tiu paĝo aperos en '''grasa tiparo''' en la
 [[Special:Recentchanges|listo de Lastaj Ŝanĝoj]],
 kaj estos kalkulitaj en la listo de via atentaro.
