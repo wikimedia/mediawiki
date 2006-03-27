@@ -50,11 +50,12 @@ function wfSpecialStatistics() {
 
 	$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), $fname );
 	$numJobs = $dbr->selectField( 'job', 'COUNT(*)', '', $fname );
+	$numFiles = $dbr->selectField( 'image', 'COUNT(*)', '', $fname );
 
 	if ($action == 'raw') {
 		$wgOut->disable();
 		header( 'Pragma: nocache' );
-		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins\n";
+		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins;files=$numFiles\n";
 		return;
 	} else {
 		$text = '==' . wfMsg( 'sitestats' ) . "==\n" ;
@@ -65,7 +66,8 @@ function wfSpecialStatistics() {
 			$wgLang->formatNum( $edits ),
 			$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
 			$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ),
-			$wgLang->formatNum( $numJobs )
+			$wgLang->formatNum( $numJobs ),
+			$wgLang->formatNum( $numFiles )
 	   	);
 
 		$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
