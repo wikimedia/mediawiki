@@ -459,7 +459,7 @@ class OutputPage {
 	 */
 	function output() {
 		global $wgUser, $wgOutputEncoding;
-		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType, $wgProfiler;
+		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgScriptPath, $wgServer;
 
 		if( $this->mDoNothing ){
@@ -500,7 +500,6 @@ class OutputPage {
 			} else {
 				header( 'Location: '.$this->mRedirect );
 			}
-			if ( isset( $wgProfiler ) ) { wfDebug( $wgProfiler->getOutput() ); }
 			wfProfileOut( $fname );
 			return;
 		}
