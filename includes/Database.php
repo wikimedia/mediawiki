@@ -1037,7 +1037,7 @@ class Database {
 	 *
 	 * @param string $table  The table to UPDATE
 	 * @param array  $values An array of values to SET
-	 * @param array  $conds  An array of conditions (WHERE)
+	 * @param array  $conds  An array of conditions (WHERE). Use '*' to update all rows.
 	 * @param string $fname  The Class::Function calling this function
 	 *                       (for the log)
 	 * @param array  $options An array of UPDATE options, can be one or
