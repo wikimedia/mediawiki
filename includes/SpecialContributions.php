@@ -153,7 +153,7 @@ class contribs_finder {
  * @param	string	$par	(optional) user name of the user for which to show the contributions
  */
 function wfSpecialContributions( $par = null ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle, $wgScript;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle, $wgScript, $wgSysopUserBans;
 	$fname = 'wfSpecialContributions';
 
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
@@ -221,14 +221,18 @@ function wfSpecialContributions( $par = null ) {
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
-		$ul .= ' (' . $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
-		if( ( $id != 0 ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
-			if( $wgUser->isAllowed( 'block' ) ) {
-				$ul .= ' | ' . $sk->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . $nt->getText() ), wfMsgHtml( 'blocklink' ) );
-			}
-			$ul .= ' | ' . $sk->makeLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), LogPage::logName( 'block' ), 'type=block&page=' . urlencode( $nt->getPrefixedText() ) );
+		# Talk page link	
+		$tools[] = $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
+		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
+			# Block link
+			if( $wgUser->isAllowed( 'block' ) )
+				$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . urlencode( $nt->getText() ) ), wfMsgHtml( 'blocklink' ) );
+			# Block log link
+			$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), htmlspecialchars( LogPage::logName( 'block' ) ), 'type=block&page=' . urlencode( $nt->getPrefixedText() ) );
 		}
-		$ul .= ')';
+		# Other logs link
+		$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), wfMsgHtml( 'log' ), 'user=' . urlencode( $nt->getText() ) );
+		$ul .= ' (' . implode( ' | ', $tools ) . ')';
 	}
 
 	if ($target == 'newbies') {
