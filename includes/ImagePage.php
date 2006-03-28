@@ -521,6 +521,14 @@ END
 				return;
 			}
 			$dbw->delete( 'image', array( 'img_name' => $image ) );
+
+			if ( $dbw->affectedRows() ) {
+				# Update site_stats
+				$site_stats = $dbw->tableName( 'site_stats' );
+				$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", $fname );
+			}
+			
+
 			$res = $dbw->select( 'oldimage', array( 'oi_archive_name' ), array( 'oi_name' => $image ) );
 
 			# Purge archive URLs from the squid
@@ -551,7 +559,6 @@ END
 
 			/* Delete thumbnails and refresh image metadata cache */
 			$this->img->purgeCache();
-
 
 			$deleted = $image;
 		}

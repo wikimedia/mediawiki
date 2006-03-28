@@ -917,7 +917,9 @@ this old version, (rev) = revert to this old version.
 This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
 pages, redirects, and others that probably don't qualify as content pages.
 Excluding those, there are '''$2''' pages that are probably legitimate
-content pages. We have '''$8''' files uploaded.
+content pages. 
+
+'''$8''' files have been uploaded.
 
 There have been a total of '''$3''' page views, and '''$4''' page edits
 since the wiki was setup.
