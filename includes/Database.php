@@ -367,10 +367,16 @@ class Database {
 
 			# Who's been wasting my precious column space? -- TS
 			#$profName = 'query: ' . $fname . ' ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
-			$profName = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
 
-			wfProfileIn( 'Database::query' );
-			wfProfileIn( $profName );
+			if ( is_null( $this->getLBInfo( 'master' ) ) ) {
+				$queryProf = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'Database::query';
+			} else {
+				$queryProf = 'query-m: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'Database::query-master';
+			}
+			wfProfileIn( $totalProf );
+			wfProfileIn( $queryProf );
 		}
 
 		$this->mLastQuery = $sql;
@@ -414,8 +420,8 @@ class Database {
 		}
 
 		if ( $wgProfiling ) {
-			wfProfileOut( $profName );
-			wfProfileOut( 'Database::query' );
+			wfProfileOut( $queryProf );
+			wfProfileOut( $totalProf );
 		}
 		return $ret;
 	}
