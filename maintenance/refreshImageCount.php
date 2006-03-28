@@ -6,9 +6,18 @@
 require_once( "commandLine.inc" );
 
 $dbw =& wfGetDB( DB_MASTER );
-$count = $dbw->selectField( 'image', 'COUNT(*)' );
 
-echo "$wgDBname: setting ss_images to $count\n";
+// Load the current value from the master
+$count = $dbw->selectField( 'site_stats', 'ss_images' );
+
+echo "$wgDBname: forcing ss_images to $count\n";
+
+// First set to NULL so that it changes on the master
+$dbw->update( 'site_stats',
+	array( 'ss_images' => null ),
+	array( 'ss_row_id' => 1 ) );
+
+// Now this update will be forced to go out
 $dbw->update( 'site_stats',
 	array( 'ss_images' => $count ),
 	array( 'ss_row_id' => 1 ) );
