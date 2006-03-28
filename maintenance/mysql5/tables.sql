@@ -520,6 +520,9 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
   -- Deprecated, no longer updated as of 1.5
   ss_admins int(10) default '-1',
 
+  -- Number of images, equivalent to SELECT COUNT(*) FROM image
+  ss_images int(10) default '0',
+
   UNIQUE KEY ss_row_id (ss_row_id)
 
 ) ENGINE=InnoDB;

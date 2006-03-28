@@ -1488,6 +1488,11 @@ class Image
 					'img_name' => $this->name
 				), $fname
 			);
+		} else {
+			# This is a new image
+			# Update the image count
+			$site_stats = $dbw->tableName( 'site_stats' );
+			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", $fname );
 		}
 
 		$article = new Article( $descTitle );

@@ -4119,14 +4119,14 @@ function wfNumberOfArticles() {
  * Return the number of files
  */
 function wfNumberOfFiles() {
-	$fname = 'Parser::wfNumberOfFiles';
+	$fname = 'wfNumberOfFiles';
 
 	wfProfileIn( $fname );
 	$dbr =& wfGetDB( DB_SLAVE );
-	$res = $dbr->selectField('image', 'COUNT(*)', array(), $fname );
+	$numImages = $dbr->selectField('site_stats', 'ss_images', array(), $fname );
 	wfProfileOut( $fname );
 
-	return $res;
+	return $numImages;
 }
 
 /**
