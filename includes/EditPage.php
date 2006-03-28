@@ -1083,7 +1083,7 @@ END
 		
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in a hidden field.
-		$autosumm = md5( $this->summary );
+		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( "<input type=\"hidden\" name=\"wpAutoSummary\" value=\"$autosumm\" />\n" );
 
 		if ( $this->isConflict ) {
