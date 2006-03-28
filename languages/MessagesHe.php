@@ -327,7 +327,7 @@
 "logouttext"         => "יצאת זה עתה מהחשבון. באפשרותך להמשיך ולעשות שימוש באתר בצורה אנונימית,
  או לשוב ולהיכנס לאתר עם שם משתמש זהה או אחר.",
 "welcomecreation"    => "== ברוך הבא, $1! ==
- 
+
  חשבונך נפתח. אל תשכח להתאים את הגדרות המשתמש שלך.",
 "loginpagetitle"     => "כניסת משתמש",
 "yourname"           => "שם משתמש",
@@ -841,7 +841,9 @@ $3 $9",
 
 בסך הכל בוצעו בממוצע \'\'\'$5\'\'\' עריכות לדף, והיו \'\'\'$6\'\'\' צפיות לכל עריכה.
 
-אורך [http://meta.wikimedia.org/wiki/Help:Job_queue תור המשימות] הוא \'\'\'$7\'\'\'.',
+אורך [http://meta.wikimedia.org/wiki/Help:Job_queue תור המשימות] הוא \'\'\'$7\'\'\'
+
+\'\'\'$8\'\'\' קבצים הועלו לאתר עד כה.',
 "userstatstext" => "ישנם '''$1''' [[מיוחד:Listusers|משתמשים רשומים]] באתר, '''$2''' (או $4%) מתוכם מפעילי מערכת (ראו $3).",
 
 # Disambiguations Page
@@ -1277,7 +1279,7 @@ $NEWPAGE
 "allmessagescurrent"        => "טקסט נוכחי",
 "allmessagestext"           => "זוהי רשימת כל הודעות המערכת שבמרחב השם {{ns:mediawiki}}, המשמשים את ממשק האתר.
 
-מפעיל מערכת יכולים לערוך את ההודעות בלחיצה על שם ההודעה.",
+מפעילי המערכת יכולים לערוך את ההודעות בלחיצה על שם ההודעה.",
 "allmessagesnotsupportedUI" => "שפת הממשק הנוכחית שלכם, '''$1''', אינה נתמכת על־ידי הדף באתר זה.",
 "allmessagesnotsupportedDB" => "הדף אינו נתמך כיוון ש־wgUseDatabseMessages מבוטל.",
 "allmessagesfilter"         => "מסנן שמות ההודעות:",
@@ -1383,7 +1385,6 @@ $NEWPAGE
 "markedaspatrollederrortext" => "עליכם לציין גרסה שתציינו כבדוקה.",
 
 # Monobook.js: tooltips and access keys for monobook
-"Monobook.css" => "",
 "Monobook.js" => '/* ערכו קובץ זה כדי להריץ סקריפטים ב־JavaScript ברקע Monobook באתר כולו */
 /* חלונות קופצים ומקשים חמים */
 ta = new Object();
@@ -1490,6 +1491,10 @@ ta["ca-nstab-category"]     = ["c", "צפו בדף הקטגוריה"];',
 * exposuretime
 * fnumber
 * focallength",
+
+# External editor support
+"edit-externally"      => "ערכו קובץ זה באמצעות יישום חיצוני",
+"edit-externally-help" => "ראו את [http://meta.wikimedia.org/wiki/Help:External_editors הוראות ההתקנה] למידע נוסף.",
 
 # "All" in various places, this might be different for inflected languages
 "recentchangesall" => "הכול",
