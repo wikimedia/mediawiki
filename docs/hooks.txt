@@ -400,6 +400,11 @@ $user: the user object that is about to be logged out
        
 'UserLogoutComplete': after a user has logged out
 $user: the user object _after_ logout (won't have name, ID, etc.)
+
+'UserRights': After a user's group memberships are changed
+$user  : User object that was changed
+$add   : Array of strings corresponding to groups added
+$remove: Array of strings corresponding to groups removed
 		      
 'WatchArticle': before a watch is added to an article
 $user: user that will watch

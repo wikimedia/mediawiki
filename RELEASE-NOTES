@@ -90,6 +90,7 @@ Hooks:
   from an extension that changes rendering based on nonstandard options.
 * Add 'GetInternalURL' hook to match the GetFullURL and GetLocalURL ones
 * (bug 4456) Add hook for marking article patrolled
+* Add UserRights hook, fires after a user's group memberships are changed
 
 Images:
 * Support SVG rendering with rsvg
