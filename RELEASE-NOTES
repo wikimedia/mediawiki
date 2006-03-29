@@ -1117,6 +1117,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Merge two #p-search .pBody statements i monobook/main.css
 * (bug 5156) Update for Hebrew language (he) translation
 * Add the "UserRights" hook on user group changes; see hooks.txt for more info.
+* Translated "listingcontinuesabbrev" for German
 
 === Caveats ===
 
