@@ -167,6 +167,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "restorelink" => "$1 gelöschte Bearbeitungsvorgänge",
 "feedlinks" => "Feed:",
 'permalink'     => 'Permanentlink',
+"listingcontinuesabbrev" => "(Forts.)",
 
 # Kurzworte für jeden Namespace, u.a. von MonoBook verwendet
 'nstab-main' => 'Artikel',
