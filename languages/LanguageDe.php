@@ -232,6 +232,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "thisisdeleted" => "Ansehen oder wiederherstellen von $1?",
 "restorelink" => "$1 gelöschte Bearbeitungsvorgänge",
 "feedlinks" => "Feed:",
+"listingcontinuesabbrev" => "(Forts.)",
 
 # Namespace form on various pages
 'namespace' => 'Namensraum:',
