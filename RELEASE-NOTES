@@ -263,6 +263,7 @@ i18n / Languages:
 * (bug 5362) Piedmontese added
 * (bug 5349) Update for Portuguese messages (pt)
 * (bug 3573) Finished full Greek translation: namespaces
+* (bug 5288) Initial localisation for Az
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
