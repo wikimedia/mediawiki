@@ -27,7 +27,7 @@ application/x-tex	[DRAWING]
 
 audio/mp3 audio/mpeg3 audio/mpeg	[AUDIO]
 audio/wav audio/x-wav audio/wave	[AUDIO]
-audio/mid audio/midi	[AUDIO]
+audio/midi audio/mid	[AUDIO]
 audio/basic		[AUDIO]
 audio/x-aiff		[AUDIO]
 audio/x-pn-realaudio	[AUDIO]
