@@ -727,6 +727,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4630) Add user preference to prompt users when entering blank edit summaries
 * Added optional suggest feature for the search box. Set wgUseAjax to true to
   enable it.
+* (bug 5277) Use audio/midi rather that audio/mid
+
 
 === Caveats ===
 
