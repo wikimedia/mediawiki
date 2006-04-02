@@ -367,10 +367,15 @@ CONTROL;
 			# Better external diff engine, the 2 may some day be dropped
 			# This one does the escaping and segmenting itself
 			if ( !function_exists( 'wikidiff2_do_diff' ) ) {
+				wfProfileIn( "$fname-dl" );
 				@dl('php_wikidiff2.so');
+				wfProfileOut( "$fname-dl" );
 			}
 			if ( function_exists( 'wikidiff2_do_diff' ) ) {
-				return wikidiff2_do_diff( $otext, $ntext, 2 );
+				wfProfileIn( 'wikidiff2_do_diff' );
+				$text = wikidiff2_do_diff( $otext, $ntext, 2 );
+				wfProfileOut( 'wikidiff2_do_diff' );
+				return $text;
 			}
 		}
 		if ( $wgExternalDiffEngine !== false ) {
