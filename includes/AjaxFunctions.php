@@ -90,7 +90,7 @@ class AjaxCachePolicy {
 			header ("Pragma: no-cache");                          // HTTP/1.0
 		} else {
 			header ("Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->policy ) . " GMT");
-			header ("Cache-Control: public,max-age={$this->policy}");
+			header ("Cache-Control: s-max-age={$this->policy},public,max-age={$this->policy}");
 		}
 	}
 }
