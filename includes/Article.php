@@ -437,7 +437,9 @@ class Article {
 			$this->mIsRedirect  = $data->page_is_redirect;
 			$this->mLatest      = $data->page_latest;
 		} else {
-			$lc->addBadLinkObj( $this->mTitle );
+			if ( is_object( $this->mTitle ) ) {
+				$lc->addBadLinkObj( $this->mTitle );
+			}
 			$this->mTitle->mArticleID = 0;
 		}
 
