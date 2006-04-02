@@ -577,6 +577,9 @@ class Sanitizer {
 			# Templates and links may be expanded in later parsing,
 			# creating invalid or dangerous output. Suppress this.
 			$value = strtr( $value, array(
+				'<'    => '&lt;',   // This should never happen,
+				'>'    => '&gt;',   // we've received invalid input
+				'"'    => '&quot;', // which should have been escaped.
 				'{'    => '&#123;',
 				'['    => '&#91;',
 				"''"   => '&#39;&#39;',
