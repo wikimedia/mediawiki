@@ -784,7 +784,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'rcnote'		=> "Below are the last <strong>$1</strong> changes in last <strong>$2</strong> days.",
 'rcnotefrom'	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
 'rclistfrom'	=> "Show new changes starting from $1",
-'showhideminor' => "$1 minor edits | $2 bots | $3 logged in users | $4 patrolled edits",
+'showhideminor' => "$1 minor edits | $2 bots | $3 logged in users | $6 anonymous users | $4 patrolled edits | $5 my edits",
 'rclinks'		=> "Show last $1 changes in last $2 days<br />$3",
 'rchide'		=> "in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
 'rcliu'			=> "; $1 edits from logged in users",
