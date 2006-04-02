@@ -1689,13 +1689,12 @@ class User {
 	 */
 	function matchEditToken( $val, $salt = '' ) {
 		global $wgMemc;
-
-/*
-		if ( !isset( $_SESSION['wsEditToken'] ) ) {
+		$sessionToken = $this->editToken( $salt );
+		if ( $val != $sessionToken ) {
 			$logfile = '/home/wikipedia/logs/session_debug/session.log';
 			$mckey = memsess_key( session_id() );
 			$uname = @posix_uname();
-			$msg = "wsEditToken not set!\n" .
+			$msg = date('r') . "\nEdit token mismatch, expected $sessionToken got $val\n" .
 			'apache server=' . $uname['nodename'] . "\n" .
 			'session_id = ' . session_id() . "\n" .
 			'$_SESSION=' . var_export( $_SESSION, true ) . "\n" .
@@ -1704,8 +1703,7 @@ class User {
 
 			@error_log( $msg, 3, $logfile );
 		}
-*/
-		return ( $val == $this->editToken( $salt ) );
+		return $val == $sessionToken;
 	}
 
 	/**
