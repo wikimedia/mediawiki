@@ -457,16 +457,22 @@ class RecentChange
 		}
 		$title = $this->cleanupForIRC( $title );
 
+		$bad = array("\n", "\r");
+		$empty = array("", "");
+		$title = $titleObj->getPrefixedText();
+		$title = str_replace($bad, $empty, $title);
+
+		// FIXME: *HACK* these should be getFullURL(), hacked for SSL madness --brion 2005-12-26
 		if ( $rc_type == RC_LOG ) {
 			$url = '';
 		} elseif ( $rc_new && $wgUseRCPatrol ) {
-			$url = $titleObj->getFullURL("rcid=$rc_id");
+			$url = $titleObj->getInternalURL("rcid=$rc_id");
 		} else if ( $rc_new ) {
-			$url = $titleObj->getFullURL();
+			$url = $titleObj->getInternalURL();
 		} else if ( $wgUseRCPatrol ) {
-			$url = $titleObj->getFullURL("diff=$rc_this_oldid&oldid=$rc_last_oldid&rcid=$rc_id");
+			$url = $titleObj->getInternalURL("diff=$rc_this_oldid&oldid=$rc_last_oldid&rcid=$rc_id");
 		} else {
-			$url = $titleObj->getFullURL("diff=$rc_this_oldid&oldid=$rc_last_oldid");
+			$url = $titleObj->getInternalURL("diff=$rc_this_oldid&oldid=$rc_last_oldid");
 		}
 
 		if ( isset( $oldSize ) && isset( $newSize ) ) {
@@ -485,7 +491,7 @@ class RecentChange
 
 		if ( $rc_type == RC_LOG ) {
 			$logTargetText = $logTarget->getPrefixedText();
-			$comment = $this->cleanupForIRC( str_replace( $logTargetText, "\00302$logTargetText\003 ", $rc_comment ) );
+			$comment = $this->cleanupForIRC( str_replace( $logTargetText, "\00302$logTargetText\00310", $rc_comment ) );
 			$flag = $logAction;
 		} else {
 			$comment = $this->cleanupForIRC( $rc_comment );
