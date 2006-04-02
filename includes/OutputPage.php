@@ -217,6 +217,9 @@ class OutputPage {
 	function addCategoryLinks($categories) {
 		global $wgUser, $wgContLang;
 
+		if ( !is_array( $categories ) ) {
+			return;
+		}
 		# Add the links to the link cache in a batch
 		$arr = array( NS_CATEGORY => $categories );
 		$lb = new LinkBatch;
@@ -901,6 +904,9 @@ class OutputPage {
 		$this->addKeyword( $wgTitle->getPrefixedText() );
 		$count = 1;
 		$links2d =& $parserOutput->getLinks();
+		if ( !is_array( $links2d ) ) {
+			return;
+		}
 		foreach ( $links2d as $ns => $dbkeys ) {
 			foreach( $dbkeys as $dbkey => $id ) {
 				$this->addKeyword( $dbkey );
