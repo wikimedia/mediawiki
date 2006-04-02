@@ -12,7 +12,7 @@ if ( isset( $_REQUEST['GLOBALS'] ) ) {
 	die( -1 );
 }
 
-$wgNoOutputBuffer = true;
+define( 'MW_NO_OUTPUT_BUFFER', true );
 
 require_once( './includes/Defines.php' );
 require_once( './LocalSettings.php' );
