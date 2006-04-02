@@ -687,6 +687,17 @@ class Title {
 			return( $this->mTextform );
 		}
 	}
+	
+	/**
+	 * Get a URL-encoded form of the subpage text
+	 * @return string URL-encoded subpage name
+	 */
+	function getSubpageUrlForm() {
+		$text = $this->getSubpageText();
+		$text = wfUrlencode( str_replace( ' ', '_', $text ) );
+		$text = str_replace( '%28', '(', str_replace( '%29', ')', $text ) ); # Clean up the URL; per below, this might not be safe
+		return( $text );
+	}
 
 	/**
 	 * Get a URL-encoded title (not an actual URL) including interwiki
