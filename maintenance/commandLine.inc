@@ -131,6 +131,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	$DP = $IP;
 	ini_set( 'include_path', ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
 
+	require_once( $IP.'/includes/ProfilerStub.php' );
 	require_once( $IP.'/includes/Defines.php' );
 	require_once( $IP.'/CommonSettings.php' );
 
@@ -157,6 +158,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	}
 	$wgCommandLineMode = true;
 	$DP = $IP;
+	require_once( $IP.'/includes/ProfilerStub.php' );
 	require_once( $IP.'/includes/Defines.php' );
 	require_once( $settingsFile );
 	ini_set( 'include_path', ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
