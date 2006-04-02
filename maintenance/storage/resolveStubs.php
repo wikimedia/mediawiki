@@ -18,45 +18,37 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 function resolveStubs() {
 	$fname = 'resolveStubs';
 
-	print "Retrieving stub rows...\n";
 	$dbr =& wfGetDB( DB_SLAVE );
+	$dbw =& wfGetDB( DB_MASTER );
 	$maxID = $dbr->selectField( 'text', 'MAX(old_id)', false, $fname );
-	$stubs = array();
-	$flagsArray = array();
+	$blockSize = 10000;
+	$numBlocks = intval( $maxID / $blockSize ) + 1;
 
-	# Do it in 100 blocks
-	for ( $b = 0; $b < 100; $b++ ) {
-		print "$b%\r";
-		$start = intval($maxID / 100) * $b + 1;
-		$end = intval($maxID / 100) * ($b + 1);
+	for ( $b = 0; $b < $numBlocks; $b++ ) {
+		wfWaitForSlaves( 5 );
+		
+		printf( "%5.2f%%\n", $b / $numBlocks * 100 );
+		$start = intval($maxID / $numBlocks) * $b + 1;
+		$end = intval($maxID / $numBlocks) * ($b + 1);
+		$stubs = array();
+		$flagsArray = array();
 
+		
 		$res = $dbr->select( 'text', array( 'old_id', 'old_text', 'old_flags' ),
-			"old_id>=$start AND old_id<=$end AND old_flags like '%object%' ".
+			"old_id>=$start AND old_id<=$end " .
+			# Using a more restrictive flag set for now, until I do some more analysis -- TS
+			#"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' ".
+			
+			"AND old_flags='object' " .
 			"AND old_text LIKE 'O:15:\"historyblobstub\"%'", $fname );
 		while ( $row = $dbr->fetchObject( $res ) ) {
-			$stubs[$row->old_id] = $row->old_text;
-			$flagsArray[$row->old_id] = $row->old_flags;
+			resolveStub( $row->old_id, $row->old_text, $row->old_flags );
 		}
 		$dbr->freeResult( $res );
+
+		
 	}
 	print "100%\n";
-
-	print "\nConverting " . count( $stubs ) . " rows ...\n";
-
-	# Get master database, no transactions
-	$dbw =& wfGetDB( DB_MASTER );
-	$dbw->clearFlag( DBO_TRX );
-	$dbw->immediateCommit();
-
-	$i = 0;
-	foreach( $stubs as $id => $stub ) {
-		if ( !(++$i % REPORTING_INTERVAL) ) {
-			print "$i\n";
-			wfWaitForSlaves( 5 );
-		}
-
-		resolveStub( $id, $stub, $flagsArray[$id] );
-	}
 }
 
 /**
@@ -71,8 +63,8 @@ function resolveStub( $id, $stubText, $flags ) {
 	$dbr =& wfGetDB( DB_SLAVE );
 	$dbw =& wfGetDB( DB_MASTER );
 
-	if ( get_class( $stub ) !== 'historyblobstub' ) {
-		print "Error, invalid stub object\n";
+	if ( strtolower( get_class( $stub ) ) !== 'historyblobstub' ) {
+		print "Error found object of class " . get_class( $stub ) . ", expecting historyblobstub\n";
 		return;
 	}
 
@@ -84,7 +76,7 @@ function resolveStub( $id, $stubText, $flags ) {
 
 	if ( !$externalRow ) {
 		# Object wasn't external
-		continue;
+		return;
 	}
 
 	# Preserve the legacy encoding flag, but switch from object to external
