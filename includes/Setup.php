@@ -79,7 +79,11 @@ $wgIP = false; # Load on demand
 $wgRequest = new WebRequest();
 if ( function_exists( 'posix_uname' ) ) {
 	$wguname = posix_uname();
+	$wgNodeName = $wguname['nodename'];
+} else {
+	$wgNodeName = '';
 }
+
 # Useful debug output
 if ( $wgCommandLineMode ) {
 	# wfDebug( '"' . implode( '"  "', $argv ) . '"' );
