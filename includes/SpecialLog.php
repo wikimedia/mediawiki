@@ -167,7 +167,7 @@ class LogReader {
 	 * @return ResultWrapper result object to return the relevant rows
 	 */
 	function getRows() {
-		$res = $this->db->query( $this->getQuery() );
+		$res = $this->db->query( $this->getQuery(), 'LogReader::getRows' );
 		return $this->db->resultObject( $res );
 	}
 
