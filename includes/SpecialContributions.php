@@ -226,12 +226,12 @@ function wfSpecialContributions( $par = null ) {
 		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
 			# Block link
 			if( $wgUser->isAllowed( 'block' ) )
-				$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . urlencode( $nt->getText() ) ), wfMsgHtml( 'blocklink' ) );
+				$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . $nt->getPartialUrl() ), wfMsgHtml( 'blocklink' ) );
 			# Block log link
-			$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), htmlspecialchars( LogPage::logName( 'block' ) ), 'type=block&page=' . urlencode( $nt->getPrefixedText() ) );
+			$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), htmlspecialchars( LogPage::logName( 'block' ) ), 'type=block&page=' . $nt->getPrefixedUrl() );
 		}
 		# Other logs link
-		$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), wfMsgHtml( 'log' ), 'user=' . urlencode( $nt->getText() ) );
+		$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
 		$ul .= ' (' . implode( ' | ', $tools ) . ')';
 	}
 
