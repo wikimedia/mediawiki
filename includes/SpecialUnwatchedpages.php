@@ -26,6 +26,7 @@ class UnwatchedpagesPage extends QueryPage {
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'page', 'watchlist' ) );
+		$mwns = NS_MEDIAWIKI;
 		return
 			"
 			SELECT
@@ -35,7 +36,7 @@ class UnwatchedpagesPage extends QueryPage {
 				page_namespace as value
 			FROM $page
 			LEFT JOIN $watchlist ON wl_namespace = page_namespace AND page_title = wl_title
-			WHERE wl_title IS NULL AND page_is_redirect = 0
+			WHERE wl_title IS NULL AND page_is_redirect = 0 AND page_namespace<>$mwns
 			";
 	}
 
