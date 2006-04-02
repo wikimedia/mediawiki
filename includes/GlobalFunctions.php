@@ -1624,6 +1624,7 @@ function wfShellExec( $cmd )
 		# http://news.php.net/php.internals/21796
 		$cmd = '"' . $cmd . '"';
 	}
+	wfDebug( "wfShellExec: $cmd\n" );
 	return shell_exec( $cmd );
 }
 
