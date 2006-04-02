@@ -392,6 +392,7 @@ Special Pages:
 * Show links to user page, talk page and contributions page on Special:Newpages
 * Special:Export can now export a list of all contributors to an article (off by default)
 * (bug 5372) Add number of files to Special:Statistics
+* (bug 2871) Links to talk pages in watchlist editing view
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect

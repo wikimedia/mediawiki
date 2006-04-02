@@ -155,6 +155,15 @@ function wfSpecialWatchlist( $par ) {
 		$sql = "SELECT wl_namespace,wl_title FROM $watchlist WHERE wl_user=$uid";
 
 		$res = $dbr->query( $sql, $fname );
+		
+		# Batch existence check
+		$linkBatch = new LinkBatch();
+		while( $row = $dbr->fetchObject( $res ) )
+			$linkBatch->addObj( Title::makeTitleSafe( $row->wl_namespace, $row->wl_title ) );
+		$linkBatch->execute();
+		if( $dbr->numRows( $res ) > 0 )
+			$dbr->dataSeek( $res, 0 ); # Let's do the time warp again!
+		
 		$sk = $wgUser->getSkin();
 
 		$list = array();
@@ -170,19 +179,19 @@ function wfSpecialWatchlist( $par ) {
 				$wgOut->addHTML( '<h2>' . $wgContLang->getFormattedNsText( $ns ) . '</h2>' );
 			$wgOut->addHTML( '<ul>' );
 			foreach($titles as $title) {
-				$t = Title::makeTitle( $ns, $title );
-				if( is_null( $t ) ) {
+				$titleObj = Title::makeTitle( $ns, $title );
+				if( is_null( $titleObj ) ) {
 					$wgOut->addHTML(
 						'<!-- bad title "' .
 						htmlspecialchars( $s->wl_title ) . '" in namespace ' . $s->wl_namespace . " -->\n"
 					);
 				} else {
 					global $wgContLang;
-					$t = $t->getPrefixedText();
+					$titleText = $titleObj->getPrefixedText();
+					$talkLink = $sk->makeLinkObj( $titleObj->getTalkPage(), $wgLang->getNsText( NS_TALK ) );
 					$wgOut->addHTML(
-						'<li><input type="checkbox" name="id[]" value="' . htmlspecialchars($t) . '" />' . ' ' . ($wgContLang->isRTL() ? '&rlm;' : '&lrm;') .
-						$sk->makeLink( $t, $t ) .
-						"</li>\n"
+						'<li><input type="checkbox" name="id[]" value="' . htmlspecialchars( $titleObj->getPrefixedText() ) . '" />' . ' ' . ( $wgContLang->isRTL() ? '&rlm;' : '&lrm;' ) .
+						$sk->makeLinkObj( $titleObj ) . " ({$talkLink}) </li>\n"
 					);
 				}
 			}
