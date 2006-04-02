@@ -32,6 +32,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	/* int  */ 'limit' => $wgUser->getDefaultOption('rclimit'),
 	/* bool */ 'hideminor' => false,
 	/* bool */ 'hidebots' => true,
+	/* bool */ 'hideanons' => false,
 	/* bool */ 'hideliu' => false,
 	/* bool */ 'hidepatrolled' => false,
 	/* bool */ 'hidemyself' => false,
@@ -69,6 +70,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$namespace = $wgRequest->getIntOrNull( 'namespace' );
 		$invert = $wgRequest->getBool( 'invert', $defaults['invert'] );
 		$hidebots = $wgRequest->getBool( 'hidebots', $defaults['hidebots'] );
+		$hideanons = $wgRequest->getBool( 'hideanons', $defaults['hideanons'] );
 		$hideliu = $wgRequest->getBool( 'hideliu', $defaults['hideliu'] );
 		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', $defaults['hidepatrolled'] );
 		$hidemyself = $wgRequest->getBool ( 'hidemyself', $defaults['hidemyself'] );
@@ -84,6 +86,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 				if ( 'minor' == $bit ) $hideminor = 0;
 				if ( 'hideliu' == $bit ) $hideliu = 1;
 				if ( 'hidepatrolled' == $bit ) $hidepatrolled = 1;
+				if ( 'hideanons' == $bit ) $hideanons = 1;
 				if ( 'hidemyself' == $bit ) $hidemyself = 1;
 
 				if ( is_numeric( $bit ) ) {
@@ -135,6 +138,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
 	$hidem .= ( $hideliu && !$hidemyself ) ? ' AND rc_user=0' : '';
 	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
+	$hidem .= ( $hideanons && !$hideliu ) ? ' AND rc_user <> 0' : '';
 	if ( $hidemyself ) {
 		if ( $wgUser->getID() ) {
 			$hidem .= ' AND rc_user <> '.$wgUser->getID();
@@ -195,6 +199,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 			wfAppendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hideanons', $hideanons, $defaults, $nondefaults );
 			wfAppendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
 			wfAppendToArrayIfNotDefault( 'hidemyself', $hidemyself, $defaults, $nondefaults);
@@ -500,13 +505,15 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		array( 'hideminor' => 1-$options['hideminor'] ), $nondefaults);
 	$botLink = makeOptionsLink( $showhide[1-$options['hidebots']],
 		array( 'hidebots' => 1-$options['hidebots'] ), $nondefaults);
+	$anonsLink = makeOptionsLink( $showhide[ 1 - $options['hideanons'] ],
+		array( 'hideanons' => 1 - $options['hideanons'] ), $nondefaults );
 	$liuLink   = makeOptionsLink( $showhide[1-$options['hideliu']],
 		array( 'hideliu' => 1-$options['hideliu'] ), $nondefaults);
 	$patrLink  = makeOptionsLink( $showhide[1-$options['hidepatrolled']],
 		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults);
 	$myselfLink = makeOptionsLink( $showhide[1-$options['hidemyself']],
 		array( 'hidemyself' => 1-$options['hidemyself'] ), $nondefaults);
-	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink );
+	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink, $anonsLink );
 	
 	// show from this onward link
 	$now = $wgLang->timeanddate( wfTimestampNow(), true );
