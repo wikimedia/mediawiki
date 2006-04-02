@@ -103,10 +103,13 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	 */
 
 	# For each article, get a list of revisions which fit the criteria
+	
 	# No recompression, use a condition on old_flags
+	# Don't compress object type entities, because that might produce data loss when
+	# overwriting bulk storage concat rows. Don't compress external references, because
+	# the script doesn't yet delete rows from external storage.
 	$conds = array(
-		"old_flags NOT LIKE '%object%' " .
-		" AND (old_flags NOT LIKE '%external%' OR old_text NOT LIKE 'DB://%/%/%')");
+		"old_flags NOT LIKE '%object%' AND old_flags NOT LIKE '%external%'");
 
 	if ( $beginDate ) {
 		$conds[] = "rev_timestamp>'" . $beginDate . "'";
@@ -133,8 +136,12 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$totalMatchingRevisions = 0;
 	$masterPos = false;
 	for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
-		wfWaitForSlaves( 10 );
+		wfWaitForSlaves( 5 );
 
+		# Wake up
+		$dbr->ping();		
+
+		# Get the page row
 		$pageRes = $dbr->select( 'page', array('page_id', 'page_namespace', 'page_title'),
 			$pageConds + array('page_id' => $pageId), $fname );
 		if ( $dbr->numRows( $pageRes ) == 0 ) {
@@ -213,7 +220,6 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 						$stub = $chunk->addItem( $text );
 						$stub->setLocation( $primaryOldid );
 						$stub->setReferrer( $oldid );
-						$hash = $stub->getHash();
 						print '.';
 						$usedChunk = true;
 					}
@@ -277,6 +283,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			print "/";
 			$dbw->commit();
 			$i += $thisChunkSize;
+			wfWaitForSlaves( 5 );
 		}
 		print "\n";
 	}
