@@ -721,12 +721,12 @@ La dirección electrónica que indicaste en tus preferencias de usuario aparecer
 "watchnologintext"	=> "Debes [[Especial:Userlogin|iniciar sesión]]
 para modificar tu lista de seguimiento.",
 "addedwatch"	=> "Añadido a la lista de seguimiento",
-"addedwatchtext" => "La página «$1» ha sido añadida a tu [[Especial:Watchlist|lista se seguimiento]].
+"addedwatchtext" => "La página «:$1» ha sido añadida a tu [[Especial:Watchlist|lista se seguimiento]].
 Cambios futuros en esta página y su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Especial:Recentchanges|lista de cambios recientes]] para hacerla más fácil de detectar.
 
 <p>Cuando quieras eliminar la página de tu lista de seguimiento, presiona \"Dejar de vigilar\" en el menú.",
 "removedwatch"	=> "Eliminada de la lista de seguimiento",
-"removedwatchtext" => "La página \"$1\" ha sido eliminada de tu lista de seguimiento.",
+"removedwatchtext" => "La página \":$1\" ha sido eliminada de tu lista de seguimiento.",
 "watchthispage"	=> "Vigilar esta página",
 "unwatchthispage" => "Dejar de vigilar",
 "notanarticle"	=> "No es un artículo",

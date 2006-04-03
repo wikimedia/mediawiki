@@ -1050,14 +1050,14 @@ or has chosen not to receive e-mail from other users.',
 'watchnologin'		=> 'Not logged in',
 'watchnologintext'	=> 'You must be [[Special:Userlogin|logged in]] to modify your watchlist.',
 'addedwatch'		=> 'Added to watchlist',
-'addedwatchtext'	=> "The page \"$1\" has been added to your [[Special:Watchlist|watchlist]].
+'addedwatchtext'	=> "The page \":$1\" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated Talk page will be listed there,
 and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to
 make it easier to pick out.
 
 <p>If you want to remove the page from your watchlist later, click \"Unwatch\" in the sidebar.",
 'removedwatch'		=> 'Removed from watchlist',
-'removedwatchtext' 	=> "The page \"$1\" has been removed from your watchlist.",
+'removedwatchtext' 	=> "The page \":$1\" has been removed from your watchlist.",
 'watch' => 'Watch',
 'watchthispage'		=> 'Watch this page',
 'unwatch' => 'Unwatch',

@@ -293,6 +293,7 @@ Parser:
 * Improved support for interwiki transclusion
 * (bug 1850) Image link to nonexistent file fixed.
 * (bug 5167) Add {{SUBPAGENAME}} and {{SUBPAGENAMEE}} variables
+* (bug 4949) Missing : in "addedwatchtext" for English and Spanish
 
 Upload:
 * (bug 2527) Always set destination filename when new file is selected
