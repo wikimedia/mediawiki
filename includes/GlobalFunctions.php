@@ -1749,4 +1749,40 @@ function wfDoUpdates()
 	$wgPostCommitUpdateList = array();
 }
 
+/**
+ * More or less "markup-safe" explode()
+ * Ignores any instances of the separator inside <...>
+ * @param string $separator
+ * @param string $text
+ * @return array
+ */
+function wfExplodeMarkup( $separator, $text ) {
+	$placeholder = "\x00";
+	
+	// Just in case...
+	$text = str_replace( $placeholder, '', $text );
+	
+	// Trim stuff
+	$replacer = new ReplacerCallback( $separator, $placeholder );
+	$cleaned = preg_replace_callback( '/(<.*?>)/', array( $replacer, 'go' ), $text );
+	
+	$items = explode( $separator, $cleaned );
+	foreach( $items as $i => $str ) {
+		$items[$i] = str_replace( $placeholder, $separator, $str );
+	}
+	
+	return $items;
+}
+
+class ReplacerCallback {
+	function ReplacerCallback( $from, $to ) {
+		$this->from = $from;
+		$this->to = $to;
+	}
+	
+	function go( $matches ) {
+		return str_replace( $this->from, $this->to, $matches[1] );
+	}
+}
+
 ?>

@@ -1035,6 +1035,23 @@ Invalid attributes in table cell (bug 1830)
 !! end
 
 
+# FIXME: this one has incorrect tag nesting still.
+!! test
+Table security: embedded pipes (http://mail.wikipedia.org/pipermail/wikitech-l/2006-April/034637.html)
+!! input
+{|
+| |[ftp://|x||]" onmouseover="alert(document.cookie)">test
+!! result
+<table>
+<tr>
+<td><a href="ftp://|x||" class='external free' title="ftp://|x||" rel="nofollow">ftp://|x</td><td></a>" onmouseover="alert(document.cookie)">test
+</td>
+</tr>
+</table>
+
+!! end
+
+
 ###
 ### Internal links
 ###
