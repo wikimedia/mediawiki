@@ -134,18 +134,27 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		}
 	}
 
-	$hidem  = $hideminor ? 'AND rc_minor=0' : '';
-	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
-	$hidem .= ( $hideliu && !$hidemyself ) ? ' AND rc_user=0' : '';
-	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
-	$hidem .= ( $hideanons && !$hideliu ) ? ' AND rc_user <> 0' : '';
-	if ( $hidemyself ) {
-		if ( $wgUser->getID() ) {
-			$hidem .= ' AND rc_user <> '.$wgUser->getID();
+	# It makes no sense to hide both anons and logged-in users
+	# Where this occurs, force anons to be shown
+	if( $hideanons && $hideliu )
+		$hideanons = false;
+
+	# Form WHERE fragments for all the options
+	$hidem  = $hideminor ? 'AND rc_minor = 0' : '';
+	$hidem .= $hidebots ? ' AND rc_bot = 0' : '';
+	$hidem .= $hideliu ? ' AND rc_user = 0' : '';
+	$hidem .= $hidepatrolled ? ' AND rc_patrolled = 0' : '';
+	$hidem .= $hideanons ? ' AND rc_user != 0' : '';
+	
+	if( $hidemyself ) {
+		if( $wgUser->getID() ) {
+			$hidem .= ' AND rc_user != ' . $wgUser->getID();
 		} else {
-			$hidem .= ' AND rc_user_text<>' . $dbr->addQuotes( $wgUser->getName() );
+			$hidem .= ' AND rc_user_text != ' . $dbr->addQuotes( $wgUser->getName() );
 		}
 	}
+
+	# Namespace filtering
 	$hidem .= is_null( $namespace ) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 
 	// This is the big thing!
