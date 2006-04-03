@@ -1,9 +1,11 @@
-2005-06-12
+2006-04-03
 
-MediaWiki
----------
+For system requirements, installation and upgrade details, see the files RELEASE-NOTES, 
+INSTALL, and UPGRADE.
 
-MediaWiki is the software used for Wikipedia (http://www.wikipedia.org) and the
+== MediaWiki ==
+
+MediaWiki is the software used for Wikipedia [http://www.wikipedia.org/] and the
 other Wikimedia Foundation websites. Compared to other wikis, it has an
 excellent range of features and support for high-traffic websites using
 multiple servers (Wikimedia sites peak in the 5000+ requests per second range
@@ -13,26 +15,22 @@ While quite usable on smaller sites, you may find you have to "roll your own"
 local documentation, and some aspects of configuration may seem overcomplicated
 because MediaWiki is primarily targeted as an in-house tool.
 
-See the files RELEASE-NOTES, INSTALL, and UPGRADE for details on system
-requirements and installation procedure.
-
-
 The MediaWiki software was written by:
- * Lee Daniel Crocker
- * Magnus Manske
- * Jan Hidders
- * Brion Vibber
- * Axel Boldt
- * Geoffrey T. Dairiki
- * Tomasz Wegrzanowski
- * Erik Moeller
- * Tim Starling
- * Gabriel Wicke
- * Ashar Voultoiz
- * Evan Prodromou
- * Ævar Arnfjörð Bjarmason
- * Niklas Laxström
- * Several others
+* Lee Daniel Crocker
+* Magnus Manske
+* Jan Hidders
+* Brion Vibber
+* Axel Boldt
+* Geoffrey T. Dairiki
+* Tomasz Wegrzanowski
+* Erik Moeller
+* Tim Starling
+* Gabriel Wicke
+* Ashar Voultoiz
+* Evan Prodromou
+* Ævar Arnfjörð Bjarmason
+* Niklas Laxström
+* Several others
 
 The contributors hold the copyright to this work, and it is licensed
 under the terms of the GNU General Public License, version 2 or later[1]
@@ -42,8 +40,7 @@ terms. This includes "extensions" that use MediaWiki functions or
 variables; see http://www.gnu.org/licenses/gpl-faq.html#GPLAndPlugins
 for details.
 
-The Wikimedia Foundation currently has no legal rights to the software and has
-not funded any of the development work.
+The Wikimedia Foundation currently has no legal rights to the software.
 
 [1] Sections of code written exclusively by Lee Crocker or Erik Moeller are
 also released into the public domain, which does not impair the obligations of
@@ -59,26 +56,29 @@ users under the GPL for use of the whole code or other sections thereof.
         to Creative Commons, 559 Nathan Abbott Way,
         Stanford, California 94305, USA.'
 
-Many thanks to the Wikipedia regulars for testing and suggestions.
+Many thanks to the Wikimedia regulars for testing and suggestions.
 
 The official website for mediawiki is located at:
+
   http://www.mediawiki.org/
 
-The code is currently maintained at SourceForge under the project "wikipedia",
-module name "phase3". You can view the code in CVS there:
-
-  http://cvs.sourceforge.net/viewcvs.py/wikipedia/phase3/
+The code is currently maintained in a Subversion repository
+at svn.wikimedia.org. See http://www.mediawiki.org/wiki/Subversion
+for details.
 
 Please report bugs and make feature requests in our Bugzilla system:
 
-  http://bugzilla.wikimedia.org
+  http://bugzilla.wikimedia.org/
 
 Documentation and discussion on new features may be found at:
 
   http://meta.wikimedia.org/wiki/MediaWiki_FAQ
   http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide
-  http://meta.wikimedia.org/wiki/MediaWiki_development
-  
+  http://meta.wikimedia.org/wiki/MediaWiki_development  
+
+Extensions are listed at:
+
+  http://meta.wikimedia.org/wiki/Category:Mediawiki_Extensions
 
 If you are setting up your own wiki based on this software, it is highly
 recommended that you subscribe to mediawiki-announce:
@@ -88,6 +88,13 @@ recommended that you subscribe to mediawiki-announce:
 The mailing list is very low volume, and is intended primarily for
 announcements of new versions, bug fixes, and security issues.
 
+A higher volume support mailing list can be found at:
 
-For installation and upgrade details, see the files RELEASE-NOTES, INSTALL,
-and UPGRADE.
+  http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
+
+Developer discussion takes place at:
+
+  http://mail.wikipedia.org/mailman/listinfo/wikitech-l
+
+There is also a development and support channel #mediawiki on
+irc.freenode.net, and an unoffical support forum at www.mwusers.com.
