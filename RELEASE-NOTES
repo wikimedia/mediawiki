@@ -733,6 +733,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 5277) Use audio/midi rather that audio/mid
 * (bug 5410) Use namespace name when a custom namespace's nstab-NS message is nonexistent
 * (bug 5432) Fix inconsistencies in cookie names when using table prefixes
+* Additional protections against HTML breakage in table parsing
 
 
 === Caveats ===

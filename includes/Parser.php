@@ -783,7 +783,13 @@ class Parser
 				}
 				$after = substr ( $x , 1 ) ;
 				if ( $fc == '!' ) $after = str_replace ( '!!' , '||' , $after ) ;
-				$after = explode ( '||' , $after ) ;
+				
+				// Split up multiple cells on the same line.
+				// FIXME: This can result in improper nesting of tags processed
+				// by earlier parser steps, but should avoid splitting up eg
+				// attribute values containing literal "||".
+				$after = wfExplodeMarkup( '||', $after );
+				
 				$t[$k] = '' ;
 
 				# Loop through each table cell
