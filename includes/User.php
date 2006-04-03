@@ -1346,22 +1346,22 @@ class User {
 	}
 
 	function setCookies() {
-		global $wgCookieExpiration, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgDBname;
+		global $wgCookieExpiration, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookiePrefix;
 		if ( 0 == $this->mId ) return;
 		$this->loadFromDatabase();
 		$exp = time() + $wgCookieExpiration;
 
 		$_SESSION['wsUserID'] = $this->mId;
-		setcookie( $wgDBname.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		setcookie( $wgCookiePrefix.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 
 		$_SESSION['wsUserName'] = $this->getName();
-		setcookie( $wgDBname.'UserName', $this->getName(), $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		setcookie( $wgCookiePrefix.'UserName', $this->getName(), $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 
 		$_SESSION['wsToken'] = $this->mToken;
 		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
-			setcookie( $wgDBname.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+			setcookie( $wgCookiePrefix.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 		} else {
-			setcookie( $wgDBname.'Token', '', time() - 3600 );
+			setcookie( $wgCookiePrefix.'Token', '', time() - 3600 );
 		}
 	}
 
@@ -1370,17 +1370,17 @@ class User {
 	 * It will clean the session cookie
 	 */
 	function logout() {
-		global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgDBname;
+		global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookiePrefix;
 		$this->loadDefaults();
 		$this->setLoaded( true );
 
 		$_SESSION['wsUserID'] = 0;
 
-		setcookie( $wgDBname.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
-		setcookie( $wgDBname.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		setcookie( $wgCookiePrefix.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		setcookie( $wgCookiePrefix.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 
 		# Remember when user logged out, to prevent seeing cached pages
-		setcookie( $wgDBname.'LoggedOut', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
+		setcookie( $wgCookiePrefix.'LoggedOut', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 	}
 
 	/**
