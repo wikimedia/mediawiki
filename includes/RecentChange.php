@@ -287,6 +287,7 @@ class RecentChange
 			'newSize' => $size
 		);
 		$rc->save();
+		return( $rc->mAttribs['rc_id'] );
 	}
 
 	# Makes an entry in the database corresponding to a rename
