@@ -734,6 +734,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 5410) Use namespace name when a custom namespace's nstab-NS message is nonexistent
 * (bug 5432) Fix inconsistencies in cookie names when using table prefixes
 * Additional protections against HTML breakage in table parsing
+* (bug 5355) Include skin name and style JS settings in page source;
+  fixes regression where Opera 6/7 and KHTML CSS fixes weren't applied
+  when wikibits.js was moved up before user JS inclusion.
 
 
 === Caveats ===
