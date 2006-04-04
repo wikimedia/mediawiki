@@ -264,6 +264,9 @@ i18n / Languages:
 * (bug 5349) Update for Portuguese messages (pt)
 * (bug 3573) Finished full Greek translation: namespaces
 * (bug 5288) Initial localisation for Az
+* (bug 4361) Fix "allmessagesnotsupportedui" so it doesn't refer to nonexisting
+  page
+* Tweak wording of "allmessagesnotsupporteddb"
 
 Parser:
 * (bug 2522) {{CURRENTDAY2}} now shows the current day number with two digits
