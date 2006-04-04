@@ -969,7 +969,9 @@ class Title {
 		$result = true;
 		if ( !wfRunHooks( 'userCan', array( &$this, &$wgUser, $action, &$result ) ) ) {
 			wfProfileOut( $fname );
-			return $result;
+			// Allow advisory rights checking
+			if ( $result !== null )
+				return $result;
 		}
 
 		if( NS_SPECIAL == $this->mNamespace ) {

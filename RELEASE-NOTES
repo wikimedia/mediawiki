@@ -144,6 +144,7 @@ Images:
 * (bug 4426) Add link to user_talk page on image pages
 * Support a custom convert command for thumbnailing. See DefaultSettings.php
   and the comments for $wgCustomConvertCommand, for more information.
+* UserCan hook now allows advisory return values, rather than mandatory ones.
 
 Installer:
 * (bug 3782) Throw fatal installation warning if mbstring.func_overload on.
