@@ -30,6 +30,27 @@ function CountEdits( $user, $slave = true ) {
 }
 
 /**
+ * Count the number of images the specified user has uploaded
+ *
+ * @param integer $user User ID
+ * @param bool $slave Whether or not a slave can be used
+ * @return integer
+ */
+function CountImages( $user, $slave = true ) {
+	$dbw =& wfGetDB( $slave ? DB_SLAVE: DB_MASTER );
+	# Count current images
+	$res = $dbw->select( 'image', 'COUNT(rev_id) AS count', array( 'img_user' => $user ) );
+	$row = $dbw->fetchObject( $res );
+	$count = $row->count;
+	# Count deleted edits
+	$res = $dbw->select( 'oldimage', 'COUNT(*) AS count', array( 'oi_user' => $user ) );
+	$row = $dbw->fetchObject( $res );
+	$count += $row->count;
+	# Done
+	return( $count );
+}
+
+/**
  * Retrieve all valid user IDs
  *
  * @return array

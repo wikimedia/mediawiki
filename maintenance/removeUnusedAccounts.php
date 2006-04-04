@@ -15,7 +15,7 @@ $options = array( 'delete','help' );
 require_once( 'commandLine.inc' );
 require_once( 'userFunctions.inc' );
 
-echo( "Remove Unused Accounts\nThis script will delete all users who have made no edits.\n\n" );
+echo( "Remove Unused Accounts\nThis script will delete all users who have made no edits and uploaded no files.\n\n" );
 
 # Check parameters
 if( @$options['help'] ) {
@@ -34,8 +34,8 @@ echo( "Found " . count( $users ) . " accounts.\n\n" );
 echo( "Locating inactive users..." );
 foreach( $users as $user ) {
 	if( $user != 1 ) {	# Don't *touch* the first user account, ever
-		if( CountEdits( $user, false ) == 0 ) {
-			# User has no edits, mark them for deletion
+		if( CountEdits( $user, false ) == 0 && CountImages( $user, false ) == 0 ) {
+			# User has no edits or images, mark them for deletion
 			$del[] = $user;
 			$count++;
 		}
