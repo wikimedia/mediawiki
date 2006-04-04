@@ -185,6 +185,11 @@ class LoginForm {
 			}
 		}
 
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return false;
+		}
+
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
 			return false;
@@ -198,12 +203,6 @@ class LoginForm {
 			return;
 		}
 
-
-		if ( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
-			$this->mainLoginForm( wfMsg( 'badretype' ) );
-			return false;
-		}
-
 		$name = trim( $this->mName );
 		$u = User::newFromName( $name );
 		if ( is_null( $u ) || $u->getName() = 'MediaWiki default' ) {
@@ -211,13 +210,13 @@ class LoginForm {
 			return false;
 		}
 
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
+		if ( 0 != $u->idForName() ) {
+			$this->mainLoginForm( wfMsg( 'userexists' ) );
 			return false;
 		}
 
-		if ( 0 != $u->idForName() ) {
-			$this->mainLoginForm( wfMsg( 'userexists' ) );
+		if ( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
+			$this->mainLoginForm( wfMsg( 'badretype' ) );
 			return false;
 		}
 
