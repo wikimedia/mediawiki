@@ -158,6 +158,7 @@ Installer:
 	  permissions, if said user exists
 	* Changes to some of the wording of explanations for fields
 * (bug 1734) granting db permissions failed with db usernames containg '-'
+* Add basic check for session support in PHP and die if not present
 
 Maintenance:
 * Fix problem reported on mailing list where re-initialising stats didn't work (can't insert
