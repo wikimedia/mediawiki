@@ -37,7 +37,7 @@ function wfSpecialWatchlist( $par ) {
 	/* float */ 'days' => 3.0, /* or 0.5, watch further below */
 	/* bool  */ 'hideOwn' => false,
 	/* bool  */ 'hideBots' => false,
-				'nameSpace' => 'all',
+				'namespace' => 'all',
 	);
 
 	extract($defaults);
