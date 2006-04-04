@@ -728,6 +728,13 @@ $wgDebugLogGroups       = array();
 $wgShowSQLErrors        = false;
 
 /**
+ * If true, some error messages will be colorized when running scripts on the
+ * command line; this can aid picking important things out when debugging.
+ * Ignored when running on Windows or when output is redirected to a file.
+ */
+$wgColorErrors          = true;
+
+/**
  * disable experimental dmoz-like category browsing. Output things like:
  * Encyclopedia > Music > Style of Music > Jazz
  */
