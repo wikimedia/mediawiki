@@ -426,6 +426,8 @@ Special Pages:
 * (bug 2871) Links to talk pages in watchlist editing view
 * (bug 5385) Allow hiding anonymous edits on Special:Recentchanges
 * (bug 2544) Illogical error reporting order in Special:Userlogin
+* (bug 5409) Hide "show/hide patrolled edits" in Special:Recentchanges if patrolling
+  is disabled
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect

@@ -143,7 +143,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem  = $hideminor ? 'AND rc_minor = 0' : '';
 	$hidem .= $hidebots ? ' AND rc_bot = 0' : '';
 	$hidem .= $hideliu ? ' AND rc_user = 0' : '';
-	$hidem .= $hidepatrolled ? ' AND rc_patrolled = 0' : '';
+	$hidem .= ( $wgUseRCPatrol && $hidepatrolled ) ? ' AND rc_patrolled = 0' : '';
 	$hidem .= $hideanons ? ' AND rc_user != 0' : '';
 	
 	if( $hidemyself ) {
@@ -479,7 +479,7 @@ function makeOptionsLink( $title, $override, $options ) {
  * Creates the options panel
  */
 function rcOptionsPanel( $defaults, $nondefaults ) {
-	global $wgLang;
+	global $wgLang, $wgUseRCPatrol;
 
 	$options = $nondefaults + $defaults;
 
@@ -522,8 +522,16 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults);
 	$myselfLink = makeOptionsLink( $showhide[1-$options['hidemyself']],
 		array( 'hidemyself' => 1-$options['hidemyself'] ), $nondefaults);
-	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink, $anonsLink );
-	
+		
+	$links[] = wfMsgHtml( 'rcshowhideminor', $minorLink );
+	$links[] = wfMsgHtml( 'rcshowhidebots', $botLink );
+	$links[] = wfMsgHtml( 'rcshowhideanons', $anonsLink );
+	$links[] = wfMsgHtml( 'rcshowhideliu', $liuLink );
+	if( $wgUseRCPatrol )
+		$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
+	$links[] = wfMsgHtml( 'rcshowhidemine', $myselfLink );
+	$hl = implode( ' | ', $links );
+		
 	// show from this onward link
 	$now = $wgLang->timeanddate( wfTimestampNow(), true );
 	$tl =  makeOptionsLink( $now, array( 'from' => wfTimestampNow()), $nondefaults );
