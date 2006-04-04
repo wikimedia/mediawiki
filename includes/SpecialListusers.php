@@ -206,7 +206,7 @@ class ListUsersPage extends QueryPage {
  * $par string (optional) A group to list users from
  */
 function wfSpecialListusers( $par = null ) {
-	global $wgRequest;
+	global $wgRequest, $wgContLang;
 
 	list( $limit, $offset ) = wfCheckLimits();
 
@@ -218,7 +218,7 @@ function wfSpecialListusers( $par = null ) {
 	 */
 	$groupTarget = isset($par) ? $par : $wgRequest->getVal( 'group' );
 	$slu->requestedGroup = $groupTarget;
-	$slu->requestedUser = $wgRequest->getVal('username');
+	$slu->requestedUser = $wgContLang->ucfirst( $wgRequest->getVal('username') );
 
 	return $slu->doQuery( $offset, $limit );
 }
