@@ -380,11 +380,12 @@ string $saveName: destination file name
 string $tempName: filesystem path to the temporary file for checks
 string &$error: output: HTML error to show if upload canceled by returning false
 
-'UserCan': To interrupt the "user can do X to Y article" check
+'UserCan': To interrupt/advise the "user can do X to Y article" check
 $title: Title object being checked against
 $user : Current user object
 $action: Action being checked
-$result: Pointer to result returned if hook returns false
+$result: Pointer to result returned if hook returns false. If null is returned,
+ UserCan checks are continued by internal code
 
 'UserCreateForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
