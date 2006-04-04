@@ -280,6 +280,10 @@ if( $conf->xml ) {
 		If you're running Mandrake, install the php-xml package." );
 }
 
+# Crude check for session support
+if( !function_exists( 'session_name' ) )
+	dieout( "PHP's session module is missing. MediaWiki requires session support in order to function." );
+
 $memlimit = ini_get( "memory_limit" );
 $conf->raiseMemory = false;
 if( empty( $memlimit ) || $memlimit == -1 ) {
