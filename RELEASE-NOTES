@@ -3,9 +3,10 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.6 pre-pre-pre-pre-alpha ==
+== MediaWiki 1.6.0 ==
 
-Misc work going on.....
+MediaWiki is moving to a quarterly snapshot release cycle; roughly every
+three months, the current 
 
 Big things to note:
 * MySQL 3.23.x is no longer supported.
@@ -15,6 +16,29 @@ Big things to note:
 * Installer now use monobook skin
 * New protection (bug 1735), preferences and userlogin designs
 * Category system is always enabled.
+
+
+== Upgrading ==
+
+Several changes to the database have been made from 1.5; these are relatively
+minor but do require that the update process be run before the new code will
+work properly:
+
+* A new "templatelinks" table tracks template inclusions.
+* A new "externallinks" table tracks URL links; this can be used by a
+  mass spam-cleanup tool in the SpamBlacklist extension.
+* A new "jobs" table stores a queue of pages to update in the background; this
+  is used to update links in including pages when templates are edited.
+
+To ensure that these tables are filled with data, run refreshLinks.php after
+the upgrade.
+
+
+If you are upgrading from MediaWiki 1.4.x or earlier, some major database
+changes are made.
+
+See the file UPGRADE for more detailed upgrade instructions.
+
 
 == Changes since 1.5 ==
 
