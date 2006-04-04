@@ -428,6 +428,7 @@ Special Pages:
 * (bug 2544) Illogical error reporting order in Special:Userlogin
 * (bug 5409) Hide "show/hide patrolled edits" in Special:Recentchanges if patrolling
   is disabled
+* (bug 5447) Convert first letter of username to uppercase before searching in Special:Listusers
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
