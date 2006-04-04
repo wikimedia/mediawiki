@@ -156,7 +156,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	if ( ! is_readable( $settingsFile ) ) {
 		print "A copy of your installation's LocalSettings.php\n" .
 		  "must exist in the source directory.\n";
-		exit();
+		exit( 1 );
 	}
 	$wgCommandLineMode = true;
 	$DP = $IP;
