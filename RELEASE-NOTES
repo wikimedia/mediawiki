@@ -741,6 +741,7 @@ fully support the editing toolbar, but was found to be too confusing.
   when running command-line scripts in a Unix terminal.
 * (bug 5195) rebuildrecentchanges.php works again; Database::insertSelect now
   has a parameter for select options.
+* Fix updateSearchIndex.php for new schema
 
 
 === Caveats ===
