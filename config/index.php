@@ -23,6 +23,9 @@ error_reporting( E_ALL );
 header( "Content-type: text/html; charset=utf-8" );
 @ini_set( "display_errors", true );
 
+# In case of errors, let output be clean.
+$wgRequestTime = microtime();
+
 # Attempt to set up the include path, to fix problems with relative includes
 $IP = dirname( dirname( __FILE__ ) );
 define( 'MW_INSTALL_PATH', $IP );
@@ -956,7 +959,7 @@ if( count( $errs ) ) {
 		<label class='column'>Database type:</label>
 		<ul class='plain'>
 			<li><?php aField( $conf, "DBtype", "MySQL", "radio", "mysql"); ?></li>
-			<li><?php aField( $conf, "DBtype", "Oracle", "radio", "oracle" ); ?></li>
+			<li><?php aField( $conf, "DBtype", "Oracle (experimental)", "radio", "oracle" ); ?></li>
 		</ul>
 	</div>
 
