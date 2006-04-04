@@ -18,7 +18,7 @@
 function CountEdits( $user, $slave = true ) {
 	$dbw =& wfGetDB( $slave ? DB_SLAVE: DB_MASTER );
 	# Count current edits
-	$res = $dbw->select( 'revision', 'COUNT(rev_id) AS count', array( 'rev_user' => $user ) );
+	$res = $dbw->select( 'revision', 'COUNT(*) AS count', array( 'rev_user' => $user ) );
 	$row = $dbw->fetchObject( $res );
 	$count = $row->count;
 	# Count deleted edits
@@ -39,13 +39,30 @@ function CountEdits( $user, $slave = true ) {
 function CountImages( $user, $slave = true ) {
 	$dbw =& wfGetDB( $slave ? DB_SLAVE: DB_MASTER );
 	# Count current images
-	$res = $dbw->select( 'image', 'COUNT(rev_id) AS count', array( 'img_user' => $user ) );
+	$res = $dbw->select( 'image', 'COUNT(*) AS count', array( 'img_user' => $user ) );
 	$row = $dbw->fetchObject( $res );
 	$count = $row->count;
 	# Count deleted edits
 	$res = $dbw->select( 'oldimage', 'COUNT(*) AS count', array( 'oi_user' => $user ) );
 	$row = $dbw->fetchObject( $res );
 	$count += $row->count;
+	# Done
+	return( $count );
+}
+
+/**
+ * Count the number of log entries associated with the specified user
+ *
+ * @param integer $user User ID
+ * @param bool $slave Whether or not a slave can be used
+ * @return integer
+ */
+function CountLogs( $user, $slave = true ) {
+	$dbw =& wfGetDB( $slave ? DB_SLAVE: DB_MASTER );
+	# Count log entries
+	$res = $dbw->select( 'logging', 'COUNT(*) AS count', array( 'log_user' => $user ) );
+	$row = $dbw->fetchObject( $res );
+	$count = $row->count;
 	# Done
 	return( $count );
 }
