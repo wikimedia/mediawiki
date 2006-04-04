@@ -181,12 +181,20 @@ class UploadForm {
 		 * only the final one for the whitelist.
 		 */
 		list( $partname, $ext ) = $this->splitExtensions( $basename );
+		
 		if( count( $ext ) ) {
 			$finalExt = $ext[count( $ext ) - 1];
 		} else {
 			$finalExt = '';
 		}
 		$fullExt = implode( '.', $ext );
+
+		# If there was more than one "extension", reassemble the base
+		# filename to prevent bogus complaints about length
+		if( count( $ext ) > 1 ) {
+			for( $i = 0; $i < count( $ext ) - 1; $i++ )
+				$partname .= '.' . $ext[$i];
+		}
 
 		if ( strlen( $partname ) < 3 ) {
 			$this->mainUploadForm( wfMsgHtml( 'minlength' ) );
