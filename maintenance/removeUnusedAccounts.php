@@ -34,7 +34,7 @@ echo( "Found " . count( $users ) . " accounts.\n\n" );
 echo( "Locating inactive users..." );
 foreach( $users as $user ) {
 	if( $user != 1 ) {	# Don't *touch* the first user account, ever
-		if( CountEdits( $user, false ) == 0 && CountImages( $user, false ) == 0 ) {
+		if( CountEdits( $user, false ) == 0 && CountImages( $user, false ) == 0 && CountLogs( $user, false ) == 0 ) {
 			# User has no edits or images, mark them for deletion
 			$del[] = $user;
 			$count++;
