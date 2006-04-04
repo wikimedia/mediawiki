@@ -205,7 +205,7 @@ class LoginForm {
 
 		$name = trim( $this->mName );
 		$u = User::newFromName( $name );
-		if ( is_null( $u ) || $u->getName() = 'MediaWiki default' ) {
+		if ( is_null( $u ) || $u->getName() == 'MediaWiki default' ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
 		}
