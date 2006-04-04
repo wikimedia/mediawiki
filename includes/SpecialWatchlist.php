@@ -152,7 +152,7 @@ function wfSpecialWatchlist( $par ) {
 #		Patch A2
 #		The following was proposed by KTurner 07.11.2004 to T.Gries
 #		$sql = "SELECT distinct (wl_namespace & ~1),wl_title FROM $watchlist WHERE wl_user=$uid";
-		$sql = "SELECT wl_namespace,wl_title FROM $watchlist WHERE wl_user=$uid";
+		$sql = "SELECT wl_namespace, wl_title, page_is_redirect FROM $page LEFT JOIN $watchlist ON wl_namespace = page_namespace AND wl_title = page_title WHERE wl_user=$uid";
 
 		$res = $dbr->query( $sql, $fname );
 		
@@ -168,7 +168,7 @@ function wfSpecialWatchlist( $par ) {
 
 		$list = array();
 		while( $s = $dbr->fetchObject( $res ) ) {
-			$list[$s->wl_namespace][] = $s->wl_title;
+			$list[$s->wl_namespace][$s->wl_title] = $s->page_is_redirect;
 		}
 
 		// TODO: Display a TOC
@@ -178,7 +178,7 @@ function wfSpecialWatchlist( $par ) {
 			if ($ns != NS_MAIN)
 				$wgOut->addHTML( '<h2>' . $wgContLang->getFormattedNsText( $ns ) . '</h2>' );
 			$wgOut->addHTML( '<ul>' );
-			foreach($titles as $title) {
+			foreach( $titles as $title => $redir ) {
 				$titleObj = Title::makeTitle( $ns, $title );
 				if( is_null( $titleObj ) ) {
 					$wgOut->addHTML(
@@ -188,11 +188,17 @@ function wfSpecialWatchlist( $par ) {
 				} else {
 					global $wgContLang;
 					$titleText = $titleObj->getPrefixedText();
+					$pageLink = $sk->makeLinkObj( $titleObj );
 					$talkLink = $sk->makeLinkObj( $titleObj->getTalkPage(), $wgLang->getNsText( NS_TALK ) );
-					$wgOut->addHTML(
-						'<li><input type="checkbox" name="id[]" value="' . htmlspecialchars( $titleObj->getPrefixedText() ) . '" />' . ' ' . ( $wgContLang->isRTL() ? '&rlm;' : '&lrm;' ) .
-						$sk->makeLinkObj( $titleObj ) . " ({$talkLink}) </li>\n"
-					);
+					$checkbox = '<input type="checkbox" name="id[]" value="' . htmlspecialchars( $titleObj->getPrefixedText() ) . '" /> ' . ( $wgContLang->isRTL() ? '&rlm;' : '&lrm;' );
+					if( $redir ) {
+						$spanopen = '<span class="watchlistredir">';
+						$spanclosed = '</span>';
+					} else {
+						$spanopen = $spanclosed = '';
+					}
+					
+					$wgOut->addHTML( "<li>{$checkbox}{$spanopen}{$pageLink}{$spanclosed} ({$talkLink})</li>\n" );
 				}
 			}
 			$wgOut->addHTML( '</ul>' );
