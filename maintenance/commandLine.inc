@@ -175,13 +175,15 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 # Same with these
 $wgCommandLineMode = true;
 
-if ( empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) && $wgDBservers ) {
+if ( empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
 	$wgDBuser = $wgDBadminuser;
 	$wgDBpassword = $wgDBadminpassword;
 
-	foreach ( $wgDBservers as $i => $server ) {
-		$wgDBservers[$i]['user'] = $wgDBuser;
-		$wgDBservers[$i]['password'] = $wgDBpassword;
+	if( $wgDBservers ) {
+		foreach ( $wgDBservers as $i => $server ) {
+			$wgDBservers[$i]['user'] = $wgDBuser;
+			$wgDBservers[$i]['password'] = $wgDBpassword;
+		}
 	}
 }
 
