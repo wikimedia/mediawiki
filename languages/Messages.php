@@ -332,6 +332,7 @@ Please report this to an administrator, making note of the URL.',
 Function: $1<br />
 Query: $2',
 'viewsource' => 'View source',
+'viewsourcefor' => 'for $1',
 'protectedtext' => 'This page has been locked to prevent editing; there are
 a number of reasons why this may be so, please see
 [[Project:Protected page]].

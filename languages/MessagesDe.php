@@ -245,6 +245,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 Funktion: $1<br />
 Query: $2",
 "viewsource" => "Quelltext betrachten",
+'viewsourcefor' => 'für $1',
 "protectedtext" => "Diese Seite ist für das Bearbeiten gesperrt. Dafür kann es diverse Gründe geben; siehe [[{{ns:4}}:Geschützte Seiten]].
 
 Sie können den Quelltext dieser Seite betrachten und kopieren:",

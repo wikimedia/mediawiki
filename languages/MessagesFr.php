@@ -230,6 +230,7 @@ car elle ralentit la base de données à un point tel que plus personne
 ne peut utiliser le wiki.',
 'perfdisabledsub' => 'Ceci est une copie de sauvegarde de $1:',
 'viewsource'	=> 'Voir le texte source',
+'viewsourcefor' => 'pour $1',
 'protectedtext'	=> 'Cette page a été bloquée pour empêcher sa modification. Consulter [[{{ns:4}}:Page protégée]] pour voir les différentes raisons possibles.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages n\'est pas disponible parce que wgUseDatabaseMessages est désactivé.',
 'allmessagesnotsupportedUI' => 'Special:AllMessages n\'accepte pas la langue de votre interface (<b>$1</b>) sur ce site.',

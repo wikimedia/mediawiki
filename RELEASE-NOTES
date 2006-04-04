@@ -779,7 +779,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix updateSearchIndex.php for new schema
 * Fix bogus "filename too short" error when uploading files with a period in the base
   name, e.g. "Mr. Zee.png"
-
+* (bug 2139) Show page title in subtitle when viewing "read only" page
 
 === Caveats ===
 

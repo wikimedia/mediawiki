@@ -799,13 +799,15 @@ class OutputPage {
 	}
 
 	function readOnlyPage( $source = null, $protected = false ) {
-		global $wgUser, $wgReadOnlyFile, $wgReadOnly;
+		global $wgUser, $wgReadOnlyFile, $wgReadOnly, $wgTitle;
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
 		if( $protected ) {
+			$skin = $wgUser->getSkin();
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
+			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
 			$this->addWikiText( wfMsg( 'protectedtext' ) );
 		} else {
 			$this->setPageTitle( wfMsg( 'readonly' ) );
