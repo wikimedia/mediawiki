@@ -447,7 +447,7 @@ class Database {
 	 * @param bool $tempIgnore
 	 */
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		global $wgCommandLineMode, $wgFullyInitialised;
+		global $wgCommandLineMode, $wgFullyInitialised, $wgColorErrors;
 		# Ignore errors during error handling to avoid infinite recursion
 		$ignore = $this->ignoreErrors( true );
 		++$this->mErrorCount;
@@ -465,6 +465,10 @@ class Database {
 				  "Error: $errno $error\n";
 				if ( !$wgCommandLineMode ) {
 					$message = nl2br( $message );
+				}
+				if( $wgCommandLineMode && $wgColorErrors && !wfIsWindows() && posix_isatty(1) ) {
+					$color = 31; // bright red!
+					$message = "\x1b[1;{$color}m{$message}\x1b[0m";
 				}
 				wfDebugDieBacktrace( $message );
 			} else {

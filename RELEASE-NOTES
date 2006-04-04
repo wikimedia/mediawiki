@@ -737,6 +737,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 5355) Include skin name and style JS settings in page source;
   fixes regression where Opera 6/7 and KHTML CSS fixes weren't applied
   when wikibits.js was moved up before user JS inclusion.
+* Added $wgColorErrors: if set, database error messages will be highlighted
+  when running command-line scripts in a Unix terminal.
 
 
 === Caveats ===
