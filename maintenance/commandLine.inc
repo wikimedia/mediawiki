@@ -5,6 +5,8 @@
  * @subpackage Maintenance
  */
 
+$wgRequestTime = microtime();
+
 /** */
 # Abort if called from a web server
 if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
