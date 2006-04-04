@@ -430,6 +430,7 @@ Special Pages:
   is disabled
 * (bug 5447) Convert first letter of username to uppercase before searching in Special:Listusers
 * (bug 759) Wrap redirects on the watchlist editing page in a span, class "watchlistredir"
+* (bug 1862) Namespace filtering in watchlists
 
 Misc.:
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect

@@ -37,6 +37,7 @@ function wfSpecialWatchlist( $par ) {
 	/* float */ 'days' => 3.0, /* or 0.5, watch further below */
 	/* bool  */ 'hideOwn' => false,
 	/* bool  */ 'hideBots' => false,
+				'nameSpace' => 'all',
 	);
 
 	extract($defaults);
@@ -45,6 +46,16 @@ function wfSpecialWatchlist( $par ) {
 	$days = $wgRequest->getVal( 'days' );
 	$hideOwn = $wgRequest->getBool( 'hideOwn' );
 	$hideBots = $wgRequest->getBool( 'hideBots' );
+	
+	# Get namespace value, if supplied, and prepare a WHERE fragment
+	$nameSpace = $wgRequest->getIntOrNull( 'namespace' );
+	if( !is_null( $nameSpace ) ) {
+		$nameSpace = intval( $nameSpace );
+		$nameSpaceClause = " AND rc_namespace = $nameSpace";
+	} else {
+		$nameSpace = '';
+		$nameSpaceClause = '';
+	}
 
 	# Watchlist editing
 	$action = $wgRequest->getVal( 'action' );
@@ -121,6 +132,7 @@ function wfSpecialWatchlist( $par ) {
 	wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault( 'hideOwn', $hideOwn, $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault( 'hideBots', $hideBots, $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'namespace', $nameSpace, $defaults, $nondefaults );
 
 	if ( $days <= 0 ) {
 		$docutoff = '';
@@ -268,6 +280,7 @@ function wfSpecialWatchlist( $par ) {
 	  AND rc_cur_id=page_id
 	  $andHideOwn
 	  $andHideBotsOptional
+	  $nameSpaceClause
 	  ORDER BY rc_timestamp DESC";
 
 	$res = $dbr->query( $sql, $fname );
@@ -299,6 +312,19 @@ function wfSpecialWatchlist( $par ) {
 		  wfArrayToCGI( array('hideBots' => 1-$hideBots ), $nondefaults ) );
 	  $wgOut->addHTML( wfMsgHtml( "wlhideshowbots", "  $s" ) );
 	}
+
+	# Form for namespace filtering
+	$thisTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
+	$thisAction = $thisTitle->escapeLocalUrl();
+	$nsForm  = "<form method=\"post\" action=\"{$thisAction}\">\n";
+	$nsForm .= "<label for=\"namespace\">" . wfMsg( 'namespace' ) . "</label> ";
+	$nsForm .= HTMLnamespaceselector( $nameSpace, '' ) . "\n";
+	$nsForm .= ( $hideOwn ? "<input type=\"hidden\" name=\"hideown\" value=\"1\" />\n" : "" );
+	$nsForm .= ( $hideBots ? "<input type=\"hidden\" name=\"hidebots\" value=\"1\" />\n" : "" );
+	$nsForm .= "<input type=\"hidden\" name=\"days\" value=\"" . $days . "\" />\n";
+	$nsForm .= "<input type=\"submit\" name=\"submit\" value=\"" . wfMsgHtml( 'allpagessubmit' ) . "\" />\n";
+	$nsForm .= "</form>\n";
+	$wgOut->addHTML( $nsForm );
 
 	if ( $numRows == 0 ) {
 		$wgOut->addWikitext( "<br />" . wfMsg( 'watchnochange' ), false );
