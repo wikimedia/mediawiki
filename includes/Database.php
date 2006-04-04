@@ -1338,23 +1338,28 @@ class Database {
 	 * srcTable may be an array of tables.
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect',
-		$options = array() )
+		$insertOptions = array(), $selectOptions = array() )
 	{
 		$destTable = $this->tableName( $destTable );
-		if ( is_array( $options ) ) {
-			$options = implode( ' ', $options );
+		if ( is_array( $insertOptions ) ) {
+			$insertOptions = implode( ' ', $insertOptions );
 		}
+		if( !is_array( $selectOptions ) ) {
+			$selectOptions = array( $selectOptions );
+		}
+		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
 		if( is_array( $srcTable ) ) {
 			$srcTable =  implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
-		$sql = "INSERT $options INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
+		$sql = "INSERT $insertOptions INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
 			' SELECT ' . implode( ',', $varMap ) .
-			" FROM $srcTable";
+			" FROM $srcTable $useIndex ";
 		if ( $conds != '*' ) {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
+		$sql .= " $tailOpts";
 		return $this->query( $sql, $fname );
 	}
 
