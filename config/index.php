@@ -472,7 +472,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		/* Load up the settings and get installin' */
 		$local = writeLocalSettings( $conf );
 		echo "<p><b>Generating configuration file...</b></p>\n";
-		echo "<pre>" . htmlspecialchars( $local ) . "</pre>\n";
+		// for debugging: // echo "<pre>" . htmlspecialchars( $local ) . "</pre>\n";
 		
 		$wgCommandLineMode = false;
 		chdir( ".." );
