@@ -93,7 +93,7 @@ class Parser
 	 * @access private
 	 */
 	# Persistent:
-	var $mTagHooks;
+	var $mTagHooks, $mFunctionHooks;
 
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
@@ -120,6 +120,7 @@ class Parser
 	 */
 	function Parser() {
 		$this->mTagHooks = array();
+		$this->mFunctionHooks = array();
 		$this->clearState();
 	}
 
@@ -2606,6 +2607,30 @@ class Parser
 			}
 		}
 
+		# Extensions
+		if ( !$found ) {
+			$colonPos = strpos( $part1, ':' );
+			if ( $colonPos !== false ) {
+				$function = strtolower( substr( $part1, 0, $colonPos ) );
+				if ( isset( $this->mFunctionHooks[$function] ) ) {
+					$funcArgs = $args;
+					array_unshift( $funcArgs, &$this, substr( $part1, $colonPos + 1 ) );
+					$result = call_user_func_array( $this->mFunctionHooks[$function], $funcArgs );
+					$found = true;
+					if ( is_array( $result ) ) {
+						$text = $linestart . $result[0];
+						unset( $result[0] );
+
+						// Extract flags into the local scope
+						// This allows callers to set flags such as nowiki, noparse, found, etc.
+						extract( $result );
+					} else {
+						$text = $linestart . $result;
+					}
+				}
+			}
+		}
+
 		# Template table test
 
 		# Did we encounter this template already? If yes, it is in the cache
@@ -3535,6 +3560,35 @@ class Parser
 		$oldVal = @$this->mTagHooks[$tag];
 		$this->mTagHooks[$tag] = $callback;
 
+		return $oldVal;
+	}
+
+	/**
+	 * Create a function, e.g. {{sum:1|2|3}}
+	 * The callback function should have the form:
+	 *    function myParserFunction( &$parser, $arg1, $arg2, $arg3 ) { ... }
+	 *
+	 * The callback may either return the text result of the function, or an array with the text 
+	 * in element 0, and a number of flags in the other elements. The names of the flags are 
+	 * specified in the keys. Valid flags are:
+	 *   found                     The text returned is valid, stop processing the template. This 
+	 *                             is on by default.
+	 *   nowiki                    Wiki markup in the return value should be escaped
+	 *   noparse                   Unsafe HTML tags should not be stripped, etc.
+	 *   noargs                    Don't replace triple-brace arguments in the return value
+	 *   isHTML                    The returned text is HTML, armour it against wikitext transformation
+	 *
+	 * @access public
+	 *
+	 * @param string $name The function name. Function names are case-insensitive.
+	 * @param mixed $callback The callback function (and object) to use
+	 *
+	 * @return The old callback function for this name, if any
+	 */
+	function setFunctionHook( $name, $callback ) {
+		$name = strtolower( $name );
+		$oldVal = @$this->mFunctionHooks[$name];
+		$this->mFunctionHooks[$name] = $callback;
 		return $oldVal;
 	}
 
