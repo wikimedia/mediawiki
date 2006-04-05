@@ -459,7 +459,14 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 	  rcDaysLink( $limit, 14, $page, $more  ) . ' | ' .
 	  rcDaysLink( $limit, 30, $page, $more  ) .
 	  ( $doall ? ( ' | ' . rcDaysLink( $limit, 0, $page, $more ) ) : '' );
-	$shm = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink, $myselfLink );
+	
+	$linkParts = array( 'minorLink' => 'minor', 'botLink' => 'bots', 'liuLink' => 'liu', 'patrLink' => 'patr', 'myselfLink' => 'mine' );
+	foreach( $linkParts as $linkVar => $linkMsg ) {
+		if( $$linkVar != '' )
+			$links[] = wfMsgHtml( 'rcshowhide' . $linkMsg, $$linkVar );
+	}
+	
+	$shm = implode( ' | ', $links );
 	$note = wfMsg( 'rclinks', $cl, $dl, $shm );
 	return $note;
 }
