@@ -18,39 +18,15 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+== Changes since 1.6 ==
 
-=== What's new in 1.6 ===
-
-User interface:
-* The account creation form has been separated from the user login form.
-* Page protection/unprotection uses a new, expanded form
-
-Templates:
-* Categories and "what links here" now update as expected when adding or
-  removing links in a template.
-* Template parameters can now have default values, as {{{name|default value}}}
-
-Uploads:
-* Optional support for rasterizing SVG images to PNG for inline dislay
-
-Feeds:
-* Feed generation upgraded to Atom 1.0
-* Diffs in RSS and Atom feeds are now colored for improved readability.
-
-Database:
-* MySQL 3.23.x support dropped; 4.0 or later required
-* Experimental support for Unicode mode of MySQL 4.1/5.0 (moderately tested)
-* Experimental Oracle support (not well tested!)
-
-Anti-spam extension support:
-* Spam blacklist extension now has support for automated cleanup:
-  http://meta.wikimedia.org/wiki/SpamBlacklist_extension
-* Support for a captcha extension to restrict automated spam edits:
-  http://meta.wikimedia.org/wiki/ConfirmEdit_extension
-
-Numerous bug fixes and other behind-the-scenes changes have been made;
-see the file HISTORY for a complete change list.
-
+* (bug 5458) Fix double-URL encoding in block log link in contribs and contribs
+  link in block log
+* (bug 5462) Bogus missing patch warning in updater
+* (bug 5461) Use of deprecated "showhideminor" in Special:Recentchangeslinked
+* PHP warning when allow_call_time_pass_reference is off
+* Update to Finnish localization
+* (bug 5467) Link to page histories in watchlist edit mode
 
 == Compatibility ==
 
