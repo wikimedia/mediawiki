@@ -39,7 +39,7 @@
 	'chr' => 'ᏣᎳᎩ', # Cherokee
 	'chy' => 'Tsetsêhestâhese',	# Cheyenne
 	'co' => 'Corsu',		# Corsican
-	'cr' => 'Nehiyaw',		# Cree
+	'cr' => 'Nēhiyaw / ᓀᐦᐃᔭᐤ',		# Cree
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
 	'cv' => 'Чӑваш',	# Chuvash
