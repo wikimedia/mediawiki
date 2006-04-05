@@ -30,7 +30,7 @@ class languages {
 		// available language files
 		$dir = opendir("$IP/languages");
 		while ($file = readdir($dir)) {
-			if (preg_match("/Language(.*?)\.php$/", $file, $m)) {
+			if (preg_match("/Language([^.]*?)\.php$/", $file, $m)) {
 				$this->list[] = $m[1];
 			}
 		}
