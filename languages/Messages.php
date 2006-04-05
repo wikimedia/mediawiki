@@ -1453,6 +1453,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'accesskey-preview' => 'p',
 'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
+'accesskey-watch' => 'w',
 
 # tooltip help for some actions, most are in Monobook.js
 'tooltip-search' => 'Search {{SITENAME}} [alt-f]',
