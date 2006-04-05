@@ -1,4 +1,4 @@
-2006-04-03
+2006-04-05
 
 For system requirements, installation and upgrade details, see the files RELEASE-NOTES, 
 INSTALL, and UPGRADE.
@@ -72,29 +72,29 @@ Please report bugs and make feature requests in our Bugzilla system:
 
 Documentation and discussion on new features may be found at:
 
-  http://meta.wikimedia.org/wiki/MediaWiki_FAQ
-  http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide
-  http://meta.wikimedia.org/wiki/MediaWiki_development  
+  http://www.mediawiki.org/wiki/Help:FAQ
+  http://www.mediawiki.org/wiki/Documentation
+  http://www.mediawiki.org/wiki/Development
 
 Extensions are listed at:
 
-  http://meta.wikimedia.org/wiki/Category:Mediawiki_Extensions
+  http://meta.wikimedia.org/wiki/Category:MediaWiki_extensions
 
 If you are setting up your own wiki based on this software, it is highly
 recommended that you subscribe to mediawiki-announce:
 
-  http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce
+  http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce
 
 The mailing list is very low volume, and is intended primarily for
 announcements of new versions, bug fixes, and security issues.
 
 A higher volume support mailing list can be found at:
 
-  http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
+  http://mail.wikimedia.org/mailman/listinfo/mediawiki-l
 
 Developer discussion takes place at:
 
-  http://mail.wikipedia.org/mailman/listinfo/wikitech-l
+  http://mail.wikimedia.org/mailman/listinfo/wikitech-l
 
 There is also a development and support channel #mediawiki on
 irc.freenode.net, and an unoffical support forum at www.mwusers.com.
