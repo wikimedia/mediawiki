@@ -1076,6 +1076,7 @@ class Title {
 	function userCanRead() {
 		global $wgUser;
 
+		$result = null;
 		wfRunHooks( 'userCan', array( &$this, &$wgUser, 'read', &$result ) );
 		if ( $result !== null ) {
 			return $result;
