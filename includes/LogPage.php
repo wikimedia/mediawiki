@@ -191,7 +191,7 @@ class LogPage {
 								$titleLink = $title->getText();
 							} else {
 								$titleLink = $skin->makeLinkObj( $title, $title->getText() );
-								$titleLink .= ' (' . $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions/' . urlencode( $title->getDBkey() ) ), wfMsg( 'contribslink' ) ) . ')';
+								$titleLink .= ' (' . $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions/' . $title->getDBkey() ), wfMsg( 'contribslink' ) ) . ')';
 							}
 							break;
 						default:
