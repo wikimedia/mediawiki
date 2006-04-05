@@ -690,7 +690,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			# Set up the "regular user" account *if we can, and if we need to*
 			if( $conf->Root ) {
 				# See if we need to
-				$wgDatabase2 = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, '', 1 );
+				$wgDatabase2 = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
 				if( $wgDatabase2->isOpen() ) {
 					# Nope, just close the test connection and continue
 					$wgDatabase2->close();
