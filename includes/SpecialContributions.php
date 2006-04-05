@@ -226,7 +226,7 @@ function wfSpecialContributions( $par = null ) {
 		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
 			# Block link
 			if( $wgUser->isAllowed( 'block' ) )
-				$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . $nt->getPartialUrl() ), wfMsgHtml( 'blocklink' ) );
+				$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Blockip/' . $nt->getDBkey() ), wfMsgHtml( 'blocklink' ) );
 			# Block log link
 			$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), htmlspecialchars( LogPage::logName( 'block' ) ), 'type=block&page=' . $nt->getPrefixedUrl() );
 		}
