@@ -687,7 +687,7 @@ function do_watchlist_null() {
 
 	if( $info->not_null ) {
 		echo "Making wl_notificationtimestamp nullable... ";
-		dbsource( 'maintenance/archives/patch-watchlist-null.sql', $wgDatabase );
+		dbsource( archive( 'patch-watchlist-null.sql' ), $wgDatabase );
 		echo "ok\n";
 	} else {
 		echo "...wl_notificationtimestamp is already nullable.\n";
