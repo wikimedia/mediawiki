@@ -966,12 +966,11 @@ class Title {
 
 		global $wgUser;
 
-		$result = true;
-		if ( !wfRunHooks( 'userCan', array( &$this, &$wgUser, $action, &$result ) ) ) {
+		$result = null;
+		wfRunHooks( 'userCan', array( &$this, &$wgUser, $action, &$result ) );
+		if ( $result !== null ) {
 			wfProfileOut( $fname );
-			// Allow advisory rights checking
-			if ( $result !== null )
-				return $result;
+			return $result;
 		}
 
 		if( NS_SPECIAL == $this->mNamespace ) {
@@ -1077,8 +1076,8 @@ class Title {
 	function userCanRead() {
 		global $wgUser;
 
-		$result = true;
-			if ( !wfRunHooks( 'userCan', array( &$this, &$wgUser, "read", &$result ) ) ) {
+		wfRunHooks( 'userCan', array( &$this, &$wgUser, 'read', &$result ) );
+		if ( $result !== null ) {
 			return $result;
 		}
 
