@@ -199,9 +199,13 @@ function wfSpecialWatchlist( $par ) {
 					);
 				} else {
 					global $wgContLang;
+					$toolLinks = array();
 					$titleText = $titleObj->getPrefixedText();
 					$pageLink = $sk->makeLinkObj( $titleObj );
-					$talkLink = $sk->makeLinkObj( $titleObj->getTalkPage(), $wgLang->getNsText( NS_TALK ) );
+					$toolLinks[] = $sk->makeLinkObj( $titleObj->getTalkPage(), $wgLang->getNsText( NS_TALK ) );
+					if( $titleObj->exists() )
+						$toolLinks[] = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml( 'history_short' ), 'action=history' );
+					$toolLinks = '(' . implode( ' | ', $toolLinks ) . ')';
 					$checkbox = '<input type="checkbox" name="id[]" value="' . htmlspecialchars( $titleObj->getPrefixedText() ) . '" /> ' . ( $wgContLang->isRTL() ? '&rlm;' : '&lrm;' );
 					if( $redir ) {
 						$spanopen = '<span class="watchlistredir">';
@@ -210,7 +214,7 @@ function wfSpecialWatchlist( $par ) {
 						$spanopen = $spanclosed = '';
 					}
 					
-					$wgOut->addHTML( "<li>{$checkbox}{$spanopen}{$pageLink}{$spanclosed} ({$talkLink})</li>\n" );
+					$wgOut->addHTML( "<li>{$checkbox}{$spanopen}{$pageLink}{$spanclosed} {$toolLinks}</li>\n" );
 				}
 			}
 			$wgOut->addHTML( '</ul>' );
