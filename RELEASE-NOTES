@@ -3,6 +3,19 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.6.1 ==
+
+April 5, 2006
+
+Some minor issues in the 1.6.0 release have been corrected:
+* (bug 5458) Fix double-URL encoding in block log link in contribs and contribs
+  link in block log
+* (bug 5462) Bogus missing patch warning in updater
+* (bug 5461) Use of deprecated "showhideminor" in Special:Recentchangeslinked
+* PHP warning when allow_call_time_pass_reference is off
+* Update to Finnish localization
+
+
 == MediaWiki 1.6.0 ==
 
 April 5, 2006
