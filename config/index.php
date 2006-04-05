@@ -184,6 +184,15 @@ class ConfigData {
 
 ?>
 
+<ul>
+	<li>
+		<b>Don't forget security updates!</b> Keep an eye on the
+		<a href="http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce">low-traffic
+		release announcements mailing list</a>.
+	</li>
+</ul>
+
+
 <h2>Checking environment...</h2>
 <p><em>Please include all of the lines below when reporting installation problems.</em></p>
 <ul class="env-check">
