@@ -151,12 +151,13 @@ class RawPage {
 	}
 
 	function getArticleText() {
+		$found = false;
+		$text = '';
 		if( $this->mTitle ) {
-			$text = '';
-
 			// If it's a MediaWiki message we can just hit the message cache
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$text = wfMsgForContentNoTrans( $this->mTitle->getDbkey() );
+				$found = true;
 			} else {
 				// Get it from the DB
 				$rev = Revision::newFromTitle( $this->mTitle, $this->mOldId );
@@ -164,22 +165,21 @@ class RawPage {
 					$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 					header( "Last-modified: $lastmod" );
 					$text = $rev->getText();
-				} else
-					$text = '';
+					$found = true;
+				}
 			}
-
-			return $this->parseArticleText( $text );
 		}
 
 		# Bad title or page does not exist
-		if( $this->mContentType == 'text/x-wiki' ) {
+		if( !$found && $this->mContentType == 'text/x-wiki' ) {
 			# Don't return a 404 response for CSS or JavaScript;
 			# 404s aren't generally cached and it would create
 			# extra hits when user CSS/JS are on and the user doesn't
 			# have the pages.
 			header( "HTTP/1.0 404 Not Found" );
 		}
-		return '';
+		
+		return $this->parseArticleText( $text );
 	}
 
 	function parseArticleText( $text ) {
