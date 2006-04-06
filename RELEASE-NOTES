@@ -3,9 +3,9 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.6.0 ==
+== MediaWiki 1.7 ==
 
-April 5, 2006
+THIS IS NOT A RELEASE YET.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -30,6 +30,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Further additions to Hebrew localisation
 * (bug 5476) Invalid xhtml in German localization
 * (bug 5479) Id translation for preferences tabs caption
+* Added skinname and style path parameters to CBT version of MonoBook
+
 
 == Compatibility ==
 
