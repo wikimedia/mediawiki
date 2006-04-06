@@ -135,7 +135,7 @@ function update_passwords() {
 
 function do_interwiki_update() {
 	# Check that interwiki table exists; if it doesn't source it
-	global $wgDatabase;
+	global $wgDatabase, $IP;
 	if( $wgDatabase->tableExists( "interwiki" ) ) {
 		echo "...already have interwiki table\n";
 		return true;
@@ -144,7 +144,7 @@ function do_interwiki_update() {
 	dbsource( archive("patch-interwiki.sql") );
 	echo "ok\n";
 	echo "Adding default interwiki definitions: ";
-	dbsource( "maintenance/interwiki.sql" );
+	dbsource( "$IP/maintenance/interwiki.sql" );
 	echo "ok\n";
 }
 
@@ -207,7 +207,7 @@ function do_watchlist_update() {
 	} else {
 		echo "Adding wl_notificationtimestamp field for email notification management.";
 		/* ALTER TABLE watchlist ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0'); */
-		dbsource( "maintenance/archives/patch-email-notification.sql", $wgDatabase );
+		dbsource( archive( 'patch-email-notification.sql' ), $wgDatabase );
 		echo "ok\n";
 	}
 	# Check if we need to add talk page rows to the watchlist
@@ -273,7 +273,7 @@ function do_user_update() {
 	global $wgDatabase;
 	if( $wgDatabase->fieldExists( 'user', 'user_emailauthenticationtimestamp' ) ) {
 		echo "User table contains old email authentication field. Dropping... ";
-		dbsource( "maintenance/archives/patch-email-authentication.sql", $wgDatabase );
+		dbsource( archive( 'patch-email-authentication.sql' ), $wgDatabase );
 		echo "ok\n";
 	} else {
 		echo "...user table does not contain old email authentication field.\n";
@@ -297,7 +297,7 @@ function do_logging_encoding() {
 		echo "Logging table has correct title encoding.\n";
 	} else {
 		echo "Fixing title encoding on logging table... ";
-		dbsource( 'maintenance/archives/patch-logging-title.sql', $wgDatabase );
+		dbsource( archive( 'patch-logging-title.sql' ), $wgDatabase );
 		echo "ok\n";
 	}
 }
@@ -472,7 +472,7 @@ function do_inverse_timestamp() {
 	$fname="do_schema_restructuring";
 	if( $wgDatabase->fieldExists( 'revision', 'inverse_timestamp' ) ) {
 		echo "Removing revision.inverse_timestamp and fixing indexes... ";
-		dbsource( 'maintenance/archives/patch-inverse_timestamp.sql', $wgDatabase );
+		dbsource( archive( 'patch-inverse_timestamp.sql' ), $wgDatabase );
 		echo "ok\n";
 	} else {
 		echo "revision timestamp indexes already up to 2005-03-13\n";
@@ -485,7 +485,7 @@ function do_text_id() {
 		echo "...rev_text_id already in place.\n";
 	} else {
 		echo "Adding rev_text_id field... ";
-		dbsource( 'maintenance/archives/patch-rev_text_id.sql', $wgDatabase );
+		dbsource( archive( 'patch-rev_text_id.sql' ), $wgDatabase );
 		echo "ok\n";
 	}
 }
@@ -534,7 +534,7 @@ function do_pagelinks_update() {
 		echo "...already have pagelinks table.\n";
 	} else {
 		echo "Converting links and brokenlinks tables to pagelinks... ";
-		dbsource( "maintenance/archives/patch-pagelinks.sql", $wgDatabase );
+		dbsource( archive( 'patch-pagelinks.sql' ), $wgDatabase );
 		echo "ok\n";
 		flush();
 
@@ -573,7 +573,7 @@ function do_drop_img_type() {
 
 	if( $wgDatabase->fieldExists( 'image', 'img_type' ) ) {
 		echo "Dropping unused img_type field in image table... ";
-		dbsource( "maintenance/archives/patch-drop_img_type.sql", $wgDatabase );
+		dbsource( archive( 'patch-drop_img_type.sql' ), $wgDatabase );
 		echo "ok\n";
 	} else {
 		echo "No img_type field in image table; Good.\n";
@@ -599,7 +599,7 @@ function do_user_unique_update() {
 			echo "WARNING: This next step will probably fail due to unfixed duplicates...\n";
 		}
 		echo "Adding unique index on user_name... ";
-		dbsource( 'maintenance/archives/patch-user_nameindex.sql', $wgDatabase );
+		dbsource( archive( 'patch-user_nameindex.sql' ), $wgDatabase );
 		echo "ok\n";
 	}
 }
@@ -614,13 +614,13 @@ function do_user_groups_update() {
 	}
 
 	echo "Adding user_groups table... ";
-	dbsource( 'maintenance/archives/patch-user_groups.sql', $wgDatabase );
+	dbsource( archive( 'patch-user_groups.sql' ), $wgDatabase );
 	echo "ok\n";
 
 	if( !$wgDatabase->tableExists( 'user_rights' ) ) {
 		if( $wgDatabase->fieldExists( 'user', 'user_rights' ) ) {
 			echo "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion...";
-			dbsource( 'maintenance/archives/patch-user_rights.sql', $wgDatabase );
+			dbsource( archive( 'patch-user_rights.sql' ), $wgDatabase );
 			echo "ok\n";
 		} else {
 			echo "*** WARNING: couldn't locate user_rights table or field for upgrade.\n";
@@ -666,7 +666,7 @@ function do_user_groups_reformat() {
 		echo "ok\n";
 
 		echo "Re-adding fresh user_groups table... ";
-		dbsource( 'maintenance/archives/patch-user_groups.sql', $wgDatabase );
+		dbsource( archive( 'patch-user_groups.sql' ), $wgDatabase );
 		echo "ok\n";
 
 		echo "***\n";
