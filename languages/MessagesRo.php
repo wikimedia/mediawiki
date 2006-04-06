@@ -165,7 +165,7 @@ Te rugăm să îţi confirmi intenţia de a face asta, faptul că
 'contribslink' => "contribuţii",
 'contribsub' => "Pentru $1",
 'contributions' => "Contribuţii ale utilizatorului",
-'copyright' => "Conţinutul este disponibil sub <A href='/wiki/GNU_FDL'>Licenţa GNU pentru documentaţie liberă</a>.",
+'copyright' => "Conţinutul este disponibil sub $1.",
 'copyrightpage' => "Project:Drepturi_de_autor",
 'copyrightpagename' => "Drepturi de autor în {{SITENAME}}",
 'copyrightwarning' => "Reţine că toate contribuţiile la {{SITENAME}} sunt considerate ca respectând licenţa GNU Free Documentation License
