@@ -27,6 +27,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * PHP warning when allow_call_time_pass_reference is off
 * Update to Finnish localization
 * (bug 5467) Link to page histories in watchlist edit mode
+* Further additions to Hebrew localisation
 
 == Compatibility ==
 

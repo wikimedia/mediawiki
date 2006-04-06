@@ -1030,7 +1030,7 @@ $NEWPAGE
 {{fullurl:{{ns:project}}:עזרה}}",
 
 # Delete/protect/revert
-"deletepage"                  => "מחקו דף",
+"deletepage"                  => "מחיקת דף",
 "confirm"                     => "אישור",
 "excontent"                   => 'תוכן היה: "$1"',
 "excontentauthor"             => "תוכן היה: '$1' והתורם היחיד היה [[מיוחד:Contributions/$2|$2]]",
@@ -1131,7 +1131,7 @@ $NEWPAGE
 "istemplate"    => "הכללה",
 
 # Block/unblock IP
-"blockip"                     => "חסמו משתמש",
+"blockip"                     => "חסימת משתמש",
 "blockiptext"                 => "השתמשו בטופס שלהלן כדי לחסום את הרשאות הכתיבה ממשתמש או כתובת IP ספציפיים.
 
 חסימות כאלה צריכות להתבצע אך ורק כדי למנוע ונדליזם, ובהתאם לנהלי האתר.
@@ -1318,6 +1318,7 @@ $NEWPAGE
 "accesskey-preview"                 => "p",
 "accesskey-diff"                    => "v",
 "accesskey-compareselectedversions" => "v",
+"accesskey-watch"                   => "w",
 
 # Tooltip help for some actions, most are in Monobook.js
 "tooltip-search"                  => "חפשו באתר {{SITENAME}} [Alt+F]",
