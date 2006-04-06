@@ -28,6 +28,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Update to Finnish localization
 * (bug 5467) Link to page histories in watchlist edit mode
 * Further additions to Hebrew localisation
+* (bug 5476) Invalid xhtml in German localization
 
 == Compatibility ==
 
