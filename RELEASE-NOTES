@@ -29,6 +29,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5467) Link to page histories in watchlist edit mode
 * Further additions to Hebrew localisation
 * (bug 5476) Invalid xhtml in German localization
+* (bug 5479) Id translation for preferences tabs caption
 
 == Compatibility ==
 
