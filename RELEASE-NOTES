@@ -30,6 +30,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Further additions to Hebrew localisation
 * (bug 5476) Invalid xhtml in German localization
 * (bug 5479) Id translation for preferences tabs caption
+* (bug 5493) Id translation for special pages
 * Added skinname and style path parameters to CBT version of MonoBook
 * Include subversion revision number in Special:Version if available
 
