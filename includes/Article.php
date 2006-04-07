@@ -1179,9 +1179,6 @@ class Article {
 			return false;
 		}
 
-		$this->mGoodAdjustment = (int)$this->isCountable( $text );
-		$this->mTotalAdjustment = 1;
-
 		$ns = $this->mTitle->getNamespace();
 		$ttl = $this->mTitle->getDBkey();
 
@@ -1190,6 +1187,13 @@ class Article {
 			$text="== {$summary} ==\n\n".$text;
 		}
 		$text = $this->preSaveTransform( $text );
+
+
+		# Set statistics members
+		# We work out if it's countable after PST to avoid counter drift 
+		# when articles are created with {{subst:}}
+		$this->mGoodAdjustment = (int)$this->isCountable( $text );
+		$this->mTotalAdjustment = 1;
 
 		/* Silently ignore minoredit if not allowed */
 		$isminor = $isminor && $wgUser->isAllowed('minoredit');
