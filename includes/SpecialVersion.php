@@ -45,8 +45,7 @@ class SpecialVersion {
 	 * @static
 	 */
 	function MediaWikiCredits() {
-		global $wgVersion;
-
+		$version = $this->getVersion();
 		$dbr =& wfGetDB( DB_SLAVE );
 
 		$ret =
@@ -71,11 +70,17 @@ class SpecialVersion {
 		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 		or [http://www.gnu.org/copyleft/gpl.html read it online]
 
-		* [http://www.mediawiki.org/ MediaWiki]: $wgVersion
+		* [http://www.mediawiki.org/ MediaWiki]: $version
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
 		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion();
 
 		return str_replace( "\t\t", '', $ret );
+	}
+	
+	function getVersion() {
+		global $wgVersion, $IP;
+		$svn = $this->getSvnRevision( $IP );
+		return $svn ? "$wgVersion (r$svn)" : $wgVersion;
 	}
 
 	function extensionCredits() {
@@ -223,6 +228,39 @@ class SpecialVersion {
 			$class = get_class( $list[0] );
 			return "($class, {$list[1]})";
 		}
+	}
+
+	/**
+	 * Retrieve the revision number of a Subversion working directory.
+	 *
+	 * @param string $dir
+	 * @return mixed revision number as int, or false if not a SVN checkout
+	 */
+	function getSvnRevision( $dir ) {
+		if( !function_exists( 'simplexml_load_file' ) ) {
+			// We could fall back to expat... YUCK
+			return false;
+		}
+		
+		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
+		$entries = $dir . '/.svn/entries';
+		
+		// SimpleXml whines about the xmlns...
+		wfSuppressWarnings();
+		$xml = simplexml_load_file( $entries );
+		wfRestoreWarnings();
+		
+		if( $xml ) {
+			foreach( $xml->entry as $entry ) {
+				if( $xml->entry[0]['name'] == '' ) {
+					// The directory entry should always have a revision marker.
+					if( $entry['revision'] ) {
+						return intval( $entry['revision'] );
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	/**#@-*/
