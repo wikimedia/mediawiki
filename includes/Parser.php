@@ -201,8 +201,6 @@ class Parser
 		$this->mRevisionId = $revid;
 		$this->mOutputType = OT_HTML;
 
-		$this->mStripState = NULL;
-
 		//$text = $this->strip( $text, $this->mStripState );
 		// VOODOO MAGIC FIX! Sometimes the above segfaults in PHP5.
 		$x =& $this->mStripState;
