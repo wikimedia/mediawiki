@@ -16,11 +16,19 @@ $pages = $dbr->selectField( 'page', 'COUNT(page_id)',
 echo "$wgDBname: setting edits $edits, pages $pages\n";
 
 $dbw =& wfGetDB( DB_MASTER );
-$dbw->delete( 'site_stats', array( 'ss_row_id' => 1 ) );
-$dbw->insert( 'site_stats',
-	array( 'ss_row_id'=> 1,
-	       'ss_total_views'   => 0,
-	       'ss_total_edits'   => $edits,
-	       'ss_good_articles' => $pages ) );
+if( isset( $options['update'] ) ) {
+	echo "(updating...)\n";
+	$dbw->update( 'site_stats',
+		array( 'ss_total_edits'   => $edits,
+		       'ss_good_articles' => $pages ),
+		array( 'ss_row_id' => 1 ) );
+} else {
+	$dbw->delete( 'site_stats', array( 'ss_row_id' => 1 ) );
+	$dbw->insert( 'site_stats',
+		array( 'ss_row_id'=> 1,
+		       'ss_total_views'   => 0,
+		       'ss_total_edits'   => $edits,
+		       'ss_good_articles' => $pages ) );
+}
 
 ?>
