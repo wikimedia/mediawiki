@@ -1690,47 +1690,51 @@ class Article {
 	 * @return bool true on success
 	 */
 	function updateRestrictions( $limit = array(), $reason = '' ) {
-		global $wgUser;
-
-		if ( !$wgUser->isAllowed( 'protect' ) ) {
-			return false;
-		}
-
-		if( wfReadOnly() ) {
-			return false;
-		}
-
+		global $wgUser, $wgRestrictionTypes;
+		
 		$id = $this->mTitle->getArticleID();
-		if ( 0 == $id ) {
+		if( !$wgUser->isAllowed( 'protect' ) || wfReadOnly() || $id == 0 ) {
 			return false;
 		}
 
-		$flat = Article::flattenRestrictions( $limit );
-		$protecting = ($flat != '');
+		# FIXME: Same limitations as described in ProtectionForm.php (line 37);
+		# we expect a single selection, but the schema allows otherwise.
+		$current = array();
+		foreach( $wgRestrictionTypes as $action )
+			$current[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
 
-		if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser,
-			$limit, $reason ) ) ) {
-
-			$dbw =& wfGetDB( DB_MASTER );
-			$dbw->update( 'page',
-				array( /* SET */
-					'page_touched' => $dbw->timestamp(),
-					'page_restrictions' => $flat
-				), array( /* WHERE */
-					'page_id' => $id
-				), 'Article::protect'
-			);
-
-			wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser,
-				$limit, $reason ) );
-
-			$log = new LogPage( 'protect' );
-			if( $protecting ) {
-				$log->addEntry( 'protect', $this->mTitle, trim( $reason . " [$flat]" ) );
-			} else {
-				$log->addEntry( 'unprotect', $this->mTitle, $reason );
-			}
-		}
+		$current = Article::flattenRestrictions( $current );
+		$updated = Article::flattenRestrictions( $limit );
+		
+		$changed = ( $current != $updated );
+		$protect = ( $updated != '' );
+		
+		# If nothing's changed, do nothing
+		if( $changed ) {
+			if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser, $limit, $reason ) ) ) {
+				# Update page record
+				$dbw =& wfGetDB( DB_MASTER );
+				$dbw->update( 'page',
+					array( /* SET */
+						'page_touched' => $dbw->timestamp(),
+						'page_restrictions' => $updated
+					), array( /* WHERE */
+						'page_id' => $id
+					), 'Article::protect'
+				);
+				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
+	
+				# Update the protection log
+				$log = new LogPage( 'protect' );
+				if( $protect ) {
+					$log->addEntry( 'protect', $this->mTitle, trim( $reason . " [$updated]" ) );
+				} else {
+					$log->addEntry( 'unprotect', $this->mTitle, $reason );
+				}
+				
+			} # End hook
+		} # End "changed" check
+		
 		return true;
 	}
 
@@ -1746,6 +1750,7 @@ class Article {
 			wfDebugDieBacktrace( 'Article::flattenRestrictions given non-array restriction set' );
 		}
 		$bits = array();
+		ksort( $limit );
 		foreach( $limit as $action => $restrictions ) {
 			if( $restrictions != '' ) {
 				$bits[] = "$action=$restrictions";
