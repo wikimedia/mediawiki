@@ -1690,7 +1690,7 @@ class Article {
 	 * @return bool true on success
 	 */
 	function updateRestrictions( $limit = array(), $reason = '' ) {
-		global $wgUser, $wgRestrictionTypes;
+		global $wgUser, $wgRestrictionTypes, $wgContLang;
 		
 		$id = $this->mTitle->getArticleID();
 		if( !$wgUser->isAllowed( 'protect' ) || wfReadOnly() || $id == 0 ) {
@@ -1712,12 +1712,24 @@ class Article {
 		# If nothing's changed, do nothing
 		if( $changed ) {
 			if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser, $limit, $reason ) ) ) {
-				# Update page record
+
 				$dbw =& wfGetDB( DB_MASTER );
+				
+				# Prepare a null revision to be added to the history
+				$comment = $wgContLang->ucfirst( wfMsgForContent( $protect ? 'protectedarticle' : 'unprotectedarticle', $this->mTitle->getPrefixedText() ) );
+				if( $reason )
+					$comment .= ": $reason";
+				if( $protect )
+					$comment .= " [$updated]";
+				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
+				$nullRevId = $nullRevision->insertOn( $dbw );
+			
+				# Update page record
 				$dbw->update( 'page',
 					array( /* SET */
 						'page_touched' => $dbw->timestamp(),
-						'page_restrictions' => $updated
+						'page_restrictions' => $updated,
+						'page_latest' => $nullRevId
 					), array( /* WHERE */
 						'page_id' => $id
 					), 'Article::protect'
