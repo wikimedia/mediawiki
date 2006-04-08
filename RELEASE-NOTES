@@ -37,6 +37,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Improve Special:Log performance on big log sets
 * (bug 5507) Changed mediawiki:logouttext from plain to wikitext
 * (bug 4760) Prevent creation of entries in protection log when protection levels haven't changed
+* (bug 861) Show page protection/unprotection events in histories
 
 == Compatibility ==
 
