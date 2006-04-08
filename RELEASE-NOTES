@@ -33,6 +33,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5493) Id translation for special pages
 * Added skinname and style path parameters to CBT version of MonoBook
 * Include subversion revision number in Special:Version if available
+* (bug 5344) Fix regression that broke slashes in extension tag parameters
 
 
 == Compatibility ==
