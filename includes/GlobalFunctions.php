@@ -638,7 +638,7 @@ function wfDebugDieBacktrace( $msg = '' ) {
 			# This may be a virtual server.
 			$hostname = $_SERVER['SERVER_NAME'];
 		}
-		$com = sprintf( "<!-- Served by %s in %01.2f secs. -->",
+		$com = sprintf( "<!-- Served by %s in %01.3f secs. -->",
 		  $hostname, $elapsed );
 		return $com;
 	}
