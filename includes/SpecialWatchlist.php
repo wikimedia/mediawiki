@@ -164,7 +164,7 @@ function wfSpecialWatchlist( $par ) {
 #		Patch A2
 #		The following was proposed by KTurner 07.11.2004 to T.Gries
 #		$sql = "SELECT distinct (wl_namespace & ~1),wl_title FROM $watchlist WHERE wl_user=$uid";
-		$sql = "SELECT wl_namespace, wl_title, page_is_redirect FROM $page LEFT JOIN $watchlist ON wl_namespace = page_namespace AND wl_title = page_title WHERE wl_user=$uid";
+		$sql = "SELECT wl_namespace, wl_title, page_is_redirect FROM $watchlist LEFT JOIN $page ON wl_namespace = page_namespace AND wl_title = page_title WHERE wl_user=$uid";
 
 		$res = $dbr->query( $sql, $fname );
 		
