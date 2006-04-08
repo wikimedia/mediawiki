@@ -61,8 +61,10 @@ class LogReader {
 	function setupQuery( $request ) {
 		$page = $this->db->tableName( 'page' );
 		$user = $this->db->tableName( 'user' );
-		$this->joinClauses = array( "LEFT OUTER JOIN $page ON log_namespace=page_namespace AND log_title=page_title" );
-		$this->whereClauses = array( 'user_id=log_user' );
+		$this->joinClauses = array( 
+			"LEFT OUTER JOIN $page ON log_namespace=page_namespace AND log_title=page_title",
+			"INNER JOIN $user ON user_id=log_user" );
+		$this->whereClauses = array();
 
 		$this->limitType( $request->getVal( 'type' ) );
 		$this->limitUser( $request->getText( 'user' ) );
@@ -95,13 +97,19 @@ class LogReader {
 	function limitUser( $name ) {
 		if ( $name == '' )
 			return false;
-		$title = Title::makeTitle( NS_USER, $name );
-		if ( is_null( $title ) )
+		$usertitle = Title::makeTitle( NS_USER, $name );
+		if ( is_null( $usertitle ) )
 			return false;
-		$this->user = $title->getText();
-		$safename = $this->db->strencode( $this->user );
-		$user = $this->db->tableName( 'user' );
-		$this->whereClauses[] = "user_name='$safename'";
+		$this->user = $usertitle->getText();
+		
+		/* Fetch userid at first, if known, provides awesome query plan afterwards */
+		$userid = $this->db->selectField('user','user_id',array('user_name'=>$this->user));
+		if (!$userid)
+			/* It should be nicer to abort query at all, 
+			   but for now it won't pass anywhere behind the optimizer */
+			$this->whereClauses[] = "NULL";
+		else
+			$this->whereClauses[] = "log_user=$userid";
 	}
 
 	/**
@@ -147,12 +155,9 @@ class LogReader {
 		$sql = "SELECT log_type, log_action, log_timestamp,
 			log_user, user_name,
 			log_namespace, log_title, page_id,
-			log_comment, log_params FROM $user, $logging ";
-		if ($this->type=="" && $this->db->indexExists('logging','times')) {
-			$sql .= ' /*! FORCE INDEX (times) */ ';
-		}
+			log_comment, log_params FROM $logging ";
 		if( !empty( $this->joinClauses ) ) {
-			$sql .= implode( ',', $this->joinClauses );
+			$sql .= implode( ' ', $this->joinClauses );
 		}
 		if( !empty( $this->whereClauses ) ) {
 			$sql .= " WHERE " . implode( ' AND ', $this->whereClauses );
