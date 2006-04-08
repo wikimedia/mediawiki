@@ -6,4 +6,4 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
   unique key (keyname),
   key (exptime)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;

@@ -356,7 +356,7 @@ class FiveUpgrade {
   			UNIQUE INDEX name_title (page_namespace,page_title),
   			INDEX (page_random),
   			INDEX (page_len)
-			) ENGINE=InnoDB", $fname );
+			) TYPE=InnoDB", $fname );
 		$this->dbw->query("CREATE TABLE $revision (
   			rev_id int(8) unsigned NOT NULL auto_increment,
   			rev_page int(8) unsigned NOT NULL,
@@ -374,7 +374,7 @@ class FiveUpgrade {
   			INDEX page_timestamp (rev_page,rev_timestamp),
   			INDEX user_timestamp (rev_user,rev_timestamp),
   			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
-			) ENGINE=InnoDB", $fname );
+			) TYPE=InnoDB", $fname );
 
 		$maxold = intval( $this->dbw->selectField( 'old', 'max(old_id)', '', $fname ) );
 		$this->log( "Last old record is {$maxold}" );
@@ -525,7 +525,7 @@ CREATE TABLE $pagelinks (
   UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
   KEY (pl_namespace,pl_title)
 
-) ENGINE=InnoDB" );
+) TYPE=InnoDB" );
 
 		$this->log( 'Importing live links -> pagelinks' );
 		$nlinks = $this->dbw->selectField( 'links', 'count(*)', '', $fname );
@@ -608,7 +608,7 @@ CREATE TABLE $1 (
   UNIQUE INDEX user_name (user_name),
   INDEX (user_email_token)
 
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 		$fields = array(
 			'user_id'                  => MW_UPGRADE_COPY,
@@ -654,7 +654,7 @@ CREATE TABLE $1 (
   PRIMARY KEY img_name (img_name),
   INDEX img_size (img_size),
   INDEX img_timestamp (img_timestamp)
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 		$fields = array(
 			'img_name'        => MW_UPGRADE_ENCODE,
@@ -831,7 +831,7 @@ CREATE TABLE $1 (
 
   INDEX oi_name (oi_name(10))
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 END;
 		$fields = array(
 			'oi_name'         => MW_UPGRADE_ENCODE,
@@ -891,7 +891,7 @@ END;
   UNIQUE KEY (wl_user, wl_namespace, wl_title),
   KEY namespace_title (wl_namespace,wl_title)
 
-) ENGINE=InnoDB;", $fname );
+) TYPE=InnoDB;", $fname );
 
 		// Fix encoding for Latin-1 upgrades, add some fields,
 		// and double article to article+talk pairs
@@ -960,7 +960,7 @@ CREATE TABLE $1 (
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp)
 
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 		$fields = array(
 			'log_type'      => MW_UPGRADE_COPY,
@@ -994,7 +994,7 @@ CREATE TABLE $1 (
 
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 		$fields = array(
 			'ar_namespace'  => MW_UPGRADE_COPY,
@@ -1027,7 +1027,7 @@ CREATE TABLE $1 (
   UNIQUE KEY il_from(il_from,il_to),
   KEY (il_to)
 
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 			$fields = array(
 				'il_from' => MW_UPGRADE_COPY,
@@ -1049,7 +1049,7 @@ CREATE TABLE $1 (
   UNIQUE KEY cl_from(cl_from,cl_to),
   KEY cl_sortkey(cl_to,cl_sortkey),
   KEY cl_timestamp(cl_to,cl_timestamp)
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 			$fields = array(
 				'cl_from'      => MW_UPGRADE_COPY,
@@ -1078,7 +1078,7 @@ CREATE TABLE $1 (
   INDEX ipb_address (ipb_address),
   INDEX ipb_user (ipb_user)
 
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 			$fields = array(
 				'ipb_id'        => MW_UPGRADE_COPY,
@@ -1132,7 +1132,7 @@ CREATE TABLE $1 (
   INDEX new_name_timestamp(rc_new,rc_namespace,rc_timestamp),
   INDEX rc_ip (rc_ip)
 
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 		$fields = array(
 			'rc_id'             => MW_UPGRADE_COPY,
@@ -1173,7 +1173,7 @@ CREATE TABLE $1 (
 
   KEY (qc_type,qc_value)
 
-) ENGINE=InnoDB
+) TYPE=InnoDB
 END;
 		$fields = array(
 			'qc_type'      => MW_UPGRADE_COPY,

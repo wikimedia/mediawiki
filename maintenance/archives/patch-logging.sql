@@ -29,7 +29,7 @@ CREATE TABLE /*$wgDBprefix*/logging (
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 -- Change from unsigned to signed so we can store special pages

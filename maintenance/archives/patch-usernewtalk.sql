@@ -9,7 +9,7 @@ CREATE TABLE /*$wgDBprefix*/user_newtalk (
   user_ip varchar(40) NOT NULL default '',
   KEY user_id (user_id),
   KEY user_ip (user_ip)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 INSERT INTO
   /*$wgDBprefix*/user_newtalk (user_id, user_ip)

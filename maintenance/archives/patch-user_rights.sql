@@ -14,7 +14,7 @@ CREATE TABLE /*$wgDBprefix*/user_rights (
   
   UNIQUE KEY ur_user (ur_user)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 INSERT INTO /*$wgDBprefix*/user_rights SELECT user_id,user_rights FROM /*$wgDBprefix*/user;
 
