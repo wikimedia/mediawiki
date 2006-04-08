@@ -152,7 +152,7 @@ class LogReader {
 	function getQuery() {
 		$logging = $this->db->tableName( "logging" );
 		$user = $this->db->tableName( 'user' );
-		$sql = "SELECT log_type, log_action, log_timestamp,
+		$sql = "SELECT /*! STRAIGHT_JOIN */ log_type, log_action, log_timestamp,
 			log_user, user_name,
 			log_namespace, log_title, page_id,
 			log_comment, log_params FROM $logging ";
