@@ -19,7 +19,7 @@ CREATE TABLE /*$wgDBprefix*/searchindex (
   
   UNIQUE KEY (si_page)
 
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 -- Copying data into new table...
 INSERT INTO /*$wgDBprefix*/searchindex

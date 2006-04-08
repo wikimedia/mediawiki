@@ -114,7 +114,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   UNIQUE INDEX user_name (user_name),
   INDEX (user_email_token)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- User permissions have been broken out to a separate table;
@@ -140,7 +140,7 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
   
   PRIMARY KEY (ug_user,ug_group),
   KEY (ug_group)
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 -- Stores notifications of user talk page changes, for the display
 -- of the "you have new messages" box
@@ -212,7 +212,7 @@ CREATE TABLE /*$wgDBprefix*/page (
   INDEX (page_random),
   INDEX (page_len)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Every edit of a page creates also a revision row.
@@ -260,7 +260,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
   INDEX user_timestamp (rev_user,rev_timestamp),
   INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 --
@@ -296,7 +296,7 @@ CREATE TABLE /*$wgDBprefix*/text (
   
   PRIMARY KEY old_id (old_id)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Holding area for deleted articles, which may be viewed
@@ -348,7 +348,7 @@ CREATE TABLE /*$wgDBprefix*/archive (
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 --
@@ -368,7 +368,7 @@ CREATE TABLE /*$wgDBprefix*/pagelinks (
   UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
   KEY (pl_namespace,pl_title)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 --
@@ -388,7 +388,7 @@ CREATE TABLE /*$wgDBprefix*/templatelinks (
   UNIQUE KEY tl_from(tl_from,tl_namespace,tl_title),
   KEY (tl_namespace,tl_title)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Track links to images *used inline*
@@ -407,7 +407,7 @@ CREATE TABLE /*$wgDBprefix*/imagelinks (
   UNIQUE KEY il_from(il_from,il_to),
   KEY (il_to)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Track category inclusions *used inline*
@@ -447,7 +447,7 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- Not really used?
   KEY cl_timestamp(cl_to,cl_timestamp)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Track links to external URLs
@@ -475,7 +475,7 @@ CREATE TABLE /*$wgDBprefix*/externallinks (
   KEY (el_from, el_to(40)),
   KEY (el_to(60), el_from),
   KEY (el_index(60))
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Contains a single row with some aggregate info
@@ -512,7 +512,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 
   UNIQUE KEY ss_row_id (ss_row_id)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Stores an ID for every time any article is visited;
@@ -523,7 +523,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 --
 CREATE TABLE /*$wgDBprefix*/hitcounter (
   hc_id INTEGER UNSIGNED NOT NULL
-) ENGINE=HEAP MAX_ROWS=25000;
+) TYPE=HEAP MAX_ROWS=25000;
 
 
 --
@@ -568,7 +568,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   INDEX ipb_user (ipb_user),
   INDEX ipb_range (ipb_range_start(8), ipb_range_end(8))
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 --
@@ -625,7 +625,7 @@ CREATE TABLE /*$wgDBprefix*/image (
   -- Used by Special:Newimages and Special:Imagelist
   INDEX img_timestamp (img_timestamp)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Previous revisions of uploaded files.
@@ -652,7 +652,7 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
 
   INDEX oi_name (oi_name(10))
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 --
@@ -717,7 +717,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   INDEX new_name_timestamp(rc_new,rc_namespace,rc_timestamp),
   INDEX rc_ip (rc_ip)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 CREATE TABLE /*$wgDBprefix*/watchlist (
   -- Key to user.user_id
@@ -736,7 +736,7 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
   UNIQUE KEY (wl_user, wl_namespace, wl_title),
   KEY namespace_title (wl_namespace,wl_title)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 --
@@ -762,7 +762,7 @@ CREATE TABLE /*$wgDBprefix*/math (
   
   UNIQUE KEY math_inputhash (math_inputhash)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- When using the default MySQL search backend, page titles
@@ -786,7 +786,7 @@ CREATE TABLE /*$wgDBprefix*/searchindex (
   FULLTEXT si_title (si_title),
   FULLTEXT si_text (si_text)
 
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 --
 -- Recognized interwiki link prefixes
@@ -809,7 +809,7 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
   
   UNIQUE KEY iw_prefix (iw_prefix)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Used for caching expensive grouped queries
@@ -827,7 +827,7 @@ CREATE TABLE /*$wgDBprefix*/querycache (
   
   KEY (qc_type,qc_value)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- For a few generic cache operations if not using Memcached
@@ -839,7 +839,7 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
   unique key (keyname),
   key (exptime)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Cache of interwiki transclusion
@@ -849,7 +849,7 @@ CREATE TABLE /*$wgDBprefix*/transcache (
 	tc_contents	TEXT,
 	tc_time		INT NOT NULL,
 	UNIQUE INDEX tc_url_idx(tc_url)
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 -- For article validation
 CREATE TABLE /*$wgDBprefix*/validate (
@@ -861,7 +861,7 @@ CREATE TABLE /*$wgDBprefix*/validate (
   val_comment varchar(255) NOT NULL default '',
   val_ip varchar(20) NOT NULL default '',
   KEY val_user (val_user,val_revision)
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 CREATE TABLE /*$wgDBprefix*/logging (
@@ -893,7 +893,7 @@ CREATE TABLE /*$wgDBprefix*/logging (
   KEY page_time (log_namespace, log_title, log_timestamp),
   KEY times (log_timestamp)
 
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 CREATE TABLE /*$wgDBprefix*/trackbacks (
 	tb_id integer AUTO_INCREMENT PRIMARY KEY,
@@ -904,7 +904,7 @@ CREATE TABLE /*$wgDBprefix*/trackbacks (
 	tb_name varchar(255),
 
 	INDEX (tb_page)
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 
 -- Jobs performed by parallel apache threads or a command-line daemon
@@ -925,4 +925,4 @@ CREATE TABLE /*$wgDBprefix*/job (
 
   PRIMARY KEY job_id (job_id),
   KEY (job_cmd, job_namespace, job_title)
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
