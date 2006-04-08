@@ -7,7 +7,10 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 * Fix disappearing red-linked items in the watchlist editing view
 
+
 == MediaWiki 1.6.2 ==
+
+April 8, 2006
 
 * Further improvements to Hebrew localisation
 * Fix 'copyright' message for Romanian
