@@ -330,22 +330,29 @@ class Parser
 		}
 
 		if( $tag == STRIP_COMMENTS ) {
-			$start = '/<!--()()/';
+			$start = '/<!--()/';
 			$end   = '/-->/';
 		} else {
-			$start = "/<$tag(\\s+[^\\/>]*|\\s*)(\\/?)>/i";
+			$start = "/<$tag(\\s+[^>]*|\\s*\/?)>/i";
 			$end   = "/<\\/$tag\\s*>/i";
 		}
 
 		while ( '' != $text ) {
 			$p = preg_split( $start, $text, 2, PREG_SPLIT_DELIM_CAPTURE );
 			$stripped .= $p[0];
-			if( count( $p ) < 4 ) {
+			if( count( $p ) < 3 ) {
 				break;
 			}
 			$attributes = $p[1];
-			$empty      = $p[2];
-			$inside     = $p[3];
+			$inside     = $p[2];
+
+			// If $attributes ends with '/', we have an empty element tag, <tag />
+			if( $tag != STRIP_COMMENTS && substr( $attributes, -1 ) == '/' ) {
+				$attributes = substr( $attributes, 0, -1);
+				$empty = '/';
+			} else {
+				$empty = '';
+			}
 
 			$marker = $rnd . sprintf('%08X', $n++);
 			$stripped .= $marker;

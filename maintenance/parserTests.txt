@@ -3501,6 +3501,19 @@ array(0) {
 !! end
 
 !! test
+Parser hook: empty input using terminated empty elements (space before)
+!! input
+<tag />
+!! result
+<pre>
+NULL
+array(0) {
+}
+</pre>
+
+!! end
+
+!! test
 Parser hook: basic input
 !! input
 <tag>input</tag>
@@ -3572,6 +3585,21 @@ array(4) {
   string(2) "50"
   ["square"]=>
   string(6) "square"
+}
+</pre>
+
+!! end
+
+!! test
+Parser hook: argument containing a forward slash (bug 5344)
+!! input
+<tag filename='/tmp/bla'></tag>
+!! result
+<pre>
+string(0) ""
+array(1) {
+  ["filename"]=>
+  string(8) "/tmp/bla"
 }
 </pre>
 
