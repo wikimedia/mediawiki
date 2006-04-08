@@ -36,6 +36,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5344) Fix regression that broke slashes in extension tag parameters
 * Improve Special:Log performance on big log sets
 * (bug 5507) Changed mediawiki:logouttext from plain to wikitext
+* (bug 4760) Prevent creation of entries in protection log when protection levels haven't changed
 
 == Compatibility ==
 
