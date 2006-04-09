@@ -1822,8 +1822,7 @@ class Article {
 		
 		if( count( $authors ) > 1 && !$confirm ) {
 			$skin=$wgUser->getSkin();
-			$wgOut->addHTML('<b>'.wfMsg('historywarning'));
-			$wgOut->addHTML( $skin->historyLink() .'</b>');
+			$wgOut->addHTML( '<strong>' . wfMsg( 'historywarning' ) . ' ' . $skin->historyLink() . '</strong>' );
 		}
 
 		# If a single user is responsible for all revisions, find out who they are
