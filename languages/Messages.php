@@ -391,7 +391,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'prefs-help-email-enotif' => 'This address is also used to send you e-mail notifications if you enabled the options.',
 'prefs-help-realname' 	=> '* Real name (optional): if you choose to provide it this will be used for giving you attribution for your work.',
 'loginerror'	=> 'Login error',
-'prefs-help-email'      => '* E-mail (optional): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
+'prefs-help-email'      => '* E-mail (optional): Enables others to contact you through your user or user_talk page without needing to reveal your identity.',
 'nocookiesnew'	=> 'The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.',
 'nocookieslogin'	=> '{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.',
 'noname'		=> 'You have not specified a valid user name.',

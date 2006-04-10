@@ -40,7 +40,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 861) Show page protection/unprotection events in histories
 * (bug 5499) Don't clear the tag strip state when asked not to clear state.
   Fixes regression with use of <ref> in a template breaking <nowiki> etc.
-
+* Minor grammatical improvements in English language files
 
 == Compatibility ==
 
