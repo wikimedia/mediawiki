@@ -6,7 +6,7 @@
  * measure to allow using a separate user account with higher
  * privileges to do maintenance work.
  *
- * Developers: Do not check AdminSettings.php into CVS!
+ * Developers: Do not check AdminSettings.php into Subversion
  *
  * @package MediaWiki
  */
