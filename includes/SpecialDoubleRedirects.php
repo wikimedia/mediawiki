@@ -53,6 +53,8 @@ class DoubleRedirectsPage extends PageQueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
+		global $wgContLang;
+	
 		$fname = 'DoubleRedirectsPage::formatResult';
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
 
@@ -90,9 +92,9 @@ class DoubleRedirectsPage extends PageQueryPage {
 		$edit = $skin->makeBrokenLinkObj( $titleA, "(".wfMsg("qbedit").")" , 'redirect=no');
 		$linkB = $skin->makeKnownLinkObj( $titleB, '', 'redirect=no' );
 		$linkC = $skin->makeKnownLinkObj( $titleC );
+		$arr = $wgContLang->isRTL() ? '&larr;' : '&rarr;';
 
-		return "$linkA $edit " . wfMsgHtml( 'doubleredirectsarrow' )
-			. " $linkB " . wfMsgHtml( 'doubleredirectsarrow' ) . " $linkC";
+		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
 	}
 }
 
