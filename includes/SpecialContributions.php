@@ -180,6 +180,7 @@ function wfSpecialContributions( $par = null ) {
 
 	if (($ns = $wgRequest->getVal('namespace', null)) !== null && $ns !== '') {
 		$options['namespace'] = $ns;
+		$finder->set_namespace($options['namespace']);
 	} else {
 		$options['namespace'] = '';
 	}
@@ -192,7 +193,7 @@ function wfSpecialContributions( $par = null ) {
 	$finder = new contribs_finder(($target == 'newbies') ? 'newbies' : $nt->getText());
 	$finder->set_limit($options['limit']);
 	$finder->set_offset($options['offset']);
-	$finder->set_namespace($options['namespace']);
+	
 
 	if ($wgRequest->getText('go') == 'prev') {
 		$options['offset'] = $finder->get_previous_offset_for_paging();
