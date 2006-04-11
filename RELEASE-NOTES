@@ -5,10 +5,13 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.6.3 ==
 
+April 10, 2006
+
 * Fix disappearing red-linked items in the watchlist editing view
 * (bug 5512) Spacing in "page has a history" deletion warning
 * (bug 5508) Switch ENGINE in table statements back to TYPE; fixes regression
   where some versions of MySQL 4.0.x wouldn't work
+* Added note about $wgUrlProtocols format change
 
 
 == MediaWiki 1.6.2 ==
@@ -112,6 +115,11 @@ work properly:
 
 To ensure that these tables are filled with data, run refreshLinks.php after
 the upgrade.
+
+The format of the $wgUrlProtocols has changed from 1.5; it is now an array
+instead of a regular expression string. If you have customized this setting
+you will need to change it or external links will not work properly. See
+includes/DefaultSettings.php for the updated format.
 
 
 If you are upgrading from MediaWiki 1.4.x or earlier, some major database
