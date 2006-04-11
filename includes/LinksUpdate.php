@@ -19,7 +19,8 @@ class LinksUpdate {
 		$mImages,        # DB keys of the images used, in the array key only
 		$mTemplates,     # Map of title strings to IDs for the template references, including broken ones
 		$mExternals,     # URLs of external links, array key only
-		$mCategories,    # Map of category names to sort keys
+	    $mCategories,    # Map of category names to sort keys
+	    $mInterlangs,    # Map of language codes to titles
 		$mDb,            # Database connection reference
 		$mOptions,       # SELECT options to be used (array)
 		$mRecursive;     # Whether to queue jobs for recursive updates
@@ -53,8 +54,19 @@ class LinksUpdate {
 		$this->mTemplates = $parserOutput->getTemplates();
 		$this->mExternals = $parserOutput->getExternalLinks();
 		$this->mCategories = $parserOutput->getCategories();
-		$this->mRecursive = $recursive;
 
+		# Convert the format of the interlanguage links
+		# I didn't want to change it in the ParserOutput, because that array is passed all 
+		# the way back to the skin, so either a skin API break would be required, or an 
+		# inefficient back-conversion.
+		$ill = $parserOutput->getLanguageLinks();
+		$this->mInterlangs = array();
+		foreach ( $ill as $link ) {
+			list( $key, $title ) = explode( ':', $link, 2 );
+			$this->mInterlangs[$key] = $title;
+		}
+
+		$this->mRecursive = $recursive;
 	}
 
 	/**
@@ -90,7 +102,12 @@ class LinksUpdate {
 		# External links
 		$existing = $this->getExistingExternals();
 		$this->incrTableUpdate( 'externallinks', 'el', $this->getExternalDeletions( $existing ),
-			$this->getExternalInsertions( $existing ) );
+	        $this->getExternalInsertions( $existing ) );
+
+	    # Language links
+	    $existing = $this->getExistingInterlangs();
+	    $this->incrTableUpdate( 'langlinks', 'll', $this->getInterlangDeletions( $existing ),
+	        $this->getInterlangInsertions( $existing ) );
 
 		# Template links
 		$existing = $this->getExistingTemplates();
@@ -104,7 +121,7 @@ class LinksUpdate {
 				require_once( 'JobQueue.php' );
 				Job::queueLinksJobs( $tlto );
 			}
-		}
+	    }
 
 		# Category links
 		$existing = $this->getExistingCategories();
@@ -146,7 +163,8 @@ class LinksUpdate {
 		$this->dumbTableUpdate( 'imagelinks',    $this->getImageInsertions(),    'il_from' );
 		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
 		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
-		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
+	    $this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
+	    $this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(), 'll_from' );
 
 		# Update the cache of all the category pages and image description pages which were changed
 		$this->invalidateCategories( $categoryUpdates );
@@ -217,8 +235,13 @@ class LinksUpdate {
 				$where = false;
 			}
 		} else {
+			if ( $table == 'langlinks' ) {
+				$toField = 'll_lang';
+			} else {
+				$toField = $prefix . '_to';
+			}
 			if ( count( $deletions ) ) {
-				$where[] = "{$prefix}_to IN (" . $this->mDb->makeList( array_keys( $deletions ) ) . ')';
+				$where[] = "$toField IN (" . $this->mDb->makeList( array_keys( $deletions ) ) . ')';
 			} else {
 				$where = false;
 			}
@@ -328,6 +351,24 @@ class LinksUpdate {
 	}
 
 	/**
+	 * Get an array of interlanguage link insertions
+	 * @param array $existing Array mapping existing language codes to titles	 
+	 * @access private
+	 */
+	function getInterlangInsertions( $existing = array() ) {
+	    $diffs = array_diff_assoc( $this->mInterlangs, $existing );
+	    $arr = array();
+	    foreach( $diffs as $lang => $title ) {
+	        $arr[] = array(
+	            'll_from'  => $this->mId,
+	            'll_lang'  => $lang,
+	            'll_title' => $title
+	        );
+	    }
+	    return $arr;
+	}
+
+	/**
 	 * Given an array of existing links, returns those links which are not in $this
 	 * and thus should be deleted.
 	 * @access private
@@ -386,6 +427,15 @@ class LinksUpdate {
 	 */
 	function getCategoryDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mCategories );
+	}
+
+	/** 
+	 * Given an array of existing interlanguage links, returns those links which are not
+	 * in $this and thus should be deleted.
+	 * @access private
+	 */
+	function getInterlangDeletions( $existing ) {
+	    return array_diff_assoc( $existing, $this->mInterlangs );
 	}
 
 	/**
@@ -471,6 +521,22 @@ class LinksUpdate {
 			$arr[$row->cl_to] = $row->cl_sortkey;
 		}
 		$this->mDb->freeResult( $res );
+		return $arr;
+	}
+
+	/**
+	 * Get an array of existing interlanguage links, with the language code in the key and the 
+	 * title in the value.
+	 * @access private
+	 */
+	function getExistingInterlangs() {
+		$fname = 'LinksUpdate::getExistingInterlangs';
+		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ), 
+			array( 'll_from' => $this->mId ), $fname, $this->mOptions );
+		$arr = array();
+		while ( $row = $this->mDb->fetchObject( $res ) ) {
+			$arr[$row->ll_lang] = $row->ll_title;
+		}
 		return $arr;
 	}
 }
