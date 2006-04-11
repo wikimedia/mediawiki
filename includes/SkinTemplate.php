@@ -187,6 +187,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( "$fname-stuff2" );
 		$tpl->set( 'title', $wgOut->getPageTitle() );
 		$tpl->set( 'pagetitle', $wgOut->getHTMLTitle() );
+		$tpl->set( 'displaytitle', $wgOut->mPageLinkTitle );
 
 		$tpl->setRef( "thispage", $this->thispage );
 		$subpagestr = $this->subPageSubtitle();

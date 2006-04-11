@@ -43,6 +43,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Minor grammatical improvements in English language files
 * Display the anon talk page info message on anon talk pages again
   (moved outside the parser cache)
+* Optional {{DISPLAYTITLE|title with markup}} magic word
+  Deactivated by default, set "$wgAllowDisplayTitle = true" in LocalSettings.php to activate
 
 
 == Compatibility ==

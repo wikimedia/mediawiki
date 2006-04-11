@@ -1920,5 +1920,9 @@ $wgUseAjax = false;
  */
 $wgAjaxExportList = array( 'wfSajaxSearch' );
 
+/**
+ * Allow DISPLAYTITLE to change title display
+ */
+$wgAllowDisplayTitle = false ;
 
 ?>

@@ -2000,6 +2000,9 @@ Please confirm that really want to recreate this article.',
 'articletitles' => "Articles starting with ''$1''",
 'hideresults' => 'Hide results',
 
+# DISPLAYTITLE
+'displaytitle' => '(Link to this page as [[$1]])',
+
 );
 
 

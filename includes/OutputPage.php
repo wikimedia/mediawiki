@@ -18,7 +18,7 @@ class OutputPage {
 	var $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
 	var $mSubtitle, $mRedirect, $mStatusCode;
 	var $mLastModified, $mETag, $mCategoryLinks;
-	var $mScripts, $mLinkColours;
+	var $mScripts, $mLinkColours, $mPageLinkTitle;
 
 	var $mSuppressQuickbar;
 	var $mOnloadHandler;
@@ -40,11 +40,11 @@ class OutputPage {
 		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
 		$this->mRedirect = $this->mLastModified =
 		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy =
-		$this->mOnloadHandler = '';
+		$this->mOnloadHandler = $this->mPageLinkTitle = '';
 		$this->mIsArticleRelated = $this->mIsarticle = $this->mPrintable = true;
 		$this->mSuppressQuickbar = $this->mPrintable = false;
 		$this->mLanguageLinks = array();
-		$this->mCategoryLinks = array() ;
+		$this->mCategoryLinks = array();
 		$this->mDoNothing = false;
 		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
 		$this->mParserOptions = ParserOptions::newFromUser( $temp = NULL );
@@ -54,7 +54,7 @@ class OutputPage {
 		$this->mRevisionId = null;
 	}
 
-	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ) ; }
+	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ); }
 	function redirect( $url, $responsecode = '302' ) { $this->mRedirect = $url; $this->mRedirectCode = $responsecode; }
 	function setStatusCode( $statusCode ) { $this->mStatusCode = $statusCode; }
 
@@ -821,9 +821,9 @@ class OutputPage {
 
 		if( is_string( $source ) ) {
 			if( strcmp( $source, '' ) == 0 ) {
-				global $wgTitle ;
+				global $wgTitle;
 				if ( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
-					$source = wfMsgWeirdKey ( $wgTitle->getText() ) ;
+					$source = wfMsgWeirdKey ( $wgTitle->getText() );
 				} else {
 					$source = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
 				}
