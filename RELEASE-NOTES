@@ -48,6 +48,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Cleaned SpecialContributions a bit
 * Added a table to track interlanguage links
 * (bug 5544) Fix redirect arrow in Special:Listredirects for right-to-left languages
+* Replace "doubleredirectsarrow" with a content language check that picks the appropriate arrow
 
 == Compatibility ==
 
