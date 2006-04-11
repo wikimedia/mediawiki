@@ -175,32 +175,23 @@ class Article {
 			return "<div class='noarticletext'>$ret</div>";
 		} else {
 			$this->loadContent();
-			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
-			if ( $this->mTitle->getNamespace() == NS_USER_TALK &&
-			  $wgUser->isIP($this->mTitle->getText()) &&
-			  $action=='view'
-			) {
-				wfProfileOut( $fname );
-				return $this->mContent . "\n" .wfMsg('anontalkpagetext');
-			} else {
-				if($action=='edit') {
-					if($section!='') {
-						if($section=='new') {
-							wfProfileOut( $fname );
-							$text=$this->getPreloadedText($preload);
-							return $text;
-						}
-
-						# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
-						# comments to be stripped as well)
-						$rv=$this->getSection($this->mContent,$section);
+			if($action=='edit') {
+				if($section!='') {
+					if($section=='new') {
 						wfProfileOut( $fname );
-						return $rv;
+						$text=$this->getPreloadedText($preload);
+						return $text;
 					}
+
+					# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
+					# comments to be stripped as well)
+					$rv=$this->getSection($this->mContent,$section);
+					wfProfileOut( $fname );
+					return $rv;
 				}
-				wfProfileOut( $fname );
-				return $this->mContent;
 			}
+			wfProfileOut( $fname );
+			return $this->mContent;
 		}
 	}
 
@@ -922,6 +913,12 @@ class Article {
 		$t = $wgOut->getPageTitle();
 		if( empty( $t ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+		}
+		
+		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
+		if( $this->mTitle->getNamespace() == NS_USER_TALK &&
+			User::isIP( $this->mTitle->getText() ) ) {
+			$wgOut->addWikiText( wfMsg('anontalkpagetext') );
 		}
 
 		# If we have been passed an &rcid= parameter, we want to give the user a
