@@ -274,7 +274,7 @@ class DumpHTML {
 
 	/** Set up globals required for parsing */
 	function setupGlobals( $currentDepth = NULL ) {
-		global $wgUser, $wgTitle, $wgStylePath, $wgArticlePath;
+		global $wgUser, $wgTitle, $wgStylePath, $wgArticlePath, $wgMathPath;
 		global $wgUploadPath, $wgLogo, $wgMaxCredits, $wgSharedUploadPath;
 		global $wgHideInterlanguageLinks, $wgUploadDirectory, $wgThumbnailScriptPath;
 		global $wgSharedThumbnailScriptPath, $wgEnableParserCache, $wgHooks, $wgServer;
@@ -334,7 +334,7 @@ class DumpHTML {
 		$wgUploadPath = "$wgScriptPath/{$this->imageRel}";
 		$wgSharedUploadPath = "$wgUploadPath/shared";
 		$wgMaxCredits = -1;
-		$wgHideInterlangageLinks = !$this->interwiki;
+		$wgHideInterlanguageLinks = !$this->interwiki;
 		$wgThumbnailScriptPath = $wgSharedThumbnailScriptPath = false;
 		$wgEnableParserCache = false;
 		$wgMathPath = "$wgScriptPath/math";
