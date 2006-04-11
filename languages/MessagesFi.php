@@ -1017,7 +1017,12 @@ Palaute ja lisäapu osoitteessa:
 'uclinks'             => 'Katso $1 viimeisintä muokkausta; katso $2 viimeisintä päivää.',
 'uctop'               => ' (uusin)' ,
 'newbies'             => 'tulokkaat',
-'contribs-showhideminor' => '$1 pienet muutokset',
+
+'sp-contributions-newest' => 'Uusimmat',
+'sp-contributions-oldest' => 'Vanhimmat',
+'sp-contributions-newer'  => '← $1 uudempaa',
+'sp-contributions-older'  => '$1 vanhempaa →',
+'sp-contributions-newbies-sub' => 'Uusien tulokkaiden muokkaukset',
 
 # What links here
 #

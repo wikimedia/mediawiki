@@ -1227,7 +1227,13 @@ See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 'uclinks'       => "View the last $1 changes; view the last $2 days.",
 'uctop'         => ' (top)' ,
 'newbies'       => 'newbies',
-'contribs-showhideminor' => '$1 minor edits',
+
+'sp-contributions-newest' => 'Newest',
+'sp-contributions-oldest' => 'Oldest',
+'sp-contributions-newer'  => 'Newer $1',
+'sp-contributions-older'  => 'Older $1',
+'sp-contributions-newbies-sub' => 'For newbies',
+
 
 # What links here
 #
