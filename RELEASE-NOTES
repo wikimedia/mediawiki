@@ -7,6 +7,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 * Fix disappearing red-linked items in the watchlist editing view
 * (bug 5512) Spacing in "page has a history" deletion warning
+* Swap ENGINE with TYPE
 
 == MediaWiki 1.6.2 ==
 

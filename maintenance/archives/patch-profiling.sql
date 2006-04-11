@@ -6,4 +6,4 @@ CREATE TABLE /*$wgDBprefix*/profiling (
 	pf_time float not null default 0,
 	pf_name varchar(255) not null default '',
 	UNIQUE KEY pf_name (pf_name)
-) ENGINE=HEAP;
+) TYPE=HEAP;
