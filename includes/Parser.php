@@ -2441,7 +2441,7 @@ class Parser
 	 * @access private
 	 */
 	function braceSubstitution( $piece ) {
-		global $wgContLang;
+		global $wgContLang, $wgAllowDisplayTitle;
 		$fname = 'Parser::braceSubstitution';
 		wfProfileIn( $fname );
 
@@ -2611,6 +2611,30 @@ class Parser
 				$found = true;
 			}
 		}
+		
+		# DISPLAYTITLE
+		if ( !$found && $argc == 1 && $wgAllowDisplayTitle ) {
+			global $wgOut;
+			
+			# Only the first one counts...
+			if ( $wgOut->mPageLinkTitle == "" ) {
+				$param = $args[0];			
+				$parserOptions = new ParserOptions;
+				$local_parser = new Parser ();
+				$t2 = $local_parser->parse ( $param, $this->mTitle, $parserOptions, false );
+				$wgOut->mPageLinkTitle = $wgOut->getPageTitle();
+				$wgOut->mPagetitle = $t2->GetText();
+
+				# Add subtitle
+				$t = $this->mTitle->getPrefixedText();
+				$st = trim ( $wgOut->getSubtitle () );
+				if ( $st != "" ) $st .= " ";
+				$st .= str_replace ( "$1", $t, wfMsg('displaytitle') );
+				$wgOut->setSubtitle ( $st );
+			}
+			$text = "" ;
+			$found = true ;
+		}		
 
 		# Extensions
 		if ( !$found ) {
