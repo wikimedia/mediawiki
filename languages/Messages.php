@@ -941,7 +941,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 
 'doubleredirects'	=> 'Double redirects',
 'doubleredirectstext'	=> "Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" target page, which the first redirect should point to.",
-'doubleredirectsarrow'	=> '→',
 
 'brokenredirects'	=> 'Broken redirects',
 'brokenredirectstext'	=> 'The following redirects link to non-existent pages:',
