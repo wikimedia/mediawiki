@@ -47,7 +47,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Deactivated by default, set "$wgAllowDisplayTitle = true" in LocalSettings.php to activate
 * Cleaned SpecialContributions a bit
 * Added a table to track interlanguage links
-* Even further additions to Hebrew localisation
+* (bug 5544) Fix redirect arrow in Special:Listredirects for right-to-left languages
 
 == Compatibility ==
 

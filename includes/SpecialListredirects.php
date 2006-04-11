@@ -31,6 +31,8 @@ class ListredirectsPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
+		global $wgContLang;
+	
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );
 		$rd_link = $skin->makeKnownLinkObj( $rd_title, '', 'redirect=no' );
@@ -51,8 +53,11 @@ class ListredirectsPage extends QueryPage {
 			$targetLink = '*';
 		}
 
+		# Check the language; RTL wikis need a &larr;
+		$arr = $wgContLang->isRTL() ? ' &larr; ' : ' &rarr; ';
+
 		# Format the whole thing and return it
-		return( $rd_link . ' &rarr; ' . $targetLink );
+		return( $rd_link . $arr . $targetLink );
 
 	}
 
