@@ -113,12 +113,11 @@ class contribs_finder {
 	}
 
 	/* private */ function make_sql() {
-		$userCond = $condition = $index = $offsetQuery = $limitQuery = "";
+		$userCond = $condition = $index = $offsetQuery = '';
 
 		extract($this->dbr->tableNames('page', 'revision'));
 		list($index, $userCond) = $this->get_user_cond();
 
-		$limitQuery = 'LIMIT '.$this->limit;
 		if ($this->offset)
 			$offsetQuery = "AND rev_timestamp <= '{$this->offset}'";
 
@@ -153,7 +152,7 @@ class contribs_finder {
  * @param	string	$par	(optional) user name of the user for which to show the contributions
  */
 function wfSpecialContributions( $par = null ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle, $wgScript, $wgSysopUserBans;
+	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	$fname = 'wfSpecialContributions';
 
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
@@ -167,57 +166,132 @@ function wfSpecialContributions( $par = null ) {
 		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
-	$nt =& Title::makeTitle(NS_USER, $nt->getDBkey());
 
-	list( $limit, $offset) = wfCheckLimits();
-	$offset = $wgRequest->getVal('offset');
+	$options = array();
+
+	list( $options['limit'], $options['offset']) = wfCheckLimits();
+	$options['offset'] = $wgRequest->getVal('offset');
 	/* Offset must be an integral. */
-	if (!strlen($offset) || !preg_match('/^[0-9]+$/', $offset))
-		$offset = 0;
+	if (!strlen($options['offset']) || !preg_match('/^[0-9]+$/', $options['offset']))
+		$options['offset'] = '';
 
 	$title = Title::makeTitle(NS_SPECIAL, 'Contributions');
-	$urlbits = 'target=' . wfUrlEncode($target);
-	$myurl = $title->escapeLocalURL($urlbits);
+	$options['target'] = $target;
 
-	$finder = new contribs_finder(($target == 'newbies') ? 'newbies' : $nt->getText());
-
-	$finder->set_limit($limit);
-	$finder->set_offset($offset);
-
-	$nsurl = $xnsurl = '';
 	if (($ns = $wgRequest->getVal('namespace', null)) !== null && $ns !== '') {
-		$nsurl = '&namespace='.$ns;
-		$xnsurl = htmlspecialchars($nsurl);
-		$finder->set_namespace($ns);
+		$options['namespace'] = $ns;
+	} else {
+		$options['namespace'] = '';
 	}
 
-	$boturl = '';
-	if ($wgUser->isAllowed('rollback') && $wgRequest->getBool( 'bot' ))
-		$boturl = '&amp;bot=1';
+	if ($wgUser->isAllowed('rollback') && $wgRequest->getBool( 'bot' )) {
+		$options['bot'] = '1';
+	}
+
+	$nt =& Title::makeTitle(NS_USER, $nt->getDBkey());
+	$finder = new contribs_finder(($target == 'newbies') ? 'newbies' : $nt->getText());
+	$finder->set_limit($options['limit']);
+	$finder->set_offset($options['offset']);
+	$finder->set_namespace($options['namespace']);
 
 	if ($wgRequest->getText('go') == 'prev') {
-		$prevts = $finder->get_previous_offset_for_paging();
-		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl$boturl");
+		$options['offset'] = $finder->get_previous_offset_for_paging();
+		$prevurl = $title->getLocalURL(wfArrayToCGI( $options ));
 		$wgOut->redirect($prevurl);
 		return;
 	}
 
 	if ($wgRequest->getText('go') == 'first' && $target != 'newbies') {
-		$prevts = $finder->get_first_offset_for_paging();
-		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl$boturl");
+		$options['offset'] = $finder->get_first_offset_for_paging();
+		$prevurl = $title->getLocalURL(wfArrayToCGI( $options ));
 		$wgOut->redirect($prevurl);
 		return;
 	}
 
-	$sk = $wgUser->getSkin();
+	if ($target == 'newbies') {
+		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
+	} else {
+		$wgOut->setSubtitle( wfMsgHtml( 'contribsub', contributionsSub($nt) ) );
+	}
 
+	$id = User::idFromName($nt->getText());
+	wfRunHooks('SpecialContributionsBeforeMainOutput', $id );
+
+	$wgOut->addHTML(contributionsForm($options));
+
+	$contribs = $finder->find();
+
+	if (count($contribs) == 0) {
+		$wgOut->addWikiText( wfMsg( 'nocontribs' ) );
+		return;
+	}
+
+	list($early, $late) = $finder->get_edit_limits();
+	$lastts = count($contribs) ? $contribs[count($contribs) - 1]->rev_timestamp : 0;
+	$atstart = (!count($contribs) || $late == $contribs[0]->rev_timestamp);
+	$atend = (!count($contribs) || $early == $lastts);
+
+	// These four are defaults
+	$newestlink = wfMsgHtml('sp-contributions-newest');
+	$oldestlink = wfMsgHtml('sp-contributions-oldest');
+	$newerlink  = wfMsgHtml('sp-contributions-newer', $options['limit']);
+	$olderlink  = wfMsgHtml('sp-contributions-older', $options['limit']);
+
+	if (!$atstart) {
+		$stuff = $title->escapeLocalURL(wfArrayToCGI(array('offset' => ''), $options));
+		$newestlink = "<a href=\"$stuff\">$newestlink</a>";
+		$stuff = $title->escapeLocalURL(wfArrayToCGI(array('go' => 'prev'), $options));
+		$newerlink = "<a href=\"$stuff\">$newerlink</a>";
+	}
+
+	if (!$atend) {
+		$stuff = $title->escapeLocalURL(wfArrayToCGI(array('go' => 'first'), $options));
+		$oldestlink = "<a href=\"$stuff\">$oldestlink</a>";
+		$stuff = $title->escapeLocalURL(wfArrayToCGI(array('offset' => $lastts), $options));
+		$olderlink = "<a href=\"$stuff\">$olderlink</a>";
+	}
+
+	if ($target == 'newbies') {
+		$firstlast ="($newestlink)";
+	} else {
+		$firstlast = "($newestlink | $oldestlink)";
+	}
+
+	$urls = array();
+	foreach (array(20, 50, 100, 250, 500) as $num) {
+		$stuff = $title->escapeLocalURL(wfArrayToCGI(array('limit' => $num), $options));
+		$urls[] = "<a href=\"$stuff\">".$wgLang->formatNum($num)."</a>";
+	}
+	$bits = implode($urls, ' | ');
+
+	$prevnextbits = $firstlast .' '. wfMsgHtml('viewprevnext', $newerlink, $olderlink, $bits);
+
+	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n");
+
+	$wgOut->addHTML( "<ul>\n" );
+
+	$sk = $wgUser->getSkin();
+	foreach ($contribs as $contrib)
+		$wgOut->addHTML(ucListEdit($sk, $contrib));
+
+	$wgOut->addHTML( "</ul>\n" );
+	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n");
+}
+
+/**
+ * Generates the subheading with links
+ * @param object $nt title object for the target
+ */
+function contributionsSub( $nt ) {
+	global $wgSysopUserBans, $wgLang, $wgUser;
+
+	$sk = $wgUser->getSkin();
 	$id = User::idFromName($nt->getText());
 
 	if ( 0 == $id ) {
 		$ul = $nt->getText();
 	} else {
 		$ul = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
-		$userCond = '=' . $id;
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
@@ -234,103 +308,37 @@ function wfSpecialContributions( $par = null ) {
 		$tools[] = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
 		$ul .= ' (' . implode( ' | ', $tools ) . ')';
 	}
-
-	if ($target == 'newbies') {
-		$ul = wfMsg ('newbies');
-	}
-
-	$wgOut->setSubtitle( wfMsgHtml( 'contribsub', $ul ) );
-
-	wfRunHooks('SpecialContributionsBeforeMainOutput', $id );
-
-	$arr =  $wgContLang->getFormattedNamespaces();
-	$nsform = "<form method='get' action=\"$wgScript\">\n";
-	$nsform .= wfElement('input', array(
-			'name' => 'title',
-			'type' => 'hidden',
-			'value' => $wgTitle->getPrefixedText()));
-	$nsform .= wfElement('input', array(
-			'name' => 'offset',
-			'type' => 'hidden',
-			'value' => $offset));
-	$nsform .= wfElement('input', array(
-			'name' => 'limit',
-			'type' => 'hidden',
-			'value' => $limit));
-	$nsform .= wfElement('input', array(
-			'name' => 'target',
-			'type' => 'hidden',
-			'value' => $target));
-	$nsform .= '<p>';
-	$nsform .= wfMsgHtml('namespace');
-
-	$nsform .= ' ';
-	$nsform .= HTMLnamespaceselector( $ns, '' );
-
-	$nsform .= wfElement('input', array(
-			'type' => 'submit',
-			'value' => wfMsg('allpagessubmit')));
-	$nsform .= "</p></form>\n";
-
-	$wgOut->addHTML($nsform);
-
-	$contribsPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
-	$contribs = $finder->find();
-
-	if (count($contribs) == 0) {
-		$wgOut->addWikiText( wfMsg( 'nocontribs' ) );
-		return;
-	}
-
-	list($early, $late) = $finder->get_edit_limits();
-	$lastts = count($contribs) ? $contribs[count($contribs) - 1]->rev_timestamp : 0;
-	$atstart = (!count($contribs) || $late == $contribs[0]->rev_timestamp);
-	$atend = (!count($contribs) || $early == $lastts);
-
-	$firsttext = wfMsgHtml('histfirst');
-	$lasttext = wfMsgHtml('histlast');
-
-	$prevtext = wfMsg('prevn', $limit);
-	if ($atstart) {
-		$lastlink = $lasttext;
-		$prevlink = $prevtext;
-	} else {
-		$lastlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl$boturl\">$lasttext</a>";
-		$prevlink = "<a href=\"$myurl&amp;offset=$offset&amp;limit=$limit$xnsurl$boturl&amp;go=prev\">$prevtext</a>";
-	}
-
-	$nexttext = wfMsg('nextn', $limit);
-	if ($atend) {
-		$firstlink = $firsttext;
-		$nextlink = $nexttext;
-	} else {
-		$firstlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl$boturl&amp;go=first\">$firsttext</a>";
-		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit$xnsurl$boturl\">$nexttext</a>";
-	}
-	if ($target == 'newbies') {
-		$firstlast ="($lastlink)";
-	} else {
-		$firstlast = "($lastlink | $firstlink)";
-	}
-
-	$urls = array();
-	foreach (array(20, 50, 100, 250, 500) as $num)
-		$urls[] = "<a href=\"$myurl&amp;offset=$offset&amp;limit={$num}$xnsurl$boturl\">".$wgLang->formatNum($num)."</a>";
-	$bits = implode($urls, ' | ');
-
-	$prevnextbits = $firstlast .' '. wfMsgHtml('viewprevnext', $prevlink, $nextlink, $bits);
-
-	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n");
-
-	$wgOut->addHTML( "<ul>\n" );
-
-	foreach ($contribs as $contrib)
-		$wgOut->addHTML(ucListEdit($sk, $contrib));
-
-	$wgOut->addHTML( "</ul>\n" );
-	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n");
+	return $ul;
 }
 
+/**
+ * Generates the namespace selector form with hidden attributes
+ * @param array $options the options to be inluded
+ */
+function contributionsForm( $options ) {
+	global $wgScript, $wgTitle;
+
+	$options['title'] = $wgTitle->getPrefixedText();
+
+	$f = "<form method='get' action=\"$wgScript\">\n";
+	foreach ( $options as $name => $value ) {
+		if( $name === 'namespace') continue;
+		$f .= "\t" . wfElement('input', array(
+			'name' => $name,
+			'type' => 'hidden',
+			'value' => $value)) . "\n";
+	}
+
+	$f .= '<p>' . wfMsgHtml('namespace') . ' ' .
+	HTMLnamespaceselector( $options['namespace'], '' ) .
+	wfElement('input', array(
+			'type' => 'submit',
+			'value' => wfMsg('allpagessubmit'))
+	) .
+	"</p></form>\n";
+
+	return $f;
+}
 
 /**
  * Generates each row in the contributions list.
