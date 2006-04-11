@@ -330,8 +330,9 @@ class Image
 			# capitalize the first letter of the filename before
 			# looking it up in the shared repository.
 			$name = $wgContLang->ucfirst($this->name);
+			$dbc =& wfGetDB( DB_SLAVE, 'commons' );
 
-			$row = $dbr->selectRow( "`$wgSharedUploadDBname`.{$wgSharedUploadDBprefix}image",
+			$row = $dbc->selectRow( "`$wgSharedUploadDBname`.{$wgSharedUploadDBprefix}image",
 				array(
 					'img_size', 'img_width', 'img_height', 'img_bits',
 					'img_media_type', 'img_major_mime', 'img_minor_mime', 'img_metadata' ),
@@ -419,7 +420,6 @@ class Image
 		wfProfileIn( $fname );
 
 		$this->loadFromFile();
-		$dbw =& wfGetDB( DB_MASTER );
 
 		if ( $this->fromSharedDirectory ) {
 			if ( !$wgSharedUploadDBname ) {
@@ -429,7 +429,10 @@ class Image
 
 			// Write to the other DB using selectDB, not database selectors
 			// This avoids breaking replication in MySQL
+			$dbw =& wfGetDB( DB_MASTER, 'commons' );
 			$dbw->selectDB( $wgSharedUploadDBname );
+		} else {
+			$dbw =& wfGetDB( DB_MASTER );
 		}
 
 		$this->checkDBSchema($dbw);
