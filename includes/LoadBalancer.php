@@ -95,17 +95,13 @@ class LoadBalancer {
 			return false;
 		}
 
-		$sum = 0;
-		foreach ( $weights as $w ) {
-			$sum += $w;
-		}
-
+		$sum = array_sum( $weights );
 		if ( $sum == 0 ) {
 			# No loads on any of them
-			# Just pick one at random
-			foreach ( $weights as $i => $w ) {
-				$weights[$i] = 1;
-			}
+			# In previous versions, this triggered an unweighted random selection,
+			# but this feature has been removed as of April 2006 to allow for strict 
+			# separation of query groups. 
+			return false;
 		}
 		$max = mt_getrandmax();
 		$rand = mt_rand(0, $max) / $max * $sum;
@@ -129,7 +125,6 @@ class LoadBalancer {
 			}
 		}
 
-
 		# Find out if all the slaves with non-zero load are lagged
 		$sum = 0;
 		foreach ( $loads as $load ) {
@@ -140,7 +135,7 @@ class LoadBalancer {
 			# Do NOT use the master
 			# Instead, this function will return false, triggering read-only mode,
 			# and a lagged slave will be used instead.
-			unset ( $loads[0] );
+			return false;
 		}
 
 		if ( count( $loads ) == 0 ) {
@@ -203,7 +198,9 @@ class LoadBalancer {
 							if ( isset( $this->mServers[$i]['max threads'] ) &&
 							  $status['Threads_running'] > $this->mServers[$i]['max threads'] )
 							{
-								# Slave is lagged, wait for a while
+								# Too much load, back off and wait for a while.
+								# The sleep time is scaled by the number of threads connected,
+								# to produce a roughly constant global poll rate.
 								$sleepTime = AVG_STATUS_POLL * $status['Threads_connected'];
 
 								# If we reach the timeout and exit the loop, don't use it
@@ -340,13 +337,20 @@ class LoadBalancer {
 		$fname = 'LoadBalancer::getConnection';
 		wfProfileIn( $fname );
 
+
 		# Query groups
-		$groupIndex = false;
-		foreach ( $groups as $group ) {
-			$groupIndex = $this->getGroupIndex( $group );
+		if ( !is_array( $groups ) ) {
+			$groupIndex = $this->getGroupIndex( $groups, $i );
 			if ( $groupIndex !== false ) {
 				$i = $groupIndex;
-				break;
+			}
+		} else {
+			foreach ( $groups as $group ) {
+				$groupIndex = $this->getGroupIndex( $group, $i );
+				if ( $groupIndex !== false ) {
+					$i = $groupIndex;
+					break;
+				}
 			}
 		}
 
