@@ -178,6 +178,11 @@ function wfSpecialContributions( $par = null ) {
 	$title = Title::makeTitle(NS_SPECIAL, 'Contributions');
 	$options['target'] = $target;
 
+	$nt =& Title::makeTitle(NS_USER, $nt->getDBkey());
+	$finder = new contribs_finder(($target == 'newbies') ? 'newbies' : $nt->getText());
+	$finder->set_limit($options['limit']);
+	$finder->set_offset($options['offset']);
+
 	if (($ns = $wgRequest->getVal('namespace', null)) !== null && $ns !== '') {
 		$options['namespace'] = $ns;
 		$finder->set_namespace($options['namespace']);
@@ -188,12 +193,6 @@ function wfSpecialContributions( $par = null ) {
 	if ($wgUser->isAllowed('rollback') && $wgRequest->getBool( 'bot' )) {
 		$options['bot'] = '1';
 	}
-
-	$nt =& Title::makeTitle(NS_USER, $nt->getDBkey());
-	$finder = new contribs_finder(($target == 'newbies') ? 'newbies' : $nt->getText());
-	$finder->set_limit($options['limit']);
-	$finder->set_offset($options['offset']);
-	
 
 	if ($wgRequest->getText('go') == 'prev') {
 		$options['offset'] = $finder->get_previous_offset_for_paging();
