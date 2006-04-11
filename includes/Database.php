@@ -743,31 +743,43 @@ class Database {
 	 */
 	function makeSelectOptions( $options ) {
 		$tailOpts = '';
+		$startOpts = '';
 
-		if ( isset( $options['GROUP BY'] ) ) {
-			$tailOpts .= " GROUP BY {$options['GROUP BY']}";
+		$noKeyOptions = array();
+		foreach ( $options as $key => $option ) {
+			if ( is_numeric( $key ) ) {
+				$noKeyOptions[$option] = true;
+			}
 		}
-		if ( isset( $options['ORDER BY'] ) ) {
-			$tailOpts .= " ORDER BY {$options['ORDER BY']}";
-		}
+
+		if ( isset( $options['GROUP BY'] ) ) $tailOpts .= " GROUP BY {$options['GROUP BY']}";
+		if ( isset( $options['ORDER BY'] ) ) $tailOpts .= " ORDER BY {$options['ORDER BY']}";
+		
 		if (isset($options['LIMIT'])) {
 			$tailOpts .= $this->limitResult('', $options['LIMIT'],
 				isset($options['OFFSET']) ? $options['OFFSET'] : false);
 		}
-		if ( is_numeric( array_search( 'FOR UPDATE', $options ) ) ) {
-			$tailOpts .= ' FOR UPDATE';
-		}
 
-		if ( is_numeric( array_search( 'LOCK IN SHARE MODE', $options ) ) ) {
-			$tailOpts .= ' LOCK IN SHARE MODE';
-		}
+		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $tailOpts .= ' FOR UPDATE';
+		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $tailOpts .= ' LOCK IN SHARE MODE';
+		if ( isset( $noKeyOptions['DISTINCT'] ) && isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
+
+		# Various MySQL extensions
+		if ( isset( $noKeyOptions['HIGH_PRIORITY'] ) ) $startOpts .= ' HIGH_PRIORITY';
+		if ( isset( $noKeyOptions['SQL_BIG_RESULT'] ) ) $startOpts .= ' SQL_BIG_RESULT';
+		if ( isset( $noKeyOptions['SQL_BUFFER_RESULT'] ) ) $startOpts .= ' SQL_BUFFER_RESULT';
+		if ( isset( $noKeyOptions['SQL_SMALL_RESULT'] ) ) $startOpts .= ' SQL_SMALL_RESULT';
+		if ( isset( $noKeyOptions['SQL_CALC_FOUND_ROWS'] ) ) $startOpts .= ' SQL_CALC_FOUND_ROWS';
+		if ( isset( $noKeyOptions['SQL_CACHE'] ) ) $startOpts .= ' SQL_CACHE';
+		if ( isset( $noKeyOptions['SQL_NO_CACHE'] ) ) $startOpts .= ' SQL_NO_CACHE';
 
 		if ( isset( $options['USE INDEX'] ) && ! is_array( $options['USE INDEX'] ) ) {
 			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
 		} else {
 			$useIndex = '';
 		}
-		return array( $useIndex, $tailOpts );
+		
+		return array( $startOpts, $useIndex, $tailOpts );
 	}
 
 	/**
@@ -792,15 +804,15 @@ class Database {
 			$from = '';
 		}
 
-		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
+		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
 
 		if( !empty( $conds ) ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, LIST_AND );
 			}
-			$sql = "SELECT $vars $from $useIndex WHERE $conds $tailOpts";
+			$sql = "SELECT $startOpts $vars $from $useIndex WHERE $conds $tailOpts";
 		} else {
-			$sql = "SELECT $vars $from $useIndex $tailOpts";
+			$sql = "SELECT $startOpts $vars $from $useIndex $tailOpts";
 		}
 
 		return $this->query( $sql, $fname );
@@ -1347,14 +1359,14 @@ class Database {
 		if( !is_array( $selectOptions ) ) {
 			$selectOptions = array( $selectOptions );
 		}
-		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
+		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
 		if( is_array( $srcTable ) ) {
 			$srcTable =  implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
 		$sql = "INSERT $insertOptions INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
-			' SELECT ' . implode( ',', $varMap ) .
+			" SELECT $startOpts " . implode( ',', $varMap ) .
 			" FROM $srcTable $useIndex ";
 		if ( $conds != '*' ) {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
