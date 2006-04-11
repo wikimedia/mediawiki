@@ -19,8 +19,8 @@ class LinksUpdate {
 		$mImages,        # DB keys of the images used, in the array key only
 		$mTemplates,     # Map of title strings to IDs for the template references, including broken ones
 		$mExternals,     # URLs of external links, array key only
-	    $mCategories,    # Map of category names to sort keys
-	    $mInterlangs,    # Map of language codes to titles
+		$mCategories,    # Map of category names to sort keys
+		$mInterlangs,    # Map of language codes to titles
 		$mDb,            # Database connection reference
 		$mOptions,       # SELECT options to be used (array)
 		$mRecursive;     # Whether to queue jobs for recursive updates
@@ -104,10 +104,10 @@ class LinksUpdate {
 		$this->incrTableUpdate( 'externallinks', 'el', $this->getExternalDeletions( $existing ),
 	        $this->getExternalInsertions( $existing ) );
 
-	    # Language links
-	    $existing = $this->getExistingInterlangs();
-	    $this->incrTableUpdate( 'langlinks', 'll', $this->getInterlangDeletions( $existing ),
-	        $this->getInterlangInsertions( $existing ) );
+		# Language links
+		$existing = $this->getExistingInterlangs();
+		$this->incrTableUpdate( 'langlinks', 'll', $this->getInterlangDeletions( $existing ),
+			$this->getInterlangInsertions( $existing ) );
 
 		# Template links
 		$existing = $this->getExistingTemplates();
@@ -121,7 +121,7 @@ class LinksUpdate {
 				require_once( 'JobQueue.php' );
 				Job::queueLinksJobs( $tlto );
 			}
-	    }
+		}
 
 		# Category links
 		$existing = $this->getExistingCategories();
@@ -136,9 +136,9 @@ class LinksUpdate {
 	}
 
 	/**
-	  * Link update which clears the previous entries and inserts new ones
-	  * May be slower or faster depending on level of lock contention and write speed of DB
-	  * Also useful where link table corruption needs to be repaired, e.g. in refreshLinks.php
+	 * Link update which clears the previous entries and inserts new ones
+	 * May be slower or faster depending on level of lock contention and write speed of DB
+	 * Also useful where link table corruption needs to be repaired, e.g. in refreshLinks.php
 	 */
 	function doDumbUpdate() {
 		$fname = 'LinksUpdate::doDumbUpdate';
@@ -163,8 +163,8 @@ class LinksUpdate {
 		$this->dumbTableUpdate( 'imagelinks',    $this->getImageInsertions(),    'il_from' );
 		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
 		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
-	    $this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
-	    $this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(), 'll_from' );
+		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
+		$this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(), 'll_from' );
 
 		# Update the cache of all the category pages and image description pages which were changed
 		$this->invalidateCategories( $categoryUpdates );

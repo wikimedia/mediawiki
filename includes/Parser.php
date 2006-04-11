@@ -4084,7 +4084,7 @@ class ParserOutput
 		       $this->getCacheTime() <= $wgCacheEpoch ||
 		       !isset( $this->mVersion ) ||
 		       version_compare( $this->mVersion, MW_PARSER_VERSION, "lt" );
-    }
+	}
 }
 
 /**
