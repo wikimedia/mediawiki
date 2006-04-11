@@ -2637,10 +2637,10 @@ class Parser
 		}		
 
 		# Extensions
-		if ( !$found ) {
+		if ( !$found && substr( $part1, 0, 1 ) == '#' ) {
 			$colonPos = strpos( $part1, ':' );
 			if ( $colonPos !== false ) {
-				$function = strtolower( substr( $part1, 0, $colonPos ) );
+				$function = strtolower( substr( $part1, 1, $colonPos - 1 ) );
 				if ( isset( $this->mFunctionHooks[$function] ) ) {
 					$funcArgs = array_merge( array( &$this, substr( $part1, $colonPos + 1 ) ), $args );
 					$result = call_user_func_array( $this->mFunctionHooks[$function], $funcArgs );
@@ -4027,7 +4027,7 @@ class ParserOutput
 	}
 
 	function getText()                   { return $this->mText; }
-	function getLanguageLinks()          { return $this->mLanguageLinks; }
+	function &getLanguageLinks()          { return $this->mLanguageLinks; }
 	function getCategoryLinks()          { return array_keys( $this->mCategories ); }
 	function &getCategories()            { return $this->mCategories; }
 	function getCacheTime()              { return $this->mCacheTime; }
@@ -4069,16 +4069,6 @@ class ParserOutput
 	}
 
 	/**
-	 * @deprecated
-	 */
-	/*
-	function merge( $other ) {
-		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $other->mLanguageLinks );
-		$this->mCategories = array_merge( $this->mCategories, $this->mLanguageLinks );
-		$this->mContainsOldMagic = $this->mContainsOldMagic || $other->mContainsOldMagic;
-	}*/
-
-	/**
 	 * Return true if this cached output object predates the global or
 	 * per-article cache invalidation timestamps, or if it comes from
 	 * an incompatible older version.
@@ -4094,7 +4084,7 @@ class ParserOutput
 		       $this->getCacheTime() <= $wgCacheEpoch ||
 		       !isset( $this->mVersion ) ||
 		       version_compare( $this->mVersion, MW_PARSER_VERSION, "lt" );
-	}
+    }
 }
 
 /**

@@ -2092,6 +2092,7 @@ class Article {
 		$dbw->delete( 'categorylinks', array( 'cl_from' => $id ) );
 		$dbw->delete( 'templatelinks', array( 'tl_from' => $id ) );
 		$dbw->delete( 'externallinks', array( 'el_from' => $id ) );
+		$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
 
 		# Log the deletion
 		$log = new LogPage( 'delete' );

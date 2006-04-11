@@ -28,6 +28,7 @@ $wgNewTables = array(
 	array( 'trackbacks',	'patch-trackbacks.sql' ),
 	array( 'externallinks', 'patch-externallinks.sql' ),
 	array( 'job',           'patch-job.sql' ),
+	array( 'langlinks',     'patch-langlinks.sql' ),
 );
 
 $wgNewFields = array(
