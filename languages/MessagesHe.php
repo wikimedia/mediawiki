@@ -549,10 +549,10 @@
 "rev-deleted-comment"         => "(תקציר העריכה הוסתר)",
 "rev-deleted-user"            => "(שם המשתמש הוסתר)",
 "rev-deleted-text-permission" => '<div class="mw-warning plainlinks">
-גרסת הדף הזו הוסרה מהארכיונים הציבוריים. ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
+גרסת הדף הזו הוסרה מהארכיונים הציבוריים. ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 </div>',
 "rev-deleted-text-view"       => '<div class="mw-warning plainlinks">
-גרסת הדף הזו הוסרה מהארכיונים הציבוריים. כמפעיל מערכת, באפשרותך לצפות בגרסה; ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
+גרסת הדף הזו הוסרה מהארכיונים הציבוריים. כמפעיל מערכת, באפשרותך לצפות בגרסה; ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 </div>',
 # "rev-delundel"              => "מחק/שחזר",
 "rev-delundel"                => "הצג/הסתר",
@@ -584,7 +584,7 @@
 # Search results
 "searchresults"     => "תוצאות החיפוש",
 "searchresulttext"  => "ראו גם [[{{ns:project}}:חיפוש|מידע נוסף על חיפוש באתר]].",
-"searchquery"       => 'לחיפוש "<a href="/wiki/$1">$1</a>" <a href="/wiki/מיוחד:Allpages/$1">[אינדקס]</a> <a href="/w/index.php?title=$1&action=edit">[עריכה]</a> <a href="/wiki/מיוחד:Whatlinkshere/$1">[דפים מקושרים]</a>',
+"searchquery"       => 'לחיפוש "$1"',
 "badquery"          => "שגיאה בניסוח השאילתה.",
 "badquerytext"      => 'לא הצלחנו לבצע את השאילתה, ככל הנראה כיוון שניסיתם לחפש מילה בעלת פחות משלוש אותיות. חיפוש כזה עדיין אינו נתמך במערכת. ייתכן גם ששגיתם בהקלדת השאליתה - לדוגמה, כתבתם "דג וגם וגם משקל".
 
@@ -908,7 +908,7 @@ $3 $9",
 "ancientpages"            => "דפים מוזנחים",
 "intl"                    => "קישורים בינלשוניים",
 "move"                    => "העבר",
-"movethispage"            => "העבירו דף זה",
+"movethispage"            => "העבר דף זה",
 "unusedimagestext"        => "רשימת הקבצים שאינם בשימוש באתר. יש למצוא מקום עבור הקבצים או לסמן אותם למחיקה.",
 "unusedcategoriestext"    => "למרות שהקטגוריות הבאות קיימות, אין שום דף בו נעשה בהם שימוש.",
 
@@ -962,7 +962,7 @@ $3 $9",
 
 # Watchlist
 "watchlist"            => "רשימת המעקב שלי",
-"watchlistsub"         => '(עבור משתמש "$1")',
+"watchlistsub"         => '(עבור המשתמש "$1")',
 "nowatchlist"          => "אין לך דפים ברשימת המעקב.",
 "watchnologin"         => "לא נכנסת לאתר",
 "watchnologintext"     => "כדי לערוך את רשימת המעקב, עליך להיכנס לחשבון במערכת",
@@ -1118,7 +1118,12 @@ $NEWPAGE
 "uclinks"                => "צפה ב־$1 השינויים האחרונים; צפה ב־$2 הימים האחרונים",
 "uctop"                  => "(אחרון)" ,
 "newbies"                => "משתמשים חדשים",
-"contribs-showhideminor" => "$1 עריכות משניות",
+
+"sp-contributions-newest"      => "חדשות ביותר",
+"sp-contributions-oldest"      => "ישנות ביותר",
+"sp-contributions-newer"       => "$1 החדשות",
+"sp-contributions-older"       => "$1 הישנות",
+"sp-contributions-newbies-sub" => "עבור משתמשים חדשים",
 
 # What links here
 "whatlinkshere" => "דפים המקושרים לכאן",
@@ -1221,7 +1226,7 @@ $NEWPAGE
 "already_steward"    => "משתמש זה הוא כבר דייל",
 
 # Move page
-"movepage"                => "העבירו דף",
+"movepage"                => "העברת דף",
 "movepagetext"            => "שימוש בטופס שלהלן ישנה את שמו של דף, ויעביר את כל ההיסטוריה שלו לשם חדש.
 
 השם הישן יהפוך לדף הפניה אל הדף עם השם החדש.
@@ -1238,7 +1243,7 @@ $NEWPAGE
 * הורדתם את הסימון בתיבה שלהלן.
 
 במקרים אלו, תצטרכו להעביר או לשלב את הדפים באופן ידני, אם תרצו.",
-"movearticle"             => "העבירו דף",
+"movearticle"             => "העבר דף",
 "movenologin"             => "לא נכנסתם לאתר",
 "movenologintext"         => "עליכם להיכנס לחשבון במערכת כדי להעביר דף",
 "newtitle"                => "לשם החדש",
@@ -1575,6 +1580,9 @@ $1",
 "searchnamed"             => "חפש דפים בשם '''$1'''.",
 "articletitles"           => "חפש דפים המתחילים עם '''$1'''",
 "hideresults"             => "הסתר תוצאות",
+
+# DISPLAYTITLE
+"displaytitle" => "(קשרו לדף זה בשם [[$1]])",
 
 );
 
