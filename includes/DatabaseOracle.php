@@ -658,7 +658,7 @@ class DatabaseOracle extends Database {
 				if (is_object($value) && $value->isLOB()) {
 					$blob = oci_new_descriptor($this->mConn, OCI_D_LOB);
 					$bdata = $value->data();
-					oci_bind_by_name($stmt, ":bobj", &$blob, -1, OCI_B_BLOB);
+					oci_bind_by_name($stmt, ":bobj", $blob, -1, OCI_B_BLOB);
 				} else
 					oci_bind_by_name($stmt, ":$k", $a[$key][$k], -1);
 				if ($this->debug())
