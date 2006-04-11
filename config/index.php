@@ -1373,9 +1373,6 @@ function aField( &$conf, $field, $text, $type = "text", $value = "" ) {
 function getLanguageList() {
 	global $wgLanguageNames;
 	if( !isset( $wgLanguageNames ) ) {
-		$wgContLanguageCode = "xxx";
-		function wfLocalUrl( $x ) { return $x; }
-		function wfLocalUrlE( $x ) { return $x; }
 		require_once( "languages/Names.php" );
 	}
 
