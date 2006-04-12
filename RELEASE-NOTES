@@ -51,6 +51,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Replace "doubleredirectsarrow" with a content language check that picks the appropriate arrow
 * (bug 5537) Add stub language file for Samogitian (bat-smg); inherits Lithuanian (lt)
 * Don't force edit summaries when a user is editing their own user/talk page
+* (bug 5510) Warning produced when using {{SUBPAGENAME}} in some namespaces
 
 == Compatibility ==
 

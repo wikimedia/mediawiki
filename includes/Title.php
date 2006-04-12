@@ -680,7 +680,7 @@ class Title {
 	 */
 	function getSubpageText() {
 		global $wgNamespacesWithSubpages;
-		if( $wgNamespacesWithSubpages[ $this->mNamespace ] ) {
+		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace ] ) && $wgNamespacesWithSubpages[ $this->mNamespace ] ) {
 			$parts = explode( '/', $this->mTextform );
 			return( $parts[ count( $parts ) - 1 ] );
 		} else {
