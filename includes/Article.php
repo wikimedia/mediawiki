@@ -2483,7 +2483,7 @@ class Article {
 	 */
 	function incViewCount( $id ) {
 		$id = intval( $id );
-		global $wgHitcounterUpdateFreq;
+		global $wgHitcounterUpdateFreq, $wgDBtype;
 
 		$dbw =& wfGetDB( DB_MASTER );
 		$pageTable = $dbw->tableName( 'page' );
@@ -2514,12 +2514,15 @@ class Article {
 			wfProfileIn( 'Article::incViewCount-collect' );
 			$old_user_abort = ignore_user_abort( true );
 
-			$dbw->query("LOCK TABLES $hitcounterTable WRITE");
-			$dbw->query("CREATE TEMPORARY TABLE $acchitsTable TYPE=HEAP ".
+			if ($wgDBtype == 'mysql')
+				$dbw->query("LOCK TABLES $hitcounterTable WRITE");
+			$tabletype = $wgDBtype == 'mysql' ? "ENGINE=HEAP " : '';
+			$dbw->query("CREATE TEMPORARY TABLE $acchitsTable $tabletype".
 				"SELECT hc_id,COUNT(*) AS hc_n FROM $hitcounterTable ".
 				'GROUP BY hc_id');
 			$dbw->query("DELETE FROM $hitcounterTable");
-			$dbw->query('UNLOCK TABLES');
+			if ($wgDBtype == 'mysql')
+				$dbw->query('UNLOCK TABLES');
 			$dbw->query("UPDATE $pageTable,$acchitsTable SET page_counter=page_counter + hc_n ".
 				'WHERE page_id = hc_id');
 			$dbw->query("DROP TABLE $acchitsTable");

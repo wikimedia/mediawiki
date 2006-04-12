@@ -334,6 +334,7 @@ class LoadBalancer {
 	 */
 	function &getConnection( $i, $fail = true, $groups = array() )
 	{
+		global $wgDBtype;
 		$fname = 'LoadBalancer::getConnection';
 		wfProfileIn( $fname );
 
@@ -354,8 +355,12 @@ class LoadBalancer {
 			}
 		}
 
+		# For now, only go through all this for mysql databases
+		if ($wgDBtype != 'mysql') {
+			$i = $this->getWriterIndex();
+		}
 		# Operation-based index
-		if ( $i == DB_SLAVE ) {
+		elseif ( $i == DB_SLAVE ) {
 			$i = $this->getReaderIndex();
 		} elseif ( $i == DB_MASTER ) {
 			$i = $this->getWriterIndex();

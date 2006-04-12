@@ -644,7 +644,6 @@ class Revision {
 		);
 
 		$this->mId = !is_null($rev_id) ? $rev_id : $dbw->insertId();
-
 		wfProfileOut( $fname );
 		return $this->mId;
 	}

@@ -38,12 +38,13 @@ class ShortPagesPage extends QueryPage {
 		$page = $dbr->tableName( 'page' );
 		$name = $dbr->addQuotes( $this->getName() );
 
+		$forceindex = $dbr->useIndexClause("page_len");
 		return
 			"SELECT $name as type,
 				page_namespace as namespace,
 			        page_title as title,
 			        page_len AS value
-			FROM $page FORCE INDEX (page_len)
+			FROM $page $forceindex
 			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0";
 	}
 

@@ -28,15 +28,18 @@ class AncientPagesPage extends QueryPage {
 	function isSyndicated() { return false; }
 
 	function getSQL() {
+		global $wgDBtype;
 		$db =& wfGetDB( DB_SLAVE );
 		$page = $db->tableName( 'page' );
 		$revision = $db->tableName( 'revision' );
 		#$use_index = $db->useIndexClause( 'cur_timestamp' ); # FIXME! this is gone
+		$epoch = $wgDBtype == 'mysql' ? 'UNIX_TIMESTAMP(rev_timestamp)' :
+			'EXTRACT(epoch FROM rev_timestamp)';
 		return
 			"SELECT 'Ancientpages' as type,
 					page_namespace as namespace,
 			        page_title as title,
-			        UNIX_TIMESTAMP(rev_timestamp) as value
+			        $epoch as value
 			FROM $page, $revision
 			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0
 			  AND page_latest=rev_id";

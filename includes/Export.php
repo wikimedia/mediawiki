@@ -187,8 +187,7 @@ class WikiExporter {
 		}
 		if( $cond == '' ) {
 			// Optimization hack for full-database dump
-			$pageindex = 'FORCE INDEX (PRIMARY)';
-			$revindex = 'FORCE INDEX (PRIMARY)';
+			$revindex = $pageindex = $this->db->useIndexClause("PRIMARY");
 			$straight = ' /*! STRAIGHT_JOIN */ ';
 		} else {
 			$pageindex = '';
