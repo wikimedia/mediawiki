@@ -203,10 +203,6 @@ wfProfileIn( $fname.'-User' );
 # Entries can be added to this variable during the inclusion
 # of the extension file. Skins can then perform any necessary initialisation.
 # 
-# require_once is slow even on the second call, so this needs to be outside the loop
-if ( count( $wgSkinExtensionFunctions ) ) {
-	require_once( 'PersistentObject.php' );
-}
 foreach ( $wgSkinExtensionFunctions as $func ) {
 	call_user_func( $func );
 }
@@ -320,9 +316,6 @@ wfProfileIn( $fname.'-extensions' );
 # Entries should be added to this variable during the inclusion
 # of the extension file. This allows the extension to perform
 # any necessary initialisation in the fully initialised environment
-if ( count( $wgExtensionFunctions ) ) {
-	require_once( 'PersistentObject.php' );
-}
 foreach ( $wgExtensionFunctions as $func ) {
 	call_user_func( $func );
 }
