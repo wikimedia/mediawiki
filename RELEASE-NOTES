@@ -53,6 +53,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't force edit summaries when a user is editing their own user/talk page
 * (bug 5510) Warning produced when using {{SUBPAGENAME}} in some namespaces
 * (bug 385) Installer support for PostgreSQL, fixes for PG compatibility
+* PersistentObject removed; it doesn't do anything and was broken besides.
+  All extensions using it have been corrected.
 
 
 == Compatibility ==
