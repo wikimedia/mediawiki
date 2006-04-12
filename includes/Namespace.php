@@ -117,5 +117,13 @@ class Namespace {
 			return NULL;
 		}
 	}
+	
+	/**
+	 * Can this namespace ever have a talk namespace?
+	 * @param $index Namespace index
+	 */
+	 function canTalk( $index ) {
+	 	return( $index >= NS_MAIN );
+	 }
 }
 ?>
