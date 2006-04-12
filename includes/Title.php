@@ -605,6 +605,23 @@ class Title {
 	}
 
 	/**
+	 * Get the namespace text of the talk page
+	 * @return string
+	 */
+	function getTalkNsText() {
+		global $wgContLang;
+		return( $wgContLang->getNsText( Namespace::getTalk( $this->mNamespace ) ) );
+	}
+	
+	/**
+	 * Could this title have a corresponding talk page?
+	 * @return bool
+	 */
+	function canTalk() {
+		return( Namespace::canTalk( $this->mNamespace ) );
+	}
+	
+	/**
 	 * Get the interwiki prefix (or null string)
 	 * @return string
 	 * @access public

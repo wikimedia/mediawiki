@@ -2097,12 +2097,40 @@ class Parser
 				return $this->mTitle->getSubpageText();
 			case MAG_SUBPAGENAMEE:
 				return $this->mTitle->getSubpageUrlForm();
+			case MAG_TALKPAGENAME:
+				if( $this->mTitle->canTalk() ) {
+					$talkPage = $this->mTitle->getTalkPage();
+					return $talkPage->getPrefixedText();
+				} else {
+					return '';
+				}
+			case MAG_TALKPAGENAMEE:
+				if( $this->mTitle->canTalk() ) {
+					$talkPage = $this->mTitle->getTalkPage();
+					return $talkPage->getPrefixedUrl();
+				} else {
+					return '';
+				}
+			case MAG_SUBJECTPAGENAME:
+				$subjPage = $this->mTitle->getSubjectPage();
+				return $subjPage->getPrefixedText();
+			case MAG_SUBJECTPAGENAMEE:
+				$subjPage = $this->mTitle->getSubjectPage();
+				return $subjPage->getPrefixedUrl();
 			case MAG_REVISIONID:
 				return $this->mRevisionId;
 			case MAG_NAMESPACE:
 				return $wgContLang->getNsText( $this->mTitle->getNamespace() );
 			case MAG_NAMESPACEE:
 				return wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
+			case MAG_TALKSPACE:
+				return $this->mTitle->canTalk() ? $this->mTitle->getTalkNsText() : '';
+			case MAG_TALKSPACEE:
+				return $this->mTitle->canTalk() ? wfUrlencode( $this->mTitle->getTalkNsText() ) : '';
+			case MAG_SUBJECTSPACE:
+				return $this->mTitle->getSubjectNsText();
+			case MAG_SUBJECTSPACEE:
+				return( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
 			case MAG_CURRENTDAYNAME:
 				return $varCache[$index] = $wgContLang->getWeekdayName( date( 'w', $ts ) + 1 );
 			case MAG_CURRENTYEAR:
