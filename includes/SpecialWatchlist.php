@@ -269,13 +269,13 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$sql = "SELECT
-	  rc_namespace page_namespace,rc_title page_title,
-	  rc_comment rev_comment, rc_cur_id page_id,
-	  rc_user rev_user,rc_user_text rev_user_text,
-	  rc_timestamp rev_timestamp,rc_minor rev_minor_edit,
-	  rc_this_oldid rev_id,
+	  rc_namespace AS page_namespace, rc_title AS page_title,
+	  rc_comment AS rev_comment, rc_cur_id AS page_id,
+	  rc_user AS rev_user, rc_user_text AS rev_user_text,
+	  rc_timestamp AS rev_timestamp, rc_minor AS rev_minor_edit,
+	  rc_this_oldid AS rev_id,
 	  rc_last_oldid,
-	  rc_new page_is_new,wl_notificationtimestamp
+	  rc_new AS page_is_new,wl_notificationtimestamp
 	  FROM $watchlist,$recentchanges,$page
 	  WHERE wl_user=$uid
 	  AND wl_namespace=rc_namespace

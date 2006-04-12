@@ -47,7 +47,7 @@ class DisambiguationsPage extends PageQueryPage {
 			wfDebug("Mediawiki:disambiguationspage message does not refer to a template!\n");
 		}
 
-		$sql = "SELECT 'Disambiguations' AS 'type', pa.page_namespace AS namespace,"
+		$sql = "SELECT 'Disambiguations' AS \"type\", pa.page_namespace AS namespace,"
 			 ." pa.page_title AS title, la.pl_from AS value"
 			 ." FROM {$templatelinks} AS lb, {$page} AS pa, {$pagelinks} AS la"
 			 ." WHERE lb.tl_namespace = $dns AND lb.tl_title = $dtitle" # disambiguation template

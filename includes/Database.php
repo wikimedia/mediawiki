@@ -1687,6 +1687,7 @@ class Database {
 
 		$cmd = "";
 		$done = false;
+		$dollarquote = false;
 
 		while ( ! feof( $fp ) ) {
 			$line = trim( fgets( $fp, 1024 ) );
@@ -1695,9 +1696,21 @@ class Database {
 			if ( $sl < 0 ) { continue; }
 			if ( '-' == $line{0} && '-' == $line{1} ) { continue; }
 
-			if ( ';' == $line{$sl} && ($sl < 2 || ';' != $line{$sl - 1})) {
-				$done = true;
-				$line = substr( $line, 0, $sl );
+			## Allow dollar quoting for function declarations
+			if (substr($line,0,4) == '$mw$') {
+				if ($dollarquote) {
+					$dollarquote = false;
+					$done = true;
+				}
+				else {
+					$dollarquote = true;
+				}
+			}
+			else if (!$dollarquote) {
+				if ( ';' == $line{$sl} && ($sl < 2 || ';' != $line{$sl - 1})) {
+					$done = true;
+					$line = substr( $line, 0, $sl );
+				}
 			}
 
 			if ( '' != $cmd ) { $cmd .= ' '; }

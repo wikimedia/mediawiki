@@ -486,7 +486,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgCommandLineMode = false;
 		chdir( ".." );
 		eval($local);
-		if (!in_array($conf->DBtype, array("mysql", "oracle"))) {
+		if (!in_array($conf->DBtype, array("mysql", "oracle", "postgres"))) {
 			$errs["DBtype"] = "Unknown database type.";
 			continue;
 		}
@@ -505,16 +505,16 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		require_once( "maintenance/InitialiseMessages.inc" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
-		$mysqlOldClient = version_compare( mysql_get_client_info(), "4.1.0", "lt" );
-		if( $mysqlOldClient ) {
-			print "<li><b>PHP is linked with old MySQL client libraries. If you are
-				using a MySQL 4.1 server and have problems connecting to the database,
-				see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
-			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b></li>\n";
-		}
 		$dbc = new $dbclass;
-		
+
 		if( $conf->DBtype == 'mysql' ) {
+			$mysqlOldClient = version_compare( mysql_get_client_info(), "4.1.0", "lt" );
+			if( $mysqlOldClient ) {
+				print "<li><b>PHP is linked with old MySQL client libraries. If you are
+					using a MySQL 4.1 server and have problems connecting to the database,
+					see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
+			 		>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b></li>\n";
+			}
 			$ok = true; # Let's be optimistic
 			
 			# Decide if we're going to use the superuser or the regular database user
@@ -575,13 +575,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			if( !$ok ) { continue; }
 
 		} else /* not mysql */ {
-			print "<li>Connecting to SQL server...";
+			echo( "<li>Attempting to connect to database server as $wgDBuser..." );
 			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1);
 			if (!$wgDatabase->isOpen()) {
 				print " error: " . $wgDatabase->lastError() . "</li>\n";
 			} else {
 				$wgDatabase->ignoreErrors(true);
-				$myver = get_db_version();
+				$myver = $wgDatabase->getServerVersion();
 			}
 		}
 
@@ -591,27 +591,27 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 
 		print "<li>Connected to $myver";
-		if( version_compare( $myver, "4.0.0" ) < 0 ) {
-			die( " -- mysql 4.0 or later required. Aborting." );
-		}
-		$mysqlNewAuth   = version_compare( $myver, "4.1.0", "ge" );
-		if( $mysqlNewAuth && $mysqlOldClient ) {
-			print "; <b class='error'>You are using MySQL 4.1 server, but PHP is linked
-			 	to old client libraries; if you have trouble with authentication, see
-			 	<a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
-			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
-		}
-		if( $wgDBmysql5 ) {
-			if( $mysqlNewAuth ) {
-				print "; enabling MySQL 4.1/5.0 charset mode";
-			} else {
-				print "; <b class='error'>MySQL 4.1/5.0 charset mode enabled,
-					but older version detected; will likely fail.</b>";
-			}
-		}
-		print "</li>\n";
-
 		if ($conf->DBtype == 'mysql') {
+			if( version_compare( $myver, "4.0.0" ) < 0 ) {
+				die( " -- mysql 4.0 or later required. Aborting." );
+			}
+			$mysqlNewAuth   = version_compare( $myver, "4.1.0", "ge" );
+			if( $mysqlNewAuth && $mysqlOldClient ) {
+				print "; <b class='error'>You are using MySQL 4.1 server, but PHP is linked
+				 	to old client libraries; if you have trouble with authentication, see
+			 		<a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
+				 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
+			}
+			if( $wgDBmysql5 ) {
+				if( $mysqlNewAuth ) {
+					print "; enabling MySQL 4.1/5.0 charset mode";
+				} else {
+					print "; <b class='error'>MySQL 4.1/5.0 charset mode enabled,
+						but older version detected; will likely fail.</b>";
+				}
+			}
+			print "</li>\n";
+
 			@$sel = mysql_select_db( $wgDBname, $wgDatabase->mConn );
 			if( $sel ) {
 				print "<li>Database <tt>" . htmlspecialchars( $wgDBname ) . "</tt> exists</li>\n";
@@ -640,7 +640,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 			# Create user if required
 			if ( $conf->Root ) {
-				$conn = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
+				$conn = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
 				if ( $conn->isOpen() ) {
 					print "<li>DB user account ok</li>\n";
 					$conn->close();
@@ -673,6 +673,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					dbsource( "../maintenance/tables.sql", $wgDatabase );
 				}
 				dbsource( "../maintenance/interwiki.sql", $wgDatabase );
+			} else if ($conf->DBtype == 'postgres') {
+				dbsource( "../maintenance/postgres/tables.sql", $wgDatabase );
+				$wgDatabase->update_interwiki();
 			} else {
 				dbsource( "../maintenance/oracle/tables.sql", $wgDatabase );
 				dbsource( "../maintenance/oracle/interwiki.sql", $wgDatabase );
@@ -690,7 +693,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			# Set up the "regular user" account *if we can, and if we need to*
 			if( $conf->Root ) {
 				# See if we need to
-				$wgDatabase2 = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
+				$wgDatabase2 = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
 				if( $wgDatabase2->isOpen() ) {
 					# Nope, just close the test connection and continue
 					$wgDatabase2->close();
@@ -973,6 +976,7 @@ if( count( $errs ) ) {
 		<ul class='plain'>
 			<li><?php aField( $conf, "DBtype", "MySQL", "radio", "mysql"); ?></li>
 			<li><?php aField( $conf, "DBtype", "Oracle (experimental)", "radio", "oracle" ); ?></li>
+			<li><?php aField( $conf, "DBtype", "PostgreSQL", "radio", "postgres" ); ?></li>
 		</ul>
 	</div>
 
@@ -981,7 +985,7 @@ if( count( $errs ) ) {
 	?></div>
 	<p class="config-desc">
 		If your database server isn't on your web server, enter the name
-		or IP address here.  MySQL only.
+		or IP address here. MySQL and PostgreSQL only. If using a port for PostgreSQL, enter the number here.
 	</p>
 
 	<div class="config-input"><?php

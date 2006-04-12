@@ -15,12 +15,18 @@ function install_version_checks() {
 		die( -1 );
 	}
 
-	if (!extension_loaded('mysql')) {
-		if (!dl('mysql.so')) {
-			print 'Could not load MySQL driver! Please compile '.
-				  "php --with-mysql or install the mysql.so module.\n";
+	$gotdatabase = 0;
+	## XXX We should quiet the warnings thrown here
+	if (extension_loaded('mysql') or dl('mysql.so')) {
+		$gotdatabase = 'mysql';
+	}
+	else if (extension_loaded('pgsql') or dl('pgsql.so')) {
+		$gotdatabase = 'pg';
+	}
+	if (!$gotdatabase) {
+		print "Could not load the MySQL or the PostgreSQL driver! Please compile ".
+			  "php with either --with-mysql or --with-pgsql, or install the mysql.so or pg.so module.\n";
 		exit;
-		}
 	}
 
 	global $wgCommandLineMode;

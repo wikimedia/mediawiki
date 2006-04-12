@@ -16,7 +16,7 @@ require_once( 'Revision.php' );
  * Constructor
  */
 function wfSpecialRecentchanges( $par, $specialPage ) {
-	global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
+	global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol, $wgDBtype;
 	global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
 	global $wgAllowCategorizedRecentChanges ;
 	$fname = 'wfSpecialRecentchanges';
@@ -162,7 +162,8 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$uid = $wgUser->getID();
 
 	// Perform query
-	$sql2 = "SELECT * FROM $recentchanges FORCE INDEX (rc_timestamp) " .
+	$forceclause = $dbr->useIndexClause("rc_timestamp");
+	$sql2 = "SELECT * FROM $recentchanges $forceclause".
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
 	  "WHERE rc_timestamp >= '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC";
