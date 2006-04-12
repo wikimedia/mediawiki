@@ -55,6 +55,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 385) Installer support for PostgreSQL, fixes for PG compatibility
 * PersistentObject removed; it doesn't do anything and was broken besides.
   All extensions using it have been corrected.
+* Propagate ISBN number for Booksources in LanguageNo.php
 
 
 == Compatibility ==

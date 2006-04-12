@@ -37,11 +37,12 @@
 
 
 /* private */ $wgBookstoreListNo = array(
-	"Antikvariat.net" => "http://www.antikvariat.net/",
-	"Bibsys" => "http://www.bibsys.no/",
-	"Bokkilden" => "http://www.bokkilden.no/",
-	"Haugenbok" => "http://www.haugenbok.no/",
-	"Mao.no" => "http://www.mao.no/"
+         "Antikvariat.net" => "http://www.antikvariat.net/",
+         "Frida" => "http://wo.uio.no/as/WebObjects/frida.woa/wa/fres?action=sok&isbn=$1&visParametre=1&sort=alfabetisk&bs=50",
+         "Bibsys" => "http://ask.bibsys.no/ask/action/result?cmd=&kilde=biblio&fid=isbn&term=$1&op=and&fid=bd&term=&arstall=&sortering=sortdate-&treffPrSide=50",
+         "Akademika" => "http://www.akademika.no/sok.php?ts=4&sok=$1",
+         "Haugenbok" => "http://www.haugenbok.no/resultat.cfm?st=extended&isbn=$1",
+         "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
 if (!$wgCachedMessageArrays) {
