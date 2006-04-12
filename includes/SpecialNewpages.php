@@ -62,8 +62,8 @@ class NewPagesPage extends QueryPage {
 		# Do a batch existence check on the user and talk pages
 		$linkBatch = new LinkBatch();
 		while( $row = $dbo->fetchObject( $res ) ) {
-			$linkBatch->addObj( Title::makeTitleSafe( NS_USER, $res->user_text ) );
-			$linkBatch->addObj( Title::makeTitleSafe( NS_USER_TALK, $res->user_text ) );
+			$linkBatch->addObj( Title::makeTitleSafe( NS_USER, $row->user_text ) );
+			$linkBatch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_text ) );
 		}
 		$linkBatch->execute();
 		# Seek to start
@@ -99,7 +99,8 @@ class NewPagesPage extends QueryPage {
 		if( isset( $row->rev_id ) ) {
 			$revision = Revision::newFromId( $row->rev_id );
 			if( $revision ) {
-				return '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' . $text . "</p>\n<hr />\n<div>" .
+				return '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' .
+					htmlspecialchars( $revision->getComment() ) . "</p>\n<hr />\n<div>" .
 					nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
 			}
 		}

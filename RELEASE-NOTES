@@ -13,6 +13,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Remove live debugging hack which caused errors with certain database names
 * (bug 5510) Warning produced when using {{SUBPAGENAME}} in some namespaces
 * (bug 5548) Improvements to Indonesian localisation [patch: Ivan Lanin]
+* (bug 5403) Fix Special:Newpages RSS/Atom feeds
+
 
 == MediaWiki 1.6.3 ==
 
@@ -23,6 +25,7 @@ April 10, 2006
 * (bug 5508) Switch ENGINE in table statements back to TYPE; fixes regression
   where some versions of MySQL 4.0.x wouldn't work
 * Added note about $wgUrlProtocols format change
+
 
 == MediaWiki 1.6.2 ==
 
