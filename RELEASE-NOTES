@@ -59,6 +59,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5548) Improvements to Indonesian localisation [patch: Ivan Lanin]
 * Add TALKSPACE, SUBJECTSPACE, TALKPAGENAME, SUBJECTPAGENAME (and encoded forms for all)
   magic words
+* (bug 5403) Fix Special:Newpages RSS/Atom feeds
+
 
 == Compatibility ==
 

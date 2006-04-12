@@ -99,7 +99,8 @@ class NewPagesPage extends QueryPage {
 		if( isset( $row->rev_id ) ) {
 			$revision = Revision::newFromId( $row->rev_id );
 			if( $revision ) {
-				return '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' . $text . "</p>\n<hr />\n<div>" .
+				return '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' .
+					htmlspecialchars( $revision->getComment() ) . "</p>\n<hr />\n<div>" .
 					nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
 			}
 		}
