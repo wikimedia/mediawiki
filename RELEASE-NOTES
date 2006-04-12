@@ -12,7 +12,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
   the appropriate arrow
 * Remove live debugging hack which caused errors with certain database names
 * (bug 5510) Warning produced when using {{SUBPAGENAME}} in some namespaces
-
+* (bug 5548) Improvements to Indonesian localisation [patch: Ivan Lanin]
 
 == MediaWiki 1.6.3 ==
 
