@@ -327,7 +327,7 @@ class EditPage {
 	 * @todo document
 	 */
 	function importFormData( &$request ) {
-		global $wgLang ;
+		global $wgLang, $wgUser;
 		$fname = 'EditPage::importFormData';
 		wfProfileIn( $fname );
 
@@ -384,7 +384,14 @@ class EditPage {
 
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
-			$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' );
+
+			# Don't force edit summaries when a user is editing their own user or talk page
+			if( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK ) && $this->mTitle->getText() == $wgUser->getName() ) {
+				$this->allowBlankSummary = true;
+			} else {
+				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' );
+			}
+	
 			$this->autoSumm = $request->getText( 'wpAutoSummary' );			
 		} else {
 			# Not a posted form? Start with nothing.
