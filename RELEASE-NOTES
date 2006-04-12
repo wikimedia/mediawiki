@@ -50,6 +50,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5544) Fix redirect arrow in Special:Listredirects for right-to-left languages
 * Replace "doubleredirectsarrow" with a content language check that picks the appropriate arrow
 * (bug 5537) Add stub language file for Samogitian (bat-smg); inherits Lithuanian (lt)
+* Don't force edit summaries when a user is editing their own user/talk page
 
 == Compatibility ==
 
