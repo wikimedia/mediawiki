@@ -89,7 +89,7 @@ function fixLinksFromArticle( $id ) {
 
 	$options = new ParserOptions;
 	$parserOutput = $wgParser->parse( $revision->getText(), $wgTitle, $options, true, true, $revision->getId() );
-	$update = new LinksUpdate( $wgTitle, $parserOutput );
+	$update = new LinksUpdate( $wgTitle, $parserOutput, false );
 	$update->doUpdate();
 	$dbw->immediateCommit();
 }
