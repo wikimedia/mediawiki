@@ -56,7 +56,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * PersistentObject removed; it doesn't do anything and was broken besides.
   All extensions using it have been corrected.
 * Propagate ISBN number for Booksources in LanguageNo.php
-
+* (bug 5548) Improvements to Indonesian localisation [patch: Ivan Lanin]
 
 == Compatibility ==
 
