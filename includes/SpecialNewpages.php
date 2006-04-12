@@ -62,8 +62,8 @@ class NewPagesPage extends QueryPage {
 		# Do a batch existence check on the user and talk pages
 		$linkBatch = new LinkBatch();
 		while( $row = $dbo->fetchObject( $res ) ) {
-			$linkBatch->addObj( Title::makeTitleSafe( NS_USER, $res->user_text ) );
-			$linkBatch->addObj( Title::makeTitleSafe( NS_USER_TALK, $res->user_text ) );
+			$linkBatch->addObj( Title::makeTitleSafe( NS_USER, $row->user_text ) );
+			$linkBatch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_text ) );
 		}
 		$linkBatch->execute();
 		# Seek to start
