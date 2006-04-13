@@ -355,7 +355,7 @@ else
 	print "<li>GNU diff3 not found.</li>";
 
 $conf->ImageMagick = false;
-$imcheck = array( "/usr/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
+$imcheck = array( "/usr/bin", "/opt/csw/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
 foreach( $imcheck as $dir ) {
 	$im = "$dir/convert";
 	if( file_exists( $im ) ) {

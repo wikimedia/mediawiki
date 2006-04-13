@@ -62,6 +62,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5403) Fix Special:Newpages RSS/Atom feeds
 * Reject malformed addresses in X-Forwarded-For entries
 * (bug 3359) Add hooks on completion of file upload
+* (bug 5559) Improve detection of ImageMagick [patch: Greg Turnquist]
 
 == Compatibility ==
 
