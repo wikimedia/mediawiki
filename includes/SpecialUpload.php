@@ -331,6 +331,7 @@ class UploadForm {
 
 			if ( $success ) {
 				$this->showSuccess();
+				wfRunHooks( 'UploadComplete', &$img );
 			} else {
 				// Image::recordUpload() fails if the image went missing, which is
 				// unlikely, hence the lack of a specialised message
