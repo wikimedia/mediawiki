@@ -142,7 +142,7 @@ function wfSpecialNewpages($par, $specialPage) {
 
 	$npp = new NewPagesPage( $namespace );
 
-	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ) ) )
+	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ), $limit ) )
 		$npp->doQuery( $offset, $limit, $shownavigation );
 }
 

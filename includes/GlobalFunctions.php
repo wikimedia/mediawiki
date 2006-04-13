@@ -791,7 +791,13 @@ function wfClientAcceptsGzip() {
 }
 
 /**
- * Yay, more global functions!
+ * Obtain the offset and limit values from the request string;
+ * used in special pages
+ *
+ * @param $deflimit Default limit if none supplied
+ * @param $optionname Name of a user preference to check against
+ * @return array
+ * 
  */
 function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 	global $wgRequest;

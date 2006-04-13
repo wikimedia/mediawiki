@@ -63,6 +63,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Reject malformed addresses in X-Forwarded-For entries
 * (bug 3359) Add hooks on completion of file upload
 * (bug 5559) Improve detection of ImageMagick [patch: Greg Turnquist]
+* (bug 5475) New pages feeds ignore "limit" argument
 
 == Compatibility ==
 

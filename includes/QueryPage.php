@@ -344,7 +344,7 @@ class QueryPage {
 	/**
 	 * Similar to above, but packaging in a syndicated feed instead of a web page
 	 */
-	function doFeed( $class = '' ) {
+	function doFeed( $class = '', $limit = 50 ) {
 		global $wgFeedClasses;
 
 		if( isset($wgFeedClasses[$class]) ) {
@@ -356,7 +356,7 @@ class QueryPage {
 
 			$dbr =& wfGetDB( DB_SLAVE );
 			$sql = $this->getSQL() . $this->getOrder();
-			$sql = $dbr->limitResult( $sql, 50, 0 );
+			$sql = $dbr->limitResult( $sql, $limit, 0 );
 			$res = $dbr->query( $sql, 'QueryPage::doFeed' );
 			while( $obj = $dbr->fetchObject( $res ) ) {
 				$item = $this->feedResult( $obj );
