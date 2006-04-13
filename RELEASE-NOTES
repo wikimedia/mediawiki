@@ -60,6 +60,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add TALKSPACE, SUBJECTSPACE, TALKPAGENAME, SUBJECTPAGENAME (and encoded forms for all)
   magic words
 * (bug 5403) Fix Special:Newpages RSS/Atom feeds
+* Reject malformed addresses in X-Forwarded-For entries
 
 
 == Compatibility ==

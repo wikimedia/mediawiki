@@ -103,6 +103,12 @@ function wfIsIPPublic( $ip ) {
 	if ( !$n ) {
 		return false;
 	}
+	
+	// ip2long accepts incomplete addresses, as well as some addresses
+	// followed by garbage characters. Check that it's really valid.
+	if( $ip != long2ip( $n ) ) {
+		return false;
+	}
 
 	static $privateRanges = false;
 	if ( !$privateRanges ) {
