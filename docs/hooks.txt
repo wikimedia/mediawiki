@@ -380,6 +380,9 @@ string $saveName: destination file name
 string $tempName: filesystem path to the temporary file for checks
 string &$error: output: HTML error to show if upload canceled by returning false
 
+'UploadComplete': Upon completion of a file upload
+$image: Image object representing the file that was uploaded
+
 'UserCan': To interrupt/advise the "user can do X to Y article" check
 $title: Title object being checked against
 $user : Current user object

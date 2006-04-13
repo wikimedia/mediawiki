@@ -14,7 +14,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5510) Warning produced when using {{SUBPAGENAME}} in some namespaces
 * (bug 5548) Improvements to Indonesian localisation [patch: Ivan Lanin]
 * (bug 5403) Fix Special:Newpages RSS/Atom feeds
-
+* (bug 3359) Add hooks on completion of file upload
 
 == MediaWiki 1.6.3 ==
 
