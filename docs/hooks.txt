@@ -339,6 +339,9 @@ $article: article object to be removed
 $user: user that was watching
 $article: article object removed
 
+'UploadComplete': Upon completion of a file upload
+$image: Image object representing the file that was uploaded
+
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
 		    
