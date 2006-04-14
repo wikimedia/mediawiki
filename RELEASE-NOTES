@@ -67,7 +67,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5184) CSS misapplied to elements in Special:Allmessages due to conflicting
   anchor identifiers
 * (bug 5519) Allow sidebar cache to be disabled; disable it by default.
-
+* Maintenance script to import the contents of a text file into a wiki page
 
 == Compatibility ==
 
