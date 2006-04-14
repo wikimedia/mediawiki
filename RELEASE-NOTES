@@ -71,6 +71,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * installer: show realpath when asking to chmod g+w ./config
 * installer: hide errors returned when trying to dl() mysql.so / pgsql.so
 * installer: cleanly outputbuffer when dieing out
+* Add $wgReservedUsernames configuration directive to block account creation/use
 
 == Compatibility ==
 
