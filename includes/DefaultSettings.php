@@ -1932,4 +1932,10 @@ $wgUseAjax = false;
 $wgAjaxExportList = array( 'wfSajaxSearch' );
 
 
+/**
+ * Array of usernames which may not be registered or logged in from
+ * Maintenance scripts can still use these
+ */
+$wgReservedUsernames = array( 'MediaWiki default', 'Conversion script' );
+
 ?>
