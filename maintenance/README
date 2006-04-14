@@ -50,6 +50,9 @@ installations.
 
 	importDump.php
 	XML dump importer
+	
+	importTextFile.php
+	Imports the contents of a text file into a wiki page
 
 	nukePage.php
 	Wipe a page and all revisions from the database
