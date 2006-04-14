@@ -751,6 +751,17 @@ $wgUseCategoryBrowser   = false;
 $wgEnableParserCache = true;
 
 /**
+ * If on, the sidebar navigation links are cached for users with the
+ * current language set. This can save a touch of load on a busy site
+ * by shaving off extra message lookups.
+ *
+ * However it is also fragile: changing the site configuration, or
+ * having a variable $wgArticlePath, can produce broken links that
+ * don't update as expected.
+ */
+$wgEnableSidebarCache = false;
+
+/**
  * Under which condition should a page in the main namespace be counted
  * as a valid article? If $wgUseCommaCount is set to true, it will be
  * counted if it contains at least one comma. If it is set to false
