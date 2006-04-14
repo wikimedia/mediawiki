@@ -163,7 +163,7 @@ if( !is_writable( "." ) ) {
 	<p>To make the directory writable on a Unix/Linux system:</p>
 
 	<pre>
-	cd <i>/path/to/wiki</i>
+	cd <i>$IP</i>
 	chmod a+w config
 	</pre>" );
 }
@@ -1309,7 +1309,8 @@ if ( \$wgCommandLineMode ) {
 }
 
 function dieout( $text ) {
-	die( $text . "\n\n</body>\n</html>" );
+	outputFooter( $text );
+	die();
 }
 
 function importVar( &$var, $name, $default = "" ) {

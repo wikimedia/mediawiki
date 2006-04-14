@@ -17,15 +17,20 @@ function install_version_checks() {
 
 	$gotdatabase = 0;
 	## XXX We should quiet the warnings thrown here
-	if (extension_loaded('mysql') or dl('mysql.so')) {
+	if (extension_loaded('mysql') or @dl('mysql.so')) {
 		$gotdatabase = 'mysql';
 	}
-	else if (extension_loaded('pgsql') or dl('pgsql.so')) {
+	else if (extension_loaded('pgsql') or @dl('pgsql.so')) {
 		$gotdatabase = 'pg';
 	}
 	if (!$gotdatabase) {
-		print "Could not load the MySQL or the PostgreSQL driver! Please compile ".
-			  "php with either --with-mysql or --with-pgsql, or install the mysql.so or pg.so module.\n";
+		global $wgCommandLineMode;
+
+		$error ="Could not load the MySQL or the PostgreSQL driver! Please compile ".
+			  "php with either --with-mysql or --with-pgsql, or install the mysql.so or pg.so module.<br/>\n".
+			  " If the database extension is installed (eg php-mysql), make sure it is enabled in your php.ini.\n";
+		if( $wgCommandLineMode ) { print $error; }
+		else { outputFooter($error); }
 		exit;
 	}
 
@@ -157,4 +162,41 @@ function field_info( $table, $field ) {
 	return false;
 }
 
+/**
+ * Used to end the HTML stream when we die out
+ */
+function outputFooter( $text ) {
+print $text;
+print <<<END
+</div></div></div>
+
+
+<div id="column-one">
+    <div class="portlet" id="p-logo">
+      <a style="background-image: url(../skins/common/images/mediawiki.png);"
+        href="http://www.mediawiki.org/"
+        title="Main Page"></a>
+    </div>
+    <script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+    <div class='portlet'><div class='pBody'>
+        <ul>
+            <li><strong><a href="http://www.mediawiki.org/">MediaWiki home</a></strong></li>
+            <li><a href="../README">Readme</a></li>
+            <li><a href="../RELEASE-NOTES">Release notes</a></li>
+            <li><a href="../docs/">Documentation</a></li>
+            <li><a href="http://meta.wikipedia.org/wiki/MediaWiki_User's_Guide">User's Guide</a></li>
+            <li><a href="http://meta.wikimedia.org/wiki/MediaWiki_FAQ">FAQ</a></li>
+        </ul>
+        <p style="font-size:90%;margin-top:1em">MediaWiki is Copyright &copy; 2001-2006 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
+    </div></div>
+</div>
+
+</div>
+
+</body>
+</html>
+
+END;
+
+}
 ?>
