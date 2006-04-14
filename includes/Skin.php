@@ -1427,20 +1427,19 @@ END;
 	 * @access private
 	 */
 	function buildSidebar() {
-		global $wgDBname, $parserMemc;
+		global $wgDBname, $parserMemc, $wgEnableSidebarCache;
 		global $wgLanguageCode, $wgContLanguageCode;
 
 		$fname = 'SkinTemplate::buildSidebar';
 
 		wfProfileIn( $fname );
 
-		if ($wgLanguageCode == $wgContLanguageCode)
-			$cacheSidebar = true;
-		else
-			$cacheSidebar = false;
+		$key = "{$wgDBname}:sidebar";
+		$cacheSidebar = $wgEnableSidebarCache &&
+			($wgLanguageCode == $wgContLanguageCode);
 		
 		if ($cacheSidebar) {
-			$cachedsidebar=$parserMemc->get("{$wgDBname}:sidebar");
+			$cachedsidebar = $parserMemc->get( $key );
 			if ($cachedsidebar!="") {
 				wfProfileOut($fname);
 				return $cachedsidebar;
@@ -1476,7 +1475,7 @@ END;
 			}
 		}
 		if ($cacheSidebar)
-			$cachednotice=$parserMemc->set("{$wgDBname}:sidebar",$bar,86400);
+			$cachednotice = $parserMemc->set( $key, $bar, 86400 );
 		wfProfileOut( $fname );
 		return $bar;
 	}
