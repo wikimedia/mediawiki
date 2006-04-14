@@ -164,7 +164,7 @@ class LoginForm {
 		global $wgUser, $wgOut;
 		global $wgEnableSorbs, $wgProxyWhitelist;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname;
-		global $wgAuth, $wgMinimalPasswordLength;
+		global $wgAuth, $wgMinimalPasswordLength, $wgReservedUsernames;
 
 		// If the user passes an invalid domain, something is fishy
 		if( !$wgAuth->validDomain( $this->mDomain ) ) {
@@ -205,7 +205,7 @@ class LoginForm {
 
 		$name = trim( $this->mName );
 		$u = User::newFromName( $name );
-		if ( is_null( $u ) || $u->getName() == 'MediaWiki default' ) {
+		if ( is_null( $u ) || in_array( $u->getName(), $wgReservedUsernames ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
 		}
@@ -284,15 +284,14 @@ class LoginForm {
 	 * @access private
 	 */
 	function processLogin() {
-		global $wgUser;
-		global $wgAuth;
+		global $wgUser, $wgAuth, $wgReservedUsernames;
 
 		if ( '' == $this->mName ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
 		}
 		$u = User::newFromName( $this->mName );
-		if( is_null( $u ) || $u->getName() == 'MediaWiki default' ) {
+		if( is_null( $u ) || in_array( $u->getName(), $wgReservedUsernames ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
 		}
