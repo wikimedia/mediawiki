@@ -64,6 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3359) Add hooks on completion of file upload
 * (bug 5559) Improve detection of ImageMagick [patch: Greg Turnquist]
 * (bug 5475) New pages feeds ignore "limit" argument
+* (bug 5184) CSS misapplied to elements in Special:Allmessages due to conflicting
+  anchor identifiers
 
 == Compatibility ==
 
