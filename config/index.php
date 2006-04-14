@@ -163,7 +163,7 @@ if( !is_writable( "." ) ) {
 	<p>To make the directory writable on a Unix/Linux system:</p>
 
 	<pre>
-	cd <i>$IP</i>
+	cd <i>/path/to/wiki</i>
 	chmod a+w config
 	</pre>" );
 }
