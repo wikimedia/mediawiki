@@ -8,7 +8,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-$options = array( 'help' ); 
+$options = array( 'help', 'norc' ); 
 $optionsWithArgs = array( 'title', 'user', 'comment' );
 require_once( 'commandLine.inc' );
 require_once( 'importTextFile.inc' );
@@ -62,9 +62,16 @@ if( !isset( $options['help'] ) || !$options['help'] ) {
 				}
 				echo( "Using edit summary '{$comment}'.\n" );
 			
+				# Do we need to update recent changes?
+				if( isset( $options['norc'] ) && $options['norc'] ) {
+					$rc = false;
+				} else {
+					$rc = true;
+				}
+			
 				# Attempt the insertion
 				echo( "Attempting to insert page..." );
-				$success = insertNewArticle( $title, $text, $user, $comment );
+				$success = insertNewArticle( $title, $text, $user, $comment, $rc );
 				if( $success ) {
 					echo( "done.\n" );
 				} else {
@@ -89,12 +96,13 @@ if( !isset( $options['help'] ) || !$options['help'] ) {
 } else {
 	# Show help
 	echo( "Imports the contents of a text file into a wiki page.\n\n" );
-	echo( "USAGE: php importTextFile.php [--help|--title <title>|--user <user>|--comment <comment>] <filename>\n\n" );
+	echo( "USAGE: php importTextFile.php [--help|--title <title>|--user <user>|--comment <comment>|--norc] <filename>\n\n" );
 	echo( "              --help: Show this help information\n" );
 	echo( "    --title <title> : Title for the new page; if not supplied, the filename is used as a base for the title\n" );
 	echo( "      --user <user> : User to be associated with the edit; if not supplied, a default is used\n" );
 	echo( "--comment <comment> : Edit summary to be associated with the edit; underscores are transformed into spaces; if not supplied, a default is used\n" );
 	echo( "         <filename> : Path to the file containing the wikitext to import\n" );
+	echo( "             --norc : Do not add a page creation event to recent changes\n" );
 
 }
 echo( "\n" );	
