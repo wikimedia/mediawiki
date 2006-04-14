@@ -15,6 +15,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5548) Improvements to Indonesian localisation [patch: Ivan Lanin]
 * (bug 5403) Fix Special:Newpages RSS/Atom feeds
 * (bug 3359) Add hooks on completion of file upload
+* (bug 5184) CSS misapplied to elements in Special:Allmessages due to conflicting
+  anchor identifiers
 
 == MediaWiki 1.6.3 ==
 

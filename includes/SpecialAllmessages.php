@@ -168,7 +168,7 @@ function makeHTMLText( $messages ) {
 			$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		}
 		
-		$anchor = htmlspecialchars( strtolower( $title ) );
+		$anchor = 'msg_' . htmlspecialchars( strtolower( $title ) );
 		$anchor = "<a id=\"$anchor\" name=\"$anchor\"></a>";
 
 		if($changed) {
