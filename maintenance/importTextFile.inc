@@ -35,7 +35,9 @@ function insertNewArticle( &$title, $text, &$user, $comment, $rc ) {
 		$dbw->immediateCommit();
 		# Update recent changes if appropriate
 		if( $rc )
-			updateRecentChanges( $dbw, $title, $user, $comment, strlen( $text ), $articleId );		
+			updateRecentChanges( $dbw, $title, $user, $comment, strlen( $text ), $articleId );
+		# Touch links etc.
+		Article::onArticleCreate( $title );	
 		return( true );
 	} else {
 		# Title exists; touch nothing
