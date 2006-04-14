@@ -541,6 +541,51 @@ function wfMsgWikiHtml( $key ) {
 }
 
 /**
+ * Returns message in the requested format
+ * @param string $key Key of the message
+ * @param array $options Processing rules:
+ *  <i>parse<i>: parses wikitext to html
+ *  <i>parseinline<i>: parses wikitext to html and removes the surrounding p's added by parser or tidy
+ *  <i>escape<i>: filters message trough htmlspecialchars
+ *  <i>replaceafter<i>: parameters are substituted after parsing or escaping
+ */
+function wfMsgExt( $key, $options ) {
+	global $wgOut;
+
+	$args = func_get_args();
+	array_shift( $args );
+	array_shift( $args );
+
+	if( !is_array($options) ) {
+		$options = array($options);
+	}
+
+	$string = wfMsgGetKey( $key, true );
+
+	if( !in_array('replaceafter', $options) ) {
+		$string = wfMsgReplaceArgs( $string, $args );
+	}
+
+	if( in_array('parse', $options) ) {
+		$string = $wgOut->parse( $string, true );
+	} elseif ( in_array('parseinline', $options) ) {
+		$string = $wgOut->parse( $string, true );
+		if( preg_match( "~^<p>(.*)\n?</p>$~", $string, $m = null ) ) {
+			$string = $m[1];
+		}
+	} elseif ( in_array('escape', $options) ) {
+		$string = htmlspecialchars ( $string );
+	}
+
+	if( in_array('replaceafter', $options) ) {
+		$string = wfMsgReplaceArgs( $string, $args );
+	}
+
+	return $string;
+}
+
+
+/**
  * Just like exit() but makes a note of it.
  * Commits open transactions except if the error parameter is set
  */
