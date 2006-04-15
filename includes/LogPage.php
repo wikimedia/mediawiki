@@ -152,7 +152,6 @@ class LogPage {
 	 */
 	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
 		global $wgLang, $wgContLang;
-		wfDebug( "LogPage::actionText called with title = {$title}, action = {$action}\n" );
 		static $actions = array(
 			'block/block'       => 'blocklogentry',
 			'block/unblock'     => 'unblocklogentry',
