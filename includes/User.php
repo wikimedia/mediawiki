@@ -1691,17 +1691,7 @@ class User {
 		global $wgMemc;
 		$sessionToken = $this->editToken( $salt );
 		if ( $val != $sessionToken ) {
-			$logfile = '/home/wikipedia/logs/session_debug/session.log';
-			$mckey = memsess_key( session_id() );
-			$uname = @posix_uname();
-			$msg = date('r') . "\nEdit token mismatch, expected $sessionToken got $val\n" .
-			'apache server=' . $uname['nodename'] . "\n" .
-			'session_id = ' . session_id() . "\n" .
-			'$_SESSION=' . var_export( $_SESSION, true ) . "\n" .
-			'$_COOKIE=' . var_export( $_COOKIE, true ) . "\n" .
-			"mc get($mckey) = " . var_export( $wgMemc->get( $mckey ), true ) . "\n\n\n";
-
-			@error_log( $msg, 3, $logfile );
+			wfDebug( "User::matchEditToken: broken session data\n" );
 		}
 		return $val == $sessionToken;
 	}
