@@ -151,7 +151,8 @@ class LogPage {
 	 * @static
 	 */
 	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
-		global $wgLang;
+		global $wgLang, $wgContLang;
+		wfDebug( "LogPage::actionText called with title = {$title}, action = {$action}\n" );
 		static $actions = array(
 			'block/block'       => 'blocklogentry',
 			'block/unblock'     => 'unblocklogentry',
@@ -193,6 +194,10 @@ class LogPage {
 								$titleLink = $skin->makeLinkObj( $title, $title->getText() );
 								$titleLink .= ' (' . $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions/' . $title->getDBkey() ), wfMsg( 'contribslink' ) ) . ')';
 							}
+							break;
+						case 'rights':
+							$text = $wgContLang->ucfirst( $title->getText() );
+							$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
 							break;
 						default:
 							$titleLink = $skin->makeLinkObj( $title );
