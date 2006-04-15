@@ -693,7 +693,7 @@ $3 $9",
 "userrights-groupsavailable" => "קבוצות זמינות:",
 "userrights-groupshelp"      => "אנא בחרו קבוצות שברצונכם שהמשתמש יתווסף אליהן או יוסר מהן.
 קבוצות שלא נבחרו לא ישתנו. באפשרותכם לבטל בחירה של קבוצה באמצעות לחיצה על הכפתור השמאלי של העכבר ועל Ctrl מעליה.",
-"userrights-logcomment"      => 'קבע את "$1" בתפקיד $2',
+"userrights-logcomment"      => 'שינה את ההרשאות מההרשאות $1 להרשאות $2',
 
 ## Default group names and descriptions
 "group-anon-name"       => "אנונימי",
@@ -1212,7 +1212,7 @@ $NEWPAGE
 "setstewardflag"     => "הפוך משתמש זה לדייל",
 "bureaucratlog"      => "יומן_תפקידים",
 "rightslogtext"      => "זהו יומן השינויים בתפקידי המשתמשים.",
-"bureaucratlogentry" => 'קבע את "$1" בתפקיד',
+"bureaucratlogentry" => 'שינה את ההרשאות של "$1" מההרשאות $2 להרשאות $3',
 "rights"             => "הרשאות:",
 "set_user_rights"    => "קבע הרשאות משתמש",
 "user_rights_set"    => '\'\'\'הרשאות המשתמש "$1" עודכנו.\'\'\'',
