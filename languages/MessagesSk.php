@@ -504,9 +504,7 @@ Dôvodom je pravdepodobne to, že ste hľadali slovo
 kratšie ako tri písmená, čo zatiaľ {{SITENAME}} neumožňuje.
 Alebo ste možno výraz zle napísali, napríklad "dom a a záhrada". Skúste iný text na prehľadávanie.',
 'matchtotals' => 'Výsledkom textu na prehľadávanie "$1" je $2 nadpisov článkov a text $3 článkov.',
-'nogomatch' => "Neexistuje článok s presne takýmto nadpisom; skúšam nájsť podobné nadpisy.
-
-<br /><br />Chcete '''<a href=\"$1\" class=\"new\">vytvoriť nový článok s týmto nadpisom</a>'''? Alebo [[Project:Žiadané články|dať žiadosť na jeho tvorbu]]?.",
+'nogomatch' => "Neexistuje článok s presne takýmto nadpisom; skúšam nájsť podobné nadpisy. Chcete '''[[$1|vytvoriť nový článok]]''' s týmto nadpisom?",
 'titlematches' => 'Vyhovujúce nadpisy článkov',
 'notitlematches' => 'Niet vyhovujúcich nadpisov článkov',
 'textmatches' => 'Vyhovujúce texty článkov',
