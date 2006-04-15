@@ -23,8 +23,8 @@
 'tog-showtoolbar' => 'Montrer la barre de menu d\'édition',
 'tog-usenewrc' => 'Modifications récentes améliorées<br /> (certains navigateurs seulement)',
 'tog-underline' => 'Liens soulignés',
-'tog-watchdefault' => 'Suivre les articles que je crée ou modifie',
-
+'tog-watchcreations' => 'Suivre les articles que je creé',
+'tog-watchdefault' => 'Suivre les articles que je modifie',
 
 # Dates
 

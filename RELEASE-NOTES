@@ -73,6 +73,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add $wgReservedUsernames configuration directive to block account creation/use
 * (bug 5576) Remove debugging hack in session check
 * (bug 5426) Lowercase treatment of titles in rights log leads to broken links on Special:Log
+* Minor improvements to French localisation files
 
 == Compatibility ==
 
