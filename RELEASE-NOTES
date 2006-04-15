@@ -19,6 +19,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
   anchor identifiers
 * (bug 5519) Allow sidebar cache to be disabled; disable it by default.
 * Add $wgReservedUsernames configuration directive to block account creation/use
+* (bug 5576) Remove debugging hack in session check
 
 
 == MediaWiki 1.6.3 ==
@@ -30,6 +31,7 @@ April 10, 2006
 * (bug 5508) Switch ENGINE in table statements back to TYPE; fixes regression
   where some versions of MySQL 4.0.x wouldn't work
 * Added note about $wgUrlProtocols format change
+
 
 == MediaWiki 1.6.2 ==
 
@@ -43,6 +45,7 @@ April 8, 2006
 * Additional path fixes in the updater
 * (bug 5344) Fix regression that broke slashes in extension tag parameters
 
+
 == MediaWiki 1.6.1 ==
 
 April 5, 2006
@@ -54,6 +57,7 @@ Some minor issues in the 1.6.0 release have been corrected:
 * (bug 5461) Use of deprecated "showhideminor" in Special:Recentchangeslinked
 * PHP warning when allow_call_time_pass_reference is off
 * Update to Finnish localization
+
 
 == MediaWiki 1.6.0 ==
 
