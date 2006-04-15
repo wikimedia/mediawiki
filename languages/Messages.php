@@ -1334,7 +1334,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'setstewardflag'    => 'Set steward flag',
 'bureaucratlog'		=> 'Bureaucrat_log',
 'rightslogtext'		=> 'This is a log of changes to user rights.',
-'bureaucratlogentry'	=> "Changed group membership for $1 from $2 to $3",
+'bureaucratlogentry'	=> 'changed group membership for $1 from $2 to $3',
 'rights'			=> 'Rights:',
 'set_user_rights'	=> 'Set user rights',
 'user_rights_set'	=> "<b>User rights for \"$1\" updated</b>",
