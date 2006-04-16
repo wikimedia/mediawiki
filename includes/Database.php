@@ -1641,8 +1641,8 @@ class Database {
 			if ( $row->User == 'system user' ) {
 				if ( ++$slaveThreads == 2 ) {
 					# This is it, return the time (except -ve)
-					if ( $row->Time > 1<<31 ) {
-						return 0;
+					if ( $row->Time > 0x7ffffff ) {
+						return false;
 					} else {
 						return $row->Time;
 					}
