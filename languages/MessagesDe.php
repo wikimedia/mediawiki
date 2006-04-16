@@ -283,6 +283,7 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "youremail"		=> "Ihre E-Mail-Adresse**",
 "yournick"		=> "Ihr \"Spitzname\" (zum \"Unterschreiben\")",
 "yourrealname"		=> "Ihr echter Name (keine Pflichtangabe)*",
+'yourlanguage'		=> 'Sprache:',
 "emailforlost"	=> "Falls Sie Ihr Passwort vergessen haben, kann Ihnen ein neues an Ihre E-Mail-Adresse gesendet werden.",
 'prefs-help-email' 	=> '** <strong>E-Mail-Adresse</strong> (optional): Erlaubt andern, Sie über Ihre Benutzerseiten zu kontaktieren, ohne dass Sie Ihre E-Mail-Adresse offenbaren müssen.
 Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporäres Einmal-Passwort gesendet werden.',
@@ -457,6 +458,8 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "skin"			=> "Skin",
 "math"			=> "TeX",
 "dateformat" => "Datumsformat",
+'datedefault'		=> 'keine Präferenz',
+'datetime'		=> 'Datum und Zeit',
 "math_failure"		=> "Parser-Fehler",
 "math_unknown_error"	=> "Unbekannter Fehler",
 "math_unknown_function"	=> "Unbekannte Funktion",
@@ -483,7 +486,9 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "timezoneoffset" => "Unterschied",
 "servertime" => "Aktuelle Zeit auf dem Server",
 "guesstimezone" => "Einfügen aus dem Browser",
+'allowemail'		=> 'Aktiviere E-Mails von anderen Benutzern',
 "defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
+'files'			=> 'Dateien',
 
 # Recent changes
 #
@@ -890,6 +895,13 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 
 # User levels special page
 #
+
+# switching pan
+'groups-lookup-group' => 'Gruppenrechte verwalten',
+'groups-group-edit' => 'Bestehende Gruppen:',
+'editgroup' => 'Gruppe ändern',
+'addgroup' => 'Gruppe hinzufügen',
+
 'userrights' => 'Benutzerrechtsverwaltung',
 
 'userrights-lookup-user' => 'Verwalte Gruppenzugehörigkeit',
@@ -968,8 +980,11 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "user_rights_set"	=> "<b>Benutzerrechte für \"$1\" aktualisiert</b>",
 "set_rights_fail"	=> "<b>Benutzerrechte für \"$1\" konnten nicht gesetzt werden. (Haben Sie den Namen korrekt eingegeben?)</b>",
 "1movedto2"		=> "$1 wurde nach $2 verschoben",
+"1movedto2_redir"	=> "[[$1]] wurde über eine Weiterleitung nach [[$2]] verschoben",
 "allmessages"		=> "Alle MediaWiki-Meldungen",
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
+'allmessagesdefault'	=> 'Standard Text',
+'allmessagescurrent'	=> 'Aktueller Text',
 "thumbnail-more"	=> "vergrößern",
 "and"			=> "und",
 "rchide"		=> "in $4 form; $1 kleine Änderungen; $2 sekundäre Namensräume; $3 mehrfache Änderungen.",
