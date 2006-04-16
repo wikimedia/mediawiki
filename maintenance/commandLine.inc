@@ -39,7 +39,15 @@ $args = array();
 # Parse arguments
 
 for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
-	if ( substr( $arg, 0, 2 ) == '--' ) {
+	if ( $arg == '--' ) {
+		# End of options, remainder should be considered arguments
+		$arg = next( $argv );
+		while( $arg !== false ) {
+			$args[] = $arg;
+			$arg = next( $argv );
+		}
+		break;
+	} elseif ( substr( $arg, 0, 2 ) == '--' ) {
 		# Long options
 		$option = substr( $arg, 2 );
 		if ( in_array( $option, $optionsWithArgs ) ) {
