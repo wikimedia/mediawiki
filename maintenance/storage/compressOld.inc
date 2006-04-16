@@ -129,8 +129,9 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	}
 
 	# Don't work with current revisions
-	$tables[] = 'page';
-	$conds[] = 'page_id=rev_page AND rev_id != page_latest';
+	# Don't lock the page table for update either -- TS 2006-04-04
+	#$tables[] = 'page';
+	#$conds[] = 'page_id=rev_page AND rev_id != page_latest';
 
 	$oldReadsSinceLastSlaveWait = 0;	#check slave lag periodically
 	$totalMatchingRevisions = 0;
@@ -142,7 +143,8 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		$dbr->ping();		
 
 		# Get the page row
-		$pageRes = $dbr->select( 'page', array('page_id', 'page_namespace', 'page_title'),
+		$pageRes = $dbr->select( 'page', 
+			array('page_id', 'page_namespace', 'page_title','page_latest'),
 			$pageConds + array('page_id' => $pageId), $fname );
 		if ( $dbr->numRows( $pageRes ) == 0 ) {
 			continue;
@@ -155,7 +157,13 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 
 		# Load revisions
 		$revRes = $dbw->select( $tables, $fields,
-			array( 'rev_page' => $pageRow->page_id ) + $conds,
+			array( 
+				'rev_page' => $pageRow->page_id, 
+				# Don't operate on the current revision
+				# Use < instead of <> in case the current revision has changed 
+				# since the page select, which wasn't locking
+				'rev_id < ' . $pageRow->page_latest
+			) + $conds,
 			$fname,
 			$revLoadOptions
 		);
