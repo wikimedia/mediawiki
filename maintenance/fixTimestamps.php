@@ -25,8 +25,14 @@ $grace = 60; // maximum normal clock offset
 $dbw =& wfGetDB( DB_MASTER );
 $revisionTable = $dbw->tableName( 'revision' );
 $res = $dbw->query( "SELECT MIN(rev_id) as minrev, MAX(rev_id) as maxrev FROM $revisionTable " .
-	"WHERE rev_timestamp BETWEEN $start AND $end", $fname );
+	"WHERE rev_timestamp BETWEEN '{$start}' AND '{$end}'", $fname );
 $row = $dbw->fetchObject( $res );
+
+if ( is_null( $row->minrev ) ) {
+	echo "No revisions in search period.\n";
+	exit(0);
+}
+
 $minRev = $row->minrev;
 $maxRev = $row->maxrev;
 
@@ -49,8 +55,8 @@ $numGoodRevs = 0;
 while ( $row = $dbw->fetchObject( $res ) ) {
 	$timestamp = wfTimestamp( TS_UNIX, $row->rev_timestamp );
 	$delta = $timestamp - $lastNormal;
-	$sign = $delta / abs( $delta );
-	if ( $sign == $expectedSign ) {
+	$sign = $delta == 0 ? 0 : $delta / abs( $delta );
+	if ( $sign == 0 || $sign == $expectedSign ) {
 		// Monotonic change
 		$lastNormal = $timestamp;
 		++ $numGoodRevs;
@@ -66,7 +72,8 @@ while ( $row = $dbw->fetchObject( $res ) ) {
 }
 $dbw->freeResult( $res );
 
-if ( count( $badRevs ) > $numGoodRevs ) {
+$numBadRevs = count( $badRevs );
+if ( $numBadRevs > $numGoodRevs ) {
 	echo 
 "The majority of revisions in the search interval are marked as bad.
 
@@ -78,16 +85,20 @@ good revisions to provide a majority reference.
 ";
 
 	exit(1);
+} elseif ( $numBadRevs == 0 ) {
+	echo "No bad revisions found.\n";
+	exit(0);
 }
 
 printf( "Fixing %d revisions (%.2f%% of revisions in search interval)\n", 
-	count( $badRevs ), count($badRevs) / $numGoodRevs * 100 );
+	$numBadRevs, $numBadRevs / ($numGoodRevs + $numBadRevs) * 100 );
 
+$fixup = -$offset;
 $sql = "UPDATE $revisionTable " .
 	"SET rev_timestamp=DATE_FORMAT(DATE_ADD(rev_timestamp, INTERVAL $fixup SECOND), '%Y%m%d%H%i%s') " .
 	"WHERE rev_id IN (" . $dbw->makeList( $badRevs ) . ')';
-echo $sql;
-//$dbw->query( $sql, $fname );
-//echo "Done\n";
+//echo "$sql\n";
+$dbw->query( $sql, $fname );
+echo "Done\n";
 
 ?>
