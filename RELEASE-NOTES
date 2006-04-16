@@ -77,6 +77,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5181) Update "nogomatch" for Slovak
 * (bug 5594) Id translation up to # Login and logout pages section
 * (bug 5536) Use content language for editing help link
+* (bug 5605) Improve German localisation files
 
 == Compatibility ==
 
