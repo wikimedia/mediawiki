@@ -73,6 +73,7 @@
 #
 "categories" => "Seitenkategorien",
 "category" => "Kategorie",
+'categoriesl' => 'Kategorie',
 'category_header' => 'Artikel in der Kategorie "$1"',
 "subcategories" => "Unterkategorien",
 "linktrail"		=> '/^([äöüßa-z]+)(.*)$/sDu',

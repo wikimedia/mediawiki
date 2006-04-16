@@ -24,6 +24,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5594) Id translation up to '# Login and logout pages' section
 * (bug 5536) Use content language for editing help link
 * Minor improvements to English language files
+* (bug 5605) Improve German localisation files
 
 == MediaWiki 1.6.3 ==
 
