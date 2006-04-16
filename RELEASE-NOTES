@@ -78,6 +78,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5594) Id translation up to # Login and logout pages section
 * (bug 5536) Use content language for editing help link
 * (bug 5605) Improve German localisation files
+* (bug 5570) Problems using <special page>/parameter link form for long titles
 
 == Compatibility ==
 

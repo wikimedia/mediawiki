@@ -674,10 +674,11 @@ class SkinTemplate extends Skin {
 					);
 				}
 				if ( $this->mTitle->userCanMove()) {
+					$moveTitle = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 					$content_actions['move'] = array(
 						'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
 						'text' => wfMsg('move'),
-						'href' => $this->makeSpecialUrl("Movepage/$this->thispage" )
+						'href' => $moveTitle->getLocalUrl( 'target=' . $this->thispage )
 					);
 				}
 			} else {
@@ -816,13 +817,16 @@ class SkinTemplate extends Skin {
 			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$oldid, &$revid ) );
 		}
 
-		if( $this->mTitle->getNamespace() != NS_SPECIAL) {
+		if( $this->mTitle->getNamespace() != NS_SPECIAL ) {
+			$wlhTitle = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
 			$nav_urls['whatlinkshere'] = array(
-				'href' => $this->makeSpecialUrl("Whatlinkshere/$this->thispage")
+				'href' => $wlhTitle->getLocalUrl( 'target=' . $this->thispage )
 			);
 			if( $this->mTitle->getArticleId() ) {
+				$rclTitle = Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' );
 				$nav_urls['recentchangeslinked'] = array(
-					'href' => $this->makeSpecialUrl("Recentchangeslinked/$this->thispage")
+					'href' => $rclTitle->getLocalUrl( 'target=' . $this->thispage )
+					#'href' => $this->makeSpecialUrl("Recentchangeslinked/$this->thispage")
 				);
 			}
 			if ($wgUseTrackbacks)
