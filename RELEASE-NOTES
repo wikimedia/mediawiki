@@ -22,6 +22,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5576) Remove debugging hack in session check
 * (bug 5181) Update "nogomatch" for Slovak
 * (bug 5594) Id translation up to '# Login and logout pages' section
+* (bug 5536) Use content language for editing help link
 
 == MediaWiki 1.6.3 ==
 
