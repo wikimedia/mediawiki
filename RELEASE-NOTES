@@ -75,6 +75,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5426) Lowercase treatment of titles in rights log leads to broken links on Special:Log
 * Minor improvements to French localisation files
 * (bug 5181) Update "nogomatch" for Slovak
+* (bug 5594) Id translation up to # Login and logout pages section
 
 == Compatibility ==
 
