@@ -243,6 +243,11 @@ class QueryPage {
 				$dbw->ignoreErrors( $ignoreW );
 				$dbr->ignoreErrors( $ignoreR );
 			}
+
+			# Update the querycache_info record for the page
+			$dbw->delete( 'querycache_info', array( 'qci_type' => $this->getName() ), $fname );
+			$dbw->insert( 'querycache_info', array( 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ), $fname );
+
 		}
 		return $num;
 	}
@@ -256,7 +261,7 @@ class QueryPage {
 	 * @param $shownavigation show navigation like "next 200"?
 	 */
 	function doQuery( $offset, $limit, $shownavigation=true ) {
-		global $wgUser, $wgOut, $wgContLang;
+		global $wgUser, $wgOut, $wgLang, $wgContLang;
 
 		$sname = $this->getName();
 		$fname = get_class($this) . '::doQuery';
@@ -271,8 +276,16 @@ class QueryPage {
 			$sql =
 				"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
 				 FROM $querycache WHERE qc_type='$type'";
+
+			# Fetch the timestamp of this update
+			$tRes = $dbr->select( 'querycache_info', array( 'qci_timestamp' ), array( 'qci_type' => $type ), $fname );
+			$tRow = $dbr->fetchObject( $tRes );
+			$updated = $tRow->qci_timestamp;
+			$updatedTs = $wgLang->timeAndDate( $updated, true, true );
+
 			if ( ! $this->listoutput )
-				$wgOut->addWikiText( wfMsg( 'perfcached' ) );
+				$wgOut->addWikiText( wfMsg( 'perfcached', $updatedTs ) );
+
 		}
 
 		$sql .= $this->getOrder();
