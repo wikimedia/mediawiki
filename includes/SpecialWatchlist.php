@@ -46,9 +46,17 @@ function wfSpecialWatchlist( $par ) {
 
 	extract($defaults);
 
+	# Extract variables from the request, falling back to user preferences or
+	# other default values if these don't exist
+	$prefs['days'] = floatval( $wgUser->getOption( 'watchlistdays' ) );
+	$prefs['hideown'] = $wgUser->getBoolOption( 'watchlisthideown' );
+	
+	# The hide bots thing is b0rk3d for now
+	# $prefs['bots'] = $wgUser->getBoolOption( 'watchlisthidebots' ); 
+
 	# Get query variables
-	$days = $wgRequest->getVal( 'days' );
-	$hideOwn = $wgRequest->getBool( 'hideOwn' );
+	$days = $wgRequest->getVal( 'days', $prefs['days'] );
+	$hideOwn = $wgRequest->getBool( 'hideOwn', $prefs['hideown'] );
 	$hideBots = $wgRequest->getBool( 'hideBots' );
 	
 	# Get namespace value, if supplied, and prepare a WHERE fragment

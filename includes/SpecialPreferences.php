@@ -64,6 +64,7 @@ class PreferencesForm {
 		$this->mReset = $request->getCheck( 'wpReset' );
 		$this->mPosted = $request->wasPosted();
 		$this->mSuccess = $request->getCheck( 'success' );
+		$this->mWatchlistDays = $request->getVal( 'wpWatchlistDays' );
 
 		$this->mSaveprefs = $request->getCheck( 'wpSaveprefs' ) &&
 			$this->mPosted &&
@@ -127,6 +128,16 @@ class PreferencesForm {
 		$val = min($val, $max);
 		$val = max($val, $min);
 		return $val;
+	}
+
+	/**
+	 * @access private
+	 */
+	function validateFloat( &$val, $min, $max=0x7fffffff ) {
+		$val = floatval( $val );
+		$val = min( $val, $max );
+		$val = max( $val, $min );
+		return( $val );
 	}
 
 	/**
@@ -254,6 +265,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'imagesize', $this->mImageSize );
 		$wgUser->setOption( 'thumbsize', $this->mThumbSize );
 		$wgUser->setOption( 'underline', $this->validateInt($this->mUnderline, 0, 2) );
+		$wgUser->setOption( 'watchlistdays', $this->validateFloat( $this->mWatchlistDays, 0.5, 5 ) );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
@@ -351,6 +363,7 @@ class PreferencesForm {
 		$this->mThumbSize = $wgUser->getOption( 'thumbsize' );
 		$this->mRecent = $wgUser->getOption( 'rclimit' );
 		$this->mUnderline = $wgUser->getOption( 'underline' );
+		$this->mWatchlistDays = $wgUser->getOption( 'watchlistdays' );
 
 		$togs = $wgLang->getUserToggles();
 		foreach ( $togs as $tname ) {
@@ -834,6 +847,17 @@ class PreferencesForm {
 			) . '</fieldset>'
 		);
 
+		# Watchlist
+		$wgOut->addHTML( '<fieldset><legend>' . wfMsgHtml( 'prefs-watchlist' ) . '</legend>' );
+
+		$wgOut->addHTML( '<label for="wpWatchlistDays">' . wfMsgHtml( 'prefs-watchlist-days' ) . '</label> ' );
+		$wgOut->addHTML( '<input type="text" name="wpWatchlistDays" id="wpWatchlistDays" value="' . $this->mWatchlistDays . '" size="3" />' );
+		$wgOut->addHTML( '<p></p>' ); # Spacing
+		$wgOut->addHTML( $this->getToggles( array( 'watchlisthideown' ) ) );
+
+		$wgOut->addHTML( '</fieldset>' );
+
+		# Search
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table>' .
 			$this->addRow(
 				'<label for="wpSearch">' . wfMsg( 'resultsperpage' ) . '</label>',

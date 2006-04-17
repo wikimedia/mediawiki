@@ -84,6 +84,7 @@ if(isset($wgExtraNamespaces)) {
 	'showjumplinks'		=> 1,
 	'numberheadings'	=> 0,
 	'uselivepreview'	=> 0,
+	'watchlistdays' 	=> 3.0,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -161,6 +162,7 @@ $wgDateFormatsEn = array(
 	'uselivepreview',
 	'autopatrol',
 	'forceeditsummary',
+	'watchlisthideown',
 );
 
 /* private */ $wgBookstoreListEn = array(
