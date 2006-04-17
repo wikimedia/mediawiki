@@ -277,14 +277,21 @@ class QueryPage {
 				"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
 				 FROM $querycache WHERE qc_type='$type'";
 
-			# Fetch the timestamp of this update
-			$tRes = $dbr->select( 'querycache_info', array( 'qci_timestamp' ), array( 'qci_type' => $type ), $fname );
-			$tRow = $dbr->fetchObject( $tRes );
-			$updated = $tRow->qci_timestamp;
-			$updatedTs = $wgLang->timeAndDate( $updated, true, true );
+			if( !$this->listoutput ) {
 
-			if ( ! $this->listoutput )
-				$wgOut->addWikiText( wfMsg( 'perfcached', $updatedTs ) );
+				# Fetch the timestamp of this update
+				$tRes = $dbr->select( 'querycache_info', array( 'qci_timestamp' ), array( 'qci_type' => $type ), $fname );
+				$tRow = $dbr->fetchObject( $tRes );
+				
+				if( $tRow ) {
+					$updated = $wgLang->timeAndDate( $tRow->qci_timestamp, true, true );
+					$cacheNotice = wfMsg( 'perfcachedts', $updated );
+				} else {
+					$cacheNotice = wfMsg( 'perfcached' );
+				}
+	
+				$wgOut->addWikiText( $cacheNotice );
+			}
 
 		}
 
