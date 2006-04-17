@@ -82,6 +82,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3884) Add $user parameter to AddNewUser hook, call it for by-email 
   registrations as well as self-registrations.
 * (bug 4327) Report age of cached data sets in query pages
+* (bug 4662) Fix Safari check in wikibits.js
 
 
 == Compatibility ==
