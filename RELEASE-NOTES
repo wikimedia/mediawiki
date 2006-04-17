@@ -25,6 +25,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5536) Use content language for editing help link
 * Minor improvements to English language files
 * Improvements to German localisation files
+* (bug 5628) Translations for MessagesHr.php
 
 == MediaWiki 1.6.3 ==
 
