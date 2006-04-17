@@ -90,6 +90,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5625) Additional namespace translations for Welsh
 * Add meta tag and JavaScript variables to cached special pages which provides
   the timestamp of the last update, in YYYYMMDDHHMMSS format.
+* (bug 5628) More translations for MessagesHr.php
 
 == Compatibility ==
 
