@@ -674,21 +674,24 @@ class SkinTemplate extends Skin {
 					);
 				}
 				if ( $this->mTitle->userCanMove()) {
+					echo( "Making move link...\n" );
 					$moveTitle = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 					$content_actions['move'] = array(
 						'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
 						'text' => wfMsg('move'),
-						'href' => $moveTitle->getLocalUrl( 'target=' . $this->thispage )
+						'href' => $moveTitle->getLocalUrl( 'target=' . urlencode( $this->thispage ) )
 					);
 				}
 			} else {
 				//article doesn't exist or is deleted
-				if($wgUser->isAllowed('delete')){
+				if( $wgUser->isAllowed( 'delete' ) ) {
 					if( $n = $this->mTitle->isDeleted() ) {
+						$undelTitle = Title::makeTitle( NS_SPECIAL, 'Undelete' );
 						$content_actions['undelete'] = array(
 							'class' => false,
 							'text' => ($n == 1) ? wfMsg( 'undelete_short1' ) : wfMsg('undelete_short', $n ),
-							'href' => $this->makeSpecialUrl("Undelete/$this->thispage")
+							'href' => $undelTitle->getLocalUrl( 'target=' . urlencode( $this->thispage ) )
+							#'href' => $this->makeSpecialUrl("Undelete/$this->thispage")
 						);
 					}
 				}
@@ -820,13 +823,12 @@ class SkinTemplate extends Skin {
 		if( $this->mTitle->getNamespace() != NS_SPECIAL ) {
 			$wlhTitle = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
 			$nav_urls['whatlinkshere'] = array(
-				'href' => $wlhTitle->getLocalUrl( 'target=' . $this->thispage )
+				'href' => $wlhTitle->getLocalUrl( 'target=' . urlencode( $this->thispage ) )
 			);
 			if( $this->mTitle->getArticleId() ) {
 				$rclTitle = Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' );
 				$nav_urls['recentchangeslinked'] = array(
-					'href' => $rclTitle->getLocalUrl( 'target=' . $this->thispage )
-					#'href' => $this->makeSpecialUrl("Recentchangeslinked/$this->thispage")
+					'href' => $rclTitle->getLocalUrl( 'target=' . urlencode( $this->thispage ) )
 				);
 			}
 			if ($wgUseTrackbacks)
