@@ -315,26 +315,59 @@ function toggleToc() {
 	}
 }
 
+mwEditButtons = [];
+mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
+
 // this function generates the actual toolbar buttons with localized text
 // we use it to avoid creating the toolbar where javascript is not enabled
 function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	// Don't generate buttons for browsers which don't fully
 	// support it.
-	if (!document.selection && !is_gecko) {
+	mwEditButtons[mwEditButtons.length] =
+		{"imageFile": imageFile,
+		 "speedTip": speedTip,
+		 "tagOpen": tagOpen,
+		 "tagClose": tagClose,
+		 "sampleText": sampleText};
+}
+
+// this function generates the actual toolbar buttons with localized text
+// we use it to avoid creating the toolbar where javascript is not enabled
+function mwInsertEditButton(parent, item) {
+	var image = document.createElement("img");
+	image.width = 23;
+	image.height = 22;
+	image.src = item.imageFile;
+	image.border = 0;
+	image.alt = item.speedTip;
+	image.title = item.speedTip;
+	image.style.cursor = "pointer";
+	image.onclick = function() {
+		insertTags(item.tagOpen, item.tagClose, item.sampleText);
 		return false;
 	}
-	imageFile = escapeQuotesHTML(imageFile);
-	speedTip = escapeQuotesHTML(speedTip);
-	tagOpen = escapeQuotes(tagOpen);
-	tagClose = escapeQuotes(tagClose);
-	sampleText = escapeQuotes(sampleText);
-	var mouseOver = "";
+	
+	parent.appendChild(image);
+}
 
-	document.write("<a href=\"javascript:insertTags");
-	document.write("('"+tagOpen+"','"+tagClose+"','"+sampleText+"');\">");
-	document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" alt=\""+speedTip+"\" title=\""+speedTip+"\""+mouseOver+">");
-	document.write("</a>");
-	return;
+function mwSetupToolbar() {
+	var toolbar = document.getElementById('toolbar');
+	if (!toolbar) return false;
+
+	var textbox = document.getElementById('wpTextbox1');
+	if (!textbox) return false;
+	
+	// Don't generate buttons for browsers which don't fully
+	// support it.
+	if (!document.selection && textbox.selectionStart == null)
+		return false;
+	
+	for (var i in mwEditButtons) {
+		mwInsertEditButton(toolbar, mwEditButtons[i]);
+	}
+	for (var i in mwCustomEditButtons) {
+		mwInsertEditButton(toolbar, mwCustomEditButtons[i]);
+	}
 }
 
 function escapeQuotes(text) {
@@ -709,3 +742,4 @@ function allmessagesshow() {
 }
 
 hookEvent("load", allmessagesshow);
+hookEvent("load", mwSetupToolbar);
