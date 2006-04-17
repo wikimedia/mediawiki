@@ -286,6 +286,8 @@ class QueryPage {
 				if( $tRow ) {
 					$updated = $wgLang->timeAndDate( $tRow->qci_timestamp, true, true );
 					$cacheNotice = wfMsg( 'perfcachedts', $updated );
+					$wgOut->addMeta( 'Data-Cache-Time', $tRow->qci_timestamp );
+					$wgOut->addScript( '<script language="JavaScript">var dataCacheTime = \'' . $tRow->qci_timestamp . '\';</script>' );
 				} else {
 					$cacheNotice = wfMsg( 'perfcached' );
 				}
