@@ -70,7 +70,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Maintenance script to import the contents of a text file into a wiki page
 * Add $wgReservedUsernames configuration directive to block account creation/use
 * (bug 5576) Remove debugging hack in session check
-* (bug 5426) Lowercase treatment of titles in rights log leads to broken links on Special:Log
+* (bug 5426) Lowercase treatment of titles in rights log leads to broken links
+  on Special:Log
 * Minor improvements to French localisation files
 * (bug 5181) Update "nogomatch" for Slovak
 * (bug 5594) Id translation up to # Login and logout pages section
@@ -87,6 +88,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Edit toolbar now works in pure XHTML mode (application/xhtml+xml)
 * Add watchlist clear function to allow quick purging of all items
 * (bug 5625) Additional namespace translations for Welsh
+* Add meta tag and JavaScript variables to cached special pages which provides
+  the timestamp of the last update, in YYYYMMDDHHMMSS format.
 
 == Compatibility ==
 
