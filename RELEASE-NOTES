@@ -26,6 +26,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Minor improvements to English language files
 * Improvements to German localisation files
 * (bug 5628) Translations for MessagesHr.php
+* (bug 5595) Localisation for Bosnian language (bs)
 
 == MediaWiki 1.6.3 ==
 
