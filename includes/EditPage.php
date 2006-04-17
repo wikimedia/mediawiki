@@ -1528,9 +1528,9 @@ END
 					'key'	=>	'R'
 				)
 		);
-		$toolbar ="<script type='$wgJsMimeType'>\n/*<![CDATA[*/\n";
+		$toolbar = "<div id='toolbar'>\n";
+		$toolbar.="<script type='$wgJsMimeType'>\n/*<![CDATA[*/\n";
 
-		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
 			$image=$wgStylePath.'/common/images/'.$tool['image'];
@@ -1549,8 +1549,8 @@ END
 			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
-		$toolbar.="document.writeln(\"</div>\");\n";
 		$toolbar.="/*]]>*/\n</script>";
+		$toolbar.="\n</div>";
 		return $toolbar;
 	}
 
