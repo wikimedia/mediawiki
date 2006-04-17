@@ -91,6 +91,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add meta tag and JavaScript variables to cached special pages which provides
   the timestamp of the last update, in YYYYMMDDHHMMSS format.
 * (bug 5628) More translations for MessagesHr.php
+* (bug 5595) Localisation for Bosnian language (bs)
 
 == Compatibility ==
 
