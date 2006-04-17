@@ -86,6 +86,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5235) Edit toolbar tooltips no longer show JavaScript junk in Opera
 * Edit toolbar now works in pure XHTML mode (application/xhtml+xml)
 * Add watchlist clear function to allow quick purging of all items
+* (bug 5625) Additional namespace translations for Welsh
 
 == Compatibility ==
 
