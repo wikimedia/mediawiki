@@ -85,7 +85,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5572) Edit toolbar enabled in compatible versions of Konqueror (3.5+)
 * (bug 5235) Edit toolbar tooltips no longer show JavaScript junk in Opera
 * Edit toolbar now works in pure XHTML mode (application/xhtml+xml)
-
+* Add watchlist clear function to allow quick purging of all items
 
 == Compatibility ==
 

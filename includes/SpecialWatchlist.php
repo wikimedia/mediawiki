@@ -33,6 +33,10 @@ function wfSpecialWatchlist( $par ) {
 		return;
 	}
 
+	if( wlHandleClear( $wgOut, $wgRequest, $par ) ) {
+		return;
+	}
+
 	$defaults = array(
 	/* float */ 'days' => 3.0, /* or 0.5, watch further below */
 	/* bool  */ 'hideOwn' => false,
@@ -413,6 +417,73 @@ function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
 		implode(' | ', $hours),
 		implode(' | ', $days),
 		wlDaysLink( 0, $page, $options ) );
+}
+
+/**
+ * Count the number of items on a user's watchlist
+ *
+ * @param $talk Include talk pages
+ * @return integer
+ */
+function wlCountItems( &$user, $talk = true ) {
+	$dbr =& wfGetDB( DB_SLAVE );
+	
+	# Fetch the raw count
+	$res = $dbr->select( 'watchlist', 'COUNT(*) AS count', array( 'wl_user' => $user->mId ), 'wlCountItems' );
+	$row = $dbr->fetchObject( $res );
+	$count = $row->count;
+	$dbr->freeResult( $res );
+	
+	# Halve to remove talk pages if needed
+	if( !$talk )
+		$count = floor( $count / 2 );
+		
+	return( $count );	
+}
+
+/**
+ * Allow the user to clear their watchlist
+ *
+ * @param $out Output object
+ * @param $request Request object
+ * @param $par Parameters passed to the watchlist page
+ * @return bool True if it's been taken care of; false indicates the watchlist
+ * 				code needs to do something further
+ */
+function wlHandleClear( &$out, &$request, $par ) {
+	# Check this function has something to do
+	if( $request->getText( 'action' ) == 'clear' || $par == 'clear' ) {
+		global $wgUser;
+		$out->setPageTitle( wfMsgHtml( 'clearwatchlist' ) );
+		$count = wlCountItems( $wgUser );
+		if( $count > 0 ) {
+			# See if we're clearing or confirming
+			if( $request->wasPosted() && $wgUser->matchEditToken( $request->getText( 'token' ), 'clearwatchlist' ) ) {
+				# Clearing, so do it and report the result
+				$dbw =& wfGetDB( DB_MASTER );
+				$dbw->delete( 'watchlist', array( 'wl_user' => $wgUser->mId ), 'wlHandleClear' );
+				$out->addWikiText( wfMsg( 'watchlistcleardone', $count ) );
+				$out->returnToMain();
+			} else {
+				# Confirming, so show a form
+				$wlTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
+				$out->addHTML( wfElement( 'form', array( 'method' => 'post', 'action' => $wlTitle->getLocalUrl( 'action=clear' ) ), NULL ) );
+				$out->addWikiText( wfMsg( 'watchlistcount', $count ) );
+				$out->addWikiText( wfMsg( 'watchlistcleartext' ) );
+				$out->addHTML( wfElement( 'input', array( 'type' => 'hidden', 'name' => 'token', 'value' => $wgUser->editToken( 'clearwatchlist' ) ), '' ) );
+				$out->addHTML( wfElement( 'input', array( 'type' => 'submit', 'name' => 'submit', 'value' => wfMsgHtml( 'watchlistclearbutton' ) ), '' ) );
+				$out->addHTML( wfCloseElement( 'form' ) ); 
+			}
+			return( true );
+		} else {
+			# Nothing on the watchlist; nothing to do here
+			$out->addWikiText( wfMsg( 'nowatchlist' ) );
+			$out->returnToMain();
+			return( true );
+		}
+	} else {
+		return( false );
+	}
 }
 
 ?>
