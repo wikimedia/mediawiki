@@ -943,3 +943,18 @@ CREATE TABLE /*$wgDBprefix*/job (
   PRIMARY KEY job_id (job_id),
   KEY (job_cmd, job_namespace, job_title)
 ) TYPE=InnoDB;
+
+
+-- Details of updates to cached special pages
+CREATE TABLE /*$wgDBprefix*/querycache_info (
+
+	-- Special page name
+	-- Corresponds to a qc_type value
+	qci_type varchar(255) NOT NULL default '',
+
+	-- Timestamp of last update
+	qci_timestamp char(14) NOT NULL default '19700101000000',
+
+	UNIQUE KEY ( qci_type )
+
+) TYPE=InnoDB;
