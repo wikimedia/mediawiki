@@ -1309,8 +1309,7 @@ if ( \$wgCommandLineMode ) {
 }
 
 function dieout( $text ) {
-	outputFooter( $text );
-	die();
+	die( $text . "\n\n</body>\n</html>" );
 }
 
 function importVar( &$var, $name, $default = "" ) {

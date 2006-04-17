@@ -68,8 +68,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   anchor identifiers
 * (bug 5519) Allow sidebar cache to be disabled; disable it by default.
 * Maintenance script to import the contents of a text file into a wiki page
-* installer: hide errors returned when trying to dl() mysql.so / pgsql.so
-* installer: cleanly outputbuffer when dieing out
 * Add $wgReservedUsernames configuration directive to block account creation/use
 * (bug 5576) Remove debugging hack in session check
 * (bug 5426) Lowercase treatment of titles in rights log leads to broken links on Special:Log
