@@ -242,7 +242,7 @@ $user: the User object about to be created (read-only, incomplete)
 $message: out parameter: error message to display on abort
 
 'AddNewAccount': after a user account is created
-null: This hook passes null as an argument
+$user: the User object that was created. (Parameter added in 1.7)
 
 'ArticleDelete': before an article is deleted
 $article: the article (object) being deleted

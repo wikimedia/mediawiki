@@ -114,6 +114,8 @@ class LoginForm {
 		$u->saveSettings();
 		$result = $this->mailPasswordInternal($u);
 
+		wfRunHooks( 'AddNewAccount', array( $u ) );
+
 		$wgOut->setPageTitle( wfMsg( 'accmailtitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
@@ -148,7 +150,7 @@ class LoginForm {
 			$wgUser->sendConfirmationMail();
 		}
 
-		wfRunHooks( 'AddNewAccount' );
+		wfRunHooks( 'AddNewAccount', array( $u ) );
 
 		if( $this->hasSessionCookie() ) {
 			return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ), false );
