@@ -1466,7 +1466,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
 'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
-'tooltip-diff' => 'Show which changes you made to the text. [alt-d]',
+'tooltip-diff' => 'Show which changes you made to the text. [alt-v]',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
 'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
 
