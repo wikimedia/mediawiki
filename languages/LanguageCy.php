@@ -17,10 +17,14 @@
 	NS_PROJECT_TALK   => "Sgwrs_".$wgMetaNamespace,
 	NS_IMAGE          => "Delwedd",
 	NS_IMAGE_TALK     => "Sgwrs_Delwedd",
-	NS_MEDIAWIKI      => "MediaWiki",
-	NS_MEDIAWIKI_TALK => "Sgwrs_MediaWiki",
+	NS_MEDIAWIKI      => "MediaWici",
+	NS_MEDIAWIKI_TALK => "Sgwrs_MediaWici",
 	NS_TEMPLATE       => "Nodyn",
-	NS_TEMPLATE_TALK  => "Sgwrs_Nodyn"
+	NS_TEMPLATE_TALK  => "Sgwrs_Nodyn",
+	NS_CATEGORY		  => "Categori",
+	NS_CATEGORY_TALK  => "Sgwrs_Categori",
+	NS_HELP			  => "Cymorth",
+	NS_HELP_TALK	  => "Sgwrs Cymorth"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsCy = array(
