@@ -39,8 +39,8 @@ function wfSpecialWatchlist( $par ) {
 
 	$defaults = array(
 	/* float */ 'days' => floatval( $wgUser->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
-	/* bool  */ 'hideOwn' => $wgUser->getBoolOption( 'watchlisthideown' ),
-	/* bool  */ 'hideBots' => $wgUser->getBoolOption( 'watchlisthidebots' ),
+	/* bool  */ 'hideOwn' => (int)$wgUser->getBoolOption( 'watchlisthideown' ),
+	/* bool  */ 'hideBots' => (int)$wgUser->getBoolOption( 'watchlisthidebots' ),
 				'namespace' => 'all',
 	);
 
