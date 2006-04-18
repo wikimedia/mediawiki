@@ -2641,27 +2641,20 @@ class Parser
 		}
 		
 		# DISPLAYTITLE
-		if ( !$found && $argc == 1 && $wgAllowDisplayTitle && $action == "view" ) {
+		if ( !$found && $argc == 1 && $wgAllowDisplayTitle ) {
 			$mwDT =& MagicWord::get( MAG_DISPLAYTITLE );
 			if ( $mwDT->matchStartAndRemove( $part1 ) ) {
-				global $wgOut;
 				
-				# Only the first one counts...
-				if ( $wgOut->mPageLinkTitle == "" ) {
-					$param = $args[0];			
-					$parserOptions = new ParserOptions;
-					$local_parser = new Parser ();
-					$t2 = $local_parser->parse ( $param, $this->mTitle, $parserOptions, false );
-					$wgOut->mPageLinkTitle = $wgOut->getPageTitle();
-					$wgOut->mPagetitle = $t2->GetText();
-	
-					# Add subtitle
-					$t = $this->mTitle->getPrefixedText();
-					$st = trim ( $wgOut->getSubtitle () );
-					if ( $st != "" ) $st .= " ";
-					$st .= wfMsg('displaytitle', $t);
-					$wgOut->setSubtitle ( $st );
-				}
+				# Set title in parser output object
+				$param = $args[0];
+				$parserOptions = new ParserOptions;
+				$local_parser = new Parser ();
+				$t2 = $local_parser->parse ( $param, $this->mTitle, $parserOptions, false );
+				$this->mOutput->mHTMLtitle = $t2->GetText();
+
+				# Add subtitle
+				$t = $this->mTitle->getPrefixedText();
+				$this->mOutput->mSubtitle .= wfMsg('displaytitle', $t);
 				$text = "" ;
 				$found = true ;
 			}
@@ -4040,7 +4033,9 @@ class ParserOutput
 		$mLinks,            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
 		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
 		$mImages,           # DB keys of the images used, in the array key only
-		$mExternalLinks;    # External link URLs, in the key only
+		$mExternalLinks,    # External link URLs, in the key only
+		$mHTMLtitle,		# Display HTML title
+		$mSubtitle;			# Additional subtitle
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -4056,6 +4051,8 @@ class ParserOutput
 		$this->mTemplates = array();
 		$this->mImages = array();
 		$this->mExternalLinks = array();
+		$this->mHTMLtitle = "" ;
+		$this->mSubtitle = "" ;
 	}
 
 	function getText()                   { return $this->mText; }
