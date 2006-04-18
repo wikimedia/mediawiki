@@ -327,7 +327,7 @@
 "logouttitle"        => "יציאה מהחשבון",
 "logouttext"         => "יצאתם זה עתה מהחשבון. באפשרותכם להמשיך ולעשות שימוש באתר בצורה אנונימית, או לשוב ולהיכנס לאתר עם שם משתמש זהה או אחר.",
 "welcomecreation"    => "== ברוך הבא, $1! ==
- חשבונך נפתח. אל תשכח להתאים את הגדרות המשתמש שלך.",
+חשבונך נפתח. אל תשכח להתאים את הגדרות המשתמש שלך.",
 "loginpagetitle"     => "כניסת משתמש",
 "yourname"           => "שם משתמש",
 "yourpassword"       => "סיסמה",
@@ -960,7 +960,7 @@ $3 $9",
 # Watchlist
 "watchlist"            => "רשימת המעקב שלי",
 "watchlistsub"         => '(עבור המשתמש "$1")',
-"nowatchlist"          => "אין לך דפים ברשימת המעקב.",
+"nowatchlist"          => "אין לכם דפים ברשימת המעקב.",
 "watchnologin"         => "לא נכנסתם לאתר",
 "watchnologintext"     => "עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי לערוך את רשימת המעקב.",
 "addedwatch"           => "הדף נוסף לרשימת המעקב",
@@ -1316,13 +1316,13 @@ $NEWPAGE
 "accesskey-compareselectedversions" => "v",
 
 # Tooltip help for some actions, most are in Monobook.js
-"tooltip-search"                  => "חפשו באתר {{SITENAME}} [Alt+F]",
-"tooltip-minoredit"               => "סמנו עריכה זו כמשנית [Alt+I]",
-"tooltip-save"                    => "שמור את השינויים שביצעתם [Alt+S]",
-"tooltip-preview"                 => "הראה תצוגה מקדימה, אנא השתמשו באפשרות זו לפני השמירה! [Alt+P]",
-"tooltip-diff"                    => "הראה את השינויים שערכתם בטקסט [Alt+D]",
-"tooltip-compareselectedversions" => "השווה שתי גרסאות של דף זה [Alt+V]",
-"tooltip-watch"                   => "הוסף דף זה לרשימת המעקב שלכם [Alt+W]",
+"tooltip-search"                  => "חיפוש באתר {{SITENAME}} [Alt+F]",
+"tooltip-minoredit"               => "סימון עריכה זו כמשנית [Alt+I]",
+"tooltip-save"                    => "שמירת את השינויים שביצעתם [Alt+S]",
+"tooltip-preview"                 => "צפו בתצוגה מקדימה, אנא השתמשו באפשרות זו לפני השמירה! [Alt+P]",
+"tooltip-diff"                    => "צפו בשינויים שערכתם בטקסט [Alt+D]",
+"tooltip-compareselectedversions" => "צפו בהשוואה של שתי גרסאות של דף זה [Alt+V]",
+"tooltip-watch"                   => "הוסיפו דף זה לרשימת המעקב שלכם [Alt+W]",
 
 # Stylesheets
 "Monobook.css" => "/* ערכו קובץ זה כדי להתאים את הרקע Monobook באתר כולו */",
