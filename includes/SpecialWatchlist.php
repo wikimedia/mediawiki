@@ -140,8 +140,8 @@ function wfSpecialWatchlist( $par ) {
 	$nondefaults = array();
 
 	wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
-	wfAppendToArrayIfNotDefault( 'hideOwn', $hideOwn, $defaults, $nondefaults);
-	wfAppendToArrayIfNotDefault( 'hideBots', $hideBots, $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'hideOwn', (int)$hideOwn, $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'hideBots', (int)$hideBots, $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault( 'namespace', $nameSpace, $defaults, $nondefaults );
 
 	if ( $days <= 0 ) {
