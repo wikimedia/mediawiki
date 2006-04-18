@@ -98,6 +98,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add user preference setting for an extended watchlist, showing all recent 
   edits up to a certain edit, and not just the latest edit..
 * Made MessageRo.php more general
+* (bug 5640) Indonesian localisation improvements
 
 == Compatibility ==
 
