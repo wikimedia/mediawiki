@@ -18,7 +18,7 @@ function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgMemc, $wgRequest, $wgContLang;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
-	global $wgEnotifWatchlist, $wgFilterRobotsWL;
+	global $wgEnotifWatchlist;
 	$fname = 'wfSpecialWatchlist';
 
 	$wgOut->setPagetitle( wfMsg( 'watchlist' ) );
@@ -313,12 +313,17 @@ function wfSpecialWatchlist( $par ) {
 	$skin = $wgUser->getSkin();
 	$linkElements = array( 'hideOwn' => 'wlhideshowown', 'hideBots' => 'wlhideshowbots' );
 	
-	foreach( $linkElements as $var => $msg ) {
-		$label = $$var == 0 ? wfMsgHtml( 'hide' ) : wfMsgHtml( 'show' );
-		$linkBits = wfArrayToCGI( array( $var => 1 - $$var ), $nondefaults );
-		$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
-		$links[] = wfMsgHtml( $msg, $link );
-	}
+	# Problems encountered using the fancier method
+	$label = $hideBots ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' );
+	$linkBits = wfArrayToCGI( array( 'hideBots' => 1 - (int)$hideBots ), $nondefaults );
+	$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	$links[] = wfMsgHtml( 'wlhideshowbots', $link );
+
+	$label = $hideOwn ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' );
+	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
+	$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	$links[] = wfMsgHtml( 'wlhideshowown', $link );
+
 	$wgOut->addHTML( implode( ' | ', $links ) );
 
 	# Form for namespace filtering
