@@ -38,9 +38,9 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$defaults = array(
-	/* float */ 'days' => 3.0, /* or 0.5, watch further below */
-	/* bool  */ 'hideOwn' => false,
-	/* bool  */ 'hideBots' => false,
+	/* float */ 'days' => floatval( $wgUser->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
+	/* bool  */ 'hideOwn' => $wgUser->getBoolOption( 'watchlisthideown' ),
+	/* bool  */ 'hideBots' => $wgUser->getBoolOption( 'watchlisthidebots' ),
 				'namespace' => 'all',
 	);
 
@@ -48,16 +48,14 @@ function wfSpecialWatchlist( $par ) {
 
 	# Extract variables from the request, falling back to user preferences or
 	# other default values if these don't exist
-	$prefs['days'] = floatval( $wgUser->getOption( 'watchlistdays' ) );
-	$prefs['hideown'] = $wgUser->getBoolOption( 'watchlisthideown' );
-	
-	# The hide bots thing is b0rk3d for now
-	# $prefs['bots'] = $wgUser->getBoolOption( 'watchlisthidebots' ); 
+	$prefs['days'    ] = floatval( $wgUser->getOption( 'watchlistdays' ) );
+	$prefs['hideown' ] = $wgUser->getBoolOption( 'watchlisthideown' );
+	$prefs['hidebots'] = $wgUser->getBoolOption( 'watchlisthidebots' );
 
 	# Get query variables
 	$days = $wgRequest->getVal( 'days', $prefs['days'] );
 	$hideOwn = $wgRequest->getBool( 'hideOwn', $prefs['hideown'] );
-	$hideBots = $wgRequest->getBool( 'hideBots' );
+	$hideBots = $wgRequest->getBool( 'hideBots', $prefs['hidebots'] );
 	
 	# Get namespace value, if supplied, and prepare a WHERE fragment
 	$nameSpace = $wgRequest->getIntOrNull( 'namespace' );
@@ -316,7 +314,7 @@ function wfSpecialWatchlist( $par ) {
 	$linkElements = array( 'hideOwn' => 'wlhideshowown', 'hideBots' => 'wlhideshowbots' );
 	
 	foreach( $linkElements as $var => $msg ) {
-		$label = $$var == 0 ? wfMsgHtml( 'hide' ) : wfMsgHtml( 'show' );	
+		$label = $$var == 0 ? wfMsgHtml( 'hide' ) : wfMsgHtml( 'show' );
 		$linkBits = wfArrayToCGI( array( $var => 1 - $$var ), $nondefaults );
 		$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 		$links[] = wfMsgHtml( $msg, $link );
