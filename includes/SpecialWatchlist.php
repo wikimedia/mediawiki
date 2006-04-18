@@ -259,6 +259,15 @@ function wfSpecialWatchlist( $par ) {
 		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
 	}
 
+  # Toggle watchlist content (all recent edits or just the latest)
+	if( $wgUser->getOption( 'extendwatchlist' )) {
+		$andLatest=''; 
+ 		$limitWatchlist = 'LIMIT ' . $wgUser->getOption( 'wllimit' );
+	} else {
+		$andLatest= 'AND rc_this_oldid=page_latest';
+		$limitWatchlist = '';
+	}
+
 	# TODO: Consider removing the third parameter
 	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems ),
 		$wgLang->formatNum( $npages ), '',
@@ -288,11 +297,12 @@ function wfSpecialWatchlist( $par ) {
 	  AND wl_title=rc_title
 	  AND rc_timestamp > '$cutoff'
 	  AND rc_cur_id=page_id
-	  AND rc_this_oldid=page_latest
+	  $andLatest
 	  $andHideOwn
 	  $andHideBots
 	  $nameSpaceClause
-	  ORDER BY rc_timestamp DESC";
+	  ORDER BY rc_timestamp DESC
+	  $limitWatchlist";
 
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
