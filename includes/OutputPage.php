@@ -295,6 +295,10 @@ class OutputPage {
 		if ( $parserOutput->getCacheTime() == -1 ) {
 			$this->enableClientCache( false );
 		}
+		if ( $parserOutput->mHTMLtitle != "" ) {
+			$this->mPagetitle = $parserOutput->mHTMLtitle ;
+			$this->mSubtitle .= $parserOutput->mSubtitle ;
+		}
 	}
 
 	function addParserOutput( &$parserOutput ) {
