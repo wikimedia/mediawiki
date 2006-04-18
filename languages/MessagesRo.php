@@ -64,9 +64,9 @@ ta['ca-nstab-category'] = new Array('c','Vezi categoria');",
 'accmailtitle' => "Parola a fost trimisă.",
 'actioncomplete' => "Acţiune finalizată",
 'addedwatch' => "Adăugată la lista de pagini urmărite",
-'addedwatchtext' => "Pagina \"$1\" a fost adăugată la lista ta de [[Special:Watchlist|articole urmărite]].
+'addedwatchtext' => "Pagina \"$1\" a fost adăugată la lista ta de [[{{ns:Special}}:Watchlist|articole urmărite]].
 Modificările viitoare ale acestei pagini şi a paginii asociate de discuţii
-vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de [[Special:Recentchanges|modificări recente]] pentru evidenţiere.</p>
+vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de [[{{ns:Special}}:Recentchanges|modificări recente]] pentru evidenţiere.</p>
 
 <p>Dacă doreşti să elimini această pagină din lista ta de pagini urmărite
 în viitor, apasă pe \"Nu mai urmări\" în bara de comenzi în timp ce această pagină este vizibilă.",
@@ -77,19 +77,19 @@ vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b
 'alphaindexline' => "$1 către $2",
 'alreadyloggedin' => "<strong>Eşti deja autentificat ca $1!</strong><br />",
 'alreadyrolled' => "Nu se poate reveni peste ultima editare a [[$1]]
-făcută de către [[Utilizator:$2|$2]] ([[Discuţie utilizator:$2|Discuţie]]); altcineva a editat articolul sau a revenit deja.
+făcută de către [[{{ns:User}}:$2|$2]] ([[{{ns:User_talk}}:$2|Discuţie]]); altcineva a editat articolul sau a revenit deja.
 
-Ultima editare a fost făcută de către [[Utilizator:$3|$3]] ([[Discuţie utilizator:$3|Discuţie]]).",
+Ultima editare a fost făcută de către [[{{ns:User}}:$3|$3]] ([[{{ns:User_talk}}:$3|Discuţie]]).",
 'ancientpages' => "Cele mai vechi articole",
 'and' => "şi",
 'anontalk' => "Discuţia pentru această adresă IP",
-'anontalkpagetext' => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat. De aceea trebuie să folosim [[adresă IP|adresa IP]] pentru a identifica această persoană. O adresă IP poate fi împărţită între mai mulţi utilizatori. Dacă eşti un astfel de utilizator şi crezi că îţi sunt adresate mesaje irelevante, te rugăm să-ţi [[Special:Userlogin|creezi un cont sau să te autentifici]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
+'anontalkpagetext' => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat. De aceea trebuie să folosim [[Adresă IP|adresa IP]] pentru a identifica această persoană. O adresă IP poate fi împărţită între mai mulţi utilizatori. Dacă eşti un astfel de utilizator şi crezi că îţi sunt adresate mesaje irelevante, te rugăm să-ţi [[{{ns:Special}}:Userlogin|creezi un cont sau să te autentifici]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
 'anonymous' => "Utilizator(i) anonimi ai {{SITENAME}}",
 'article' => "Articol",
 'articleexists' => "O pagină cu acelaşi nume există deja,
 sau numele pe care l-ai ales este invalid. Te rugăm să alegi un alt nume.",
 'articlepage' => "Vezi articolul",
-'autoblocker' => "Autoblocat fiindcă foloseşti aceeaşi [[adresă IP]] ca şi \"$1\". Motivul este \"$2\".",
+'autoblocker' => "Autoblocat fiindcă foloseşti aceeaşi [[Adresă IP|adresă IP]] ca şi \"$1\". Motivul este \"$2\".",
 'badarticleerror' => "Această acţiune nu poate fi efectuată pe această pagină.",
 'badfilename' => "Numele imaginii a fost schimbat; noul nume este \"$1\".",
 'badfiletype' => "\".$1\" nu este un format recomandat pentru imagini.",
@@ -105,15 +105,15 @@ Te rugăm să încerci încă o dată.",
 'blanknamespace' => "(Principală)",
 'blockedtext' => "Utilizatorul sau parola ta au fost blocate de $1.
 Motivul oferit pentru blocare a fost:<br />''$2''<p>Îl poţi contacta pe $1 sau pe unul dintre ceilalţi
-[[Project:administratori|administratori]] pentru a discuta această blocare.",
+[[{{ns:Project}}:Administratori|administratori]] pentru a discuta această blocare.",
 'blockedtitle' => "Utilizatorul este blocat",
 'blockip' => "Blocheză adresa IP",
 'blockipsuccesssub' => "Utilizatorul a fost blocat",
 'blockipsuccesstext' => "Adresa IP \"$1\" a fost blocată.
-<br />Vezi [[Special:Ipblocklist|lista de adrese IP blocate]] pentru a revizui adresele blocate.",
+<br />Vezi [[{{ns:Special}}:Ipblocklist|lista de adrese IP blocate]] pentru a revizui adresele blocate.",
 'blockiptext' => "Foloseşte chestionarul de mai jos pentru a bloca
 la scriere o adresă IP. Această funcţie trebuie folosită numai pentru
-a preveni vandalismul conform [[Project:Politica|politicii {{SITENAME}}]].
+a preveni vandalismul conform [[{{ns:Project}}:Politica|politicii {{SITENAME}}]].
 Include un motiv specific mai jos (de exemplu citează paginile care
 au fost vandalizate de acest utilizator).",
 'blocklink' => "blochează",
@@ -122,7 +122,7 @@ au fost vandalizate de acest utilizator).",
 'blocklogpage' => "Jurnal_blocări",
 'blocklogtext' => "Acesta este un jurnal al acţiunilor de blocare şi deblocare.
 [[Adresă IP|Adresele IP]] blocate automat nu sunt afişate.
-Vezi [[Special:Ipblocklist|Lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.",
+Vezi [[{{ns:Special}}:Ipblocklist|Lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.",
 'bold_sample' => "Text aldin",
 'bold_tip' => "Text aldin",
 'booksources' => "Surse de cărţi",
@@ -155,7 +155,7 @@ iar lista de mai jos nu constituie nici un fel de garanţie sau validare a servi
 sau imagine din baza de date, împreună cu istoria asociată.
 Te rugăm să îţi confirmi intenţia de a face asta, faptul că
 înţelegi consecinţele acestei acţiuni şi faptul că o faci
-în conformitate cu [[Project:Politica]].",
+în conformitate cu [[{{ns:Project}}:Politica|politica]].",
 'confirmprotect' => "Confirmă protejare",
 'confirmprotecttext' => "Eşti sigur(ă) că doreşti să protejezi pagina?",
 'confirmunprotect' => "Confirmă deprotejarea",
@@ -360,9 +360,9 @@ Te rugăm să confirmi că intenţionezi acest lucru şi faptul că vei debloca
 baza de date atunci când vei încheia operaţiunile de întreţinere.",
 'locknoconfirm' => "Nu ai confirmat căsuţa de confirmare.",
 'login' => "Autentificare",
-'loginend' => "Pentru a crea un cont de utilizator, introdu [[Project:Nume de utilizator|numele de utilizator]] şi parola, apoi fă clic pe \"Creează cont nou\". Evită folosirea numelui unei personalităţi politice, militare sau religioase, sau a unui eveniment. Evită numele de utilizator care sunt ofensive, dăunătoare sau confuze. Te rugăm să alegi un nume citeţ, nu doar un număr.
+'loginend' => "Pentru a crea un cont de utilizator, introdu [[{{ns:Project}}:Nume de utilizator|numele de utilizator]] şi parola, apoi fă clic pe \"Creează cont nou\". Evită folosirea numelui unei personalităţi politice, militare sau religioase, sau a unui eveniment. Evită numele de utilizator care sunt ofensive, dăunătoare sau confuze. Te rugăm să alegi un nume citeţ, nu doar un număr.
 
-Dacă ai nevoie de mai multe informaţii asupra modului de înregistrare, vezi articolul [[Project:Cum mă înregistrez|Cum mă înregistrez]].<br /><br />
+Dacă ai nevoie de mai multe informaţii asupra modului de înregistrare, vezi articolul [[{{ns:Project}}:Cum mă înregistrez|Cum mă înregistrez]].<br /><br />
 
 După ce te înregistrezi, pentru a te autentifica dăţile viitoare când vizitezi {{SITENAME}}, va trebui să introduci doar numele de utilizator şi parola.<br /><br />
 
@@ -387,8 +387,8 @@ Te rugăm să iei în considerare posibilitatea de a împărţi pagina în mai m
 'mailerror' => "Eroare la trimitere e-mail: $1",
 'mailmypassword' => "Trimite-mi parola pe e-mail!",
 'mailnologin' => "Nu există adresă de trimitere",
-'mailnologintext' => "Trebuie să fii [[Special:Userlogin|autentificat]]
-şi să ai o adresă validă de e-mail în [[Special:Preferences|preferinţe]]
+'mailnologintext' => "Trebuie să fii [[{{ns:Special}}:Userlogin|autentificat]]
+şi să ai o adresă validă de e-mail în [[{{ns:Special}}:Preferences|preferinţe]]
 pentru a trimite e-mail altor utilizatori.",
 'mainpage' => "Pagina principală",
 'mainpagedocfooter' => "Vezi [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentaţia asupra costumizării interfeţei]
@@ -436,7 +436,7 @@ Tastează numele utilizatorului în cutie şi apasă butonul pentru a face din u
 'movearticle' => "Mută pagina",
 'movedto' => "mutată la",
 'movenologin' => "Nu eşti autentificat",
-'movenologintext' => "Trebuie să fi un utilizator înregistrat şi să te [[Special:Userlogin|autentifici]]
+'movenologintext' => "Trebuie să fi un utilizator înregistrat şi să te [[{{ns:Special}}:Userlogin|autentifici]]
 pentru a muta o pagină.",
 'movepage' => "Mută pagina",
 'movepagebtn' => "Mută pagina",
@@ -477,7 +477,7 @@ te rugăm, asigură-te că înţelegi toate consecinţele înainte de a continua
 'newarticle' => "(Nou)",
 'newarticletext' => "Ai ajuns la o pagină care nu există.
 Pentru a o crea, începe să scri în caseta de mai jos
-(vezi [[Project:Ajutor|pagina de ajutor]] pentru mai multe informaţii).
+(vezi [[{{int:helppage}}|pagina de ajutor]] pentru mai multe informaţii).
 Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ului tău",
 'newpage' => "Pagină nouă",
 'newpages' => "Pagini noi",
@@ -491,7 +491,6 @@ Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ul
 'nlinks' => "$1 legături",
 'noarticletext' => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} nu are încă un articol cu acest nume'''
 * Pentru a începe articolul, fă clic pe '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} editează pagina]'''.
-* Poate există o intrare cu numele [[Wiktionary:ro:{{PAGENAME}}|{{PAGENAME}}]] în proiectul nostru frate, în [http://ro.wiktionary.org Wikţionar].
 </div>",
 'noconnect' => "Nu s-a putut conecta baza de date pe $1",
 'nocontribs' => "Nu a fost găsită nici o modificare care să satisfacă acest criteriu.",
@@ -581,7 +580,7 @@ $2 Redirijări&nbsp; Căutări după $3 $9",
 'prefs-misc' => "Diverse reglări",
 'prefs-personal' => "Date de utilizator",
 'prefsnologin' => "Neautentificat",
-'prefsnologintext' => "Trebuie să fii [[Special:Userlogin|autentificat]]
+'prefsnologintext' => "Trebuie să fii [[{{ns:Special}}:Userlogin|autentificat]]
 pentru a-ţi putea salva preferinţele.",
 'prefsreset' => "Preferinţele au fost resetate.",
 'preview' => "Previzualizare",
@@ -596,15 +595,15 @@ pentru a-ţi putea salva preferinţele.",
 'protectedpage' => "Pagină protejată",
 'protectedpagewarning' => "<strong>ATENŢIE! Această pagină a fost blocată şi numai utilizatorii
 cu privilegii de administrator o pot edita. Te rugăm să urmezi sugestiile
-[[Project:Pagină_protejată|despre pagini protejate]] când editezi.</strong>",
+[[{{ns:Project}}:Pagină protejată|despre pagini protejate]] când editezi.</strong>",
 'protectedtext' => "Această pagină a fost protejată la editare;
 există mai multe motive posibile pentru aceasta, vezi
-[[Project:Pagină protejată]].
+[[{{ns:Project}}:Pagină protejată]].
 
 Poţi vedea şi copia sursa acestei pagini:",
 'protectlogpage' => "Jurnal_protecţii",
 'protectlogtext' => "Dedesubt găseşti lista de blocări/deblocări ale paginilor.
-Vezi [[Project:Pagină protejată]] pentru mai multe informaţii.",
+Vezi [[{{ns:Project}}:Pagină protejată]] pentru mai multe informaţii.",
 'protectpage' => "Protejează pagina",
 'protectsub' => "(Protejând \"$1\")",
 'protectthispage' => "Protejează pagina",
@@ -643,9 +642,9 @@ deci nu vei putea să salvezi editările în acest moment. Poţi copia textul
 'recentchangeslinked' => "Modificări corelate",
 'recentchangestext' => "Aceată pagină permite vizualizarea ultimelor modificări ale paginilor {{SITENAME}} în română.
 
-[[Project:bun venit|Bun venit la {{SITENAME}}]]! Nu ezita să vizitezi secţiunile de [[Project:întrebări frecvente|întrebări frecvente]], [[Project:politica|politica {{SITENAME}}]] (în special [[Project:convenţii pentru denumiri|convenţii pentru denumiri]] şi [[Project:punct de vedere neutru|punct de vedere neutru]]), şi cele mai comune [[Project:greşeli frecvente|greşeli în {{SITENAME}}]].
+[[{{ns:Project}}:Bun venit|Bun venit la {{SITENAME}}]]! Nu ezita să vizitezi secţiunile de [[{{ns:Project}}:Întrebări frecvente|întrebări frecvente]], [[{{ns:Project}}:Politica|politica {{SITENAME}}]] (în special [[{{ns:Project}}:Convenţii pentru denumiri|convenţii pentru denumiri]] şi [[{{ns:Project}}:Punct de vedere neutru|punct de vedere neutru]]), şi cele mai comune [[{{ns:Project}}:Greşeli frecvente|greşeli în {{SITENAME}}]].
 
-Este foarte important să nu adaugi în {{SITENAME}} materiale protejate de [[drepturi de autor]]. Problemele legale rezultate ar putea prejudicia în mod serios proiectul în întregime, aşa că te rugăm insistent să ai grijă să nu faci acest lucru.",
+Este foarte important să nu adaugi în {{SITENAME}} materiale protejate de [[Drepturi de autor|drepturi de autor]]. Problemele legale rezultate ar putea prejudicia în mod serios proiectul în întregime, aşa că te rugăm insistent să ai grijă să nu faci acest lucru.",
 'redirectedfrom' => "(Redirijat de la $1)",
 'remembermypassword' => "Reţine-mi parola între sesiuni.",
 'removechecked' => "Elimină elementele bifate din lista de pagini urmărite",
@@ -769,7 +768,7 @@ drepturile de scriere pentru o adresă IP blocată anterior..",
 'undeletebtn' => "Recuperează!",
 'undeletedarticle' => "\"$1\" a fost recuperat",
 'undeletedtext' => "Articolul [[:$1|$1]] a fost recuperat.
-Vezi [[Project:Raport_ştergeri]] pentru o listă a ştergerilor şi recuperărilor recente.",
+Vezi [[{{ns:Project}}:Raport ştergeri]] pentru o listă a ştergerilor şi recuperărilor recente.",
 'undeletehistory' => "Dacă recuperezi pagina, toate versiunile asociate
 vor fi adăugate retroactiv în istorie. Dacă o pagină nouă cu acelaşi nume
 a fost creată de la momentul ştergerii acesteia, versiunile recuperate
@@ -815,7 +814,7 @@ Toate datele/orele sunt afişate ca timp universal (UTC).
 <ul>
 </ul>",
 'uploadnologin' => "Nu eşti autentificat",
-'uploadnologintext' => "Trebuie să fi [[Special:Userlogin|autentificat]]
+'uploadnologintext' => "Trebuie să fi [[{{ns:Special}}:Userlogin|autentificat]]
 ca să trimiţi fişiere.",
 'uploadtext' => "<strong>STOP!</strong> Înainte de a trimite un fişier aici,
 te rugăm să citeşti şi să respecţi <a href=\"/wiki/Project:Politica_de_utilizare_a_imaginilor\">politica de utilizare a imaginilor</a>.
@@ -835,8 +834,8 @@ Această operaţiune poate dura, mai ales dacă ai o legătură lentă la Intern
 PNG pentru desene şi alte imagini cu contururi clare şi OGG pentru fişiere de sunet.
 
 Te rugăm să foloseşti nume explicite pentru fişiere ca să eviţi confuziile.
-Pentru a include o imagine într-un articol, foloseşti o legătură de forma <b>[[imagine:fişier.jpg]]</b> sau <b>[[imagine:fişier.png|text alternativ]]</b>
-sau <b>[[media:fişier.ogg]]</b> pentru fişiere de sunet.
+Pentru a include o imagine într-un articol, foloseşti o legătură de forma <b>[[{{ns:Image}}:Fişier.jpg]]</b> sau <b>[[{{ns:Image}}:Fişier.png|text alternativ]]</b>
+sau <b>[[{{ns:Media}}:fişier.ogg]]</b> pentru fişiere de sunet.
 <p>Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENAME}}, alte persoane pot edita sau şterge fişierele pe care le trimiţi dacă e în interesul enciclopediei, şi ţi se poate chiar bloca accesul la trimiterea de fişiere dacă abuzezi de sistem.",
 'uploadwarning' => "Avertizare la trimiterea fişierului",
 'user_rights_set' => "<b>Drepturi de utilizator pentru \"$1\" actualizate</b>",
@@ -872,18 +871,18 @@ pagini urmărite şi apasă pe butonul corespunzător din partea de jos a pagini
 'watchmethod-recent' => "căutarea schimbărilor recente pentru paginile urmărite",
 'watchnochange' => "Nici unul dintre articolele pe care le urmăreşti nu a fost modificat în perioada de timp afişată.",
 'watchnologin' => "Nu eşti autentificat",
-'watchnologintext' => "Trebuie să fii [[Special:Userlogin|autentificat]]
+'watchnologintext' => "Trebuie să fii [[{{ns:Special}}:Userlogin|autentificat]]
 pentru a-ţi modifica lista de articole urmărite.",
 'watchthis' => "Urmăreşte această pagină",
 'watchthispage' => "Urmăreşte pagina",
 'welcomecreation' => "<h2>Bun venit, $1!</h2><p>A fost creat un cont pentru tine
 Nu uita să-ţi personalizezi preferinţele în {{SITENAME}}.",
 'whatlinkshere' => "Ce se leagă aici",
-'whitelistacctext' => "Trebuie să te [[Special:Userlogin|autentifici]] şi să ai permisiunile corecte pentru a crea conturi.",
+'whitelistacctext' => "Trebuie să te [[{{ns:Special}}:Userlogin|autentifici]] şi să ai permisiunile corecte pentru a crea conturi.",
 'whitelistacctitle' => "Nu ai dreptul de a crea conturi",
-'whitelistedittext' => "Trebuie să te [[Special:Userlogin|autentifici]] pentru a edita articole.",
+'whitelistedittext' => "Trebuie să te [[{{ns:Special}}:Userlogin|autentifici]] pentru a edita articole.",
 'whitelistedittitle' => "Este necesară autentificarea pentru a edita",
-'whitelistreadtext' => "Trebuie să te [[Special:Userlogin|autentifici]] pentru a citi articole.",
+'whitelistreadtext' => "Trebuie să te [[{{ns:Special}}:Userlogin|autentifici]] pentru a citi articole.",
 'whitelistreadtitle' => "Este necesară autentificarea pentru a citi",
 'wikipediapage' => "Vezi pagina meta",
 'wlnote' => "Dedesubt găseşti ultimele $1 schimbări din ultimele <b>$2</b> ore.",
