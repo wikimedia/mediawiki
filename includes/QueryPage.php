@@ -40,6 +40,7 @@ $wgQueryPages = array(
 	array( 'WantedCategoriesPage',		'Wantedcategories'		),
 	array( 'WantedPagesPage',		'Wantedpages'			),
 	array( 'UnwatchedPagesPage',		'Unwatchedpages'		),
+	array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
 );
 wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
 

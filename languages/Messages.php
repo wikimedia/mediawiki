@@ -919,6 +919,11 @@ this old version, (rev) = revert to this old version.
 # List redirects
 'listredirects' => 'List redirects',
 
+# Unused templates
+'unusedtemplates' => 'Unused templates',
+'unusedtemplatestext' => 'This page lists all pages in the template namespace which are not included in another page. Remember to check for other links to the templates before deleting them.',
+'unusedtemplateswlh' => 'other links',
+
 # Statistics
 #
 'statistics'	=> 'Statistics',
