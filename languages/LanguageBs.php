@@ -15,7 +15,7 @@ require_once( "LanguageUtf8.php" );
 	NS_USER             => "Korisnik",
 	NS_USER_TALK        => "Razgovor_sa_korisnikom",
 	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => ($wgMetaNamespaceTalk ? $wgMetaNamespaceTalk : "Razgovor_o_".$wgMetaNamespace ),
+	NS_PROJECT_TALK     => FALSE,  # Set in constructor
 	NS_IMAGE            => "Slika",
 	NS_IMAGE_TALK       => "Razgovor_o_slici",
 	NS_MEDIAWIKI        => "MedijaViki",
@@ -127,7 +127,7 @@ class LanguageBs extends LanguageUtf8 {
     function LanguageBs() {
         global $wgNamespaceNamesBs, $wgMetaNamespace;
         LanguageUtf8::LanguageUtf8();
-        $wgNamespaceNamesBs[NS_PROJECT_TALK] = 'Razgovor_o_' .
+        $wgNamespaceNamesBs[NS_PROJECT_TALK] = 'Razgovor_' .
             str_replace( ' ', '_',
                 $this->convertGrammar( $wgMetaNamespace, 'instrumental' ) );
     }
