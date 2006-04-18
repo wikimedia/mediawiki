@@ -95,6 +95,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 2910) Default view preferences for watchlists
 * Add "hide bot edits from the watchlist" user preference
 * (bug 5250) Introduce Special:Unusedtemplates
+* Add user preference setting for an extended watchlist, showing all recent 
+  edits up to a certain edit, and not just the latest edit..
 
 == Compatibility ==
 

@@ -27,7 +27,7 @@ class PreferencesForm {
 	var $mUserLanguage, $mUserVariant;
 	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName, $mImageSize;
-	var $mUnderline;
+	var $mUnderline, $mWatchlistEdits;
 
 	/**
 	 * Constructor
@@ -65,6 +65,7 @@ class PreferencesForm {
 		$this->mPosted = $request->wasPosted();
 		$this->mSuccess = $request->getCheck( 'success' );
 		$this->mWatchlistDays = $request->getVal( 'wpWatchlistDays' );
+		$this->mWatchlistEdits = $request->getVal( 'wpWatchlistEdits' );
 
 		$this->mSaveprefs = $request->getCheck( 'wpSaveprefs' ) &&
 			$this->mPosted &&
@@ -258,6 +259,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
 		$wgUser->setOption( 'contextchars', $this->validateIntOrNull( $this->mSearchChars ) );
 		$wgUser->setOption( 'rclimit', $this->validateIntOrNull( $this->mRecent ) );
+		$wgUser->setOption( 'wllimit', $this->validateIntOrNull( $this->mWatchlistEdits, 0, 1000 ) );
 		$wgUser->setOption( 'rows', $this->validateInt( $this->mRows, 4, 1000 ) );
 		$wgUser->setOption( 'cols', $this->validateInt( $this->mCols, 4, 1000 ) );
 		$wgUser->setOption( 'stubthreshold', $this->validateIntOrNull( $this->mStubs ) );
@@ -362,6 +364,7 @@ class PreferencesForm {
 		$this->mImageSize = $wgUser->getOption( 'imagesize' );
 		$this->mThumbSize = $wgUser->getOption( 'thumbsize' );
 		$this->mRecent = $wgUser->getOption( 'rclimit' );
+		$this->mWatchlistEdits = $wgUser->getOption( 'wllimit' );
 		$this->mUnderline = $wgUser->getOption( 'underline' );
 		$this->mWatchlistDays = $wgUser->getOption( 'watchlistdays' );
 
@@ -853,7 +856,9 @@ class PreferencesForm {
 		$wgOut->addHTML( '<label for="wpWatchlistDays">' . wfMsgHtml( 'prefs-watchlist-days' ) . '</label> ' );
 		$wgOut->addHTML( '<input type="text" name="wpWatchlistDays" id="wpWatchlistDays" value="' . $this->mWatchlistDays . '" size="3" />' );
 		$wgOut->addHTML( '<p></p>' ); # Spacing
-		$wgOut->addHTML( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots' ) ) );
+		$wgOut->addHTML( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots', 'extendwatchlist' ) ) );
+		$wgOut->addHTML( '<label for="wpWatchlistEdits">' . wfMsgHtml( 'prefs-watchlist-edits' ) . '</label> ' );
+		$wgOut->addHTML( '<input type="text" name="wpWatchlistEdits" id="wpWatchlistEdits" value="' . $this->mWatchlistEdits . '" size="3" />' );
 
 		$wgOut->addHTML( '</fieldset>' );
 
