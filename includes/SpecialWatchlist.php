@@ -262,7 +262,7 @@ function wfSpecialWatchlist( $par ) {
   # Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
 		$andLatest=''; 
- 		$limitWatchlist = 'LIMIT ' . $wgUser->getOption( 'wllimit' );
+ 		$limitWatchlist = 'LIMIT ' . intval( $wgUser->getOption( 'wllimit' ) );
 	} else {
 		$andLatest= 'AND rc_this_oldid=page_latest';
 		$limitWatchlist = '';
