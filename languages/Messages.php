@@ -64,6 +64,7 @@ parent class in order maintain consistency across languages.
 'tog-autopatrol' => 'Mark edits I make as patrolled',
 'tog-forceeditsummary' => 'Prompt me when entering a blank edit summary',
 'tog-watchlisthideown' => 'Hide my edits from the watchlist',
+'tog-watchlisthidebots' => 'Hide bot edits from the watchlist',
 
 'underline-always' => 'Always',
 'underline-never' => 'Never',
@@ -1096,10 +1097,8 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'wlnote' 		=> 'Below are the last $1 changes in the last <b>$2</b> hours.',
 'wlshowlast' 		=> 'Show last $1 hours $2 days $3',
 'wlsaved'		=> 'This is a saved version of your watchlist.',
-'wlhideshowown'   	=> '$1 my edits.',
-'wlhideshowbots'   	=> '$1 bot edits.',
-'wlshow'		=> 'Show',
-'wlhide'		=> 'Hide',
+'wlhideshowown'   	=> '$1 my edits',
+'wlhideshowbots'   	=> '$1 bot edits',
 
 'enotif_mailer' 		=> '{{SITENAME}} Notification Mailer',
 'enotif_reset'			=> 'Mark all pages visited',
