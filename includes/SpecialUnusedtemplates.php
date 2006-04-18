@@ -5,7 +5,7 @@
  * @subpackage Special pages
  *
  * @author Rob Church <robchur@gmail.com>
- * @copyright © 2006 Rob Church
+ * @copyright Â© 2006 Rob Church
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
