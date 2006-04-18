@@ -21,7 +21,7 @@ function wfElement( $element, $attribs = null, $contents = '') {
 	if( is_null( $contents ) ) {
 		$out .= '>';
 	} else {
-		if( $contents == '' ) {
+		if( $contents === '' ) {
 			$out .= ' />';
 		} else {
 			$out .= '>' . htmlspecialchars( $contents ) . "</$element>";

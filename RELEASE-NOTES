@@ -102,6 +102,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5592) Actions are logged with the default language for the
    wiki, not the language of the user performing the operation.
 * (bug 5644) Error in LanguageBs.php file
+* (bug 5646) Compare for identical types in wfElement()
 
 == Compatibility ==
 
