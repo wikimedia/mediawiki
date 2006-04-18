@@ -163,6 +163,7 @@ $wgDateFormatsEn = array(
 	'autopatrol',
 	'forceeditsummary',
 	'watchlisthideown',
+	'watchlisthidebots',
 );
 
 /* private */ $wgBookstoreListEn = array(

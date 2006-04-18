@@ -93,6 +93,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5628) More translations for MessagesHr.php
 * (bug 5595) Localisation for Bosnian language (bs)
 * (bug 2910) Default view preferences for watchlists
+* Add "hide bot edits from the watchlist" user preference
 
 == Compatibility ==
 

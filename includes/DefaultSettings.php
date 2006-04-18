@@ -1898,12 +1898,6 @@ $wgTranscludeCacheExpiry = 3600;
 $wgUseTrackbacks = false;
 
 /**
- * Enable filtering of robots in Special:Watchlist
- */
-
-$wgFilterRobotsWL = false;
-
-/**
  * Enable filtering of categories in Recentchanges
  */
 $wgAllowCategorizedRecentChanges = false ;

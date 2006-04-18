@@ -265,7 +265,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'imagesize', $this->mImageSize );
 		$wgUser->setOption( 'thumbsize', $this->mThumbSize );
 		$wgUser->setOption( 'underline', $this->validateInt($this->mUnderline, 0, 2) );
-		$wgUser->setOption( 'watchlistdays', $this->validateFloat( $this->mWatchlistDays, 0.5, 5 ) );
+		$wgUser->setOption( 'watchlistdays', $this->validateFloat( $this->mWatchlistDays, 0, 7 ) );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
@@ -853,7 +853,7 @@ class PreferencesForm {
 		$wgOut->addHTML( '<label for="wpWatchlistDays">' . wfMsgHtml( 'prefs-watchlist-days' ) . '</label> ' );
 		$wgOut->addHTML( '<input type="text" name="wpWatchlistDays" id="wpWatchlistDays" value="' . $this->mWatchlistDays . '" size="3" />' );
 		$wgOut->addHTML( '<p></p>' ); # Spacing
-		$wgOut->addHTML( $this->getToggles( array( 'watchlisthideown' ) ) );
+		$wgOut->addHTML( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots' ) ) );
 
 		$wgOut->addHTML( '</fieldset>' );
 

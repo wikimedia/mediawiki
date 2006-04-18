@@ -248,13 +248,9 @@ function wfSpecialWatchlist( $par ) {
 
 	# Up estimate of watched items by 15% to compensate for talk pages...
 
+	# Toggles
 	$andHideOwn = $hideOwn ? "AND (rc_user <> $uid)" : '';
-	if( $wgFilterRobotsWL ) {
-		$andHideBotsOptional = $hideBots ? "AND (rc_bot = 0)" : '';
-	} else {
-		$andHideBotsOptional = "AND rc_this_oldid=page_latest";
-	}
-
+	$andHideBots = $hideBots ? "AND (rc_bot = 0)" : '';
 
 	# Show watchlist header
 	$header = '';
@@ -295,7 +291,7 @@ function wfSpecialWatchlist( $par ) {
 	  AND rc_timestamp > '$cutoff'
 	  AND rc_cur_id=page_id
 	  $andHideOwn
-	  $andHideBotsOptional
+	  $andHideBots
 	  $nameSpaceClause
 	  ORDER BY rc_timestamp DESC";
 
@@ -314,23 +310,20 @@ function wfSpecialWatchlist( $par ) {
 
 	$wgOut->addHTML( "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n" );
 
-	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink(
-		$wgContLang->specialPage( 'Watchlist' ),
-		(0 == $hideOwn) ? wfMsgHtml( 'wlhide' ) : wfMsgHtml( 'wlshow' ),
-		wfArrayToCGI( array('hideOwn' => 1-$hideOwn ), $nondefaults ) );
-	$wgOut->addHTML( wfMsgHtml( "wlhideshowown", $s ) );
-
-	if( $wgFilterRobotsWL ) {
-		$s = $sk->makeKnownLink(
-      $wgContLang->specialPage( 'Watchlist' ),
-		  (0 == $hideBots) ? wfMsgHtml( 'wlhide' ) : wfMsgHtml( 'wlshow' ),
-		  wfArrayToCGI( array('hideBots' => 1-$hideBots ), $nondefaults ) );
-	  $wgOut->addHTML( wfMsgHtml( "wlhideshowbots", "  $s" ) );
+	# Spit out some control panel links
+	$thisTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
+	$skin = $wgUser->getSkin();
+	$linkElements = array( 'hideOwn' => 'wlhideshowown', 'hideBots' => 'wlhideshowbots' );
+	
+	foreach( $linkElements as $var => $msg ) {
+		$label = $$var == 0 ? wfMsgHtml( 'hide' ) : wfMsgHtml( 'show' );	
+		$linkBits = wfArrayToCGI( array( $var => 1 - $$var ), $nondefaults );
+		$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+		$links[] = wfMsgHtml( $msg, $link );
 	}
+	$wgOut->addHTML( implode( ' | ', $links ) );
 
 	# Form for namespace filtering
-	$thisTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
 	$thisAction = $thisTitle->escapeLocalUrl();
 	$nsForm  = "<form method=\"post\" action=\"{$thisAction}\">\n";
 	$nsForm .= "<label for=\"namespace\">" . wfMsg( 'namespace' ) . "</label> ";
