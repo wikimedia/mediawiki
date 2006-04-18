@@ -79,6 +79,7 @@ $wgSpecialPages = array(
 	'Unwatchedpages' => new SpecialPage( 'Unwatchedpages', 'unwatchedpages' ),
 	'Listredirects' => new SpecialPage( 'Listredirects' ),
 	'Revisiondelete' => new SpecialPage( 'Revisiondelete', 'deleterevision' ),
+	'Unusedtemplates' => new SpecialPage( 'Unusedtemplates' ),
 );
 
 if( !$wgDisableCounters ) {
