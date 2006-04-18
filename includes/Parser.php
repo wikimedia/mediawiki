@@ -2673,7 +2673,8 @@ class Parser
 			if ( $colonPos !== false ) {
 				$function = strtolower( substr( $part1, 1, $colonPos - 1 ) );
 				if ( isset( $this->mFunctionHooks[$function] ) ) {
-					$funcArgs = array_merge( array( &$this, substr( $part1, $colonPos + 1 ) ), $args );
+					$funcArgs = array_map( 'trim', $args );
+					$funcArgs = array_merge( array( &$this, trim( substr( $part1, $colonPos + 1 ) ) ), $funcArgs );
 					$result = call_user_func_array( $this->mFunctionHooks[$function], $funcArgs );
 					$found = true;
 					if ( is_array( $result ) ) {
