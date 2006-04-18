@@ -99,6 +99,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   edits up to a certain edit, and not just the latest edit..
 * Made MessageRo.php more general
 * (bug 5640) Indonesian localisation improvements
+* (bug 5592) Actions are logged with the default language for the
+   wiki, not the language of the user performing the operation.
 
 == Compatibility ==
 

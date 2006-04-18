@@ -206,13 +206,17 @@ class LogPage {
 					$titleLink = $title->getPrefixedText();
 				}
 				if( count( $params ) == 0 ) {
-					$rv = wfMsg( $actions[$key], $titleLink );
+					if ( $skin ) {
+						$rv = wfMsg( $actions[$key], $titleLink );
+					} else {
+						$rv = wfMsgForContent( $actions[$key], $titleLink );
+					}
 				} else {
 					array_unshift( $params, $titleLink );
 					if ( $translate && $key == 'block/block' ) {
 						$params[1] = $wgLang->translateBlockExpiry($params[1]);
 					}
-					$rv = wfMsgReal( $actions[$key], $params, true, false ); // FIXME: use wfMsgForContent() ?
+					$rv = wfMsgReal( $actions[$key], $params, true, !$skin );
 				}
 			}
 		} else {
