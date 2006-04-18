@@ -27,6 +27,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Improvements to German localisation files
 * (bug 5628) Translations for MessagesHr.php
 * (bug 5595) Localisation for Bosnian language (bs)
+* (bug 5592) Actions are logged with the default language for the
+   wiki, not the language of the user performing the operation.
 
 == MediaWiki 1.6.3 ==
 
