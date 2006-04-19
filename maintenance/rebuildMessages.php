@@ -40,7 +40,7 @@ if ( $response == 0 ) {
 Usage:   php rebuildMessages.php <action> [filename]
 
 Action must be one of:
-  --update   Update messages to include latest additions to Language.php
+  --update   Update messages to include latest additions to MessagesXX.php
   --rebuild  Delete all messages and reinitialise namespace
 
 If a message dump file is given, messages will be read from it to supplement
