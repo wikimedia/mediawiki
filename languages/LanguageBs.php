@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /** Bosnian (bosanski)
   *
   * @package MediaWiki
