@@ -106,6 +106,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5472) Language::userAdjust()->minDiff not initialized on else condition
 * (bug 5386) LanguageMk.php: updated namespaces translations
 * (bug 5422) Stub for Romani (rmy) language which extends ro
+* Fix linktrail for LanguageSr
 
 == Compatibility ==
 
