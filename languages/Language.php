@@ -122,7 +122,7 @@ if(isset($wgExtraNamespaces)) {
  * The array keys make up the set of formats which this language allows
  * the user to select. It's exposed via Language::getDateFormats().
  *
- * @access private
+ * @private
  */
 $wgDateFormatsEn = array(
 	MW_DATE_DEFAULT => 'No preference',
@@ -507,9 +507,10 @@ class Language {
 
 	/**
 	 * Used by date() and time() to adjust the time output.
-	 * @access public
+	 * @public
 	 * @param int   $ts the time in date('YmdHis') format
-	 * @param mixed $tz adjust the time by this amount (default false)
+	 * @param mixed $tz adjust the time by this amount (default false,
+	 *                  mean we get user timecorrection setting)
 	 * @return int
 
 	 */
@@ -520,9 +521,12 @@ class Language {
 			$tz = $wgUser->getOption( 'timecorrection' );
 		}
 
+		# minutes and hours differences:
+		$minDiff = 0;
+		$hrDiff  = 0;
+
 		if ( $tz === '' ) {
 			$hrDiff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
-			$minDiff = 0;
 		} elseif ( strpos( $tz, ':' ) !== false ) {
 			$tzArray = explode( ':', $tz );
 			$hrDiff = intval($tzArray[0]);
@@ -530,8 +534,11 @@ class Language {
 		} else {
 			$hrDiff = intval( $tz );
 		}
+
+		# No difference ? Return time unchanged
 		if ( 0 == $hrDiff && 0 == $minDiff ) { return $ts; }
 
+		# Generate an adjusted date
 		$t = mktime( (
 		  (int)substr( $ts, 8, 2) ) + $hrDiff, # Hours
 		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
@@ -581,7 +588,7 @@ class Language {
 	}
 
 	/**
-	 * @access public
+	 * @public
 	 * @param mixed  $ts the time format which needs to be turned into a
 	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param bool   $adj whether to adjust the time output according to the
@@ -614,7 +621,7 @@ class Language {
 	}
 
 	/**
-	* @access public
+	* @public
 	* @param mixed  $ts the time format which needs to be turned into a
 	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	* @param bool   $adj whether to adjust the time output according to the
@@ -664,7 +671,7 @@ class Language {
 	/**
 	 * Return true if the time should display before the date.
 	 * @return bool
-	 * @access private
+	 * @private
 	 */
 	function timeBeforeDate() {
 		return true;
@@ -679,7 +686,7 @@ class Language {
 	}
 
 	/**
-	* @access public
+	* @public
 	* @param mixed  $ts the time format which needs to be turned into a
 	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	* @param bool   $adj whether to adjust the time output according to the
@@ -875,7 +882,7 @@ class Language {
 	/**
 	 * Italic is unsuitable for some languages
 	 *
-	 * @access public
+	 * @public
 	 *
 	 * @param string $text The text to be emphasized.
 	 * @return string
@@ -905,7 +912,7 @@ class Language {
 	 *
 	 * @todo check if it's viable to use localeconv() for the decimal
 	 *       seperator thing.
-	 * @access public
+	 * @public
 	 * @param mixed $number the string to be formatted, should be an integer or
 	 *        a floating point number.
 	 * @param bool $year are we being passed a year? (turns off commafication)
@@ -1108,7 +1115,7 @@ class Language {
 	 * for example, the preferred language variant
 	 *
 	 * @return string
-	 * @access public
+	 * @public
 	 */
 	function getExtraHashOptions() {
 		return $this->mConverter->getExtraHashOptions();
@@ -1141,7 +1148,7 @@ class Language {
 	 * which should be merged onto a link of the form [[foo]]bar.
 	 *
 	 * @return string
-	 * @access public
+	 * @public
 	 */
 	function linkTrail() {
 		return $this->getMessage( 'linktrail' );
