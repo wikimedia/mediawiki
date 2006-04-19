@@ -142,5 +142,10 @@ class LanguageSr extends LanguageSr_ec {
 	function getVariantname( $code ) {
 		return wfMsg( "variantname-$code" );
 	}
+
+	function linkTrail() {
+		return "/^([abvgdđežzijklljmnnjoprstćufhcčdžšабвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD";
+	}
+
 }
 ?>

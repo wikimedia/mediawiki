@@ -759,7 +759,6 @@ ovu staru verziju, (vrt) = vrati na ovu staru verziju.
 'linklistsub' => '(spisak veza)',
 'linkshere' => 'Sledeće stranice su povezane ovde:',
 'linkstoimage' => 'Sledeće stranice koriste ovu sliku:',
-'linktrail' => "/^([abvgdđežzijklljmnnjoprstćufhcčdžš]+)(.*)$/usD",
 'listform' => 'spisak',
 'listingcontinuesabbrev' => ' nast.',
 'listusers' => 'Spisak korisnika',
