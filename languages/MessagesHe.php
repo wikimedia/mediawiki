@@ -1007,9 +1007,9 @@ $3 $9",
 "enotif_newpagetext" => "זהו דף חדש.",
 "changed"            => "שונה",
 "created"            => "נוצר",
-"enotif_subject"     => "הדף $PAGETITLE באתר {{SITENAME}} $CHANGEDORCREATED על־ידי $PAGEEDITOR",
+"enotif_subject"     => 'הדף $PAGETITLE באתר {{SITENAME}} $CHANGEDORCREATED על־ידי $PAGEEDITOR',
 "enotif_lastvisited" => "ראו $1 לכל השינויים מאז ביקורכם האחרון.",
-"enotif_body"        => "לכבוד $WATCHINGUSERNAME,
+"enotif_body"        => 'לכבוד $WATCHINGUSERNAME,
 
 הדף $PAGETITLE באתר {{SITENAME}} $CHANGEDORCREATED ב־$PAGEEDITDATE על־ידי $PAGEEDITOR, ראו $PAGETITLE_URL לגרסה הנוכחית.
 
@@ -1030,7 +1030,7 @@ $NEWPAGE
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 משוב ועזרה נוספת:
-{{fullurl:{{ns:project}}:עזרה}}",
+{{fullurl:{{ns:project}}:עזרה}}',
 
 # Delete/protect/revert
 "deletepage"                  => "מחיקת דף",
