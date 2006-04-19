@@ -236,7 +236,7 @@ class DateFormatter
 
 	/**
 	 * Makes an ISO month, e.g. 02, from a month name
-	 * @param string $monthName Month name
+	 * @param $monthName String: month name
 	 * @return string ISO month name
 	 */
 	function makeIsoMonth( $monthName ) {
@@ -248,7 +248,7 @@ class DateFormatter
 
 	/**
 	 * @todo document
-	 * @param string $year Year name
+	 * @param $year String: Year name
 	 * @return string ISO year name
 	 */
 	function makeIsoYear( $year ) {

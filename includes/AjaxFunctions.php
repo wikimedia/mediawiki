@@ -6,11 +6,12 @@ if( !defined( 'MEDIAWIKI' ) )
 require_once('WebRequest.php');
 
 /**
- * Function converts an Javascript escaped string back into a string with specified charset (default is UTF-8).
+ * Function converts an Javascript escaped string back into a string with
+ * specified charset (default is UTF-8).
  * Modified function from http://pure-essence.net/stuff/code/utf8RawUrlDecode.phps
  *
- * @param string $source escaped with Javascript's escape() function
- * @param string $iconv_to destination character set will be used as second paramether in the iconv function. Default is UTF-8.
+ * @param $source String escaped with Javascript's escape() function
+ * @param $iconv_to String destination character set will be used as second paramether in the iconv function. Default is UTF-8.
  * @return string
  */
 function js_unescape($source, $iconv_to = 'UTF-8') {
@@ -54,7 +55,7 @@ function js_unescape($source, $iconv_to = 'UTF-8') {
  * Function coverts number of utf char into that character.
  * Function taken from: http://sk2.php.net/manual/en/function.utf8-encode.php#49336
  *
- * @param int $num
+ * @param $num Integer
  * @return utf8char
  */
 function code2utf($num){

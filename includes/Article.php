@@ -23,27 +23,37 @@ $wgArticleOldContentFields = false;
  * @package MediaWiki
  */
 class Article {
-	/**#@+
-	 * @access private
+	/**@{{
+	 * @private
 	 */
-	var $mContent, $mContentLoaded;
-	var $mUser, $mTimestamp, $mUserText;
-	var $mCounter, $mComment, $mGoodAdjustment, $mTotalAdjustment;
-	var $mMinorEdit, $mRedirectedFrom;
-	var $mTouched, $mFileCache, $mTitle;
-	var $mId, $mTable;
-	var $mForUpdate;
-	var $mOldId;
-	var $mRevIdFetched;
-	var $mRevision;
-	var $mRedirectUrl;
-	var $mLatest;
-	/**#@-*/
+	var $mComment;			//!<
+	var $mContent;			//!<
+	var $mContentLoaded;	//!<
+	var $mCounter;			//!<
+	var $mFileCache;		//!<
+	var $mForUpdate;		//!<
+	var $mGoodAdjustment;	//!<
+	var $mId;				//!<
+	var $mLatest;			//!<
+	var $mMinorEdit;		//!<
+	var $mOldId;			//!<
+	var $mRedirectedFrom;	//!<
+	var $mRedirectUrl;		//!<
+	var $mRevIdFetched;		//!<
+	var $mRevision;			//!<
+	var $mTable;			//!<
+	var $mTimestamp;		//!<
+	var $mTitle;			//!<
+	var $mTotalAdjustment;	//!<
+	var $mTouched;			//!<
+	var $mUser;				//!<
+	var $mUserText;			//!<
+	/**@}}*/
 
 	/**
 	 * Constructor and clear the article
-	 * @param Title &$title
-	 * @param integer $oldId Revision ID, null to fetch from request, zero for current
+	 * @param $title Reference to a Title object.
+	 * @param $oldId Integer revision ID, null to fetch from request, zero for current
 	 */
 	function Article( &$title, $oldId = null ) {
 		$this->mTitle =& $title;
@@ -54,7 +64,7 @@ class Article {
 	/**
 	 * Tell the page view functions that this view was redirected
 	 * from another page on the wiki.
-	 * @param Title $from
+	 * @param $from Title object.
 	 */
 	function setRedirectedFrom( $from ) {
 		$this->mRedirectedFrom = $from;
@@ -110,7 +120,7 @@ class Article {
 
 	/**
 	  * Clear the object
-	  * @access private
+	  * @private
 	  */
 	function clear() {
 		$this->mDataLoaded    = false;
@@ -133,8 +143,8 @@ class Article {
 	 * Note that getContent/loadContent do not follow redirects anymore.
 	 * If you need to fetch redirectable content easily, try
 	 * the shortcut in Article::followContent()
-	 *
-	 * @fixme There are still side-effects in this!
+	 * FIXME
+	 * @todo There are still side-effects in this!
 	 *        In general, you should use the Revision class, not Article,
 	 *        to fetch text for purposes other than page views.
 	 *
@@ -198,8 +208,8 @@ class Article {
 	/**
 	 * Get the contents of a page from its title and remove includeonly tags
 	 *
-	 * @param string The title of the page
-	 * @return string The contents of the page
+	 * @param $preload String: the title of the page.
+	 * @return string The contents of the page.
 	 */
 	function getPreloadedText($preload) {
 		if ( $preload === '' )
@@ -222,13 +232,13 @@ class Article {
 
 	/**
 	 * This function returns the text of a section, specified by a number ($section).
-	 * A section is text under a heading like == Heading == or <h1>Heading</h1>, or
+	 * A section is text under a heading like == Heading == or \<h1\>Heading\</h1\>, or
 	 * the first section before any such heading (section 0).
 	 *
 	 * If a section contains subsections, these are also returned.
 	 *
-	 * @param string $text text to look in
-	 * @param integer $section section number
+	 * @param $text String: text to look in
+	 * @param $section Integer: section number
 	 * @return string text of the requested section
 	 */
 	function getSection($text,$section) {
@@ -360,7 +370,7 @@ class Article {
 	 * Fetch a page record with the given conditions
 	 * @param Database $dbr
 	 * @param array    $conditions
-	 * @access private
+	 * @private
 	 */
 	function pageData( &$dbr, $conditions ) {
 		$fields = array(
@@ -407,7 +417,7 @@ class Article {
 	 * some source.
 	 *
 	 * @param object $data
-	 * @access private
+	 * @private
 	 */
 	function loadPageData( $data = 'fromdb' ) {
 		if ( $data === 'fromdb' ) {
@@ -510,7 +520,7 @@ class Article {
 	/**
 	 * Read/write accessor to select FOR UPDATE
 	 *
-	 * @param mixed $x
+	 * @param $x Mixed: FIXME
 	 */
 	function forUpdate( $x = NULL ) {
 		return wfSetVar( $this->mForUpdate, $x );
@@ -529,9 +539,9 @@ class Article {
 	/**
 	 * Get options for all SELECT statements
 	 *
-	 * @param array $options an optional options array which'll be appended to
+	 * @param $options Array: an optional options array which'll be appended to
 	 *                       the default
-	 * @return array Options
+	 * @return Array: options
 	 */
 	function getSelectOptions( $options = '' ) {
 		if ( $this->mForUpdate ) {
@@ -583,7 +593,7 @@ class Article {
 	 * Determine whether a page  would be suitable for being counted as an
 	 * article in the site_stats table based on the title & its content
 	 *
-	 * @param string $text Text to analyze
+	 * @param $text String: text to analyze
 	 * @return bool
 	 */
 	function isCountable( $text ) {
@@ -599,7 +609,7 @@ class Article {
 	/**
 	 * Tests if the article text represents a redirect
 	 *
-	 * @param string $text
+	 * @param $text String: FIXME
 	 * @return bool
 	 */
 	function isRedirect( $text = false ) {
@@ -626,7 +636,7 @@ class Article {
 	/**
 	 * Loads everything except the text
 	 * This isn't necessary for all uses, so it's only done if needed.
-	 * @access private
+	 * @private
 	 */
 	function loadLastEdit() {
 		if ( -1 != $this->mUser )
@@ -680,6 +690,11 @@ class Article {
 		return $this->mRevIdFetched;
 	}
 
+	/**
+	 * @todo Document
+	 * @param $limit Integer: default 0.
+	 * @param $offset Integer: default 0.
+	 */
 	function getContributors($limit = 0, $offset = 0) {
 		$fname = 'Article::getContributors';
 
@@ -1058,7 +1073,7 @@ class Article {
 	 * @param Database $dbw
 	 * @param string   $restrictions
 	 * @return int     The newly created page_id key
-	 * @access private
+	 * @private
 	 */
 	function insertOn( &$dbw, $restrictions = '' ) {
 		$fname = 'Article::insertOn';
@@ -1097,7 +1112,7 @@ class Article {
 	 *                          Giving 0 indicates the new page flag should
 	 *                          be set on.
 	 * @return bool true on success, false on failure
-	 * @access private
+	 * @private
 	 */
 	function updateRevisionOn( &$dbw, $revision, $lastRevision = null ) {
 		$fname = 'Article::updateToRevision';
@@ -1161,7 +1176,7 @@ class Article {
 
 	/**
 	 * Insert a new article into the database
-	 * @access private
+	 * @private
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
 		global $wgUser;
@@ -1752,7 +1767,7 @@ class Article {
 	 * suitable for insertion into the page_restrictions field.
 	 * @param array $limit
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function flattenRestrictions( $limit ) {
 		if( !is_array( $limit ) ) {
@@ -2227,7 +2242,7 @@ class Article {
 
 	/**
 	 * Do standard deferred updates after page view
-	 * @access private
+	 * @private
 	 */
 	function viewUpdates() {
 		global $wgDeferredUpdateList;
@@ -2249,7 +2264,7 @@ class Article {
 	/**
 	 * Do standard deferred updates after page edit.
 	 * Every 1000th edit, prune the recent changes table.
-	 * @access private
+	 * @private
 	 * @param string $text
 	 */
 	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid) {
@@ -2325,10 +2340,10 @@ class Article {
 	/**
 	 * Generate the navigation links when browsing through an article revisions
 	 * It shows the information as:
-	 *   Revision as of <date>; view current revision
-	 *   <- Previous version | Next Version ->
+	 *   Revision as of \<date\>; view current revision
+	 *   \<- Previous version | Next Version -\>
 	 *
-	 * @access private
+	 * @private
 	 * @param string $oldid		Revision ID of this article revision
 	 */
 	function setOldSubtitle( $oldid=0 ) {
@@ -2612,7 +2627,7 @@ class Article {
 	 * Info about this page
 	 * Called for ?action=info when $wgAllowPageInfo is on.
 	 *
-	 * @access public
+	 * @public
 	 */
 	function info() {
 		global $wgLang, $wgOut, $wgAllowPageInfo, $wgUser;
@@ -2671,7 +2686,7 @@ class Article {
 	 *
 	 * @param Title $title
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function pageCountInfo( $title ) {
 		$id = $title->getArticleId();

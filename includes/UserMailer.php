@@ -69,11 +69,11 @@ class MailAddress {
  * array of parameters. It requires PEAR:Mail to do that.
  * Otherwise it just uses the standard PHP 'mail' function.
  *
- * @param MailAddress $to recipient's email
- * @param MailAddress $from sender's email
- * @param string $subject email's subject
- * @param string $body email's text
- * @param string $replyto optional reply-to email (default : false)
+ * @param $to MailAddress: recipient's email
+ * @param $from MailAddress: sender's email
+ * @param $subject String: email's subject.
+ * @param $body String: email's text.
+ * @param $replyto String: optional reply-to email (default: false).
  */
 function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString;
@@ -143,8 +143,8 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 /**
  * Get the mail error message in global $wgErrorString
  *
- * @parameter $code error number
- * @parameter $string error message
+ * @param $code Integer: error number
+ * @param $string String: error message
  */
 function mailErrorHandler( $code, $string ) {
 	global $wgErrorString;
@@ -174,21 +174,20 @@ function mailErrorHandler( $code, $string ) {
  *
  */
 class EmailNotification {
-	/**#@+
-	 * @access private
+	/**@{{
+	 * @private
 	 */
 	var $to, $subject, $body, $replyto, $from;
 	var $user, $title, $timestamp, $summary, $minorEdit, $oldid;
 
-	/**#@-*/
+	/**@}}*/
 
 	/**
 	 * @todo document
-	 * @param $currentPage
-	 * @param $currentNs
+	 * @param $title Title object
 	 * @param $timestamp
-	 * @param $currentSummary
-	 * @param $currentMinorEdit
+	 * @param $summary
+	 * @param $minorEdit
 	 * @param $oldid (default: false)
 	 */
 	function notifyOnPageChange(&$title, $timestamp, $summary, $minorEdit, $oldid=false) {
@@ -289,7 +288,7 @@ class EmailNotification {
 	} # function NotifyOnChange
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function composeCommonMailtext() {
 		global $wgUser, $wgEmergencyContact, $wgNoReplyAddress;
@@ -386,7 +385,7 @@ class EmailNotification {
 	 * @param User $watchingUser
 	 * @param object $mail
 	 * @return bool
-	 * @access private
+	 * @private
 	 */
 	function composeAndSendPersonalisedMail( $watchingUser ) {
 		global $wgLang;

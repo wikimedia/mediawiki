@@ -12,7 +12,9 @@ require_once( 'SpecialRecentchanges.php' );
 require_once( 'WatchedItem.php' );
 
 /**
- * constructor
+ * Constructor
+ * @todo Document $par parameter.
+ * @param $par String: FIXME
  */
 function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgMemc, $wgRequest, $wgContLang;

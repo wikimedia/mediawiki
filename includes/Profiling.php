@@ -300,10 +300,10 @@ class Profiler {
 	 * Counts the number of profiled function calls sitting under
 	 * the given point in the call graph. Not the most efficient algo.
 	 *
-	 * @param array $stack
-	 * @param int $start
-	 * @return int
-	 * @access private
+	 * @param $stack Array:
+	 * @param $start Integer:
+	 * @return Integer
+	 * @private
 	 */
 	function calltreeCount(& $stack, $start) {
 		$level = $stack[$start][1];

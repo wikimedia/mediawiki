@@ -24,7 +24,7 @@
  * Requires PHPUnit.
  *
  * @package UtfNormal
- * @access private
+ * @private
  */
 
 if( php_sapi_name() != 'cli' ) {
@@ -46,7 +46,7 @@ require_once( 'UtfNormal.php' );
  */
 class CleanUpTest extends PHPUnit_TestCase {
 	/**
-	 * @param string $name ???
+	 * @param $name String: FIXME
 	 */
 	function CleanUpTest( $name ) {
 		$this->PHPUnit_TestCase( $name );

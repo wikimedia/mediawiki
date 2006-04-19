@@ -13,7 +13,7 @@ class HistoryBlob
 	/**
 	 * setMeta and getMeta currently aren't used for anything, I just thought
 	 * they might be useful in the future.
-	 * @param string $meta a single string
+	 * @param $meta String: a single string.
 	 */
 	function setMeta( $meta ) {}
 

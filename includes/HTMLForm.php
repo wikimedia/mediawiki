@@ -20,9 +20,9 @@ class HTMLForm {
 	}
 
 	/**
-	 * @access private
-	 * @param string $name Name of the fieldset.
-	 * @param string $content HTML content to put in.
+	 * @private
+	 * @param $name String: name of the fieldset.
+	 * @param $content String: HTML content to put in.
 	 * @return string HTML fieldset
 	 */
 	function fieldset( $name, $content ) {
@@ -31,9 +31,9 @@ class HTMLForm {
 	}
 
 	/**
-	 * @access private
-	 * @param string $varname Name of the checkbox.
-	 * @param boolean $checked Set true to check the box (default False).
+	 * @private
+	 * @param $varname String: name of the checkbox.
+	 * @param $checked Boolean: set true to check the box (default False).
 	 */
 	function checkbox( $varname, $checked=false ) {
 		if ( $this->mRequest->wasPosted() && !is_null( $this->mRequest->getVal( $varname ) ) ) {
@@ -46,10 +46,10 @@ class HTMLForm {
 	}
 
 	/**
-	 * @access private
-	 * @param string $varname Name of the textbox.
-	 * @param string $value Optional value (default empty)
-	 * @param integer $size Optional size of the textbox (default 20)
+	 * @private
+	 * @param $varname String: name of the textbox.
+	 * @param $value String: optional value (default empty)
+	 * @param $size Integer: optional size of the textbox (default 20)
 	 */
 	function textbox( $varname, $value='', $size=20 ) {
 		if ( $this->mRequest->wasPosted() ) {
@@ -61,9 +61,9 @@ class HTMLForm {
 	}
 
 	/**
-	 * @access private
-	 * @param string $varname Name of the radiobox.
-	 * @param array $fields Various fields.
+	 * @private
+	 * @param $varname String: name of the radiobox.
+	 * @param $fields Array: Various fields.
 	 */
 	function radiobox( $varname, $fields ) {
 		foreach ( $fields as $value => $checked ) {
@@ -75,10 +75,10 @@ class HTMLForm {
 	}
 
 	/**
-	 * @access private
-	 * @param string $varname Name of the textareabox.
-	 * @param string $value Optional value (default empty)
-	 * @param integer $size Optional size of the textarea (default 20)
+	 * @private
+	 * @param $varname String: name of the textareabox.
+	 * @param $value String: optional value (default empty)
+	 * @param $size Integer: optional size of the textarea (default 20)
 	 */
 	function textareabox ( $varname, $value='', $size=20 ) {
 		if ( $this->mRequest->wasPosted() ) {
@@ -90,9 +90,9 @@ class HTMLForm {
 	}
 
 	/**
-	 * @access private
-	 * @param string $varname Name of the arraybox.
-	 * @param integer $size Optional size of the textarea (default 20)
+	 * @private
+	 * @param $varname String: name of the arraybox.
+	 * @param $size Integer: Optional size of the textarea (default 20)
 	 */
 	function arraybox( $varname , $size=20 ) {
 		$s = '';
@@ -113,11 +113,13 @@ class HTMLForm {
 // functions used by SpecialUserrights.php and SpecialGroups.php
 
 /** Build a select with all defined groups
- * @param string $selectname Name of this element. Name of form is automaticly prefixed.
- * @param array $selected Array of element selected when posted. Only multiples will show them.
- * @param boolean $multiple A multiple elements select.
- * @param integer $size Number of elements to be shown ignored for non-multiple (default 6).
- * @param boolean $reverse If true, multiple select will hide selected elements (default false).
+ * @param $selectname String: name of this element. Name of form is automaticly prefixed.
+ * @param $selectmsg String: FIXME
+ * @param $selected Array: array of element selected when posted. Only multiples will show them.
+ * @param $multiple Boolean: A multiple elements select.
+ * @param $size Integer: number of elements to be shown ignored for non-multiple (default 6).
+ * @param $reverse Boolean: if true, multiple select will hide selected elements (default false).
+ * @todo Document $selectmsg
 */
 function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=false, $size=6, $reverse=false) {
 	$groups = User::getAllGroups();
@@ -153,7 +155,7 @@ function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=
 }
 
 /** Build a select with all existent rights
- * @param array $selected Names(?) of user rights that should be selected.
+ * @param $selected Array: Names(?) of user rights that should be selected.
  * @return string HTML select.
  */
 function HTMLSelectRights($selected='') {

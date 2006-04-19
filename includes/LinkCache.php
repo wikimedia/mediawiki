@@ -91,7 +91,7 @@ class LinkCache {
 
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
-	 * @param string $title Title to add
+	 * @param $title String: title to add
 	 * @return integer
 	 */
 	function addLink( $title ) {
@@ -105,7 +105,7 @@ class LinkCache {
 
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
-	 * @param Title $nt Title to add
+	 * @param $nt Title to add.
 	 * @return integer
 	 */
 	function addLinkObj( &$nt ) {

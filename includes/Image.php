@@ -30,7 +30,7 @@ define( 'MW_IMAGE_VERSION', 1 );
 class Image
 {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	var	$name,          # name of the image (constructor)
 		$imagePath,     # Path of the image (loadFromXxx)
@@ -58,7 +58,7 @@ class Image
 	 * Create an Image object from an image name
 	 *
 	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
-	 * @access public
+	 * @public
 	 */
 	function newFromName( $name ) {
 		$title = Title::makeTitleSafe( NS_IMAGE, $name );
@@ -466,7 +466,7 @@ class Image
 
 	/**
 	 * Return the name of this image
-	 * @access public
+	 * @public
 	 */
 	function getName() {
 		return $this->name;
@@ -474,7 +474,7 @@ class Image
 
 	/**
 	 * Return the associated title object
-	 * @access public
+	 * @public
 	 */
 	function getTitle() {
 		return $this->title;
@@ -482,7 +482,7 @@ class Image
 
 	/**
 	 * Return the URL of the image file
-	 * @access public
+	 * @public
 	 */
 	function getURL() {
 		if ( !$this->url ) {
@@ -513,7 +513,7 @@ class Image
 	/**
 	 * Return the image path of the image in the
 	 * local file system as an absolute path
-	 * @access public
+	 * @public
 	 */
 	function getImagePath() {
 		$this->load();
@@ -524,7 +524,7 @@ class Image
 	 * Return the width of the image
 	 *
 	 * Returns -1 if the file specified is not a known image type
-	 * @access public
+	 * @public
 	 */
 	function getWidth() {
 		$this->load();
@@ -535,7 +535,7 @@ class Image
 	 * Return the height of the image
 	 *
 	 * Returns -1 if the file specified is not a known image type
-	 * @access public
+	 * @public
 	 */
 	function getHeight() {
 		$this->load();
@@ -544,7 +544,7 @@ class Image
 
 	/**
 	 * Return the size of the image file, in bytes
-	 * @access public
+	 * @public
 	 */
 	function getSize() {
 		$this->load();
@@ -710,7 +710,7 @@ class Image
 
 	/**
 	 * Return the escapeLocalURL of this image
-	 * @access public
+	 * @public
 	 */
 	function getEscapeLocalURL() {
 		$this->getTitle();
@@ -719,7 +719,7 @@ class Image
 
 	/**
 	 * Return the escapeFullURL of this image
-	 * @access public
+	 * @public
 	 */
 	function getEscapeFullURL() {
 		$this->getTitle();
@@ -732,7 +732,7 @@ class Image
 	 * @param string $name	Name of the image, without the leading "Image:"
 	 * @param boolean $fromSharedDirectory	Should this be in $wgSharedUploadPath?
 	 * @return string URL of $name image
-	 * @access public
+	 * @public
 	 * @static
 	 */
 	function imageUrl( $name, $fromSharedDirectory = false ) {
@@ -751,7 +751,7 @@ class Image
 	/**
 	 * Returns true if the image file exists on disk.
 	 * @return boolean Whether image file exist on disk.
-	 * @access public
+	 * @public
 	 */
 	function exists() {
 		$this->load();
@@ -760,7 +760,7 @@ class Image
 
 	/**
 	 * @todo document
-	 * @access private
+	 * @private
 	 */
 	function thumbUrl( $width, $subdir='thumb') {
 		global $wgUploadPath, $wgUploadBaseUrl, $wgSharedUploadPath;
@@ -810,7 +810,7 @@ class Image
 	 *
 	 * @param integer $width	Width of the thumbnail image
 	 * @param boolean $shared	Does the thumbnail come from the shared repository?
-	 * @access private
+	 * @private
 	 */
 	function thumbName( $width ) {
 		$thumb = $width."px-".$this->name;
@@ -843,7 +843,7 @@ class Image
 	 *
 	 * @param integer $width	maximum width of the generated thumbnail
 	 * @param integer $height	maximum height of the image (optional)
-	 * @access public
+	 * @public
 	 */
 	function createThumb( $width, $height=-1 ) {
 		$thumb = $this->getThumbnail( $width, $height );
@@ -859,7 +859,7 @@ class Image
 	 * @param integer $width	maximum width of the generated thumbnail
 	 * @param integer $height	maximum height of the image (optional)
 	 * @return ThumbnailImage
-	 * @access public
+	 * @public
 	 */
 	function getThumbnail( $width, $height=-1 ) {
 		if ( $height <= 0 ) {
@@ -907,7 +907,7 @@ class Image
 	 * pixel size of the thumbnail -- or null on failure.
 	 *
 	 * @return ThumbnailImage
-	 * @access private
+	 * @private
 	 */
 	function renderThumb( $width, $useScript = true ) {
 		global $wgUseSquid, $wgInternalServer;
@@ -1045,7 +1045,7 @@ class Image
 	 * @param int $width Desired width in pixels
 	 * @param int $height Desired height in pixels
 	 * @return bool True on error, false or error string on failure.
-	 * @access private
+	 * @private
 	 */
 	function reallyRenderThumb( $thumbPath, $width, $height ) {
 		global $wgSVGConverters, $wgSVGConverter;
@@ -1286,7 +1286,7 @@ class Image
 	 *  1      query for old versions, return first one
 	 *  2, ... return next old version from above query
 	 *
-	 * @access public
+	 * @public
 	 */
 	function nextHistoryLine() {
 		$fname = 'Image::nextHistoryLine()';
@@ -1335,7 +1335,7 @@ class Image
 
 	/**
 	 * Reset the history pointer to the first element of the history
-	 * @access public
+	 * @public
 	 */
 	function resetHistory() {
 		$this->historyLine = 0;
@@ -1349,7 +1349,7 @@ class Image
 	* i.e. whether the images are all found in the same directory,
 	* or in hashed paths like /images/3/3c.
 	*
-	* @access public
+	* @public
 	* @param boolean $fromSharedDirectory Return the path to the file
 	*   in a shared repository (see $wgUseSharedRepository and related
 	*   options in DefaultSettings.php) instead of a local one.
@@ -1652,8 +1652,8 @@ class Image
  *
  * This function is called from thumb.php before Setup.php is included
  *
- * @param string $fname		file name of the image file
- * @access public
+ * @param $fname String: file name of the image file.
+ * @public
  */
 function wfImageDir( $fname ) {
 	global $wgUploadDirectory, $wgHashedUploadDirectory;
@@ -1678,10 +1678,9 @@ function wfImageDir( $fname ) {
  *
  * This function is called from thumb.php before Setup.php is included
  *
- * @param string $fname		file name of the original image file
- * @param string $subdir	(optional) subdirectory of the image upload directory that should be used for storing the thumbnail. Default is 'thumb'
- * @param boolean $shared	(optional) use the shared upload directory
- * @access public
+ * @param $fname String: file name of the original image file
+ * @param $shared Boolean: (optional) use the shared upload directory (default: 'false').
+ * @public
  */
 function wfImageThumbDir( $fname, $shared = false ) {
 	$base = wfImageArchiveDir( $fname, 'thumb', $shared );
@@ -1724,10 +1723,10 @@ function wfDeprecatedThumbDir( $thumbName , $subdir='thumb', $shared=false) {
  *
  * This function is called from thumb.php before Setup.php is included
  *
- * @param string $fname		file name of the thumbnail file, including file size prefix
- * @param string $subdir	(optional) subdirectory of the image upload directory that should be used for storing the old version. Default is 'archive'
- * @param boolean $shared	(optional) use the shared upload directory (only relevant for other functions which call this one)
- * @access public
+ * @param $fname String: file name of the thumbnail file, including file size prefix.
+ * @param $subdir String: subdirectory of the image upload directory that should be used for storing the old version. Default is 'archive'.
+ * @param $shared Boolean use the shared upload directory (only relevant for other functions which call this one). Default is 'false'.
+ * @public
  */
 function wfImageArchiveDir( $fname , $subdir='archive', $shared=false ) {
 	global $wgUploadDirectory, $wgHashedUploadDirectory;
@@ -1775,9 +1774,9 @@ function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
 /**
  * Returns the image URL of an image's old version
  *
- * @param string $fname		file name of the image file
- * @param string $subdir	(optional) subdirectory of the image upload directory that is used by the old version. Default is 'archive'
- * @access public
+ * @param $name String: file name of the image file
+ * @param $subdir String: (optional) subdirectory of the image upload directory that is used by the old version. Default is 'archive'
+ * @public
  */
 function wfImageArchiveUrl( $name, $subdir='archive' ) {
 	global $wgUploadPath, $wgHashedUploadDirectory;
@@ -1796,8 +1795,8 @@ function wfImageArchiveUrl( $name, $subdir='archive' ) {
  * Return a rounded pixel equivalent for a labeled CSS/SVG length.
  * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
  *
- * @param string $length
- * @return int Length in pixels
+ * @param $length String: CSS/SVG length.
+ * @return Integer: length in pixels
  */
 function wfScaleSVGUnit( $length ) {
 	static $unitLength = array(
@@ -1826,7 +1825,7 @@ function wfScaleSVGUnit( $length ) {
  * @todo check XML more carefully
  * @todo sensible defaults
  *
- * @param string $filename
+ * @param $filename String: full name of the file (passed to php fopen()).
  * @return array
  */
 function wfGetSVGsize( $filename ) {
@@ -1856,9 +1855,9 @@ function wfGetSVGsize( $filename ) {
 }
 
 /**
- * Determine if an image exists on the 'bad image list'
+ * Determine if an image exists on the 'bad image list'.
  *
- * @param string $name The image to check
+ * @param $name String: the image name to check
  * @return bool
  */
 function wfIsBadImage( $name ) {
@@ -1889,7 +1888,7 @@ class ThumbnailImage {
 	/**
 	 * @param string $path Filesystem path to the thumb
 	 * @param string $url URL path to the thumb
-	 * @access private
+	 * @private
 	 */
 	function ThumbnailImage( $url, $width, $height, $path = false ) {
 		$this->url = $url;
@@ -1918,7 +1917,7 @@ class ThumbnailImage {
 	 *
 	 * @param array $attribs
 	 * @return string
-	 * @access public
+	 * @public
 	 */
 	function toHtml( $attribs = array() ) {
 		$attribs['src'] = $this->url;
@@ -1939,10 +1938,10 @@ class ThumbnailImage {
 /**
  * Calculate the largest thumbnail width for a given original file size
  * such that the thumbnail's height is at most $maxHeight.
- * @param int $boxWidth
- * @param int $boxHeight
- * @param int $maxHeight
- * @return int
+ * @param $boxWidth Integer Width of the thumbnail box.
+ * @param $boxHeight Integer Height of the thumbnail box.
+ * @param $maxHeight Integer Maximum height expected for the thumbnail.
+ * @return Integer.
  */
 function wfFitBoxWidth( $boxWidth, $boxHeight, $maxHeight ) {
 	$idealWidth = $boxWidth * $maxHeight / $boxHeight;

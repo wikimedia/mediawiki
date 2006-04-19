@@ -22,7 +22,7 @@
  * Should probably merge them for consistency.
  *
  * @package UtfNormal
- * @access public
+ * @public
  */
 
 /** */
@@ -31,9 +31,9 @@
  * Return UTF-8 sequence for a given Unicode code point.
  * May die if fed out of range data.
  *
- * @param int $codepoint
- * @return string
- * @access public
+ * @param $codepoint Integer:
+ * @return String
+ * @public
  */
 function codepointToUtf8( $codepoint ) {
 	if($codepoint <		0x80) return chr($codepoint);
@@ -56,9 +56,9 @@ function codepointToUtf8( $codepoint ) {
  * Unicode code points and return a UTF-8 string composed of those
  * characters. Used by UTF-8 data generation and testing routines.
  *
- * @param string $sequence
- * @return string
- * @access private
+ * @param $sequence String
+ * @return String
+ * @private
  */
 function hexSequenceToUtf8( $sequence ) {
 	$utf = '';
@@ -73,9 +73,9 @@ function hexSequenceToUtf8( $sequence ) {
  * Take a UTF-8 string and return a space-separated series of hex
  * numbers representing Unicode code points. For debugging.
  *
- * @param string $str
+ * @param $str String: UTF-8 string.
  * @return string
- * @access private
+ * @private
  */
 function utf8ToHexSequence( $str ) {
 	return rtrim( preg_replace( '/(.)/uSe',
@@ -87,9 +87,9 @@ function utf8ToHexSequence( $str ) {
  * Determine the Unicode codepoint of a single-character UTF-8 sequence.
  * Does not check for invalid input data.
  *
- * @param string $char
- * @return int
- * @access public
+ * @param $char String
+ * @return Integer
+ * @public
  */
 function utf8ToCodepoint( $char ) {
 	# Find the length
@@ -127,9 +127,9 @@ function utf8ToCodepoint( $char ) {
 /**
  * Escape a string for inclusion in a PHP single-quoted string literal.
  *
- * @param string $string
- * @return string
- * @access public
+ * @param $string String: string to be escaped.
+ * @return String: escaped string.
+ * @public
  */
 function escapeSingleString( $string ) {
 	return strtr( $string,

@@ -32,11 +32,8 @@ global $wgExternalBlobCache;
 $wgExternalBlobCache = array();
 
 class ExternalStoreDB {
-	/**
-	 * Fetch data from given URL
-	 * @param string $url An url
-	 */
 
+	/** @todo Document.*/
 	function &getLoadBalancer( $cluster ) {
 		global $wgExternalServers, $wgExternalLoadBalancers;
 		if ( !array_key_exists( $cluster, $wgExternalLoadBalancers ) ) {
@@ -46,16 +43,19 @@ class ExternalStoreDB {
 		return $wgExternalLoadBalancers[$cluster];
 	}
 
+	/** @todo Document.*/
 	function &getSlave( $cluster ) {
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_SLAVE );
 	}
 
+	/** @todo Document.*/
 	function &getMaster( $cluster ) {
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_MASTER );
 	}
 
+	/** @todo Document.*/
 	function getTable( &$db ) {
 		$table = $db->getLBInfo( 'blobs table' );
 		if ( is_null( $table ) ) {
@@ -64,10 +64,11 @@ class ExternalStoreDB {
 		return $table;
 	}
 
+	/**
+	 * Fetch data from given URL
+	 * @param string $url An url of the form DB://cluster/id or DB://cluster/id/itemid for concatened storage.
+	 */
 	function fetchFromURL($url) {
-		#
-		# URLs have the form DB://cluster/id or DB://cluster/id/itemid for concatenated storage
-		#
 		$path = explode( '/', $url );
 		$cluster  = $path[2];
 		$id	  = $path[3];
@@ -89,8 +90,11 @@ class ExternalStoreDB {
 	 * Fetch a blob item out of the database; a cache of the last-loaded
 	 * blob will be kept so that multiple loads out of a multi-item blob
 	 * can avoid redundant database access and decompression.
+	 * @param $cluster
+	 * @param $id
+	 * @param $itemID
 	 * @return mixed
-	 * @access private
+	 * @private
 	 */
 	function &fetchBlob( $cluster, $id, $itemID ) {
 		global $wgExternalBlobCache;
@@ -125,8 +129,8 @@ class ExternalStoreDB {
 	/**
 	 * Insert a data item into a given cluster
 	 *
-	 * @param string $cluster The cluster name
-	 * @param string $data The data item
+	 * @param $cluster String: the cluster name
+	 * @param $data String: the data item
 	 * @return string URL
 	 */
 	function store( $cluster, $data ) {

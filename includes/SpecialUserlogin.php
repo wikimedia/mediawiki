@@ -95,7 +95,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function addNewAccountMailPassword() {
 		global $wgOut;
@@ -131,7 +131,7 @@ class LoginForm {
 
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function addNewAccount() {
 		global $wgUser, $wgEmailAuthentication;
@@ -160,7 +160,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
@@ -263,9 +263,9 @@ class LoginForm {
 	 * Actually add a user to the database.
 	 * Give it a User object that has been initialised with a name.
 	 *
-	 * @param User $u
-	 * @return User
-	 * @access private
+	 * @param $u User object.
+	 * @return User object.
+	 * @private
 	 */
 	function &initUser( &$u ) {
 		$u->addToDatabase();
@@ -283,7 +283,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function processLogin() {
 		global $wgUser, $wgAuth, $wgReservedUsernames;
@@ -348,7 +348,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function mailPassword() {
 		if ( '' == $this->mName ) {
@@ -378,7 +378,7 @@ class LoginForm {
 
 	/**
 	 * @return mixed true on success, WikiError on failure
-	 * @access private
+	 * @private
 	 */
 	function mailPasswordInternal( $u ) {
 		global $wgCookiePath, $wgCookieDomain, $wgCookiePrefix, $wgCookieSecure;
@@ -407,7 +407,7 @@ class LoginForm {
 	/**
 	 * @param string $msg Message that will be shown on success
 	 * @param bool $auto Toggle auto-redirect to main page; default true
-	 * @access private
+	 * @private
 	 */
 	function successfulLogin( $msg, $auto = true ) {
 		global $wgUser;
@@ -438,7 +438,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
 		global $wgUser, $wgOut;
@@ -519,7 +519,7 @@ class LoginForm {
 	}
 	
 	/**
-	 * @access private
+	 * @private
 	 */
 	function showCreateOrLoginLink( &$user ) {
 		if( $this->mType == 'signup' ) {
@@ -532,7 +532,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function hasSessionCookie() {
 		global $wgDisableCookieCheck;
@@ -540,7 +540,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function cookieRedirectCheck( $type ) {
 		global $wgOut;
@@ -552,7 +552,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function onCookieRedirectCheck( $type ) {
 		global $wgUser;
@@ -572,7 +572,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function throttleHit( $limit ) {
 		global $wgOut;

@@ -6,9 +6,9 @@
  * Strings are assumed to not contain XML-illegal characters; special
  * characters (<, >, &) are escaped but illegals are not touched.
  *
- * @param string $element
- * @param array $attribs Name=>value pairs. Values will be escaped.
- * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+ * @param $element String:
+ * @param $attribs Array: Name=>value pairs. Values will be escaped.
+ * @param $contents String: NULL to make an open tag only; '' for a contentless closed tag (default)
  * @return string
  */
 function wfElement( $element, $attribs = null, $contents = '') {
@@ -35,9 +35,9 @@ function wfElement( $element, $attribs = null, $contents = '') {
  * UtfNormal::cleanUp() validator first to ensure that no invalid UTF-8
  * is passed.
  *
- * @param string $element
- * @param array $attribs Name=>value pairs. Values will be escaped.
- * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+ * @param $element String:
+ * @param $attribs Array: Name=>value pairs. Values will be escaped.
+ * @param $contents String: NULL to make an open tag only; '' for a contentless closed tag (default)
  * @return string
  */
 function wfElementClean( $element, $attribs = array(), $contents = '') {
@@ -57,10 +57,10 @@ function wfCloseElement( $element ) { return "</$element>"; }
 /**
  * Create a namespace selector
  *
- * @param mixed $selected The namespace which should be selected, default ''
- * @param string $allnamespaces Value of a special item denoting all namespaces. Null to not include (default)
- * @param bool $includehidden Include hidden namespaces?
- * @return Html string containing the namespace selector
+ * @param $selected Mixed: the namespace which should be selected, default ''
+ * @param $allnamespaces String: value of a special item denoting all namespaces. Null to not include (default)
+ * @param $includehidden Bool: include hidden namespaces?
+ * @return String: Html string containing the namespace selector
  */
 function &HTMLnamespaceselector($selected = '', $allnamespaces = null, $includehidden=false) {
 	global $wgContLang;
@@ -180,8 +180,8 @@ function wfRadioLabel( $label, $name, $value, $id, $checked=false, $attribs=arra
 
 /**
  * Convenience function to build an HTML submit button
- * @param string $value Label text for the button
- * @param array $attribs optional custom attributes
+ * @param $value String: label text for the button
+ * @param $attribs Array: optional custom attributes
  * @return string HTML
  */
 function wfSubmitButton( $value, $attribs=array() ) {
@@ -189,9 +189,11 @@ function wfSubmitButton( $value, $attribs=array() ) {
 }
 
 /**
- * Convenience function to build an HTML hidden form field
- * @param string $value Label text for the button
- * @param array $attribs optional custom attributes
+ * Convenience function to build an HTML hidden form field.
+ * @todo Document $name parameter.
+ * @param $name FIXME
+ * @param $value String: label text for the button
+ * @param $attribs Array: optional custom attributes
  * @return string HTML
  */
 function wfHidden( $name, $value, $attribs=array() ) {
@@ -229,7 +231,7 @@ function wfEscapeJsString( $string ) {
  * Check if a string is well-formed XML.
  * Must include the surrounding tag.
  *
- * @param string $text
+ * @param $text String: string to test.
  * @return bool
  *
  * @todo Error position reporting return
@@ -254,10 +256,10 @@ function wfIsWellFormedXml( $text ) {
 
 /**
  * Check if a string is a well-formed XML fragment.
- * Wraps fragment in an <html> bit and doctype, so it can be a fragment
+ * Wraps fragment in an \<html\> bit and doctype, so it can be a fragment
  * and can use HTML named entities.
  *
- * @param string $text
+ * @param $text String:
  * @return bool
  */
 function wfIsWellFormedXmlFragment( $text ) {

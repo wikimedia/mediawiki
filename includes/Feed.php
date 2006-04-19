@@ -33,7 +33,7 @@
 class FeedItem {
 	/**#@+
 	 * @var string
-	 * @access private
+	 * @private
 	 */
 	var $Title = 'Wiki';
 	var $Description = '';
@@ -117,7 +117,7 @@ class ChannelFeed extends FeedItem {
 	 * This should be called from the outHeader() method,
 	 * but can also be called separately.
 	 *
-	 * @access public
+	 * @public
 	 */
 	function httpHeaders() {
 		global $wgOut;
@@ -134,7 +134,7 @@ class ChannelFeed extends FeedItem {
 	 * Return an internet media type to be sent in the headers.
 	 *
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function contentType() {
 		global $wgRequest;
@@ -146,7 +146,7 @@ class ChannelFeed extends FeedItem {
 	/**
 	 * Output the initial XML headers with a stylesheet for legibility
 	 * if someone finds it in a browser.
-	 * @access private
+	 * @private
 	 */
 	function outXmlHeader() {
 		global $wgServer, $wgStylePath;
@@ -234,7 +234,7 @@ class AtomFeed extends ChannelFeed {
 	}
 
 	/**
-	 * @todo document
+	 * Outputs a basic header for Atom 1.0 feeds.
 	 */
 	function outHeader() {
 		global $wgVersion;
@@ -259,7 +259,7 @@ class AtomFeed extends ChannelFeed {
 	 * have to change the id? Maybe? Maybe not.
 	 *
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function getFeedId() {
 		return $this->getSelfUrl();
@@ -268,7 +268,7 @@ class AtomFeed extends ChannelFeed {
 	/**
 	 * Atom 1.0 requests a self-reference to the feed.
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function getSelfUrl() {
 		global $wgRequest;
@@ -276,7 +276,8 @@ class AtomFeed extends ChannelFeed {
 	}
 
 	/**
-	 * @todo document
+	 * Output a given item.
+	 * @param $item
 	 */
 	function outItem( $item ) {
 		global $wgMimeType;
@@ -299,7 +300,7 @@ class AtomFeed extends ChannelFeed {
 	}
 
 	/**
-	 * @todo document
+	 * Outputs the footer for Atom 1.0 feed (basicly '\</feed\>').
 	 */
 	function outFooter() {?>
 	</feed><?php

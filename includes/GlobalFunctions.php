@@ -165,7 +165,7 @@ function wfRandom() {
  * We want / and : to be included as literal characters in our title URLs.
  * %2F in the page titles seems to fatally break for some reason.
  *
- * @param string $s
+ * @param $s String:
  * @return string
 */
 function wfUrlencode ( $s ) {
@@ -186,8 +186,8 @@ function wfUrlencode ( $s ) {
  * $wgDebugRawPage - if false, 'action=raw' hits will not result in debug output.
  * $wgDebugComments - if on, some debug items may appear in comments in the HTML output.
  *
- * @param string $text
- * @param bool $logonly Set true to avoid appearing in HTML when $wgDebugComments is set
+ * @param $text String
+ * @param $logonly Bool: set true to avoid appearing in HTML when $wgDebugComments is set
  */
 function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
@@ -212,9 +212,9 @@ function wfDebug( $text, $logonly = false ) {
  * Send a line to a supplementary debug log file, if configured, or main debug log if not.
  * $wgDebugLogGroups[$logGroup] should be set to a filename to send to a separate log.
  *
- * @param string $logGroup
- * @param string $text
- * @param bool $public Whether to log the event in the public log if no private
+ * @param $logGroup String
+ * @param $text String
+ * @param $public Bool: whether to log the event in the public log if no private
  *                     log file is specified, (default true)
  */
 function wfDebugLog( $logGroup, $text, $public = true ) {
@@ -230,7 +230,7 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
 
 /**
  * Log for database errors
- * @param string $text Database error message.
+ * @param $text String: database error message.
  */
 function wfLogDBError( $text ) {
 	global $wgDBerrorLog;
@@ -310,7 +310,7 @@ function wfReadOnly() {
  * addWikiText will do the escaping for you. Use wfMsgHtml()
  * if you need an escaped message.
  *
- * @param string lookup key for the message, usually
+ * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
  */
 function wfMsg( $key ) {
@@ -347,7 +347,7 @@ function wfMsgNoTrans( $key ) {
  * customize over 70 messages in order to, e.g., fix a link in every
  * possible language.
  *
- * @param string lookup key for the message, usually
+ * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
  */
 function wfMsgForContent( $key ) {
@@ -401,6 +401,10 @@ function wfMsgNoDBForContent( $key ) {
 
 /**
  * Really get a message
+ * @return $key String: key to get.
+ * @return $args
+ * @return $useDB Boolean
+ * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB, $forContent=false, $transform = true ) {
 	$fname = 'wfMsgReal';
@@ -411,9 +415,9 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false, $transform = true ) 
 }
 
 /**
- * This function provides the message source for messages to be edited which are *not* stored in the database
-*/
-
+ * This function provides the message source for messages to be edited which are *not* stored in the database.
+ * @param $key String:
+ */
 function wfMsgWeirdKey ( $key ) {
 	$subsource = str_replace ( ' ' , '_' , $key ) ;
 	$source = wfMsg ( $subsource ) ;
@@ -435,7 +439,7 @@ function wfMsgWeirdKey ( $key ) {
  * @param bool $useDB
  * @param bool $forContent
  * @return string
- * @access private
+ * @private
  */
 function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 	global $wgParser, $wgMsgParserOptions, $wgContLang, $wgMessageCache, $wgLang;
@@ -481,7 +485,7 @@ function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
  * @param string $message
  * @param array $args
  * @return string
- * @access private
+ * @private
  */
 function wfMsgReplaceArgs( $message, $args ) {
 	# Fix windows line-endings
@@ -1132,7 +1136,7 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
  * @param string $type
  * @param array $avail
  * @return string
- * @access private
+ * @private
  */
 function mimeTypeMatch( $type, $avail ) {
 	if( array_key_exists($type, $avail) ) {
@@ -1279,7 +1283,7 @@ define('TS_ISO_8601', 4);
 /**
  * An Exif timestamp (YYYY:MM:DD HH:MM:SS)
  *
- * @link http://exif.org/Exif2-2.PDF The Exif 2.2 spec, see page 28 for the
+ * @url http://exif.org/Exif2-2.PDF The Exif 2.2 spec, see page 28 for the
  *       DateTime tag and page 36 for the DateTimeOriginal and
  *       DateTimeDigitized tags.
  */
@@ -1473,7 +1477,7 @@ function wfGetSiteNotice() {
 /** Global singleton instance of MimeMagic. This is initialized on demand,
 * please always use the wfGetMimeMagic() function to get the instance.
 *
-* @access private
+* @private
 */
 $wgMimeMagic= NULL;
 

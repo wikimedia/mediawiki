@@ -7,7 +7,7 @@
 /**
  * Constructor
  *
- * @param string $par the namespace to get a random page from (default NS_MAIN),
+ * @param $par The namespace to get a random page from (default NS_MAIN),
  *               used as e.g. Special:Randompage/Category
  */
 function wfSpecialRandompage( $par = NS_MAIN ) {
