@@ -1608,9 +1608,22 @@ $wgCategoryPagingLimit = 200;
  * Contains a list of regexps : "/regexp/"  matching problematic browsers
  */
 $wgBrowserBlackList = array(
-	"/Mozilla\/4\.78 \[en\] \(X11; U; Linux/",
 	/**
-	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and Ð to <ETH>
+	 * Netscape 2-4 detection
+	 * The minor version may contain strings such as "Gold" or "SGoldC-SGI"
+	 * Lots of non-netscape user agents have "compatible", so it's useful to check for that
+	 * with a negative assertion. The [UIN] identifier specifies the level of security 
+	 * in a Netscape/Mozilla browser, checking for it rules out a number of fakers. 
+	 * The language string is unreliable, it is missing on NS4 Mac.
+	 * 
+	 * Reference: http://www.psychedelix.com/agents/index.shtml
+	 */
+	'/^Mozilla\/2\.[^ ]+ .*?\((?!compatible).*; [UIN]/',
+	'/^Mozilla\/3\.[^ ]+ .*?\((?!compatible).*; [UIN]/',
+	'/^Mozilla\/4\.[^ ]+ .*?\((?!compatible).*; [UIN]/',
+	
+	/**
+	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and �? to <ETH>
 	 *
 	 * Known useragents:
 	 * - Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC)
@@ -1621,7 +1634,7 @@ $wgBrowserBlackList = array(
 	 * @link http://en.wikipedia.org/w/index.php?title=User%3A%C6var_Arnfj%F6r%F0_Bjarmason%2Ftestme&diff=12356041&oldid=12355864
 	 * @link http://en.wikipedia.org/wiki/Template%3AOS9
 	 */
-	"/Mozilla\/4\.0 \(compatible; MSIE \d+\.\d+; Mac_PowerPC\)/"
+	'/^Mozilla\/4\.0 \(compatible; MSIE \d+\.\d+; Mac_PowerPC\)/'
 );
 
 /**
