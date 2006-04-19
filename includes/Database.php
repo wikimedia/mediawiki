@@ -50,7 +50,7 @@ class Database {
 # Variables
 #------------------------------------------------------------------------------
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	var $mLastQuery = '';
 
@@ -118,7 +118,7 @@ class Database {
 
 	/**
 	 * The current depth of nested transactions
-	 * @param integer $level
+	 * @param $level Integer: , default NULL.
 	 */
 	function trxLevel( $level = NULL ) {
 		return wfSetVar( $this->mTrxLevel, $level );
@@ -177,7 +177,7 @@ class Database {
 # Other functions
 #------------------------------------------------------------------------------
 
-	/**#@+
+	/**@{{
 	 * @param string $server database server host
 	 * @param string $user database user name
 	 * @param string $password database user password
@@ -187,7 +187,7 @@ class Database {
 	/**
 	 * @param failFunction
 	 * @param $flags
-	 * @param string $tablePrefix Database table prefixes. By default use the prefix gave in LocalSettings.php
+	 * @param $tablePrefix String: database table prefixes. By default use the prefix gave in LocalSettings.php
 	 */
 	function Database( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' ) {
@@ -313,7 +313,7 @@ class Database {
 		$this->mOpened = $success;
 		return $success;
 	}
-	/**#@-*/
+	/**@}}*/
 
 	/**
 	 * Closes a database connection.
@@ -335,7 +335,7 @@ class Database {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 * @param string $error fallback error message, used if none is given by MySQL
 	 */
 	function reportConnectionError( $error = 'Unknown error' ) {
@@ -555,7 +555,7 @@ class Database {
 	 *
 	 * @param array $matches
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function fillPreparedArg( $matches ) {
 		switch( $matches[1] ) {
@@ -629,7 +629,8 @@ class Database {
 
 	/**
 	 * Get a field name in a result object
-	 * See documentation for mysql_field_name()
+	 * See documentation for mysql_field_name():
+	 * http://www.php.net/mysql_field_name
 	 */
 	function fieldName( $res, $n ) { return mysql_field_name( $res, $n ); }
 
@@ -735,7 +736,7 @@ class Database {
 	 * Returns an optional USE INDEX clause to go after the table, and a
 	 * string to go at the end of the query
 	 *
-	 * @access private
+	 * @private
 	 *
 	 * @param array $options an associative array of options to be turned into
 	 *              an SQL query, valid keys are listed in the function.
@@ -1038,7 +1039,7 @@ class Database {
 	/**
 	 * Make UPDATE options for the Database::update function
 	 *
-	 * @access private
+	 * @private
 	 * @param array $options The options passed to Database::update
 	 * @return string
 	 */
@@ -1171,7 +1172,7 @@ class Database {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function tableNamesWithUseIndex( $tables, $use_index ) {
 		$ret = array();
@@ -1762,7 +1763,7 @@ class Database {
 
 	/**
 	 * Table name callback
-	 * @access private
+	 * @private
 	 */
 	function tableNameCallback( $matches ) {
 		return $this->tableName( $matches[1] );

@@ -37,7 +37,7 @@ unset($matches);
  */
 class Skin extends Linker {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	var $lastdate, $lastline;
 	var $rc_cache ; # Cache for Enhanced Recent Changes
@@ -280,7 +280,7 @@ class Skin extends Linker {
 	 *
 	 * @param string $action
 	 * @return bool
-	 * @access private
+	 * @private
 	 */
 	function userCanPreview( $action ) {
 		global $wgTitle, $wgRequest, $wgUser;
@@ -535,9 +535,9 @@ END;
 	}
 
 	/** Render the array as a serie of links.
-	 * @param array $tree Categories tree returned by Title::getParentCategoryTree
-	 * @param object &skin Skin passed by reference
-	 * @return string separated by &gt;, terminate with "\n"
+	 * @param $tree Array: categories tree returned by Title::getParentCategoryTree
+	 * @param &skin Object: skin passed by reference
+	 * @return String separated by &gt;, terminate with "\n"
 	 */
 	function drawCategoryBrowser($tree, &$skin) {
 		$return = '';
@@ -568,8 +568,8 @@ END;
 	}
 
 	/**
-	 * This gets called immediately before the </body> tag.
-	 * @return string HTML to be put after </body> ???
+	 * This gets called immediately before the \</body\> tag.
+	 * @return String HTML to be put after \</body\> ???
 	 */
 	function afterContent() {
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
@@ -1114,7 +1114,7 @@ END;
 	 * This may include an 'oldid' specifier, if the current page view is such.
 	 *
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function editUrlOptions() {
 		global $wgArticle;
@@ -1424,7 +1424,7 @@ END;
 	 * Build an array that represents the sidebar(s), the navigation bar among them
 	 *
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function buildSidebar() {
 		global $wgDBname, $parserMemc, $wgEnableSidebarCache;

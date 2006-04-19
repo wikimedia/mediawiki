@@ -52,9 +52,9 @@ class CBTValue {
 
 	/**
 	 * Create a new value
-	 * @param string $text
-	 * @param array $deps What this value depends on
-	 * @param bool $isTemplate whether the result needs compilation/execution
+	 * @param $text String: , default ''.
+	 * @param $deps Array: what this value depends on
+	 * @param $isTemplate Bool: whether the result needs compilation/execution, default 'false'.
 	 */
 	function CBTValue( $text = '', $deps = array(), $isTemplate = false ) {
 		$this->mText = $text;

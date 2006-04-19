@@ -29,8 +29,8 @@ class ImageGallery
 	/**
 	 * Add an image to the gallery.
 	 *
-	 * @param Image  $image  Image object that is added to the gallery
-	 * @param string $html   Additional HTML text to be shown. The name and size of the image are always shown.
+	 * @param $image Image object that is added to the gallery
+	 * @param $html  String: additional HTML text to be shown. The name and size of the image are always shown.
 	 */
 	function add( $image, $html='' ) {
 		$this->mImages[] = array( &$image, $html );
@@ -39,8 +39,8 @@ class ImageGallery
 	/**
  	* Add an image at the beginning of the gallery.
  	*
- 	* @param Image  $image  Image object that is added to the gallery
- 	* @param string $html   Additional HTML text to be shown. The name and size of the image are always shown.
+ 	* @param $image Image object that is added to the gallery
+ 	* @param $html  String:  Additional HTML text to be shown. The name and size of the image are always shown.
  	*/
 	function insert( $image, $html='' ) {
 		array_unshift( $this->mImages, array( &$image, $html ) );
@@ -58,7 +58,7 @@ class ImageGallery
 	 * Enable/Disable showing of the file size of an image in the gallery.
 	 * Enabled by default.
 	 *
-	 * @param boolean $f	set to false to disable
+	 * @param $f Boolean: set to false to disable.
 	 */
 	function setShowBytes( $f ) {
 		$this->mShowBytes = ( $f == true);
@@ -68,7 +68,7 @@ class ImageGallery
 	 * Enable/Disable showing of the filename of an image in the gallery.
 	 * Enabled by default.
 	 *
-	 * @param boolean $f	set to false to disable
+	 * @param $f Boolean: set to false to disable.
 	 */
 	function setShowFilename( $f ) {
 		$this->mShowFilename = ( $f == true);

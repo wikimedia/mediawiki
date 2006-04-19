@@ -40,8 +40,10 @@ class Categoryfinder {
 
 	/**
 	 * Initializes the instance. Do this prior to calling run().
-	 @param $article_ids Array of article IDs
-	*/
+	 * @param $article_ids Array of article IDs
+	 * @param $categories FIXME
+	 * @param $mode String: FIXME, default 'AND'.
+	 */
 	function seed ( $article_ids , $categories , $mode = "AND" ) {
 		$this->articles = $article_ids ;
 		$this->next = $article_ids ;

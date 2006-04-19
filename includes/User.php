@@ -21,24 +21,32 @@ define( 'MW_USER_VERSION', 3 );
  * @package MediaWiki
  */
 class User {
-	/**#@+
-	 * @access private
+	/**@{{
+	 * @private
 	 */
-	var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
-	var $mEmailAuthenticated;
-	var $mRights, $mOptions;
-	var $mDataLoaded, $mNewpassword;
-	var $mSkin;
-	var $mBlockedby, $mBlockreason;
-	var $mTouched;
-	var $mToken;
-	var $mRealName;
-	var $mHash;
-	var $mGroups;
-	var $mVersion; // serialized version
-	var $mRegistration;
+	var $mBlockedby;	//!<
+	var $mBlockreason;	//!<
+	var $mDataLoaded;	//!<
+	var $mEmail;		//!<
+	var $mEmailAuthenticated; //!<
+	var $mGroups;		//!<
+	var $mHash;			//!<
+	var $mId;			//!<
+	var $mName;			//!<
+	var $mNewpassword;	//!<
+	var $mNewtalk;		//!<
+	var $mOptions;		//!<
+	var $mPassword;		//!<
+	var $mRealName;		//!<
+	var $mRegistration;	//!<
+	var $mRights;		//!<
+	var $mSkin;			//!<
+	var $mToken;		//!<
+	var $mTouched;		//!<
+	var $mVersion;		//!< serialized version
+	/**@}} */
 
-	/** Construct using User:loadDefaults() */
+	/** Constructor using User:loadDefaults() */
 	function User()	{
 		$this->loadDefaults();
 		$this->mVersion = MW_USER_VERSION;
@@ -347,7 +355,7 @@ class User {
 	 *
 	 * @return array
 	 * @static
-	 * @access private
+	 * @private
 	 */
 	function getDefaultOptions() {
 		/**
@@ -372,7 +380,7 @@ class User {
 	 * @param string $opt
 	 * @return string
 	 * @static
-	 * @access public
+	 * @public
 	 */
 	function getDefaultOption( $opt ) {
 		$defOpts = User::getDefaultOptions();
@@ -385,7 +393,7 @@ class User {
 
 	/**
 	 * Get blocking information
-	 * @access private
+	 * @private
 	 * @param bool $bFromSlave Specify whether to check slave or master. To improve performance,
 	 *  non-critical checks are done against slaves. Check when actually saving should be done against
 	 *  master.
@@ -492,7 +500,7 @@ class User {
 	 * last-hit counters will be shared across wikis.
 	 *
 	 * @return bool true if a rate limiter was tripped
-	 * @access public
+	 * @public
 	 */
 	function pingLimiter( $action='edit' ) {
 		global $wgRateLimits;
@@ -777,7 +785,7 @@ class User {
 	/**
 	 * Return the title dbkey form of the name, for eg user pages.
 	 * @return string
-	 * @access public
+	 * @public
 	 */
 	function getTitleKey() {
 		return str_replace( ' ', '_', $this->getName() );
@@ -835,7 +843,7 @@ class User {
 	 * @param string $field
 	 * @param mixed $id
 	 * @return bool
-	 * @access private
+	 * @private
 	 */
 	function checkNewtalk( $field, $id ) {
 		$fname = 'User::checkNewtalk';
@@ -849,7 +857,7 @@ class User {
 	 * Add or update the
 	 * @param string $field
 	 * @param mixed $id
-	 * @access private
+	 * @private
 	 */
 	function updateNewtalk( $field, $id ) {
 		$fname = 'User::updateNewtalk';
@@ -870,7 +878,7 @@ class User {
 	 * Clear the new messages flag for the given user
 	 * @param string $field
 	 * @param mixed $id
-	 * @access private
+	 * @private
 	 */
 	function deleteNewtalk( $field, $id ) {
 		$fname = 'User::deleteNewtalk';
@@ -1296,7 +1304,7 @@ class User {
 	 * the next change of any watched page.
 	 *
 	 * @param int $currentUser user ID number
-	 * @access public
+	 * @public
 	 */
 	function clearAllNotifications( $currentUser ) {
 		global $wgUseEnotif;
@@ -1321,7 +1329,7 @@ class User {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 * @return string Encoding options
 	 */
 	function encodeOptions() {
@@ -1334,7 +1342,7 @@ class User {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function decodeOptions( $str ) {
 		$a = explode( "\n", $str );
@@ -1562,7 +1570,7 @@ class User {
 	 * Get this user's personal page title.
 	 *
 	 * @return Title
-	 * @access public
+	 * @public
 	 */
 	function getUserPage() {
 		return Title::makeTitle( NS_USER, $this->getName() );
@@ -1572,7 +1580,7 @@ class User {
 	 * Get this user's talk page title.
 	 *
 	 * @return Title
-	 * @access public
+	 * @public
 	 */
 	function getTalkPage() {
 		$title = $this->getUserPage();
@@ -1651,7 +1659,7 @@ class User {
 	 * @param mixed $salt - Optional function-specific data for hash.
 	 *                      Use a string or an array of strings.
 	 * @return string
-	 * @access public
+	 * @public
 	 */
 	function editToken( $salt = '' ) {
 		if( !isset( $_SESSION['wsEditToken'] ) ) {
@@ -1685,7 +1693,7 @@ class User {
 	 * @param string $val - the input value to compare
 	 * @param string $salt - Optional function-specific data for hash
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function matchEditToken( $val, $salt = '' ) {
 		global $wgMemc;
@@ -1745,7 +1753,7 @@ class User {
 	 * A hash (unsalted since it's used as a key) is stored.
 	 * @param &$expiration mixed output: accepts the expiration time
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function confirmationToken( &$expiration ) {
 		$fname = 'User::confirmationToken';
@@ -1772,7 +1780,7 @@ class User {
 	 * the URL the user can use to confirm.
 	 * @param &$expiration mixed output: accepts the expiration time
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function confirmationTokenUrl( &$expiration ) {
 		$token = $this->confirmationToken( $expiration );

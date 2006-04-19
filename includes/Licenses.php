@@ -12,7 +12,7 @@
 
 class Licenses {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	/**
 	 * @var string
@@ -33,7 +33,7 @@ class Licenses {
 	/**
 	 * Constrictor
 	 *
-	 * @param string $str The string to build the licenses member from, will use
+	 * @param $str String: the string to build the licenses member from, will use
 	 *                    wfMsgForContent( 'licenses' ) if null (default: null)
 	 */
 	function Licenses( $str = null ) {
@@ -47,7 +47,7 @@ class Licenses {
 	}
 
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	function makeLicenses() {
 		$levels = array();
@@ -159,7 +159,7 @@ class License {
 	/**
 	 * Constructor
 	 *
-	 * @param string $str
+	 * @param $str String: license name??
 	 */
 	function License( $str ) {
 		list( $text, $template ) = explode( '|', strrev( $str ), 2 );

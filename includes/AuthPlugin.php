@@ -42,9 +42,9 @@ class AuthPlugin {
 	 * you might need to munge it (for instance, for lowercase initial
 	 * letters).
 	 *
-	 * @param string $username
+	 * @param $username String: username.
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function userExists( $username ) {
 		# Override this!
@@ -57,10 +57,10 @@ class AuthPlugin {
 	 * you might need to munge it (for instance, for lowercase initial
 	 * letters).
 	 *
-	 * @param string $username
-	 * @param string $password
+	 * @param $username String: username.
+	 * @param $password String: user password.
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function authenticate( $username, $password ) {
 		# Override this!
@@ -70,8 +70,8 @@ class AuthPlugin {
 	/**
 	 * Modify options in the login template.
 	 *
-	 * @param UserLoginTemplate $template
-	 * @access public
+	 * @param $template UserLoginTemplate object.
+	 * @public
 	 */
 	function modifyUITemplate( &$template ) {
 		# Override this!
@@ -81,8 +81,8 @@ class AuthPlugin {
 	/**
 	 * Set the domain this plugin is supposed to use when authenticating.
 	 *
-	 * @param string $domain
-	 * @access public
+	 * @param $domain String: authentication domain.
+	 * @public
 	 */
 	function setDomain( $domain ) {
 		$this->domain = $domain;
@@ -91,9 +91,9 @@ class AuthPlugin {
 	/**
 	 * Check to see if the specific domain is a valid domain.
 	 *
-	 * @param string $domain
+	 * @param $domain String: authentication domain.
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function validDomain( $domain ) {
 		# Override this!
@@ -109,7 +109,7 @@ class AuthPlugin {
 	 * forget the & on your function declaration.
 	 *
 	 * @param User $user
-	 * @access public
+	 * @public
 	 */
 	function updateUser( &$user ) {
 		# Override this and do something
@@ -129,7 +129,7 @@ class AuthPlugin {
 	 * This is just a question, and shouldn't perform any actions.
 	 *
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function autoCreate() {
 		return false;
@@ -139,9 +139,9 @@ class AuthPlugin {
 	 * Set the given password in the authentication database.
 	 * Return true if successful.
 	 *
-	 * @param string $password
+	 * @param $password String: password.
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function setPassword( $password ) {
 		return true;
@@ -151,9 +151,9 @@ class AuthPlugin {
 	 * Update user information in the external authentication database.
 	 * Return true if successful.
 	 *
-	 * @param User $user
+	 * @param $user User object.
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function updateExternalDB( $user ) {
 		return true;
@@ -163,7 +163,7 @@ class AuthPlugin {
 	 * Check to see if external accounts can be created.
 	 * Return true if external accounts can be created.
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function canCreateAccounts() {
 		return false;
@@ -176,7 +176,7 @@ class AuthPlugin {
 	 * @param User $user
 	 * @param string $password
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function addUser( $user, $password ) {
 		return true;
@@ -190,7 +190,7 @@ class AuthPlugin {
 	 * This is just a question, and shouldn't perform any actions.
 	 *
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function strict() {
 		return false;
@@ -204,8 +204,8 @@ class AuthPlugin {
 	 * The User object is passed by reference so it can be modified; don't
 	 * forget the & on your function declaration.
 	 *
-	 * @param User $user
-	 * @access public
+	 * @param $user User object.
+	 * @public
 	 */
 	function initUser( &$user ) {
 		# Override this to do something.

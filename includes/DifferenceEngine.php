@@ -13,13 +13,13 @@ define( 'MAX_DIFF_XREF_LENGTH', 10000 );
 
 /**
  * @todo document
- * @access public
+ * @public
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
 class DifferenceEngine {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	var $mOldid, $mNewid, $mTitle;
 	var $mOldtitle, $mNewtitle, $mPagetitle;
@@ -33,10 +33,10 @@ class DifferenceEngine {
 
 	/**
 	 * Constructor
-	 * @param Title $titleObj Title object that the diff is associated with
-	 * @param integer $old Old ID we want to show and diff with.
-	 * @param string $new Either 'prev' or 'next'.
-	 * @param integer $rcid ??? (default 0)
+	 * @param $titleObj Title object that the diff is associated with
+	 * @param $old Integer: old ID we want to show and diff with.
+	 * @param $new String: either 'prev' or 'next'.
+	 * @param $rcid Integer: ??? FIXME (default 0)
 	 */
 	function DifferenceEngine( $titleObj = null, $old = 0, $new = 0, $rcid = 0 ) {
 		$this->mTitle = $titleObj;
@@ -588,7 +588,7 @@ define('USE_ASSERTS', function_exists('assert'));
 
 /**
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -612,7 +612,7 @@ class _DiffOp {
 
 /**
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -633,7 +633,7 @@ class _DiffOp_Copy extends _DiffOp {
 
 /**
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -652,7 +652,7 @@ class _DiffOp_Delete extends _DiffOp {
 
 /**
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -671,7 +671,7 @@ class _DiffOp_Add extends _DiffOp {
 
 /**
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -709,7 +709,7 @@ class _DiffOp_Change extends _DiffOp {
  * Line length limits for robustness added by Tim Starling, 2005-08-31
  *
  * @author Geoffrey T. Dairiki, Tim Starling
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -1129,7 +1129,7 @@ class _DiffEngine
 /**
  * Class representing a 'diff' between two sequences of strings.
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -1271,7 +1271,7 @@ class Diff
 /**
  * FIXME: bad name.
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -1335,7 +1335,7 @@ class MappedDiff extends Diff
  * It is intended that this class be customized via inheritance,
  * to obtain fancier outputs.
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -1502,7 +1502,7 @@ define('NBSP', '&#160;');			// iso-8859-x non-breaking space.
 
 /**
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -1561,7 +1561,7 @@ class _HWLDF_WordAccumulator {
 
 /**
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */
@@ -1647,7 +1647,7 @@ class WordLevelDiff extends MappedDiff
 /**
  *	Wikipedia Table style diff formatter.
  * @todo document
- * @access private
+ * @private
  * @package MediaWiki
  * @subpackage DifferenceEngine
  */

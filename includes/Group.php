@@ -9,7 +9,7 @@
  */
 class Group {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	/** string $name Group name */
 	var $name;
@@ -164,7 +164,7 @@ class Group {
 // Factories
 	/**
 	 * Uses Memcached if available.
-	 * @param integer $id Group database id
+	 * @param $id Integer: group database id
 	 */
 	function newFromId($id) {
 		global $wgMemc;
@@ -201,7 +201,7 @@ class Group {
 	}
 
 
-	/** @param string $name Group database name */
+	/** @param $name String: group database name */
 	function newFromName($name) {
 		$fname = 'Group::newFromName';
 
@@ -278,7 +278,7 @@ class Group {
 
 // Converters
 	/**
-	 * @param integer $id Group database id
+	 * @param $id Integer: group database id
 	 * @return string Group database name
 	 */
 	function nameFromId($id) {
@@ -291,7 +291,7 @@ class Group {
 	}
 
 	/**
-	 * @param string $name Group database name
+	 * @param $name String: group database name
 	 * @return integer Group database id
 	 */
 	function idFromName($name) {

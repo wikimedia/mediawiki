@@ -30,7 +30,7 @@ require_once( 'Revision.php' );
 /**
  * Entry point
  *
- * @param string $par (default '')
+ * @param $par String: (default '')
  */
 function wfSpecialSearch( $par = '' ) {
 	global $wgRequest, $wgUser;
@@ -59,7 +59,7 @@ class SpecialSearch {
 	 *
 	 * @param WebRequest $request
 	 * @param User $user
-	 * @access public
+	 * @public
 	 */
 	function SpecialSearch( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
@@ -76,7 +76,7 @@ class SpecialSearch {
 	/**
 	 * If an exact title match can be found, jump straight ahead to
 	 * @param string $term
-	 * @access public
+	 * @public
 	 */
 	function goResult( $term ) {
 		global $wgOut;
@@ -121,7 +121,7 @@ class SpecialSearch {
 
 	/**
 	 * @param string $term
-	 * @access public
+	 * @public
 	 */
 	function showResults( $term ) {
 		$fname = 'SpecialSearch::showResults';
@@ -236,7 +236,7 @@ class SpecialSearch {
 	 *
 	 * @param User $user
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function userNamespaces( &$user ) {
 		$arr = array();
@@ -254,7 +254,7 @@ class SpecialSearch {
 	 *
 	 * @param WebRequest $request
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function powerSearch( &$request ) {
 		$arr = array();
@@ -269,7 +269,7 @@ class SpecialSearch {
 	/**
 	 * Reconstruct the 'power search' options for links
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function powerSearchOptions() {
 		$opt = array();

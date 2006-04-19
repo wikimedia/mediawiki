@@ -90,7 +90,7 @@ define( 'EXT_IMAGE_REGEX',
 class Parser
 {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	# Persistent:
 	var $mTagHooks, $mFunctionHooks;
@@ -116,7 +116,7 @@ class Parser
 	/**
 	 * Constructor
 	 *
-	 * @access public
+	 * @public
 	 */
 	function Parser() {
 		$this->mTagHooks = array();
@@ -127,7 +127,7 @@ class Parser
 	/**
 	 * Clear Parser state
 	 *
-	 * @access private
+	 * @private
 	 */
 	function clearState() {
 		$this->mOutput = new ParserOutput;
@@ -163,7 +163,7 @@ class Parser
 	/**
 	 * Accessor for mUniqPrefix.
 	 *
-	 * @access public
+	 * @public
 	 */
 	function UniqPrefix() {
 		return $this->mUniqPrefix;
@@ -173,7 +173,7 @@ class Parser
 	 * Convert wikitext to HTML
 	 * Do not call this function recursively.
 	 *
-	 * @access private
+	 * @private
 	 * @param string $text Text we want to parse
 	 * @param Title &$title A title object
 	 * @param array $options
@@ -288,7 +288,7 @@ class Parser
 	/**
 	 * Get a random string
 	 *
-	 * @access private
+	 * @private
 	 * @static
 	 */
 	function getRandomString() {
@@ -308,7 +308,7 @@ class Parser
 	 * If $tag is set to STRIP_COMMENTS, the function will extract
 	 * <!-- HTML comments -->
 	 *
-	 * @access private
+	 * @private
 	 * @static
 	 */
 	function extractTagsAndParams($tag, $text, &$content, &$tags, &$params, $uniq_prefix = ''){
@@ -381,7 +381,7 @@ class Parser
 	 * for cases where $tags and $params isn't needed
 	 * i.e. where tags will never have params, like <nowiki>
 	 *
-	 * @access private
+	 * @private
 	 * @static
 	 */
 	function extractTags( $tag, $text, &$content, $uniq_prefix = '' ) {
@@ -403,7 +403,7 @@ class Parser
 	 *  for section editing, where these comments cause confusion when
 	 *  counting the sections in the wikisource
 	 *
-	 * @access private
+	 * @private
 	 */
 	function strip( $text, &$state, $stripcomments = false ) {
 		$render = ($this->mOutputType == OT_HTML);
@@ -546,7 +546,7 @@ class Parser
 	 * restores pre, math, and hiero removed by strip()
 	 *
 	 * always call unstripNoWiki() after this one
-	 * @access private
+	 * @private
 	 */
 	function unstrip( $text, &$state ) {
 		if ( !is_array( $state ) ) {
@@ -568,7 +568,7 @@ class Parser
 	/**
 	 * always call this after unstrip() to preserve the order
 	 *
-	 * @access private
+	 * @private
 	 */
 	function unstripNoWiki( $text, &$state ) {
 		if ( !is_array( $state ) ) {
@@ -595,7 +595,7 @@ class Parser
 	 * Returns the unique tag which must be inserted into the stripped text
 	 * The tag will be replaced with the original text in unstrip()
 	 *
-	 * @access private
+	 * @private
 	 */
 	function insertStripItem( $text, &$state ) {
 		$rnd = $this->mUniqPrefix . '-item' . Parser::getRandomString();
@@ -624,7 +624,7 @@ class Parser
 	 *
 	 * @param string $text Hideous HTML input
 	 * @return string Corrected HTML output
-	 * @access public
+	 * @public
 	 * @static
 	 */
 	function tidy( $text ) {
@@ -647,7 +647,7 @@ class Parser
 	/**
 	 * Spawn an external HTML tidy process and get corrected markup back from it.
 	 *
-	 * @access private
+	 * @private
 	 * @static
 	 */
 	function externalTidy( $text ) {
@@ -698,7 +698,7 @@ class Parser
 	 *
 	 * 'pear install tidy' should be able to compile the extension module.
 	 *
-	 * @access private
+	 * @private
 	 * @static
 	 */
 	function internalTidy( $text ) {
@@ -724,7 +724,7 @@ class Parser
 	/**
 	 * parse the wiki syntax used to render tables
 	 *
-	 * @access private
+	 * @private
 	 */
 	function doTableStuff ( $t ) {
 		$fname = 'Parser::doTableStuff';
@@ -861,7 +861,7 @@ class Parser
 	 * Helper function for parse() that transforms wiki markup into
 	 * HTML. Only called for $mOutputType == OT_HTML.
 	 *
-	 * @access private
+	 * @private
 	 */
 	function internalParse( $text ) {
 		$args = array();
@@ -904,7 +904,7 @@ class Parser
 	 * Replace special strings like "ISBN xxx" and "RFC xxx" with
 	 * magic external links.
 	 *
-	 * @access private
+	 * @private
 	 */
 	function &doMagicLinks( &$text ) {
 		$text = $this->magicISBN( $text );
@@ -916,7 +916,7 @@ class Parser
 	/**
 	 * Parse headers and return html
 	 *
-	 * @access private
+	 * @private
 	 */
 	function doHeadings( $text ) {
 		$fname = 'Parser::doHeadings';
@@ -932,7 +932,7 @@ class Parser
 
 	/**
 	 * Replace single quotes with HTML markup
-	 * @access private
+	 * @private
 	 * @return string the altered text
 	 */
 	function doAllQuotes( $text ) {
@@ -950,7 +950,7 @@ class Parser
 
 	/**
 	 * Helper function for doAllQuotes()
-	 * @access private
+	 * @private
 	 */
 	function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
@@ -1119,7 +1119,7 @@ class Parser
  	 * Note: this is all very hackish and the order of execution matters a lot.
 	 * Make sure to run maintenance/parserTests.php if you change this code.
 	 *
-	 * @access private
+	 * @private
 	 */
 	function replaceExternalLinks( $text ) {
 		global $wgContLang;
@@ -1205,7 +1205,7 @@ class Parser
 
 	/**
 	 * Replace anything that looks like a URL with a link
-	 * @access private
+	 * @private
 	 */
 	function replaceFreeExternalLinks( $text ) {
 		global $wgContLang;
@@ -1304,7 +1304,7 @@ class Parser
 	 * Callback function used in replaceUnusualEscapes().
 	 * Replaces unusual URL escape codes with their equivalent character
 	 * @static
-	 * @access private
+	 * @private
 	 */
 	function replaceUnusualEscapesCallback( $matches ) {
 		$char = urldecode( $matches[0] );
@@ -1322,7 +1322,7 @@ class Parser
 	/**
 	 * make an image if it's allowed, either through the global
 	 * option or through the exception
-	 * @access private
+	 * @private
 	 */
 	function maybeMakeExternalImage( $url ) {
 		$sk =& $this->mOptions->getSkin();
@@ -1342,7 +1342,7 @@ class Parser
 	/**
 	 * Process [[ ]] wikilinks
 	 *
-	 * @access private
+	 * @private
 	 */
 	function replaceInternalLinks( $s ) {
 		global $wgContLang;
@@ -1705,7 +1705,7 @@ class Parser
 	 * @param string $target the source of the link
 	 * @param string &$text the link text, modified as necessary
 	 * @return string the full name of the link
-	 * @access private
+	 * @private
 	 */
 	function maybeDoSubpageLink($target, &$text) {
 		# Valid link forms:
@@ -1771,7 +1771,7 @@ class Parser
 
 	/**#@+
 	 * Used by doBlockLevels()
-	 * @access private
+	 * @private
 	 */
 	/* private */ function closeParagraph() {
 		$result = '';
@@ -1848,7 +1848,7 @@ class Parser
 	/**
 	 * Make lists from lines starting with ':', '*', '#', etc.
 	 *
-	 * @access private
+	 * @private
 	 * @return string the lists rendered as HTML
 	 */
 	function doBlockLevels( $text, $linestart ) {
@@ -2055,7 +2055,7 @@ class Parser
 	/**
 	 * Return value of a magic variable (like PAGENAME)
 	 *
-	 * @access private
+	 * @private
 	 */
 	function getVariableValue( $index ) {
 		global $wgContLang, $wgSitename, $wgServer, $wgServerName, $wgScriptPath;
@@ -2167,7 +2167,7 @@ class Parser
 	/**
 	 * initialise the magic variables (like CURRENTMONTHNAME)
 	 *
-	 * @access private
+	 * @private
 	 */
 	function initialiseVariables() {
 		$fname = 'Parser::initialiseVariables';
@@ -2193,7 +2193,7 @@ class Parser
 	 *								  4 => callback 	# replacement callback to call if {{{{..}}}} is found
 	 *								  )
 	 *					)
-	 * @access private
+	 * @private
 	 */
 	function replace_callback ($text, $callbacks) {
 		$openingBraceStack = array();	# this array will hold a stack of parentheses which are not closed yet
@@ -2368,7 +2368,7 @@ class Parser
 	 * @param string $tex The text to transform
 	 * @param array $args Key-value pairs representing template parameters to substitute
 	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not double-brace expansion
-	 * @access private
+	 * @private
 	 */
 	function replaceVariables( $text, $args = array(), $argsOnly = false ) {
 		# Prevent too big inclusions
@@ -2402,7 +2402,7 @@ class Parser
 
 	/**
 	 * Replace magic variables
-	 * @access private
+	 * @private
 	 */
 	function variableSubstitution( $matches ) {
 		$fname = 'Parser::variableSubstitution';
@@ -2466,7 +2466,7 @@ class Parser
 	 *  $piece['title']: the title, i.e. the part before the |
 	 *  $piece['parts']: the parameter array
 	 * @return string the text of the template
-	 * @access private
+	 * @private
 	 */
 	function braceSubstitution( $piece ) {
 		global $wgContLang, $wgAllowDisplayTitle, $action;
@@ -2962,7 +2962,7 @@ class Parser
 
 	/**
 	 * Triple brace replacement -- used for template arguments
-	 * @access private
+	 * @private
 	 */
 	function argSubstitution( $matches ) {
 		$arg = trim( $matches['title'] );
@@ -2980,7 +2980,7 @@ class Parser
 
 	/**
 	 * Returns true if the function is allowed to include this entity
-	 * @access private
+	 * @private
 	 */
 	function incrementIncludeCount( $dbk ) {
 		if ( !array_key_exists( $dbk, $this->mIncludeCount ) ) {
@@ -3005,7 +3005,7 @@ class Parser
 	 *
 	 * @param string $text
 	 * @param boolean $isMain
-	 * @access private
+	 * @private
 	 */
 	function formatHeadings( $text, $isMain=true ) {
 		global $wgMaxTocLevel, $wgContLang;
@@ -3252,7 +3252,7 @@ class Parser
 
 	/**
 	 * Return an HTML link for the "ISBN 123456" text
-	 * @access private
+	 * @private
 	 */
 	function magicISBN( $text ) {
 		$fname = 'Parser::magicISBN';
@@ -3308,7 +3308,7 @@ class Parser
 	/**
 	 * Return an HTML link for the "RFC 1234" text
 	 *
-	 * @access private
+	 * @private
 	 * @param string $text     Text to be processed
 	 * @param string $keyword  Magic keyword to use (default RFC)
 	 * @param string $urlmsg   Interface message to use (default rfcurl)
@@ -3391,7 +3391,7 @@ class Parser
 	 * @param ParserOptions $options parsing options
 	 * @param bool $clearState whether to clear the parser state first
 	 * @return string the altered wiki markup
-	 * @access public
+	 * @public
 	 */
 	function preSaveTransform( $text, &$title, &$user, $options, $clearState = true ) {
 		$this->mOptions = $options;
@@ -3416,7 +3416,7 @@ class Parser
 
 	/**
 	 * Pre-save transform helper function
-	 * @access private
+	 * @private
 	 */
 	function pstPass2( $text, &$user ) {
 		global $wgContLang, $wgLocaltimezone;
@@ -3492,7 +3492,7 @@ class Parser
 	 *
 	 * @param User $user
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function getUserSig( &$user ) {
 		$username = $user->getName();
@@ -3550,7 +3550,7 @@ class Parser
 	/**
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
-	 * @access public
+	 * @public
 	 */
 	function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
 		$this->mTitle =& $title;
@@ -3567,7 +3567,7 @@ class Parser
 	 * @param string $text the text to transform
 	 * @param ParserOptions $options  options
 	 * @return string the text with variables substituted
-	 * @access public
+	 * @public
 	 */
 	function transformMsg( $text, $options ) {
 		global $wgTitle;
@@ -3602,7 +3602,7 @@ class Parser
 	 * Transform and return $text. Use $parser for any required context, e.g. use
 	 * $parser->getTitle() and $parser->getOptions() not $wgTitle or $wgOut->mParserOptions
 	 *
-	 * @access public
+	 * @public
 	 *
 	 * @param mixed $tag The tag to use, e.g. 'hook' for <hook>
 	 * @param mixed $callback The callback function (and object) to use for the tag
@@ -3631,7 +3631,7 @@ class Parser
 	 *   noargs                    Don't replace triple-brace arguments in the return value
 	 *   isHTML                    The returned text is HTML, armour it against wikitext transformation
 	 *
-	 * @access public
+	 * @public
 	 *
 	 * @param string $name The function name. Function names are case-insensitive.
 	 * @param mixed $callback The callback function (and object) to use
@@ -3828,7 +3828,7 @@ class Parser
 	/**
 	 * @param array $matches
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function replaceLinkHoldersTextCallback( $matches ) {
 		$type = $matches[1];
@@ -3987,7 +3987,7 @@ class Parser
 	 * @param string $text
 	 * @param array $args
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function attributeStripCallback( &$text, $args ) {
 		$text = $this->replaceVariables( $text, $args );
@@ -4104,7 +4104,7 @@ class ParserOutput
 	 *
 	 * @param string $touched the affected article's last touched timestamp
 	 * @return bool
-	 * @access public
+	 * @public
 	 */
 	function expired( $touched ) {
 		global $wgCacheEpoch;
@@ -4240,7 +4240,7 @@ function wfNumberOfFiles() {
 
 /**
  * Get various statistics from the database
- * @access private
+ * @private
  */
 function wfLoadSiteStats() {
 	global $wgNumberOfArticles, $wgTotalViews, $wgTotalEdits;
@@ -4266,7 +4266,7 @@ function wfLoadSiteStats() {
  * Escape html tags
  * Basically replacing " > and < with HTML entities ( &quot;, &gt;, &lt;)
  *
- * @param string $in Text that might contain HTML tags
+ * @param $in String: text that might contain HTML tags.
  * @return string Escaped string
  */
 function wfEscapeHTMLTagsOnly( $in ) {

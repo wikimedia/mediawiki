@@ -475,6 +475,9 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 
 /**
  * Makes change an option link which carries all the other options
+ * @param $title @see Title
+ * @param $override
+ * @param $options
  */
 function makeOptionsLink( $title, $override, $options ) {
 	global $wgUser, $wgContLang;
@@ -484,7 +487,9 @@ function makeOptionsLink( $title, $override, $options ) {
 }
 
 /**
- * Creates the options panel
+ * Creates the options panel.
+ * @param $defaults
+ * @param $nondefaults
  */
 function rcOptionsPanel( $defaults, $nondefaults ) {
 	global $wgLang, $wgUseRCPatrol;
@@ -550,16 +555,16 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 
 }
 
-/**<F2>
+/**
  * Creates the choose namespace selection
  *
- * @access private
+ * @private
  *
- * @param mixed $namespace The key of the currently selected namespace, empty string
+ * @param $namespace Mixed: the key of the currently selected namespace, empty string
  *              if there is none
- * @param bool $invert Whether to invert the namespace selection
- * @param array $nondefaults An array of non default options to be remembered
- * @param bool $categories_any Default value for the checkbox
+ * @param $invert Bool: whether to invert the namespace selection
+ * @param $nondefaults Array: an array of non default options to be remembered
+ * @param $categories_any Bool: Default value for the checkbox
  *
  * @return string
  */
@@ -663,9 +668,9 @@ function rcFormatDiff( $row ) {
  * Might be 'cleaner' to use DOM or XSLT or something,
  * but *gack* it's a pain in the ass.
  *
- * @param string $text
+ * @param $text String:
  * @return string
- * @access private
+ * @private
  */
 function rcApplyDiffStyle( $text ) {
 	$styles = array(

@@ -70,7 +70,9 @@ class Linker {
 	}
 
 	/**
-	 * @param bool $broken
+	 * @param $nt Title object.
+	 * @param $text String: FIXME
+	 * @param $broken Boolean: FIXME, default 'false'.
 	 */
 	function getInternalLinkAttributesObj( &$nt, $text, $broken = false ) {
 		if( $broken == 'stub' ) {
@@ -89,10 +91,10 @@ class Linker {
 	 * This function is a shortcut to makeLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeLinkObj for further documentation.
 	 *
-	 * @param string $title The text of the title
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 * @param $title String: the text of the title
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
@@ -114,10 +116,10 @@ class Linker {
 	 * This function is a shortcut to makeKnownLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeKnownLinkObj for further documentation.
 	 * 
-	 * @param string $title The text of the title
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 * @param $title String: the text of the title
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
@@ -156,10 +158,10 @@ class Linker {
 	 * This function is a shortcut to makeStubLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeStubLinkObj for further documentation.
 	 * 
-	 * @param string $title The text of the title
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 * @param $title String: the text of the title
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
@@ -178,10 +180,10 @@ class Linker {
 	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
 	 * call to this will result in a DB query.
 	 * 
-	 * @param string $title The text of the title
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 * @param $title String: the text of the title
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
@@ -279,13 +281,13 @@ class Linker {
 	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
 	 * pages.
 	 *
-	 * @param object $nt Title of target page
-	 * @param string $text Text to replace the title
-	 * @param string $query Link target
-	 * @param string $trail Text after link
-	 * @param string $prefix Text before link text
-	 * @param string $aprops Extra attributes to the a-element
-	 * @param string $style Style to apply - if empty, use getInternalLinkAttributesObj instead
+	 * @param $nt Title object of target page
+	 * @param $text   String: text to replace the title
+	 * @param $query  String: link target
+	 * @param $trail  String: text after link
+	 * @param $prefix String: text before link text
+	 * @param $aprops String: extra attributes to the a-element
+	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
 	 * @return the a-element
 	 */
 	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
@@ -331,10 +333,10 @@ class Linker {
 	/**
 	 * Make a red link to the edit page of a given title.
 	 * 
-	 * @param string $title The text of the title
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 * @param $title String: The text of the title
+	 * @param $text  String: Link text
+	 * @param $query String: Optional query part
+	 * @param $trail String: Optional trail. Alphabetic characters at the start of this string will
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
@@ -370,10 +372,10 @@ class Linker {
 	/**
 	 * Make a brown link to a short article.
 	 * 
-	 * @param string $title The text of the title
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 * @param $title String: the text of the title
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
@@ -396,12 +398,12 @@ class Linker {
 	 * Generate either a normal exists-style link or a stub link, depending
 	 * on the given page size.
 	 *
- 	 * @param int $size
- 	 * @param Title $nt
- 	 * @param string $text
- 	 * @param string $query
- 	 * @param string $trail
- 	 * @param string $prefix
+ 	 * @param $size Integer
+ 	 * @param $nt Title object.
+ 	 * @param $text String
+ 	 * @param $query String
+ 	 * @param $trail String
+ 	 * @param $prefix String
  	 * @return string HTML of link
 	 */
 	function makeSizeLinkObj( $size, $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
@@ -688,13 +690,13 @@ class Linker {
 	/**
 	 * Create a direct link to a given uploaded file.
 	 *
-	 * @param Title  $title
-	 * @param string $text   pre-sanitized HTML
-	 * @param bool   $nourl  Mask absolute URLs, so the parser doesn't
+	 * @param $title Title object.
+	 * @param $text  String: pre-sanitized HTML
+	 * @param $nourl Boolean: Mask absolute URLs, so the parser doesn't
 	 *                       linkify them (it is currently not context-aware)
 	 * @return string HTML
 	 *
-	 * @access public
+	 * @public
 	 * @todo Handle invalid or missing images better.
 	 */
 	function makeMediaLinkObj( $title, $text = '' ) {
@@ -747,10 +749,10 @@ class Linker {
 
 	/**
 	 * Make user link (or user contributions for unregistered users)
-	 * @param int $userId
-	 * @param string $userText
+	 * @param $userId   Integer: user id in database.
+	 * @param $userText String: user name in database
 	 * @return string HTML fragment
-	 * @access private
+	 * @private
 	 */
 	function userLink( $userId, $userText ) {
 		$encName = htmlspecialchars( $userText );
@@ -765,10 +767,10 @@ class Linker {
 	}
 
 	/**
-	 * @param int $userId
-	 * @param string $userText
+	 * @param $userId Integer: user id in database.
+	 * @param $userText String: user name in database.
 	 * @return string HTML fragment with talk and/or block links
-	 * @access private
+	 * @private
 	 */
 	function userToolLinks( $userId, $userText ) {
 		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans;
@@ -796,10 +798,10 @@ class Linker {
 	}
 
 	/**
-	 * @param int $userId
-	 * @param string $userText
+	 * @param $userId Integer: user id in database.
+	 * @param $userText String: user name in database.
 	 * @return string HTML fragment with user talk link
-	 * @access private
+	 * @private
 	 */
 	function userTalkLink( $userId, $userText ) {
 		global $wgContLang;
@@ -811,10 +813,10 @@ class Linker {
 	}
 
 	/**
-	 * @param int $userId
-	 * @param string $userText
+	 * @param $userId Integer: userid
+	 * @param $userText String: user name in database.
 	 * @return string HTML fragment with block link
-	 * @access private
+	 * @private
 	 */
 	function blockLink( $userId, $userText ) {
 		$blockPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
@@ -825,7 +827,7 @@ class Linker {
 	
 	/**
 	 * Generate a user link if the current user is allowed to view it
-	 * @param Revision $rev
+	 * @param $rev Revision object.
 	 * @return string HTML
 	 */
 	function revUserLink( $rev ) {
@@ -842,7 +844,7 @@ class Linker {
 
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
-	 * @param Revision $rev
+	 * @param $rev Revision object.
 	 * @return string HTML
 	 */
 	function revUserTools( $rev ) {
@@ -944,8 +946,8 @@ class Linker {
 	 * Wrap a comment in standard punctuation and formatting if
 	 * it's non-empty, otherwise return empty string.
 	 *
-	 * @param string $comment
-	 * @param Title $title
+	 * @param $comment String: the comment.
+	 * @param $title Title object.
 	 *
 	 * @return string
 	 */
@@ -964,7 +966,7 @@ class Linker {
 	/**
 	 * Wrap and format the given revision's comment block, if the current
 	 * user is allowed to view it.
-	 * @param Revision $rev
+	 * @param $rev Revision object.
 	 * @return string HTML
 	 */
 	function revComment( $rev ) {
@@ -1045,9 +1047,9 @@ class Linker {
 	}
 
 	/** 
-	 * @param Title $title
-	 * @param integer $section
-	 * @param string $hint Link title, or default if omitted or empty
+	 * @param $title Title object.
+	 * @param $section Integer: section number.
+	 * @param $hint Link String: title, or default if omitted or empty
 	 */
 	function editSectionLink( $nt, $section, $hint='' ) {
 		global $wgContLang;

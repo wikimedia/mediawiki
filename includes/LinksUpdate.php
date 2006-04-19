@@ -10,27 +10,28 @@
  */
 class LinksUpdate {
 
-	/**#@+
-	 * @access private
+	/**@{{
+	 * @private
 	 */
-	var $mId,            # Page ID of the article linked from
-		$mTitle,         # Title object of the article linked from
-		$mLinks,         # Map of title strings to IDs for the links in the document
-		$mImages,        # DB keys of the images used, in the array key only
-		$mTemplates,     # Map of title strings to IDs for the template references, including broken ones
-		$mExternals,     # URLs of external links, array key only
-		$mCategories,    # Map of category names to sort keys
-		$mInterlangs,    # Map of language codes to titles
-		$mDb,            # Database connection reference
-		$mOptions,       # SELECT options to be used (array)
-		$mRecursive;     # Whether to queue jobs for recursive updates
-	/**#@-*/
+	var $mId,            //!< Page ID of the article linked from
+		$mTitle,         //!< Title object of the article linked from
+		$mLinks,         //!< Map of title strings to IDs for the links in the document
+		$mImages,        //!< DB keys of the images used, in the array key only
+		$mTemplates,     //!< Map of title strings to IDs for the template references, including broken ones
+		$mExternals,     //!< URLs of external links, array key only
+		$mCategories,    //!< Map of category names to sort keys
+		$mInterlangs,    //!< Map of language codes to titles
+		$mDb,            //!< Database connection reference
+		$mOptions,       //!< SELECT options to be used (array)
+		$mRecursive;     //!< Whether to queue jobs for recursive updates
+	/**@}}*/
 
 	/**
 	 * Constructor
 	 * Initialize private variables
-	 * @param integer $id
-	 * @param string $title
+	 * @param $title Integer: FIXME
+	 * @param $parserOutput FIXME
+	 * @param $recursive Boolean: FIXME, default 'true'.
 	 */
 	function LinksUpdate( $title, $parserOutput, $recursive = true ) {
 		global $wgAntiLockFlags;
@@ -222,7 +223,7 @@ class LinksUpdate {
 
 	/**
 	 * Update a table by doing a delete query then an insert query
-	 * @access private
+	 * @private
 	 */
 	function incrTableUpdate( $table, $prefix, $deletions, $insertions ) {
 		$fname = 'LinksUpdate::incrTableUpdate';
@@ -258,7 +259,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of pagelinks insertions for passing to the DB
 	 * Skips the titles specified by the 2-D array $existing
-	 * @access private
+	 * @private
 	 */
 	function getLinkInsertions( $existing = array() ) {
 		$arr = array();
@@ -279,7 +280,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of template insertions. Like getLinkInsertions()
-	 * @access private
+	 * @private
 	 */
 	function getTemplateInsertions( $existing = array() ) {
 		$arr = array();
@@ -299,7 +300,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of image insertions
 	 * Skips the names specified in $existing
-	 * @access private
+	 * @private
 	 */
 	function getImageInsertions( $existing = array() ) {
 		$arr = array();
@@ -315,7 +316,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of externallinks insertions. Skips the names specified in $existing
-	 * @access private
+	 * @private
 	 */
 	function getExternalInsertions( $existing = array() ) {
 		$arr = array();
@@ -334,7 +335,7 @@ class LinksUpdate {
 	 * Get an array of category insertions
 	 * @param array $existing Array mapping existing category names to sort keys. If both
 	 * match a link in $this, the link will be omitted from the output
-	 * @access private
+	 * @private
 	 */
 	function getCategoryInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
@@ -353,7 +354,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of interlanguage link insertions
 	 * @param array $existing Array mapping existing language codes to titles	 
-	 * @access private
+	 * @private
 	 */
 	function getInterlangInsertions( $existing = array() ) {
 	    $diffs = array_diff_assoc( $this->mInterlangs, $existing );
@@ -371,7 +372,7 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing links, returns those links which are not in $this
 	 * and thus should be deleted.
-	 * @access private
+	 * @private
 	 */
 	function getLinkDeletions( $existing ) {
 		$del = array();
@@ -388,7 +389,7 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing templates, returns those templates which are not in $this
 	 * and thus should be deleted.
-	 * @access private
+	 * @private
 	 */
 	function getTemplateDeletions( $existing ) {
 		$del = array();
@@ -405,7 +406,7 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing images, returns those images which are not in $this
 	 * and thus should be deleted.
-	 * @access private
+	 * @private
 	 */
 	function getImageDeletions( $existing ) {
 		return array_diff_key( $existing, $this->mImages );
@@ -414,7 +415,7 @@ class LinksUpdate {
 	/** 
 	 * Given an array of existing external links, returns those links which are not
 	 * in $this and thus should be deleted.
-	 * @access private
+	 * @private
 	 */
 	function getExternalDeletions( $existing ) {
 		return array_diff_key( $existing, $this->mExternals );
@@ -423,7 +424,7 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing categories, returns those categories which are not in $this
 	 * and thus should be deleted.
-	 * @access private
+	 * @private
 	 */
 	function getCategoryDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mCategories );
@@ -432,7 +433,7 @@ class LinksUpdate {
 	/** 
 	 * Given an array of existing interlanguage links, returns those links which are not
 	 * in $this and thus should be deleted.
-	 * @access private
+	 * @private
 	 */
 	function getInterlangDeletions( $existing ) {
 	    return array_diff_assoc( $existing, $this->mInterlangs );
@@ -440,7 +441,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing links, as a 2-D array
-	 * @access private
+	 * @private
 	 */
 	function getExistingLinks() {
 		$fname = 'LinksUpdate::getExistingLinks';
@@ -459,7 +460,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing templates, as a 2-D array
-	 * @access private
+	 * @private
 	 */
 	function getExistingTemplates() {
 		$fname = 'LinksUpdate::getExistingTemplates';
@@ -478,7 +479,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing images, image names in the keys
-	 * @access private
+	 * @private
 	 */
 	function getExistingImages() {
 		$fname = 'LinksUpdate::getExistingImages';
@@ -494,7 +495,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing external links, URLs in the keys
-	 * @access private
+	 * @private
 	 */
 	function getExistingExternals() {
 		$fname = 'LinksUpdate::getExistingExternals';
@@ -510,7 +511,7 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of existing categories, with the name in the key and sort key in the value.
-	 * @access private
+	 * @private
 	 */
 	function getExistingCategories() {
 		$fname = 'LinksUpdate::getExistingCategories';
@@ -527,7 +528,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of existing interlanguage links, with the language code in the key and the 
 	 * title in the value.
-	 * @access private
+	 * @private
 	 */
 	function getExistingInterlangs() {
 		$fname = 'LinksUpdate::getExistingInterlangs';

@@ -178,8 +178,8 @@ class GroupsForm extends HTMLForm {
 
 	/**
 	 * Edit a group properties and rights.
-	 * @param string $groupname Name of a group to be edited.
-	 * @param string $error message name of the error to display
+	 * @param $groupname String: Name of a group to be edited.
+	 * @param $error String: message name of the error to display
 	 */
 	function editGroupForm($groupID = 0, $error = '') {
 		global $wgOut;

@@ -6,7 +6,8 @@
 
 /**
  * Entry point : initialise variables and call subfunctions.
- * @param string $par Becomes "FOO" when called like Special:Allpages/FOO (default NULL)
+ * @param $par String: becomes "FOO" when called like Special:Allpages/FOO (default NULL)
+ * @param $specialPage @see SpecialPage object.
  */
 function wfSpecialAllpages( $par=NULL, $specialPage ) {
 	global $wgRequest, $wgOut, $wgContLang;

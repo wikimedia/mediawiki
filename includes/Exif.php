@@ -45,9 +45,9 @@ define('MW_EXIF_SRATIONAL', 10);	# Two SLONGs. The first SLONG is the numerator 
  * @subpackage Metadata
  */
 class Exif {
-	/**#@+
-	 * @var array
-	 * @access private
+	//@{
+	/* @var array
+	 * @private
 	 */
 
 	/**
@@ -79,11 +79,11 @@ class Exif {
 	 */
 	var $mFormattedExifData;
 
-	/**#@-*/
+	//@}
 
-	/**#@+
-	 * @var string
-	 * @access private
+	//@{
+	/* @var string
+	 * @private
 	 */
 
 	/**
@@ -101,12 +101,12 @@ class Exif {
 	 */
 	var $log = 'exif';
 
-	/**#@-*/
+	//@}
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $file
+	 * @param $file String: filename.
 	 */
 	function Exif( $file ) {
 		/**
@@ -317,7 +317,7 @@ class Exif {
 	}
 
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	/**
 	 * Generate a flat list of the exif tags
@@ -363,6 +363,9 @@ class Exif {
 		}
 	}
 
+	/**
+	 * @todo document
+	 */
 	function makeFormattedData( $data = null ) {
 		$format = new FormatExif( $this->getFilteredData() );
 		$this->mFormattedExifData = $format->getFormattedData();
@@ -413,9 +416,9 @@ class Exif {
 	/**#@+
 	 * Validates if a tag value is of the type it should be according to the Exif spec
 	 *
-	 * @access private
+	 * @private
 	 *
-	 * @param mixed $in The input value to check
+	 * @param $in Mixed: the input value to check
 	 * @return bool
 	 */
 	function isByte( $in ) {
@@ -504,10 +507,10 @@ class Exif {
 	/**
 	 * Validates if a tag has a legal value according to the Exif spec
 	 *
-	 * @access private
+	 * @private
 	 *
-	 * @param string $tag The tag to check
-	 * @param mixed  $val The value of the tag
+	 * @param $tag String: the tag to check.
+	 * @param $val Mixed: the value of the tag.
 	 * @return bool
 	 */
 	function validate( $tag, $val ) {
@@ -550,13 +553,13 @@ class Exif {
 	/**
 	 * Conviniance function for debugging output
 	 *
-	 * @access private
+	 * @private
 	 *
-	 * @param mixed $in
-	 * @param string $fname
-	 * @param mixed $action
+	 * @param $in Mixed: 
+	 * @param $fname String: 
+	 * @param $action Mixed: , default NULL.
 	 */
-	 function debug( $in, $fname, $action = null ) {
+	 function debug( $in, $fname, $action = NULL ) {
 		$type = gettype( $in );
 		$class = ucfirst( __CLASS__ );
 		if ( $type === 'array' )
@@ -575,18 +578,18 @@ class Exif {
 	/**
 	 * Conviniance function for debugging output
 	 *
-	 * @access private
+	 * @private
 	 *
-	 * @param string $basename The name of the file being processed
-	 * @paran string $fname The name of the function calling this function
-	 * @param bool $bool $io Specify whether we're beginning or ending
+	 * @param $fname String: the name of the function calling this function
+	 * @param $io Boolean: Specify whether we're beginning or ending
 	 */
 	function debugFile( $fname, $io ) {
 		$class = ucfirst( __CLASS__ );
-		if ( $io )
+		if ( $io ) {
 			wfDebugLog( $this->log, "$class::$fname: begin processing: '{$this->basename}'\n" );
-		else
+		} else {
 			wfDebugLog( $this->log, "$class::$fname: end processing: '{$this->basename}'\n" );
+		}
 	}
 
 }
@@ -600,14 +603,14 @@ class FormatExif {
 	 * The Exif data to format
 	 *
 	 * @var array
-	 * @access private
+	 * @private
 	 */
 	var $mExif;
 
 	/**
 	 * Constructor
 	 *
-	 * @param array $exif The Exif data to format ( as returned by
+	 * @param $exif Array: the Exif data to format ( as returned by
 	 *                    Exif::getFilteredData() )
 	 */
 	function FormatExif( $exif ) {
@@ -1024,11 +1027,11 @@ class FormatExif {
 	/**
 	 * Conviniance function for getFormattedData()
 	 *
-	 * @access private
+	 * @private
 	 *
-	 * @param string $tag The tag name to pass on
-	 * @param string $val The value of the tag
-	 * @param string $arg An argument to pass ($1)
+	 * @param $tag String: the tag name to pass on
+	 * @param $val String: the value of the tag
+	 * @param $arg String: an argument to pass ($1)
 	 * @return string A wfMsg of "exif-$tag-$val" in lower case
 	 */
 	function msg( $tag, $val, $arg = null ) {
@@ -1043,9 +1046,9 @@ class FormatExif {
 	 * Format a number, convert numbers from fractions into floating point
 	 * numbers
 	 *
-	 * @access private
+	 * @private
 	 *
-	 * @param mixed $num The value to format
+	 * @param $num Mixed: the value to format
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	function formatNum( $num ) {
@@ -1058,9 +1061,9 @@ class FormatExif {
 	/**
 	 * Format a rational number, reducing fractions
 	 *
-	 * @access private
+	 * @private
 	 *
-	 * @param mixed $num The value to format
+	 * @param $num Mixed: the value to format
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	function formatFraction( $num ) {
@@ -1079,10 +1082,10 @@ class FormatExif {
 	/**
 	 * Calculate the greatest common divisor of two integers.
 	 *
-	 * @param int $a
-	 * @param int $b
+	 * @param $a Integer: FIXME
+	 * @param $b Integer: FIXME
 	 * @return int
-	 * @access private
+	 * @private
 	 */
 	function gcd( $a, $b ) {
 		/*

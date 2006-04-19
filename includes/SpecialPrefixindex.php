@@ -4,13 +4,13 @@
  * @subpackage SpecialPage
  */
 
-/**
- * Entry point : initialise variables and call subfunctions.
- * @param string $par Becomes "FOO" when called like Special:Prefixindex/FOO (default NULL)
- */
-
 require_once 'SpecialAllpages.php';
 
+/**
+ * Entry point : initialise variables and call subfunctions.
+ * @param $par String: becomes "FOO" when called like Special:Prefixindex/FOO (default NULL)
+ * @param $specialPage SpecialPage object.
+ */
 function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 	global $wgRequest, $wgOut, $wgContLang;
 

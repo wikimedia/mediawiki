@@ -10,9 +10,9 @@
 /**
  * Usually aborts on failure
  * If errors are explicitly ignored, returns success
- * @param string $sql SQL query
- * @param mixed $db database handler
- * @param string $fname name of the php function calling
+ * @param $sql String: SQL query
+ * @param $db Mixed: database handler
+ * @param $fname String: name of the php function calling
  */
 function wfQuery( $sql, $db, $fname = '' ) {
 	global $wgOut;
@@ -30,10 +30,10 @@ function wfQuery( $sql, $db, $fname = '' ) {
 
 /**
  *
- * @param string $sql SQL query
+ * @param $sql String: SQL query
  * @param $dbi
- * @param string $fname name of the php function calling
- * @return array first row from the database
+ * @param $fname String: name of the php function calling
+ * @return Array: first row from the database
  */
 function wfSingleQuery( $sql, $dbi, $fname = '' ) {
 	$db =& wfGetDB( $dbi );
@@ -74,13 +74,13 @@ function wfIgnoreSQLErrors( $newstate, $dbi = DB_LAST ) {
 }
 
 /**#@+
- * @param $res database result handler
+ * @param $res Database result handler
  * @param $dbi
 */
 
 /**
  * Free a database result
- * @return bool whether result is sucessful or not
+ * @return Bool: whether result is sucessful or not.
  */
 function wfFreeResult( $res, $dbi = DB_LAST )
 {
@@ -147,7 +147,9 @@ function wfNumFields( $res, $dbi = DB_LAST ) {
 
 /**
  * Return name of a field in a result
- * @param integer $n id of the field
+ * @param $res Mixed: Ressource link see Database::fieldName()
+ * @param $n Integer: id of the field
+ * @param $dbi Default DB_LAST
  * @return string|false name of field
  */
 function wfFieldName( $res, $n, $dbi = DB_LAST )
@@ -234,7 +236,13 @@ function wfLastDBquery( $dbi = DB_LAST ) {
 }
 
 /**
+ * @see Database::Set()
  * @todo document function
+ * @param $table
+ * @param $var
+ * @param $value
+ * @param $cond
+ * @param $dbi Default DB_MASTER
  */
 function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_MASTER )
 {
@@ -248,7 +256,12 @@ function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_MASTER )
 
 
 /**
+ * @see Database::selectField()
  * @todo document function
+ * @param $table
+ * @param $var
+ * @param $cond Default ''
+ * @param $dbi Default DB_LAST
  */
 function wfGetSQL( $table, $var, $cond='', $dbi = DB_LAST )
 {
@@ -261,7 +274,12 @@ function wfGetSQL( $table, $var, $cond='', $dbi = DB_LAST )
 }
 
 /**
+ * @see Database::fieldExists()
  * @todo document function
+ * @param $table
+ * @param $field
+ * @param $dbi Default DB_LAST
+ * @return Result of Database::fieldExists() or false.
  */
 function wfFieldExists( $table, $field, $dbi = DB_LAST ) {
 	$db =& wfGetDB( $dbi );
@@ -273,7 +291,12 @@ function wfFieldExists( $table, $field, $dbi = DB_LAST ) {
 }
 
 /**
+ * @see Database::indexExists()
  * @todo document function
+ * @param $table String
+ * @param $index
+ * @param $dbi Default DB_LAST
+ * @return Result of Database::indexExists() or false.
  */
 function wfIndexExists( $table, $index, $dbi = DB_LAST ) {
 	$db =& wfGetDB( $dbi );
@@ -285,7 +308,13 @@ function wfIndexExists( $table, $index, $dbi = DB_LAST ) {
 }
 
 /**
+ * @see Database::insert()
  * @todo document function
+ * @param $table String
+ * @param $array Array
+ * @param $fname String, default 'wfInsertArray'.
+ * @param $dbi Default DB_MASTER
+ * @return result of Database::insert() or false.
  */
 function wfInsertArray( $table, $array, $fname = 'wfInsertArray', $dbi = DB_MASTER ) {
 	$db =& wfGetDB( $dbi );
@@ -297,7 +326,14 @@ function wfInsertArray( $table, $array, $fname = 'wfInsertArray', $dbi = DB_MAST
 }
 
 /**
+ * @see Database::getArray()
  * @todo document function
+ * @param $table String
+ * @param $vars
+ * @param $conds
+ * @param $fname String, default 'wfGetArray'.
+ * @param $dbi Default DB_LAST
+ * @return result of Database::getArray() or false.
  */
 function wfGetArray( $table, $vars, $conds, $fname = 'wfGetArray', $dbi = DB_LAST ) {
 	$db =& wfGetDB( $dbi );
@@ -309,6 +345,13 @@ function wfGetArray( $table, $vars, $conds, $fname = 'wfGetArray', $dbi = DB_LAS
 }
 
 /**
+ * @see Database::update()
+ * @param $table String
+ * @param $values
+ * @param $conds
+ * @param $fname String, default 'wfUpdateArray'
+ * @param $dbi Default DB_MASTER
+ * @return Result of Database::update()) or false;
  * @todo document function
  */
 function wfUpdateArray( $table, $values, $conds, $fname = 'wfUpdateArray', $dbi = DB_MASTER ) {

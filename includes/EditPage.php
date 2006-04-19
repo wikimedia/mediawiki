@@ -313,7 +313,7 @@ class EditPage {
 	 * Return true if this page should be previewed when the edit form
 	 * is initially opened.
 	 * @return bool
-	 * @access private
+	 * @private
 	 */
 	function previewOnOpen() {
 		global $wgUser;
@@ -325,6 +325,7 @@ class EditPage {
 
 	/**
 	 * @todo document
+	 * @param $request
 	 */
 	function importFormData( &$request ) {
 		global $wgLang, $wgUser;
@@ -424,9 +425,9 @@ class EditPage {
 	/**
 	 * Make sure the form isn't faking a user's credentials.
 	 *
-	 * @param WebRequest $request
+	 * @param $request WebRequest
 	 * @return bool
-	 * @access private
+	 * @private
 	 */
 	function tokenOk( &$request ) {
 		global $wgUser;
@@ -440,6 +441,7 @@ class EditPage {
 		return $this->mTokenOk;
 	}
 
+	/** */
 	function showIntro() {
 		global $wgOut, $wgUser;
 		$addstandardintro=true;
@@ -1126,7 +1128,7 @@ END
 	/**
 	 * Append preview output to $wgOut.
 	 * Includes category rendering if this is a category page.
-	 * @access private
+	 * @private
 	 */
 	function showPreview() {
 		global $wgOut;
@@ -1349,7 +1351,7 @@ END
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 * @todo document
 	 */
 	function mergeChangesInto( &$editText ){
@@ -1391,7 +1393,7 @@ END
 	 * mangle UTF-8 data on form submission. Returns true if Unicode
 	 * should make it through, false if it's known to be a problem.
 	 * @return bool
-	 * @access private
+	 * @private
 	 */
 	function checkUnicodeCompliantBrowser() {
 		global $wgBrowserBlackList;
@@ -1412,7 +1414,7 @@ END
 	 * Format an anchor fragment as it would appear for a given section name
 	 * @param string $text
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function sectionAnchor( $text ) {
 		$headline = Sanitizer::decodeCharReferences( $text );
@@ -1612,7 +1614,7 @@ END
 	 * @param WebRequest $request
 	 * @param string $field
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function safeUnicodeInput( $request, $field ) {
 		$text = rtrim( $request->getText( $field ) );
@@ -1627,7 +1629,7 @@ END
 	 *
 	 * @param string $text
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function safeUnicodeOutput( $text ) {
 		global $wgContLang;
@@ -1648,7 +1650,7 @@ END
 	 *
 	 * @param string $invalue
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function makesafe( $invalue ) {
 		// Armor existing references for reversability.
@@ -1690,7 +1692,7 @@ END
 	 *
 	 * @param string $invalue
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function unmakesafe( $invalue ) {
 		$result = "";

@@ -149,7 +149,7 @@ class contribs_finder {
  * Shows a list of the contributions of a user.
  *
  * @return	none
- * @param	string	$par	(optional) user name of the user for which to show the contributions
+ * @param	$par	String: (optional) user name of the user for which to show the contributions
  */
 function wfSpecialContributions( $par = null ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
@@ -280,7 +280,7 @@ function wfSpecialContributions( $par = null ) {
 
 /**
  * Generates the subheading with links
- * @param object $nt title object for the target
+ * @param $nt @see Title object for the target
  */
 function contributionsSub( $nt ) {
 	global $wgSysopUserBans, $wgLang, $wgUser;
@@ -312,8 +312,8 @@ function contributionsSub( $nt ) {
 }
 
 /**
- * Generates the namespace selector form with hidden attributes
- * @param array $options the options to be inluded
+ * Generates the namespace selector form with hidden attributes.
+ * @param $options Array: the options to be included.
  */
 function contributionsForm( $options ) {
 	global $wgScript, $wgTitle;
