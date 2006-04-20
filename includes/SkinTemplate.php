@@ -37,7 +37,7 @@ require_once 'GlobalFunctions.php';
  * Wrapper object for MediaWiki's localization functions,
  * to be passed to the template engine.
  *
- * @access private
+ * @private
  * @package MediaWiki
  */
 class MediaWiki_I18N {
@@ -74,7 +74,7 @@ class MediaWiki_I18N {
  */
 class SkinTemplate extends Skin {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 
 	/**
@@ -120,7 +120,7 @@ class SkinTemplate extends Skin {
 	 * @param string $repository subdirectory where we keep template files
 	 * @param string $cache_dir
 	 * @return object
-	 * @access private
+	 * @private
 	 */
 	function setupTemplate( $classname, $repository=false, $cache_dir=false ) {
 		return new $classname();
@@ -130,7 +130,7 @@ class SkinTemplate extends Skin {
 	 * initialize various variables and generate the template
 	 *
 	 * @param OutputPage $out
-	 * @access public
+	 * @public
 	 */
 	function outputPage( &$out ) {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
@@ -436,7 +436,7 @@ class SkinTemplate extends Skin {
 	 * For the base class, assume strings all around.
 	 *
 	 * @param mixed $str
-	 * @access private
+	 * @private
 	 */
 	function printOrError( &$str ) {
 		echo $str;
@@ -445,7 +445,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * build array of urls for personal toolbar
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function buildPersonalUrls() {
 		global $wgTitle, $wgShowIPinHeader;
@@ -582,7 +582,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * an array of edit links by default used for the tabs
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function buildContentActionUrls () {
 		global $wgContLang;
@@ -760,7 +760,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * build array of common navigation links
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function buildNavUrls () {
 		global $wgUseTrackbacks, $wgTitle, $wgArticle;
@@ -868,14 +868,14 @@ class SkinTemplate extends Skin {
 	/**
 	 * Generate strings used for xml 'id' names
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function getNameSpaceKey () {
 		return $this->mTitle->getNamespaceKey();
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function setupUserCss() {
 		$fname = 'SkinTemplate::setupUserCss';
@@ -924,7 +924,7 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function setupUserJs() {
 		$fname = 'SkinTemplate::setupUserJs';
@@ -948,7 +948,7 @@ class SkinTemplate extends Skin {
 	 * Code for extensions to hook into to provide per-page CSS, see
 	 * extensions/PageCSS/PageCSS.php for an implementation of this.
 	 *
-	 * @access private
+	 * @private
 	 */
 	function setupPageCss() {
 		$fname = 'SkinTemplate::setupPageCss';
@@ -962,7 +962,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * returns css with user-specific options
-	 * @access public
+	 * @public
 	 */
 
 	function getUserStylesheet() {
@@ -976,7 +976,7 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * @access public
+	 * @public
 	 */
 	function getUserJs() {
 		$fname = 'SkinTemplate::getUserJs';
@@ -1008,7 +1008,7 @@ class SkinTemplate extends Skin {
  */
 class QuickTemplate {
 	/**
-	 * @access public
+	 * @public
 	 */
 	function QuickTemplate() {
 		$this->data = array();
@@ -1016,28 +1016,28 @@ class QuickTemplate {
 	}
 
 	/**
-	 * @access public
+	 * @public
 	 */
 	function set( $name, $value ) {
 		$this->data[$name] = $value;
 	}
 
 	/**
-	 * @access public
+	 * @public
 	 */
 	function setRef($name, &$value) {
 		$this->data[$name] =& $value;
 	}
 
 	/**
-	 * @access public
+	 * @public
 	 */
 	function setTranslator( &$t ) {
 		$this->translator = &$t;
 	}
 
 	/**
-	 * @access public
+	 * @public
 	 */
 	function execute() {
 		echo "Override this function.";
@@ -1045,28 +1045,28 @@ class QuickTemplate {
 
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function html( $str ) {
 		echo $this->data[$str];
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function msg( $str ) {
 		echo htmlspecialchars( $this->translator->translate( $str ) );
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function msgHtml( $str ) {
 		echo $this->translator->translate( $str );
@@ -1074,7 +1074,7 @@ class QuickTemplate {
 
 	/**
 	 * An ugly, ugly hack.
-	 * @access private
+	 * @private
 	 */
 	function msgWiki( $str ) {
 		global $wgParser, $wgTitle, $wgOut;
@@ -1086,14 +1086,14 @@ class QuickTemplate {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function haveData( $str ) {
 		return $this->data[$str];
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function haveMsg( $str ) {
 		$msg = $this->translator->translate( $str );

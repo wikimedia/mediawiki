@@ -61,7 +61,7 @@ class CategoryPage extends Article {
 	 * @param string $from -- return only sort keys from this item on
 	 * @param string $until -- don't return keys after this point.
 	 * @return string HTML output
-	 * @access private
+	 * @private
 	 */
 	function doCategoryMagic( $from = '', $until = '' ) {
 		global $wgContLang,$wgUser, $wgCategoryMagicGallery, $wgCategoryPagingLimit;
@@ -190,7 +190,7 @@ class CategoryPage extends Article {
 	 * @param array $articles
 	 * @param string $message
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function formatCount( $articles, $message ) {
 		global $wgContLang;
@@ -209,7 +209,7 @@ class CategoryPage extends Article {
 	 * @param array $articles_start_char
 	 * @param int   $cutoff
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
 		if ( count ( $articles ) > $cutoff ) {
@@ -228,7 +228,7 @@ class CategoryPage extends Article {
 	 * @param array $articles
 	 * @param array $articles_start_char
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function columnList( $articles, $articles_start_char ) {
 		// divide list into three equal chunks
@@ -287,7 +287,7 @@ class CategoryPage extends Article {
 	 * @param array $articles
 	 * @param array $articles_start_char
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
@@ -312,7 +312,7 @@ class CategoryPage extends Article {
 	 * @param int    $limit
 	 * @param array  $query - additional query options to pass
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function pagingLinks( $title, $first, $last, $limit, $query = array() ) {
 		global $wgUser, $wgLang;

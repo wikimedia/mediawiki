@@ -38,7 +38,7 @@ class SpecialVersion {
 	}
 
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 
 	/**
