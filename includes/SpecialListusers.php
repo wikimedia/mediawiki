@@ -135,7 +135,7 @@ class ListUsersPage extends QueryPage {
 			"FROM $user ".
 			"LEFT JOIN $user_groups ON user_id=ug_user " .
 			$this->userQueryWhere( $dbr ) .
-			" GROUP BY user_name, user_id";
+			" GROUP BY user_name";
 
 		return $sql;
 	}
