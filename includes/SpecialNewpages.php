@@ -114,13 +114,26 @@ class NewPagesPage extends QueryPage {
 	 */	
 	function getPageHeader() {
 		$thisTitle = Title::makeTitle( NS_SPECIAL, $this->getName() );
-		$form  = wfElement( 'form', array( 'method' => 'post', 'action' => $thisTitle->escapeLocalUrl() ), NULL );
-		$form .= wfElement( 'label', array( 'for' => 'namespace' ), wfMsgHtml( 'namespace' ) ) . ' ';
+		$form  = wfOpenElement( 'form', array(
+			'method' => 'post',
+			'action' => $thisTitle->getLocalUrl() ) );
+		$form .= wfElement( 'label', array( 'for' => 'namespace' ),
+			wfMsg( 'namespace' ) ) . ' ';
 		$form .= HtmlNamespaceSelector( $this->namespace );
 		# Preserve the offset and limit
-		$form .= wfElement( 'input', array( 'type' => 'hidden', 'name' => 'offset', 'value' => $this->offset ), '' );
-		$form .= wfElement( 'input', array( 'type' => 'hidden', 'name' => 'limit', 'value' => $this->limit ), '' );
-		$form .= wfElement( 'input', array( 'type' => 'submit',  'name' => 'submit', 'id' => 'submit', 'value' => wfMsgHtml( 'allpagessubmit' ) ), '' );
+		$form .= wfElement( 'input', array(
+			'type' => 'hidden',
+			'name' => 'offset',
+			'value' => $this->offset ) );
+		$form .= wfElement( 'input', array(
+			'type' => 'hidden',
+			'name' => 'limit',
+			'value' => $this->limit ) );
+		$form .= wfElement( 'input', array(
+			'type' => 'submit',
+			'name' => 'submit',
+			'id' => 'submit',
+			'value' => wfMsg( 'allpagessubmit' ) ) );
 		$form .= wfCloseElement( 'form' );
 		return( $form );
 	}
