@@ -36,7 +36,7 @@ class MostrevisionsPage extends QueryPage {
 			FROM $revision
 			LEFT JOIN $page ON page_id = rev_page
 			WHERE page_namespace = " . NS_MAIN . "
-			GROUP BY rev_page, page_namespace, page_title
+			GROUP BY rev_page
 			HAVING COUNT(*) > 1
 			";
 	}
