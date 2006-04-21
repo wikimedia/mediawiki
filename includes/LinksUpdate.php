@@ -173,29 +173,60 @@ class LinksUpdate {
 
 		wfProfileOut( $fname );
 	}
+	
+	/**
+	 * Invalidate the cache of a list of pages from a single namespace
+	 *
+	 * @param integer $namespace
+	 * @param array $dbkeys
+	 */
+	function invalidatePages( $namespace, $dbkeys ) {
+		$fname = 'LinksUpdate::invalidatePages';
+		
+		if ( !count( $dbkeys ) ) {
+			return;
+		}
+		
+		/**
+		 * Determine which pages need to be updated
+		 * This is necessary to prevent the job queue from smashing the DB with
+		 * large numbers of concurrent invalidations of the same page
+		 */
+		$now = $this->mDb->timestamp();
+		$ids = array();
+		$res = $this->mDb->select( 'page', array( 'page_id' ), 
+			array( 
+				'page_namespace' => $namespace,
+				'page_title IN (' . $this->mDb->makeList( $dbkeys ) . ')',
+				'page_touched < ' . $this->mDb->addQuotes( $now )
+			), $fname
+		);
+		while ( $row = $this->mDb->fetchObject( $res ) ) {
+			$ids[] = $row->page_id;
+		}
+		if ( !count( $ids ) ) {
+			return;
+		}
+		
+		/**
+		 * Do the update
+		 * We still need the page_touched condition, in case the row has changed since 
+		 * the non-locking select above.
+		 */
+		$this->mDb->update( 'page', array( 'page_touched' => $now ), 
+			array( 
+				'page_id IN (' . $this->mDb->makeList( $ids ) . ')',
+				'page_touched < ' . $this->mDb->addQuotes( $now )
+			), $fname
+		);
+	}
 
 	function invalidateCategories( $cats ) {
-		$fname = 'LinksUpdate::invalidateCategories';
-		if ( count( $cats ) ) {
-			$this->mDb->update( 'page', array( 'page_touched' => $this->mDb->timestamp() ),
-				array(
-					'page_namespace' => NS_CATEGORY,
-					'page_title IN (' . $this->mDb->makeList( array_keys( $cats ) ) . ')'
-				), $fname
-			);
-		}
+		$this->invalidatePages( NS_CATEGORY, array_keys( $cats ) );
 	}
 
 	function invalidateImageDescriptions( $images ) {
-		$fname = 'LinksUpdate::invalidateImageDescriptions';
-		if ( count( $images ) ) {
-			$this->mDb->update( 'page', array( 'page_touched' => $this->mDb->timestamp() ),
-				array(
-					'page_namespace' => NS_IMAGE,
-					'page_title IN (' . $this->mDb->makeList( array_keys( $images ) ) . ')'
-				), $fname
-			);
-		}
+		$this->invalidatePages( NS_IMAGE, array_keys( $images ) );
 	}
 
 	function dumbTableUpdate( $table, $insertions, $fromField ) {
