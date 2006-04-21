@@ -30,6 +30,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5592) Actions are logged with the default language for the
    wiki, not the language of the user performing the operation.
 * (bug 5646) Compare for identical types in wfElement()
+* Fix for concurrency problem in job queue (image description page invalidation)
+
 
 == MediaWiki 1.6.3 ==
 
