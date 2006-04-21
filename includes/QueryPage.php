@@ -63,6 +63,14 @@ class QueryPage {
 	 * @var bool
 	 */
 	var $listoutput = false;
+	
+	/**
+	 * The offset and limit in use, as passed to the query() function
+	 *
+	 * @var integer
+	 */
+	var $offset = 0;
+	var $limit = 0;
 
 	/**
 	 * A mutator for $this->listoutput;
@@ -263,6 +271,9 @@ class QueryPage {
 	 */
 	function doQuery( $offset, $limit, $shownavigation=true ) {
 		global $wgUser, $wgOut, $wgLang, $wgContLang;
+
+		$this->offset = $offset;
+		$this->limit = $limit;
 
 		$sname = $this->getName();
 		$fname = get_class($this) . '::doQuery';
