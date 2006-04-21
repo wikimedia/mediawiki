@@ -1623,7 +1623,7 @@ $wgBrowserBlackList = array(
 	'/^Mozilla\/4\.[^ ]+ .*?\((?!compatible).*; [UIN]/',
 	
 	/**
-	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and �? to <ETH>
+	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and Ð to <ETH>
 	 *
 	 * Known useragents:
 	 * - Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC)
