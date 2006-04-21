@@ -165,7 +165,7 @@ function wfSpecialNewpages($par, $specialPage) {
 			}
 		}
 	} else {
-		if( $ns = $wgRequest->getVal( 'namespace', 0 ) )
+		if( $ns = $wgRequest->getInt( 'namespace', 0 ) )
 			$namespace = $ns;
 	}
 	
