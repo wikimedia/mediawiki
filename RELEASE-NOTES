@@ -108,7 +108,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5422) Stub for Romani (rmy) language which extends ro
 * Fix linktrail for LanguageSr
 * (bug 5664) Fix Bosnian linktrail
-
+* (bug 3825) Namespace filtering on Special:Newpages
 
 == Compatibility ==
 
