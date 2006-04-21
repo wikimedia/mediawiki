@@ -14,7 +14,7 @@
 'tog-showtoolbar' => 'Tampilkan batang alat penyuntingan',
 'tog-editondblclick' => 'Sunting halaman dengan klik ganda (JavaScript)',
 'tog-editsection'=> 'Fungsikan penyuntingan subbab melalui pranala [sunting]',
-'tog-editsectiononrightclick' => 'Fungsikan penyuntingan subbab dengan klik-kanan<br/>pada judul bagian (JavaScript)',
+'tog-editsectiononrightclick' => 'Fungsikan penyuntingan subbab dengan klik-kanan pada judul bagian (JavaScript)',
 'tog-showtoc' => 'Tampilkan daftar isi<br />(untuk artikel yang mempunyai lebih dari 3 judul)',
 'tog-rememberpassword' => 'Ingat kata sandi pada setiap sesi',
 'tog-editwidth' => 'Kotak sunting memiliki lebar penuh',
@@ -550,11 +550,11 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 
 # Preferences page
 #
-"preferences" => "Konfigurasi",
+"preferences" => "Preferensi",
 "prefsnologin" => "Belum masuk log",
 "prefsnologintext" => "Anda harus [[Special:Userlogin|masuk log]] untuk menetapkan preferensi Anda.",
 
-"prefsreset" => "Konfigurasi telah dikembalikan ke asal dari storage.",
+"prefsreset" => "Preferensi telah dikembalikan ke konfigurasi baku.",
 "qbsettings" => "Pengaturan quickbar",
 "changepassword" => "Ganti kata sandi",
 "skin" => "Kulit",
@@ -591,7 +591,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "contextchars" => "Karakter untuk konteks per baris",
 "stubthreshold" => "Threshold tampilan stub",
 "recentchangescount" => "Jumlah judul dalam perubahan terbaru",
-"savedprefs" => "Konfigurasi Anda telah disimpan",
+"savedprefs" => "Preferensi Anda telah disimpan",
 'timezonelegend' => 'Daerah waktu',
 "timezonetext" => "Masukkan perbedaan waktu (dalam jam) antara waktu setempat dengan waktu server (UTC).",
 "localtime" => "Waktu setempat",
@@ -796,8 +796,14 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 "statistics" => "Statistik",
 "sitestats" => "Statistik situs",
 "userstats" => "Statistik pengguna",
-"sitestatstext" => "Ada sejumlah <b>$1</b> halaman dalam basis data. Ini termasuk halaman \"pembicaraan\", halaman tentang {{SITENAME}}, halaman minimum \"stub\", peralihan halaman, dan halaman-halaman lain yang mungkin bukan artikel. Selain itu, ada <b>$2</b> halaman yang mungkin adalah artikel yang sah.<p> Ada sejumlah <b>$3</b> penampilan halaman, dan sejumlah <b>$4</b> penyuntingan sejak wiki ini dimulai. Ini berarti rata-rata <b>$5</b> suntingan per halaman, dan <b>$6</b> penampilan per penyuntingan.",
-"userstatstext" => "Ada <b>$1</b> pengguna terdaftar. <b>$2</b> diantaranya adalah administrator (lihat $3).",
+"sitestatstext" => "Terdapat total '''$1''' halaman dalam basis data. Ini termasuk halaman \"pembicaraan\", halaman tentang {{SITENAME}}, halaman  \"rintisan\" minimum, halaman peralihan, dan halaman-halaman lain yang mungkin tidak masuk kriteria artikel. Selain itu, ada '''$2''' halaman yang mungkin termasuk artikel yang sah.
+
+'''$8''' berkas telah dimuat.
+
+Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sejak wiki ini dimulai. Ini berarti rata-rata '''$5''' suntingan per halaman, dan '''$6''' penampilan per penyuntingan.
+
+[http://meta.wikimedia.org/wiki/Help:Job_queue Antrian job] adalah sebanyak '''$7'''.",
+"userstatstext" => "Ada '''$1''' pengguna terdaftar, dimana '''$2''' (atau '''$4%''') diantaranya adalah administrator (lihat $3).",
 
 "disambiguations" => "Halaman disambiguasi",
 "disambiguationspage" => "Project:Pranala_ke_halaman_disambiguation",
@@ -907,20 +913,20 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 #
 "watchlist" => "Daftar pantauan",
 "watchlistsub" => "(untuk pengguna \"$1\")",
-"nowatchlist" => "Daftar pemantauan Anda kosong.",
+"nowatchlist" => "Daftar pantauan Anda kosong.",
 'watchlistcount' 	=> "'''Anda memiliki $1 entri di daftar pantauan Anda, termasuk halaman diskusi/bicara.'''",
 'clearwatchlist' 	=> 'Kosongkan daftar pantauan',
 'watchlistcleartext' => 'Apakah Anda yakin untuk menghapusnya?',
 'watchlistclearbutton' => 'Kosongkan daftar pantauan',
 'watchlistcleardone' => 'Daftar pantauan Anda telah dikosongkan. $1 entri telah dihapus.',
 "watchnologin" => "Belum masuk log",
-"watchnologintext" => "Anda harus [[Special:Userlogin|masuk log]] untuk mengubah daftar pemantauan.",
-"addedwatch" => "Telah ditambahkan ke daftar pemantauan",
-"addedwatchtext" => "Halaman \"$1\" telah ditambahkan ke [[Special:Watchlist|daftar pemantauan]]. Pada masa yang akan datang, semua perubahan pada halaman tersebut berikut halaman pembicaraannya akan didaftar di sini, dan halaman tersebut akan <b>dicetak tebal</b> dalam [[Special:Recentchanges|daftar perubahan terbaru]] supaya lebih mudah dilihat.\n\n<p>Apabila nanti Anda ingin menghapus halaman dari daftar pemantauan, klik \"Berhenti memantau\" pada batang sebelah.",
-"removedwatch" => "Telah dihapus dari daftar pemantauan",
-"removedwatchtext" => "Halaman \"$1\" telah dihapus dari daftar pemantauan.",
+"watchnologintext" => "Anda harus [[Special:Userlogin|masuk log]] untuk mengubah daftar pantauan.",
+"addedwatch" => "Telah ditambahkan ke daftar pantauan",
+"addedwatchtext" => "Halaman \"$1\" telah ditambahkan ke [[Special:Watchlist|daftar pantauan]]. Pada masa yang akan datang, semua perubahan pada halaman tersebut berikut halaman pembicaraannya akan didaftar di sini, dan halaman tersebut akan <b>dicetak tebal</b> dalam [[Special:Recentchanges|daftar perubahan terbaru]] supaya lebih mudah dilihat.\n\n<p>Apabila nanti Anda ingin menghapus halaman dari daftar pantauan, klik \"Berhenti memantau\" pada batang sebelah.",
+"removedwatch" => "Telah dihapus dari daftar pantauan",
+"removedwatchtext" => "Halaman \"$1\" telah dihapus dari daftar pantauan.",
 'watch' => 'Pantau',
-"watchthispage" => "Tambahkan ke daftar pemantauan",
+"watchthispage" => "Tambahkan ke daftar pantauan",
 'unwatch' => 'Berhenti memantau',
 "unwatchthispage" => "Berhenti memantau",
 "notanarticle" => "Bukan sebuah artikel",
@@ -930,15 +936,15 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 'wlheader-showupdated'   => "* Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''",
 "watchmethod-recent"=> "periksa daftar perubahan terbaru terhadap halaman yang dipantau",
 "watchmethod-list" => "periksa halaman yang dipantau terhadap perubahan terbaru",
-"removechecked" => "Hapus item yang diberi tanda cek dari daftar pemantauan",
-"watchlistcontains" => "Daftar pemantauan Anda berisi $1 halaman.",
-"watcheditlist" => "Berikut ini adalah daftar halaman-halaman yang Anda pantau. Untuk menghapus halaman dari daftar pemantauan Anda, berikan tanda cek pada kotak cek di sebelah judul halaman yang ingin Anda hapus, lalu klik tombol 'hapus yang dicek' yang terletak di bagian bawah layar.",
-"removingchecked" => "Menghapus item-item yang diminta dari daftar pemantauan Anda...",
+"removechecked" => "Hapus item yang diberi tanda cek dari daftar pantauan",
+"watchlistcontains" => "Daftar pantauan Anda berisi $1 halaman.",
+"watcheditlist" => "Berikut ini adalah daftar halaman-halaman yang Anda pantau. Untuk menghapus halaman dari daftar pantauan Anda, berikan tanda cek pada kotak cek di sebelah judul halaman yang ingin Anda hapus, lalu klik tombol 'hapus yang dicek' yang terletak di bagian bawah layar.",
+"removingchecked" => "Menghapus item-item yang diminta dari daftar pantauan Anda...",
 "couldntremove" => "Tidak dapat menghapus item '$1'...",
 "iteminvalidname" => "Ada masalah dengan item '$1' (namanya tidak sah)...",
 "wlnote" => "Di bawah ini adalah daftar $1 perubahan terakhir dalam <b>$2</b> jam terakhir.",
 "wlshowlast" => "Tampilkan $1 jam $2 hari $3 terakhir",
-"wlsaved" => "Ini adalah versi tersimpan dari daftar pemantauan Anda.",
+"wlsaved" => "Ini adalah versi tersimpan dari daftar pantauan Anda.",
 'wlhideshowown'   	=> '$1 suntingan saya.',
 'wlhideshowbots'   	=> '$1 suntingan bot.',
 
@@ -966,7 +972,7 @@ Kami tidak akan mengirimkan pemberitahuan lain jika terjadi perubahan lagi, kecu
              Sistem notifikasi {{SITENAME}}
 
 --
-Untuk mengubah konfigurasi daftar pantauan Anda, kunjungi
+Untuk mengubah preferensi daftar pantauan Anda, kunjungi
 {{SERVER}}{{localurl:Special:Watchlist/edit}}
 
 Masukan dan bantuan lanjutan:
@@ -1141,8 +1147,8 @@ Masukan dan bantuan lanjutan:
 #
 "lockdb" => "Kunci basis data",
 "unlockdb" => "Buka kunci basis data",
-"lockdbtext" => "Mengunci basis data akan menghentikan kemampuan semua pengguna dalam menyunting halaman, mengubah preferensi pengguna, menyunting daftar pemantauan mereka, dan hal-hal lain yang memerlukan perubahan terhadap basis data. Pastikan bahwa ini adalah yang ingin Anda lakukan, dan bahwa Anda akan membuka kunci basis data setelah pemeliharaan selesai.",
-"unlockdbtext" => "Membuka kunci basis data akan mengembalikan kemampuan semua pengguna dalam menyunting halaman, mengubah preferensi pengguna, menyunting daftar pemantauan mereka, dan hal-hal lain yang memerlukan perubahan terhadap basis data.  Pastikan bahwa ini adalah yang ingin Anda lakukan.",
+"lockdbtext" => "Mengunci basis data akan menghentikan kemampuan semua pengguna dalam menyunting halaman, mengubah preferensi pengguna, menyunting daftar pantauan mereka, dan hal-hal lain yang memerlukan perubahan terhadap basis data. Pastikan bahwa ini adalah yang ingin Anda lakukan, dan bahwa Anda akan membuka kunci basis data setelah pemeliharaan selesai.",
+"unlockdbtext" => "Membuka kunci basis data akan mengembalikan kemampuan semua pengguna dalam menyunting halaman, mengubah preferensi pengguna, menyunting daftar pantauan mereka, dan hal-hal lain yang memerlukan perubahan terhadap basis data.  Pastikan bahwa ini adalah yang ingin Anda lakukan.",
 "lockconfirm" => "Ya, saya memang ingin mengunci basis data.",
 "unlockconfirm" => "Ya, saya memang ingin membuka kunci basis data.",
 "lockbtn" => "Kunci basis data",
@@ -1242,7 +1248,7 @@ Artikel yang dituju "[[$1]]" telah mempunyai isi. Apakah Anda hendak menghapusny
 'tooltip-preview' => 'Pratilik perubahan Anda -- mohon gunakan ini sebelum menyimpan! [alt-p]',
 'tooltip-diff' => 'Lihat perubahan yang telah Anda lakukan. [alt-v]',
 'tooltip-compareselectedversions' => 'Lihat perbedaan antara dua versi halaman yang dipilih. [alt-v]',
-'tooltip-watch' => 'Tambahkan halaman ini ke daftar pemantauan Anda [alt-w]',
+'tooltip-watch' => 'Tambahkan halaman ini ke daftar pantauan Anda [alt-w]',
 
 # stylesheets
 
@@ -1315,7 +1321,7 @@ ta[\'pt-userpage\'] = new Array(\'.\',\'Halaman pengguna saya\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Halaman pengguna IP Anda\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Halaman pembicaraan saya\');
 ta[\'pt-anontalk\'] = new Array(\'n\',\'Diskusi tentang suntingan dari alamat IP ini\');
-ta[\'pt-preferences\'] = new Array(\'\',\'Konfigurasi saya\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Preferensi saya\');
 ta[\'pt-watchlist\'] = new Array(\'l\',\'Daftar halaman yang Anda pantau.\');
 ta[\'pt-mycontris\'] = new Array(\'y\',\'Daftar sumbangan saya\');
 ta[\'pt-login\'] = new Array(\'o\',\'Anda disarankan untuk masuk log, meskipun hal itu tidak diwajibkan.\');
@@ -1330,8 +1336,8 @@ ta[\'ca-protect\'] = new Array(\'=\',\'Lindungi halaman ini\');
 ta[\'ca-delete\'] = new Array(\'d\',\'Hapus halaman ini\');
 ta[\'ca-undelete\'] = new Array(\'d\',\'Kembalikan suntingan ke halaman ini sebelum halaman ini dihapus\');
 ta[\'ca-move\'] = new Array(\'m\',\'Pindahkan halaman ini\');
-ta[\'ca-watch\'] = new Array(\'w\',\'Tambahkan halaman ini ke daftar pemantauan Anda\');
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Hapus halaman ini dari daftar pemantauan Anda\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Tambahkan halaman ini ke daftar pantauan Anda\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Hapus halaman ini dari daftar pantauan Anda\');
 ta[\'search\'] = new Array(\'f\',\'Cari dalam wiki ini\');
 ta[\'p-logo\'] = new Array(\'\',\'Halaman Utama\');
 ta[\'n-mainpage\'] = new Array(\'z\',\'Kunjungi Halaman Utama\');
@@ -1414,6 +1420,285 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 * fnumber
 * focallength',
 
+# Exif tags
+'exif-imagewidth' =>'Lebar',
+'exif-imagelength' =>'Tinggi',
+'exif-bitspersample' =>'Bit per komponen',
+'exif-compression' =>'Skema kompresi',
+'exif-photometricinterpretation' =>'Komposisi piksel',
+'exif-orientation' =>'Orientasi',
+'exif-samplesperpixel' =>'Jumlah komponen',
+'exif-planarconfiguration' =>'Pengaturan data',
+'exif-ycbcrsubsampling' =>'Rasio subsampling Y ke C',
+'exif-ycbcrpositioning' =>'Penempatan Y dan C',
+'exif-xresolution' =>'Resolusi horizontal',
+'exif-yresolution' =>'Resolusi vertical',
+'exif-resolutionunit' =>'Satuan resolusi X dan Y',
+'exif-stripoffsets' =>'Lokasi data gambar',
+'exif-rowsperstrip' =>'Jumlah baris per strip',
+'exif-stripbytecounts' =>'Byte per strip kompresi',
+'exif-jpeginterchangeformat' =>'Offset ke JPEG SOI',
+'exif-jpeginterchangeformatlength' =>'Byte data JPEG',
+'exif-transferfunction' =>'Fungsi transfer',
+'exif-whitepoint' =>'Kromatisitas titik putih',
+'exif-primarychromaticities' =>'Kromatisitas warna primer',
+'exif-ycbcrcoefficients' =>'Koefisien matriks transformasi ruang warna',
+'exif-referenceblackwhite' =>'Nilai referensi pasangan hitam putih',
+'exif-datetime' =>'Tanggal dan waktu perubahan berkas',
+'exif-imagedescription' =>'Judul gambar',
+'exif-make' =>'Produsen kamera',
+'exif-model' =>'Model kamera',
+'exif-software' =>'Perangkat lunak',
+'exif-artist' =>'Pembuat',
+'exif-copyright' =>'Pemilik hak cipta',
+'exif-exifversion' =>'Versi Exif',
+'exif-flashpixversion' =>'Dukungan versi Flashpix',
+'exif-colorspace' =>'Ruang warna',
+'exif-componentsconfiguration' =>'Arti tiap komponen',
+'exif-compressedbitsperpixel' =>'Mode kompresi gambar',
+'exif-pixelydimension' =>'Lebar gambar yang sah',
+'exif-pixelxdimension' =>'Tinggi gambar yang sah',
+'exif-makernote' =>'Catatan produsen',
+'exif-usercomment' =>'Komentar pengguna',
+'exif-relatedsoundfile' =>'Berkas audio yang berhubungan',
+'exif-datetimeoriginal' =>'Tanggal dan waktu pembuatan data',
+'exif-datetimedigitized' =>'Tanggal dan waktu digitalisasi',
+'exif-subsectime' =>'Subdetik DateTime',
+'exif-subsectimeoriginal' =>'Subdetik DateTimeOriginal',
+'exif-subsectimedigitized' =>'Subdetik DateTimeDigitized',
+'exif-exposuretime' =>'Waktu exposure',
+'exif-exposuretime-format' => '$1 detik ($2)',
+'exif-fnumber' =>'F Number',
+'exif-fnumber-format' =>'f/$1',
+'exif-exposureprogram' =>'Exposure Program',
+'exif-spectralsensitivity' =>'Sensitivitas spektral',
+'exif-isospeedratings' =>'ISO speed rating',
+'exif-oecf' =>'Faktor konversi optoelektronik',
+'exif-shutterspeedvalue' =>'Kecepatan shutter',
+'exif-aperturevalue' =>'Aperture',
+'exif-brightnessvalue' =>'Brightness',
+'exif-exposurebiasvalue' =>'Exposure bias',
+'exif-maxaperturevalue' =>'Maximum land aperture',
+'exif-subjectdistance' =>'Jarak subyek',
+'exif-meteringmode' =>'Metering mode',
+'exif-lightsource' =>'Sumber cahaya',
+'exif-flash' =>'Flash',
+'exif-focallength' =>'Lens focal length',
+'exif-focallength-format' =>'$1 mm',
+'exif-subjectarea' =>'Wilayah subyek',
+'exif-flashenergy' =>'Flash energy',
+'exif-spatialfrequencyresponse' =>'Respons frekuensi spasial',
+'exif-focalplanexresolution' =>'Resolusi focal plane X',
+'exif-focalplaneyresolution' =>'Resolusi focal plane Y',
+'exif-focalplaneresolutionunit' =>'Unit resolusi focal plane',
+'exif-subjectlocation' =>'Lokasi subyek',
+'exif-exposureindex' =>'Indeks exposure',
+'exif-sensingmethod' =>'Metode sensing',
+'exif-filesource' =>'Sumber berkas',
+'exif-scenetype' =>'Tipe scene',
+'exif-cfapattern' =>'Pola CFA',
+'exif-customrendered' =>'Proses buatan gambar',
+'exif-exposuremode' =>'Mode exposure',
+'exif-whitebalance' =>'White Balance',
+'exif-digitalzoomratio' =>'Rasio pembesaran digital',
+'exif-focallengthin35mmfilm' =>'Focal length in 35 mm film',
+'exif-scenecapturetype' =>'Tipe scene capture',
+'exif-gaincontrol' =>'Kontrol scene',
+'exif-contrast' =>'Kontras',
+'exif-saturation' =>'Saturasi',
+'exif-sharpness' =>'Ketajaman',
+'exif-devicesettingdescription' =>'Deskripsi pengaturan alat',
+'exif-subjectdistancerange' =>'Jarak subyek',
+'exif-imageuniqueid' =>'ID unik gambar',
+'exif-gpsversionid' =>'Versi tag GPS',
+'exif-gpslatituderef' =>'Lintang Utara atau Selatan',
+'exif-gpslatitude' =>'Lintang',
+'exif-gpslongituderef' =>'Bujur Timur atau Barat',
+'exif-gpslongitude' =>'Bujur',
+'exif-gpsaltituderef' =>'Referensi ketinggian',
+'exif-gpsaltitude' =>'Ketinggian',
+'exif-gpstimestamp' =>'Waktu GPS (jam atom)',
+'exif-gpssatellites' =>'Satelit untuk pengukuran',
+'exif-gpsstatus' =>'Status penerima',
+'exif-gpsmeasuremode' =>'Mode pengukuran',
+'exif-gpsdop' =>'Ketepatan pengukuran',
+'exif-gpsspeedref' =>'Unit kecepatan',
+'exif-gpsspeed' =>'Kecepatan penerima GPS',
+'exif-gpstrackref' =>'Referensi arah gerakan',
+'exif-gpstrack' =>'Arah gerakan',
+'exif-gpsimgdirectionref' =>'Referensi arah gambar',
+'exif-gpsimgdirection' =>'Arah gambar',
+'exif-gpsmapdatum' =>'Data survei geodesi',
+'exif-gpsdestlatituderef' =>'Referensi lintang dari tujuan',
+'exif-gpsdestlatitude' =>'Lintang tujuan',
+'exif-gpsdestlongituderef' =>'Referensi bujur dari tujuan',
+'exif-gpsdestlongitude' =>'Bujur tujuan',
+'exif-gpsdestbearingref' =>'Referensi bearing of destination',
+'exif-gpsdestbearing' =>'Bearing of destination',
+'exif-gpsdestdistanceref' =>'Referensi jarak dari tujuan',
+'exif-gpsdestdistance' =>'Jarak dari tujuan',
+'exif-gpsprocessingmethod' =>'Nama metode proses GPS',
+'exif-gpsareainformation' =>'Nama wilayah GPS',
+'exif-gpsdatestamp' =>'Tanggal GPS',
+'exif-gpsdifferential' =>'Koreksi diferensial GPS',
+
+# Make & model, can be wikified in order to link to the camera and model name
+
+'exif-make-value' => '$1',
+'exif-model-value' =>'$1',
+'exif-software-value' => '$1',
+
+# Exif attributes
+
+'exif-compression-1' => 'Tak terkompresi',
+'exif-compression-6' => 'JPEG',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
+
+'exif-orientation-1' => 'Normal', // 0th row: top; 0th column: left
+'exif-orientation-2' => 'Dibalik horizontal', // 0th row: top; 0th column: right
+'exif-orientation-3' => 'Diputar 180°', // 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Dibalik vertikal', // 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Diputar 90° CCW dan dibalik vertical', // 0th row: left; 0th column: top
+'exif-orientation-6' => 'Diputar 90° CW', // 0th row: right; 0th column: top
+'exif-orientation-7' => 'Diputar 90° CW dan dibalik vertical', // 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Diputar 90° CCW', // 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'format chunky',
+'exif-planarconfiguration-2' => 'format planar',
+
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1' => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
+
+'exif-componentsconfiguration-0' => 'tak tersedia',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
+
+'exif-exposureprogram-0' => 'Tak terdefinisi',
+'exif-exposureprogram-1' => 'Manual',
+'exif-exposureprogram-2' => 'Program normal',
+'exif-exposureprogram-3' => 'Prioritas aperture',
+'exif-exposureprogram-4' => 'Prioritas shutter',
+'exif-exposureprogram-5' => 'Program kreatif (condong ke depth of field)',
+'exif-exposureprogram-6' => 'Program aksi (condong ke fast shutter speed)',
+'exif-exposureprogram-7' => 'Mode potret (untuk foto closeup dengan latar belakang tak fokus)',
+'exif-exposureprogram-8' => 'Mode pemandangan (untuk foto pemandangan dengan latar belakang fokus)',
+
+'exif-subjectdistance-value' => '$1 meter',
+
+'exif-meteringmode-0' => 'Tak diketahui',
+'exif-meteringmode-1' => 'Average',
+'exif-meteringmode-2' => 'CenterWeightedAverage',
+'exif-meteringmode-3' => 'Spot',
+'exif-meteringmode-4' => 'MultiSpot',
+'exif-meteringmode-5' => 'Pattern',
+'exif-meteringmode-6' => 'Partial',
+'exif-meteringmode-255' => 'Lain-lain',
+
+'exif-lightsource-0' => 'Tak diketahui',
+'exif-lightsource-1' => 'Daylight',
+'exif-lightsource-2' => 'Fluorescent',
+'exif-lightsource-3' => 'Tungsten (incandescent light)',
+'exif-lightsource-4' => 'Flash',
+'exif-lightsource-9' => 'Fine weather',
+'exif-lightsource-10' => 'Cloudy weather',
+'exif-lightsource-11' => 'Shade',
+'exif-lightsource-12' => 'Daylight fluorescent (D 5700 – 7100K)',
+'exif-lightsource-13' => 'Day white fluorescent (N 4600 – 5400K)',
+'exif-lightsource-14' => 'Cool white fluorescent (W 3900 – 4500K)',
+'exif-lightsource-15' => 'White fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-17' => 'Standard light A',
+'exif-lightsource-18' => 'Standard light B',
+'exif-lightsource-19' => 'Standard light C',
+'exif-lightsource-20' => 'D55',
+'exif-lightsource-21' => 'D65',
+'exif-lightsource-22' => 'D75',
+'exif-lightsource-23' => 'D50',
+'exif-lightsource-24' => 'ISO studio tungsten',
+'exif-lightsource-255' => 'Sumber cahaya lain',
+
+'exif-focalplaneresolutionunit-2' => 'inci',
+
+'exif-sensingmethod-1' => 'Tak terdefinisi',
+'exif-sensingmethod-2' => 'One-chip color area sensor',
+'exif-sensingmethod-3' => 'Two-chip color area sensor',
+'exif-sensingmethod-4' => 'Three-chip color area sensor',
+'exif-sensingmethod-5' => 'Color sequential area sensor',
+'exif-sensingmethod-7' => 'Trilinear sensor',
+'exif-sensingmethod-8' => 'Color sequential linear sensor',
+
+'exif-filesource-3' => 'DSC',
+
+'exif-scenetype-1' => 'Gambar foto langsung',
+
+'exif-customrendered-0' => 'Proses normal',
+'exif-customrendered-1' => 'Proses kustom',
+
+'exif-exposuremode-0' => 'Exposure otomatis',
+'exif-exposuremode-1' => 'Exposure manual',
+'exif-exposuremode-2' => 'Bracket otomatis',
+
+'exif-whitebalance-0' => 'Auto white balance',
+'exif-whitebalance-1' => 'Manual white balance',
+
+'exif-scenecapturetype-0' => 'Standar',
+'exif-scenecapturetype-1' => 'Melebar',
+'exif-scenecapturetype-2' => 'Potret',
+'exif-scenecapturetype-3' => 'Scene malam',
+
+'exif-gaincontrol-0' => 'Tak ada',
+'exif-gaincontrol-1' => 'Low gain up',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
+
+'exif-contrast-0' => 'Normal',
+'exif-contrast-1' => 'Lembut',
+'exif-contrast-2' => 'Keras',
+
+'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Saturasi rendah',
+'exif-saturation-2' => 'Saturasi tinggi',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Lembut',
+'exif-sharpness-2' => 'Keras',
+
+'exif-subjectdistancerange-0' => 'Tak diketahui',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Close view',
+'exif-subjectdistancerange-3' => 'Distant view',
+
+// Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Lintang utara',
+'exif-gpslatitude-s' => 'Lintang selatan',
+
+// Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Bujur timur',
+'exif-gpslongitude-w' => 'Bujur barat',
+
+'exif-gpsstatus-a' => 'Pengukuran sedang berlangsung',
+'exif-gpsstatus-v' => 'Interoperabilitas pengukuran',
+
+'exif-gpsmeasuremode-2' => 'Pengukuran 2-dimensi',
+'exif-gpsmeasuremode-3' => 'Pengukuran 3-dimensi',
+
+// Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilometer per jam',
+'exif-gpsspeed-m' => 'Mil per jam',
+'exif-gpsspeed-n' => 'Knot',
+
+// Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Arah sejati',
+'exif-gpsdirection-m' => 'Arah magnetis',
 
 # external editor support
 'edit-externally' => 'Sunting berkas ini dengan aplikasi luar',
