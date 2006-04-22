@@ -169,7 +169,7 @@ class LanguageBs extends LanguageUtf8 {
     function convertGrammar( $word, $case ) {
         switch ( $case ) {
             case 'genitiv': # genitive
-                if ( $word == 'Wikipedija' ) {
+                if ( $word == 'Wikipedia' ) {
                     $word = 'Wikipedije';
                 } elseif ( $word == 'Wikiknjige' ) {
                     $word = 'Wikiknjiga';
@@ -184,7 +184,7 @@ class LanguageBs extends LanguageUtf8 {
                 }
             break;
             case 'dativ': # dative
-                if ( $word == 'Wikipedija' ) {
+                if ( $word == 'Wikipedia' ) {
                     $word = 'Wikipediji';
                 } elseif ( $word == 'Wikiknjige' ) {
                     $word = 'Wikiknjigama';
@@ -199,7 +199,7 @@ class LanguageBs extends LanguageUtf8 {
                 }
             break;
             case 'akuzativ': # akusative
-                if ( $word == 'Wikipedija' ) {
+                if ( $word == 'Wikipedia' ) {
                     $word = 'Wikipediju';
                 } elseif ( $word == 'Wikiknjige' ) {
                     $word = 'Wikiknjige';
@@ -214,7 +214,7 @@ class LanguageBs extends LanguageUtf8 {
                 }
             break;
             case 'vokativ': # vocative
-                if ( $word == 'Wikipedija' ) {
+                if ( $word == 'Wikipedia' ) {
                     $word = 'Wikipedijo';
                 } elseif ( $word == 'Wikiknjige' ) {
                     $word = 'Wikiknjige';
@@ -229,7 +229,7 @@ class LanguageBs extends LanguageUtf8 {
                 }
             break;
             case 'instrumental': # instrumental
-                if ( $word == 'Wikipedija' ) {
+                if ( $word == 'Wikipedia' ) {
                     $word = 's Wikipediom';
                 } elseif ( $word == 'Wikiknjige' ) {
                     $word = 's Wikiknjigama';
@@ -246,7 +246,7 @@ class LanguageBs extends LanguageUtf8 {
                 }
             break;
             case 'lokativ': # locative
-                if ( $word == 'Wikipedija' ) {
+                if ( $word == 'Wikipedia' ) {
                     $word = 'o Wikipediji';
                 } elseif ( $word == 'Wikiknjige' ) {
                     $word = 'o Wikiknjigama';
