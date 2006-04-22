@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
 /* private */ $wgAllMessagesFr = array(
@@ -388,10 +388,10 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 (dern) = différence avec la version précédente, <b>m</b> = modification mineure',
 'selectnewerversionfordiff' => 'Choisir une version plus récente',
 'selectolderversionfordiff' => 'Choisir une version plus ancienne',
-'previousdiff' => '← Différence précédente',
-'previousrevision' => '← Version précédente',
-'nextdiff' => 'Différence suivante →',
-'nextrevision' => 'Version suivante →',
+'previousdiff' => '? Différence précédente',
+'previousrevision' => '? Version précédente',
+'nextdiff' => 'Différence suivante ?',
+'nextrevision' => 'Version suivante ?',
 
 
 # Category pages
@@ -612,13 +612,15 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 'statistics' => 'Statistiques',
 'sitestats'  => 'Statistiques du site',
 'userstats'  => 'Statistiques utilisateur',
-'sitestatstext' => 'La base de données contient actuellement <b>$1</b> pages.
+'sitestatstext' => "La base de données contient actuellement <b>$1</b> pages.
 
-Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales ("bouchons"),  les pages de redirection, ainsi que d\'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
-Si l\'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de véritables articles.<p>
+Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales (\"bouchons\"),  les pages de redirection, ainsi que d'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
+Si l'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de véritables articles.<p>
 <b>$3</b> pages ont été consultées et <b>$4</b> pages modifiées.
 
-Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b> consultations pour une modification.',
+Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b> consultations pour une modification.</p>
+
+<p>Il y a '''$7''' articles dans [http://meta.wikimedia.org/wiki/Help:Job_queue le file de tâche].</p>",
 'userstatstext' => 'Il y a <b>$1</b> utilisateurs enregistrés. Parmi ceux-ci, <b>$2</b> ont le statut d\'administrateur (voir $3).',
 
 
