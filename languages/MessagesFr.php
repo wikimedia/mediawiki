@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 
 /* private */ $wgAllMessagesFr = array(
@@ -388,10 +388,10 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 (dern) = différence avec la version précédente, <b>m</b> = modification mineure',
 'selectnewerversionfordiff' => 'Choisir une version plus récente',
 'selectolderversionfordiff' => 'Choisir une version plus ancienne',
-'previousdiff' => '? Différence précédente',
-'previousrevision' => '? Version précédente',
-'nextdiff' => 'Différence suivante ?',
-'nextrevision' => 'Version suivante ?',
+'previousdiff' => '← Différence précédente',
+'previousrevision' => '← Version précédente',
+'nextdiff' => 'Différence suivante →',
+'nextrevision' => 'Version suivante →',
 
 
 # Category pages
