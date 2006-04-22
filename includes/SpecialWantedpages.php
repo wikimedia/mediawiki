@@ -70,17 +70,42 @@ class WantedPagesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
-		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = $wgContLang->convert( $nt->getPrefixedText() );
-		$plink = $this->isCached() ?
-			$skin->makeLinkObj( $nt, $text ) :
-			$skin->makeBrokenLink( $nt->getPrefixedText(), $text );
+		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 
-		$nl = wfMsg( 'nlinks', $result->value );
-		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ), $nl, 'target=' . $nt->getPrefixedURL() );
-
-		return $this->nlinks ? "$plink ($nlink)" : $plink;
+		if( $this->isCached() ) {
+			# Check existence; which is stored in the link cache
+			if( !$title->exists() ) {
+				# Make a redlink
+				$pageLink = $skin->makeBrokenLinkObj( $title );
+			} else {
+				# Make a struck-out blue link
+				$pageLink = "<s>" . $skin->makeKnownLinkObj( $title ) . "</s>";
+			}		
+		} else {
+			# Not cached? Don't bother checking existence; it can't
+			$pageLink = $skin->makeBrokenLinkObj( $title );
+		}
+		
+		# Make a link to "what links here" if it's required
+		$wlhLink = $this->nlinks
+					? " (" . $this->makeWlhLink( $title, $skin, wfMsgHtml( 'nlinks', $result->value ) ) . ")"
+					: "";
+					
+		return "{$pageLink}{$wlhLink}";
 	}
+	
+	/**
+	 * Make a "what links here" link for a specified title
+	 * @param $title Title to make the link for
+	 * @param $skin Skin to use
+	 * @param $text Link text
+	 * @return string
+	 */
+	function makeWlhLink( &$title, &$skin, $text ) {
+		$wlhTitle = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
+		return $skin->makeKnownLinkObj( $wlhTitle, $text, 'target=' . $title->getPrefixedUrl() );		
+	}
+	
 }
 
 /**
