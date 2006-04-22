@@ -297,11 +297,12 @@ function checkExternalConcatBlobs( $externalConcatBlobs ) {
 			array( 'blob_id', "LEFT(blob_text, $headerLength) AS header" ), 
 			array( 'blob_id IN( ' . implode( ',', $blobIds ) . ')' ), $fname );
 		while ( $row = $extDb->fetchObject( $res ) ) {
-			unset( $oldIds[$row->blob_id] );
 			if ( $row->header != CONCAT_HEADER ) {
-				checkError( "Error: invalid header on target of two-part ES URL", 
-					$oldIds[$row->blob_id] );
-			}
+			checkError( "Error: invalid header on target of two-part ES URL", 
+				$oldIds[$row->blob_id] );
+			}	
+			unset( $oldIds[$row->blob_id] );
+
 		}
 		$extDb->freeResult( $res );
 
