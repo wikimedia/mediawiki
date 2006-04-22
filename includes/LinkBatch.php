@@ -47,6 +47,20 @@ class LinkBatch {
 	}
 
 	/**
+	 * Returns true if no pages have been added, false otherwise.
+	 */
+	function isEmpty() {
+		return ($this->getSize() == 0);
+	}
+
+	/**
+	 * Returns the size of the batch.
+	 */
+	function getSize() {
+		return count( $this->data );
+	}
+
+	/**
 	 * Do the query and add the results to the LinkCache object
 	 * Return an array mapping PDBK to ID
 	 */
@@ -100,7 +114,7 @@ class LinkBatch {
 		$fname = 'LinkBatch::doQuery';
 		$namespaces = array();
 
-		if ( !count( $this->data ) ) {
+		if ( $this->isEmpty() ) {
 			return false;
 		}
 		wfProfileIn( $fname );

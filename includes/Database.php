@@ -1078,8 +1078,10 @@ class Database {
 
 	/**
 	 * Makes a wfStrencoded list from an array
-	 * $mode: LIST_COMMA         - comma separated, no field names
+	 * $mode:
+	 *        LIST_COMMA         - comma separated, no field names
 	 *        LIST_AND           - ANDed WHERE clause (without the WHERE)
+	 *        LIST_OR            - ORed WHERE clause (without the WHERE)
 	 *        LIST_SET           - comma separated with field names, like a SET clause
 	 *        LIST_NAMES         - comma separated field names
 	 */
@@ -1104,7 +1106,7 @@ class Database {
 			}
 			if ( ($mode == LIST_AND || $mode == LIST_OR) && is_numeric( $field ) ) {
 				$list .= "($value)";
-			} elseif ( $mode == LIST_AND && is_array ($value) ) {
+			} elseif ( ($mode == LIST_AND || $mode == LIST_OR) && is_array ($value) ) {
 				$list .= $field." IN (".$this->makeList($value).") ";
 			} else {
 				if ( $mode == LIST_AND || $mode == LIST_OR || $mode == LIST_SET ) {
