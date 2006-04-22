@@ -109,6 +109,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix linktrail for LanguageSr
 * (bug 5664) Fix Bosnian linktrail
 * (bug 3825) Namespace filtering on Special:Newpages
+* (bug 1922) When Special:Wantedpages is cached, mark links to pages
+  which have since been created
 
 == Compatibility ==
 
