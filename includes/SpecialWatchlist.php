@@ -90,6 +90,7 @@ function wfSpecialWatchlist( $par ) {
 				if( $wl->removeWatch() === false ) {
 					$wgOut->addHTML( "<br />\n" . wfMsg( 'couldntremove', htmlspecialchars($one) ) );
 				} else {
+					wfRunHooks('UnwatchArticle', array(&$wgUser, new Article($t)));
 					$wgOut->addHTML( ' (' . htmlspecialchars($one) . ')' );
 				}
 			} else {
