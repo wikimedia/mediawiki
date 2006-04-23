@@ -113,7 +113,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   which have since been created
 * (bug 5659) Change grammar hacks for Bosnian Wikimedia namespaces.
   This sort of special casing should be removed and fixed properly.
-
+* Remove useless whitespace from Special:Brokenredirects header
 
 == Compatibility ==
 

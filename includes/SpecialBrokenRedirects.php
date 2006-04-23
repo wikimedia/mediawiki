@@ -26,7 +26,8 @@ class BrokenRedirectsPage extends PageQueryPage {
 	function isSyndicated() { return false; }
 
 	function getPageHeader( ) {
-		return wfMsgWikiHtml('brokenredirectstext')."<br />\n";
+		global $wgOut;
+		return $wgOut->parse( wfMsg( 'brokenredirectstext' ) );
 	}
 
 	function getSQL() {
