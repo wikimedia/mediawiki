@@ -47,7 +47,8 @@ class UnusedtemplatesPage extends QueryPage {
 	}
 
 	function getPageHeader() {
-		return wfMsgHtml( 'unusedtemplatestext' );
+		global $wgOut;
+		return $wgOut->parse( wfMsg( 'unusedtemplatestext' ) );
 	}
 
 }
