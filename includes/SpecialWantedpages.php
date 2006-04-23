@@ -52,7 +52,7 @@ class WantedPagesPage extends QueryPage {
 	}
 
 	/**
-	 * Fetch user page links and cache their existence
+	 * Cache page existence for performance
 	 */
 	function preprocessResults( &$db, &$res ) {
 		$batch = new LinkBatch;
