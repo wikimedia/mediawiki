@@ -59,7 +59,7 @@ define( 'MW_ATTRIBS_REGEX',
 /**
  * List of all named character entities defined in HTML 4.01
  * http://www.w3.org/TR/html4/sgml/entities.html
- * @access private
+ * @private
  */
 global $wgHtmlEntities;
 $wgHtmlEntities = array(
@@ -321,7 +321,7 @@ class Sanitizer {
 	/**
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
-	 * @access private
+	 * @private
 	 * @param string $text
 	 * @param callback $processCallback to do any variable or parameter replacements in HTML attribute values
 	 * @param array $args for the processing callback
@@ -463,7 +463,7 @@ class Sanitizer {
 	 * and followed by a newline (ignoring spaces), trim leading and
 	 * trailing spaces and one of the newlines.
 	 *
-	 * @access private
+	 * @private
 	 * @param string $text
 	 * @return string
 	 */
@@ -633,7 +633,7 @@ class Sanitizer {
 	 * Regex replace callback for armoring links against further processing.
 	 * @param array $matches
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function armorLinksCallback( $matches ) {
 		return str_replace( ':', '&#58;', $matches[1] );
@@ -677,7 +677,7 @@ class Sanitizer {
 	 *
 	 * @param array $set
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function getTagAttributeCallback( $set ) {
 		if( isset( $set[6] ) ) {
@@ -711,7 +711,7 @@ class Sanitizer {
 	 *
 	 * @param string $text
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function normalizeAttributeValue( $text ) {
 		return str_replace( '"', '&quot;',
@@ -733,7 +733,7 @@ class Sanitizer {
 	 *
 	 * @param string $text
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function normalizeCharReferences( $text ) {
 		return preg_replace_callback(
@@ -818,7 +818,7 @@ class Sanitizer {
 	 *
 	 * @param string $text
 	 * @return string
-	 * @access public
+	 * @public
 	 */
 	function decodeCharReferences( $text ) {
 		return preg_replace_callback(
@@ -850,7 +850,7 @@ class Sanitizer {
 	 * character reference, otherwise U+FFFD REPLACEMENT CHARACTER.
 	 * @param int $codepoint
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function decodeChar( $codepoint ) {
 		if( Sanitizer::validateCodepoint( $codepoint ) ) {
