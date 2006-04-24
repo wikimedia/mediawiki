@@ -8,7 +8,7 @@
 "tog-highlightbroken"         => 'סמן קישורים לדפים שלא נכתבו <a href="" class="new">כך</a> (או: כך<a href="" class="new">?</a>))',
 "tog-justify"                 => "ישר פסקאות",
 "tog-hideminor"               => "הסתר שינויים משניים ברשימת השינויים האחרונים",
-"tog-extendwatchlist"         => "רשימת מעקב משופרת",
+"tog-extendwatchlist"         => "הרחב את רשימת המעקב כך שתציג את כל השינויים המתאימים (אחרת: את השינוי האחרון בכל דף בלבד)",
 "tog-usenewrc"                => "רשימת שינויים אחרונים משופרת (JavaScript)",
 "tog-numberheadings"          => "מספר כותרות אוטומטית",
 "tog-showtoolbar"             => "הצג את סרגל העריכה",
