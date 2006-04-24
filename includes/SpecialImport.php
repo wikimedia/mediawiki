@@ -122,6 +122,7 @@ function wfSpecialImport( $page = '' ) {
  */
 class WikiRevision {
 	var $title = NULL;
+	var $id = 0;
 	var $timestamp = "20010115000000";
 	var $user = 0;
 	var $user_text = "";
@@ -131,6 +132,10 @@ class WikiRevision {
 
 	function setTitle( $text ) {
 		$this->title = Title::newFromText( $text );
+	}
+
+	function setID( $id ) {
+		$this->id = $id;
 	}
 
 	function setTimestamp( $ts ) {
@@ -160,6 +165,10 @@ class WikiRevision {
 
 	function getTitle() {
 		return $this->title;
+	}
+
+	function getID() { 
+		return $this->id;
 	}
 
 	function getTimestamp() {
@@ -467,6 +476,11 @@ class WikiImporter {
 		case "title":
 			$this->workTitle = $this->appenddata;
 			$this->pageCallback( $this->workTitle );
+			break;
+		case "id":
+			if ( $this->parenttag == 'revision' ) {
+				$this->workRevision->setID( $this->appenddata );
+			}
 			break;
 		case "text":
 			$this->workRevision->setText( $this->appenddata );
