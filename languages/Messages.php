@@ -36,7 +36,7 @@ parent class in order maintain consistency across languages.
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'	=> 'Justify paragraphs',
 'tog-hideminor' => 'Hide minor edits in recent changes',
-'tog-extendwatchlist' => 'Enhanced watchlist',
+'tog-extendwatchlist' => 'Show all relevant recent changes on the watchlist',
 'tog-usenewrc' => 'Enhanced recent changes (JavaScript)',
 'tog-numberheadings' => 'Auto-number headings',
 'tog-showtoolbar'		=> 'Show edit toolbar (JavaScript)',
