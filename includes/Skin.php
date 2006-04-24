@@ -504,12 +504,15 @@ END;
 
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return '';
 
+		# Separator
+		$sep = wfMsgHtml( 'catseparator' );
+
 		// Use Unicode bidi embedding override characters,
 		// to make sure links don't smash each other up in ugly ways.
 		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
-		$t = $embed . implode ( "$pop | $embed" , $wgOut->mCategoryLinks ) . $pop;
+		$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $wgOut->mCategoryLinks ) . $pop;
 
 		$msg = count( $wgOut->mCategoryLinks ) === 1 ? 'categories1' : 'categories';
 		$s = $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Categories' ),
