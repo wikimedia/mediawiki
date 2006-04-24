@@ -122,7 +122,7 @@ see the file HISTORY for a complete change list.
 == Compatibility ==
 
 Older PHP 4.2 and 4.1 releases are no longer supported; PHP 4 users must
-upgrade to 4.3 or later.
+upgrade to 4.3.3 or later.
 
 MediaWiki 1.6 is the last major version to support PHP 4; future versions
 will require PHP 5.
