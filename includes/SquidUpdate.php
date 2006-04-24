@@ -143,8 +143,8 @@ class SquidUpdate {
 					/* open the remaining sockets for this server */
 					list($server, $port) = explode(':', $wgSquidServers[$ss]);
 					if(!isset($port)) $port = 80;
-					$sockets[] = @fsockopen($server, $port, $error, $errstr, 2);
-					@stream_set_blocking($sockets[$s],false);
+					$sockets[$so+1] = @fsockopen($server, $port, $error, $errstr, 2);
+					@stream_set_blocking($sockets[$so+1],false);
 				}
 				$so++;
 			}
