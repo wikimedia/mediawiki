@@ -114,6 +114,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5659) Change grammar hacks for Bosnian Wikimedia namespaces.
   This sort of special casing should be removed and fixed properly.
 * Remove useless whitespace from Special:Brokenredirects header
+* Treat "allmessagesnotsupporteddb" as wikitext when echoing; change default text
 
 == Compatibility ==
 

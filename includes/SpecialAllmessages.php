@@ -12,8 +12,9 @@ function wfSpecialAllmessages() {
 	global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache, $wgTitle;
 	global $wgUseDatabaseMessages;
 
-	if(!$wgUseDatabaseMessages) {
-		$wgOut->addHTML(wfMsg('allmessagesnotsupportedDB'));
+	# The page isn't much use if the MediaWiki namespace is not being used
+	if( !$wgUseDatabaseMessages ) {
+		$wgOut->addWikiText( wfMsg( 'allmessagesnotsupportedDB' ) );
 		return;
 	}
 
