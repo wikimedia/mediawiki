@@ -530,6 +530,11 @@ class Revision {
 			if( in_array( 'object', $flags ) ) {
 				# Generic compressed storage
 				$obj = unserialize( $text );
+				if ( !is_object( $obj ) ) {
+					// Invalid object
+					wfProfileOut( $fname );
+					return false;
+				}
 				$text = $obj->getText();
 			}
 
