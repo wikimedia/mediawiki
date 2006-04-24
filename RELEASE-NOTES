@@ -115,6 +115,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   This sort of special casing should be removed and fixed properly.
 * Remove useless whitespace from Special:Brokenredirects header
 * Treat "allmessagesnotsupporteddb" as wikitext when echoing; change default text
+* (bug 5497) regeression in HTML normalization in 1.6 (unclosed <li>,<dd>,<dt>)
 
 == Compatibility ==
 
