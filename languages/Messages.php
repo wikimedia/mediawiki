@@ -1998,6 +1998,9 @@ Please confirm that really want to recreate this article.',
 'articletitles' => "Articles starting with ''$1''",
 'hideresults' => 'Hide results',
 
+# Separator for categories in page lists
+'catseparator' => '|',
+
 );
 
 
