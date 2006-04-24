@@ -17,31 +17,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 //----------------------------------------------------------------------------------
 
-function checkError( $msg, $ids ) {
-	global $oldIdMap;
-	if ( is_array( $ids ) && count( $ids ) == 1 ) {
-		$ids = reset( $ids );
-	}
-	if ( is_array( $ids ) ) {
-		$revIds = array();
-		foreach ( $ids as $id ) {
-			$revIds = array_merge( $revIds, array_keys( $oldIdMap, $id ) );
-		}
-		print "$msg in text rows " . implode( ', ', $ids ) . 
-			", revisions " . implode( ', ', $revIds ) . "\n";
-	} else {
-		$id = $ids;
-		$revIds = array_keys( $oldIdMap, $id );
-		if ( count( $revIds ) == 1 ) {
-			print "$msg in old_id $id, rev_id {$revIds[0]}\n";
-		} else {
-			print "$msg in old_id $id, revisions " . implode( ', ', $revIds ) . "\n";
-		}
-	}
-}
-
 function checkStorage() {
-	global $oldIdMap;
+	global $oldIdMap, $brokenRevisions;
 	
 	$fname = 'checkStorage';
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -51,10 +28,11 @@ function checkStorage() {
 	$objectStats = array();
 	$knownFlags = array( 'external', 'gzip', 'object', 'utf-8' );
 	$dbStore = null;
+	$brokenRevisions = array();
 
 	for ( $chunkStart = 1 ; $chunkStart < $maxRevId; $chunkStart += $chunkSize ) {
 		$chunkEnd = $chunkStart + $chunkSize - 1;
-		//print "$chunkStart to $chunkEnd of $maxRevId\n";
+		//print "$chunkStart of $maxRevId\n";
 
 		// Fetch revision rows
 		$oldIdMap = array();
@@ -64,6 +42,10 @@ function checkStorage() {
 			$oldIdMap[$row->rev_id] = $row->rev_text_id;
 		}
 		$dbr->freeResult( $res );
+
+		if ( !count( $oldIdMap ) ) {
+			continue;
+		}
 
 		// Fetch old_flags
 		$missingTextRows = array_flip( $oldIdMap );
@@ -100,7 +82,6 @@ function checkStorage() {
 
 			// Check for unrecognised flags
 			if ( count( array_diff( $flagArray, $knownFlags ) ) ) {
-				print_r( array_diff( $flagArray, $knownFlags ) );
 				checkError( "Warning: invalid flags field \"$flags\"", $id );
 			}
 		}
@@ -182,7 +163,7 @@ function checkStorage() {
 					continue;
 				}
 
-				$className = $matches[2];
+				$className = strtolower( $matches[2] );
 				if ( strlen( $className ) != $matches[1] ) {
 					checkError( "Error: invalid object header, wrong class name length", $oldId );
 					continue;
@@ -247,7 +228,7 @@ function checkStorage() {
 						checkError( "Error: invalid flags \"{$row->old_flags}\" on concat bulk row {$row->old_id}",
 							$concatBlobs[$row->old_id] );
 					}
-				} elseif ( substr( $row->header, 0, strlen( CONCAT_HEADER ) ) != CONCAT_HEADER ) {
+				} elseif ( strcasecmp( substr( $row->header, 0, strlen( CONCAT_HEADER ) ), CONCAT_HEADER ) ) {
 					checkError( "Error: Incorrect object header for concat bulk row {$row->old_id}", 
 						$concatBlobs[$row->old_id] );
 				} # else good
@@ -264,7 +245,9 @@ function checkStorage() {
 		// next chunk
 	}
 
-	print "\n\nFlag statistics:\n";
+	print "\n\n" . count( $brokenRevisions ) . " broken revisions\n";
+
+	print "\nFlag statistics:\n";
 	$total = array_sum( $flagStats );
 	foreach ( $flagStats as $flag => $count ) {
 		printf( "%-30s %10d %5.2f%%\n", $flag, $count, $count / $total * 100 );
@@ -276,6 +259,30 @@ function checkStorage() {
 	}
 }
 
+
+function checkError( $msg, $ids ) {
+	global $oldIdMap, $brokenRevisions;
+	if ( is_array( $ids ) && count( $ids ) == 1 ) {
+		$ids = reset( $ids );
+	}
+	if ( is_array( $ids ) ) {
+		$revIds = array();
+		foreach ( $ids as $id ) {
+			$revIds = array_merge( $revIds, array_keys( $oldIdMap, $id ) );
+		}
+		print "$msg in text rows " . implode( ', ', $ids ) . 
+			", revisions " . implode( ', ', $revIds ) . "\n";
+	} else {
+		$id = $ids;
+		$revIds = array_keys( $oldIdMap, $id );
+		if ( count( $revIds ) == 1 ) {
+			print "$msg in old_id $id, rev_id {$revIds[0]}\n";
+		} else {
+			print "$msg in old_id $id, revisions " . implode( ', ', $revIds ) . "\n";
+		}
+	}
+	$brokenRevisions = $brokenRevisions + array_flip( $revIds );
+}
 
 function checkExternalConcatBlobs( $externalConcatBlobs ) {
 	static $dbStore = null;
@@ -297,10 +304,10 @@ function checkExternalConcatBlobs( $externalConcatBlobs ) {
 			array( 'blob_id', "LEFT(blob_text, $headerLength) AS header" ), 
 			array( 'blob_id IN( ' . implode( ',', $blobIds ) . ')' ), $fname );
 		while ( $row = $extDb->fetchObject( $res ) ) {
-			if ( $row->header != CONCAT_HEADER ) {
-			checkError( "Error: invalid header on target of two-part ES URL", 
-				$oldIds[$row->blob_id] );
-			}	
+			if ( strcasecmp( $row->header, CONCAT_HEADER ) ) {
+				checkError( "Error: invalid header on target $cluster/{$row->blob_id} of two-part ES URL", 
+					$oldIds[$row->blob_id] );
+			}
 			unset( $oldIds[$row->blob_id] );
 
 		}
@@ -308,7 +315,7 @@ function checkExternalConcatBlobs( $externalConcatBlobs ) {
 
 		// Print errors for missing blobs rows
 		foreach ( $oldIds as $blobId => $oldIds ) {
-			checkError( "Error: missing target $blobId for two-part ES URL", $oldIds );
+			checkError( "Error: missing target $cluster/$blobId for two-part ES URL", $oldIds );
 		}
 	}
 }
