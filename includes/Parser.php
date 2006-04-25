@@ -3106,7 +3106,9 @@ class Parser
 					# Increase TOC level
 					$toclevel++;
 					$sublevelCount[$toclevel] = 0;
-					$toc .= $sk->tocIndent();
+					if( $toclevel<$wgMaxTocLevel ) {
+						$toc .= $sk->tocIndent();
+					}
 				}
 				elseif ( $level < $prevlevel && $toclevel > 1 ) {
 					# Decrease TOC level, find level to jump to
@@ -3128,12 +3130,15 @@ class Parser
 							}
 						}
 					}
-
-					$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
+					if( $toclevel<$wgMaxTocLevel ) {
+						$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
+					}
 				}
 				else {
 					# No change in level, end TOC line
-					$toc .= $sk->tocLineEnd();
+					if( $toclevel<$wgMaxTocLevel ) {
+						$toc .= $sk->tocLineEnd();
+					}
 				}
 
 				$levelCount[$toclevel] = $level;
@@ -3213,7 +3218,9 @@ class Parser
 		}
 
 		if( $doShowToc ) {
-			$toc .= $sk->tocUnindent( $toclevel - 1 );
+			if( $toclevel<$wgMaxTocLevel ) {
+				$toc .= $sk->tocUnindent( $toclevel - 1 );
+			}
 			$toc = $sk->tocList( $toc );
 		}
 

@@ -123,6 +123,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Indicate when a protected page is an interface message ("protectedinterface")
 * (bug 4259) Indicate when a protected page being edited is an interface message
   ("editinginterface")
+* (bug 4834) Fix XHTML output when using $wgMaxTocLevel
 
 == Compatibility ==
 
