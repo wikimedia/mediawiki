@@ -120,6 +120,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5684) Introduce Special:Randomredirect
 * (bug 5611) Add a name attribute to the text box containing source text in
   read-only pages
+* Indicate when a protected page is an interface message ("protectedinterface")
+* (bug 4259) Indicate when a protected page being edited is an interface message
+  ("editinginterface")
 
 == Compatibility ==
 

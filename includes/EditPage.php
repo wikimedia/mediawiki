@@ -799,12 +799,18 @@ class EditPage {
 		}
 			
 		if( $this->mTitle->isProtected( 'edit' ) ) {
-			if( $this->mTitle->isSemiProtected() ) {
+			# Is the protection due to the namespace, e.g. interface text?
+			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				# Yes; remind the user
+				$notice = wfMsg( 'editinginterface' );
+			} elseif( $this->mTitle->isSemiProtected() ) {
+				# No; semi protected
 				$notice = wfMsg( 'semiprotectedpagewarning' );
 				if( wfEmptyMsg( 'semiprotectedpagewarning', $notice ) || $notice == '-' ) {
 					$notice = '';
 				}
 			} else {
+				# No; regular protection
 				$notice = wfMsg( 'protectedpagewarning' );
 			}
 			$wgOut->addWikiText( $notice );

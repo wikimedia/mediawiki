@@ -812,7 +812,14 @@ class OutputPage {
 			$skin = $wgUser->getSkin();
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
-			$this->addWikiText( wfMsg( 'protectedtext' ) );
+			
+			# Determine if protection is due to the page being a system message
+			# and show an appropriate explanation
+			if( $wgTitle->getNamespace() == NS_MEDIAWIKI && !$wgUser->isAllowed( 'editinterface' ) ) {
+				$this->addWikiText( wfMsg( 'protectedinterface' ) );
+			} else {
+				$this->addWikiText( wfMsg( 'protectedtext' ) );
+			}
 		} else {
 			$this->setPageTitle( wfMsg( 'readonly' ) );
 			if ( $wgReadOnly ) {
