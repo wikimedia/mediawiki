@@ -342,6 +342,8 @@ a number of reasons why this may be so, please see
 [[Project:Protected page]].
 
 You can view and copy the source of this page:',
+'protectedinterface' => 'This page provides interface text for the software, and is locked to prevent abuse.',
+'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users.",
 'sqlhidden' => '(SQL query hidden)',
 
 # Login and logout pages
