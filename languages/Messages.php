@@ -926,6 +926,9 @@ this old version, (rev) = revert to this old version.
 'unusedtemplatestext' => 'This page lists all pages in the template namespace which are not included in another page. Remember to check for other links to the templates before deleting them.',
 'unusedtemplateswlh' => 'other links',
 
+# Random redirect
+'randomredirect' => 'Random redirect',
+
 # Statistics
 #
 'statistics'	=> 'Statistics',
