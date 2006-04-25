@@ -80,6 +80,7 @@ $wgSpecialPages = array(
 	'Listredirects' => new SpecialPage( 'Listredirects' ),
 	'Revisiondelete' => new SpecialPage( 'Revisiondelete', 'deleterevision' ),
 	'Unusedtemplates' => new SpecialPage( 'Unusedtemplates' ),
+	'Randomredirect' => new SpecialPage( 'Randomredirect' ),
 );
 
 if( !$wgDisableCounters ) {
