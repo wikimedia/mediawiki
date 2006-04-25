@@ -15,6 +15,7 @@
 "tog-highlightbroken"         => "Verweise auf leere Themen hervorheben",
 "tog-justify"                 => "Text als Blocksatz",
 "tog-hideminor"               => "Keine kleinen Änderungen in Letzte Änderungen anzeigen",
+'tog-extendwatchlist'         => "Erweiterte Beobachtungsliste",
 "tog-usenewrc"                => "Erweiterte letzte Änderungen (nicht für alle Browser geeignet)",
 "tog-numberheadings"          => "Überschriften automatisch nummerieren",
 "tog-showtoolbar" 	    => "Editier-Werkzeugleiste anzeigen",
@@ -110,6 +111,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "faq"			=> "FAQ",
 "faqpage"		=> "{{ns:project}}:Häufig_gestellte_Fragen",
 "edithelp"		=> "Bearbeitungshilfe",
+'newwindow'		=> '(öffnet ein neues Fenster)',
 "edithelppage"	=> "{{ns:project}}:Editierhilfe",
 "cancel"		=> "Abbruch",
 "qbfind"		=> "Finden",
@@ -195,7 +197,9 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'nstab-user' => 'Benutzerseite',
 'nstab-media' => 'Media',
 'nstab-special' => 'Spezial',
+'nstab-wp' => 'Portal',
 'nstab-image' => 'Bild',
+'nstab-template' => 'Vorlage',
 'nstab-help' => 'Hilfe',
 'nstab-category' => 'Kategorie',
 
@@ -247,7 +251,7 @@ MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".",
 "enterlockreason" => "Bitte geben Sie einen Grund ein, warum die Datenbank
 gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "readonlytext"	=> "Die {{SITENAME}}-Datenbank ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.",
-"missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben sie den Artikelnamen an.",
+"missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben Sie den Artikelnamen an.",
 "internalerror" => "Interner Fehler",
 "filecopyerror" => "Konnte Datei \"$1\" nicht nach \"$2\" kopieren.",
 "filerenameerror" => "Konnte Datei \"$1\" nicht nach \"$2\" umbenennen.",
@@ -319,6 +323,7 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporä
 "loginsuccess"	=> "Sie sind jetzt als \"$1\" bei {{SITENAME}} angemeldet.",
 "nosuchuser"	=> "Der Benutzername \"$1\" existiert nicht.
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
+'nosuchusershort'	=> 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
 "mailmypassword" => "Ein neues (temporäres) Passwort schicken",
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
@@ -473,7 +478,7 @@ Suche in Namensräumen :<br />
 $1<br />
 $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>",
-"blanknamespace" => "(Haupt-)",
+"blanknamespace" => "(Haupt)",
 
 # Preferences page
 #
@@ -535,8 +540,8 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "rclinks"		=> "Zeige die letzten $1 Änderungen; zeige die letzten $2 Tage.",
 "diff"			=> "Unterschied",
 "hist"			=> "Versionen",
-"hide"			=> "Ausblenden",
-"show"			=> "Einblenden",
+"hide"			=> "ausblenden",
+"show"			=> "einblenden",
 "tableform"		=> "Tabelle",
 "listform"		=> "Liste",
 "nchanges"		=> "$1 Änderungen",
@@ -548,13 +553,12 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 # Upload
 #
 "upload"		=> "Hochladen",
-"uploadbtn"		=> "Dateie hochladen",
+"uploadbtn"		=> "Datei hochladen",
 "uploadlink"		=> "Bilder hochladen",
 "reupload"		=> "Erneut hochladen",
 "reuploaddesc"	=> "Zurück zur Hochladen-Seite.",
 "uploadnologin" => "Nicht angemeldet",
-"uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]],
- um Dateien hochladen zu können.",
+"uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]], um Dateien hochladen zu können.",
 'upload_directory_read_only'	=> 'Der Webserver hat keine Schreibrechte für das Upload-Verzeichnis ($1).',
 "uploaderror"	=> "Fehler beim Hochladen",
 "uploadtext"	=> "
@@ -645,6 +649,10 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 # List redirects
 'listredirects' => 'Weiterleitungsliste',
 
+# Unused templates
+'unusedtemplates' => 'Ungenutzte Vorlagen',
+'unusedtemplatestext' => 'Diese Seite listet alle Seiten im Vorlagen-Namespace auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+
 # Statistics
 #
 "statistics"	=> "Statistik",
@@ -653,7 +661,7 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 "sitestatstext" => "Es gibt insgesamt <b>$1</b> Seiten in der Datenbank.
 Das schliesst \"Diskussion\"-Seiten, Seiten über {{SITENAME}}, extrem kurze Artikel, Weiterleitungen und andere Seiten ein, die nicht als Artikel gelten können.
 Diese ausgenommen, gibt es <b>$2</b> Seiten, die als Artikel gelten können.<p>
-Es wurden insgesamt <b>$3</b>&times; Seiten aufgerufen, und <b>$4</b>&times; Seiten bearbeitet.
+Es wurden insgesamt <b>$3</b> mal Seiten aufgerufen, und <b>$4</b> mal Seiten bearbeitet.
 Daraus ergeben sich <b>$5</b> Bearbeitungen pro Seite, und <b>$6</b> Betrachtungen pro Bearbeitung.",
 "userstatstext" => "Es gibt <b>$1</b> registrierte Benutzer.
 Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
@@ -689,7 +697,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "nviews"		=> "$1 Abfragen",
 'wantedcategories'	=> 'Gewünschte Kategorien',
 "wantedpages"	=> "Gewünschte Seiten",
-'mostlinkedcategories'	=> 'Häufig verlintke Kategorien',
+'mostlinkedcategories'	=> 'Häufig verlinkte Kategorien',
 'mostcategories'	=> 'Meistbenutzte Kategorien',
 'mostimages'		=> 'Meistbenutzte Bilder',
 'mostrevisions'		=> 'Artikel mit den meisten Versionen',
@@ -713,6 +721,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
 'newimages'	=> 'Neue Dateien',
+'showhidebots'	=> '(Bots $1)',
 'mimesearch'	=> 'Suche nach MIME-Typ',
 'mimetype'	=> 'MIME-Typ:',
 'download'	=> 'Herunterladen',
@@ -722,6 +731,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 'unusedcategories' => 'Verwaiste Kategorien',
 'unwatchedpages'	=> 'Nicht beobachtete Seiten',
 'categoriespagetext'	=> 'Die folgenden Kategorien existieren in diesem Wiki.',
+'noimages'	=> 'Keine Dateien gefunden.',
 
 # Special:Allpages
 'allpages'	=> 'Alle Artikel',
@@ -777,7 +787,7 @@ am Ende des Artikels.",
 "watchthispage"	=> "Seite beobachten",
 "unwatchthispage" => "Nicht mehr beobachten",
 "notanarticle"	=> "Kein Artikel",
-"watchnochange" => "Keine Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
+"watchnochange" => "Keiner Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
 "watchdetails" => "* Sie beobachten zur Zeit insgesamt $1 Artikel (Diskussionsseiten wurden hier nicht mitgezählt).
 * [[Special:Watchlist/edit|Gesamte Beobachtungsliste]] anzeigen und bearbeiten.",
 'wlheader-enotif' 		=> "* E-Mail-Benachrichtigungsdienst ist eingeschaltet.",
@@ -792,9 +802,10 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 "couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",
 "iteminvalidname" => "Problem mit dem Eintrag '$1', ungültiger Name...",
 'wlnote' => 'Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.',
-'wlshowlast' => 'Zeige die letzen $1 Stunden $2 Tage $3',
+'wlshowlast' => 'Zeige die letzen: $1 Stunden - $2 Tage - $3',
 'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
-'wlhideshowown'  => '$1 von mir bearbeitete Artikel.',
+'wlhideshowown'		=> '$1 von mir bearbeitete Artikel.',
+'wlhideshowbots'	=> '$1 von Bot-Änderungen.',
 'wlshow'         => 'Zeige',
 'wlhide'         => 'Verstecke',
 
@@ -831,13 +842,14 @@ Hilfe zur Benutzung gibt {{SERVER}}{{localurl:WikiHelpdesk}}',
 "deletepage"	=> "Seite löschen",
 "confirm"		=> "Bestätigen",
 "excontent" => "Alter Inhalt: '$1'",
+'excontentauthor' => "Alter Inhalt: '$1' (einziger Bearbeiter war '$2')",
 "exbeforeblank" => "Inhalt vor dem Leeren der Seite: '$1'",
 "exblank" => "Seite war leer",
 "confirmdelete" => "Löschung bestätigen",
 "deletesub"		=> "(Lösche \"$1\")",
 "historywarning" => "WARNUNG: Die Seite die Sie zu löschen gedenken hat
 eine Versionsgeschichte:",
-"confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen permanent aus der Datenbank zu löschen.
+"confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen endgültig aus der Datenbank zu löschen.
 Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]] handeln.",
 "actioncomplete" => "Aktion beendet",
 "deletedtext"	=> "\"$1\" wurde gelöscht.
@@ -883,6 +895,10 @@ dieses Artikels erscheinen.",
 "undeletedarticle" => "\"$1\" wiederhergestellt",
 "undeletedtext"   => "Der Artikel [[:$1|$1]] wurde erfolgreich wiederhergestellt.",
 
+# Namespace form on various pages
+'namespace' => 'Namespace:',
+'invert' => 'Auswahl umkehren',
+
 # Contributions
 #
 "contributions"	=> "Benutzerbeiträge",
@@ -910,8 +926,12 @@ dieses Artikels erscheinen.",
 Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
 "ipaddress"		=> "IP-Adresse",
+'ipadressorusername'	=> 'IP-Adresse oder Benutzername',
 "ipbreason"		=> "Grund",
 "ipbsubmit"		=> "Adresse blockieren",
+'ipbother'		=> 'Andere Dauer',
+'ipboptions'		=> '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
+'ipbotheroption'	=> 'andere',
 "badipaddress"	=> "Die IP-Adresse hat ein falsches Format.",
 "blockipsuccesssub" => "Blockade erfolgreich",
 "blockipsuccesstext" => "Die IP-Adresse \"$1\" wurde blockiert.
@@ -921,6 +941,7 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "ipusubmit"		=> "Diese Adresse freigeben",
 "ipusuccess"	=> "IP-Adresse \"$1\" wurde freigegeben",
 "ipblocklist"	=> "Liste blockierter IP-Adressen",
+'ipblocklistempty'	=> 'Die Liste der Benutzersperrungen hat keine Einträge.',
 "blocklistline"	=> "$1, $2 blockierte $3 ($4)",
 "blocklink"		=> "blockieren",
 "unblocklink"	=> "freigeben",
@@ -990,6 +1011,7 @@ um eine Seite zu verschieben.",
 "movepagebtn"	=> "Artikel verschieben",
 "pagemovedsub"	=> "Verschiebung erfolgreich",
 "pagemovedtext" => "Artikel \"[[$1]]\" wurde nach \"[[$2]]\" verschoben.",
+'movereason'	=> 'Begründung',
 "articleexists" => "Unter diesem Namen existiert bereits ein Artikel.
 Bitte wählen Sie einen anderen Namen.",
 "talkexists"    => "Die Seite selbst wurde erfolgreich verschoben, aber die
@@ -1041,13 +1063,15 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "1movedto2_redir"	=> "[[$1]] wurde über eine Weiterleitung nach [[$2]] verschoben",
 "allmessages"		=> "Alle MediaWiki-Meldungen",
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
-'allmessagesdefault'	=> 'Standard Text',
+'allmessagesdefault'	=> 'Standardtext',
 'allmessagescurrent'	=> 'Aktueller Text',
+'allmessagesfilter'	=> 'Filter für Meldungsnamen:',
+'allmessagesmodified'	=> 'Nur geänderte zeigen',
 "thumbnail-more"	=> "vergrößern",
 "and"			=> "und",
 "rchide"		=> "in $4 form; $1 kleine Änderungen; $2 sekundäre Namensräume; $3 mehrfache Änderungen.",
 'rcshowhideminor' => 'Kleine Änderungen $1',
-'rcshowhidebots' => '$1 bots',
+'rcshowhidebots' => '$1 Bots',
 'rcshowhideliu' => 'Angemeldete Benutzer $1',
 'rcshowhideanons' => '$1 anonymous users',
 'rcshowhidepatr' => '$1 patrolled edits',
@@ -1058,12 +1082,19 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "intl"			=> "InterWikiLinks",
 "version"		=> "Version",
 "log"			=> "Logbücher",
+'logempty'		=> 'Keine passenden Einträge.',
 "protectlogpage"	=> "Seitenschutz-Logbuch",
 "protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
 "protectedarticle" => "Artikel [[$1]] geschützt",
 "unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
 "confirmprotecttext" => "Soll diese Seite wirklich geschützt werden?",
+'protect-text'		=> "Hier können Sie den Schutzstatus für die Seite <strong>$1</strong> einsehen und ändern. Bitte stellen Sie sicher, dass Sie die [[Project:Geschützte Seiten|Projekt-Richtlinien]] einhalten.",
+'protect-level-autoconfirmed'	=> 'nicht registrierte Benuter blocken',
+'protect-level-sysop'	=> 'nur Sysops',
+'restriction-edit'	=> 'bearbeiten',
+'restriction-move'	=> 'verschieben',
+'protect-unchain'	=> 'Verschiebeschutz ändern',
 "ipbexpiry"		=> "Ablaufzeit",
 "blocklogpage"		=> "Benutzerblockaden-Logbuch",
 "blocklogentry"		=> "blockiert [[Benutzer:$1]] - ([[Spezial:Contributions/$1|Beiträge]]) für einen Zeitraum von: $2",
@@ -1183,11 +1214,18 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-saturation'=> 'Sättigung',                   # Saturation
 'exif-sharpness' => 'Schärfe',                    # Sharpness
 
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall'	=> 'alle',
+'imagelistall'		=> 'alle',
+'watchlistall1'		=> 'alle',
+'watchlistall2'		=> 'alle',
+'namespacesall'		=> 'alle',
+
 # E-mail address confirmation
 'confirmemail' => 'E-Mail-Adressenbestätigung (Authentifizierung)',
-'confirmemail_text' => "Diese Wiki erfordert, dass Sie Ihre E-Mailadresse bestätigen (authentifizieren),
-bevor Sie die erweiterten Mailfunktionen benutzen können. Ein Klick auf die Schaltfläche unten sendet eine E-Mail zu Ihnen.
-Diese Mail enthält einen Link mit einem Kode; durch Klicken auf diesen Link bestätigen Sie, dass Ihre Adresse gültig ist.",
+'confirmemail_text' => "Dieses Wiki erfordert, dass Sie Ihre E-Mailadresse bestätigen (authentifizieren),
+bevor Sie die erweiterten Mailfunktionen benutzen können. Ein Klick auf die Schaltfläche unten sendet eine E-Mail an Sie.
+Diese Mail enthält einen Link mit einem Code; durch Klicken auf diesen Link bestätigen Sie, dass Ihre Adresse gültig ist.",
 'confirmemail_send' => 'Anforderung einer E-Mail zur Adressenbestätigung',
 'confirmemail_sent' => 'Es wurde Ihnen eine Mail zur Adressenbestätigung gesendet.',
 'confirmemail_sendfailed' => 'Could not send confirmation mail due to misconfigured server or invalid characters in e-mail address.',
@@ -1215,6 +1253,57 @@ Der Bestätigungskode läuft am $4 ab.
 'articletitles' => "Artikel, die mit ''$1'' beginnen",
 'hideresults' => 'Verbergen',
 
+# Monobook.js: tooltips and access keys for monobook
+'Monobook.js' => '/* tooltips and access keys */
+ta = new Object();
+ta[\'pt-userpage\'] = new Array(\'.\',\'Meine Benutzerseite\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Benutzerseite der IP-Adresse von der aus Sie Änderungen durchführen\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Meine Diskussion\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Diskussion über Änderungen von dieser IP-Adresse\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Meine Einstellungen\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'Liste von Seiten die Sie auf Änderungen überwachen.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'Liste meiner Beiträge\');
+ta[\'pt-login\'] = new Array(\'o\',\'Sich einzuloggen wird zwar gerne gesehen, ist aber keine Pflicht.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'Sich einzuloggen wird zwar gerne gesehen, ist aber keine Pflicht.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Abmelden\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Diskussion(en) zum Artikel\');
+ta[\'ca-edit\'] = new Array(\'e\',\'Artikel bearbeiten. Bitte nutzen Sie vor dem Speichern die Vorschaufunktion.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Einen Kommentar zu dieser Diskussion hinzufügen.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Diese Seite ist geschützt. Sie können sich den Quelltext ansehen.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Vorherige Versionen dieser Seite\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Diese Seite schützen\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Diese Seite löschen\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Einträge wiederherstellen, bevor diese Seite gelöscht wurde\');
+ta[\'ca-move\'] = new Array(\'m\',\'Diese Seite verschieben\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Diese Seite zu Ihrer Beobachtungsliste hinzufügen\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Diese Seite von Ihrer Beobachtungsliste entfernen\');
+ta[\'search\'] = new Array(\'f\',\'Dieses Wiki durchsuchen\');
+ta[\'p-logo\'] = new Array(\'\',\'Hauptseite\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Hauptseite anzeigen\');
+ta[\'n-portal\'] = new Array(\'\',\'Über das Projekt, was Sie tun können, wo was zu finden ist\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Hintergrundinformationen zu aktuellen Ereignissen\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Liste der letzten Änderungen in diesem Wiki.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Zufälliger Artikel\');
+ta[\'n-help\'] = new Array(\'\',\'Hilfeseite anzeigen.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Unterstützen Sie uns\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Liste aller Seiten, die hierher zeigen\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Letzte Änderungen an Seiten, die von hier verlinkt sind\');
+ta[\'feed-rss\'] = new Array(\'\',\'RSS-Feed für diese Seite\');
+ta[\'feed-atom\'] = new Array(\'\',\'Atom-Feed für diese Seite\');
+ta[\'t-contributions\'] = new Array(\'\',\'Liste der Beiträge von diesem Benutzer ansehen\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Eine E-Mail an diesen Benutzer senden\');
+ta[\'t-upload\'] = new Array(\'u\',\'Bilder oder Mediendateien hochladen\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'Liste aller Spezialseiten\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'Artikel anzeigen\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'Benutzerseite anzeigen\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'Mediendateienseite anzeigen\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\');
+ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Projektseite anzeigen\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'Bilderseite anzeigen\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vorlage anzeigen\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Hilfeseite anzeigen\');
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 
 );
 
