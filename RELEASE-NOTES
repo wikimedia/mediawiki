@@ -123,7 +123,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Indicate when a protected page is an interface message ("protectedinterface")
 * (bug 4259) Indicate when a protected page being edited is an interface message
   ("editinginterface")
-* (Bug 5697) Malay localisation update
 
 == Compatibility ==
 
