@@ -118,6 +118,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5497) regeression in HTML normalization in 1.6 (unclosed <li>,<dd>,<dt>)
 * (bug 5709) Allow customisation of separator for categories
 * (bug 5684) Introduce Special:Randomredirect
+* (bug 5611) Add a name attribute to the text box containing source text in
+  read-only pages
 
 == Compatibility ==
 
