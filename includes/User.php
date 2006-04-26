@@ -21,6 +21,9 @@ define( 'MW_USER_VERSION', 3 );
  * @package MediaWiki
  */
 class User {
+	/*
+	 * When adding a new private variable, dont forget to add it to __sleep()
+	 */
 	/**@{{
 	 * @private
 	 */
@@ -110,13 +113,31 @@ class User {
 
 	/**
 	 * Serialze sleep function, for better cache efficiency and avoidance of
-	 * silly "incomplete type" errors when skins are cached
+	 * silly "incomplete type" errors when skins are cached. The array should
+	 * contain names of private variables (see at top of User.php).
 	 */
 	function __sleep() {
-		return array( 'mId', 'mName', 'mPassword', 'mEmail', 'mNewtalk',
-			'mEmailAuthenticated', 'mRights', 'mOptions', 'mDataLoaded',
-			'mNewpassword', 'mBlockedby', 'mBlockreason', 'mTouched',
-			'mToken', 'mRealName', 'mHash', 'mGroups', 'mRegistration' );
+		return array(
+'mBlockedby',
+'mBlockreason',
+'mDataLoaded',
+'mEmail',
+'mEmailAuthenticated',
+'mGroups',
+'mHash',
+'mId',
+'mName',
+'mNewpassword',
+'mNewtalk',
+'mOptions',
+'mPassword',
+'mRealName',
+'mRegistration',
+'mRights',
+'mToken',
+'mTouched',
+'mVersion',
+);
 	}
 
 	/**
