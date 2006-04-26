@@ -125,6 +125,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   ("editinginterface")
 * (bug 4834) Fix XHTML output when using $wgMaxTocLevel
 * Pass login link to "whitelistedittext" containing 'returnto' parameter
+* (bug 5728): mVersion missing from User::__sleep() leading to constant cache miss
 
 == Compatibility ==
 
