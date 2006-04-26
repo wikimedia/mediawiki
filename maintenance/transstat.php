@@ -23,12 +23,16 @@ if( !isset($options['output']) ) { $options['output']='wiki'; }
 /** Print a usage message*/
 function usage() {
 print <<<END
-Usage: php transstat.php [--help] [--output:csv|text|wiki]
+Usage: php transstat.php [--help] [--output:csv|text|wiki] [--showdupes]
          --help : this helpful message
+    --showdupes : show duplicate messages before output
        --output : select an output engine one of:
                     * 'csv'  : Comma Separated Values.
+                    * 'none' : Nothing, usefull with --showdupes
                     * 'wiki' : MediaWiki syntax (default).
                     * 'text' : Text with tabs.
+Example: php transstat.php --showdupes --output=none
+
 
 END;
 }
@@ -52,6 +56,10 @@ class statsOutput {
 	function element($in, $heading=false) {}
 }
 
+/** Outputs nothing ! */
+class noneStatsOutput extends statsOutput {
+	function getContent() { return NULL;}
+}
 
 /** Outputs WikiText */
 class wikiStatsOutput extends statsOutput {
@@ -101,13 +109,18 @@ class csvStatsOutput extends statsOutput {
 }
 
 
-function redundant(&$arr) {
+function redundant(&$arr, $langcode) {
 	global $wgAllMessagesEn;
 
 	$redundant = 0;
 	foreach(array_keys($arr) as $key) {
-		if ( @$wgAllMessagesEn[$key] === null )
+		if ( @$wgAllMessagesEn[$key] === null ) {
+			global $options;
+			if( isset($options['showdupes']) ) {
+				print "dupe [$langcode]: $key\n";
+			}
 			++$redundant;
+		}
 	}
 	return $redundant;
 }
@@ -116,6 +129,8 @@ function redundant(&$arr) {
 switch ($options['output']) {
 	case 'csv':
 		$out = new csvStatsOutput(); break;
+	case 'none':
+		$out = new noneStatsOutput(); break;
 	case 'text':
 		$out = new textStatsOutput(); break;
 	case 'wiki':
@@ -136,7 +151,7 @@ foreach($langTool->getList() as $langcode) {
 	if(@is_array($$arr)) {
 		$msgs[$wgContLang->lcfirst($langcode)] = array(
 			'total' => count($$arr),
-			'redundant' => redundant($$arr),
+			'redundant' => redundant($$arr, $langcode),
 		);
 	} else {
 		$msgs[$wgContLang->lcfirst($langcode)] = array(
