@@ -110,8 +110,6 @@
 'errorpagetitle' => 'Erreur',
 'returnto'      => 'Revenir à la page $1.',
 'tagline'       => 'Un article de {{SITENAME}}.',
-'whatlinkshere' => 'Références à cette page',
-'help'          => 'Aide',
 'search'        => 'Rechercher',
 'history'       => 'Historique',
 'printableversion' => 'Version imprimable',
