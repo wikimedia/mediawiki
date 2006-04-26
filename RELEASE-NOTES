@@ -124,6 +124,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4259) Indicate when a protected page being edited is an interface message
   ("editinginterface")
 * (bug 4834) Fix XHTML output when using $wgMaxTocLevel
+* Pass login link to "whitelistedittext" containing 'returnto' parameter
 
 == Compatibility ==
 
