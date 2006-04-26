@@ -17,6 +17,9 @@ $wgTitle = Title::newFromText( "MediaWiki database updater" );
 $dbclass = 'Database'.ucfirst($wgDBtype);
 require_once("$dbclass.php");
 $dbc = new $dbclass;
+# TODO : check for AdminSettings file existence ? See #5725
+print "Attempting connection to the database. If it fails, maybe you are\n";
+print "missing a proper AdminSettings.php file in $IP\n\n";
 $wgDatabase = $dbc->newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 
 print "Going to run database updates for $wgDBname\n";
