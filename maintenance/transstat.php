@@ -25,7 +25,7 @@ function usage() {
 print <<<END
 Usage: php transstat.php [--help] [--output:csv|text|wiki] [--showdupes]
          --help : this helpful message
-    --showdupes : show duplicate messages before output
+      --showold : show old messages that are not in Messages.php
        --output : select an output engine one of:
                     * 'csv'  : Comma Separated Values.
                     * 'none' : Nothing, usefull with --showdupes
@@ -116,8 +116,8 @@ function redundant(&$arr, $langcode) {
 	foreach(array_keys($arr) as $key) {
 		if ( @$wgAllMessagesEn[$key] === null ) {
 			global $options;
-			if( isset($options['showdupes']) ) {
-				print "dupe [$langcode]: $key\n";
+			if( isset($options['showold']) ) {
+				print "Deprecated [$langcode]: $key\n";
 			}
 			++$redundant;
 		}
