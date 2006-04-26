@@ -371,7 +371,6 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'alreadyloggedin' => "<strong>User $1, you are already logged in!</strong><br />",
 
 'login'			=> 'Log in',
-'loginshort'	=> 'log in',
 'loginprompt'	=> 'You must have cookies enabled to log in to {{SITENAME}}.',
 'userlogin'		=> 'Log in / create account',
 'logout'		=> 'Log out',
