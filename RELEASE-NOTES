@@ -34,7 +34,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5497) regeression in HTML normalization in 1.6 (unclosed <li>,<dd>,<dt>)
 * (bug 5709) Allow customisation of separator for categories
 * (bug 4834) Fix XHTML output when using $wgMaxTocLevel
-
+* Improvements to update scripts; print out the version, check for superuser credentials
+  before attempting a connection, and produce a friendlier error if the connection fails
 
 == MediaWiki 1.6.3 ==
 
