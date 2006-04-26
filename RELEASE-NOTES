@@ -127,6 +127,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Pass login link to "whitelistedittext" containing 'returnto' parameter
 * (bug 5728): mVersion missing from User::__sleep() leading to constant cache miss
 * Updated maintenance/transstat.php so it can show duplicate messages
+* Improvements to update scripts; print out the version, check for superuser credentials
+  before attempting a connection, and produce a friendlier error if the connection fails
 
 == Compatibility ==
 
