@@ -100,8 +100,11 @@ class ImageGallery
 
 			// Not an image. Just print the name and skip.
 			if ( $nt->getNamespace() != NS_IMAGE ) {
-				$s .= '<td><div class="gallerybox" style="height: 152px;">' .
-					htmlspecialchars( $nt->getText() ) . '</div></td>' .  (($i%4==3) ? "</tr>\n" : '');
+				$s .=
+					(($i%4==0) ? "<tr>\n" : '') .
+					'<td><div class="gallerybox" style="height: 152px;">' .
+					htmlspecialchars( $nt->getText() ) . '</div></td>' .  
+					(($i%4==3) ? "</tr>\n" : '');
 				$i++;
 
 				continue;
