@@ -174,7 +174,7 @@ class PageHistory {
 	function beginHistoryList() {
 		global $wgTitle;
 		$this->lastdate = '';
-		$s = wfMsgWikiHtml( 'histlegend' );
+		$s = wfMsgExt( 'histlegend', array( 'parse') );
 		$s .= '<form action="' . $wgTitle->escapeLocalURL( '-' ) . '" method="get">';
 		$prefixedkey = htmlspecialchars($wgTitle->getPrefixedDbKey());
 
@@ -198,8 +198,6 @@ class PageHistory {
 
 	/** @todo document */
 	function endHistoryList() {
-		$last = wfMsg( 'last' );
-
 		$s = '</ul>';
 		$s .= $this->submitButton( array( 'id' => 'historysubmit' ) );
 		$s .= '</form>';
@@ -213,9 +211,9 @@ class PageHistory {
 				array(
 					'class'     => 'historysubmit',
 					'type'      => 'submit',
-					'accesskey' => wfMsgHtml( 'accesskey-compareselectedversions' ),
-					'title'     => wfMsgHtml( 'tooltip-compareselectedversions' ),
-					'value'     => wfMsgHtml( 'compareselectedversions' ),
+					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					'value'     => wfMsg( 'compareselectedversions' ),
 				) ) )
 			: '';
 	}
@@ -251,7 +249,7 @@ class PageHistory {
 		$s .= " $link <span class='history-user'>$user</span>";
 
 		if( $row->rev_minor_edit ) {
-			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsgHtml( 'minoreditletter') );
+			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
 		}
 
 		$s .= $this->mSkin->revComment( $rev );
@@ -284,7 +282,7 @@ class PageHistory {
 
 	/** @todo document */
 	function curLink( $rev, $latest ) {
-		$cur = wfMsgHtml( 'cur' );
+		$cur = wfMsgExt( 'cur', array( 'escape') );
 		if( $latest || !$rev->userCan( MW_REV_DELETED_TEXT ) ) {
 			return $cur;
 		} else {
@@ -297,7 +295,7 @@ class PageHistory {
 
 	/** @todo document */
 	function lastLink( $rev, $next, $counter ) {
-		$last = htmlspecialchars( wfMsg( 'last' ) );
+		$last = wfMsgExt( 'last', array( 'escape' ) );
 		if( is_null( $next ) ) {
 			if( $rev->getTimestamp() == $this->getEarliestOffset() ) {
 				return $last;
