@@ -2672,8 +2672,8 @@ class Parser
 					$found = true;
 
 					// The text is usually already parsed, doesn't need triple-brace tags expanded, etc.
-					$noargs = true;
-					$noparse = true;
+					//$noargs = true;
+					//$noparse = true;
 					
 					if ( is_array( $result ) ) {
 						$text = $linestart . $result[0];
