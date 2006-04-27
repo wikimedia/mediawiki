@@ -445,7 +445,7 @@ class OutputPage {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page.
 				wfDebug( "** private caching; {$this->mLastModified} **\n", false );
-				header( "Expires: -1" );
+				header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 				header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
 			if($this->mLastModified) header( "Last-modified: {$this->mLastModified}" );
@@ -454,7 +454,7 @@ class OutputPage {
 
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
-			header( 'Expires: -1' );
+			header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 			header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
 			header( 'Pragma: no-cache' );
 		}
