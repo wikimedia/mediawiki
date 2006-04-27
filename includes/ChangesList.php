@@ -56,8 +56,9 @@ class ChangesList {
 	function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last blocklink' ) as $msg ) {
-				$this->message[$msg] = wfMsg( $msg );
+			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last '.
+				'blocklink changes history' ) as $msg ) {
+				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
 			}
 		}
 	}
@@ -67,9 +68,9 @@ class ChangesList {
 	 * Returns the appropiate flags for new page, minor change and patrolling
 	 */
 	function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;' ) {
-		$f = $new ? '<span class="newpage">' . wfMsgHtml( 'newpageletter' ) . '</span>'
+		$f = $new ? '<span class="newpage">' . $this->message['newpageletter'] . '</span>'
 				: $nothing;
-		$f .= $minor ? '<span class="minor">' . wfMsgHtml( 'minoreditletter' ) . '</span>'
+		$f .= $minor ? '<span class="minor">' . $this->message['minoreditletter'] . '</span>'
 				: $nothing;
 		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
 		return $f;
@@ -446,15 +447,16 @@ class EnhancedChangesList extends ChangesList {
 			# Changes
 			$r .= ' ('.count($block).' ';
 			if( $isnew ) {
-				$r .= wfMsg('changes');
+				$r .= $this->message['changes'];
 			} else {
-				$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(), wfMsg('changes'),
-					$curIdEq."&diff=$currentRevision&oldid=$oldid" );
+				$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
+					$this->message['changes'], $curIdEq."&diff=$currentRevision&oldid=$oldid" );
 			}
 			$r .= '; ';
 
 			# History
-			$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(), wfMsg( 'history' ), $curIdEq.'&action=history' );
+			$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
+				$this->message['history'], $curIdEq.'&action=history' );
 			$r .= ')';
 		}
 
