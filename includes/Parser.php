@@ -2670,6 +2670,11 @@ class Parser
 					$funcArgs = array_merge( array( &$this, trim( substr( $part1, $colonPos + 1 ) ) ), $funcArgs );
 					$result = call_user_func_array( $this->mFunctionHooks[$function], $funcArgs );
 					$found = true;
+
+					// The text is usually already parsed, doesn't need triple-brace tags expanded, etc.
+					$noargs = true;
+					$noparse = true;
+					
 					if ( is_array( $result ) ) {
 						$text = $linestart . $result[0];
 						unset( $result[0] );
@@ -2778,7 +2783,9 @@ class Parser
 		if ( $nowiki && $found && $this->mOutputType == OT_HTML ) {
 			$text = wfEscapeWikiText( $text );
 		} elseif ( ($this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI) && $found ) {
-			if ( !$noargs ) {
+			if ( $noargs ) {
+				$assocArgs = array();
+			} else {
 				# Clean up argument array
 				$assocArgs = array();
 				$index = 1;
