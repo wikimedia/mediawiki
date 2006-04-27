@@ -36,6 +36,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 4834) Fix XHTML output when using $wgMaxTocLevel
 * Improvements to update scripts; print out the version, check for superuser credentials
   before attempting a connection, and produce a friendlier error if the connection fails
+* (bug 5005): Fix XHTML <gallery> output.
 
 == MediaWiki 1.6.3 ==
 
