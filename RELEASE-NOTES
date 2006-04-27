@@ -37,6 +37,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Improvements to update scripts; print out the version, check for superuser credentials
   before attempting a connection, and produce a friendlier error if the connection fails
 * (bug 5005): Fix XHTML <gallery> output.
+* (bug 5315) "Expires: -1" HTTP header made strictly valid (using 1970 date).
 
 == MediaWiki 1.6.3 ==
 
