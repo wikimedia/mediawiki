@@ -1943,6 +1943,7 @@ class Parser
 					'<td|<th|<div|<\\/div|<hr|<\\/pre|<\\/p|'.$this->mUniqPrefix.'-pre|<\\/li|<\\/ul)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
+					# TODO bug 5718: paragraph closed
 					$output .= $this->closeParagraph();
 					if ( $preOpenMatch and !$preCloseMatch ) {
 						$this->mInPre = true;
