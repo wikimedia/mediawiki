@@ -133,6 +133,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5315) "Expires: -1" HTTP header made strictly valid (using 1970 date).
 * (bug 4825): note in DefaultSettings.php about 'profiling' table creation
 * Remove unneeded extra whitespace at top of Special:Categories
+* (bug 5679): format number on timeanddate() calls for fa: hi: bn:.
 
 == Compatibility ==
 

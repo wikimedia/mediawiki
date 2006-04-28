@@ -113,5 +113,8 @@ class LanguageFa extends LanguageUtf8 {
 		}
 	}
 
+	function timeanddate( $ts, $adj = false ) {
+		return $this->formatNum( Language::timeanddate( $ts, $adj ) );
+	}
 }
 ?>

@@ -68,6 +68,10 @@ class LanguageBn extends LanguageUtf8 {
 			return $number;
 		}
 	}
+
+	function timeanddate( $ts, $adj = false ) {
+		return $this->formatNum( Language::timeanddate( $ts, $adj ) );
+	}
 }
 
 ?>
