@@ -39,6 +39,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5005): Fix XHTML <gallery> output.
 * (bug 5315) "Expires: -1" HTTP header made strictly valid (using 1970 date).
 * (bug 4825): note in DefaultSettings.php about 'profiling' table creation
+* Remove unneeded extra whitespace at top of Special:Categories
 
 == MediaWiki 1.6.3 ==
 
