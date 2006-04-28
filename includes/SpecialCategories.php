@@ -28,8 +28,9 @@ class CategoriesPage extends QueryPage {
 	function isSyndicated() { return false; }
 
 	function getPageHeader() {
-		return wfMsgWikiHtml('categoriespagetext') . "<br />\n";
+		return wfMsgWikiHtml( 'categoriespagetext' );
 	}
+	
 	function getSQL() {
 		$NScat = NS_CATEGORY;
 		$dbr =& wfGetDB( DB_SLAVE );
