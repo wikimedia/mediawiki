@@ -76,11 +76,11 @@ require_once( 'LanguageUtf8.php' );
 );
 
 /* private */ $wgSkinNamesNds = array(
-	'standard'      => 'Klassiek',
+	'standard'      => 'Klassik',
 	'nostalgia'     => 'Nostalgie',
-	'cologneblue'   => 'Keuls blauw',
+	'cologneblue'   => 'Kölsch Blau',
 	'smarty'        => 'Paddington',
-	'chick'         => 'Sjiek'
+	'chick'         => 'Küken'
 ) + $wgSkinNamesEn;
 
 
