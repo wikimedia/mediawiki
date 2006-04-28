@@ -16,9 +16,24 @@
  */
 require_once 'LanguageNds.php';
 
+/* private */ $wgSkinNamesNds_nl = array(
+	'standard'      => 'Klassiek',
+	'nostalgia'     => 'Nostalgie',
+	'cologneblue'   => 'Keuls blauw',
+	'smarty'        => 'Paddington',
+	'chick'         => 'Sjiek'
+) + $wgSkinNamesEn;
+
+
 /**
  *
  */
-class LanguageNds_nl extends LanguageNds {}
+class LanguageNds_nl extends LanguageNds {
+
+	function getSkinNames() {
+		global $wgSkinNamesNds_nl;
+		return $wgSkinNamesNds_nl;
+	}
+}
 
 ?>
