@@ -1099,6 +1099,8 @@ $wgTexvc = './math/texvc';
 #
 # Profiling / debugging
 #
+# You have to create a 'profiling' table in your database before using
+# profiling see maintenance/archives/patch-profiling.sql .
 
 /** Enable for more detailed by-function times in debug log */
 $wgProfiling = false;
