@@ -156,7 +156,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	}
 
 	# At this point, $lines should contain an even number of elements.
-	$out .= "<table style='background: inherit;'>";
+	$out .= "<table class='allpageslist' style='background: inherit;'>";
 	while ( count ( $lines ) > 0 ) {
 		$inpoint = array_shift ( $lines );
 		$outpoint = array_shift ( $lines );
