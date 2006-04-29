@@ -135,6 +135,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Remove unneeded extra whitespace at top of Special:Categories
 * (bug 5679): format number on timeanddate() calls for fa: hi: bn:.
 * (bug 5751) Updates to Portuguese localisation files
+* (bug 5741) Introduce {{NUMBEROFUSERS}} magic word
 
 == Compatibility ==
 
