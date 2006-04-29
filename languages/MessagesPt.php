@@ -8,6 +8,7 @@
 'tog-highlightbroken' => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'   => 'Justificar parágrafos',
 'tog-hideminor' => 'Esconder edições secundárias nas mudanças recentes',
+'tog-extendwatchlist' => 'Expandir a lista de artigos vigiados para mostrar todas as alterações aplicáveis',
 'tog-usenewrc' => 'Mudanças recentes melhoradas (JavaScript)',
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'               => 'Mostrar barra de edição (JavaScript)',
@@ -35,6 +36,8 @@
 'tog-uselivepreview' => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-autopatrol' => 'Marcar as minhas edições como verificadas',
 'tog-forceeditsummary' => 'Avisar-me ao introduzir um sumário vazio',
+'tog-watchlisthideown' => 'Esconder as minhas edições da lista de artigos vigiados',
+'tog-watchlisthidebots' => 'Esconder edições efectuadas por robôs da lista de artigos vigiados',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -87,9 +90,14 @@
 'linktrail'             => '/^([a-z]+)(.*)$/sD',
 'linkprefix'            => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'              => 'Página principal',
-'mainpagetext'  => 'Software Wiki instalado com sucesso.',
-"mainpagedocfooter" => "Por favor consultar a [http://meta.wikimedia.org/wiki/MediaWiki_i18n documentação de modo a alterar o interface]
-e o [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizadores] para ajuda sobre a configuração.",
+'mainpagetext'    => "<big>'''MediaWiki instalado com sucesso.'''</big>",
+'mainpagedocfooter' => "Consultar o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia de Utilizadores] para informação acerca de como utilizador o software wiki.
+
+== Começando ==
+
+* [http://www.mediawiki.org/wiki/Help:Configuration_settings Lista de configuração de ajustes]
+* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki Perguntas e respostas frequentes]
+* [http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce Lista de correio do anúncio de publicações do MediaWiki]",
 
 'portal'                => 'Portal comunitário',
 'portal-url'            => 'Project:Portal comunitário',
@@ -288,7 +296,9 @@ No qual pode conter um ou mais caracteres que não podem ser utilizados em títu
 'perfdisabled' => 'Esta opção foi temporariamente desabilitada,
 devido a tornar a base de dados lenta demais a ponto de impossibilitar a wiki.',
 'perfdisabledsub' => "Aqui pode ver uma cópia de $1 salvaguardada:", # obsolete?
-'perfcached' => 'Os dados seguintes encontram-se na cache e podem não estar actualizados:',
+'perfcached' => 'Os dados seguintes encontram-se na cache e podem não estar actualizados.',
+'perfcachedts' => 'Os seguintes dados encontram-se armazenados na cache e foram actualizados pela última vez a $1.',
+
 'wrong_wfQuery_params' => "Parâmetros incorrectos para wfQuery()<br />
 Function: $1<br />
 Query: $2",
@@ -297,6 +307,8 @@ Query: $2",
 ocorrer esta situação, por favor consulte [[Project:Protected page]].
 
 Pode ver e copiar o código fonte desta página:",
+'protectedinterface' => 'Esta página fornece texto de interface ao software, e encontra-se trancada para prevenir abusos.',
+'editinginterface' => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores.",
 'sqlhidden' => '(Consulta SQL escondida)',
 
 # Login and logout pages
@@ -429,7 +441,7 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 
 '''O seu endereço de IP é $3.''' Por favor inclua o seu endereço de IP ao contactar um administrador sobre o bloqueio.",
 'whitelistedittitle' => 'Autentificação necessária para visualizar',
-'whitelistedittext' => 'Precisa de se [[Special:Userlogin|autentificar]] para poder visualizar páginas.',
+'whitelistedittext' => 'Precisa de se $1 para poder visualizar páginas.',
 'whitelistreadtitle' => 'Autentificação necessária para visualizar',
 'whitelistreadtext' => 'Precisa de se [[Special:Userlogin|autentificar]] para poder visualizar páginas.',
 'whitelistacctitle' => 'Não lhe é permitido criar uma conta',
@@ -593,6 +605,9 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'math_notexvc'  => 'Executável texvc não encontrado; Consulte math/README para instruções da configuração.',
 'prefs-personal' => 'Perfil de utilizador',
 'prefs-rc' => 'Mudanças recentes',
+'prefs-watchlist' => 'Lista de artigos vigiados',
+'prefs-watchlist-days' => 'Número de dias a mostrar na lista de artigos vigiados:',
+'prefs-watchlist-edits' => 'Numéro de edições a mostrar na lista de artigos vigados expandida:',
 'prefs-misc' => 'Diversos',
 'saveprefs'             => 'Salvar',
 'resetprefs'    => 'Restaurar',
@@ -683,7 +698,12 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'rcnote'                => "Abaixo estão as últimas <strong>$1</strong> alterações nos últimos <strong>$2</strong> dias.",
 'rcnotefrom'    => "Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).",
 'rclistfrom'    => "Mostrar as novas alterações a partir de $1",
-'showhideminor' => "$1 edições menores | $2 robôs | $3 utilizadores autentificados | $4 edições verificadas",
+'rcshowhideminor' => '$1 edições menores',
+'rcshowhidebots' => '$1 robôs',
+'rcshowhideliu' => '$1 utilizadores registados',
+'rcshowhideanons' => '$1 utilizadores anónimos',
+'rcshowhidepatr' => '$1 edições verificadas',
+'rcshowhidemine' => '$1 as minhas edições',
 'rclinks'               => "Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3",
 'rchide'                => "em forma $4; $1 edições menores; $2 domínios secundários; $3 edições múltiplas.",
 'rcliu'                 => "; $1 edições de utilizadores autentificados",
@@ -939,6 +959,11 @@ para que o destinatário lhe possa responder.',
 'watchlist'                     => 'Artigos vigiados',
 'watchlistsub'          => "(do utilizador \"$1\")",
 'nowatchlist'           => 'Não existem itens na sua lista de artigos vigiados.',
+'watchlistcount'     => "'''Tem $1 items na sua lista de artigos vigiados, incluindo páginas de discussão.'''",
+'clearwatchlist'     => 'Limpar lista de artigos vigiados',
+'watchlistcleartext' => 'Tem a certeza que deseja removê-los?',
+'watchlistclearbutton' => 'Limpar',
+'watchlistcleardone' => 'A sua lista de artigos vigiados foi limpa. $1 items foram removidos.',
 'watchnologin'          => 'Não está autentificado',
 'watchnologintext'      => 'Deve estar [[Special:Userlogin|autentificado]] para modificar a sua lista de artigos vigiados.',
 'addedwatch'            => 'Adicionado à lista',
@@ -954,8 +979,9 @@ Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desint
 'unwatchthispage'       => 'Parar de vigiar esta página',
 'notanarticle'          => 'Não é um artigo',
 'watchnochange'         => 'Nenhum dos itens vigiados foram editados no período exibido.',
-'watchdetails'          => "* $1 páginas vigiadas, excluindo páginas de discussão
-* [[Special:Watchlist/edit|Mostrar e editar a lista completa]]",
+'watchdetails'          => '* $1 páginas vigiadas, excluindo páginas de discussão
+* [[Especial:Watchlist/edit|Mostrar e editar a lista completa]]
+* [[Especial:Watchlist/clear|Remover todas as páginas]]',
 'wlheader-enotif'               => "* Notificação por email encontra-se activada.",
 'wlheader-showupdated'   => "* Páginas modificadas desde a sua última visita são mostradas a '''negrito'''",
 'watchmethod-recent'=> 'verificando edições recentes para os artigos vigiados',
@@ -969,10 +995,8 @@ Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desint
 'wlnote'                => 'Abaixo as últimas $1 mudanças nas últimas <b>$2</b> horas.',
 'wlshowlast'            => 'Ver últimas $1 horas $2 dias $3',
 'wlsaved'               => 'Esta é uma versão salva de sua lista de artigos vigiados.',
-'wlhideshowown'         => '$1 minhas edições.',
-'wlhideshowbots'        => '$1 edições por robôs.',
-'wlshow'                => 'Mostrar',
-'wlhide'                => 'Esconder',
+'wlhideshowown'         => '$1 minhas edições',
+'wlhideshowbots'        => '$1 edições por robôs',
 
 'enotif_mailer'                 => '{{SITENAME}} Correio de Notificação',
 'enotif_reset'                  => 'Marcar todas páginas como visitadas',
@@ -1101,7 +1125,12 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 'uclinks'       => "Ver as últimas $1 mudanças; ver os últimos $2 dias.",
 'uctop'         => ' (topo)' ,
 'newbies'       => 'novatos',
-'contribs-showhideminor' => '$1 edições menores',
+
+'sp-contributions-newest' => 'Mais recente',
+'sp-contributions-oldest' => 'Mais antigo',
+'sp-contributions-newer'  => 'Novo $1',
+'sp-contributions-older'  => 'Antigo $1',
+'sp-contributions-newbies-sub' => 'Para novatos',
 
 # What links here
 #
@@ -1261,8 +1290,8 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'allmessagesdefault' => 'Texto padrão',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext'       => 'Esta é uma lista de todas mensagens de sistema disponíveis no domínio MediaWiki:.',
-'allmessagesnotsupportedUI' => 'O seu actual idioma de interface <b>$1</b> não é suportado pelo {{ns:special}}:Allmessages deste sítio.',
-'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages não encontra-se operacional devido ao wgUseDatabaseMessages encontrar-se desligado.',
+'allmessagesnotsupportedUI' => 'O seu actual idioma de interface <b>$1</b> não é suportado pelo Especial:Allmessages deste sítio.',
+'allmessagesnotsupportedDB' => 'Especial:Allmessages não pode ser utilizado devido ao wgUseDatabaseMessages estar desligado.',
 'allmessagesfilter' => 'Filtro de nome de mensagem:',
 'allmessagesmodified' => 'Mostrar apenas modificados',
 
