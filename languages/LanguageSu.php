@@ -36,18 +36,18 @@ if (!$wgCachedMessageArrays) {
 
 class LanguageSu extends LanguageUtf8 {
 
-    function getNamespaces() {
-        global $wgNamespaceNamesSu;
-        return $wgNamespaceNamesSu;
-    }
+	function getNamespaces() {
+		global $wgNamespaceNamesSu;
+		return $wgNamespaceNamesSu;
+	}
 
-    function getMessage( $key ) {
-        global $wgAllMessagesSu, $wgAllMessagesEn;
-        if( isset( $wgAllMessagesSu[$key] ) ) {
-            return $wgAllMessagesSu[$key];
-        } else {
-            return parent::getMessage( $key );
-        }
-    }
+	function getMessage( $key ) {
+		global $wgAllMessagesSu, $wgAllMessagesEn;
+		if( isset( $wgAllMessagesSu[$key] ) ) {
+			return $wgAllMessagesSu[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
 }
 ?>
