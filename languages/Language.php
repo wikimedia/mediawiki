@@ -228,6 +228,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
 	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
 	MAG_NUMBEROFFILES        => array( 1,    'NUMBEROFFILES'          ),
+	MAG_NUMBEROFUSERS		 => array( 1, 	 'NUMBEROFUSERS'		  ),
 	MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
 	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE'              ),
 	MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),

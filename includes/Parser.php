@@ -2148,6 +2148,8 @@ class Parser
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_NUMBEROFFILES:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfFiles() );
+			case MAG_NUMBEROFUSERS:
+				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfUsers() );
 			case MAG_SITENAME:
 				return $wgSitename;
 			case MAG_SERVER:
@@ -4251,6 +4253,18 @@ function wfNumberOfFiles() {
 	wfProfileOut( $fname );
 
 	return $numImages;
+}
+
+/**
+ * Return the number of user accounts
+ * @return integer
+ */
+function wfNumberOfUsers() {
+	wfProfileIn( 'wfNumberOfUsers' );
+	$dbr =& wfGetDB( DB_SLAVE );
+	$count = $dbr->selectField( 'site_stats', 'ss_users', array(), 'wfNumberOfUsers' );
+	wfProfileOut( 'wfNumberOfUsers' );
+	return (int)$count;
 }
 
 /**
