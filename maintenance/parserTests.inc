@@ -290,6 +290,14 @@ class ParserTest {
 		if( !isset( $this->uploadDir ) ) {
 			$this->uploadDir = $this->setupUploadDir();
 		}
+		
+		if( preg_match( '/language=([a-z]+(?:_[a-z]+)?)/', $opts, $m ) ) {
+			$lang = $m[1];
+		} else {
+			$lang = 'en';
+		}
+		$langClass = 'Language' . str_replace( '-', '_', ucfirst( $lang ) );
+		$langObj = setupLangObj( $langClass );
 
 		$settings = array(
 			'wgServer' => 'http://localhost',
@@ -302,13 +310,13 @@ class ParserTest {
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgServerName' => 'Britney Spears',
-			'wgLanguageCode' => 'en',
-			'wgContLanguageCode' => 'en',
+			'wgLanguageCode' => $lang,
+			'wgContLanguageCode' => $lang,
 			'wgDBprefix' => 'parsertest_',
 			'wgDefaultUserOptions' => array(),
 
-			'wgLang' => new LanguageUtf8(),
-			'wgContLang' => new LanguageUtf8(),
+			'wgLang' => $langObj,
+			'wgContLang' => $langObj,
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
 			'wgMaxTocLevel' => 999,
 			'wgCapitalLinks' => true,

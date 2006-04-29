@@ -18,6 +18,7 @@
 #	subpage		enable subpages (disabled by default)
 #	noxml		don't check for XML well formdness
 #	title=[[XXX]]	run test using article title XXX
+#   language=XXX	set content language to XXX for this test
 #	disabled	do not run test
 #
 # For testing purposes, temporary articles can created:
@@ -3753,6 +3754,27 @@ disabled
 !! result
 Something, but defenetly not <br id="9" />...
 !! end
+
+!! test
+Language converter: output gets cut off unexpectedly (bug 5757)
+!! options
+language=zh
+!! input
+this bit is safe: }-
+
+but if we add a conversion instance: -{zh-cn:xxx;zh-tw:yyy}-
+
+then we get cut off here: }-
+
+all additional text is vanished
+!! result
+<p>this bit is safe: }-
+</p><p>but if we add a conversion instance: xxx
+</p><p>then we get cut off here: }-
+</p><p>all additional text is vanished
+</p>
+!! end
+
 
 TODO:
 more images
