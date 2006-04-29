@@ -3425,7 +3425,7 @@ class Parser
 		);
 		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
 		$text = $this->strip( $text, $stripState, true );
-		$text = $this->pstPass2( $text, $user );
+		$text = $this->pstPass2( $text, $stripState, $user );
 		$text = $this->unstrip( $text, $stripState );
 		$text = $this->unstripNoWiki( $text, $stripState );
 		return $text;
@@ -3435,13 +3435,13 @@ class Parser
 	 * Pre-save transform helper function
 	 * @private
 	 */
-	function pstPass2( $text, &$user ) {
+	function pstPass2( $text, &$stripState, &$user ) {
 		global $wgContLang, $wgLocaltimezone;
 
 		/* Note: This is the timestamp saved as hardcoded wikitext to
 		 * the database, we use $wgContLang here in order to give
-		 * everyone the same signiture and use the default one rather
-		 * than the one selected in each users preferences.
+		 * everyone the same signature and use the default one rather
+		 * than the one selected in each user's preferences.
 		 */
 		if ( isset( $wgLocaltimezone ) ) {
 			$oldtz = getenv( 'TZ' );
@@ -3457,6 +3457,9 @@ class Parser
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
 		$text = $this->replaceVariables( $text );
 		
+		# Strip out <nowiki> etc. added via replaceVariables
+		$text = $this->strip( $text, &$stripState );
+	
 		# Signatures
 		$sigText = $this->getUserSig( $user );
 		$text = strtr( $text, array(
