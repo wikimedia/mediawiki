@@ -634,7 +634,7 @@ class OutputPage {
 	 * Produce a "user is blocked" page
 	 */
 	function blockedPage() {
-		global $wgUser, $wgContLang;
+		global $wgUser, $wgContLang, $wgTitle;
 
 		$this->setPageTitle( wfMsg( 'blockedtitle' ) );
 		$this->setRobotpolicy( 'noindex,nofollow' );
@@ -652,7 +652,10 @@ class OutputPage {
 		$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
 
 		$this->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name ) );
-		$this->returnToMain( false );
+		
+		# Don't auto-return to special pages
+		$return = $wgTitle->getNamespace() > -1 ? $wgTitle->getPrefixedText() : NULL;	
+		$this->returnToMain( false, $return );
 	}
 
 	/**
