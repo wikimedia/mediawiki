@@ -893,7 +893,7 @@ END;
 		if ( !$wgDisableCounters ) {
 			$count = $wgLang->formatNum( $wgArticle->getCount() );
 			if ( $count ) {
-				$s = wfMsg( 'viewcount', $count );
+				$s = wfMsgExt( 'viewcount', array( 'parseinline' ), $count );
 			}
 		}
 

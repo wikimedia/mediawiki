@@ -564,16 +564,16 @@ function wfMsgExt( $key, $options ) {
 		$options = array($options);
 	}
 
-	$string = wfMsgGetKey( $key, true );
+	$string = wfMsgGetKey( $key, true, false, false );
 
 	if( !in_array('replaceafter', $options) ) {
 		$string = wfMsgReplaceArgs( $string, $args );
 	}
 
 	if( in_array('parse', $options) ) {
-		$string = $wgOut->parse( $string, true );
+		$string = $wgOut->parse( $string, true, true );
 	} elseif ( in_array('parseinline', $options) ) {
-		$string = $wgOut->parse( $string, true );
+		$string = $wgOut->parse( $string, true, true );
 		if( preg_match( "~^<p>(.*)\n?</p>$~", $string, $m = null ) ) {
 			$string = $m[1];
 		}

@@ -308,7 +308,7 @@ class SkinTemplate extends Skin {
 			if ( !$wgDisableCounters ) {
 				$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
 				if ( $viewcount ) {
-					$tpl->set('viewcount', wfMsg( "viewcount", $viewcount ));
+					$tpl->set('viewcount', wfMsgExt( 'viewcount', array( 'parseinline' ), $viewcount ) );
 				} else {
 					$tpl->set('viewcount', false);
 				}

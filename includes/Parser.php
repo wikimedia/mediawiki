@@ -2472,7 +2472,7 @@ class Parser
 	 * @private
 	 */
 	function braceSubstitution( $piece ) {
-		global $wgContLang, $wgAllowDisplayTitle, $action;
+		global $wgContLang, $wgLang, $wgAllowDisplayTitle, $action;
 		$fname = 'Parser::braceSubstitution';
 		wfProfileIn( $fname );
 
@@ -2624,11 +2624,12 @@ class Parser
 			}
 		}
 
+		$lang = $this->mOptions->getInterfaceMessage() ? $wgLang : $wgContLang;
 		# GRAMMAR
 		if ( !$found && $argc == 1 ) {
 			$mwGrammar =& MagicWord::get( MAG_GRAMMAR );
 			if ( $mwGrammar->matchStartAndRemove( $part1 ) ) {
-				$text = $linestart . $wgContLang->convertGrammar( $args[0], $part1 );
+				$text = $linestart . $lang->convertGrammar( $args[0], $part1 );
 				$found = true;
 			}
 		}
@@ -2638,7 +2639,7 @@ class Parser
 			$mwPluralForm =& MagicWord::get( MAG_PLURAL );
 			if ( $mwPluralForm->matchStartAndRemove( $part1 ) ) {
 				if ($argc==2) {$args[2]=$args[1];}
-				$text = $linestart . $wgContLang->convertPlural( $part1, $args[0], $args[1], $args[2]);
+				$text = $linestart . $lang->convertPlural( $part1, $args[0], $args[1], $args[2]);
 				$found = true;
 			}
 		}
@@ -4154,7 +4155,8 @@ class ParserOptions
 	var $mEditSection;               # Create "edit section" links
 	var $mNumberHeadings;            # Automatically number headings
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
-	var $mTidy;	        	 # Ask for tidy cleanup
+	var $mTidy;                      # Ask for tidy cleanup
+	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -4166,7 +4168,8 @@ class ParserOptions
 	function getEditSection()                   { return $this->mEditSection; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
-	function getTidy()		            { return $this->mTidy; }
+	function getTidy()                          { return $this->mTidy; }
+	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
@@ -4177,8 +4180,9 @@ class ParserOptions
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
 	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
-	function setTidy( $x )			    { return wfSetVar( $this->mTidy, $x); }
+	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x); }
 	function setSkin( &$x ) { $this->mSkin =& $x; }
+	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
 
 	function ParserOptions() {
 		global $wgUser;
@@ -4221,6 +4225,7 @@ class ParserOptions
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mAllowSpecialInclusion = $wgAllowSpecialInclusion;
 		$this->mTidy = false;
+		$this->mInterfaceMessage = false;
 		wfProfileOut( $fname );
 	}
 }
