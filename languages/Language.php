@@ -683,7 +683,7 @@ class Language {
 	}
 
 	function formatDay( $day, $format ) {
-		return $this->formatNum( 0 + $day );
+		return $this->formatNum( 0 + $day, true );
 	}
 
 	/**
@@ -913,12 +913,12 @@ class Language {
 	 * @public
 	 * @param mixed $number the string to be formatted, should be an integer or
 	 *        a floating point number.
-	 * @param bool $commafy Set to false for special numbers like dates
+	 * @param bool $nocommafy Set to true for special numbers like dates
 	 * @return string
 	 */
-	function formatNum( $number, $commafy = false ) {
+	function formatNum( $number, $nocommafy = false ) {
 		global $wgTranslateNumerals;
-		if (!$commafy) {
+		if (!$nocommafy) {
 			$number = $this->commafy($number);
 			$s = $this->separatorTransformTable();
 			if (!is_null($s)) { $number = strtr($number, $s); }
