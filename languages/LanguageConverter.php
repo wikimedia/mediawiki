@@ -262,7 +262,7 @@ class LanguageConverter {
 		$tfirst = array_shift($tarray);
 		$text = $this->autoConvert($tfirst);
 		foreach($tarray as $txt) {
-			$marked = explode($this->mMarkup['end'], $txt);
+			$marked = explode($this->mMarkup['end'], $txt, 2);
 			$flags = array();
 			$tt = explode($this->mMarkup['flagsep'], $marked[0], 2);
 
