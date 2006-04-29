@@ -18,7 +18,7 @@ function wfSpecialUserlogout() {
 		wfRunHooks('UserLogoutComplete', array(&$wgUser));
 
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-		$wgOut->addWikiText( wfMsg( 'logouttext' ) );
+		$wgOut->addHTML( wfMsgExt( 'logouttext', array( 'parse' ) ) );
 		$wgOut->returnToMain();
 
 	}

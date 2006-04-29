@@ -352,12 +352,14 @@ class OutputPage {
 	}
 
 	/**
-	 * Parse wikitext and return the HTML. This is for special pages that add the text later
+	 * Parse wikitext and return the HTML.
 	 */
-	function parse( $text, $linestart = true ) {
+	function parse( $text, $linestart = true, $interface = false ) {
 		global $wgParser, $wgTitle;
+		if ( $interface) { $this->mParserOptions->setInterfaceMessage(true); }
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions,
 			$linestart, true, $this->mRevisionId );
+		if ( $interface) { $this->mParserOptions->setInterfaceMessage(false); }
 		return $parserOutput->getText();
 	}
 

@@ -175,7 +175,7 @@
 'redirectedfrom'      => 'Uudelleenohjattu sivulta $1',
 'redirectpagesub'     => 'Uudelleenohjaussivu',
 'lastmodified'        => 'Sivua on viimeksi muutettu  $1.',
-'viewcount'           => 'Tämä sivu on näytetty $1 kertaa.',
+'viewcount'           => 'Tämä sivu on näytetty {{PLURAL:$1|yhden kerran|$1 kertaa}}.',
 'copyright'           => 'Sisältö on käytettävissä lisenssillä $1.',
 'poweredby'           => '{{GRAMMAR:genitive|{{SITENAME}}}} tarjoaa [http://www.mediawiki.org/ MediaWiki], avoimen lähdekoodin ohjelmisto.',
 'printsubtitle'       => '(Lähde: {{SERVER}})',

@@ -138,6 +138,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5741) Introduce {{NUMBEROFUSERS}} magic word
 * (bug 93) <nowiki> tags and tildes in templates
 * The returnto parameter is now actually used by SpecialUserlogin.php
+* Parser can now know that it is parsing an interface message
+* (bug 4737) MediaWiki:Viewcount supports {{PLURAL}} now
 
 == Compatibility ==
 
