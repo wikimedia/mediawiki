@@ -16,7 +16,7 @@ require_once( "LanguageRu.php" );
 	NS_USER             => 'Архайæг',
 	NS_USER_TALK        => 'Архайæджы_дискусси',
 	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => 'Дискусси_'+$wgMetaNamespace,
+	NS_PROJECT_TALK     => 'Дискусси_' . $wgMetaNamespace,
 	NS_IMAGE            => 'Ныв',
 	NS_IMAGE_TALK       => 'Нывы_тыххæй_дискусси',
 	NS_MEDIAWIKI        => 'MediaWiki',

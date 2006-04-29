@@ -141,6 +141,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Parser can now know that it is parsing an interface message
 * (bug 4737) MediaWiki:Viewcount supports {{PLURAL}} now
 * Fix bug in wfMsgExt under PHP 5.1.2
+* (bug 5761) Project talk namespace broken in Xal, Os, Udm and Cv
+
 
 == Compatibility ==
 
