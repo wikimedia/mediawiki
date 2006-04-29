@@ -40,6 +40,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5315) "Expires: -1" HTTP header made strictly valid (using 1970 date).
 * (bug 4825): note in DefaultSettings.php about 'profiling' table creation
 * Remove unneeded extra whitespace at top of Special:Categories
+* Rewrite reassignEdits script to be more efficient; support optional updates to
+  recent changes table; add reporting and silent modes
 
 == MediaWiki 1.6.3 ==
 
