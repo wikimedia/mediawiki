@@ -143,7 +143,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix bug in wfMsgExt under PHP 5.1.2
 * (bug 5761) Project talk namespace broken in Xal, Os, Udm and Cv
 * Rewrite reassignEdits script to be more efficient; support optional updates to
-  recent changes table
+  recent changes table; add reporting and silent modes
 
 == Compatibility ==
 
