@@ -421,7 +421,11 @@ class LoginForm {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->addWikiText( $msg );
-		$wgOut->returnToMain( $auto );
+		if ( !empty( $this->mReturnto ) ) {
+			$wgOut->returnToMain( $auto, $this->mReturnTo );
+		} else {
+			$wgOut->returnToMain( $auto );
+		}
 	}
 
 	/** */
