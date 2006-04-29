@@ -574,7 +574,8 @@ function wfMsgExt( $key, $options ) {
 		$string = $wgOut->parse( $string, true, true );
 	} elseif ( in_array('parseinline', $options) ) {
 		$string = $wgOut->parse( $string, true, true );
-		if( preg_match( "~^<p>(.*)\n?</p>$~", $string, $m = null ) ) {
+		$m = array();
+		if( preg_match( "~^<p>(.*)\n?</p>$~", $string, $m ) ) {
 			$string = $m[1];
 		}
 	} elseif ( in_array('escape', $options) ) {
