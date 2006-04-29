@@ -39,11 +39,11 @@ $wgNamespaceNamesEt = array(
 
 
 /* private */ $wgDateFormatsEt = array(
-        'Eelistus puudub',
-        '15.01.2001, kell 16.12',
-        '15. jaanuar 2001, kell 16.12',
-        '15. I 2005, kell 16.12',
-        'ISO 8601' => '2001-01-15 16:12:34'
+	'Eelistus puudub',
+	'15.01.2001, kell 16.12',
+	'15. jaanuar 2001, kell 16.12',
+	'15. I 2005, kell 16.12',
+	'ISO 8601' => '2001-01-15 16:12:34'
 );
 
 
