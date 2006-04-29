@@ -102,8 +102,8 @@ class LanguageDa extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 }

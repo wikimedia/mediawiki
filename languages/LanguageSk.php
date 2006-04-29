@@ -167,13 +167,11 @@ class LanguageSk extends LanguageUtf8 {
 		return parent::getMessage( $key );
 	}
 
-	var $digitTransTable = array(
-		',' => "\xc2\xa0",
-		'.' => ','
-	);
-
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), $this->digitTransTable );
+	function separatorTransformTable() {
+		return array(
+			',' => "\xc2\xa0",
+			'.' => ','
+		);
 	}
 
 	# Convert from the nominative form of a noun to some other case

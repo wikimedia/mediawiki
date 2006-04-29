@@ -162,8 +162,8 @@ class LanguageSr_ec extends LanguageUtf8 {
 		return $wgMagicWordsSr_ec;
 	}
 
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 	/**
@@ -278,5 +278,4 @@ class LanguageSr_ec extends LanguageUtf8 {
 	}
 
 }
-
 ?>

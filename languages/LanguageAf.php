@@ -69,18 +69,11 @@ class LanguageAf extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number, $year = false ) {
-		# South Africa uses space for thousands and comma for decimal
-		# Reference: AWS Reël 7.4 p. 52, 2002 edition
-		# glibc is wrong in this respect in some versions
-		if ( $year ) {
-			return $number;
-		} else {
-			return strtr($this->commafy($number), array(
-				'.' => ',',
-				',' => "\xc2\xa0" // non-breaking space
-			));
-		}
+	# South Africa uses space for thousands and comma for decimal
+	# Reference: AWS Reël 7.4 p. 52, 2002 edition
+	# glibc is wrong in this respect in some versions
+	function separatorTransformTable() {
+		return array(',' => "\xc2\xa0", '.' => ',' );
 	}
 
 }

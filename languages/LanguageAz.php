@@ -43,15 +43,14 @@ if (!$wgCachedMessageArrays) {
 }
 
 
-
 class LanguageAz extends LanguageUtf8 {
 	function getNamespaces() {
 		global $wgNamespaceNamesAz;
 		return $wgNamespaceNamesAz;
 	}
 
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 	function ucfirst ( $string ) {
@@ -77,6 +76,4 @@ class LanguageAz extends LanguageUtf8 {
 	}
 
 }
-
-
 ?>

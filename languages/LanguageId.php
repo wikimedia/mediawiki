@@ -113,8 +113,8 @@ class LanguageId extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number, $year = false ) {
-		return !$year ? strtr($this->commafy($number), '.,', ',.' ) : $number;
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 }

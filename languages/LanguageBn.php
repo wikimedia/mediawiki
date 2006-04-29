@@ -47,31 +47,25 @@ class LanguageBn extends LanguageUtf8 {
 		return $wgDateFormatsBn;
 	}
 
-	var $digitTransTable = array(
-		'0' => '০',
-		'1' => '১',
-		'2' => '২',
-		'3' => '৩',
-		'4' => '৪',
-		'5' => '৫',
-		'6' => '৬',
-		'7' => '৭',
-		'8' => '৮',
-		'9' => '৯'
-	);
-
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		if( $wgTranslateNumerals ) {
-			 return strtr( $number, $this->digitTransTable );
-		} else {
-			return $number;
-		}
+	function digitTransformTable() {
+		return array(
+			'0' => '০',
+			'1' => '১',
+			'2' => '২',
+			'3' => '৩',
+			'4' => '৪',
+			'5' => '৫',
+			'6' => '৬',
+			'7' => '৭',
+			'8' => '৮',
+			'9' => '৯'
+		);
 	}
 
 	function timeanddate( $ts, $adj = false ) {
 		return $this->formatNum( Language::timeanddate( $ts, $adj ) );
 	}
+
 }
 
 ?>

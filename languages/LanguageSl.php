@@ -93,8 +93,8 @@ class LanguageSl extends LanguageUtf8 {
 		return "iso-8859-2";
 	}
 
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 	# Convert from the nominative form of a noun to some other case

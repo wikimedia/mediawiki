@@ -77,15 +77,9 @@ class LanguageFur extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . " a lis " . $this->time( $ts, $adj );
 	}
 
-	var $digitTransTable = array(
-		',' => "\xc2\xa0", // @bug 2749
-		'.' => ','
-	);
-
-	function formatNum( $number, $year = false ) {
-		return $year? $number : strtr($this->commafy($number), $this->digitTransTable);
+	function separatorTransformTable() {
+		return array(',' => "\xc2\xa0", '.' => ',' );
 	}
-
 
 	function getMessage( $key ) {
 		global $wgAllMessagesFur;

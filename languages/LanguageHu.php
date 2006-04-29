@@ -123,8 +123,8 @@ class LanguageHu extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
 	}
 
-	function formatNum( $number, $year = false ) {
-		return !$year ? strtr($this->commafy($number), array( '.' => ',', ',' => "\xc2\xa0" )) : $number;
+	function separatorTransformTable() {
+		return array(',' => "\xc2\xa0", '.' => ',' );
 	}
 
 }

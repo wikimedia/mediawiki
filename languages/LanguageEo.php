@@ -178,9 +178,10 @@ class LanguageEo extends LanguageUtf8 {
 		$wgEditEncoding = '';
 	}
 
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ', ' );
+	function separatorTransformTable() {
+		return array(',' => ' ', '.' => ',' );
 	}
+
 }
 
 ?>
