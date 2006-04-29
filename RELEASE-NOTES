@@ -148,6 +148,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5716) Warn when a user tries to upload a file which was previously deleted
 * (bug 5565) Add a class attribute to the table on Special:Allpages
 * "lang=xx" option for parser test cases to set content language
+* (bug 5764) Friulian translation updated
 
 
 == Compatibility ==
