@@ -104,14 +104,12 @@ class LanguagePl extends LanguageUtf8 {
 		return "iso-8859-2";
 	}
 
-	var $digitTransTable = array(
-		',' => "\xc2\xa0", // @bug 2749
-		'.' => ','
-	);
-
-	function formatNum( $number, $year = false ) {
-		return !$year ? strtr($number, $this->digitTransTable ) : $number;
+	function separatorTransformTable() {
+		return array(
+			',' => "\xc2\xa0", // @bug 2749
+			'.' => ','
+		);
 	}
-}
 
+}
 ?>

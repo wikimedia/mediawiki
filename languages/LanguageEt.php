@@ -151,8 +151,8 @@ class LanguageEt extends LanguageUtf8 {
 	 * Estonian numeric formatting is 123 456,78.
 	 * Notice that the space is non-breaking.
 	 */
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ", " );
+	function separatorTransformTable() {
+		return array(',' => "\xc2\xa0", '.' => ',' );
 	}
 
 	/**

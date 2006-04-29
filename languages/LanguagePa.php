@@ -73,26 +73,20 @@ class LanguagePa extends LanguageUtf8 {
 		}
 	}
 
-	var $digitTransTable = array(
-		'0' => '੦',
-		'1' => '੧',
-		'2' => '੨',
-		'3' => '੩',
-		'4' => '੪',
-		'5' => '੫',
-		'6' => '੬',
-		'7' => '੭',
-		'8' => '੮',
-		'9' => '੯'
-	);
-
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		if( $wgTranslateNumerals ) {
-			return strtr( $number, $this->digitTransTable );
-		} else {
-			return $number;
-		}
+	function digitTransformTable() {
+		return array(
+			'0' => '੦',
+			'1' => '੧',
+			'2' => '੨',
+			'3' => '੩',
+			'4' => '੪',
+			'5' => '੫',
+			'6' => '੬',
+			'7' => '੭',
+			'8' => '੮',
+			'9' => '੯'
+		);
 	}
+
 }
 ?>

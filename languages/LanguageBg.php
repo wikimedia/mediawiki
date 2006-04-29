@@ -173,26 +173,21 @@ class LanguageBg extends LanguageUtf8 {
 	}
 
 
-	/**
-	 * Translation table for numbers
-	 * @var array
-	 */
-	var $digitTransTable = array(
-		',' => "\xC2\xA0", // @bug 2749
-		'.' => ','
-	);
+	function separatorTransformTable() {
+		return array(',' => "\xc2\xa0", '.' => ',' );
+	}
 
 	/**
 	 * ISO number formatting: 123 456 789,99.
 	 * Avoid tripple grouping by numbers with whole part up to 4 digits.
-	 * @param string $number
-	 * @return string
 	 */
-	function formatNum( $number, $year = false ) {
-		if ( preg_match('/^\d{5}/', $number) ) {
-			$number = $this->commafy($number);
+	function commafy($_) {
+		if (!preg_match('/^\d{1,4}$/',$_)) {
+			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+		} else {
+			return $_;
 		}
-		return strtr($number, $this->digitTransTable);
 	}
+
 }
 ?>

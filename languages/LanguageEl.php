@@ -73,9 +73,10 @@ class LanguageEl extends LanguageUtf8 {
 		return 'iso-8859-7';
 	}
 
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy( $number ), '.,', ',.' );
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
+
 }
 
 ?>

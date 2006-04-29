@@ -106,11 +106,9 @@ class LanguageSq extends LanguageUtf8 {
 			return parent::getMessage($key);
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 }
-
 ?>

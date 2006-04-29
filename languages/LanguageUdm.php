@@ -69,8 +69,8 @@ class LanguageUdm extends LanguageRu {
 		return "windows-1251";
 	}
 
-	function formatNum( $number, $year = false ) {
-		return !$year ? strtr($number, '.,', ', ' ) : $number;
+	function separatorTransformTable() {
+		return array(',' => ' ', '.' => ',' );
 	}
 
 }

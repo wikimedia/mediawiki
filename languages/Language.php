@@ -892,10 +892,7 @@ class Language {
 		return "<em>$text</em>";
 	}
 
-	/**
-	 * This function enables formatting of numbers, it should only come
-	 * into effect when the $wgTranslateNumerals variable is TRUE.
-	 *
+	 /**
 	 * Normally we output all numbers in plain en_US style, that is
 	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
 	 * point twohundredthirtyfive. However this is not sutable for all
@@ -916,11 +913,23 @@ class Language {
 	 * @public
 	 * @param mixed $number the string to be formatted, should be an integer or
 	 *        a floating point number.
-	 * @param bool $year are we being passed a year? (turns off commafication)
-	 * @return mixed whatever we're fed if it's a year, a string otherwise.
+	 * @param bool $commafy Set to false for special numbers like dates
+	 * @return string
 	 */
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : $this->commafy($number);
+	function formatNum( $number, $commafy = false ) {
+		global $wgTranslateNumerals;
+		if (!$commafy) {
+			$number = $this->commafy($number);
+			$s = $this->separatorTransformTable();
+			if (!is_null($s)) { $number = strtr($number, $s); }
+		}
+
+		if ($wgTranslateNumerals) {
+			$s = $this->digitTransformTable();
+			if (!is_null($s)) { $number = strtr($number, $s); }
+		}
+
+		return $number;
 	}
 
 	/**
@@ -932,6 +941,15 @@ class Language {
 	function commafy($_) {
 		return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
 	}
+
+	function digitTransformTable() {
+		return null;
+	}
+
+	function separatorTransformTable() {
+		return null;
+	}
+
 
 	/**
 	 * For the credit list in includes/Credits.php (action=credits)

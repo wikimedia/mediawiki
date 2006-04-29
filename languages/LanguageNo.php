@@ -92,8 +92,8 @@ class LanguageNo extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number, $year = false ) {
-		return !$year ? strtr($number, '.,', ',.' ) : $number;
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 	function getMessage( $key ) {

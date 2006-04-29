@@ -169,8 +169,8 @@ class LanguageBe extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
@@ -188,4 +188,5 @@ class LanguageBe extends LanguageUtf8 {
 		}
 	}
 }
+
 ?>

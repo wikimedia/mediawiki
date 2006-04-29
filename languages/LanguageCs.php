@@ -186,13 +186,8 @@ class LanguageCs extends LanguageUtf8 {
 		return $s;
 	}
 
-	var $digitTransTable = array(
-			',' => "\xc2\xa0", // @bug 2749
-			'.' => ','
-	);
-
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), $this->digitTransTable);
+	function separatorTransformTable() {
+		return array(',' => "\xc2\xa0", '.' => ',' );
 	}
 
 	# Grammatical transformations, needed for inflected languages

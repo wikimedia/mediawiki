@@ -44,10 +44,6 @@ class LanguageTr extends LanguageUtf8 {
 		return $wgNamespaceNamesTr;
 	}
 
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
-	}
-
 	function ucfirst ( $string ) {
 		if ( $string[0] == 'i' ) {
 			return 'İ' . substr( $string, 1 );
@@ -70,7 +66,9 @@ class LanguageTr extends LanguageUtf8 {
 		return $wgDateFormatsTr;
 	}
 
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
+	}
+
 }
-
-
 ?>

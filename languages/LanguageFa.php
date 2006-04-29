@@ -55,21 +55,23 @@ if (!$wgCachedMessageArrays) {
 #--------------------------------------------------------------------------
 
 class LanguageFa extends LanguageUtf8 {
-	var $digitTransTable = array(
-		"0" => "۰",
-		"1" => "۱",
-		"2" => "۲",
-		"3" => "۳",
-		"4" => "۴",
-		"5" => "۵",
-		"6" => "۶",
-		"7" => "۷",
-		"8" => "۸",
-		"9" => "۹",
-		"%" => "٪",
-		"." => "٫",
-		"," => "٬"
-	);
+	function digitTransformTable() {
+		return array(
+			"0" => "۰",
+			"1" => "۱",
+			"2" => "۲",
+			"3" => "۳",
+			"4" => "۴",
+			"5" => "۵",
+			"6" => "۶",
+			"7" => "۷",
+			"8" => "۸",
+			"9" => "۹",
+			"%" => "٪",
+			"." => "٫", // wrong table?
+			"," => "٬"
+		);
+	}
 
 	function getDefaultUserOptions() {
 		$opt = Language::getDefaultUserOptions();
@@ -103,15 +105,6 @@ class LanguageFa extends LanguageUtf8 {
 
 	# For right-to-left language support
 	function isRTL() { return true; }
-
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		if( $wgTranslateNumerals ) {
-			return strtr( $number, $this->digitTransTable );
-		} else {
-			return $number;
-		}
-	}
 
 	function timeanddate( $ts, $adj = false ) {
 		return $this->formatNum( Language::timeanddate( $ts, $adj ) );
