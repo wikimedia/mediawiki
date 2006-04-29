@@ -33,9 +33,10 @@ require_once( 'LanguagePt.php' );
 
 ) + $wgNamespaceNamesPt;
 
-/* private */ $wgQuickbarSettingsPt_br = array(
+/* private */
+/* $wgQuickbarSettingsPt_br = array(
 	"Nada", "Fixado �  esquerda", "Fixado �  direita", "Flutuando �  Esquerda"
-);
+);*/ // TODO: fix encoding or remove
 
 /* private */ $wgSkinNamesPt_br = array(
 	'standard' => "Padrão",
