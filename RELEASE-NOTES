@@ -145,6 +145,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Rewrite reassignEdits script to be more efficient; support optional updates to
   recent changes table; add reporting and silent modes
 * Cleaned up formatNum usage in langfiles
+* (bug 5716) Warn when a user tries to upload a file which was previously deleted
 
 == Compatibility ==
 

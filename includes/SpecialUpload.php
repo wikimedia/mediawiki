@@ -48,7 +48,7 @@ class UploadForm {
 			return;
 		}
 
-		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning');
+		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 		$this->mUpload            = $request->getCheck( 'wpUpload' );
 
@@ -298,6 +298,16 @@ class UploadForm {
 				$sk = $wgUser->getSkin();
 				$dlink = $sk->makeKnownLinkObj( $nt );
 				$warning .= '<li>'.wfMsgHtml( 'fileexists', $dlink ).'</li>';
+			} else {
+				# If the file existed before and was deleted, warn the user of this
+				# Don't bother doing so if the image exists now, however
+				$image = new Image( $nt );
+				if( $image->wasDeleted() ) {
+					$skin = $wgUser->getSkin();
+					$ltitle = Title::makeTitle( NS_SPECIAL, 'Log' );
+					$llink = $skin->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 'type=delete&page=' . $nt->getPrefixedUrl() );
+					$warning .= wfOpenElement( 'li' ) . wfMsgHtml( 'filewasdeleted', $llink ) . wfCloseElement( 'li' );
+				}
 			}
 
 			if( $warning != '' ) {
