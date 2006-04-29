@@ -16,7 +16,7 @@ require_once( "LanguageRu.php" );
 	NS_USER             => 'Викиавтор',
 	NS_USER_TALK        => 'Викиавтор_сярысь_вераськон',
 	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace+'_сярысь_вераськон',
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_сярысь_вераськон',
 	NS_IMAGE            => 'Суред',
 	NS_IMAGE_TALK       => 'Суред_сярысь_вераськон',
 	NS_MEDIAWIKI        => 'MediaWiki',

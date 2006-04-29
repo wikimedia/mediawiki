@@ -20,7 +20,7 @@ require_once( "LanguageRu.php" );
 	NS_USER             => 'Хутшăнакан',
 	NS_USER_TALK        => 'Хутшăнаканăн_канашлу_страници',
 	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace+'_сӳтсе_явмалли',
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_сӳтсе_явмалли',
 	NS_IMAGE            => 'Ӳкерчĕк',
 	NS_IMAGE_TALK       => 'Ӳкерчĕке_сӳтсе_явмалли',
 	NS_MEDIAWIKI        => 'MediaWiki',

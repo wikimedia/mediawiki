@@ -15,7 +15,7 @@ require_once( 'LanguageUtf8.php' );
 	NS_USER             => 'Орлцач',
 	NS_USER_TALK        => 'Орлцачна_тускар_ухалвр',
 	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace+'_тускар_ухалвр',
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_тускар_ухалвр',
 	NS_IMAGE            => 'Зург',
 	NS_IMAGE_TALK       => 'Зургин_тускар_ухалвр',
 	NS_MEDIAWIKI        => 'MediaWiki',
