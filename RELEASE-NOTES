@@ -137,6 +137,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5751) Updates to Portuguese localisation files
 * (bug 5741) Introduce {{NUMBEROFUSERS}} magic word
 * (bug 93) <nowiki> tags and tildes in templates
+* The returnto parameter is now actually used by SpecialUserlogin.php
 
 == Compatibility ==
 
