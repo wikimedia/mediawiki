@@ -1641,6 +1641,17 @@ class Image
 	function isLocal() {
 		return !$this->fromSharedDirectory;
 	}
+	
+	/**
+	 * Was this image ever deleted from the wiki?
+	 *
+	 * @return bool
+	 */
+	function wasDeleted() {
+		$dbw =& wfGetDB( DB_MASTER );
+		$del = $dbw->selectField( 'archive', 'COUNT(*) AS count', array( 'ar_namespace' => NS_IMAGE, 'ar_title' => $this->title->getDBkey() ), 'Image::wasDeleted' );
+		return $del > 0;
+	}
 
 } //class
 
