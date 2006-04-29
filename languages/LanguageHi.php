@@ -59,10 +59,6 @@ class LanguageHi extends LanguageUtf8 {
 			return parent::getMessage($key);
 	}
 
-	function timeanddate( $ts, $adj = false ) {
-		return $this->formatNum( Language::timeanddate( $ts, $adj ) );
-	}
-
 }
 
 ?>

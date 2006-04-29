@@ -129,11 +129,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Updated maintenance/transstat.php so it can show duplicate messages
 * Improvements to update scripts; print out the version, check for superuser credentials
   before attempting a connection, and produce a friendlier error if the connection fails
-* (bug 5005): Fix XHTML <gallery> output.
+* (bug 5005) Fix XHTML <gallery> output.
 * (bug 5315) "Expires: -1" HTTP header made strictly valid (using 1970 date).
-* (bug 4825): note in DefaultSettings.php about 'profiling' table creation
+* (bug 4825) note in DefaultSettings.php about 'profiling' table creation
 * Remove unneeded extra whitespace at top of Special:Categories
-* (bug 5679): format number on timeanddate() calls for fa: hi: bn:.
+* (bug 5679) time units are now using local numerals
 * (bug 5751) Updates to Portuguese localisation files
 * (bug 5741) Introduce {{NUMBEROFUSERS}} magic word
 * (bug 93) <nowiki> tags and tildes in templates

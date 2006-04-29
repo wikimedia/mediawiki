@@ -642,10 +642,14 @@ class Language {
 			? ':'
 			: $this->timeSeparator( $format );
 
-		$t = substr( $ts, 8, 2 ) . $sep . substr( $ts, 10, 2 );
+		$hh = $this->formatNum( substr( $ts, 8, 2 ), true );
+		$mm = $this->formatNum( substr( $ts, 10, 2 ), true );
+		$ss = $this->formatNum( substr( $ts, 12, 2 ), true );
+
+		$t = $hh . $sep . $mm;
 
 		if ( $datePreference == MW_DATE_ISO ) {
-			$t .= $sep . substr( $ts, 12, 2 );
+			$t .= $sep . $ss;
 		}
 		return $t;
 	}

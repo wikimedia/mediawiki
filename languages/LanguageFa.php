@@ -106,8 +106,5 @@ class LanguageFa extends LanguageUtf8 {
 	# For right-to-left language support
 	function isRTL() { return true; }
 
-	function timeanddate( $ts, $adj = false ) {
-		return $this->formatNum( Language::timeanddate( $ts, $adj ) );
-	}
 }
 ?>
