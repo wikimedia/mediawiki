@@ -98,7 +98,7 @@ class AjaxCachePolicy {
 			
 
 function wfSajaxSearch( $term ) {
-	global $wgContLang, $wgUser, $wgRequest, $wgAjaxCachePolicy;
+	global $wgContLang, $wgAjaxCachePolicy;
 	$limit = 16;
 	
 	$l = new Linker;

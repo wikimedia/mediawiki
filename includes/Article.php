@@ -337,7 +337,8 @@ class Article {
 					# TODO
 				}
 			}
-			$lastid = $oldid;
+			# unused:
+			# $lastid = $oldid;
 		}
 		if ( !$oldid ) {
 			$oldid = 0;

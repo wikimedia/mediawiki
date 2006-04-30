@@ -69,7 +69,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0 ) {
 }
 
 function fixLinksFromArticle( $id ) {
-	global $wgTitle, $wgArticle, $wgOut, $wgParser;
+	global $wgTitle, $wgParser;
 	
 	$wgTitle = Title::newFromID( $id );
 	$dbw =& wfGetDB( DB_MASTER );
