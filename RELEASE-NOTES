@@ -151,7 +151,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5764) Friulian translation updated
 * (bug 5757) Fix premature cutoff in LanguageConverter with extra end markers
 * (bug 5516) Show appropriate "return to" link on blocked page
-
+* (bug 5377) Do not auto-login when creating an account as another user
 
 == Compatibility ==
 
