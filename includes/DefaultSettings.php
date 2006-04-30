@@ -1654,21 +1654,21 @@ $wgBrowserBlackList = array(
 $wgLocaltimezone = null;
 
 /**
- * Set an offset from UTC in hours to use for the default timezone setting
+ * Set an offset from UTC in minutes to use for the default timezone setting
  * for anonymous users and new user accounts.
  *
  * This setting is used for most date/time displays in the software, and is
  * overrideable in user preferences. It is *not* used for signature timestamps.
  *
  * You can set it to match the configured server timezone like this:
- *   $wgLocalTZoffset = date("Z") / 3600;
+ *   $wgLocalTZoffset = date("Z") / 60;
  *
  * If your server is not configured for the timezone you want, you can set
  * this in conjunction with the signature timezone and override the TZ
  * environment variable like so:
  *   $wgLocaltimezone="Europe/Berlin";
  *   putenv("TZ=$wgLocaltimezone");
- *   $wgLocalTZoffset = date("Z") / 3600;
+ *   $wgLocalTZoffset = date("Z") / 60;
  *
  * Leave at NULL to show times in universal time (UTC/GMT).
  */
