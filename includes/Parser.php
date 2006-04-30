@@ -3557,7 +3557,7 @@ class Parser
 			# Sig. might contain markup; validate this
 			if( $this->validateSig( $nickname ) !== false ) {
 				# Validated; clean up (if needed) and return it
-				return( $this->cleanSig( $nickname ) );
+				return $this->cleanSig( $nickname, true );
 			} else {
 				# Failed to validate; fall back to the default
 				$nickname = $username;
@@ -3587,9 +3587,13 @@ class Parser
 	 * 2) Substitute all transclusions
 	 *
 	 * @param string $text
+	 * @param $parsing Whether we're cleaning (preferences save) or parsing
 	 * @return string Signature text
 	 */
-	function cleanSig( $text ) {
+	function cleanSig( $text, $parsing = false ) {
+		global $wgTitle;
+		$this->startExternalParse( $wgTitle, new ParserOptions(), $parsing ? OT_WIKI : OT_MSG );
+	
 		$substWord = MagicWord::get( MAG_SUBST );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
 		$substText = '{{' . $substWord->getSynonym( 0 );
@@ -3597,7 +3601,8 @@ class Parser
 		$text = preg_replace( $substRegex, $substText, $text );
 		$text = preg_replace( '/~{3,5}/', '', $text );
 		$text = $this->replaceVariables( $text );
-	
+		
+		$this->clearState();	
 		return $text;
 	}
 	
