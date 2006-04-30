@@ -1517,6 +1517,11 @@ class Title {
 			return false;
 		}
 
+		// Any remaining initial :s are illegal.
+		if ( ':' == $t{0} ) {
+			return false;
+		}
+		
 		# Fill fields
 		$this->mDbkeyform = $t;
 		$this->mUrlform = wfUrlencode( $t );
