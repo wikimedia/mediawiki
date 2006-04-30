@@ -2664,6 +2664,39 @@ class Parser
 			}
 		}		
 
+		# NUMBEROFUSERS, NUMBEROFARTICLES, and NUMBEROFFILES
+		if( !$found ) {
+			$mwWordsToCheck = array( MAG_NUMBEROFUSERS => 'wfNumberOfUsers', MAG_NUMBEROFARTICLES => 'wfNumberOfArticles', MAG_NUMBEROFFILES => 'wfNumberOfFiles' );
+			foreach( $mwWordsToCheck as $word => $func ) {
+				$mwCurrentWord =& MagicWord::get( $word );
+				if( $mwCurrentWord->matchStartAndRemove( $part1 ) ) {
+					$mwRawSuffix =& MagicWord::get( MAG_RAWSUFFIX );
+					if( $mwRawSuffix->match( $args[0] ) ) {
+						# Raw and unformatted
+						$text = $linestart . call_user_func( $func );
+					} else {
+						# Formatted according to the content default
+						$text = $linestart . $wgContLang->formatNum( call_user_func( $func ) );
+					}
+					$found = true;
+				}
+			}
+		}
+		
+			/*$mwNumUsers =& MagicWord::get( MAG_NUMBEROFUSERS );
+			if( $mwNumUsers->matchStartAndRemove( $part1 ) ) {
+				$mwRawSuffix =& MagicWord::get( MAG_RAWSUFFIX );
+				if( $mwRawSuffix->match( $args[0] ) ) {
+					# Raw and unformatted
+					$text = $linestart . wfNumberOfUsers();
+				} else {
+					# Default; formatted form
+					$text = $linestart . $wgContLang->formatNum( wfNumberOfUsers() );
+				}
+				$found = true;
+			}
+		}*/
+
 		# Extensions
 		if ( !$found && substr( $part1, 0, 1 ) == '#' ) {
 			$colonPos = strpos( $part1, ':' );
