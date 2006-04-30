@@ -196,6 +196,33 @@ class SpecialPage
 	}
 
 	/**
+	 * Return part of the request string for a special redirect page
+	 * This allows passing, e.g. action=history to Special:Mypage, etc.
+	 *
+	 * @param $name Name of the redirect page
+	 * @return string
+	 */
+	function getRedirectParams( $name ) {
+		global $wgRequest;
+		
+		$args = array();
+		switch( $name ) {
+			case 'Mypage':
+			case 'Mytalk':
+			case 'Randompage':
+				$args = array( 'action' );
+		}
+		
+		$params = array();
+		foreach( $args as $arg ) {
+			if( $val = $wgRequest->getVal( $arg, false ) )
+				$params[] = $arg . '=' . $val;
+		}
+		
+		return count( $params ) ? implode( '&', $params ) : false;
+	}	
+
+	/**
 	 * Return categorised listable special pages
 	 * Returns a 2d array where the first index is the restriction name
 	 * @static
@@ -248,10 +275,15 @@ class SpecialPage
 			} else {
 				$redir = SpecialPage::getRedirect( $name );
 				if ( isset( $redir ) ) {
-					if ( isset( $par ) )
-						$wgOut->redirect( $redir->getFullURL() . '/' . $par );
-					else
-						$wgOut->redirect( $redir->getFullURL() );
+					$params = SpecialPage::getRedirectParams( $name );
+					if( $params ) {
+						$url = $redir->getFullUrl( $params );
+					} elseif( $par ) {
+						$url = $redir->getFullUrl() . '/' . $par;
+					} else {
+						$url = $redir->getFullUrl();
+					}
+					$wgOut->redirect( $url );
 					$retVal = $redir;
 				} else {
 					$wgOut->setArticleRelated( false );
