@@ -401,6 +401,10 @@ class Sanitizer {
 						} else if ( in_array( $t, $tagstack ) &&
 						! in_array ( $t , $htmlnest ) ) {
 							$badtag = 1 ;
+						# Is it a self closed htmlpair ? (bug 5487)
+						} else if( $brace == '/>' &&
+						in_array($t, $htmlpairs) ) {
+							$badtag = 1;
 						} elseif( in_array( $t, $htmlsingleonly ) ) {
 							# Hack to force empty tag for uncloseable elements
 							$brace = '/>';
