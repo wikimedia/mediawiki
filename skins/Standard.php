@@ -52,7 +52,7 @@ class SkinStandard extends Skin {
 	 *
 	 */
 	function doGetUserStyles() {
-		global $wgUser, $wgOut, $wgStylePath;
+		global $wgStylePath;
 
 		$s = parent::doGetUserStyles();
 		$qb = $this->qbSetting();
