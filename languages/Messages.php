@@ -432,6 +432,8 @@ will be sent for any of the following features.',
 'emailconfirmlink' => 'Confirm your e-mail address',
 'invalidemailaddress'	=> 'The e-mail address cannot be accepted as it appears to have an invalid
 format. Please enter a well-formatted address or empty that field.',
+'accountcreated' => 'Account created',
+'accountcreatedtext' => 'The user account for $1 has been created.',
 
 # Edit page toolbar
 'bold_sample'=>'Bold text',
