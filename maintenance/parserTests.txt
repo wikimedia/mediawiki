@@ -3775,6 +3775,17 @@ all additional text is vanished
 </p>
 !! end
 
+!! test
+Self closed html pairs (bug 5487)
+!! options
+!! input
+<center><font id="bug" />Centered text</center>
+<div><font id="bug2" />In div text</div>
+!! result
+<div class="center">&lt;font id="bug" /&gt;Centered text</div>
+<div>&lt;font id="bug2" /&gt;In div text</div>
+
+!! end
 
 TODO:
 more images
