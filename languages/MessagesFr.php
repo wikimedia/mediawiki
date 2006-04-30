@@ -895,8 +895,8 @@ N\'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération
 'unlockdbsuccesstext' => 'La base de données de {{SITENAME}} est déverrouillée.',
 
 # Special:Makesysop
-'bureaucratlog'		=> 'Log_bureaucrate',
-'bureaucratlogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 ».',
+'rightslog'		=> 'Log des droits',
+'rightslogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 ».',
 'makesysoptitle'	=> 'Donne les droits d\'administrateur.',
 'makesysoptext'		=> 'Ce formulaire est utilisé par les bureaucrates pour donner les droits d\'administrateur.
 Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donner les droits.',
@@ -910,7 +910,6 @@ Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donne
 'setbureaucratflag'	=> 'Ajouter le statut de bureaucrate',
 'set_rights_fail'	=> '<b>Les droits de l\'utilisateur « $1 » n\'ont pas pu être mis à jour. (Avez vous entré le nom correctement?)</b>',
 'makesysop'         => 'Donner les droits d\'administrateur à un utilisateur',
-
 
 # Spam
 #

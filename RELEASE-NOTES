@@ -36,7 +36,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5344) Fix regression that broke slashes in extension tag parameters
 * Improve Special:Log performance on big log sets
 * (bug 5507) Changed mediawiki:logouttext from plain to wikitext
-* (bug 4760) Prevent creation of entries in protection log when protection levels haven't changed
+* (bug 4760) Prevent creation of entries in protection log when protection
+  levels haven't changed
 * (bug 861) Show page protection/unprotection events in histories
 * (bug 5499) Don't clear the tag strip state when asked not to clear state.
   Fixes regression with use of <ref> in a template breaking <nowiki> etc.
@@ -44,12 +45,16 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Display the anon talk page info message on anon talk pages again
   (moved outside the parser cache)
 * Optional {{DISPLAYTITLE|title with markup}} magic word
-  Deactivated by default, set "$wgAllowDisplayTitle = true" in LocalSettings.php to activate
+  Deactivated by default, set "$wgAllowDisplayTitle = true" in LocalSettings.php
+  to activate
 * Cleaned SpecialContributions a bit
 * Added a table to track interlanguage links
-* (bug 5544) Fix redirect arrow in Special:Listredirects for right-to-left languages
-* Replace "doubleredirectsarrow" with a content language check that picks the appropriate arrow
-* (bug 5537) Add stub language file for Samogitian (bat-smg); inherits Lithuanian (lt)
+* (bug 5544) Fix redirect arrow in Special:Listredirects for right-to-left
+  languages
+* Replace "doubleredirectsarrow" with a content language check that picks the
+  appropriate arrow
+* (bug 5537) Add stub language file for Samogitian (bat-smg); inherits
+  Lithuanian (lt)
 * Don't force edit summaries when a user is editing their own user/talk page
 * (bug 5510) Warning produced when using {{SUBPAGENAME}} in some namespaces
 * (bug 385) Installer support for PostgreSQL, fixes for PG compatibility
@@ -57,15 +62,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   All extensions using it have been corrected.
 * Propagate ISBN number for Booksources in LanguageNo.php
 * (bug 5548) Improvements to Indonesian localisation [patch: Ivan Lanin]
-* Add TALKSPACE, SUBJECTSPACE, TALKPAGENAME, SUBJECTPAGENAME (and encoded forms for all)
-  magic words
+* Add TALKSPACE, SUBJECTSPACE, TALKPAGENAME, SUBJECTPAGENAME (and encoded forms
+  for all) magic words
 * (bug 5403) Fix Special:Newpages RSS/Atom feeds
 * Reject malformed addresses in X-Forwarded-For entries
 * (bug 3359) Add hooks on completion of file upload
 * (bug 5559) Improve detection of ImageMagick [patch: Greg Turnquist]
 * (bug 5475) New pages feeds ignore "limit" argument
-* (bug 5184) CSS misapplied to elements in Special:Allmessages due to conflicting
-  anchor identifiers
+* (bug 5184) CSS misapplied to elements in Special:Allmessages due to
+  conflicting anchor identifiers
 * (bug 5519) Allow sidebar cache to be disabled; disable it by default.
 * Maintenance script to import the contents of a text file into a wiki page
 * Add $wgReservedUsernames configuration directive to block account creation/use
@@ -114,7 +119,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5659) Change grammar hacks for Bosnian Wikimedia namespaces.
   This sort of special casing should be removed and fixed properly.
 * Remove useless whitespace from Special:Brokenredirects header
-* Treat "allmessagesnotsupporteddb" as wikitext when echoing; change default text
+* Treat "allmessagesnotsupporteddb" as wikitext when echoing; change default
+  text
 * (bug 5497) regeression in HTML normalization in 1.6 (unclosed <li>,<dd>,<dt>)
 * (bug 5709) Allow customisation of separator for categories
 * (bug 5684) Introduce Special:Randomredirect
@@ -125,10 +131,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   ("editinginterface")
 * (bug 4834) Fix XHTML output when using $wgMaxTocLevel
 * Pass login link to "whitelistedittext" containing 'returnto' parameter
-* (bug 5728): mVersion missing from User::__sleep() leading to constant cache miss
+* (bug 5728): mVersion missing from User::__sleep() leading to constant cache
+  miss
 * Updated maintenance/transstat.php so it can show duplicate messages
-* Improvements to update scripts; print out the version, check for superuser credentials
-  before attempting a connection, and produce a friendlier error if the connection fails
+* Improvements to update scripts; print out the version, check for superuser
+  credentials before attempting a connection, and produce a friendlier error if
+  the connection fails
 * (bug 5005) Fix XHTML <gallery> output.
 * (bug 5315) "Expires: -1" HTTP header made strictly valid (using 1970 date).
 * (bug 4825) note in DefaultSettings.php about 'profiling' table creation
@@ -145,7 +153,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Rewrite reassignEdits script to be more efficient; support optional updates to
   recent changes table; add reporting and silent modes
 * Cleaned up formatNum usage in langfiles
-* (bug 5716) Warn when a user tries to upload a file which was previously deleted
+* (bug 5716) Warn when a user tries to upload a file which was previously
+  deleted
 * (bug 5565) Add a class attribute to the table on Special:Allpages
 * "lang=xx" option for parser test cases to set content language
 * (bug 5764) Friulian translation updated
@@ -156,10 +165,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Suppress 7za output on dumpBackup
 * (bug 5338) Reject extra initial colons in title
 * (bug 5487) Escape self-closed HTML pair tags
-* Add "raw suffix" magic word for some magic words, e.g. {{NUMBEROFUSERS|R}} will
-  produce a count minus formatting
-* Fix Parser::cleanSig() to use Parser::startExternalParse() and choose an appropriate
-  output format given the scope of the clean
+* Add "raw suffix" magic word for some magic words, e.g. {{NUMBEROFUSERS|R}}
+  will produce a count minus formatting
+* Fix Parser::cleanSig() to use Parser::startExternalParse() and choose an
+  appropriate output format given the scope of the clean
+* (bug 5593) Change "bureaucrat log" to "rights log"
+* Show a boilerplate "(none)" in place of a blank within the log action text for
+  user rights
 
 == Compatibility ==
 
