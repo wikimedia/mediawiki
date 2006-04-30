@@ -114,7 +114,7 @@ class LogPage {
 			''        => 'log',
 			'block'   => 'blocklogpage',
 			'protect' => 'protectlogpage',
-			'rights'  => 'bureaucratlog',
+			'rights'  => 'rightslog',
 			'delete'  => 'dellogpage',
 			'upload'  => 'uploadlogpage',
 			'move'    => 'movelogpage'
@@ -159,7 +159,7 @@ class LogPage {
 			'protect/unprotect' => 'unprotectedarticle',
 
 			// TODO: This whole section should be moved to extensions/Makesysop/SpecialMakesysop.php
-			'rights/rights'     => 'bureaucratlogentry',
+			'rights/rights'     => 'rightslogentry',
 			'rights/addgroup'   => 'addgrouplogentry',
 			'rights/rngroup'    => 'renamegrouplogentry',
 			'rights/chgroup'    => 'changegrouplogentry',
@@ -195,6 +195,8 @@ class LogPage {
 							}
 							break;
 						case 'rights':
+							if( trim( $params[0] ) == '' )
+								$params[0] = wfMsg( 'rightsnone' );
 							$text = $wgContLang->ucfirst( $title->getText() );
 							$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
 							break;

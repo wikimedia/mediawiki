@@ -1050,7 +1050,9 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "makesysopok"           => "<b>Benutzer \"$1\" ist nun ein Administrator.</b>",
 "makesysopfail"         => "<b>Benutzer \"$1\" konnte nicht zu einem Administrator gemacht werden. (Haben Sie den Namen richtig geschrieben?)</b>",
 "makesysop"         => "Mache einen Benutzer zum Administrator",
-"bureaucratlogentry"	=> "Rechte für Benutzer \"$1\" auf \"$2\" gesetzt",
+'rightslog' => 'Rechte-Logbuch',
+'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
+"rightslogentry"	=> "Rechte für Benutzer \"$1\" auf \"$2\" gesetzt",
 "rights"		=> "Rechte:",
 "set_user_rights"	=> "Benutzerrechte setzen",
 "user_rights_set"	=> "<b>Benutzerrechte für \"$1\" aktualisiert</b>",
@@ -1058,6 +1060,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'already_sysop'		=> 'Dieser Benutzer ist bereits Administrator.',
 'already_bureaucrat'	=> 'Dieser Benutzer ist bereits Bürokrat.',
 'already_steward'	=> 'Dieser Benutzer ist bereits Steward.',
+'rightsnone'		=> '(nichts)',
 
 "1movedto2"		=> "$1 wurde nach $2 verschoben",
 "1movedto2_redir"	=> "[[$1]] wurde über eine Weiterleitung nach [[$2]] verschoben",

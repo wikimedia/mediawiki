@@ -1343,9 +1343,9 @@ Type the name of the user in the box and press the button to make the user an ad
 'makesysopfail'		=> "<b>User \"$1\" could not be made into a sysop. (Did you enter the name correctly?)</b>",
 'setbureaucratflag' => 'Set bureaucrat flag',
 'setstewardflag'    => 'Set steward flag',
-'bureaucratlog'		=> 'Bureaucrat_log',
+'rightslog'		=> 'User rights log',
 'rightslogtext'		=> 'This is a log of changes to user rights.',
-'bureaucratlogentry'	=> 'changed group membership for $1 from $2 to $3',
+'rightslogentry'	=> 'changed group membership for $1 from $2 to $3',
 'rights'			=> 'Rights:',
 'set_user_rights'	=> 'Set user rights',
 'user_rights_set'	=> "<b>User rights for \"$1\" updated</b>",
@@ -1354,6 +1354,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'already_sysop'     => 'This user is already an administrator',
 'already_bureaucrat' => 'This user is already a bureaucrat',
 'already_steward'   => 'This user is already a steward',
+'rightsnone' 		=> '(none)',
 
 # Move page
 #
