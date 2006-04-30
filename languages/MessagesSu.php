@@ -241,13 +241,13 @@ mangga pastikeun yén anjeun rék nyieun deui artikel ieu.',
 'copyright' => 'Sadaya kandungan ieu loka aya dina panangtayungan <a class=\'internal\' href="{{localurle:{{ns:project}}:Téks_Lisénsi Dokumén Bébas GNU}}">Lisénsi Dokumén Bébas GNU</a> (tingal <b><a class=\'internal\' href="{{localurle:{{ns:project}}:Hak cipta}}">Hak cipta</a></b> sangkan leuwih jéntré).<br />',
 'copyrightpage' => '{{ns:project}}:Hak cipta',
 'copyrightpagename' => 'Hak cipta {{SITENAME}}',
-'copyrightwarning' => 'Parobahan jieunan anjeun bakal geuwat katémbong.
+/*'copyrightwarning' => 'Parobahan jieunan anjeun bakal geuwat katémbong.
 * Pikeun nyoba-nyoba, mangga pigunakeun [[{{ns:project}}:Kotrétan|kotrétan]].
 * Anjeun dirojong pisan pikeun nyieun, ngembangkeun, sarta ngaronjatkeun mutu artikel; tapi, éditan goréng bakal kaawaskeun sahingga bisa geuwat dihapus/diropéa deui.
 * \'\'\'Mangga\'\' [[{{ns:project}}:Cutat rujukan|cutat rujukan anjeun]]\'\' sahingga nu séjén bisa mariksa karya anjeun.
 ----
 Perhatikeun yén sadaya kontribusi ka MediaWiki dianggap medal dina panangtayungan Lisénsi Dokumén Bébas GNU (tempo $1 pikeun jéntréna). Mun anjeun teu miharep tulisan anjeun dirobah sarta disebarkeun deui, ulah dilebetkeun ka dieu.<br />
-Anjeun ogé jangji yén tulisan ieu dijieun ku sorangan, atawa disalin ti \'\'domain\'\' umum atawa sumberdaya bébas séjénna. <strong>ULAH NGALEBETKEUN KARYA NU MIBANDA HAK CIPTA TANPA IDIN!</strong>',
+Anjeun ogé jangji yén tulisan ieu dijieun ku sorangan, atawa disalin ti \'\'domain\'\' umum atawa sumberdaya bébas séjénna. <strong>ULAH NGALEBETKEUN KARYA NU MIBANDA HAK CIPTA TANPA IDIN!</strong>',*/
 'copyrightwarning2' => 'Catet yén sadaya kontribusi ka {{SITENAME}} bisa diédit, dirobah, atawa dihapus ku kontributor séjén. Mun anjeun teu miharep tulisan anjeun dirobah, ulah ngintunkeun ka dieu.<br />
 Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti domain umum atawa sumberdaya bébas séjénna (tempo $1 pikeun écésna).
 <strong>ULAH NGINTUNKEUN KARYA NU MIBANDA HAK CIPTA TANPA WIDI!</strong>',

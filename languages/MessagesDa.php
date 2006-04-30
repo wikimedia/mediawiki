@@ -440,7 +440,7 @@ af denne side.
 Hvis du gemmer den, vil alle ændringer foretaget siden denne revision blive
 overskrevet.</strong>",
 "yourdiff"		=> "Forskelle",
-"copyrightwarning" => "*Bemærk at alle bidrag til {{SITENAME}} er at betragte som udgivet under GNU Free Documentation License (se $1 for flere oplysninger). *Hvis du ikke ønsker at din tekst skal udsættes for nådesløse redigeringer og at den kan blive kopieret efter forgodtbefindende, så skal du ikke placere den her. *Du lover os også, at du selv har forfattet teksten, kopieret den fra en public domain-kilde eller tilsvarende fri kilde. <strong><big>LÆG ALDRIG MATERIALE HER SOM ER BESKYTTET AF ANDRES OPHAVSRET UDEN DERES TILLADELSE!</big></strong>",
+/*"copyrightwarning" => "*Bemærk at alle bidrag til {{SITENAME}} er at betragte som udgivet under GNU Free Documentation License (se $1 for flere oplysninger). *Hvis du ikke ønsker at din tekst skal udsættes for nådesløse redigeringer og at den kan blive kopieret efter forgodtbefindende, så skal du ikke placere den her. *Du lover os også, at du selv har forfattet teksten, kopieret den fra en public domain-kilde eller tilsvarende fri kilde. <strong><big>LÆG ALDRIG MATERIALE HER SOM ER BESKYTTET AF ANDRES OPHAVSRET UDEN DERES TILLADELSE!</big></strong>",*/
 "longpagewarning" => "<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 Kb. Overvej om siden kan opdeles i mindre dele.</strong>",
 "readonlywarning" => "<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,
 så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at

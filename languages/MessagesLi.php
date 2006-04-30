@@ -197,7 +197,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "storedversion" => "Opgesjlage versie",
 "editingold" => "<strong>WAARSCHUWING: U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren.</strong>",
 "yourdiff"  => "Wijzigingen",
-"copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u neet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan neet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
+/*"copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u neet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan neet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",*/
 
 
 # History pages

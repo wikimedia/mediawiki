@@ -230,10 +230,10 @@ Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò
 "editingold"	=> "<strong>ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.<br />
 Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.</strong>",
 "yourdiff"		=> "Differenze",
-"copyrightwarning" => "Nota, per favore, che tutti i contributi a {{SITENAME}} si considerano rilasciati sotto licenza di tipo GNU Free Documentation License (vedi $1 per maggiori dettagli).
+/*"copyrightwarning" => "Nota, per favore, che tutti i contributi a {{SITENAME}} si considerano rilasciati sotto licenza di tipo GNU Free Documentation License (vedi $1 per maggiori dettagli).
 Se non vuoi che il tuo testo possa essere modificato e ridistribuito da chiunque senza pietà e senza altri limiti, allora non inviarlo a {{SITENAME}}, ma realizza piuttosto un tuo sito web personale.<br />
 Con l'invio di questo testo stai garantendo, a tua responsabilità, che il testo è stato scritto da te personalmente ed originalmente, oppure che è stato copiato da una fonte di publico dominio, o da una simile fonte, oppure che hai ottenuto espressa autorizzazione ad usare questo testo e che puoi dimostrarlo.
-<strong>NON USARE MATERIALE COPERTO DA DIRITTO DI AUTORE (COPYRIGHT - (c)) IN MANCANZA DI ESPRESSA AUTORIZZAZIONE!!!</strong>",
+<strong>NON USARE MATERIALE COPERTO DA DIRITTO DI AUTORE (COPYRIGHT - (c)) IN MANCANZA DI ESPRESSA AUTORIZZAZIONE!!!</strong>",*/
 
 
 # History pages

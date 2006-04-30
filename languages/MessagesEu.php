@@ -20,7 +20,7 @@
 'category_header' => '"$1" kategoriako artikuluak',
 'categoryarticlecount' => 'Kategoria honetan $1 artikulu daude.',
 'contributions' => 'Lankidearen ekarpenak',
-'copyrightwarning' => 'Mesedez, egin kontu {{SITENAME}}-ri egindako ekarpen guztiak GNU Dokumentazio aske Lizentziaren barnean egin dela suposatzen dela (begira $1). Ez ezazu sakatu bidaltzeko botoia zure idatzia, baimenik gabe eta zure nahiaren aurka hedatzen ikustea nahi ez baduzu. Zu ere, idatzia zure kabuz idatzi duzula, edo publikora zabaldutako leku batetik ateratzen ari zarela agintzen ari zara. <strong>EZ EZAZU COPYRIGHT BATEN MENPEAN DAGOEN LANA BAIMENIK GABE ERABILI!</strong>', // TODO: grammar
+/*'copyrightwarning' => 'Mesedez, egin kontu {{SITENAME}}-ri egindako ekarpen guztiak GNU Dokumentazio aske Lizentziaren barnean egin dela suposatzen dela (begira $1). Ez ezazu sakatu bidaltzeko botoia zure idatzia, baimenik gabe eta zure nahiaren aurka hedatzen ikustea nahi ez baduzu. Zu ere, idatzia zure kabuz idatzi duzula, edo publikora zabaldutako leku batetik ateratzen ari zarela agintzen ari zara. <strong>EZ EZAZU COPYRIGHT BATEN MENPEAN DAGOEN LANA BAIMENIK GABE ERABILI!</strong>', // TODO: grammar*/
 'cur' => 'azk',
 'currentevents' => 'Gaurkotasun',
 'currentrev' => 'Azken eguneratzea',

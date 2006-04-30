@@ -285,12 +285,12 @@ vi alklakos "Konservu".<br />' , #FIXME - double-check that this makes sense
 "editingold"	=> "<strong>AVERTO: Vi nun redaktas malnovan version de tiu ĉi artikolo.
 Se vi konservos vian redakton, ĉiuj ŝanĝoj faritaj post tiu versio perdiĝos.</strong>",
 'yourdiff'		=> 'Malsamoj',
-'copyrightwarning' => 'Bonvolu noti, ke ĉiu kontribuaĵo al la {{SITENAME}}
+/*'copyrightwarning' => 'Bonvolu noti, ke ĉiu kontribuaĵo al la {{SITENAME}}
 estu rigardata kiel eldonita laŭ la <i>GNU Free Documentation License</i> (vidu je $1).
 Se vi volas, ke via verkaĵo ne estu redaktota senkompate kaj disvastigota
 laŭvole, ne alklaku "Konservu".
 Vi ankaŭ ĵuras, ke vi mem verkis la tekston, aŭ ke vi kopiis ĝin el
-fonto senkopirajta. <strong>NE UZU KOPIRAJTAJN VERKOJN SENPERMESE!</strong>',
+fonto senkopirajta. <strong>NE UZU KOPIRAJTAJN VERKOJN SENPERMESE!</strong>',*/
 'longpagewarning' => '<strong>AVERTO: Tiu ĉi paĝo longas $1 kilobitokojn; kelkaj retumiloj
 povas fuŝi redaktante paĝojn je longo proksime aŭ preter 32kb.
 Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.</strong>',

@@ -753,7 +753,7 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'filedesc' => 'Σύνοψη',
 'filestatus' => 'Κατάσταση του copyright',
 'filesource' => 'Πηγή',
-'copyrightpage' => '{{ns:12}}:Copyrights',
+'copyrightpage' => 'Project:Copyrights',
 'copyrightpagename' => '{{SITENAME}} copyright',
 'uploadedfiles' => 'Αρχεία που έχουν φορτωθεί',
 'minlength' => 'Τα ονόματα εικόνων δεν πρέπει να περιέχουν λιγότερους από τρεις χαρακτήρες.',

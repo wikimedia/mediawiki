@@ -85,10 +85,10 @@ Navnîşana te ya IP $3 ye. Ji kerema xwe eger pirsên te hebe vê navnîşanê 
 'copyright' => 'Naverok bin $1 (Lîsansa Belgekirina Azada GNU) tê weşandin.',
 'copyrightpage' => '{{ns:project}}:Mafên nivîsanê',
 'copyrightpagename' => 'Mafên nivîsanê',
-'copyrightwarning' => '<b>BERHEMÊN MAFÊN WAN PARASTÎ (©) BÊ DESTÛR NEWEŞÎNE!</b>
+/*'copyrightwarning' => '<b>BERHEMÊN MAFÊN WAN PARASTÎ (©) BÊ DESTÛR NEWEŞÎNE!</b>
 <div>Dîqat bike: Hemû tevkariyên {{SITENAME}} di bin [[Lîsansa Belgekirina azada GNU]] de tên belav kirin.
 <div>Eger tu nexwazî ku nivîsên te bê dilrehmî bên guherandin û li gora keyfa herkesî bên belavkirin, li vir neweşîne.</div>
-<div>Tu soz didî ku te ev bi xwe nivîsand an jî ji çavkaniyekê azad an geliyane \'\'(public domain)\'\' girt.',
+<div>Tu soz didî ku te ev bi xwe nivîsand an jî ji çavkaniyekê azad an geliyane \'\'(public domain)\'\' girt.',*/
 'createaccount' => 'Hesabê nû çêke',
 'createaccountmail' => 'bi e-name',
 'cur' => 'ferq',

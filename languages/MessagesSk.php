@@ -433,18 +433,14 @@ Budete musieť zlúčiť vaše zmeny s existujúcim textom.
 verziu tejto stránky.
 Ak vašu úpravu uložíte, prepíšete tým všetky úpravy, ktoré nasledovali po tejto starej verzii.</strong>",
 'yourdiff' => 'Rozdiely',
-'copyrightwarning' => "<div id=\"specChar\" style=\"margin-top:5px;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:3px;text-align:center;\">
-<small>[[metawikipedia:Help:Special_characters|Zvláštne znaky]]
-</small></div>
-
-Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}}
+/*'copyrightwarning' => "Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}}
 sa považujú za príspevky uskutočnené podľa GNU Free Documentation License
 (podrobnosti pozri pod $1).
 Ak nechcete, aby bolo to, čo ste napísali, neúprosne upravované a ďalej
 ľubovoľne rozširované, tak sem váš text neumiestňujte.<br />
 Týmto nám tiež sľubujete, že ste tento text buď napísali sám, alebo že je skopírovaný
 zo spoločného vlastníctva (public domain) alebo podobného voľne prístupného zdroja.
-<strong>NEUMIESTŇUJTE TU BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>",
+<strong>NEUMIESTŇUJTE TU BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>",*/
 'copyrightwarning2' => "Prosím uvedomte si, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}}
 môžu byť upravované, skracované alebo odstránené inými príspevkami.
 Ak nechcete, aby Vaše texty boli menené, tak ich tu neuverejňujte.<br />

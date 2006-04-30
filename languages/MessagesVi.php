@@ -360,9 +360,9 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'storedversion' => 'Phiên bản lưu',
 "editingold"   => "<strong>Chú ý: bạn đang sửa một phiên bản cũ. Nếu bạn lưu, các sửa đổi trên phiên bản mới hơn sẽ mất.</strong>",
 "yourdiff"  => "Khác",
-"copyrightwarning" => "*Xin dùng [[{{ns:4}}:Chỗ thử|chỗ thử soạn thảo]] nếu bạn chỉ muốn thử nghiệm.
+/*"copyrightwarning" => "*Xin dùng [[{{ns:4}}:Chỗ thử|chỗ thử soạn thảo]] nếu bạn chỉ muốn thử nghiệm.
 *Xin đọc thêm hướng dẫn về [[Trợ giúp:Soạn thảo|soạn thảo]] và [[Trợ giúp:Viết bài mới|viết bài mới]].
-*Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br /><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>",
+*Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br /><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>",*/
 'copyrightwarning2' => "*Xin dùng [[{{ns:4}}:Chỗ thử|chỗ thử soạn thảo]] nếu bạn chỉ muốn thử nghiệm.
 *Xin đọc thêm hướng dẫn về [[Trợ giúp:Soạn thảo|soạn thảo]] và [[Trợ giúp:Viết bài mới|viết bài mới]].
 *Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br /><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>",
