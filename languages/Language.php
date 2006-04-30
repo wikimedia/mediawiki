@@ -280,6 +280,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_UC                   => array( 0,    'UC:'                    ),
 	MAG_RAW                  => array( 0,    'RAW:'                   ),
 	MAG_DISPLAYTITLE         => array( 1,    'DISPLAYTITLE'           ),
+	MAG_RAWSUFFIX			 => array( 1,	 'R'					  ),
 );
 
 if (!$wgCachedMessageArrays) {

@@ -155,7 +155,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5284) Special redirect pages should remember parameters
 * Suppress 7za output on dumpBackup
 * (bug 5338) Reject extra initial colons in title
- (bug 5487) Escape self-closed HTML pair tags.
+* (bug 5487) Escape self-closed HTML pair tags
+* Add "raw suffix" magic word for some magic words, e.g. {{NUMBEROFUSERS|R}} will
+  produce a count minus formatting
 
 == Compatibility ==
 
