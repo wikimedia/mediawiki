@@ -25,7 +25,6 @@ class SkinNostalgia extends Skin {
 	}
 
 	function doBeforeContent() {
-		global $wgUser, $wgOut, $wgTitle;
 
 		$s = "\n<div id='content'>\n<div id='topbar'>";
 		$s .= $this->logoText( "right" );
