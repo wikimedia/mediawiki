@@ -158,6 +158,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5487) Escape self-closed HTML pair tags
 * Add "raw suffix" magic word for some magic words, e.g. {{NUMBEROFUSERS|R}} will
   produce a count minus formatting
+* Fix Parser::cleanSig() to use Parser::startExternalParse() and choose an appropriate
+  output format given the scope of the clean
 
 == Compatibility ==
 
