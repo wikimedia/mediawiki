@@ -527,7 +527,11 @@ class Language {
 		$hrDiff  = 0;
 
 		if ( $tz === '' ) {
-			$hrDiff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
+			# Global offset in minutes.
+			if( isset($wgLocalTZoffset) ) {
+				$hrDiff = $wgLocalTZoffset % 60;
+				$minDiff = $wgLocalTZoffset - ($hrDiff * 60);
+			}
 		} elseif ( strpos( $tz, ':' ) !== false ) {
 			$tzArray = explode( ':', $tz );
 			$hrDiff = intval($tzArray[0]);
