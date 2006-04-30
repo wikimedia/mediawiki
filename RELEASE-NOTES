@@ -154,6 +154,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5377) Do not auto-login when creating an account as another user
 * (bug 5284) Special redirect pages should remember parameters
 * Suppress 7za output on dumpBackup
+* (bug 5338) Reject extra initial colons in title
 
 
 == Compatibility ==
