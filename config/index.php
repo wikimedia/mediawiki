@@ -907,16 +907,17 @@ if( count( $errs ) ) {
 
 <div class="config-section">
 	<div class="config-input">
-		<label class='column'>E-mail (general):</label>
+		<label class='column'>E-mail features (global):</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Email", "Enabled", "radio", "email_enabled" ); ?></li>
 		<li><?php aField( $conf, "Email", "Disabled", "radio", "email_disabled" ); ?></li>
 		</ul>
 	</div>
 	<p class="config-desc">
-		Use this to disable all e-mail functions (send a password reminder, user-to-user e-mail and e-mail notification),
-		if sending e-mails on your server doesn't work.
+		Use this to disable all e-mail functions (password reminders, user-to-user e-mail and e-mail notifications)
+		if sending mail doesn't work on your server.
 	</p>
+
 	<div class="config-input">
 		<label class='column'>User-to-user e-mail:</label>
 		<ul class="plain">
@@ -925,45 +926,35 @@ if( count( $errs ) ) {
 		</ul>
 	</div>
 	<p class="config-desc">
-		Use this to disable only the user-to-user e-mail function (EmailUser).
+		The user-to-user e-mail feature (Special:Emailuser) lets the wiki act as a relay to allow users to exchange e-mail without publicly advertising their e-mail address.
 	</p>
 	<div class="config-input">
-		<label class='column'>E-mail notification:</label>
+		<label class='column'>E-mail notification about changes:</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Enotif", "Disabled", "radio", "enotif_disabled" ); ?></li>
-		<li><?php aField( $conf, "Enotif", "Enabled for user_talk changes only", "radio", "enotif_usertalk" ); ?></li>
-		<li><?php aField( $conf, "Enotif", "Enabled for user_talk and watch list changes (not recommended for large wikis)", "radio", "enotif_allpages" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Enabled for changes to user discussion pages only", "radio", "enotif_usertalk" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Enabled for changes to user discussion pages, and to pages on watchlists (not recommended for large wikis)", "radio", "enotif_allpages" ); ?></li>
 		</ul>
 	</div>
 	<div class="config-desc">
-		<p>
-		E-mail notification sends a notification e-mail to a user, when the user_talk page is changed
-                and/or when watch-listed pages are changed, depending on the above settings.
-		When testing this feature, be reminded, that obviously an e-mail address must be present in your preferences
-		and that your own changes never trigger notifications to be sent to yourself.</p>
+		<p>		
+		For this feature to work, an e-mail address must be present for the user account, and the notification
+		options in the user's preferences must be enabled. Also note the 
+		authentication option below. When testing the feature, keep in mind that your own changes will never trigger notifications to be sent to yourself.</p>
 
-		<p>Users get corresponding options to select or deselect in their users' preferences.
-		The user options are not shown on the preference page, if e-mail notification is disabled.</p>
-
-		<p>There are additional options for fine tuning in /includes/DefaultSettings.php .</p>
+		<p>There are additional options for fine tuning in /includes/DefaultSettings.php; copy these to your LocalSettings.php and edit them there to change them.</p>
 	</div>
 
 	<div class="config-input">
-		<label class='column'>E-mail authentication:</label>
+		<label class='column'>E-mail address authentication:</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Eauthent", "Disabled", "radio", "eauthent_disabled" ); ?></li>
 		<li><?php aField( $conf, "Eauthent", "Enabled", "radio", "eauthent_enabled" ); ?></li>
 		</ul>
 	</div>
 	<div class="config-desc">
-		<p>E-mail address authentication uses a scheme to authenticate e-mail addresses of the users. The user who initially enters or changes his/her stored e-mail address
-		gets a link with a token mailed to that address. The stored e-mail address is authenticated at the moment the user comes back to the wiki via the link.</p>
-
-		<p>The e-mail address stays authenticated as long as the user does not change it; the time of authentication is indicated
-		on the user preference page.</p>
-
-		<p>If the option is enabled, only authenticated e-mail addresses can receive EmailUser mails and/or
-		e-mail notification mails.</p>
+		<p>If this option is enabled, users have to confirm their e-mail address using a magic link sent to them whenever they set or change it, and only authenticated e-mail addresses can receive mails from other users and/or
+		change notification mails. Setting this option is <B>recommended</B> for public wikis because of potential abuse of the e-mail features above.</p>
 	</div>
 
 </div>
