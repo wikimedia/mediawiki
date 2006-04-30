@@ -1518,7 +1518,7 @@ class Title {
 		}
 
 		// Any remaining initial :s are illegal.
-		if ( ':' == $t{0} ) {
+		if ( $t !== '' && ':' == $t{0} ) {
 			return false;
 		}
 		
