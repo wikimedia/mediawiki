@@ -528,6 +528,9 @@ class DumpBZip2Output extends DumpPipeOutput {
 class Dump7ZipOutput extends DumpPipeOutput {
 	function Dump7ZipOutput( $file ) {
 		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
+		// Suppress annoying useless crap from p7zip
+		// Unfortunately this could suppress real error messages too
+		$command .= " >/dev/null 2>&1";
 		parent::DumpPipeOutput( $command );
 	}
 }
