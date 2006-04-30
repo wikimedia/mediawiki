@@ -173,7 +173,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show a boilerplate "(none)" in place of a blank within the log action text for
   user rights
 * (bug 137) Commented out translations for copyrightwarning which mention GNU FDL
-
+* (bug 5723) Don't count pages linked to from the MediaWiki namespace as "wanted"
 
 == Compatibility ==
 
