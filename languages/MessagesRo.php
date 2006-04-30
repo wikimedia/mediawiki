@@ -168,11 +168,11 @@ Te rugăm să îţi confirmi intenţia de a face asta, faptul că
 'copyright' => "Conţinutul este disponibil sub $1.",
 'copyrightpage' => "Project:Drepturi_de_autor",
 'copyrightpagename' => "Drepturi de autor în {{SITENAME}}",
-'copyrightwarning' => "Reţine că toate contribuţiile la {{SITENAME}} sunt considerate ca respectând licenţa GNU Free Documentation License
+/*'copyrightwarning' => "Reţine că toate contribuţiile la {{SITENAME}} sunt considerate ca respectând licenţa GNU Free Documentation License
 (vezi $1 pentru detalii).
 Dacă nu doreşti ca ceea ce scrieţi să fie editat fără milă şi redistribuit în voie, atunci nu trimite materialele respective aici.<br />
 De asemenea, trimiţând aceste materiale aici te angajezi că le-ai scris tu sau că sunt copiate dintr-o sursă care permite includerea materialelor sub această licenţă.
-<strong>NU TRIMITE MATERIALE PROTEJATE DE DREPTURI DE AUTOR FĂRĂ PERMISIUNE!</strong>",
+<strong>NU TRIMITE MATERIALE PROTEJATE DE DREPTURI DE AUTOR FĂRĂ PERMISIUNE!</strong>",*/
 'couldntremove' => "Elementul '$1' nu a putut fi şters...",
 'createaccount' => "Creează cont nou",
 'createaccountmail' => "după e-mail",

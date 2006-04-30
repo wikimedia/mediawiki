@@ -301,12 +301,12 @@ By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
 "editingold" => "<strong>OSTRZEŻENIE: Edytujesz inną niż bieżąca wersję tej strony.
 Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong>",
 "yourdiff" => "Różnice",
-"copyrightwarning" => "Proszę pamiętać o tym, że przyjmuje się, iż wszelki
+/*"copyrightwarning" => "Proszę pamiętać o tym, że przyjmuje się, iż wszelki
 wkład do Wikipedii jest udostępniany na zasadach <i>GNU Free Documentation License</i>
 (szczegóły w $1).  <br />Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go w Wikipedii.  Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach <i>public domain</i> albo
 licencji <i>GNU Free Documentation License</i> lub kompatybilnej.
 <br /><strong>PROSZĘ NIE UŻYWAĆ BEZ POZWOLENIA MATERIAŁÓW OBJĘTYCH PRAWEM
-AUTORSKIM!</strong>",
+AUTORSKIM!</strong>",*/
 "longpagewarning" => "<strong>UWAGA: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych
 przeglądarek mogą wystąpić problemy w edycji stron mających więcej niż 32 kilobajty.
 Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>",
@@ -502,12 +502,12 @@ Wszystkie czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 "filename" => "Plik",
 "filedesc" => "Opis",
 "copyrightpage" => "{{ns:4}}:Prawa_autorskie",
-"copyrightpagename" => "prawami autorskimi Wikipedii",
+//"copyrightpagename" => "prawami autorskimi Wikipedii", // no go
 "uploadedfiles" => "Przesłane pliki",
 "minlength" => "Nazwa obrazku musi mieć co najmniej trzy litery.",
 "badfilename" => "Nazwę obrazku zmieniona na \"$1\".",
 "badfiletype" => "\".$1\" nie jest zalecanym formatem pliku.",
-"largefile" => "Zalecane jest aby rozmiar pliku z obrazkiem nie był większy niż 100 kilobajtów.",
+//"largefile" => "Zalecane jest aby rozmiar pliku z obrazkiem nie był większy niż 100 kilobajtów.", // no go
 "successfulupload" => "Wysyłka powiodła się",
 "fileuploaded" => "Plik \"$1\" został pomyślnie przesłany.
 Przejdź, proszę, do strony opisu pliku ($2) i podaj dotyczące go informacje

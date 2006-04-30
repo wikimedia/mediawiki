@@ -303,10 +303,10 @@ Fydd rhaid i chi ymsoddi eich newidiadau i mewn i'r testun sydd mewn bod.
 "storedversion" => "Fersiwn wedi cadw",
 "editingold" => "<strong>RHYBUDD: Rydych yn golygu hen fersiwn y tudalen hon. Os cadwch hi, fydd unrhyw newidiadau hwyrach yn gael eu colli!.</strong>",
 "yourdiff" => "Gwahaniaethau",
-"copyrightwarning" => "Sylwch mae pob cyfraniad i {{SITENAME}} yn gael eu rhyddhau o dan termau'r Trwydded Dogfen Rhydd GNU (gwelwch $1 am manylion).
+/*"copyrightwarning" => "Sylwch mae pob cyfraniad i {{SITENAME}} yn gael eu rhyddhau o dan termau'r Trwydded Dogfen Rhydd GNU (gwelwch $1 am manylion).
 Os nid ydych chi'n fodlon cael eich ysgrifeniad eu golygu heb trugaredd, a creu copïau dros y wê, peidiwch cyfranu'r ysgrifeniad yma.<br />
 Hefyd, rydych chi'n addo chi yw'r awdur y cyfraniad, neu rydych chi wedi copïo fe oddiwrth y parth cyhoeddus neu rhyw modd rhydd tebyg.
-<strong>PEIDIWCH CYFRANNU GWAITH O DAN HAWLFRAINT HEB CANIATÂD!</strong>",
+<strong>PEIDIWCH CYFRANNU GWAITH O DAN HAWLFRAINT HEB CANIATÂD!</strong>",*/
 "longpagewarning" => "<strong>RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br />
 Ystyriwch torri'r tudalen i mewn i ddarnau llai, os gwelwch yn dda.</strong>",
 "readonlywarning" => "<strong>RHYBUDD: Mae'r databas wedi cloi i gael eu trwsio,

@@ -86,7 +86,7 @@ Sielç par plasê un altri non.',
 'contribslink'	=> 'contribûts',
 'contribsub'    => "Par $1",
 'copyright' => "Il contignût al è disponibil sot de $1",
-'copyrightwarning' => "<!-- Perché i link non abbiano l'aspetto di link esterni: -->
+/*'copyrightwarning' => "<!-- Perché i link non abbiano l'aspetto di link esterni: -->
 <div class=\"plainlinks\">
 
 <div style=\"margin-top:2em\">
@@ -100,7 +100,7 @@ Sielç par plasê un altri non.',
 * Inviant chest test, tu stâs garantint che chest al è stât scrit di te in origjin, o che al è stât copiât di une sorzint di public domini, o alc   di simil, opûr che tu âs vût une autorizazion esplicite pe publicazion e  tu puedis dimostrâ chest fat.
 </div>
 
-</div>",
+</div>",*/
 'createaccount' => "Cree une gnove identitât",
 'createaccountmail'	=> 'par pueste eletroniche',
 'createarticle' => "Cree vôs",

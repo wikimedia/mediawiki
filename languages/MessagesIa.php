@@ -262,14 +262,14 @@ quando tu premera \"Salvar pagina\".<br />",
 un version obsolete de iste pagina.
 Si tu lo salvara, tote le modificationes facite post iste revision essera perdite.</strong>",
 "yourdiff"		=> "Differentias",
-"copyrightwarning" => "Nota que tote le contributiones a {{SITENAME}} es
+/*"copyrightwarning" => "Nota que tote le contributiones a {{SITENAME}} es
 considerate public secundo le terminos del Licentia de Documentation Libere GNU
 (vide plus detalios in $1).
 Si tu non vole que tu scripto sia modificate impietosemente e redistribuite
 a voluntate, alora non lo edita hic.<br />
 Additionalmente, tu nos garanti que tu es le autor de tu contributiones,
 o que tu los ha copiate de un ressource libere de derectos.
-<strong>NON USA MATERIAL COPERITE PER DERECTOS DE AUTOR (COPYRIGHT) SIN AUTORISATION EXPRESSE!</strong>",
+<strong>NON USA MATERIAL COPERITE PER DERECTOS DE AUTOR (COPYRIGHT) SIN AUTORISATION EXPRESSE!</strong>",*/
 "longpagewarning" => "ADVERTIMENTO: Iste pagina ha $1 kilobytes de longitude;
 alcun navigatores pote presentar problemas in editar
 paginas de approximatemente o plus de 32kb.

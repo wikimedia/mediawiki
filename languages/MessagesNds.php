@@ -349,16 +349,14 @@ Föög diene Ännern in dat Textfeld baven in.
 'editingold'                    => '<strong>Wohrscho: Du bearbeidst en ole Version vun disse Siet.
 Wenn du spiekerst, warrn alle niegeren Versionen överschrieven.</strong>',
 'yourdiff'                      => 'Ünnerscheed',
-'copyrightwarning'       => "
-<b><big>Kopeer kene Websieten</big>, de nich dien egen sünd un bruuk <big>kene Warken, de enen Oorheverrecht ünnerliggt,</big>
-ahn Verlööv vun de Copyright-Inhebbers!</b>
+/*'copyrightwarning'       => "<b><big>Kopeer kene Websieten</big>, de nich dien egen sünd un bruuk <big>kene Warken, de enen Oorheverrecht ünnerliggt,</big> ahn Verlööv vun de Copyright-Inhebbers!</b>
 <p>Du giffst hiermit dien Tosaag, dat du dien Text <strong>sülvst verfaat</strong> hest, dat de Text Gemeengood
 (<strong>„Public Domain“</strong>) is, oder dat de <strong>Copyright-Inhebber</strong> sien <strong>Tostimmen</strong> geven hett.
 Wenn dissen Text al an annere Steed apentlich maakt is, schriev dat ok op de Diskuschoonssiet, sünst kann dat passeern, dat en annern dat weer löscht,
 vun wegen dat he denkt, dat weer en Brook vun dat Oorheverrecht.
 
 <p><i>Denk doran, dat alle {{SITENAME}}-Bidreeg automatsch ünner de „GNU Fre'e Dokumentatschoonslizenz“ steiht.
-Wenn du nich wullst, dat dien Arbeid hier vun annern ännert un verbreed warrt, denn klick nich op Spiekern.</i>",
+Wenn du nich wullst, dat dien Arbeid hier vun annern ännert un verbreed warrt, denn klick nich op Spiekern.</i></p>",*/
 'longpagewarning'        => '<strong>Wohrscho: Disse Siet is $1 KB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 KB sünd.
 Bedenk of disse Siet vilicht in lüttere Afsnitten opdeelt warrn kann.</strong>',
 'readonlywarning'        => '<strong>Wohrscho: De Datenbank is wiel dat Ännern vun de

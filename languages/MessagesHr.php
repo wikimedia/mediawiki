@@ -480,10 +480,10 @@ u u gornjem polju biti sačuvan kad pritisnete \"Snimi stranicu\".",
 "editingold"	        => "<strong>UPOZORENJE: Uređujete stariju inačicu
 ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>",
 "yourdiff"		=> "Razlike",
-"copyrightwarning"      => "Molimo uočite da se svi doprinosi projektu {{SITENAME}} smatraju objavljenima pod uvjetima GNU Free Documentation licence (vidi $1 za detalje).
+/*"copyrightwarning"      => "Molimo uočite da se svi doprinosi projektu {{SITENAME}} smatraju objavljenima pod uvjetima GNU Free Documentation licence (vidi $1 za detalje).
 Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga slati.<br />
 Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencom.
-<strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOZVOLE!</strong>",
+<strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOZVOLE!</strong>",*/
 'copyrightwarning2' => 'Molimo uočite da se svi doprinosi projektu {{SITENAME}} smatraju objavljenima pod uvjetima GNU Free Documentation License (vidi $1 za detalje).
 Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br />
 Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencom.

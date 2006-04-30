@@ -286,15 +286,14 @@ Dy wurde allinnich tapasse safier as jo se yn it earste fjild ynpasse.
 "editingold"	=> "<strong>Waarskôging: Jo binne dwaande mei in âldere ferzje fan dizze side.
 Soenen jo dizze fêstlizze, dan is al wat sûnt dy tiid feroare is kwyt.</strong>",
 "yourdiff"		=> "Feroarings",
-# REPLACE THE COPYRIGHT WARNING IF YOUR SITE ISN'T GFDL!
-"copyrightwarning" => "Alle bydragen ta de {{SITENAME}} wurde sjoen
+/*"copyrightwarning" => "Alle bydragen ta de {{SITENAME}} wurde sjoen
 as fallend ûnder de GNU Iepen Dokumentaasje Lisinsje
 (sjoch fierders: \"$1\").
 As jo net wolle dat jo skriuwen ûnferbidlik oanpast en frij ferspraat wurdt,
 dan is it baas, en set it net op de {{SITENAME}}.<br />
 Jo ferklare ek dat jo dit sels skreaun hawwe, of it oernaam hawwe út in
 publyk eigendom of in oare iepen boarne.
-<strong><big>Foeg gjin wurk ûnder auteursrjocht ta sûnder tastimming!</big></strong>",
+<strong><big>Foeg gjin wurk ûnder auteursrjocht ta sûnder tastimming!</big></strong>",*/
 "longpagewarning" => "<strong>Waarskôging: Dizze side is $1 kilobyte lang;
 der binne blêdzjers dy problemen hawwe mei siden fan tsjin de 32kb. of langer.
 Besykje de side yn lytsere stikken te brekken.</strong>",

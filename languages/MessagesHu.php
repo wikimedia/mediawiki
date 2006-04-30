@@ -298,7 +298,7 @@ változatát szerkeszted.
 Ha elmented, akkor az ezen változat után végzett összes
 módosítás elvész.</strong>",
 "yourdiff"		=> "Eltérések",
-"copyrightwarning" => "Kérlek vedd figyelembe hogy minden
+/*"copyrightwarning" => "Kérlek vedd figyelembe hogy minden
 {{SITENAME}}BA küldött anyag a GNU Szabad Dokumentum Licenc alatti
 publikálásnak számít (lásd $1 a részletekért).
 Ha nem akarod, hogy az írásod könyörtelenül módosíthassák vagy
@@ -306,7 +306,7 @@ tetszés szerint terjesszék, akkor ne küldd be ide.<br />
 A beküldéssel együtt azt is garantálod hogy mindezt saját
 magad írtad, vagy másoltad be egy szabadon elérhető vagy
 közkincs (public domain) forrásból.
-<strong>ENGEDÉLY NÉLKÜL NE KÜLDJ BE JOGVÉDETT ANYAGOKAT!</strong>",
+<strong>ENGEDÉLY NÉLKÜL NE KÜLDJ BE JOGVÉDETT ANYAGOKAT!</strong>",*/
 "longpagewarning" => "<strong>FIGYELEM: Ez a lap $1 kilobyte hosszú;
 néhány böngészőnek problémái vannak a 32KB körüli vagy nagyobb lapok
 szerkesztésével.

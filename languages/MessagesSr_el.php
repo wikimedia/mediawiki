@@ -225,9 +225,9 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.',
 'contribsub' => 'Za $1',
 'contributions' => 'Prilozi korisnika',
 'copyright' => 'Sadržaj je objavljen pod $1.',
-'copyrightpage' => '[[{{ns:4}}:Autorska prava|Autorska prava]]',
+'copyrightpage' => '{{ns:4}}:Autorska prava',
 'copyrightpagename' => '{{SITENAME}} autorska prava',
-'copyrightwarning' => '
+/*'copyrightwarning' => '
 \'\'\'Vaše izmene će odmah biti vidljive.\'\'\'<br />
 * Za testiranje, molimo Vas koristite stranicu \'\'\'[[{{ns:4}}:pesak|pesak]]\'\'\' ili <span class=plainlinks>[http://crash.vikimedija.org/ projekat posebno namenjen za testiranje]</span>..
 * Molimo vas da obratite pažnju da se za svaki doprinos {{ns:4}} smatra da je objavljen pod GNU licencom za slobodnu dokumentaciju (pogledajte [[{{ns:4}}:autorska prava|autorska prava]] za detalje).
@@ -236,7 +236,7 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.',
 ----
 \'\'\'NE ŠALjITE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOZVOLE!\'\'\'
 
-</div>',
+</div>',*/
 'copyrightwarning2' => 'Napomena: Svi doprinosi {{ns:4}} mogu da se menjaju ili uklone od strane drugih korisnika. Ako ne želite da se vaši doprinosi nemilosrdno menjaju, ne šaljite ih ovde.<br />
 Takođe nam obećavate da ste ovo sami napisali ili prekopirali iz izvora u javnom vlasništvu ili sličnog slobodnog izvora (vidite $1 za detalje).
 <strong>NE ŠALjITE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOZVOLE!</strong>',

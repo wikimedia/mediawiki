@@ -285,7 +285,7 @@ Vas a tener que incorporar tus cambios en el texto existente.
  de esta página.
 Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>",
 "yourdiff"		=> "Diferencias",
-"copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br /><br />Nota por favor que todas las contribuciones a {{SITENAME}}
+"copyrightwarning" => "Nota por favor que todas las contribuciones a {{SITENAME}}
 se consideran hechas públicas bajo la $2
 (ver detalles en $1).
 Si no deseas que la gente corrija tus escritos sin piedad

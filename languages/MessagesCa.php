@@ -229,14 +229,14 @@ Haureu d'incorporar els vostres canvis en el text existent.
 "editingold"	=> "<strong>ATENCIÓ:Esteu editant una versió antiga d'aquesta pàgina.
 Si la graveu, els canvis fets des d'eixa revisió es perdran.</strong>",
 "yourdiff"		=> "Diferències",
-"copyrightwarning" => "Noteu que totes les contribucions a la {{SITENAME}}
+/*"copyrightwarning" => "Noteu que totes les contribucions a la {{SITENAME}}
 es consideren fetes públiques sota la llicència de documentació lliure GNU
 (mostra detalls a $1).
  Si no desitgeu que la gent corregeixi els vostres escrits sense pietat
 i els distribueixi lliurement, llavors no els poseu ací. <br />
 També ens heu d'assegurar que tot plegat és obra vostra i que sou l'amo dels drets d'autor, o els heu copiat des del domini públic
 o una altra font lliura.
- <strong>NO EMPREU ESCRITS AMB COPYRIGHT SENSE PERMÍS!</strong>",
+ <strong>NO EMPREU ESCRITS AMB COPYRIGHT SENSE PERMÍS!</strong>",*/
 
 # History pages
 #
@@ -331,16 +331,7 @@ i l'hora del servidor (UTC).",
 # Recent changes
 #
 "recentchanges" => "Canvis recents",
-"recentchangestext" => "Seguiu els canvis més recentes de la {{SITENAME}} en aquesta pàgina.
-[[{{ns:4}}:Benvingut]]!
-Mireu aquestes pàgines, si us plau: [[{{ns:4}}:PMF|PMF de la {{SITENAME}}]],
-[[{{ns:4}}:Polítiques i guies|polítiques de la {{SITENAME}}]]
-(especialment [[{{ns:4}}:Convencions de noms|les convencions per anomenar articles]]i
-[[{{ns:4}}:Punt de vista neutral|punt de vista neutral]]).
-
-Si voleu que la {{SITENAME}} tingui èxit, és molt important que no hi afegiu
-material restringit per [[{{ns:4}}:Copyrights|drets d'autor]].
-La responsabilitat legal podria realment malmetre un projecte com aquest, així que si us plau, no ho feu.",
+"recentchangestext" => "Seguiu els canvis més recentes de la {{SITENAME}} en aquesta pàgina.",
 "rcloaderr"		=> "s'està carregant els canvis recents",
 "rcnote"		=> "A sota hi ha els últims <b>$1</b> canvis en els últims <b>$2</b> dies.",
 "rclistfrom"	=> "Mostra els canvis nous des de $1",
@@ -405,12 +396,11 @@ carregat més recentement. Totes les hores són les del servidor (UTC).
 "filename"		=> "Nom de l'arxiu",
 "filedesc"		=> "Sumari",
 "copyrightpage" => "{{ns:4}}:Copyrights",
-"copyrightpagename" => "{{ns:4}} copyright",
+"copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Arxius carregats",
 "minlength"		=> "Els noms de les imatges han de tenir un mínim de tres lletres.",
 "badfilename"	=> "El nom de la imatge s'ha canviat a \"$1\".",
 "badfiletype"	=> "\".$1\" no és un format recomanat d'imatge.",
-"largefile"		=> "Es recomana que les imatges no superin la mida de 100k.",
 "successfulupload" => "L'arxiu s'ha carregat amb èxit",
 "fileuploaded"	=> "L'arxiu \"$1\" s'ha carregat amb èxit.
 Seguiu aquest enllaç si us plau: ($2) a la pàgina de descripció i empleneu

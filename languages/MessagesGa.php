@@ -5,9 +5,6 @@
 # Default messages
 #-------------------------------------------------------------------
 
-# required for copyrightwarning
-global $wgRightsText;
-
 /* private */ $wgAllMessagesGa = array(
 
 # User Toggles'tog-underline'	         => "Cuir línte faoi na naisc",
@@ -467,11 +464,11 @@ amháin</b> an téacs sa bhosca thuas.<p>",
 "editingold"    => "<strong>AIRE: Tá tú ag athrú eagrán an leathanaigh atá as dáta.
 Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</strong>",
 "yourdiff"      => "Difríochtaí",
-"copyrightwarning" => "Tabhair faoi dearadh go scaoiltear gach ceart le {{SITENAME}} de réir tearmaí an <i>GNU Free Documentation License</i> (féach ar $1 le haghaidh tuilleadh eolais).
+/*"copyrightwarning" => "Tabhair faoi dearadh go scaoiltear gach ceart le {{SITENAME}} de réir tearmaí an <i>GNU Free Documentation License</i> (féach ar $1 le haghaidh tuilleadh eolais).
 Munar mian leat go gcuirfí do chuid scríbhinn in eagar go héadrócaireach agus go n-athdálfaí gan teorainn iad, ná
 tabhair isteach anseo iad.<br />
 Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse gan chóipcheart
-é. <strong>NÁ TABHAIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!</strong>",
+é. <strong>NÁ TABHAIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!</strong>",*/
 "copyrightwarning2" => "Tabhair faoi dearadh gur féidir le cuiditheoirí eile gach dréacht do {{SITENAME}} a chur in eagar, a athrú agus a scriosadh. Munar mian leat go gcuirfí do chuid scríbhinn in eagar go héadrócaireach agus go n-athdálfaí gan teorainn iad, ná tabhair isteach anseo iad.<br /> Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse gan chóipcheart é (féach ar $1 le haghaidh tuilleadh eolais). <strong>NÁ TABHAIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!</strong>",
 "longpagewarning" => "AIRE: Tá an leathanach seo $1 cilibheart i bhfad; ní féidir le roinnt brabhsálaithe
 leathanaigh a athrú má tá siad breis agus $1KiB, nó níos fada ná sin.

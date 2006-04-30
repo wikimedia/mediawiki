@@ -140,11 +140,11 @@ Ju lutem konfirmoni nëse dëshironi me të vertetë ta ri-krijoni këtë artiku
 'copyright' => 'Përmbajtja është në disponim nëpërmjet liçensës $1.',
 'copyrightpage' => '{{ns:project}}:Të drejta autori',
 'copyrightpagename' => '{{SITENAME}} Të drejta autori',
-'copyrightwarning' => 'Ju lutem vini re që të gjitha kontributet tek {{SITENAME}} janë të konsideruara të dhëna nën liçensën GNU Free Documentation License (shikoni $1 për detaje). Në qoftë se nuk dëshironi që kontributet tuaja të redaktohen pa mëshirë dhe të jepen kudo, atëherë mos i jepni këtu.
+/*'copyrightwarning' => 'Ju lutem vini re që të gjitha kontributet tek {{SITENAME}} janë të konsideruara të dhëna nën liçensën GNU Free Documentation License (shikoni $1 për detaje). Në qoftë se nuk dëshironi që kontributet tuaja të redaktohen pa mëshirë dhe të jepen kudo, atëherë mos i jepni këtu.
 
 Gjithashtu, po premtoni që i keni shkruar vetë këto, ose i keni kopjuar nga një faqe nën "public domain" ose nën GFDL.
 
-\'\'\'MOS JEPNI PUNIME QE JANE NEN COPYRIGHT PA PASUR LEJE!\'\'\'',
+\'\'\'MOS JEPNI PUNIME QE JANE NEN COPYRIGHT PA PASUR LEJE!\'\'\'',*/
 'couldntremove' => 'S\'mundi të heq arikullin \'$1\'...',
 'createaccount' => 'Hap një llogari',
 'createaccountmail' => 'me email',

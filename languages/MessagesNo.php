@@ -282,7 +282,7 @@ av denne siden.
 Hvis du lagrer den, vil alle endringer foretatt siden denne revisjonen bli
 overskrevet.</strong>",
 "yourdiff"		=> "Forskjeller",
-"copyrightwarning" => "Legg merke til at alle bidrag til {{SITENAME}} er
+/*"copyrightwarning" => "Legg merke til at alle bidrag til {{SITENAME}} er
 å betrakte som utgitt under GNU fri dokumentasjonslisens
 (se $1 for detaljer).
 Hvis du ikke vil ha teksten redigert uten nåde og kopiert etter
@@ -291,7 +291,7 @@ Du lover oss også at du skrev teksten selv eller kopierte fra en
 ressurs som ikke er beskyttet av opphavsrett.
 
 <strong>LEGG ALDRI MATERIALE HER SOM ER BESKYTTET AV ANDRES OPPHAVSRETT UTEN
-DERES TILLATELSE!</strong>",
+DERES TILLATELSE!</strong>",*/
 "longpagewarning" => "<strong>ADVARSEL: Denne siden er $1 kilobyte lang; noen
 nettlesere kan ha problemer med å redigere sider som nærmer seg eller
 er lengre enn 32kb. Overvei om ikke siden kan deles opp i mindre deler.</strong>",

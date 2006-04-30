@@ -291,11 +291,11 @@ Você terá que mesclar suas modificações no texto existente.
 "editingold"    => "<strong>CUIDADO: Você está editando uma revisão desatualizada deste artigo.
 Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>",
 "yourdiff"      => "Diferenças",
-"copyrightwarning" => "Por favor note que todas as contribuições �  {{SITENAME}} são consideradas lançadas sobre a GNU Free Documentation License
+/*"copyrightwarning" => "Por favor note que todas as contribuições �  {{SITENAME}} são consideradas lançadas sobre a GNU Free Documentation License
 (veja $1 para detalhes).
 Se você não quer que seu texto esteja sobre estes termos, então não os envie.<br />
 Você também promete que está nos enviando um artigo escrito por você mesmo, ou extraindo de uma fonte de domínio público similar.
-<strong>NÃO ENVIE TRABALHO SOB COPYRIGHT SEM PERMISSÃO!</strong>",
+<strong>NÃO ENVIE TRABALHO SOB COPYRIGHT SEM PERMISSÃO!</strong>",*/
 "longpagewarning" => "<strong>CUIDADO: Esta página tem $1 kilobytes ; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
 Por favor considere quebrar a página em sessões menores.</strong>",
 "readonlywarning" => "<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção,

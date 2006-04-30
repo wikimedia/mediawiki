@@ -57,7 +57,7 @@
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Tuisblad",
 "about"			=> "Omtrent",
-"aboutsite"      => "Inligting oor {{ns:4}}",
+"aboutsite"      => "Inligting oor {{SITENAME}}",
 "aboutpage"		=> "{{ns:4}}:Omtrent",
 "help"			=> "Help",
 "helppage"		=> "{{ns:4}}:Hulp",
@@ -240,11 +240,11 @@ Jy sal jou wysigings moet saamsmelt met die huidige teks.
 "editingold"	=> "<strong>Waarskuwing: jy is besig om 'n ou weergawe van hierdie bladsy te wysig.
 As jy dit stoor, sal enige wysigings sedert hierdie wysiging verloor word.</strong>",
 "yourdiff"		=> "Wysigings",
-"copyrightwarning" => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder
+/*"copyrightwarning" => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder
 die ''GNU Free Documentation License'' (lees $1 vir meer inligting).
 As jy nie wil hê dat jou werk ongemagtig gewysig of versprei mag word nie, moet jy dit nie hier indien nie.<br />
 Jy belowe ons ook dat jy dit self geskryf het, of verkry het van 'n bron wat toelaat dat dit hier mag wees.<br />
-<strong>Moenie werk beskerm deur kopiereg sonder toestemming indien nie!</strong>",
+<strong>Moenie werk beskerm deur kopiereg sonder toestemming indien nie!</strong>",*/
 "longpagewarning" => "Waarskuwing: hierdie bladsy is $1 kilogrepe lank; sekere blaaiers
 kan probleme hê met die wysiging va blaaie langer as 32 kilogrepe. Breek asseblief die bladsy op in kleiner dele.",
 
@@ -340,17 +340,6 @@ om voorkeure te spesifiseer.",
 #
 "changes" => "wysigings",
 "recentchanges" => "Onlangse wysigings",
-"recentchangestext" => "Volg wysigings wat onlangs verander het, op
-[[{{ns:4}}:Welkom nuwelinge|Welkom nuwelinge]]!
-Kyk asb. ook na hierdie bladsye: [[{{ns:4}}:FAQ|{{ns:4}} FAQ]],
-[[{{ns:4}}:beleid|beleid]]
-(veral [[{{ns:4}}:styl|styl]],
-[[{{ns:4}}:neutrale standpunt|neutrale standpunt]]),
-en [[{{ns:4}}:mees algemene {{SITENAME}} foute|mees algemene {{SITENAME}} foute]].
-
-As jy wil hê dat {{SITENAME}} suksesvol moet wees, is dit belangrik dat jy nie
-materiaal byvoeg wat deur [[{{ns:4}}:kopiereg|kopiereg]] beperk word nie.
-Die wetlike onderhewigheid kan die projek skade aandoen.", #fixMeContinue
 "rcloaderr"		=> "Laai onlangse wysigings",
 "rcnote"		=> "Hier onder is die laaste <strong>$1</strong> wysigings gedurende die laaste <strong>$2</strong> dae.",
 "rcnotefrom"	=> "Hier onder is die wysigings sedert <b>$2</b> (tot by <b>$1</b> word gewys).",
@@ -409,12 +398,11 @@ Alle tye is bedienertyd (UGT).
 "filename"		=> "Lêernaam",
 "filedesc"		=> "Opsomming",
 "copyrightpage" => "{{ns:4}}:kopiereg",
-"copyrightpagename" => "{{ns:4}} kopiereg",
+"copyrightpagename" => "{{SITENAME}} kopiereg",
 "uploadedfiles"	=> "Gelaaide lêers",
 "minlength"		=> "Prentname moet ten minste drie letters lank wees.",
 "badfilename"	=> "Prentnaam is verander na \"$1\".",
 "badfiletype"	=> "\".$1\" is nie 'n aanbevole lêerformaat vir prente nie.",
-"largefile"		=> "Dis aanbeveel dat prente kleiner as 100k moet wees.",
 "successfulupload" => "Laai suksesvol",
 "fileuploaded"	=> "Lêer \"$1\" suksesvol gelaai.
 Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in oor die die lêer, soos waar dit vandaan kom, wie het dit geskep en wanneer, en enige iets anders wat jy daarvan af weet.",
@@ -613,7 +601,7 @@ Kyk na [[{{ns:4}}:Deletion_log]] vir 'n rekord van onlangse skrappings en herste
 #
 "blockip"		=> "Blok IP-adres",
 "blockiptext"	=> "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
-Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{ns:4}}:Policy|{{ns:4}} policy]].
+Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{ns:4}}:Policy|{{SITENAME}} policy]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 "ipaddress"		=> "IP-Adres",
 "ipbreason"		=> "Rede",
