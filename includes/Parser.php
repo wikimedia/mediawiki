@@ -3459,7 +3459,7 @@ class Parser
 		$text = $this->replaceVariables( $text );
 		
 		# Strip out <nowiki> etc. added via replaceVariables
-		$text = $this->strip( $text, &$stripState );
+		$text = $this->strip( $text, $stripState );
 	
 		# Signatures
 		$sigText = $this->getUserSig( $user );
