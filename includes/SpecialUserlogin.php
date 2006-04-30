@@ -135,27 +135,40 @@ class LoginForm {
 	 */
 	function addNewAccount() {
 		global $wgUser, $wgEmailAuthentication;
-
+		
+		# Create the account and abort if there's a problem doing so
 		$u = $this->addNewAccountInternal();
-
-		if ($u == NULL) {
+		if( $u == NULL )
 			return;
-		}
-
-		$wgUser = $u;
-		$wgUser->setCookies();
-
-		$wgUser->saveSettings();
-		if( $wgEmailAuthentication && $wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) {
-			$wgUser->sendConfirmationMail();
-		}
-
-		wfRunHooks( 'AddNewAccount', array( $u ) );
-
-		if( $this->hasSessionCookie() ) {
-			return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ), false );
+			
+		# Save user settings and send out an email authentication message if needed
+		$u->saveSettings();
+		if( $wgEmailAuthentication && User::isValidEmailAddr( $u->getEmail() ) )
+			$u->sendConfirmationMail();
+			
+		# If not logged in, assume the new account as the current one and set session cookies
+		# then show a "welcome" message or a "need cookies" message as needed
+		if( $wgUser->isAnon() ) {
+			$wgUser = $u;
+			$wgUser->setCookies();
+			wfRunHooks( 'AddNewAccount', array( $wgUser ) );
+			if( $this->hasSessionCookie() ) {
+				return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ), false );
+			} else {
+				return $this->cookieRedirectCheck( 'new' );
+			}
 		} else {
-			return $this->cookieRedirectCheck( 'new' );
+			# Confirm that the account was created
+			global $wgOut;
+			$skin = $wgUser->getSkin();
+			$self = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+			$wgOut->setPageTitle( wfMsgHtml( 'accountcreated' ) );
+			$wgOut->setArticleRelated( false );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
+			$wgOut->addHtml( wfMsgWikiHtml( 'accountcreatedtext', $u->getName() ) );
+			$wgOut->returnToMain( $self->getPrefixedText() );
+			wfRunHooks( 'AddNewAccount', array( $u ) );
+			return true;
 		}
 	}
 
