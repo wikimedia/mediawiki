@@ -52,7 +52,7 @@ class MostrevisionsPage extends QueryPage {
 		$nl = wfMsg( 'nrevisions', $result->value );
 		$nlink = $skin->makeKnownLinkObj( $nt, $nl, 'action=history' );
 
-		return "$plink ($nlink)";
+		return wfSpecialList($plink, $nlink);
 	}
 }
 

@@ -1621,6 +1621,12 @@ function in_string( $needle, $str ) {
 	return strpos( $str, $needle ) !== false;
 }
 
+function wfSpecialList( $page, $details ) {
+	global $wgContLang;
+	$details = $details ? $wgContLang->getDirMark() . " ($details)" : "";
+	return $page . $details;
+}
+
 /**
  * Returns a regular expression of url protocols
  *

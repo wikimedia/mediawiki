@@ -58,7 +58,7 @@ class MostlinkedPage extends QueryPage {
 		$nl = wfMsg( 'nlinks', $result->value );
 		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ), $nl, 'target=' . $nt->getPrefixedURL() );
 
-		return "{$plink} ({$nlink})";
+		return wfSpecialList($plink, $nlink);
 	}
 }
 

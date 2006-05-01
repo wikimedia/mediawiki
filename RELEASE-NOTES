@@ -182,6 +182,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 361) URL in URL, they were almost fixed. Now they are.
 * (bug 4876) Add __NEWSECTIONLINK__ magic word to force the "new section" link/tab to
   show up on specific pages on demand
+* Bidi-aid on list pages
 
 == Compatibility ==
 

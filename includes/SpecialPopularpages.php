@@ -45,7 +45,7 @@ class PopularPagesPage extends QueryPage {
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$link = $skin->makeKnownLinkObj( $title, htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
 		$nv = wfMsg( "nviews", $wgLang->formatNum( $result->value ) );
-		return "{$link} ({$nv})";
+		return wfSpecialList($link, $nv);
 	}
 }
 
