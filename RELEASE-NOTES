@@ -179,6 +179,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5780) Thousands and decimal separators for Norwegian
 * Updated initStats maintenance script
 * (bug 5767) Fix date formats in Vietnamese locale
+* (bug 361) URL in URL, they were almost fixed. Now they are.
 
 == Compatibility ==
 
