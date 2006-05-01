@@ -71,7 +71,6 @@ class LanguageWa extends LanguageUtf8 {
 	### "<day> d' <monthname>" for months starting with a vowel
 	###
 	function date( $ts, $adj = false ) {
-		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 

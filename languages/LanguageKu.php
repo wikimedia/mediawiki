@@ -40,7 +40,7 @@ class LanguageKu extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesKu, $wgAllMessagesEn;
+		global $wgAllMessagesKu;
 		if( isset( $wgAllMessagesKu[$key] ) ) {
 			return $wgAllMessagesKu[$key];
 		} else {

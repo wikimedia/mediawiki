@@ -37,7 +37,7 @@ class LanguageCsb extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesCsb, $wgAllMessagesEn;
+		global $wgAllMessagesCsb;
 		if( isset( $wgAllMessagesCsb[$key] ) ) {
 			return $wgAllMessagesCsb[$key];
 		} else {

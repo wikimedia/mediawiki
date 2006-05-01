@@ -108,7 +108,6 @@ class LanguageFy extends LanguageUtf8 {
 	 * @return string
 	 */
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		global $wgUser;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 

@@ -143,8 +143,6 @@ class LanguageEo extends LanguageUtf8 {
 	}
 
 	function checkTitleEncoding( $s ) {
-		global $wgInputEncoding;
-
 		# Check for X-system backwards-compatibility URLs
 		$ishigh = preg_match( '/[\x80-\xff]/', $s);
 		$isutf = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .

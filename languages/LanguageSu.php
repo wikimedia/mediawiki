@@ -42,7 +42,7 @@ class LanguageSu extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesSu, $wgAllMessagesEn;
+		global $wgAllMessagesSu;
 		if( isset( $wgAllMessagesSu[$key] ) ) {
 			return $wgAllMessagesSu[$key];
 		} else {

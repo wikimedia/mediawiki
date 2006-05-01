@@ -172,7 +172,6 @@ class LanguageCs extends LanguageUtf8 {
 	}
 
 	function checkTitleEncoding( $s ) {
-		global $wgInputEncoding;
 
 		# Check for non-UTF-8 URLs; assume they are WinLatin2
 		$ishigh = preg_match( '/[\x80-\xff]/', $s);
