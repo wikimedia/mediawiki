@@ -176,6 +176,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5723) Don't count pages linked to from the MediaWiki namespace as "wanted"
 * (bug 5696) Add a third parameter, $3, to "rcnote", passing the current time
   formatted according to the current user's settings
+* (bug 218) Redirects do not support named anchors
 
 == Compatibility ==
 
