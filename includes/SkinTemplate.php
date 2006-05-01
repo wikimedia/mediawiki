@@ -585,7 +585,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildContentActionUrls () {
-		global $wgContLang;
+		global $wgContLang, $wgOut;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 
@@ -625,7 +625,7 @@ class SkinTemplate extends Skin {
 					'href' => $this->mTitle->getLocalUrl( $this->editUrlOptions() )
 				);
 
-				if ( $istalk ) {
+				if ( $istalk || $wgOut->showNewSectionLink() ) {
 					$content_actions['addsection'] = array(
 						'class' => $section == 'new'?'selected':false,
 						'text' => wfMsg('addsection'),

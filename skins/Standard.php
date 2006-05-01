@@ -219,10 +219,13 @@ class SkinStandard extends Skin {
 
 			}
 
-
-			if( $tns%2 && $action!='edit' && !$wpPreview) {
-				$s.= '<br />'.$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('postcomment'),'action=edit&section=new');
-			}
+			# "Post a comment" link
+			if( ( $tns % 2 || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
+				$s .= '<br />' . $this->makeKnownLinkObj( $wgTitle, wfMsg( 'postcomment' ), 'action=edit&section=new' );
+			
+			#if( $tns%2 && $action!='edit' && !$wpPreview) {
+				#$s.= '<br />'.$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('postcomment'),'action=edit&section=new');
+			#}
 
 			/*
 			watching could cause problems in edit mode:

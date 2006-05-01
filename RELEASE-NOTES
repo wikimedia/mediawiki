@@ -180,6 +180,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Updated initStats maintenance script
 * (bug 5767) Fix date formats in Vietnamese locale
 * (bug 361) URL in URL, they were almost fixed. Now they are.
+* (bug 4876) Add __NEWSECTIONLINK__ magic word to force the "new section" link/tab to
+  show up on specific pages on demand
 
 == Compatibility ==
 

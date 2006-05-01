@@ -29,6 +29,8 @@ class OutputPage {
 	var $mShowFeedLinks = false;
 	var $mEnableClientCache = true;
 	var $mArticleBodyOnly = false;
+	
+	var $mNewSectionLink = false;
 
 	/**
 	 * Constructor
@@ -52,6 +54,7 @@ class OutputPage {
 		$this->mScripts = '';
 		$this->mETag = false;
 		$this->mRevisionId = null;
+		$this->mNewSectionLink = false;
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ); }
@@ -291,6 +294,7 @@ class OutputPage {
 	function addParserOutputNoText( &$parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
+		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->addKeywords( $parserOutput );
 		if ( $parserOutput->getCacheTime() == -1 ) {
 			$this->enableClientCache( false );
@@ -376,6 +380,7 @@ class OutputPage {
 			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 			$this->addCategoryLinks( $parserOutput->getCategories() );
 			$this->addKeywords( $parserOutput );
+			$this->mNewSectionLink = $parserOutput->getNewSection();
 			$text = $parserOutput->getText();
 			wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
 			$this->addHTML( $text );
@@ -1041,6 +1046,15 @@ class OutputPage {
 		wfHttpError( 500, 'Internal Server Error',
 			'Sorry, the server has encountered an internal error. ' .
 			'Please wait a moment and hit "refresh" to submit the request again.' );
+	}
+	
+	/**
+	 * Show an "add new section" link?
+	 *
+	 * @return bool True if the parser output instructs us to add one
+	 */
+	function showNewSectionLink() {
+		return $this->mNewSectionLink;
 	}
 
 }
