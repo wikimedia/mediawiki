@@ -160,7 +160,6 @@ class MathRenderer {
 
 	function _error( $msg, $append = '' ) {
 		$mf   = htmlspecialchars( wfMsg( 'math_failure' ) );
-		$munk = htmlspecialchars( wfMsg( 'math_unknown_error' ) );
 		$errmsg = htmlspecialchars( wfMsg( $msg ) );
 		$source = htmlspecialchars( str_replace( "\n", ' ', $this->tex ) );
 		return "<strong class='error'>$mf ($errmsg$append): $source</strong>\n";
