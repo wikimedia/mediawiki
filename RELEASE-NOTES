@@ -42,6 +42,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Remove unneeded extra whitespace at top of Special:Categories
 * Rewrite reassignEdits script to be more efficient; support optional updates to
   recent changes table; add reporting and silent modes
+* Updated initStats maintenance script
 
 == MediaWiki 1.6.3 ==
 
