@@ -1235,7 +1235,7 @@ class Parser
 					preg_match( '/^('.EXT_LINK_URL_CLASS.'+)(.*)$/s', $bits[$i + 1], $m )) 
 				{
 					# add protocol, arg
-					$url .= $bits[$i] . $bits[$i + 1]; # protocol, url as arg to previous link
+					$url .= $bits[$i] . $m[1]; # protocol, url as arg to previous link
 					$i += 2;
 					$trail = $m[2];
 				}
