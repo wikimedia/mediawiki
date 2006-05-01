@@ -16,6 +16,11 @@ echo( "Refresh Site Statistics\n\n" );
 $dbr =& wfGetDB( DB_SLAVE );
 $fname = 'initStats';
 
+if( isset( $options['help'] ) {
+	showHelp();
+	exit();
+}
+
 echo( "Counting total edits..." );
 $edits = $dbr->selectField( 'revision', 'COUNT(*)', '', $fname );
 echo( "{$edits}\nCounting number of articles..." );
@@ -53,5 +58,11 @@ if( isset( $options['update'] ) ) {
 }
 
 echo( "done.\n\n" );
+
+function showHelp() {
+	echo( "Re-initialise the site statistics tables.\n\n" );
+	echo( "Usage: php initStats.php [--update]\n\n" );
+	echo( "--update : Update the existing statistics (preserves the ss_total_views field)\n\n" );
+}
 
 ?>
