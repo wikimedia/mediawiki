@@ -771,10 +771,13 @@ class Title {
 				}
 				$url .= $query;
 			}
-			if ( '' != $this->mFragment ) {
-				$url .= '#' . $this->mFragment;
-			}
 		}
+
+		# Finally, add the fragment.
+		if ( '' != $this->mFragment ) {
+			$url .= '#' . $this->mFragment;
+		}
+
 		wfRunHooks( 'GetFullURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
