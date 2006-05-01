@@ -315,7 +315,7 @@ function wfSpecialWatchlist( $par ) {
 
 	if($days >= 1)
 		$wgOut->addWikiText( wfMsg( 'rcnote', $wgLang->formatNum( $numRows ),
-			$wgLang->formatNum( $days ) ) . '<br />' , false );
+			$wgLang->formatNum( $days ), $wgLang->timeAndDate( wfTimestampNow(), true ) ) . '<br />' , false );
 	elseif($days > 0)
 		$wgOut->addWikiText( wfMsg( 'wlnote', $wgLang->formatNum( $numRows ),
 			$wgLang->formatNum( round($days*24) ) ) . '<br />' , false );
