@@ -178,6 +178,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   formatted according to the current user's settings
 * (bug 218) Redirects do not support named anchors
 * (bug 5780) Thousands and decimal separators for Norwegian
+* Maintenance script to recount images and update the site statistics
 
 == Compatibility ==
 
