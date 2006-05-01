@@ -338,7 +338,7 @@ class Sanitizer {
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span'
+				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u'
 			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
@@ -365,7 +365,6 @@ class Sanitizer {
 
 		# Remove HTML comments
 		$text = Sanitizer::removeHTMLcomments( $text );
-
 		$bits = explode( '<', $text );
 		$text = array_shift( $bits );
 		if(!$wgUseTidy) {

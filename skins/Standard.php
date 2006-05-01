@@ -90,7 +90,7 @@ class SkinStandard extends Skin {
 	}
 
 	function doAfterContent() {
-		global $wgUser, $wgOut, $wgContLang;
+		global $wgContLang;
 		$fname =  'SkinStandard::doAfterContent';
 		wfProfileIn( $fname );
 		wfProfileIn( $fname.'-1' );

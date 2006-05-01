@@ -32,6 +32,7 @@ class element {
 
 	/**
 	* This finds the ATTRS element and returns the ATTR sub-children as a single string
+	* @todo FIXME $parser always empty when calling makeXHTML()
 	*/
 	function getSourceAttrs() {
 		$ret = '';
@@ -110,7 +111,7 @@ class element {
 		#	foreach ( array_keys ( $this->children ) AS $x )
 		#	   $this->fixLinkTails ( $parser , $x ) ;
 
-		foreach ($this->children as $key => $child) {
+		foreach ($this->children as $child) {
 			if (is_string($child)) {
 				$ret .= $child;
 			} elseif ($child->name != 'ATTRS') {
@@ -522,7 +523,7 @@ class xml2php {
  */
 class ParserXML extends Parser {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	# Persistent:
 	var $mTagHooks, $mListType;
@@ -544,7 +545,7 @@ class ParserXML extends Parser {
 	/**
 	 * Constructor
 	 *
-	 * @access public
+	 * @public
 	 */
 	function ParserXML() {
 		$this->mTemplates = array ();
@@ -556,7 +557,7 @@ class ParserXML extends Parser {
 	/**
 	 * Clear Parser state
 	 *
-	 * @access private
+	 * @private
 	 */
 	function clearState() {
 		$this->mOutput = new ParserOutput;

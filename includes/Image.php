@@ -95,10 +95,9 @@ class Image
 	 * Get the memcached keys
 	 * Returns an array, first element is the local cache key, second is the shared cache key, if there is one
 	 */
-	function getCacheKeys( $shared = false ) {
+	function getCacheKeys( ) {
 		global $wgDBname, $wgUseSharedUploads, $wgSharedUploadDBname, $wgCacheSharedUploads;
 
-		$foundCached = false;
 		$hashedName = md5($this->name);
 		$keys = array( "$wgDBname:Image:$hashedName" );
 		if ( $wgUseSharedUploads && $wgSharedUploadDBname && $wgCacheSharedUploads ) {

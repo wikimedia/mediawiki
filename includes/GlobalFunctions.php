@@ -1303,6 +1303,7 @@ define('TS_ORACLE', 6);
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	$uts = 0;
+	$da = array();
 	if ($ts==0) {
 		$uts=time();
 	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {

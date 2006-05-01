@@ -541,7 +541,6 @@ class Database {
 	 * @return string executable SQL
 	 */
 	function fillPrepared( $preparedQuery, $args ) {
-		$n = 0;
 		reset( $args );
 		$this->preparedArgs =& $args;
 		return preg_replace_callback( '/(\\\\[?!&]|[?!&])/',

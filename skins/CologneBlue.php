@@ -25,7 +25,6 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function doBeforeContent() {
-		global $wgOut, $wgTitle;
 
 		$s = "";
 		$qb = $this->qbSetting();
@@ -99,7 +98,7 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function doGetUserStyles() {
-		global $wgOut, $wgStyleSheetPath;
+		global $wgOut;
 		$s = parent::doGetUserStyles();
 		$qb = $this->qbSetting();
 
@@ -164,8 +163,6 @@ class SkinCologneBlue extends Skin {
 				$s .= ' | <a href="' . $wgTitle->getLocalUrl( 'variant=' . $code ) . '">' . $varname . '</a>';
 			}
 		}
-
-
 
 		return $s;
 	}

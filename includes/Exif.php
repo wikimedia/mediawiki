@@ -366,7 +366,7 @@ class Exif {
 	/**
 	 * @todo document
 	 */
-	function makeFormattedData( $data = null ) {
+	function makeFormattedData( ) {
 		$format = new FormatExif( $this->getFilteredData() );
 		$this->mFormattedExifData = $format->getFormattedData();
 	}

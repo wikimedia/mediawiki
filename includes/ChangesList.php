@@ -330,7 +330,6 @@ class EnhancedChangesList extends ChangesList {
 		$rc->numberofWatchingusers = $baseRC->numberofWatchingusers;
 
 		# Make "cur" and "diff" links
-		$titleObj = $rc->getTitle();
 		if( $rc->unpatrolled ) {
 			$rcIdQuery = "&rcid={$rc_id}";
 		} else {

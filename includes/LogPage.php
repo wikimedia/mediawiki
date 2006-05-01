@@ -50,7 +50,7 @@ class LogPage {
 	}
 
 	function saveContent() {
-		if( wfReadOnly() ) return;
+		if( wfReadOnly() ) return false;
 
 		global $wgUser;
 		$fname = 'LogPage::saveContent';
