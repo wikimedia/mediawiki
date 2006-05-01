@@ -83,6 +83,7 @@ $magicWords = array(
 	'MAG_SUBJECTPAGENAMEE',	
 	'MAG_NUMBEROFUSERS',
 	'MAG_RAWSUFFIX',
+	'MAG_NEWSECTIONLINK',
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
@@ -128,6 +129,7 @@ $wgVariableIDs = array(
 	MAG_SUBJECTPAGENAMEE,
 	MAG_NUMBEROFUSERS,
 	MAG_RAWSUFFIX,
+	MAG_NEWSECTIONLINK,
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordwgVariableIDs', array( &$wgVariableIDs ) );

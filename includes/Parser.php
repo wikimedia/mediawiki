@@ -15,7 +15,7 @@ require_once( 'HttpFunctions.php' );
  * changes in an incompatible way, so the parser cache
  * can automatically discard old data.
  */
-define( 'MW_PARSER_VERSION', '1.6.0' );
+define( 'MW_PARSER_VERSION', '1.6.1' );
 
 /**
  * Variable substitution O(N^2) attack
@@ -3084,6 +3084,12 @@ class Parser
 			$doShowToc = false;
 		}
 
+		# Allow user to stipulate that a page should have a "new section"
+		# link added via __NEWSECTIONLINK__
+		$mw =& MagicWord::get( MAG_NEWSECTIONLINK );
+		if( $mw->matchAndRemove( $text ) )
+			$this->mOutput->setNewSection( true );
+
 		# if the string __TOC__ (not case-sensitive) occurs in the HTML,
 		# override above conditions and always show TOC at that place
 
@@ -4094,7 +4100,8 @@ class ParserOutput
 		$mImages,           # DB keys of the images used, in the array key only
 		$mExternalLinks,    # External link URLs, in the key only
 		$mHTMLtitle,		# Display HTML title
-		$mSubtitle;			# Additional subtitle
+		$mSubtitle,			# Additional subtitle
+		$mNewSection;		# Show a new section link?
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -4112,6 +4119,7 @@ class ParserOutput
 		$this->mExternalLinks = array();
 		$this->mHTMLtitle = "" ;
 		$this->mSubtitle = "" ;
+		$this->mNewSection = false;
 	}
 
 	function getText()                   { return $this->mText; }
@@ -4137,6 +4145,13 @@ class ParserOutput
 	function addImage( $name )           { $this->mImages[$name] = 1; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
 	function addExternalLink( $url )     { $this->mExternalLinks[$url] = 1; }
+	
+	function setNewSection( $value ) {
+		$this->mNewSection = (bool)$value;
+	}
+	function getNewSection() {
+		return (bool)$this->mNewSection;
+	}
 
 	function addLink( $title, $id ) {
 		$ns = $title->getNamespace();

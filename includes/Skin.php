@@ -1349,13 +1349,24 @@ END;
 	}
 
 	function commentLink() {
-		global $wgTitle;
+		global $wgTitle, $wgOut;
 
 		if ( $wgTitle->getNamespace() == NS_SPECIAL ) {
 			return '';
 		}
-		return $this->makeKnownLinkObj( $wgTitle->getTalkPage(),
-			wfMsg( 'postcomment' ), 'action=edit&section=new' );
+		
+		# __NEWSECTIONLINK___ changes behaviour here
+		# If it's present, the link points to this page, otherwise
+		# it points to the talk page
+		if( $wgTitle->isTalkPage() ) {
+			$title =& $wgTitle;
+		} elseif( $wgOut->showNewSectionLink() ) {
+			$title =& $wgTitle;
+		} else {
+			$title =& $wgTitle->getTalkPage();
+		}
+		
+		return $this->makeKnownLinkObj( $title, wfMsg( 'postcomment' ), 'action=edit&section=new' );
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */
