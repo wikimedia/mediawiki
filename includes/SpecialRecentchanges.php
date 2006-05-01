@@ -499,7 +499,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 	if( $options['from'] )
 		$note = wfMsg( 'rcnotefrom', $wgLang->formatNum( $options['limit'] ), $wgLang->timeanddate( $options['from'], true ) );
 	else
-		$note = wfMsg( 'rcnote', $wgLang->formatNum( $options['limit'] ), $wgLang->formatNum( $options['days'] ) );
+		$note = wfMsg( 'rcnote', $wgLang->formatNum( $options['limit'] ), $wgLang->formatNum( $options['days'] ), $wgLang->timeAndDate( wfTimestampNow(), true ) );
 
 	// limit links
 	$cl = '';
