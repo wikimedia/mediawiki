@@ -164,7 +164,8 @@ class Job {
 		global $wgParser;
 		$fname = 'Job::refreshLinks';
 		wfProfileIn( $fname );
-		
+
+		# FIXME: $dbw never used.
 		$dbw =& wfGetDB( DB_MASTER );
 
 		$linkCache =& LinkCache::singleton();

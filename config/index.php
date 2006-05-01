@@ -1332,7 +1332,7 @@ function aField( &$conf, $field, $text, $type = "text", $value = "" ) {
 		$xtype = "";
 	}
 
-	if(!(isset($id)) or ($id == "") ) $id = $field;
+	$id = $field;
 	$nolabel = ($type == "radio") || ($type == "hidden");
 
 	if ($type == 'radio')
@@ -1418,6 +1418,7 @@ function get_db_version() {
 		return mysql_get_server_info( $wgDatabase->mConn );
 	else if ($conf->DBtype == 'oracle')
 		return oci_server_version($wgDatabase->mConn);
+	else return 'unknown';
 }
 
 # Test a memcached server

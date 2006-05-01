@@ -49,7 +49,6 @@ class CategoryPage extends Article {
 
 	function closeShowCategory() {
 		global $wgOut, $wgRequest;
-		$pageConditions = array();
 		$from = $wgRequest->getVal( 'from' );
 		$until = $wgRequest->getVal( 'until' );
 		$wgOut->addHTML( $this->doCategoryMagic( $from, $until ) );
@@ -72,7 +71,6 @@ class CategoryPage extends Article {
 		$articles_start_char = array();
 		$children = array();
 		$children_start_char = array();
-		$data = array();
 		if( $wgCategoryMagicGallery ) {
 			$ig = new ImageGallery();
 		}

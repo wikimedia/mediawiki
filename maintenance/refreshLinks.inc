@@ -14,7 +14,6 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0 ) {
 
 	$fname = 'refreshLinks';
 	$dbr =& wfGetDB( DB_SLAVE );
-	$dbw =& wfGetDB( DB_MASTER );
 	$start = intval( $start );
 
 	# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
@@ -63,8 +62,6 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0 ) {
 			}
 			fixLinksFromArticle( $id );
 		}
-
-
 	}
 }
 
