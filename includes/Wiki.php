@@ -225,7 +225,7 @@ class MediaWiki {
 					if ($rarticle->mTitle->mArticleID) {
 						$article = $rarticle;
 						$wgTitle = $target;
-						$article->setRedirectedFrom( $target );
+						$article->setRedirectedFrom( $title );
 					} else {
 						$wgTitle = $title;
 					}
