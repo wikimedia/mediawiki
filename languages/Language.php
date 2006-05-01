@@ -644,20 +644,20 @@ class Language {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 		$datePreference = $this->dateFormat( $format );
 
-		$sep = ($datePreference == MW_DATE_ISO)
-			? ':'
-			: $this->timeSeparator( $format );
+		$sep = $this->timeSeparator( $format );
 
-		$hh = $this->formatNum( substr( $ts, 8, 2 ), true );
-		$mm = $this->formatNum( substr( $ts, 10, 2 ), true );
-		$ss = $this->formatNum( substr( $ts, 12, 2 ), true );
+		$hh = substr( $ts, 8, 2 );
+		$mm = substr( $ts, 10, 2 );
+		$ss = substr( $ts, 12, 2 );
 
-		$t = $hh . $sep . $mm;
-
-		if ( $datePreference == MW_DATE_ISO ) {
-			$t .= $sep . $ss;
+		if ( $datePreference != MW_DATE_ISO ) {
+			$hh = $this->formatNum( $hh, true );
+			$mm = $this->formatNum( $mm, true );
+			//$ss = $this->formatNum( $ss, true );
+			return $hh . $sep . $mm;
+		} else {
+			return $hh . ':' . $mm . ':' . $ss;
 		}
-		return $t;
 	}
 
 	/**
