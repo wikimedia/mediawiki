@@ -220,7 +220,7 @@ class SkinStandard extends Skin {
 			}
 
 			# "Post a comment" link
-			if( ( $tns % 2 || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
+			if( ( $wgTitle->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
 				$s .= '<br />' . $this->makeKnownLinkObj( $wgTitle, wfMsg( 'postcomment' ), 'action=edit&section=new' );
 			
 			#if( $tns%2 && $action!='edit' && !$wpPreview) {
