@@ -93,7 +93,7 @@ class LanguageNo extends LanguageUtf8 {
 	}
 
 	function separatorTransformTable() {
-		return array(',' => '.', '.' => ',' );
+		return array(',' => "\xc2\xa0", '.' => ',' );
 	}
 
 	function getMessage( $key ) {
