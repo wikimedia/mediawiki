@@ -179,6 +179,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 218) Redirects do not support named anchors
 * (bug 5780) Thousands and decimal separators for Norwegian
 * Updated initStats maintenance script
+* (bug 5767) Fix date formats in Vietnamese locale
 
 == Compatibility ==
 

@@ -91,11 +91,12 @@ require_once( 'LanguageUtf8.php' );
  );
 
 /* private */ $wgDateFormatsVi = array(
-    'Không lựa chọn',
-    '16:12, tháng 1 ngày 15 năm 2001',
-    '16:12, ngày 15 tháng 1 năm 2001',
-    '16:12, năm 2001 tháng 1 ngày 15',
-    '2001-01-15 lúc 16:12:34' // ISO 8601
+    MW_DATE_DEFAULT => 'Không lựa chọn',
+    1 => '16:12, tháng 1 ngày 15 năm 2001',
+    2 => '16:12, ngày 15 tháng 1 năm 2001',
+    3 => '16:12, năm 2001 tháng 1 ngày 15',
+    4 => '',
+    MW_DATE_ISO => '2001-01-15 16:12:34'
 );
 global $wgRightsText;
 
@@ -127,59 +128,65 @@ class LanguageVi extends LanguageUtf8 {
 	}
 
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		global $wgAmericanDates;
-
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
-		$datePreference = $this->dateFormat($format);
+		$datePreference = $this->dateFormat( $format );
 
-		if ($datePreference == '0'
-		    || $datePreference == '' ) {$datePreference = $wgAmericanDates ? '0' : '2';}
-
-		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
-		$day = $this->formatNum( substr( $ts, 6, 2 ) );
-		$year = $this->formatNum( 'năm ' . substr( $ts, 0, 4 ), true );
-		$day = 'ngày ' . $day;
+		$month = $this->formatMonth( substr( $ts, 4, 2 ), $datePreference );
+		$day = $this->formatDay( substr( $ts, 6, 2 ), $datePreference );
+		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
 
 		switch( $datePreference ) {
-			case '1': return "$month $day $year";
-			case '2': return "$day $month $year";
-			case '3': return "$year $month $day";
-			case '4': return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
-			default: return "$day $month $year";
+			case 3:
+			case 4: return "$day/$month/$year";
+			case MW_DATE_ISO: return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+			default: return "$day $month năm $year";
 		}
 	}
 
-	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		global $wgUser, $wgAmericanDates;
-
-		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+	function timeSeparator( $format ) {
 		$datePreference = $this->dateFormat($format);
-
-		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
-
-		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-
-		if ( $datePreference === '4' ) {
-			$t .= ':' . substr( $ts, 12, 2 );
-		}
-		return $this->formatNum( $t );
+			switch ( $datePreference ) {
+				case '4': return 'h';
+				default:  return ':';
+			}
 	}
 
-	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
-
+	function timeDateSeparator( $format ) {
 		$datePreference = $this->dateFormat($format);
-
-		switch ( $datePreference ) {
-			case '4': return $this->date( $ts, $adj, $datePreference, $timecorrection ) . ' lúc ' .
-				$this->time( $ts, $adj, $datePreference, $timecorrection );
-			default: return $this->time( $ts, $adj, $datePreference, $timecorrection ) . ', ' .
-				$this->date( $ts, $adj, $datePreference, $timecorrection );
-		}
+			switch ( $datePreference ) {
+				case '0':
+				case '1':
+				case '2': return ', ';
+				default:  return ' ';
+			}
 	}
 
-	function separatorTransformTable() {
-		return array(',' => '.', '.' => ',' );
+	function formatMonth( $month, $format ) {
+		$datePreference = $this->dateFormat($format);
+			switch ( $datePreference ) {
+				case '0':
+				case '1': return 'tháng ' . ( 0 + $month );
+				case '2': return 'tháng ' . $this->getMonthName( $month );
+				default:  return 0 + $month;
+			}
+		return $this->getMonthName( $month );
+	}
+
+	function formatDay( $day, $format ) {
+		$datePreference = $this->dateFormat($format);
+			switch ( $datePreference ) {
+				case '0':
+				case '1':
+				case '2': return 'ngày ' . (0 + $day);
+				default:  return 0 + $day;
+			}
+	}
+
+	function getMonthName( $key ) {
+		$names = 'Một, Hai, Ba, Tư, Năm, Sáu, Bảy, Tám, Chín, Mười, Mười một, Mười hai';
+		$names = explode(', ', $names);
+		return $names[$key-1];
 	}
 
 	function getDateFormats() {
@@ -190,6 +197,10 @@ class LanguageVi extends LanguageUtf8 {
 	function &getMagicWords() {
 		global $wgMagicWordsVi;
 		return $wgMagicWordsVi;
+	}
+
+	function separatorTransformTable() {
+		return array(',' => '.', '.' => ',' );
 	}
 
 	function getMessage( $key ) {
