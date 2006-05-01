@@ -91,10 +91,10 @@ class WantedPagesPage extends QueryPage {
 		
 		# Make a link to "what links here" if it's required
 		$wlhLink = $this->nlinks
-					? " (" . $this->makeWlhLink( $title, $skin, wfMsgHtml( 'nlinks', $result->value ) ) . ")"
+					? $this->makeWlhLink( $title, $skin, wfMsgHtml( 'nlinks', $result->value ) )
 					: "";
 					
-		return "{$pageLink}{$wlhLink}";
+		return wfSpecialList($pageLink, $wlhLink);
 	}
 	
 	/**

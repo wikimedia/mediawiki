@@ -176,6 +176,7 @@ class ListUsersPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$userPage = Title::makeTitle( $result->namespace, $result->title );
 		$name = $skin->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
+		$groups = null;
 
 		if( !isset( $result->numgroups ) || $result->numgroups > 0 ) {
 			$dbr =& wfGetDB( DB_SLAVE );
@@ -190,14 +191,12 @@ class ListUsersPage extends QueryPage {
 			$dbr->freeResult( $result );
 
 			if( count( $groups ) > 0 ) {
-				$name .= ' (' .
-					$skin->makeLink( wfMsgForContent( 'administrators' ),
-						htmlspecialchars( implode( ', ', $groups ) ) ) .
-					')';
+				$groups = $skin->makeLink( wfMsgForContent( 'administrators' ),
+						htmlspecialchars( implode( ', ', $groups ) ) );
 			}
 		}
 
-		return $name;
+		return wfSpecialList($name, $groups);
 	}
 }
 

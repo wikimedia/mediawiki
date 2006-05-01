@@ -65,7 +65,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 		$plink = $skin->makeLinkObj( $nt, htmlspecialchars( $text ) );
 
 		$nlinks = wfMsg( 'nlinks', $result->value );
-		return "$plink ($nlinks)";
+		return wfSpecialList($plink, $nlinks);
 	}
 }
 

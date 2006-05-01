@@ -861,6 +861,7 @@ class Language {
 	 * @return bool
 	 */
 	function isRTL() { return false; }
+	function getDirMark() { return $this->isRTL() ? '&rlm;' : '&lrm;'; }
 
 	/**
 	 * To allow "foo[[bar]]" to extend the link over the whole word "foobar"
