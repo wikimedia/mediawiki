@@ -177,6 +177,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5696) Add a third parameter, $3, to "rcnote", passing the current time
   formatted according to the current user's settings
 * (bug 218) Redirects do not support named anchors
+* (bug 5780) Thousands and decimal separators for Norwegian
 
 == Compatibility ==
 
