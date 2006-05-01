@@ -103,7 +103,6 @@ class LanguageIs extends LanguageUtf8 {
 	}
 
 	function date( $ts, $adj = false, $format = true) {
-		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
 		$format = $this->dateFormat($format);
 

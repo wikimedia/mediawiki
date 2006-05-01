@@ -36,6 +36,7 @@ if (!$wgCachedMessageArrays) {
 
 class LanguageUdm extends LanguageRu {
 	function LanguageUdm() {
+		# FIXME are the globals really used?
 		global $wgNamespaceNamesUdm, $wgMetaNamespace;
 		LanguageUtf8::LanguageUtf8();
 	}

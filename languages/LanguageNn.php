@@ -154,7 +154,6 @@ class LanguageNn extends LanguageUtf8 {
 	}
 
 	function time($ts, $adj = false, $format = true) {
-		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
 
 		$format = $this->dateFormat($format);

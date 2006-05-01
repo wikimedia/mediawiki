@@ -127,7 +127,7 @@ class LanguageVi extends LanguageUtf8 {
 	}
 
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		global $wgAmericanDates, $wgUser;
+		global $wgAmericanDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
@@ -193,7 +193,7 @@ class LanguageVi extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesVi, $wgAllMessagesEn;
+		global $wgAllMessagesVi;
 		if( isset( $wgAllMessagesVi[$key] ) ) {
 			return $wgAllMessagesVi[$key];
 		} else {

@@ -34,6 +34,7 @@ if (!$wgCachedMessageArrays) {
 
 class LanguageXal extends LanguageUtf8 {
 	function LanguageXal() {
+		# FIXME are the globas really used?
 		global $wgNamespaceNamesXal, $wgMetaNamespace;
 		LanguageUtf8::LanguageUtf8();
 	}

@@ -128,7 +128,6 @@ class LanguageJa extends LanguageUtf8 {
 	function stripForSearch( $string ) {
 		# MySQL fulltext index doesn't grok utf-8, so we
 		# need to fold cases and convert to hex
-		global $wikiLowerChars;
 		$s = $string;
 
 		# Strip known punctuation ?

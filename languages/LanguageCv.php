@@ -55,8 +55,6 @@ class LanguageCv extends LanguageRu {
 
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 
-		global $wgUser;
-
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
 		$datePreference = $this->dateFormat( $format );

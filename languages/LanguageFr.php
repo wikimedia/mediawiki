@@ -97,7 +97,7 @@ class LanguageFr extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesFr, $wgAllMessagesEn;
+		global $wgAllMessagesFr;
 		if( isset( $wgAllMessagesFr[$key] ) ) {
 			return $wgAllMessagesFr[$key];
 		} else {
