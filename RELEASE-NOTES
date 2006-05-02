@@ -45,6 +45,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Updated initStats maintenance script
 * (bug 5723) Don't count pages linked to from the MediaWiki namespace as "wanted"
 * (bug 5789) Treat "loginreqpagetext" as wikitext
+* (bug 5796) We require MySQL >=4.0.14
 
 == MediaWiki 1.6.3 ==
 
@@ -140,7 +141,7 @@ upgrade to 4.3.3 or later.
 MediaWiki 1.6 is the last major version to support PHP 4; future versions
 will require PHP 5.
 
-MySQL 3.23.x is longer supported; some older hosts may need to upgrade.
+MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
 At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 
 
