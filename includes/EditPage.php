@@ -1310,11 +1310,12 @@ END
 	}
 
 	/**
-	 * @todo document
+	 * Produce the stock "please login to edit pages" page
 	 */
 	function userNotLoggedInPage() {
 		global $wgUser, $wgOut;
 		$skin = $wgUser->getSkin();
+		
 		$loginTitle = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
 		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
 	
@@ -1323,7 +1324,7 @@ END
 		$wgOut->setArticleRelated( false );
 		
 		$wgOut->addHtml( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
-		$wgOut->returnToMain( false );
+		$wgOut->returnToMain( false, $this->mTitle->getPrefixedUrl() );
 	}
 
 	/**
