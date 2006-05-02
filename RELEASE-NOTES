@@ -48,6 +48,7 @@ May 2, 2006
 * (bug 5723) Don't count pages linked to from the MediaWiki namespace as "wanted"
 * (bug 5789) Treat "loginreqpagetext" as wikitext
 * (bug 5796) We require MySQL >=4.0.14
+* Add 'EmailConfirmed' hook
 
 == MediaWiki 1.6.3 ==
 
