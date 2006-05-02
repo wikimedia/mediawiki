@@ -1011,14 +1011,6 @@ class Title {
 			return false;
 		}
 
-		# protect global styles and js
-		if ( NS_MEDIAWIKI == $this->mNamespace
-		 && preg_match("/\\.(css|js)$/", $this->mTextform )
-		     && !$wgUser->isAllowed('editinterface') ) {
-			wfProfileOut( $fname );
-			return false;
-		}
-
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
