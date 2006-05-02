@@ -187,6 +187,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5789) Treat "loginreqpagetext" as wikitext
 * Sanitizer: now handles nested <li> in <ul> or <ol>
 * (bug 5796) We require MySQL >=4.0.14
+* Add 'EmailConfirmed' hook
 
 == Compatibility ==
 
