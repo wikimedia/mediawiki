@@ -5,6 +5,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.6.4 ==
 
+May 2, 2006
+
 * Further improvements to Hebrew localisation
 * (bug 5544) Fix redirect arrow in Special:Listredirects for right-to-left
   languages
