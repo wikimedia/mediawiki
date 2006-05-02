@@ -185,6 +185,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Bidi-aid on list pages
 * (bug 5782) Allow entries in the bad image list to use canonical namespace names
 * (bug 5789) Treat "loginreqpagetext" as wikitext
+* Sanitizer: now handles nested <li> in <ul> or <ol>
 
 == Compatibility ==
 

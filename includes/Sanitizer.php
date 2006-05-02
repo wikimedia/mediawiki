@@ -351,8 +351,15 @@ class Sanitizer {
 				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
 			);
 			$tabletags = array( # Can only appear inside table
-				'td', 'th', 'tr'
+				'td', 'th', 'tr',
 			);
+			$htmllist = array( # Tags used by list
+				'ul','ol',
+			);
+			$listtags = array( # Tags that can appear in a list
+				'li',
+			);
+
 		} else {
 			$htmlpairs = array();
 			$htmlsingle = array();
@@ -385,7 +392,10 @@ class Sanitizer {
 							$badtag = 1;
 						} elseif ( ( $ot = @array_pop( $tagstack ) ) != $t ) {
 							@array_push( $tagstack, $ot );
-							$badtag = 1;
+							# <li> can be nested in <ul> or <ol>, skip those cases:
+							if(!(in_array($ot, $htmllist) && in_array($t, $listtags) )) {
+								$badtag = 1;
+							}
 						} else {
 							if ( $t == 'table' ) {
 								$tagstack = array_pop( $tablestack );
