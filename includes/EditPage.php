@@ -1302,7 +1302,7 @@ END
 	}
 
 	/**
-	 * @todo document
+	 * Call the stock "user is blocked" page
 	 */
 	function blockedIPpage() {
 		global $wgOut;
@@ -1320,7 +1320,7 @@ END
 		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
 	
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		
 		$wgOut->addHtml( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
@@ -1333,30 +1333,32 @@ END
 	 * allowed to edit.
 	 */
 	function userNotConfirmedPage() {
-
 		global $wgOut;
 
 		$wgOut->setPageTitle( wfMsg( 'confirmedittitle' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
+		
 		$wgOut->addWikiText( wfMsg( 'confirmedittext' ) );
 		$wgOut->returnToMain( false );
 	}
 
 	/**
-	 * @todo document
+	 * Produce the stock "your edit contains spam" page
+	 *
+	 * @param $match Text which triggered one or more filters
 	 */
-	function spamPage ( $match = false )
-	{
+	function spamPage( $match = false ) {
 		global $wgOut;
+
 		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( 'spamprotectiontext' ) );
-		if ( $match ) {
+		if ( $match )
 			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$match}</nowiki>" ) );
-		}
+			
 		$wgOut->returnToMain( false );
 	}
 
