@@ -259,7 +259,7 @@ class User {
 			(false !== strpos( $addr, '@' ) );
 	}
 
-	/**f
+	/**
 	 * Count the number of edits of a user
 	 *
 	 * @param int $uid The user ID to check
@@ -1821,18 +1821,13 @@ class User {
 	function isEmailConfirmed() {
 		global $wgEmailAuthentication;
 		$this->loadFromDatabase();
-		$confirmed = true;
-		if( wfRunHooks( 'EmailConfirmed', array( &$this, &$confirmed ) ) ) {
-			if( $this->isAnon() )
-				return false;
-			if( !$this->isValidEmailAddr( $this->mEmail ) )
-				return false;
-			if( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() )
-				return false;
-			return true;
-		else {
-			return $confirmed;
-		}
+		if( $this->isAnon() )
+			return false;
+		if( !$this->isValidEmailAddr( $this->mEmail ) )
+			return false;
+		if( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() )
+			return false;
+		return true;
 	}
 
 	/**
