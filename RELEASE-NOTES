@@ -186,6 +186,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5782) Allow entries in the bad image list to use canonical namespace names
 * (bug 5789) Treat "loginreqpagetext" as wikitext
 * Sanitizer: now handles nested <li> in <ul> or <ol>
+* (bug 5796) We require MySQL >=4.0.14
 
 == Compatibility ==
 
@@ -195,7 +196,7 @@ upgrade to 4.3 or later.
 MediaWiki 1.6 is the last major version to support PHP 4; future versions
 will require PHP 5.
 
-MySQL 3.23.x is longer supported; some older hosts may need to upgrade.
+MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
 At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 
 
