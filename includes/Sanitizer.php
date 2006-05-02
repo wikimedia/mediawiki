@@ -404,9 +404,6 @@ class Sanitizer {
 						} elseif( in_array( $t, $htmlsingleonly ) ) {
 							# Hack to force empty tag for uncloseable elements
 							$brace = '/>';
-						} else if( in_array( $t, $htmlsingle ) ) {
-							# Hack to not close $htmlsingle tags
-							$brace = NULL;
 						} else {
 							if ( $t == 'table' ) {
 								array_push( $tablestack, $tagstack );
