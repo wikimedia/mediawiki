@@ -591,8 +591,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 
 		print "<li>Connected to $myver";
-		if( version_compare( $myver, "4.0.0" ) < 0 ) {
-			die( " -- mysql 4.0 or later required. Aborting." );
+		if( version_compare( $myver, "4.0.14" ) < 0 ) {
+			die( " -- mysql 4.0.14 or later required. Aborting." );
 		}
 		$mysqlNewAuth   = version_compare( $myver, "4.1.0", "ge" );
 		if( $mysqlNewAuth && $mysqlOldClient ) {
