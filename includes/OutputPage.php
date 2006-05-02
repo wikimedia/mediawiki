@@ -759,27 +759,24 @@ class OutputPage {
 		$this->returnToMain();
 	}
 
+	/**
+	 * Produce the stock "please login to use the wiki" page
+	 */
 	function loginToUse() {
 		global $wgUser, $wgTitle, $wgContLang;
-
+		$skin = $wgUser->getSkin();
+		
 		$this->setPageTitle( wfMsg( 'loginreqtitle' ) );
-		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setHtmlTitle( wfMsg( 'errorpagetitle' ) );
+		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleFlag( false );
-		$this->mBodytext = '';
-		$loginpage = Title::makeTitle(NS_SPECIAL, 'Userlogin');
-		$sk = $wgUser->getSkin();
-		$loginlink = $sk->makeKnownLinkObj($loginpage, wfMsg('loginreqlink'),
-			'returnto=' . htmlspecialchars($wgTitle->getPrefixedDBkey()));
-		$this->addHTML( wfMsgHtml( 'loginreqpagetext', $loginlink ) );
-
-		# We put a comment in the .html file so a Sysop can diagnose the page the
-		# user can't see.
-		$this->addHTML( "\n<!--" .
-						$wgContLang->getNsText( $wgTitle->getNamespace() ) .
-						':' .
-						$wgTitle->getDBkey() . '-->' );
-		$this->returnToMain();		# Flip back to the main page after 10 seconds.
+		
+		$loginTitle = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
+		$this->addHtml( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
+		$this->addHtml( "\n<!--" . $wgTitle->getPrefixedUrl() . "-->" );
+		
+		$this->returnToMain();
 	}
 
 	function databaseError( $fname, $sql, $error, $errno ) {
