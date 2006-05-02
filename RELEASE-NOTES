@@ -189,6 +189,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5796) We require MySQL >=4.0.14
 * Add 'EmailConfirmed' hook
 * New findhooks.php script to find undocumented hooks.
+* Silently ignore errors on profiling table update.
+
 
 == Compatibility ==
 
