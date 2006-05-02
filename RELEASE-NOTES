@@ -184,6 +184,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   show up on specific pages on demand
 * Bidi-aid on list pages
 * (bug 5782) Allow entries in the bad image list to use canonical namespace names
+* (bug 5789) Treat "loginreqpagetext" as wikitext
 
 == Compatibility ==
 
