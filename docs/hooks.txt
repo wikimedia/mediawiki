@@ -297,6 +297,12 @@ $user: the user _doing_ the block (not the one being blocked)
 $block: the Block object that was saved
 $user: the user who did the block (not the one being blocked)
 
+'EmailConfirmed': When checking that the user's email address is "confirmed"
+$user: User being checked
+$confirmed: Whether or not the email address is confirmed
+This runs before the other checks, such as anonymity and the real check; return
+true to allow those checks to occur, and false if checking is done.
+
 'EmailUser': before sending email from one user to another
 $to: address of receiving user
 $from: address of sending user
