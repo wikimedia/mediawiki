@@ -1316,7 +1316,7 @@ END
 		global $wgUser, $wgOut;
 		$skin = $wgUser->getSkin();
 		$loginTitle = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
-		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedText() );
+		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
 	
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
