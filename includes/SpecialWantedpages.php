@@ -44,10 +44,13 @@ class WantedPagesPage extends QueryPage {
 			        pl_title AS title,
 			        COUNT(*) AS value
 			 FROM $pagelinks
-			 LEFT JOIN $page
-			 ON pl_namespace=page_namespace AND pl_title=page_title
-			 WHERE page_namespace IS NULL
-			 GROUP BY pl_namespace,pl_title
+			 LEFT JOIN $page AS pg1
+			 ON pl_namespace = pg1.page_namespace AND pl_title = pg1.page_title
+			 LEFT JOIN $page AS pg2
+			 ON pl_from = pg2.page_id
+			 WHERE pg1.page_namespace IS NULL
+			 AND pg2.page_namespace != 8
+			 GROUP BY pl_namespace, pl_title
 			 HAVING COUNT(*) > $count";
 	}
 
