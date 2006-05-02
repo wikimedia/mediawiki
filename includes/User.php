@@ -288,7 +288,7 @@ class User {
 			(false !== strpos( $addr, '@' ) );
 	}
 
-	/**f
+	/**
 	 * Count the number of edits of a user
 	 *
 	 * @param int $uid The user ID to check
@@ -1859,7 +1859,7 @@ class User {
 			if( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() )
 				return false;
 			return true;
-		else {
+		} else {
 			return $confirmed;
 		}
 	}
