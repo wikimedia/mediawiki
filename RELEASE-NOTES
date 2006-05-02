@@ -44,6 +44,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
   recent changes table; add reporting and silent modes
 * Updated initStats maintenance script
 * (bug 5723) Don't count pages linked to from the MediaWiki namespace as "wanted"
+* (bug 5789) Treat "loginreqpagetext" as wikitext
 
 == MediaWiki 1.6.3 ==
 
