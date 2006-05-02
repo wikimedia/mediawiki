@@ -1873,18 +1873,19 @@ function wfGetSVGsize( $filename ) {
 function wfIsBadImage( $name ) {
 	global $wgContLang;
 	static $titleList = false;
-	if ( $titleList === false ) {
+	
+	if( !$titleList ) {
+		# Build the list now
 		$titleList = array();
-
-		$lines = explode("\n", wfMsgForContent( 'bad_image_list' ));
-		foreach ( $lines as $line ) {
-			if ( preg_match( '/^\*\s*\[{2}:(' . $wgContLang->getNsText( NS_IMAGE ) . ':.*?)\]{2}/', $line, $m ) ) {
-				$t = Title::newFromText( $m[1] );
-				$titleList[$t->getDBkey()] = 1;
+		$lines = explode( "\n", wfMsgForContent( 'bad_image_list' ) );
+		foreach( $lines as $line ) {
+			if( preg_match( '/^\*\s*\[\[:?(.*?)\]\]/i', $line, $matches ) ) {
+				$title = Title::newFromText( $matches[1] );
+				if( is_object( $title ) && $title->getNamespace() == NS_IMAGE )
+					$titleList[ $title->getDBkey() ] = true;
 			}
 		}
 	}
-
 	return array_key_exists( $name, $titleList );
 }
 
