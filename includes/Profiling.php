@@ -325,6 +325,7 @@ class Profiler {
 		$dbw = & wfGetDB(DB_MASTER);
 		if (!is_object($dbw))
 			return false;
+		$errorState = $dbw->ignoreErrors( true );
 		$profiling = $dbw->tableName('profiling');
 
 		$name = substr($name, 0, 255);
@@ -343,6 +344,7 @@ class Profiler {
 		//     "ON DUPLICATE KEY UPDATE ".
 		//     "pf_count=pf_count + VALUES(pf_count), ".
 		//     "pf_time=pf_time + VALUES(pf_time)";
+		$dbw->ignoreErrors( $errorState );
 	}
 
 	/**
