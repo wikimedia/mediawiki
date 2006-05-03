@@ -167,10 +167,9 @@ class LanguageVi extends LanguageUtf8 {
 			switch ( $datePreference ) {
 				case '0':
 				case '1': return 'tháng ' . ( 0 + $month );
-				case '2': return 'tháng ' . $this->getMonthName( $month );
+				case '2': return 'tháng ' . $this->getSpecialMonthName( $month );
 				default:  return 0 + $month;
 			}
-		return $this->getMonthName( $month );
 	}
 
 	function formatDay( $day, $format ) {
@@ -183,7 +182,7 @@ class LanguageVi extends LanguageUtf8 {
 			}
 	}
 
-	function getMonthName( $key ) {
+	function getSpecialMonthName( $key ) {
 		$names = 'Một, Hai, Ba, Tư, Năm, Sáu, Bảy, Tám, Chín, Mười, Mười một, Mười hai';
 		$names = explode(', ', $names);
 		return $names[$key-1];
