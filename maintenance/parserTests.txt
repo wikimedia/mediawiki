@@ -3787,6 +3787,172 @@ Self closed html pairs (bug 5487)
 
 !! end
 
+#
+#
+#
+
+!! test
+HTML bullet list, closed tags (bug 5497)
+!! input
+<ul>
+<li>One</li>
+<li>Two</li>
+</ul>
+!! result
+<ul>
+<li>One</li>
+<li>Two</li>
+</ul>
+
+!! end
+
+!! test
+HTML bullet list, unclosed tags (bug 5497)
+!! input
+<ul>
+<li>One
+<li>Two
+</ul>
+!! result
+<ul>
+<li>One
+</li><li>Two
+</li></ul>
+
+!! end
+
+!! test
+HTML ordered list, closed tags (bug 5497)
+!! input
+<ol>
+<li>One</li>
+<li>Two</li>
+</ol>
+!! result
+<ol>
+<li>One</li>
+<li>Two</li>
+</ol>
+
+!! end
+
+!! test
+HTML ordered list, unclosed tags (bug 5497)
+!! input
+<ol>
+<li>One
+<li>Two
+</ol>
+!! result
+<ol>
+<li>One
+</li><li>Two
+</li></ol>
+
+!! end
+
+!! test
+HTML nested bullet list, closed tags (bug 5497)
+!! input
+<ul>
+<li>One</li>
+<li>Two:
+<ul>
+<li>Sub-one</li>
+<li>Sub-two</li>
+</ul>
+</li>
+</ul>
+!! result
+<ul>
+<li>One</li>
+<li>Two:
+<ul>
+<li>Sub-one</li>
+<li>Sub-two</li>
+</ul>
+</li>
+</ul>
+
+!! end
+
+!! test
+HTML nested bullet list, open tags (bug 5497)
+!! input
+<ul>
+<li>One
+<li>Two:
+<ul>
+<li>Sub-one
+<li>Sub-two
+</ul>
+</li>
+</ul>
+!! result
+<ul>
+<li>One
+</li><li>Two:
+<ul>
+<li>Sub-one
+</li><li>Sub-two
+</li></ul>
+</li></ul>
+
+!! end
+
+!! test
+HTML nested ordered list, closed tags (bug 5497)
+!! input
+<ol>
+<li>One</li>
+<li>Two:
+<ol>
+<li>Sub-one</li>
+<li>Sub-two</li>
+</ol>
+</li>
+</ol>
+!! result
+<ol>
+<li>One</li>
+<li>Two:
+<ol>
+<li>Sub-one</li>
+<li>Sub-two</li>
+</ol>
+</li>
+</ol>
+
+!! end
+
+!! test
+HTML nested ordered list, open tags (bug 5497)
+!! input
+<ol>
+<li>One
+<li>Two:
+<ol>
+<li>Sub-one
+<li>Sub-two
+</ol>
+</li>
+</ol>
+!! result
+<ol>
+<li>One
+</li><li>Two:
+<ol>
+<li>Sub-one
+</li><li>Sub-two
+</li></ol>
+</li></ol>
+
+!! end
+
+#
+#
+#
+
 TODO:
 more images
 more tables
