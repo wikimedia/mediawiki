@@ -7,8 +7,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 May 2, 2006
 
-* Removed bogus parser change which should not have slipped into a release
-  branch without a thorough parser test case.
+* Rolled back the buggy patch for bug 5497
 
 
 == MediaWiki 1.6.4 ==
@@ -41,6 +40,7 @@ May 2, 2006
    wiki, not the language of the user performing the operation.
 * (bug 5646) Compare for identical types in wfElement()
 * Fix for concurrency problem in job queue (image description page invalidation)
+* (bug 5497) regeression in HTML normalization in 1.6 (unclosed <li>,<dd>,<dt>)
 * (bug 5709) Allow customisation of separator for categories
 * (bug 4834) Fix XHTML output when using $wgMaxTocLevel
 * Improvements to update scripts; print out the version, check for superuser credentials
