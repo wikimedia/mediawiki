@@ -91,6 +91,15 @@ class QueryPage {
 	}
 
 	/**
+	 * Return title object representing this page
+	 *
+	 * @return Title
+	 */
+	function getTitle() {
+		return Title::makeTitle( NS_SPECIAL, $this->getName() );
+	}
+
+	/**
 	 * Subclasses return an SQL query here.
 	 *
 	 * Note that the query itself should return the following four columns:

@@ -83,33 +83,39 @@ class ListUsersPage extends QueryPage {
 		$title = Title::makeTitle( NS_SPECIAL, 'Listusers' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 
-		// form header
-		$out = '<form method="get" action="'.$action.'">' .
-				'<input type="hidden" name="title" value="'.$special.'" />' .
-				wfMsgHtml( 'groups-editgroup-name' ) . '<select name="group">';
+		$self = $this->getTitle();
 
-		// get group names
+		# Form tag
+		$out = wfElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
+		
+		# Group drop-down list
+		$out .= wfElement( 'label', array( 'for' => 'group' ), wfMsg( 'groups-editgroup-name' ) ) . ' ';
+		$out .= wfOpenElement( 'select', array( 'name' => 'group' ) );
+		$out .= wfElement( 'option', array( 'value' => '' ), '(' . wfMsg( 'groupsall' ) . ')' ); # Item for "all groups"
 		$groups = User::getAllGroups();
-
-		// we want a default empty group
-		$out.= '<option value=""></option>';
-
-		// build the dropdown list menu using datas from the database
-		foreach ( $groups as $group ) {
-			$selected = ($group == $this->requestedGroup);
-			$out .= wfElement( 'option',
-				array_merge(
-					array( 'value' => $group ),
-					$selected ? array( 'selected' => 'selected' ) : array() ),
-				User::getGroupName( $group ) );
+		foreach( $groups as $group ) {
+			$attribs = array( 'value' => $group );
+			if( $group == $this->requestedGroup )
+				$attribs['selected'] = 'selected';
+			$out .= wfElement( 'option', $attribs, User::getGroupName( $group ) );
 		}
-		$out .= '</select> ';
+		$out .= wfCloseElement( 'select' ) . ' ';;# . wfElement( 'br' );
 
-		$out .= wfMsgHtml( 'specialloguserlabel' ) . '<input type="text" name="username" /> ';
+		# Username field
+		$out .= wfElement( 'label', array( 'for' => 'username' ), wfMsg( 'specialloguserlabel' ) ) . ' ';
+		$out .= wfElement( 'input', array( 'type' => 'text', 'id' => 'username', 'name' => 'username',
+							'value' => $this->requestedUser ) ) . ' ';
 
-		// OK button, end of form.
-		$out .= '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" /></form>';
-		// congratulations the form is now build
+		# Preserve offset and limit
+		if( $this->offset )
+			$out .= wfElement( 'input', array( 'type' => 'hidden', 'name' => 'offset', 'value' => $this->offset ) );
+		if( $this->limit )
+			$out .= wfElement( 'input', array( 'type' => 'hidden', 'name' => 'limit', 'value' => $this->limit ) );
+
+		# Submit button and form bottom
+		$out .= wfElement( 'input', array( 'type' => 'submit', 'value' => wfMsg( 'allpagessubmit' ) ) );
+		$out .= wfCloseElement( 'form' );
+
 		return $out;
 	}
 
@@ -217,7 +223,11 @@ function wfSpecialListusers( $par = null ) {
 	 */
 	$groupTarget = isset($par) ? $par : $wgRequest->getVal( 'group' );
 	$slu->requestedGroup = $groupTarget;
-	$slu->requestedUser = $wgContLang->ucfirst( $wgRequest->getVal('username') );
+
+	# 'Validate' the username first
+	$username = $wgRequest->getText( 'username', '' );
+	$user = User::newFromName( $username );
+	$slu->requestedUser = is_object( $user ) ? $user->getName() : '';
 
 	return $slu->doQuery( $offset, $limit );
 }

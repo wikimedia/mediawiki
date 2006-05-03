@@ -190,7 +190,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add 'EmailConfirmed' hook
 * New findhooks.php script to find undocumented hooks.
 * Silently ignore errors on profiling table update.
-
+* (bug 5801) Correct handling of underscores in Special:Listusers
+* Clean up Special:Listusers; add an "(all)" label to the group selection box
 
 == Compatibility ==
 

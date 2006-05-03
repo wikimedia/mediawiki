@@ -1943,6 +1943,7 @@ is collapsed. Others will be hidden by default.
 'watchlistall1' => 'all',
 'watchlistall2' => 'all',
 'namespacesall' => 'all',
+'groupsall' => 'all',
 
 # E-mail address confirmation
 'confirmemail' => 'Confirm E-mail address',
