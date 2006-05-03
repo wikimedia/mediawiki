@@ -76,13 +76,6 @@ class ListUsersPage extends QueryPage {
 	 * @todo localize
 	 */
 	function getPageHeader( ) {
-		global $wgScript;
-
-		// Various variables used for the form
-		$action = htmlspecialchars( $wgScript );
-		$title = Title::makeTitle( NS_SPECIAL, 'Listusers' );
-		$special = htmlspecialchars( $title->getPrefixedDBkey() );
-
 		$self = $this->getTitle();
 
 		# Form tag
