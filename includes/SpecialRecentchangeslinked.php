@@ -25,15 +25,20 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
 	$sk = $wgUser->getSkin();
 
-	if (is_null($target)) {
-		$wgOut->errorpage( 'notargettitle', 'notargettext' );
-		return;
-	}
+	# Validate the title
 	$nt = Title::newFromURL( $target );
-	if( !$nt ) {
-		$wgOut->errorpage( 'notargettitle', 'notargettext' );
+	if( !is_object( $nt ) ) {
+		$wgOut->errorPage( 'notargettitle', 'notargettext' );
 		return;
 	}
+	
+	# Check for existence
+	# Do a quiet redirect back to the page itself if it doesn't
+	if( !$nt->exists() ) {
+		$wgOut->redirect( $nt->getLocalUrl() );
+		return;
+	}
+
 	$id = $nt->getArticleId();
 
 	$wgOut->setSubtitle( htmlspecialchars( wfMsg( 'rclsub', $nt->getPrefixedText() ) ) );
