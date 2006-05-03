@@ -1523,6 +1523,7 @@ ta["ca-nstab-category"]     = ["c", "צפו בדף הקטגוריה"];',
 "watchlistall1"    => "הכול",
 "watchlistall2"    => "הכול",
 "namespacesall"    => "הכול",
+"groupsall"        => "הכול",
 
 # E-mail address confirmation
 "confirmemail"            => 'אמתו כתובת דוא"ל',
