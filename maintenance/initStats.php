@@ -10,7 +10,7 @@
  * @licence GNU General Public Licence 2.0 or later
  */
  
-$options = array( 'help', 'update' );
+$options = array( 'help', 'update', 'noviews' );
 require_once( 'commandLine.inc' );
 echo( "Refresh Site Statistics\n\n" );
 $dbr =& wfGetDB( DB_SLAVE );
@@ -38,7 +38,15 @@ $admin = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sys
 echo( "{$admin}\nCounting number of images..." );
 
 $image = $dbr->selectField( 'image', 'COUNT(*)', '', $fname );
-echo( "{$image}\n\nUpdating site statistics..." );
+echo( "{$image}\n" );
+
+if( !isset( $options['noviews'] ) ) {
+	echo( "Counting total page views..." );
+	$views = $dbr->selectField( 'page', 'SUM(page_counter)', '', $fname );
+	echo( "{$views}\n" );
+}
+
+echo( "\nUpdating site statistics..." );
 
 $dbw =& wfGetDB( DB_MASTER );
 $values = array( 'ss_total_edits' => $edits,
@@ -48,7 +56,7 @@ $values = array( 'ss_total_edits' => $edits,
 				'ss_admins' => $admin,
 				'ss_images' => $image );
 $conds = array( 'ss_row_id' => 1 );
-$views = array( 'ss_total_views' => 0 );
+$views = array( 'ss_total_views' => isset( $views ) ? $views : 0 );
 				
 if( isset( $options['update'] ) ) {
 	$dbw->update( 'site_stats', $values, $conds, $fname );
@@ -61,8 +69,9 @@ echo( "done.\n\n" );
 
 function showHelp() {
 	echo( "Re-initialise the site statistics tables.\n\n" );
-	echo( "Usage: php initStats.php [--update]\n\n" );
-	echo( "		--update : Update the existing statistics (preserves the ss_total_views field)\n\n" );
+	echo( "Usage: php initStats.php [--update|--noviews]\n\n" );
+	echo( "	--update : Update the existing statistics (preserves the ss_total_views field)\n" );
+	echo( "--noviews : Don't update the page view counter\n\n" );
 }
 
 ?>
