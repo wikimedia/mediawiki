@@ -771,10 +771,6 @@ De kins de brontèks van dees pazjena bekieke en kopiëre:",
 'unprotectedarticle' => "besjerming van $1 opgeheve",
 'unprotectsub' => "(Besjerming van \"$1\" opheve)",
 'unwatch' => "Sjtop volge",
-'usenewcategorypage' => '1
-
-Set first character to "0" to disable the nuui layout veur kategorieë.',
-'userrights-user-editname' => 'Enter a username:',
 
 'version' => "Versie",
 'viewsource' => "Bekiek brontèks",

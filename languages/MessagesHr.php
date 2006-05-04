@@ -1395,7 +1395,6 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'subcategorycount1' => 'U ovoj je kategoriji jedna potkategorija.',
 'categoryarticlecount' => 'Broj članaka u ovoj kategoriji: $1.',
 'categoryarticlecount1' => 'U ovoj je kategoriji jedan članak.',
-'usenewcategorypage' => "1\n\nAko želiš isključiti novi izgled stranice kategorija neka prvi znak bude \"0\".",
 'listingcontinuesabbrev' => " nast.",
 'spambot_username' => 'MediaWiki zaštita od spama',
 'spam_reverting' => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',

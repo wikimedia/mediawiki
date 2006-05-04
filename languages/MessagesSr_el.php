@@ -1410,9 +1410,6 @@ Ako želite da saznate više, pogledajte [[{{ns:4}}:Postavljanje datoteka]] i [[
 <p>\'\'\'Ako želite da postavite datoteku nad kojom <i>Vi</i> posedujete autorska prava,<br /> morate je licencirati pod [[GNU-ova LSD|GNU-ovom Licencom za slobodnu dokumentacijom]]<br /> ili predati u [[javno vlasništvo]].\'\'\'</p>',
 'uploadvirus' => 'Fajl sadrži virus! Detalji: $1',
 'uploadwarning' => 'Upozorenje pri slanju',
-'usenewcategorypage' => '1
-
-Postavite prvi karakter na "0" da onemogućite raspored strane za novu kategoriju.',
 'user_rights_set' => '<b>Prava za korisnika "$1" promenjena</b>',
 'usercssjsyoucanpreview' => '<strong>Pažnja:</strong> Korisitite \'Prikaži pretpregled\' dugme da testirate svoj novi CSS/JS pre snimanja.',
 'usercsspreview' => '\'\'\'Zapamtite ovo je samo pretpregled vašeg CSS, još uvek nije snimljen!\'\'\'',

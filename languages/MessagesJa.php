@@ -1267,9 +1267,6 @@ $NEWPAGE
 'subcategorycount1' => 'このカテゴリには $1 のサブカテゴリがあります。',
 'categoryarticlecount' => 'このカテゴリには $1 の項目があります。',
 'categoryarticlecount1' => 'このカテゴリには $1 の項目があります。',
-'usenewcategorypage' => '1
-
-Set first character to "0" to disable the new category page layout.',
 'listingcontinuesabbrev' => ' の続き',
 
 # Info page

@@ -1351,9 +1351,6 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'subcategorycount1' => "Tá fó-chatagóir amháin sa chatagóir seo.",
 'categoryarticlecount' => "Tá $1 ailt sa chatagóir seo.",
 'categoryarticlecount1' => "Tá alt amháin sa chatagóir seo.",
-'usenewcategorypage' => "1\n\nScríobh \"0\" mar an chéad litir chun an leagan amach nua
-
-chatagóire a mhíchumasú.",
 
 # Info page
 "infosubtitle" => "Eolas don leathanach",

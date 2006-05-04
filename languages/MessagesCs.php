@@ -1295,7 +1295,6 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 'subcategorycount1' => 'V této kategorii je $1 podkategorie.',
 'categoryarticlecount' => 'Počet článků v této kategorii: $1',
 'categoryarticlecount1' => 'V této kategorii je $1 článek.',
-'usenewcategorypage' => "1\n\nK vypnutí nového vzhledu stránek kategorií nastavte první znak na '0'.",
 'listingcontinuesabbrev' => 'pokrač.',
 
 # Info page

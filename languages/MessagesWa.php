@@ -1252,7 +1252,6 @@ wgUseDatabaseMessages est dismetou.',
 'subcategorycount1' => 'I gn a $1 dizo-categoreye e cisse categoreye ci.',
 'categoryarticlecount' => 'I gn a $1 årtikes e cisse categoreye ci.',
 'categoryarticlecount1' => 'I gn a $1 årtike e cisse categoreye ci.',
-'usenewcategorypage' => "1\n\nCandjîz l\' prumî caractere a «0» po dismete li novea epådjnaedje des pådjes di categoreye.",
 'listingcontinuesabbrev' => ' cont.',
 
 # Info page

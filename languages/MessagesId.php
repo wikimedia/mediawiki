@@ -1286,7 +1286,6 @@ Artikel yang dituju "[[$1]]" telah mempunyai isi. Apakah Anda hendak menghapusny
 'subcategorycount1' => "Ada $1 subkategori dalam kategori ini.",
 'categoryarticlecount' => "Ada $1 artikel dalam kategori ini.",
 'categoryarticlecount1' => "Ada $1 artikel dalam kategori ini.",
-'usenewcategorypage' => "1\n\nUbah karakter pertama menjadi \"0\" untuk mematikan tata letak halaman kategori yang baru.",
 'listingcontinuesabbrev' => " lanjut",
 'spambot_username' => 'Pembersihan span MediaWiki',
 'spam_reverting' => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',

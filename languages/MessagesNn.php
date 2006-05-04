@@ -1139,9 +1139,6 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 'subcategorycount1'     => 'Det er $1 underkategori av denne kategorien.',
 'categoryarticlecount'  => 'Det er $1 innhaldssider i denne kategorien.',
 'categoryarticlecount1' => 'Det er $1 innhaldsside i denne kategorien.',
-'usenewcategorypage'    => '1
-
-Skriv "0" som første bokstav for å slå av den nye kategoriutsjånaden.',
 'listingcontinuesabbrev' => ' vidare',
 
 # Info page

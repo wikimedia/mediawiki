@@ -927,7 +927,6 @@ Hãy gõ tên của thành viên cần phong quyền quản lý vào ô này và
 'subcategorycount1' => "Có $1 tiểu thể loại trong thể loại này.",
 'categoryarticlecount' => "Có $1 bài trong thể loại này.",
 'categoryarticlecount1' => "Có $1 bài trong thể loại này.",
-'usenewcategorypage' => "1\n\nĐặt ký tự đầu tiên bằng \"0\" để tắt mẫu trang thể loại mới.",
 'listingcontinuesabbrev' => " tiếp",
 
 # Patrolling

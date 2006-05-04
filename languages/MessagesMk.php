@@ -928,7 +928,6 @@ global $wgRightsText;
 	'subcategorycount1'		=>	"Постои $1 подкатегорија во оваа категорија.",
 	'categoryarticlecount'		=>	"Постојат $1 статии во оваа категорија.",
 	'categoryarticlecount1'		=>	"Постои $1 статија во оваа категорија.",
-	'usenewcategorypage'		=>	"1\n\nSet first character to \"0\" to disable the new category page layout.",
 	'listingcontinuesabbrev'	=>	" продолжи",
 
 	'infosubtitle'			=>	'Информација за страницата',

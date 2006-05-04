@@ -1753,9 +1753,6 @@ $1
 'updated'	=> '(Actualizado)',
 'updatedmarker'	=> 'actualizado desde mi última visita',
 'upload_directory_read_only'	=> 'El directorio para subida de archivos ($1) no puede ser escrito por el servidor web.',
-'usenewcategorypage'	=> '1
-
-Pon el primer carácter a "0" para deshabilitar la nueva disposición de página de categoría.',
 'usercssjsyoucanpreview'	=> '<strong>Consejo:</strong> Usa el botón «Mostrar previsualización» para probar tu nuevo css/js antes de grabarlo.',
 'usercsspreview'	=> '\'\'\'¡Recuerda que sólo estás previsualizando tu css de usuario, aún no se ha grabado!\'\'\'',
 'userjspreview'	=> '\'\'\'¡Recuerda que sólo estás previsualizando tu javascript de usuario, y que todavía no se ha grabado!\'\'\'',

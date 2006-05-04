@@ -1306,7 +1306,6 @@ Ak chcete iba posledné úpravy, ako napr. [[Special:Export/Tank]] pre článok 
 'subcategorycount1' => "V tejto kategórii je $1 podkategória.",
 'categoryarticlecount' => "V tejto kategórii je $1 článkov.",
 'categoryarticlecount1' => "V tejto kategórii je $1 článok.",
-'usenewcategorypage' => "1\n\nNastavte prvý znak na \"0\" , aby ste vypli nový layout stránky kategórie.",
 'listingcontinuesabbrev' => " pokrač.",
 
 # Info page

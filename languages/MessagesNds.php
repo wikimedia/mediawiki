@@ -1094,7 +1094,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategoriesiet ankieken\');',
 'spamprotectiontitle'                   => 'Spamschild',
 'spamprotectiontext'                    => 'De Siet, de du spiekern wullst, weer vun de Spamschild blockt. Dat kann vun en Link to en externe Siet kamen.',
 'spamprotectionmatch'                   => 'Dit Text hett den Spamschild utlöst: $1',
-'usenewcategorypage'                    => '1Sett dat eerste Teken op \'0\' üm dat niege Kategoriesieten-Utsehn to aktiveern.',
 'listingcontinuesabbrev'                => ' wieder',
 
 # Patrolleern

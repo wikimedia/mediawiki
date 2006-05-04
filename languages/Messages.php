@@ -1511,7 +1511,6 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'subcategorycount1' => "There is $1 subcategory to this category.",
 'categoryarticlecount' => "There are $1 articles in this category.",
 'categoryarticlecount1' => "There is $1 article in this category.",
-'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
 'listingcontinuesabbrev' => " cont.",
 'spambot_username' => 'MediaWiki spam cleanup',
 'spam_reverting' => 'Reverting to last version not containing links to $1',
