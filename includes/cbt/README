@@ -43,6 +43,10 @@ The problems I saw were:
 * Syntax. The syntax is minimalistic and easy to parse, but can be quite ugly.
   Will generations of MediaWiki users curse my name?
 
+* Security. The code produced by TemplateCompiler is best stored in memcached
+  and executed with eval(). This allows anyone with access to the memcached port
+  to run code as the apache user.
+
 
 Template syntax
 ---------------
