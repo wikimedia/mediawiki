@@ -1,3 +1,49 @@
+Overview
+--------
+
+CBT (callback-based templates) is an experimental system for improving skin 
+rendering time in MediaWiki and similar applications. The fundamental concept is
+a template language which contains tags which pull text from PHP callbacks.
+These PHP callbacks do not simply return text, they also return a description of
+the dependencies -- the global data upon which the returned text depends. This
+allows a compiler to produce a template optimised for a certain context. For
+example, a user-dependent template can be produced, with the username replaced
+by static text, as well as all user preference dependent text.
+
+This was an experimental project to prove the concept -- to explore possible
+efficiency gains and techniques. TemplateProcessor was the first element of this
+experiment. It is a class written in PHP which parses a template, and produces
+either an optimised template with dependencies removed, or the output text
+itself. I found that even with a heavily optimised template, this processor was
+not fast enough to match the speed of the original MonoBook. 
+
+To improve the efficiency, I wrote TemplateCompiler, which takes a template,
+preferably pre-optimised by TemplateProcessor, and generates PHP code from it.
+The generated code is a single expression, concatenating static text and
+callback results. This approach turned out to be very efficient, making 
+significant time savings compared to the original MonoBook. 
+
+Despite this success, the code has been shelved for the time being. There were 
+a number of unresolved implementation problems, and I felt that there were more
+pressing priorities for MediaWiki development than solving them and bringing
+this module to completion. I also believe that more research is needed into 
+other possible template architectures. There is nothing fundamentally wrong with
+the CBT concept, and I would encourage others to continue its development.
+
+The problems I saw were:
+
+* Extensibility. Can non-Wikimedia installations easily extend and modify CBT 
+  skins? Patching seems to be necessary, is this acceptable? MediaWiki
+  extensions are another problem. Unless the interfaces allow them to return
+  dependencies, any hooks will have to be marked dynamic and thus inefficient.
+
+* Cache invalidation. This is a simple implementation issue, although it would
+  require extensive modification to the MediaWiki core.
+
+* Syntax. The syntax is minimalistic and easy to parse, but can be quite ugly.
+  Will generations of MediaWiki users curse my name?
+
+
 Template syntax
 ---------------
 
@@ -53,3 +99,6 @@ should call cbt_value() to get a return value:
 where $deps is an array of string tokens, each one naming a dependency. As a 
 shortcut, if there is only one dependency, $deps may be a string.
 
+
+---------------------
+Tim Starling 2006

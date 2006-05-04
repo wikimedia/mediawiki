@@ -10,7 +10,9 @@ require_once( 'includes/SkinTemplate.php' );
 
 /**
  * MonoBook clone using the new dependency-tracking template processor.
- * EXPERIMENTAL - use only for testing and profiling at this stage
+ * EXPERIMENTAL - use only for testing and profiling at this stage.
+ *
+ * See includes/cbt/README for an explanation.
  *
  * The main thing that's missing is cache invalidation, on change of:
  *   * messages
