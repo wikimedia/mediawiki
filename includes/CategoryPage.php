@@ -41,12 +41,6 @@ class CategoryPage extends Article {
 		# For overloading
 	}
 
-	# generate a list of subcategories and pages for a category
-	# depending on wfMsg("usenewcategorypage") it either calls the new
-	# or the old code. The new code will not work properly for some
-	# languages due to sorting issues, so they might want to turn it
-	# off.
-
 	function closeShowCategory() {
 		global $wgOut, $wgRequest;
 		$from = $wgRequest->getVal( 'from' );
