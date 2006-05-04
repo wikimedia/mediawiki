@@ -197,6 +197,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5817) Appropriate handling for Special:Recentchangeslinked where the target
   page doesn't exist
 * Special:Randompage now additionally accepts English namespace name as parameter
+* (bug 2981) Really fixed linktrail for Tamil (ta)
 
 == Compatibility ==
 
