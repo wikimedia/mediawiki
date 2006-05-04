@@ -82,9 +82,9 @@ class ListUsersPage extends QueryPage {
 		$out = wfElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
 		
 		# Group drop-down list
-		$out .= wfElement( 'label', array( 'for' => 'group' ), wfMsg( 'groups-editgroup-name' ) ) . ' ';
+		$out .= wfElement( 'label', array( 'for' => 'group' ), wfMsg( 'group' ) ) . ' ';
 		$out .= wfOpenElement( 'select', array( 'name' => 'group' ) );
-		$out .= wfElement( 'option', array( 'value' => '' ), '(' . wfMsg( 'groupsall' ) . ')' ); # Item for "all groups"
+		$out .= wfElement( 'option', array( 'value' => '' ), wfMsg( 'group-all' ) ); # Item for "all groups"
 		$groups = User::getAllGroups();
 		foreach( $groups as $group ) {
 			$attribs = array( 'value' => $group );
@@ -185,7 +185,7 @@ class ListUsersPage extends QueryPage {
 				'ListUsersPage::formatResult' );
 			$groups = array();
 			while( $row = $dbr->fetchObject( $result ) ) {
-				$groups[] = User::getGroupName( $row->ug_group );
+				$groups[] = User::getGroupMember( $row->ug_group );
 			}
 			$dbr->freeResult( $result );
 

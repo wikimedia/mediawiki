@@ -1883,11 +1883,11 @@ class User {
 
 	/**
 	 * @param string $group key name
-	 * @return string localized descriptive name, if provided
+	 * @return string localized descriptive name for group, if provided
 	 * @static
 	 */
 	function getGroupName( $group ) {
-		$key = "group-$group-name";
+		$key = "group-$group";
 		$name = wfMsg( $key );
 		if( $name == '' || $name == "&lt;$key&gt;" ) {
 			return $group;
@@ -1895,6 +1895,22 @@ class User {
 			return $name;
 		}
 	}
+
+	/**
+	 * @param string $group key name
+	 * @return string localized descriptive name for member of a group, if provided
+	 * @static
+	 */
+	function getGroupMember( $group ) {
+		$key = "group-$group-member";
+		$name = wfMsg( $key );
+		if( $name == '' || $name == "&lt;$key&gt;" ) {
+			return $group;
+		} else {
+			return $name;
+		}
+	}
+
 
 	/**
 	 * Return the set of defined explicit groups.

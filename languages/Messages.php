@@ -729,38 +729,11 @@ $2 List redirects &nbsp; Search for $3 $9",
 'default'		=> 'default',
 'files'			=> 'Files',
 
-# User levels special page
-#
-
-# switching pan
-'groups-lookup-group' => 'Manage group rights',
-'groups-group-edit' => 'Existing groups:',
-'editgroup' => 'Edit Group',
-'addgroup' => 'Add Group',
-
+# User rights
 'userrights-lookup-user' => 'Manage user groups',
 'userrights-user-editname' => 'Enter a username:',
 'editusergroup' => 'Edit User Groups',
 
-# group editing
-'groups-editgroup'          => 'Edit group',
-'groups-addgroup'           => 'Add group',
-'groups-editgroup-preamble' => 'If the name or description starts with a colon, the
-remainder will be treated as a message name, and hence the text will be localised
-using the MediaWiki namespace',
-'groups-editgroup-name'     => 'Group name:',
-'groups-editgroup-description' => 'Group description (max 255 characters):<br />',
-'savegroup'                 => 'Save Group',
-'groups-tableheader'        => 'ID || Name || Description || Rights',
-'groups-existing'           => 'Existing groups',
-'groups-noname'             => 'Please specify a valid group name',
-'groups-already-exists'     => 'A group of that name already exists',
-'addgrouplogentry'          => 'Added group $2',
-'changegrouplogentry'       => 'Changed group $2',
-'renamegrouplogentry'       => 'Renamed group $2 to $3',
-
-# user groups editing
-#
 'userrights-editusergroup' => 'Edit user groups',
 'saveusergroups' => 'Save User Groups',
 'userrights-groupsmember' => 'Member of:',
@@ -769,18 +742,18 @@ using the MediaWiki namespace',
 Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
 'userrights-logcomment' => 'Changed group membership from $1 to $2',
 
-# Default group names and descriptions
-#
-'group-anon-name'       => 'Anonymous',
-'group-anon-desc'       => 'Anonymous users',
-'group-loggedin-name'   => 'User',
-'group-loggedin-desc'   => 'General logged in users',
-'group-admin-name'      => 'Administrator',
-'group-admin-desc'      => 'Trusted users able to block users and delete articles',
-'group-bureaucrat-name' => 'Bureaucrat',
-'group-bureaucrat-desc' => 'The bureaucrat group is able to make sysops',
-'group-steward-name'    => 'Steward',
-'group-steward-desc'    => 'Full access',
+# Groups
+'group'                   => 'Group:',
+'group-bot'               => 'Bots',
+'group-sysop'             => 'Sysops',
+'group-bureaucrat'        => 'Bureaucrats',
+'group-steward'           => 'Stewards',
+'group-all'               => '(all)',
+
+'group-bot-member'        => 'Bot',
+'group-sysop-member'      => 'Sysop',
+'group-bureaucrat-member' => 'Bureaucrat',
+'group-steward-member'    => 'Steward',
 
 
 # Recent changes
@@ -1072,7 +1045,7 @@ Future changes to this page and its associated Talk page will be listed there,
 and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to
 make it easier to pick out.
 
-<p>If you want to remove the page from your watchlist later, click \"Unwatch\" in the sidebar.",
+If you want to remove the page from your watchlist later, click \"Unwatch\" in the sidebar.",
 'removedwatch'		=> 'Removed from watchlist',
 'removedwatchtext' 	=> "The page \"[[:$1]]\" has been removed from your watchlist.",
 'watch' => 'Watch',
@@ -1942,7 +1915,6 @@ is collapsed. Others will be hidden by default.
 'watchlistall1' => 'all',
 'watchlistall2' => 'all',
 'namespacesall' => 'all',
-'groupsall' => 'all',
 
 # E-mail address confirmation
 'confirmemail' => 'Confirm E-mail address',
@@ -2022,7 +1994,6 @@ Please confirm that really want to recreate this article.',
 
 # Separator for categories in page lists
 'catseparator' => '|',
-
 );
 
 
