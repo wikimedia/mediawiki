@@ -1227,8 +1227,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'subcategorycount1' => 'Тази категория има една подкатегория',
 'categoryarticlecount' => 'Тази категория съдържа $1 страници.',
 'categoryarticlecount1' => 'Тази категория съдържа една страница.',
-# TODO: превод
-'usenewcategorypage' => "1\n\nSet first character to „0“ to disable the new category page layout.",
 'listingcontinuesabbrev' => ' продълж.',
 
 # Info page

@@ -1361,7 +1361,6 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'subcategorycount1' => "Existe $1 subcategoria nesta categoria.",
 'categoryarticlecount' => "Existem $1 artigos nesta categoria.",
 'categoryarticlecount1' => "Existe $1 artigo nesta categoria.",
-'usenewcategorypage' => "1\n\nColoque o primeiro caracter como \"0\" para desactivar o novo layout das páginas de categoria.",
 'listingcontinuesabbrev' => " cont.",
 'spambot_username' => 'MediaWiki limpeza de spam',
 'spam_reverting' => 'Revertendo para a última versão não contendo hiperligações para $1',

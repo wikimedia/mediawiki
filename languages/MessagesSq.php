@@ -839,9 +839,6 @@ ose \'\'\'<nowiki>[[media:skedar.ogg]]</nowiki> të tjerë.
 
 Përdorni stampa tek përshkrimi për të cilësuar liçensën e duhur, psh \'\'\'<nowiki>{{GFDL}} {{PD}}</nowiki>\'\'\'',
 'uploadwarning' => 'Kujdes dhënie',
-'usenewcategorypage' => '1
-
-Vendosni "0" për gërmën e parë për të çaktivizuar planimetrinë e re të faqeve kategori.',
 'user_rights_set' => '<b>Privilegjet për përdoruesin "$1" u freskuan</b>',
 'usercssjsyoucanpreview' => '<strong>Këshillë:</strong> Përdorni butonin \'Trego parapamjen\' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.',
 'userexists' => 'Emri që përdorët është në përdorim. Zgjidhni një emër tjetër.',

@@ -1370,9 +1370,6 @@ $NEWPAGE
 "subcategorycount1"      => "בקטגוריה זו קטגורית משנה אחת.",
 "categoryarticlecount"   => "ישנם $1 דפים בקטגוריה זו.",
 "categoryarticlecount1"  => "ישנו דף אחד בקטגוריה זו.",
-"usenewcategorypage"     => '1
-
-הגדירו את התו הראשון ל־"0" כדי לבטל את פריסת דף הקטגוריה החדשה.',
 "listingcontinuesabbrev" => " (המשך)",
 "spambot_username"       => "MediaWiki spam cleanup",
 "spam_reverting"         => "שיחזור לגרסה אחרונה שלא כוללת קישורים ל־$1",
