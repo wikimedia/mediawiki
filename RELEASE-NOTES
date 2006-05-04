@@ -198,6 +198,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   page doesn't exist
 * Special:Randompage now additionally accepts English namespace name as parameter
 * (bug 2981) Really fixed linktrail for Tamil (ta)
+* Disallow substituting Special pages when included into a page
 
 == Compatibility ==
 

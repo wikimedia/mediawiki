@@ -2682,20 +2682,6 @@ class Parser
 				}
 			}
 		}
-		
-			/*$mwNumUsers =& MagicWord::get( MAG_NUMBEROFUSERS );
-			if( $mwNumUsers->matchStartAndRemove( $part1 ) ) {
-				$mwRawSuffix =& MagicWord::get( MAG_RAWSUFFIX );
-				if( $mwRawSuffix->match( $args[0] ) ) {
-					# Raw and unformatted
-					$text = $linestart . wfNumberOfUsers();
-				} else {
-					# Default; formatted form
-					$text = $linestart . $wgContLang->formatNum( wfNumberOfUsers() );
-				}
-				$found = true;
-			}
-		}*/
 
 		# Extensions
 		if ( !$found && substr( $part1, 0, 1 ) == '#' ) {
@@ -2767,8 +2753,7 @@ class Parser
 					# Check for excessive inclusion
 					$dbk = $title->getPrefixedDBkey();
 					if ( $this->incrementIncludeCount( $dbk ) ) {
-						if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() ) {
-							# Capture special page output
+						if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() && $this->mOutputType != OT_WIKI ) {
 							$text = SpecialPage::capturePath( $title );
 							if ( is_string( $text ) ) {
 								$found = true;
