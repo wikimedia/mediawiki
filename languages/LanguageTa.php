@@ -90,6 +90,12 @@ class LanguageTa extends LanguageUtf8 {
 		else
 			return parent::getMessage($key);
 	}
+
+	function linkTrail() {
+		/* Range from U+0B80 to U+0BFF */
+		return "/^([\xE0\xAE\x80-\xE0\xAF\xBF]+)(.*)$/sDu";
+	}
+
 }
 
 ?>
