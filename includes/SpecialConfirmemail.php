@@ -21,9 +21,13 @@ function wfSpecialConfirmemail( $par ) {
 
 class EmailConfirmation extends SpecialPage {
 	
+	/**
+	 * Main execution point
+	 *
+	 * @param $code Confirmation code passed to the page
+	 */
 	function execute( $code ) {
 		global $wgUser, $wgOut;
-		#$this->setHeaders();
 		if( empty( $code ) ) {
 			if( $wgUser->isLoggedIn() ) {
 				$this->showRequestForm();
@@ -39,6 +43,9 @@ class EmailConfirmation extends SpecialPage {
 		}
 	}
 	
+	/**
+	 * Show a nice form for the user to request a confirmation mail
+	 */
 	function showRequestForm() {
 		global $wgOut, $wgUser, $wgLang, $wgRequest;
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getText( 'token' ) ) ) {
