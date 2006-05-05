@@ -946,6 +946,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'mostimages'	=> 'Most linked to images',
 'mostrevisions' => 'Articles with the most revisions',
 'nlinks'		=> '$1 links',
+'members'		=> '$1 members',
 'allpages'		=> 'All pages',
 'prefixindex'   => 'Prefix index',
 'randompage'	=> 'Random page',
