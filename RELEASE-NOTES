@@ -204,6 +204,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Rewritten removeUnusedAccounts to be more efficient, print names of inactive
   accounts
 * Redirect Special:Userlist to Special:Listusers
+* Introduce $wgAllowTitlesInSVG, which allows the <title> attribute in uploaded files
+  bearing the image/svg MIME type. Disabled by default due to the vast majority of
+  web servers being hideously misconfigured. See DefaultSettings.php for more details.
 
 == Compatibility ==
 

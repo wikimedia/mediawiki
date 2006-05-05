@@ -845,6 +845,7 @@ class UploadForm {
 	* @return bool true if the file contains something looking like embedded scripts
 	*/
 	function detectScript($file,$mime) {
+		global $wgAllowTitlesInSVG;
 
 		#ugly hack: for text files, always look at the entire file.
 		#For binarie field, just check the first K.
@@ -899,9 +900,10 @@ class UploadForm {
 			'<img',
 			'<pre',
 			'<script', #also in safari
-			'<table',
-			'<title'   #also in safari
+			'<table'
 			);
+		if( $mime != 'image/svg' || !$wgAllowTitlesInSVG )
+			$tags[] = '<title';
 
 		foreach( $tags as $tag ) {
 			if( false !== strpos( $chunk, $tag ) ) {

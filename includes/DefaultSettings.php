@@ -1951,4 +1951,13 @@ $wgAllowDisplayTitle = false ;
  */
 $wgReservedUsernames = array( 'MediaWiki default', 'Conversion script' );
 
+/**
+ * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic browsers which can't
+ * perform basic stuff like MIME detection and which are vulnerable to further idiots uploading
+ * crap files as images. When this directive is on, <title> will be allowed in files with
+ * an "image/svg" MIME type. You should leave this disabled if your web server is misconfigured
+ * and doesn't send appropriate MIME types for SVG images.
+ */
+$wgAllowTitlesInSVG = false;
+
 ?>
