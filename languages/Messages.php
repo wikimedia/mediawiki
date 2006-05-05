@@ -1181,6 +1181,9 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 'viewdeletedpage' => 'View deleted pages',
 'undeletepagetext' => 'The following pages have been deleted but are still in the archive and
 can be restored. The archive may be periodically cleaned out.',
+'undeleteextrahelp' => "To restore the entire page, leave all checkboxes deselected and
+click '''''Restore'''''. To perform a selective restoration, check the boxes corresponding to the
+revisions to be restored, and click '''''Restore'''''.",
 'undeletearticle' => 'Restore deleted page',
 'undeleterevisions' => "$1 revisions archived",
 'undeletehistory' => 'If you restore the page, all revisions will be restored to the history.
@@ -1191,7 +1194,9 @@ will not be automatically replaced.',
 shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
 'undeleterevision' => "Deleted revision as of $1",
-'undeletebtn' => 'Restore!',
+'undeletebtn' => 'Restore',
+'undeletereset' => 'Reset',
+'undeletecomment' => 'Comment:',
 'undeletedarticle' => "restored \"[[$1]]\"",
 'undeletedrevisions' => "$1 revisions restored",
 'undeletedtext'   => "[[:$1|$1]] has been successfully restored.

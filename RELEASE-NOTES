@@ -210,6 +210,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Changed default LocalSettings.php to append the previous include path when setting it
 * (bug 5837) Use "members" for the value descriptor in Special:Categories,
   Special:Wantedcategories and Special:Mostlinkedcategories.
+* (bug 3309) Allow comments when undeleting pages
+* Clean up Special:Undelete a bit
 
 == Compatibility ==
 

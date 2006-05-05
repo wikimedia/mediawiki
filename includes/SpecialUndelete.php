@@ -1,8 +1,11 @@
 <?php
+
 /**
- * @todo document
+ * Special page allowing users with the appropriate permissions to view
+ * and restore deleted content
+ *
  * @package MediaWiki
- * @subpackage SpecialPage
+ * @subpackage Special pages
  */
 
 /** */
@@ -154,7 +157,7 @@ class PageArchive {
 	 * @param array $timestamps Pass an empty array to restore all revisions, otherwise list the ones to undelete.
 	 * @return bool
 	 */
-	function undelete( $timestamps ) {
+	function undelete( $timestamps, $comment = '' ) {
 		global $wgParser, $wgDBtype;
 
 		$fname = "doUndeleteArticle";
@@ -287,9 +290,11 @@ class PageArchive {
 		# Touch the log!
 		$log = new LogPage( 'delete' );
 		if( $restoreAll ) {
-			$reason = '';
+			$reason = $comment;
 		} else {
 			$reason = wfMsgForContent( 'undeletedrevisions', $restoreRevisions );
+			if( trim( $comment ) != '' )
+				$reason .= ": {$comment}";
 		}
 		$log->addEntry( 'restore', $this->title, $reason );
 
@@ -304,7 +309,7 @@ class PageArchive {
  */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
-	var $mTargetTimestamp, $mAllowed;
+	var $mTargetTimestamp, $mAllowed, $mComment;
 
 	function UndeleteForm( &$request, $par = "" ) {
 		global $wgUser;
@@ -316,6 +321,7 @@ class UndeleteForm {
 			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
+		$this->mComment = $request->getText( 'wpComment' );
 		
 		if( $par != "" ) {
 			$this->mTarget = $par;
@@ -471,17 +477,10 @@ class UndeleteForm {
 
 		if ( $this->mAllowed ) {
 			$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
-			$action = $titleObj->escapeLocalURL( "action=submit" );
-			$encTarget = htmlspecialchars( $this->mTarget );
-			$button = htmlspecialchars( wfMsg("undeletebtn") );
-			$token = htmlspecialchars( $wgUser->editToken() );
-
-			$wgOut->addHTML("
-				<form id=\"undelete\" method=\"post\" action=\"{$action}\">
-				<input type=\"hidden\" name=\"target\" value=\"{$encTarget}\" />
-				<input type=\"submit\" name=\"restore\" value=\"{$button}\" />
-				<input type='hidden' name='wpEditToken' value=\"{$token}\" />
-				");
+			$action = $titleObj->getLocalURL( "action=submit" );
+			# Start the form here
+			$top = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $action ) );
+			$wgOut->addHtml( $top );
 		}
 
 		# Show relevant lines from the deletion log:
@@ -493,9 +492,27 @@ class UndeleteForm {
 					array( 'page' => $this->mTargetObj->getPrefixedText(),
 					       'type' => 'delete' ) ) ) );
 		$logViewer->showList( $wgOut );
+		
+		$wgOut->addHTML( "<h2>" . htmlspecialchars( wfMsg( "history" ) ) . "</h2>\n" );
+		
+		if( $this->mAllowed ) {
+			# Brief explanation of how it all works
+			$wgOut->addHtml( '<fieldset>' );
+			#$wgOut->addWikiText( wfMsg( 'undeleteextrahelp' ) );
+			# Format the user-visible controls (comment field, submission button)
+			# in a nice little table
+			$table .= '<table><tr>';
+			$table .= '<td colspan="2">' . wfMsgWikiHtml( 'undeleteextrahelp' ) . '</td></tr><tr>';
+			$table .= '<td align="right"><strong>' . wfMsgHtml( 'undeletecomment' ) . '</strong></td>';
+			$table .= '<td>' . wfInput( 'wpComment', 50, $this->mComment ) . '</td>';
+			$table .= '</tr><tr><td>&nbsp;</td><td>';
+			$table .= wfSubmitButton( wfMsg( 'undeletebtn' ), array( 'name' => 'restore' ) );
+			$table .= wfElement( 'input', array( 'type' => 'reset', 'value' => wfMsg( 'undeletereset' ) ) );
+			$table .= '</td></tr></table></fieldset>';
+			$wgOut->addHtml( $table );
+		}
 
 		# The page's stored (deleted) history:
-		$wgOut->addHTML( "<h2>" . htmlspecialchars( wfMsg( "history" ) ) . "</h2>\n" );
 		$wgOut->addHTML("<ul>");
 		$target = urlencode( $this->mTarget );
 		while( $row = $revisions->fetchObject() ) {
@@ -525,8 +542,12 @@ class UndeleteForm {
 		}
 		$revisions->free();
 		$wgOut->addHTML("</ul>");
+		
 		if ( $this->mAllowed ) {
-			$wgOut->addHTML( "\n</form>" );
+			# Slip in the hidden controls here
+			$misc  = wfHidden( 'target', $this->mTarget );
+			$misc .= wfHidden( 'wpEditToken', $wgUser->editToken() );
+			$wgOut->addHtml( $misc ) . '</form>';
 		}
 
 		return true;
@@ -536,7 +557,7 @@ class UndeleteForm {
 		global $wgOut;
 		if( !is_null( $this->mTargetObj ) ) {
 			$archive = new PageArchive( $this->mTargetObj );
-			if( $archive->undelete( $this->mTargetTimestamp ) ) {
+			if( $archive->undelete( $this->mTargetTimestamp, $this->mComment ) ) {
 				$wgOut->addWikiText( wfMsg( "undeletedtext", $this->mTarget ) );
 
 				if (NS_IMAGE == $this->mTargetObj->getNamespace()) {
