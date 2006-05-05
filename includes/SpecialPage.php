@@ -188,7 +188,8 @@ class SpecialPage
 			'Mytalk' => Title::makeTitle( NS_USER_TALK, $wgUser->getName() ),
 			'Mycontributions' => Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() ),
 			'Listadmins' => Title::makeTitle( NS_SPECIAL, 'Listusers/sysop' ), # @bug 2832
-			'Randompage' => Title::makeTitle( NS_SPECIAL, 'Random' )
+			'Randompage' => Title::makeTitle( NS_SPECIAL, 'Random' ),
+			'Userlist' => Title::makeTitle( NS_SPECIAL, 'Listusers' )
 		);
 		wfRunHooks( 'SpecialPageGetRedirect', array( &$redirects ) );
 

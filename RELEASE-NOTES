@@ -203,6 +203,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added new group-X and group-X-member messages
 * Rewritten removeUnusedAccounts to be more efficient, print names of inactive
   accounts
+* Redirect Special:Userlist to Special:Listusers
 
 == Compatibility ==
 
