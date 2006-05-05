@@ -316,7 +316,7 @@ class SpecialSearch {
 	function showHit( $result, $terms ) {
 		$fname = 'SpecialSearch::showHit';
 		wfProfileIn( $fname );
-		global $wgUser, $wgContLang;
+		global $wgUser, $wgContLang, $wgLang;
 
 		$t = $result->getTitle();
 		if( is_null( $t ) ) {
@@ -333,7 +333,8 @@ class SpecialSearch {
 		$link = $sk->makeKnownLinkObj( $t );
 		$revision = Revision::newFromTitle( $t );
 		$text = $revision->getText();
-		$size = wfMsg( 'nbytes', strlen( $text ) );
+		$size = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
+			$wgLang->formatNum( strlen( $text ) ) );
 
 		$lines = explode( "\n", $text );
 

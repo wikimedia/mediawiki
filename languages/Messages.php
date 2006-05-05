@@ -236,7 +236,7 @@ See $1.',
 'versionrequired' => 'Version $1 of MediaWiki required',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version]]',
 
-'nbytes'		=> '$1 bytes',
+'nbytes'		=> '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'		=> '$1 categories',
 'nrevisions'		=> '$1 revisions',
 'widthheight'		=> '$1x$2',
@@ -847,11 +847,11 @@ created and by whom, and anything else you may know about it. If this is an imag
 # Image list
 #
 'imagelist'		=> 'File list',
-'imagelisttext'	=> "Below is a list of $1 files sorted $2.",
+'imagelisttext'	=> 'Below is a list of <strong>$1</strong> files sorted <strong>$2</strong>.',
 'imagelistforuser' => "This shows only images uploaded by $1.",
 'getimagelist'	=> 'fetching file list',
 'ilsubmit'		=> 'Search',
-'showlast'		=> "Show last $1 files sorted $2.",
+'showlast'		=> 'Show last $1 files sorted $2.',
 'byname'		=> 'by name',
 'bydate'		=> 'by date',
 'bysize'		=> 'by size',

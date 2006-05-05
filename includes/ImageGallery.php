@@ -115,7 +115,8 @@ class ImageGallery
 
 			if( $this->mShowBytes ) {
 				if( $img->exists() ) {
-					$nb = wfMsgHtml( 'nbytes', $wgLang->formatNum( $img->getSize() ) );
+					$nb = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
+						$wgLang->formatNum( $img->getSize() ) );
 				} else {
 					$nb = wfMsgHtml( 'filemissing' );
 				}

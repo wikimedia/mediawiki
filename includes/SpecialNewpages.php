@@ -76,7 +76,8 @@ class NewPagesPage extends QueryPage {
 		$u = $result->user;
 		$ut = $result->user_text;
 
-		$length = wfMsgHtml( 'nbytes', htmlspecialchars( $wgLang->formatNum( $result->length ) ) );
+		$length = wfMsgExt( 'nbytes', array('parsemag', 'escape'),
+			$wgLang->formatNum( $result->length ) );
 		$d = $wgLang->timeanddate( $result->timestamp, true );
 
 		# Since there is no diff link, we need to give users a way to

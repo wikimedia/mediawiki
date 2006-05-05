@@ -755,7 +755,8 @@ class ImageHistoryList {
 			$usertalk = $this->skin->makeLinkObj( Title::makeTitle( NS_USER_TALK, $usertext), $wgContLang->getNsText( NS_TALK ) );
 			$userdata = $userlink . ' (' . $usertalk . ')';
 		}
-		$nbytes = wfMsg( 'nbytes', $size );
+		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
+			$wgLang->formatNum( $size ) );
 		$widthheight = wfMsg( 'widthheight', $width, $height );
 		$style = $this->skin->getInternalLinkAttributes( $url, $datetime );
 
