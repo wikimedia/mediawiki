@@ -223,6 +223,7 @@
 	'tum' => 'chiTumbuka',  # Tumbuka
 	'tw' => 'Twi',			# Twi, (FIXME!)
 	'ty' => 'Reo Mā`ohi',	# Tahitian
+	'tyv' => 'Тыва дыл',	# Tyvan
 	'udm' => 'Удмурт',	# Udmurt
 	'ug' => 'Oyghurque',	# Uyghur
 	'uk' => 'Українська',	# Ukrainian
