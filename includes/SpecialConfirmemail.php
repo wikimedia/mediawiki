@@ -1,124 +1,89 @@
 <?php
+
 /**
- * Entry point to confirm a user's e-mail address.
- * When a new address is entered, a random unique code is generated and
- * mailed to the user. A clickable link to this page is provided.
+ * Special page allows users to request email confirmation message, and handles
+ * processing of the confirmation code when the link in the email is followed
  *
  * @package MediaWiki
- * @subpackage SpecialPage
+ * @subpackage Special pages
+ * @author Rob Church <robchur@gmail.com>
  */
-
-/** @todo document */
-function wfSpecialConfirmemail( $code ) {
-	$form = new ConfirmationForm();
-	$form->show( $code );
+ 
+/**
+ * Main execution point
+ *
+ * @param $par Parameters passed to the page
+ */
+function wfSpecialConfirmemail( $par ) {
+	$form = new EmailConfirmation();
+	$form->execute( $par );
 }
 
-/** @package MediaWiki */
-class ConfirmationForm {
-	/** */
-	function show( $code ) {
-		global $wgUser;
-		if( !$wgUser->isLoggedIn() ) {
-			$this->showNeedLogin();
-		} elseif( empty( $code ) ) {
-			$this->showEmpty( $this->checkAndSend() );
-		} else {
-			$this->showCode( $code );
-		}
-	}
-
-	function showNeedLogin() {
-		global $wgOut, $wgUser;
-		
-		$title = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
-		$self = Title::makeTitle( NS_SPECIAL, 'Confirmemail' );
-		$skin = $wgUser->getSkin();
-		$llink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $self->getPrefixedUrl() );
-		
-		$wgOut->setPageTitle( wfMsg( 'confirmemail' ) );
-		$wgOut->addHtml( wfMsgWikiHtml( 'confirmemail_needlogin', $llink ) );
-		return;
-	}
-
-	/** */
-	function showCode( $code ) {
-		$user = User::newFromConfirmationCode( $code );
-		if( is_null( $user ) ) {
-			$this->showInvalidCode();
-		} else {
-			$this->confirmAndShow( $user );
-		}
-	}
-
-	/** */
-	function confirmAndShow( $user ) {
-		if( $user->confirmEmail() ) {
-			$this->showSuccess();
-		} else {
-			$this->showError();
-		}
-	}
-
-	/** */
-	function checkAndSend() {
-		global $wgUser, $wgRequest;
-		if( $wgRequest->wasPosted() &&
-			$wgUser->isLoggedIn() &&
-			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-			$result = $wgUser->sendConfirmationMail();
-			if( WikiError::isError( $result ) ) {
-				return 'confirmemail_sendfailed';
+class EmailConfirmation extends SpecialPage {
+	
+	function execute( $code ) {
+		global $wgUser, $wgOut;
+		#$this->setHeaders();
+		if( empty( $code ) ) {
+			if( $wgUser->isLoggedIn() ) {
+				$this->showRequestForm();
 			} else {
-				return 'confirmemail_sent';
+				$title = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+				$self = Title::makeTitle( NS_SPECIAL, 'Confirmemail' );
+				$skin = $wgUser->getSkin();
+				$llink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $self->getPrefixedUrl() );
+				$wgOut->addHtml( wfMsgWikiHtml( 'confirmemail_needlogin', $llink ) );
 			}
 		} else {
-			# boo
-			return '';
+			$this->attemptConfirm( $code );
 		}
 	}
-
-	/** */
-	function showEmpty( $err ) {
-		require_once( 'templates/Confirmemail.php' );
-		global $wgOut, $wgUser;
-
-		$tpl = new ConfirmemailTemplate();
-		$tpl->set( 'error', $err );
-		$tpl->set( 'edittoken', $wgUser->editToken() );
-
-		$title = Title::makeTitle( NS_SPECIAL, 'Confirmemail' );
-		$tpl->set( 'action', $title->getLocalUrl() );
-
-
-		$wgOut->addTemplate( $tpl );
-	}
-
-	/** */
-	function showInvalidCode() {
-		global $wgOut;
-		$wgOut->addWikiText( wfMsg( 'confirmemail_invalid' ) );
-	}
-
-	/** */
-	function showError() {
-		global $wgOut;
-		$wgOut->addWikiText( wfMsg( 'confirmemail_error' ) );
-	}
-
-	/** */
-	function showSuccess() {
-		global $wgOut, $wgRequest, $wgUser;
-
-		if( $wgUser->isLoggedIn() ) {
-			$wgOut->addWikiText( wfMsg( 'confirmemail_loggedin' ) );
+	
+	function showRequestForm() {
+		global $wgOut, $wgUser, $wgLang, $wgRequest;
+		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getText( 'token' ) ) ) {
+			$message = $wgUser->sendConfirmationMail() ? 'confirmemail_sent' : 'confirmemail_sendfailed';
+			$wgOut->addWikiText( wfMsg( $message ) );
 		} else {
-			$wgOut->addWikiText( wfMsg( 'confirmemail_success' ) );
-			require_once( 'SpecialUserlogin.php' );
-			$form = new LoginForm( $wgRequest );
-			$form->execute();
+			if( $wgUser->isEmailConfirmed() ) {
+				$time = $wgLang->timeAndDate( $wgUser->mEmailAuthenticated, true );
+				$wgOut->addWikiText( wfMsg( 'emailauthenticated', $time ) );
+			}
+			$wgOut->addWikiText( wfMsg( 'confirmemail_text' ) );
+			$self = Title::makeTitle( NS_SPECIAL, 'Confirmemail' );		
+			$form  = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
+			$form .= wfHidden( 'token', $wgUser->editToken() );
+			$form .= wfSubmitButton( wfMsgHtml( 'confirmemail_send' ) );
+			$form .= wfCloseElement( 'form' );
+			$wgOut->addHtml( $form );
+		}				
+	}
+	
+	/**
+	 * Attempt to confirm the user's email address and show success or failure
+	 * as needed; if successful, take the user to log in
+	 *
+	 * @param $code Confirmation code
+	 */
+	function attemptConfirm( $code ) {
+		global $wgUser, $wgOut;
+		$user = User::newFromConfirmationCode( $code );
+		if( is_object( $user ) ) {
+			if( $user->confirmEmail() ) {
+				$message = $wgUser->isLoggedIn() ? 'confirmemail_loggedin' : 'confirmemail_success';
+				$wgOut->addWikiText( wfMsg( $message ) );
+				if( !$wgUser->isLoggedIn() ) {
+					$title = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+					$wgOut->returnToMain( true, $title->getPrefixedText() );
+				}
+			} else {
+				$wgOut->addWikiText( 'confirmemail_error' );
+			}
+		} else {
+			$wgOut->addWikiText( 'confirmemail_invalid' );
 		}
 	}
+	
 }
 
 ?>
