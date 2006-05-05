@@ -1183,7 +1183,8 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 can be restored. The archive may be periodically cleaned out.',
 'undeleteextrahelp' => "To restore the entire page, leave all checkboxes deselected and
 click '''''Restore'''''. To perform a selective restoration, check the boxes corresponding to the
-revisions to be restored, and click '''''Restore'''''.",
+revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the
+comment field and all checkboxes.",
 'undeletearticle' => 'Restore deleted page',
 'undeleterevisions' => "$1 revisions archived",
 'undeletehistory' => 'If you restore the page, all revisions will be restored to the history.
