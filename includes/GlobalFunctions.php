@@ -554,7 +554,7 @@ function wfMsgWikiHtml( $key ) {
  *  <i>replaceafter<i>: parameters are substituted after parsing or escaping
  */
 function wfMsgExt( $key, $options ) {
-	global $wgOut;
+	global $wgOut, $wgMsgParserOptions, $wgParser;
 
 	$args = func_get_args();
 	array_shift( $args );
@@ -578,7 +578,11 @@ function wfMsgExt( $key, $options ) {
 		if( preg_match( "~^<p>(.*)\n?</p>$~", $string, $m ) ) {
 			$string = $m[1];
 		}
-	} elseif ( in_array('escape', $options) ) {
+	} elseif ( in_array('parsemag', $options) ) {
+		$string = $wgParser->transformMsg($string, $wgMsgParserOptions);
+	}
+
+	if ( in_array('escape', $options) ) {
 		$string = htmlspecialchars ( $string );
 	}
 
@@ -1623,7 +1627,7 @@ function in_string( $needle, $str ) {
 
 function wfSpecialList( $page, $details ) {
 	global $wgContLang;
-	$details = $details ? $wgContLang->getDirMark() . " ($details)" : "";
+	$details = $details ? ' ' . $wgContLang->getDirMark() . "($details)" : "";
 	return $page . $details;
 }
 

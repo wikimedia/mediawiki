@@ -148,7 +148,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$bydate = wfMsg( 'bydate' );
 	$lt = $wgLang->formatNum( min( $shownImages, $limit ) );
 	if ($shownav) {
-		$text = wfMsg( 'imagelisttext', "<strong>{$lt}</strong>", "<strong>{$bydate}</strong>" );
+		$text = wfMsg( 'imagelisttext', $lt, $bydate );
 		$wgOut->addHTML( "<p>{$text}\n</p>" );
 	}
 
