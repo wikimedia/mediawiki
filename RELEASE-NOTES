@@ -214,6 +214,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Clean up Special:Undelete a bit
 * (bug 5805) message nbytes can now use {{plural:}}
 * Clean up Special:Imagelist a bit
+* (bug 5838) Namespace names for Nds-NL
 
 == Compatibility ==
 
