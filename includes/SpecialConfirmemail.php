@@ -18,11 +18,27 @@ function wfSpecialConfirmemail( $code ) {
 class ConfirmationForm {
 	/** */
 	function show( $code ) {
-		if( empty( $code ) ) {
+		global $wgUser;
+		if( !$wgUser->isLoggedIn() ) {
+			$this->showNeedLogin();
+		} elseif( empty( $code ) ) {
 			$this->showEmpty( $this->checkAndSend() );
 		} else {
 			$this->showCode( $code );
 		}
+	}
+
+	function showNeedLogin() {
+		global $wgOut, $wgUser;
+		
+		$title = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$self = Title::makeTitle( NS_SPECIAL, 'Confirmemail' );
+		$skin = $wgUser->getSkin();
+		$llink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $self->getPrefixedUrl() );
+		
+		$wgOut->setPageTitle( wfMsg( 'confirmemail' ) );
+		$wgOut->addHtml( wfMsgWikiHtml( 'confirmemail_needlogin', $llink ) );
+		return;
 	}
 
 	/** */
