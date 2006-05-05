@@ -201,6 +201,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Disallow substituting Special pages when included into a page
 * (bug 5587) Clean up the languages from references to the Groups special page
 * Added new group-X and group-X-member messages
+* Rewritten removeUnusedAccounts to be more efficient, print names of inactive
+  accounts
 
 == Compatibility ==
 

@@ -9,52 +9,48 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-define( 'ACTION_REPORT', 0 );
-define( 'ACTION_DELETE', 1 );
-$options = array( 'delete','help' );
+/**
+ * @todo Don't delete sysops or bureaucrats
+ */
+
+$options = array( 'help', 'delete' );
 require_once( 'commandLine.inc' );
-require_once( 'userFunctions.inc' );
+require_once( 'removeUnusedAccounts.inc' );
+echo( "Remove Unused Accounts\n\n" );
+$fname = 'removeUnusedAccounts';
 
-echo( "Remove Unused Accounts\nThis script will delete all users who have made no edits and uploaded no files.\n\n" );
-
-# Check parameters
-if( @$options['help'] ) {
-	echo( "USAGE: removeUnusedAccounts.php [--help|--delete]\n\nThe first (default) account is ignored.\n\n" );
-	wfDie();
-} else {
-	$delete = @$options['delete'] ? true : false ;
+if( isset( $options['help'] ) ) {
+	showHelp();
+	exit();
 }
 
-$count = 0;
+# Do an initial scan for inactive accounts and report the result
+echo( "Checking for unused user accounts...\n" );
 $del = array();
-
-# Right, who needs deleting?
-$users = GetUsers();
-echo( "Found " . count( $users ) . " accounts.\n\n" );
-echo( "Locating inactive users..." );
-foreach( $users as $user ) {
-	if( $user != 1 ) {	# Don't *touch* the first user account, ever
-		if( CountEdits( $user, false ) == 0 && CountImages( $user, false ) == 0 && CountLogs( $user, false ) == 0 ) {
-			# User has no edits or images, mark them for deletion
-			$del[] = $user;
-			$count++;
-		}
+$dbr =& wfGetDB( DB_SLAVE );
+$res = $dbr->select( 'user', array( 'user_id', 'user_name' ), '', $fname );
+while( $row = $dbr->fetchObject( $res ) ) {
+	# Check the account, but ignore it if it's the primary administrator
+	if( $row->user_id > 1 && isInactiveAccount( $row->user_id, true ) ) {
+		# Inactive; print out the name and flag it
+		$del[] = $row->user_id;
+		echo( $row->user_name . "\n" );
 	}
 }
-echo( "done.\n" );
+$count = count( $del );
+echo( "...found {$count}.\n" );
 
-# Purge the inactive accounts we found
-echo( $count . " inactive accounts found.\n" );
-if( $count > 0 ) {
-	if( $delete ) {
-		echo( "Deleting..." );
-		DeleteUsers( $del );
-		echo( "done.\n" );
-	} else {
-		echo "Run the script with the --delete option to remove them from the database.\n";
-	}
+# If required, go back and delete each marked account
+if( $count > 0 && isset( $options['delete'] ) ) {
+	echo( "\nDeleting inactive accounts..." );
+	$dbw =& wfGetDB( DB_MASTER );
+	#$set = implode( ',', $del );
+	$dbw->delete( 'user', array( 'user_id' => $del ), $fname );
+	echo( "done.\n" );
+} else {
+	if( $count > 0 )
+		echo( "\nRun the script again with --delete to remove them from the database.\n" );
 }
-		
 echo( "\n" );
 
 ?>
