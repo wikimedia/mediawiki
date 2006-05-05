@@ -1182,7 +1182,7 @@ if( defined( 'MW_INSTALL_PATH' ) ) {
 }
 
 \$path = array( \$IP, \"\$IP/includes\", \"\$IP/languages\" );
-set_include_path( implode( PATH_SEPARATOR, \$path ) );
+set_include_path( implode( PATH_SEPARATOR, \$path ) . PATH_SEPARATOR . get_include_path() );
 
 require_once( \"includes/DefaultSettings.php\" );
 
