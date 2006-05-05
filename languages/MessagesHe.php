@@ -200,9 +200,9 @@
 
 למידע נוסף, ראו [[{{ns:special}}:Version]].',
 
-"nbytes"              => "$1 בתים",
-"ncategories"         => "$1 קטגוריות",
-"nrevisions"          => "$1 גרסאות",
+"nbytes"              => "{{plural:$1|בית אחד|$1 בתים}}",
+"ncategories"         => "{{plural:$1|קטגוריה אחת|$1 קטגוריות}}",
+"nrevisions"          => "{{plural:$1|גרסה אחת|$1 גרסאות}}",
 "widthheight"         => "$1x$2",
 "ok"                  => "אישור",
 "sitetitle"           => "{{SITENAME}}",
@@ -668,33 +668,10 @@ $3 $9",
 "default"               => "ברירת מחדל",
 "files"                 => "קבצים",
 
-# User levels special page
-## Switching pan
-"groups-lookup-group" => "נהלו הרשאות קבוצה",
-"groups-group-edit"   => "קבוצות קיימות:",
-"editgroup"           => "ערוך קבוצה",
-"addgroup"            => "הוסף קבוצה",
-
-"userrights-lookup-user"   => "נהלו קבוצות משתמש",
-"userrights-user-editname" => "הכניסו שם משתמש:",
-"editusergroup"            => "ערכו קבוצות משתמשים",
-
-## Group editing
-"groups-editgroup"             => "ערכו קבוצה",
-"groups-addgroup"              => "הוסיפו קבוצה",
-"groups-editgroup-preamble"    => 'אם השם או התיאור מתחיל בנקודתיים, הוא ייחשב לשם של הודעה, ולכן הטקסט נלקח מההודעה בשם זה שמופיע במרחב השם "{{ns:mediawiki}}"',
-"groups-editgroup-name"        => "שם קבוצה:",
-"groups-editgroup-description" => "תיאור קבוצה (מקסימום 255 תווים):<br />",
-"savegroup"                    => "שמרו קבוצה",
-"groups-tableheader"           => "זיהוי || שם || תיאור || הרשאות",
-"groups-existing"              => "קבוצות קיימות",
-"groups-noname"                => "נא להקיש שם קבוצה חוקי",
-"groups-already-exists"        => "קבוצה בשם זה כבר קיימת",
-"addgrouplogentry"             => "קבוצה $2 נוספה",
-"changegrouplogentry"          => "קבוצה $2 שונתה",
-"renamegrouplogentry"          => "שם הקבוצה $2 שונה ל־$3",
-
-## User groups editing
+# User rights
+"userrights-lookup-user"     => "נהלו קבוצות משתמש",
+"userrights-user-editname"   => "הכניסו שם משתמש:",
+"editusergroup"              => "ערכו קבוצות משתמשים",
 "userrights-editusergroup"   => "ערכו קבוצות משתמש",
 "saveusergroups"             => "שמור קבוצות משתמש",
 "userrights-groupsmember"    => "חבר בקבוצות:",
@@ -703,7 +680,19 @@ $3 $9",
 קבוצות שלא נבחרו לא ישתנו. באפשרותכם לבטל בחירה של קבוצה באמצעות לחיצה על הכפתור השמאלי של העכבר ועל Ctrl מעליה.",
 "userrights-logcomment"      => 'שינה את ההרשאות מההרשאות $1 להרשאות $2',
 
-## Default group names and descriptions
+# Groups
+"group"            => "קבוצה:",
+"group-bot"        => "בוטים",
+"group-sysop"      => "מפעילי מערכת",
+"group-bureaucrat" => "ביורוקרטים",
+"group-steward"    => "דיילים",
+"group-all"        => "(הכול)",
+
+"group-bot-member"        => "בוט",
+"group-sysop-member"      => "מפעיל מערכת",
+"group-bureaucrat-member" => "ביורוקרט",
+"group-steward-member"    => "דייל",
+
 "group-anon-name"       => "אנונימי",
 "group-anon-desc"       => "משתמשים אנונימיים",
 "group-loggedin-name"   => "משתמש",
@@ -799,7 +788,7 @@ $3 $9",
 
 # Image list
 "imagelist"                 => "רשימת תמונות",
-"imagelisttext"             => "להלן רשימה של $1 תמונות, ממוינות $2:",
+"imagelisttext"             => "להלן רשימה של <strong>$1</strong> תמונות, ממוינות <strong>$2</strong>:",
 "getimagelist"              => "מושך את רשימת התמונות",
 "ilsubmit"                  => "חיפוש",
 "showlast"                  => "הצג $1 תמונות אחרונות ממוינות $2",
@@ -895,6 +884,7 @@ $3 $9",
 "mostimages"              => "התמונות המקושרות ביותר",
 "mostrevisions"           => "הדפים בעלי מספר העריכות הגבוה ביותר",
 "nlinks"                  => "$1 קישורים",
+"members"                 => "$1 ערכים",
 "allpages"                => "כל הדפים",
 "prefixindex"             => "רשימת הדפים המתחילים ב…",
 "randompage"              => "דף אקראי",
@@ -1100,6 +1090,7 @@ $NEWPAGE
 "undeletepage"           => "צפו ושחזרו דפים מחוקים",
 "viewdeletedpage"        => "הצג דפים שנמחקו",
 "undeletepagetext"       => "הדפים שלהלן נמחקו, אך הם עדיין בארכיון וניתן לשחזר אותם. הארכיון מנוקה מעת לעת.",
+"undeleteextrahelp"      => 'לשיחזור הדף כולו, אל תסמנו אף תיבת סימון ולחצו על "שיחזור". לשיחזור של גרסאות מסוימות בלבד, סמנו את תיבות הסימון של הגרסאות הללו, ולחצו על "שיחזור". לחיצה על "איפוס" תנקה את התקציר, ואת כל תיבות הסימון.',
 "undeletearticle"        => "שחזרו דף מחוק",
 "undeleterevisions"      => "$1 גרסאות נשמרו בארכיון",
 "undeletehistory"        => "אם תשחזרו את הדף, כל הגרסאות תשוחזרנה להיסטוריית השינויים שלו.
@@ -1107,7 +1098,9 @@ $NEWPAGE
 אם כבר יש דף חדש באותו השם, הגרסאות והשינויים יופיעו רק בדף ההיסטוריה שלו, והגרסה הנוכחית של הדף לא תוחלף אוטומטית.",
 "undeletehistorynoadmin" => "דף זה נמחק. הסיבה למחיקה מוצגת בתקציר מטה, ביחד עם פרטים על המשתמשים שערכו את הדף לפני מחיקתו. הטקסט של גרסאות אלו זמין רק למפעילי מערכת.",
 "undeleterevision"       => "נמחקו גרסאות החל מ־$1.",
-"undeletebtn"            => "שחזר!",
+"undeletebtn"            => "שיחזור",
+"undeletereset"          => "איפוס",
+"undeletecomment"        => "תקציר:",
 "undeletedarticle"       => "שיחזר את [[:$1]]",
 "undeletedrevisions"     => "שיחזר $1 גרסאות",
 "undeletedtext"          => "הדף [[:$1]] שוחזר בהצלחה.
@@ -1520,7 +1513,6 @@ ta["ca-nstab-category"]     = ["c", "צפו בדף הקטגוריה"];',
 "watchlistall1"    => "הכול",
 "watchlistall2"    => "הכול",
 "namespacesall"    => "הכול",
-"groupsall"        => "הכול",
 
 # E-mail address confirmation
 "confirmemail"            => 'אמתו כתובת דוא"ל',
@@ -1529,6 +1521,7 @@ ta["ca-nstab-category"]     = ["c", "צפו בדף הקטגוריה"];',
 "confirmemail_sent"       => 'הדוא"ל עם קוד האישור נשלח.',
 "confirmemail_sendfailed" => 'שליחת הדוא"ל עם קוד האישור לא הצליחה. בדקו שאין תווים שגויים בכתובת.',
 "confirmemail_invalid"    => "קוד האישור שגוי. ייתכן שפג תוקפו.",
+"confirmemail_needlogin"  => 'עליכם לבצע $1 כדי לאמת את כתובת הדוא"ל שלכם.',
 "confirmemail_success"    => 'כתובת הדוא"ל שלכם אושרה. כעת באפשרותכם להיכנס לחשבון שלכם וליהנות מהאתר.',
 "confirmemail_loggedin"   => 'כתובת הדוא"ל שלכם אושרה כעת.',
 "confirmemail_error"      => "שגיאה בשמירת קוד האישור.",
@@ -1590,7 +1583,6 @@ $1",
 
 # DISPLAYTITLE
 "displaytitle" => "(קשרו לדף זה בשם [[$1]])",
-
 );
 
 
