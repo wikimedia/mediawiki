@@ -68,7 +68,7 @@ class WantedCategoriesPage extends QueryPage {
 			$skin->makeLinkObj( $nt, htmlspecialchars( $text ) ) :
 			$skin->makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
 
-		$nlinks = wfMsg( 'nlinks', $result->value );
+		$nlinks = wfMsg( 'members', $result->value );
 		return wfSpecialList($plink, $nlinks);
 	}
 }

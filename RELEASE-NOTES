@@ -208,6 +208,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   bearing the image/svg MIME type. Disabled by default due to the vast majority of
   web servers being hideously misconfigured. See DefaultSettings.php for more details.
 * Changed default LocalSettings.php to append the previous include path when setting it
+* (bug 5837) Use "members" for the value descriptor in Special:Categories,
+  Special:Wantedcategories and Special:Mostlinkedcategories.
 
 == Compatibility ==
 
