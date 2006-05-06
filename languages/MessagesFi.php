@@ -708,7 +708,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 # Image list
 #
 'imagelist'           => 'Tiedostoluettelo',
-'imagelisttext'       => 'Alla on $1 tiedostoa lajiteltuna $2.',
+'imagelisttext'       => 'Alla on <strong>$1</strong> tiedostoa lajiteltuna <strong>$2</strong>.',
 'imagelistforuser'    => 'Käyttäjän ”$1” tallentamat kuvat.',
 'getimagelist'        => 'noudetaan tiedostoluetteloa',
 'ilsubmit'            => 'Hae',
@@ -981,16 +981,18 @@ Palaute ja lisäapu osoitteessa:
 
 # Undelete
 'undelete'            => 'Palauta poistettuja sivuja',
-'undelete_short'      => 'Palauta $1 versiota',
 'undeletepage'        => 'Poistettujen sivujen selaus',
 'viewdeletedpage'     => 'Poistettujen sivujen selaus',
 'undeletepagetext'    => 'Seuraavat sivut on poistettu, mutta ne löytyvät vielä arkistosta, joten ne ovat palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
+'undeleteextrahelp'  => 'Palauta sivu valitsemalla <b><i>Palauta</i></b>. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.',
 'undeletearticle'     => 'Palauta poistettu sivu',
 'undeleterevisions'   => '$1 versiota arkistoitu.',
 'undeletehistory'     => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan, ja olemassa olevaa versiota ei korvata automaattisesti.',
 'undeletehistorynoadmin' => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
 'undeleterevision'    => 'Poistettu versio hetkellä $1',
-'undeletebtn'         => 'Palauta!',
+'undeletebtn'         => 'Palauta',
+'undeletereset'       => 'Tyhjennä',
+'undeletecomment'     => 'Kommentti:',
 'undeletedarticle'    => 'palautti sivun [[$1]]',
 'undeletedrevisions'  => '$1 versiota palautettiin',
 'undeletedtext'       => 'Sivu [[:$1|$1]] on palautettu onnistuneesti. Lista viimeisimmistä poistoista ja palautuksista on [[Special:Log/delete|poistolokissa]].',
@@ -1678,6 +1680,12 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 'tryexact'            => 'Koita tarkkaa osumaa',
 'searchfulltext'      => 'Etsi koko tekstiä',
 'createarticle'       => 'Luo sivu',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Wikienvälinen sisällytys ei ole käytössä]',
+'scarytranscludefailed'   => '[Mallineen hakeminen epäonnistui: $1]', // kauhee?
+'scarytranscludetoolong'  => '[Verkko-osoite on liian pitkä]',
+
 
 # Trackbacks
 'trackbackbox' => '<div id="mw_trackbacks">Artikkelin trackbackit:<br />$1</div>',
