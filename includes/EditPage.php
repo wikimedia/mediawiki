@@ -502,7 +502,7 @@ class EditPage {
 			# ...or the hook could be expecting us to produce an error
 			wfProfileOut( "$fname-checks " );
 			wfProfileOut( $fname );
-			return false;
+			return true;
 		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
