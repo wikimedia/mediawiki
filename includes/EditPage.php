@@ -30,6 +30,7 @@ class EditPage {
 	var $missingSummary = false;
 	var $allowBlankSummary = false;
 	var $autoSumm = '';
+	var $hookError = '';
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -492,10 +493,15 @@ class EditPage {
 			wfProfileOut( "$fname-checks" );
 			return false;
 		}
-		if ( !wfRunHooks( 'EditFilter', array( &$this, $this->textbox1, $this->section ) ) ) {
-			# Error messages or other handling should be performed by the filter function
+		if ( !wfRunHooks( 'EditFilter', array( &$this, $this->textbox1, $this->section, &$this->hookError ) ) ) {
+			# Error messages etc. could be handled within the hook...
 			wfProfileOut( $fname );
 			wfProfileOut( "$fname-checks" );
+			return false;
+		} elseif( $this->hookError != '' ) {
+			# ...or the hook could be expecting us to produce an error
+			wfProfileOut( "$fname-checks " );
+			wfProfileOut( $fname );
 			return false;
 		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
@@ -770,6 +776,10 @@ class EditPage {
 			
 			if( $this->missingSummary ) {
 				$wgOut->addWikiText( wfMsg( 'missingsummary' ) );
+			}
+			
+			if( !$this->hookError = '' ) {
+				$wgOut->addWikiText( $this->hookError );
 			}
 
 			if ( !$this->checkUnicodeCompliantBrowser() ) {
