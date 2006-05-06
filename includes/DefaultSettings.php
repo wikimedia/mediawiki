@@ -1,7 +1,7 @@
 <?php
 /**
  *
- *                 DO NOT EVER EDIT THIS FILE!
+ *                 NEVER EDIT THIS FILE
  *
  *
  * To customize your installation, edit "LocalSettings.php". If you make
