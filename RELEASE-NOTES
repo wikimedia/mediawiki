@@ -218,6 +218,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5749) Added Tyvan language files
 * (bug 5791) Fix SQL syntax in Special:BrokenRedirects, was causing incorrect data to show
 * (bug 5839) Prevent access to Special:Confirmemail for logged-out users
+* (bug 5853) Update for Portuguese messages (pt)
 
 == Compatibility ==
 
