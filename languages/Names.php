@@ -113,7 +113,7 @@
 	'ku' => 'Kurdî / كوردي',	# Kurdish
 	'kv' => 'Коми', 	# Komi, cyrillic is common script but also written in latin script
 	'kw' => 'Kernewek',		# Cornish
-	'ky' => 'Kırgızca',	# Kirghiz
+	'ky' => 'Кыргызча',	# Kirghiz
 	'la' => 'Latina',		# Latin
 	'lad' => 'Ladino',	# Ladino
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
