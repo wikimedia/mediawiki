@@ -177,8 +177,6 @@
 'lastmodified'        => 'Sivua on viimeksi muutettu  $1.',
 'viewcount'           => 'Tämä sivu on näytetty {{PLURAL:$1|yhden kerran|$1 kertaa}}.',
 'copyright'           => 'Sisältö on käytettävissä lisenssillä $1.',
-'poweredby'           => '{{GRAMMAR:genitive|{{SITENAME}}}} tarjoaa [http://www.mediawiki.org/ MediaWiki], avoimen lähdekoodin ohjelmisto.',
-'printsubtitle'       => '(Lähde: {{SERVER}})',
 'protectedpage'       => 'Suojattu sivu',
 'administrators'      => 'Project:Ylläpitäjät',
 'jumpto'              => 'Loikkaa:',
@@ -289,7 +287,6 @@
 'yourname'            => 'Käyttäjätunnus',
 'yourpassword'        => 'Salasana',
 'yourpasswordagain'   => 'Salasana uudelleen',
-'newusersonly'        => 'vain uudet käyttäjät',
 'remembermypassword'  => 'Muista minut',
 'yourdomainname'      => 'Verkkonimi',
 'externaldberror'     => 'Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.',
@@ -333,7 +330,7 @@
 'nosuchusershort'     => 'Käyttäjää nimellä <b>$1</b> ei ole. Kirjoititko nimen oikein?', // TODO NO WIKIMARKUP
 'wrongpassword'       => 'Syöttämäsi salasana ei ole oikein. Ole hyvä ja yritä uudelleen.',
 'wrongpasswordempty'  => 'Et voi antaa tyhjää salasanaa.',
-'mailmypassword'      => 'Lähetä minulle uusi salasana sähköpostilla',
+'mailmypassword'      => 'Lähetä uusi salasana sähköpostitse',
 'passwordremindertitle' => 'Salasanamuistutus {{GRAMMAR:elative|{{SITENAME}}}}',
 
 'passwordremindertext'=> 'Joku IP-osoitteesta $1 pyysi {{GRAMMAR:partitive|{{SITENAME}}}} lähettämään uuden salasanan. Salasana käyttäjälle $2 on nyt $3. Kirjaudu sisään ja vaihda salasana.',
@@ -357,6 +354,8 @@
 'noemailprefs'        => 'Sähköpostiosoitetta ei ole määritelty.',
 'emailconfirmlink'    => 'Varmenna sähköpostiosoite',
 'invalidemailaddress' => 'Sähköpostiosoitetta ei voida hyväksyä, koska se ei ole oikeassa muodossa. Ole hyvä ja anna oikea sähköpostiosoite tai jätä kenttä tyhjäksi.',
+'accountcreated'      => 'Käyttäjätunnus luotiin',
+'accountcreatedtext'  => 'Käyttäjän $1 käyttäjätunnus luotiin.',
 
 
 
@@ -583,7 +582,7 @@
 'timezonelegend'      => 'Aikavyöhyke',
 'timezonetext'        => 'Paikallisen ajan ja palvelimen ajan (UTC) välinen aikaero tunteina.',
 'localtime'           => 'Paikallinen aika',
-'timezoneoffset'      => 'Aikaero',
+'timezoneoffset'      => 'Aikaero¹:',
 'servertime'          => 'Palvelimen aika',
 'guesstimezone'       => 'Utele selaimelta',
 'allowemail'          => 'Salli sähköpostin lähetys osoitteeseen',
@@ -591,24 +590,11 @@
 'default'             => 'oletus',
 'files'               => 'Tiedostot',
 
-# User levels special page
-#
-
-# switching pan
-/*'groups-lookup-group' => 'Manage group rights',
-'groups-group-edit' => 'Existing groups:',
-'editgroup' => 'Edit Group',
-'addgroup' => 'Add Group',*/
-
+# User rights
 'userrights-lookup-user'   => 'Käyttöoikeuksien hallinta',
 'userrights-user-editname' => 'Käyttäjätunnus:',
 'editusergroup'            => 'Muokkaa käyttäjän ryhmiä',
-'changegrouplogentry'      => 'Muutti ryhmää ”$2”',
-'renamegrouplogentry'      => 'Muutti ryhmän ”$2” nimeksi ”$3”',
 
-
-# user groups editing
-#
 'userrights-editusergroup'   => 'Käyttäjän ryhmät',
 'saveusergroups'             => 'Tallenna',
 'userrights-groupsmember'    => 'Jäsenenä ryhmissä:',
@@ -616,14 +602,19 @@
 'userrights-groupshelp'      => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
 'userrights-logcomment'      => 'Ryhmäoikeuden muutos ryhmistä ”$1” ryhmiin ”$2”',
 
-# Default group names and descriptions
-#
-'group-sysop-name'      => 'ylläpitäjä',
-'group-sysop-desc'      => 'Luotetut käyttäjät voivat estää käyttäjiä ja poistaa ja suojata artikkeleita',
-'group-bureaucrat-name' => 'byrokraatti',
-'group-bureaucrat-desc' => 'Byrokraatit voivat tehdä ylläpitäjiä',
-'group-bot-name'        => 'botti',
-'group-bot-desc'        => '',
+# Groups
+'group'                   => 'Ryhmä:',
+'group-bot'               => 'botit',
+'group-sysop'             => 'ylläpitäjät',
+'group-bureaucrat'        => 'byrokraatit',
+'group-steward'           => 'ylivalvojat',
+'group-all'               => '(kaikki)',
+
+'group-bot-member'        => 'botti',
+'group-sysop-member'      => 'ylläpitäjä',
+'group-bureaucrat-member' => 'byrokraatti',
+'group-steward-member'    => 'ylivalvoja',
+
 
 # Recent changes
 #
@@ -631,7 +622,6 @@
 'recentchanges'       => 'Tuoreet muutokset',
 'recentchanges-url'   => 'Special:Recentchanges',
 'recentchangestext'   => 'Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.',
-'rcloaderr'           => 'Ladataan tuoreita muutoksia',
 'rcnote'              => 'Alla on <b>$1</b> tuoreinta muutosta viimeisten <b>$2</b> päivän ajalta.',
 'rcnotefrom'          => 'Alla on muutokset <b>$2</b> lähtien. Enintään <b>$1</b> merkintää näytetään.',
 'rclistfrom'          => 'Näytä uudet muutokset $1 alkaen',
@@ -642,15 +632,10 @@
 'rcshowhidepatr'      => '$1 tarkastetut muutokset',
 'rcshowhidemine'      => '$1 omat muutokset',
 'rclinks'             => 'Näytä $1 tuoretta muutosta viimeisten $2 päivän ajalta.<br />$3',
-'rchide'              => 'muodossa $4 ; $1 pientä muutosta; $2 toissijaista nimiavaruutta; $3 moninkertaista muutosta.',
-'rcliu'               => ' ; $1 muokkausta sisäänkirjautuneilta',
 'diff'                => 'ero',
 'hist'                => 'historia',
 'hide'                => 'piilota',
 'show'                => 'näytä',
-'tableform'           => 'taulukko',
-'listform'            => 'luettelo',
-'nchanges'            => '$1 muutosta',
 'minoreditletter'     => 'p',
 'newpageletter'       => 'U',
 'sectionlink'         => '→',
@@ -664,7 +649,6 @@
 #
 'upload'              => 'Tallenna tiedosto',
 'uploadbtn'           => 'Tallenna tiedosto',
-'uploadlink'          => 'Tallenna kuvia',
 'reupload'            => 'Uusi tallennus',
 'reuploaddesc'        => 'Paluu tallennuslomakkeelle.',
 'uploadnologin'       => 'Et ole kirjautunut sisään',
@@ -716,6 +700,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'uploadvirus'         => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
 'sourcefilename'      => 'Lähdenimi',
 'destfilename'        => 'Kohdenimi',
+'filewasdeleted'      => 'Tämän niminen tiedosto on tallennettu ja poistettu aikaisemmin. Tarkista $1 ennen jatkamista.',
 
 'license'             => 'Lisenssi',
 'nolicense'           => 'Ei lisenssiä',
@@ -775,14 +760,12 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 
 'doubleredirects'     => 'Kaksinkertaiset uudelleenohjaukset',
 'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECTin jälkeen on tekstiä.<br />\nJokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.',
-'doubleredirectsarrow'=> '→',
 
 'brokenredirects'     => 'Virheelliset uudelleenohjaukset',
 'brokenredirectstext' => 'Seuraavat uudelleenohjaukset on linkitetty artikkeleihin, joita ei ole olemassa.',
 
 # Miscellaneous special pages
 #
-'orphans'             => 'Orvot sivut',
 'lonelypages'         => 'Yksinäiset sivut',
 'uncategorizedpages'  => 'Luokittelemattomat sivut',
 'uncategorizedcategories' => 'Luokittelemattomat luokat',
@@ -798,6 +781,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'mostimages'          => 'Kuvat, joihin on eniten linkkejä',
 'mostrevisions'       => 'Sivut, joilla on eniten muutoksia',
 'nlinks'              => '$1 linkkiä',
+'members'             => '$1 jäsentä',
 'allpages'            => 'Kaikki sivut',
 'prefixindex'         => 'Etuliiteluettelo',
 'randompage'          => 'Satunnainen sivu',
@@ -907,8 +891,6 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'wlsaved'             => 'Tämä on tallennettu versio tarkkailulistastasi.',
 'wlhideshowown'       => '$1 omat muokkaukset.',
 'wlhideshowbots'      => '$1 bottien muokkaukset.',
-'wlshow'              => 'Näytä',
-'wlhide'              => 'Piilota',
 
 'enotif_mailer'       => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
 'enotif_reset'        => 'Merkitse kaikki sivut katsotuiksi',
@@ -1112,9 +1094,9 @@ Palaute ja lisäapu osoitteessa:
 'makesysopfail'       => 'Käyttäjästä <b>$1</b> ei voitu tehdä ylläpitäjää. Kirjoititko nimen oikein?', // TODO: NOWIKIMARKUP
 'setbureaucratflag'   => 'Tee käyttäjästä myös byrokraatti',
 'setstewardflag'      => 'Tee käyttäjästä ylivalvoja',
-'bureaucratlog'       => 'Byrokraattiloki',
+'rightslog'           => 'Käyttöoikeusloki',
 'rightslogtext'       => 'Alla on loki on käyttäjien käyttöoikeuksien muutoksista.',
-'bureaucratlogentry'  => 'Käyttäjän [[$1]] oikeudet muutettiin ryhmistä $2 ryhmiin $3',
+'rightslogentry'      => 'Käyttäjän [[$1]] oikeudet muutettiin ryhmistä $2 ryhmiin $3',
 'rights'              => 'Oikeudet:',
 'set_user_rights'     => 'Aseta käyttäjän oikeudet',
 'user_rights_set'     => 'Käyttäjän <b>$1</b> oikeudet päivitetty.',
@@ -1123,6 +1105,7 @@ Palaute ja lisäapu osoitteessa:
 'already_sysop'       => 'Käyttäjä on jo ylläpitäjä',
 'already_bureaucrat'  => 'Käyttäjä on jo byrokraatti',
 'already_steward'     => 'Käyttäjä on jo ylivalvoja',
+'rightsnone'          => '(ei oikeuksia)',
 
 
 # Move page
@@ -1344,7 +1327,7 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'previousdiff'        => '← Edellinen muutos',
 'nextdiff'            => 'Seuraava muutos →',
 
-'imagemaxsize'        => 'Rajoita kuvien koko kuvien kuvaussivuilla arvoon',
+'imagemaxsize'        => 'Rajoita kuvien koko kuvien kuvaussivuilla arvoon:',
 'thumbsize'           => 'Pikkukuvien koko:',
 'showbigimage'        => 'Lataa korkeatarkkuuksinen versio ($1×$2, $3 KiB)',
 
@@ -1677,6 +1660,7 @@ This file contains additional information, probably added from the digital camer
 'confirmemail_sent'   => 'Varmennusviesi lähetetty.',
 'confirmemail_sendfailed' => 'Varmennusviestin lähettäminen epäonnistui. Tarkista, onko osoitteessa kiellettyjä merkkejä.',
 'confirmemail_invalid'    => 'Varmennuskoodi ei kelpaa. Koodi on voinut vanhentua.',
+'confirmemail_needlogin'  => 'Sinun täytyy $1, jotta voisit varmistaa sähköpostiosoitteesi.',
 'confirmemail_success'    => 'Sähköpostiosoitteesi on nyt varmennettu. Voit kirjautua sisään.',
 'confirmemail_loggedin'   => 'Sähköpostiosoitteesi on nyt varmennettu.',
 'confirmemail_error'  => 'Jokin epäonnistui varmennnuksen tallentamisessa.',
@@ -1694,6 +1678,14 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 'tryexact'            => 'Koita tarkkaa osumaa',
 'searchfulltext'      => 'Etsi koko tekstiä',
 'createarticle'       => 'Luo sivu',
+
+# Trackbacks
+'trackbackbox' => '<div id="mw_trackbacks">Artikkelin trackbackit:<br />$1</div>',
+'trackback' => '; $4$5 : [$2 $1]',
+'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
+'trackbackremove' => ' ([$1 poista])',
+'trackbacklink' => 'Trackback',
+'trackbackdeleteok' => 'Trackback poistettiin.',
 
 # delete conflict
 
