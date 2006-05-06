@@ -297,6 +297,17 @@ $user: the user _doing_ the block (not the one being blocked)
 $block: the Block object that was saved
 $user: the user who did the block (not the one being blocked)
 
+'EditFilter': Perform checks on an edit
+$editor: Edit form (see includes/EditPage.php)
+$text: Contents of the edit box
+&section: Section being edited
+$error: Error message to return
+
+Return false to halt editing; you'll need to handle error messages, etc. yourself.
+Alternatively, modifying $error and returning true will cause the contents of $error
+to be echoed at the top of the edit form as wikitext. Return true without altering
+$error to allow the edit to proceed.
+
 'EmailConfirmed': When checking that the user's email address is "confirmed"
 $user: User being checked
 $confirmed: Whether or not the email address is confirmed
