@@ -224,6 +224,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5846) Link to individual group description pages in Special:Listusers
 * (bug 5857) Update for German localisation (de)
 * (bug 5858) Update for Russian language (ru)
+* (bug 5860) Update for Indonesian language (id)
 
 == Compatibility ==
 
