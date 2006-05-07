@@ -493,7 +493,7 @@ class EditPage {
 			wfProfileOut( "$fname-checks" );
 			return false;
 		}
-		if ( !wfRunHooks( 'EditFilter', array( &$this, $this->textbox1, $this->section, $this->hookError ) ) ) {
+		if ( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError ) ) ) {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( $fname );
 			wfProfileOut( "$fname-checks" );
@@ -778,7 +778,7 @@ class EditPage {
 				$wgOut->addWikiText( wfMsg( 'missingsummary' ) );
 			}
 			
-			if( !$this->hookError = '' ) {
+			if( !$this->hookError == '' ) {
 				$wgOut->addWikiText( $this->hookError );
 			}
 

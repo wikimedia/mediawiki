@@ -300,8 +300,8 @@ $user: the user who did the block (not the one being blocked)
 'EditFilter': Perform checks on an edit
 $editor: Edit form (see includes/EditPage.php)
 $text: Contents of the edit box
-&section: Section being edited
-$error: Error message to return
+$section: Section being edited
+&$error: Error message to return
 
 Return false to halt editing; you'll need to handle error messages, etc. yourself.
 Alternatively, modifying $error and returning true will cause the contents of $error
