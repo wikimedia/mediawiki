@@ -40,8 +40,11 @@
 'tog-externaleditor'		=> 'Externen Editor als Standard benutzen',
 'tog-externaldiff'		=> 'Externes Diff-Programm als Standard benutzen',
 'tog-showjumplinks'		=> '„Wechseln-zu“-Links ermöglichen',
+'tog-uselivepreview'		=> 'Live-Vorschau nutzen (JavaScript) (experimentell)',
 'tog-autopatrol'		=> 'Markiere eigene Änderungen als geprüft',
 'tog-forceeditsummary'		=> 'Warne mich, wenn ich die Zusammenfassung beim Speichern vergesse',
+'tog-watchlisthideown'		=> 'eigene Edits auf der Beobachtungsliste ausblenden',
+'tog-watchlisthidebots'		=> 'Bot-Edits auf der Beobachtungsliste ausblenden',
 
 'underline-always' => 'Immer',
 'underline-never' => 'Niemals',
@@ -196,6 +199,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'nstab-special' => 'Spezial',
 'nstab-wp' => 'Portal',
 'nstab-image' => 'Bild',
+'nstab-mediawiki' => 'Nachricht',
 'nstab-template' => 'Vorlage',
 'nstab-help' => 'Hilfe',
 'nstab-category' => 'Kategorie',
@@ -432,6 +436,15 @@ Legende:
 (Aktuell) = Unterschied zur aktuellen Version,
 (Letzte) = Unterschied zur vorherigen Version,
 M = Kleine Änderung",
+
+'revdelete-legend'		=> 'Einschränkungen für die Versionen festlegen:',
+'revdelete-hide-text'		=> 'Verstecke den Text der Version',
+'revdelete-hide-comment'	=> 'Bearbeitungskommentar verstecken',
+'revdelete-hide-user'		=> 'Verstecke den Benutzernamen/die IP des Bearbeiters.',
+'revdelete-hide-restricted'	=> 'Diese Einschränkungen gelten auch für Administratoren (nicht nur für „normale“ Benutzer).',
+'revdelete-log'			=> 'Kommentar/Begründung (erscheint im Logbuch):',
+'revdelete-submit'		=> 'Auf ausgewählte Version anwenden',
+'revdelete-logentry'		=> 'Versionszugang geändert für [[$1]]',
 
 # Diffs
 #
@@ -957,6 +970,23 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 'userrights-groupsavailable' => 'Verfügbare Gruppen:',
 'userrights-groupshelp' => 'Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
 Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit Strg + Linksklick (bzw. Ctrl + Linksklick) entfernt werden.',
+
+# Groups
+'group'				=> 'Gruppe:',
+'group-bot'			=> 'Bots',
+'group-sysop'			=> 'Administratoren',
+'group-bureaucrat'		=> 'Bürokraten',
+'group-steward'			=> 'Stewards',
+'group-all'			=> '(all)',
+
+'group-bot-member'		=> 'Bot',
+'group-sysop-member'		=> 'Administrator',
+'group-bureaucrat-member'	=> 'Bürokrat',
+'group-steward-member'		=> 'Steward',
+
+'grouppage-bot'			=> 'Project:Bots',
+'grouppage-sysop'		=> 'Project:Administratoren',
+'grouppage-bureaucrat'		=> 'Project:Bürokraten',
 
 # Move page
 #
