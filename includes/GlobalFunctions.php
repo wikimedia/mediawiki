@@ -584,7 +584,7 @@ function wfMsgExt( $key, $options ) {
 		$parserOptions = new ParserOptions();
 		$parserOptions->setInterfaceMessage( true );
 		$parser->startExternalParse( $wgTitle, $parserOptions, OT_MSG );
-		$string = $parser->transformMsg( $string, $wgMsgParserOptions );
+		$string = $parser->transformMsg( $string, $parserOptions );
 	}
 
 	if ( in_array('escape', $options) ) {
