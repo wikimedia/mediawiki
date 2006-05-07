@@ -2004,7 +2004,9 @@ Please confirm that really want to recreate this article.',
 'displaytitle' => '(Link to this page as [[$1]])',
 
 # Separator for categories in page lists
+# Please don't localise this
 'catseparator' => '|',
+
 );
 
 
