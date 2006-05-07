@@ -1,6 +1,9 @@
 <?php
+
 # Copyright (C) 2004 Brion Vibber, lcrocker, Tim Starling,
 # Domas Mituzas, Ashar Voultoiz, Jens Frank, Zhengzhu.
+#
+# © 2006 Rob Church <robchur@gmail.com>
 #
 # http://www.mediawiki.org/
 #
@@ -185,17 +188,26 @@ class ListUsersPage extends QueryPage {
 				'ListUsersPage::formatResult' );
 			$groups = array();
 			while( $row = $dbr->fetchObject( $result ) ) {
-				$groups[] = User::getGroupMember( $row->ug_group );
+				$groups[$row->ug_group] = User::getGroupMember( $row->ug_group );
 			}
 			$dbr->freeResult( $result );
 
 			if( count( $groups ) > 0 ) {
-				$groups = $skin->makeLink( wfMsgForContent( 'administrators' ),
-						htmlspecialchars( implode( ', ', $groups ) ) );
-			}
+				foreach( $groups as $group => $desc ) {
+					if( $page = User::getGroupPage( $group ) ) {
+						$list[] = $skin->makeLinkObj( $page, htmlspecialchars( $desc ) );
+					} else {
+						$list[] = htmlspecialchars( $desc );
+					}
+				}
+				$groups = implode( ', ', $list );
+			} else {
+				$groups = '';
+			}				
+
 		}
 
-		return wfSpecialList($name, $groups);
+		return wfSpecialList( $name, $groups );
 	}
 }
 

@@ -693,6 +693,10 @@ $3 $9",
 "group-bureaucrat-member" => "ביורוקרט",
 "group-steward-member"    => "דייל",
 
+"grouppage-bot"        => "Project:בוט",
+"grouppage-sysop"      => "Project:מפעיל מערכת",
+"grouppage-bureaucrat" => "Project:ביורוקרט",
+
 "group-anon-name"       => "אנונימי",
 "group-anon-desc"       => "משתמשים אנונימיים",
 "group-loggedin-name"   => "משתמש",
