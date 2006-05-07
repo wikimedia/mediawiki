@@ -15,6 +15,7 @@
 "tog-highlightbroken"         => "Verweise auf leere Themen hervorheben",
 "tog-justify"                 => "Text als Blocksatz",
 "tog-hideminor"               => "Keine kleinen Änderungen in Letzte Änderungen anzeigen",
+'tog-extendwatchlist'         => "Erweiterte Beobachtungsliste",
 "tog-usenewrc"                => "Erweiterte letzte Änderungen (nicht für alle Browser geeignet)",
 "tog-numberheadings"          => "Überschriften automatisch nummerieren",
 "tog-showtoolbar" 	    => "Editier-Werkzeugleiste anzeigen",
@@ -110,6 +111,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "faq"			=> "FAQ",
 "faqpage"		=> "{{ns:project}}:Häufig_gestellte_Fragen",
 "edithelp"		=> "Bearbeitungshilfe",
+'newwindow'		=> '(öffnet ein neues Fenster)',
 "edithelppage"	=> "{{ns:project}}:Editierhilfe",
 "cancel"		=> "Abbruch",
 "qbfind"		=> "Finden",
@@ -158,15 +160,12 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "wikipediapage" => "Meta-Text",
 "userpage" => "Benutzerseite",
 "imagepage" => "Bildseite",
-"view" => "Ansicht",
 "viewtalkpage" => "Diskussion",
 "otherlanguages" => "Andere Sprachen",
 "redirectedfrom" => "(Weitergeleitet von $1)",
 "lastmodified"	=> "Diese Seite wurde zuletzt geändert um $1.",
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
 "copyright"	=> "Inhalt ist verfügbar unter der $1.",
-"poweredby"	=> "{{SITENAME}} benutzt [http://www.mediawiki.org/ MediaWiki], eine Open Source Wiki-Engine.",
-"printsubtitle" => "(Von {{SERVER}})",
 "protectedpage" => "Geschützte Seite",
 "administrators" => "Project:Administratoren",
 "sysoptitle"	=> "Sysop-Zugang notwendig",
@@ -195,7 +194,9 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'nstab-user' => 'Benutzerseite',
 'nstab-media' => 'Media',
 'nstab-special' => 'Spezial',
+'nstab-wp' => 'Portal',
 'nstab-image' => 'Bild',
+'nstab-template' => 'Vorlage',
 'nstab-help' => 'Hilfe',
 'nstab-category' => 'Kategorie',
 
@@ -247,7 +248,7 @@ MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".",
 "enterlockreason" => "Bitte geben Sie einen Grund ein, warum die Datenbank
 gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "readonlytext"	=> "Die {{SITENAME}}-Datenbank ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.",
-"missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben sie den Artikelnamen an.",
+"missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben Sie den Artikelnamen an.",
 "internalerror" => "Interner Fehler",
 "filecopyerror" => "Konnte Datei \"$1\" nicht nach \"$2\" kopieren.",
 "filerenameerror" => "Konnte Datei \"$1\" nicht nach \"$2\" umbenennen.",
@@ -285,7 +286,6 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "yourname"		=> "Ihr Benutzername",
 "yourpassword"	=> "Ihr Passwort",
 "yourpasswordagain" => "Passwort wiederholen",
-"newusersonly"	=> " (nur für neue Mitglieder)",
 "remembermypassword" => "Dauerhaftes Einloggen",
 "loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br />Bitte versuchen Sie es nochmal!",
 "alreadyloggedin" => "<strong>Benutzer $1, Sie sind bereits angemeldet!</strong><br />",
@@ -299,6 +299,7 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 'nologin'		=> 'Sie haben kein Benutzerkonto? $1.',
 'nologinlink'		=> 'Neues Benutzerkonto anlegen',
 "createaccount"	=> "Neues Benutzerkonto anlegen",
+'accountcreatedtext'	=> 'Der Benutzer für $1 wurde erstellt.',
 'gotaccountlink'	=> 'Anmelden',
 'gotaccount'		=> 'Sie haben bereits ein Benutzerkonto? $1.',
 "createaccountmail" => "über eMail",
@@ -319,6 +320,7 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporä
 "loginsuccess"	=> "Sie sind jetzt als \"$1\" bei {{SITENAME}} angemeldet.",
 "nosuchuser"	=> "Der Benutzername \"$1\" existiert nicht.
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
+'nosuchusershort'	=> 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
 "mailmypassword" => "Ein neues (temporäres) Passwort schicken",
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
@@ -334,6 +336,7 @@ Für die Authentifizierung melden Sie sich bitte mit dem per E-Mail geschickten 
 'invalidemailaddress'	=> 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte geben Sie eine Adresse in einem gültigen Format ein, oder leeren Sie das Feld.',
 'noemailprefs'	=> '<strong>Sie haben keine E-Mail-Adresse angegeben</strong>, die folgenden
 Funktionen sind zur Zeit deshalb nicht möglich.',
+'wrongpasswordempty'	=> 'Das eingegebene Passwort war leer. Bitte versuchen Sie es erneut.',
 
 # Edit pages
 #
@@ -473,7 +476,7 @@ Suche in Namensräumen :<br />
 $1<br />
 $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>",
-"blanknamespace" => "(Haupt-)",
+"blanknamespace" => "(Haupt)",
 
 # Preferences page
 #
@@ -528,18 +531,14 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br />
 Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[Project:Willkommen|Willkommensseite]] und [[Project:Erste Schritte|Erste Schritte]].<br />
 Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[Project:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
-"rcloaderr"		=> "Lade Letzte Änderungen",
 "rcnote"		=> "Hier sind die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. (<b>N</b> - Neuer Artikel; <b>M</b> - kleine Änderung)",
 "rcnotefrom"	=> "Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).",
 "rclistfrom"	=> "Zeige neue Änderungen seit $1",
 "rclinks"		=> "Zeige die letzten $1 Änderungen; zeige die letzten $2 Tage.",
 "diff"			=> "Unterschied",
 "hist"			=> "Versionen",
-"hide"			=> "Ausblenden",
-"show"			=> "Einblenden",
-"tableform"		=> "Tabelle",
-"listform"		=> "Liste",
-"nchanges"		=> "$1 Änderungen",
+"hide"			=> "ausblenden",
+"show"			=> "einblenden",
 "minoreditletter" => "M",
 "newpageletter" => "N",
 'number_of_watching_users_pageview' 	=> '[$1 Benutzer beobachten diese Seite]',
@@ -548,13 +547,11 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 # Upload
 #
 "upload"		=> "Hochladen",
-"uploadbtn"		=> "Dateie hochladen",
-"uploadlink"		=> "Bilder hochladen",
+"uploadbtn"		=> "Datei hochladen",
 "reupload"		=> "Erneut hochladen",
 "reuploaddesc"	=> "Zurück zur Hochladen-Seite.",
 "uploadnologin" => "Nicht angemeldet",
-"uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]],
- um Dateien hochladen zu können.",
+"uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]], um Dateien hochladen zu können.",
 'upload_directory_read_only'	=> 'Der Webserver hat keine Schreibrechte für das Upload-Verzeichnis ($1).',
 "uploaderror"	=> "Fehler beim Hochladen",
 "uploadtext"	=> "
@@ -645,6 +642,10 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 # List redirects
 'listredirects' => 'Weiterleitungsliste',
 
+# Unused templates
+'unusedtemplates' => 'Ungenutzte Vorlagen',
+'unusedtemplatestext' => 'Diese Seite listet alle Seiten im Vorlagen-Namespace auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+
 # Statistics
 #
 "statistics"	=> "Statistik",
@@ -653,16 +654,13 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 "sitestatstext" => "Es gibt insgesamt <b>$1</b> Seiten in der Datenbank.
 Das schliesst \"Diskussion\"-Seiten, Seiten über {{SITENAME}}, extrem kurze Artikel, Weiterleitungen und andere Seiten ein, die nicht als Artikel gelten können.
 Diese ausgenommen, gibt es <b>$2</b> Seiten, die als Artikel gelten können.<p>
-Es wurden insgesamt <b>$3</b>&times; Seiten aufgerufen, und <b>$4</b>&times; Seiten bearbeitet.
+Es wurden insgesamt <b>$3</b> mal Seiten aufgerufen, und <b>$4</b> mal Seiten bearbeitet.
 Daraus ergeben sich <b>$5</b> Bearbeitungen pro Seite, und <b>$6</b> Betrachtungen pro Bearbeitung.",
 "userstatstext" => "Es gibt <b>$1</b> registrierte Benutzer.
 Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 
 # Maintenance Page
 #
-"maintenance"		=> "Wartungsseite",
-"maintnancepagetext"	=> "Diese Seite enthält mehrere praktische Funktionen zur täglichen Wartung von {{SITENAME}}. Einige dieser Funktionen können die Datenbank stark beanspruchen, also bitte nicht nach jeder Änderung neu laden ;-)",
-"maintenancebacklink"	=> "Zurück zur Wartungsseite",
 "disambiguations"	=> "Begriffsklärungsseiten",
 "disambiguationspage"	=> "Project:Begriffsklärung",
 "disambiguationstext"	=> "Die folgenden Artikel verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br />Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
@@ -670,26 +668,16 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "doubleredirectstext"	=> "<b>Achtung:</b> Diese Liste kann \"falsche Positive\" enthalten. Das ist dann der Fall, wenn ein Redirect außer dem Redirect-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.",
 "brokenredirects"	=> "Kaputte Redirects",
 "brokenredirectstext"	=> "Die folgenden Redirects leiten zu einem nicht existierenden Artikel weiter",
-"selflinks"		=> "Seiten, die auf sich selbst verweisen",
-"selflinkstext"		=> "Die folgenden Artikel verweisen auf sich selbst, was sie nicht sollten.",
-"mispeelings"           => "Seiten mit falsch geschriebenen Worten",
-"mispeelingstext"       => "Die folgenden Seiten enthalten falsch geschriebene Worte, wie sie auf $1 definiert sind. In Klammern angegebene Worte geben die korrekte Schreibweise wieder.<p><strong>Zitate, Buchtitel u.ä. bitte im Originalzustand belassen, also ggf. in alter Rechtschreibung und mit Rechtschreibfehlern!</strong>",
-"mispeelingspage"       => "Liste von Tippfehlern",
-"missinglanguagelinks"  => "Fehlende Sprachverweise",
-"missinglanguagelinksbutton"    => "Zeige fehlende Sprachverweise nach",
-"missinglanguagelinkstext"      => "Diese Artikel haben <i>keinen</i> Verweis zu ihrem Gegenstück in $1. Redirects und Unterseiten werden <i>nicht</i> angezeigt.",
-
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Verwaiste Seiten",
 "lonelypages"	=> "Verwaiste Seiten",
 "unusedimages"	=> "Verwaiste Bilder",
 "popularpages"	=> "Beliebte Seiten",
 "nviews"		=> "$1 Abfragen",
 'wantedcategories'	=> 'Gewünschte Kategorien',
 "wantedpages"	=> "Gewünschte Seiten",
-'mostlinkedcategories'	=> 'Häufig verlintke Kategorien',
+'mostlinkedcategories'	=> 'Häufig verlinkte Kategorien',
 'mostcategories'	=> 'Meistbenutzte Kategorien',
 'mostimages'		=> 'Meistbenutzte Bilder',
 'mostrevisions'		=> 'Artikel mit den meisten Versionen',
@@ -700,10 +688,8 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "listusers"		=> "Benutzerverzeichnis",
 "specialpages"	=> "Spezialseiten",
 "spheading"		=> "Spezialseiten",
-"protectpage"	=> "Artikel schützen",
 "recentchangeslinked" => "Verlinkte Seiten",
 "rclsub"		=> "(auf Artikel von \"$1\")",
-"debug"			=> "Debug",
 "newpages"		=> "Neue Artikel",
 "ancientpages" => "Älteste Artikel",
 "movethispage"	=> "Artikel verschieben",
@@ -713,6 +699,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
 'newimages'	=> 'Neue Dateien',
+'showhidebots'	=> '(Bots $1)',
 'mimesearch'	=> 'Suche nach MIME-Typ',
 'mimetype'	=> 'MIME-Typ:',
 'download'	=> 'Herunterladen',
@@ -722,6 +709,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 'unusedcategories' => 'Verwaiste Kategorien',
 'unwatchedpages'	=> 'Nicht beobachtete Seiten',
 'categoriespagetext'	=> 'Die folgenden Kategorien existieren in diesem Wiki.',
+'noimages'	=> 'Keine Dateien gefunden.',
 
 # Special:Allpages
 'allpages'	=> 'Alle Artikel',
@@ -777,7 +765,7 @@ am Ende des Artikels.",
 "watchthispage"	=> "Seite beobachten",
 "unwatchthispage" => "Nicht mehr beobachten",
 "notanarticle"	=> "Kein Artikel",
-"watchnochange" => "Keine Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
+"watchnochange" => "Keiner Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
 "watchdetails" => "* Sie beobachten zur Zeit insgesamt $1 Artikel (Diskussionsseiten wurden hier nicht mitgezählt).
 * [[Special:Watchlist/edit|Gesamte Beobachtungsliste]] anzeigen und bearbeiten.",
 'wlheader-enotif' 		=> "* E-Mail-Benachrichtigungsdienst ist eingeschaltet.",
@@ -792,11 +780,9 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 "couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",
 "iteminvalidname" => "Problem mit dem Eintrag '$1', ungültiger Name...",
 'wlnote' => 'Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.',
-'wlshowlast' => 'Zeige die letzen $1 Stunden $2 Tage $3',
+'wlshowlast' => 'Zeige die letzen: $1 Stunden - $2 Tage - $3',
 'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
-'wlhideshowown'  => '$1 von mir bearbeitete Artikel.',
-'wlshow'         => 'Zeige',
-'wlhide'         => 'Verstecke',
+'wlhideshowbots'	=> '$1 von Bot-Änderungen.',
 
 'updatedmarker'			=> '(geändert)',
 'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
@@ -831,13 +817,14 @@ Hilfe zur Benutzung gibt {{SERVER}}{{localurl:WikiHelpdesk}}',
 "deletepage"	=> "Seite löschen",
 "confirm"		=> "Bestätigen",
 "excontent" => "Alter Inhalt: '$1'",
+'excontentauthor' => "Alter Inhalt: '$1' (einziger Bearbeiter war '$2')",
 "exbeforeblank" => "Inhalt vor dem Leeren der Seite: '$1'",
 "exblank" => "Seite war leer",
 "confirmdelete" => "Löschung bestätigen",
 "deletesub"		=> "(Lösche \"$1\")",
 "historywarning" => "WARNUNG: Die Seite die Sie zu löschen gedenken hat
 eine Versionsgeschichte:",
-"confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen permanent aus der Datenbank zu löschen.
+"confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen endgültig aus der Datenbank zu löschen.
 Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]] handeln.",
 "actioncomplete" => "Aktion beendet",
 "deletedtext"	=> "\"$1\" wurde gelöscht.
@@ -883,6 +870,10 @@ dieses Artikels erscheinen.",
 "undeletedarticle" => "\"$1\" wiederhergestellt",
 "undeletedtext"   => "Der Artikel [[:$1|$1]] wurde erfolgreich wiederhergestellt.",
 
+# Namespace form on various pages
+'namespace' => 'Namespace:',
+'invert' => 'Auswahl umkehren',
+
 # Contributions
 #
 "contributions"	=> "Benutzerbeiträge",
@@ -910,8 +901,12 @@ dieses Artikels erscheinen.",
 Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
 "ipaddress"		=> "IP-Adresse",
+'ipadressorusername'	=> 'IP-Adresse oder Benutzername',
 "ipbreason"		=> "Grund",
 "ipbsubmit"		=> "Adresse blockieren",
+'ipbother'		=> 'Andere Dauer',
+'ipboptions'		=> '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
+'ipbotheroption'	=> 'andere',
 "badipaddress"	=> "Die IP-Adresse hat ein falsches Format.",
 "blockipsuccesssub" => "Blockade erfolgreich",
 "blockipsuccesstext" => "Die IP-Adresse \"$1\" wurde blockiert.
@@ -921,6 +916,7 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "ipusubmit"		=> "Diese Adresse freigeben",
 "ipusuccess"	=> "IP-Adresse \"$1\" wurde freigegeben",
 "ipblocklist"	=> "Liste blockierter IP-Adressen",
+'ipblocklistempty'	=> 'Die Liste der Benutzersperrungen hat keine Einträge.',
 "blocklistline"	=> "$1, $2 blockierte $3 ($4)",
 "blocklink"		=> "blockieren",
 "unblocklink"	=> "freigeben",
@@ -948,19 +944,10 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 #
 
 # switching pan
-'groups-lookup-group' => 'Gruppenrechte verwalten',
-'groups-group-edit' => 'Bestehende Gruppen:',
-'editgroup' => 'Gruppe ändern',
-'addgroup' => 'Gruppe hinzufügen',
-
 'userrights' => 'Benutzerrechtsverwaltung',
-
 'userrights-lookup-user' => 'Verwalte Gruppenzugehörigkeit',
 'userrights-user-editname' => 'Benutzername:',
 'editusergroup' => 'Bearbeite Benutzerrechte',
-
-'groups-editgroup-name'     => 'Gruppe:',
-'addgrouplogentry'	=> 'Gruppe $2 hinzugefügt',
 
 # user groups editing
 #
@@ -990,6 +977,7 @@ um eine Seite zu verschieben.",
 "movepagebtn"	=> "Artikel verschieben",
 "pagemovedsub"	=> "Verschiebung erfolgreich",
 "pagemovedtext" => "Artikel \"[[$1]]\" wurde nach \"[[$2]]\" verschoben.",
+'movereason'	=> 'Begründung',
 "articleexists" => "Unter diesem Namen existiert bereits ein Artikel.
 Bitte wählen Sie einen anderen Namen.",
 "talkexists"    => "Die Seite selbst wurde erfolgreich verschoben, aber die
@@ -1028,7 +1016,9 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "makesysopok"           => "<b>Benutzer \"$1\" ist nun ein Administrator.</b>",
 "makesysopfail"         => "<b>Benutzer \"$1\" konnte nicht zu einem Administrator gemacht werden. (Haben Sie den Namen richtig geschrieben?)</b>",
 "makesysop"         => "Mache einen Benutzer zum Administrator",
-"bureaucratlogentry"	=> "Rechte für Benutzer \"$1\" auf \"$2\" gesetzt",
+'rightslog' => 'Rechte-Logbuch',
+'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
+"rightslogentry"	=> "Rechte für Benutzer \"$1\" auf \"$2\" gesetzt",
 "rights"		=> "Rechte:",
 "set_user_rights"	=> "Benutzerrechte setzen",
 "user_rights_set"	=> "<b>Benutzerrechte für \"$1\" aktualisiert</b>",
@@ -1036,34 +1026,42 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'already_sysop'		=> 'Dieser Benutzer ist bereits Administrator.',
 'already_bureaucrat'	=> 'Dieser Benutzer ist bereits Bürokrat.',
 'already_steward'	=> 'Dieser Benutzer ist bereits Steward.',
+'rightsnone'		=> '(nichts)',
 
 "1movedto2"		=> "$1 wurde nach $2 verschoben",
 "1movedto2_redir"	=> "[[$1]] wurde über eine Weiterleitung nach [[$2]] verschoben",
 "allmessages"		=> "Alle MediaWiki-Meldungen",
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
-'allmessagesdefault'	=> 'Standard Text',
+'allmessagesdefault'	=> 'Standardtext',
 'allmessagescurrent'	=> 'Aktueller Text',
+'allmessagesfilter'	=> 'Filter für Meldungsnamen:',
+'allmessagesmodified'	=> 'Nur geänderte zeigen',
 "thumbnail-more"	=> "vergrößern",
 "and"			=> "und",
-"rchide"		=> "in $4 form; $1 kleine Änderungen; $2 sekundäre Namensräume; $3 mehrfache Änderungen.",
 'rcshowhideminor' => 'Kleine Änderungen $1',
-'rcshowhidebots' => '$1 bots',
+'rcshowhidebots' => '$1 Bots',
 'rcshowhideliu' => 'Angemeldete Benutzer $1',
-'rcshowhideanons' => '$1 anonymous users',
-'rcshowhidepatr' => '$1 patrolled edits',
+'rcshowhideanons'	=> 'Anonyme Benutzer $1',
+'rcshowhidepatr'	=> 'Überprüfte Änderungen $1',
 'rcshowhidemine' => 'Eigene Beiträge $1',
-"rcliu"			=> "$1 Änderungen durch eingeloggte Benutzer",
 "uploaddisabled"	=> "Entschuldigung, das Hochladen ist deaktiviert.",
 "deadendpages"		=> "Sackgassenartikel",
 "intl"			=> "InterWikiLinks",
 "version"		=> "Version",
 "log"			=> "Logbücher",
+'logempty'		=> 'Keine passenden Einträge.',
 "protectlogpage"	=> "Seitenschutz-Logbuch",
 "protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
 "protectedarticle" => "Artikel [[$1]] geschützt",
 "unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
 "confirmprotecttext" => "Soll diese Seite wirklich geschützt werden?",
+'protect-text'		=> "Hier können Sie den Schutzstatus für die Seite <strong>$1</strong> einsehen und ändern. Bitte stellen Sie sicher, dass Sie die [[Project:Geschützte Seiten|Projekt-Richtlinien]] einhalten.",
+'protect-level-autoconfirmed'	=> 'nicht registrierte Benuter blocken',
+'protect-level-sysop'	=> 'nur Sysops',
+'restriction-edit'	=> 'bearbeiten',
+'restriction-move'	=> 'verschieben',
+'protect-unchain'	=> 'Verschiebeschutz ändern',
 "ipbexpiry"		=> "Ablaufzeit",
 "blocklogpage"		=> "Benutzerblockaden-Logbuch",
 "blocklogentry"		=> "blockiert [[Benutzer:$1]] - ([[Spezial:Contributions/$1|Beiträge]]) für einen Zeitraum von: $2",
@@ -1107,6 +1105,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "nocookieslogin" => "{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.",
 "subcategorycount" => "Diese Kategorie hat $1 Unterkategorien.",
 "categoryarticlecount" => "Dieser Kategorie gehören $1 Artikel an.",
+'categoryarticlecount' => 'Dieser Kategorie gehört $1 Artikel an.',
 # math
 'mw_math_png' => "Immer als PNG darstellen",
 'mw_math_simple' => "Einfaches TeX als HTML darstellen, sonst PNG",
@@ -1137,71 +1136,273 @@ sollte umgehend ein Administrator informiert werden!',
 'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
 'edit-externally-help' => 'Siehe [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] für weitere Informationen',
 
-# Metadata
-'exif-make'	=> 'Hersteller',     # Image input equipment manufacturer
-'exif-model'	=> 'Modell',         # Image input equipment model
-'exif-software' => 'Software',       # Software used
-'exif-artist'   => 'Fotograf',       # Person who created the image
-'exif-copyright'=> 'Copyright',      # Copyright holder
+# Exif tags
+'exif-aperturevalue'		=> 'Blendenwert',
+'exif-artist'			=> 'Fotograf',
+'exif-bitspersample'		=> 'Bits pro Farbkomponente',
+'exif-brightnessvalue'		=> 'Helligkeitswert',
+'exif-cfapattern'		=> 'CFA-Muster',
+'exif-colorspace'		=> 'Farbraum',
+'exif-colorspace-1'		=> 'sRGB',
+'exif-colorspace-ffff.h'	=> 'FFFF.H',
+'exif-componentsconfiguration'	=> 'Bedeutung einzelner Komponenten',
+'exif-componentsconfiguration-0'	=> 'Existiert nicht',
+'exif-componentsconfiguration-1'	=> 'Y',
+'exif-componentsconfiguration-2'	=> 'Cb',
+'exif-componentsconfiguration-3'	=> 'Cr',
+'exif-componentsconfiguration-4'	=> 'R',
+'exif-componentsconfiguration-5'	=> 'G',
+'exif-componentsconfiguration-6'	=> 'B',
+'exif-compressedbitsperpixel'	=> 'Komprimierte Bits pro Pixel',
+'exif-compression'		=> 'Art der Kompression',
+'exif-compression-1'		=> 'Unkomprimiert',
+'exif-compression-6'		=> 'JPEG',
+'exif-contrast'			=> 'Kontrast',
+'exif-contrast-0'		=> 'Normal',
+'exif-contrast-1'		=> 'Schwach',
+'exif-contrast-2'		=> 'Stark',
+'exif-copyright'		=> 'Urheberrechte',
+'exif-customrendered'		=> 'Benutzerdefinierte Bildverarbeitung',
+'exif-customrendered-0'		=> 'Standard',
+'exif-customrendered-1'		=> 'Benutzerdefiniert',
+'exif-datetime'			=> 'Speicherzeitpunkt',
+'exif-datetimedigitized'	=> 'Digitalisierungszeitpunkt',
+'exif-datetimeoriginal'		=> 'Erfassungszeitpunkt',
+'exif-devicesettingdescription'	=> 'Geräteeinstellung',
+'exif-digitalzoomratio'		=> 'Digitalzoom',
+'exif-exifversion'		=> 'Exif-Version',
+'exif-exposurebiasvalue'	=> 'Belichtungsvorgabe',
+'exif-exposureindex'		=> 'Belichtungsindex',
+'exif-exposuremode'		=> 'Belichtungsmodus',
+'exif-exposuremode-0'		=> 'Automatische Belichtung',
+'exif-exposuremode-1'		=> 'Manuelle Belichtung',
+'exif-exposuremode-2'		=> 'Belichtungsreihe',
+'exif-exposureprogram'		=> 'Belichtungsprogramm',
+'exif-exposureprogram-0'	=> 'Unbekannt',
+'exif-exposureprogram-1'	=> 'Manuell',
+'exif-exposureprogram-2'	=> 'Standardprogramm',
+'exif-exposureprogram-3'	=> 'Zeitautomatik',
+'exif-exposureprogram-4'	=> 'Blendenautomatik',
+'exif-exposureprogram-5'	=> 'Kreativprogramm mit Bevorzugung hoher Schärfentiefe',
+'exif-exposureprogram-6'	=> 'Action-Programm mit Bevorzugung einer kurzen Belichtungszeit',
+'exif-exposureprogram-7'	=> 'Portrait-Programm',
+'exif-exposureprogram-8'	=> 'Landschaftsaufnahmen',
+'exif-exposuretime'		=> 'Belichtungsdauer',
+'exif-exposuretime-format'	=> '$1 Sekunden ($2)',
+'exif-filesource'		=> 'Quelle der Datei',
+'exif-filesource-3'		=> 'DSC',
+'exif-flash'			=> 'Blitz',
+'exif-flashenergy'		=> 'Blitzstärke',
+'exif-flashpixversion'		=> 'unterstützte Flashpix-Version',
+'exif-fnumber'			=> 'Blende',
+'exif-fnumber-format'		=> 'f/$1',
+'exif-focallength'		=> 'Brennweite',
+'exif-focallength-format'	=> '$1 mm',
+'exif-focallengthin35mmfilm'	=> 'Brennweite (Kleinbildäquivalent)',
+'exif-focalplaneresolutionunit'	=> 'Einheit der Sensorauflösung',
+'exif-focalplaneresolutionunit-2'	=> 'Zoll',
+'exif-focalplanexresolution'	=> 'Sensorauflösung horizontal',
+'exif-focalplaneyresolution'	=> 'Sensorauflösung vertikal',
+'exif-gaincontrol'		=> 'Verstärkung',
+'exif-gaincontrol-0'		=> 'Keine',
+'exif-gaincontrol-1'		=> 'Gering',
+'exif-gaincontrol-2'		=> 'High gain up',
+'exif-gaincontrol-3'		=> 'Low gain down',
+'exif-gaincontrol-4'		=> 'High gain down',
+'exif-gpsaltitude'		=> 'Höhe',
+'exif-gpsaltituderef'		=> 'Bezugshöhe',
+'exif-gpsareainformation'	=> 'Name des GPS-Gebietes',
+'exif-gpsdatestamp'		=> 'GPS-Datum',
+'exif-gpsdestbearing'		=> 'Motivrichtung',
+'exif-gpsdestbearingref'	=> 'Referenz für Motivrichtung',
+'exif-gpsdestdistance'		=> 'Motiventfernung',
+'exif-gpsdestdistanceref'	=> 'Referenz für die Motiventfernung',
+'exif-gpsdestlatitude'		=> 'Breite',
+'exif-gpsdestlatituderef'	=> 'Referenz für die Breite',
+'exif-gpsdestlongitude'		=> 'Länge',
+'exif-gpsdestlongituderef'	=> 'Referenz für die Länge',
+#'exif-gpsdifferential'		=> 'GPS differential correction',
+#'exif-gpsdirection-m'		=> 'Magnetic direction',
+#'exif-gpsdirection-t'		=> 'True direction',
+#'exif-gpsdop'			=> 'Measurement precision',
+#'exif-gpsimgdirection'		=> 'Direction of image',
+#'exif-gpsimgdirectionref'	=> 'Reference for direction of image',
+'exif-gpslatitude'		=> 'Geografische Breite',
+'exif-gpslatitude-n'		=> 'nördl. Breite',
+'exif-gpslatitude-s'		=> 'südl. Breite',
+'exif-gpslatituderef'		=> 'nördl. oder südl. Breite',
+'exif-gpslongitude'		=> 'Geografische Länge',
+'exif-gpslongitude-e'		=> 'östl. Länge',
+'exif-gpslongitude-w'		=> 'westl. Länge',
+'exif-gpslongituderef'		=> 'östl. oder westl. Länge',
+#'exif-gpsmapdatum'		=> 'Geodetic survey data used',
+'exif-gpsmeasuremode'		=> 'Messverfahren',
+'exif-gpsmeasuremode-2'		=> '2-dimensionale Messung',
+'exif-gpsmeasuremode-3'		=> '3-dimensionale Messung',
+#'exif-gpsprocessingmethod'	=> 'Name of GPS processing method',
+'exif-gpssatellites'		=> 'Für die Messung benutzte Satelliten',
+'exif-gpsspeed'			=> 'Geschwindigkeit des GPS Empfängers',
+'exif-gpsspeed-k'		=> 'km/h',
+'exif-gpsspeed-m'		=> 'mph',
+'exif-gpsspeed-n'		=> 'Knoten',
+'exif-gpsspeedref'		=> 'Geschwindigkeitseinheit',
+'exif-gpsstatus'		=> 'Empfänger Status',
+#'exif-gpsstatus-a'		=> 'Measurement in progress',
+#'exif-gpsstatus-v'		=> 'Measurement interoperability',
+'exif-gpstimestamp'		=> 'GPS-Zeit ([[Internationale Atomzeit|TAI]])',
+'exif-gpstrack'			=> 'Bewegungsrichtung',
+#'exif-gpstrackref'		=> 'Reference for direction of movement',
+#'exif-gpsversionid'		=> 'GPS tag version',
+'exif-imagedescription'		=> 'Bildtitel',
+'exif-imagelength'		=> 'Länge',
+'exif-imageuniqueid'		=> 'Bild-ID',
+'exif-imagewidth'		=> 'Breite',
+'exif-isospeedratings'		=> 'Film- oder Sensorempfindlichkeit (ISO)',
+'exif-jpeginterchangeformat'	=> 'Offset zu JPEG SOI',
+'exif-jpeginterchangeformatlength'	=> 'Größe der JPEG-Daten in Bytes',
+'exif-lightsource'		=> 'Lichtquelle',
+'exif-lightsource-0'		=> 'Unbekannt',
+'exif-lightsource-1'		=> 'Tageslicht',
+'exif-lightsource-10'		=> 'Bewölkt',
+'exif-lightsource-11'		=> 'Schatten',
+#'exif-lightsource-12'		=> 'Daylight fluorescent (D 5700 – 7100K)',
+#'exif-lightsource-13'		=> 'Day white fluorescent (N 4600 – 5400K)',
+#'exif-lightsource-14'		=> 'Cool white fluorescent (W 3900 – 4500K)',
+#'exif-lightsource-15'		=> 'White fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-17'		=> 'Standardlicht A',
+'exif-lightsource-18'		=> 'Standardlicht B',
+'exif-lightsource-19'		=> 'Standardlicht C',
+#'exif-lightsource-2'		=> 'Fluorescent',
+'exif-lightsource-20'		=> 'D55',
+'exif-lightsource-21'		=> 'D65',
+'exif-lightsource-22'		=> 'D75',
+'exif-lightsource-23'		=> 'D50',
+'exif-lightsource-24'		=> 'ISO studio tungsten',
+'exif-lightsource-255'		=> 'Andere Lichtquelle',
+'exif-lightsource-3'		=> 'Glühlampe',
+'exif-lightsource-4'		=> 'Blitz',
+'exif-lightsource-9'		=> 'Schönes Wetter',
+'exif-make'			=> 'Hersteller',
+'exif-make-value'		=> '[[$1]]',
+'exif-makernote'		=> 'Herstellernotiz',
+'exif-maxaperturevalue'		=> 'Größte Blende',
+'exif-meteringmode'		=> 'Messverfahren',
+'exif-meteringmode-0'		=> 'Unbekannt',
+'exif-meteringmode-1'		=> 'Durchschnittlich',
+'exif-meteringmode-2'		=> 'Mittenzentriert',
+'exif-meteringmode-255'		=> 'Unbekannt',
+'exif-meteringmode-3'		=> 'Spotmessung',
+'exif-meteringmode-4'		=> 'Mehrfachspotmessung',
+'exif-meteringmode-5'		=> 'Muster',
+'exif-meteringmode-6'		=> 'Bildteil',
+'exif-model'			=> 'Modell',
+'exif-model-value'		=> '$1',
+'exif-oecf'			=> 'Optoelektronischer Umrechnungsfaktor',
+'exif-orientation'		=> 'Kameraausrichtung',
+'exif-orientation-1'		=> 'Normal',
+'exif-orientation-2'		=> 'Horizontal gedreht',
+'exif-orientation-3'		=> 'Um 180° gedreht',
+'exif-orientation-4'		=> 'Vertikal gedreht',
+'exif-orientation-5'		=> 'Entgegen dem Uhrzeigersinn um 90° gedreht und vertikal gewendet',
+'exif-orientation-6'		=> 'Um 90° in Uhrzeigersinn gedreht',
+'exif-orientation-7'		=> 'Um 90° in Uhrzeigersinn gedreht und vertikal gewendet',
+'exif-orientation-8'		=> 'Um 90° entgegen dem Uhrzeigersinn gedreht',
+'exif-photometricinterpretation-2'	=> 'RGB',
+'exif-photometricinterpretation-6'	=> 'YCbCr',
+#'exif-photometricinterpretation'	=> 'Pixel composition',
+'exif-pixelxdimension'		=> 'Gültige Bildhöhe',
+'exif-pixelydimension'		=> 'Gültige Bildbreite',
+'exif-planarconfiguration'	=> 'Datenausrichtung',
+#'exif-planarconfiguration-1'	=> 'chunky format',
+#'exif-planarconfiguration-2'	=> 'planar format',
+#'exif-primarychromaticities'	=> 'Chromaticities of primarities',
+'exif-referenceblackwhite'	=> 'Schwarz/Weiß-Referenzpunkte',
+'exif-relatedsoundfile'		=> 'Zugehörige Tondatei',
+'exif-resolutionunit'		=> 'Masseinheit der Auflösung',
+'exif-rowsperstrip'		=> 'Anzahl Zeilen pro Streifen',
+#'exif-samplesperpixel'		=> 'Number of components',
+'exif-saturation'		=> 'Sättigung',
+'exif-saturation-0'		=> 'Normal',
+'exif-saturation-1'		=> 'Gering',
+'exif-saturation-2'		=> 'Hoch',
+'exif-scenecapturetype'		=> 'Aufnahmeart',
+'exif-scenecapturetype-0'	=> 'Standard',
+'exif-scenecapturetype-1'	=> 'Landschaft',
+'exif-scenecapturetype-2'	=> 'Portrait',
+'exif-scenecapturetype-3'	=> 'Nachtszene',
+'exif-scenetype'		=> 'Szenentyp',
+'exif-scenetype-1'		=> 'Normal',
+'exif-sensingmethod'		=> 'Messmethode',
+'exif-sensingmethod-1'		=> 'Undefiniert',
+'exif-sensingmethod-2'		=> 'Ein-Chip-Farbsensor',
+'exif-sensingmethod-3'		=> 'Zwei-Chip-Farbsensor',
+'exif-sensingmethod-4'		=> 'Drei-Chip-Farbsensor',
+#'exif-sensingmethod-5'		=> 'Color sequential area sensor',
+#'exif-sensingmethod-7'		=> 'Trilinear sensor',
+#'exif-sensingmethod-8'		=> 'Color sequential linear sensor',
+'exif-sharpness'		=> 'Schärfe',
+'exif-sharpness-0'		=> 'Normal',
+'exif-sharpness-1'		=> 'Gering',
+'exif-sharpness-2'		=> 'Stark',
+'exif-shutterspeedvalue'	=> 'Belichtungszeitwert',
+'exif-software'			=> 'Software',
+'exif-software-value'		=> '$1',
+#'exif-spatialfrequencyresponse'	=> 'Spatial frequency response',
+'exif-spectralsensitivity'	=> 'Spectral Sensitivity',
+#'exif-stripbytecounts'		=> 'Bytes per compressed strip',
+'exif-stripoffsets'		=> 'Bilddaten-Versatz',
+#'exif-subjectarea'		=> 'Subject area',
+'exif-subjectdistance'		=> 'Entfernung',
+'exif-subjectdistance-value'	=> '$1 Meter',
+'exif-subjectdistancerange'	=> 'Motiventfernung',
+'exif-subjectdistancerange-0'	=> 'Unbekannt',
+'exif-subjectdistancerange-1'	=> 'Makro',
+'exif-subjectdistancerange-2'	=> 'Nah',
+'exif-subjectdistancerange-3'	=> 'Entfernt',
+'exif-subjectlocation'		=> 'Motivstandort',
+'exif-subsectime'		=> 'Speicherzeitpunkt (1/100 s)',
+'exif-subsectimedigitized'	=> 'Digitalisierungszeitpunkt (1/100 s)',
+'exif-subsectimeoriginal'	=> 'Erfassungszeitpunkt (1/100 s',
+'exif-transferfunction'		=> 'Übertragungsfunktion',
+'exif-usercomment'		=> 'Benutzerkommentare',
+'exif-whitebalance'		=> 'Weißabgleich',
+'exif-whitebalance-0'		=> 'Automatisch',
+'exif-whitebalance-1'		=> 'Manuell',
+'exif-whitepoint'		=> 'Manuell mit Messung',
+'exif-xresolution'		=> 'Horizontale Auflösung',
+'exif-xyresolution-c'		=> '$1 dpc',
+'exif-xyresolution-i'		=> '$1 dpi',
+'exif-ycbcrcoefficients'	=> 'YCbCr-Koeffizienten',
+'exif-ycbcrpositioning'		=> 'Y und C Positionierung',
+#'exif-ycbcrsubsampling'	=> 'Subsampling ratio of Y to C',
+'exif-yresolution'		=> 'Vertikale Auflösung',
 
-# Tags relating to image structure
-'exif-imagewidth'  => 'Breite',      # Image width
-'exif-imagelength' => 'Länge',      # Image height
-'exif-orientation' => 'Orientierung',# Orientation of image
-'exif-xresolution' => 'Horizontale Auflösung',            # Image resolution in width direction
-'exif-yresolution' => 'Vertikale Auflösung',              # Image resolution in height direction
-'exif-resolutionunit' => 'Masseinheit der Auflösung',     # Unit of X and Y resolution
-
-# Tags relating to image data characteristics
-'exif-ycbcrcoefficients' => 'YCbCr-Koeffizienten',              # Color space transformation matrix coefficients
-'exif-referenceblackwhite' => 'Schwarz/Weiß-Referenzpunkte',  # Pair of black and white reference values
-
-# Tags relating to Image Data Characteristics
-'exif-colorspace' => 'Farbraum',                                # Color space information
-
-# Tags relating to picture-taking conditions
-'exif-exposuretime' => 'Belichtungsdauer',                 # Exposure time
-'exif-fnumber' => 'F-Wert',                      # F Number
-'exif-exposureprogram' => 'Belichtungsprogramm',              # Exposure Program
-'exif-spectralsensitivity' => 'Spectral Sensitivity',          # Spectral sensitivity
-'exif-isospeedratings' => 'Filmempfindlichkeit (ISO)',              # ISO speed rating
-'exif-shutterspeedvalue' => 'Shutter Speed Value',            # Shutter speed
-'exif-aperturevalue' => 'Blendenwert',                # Aperture
-'exif-brightnessvalue' => 'Brightness Value',              # Brightness
-'exif-exposurebiasvalue' => 'Belichtungsvorgabe',            # Exposure bias
-'exif-maxaperturevalue' => 'Größte Blende',             # Maximum land aperture
-'exif-subjectdistance' => 'Entfernung',              # Subject distance
-'exif-meteringmode' => 'Messverfahren',                 # Metering mode
-'exif-lightsource' => 'Lichtquelle',                  # Light source
-'exif-flash' => 'Blitz',                        # Flash
-'exif-focallength' => 'Brennweite',                  # Lens focal length
-'exif-flashenergy' => 'Blitzstärke',                  # Flash energy
-'exif-exposuremode' => 'Belichtungsmodus',                 # Exposure mode
-'exif-whitebalance' => 'Weißabgleich',                 # White Balance
-'exif-focallengthin35mmfilm' => 'Brennweite (Kleinbildäquivalent)',        # Focal length in 35 mm film
-'exif-contrast' => 'Kontrast',                     # Contrast
-'exif-saturation'=> 'Sättigung',                   # Saturation
-'exif-sharpness' => 'Schärfe',                    # Sharpness
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall'	=> 'alle',
+'imagelistall'		=> 'alle',
+'watchlistall1'		=> 'alle',
+'watchlistall2'		=> 'alle',
+'namespacesall'		=> 'alle',
 
 # E-mail address confirmation
 'confirmemail' => 'E-Mail-Adressenbestätigung (Authentifizierung)',
-'confirmemail_text' => "Diese Wiki erfordert, dass Sie Ihre E-Mailadresse bestätigen (authentifizieren),
-bevor Sie die erweiterten Mailfunktionen benutzen können. Ein Klick auf die Schaltfläche unten sendet eine E-Mail zu Ihnen.
-Diese Mail enthält einen Link mit einem Kode; durch Klicken auf diesen Link bestätigen Sie, dass Ihre Adresse gültig ist.",
+'confirmemail_text' => "Dieses Wiki erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren),
+bevor Sie die erweiterten Mailfunktionen benutzen können. Ein Klick auf die Schaltfläche unten sendet eine E-Mail an Sie.
+Diese Mail enthält einen Link mit einem Code; durch Klicken auf diesen Link bestätigen Sie, dass Ihre Adresse gültig ist.",
 'confirmemail_send' => 'Anforderung einer E-Mail zur Adressenbestätigung',
 'confirmemail_sent' => 'Es wurde Ihnen eine Mail zur Adressenbestätigung gesendet.',
 'confirmemail_sendfailed' => 'Could not send confirmation mail due to misconfigured server or invalid characters in e-mail address.',
 'confirmemail_invalid' => 'Ungültiger Bestätigungskode. Die Gültigkeitsdauer des Kodes ist eventuell abgelaufen.',
-'confirmemail_success' => 'Ihre E-Mailadresse wurde bestätigt. Sie können sich jetzt einloggen.',
-'confirmemail_loggedin' => 'Ihre E-Mailadresse ist nun bestätigt.',
-'confirmemail_error' => 'Es gab einen Fehler bei der Bestätigung Ihrer E-Mailadresse.',
+'confirmemail_success' => 'Ihre E-Mail-Adresse wurde bestätigt. Sie können sich jetzt einloggen.',
+'confirmemail_loggedin' => 'Ihre E-Mail-Adresse ist nun bestätigt.',
+'confirmemail_error' => 'Es gab einen Fehler bei der Bestätigung Ihrer E-Mail-Adresse.',
 
 'confirmemail_subject' => '{{SITENAME}} E-Mail-Adressenbestätigung (Authentifizierung)',
 'confirmemail_body' 	=> "Jemand, vielleicht Sie, hat von IP-Adresse $1
-ein Benutzerkonto \"$2\" mit dieser E-Mailadresse bei {{SITENAME}} angemeldet.
+ein Benutzerkonto \"$2\" mit dieser E-Mail-Adresse bei {{SITENAME}} angemeldet.
 
 Zur Bestätigung, dass dieses Konto wirklich Ihnen gehört, und um die erweiterten
-E-Mailfunktionen für Sie bei {{SITENAME}} einzuschalten, öffnen Sie bitte den folgenden Link
+E-Mail-Funktionen für Sie bei {{SITENAME}} einzuschalten, öffnen Sie bitte den folgenden Link
 in Ihrem Browser:
 
 $3
@@ -1215,6 +1416,57 @@ Der Bestätigungskode läuft am $4 ab.
 'articletitles' => "Artikel, die mit ''$1'' beginnen",
 'hideresults' => 'Verbergen',
 
+# Monobook.js: tooltips and access keys for monobook
+'Monobook.js' => '/* tooltips and access keys */
+ta = new Object();
+ta[\'pt-userpage\'] = new Array(\'.\',\'Meine Benutzerseite\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Benutzerseite der IP-Adresse von der aus Sie Änderungen durchführen\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Meine Diskussion\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Diskussion über Änderungen von dieser IP-Adresse\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Meine Einstellungen\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'Liste von Seiten die Sie auf Änderungen überwachen.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'Liste meiner Beiträge\');
+ta[\'pt-login\'] = new Array(\'o\',\'Sich einzuloggen wird zwar gerne gesehen, ist aber keine Pflicht.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'Sich einzuloggen wird zwar gerne gesehen, ist aber keine Pflicht.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Abmelden\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Diskussion(en) zum Artikel\');
+ta[\'ca-edit\'] = new Array(\'e\',\'Artikel bearbeiten. Bitte nutzen Sie vor dem Speichern die Vorschaufunktion.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Einen Kommentar zu dieser Diskussion hinzufügen.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Diese Seite ist geschützt. Sie können sich den Quelltext ansehen.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Vorherige Versionen dieser Seite\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Diese Seite schützen\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Diese Seite löschen\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Einträge wiederherstellen, bevor diese Seite gelöscht wurde\');
+ta[\'ca-move\'] = new Array(\'m\',\'Diese Seite verschieben\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Diese Seite zu Ihrer Beobachtungsliste hinzufügen\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Diese Seite von Ihrer Beobachtungsliste entfernen\');
+ta[\'search\'] = new Array(\'f\',\'Dieses Wiki durchsuchen\');
+ta[\'p-logo\'] = new Array(\'\',\'Hauptseite\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Hauptseite anzeigen\');
+ta[\'n-portal\'] = new Array(\'\',\'Über das Projekt, was Sie tun können, wo was zu finden ist\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Hintergrundinformationen zu aktuellen Ereignissen\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Liste der letzten Änderungen in diesem Wiki.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Zufälliger Artikel\');
+ta[\'n-help\'] = new Array(\'\',\'Hilfeseite anzeigen.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Unterstützen Sie uns\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Liste aller Seiten, die hierher zeigen\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Letzte Änderungen an Seiten, die von hier verlinkt sind\');
+ta[\'feed-rss\'] = new Array(\'\',\'RSS-Feed für diese Seite\');
+ta[\'feed-atom\'] = new Array(\'\',\'Atom-Feed für diese Seite\');
+ta[\'t-contributions\'] = new Array(\'\',\'Liste der Beiträge von diesem Benutzer ansehen\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Eine E-Mail an diesen Benutzer senden\');
+ta[\'t-upload\'] = new Array(\'u\',\'Bilder oder Mediendateien hochladen\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'Liste aller Spezialseiten\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'Artikel anzeigen\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'Benutzerseite anzeigen\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'Mediendateienseite anzeigen\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\');
+ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Projektseite anzeigen\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'Bilderseite anzeigen\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vorlage anzeigen\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Hilfeseite anzeigen\');
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 
 );
 
