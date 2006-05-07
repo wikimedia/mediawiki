@@ -501,7 +501,7 @@ class UndeleteForm {
 			#$wgOut->addWikiText( wfMsg( 'undeleteextrahelp' ) );
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
-			$table .= '<table><tr>';
+			$table = '<table><tr>';
 			$table .= '<td colspan="2">' . wfMsgWikiHtml( 'undeleteextrahelp' ) . '</td></tr><tr>';
 			$table .= '<td align="right"><strong>' . wfMsgHtml( 'undeletecomment' ) . '</strong></td>';
 			$table .= '<td>' . wfInput( 'wpComment', 50, $this->mComment ) . '</td>';
