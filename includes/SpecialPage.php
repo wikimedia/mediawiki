@@ -298,11 +298,12 @@ class SpecialPage
 			if ( $including && !$page->includable() ) {
 				wfProfileOut( $fname );
 				return false;
-			}
-			if($par !== NULL) {
-				$wgTitle = Title::makeTitle( NS_SPECIAL, $name );
-			} else {
-				$wgTitle = $title;
+			} elseif ( !$including ) {
+				if($par !== NULL) {
+					$wgTitle = Title::makeTitle( NS_SPECIAL, $name );
+				} else {
+					$wgTitle = $title;
+				}
 			}
 			$page->including( $including );
 
