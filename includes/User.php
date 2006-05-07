@@ -1924,6 +1924,24 @@ class User {
 			array_keys( $wgGroupPermissions ),
 			array( '*', 'user', 'autoconfirmed' ) );
 	}
+	
+	/**
+	 * Get the title of a page describing a particular group
+	 *
+	 * @param $group Name of the group
+	 * @return mixed
+	 */
+	function getGroupPage( $group ) {
+		$page = wfMsgForContent( 'grouppage-' . $group );
+		if( !wfEmptyMsg( 'grouppage-' . $group, $page ) ) {
+			$title = Title::newFromText( $page );
+			if( is_object( $title ) )
+				return $title;
+		}
+		return false;
+	}
+	
+	
 }
 
 ?>
