@@ -547,7 +547,7 @@ class UndeleteForm {
 			# Slip in the hidden controls here
 			$misc  = wfHidden( 'target', $this->mTarget );
 			$misc .= wfHidden( 'wpEditToken', $wgUser->editToken() );
-			$wgOut->addHtml( $misc ) . '</form>';
+			$wgOut->addHtml( $misc . '</form>' );
 		}
 
 		return true;
