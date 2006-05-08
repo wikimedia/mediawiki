@@ -50,7 +50,7 @@ require_once('LanguageUtf8.php');
 ) + $wgSkinNamesEn;
 
 /* private */ $wgMagicWordsBe = array(
-	MAG_REDIRECT             => array( 0,    '#redirect', '#перанакіраваньне' ),
+	MAG_REDIRECT             => array( 0,    '#перанакіраваньне', '#redirect' ),
 	MAG_NOTOC                => array( 0,    '__NOTOC__', '__БЯЗЬ_ЗЬМЕСТУ__' ),
 	MAG_FORCETOC             => array( 0,    '__FORCETOC__', '__ЗЬМЕСТ_ПРЫМУСАМ__' ),
 	MAG_TOC                  => array( 0,    '__TOC__', '__ЗЬМЕСТ__' ),
