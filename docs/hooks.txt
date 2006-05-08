@@ -372,6 +372,12 @@ $text: the text that will be displayed, in HTML (string)
   this hook and append its values to the key.
 $hash: reference to a hash key string which can be modified
 
+'PersonalUrls': Alter the user-specific navigation links (e.g. "my page,
+my talk page, my contributions" etc).
+
+&$personal_urls: Array of link specifiers (see SkinTemplate.php)
+$title: Title object representing the current page
+
 'TitleMoveComplete': after moving an article (title)
 $old: old title
 $nt: new title
