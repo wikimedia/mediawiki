@@ -43,7 +43,7 @@ class UnusedtemplatesPage extends QueryPage {
 			Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' ),
 			wfMsgHtml( 'unusedtemplateswlh' ),
 			'target=' . $title->getPrefixedUrl() );
-		return( $pageLink . ' (' . $wlhLink . ')' );
+		return wfSpecialList( $pageLink, $wlhLink );
 	}
 
 	function getPageHeader() {

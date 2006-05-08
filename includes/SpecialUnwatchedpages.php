@@ -51,7 +51,7 @@ class UnwatchedpagesPage extends QueryPage {
 		$plink = $skin->makeKnownLinkObj( $nt, htmlspecialchars( $text ) );
 		$wlink = $skin->makeKnownLinkObj( $nt, wfMsgHtml( 'watch' ), 'action=watch' );
 
-		return $plink . ' (' . $wlink . ')';
+		return wfSpecialList( $plink, $wlink );
 	}
 }
 
