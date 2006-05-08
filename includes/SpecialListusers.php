@@ -82,7 +82,7 @@ class ListUsersPage extends QueryPage {
 		$self = $this->getTitle();
 
 		# Form tag
-		$out = wfElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
+		$out = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
 		
 		# Group drop-down list
 		$out .= wfElement( 'label', array( 'for' => 'group' ), wfMsg( 'group' ) ) . ' ';
