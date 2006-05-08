@@ -48,17 +48,25 @@ class UnusedimagesPage extends QueryPage {
 		$title = Title::makeTitle( NS_IMAGE, $result->title );
 
 		$imageUrl = htmlspecialchars( Image::imageUrl( $result->title ) );
+		$dirmark = $wgContLang->getDirMark(); // To keep text in correct order
+
 		$return =
 		# The 'desc' linking to the image page
-		'('.$skin->makeKnownLinkObj( $title, wfMsg('imgdesc') ).') '
+		'('.$skin->makeKnownLinkObj( $title, wfMsg('imgdesc') ).') ' . $dirmark .
+
 		# Link to the image itself
-		. '<a href="' . $imageUrl . '">' . htmlspecialchars( $title->getText() ) . '</a>'
+		'<a href="' . $imageUrl . '">' . htmlspecialchars( $title->getText() ) .
+			'</a> . . ' . $dirmark .
+
 		# Last modified date
-		. ' . . '.$wgLang->timeanddate($result->value)
+		$wgLang->timeanddate($result->value) . ' . . ' . $dirmark .
+
 		# Link to username
-		. ' . . '.$skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text)
+		$skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ),
+			$result->img_user_text) . $dirmark .
+
 		# If there is a description, show it
-		. $skin->commentBlock( $wgContLang->convert( $result->img_description ) );
+		$skin->commentBlock( $wgContLang->convert( $result->img_description ) );
 
 		return $return;
 	}

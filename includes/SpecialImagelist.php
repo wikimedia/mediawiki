@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialImagelist() {
-	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMiserMode;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgMiserMode;
 
 	$sort = $wgRequest->getVal( 'sort' );
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
@@ -95,6 +95,8 @@ function wfSpecialImagelist() {
 			$ul = $sk->makeLinkObj( Title::makeTitle( NS_USER, $ut ), $ut );
 		}
 
+		$dirmark = $wgContLang->getDirMark(); // to keep text in correct direction
+
 		$ilink = "<a href=\"" . htmlspecialchars( Image::imageUrl( $name ) ) .
 		  "\">" . strtr(htmlspecialchars( $name ), '_', ' ') . "</a>";
 
@@ -107,7 +109,8 @@ function wfSpecialImagelist() {
 		$date = $wgLang->timeanddate( $s->img_timestamp, true );
 		$comment = $sk->commentBlock( $s->img_description );
 
-		$l = "({$desc}) {$ilink} . . {$nb} . . {$ul} . . {$date} {$comment}<br />\n";
+		$l = "({$desc}) {$dirmark}{$ilink} . . {$dirmark}{$nb} . . {$dirmark}{$ul}".
+			" . . {$dirmark}{$date} . . {$dirmark}{$comment}<br />\n";
 		$wgOut->addHTML( $l );
 	}
 
