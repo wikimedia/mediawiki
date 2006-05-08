@@ -38,14 +38,14 @@ class MostimagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
+		global $wgLang, $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
 		$plink = $skin->makeKnownLink( $nt->getPrefixedText(), $text );
 
-		$nl = wfMsg( 'nlinks', $result->value );
+		$nl = wfMsg( 'nlinks', $wgLang->formatNum ( $result->value ) );
 		$nlink = $skin->makeKnownLink( $nt->getPrefixedText() . '#filelinks', $nl );
 
 		return wfSpecialList($plink, $nlink);
