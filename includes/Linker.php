@@ -804,8 +804,8 @@ class Linker {
 	 * @private
 	 */
 	function userTalkLink( $userId, $userText ) {
-		global $wgContLang;
-		$talkname = $wgContLang->getNsText( NS_TALK ); # use the shorter name
+		global $wgLang;
+		$talkname = $wgLang->getNsText( NS_TALK ); # use the shorter name
 
 		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
 		$userTalkLink = $this->makeLinkObj( $userTalkPage, $talkname );
