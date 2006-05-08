@@ -502,24 +502,21 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		$note = wfMsg( 'rcnote', $wgLang->formatNum( $options['limit'] ), $wgLang->formatNum( $options['days'] ), $wgLang->timeAndDate( wfTimestampNow(), true ) );
 
 	// limit links
-	$cl = '';
 	$options_limit = array(50, 100, 250, 500);
-	$i = 0;
-	while ( $i+1 < count($options_limit) ) {
-		$cl .=  makeOptionsLink( $options_limit[$i], array( 'limit' => $options_limit[$i] ), $nondefaults) . ' | ' ;
-		$i++;
+	foreach( $options_limit as $value ) {
+		$cl[] = makeOptionsLink( $wgLang->formatNum( $value ),
+			array( 'limit' => $value ), $nondefaults) ;
 	}
-	$cl .=  makeOptionsLink( $options_limit[$i], array( 'limit' => $options_limit[$i] ), $nondefaults) ;
+	$cl = implode( ' | ', $cl);
 
 	// day links, reset 'from' to none
-	$dl = '';
 	$options_days = array(1, 3, 7, 14, 30);
-	$i = 0;
-	while ( $i+1 < count($options_days) ) {
-		$dl .=  makeOptionsLink( $options_days[$i], array( 'days' => $options_days[$i], 'from' => '' ), $nondefaults) . ' | ' ;
-		$i++;
+	foreach( $options_days as $value ) {
+		$dl[] = makeOptionsLink( $wgLang->formatNum( $value ),
+			array( 'days' => $value, 'from' => ''  ), $nondefaults) ;
 	}
-	$dl .=  makeOptionsLink( $options_days[$i], array( 'days' => $options_days[$i], 'from' => '' ), $nondefaults) ;
+	$dl = implode( ' | ', $dl);
+
 
 	// show/hide links
 	$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));

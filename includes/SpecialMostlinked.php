@@ -77,9 +77,11 @@ class MostlinkedPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
+		global $wgLang;
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		$link = $skin->makeLinkObj( $title );
-		$wlh = $this->makeWlhLink( $title, wfMsgHtml( 'nlinks', $result->value ), $skin );
+		$wlh = $this->makeWlhLink( $title, wfMsgHtml( 'nlinks',
+			$wgLang->formatNum( $result->value ) ), $skin );
 		return wfSpecialList( $link, $wlh );
 	}
 }
