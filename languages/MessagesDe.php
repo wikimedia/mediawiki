@@ -143,6 +143,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "history"		=> "Versionen",
 "history_short" => "Versionen",
 "printableversion" => "Druckversion",
+'print' => 'Drucken',
 "editthispage"	=> "Seite bearbeiten",
 "delete" => "löschen",
 "deletethispage" => "Diese Seite löschen",
@@ -159,6 +160,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "postcomment" => "Kommentar hinzufügen",
 "addsection"   => "+",
 "articlepage"	=> "Artikel",
+'subjectpage'	=> 'Betreff anzeigen',
 "toolbox" => "Werkzeuge",
 "wikipediapage" => "Meta-Text",
 "userpage" => "Benutzerseite",
@@ -171,13 +173,20 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "copyright"	=> "Inhalt ist verfügbar unter der $1.",
 "protectedpage" => "Geschützte Seite",
 "administrators" => "Project:Administratoren",
+'jumpto'		=> 'Wechseln zu:',
+'jumptonavigation'	=> 'Navigation',
+'jumptosearch'		=> 'Suche',
 "sysoptitle"	=> "Sysop-Zugang notwendig",
 'sysoptext'		=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit"Sysop"-Status durchgeführt werden. Siehe auch $1.',
 "developertitle" => "Entwickler-Zugang notwendig",
 'developertext'	=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit"Entwickler"-Status durchgeführt werden. Siehe auch $1.',
 'badaccess'	=> 'Keine ausreichenden Rechte.',
 'badaccesstext'	=> 'Diese Aktion ist Anwendern mit den Rechten "$2" vorbehalten. Siehe $1.',
+'versionrequired'	=> 'Version $1 von MediaWiki ist erforderlich',
+'versionrequiredtext'	=> 'Version $1 von MediaWiki ist erforderlich um diese Seite zu nutzen. Siehe [[Spezial:Version]]',
 "nbytes"		=> "$1 Byte",
+'ncategories'		=> '$1 kategorien',
+'nrevisions'		=> '$1 Bearbeitungen',
 "go"			=> "Los",
 "ok"			=> "OK",
 'retrievedfrom' => 'Von "$1"',
@@ -302,17 +311,23 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "notloggedin" => "Nicht angemeldet",
 'nologin'		=> 'Sie haben kein Benutzerkonto? $1.',
 'nologinlink'		=> 'Neues Benutzerkonto anlegen',
-"createaccount"	=> "Neues Benutzerkonto anlegen",
+'createaccount'		=> 'Neues Benutzerkonto anlegen',
+'accountcreated'	=> 'Benutzerkonto erstellt',
 'accountcreatedtext'	=> 'Der Benutzer für $1 wurde erstellt.',
 'gotaccountlink'	=> 'Anmelden',
 'gotaccount'		=> 'Sie haben bereits ein Benutzerkonto? $1.',
-"createaccountmail" => "über eMail",
+'createaccountmail'	=> 'über E-Mail',
 "badretype"		=> "Die beiden Passwörter stimmen nicht überein.",
 "userexists"	=> "Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.",
 "youremail"		=> "Ihre E-Mail-Adresse**",
 "yournick"		=> "Ihr \"Spitzname\" (zum \"Unterschreiben\")",
 "yourrealname"		=> "Ihr echter Name (keine Pflichtangabe)*",
 'yourlanguage'		=> 'Sprache:',
+'username'		=> 'Benutzername:',
+'uid'			=> 'Benutzer ID:',
+'yourvariant'		=> 'Variante',
+'badsig'		=> 'Die Syntax der Signatur ist ungültig; bitte HTML überprüfen.',
+'email'			=> 'E-Mail',
 "emailforlost"	=> "Falls Sie Ihr Passwort vergessen haben, kann Ihnen ein neues an Ihre E-Mail-Adresse gesendet werden.",
 'prefs-help-email' 	=> '** <strong>E-Mail-Adresse</strong> (optional): Erlaubt andern, Sie über Ihre Benutzerseiten zu kontaktieren, ohne dass Sie Ihre E-Mail-Adresse offenbaren müssen.
 Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporäres Einmal-Passwort gesendet werden.',
@@ -353,7 +368,7 @@ Funktionen sind zur Zeit deshalb nicht möglich.',
 "preview"	=> "Vorschau",
 "showpreview"	=> "Vorschau zeigen",
 "showdiff"	=> "Änderungen zeigen",
-'anoneditwarning'	=> "Du bearbeitest unangemeldet. Statt eines Benutzernamens wird die IP-Adresse in der Versionsgeschichte aufgezeichnet.",
+'anoneditwarning'	=> "Sie bearbeiten diese Seite ohne angemeldet zu sein. Statt eines Benutzernamens wird die IP-Adresse in der Versionsgeschichte aufgezeichnet.",
 "blockedtitle"	=> "Benutzer ist blockiert",
 "blockedtext"	=> "Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
 Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, um über die Blockierung zu sprechen.",
@@ -535,6 +550,7 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 'files'			=> 'Dateien',
 'imagemaxsize'		=> 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
 'thumbsize'		=> 'Größe der Vorschaubilder (Thumbnails):',
+'showbigimage'		=> 'Version mit hoher Auflösung herunterladen ($1 x $2 Pixel, $3 KB)',
 
 # Recent changes
 #
@@ -607,8 +623,8 @@ Alle Zeiten sind UTC.
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
 "largefile"		=> "Bitte keine Bilder über 100 KByte hochladen.",
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
-'fileexists'		=> 'Eine Datei mit diesem Namen existiert bereits. Wenn du auf "Datei speichern" klickst, wird die Datei überschrieben. Unter $1 kannst du dich vergewissern, ob das gewollt ist.',
-'fileexists-forbidden'	=> 'Mit diesem Namen existiert bereits eine Datei. Bitte gehe zurück und lade deine Datei unter einem anderen Namen hoch. [[Bild:$1|thumb|center|$1]]',
+'fileexists'		=> 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf "Datei speichern" klicken, wird die Datei überschrieben. Unter $1 können Sie sich vergewissern, ob das gewollt ist.',
+'fileexists-forbidden'	=> 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[Bild:$1|thumb|center|$1]]',
 "uploadedimage" => "\"[[$1]]\" hochgeladen",
 'uploadscripted' => 'Diese Datei enthält HTML- oder Scriptcode der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
 'uploadvirus' => 'Diese Datei enthält einen Virus! Details: $1',
@@ -764,6 +780,11 @@ und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.
 "watchlist"		=> "Beobachtungsliste",
 "watchlistsub"	=> "(für Benutzer \"$1\")",
 "nowatchlist"	=> "Sie haben keine Einträge auf Ihrer Beobachtungsliste.",
+'watchlistcount'	=> "'''Sie haben $1 Einträge auf Ihrer Beobachtungsliste einschließlich Diskussionsseiten.'''",
+'clearwatchlist'	=> 'Beobachtungsliste löschen',
+'watchlistcleartext'	=> 'Sind Sie sicher, dass Sie diese vollständig löschen wollen?',
+'watchlistclearbutton'	=> 'Beobachtungsliste löschen',
+'watchlistcleardone'	=> 'Ihre Beobachtungsliste wurde gelöscht. $1 Einträge wurden entfernt.',
 "watchnologin"	=> "Sie sind nicht angemeldet",
 "watchnologintext"	=> "Sie müssen [[Special:Userlogin|angemeldet]]
 sein, um Ihre Beobachtungsliste zu bearbeiten.",
@@ -896,6 +917,13 @@ dieses Artikels erscheinen.",
 "ucnote"		=> "Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.",
 "uclinks"		=> "Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.",
 "uctop"		=> " (top)" ,
+'newbies'	=> 'Newbies',
+
+'sp-contributions-newest'	=> 'Jüngste',
+'sp-contributions-oldest'	=> 'Älteste',
+'sp-contributions-newer' 	=> 'Jüngere $1',
+'sp-contributions-older'	=> 'Ältere $1',
+'sp-contributions-newbies-sub'	=> 'Für Newbies',
 
 # What links here
 #
@@ -1008,6 +1036,16 @@ um eine Seite zu verschieben.",
 "pagemovedsub"	=> "Verschiebung erfolgreich",
 "pagemovedtext" => "Artikel \"[[$1]]\" wurde nach \"[[$2]]\" verschoben.",
 'movereason'	=> 'Begründung',
+'revertmove'	=> 'zurück verschieben',
+'delete_and_move' => 'Löschen und Verschieben',
+'delete_and_move_text'	=>
+'==Löschen erforderlich==
+
+Der Zielartikel "[[$1]]" besteht bereits. Möchten Sie diesen löschen, um den Artikel verschieben zu können?',
+'delete_and_move_confirm' => 'Ja, Artikel löschen.',
+'delete_and_move_reason' => 'Gelöscht um Verschiebung zu ermöglichen',
+'selfmove' => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht zu sich selbst verschoben werden.',
+'immobile_namespace' => 'Der gewünschte Seitentitel ist ein besonderer; die Seite kann nicht in diesen (anderen) Namensraum verschoben werden.',
 "articleexists" => "Unter diesem Namen existiert bereits ein Artikel.
 Bitte wählen Sie einen anderen Namen.",
 "talkexists"    => "Die Seite selbst wurde erfolgreich verschoben, aber die
@@ -1031,6 +1069,19 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'tooltip-diff' => 'Zeigt Ihre Änderungen am Text tabellarisch an [alt-d]',
 'tooltip-compareselectedversions' => 'Unterschiede zwischen zwei ausgewählten Versionen dieser Seite vergleichen. [alt-v]',
 
+# Metadata
+'nodublincore' => 'Dublin Core RDF-Metadaten sind für diesen Server deaktiviert.',
+'nocreativecommons' => 'Creative Commons RDF-Metadaten sind für diesen Server deaktiviert.',
+'notacceptable' => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',
+
+# Attribution
+'anonymous' => 'Anonyme(r) Benutzer auf {{SITENAME}}',
+'lastmodifiedby' => 'Diese Seite wurde zuletzt geändert am $1 von $2.',
+'othercontribs' => 'Basiert auf der Arbeit von $1',
+'others' => 'andere',
+'creditspage' => 'Seiteninformationen',
+'nocredits' => 'Für diese Seite sind keine Informationen vorhanden.',
+
 #Tastatur-Shortcuts
 'accesskey-search' => 'f',
 'accesskey-minoredit' => 'i',
@@ -1038,6 +1089,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'accesskey-preview' => 'p',
 'accesskey-diff' => 'd',
 'accesskey-compareselectedversions' => 'v',
+'accesskey-watch' => 'w',
 
 "makesysoptitle"        => "Mache einen Benutzer zum Administrator",
 "makesysoptext"         => "Diese Maske wird von Bürokraten benutzt, um normale Benutzer zu Administratoren zu machen.",
@@ -1165,6 +1217,20 @@ sollte umgehend ein Administrator informiert werden!',
 # external editor support
 'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
 'edit-externally-help' => 'Siehe [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] für weitere Informationen',
+
+# Metadata
+'metadata' => 'Metadaten',
+'metadata-help' => 'Diese Datei enthält weitere Informationen, die in der Regel von der Digitalkamera oder dem verwendeten Scanner stammen. Durch nachträgliche Bearbeitung der Originaldatei können einige Details verändert worden sein.',
+'metadata-expand' => 'Erweiterte Details einblenden',
+'metadata-collapse' => 'Erweiterte Details ausblenden ',
+'metadata-fields' => 'Die folgenden Felder der EXIF-Metadaten dieser Nachricht werden auf Bildbeschreibungsseiten
+angezeigt. Weitere standardmäßig ausgeblendete Details können angezeigt werden.
+* make
+* model
+* fnumber
+* datetimeoriginal
+* exposuretime
+* focallength',
 
 # Exif tags
 'exif-aperturevalue'		=> 'Blendenwert',
@@ -1421,8 +1487,9 @@ bevor Sie die erweiterten Mailfunktionen benutzen können. Ein Klick auf die Sch
 Diese Mail enthält einen Link mit einem Code; durch Klicken auf diesen Link bestätigen Sie, dass Ihre Adresse gültig ist.",
 'confirmemail_send' => 'Anforderung einer E-Mail zur Adressenbestätigung',
 'confirmemail_sent' => 'Es wurde Ihnen eine Mail zur Adressenbestätigung gesendet.',
-'confirmemail_sendfailed' => 'Could not send confirmation mail due to misconfigured server or invalid characters in e-mail address.',
+'confirmemail_sendfailed' => 'Eine Bestätigung konnte auf Grund einer Fehlkonfiguration des Servers oder ungültigen Zeichen in der E-Mail-Adresse nicht verschickt werden.',
 'confirmemail_invalid' => 'Ungültiger Bestätigungskode. Die Gültigkeitsdauer des Kodes ist eventuell abgelaufen.',
+'confirmemail_needlogin' => 'Sie müssen sich $1 um Ihre E-Mail-Adresse zu bestätigen.',
 'confirmemail_success' => 'Ihre E-Mail-Adresse wurde bestätigt. Sie können sich jetzt einloggen.',
 'confirmemail_loggedin' => 'Ihre E-Mail-Adresse ist nun bestätigt.',
 'confirmemail_error' => 'Es gab einen Fehler bei der Bestätigung Ihrer E-Mail-Adresse.',
@@ -1441,6 +1508,36 @@ Wenn Sie *nicht* $2 sind, folgen Sie dem Link bitte nicht.
 
 Der Bestätigungskode läuft am $4 ab.
 ",
+
+# Inputbox extension, may be useful in other contexts as well
+'tryexact' => 'Versuche exakte Suche',
+'searchfulltext' => 'Gesamten Text durchsuchen',
+'createarticle' => 'Artikel anlegen',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Interwiki-Einbindung ist deaktiviert]',
+'scarytranscludefailed' => '[Vorlageneinbindung für $1 ist gescheitert]',
+'scarytranscludetoolong' => '[URL ist zu lang; Entschuldigung]',
+
+# Trackbacks
+'trackbackbox' => '<div id="mw_trackbacks">
+Trackbacks für diesen Artikel:<br />
+$1
+</div>',
+#'trackback' => '; $4$5 : [$2 $1]',
+#'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
+'trackbackremove' => '([$1 löschen])',
+'trackbacklink' => 'Trackback',
+'trackbackdeleteok' => 'Trackback wurde erfolgreich gelöscht.',
+
+# delete conflict
+'deletedwhileediting' => 'Warnung. Diese Seite wurde gelöscht, nach dem Sie angefangen haben diese zu bearbeiten!',
+'confirmrecreate' => 'Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diesen Artikel gelöscht, nachdem Sie angefangen haben ihn zu bearbeiten. Die Begründung lautete:
+\'\'$2\'\'
+Bitte bestätigen Sie, dass Sie diesen Artikel wirklich wiederherstellen möchten.',
+'recreate' => 'Wiederherstellen',
+'tooltip-recreate' => 'Wiederherstellen',
+
 'searchcontaining' => "Suche nach Artikeln, in denen ''$1'' vorkommt.",
 'searchnamed' => "Suche nach Artikeln, deren Name ''$1'' enthält.",
 'articletitles' => "Artikel, die mit ''$1'' beginnen",
@@ -1490,13 +1587,32 @@ ta[\'t-specialpages\'] = new Array(\'q\',\'Liste aller Spezialseiten\');
 ta[\'ca-nstab-main\'] = new Array(\'c\',\'Artikel anzeigen\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Benutzerseite anzeigen\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Mediendateienseite anzeigen\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'Dies ist eine Spezialseite. Sie können diese nicht ändern.\');
 ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Projektseite anzeigen\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Bilderseite anzeigen\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Systemmeldungen anzeigen\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vorlage anzeigen\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Hilfeseite anzeigen\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
+
+# image deletion
+'deletedrevision' => 'Alte Version $1 gelöscht.',
+
+# browsing diffs
+'previousdiff' => '← vorheriger Versionsunterschied',
+'nextdiff' => 'nächster Versionsunterschied →',
+
+# HTML dump
+'redirectingto' => 'Weitergeleitet nach [[$1]]',
+
+# action=purge
+'confirm_purge' => "Den Cache dieser Seite leeren? $1",
+'confirm_purge_button' => 'OK',
+
+'youhavenewmessagesmulti' => "Sie haben neue Nachrichten: $1",
+
+# DISPLAYTITLE
+'displaytitle' => '(Link zu dieser Seite als [[$1]])',
 
 );
 
