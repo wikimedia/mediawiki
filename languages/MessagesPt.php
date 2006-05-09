@@ -635,38 +635,12 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'default'               => 'padrão',
 'files'                 => 'Ficheiros',
 
-# User levels special page
-#
-
-# switching pan
-'groups-lookup-group' => 'Gerir privilégios de grupo',
-'groups-group-edit' => 'Grupos existentes:',
-'editgroup' => 'Editar Grupo',
-'addgroup' => 'Adicionar Grupo',
+# User rights
 
 'userrights-lookup-user' => 'Gerir grupos de utilizadores',
 'userrights-user-editname' => 'Intruduza um nome de utilizador:',
 'editusergroup' => 'Editar Grupos de Utilizadores',
 
-# group editing
-'groups-editgroup'          => 'Editar grupo',
-'groups-addgroup'           => 'Adicionar grupo',
-'groups-editgroup-preamble' => 'Caso o nome ou a descrição comece com dois pontos, o
-restante será tratado como o nome de uma mensagem de sistema, e como resultado o texto será localizado
-utilizando o domínio MediaWiki',
-'groups-editgroup-name'     => 'Nome do grupo:',
-'groups-editgroup-description' => 'Descrição do grupo (máximo de 255 caracteres):<br />',
-'savegroup'                 => 'Salvar Grupo',
-'groups-tableheader'        => 'ID || Nome || Descrição || Direitos',
-'groups-existing'           => 'Grupos existentes',
-'groups-noname'             => 'Por favor especifique um nome válido',
-'groups-already-exists'     => 'Um grupo com esse nome já existe',
-'addgrouplogentry'          => 'Adicionado grupo $2',
-'changegrouplogentry'       => 'Alterado grupo $2',
-'renamegrouplogentry'       => 'Alterado o nome do grupo $2 para $3',
-
-# user groups editing
-#
 'userrights-editusergroup' => 'Editar grupos do utilizador',
 'saveusergroups' => 'Salvar Grupos do Utilizador',
 'userrights-groupsmember' => 'Membro de:',
@@ -675,18 +649,22 @@ utilizando o domínio MediaWiki',
 Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a selecção a um grupo com CTRL + Click esquerdo',
 'userrights-logcomment' => 'Alterado membro do grupo de $1 para $2',
 
-# Default group names and descriptions
-#
-'group-anon-name'       => 'Anónimos',
-'group-anon-desc'       => 'Utilizadores anónimos',
-'group-loggedin-name'   => 'Utilizador',
-'group-loggedin-desc'   => 'Utilizadores autentificados',
-'group-admin-name'      => 'Administrador',
-'group-admin-desc'      => 'Utilizadores de confiança capazes de bloquear utilizadores e eliminar artigos',
-'group-bureaucrat-name' => 'Burocrata',
-'group-bureaucrat-desc' => 'O grupo dos burocratas é capaz de nomear administradores',
-'group-steward-name'    => 'Steward',
-'group-steward-desc'    => 'Acesso total',
+# Groups
+'group'                   => 'Grupo:',
+'group-bot'               => 'Robôs',
+'group-sysop'             => 'Administradores',
+'group-bureaucrat'        => 'Burocratas',
+'group-steward'           => 'Stewards',
+'group-all'               => '(todos)',
+
+'group-bot-member'        => 'Robô',
+'group-sysop-member'      => 'Administrador',
+'group-bureaucrat-member' => 'Burocrata',
+'group-steward-member'    => 'Steward',
+
+'grouppage-bot' => 'Project:Robôs',
+'grouppage-sysop' => 'Project:Administradores',
+'grouppage-bureaucrat' => 'Project:Burocratas',
 
 # Recent changes
 #
@@ -968,7 +946,7 @@ para que o destinatário lhe possa responder.',
 'watchnologintext'      => 'Deve estar [[Special:Userlogin|autentificado]] para modificar a sua lista de artigos vigiados.',
 'addedwatch'            => 'Adicionado à lista',
 'addedwatchtext'        => "A página \"$1\" foi adicionada à sua [[Special:Watchlist|lista de artigos vigiados]].
-Modificações futuras neste artigo e páginas de discussão associadas serão listadas lá e a página aparecerá a <b>negrito</b> na [[Especial:Recentchanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.
+Modificações futuras neste artigo e páginas de discussão associadas serão listadas lá e a página aparecerá a '''negrito''' na [[Especial:Recentchanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.
 
 Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desinteressar-se\" na barra lateral ou de topo.",
 'removedwatch'          => 'Removida da lista de artigos vigiados',
