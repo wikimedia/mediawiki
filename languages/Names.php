@@ -181,7 +181,7 @@
 	'sc' => 'Sardu',		# Sardinian
 	'scn' => 'Sicilianu',	# Sicilian
 	'sco' => 'Scots',       # Scots
-	'sd' => 'सिनधि',	# Sindhi
+	'sd' => 'سنڌي',	# Sindhi
 	'se' => 'Sámegiella',	# Northern Sami
 	'sg' => 'Sängö',		# Sango, possible alternative is Sangho
 	'sh' => 'Srpskohrvatski / Српскохрватски', # Serbocroatian
