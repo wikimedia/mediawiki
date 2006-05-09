@@ -1069,7 +1069,7 @@ Masukan dan bantuan lanjutan:
 "ipbreason" => "Alasan",
 "ipbsubmit" => "Kirimkan",
 'ipbother'		=> 'Waktu lain',
-'ipboptions'		=> '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
+'ipboptions'		=> '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite',
 'ipbotheroption'	=> 'lainnya',
 "badipaddress" => "Format alamat IP atau nama pengguna salah.",
 "blockipsuccesssub" => "Pemblokiran sukses",
