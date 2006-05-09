@@ -3937,7 +3937,11 @@ class Parser
 			$html = $pout->getText();
 
 			$ig->add( new Image( $nt ), $html );
-			$this->mOutput->addImage( $nt->getDBkey() );
+
+			# Only add real images (bug #5586)
+			if ( $nt->getNamespace() == NS_IMAGE ) {
+				$this->mOutput->addImage( $nt->getDBkey() );
+			}
 		}
 		return $ig->toHTML();
 	}

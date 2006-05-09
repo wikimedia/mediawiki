@@ -230,6 +230,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added grammar function to Belarusian (be)
 * (bug 5819) Add 'PersonalUrls' hook
 * (bug 5862) Update of Belarusian language (be)
+* (bug 5586) <gallery> treated text as links
 
 == Compatibility ==
 
