@@ -8,6 +8,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Correct "revertpage" message in English
 * (bug 5507) Logouttext uses now wiki markup
 * (bug 5857) Update for German localisation (de)
+* (bug 5586) <gallery> treated text as links
 
 == MediaWiki 1.6.5 ==
 
@@ -60,7 +61,6 @@ May 2, 2006
 * (bug 5723) Don't count pages linked to from the MediaWiki namespace as "wanted"
 * (bug 5789) Treat "loginreqpagetext" as wikitext
 * (bug 5796) We require MySQL >=4.0.14
-* (bug 5586) <gallery> treated text as links
 
 == MediaWiki 1.6.3 ==
 
