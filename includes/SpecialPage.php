@@ -276,14 +276,16 @@ class SpecialPage
 			} else {
 				$redir = SpecialPage::getRedirect( $name );
 				if ( isset( $redir ) ) {
+					if( $par )
+						$redir = Title::makeTitle( $redir->getNamespace(), $redir->getText() . '/' . $par );
 					$params = SpecialPage::getRedirectParams( $name );
 					if( $params ) {
 						$url = $redir->getFullUrl( $params );
-					} elseif( $par ) {
-						$url = $redir->getFullUrl() . '/' . $par;
 					} else {
 						$url = $redir->getFullUrl();
 					}
+					$wgOut->redirect( $url );
+					$retVal = $redir;
 					$wgOut->redirect( $url );
 					$retVal = $redir;
 				} else {
