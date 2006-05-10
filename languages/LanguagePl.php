@@ -111,5 +111,9 @@ class LanguagePl extends LanguageUtf8 {
 		);
 	}
 
+	function linkTrail() {
+		return '/^([a-zęóąśłżźćńĘÓĄŚŁŻŹĆŃ]+)(.*)$/sDu';
+	}
+
 }
 ?>
