@@ -73,7 +73,6 @@
 "category" => "kategoria",
 "category_header" => "Artykuły w kategorii \"$1\"",
 "subcategories" => "Podkategorie",
-"linktrail" => "/^([a-z]+)(.*)\$/sD",
 "mainpage" => "Strona główna",
 "mainpagetext" => "Instalacja oprogramowania powiodła się.",
 "about" => "O Wikipedii",
