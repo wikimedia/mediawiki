@@ -441,6 +441,10 @@ $article: article object to be watched
 $user: user that watched
 $article: article object watched
 
+'UnwatchArticleComplete': after a watch is removed from an article
+$user: user that watched
+$article: article object that was watched
+
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
