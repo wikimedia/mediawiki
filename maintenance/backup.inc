@@ -130,6 +130,15 @@ class BackupDumper {
 				case "server":
 					$this->server = $val;
 					break;
+				case "force-normal":
+					if( !function_exists( 'utf8_normalize' ) ) {
+						dl( "php_utfnormal.so" );
+						if( !function_exists( 'utf8_normalize' ) ) {
+							wfDie( "Failed to load UTF-8 normalization extension. " .
+								"Install or remove --force-normal parameter to use slower code.\n" );
+						}
+					}
+					break;
 				default:
 					$this->processOption( $opt, $val, $param );
 				}
