@@ -7,11 +7,11 @@ function install_version_checks() {
 
 	if( !function_exists( 'version_compare' ) ) {
 		# version_compare was introduced in 4.1.0
-		echo "Your PHP version is much too old; 4.0.x will _not_ work. 4.3.2 or higher is required. ABORTING.\n";
+		echo "Your PHP version is much too old; 4.0.x will _not_ work. 5.0.0 or higher is required. ABORTING.\n";
 		die( -1 );
 	}
-	if( version_compare( phpversion(), '4.3.2' ) < 0 ) {
-		echo "PHP 4.3.2 or higher is required. ABORTING.\n";
+	if( version_compare( phpversion(), '5.0.0' ) < 0 ) {
+		echo "PHP 5.0.0 or higher is required. ABORTING.\n";
 		die( -1 );
 	}
 
