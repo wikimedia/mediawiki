@@ -239,6 +239,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * --force-normal parameter on dump scripts to force check for ICU extension
 * (bug 5895) Update for Dutch language (nl)
 * (bug 5891) Linktrail for Polish language (pl)
+* User::isBureaucrat , User::isDeveloper , User::isSysop deprecated in
+  v1.6 now die with a backtrace. They will be removed in v1.8
 
 == Compatibility ==
 

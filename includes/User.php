@@ -449,7 +449,8 @@ class User {
 		}
 
 		# Proxy blocking
-		if ( !$this->isSysop() && !in_array( $ip, $wgProxyWhitelist ) ) {
+		# FIXME ? proxyunbannable is to deprecate the old isSysop()
+		if ( !$this->isAllowed('proxyunbannable') && !in_array( $ip, $wgProxyWhitelist ) ) {
 
 			# Local list
 			if ( wfIsLocallyBlockedProxy( $ip ) ) {
@@ -1171,21 +1172,30 @@ class User {
 	}
 
 	/**
-	 * Check if a user is sysop
+	 * Deprecated in 1.6, die in 1.7, to be removed in 1.8
 	 * @deprecated
 	 */
 	function isSysop() {
-		return $this->isAllowed( 'protect' );
+		wfDebugDieBacktrace( "Call to deprecated (v1.7) User::isSysop() method\n" );
+		#return $this->isAllowed( 'protect' );
 	}
 
-	/** @deprecated */
+	/**
+	 * Deprecated in 1.6, die in 1.7, to be removed in 1.8
+	 * @deprecated
+	 */
 	function isDeveloper() {
-		return $this->isAllowed( 'siteadmin' );
+		wfDebugDieBacktrace( "Call to deprecated (v1.7) User::isDeveloper() method\n" );
+		#return $this->isAllowed( 'siteadmin' );
 	}
 
-	/** @deprecated */
+	/**
+	 * Deprecated in 1.6, die in 1.7, to be removed in 1.8
+	 * @deprecated
+	 */
 	function isBureaucrat() {
-		return $this->isAllowed( 'makesysop' );
+		wfDebugDieBacktrace( "Call to deprecated (v1.7) User::isBureaucrat() method\n" );
+		#return $this->isAllowed( 'makesysop' );
 	}
 
 	/**
