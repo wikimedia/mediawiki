@@ -7,7 +7,7 @@ and configure the wiki "in-place", as long as you have
 the necessary prerequesites available.
 
 Required software:
-* Web server with PHP 4.3.2 or higher; 4.4.x or 5.x is recommended.
+* Web server with PHP 5.x or higher.
 * A MySQL server, 4.0.14 or higher.
 
 MediaWiki is developed and tested mainly on Unix/Linux
