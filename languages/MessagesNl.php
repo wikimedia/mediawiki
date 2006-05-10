@@ -58,6 +58,7 @@
 # Bits of text used by many pages:
 # Diverse stukjes tekst
 "categories" => "Rubrieken",
+"categories1" => "Rubriek",
 "category" => "rubriek",
 "category_header" => "Artikelen in rubriek \"$1\"",
 "subcategories" => "Onderrubrieken",
@@ -90,7 +91,6 @@
 "returnto"  => "Terugkeren naar $1.",
 "tagline"       => " ",
 "whatlinkshere" => "Pagina's die hierheen verwijzen",
-"help"   => "Help",
 "search"  => "Zoeken",
 "go" => "Ga naar pagina",
 "history"  => "Voorgeschiedenis",
@@ -130,6 +130,42 @@
 "hidetoc" => "Niet tonen",
 "thisisdeleted" => "$1 bekijken of terugbrengen?",
 "restorelink" => "$1 verwijderde versies",
+"viewsource" => "bewerk",
+'navigation' => 'Navigatie',
+
+# Toolbar
+# Functiebalk
+
+'edit' => 'Bewerk',
+'protect' => 'Vergrendel',
+'unprotect' => 'Ontgrendel',
+'delete' => 'Verwijder',
+'history_short' => 'Geschiedenis',
+'move' => 'Verplaats',
+'talk' => 'Discussie',
+'watch' => 'Volg',
+'watchthispage' => 'Volg deze pagina',
+'unwatch' => 'Stop volgen',
+'anontalk' => 'Discussie voor dit IP-adres',
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+# Korte termen voor namespaces
+
+'nstab-main' => 'Artikel',
+'nstab-user' => 'Gebruikerspagina',
+'nstab-media' => 'Mediapagina',
+'nstab-special' => 'Speciaal',
+'nstab-wp' => 'Projectpagina',
+'nstab-image' => 'Bestand',
+'nstab-mediawiki' => 'Bericht',
+'nstab-template' => 'Sjabloon',
+'nstab-help' => 'Help',
+'nstab-category' => 'Categorie',
+
+# Various phrases
+# Diverse korte zinnen
+
+'copyright'	=> 'De inhoud is beschikbaar onder $1.',
 
 # Main script and global functions
 # Algemene functies
@@ -252,7 +288,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "storedversion" => "Opgeslagen versie",
 "editingold" => "<strong>WAARSCHUWING: U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren.</strong>",
 "yourdiff"  => "Wijzigingen",
-/*"copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",*/
+// "copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
 "longpagewarning" => "<strong>Waarschuwing! Deze pagina is $1 kilobyte lang. Pagina's langer dan 32 kb zorgen voor problemen op sommige browsers. Het is daarom waarschijnlijk een goed idee deze pagina in meerdere pagina's te splitsen.</strong>",
 "readonlywarning" => "<strong>Waarschuwing! De database is op dit moment in onderhoud; het is daarom niet mogelijk op dit moment pagina's te wijzigen. Wij adviseren u de tekst op uw eigen computer op te slaan en later opnieuw te proberen deze pagina te bewerken.</strong>",
 "protectedpagewarning" => "<strong>Waarschuwing! U staat op het punt een beveiligde pagina te wijzigen. Gewone gebruikers kunnen deze pagina niet bewerken.</strong>",

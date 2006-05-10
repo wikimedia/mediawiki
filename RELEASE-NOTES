@@ -237,6 +237,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5890) Update for German language (de)
 * (bug 5889) Name for Sindhi language should appear as سنڌي
 * --force-normal parameter on dump scripts to force check for ICU extension
+* (bug 5895) Update for Dutch language (nl)
 
 
 == Compatibility ==
