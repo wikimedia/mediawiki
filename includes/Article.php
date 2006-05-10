@@ -972,7 +972,7 @@ class Article {
 		$tbtext = "";
 		while ($o = $dbr->fetchObject($tbs)) {
 			$rmvtxt = "";
-			if ($wgUser->isSysop()) {
+			if ($wgUser->isAllowed( 'trackback' )) {
 				$delurl = $this->mTitle->getFullURL("action=deletetrackback&tbid="
 						. $o->tb_id . "&token=" . $wgUser->editToken());
 				$rmvtxt = wfMsg('trackbackremove', $delurl);
