@@ -152,20 +152,10 @@ class MagicWord {
 	/**#@+
 	 * @access private
 	 */
-	private
-		$mBaseRegex,
-		$mModified,
-		$mRegex,
-		$mRegexStart,
-		$mVariableRegex ;
+	var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
+	var $mRegexStart, $mBaseRegex, $mVariableRegex;
+	var $mModified;
 	/**#@-*/
-
-	/** @todo FIXME should they really be public ? */
-	public
-		$mCaseSensitive,
-		$mId,
-		$mSynonyms ;
-
 
 	function MagicWord($id = 0, $syn = '', $cs = false) {
 		$this->mId = $id;
@@ -182,7 +172,7 @@ class MagicWord {
 	 * Factory: creates an object representing an ID
 	 * @static
 	 */
-	static function &get( $id ) {
+	function &get( $id ) {
 		global $wgMagicWords;
 
 		if ( !is_array( $wgMagicWords ) ) {

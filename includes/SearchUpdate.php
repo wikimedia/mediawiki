@@ -10,12 +10,8 @@
  */
 class SearchUpdate {
 
-	private
-		$mId = 0,
-		$mNamespace,
-		$mTitle,
-		$mText,
-		$mTitleWords;
+	/* private */ var $mId = 0, $mNamespace, $mTitle, $mText;
+	/* private */ var $mTitleWords;
 
 	function SearchUpdate( $id, $title, $text = false ) {
 		$nt = Title::newFromText( $title );

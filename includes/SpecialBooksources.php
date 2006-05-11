@@ -29,7 +29,7 @@ function wfSpecialBooksources( $par ) {
  * @subpackage SpecialPage
  */
 class BookSourceList {
-	private $mIsbn;
+	var $mIsbn;
 
 	function BookSourceList( $isbn ) {
 		$this->mIsbn = $isbn;

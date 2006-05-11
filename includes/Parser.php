@@ -93,33 +93,20 @@ class Parser
 	 * @private
 	 */
 	# Persistent:
-	private $mTagHooks, $mFunctionHooks;
+	var $mTagHooks, $mFunctionHooks;
 
 	# Cleared with clearState():
-	private
-		$mArgStack,
-		$mAutonumber,
-		$mDTopen,
-		$mIncludeCount,
-		$mInPre,
-		$mInterwikiLinkHolders,
-		$mLastSection,
-		$mLinkHolders,
-		$mOutput,
-		$mStripState = array(),
-		$mUniqPrefix,
-		$mVariables ;
-
-	private
-		$mTemplates,	// cache of already loaded templates, avoids
+	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
+	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
+	var $mInterwikiLinkHolders, $mLinkHolders, $mUniqPrefix;
+	var $mTemplates,	// cache of already loaded templates, avoids
 		                // multiple SQL queries for the same string
 	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
 		                // in this path. Used for loop detection.
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
-	private
-		$mOptions,      // ParserOptions object
+	var $mOptions,      // ParserOptions object
 		$mTitle,        // Title context, used for self-link rendering and similar things
 		$mOutputType,   // Output type, one of the OT_xxx constants
 		$mRevisionId;   // ID to display in {{REVISIONID}} tags
@@ -4090,25 +4077,20 @@ class Parser
  */
 class ParserOutput
 {
-	private
-		$mCacheTime,        # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
-		$mCategories,       # Map of category names to sort keys
-		$mExternalLinks,    # External link URLs, in the key only
-		$mImages,           # DB keys of the images used, in the array key only
+	var $mText,             # The output text
 		$mLanguageLinks,    # List of the full text of language links, in the order they appear
-		$mLinks,            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
-		$mNewSection,		# Show a new section link?
-		$mSubtitle,			# Additional subtitle
-		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
-		$mTitleText,        # title text of the chosen language variant
-		$mVersion ;         # Compatibility check
-
-
-	/** @todo FIXME should those be public ? */
-	public
+		$mCategories,       # Map of category names to sort keys
 		$mContainsOldMagic, # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
+		$mCacheTime,        # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
+		$mVersion,          # Compatibility check
+		$mTitleText,        # title text of the chosen language variant
+		$mLinks,            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
+		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
+		$mImages,           # DB keys of the images used, in the array key only
+		$mExternalLinks,    # External link URLs, in the key only
 		$mHTMLtitle,		# Display HTML title
-		$mText ;            # The output text // public cause its used in ParserCache::save
+		$mSubtitle,			# Additional subtitle
+		$mNewSection;		# Show a new section link?
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -4205,19 +4187,18 @@ class ParserOutput
 class ParserOptions
 {
 	# All variables are private
-	private
-		$mAllowExternalImages,       # Allow external images inline
-		$mAllowExternalImagesFrom,   # If not, any exception?
-		$mAllowSpecialInclusion,     # Allow inclusion of special pages
-		$mDateFormat,                # Date format index
-		$mEditSection,               # Create "edit section" links
-		$mInterfaceMessage,          # Which lang to call for PLURAL and GRAMMAR
-		$mInterwikiMagic,            # Interlanguage links are removed and returned in an array
-		$mNumberHeadings,            # Automatically number headings
-		$mSkin,                      # Reference to the preferred skin
-		$mTidy,                      # Ask for tidy cleanup
-		$mUseDynamicDates,           # Use DateFormatter to format dates
-		$mUseTeX ;                   # Use texvc to expand <math> tags
+	var $mUseTeX;                    # Use texvc to expand <math> tags
+	var $mUseDynamicDates;           # Use DateFormatter to format dates
+	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
+	var $mAllowExternalImages;       # Allow external images inline
+	var $mAllowExternalImagesFrom;   # If not, any exception?
+	var $mSkin;                      # Reference to the preferred skin
+	var $mDateFormat;                # Date format index
+	var $mEditSection;               # Create "edit section" links
+	var $mNumberHeadings;            # Automatically number headings
+	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
+	var $mTidy;                      # Ask for tidy cleanup
+	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -4254,7 +4235,7 @@ class ParserOptions
 	 * Get parser options
 	 * @static
 	 */
-	static function newFromUser( &$user ) {
+	function newFromUser( &$user ) {
 		$popts = new ParserOptions;
 		$popts->initialiseFromUser( $user );
 		return $popts;

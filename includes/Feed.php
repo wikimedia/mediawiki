@@ -35,12 +35,11 @@ class FeedItem {
 	 * @var string
 	 * @private
 	 */
-	private
-		$Author = '',
-		$Date = '',
-		$Description = '',
-		$Title = 'Wiki',
-		$Url = '' ;
+	var $Title = 'Wiki';
+	var $Description = '';
+	var $Url = '';
+	var $Date = '';
+	var $Author = '';
 	/**#@-*/
 
 	/**#@+

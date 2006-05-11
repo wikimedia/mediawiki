@@ -634,7 +634,7 @@ class Sanitizer {
 	 * @param string $id
 	 * @return string
 	 */
-	static function escapeId( $id ) {
+	function escapeId( $id ) {
 		static $replace = array(
 			'%3A' => ':',
 			'%' => '.'
@@ -651,7 +651,7 @@ class Sanitizer {
 	 * @return string
 	 * @private
 	 */
-	private static function armorLinksCallback( $matches ) {
+	function armorLinksCallback( $matches ) {
 		return str_replace( ':', '&#58;', $matches[1] );
 	}
 
@@ -750,7 +750,6 @@ class Sanitizer {
 	 * @param string $text
 	 * @return string
 	 * @private
-	 * @todo FIXME called from parser.php so not that much private
 	 */
 	function normalizeCharReferences( $text ) {
 		return preg_replace_callback(
@@ -762,7 +761,7 @@ class Sanitizer {
 	 * @param string $matches
 	 * @return string
 	 */
-	static function normalizeCharReferencesCallback( $matches ) {
+	function normalizeCharReferencesCallback( $matches ) {
 		$ret = null;
 		if( $matches[1] != '' ) {
 			$ret = Sanitizer::normalizeEntity( $matches[1] );
@@ -788,7 +787,7 @@ class Sanitizer {
 	 * @param string $name
 	 * @return string
 	 */
-	static function normalizeEntity( $name ) {
+	function normalizeEntity( $name ) {
 		global $wgHtmlEntities;
 		if( isset( $wgHtmlEntities[$name] ) ) {
 			return "&$name;";
@@ -836,9 +835,8 @@ class Sanitizer {
 	 * @param string $text
 	 * @return string
 	 * @public
-	 * @static
 	 */
-	public static function decodeCharReferences( $text ) {
+	function decodeCharReferences( $text ) {
 		return preg_replace_callback(
 			MW_CHAR_REFS_REGEX,
 			array( 'Sanitizer', 'decodeCharReferencesCallback' ),
@@ -849,7 +847,7 @@ class Sanitizer {
 	 * @param string $matches
 	 * @return string
 	 */
-	static function decodeCharReferencesCallback( $matches ) {
+	function decodeCharReferencesCallback( $matches ) {
 		if( $matches[1] != '' ) {
 			return Sanitizer::decodeEntity( $matches[1] );
 		} elseif( $matches[2] != '' ) {
@@ -1086,7 +1084,7 @@ class Sanitizer {
 	 * @return string
 	 * @static
 	 */
-	static function hackDocType() {
+	function hackDocType() {
 		global $wgHtmlEntities;
 		$out = "<!DOCTYPE html [\n";
 		foreach( $wgHtmlEntities as $entity => $codepoint ) {

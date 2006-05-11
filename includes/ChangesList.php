@@ -14,19 +14,12 @@ require_once("RecentChange.php");
  */
 class RCCacheEntry extends RecentChange
 {
-	private
-		$curlink,
-		$difflink,
-		$lastlink,
-		$link,
-		$secureName,
-		$timestamp,
-		$userlink,
-		$usertalklink,
-		$versionlink,
-		$watched ;
+	var $secureName, $link;
+	var $curlink , $difflink, $lastlink , $usertalklink , $versionlink ;
+	var $userlink, $timestamp, $watched;
 
-	function newFromParent( $rc ) {
+	function newFromParent( $rc )
+	{
 		$rc2 = new RCCacheEntry;
 		$rc2->mAttribs = $rc->mAttribs;
 		$rc2->mExtra = $rc->mExtra;

@@ -32,23 +32,11 @@ define( 'AVG_STATUS_POLL', 2000 );
  * @package MediaWiki
  */
 class LoadBalancer {
-
-	private
-		$mAllowLagged,
-		$mConnections,
-		$mErrorConnection,
-		$mFailFunction,
-		$mForce,
-		$mGroupLoads,
-		$mLaggedSlaveMode,
-		$mLastError = 'Unknown error',
-		$mLastIndex,
-		$mLoads,
-		$mReadIndex,
-		$mServers,
-		$mWaitForFile,
-		$mWaitForPos,
-		$mWaitTimeout ;
+	/* private */ var $mServers, $mConnections, $mLoads, $mGroupLoads;
+	/* private */ var $mFailFunction, $mErrorConnection;
+	/* private */ var $mForce, $mReadIndex, $mLastIndex, $mAllowLagged;
+	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
+	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
 
 	function LoadBalancer()
 	{
@@ -62,7 +50,7 @@ class LoadBalancer {
 		$this->mAllowLag = false;
 	}
 
-	static function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
+	function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
 	{
 		$lb = new LoadBalancer;
 		$lb->initialise( $servers, $failFunction, $waitTimeout );

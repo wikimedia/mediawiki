@@ -33,9 +33,9 @@
  */
 class LogPage {
 	/* @access private */
-	private $type, $action, $comment, $params, $target;
+	var $type, $action, $comment, $params, $target;
 	/* @acess public */
-	public $updateRecentChanges;
+	var $updateRecentChanges;
 
 	/**
 	  * Constructor
@@ -93,25 +93,23 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	static function validTypes() {
+	function validTypes() {
 		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload', 'move' );
 		wfRunHooks( 'LogPageValidTypes', array( &$types ) );
 		return $types;
 	}
 
 	/**
-	 * @param $type
 	 * @static
 	 */
-	static function isLogType( $type ) {
+	function isLogType( $type ) {
 		return in_array( $type, LogPage::validTypes() );
 	}
 
 	/**
-	 * @param $type
 	 * @static
 	 */
-	static function logName( $type ) {
+	function logName( $type ) {
 		static $typeText = array(
 			''        => 'log',
 			'block'   => 'blocklogpage',
@@ -134,7 +132,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	static function logHeader( $type ) {
+	function logHeader( $type ) {
 		static $headerText = array(
 			''        => 'alllogstext',
 			'block'   => 'blocklogtext',
@@ -150,16 +148,9 @@ class LogPage {
 	}
 
 	/**
-	 * @param $type
-	 * @param $action
-	 * @param $title (Default: NULL)
-	 * @param $skin (Default: NULL)
-	 * @param $params (Default: array() )
-	 * @param $filterWikilinks (Default: false)
-	 * @param $translate (Default: false)
 	 * @static
 	 */
-	static function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
+	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
 		global $wgLang, $wgContLang;
 		static $actions = array(
 			'block/block'       => 'blocklogentry',
@@ -265,10 +256,9 @@ class LogPage {
 
 	/**
 	 * Create a blob from a parameter array
-	 * @param $params Need documentation.
 	 * @static
 	 */
-	static function makeParamBlob( $params ) {
+	function makeParamBlob( $params ) {
 		return implode( "\n", $params );
 	}
 
@@ -276,7 +266,7 @@ class LogPage {
 	 * Extract a parameter array from a blob
 	 * @static
 	 */
-	static function extractParams( $blob ) {
+	function extractParams( $blob ) {
 		if ( $blob === '' ) {
 			return array();
 		} else {

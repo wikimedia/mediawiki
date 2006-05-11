@@ -290,7 +290,7 @@ if (!$wgCachedMessageArrays) {
 
 /* a fake language converter */
 class fakeConverter {
-	private $mLang;
+	var $mLang;
 	function fakeConverter($langobj) {$this->mLang = $langobj;}
 	function convert($t, $i) {return $t;}
 	function parserConvert($t, $p) {return $t;}
@@ -309,7 +309,7 @@ class fakeConverter {
 #--------------------------------------------------------------------------
 
 class Language {
-	private $mConverter;
+	var $mConverter;
 	function Language() {
 
 		# Copies any missing values in the specified arrays from En to the current language

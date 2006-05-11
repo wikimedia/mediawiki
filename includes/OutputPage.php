@@ -13,30 +13,24 @@ if ( $wgUseTeX )
  * @package MediaWiki
  */
 class OutputPage {
-	private $mHeaders, $mMetatags, $mKeywords;
-	private $mLinktags, $mPagetitle;
-	private $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
-	private $mSubtitle, $mRedirect, $mStatusCode;
-	private $mLastModified, $mETag ;
-	private $mScripts, $mLinkColours;
-	private $mSuppressQuickbar;
-	private $mOnloadHandler;
-	private $mDoNothing;
-	private $mContainsOldMagic, $mContainsNewMagic;
-	private $mIsArticleRelated;
-	private $mShowFeedLinks = false;
-	private $mEnableClientCache = true;
-	private $mArticleBodyOnly = false;
-	private $mNewSectionLink = false;
+	var $mHeaders, $mMetatags, $mKeywords;
+	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
+	var $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
+	var $mSubtitle, $mRedirect, $mStatusCode;
+	var $mLastModified, $mETag, $mCategoryLinks;
+	var $mScripts, $mLinkColours, $mPageLinkTitle;
 
-	/** @todo FIXME shouldn't those be private ? */
-	public
-		$mPageLinkTitle,
-		$mCategoryLinks,
-		$mDebugtext,
-		$mBodytext,
-		$mParserOptions // Called in SkinTemplate when using Special::UserLogin
-	;
+	var $mSuppressQuickbar;
+	var $mOnloadHandler;
+	var $mDoNothing;
+	var $mContainsOldMagic, $mContainsNewMagic;
+	var $mIsArticleRelated;
+	var $mParserOptions;
+	var $mShowFeedLinks = false;
+	var $mEnableClientCache = true;
+	var $mArticleBodyOnly = false;
+	
+	var $mNewSectionLink = false;
 
 	/**
 	 * Constructor
@@ -611,7 +605,7 @@ class OutputPage {
 		print $outs;
 	}
 
-	static function setEncodings() {
+	function setEncodings() {
 		global $wgInputEncoding, $wgOutputEncoding;
 		global $wgUser, $wgContLang;
 
