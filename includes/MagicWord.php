@@ -152,10 +152,20 @@ class MagicWord {
 	/**#@+
 	 * @access private
 	 */
-	var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
-	var $mRegexStart, $mBaseRegex, $mVariableRegex;
-	var $mModified;
+	private
+		$mBaseRegex,
+		$mModified,
+		$mRegex,
+		$mRegexStart,
+		$mVariableRegex ;
 	/**#@-*/
+
+	/** @todo FIXME should they really be public ? */
+	public
+		$mCaseSensitive,
+		$mId,
+		$mSynonyms ;
+
 
 	function MagicWord($id = 0, $syn = '', $cs = false) {
 		$this->mId = $id;

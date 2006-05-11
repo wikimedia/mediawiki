@@ -39,10 +39,12 @@ class Skin extends Linker {
 	/**#@+
 	 * @private
 	 */
-	var $lastdate, $lastline;
-	var $rc_cache ; # Cache for Enhanced Recent Changes
-	var $rcCacheIndex ; # Recent Changes Cache Counter for visibility toggle
-	var $rcMoveIndex;
+	private
+		$lastdate,
+		$lastline,
+		$rc_cache,     # Cache for Enhanced Recent Changes
+		$rcCacheIndex, # Recent Changes Cache Counter for visibility toggle
+		$rcMoveIndex;
 	/**#@-*/
 
 	/** Constructor, call parent constructor */

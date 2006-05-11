@@ -11,7 +11,7 @@
  */
 class SiteStatsUpdate {
 
-	var $mViews, $mEdits, $mGood, $mPages, $mUsers;
+	private $mViews, $mEdits, $mGood, $mPages, $mUsers;
 
 	function SiteStatsUpdate( $views, $edits, $good, $pages = 0, $users = 0 ) {
 		$this->mViews = $views;

@@ -22,11 +22,18 @@ define( 'MSG_WAIT_TIMEOUT', 10);
  * @package MediaWiki
  */
 class MessageCache {
-	var $mCache, $mUseCache, $mDisable, $mExpiry;
-	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
-	var $mExtensionMessages = array();
-	var $mInitialised = false;
-	var $mDeferred = true;
+	private
+		$mCache,
+		$mDeferred = true,
+		$mDisable,
+		$mExpiry,
+		$mExtensionMessages = array(),
+		$mInitialised = false,
+		$mKeys,
+		$mMemcKey,
+		$mParser,
+		$mParserOptions,
+		$mUseCache ;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix) {
 		$fname = 'MessageCache::initialise';

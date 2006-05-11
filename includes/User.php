@@ -27,26 +27,26 @@ class User {
 	/**@{{
 	 * @private
 	 */
-	var $mBlockedby;	//!<
-	var $mBlockreason;	//!<
-	var $mDataLoaded;	//!<
-	var $mEmail;		//!<
-	var $mEmailAuthenticated; //!<
-	var $mGroups;		//!<
-	var $mHash;			//!<
-	var $mId;			//!<
-	var $mName;			//!<
-	var $mNewpassword;	//!<
-	var $mNewtalk;		//!<
-	var $mOptions;		//!<
-	var $mPassword;		//!<
-	var $mRealName;		//!<
-	var $mRegistration;	//!<
-	var $mRights;		//!<
-	var $mSkin;			//!<
-	var $mToken;		//!<
-	var $mTouched;		//!<
-	var $mVersion;		//!< serialized version
+	private $mBlockedby;	//!<
+	private $mBlockreason;	//!<
+	private $mDataLoaded;	//!<
+	private $mEmail;		//!<
+	private $mEmailAuthenticated; //!<
+	private $mGroups;		//!<
+	private $mHash;			//!<
+	private $mId;			//!<
+	private $mName;			//!<
+	private $mNewpassword;	//!<
+	private $mNewtalk;		//!<
+	private $mOptions;		//!<
+	private $mPassword;		//!<
+	private $mRealName;		//!<
+	private $mRegistration;	//!<
+	private $mRights;		//!<
+	private $mSkin;			//!<
+	private $mToken;		//!<
+	private $mTouched;		//!<
+	private $mVersion;		//!< serialized version
 	/**@}} */
 
 	/** Constructor using User:loadDefaults() */

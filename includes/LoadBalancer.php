@@ -32,11 +32,23 @@ define( 'AVG_STATUS_POLL', 2000 );
  * @package MediaWiki
  */
 class LoadBalancer {
-	/* private */ var $mServers, $mConnections, $mLoads, $mGroupLoads;
-	/* private */ var $mFailFunction, $mErrorConnection;
-	/* private */ var $mForce, $mReadIndex, $mLastIndex, $mAllowLagged;
-	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
-	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
+
+	private
+		$mAllowLagged,
+		$mConnections,
+		$mErrorConnection,
+		$mFailFunction,
+		$mForce,
+		$mGroupLoads,
+		$mLaggedSlaveMode,
+		$mLastError = 'Unknown error',
+		$mLastIndex,
+		$mLoads,
+		$mReadIndex,
+		$mServers,
+		$mWaitForFile,
+		$mWaitForPos,
+		$mWaitTimeout ;
 
 	function LoadBalancer()
 	{

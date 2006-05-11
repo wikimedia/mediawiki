@@ -445,8 +445,9 @@ class WebRequest {
  * @package MediaWiki
  */
 class FauxRequest extends WebRequest {
-	var $data = null;
-	var $wasPosted = false;
+	private
+		$data = null,
+		$wasPosted = false ;
 
 	function FauxRequest( $data, $wasPosted = false ) {
 		if( is_array( $data ) ) {

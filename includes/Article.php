@@ -26,29 +26,31 @@ class Article {
 	/**@{{
 	 * @private
 	 */
-	var $mComment;			//!<
-	var $mContent;			//!<
-	var $mContentLoaded;	//!<
-	var $mCounter;			//!<
-	var $mFileCache;		//!<
-	var $mForUpdate;		//!<
-	var $mGoodAdjustment;	//!<
-	var $mId;				//!<
-	var $mLatest;			//!<
-	var $mMinorEdit;		//!<
-	var $mOldId;			//!<
-	var $mRedirectedFrom;	//!<
-	var $mRedirectUrl;		//!<
-	var $mRevIdFetched;		//!<
-	var $mRevision;			//!<
-	var $mTable;			//!<
-	var $mTimestamp;		//!<
-	var $mTitle;			//!<
-	var $mTotalAdjustment;	//!<
-	var $mTouched;			//!<
-	var $mUser;				//!<
-	var $mUserText;			//!<
+	private $mComment;			//!<
+	private $mContent;			//!<
+	private $mContentLoaded;	//!<
+	private $mCounter;			//!<
+	private $mFileCache;		//!<
+	private $mForUpdate;		//!<
+	private $mGoodAdjustment;	//!<
+	private $mId;				//!<
+	private $mLatest;			//!<
+	private $mMinorEdit;		//!<
+	private $mOldId;			//!<
+	private $mRedirectedFrom;	//!<
+	private $mRedirectUrl;		//!<
+	private $mRevIdFetched;		//!<
+	private $mRevision;			//!<
+	private $mTable;			//!<
+	private $mTimestamp;		//!<
+	private $mTotalAdjustment;	//!<
+	private $mUser;				//!<
+	private $mUserText;			//!<
 	/**@}}*/
+
+	public  $mTitle;			//!<
+	public  $mTouched;			//!<
+
 
 	/**
 	 * Constructor and clear the article
