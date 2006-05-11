@@ -27,7 +27,8 @@ function wfSpecialUndelete( $par ) {
  * @subpackage SpecialPage
  */
 class PageArchive {
-	var $title;
+	public
+		$title;
 
 	function PageArchive( &$title ) {
 		if( is_null( $title ) ) {
@@ -308,8 +309,15 @@ class PageArchive {
  * @subpackage SpecialPage
  */
 class UndeleteForm {
-	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
-	var $mTargetTimestamp, $mAllowed, $mComment;
+	private
+		$mAction,
+		$mAllowed,
+		$mComment,
+		$mRestore,
+		$mTarget,
+		$mTargetObj,
+		$mTargetTimestamp,
+		$mTimestamp ;
 
 	function UndeleteForm( &$request, $par = "" ) {
 		global $wgUser;

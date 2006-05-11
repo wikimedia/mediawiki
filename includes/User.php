@@ -61,7 +61,7 @@ class User {
 	 * @return User
 	 * @static
 	 */
-	function newFromName( $name ) {
+	static function newFromName( $name ) {
 		# Force usernames to capital
 		global $wgContLang;
 		$name = $wgContLang->ucfirst( $name );
