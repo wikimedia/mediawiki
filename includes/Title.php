@@ -37,23 +37,24 @@ class Title {
 	 * @access private
 	 */
 
-	var $mTextform;           # Text form (spaces not underscores) of the main part
-	var $mUrlform;            # URL-encoded form of the main part
-	var $mDbkeyform;          # Main part with underscores
-	var $mNamespace;          # Namespace index, i.e. one of the NS_xxxx constants
-	var $mInterwiki;          # Interwiki prefix (or null string)
-	var $mFragment;           # Title fragment (i.e. the bit after the #)
-	var $mArticleID;          # Article ID, fetched from the link cache on demand
-	var $mLatestID;         # ID of most recent revision
-	var $mRestrictions;       # Array of groups allowed to edit this article
+	private $mTextform;           # Text form (spaces not underscores) of the main part
+	private $mUrlform;            # URL-encoded form of the main part
+	private $mDbkeyform;          # Main part with underscores
+	private $mNamespace;          # Namespace index, i.e. one of the NS_xxxx constants
+	private $mInterwiki;          # Interwiki prefix (or null string)
+	private $mFragment;           # Title fragment (i.e. the bit after the #)
+	private $mLatestID;         # ID of most recent revision
+	private $mRestrictions;       # Array of groups allowed to edit this article
 	                        # Only null or "sysop" are supported
-	var $mRestrictionsLoaded; # Boolean for initialisation on demand
-	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
-	var $mDefaultNamespace;   # Namespace index when there is no namespace
+	private $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
+	private $mDefaultNamespace;   # Namespace index when there is no namespace
 	                    # Zero except in {{transclusion}} tags
-	var $mWatched;      # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
+	private $mWatched;      # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
 	/**#@-*/
 
+	/** @todo FIXME should those be public ? */
+	public  $mArticleID;          # Article ID, fetched from the link cache on demand
+	public  $mRestrictionsLoaded; # Boolean for initialisation on demand
 
 	/**
 	 * Constructor
@@ -1242,6 +1243,23 @@ class Title {
 		return (int)$n;
 	}
 
+	/**
+	 * Used to grab from the logging facility the date at wich the
+	 * article got deleted. For special pages and article that never
+	 * got deleted, return 0.
+	 * @return date when the title got deleted
+	 */
+	function getDeletedDate() {
+		$fname = 'Title::getLastDelete';
+		if( $this->getNamespace() < 0 or !$this->isDeleted() ) {
+			$n = 0;
+		} else {
+			$dbr =& wfGetDB( DB_SLAVE );
+			$n = $dbr->selectField( 'logging', 'MAX(log_timestamp)', array( 'log_namespace' => $this->getNamespace(),
+				'log_title' => $this->getDBkey() ), $fname );
+		}
+		return $n;
+	}
 	/**
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary

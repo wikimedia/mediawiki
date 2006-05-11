@@ -5,7 +5,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class Job {
-	var $command,
+	private
+		$command,
 		$title,
 		$params,
 		$id,

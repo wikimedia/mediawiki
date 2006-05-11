@@ -32,7 +32,8 @@ class Image
 	/**#@+
 	 * @private
 	 */
-	var	$name,          # name of the image (constructor)
+	private
+		$name,          # name of the image (constructor)
 		$imagePath,     # Path of the image (loadFromXxx)
 		$url,           # Image URL (accessor)
 		$title,         # Title object for this image (constructor)
@@ -50,7 +51,6 @@ class Image
 		$metadata,      # Metadata
 		$dataLoaded,    # Whether or not all this has been loaded from the database (loadFromXxx)
 		$lastError;     # Error string associated with a thumbnail display error
-
 
 	/**#@-*/
 

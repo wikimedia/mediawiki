@@ -9,7 +9,8 @@
  * @package MediaWiki
  */
 class SquidUpdate {
-	var $urlArr, $mMaxTitles;
+	public $urlArr;  // FIXME : is it really public ?
+	private $mMaxTitles;
 
 	function SquidUpdate( $urlArr = Array(), $maxTitles = false ) {
 		global $wgMaxSquidPurgeTitles;

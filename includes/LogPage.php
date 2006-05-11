@@ -33,9 +33,9 @@
  */
 class LogPage {
 	/* @access private */
-	var $type, $action, $comment, $params, $target;
+	private $type, $action, $comment, $params, $target;
 	/* @acess public */
-	var $updateRecentChanges;
+	public $updateRecentChanges;
 
 	/**
 	  * Constructor

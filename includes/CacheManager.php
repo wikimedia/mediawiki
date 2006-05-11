@@ -24,7 +24,9 @@ require_once( 'Title.php' );
  * @package MediaWiki
  */
 class CacheManager {
-	var $mTitle, $mFileCache;
+	private
+		$mTitle,
+		$mFileCache;
 
 	function CacheManager( &$title ) {
 		$this->mTitle =& $title;

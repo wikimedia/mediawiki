@@ -109,33 +109,32 @@ class SpecialPage
 	 * The name of the class, used in the URL.
 	 * Also used for the default <h1> heading, @see getDescription()
 	 */
-	var $mName;
+	private $mName;
 	/**
 	 * Minimum user level required to access this page, or "" for anyone.
 	 * Also used to categorise the pages in Special:Specialpages
 	 */
-	var $mRestriction;
+	private $mRestriction;
 	/**
 	 * Listed in Special:Specialpages?
 	 */
-	var $mListed;
+	private $mListed;
 	/**
 	 * Function name called by the default execute()
 	 */
-	var $mFunction;
+	private $mFunction;
 	/**
 	 * File which needs to be included before the function above can be called
 	 */
-	var $mFile;
+	private $mFile;
 	/**
 	 * Whether or not this special page is being included from an article
 	 */
-	var $mIncluding;
+	private $mIncluding;
 	/**
 	 * Whether the special page can be included in an article
 	 */
-	var $mIncludable;
-
+	private $mIncludable;
 
 	/**#@-*/
 

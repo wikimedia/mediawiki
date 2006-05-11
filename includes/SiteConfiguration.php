@@ -15,10 +15,10 @@ define('SITE_CONFIGURATION', 1);
 
 /** @package MediaWiki */
 class SiteConfiguration {
-	var $suffixes = array();
-	var $wikis = array();
-	var $settings = array();
-	var $localVHosts = array();
+	private $suffixes = array();
+	private $wikis = array();
+	private $settings = array();
+	private $localVHosts = array();
 
 	/** */
 	function get( $setting, $wiki, $suffix, $params = array() ) {

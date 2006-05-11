@@ -5,8 +5,8 @@
 
 class MediaWiki {
 
-	var $GET; /* Stores the $_GET variables at time of creation, can be changed */
-	var $params = array();
+	public $GET; /* Stores the $_GET variables at time of creation, can be changed */
+	public $params = array();
 	
 	/**
 	 * Constructor
