@@ -216,7 +216,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function &makeTitle( $ns, $title ) {
+	public static function &makeTitle( $ns, $title ) {
 		$t =& new Title();
 		$t->mInterwiki = '';
 		$t->mFragment = '';

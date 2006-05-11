@@ -145,7 +145,7 @@ class SpecialPage
 	 * Use this for a special page extension
 	 * @static
 	 */
-	function addPage( &$obj ) {
+	static function addPage( &$obj ) {
 		global $wgSpecialPages;
 		$wgSpecialPages[$obj->mName] = $obj;
 	}
@@ -155,7 +155,7 @@ class SpecialPage
 	 * Occasionally used to disable expensive or dangerous special pages
 	 * @static
 	 */
-	function removePage( $name ) {
+	static function removePage( $name ) {
 		global $wgSpecialPages;
 		unset( $wgSpecialPages[$name] );
 	}
@@ -165,7 +165,7 @@ class SpecialPage
 	 * @static
 	 * @param string $name
 	 */
-	function getPage( $name ) {
+	static function getPage( $name ) {
 		global $wgSpecialPages;
 		if ( array_key_exists( $name, $wgSpecialPages ) ) {
 			return $wgSpecialPages[$name];
@@ -179,7 +179,7 @@ class SpecialPage
 	 * @param string $name
 	 * @return mixed Title object if the redirect exists, otherwise NULL
 	 */
-	function getRedirect( $name ) {
+	static function getRedirect( $name ) {
 		global $wgUser;
 
 		$redirects = array(
@@ -227,7 +227,7 @@ class SpecialPage
 	 * Returns a 2d array where the first index is the restriction name
 	 * @static
 	 */
-	function getPages() {
+	static function getPages() {
 		global $wgSpecialPages;
 		$pages = array(
 		  '' => array(),
@@ -324,7 +324,7 @@ class SpecialPage
 	 * a redirect.
 	 * @static
 	 */
-	function capturePath( &$title ) {
+	static function capturePath( &$title ) {
 		global $wgOut, $wgTitle;
 
 		$oldTitle = $wgTitle;

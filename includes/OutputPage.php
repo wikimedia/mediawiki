@@ -611,7 +611,7 @@ class OutputPage {
 		print $outs;
 	}
 
-	function setEncodings() {
+	static function setEncodings() {
 		global $wgInputEncoding, $wgOutputEncoding;
 		global $wgUser, $wgContLang;
 
