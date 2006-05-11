@@ -123,8 +123,14 @@ class TextPassDumper extends BackupDumper {
 	function getText( $id ) {
 		if( isset( $this->prefetch ) ) {
 			$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
-			if( !is_null( $text ) )
+			if( $text === null ) {
+				// Entry missing from prefetch dump
+			} elseif( $text === "" ) {
+				// Blank entries may indicate that the prior dump was broken.
+				// To be safe, reload it.
+			} else {
 				return $text;
+			}
 		}
 		$id = intval( $id );
 		$row = $this->db->selectRow( 'text',
