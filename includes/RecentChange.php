@@ -39,23 +39,29 @@
  * @todo document functions and variables
  * @package MediaWiki
  */
-class RecentChange
-{
-	var $mAttribs = array(), $mExtra = array();
-	var $mTitle = false, $mMovedToTitle = false;
-	var $numberofWatchingusers = 0 ; # Dummy to prevent error message in SpecialRecentchangeslinked
+class RecentChange {
+
+	private
+		$mExtra = array(),
+		$mMovedToTitle = false,
+		$mTitle = false;
+
+	/** @todo FIXME should those really be public ? */
+	public
+		$mAttribs = array();
+
+	public
+		$numberofWatchingusers = 0 ; # Dummy to prevent error message in SpecialRecentchangeslinked
 
 	# Factory methods
 
-	/* static */ function newFromRow( $row )
-	{
+	static function newFromRow( $row ) {
 		$rc = new RecentChange;
 		$rc->loadFromRow( $row );
 		return $rc;
 	}
 
-	/* static */ function newFromCurRow( $row, $rc_this_oldid = 0 )
-	{
+	static function newFromCurRow( $row, $rc_this_oldid = 0 ) {
 		$rc = new RecentChange;
 		$rc->loadFromCurRow( $row, $rc_this_oldid );
 		$rc->notificationtimestamp = false;
@@ -196,7 +202,7 @@ class RecentChange
 	}
 
 	# Makes an entry in the database corresponding to an edit
-	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
+	static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
 		$oldId, $lastTimestamp, $bot = "default", $ip = '', $oldSize = 0, $newSize = 0,
 		$newId = 0)
 	{
@@ -245,7 +251,7 @@ class RecentChange
 
 	# Makes an entry in the database corresponding to page creation
 	# Note: the title object must be loaded with the new id using resetArticleID()
-	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default",
+	static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default",
 	  $ip='', $size = 0, $newId = 0 )
 	{
 		if ( !$ip ) {
@@ -291,7 +297,7 @@ class RecentChange
 	}
 
 	# Makes an entry in the database corresponding to a rename
-	/*static*/ function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
+	static function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
 	{
 		if ( !$ip ) {
 			$ip = wfGetIP();
@@ -330,17 +336,17 @@ class RecentChange
 		$rc->save();
 	}
 
-	/* static */ function notifyMoveToNew( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
+	static function notifyMoveToNew( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, false );
 	}
 
-	/* static */ function notifyMoveOverRedirect( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
+	static function notifyMoveOverRedirect( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, true );
 	}
 
 	# A log entry is different to an edit in that previous revisions are
 	# not kept
-	/*static*/ function notifyLog( $timestamp, &$title, &$user, $comment, $ip='',
+	static function notifyLog( $timestamp, &$title, &$user, $comment, $ip='',
 	   $type, $action, $target, $logComment, $params )
 	{
 		if ( !$ip ) {
