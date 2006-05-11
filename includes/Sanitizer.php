@@ -634,7 +634,7 @@ class Sanitizer {
 	 * @param string $id
 	 * @return string
 	 */
-	function escapeId( $id ) {
+	static function escapeId( $id ) {
 		static $replace = array(
 			'%3A' => ':',
 			'%' => '.'
@@ -750,6 +750,7 @@ class Sanitizer {
 	 * @param string $text
 	 * @return string
 	 * @private
+	 * @todo FIXME called from parser.php so not that much private
 	 */
 	function normalizeCharReferences( $text ) {
 		return preg_replace_callback(
@@ -761,7 +762,7 @@ class Sanitizer {
 	 * @param string $matches
 	 * @return string
 	 */
-	function normalizeCharReferencesCallback( $matches ) {
+	static function normalizeCharReferencesCallback( $matches ) {
 		$ret = null;
 		if( $matches[1] != '' ) {
 			$ret = Sanitizer::normalizeEntity( $matches[1] );
@@ -787,7 +788,7 @@ class Sanitizer {
 	 * @param string $name
 	 * @return string
 	 */
-	function normalizeEntity( $name ) {
+	static function normalizeEntity( $name ) {
 		global $wgHtmlEntities;
 		if( isset( $wgHtmlEntities[$name] ) ) {
 			return "&$name;";
@@ -835,8 +836,9 @@ class Sanitizer {
 	 * @param string $text
 	 * @return string
 	 * @public
+	 * @static
 	 */
-	function decodeCharReferences( $text ) {
+	public static function decodeCharReferences( $text ) {
 		return preg_replace_callback(
 			MW_CHAR_REFS_REGEX,
 			array( 'Sanitizer', 'decodeCharReferencesCallback' ),
@@ -847,7 +849,7 @@ class Sanitizer {
 	 * @param string $matches
 	 * @return string
 	 */
-	function decodeCharReferencesCallback( $matches ) {
+	static function decodeCharReferencesCallback( $matches ) {
 		if( $matches[1] != '' ) {
 			return Sanitizer::decodeEntity( $matches[1] );
 		} elseif( $matches[2] != '' ) {
@@ -1084,7 +1086,7 @@ class Sanitizer {
 	 * @return string
 	 * @static
 	 */
-	function hackDocType() {
+	static function hackDocType() {
 		global $wgHtmlEntities;
 		$out = "<!DOCTYPE html [\n";
 		foreach( $wgHtmlEntities as $entity => $codepoint ) {

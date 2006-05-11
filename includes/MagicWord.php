@@ -182,7 +182,7 @@ class MagicWord {
 	 * Factory: creates an object representing an ID
 	 * @static
 	 */
-	function &get( $id ) {
+	static function &get( $id ) {
 		global $wgMagicWords;
 
 		if ( !is_array( $wgMagicWords ) ) {

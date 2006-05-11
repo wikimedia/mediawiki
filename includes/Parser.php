@@ -4253,7 +4253,7 @@ class ParserOptions
 	 * Get parser options
 	 * @static
 	 */
-	function newFromUser( &$user ) {
+	static function newFromUser( &$user ) {
 		$popts = new ParserOptions;
 		$popts->initialiseFromUser( $user );
 		return $popts;

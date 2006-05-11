@@ -641,8 +641,9 @@ class User {
 
 	/**
 	 * Initialise php session
+	 * @static
 	 */
-	function SetupSession() {
+	static function SetupSession() {
 		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
 		if( $wgSessionsInMemcached ) {
 			require_once( 'MemcachedSessions.php' );
@@ -660,7 +661,7 @@ class User {
 	 * Create a new user object using data from session
 	 * @static
 	 */
-	function loadFromSession() {
+	static function loadFromSession() {
 		global $wgMemc, $wgDBname, $wgCookiePrefix;
 
 		if ( isset( $_SESSION['wsUserID'] ) ) {
