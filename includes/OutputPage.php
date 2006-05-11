@@ -24,7 +24,6 @@ class OutputPage {
 	private $mDoNothing;
 	private $mContainsOldMagic, $mContainsNewMagic;
 	private $mIsArticleRelated;
-	private $mParserOptions;
 	private $mShowFeedLinks = false;
 	private $mEnableClientCache = true;
 	private $mArticleBodyOnly = false;
@@ -35,7 +34,8 @@ class OutputPage {
 		$mPageLinkTitle,
 		$mCategoryLinks,
 		$mDebugtext,
-		$mBodytext
+		$mBodytext,
+		$mParserOptions // Called in SkinTemplate when using Special::UserLogin
 	;
 
 	/**

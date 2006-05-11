@@ -62,15 +62,15 @@ abstract class QueryPage {
 	 *
 	 * @var bool
 	 */
-	var $listoutput = false;
+	private $listoutput = false;
 	
 	/**
 	 * The offset and limit in use, as passed to the query() function
 	 *
 	 * @var integer
 	 */
-	var $offset = 0;
-	var $limit = 0;
+	protected $offset = 0;
+	protected $limit = 0;
 
 	/**
 	 * A mutator for $this->listoutput;

@@ -168,7 +168,7 @@ class User {
 	 * @return integer|null Database user id (null: if non existent
 	 * @static
 	 */
-	function idFromName( $name ) {
+	public static function idFromName( $name ) {
 		$fname = "User::idFromName";
 
 		$nt = Title::newFromText( $name );

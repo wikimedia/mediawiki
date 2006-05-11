@@ -16,7 +16,7 @@ require_once 'QueryPage.php';
  * @subpackage SpecialPage
  */
 class WantedPagesPage extends QueryPage {
-	var $nlinks;
+	private $nlinks;
 
 	function WantedPagesPage( $inc = false, $nlinks = true ) {
 		$this->setListoutput( $inc );
