@@ -241,6 +241,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5891) Linktrail for Polish language (pl)
 * User::isBureaucrat , User::isDeveloper , User::isSysop deprecated in
   v1.6 now die with a backtrace. They will be removed in v1.8
+* dumpTextPass now skips goes to database for entries that were blank in the
+  previous dump, as this may indicate a broken dump.
+
 
 == Compatibility ==
 
