@@ -6,8 +6,12 @@
 
 /** @package MediaWiki */
 class contribs_finder {
-	var $username, $offset, $limit, $namespace;
-	var $dbr;
+	private
+		$dbr,
+		$limit,
+		$namespace,
+		$offset,
+		$username;
 
 	function contribs_finder($username) {
 		$this->username = $username;
@@ -112,7 +116,7 @@ class contribs_finder {
 		return $rows[count($rows) - 1]->rev_timestamp;
 	}
 
-	/* private */ function make_sql() {
+	private function make_sql() {
 		$userCond = $condition = $index = $offsetQuery = '';
 
 		extract($this->dbr->tableNames('page', 'revision'));

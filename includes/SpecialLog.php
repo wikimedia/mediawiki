@@ -42,8 +42,13 @@ function wfSpecialLog( $par = '' ) {
  * @subpackage SpecialPage
  */
 class LogReader {
-	var $db, $joinClauses, $whereClauses;
-	var $type = '', $user = '', $title = null;
+	private
+		$db,
+		$joinClauses,
+		$title = null,
+		$type = '',
+		$user = '',
+		$whereClauses ;
 
 	/**
 	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
@@ -211,8 +216,9 @@ class LogViewer {
 	/**
 	 * @var LogReader $reader
 	 */
-	var $reader;
-	var $numResults = 0;
+	private
+		$numResults = 0,
+		$reader ;
 
 	/**
 	 * @param LogReader &$reader where to get our data from

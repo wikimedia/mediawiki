@@ -4100,14 +4100,15 @@ class ParserOutput
 		$mNewSection,		# Show a new section link?
 		$mSubtitle,			# Additional subtitle
 		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
-		$mText,             # The output text
 		$mTitleText,        # title text of the chosen language variant
 		$mVersion ;         # Compatibility check
+
 
 	/** @todo FIXME should those be public ? */
 	public
 		$mContainsOldMagic, # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
-		$mHTMLtitle ;		# Display HTML title
+		$mHTMLtitle,		# Display HTML title
+		$mText ;            # The output text // public cause its used in ParserCache::save
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )

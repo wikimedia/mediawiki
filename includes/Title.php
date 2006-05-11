@@ -105,7 +105,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function newFromText( $text, $defaultNamespace = NS_MAIN ) {
+	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		global $wgTitleCache;
 		$fname = 'Title::newFromText';
 
@@ -160,7 +160,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function newFromURL( $url ) {
+	public static function newFromURL( $url ) {
 		global $wgLegalTitleChars;
 		$t = new Title();
 

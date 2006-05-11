@@ -37,7 +37,10 @@ function wfSpecialBlockip( $par ) {
  * @subpackage SpecialPage
  */
 class IPBlockForm {
-	var $BlockAddress, $BlockExpiry, $BlockReason;
+	private
+		$BlockAddress,
+		$BlockExpiry,
+		$BlockReason;
 
 	function IPBlockForm( $par ) {
 		global $wgRequest;

@@ -651,7 +651,7 @@ class Sanitizer {
 	 * @return string
 	 * @private
 	 */
-	function armorLinksCallback( $matches ) {
+	private static function armorLinksCallback( $matches ) {
 		return str_replace( ':', '&#58;', $matches[1] );
 	}
 

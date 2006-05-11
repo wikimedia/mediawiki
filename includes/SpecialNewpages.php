@@ -16,7 +16,8 @@ require_once( 'QueryPage.php' );
  * @subpackage SpecialPage
  */
 class NewPagesPage extends QueryPage {
-	var $namespace;
+	private
+		$namespace;
 
 	function NewPagesPage( $namespace = NS_MAIN ) {
 		$this->namespace = $namespace;
