@@ -56,7 +56,7 @@ if ( !$wgDisableCounters )
  *
  * @package MediaWiki
  */
-class QueryPage {
+abstract class QueryPage {
 	/**
 	 * Whether or not we want plain listoutput rather than an ordered list
 	 *
