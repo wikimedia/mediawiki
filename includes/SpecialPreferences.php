@@ -22,37 +22,12 @@ function wfSpecialPreferences() {
  * @subpackage SpecialPage
  */
 class PreferencesForm {
-
-	private
-		$mAction,
-		$mCols,
-		$mDate,
-		$mEmailFlag,
-		$mHourDiff,
-		$mImageSize,
-		$mMath,
-		$mNewpass,
-		$mNick,
-		$mOldpass,
-		$mPosted,
-		$mQuickbar,
-		$mRealName,
-		$mRecent,
-		$mReset,
-		$mRetypePass,
-		$mRows,
-		$mSearch,
-		$mSearchChars,
-		$mSearchLines,
-		$mSearchNs,
-		$mSkin,
-		$mStubs,
-		$mToggles,
-		$mUnderline,
-		$mUserEmail,
-		$mUserLanguage,
-		$mUserVariant,
-		$mWatchlistEdits ;
+	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;
+	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;
+	var $mUserLanguage, $mUserVariant;
+	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
+	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName, $mImageSize;
+	var $mUnderline, $mWatchlistEdits;
 
 	/**
 	 * Constructor

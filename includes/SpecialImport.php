@@ -121,15 +121,14 @@ function wfSpecialImport( $page = '' ) {
  * @subpackage SpecialPage
  */
 class WikiRevision {
-	private
-		$comment = '',
-		$id = 0,
-		$minor = false,
-		$text = '',
-		$timestamp = '20010115000000',
-		$title = NULL,
-		$user = 0,
-		$user_text = '' ;
+	var $title = NULL;
+	var $id = 0;
+	var $timestamp = "20010115000000";
+	var $user = 0;
+	var $user_text = "";
+	var $text = "";
+	var $comment = "";
+	var $minor = false;
 
 	function setTitle( $text ) {
 		$this->title = Title::newFromText( $text );
@@ -249,11 +248,10 @@ class WikiRevision {
  * @subpackage SpecialPage
  */
 class WikiImporter {
-	private
-		$lastfield,
-		$mPageCallback = null,
-		$mRevisionCallback = null,
-		$mSource = null ;
+	var $mSource = null;
+	var $mPageCallback = null;
+	var $mRevisionCallback = null;
+	var $lastfield;
 
 	function WikiImporter( $source ) {
 		$this->setRevisionCallback( array( &$this, "importRevision" ) );

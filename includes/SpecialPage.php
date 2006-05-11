@@ -109,32 +109,33 @@ class SpecialPage
 	 * The name of the class, used in the URL.
 	 * Also used for the default <h1> heading, @see getDescription()
 	 */
-	private $mName;
+	var $mName;
 	/**
 	 * Minimum user level required to access this page, or "" for anyone.
 	 * Also used to categorise the pages in Special:Specialpages
 	 */
-	private $mRestriction;
+	var $mRestriction;
 	/**
 	 * Listed in Special:Specialpages?
 	 */
-	private $mListed;
+	var $mListed;
 	/**
 	 * Function name called by the default execute()
 	 */
-	private $mFunction;
+	var $mFunction;
 	/**
 	 * File which needs to be included before the function above can be called
 	 */
-	private $mFile;
+	var $mFile;
 	/**
 	 * Whether or not this special page is being included from an article
 	 */
-	private $mIncluding;
+	var $mIncluding;
 	/**
 	 * Whether the special page can be included in an article
 	 */
-	private $mIncludable;
+	var $mIncludable;
+
 
 	/**#@-*/
 
@@ -145,7 +146,7 @@ class SpecialPage
 	 * Use this for a special page extension
 	 * @static
 	 */
-	static function addPage( &$obj ) {
+	function addPage( &$obj ) {
 		global $wgSpecialPages;
 		$wgSpecialPages[$obj->mName] = $obj;
 	}
@@ -155,7 +156,7 @@ class SpecialPage
 	 * Occasionally used to disable expensive or dangerous special pages
 	 * @static
 	 */
-	static function removePage( $name ) {
+	function removePage( $name ) {
 		global $wgSpecialPages;
 		unset( $wgSpecialPages[$name] );
 	}
@@ -165,7 +166,7 @@ class SpecialPage
 	 * @static
 	 * @param string $name
 	 */
-	static function getPage( $name ) {
+	function getPage( $name ) {
 		global $wgSpecialPages;
 		if ( array_key_exists( $name, $wgSpecialPages ) ) {
 			return $wgSpecialPages[$name];
@@ -179,7 +180,7 @@ class SpecialPage
 	 * @param string $name
 	 * @return mixed Title object if the redirect exists, otherwise NULL
 	 */
-	static function getRedirect( $name ) {
+	function getRedirect( $name ) {
 		global $wgUser;
 
 		$redirects = array(
@@ -227,7 +228,7 @@ class SpecialPage
 	 * Returns a 2d array where the first index is the restriction name
 	 * @static
 	 */
-	static function getPages() {
+	function getPages() {
 		global $wgSpecialPages;
 		$pages = array(
 		  '' => array(),
@@ -324,7 +325,7 @@ class SpecialPage
 	 * a redirect.
 	 * @static
 	 */
-	static function capturePath( &$title ) {
+	function capturePath( &$title ) {
 		global $wgOut, $wgTitle;
 
 		$oldTitle = $wgTitle;

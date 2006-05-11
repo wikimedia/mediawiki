@@ -38,12 +38,11 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 }
 
 class SpecialAllpages {
-	private
-		$maxPerPage = 960,
-		$name = 'Allpages',
-		# Determines, which message describes the input field 'nsfrom' (->SpecialPrefixindex.php)
-		$nsfromMsg = 'allpagesfrom',
-		$topLevelMax = 50;
+	var $maxPerPage=960;
+	var $topLevelMax=50;
+	var $name='Allpages';
+	# Determines, which message describes the input field 'nsfrom' (->SpecialPrefixindex.php)
+	var $nsfromMsg='allpagesfrom';
 
 /**
  * HTML for the top form

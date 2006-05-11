@@ -25,7 +25,7 @@ define( 'DEADLOCK_DELAY_MIN', 500000 );
 define( 'DEADLOCK_DELAY_MAX', 1500000 );
 
 class DBObject {
-	private $mData;
+	var $mData;
 
 	function DBObject($data) {
 		$this->mData = $data;
@@ -52,17 +52,17 @@ class Database {
 	/**#@+
 	 * @private
 	 */
-	private $mLastQuery = '';
+	var $mLastQuery = '';
 
-	private $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
-	private $mOut, $mOpened = false;
+	var $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
+	var $mOut, $mOpened = false;
 
-	private $mFailFunction;
-	private $mTablePrefix;
-	private $mFlags;
-	private $mTrxLevel = 0;
-	private $mErrorCount = 0;
-	private $mLBInfo = array();
+	var $mFailFunction;
+	var $mTablePrefix;
+	var $mFlags;
+	var $mTrxLevel = 0;
+	var $mErrorCount = 0;
+	var $mLBInfo = array();
 	/**#@-*/
 
 #------------------------------------------------------------------------------
@@ -1795,7 +1795,7 @@ class DatabaseMysql extends Database {
  * @package MediaWiki
  */
 class ResultWrapper {
-	private $db, $result;
+	var $db, $result;
 
 	/**
 	 * @todo document

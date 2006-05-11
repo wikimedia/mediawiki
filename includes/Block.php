@@ -24,24 +24,9 @@ define ( 'EB_RANGE_ONLY', 4 );
  */
 class Block
 {
-	public
-		$mAddress,
-		$mAuto,
-		$mBy,
-		$mExpiry,
-		$mId,
-		$mRangeEnd,
-		$mRangeStart,
-		$mReason,
-		$mTimestamp,
-		$mUser ;
-
-	private
-		$mByName,
-		$mForUpdate,
-		$mFromMaster,
-		$mIntegerAddr,
-		$mNetworkBits ;
+	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
+		            $mRangeStart, $mRangeEnd;
+	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster, $mByName;
 
 	function Block( $address = '', $user = '', $by = 0, $reason = '',
 		$timestamp = '' , $auto = 0, $expiry = '' )

@@ -13,8 +13,7 @@ class LinksUpdate {
 	/**@{{
 	 * @private
 	 */
-	private
-		$mId,            //!< Page ID of the article linked from
+	var $mId,            //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from
 		$mLinks,         //!< Map of title strings to IDs for the links in the document
 		$mImages,        //!< DB keys of the images used, in the array key only

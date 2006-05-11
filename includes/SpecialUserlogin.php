@@ -25,21 +25,9 @@ function wfSpecialUserlogin() {
  * @subpackage SpecialPage
  */
 class LoginForm {
-	private
-		$mAction,
-		$mCookieCheck,
-		$mCreateaccount,
-		$mCreateaccountMail,
-		$mDomain,
-		$mEmail,			// Entered user email ??
-		$mLoginattempt,
-		$mMailmypassword,
-		$mName,				// Entered username
-		$mPassword,			// Entered user password
-		$mPosted,
-		$mRemember,			// bool, if user want to be remembered
-		$mReturnTo,			// article to return to once logged in
-		$mRetype ;
+	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
+	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
+	var $mLoginattempt, $mRemember, $mEmail, $mDomain;
 
 	/**
 	 * Constructor

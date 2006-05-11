@@ -21,14 +21,11 @@ define('DIR_NEXT', 1);
  */
 
 class PageHistory {
-	private
-		$lastdate,
-		$linesonpage,
-		$mArticle,
-		$mLatestId = null,
-		$mNotificationTimestamp,
-		$mSkin,
-		$mTitle ;
+	var $mArticle, $mTitle, $mSkin;
+	var $lastdate;
+	var $linesonpage;
+	var $mNotificationTimestamp;
+	var $mLatestId = null;
 
 	/**
 	 * Construct a new PageHistory.

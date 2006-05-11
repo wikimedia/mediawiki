@@ -9,9 +9,7 @@
  * @package MediaWiki
  */
 class WatchedItem {
-	private
-		$mTitle,
-		$mUser;
+	var $mTitle, $mUser;
 
 	/**
 	 * Create a WatchedItem object with the given user and title

@@ -55,29 +55,29 @@ class Exif {
 	 * is the value, in the case of more than one possible value type they are
 	 * seperated by commas.
 	 */
-	private $mExifTags;
+	var $mExifTags;
 
 	/**
 	 * A one dimentional array of all Exif tags
 	 */
-	private $mFlatExifTags;
+	var $mFlatExifTags;
 
 	/**
 	 * The raw Exif data returned by exif_read_data()
 	 */
-	private $mRawExifData;
+	var $mRawExifData;
 
 	/**
 	 * A Filtered version of $mRawExifData that has been pruned of invalid
 	 * tags and tags that contain content they shouldn't contain according
 	 * to the Exif specification
 	 */
-	private $mFilteredExifData;
+	var $mFilteredExifData;
 
 	/**
 	 * Filtered and formatted Exif data, see FormatExif::getFormattedData()
 	 */
-	private $mFormattedExifData;
+	var $mFormattedExifData;
 
 	//@}
 
@@ -89,17 +89,17 @@ class Exif {
 	/**
 	 * The file being processed
 	 */
-	private $file;
+	var $file;
 
 	/**
 	 * The basename of the file being processed
 	 */
-	private $basename;
+	var $basename;
 
 	/**
 	 * The private log to log to
 	 */
-	private $log = 'exif';
+	var $log = 'exif';
 
 	//@}
 
@@ -605,7 +605,7 @@ class FormatExif {
 	 * @var array
 	 * @private
 	 */
-	private $mExif;
+	var $mExif;
 
 	/**
 	 * Constructor

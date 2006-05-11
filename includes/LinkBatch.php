@@ -10,9 +10,8 @@
 class LinkBatch {
 	/**
 	 * 2-d array, first index namespace, second index dbkey, value arbitrary
-	 * @todo FIXME should it really be public ?
 	 */
-	public $data = array();
+	var $data = array();
 
 	function LinkBatch( $arr = array() ) {
 		foreach( $arr as $item ) {

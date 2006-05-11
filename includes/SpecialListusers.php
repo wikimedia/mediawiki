@@ -41,10 +41,8 @@ require_once('QueryPage.php');
  * @subpackage SpecialPage
  */
 class ListUsersPage extends QueryPage {
-	// Variables used by constructor
-	public
-		$requestedGroup = '',
-		$requestedUser = '' ;
+	var $requestedGroup = '';
+	var $requestedUser = '';
 
 	function getName() {
 		return 'Listusers';

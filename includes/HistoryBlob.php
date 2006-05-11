@@ -52,14 +52,10 @@ class HistoryBlob
  * The real object
  * @package MediaWiki
  */
-class ConcatenatedGzipHistoryBlob extends HistoryBlob {
-	private
-		$mCompressed = false,
-		$mDefaultHash = '',
-		$mFast = 0,
-		$mItems = array(),
-		$mSize = 0,
-		$mVersion = 0 ;
+class ConcatenatedGzipHistoryBlob extends HistoryBlob
+{
+	/* private */ var $mVersion = 0, $mCompressed = false, $mItems = array(), $mDefaultHash = '';
+	/* private */ var $mFast = 0, $mSize = 0;
 
 	function ConcatenatedGzipHistoryBlob() {
 		if ( !function_exists( 'gzdeflate' ) ) {
@@ -186,10 +182,7 @@ $wgBlobCache = array();
  * @package MediaWiki
  */
 class HistoryBlobStub {
-	private
-		$mHash,
-		$mOldId,
-		$mRef;
+	var $mOldId, $mHash, $mRef;
 
 	/** @todo document */
 	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
@@ -285,8 +278,7 @@ class HistoryBlobStub {
  * @package MediaWiki
  */
 class HistoryBlobCurStub {
-	private
-		$mCurId;
+	var $mCurId;
 
 	/** @todo document */
 	function HistoryBlobCurStub( $curid = 0 ) {

@@ -27,26 +27,26 @@ class User {
 	/**@{{
 	 * @private
 	 */
-	private $mBlockedby;	//!<
-	private $mBlockreason;	//!<
-	private $mDataLoaded;	//!<
-	private $mEmail;		//!<
-	private $mEmailAuthenticated; //!<
-	private $mGroups;		//!<
-	private $mHash;			//!<
-	private $mId;			//!<
-	private $mName;			//!<
-	private $mNewpassword;	//!<
-	private $mNewtalk;		//!<
-	private $mOptions;		//!<
-	private $mPassword;		//!<
-	private $mRealName;		//!<
-	private $mRegistration;	//!<
-	private $mRights;		//!<
-	private $mSkin;			//!<
-	private $mToken;		//!<
-	private $mTouched;		//!<
-	private $mVersion;		//!< serialized version
+	var $mBlockedby;	//!<
+	var $mBlockreason;	//!<
+	var $mDataLoaded;	//!<
+	var $mEmail;		//!<
+	var $mEmailAuthenticated; //!<
+	var $mGroups;		//!<
+	var $mHash;			//!<
+	var $mId;			//!<
+	var $mName;			//!<
+	var $mNewpassword;	//!<
+	var $mNewtalk;		//!<
+	var $mOptions;		//!<
+	var $mPassword;		//!<
+	var $mRealName;		//!<
+	var $mRegistration;	//!<
+	var $mRights;		//!<
+	var $mSkin;			//!<
+	var $mToken;		//!<
+	var $mTouched;		//!<
+	var $mVersion;		//!< serialized version
 	/**@}} */
 
 	/** Constructor using User:loadDefaults() */
@@ -61,7 +61,7 @@ class User {
 	 * @return User
 	 * @static
 	 */
-	static function newFromName( $name ) {
+	function newFromName( $name ) {
 		# Force usernames to capital
 		global $wgContLang;
 		$name = $wgContLang->ucfirst( $name );
@@ -168,7 +168,7 @@ class User {
 	 * @return integer|null Database user id (null: if non existent
 	 * @static
 	 */
-	public static function idFromName( $name ) {
+	function idFromName( $name ) {
 		$fname = "User::idFromName";
 
 		$nt = Title::newFromText( $name );
@@ -641,9 +641,8 @@ class User {
 
 	/**
 	 * Initialise php session
-	 * @static
 	 */
-	static function SetupSession() {
+	function SetupSession() {
 		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
 		if( $wgSessionsInMemcached ) {
 			require_once( 'MemcachedSessions.php' );
@@ -661,7 +660,7 @@ class User {
 	 * Create a new user object using data from session
 	 * @static
 	 */
-	static function loadFromSession() {
+	function loadFromSession() {
 		global $wgMemc, $wgDBname, $wgCookiePrefix;
 
 		if ( isset( $_SESSION['wsUserID'] ) ) {

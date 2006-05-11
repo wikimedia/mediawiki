@@ -14,42 +14,30 @@
  */
 
 class EditPage {
-	private
-		$allowBlankSummary = false,
-		$autoSumm = '',
-		$deletedSinceEdit = false,
-		$firsttime,
-		$formtype,
-		$hookError = '',
-		$isConflict = false,
-		$isCssJsSubpage = false,
-		$kblength = false,
-		$lastDelete,
-		$mArticle,
-		$missingComment = false,
-		$missingSummary = false,
-		$mMetaData = '',
-		$mTitle,
-		$mTokenOk = true,
-		$tooBig = false ;
+	var $mArticle;
+	var $mTitle;
+	var $mMetaData = '';
+	var $isConflict = false;
+	var $isCssJsSubpage = false;
+	var $deletedSinceEdit = false;
+	var $formtype;
+	var $firsttime;
+	var $lastDelete;
+	var $mTokenOk = true;
+	var $tooBig = false;
+	var $kblength = false;
+	var $missingComment = false;
+	var $missingSummary = false;
+	var $allowBlankSummary = false;
+	var $autoSumm = '';
+	var $hookError = '';
 
 	# Form values
-	private
-		$diff = false,
-		$editintro = '',
-		$edittime = '',
-		$minoredit = false,
-		$oldid = 0,
-		$preview = false,
-		$recreate = false,
-		$save = false,
-		$scrolltop = null,
-		$section = '',
-		$starttime = '',
-		$summary = '',
-		$textbox1 = '',
-		$textbox2 = '',
-		$watchthis = false ;
+	var $save = false, $preview = false, $diff = false;
+	var $minoredit = false, $watchthis = false, $recreate = false;
+	var $textbox1 = '', $textbox2 = '', $summary = '';
+	var $edittime = '', $section = '', $starttime = '';
+	var $oldid = 0, $editintro = '', $scrolltop = null;
 
 	/**
 	 * @todo document
@@ -400,7 +388,7 @@ class EditPage {
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 
 			# Don't force edit summaries when a user is editing their own user or talk page
-			if( ( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) && $this->mTitle->getText() == $wgUser->getName() ) {
+			if( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK ) && $this->mTitle->getText() == $wgUser->getName() ) {
 				$this->allowBlankSummary = true;
 			} else {
 				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' );

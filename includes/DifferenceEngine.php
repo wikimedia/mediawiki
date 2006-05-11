@@ -21,24 +21,14 @@ class DifferenceEngine {
 	/**#@+
 	 * @private
 	 */
-	private
-		$mNewid,
-		$mNewPage,
-		$mNewRev,
-		$mNewtext,
-		$mNewtitle,
-
-		$mOldid,
-		$mOldPage,
-		$mOldRev,
-		$mOldtext,
-		$mOldtitle,
-
-		$mPagetitle,
-		$mRcidMarkPatrolled,
-		$mRevisionsLoaded = false, // Have the revisions been loaded
-		$mTextLoaded = 0, // How many text blobs have been loaded, 0, 1 or 2?
-		$mTitle;
+	var $mOldid, $mNewid, $mTitle;
+	var $mOldtitle, $mNewtitle, $mPagetitle;
+	var $mOldtext, $mNewtext;
+	var $mOldPage, $mNewPage;
+	var $mRcidMarkPatrolled;
+	var $mOldRev, $mNewRev;
+	var $mRevisionsLoaded = false; // Have the revisions been loaded
+	var $mTextLoaded = 0; // How many text blobs have been loaded, 0, 1 or 2?
 	/**#@-*/
 
 	/**
@@ -603,10 +593,9 @@ define('USE_ASSERTS', function_exists('assert'));
  * @subpackage DifferenceEngine
  */
 class _DiffOp {
-	private
-		$closing,
-		$orig,
-		$type;
+	var $type;
+	var $orig;
+	var $closing;
 
 	function reverse() {
 		trigger_error('pure virtual', E_USER_ERROR);
@@ -628,8 +617,7 @@ class _DiffOp {
  * @subpackage DifferenceEngine
  */
 class _DiffOp_Copy extends _DiffOp {
-	public
-		$type = 'copy';
+	var $type = 'copy';
 
 	function _DiffOp_Copy ($orig, $closing = false) {
 		if (!is_array($closing))
@@ -650,7 +638,7 @@ class _DiffOp_Copy extends _DiffOp {
  * @subpackage DifferenceEngine
  */
 class _DiffOp_Delete extends _DiffOp {
-	public $type = 'delete';
+	var $type = 'delete';
 
 	function _DiffOp_Delete ($lines) {
 		$this->orig = $lines;
@@ -669,7 +657,7 @@ class _DiffOp_Delete extends _DiffOp {
  * @subpackage DifferenceEngine
  */
 class _DiffOp_Add extends _DiffOp {
-	public $type = 'add';
+	var $type = 'add';
 
 	function _DiffOp_Add ($lines) {
 		$this->closing = $lines;
@@ -688,8 +676,7 @@ class _DiffOp_Add extends _DiffOp {
  * @subpackage DifferenceEngine
  */
 class _DiffOp_Change extends _DiffOp {
-	private
-		$type = 'change';
+	var $type = 'change';
 
 	function _DiffOp_Change ($orig, $closing) {
 		$this->orig = $orig;
@@ -1148,7 +1135,7 @@ class _DiffEngine
  */
 class Diff
 {
-	public $edits;
+	var $edits;
 
 	/**
 	 * Constructor.
@@ -1360,7 +1347,7 @@ class DiffFormatter
 	 * This should be left at zero for this class, but subclasses
 	 * may want to set this to other values.
 	 */
-	public $leading_context_lines = 0;
+	var $leading_context_lines = 0;
 
 	/**
 	 * Number of trailing context "lines" to preserve.
@@ -1368,7 +1355,7 @@ class DiffFormatter
 	 * This should be left at zero for this class, but subclasses
 	 * may want to set this to other values.
 	 */
-	public $trailing_context_lines = 0;
+	var $trailing_context_lines = 0;
 
 	/**
 	 * Format a diff.

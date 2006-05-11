@@ -56,21 +56,21 @@ if ( !$wgDisableCounters )
  *
  * @package MediaWiki
  */
-abstract class QueryPage {
+class QueryPage {
 	/**
 	 * Whether or not we want plain listoutput rather than an ordered list
 	 *
 	 * @var bool
 	 */
-	private $listoutput = false;
+	var $listoutput = false;
 	
 	/**
 	 * The offset and limit in use, as passed to the query() function
 	 *
 	 * @var integer
 	 */
-	protected $offset = 0;
-	protected $limit = 0;
+	var $offset = 0;
+	var $limit = 0;
 
 	/**
 	 * A mutator for $this->listoutput;
