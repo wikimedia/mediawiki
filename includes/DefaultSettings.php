@@ -1823,9 +1823,6 @@ $wgRateLimits = array(
 		'ip'     => null,
 		'subnet' => null,
 		),
-	'mailpassword' => array(
-		'ip' => NULL,
-		),
 	);
 
 /**
