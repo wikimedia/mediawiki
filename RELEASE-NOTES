@@ -247,6 +247,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * dumpTextPass can now use 7zip files for prefetch
 * (bug 5915) Update to Indonesian localisation (id)
 * (bug 5913) Update for German localisation (de)
+* (bug 5905) Plural support for Bosnian localisation (bs)
 
 
 == Compatibility ==
