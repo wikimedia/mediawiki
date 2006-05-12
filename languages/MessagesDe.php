@@ -168,6 +168,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "viewtalkpage" => "Diskussion",
 "otherlanguages" => "Andere Sprachen",
 "redirectedfrom" => "(Weitergeleitet von $1)",
+'redirectpagesub' => 'Weiterleitung',
 "lastmodified"	=> "Diese Seite wurde zuletzt geändert um $1.",
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
 "copyright"	=> "Inhalt ist verfügbar unter der $1.",
@@ -187,15 +188,20 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "nbytes"		=> "$1 Byte",
 'ncategories'		=> '$1 kategorien',
 'nrevisions'		=> '$1 Bearbeitungen',
-"go"			=> "Los",
-"ok"			=> "OK",
+'widthheight'		=> '$1 x $2',
+"go"			=> "Artikel",
+"ok"			=> "Suche",
 'retrievedfrom' => 'Von "$1"',
+'youhavenewmessages' => 'Sie haben $1 ($2).',
 "newmessageslink" => "neue Nachrichten",
 "editsection" => "bearbeiten",
+'editsectionhint' => 'Abschnitt bearbeiten: $1',
 "toc" => "Inhaltsverzeichnis",
 "showtoc" => "Anzeigen",
 "hidetoc" => "Verbergen",
 "thisisdeleted" => "Ansehen oder wiederherstellen von $1?",
+'viewdeleted' => '$1 anzeigen?',
+'restorelink1' => 'Eine gelöschte Version',
 "restorelink" => "$1 gelöschte Bearbeitungsvorgänge",
 "feedlinks" => "Feed:",
 'permalink'     => 'Permanentlink',
@@ -276,6 +282,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "perfdisabled" => "Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert. Versuchen Sie es bitte zwischen 02:00 und 14:00 UTC noch einmal<br />(Aktuelle Serverzeit : ".date("H:i:s")." UTC).",
 "perfdisabledsub" => "Hier ist eine gespeicherte Kopie von $1:",
 "perfcached" => "Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:",
+'perfcachedts' => 'Die folgenden Daten stammen aus dem Cache und wurden am $1 das letzte mal aktualisiert.',
 "wrong_wfQuery_params" => "Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Query: $2",
@@ -300,8 +307,9 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "yourpassword"	=> "Ihr Passwort",
 "yourpasswordagain" => "Passwort wiederholen",
 "remembermypassword" => "Dauerhaftes Einloggen",
-"loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br />Bitte versuchen Sie es nochmal!",
-"alreadyloggedin" => "<strong>Benutzer $1, Sie sind bereits angemeldet!</strong><br />",
+'yourdomainname' => 'Ihre Domain',
+'loginproblem' => '\'\'\'Es gab ein Problem mit Ihrer Anmeldung.\'\'\'<br />Bitte versuchen Sie es nochmal!',
+'alreadyloggedin' => '\'\'\'Benutzer $1, Sie sind bereits angemeldet!\'\'\'<br />',
 
 "login"			=> "Anmelden",
 "loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
@@ -342,6 +350,12 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporä
 'nosuchusershort'	=> 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
 "mailmypassword" => "Ein neues (temporäres) Passwort schicken",
+'passwordremindertitle' => 'Password Erinnerung von {{SITENAME}}',
+'passwordremindertext' => 'Jemand (IP-Adresse $1) hat um ein neues Passwort für die Anmeldung bei {{SITENAME}} ({{SERVERNAME}}) gebeten.
+
+Das automatisch generierte Passwort für Benutzer "$2" lautet nun "$3".
+
+Sie sollten sich jetzt anmelden und das Passwort ändern. Falls Sie diese Mail nicht selbst angefordert haben, ignorieren Sie diese. Das alte Passwort bleibt weiterhin gültig.',
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
 "passwordsent"	=> "Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.",
@@ -485,7 +499,7 @@ Möglicherweise haben Sie auch die Anfrage falsch formuliert, z.B.
 Bitte versuchen Sie eine anders formulierte Anfrage.",
 "matchtotals"	=> "Die Anfrage \"$1\" stimmt mit $2 Artikelüberschriften
 und dem Text von $3 Artikeln überein.",
-"nogomatch" => "Es existiert kein Artikel [[$1|$1]]. Bitte versuchen
+"nogomatch" => "Es existiert kein Artikel [[$1]]. Bitte versuchen
 Sie die Volltextsuche oder [[$1|legen Sie den Artikel neu an]].",
 "titlematches"	=> "Übereinstimmungen mit Überschriften",
 "notitlematches" => "Keine Übereinstimmungen",
@@ -568,9 +582,11 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "hist"			=> "Versionen",
 "hide"			=> "ausblenden",
 "show"			=> "einblenden",
-"minoreditletter" => "M",
-"newpageletter" => "N",
+'minoreditletter'	=> 'K',
+'newpageletter'		=> 'N',
 'number_of_watching_users_pageview' 	=> '[$1 Benutzer beobachten diese Seite]',
+'rc_categories'		=> 'Kategorienbegrenzung (getrennt mit "|")',
+'rc_categories_any'	=> 'Alle',
 
 
 # Upload
@@ -763,7 +779,7 @@ und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.
 "emailpage"		=> "E-Mail an Benutzer",
 "emailpagetext"	=> "Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren Einstellungen eingetragen, damit der Benutzer Ihnen antworten kann.",
 "usermailererror" => "Das Mail-Objekt gab einen Fehler zurück:",
-"defemailsubject"  => "{{SITENAME}} e-mail",
+"defemailsubject"  => "{{SITENAME}} E-Mail",
 "noemailtitle"	=> "Keine E-Mail-Adresse",
 "noemailtext"	=> "Dieser Benutzer hat keine gültige E-Mail-Adresse angegeben, oder möchte keine E-Mail von anderen Benutzern empfangen.",
 "emailfrom"		=> "Von",
@@ -901,7 +917,10 @@ Namens erstellt wurde, werden die wiederhergestellten Versionen als alte Version
 dieses Artikels erscheinen.",
 "undeleterevision" => "Gelöschte Version vom $1",
 "undeletebtn" => "Wiederherstellen",
+'undeletereset' => 'Abbrechen',
+'undeletecomment' => 'Begründung:',
 "undeletedarticle" => "\"$1\" wiederhergestellt",
+'undeletedrevisions' => "$1 Versionen wiederhergestellt.",
 "undeletedtext"   => "Der Artikel [[:$1|$1]] wurde erfolgreich wiederhergestellt.",
 
 # Namespace form on various pages
@@ -1005,7 +1024,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit Strg +
 'group-sysop'			=> 'Administratoren',
 'group-bureaucrat'		=> 'Bürokraten',
 'group-steward'			=> 'Stewards',
-'group-all'			=> '(all)',
+'group-all'			=> '(alle)',
 
 'group-bot-member'		=> 'Bot',
 'group-sysop-member'		=> 'Administrator',
@@ -1059,6 +1078,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit Mediawiki Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 "missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>",
+'filemissing' => 'Datei fehlt',
+'thumbnail_error' => 'Fehler beim Erstellen des Vorschaubildes: $1',
 
 #Tooltips:
 'tooltip-watch' => 'Diese Seite beobachten. [alt-w]',
@@ -1082,6 +1103,14 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'creditspage' => 'Seiteninformationen',
 'nocredits' => 'Für diese Seite sind keine Informationen vorhanden.',
 
+# Info page
+'infosubtitle'		=> 'Seiteninformation',
+'numedits'		=> 'Anzahl der Änderungen (Artikel): $1',
+'numtalkedits'		=> 'Anzahl der Änderungen (Diskussionsseite): $1',
+'numwatchers'		=> 'Anzahl der Beobachter: $1',
+'numauthors'		=> 'Anzahl der Authoren (Artikel): $1',
+'numtalkauthors'	=> 'Anzahl der Diskussionsteilnehmer: $1',
+
 #Tastatur-Shortcuts
 'accesskey-search' => 'f',
 'accesskey-minoredit' => 'i',
@@ -1098,6 +1127,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "makesysopok"           => "<b>Benutzer \"$1\" ist nun ein Administrator.</b>",
 "makesysopfail"         => "<b>Benutzer \"$1\" konnte nicht zu einem Administrator gemacht werden. (Haben Sie den Namen richtig geschrieben?)</b>",
 "makesysop"         => "Mache einen Benutzer zum Administrator",
+'setbureaucratflag'	=> 'Mache Benutzer zum Bürokraten',
+'setstewardflag'	=> 'Mache Benutzer zum Steward',
 'rightslog' => 'Rechte-Logbuch',
 'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 "rightslogentry"	=> "Rechte für Benutzer \"$1\" auf \"$2\" gesetzt",
@@ -1112,8 +1143,12 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 
 "1movedto2"		=> "$1 wurde nach $2 verschoben",
 "1movedto2_redir"	=> "[[$1]] wurde über eine Weiterleitung nach [[$2]] verschoben",
-"allmessages"		=> "Alle MediaWiki-Meldungen",
+'movelogpage'		=> 'Verschiebungs-Logbuch',
+'movelogpagetext'	=> 'Dies ist eine Liste aller verschobenen Seiten.',
+'allmessages'		=> 'Seiten im MediaWiki-Namensraum',
+'allmessagesname'	=> 'Name',
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
+'allmessagesnotsupportedDB' => '\'\'\'Spezial:Allmessages\'\'\' ist momentan nicht möglich, weil die Datenbank offline ist.',
 'allmessagesdefault'	=> 'Standardtext',
 'allmessagescurrent'	=> 'Aktueller Text',
 'allmessagesfilter'	=> 'Filter für Meldungsnamen:',
@@ -1167,13 +1202,20 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "math_notexvc"		=> "Das texvc-Programm kann nicht gefunden werden. Bitte beachten Sie math/README.",
 'prefs-personal' => 'Benutzerdaten',
 'prefs-rc'		=> 'Anzeige von "Letzte Änderungen"',
+'prefs-watchlist'	=> 'Beobachtungsliste',
+'prefs-watchlist-days'	=> 'Anzahl der Tage, die auf der Beobachtungsliste angezeigt werden sollen:',
+'prefs-watchlist-edits'	=> 'Anzahl der Einträge in der erweiterten Beobachtungsliste:',
 'prefs-misc'		=> 'Verschiedenes',
 "import"        	=> "Seiten importieren",
+'importinterwiki'	=> 'Transwiki Import',
 "importtext"    	=> "Bitte exportieren Sie die Seite vom Quellwiki mittels Spezial:Export und laden Sie die Datei dann über diese Seite wieder hoch.",
 "importfailed"  	=> "Import fehlgeschlagen: $1",
 "importnotext"  	=> "Leer oder kein Text",
 "importsuccess" 	=> "Import erfolgreich!",
 "importhistoryconflict" => "Es existieren bereits ältere Versionen, die mit diesen kollidieren. (Möglicherweise wurde die Seite bereits vorher importiert)",
+'importnosources'	=> 'Für den Transwiki Import sind keine Quellen definiert. Das direkte Hochladen von Versionen ist blockiert.',
+'importnofile'		=> 'Es ist keine Importdatei hochgeladen worden.',
+'importuploaderror'	=> 'Das Hochladen der Importdatei schlug fehl. Vielleicht ist die Datei größer als erlaubt.',
 "isbn"			=> "ISBN",
 "rfcurl"		=> "http://www.faqs.org/rfcs/rfc$1.html",
 "siteuser" => "{{SITENAME}}-Benutzer $1",
@@ -1185,9 +1227,18 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'talk' => 'Diskussion',
 "nocookiesnew" => "Der Benutzerzugang wurde erstellt, aber Sie sind nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und loggen sich dann mit Ihrem neuen Benutzernamen und dem Passwort ein.",
 "nocookieslogin" => "{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.",
+
+'spamprotectiontitle' => 'Spamschutzfilter',
+'spamprotectiontext' => 'Die Seite die Sie speichern wollten wurde vom Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link zu einer externen Seite.',
+'spamprotectionmatch' => 'Der folgende Text hat den Spamfilter ausgelöst: $1',
 "subcategorycount" => "Diese Kategorie hat $1 Unterkategorien.",
+'subcategorycount1' => 'Diese Kategorie hat $1 Unterkategorie.',
 "categoryarticlecount" => "Dieser Kategorie gehören $1 Artikel an.",
-'categoryarticlecount' => 'Dieser Kategorie gehört $1 Artikel an.',
+'categoryarticlecount1' => 'Dieser Kategorie gehört $1 Artikel an.',
+'spambot_username' => 'MediaWiki spam cleanup',
+'spam_reverting' => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
+'spam_blanking' => 'Alle Versionen enthielten Links zu $1, bereinigt.',
+
 # math
 'mw_math_png' => "Immer als PNG darstellen",
 'mw_math_simple' => "Einfaches TeX als HTML darstellen, sonst PNG",
@@ -1195,6 +1246,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'mw_math_source' =>"Als TeX belassen (für Textbrowser)",
 'mw_math_modern' => "Empfehlenswert für moderne Browser",
 'mw_math_mathml' => 'MathML (experimentell)',
+
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Benutzer:',
 'speciallogtitlelabel' => 'Titel:',
@@ -1599,8 +1651,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 'deletedrevision' => 'Alte Version $1 gelöscht.',
 
 # browsing diffs
-'previousdiff' => '← vorheriger Versionsunterschied',
-'nextdiff' => 'nächster Versionsunterschied →',
+'previousdiff' => '← Zum vorherigen Versionsunterschied',
+'nextdiff' => 'Zum nächsten Versionsunterschied →',
 
 # HTML dump
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
