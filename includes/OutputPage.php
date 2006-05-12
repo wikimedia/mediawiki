@@ -420,6 +420,7 @@ class OutputPage {
 
 	function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
+		$fname = 'OutputPage::sendCacheControl';
 
 		if ($this->mETag)
 			header("ETag: $this->mETag");
@@ -435,7 +436,7 @@ class OutputPage {
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
 					# Surrogate-Control controls our Squid, Cache-Control downstream caches
-					wfDebug( "** proxy caching with ESI; {$this->mLastModified} **\n", false );
+					wfDebug( "$fname: proxy caching with ESI; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
 					header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$this->mSquidMaxage.', content="ESI/1.0"');
@@ -445,7 +446,7 @@ class OutputPage {
 					# to revalidate against the proxy on each visit.
 					# IMPORTANT! The Squid needs to replace the Cache-Control header with
 					# Cache-Control: s-maxage=0, must-revalidate, max-age=0
-					wfDebug( "** local proxy caching; {$this->mLastModified} **\n", false );
+					wfDebug( "$fname: local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
 					header( 'Cache-Control: s-maxage='.$this->mSquidMaxage.', must-revalidate, max-age=0' );
@@ -453,13 +454,13 @@ class OutputPage {
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page.
-				wfDebug( "** private caching; {$this->mLastModified} **\n", false );
+				wfDebug( "$fname: private caching; {$this->mLastModified} **\n", false );
 				header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 				header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
 			if($this->mLastModified) header( "Last-modified: {$this->mLastModified}" );
 		} else {
-			wfDebug( "** no caching **\n", false );
+			wfDebug( "$fname: no caching **\n", false );
 
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
