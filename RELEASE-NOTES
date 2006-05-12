@@ -246,6 +246,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * dumpTextPass progress includes percentage of items prefetched
 * dumpTextPass can now use 7zip files for prefetch
 * (bug 5915) Update to Indonesian localisation (id)
+* (bug 5913) Update for German localisation (de)
+
 
 == Compatibility ==
 
