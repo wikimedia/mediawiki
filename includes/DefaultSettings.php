@@ -1823,12 +1823,20 @@ $wgRateLimits = array(
 		'ip'     => null,
 		'subnet' => null,
 		),
+	'mailpassword' => array(
+		'ip' => NULL,
+		),
 	);
 
 /**
  * Set to a filename to log rate limiter hits.
  */
 $wgRateLimitLog = null;
+
+/**
+ * Array of groups which should never trigger the rate limiter
+ */
+$wgRateLimitsExcludedGroups = array( 'sysop', 'bureaucrat' );
 
 /**
  * On Special:Unusedimages, consider images "used", if they are put

@@ -525,15 +525,17 @@ class User {
 	 * @public
 	 */
 	function pingLimiter( $action='edit' ) {
-		global $wgRateLimits;
+		global $wgRateLimits, $wgRateLimitsExcludedGroups;
 		if( !isset( $wgRateLimits[$action] ) ) {
 			return false;
 		}
-		if( $this->isAllowed( 'delete' ) ) {
-			// goddam cabal
-			return false;
+		
+		# Some groups shouldn't trigger the ping limiter, ever
+		foreach( $this->getGroups() as $group ) {
+			if( array_search( $group, $wgRateLimitsExcludedGroups ) !== false )
+				return false;
 		}
-
+		
 		global $wgMemc, $wgDBname, $wgRateLimitLog;
 		$fname = 'User::pingLimiter';
 		wfProfileIn( $fname );
