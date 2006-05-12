@@ -87,8 +87,8 @@ class LanguageLt extends LanguageUtf8  {
 	
 	/* Word forms (with examples):
 		1 - vienas (1) lapas
-		2 - penkiolika (15) lapų
-		3 - trys (3) lapai
+		2 - trys (3) lapai
+		3 - penkiolika (15) lapų
 	*/	
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
 		$count = str_replace (' ', '', $count);
