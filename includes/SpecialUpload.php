@@ -1,4 +1,4 @@
-ywa<?php
+<?php
 /**
  *
  * @package MediaWiki
