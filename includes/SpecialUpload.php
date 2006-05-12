@@ -1,4 +1,4 @@
-<?php
+ywa<?php
 /**
  *
  * @package MediaWiki
@@ -306,7 +306,7 @@ class UploadForm {
 					$skin = $wgUser->getSkin();
 					$ltitle = Title::makeTitle( NS_SPECIAL, 'Log' );
 					$llink = $skin->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 'type=delete&page=' . $nt->getPrefixedUrl() );
-					$warning .= wfOpenElement( 'li' ) . wfMsgHtml( 'filewasdeleted', $llink ) . wfCloseElement( 'li' );
+					$warning .= wfOpenElement( 'li' ) . wfMsgWikiHtml( 'filewasdeleted', $llink ) . wfCloseElement( 'li' );
 				}
 			}
 
