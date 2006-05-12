@@ -32,6 +32,8 @@ class TextPassDumper extends BackupDumper {
 	var $prefetch = null;
 	var $input = "php://stdin";
 	var $history = MW_EXPORT_FULL;
+	var $fetchCount = 0;
+	var $prefetchCount = 0;
 
 	function dump() {
 		# This shouldn't happen if on console... ;)
@@ -90,6 +92,36 @@ class TextPassDumper extends BackupDumper {
 		}
 	}
 
+	/**
+	 * Overridden to include prefetch ratio if enabled.
+	 */
+	function showReport() {
+		if( !$this->prefetch ) {
+			return parent::showReport();
+		}
+		
+		if( $this->reporting ) {
+			$delta = wfTime() - $this->startTime;
+			$now = wfTimestamp( TS_DB );
+			if( $delta ) {
+				$rate = $this->pageCount / $delta;
+				$revrate = $this->revCount / $delta;
+				$portion = $this->revCount / $this->maxCount;
+				$eta = $this->startTime + $delta / $portion;
+				$etats = wfTimestamp( TS_DB, intval( $eta ) );
+				$fetchrate = 100.0 * $this->prefetchCount / $this->fetchCount;
+			} else {
+				$rate = '-';
+				$revrate = '-';
+				$etats = '-';
+				$fetchrate = '-';
+			}
+			global $wgDBname;
+			$this->progress( sprintf( "%s: %s %d pages (%0.3f/sec), %d revs (%0.3f/sec), %0.1f%% prefetched, ETA %s [max %d]",
+				$now, $wgDBname, $this->pageCount, $rate, $this->revCount, $revrate, $fetchrate, $etats, $this->maxCount ) );
+		}
+	}
+
 	function readDump( $input ) {
 		$this->buffer = "";
 		$this->openElement = false;
@@ -121,6 +153,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function getText( $id ) {
+		$this->fetchCount++;
 		if( isset( $this->prefetch ) ) {
 			$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
 			if( $text === null ) {
@@ -129,6 +162,7 @@ class TextPassDumper extends BackupDumper {
 				// Blank entries may indicate that the prior dump was broken.
 				// To be safe, reload it.
 			} else {
+				$this->prefetchCount++;
 				return $text;
 			}
 		}
