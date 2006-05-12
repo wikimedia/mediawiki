@@ -248,7 +248,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5915) Update to Indonesian localisation (id)
 * (bug 5913) Update for German localisation (de)
 * (bug 5905) Plural support for Bosnian localisation (bs)
-
+* Groups which won't hit the rate limiter now configurable with
+  $wgRateLimitsExcludedGroups
 
 == Compatibility ==
 
