@@ -2150,6 +2150,11 @@ class Parser
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfFiles() );
 			case MAG_NUMBEROFUSERS:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfUsers() );
+			case MAG_NUMBEROFPAGES:
+				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfPages() );
+			case MAG_CURRENTVERSION:
+				global $wgVersion;
+				return $wgVersion;
 			case MAG_SITENAME:
 				return $wgSitename;
 			case MAG_SERVER:
@@ -2664,9 +2669,12 @@ class Parser
 			}
 		}		
 
-		# NUMBEROFUSERS, NUMBEROFARTICLES, and NUMBEROFFILES
+		# NUMBEROFPAGES, NUMBEROFUSERS, NUMBEROFARTICLES, and NUMBEROFFILES
 		if( !$found ) {
-			$mwWordsToCheck = array( MAG_NUMBEROFUSERS => 'wfNumberOfUsers', MAG_NUMBEROFARTICLES => 'wfNumberOfArticles', MAG_NUMBEROFFILES => 'wfNumberOfFiles' );
+			$mwWordsToCheck = array( MAG_NUMBEROFPAGES => 'wfNumberOfPages',
+									 MAG_NUMBEROFUSERS => 'wfNumberOfUsers',
+									 MAG_NUMBEROFARTICLES => 'wfNumberOfArticles',
+									 MAG_NUMBEROFFILES => 'wfNumberOfFiles' );
 			foreach( $mwWordsToCheck as $word => $func ) {
 				$mwCurrentWord =& MagicWord::get( $word );
 				if( $mwCurrentWord->matchStartAndRemove( $part1 ) ) {
@@ -4314,6 +4322,18 @@ function wfNumberOfUsers() {
 	$dbr =& wfGetDB( DB_SLAVE );
 	$count = $dbr->selectField( 'site_stats', 'ss_users', array(), 'wfNumberOfUsers' );
 	wfProfileOut( 'wfNumberOfUsers' );
+	return (int)$count;
+}
+
+/**
+ * Return the total number of pages
+ * @return integer
+ */
+function wfNumberOfPages() {
+	wfProfileIn( 'wfNumberOfPages' );
+	$dbr =& wfGetDB( DB_SLAVE );
+	$count = $dbr->selectField( 'site_stats', 'ss_total_pages', array(), 'wfNumberOfPages' );
+	wfProfileOut( 'wfNumberOfPages' );
 	return (int)$count;
 }
 
