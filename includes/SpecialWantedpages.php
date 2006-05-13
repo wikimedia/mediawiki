@@ -49,6 +49,7 @@ class WantedPagesPage extends QueryPage {
 			 LEFT JOIN $page AS pg2
 			 ON pl_from = pg2.page_id
 			 WHERE pg1.page_namespace IS NULL
+			 AND pl_namespace NOT IN ( 2, 3 )
 			 AND pg2.page_namespace != 8
 			 GROUP BY pl_namespace, pl_title
 			 HAVING COUNT(*) > $count";
