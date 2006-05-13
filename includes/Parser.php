@@ -4040,6 +4040,7 @@ class Parser
 	 * shouldn't be cached.
 	 */
 	function disableCache() {
+		wfDebug( "Parser output marked as uncacheable.\n" );
 		$this->mOutput->mCacheTime = -1;
 	}
 

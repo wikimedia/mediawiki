@@ -256,6 +256,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce NUMBEROFPAGES magic word
 * (bug 5833) Introduce CURRENTVERSION magic word
 * (bug 5370) Allow throttling of password reminder requests with the rate limiter
+* (bug 5683) Respect parser output marked as uncacheable when saving
 
 == Compatibility ==
 
