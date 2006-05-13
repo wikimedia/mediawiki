@@ -250,6 +250,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5905) Plural support for Bosnian localisation (bs)
 * Groups which won't hit the rate limiter now configurable with
   $wgRateLimitsExcludedGroups
+* (bug 5806) {{plural:}} support instead of "twin" MediaWiki messages
 
 == Compatibility ==
 

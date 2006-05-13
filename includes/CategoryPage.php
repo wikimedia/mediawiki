@@ -154,14 +154,14 @@ class CategoryPage extends Article {
 		if( count( $children ) > 0 ) {
 			# Showing subcategories
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
-			$r .= $this->formatCount( $children, 'subcategorycount' );
+			$r .= wfMsgExt( 'subcategorycount', array( 'parse' ), count( $children) );
 			$r .= $this->formatList( $children, $children_start_char );
 		}
 
 		# Showing articles in this category
 		$ti = htmlspecialchars( $this->mTitle->getText() );
 		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
-		$r .= $this->formatCount( $articles, 'categoryarticlecount' );
+		$r .= wfMsgExt( 'categoryarticlecount', array( 'parse' ), count( $articles) );
 		$r .= $this->formatList( $articles, $articles_start_char );
 
 		if( $wgCategoryMagicGallery && ! $ig->isEmpty() ) {
@@ -178,21 +178,6 @@ class CategoryPage extends Article {
 		return $r;
 	}
 
-	/**
-	 * @param array $articles
-	 * @param string $message
-	 * @return string
-	 * @private
-	 */
-	function formatCount( $articles, $message ) {
-		global $wgContLang;
-		$numart = count( $articles );
-		if( $numart == 1 ) {
-			# Slightly different message to avoid silly plural
-			$message .= '1';
-		}
-		return wfMsg( $message, $wgContLang->formatNum( $numart ) );
-	}
 	/**
 	 * Format a list of articles chunked by letter, either as a
 	 * bullet list or a columnar format, depending on the length.

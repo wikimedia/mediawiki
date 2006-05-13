@@ -514,9 +514,9 @@ END;
 		$pop = '</span>';
 		$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $wgOut->mCategoryLinks ) . $pop;
 
-		$msg = count( $wgOut->mCategoryLinks ) === 1 ? 'categories1' : 'categories';
+		$msg = wfMsgExt('categories', array('parsemag', 'escape'), count( $wgOut->mCategoryLinks ));
 		$s = $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Categories' ),
-			wfMsg( $msg ), 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
+			$msg, 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ': ' . $t;
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
@@ -662,7 +662,7 @@ END;
 			return wfMsg( $msg,
 				$this->makeKnownLink(
 					$wgContLang->SpecialPage( 'Undelete/' . $wgTitle->getPrefixedDBkey() ),
-					wfMsg( 'restorelink' . ($n == 1 ? '1' : ''), $n ) ) );
+					wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $n ) ) );
 		}
 		return '';
 	}
