@@ -226,6 +226,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
 	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
 	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
+	MAG_NUMBEROFPAGES		 => array( 1,	 'NUMBEROFPAGES'		  ),
 	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
 	MAG_NUMBEROFFILES        => array( 1,    'NUMBEROFFILES'          ),
 	MAG_NUMBEROFUSERS		 => array( 1, 	 'NUMBEROFUSERS'		  ),
@@ -282,6 +283,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_DISPLAYTITLE         => array( 1,    'DISPLAYTITLE'           ),
 	MAG_RAWSUFFIX			 => array( 1,	 'R'					  ),
 	MAG_NEWSECTIONLINK		 => array( 1,	 '__NEWSECTIONLINK__'	  ),
+	MAG_CURRENTVERSION		 => array( 1, 	 'CURRENTVERSION'		  ),
 );
 
 if (!$wgCachedMessageArrays) {
