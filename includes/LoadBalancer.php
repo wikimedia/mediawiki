@@ -186,11 +186,11 @@ class LoadBalancer {
 					}
 					$serverIndex = $i;
 					if ( $i !== false ) {
-						wfDebugLog( 'connect', "Using reader #$i: {$this->mServers[$i]['host']}...\n" );
+						wfDebugLog( 'connect', "$fname: Using reader #$i: {$this->mServers[$i]['host']}...\n" );
 						$this->openConnection( $i );
 
 						if ( !$this->isOpen( $i ) ) {
-							wfDebug( "Failed\n" );
+							wfDebug( "$fname: Failed\n" );
 							unset( $loads[$i] );
 							$sleepTime = 0;
 						} else {
