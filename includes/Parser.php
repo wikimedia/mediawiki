@@ -1161,8 +1161,8 @@ class Parser
 
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
-				# Autonumber if allowed
-				if ( strpos( HTTP_PROTOCOLS, str_replace('/','\/', $protocol) ) !== false ) {
+				# Autonumber if allowed. See bug #5918
+				if ( strpos( wfUrlProtocols(), substr($protocol, 0, strpos($protocol, ':')) ) !== false ) {
 					$text = '[' . ++$this->mAutonumber . ']';
 					$linktype = 'autonumber';
 				} else {

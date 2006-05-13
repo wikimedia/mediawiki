@@ -1045,7 +1045,7 @@ Table security: embedded pipes (http://mail.wikipedia.org/pipermail/wikitech-l/2
 !! result
 <table>
 <tr>
-<td><a href="ftp://|x||" class='external free' title="ftp://|x||" rel="nofollow">ftp://|x</td><td></a>" onmouseover="alert(document.cookie)">test
+<td><a href="ftp://|x||" class='external autonumber' title="ftp://|x||" rel="nofollow">[1]</td><td></a>" onmouseover="alert(document.cookie)">test
 </td>
 </tr>
 </table>
@@ -3947,6 +3947,27 @@ HTML nested ordered list, open tags (bug 5497)
 </li></ol>
 </li></ol>
 
+!! end
+
+!!test
+bug 5918: autonumbering
+!! input
+[http://first/] [http://second] [ftp://ftp]
+
+ftp://inlineftp
+
+[mailto:enclosed@mail.tld With target]
+
+[mailto:enclosed@mail.tld]
+
+mailto:inline@mail.tld
+!! result
+<p><a href="http://first/" class='external autonumber' title="http://first/" rel="nofollow">[1]</a> <a href="http://second" class='external autonumber' title="http://second" rel="nofollow">[2]</a> <a href="ftp://ftp" class='external autonumber' title="ftp://ftp" rel="nofollow">[3]</a>
+</p><p><a href="ftp://inlineftp" class='external free' title="ftp://inlineftp" rel="nofollow">ftp://inlineftp</a>
+</p><p><a href="mailto:enclosed@mail.tld" class='external text' title="mailto:enclosed@mail.tld" rel="nofollow">With target</a>
+</p><p><a href="mailto:enclosed@mail.tld" class='external autonumber' title="mailto:enclosed@mail.tld" rel="nofollow">[4]</a>
+</p><p><a href="mailto:inline@mail.tld" class='external free' title="mailto:inline@mail.tld" rel="nofollow">mailto:inline@mail.tld</a>
+</p>
 !! end
 
 #
