@@ -251,6 +251,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Groups which won't hit the rate limiter now configurable with
   $wgRateLimitsExcludedGroups
 * (bug 5806) {{plural:}} support instead of "twin" MediaWiki messages
+* (bug 5931) Update for Polish language (pl)
 
 == Compatibility ==
 
