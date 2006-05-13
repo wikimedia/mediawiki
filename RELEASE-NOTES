@@ -255,6 +255,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Ignore the user and user talk namespaces on Special:Wantedpages
 * Introduce NUMBEROFPAGES magic word
 * (bug 5833) Introduce CURRENTVERSION magic word
+* (bug 5370) Allow throttling of password reminder requests with the rate limiter
 
 == Compatibility ==
 

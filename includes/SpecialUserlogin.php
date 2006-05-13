@@ -364,6 +364,14 @@ class LoginForm {
 	 * @private
 	 */
 	function mailPassword() {
+		global $wgUser, $wgOut;
+		
+		# Check against the rate limiter
+		if( $wgUser->pingLimiter( 'mailpassword' ) ) {
+			$wgOut->rateLimited();
+			return;
+		}
+	
 		if ( '' == $this->mName ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
