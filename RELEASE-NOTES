@@ -258,6 +258,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5370) Allow throttling of password reminder requests with the rate limiter
 * (bug 5683) Respect parser output marked as uncacheable when saving
 * (bug 5918) Links autonumbering now work for all defined protocols
+* (bug 5935) Improvement to German localisation (de)
 
 == Compatibility ==
 
