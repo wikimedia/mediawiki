@@ -3950,6 +3950,13 @@ class Parser
 			if ( $nt->getNamespace() == NS_IMAGE ) {
 				$this->mOutput->addImage( $nt->getDBkey() );
 			}
+			
+			# Register links with the parent parser
+			foreach( $pout->getLinks() as $ns => $keys ) {
+				foreach( $keys as $dbk => $id )
+					$this->mOutput->addLink( Title::makeTitle( $ns, $dbk ), $id );
+			}
+			
 		}
 		return $ig->toHTML();
 	}
