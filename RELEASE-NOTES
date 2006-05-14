@@ -266,7 +266,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Statistics
 * (bug 5949) Update to Indonesian localisation (id)
 * (bug 5862) Update of Belarusian translation (be)
-* (bug 5651) Disable section editing links for users who can't edit
 * (bug 5950) Improvements to French localisation
 * (bug 5805) {{plural:}} support for counters in some special pages
 * (bug 5952) Improvement to German localisation (de)
