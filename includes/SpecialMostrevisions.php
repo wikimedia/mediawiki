@@ -49,7 +49,8 @@ class MostrevisionsPage extends QueryPage {
 
 		$plink = $skin->makeKnownLinkObj( $nt, $text );
 
-		$nl = wfMsg( 'nrevisions', $wgLang->formatNum( $result->value ) );
+		$nl = wfMsgExt( 'nrevisions', array( 'parsemag', 'escape'),
+			$wgLang->formatNum( $result->value ) );
 		$nlink = $skin->makeKnownLinkObj( $nt, $nl, 'action=history' );
 
 		return wfSpecialList($plink, $nlink);
