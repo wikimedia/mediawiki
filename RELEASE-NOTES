@@ -264,6 +264,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5845) Introduce BASEPAGENAME and BASEPAGENAMEE magic words
 * (bug 5941) Use content language when getting the administrator page title for
   Special:Statistics
+* (bug 5949) Update to Indonesian localisation (id)
 
 == Compatibility ==
 
