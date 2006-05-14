@@ -3054,11 +3054,13 @@ class Parser
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = true;
 		$forceTocHere = false;
-		if( !$this->mTitle->userCanEdit() ) {
-			$showEditLink = 0;
-		} else {
-			$showEditLink = $this->mOptions->getEditSection();
-		}
+		
+		# Show section editing links if the user can edit the page and has
+		# the appropriate preference set
+		$user =& $this->mOptions->getUser();
+		$perm = $user->isAllowed( 'edit' ) && $this->mTitle->userCanEdit();
+		$pref = $this->mOptions->getEditSection();
+		$showEditLink = $perm && $pref;
 
 		# Inhibit editsection links if requested in the page
 		$esw =& MagicWord::get( MAG_NOEDITSECTION );
@@ -4219,6 +4221,7 @@ class ParserOptions
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
 	var $mTidy;                      # Ask for tidy cleanup
 	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
+	var $mUser;						 # User being parsed for
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -4232,6 +4235,7 @@ class ParserOptions
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
+	function getUser()							{ return $this->mUser; }
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
@@ -4274,6 +4278,7 @@ class ParserOptions
 			$user =& $userInput;
 		}
 
+		$this->mUser =& $user;
 		$this->mUseTeX = $wgUseTeX;
 		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
@@ -4283,7 +4288,7 @@ class ParserOptions
 		$this->mSkin =& $user->getSkin();
 		wfProfileOut( $fname.'-skin' );
 		$this->mDateFormat = $user->getOption( 'date' );
-		$this->mEditSection = true;
+		$this->mEditSection = $user->getOption( 'editsection' );
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mAllowSpecialInclusion = $wgAllowSpecialInclusion;
 		$this->mTidy = false;
