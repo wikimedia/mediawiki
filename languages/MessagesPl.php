@@ -138,7 +138,7 @@
 "editthispage" => "Edytuj",
 "delete" => "Usuń",
 "deletethispage" => "Usuń",
-'protect' => 'Zabezpiecz',
+"protect" => "Zabezpiecz",
 "protectthispage" => "Zabezpiecz",
 "unprotect" => "Odbezpiecz",
 "unprotectthispage" => "Odbezpiecz",
@@ -153,44 +153,69 @@
 "wikipediapage" => "Strona metaartykułu",
 "imagepage" =>  "Strona grafiki",
 "viewtalkpage" => "Strona dyskusji",
-"otherlanguages" => "Wersja",
+"otherlanguages" => "W innych językach",
 "redirectedfrom" => "(Przekierowano z $1)",
 "redirectpagesub" => "strona przekierowująca",
-"lastmodified" => "Tę stronę ostatnio zmodyfikowano o $1;",
-"viewcount" => "Tę stronę obejrzano $1 razy;",
+"lastmodified" => "Tę stronę ostatnio zmodyfikowano $1.",
+"viewcount" => "Tę stronę obejrzano $1 razy.",
 "printsubtitle" => "(z {{SERVER}})",
 "protectedpage" => "Strona zabezpieczona",
 "administrators" => "{{ns:4}}:Administratorzy",
+"jumpto" => "Skocz do:",
+"jumptonavigation" => "nawigacji",
+"jumptosearch" => "wyszukiwania",
 "sysoptitle" => "Wymagane prawa dostępu administratora",
-"sysoptext" => "Ta operacja może być wykonana tylko przez
-użytkowania o statusie \"administrator\".
-Zobacz $1.",
+"sysoptext" => 'Ta operacja może być wykonana tylko przez
+użytkowania o statusie "administrator".
+Zobacz $1.',
 "developertitle" => "Wymagane prawa dostępu Programisty",
-"developertext" => "Ta operacja może być wykonana tylko przez
-użytkownika o prawach \"Programisty\".
-Zobacz $1.",
-"nbytes" => "$1 bajtów",
+"developertext" => 'Ta operacja może być wykonana tylko przez
+użytkownika o prawach "Programisty".
+Zobacz $1.',
+"badaccess" => "Nieprawidłowe uprawnienia",
+"badaccesstext" => 'Ta operacja może być wykonana tylko przez
+użytkownika o prawach "$2". Zobacz $1.',
+
+"nbytes" => "$1 {{PLURAL:$1|bajt|bajtów}}",
+"ncategories" => "$1 kategorii",
+"nrevisions" => "$1 wersji",
 "go" => "OK",
 "ok" => "OK",
 "sitetitle" => "{{SITENAME}}",
 "sitesubtitle" => "",
-"retrievedfrom" => "Źródło: \"$1\"",
-"newmessageslink" => "Nowe wiadomości",
+"retrievedfrom" => 'Źródło: "$1"',
+"youhavenewmessages" => "Masz $1 ($2).",
+"newmessageslink" => "nowe wiadomości",
+"newmessagesdifflink" => "różnica z poprzednią wersją",
 "editsection" => "Edytuj",
+"editsectionhint" => "Edytuj sekcję: $1",
 "toc" => "Spis treści",
 "showtoc" => "pokaż",
 "hidetoc" => "schowaj",
 "thisisdeleted" => "Pokaż/odtwórz $1",
+"viewdeleted" => "Zobacz $1?",
+"restorelink1" => "jedną skasowaną wersję",
 "restorelink" => "skasowane wersje (w sumie $1)",
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+"nstab-main" => "Artykuł",
+"nstab-user" => "Strona użytkownika",
+"nstab-media" => "Media",
+"nstab-special" => "Strona specjalna",
+"nstab-wp" => "Meta",
+"nstab-image" => "Plik",
+"nstab-mediawiki" => "Komunikat",
+"nstab-template" => "Szablon",
+"nstab-help" => "Pomoc",
+"nstab-category" => "Kategoria",
 
 # Main script and global functions
 #
 "nosuchaction" => "Nie ma takiej operacji",
-"nosuchactiontext" => "Oprogramowanie Wikipedii nie rozpoznaje
+"nosuchactiontext" => "Oprogramowanie nie rozpoznaje
 operacji takiej jak podana w URL",
 "nosuchspecialpage" => "Nie ma takiej strony specjalnej",
-"nospecialpagetext" => "Oprogramowanie Wikipedii nie rozpoznaje takiej
-specjalnej strony.",
+"nospecialpagetext" => "Oprogramowanie nie rozpoznaje takiej specjalnej strony. Listę stron specjalnych znajdziesz na [[{{ns:special}}:Specialpages]]",
 
 # General errors
 #
@@ -209,89 +234,142 @@ MySQL zgłosił błąd \"$3: $4\".",
 "noconnect" => "{{SITENAME}} ma chwilowo problemy techniczne. Nie można połączyć się z serwerem bazy danych. Przepraszamy!",
 "nodb" => "Nie można odnaleźć bazy danych $1",
 "cachederror" => "Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już nieaktualny.",
+"laggedslavemode" => "Uwaga: Ta strona może nie zawierać najnowszych aktualizacji.",
 "readonly" => "Baza danych jest zablokowana",
-"enterlockreason" => "Podaj powód zablokowania bazy oraz szacunkowy czas
-jej odblokowania",
-"readonlytext" => "Baza danych Wikipedii jest w tej chwili zablokowana
+"enterlockreason" => "Podaj powód zablokowania bazy oraz szacunkowy czas jej odblokowania",
+"readonlytext" => "Baza danych jest w tej chwili zablokowana
 - nie można wprowadzać nowych artykułów ani modyfikować istniejących. Powodem
 są prawdopodobnie czynności administracyjne. Po ich zakończeniu przywrócona
 zostanie pełna funkcjonalność bazy.
 Administrator, który zablokował bazę, podał następujące wyjaśnienie:
 <p>$1",
-"missingarticle" => "Oprogramowanie nie odnalazło tekstu strony,
-która powinna się znajdować w bazie, tzn. strony \"$1\".
+"missingarticle" => 'Oprogramowanie nie odnalazło tekstu strony,
+która powinna się znajdować w bazie, tzn. strony "$1".
 <p>Zazwyczaj zdarza się to, gdy wybrane zostanie łącze
 do skasowanej strony, np. w starszej wersji innej ze stron.
 <p>Inne okoliczności świadczyłyby o tym, że w oprogramowaniu jest błąd.
 W takim przypadku zgłoś, proszę, ten fakt administratorowi
-podając także powyższy adres.",
+podając także powyższy adres.',
+"readonly_lag" => "Baza danych została automatycznie zablokowana na czas potrzebny na synchronizację zmian między serwerem głównym i serwerami pośredniczącymi.",
 "internalerror" => "Błąd wewnętrzny",
-"filecopyerror" => "Nie można skopiować pliku \"$1\" do \"$2\".",
-"filerenameerror" => "Nie można zmienić nazwy pliku \"$1\" na \"$2\".",
-"filedeleteerror" => "Nie można skasować pliku \"$1\".",
-"filenotfound" => "Nie można znaleźć pliku \"$1\".",
-"unexpected" => "Niespodziewana wartość: \"$1\"=\"$2\".",
+"filecopyerror" => 'Nie można skopiować pliku "$1" do "$2".',
+"filerenameerror" => 'Nie można zmienić nazwy pliku "$1" na "$2".',
+"filedeleteerror" => 'Nie można skasować pliku "$1".',
+"filenotfound" => 'Nie można znaleźć pliku "$1".',
+"unexpected" => 'Niespodziewana wartość: "$1"="$2".',
 "formerror" => "Błąd: nie można wysłać formularza",
 "badarticleerror" => "Dla tej strony ta operacja nie może być wykonana.",
 "cannotdelete" => "Nie można skasować podanej strony lub obrazka.",
 "badtitle" => "Niepoprawny tytuł",
 "badtitletext" => "Podano niepoprawny tytuł strony. Prawdopodobnie zawiera
 znaki, których użycie jest zabronione lub jest pusty.",
-"perfdisabled" => "By odciążyć serwer w godzinach szczytu czasowo zablokowaliśmy
-wykonanie tej czynności. Wróć proszę i spróbuj jeszcze raz między 02.00 a 14.00
-czasu UTC. Przepraszamy!",
+"perfdisabled" => "Przepraszamy! By odciążyć serwer w godzinach szczytu czasowo zablokowaliśmy
+wykonanie tej czynności.",
+"perfcached" => "Poniższe dane są kopią z pamięci podręcznej i mogą nie być do końca aktualne.",
+"perfcachedts" => "Poniższe dane są kopią z pamięci podręcznej i zostały uaktualnione $1.",
 "viewsource" => "Tekst źródłowy",
-"protectedtext" => "Wyłączono możliwość edycji tej strony; istnieje kilka powodów
-dla których jest to robione - zobacz [[{{ns:4}}:Strona_zabezpieczona]]
+"viewsourcefor" => "dla $1",
+"protectedtext" => "Wyłączono możliwość edycji tej strony. Istnieje kilka powodów
+dla których jest to robione - zobacz [[{{ns:4}}:Strona_zabezpieczona]].
 
 Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.",
+"protectedinterface" => "Ta strona dostarcza tekst interfejsu do oprogramowania i została zablokowana możliwość jej edycji.",
+"editinginterface" => "<strong>Ostrzeżenie:</strong> Edytujesz stronę, która jest użyta w celu dostarczenia tekstu interfejsu do oprogramowania. Zmiany na tej stronie zmienią wygląd interfejsu użytkownika dla innych użytkowników.",
 
 # Login and logout pages
 #
 "logouttitle" => "Wylogowanie użytkownika",
-"logouttext" => "Wylogowano Cię.
-Możesz kontynuować pracę z Wikipedią jako niezarejestrowany użytkownik
+"logouttext" => "<strong>Wylogowano Cię<strong>.<br />
+Możesz kontynuować pracę jako niezarejestrowany użytkownik
 albo zalogować się ponownie jako ten sam lub inny użytkownik.",
 
 "welcomecreation" => "<h2>Witaj, $1!</h2><p>Właśnie utworzyliśmy dla Ciebie konto.
-Nie zapomnij dostosować <i>preferencji</i>.",
+Nie zapomnij dostosować [[{{ns:special}}:Preferences|preferencji]].",
 
-"loginpagetitle" => "User login",
+"loginpagetitle" => "Logowanie",
 "yourname" => "Twój login",
 "yourpassword" => "Twoje hasło",
 "yourpasswordagain" => "Powtórz hasło",
 "newusersonly" => " (tylko nowi użytkownicy)",
 "remembermypassword" => "Pamiętaj moje hasło między sesjami.",
+"yourdomainname" => "Twoja domena",
 "loginproblem" => "<b>Są problemy z Twoim logowaniem.</b><br />Spróbuj ponownie!",
 "alreadyloggedin" => "<strong>$1, jesteś już zalogowany!</strong><br />",
 
 "login" => "Zaloguj mnie",
-"userlogin" => "Logowanie",
+"loginprompt" => "Musisz mieć włączone cookies by móc się zalogować.",
+"userlogin" => "Logowanie / rejestracja",
 "logout" => "Wyloguj mnie",
 "userlogout" => "Wylogowanie",
 "notloggedin" => "Brak logowania",
+"nologin" => "Nie masz konta? $1.",
+"nologinlink" => "Zarejestruj się",
 "createaccount" => "Załóż nowe konto",
+"gotaccount" => "Masz już konto? $1.",
+"gotaccountlink" => "Zaloguj się",
+"createaccountmail" => "przez e-mail",
 "badretype" => "Wprowadzone hasła różnią się między sobą.",
 "userexists" => "Wybrana przez Ciebie nazwa użytkownika jest już zajęta. Wybierz, proszę, inną.",
-"youremail" => "Twój e-mail*",
+"youremail" => "Twój e-mail *",
+"username" => "Nazwa użytkownika:",
+"yourrealname" => "Imię i nazwisko *",
+"yourlanguage" => "Język interfejsu",
 "yournick" => "Twój podpis",
+"badsig" => "Błędny podpis, sprawdź tagi HTML.",
 "emailforlost" => "* Wpisanie adresu e-mailowego nie jest obowiązkowe. Pozwala to jednak innym użytkownikom skontaktowanie się z Tobą bez jawnej znajomości Twojego adresu. Przyda się także, gdy zapomnisz hasła - możesz wtedy poprosić o przesłanie nowego na podany adres.",
 "loginerror" => "Błąd logowania",
+"prefs-help-email" => "* E-mail (opcjonalnie): Podanie e-maila pozwala innym skontaktować się z tobą za pośrednictwem twojej strony użytkownika
+lub twojej strony dyskusji bez potrzeby ujawniania twoich danych identyfikacyjnych.",
+"nocookiesnew" => "Konto użytkownika zostało utworzone, ale nie jesteś zalogowany. {{SITENAME}} używa ciasteczek do logowania. Masz wyłączone ciasteczka. Żeby się zalogować odblokuj ciasteczka i podaj nazwę i hasło swojego konta.",
+"nocookieslogin" => "{{SITENAME}} używa ciasteczek żeby zalogować użytkownika. Masz zablokowaną obsługę ciasteczek. Spróbuj ponownie po ich odblokowaniu.",
 "noname" => "To nie jest poprawna nazwa użytkownika.",
 "loginsuccesstitle" => "Udane logowanie",
-"loginsuccess" => "Zalogowano Cię do Wikipedii jako \"$1\".",
-"nosuchuser" => "Nie ma użytkowniku nazywającego się \"$1\".
-Sprawdź pisownię lub użyj poniższego formularza by utworzyć nowe konto.",
+"loginsuccess" => 'Zalogowano Cię do serwisu {{SITENAME}} jako "$1".',
+"nosuchuser" => 'Nie ma użytkownika nazywającego się "$1". Sprawdź pisownię lub użyj poniższego formularza by utworzyć nowe konto.',
+"nosuchusershort" => 'Nie ma użytkownika nazywającego się "$1".',
 "wrongpassword" => "Podane przez Ciebie hasło jest nieprawidłowe. Spróbuj jeszcze raz.",
+"wrongpasswordempty" => "Wprowadzone hasło jest puste. Spróbuj ponownie.",
 "mailmypassword" => "Wyślij mi nowe hasło",
 "passwordremindertitle" => "{{SITENAME}} przypomina o haśle",
-"passwordremindertext" => "Ktoś (prawdopodobnie Ty, spod adresu $1)
-poprosił od nas o wysłanie nowego hasła dostępu do Wikipedii.
-Aktualne hasło dla użytkownika \"$2\" to \"$3\".
-Najlepiej będzie jak zalogujesz się teraz i od razu zmienisz hasło.",
-"noemail" => "W bazie nie ma adresu e-mailowego dla użytkownika \"$1\".",
+"passwordremindertext" => 'Ktoś (prawdopodobnie Ty, spod adresu $1)
+poprosił od nas o wysłanie nowego hasła dostępu do serwisu {{SITENAME}}.
+Aktualne hasło dla użytkownika "$2" to "$3".
+Najlepiej będzie jak zalogujesz się teraz i od razu zmienisz hasło.',
+"noemail" => 'W bazie nie ma adresu e-mailowego dla użytkownika "$1".',
 "passwordsent" => "Nowe hasło zostało wysłane na adres e-mailowy użytkownika \"$1\"
 Po otrzymaniu go zaloguj się ponownie.",
+"eauthentsent" => "Potwierdzenie zostało wysłane na adres e-mail.
+Nim jakiekolwiek wiadomości zostaną wysłane na ten adres, należy wypełnić zawarte w nim instrukcje, by potwierdzić Twoją własność e-maila.",
+"mailerror" => "Przy wysyłaniu maila nastąpił błąd: $1",
+"acct_creation_throttle_hit" => "Przykro nam, założyłeś/aś już $1 kont(a). Nie możesz założyć kolejnego.",
+"emailauthenticated" => "Twój adres email został uwierzytelniony $1.",
+"emailnotauthenticated" => "Twój adres e-mail <strong>nie jest potwierdzony</strong>. Poniższe funkcje poczty nie będą działały.",
+"emailconfirmlink" => "Potwierdź swój adres e-mail",
+"invalidemailaddress" => "E-mail nie zostanie zaakceptowany: jego format nie spełnia formalnych wymagań. Proszę wpisać poprawny adres email lub wyczyścić pole.",
+"accountcreated" => "Utworzono konto",
+"accountcreatedtext" => "Konto dla $1 zostało utworzone.",
+
+# Edit page toolbar
+'bold_sample' => 'Tekst wytłuszczony',
+'bold_tip' => 'Tekst wytłuszczony',
+'italic_sample' => 'Tekst pochylony',
+'italic_tip' => 'Tekst pochylony',
+'link_sample' => 'Tytuł linku',
+'link_tip' => 'Link wewnętrzny',
+'extlink_sample' => 'http://www.przyklad.pl tytuł strony',
+'extlink_tip' => 'Link zewnętrzny (pamiętaj o prefiksie http:// )',
+'headline_sample' => 'Tekst nagłówka',
+'headline_tip' => 'Nagłówek 2. poziomu',
+'math_sample' => 'W tym miejscu wprowadź wzór',
+'math_tip' => 'Wzór matematyczny (LaTeX)',
+'nowiki_sample' => 'Wstaw tu tekst niesformatowany',
+'nowiki_tip' => 'Zignoruj formatowanie wiki',
+'image_sample' => 'Przyklad.jpg',
+'image_tip' => 'Obrazek osadzony',
+'media_sample' => 'Przyklad.ogg',
+'media_tip' => 'Link do pliku',
+'sig_tip' => 'Twój podpis wraz z datą i czasem',
+'hr_tip' => 'Pozioma linia (używaj oszczędnie)',
 
 # Edit pages
 #
@@ -302,35 +380,59 @@ Po otrzymaniu go zaloguj się ponownie.",
 "savearticle" => "Zapisz",
 "preview" => "Podgląd",
 "showpreview" => "Podgląd",
+"showdiff" => "Podgląd zmian",
+"anoneditwarning" => "Nie jesteś zalogowany. Twój adres IP będzie zapisany w historii edycji strony.",
+"missingsummary" => '<strong>Przypomnienie:</strong> Nie wprowadziłeś opisu zmian. Jeżeli nie chcesz go wprowadzać naciśnij przycisk "Zapisz" jeszcze raz.',
 "blockedtitle" => "Użytkownik jest zablokowany",
 "blockedtext" => "Twoje konto lub adres IP zostały zablokowane przez $1.
-Podany powód to:<br />$2.<p>W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym
+Podany powód to:<br />$2.
+
+W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym
 [[{{ns:4}}:Administratorzy|administratorem]].",
+"whitelistedittitle" => "Przed edycją musisz się zalogować",
+"whitelistedittext" => "Musisz się [[{{ns:special}}:Userlogin|zalogować]] żeby móc edytować artykuły.",
+"whitelistreadtitle" => "Przed przeczytaniem musisz się zalogować",
+"whitelistreadtext" => "Musisz się [[{{ns:special}}:Userlogin|zalogować]] żeby czytać strony.",
+"whitelistacctitle" => "Nie jesteś dopuszczony do utworzenia konta",
+"whitelistacctext" => "Aby móc zakładać konta na tej Wiki musisz [[{{ns:special}}:Userlogin|zalogować się]] i mieć przyznane specjalne prawa.",
+"confirmedittitle" => "Wymagane potwierdzenie e-maila by móc edytować",
+"confirmedittext" => "Musisz podać i potwierdzić swój e-mail by móc edytować. Możesz to zrobić w [[{{ns:special}}:Preferences|swoich ustawieniach]].",
+"loginreqtitle"	=> "musisz się zalogować",
+"loginreqlink" => "zaloguj się",
+"loginreqpagetext" => "Musisz $1 żeby móc przeglądać inne strony.",
+"accmailtitle" => "Hasło wysłane.",
+"accmailtext" => 'Hasło dla użytkownika "$1" zostało wysłane pod adres $2.',
 "newarticle" => "(Nowy)",
-"newarticletext" => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
+"newarticletext" => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu <i>Wstecz</i>.",
 "anontalkpagetext" => "---- ''To jest strona dyskusyjna dla użytkowników
-anonimowych - takich, którzy nie mają jeszcze swojego konta na Wikipedii lub
+anonimowych - takich, którzy nie mają jeszcze swojego konta lub
 nie chcą go w tej chwili używać. By ich identyfikować używamy [[IP|numerów IP]].
 Jeśli jesteś anonimowym użytkownikiem i wydaje Ci się, że zamieszczone tu komentarze
-nie są skierowane do Ciebie, [[Specjalna:Userlogin|utwórz proszę konto i/albo zaloguj się]]
+nie są skierowane do Ciebie, [[{{ns:special}}:Userlogin|utwórz proszę konto albo zaloguj się]]
 - dzięki temu unikniesz w przyszłości podobnych nieporozumień.'' ",
-"noarticletext" => "(Nie ma jeszcze artykułu o tym tytule. Wybierz ''Edytuj'' by go rozpocząć.)",
+"noarticletext" => "Nie ma jeszcze artykułu o tym tytule. Możesz [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} utworzyć artykuł {{FULLPAGENAME}}] lub [[{{ns:special}}:Search/{{FULLPAGENAME}}|poszukać {{FULLPAGENAME}} w innych artykułach]].",
+"clearyourcache" => "<strong>Uwaga:</strong> po zapisaniu zmian musisz zaktualizować pamięć podręczną (cache) przeglądarki: <strong>Mozilla / Firefox:</strong> kliknij <i>Reload</i> (lub <i>Ctrl-R</i>), <strong>IE / Opera:</strong> <i>Ctrl-F5<i>, <strong>Safari:</strong> <i>Cmd-R</i>, <strong>Konqueror</strong> <i>Ctrl-R</i>.",
+"usercssjsyoucanpreview" => '<strong>Wskazówka:</strong> Użyj przycisku "Podgląd", aby przetestować Twój nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
+"usercsspreview" => "<strong>Pamiętaj, że to na razie tylko podgląd Twojego arkusza stylów - nic jeszcze nie zostało zapisane!</strong>",
+"userjspreview" => "<strong>Pamiętaj, że to na razie tylko podgląd Twojego JavaScriptu - nic jeszcze nie zostało zapisane!</strong>",
 "updated" => "(Zmodyfikowano)",
 "note" => "<strong>Uwaga:</strong> ",
 "previewnote" => "To jest tylko podgląd - artykuł nie został jeszcze zapisany!",
+"session_fail_preview" => "<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji. Spróbuj jeszcze raz; jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>",
 "previewconflict" => "Wersja podglądana odnosi się do tekstu
 z górnego pola edycji. Tak będzie wyglądać strona jeśli zdecydujesz się ją zapisać.",
-"editing" => "Edytujesz \"$1\"",
-"editingsection" => "Edytujesz \"$1\" (fragment)",
-"editingcomment" => "Edytujesz \"$1\" (komentarz)",
+"importing" => "Importowanie $1",
+"editing" => 'Edytujesz "$1"',
+"editingsection" => 'Edytujesz "$1" (fragment)',
+"editingcomment" => 'Edytujesz "$1" (komentarz)',
 "editconflict" => "Konflikt edycji: $1",
-"explainconflict" => "Ktoś zdążył wprowadzić swoją wersję artykułu
+"explainconflict" => 'Ktoś zdążył wprowadzić swoją wersję artykułu
 w trakcie Twojej edycji.
 Górne pole edycji zawiera tekst strony aktualnie zapisany w bazie danych.
 Twoje zmiany znajdują się w dolnym polu edycji.
 By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
 <b>Tylko</b> tekst z górnego pola będzie zapisany w bazie gdy wciśniesz
-\"Zapisz\".<br />",
+"Zapisz".<br />',
 "yourtext" => "Twój tekst",
 "storedversion" => "Zapisana wersja",
 "editingold" => "<strong>OSTRZEŻENIE: Edytujesz inną niż bieżąca wersję tej strony.
@@ -353,7 +455,9 @@ artykułu. Proponujemy przenieść jej tekst do prywatnego pliku
 Mogą ją edytować jedynie użytkownicy z prawami administracyjnymi.
 Upewnij się, że postępujesz zgodnie z
 [[Project:Blokowanie_stron|zasadami dotyczącymi zablokowanych stron]].</strong>",
-
+"semiprotectedpagewarning" => "<strong>Uwaga:<strong> Tę stronę mogą edytować tylko zarejestrowani użytkownicy.",
+"templatesused" => "Szablony użyte na tej stronie:",
+"nocreatetitle" => "Ograniczono możliwość tworzenia nowych stron",
 
 # History pages
 #
@@ -364,14 +468,19 @@ Upewnij się, że postępujesz zgodnie z
 Sprawdź proszę URL użyty przez Ciebie by uzyskać dostęp do tej strony.",
 "loadhist" => "Pobieranie historii tej strony",
 "currentrev" => "Aktualna wersja",
-
 "revisionasof" => "Wersja z dnia $1",
+"revisionasofwithlink" => "Wersja z dnia $1; $2<br />$3 | $4",
+"previousrevision" => "← Poprzednia wersja",
+"nextrevision" => "Następna wersja →",
+"currentrevisionlink" => "przejdź do aktualnej wersji",
 "cur" => "bież",
 "next" => "następna",
 "last" => "poprz",
 "orig" => "oryginał",
-"histlegend" => "Legenda: (bież) = różnice z wersją bieżącą,
-(poprz) = różnice z wersją poprzedzającą, M = drobne zmiany",
+"histlegend" => "Legenda: (bież) - różnice z wersją bieżącą, (poprz) - różnice z wersją poprzedzającą, d - drobne zmiany",
+"deletedrev" => "[usunięto]",
+"histfirst" => "od początku",
+"histlast" => "od końca",
 
 # Diffs
 #
@@ -379,6 +488,7 @@ Sprawdź proszę URL użyty przez Ciebie by uzyskać dostęp do tej strony.",
 "loadingrev" => "pobieranie wersji w celu porównania",
 "lineno" => "Linia $1:",
 "editcurrent" => "Edytuj bieżącą wersję tej strony",
+"compareselectedversions" => "porównaj wybrane wersje",
 
 # Search results
 #
@@ -422,18 +532,26 @@ W międzyczasie polecamy wyszukiwanie za pomocą Google:</p>",
 #
 "preferences" => "Preferencje",
 "prefsnologin" => "Brak logowania",
-"prefsnologintext" => "Musisz się [[Specjalna:Userlogin|zalogować]]
-przez zmianą swoich preferencji.",
+"prefsnologintext" => "Musisz się [[{{ns:special}}:Userlogin|zalogować]] przed zmianą swoich preferencji.",
 "prefsreset" => "Preferencje domyślne zostały odtworzone.",
 "qbsettings" => "Pasek szybkiego dostępu",
 "changepassword" => "Zmiana hasła",
 "skin" => "Skórka",
-"math" => "Prezentacja wzorów matematycznych",
+"dateformat" => "Format daty",
+"datedefault" => "Domyślny",
+"datetime" => "Data i czas",
+"math" => "Wzory matematyczne",
 "math_failure" => "Parser nie umiał rozpoznać",
 "math_unknown_error" => "nieznany błąd",
 "math_unknown_function" => "nieznana funkcja ",
 "math_lexing_error" => "błąd leksera",
 "math_syntax_error" => "błąd składni",
+"prefs-personal" => "Dane użytkownika",
+"prefs-rc" => "Ostatnie zmiany",
+"prefs-watchlist" => "Obserwowane",
+"prefs-watchlist-days" => "Liczba dni ukazywania się pozycji na liście:",
+"prefs-watchlist-edits" => "Liczba edycji pokazywanych w rozszerzonej liście obserwowanych:",
+"prefs-misc" => "Różne",
 "saveprefs" => "Zapisz preferencje",
 "resetprefs" => "Preferencje domyślne",
 "oldpassword" => "Stare hasło",
@@ -442,21 +560,22 @@ przez zmianą swoich preferencji.",
 "textboxsize" => "Wymiary pola edycji",
 "rows" => "Wiersze",
 "columns" => "Kolumny",
-"searchresultshead" => "Ustawienia wyszukiwarki",
+"searchresultshead" => "Wyszukiwarka",
 "resultsperpage" => "Liczba wyników na stronie",
 "contextlines" => "Pierwsze wiersze artykułu",
 "contextchars" => "Litery kontekstu w linijce",
 "stubthreshold" => "Maksymalny rozmiar artykułu prowizorycznego",
 "recentchangescount" => "Liczba pozycji na liście ostatnich zmian",
 "savedprefs" => "Twoje preferencje zostały zapisane.",
-"timezonetext" => "Podaj liczbę godzin różnicy między Twoim czasem,
-a czasem uniwersalnym (UTC). Np. dla Polski jest to liczba \"2\" (czas letni)
-lub \"1\" (czas zimowy).",
+"timezonetext" => 'Podaj liczbę godzin różnicy między Twoim czasem, a czasem uniwersalnym (UTC). Np. dla Polski jest to liczba "2" (czas letni) lub "1" (czas zimowy).',
 "localtime" => "Twój czas",
 "timezoneoffset" => "Różnica",
 "servertime" => "Aktualny czas serwera",
 "guesstimezone" => "Pobierz z przeglądarki",
+"allowemail" => "Inni użytkownicy mogą przesyłać mi e-maile",
 "defaultns" => "Przeszukuj następujące przestrzenie nazw domyślnie:",
+"default" => "domyślnie",
+"files" => "Pliki",
 
 # Recent changes
 #
@@ -475,12 +594,12 @@ Jeśli zależy Ci na dalszym rozwoju Wikipedii, nie dodawaj materiałów zastrze
 "rchide" => "in $4 form; $1 drobnych zmian; $2 innych przestrzeni nazw; $3 wielokrotnych edycji.",
 "diff" => "różn",
 "hist" => "hist",
-"hide" => "schowaj",
+"hide" => "ukryj",
 "show" => "pokaż",
 "tableform" => "tabelka",
 "listform" => "lista",
 "nchanges" => "$1 zmian",
-"minoreditletter" => "M",
+"minoreditletter" => "d",
 "newpageletter" => "N",
 
 # Upload
