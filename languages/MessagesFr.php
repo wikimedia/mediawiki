@@ -3,7 +3,7 @@
 
 /* private */ $wgAllMessagesFr = array(
 
-# User Toggles
+# User preference Toggles
 
 'tog-editwidth' => 'La fenêtre d\'édition s\'affiche en pleine largeur',
 'tog-editondblclick' => 'Double-cliquer pour modifier une page (nécessite JavaScript)',
@@ -100,7 +100,7 @@
 'moredotdotdot'	=> 'Et plus...',
 'mypage'        => 'Ma page',
 'mytalk'        => 'Ma page de discussion',
-'anontalk'	=> 'Discussion avec cette adresse ip',
+'anontalk'	=> 'Discussion avec cette adresse IP',
 'currentevents' => 'Actualités',
 'disclaimers'	=> 'Avertissements',
 'disclaimerpage' => '{{ns:4}}:Avertissements généraux',
@@ -622,7 +622,7 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'recentchangeslinked' => 'Suivi des liens',
 'rclsub'        => '(des pages liées à « $1 »)',
 'newpages'      => 'Nouvelles pages',
-'ancientpages'	=> 'Articles les plus anciens',
+'ancientpages'	=> 'Articles les moins récemment modifiés',
 'move'		=> 'Renommer',
 'movethispage'  => 'Renommer la page',
 'unusedimagestext' => '<p>N\'oubliez pas que d\'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu\'elle est en réalité utilisée.',
@@ -631,11 +631,17 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'alphaindexline' => '$1 à $2',
 
 # All pages
-#
+
+'nextpage'          => 'Page suivante ($1)',
+'allpagesfrom'		=> 'Afficher les pages à partir de :',
+'allarticles'		=> 'Tous les articles',
+'allnonarticles'	=> 'Tous les noms articles',
 'allinnamespace' => 'Toutes les pages (espace de nom $1)',
+'allnotinnamespace'	=> 'Toutes les pages (n\’étant pas dans l\'espace de nom $1)',
 'allpagesnext' => 'Suivant',
 'allpagesprev' => 'Précédent',
 'allpagessubmit' => 'Valider',
+'allpagesprefix'	=> 'Afficher les pages commençant par :',
 
 # Email this user
 #
@@ -649,15 +655,14 @@ pour pouvoir envoyer un message à un autre utilisateur.',
 L\'adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ « Expéditeur » de votre message afin que le destinataire puisse vous répondre.',
 'noemailtitle' => 'Pas d\'adresse électronique',
 'noemailtext' => 'Cet utilisateur n\'a pas spécifié d\'adresse électronique valide ou a choisi de ne pas recevoir de courrier électronique des autres utilisateurs.',
-
 'emailfrom'  => 'Expéditeur',
 'emailto'  => 'Destinataire',
 'emailsubject' => 'Objet',
 'emailsend'  => 'Envoyer',
 'emailsent'  => 'Message envoyé',
 'emailsenttext' => 'Votre message a été envoyé.',
-'usermailererror' => 'Erreur de mail :',
 'defemailsubject' => 'courriel envoyé depuis {{SITENAME}}',
+'usermailererror' => 'Erreur de mail :',
 
 # Watchlist
 #
@@ -721,9 +726,7 @@ L\'heure indiquée est celle du serveur (UTC).',
 'rollbacklink'	=> 'révoquer',
 'rollbackfailed' => 'La révocation a échoué',
 'cantrollback'	=> 'Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article',
-'alreadyrolled'	=> 'Impossible de révoquer la dernière modification de l\'article « $1 » effectuée par [[{{ns:user}}:$2|$2]] ([{{ns:user_talk}}:$2|Talk]]); quelqu\'un d\'autre à déjà modifié ou révoqué l\'article.
-
-La dernière modificaion a été effectuée par [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Talk]]).', // FIXME: namespaces
+'alreadyrolled'	=> 'Impossible de révoquer la dernière modification de l\’article « [[$1]] » effectuée par [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Discussion]]) ; quelqu\’un d\’autre a déjà modifié ou révoqué l\’article. La dernière modification a été effectuée par [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Discussion]]).', // FIXME: namespaces
 #   only shown if there is an edit comment
 'editcomment' => 'Le résumé de la modification était: <i>« $1 »</i>.',
 'revertpage'	=> 'restitution de la dernière modification de $1',
@@ -743,10 +746,30 @@ La dernière modificaion a été effectuée par [[{{ns:user}}:$3|$3]] ([[{{ns:us
 'unprotectcomment' => 'Raison du débloquage',
 'protectmoveonly' => 'Protéger uniquement les déplacements',
 
+# User rights
+'userrights-lookup-user' => 'Gérer les goupes d\'utilisateur',
+'userrights-user-editname' => 'Entrer un nom d\'utilisateur :',
+'editusergroup' => 'Modification des groupes utilisateurs',
+
+'userrights-editusergroup' => 'Éditer les groupes de l\'utilisateur',
+'saveusergroups' => 'Sauvegarder les groupes utilisateur',
+'userrights-groupsmember' => 'Membre de :',
+'userrights-groupsavailable' => 'Groupes disponibles :',
+'userrights-groupshelp' => 'Choisissez les groupes desquels vous voulez retirer ou rajouter l\'utilsateur. Les groupes non sélectionnés ne seront pas modifiés. Vous pouvez désélectionner un groupe avec CTRL + clic gauche.',
+'userrights-logcomment' => 'Adhésion au groupe changée de $1 à $2',
 
 # Groups
-#
-'editusergroup' => 'Modification des groupes utilisateurs',
+'group'                   => 'Groupe:',
+'group-sysop'             => 'Administrateurs',
+'group-bureaucrat'        => 'Bureaucrates',
+'group-all'               => '(tous)',
+
+'group-sysop-member'      => 'Administrateur',
+'group-bureaucrat-member' => 'Bureaucrate',
+
+'grouppage-sysop' => 'Projet:Administrateurs',
+'grouppage-bureaucrat' => 'Projet:Bureaucrates',
+
 
 # Special:Undelete
 #
@@ -845,8 +868,6 @@ N\'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération
 'unlockdbsuccesstext' => 'La base de données de {{SITENAME}} est déverrouillée.',
 
 # Special:Makesysop
-'rightslog'		=> 'Log des droits',
-'rightslogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 ».',
 'makesysoptitle'	=> 'Donne les droits d\'administrateur.',
 'makesysoptext'		=> 'Ce formulaire est utilisé par les bureaucrates pour donner les droits d\'administrateur.
 Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donner les droits.',
@@ -854,12 +875,19 @@ Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donne
 'makesysopsubmit'	=> 'Donner les droits d\'administrateur à cet utilisateur',
 'makesysopok'		=> '<b>L\'utilisateur « $1 » est désormais administrateur.</b>',
 'makesysopfail'		=> '<b>L\'utilisateur « $1 » ne peut être converti en adminitrateur. (Avez vous entré le nom correctement?)</b>',
+'setbureaucratflag' => 'Ajouter le statut de Bureaucrate',
+'setstewardflag'    => 'Ajouter le statut de Steward',
+'rightslog'		=> 'Log des droits',
+'rightslogtext'		=> 'Ceci est un journal des modifications de statut d\'utilisateur..',
+'rightslogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 ».',
 'rights'			=> 'Droits:',
 'set_user_rights'	=> 'Appliquer les droits à l\'utilisateur',
 'user_rights_set'	=> '<b>Les droits de l\'utilisateur « $1 » sont mis à jour</b>',
-'setbureaucratflag'	=> 'Ajouter le statut de bureaucrate',
 'set_rights_fail'	=> '<b>Les droits de l\'utilisateur « $1 » n\'ont pas pu être mis à jour. (Avez vous entré le nom correctement?)</b>',
 'makesysop'         => 'Donner les droits d\'administrateur à un utilisateur',
+'already_sysop'     => 'Cet utilisateur est déjà un administrateur',
+'already_bureaucrat' => 'Cet utilisateur est déjà un bureaucrate',
+'already_steward'   => 'Cet utilisateur est déjà un steward',
 
 # Spam
 #
@@ -902,7 +930,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 Veuillez [[{{ns:Special}}:Whatlinkshere/$2|vérifier]] que ce renommage n\'a pas créé de doubles redirections et faites la correction le cas échéant.',
 'articleexists' => 'Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n\'est pas valide. Veuillez en choisir un autre.',
 'talkexists'	=> 'La page elle-même a été déplacée avec succès, mais la page de discussion n\'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S\'il vous plait, fusionnez les manuellement.',
-'1movedto2_redir' => ' a déplacé $1 vers $2 (redirect)',
+'1movedto2_redir' => 'a déplacé $1 vers $2 (redirect)',
 'movedto'  => 'renommé en',
 'movetalk'  => 'Renommer aussi la page « discussion », s\'il y a lieu.',
 'talkpagemoved' => 'La page discussion correspondante a également été déplacée.',
@@ -919,7 +947,14 @@ Veuillez [[{{ns:Special}}:Whatlinkshere/$2|vérifier]] que ce renommage n\'a pas
 # Namespace 8 related
 
 'allmessages'	=> 'Liste des messages système',
+'allmessagesname' => 'Nom du champ',
+'allmessagesdefault' => 'Message par défaut',
+'allmessagescurrent' => 'Message actuel',
 'allmessagestext'	=> 'Ceci est la liste de tous les messages disponibles dans l\'espace MediaWiki',
+'allmessagesnotsupportedUI' => 'Special:AllMessages n\'accepte pas la langue de votre interface (<b>$1</b>) sur ce site.',
+'allmessagesnotsupportedDB' => '\'\'\'Special:Allmessages\'\'\' n\'est pas disponible car \'\'\'$wgUseDatabaseMessages\'\'\' est désactivé.',
+'allmessagesfilter' => 'Filtre d\'expression régulière:',
+'allmessagesmodified' => 'N\'afficher que les modifications',
 
 # Thumbnails
 
