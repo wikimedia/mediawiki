@@ -213,7 +213,7 @@ parent class in order maintain consistency across languages.
 'viewcount'		=> 'This page has been accessed {{plural:$1|one time|$1 times}}.',
 'copyright'	=> 'Content is available under $1.',
 'protectedpage' => 'Protected page',
-'administrators' => 'Project:Administrators',
+'administrators' => '{{ns:project}}:Administrators',
 'jumpto' => 'Jump to:',
 'jumptonavigation' => 'navigation',
 'jumptosearch' => 'search',

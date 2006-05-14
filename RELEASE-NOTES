@@ -262,6 +262,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5937) Register links from gallery captions with the parent parser output
   object so that link tables receive those updates too
 * (bug 5845) Introduce BASEPAGENAME and BASEPAGENAMEE magic words
+* (bug 5941) Use content language when getting the administrator page title for
+  Special:Statistics
 
 == Compatibility ==
 

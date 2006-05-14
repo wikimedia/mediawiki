@@ -75,7 +75,7 @@ function wfSpecialStatistics() {
 		$text .= wfMsg( 'userstatstext',
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
-			'[[' . wfMsg( 'administrators' ) . ']]',
+			'[[' . wfMsgForContent( 'administrators' ) . ']]',
 			// should logically be after #admins, danm backwards compatability!
 			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) )
 		);
