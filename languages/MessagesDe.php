@@ -31,9 +31,9 @@
 "tog-previewontop"            => "Vorschau vor dem Editierfenster anzeigen",
 'tog-previewonfirst' 		=> 'Vorschau beim ersten Editieren anzeigen',
 "tog-nocache"                 => "Seitencache deaktivieren",
-'tog-enotifwatchlistpages' 	=> 'Benachrichtigungsmails für Änderungen an Wiki-Seiten',
-'tog-enotifusertalkpages' 	=> 'Benachrichtigungsmails für Änderungen an Ihren Benutzerseiten',
-'tog-enotifminoredits' 		=> 'Benachrichtigungsmails auch für kleine Seitenänderungen',
+'tog-enotifwatchlistpages'	=> 'Bei Änderungen an beobachtetene Artikeln E-Mails senden.',
+'tog-enotifusertalkpages'	=> 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden.',
+'tog-enotifminoredits' 		=> 'Auch bei kleinen Änderungen an den Seiten E-Mails senden.',
 'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
 'tog-shownumberswatching' 	=> 'Zeige die Anzahl seitenbeobachtender Benutzer (in Letzte Änderungen, Beobachtungsliste und Artikelseiten)',
 'tog-fancysig'			=> 'Unterschrift ohne Verlinkung zur Benutzerseite',
@@ -89,11 +89,11 @@
 
 # Bits of text used by many pages:
 #
-'categories' => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'categories'		=> '{{PLURAL:$1|Kategorie|Kategorien}}',
 "category" => "Kategorie",
 'category_header' => 'Artikel in der Kategorie "$1"',
 "subcategories" => "Unterkategorien",
-"linktrail"		=> '/^([äöüßa-z]+)(.*)$/sDu',
+#"linktrail"		=> '/^([äöüßa-z]+)(.*)$/sDu',	# ignore list
 "mainpage"		=> "Hauptseite",
 "mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
 "mainpagedocfooter" => "Siehe die [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentation zur Anpassung der Benutzeroberfläche]
@@ -124,8 +124,8 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "qbmyoptions"	=> "Einstellungen",
 "qbspecialpages"	=> "Spezialseiten",
 "moredotdotdot"	=> "Mehr...",
-"mypage"		=> "Meine Seite",
-"mytalk"		=> "Meine Diskussion",
+'mypage'		=> 'Eigene Seite',
+'mytalk'		=> 'Eigene Diskussion',
 "anontalk"		=> "Diskussionsseite dieser IP",
 "navigation" => "Navigation",
 "currentevents" => "Aktuelle Ereignisse",
@@ -148,7 +148,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "editthispage"	=> "Seite bearbeiten",
 "delete" => "löschen",
 "deletethispage" => "Diese Seite löschen",
-"undelete_short" => "Wiederherstellen",
+'undelete_short'	=> '$1 Änderungen wiederherstellen',
 "undelete_short1" => "Wiederherstellen",
 "protect" => "schützen",
 "protectthispage" => "Artikel schützen",
@@ -174,7 +174,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
 "copyright"	=> "Inhalt ist verfügbar unter der $1.",
 "protectedpage" => "Geschützte Seite",
-"administrators" => "Project:Administratoren",
+'administrators'	=> '{{ns:project}}:Administratoren',
 'jumpto'		=> 'Wechseln zu:',
 'jumptonavigation'	=> 'Navigation',
 'jumptosearch'		=> 'Suche',
@@ -186,9 +186,9 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'badaccesstext'	=> 'Diese Aktion ist Anwendern mit den Rechten "$2" vorbehalten. Siehe $1.',
 'versionrequired'	=> 'Version $1 von MediaWiki ist erforderlich',
 'versionrequiredtext'	=> 'Version $1 von MediaWiki ist erforderlich um diese Seite zu nutzen. Siehe [[Spezial:Version]]',
-"nbytes"		=> "$1 Byte",
-'ncategories'		=> '$1 kategorien',
-'nrevisions'		=> '$1 Bearbeitungen',
+'nbytes'		=> '$1 {{PLURAL:$1|Byte|Bytes}}',
+'ncategories'		=> '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
+'nrevisions'		=> '{{PLURAL:$1|eine Bearbeitung|$1 Bearbeitungen}}',
 'widthheight'		=> '$1 x $2',
 "go"			=> "Artikel",
 "ok"			=> "Suche",
@@ -307,8 +307,8 @@ Sie können {{SITENAME}} jetzt anonym weiterbenutzen, oder sich unter dem selben
 Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 
 "loginpagetitle" => "Benutzer-Anmeldung",
-"yourname"		=> "Ihr Benutzername",
-"yourpassword"	=> "Ihr Passwort",
+"yourname"		=> "Benutzername",
+"yourpassword"	=> "Passwort",
 "yourpasswordagain" => "Passwort wiederholen",
 "remembermypassword" => "Dauerhaftes Einloggen",
 'yourdomainname' => 'Ihre Domain',
@@ -353,7 +353,7 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporä
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
 'nosuchusershort'	=> 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
-"mailmypassword" => "Ein neues (temporäres) Passwort schicken",
+'mailmypassword'	=> 'Passwort vergessen?',
 'passwordremindertitle' => 'Neues Passwort für {{SITENAME}}',
 'passwordremindertext' => 'Jemand (IP-Adresse $1) hat um ein neues Passwort für die Anmeldung bei {{SITENAME}} ({{SERVERNAME}}) gebeten.
 
@@ -361,9 +361,10 @@ Das automatisch generierte Passwort für Benutzer "$2" lautet nun "$3".
 
 Sie sollten sich jetzt anmelden und das Passwort ändern. Falls Sie diese E-Mail nicht selbst angefordert haben, ignorieren Sie diese. Das alte Passwort bleibt weiterhin gültig.',
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
-"passwordsent"	=> "Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
-Bitte melden Sie sich damit an, sobald Sie es erhalten.",
-"loginend"		=> "&nbsp;",
+'passwordsent'		=> 'Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesendet.
+Bitte melden Sie sich damit an, sobald Sie es erhalten.
+Das alte Passwort bleibt weiterhin gültig.',
+#"loginend"		=> "&nbsp;",	# ignore list
 "mailerror" => "Fehler beim Senden von E-Mail: $1",
 'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
 'emailconfirmlink' 	=> 'E-Mail-Adresse bestätigen (authentifizieren).',
@@ -394,7 +395,7 @@ Funktionen sind zur Zeit deshalb nicht möglich.',
 "blockedtext"	=> "Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
 Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, um über die Blockierung zu sprechen.",
 "whitelistedittitle" => "Zum Bearbeiten ist es erforderlich, angemeldet zu sein",
-"whitelistedittext" => "Sie müssen sich [[Spezial:Userlogin|hier anmelden]], um Artikel bearbeiten zu können.",
+'whitelistedittext'	=> 'Sie müssen sich $1, um Artikel bearbeiten zu können.',
 "whitelistreadtitle" => "Zum Lesen ist es erforderlich, angemeldet zu sein",
 "whitelistreadtext" => "Sie müssen sich [[Spezial:Userlogin|hier anmelden]], um Artikel lesen zu können.",
 "whitelistacctitle" => "Sie sind nicht berechtigt, einen Account zu erzeugen.",
@@ -543,7 +544,7 @@ Suche in Namensräumen :<br />
 $1<br />
 $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>",
-"blanknamespace" => "(Haupt)",
+"blanknamespace" => "(Artikel)",
 
 # Preferences page
 #
@@ -584,7 +585,7 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 'timezoneoffset'	=> 'Unterschied¹:',
 'servertime'		=> 'Aktuelle Zeit auf dem Server:',
 "guesstimezone" => "Einfügen aus dem Browser",
-'allowemail'		=> 'Aktiviere E-Mails von anderen Benutzern',
+'allowemail'		=> 'E-Mails von anderen Benutzern empfangen.',
 "defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
 'default'		=> 'default',
 'files'			=> 'Dateien',
@@ -718,7 +719,7 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 "nolinkstoimage" => "Kein Artikel benutzt dieses Bild.",
 'shareduploadwiki'		=> 'Für weitere Informationen siehe $1.',
 'shareduploadwiki-linktext'	=> 'Datei-Beschreibungsseite',
-'shareddescriptionfollows'	=> '-',
+#'shareddescriptionfollows'	=> '-',	# ignore list
 'noimage'			=> 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 'noimage-linktext'		=> 'hochladen',
 'uploadnewversion'	=> '[$1 Eine neue Version dieser Datei hochladen]',
@@ -728,7 +729,7 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 
 # Unused templates
 'unusedtemplates' => 'Ungenutzte Vorlagen',
-'unusedtemplatestext' => 'Diese Seite listet alle Seiten im Vorlagen-Namespace auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+'unusedtemplatestext' => 'Diese Seite listet alle Seiten im Vorlagen-Namensraum auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 'unusedtemplateswlh' => 'Andere Verweise',
 
 # Random redirect
@@ -762,17 +763,17 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "lonelypages"	=> "Verwaiste Seiten",
 "unusedimages"	=> "Verwaiste Bilder",
 "popularpages"	=> "Beliebte Seiten",
-"nviews"		=> "$1 Abfragen",
+'nviews'		=> '{{PLURAL:$1|eine Abfrage|$1 Abfragen}}',
 'wantedcategories'	=> 'Gewünschte Kategorien',
 "wantedpages"	=> "Gewünschte Seiten",
 'mostlinkedcategories'	=> 'Häufig verlinkte Kategorien',
 'mostcategories'	=> 'Meistbenutzte Kategorien',
 'mostimages'		=> 'Meistbenutzte Bilder',
 'mostrevisions'		=> 'Artikel mit den meisten Versionen',
-"nlinks"		=> "$1 Verweise",
-'members'		=> '$1 Mitglieder',
+'nlinks'		=> '{{PLURAL:$1|ein Verweis|$1 Verweise}}',
+'nmembers'		=> '{{PLURAL:$1|ein Mitglied|$1 Mitglieder}}',
 'randompage'		=> 'Zufälliger Artikel',
-'randompage-url'	=> 'Spezial:Random',
+#'randompage-url'	=> 'Spezial:Random',	# ignore list
 "shortpages"	=> "Kurze Artikel",
 "longpages"		=> "Lange Artikel",
 "listusers"		=> "Benutzerverzeichnis",
@@ -974,13 +975,13 @@ dieses Artikels erscheinen.",
 "undeletedtext"   => "Der Artikel [[:$1|$1]] wurde erfolgreich wiederhergestellt.",
 
 # Namespace form on various pages
-'namespace' => 'Namespace:',
+'namespace'	=> 'Namensraum:',
 'invert' => 'Auswahl umkehren',
 
 # Contributions
 #
 "contributions"	=> "Benutzerbeiträge",
-"mycontris" => "Meine Beiträge",
+'mycontris'	=> 'Eigene Beiträge',
 "contribsub"	=> "Für $1",
 "nocontribs"	=> "Es wurden keine Änderungen für diese Kriterien gefunden.",
 "ucnote"		=> "Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.",
@@ -1064,12 +1065,12 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 
 # user groups editing
 #
-'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
-'saveusergroups' => 'Speichere Gruppenzugehörigkeit',
+'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeiten des Benutzers',
+'saveusergroups' => 'Gruppenzugehörigkeiten speichern',
 'userrights-groupsmember' => 'Mitglied von:',
 'userrights-groupsavailable' => 'Verfügbare Gruppen:',
-'userrights-groupshelp' => 'Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
-Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit Strg + Linksklick (bzw. Ctrl + Linksklick) entfernt werden.',
+'userrights-groupshelp' => 'Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
+Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit \'\'\'Strg + Linksklick\'\'\' (bzw. Ctrl + Linksklick) entfernt werden.',
 'userrights-logcomment'		=> 'Gruppenzugehörigkeit geändert von $1 nach $2',
 
 # Groups
@@ -1185,7 +1186,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'setstewardflag'	=> 'Mache Benutzer zum Steward',
 'rightslog' => 'Rechte-Logbuch',
 'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
-"rightslogentry"	=> "Rechte für Benutzer \"$1\" auf \"$2\" gesetzt",
+'rightslogentry'	=> 'Gruppenzugehörigkeit für "[[$1]]" von "$2" auf "$3" geändert.',
 "rights"		=> "Rechte:",
 "set_user_rights"	=> "Benutzerrechte setzen",
 "user_rights_set"	=> "<b>Benutzerrechte für \"$1\" aktualisiert</b>",
@@ -1220,6 +1221,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "intl"			=> "InterWikiLinks",
 "version"		=> "Version",
 "log"			=> "Logbücher",
+'alllogstext'		=> 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Benutzerblockaden- und Rechte-Logbücher.<br />Sie können die Anzeige durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels einschränken.',
 'logempty'		=> 'Keine passenden Einträge.',
 "protectlogpage"	=> "Seitenschutz-Logbuch",
 "protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
@@ -1339,15 +1341,16 @@ sollte umgehend ein Administrator informiert werden!',
 'metadata' => 'Metadaten',
 'metadata-help' => 'Diese Datei enthält weitere Informationen, die in der Regel von der Digitalkamera oder dem verwendeten Scanner stammen. Durch nachträgliche Bearbeitung der Originaldatei können einige Details verändert worden sein.',
 'metadata-expand' => 'Erweiterte Details einblenden',
-'metadata-collapse' => 'Erweiterte Details ausblenden ',
-'metadata-fields' => 'Die folgenden Felder der EXIF-Metadaten dieser Nachricht werden auf Bildbeschreibungsseiten
-angezeigt. Weitere standardmäßig ausgeblendete Details können angezeigt werden.
-* make
-* model
-* fnumber
-* datetimeoriginal
-* exposuretime
-* focallength',
+'metadata-collapse'	=> 'Erweiterte Details ausblenden',
+
+#'metadata-fields' => 'Die folgenden Felder der EXIF-Metadaten dieser Nachricht werden auf Bildbeschreibungsseiten
+#angezeigt. Weitere standardmäßig ausgeblendete Details können angezeigt werden.
+#* make
+#* model
+#* fnumber
+#* datetimeoriginal
+#* exposuretime
+#* focallength',	# ignore list
 
 # Exif tags
 'exif-aperturevalue'		=> 'Blendenwert',
@@ -1612,10 +1615,10 @@ Diese E-Mail enthält einen Link mit einem Code; durch Klicken auf diesen Link b
 'confirmemail_error' => 'Es gab einen Fehler bei der Bestätigung Ihrer E-Mail-Adresse.',
 
 'confirmemail_subject' => '{{SITENAME}} E-Mail-Adressenbestätigung (Authentifizierung)',
-'confirmemail_body' 	=> "Jemand, vielleicht Sie, hat von IP-Adresse $1
-ein Benutzerkonto \"$2\" mit dieser E-Mail-Adresse bei {{SITENAME}} angemeldet.
+'confirmemail_body'	=> 'Jemand, vielleicht Sie, hat von der IP-Adresse $1
+ein Benutzerkonto "$2" mit dieser E-Mail-Adresse bei {{SITENAME}} angemeldet.
 
-Zur Bestätigung, dass dieses Konto wirklich Ihnen gehört, und um die erweiterten
+Zur Bestätigung dass dieses Konto wirklich Ihnen gehört, und um die erweiterten
 E-Mail-Funktionen für Sie bei {{SITENAME}} einzuschalten, öffnen Sie bitte den folgenden Link
 in Ihrem Browser:
 
@@ -1623,8 +1626,7 @@ $3
 
 Wenn Sie *nicht* $2 sind, folgen Sie dem Link bitte nicht.
 
-Der Bestätigungskode läuft am $4 ab.
-",
+Der Bestätigungskode läuft am $4 ab.',
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Versuche exakte Suche',
@@ -1655,6 +1657,8 @@ Bitte bestätigen Sie, dass Sie diesen Artikel wirklich wiederherstellen möchte
 'recreate' => 'Wiederherstellen',
 'tooltip-recreate' => 'Wiederherstellen',
 
+'unit-pixel' => 'px',
+
 'searchcontaining' => "Suche nach Artikeln, in denen ''$1'' vorkommt.",
 'searchnamed' => "Suche nach Artikeln, deren Name ''$1'' enthält.",
 'articletitles' => "Artikel, die mit ''$1'' beginnen",
@@ -1663,9 +1667,9 @@ Bitte bestätigen Sie, dass Sie diesen Artikel wirklich wiederherstellen möchte
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
 ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'Meine Benutzerseite\');
+ta[\'pt-userpage\'] = new Array(\'.\',\'Eigene Benutzerseite\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Benutzerseite der IP-Adresse von der aus Sie Änderungen durchführen\');
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Meine Diskussion\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Eigene Diskussion\');
 ta[\'pt-anontalk\'] = new Array(\'n\',\'Diskussion über Änderungen von dieser IP-Adresse\');
 ta[\'pt-preferences\'] = new Array(\'\',\'Meine Einstellungen\');
 ta[\'pt-watchlist\'] = new Array(\'l\',\'Liste von Seiten die Sie auf Änderungen überwachen.\');
