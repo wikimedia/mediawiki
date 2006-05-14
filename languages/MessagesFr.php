@@ -70,7 +70,6 @@
 'uncategorizedcategories' => 'Catégories sans catégories',
 'uncategorizedpages' => 'Pages sans catégories',
 'subcategorycount' => 'Cette catégorie possède $1 sous-catégories.',
-'subcategorycount1' => 'Cette catégorie possède $1 sous-catégorie.',
 
 'allarticles'   => 'Tous les articles',
 'linktrail'     => '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu',
@@ -87,7 +86,6 @@
 'bugreports'    => 'Rapport d\'erreurs',
 'bugreportspage' => '{{ns:4}}:Rapport d\'erreurs',
 'sitesupport'	=> 'Faire un don',
-'faq'           => 'FAQ',
 'faqpage'       => '{{ns:4}}:FAQ',
 'edithelp'      => 'Aide',
 'edithelppage'  => '{{ns:help}}:Comment modifier une page',
@@ -103,7 +101,6 @@
 'mypage'        => 'Ma page',
 'mytalk'        => 'Ma page de discussion',
 'anontalk'	=> 'Discussion avec cette adresse ip',
-'navigation'	=> 'Navigation',
 'currentevents' => 'Actualités',
 'disclaimers'	=> 'Avertissements',
 'disclaimerpage' => '{{ns:4}}:Avertissements généraux',
@@ -128,10 +125,8 @@
 'specialpage'	=> 'Page spéciale',
 'personaltools'	=> 'Outils personnels',
 'postcomment'	=> 'Ajouter un commentaire',
-'addsection'   => '+',
 'articlepage'	=> 'Voir l\'article',
 'subjectpage'   => 'Page sujet',
-'talk'		=> 'Discussion',
 'toolbox'	=> 'Boîte à outils',
 'userpage'      => 'Page utilisateur',
 'wikipediapage' => 'Page méta',
@@ -142,7 +137,6 @@
 'lastmodified'  => 'Dernière modification de cette page le $1.',
 'viewcount'     => 'Cette page a été consultée $1 fois.',
 'copyright'	=> 'Contenu disponible sous $1.',
-'printsubtitle' => '(de {{SERVER}})',
 'protectedpage' => 'Page protégée',
 'administrators' => '{{ns:4}}:Administrateurs',
 'sysoptitle'    => 'Accès administrateur requis',
@@ -153,7 +147,6 @@ Voir $1.',
 Voir $1.',
 'nbytes'        => '$1 octets',
 'go'            => 'Consulter',
-'ok'            => 'OK',
 'history'	=> 'Historique de la page',
 'history_short' => 'Historique',
 'retrievedfrom' => 'Récupérée de « $1 »',
@@ -166,13 +159,11 @@ Voir $1.',
 'feedlinks'	=> 'Flux',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main' => 'Article',
 'nstab-user' => 'Page utilisateur',
 'nstab-media' => 'Média',
 'nstab-special' => 'Spécial',
 'nstab-wp' => 'À propos',
 'nstab-image' => 'Image',
-'nstab-mediawiki' => 'Message',
 'nstab-template' => 'Modèle',
 'nstab-help' => 'Aide',
 'nstab-category' => 'Catégorie',
@@ -251,7 +242,6 @@ N\'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfé
 'yourname'           => 'Votre nom d\'utilisateur',
 'yourpassword'       => 'Votre mot de passe',
 'yourpasswordagain'  => 'Entrez à nouveau votre mot de passe',
-'newusersonly'       => ' (nouveaux utilisateurs uniquement)',
 'remembermypassword' => 'Se souvenir de mon mot de passe (cookie)',
 'loginproblem'       => '<b>Problème d\'identification.</b><br />Essayez à nouveau !',
 'alreadyloggedin'    => '<strong>\'\'\'Utilisateur $1, vous êtes déjà identifié!\'\'\'</strong><br />',
@@ -326,7 +316,7 @@ Veuillez vous identifier dès que vous l\'aurez reçu.',
 'preview'      => 'Prévisualiser',
 'showpreview'  => 'Prévisualisation',
 'blockedtitle' => 'Utilisateur bloqué',
-'blockedtext'  => 'Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br />$2<p>Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateurs|administrateurs]] pour en discuter.',
+'blockedtext'  => 'Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante : $2. Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateur|administrateurs]] pour en discuter.',
 'whitelistedittitle' => 'Login requis pour rédiger',
 'whitelistedittext' => 'Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger',
 'whitelistreadtitle' => 'Login requis pour lire',
@@ -337,7 +327,7 @@ Veuillez vous identifier dès que vous l\'aurez reçu.',
 'loginreqlink' => 'connecter',
 'loginreqpagetext'	=> 'Vous devez vous $1 pour voir les autres pages.',
 'accmailtitle' => 'Mot de passe envoyé.',
-'accmailtext' => 'Le mot de passe de « $1 » a été envoyé à $2.',
+'accmailtext' => 'Le mot de passe de « $1 » a été envoyé à l\'adresse $2.',
 
 'newarticle'   => '(Nouveau)',
 'newarticletext' => 'Saisissez ici le texte de votre article.',
@@ -381,7 +371,6 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 'cur'    => 'actu',
 'next'   => 'suiv',
 'last'   => 'dern',
-'orig'   => 'orig',
 'histlegend' => 'Légende : (actu) = différence avec la version actuelle ,
 (dern) = différence avec la version précédente, <b>m</b> = modification mineure',
 'selectnewerversionfordiff' => 'Choisir une version plus récente',
@@ -396,8 +385,6 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 #
 'categoriespagetext' => 'Les catégories suivantes existent sur le wiki :',
 'categoryarticlecount' => 'Il y a $1 articles dans cette catégorie.',
-'categoryarticlecount1' => 'Il y a $1 article dans cette catégorie.',
-
 
 #  Diffs
 #
@@ -413,9 +400,7 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 'searchresulttext' => 'Pour plus d\'informations sur la recherche dans {{SITENAME}}, voir [[Aide:Recherche|Chercher dans {{SITENAME}}]].',
 'searchquery' => 'Pour la requête « $1 »',
 'badquery'  => 'Requête mal formulée',
-'badquerytext' => 'Nous n\'avons pas pu traiter votre requête.
-Vous avez probablement recherché un mot d\'une longueur inférieure à trois lettres, ce qui n\'est pas encore possible. Vous avez aussi pu faire une erreur de syntaxe, telle que « poisson et écailles ».
-Veuillez essayer une autre requête.', // FIXME
+'badquerytext' => 'Nous n\'avons pas pu traiter votre requête. Vous avez probablement recherché un mot d\'une longueur inférieure à trois lettres, ce qui n\'est pas encore possible. Vous avez aussi pu faire une erreur de syntaxe, telle que « poisson et et écailles ». Veuillez essayer une autre requête.', // FIXME
 'matchtotals' => 'La requête « $1 » correspond à $2 titre(s) d\'article et au texte de $3 article(s).',
 'nogomatch' => 'Aucune page avec ce titre n\'existe, essai avec la recherche complète.
 
@@ -491,34 +476,22 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
 'changes'	=> 'modifications',
 'recentchanges' => 'Modifications récentes',
 'recentchangestext' => "Suivez sur cette page les dernières modifications de {{SITENAME}}.",
-'rcloaderr'  => 'Chargement des dernières modifications',
 'rcnote'  => 'Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.',
 'rcnotefrom'	=> 'Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).',
 'rclistfrom'	=> 'Afficher les nouvelles modifications depuis le $1.',
 'rcshowhideminor' => '$1 modifications mineures',
 'rcshowhidebots' => '$1 robots',
 'rcshowhideliu' => '$1 utilisateurs enregistrés',
-'rcshowhideanons' => '$1 anonymous users',
-'rcshowhidepatr' => '$1 patrolled edits',
 'rcshowhidemine' => '$1 mes contributions',
 'rclinks'	=> 'Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.',
-'rchide'  => 'in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.', // FIXME
-'rcliu'	=> '; $1 modifications par des contributeurs connectés',
-'diff'            => 'diff',
-'hist'            => 'hist',
 'hide'            => 'masquer',
 'show'            => 'afficher',
-'tableform'       => 'table',
-'listform'        => 'liste',
-'nchanges'        => '$1 modification(s)',
 'minoreditletter' => 'M',
-'newpageletter'   => 'N',
 
 # Upload
 #
 'upload'       => 'Copier sur le serveur',
 'uploadbtn'    => 'Copier un fichier',
-'uploadlink'   => 'Copier des images',
 'reupload'     => 'Copier à nouveau',
 'reuploaddesc' => 'Retour au formulaire.',
 
@@ -558,7 +531,6 @@ L\'heure indiquée est celle du serveur (UTC).
 'filename'	=> 'Nom',
 'filedesc'	=> 'Description',
 'filestatus'	=> 'Statut du copyright',
-'filesource'	=> 'Source',
 'copyrightpage' => '{{ns:4}}:Copyright',
 'copyrightpagename' => 'licence {{SITENAME}}',
 'uploadedfiles' => 'Fichiers copiés',
@@ -624,9 +596,6 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 
 # Maintenance Page
 #
-'maintenance'		=> 'Page de maintenance',
-'maintnancepagetext'	=> 'Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.',
-'maintenancebacklink'	=> 'Retour à la page de maintenance',
 'disambiguations'	=> 'Pages d\'homonymie',
 'disambiguationspage'	=> '{{ns:template}}:Homonymie',
 'disambiguationstext'	=> 'Les articles suivants sont liés à une <i>page d\'homonymie</i>. Or, ils devraient être liés au sujet.<br />Une page est considérée comme page d\'homonymie si elle est liée à partir de $1.<br />Les liens à partir d\'autres <i>espaces</i> ne sont pas pris en compte.',
@@ -634,21 +603,9 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'doubleredirectstext'	=> '<b>Attention:</b> cette liste peut contenir des « faux positifs ». Dans ce cas, c\'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la « vraie » destination. Le premier #REDIRECT devrait lier vers cette destination.',
 'brokenredirects'	=> 'Redirections cassées',
 'brokenredirectstext'	=> 'Ces redirections mènent à une page qui n\'existe pas.',
-'selflinks'		=> 'Page avec un lien circulaire',
-'selflinkstext'		=> 'Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n\'est pas permis.',
-'mispeelings'           => 'Pages avec fautes d\'orthographe',
-'mispeelingstext'               => 'Les pages suivantes contiennent une faute d\'orthographe courante (la liste de celles-ci est sur $1). L\'orthographe correcte est peut-être (ceci).',
-'mispeelingspage'       => 'Liste de fautes d\'orthographe courantes',
-
-# FIXME les 3 messages suivants ne sont plus utilisés (plus de page Special:Intl)
-'missinglanguagelinks'  => 'Liens inter-langues manquants',
-'missinglanguagelinksbutton'    => 'Je n\'ai pas trouvé de lien/langue pour cette page',
-'missinglanguagelinkstext'      => 'Ces articles ne lient pas à leur contrepartie sur $1. Les redirections et les liens ne sont pas affichés.',
-
 
 # Miscellaneous special pages
 #
-'orphans'       => 'Pages orphelines',
 'lonelypages'   => 'Pages orphelines',
 'unusedimages'  => 'Images orphelines',
 'popularpages'  => 'Pages les plus consultées',
@@ -662,10 +619,8 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'listusers'     => 'Liste des participants',
 'specialpages'  => 'Pages spéciales',
 'spheading'     => 'Pages spéciales',
-'protectpage'   => 'Protéger la page',
 'recentchangeslinked' => 'Suivi des liens',
 'rclsub'        => '(des pages liées à « $1 »)',
-'debug'         => 'Déboguer',
 'newpages'      => 'Nouvelles pages',
 'ancientpages'	=> 'Articles les plus anciens',
 'move'		=> 'Renommer',
@@ -674,7 +629,6 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'booksources'   => 'Ouvrages de référence',
 'booksourcetext' => 'Voici une liste de liens vers d\'autres sites qui vendent des livres neufs et d\'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n\'étant liée à aucune de ces sociétés, elle n\'a aucunement l\'intention d\'en faire la promotion.',
 'alphaindexline' => '$1 à $2',
-'version' => 'Version',
 
 # All pages
 #
@@ -699,7 +653,6 @@ L\'adresse électronique que vous avez indiquée dans vos préférences apparaî
 'emailfrom'  => 'Expéditeur',
 'emailto'  => 'Destinataire',
 'emailsubject' => 'Objet',
-'emailmessage' => 'Message',
 'emailsend'  => 'Envoyer',
 'emailsent'  => 'Message envoyé',
 'emailsenttext' => 'Votre message a été envoyé.',
@@ -793,8 +746,6 @@ La dernière modificaion a été effectuée par [[{{ns:user}}:$3|$3]] ([[{{ns:us
 
 # Groups
 #
-'addgroup' => 'Ajouter un groupe',
-'editgroup' => 'Modification du groupe',
 'editusergroup' => 'Modification des groupes utilisateurs',
 
 # Special:Undelete
@@ -859,8 +810,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'blocklistline' => '$1 (expire le $4): $2 a bloqué $3',
 'blocklink'	=> 'bloquer',
 'unblocklink'	=> 'débloquer',
-'contribslink'	=> 'contribs',
-'autoblocker'	=> 'Bloqué automatiquement parce que vous partagez une adresse IP avec « $1 ». Raison : « $2 ».',
+'autoblocker'	=> 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
 'blocklogpage'	=> 'Log de blocage',
 'blocklogentry'	=> 'blocage de « $1 »',
 'blocklogtext'	=> 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
@@ -952,12 +902,12 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 Veuillez [[{{ns:Special}}:Whatlinkshere/$2|vérifier]] que ce renommage n\'a pas créé de doubles redirections et faites la correction le cas échéant.',
 'articleexists' => 'Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n\'est pas valide. Veuillez en choisir un autre.',
 'talkexists'	=> 'La page elle-même a été déplacée avec succès, mais la page de discussion n\'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S\'il vous plait, fusionnez les manuellement.',
-'1movedto2_redir' => '$1 déplacé vers $2 (redirect)',
+'1movedto2_redir' => ' a déplacé $1 vers $2 (redirect)',
 'movedto'  => 'renommé en',
 'movetalk'  => 'Renommer aussi la page « discussion », s\'il y a lieu.',
 'talkpagemoved' => 'La page discussion correspondante a également été déplacée.',
 'talkpagenotmoved' => 'La page discussion correspondante n\'a <strong>pas</strong> été déplacée.',
-'1movedto2' => '$1 déplacé vers $2',
+'1movedto2' => 'a déplacé $1 vers $2',
 'movereason' => 'Raison du déplacement',
 
 
@@ -968,7 +918,7 @@ Veuillez [[{{ns:Special}}:Whatlinkshere/$2|vérifier]] que ce renommage n\'a pas
 
 # Namespace 8 related
 
-'allmessages'	=> 'Liste de messages système',
+'allmessages'	=> 'Liste des messages système',
 'allmessagestext'	=> 'Ceci est la liste de tous les messages disponibles dans l\'espace MediaWiki',
 
 # Thumbnails
@@ -1063,12 +1013,9 @@ Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation exp
 'exif-exifversion' => 'Version exif',
 'exif-makernote' => 'Notes du fabricant',
 'exif-relatedsoundfile' => 'Fichier audio lié',
-'exif-flash' => 'Flash',
 'exif-whitebalance' => 'Balance des blancs',
 'exif-contrast' => 'Contraste',
-'exif-saturation' => 'Saturation',
 'exif-compression-1' => 'Sans compression',
-'exif-orientation-1' => 'Normal',
 'exif-orientation-2' => 'Inversée horizontalement',
 'exif-orientation-3' => 'Tournée de 180°',
 'exif-orientation-4' => 'Inversée verticalement',
