@@ -2098,6 +2098,10 @@ class Parser
 				return $this->mTitle->getSubpageText();
 			case MAG_SUBPAGENAMEE:
 				return $this->mTitle->getSubpageUrlForm();
+			case MAG_BASEPAGENAME:
+				return $this->mTitle->getBaseText();
+			case MAG_BASEPAGENAMEE:
+				return wfUrlEncode( str_replace( ' ', '_', $this->mTitle->getBaseText() ) );
 			case MAG_TALKPAGENAME:
 				if( $this->mTitle->canTalk() ) {
 					$talkPage = $this->mTitle->getTalkPage();
