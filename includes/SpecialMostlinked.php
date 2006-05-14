@@ -80,8 +80,9 @@ class MostlinkedPage extends QueryPage {
 		global $wgLang;
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		$link = $skin->makeLinkObj( $title );
-		$wlh = $this->makeWlhLink( $title, wfMsgHtml( 'nlinks',
-			$wgLang->formatNum( $result->value ) ), $skin );
+		$wlh = $this->makeWlhLink( $title,
+			wfMsgExt( 'nlinks', array( 'parsemag', 'escape'),
+				$wgLang->formatNum( $result->value ) ), $skin );
 		return wfSpecialList( $link, $wlh );
 	}
 }
