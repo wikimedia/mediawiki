@@ -82,8 +82,8 @@ class WantedPagesPage extends QueryPage {
 				# Make a redlink
 				$pageLink = $skin->makeBrokenLinkObj( $title );
 			} else {
-				# Make a struck-out blue link
-				$pageLink = "<s>" . $skin->makeKnownLinkObj( $title ) . "</s>";
+				# Make a a struck-out normal link
+				$pageLink = "<s>" . $skin->makeLinkObj( $title ) . "</s>";
 			}		
 		} else {
 			# Not cached? Don't bother checking existence; it can't
