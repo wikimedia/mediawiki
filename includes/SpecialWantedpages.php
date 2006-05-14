@@ -92,8 +92,9 @@ class WantedPagesPage extends QueryPage {
 		
 		# Make a link to "what links here" if it's required
 		$wlhLink = $this->nlinks
-					? $this->makeWlhLink( $title, $skin, wfMsgHtml( 'nlinks',
-							$wgLang->formatNum( $result->value ) ) )
+					? $this->makeWlhLink( $title, $skin,
+							wfMsgExt( 'nlinks', array( 'parsemag', 'escape'),
+								$wgLang->formatNum( $result->value ) ) )
 					: null;
 					
 		return wfSpecialList($pageLink, $wlhLink);
