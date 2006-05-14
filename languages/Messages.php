@@ -1669,7 +1669,7 @@ is collapsed. Others will be hidden by default.
 'exif-componentsconfiguration' =>'Meaning of each component',
 'exif-compressedbitsperpixel' =>'Image compression mode',
 'exif-pixelydimension' =>'Valid image width',
-'exif-pixelxdimension' =>'Valind image height',
+'exif-pixelxdimension' =>'Valid image height',
 'exif-makernote' =>'Manufacturer notes',
 'exif-usercomment' =>'User comments',
 'exif-relatedsoundfile' =>'Related audio file',
