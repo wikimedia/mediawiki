@@ -265,6 +265,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5941) Use content language when getting the administrator page title for
   Special:Statistics
 * (bug 5949) Update to Indonesian localisation (id)
+* (bug 5862) Update of Belarusian translation (be)
 
 == Compatibility ==
 
