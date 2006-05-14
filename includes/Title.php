@@ -692,6 +692,21 @@ class Title {
 	}
 
 	/**
+	 * Get the base name, i.e. the leftmost parts before the /
+	 * @return string Base name
+	 */
+	function getBaseText() {
+		global $wgNamespacesWithSubpages;
+		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace] ) && $wgNamespacesWithSubpages[ $this->mNamespace ] ) {
+			$parts = explode( '/', $this->getText() );
+			unset( $parts[ count( $parts ) - 1 ] );
+			return implode( '/', $parts );
+		} else {
+			return $this->getText();
+		}
+	}
+
+	/**
 	 * Get the lowest-level subpage name, i.e. the rightmost part after /
 	 * @return string Subpage name
 	 */

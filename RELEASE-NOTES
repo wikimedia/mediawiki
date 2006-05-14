@@ -261,6 +261,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5935) Improvement to German localisation (de)
 * (bug 5937) Register links from gallery captions with the parent parser output
   object so that link tables receive those updates too
+* (bug 5845) Introduce BASEPAGENAME and BASEPAGENAMEE magic words
 
 == Compatibility ==
 
