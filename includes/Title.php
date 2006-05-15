@@ -2265,7 +2265,7 @@ class Title {
 				return 'nstab-special';
 			case NS_PROJECT:
 			case NS_PROJECT_TALK:
-				return 'nstab-wp';
+				return 'nstab-project';
 			case NS_IMAGE:
 			case NS_IMAGE_TALK:
 				return 'nstab-image';

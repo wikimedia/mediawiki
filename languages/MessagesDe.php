@@ -163,7 +163,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "articlepage"	=> "Artikel",
 'subjectpage'	=> 'Betreff anzeigen',
 "toolbox" => "Werkzeuge",
-"wikipediapage" => "Meta-Text",
+"projectpage" => "Meta-Text",
 "userpage" => "Benutzerseite",
 "imagepage" => "Bildseite",
 "viewtalkpage" => "Diskussion",
@@ -215,7 +215,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'nstab-user' => 'Benutzerseite',
 'nstab-media' => 'Media',
 'nstab-special' => 'Spezial',
-'nstab-wp' => 'Portal',
+'nstab-project' => 'Portal',
 'nstab-image' => 'Bild',
 'nstab-mediawiki' => 'Nachricht',
 'nstab-template' => 'Vorlage',
@@ -1709,7 +1709,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Artikel anzeigen\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Benutzerseite anzeigen\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Mediendateienseite anzeigen\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Dies ist eine Spezialseite. Sie können diese nicht ändern.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Projektseite anzeigen\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Projektseite anzeigen\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Bilderseite anzeigen\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Systemmeldungen anzeigen\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vorlage anzeigen\');

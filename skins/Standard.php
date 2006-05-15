@@ -190,7 +190,7 @@ class SkinStandard extends Skin {
 						$text = wfMsg('viewtalkpage');
 						break;
 						case 4:
-						$text = wfMsg('wikipediapage');
+						$text = wfMsg('projectpage');
 						break;
 						case 5:
 						$text = wfMsg('viewtalkpage');

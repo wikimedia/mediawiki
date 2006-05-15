@@ -170,7 +170,7 @@
 "views"             => "צפיות",
 "toolbox"           => "תיבת כלים",
 "userpage"          => "צפו בדף המשתמש",
-"wikipediapage"     => "צפו בדף המיזם",
+"projectpage"       => "צפו בדף המיזם",
 "imagepage"         => "צפה בדף התמונה",
 "viewtalkpage"      => "צפו בדף השיחה",
 "otherlanguages"    => "שפות אחרות",
@@ -224,7 +224,7 @@
 "nstab-user"      => "דף משתמש",
 "nstab-media"     => "מדיה",
 "nstab-special"   => "מיוחד",
-"nstab-wp"        => "דף מיזם",
+"nstab-project"   => "דף מיזם",
 "nstab-image"     => "תמונה",
 "nstab-mediawiki" => "הודעה",
 "nstab-template"  => "תבנית",
@@ -1417,7 +1417,7 @@ ta["ca-nstab-main"]         = ["c", "צפו בדף התוכן"];
 ta["ca-nstab-user"]         = ["c", "צפו בדף המשתמש"];
 ta["ca-nstab-media"]        = ["c", "צפו בפריט המדיה"];
 ta["ca-nstab-special"]      = ["",  "זהו דף מיוחד, אי אפשר לערוך אותו"];
-ta["ca-nstab-wp"]           = ["a", "צפו בדף המיזם"];
+ta["ca-nstab-project"]      = ["a", "צפו בדף המיזם"];
 ta["ca-nstab-image"]        = ["c", "צפו בדף תיאור התמונה"];
 ta["ca-nstab-mediawiki"]    = ["c", "צפו בהודעת המערכת"];
 ta["ca-nstab-template"]     = ["c", "צפו בתבנית"];
