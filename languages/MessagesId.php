@@ -1,9 +1,9 @@
-<?php
+ goo<?php
 
 
 /* private */ $wgAllMessagesId = array(
-# User preference toggles
 
+# User preference toggles
 'tog-underline' => 'Garis bawahi pranala',
 'tog-highlightbroken' => 'Beri tanda pranala yang berpaut ke topik kosong <a href="" class="new">seperti ini</a> (alternatif: seperti ini <a href="" class="internal">?</a>)',
 'tog-justify'   => 'Ratakan paragraf',
@@ -84,11 +84,9 @@
 "category_header" => "Artikel dalam kategori \"$1\"",
 "subcategories" => "Subkategori",
 
-'linktrail'		=> '/^([a-z]+)(.*)$/sD',
-'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 "mainpage" => "Halaman Utama",
 "mainpagetext" => "Perangkat lunak wiki berhasil dipasang.",
-'mainpagedocfooter' => "Silakan baca [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] untuk informasi penggunaan perangkat lunak wiki
+'mainpagedocfooter' => "Silakan baca [http://meta.wikipedia.org/wiki/Help:Contents User's Guide] untuk informasi penggunaan perangkat lunak wiki
 
 == Memulai penggunaan ==
 
@@ -128,8 +126,7 @@
 'navigation' => 'Navigasi',
 
 # Metadata in edit box
-'metadata' => '<strong>Metadata</strong> (lihat <a href="$1">di sini</a> untuk penjelasan)',
-'metadata_page' => 'Wikipedia:Metadata',
+'metadata_help' => 'Metadata (lihat [[{{ns:project}}:Metadata]] untuk penjelasan lanjut):',
 
 "currentevents" => "Peristiwa terkini",
 'currentevents-url' => 'Peristiwa terkini',
@@ -157,7 +154,7 @@
 'delete' => 'Hapus',
 "deletethispage" => "Hapus halaman ini",
 'undelete_short1' => 'Batal hapus satu suntingan',
-"undelete_short" => "Batal hapus",
+'undelete_short' => 'Batal hapus $1 suntingan',
 'protect' => 'Lindungi',
 "protectthispage" => "Lindungi halaman ini",
 'unprotect' => 'Hilangkan perlindungan',
@@ -199,9 +196,6 @@
 'versionrequired' => 'Dibutuhkan MediaWiki versi $1',
 'versionrequiredtext' => 'MediaWiki versi $1 dibutuhkan untuk menggunakan halaman ini. Lihat [[Special:Version]]',
 
-'nbytes'		=> '$1 {{PLURAL:$1|byte|byte}}',
-'ncategories'		=> '$1 kategori',
-'nrevisions'		=> '$1 revisi',
 'widthheight'		=> '$1x$2',
 "ok" => "OK",
 'sitetitle'		=> '{{SITENAME}}',
@@ -220,8 +214,6 @@
 'viewdeleted' => 'Lihat $1?',
 'restorelink' => '{{PLURAL:$1|1 suntingan dihapus|$1 suntingan dihapus}}',
 'feedlinks' => 'Feed:',
-'sitenotice' => '-', # the equivalent to wgSiteNotice
-'anonnotice' => '-',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Artikel',
@@ -248,7 +240,7 @@
 "databaseerror" => "Kesalahan basis data",
 "dberrortext" => "Ada kesalahan sintaks pada permintaan basis data. Kesalahan ini mungkin menandakan adanya bug dalam perangkat lunak. Permintaan basis data yang terakhir adalah: <blockquote><tt>$1</tt></blockquote> dari dalam fungsi \"<tt>$2</tt>\". Kesalahan MySQL \"<tt>$3: $4</tt>\".",
 "dberrortextcl" => "Ada kesalahan sintaks pada permintaan basis data. Permintaan basis data yang terakhir adalah: \"$1\" dari dalam fungsi \"$2\". Kesalahan MySQL \"$3: $4\".",
-"noconnect" => "Maaf! wiki ini mengalami masalah teknis dan tidak dapat menghubungi basis data.",
+'noconnect' => 'Maaf! Wiki mengalami masalah teknis dan tidak dapat menghubungi basis data.<br />$1',
 "nodb" => "Tidak dapat memilih basis data $1",
 "cachederror" => "Berikut ini adalah salinan <em>cache</em> dari halaman yang diminta, yang mungkin tidak up-to-date.",
 'laggedslavemode'   => 'Peringatan: Halaman mungkin tidak berisi perubahan terbaru.',
@@ -275,7 +267,7 @@
 "wrong_wfQuery_params" => "Parameter salah ke wfQuery()<br />Fungsi: $1<br />Kueri: $2",
 "viewsource" => "Lihat sumber",
 'viewsourcefor' => 'dari $1',
-"protectedtext" => "Halaman ini telah dikunci untuk menghindari penyuntingan; ada beberapa alasan mengapa hal ini terjadi, silakan lihat [[Project:Halaman_dilindungi]].\n\nAnda dapat melihat dan menyalin sumber halaman ini:",
+'protectedtext' => 'Halaman ini sedang dikunci dari penyuntingan. Lihat [[Project:Perlindungan]] untuk keterangan lebih lanjut.',
 'protectedinterface' => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
 'editinginterface' => "'''Peringatan:''' Anda menyunting halaman yang digunakan untuk menyediakan teks antarmuka dengan perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada pengguna lain.",
 'sqlhidden' => '(Kueri SQL disembunyikan)',
@@ -341,10 +333,8 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "passwordremindertext" => "Seseorang (mungkin Anda, dari alamat IP $1) meminta kami mengirimkan kata sandi {{SITENAME}} yang baru. Kata sandi untuk pengguna \"$2\" sekarang adalah \"$3\". Anda disarankan segera masuk log dan mengganti kata sandi.",
 
 "noemail" => "Tidak ada alamat surat-e yang tercatat untuk pengguna \"$1\".",
-"passwordsent" => "Kata sandi baru telah dikirimkan ke surat-e yang didaftarkan untuk \"$1\". Silakan masuk log kembali setelah menerima surat-e tersebut.", #Please log in again after you receive it.",
+"passwordsent" => "Kata sandi baru telah dikirimkan ke surat-e yang didaftarkan untuk \"$1\". Silakan masuk log kembali setelah menerima surat-e tersebut.",
 'eauthentsent' =>  'Sebuah surat elektronik untuk konfirmasi telah dikirim ke alamat surat elektronik Anda. Anda harus mengikuti instruksi di dalam surat elektronik tersebut untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda. Wikipedia tidak akan mengaktifkan fitur surat elektronik jika langkah ini belum dilakukan.',
-"loginend" => "",
-'signupend'		            => '{{int:loginend}}',
 "mailerror" => "Kesalahan dalam mengirimkan surat-e: $1",
 'acct_creation_throttle_hit' => 'Maaf, Anda telah membuat $1 akun. Anda tidak dapat membuat akun lagi.',
 'emailauthenticated'        => 'Alamat surat-e Anda telah dikonfirmasi pada $1.',
@@ -394,7 +384,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "blockedtitle" => "Pengguna diblokir",
 "blockedtext" => "Nama pengguna atau alamat IP Anda telah diblokir oleh $1. Alasannya karena :<br />$2<p>Anda dapat menghubungi [[Project:Administrators|para administrator]] untuk membicarakan blokir ini.\n\nPerhatikan bahwa Anda tidak dapat menggunakan fasilitas \"surat-e pengguna ini\" kecuali Anda mempunyai sebuah alamat surat-e yang sah dan alamat surat-e tersebut tercatat di dalam [[Special:Preferences|preferensi Anda]].\n\nAlamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang Anda buat",
 "whitelistedittitle" => "Perlu masuk log untuk menyunting",
-"whitelistedittext" => "Anda harus [[Special:Userlogin|masuk log]] untuk dapat menyunting artikel.",
+"whitelistedittext" => "Anda harus $1 untuk dapat menyunting artikel.",
 "whitelistreadtitle" => "Perlu masuk log untuk membaca",
 "whitelistreadtext" => "Anda harus [[Special:Userlogin|masuk log]] untuk dapat membaca artikel.",
 "whitelistacctitle" => "Anda tidak diperbolehkan untuk membuat akun",
@@ -464,7 +454,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "last" => "akhir",
 "orig" => "asli",
 "histlegend" => "Cara membandingkan: tandai radio button versi-versi yang ingin dibandingkan, lalu tekan ENTER atau tombol di bawah.<br />Legenda: (kini) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, m = suntingan kecil",
-'history_copyright' => '-',
 'deletedrev' => '[dihapus]',
 'histfirst' => 'Paling tua',
 'histlast' => 'Paling baru',
@@ -506,7 +495,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "badquery" => "Format kueri pencarian salah",
 "badquerytext" => "Kami tidak dapat memproses kueri Anda. Hal ini mungkin disebabkan karena Anda mencoba mencari kata yang panjangnya kurang dari tiga huruf, yang masih belum didukung oleh sistem ini. Hal ini juga dapat disebabkan oleh kesalahan pengetikan ekspresi, misalnya \"fish and and scales\". Silakan coba kueri yang lain.",
 "matchtotals" => "Kueri \"$1\" cocok dengan $2 judul halaman dan teks dari $3 artikel.",
-"nogomatch" => "Tidak ada halaman dengan judul persis seperti ini, mencoba pencarian full text.",
+'nogomatch' => "'''Tidak ada halaman yang berjudul \"$1\".''' Anda dapat [[$1|membuat halaman ini]].",
 "titlematches" => "Judul artikel yang cocok",
 "notitlematches" => "Tidak ada judul halaman yang cocok",
 "textmatches" => "Teks artikel yang cocok",
@@ -520,31 +509,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "powersearch" => "Cari",
 "powersearchtext" => "Cari dalam namespace :<br />$1<br />$2 Juga tampilkan peralihan   Cari $3 $9",
 "searchdisabled" => '<p style="margin: 1.5em 2em 1em">Pencarian {{SITENAME}} dimatikan sementara karena masalah performa. Dalam pada itu, Anda dapat mencari melalui Google. <span style="font-size: 89%; display: block; margin-left: .2em">Perhatikan bahwa hasil pencarian Google mungkin out-of-date.</span></p>", #"<p>Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>',
-'googlesearch' => '
-<div style="margin-left: 2em">
-
-<!-- Google search -->
-<div style="width:130px;float:left;text-align:center;position:relative;top:-8px"><a href="http://www.google.com/" style="paddin
-:0;background-image:none"><img src="http://www.google.com/logos/Logo_40wht.gif" alt="Google" style="border:none" /></a></div>
-
-<form method="get" action="http://www.google.com/search" style="margin-left:135px">
-  <div>
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="hl" value="id" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="Pencarian Google" />
-  </div>
-  <div style="font-size:90%">
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
-</form>
-
-</div>',
 "blanknamespace" => "(Utama)",
 
 # Preferences page
@@ -693,7 +657,7 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 'illegalfilename' => 'Nama berkas "$1" mengandung karakter yang tidak diizinkan dalam judul halaman. Silakan ubah nama berkas tersebut dan cobalah memuatkannya kembali.',
 "badfilename" => "Nama gambar telah diubah menjadi \"$1\".",
 "badfiletype" => "\".$1\" ialah format berkas gambar yang tidak diizinkan.",
-"largefile" => "Ukuran gambar disarankan tidak melebihi 100k.",
+'largefile'		=> 'Ukuran gambar atau berkas disarankan untuk tidak melebihi $1 byte. Berkas ini berukuran $2 byte',
 'largefileserver' => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile' => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
 'fileexists' => 'Sebuah berkas dengan nama tersebut telah ada, silakan periksa $1 jika Anda ragu-ragu apakah Anda ingin mengubahnya.',
@@ -741,7 +705,6 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 "sharedupload" => "Berkas ini adalah pemuatan bersama yang mungkin juga dipakai oleh proyek lain.",
 'shareduploadwiki' => 'Lihat $1 untuk informasi detil.',
 'shareduploadwiki-linktext' => 'halaman deskripsi berkas',
-'shareddescriptionfollows' => '-',
 'noimage'       => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
 'noimage-linktext'       => 'memuat berkas',
 'uploadnewversion' => '[$1 Muatkan versi yang lebih baru dari berkas ini]',
@@ -794,13 +757,19 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 
 # Miscellaneous special pages
 #
+'nbytes'      => '$1 {{PLURAL:$1|byte|byte}}',
+'ncategories' => '$1 {{PLURAL:$1|kategori|kategori}}',
+'nlinks'      => '$1 {{PLURAL:$1|pranala|pranala}}',
+'nmembers'    => '$1 {{PLURAL:$1|pengguna|pengguna}}',
+'nrevisions'  => '$1 {{PLURAL:$1|revisi|revisi}}',
+'nviews'      => '$1 {{PLURAL:$1|penampilan|penampilan}}',
+
 "lonelypages" => "Halaman tak bertuan",
 'uncategorizedpages' => 'Halaman tak berkategori',
 'uncategorizedcategories' => 'Kategori tak berkategori',
 'unusedcategories' => 'Kategori yang tak digunakan',
 "unusedimages" => "Gambar yang tak digunakan",
 "popularpages" => "Halaman populer",
-"nviews" => "$1 penampilan",
 'wantedcategories' => 'Kategori yang diinginkan',
 "wantedpages" => "Halaman yang diinginkan",
 'mostlinked'	=> 'Halaman yang tersering dituju',
@@ -808,13 +777,10 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'mostcategories' => 'Artikel dengan kategori terbanyak',
 'mostimages'	=> 'Gambar yang tersering digunakan',
 'mostrevisions' => 'Artikel dengan perubahan terbanyak',
-"nlinks" => "$1 pranala",
-'members'		=> '$1 hasil',
 "allpages" => "Semua halaman",
 'nextpage' => 'Halaman berikutnya ($1)',
 'prefixindex'   => 'Indeks prefiks',
 "randompage" => "Halaman sembarang",
-'randompage-url'=> 'Special:Randompage',
 "shortpages" => "Halaman pendek",
 "longpages" => "Halaman panjang",
 "deadendpages" => "Halaman buntu",
@@ -1392,8 +1358,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 * model
 * datetimeoriginal
 * exposuretime
-* fnumber
-* focallength',
+* fnumber',
 
 # Exif tags
 'exif-imagewidth' =>'Lebar',
@@ -1758,7 +1723,6 @@ Silakan konfirmasi jika Anda ingin membuat ulang artikel ini.',
 'displaytitle' => '(Pranala ke halaman ini sebagai [[$1]])',
 
 # Separator for categories in page lists
-'catseparator' => '|',
 
 );
 
