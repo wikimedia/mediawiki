@@ -273,6 +273,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and treat it as wiki text
 * Improve preferences input filtering
 * Maintenance script to import multiple files into the wiki
+* (bug 5957) Update for Hebrew language (he)
 
 
 == Compatibility ==
