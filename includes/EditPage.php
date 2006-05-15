@@ -944,8 +944,7 @@ class EditPage {
 		if ( $wgUseMetadataEdit ) {
 			$metadata = $this->mMetaData ;
 			$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $metadata ) ) ;
-			$helppage = Title::newFromText( wfMsg( "metadata_page" ) ) ;
-			$top = wfMsg( 'metadata', $helppage->getLocalURL() );
+			$top = wfMsgWikiHtml( 'metadata_help' );
 			$metadata = $top . "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
 		}
 		else $metadata = "" ;

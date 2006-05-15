@@ -117,7 +117,7 @@ parent class in order maintain consistency across languages.
 'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'		=> 'Main Page',
 'mainpagetext'	=> "<big>'''MediaWiki has been successfully installed.'''</big>",
-'mainpagedocfooter' => "Consult the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for information on using the wiki software.
+'mainpagedocfooter' => "Consult the [http://meta.wikipedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
 == Getting started ==
 
@@ -157,8 +157,7 @@ parent class in order maintain consistency across languages.
 'navigation' => 'Navigation',
 
 # Metadata in edit box
-'metadata' => '<b>Metadata</b> (for an explanation see <a href="$1">here</a>)',
-'metadata_page' => 'Wikipedia:Metadata',
+'metadata_help' => 'Metadata (see [[{{ns:project}}:Metadata]] for an explanation):',
 
 'currentevents' => 'Current events',
 'currentevents-url' => 'Current events',
