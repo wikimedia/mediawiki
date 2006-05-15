@@ -835,8 +835,8 @@ class EditPage {
 			$wgOut->addWikiText( wfMsg( 'longpagewarning', $wgLang->formatNum( $this->kblength ) ) );
 		}
 
-		$rows = $wgUser->getOption( 'rows' );
-		$cols = $wgUser->getOption( 'cols' );
+		$rows = $wgUser->getIntOption( 'rows' );
+		$cols = $wgUser->getIntOption( 'cols' );
 
 		$ew = $wgUser->getOption( 'editwidth' );
 		if ( $ew ) $ew = " style=\"width:100%\"";

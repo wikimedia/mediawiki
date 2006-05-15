@@ -1069,6 +1069,20 @@ class User {
 	function getBoolOption( $oname ) {
 		return (bool)$this->getOption( $oname );
 	}
+	
+	/**
+	 * Get an option as an integer value from the source string.
+	 * @param string $oname The option to check
+	 * @param int $default Optional value to return if option is unset/blank.
+	 * @return int
+	 */
+	function getIntOption( $oname, $default=0 ) {
+		$val = $this->getOption( $oname );
+		if( $val == '' ) {
+			$val = $default;
+		}
+		return intval( $val );
+	}
 
 	function setOption( $oname, $val ) {
 		$this->loadFromDatabase();
@@ -1076,6 +1090,11 @@ class User {
 			# Clear cached skin, so the new one displays immediately in Special:Preferences
 			unset( $this->mSkin );
 		}
+		// Filter out any newlines that may have passed through input validation.
+		// Newlines are used to separate items in the options blob.
+		$val = str_replace( "\r\n", "\n", $val );
+		$val = str_replace( "\r", "\n", $val );
+		$val = str_replace( "\n", " ", $val );
 		$this->mOptions[$oname] = $val;
 		$this->invalidateCache();
 	}
