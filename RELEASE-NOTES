@@ -274,6 +274,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Improve preferences input filtering
 * Maintenance script to import multiple files into the wiki
 * (bug 5957) Update for Hebrew language (he)
+* (bug 5962) Update for Italian language (it)
 
 
 == Compatibility ==
