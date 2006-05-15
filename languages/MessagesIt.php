@@ -210,8 +210,12 @@ Per favore, fai subito un log in non appena la ricevi.",
 "preview"		=> "Anteprima",
 "showpreview"	=> "Visualizza Anteprima",
 "blockedtitle"	=> "Questo User name corrisponde purtroppo ad un Utente che è stato disabilitato alla modifica degli articoli.",
-"blockedtext"	=> "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.<br />
-La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri [[{{ns:project}}:administrators|amministratori]] per discutere del blocco.",
+"blockedtext"	=> "Il tuo nome utente o il tuo indirizzo IP sono stati bloccati da $1.<br />
+La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1 o un altro [[Project:administrators|amministratore]] per discutere del blocco.
+
+Nota che non puoi usare la funzione 'Scrivi all'utente' se non hai registrato un indirizzo e-mail valido nelle tue [[Special:Preferences|preferenze]].
+
+Ricorda di specificare il tuo indirizzo IP ($3) in qualsiasi richiesta di chiarimenti.",
 "newarticle"	=> "(Nuovo)",
 "newarticletext" => "Scrivi qui il tuo testo.",
 "noarticletext" => "(Questo articolo è vuoto, potresti gentilmente iniziare l'articolo, oppure richiedere la cancellazione di questa pagina)",
@@ -320,10 +324,10 @@ per poter personalizzare le tue preferenze.",
 #
 "recentchanges" => "Ultime Modifiche",
 "rcloaderr"		=> "Caricamento modifiche recenti",
-"rcnote"		=> "Qui di seguito sono elencate le ultime <strong>$1</strong> pagine modificate negli ultimi <strong>$2</strong> giorni.",
+"rcnote"		=> "Di seguito sono elencate le <strong>$1</strong> modifiche più recenti apportate negli ultimi <strong>$2</strong> giorni, aggiornate a $3.",
 "rcnotefrom"	=> " Qui di seguito sono elencate le modifiche da <b>$2</b> (fino a <b>$1</b>).",
 "rclistfrom"	=> "Mostra modifiche a partire da $1",
-"rclinks"		=> " Mostra le ultime $1 modifiche negli ultimi $2 giorni.",
+"rclinks"		=> "Mostra le $1 modifiche più recenti apportate negli ultimi $2 giorni<br />$3",
 "rchide"		=> "in $4 form; $1 modifiche minori; $2 namespaces secondari; $3 modifiche multiple.",
 "diff"			=> "diff",
 "hist"			=> "cron",
@@ -384,7 +388,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 "minlength"		=> "I nomi dei file immagine debbono essere lunghi almeno tre caratteri, ma è preferibile usare nomi lumghi, purché descrittìvi.",
 "badfilename"	=> "Il nome del file immagine è stato convertito in \"$1\".",
 "badfiletype"	=> "\".$1\" non è un tipo di file raccomandato per le immagini, almeno ai nostri fini.",
-"largefile"		=> "Il peso raccomandato per le immagini deve essere inferiore a 100kb.",
+"largefile"		=> "Si raccomanda di non superare le dimensioni di $1 byte per ciascuna immagine; questa immagine è grande $2 byte.",
 "successfulupload" => "Caricamento completato",
 "fileuploaded"	=> "File \"$1\" correttamente caricato sul server.
 Segui questo link: ($2) per modificare la pagina di descrizione del file che hai appena caricato, e immetti subito le informazioni che ritieni opportune (cosa rappresenta, dove lo hai trovato, chi lo ha creato e quando, etc) oltre ad una nota circa la situazione di copyright sul file.<br />Non omettere la nota sul copyright, o il file verrebbe cancellato molto presto.",
@@ -420,13 +424,15 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 "statistics"	=> "Statistiche",
 "sitestats"		=> "Statistiche del sito",
 "userstats"		=> "Statistiche del {{SITENAME}}",
-"sitestatstext" => "Ci sono ben <b>$1</b> pagine nel database.
-Questa cifra comprende le pagine \"talk\" (discussione), pagine su {{SITENAME}}, articoli esigui (\"stub\"), redirects, e altre pagine che probabilmente non andrebbero conteggiate fra gli articoli.
-Escludendo queste, ci sono ben  <b>$2</b> pagine che sono con buona probabilità propriamente degli articoli.<p>
-Ci sono state un totale di <b>$3</b> pagine viste, e <b>$4</b> modifiche agli articoli da quando il software è stato potenziato (Dicembre, 2002).
-Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per ciascun articolo, e che l'articolo è stato letto <b>$6</b> volte per ciascuna modifica.",
-"userstatstext" => "Ci sono <b>$1</b> Utenti registrati.
-<b>$2</b> di questi hanno il grado di amministratori (vedi $3).",
+"sitestatstext" => "Il database contiene '''$1''' pagine.
+Questa cifra comprende le pagine di discussione, quelle di servizio di {{SITENAME}}, le voci più esigue (\"stub\"), i redirect e altre pagine che probabilmente non vanno considerate tra i contenuti del sito. Escludendo le pagine sopra descritte, ve ne sono '''$2''' di contenuti veri e propri.
+
+Sono stati inoltre caricati '''$8''' file.
+
+Dall'installazione del sito sino a questo momento sono state richieste '''$3''' pagine ed eseguite '''$4''' modifiche, pari a una media di '''$5''' modifiche per pagina e '''$6''' richieste di lettura per ciascuna modifica.
+
+La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' processi.",
+"userstatstext" => "In questo momento vi sono '''$1''' utenti registrati, dei quali '''$2''' (pari al '''$4%''') sono amministratori (vedi $3).",
 
 # Maintenance Page
 #
@@ -538,7 +544,7 @@ Tutti i tempi sono in ora del server (UTC).
 "imagereverted" => "Versione precedente correttamente ripristinata.",
 "rollback"		=> "Usa una revisione precedente",
 "cantrollback"	=> "Impossibile tornare ad una versione precedente: l'ultima modifica è stata apportata dall'unico utente che abbia lavorato a questo articolo.",
-"revertpage"	=> "Riportata alla revisione precedente da $1",
+"revertpage"	=> "Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User_talk:$2|discussione]]), riportata alla revisione precedente di [[User:$1|$1]]",
 
 # Undelete
 "undelete" => "Recupera una pagina cancellata",
