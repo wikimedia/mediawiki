@@ -713,7 +713,7 @@ class PreferencesForm {
 		} else {
 			# Need to output a hidden option even if the relevant skin is not in use,
 			# otherwise the preference will get reset to 0 on submit
-			$wgOut->addHTML( "<input type='hidden' name='wpQuickbar' value='{$this->mQuickbar}' />" );
+			$wgOut->addHtml( wfHidden( 'wpQuickbar', $this->mQuickbar ) );
 		}
 
 		# Skin
@@ -816,10 +816,11 @@ class PreferencesForm {
 		#
 		global $wgLivePreview, $wgUseRCPatrol;
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'textboxsize' ) . '</legend>
-			<div>
-				<label for="wpRows">' . wfMsg( 'rows' ) . "</label> <input type='text' name='wpRows' id='wpRows' value=\"{$this->mRows}\" size='3' />
-				<label for='wpCols'>" . wfMsg( 'columns' ) . "</label> <input type='text' name='wpCols' id='wpCols' value=\"{$this->mCols}\" size='3' />
-			</div>" .
+			<div>' .
+				wfInputLabel( wfMsg( 'rows' ), 'wpRows', 'wpRows', 3, $this->mRows ) .
+				' ' .
+				wfInputLabel( wfMsg( 'columns' ), 'wpCols', 'wpCols', 3, $this->mCols ) .
+			"</div>" .
 			$this->getToggles( array(
 				'editsection',
 				'editsectiononrightclick',
@@ -841,8 +842,8 @@ class PreferencesForm {
 		$this->mUsedToggles['autopatrol'] = true; # Don't show this up for users who can't; the handler below is dumb and doesn't know it
 
 		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>' .
-					'<label for="wpRecent">' . wfMsg ( 'recentchangescount' ) .
-					"</label> <input type='text' name='wpRecent' id='wpRecent' value=\"$this->mRecent\" size='3' />" .
+					wfInputLabel( wfMsg( 'recentchangescount' ),
+						'wpRecent', 'wpRecent', 3, $this->mRecent ) .
 			$this->getToggles( array(
 				'hideminor',
 				$wgRCShowWatchingUsers ? 'shownumberswatching' : false,
@@ -853,38 +854,36 @@ class PreferencesForm {
 		# Watchlist
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsgHtml( 'prefs-watchlist' ) . '</legend>' );
 
-		$wgOut->addHTML( '<label for="wpWatchlistDays">' . wfMsgHtml( 'prefs-watchlist-days' ) . '</label> ' );
-		$wgOut->addHTML( '<input type="text" name="wpWatchlistDays" id="wpWatchlistDays" value="' . $this->mWatchlistDays . '" size="3" />' );
+		$wgOut->addHTML( wfInputLabel( wfMsg( 'prefs-watchlist-days' ),
+			'wpWatchlistDays', 'wpWatchlistDays', 3, $this->mWatchlistDays ) );
 		$wgOut->addHTML( '<br /><br />' ); # Spacing
 		$wgOut->addHTML( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots', 'extendwatchlist' ) ) );
-		$wgOut->addHTML( '<label for="wpWatchlistEdits">' . wfMsgHtml( 'prefs-watchlist-edits' ) . '</label> ' );
-		$wgOut->addHTML( '<input type="text" name="wpWatchlistEdits" id="wpWatchlistEdits" value="' . $this->mWatchlistEdits . '" size="3" />' );
+		$wgOut->addHTML( wfInputLabel( wfMsg( 'prefs-watchlist-edits' ),
+			'wpWatchlistEdits', 'wpWatchlistEdits', 3, $this->mWatchlistEdits ) );
 
 		$wgOut->addHTML( '</fieldset>' );
 
 		# Search
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table>' .
 			$this->addRow(
-				'<label for="wpSearch">' . wfMsg( 'resultsperpage' ) . '</label>',
-				"<input type='text' name='wpSearch' id='wpSearch' value=\"$this->mSearch\" size='4' />"
+				wfLabel( wfMsg( 'resultsperpage' ), 'wpSearch' ),
+				wfInput( 'wpSearch', 4, $this->mSearch, array( 'id' => 'wpSearch' ) )
 			) .
 			$this->addRow(
-				'<label for="wpSearchLines">' . wfMsg( 'contextlines' ) . '</label>',
-				"<input type='text' name='wpSearchLines' id='wpSearchLines' value=\"$this->mSearchLines\" size='4' />"
+				wfLabel( wfMsg( 'contextlines' ), 'wpSearchLines' ),
+				wfInput( 'wpSearchLines', 4, $this->mSearchLines, array( 'id' => 'wpSearchLines' ) )
 			) .
 			$this->addRow(
-				'<label for="wpSearchChars">' . wfMsg( 'contextchars' ) . '</label>',
-				"<input type='text' name='wpSearchChars' id='wpSearchChars' value=\"$this->mSearchChars\" size='4' />"
+				wfLabel( wfMsg( 'contextchars' ), 'wpSearchChars' ),
+				wfInput( 'wpSearchChars', 4, $this->mSearchChars, array( 'id' => 'wpSearchChars' ) )
 			) .
 		"</table><fieldset><legend>" . wfMsg( 'defaultns' ) . "</legend>$ps</fieldset></fieldset>" );
 
 		# Misc
 		#
 		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend>');
-		$wgOut->addHTML(
-			'<label for="wpStubs">' . htmlspecialchars ( wfMsg ( 'stubthreshold' ) ) . '</label>' .
-			" <input type='text' name='wpStubs' id='wpStubs' value=\"$this->mStubs\" size='6' />"
-		);
+		$wgOut->addHTML( wfInputLabel( wfMsg( 'stubthreshold' ),
+			'wpStubs', 'wpStubs', 6, $this->mStubs ) );
 		$msgUnderline = htmlspecialchars( wfMsg ( 'tog-underline' ) );
 		$msgUnderlinenever = htmlspecialchars( wfMsg ( 'underline-never' ) );
 		$msgUnderlinealways = htmlspecialchars( wfMsg ( 'underline-always' ) );
