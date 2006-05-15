@@ -9,6 +9,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5507) Logouttext uses now wiki markup
 * (bug 5857) Update for German localisation (de)
 * (bug 5586) <gallery> treated text as links
+* (bug 5957) Update for Hebrew language (he)
 
 == MediaWiki 1.6.5 ==
 
