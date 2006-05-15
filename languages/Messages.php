@@ -202,7 +202,7 @@ parent class in order maintain consistency across languages.
 'views' => 'Views',
 'toolbox' => 'Toolbox',
 'userpage' => 'View user page',
-'wikipediapage' => 'View project page',
+'projectpage' => 'View project page',
 'imagepage' => 	'View image page',
 'viewtalkpage' => 'View discussion',
 'otherlanguages' => 'In other languages',
@@ -260,7 +260,7 @@ See $1.',
 'nstab-user' => 'User page',
 'nstab-media' => 'Media page',
 'nstab-special' => 'Special',
-'nstab-wp' => 'Project page',
+'nstab-project' => 'Project page',
 'nstab-image' => 'File',
 'nstab-mediawiki' => 'Message',
 'nstab-template' => 'Template',
@@ -1567,7 +1567,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'View the user page\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'View the project page\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'View the project page\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
