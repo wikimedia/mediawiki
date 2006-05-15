@@ -169,7 +169,6 @@ parent class in order maintain consistency across languages.
 'errorpagetitle' => 'Error',
 'returnto'		=> 'Return to $1.',
 'tagline'      	=> 'From {{SITENAME}}',
-'whatlinkshere'	=> 'Pages that link here',
 'help'			=> 'Help',
 'search'		=> 'Search',
 'go'		=> 'Go',
