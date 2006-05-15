@@ -1,4 +1,4 @@
- goo<?php
+<?php
 
 
 /* private */ $wgAllMessagesId = array(
