@@ -272,6 +272,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Rename conflicting metadata help message to "metadata_help" (was "metadata")
   and treat it as wiki text
 * Improve preferences input filtering
+* Maintenance script to import multiple files into the wiki
 
 
 == Compatibility ==
