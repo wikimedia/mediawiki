@@ -80,18 +80,17 @@
 
 # Bits of text used by many pages:
 #
-'categories1' => 'Categoria',
-'categories' => 'Categorias',
+'categories' => '{{PLURAL:$1|Categoria|Categorias}}',
 'category' => 'Categoria',
 'category_header' => 'Artigos na categoria "$1"',
 'subcategories' => 'Subcategorias',
 
 
-'linktrail'             => '/^([a-z]+)(.*)$/sD',
-'linkprefix'            => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
+#'linktrail'             => '/^([a-z]+)(.*)$/sD', # ignore list
+#'linkprefix'            => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # ignore list
 'mainpage'              => 'Página principal',
 'mainpagetext'    => "<big>'''MediaWiki instalado com sucesso.'''</big>",
-'mainpagedocfooter' => "Consultar o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia de Utilizadores] para informação acerca de como utilizador o software wiki.
+'mainpagedocfooter' => "Consultar o [http://meta.wikipedia.org/wiki/Help:Contents Guia de Utilizadores] para informação acerca de como utilizador o software wiki.
 
 == Começando ==
 
@@ -131,8 +130,7 @@
 'navigation' => 'Navegação',
 
 # Metadata in edit box
-'metadata' => '<b>Metadata</b> (para uma explicação ver <a href="$1">aqui</a>)',
-'metadata_page' => '{{ns:project}}:Metadata',
+'metadata_help' => 'Metadata (para uma explicação ver [[{{ns:project}}:Metadata]]):',
 
 'currentevents' => 'Eventos actuais',
 'currentevents-url' => 'Eventos actuais',
@@ -205,9 +203,6 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'versionrequired' => 'Necessária versão $1 do MediaWiki',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para ser utilizada. Consulte [[Special:Version]]',
 
-'nbytes'                => '$1 {{PLURAL:$1|byte|bytes}}',
-'ncategories'           => '$1 categorias',
-'nrevisions'            => '$1 revisões',
 'ok'                    => 'OK',
 'sitetitle'             => "{{SITENAME}}",
 'pagetitle'             => "$1 - {{SITENAME}}",
@@ -223,10 +218,9 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'hidetoc' => 'esconder',
 'thisisdeleted' => "Ver ou restaurar $1?",
 'viewdeleted' => 'Ver $1?',
-'restorelink1' => 'uma edição eliminada',
-'restorelink' => "$1 edições eliminadas",
+'restorelink' => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'feedlinks' => 'Feed:',
-'sitenotice'    => '-', # the equivalent to wgSiteNotice
+#'sitenotice'    => '-', # the equivalent to wgSiteNotice; ignore list
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Artigo',
@@ -263,6 +257,8 @@ na função \"<tt>$2</tt>\".
 MySQL retornou o erro \"<tt>$3: $4</tt>\".",
 'noconnect'             => 'Pedimos desculpas, mas esta wiki está passando por algumas
 dificuldades técnicas e não pode contactar o servidor da base de dados.',
+'noconnect'		=> 'Desculpe! A wiki está a experienciar algumas dificuldades técnicas, e não pode contactar o servidor da base de dados. <br />
+$1',
 'nodb'                  => "Não foi possível seleccionar a base de dados $1",
 'cachederror'           => 'A página apresentada é uma cópia em cache da página requisitada, e pode não estar actualizada.',
 'laggedslavemode'   => 'Aviso: A página poderá não conter actualizações recentes.',
@@ -313,9 +309,11 @@ Pode ver e copiar o código fonte desta página:",
 # Login and logout pages
 #
 'logouttitle'   => 'Saída de utilizador',
-'logouttext'            => "<strong>Não está mais autentificado.</strong><br />
-Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode autentificar-se
-novamente como o mesmo nome de utilizador utilizador ou com um nome de utilizador diferente. Tenha em atenção que algumas páginas poderão continuar a ser mostradas como se tivesse ainda autentificado, até limpar a cache do seu navegador.\n",
+'logouttext'	=> '<strong>Saiu agora da sua conta.</strong><br />
+Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode autenticar-se
+novamente como o mesmo nome de utilizador ou com um nome de utilizador diferente. Tenha em atenção que algumas páginas poderão
+continuar a ser apresentadas como se tivesse ainda autenticado, até limpar
+a cache do seu navegador.',
 
 'welcomecreation' => "== Bem-vindo, $1! ==
 
@@ -381,8 +379,8 @@ Por favor, volte a efectuar a autentificação ao recebê-la.",
 'eauthentsent'             =>  "Um email de confirmação foi enviado para o endereço de correio electrónico nomeado.
 Antes de qualquer outro email seja enviado para a conta, terá seguir as instruções no email,
 de modo a confirmar que a conta é mesmo sua.",
-'loginend'                          => '',
-'signupend'                         => '{{int:loginend}}',
+#'loginend'                          => '', # ignore list
+#'signupend'                         => '{{int:loginend}}', # ignore list
 'mailerror'                 => "Erro a enviar o mail: $1",
 'acct_creation_throttle_hit' => 'Pedimos desculpa, mas já foram criadas $1 contas por si. Não lhe é possível criar mais nenhuma.',
 'emailauthenticated'        => 'O seu endereço de correio electrónico foi autenticado em $1.',
@@ -532,7 +530,7 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:Userlogin|au
 'histlegend'    => 'Selecção de diferença: marque as caixas para das versões que deseja comparar e carregue no botão.<br />
 Legenda: (actu) = diferenças da versão actual,
 (ult) = diferença da versão precedente, m = edição minoritária',
-'history_copyright'    => '-',
+#'history_copyright'    => '-', # ignore list
 'deletedrev' => '[eliminada]',
 'histfirst' => 'Mais antigas',
 'histlast' => 'Mais recentes',
@@ -783,7 +781,7 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'sharedupload' => 'Este ficheiro encontra-se partilhado e pode ser utilizado por outros projectos.',
 'shareduploadwiki' => 'Por favor consulte a $1 para mais informação.',
 'shareduploadwiki-linktext' => 'página de descrição',
-'shareddescriptionfollows' => '-',
+#'shareddescriptionfollows' => '-', # ignore list
 'noimage'       => 'Nenhum ficheiro com este nome existe, se desejar pode $1',
 'noimage-linktext'       => 'carrega-lo',
 'uploadnewversion' => '[$1 Carregar uma nova versão deste ficheiro]',
@@ -812,13 +810,15 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 Isto inclui páginas de \"discussão\", páginas sobre o projecto, páginas de rascunho, redireccionamentos, e outras que provavelmente não são qualificadas como artigos.
 Excluindo estas, há '''$2''' páginas que provavelmente são artigos legítimos.
 
+'''$8''' ficheiros foram carregados.
+
 Há um total de '''$3''' páginas vistas, e '''$4''' edições em páginas
 desde a instalação do software.
 O que nos leva a aproximadamente '''$5''' edições por página, e '''$6''' vistas por edição.
 
 O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é de actualmente '''$7'''.",
 'userstatstext' => "Há actualmente '''$1''' utilizadores registados.
-Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
+Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 
 # Maintenance Page
 #
@@ -844,25 +844,29 @@ Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
 
 # Miscellaneous special pages
 #
+'nbytes'		=> '$1 {{PLURAL:$1|byte|bytes}}',
+'ncategories'		=> '$1 {{PLURAL:$1|categoria|categorias}}',
+'nlinks'		=> '$1 {{PLURAL:$1|link|links}}',
+'nmembers'		=> '$1 {{PLURAL:$1|membro|membros}}',
+'nrevisions'		=> '$1 {{PLURAL:$1|revisão|revisões}}',
+'nviews'		=> '$1 {{PLURAL:$1|visita|visitas}}',
+
 'lonelypages'   => 'Páginas órfãs',
 'uncategorizedpages'    => 'Páginas não categorizadas',
 'uncategorizedcategories'       => 'Categorias não categorizadas',
 'unusedcategories' => 'Categorias não utilizadas',
 'unusedimages'  => 'Ficheiros não utilizados',
 'popularpages'  => 'Páginas populares',
-'nviews'                => '$1 visitas',
 'wantedcategories' => 'Categorias pedidas',
 'wantedpages'   => 'Páginas pedidas',
 'mostlinked'    => 'Páginas com mais afluentes',
 'mostcategories' => 'Artigos com mais categorias',
 'mostimages'    => 'Imagens com mais afluentes',
 'mostrevisions' => 'Artigos com mais revisões',
-'nlinks'                => '$1 links',
-'members'		=> '$1 membros',
 'allpages'              => 'Todas as páginas',
 'prefixindex'   => 'Índice de prefixo',
 'randompage'    => 'Página aleatória',
-'randompage-url'=> 'Special:Random',
+#'randompage-url'=> 'Special:Random', # ignore list
 'shortpages'    => 'Páginas curtas',
 'longpages'             => 'Páginas longas',
 'deadendpages'  => 'Páginas sem saída',
@@ -1342,10 +1346,8 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'spamprotectiontitle' => 'Filtro de protecção contra spam',
 'spamprotectiontext' => 'A página que deseja salvar foi bloqueada pelo filtro de spam. Tal bloqueio foi provavelmente causado por uma ligação para um website externo.',
 'spamprotectionmatch' => 'O seguinte texto activou o filtro de spam: $1',
-'subcategorycount' => "Existem $1 subcategorias nesta categoria.",
-'subcategorycount1' => "Existe $1 subcategoria nesta categoria.",
-'categoryarticlecount' => "Existem $1 artigos nesta categoria.",
-'categoryarticlecount1' => "Existe $1 artigo nesta categoria.",
+'subcategorycount' => "{{PLURAL:$1|Existe uma subcategoria|Existem $1 subcategorias}} nesta categoria.",
+'categoryarticlecount' => "{{PLURAL:$1|Existe um artigo|Existem $1 artigos}} nesta categoria.",
 'listingcontinuesabbrev' => " cont.",
 'spambot_username' => 'MediaWiki limpeza de spam',
 'spam_reverting' => 'Revertendo para a última versão não contendo hiperligações para $1',
@@ -1471,15 +1473,15 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'metadata-help' => 'Este ficheiro contém informação adicional, provavelmente adicionada a partir da câmara digital ou scanner utilizada para criar ou digitalizar a imagem. Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
 'metadata-expand' => 'Mostrar restantes detalhes',
 'metadata-collapse' => 'Esconder restantes detalhes',
-'metadata-fields' => 'Os campos EXIF metadata listados nesta mensagem serão
-incluídos na apresentação da página de detalhes da imagem quando a tabela da metadata
-for minimizada. Outros serão escondidos por defeito.
-* make
-* model
-* datetimeoriginal
-* exposuretime
-* fnumber
-* focallength',
+#'metadata-fields' => 'Os campos EXIF metadata listados nesta mensagem serão
+#incluídos na apresentação da página de detalhes da imagem quando a tabela da metadata
+#for minimizada. Outros serão escondidos por defeito.
+#* make
+#* model
+#* datetimeoriginal
+#* exposuretime
+#* fnumber
+#* focallength', # ignore list
 # Exif tags
 'exif-imagewidth' =>'Largura',
 'exif-imagelength' =>'Altura',
@@ -1756,9 +1758,6 @@ Por favor confirme que realmente deseja recriar este artigo.',
 
 # DISPLAYTITLE
 'displaytitle' => '(Ligar a esta página como [[$1]])',
-
-# Separator for categories in page lists
-'catseparator' => '|',
 );
 
 
