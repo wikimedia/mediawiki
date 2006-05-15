@@ -96,22 +96,22 @@
 #"linktrail"		=> '/^([äöüßa-z]+)(.*)$/sDu',	# ignore list
 "mainpage"		=> "Hauptseite",
 "mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
-"mainpagedocfooter" => "Siehe die [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentation zur Anpassung der Benutzeroberfläche]
-und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuch] für Hilfe zur Benutzung und Konfiguration.",
+'mainpagedocfooter'	=> 'Siehe die [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation zur Anpassung der Benutzeroberfläche]
+und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hilfe zur Benutzung und Konfiguration.',
 'portal'		=> "{{SITENAME}}-Portal",
-"portal-url"		=> "{{ns:4}}:Portal",
+'portal-url'		=> '{{ns:project}}:Portal',
 "about"			=> "Über",
 "aboutsite"      => "Über {{SITENAME}}",
 "aboutpage"		=> "{{ns:project}}:Über_{{SITENAME}}",
 "article" => "Artikel",
 "help"			=> "Hilfe",
-"helppage"		=> "Project:Hilfe",
+'helppage'		=> '{{ns:project}}:Hilfe',
 "bugreports"	=> "Kontakt",
-"bugreportspage" => "Project:Kontakt",
+'bugreportspage'	=> '{{ns:project}}:Kontakt',
 "sitesupport"   => "Spenden",
-'sitesupport-url'	=> 'Project:Spenden',
+'sitesupport-url'	=> '{{ns:project}}:Spenden',
 "faq"			=> "FAQ",
-"faqpage"		=> "{{ns:project}}:Häufig_gestellte_Fragen",
+'faqpage'		=> '{{ns:project}}:FAQ',
 "edithelp"		=> "Bearbeitungshilfe",
 'newwindow'		=> '(öffnet ein neues Fenster)',
 "edithelppage"	=> "{{ns:project}}:Editierhilfe",
@@ -131,9 +131,9 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "currentevents" => "Aktuelle Ereignisse",
 'currentevents-url'	=> 'Aktuelle Ereignisse',
 "disclaimers" => "Lizenzbestimmungen",
-"disclaimerpage"		=> "{{ns:4}}:Lizenzbestimmungen",
+'disclaimerpage'	=> '{{ns:project}}:Lizenzbestimmungen',
 'privacy' => 'Datenschutz',
-'privacypage' => 'Project:Datenschutz',
+'privacypage'		=> '{{ns:project}}:Datenschutz',
 "errorpagetitle" => "Fehler",
 "returnto"		=> "Zurück zu $1.",
 'tagline'		=> 'Aus {{SITENAME}}',
@@ -149,7 +149,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "delete" => "löschen",
 "deletethispage" => "Diese Seite löschen",
 'undelete_short'	=> '$1 Änderungen wiederherstellen',
-"undelete_short1" => "Wiederherstellen",
+'undelete_short1'	=> 'Eine Änderung Wiederherstellen',
 "protect" => "schützen",
 "protectthispage" => "Artikel schützen",
 "unprotect" => "Freigeben",
@@ -185,7 +185,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'badaccess'	=> 'Keine ausreichenden Rechte.',
 'badaccesstext'	=> 'Diese Aktion ist Anwendern mit den Rechten "$2" vorbehalten. Siehe $1.',
 'versionrequired'	=> 'Version $1 von MediaWiki ist erforderlich',
-'versionrequiredtext'	=> 'Version $1 von MediaWiki ist erforderlich um diese Seite zu nutzen. Siehe [[Spezial:Version]]',
+'versionrequiredtext'	=> 'Version $1 von MediaWiki ist erforderlich um diese Seite zu nutzen. Siehe [[{{ns:special}}:Version]]',
 'nbytes'		=> '$1 {{PLURAL:$1|Byte|Bytes}}',
 'ncategories'		=> '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
 'nrevisions'		=> '{{PLURAL:$1|eine Bearbeitung|$1 Bearbeitungen}}',
@@ -270,8 +270,11 @@ MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".",
 "readonly"		=> "Datenbank ist gesperrt",
 "enterlockreason" => "Bitte geben Sie einen Grund ein, warum die Datenbank
 gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
-"readonlytext"	=> "Die {{SITENAME}}-Datenbank ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.",
+'readonlytext'		=> 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
+
+Grund der Sperrung: $1',
 "missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben Sie den Artikelnamen an.",
+'readonly_lag'		=> 'Die Datenbank wurde kurzzeitig automatisch gesperrt, damit sich die Datenbanken abgleichen können.',
 "internalerror" => "Interner Fehler",
 "filecopyerror" => "Konnte Datei \"$1\" nicht nach \"$2\" kopieren.",
 "filerenameerror" => "Konnte Datei \"$1\" nicht nach \"$2\" umbenennen.",
@@ -283,7 +286,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "cannotdelete"	=> "Kann spezifizierte Seite oder Artikel nicht löschen. (Wurde möglicherweise schon von jemand anderem gelöscht.)",
 "badtitle"		=> "Ungültiger Titel",
 "badtitletext"	=> "Der Titel der angeforderten Seite war ungültig, leer, oder ein ungültiger Sprachlink von einem anderen Wiki.",
-"perfdisabled" => "Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert. Versuchen Sie es bitte zwischen 02:00 und 14:00 UTC noch einmal<br />(Aktuelle Serverzeit : ".date("H:i:s")." UTC).",
+'perfdisabled'	=> '\'\'\'Entschuldigung!\'\'\' Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert.',
 "perfdisabledsub" => "Hier ist eine gespeicherte Kopie von $1:",
 "perfcached" => "Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:",
 'perfcachedts' => 'Die folgenden Daten stammen aus dem Cache und wurden am $1 das letzte mal aktualisiert.',
@@ -292,9 +295,12 @@ Funktion: $1<br />
 Query: $2",
 "viewsource" => "Quelltext betrachten",
 'viewsourcefor' => 'für $1',
-"protectedtext" => "Diese Seite ist für das Bearbeiten gesperrt. Dafür kann es diverse Gründe geben; siehe [[{{ns:4}}:Geschützte Seiten]].
+'protectedtext' => 'Diese Seite ist für das Bearbeiten gesperrt. Dafür kann es diverse Gründe geben; siehe [[{{ns:project}}:Geschützte Seiten]].
 
-Sie können den Quelltext dieser Seite betrachten und kopieren:",
+Sie können den Quelltext dieser Seite betrachten und kopieren:',
+'protectedinterface'	=> 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
+'editinginterface'	=> '\'\'\'Warnung:\'\'\' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf das Benutzer-Interface aus.',
+'sqlhidden'		=> '(SQL-Abfrage versteckt)',
 
 
 # Login and logout pages
@@ -364,6 +370,9 @@ Sie sollten sich jetzt anmelden und das Passwort ändern. Falls Sie diese E-Mail
 'passwordsent'		=> 'Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.
 Das alte Passwort bleibt weiterhin gültig.',
+'eauthentsent'		=>  'Eine Bestätigungsmail wurde an die angegebene Adresse verschickt.
+
+Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolge die Hinweise in der Bestätigungsmail.',
 #"loginend"		=> "&nbsp;",	# ignore list
 "mailerror" => "Fehler beim Senden von E-Mail: $1",
 'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
@@ -397,11 +406,11 @@ Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, u
 "whitelistedittitle" => "Zum Bearbeiten ist es erforderlich, angemeldet zu sein",
 'whitelistedittext'	=> 'Sie müssen sich $1, um Artikel bearbeiten zu können.',
 "whitelistreadtitle" => "Zum Lesen ist es erforderlich, angemeldet zu sein",
-"whitelistreadtext" => "Sie müssen sich [[Spezial:Userlogin|hier anmelden]], um Artikel lesen zu können.",
+'whitelistreadtext'	=> 'Sie müssen sich [[{{ns:special}}:Userlogin|hier anmelden]], um Artikel lesen zu können.',
 "whitelistacctitle" => "Sie sind nicht berechtigt, einen Account zu erzeugen.",
-"whitelistacctext" => "Um in diesem Wiki Accounts anlegen zu dürfen, müssen Sie sich [[Spezial:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.",
+'whitelistacctext'	=> 'Um in diesem Wiki Accounts anlegen zu dürfen, müssen Sie sich [[{{ns:special}}:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.',
 'confirmedittitle'	=> 'Zum Bearbeiten ist die E-Mail-Bestätigung erforderlich.',
-'confirmedittext'	=> 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie bearbeiten können. Bitte ergänzen und bestätigen Sie Ihre E-Mail-Adresse in den [[Spezial:Preferences|Einstellungen]].',
+'confirmedittext'	=> 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie bearbeiten können. Bitte ergänzen und bestätigen Sie Ihre E-Mail-Adresse in den [[{{ns:special}}:Preferences|Einstellungen]].',
 "loginreqtitle"	=> "Anmeldung erforderlich",
 'loginreqlink' => 'anmelden',
 "loginreqpagetext"	=> "Sie müssen sich $1, um andere Seiten betrachten zu können.",
@@ -409,8 +418,9 @@ Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, u
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
 "newarticletext" => "Hier den Text des neuen Artikels eintragen.\nBitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.",
-"anontalkpagetext" => "---- ''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Spezial:Userlogin|melden Sie sich bitte
- an]], um zukünftige Verwirrung zu vermeiden. ''",
+'anontalkpagetext'	=> '---- \'\'Dies ist die Diskussionsseite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische IP-Adresse zur Identifizierung verwenden.
+ Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden,
+ [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
 "noarticletext" => "(Dieser Artikel enthält momentan keinen Text)",
 'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -440,7 +450,7 @@ Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>",
 "copyrightwarning" => "
 <strong>Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</strong><br />
 Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
-<i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"$2\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
+<i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"$2\" stehen (siehe $1 für Details). Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
 "longpagewarning" => "<strong>WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>",
 "readonlywarning" => "<strong>WARNUNG: Die Datenbank wurde während dem Ändern der
@@ -449,12 +459,13 @@ speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.</strong>",
 'protectedpagewarning' => '<strong>ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur
 durch Benutzer mit Admninistratorrechten bearbeitet werden kann. Beachten Sie bitte die
-[[Project:Geschützte Seiten|Regeln für geschützte Seiten]].</strong>',
+[[{{ns:project}}:Geschützte Seiten|Regeln für geschützte Seiten]].</strong>',
 'templatesused'		=> 'Folgende Vorlagen werden von diesem Artikel verwendet:',
+'edittools'		=> '<!-- Dieser Text wird unter dem "Bearbeiten"-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'		=> 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'		=> 'Der Server hat das Erstellen neuer Seiten eingeschränkt.
 
-Sie können bestehende Seiten ändern oder sich [[Spezial:Userlogin|anmelden]].',
+Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmelden]].',
 
 # History pages
 #
@@ -514,7 +525,7 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 # Search results
 #
 "searchresults" => "Suchergebnisse",
-"searchresulttext" => "Für mehr Information über {{SITENAME}}, siehe [[Project:Suche|{{SITENAME}} durchsuchen]].",
+'searchresulttext'	=> 'Für mehr Information über {{SITENAME}}, siehe [[{{ns:project}}:Suche|{{SITENAME}} durchsuchen]].',
 "searchquery"	=> "Für die Suchanfrage \"$1\"",
 "badquery"		=> "Falsche Suchanfrage",
 "badquerytext"	=> "Wir konnten Ihre Suchanfrage nicht verarbeiten.
@@ -550,7 +561,7 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 #
 "preferences"	=> "Einstellungen",
 "prefsnologin" => "Nicht angemeldet",
-'prefsnologintext'	=> 'Sie müssen [[Spezial:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
+'prefsnologintext'	=> 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
 "prefsreset"	=> "Einstellungen wurden auf Standard zurückgesetzt.",
 "qbsettings"	=> "Seitenleiste",
 "changepassword" => "Passwort ändern",
@@ -597,11 +608,11 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 #
 "changes" => "Änderungen",
 "recentchanges" => "Letzte Änderungen",
-'recentchanges-url' => 'Spezial:Recentchanges',
+'recentchanges-url' => '{{ns:special}}:Recentchanges',
 "recentchangestext" => "
 Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br />
-Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[Project:Willkommen|Willkommensseite]] und [[Project:Erste Schritte|Erste Schritte]].<br />
-Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[Project:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
+Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[{{ns:project}}:Willkommen|Willkommensseite]] und [[{{ns:project}}:Erste Schritte|Erste Schritte]].<br />
+Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[{{ns:project}}:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
 "rcnote"		=> "Hier sind die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. (<b>N</b> - Neuer Artikel; <b>M</b> - kleine Änderung)", // $3
 "rcnotefrom"	=> "Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).",
 "rclistfrom"	=> "Zeige neue Änderungen seit $1",
@@ -613,6 +624,7 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 'minoreditletter'	=> 'K',
 'newpageletter'		=> 'N',
 'sectionlink'		=> '→',
+'number_of_watching_users_RCview'	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 Benutzer beobachten diese Seite]',
 'rc_categories'		=> 'Kategorienbegrenzung (getrennt mit "|")',
 'rc_categories_any'	=> 'Alle',
@@ -625,12 +637,12 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "reupload"		=> "Erneut hochladen",
 "reuploaddesc"	=> "Zurück zur Hochladen-Seite.",
 "uploadnologin" => "Nicht angemeldet",
-"uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]], um Dateien hochladen zu können.",
+'uploadnologintext'	=> 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
 'upload_directory_read_only'	=> 'Der Webserver hat keine Schreibrechte für das Upload-Verzeichnis ($1).',
 "uploaderror"	=> "Fehler beim Hochladen",
 "uploadtext"	=> "
 Um hochgeladene Bilder zu suchen und anzusehen,
-gehen Sie zu der [[Spezial:Imagelist|Liste hochgeladener Bilder]].
+gehen Sie zu der [[{{ns:special}}:Imagelist|Liste hochgeladener Bilder]].
 
 Benutzen Sie das Formular, um neue Bilder hochzuladen und
 sie in Artikeln zu verwenden.
@@ -658,8 +670,8 @@ Alle Zeiten sind UTC.
 'fileuploadsummary'	=> 'Beschreibung/Quelle:',
 "filestatus" => "Copyright-Status",
 "filesource" => "Quelle",
-"copyrightpage" => "Project:Copyright",
-"copyrightpagename" => "{{SITENAME}} copyright",
+'copyrightpage'		=> '{{ns:project}}:Copyright',
+'copyrightpagename'	=> '{{SITENAME}} Copyright',
 "uploadedfiles"	=> "Hochgeladene Dateien",
 'ignorewarning'		=> 'Warnung ignorieren und Datei trotzdem speichern.',
 'ignorewarnings'	=> 'Warnungen ignorieren',
@@ -751,12 +763,12 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 # Maintenance Page
 #
 "disambiguations"	=> "Begriffsklärungsseiten",
-"disambiguationspage"	=> "Project:Begriffsklärung",
+'disambiguationspage'	=> '{{ns:project}}:Begriffsklärung',
 "disambiguationstext"	=> "Die folgenden Artikel verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br />Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
-"doubleredirects"	=> "Doppelte Redirects",
+'doubleredirects'	=> 'Doppelte Weiterleitungen',
 "doubleredirectstext"	=> "<b>Achtung:</b> Diese Liste kann \"falsche Positive\" enthalten. Das ist dann der Fall, wenn ein Redirect außer dem Redirect-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.",
-"brokenredirects"	=> "Kaputte Redirects",
-"brokenredirectstext"	=> "Die folgenden Redirects leiten zu einem nicht existierenden Artikel weiter",
+'brokenredirects'	=> 'Kaputte Weiterleitungen',
+'brokenredirectstext'	=> 'Die folgenden Weiterleitungen leiten auf einen nicht existierenden Artikel weiter',
 
 # Miscellaneous special pages
 #
@@ -822,8 +834,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 # Email this user
 #
 "mailnologin"	=> "Sie sind nicht angemeldet.",
-"mailnologintext" => "Sie müssen [[Spezial:Userlogin|angemeldet sein]]
-und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.",
+'mailnologintext'	=> 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet sein]] und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
 "emailuser"		=> "E-Mail an diesen Benutzer",
 "emailpage"		=> "E-Mail an Benutzer",
 "emailpagetext"	=> "Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren Einstellungen eingetragen, damit der Benutzer Ihnen antworten kann.",
@@ -851,14 +862,14 @@ und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.
 'watchlistclearbutton'	=> 'Beobachtungsliste löschen',
 'watchlistcleardone'	=> 'Ihre Beobachtungsliste wurde gelöscht. $1 Einträge wurden entfernt.',
 "watchnologin"	=> "Sie sind nicht angemeldet",
-"watchnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet]]
-sein, um Ihre Beobachtungsliste zu bearbeiten.",
+'watchnologintext'	=> 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet]]
+sein, um Ihre Beobachtungsliste zu bearbeiten.',
 "addedwatch"	=> "Zur Beobachtungsliste hinzugefügt",
-"addedwatchtext" => "Der Artikel \"$1\" wurde zu Ihrer [[Spezial:Watchlist|Beobachtungsliste]] hinzugefügt.
-Spätere Änderungen an diesem Artikel und der zugehörigen Diskussions-Seite
-werden dort gelistet und der Artikel wird in der [[Spezial:Recentchanges|Liste der letzten Änderungen]] <b>fett</b> angezeigt. <p>Wenn Sie den Artikel wieder von ihrer
-Beobachtungsliste entfernen wollen, klicken Sie auf \"Nicht mehr beobachten\"
-am Ende des Artikels.",
+'addedwatchtext'	=> 'Der Artikel "$1" wurde zu Ihrer [[{{ns:special}}:Watchlist|Beobachtungsliste]] hinzugefügt.
+Spätere Änderungen an diesem Artikel und der zugehörigen Diskussionsseite werden dort gelistet und der Artikel wird
+in der [[{{ns:special}}:Recentchanges|Liste der letzten Änderungen]] \'\'\'fett\'\'\' angezeigt. 
+
+Wenn Sie den Artikel wieder von ihrer Beobachtungsliste entfernen wollen, klicken Sie auf "Nicht mehr beobachten" am Ende des Artikels.',
 "removedwatch"	=> "Von der Beobachtungsliste entfernt",
 "removedwatchtext" => "Der Artikel \"$1\" wurde von Ihrer Beobachtungsliste entfernt.",
 "watchthispage"	=> "Seite beobachten",
@@ -866,7 +877,7 @@ am Ende des Artikels.",
 "notanarticle"	=> "Kein Artikel",
 "watchnochange" => "Keiner Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
 "watchdetails" => "* Sie beobachten zur Zeit insgesamt $1 Artikel (Diskussionsseiten wurden hier nicht mitgezählt).
-* [[Spezial:Watchlist/edit|Gesamte Beobachtungsliste]] anzeigen und bearbeiten.",
+* [[{{ns:special}}:Watchlist/edit|Gesamte Beobachtungsliste]] anzeigen und bearbeiten.",
 'wlheader-enotif' 		=> "* E-Mail-Benachrichtigungsdienst ist eingeschaltet.",
 'wlheader-showupdated'   => "* Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.",
 "watchmethod-recent" => "Überprüfen der letzten Bearbeitungen für die Beobachtungsliste",
@@ -894,14 +905,14 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'enotif_lastvisited' => '$1 zeigt alle Änderungen auf einen Blick.',
 'enotif_body' => 'Liebe/r $WATCHINGUSERNAME,
 
-die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED,
-die aktuelle Version ist: $PAGETITLE_URL
+die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED.
+Die aktuelle Version ist: $PAGETITLE_URL
 
 $NEWPAGE
 
-Zusammenfassung des Editors: $PAGESUMMARY $PAGEMINOREDIT
-Kontakt zum Editor:
-Mail $PAGEEDITOR_EMAIL
+Zusammenfassung des Bearbeiters: $PAGESUMMARY $PAGEMINOREDIT
+Kontakt zum Bearbeiter:
+E-Mail $PAGEEDITOR_EMAIL
 Wiki $PAGEEDITOR_WIKI
 
 Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Seite wieder besuchen. Auf Ihrer Beobachtungsseite können Sie alle Benachrichtigungsmarker zusammen zurücksetzen.
@@ -909,8 +920,8 @@ Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Se
              Ihr freundliches {{SITENAME}} Benachrichtigungssystem
 
 ---
-Ihre Beobachtungsliste {{SERVER}}{{localurl:Spezial:Watchlist/edit}}
-Hilfe zur Benutzung gibt {{SERVER}}{{localurl:WikiHelpdesk}}',
+Ihre Beobachtungsliste {{fullurl:Special:Watchlist/edit}}',
+
 
 # Delete/protect/revert
 #
@@ -925,7 +936,7 @@ Hilfe zur Benutzung gibt {{SERVER}}{{localurl:WikiHelpdesk}}',
 "historywarning" => "WARNUNG: Die Seite die Sie zu löschen gedenken hat
 eine Versionsgeschichte:",
 "confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen endgültig aus der Datenbank zu löschen.
-Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]] handeln.",
+Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[{{ns:project}}:Leitlinien|Leitlinien]] handeln.",
 "actioncomplete" => "Aktion beendet",
 "deletedtext"	=> "\"$1\" wurde gelöscht.
 Im $2 finden Sie eine Liste der letzten Löschungen.",
@@ -944,15 +955,16 @@ Im $2 finden Sie eine Liste der letzten Löschungen.",
 "rollbackfailed" => "Zurücknahme gescheitert",
 "cantrollback" => "Die Änderung kann nicht zurückgenommen werden; der
 letzte Autor ist der einzige.",
-"alreadyrolled" => "Die Zurücknahme des Artikels [[$1]] von [[Benutzer:$2|$2]]
-([[Benutzer Diskussion:$2|Diskussion]]) ist nicht möglich, da eine andere
-Änderung oder Rücknahme erfolgt ist.
+'alreadyrolled'	=> 'Die Zurücknahme des Artikels [[$1]] von [[{{ns:user}}:$2|$2]]
+([[{{ns:user_talk}}:$2|Diskussion]]) ist nicht möglich, da eine andere Änderung oder Rücknahme erfolgt ist.
 
-Die letzte Änderung ist von [[Benutzer:$3|$3]]
-([[Benutzer Diskussion:$3|Diskussion]])",
+Die letzte Änderung ist von [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Diskussion]])',
 #   only shown if there is an edit comment
 "editcomment" => "Der Änderungskommentar war: \"<i>$1</i>\".",
 "revertpage" => "Wiederhergestellt zur letzten Änderung von $1", // $2
+'sessionfailure'	=> 'Es gab ein Problem mit Ihrer Benutzersitzung.
+Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
+Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 
 # Undelete
 "undelete" => "Gelöschte Seite wiederherstellen",
@@ -960,12 +972,19 @@ Die letzte Änderung ist von [[Benutzer:$3|$3]]
 'viewdeletedpage'	=> 'Gelöschte Seiten anzeigen',
 "undeletepagetext" => "Die folgenden Seiten wurden gelöscht, sind aber immer noch
 gespeichert und können wiederhergestellt werden.",
+'undeleteextrahelp' => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken auf „Wiederherstellen“.
+* Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln an Hand der Markierungen aus,
+geben eine Begründung an und klicken dann auf „Wiederherstellen“.
+* „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 "undeletearticle" => "Gelöschten Artikel wiederherstellen",
 "undeleterevisions" => "$1 Versionen archiviert",
 "undeletehistory" => "Wenn Sie diese Seite wiederherstellen, werden auch alle alten
 Versionen wiederhergestellt. Wenn seit der Löschung ein neuer Artikel gleichen
 Namens erstellt wurde, werden die wiederhergestellten Versionen als alte Versionen
 dieses Artikels erscheinen.",
+'undeletehistorynoadmin'	=> 'Dieser Artikel wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
+genauso wie Details zum letzten Benutzer der diesen Artikel vor der Löschung bearbeitet hat.
+Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.',
 "undeleterevision" => "Gelöschte Version vom $1",
 "undeletebtn" => "Wiederherstellen",
 'undeletereset' => 'Abbrechen',
@@ -1010,7 +1029,7 @@ dieses Artikels erscheinen.",
 #
 "blockip"		=> "IP-Adresse blockieren",
 "blockiptext"	=> "Benutzen Sie das Formular, um eine IP-Adresse zu blockieren.
-Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]].
+Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[{{ns:project}}:Leitlinien|Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
 "ipaddress"		=> "IP-Adresse",
 'ipadressorusername'	=> 'IP-Adresse oder Benutzername',
@@ -1022,7 +1041,7 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "badipaddress"	=> "Die IP-Adresse hat ein falsches Format.",
 "blockipsuccesssub" => "Blockade erfolgreich",
 "blockipsuccesstext" => "Die IP-Adresse \"$1\" wurde blockiert.
-<br />Auf [[Spezial:Ipblocklist|IP block list]] ist eine Liste der Blockaden.",
+<br />Auf [[{{ns:special}}:Ipblocklist|IP block list]] ist eine Liste der Blockaden.",
 "unblockip"		=> "IP-Adresse freigeben",
 "unblockiptext"	=> "Benutzen Sie das Formular, um eine blockierte IP-Adresse freizugeben.",
 "ipusubmit"		=> "Diese Adresse freigeben",
@@ -1086,9 +1105,9 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit \'\'\'
 'group-bureaucrat-member'	=> 'Bürokrat',
 'group-steward-member'		=> 'Steward',
 
-'grouppage-bot'			=> 'Project:Bots',
-'grouppage-sysop'		=> 'Project:Administratoren',
-'grouppage-bureaucrat'		=> 'Project:Bürokraten',
+'grouppage-bot'			=> '{{ns:project}}:Bots',
+'grouppage-sysop'		=> '{{ns:project}}:Administratoren',
+'grouppage-bureaucrat'		=> '{{ns:project}}:Bürokraten',
 
 # Move page
 #
@@ -1103,7 +1122,7 @@ In diesen Fällen müssen Sie die Seite, falls gewünscht, von Hand verschieben.
 "movearticle"	=> "Artikel verschieben",
 "movenologin"   => "Sie sind nicht angemeldet",
 "movenologintext" => "Sie müssen ein registrierter Benutzer und
-[[Spezial:Userlogin|angemeldet]] sein,
+[[{{ns:special}}:Userlogin|angemeldet]] sein,
 um eine Seite zu verschieben.",
 "newtitle"		=> "Zu neuem Titel",
 "movepagebtn"	=> "Artikel verschieben",
@@ -1132,6 +1151,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "export"        => "Seiten exportieren",
 "exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit Mediawiki Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
+'exportnohistory' => '----
+\'\'\'Hinweis:\'\'\' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.',
 "missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>",
 'filemissing' => 'Datei fehlt',
 'thumbnail_error' => 'Fehler beim Erstellen des Vorschaubildes: $1',
@@ -1203,7 +1224,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'allmessages'		=> 'Seiten im MediaWiki-Namensraum',
 'allmessagesname'	=> 'Name',
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
-'allmessagesnotsupportedDB' => '\'\'\'Spezial:Allmessages\'\'\' ist momentan nicht möglich, weil die Datenbank offline ist.',
+'allmessagesnotsupportedDB' => '\'\'\'{{ns:special}}:Allmessages\'\'\' ist momentan nicht möglich, weil die Datenbank offline ist.',
 'allmessagesdefault'	=> 'Standardtext',
 'allmessagescurrent'	=> 'Aktueller Text',
 'allmessagesfilter'	=> 'Filter für Meldungsnamen:',
@@ -1224,12 +1245,12 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'alllogstext'		=> 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Benutzerblockaden- und Rechte-Logbücher.<br />Sie können die Anzeige durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels einschränken.',
 'logempty'		=> 'Keine passenden Einträge.',
 "protectlogpage"	=> "Seitenschutz-Logbuch",
-"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
+'protectlogtext'	=> 'Dies ist eine Liste der blockierten Seiten. Siehe [[{{ns:project}}:Geschützte Seiten]] für mehr Informationen.',
 "protectedarticle" => "Artikel [[$1]] geschützt",
 "unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
 "confirmprotecttext" => "Soll diese Seite wirklich geschützt werden?",
-'protect-text'		=> "Hier können Sie den Schutzstatus für die Seite <strong>$1</strong> einsehen und ändern. Bitte stellen Sie sicher, dass Sie die [[Project:Geschützte Seiten|Projekt-Richtlinien]] einhalten.",
+'protect-text'		=> "Hier können Sie den Schutzstatus für die Seite <strong>$1</strong> einsehen und ändern. Bitte stellen Sie sicher, dass Sie die [[{{ns:project}}:Geschützte Seiten|Projekt-Richtlinien]] einhalten.",
 'protect-level-autoconfirmed'	=> 'nicht registrierte Benuter blocken',
 'protect-level-sysop'	=> 'nur Sysops',
 'restriction-edit'	=> 'bearbeiten',
@@ -1237,9 +1258,9 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'protect-unchain'	=> 'Verschiebeschutz ändern',
 "ipbexpiry"		=> "Ablaufzeit",
 "blocklogpage"		=> "Benutzerblockaden-Logbuch",
-"blocklogentry"		=> "blockiert [[Benutzer:$1]] - ([[Spezial:Contributions/$1|Beiträge]]) für einen Zeitraum von: $2",
-"blocklogtext"		=> "Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch geblockte IP-Adressen werden nicht erfasst. Siehe [[Spezial:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.",
-"unblocklogentry"	=> "Blockade von [[Benutzer:$1]] aufgehoben",
+'blocklogentry'		=> 'blockiert [[{{ns:user}}:$1]] - ([[{{ns:special}}:Contributions/$1|Beiträge]]) für einen Zeitraum von: $2',
+'blocklogtext'		=> 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch geblockte IP-Adressen werden nicht erfasst. Siehe [[{{ns:special}}:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
+'unblocklogentry'	=> 'Blockade von [[{{ns:user}}:$1]] aufgehoben',
 "range_block_disabled"	=> "Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.",
 "ipb_expiry_invalid"	=> "Die angegebeben Ablaufzeit ist ungültig.",
 "ip_range_invalid"	=> "Ungültiger IP-Addressbereich.",
@@ -1284,6 +1305,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'move' => "verschieben",
 'edit' => 'bearbeiten',
 'talk' => 'Diskussion',
+'views'			=> 'Views',
 "nocookiesnew" => "Der Benutzerzugang wurde erstellt, aber Sie sind nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und loggen sich dann mit Ihrem neuen Benutzernamen und dem Passwort ein.",
 "nocookieslogin" => "{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.",
 
@@ -1307,12 +1329,13 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 # Patrolling
 'markaspatrolleddiff'		=> 'Als geprüft markieren',
 'markaspatrolledlink'		=> '[$1]',
-'markaspatrolledtext'		=> 'Diesen Artikel als geprüft markieren',
+'markaspatrolledtext'		=> 'Diese Artikeländerung als geprüft markieren',
 'markedaspatrolled'		=> 'Als geprüft markiert',
 'markedaspatrolledtext'		=> 'Die ausgewählte Artikeländerung wurde als geprüft markiert.',
 'rcpatroldisabled'		=> 'Prüfung der letzten Änderungen gesperrt',
 'rcpatroldisabledtext'		=> 'Die Prüfung der letzten Änderungen ist zur Zeit gesperrt.',
 'markedaspatrollederror'	=> 'Markierung als "geprüft" nicht möglich.',
+'markedaspatrollederrortext'	=> 'Sie müssen eine Artikeländerung auswählen.',
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Benutzer:',
@@ -1335,11 +1358,12 @@ sollte umgehend ein Administrator informiert werden!',
 
 # external editor support
 'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
-'edit-externally-help' => 'Siehe [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] für weitere Informationen',
+'edit-externally-help' => 'Siehe die [http://meta.wikimedia.org/wiki/Help:External_editors Installationsanweisungen] für weitere Informationen',
 
 # Metadata
 'metadata' => 'Metadaten',
 'metadata-help' => 'Diese Datei enthält weitere Informationen, die in der Regel von der Digitalkamera oder dem verwendeten Scanner stammen. Durch nachträgliche Bearbeitung der Originaldatei können einige Details verändert worden sein.',
+'metadata_help'	=> 'Metadaten (siehe [[{{ns:project}}:Metadaten]] für eine Erläuterung):',
 'metadata-expand' => 'Erweiterte Details einblenden',
 'metadata-collapse'	=> 'Erweiterte Details ausblenden',
 
@@ -1463,9 +1487,9 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-gpsspeed-n'		=> 'Knoten',
 'exif-gpsspeedref'		=> 'Geschwindigkeitseinheit',
 'exif-gpsstatus'		=> 'Empfänger Status',
-#'exif-gpsstatus-a'		=> 'Measurement in progress',
+'exif-gpsstatus-a'		=> 'Messung läuft',
 #'exif-gpsstatus-v'		=> 'Measurement interoperability',
-'exif-gpstimestamp'		=> 'GPS-Zeit ([[Internationale Atomzeit|TAI]])',
+'exif-gpstimestamp'		=> 'GPS-Zeit ([http://de.wikipedia.org/wiki/Internationale_Atomzeit TAI])',
 'exif-gpstrack'			=> 'Bewegungsrichtung',
 #'exif-gpstrackref'		=> 'Reference for direction of movement',
 #'exif-gpsversionid'		=> 'GPS tag version',
@@ -1608,7 +1632,7 @@ Diese E-Mail enthält einen Link mit einem Code; durch Klicken auf diesen Link b
 'confirmemail_send' => 'Anforderung einer E-Mail zur Adressenbestätigung',
 'confirmemail_sent' => 'Es wurde Ihnen eine E-Mail zur Adressenbestätigung gesendet.',
 'confirmemail_sendfailed' => 'Eine Bestätigung konnte auf Grund einer Fehlkonfiguration des Servers oder ungültigen Zeichen in der E-Mail-Adresse nicht verschickt werden.',
-'confirmemail_invalid' => 'Ungültiger Bestätigungskode. Die Gültigkeitsdauer des Kodes ist eventuell abgelaufen.',
+'confirmemail_invalid' => 'Ungültiger Bestätigungs-Code. Die Gültigkeitsdauer des Codes ist eventuell abgelaufen.',
 'confirmemail_needlogin' => 'Sie müssen sich $1 um Ihre E-Mail-Adresse zu bestätigen.',
 'confirmemail_success' => 'Ihre E-Mail-Adresse wurde bestätigt. Sie können sich jetzt einloggen.',
 'confirmemail_loggedin' => 'Ihre E-Mail-Adresse ist nun bestätigt.',
@@ -1626,7 +1650,7 @@ $3
 
 Wenn Sie *nicht* $2 sind, folgen Sie dem Link bitte nicht.
 
-Der Bestätigungskode läuft am $4 ab.',
+Der Bestätigungs-Code läuft am $4 ab.',
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Versuche exakte Suche',
@@ -1651,7 +1675,7 @@ $1
 
 # delete conflict
 'deletedwhileediting' => 'Warnung. Diese Seite wurde gelöscht, nach dem Sie angefangen haben diese zu bearbeiten!',
-'confirmrecreate' => 'Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diesen Artikel gelöscht, nachdem Sie angefangen haben ihn zu bearbeiten. Die Begründung lautete:
+'confirmrecreate' => 'Benutzer [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Diskussion]]) hat diesen Artikel gelöscht, nachdem Sie angefangen haben ihn zu bearbeiten. Die Begründung lautete:
 \'\'$2\'\'
 Bitte bestätigen Sie, dass Sie diesen Artikel wirklich wiederherstellen möchten.',
 'recreate' => 'Wiederherstellen',
