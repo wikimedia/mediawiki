@@ -104,6 +104,11 @@ class LanguageDe extends LanguageUtf8 {
 		return array(',' => '.', '.' => ',' );
 	}
 
+	function linkTrail() {
+		return '/^([äöüßa-z]+)(.*)$/sDu';
+	}
+
+
 }
 
 ?>
