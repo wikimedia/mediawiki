@@ -1,26 +1,18 @@
 <?php
-
-
 /* private */ $wgAllMessagesIt = array(
-# User Toggles
 
+# User preference toggles
 "tog-underline" => "Sottolinea links",
 "tog-highlightbroken" => "Evidenzia i links che puntano ad<br />articoli ancora da scrivere",
 "tog-justify"	=> "Paragrafo: giustificato",
 "tog-hideminor" => "Nascondi le modifiche minori<br />nella pagina \"Modifiche recenti\"",
-"tog-usenewrc" => "Enhanced recent changes (not for all browsers)",
 "tog-numberheadings" => "Auto-numerazione dei<br />titoli di paragrafo",
-"tog-showtoolbar" => "Show edit toolbar",
 "tog-editondblclick" => "Doppio click per modificare l'articolo<br />(richiede JavaScript)",
-"tog-editsection"=>"Enable section editing via [edit] links",
-"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br /> on section titles (JavaScript)",
-"tog-showtoc"=>"Show table of contents<br />(for articles with more than 3 headings)",
 "tog-rememberpassword" => "Ricorda la password<br />(non limitare a una sessione<br />- richiede uso di cookies)",
 "tog-editwidth" => "Casella di edizione ampliata<br />alla massima larghezza",
 "tog-watchdefault" => "Notifica articoli nuovi e modificati",
 "tog-minordefault" => "Indica ogni modifica come minore<br />(solo come predefinito)",
-"tog-previewontop" => "Show preview before edit box and not after it",
-"tog-nocache" => "Disable page caching",
+
 # dates
 'sunday' => 'Domenica',
 'monday' => 'Lunedì',
@@ -54,10 +46,8 @@
 'nov' => 'Nov',
 'dec' => 'Dic',
 
-
 # Bits of text used by many pages:
 #
-"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Pagina_principale",
 "about"			=> "A proposito di",
 "aboutsite"      => "A proposito di {{SITENAME}}",
@@ -79,11 +69,13 @@
 "qbmyoptions"	=> "Le mie opzioni",
 "mypage"		=> "La mia pagina",
 "mytalk"		=> "Le mie discussioni",
+
+# Metadata in edit box
+
 "currentevents" => "Attualità",
 "errorpagetitle" => "Errore",
 "returnto"		=> "Torna a $1.",
 "tagline"      	=> "Da {{SITENAME}}.",
-"whatlinkshere"	=> "Pagine che linkano questa",
 "help"			=> "Aiuto",
 "search"		=> "Cerca",
 "history"		=> "Versioni precedenti",
@@ -111,12 +103,13 @@ Vedi $1.",
 "developertitle" => "Riservato agli sviluppatori",
 "developertext"	=> " Questa operazione può essere eseguita solo da Utenti con grado di \"developer\".
 Vedi $1.",
-"nbytes"		=> "$1 bytes",
 "go"			=> "Vai",
 "ok"			=> "OK",
 "sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> '',
 "retrievedfrom" => "Ricavato da  \"$1\"",
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
 
 # Main script and global functions
 #
@@ -174,10 +167,7 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 "loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!",
 "alreadyloggedin" => "<strong>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</strong><br />",
 
-"login"			=> "Log in",
 "userlogin"		=> "Log in",
-"logout"		=> "Log out",
-"userlogout"	=> "Log out",
 "createaccount"	=> "Crea nuovo account",
 "badretype"		=> "Le password che hai immesso non coincidono, sono diverse fra loro.",
 "userexists"	=> "Siamo spiacenti.<br />Lo user name che hai scelto è già usato da un altro Utente.<br />Ti preghiamo perciò di voler scegliere uno user name diverso.",
@@ -200,6 +190,8 @@ Per evidenti ragioni di sicurezza, dovresti fare un log in il prima possibile, e
 "noemail"		=> "Nessuna casella e-mail risulta registrata per l'Utente \"$1\".",
 "passwordsent"	=> "Una nuova password è stata inviata alla casella e-mail registrata per l'Utente \"$1\".
 Per favore, fai subito un log in non appena la ricevi.",
+
+# Edit page toolbar
 
 # Edit pages
 #
@@ -256,6 +248,9 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.",
 "orig"			=> "orig",
 "histlegend"	=> "Legend: (corr) = differenze con la versione corrente,
 (prec) = differenze con la versione precedente, M = modifica minore",
+
+# Revision deletion
+#
 
 # Diffs
 #
@@ -320,6 +315,10 @@ per poter personalizzare le tue preferenze.",
 "localtime"	=> "Ora Locale",
 "timezoneoffset" => "Offset",
 
+# User rights
+
+# Groups
+
 # Recent changes
 #
 "recentchanges" => "Ultime Modifiche",
@@ -343,7 +342,6 @@ per poter personalizzare le tue preferenze.",
 #
 "upload"		=> "Upload",
 "uploadbtn"		=> "Upload",
-"uploadlink"	=> "Upload immagini",
 "reupload"		=> "Ri-upload",
 "reuploaddesc"	=> "Torna al modulo per lo upload.",
 "uploadnologin" => "Devi fare il login per eseguire questa operazione.",
@@ -374,8 +372,6 @@ Per inserire poi la nuova immagine in un articolo, usa semplicemente un link nel
 '''<nowiki>[[media:file.ogg]]</nowiki>''' per i suoni.
 
 Tieni presente che, come per tutte le pagine di {{SITENAME}}, chiunque può modificare o sostituire o cancellare i tuoi files ove ritenga che ciò sia negli interessi della nostra enciclopedia. Tieni anche presente che, in caso di abuso, o di sovraccarico sul sistema, potresti essere bloccato (oltre ad essere perseguito per le connesse responsabilità).",
-"uploadlog"		=> "upload log",
-"uploadlogpage" => "Upload_log",
 "uploadlogpagetext" => "Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
 Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 <ul>
@@ -419,6 +415,18 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 "linkstoimage"	=> "Le pagine seguenti linkano questa immagine:",
 "nolinkstoimage" => "Nessuna pagina linka questa immagine.",
 
+# Mime search
+#
+
+# Unwatchedpages
+#
+
+# List redirects
+
+# Unused templates
+
+# Random redirect
+
 # Statistics
 #
 "statistics"	=> "Statistiche",
@@ -434,37 +442,19 @@ Dall'installazione del sito sino a questo momento sono state richieste '''$3''' 
 La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' processi.",
 "userstatstext" => "In questo momento vi sono '''$1''' utenti registrati, dei quali '''$2''' (pari al '''$4%''') sono amministratori (vedi $3).",
 
-# Maintenance Page
-#
-"maintenance"		=> "Pagina manutenzioni",
-"maintnancepagetext"	=> "In questa pagina sono elencati alcuni utili strumenti per una comoda manutenzione quotidiana della nostra enciclopedia. Alcune delle funzioni tendono a stressare il database, assorbendo molte risorse, perciò non fatene un uso continuo: non aggiornate le pagine (reload, refresh) subito dopo ogni singolo intervento. ;-)",
-"maintenancebacklink"	=> "Torna alla pagina manutenzione",
-"disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "{{ns:project}}:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Doppi Redirects",
 "doubleredirectstext"	=> "<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br />\nOgni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il \"reale\" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.",
 "brokenredirects"	=> "Redirects errati",
 "brokenredirectstext"	=> "I seguenti redirects puntano ad articoli non ancora creati.",
-"selflinks"		=> "Pagine con Auto-Links",
-"selflinkstext"		=> "Le pagine seguenti contengono link che puntano a sé stesse, e in questo caso occorre eliminare questi auto-links.",
-"mispeelings"           => "Pagine con errori di ortografia",
-"mispeelingstext"               => "Le pagine che seguono contengono errori comuni di ortografia, che sono elencati alla pagina $1.",
-"mispeelingspage"       => "Lista di comuni errori di ortografia",
-"missinglanguagelinks"  => "Link interlinguistici mancanti",
-"missinglanguagelinksbutton"    => "Trova interlinks per",
-"missinglanguagelinkstext"      => "Questi articoli <i>non</i> hanno link verso i corrispondenti articoli in $1. Redirects e sub-pagine <i>non</i> sono elencati.",
-
 
 # Miscellaneous special pages
 #
-'orphans'		=> 'Pagine orfane',
+'nviews'		=> '$1 visite',
+
 'lonelypages'	=> 'Pagine solitarie',
 'unusedimages'	=> 'Immagini non utilizzate',
 'popularpages'	=> 'Pagine più viste',
-'nviews'		=> '$1 visite',
 'wantedpages'	=> 'Articoli più richiesti',
-'nlinks'		=> '$1 links',
 'allpages'		=> 'Tutte le pagine',
 'randompage'	=> 'Una pagina a caso',
 'shortpages'	=> 'Pagine corte',
@@ -472,21 +462,19 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' proces
 'listusers'		=> 'Elenco degli Utenti',
 'specialpages'	=> 'Pagine speciali',
 'spheading'		=> 'Pagine speciali',
-'protectpage'	=> 'Proteggi questa pagina',
 'recentchangeslinked' => 'Modifiche correlate',
 "rclsub"		=> "(alle pagine linkate da \"$1\")",
-"debug"			=> "Debug",
 "newpages"		=> "Pagine nuove",
 "movethispage"	=> "Sposta questa pagina",
 "unusedimagestext" => "<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui, essendo inutilizzate in questa versione di {{SITENAME}}, anche essendo magari in uso altrove.",
 
+# Special:Allpages
+
 # Email this user
 #
-"mailnologin"	=> "No send address",
 "mailnologintext" => "Devi fare il  [[Special:Userlogin|login]]
 ed aver registrato una valida casella e-mail nelle tue [[Special:Preferences|preferenze]] per mandare posta elettronica ad altri Utenti.",
 "emailuser"		=> "Manda una E-mail a questo Utente",
-"emailpage"		=> "E-mail user",
 "emailpagetext"	=> "Se questo Utente ha registrato una valida casella e-mail, il modulo qui sotto ti consentirà di scrivergli un solo messaggio.
 La e-mail che hai indicato nelle tue preferenze apparirà nel campo \"From\" della mail, così che il destinatario possa, solo se lo desidera però, risponderti.",
 "noemailtitle"	=> "Nessun indirizzo e-mail",
@@ -533,18 +521,18 @@ Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, con
 "deletedtext"	=> "La pagina \"$1\" è stata cancellata.
 Vedi $2 per un elenco delle pagine cancellate di recente.",
 "deletedarticle" => "Cancellata \"$1\"",
-"dellogpage"	=> "Deletion_log",
 "dellogpagetext" => "Qui di seguito, un elenco delle pagine cancellate di recente.
 Tutti i tempi sono in ora del server (UTC).
 <ul>
 </ul>",
-"deletionlog"	=> "deletion log",
 "reverted"		=> "Ripristinata versione precedente",
 "deletecomment"	=> "Motivazione della cancellazione",
 "imagereverted" => "Versione precedente correttamente ripristinata.",
 "rollback"		=> "Usa una revisione precedente",
 "cantrollback"	=> "Impossibile tornare ad una versione precedente: l'ultima modifica è stata apportata dall'unico utente che abbia lavorato a questo articolo.",
 "revertpage"	=> "Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User_talk:$2|discussione]]), riportata alla revisione precedente di [[User:$1|$1]]",
+
+# restrictions (nouns)
 
 # Undelete
 "undelete" => "Recupera una pagina cancellata",
@@ -559,6 +547,8 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 "undeletedarticle" => "Recuperata \"$1\"",
 "undeletedtext"   => "La pagina [[:$1|$1]] è stata recuperata.
 Vedi [[{{ns:project}}:Deletion_log]] per un elenco delle pagine cancellate e recuperate di recente.",
+
+# Namespace form on various pages
 
 # Contributions
 #
@@ -621,6 +611,8 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 <br />Ricordati di rimuovere il blocco non appena avrai terminatoi le tue manutenzioni.",
 "unlockdbsuccesstext" => " Il database di {{SITENAME}} è stato sbloccato.",
 
+# Make sysop
+
 # Move page
 #
 "movepage"		=> "Spostamento di pagina",
@@ -653,6 +645,76 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 "movetalk"		=> "Sposta anche la corrispondente pagina \"discussione\", se possibile.",
 "talkpagemoved" => "Anche la corrispondente pagina di discussione è stata spostata.",
 "talkpagenotmoved" => "La corrispondente pagina di discussione <strong>non è stata spostata</strong>."
+
+# Export
+
+# Namespace 8 related
+
+# Thumbnails
+
+# Special:Import
+
+# Keyboard access keys for power users
+
+# tooltip help for some actions, most are in Monobook.js
+
+# stylesheets
+
+# Metadata
+
+# Attribution
+
+# Spam protection
+
+# Info page
+
+# Math options
+
+# Patrolling
+
+# Monobook.js: tooltips and access keys for monobook
+
+# image deletion
+
+# browsing diffs
+
+# short names for language variants used for language conversion links.
+# to disable showing a particular link, set it to 'disable', e.g.
+# 'variantname-zh-sg' => 'disable',
+
+# variants for Serbian language
+
+# labels for User: and Title: on Special:Log pages
+
+# Media Warning
+
+# Metadata
+
+# Exif tags
+
+# Make & model, can be wikified in order to link to the camera and model name
+
+# Exif attributes
+
+# external editor support
+
+# 'all' in various places, this might be different for inflected languages
+
+# E-mail address confirmation
+
+# Inputbox extension, may be useful in other contexts as well
+
+# Scary transclusion
+
+# Trackbacks
+
+# delete conflict
+
+# HTML dump
+
+# action=purge
+
+# DISPLAYTITLE
 
 );
 

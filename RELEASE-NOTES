@@ -278,6 +278,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5961) Update for Portuguese localisation (pt)
 * (bug 5849) Remove some hard-coded references to "Wikipedia" in messages
 * (bug 5967) Improvement to German localisation (de)
+* (bug 5962) Update for Italian language (it)
 
 == Compatibility ==
 
