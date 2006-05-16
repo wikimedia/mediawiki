@@ -126,7 +126,6 @@
 
 'currentevents' => 'Actualités',
 'currentevents-url' => 'Actualités',
-
 'disclaimers'	=> 'Avertissements',
 'disclaimerpage' => '{{ns:4}}:Avertissements généraux',
 'privacy' => 'Politique de confidentialité',
@@ -134,7 +133,6 @@
 'errorpagetitle' => 'Erreur',
 'returnto'      => 'Revenir à la page $1.',
 'tagline'       => 'Un article de {{SITENAME}}.',
-'whatlinkshere' => 'Pages liées',
 'search'        => 'Rechercher',
 'go'            => 'Consulter',
 'history'	=> 'Historique de la page',
@@ -535,7 +533,6 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
     <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
   </div>
 </form>',
-'blanknamespace' => '(Main)',
 
 # Preferences page
 #
@@ -1022,8 +1019,8 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 
 
 # What links here
-#
 
+'whatlinkshere' => 'Pages liées',
 'notargettitle' => 'Pas de cible',
 'notargettext'	=> 'Indiquez une page cible ou un utilisateur cible.',
 'linklistsub'	=> '(Liste de liens)',
@@ -1294,7 +1291,7 @@ ta[\'pt-mycontris\'] = new Array(\'y\',\'Liste de mes contributions\');
 ta[\'pt-login\'] = new Array(\'o\',\'Vous êtes invité à vous identifier, mais ce n\\\'est pas obligatoire.\');
 ta[\'pt-anonlogin\'] = new Array(\'o\',\'Vous êtes invité à vous identifier, mais ce n\\\'est pas obligatoire.\');
 ta[\'pt-logout\'] = new Array(\'o\',\'Se déconnecter\');
-ta[\'ca-talk\'] = new Array(\'t\',\'Discussion à propos de l\'article\\\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Discussion à propos de l\\\'article\');
 ta[\'ca-edit\'] = new Array(\'e\',\'Vous pouvez éditer cette page. Merci d\\\'utiliser le bouton de prévisualisation avant de sauvegarder.\');
 ta[\'ca-addsection\'] = new Array(\'+\',\'Ajouter un commentaire à cette discussion.\');
 ta[\'ca-viewsource\'] = new Array(\'e\',\'Cette page est protégée. Vous pouvez voir sa source.\');
@@ -1436,8 +1433,20 @@ Veuillez confirmer que vous désirez vraiment re-créer cette page.',
 # Separator for categories in page lists
 # Please don't localise this
 
+# Metadata
+'metadata' => 'Métadonnées',
+'metadata-help' => 'Ce fichier contient des informations additionnelles, certainement ajoutée par l\'appareil photographique ou le numériseur utilisé pour le créer ou le digitaliser. Si l\'état du fichier a été altéré, certains détails peuvent ne pas refléter totalement l\'image modifiée.',
+'metadata-expand' => 'Montrer les détails',
+'metadata-collapse' => 'Cacher les détails',
+'metadata-fields' => 'Les champs de métadonnées d\'EXIF listés dans ce message seront inclus dans la page de description de l\'image quand la table de métadonnées sera réduite. Les autres champs seront cachés par défaut
+* constructeur
+* modèle
+* Date et heure
+* temps d\'exposition
+* Nombre F
+* longueur de la focale',
 
-# EXIF
+# EXIF tags
 'exif-imagewidth' => 'Largeur',
 'exif-imagelength' => 'Hauteur',
 'exif-compression' => 'Type de compression',
