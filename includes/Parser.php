@@ -3924,6 +3924,7 @@ class Parser
 		$ig = new ImageGallery();
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
+		$ig->setParsing();
 		$lines = explode( "\n", $text );
 
 		foreach ( $lines as $line ) {

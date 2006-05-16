@@ -1,4 +1,4 @@
-<?php
+t<?php
 if ( ! defined( 'MEDIAWIKI' ) )
 	die( -1 );
 
@@ -16,6 +16,11 @@ if ( ! defined( 'MEDIAWIKI' ) )
 class ImageGallery
 {
 	var $mImages, $mShowBytes, $mShowFilename;
+	
+	/**
+	 * Is the gallery on a wiki page (i.e. not a special page)
+	 */
+	var $mParsing;
 
 	/**
 	 * Create a new image gallery object.
@@ -24,6 +29,14 @@ class ImageGallery
 		$this->mImages = array();
 		$this->mShowBytes = true;
 		$this->mShowFilename = true;
+		$this->mParsing = false;
+	}
+
+	/**
+	 * Set the "parse" bit so we know to hide "bad" images
+	 */
+	function setParsing( $val = true ) {
+		$this->mParsing = $val;
 	}
 
 	/**
@@ -98,8 +111,10 @@ class ImageGallery
 			$name = $img->getName();
 			$nt = $img->getTitle();
 
-			// Not an image. Just print the name and skip.
-			if ( $nt->getNamespace() != NS_IMAGE ) {
+			# If we're dealing with a non-image, or a blacklisted image,
+			# spit out the name and be done with it
+			if( $nt->getNamespace() != NS_IMAGE
+				|| ( $this->mParsing && wfIsBadImage( $nt->getDBkey() ) ) ) {
 				$s .=
 					(($i%4==0) ? "<tr>\n" : '') .
 					'<td><div class="gallerybox" style="height: 152px;">' .
