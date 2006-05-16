@@ -53,6 +53,7 @@ if( !isset( $options['help'] ) || !$options['help'] ) {
 			# Check the user's valid
 			if( !is_null( $user ) && is_object( $user ) ) {
 				echo( "ok.\n" );
+				$wgUser =& $user;
 			
 				# If a comment was supplied, use it (replace _ with spaces ) else use a default
 				if( isset( $options['comment'] ) || trim( $options['comment'] != '' ) ) {

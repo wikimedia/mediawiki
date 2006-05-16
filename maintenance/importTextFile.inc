@@ -37,11 +37,12 @@ function insertNewArticle( &$title, $text, &$user, $comment, $rc ) {
 		if( $rc )
 			updateRecentChanges( $dbw, $title, $user, $comment, strlen( $text ), $articleId );
 		# Touch links etc.
-		Article::onArticleCreate( $title );	
-		return( true );
+		Article::onArticleCreate( $title );
+		$article->editUpdates( $text, $comment, false, $dbw->timestamp(), $revisionId );
+		return true;
 	} else {
 		# Title exists; touch nothing
-		return( false );
+		return false;
 	}
 }
 
@@ -54,7 +55,7 @@ function insertNewArticle( &$title, $text, &$user, $comment, $rc ) {
 function titleFromFilename( $filename ) {
 	$parts = explode( '/', $filename );
 	$parts = explode( '.', $parts[ count( $parts ) - 1 ] );
-	return( Title::newFromText( $parts[0] ) );
+	return Title::newFromText( $parts[0] );
 }
 
 /**
