@@ -1,4 +1,4 @@
-t<?php
+<?php
 if ( ! defined( 'MEDIAWIKI' ) )
 	die( -1 );
 
