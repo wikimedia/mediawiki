@@ -279,6 +279,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5849) Remove some hard-coded references to "Wikipedia" in messages
 * (bug 5967) Improvement to German localisation (de)
 * (bug 5962) Update for Italian language (it)
+* Suppress images in galleries which appear on the bad image list (when rendering
+  for a wiki page; galleries in special pages and categories are unaffected)
 
 == Compatibility ==
 

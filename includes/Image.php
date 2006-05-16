@@ -1871,7 +1871,6 @@ function wfGetSVGsize( $filename ) {
  * @return bool
  */
 function wfIsBadImage( $name ) {
-	global $wgContLang;
 	static $titleList = false;
 	
 	if( !$titleList ) {
