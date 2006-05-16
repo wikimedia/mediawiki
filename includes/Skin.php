@@ -1330,7 +1330,7 @@ END;
 				$text = wfMsg('userpage');
 				break;
 			case NS_PROJECT:
-				$text = wfMsg('wikipediapage');
+				$text = wfMsg('projectpage');
 				break;
 			case NS_IMAGE:
 				$text = wfMsg('imagepage');
