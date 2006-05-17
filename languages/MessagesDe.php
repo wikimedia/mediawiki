@@ -14,41 +14,41 @@
 "tog-underline"               => "Verweise unterstreichen:",
 "tog-highlightbroken"         => "Verweise auf leere Artikel hervorheben",
 "tog-justify"                 => "Text als Blocksatz",
-'tog-hideminor'               => 'kleine Änderungen ausblenden',
-'tog-extendwatchlist'         => "erweiterte Beobachtungsliste",
-'tog-usenewrc'                => 'erweiterte Darstellung (benötigt JavaScript)',
-"tog-numberheadings"          => "Überschriften automatisch nummerieren",
-"tog-showtoolbar" 	    => "Editier-Werkzeugleiste anzeigen",
+'tog-hideminor'			=> 'Kleine Änderungen ausblenden',
+'tog-extendwatchlist'		=> 'Erweiterte Beobachtungsliste',
+'tog-usenewrc'			=> 'Erweiterte Darstellung (benötigt JavaScript)',
+'tog-numberheadings'		=> 'Überschriften automatisch nummerieren',
+'tog-showtoolbar'		=> 'Bearbeiten-Werkzeugleiste anzeigen',
 "tog-editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
 "tog-editsection"             => "Links zum Bearbeiten einzelner Absätze anzeigen",
 "tog-editsectiononrightclick" => "Einzelne Absätze per Rechtsklick bearbeiten (JavaScript)",
 "tog-showtoc"                 => "Anzeigen eines Inhaltsverzeichnisses bei Artikeln mit mehr als 3 Überschriften",
 "tog-rememberpassword"        => "Dauerhaftes Einloggen",
 "tog-editwidth"               => "Text-Eingabefeld mit voller Breite",
-'tog-watchcreations'          => "Selbst erstellte Dateien zu meiner Beobachtungsliste hinzufügen",
+'tog-watchcreations'		=> 'Selbst erstellte Seiten zu meiner Beobachtungsliste hinzufügen',
 "tog-watchdefault"            => "Neue und geänderte Seiten beobachten",
 "tog-minordefault"            => "Alle Änderungen als geringfügig markieren",
-"tog-previewontop"            => "Vorschau vor dem Editierfenster anzeigen",
-'tog-previewonfirst' 		=> 'Vorschau beim ersten Editieren anzeigen',
+'tog-previewontop'		=> 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
+'tog-previewonfirst'		=> 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
 "tog-nocache"                 => "Seitencache deaktivieren",
 'tog-enotifwatchlistpages'	=> 'Bei Änderungen an beobachtetene Artikeln E-Mails senden.',
 'tog-enotifusertalkpages'	=> 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden.',
 'tog-enotifminoredits' 		=> 'Auch bei kleinen Änderungen an den Seiten E-Mails senden.',
 'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
-'tog-shownumberswatching' 	=> 'Zeige die Anzahl seitenbeobachtender Benutzer (in Letzte Änderungen, Beobachtungsliste und Artikelseiten)',
+'tog-shownumberswatching'	=> 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-fancysig'			=> 'Unterschrift ohne Verlinkung zur Benutzerseite',
 'tog-externaleditor'		=> 'Externen Editor als Standard benutzen',
 'tog-externaldiff'		=> 'Externes Diff-Programm als Standard benutzen',
 'tog-showjumplinks'		=> '„Wechseln-zu“-Links ermöglichen',
 'tog-uselivepreview'		=> 'Live-Vorschau nutzen (JavaScript) (experimentell)',
-'tog-autopatrol'		=> 'Markiere eigene Änderungen als geprüft',
+'tog-autopatrol'		=> 'Eigene Bearbeitungen als „kontrolliert“ markieren',
 'tog-forceeditsummary'		=> 'Warne mich, wenn ich die Zusammenfassung beim Speichern vergesse',
-'tog-watchlisthideown'		=> 'eigene Änderungen auf der Beobachtungsliste ausblenden',
+'tog-watchlisthideown'		=> 'Eigene Änderungen auf der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots'		=> 'Bot-Änderungen auf der Beobachtungsliste ausblenden',
 
 'underline-always' => 'Immer',
 'underline-never' => 'Niemals',
-'underline-default' => 'Browser Standard',
+'underline-default'		=> 'Browsereinstellungen verwenden',
 
 'skinpreview' => '(Vorschau)',
 
@@ -137,7 +137,6 @@ und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hil
 "errorpagetitle" => "Fehler",
 "returnto"		=> "Zurück zu $1.",
 'tagline'		=> 'Aus {{SITENAME}}',
-"whatlinkshere"	=> "Was zeigt hierhin",
 "help"			=> "Hilfe",
 "search"		=> "Suche",
 "history"		=> "Versionen",
@@ -216,7 +215,7 @@ und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hil
 'nstab-media' => 'Media',
 'nstab-special' => 'Spezial',
 'nstab-project' => 'Portal',
-'nstab-image' => 'Bild',
+'nstab-image'		=> 'Datei',
 'nstab-mediawiki' => 'Nachricht',
 'nstab-template' => 'Vorlage',
 'nstab-help' => 'Hilfe',
@@ -238,7 +237,7 @@ und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hil
 "nowiki_sample"=>"Unformatierten Text hier einfügen",
 "nowiki_tip"=>"Unformatierter Text",
 "image_sample"=>"Beispiel.jpg",
-"image_tip"=>"Bild-Verweis",
+'image_tip'		=> 'Bildverweis',
 "media_sample"=>"Beispiel.mp3",
 "media_tip"=>"Mediendatei-Verweis",
 "sig_tip"=>"Ihre Signatur mit Zeitstempel",
@@ -401,8 +400,14 @@ Funktionen sind zur Zeit deshalb nicht möglich.',
 'missingsummary'	=> '\'\'\'Hinweis:\'\'\' Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut Speichern klicken, wird Ihre Änderung ohne gespeichert.',
 'missingcommenttext'	=> 'Bitte geben Sie eine Zusammenfassung ein.',
 "blockedtitle"	=> "Benutzer ist blockiert",
-"blockedtext"	=> "Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
-Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, um über die Blockierung zu sprechen.",
+
+'blockedtext'		=> 'Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
+
+Folgender Grund wurde angegeben: $2
+
+Sie können $1 oder die [[{{ns:project}}:Administratoren]] kontaktieren, um über die Blockierung zu diskutieren.
+
+Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 "whitelistedittitle" => "Zum Bearbeiten ist es erforderlich, angemeldet zu sein",
 'whitelistedittext'	=> 'Sie müssen sich $1, um Artikel bearbeiten zu können.',
 "whitelistreadtitle" => "Zum Lesen ist es erforderlich, angemeldet zu sein",
@@ -421,7 +426,7 @@ Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, u
 'anontalkpagetext'	=> '---- \'\'Dies ist die Diskussionsseite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische IP-Adresse zur Identifizierung verwenden.
  Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden,
  [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
-"noarticletext" => "(Dieser Artikel enthält momentan keinen Text)",
+'noarticletext'		=> '(Dieser Artikel enthält momentan noch keinen Text)',
 'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview' => "== Vorschau Ihres Benutzer-JavaScript. ==
@@ -595,7 +600,7 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 'localtime'		=> 'Ortszeit:',
 'timezoneoffset'	=> 'Unterschied¹:',
 'servertime'		=> 'Aktuelle Zeit auf dem Server:',
-"guesstimezone" => "Einfügen aus dem Browser",
+'guesstimezone'		=> 'Aus Browser übernehmen',
 'allowemail'		=> 'E-Mails von anderen Benutzern empfangen.',
 "defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
 'default'		=> 'default',
@@ -609,14 +614,11 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "changes" => "Änderungen",
 "recentchanges" => "Letzte Änderungen",
 'recentchanges-url' => '{{ns:special}}:Recentchanges',
-"recentchangestext" => "
-Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br />
-Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[{{ns:project}}:Willkommen|Willkommensseite]] und [[{{ns:project}}:Erste Schritte|Erste Schritte]].<br />
-Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[{{ns:project}}:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
-"rcnote"		=> "Hier sind die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. (<b>N</b> - Neuer Artikel; <b>M</b> - kleine Änderung)", // $3
-"rcnotefrom"	=> "Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).",
-"rclistfrom"	=> "Zeige neue Änderungen seit $1",
-"rclinks"		=> "Zeige die letzten $1 Änderungen; zeige die letzten $2 Tage.",
+'recentchangestext'	=> 'Auf dieser Seite können Sie die letzten Änderungen auf \'\'\'{{SITENAME}}\'\'\' nachverfolgen.',
+'rcnote'		=> 'Angezeigt werden die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage (Stand: $3).',
+'rcnotefrom'		=> 'Angezeigt werden die Änderungen seit <b>$2</b> (max. <b>$1</b> Einträge).',
+'rclistfrom'		=> 'Nur Änderungen seit $1 zeigen.',
+'rclinks'		=> 'Zeige die letzten $1 Änderungen der letzten $2 Tage.<br />$3',
 "diff"			=> "Unterschied",
 "hist"			=> "Versionen",
 "hide"			=> "ausblenden",
@@ -640,25 +642,19 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 'uploadnologintext'	=> 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
 'upload_directory_read_only'	=> 'Der Webserver hat keine Schreibrechte für das Upload-Verzeichnis ($1).',
 "uploaderror"	=> "Fehler beim Hochladen",
-"uploadtext"	=> "
-Um hochgeladene Bilder zu suchen und anzusehen,
-gehen Sie zu der [[{{ns:special}}:Imagelist|Liste hochgeladener Bilder]].
+'uploadtext'		=> 'Gehen Sie zu der [[{{ns:special}}:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen.
 
-Benutzen Sie das Formular, um neue Bilder hochzuladen und
-sie in Artikeln zu verwenden.
-In den meisten Browsern werden Sie ein \"Durchsuchen\"-Feld sehen,
-das einen Standard-Dateidialog öffnet.
-Suchen Sie sich eine Datei aus. Die Datei wird dann im Textfeld angezeigt.
-Bestätigen Sie dann die Copyright-Vereinbarung.
-Schließlich drücken Sie den \"Hochladen\"-Knopf.
+Benutzen Sie das Formular, um neue Dateien hochzuladen. Klicken Sie auf \'\'\'„Durchsuchen...“\'\'\', um einen Dateiauswahl-Dialog zu öffnen.
+Nach der Auswahl einer Datei, wird der Dateiname im Textfeld \'\'\'„Quelldatei“\'\'\' angezeigt.
+Bestätigen Sie dann die Copyright-Vereinbarung und klicken anschliessend auf \'\'\'„Datei hochladen“\'\'\'.
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
 Für Photos wird das JPEG-Format, für Zeichnungen und Symbole das PNG-Format bevorzugt.
 Um ein Bild in einem Artikel zu verwenden, schreiben Sie an Stelle des Bildes
-'''<nowiki>[[bild:datei.jpg]]</nowiki>''' oder
-'''<nowiki>[[bild:datei.jpg|Beschreibung]]</nowiki>'''.
+\'\'\'<nowiki>[[bild:datei.jpg]]</nowiki>\'\'\' oder
+\'\'\'<nowiki>[[bild:datei.jpg|Beschreibung]]</nowiki>\'\'\'.
 
-Bitte beachten Sie, dass, genau wie bei den Artikeln, andere Benutzer Ihre Dateien löschen oder verändern können.",
+Bitte beachten Sie, dass, genau wie bei den Artikeln, andere Benutzer Ihre Dateien löschen oder verändern können.',
 "uploadlog"		=> "Datei-Logbuch",
 "uploadlogpage" => "Datei-Logbuch",
 "uploadlogpagetext" => "Hier ist die Liste der letzten hochgeladenen Dateien.
@@ -673,34 +669,30 @@ Alle Zeiten sind UTC.
 'copyrightpage'		=> '{{ns:project}}:Copyright',
 'copyrightpagename'	=> '{{SITENAME}} Copyright',
 "uploadedfiles"	=> "Hochgeladene Dateien",
-'ignorewarning'		=> 'Warnung ignorieren und Datei trotzdem speichern.',
+'ignorewarning'		=> 'Warnung ignorieren und Datei überschreiben.',
 'ignorewarnings'	=> 'Warnungen ignorieren',
-"minlength"		=> "Bilddateien müssen mindestens drei Buchstaben haben.",
-"badfilename"	=> "Der Bildname wurde in \"$1\" geändert.",
+'minlength'		=> 'Dateiname müssen mindestens drei Buchstaben lang sein.',
+'badfilename'		=> 'Der Dateiname wurde in "$1" geändert.',
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
-'largefile'		=> 'Bitte keine Bilder über $1 Bytes hochladen.',
+'largefile'		=> 'Bitte keine Dateien größer $1 Bytes hochladen. Diese Datei hat $2 Bytes',
 'largefileserver'	=> 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
-'fileexists'		=> 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf "Datei speichern" klicken, wird die Datei überschrieben. Unter $1 können Sie sich vergewissern, ob das gewollt ist.',
+'fileexists'		=> 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf "Datei speichern" klicken, wird die Datei überschrieben. Bitte prüfen Sie $1, wenn Sie sich nicht sicher sind.',
 'fileexists-forbidden'	=> 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[Bild:$1|thumb|center|$1]]',
 "uploadedimage" => "\"[[$1]]\" hochgeladen",
 'uploadscripted' => 'Diese Datei enthält HTML- oder Scriptcode der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
 'uploadvirus' => 'Diese Datei enthält einen Virus! Details: $1',
 'uploadcorrupt' => 'Die Datei ist beschädigt oder hat einen falschen Namen. Bitte überprüfen Sie die Datei und laden Sie sie erneut hoch.',
 "successfulupload" => "Erfolgreich hochgeladen",
-"fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen.
-Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die Informationen über die Datei
- aus, insbesondere seine Herkunft, von wem und wann es
- gemacht wurde und besondere Angaben zum Copyright, falls notwendig.
- Falls es sich um ein Bild handelte, so können Sie mit
- <tt><nowiki>[[Image:$1|thumb|Description]]</nowiki></tt> ein Vorschaubild
- auf der Seite erzeugen lassen.",
+'fileuploaded'		=> 'Die Datei "$1" wurde erfolgreich hochgeladen. Bitte folgen Sie dem Link $2 zur Beschreibungsseite und geben Sie weitere Informationen zur Datei an.
+
+Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[Bild:$1|thumb|Description]]</nowiki></tt> ein Vorschaubild auf der Seite erzeugen lassen.',
 "uploadwarning" => "Warnung",
 "savefile"		=> "Datei speichern",
 "uploadedimage" => "\"[[$1]]\" hochgeladen",
 'uploaddisabledtext'	=> 'Das Hochladen von Dateien ist in diesem Wiki deaktiviert.',
 'sourcefilename'	=> 'Quelldatei',
-'destfilename'		=> 'Dateiname ändern',
+'destfilename'		=> 'Dateiname ändern in',
 'filewasdeleted'	=> 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfen Sie zuerst den Eintrag im $1, bevor Sie die Datei wirklich speichern.',
 
 'license'		=> 'Lizenz',
@@ -708,27 +700,26 @@ Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
 
 # Image list
 #
-"imagelist"		=> "Bilderliste",
-"imagelisttext"	=> "Hier ist eine Liste von <strong>$1</strong> Bildern, sortiert <strong>$2</strong>.",
+'imagelist'		=> 'Dateiliste',
+'imagelisttext'		=> 'Hier ist eine Liste von <strong>$1</strong> Dateien, sortiert <strong>$2</strong>.',
 'imagelistforuser'	=> 'Diese Seite zeigt nur Dateien, die von $1 hochgeladen wurden.',
-"getimagelist"	=> "Lade Bilderliste",
+'getimagelist'		=> 'Lade Dateiliste',
 "ilsubmit"		=> "Suche",
-"showlast"		=> "Zeige die letzten $1 Bilder, sortiert nach $2.",
+'showlast'		=> 'Zeige die letzten $1 Dateien, sortiert nach $2.',
 "byname"		=> "nach Name",
 "bydate"		=> "nach Datum",
 "bysize"		=> "nach Grösse",
 "imgdelete"		=> "Löschen",
 "imgdesc"		=> "Beschreibung",
-"imglegend"		=> "Legende: (Beschreibung) = Zeige/Bearbeite Bildbeschreibung.",
-"imghistory"	=> "Bild-Versionen",
+'imglegend'		=> 'Legende: (Beschreibung) = Zeige/Bearbeite Dateibeschreibung.',
+'imghistory'		=> 'Dateiversionen',
 "revertimg"		=> "Zurücksetzen",
 "deleteimg"		=> "Löschen",
 "deleteimgcompletely"		=> "Löschen",
-"imghistlegend" => "Legende: (cur) = Dies ist das aktuelle Bild, (Löschen) = lösche
-diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
-"imagelinks"	=> "Bildverweise",
-"linkstoimage"	=> "Die folgenden Artikel benutzen dieses Bild:",
-"nolinkstoimage" => "Kein Artikel benutzt dieses Bild.",
+'imghistlegend'		=> 'Legende: (Aktuell) = Dies ist die aktuelle Datei, (Löschen) = lösche diese alte Version, (Zurücksetzen) = diese alte Version wiederherstellen.',
+'imagelinks'		=> 'Dateiverweise',
+'linkstoimage'		=> 'Die folgenden Artikel benutzen diese Datei:',
+'nolinkstoimage'	=> 'Kein Artikel benutzt diese Datei.',
 'shareduploadwiki'		=> 'Für weitere Informationen siehe $1.',
 'shareduploadwiki-linktext'	=> 'Datei-Beschreibungsseite',
 #'shareddescriptionfollows'	=> '-',	# ignore list
@@ -752,13 +743,20 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 "statistics"	=> "Statistik",
 "sitestats"		=> "Seitenstatistik",
 "userstats"		=> "Benutzerstatistik",
-"sitestatstext" => "Es gibt insgesamt <b>$1</b> Seiten in der Datenbank.
-Das schliesst \"Diskussion\"-Seiten, Seiten über {{SITENAME}}, extrem kurze Artikel, Weiterleitungen und andere Seiten ein, die nicht als Artikel gelten können.
-Diese ausgenommen, gibt es <b>$2</b> Seiten, die als Artikel gelten können.<p>
-Es wurden insgesamt <b>$3</b> mal Seiten aufgerufen, und <b>$4</b> mal Seiten bearbeitet.
-Daraus ergeben sich <b>$5</b> Bearbeitungen pro Seite, und <b>$6</b> Betrachtungen pro Bearbeitung.",
-"userstatstext" => "Es gibt <b>$1</b> registrierte Benutzer.
-Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
+'sitestatstext'		=> 'Es gibt insgesamt \'\'\'$1\'\'\' Seiten in der Datenbank.
+Das schliesst Diskussionsseiten, Seiten über {{SITENAME}}, kurze Artikel, Weiterleitungen und andere Seiten ein,
+die eventuell nicht als Artikel gewertet werden können.
+
+Diese ausgenommen gibt es \'\'\'$2\'\'\' Seiten, die als Artikel gewertet werden können.
+
+Insgesamt wurden \'\'\'$8\'\'\' Dateien hochgeladen.
+
+Insgesamt gab es \'\'\'$3\'\'\' Seitenabrufe und \'\'\'$4\'\'\' Seitenbearbeitungen seit dieses Wiki eingerichtet wurde.
+Daraus ergeben sich \'\'\'$5\'\'\' Bearbeitungen pro Seite und \'\'\'$6\'\'\' Seitenabrufe pro Bearbeitung.
+
+Länge der „Job queue“: \'\'\'$7\'\'\'',
+'userstatstext'		=> 'Es gibt \'\'\'$1\'\'\' registrierte [[{{ns:special}}:Listusers|Benutzer]].
+Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 
 # Maintenance Page
 #
@@ -773,7 +771,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 # Miscellaneous special pages
 #
 "lonelypages"	=> "Verwaiste Seiten",
-"unusedimages"	=> "Verwaiste Bilder",
+'unusedimages'		=> 'Verwaiste Dateien',
 "popularpages"	=> "Beliebte Seiten",
 'nviews'		=> '{{PLURAL:$1|eine Abfrage|$1 Abfragen}}',
 'wantedcategories'	=> 'Gewünschte Kategorien',
@@ -961,7 +959,7 @@ letzte Autor ist der einzige.",
 Die letzte Änderung ist von [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Diskussion]])',
 #   only shown if there is an edit comment
 "editcomment" => "Der Änderungskommentar war: \"<i>$1</i>\".",
-"revertpage" => "Wiederhergestellt zur letzten Änderung von $1", // $2
+'revertpage'		=> 'Änderungen von [[{{ns:user}}:$2]] rückgängig gemacht und letzte Version von [[{{ns:user}}:$1]] wiederhergestellt',
 'sessionfailure'	=> 'Es gab ein Problem mit Ihrer Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
@@ -1232,7 +1230,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "thumbnail-more"	=> "vergrößern",
 "and"			=> "und",
 'rcshowhideminor' => 'Kleine Änderungen $1',
-'rcshowhidebots' => '$1 Bots',
+'rcshowhidebots'	=> 'Bots $1',
 'rcshowhideliu' => 'Angemeldete Benutzer $1',
 'rcshowhideanons' => 'Anonyme Benutzer $1',
 'rcshowhidepatr' => 'Überprüfte Änderungen $1',
