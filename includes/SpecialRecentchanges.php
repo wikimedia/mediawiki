@@ -497,9 +497,14 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 	$options = $nondefaults + $defaults;
 
 	if( $options['from'] )
-		$note = wfMsg( 'rcnotefrom', $wgLang->formatNum( $options['limit'] ), $wgLang->timeanddate( $options['from'], true ) );
+		$note = wfMsgExt( 'rcnotefrom', array( 'parseinline' ),
+			$wgLang->formatNum( $options['limit'] ),
+			$wgLang->timeanddate( $options['from'], true ) );
 	else
-		$note = wfMsg( 'rcnote', $wgLang->formatNum( $options['limit'] ), $wgLang->formatNum( $options['days'] ), $wgLang->timeAndDate( wfTimestampNow(), true ) );
+		$note = wfMsgExt( 'rcnote', array( 'parseinline' ),
+			$wgLang->formatNum( $options['limit'] ),
+			$wgLang->formatNum( $options['days'] ),
+			$wgLang->timeAndDate( wfTimestampNow(), true ) );
 
 	// limit links
 	$options_limit = array(50, 100, 250, 500);
@@ -546,8 +551,9 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 	$now = $wgLang->timeanddate( wfTimestampNow(), true );
 	$tl =  makeOptionsLink( $now, array( 'from' => wfTimestampNow()), $nondefaults );
 
-	$rclinks = wfMsg( 'rclinks', $cl, $dl, $hl );
-	$rclistfrom = wfMsg( 'rclistfrom', $tl );
+	$rclinks = wfMsgExt( 'rclinks', array( 'parseinline', 'replaceafter'),
+		$cl, $dl, $hl );
+	$rclistfrom = wfMsgExt( 'rclistfrom', array( 'parseinline', 'replaceafter'), $tl );
 	return "$note<br />$rclinks<br />$rclistfrom";
 
 }
@@ -578,11 +584,11 @@ function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
 		$cb_arr = array( 'type' => 'checkbox', 'name' => 'categories_any', 'value' => "1" ) ;
 		if ( $categories_any ) $cb_arr['checked'] = "checked" ;
 		$catbox = "<br/>" ;
-		$catbox .= wfMsg('rc_categories') . " ";
+		$catbox .= wfMsgExt('rc_categories', array('parseinline')) . " ";
 		$catbox .= wfElement('input', array( 'type' => 'text', 'name' => 'categories', 'value' => $categories));
 		$catbox .= " &nbsp;" ;
 		$catbox .= wfElement('input', $cb_arr );
-		$catbox .= wfMsg('rc_categories_any');
+		$catbox .= wfMsgExt('rc_categories_any', array('parseinline'));
 	} else {
 		$catbox = "" ;
 	}
