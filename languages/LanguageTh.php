@@ -4,24 +4,30 @@
   * @subpackage Language
   */
 #--------------------------------------------------------------------------
-# Translated from English by Varakorn Ungvichian
-# แปลงจากภาษาอังกฤษโดย นาย วรากร อึ้งวิเชียร
+# ผู้แปล (Translators)
+# - วรากร อึ้งวิเชียร (Varakorn Ungvichian)
+# - จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae
 #--------------------------------------------------------------------------
 
 /* private */ $wgNamespaceNamesTh = array(
-	NS_MEDIA		=> "Media",
-	NS_SPECIAL		=> "พิเศษ",
-	NS_MAIN			=> "",
-	NS_TALK			=> "พูดคุย",
-	NS_USER			=> "ผู้ใช้",
-	NS_USER_TALK		=> "คุยเกี่ยวกับผู้ใช้",
-	NS_PROJECT		=> $wgMetaNamespace,
-	NS_PROJECT_TALK		=> $wgMetaNamespace . "_talk",
-	NS_IMAGE		=> "ภาพ",
-	NS_IMAGE_TALK		=> "คุยเกี่ยวกับภาพ",
-	NS_MEDIAWIKI		=> "MediaWiki",
-	NS_MEDIAWIKI_TALK	=> "คุยเกี่ยวกับ_MediaWiki",
-
+	NS_MEDIA            => 'สื่อ',
+	NS_SPECIAL          => 'พิเศษ',
+	NS_MAIN	            => '',
+	NS_TALK	            => 'พูดคุย',
+	NS_USER             => 'ผู้ใช้',
+	NS_USER_TALK        => 'คุยกับผู้ใช้',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => 'คุยเรื่อง' . $wgMetaNamespace,
+	NS_IMAGE            => 'ภาพ',
+	NS_IMAGE_TALK       => 'คุยเรื่องภาพ',
+	NS_MEDIAWIKI        => 'มีเดียวิกิ',
+	NS_MEDIAWIKI_TALK   => 'คุยเรื่องมีเดียวิกิ',
+	NS_TEMPLATE         => 'แม่แบบ',
+	NS_TEMPLATE_TALK    => 'คุยเรื่องแม่แบบ',
+	NS_HELP             => 'วิธีใช้',
+	NS_HELP_TALK        => 'คุยเรื่องวิธีใช้',
+	NS_CATEGORY         => 'หมวดหมู่',
+	NS_CATEGORY_TALK    => 'คุยเรื่องหมวดหมู่',
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsTh = array(

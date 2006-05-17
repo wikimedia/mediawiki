@@ -292,6 +292,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4873) Don't overwrite the subtitle navigation when viewing a redirect page
   that isn't current
 * Enforce the standard upper limit when accessing page histories
+* (bug 2203) Namespace updates for Thai
+
 
 == Compatibility ==
 
