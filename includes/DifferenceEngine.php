@@ -426,7 +426,7 @@ CONTROL;
 
 	function localiseLineNumbersCb( $matches ) {
 		global $wgLang;
-		return wfMsg( 'lineno', $wgLang->formatNum( $matches[1] ) );
+		return wfMsgExt( 'lineno', array('parseinline'), $wgLang->formatNum( $matches[1] ) );
 	}
 
 	/**
