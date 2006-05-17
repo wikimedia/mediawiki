@@ -228,7 +228,7 @@
 	'ug' => 'Oyghurque',	# Uyghur
 	'uk' => 'Українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
-	'uz' => 'Ўзбек',	# Uzbek
+	'uz' => 'O\'zbek',	# Uzbek
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'Vèneto',	# Venetian
 	'vi' => 'Tiếng Việt',	# Vietnamese
