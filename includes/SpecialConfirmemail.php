@@ -84,10 +84,10 @@ class EmailConfirmation extends SpecialPage {
 					$wgOut->returnToMain( true, $title->getPrefixedText() );
 				}
 			} else {
-				$wgOut->addWikiText( 'confirmemail_error' );
+				$wgOut->addWikiText( wfMsg( 'confirmemail_error' ) );
 			}
 		} else {
-			$wgOut->addWikiText( 'confirmemail_invalid' );
+			$wgOut->addWikiText( wfMsg( 'confirmemail_invalid' ) );
 		}
 	}
 	
