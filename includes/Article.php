@@ -893,7 +893,8 @@ class Article {
 				# Display redirect
 				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 				$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
-				if( !$wasRedirected ) {
+				# Don't overwrite the subtitle if this was an old revision
+				if( !$wasRedirected && $this->isCurrent() ) {
 					$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 				}
 				$targetUrl = $rt->escapeLocalURL();
