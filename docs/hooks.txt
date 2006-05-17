@@ -376,7 +376,7 @@ $hash: reference to a hash key string which can be modified
 my talk page, my contributions" etc).
 
 &$personal_urls: Array of link specifiers (see SkinTemplate.php)
-$title: Title object representing the current page
+&$title: Title object representing the current page
 
 'TitleMoveComplete': after moving an article (title)
 $old: old title
