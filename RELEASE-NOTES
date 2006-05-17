@@ -281,6 +281,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5962) Update for Italian language (it)
 * Suppress images in galleries which appear on the bad image list (when rendering
   for a wiki page; galleries in special pages and categories are unaffected)
+* Maintenance script to remove orphaned revisions from the database
 
 == Compatibility ==
 
