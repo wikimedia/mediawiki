@@ -745,9 +745,9 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'group-bureaucrat-member' => 'Bureaucrat',
 'group-steward-member'    => 'Steward',
 
-'grouppage-bot' => 'Project:Bots',
-'grouppage-sysop' => 'Project:Administrators',
-'grouppage-bureaucrat' => 'Project:Bureaucrats',
+'grouppage-bot' => '{{ns:project}}:Bots',
+'grouppage-sysop' => '{{ns:project}}:Administrators',
+'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrats',
 
 # Recent changes
 #
