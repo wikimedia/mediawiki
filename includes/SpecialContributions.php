@@ -364,7 +364,7 @@ function ucListEdit( $sk, $row ) {
 	static $messages;
 	if( !isset( $messages ) ) {
 		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {
-			$messages[$msg] = wfMsg( $msg );
+			$messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
 	}
 
