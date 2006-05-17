@@ -848,11 +848,11 @@ class EditPage {
 
 		$summary = wfMsg('summary');
 		$subject = wfMsg('subject');
-		$minor   = wfMsg('minoredit');
-		$watchthis = wfMsg ('watchthis');
+		$minor   = wfMsgExt('minoredit', array('parseinline'));
+		$watchthis = wfMsgExt('watchthis', array('parseinline'));
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
-				wfMsg('cancel') );
+				wfMsgExt('cancel', array('parseinline')) );
 		$edithelpurl = $sk->makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ));
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
 			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
@@ -1182,7 +1182,7 @@ END
 			$batch->execute();
 
 			# Construct the HTML
-			$outText = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
+			$outText = '<br />'. wfMsgExt( 'templatesused', array( 'parseinline' ) ) . '<ul>';
 			foreach ( $templates as $titleObj ) {
 				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
 			}
@@ -1615,8 +1615,8 @@ END
 		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
-		$oldtitle = wfMsg( 'currentrev' );
-		$newtitle = wfMsg( 'yourtext' );
+		$oldtitle = wfMsgExt( 'currentrev', array('parseinline') );
+		$newtitle = wfMsgExt( 'yourtext', array('parseinline') );
 		if ( $oldtext !== false  || $newtext != '' ) {
 			$de = new DifferenceEngine( $this->mTitle );
 			$de->setText( $oldtext, $newtext );
