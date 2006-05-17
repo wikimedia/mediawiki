@@ -2622,6 +2622,12 @@ class Parser
 
 			if ( $func !== false ) {
 				$title = Title::newFromText( $part1 );
+				# Due to order of execution of a lot of bits, the values might be encoded
+				# before arriving here; if that's true, then the title can't be created
+				# and the variable will fail. If we can't get a decent title from the first
+				# attempt, url-decode and try for a second.
+				if( is_null( $title ) )
+					$title = Title::newFromUrl( urldecode( $part1 ) );
 				if ( !is_null( $title ) ) {
 					if ( $argc > 0 ) {
 						$text = $linestart . $title->$func( $args[0] );

@@ -283,6 +283,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for a wiki page; galleries in special pages and categories are unaffected)
 * Maintenance script to remove orphaned revisions from the database
 * (bug 5991) Update for Russian language (ru)
+* (bug 6001) PAGENAMEE and FULLPAGENAMEE don't work in FULLURL and LOCALURL magic
+  words
 
 == Compatibility ==
 
