@@ -282,6 +282,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Suppress images in galleries which appear on the bad image list (when rendering
   for a wiki page; galleries in special pages and categories are unaffected)
 * Maintenance script to remove orphaned revisions from the database
+* (bug 5991) Update for Russian language (ru)
 
 == Compatibility ==
 
