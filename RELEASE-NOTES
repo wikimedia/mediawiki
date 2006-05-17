@@ -289,6 +289,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 839) Add URLENCODE magic word
 * (bug 6004) Update for Polish language (pl)
 * (bug 5971) Improvement to German localisation (de)
+* (bug 4873) Don't overwrite the subtitle navigation when viewing a redirect page
+  that isn't current
+* Enforce the standard upper limit when accessing page histories
+=======
+
+>>>>>>> .theirs
 
 == Compatibility ==
 

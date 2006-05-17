@@ -87,8 +87,7 @@ class PageHistory {
 		 * Extract limit, the number of revisions to show, and
 		 * offset, the timestamp to begin at, from the URL.
 		 */
-		$limit = $wgRequest->getInt('limit', $this->defaultLimit);
-		$offset = $wgRequest->getText('offset');
+		list( $limit, $offset ) = wfCheckLimits( $this->defaultLimit );
 
 		/* Offset must be an integral. */
 		if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset))
