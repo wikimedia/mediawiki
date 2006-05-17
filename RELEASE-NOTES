@@ -285,6 +285,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5991) Update for Russian language (ru)
 * (bug 6001) PAGENAMEE and FULLPAGENAMEE don't work in FULLURL and LOCALURL magic
   words
+* (bug 5958) Switch Uzbek language name to use latin script
 
 == Compatibility ==
 
