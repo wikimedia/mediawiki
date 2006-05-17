@@ -76,12 +76,12 @@ function &HTMLnamespaceselector($selected = '', $allnamespaces = null, $includeh
 	$s = "<select id='namespace' name='namespace' class='namespaceselector'>\n\t";
 	$arr = $wgContLang->getFormattedNamespaces();
 	if( !is_null($allnamespaces) ) {
-		$arr = array($allnamespaces => wfMsgHtml('namespacesall')) + $arr;
+		$arr = array($allnamespaces => wfMsg('namespacesall')) + $arr;
 	}
 	foreach ($arr as $index => $name) {
 		if ($index < NS_MAIN) continue;
 
-		$name = $index !== 0 ? $name : wfMsgHtml('blanknamespace');
+		$name = $index !== 0 ? $name : wfMsg('blanknamespace');
 
 		if ($index === $selected) {
 			$s .= wfElement("option",
