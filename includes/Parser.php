@@ -2579,6 +2579,15 @@ class Parser
 			}
 		}
 
+		# URLENCODE
+		if( !$found ) {
+			$urlencode =& MagicWord::get( MAG_URLENCODE );
+			if( $urlencode->matchStartAndRemove( $part1 ) ) {
+				$text = $linestart . urlencode( $part1 );
+				$found = true;
+			}
+		}
+
 		# LCFIRST, UCFIRST, LC and UC
 		if ( !$found ) {
 			$lcfirst =& MagicWord::get( MAG_LCFIRST );
