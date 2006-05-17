@@ -286,6 +286,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_RAWSUFFIX			 => array( 1,	 'R'					  ),
 	MAG_NEWSECTIONLINK		 => array( 1,	 '__NEWSECTIONLINK__'	  ),
 	MAG_CURRENTVERSION		 => array( 1, 	 'CURRENTVERSION'		  ),
+	MAG_URLENCODE			 => array( 0,	 'URLENCODE:'			  ),
 );
 
 if (!$wgCachedMessageArrays) {
