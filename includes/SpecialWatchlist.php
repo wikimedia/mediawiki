@@ -43,7 +43,7 @@ function wfSpecialWatchlist( $par ) {
 	/* float */ 'days' => floatval( $wgUser->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
 	/* bool  */ 'hideOwn' => (int)$wgUser->getBoolOption( 'watchlisthideown' ),
 	/* bool  */ 'hideBots' => (int)$wgUser->getBoolOption( 'watchlisthidebots' ),
-				'namespace' => 'all',
+	/* ?     */ 'namespace' => 'all',
 	);
 
 	extract($defaults);
@@ -343,12 +343,12 @@ function wfSpecialWatchlist( $par ) {
 	# Form for namespace filtering
 	$thisAction = $thisTitle->escapeLocalUrl();
 	$nsForm  = "<form method=\"post\" action=\"{$thisAction}\">\n";
-	$nsForm .= "<label for=\"namespace\">" . wfMsg( 'namespace' ) . "</label> ";
+	$nsForm .= "<label for=\"namespace\">" . wfMsgExt( 'namespace', array( 'parseinline') ) . "</label> ";
 	$nsForm .= HTMLnamespaceselector( $nameSpace, '' ) . "\n";
 	$nsForm .= ( $hideOwn ? "<input type=\"hidden\" name=\"hideown\" value=\"1\" />\n" : "" );
 	$nsForm .= ( $hideBots ? "<input type=\"hidden\" name=\"hidebots\" value=\"1\" />\n" : "" );
 	$nsForm .= "<input type=\"hidden\" name=\"days\" value=\"" . $days . "\" />\n";
-	$nsForm .= "<input type=\"submit\" name=\"submit\" value=\"" . wfMsgHtml( 'allpagessubmit' ) . "\" />\n";
+	$nsForm .= "<input type=\"submit\" name=\"submit\" value=\"" . wfMsgExt( 'allpagessubmit', array( 'escape') ) . "\" />\n";
 	$nsForm .= "</form>\n";
 	$wgOut->addHTML( $nsForm );
 
@@ -419,6 +419,9 @@ function wlDaysLink( $d, $page, $options = array() ) {
 	return $s;
 }
 
+/**
+ * Returns html
+ */
 function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
 	$hours = array( 1, 2, 6, 12 );
 	$days = array( 1, 3, 7 );
@@ -431,7 +434,8 @@ function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
 	foreach( $days as $d ) {
 		$days[$i++] = wlDaysLink( $d, $page, $options );
 	}
-	return wfMsg ('wlshowlast',
+	return wfMsgExt('wlshowlast',
+		array('parseinline', 'replaceafter'),
 		implode(' | ', $hours),
 		implode(' | ', $days),
 		wlDaysLink( 0, $page, $options ) );
