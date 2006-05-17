@@ -525,8 +525,8 @@ class SkinTemplate extends Skin {
 				);
 			}
 		}
-		
-		wfRunHooks( 'PersonalUrls', array( $personal_urls, $wgTitle ) );		
+
+		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$wgTitle ) );		
 		wfProfileOut( $fname );
 		return $personal_urls;
 	}
