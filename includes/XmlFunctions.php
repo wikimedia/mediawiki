@@ -173,7 +173,7 @@ function wfCheckLabel( $label, $name, $id, $checked=false, $attribs=array() ) {
  * @return string HTML
  */
 function wfRadioLabel( $label, $name, $value, $id, $checked=false, $attribs=array() ) {
-	return wfRadio( $name, $checked, $value, array( 'id' => $id ) + $attribs ) .
+	return wfRadio( $name, $value, $checked, array( 'id' => $id ) + $attribs ) .
 		'&nbsp;' .
 		wfLabel( $label, $id );
 }
