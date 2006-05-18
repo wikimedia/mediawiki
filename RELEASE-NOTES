@@ -293,7 +293,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   that isn't current
 * Enforce the standard upper limit when accessing page histories
 * (bug 2203) Namespace updates for Thai
-
+* Fix breakage in parser test suite which caused incorrect reporting of the failure of
+  {{NUMBEROFFILES}}. Now initialises the site_stats table with some dumb data. Updated
+  the expected output for {{NUMBEROFARTICLES}} to reflect this.
 
 == Compatibility ==
 
