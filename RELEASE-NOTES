@@ -297,6 +297,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   {{NUMBEROFFILES}}. Now initialises the site_stats table with some dumb data. Updated
   the expected output for {{NUMBEROFARTICLES}} to reflect this.
 * (bug 6009) Use {{ns:project}} in messages where appropriate
+* (bug 6012) Update to Indonesian localisation (id)
 
 == Compatibility ==
 
