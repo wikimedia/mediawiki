@@ -126,19 +126,19 @@ parent class in order maintain consistency across languages.
 * [http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'portal'		=> 'Community portal',
-'portal-url'	=> 'Project:Community Portal',
+'portal-url'		=> '{{ns:project}}:Community Portal',
 'about'			=> 'About',
 'aboutsite'		=> 'About {{SITENAME}}',
-'aboutpage'		=> 'Project:About',
+'aboutpage'		=> '{{ns:project}}:About',
 'article'		=> 'Content page',
 'help'			=> 'Help',
 'helppage'		=> 'Help:Contents',
 'bugreports'	=> 'Bug reports',
-'bugreportspage' => 'Project:Bug_reports',
+'bugreportspage' => '{{ns:project}}:Bug_reports',
 'sitesupport'   => 'Donations',
-'sitesupport-url' => 'Project:Site support',
+'sitesupport-url' => '{{ns:project}}:Site support',
 'faq'			=> 'FAQ',
-'faqpage'		=> 'Project:FAQ',
+'faqpage'		=> '{{ns:project}}:FAQ',
 'edithelp'		=> 'Editing help',
 'newwindow'		=> '(opens in new window)',
 'edithelppage'	=> 'Help:Editing',
@@ -163,9 +163,9 @@ parent class in order maintain consistency across languages.
 'currentevents-url' => 'Current events',
 
 'disclaimers' => 'Disclaimers',
-'disclaimerpage' => 'Project:General_disclaimer',
+'disclaimerpage' => '{{ns:project}}:General_disclaimer',
 'privacy' => 'Privacy policy',
-'privacypage' => 'Project:Privacy_policy',
+'privacypage' => '{{ns:project}}:Privacy_policy',
 'errorpagetitle' => 'Error',
 'returnto'		=> 'Return to $1.',
 'tagline'      	=> 'From {{SITENAME}}',
@@ -330,7 +330,7 @@ Query: $2',
 'viewsourcefor' => 'for $1',
 'protectedtext' => 'This page has been locked to prevent editing; there are
 a number of reasons why this may be so, please see
-[[Project:Protected page]].
+[[{{ns:project}}:Protected page]].
 
 You can view and copy the source of this page:',
 'protectedinterface' => 'This page provides interface text for the software, and is locked to prevent abuse.',
@@ -467,7 +467,7 @@ format. Please enter a well-formatted address or empty that field.',
 'blockedtitle'	=> 'User is blocked',
 'blockedtext'	=> 'Your user name or IP address has been blocked by $1.
 The reason given is this:<br />\'\'$2\'\'<br />You may contact $1 or one of the other
-[[Project:Administrators|administrators]] to discuss the block.
+[[{{ns:project}}:Administrators|administrators]] to discuss the block.
 
 Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
 
@@ -489,7 +489,7 @@ Your IP address is $3. Please include this address in any queries you make.',
 'newarticletext' =>
 "You've followed a link to a page that doesn't exist yet.
 To create the page, start typing in the box below
-(see the [[Project:Help|help page]] for more info).
+(see the [[{{ns:project}}:Help|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon' => '{{int:newarticletext}}',
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
@@ -541,7 +541,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'readonlywarning' => '<strong>WARNING: The database has been locked for maintenance,
 so you will not be able to save your edits right now. You may wish to cut-n-paste
 the text into a text file and save it for later.</strong>',
-'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it. Be sure you are following the [[Project:Protected_page_guidelines|protected page guidelines]].</strong>",
+'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it. Be sure you are following the [[{{ns:project}}:Protected_page_guidelines|protected page guidelines]].</strong>",
 'semiprotectedpagewarning' => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'templatesused'	=> 'Templates used on this page:',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
@@ -620,7 +620,7 @@ is placed by the site operators.",
 # Search results
 #
 'searchresults' => 'Search results',
-'searchresulttext' => "For more information about searching {{SITENAME}}, see [[Project:Searching|Searching {{SITENAME}}]].",
+'searchresulttext' => "For more information about searching {{SITENAME}}, see [[{{ns:project}}:Searching|Searching {{SITENAME}}]].",
 'searchquery'	=> "For query \"$1\"",
 'badquery'		=> 'Badly formed search query',
 'badquerytext'	=> 'We could not process your query.
@@ -802,7 +802,7 @@ To include the image in a page, use a link in the form
 'fileuploadsummary' => 'Summary:',
 'filestatus' => 'Copyright status',
 'filesource' => 'Source',
-'copyrightpage' => "Project:Copyrights",
+'copyrightpage' => "{{ns:project}}:Copyrights",
 'copyrightpagename' => "{{SITENAME}} copyright",
 'uploadedfiles'	=> 'Uploaded files',
 'ignorewarning'        => 'Ignore warning and save file anyway.',
@@ -1118,7 +1118,7 @@ Feedback and further assistance:
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[Project:Policy]].",
+[[{{ns:project}}:Policy]].",
 'actioncomplete' => 'Action complete',
 'deletedtext'	=> "\"$1\" has been deleted.
 See $2 for a record of recent deletions.",
@@ -1146,7 +1146,7 @@ this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage' => 'Protection_log',
 'protectlogtext' => "Below is a list of page locks/unlocks.
-See [[Project:Protected page]] for more information.",
+See [[{{ns:project}}:Protected page]] for more information.",
 'protectedarticle' => 'protected "[[$1]]"',
 'unprotectedarticle' => 'unprotected "[[$1]]"',
 'protectsub' => '(Protecting "$1")',
@@ -1160,7 +1160,7 @@ See [[Project:Protected page]] for more information.",
 'unprotectcomment' => 'Reason for unprotecting',
 'protect-unchain' => 'Unlock move permissions',
 'protect-text' => 'You may view and change the protection level here for the page <strong>$1</strong>.
-Please be sure you are following the [[Project:Protected page|project guidelines]].',
+Please be sure you are following the [[{{ns:project}}:Protected page|project guidelines]].',
 'protect-viewtext' => 'Your account does not have permission to change
 page protection levels. Here are the current settings for the page <strong>$1</strong>:',
 'protect-default' => '(default)',
@@ -1240,7 +1240,7 @@ to perform this function on.',
 'blockiptext'	=> "Use the form below to block write access
 from a specific IP address or username.
 This should be done only only to prevent vandalism, and in
-accordance with [[Project:Policy|policy]].
+accordance with [[{{ns:project}}:Policy|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 'ipaddress'		=> 'IP Address',
