@@ -454,6 +454,9 @@ class ParserTest {
 				'img_major_mime'  => "image",
 				'img_minor_mime'  => "jpeg",
 				) );
+				
+			# Update certain things in site_stats
+			$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
 
 			$setupDB = true;
 		}

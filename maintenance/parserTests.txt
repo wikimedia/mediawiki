@@ -1612,7 +1612,7 @@ Magic Word: {{NUMBEROFARTICLES}}
 !! input
 {{NUMBEROFARTICLES}}
 !! result
-<p>-1
+<p>1
 </p>
 !! end
 
