@@ -51,6 +51,11 @@ require_once 'LanguageNds.php';
  */
 class LanguageNds_nl extends LanguageNds {
 
+	function getNamespaces() {
+		global $wgNamespaceNamesNds_nl;
+		return $wgNamespaceNamesNds_nl;
+	}
+
 	function getSkinNames() {
 		global $wgSkinNamesNds_nl;
 		return $wgSkinNamesNds_nl;
