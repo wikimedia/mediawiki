@@ -296,6 +296,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix breakage in parser test suite which caused incorrect reporting of the failure of
   {{NUMBEROFFILES}}. Now initialises the site_stats table with some dumb data. Updated
   the expected output for {{NUMBEROFARTICLES}} to reflect this.
+* (bug 6009) Use {{ns:project}} in messages where appropriate
 
 == Compatibility ==
 
