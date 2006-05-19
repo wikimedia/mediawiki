@@ -50,9 +50,10 @@ require_once( 'LanguageUtf8.php' );
 
 
 /* private */ $wgBookstoreListDe = array(
-	'Verzeichnis lieferbarer B&uuml;cher' => 'http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1&x=0&y=0',
+	'Verzeichnis lieferbarer Bücher' => 'http://www.buchhandel.de/vlb/vlb.cgi?type=voll&isbn=$1',
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
 	'Amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
+	'buch.de' => 'http://www.buch.de/de.buch.shop/shop/1/home/schnellsuche/buch/?fqbi=$1',
 	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1',
 );
 
