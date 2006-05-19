@@ -139,6 +139,7 @@
 'history_short' => 'Historique',
 'updatedmarker' => 'modifié depuis ma dernière visite',
 'printableversion' => 'Version imprimable',
+'permalink'     => 'Lien permanent',
 'print' => 'Imprimer',
 'edit' => 'Modifier',
 'editthispage'  => 'Modifier cette page',
@@ -191,7 +192,8 @@ Voir $1',
 'nrevisions'	=> '$1 révisions',
 'retrievedfrom' => 'Récupérée de « $1 »',
 'youhavenewmessages' => 'Vous avez $1 ($2).',
-'newmessageslink' => 'nouveaux messages',
+'newmessageslink' => 'des nouveaux messages',
+'newmessagesdifflink' => 'diff vers l\'avant-dernière révision',
 'editsection'	=> 'modifier',
 'editsectionhint' => 'Éditer la section : $1',
 'toc'		=> 'Sommaire',
@@ -381,7 +383,7 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que 
 'missingsummary' => '\'\'\'Rappel :\'\'\' Vous n\'avez pas fourni de commentaire de modification. Si vous cliquez une nouvelle fois sur le bouton « Sauvegarder », votre modification sera enregistrée sans commentaire.',
 'missingcommenttext' => 'Merci d\'insérer un commentaire ci-dessous.',
 'blockedtitle' => 'Utilisateur bloqué',
-'blockedtext'  => 'Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante : $2. Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateur|administrateurs]] pour en discuter. Veuillez noter que vous ne pouvez utiliser la fonction de courriel si vous n\'avez pas enregistré une adresse de courriel valide dans vos [[Special:Preferences|user preferences]]. Votre adresse IP est $3. Merci d\'inclure cette adresse dans toutes vos requêtes.',
+'blockedtext'  => 'Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante : $2. Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateur|administrateurs]] pour en discuter. Veuillez noter que vous ne pouvez utiliser la fonction de courriel si vous n\'avez pas enregistré une adresse de courriel valide dans vos [[Special:Preferences|préférences]]. Votre adresse IP est $3. Merci d\'inclure cette adresse dans toutes vos requêtes.',
 'whitelistedittitle' => 'Login requis pour rédiger',
 'whitelistedittext' => 'Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger',
 'whitelistreadtitle' => 'Login requis pour lire',
@@ -423,9 +425,10 @@ La zone d\'édition supérieure contient le texte tel qu\'il est enregistré act
 'copyrightwarning' => 'Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails), . Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, merci de ne pas les soumettre ici. Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l\'avez copié d\'une source provenant du domaine public, ou d\'une ressource libre.<strong>N\'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</strong>',
 'copyrightwarning2' => 'Toutes les contributions à {{SITENAME}} peuvent être éditées, modifiées, ou supprimées par d\'autres utilisateurs. Si vous ne désirez pas que vos écrits soient édités, merci de ne pas les soumettre ici. Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l\'avez copié d\'une source provenant du domaine public, ou d\'une ressource libre. (voir $1 pour plus de détails).
 <strong>N\'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</strong>',
-'longpagewarning' => '\'\'\'AVERTISSEMENT : cette page a une longueur de $1 ko;
+'longpagewarning' => "'''AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
-Peut-être serait-il mieux que vous divisiez la page en sections plus petites.\'\'\'',
+Peut-être devriez-vous diviser la page en sections plus petites.'''",
+'longpageerror' => "<strong>ERREUR : Le texte que vous avez soumis fait $1 octets, ce qui dépasse la limite fixée à $2 octets. La sauvegarde ne peut avoir lieu.</strong>",
 'readonlywarning' => '\'\'\'AVERTISSEMENT : cette page est protégée pour maintenance,
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.\'\'\'',
 'protectedpagewarning' => '\'\'\'AVERTISSEMENT : cette page est protégée.
@@ -553,7 +556,7 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
 'math_image_error'	=> 'La conversion en PNG a échouée, vérifiez l\'installation de Latex, dvips, gs et convert',
 'math_bad_tmpdir'	=> 'Ne peux pas crééer ou écrire dans le répertoire temporaire',
 'math_bad_output'	=> 'Ne peux pas crééer ou écrire dans le répertoire de sortie',
-'math_notexvc'		=> 'L\'éxécutable « texvc » est introuvable. Lisez math/README pour le configurer.',
+'math_notexvc'		=> 'L\'exécutable « texvc » est introuvable. Lisez math/README pour le configurer.',
 'prefs-personal'    => 'Informations personnelles',
 'prefs-rc'          => 'Modifications récentes',
 'prefs-misc'        => 'Préférences diverses',
@@ -622,8 +625,8 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
 'rcshowhideanons' => '$1 utilisateurs anonymes',
 'rcshowhidemine' => '$1 mes contributions',
 'rclinks'	=> 'Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.',
-'hide'            => 'masquer',
-'show'            => 'afficher',
+'hide'            => 'Masquer',
+'show'            => 'Afficher',
 'number_of_watching_users_pageview' 	=> '[$1 utilisateur/s suivant]',
 'rc_categories'	=> 'Limite des catégories (separation avec « | »)',
 'rc_categories_any'	=> 'Toutes',
@@ -766,8 +769,9 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 # Miscellaneous special pages
 #
 'lonelypages'   => 'Pages orphelines',
-'uncategorizedpages' => 'Pages sans catégories',
+'uncategorizedpages' => 'Pages sans catégorie',
 'uncategorizedcategories' => 'Catégories sans catégories',
+'unusedcategories' => 'Catégories non utilisées',
 'unusedimages'  => 'Images orphelines',
 'popularpages'  => 'Pages les plus consultées',
 'nviews'        => '$1 consultations',
@@ -784,7 +788,7 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'prefixindex'   => 'Index des préfixes',
 'randompage'    => 'Une page au hasard',
 'shortpages'    => 'Pages courtes',
-'longpages'     => 'Pages longes',
+'longpages'     => 'Pages longues',
 'deadendpages'  => 'Pages en impasse',
 'listusers'     => 'Liste des participants',
 'specialpages'  => 'Pages spéciales',
@@ -797,6 +801,8 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'move'		=> 'Renommer',
 'movethispage'  => 'Renommer la page',
 'unusedimagestext' => '<p>N\'oubliez pas que d\'autres sites, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu\'elle est en réalité utilisée.</p>',
+'unusedcategoriestext' => 'Les pages des catégories suivantes existent bien qu\'aucun article ou catégorie ne les utilise.',
+
 'booksources'   => 'Ouvrages de référence',
 'categoriespagetext' => 'Les catégories suivantes existent dans le wiki.',
 'data'	=> 'Données',
@@ -829,13 +835,13 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]]
 pour pouvoir envoyer un message à un autre utilisateur.',
 'emailuser'  => 'Envoyer un message à cet utilisateur',
-'emailpage'  => 'Envoyer un email à l\'utilisateur',
+'emailpage'  => 'Envoyer un courriel à l\'utilisateur',
 'emailpagetext' => 'Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
 L\'adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ « Expéditeur » de votre message afin que le destinataire puisse vous répondre.',
 'usermailererror' => 'Erreur dans le sujet du courriel :',
 'defemailsubject' => 'courriel envoyé depuis {{SITENAME}}',
 'noemailtitle' => 'Pas d\'adresse électronique',
-'noemailtext' => 'Cet utilisateur n\'a pas spécifié d\'adresse électronique valide ou a choisi de ne pas recevoir de courrier électronique des autres utilisateurs.',
+'noemailtext' => 'Cet utilisateur n\'a pas spécifié d\'adresse de courriel valide ou a choisi de ne pas recevoir de courriel des autres utilisateurs.',
 'emailfrom'  => 'Expéditeur',
 'emailto'  => 'Destinataire',
 'emailsubject' => 'Objet',
@@ -859,7 +865,7 @@ L\'adresse électronique que vous avez indiquée dans vos préférences apparaî
 'addedwatchtext' => 'La page « $1 » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
 Les prochaines modifications de cette page et de la page de discussion associée seront répertoriées ici, et la page apparaîtra \'\'\'en gras\'\'\' dans la [[Special:Recentchanges|liste des modifications récentes]] pour être repérée plus facilement.
 
-Pour supprimer cette page de votre liste de suivi, cliquez sur « Ne plus suivre » dans le cadre de navigation.',
+Pour supprimer cette page de votre liste de suivi, cliquez sur « ne plus suivre » dans le cadre de navigation.',
 'removedwatch'	=> 'Retirée de la liste de suivi',
 'removedwatchtext' => 'La page « $1 » a été retirée de votre liste de suivi.',
 'watch'		=> 'Suivre',
@@ -885,7 +891,7 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « Ne plus suivre
 'wlshowlast' => 'Montrer les dernières $1 heures $2 jours $3',
 'wlsaved' => 'La liste de suivi n\'est remise à jour qu\'une fois par heure pour alléger la charge sur le serveur.',
 'wlhideshowown'   	=> '$1 mes modifications',
-'wlhideshowbots'   	=> '$1 contributions de bots',
+'wlhideshowbots'   	=> '$1 les contributions de bots',
 
 'enotif_mailer' 		=> '{{SITENAME}} Notificateur par courriel',
 'enotif_reset'			=> 'Marque toutes les pages comme visitées',
@@ -945,15 +951,15 @@ L\'heure indiquée est celle du serveur (UTC).',
 'rollbacklink'	=> 'révoquer',
 'rollbackfailed' => 'La révocation a échoué',
 'cantrollback'	=> 'Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article',
-'alreadyrolled'	=> 'Impossible de révoquer la dernière modification de l\’article « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu\’un d\’autre a déjà modifié ou révoqué l\’article. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
-'editcomment' => 'Le résumé de la modification était: <i>« $1 »</i>.',
-'revertpage'	=> 'restitution de la dernière modification de $1',
+'alreadyrolled'	=> "Impossible de révoquer la dernière modification de l’article « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu’un d’autre a déjà modifié ou révoqué l’article. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).",
+'editcomment' => "Le résumé de la modification était: <i>« $1 »</i>.",
+'revertpage'	=> "Modifications de [[Special:Contributions/$2|$2]] ([[User_talk:$2|Discussion]]) révertées; retour à l'ancienne version de [[User:$1|$1]]",
 'sessionfailure' => 'Il semble qu\'il y ait eu un problème avec votre session d\'identification; cette action a été annulée par précaution contre le piratage de session. Merci de cliquer sur « retour » et de recharger la page d\'où vous venez, et de réessayer.',
 'protectlogpage' => 'Historique des protections',
 'protectlogtext' => 'Voir les [[Project:Page protégée|directives]] pour plus d\'information.',
 'protectedarticle' => 'a protégé « $1 »',
 'unprotectedarticle' => 'a déprotégé « $1 »',
-'protectsub' => '(Protéger « $1 »)',
+'protectsub' => "(Protéger « $1 »)",
 'confirmprotect' => 'Confirmer la protection',
 'confirmprotecttext' => 'Voulez-vous réellement protéger cette page ?',
 'protectmoveonly' => 'Protéger uniquement les déplacements',
@@ -985,7 +991,7 @@ L\'archive peut être effacée périodiquement.',
 'undeleterevisions' => '$1 révisions archivées',
 'undeletehistory' => 'Si vous restaurez la page, toutes les révisions seront restaurées dans l\'historique.
 
-Si une nouvelle page avec le même nom a été crée depuis la suppression, les révisions restaurées apparaîtront dans l\'historique antérieur et la version courante ne sera pas automatiquement remplacée.',
+Si une nouvelle page avec le même nom a été créée depuis la suppression, les révisions restaurées apparaîtront dans l\'historique antérieur et la version courante ne sera pas automatiquement remplacée.',
 'undeletehistorynoadmin' => 'Cet article a été supprimé. Le motif de la suppression est indiqué dans le résumé ci-dessous, avec les détails des utilisateurs qui l\'ont édité avant sa suppression. Le contenu de ces versions n\'est disponible qu\'aux administrateurs.',
 'undeleterevision' => '$1 versions archivées',
 'undeletebtn'	=> 'Procéder à la restauration !',
@@ -998,6 +1004,7 @@ Si une nouvelle page avec le même nom a été crée depuis la suppression, les 
 Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.',
 
 # Namespace form on various pages
+'namespace' => 'Espace de nom :',
 'invert' => 'Inverser la sélection',
 
 # Contributions
@@ -1033,7 +1040,7 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 'blockip'	=> 'Bloquer une adresse IP ou un utilisateur',
 'blockiptext'	=> 'Utilisez le formulaire ci-dessous pour bloquer l\'accès en écriture à partir d\'une adresse IP donnée ou d\'un nom d\'utilisateur.
 
-Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[Project:Policy|règles internes]].
+Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec les [[Project:Policy|règles internes]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).',
 'ipaddress'	=> 'Adresse IP',
 'ipadressorusername' => 'Adresse IP ou nom d\'utilisateur',
@@ -1041,6 +1048,8 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipbreason'	=> 'Motif du blocage',
 'ipbsubmit'	=> 'Bloquer cet utilisateur',
 'ipbother'	=> 'Autre durée',
+'ipboptions'		=> '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,Permanent:infinite',
+'ipbotheroption'	=> 'autre',
 'badipaddress'	=> 'L\'adresse IP n\'est pas correcte.',
 'blockipsuccesssub' => 'Blocage réussi',
 'blockipsuccesstext' => '[[{{ns:Special}}:Contributions/$1|$1]] a été bloqué.<br />Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquées.',
@@ -1050,7 +1059,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipusubmit'	=> 'Débloquer cette adresse',
 'ipusuccess'	=> 'L\'adresse IP « $1 » débloquée.',
 'ipblocklist'	=> 'Liste des blocages',
-'blocklistline' => '$1 (expire le $4): $2 a bloqué $3',
+'blocklistline' => '$1, $2 a bloqué $3 ($4)',
 'infiniteblock' => 'permanent',
 'expiringblock' => 'expire le $1',
 'ipblocklistempty'=> 'La liste de blocage est vide.',
@@ -1219,7 +1228,6 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 # stylesheets
 
 'Monobook.css' => '/* Modifiez ce fichier pour personnaliser l\'apparence Monobook pour le site entier */',
-#'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
 
 # Metadata
 
@@ -1286,7 +1294,7 @@ ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La page utilisateur de l\\\'IP avec 
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Ma page de discussion\');
 ta[\'pt-anontalk\'] = new Array(\'n\',\'Discussion à propos des modifications depuis cette adresse IP\');
 ta[\'pt-preferences\'] = new Array(\'\',\'Mes préférences\');
-ta[\'pt-watchlist\'] = new Array(\'l\',\'La liste de pages dont vous suivez les modifications.\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'La liste des pages dont vous suivez les modifications.\');
 ta[\'pt-mycontris\'] = new Array(\'y\',\'Liste de mes contributions\');
 ta[\'pt-login\'] = new Array(\'o\',\'Vous êtes invité à vous identifier, mais ce n\\\'est pas obligatoire.\');
 ta[\'pt-anonlogin\'] = new Array(\'o\',\'Vous êtes invité à vous identifier, mais ce n\\\'est pas obligatoire.\');
@@ -1309,7 +1317,7 @@ ta[\'n-portal\'] = new Array(\'\',\'À propos de ce projet, ce que vous pouvez f
 ta[\'n-currentevents\'] = new Array(\'\',\'Trouver des informations sur les évènements actuels\');
 ta[\'n-recentchanges\'] = new Array(\'r\',\'La liste des changements récents sur le wiki.\');
 ta[\'n-randompage\'] = new Array(\'x\',\'Charger une page aléatoire\');
-ta[\'n-help\'] = new Array(\'\',\'Aide.\');
+ta[\'n-help\'] = new Array(\'\',\'Aide\');
 ta[\'n-sitesupport\'] = new Array(\'\',\'Aidez-nous\');
 ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Liste de tous les wikis qui lient vers cette page\');
 ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Changements récents dans les pages qui lient vers cette page\');
@@ -1340,7 +1348,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Voir la page de la catégorie\');'
 'thumbsize'	=> 'Taille de la miniature :',
 'showbigimage' => 'Télécharger une version en haute résolution ($1x$2, $3 KB)',
 
-'newimages' => 'Gallerie des nouveaux fichiers',
+'newimages' => 'Galerie des nouveaux fichiers',
 'noimages'  => 'Rien à voir.',
 
 # short names for language variants used for language conversion links.
@@ -1370,8 +1378,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Voir la page de la catégorie\');'
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'toutes',
 'imagelistall' => 'toutes',
-'watchlistall1' => 'toute',
-'watchlistall2' => 'toute',
+'watchlistall1' => 'tout',
+'watchlistall2' => 'tout',
 'namespacesall' => 'tous',
 
 # E-mail address confirmation
