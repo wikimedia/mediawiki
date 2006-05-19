@@ -58,10 +58,11 @@ class User {
 	/**
 	 * Static factory method
 	 * @param string $name Username, validated by Title:newFromText()
+	 * @param bool $validate Validate username
 	 * @return User
 	 * @static
 	 */
-	function newFromName( $name ) {
+	function newFromName( $name, $validate = true ) {
 		# Force usernames to capital
 		global $wgContLang;
 		$name = $wgContLang->ucfirst( $name );
@@ -77,7 +78,7 @@ class User {
 		global $wgAuth;
 		$canonicalName = $wgAuth->getCanonicalName( $t->getText() );
 
-		if( !User::isValidUserName( $canonicalName ) ) {
+		if( $validate && !User::isValidUserName( $canonicalName ) ) {
 			return null;
 		}
 

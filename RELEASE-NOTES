@@ -299,6 +299,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6009) Use {{ns:project}} in messages where appropriate
 * (bug 6012) Update to Indonesian localisation (id)
 * (bug 6017) Update list of bookstores in German localisation files
+* (bug 5187) Allow programmatically bypassing username validation, for scripts
+
 
 == Compatibility ==
 
