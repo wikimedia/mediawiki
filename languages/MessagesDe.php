@@ -10,7 +10,7 @@
 #p-cactions li a {
 	text-transform: none;
 }',
-# User toggles
+# User preference toggles
 "tog-underline"               => "Verweise unterstreichen:",
 "tog-highlightbroken"         => "Verweise auf leere Artikel hervorheben",
 "tog-justify"                 => "Text als Blocksatz",
@@ -31,9 +31,9 @@
 'tog-previewontop'		=> 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
 'tog-previewonfirst'		=> 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
 "tog-nocache"                 => "Seitencache deaktivieren",
-'tog-enotifwatchlistpages'	=> 'Bei Änderungen an beobachtetene Artikeln E-Mails senden.',
+'tog-enotifwatchlistpages'	=> 'Bei Änderungen an beobachtetene Seiten E-Mails senden.',
 'tog-enotifusertalkpages'	=> 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden.',
-'tog-enotifminoredits' 		=> 'Auch bei kleinen Änderungen an den Seiten E-Mails senden.',
+'tog-enotifminoredits'		=> 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden.',
 'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
 'tog-shownumberswatching'	=> 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-fancysig'			=> 'Unterschrift ohne Verlinkung zur Benutzerseite',
@@ -346,10 +346,11 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 'badsig'		=> 'Die Syntax der Signatur ist ungültig; bitte HTML überprüfen.',
 'email'			=> 'E-Mail',
 "emailforlost"	=> "Falls Sie Ihr Passwort vergessen haben, kann Ihnen ein neues an Ihre E-Mail-Adresse gesendet werden.",
-'prefs-help-email' 	=> '** <strong>E-Mail-Adresse</strong> (optional): Erlaubt anderen, Sie über Ihre Benutzerseiten zu kontaktieren, ohne dass Sie Ihre E-Mail-Adresse offenbaren müssen.
-Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporäres Einmal-Passwort gesendet werden.',
+'prefs-help-email' 	=> '** <strong>E-Mail-Adresse</strong> (optional): Erlaubt anderen Benutzern Sie über Ihre Benutzerseiten zu kontaktieren,
+ohne dass Sie Ihre E-Mail-Adresse veröffentlichen müssen.
+Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen ein temporäres Einmal-Passwort gesendet werden.',
 'prefs-help-email-enotif' => 'An diese Adresse werden auch die Benachrichtigungsmails geschickt, sofern Sie das eingeschaltet haben.',
-'prefs-help-realname' 	=> '* <strong>Echter Name</strong> (optional): für anerkennende Nennungen Ihres Namens im Zusammenhang mit Ihren Beiträgen.',
+'prefs-help-realname'	=> '* <strong>Echter Name</strong> (optional): Für anerkennende Nennungen Ihres Namens im Zusammenhang mit Ihren Beiträgen.',
 "loginerror"	=> "Fehler bei der Anmeldung",
 "noname"		=> "Sie müssen einen Benutzernamen angeben.",
 "loginsuccesstitle" => "Anmeldung erfolgreich",
@@ -357,14 +358,17 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporä
 "nosuchuser"	=> "Der Benutzername \"$1\" existiert nicht.
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
 'nosuchusershort'	=> 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
+
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
 'mailmypassword'	=> 'Passwort vergessen?',
 'passwordremindertitle' => 'Neues Passwort für {{SITENAME}}',
-'passwordremindertext' => 'Jemand (IP-Adresse $1) hat um ein neues Passwort für die Anmeldung bei {{SITENAME}} ({{SERVERNAME}}) gebeten.
+'passwordremindertext'	=> 'Jemand mit der IP-Adresse $1 hat ein neues Passwort für die Anmeldung bei {{SITENAME}} angefordert.
 
-Das automatisch generierte Passwort für Benutzer "$2" lautet nun "$3".
+Das automatisch generierte Passwort für Benutzer $2 lautet nun: $3
 
-Sie sollten sich jetzt anmelden und das Passwort ändern. Falls Sie diese E-Mail nicht selbst angefordert haben, ignorieren Sie diese. Das alte Passwort bleibt weiterhin gültig.',
+Sie sollten sich jetzt anmelden und das Passwort ändern: {{fullurl:{{ns:special}}}}:Userlogin
+
+Bitte ignoriesen Sie diese E-Mail, falls Sie diese nicht selbst angefordert haben. Das alte Passwort bleibt weiterhin gültig.',
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
 'passwordsent'		=> 'Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.
@@ -428,10 +432,11 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
  [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
 'noarticletext'		=> '(Dieser Artikel enthält momentan noch keinen Text)',
 'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
-'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'''Beachten Sie:''' Nach dem Speichern müssen Sie ihren Browser anweisen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview' => "== Vorschau Ihres Benutzer-JavaScript. ==
-'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'clearyourcache' => "'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'''Beachten Sie:''' Nach dem Speichern müssen Sie ihren Browser anweisen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'clearyourcache'	=> '\'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie ihren Browser anweisen, die neue Version zu laden:<br />
+\'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview' => "<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues css/js vor dem Speichern zu testen.",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong>",
@@ -672,13 +677,14 @@ Alle Zeiten sind UTC.
 'ignorewarning'		=> 'Warnung ignorieren und Datei überschreiben.',
 'ignorewarnings'	=> 'Warnungen ignorieren',
 'minlength'		=> 'Dateiname müssen mindestens drei Buchstaben lang sein.',
+'illegalfilename'	=> 'Der Dateiname "$1" enthält mindestens ein nicht erlaubtes Zeichen. Bitte benennen Sie die Datei um und versuchen Sie diese erneut hochzuladen.',
 'badfilename'		=> 'Der Dateiname wurde in "$1" geändert.',
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
 'largefile'		=> 'Bitte keine Dateien größer $1 Bytes hochladen. Diese Datei hat $2 Bytes',
 'largefileserver'	=> 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
 'fileexists'		=> 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf "Datei speichern" klicken, wird die Datei überschrieben. Bitte prüfen Sie $1, wenn Sie sich nicht sicher sind.',
-'fileexists-forbidden'	=> 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[Bild:$1|thumb|center|$1]]',
+'fileexists-forbidden'	=> 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[{{ns:image}}:$1|thumb|center|$1]]',
 "uploadedimage" => "\"[[$1]]\" hochgeladen",
 'uploadscripted' => 'Diese Datei enthält HTML- oder Scriptcode der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
 'uploadvirus' => 'Diese Datei enthält einen Virus! Details: $1',
@@ -731,8 +737,8 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[Bild:$
 'listredirects' => 'Weiterleitungsliste',
 
 # Unused templates
-'unusedtemplates' => 'Ungenutzte Vorlagen',
-'unusedtemplatestext' => 'Diese Seite listet alle Seiten im Vorlagen-Namensraum auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+'unusedtemplates'	=> 'Nicht benutzte Vorlagen',
+'unusedtemplatestext'	=> 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 'unusedtemplateswlh' => 'Andere Verweise',
 
 # Random redirect
@@ -774,11 +780,11 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'unusedimages'		=> 'Verwaiste Dateien',
 "popularpages"	=> "Beliebte Seiten",
 'nviews'		=> '{{PLURAL:$1|eine Abfrage|$1 Abfragen}}',
-'wantedcategories'	=> 'Gewünschte Kategorien',
+'wantedcategories'	=> 'Benutzte, aber nicht angelegte Kategorien',
 "wantedpages"	=> "Gewünschte Seiten",
-'mostlinkedcategories'	=> 'Häufig verlinkte Kategorien',
-'mostcategories'	=> 'Meistbenutzte Kategorien',
-'mostimages'		=> 'Meistbenutzte Bilder',
+'mostlinkedcategories'	=> 'Meist benutzte Kategorien',
+'mostcategories'	=> 'Meist kategorisierte Artikel',
+'mostimages'		=> 'Meist benutzte Bilder',
 'mostrevisions'		=> 'Artikel mit den meisten Versionen',
 'nlinks'		=> '{{PLURAL:$1|ein Verweis|$1 Verweise}}',
 'nmembers'		=> '{{PLURAL:$1|ein Mitglied|$1 Mitglieder}}',
@@ -790,14 +796,14 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 "specialpages"	=> "Spezialseiten",
 "spheading"		=> "Spezialseiten",
 'restrictedpheading'	=> 'Spezialseiten für Administratoren',
-"recentchangeslinked" => "Verlinkte Seiten",
+'recentchangeslinked'	=> 'Änderungen an verlinkten Seiten',
 "rclsub"		=> "(auf Artikel von \"$1\")",
 "newpages"		=> "Neue Artikel",
-"ancientpages" => "Älteste Artikel",
+'ancientpages'		=> 'Lange unbearbeitete Artikel',
 "movethispage"	=> "Artikel verschieben",
 "unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikis möglicherweise einige dieser Bilder benutzen.",
 'unusedcategoriestext'	=> 'Die folgenden Kategorien bestehen, obwohl sie momentan nicht in Verwendung sind.',
-"booksources"	=> "Buchhandlungen",
+'booksources'		=> 'ISBN-Suche',
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
 'newimages'	=> 'Neue Dateien',
@@ -865,9 +871,9 @@ sein, um Ihre Beobachtungsliste zu bearbeiten.',
 "addedwatch"	=> "Zur Beobachtungsliste hinzugefügt",
 'addedwatchtext'	=> 'Der Artikel "$1" wurde zu Ihrer [[{{ns:special}}:Watchlist|Beobachtungsliste]] hinzugefügt.
 Spätere Änderungen an diesem Artikel und der zugehörigen Diskussionsseite werden dort gelistet und der Artikel wird
-in der [[{{ns:special}}:Recentchanges|Liste der letzten Änderungen]] \'\'\'fett\'\'\' angezeigt. 
+in der Liste der [[{{ns:special}}:Recentchanges|letzten Änderungen]] \'\'\'fett\'\'\' angezeigt. 
 
-Wenn Sie den Artikel wieder von ihrer Beobachtungsliste entfernen wollen, klicken Sie auf "Nicht mehr beobachten" am Ende des Artikels.',
+Wenn Sie den Artikel wieder von ihrer Beobachtungsliste entfernen wollen, klicken Sie auf "nicht mehr beobachten" am Ende des Artikels.',
 "removedwatch"	=> "Von der Beobachtungsliste entfernt",
 "removedwatchtext" => "Der Artikel \"$1\" wurde von Ihrer Beobachtungsliste entfernt.",
 "watchthispage"	=> "Seite beobachten",
@@ -899,26 +905,28 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'enotif_newpagetext'		=> 'Dies ist eine neue Seite.',
 'changed' 			=> 'geändert',
 'created' 			=> 'neu angelegt',
-'enotif_subject' 		=> 'Die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR $CHANGEDORCREATED',
-'enotif_lastvisited' => '$1 zeigt alle Änderungen auf einen Blick.',
-'enotif_body' => 'Liebe/r $WATCHINGUSERNAME,
+'enotif_subject'		=> '{{SITENAME}} Seite $PAGETITLE wurde $CHANGEDORCREATED von $PAGEEDITOR',
+'enotif_lastvisited'		=> 'Alle Änderungen auf einen Blick: $1',
+'enotif_body'			=> 'Liebe/r $WATCHINGUSERNAME,
 
-die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED.
-Die aktuelle Version ist: $PAGETITLE_URL
+die {{SITENAME}} Seite "$PAGETITLE" wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED.
+
+Aktuelle Version: $PAGETITLE_URL
 
 $NEWPAGE
 
 Zusammenfassung des Bearbeiters: $PAGESUMMARY $PAGEMINOREDIT
-Kontakt zum Bearbeiter:
-E-Mail $PAGEEDITOR_EMAIL
-Wiki $PAGEEDITOR_WIKI
 
-Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Seite wieder besuchen. Auf Ihrer Beobachtungsseite können Sie alle Benachrichtigungsmarker zusammen zurücksetzen.
+Kontakt zum Bearbeiter:
+E-Mail: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Seite wieder besucht haben. Auf Ihrer Beobachtungsseite können Sie alle Benachrichtigungsmarker zusammen zurücksetzen.
 
              Ihr freundliches {{SITENAME}} Benachrichtigungssystem
 
 ---
-Ihre Beobachtungsliste {{fullurl:Special:Watchlist/edit}}',
+Um die Einstellungen Ihrer Beobachtungsliste anzupassen besuchen Sie: {{fullurl:Special:Watchlist/edit}}',
 
 
 # Delete/protect/revert
@@ -1014,12 +1022,12 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 
 # What links here
 #
-"whatlinkshere"	=> "Was zeigt hierhin",
+'whatlinkshere'	=> 'Links auf diese Seite',
 "notargettitle" => "Kein Artikel angegeben",
 "notargettext"	=> "Sie haben nicht angegeben, auf welche Seite Sie diese Funktion anwenden wollen.",
 "linklistsub"	=> "(Liste der Verweise)",
-"linkshere"		=> "Die folgenden Artikel verweisen hierhin:",
-"nolinkshere"	=> "Kein Artikel verweist hierhin.",
+'linkshere'	=> 'Die folgenden Seiten verweisen hierher:',
+'nolinkshere'	=> 'Keine Seiten verweisen hierher.',
 "isredirect"	=> "Weiterleitungs-Seite",
 'istemplate'	=> 'Vorlageneinbindung',
 
@@ -1075,8 +1083,8 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 #
 
 # switching pan
-'userrights' => 'Benutzerrechtsverwaltung',
-'userrights-lookup-user' => 'Verwalte Gruppenzugehörigkeit',
+'userrights'			=> 'Benutzerrechteverwaltung',
+'userrights-lookup-user'	=> 'Gruppenzugehörigkeiten verwalten',
 'userrights-user-editname' => 'Benutzername:',
 'editusergroup' => 'Bearbeite Benutzerrechte',
 
@@ -1147,7 +1155,12 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "talkpagenotmoved" => "Die \"Diskussions\"-Seite wurde <strong>nicht</strong> verschoben.",
 
 "export"        => "Seiten exportieren",
-"exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit Mediawiki Software eingespielt werden, bearbeitet oder archiviert werden.",
+'exporttext'		=> 'Mit dieser Spezialseite können  Sie den Text (und die Bearbeitungs-/Versionsgeschichte) einzelner Seiten nach XML exportieren.
+Das Ergebnis kann in ein anderes Wiki mit MediaWiki-Software eingespielt, bearbeitet oder archiviert werden.
+
+Tragen Sie einfach den oder die entsprechenden Artikeltitel in das folgende Textfeld ein (pro Zeile jeweils nur für einen Artikel).
+
+Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 'exportnohistory' => '----
 \'\'\'Hinweis:\'\'\' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.',
@@ -1274,6 +1287,9 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "proxyblocker"  	=> "Proxyblocker",
 "proxyblockreason"      => "Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Provider oder Ihre Systemtechnik und informieren Sie sie über dieses mögliche Sicherheitsproblem.",
 "proxyblocksuccess"     => "Fertig.",
+'sorbs'			=> 'SORBS DNSbl',
+'sorbsreason'		=> 'Ihre IP-Adresse ist bei [http://www.sorbs.net SORBS] DNSbl als offener PROXY gelistet.',
+'sorbs_create_account_reason'	=> 'Ihre IP-Adresse ist bei [http://www.sorbs.net SORBS] DNSbl als offener PROXY gelistet. Sie können keinen Benutzer anlegen.',
 "math_image_error"	=> "die PNG-Konvertierung schlug fehl.",
 "math_bad_tmpdir"	=> "Kann das Temporärverzeichnis für mathematische Formeln nicht anlegen oder beschreiben.",
 "math_bad_output"	=> "Kann das Zielverzeichnis für mathematische Formeln nicht anlegen oder beschreiben.",
@@ -1284,16 +1300,19 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'prefs-watchlist-days'	=> 'Anzahl der Tage, die auf der Beobachtungsliste angezeigt werden sollen:',
 'prefs-watchlist-edits'	=> 'Anzahl der Einträge in der erweiterten Beobachtungsliste:',
 'prefs-misc'		=> 'Verschiedenes',
-"import"        	=> "Seiten importieren",
+
+# Special:Import
+'import'		=> 'Seiten importieren',
 'importinterwiki'	=> 'Transwiki Import',
-"importtext"    	=> "Bitte exportieren Sie die Seite vom Quellwiki mittels Spezial:Export und laden Sie die Datei dann über diese Seite wieder hoch.",
-"importfailed"  	=> "Import fehlgeschlagen: $1",
-"importnotext"  	=> "Leer oder kein Text",
-"importsuccess" 	=> "Import erfolgreich!",
-"importhistoryconflict" => "Es existieren bereits ältere Versionen, die mit diesen kollidieren. (Möglicherweise wurde die Seite bereits vorher importiert)",
+'importtext'		=> 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
+'importfailed'		=> 'Import fehlgeschlagen: $1',
+'importnotext'		=> 'Leer oder kein Text',
+'importsuccess'		=> 'Import erfolgreich!',
+'importhistoryconflict'	=> 'Es existieren bereits ältere Versionen, die mit diesen kollidieren. (Möglicherweise wurde die Seite bereits vorher importiert)',
 'importnosources'	=> 'Für den Transwiki Import sind keine Quellen definiert. Das direkte Hochladen von Versionen ist blockiert.',
-'importnofile'		=> 'Es ist keine Importdatei hochgeladen worden.',
-'importuploaderror'	=> 'Das Hochladen der Importdatei schlug fehl. Vielleicht ist die Datei größer als erlaubt.',
+'importnofile'		=> 'Es ist keine Importdatei ausgewählt worden!',
+'importuploaderror'	=> 'Das Hochladen der Importdatei ist fehlgeschlagen. Vielleicht ist die Datei größer als erlaubt.',
+
 "isbn"			=> "ISBN",
 "rfcurl"		=> "http://www.faqs.org/rfcs/rfc$1.html",
 "siteuser" => "{{SITENAME}}-Benutzer $1",
@@ -1717,7 +1736,7 @@ ta[\'n-portal\'] = new Array(\'\',\'Über das Projekt, was Sie tun können, wo w
 ta[\'n-currentevents\'] = new Array(\'\',\'Hintergrundinformationen zu aktuellen Ereignissen\');
 ta[\'n-recentchanges\'] = new Array(\'r\',\'Liste der letzten Änderungen in diesem Wiki.\');
 ta[\'n-randompage\'] = new Array(\'x\',\'Zufälliger Artikel\');
-ta[\'n-help\'] = new Array(\'\',\'Hilfeseite anzeigen.\');
+ta[\'n-help\'] = new Array(\'\',\'Hilfeseite anzeigen\');
 ta[\'n-sitesupport\'] = new Array(\'\',\'Unterstützen Sie uns\');
 ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Liste aller Seiten, die hierher zeigen\');
 ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Letzte Änderungen an Seiten, die von hier verlinkt sind\');
@@ -1725,7 +1744,7 @@ ta[\'feed-rss\'] = new Array(\'\',\'RSS-Feed für diese Seite\');
 ta[\'feed-atom\'] = new Array(\'\',\'Atom-Feed für diese Seite\');
 ta[\'t-contributions\'] = new Array(\'\',\'Liste der Beiträge von diesem Benutzer ansehen\');
 ta[\'t-emailuser\'] = new Array(\'\',\'Eine E-Mail an diesen Benutzer senden\');
-ta[\'t-upload\'] = new Array(\'u\',\'Bilder oder Mediendateien hochladen\');
+ta[\'t-upload\'] = new Array(\'u\',\'Dateien hochladen\');
 ta[\'t-specialpages\'] = new Array(\'q\',\'Liste aller Spezialseiten\');
 ta[\'ca-nstab-main\'] = new Array(\'c\',\'Artikel anzeigen\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Benutzerseite anzeigen\');
