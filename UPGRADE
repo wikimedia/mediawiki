@@ -76,6 +76,9 @@ and quirks which reveal themselves.
 == Upgrading from 1.6 wikis ==
 
 $wgLocalTZoffset was in hours, it is now using minutes.
+Link autonumbering got fixed (#5918) for protocols other than http.
+ - 'irc://irc.server.tld/' render as a link with a chat icon
+ - '[irc://irc.server.tld]' render as an autonumbered link: [1]
 
 == Upgrading from pre-1.5 wikis ==
 
