@@ -12,6 +12,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5957) Update for Hebrew language (he)
 * (bug 6025) SpecialImport: wrong message when no file selected
 * (bug 6015) EditPage: add spacing in the boxes "edit is minor" and "watch this"
+* (bug 6018) Userrights: new message when no user specified ('nouserspecified')
 
 == MediaWiki 1.6.5 ==
 

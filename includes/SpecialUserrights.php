@@ -145,7 +145,10 @@ class UserrightsForm extends HTMLForm {
 		global $wgOut, $wgUser;
 
 		$user = User::newFromName($username);
-		if( is_null( $user ) || $user->getID() == 0 ) {
+		if( is_null( $user ) ) {
+			$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
+			return;
+		} elseif( $user->getID() == 0 ) {
 			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
 			return;
 		}
