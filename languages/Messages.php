@@ -395,6 +395,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'loginsuccess'	=> "'''You are now logged in to {{SITENAME}} as \"$1\".'''",
 'nosuchuser'	=> 'There is no user by the name "$1". Check your spelling, or create a new account.',
 'nosuchusershort'	=> 'There is no user by the name "$1". Check your spelling.',
+'nouserspecified'	=> 'You have to specify a username.',
 'wrongpassword'		=> 'Incorrect password entered. Please try again.',
 'wrongpasswordempty'		=> 'Password entered was blank. Please try again.',
 'mailmypassword' 	=> 'E-mail password',

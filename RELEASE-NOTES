@@ -302,6 +302,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5187) Allow programmatically bypassing username validation, for scripts
 * (bug 6025) SpecialImport: wrong message when no file selected
 * (bug 6015) EditPage: add spacing in the boxes "edit is minor" and "watch this"
+* (bug 6018) Userrights: new message when no user specified ('nouserspecified')
 
 == Compatibility ==
 
