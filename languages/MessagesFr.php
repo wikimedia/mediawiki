@@ -319,7 +319,7 @@ N\'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfé
 'loginerror'    => 'Problème d\'identification',
 'prefs-help-email' => '* Adresse de courriel (facultatif): permet de vous contacter depuis le site sans dévoiler votre identité.',
 'nocookiesnew'	=> 'Le compte utilisateur a été créé, mais vous n\'êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.',
-'nocookieslogin' => '{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.',
+'nocookieslogin' => '{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactivés. Merci de les activer et de vous reconnecter.',
 'noname'        => 'Vous n\'avez pas saisi de nom d\'utilisateur.',
 'loginsuccesstitle' => 'Identification réussie.',
 'loginsuccess'  => 'Vous êtes actuellement connecté sur {{SITENAME}} en tant que « $1 ».',
@@ -385,11 +385,11 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que 
 'blockedtitle' => 'Utilisateur bloqué',
 'blockedtext'  => 'Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante : $2. Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateur|administrateurs]] pour en discuter. Veuillez noter que vous ne pouvez utiliser la fonction de courriel si vous n\'avez pas enregistré une adresse de courriel valide dans vos [[Special:Preferences|préférences]]. Votre adresse IP est $3. Merci d\'inclure cette adresse dans toutes vos requêtes.',
 'whitelistedittitle' => 'Login requis pour rédiger',
-'whitelistedittext' => 'Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger',
-'whitelistreadtitle' => 'Login requis pour lire',
-'whitelistreadtext' => 'Vous devez être [[Special:Userlogin|connecté]] pour pouvoir lire les articles',
+'whitelistedittext' => 'Vous devez être [[Special:Userlogin|connecté]] pour avoir la permission de rédiger',
+'whitelistreadtitle' => 'Compte requis pour lire',
+'whitelistreadtext' => 'Vous devez être [[Special:Userlogin|connecté]] pour avoir la permission de lire les articles',
 'whitelistacctitle' => 'Vous n\'êtes pas autorisé à créer un compte',
-'whitelistacctext' => 'Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées', 
+'whitelistacctext' => 'Pour avoir la permission de créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées', 
 'confirmedittitle' => 'Validation par courriel requise pour modifier les pages',
 'confirmedittext' => 'Vous devez valider votre adresse de courriel avant de modifier une page. Veuillez entrer et valider votre adresse de courriel grâce à [[Special:Preferences|user preferences]].',
 'loginreqtitle'	=> 'Identification nécessaire',
@@ -399,7 +399,7 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que 
 'accmailtext' => 'Le mot de passe de « $1 » a été envoyé à l\'adresse $2.',
 'newarticle'   => '(Nouveau)',
 'newarticletext' => 'Vous avez suivi un lien vers une page qui n\'existe pas encore. Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[Project:Aide|la page d\aide]] pour plus d\'information). Si vous êtes arrivé ici par erreur, cliquez sur le bouton \'\'\'retour\'\'\' de votre navigateur.',
-'anontalkpagetext' => '---- \'\'Vous êtes sur la page de discussion d\'un utilisateur anonyme qui n\'a pas encore créé un compte ou qui ne l\'utilise pas. Pour cette raison, nous devons utiliser l\'[[adresse IP]] numérique pour l\'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d\'éviter toute confusion future avec d\'autres contributeurs anonymes.\'\'',
+'anontalkpagetext' => '---- \'\'Vous êtes sur la page de discussion d\'un utilisateur anonyme qui n\'a pas encore créé un compte ou qui ne l\'utilise pas. Pour cette raison, nous devons utiliser l\'adresse IP numérique pour l\'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d\'éviter toute confusion future avec d\'autres contributeurs anonymes.\'\'',
 'noarticletext' => 'Il n\'y a pour l\'instant aucun texte sur cette page, vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|faire une recherche pour le titre de cette page]] ou [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} modifier cette page]',
 'clearyourcache'    => '\'\'\'Note :\'\'\' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : \'\'\'Mozilla / Konqueror / Firefox\'\'\' : \'\'ctrl-shift-r\'\', \'\'\'IE\'\'\' : \'\'ctrl-f5\'\', \'\'\'Safari\'\'\' : \'\'cmd-shift-r\'\'; \'\'\'Konqueror\'\'\' : \'\'f5\'\'.',
 'usercssjsyoucanpreview' => "'''Astuce :''' utilisez le bouton '''Prévisualisation''' pour tester votre nouvelle feuille css/js avant de l'enregistrer.",
@@ -438,7 +438,7 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 'templatesused'	=> 'Modèles utilisés sur cette page:',
 'edittools' => '<!-- Tout texte entré ici sera affiché sous les boîtes de modification ou d\'import. -->',
 'nocreatetitle' => 'Création de page limitée',
-'nocreatetext' => 'Ce site a restreint la possibilité de créer de nouvelles pages. Vous pouvez retourner en arrière et éditer une page existante, ou [[Special:Userlogin|vous connecter ou créer un compte]].',
+'nocreatetext' => 'Ce site a restreint la possibilité de créer de nouvelles pages. Vous pouvez retourner en arrière et éditer une page existante ou [[Special:Userlogin|vous connecter ou créer un compte]].',
 
 # History pages
 #
@@ -647,8 +647,8 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 \'\'\'<nowiki>[[{{ns:6}}:fichier.jpg]]</nowiki>\'\'\',
 \'\'\'<nowiki>[[{{ns:6}}:fichier.png|texte alternatif]]</nowiki>\'\'\' or
 \'\'\'<nowiki>[[{{ns:-2}}:fichier.ogg]]</nowiki>\'\'\' pour lier directement vers le fichier.',
-'uploadlog'  => 'log d\'upload',
-'uploadlogpage' => 'Log_d\'upload',
+'uploadlog'  => 'Journal d\'upload',
+'uploadlogpage' => 'Journal d\'upload',
 'uploadlogpagetext' => 'Voici la liste des derniers fichiers copiés sur le serveur.',
 'filename'	=> 'Nom du fichier',
 'filedesc'	=> 'Description',
@@ -833,7 +833,7 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'mailnologin' => 'Pas d\'adresse',
 'mailnologintext' => 'Vous devez être [[Special:Userlogin|connecté]]
 et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]]
-pour pouvoir envoyer un message à un autre utilisateur.',
+pour avoir la permission d\'envoyer un message à un autre utilisateur.',
 'emailuser'  => 'Envoyer un message à cet utilisateur',
 'emailpage'  => 'Envoyer un courriel à l\'utilisateur',
 'emailpagetext' => 'Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
@@ -1067,7 +1067,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'unblocklink'	=> 'débloquer',
 'contribslink'	=> 'contributions',
 'autoblocker'	=> 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
-'blocklogpage'	=> 'Log de blocage',
+'blocklogpage'	=> 'Journal des blocages',
 'blocklogentry'	=> 'blocage de « $1 »',
 'blocklogtext'	=> 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
 'unblocklogentry'	=> 'déblocage de « $1 »',
@@ -1111,7 +1111,7 @@ Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donne
 'makesysopfail'		=> '<b>L\'utilisateur « $1 » ne peut être converti en adminitrateur. (Avez vous entré le nom correctement?)</b>',
 'setbureaucratflag' => 'Ajouter le statut de Bureaucrate',
 'setstewardflag'    => 'Ajouter le statut de Steward',
-'rightslog'		=> 'Log des droits',
+'rightslog'		=> 'Journal des droits',
 'rightslogtext'		=> 'Ceci est un journal des modifications de statut d\'utilisateur..',
 'rightslogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 ».',
 'rights'			=> 'Droits:',
@@ -1140,7 +1140,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 
 'movearticle'	=> 'Renommer l\'article',
 'movenologin'	=> 'Non connecté',
-'movenologintext' => 'Pour pouvoir renommer un article, vous devez être [[Special:Userlogin|connecté]] en tant qu\'utilisateur enregistré.',
+'movenologintext' => 'Pour avoir la permission de renommer un article, vous devez être [[Special:Userlogin|connecté]] en tant qu\'utilisateur enregistré.',
 'newtitle'	=> 'Nouveau titre',
 'movepagebtn'	=> 'Renommer l\'article',
 'pagemovedsub' => 'Renommage réussi',
@@ -1189,7 +1189,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 'allmessagestext'	=> 'Ceci est la liste de tous les messages disponibles dans l\'espace MediaWiki',
 'allmessagesnotsupportedUI' => 'Special:AllMessages n\'accepte pas la langue de votre interface (<b>$1</b>) sur ce site.',
 'allmessagesnotsupportedDB' => '\'\'\'Special:Allmessages\'\'\' n\'est pas disponible car \'\'\'$wgUseDatabaseMessages\'\'\' est désactivé.',
-'allmessagesfilter' => 'Filtre d\'expression régulière:',
+'allmessagesfilter' => 'Filtre d\'expression régulière :',
 'allmessagesmodified' => 'N\'afficher que les modifications',
 
 # Thumbnails
