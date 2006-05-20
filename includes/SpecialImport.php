@@ -615,7 +615,7 @@ class ImportStreamSource {
 	function newFromUpload( $fieldname = "xmlimport" ) {
 		$upload =& $_FILES[$fieldname];
 
-		if( !isset( $upload ) ) {
+		if( !isset( $upload ) || !$upload['name'] ) {
 			return new WikiErrorMsg( 'importnofile' );
 		}
 		if( !empty( $upload['error'] ) ) {
