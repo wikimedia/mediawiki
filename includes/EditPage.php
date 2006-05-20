@@ -893,8 +893,8 @@ class EditPage {
 		if ( $wgUser->isAllowed('minoredit') ) {
 			$minoredithtml =
 				"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
-				" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />".
-				"<label for='wpMinoredit' title='".wfMsg('tooltip-minoredit')."'>{$minor}</label>";
+				" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />\n".
+				"<label for='wpMinoredit' title='".wfMsg('tooltip-minoredit')."'>{$minor}</label>\n";
 		}
 
 		$watchhtml = '';
@@ -902,9 +902,9 @@ class EditPage {
 		if ( $wgUser->isLoggedIn() ) {
 			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".
 				($this->watchthis?" checked='checked'":"").
-				" accesskey=\"".htmlspecialchars(wfMsg('accesskey-watch'))."\" id='wpWatchthis'  />".
+				" accesskey=\"".htmlspecialchars(wfMsg('accesskey-watch'))."\" id='wpWatchthis'  />\n".
 				"<label for='wpWatchthis' title=\"" .
-					htmlspecialchars(wfMsg('tooltip-watch'))."\">{$watchthis}</label>";
+					htmlspecialchars(wfMsg('tooltip-watch'))."\">{$watchthis}</label>\n";
 		}
 
 		$checkboxhtml = $minoredithtml . $watchhtml;
@@ -927,11 +927,11 @@ class EditPage {
 		# Otherwise, show a summary field at the bottom
 		$summarytext = htmlspecialchars( $wgContLang->recodeForEdit( $this->summary ) ); # FIXME
 		if( $this->section == 'new' ) {
-			$commentsubject="<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}:</label></span> <div class='editOptions'><input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
+			$commentsubject="<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}:</label></span>\n<div class='editOptions'>\n<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
 			$editsummary = '';
 		} else {
 			$commentsubject = '';
-			$editsummary="<span id='wpSummaryLabel'><label for='wpSummary'>{$summary}:</label></span> <div class='editOptions'><input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
+			$editsummary="<span id='wpSummaryLabel'><label for='wpSummary'>{$summary}:</label></span>\n<div class='editOptions'>\n<input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
 		}
 
 		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
@@ -1066,8 +1066,8 @@ END
 {$safemodehtml}
 ");
 
-		$wgOut->addHTML("
-<div class='editButtons'>
+		$wgOut->addHTML(
+"<div class='editButtons'>
 	{$buttons['save']}
 	{$buttons['preview']}
 	{$buttons['live']}
