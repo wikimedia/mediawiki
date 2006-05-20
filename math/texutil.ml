@@ -100,6 +100,7 @@ let find = function
     | "\\rho"              -> LITERAL (HTMLABLEC (FONT_UF,  "\\rho ", "&rho;"))
     | "\\Rho"              -> LITERAL (HTMLABLEC (FONT_RTI, "P", "&Rho;"))
     | "\\varrho"           -> LITERAL (TEX_ONLY "\\varrho ")
+    | "\\sim"              -> LITERAL (HTMLABLEC (FONT_UF,  "\\sim ", "&tilde;"))
     | "\\sigma"            -> LITERAL (HTMLABLEC (FONT_UF,  "\\sigma ", "&sigma;"))
     | "\\Sigma"            -> LITERAL (HTMLABLEC (FONT_RTI, "\\Sigma ", "&Sigma;"))
     | "\\varsigma"         -> LITERAL (TEX_ONLY "\\varsigma ")
