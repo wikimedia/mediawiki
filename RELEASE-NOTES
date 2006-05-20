@@ -11,6 +11,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 5586) <gallery> treated text as links
 * (bug 5957) Update for Hebrew language (he)
 * (bug 6025) SpecialImport: wrong message when no file selected
+* (bug 6015) EditPage: add spacing in the boxes "edit is minor" and "watch this"
 
 == MediaWiki 1.6.5 ==
 
