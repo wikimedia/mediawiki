@@ -93,9 +93,8 @@
 "category" => "Kategorie",
 'category_header' => 'Artikel in der Kategorie "$1"',
 "subcategories" => "Unterkategorien",
-#"linktrail"		=> '/^([äöüßa-z]+)(.*)$/sDu',	# ignore list
 "mainpage"		=> "Hauptseite",
-"mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
+'mainpagetext'		=> 'MediaWiki wurde erfolgreich installiert.',
 'mainpagedocfooter'	=> 'Siehe die [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation zur Anpassung der Benutzeroberfläche]
 und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hilfe zur Benutzung und Konfiguration.',
 'portal'		=> "{{SITENAME}}-Portal",
@@ -151,7 +150,7 @@ und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hil
 'undelete_short1'	=> 'Eine Änderung Wiederherstellen',
 "protect" => "schützen",
 "protectthispage" => "Artikel schützen",
-"unprotect" => "Freigeben",
+'unprotect'		=> 'freigeben',
 "unprotectthispage" => "Schutz aufheben",
 "newpage" => "Neue Seite",
 "talkpage"		=> "Diskussion",
@@ -191,7 +190,6 @@ und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hil
 'widthheight'		=> '$1 x $2',
 "go"			=> "Artikel",
 "ok"			=> "Suche",
-'sitetitle'		=> '{{SITENAME}}',
 'pagetitle'		=> '$1 - {{SITENAME}}',
 'retrievedfrom' => 'Von "$1"',
 'youhavenewmessages' => 'Sie haben $1 ($2).',
@@ -204,7 +202,7 @@ und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hil
 "hidetoc" => "Verbergen",
 "thisisdeleted" => "Ansehen oder wiederherstellen von $1?",
 'viewdeleted' => '$1 anzeigen?',
-'restorelink' => '{{PLURAL:$1|eine gelöschte Version|$1 gelöschte Versionen}}',
+'restorelink'		=> '{{PLURAL:$1|einer gelöschten Version|$1 gelöschten Versionen}}',
 "feedlinks" => "Feed:",
 'permalink'     => 'Permanentlink',
 "listingcontinuesabbrev" => "(Forts.)",
@@ -294,11 +292,9 @@ Funktion: $1<br />
 Query: $2",
 "viewsource" => "Quelltext betrachten",
 'viewsourcefor' => 'für $1',
-'protectedtext' => 'Diese Seite ist für das Bearbeiten gesperrt. Dafür kann es diverse Gründe geben; siehe [[{{ns:project}}:Geschützte Seiten]].
-
-Sie können den Quelltext dieser Seite betrachten und kopieren:',
+'protectedtext'		=> 'Diese Seite ist für das Bearbeiten gesperrt. Sie können jedoch den Quelltext dieser Seite betrachten und kopieren:',
 'protectedinterface'	=> 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
-'editinginterface'	=> '\'\'\'Warnung:\'\'\' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf das Benutzer-Interface aus.',
+'editinginterface'	=> '\'\'\'Warnung:\'\'\' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.',
 'sqlhidden'		=> '(SQL-Abfrage versteckt)',
 
 
@@ -317,6 +313,7 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "yourpasswordagain" => "Passwort wiederholen",
 "remembermypassword" => "Dauerhaftes Einloggen",
 'yourdomainname' => 'Ihre Domain',
+'externaldberror'	=> 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
 'loginproblem' => '\'\'\'Es gab ein Problem mit Ihrer Anmeldung.\'\'\'<br />Bitte versuchen Sie es nochmal!',
 'alreadyloggedin' => '\'\'\'Benutzer $1, Sie sind bereits angemeldet!\'\'\'<br />',
 
@@ -358,7 +355,7 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen ein temporäres
 "nosuchuser"	=> "Der Benutzername \"$1\" existiert nicht.
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
 'nosuchusershort'	=> 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
-
+'nouserspecified'	=> 'Bitte geben Sie einen Benutzernamen an.',
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
 'mailmypassword'	=> 'Passwort vergessen?',
 'passwordremindertitle' => 'Neues Passwort für {{SITENAME}}',
@@ -373,10 +370,9 @@ Bitte ignoriesen Sie diese E-Mail, falls Sie diese nicht selbst angefordert habe
 'passwordsent'		=> 'Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.
 Das alte Passwort bleibt weiterhin gültig.',
-'eauthentsent'		=>  'Eine Bestätigungsmail wurde an die angegebene Adresse verschickt.
+'eauthentsent'		=>  'Eine Bestätigungsmail wurde an die angegebene E-Mail-Adresse verschickt.
 
-Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolge die Hinweise in der Bestätigungsmail.',
-#"loginend"		=> "&nbsp;",	# ignore list
+Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolgen Sie die Hinweise in der Bestätigungsmail.',
 "mailerror" => "Fehler beim Senden von E-Mail: $1",
 'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
 'emailconfirmlink' 	=> 'E-Mail-Adresse bestätigen (authentifizieren).',
@@ -426,21 +422,24 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 "accmailtitle" => "Passwort wurde verschickt.",
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
-"newarticletext" => "Hier den Text des neuen Artikels eintragen.\nBitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.",
-'anontalkpagetext'	=> '---- \'\'Dies ist die Diskussionsseite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische IP-Adresse zur Identifizierung verwenden.
- Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden,
- [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
+'newarticletext'	=> 'Hier den Text des neuen Artikels eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
+'newarticletextanon'	=> '{{int:newarticletext}}',
+'anontalkpagetext'	=> '---- \'\'Dies ist die Diskussionsseite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische IP-Adresse zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
 'noarticletext'		=> '(Dieser Artikel enthält momentan noch keinen Text)',
+'noarticletextanon'	=> '{{int:noarticletext}}',
 'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihren Browser anweisen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview' => "== Vorschau Ihres Benutzer-JavaScript. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihren Browser anweisen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'userinvalidcssjstitle'	=> '\'\'\'Warnung:\'\'\' Es existiert kein Skin „$1“. Bitte bedenke Sie, dass benutzerspezifische .css- and .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also z. B. Benutzer:Foo/monobook.css an Stelle von Benutzer:Foo/Monobook.css.',
 'clearyourcache'	=> '\'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie ihren Browser anweisen, die neue Version zu laden:<br />
 \'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview' => "<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues css/js vor dem Speichern zu testen.",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong>",
 "previewnote"	=> "Dies ist nur eine Vorschau, der Artikel wurde noch nicht gespeichert!",
+'session_fail_preview' => '<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Ihre Sitzungsdaten verloren gegangen sind.
+Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, logge Sie sich kurz aus und wieder ein.</strong>',
 "previewconflict" => "Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder; so wird der Artikel aussehen, wenn Sie jetzt speichern.",
 'importing'		=> 'importiere $1',
 "editing"		=> "Bearbeiten von $1",
@@ -454,6 +453,7 @@ Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
 <b>Nur</b> der Inhalt des oberen Textfeldes wird gespeichert, wenn Sie auf \"Speichern\" klicken!<br />",
 "yourtext"		=> "Ihr Text",
 "storedversion" => "Gespeicherte Version",
+'nonunicodebrowser'	=> '<strong>Achtung:</strong> Ihr Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte benutze einen anderen Browser um Artikel zu bearbeiten.',
 "editingold"	=> "<strong>ACHTUNG: Sie bearbeiten eine alte Version dieses Artikels.
 Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>",
 "yourdiff"		=> "Unterschiede",
@@ -461,8 +461,14 @@ Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>",
 <strong>Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</strong><br />
 Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
 <i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"$2\" stehen (siehe $1 für Details). Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
+'copyrightwarning2' => 'Bitte beachten Sie, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können.
+Reichen Sie hier keine Texte ein, falls Sie nicht wollen dass diese ohne Einschränkung geändert werden können.
+
+Sie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder diese von einer gemeinfreien Quelle kopiert haben
+(siehe $1 für weitere Details). <strong>ÜBERTRAGEN SIE OHNE GENEHMIGUNG KEINE URHEBERRECHTLICH GESCHÜTZEN INHALTE!</strong>',
 "longpagewarning" => "<strong>WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>",
+'longpageerror'		=> '<strong>FEHLER: Der Text, den Sie zu speichern versuchen, ist $1 kB groß. Das ist größer als das erlaubte Maximum von $2 kB. Speicherung nicht möglich.</strong>',
 "readonlywarning" => "<strong>WARNUNG: Die Datenbank wurde während dem Ändern der
 Seite für Wartungsarbeiten gesperrt, so dass Sie die Seite im Moment nicht
 speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
@@ -470,6 +476,7 @@ später einzuspielen.</strong>",
 'protectedpagewarning' => '<strong>ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur
 durch Benutzer mit Admninistratorrechten bearbeitet werden kann. Beachten Sie bitte die
 [[{{ns:project}}:Geschützte Seiten|Regeln für geschützte Seiten]].</strong>',
+'semiprotectedpagewarning'	=> '\'\'\'Halbsperrung:\'\'\' Die Seite wurde so gesperrt, dass neu registrierte oder anonyme Benutzer diese nicht ändern können.',
 'templatesused'		=> 'Folgende Vorlagen werden von diesem Artikel verwendet:',
 'edittools'		=> '<!-- Dieser Text wird unter dem "Bearbeiten"-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'		=> 'Die Erstellung neuer Seiten ist eingeschränkt.',
@@ -498,6 +505,11 @@ Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmel
 'histlast'		=> 'Älteste',
 'rev-deleted-comment'	=> '(Kommentar entfernt)',
 'rev-deleted-user'	=> '(Benutzername entfernt)',
+'rev-deleted-text-permission'	=> '<div class="mw-warning plainlinks"> Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Spezial:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
+'rev-deleted-text-view'	=> '<div class="mw-warning plainlinks">Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
+Als Administrator können Sie sie weiterhin einsehen.
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Spezial:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
 "orig"			=> "Original",
 "histlegend"	=> "Diff Auswahl: Die Boxen der gewünschten
 Versionen markieren und 'Enter' drücken oder den Button unten klicken/alt-v.<br />
@@ -618,7 +630,6 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 #
 "changes" => "Änderungen",
 "recentchanges" => "Letzte Änderungen",
-'recentchanges-url' => '{{ns:special}}:Recentchanges',
 'recentchangestext'	=> 'Auf dieser Seite können Sie die letzten Änderungen auf \'\'\'{{SITENAME}}\'\'\' nachverfolgen.',
 'rcnote'		=> 'Angezeigt werden die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage (Stand: $3).',
 'rcnotefrom'		=> 'Angezeigt werden die Änderungen seit <b>$2</b> (max. <b>$1</b> Einträge).',
@@ -656,8 +667,8 @@ Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
 Für Photos wird das JPEG-Format, für Zeichnungen und Symbole das PNG-Format bevorzugt.
 Um ein Bild in einem Artikel zu verwenden, schreiben Sie an Stelle des Bildes
-\'\'\'<nowiki>[[bild:datei.jpg]]</nowiki>\'\'\' oder
-\'\'\'<nowiki>[[bild:datei.jpg|Beschreibung]]</nowiki>\'\'\'.
+\'\'\'<nowiki>[[{{ns:image}}:datei.jpg]]</nowiki>\'\'\' oder
+\'\'\'<nowiki>[[{{ns:image}}:datei.jpg|Beschreibung]]</nowiki>\'\'\'.
 
 Bitte beachten Sie, dass, genau wie bei den Artikeln, andere Benutzer Ihre Dateien löschen oder verändern können.',
 "uploadlog"		=> "Datei-Logbuch",
@@ -671,8 +682,8 @@ Alle Zeiten sind UTC.
 'fileuploadsummary'	=> 'Beschreibung/Quelle:',
 "filestatus" => "Copyright-Status",
 "filesource" => "Quelle",
-'copyrightpage'		=> '{{ns:project}}:Copyright',
-'copyrightpagename'	=> '{{SITENAME}} Copyright',
+'copyrightpage'		=> '{{ns:project}}:Urheberrecht',
+'copyrightpagename'	=> '{{SITENAME}} Urheberrecht',
 "uploadedfiles"	=> "Hochgeladene Dateien",
 'ignorewarning'		=> 'Warnung ignorieren und Datei überschreiben.',
 'ignorewarnings'	=> 'Warnungen ignorieren',
@@ -685,6 +696,7 @@ Alle Zeiten sind UTC.
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
 'fileexists'		=> 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf "Datei speichern" klicken, wird die Datei überschrieben. Bitte prüfen Sie $1, wenn Sie sich nicht sicher sind.',
 'fileexists-forbidden'	=> 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[{{ns:image}}:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden'	=> 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[{{ns:image}:$1|thumb|center|$1]]',
 "uploadedimage" => "\"[[$1]]\" hochgeladen",
 'uploadscripted' => 'Diese Datei enthält HTML- oder Scriptcode der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
 'uploadvirus' => 'Diese Datei enthält einen Virus! Details: $1',
@@ -692,7 +704,7 @@ Alle Zeiten sind UTC.
 "successfulupload" => "Erfolgreich hochgeladen",
 'fileuploaded'		=> 'Die Datei "$1" wurde erfolgreich hochgeladen. Bitte folgen Sie dem Link $2 zur Beschreibungsseite und geben Sie weitere Informationen zur Datei an.
 
-Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[Bild:$1|thumb|Description]]</nowiki></tt> ein Vorschaubild auf der Seite erzeugen lassen.',
+Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:image}}:$1|thumb|Description]]</nowiki></tt> ein Vorschaubild auf der Seite erzeugen lassen.',
 "uploadwarning" => "Warnung",
 "savefile"		=> "Datei speichern",
 "uploadedimage" => "\"[[$1]]\" hochgeladen",
@@ -728,7 +740,6 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[Bild:$
 'nolinkstoimage'	=> 'Kein Artikel benutzt diese Datei.',
 'shareduploadwiki'		=> 'Für weitere Informationen siehe $1.',
 'shareduploadwiki-linktext'	=> 'Datei-Beschreibungsseite',
-#'shareddescriptionfollows'	=> '-',	# ignore list
 'noimage'			=> 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 'noimage-linktext'		=> 'hochladen',
 'uploadnewversion'	=> '[$1 Eine neue Version dieser Datei hochladen]',
@@ -789,7 +800,6 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'nlinks'		=> '{{PLURAL:$1|ein Verweis|$1 Verweise}}',
 'nmembers'		=> '{{PLURAL:$1|ein Mitglied|$1 Mitglieder}}',
 'randompage'		=> 'Zufälliger Artikel',
-#'randompage-url'	=> 'Spezial:Random',	# ignore list
 "shortpages"	=> "Kurze Artikel",
 "longpages"		=> "Lange Artikel",
 "listusers"		=> "Benutzerverzeichnis",
@@ -905,7 +915,7 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'enotif_newpagetext'		=> 'Dies ist eine neue Seite.',
 'changed' 			=> 'geändert',
 'created' 			=> 'neu angelegt',
-'enotif_subject'		=> '{{SITENAME}} Seite $PAGETITLE wurde $CHANGEDORCREATED von $PAGEEDITOR',
+'enotif_subject'		=> '[{{SITENAME}}] Die Seite "$PAGETITLE" wurde von $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'		=> 'Alle Änderungen auf einen Blick: $1',
 'enotif_body'			=> 'Liebe/r $WATCHINGUSERNAME,
 
@@ -925,7 +935,7 @@ Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Se
 
              Ihr freundliches {{SITENAME}} Benachrichtigungssystem
 
----
+-- 
 Um die Einstellungen Ihrer Beobachtungsliste anzupassen besuchen Sie: {{fullurl:Special:Watchlist/edit}}',
 
 
@@ -981,7 +991,7 @@ gespeichert und können wiederhergestellt werden.",
 'undeleteextrahelp' => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken auf „Wiederherstellen“.
 * Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln an Hand der Markierungen aus,
 geben eine Begründung an und klicken dann auf „Wiederherstellen“.
-* „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
+* „Zurücksetzen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 "undeletearticle" => "Gelöschten Artikel wiederherstellen",
 "undeleterevisions" => "$1 Versionen archiviert",
 "undeletehistory" => "Wenn Sie diese Seite wiederherstellen, werden auch alle alten
@@ -993,7 +1003,7 @@ genauso wie Details zum letzten Benutzer der diesen Artikel vor der Löschung be
 Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.',
 "undeleterevision" => "Gelöschte Version vom $1",
 "undeletebtn" => "Wiederherstellen",
-'undeletereset' => 'Abbrechen',
+'undeletereset'		=> 'Zurücksetzen',
 'undeletecomment' => 'Begründung:',
 "undeletedarticle" => "\"$1\" wiederhergestellt",
 'undeletedrevisions' => "$1 Versionen wiederhergestellt.",
@@ -1235,6 +1245,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'allmessages'		=> 'Seiten im MediaWiki-Namensraum',
 'allmessagesname'	=> 'Name',
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
+'allmessagesnotsupportedUI' => 'Die aktuelle Sprache Ihrer Benutzeroberfläche <b>$1</b> wird auf dieser Seite nicht von {{ns:special}}:Allmessages unterstützt.',
 'allmessagesnotsupportedDB' => '\'\'\'{{ns:special}}:Allmessages\'\'\' ist momentan nicht möglich, weil die Datenbank offline ist.',
 'allmessagesdefault'	=> 'Standardtext',
 'allmessagescurrent'	=> 'Aktueller Text',
@@ -1383,15 +1394,6 @@ sollte umgehend ein Administrator informiert werden!',
 'metadata_help'	=> 'Metadaten (siehe [[{{ns:project}}:Metadaten]] für eine Erläuterung):',
 'metadata-expand' => 'Erweiterte Details einblenden',
 'metadata-collapse'	=> 'Erweiterte Details ausblenden',
-
-#'metadata-fields' => 'Die folgenden Felder der EXIF-Metadaten dieser Nachricht werden auf Bildbeschreibungsseiten
-#angezeigt. Weitere standardmäßig ausgeblendete Details können angezeigt werden.
-#* make
-#* model
-#* fnumber
-#* datetimeoriginal
-#* exposuretime
-#* focallength',	# ignore list
 
 # Exif tags
 'exif-aperturevalue'		=> 'Blendenwert',
@@ -1642,7 +1644,7 @@ sollte umgehend ein Administrator informiert werden!',
 'namespacesall'		=> 'alle',
 
 # E-mail address confirmation
-'confirmemail' => 'E-Mail-Adressenbestätigung (Authentifizierung)',
+'confirmemail'		=> 'Bestätigung der E-Mail-Adresse (Authentifizierung)',
 'confirmemail_text' => "Dieses Wiki erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren),
 bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Ein Klick auf die Schaltfläche unten sendet eine E-Mail an Sie.
 Diese E-Mail enthält einen Link mit einem Code; durch Klicken auf diesen Link bestätigen Sie, dass Ihre Adresse gültig ist.",
@@ -1655,19 +1657,19 @@ Diese E-Mail enthält einen Link mit einem Code; durch Klicken auf diesen Link b
 'confirmemail_loggedin' => 'Ihre E-Mail-Adresse ist nun bestätigt.',
 'confirmemail_error' => 'Es gab einen Fehler bei der Bestätigung Ihrer E-Mail-Adresse.',
 
-'confirmemail_subject' => '{{SITENAME}} E-Mail-Adressenbestätigung (Authentifizierung)',
-'confirmemail_body'	=> 'Jemand, vielleicht Sie, hat von der IP-Adresse $1
-ein Benutzerkonto "$2" mit dieser E-Mail-Adresse bei {{SITENAME}} angemeldet.
+'confirmemail_subject'	=> '[{{SITENAME}}] Bestätigung Ihrer E-Mail-Adresse',
+'confirmemail_body'	=> 'Hallo,
 
-Zur Bestätigung dass dieses Konto wirklich Ihnen gehört, und um die erweiterten
-E-Mail-Funktionen für Sie bei {{SITENAME}} einzuschalten, öffnen Sie bitte den folgenden Link
-in Ihrem Browser:
+jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat eine Bestätigung dieser E-Mail-Adresse für das Benutzerkonto "$2" für {{SITENAME}} angefordert.
 
-$3
+Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen, dass dieses Benutzerkonto wirklich zu Ihrer E-Mail-Adresse und damit zu Ihnen gehört, öffnen Sie bitte folgenden Link in Ihrem Browser: $3
 
-Wenn Sie *nicht* $2 sind, folgen Sie dem Link bitte nicht.
+Der Bestätigungscode ist bis zu folgendem Zeitpunkt gültig: $4
 
-Der Bestätigungs-Code läuft am $4 ab.',
+Wenn diese E-Mail-Adresse *nicht* zu dem genannten Benutzerkonto gehört, folgen Sie diesem Link bitte *nicht*.
+
+-- 
+{{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Versuche exakte Suche',

@@ -304,6 +304,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6015) EditPage: add spacing in the boxes "edit is minor" and "watch this"
 * (bug 6018) Userrights: new message when no user specified ('nouserspecified')
 * (bug 2015) Add "\sim" to ~ conversion for HTML rendering
+* (bug 6029) Improvement to German localisation (de)
 
 == Compatibility ==
 
