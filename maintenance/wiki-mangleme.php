@@ -46,7 +46,7 @@ include('commandLine.inc');
 define("DIRECTORY",      "/tmp/mangleme");
 
 # URL to some wiki on which we can run our tests:
-define("WIKI_URL", $wgServer . $wgScriptPath . 'index.php?title=WIKIMANGLE' );
+define("WIKI_URL", $wgServer . $wgScriptPath . '/index.php?title=WIKIMANGLE' );
 
 # Should our test output include binary strings?
 define("INCLUDE_BINARY",  false);
@@ -400,7 +400,9 @@ function validateHTML($text) {
 /**
 ** @desc: checks the string to see if tags are balanced.
 */
-function checkOpenCoseTags($string, $filename) {
+function checkOpenCloseTags($string, $filename) {
+	$valid = true;
+
 	$lines = explode("\n", $string);
 
 	$num_lines = count($lines);
@@ -431,9 +433,11 @@ function checkOpenCoseTags($string, $filename) {
 		if ($num_lines - $line_num == 23) continue;
 
 		if (substr_count($line, "<") > substr_count($line, ">")) {
-			print "\nIn " . DIRECTORY . "/" . $filename . " on line: " . ($line_num + 1) . " \t$line\n";
+			print "\nUnclosed tag in " . DIRECTORY . "/" . $filename . " on line: " . ($line_num + 1) . " \n$line\n";
+			$valid = false;
 		}
 	}
+	return $valid;
 }
 
 
@@ -445,6 +449,9 @@ function tidyCheckFile($name) {
 	$x = `tidy -errors -quiet --show-warnings false $file 2>&1`;
 	if (trim($x) != "") {
 		print "Tidy errors found in $file:\n$x";
+		return false;
+	} else {
+		return true;
 	}
 }
 
@@ -478,18 +485,24 @@ for ($count=0; true /*$count<10000 */ ; $count++) { // while (true)
 	// upload to MediaWiki install.
 	$wiki_preview = wikiPreview($raw_markup);
 
-	// validate result
-	if (VALIDATE_ON_WEB) list ($valid, $validator_output) = validateHTML($wiki_preview);
-
 	// save output files
 	saveFile($raw_markup,  $count . ".raw_markup.txt");
 	saveFile($wiki_preview,  $count . ".wiki_preview.html");
 
-	if (VALIDATE_ON_WEB) saveFile($validator_output,  $count . ".validator_output.html");
+	// validate result
+	$valid = true;
+	if (VALIDATE_ON_WEB) list ($valid, $validator_output) = validateHTML($wiki_preview);
+	$valid = $valid && checkOpenCloseTags ($wiki_preview, $count . ".wiki_preview.html");
+	$valid = $valid && tidyCheckFile( $count . ".wiki_preview.html" );
 
-	checkOpenCoseTags ($wiki_preview, $count . ".wiki_preview.html");
 
-	tidyCheckFile( $count . ".wiki_preview.html" );
+	if( $valid ) {
+		// Remove valid tests:
+		unlink( DIRECTORY . "/" . $count . ".raw_markup.txt" );
+		unlink( DIRECTORY . "/" . $count . ".wiki_preview.html");
+	} elseif( VALIDATE_ON_WEB ) {
+		saveFile($validator_output,  $count . ".validator_output.html");
+	}
 }
 print 'End of wiki-mangleme. Results are in the '.DIRECTORY." directory.\n";
 ?>
