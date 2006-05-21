@@ -99,19 +99,19 @@
 * [http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce Lista de correio do anúncio de publicações do MediaWiki]",
 
 'portal'                => 'Portal comunitário',
-'portal-url'            => 'Project:Portal comunitário',
+'portal-url'            => '{{ns:project}}:Portal comunitário',
 'about'                 => 'Sobre',
 'aboutsite'      => 'Sobre',
-'aboutpage'             => 'Project:Sobre',
+'aboutpage'             => '{{ns:project}}:Sobre',
 'article' => 'Artigo',
 'help'                  => 'Ajuda',
 'helppage'              => 'Ajuda:Conteúdos',
 'bugreports'    => 'Bug reports',
-'bugreportspage' => 'Project:Bug_reports',
+'bugreportspage' => '{{ns:project}}:Bug_reports',
 'sitesupport'   => 'Doações',
-'sitesupport-url' => 'Project:Apoio',
+'sitesupport-url' => '{{ns:project}}:Apoio',
 'faq'                   => 'FAQ',
-'faqpage'               => 'Project:FAQ',
+'faqpage'               => '{{ns:project}}:FAQ',
 'edithelp'              => 'Ajuda de edição',
 'newwindow'             => '(abre numa nova janela)',
 'edithelppage'  => 'Ajuda:Editar',
@@ -136,12 +136,12 @@
 'currentevents-url' => 'Eventos actuais',
 
 'disclaimers' => 'Disclaimers',
-'disclaimerpage' => "Project:General_disclaimer",
+'disclaimerpage' => "{{ns:project}}:General_disclaimer",
 'privacy' => 'Política de privacidade',
-'privacypage' => 'Project:Política_de_privacidade',
+'privacypage' => '{{ns:project}}:Política_de_privacidade',
 'errorpagetitle' => "Erro",
 'returnto'              => "Retornar para $1.",
-'whatlinkshere' => 'Artigos afluentes',
+'tagline'       => 'De {{SITENAME}}',
 'help'                  => 'Ajuda',
 'search'                => 'Pesquisa',
 'go'            => 'Ir',
@@ -184,7 +184,7 @@
 'viewcount'             => 'Esta página foi acedida {{plural:$1|uma vez|$1 vezes}}.',
 'copyright'     => 'Conteúdo disponível sob $1.',
 'protectedpage' => 'Página protegida',
-'administrators' => "Project:Administradores",
+'administrators' => "{{ns:project}}:Administradores",
 'jumpto' => 'Ir para:',
 'jumptonavigation' => 'navegação',
 'jumptosearch' => 'pesquisa',
@@ -227,7 +227,7 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'nstab-user' => 'Página de utilizador',
 'nstab-media' => 'Media',
 'nstab-special' => 'Especial',
-'nstab-wp' => 'Sobre',
+'nstab-project' => 'Página de projecto',
 'nstab-image' => 'Ficheiro',
 'nstab-mediawiki' => 'Mensagem',
 'nstab-template' => 'Predefinição',
@@ -299,7 +299,7 @@ Query: $2",
 'viewsource' => 'Ver fonte',
 'viewsourcefor' => 'para $1',
 'protectedtext' => "Esta página foi protegida para não permitir edições; existem inúmeros motivos para
-ocorrer esta situação, por favor consulte [[Project:Protected page]].
+ocorrer esta situação, por favor consulte [[{{ns:project}}:Página protegida]].
 
 Pode ver e copiar o código fonte desta página:",
 'protectedinterface' => 'Esta página fornece texto de interface ao software, e encontra-se trancada para prevenir abusos.',
@@ -365,11 +365,12 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'nosuchuser'    => "Não existe nenhum utilizador com o nome \"$1\".
 Verifique o nome que introduziu, ou crie uma nova conta de utilizador.",
 'nosuchusershort'       => "Não existe um utilizador com o nome \"$1\". Verifique o nome que introduziu.",
+'nouserspecified'       => 'Precisa de especificar um nome de utilizador.',
 'wrongpassword'         => 'A palavra-chave que introduziu é inválida. Por favor tente novamente.',
 'wrongpasswordempty'            => 'Palavra-chave introduzida está em branco. Por favor tente novamente.',
 'mailmypassword'        => 'Enviar uma nova palavra-chave por correio electrónico',
 'passwordremindertitle' => "Lembrador de palavras-chave da {{SITENAME}}",
-'passwordremindertext' => "Alguém (provavelmente você, do endereço de IP $1) solicitou que fosse lhe envido uma nova palavra-chave para {{SERVERNAME}}.
+'passwordremindertext' => "Alguém (provavelmente você, do endereço de IP $1) solicitou que fosse lhe envido uma nova palavra-chave para {{SITENAME}} ($4).
 A palavra para o utilizador \"$2\" é a partir de agora \"$3\". Pode agora entrar na sua conta e alterar a palavra-chave.
 
 Caso tenha sido outra pessoa a fazer este pedido ou caso você já se tenha lembrado da sua palavra-chave e se não a desejar alterar, pode ignorar esta mensagem e continuar a utilizar a palavra-chave antiga.",
@@ -433,7 +434,7 @@ de modo a confirmar que a conta é mesmo sua.",
 O motivo é: ''$2''
 
 Pode contactar [[{{ns:special}}:emailuser/$4|$4]] ou outro
-[[{{ns:4}}:Administradores|administrador]] para discutir sobre o bloqueio.
+[[{{ns:project}}:Administradores|administrador]] para discutir sobre o bloqueio.
 
 Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não possuir uma conta na Wikipédia e um endereço de email válido indicado nas suas preferências de utilizador. E lembre-se que só se encontra impossibilitado de editar páginas.<br /><br />
 
@@ -455,7 +456,7 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 'newarticletext' =>
 "Seguiu um link para um artigo que ainda não existe. Para criá-lo, escreva o seu conteúdo na caixa abaixo, mas se chegou aqui por engano clique no botão '''volta''' (ou ''back'') do seu navegador. Por favor, '''NÃO''' crie páginas apenas para fazer [[Project:Artigos pedidos|pedidos]] ou [[Project:Página de testes|testes]].
 
-(Consulte [[Project:Ajuda|a página de ajuda]] para mais informações)",
+(Consulte [[{{ns:project}}:Ajuda|a página de ajuda]] para mais informações)",
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => "----
 ''Esta é a página de discussão para um utilizador anónimo que ainda não criou uma conta ou que não a utiliza. De modo a que temos que utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser partilhado por vários utilizadores. Se é um utilizador anónimo e acha relevante que os comentários sejam direccionados a si, por favor [[{{ns:special}}:Userlogin|crie uma conta ou autentifique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
@@ -502,7 +503,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'longpageerror' => "<strong>ERRO: A página que submeteu tem mais de $1 kilobytes
 em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode salva.</strong>",
 'readonlywarning' => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento. Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>',
-'protectedpagewarning' => "<strong>AVISO: Esta página foi protegida e apenas poderá ser editada por utilizadores com privilégios sysop (administradores). Certifique-se que está a respeitar as [[Project:Protected_page_guidelines|linhas de orientação para páginas protegidas]].</strong>",
+'protectedpagewarning' => "<strong>AVISO: Esta página foi protegida e apenas poderá ser editada por utilizadores com privilégios sysop (administradores). Certifique-se que está a respeitar as [[{{ns:project}}:Protected_page_guidelines|linhas de orientação para páginas protegidas]].</strong>",
 'semiprotectedpagewarning' => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
 'templatesused' => 'Predefinições utilizadas nesta página:',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
@@ -548,7 +549,7 @@ Legenda: (actu) = diferenças da versão actual,
 # Search results
 #
 'searchresults' => 'Resultados de pesquisa',
-'searchresulttext' => "Para mais informações de como pesquisar na {{SITENAME}}, consulte [[Project:Pesquisa|Pesquisando {{SITENAME}}]].",
+'searchresulttext' => "Para mais informações de como pesquisar na {{SITENAME}}, consulte [[{{ns:project}}:Pesquisa|Pesquisando {{SITENAME}}]].",
 'searchquery'   => "Para consulta \"$1\"",
 'badquery'              => 'Linha de pesquisa inválida',
 'badquerytext'  => 'Não foi possível processar seu pedido de pesquisa.
@@ -660,9 +661,9 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'group-bureaucrat-member' => 'Burocrata',
 'group-steward-member'    => 'Steward',
 
-'grouppage-bot' => 'Project:Robôs',
-'grouppage-sysop' => 'Project:Administradores',
-'grouppage-bureaucrat' => 'Project:Burocratas',
+'grouppage-bot' => '{{ns:project}}:Robôs',
+'grouppage-sysop' => '{{ns:project}}:Administradores',
+'grouppage-bureaucrat' => '{{ns:project}}:Burocratas',
 
 # Recent changes
 #
@@ -722,7 +723,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'fileuploadsummary' => 'Sumário:',
 'filestatus' => 'Estatuto de copyright',
 'filesource' => 'Fonte',
-'copyrightpage' => "Project:Direitos_de_autor",
+'copyrightpage' => "{{ns:project}}:Direitos_de_autor",
 'copyrightpagename' => "Direitos autorais da {{SITENAME}}",
 'uploadedfiles' => 'Ficheiros carregados',
 'ignorewarning'        => 'Ignorar aviso e salvar de qualquer forma.',
@@ -830,7 +831,6 @@ Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 'disambiguationstext'   => "As seguintes páginas ligam com uma <i>página de desambiguação</i>. Estas páginas deviam ligar com o tópico apropriado.<br />Qualquer página ligada com $1 é considerada página de desambiguação.<br />As ligações de outros domínios não são listadas aqui.",
 'doubleredirects'       => 'Redireccionamentos duplos',
 'doubleredirectstext'   => "Cada linha contém ligações para o primeiro e segundo redireccionamento, bem como a primeira linha de conteúdo do segundo redireccionamento, geralmente contendo a página destino \"real\", que devia ser o destino do primeiro redireccionamento.",
-'doubleredirectsarrow'	=> '→',
 'brokenredirects'       => 'Redireccionamentos quebrados',
 'brokenredirectstext'   => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',
 'selflinks'             => 'Páginas que ligam consigo próprias',
@@ -1022,7 +1022,7 @@ Contacto e assistência
 'deletesub'             => "(Eliminando \"$1\")",
 'historywarning' => 'Aviso: A página que está prestes a eliminar possui um histórico:',
 'confirmdeletetext' => "Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico da base de dados.
-Por favor confirme que entende fazer isto, e que compreende as consequências, e que encontra-se a fazer isto de acordo com a [[Project:Política de eliminação|Política de eliminação]] do projecto.",
+Por favor confirme que entende fazer isto, e que compreende as consequências, e que encontra-se a fazer isto de acordo com a [[{{ns:project}}:Política de eliminação|Política de eliminação]] do projecto.",
 'actioncomplete' => 'Acção completada',
 'deletedtext'   => "\"$1\" foi eliminada.
 Consulte $2 para um registo de eliminações recentes.",
@@ -1051,7 +1051,7 @@ Esta acção foi cancelada como medida de protecção contra a intercepção de 
 Experimente usar o botão "Voltar atrás" e refrescar a página de onde veio, e repita o processo.',
 'protectlogpage' => 'Registo de protecção',
 'protectlogtext' => "Abaixo encontra-se o registo de protecção e desprotecção de páginas.
-Veja [[Project:Página protegida]] para mais informações.",
+Veja [[{{ns:project}}:Página protegida]] para mais informações.",
 'protectedarticle' => 'protegeu "[[$1]]"',
 'unprotectedarticle' => 'desprotegeu "[[$1]]"',
 'protectsub' => '(Protegendo "$1")',
@@ -1065,7 +1065,7 @@ Veja [[Project:Página protegida]] para mais informações.",
 'unprotectcomment' => 'Motivo de desprotecção',
 'protect-unchain' => 'Desbloquear permissões de moção',
 'protect-text' => 'Pode ver e alterar aqui, o nível de protecção para a página <strong>$1</strong>.
-Por favor tenha a certeza que segue as [[Project:Página protegida|normas do projecto]].',
+Por favor tenha a certeza que segue as [[{{ns:project}}:Página protegida|normas do projecto]].',
 'protect-viewtext' => 'A sua conta de utilizador não tem permissões para alterar
 os níveis de protecção desta página. Estas são as configurações actuais para a página <strong>$1</strong>:',
 'protect-default' => '(padrão)',
@@ -1134,7 +1134,7 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 #
 'blockip'               => 'Bloquear utilizador',
 'blockiptext'   => "Utilize o formulário abaixo para bloquear o acesso à escrita de um endereço específico de IP ou nome de utilizador.
-Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:4}}:Política|política da {{SITENAME}}]]. Preencha com um motivo específico (por exemplo, citando páginas que sofreram vandalismo).",
+Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:project}}:Política|política da {{SITENAME}}]]. Preencha com um motivo específico (por exemplo, citando páginas que sofreram vandalismo).",
 'ipaddress'             => 'Endereço de IP',
 'ipadressorusername' => 'Endereço de IP ou nome de utilizador',
 'ipbexpiry'             => 'Prazo',
@@ -1425,7 +1425,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Ver o conteúdo da página\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Ver a página de utilizador\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Ver a página de media\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Esta é uma página especial, não pode ser editada.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Ver a página de projecto\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Ver a página de projecto\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Ver a página de imagem\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Ver a mensagem de sistema\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Ver a predefinição\');
