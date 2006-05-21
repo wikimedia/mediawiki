@@ -308,6 +308,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5015) Update be: magic words
 * (bug 3974) Add parameter for site URL to "passwordremindertext"
 * (bug 6039) Update for Portuguese localisation (pt)
+* (bug 764) Add CREATE TEMPORARY TABLES to default database permissions
 
 == Compatibility ==
 
