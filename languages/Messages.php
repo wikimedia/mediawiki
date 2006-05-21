@@ -117,13 +117,13 @@ parent class in order maintain consistency across languages.
 'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'		=> 'Main Page',
 'mainpagetext'	=> "<big>'''MediaWiki has been successfully installed.'''</big>",
-'mainpagedocfooter' => "Consult the [http://meta.wikipedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
+'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
 == Getting started ==
 
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'portal'		=> 'Community portal',
 'portal-url'		=> '{{ns:project}}:Community Portal',
@@ -494,7 +494,7 @@ To create the page, start typing in the box below
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon' => '{{int:newarticletext}}',
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
-'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
+'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
 'noarticletext' => 'There is currently no text in this page, you can [[{{ns:special}}:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon' => '{{int:noarticletext}}',
 'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools→Preferences''.",
