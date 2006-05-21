@@ -403,6 +403,7 @@ class LoginForm {
 	 */
 	function mailPasswordInternal( $u ) {
 		global $wgCookiePath, $wgCookieDomain, $wgCookiePrefix, $wgCookieSecure;
+		global $wgServer, $wgScript;
 
 		if ( '' == $u->getEmail() ) {
 			return wfMsg( 'noemail', $u->getName() );
@@ -418,7 +419,7 @@ class LoginForm {
 		$ip = wfGetIP();
 		if ( '' == $ip ) { $ip = '(Unknown)'; }
 
-		$m = wfMsg( 'passwordremindertext', $ip, $u->getName(), $np );
+		$m = wfMsg( 'passwordremindertext', $ip, $u->getName(), $np, $wgServer . $wgScript );
 
 		$result = $u->sendMail( wfMsg( 'passwordremindertitle' ), $m );
 		return $result;
