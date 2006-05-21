@@ -305,6 +305,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6018) Userrights: new message when no user specified ('nouserspecified')
 * (bug 2015) Add "\sim" to ~ conversion for HTML rendering
 * (bug 6029) Improvement to German localisation (de)
+* (bug 5015) Update be: magic words
 
 == Compatibility ==
 
