@@ -401,7 +401,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'mailmypassword' 	=> 'E-mail password',
 'passwordremindertitle' => 'Password reminder from {{SITENAME}}',
 'passwordremindertext' => 'Someone (probably you, from IP address $1)
-requested that we send you a new {{SITENAME}} login password for {{SERVERNAME}}.
+requested that we send you a new password for {{SITENAME}} ($4).
 The password for user "$2" is now "$3".
 You should log in and change your password now.
 
