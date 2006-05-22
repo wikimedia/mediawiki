@@ -312,6 +312,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use appropriate HTML functions to create the tool links on image pages, so they don't
   look garbled when tidy isn't on
 * (bug 5511) Fix URL-encoding of usernames in links on Special:Ipblocklist
+* (bug 6046) Update to Indonesian localisation (id) #15
 
 == Compatibility ==
 
