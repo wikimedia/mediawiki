@@ -389,7 +389,7 @@ class UndeleteForm {
 				htmlspecialchars( $n ), "target=" . urlencode( $n ) );
 			$revisions = htmlspecialchars( wfMsg( "undeleterevisions",
 				$wgLang->formatNum( $row->count ) ) );
-			$wgOut->addHTML( "<li>$link $revisions</li>\n" );
+			$wgOut->addHTML( "<li>$link ($revisions)</li>\n" );
 		}
 		$result->free();
 		$wgOut->addHTML( "</ul>\n" );
