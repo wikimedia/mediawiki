@@ -1747,6 +1747,12 @@ $wgSearchForwardUrl = null;
 $wgNoFollowLinks = true;
 
 /**
+ * Namespaces in which $wgNoFollowLinks doesn't apply.
+ * See Language.php for a list of namespaces.
+ */
+$wgNoFollowNsExceptions = array();
+
+/**
  * Specifies the minimal length of a user password. If set to
  * 0, empty passwords are allowed.
  */

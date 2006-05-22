@@ -1190,7 +1190,7 @@ class Parser
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
-			$s .= $sk->makeExternalLink( $url, $text, false, $linktype ) . $dtrail . $trail;
+			$s .= $sk->makeExternalLink( $url, $text, false, $linktype, $this->mTitle->getNamespace() ) . $dtrail . $trail;
 
 			# Register link in the output object.
 			# Replace unnecessary URL escape codes with the referenced character
@@ -1270,7 +1270,7 @@ class Parser
 				$text = $this->maybeMakeExternalImage( $url );
 				if ( $text === false ) {
 					# Not an image, make a link
-					$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free' );
+					$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free', $this->mTitle->getNamespace() );
 					# Register it in the output object...
 					# Replace unnecessary URL escape codes with their equivalent characters
 					$pasteurized = Parser::replaceUnusualEscapes( $url );

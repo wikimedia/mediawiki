@@ -734,10 +734,10 @@ class Linker {
 	}
 
 	/** @todo document */
-	function makeExternalLink( $url, $text, $escape = true, $linktype = '' ) {
+	function makeExternalLink( $url, $text, $escape = true, $linktype = '', $ns = null ) {
 		$style = $this->getExternalLinkAttributes( $url, $text, 'external ' . $linktype );
-		global $wgNoFollowLinks;
-		if( $wgNoFollowLinks ) {
+		global $wgNoFollowLinks, $wgNoFollowNsExceptions;
+		if( $wgNoFollowLinks && !(isset($ns) && in_array($ns, $wgNoFollowNsExceptions)) ) {
 			$style .= ' rel="nofollow"';
 		}
 		$url = htmlspecialchars( $url );
