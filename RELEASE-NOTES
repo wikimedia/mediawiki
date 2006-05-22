@@ -309,6 +309,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6039) Update for Portuguese localisation (pt)
 * (bug 764) Add CREATE TEMPORARY TABLES to default database permissions
 * Big update to Swedish localisation (sv)
+* Use appropriate HTML functions to create the tool links on image pages, so they don't
+  look garbled when tidy isn't on
 
 == Compatibility ==
 
