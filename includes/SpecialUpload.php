@@ -782,7 +782,7 @@ class UploadForm {
 		}
 
 		#check for htmlish code and javascript
-		if( $this->detectScript ( $tmpfile, $mime ) ) {
+		if( $this->detectScript ( $tmpfile, $mime, $extension ) ) {
 			return new WikiErrorMsg( 'uploadscripted' );
 		}
 
@@ -842,9 +842,10 @@ class UploadForm {
 	*
 	* @param string $file Pathname to the temporary upload file
 	* @param string $mime The mime type of the file
+	* @param string $extension The extension of the file
 	* @return bool true if the file contains something looking like embedded scripts
 	*/
-	function detectScript($file,$mime) {
+	function detectScript($file, $mime, $extension) {
 		global $wgAllowTitlesInSVG;
 
 		#ugly hack: for text files, always look at the entire file.
@@ -902,8 +903,9 @@ class UploadForm {
 			'<script', #also in safari
 			'<table'
 			);
-		if( $mime != 'image/svg' || !$wgAllowTitlesInSVG )
+		if( ! $wgAllowTitlesInSVG && $extension !== 'svg' && $mime !== 'image/svg' ) {
 			$tags[] = '<title';
+		}
 
 		foreach( $tags as $tag ) {
 			if( false !== strpos( $chunk, $tag ) ) {
