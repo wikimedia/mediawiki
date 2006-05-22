@@ -324,24 +324,31 @@ END
 		return $wgServer . $uploadTitle->getLocalUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) );
 	}
 
-
-	function uploadLinksBox()
-	{
+	/**
+	 * Print out the various links at the bottom of the image page, e.g. reupload,
+	 * external editing (and instructions link) etc.
+	 */
+	function uploadLinksBox() {
 		global $wgUser, $wgOut;
 
-		if ($this->img->fromSharedDirectory)
+		if( $this->img->fromSharedDirectory )
 			return;
 
 		$sk = $wgUser->getSkin();
-		$wgOut->addHTML( '<br /><ul>' );
+		
+		$wgOut->addHtml( '<br /><ul>' );
+		
+		# "Upload a new version of this file" link
 		if( $wgUser->isAllowed( 'reupload' ) ) {
-			$wgOut->addWikiText( "<li>\n<div>". wfMsg( 'uploadnewversion', $this->getUploadUrl() ) ."</div>\n</li>\n" );
+			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion' ) );
+			$wgOut->addHtml( "<li><div>{$ulink}</div></li>" );
 		}
-		$wgOut->addHTML( '<li>' );
-		$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
-			wfMsg( 'edit-externally' ), "action=edit&externaledit=true&mode=file" ) );
-		$wgOut->addWikiText( '<div>' .  wfMsg('edit-externally-help') . '</div>' );
-		$wgOut->addHTML( '</li></ul>' );
+		
+		# External editing link
+		$elink = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
+		$wgOut->addHtml( '<li>' . $elink . '<div>' . wfMsgWikiHtml( 'edit-externally-help' ) . '</div></li>' );
+		
+		$wgOut->addHtml( '</ul>' );
 	}
 
 	function closeShowImage()
