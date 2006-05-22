@@ -313,6 +313,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   look garbled when tidy isn't on
 * (bug 5511) Fix URL-encoding of usernames in links on Special:Ipblocklist
 * (bug 6046) Update to Indonesian localisation (id) #15
+* (bug 5523) $wgNoFollowNsExceptions to allow disabling rel="nofollow" in
+  specially-selected namespaces.
+
 
 == Compatibility ==
 
