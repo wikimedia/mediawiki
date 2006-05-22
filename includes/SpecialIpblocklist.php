@@ -224,7 +224,7 @@ class IPUnblockForm {
 			$target = '#' . $block->mId; # Hide the IP addresses of auto-blocks; privacy
 		} else {
 			$target = $sk->makeLinkObj( Title::makeTitle( NS_USER, $block->mAddress ), $block->mAddress );
-			$target .= ' (' . $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $msg['contribslink'], 'target=' . $block->mAddress ) . ')';
+			$target .= ' (' . $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $msg['contribslink'], 'target=' . urlencode( $block->mAddress ) ) . ')';
 		}
 		
 		# Prep the address for the unblock link, masking autoblocks as before
