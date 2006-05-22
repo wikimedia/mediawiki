@@ -68,15 +68,9 @@ if (!$wgCachedMessageArrays) {
 	require_once('MessagesFi.php');
 }
 
-#-------------------------------------------------------------------
-# Translated messages
-#-------------------------------------------------------------------
-
-
-
-	#--------------------------------------------------------------------------
-	# Internationalisation code
-	#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Internationalisation code
+#--------------------------------------------------------------------------
 
 class LanguageFi extends LanguageUtf8 {
 	function LanguageFi() {
@@ -190,6 +184,11 @@ class LanguageFi extends LanguageUtf8 {
 			return $_;
 		}
 	}
+
+	function linkTrail() {
+		return '/^([a-zäö]+)(.*)$/sDu';
+	}
+
 
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
@@ -327,6 +326,7 @@ class LanguageFi extends LanguageUtf8 {
 		}
    	return '<span class="blockexpiry" title="' . htmlspecialchars($str). '">”' . trim( $final ) . '”</span>';
 	}
+
 }
 
 ?>

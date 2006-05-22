@@ -79,13 +79,10 @@
 
 # Bits of text used by many pages:
 #
-'categories1'         => 'Luokka',
-'categories'          => 'Luokat',
+'categories'          => '{{PLURAL:$1|Luokka|Luokat}}',
 'category'            => 'Luokka',
 'category_header'     => 'Sivut, jotka ovat luokassa $1',
 'subcategories'       => 'Alaluokat',
-'linktrail'           => '/^([a-zäö]+)(.*)$/sDu',
-'linkprefix'          => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'            => 'Etusivu',
 'mainpagetext'        => '\'\'\'Mediawiki on onnistuneesti asennettu.\'\'\'',
 'mainpagedocfooter'   => 'Lisätietoja käytöstä ja asetusten teosta on sivuilla [http://www.mediawiki.org/wiki/Help:Configuration_settings configuration settings list] ja [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide].<br />Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LanguageFi.php:n <tt>convertGrammar</tt>-funktioon.<br />{{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).',
@@ -196,7 +193,7 @@
 'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
 
 'nbytes'              => '$1 tavua',
-'ncategories'         => '$1 luokkaa',
+'ncategories'         => '$1 luokassa',
 'nrevisions'          => '$1 muutosta',
 'widthheight'         => '$1×$2',
 'go'                  => 'Siirry',
@@ -215,11 +212,8 @@
 'hidetoc'             => 'piilota',
 'thisisdeleted'       => 'Näytä tai palauta $1.',
 'viewdeleted'         => 'Näytä $1?',
-'restorelink1'        => 'yksi poistettu muokkaus',
-'restorelink'         => '$1 poistettua muokkausta',
+'restorelink'         => '{{PLURAL:$1|yksi poistettu muokkaus|$1 poistettua muokkausta}}',
 'feedlinks'           => 'Uutissyötteet:',
-'sitenotice'          => '-', # the equivalent to wgSiteNotice
-'anonnotice'          => '-',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'          => 'Sivu',
@@ -246,7 +240,7 @@
 'databaseerror'       => 'Tietokantavirhe',
 'dberrortext'         => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta ”<tt>$2</tt>”. MySQL palautti virheen ”<tt>$3: $4</tt>”.',
 'dberrortextcl'       => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. MySQL palautti virheen ”$3: $4”.',
-'noconnect'           => 'Tietokantaan ei saatu yhteyttä, ole hyvä ja yritä uudestaan.',
+'noconnect'           => 'Tietokantaongelma.<br />$1',
 'nodb'                => 'Tietokantaa $1 ei voitu valita',
 'cachederror'         => 'Pyydetystä sivusta näytettiin välimuistissa oleva kopio, ja se saattaa olla vanhentunut.',
 'laggedslavemode'     => 'Varoitus: Sivu ei välttämättä sisällä viimeisimpiä muutoksia.',
@@ -265,7 +259,7 @@
 'badarticleerror'     => 'Toimintoa ei voi suorittaa tälle sivulle.',
 'cannotdelete'        => 'Sivun tai tiedoston poisto epäonnistui. Joku muu on saattanut poistaa sen.',
 'badtitle'            => 'Virheellinen otsikko',
-'badtitletext'        => 'Pyytämäsi sivuotsikko oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen otsikko.',
+'badtitletext'        => 'Pyytämäsi sivuotsikko oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen linkki.',
 'perfdisabled'        => 'Pahoittelut! Tämä ominaisuus ei toistaiseksi ole käytetössä, sillä se hidastaa tietokantaa niin paljon, että kukaan ei voi käyttää wikiä. Toiminto ohjelmoidaan tehokkaammaksi lähiaikoina. (Sinäkin voit tehdä sen! Tämä on vapaa ohjelmisto.)',
 'perfdisabledsub'     => 'Tässä on tallennettu kopio $1', # obsolete? ei ole
 'perfcached'          => 'Seuraava data on tuotu välimuistista, eikä se ole välttämättä ajan tasalla.',
@@ -326,8 +320,8 @@
 'noname'              => 'Et ole määritellyt kelvollista käyttäjänimeä.',
 'loginsuccesstitle'   => 'Sisäänkirjautuminen onnistui',
 'loginsuccess'        => 'Olet kirjautunut käyttäjänä $1.',
-'nosuchuser'          => 'Käyttäjää <strong>$1</strong> ei ole olemassa. Tarkista kirjoititko nimen oikein, tai käytä alla olevaa lomaketta uuden käyttäjätunnuksen luomiseksi.', // TODO NOWIKIMARKUP
-'nosuchusershort'     => 'Käyttäjää nimellä <b>$1</b> ei ole. Kirjoititko nimen oikein?', // TODO NO WIKIMARKUP
+'nosuchuser'          => 'Käyttäjää ”$1” ei ole olemassa. Tarkista kirjoititko nimen oikein, tai käytä alla olevaa lomaketta uuden käyttäjätunnuksen luomiseksi.', // TODO NOWIKIMARKUP
+'nosuchusershort'     => 'Käyttäjää nimeltä ”$1” ei ole. Kirjoititko nimen oikein?', // TODO NO WIKIMARKUP
 'wrongpassword'       => 'Syöttämäsi salasana ei ole oikein. Ole hyvä ja yritä uudelleen.',
 'wrongpasswordempty'  => 'Et voi antaa tyhjää salasanaa.',
 'mailmypassword'      => 'Lähetä uusi salasana sähköpostitse',
@@ -443,7 +437,7 @@
 'editingold'          => '<center><strong>Varoitus</strong>: Olet muokkaamassa vanhaa versiota tämän sivun tekstistä. Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</center>',
 'yourdiff'            => 'Eroavaisuudet',
 'copyrightwarning'    => '<strong>Muutoksesi astuvat voimaan välittömästi.</strong> Jos haluat harjoitella muokkaamista, ole hyvä ja käytä [[Project:Hiekkalaatikko|hiekkalaatikkoa]].<br /><br />Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>',
-'copyrightwarning2'   => '<br />Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
+'copyrightwarning2'   => '>Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
 'longpagewarning'     => '<center>Tämän sivun tekstiosuus on $1 binäärikilotavua pitkä. Harkitse, voisiko sivun jakaa pienempiin osiin.</center>',
 'longpageerror'       => '<strong>Sivun koko on $1 binäärikilotavua. Sivua ei voida tallentaa, koska enimmäiskoko on $2 binäärikilotavua.</strong>',
 'readonlywarning'     => '<strong>Varoitus</strong>: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.',
@@ -472,7 +466,6 @@
 'last'                => 'edell.',
 'orig'                => 'alkup.',
 'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
-'history_copyright'   => '-',
 'deletedrev'          => '[poistettu]',
 'histfirst'           => 'Ensimmäiset',
 'histlast'            => 'Viimeisimmät',
@@ -622,7 +615,7 @@
 'recentchanges'       => 'Tuoreet muutokset',
 'recentchanges-url'   => 'Special:Recentchanges',
 'recentchangestext'   => 'Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.',
-'rcnote'              => 'Alla on <b>$1</b> tuoreinta muutosta viimeisten <b>$2</b> päivän ajalta.',
+'rcnote'              => 'Alla on <b>$1</b> tuoreinta muutosta viimeisten <b>$2</b> päivän ajalta ($3).',
 'rcnotefrom'          => 'Alla on muutokset <b>$2</b> lähtien. Enintään <b>$1</b> merkintää näytetään.',
 'rclistfrom'          => 'Näytä uudet muutokset $1 alkaen',
 'rcshowhideminor'     => '$1 pienet muutokset',
@@ -743,7 +736,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 # Unused templates
 'unusedtemplates'     => 'Käyttämättömät mallineet',
 'unusedtemplatestext' => 'Tässä on lista kaikista mallineista, joita ei ole liitetty toiselle sivulle. Muista tarkistaa onko malline siitä huolimatta käytössä.',
-'unusedtemplateswlh'  => 'muita linkkejä',
+'unusedtemplateswlh'  => 'muut linkit',
 
 
 # Statistics
@@ -780,7 +773,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'mostcategories'      => 'Sivut, jotka ovat useissa luokissa',
 'mostimages'          => 'Kuvat, joihin on eniten linkkejä',
 'mostrevisions'       => 'Sivut, joilla on eniten muutoksia',
-'nlinks'              => '$1 linkkiä',
+'nlinks'              => '$1 {{PLURAL:$1|linkki|linkkiä}}',
 'members'             => '$1 jäsentä',
 'allpages'            => 'Kaikki sivut',
 'prefixindex'         => 'Etuliiteluettelo',
@@ -1227,10 +1220,8 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'spamprotectiontitle' => 'Mainossuodatin',
 'spamprotectiontext'  => 'Mainossuodatin on estänyt sivun tallentamisen. Syynä on todennäköisimmin {{GRAMMAR:genitive|{{SITENAME}}}} ulkopuolelle osoittava linkki.',
 'spamprotectionmatch' => 'Teksti, joka ei läpäissyt mainossuodatinta: $1',
-'subcategorycount'    => 'Tällä luokalla on $1 alaluokkaa.',
-'subcategorycount1'   => 'Tällä luokalla on $1 alaluokka.',
-'categoryarticlecount'=> 'Tässä luokassa on $1 sivua.',
-'categoryarticlecount1' => 'Tässä luokassa on yksi sivu.',
+'subcategorycount'    => 'Tällä luokalla on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
+'categoryarticlecount'=> 'Tässä luokassa on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
 'listingcontinuesabbrev' => ' jatkuu',
 'spambot_username'    => 'MediaWikin mainospoistaja',
 'spam_reverting'      => 'Palautettu viimeisimpään versioon, joka ei sisällä linkkejä kohteeseen $1.',
@@ -1616,7 +1607,6 @@ This file contains additional information, probably added from the digital camer
 'exif-sharpness-0'    => 'Normaali',
 'exif-sharpness-1'    => 'Pehmeä',
 'exif-sharpness-2'    => 'Kova',
-
 'exif-subjectdistancerange-0' => 'Tuntematon',
 'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Lähikuva',
@@ -1685,7 +1675,6 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 'scarytranscludedisabled' => '[Wikienvälinen sisällytys ei ole käytössä]',
 'scarytranscludefailed'   => '[Mallineen hakeminen epäonnistui: $1]', // kauhee?
 'scarytranscludetoolong'  => '[Verkko-osoite on liian pitkä]',
-
 
 # Trackbacks
 'trackbackbox' => '<div id="mw_trackbacks">Artikkelin trackbackit:<br />$1</div>',
