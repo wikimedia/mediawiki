@@ -1793,12 +1793,6 @@ $wgDisableHardRedirects = false;
 $wgEnableSorbs = false;
 
 /**
- * Use opm.blitzed.org to check for open proxies.
- * Not yet actually used.
- */
-$wgEnableOpm = false;
-
-/**
  * Proxy whitelist, list of addresses that are assumed to be non-proxy despite what the other
  * methods might say
  */

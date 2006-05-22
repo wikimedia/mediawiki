@@ -480,12 +480,6 @@ class User {
 			$this->inDnsBlacklist( $ip, 'http.dnsbl.sorbs.net.' );
 	}
 
-	function inOpmBlacklist( $ip ) {
-		global $wgEnableOpm;
-		return $wgEnableOpm &&
-			$this->inDnsBlacklist( $ip, 'opm.blitzed.org.' );
-	}
-
 	function inDnsBlacklist( $ip, $base ) {
 		$fname = 'User::inDnsBlacklist';
 		wfProfileIn( $fname );
