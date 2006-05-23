@@ -586,6 +586,8 @@ class Sanitizer {
 				'ISBN' => '&#73;SBN',
 				'RFC'  => '&#82;FC',
 				'PMID' => '&#80;MID',
+				'|'    => '&#124;',
+				'__'   => '&#95;_',
 			) );
 
 			# Stupid hack

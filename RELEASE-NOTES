@@ -5,6 +5,16 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.6.6 ==
 
+May 23, 2006
+
+MediaWiki 1.6.6 is a security and bugfix maintenance release.
+
+An XSS injection vector in brace replacement has been fixed, as have some
+potential problems with table parsing. Upgrading is strongly recommended
+for all users.
+
+Additionally some localization and user interface updates are included.
+
 * Correct "revertpage" message in English
 * (bug 5507) Logouttext uses now wiki markup
 * (bug 5857, 5957) Update for German localisation (de)
@@ -13,6 +23,12 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 6025) SpecialImport: wrong message when no file selected
 * (bug 6015) EditPage: add spacing in the boxes "edit is minor" and "watch this"
 * (bug 6018) Userrights: new message when no user specified ('nouserspecified')
+* (bug 6055) Fix for HTML/JS injection bug in variable handler (found by Nick Jenkins)
+* Reordered wiki table handling and __TOC__ extraction in the parser to better
+  handle some overlapping tag cases.
+* Only the first __TOC__ is now turned into a TOC.
+* (bug 361) URL in URL, they were almost fixed. Now they are.
+
 
 == MediaWiki 1.6.5 ==
 
