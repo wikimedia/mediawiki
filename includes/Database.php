@@ -270,14 +270,7 @@ class Database {
 			@/**/$this->mConn = mysql_pconnect( $server, $user, $password );
 		} else {
 			# Create a new connection...
-			if( version_compare( PHP_VERSION, '4.2.0', 'ge' ) ) {
-				@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
-			} else {
-				# On PHP 4.1 the new_link parameter is not available. We cannot
-				# guarantee that we'll actually get a new connection, and this
-				# may cause some operations to fail possibly.
-				@/**/$this->mConn = mysql_connect( $server, $user, $password );
-			}
+			@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
 		}
 
 		if ( $dbName != '' ) {
