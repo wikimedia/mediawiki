@@ -292,7 +292,7 @@ function wfSpecialWatchlist( $par ) {
 	  rc_user AS rev_user, rc_user_text AS rev_user_text,
 	  rc_timestamp AS rev_timestamp, rc_minor AS rev_minor_edit,
 	  rc_this_oldid AS rev_id,
-	  rc_last_oldid,
+	  rc_last_oldid, rc_id, rc_patrolled,
 	  rc_new AS page_is_new,wl_notificationtimestamp
 	  FROM $watchlist,$recentchanges,$page
 	  WHERE wl_user=$uid
