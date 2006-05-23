@@ -3119,9 +3119,9 @@ class Parser
 		$numMatches = preg_match_all( '/<H([1-6])(.*?'.'>)(.*?)<\/H[1-6] *>/i', $text, $matches );
 
 		# if there are fewer than 4 headlines in the article, do not show TOC
-		if( $numMatches < 4 ) {
-			$this->mShowToc = false;
-		}
+		# unless it's been explicitly enabled.
+		$enoughToc = $this->mShowToc &&
+			(($numMatches >= 4) || $this->mForceTocPosition);
 
 		# Allow user to stipulate that a page should have a "new section"
 		# link added via __NEWSECTIONLINK__
@@ -3129,25 +3129,17 @@ class Parser
 		if( $mw->matchAndRemove( $text ) )
 			$this->mOutput->setNewSection( true );
 
-		# if the string __TOC__ (not case-sensitive) occurs in the HTML,
-		# override above conditions and always show TOC at that place
-
-		$mw =& MagicWord::get( MAG_TOC );
-		if($mw->match( $text ) ) {
+		# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
+		# override above conditions and always show TOC above first header
+		$mw =& MagicWord::get( MAG_FORCETOC );
+		if ($mw->matchAndRemove( $text ) ) {
 			$this->mShowToc = true;
-			$this->mForceTocPosition = true;
-		} else {
-			# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
-			# override above conditions and always show TOC above first header
-			$mw =& MagicWord::get( MAG_FORCETOC );
-			if ($mw->matchAndRemove( $text ) ) {
-				$this->mShowToc = true;
-			}
+			$enoughToc = true;
 		}
 
 		# Never ever show TOC if no headers
 		if( $numMatches < 1 ) {
-			$this->mShowToc = false;
+			$enoughToc = false;
 		}
 
 		# We need this to perform operations on the HTML
@@ -3189,7 +3181,7 @@ class Parser
 			}
 			$level = $matches[1][$headlineCount];
 
-			if( $doNumberHeadings || $this->mShowToc ) {
+			if( $doNumberHeadings || $enoughToc ) {
 
 				if ( $level > $prevlevel ) {
 					# Increase TOC level
@@ -3285,7 +3277,7 @@ class Parser
 			if($refcount[$headlineCount] > 1 ) {
 				$anchor .= '_' . $refcount[$headlineCount];
 			}
-			if( $this->mShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
+			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
 			}
 			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
@@ -3306,7 +3298,7 @@ class Parser
 				$sectionCount++;
 		}
 
-		if( $this->mShowToc ) {
+		if( $enoughToc ) {
 			if( $toclevel<$wgMaxTocLevel ) {
 				$toc .= $sk->tocUnindent( $toclevel - 1 );
 			}
@@ -3328,7 +3320,7 @@ class Parser
 				# $full .= $sk->editSectionLink(0);
 			}
 			$full .= $block;
-			if( $this->mShowToc && !$i && $isMain && !$this->mForceTocPosition ) {
+			if( $enoughToc && !$i && $isMain && !$this->mForceTocPosition ) {
 				# Top anchor now in skin
 				$full = $full.$toc;
 			}
