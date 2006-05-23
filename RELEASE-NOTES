@@ -318,8 +318,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6055) Fix for HTML/JS injection bug in variable handler (found by Nick Jenkins)
 * Reordered wiki table handling and __TOC__ extraction in the parser to better
   handle some overlapping tag cases.
-* Only the first __TOC__ is now turned into a TOC.
-
+* Only the first __TOC__ is now turned into a TOC
+* (bug 4610) Indicate patrolled status on watchlists and allow users to mark
+  changes as patrolled using the diff links there
 
 == Compatibility ==
 
