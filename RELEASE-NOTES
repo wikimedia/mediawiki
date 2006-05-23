@@ -11,7 +11,7 @@ MediaWiki 1.6.6 is a security and bugfix maintenance release.
 
 An XSS injection vector in brace replacement has been fixed, as have some
 potential problems with table parsing. Upgrading is strongly recommended
-for all users.
+for all users of 1.6. MediaWiki versions 1.5 and earlier are not affected.
 
 Additionally some localization and user interface updates are included.
 
