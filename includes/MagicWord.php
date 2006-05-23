@@ -329,8 +329,8 @@ class MagicWord {
 	/**
 	 * Replaces the word with something else
 	 */
-	function replace( $replacement, $subject ) {
-		$res = preg_replace( $this->getRegex(), wfRegexReplacement( $replacement ), $subject );
+	function replace( $replacement, $subject, $limit=-1 ) {
+		$res = preg_replace( $this->getRegex(), wfRegexReplacement( $replacement ), $subject, $limit );
 		$this->mModified = !($res === $subject);
 		return $res;
 	}
