@@ -315,7 +315,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6046) Update to Indonesian localisation (id) #15
 * (bug 5523) $wgNoFollowNsExceptions to allow disabling rel="nofollow" in
   specially-selected namespaces.
-* Fix for HTML/JS injection bug in variable handler (found by Nick Jenkins)
+* (bug 6055) Fix for HTML/JS injection bug in variable handler (found by Nick Jenkins)
+* Reordered wiki table handling and __TOC__ extraction in the parser to better
+  handle some overlapping tag cases.
+* Only the first __TOC__ is now turned into a TOC.
 
 
 == Compatibility ==

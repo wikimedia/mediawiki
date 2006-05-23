@@ -157,6 +157,9 @@ class Parser
  		$this->mTemplates = array();
  		$this->mTemplatePath = array();
 
+		$this->mShowToc = true;
+		$this->mForceTocPosition = false;
+		
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 	}
 
@@ -873,12 +876,20 @@ class Parser
 		$text = strtr( $text, array( '<onlyinclude>' => '' , '</onlyinclude>' => '' ) );
 		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
 		$text = preg_replace( '/<includeonly>.*?<\/includeonly>/s', '', $text );
-
+		
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ) );
+
 		$text = $this->replaceVariables( $text, $args );
+
+		// Tables need to come after variable replacement for things to work
+		// properly; putting them before other transformations should keep
+		// exciting things like link expansions from showing up in surprising
+		// places.
+		$text = $this->doTableStuff( $text );
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
+		$text = $this->stripToc( $text );
 		$text = $this->doHeadings( $text );
 		if($this->mOptions->getUseDynamicDates()) {
 			$df =& DateFormatter::getInstance();
@@ -893,7 +904,6 @@ class Parser
 		$text = str_replace($this->mUniqPrefix."NOPARSE", "", $text);
 
 		$text = $this->doMagicLinks( $text );
-		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 
 		wfProfileOut( $fname );
@@ -2411,7 +2421,7 @@ class Parser
 		wfProfileOut( $fname );
 		return $text;
 	}
-
+	
 	/**
 	 * Replace magic variables
 	 * @private
@@ -3050,6 +3060,31 @@ class Parser
 	}
 
 	/**
+	 * Detect __TOC__ magic word and set a placeholder
+	 */
+	function stripToc( $text ) {
+		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML,
+		# do not add TOC
+		$mw = MagicWord::get( MAG_NOTOC );
+		if( $mw->matchAndRemove( $text ) ) {
+			$this->mShowToc = false;
+		}
+		
+		$mw = MagicWord::get( MAG_TOC );
+		if( $mw->match( $text ) ) {
+			$this->mShowToc = true;
+			$this->mForceTocPosition = true;
+			
+			// Set a placeholder. At the end we'll fill it in with the TOC.
+			$text = $mw->replace( '<!--MWTOC-->', $text, 1 );
+			
+			// Only keep the first one.
+			$text = $mw->replace( '', $text );
+		}
+		return $text;
+	}
+
+	/**
 	 * This function accomplishes several tasks:
 	 * 1) Auto-number headings if that option is enabled
 	 * 2) Add an [edit] link to sections for logged in users who have enabled the option
@@ -3067,8 +3102,6 @@ class Parser
 		global $wgMaxTocLevel, $wgContLang;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
-		$doShowToc = true;
-		$forceTocHere = false;
 		if( !$this->mTitle->userCanEdit() ) {
 			$showEditLink = 0;
 		} else {
@@ -3080,12 +3113,6 @@ class Parser
 		if( $esw->matchAndRemove( $text ) ) {
 			$showEditLink = 0;
 		}
-		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML,
-		# do not add TOC
-		$mw =& MagicWord::get( MAG_NOTOC );
-		if( $mw->matchAndRemove( $text ) ) {
-			$doShowToc = false;
-		}
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
@@ -3093,7 +3120,7 @@ class Parser
 
 		# if there are fewer than 4 headlines in the article, do not show TOC
 		if( $numMatches < 4 ) {
-			$doShowToc = false;
+			$this->mShowToc = false;
 		}
 
 		# Allow user to stipulate that a page should have a "new section"
@@ -3107,20 +3134,20 @@ class Parser
 
 		$mw =& MagicWord::get( MAG_TOC );
 		if($mw->match( $text ) ) {
-			$doShowToc = true;
-			$forceTocHere = true;
+			$this->mShowToc = true;
+			$this->mForceTocPosition = true;
 		} else {
 			# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
 			# override above conditions and always show TOC above first header
 			$mw =& MagicWord::get( MAG_FORCETOC );
 			if ($mw->matchAndRemove( $text ) ) {
-				$doShowToc = true;
+				$this->mShowToc = true;
 			}
 		}
 
 		# Never ever show TOC if no headers
 		if( $numMatches < 1 ) {
-			$doShowToc = false;
+			$this->mShowToc = false;
 		}
 
 		# We need this to perform operations on the HTML
@@ -3162,7 +3189,7 @@ class Parser
 			}
 			$level = $matches[1][$headlineCount];
 
-			if( $doNumberHeadings || $doShowToc ) {
+			if( $doNumberHeadings || $this->mShowToc ) {
 
 				if ( $level > $prevlevel ) {
 					# Increase TOC level
@@ -3258,7 +3285,7 @@ class Parser
 			if($refcount[$headlineCount] > 1 ) {
 				$anchor .= '_' . $refcount[$headlineCount];
 			}
-			if( $doShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
+			if( $this->mShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
 			}
 			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
@@ -3279,7 +3306,7 @@ class Parser
 				$sectionCount++;
 		}
 
-		if( $doShowToc ) {
+		if( $this->mShowToc ) {
 			if( $toclevel<$wgMaxTocLevel ) {
 				$toc .= $sk->tocUnindent( $toclevel - 1 );
 			}
@@ -3301,8 +3328,8 @@ class Parser
 				# $full .= $sk->editSectionLink(0);
 			}
 			$full .= $block;
-			if( $doShowToc && !$i && $isMain && !$forceTocHere) {
-			# Top anchor now in skin
+			if( $this->mShowToc && !$i && $isMain && !$this->mForceTocPosition ) {
+				# Top anchor now in skin
 				$full = $full.$toc;
 			}
 
@@ -3311,9 +3338,8 @@ class Parser
 			}
 			$i++;
 		}
-		if($forceTocHere) {
-			$mw =& MagicWord::get( MAG_TOC );
-			return $mw->replace( $toc, $full );
+		if( $this->mForceTocPosition ) {
+			return str_replace( '<!--MWTOC-->', $toc, $full );
 		} else {
 			return $full;
 		}

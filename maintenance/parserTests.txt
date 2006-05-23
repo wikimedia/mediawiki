@@ -3970,6 +3970,147 @@ mailto:inline@mail.tld
 </p>
 !! end
 
+
+#
+# Security and HTML correctness
+# From Nick Jenkins' fuzz testing
+#
+
+!! test
+Fuzz testing: Parser13
+!! input
+{| 
+| http://a|
+!! result
+<table>
+<tr>
+<td>
+</td>
+</tr>
+</table>
+
+!! end
+
+!! test
+Fuzz testing: Parser14
+!! input
+== onmouseover= ==
+http://__TOC__
+!! result
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a>]</div><a name="onmouseover.3D"></a><h2> onmouseover= </h2>
+<p>http://
+</p>
+!! end
+
+!! test
+Fuzz testing: Parser14-table
+!! input
+==a==
+{| STYLE=__TOC__
+!! result
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a>]</div><a name="a"></a><h2>a</h2>
+<table style="&#95;_TOC&#95;_">
+<tr><td></td></tr>
+</table>
+
+!! end
+
+# Known to produce bogus xml (extra </td>)
+!! test
+Fuzz testing: Parser16
+!! options
+noxml
+!! input
+{|
+!https://||||||
+!! result
+<table>
+<tr>
+<th>https://</th><th></th><th></th><th>
+</td>
+</tr>
+</table>
+
+!! end
+
+!! test
+Fuzz testing: Parser21
+!! input
+{|
+! irc://{{ftp://a" onmouseover="alert('hello world');"
+|
+!! result
+<table>
+<tr>
+<th> <a href="irc://{{ftp://a" class='external free' title="irc://{{ftp://a" rel="nofollow">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
+</th><td>
+</td>
+</tr>
+</table>
+
+!! end
+
+!! test
+Fuzz testing: Parser22
+!! input
+http://===r:::https://b
+
+{|
+!!result
+<p><a href="http://===r:::https://b" class='external free' title="http://===r:::https://b" rel="nofollow">http://===r:::https://b</a>
+</p>
+<table>
+<tr><td></td></tr>
+</table>
+
+!! end
+
+# Known to produce bad XML for now
+!! test
+Fuzz testing: Parser24
+!! options
+noxml
+!! input
+{|
+{{{|
+<u CLASS=
+| {{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--><noinclude>}}}} >
+<br style="onmouseover='alert(document.cookie);' " />
+
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+|
+!! result
+<table>
+
+<u class="&#124;">} &gt;
+<br style="onmouseover='alert(document.cookie);' " />
+
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+<tr>
+<td></u>
+</td>
+</tr>
+</table>
+
+!! end
+
+# Known to produce bad XML for now
+!!test
+Fuzz testing: Parser25 (bug 6055)
+!! options
+noxml
+!! input
+{{{
+| 
+<LI CLASS=||
+ >
+}}}blah" onmouseover="alert('hello world');" align="left"'''MOVE MOUSE CURSOR OVER HERE
+!! result
+<li class="&#124;&#124;">
+blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
+
+!! end
+
 #
 #
 #
