@@ -297,6 +297,11 @@ $user: the user _doing_ the block (not the one being blocked)
 $block: the Block object that was saved
 $user: the user who did the block (not the one being blocked)
 
+'DiffViewHeader': called before diff display
+$diff: DifferenceEngine object that's calling
+$oldRev: Revision object of the "old" revision (may be null/invalid)
+$newRev: Revision object of the "new" revision
+
 'EditFilter': Perform checks on an edit
 $editor: Edit form (see includes/EditPage.php)
 $text: Contents of the edit box

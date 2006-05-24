@@ -321,6 +321,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Only the first __TOC__ is now turned into a TOC
 * (bug 4610) Indicate patrolled status on watchlists and allow users to mark
   changes as patrolled using the diff links there
+* Add 'DiffViewHeader' hook called before diff page output
+
 
 == Compatibility ==
 
