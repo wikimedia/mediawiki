@@ -326,6 +326,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6054) Update to Indonesian localisation (id) #16
 * Add {{CURRENTTIMESTAMP}} magic word
 * (bug 6061) Improper escaping in some html forms
+* (bug 6065) Remove underscore when using NAMESPACE and TALKSPACE magics.
 
 == Compatibility ==
 
