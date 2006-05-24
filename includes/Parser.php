@@ -2135,11 +2135,11 @@ class Parser
 			case MAG_REVISIONID:
 				return $this->mRevisionId;
 			case MAG_NAMESPACE:
-				return $wgContLang->getNsText( $this->mTitle->getNamespace() );
+				return str_replace('_',' ',$wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 			case MAG_NAMESPACEE:
 				return wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 			case MAG_TALKSPACE:
-				return $this->mTitle->canTalk() ? $this->mTitle->getTalkNsText() : '';
+				return $this->mTitle->canTalk() ? str_replace('_',' ',$this->mTitle->getTalkNsText()) : '';
 			case MAG_TALKSPACEE:
 				return $this->mTitle->canTalk() ? wfUrlencode( $this->mTitle->getTalkNsText() ) : '';
 			case MAG_SUBJECTSPACE:
