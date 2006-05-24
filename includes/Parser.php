@@ -2166,6 +2166,8 @@ class Parser
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfUsers() );
 			case MAG_NUMBEROFPAGES:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfPages() );
+			case MAG_CURRENTTIMESTAMP:
+				return $varCache[$index] = wfTimestampNow();
 			case MAG_CURRENTVERSION:
 				global $wgVersion;
 				return $wgVersion;
