@@ -480,7 +480,7 @@ END
 	}
 
 	function doDelete()	{
-		global $wgOut, $wgRequest, $wgUseSquid, $wgInternalServer;
+		global $wgOut, $wgRequest, $wgUseSquid;
 		global $wgPostCommitUpdateList;
 
 		$fname = 'ImagePage::doDelete';
@@ -506,7 +506,7 @@ END
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$urlArr = array(
-					$wgInternalServer.wfImageArchiveUrl( $oldimage ),
+					wfImageArchiveUrl( $oldimage ),
 					$this->mTitle->getInternalURL()
 				);
 				wfPurgeSquidServers($urlArr);
@@ -542,7 +542,7 @@ END
 			$urlArr = Array();
 			while ( $s = $dbw->fetchObject( $res ) ) {
 				$this->doDeleteOldImage( $s->oi_archive_name );
-				$urlArr[] = $wgInternalServer.wfImageArchiveUrl( $s->oi_archive_name );
+				$urlArr[] = wfImageArchiveUrl( $s->oi_archive_name );
 			}
 
 			# And also the HTML of all pages using this image

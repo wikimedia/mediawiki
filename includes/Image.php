@@ -909,7 +909,7 @@ class Image
 	 * @private
 	 */
 	function renderThumb( $width, $useScript = true ) {
-		global $wgUseSquid, $wgInternalServer;
+		global $wgUseSquid;
 		global $wgSVGMaxSize, $wgMaxImageArea, $wgThumbnailEpoch;
 
 		$fname = 'Image::renderThumb';
@@ -1017,11 +1017,7 @@ class Image
 				# This has to be done after the image is updated and present for all machines on NFS,
 				# or else the old version might be stored into the squid again
 				if ( $wgUseSquid ) {
-					if ( substr( $url, 0, 4 ) == 'http' ) {
-						$urlArr = array( $url );
-					} else {
-						$urlArr = array( $wgInternalServer.$url );
-					}
+					$urlArr = array( $url );
 					wfPurgeSquidServers($urlArr);
 				}
 			}
@@ -1232,7 +1228,7 @@ class Image
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
 	 */
 	function purgeCache( $archiveFiles = array(), $shared = false ) {
-		global $wgInternalServer, $wgUseSquid;
+		global $wgUseSquid;
 
 		// Refresh metadata cache
 		$this->purgeMetadataCache();
@@ -1243,16 +1239,16 @@ class Image
 		$urls = array();
 		foreach ( $files as $file ) {
 			if ( preg_match( '/^(\d+)px/', $file, $m ) ) {
-				$urls[] = $wgInternalServer . $this->thumbUrl( $m[1], $this->fromSharedDirectory );
+				$urls[] = $this->thumbUrl( $m[1], $this->fromSharedDirectory );
 				@unlink( "$dir/$file" );
 			}
 		}
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
-			$urls[] = $wgInternalServer . $this->getViewURL();
+			$urls[] = $this->getViewURL();
 			foreach ( $archiveFiles as $file ) {
-				$urls[] = $wgInternalServer . wfImageArchiveUrl( $file );
+				$urls[] = wfImageArchiveUrl( $file );
 			}
 			wfPurgeSquidServers( $urls );
 		}
