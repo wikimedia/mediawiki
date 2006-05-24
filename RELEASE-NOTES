@@ -327,6 +327,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add {{CURRENTTIMESTAMP}} magic word
 * (bug 6061) Improper escaping in some html forms
 * (bug 6065) Remove underscore when using NAMESPACE and TALKSPACE magics.
+* (bug 6074) Correct squid purging of offsite upload URLs
+
 
 == Compatibility ==
 
