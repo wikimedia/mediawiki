@@ -72,14 +72,15 @@
 'may' => 'Mei',
 'jun' => 'Jun',
 'jul' => 'Jul',
-'aug' => 'Agt',
+'aug' => 'Agu',
 'sep' => 'Sep',
 'oct' => 'Okt',
 'nov' => 'Nov',
 'dec' => 'Des',
+
 # Bits of text used by many pages:
 #
-'categories' => '{{PLURAL:$1|Kategori|Kategori}}',
+'categories' => 'Kategori', # no need for plural
 "category" => "kategori",
 "category_header" => "Artikel dalam kategori \"$1\"",
 "subcategories" => "Subkategori",
@@ -131,7 +132,7 @@
 "currentevents" => "Peristiwa terkini",
 'currentevents-url' => 'Peristiwa terkini',
 
-"disclaimers" => "Penyangkalan",
+"disclaimers" => "Penyangkalan umum",
 "disclaimerpage" => "{{ns:project}}:Penyangkalan umum",
 'privacy' => 'Kebijakan kerahasiaan',
 'privacypage' => '{{ns:project}}:Kebijakan kerahasiaan',
@@ -198,9 +199,9 @@
 
 'widthheight'		=> '$1x$2',
 "ok" => "OK",
-'sitetitle'		=> '{{SITENAME}}',
+
 'pagetitle'		=> '$1 - {{SITENAME}}',
-"sitesubtitle" => "",
+
 "retrievedfrom" => "Diperoleh dari \"$1\"",
 'youhavenewmessages' => 'Anda memiliki $1 ($2).',
 "newmessageslink" => "pesan baru",
@@ -212,7 +213,7 @@
 "hidetoc" => "sembunyikan",
 "thisisdeleted" => "Lihat atau kembalikan $1?",
 'viewdeleted' => 'Lihat $1?',
-'restorelink' => '{{PLURAL:$1|1 suntingan dihapus|$1 suntingan dihapus}}',
+'restorelink' => '$1 suntingan dihapus', # no need for plural
 'feedlinks' => 'Feed:',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
@@ -399,12 +400,12 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "accmailtext" => "Kata sandi untuk '$1' telah dikirimkan ke $2.",
 "newarticle" => "(Baru)",
 "newarticletext" => "Anda mengikuti pranala ke halaman yang belum ada.\nUntuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini\n(lihat [[{{ns:project}}:Bantuan|halaman bantuan]] untuk informasi lebih lanjut).\nJika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
-'newarticletextanon' => '{{int:newarticletext}}',
-"talkpagetext" => "<!-- MediaWiki:talkpagetext -->",
-"anontalkpagetext" => "---- ''Ini adalah halaman diskusi seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena ia tidak membuat akun, kami terpaksa harus memakai [[alamat IP]]-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[Special:Userlogin|membuat akun atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.''",
+
+
+"anontalkpagetext" => "---- ''Ini adalah halaman diskusi seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena ia tidak membuat akun, kami terpaksa harus memakai alamat IP-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[Special:Userlogin|membuat akun atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.''",
 "noarticletext" => "(Tidak ada teks dalam halaman ini)",
-'noarticletextanon' => '{{int:noarticletext}}',
-'clearyourcache' => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+
+'clearyourcache' => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
 'usercssjsyoucanpreview' => "<strong>Tips:</strong> Gunakan tombol 'Tampilkan pratayang' untuk menguji css/js baru Anda sebelum menyimpannya.",
 'usercsspreview' => "'''Ingatlah bahwa yang Anda lihat hanyalah pratayang CSS Anda, dan bahwa pratayang tersebut belum disimpan!'''",
 'userjspreview' => "'''Ingatlah bahwa yang Anda lihat hanyalah pratayang JavaScript Anda, dan bahwa pratayang tersebut belum disimpan!'''",
@@ -508,8 +509,8 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "showingresultsnum" => "Di bawah ditampilkan <strong>$3</strong> hasil pencarian, dimulai dari #<strong>$2</strong>.",
 "nonefound" => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum, seperti \"have\" and \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu aturan pencarian (hanya halaman yang mengandung semua aturan pencarianlah yang akan ditampilkan dalam hasil pencarian)",
 "powersearch" => "Cari",
-"powersearchtext" => "Cari dalam namespace :<br />$1<br />$2 Juga tampilkan peralihan   Cari $3 $9",
-"searchdisabled" => '<p style="margin: 1.5em 2em 1em">Pencarian {{SITENAME}} dimatikan sementara karena masalah performa. Dalam pada itu, Anda dapat mencari melalui Google. <span style="font-size: 89%; display: block; margin-left: .2em">Perhatikan bahwa hasil pencarian Google mungkin out-of-date.</span></p>", #"<p>Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>',
+'powersearchtext' => "Cari dalam namespace:<br />$1<br />$2 Juga tampilkan peralihan<br />Cari $3 $9",
+"searchdisabled" => '<p style="margin: 1.5em 2em 1em">Pencarian {{SITENAME}} dimatikan sementara karena masalah performa. Dalam pada itu, Anda dapat mencari melalui Google. <span style="font-size: 89%; display: block; margin-left: .2em">Perhatikan bahwa hasil pencarian Google mungkin out-of-date.</span></p>',
 "blanknamespace" => "(Utama)",
 
 # Preferences page
@@ -601,7 +602,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 #
 "changes" => "perubahan",
 "recentchanges" => "Perubahan terbaru",
-'recentchanges-url' => 'Special:Recentchanges',
+
 "recentchangestext" => "Temukan perubahan terbaru dalam wiki di halaman ini.",
 'rcnote' => "Di bawah ini adalah <strong>$1</strong> perubahan terakhir dalam <strong>$2</strong> hari terakhir sampai $3.",
 "rcnotefrom" => "Di bawah ini adalah perubahan sejak <strong>$2</strong> (ditampilkan sampai <strong>$1</strong> perubahan).",
@@ -658,7 +659,7 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 'illegalfilename' => 'Nama berkas "$1" mengandung karakter yang tidak diizinkan dalam judul halaman. Silakan ubah nama berkas tersebut dan cobalah memuatkannya kembali.',
 "badfilename" => "Nama gambar telah diubah menjadi \"$1\".",
 "badfiletype" => "\".$1\" ialah format berkas gambar yang tidak diizinkan.",
-'largefile'		=> 'Ukuran gambar atau berkas disarankan untuk tidak melebihi $1 bita. Berkas ini berukuran $2 bita',
+'largefile'		=> 'Ukuran gambar atau berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita',
 'largefileserver' => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile' => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
 'fileexists' => 'Sebuah berkas dengan nama tersebut telah ada, silakan periksa $1 jika Anda ragu-ragu apakah Anda ingin mengubahnya.',
@@ -708,7 +709,7 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 'shareduploadwiki-linktext' => 'halaman deskripsi berkas',
 'noimage'       => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
 'noimage-linktext'       => 'memuat berkas',
-'uploadnewversion' => '[$1 Muatkan versi yang lebih baru dari berkas ini]',
+'uploadnewversion' => 'Muatkan versi yang lebih baru dari berkas ini',
 
 # Mime search
 #
@@ -749,7 +750,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "disambiguationspage" => "Project:Pranala_ke_halaman_disambiguation",
 "disambiguationstext" => "Halaman-halaman berikut ini berpaut ke sebuah <em>halaman disambiguation</em>. Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang tepat.<br />Satu halaman dianggap sebagai disambiguation apabila halaman tersebut disambung dari $1.<br />Pranala dari namespace lain <em>tidak</em> terdaftar di sini.",
 
-"doubleredirects" => "Peralihan halaman berganda",
+"doubleredirects" => "Peralihan halaman ganda",
 "doubleredirectstext" => "Setiap baris mengandung pranala ke peralihan pertama dan kedua, dan juga baris pertama dari teks peralihan kedua, yang biasanya memberikan artikel tujuan yang \"sesungguhnya\", yang seharusnya ditunjuk oleh peralihan yang pertama.",
 
 "brokenredirects" => "Peralihan halaman rusak",
@@ -758,12 +759,12 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 
 # Miscellaneous special pages
 #
-'nbytes'      => '$1 {{PLURAL:$1|bita|bita}}',
-'ncategories' => '$1 {{PLURAL:$1|kategori|kategori}}',
-'nlinks'      => '$1 {{PLURAL:$1|pranala|pranala}}',
-'nmembers'    => '$1 {{PLURAL:$1|pengguna|pengguna}}',
-'nrevisions'  => '$1 {{PLURAL:$1|revisi|revisi}}',
-'nviews'      => '$1 {{PLURAL:$1|penampilan|penampilan}}',
+'nbytes'      => '$1 bita',  # no need for plural
+'ncategories' => '$1 kategori',  # no need for plural
+'nlinks'      => '$1 pranala',  # no need for plural
+'nmembers'    => '$1 pengguna',  # no need for plural
+'nrevisions'  => '$1 revisi',  # no need for plural
+'nviews'      => '$1 penampilan',  # no need for plural
 
 "lonelypages" => "Halaman tak bertuan",
 'uncategorizedpages' => 'Halaman tak berkategori',
@@ -806,8 +807,8 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'groups' => 'Grup pengguna',
 "booksourcetext" => "Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari. {{SITENAME}} tidak berkepentingan dengan situs-situs web di atas, dan daftar ini seharusnya tidak dianggap sebagai sebuah dukungan.",
 "isbn" => "ISBN",
-"rfcurl" =>  "http://www.faqs.org/rfcs/rfc$1.html",
-'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
+
+
 "alphaindexline" => "$1 ke $2",
 "version" => "Versi",
 'log' => 'Log',
@@ -843,7 +844,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "noemailtext" => "Pengguna ini tidak memasukkan alamat surat-e yang sah, atau memilih untuk tidak menerima surat-e dari pengguna yang lain.",
 
 "emailfrom" => "Dari",
-"emailto" => "Ke",
+"emailto" => "Untuk",
 "emailsubject" => "Perihal",
 "emailmessage" => "Pesan",
 "emailsend" => "Kirimkan",
@@ -1055,7 +1056,7 @@ Masukan dan bantuan lanjutan:
 "contribslink" => "sumbangan",
 "autoblocker" => "Diblokir secara otomatis karena Anda berbagi alamat IP dengan \"$1\". Alasan \"$2\".",
 "blocklogpage" => "Log pemblokiran",
-"blocklogentry" => 'memblokir "$1" dengan waktu kadaluwarsa pada $2',
+"blocklogentry" => 'memblokir "[[$1]]" dengan waktu kadaluwarsa $2',
 "blocklogtext" => "Ini adalah log tindakan pemblokiran dan penghilangan blokir terhadap pengguna. Alamat IP yang diblokir secara otomatis tidak terdapat di dalam daftar ini. Lihat [[Special:Ipblocklist|daftar alamat IP yang diblokir]] untuk daftar blokir terkini yang efektif.",
 "unblocklogentry" => 'menghilangkan blokir "$1"',
 "range_block_disabled" => "Kemampuan sysop dalam membuat blokir blok IP dimatikan.",
@@ -1150,13 +1151,13 @@ Artikel yang dituju "[[$1]]" telah mempunyai isi. Apakah Anda hendak menghapusny
 
 # Namespace 8 related
 
-"allmessages" => "Semua pesan sistem",
+"allmessages" => "Pesan sistem",
 'allmessagesname' => 'Nama',
 'allmessagesdefault' => 'Teks baku',
 'allmessagescurrent' => 'Teks sekarang',
 'allmessagestext' => 'Ini adalah daftar semua pesan sistem yang tersedia dalam namespace MediaWiki:',
 'allmessagesnotsupportedUI' => 'Bahasa antarmuka Anda saat ini, <strong>$1</strong> tidak didukung oleh Istimewa:AllMessages di situs ini.',
-'allmessagesnotsupportedDB' => 'Istimewa:AllMessages tidak didukung karena wgUseDatabaseMessages dimatikan.',
+'allmessagesnotsupportedDB' => '\'\'\'Istimewa:Allmessages\'\'\' tidak didukung karena wgUseDatabaseMessages dimatikan.',
 'allmessagesfilter' => 'Filter nama pesan:',
 'allmessagesmodified' => 'Hanya tampilkan yang diubah',
 
@@ -1224,8 +1225,8 @@ Artikel yang dituju "[[$1]]" telah mempunyai isi. Apakah Anda hendak menghapusny
 'spamprotectiontitle' => 'Filter pencegah spam',
 'spamprotectiontext' => 'Halaman yang ingin Anda simpan diblokir oleh filter spam. Ini mungkin disebabkan oleh pranala ke situs luar.\n\nAnda dapat memeriksa regular expression berikut terhadap pola-pola yang diblokir:',
 'spamprotectionmatch' => 'Teks berikut ini memancing filter spam kami: $1',
-'subcategorycount' => "Ada {{PLURAL:$1|1 subkategori|$1 subkategori}} dalam kategori ini.",
-'categoryarticlecount' => "Ada {{PLURAL:$1|1 artikel|$1 artikel}} dalam kategori ini.",
+'subcategorycount' => "Ada $1 subkategori dalam kategori ini.",  # no need for plural
+'categoryarticlecount' => "Ada $1 artikel dalam kategori ini.",  # no need for plural
 'listingcontinuesabbrev' => " lanjut",
 'spambot_username' => 'Pembersihan span MediaWiki',
 'spam_reverting' => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
@@ -1303,7 +1304,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Lihat halaman isi (artikel)\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Lihat halaman pengguna\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Lihat halaman media\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Ini adalah halaman istimewa yang tidak dapat disunting.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Lihat halaman proyek\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Lihat halaman proyek\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Lihat halaman gambar\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Lihat pesan sistem\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Lihat templat\');

@@ -323,6 +323,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   changes as patrolled using the diff links there
 * Add 'DiffViewHeader' hook called before diff page output
 * (bug 6051) Improvement to German localisation (de)
+* (bug 6054) Update to Indonesian localisation (id) #16
 * Add {{CURRENTTIMESTAMP}} magic word
 
 == Compatibility ==
