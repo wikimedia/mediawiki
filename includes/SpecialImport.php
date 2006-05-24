@@ -82,7 +82,7 @@ function wfSpecialImport( $page = '' ) {
 		<input type='hidden' name='source' value='upload' />
 		<input type='hidden' name='MAX_FILE_SIZE' value='2000000' />
 		<input type='file' name='xmlimport' value='' size='30' />
-		<input type='submit' value='" . wfMsgHtml( "uploadbtn" ) . "'/>
+		<input type='submit' value=\"" . wfMsgHtml( "uploadbtn" ) . "\" />
 	</form>
 </fieldset>
 " );

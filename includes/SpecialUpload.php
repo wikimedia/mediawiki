@@ -554,13 +554,13 @@ class UploadForm {
 		<tr>
 			<tr>
 				<td align='right'>
-					<input tabindex='2' type='submit' name='wpUpload' value='$save' />
+					<input tabindex='2' type='submit' name='wpUpload' value=\"$save\" />
 				</td>
 				<td align='left'>$iw</td>
 			</tr>
 			<tr>
 				<td align='right'>
-					<input tabindex='2' type='submit' name='wpReUpload' value='{$reupload}' />
+					<input tabindex='2' type='submit' name='wpReUpload' value=\"{$reupload}\" />
 				</td>
 				<td align='left'>$reup</td>
 			</tr>
