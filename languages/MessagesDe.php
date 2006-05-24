@@ -95,8 +95,7 @@
 "subcategories" => "Unterkategorien",
 "mainpage"		=> "Hauptseite",
 'mainpagetext'		=> 'MediaWiki wurde erfolgreich installiert.',
-'mainpagedocfooter'	=> 'Siehe die [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation zur Anpassung der Benutzeroberfläche]
-und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hilfe zur Benutzung und Konfiguration.',
+'mainpagedocfooter'	=> 'Hilfe zur Benutzung und Konfiguration der Wiki Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].',
 'portal'		=> "{{SITENAME}}-Portal",
 'portal-url'		=> '{{ns:project}}:Portal',
 "about"			=> "Über",
@@ -147,7 +146,8 @@ und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hil
 "delete" => "löschen",
 "deletethispage" => "Diese Seite löschen",
 'undelete_short'	=> '$1 Änderungen wiederherstellen',
-'undelete_short1'	=> 'Eine Änderung Wiederherstellen',
+'undelete_short1'	=> 'eine Änderung Wiederherstellen',
+#bug6032 'nundelete_short'	=> '{{PLURAL:$1|eine Änderung|$1 Änderungen}} wiederherstellen',
 "protect" => "schützen",
 "protectthispage" => "Artikel schützen",
 'unprotect'		=> 'freigeben',
@@ -244,9 +244,9 @@ und das [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] für Hil
 # Main script and global functions
 #
 "nosuchaction"	=> "Diese Aktion gibt es nicht",
-"nosuchactiontext" => "Diese Aktion wird von der MediaWiki-Software nicht unterstützt",
+'nosuchactiontext'	=> 'Die in der URL angegebene Aktion wird von der MediaWiki-Software nicht unterstützt.',
 "nosuchspecialpage" => "Diese Spezialseite gibt es nicht",
-"nospecialpagetext" => "Diese Spezialseite wird von der MediaWiki-Software nicht unterstützt",
+'nospecialpagetext'	=> 'Sie haben eine nicht vorhandene Spezialseite aufgerufen. Eine Liste aller verfügabren Spezialseiten finden Sie unter [[{{ns:special}}:Specialpages]].',
 
 # General errors
 #
@@ -358,8 +358,8 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen ein temporäres
 'nouserspecified'	=> 'Bitte geben Sie einen Benutzernamen an.',
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
 'mailmypassword'	=> 'Passwort vergessen?',
-'passwordremindertitle' => 'Neues Passwort für {{SITENAME}}',
-'passwordremindertext'	=> 'Jemand mit der IP-Adresse $1 hat ein neues Passwort für die Anmeldung bei {{SITENAME}} angefordert.
+'passwordremindertitle' => '[{{SITENAME}}] Neues Passwort',
+'passwordremindertext'	=> 'Jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
 
 Das automatisch generierte Passwort für Benutzer $2 lautet nun: $3
 
@@ -387,9 +387,8 @@ Funktionen sind zur Zeit deshalb nicht möglich.',
 # Edit pages
 #
 "summary"	=> "Zusammenfassung",
-#"subject"       => "Betreff/Schlagzeile",
 "subject"       => "Betreff",
-"minoredit"	=> "Nur Kleinigkeiten wurden verändert.",
+'minoredit'		=> 'Nur Kleinigkeiten wurden verändert',
 "watchthis"     => "Diesen Artikel beobachten",
 "savearticle"	=> "Artikel speichern",
 "preview"	=> "Vorschau",
@@ -423,10 +422,10 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
 'newarticletext'	=> 'Hier den Text des neuen Artikels eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
-'newarticletextanon'	=> '{{int:newarticletext}}',
+#ignore 'newarticletextanon'	=> '{{int:newarticletext}}',
 'anontalkpagetext'	=> '---- \'\'Dies ist die Diskussionsseite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische IP-Adresse zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
 'noarticletext'		=> '(Dieser Artikel enthält momentan noch keinen Text)',
-'noarticletextanon'	=> '{{int:noarticletext}}',
+#ignore 'noarticletextanon'	=> '{{int:noarticletext}}',
 'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihren Browser anweisen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview' => "== Vorschau Ihres Benutzer-JavaScript. ==
@@ -572,10 +571,7 @@ Sie die Volltextsuche oder [[$1|legen Sie den Artikel neu an]].",
 "nonefound"		=> "<strong>Hinweis</strong>:
 Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewöhnlichen' Worten zu suchen; diese sind nicht indiziert.",
 "powersearch" => "Suche",
-"powersearchtext" => "
-Suche in Namensräumen :<br />
-$1<br />
-$2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
+'powersearchtext'	=> 'Suche in den Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
 "searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>",
 "blanknamespace" => "(Artikel)",
 
@@ -742,7 +738,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 'shareduploadwiki-linktext'	=> 'Datei-Beschreibungsseite',
 'noimage'			=> 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 'noimage-linktext'		=> 'hochladen',
-'uploadnewversion'	=> '[$1 Eine neue Version dieser Datei hochladen]',
+'uploadnewversion'	=> 'Eine neue Version dieser Datei hochladen',
 
 # List redirects
 'listredirects' => 'Weiterleitungsliste',
@@ -1128,7 +1124,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit \'\'\'
 # Move page
 #
 "movepage"		=> "Artikel verschieben",
-"movepagetext"	=> "Mit diesem Formular können Sie einen Artikel umbenennen, mitsamt allen Versionen. Der alte Titel wird zum neuen weiterleiten. Verweise auf den alten Titel werden nicht geändert, und die Diskussionsseite wird auch nicht mitverschoben.",
+'movepagetext'		=> 'Mit diesem Formular können Sie einen Artikel umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Verweise auf den alten Titel werden nicht geändert, und die Diskussionsseite wird ebenfalls nicht mitverschoben.',
 "movepagetalktext" => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
 *Sie verschieben die Seite in einen anderen Namensraum, oder
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
@@ -1382,7 +1378,7 @@ Die Betreiber dieses Wikis können keine Verantwortung für den Inhalte
 dieser Datei übernehmen. Sollte diese Datei tatsächlich böswilligen Programmcode enthalten,
 sollte umgehend ein Administrator informiert werden!',
 
-'fileinfo' => '$1KB, [http://de.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions $2]',
+'fileinfo'		=> '$1 kB, MIME Typ: <code>$2</code>',
 
 # external editor support
 'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
@@ -1481,10 +1477,10 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-gpsdestlongitude'		=> 'Länge',
 'exif-gpsdestlongituderef'	=> 'Referenz für die Länge',
 #'exif-gpsdifferential'		=> 'GPS differential correction',
-#'exif-gpsdirection-m'		=> 'Magnetic direction',
+'exif-gpsdirection-m'		=> 'Magnetische Richtung',
 #'exif-gpsdirection-t'		=> 'True direction',
-#'exif-gpsdop'			=> 'Measurement precision',
-#'exif-gpsimgdirection'		=> 'Direction of image',
+'exif-gpsdop'			=> 'Maßpräzision',
+'exif-gpsimgdirection'		=> 'Bildrichtung',
 #'exif-gpsimgdirectionref'	=> 'Reference for direction of image',
 'exif-gpslatitude'		=> 'Geografische Breite',
 'exif-gpslatitude-n'		=> 'nördl. Breite',
@@ -1579,7 +1575,7 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-relatedsoundfile'		=> 'Zugehörige Tondatei',
 'exif-resolutionunit'		=> 'Masseinheit der Auflösung',
 'exif-rowsperstrip'		=> 'Anzahl Zeilen pro Streifen',
-#'exif-samplesperpixel'		=> 'Number of components',
+'exif-samplesperpixel'		=> 'Anzahl Komponenten',
 'exif-saturation'		=> 'Sättigung',
 'exif-saturation-0'		=> 'Normal',
 'exif-saturation-1'		=> 'Gering',
@@ -1610,7 +1606,7 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-spectralsensitivity'	=> 'Spectral Sensitivity',
 #'exif-stripbytecounts'		=> 'Bytes per compressed strip',
 'exif-stripoffsets'		=> 'Bilddaten-Versatz',
-#'exif-subjectarea'		=> 'Subject area',
+'exif-subjectarea'		=> 'Bereich',
 'exif-subjectdistance'		=> 'Entfernung',
 'exif-subjectdistance-value'	=> '$1 Meter',
 'exif-subjectdistancerange'	=> 'Motiventfernung',

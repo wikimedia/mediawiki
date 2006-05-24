@@ -322,7 +322,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4610) Indicate patrolled status on watchlists and allow users to mark
   changes as patrolled using the diff links there
 * Add 'DiffViewHeader' hook called before diff page output
-
+* (bug 6051) Improvement to German localisation (de)
 
 == Compatibility ==
 
