@@ -140,6 +140,7 @@ $data["u"]       = array("CLASS", "ID", "onLoad", "STYLE");
 $data["del"]     = array("CLASS", "ID", "onLoad", "STYLE");
 $data["ins"]     = array("CLASS", "ID", "onLoad", "STYLE");
 $data["sub"]     = array("CLASS", "ID", "onLoad", "STYLE");
+$data["ol"]      = array("CLASS", "ID", "onLoad", "STYLE");
 
 
 // The types of the HTML that we will be testing were defined above
@@ -161,7 +162,7 @@ $ext = array(
 "|]]", "~~~", "#REDIRECT [[", "'''", "''", 
 "ISBN 2", "\n|-", "| ", "\n| ",
 "<!--", "-->", 
-"\"",
+"\"", "'",
 ">",
 "http://","https://","url://","ftp://","file://","irc://","javascript:",
 "!",
@@ -417,7 +418,7 @@ function checkOpenCloseTags($string, $filename) {
 
 		if ($line == "/*<![CDATA[*/") continue;
 		if ($line == "/*]]>*/") continue;
-		if ($line == "<form id=\"editform\" name=\"editform\" method=\"post\" action=\"/wiki/index.php?title=Slkdnfl&amp;action=submit\"") continue;
+		if (ereg("^<form id=\"editform\" name=\"editform\" method=\"post\" action=\"", $line)) continue;
 		if (ereg("^enctype=\"multipart/form-data\"><input type=\"hidden\" name=\"wikidb_session\" value=\"", $line)) continue; // line num and content changes.
 		if ($line == "<textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='25'") continue;
 		if (ereg("^cols='80'>", $line)) continue; //  line num and content changes.
@@ -456,11 +457,74 @@ function tidyCheckFile($name) {
 }
 
 
-////////////////////// MAIN FUNCTION ////////////////////////
+////////////////////// TESTING FUNCTION ////////////////////////
+/**
+** @desc: takes a wiki markup string, and tests it for security or validation problems.
+*/
+function testWikiMarkup($raw_markup, $testname) {
+
+	   // don't overwrite a previous test of the same name.
+	   while (file_exists(DIRECTORY . "/" . $testname . ".raw_markup.txt")) {
+			   $testname .= "-" . mt_rand(0,9);
+	   }
+
+		// upload to MediaWiki install.
+		$wiki_preview = wikiPreview($raw_markup);
+
+		// save output files
+		saveFile($raw_markup,  $testname . ".raw_markup.txt");
+		saveFile($wiki_preview,  $testname . ".wiki_preview.html");
+
+		// validate result
+		$valid = true;
+		if (VALIDATE_ON_WEB) list ($valid, $validator_output) = validateHTML($wiki_preview);
+		$valid = $valid && checkOpenCloseTags ($wiki_preview, $testname . ".wiki_preview.html");
+		$valid = $valid && tidyCheckFile( $testname . ".wiki_preview.html" );
+
+
+		if( $valid ) {
+				// Remove valid tests:
+				unlink( DIRECTORY . "/" . $testname . ".raw_markup.txt" );
+				unlink( DIRECTORY . "/" . $testname . ".wiki_preview.html");
+		} elseif( VALIDATE_ON_WEB ) {
+				saveFile($validator_output,  $testname . ".validator_output.html");
+		}
+}
+
+
+//////////////////////  MAIN LOOP  ////////////////////////
 
 // Make directory if doesn't exist
 if (!is_dir(DIRECTORY)) {
 	mkdir (DIRECTORY, 0700 );
+}
+// otherwise, retest the things that we have found in previous runs
+else {
+	   print "Retesting previously found problems.\n";
+
+	   // create a handler for the directory
+	   $handler = opendir(DIRECTORY);
+
+	   // keep going until all files in directory have been read
+	   while ($file = readdir($handler)) {
+
+			   // if file is not raw markup, or is a retest, then skip it.
+			   if (!ereg("\.raw_markup.txt$", $file)) continue;
+				if ( ereg("^retest-", $file)) continue;
+
+				print "Retesting " . DIRECTORY . "/" . $file . "\n";
+
+			   // get file contents
+			   $markup = file_get_contents(DIRECTORY . "/" . $file);
+
+			   // run retest
+			   testWikiMarkup($markup, "retest-" . $file);
+	   }
+
+	   // tidy up: close the handler
+	   closedir($handler);
+
+	   print "Done retesting.\n";
 }
 
 // seed the random number generator
@@ -469,7 +533,8 @@ mt_srand(crc32(microtime()));
 // main loop.
 $h = new htmler();
 
-print "Beginning main loop. Press CTRL+C to stop testing.\n";
+print "Beginning main loop. Results are stored in the ".DIRECTORY." directory.\n";
+print "Press CTRL+C to stop testing.\n";
 for ($count=0; true /*$count<10000 */ ; $count++) { // while (true)
 	switch( $count % 4 ) {
 		case '0': print "\r/"; break;
@@ -482,27 +547,7 @@ for ($count=0; true /*$count<10000 */ ; $count++) { // while (true)
 	// generate and save text to test.
 	$raw_markup = $h->main();
 
-	// upload to MediaWiki install.
-	$wiki_preview = wikiPreview($raw_markup);
-
-	// save output files
-	saveFile($raw_markup,  $count . ".raw_markup.txt");
-	saveFile($wiki_preview,  $count . ".wiki_preview.html");
-
-	// validate result
-	$valid = true;
-	if (VALIDATE_ON_WEB) list ($valid, $validator_output) = validateHTML($wiki_preview);
-	$valid = $valid && checkOpenCloseTags ($wiki_preview, $count . ".wiki_preview.html");
-	$valid = $valid && tidyCheckFile( $count . ".wiki_preview.html" );
-
-
-	if( $valid ) {
-		// Remove valid tests:
-		unlink( DIRECTORY . "/" . $count . ".raw_markup.txt" );
-		unlink( DIRECTORY . "/" . $count . ".wiki_preview.html");
-	} elseif( VALIDATE_ON_WEB ) {
-		saveFile($validator_output,  $count . ".validator_output.html");
-	}
+	// test this wiki markup
+	testWikiMarkup($raw_markup, $count);
 }
-print 'End of wiki-mangleme. Results are in the '.DIRECTORY." directory.\n";
 ?>
