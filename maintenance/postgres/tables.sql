@@ -350,6 +350,11 @@ CREATE TABLE job (
 );
 CREATE INDEX job_cmd_namespace_title ON job(job_cmd, job_namespace, job_title);
 
+CREATE TABLE querycache_info (
+  qci_type       TEXT UNIQUE,
+  qci_timestamp  TIMESTAMPTZ NULL
+);
+
 
 CREATE OR REPLACE FUNCTION add_interwiki (TEXT,INT,CHAR) RETURNS INT LANGUAGE SQL AS
 $mw$
