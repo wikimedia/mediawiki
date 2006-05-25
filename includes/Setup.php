@@ -320,6 +320,13 @@ foreach ( $wgExtensionFunctions as $func ) {
 	call_user_func( $func );
 }
 
+// For compatibility
+wfRunHooks( 'LogPageValidTypes', array( &$wgLogTypes ) );
+wfRunHooks( 'LogPageLogName', array( &$wgLogNames ) );
+wfRunHooks( 'LogPageLogHeader', array( &$wgLogHeaders ) );
+wfRunHooks( 'LogPageActionText', array( &$wgLogActions ) );
+
+
 wfDebug( "\n" );
 $wgFullyInitialised = true;
 wfProfileOut( $fname.'-extensions' );

@@ -328,6 +328,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6061) Improper escaping in some html forms
 * (bug 6065) Remove underscore when using NAMESPACE and TALKSPACE magics.
 * (bug 6074) Correct squid purging of offsite upload URLs
+* To simplify the lives of extension developers, the logging type arrays
+  can now be appended to directly by an extension setup function. It is
+  no longer necessary to write four separate functions just to add a
+  custom log type.
 
 
 == Compatibility ==

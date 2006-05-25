@@ -346,14 +346,17 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getFullURL()
 
-'LogPageValidTypes': action being logged.
-$type: array of strings
+'LogPageValidTypes': action being logged. DEPRECATED: Use $wgLogTypes
+&$type: array of strings
 
-'LogPageLogName': name of the logging page(s).
-$typeText: array of strings
+'LogPageLogName': name of the logging page(s). DEPRECATED: Use $wgLogNames
+&$typeText: array of strings
 
-'LogPageLogHeader': strings used by wfMsg as a header.
-$headerText: array of strings
+'LogPageLogHeader': strings used by wfMsg as a header. DEPRECATED: Use $wgLogHeaders
+&$headerText: array of strings
+
+'LogPageActionText': strings used by wfMsg as a header. DEPRECATED: Use $wgLogActions
+&$actionText: array of strings
 
 'MarkPatrolled': before an edit is marked patrolled
 $rcid: ID of the revision to be marked patrolled

@@ -94,9 +94,8 @@ class LogPage {
 	 * @static
 	 */
 	function validTypes() {
-		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload', 'move' );
-		wfRunHooks( 'LogPageValidTypes', array( &$types ) );
-		return $types;
+		global $wgLogTypes;
+		return $wgLogTypes;
 	}
 
 	/**
@@ -110,19 +109,10 @@ class LogPage {
 	 * @static
 	 */
 	function logName( $type ) {
-		static $typeText = array(
-			''        => 'log',
-			'block'   => 'blocklogpage',
-			'protect' => 'protectlogpage',
-			'rights'  => 'rightslog',
-			'delete'  => 'dellogpage',
-			'upload'  => 'uploadlogpage',
-			'move'    => 'movelogpage'
-		);
-		wfRunHooks( 'LogPageLogName', array( &$typeText ) );
+		global $wgLogNames;
 
-		if( isset( $typeText[$type] ) ) {
-			return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
+		if( isset( $wgLogNames[$type] ) ) {
+			return str_replace( '_', ' ', wfMsg( $wgLogNames[$type] ) );
 		} else {
 			// Bogus log types? Perhaps an extension was removed.
 			return $type;
@@ -130,54 +120,24 @@ class LogPage {
 	}
 
 	/**
+	 * @fixme: handle missing log types
 	 * @static
 	 */
 	function logHeader( $type ) {
-		static $headerText = array(
-			''        => 'alllogstext',
-			'block'   => 'blocklogtext',
-			'protect' => 'protectlogtext',
-			'rights'  => 'rightslogtext',
-			'delete'  => 'dellogpagetext',
-			'upload'  => 'uploadlogpagetext',
-			'move'    => 'movelogpagetext'
-		);
-		wfRunHooks( 'LogPageLogHeader', array( &$headerText ) );
-
-		return wfMsg( $headerText[$type] );
+		global $wgLogHeaders;
+		return wfMsg( $wgLogHeaders[$type] );
 	}
 
 	/**
 	 * @static
 	 */
 	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
-		global $wgLang, $wgContLang;
-		static $actions = array(
-			'block/block'       => 'blocklogentry',
-			'block/unblock'     => 'unblocklogentry',
-			'protect/protect'   => 'protectedarticle',
-			'protect/unprotect' => 'unprotectedarticle',
-
-			// TODO: This whole section should be moved to extensions/Makesysop/SpecialMakesysop.php
-			'rights/rights'     => 'rightslogentry',
-			'rights/addgroup'   => 'addgrouplogentry',
-			'rights/rngroup'    => 'renamegrouplogentry',
-			'rights/chgroup'    => 'changegrouplogentry',
-
-			'delete/delete'     => 'deletedarticle',
-			'delete/restore'    => 'undeletedarticle',
-			'delete/revision'   => 'revdelete-logentry',
-			'upload/upload'     => 'uploadedimage',
-			'upload/revert'     => 'uploadedimage',
-			'move/move'         => '1movedto2',
-			'move/move_redir'   => '1movedto2_redir'
-		);
-		wfRunHooks( 'LogPageActionText', array( &$actions ) );
+		global $wgLang, $wgContLang, $wgLogActions;
 
 		$key = "$type/$action";
-		if( isset( $actions[$key] ) ) {
+		if( isset( $wgLogActions[$key] ) ) {
 			if( is_null( $title ) ) {
-				$rv=wfMsg( $actions[$key] );
+				$rv=wfMsg( $wgLogActions[$key] );
 			} else {
 				if( $skin ) {
 
@@ -209,16 +169,16 @@ class LogPage {
 				}
 				if( count( $params ) == 0 ) {
 					if ( $skin ) {
-						$rv = wfMsg( $actions[$key], $titleLink );
+						$rv = wfMsg( $wgLogActions[$key], $titleLink );
 					} else {
-						$rv = wfMsgForContent( $actions[$key], $titleLink );
+						$rv = wfMsgForContent( $wgLogActions[$key], $titleLink );
 					}
 				} else {
 					array_unshift( $params, $titleLink );
 					if ( $translate && $key == 'block/block' ) {
 						$params[1] = $wgLang->translateBlockExpiry($params[1]);
 					}
-					$rv = wfMsgReal( $actions[$key], $params, true, !$skin );
+					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin );
 				}
 			}
 		} else {
