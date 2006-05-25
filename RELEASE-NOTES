@@ -332,7 +332,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   can now be appended to directly by an extension setup function. It is
   no longer necessary to write four separate functions just to add a
   custom log type.
-
+* (bug 6057) Count "licenses" as a message (and show it in Special:Allmessages)
 
 == Compatibility ==
 
