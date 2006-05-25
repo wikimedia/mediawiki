@@ -192,6 +192,10 @@ class LanguageCs extends LanguageUtf8 {
 	# Grammatical transformations, needed for inflected languages
 	# Invoked by putting {{grammar:case|word}} in a message
 	function convertGrammar( $word, $case ) {
+		global $wgGrammarForms;
+		if ( isset($wgGrammarForms[$case][$word]) ) {
+			return $wgGrammarForms[$case][$word];
+		}
 		# allowed values for $case:
 		#	1sg, 2sg, ..., 7sg -- nominative, genitive, ... (in singular)
 		switch ( $word ) {

@@ -99,6 +99,11 @@ class LanguageTyv extends LanguageUtf8 {
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
+		global $wgGrammarForms;
+		if ( isset($wgGrammarForms[$case][$word]) ) {
+			return $wgGrammarForms[$case][$word];
+		}
+
 
 	// Set up some constants...
 		$allVowels = array("е", "и", "э", "ө", "ү", "а", "ё", "о", "у", "ы", "ю", "я", "a", "e", "i", "o", "ö", "u", "ü", "y");

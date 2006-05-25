@@ -94,6 +94,11 @@ class LanguageLa extends LanguageUtf8 {
 	 * Rules are far from complete.
 	 */
 	function convertGrammar( $word, $case ) {
+		global $wgGrammarForms;
+		if ( isset($wgGrammarForms[$case][$word]) ) {
+			return $wgGrammarForms[$case][$word];
+		}
+
 		switch ( $case ) {
 		case 'genitive':
 			// 1st and 2nd declension singular only.
