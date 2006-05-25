@@ -184,8 +184,8 @@ class LanguageBs extends LanguageUtf8 {
 	# Invoked with {{GRAMMAR:case|word}}
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$case][$word]) ) {
-			return $wgGrammarForms[$case][$word];
+		if ( isset($wgGrammarForms['bs'][$case][$word]) ) {
+			return $wgGrammarForms['bs'][$case][$word];
 		}
 		switch ( $case ) {
 			case 'genitiv': # genitive

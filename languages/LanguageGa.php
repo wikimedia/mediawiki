@@ -176,8 +176,8 @@ class LanguageGa extends LanguageUtf8 {
 	# Invoked with {{GRAMMAR:transformation|word}}
 	function convertGrammar( $word, $what ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$case][$word]) ) {
-			return $wgGrammarForms[$case][$word];
+		if ( isset($wgGrammarForms['ga'][$case][$word]) ) {
+			return $wgGrammarForms['ga'][$case][$word];
 		}
 
 		switch ( $what ) {

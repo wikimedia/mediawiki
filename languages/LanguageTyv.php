@@ -100,8 +100,8 @@ class LanguageTyv extends LanguageUtf8 {
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$case][$word]) ) {
-			return $wgGrammarForms[$case][$word];
+		if ( isset($wgGrammarForms['tyv'][$case][$word]) ) {
+			return $wgGrammarForms['tyv'][$case][$word];
 		}
 
 
