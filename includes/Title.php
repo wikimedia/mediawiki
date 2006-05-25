@@ -697,9 +697,11 @@ class Title {
 	 */
 	function getBaseText() {
 		global $wgNamespacesWithSubpages;
-		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace] ) && $wgNamespacesWithSubpages[ $this->mNamespace ] ) {
+		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace ] ) && $wgNamespacesWithSubpages[ $this->mNamespace ] ) {
 			$parts = explode( '/', $this->getText() );
-			unset( $parts[ count( $parts ) - 1 ] );
+			# Don't discard the real title if there's no subpage involved
+			if( count( $parts ) > 1 )
+				unset( $parts[ count( $parts ) - 1 ] );
 			return implode( '/', $parts );
 		} else {
 			return $this->getText();
