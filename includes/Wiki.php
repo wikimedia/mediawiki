@@ -334,7 +334,6 @@ class MediaWiki {
 			case 'unprotect':
 			case 'info':
 			case 'markpatrolled':
-			case 'validate':
 			case 'render':
 			case 'deletetrackback':
 			case 'purge':
