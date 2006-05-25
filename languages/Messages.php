@@ -837,6 +837,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 
 'license' => 'Licensing',
 'nolicense' => 'None selected',
+'licenses' => '-', # Don't duplicate this in translations
 
 # Image list
 #
