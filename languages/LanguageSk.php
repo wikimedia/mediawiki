@@ -178,8 +178,8 @@ class LanguageSk extends LanguageUtf8 {
 	# Invoked with {{GRAMMAR:case|word}}
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$case][$word]) ) {
-			return $wgGrammarForms[$case][$word];
+		if ( isset($wgGrammarForms['sk'][$case][$word]) ) {
+			return $wgGrammarForms['sk'][$case][$word];
 		}
 
 		switch ( $case ) {

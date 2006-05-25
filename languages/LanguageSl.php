@@ -101,8 +101,8 @@ class LanguageSl extends LanguageUtf8 {
 	# Invoked with {{GRAMMAR:case|word}}
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$case][$word]) ) {
-			return $wgGrammarForms[$case][$word];
+		if ( isset($wgGrammarForms['sl'][$case][$word]) ) {
+			return $wgGrammarForms['sl'][$case][$word];
 		}
 
 		switch ( $case ) {

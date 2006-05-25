@@ -564,7 +564,7 @@ $wgLanguageCode     = 'en';
  * Used in Language::convertGrammar().
  */
 $wgGrammarForms = array();
-#$wgGrammarForms['genitive']['car'] = 'car\'s';
+#$wgGrammarForms['en']['genitive']['car'] = 'car\'s';
 
 /** Treat language links as magic connectors, not inline links */
 $wgInterwikiMagic = true;

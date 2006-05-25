@@ -95,8 +95,8 @@ class LanguageLa extends LanguageUtf8 {
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$case][$word]) ) {
-			return $wgGrammarForms[$case][$word];
+		if ( isset($wgGrammarForms['la'][$case][$word]) ) {
+			return $wgGrammarForms['la'][$case][$word];
 		}
 
 		switch ( $case ) {

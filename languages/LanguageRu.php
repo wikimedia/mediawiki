@@ -163,8 +163,8 @@ class LanguageRu extends LanguageUtf8 {
 	# Invoked with {{grammar:case|word}}
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$case][$word]) ) {
-			return $wgGrammarForms[$case][$word];
+		if ( isset($wgGrammarForms['ru'][$case][$word]) ) {
+			return $wgGrammarForms['ru'][$case][$word];
 		}
 
 		# These rules are not perfect, but they are currently only used for site names so it doesn't
