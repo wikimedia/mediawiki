@@ -559,17 +559,24 @@ $wgCachedMessageArrays = false;
 /** Site language code, should be one of ./languages/Language(.*).php */
 $wgLanguageCode     = 'en';
 
+/**
+ * Some languages need different word forms, usually for different cases.
+ * Used in Language::convertGrammar().
+ */
+$wgGrammarForms = array();
+#$wgGrammarForms['genitive']['car'] = 'car\'s';
+
 /** Treat language links as magic connectors, not inline links */
-$wgInterwikiMagic	= true;
+$wgInterwikiMagic = true;
 
 /** Hide interlanguage links from the sidebar */
 $wgHideInterlanguageLinks = false;
 
 
 /** We speak UTF-8 all the time now, unless some oddities happen */
-$wgInputEncoding	= 'UTF-8';
-$wgOutputEncoding	= 'UTF-8';
-$wgEditEncoding		= '';
+$wgInputEncoding  = 'UTF-8';
+$wgOutputEncoding = 'UTF-8';
+$wgEditEncoding   = '';
 
 # Set this to eg 'ISO-8859-1' to perform character set
 # conversion when loading old revisions not marked with
@@ -1239,15 +1246,15 @@ $wgPasswordSalt = true;
  */
 $wgNamespacesWithSubpages = array(
 	NS_TALK           => true,
- 	NS_USER           => true,
- 	NS_USER_TALK      => true,
- 	NS_PROJECT_TALK   => true,
- 	NS_IMAGE_TALK     => true,
- 	NS_MEDIAWIKI_TALK => true,
- 	NS_TEMPLATE_TALK  => true,
- 	NS_HELP_TALK      => true,
- 	NS_CATEGORY_TALK  => true
- );
+	NS_USER           => true,
+	NS_USER_TALK      => true,
+	NS_PROJECT_TALK   => true,
+	NS_IMAGE_TALK     => true,
+	NS_MEDIAWIKI_TALK => true,
+	NS_TEMPLATE_TALK  => true,
+	NS_HELP_TALK      => true,
+	NS_CATEGORY_TALK  => true
+);
 
 $wgNamespacesToBeSearchedDefault = array(
 	NS_MAIN           => true,
