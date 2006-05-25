@@ -183,6 +183,10 @@ class LanguageBs extends LanguageUtf8 {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
 	function convertGrammar( $word, $case ) {
+		global $wgGrammarForms;
+		if ( isset($wgGrammarForms[$case][$word]) ) {
+			return $wgGrammarForms[$case][$word];
+		}
 		switch ( $case ) {
 			case 'genitiv': # genitive
 				if ( $word == 'Wikipedia' ) {

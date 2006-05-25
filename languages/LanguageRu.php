@@ -162,6 +162,11 @@ class LanguageRu extends LanguageUtf8 {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{grammar:case|word}}
 	function convertGrammar( $word, $case ) {
+		global $wgGrammarForms;
+		if ( isset($wgGrammarForms[$case][$word]) ) {
+			return $wgGrammarForms[$case][$word];
+		}
+
 		# These rules are not perfect, but they are currently only used for site names so it doesn't
 		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
 
