@@ -28,10 +28,10 @@
 "tog-enotifrevealaddr" 		=> "Rivela il mio indirizzo e-mail nei messaggi di avviso",
 "tog-shownumberswatching" 	=> "Mostra il numero di utenti che hanno la pagina in osservazione",
 "tog-fancysig" => "Non modificare il markup della firma (usare per firme non standard)",
-"tog-externaleditor" => "Usa di default un editor di testi esterno",
-"tog-externaldiff" => "Usa di default un programma di diff esterno",
+"tog-externaleditor" => "Usa per default un editor di testi esterno",
+"tog-externaldiff" => "Usa per default un programma di diff esterno",
 "tog-showjumplinks" => "Attiva i collegamenti accessibili 'vai a'",
-"tog-uselivepreview" => "Attiva la funzione ''live preview'' (richiede JavaScript; sperimentale)",
+"tog-uselivepreview" => "Attiva la funzione ''Live preview'' (richiede JavaScript; sperimentale)",
 "tog-autopatrol" => "Segnala le mie modifiche come già 'controllate'",
 "tog-forceeditsummary" => "Chiedi conferma se l'oggetto della modifica è vuoto",
 "tog-watchlisthideown" => "Nascondi le mie modifiche negli osservati speciali",
@@ -164,7 +164,7 @@ I seguenti collegamenti sono in lingua inglese:
 "postcomment"   => "Aggiungi un commento",
 "addsection"   => "+",
 "articlepage"	=> "Vedi la voce",
-"subjectpage"	=> "Vedi articolo ", # For compatibility
+"subjectpage"	=> "Vedi articolo", # For compatibility
 "talk" => "Discussione",
 "views" => "Visite",
 "toolbox" => "Strumenti",
@@ -201,9 +201,7 @@ Vedi $1.",
 "widthheight"		=> "$1x$2",
 
 "ok"			=> "OK",
-"sitetitle"		=> "{{SITENAME}}",
 "pagetitle"		=> "$1 - {{SITENAME}}",
-"sitesubtitle"	=> '',
 "retrievedfrom" => "Estratto da \"$1\"",
 "youhavenewmessages" => "Hai $1 ($2).",
 "newmessageslink" => "nuovi messaggi",
@@ -217,8 +215,6 @@ Vedi $1.",
 "viewdeleted" => "Vedi $1?",
 "restorelink" => "{{PLURAL:$1|una modifica cancellata|$1 modifiche cancellate}}",
 "feedlinks" => "Feed:",
-"sitenotice"	=> "-", # the equivalent to wgSiteNotice
-"anonnotice" => "-",
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Voce',
@@ -245,12 +241,12 @@ Vedi $1.",
 "databaseerror" => "Errore del database",
 "dberrortext"	=> 'Errore di sintassi nella richiesta inoltrata al database.
 Ciò potrebbe indicare la presenza di un bug nel software.
-L\'ultima richiesta inoltrata al database è stata:
+L\'ultima query inviata al database è stata:
 <blockquote><tt>$1</tt></blockquote>
 richiamata dalla funzione "<tt>$2</tt>".
 MySQL ha restituito il seguente errore "<tt>$3: $4</tt>".',
 "dberrortextc1"	=> 'Errore di sintassi nella richiesta inoltrata al database.
-L\'ultima richiesta inoltrata al database è stata:
+L\'ultima query inviata al database è stata:
 "$1"
 richiamata dalla funzione "$2".
 MySQL ha restituito il seguente errore "$3: $4".',
@@ -260,12 +256,12 @@ MySQL ha restituito il seguente errore "$3: $4".',
 "laggedslavemode"   => "Attenzione: La pagina potrebbe non riportare gli aggiornamenti più recenti.",
 "readonly"		=> "Database bloccato",
 "enterlockreason" => "Indica il motivo del blocco, specificando il momento in cui è presumibile che venga rimosso.",
-"readonlytext"	=> "In questo momento il database è bloccato e non sono possibilli nuove immissioni né modifiche. Questa azione è di norma legata ad operazioni di manutenzione ordinaria, al termine delle quali il database sarà di nuovo accessibile.
+"readonlytext"	=> "In questo momento il database è bloccato e non sono possibili aggunte o modifiche alle pagine. Il blocco è di solito legato a operazioni di manutenzione ordinaria, al termine delle quali il database è di nuovo accessibile.
 
 L'amministratore di sistema che ha imposto il blocco ha fornito questa spiegazione: $1",
 "missingarticle" => "Il database non ha trovato il testo della pagina dal titolo \"$1\", che avrebbe dovuto essere presente.
 
-Di solito ciò si verifica quando viene seguito, a partire dalla cronologia o dal confronto tra versioni, un collegamento a una pagina cancecellata.
+Di solito ciò si verifica quando viene seguito, a partire dalla cronologia o dal confronto tra versioni, un collegamento a una pagina cancellata.
 
 In caso contrario, si è probabilmente scoperto un errore del software MediaWiki.
 Si prega di segnalare l'accaduto a un amministratore specificando la URL in questione.",
@@ -280,13 +276,13 @@ Si prega di segnalare l'accaduto a un amministratore specificando la URL in ques
 "badarticleerror" => "Operazione non consentita per questa pagina.",
 "cannotdelete"	=> "Impossibile cancellare la pagina o il file richiesto. (Potrebbe essere stato già cancellato.)",
 "badtitle"		=> "Titolo non corretto",
-"badtitletext"	=> "Il titolo della pagina richiesta è vuoto, errato o contenente caratteri non ammessi oppure deriva da un errore nei link tra siti wiki diversi o versioni in lingue diverse dello stesso sito.",
+"badtitletext"	=> "Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.",
 "perfdisabled" => "Siamo spiacenti, questa funzionalità è temporaneamente disabilitata perché il suo uso rallenta il database fino a rendere il sito inutilizzabile per tutti gli utenti.",
-"perfcached" => 'The following data is cached and may not be up to date.',
-"perfcachedts" => 'The following data is cached, and was last updated $1.',
-"wrong_wfQuery_params" => 'Incorrect parameters to wfQuery()<br />
-Function: $1<br />
-Query: $2',
+"perfcached" => "I dati che seguono sono estratti da una copia \'\'cache\'\' del database, non aggiornati in tempo reale.",
+"perfcachedts" => " i dati che seguono sono estratti da una copia \'\'cache\'\' del database. Ultimo aggiornamento: $1.",
+"wrong_wfQuery_params" => "Errore nei parametri inviati alla funzione wfQuery()<br />
+Funzione: $1<br />
+Query: $2",
 "viewsource" => "Vedi sorgente",
 "viewsourcefor" => "di $1",
 "protectedtext" => "Questa pagina è stata protetta per impedirne la modifica. La protezione può essere dovuta a vari motivi; si veda la pagina di servizio [[{{ns:project}}:Pagina protetta]].
@@ -298,105 +294,239 @@ Query: $2',
 
 # Login and logout pages
 #
-"logouttitle"	=> "Logout Utente",
-"logouttext"	=> "Logout effettuato.
-Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.",
+"logouttitle"	=> "Logout utente",
+"logouttext"	=> "<strong>Logout effettuato.</strong><br />
+Si può continuare ad usare {{SITENAME}} come utente anonimo oppure eseguire un nuovo accesso, con lo stesso nome utente o un nome diverso.
 
-"welcomecreation" => "<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere {{SITENAME}} con il tuo aiuto.<br />Per rendere {{SITENAME}} più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.",
+Alcune pagine potrebbero continuare ad apparire come se il logout non fosse avvenuto finché non viene pulita la cache del proprio browser.",
 
-"loginpagetitle" => "Login",
-"yourname"		=> "Il tuo  user name",
-"yourpassword"	=> "La tua  password",
+"welcomecreation" => "== Benvenuto, $1! ==
+
+L'account è stato creato correttamente. Non dimenticare di personalizzare le preferenze di {{SITENAME}}.",
+
+"loginpagetitle" => "Login utente",
+"yourname"	=> "Nome utente",
+"yourpassword"	=> "Password",
 "yourpasswordagain" => "Ripeti la password",
-"newusersonly"	=> " (solo per nuovi Utenti)",
-"remembermypassword" => "Ricorda la mia password per più sessioni (richiede uso dei cookies).",
-"loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!",
-"alreadyloggedin" => "<strong>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</strong><br />",
+"remembermypassword" => "Ricorda la password",
+"yourdomainname"       => "Specificare il dominio",
+"externaldberror"      => "Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.",
+"loginproblem"	=> "<b>Si è verificato un errore durante l'accesso.</b><br />Riprovare.",
+"alreadyloggedin" => "<strong>L'utente $1 è già connesso a questo server.</strong><br />",
 
-"userlogin"		=> "Log in",
-"createaccount"	=> "Crea nuovo account",
-"badretype"		=> "Le password che hai immesso non coincidono, sono diverse fra loro.",
-"userexists"	=> "Siamo spiacenti.<br />Lo user name che hai scelto è già usato da un altro Utente.<br />Ti preghiamo perciò di voler scegliere uno user name diverso.",
-"youremail"		=> "La tua e-mail",
-"yournick"		=> "Il tuo diminutivo o soprannome (per le firme)",
-"emailforlost"	=> "Se per caso ti dimenticassi della tua password, ne potresti ricevere una nuova di zecca presso la casella e-mail che ci hai indicato.",
-"loginerror"	=> "Errore di Login",
-"noname"		=> "Lo user name indicato non è valido, non è possibile creare un account a questo nome.",
-"loginsuccesstitle" => "Login effettuato con successo!",
-"loginsuccess"	=> "Sei stato ammesso alla connessione al server di {{SITENAME}} con il nome utente di \"$1\".",
-"nosuchuser"	=> "Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  \"$1\".<br /><br />
-Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.",
-"wrongpassword"	=> "La password immessa non è corretta.<br /><br />Riprova, per favore.",
-"mailmypassword" => "Spediscimi una nuova password in posta elettronica",
+"login"		=> "Entra",
+"loginprompt"	=> "Per accedere a {{SITENAME}} è necessario abilitare i cookie.",
+"userlogin"		=> "Entra o crea un nuovo accesso",
+"logout"		=> "Esci",
+"userlogout"	=> "Esci",
+"notloggedin"	=> "Accesso non effettuato",
+"nologin"	=> "Non hai ancora un accesso? $1.",
+"nologinlink"	=> "Crealo ora",
+"createaccount"	=> "Crea un nuovo accesso",
+"gotaccount"	=> "Hai già un accesso? $1.",
+"gotaccountlink"	=> "Entra",
+"createaccountmail"	=> "via e-mail",
+"badretype"		=> "Le password inserite non coincidono tra loro.",
+"userexists"	=> "Il nome utente inserito è già utilizzato. Si prega di scegliere un nome utente diverso.",
+"youremail"		=> "Indirizzo e-mail: *",
+"username"		=> "Nome utente",
+"uid"			=> "ID utente:",
+"yourrealname"		=> "Nome vero: *",
+"yourlanguage"	=> "Lingua:",
+"yourvariant"  => "Variante:",
+"yournick"		=> "Soprannome (nickname):",
+"badsig"		=> "Errore nella firma non standard, verificare i tag HTML.",
+"email"			=> "Indirizzo e-mail",
+"emailforlost"	=> '<div style="width:30em">* Dati opzionali. Specificando un indirizzo e-mail si può essere contattati dagli altri utenti del sito (senza dover rivelare l\'indirizzo stesso) e si può ricevere una nuova password qualora venisse dimenticata.<br /><br />Il nome vero verrà utilizzato, se lo si desidera, per attribuire la paternità dei contenuti inviati.</div>',
+"prefs-help-email-enotif" => "L'indirizzo verrà inoltre usato per le segnalazioni via e-mail, se richieste con le apposite opzioni.",
+"prefs-help-realname" 	=> "* Nome vero (opzionale): se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
+"loginerror"	=> "Errore nell'accesso",
+"prefs-help-email"      => "* Indirizzo e-mail (opzionale): Consente agli utenti di essere contattati attraverso la propria pagina utente o la relativa pagina di discussione, senza dover rivelare la propria identità.",
+"nocookiesnew"	=> "Il nome utente per l'accesso è stato creato, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
+"nocookieslogin"	=> "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
+"noname"		=> "Il nome utente indicato non è valido.",
+"loginsuccesstitle" => "Accesso effettuato",
+"loginsuccess"	=> "'''Il collegamento al server di {{SITENAME}} con il nome utente \"$1\" è attivo.'''",
+"nosuchuser"	=> "Non è registrato alcun utente di nome \"$1\". Verificare il nome inserito o creare un nuovo accesso.",
+"wrongpassword"	=> "La password inserita non è corretta. Riprovare.",
+"wrongpasswordentry"	=> "La password inserita è vuota. Riprovare.",
+"mailmypassword" => "Invia password via e-mail",
 "passwordremindertitle" => "Servizio Password Reminder di {{SITENAME}}",
-"passwordremindertext" => "Qualcuno (probabilmente tu, con indirizzo IP $1)
-ha richiesto l'invio di una nuova password per il login a {{SITENAME}}.
-La password per l'Utente \"$2\" è ora \"$3\".
-Per evidenti ragioni di sicurezza, dovresti fare un log in il prima possibile, e cambiare la password immediatamente.",
-"noemail"		=> "Nessuna casella e-mail risulta registrata per l'Utente \"$1\".",
-"passwordsent"	=> "Una nuova password è stata inviata alla casella e-mail registrata per l'Utente \"$1\".
-Per favore, fai subito un log in non appena la ricevi.",
+"passwordremindertext" => "Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l'invio di una nuova password di accesso a {{SITENAME}}.
+La password per l'utente \"$2\" è stata impostata a \"$3\". È opportuno che tu esegua un accesso quanto prima e cambi la password immediatamente.
+
+Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non desideri più cambiarla, puoi ignorare questo messaggio e continuare a usare la vecchia password.",
+"noemail"		=> "Nessun indirizzo e-mail registrato per l'utente \"$1\".",
+"passwordsent"	=> "Una nuova password è stata inviata all'indirizzo e-mail registrato per l'utente \"$1\".
+Per favore, effettua un accesso non appena la ricevi.",
+"eauthentsent" =>  "Un messaggio e-mail di conferma è stato spedito all'indirizzo indicato.
+Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguire le istruzioni che vi sono indicate, in modo da confermare che si è i legittimi proprietari dell'indirizzo",
+"mailerror"                 => "Errore nell'invio del messaggio: $1",
+"acct_creation_throttle_hit" => "Siamo spiacenti, ma hai già creato $1 account. Non puoi crearne altri.",
+"emailauthenticated"        => "L'indirizzo e-mail è stato confermato il $1.",
+"emailnotauthenticated"     => "L'indirizzo e-mail <strong>non è stato ancora confermato</strong>. Non verranno inviati messaggi e-mail attraverso le funzioni elencate di seguito.",
+"noemailprefs"              => "<strong>Indicare un indirizzo e-mail per attivare queste funzioni.</strong>",
+"emailconfirmlink" => "Confermare il proprio indirizzo e-mail",
+"invalidemailaddress"	=> "L'indirizzo e-mail indicato ha un formato non valido. Inserire un indirizzo valido o svuotare la casella.",
+"accountcreated" => "Accesso creato",
+"accountcreatedtext" => "È stato creato un accesso per l'utente $1.",
 
 # Edit page toolbar
+'bold_sample'=>'Grassetto',
+'bold_tip'=>'Grassetto',
+'italic_sample'=>'Corsivo',
+'italic_tip'=>'Corsivo',
+'link_sample'=>'Titolo del collegamento',
+'link_tip'=>'Collegamento interno',
+'extlink_sample'=>'http://www.example.com titolo del collegamento',
+'extlink_tip'=>'Collegamento esterno (notare il prefisso http:// )',
+'headline_sample'=>'Intestazione',
+'headline_tip'=>'Intestazione di 2° livello',
+'math_sample'=>'Inserire qui la formula',
+'math_tip'=>'Formula matematica (LaTeX)',
+'nowiki_sample'=>'Inserire qui il testo non formattato',
+'nowiki_tip'=>'Ignora la formattazione wiki',
+'image_sample'=>'Esempio.jpg',
+'image_tip'=>'Immagine incorporata',
+'media_sample'=>'Esempio.ogg',
+'media_tip'=>'Collegamento a file multimediale',
+'sig_tip'=>'Firma con data e ora',
+'hr_tip'=>'Linea orizzontale (usare con giudizio)',
 
 # Edit pages
 #
 "summary"		=> "Oggetto",
+"subject"		=> "Argomento (intestazione)",
 "minoredit"		=> "Questa è una modifica minore",
-"watchthis"		=> "Tieni d'occhio questo articolo",
+"watchthis"		=> "Tieni d'occhio questa pagina",
 "savearticle"	=> "Salva la pagina",
 "preview"		=> "Anteprima",
-"showpreview"	=> "Visualizza Anteprima",
-"blockedtitle"	=> "Questo User name corrisponde purtroppo ad un Utente che è stato disabilitato alla modifica degli articoli.",
-"blockedtext"	=> "Il tuo nome utente o il tuo indirizzo IP sono stati bloccati da $1.<br />
-La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1 o un altro [[Project:administrators|amministratore]] per discutere del blocco.
+"showpreview"	=> "Visualizza anteprima",
+"showlivepreview"	=> "Funzione ''Live preview''",
+"showdiff"	=> "Mostra cambiamenti",
+"anoneditwarning" => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato l'indirizzo IP.",
+"missingsummary" => "'''Attenzione:''' Non è stato specificato l'oggetto della modifica. Premendo di nuovo 'Salva la pagina' la modifica verrà salvata con l'oggetto vuoto.",
+"missingcommenttext" => "Inserire un commento qui sotto.",
+"blockedtitle"	=> "Utente bloccato.",
+"blockedtext"	=> "Questo nome utente o indirizzo IP sono stati bloccati da $1.
+La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1 o un altro [[{{ns:project}}:administrators|amministratore]] per discutere del blocco.
 
-Nota che non puoi usare la funzione 'Scrivi all'utente' se non hai registrato un indirizzo e-mail valido nelle tue [[Special:Preferences|preferenze]].
+Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].
 
-Ricorda di specificare il tuo indirizzo IP ($3) in qualsiasi richiesta di chiarimenti.",
+Specificare l'indirizzo IP coinvolto ($3) in qualsiasi richiesta di chiarimenti.",
+"whitelistedittitle" => "Accesso necessario per la modifica delle pagine",
+"whitelistedittext" => "Per modificare le pagine è necessario $1.",
+"whitelistreadtitle" => "Accesso necessario per la lettura delle pagine",
+"whitelistreadtext" => "Per essere abilitato alla lettura delle pagine è necessario [[Special:Userlogin|eseguire l'accesso]].",
+"whitelistacctitle" => "Creazione di un nuovo accesso non consentita",
+"whitelistacctext" => "Per essere abilitati alla creazione di nuovi accessi su questo sito è necessario [[Special:Userlogin|effettuare l'accesso]] ed aver ricevuto le opportune autorizzazioni.",
+"confirmedittitle" => "Conferma della e-mail necessaria per la modifica delle pagine",
+"confirmedittext" => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
+"loginreqtitle"	=> "Per modificare questa pagina è necessario eseguire l'accesso al sito.",
+"loginreqlink" => "eseguire l'accesso",
+"loginreqpagetext"	=> "Per vedere altre pagine è necessario $1.",
+"accmailtitle" => "Password inviata.",
+"accmailtext" => "La password per l'utente \"$1\" è stata inviata all'indirizzo $2.",
 "newarticle"	=> "(Nuovo)",
-"newarticletext" => "Scrivi qui il tuo testo.",
-"noarticletext" => "(Questo articolo è vuoto, potresti gentilmente iniziare l'articolo, oppure richiedere la cancellazione di questa pagina)",
+"newarticletext" => "Il collegamento appena seguito corrisponde a una pagina non ancora esistente.
+Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto
+(fare riferimento alle [[{{ns:project}}:Aiuto|pagine di aiuto]] per maggiori informazioni).
+Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
+"anontalkpagetext" => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:Userlogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
+
+"noarticletext" => "In questo momento la pagina richiesta è vuota. È possibile [[{{ns:special}}:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito oppure [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} modificare la pagina ora].",
+"clearyourcache" => "'''Nota:''' dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti. Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-Maiusc-R'' (''Cmd-Maiusc-R'' su Mac); per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''; per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''.",
+"usercssjsyoucanpreview" => "<strong>Suggerimento:</strong> si consiglia di usare il pulsante \'Visualizza anteprima\' per provare i nuovi CSS o JavaScript prima di salvarli.",
+"usercsspreview" => "'''Questa è solo un'anteprima del proprio CSS personale; le modifiche non sono ancora state salvate!'''",
+"userjspreview" => "'''Questa è solo un'anteprima per provare il proprio JavaScript personale; le modifiche non sono ancora state salvate!'''",
+"userinvalidcssjstitle" => "'''Attenzione:'''  Non esiste alcuna skin con nome \"$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio Utente:Esempio/monobook.js e non Utente:Esempio/Monobook.css.",
 "updated"		=> "(Aggiornato)",
 "note"			=> "<strong>NOTA:</strong>",
-"previewnote"	=> "Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione NON è ancora stata salvata!",
-"previewconflict" => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà in questa forma se sceglierai di salvare la pagina ora.",
+"previewnote"	=> "Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!",
+"session_fail_preview" => "<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>",
+"previewconflict" => "L'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere 'Salva la pagina' in questo momento.",
+"importing" => "Importazione di $1",
 "editing"		=> "Modifica di $1",
-"editconflict"	=> "Conflitto di edizione: $1",
-"explainconflict" => "Qualcun altro ha salvato una sua versione dell'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
-La casella di modifica di sopra contiene il testo dell'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore.
-Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò scriverle nella casella di sopra.
-<b>Soltanto</b> il testo nella casella di sopra sarà salvato se premerai il bottone \"Salva\".<br />",
+"editingsection" => "Modifica di $1 (sezione)",
+"editingcomment" => "Modifica di $1 (commento)",
+"editconflict"	=> "Conflitto di edizione su $1",
+"explainconflict" => "Un altro utente ha salvato una nuova versione della pagina mentre stavi effettuando le modifiche.<br />
+La casella di modifica superiore contiene il testo della pagina attualmente online, così come è stato aggiornato dall'altro utente. La versione con le tue modifiche è invece riportata nella casella di modifica inferiore. Se desideri confermarle, devi riportare le tue modifiche nel testo esistente (casella superiore).
+Premendo il pulsante 'Salva la pagina', verrà salvato <b>solo</b> il testo contenuto nella casella di modifica superiore.<br />",
 "yourtext"		=> "Il tuo testo",
-"storedversion" => "Versione in archivio",
-"editingold"	=> "<strong>ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.<br />
-Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.</strong>",
+"storedversion" => "La versione memorizzata",
+"nonunicodebrowser" => "<strong>Attenzione: Si sta utilizzando un browser non compatibile con i caratteri Unicode. Per consentire la modifica delle pagine senza creare inconvenienti, i caratteri non ASCII vengono visualizzati nella casella di modifica sotto forma di codici esadecimali.</strong>",
+"editingold"	=> "<strong>Attenzione: si sta modificando una versione non aggiornata della pagina.<br />
+Se si sceglie di salvarla, tutti i cambiamenti apportati dopo questa revisione andranno perduti.</strong>",
 "yourdiff"		=> "Differenze",
-/*"copyrightwarning" => "Nota, per favore, che tutti i contributi a {{SITENAME}} si considerano rilasciati sotto licenza di tipo GNU Free Documentation License (vedi $1 per maggiori dettagli).
-Se non vuoi che il tuo testo possa essere modificato e ridistribuito da chiunque senza pietà e senza altri limiti, allora non inviarlo a {{SITENAME}}, ma realizza piuttosto un tuo sito web personale.<br />
-Con l'invio di questo testo stai garantendo, a tua responsabilità, che il testo è stato scritto da te personalmente ed originalmente, oppure che è stato copiato da una fonte di publico dominio, o da una simile fonte, oppure che hai ottenuto espressa autorizzazione ad usare questo testo e che puoi dimostrarlo.
-<strong>NON USARE MATERIALE COPERTO DA DIRITTO DI AUTORE (COPYRIGHT - (c)) IN MANCANZA DI ESPRESSA AUTORIZZAZIONE!!!</strong>",*/
-
+/*"copyrightwarning" => "Nota: tutti i contributi a {{SITENAME}} si considerano rilasciati nei termini della licenza d'uso $2 (vedi $1 per maggiori dettagli). Se non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli a {{SITENAME}}.<br />
+Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il testo è stato scritto da te personalmente oppure che è stato copiato da una fonte di pubblico dominio o analogamente libera.
+<strong>NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!</strong>",*/
+"copyrightwarning2" => "Nota: tutti i contributi inviati a {{SITENAME}} possono essere modificati, stravolti o cancellati da parte degli altri partecipanti. Se non desideri che i tuoi testi possano essere modificati senza alcun riguardo, non inviarli a questo sito.<br />
+Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il testo è stato scritto da te personalmente oppure che è stato copiato da una fonte di pubblico dominio o analogamente libera. (vedi $1 per maggiori dettagli)
+<strong>NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!</strong>",
+"longpagewarning" => "<strong>ATTENZIONE: Questa pagina è lunga $1 kilobyte; alcuni browser potrebbero presentare dei problemi nella modifica di pagine che si avvicinano o superano i 32 KB. Valuta l'opportunità di suddividere la pagina in sezioni più piccole.</strong>",
+"longpageerror" => "<strong>ERRORE: Il testo inviato è lungo $1 kilobyte, più della dimensione massima consentita ($2 kilobyte). Il testo non può essere salvato.</strong>",
+"readonlywarning" => "<strong>ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.</strong>",
+"protectedpagewarning" => "<strong>ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Si prega di seguire le [[{{ns:project}}:Linee guida sulla protezione delle pagine|linee guida sulla protezione delle pagine]].</strong>",
+"semiprotectedpagewarning" => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
+"templatesused"	=> "Template utilizzati da questa pagina:",
+"edittools" => "<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->",
+"nocreatetitle" => "Creazione delle pagine limitata",
+"nocreatetext" => "Questo sito ha limitato la possibilità di creare nuove pagine ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Speciale:Userlogin|entrare o creare un nuovo accesso]].",
 
 # History pages
 #
 "revhistory"	=> "Cronologia delle versioni di questa pagina.",
 "nohistory"		=> "Cronologia delle versioni di questa pagina non reperibile.",
 "revnotfound"	=> "Versione non trovata",
-"revnotfoundtext" => "La versione precedente di questo articolo che hai richiesto, non è stata trovata.
-Controlla per favore la URL che hai usato per accedere a questa pagina.",
+"revnotfoundtext" => "La versione richiesta della pagina non è stata trovata.
+Verificare la URL usata per accedere a questa pagina.",
 "loadhist"		=> "Caricamento cronologia di questa pagina",
-"currentrev"	=> "Versione attuale",
-"revisionasof"	=> "Revisione $1",
+"currentrev"	=> "Versione corrente",
+"revisionasof"	=> "Versione del $1",
+"revisionasofwithlink"  => "Versione del $1; $2<br />$3 | $4",
+"previousrevision"	=> "← Versione meno recente",
+"nextrevision"		=> "Versione più recente →",
+"currentrevisionlink"	=> "Visualizza versione corrente",
 "cur"			=> "corr",
 "next"			=> "succ",
 "last"			=> "prec",
 "orig"			=> "orig",
-"histlegend"	=> "Legend: (corr) = differenze con la versione corrente,
-(prec) = differenze con la versione precedente, M = modifica minore",
+"histlegend"	=> "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.
+
+Legenda: (corr) = differenze con la versione corrente, (prec) = differenze con la versione precedente, '''m''' = modifica minore",
+"deletedrev" => "[cancellata]",
+"histfirst" => "Prima",
+"histlast" => "Ultima",
+"rev-deleted-comment" => "(commento rimosso)",
+"rev-deleted-user" => "(nome utente rimosso)",
+"rev-deleted-text-permission" => '<div class="mw-warning plainlinks">
+Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
+Si veda il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
+</div>',
+"rev-deleted-text-view" => '<div class="mw-warning plainlinks">
+Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
+Il testo può essere visualizzato soltanto dagli amministratori del sito.
+Si veda il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
+</div>',
+"rev-delundel" => "mostra/nascondi",
 
 # Revision deletion
 #
+"revisiondelete" => "Cancella o ripristina versioni",
+"revdelete-selected" => "Versioni selezionate di [[:$1]]:",
+"revdelete-text" => "Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.
+
+Gli altri amministratori del sito potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
+"revdelete-legend" => "Imposta le seguenti limitazioni sulle versioni cancellate:",
+"revdelete-hide-text" => "Nascondi il testo della versione",
+"revdelete-hide-comment" => "Nascondi l'oggetto della modifica",
+"revdelete-hide-user" => "Nascondi il nome o l'indirizzo IP dell'autore",
+"revdelete-hide-restricted" => "Applica le limitazioni indicate anche agli amministratori",
+"revdelete-log" => "Commento per il log:",
+"revdelete-submit" => "Applica alla revisione selezionata",
+"revdelete-logentry" => "ha modificato la visibilità per una revisione di [[$1]]",
 
 # Diffs
 #
@@ -404,66 +534,116 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.",
 "loadingrev"	=> "caricamento revisione per differenze",
 "lineno"		=> "Riga $1:",
 "editcurrent"	=> "Modifica la versione corrente di questa pagina",
+"selectnewerversionfordiff" => "Seleziona una versione più recente per il confronto",
+"selectolderversionfordiff" => "Seleziona una versione meno recente per il confronto",
+"compareselectedversions" => "Confronta le versioni selezionate",
 
 # Search results
 #
-"searchresults" => "Risultato della ricerca",
-"searchresulttext" => "Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[Project:Ricerca|Ricerca in {{SITENAME}}]].",
+"searchresults" => "Risultati della ricerca",
+"searchresulttext" => "Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{ns:project}}:Ricerca|Ricerca in {{SITENAME}}]].",
 "searchquery"	=> "Richiesta \"$1\"",
-"badquery"		=> "Richiesta mal inoltrata",
-"badquerytext"	=> "La tua richiesta non ha potuto essere processata.
-Questo potrebbe dipendere dall'aver ricercato una parola di meno di tre caratteri.
-Oppure potresti aver scritto male la richiesta, per esempio \"pesce and and azzurro\".
-Per favore, riprova.",
-"matchtotals"	=> "La ricerca per la voce \"$1\" ha trovato<br />$2 riscontri nei titoli degli articoli e<br />$3 riscontri nei testi degli articoli.",
-"titlematches"	=> "Nei titoli degli articoli",
-"notitlematches" => "Voce richiesta non trovata in titoli di articolo",
-"textmatches"	=> "Nel testo degli articoli",
-"notextmatches"	=> "Voce richiesta non trovata in testi di articolo",
+"badquery"		=> "Richiesta mal posta",
+"badquerytext"	=> "Impossibile elaborare la richiesta. Questo potrebbe dipendere dall'aver cercato una parola più corta di 4 caratteri, il che al momento è impossibile, oppure da una errore nella forma della richiesta, ad esempio \"pesce and and azzurro\". Per favore, riprova.",
+"matchtotals"	=> "La ricerca di \"$1\" ha trovato $2 riscontri nel titolo e $3 riscontri nel testo.",
+"titlematches"	=> "Corrispondenze nel titolo delle pagine",
+"notitlematches" => "Nessuna corrispondenza nei titoli delle pagine",
+"textmatches"	=> "Corrispondenze nel testo delle pagine",
+"notextmatches"	=> "Nessuna corrispondenza nel testo delle pagine",
 "prevn"			=> "precedenti $1",
 "nextn"			=> "successivi $1",
 "viewprevnext"	=> "Vedi ($1) ($2) ($3).",
-"showingresults" => "Qui di seguito <b>$1</b> risultati, partendo dal numero #<b>$2</b>.",
-"nonefound"		=> "<strong>Nota</strong>: la ricerca di parole troppo comuni, come \"avere\" o \"essere\", che non sono indicizzate, può causare un esito negativo, così come indicare più di un termine da ricercare (solo le pagine che contengano tutti i termini ricercati verrebbero infatti visualizzate fra i risultati).",
+"showingresults" => "Di seguito vengono presentati fino a <b>$1</b> risultati a partire dal numero <b>$2</b>.",
+"showingresultsnum" => "Di seguito vengono presentati <b>$3</b> risultati a partire dal numero <b>$2</b>.",
+"nonefound"		=> "<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  \"zero\" o \"more\", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).",
 "powersearch" => "Ricerca",
-"powersearchtext" => "
-Cerca fra i campi :<br />
-$1<br />
-$2 Elenca i redirects &nbsp; cerca per $3 $9",
+"powersearchtext" => "Ricerca nei seguenti namespace:<br />$1<br />$2 Mostra i redirect<br />Criteri di ricerca: $3 $9",
+"searchdisabled" => "La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)",
 
+"blanknamespace" => "(Principale)",
 
 # Preferences page
 #
 "preferences"	=> "Preferenze",
-"prefsnologin" => "Non hai eseguito il login",
-"prefsnologintext"	=> "Devi avere eseguito il [[Special:Userlogin|login]]
-per poter personalizzare le tue preferenze.",
-'prefsreset'	=> 'Le tue Preferenze sono state ripescate dalla memoria di sistema del potente server di {{SITENAME}}.',
-"qbsettings"	=> "Settaggio barra menu",
+"prefsnologin" => "Accesso non effettuato",
+"prefsnologintext"	=> "Per poter personalizzare le preferenze è necessario effettuare l'[[Special:Userlogin|accesso]].",
+"prefsreset"	=> "Le preferenze sono state ripristinate ai valori predefiniti.",
+"qbsettings"	=> "Quickbar",
 "changepassword" => "Cambia password",
-"skin"			=> "Aspetto",
-"saveprefs"		=> "Salva preferenze",
-"resetprefs"	=> "Resetta preferenze",
-"oldpassword"	=> "Vecchia password",
-"newpassword"	=> "Nuova password",
-"retypenew"		=> "Riscrivi la nuova password",
-"textboxsize"	=> "Dimensione della casella di edizione",
-"rows"			=> "Righe",
-"columns"		=> "Colonne",
-"searchresultshead" => "Settaggio preferenze di ricerca",
-"resultsperpage" => "Risultati da visualizzare per pagina",
-"contextlines"	=> "Righe di testo per ciascun risultato",
-"contextchars"	=> "Caratteri per linea",
-"stubthreshold" => "Stub visualizzati",
-"recentchangescount" => "Numero titoli in \"modifiche recenti\"",
-"savedprefs"	=> "Le tue preferenze sono state salvate.",
-"timezonetext"	=> "Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).",
-"localtime"	=> "Ora Locale",
-"timezoneoffset" => "Offset",
+"skin"	=> "Aspetto grafico (skin)",
+"math"	=> "Formule matematiche",
+"dateformat"	=> "Formato della data",
+"datedefault"	=> "Nessuna preferenza",
+"datetime"	=> "Data e ora",
+"math_failure"	=> "Errore del parser",
+"math_unknown_error"	=> "errore sconosciuto",
+"math_unknown_function"	=> "funzione sconosciuta",
+"math_lexing_error"	=> "errore lessicale",
+"math_syntax_error"	=> "errore di sintassi",
+"math_image_error"	=> "Conversione in PNG non riuscita; verificare che siano correttamente installati i seguenti programmi: latex, dvips, gs e convert.",
+"math_bad_tmpdir"	=> "Impossibile scrivere o creare la directory temporanea per math",
+"math_bad_output"	=> "Impossibile scrivere o creare la directory di output per math",
+"math_notexvc"	=> "Eseguibile texvc mancante; per favore consultare math/README per la configurazione.",
+"prefs-personal"	=> "Profilo utente",
+"prefs-rc"	=> "Ultime modifiche",
+"prefs-watchlist"	=> "Osservati speciali",
+"prefs-watchlist-days"	=> "Numero di giorni da mostrare negli osservati speciali:",
+"prefs-watchlist-edits"	=> "Numero di modifiche da mostrare con le funzioni avanzate:",
+"prefs-misc"	=> "Varie",
+"saveprefs"	=> "Salva le preferenze",
+"resetprefs"	=> "Reimposta le preferenze",
+"oldpassword"	=> "Vecchia password:",
+"newpassword"	=> "Nuova password:",
+"retypenew"	=> "Riscrivi la nuova password:",
+"textboxsize"	=> "Casella di modifica",
+"rows"	=> "Righe:",
+"columns"	=> "Colonne:",
+"searchresultshead"	=> "Ricerca",
+"resultsperpage"	=> "Numero di risultati per pagina:",
+"contextlines"	=> "Righe di testo per ciascun risultato:",
+"contextchars"	=> "Numero di caratteri di contesto:",
+"stubthreshold"	=> "Evidenzia gli stub più corti di:",
+"recentchangescount"	=> "Numero di righe nelle ultime modifiche:",
+"savedprefs"	=> "Le preferenze sono state salvate.",
+"timezonelegend"	=> "Fuso orario",
+"timezonetext"	=> "Numero di ore di differenza fra l'ora locale e l'ora del server (UTC).",
+"localtime"	=> "Ora locale",
+"timezoneoffset"	=> "Differenza<sup>1</sup>",
+"servertime"	=> "Ora del server",
+"guesstimezone"	=> "Usa l'ora del tuo browser",
+"allowemail"	=> "Consenti la ricezione di e-mail da altri utenti<sup>1</sup>",
+"defaultns"	=> "Namespace predefiniti per la ricerca:",
+"default"	=> "predefinito",
+"files"	=> "File",
 
 # User rights
+"userrights-lookup-user"	=> "Gestione dei gruppi utente",
+"userrights-user-editname"	=> "Inserire il nome utente:",
+"editusergroup"	=> "Modifica gruppi utente",
+
+"userrights-editusergroup"	=> "Modifica gruppi utente",
+"saveusergroups"	=> "Salva gruppi utente",
+"userrights-groupsmember"	=> "Appartiene ai gruppi:",
+"userrights-groupsavailable"	=> "Gruppi disponibili:",
+"userrights-groupshelp"	=> "Selezionare i gruppi ai quali si vuole associare o rimuovere l'utente. L'appartenenza ai gruppi non selezionati non verrà modificata. Per deselezionare un gruppo, premere Ctrl + il tasto sinistro del mouse.",
+"userrights-logcomment"	=> "Modificata appartenenza gruppi da $1 a $2",
 
 # Groups
+"group"	=> "Gruppo:",
+"group-bot"	=> "Bot",
+"group-sysop"	=> "Amministratori",
+"group-bureaucrat"	=> "Burocrati",
+"group-steward"	=> "Steward",
+"group-all"	=> "(utenti)",
+
+"group-bot-member"	=> "Bot",
+"group-sysop-member"	=> "Amministratore",
+"group-bureaucrat-member"	=> "Burocrate",
+"group-steward-member"	=> "Steward",
+
+"grouppage-bot"	=> "{{ns:project}}:Bot",
+"grouppage-sysop"	=> "{{ns:project}}:Amministratori",
+"grouppage-bureaucrat"	=> "{{ns:project}}:Burocrati",
 
 # Recent changes
 #
