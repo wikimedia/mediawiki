@@ -97,17 +97,17 @@
 "mainpagedocfooter" => "Siehe die [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentation zur Anpassung der Benutzeroberfläche]
 und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuch] für Hilfe zur Benutzung und Konfiguration.",
 'portal'		=> "{{SITENAME}}-Portal",
-"portal-url"		=> "{{ns:4}}:Portal",
+'portal-url'		=> '{{ns:project}}:Portal',
 "about"			=> "Über",
 "aboutsite"      => "Über {{SITENAME}}",
 "aboutpage"		=> "{{ns:project}}:Über_{{SITENAME}}",
 "article" => "Artikel",
 "help"			=> "Hilfe",
-"helppage"		=> "Project:Hilfe",
+'helppage'		=> '{{ns:project}}:Hilfe',
 "bugreports"	=> "Kontakt",
-"bugreportspage" => "Project:Kontakt",
+'bugreportspage'	=> '{{ns:project}}:Kontakt',
 "sitesupport"   => "Spenden",
-'sitesupport-url'	=> 'Project:Spenden',
+'sitesupport-url'	=> '{{ns:project}}:Spenden',
 "faq"			=> "FAQ",
 "faqpage"		=> "{{ns:project}}:Häufig_gestellte_Fragen",
 "edithelp"		=> "Bearbeitungshilfe",
@@ -123,7 +123,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "qbspecialpages"	=> "Spezialseiten",
 "moredotdotdot"	=> "Mehr...",
 "mypage"		=> "Meine Seite",
-"mytalk"		=> "Meine Diskussion",
+'mytalk'		=> 'Eigene Diskussion',
 "anontalk"		=> "Diskussionsseite dieser IP",
 "navigation" => "Navigation",
 "currentevents" => "Aktuelle Ereignisse",
@@ -131,7 +131,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "disclaimers" => "Lizenzbestimmungen",
 "disclaimerpage"		=> "{{ns:4}}:Lizenzbestimmungen",
 'privacy' => 'Datenschutz',
-'privacypage' => 'Project:Datenschutz',
+'privacypage'		=> '{{ns:project}}:Datenschutz',
 "errorpagetitle" => "Fehler",
 "returnto"		=> "Zurück zu $1.",
 'tagline'		=> 'Aus {{SITENAME}}',
@@ -171,8 +171,9 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "lastmodified"	=> "Diese Seite wurde zuletzt geändert um $1.",
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
 "copyright"	=> "Inhalt ist verfügbar unter der $1.",
+'printsubtitle'		=> '(Aus {{SERVER}})',
 "protectedpage" => "Geschützte Seite",
-"administrators" => "Project:Administratoren",
+'administrators'	=> '{{ns:project}}:Administratoren',
 'jumpto'		=> 'Wechseln zu:',
 'jumptonavigation'	=> 'Navigation',
 'jumptosearch'		=> 'Suche',
@@ -185,9 +186,11 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'versionrequired'	=> 'Version $1 von MediaWiki ist erforderlich',
 'versionrequiredtext'	=> 'Version $1 von MediaWiki ist erforderlich um diese Seite zu nutzen. Siehe [[{{ns:special}}:Version]]',
 "nbytes"		=> "$1 Byte",
+'ncategories'		=> '$1 Kategorien',
+'nrevisions'		=> '$1 Versionen',
 'widthheight'		=> '$1 x $2',
-"go"			=> "Los",
-"ok"			=> "OK",
+'go'			=> 'Artikel',
+'ok'			=> 'Suche',
 'retrievedfrom' => 'Von "$1"',
 'youhavenewmessages'	=> 'Sie haben $1 ($2).',
 "newmessageslink" => "neue Nachrichten",
@@ -302,9 +305,10 @@ Sie können {{SITENAME}} jetzt anonym weiterbenutzen, oder sich unter dem selben
 Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 
 "loginpagetitle" => "Benutzer-Anmeldung",
-"yourname"		=> "Ihr Benutzername",
-"yourpassword"	=> "Ihr Passwort",
+"yourname"		=> "Benutzername",
+"yourpassword"	=> "Passwort",
 "yourpasswordagain" => "Passwort wiederholen",
+'newusersonly'		=> ' (nur neue Benutzer)',
 "remembermypassword" => "Dauerhaftes Einloggen",
 'yourdomainname'	=> 'Ihre Domain',
 "loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br />Bitte versuchen Sie es nochmal!",
@@ -345,8 +349,10 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporä
 "nosuchuser"	=> "Der Benutzername \"$1\" existiert nicht.
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
 'nosuchusershort'	=> 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
+'nouserspecified'	=> 'Bitte geben Sie einen Benutzernamen an.',
 "wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
-"mailmypassword" => "Ein neues (temporäres) Passwort schicken",
+'mailmypassword'	=> 'Passwort vergessen?',
+'passwordremindertitle' => '[{{SITENAME}}] Neues Passwort',
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
 "passwordsent"	=> "Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.",
@@ -372,6 +378,7 @@ Funktionen sind zur Zeit deshalb nicht möglich.',
 "savearticle"	=> "Artikel speichern",
 "preview"	=> "Vorschau",
 "showpreview"	=> "Vorschau zeigen",
+'showlivepreview'	=> 'Live-Vorschau',
 "showdiff"	=> "Änderungen zeigen",
 'missingcommenttext'	=> 'Bitte geben Sie eine Zusammenfassung ein.',
 'anoneditwarning'	=> "Du bearbeitest unangemeldet. Statt eines Benutzernamens wird die IP-Adresse in der Versionsgeschichte aufgezeichnet.",
@@ -425,6 +432,11 @@ Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>",
 <strong>Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</strong><br />
 Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
 <i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"$2\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
+'copyrightwarning2' => 'Bitte beachten Sie, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können.
+Reichen Sie hier keine Texte ein, falls Sie nicht wollen dass diese ohne Einschränkung geändert werden können.
+
+Sie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder diese von einer gemeinfreien Quelle kopiert haben
+(siehe $1 für weitere Details). <strong>ÜBERTRAGEN SIE OHNE GENEHMIGUNG KEINE URHEBERRECHTLICH GESCHÜTZEN INHALTE!</strong>',
 "longpagewarning" => "<strong>WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>",
 "readonlywarning" => "<strong>WARNUNG: Die Datenbank wurde während dem Ändern der
@@ -552,7 +564,7 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "oldpassword"	=> "Altes Passwort",
 "newpassword"	=> "Neues Passwort",
 "retypenew"		=> "Neues Passwort (nochmal)",
-"textboxsize"	=> "Textfeld-Größe",
+"textboxsize"	=> "Bearbeiten",
 "rows"			=> "Zeilen",
 "columns"		=> "Spalten",
 "searchresultshead" => "Suchergebnisse",
@@ -574,6 +586,7 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 'files'			=> 'Dateien',
 'imagemaxsize'		=> 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
 'thumbsize'		=> 'Größe der Vorschaubilder (Thumbnails):',
+'showbigimage'		=> 'Version mit hoher Auflösung herunterladen ($1 x $2 Pixel, $3 KB)',
 
 # Recent changes
 #
@@ -591,9 +604,14 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "hist"			=> "Versionen",
 "hide"			=> "ausblenden",
 "show"			=> "einblenden",
-"minoreditletter" => "M",
+'tableform'		=> 'Tabelle',
+'listform'		=> 'Liste',
+'nchanges'		=> '$1 Änderungen',
+"minoreditletter"	=> 'K',
 "newpageletter" => "N",
 'number_of_watching_users_pageview' 	=> '[$1 Benutzer beobachten diese Seite]',
+'rc_categories'		=> 'Kategorienbegrenzung (getrennt mit "|")',
+'rc_categories_any'	=> 'Alle',
 
 
 # Upload
@@ -636,7 +654,7 @@ Alle Zeiten sind UTC.
 'fileuploadsummary'	=> 'Beschreibung/Quelle:',
 "filestatus" => "Copyright-Status",
 "filesource" => "Quelle",
-"copyrightpage" => "Project:Copyright",
+'copyrightpage'		=> '{{ns:project}}:Copyright',
 "copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Hochgeladene Dateien",
 'ignorewarning'		=> 'Warnung ignorieren und Datei trotzdem speichern.',
@@ -692,6 +710,8 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 "imagelinks"	=> "Bildverweise",
 "linkstoimage"	=> "Die folgenden Artikel benutzen dieses Bild:",
 "nolinkstoimage" => "Kein Artikel benutzt dieses Bild.",
+'shareduploadwiki'		=> 'Für weitere Informationen siehe $1.',
+'shareduploadwiki-linktext'	=> 'Datei-Beschreibungsseite',
 'noimage'			=> 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 'noimage-linktext'		=> 'hochladen',
 'uploadnewversion'	=> '[$1 Eine neue Version dieser Datei hochladen]',
@@ -724,6 +744,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 
 # Miscellaneous special pages
 #
+'orphans'		=> 'Verwaiste Seiten',
 "lonelypages"	=> "Verwaiste Seiten",
 "unusedimages"	=> "Verwaiste Bilder",
 "popularpages"	=> "Beliebte Seiten",
@@ -939,7 +960,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 # Contributions
 #
 "contributions"	=> "Benutzerbeiträge",
-"mycontris" => "Meine Beiträge",
+'mycontris'	=> 'Eigene Beiträge',
 "contribsub"	=> "Für $1",
 "nocontribs"	=> "Es wurden keine Änderungen für diese Kriterien gefunden.",
 "ucnote"		=> "Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.",
@@ -981,6 +1002,8 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "ipblocklist"	=> "Liste blockierter IP-Adressen",
 'ipblocklistempty'	=> 'Die Liste der Benutzersperrungen hat keine Einträge.',
 "blocklistline"	=> "$1, $2 blockierte $3 ($4)",
+'infiniteblock'		=> 'unbegrenzt',
+'expiringblock'		=> 'erlischt $1',
 "blocklink"		=> "blockieren",
 "unblocklink"	=> "freigeben",
 "contribslink"	=> "Beiträge",
@@ -1063,6 +1086,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit Mediawiki Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 "missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>",
+'filemissing'		=> 'Datei fehlt',
+'thumbnail_error'	=> 'Fehler beim Erstellen des Vorschaubildes: $1',
 
 #Tooltips:
 'tooltip-watch' => 'Diese Seite beobachten. [alt-w]',
@@ -1072,6 +1097,19 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'tooltip-preview' => 'Vorschau der Änderungen an dieser Seite. Benutzen Sie dies vor dem Speichern! [alt-p]',
 'tooltip-diff' => 'Zeigt Ihre Änderungen am Text tabellarisch an [alt-d]',
 'tooltip-compareselectedversions' => 'Unterschiede zwischen zwei ausgewählten Versionen dieser Seite vergleichen. [alt-v]',
+
+# Metadata
+'nodublincore' => 'Dublin Core RDF-Metadaten sind für diesen Server deaktiviert.',
+'nocreativecommons' => 'Creative Commons RDF-Metadaten sind für diesen Server deaktiviert.',
+'notacceptable' => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',
+
+# Attribution
+'anonymous' => 'Anonyme(r) Benutzer auf {{SITENAME}}',
+'lastmodifiedby' => 'Diese Seite wurde zuletzt geändert am $1 von $2.',
+'othercontribs' => 'Basiert auf der Arbeit von $1',
+'others' => 'andere',
+'creditspage' => 'Seiteninformationen',
+'nocredits' => 'Für diese Seite sind keine Informationen vorhanden.',
 
 # Info page
 'infosubtitle'		=> 'Seiteninformation',
@@ -1112,6 +1150,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'movelogpage'		=> 'Verschiebungs-Logbuch',
 'movelogpagetext'	=> 'Dies ist eine Liste aller verschobenen Seiten.',
 "allmessages"		=> "Alle MediaWiki-Meldungen",
+'allmessagesname'	=> 'Name',
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
 'allmessagesdefault'	=> 'Standardtext',
 'allmessagescurrent'	=> 'Aktueller Text',
@@ -1322,10 +1361,10 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-gpsdestlongitude'		=> 'Länge',
 'exif-gpsdestlongituderef'	=> 'Referenz für die Länge',
 #'exif-gpsdifferential'		=> 'GPS differential correction',
-#'exif-gpsdirection-m'		=> 'Magnetic direction',
+'exif-gpsdirection-m'		=> 'Magnetische Richtung',
 #'exif-gpsdirection-t'		=> 'True direction',
-#'exif-gpsdop'			=> 'Measurement precision',
-#'exif-gpsimgdirection'		=> 'Direction of image',
+'exif-gpsdop'			=> 'Maßpräzision',
+'exif-gpsimgdirection'		=> 'Bildrichtung',
 #'exif-gpsimgdirectionref'	=> 'Reference for direction of image',
 'exif-gpslatitude'		=> 'Geografische Breite',
 'exif-gpslatitude-n'		=> 'nördl. Breite',
@@ -1347,7 +1386,7 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-gpsspeed-n'		=> 'Knoten',
 'exif-gpsspeedref'		=> 'Geschwindigkeitseinheit',
 'exif-gpsstatus'		=> 'Empfänger Status',
-#'exif-gpsstatus-a'		=> 'Measurement in progress',
+'exif-gpsstatus-a'		=> 'Messung läuft',
 #'exif-gpsstatus-v'		=> 'Measurement interoperability',
 'exif-gpstimestamp'		=> 'GPS-Zeit ([[Internationale Atomzeit|TAI]])',
 'exif-gpstrack'			=> 'Bewegungsrichtung',
@@ -1420,7 +1459,7 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-relatedsoundfile'		=> 'Zugehörige Tondatei',
 'exif-resolutionunit'		=> 'Masseinheit der Auflösung',
 'exif-rowsperstrip'		=> 'Anzahl Zeilen pro Streifen',
-#'exif-samplesperpixel'		=> 'Number of components',
+'exif-samplesperpixel'		=> 'Anzahl Komponenten',
 'exif-saturation'		=> 'Sättigung',
 'exif-saturation-0'		=> 'Normal',
 'exif-saturation-1'		=> 'Gering',
@@ -1451,7 +1490,7 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-spectralsensitivity'	=> 'Spectral Sensitivity',
 #'exif-stripbytecounts'		=> 'Bytes per compressed strip',
 'exif-stripoffsets'		=> 'Bilddaten-Versatz',
-#'exif-subjectarea'		=> 'Subject area',
+'exif-subjectarea'		=> 'Bereich',
 'exif-subjectdistance'		=> 'Entfernung',
 'exif-subjectdistance-value'	=> '$1 Meter',
 'exif-subjectdistancerange'	=> 'Motiventfernung',
@@ -1579,10 +1618,10 @@ ta[\'t-specialpages\'] = new Array(\'q\',\'Liste aller Spezialseiten\');
 ta[\'ca-nstab-main\'] = new Array(\'c\',\'Artikel anzeigen\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Benutzerseite anzeigen\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Mediendateienseite anzeigen\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'Dies ist eine Spezialseite. Sie können diese nicht ändern.\');
 ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Projektseite anzeigen\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Bilderseite anzeigen\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Systemmeldungen anzeigen\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vorlage anzeigen\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Hilfeseite anzeigen\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
