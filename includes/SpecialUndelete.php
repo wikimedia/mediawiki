@@ -479,7 +479,7 @@ class UndeleteForm {
 			$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
 			$action = $titleObj->getLocalURL( "action=submit" );
 			# Start the form here
-			$top = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $action ) );
+			$top = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'undelete' ) );
 			$wgOut->addHtml( $top );
 		}
 
