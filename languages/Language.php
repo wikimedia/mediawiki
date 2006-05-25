@@ -1021,6 +1021,10 @@ class Language {
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
+		global $wgGrammarForms;
+		if ( isset($wgGrammarForms[$case][$word]) ) {
+			return $wgGrammarForms[$case][$word];
+		}
 		return $word;
 	}
 

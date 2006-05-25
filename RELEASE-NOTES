@@ -333,6 +333,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   no longer necessary to write four separate functions just to add a
   custom log type.
 * (bug 6057) Count "licenses" as a message (and show it in Special:Allmessages)
+* Added $wgGrammarForms global
 
 == Compatibility ==
 
