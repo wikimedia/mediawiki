@@ -6,26 +6,26 @@
 
 require_once( "LanguageUtf8.php" );
 
-/* private */ $wgNamespaceNamesEn = array(
-  NS_MEDIA            => 'Medija',
-  NS_SPECIAL          => 'Specialus',
-  NS_MAIN	          => '',
-  NS_TALK	          => 'Aptarimas',
-  NS_USER             => 'Naudotojas',
-  NS_USER_TALK        => 'Naudotojo_aptarimas',
-  NS_PROJECT          => $wgMetaNamespace,
-  NS_PROJECT_TALK     => $wgMetaNamespace.'_aptarimas',
-  NS_IMAGE            => 'Vaizdas',
-  NS_IMAGE_TALK       => 'Vaizdo_aptarimas',
-  NS_MEDIAWIKI        => 'MediaWiki',
-  NS_MEDIAWIKI_TALK   => 'MediaWiki_aptarimas',
-  NS_TEMPLATE         => 'Šablonas',
-  NS_TEMPLATE_TALK    => 'Šablono_aptarimas',
-  NS_HELP             => 'Pagalba',
-  NS_HELP_TALK        => 'Pagalbos_aptarimas',
-  NS_CATEGORY         => 'Kategorija',
-  NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
-  );
+/* private */ $wgNamespaceNamesLt = array(
+	NS_MEDIA            => 'Medija',
+	NS_SPECIAL          => 'Specialus',
+	NS_MAIN	            => '',
+	NS_TALK	            => 'Aptarimas',
+	NS_USER             => 'Naudotojas',
+	NS_USER_TALK        => 'Naudotojo_aptarimas',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaNamespace.'_aptarimas',
+	NS_IMAGE            => 'Vaizdas',
+	NS_IMAGE_TALK       => 'Vaizdo_aptarimas',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_aptarimas',
+	NS_TEMPLATE         => 'Šablonas',
+	NS_TEMPLATE_TALK    => 'Šablono_aptarimas',
+	NS_HELP             => 'Pagalba',
+	NS_HELP_TALK        => 'Pagalbos_aptarimas',
+	NS_CATEGORY         => 'Kategorija',
+	NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
+);
 
 /* private */ $wgQuickbarSettingsLt = array(
 	"Nerodyti", "Fiksuoti kairėje", "Fiksuoti dešinėje", "Plaukiojantis kairėje"
@@ -56,6 +56,11 @@ class LanguageLt extends LanguageUtf8  {
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsLt;
 		return $wgQuickbarSettingsLt;
+	}
+
+	function getNamespaces() {
+		global $wgNamespaceNamesLt;
+		return $wgNamespaceNamesLt;
 	}
 
 	function getSkinNames() {
