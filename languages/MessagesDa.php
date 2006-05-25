@@ -933,6 +933,8 @@ i bunden af skærmen.",
 'wlhide'		=> 'Skjul',
 'wlhideshowown'		=> '$1 mine redigeringer.',
 'wlhideshowbots'		=> '$1 robotredigeringer.',
+'wldone'			=> 'Gennemført.',
+
 'enotif_mailer' 		=> '{{SITENAME}} informationsmail',
 'enotif_reset'			=> 'Marker alle sider som besøgt',
 'enotif_newpagetext'=> 'Dette er en ny side.',

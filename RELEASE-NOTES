@@ -334,6 +334,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   custom log type.
 * (bug 6057) Count "licenses" as a message (and show it in Special:Allmessages)
 * Added $wgGrammarForms global
+* Fixed hardcoded 'done.' when removing watchlist entries.
 
 == Compatibility ==
 

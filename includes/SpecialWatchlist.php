@@ -97,7 +97,7 @@ function wfSpecialWatchlist( $par ) {
 				$wgOut->addHTML( "<br />\n" . wfMsg( 'iteminvalidname', htmlspecialchars($one) ) );
 			}
 		}
-		$wgOut->addHTML( "done.</p>\n" );
+		$wgOut->addHTML( "<br />\n" . wfMsg( 'wldone' ) . "</p>\n" );
 	}
 
 	if ( $wgUseWatchlistCache ) {

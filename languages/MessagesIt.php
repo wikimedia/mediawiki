@@ -36,6 +36,7 @@
 "tog-forceeditsummary" => "Chiedi conferma se l'oggetto della modifica è vuoto",
 "tog-watchlisthideown" => "Nascondi le mie modifiche negli osservati speciali",
 "tog-watchlisthidebots" => "Nascondi le modifiche dei bot negli osservati speciali",
+'wldone'			=> 'Fatto.',
 
 "underline-always" => "Sempre",
 "underline-never" => "Mai",
