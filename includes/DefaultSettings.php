@@ -1712,6 +1712,70 @@ $wgAuth = null;
 $wgHooks = array();
 
 /**
+ * The logging system has two levels: an event type, which describes the
+ * general category and can be viewed as a named subset of all logs; and
+ * an action, which is a specific kind of event that can exist in that
+ * log type.
+ */
+$wgLogTypes = array( '', 'block', 'protect', 'rights', 'delete', 'upload', 'move' );
+
+/**
+ * Lists the message key string for each log type. The localized messages
+ * will be listed in the user interface.
+ *
+ * Extensions with custom log types may add to this array.
+ */
+$wgLogNames = array(
+	''        => 'log',
+	'block'   => 'blocklogpage',
+	'protect' => 'protectlogpage',
+	'rights'  => 'rightslog',
+	'delete'  => 'dellogpage',
+	'upload'  => 'uploadlogpage',
+	'move'    => 'movelogpage' );
+
+/**
+ * Lists the message key string for descriptive text to be shown at the
+ * top of each log type.
+ *
+ * Extensions with custom log types may add to this array.
+ */
+$wgLogHeaders = array(
+	''        => 'alllogstext',
+	'block'   => 'blocklogtext',
+	'protect' => 'protectlogtext',
+	'rights'  => 'rightslogtext',
+	'delete'  => 'dellogpagetext',
+	'upload'  => 'uploadlogpagetext',
+	'move'    => 'movelogpagetext' );
+
+/**
+ * Lists the message key string for formatting individual events of each
+ * type and action when listed in the logs.
+ *
+ * Extensions with custom log types may add to this array.
+ */
+$wgLogActions = array(
+	'block/block'       => 'blocklogentry',
+	'block/unblock'     => 'unblocklogentry',
+	'protect/protect'   => 'protectedarticle',
+	'protect/unprotect' => 'unprotectedarticle',
+
+	// TODO: This whole section should be moved to extensions/Makesysop/SpecialMakesysop.php
+	'rights/rights'     => 'rightslogentry',
+	'rights/addgroup'   => 'addgrouplogentry',
+	'rights/rngroup'    => 'renamegrouplogentry',
+	'rights/chgroup'    => 'changegrouplogentry',
+
+	'delete/delete'     => 'deletedarticle',
+	'delete/restore'    => 'undeletedarticle',
+	'delete/revision'   => 'revdelete-logentry',
+	'upload/upload'     => 'uploadedimage',
+	'upload/revert'     => 'uploadedimage',
+	'move/move'         => '1movedto2',
+	'move/move_redir'   => '1movedto2_redir' );
+
+/**
  * Experimental preview feature to fetch rendered text
  * over an XMLHttpRequest from JavaScript instead of
  * forcing a submit and reload of the whole page.
