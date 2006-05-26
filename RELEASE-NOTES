@@ -346,6 +346,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Increase robustness of parser placeholders; fixes some glitches when
   adjacent to identifier-ish constructs such as URLs.
 * Shut up the parser test whining about files in a temp directory.
+* (bug 6098) Add Aragonese language support (an)
 
 == Compatibility ==
 
