@@ -342,7 +342,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * wfShellexec() now accepts an optional parameter to receive the exit code
 * Failed, but not zero-length, thumbnail renderings are now removed.
   Should help clean up when rsvg fails in weird ways.
-
+* (bug 6081) Change description for Turkmen language
 
 == Compatibility ==
 
