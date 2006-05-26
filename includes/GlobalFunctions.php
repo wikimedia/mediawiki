@@ -1666,12 +1666,21 @@ function wfUrlProtocols() {
 }
 
 /**
- * shell_exec() with time and memory limits mirrored from the PHP configuration,
- * if supported.
+ * Execute a shell command, with time and memory limits mirrored from the PHP
+ * configuration if supported.
+ * @param $cmd Command line, properly escaped for shell.
+ * @param &$retval optional, will receive the program's exit code.
+ *                 (non-zero is usually failure)
+ * @return collected stdout as a string (trailing newlines stripped)
  */
-function wfShellExec( $cmd )
-{
+function wfShellExec( $cmd, &$retval=null ) {
 	global $IP;
+	
+	if( ini_get( 'safe_mode' ) ) {
+		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
+		$retval = 1;
+		return "Unable to run external programs in safe mode.";
+	}
 
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = ini_get( 'max_execution_time' );
@@ -1692,7 +1701,12 @@ function wfShellExec( $cmd )
 		$cmd = '"' . $cmd . '"';
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
-	return shell_exec( $cmd );
+	
+	$output = array();
+	$retval = 1; // error by default?
+	$lastline = exec( $cmd, $output, $retval );
+	return implode( "\n", $output );
+	
 }
 
 /**

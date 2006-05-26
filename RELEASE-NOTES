@@ -339,6 +339,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6086) Remove vestigial attempt to call Article::validate()
 * wfHostname() function for consistent server hostname use in debug messages
 * Send thumbnailing error messages to 'thumbnail' log group
+* wfShellexec() now accepts an optional parameter to receive the exit code
+* Failed, but not zero-length, thumbnail renderings are now removed.
+  Should help clean up when rsvg fails in weird ways.
 
 
 == Compatibility ==
