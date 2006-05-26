@@ -209,7 +209,7 @@
 	'tg' => 'Тоҷикӣ',	# Tajik
 	'th' => 'ไทย',	# Thai
 	'ti' => 'ትግርኛ',		# Tigrinya
-	'tk' => 'T�rkmen',	# Turkmen
+	'tk' => 'Türkmen',	# Turkmen
 	'tl' => 'Tagalog',		# Tagalog (Filipino)
 	#'tlh' => 'tlhIngan-Hol',	# Klingon - no interlanguage links allowed
 	'tn' => 'Setswana',		# Setswana
