@@ -1173,6 +1173,9 @@ class Image
 			}
 		}
 		if ( $err !== true ) {
+			wfDebugLog( 'thumbnail',
+				sprintf( 'thumbnail failed on %s: "%s" from "%s"',
+					wfHostname(), trim($err), $cmd ) );
 			return wfMsg( 'thumbnail_error', $err );
 		} else {
 			return true;
