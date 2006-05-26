@@ -214,8 +214,8 @@ class LanguageRu extends LanguageUtf8 {
 		} else {
 			switch ($count % 10) {
 				case 1: return $wordform1;
-				case 2: 
-				case 3: 
+				case 2:
+				case 3:
 				case 4: return $wordform2;
 				default: return $wordform3;
 			}

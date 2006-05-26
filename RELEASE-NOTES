@@ -347,6 +347,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   adjacent to identifier-ish constructs such as URLs.
 * Shut up the parser test whining about files in a temp directory.
 * (bug 6098) Add Aragonese language support (an)
+* (bug 6101) Update for Russian language (ru)
 
 == Compatibility ==
 
