@@ -1050,6 +1050,9 @@ class Image
 		$this->load();
 
 		$err = false;
+		$cmd = "";
+		$retval = 0;
+		
 		if( $this->mime === "image/svg" ) {
 			#Right now we have only SVG
 
@@ -1066,7 +1069,7 @@ class Image
 					$wgSVGConverters[$wgSVGConverter] );
 				wfProfileIn( 'rsvg' );
 				wfDebug( "reallyRenderThumb SVG: $cmd\n" );
-				$err = wfShellExec( $cmd );
+				$err = wfShellExec( $cmd, $retval );
 				wfProfileOut( 'rsvg' );
 			}
 		} elseif ( $wgUseImageMagick ) {
@@ -1098,7 +1101,7 @@ class Image
 				wfEscapeShellArg($thumbPath) . " 2>&1";
 			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
 			wfProfileIn( 'convert' );
-			$err = wfShellExec( $cmd );
+			$err = wfShellExec( $cmd, $retval );
 			wfProfileOut( 'convert' );
 		} elseif( $wgCustomConvertCommand ) {
 			# Use a custom convert command
@@ -1110,7 +1113,7 @@ class Image
 			$cmd = str_replace( '%h', $height, str_replace( '%w', $width, $cmd ) ); # Size
 			wfDebug( "reallyRenderThumb: Running custom convert command $cmd\n" );
 			wfProfileIn( 'convert' );
-			$err = wfShellExec( $cmd );
+			$err = wfShellExec( $cmd, $retval );
 			wfProfileOut( 'convert' );
 		} else {
 			# Use PHP's builtin GD library functions.
@@ -1165,17 +1168,17 @@ class Image
 		#
 		if( file_exists( $thumbPath ) ) {
 			$thumbstat = stat( $thumbPath );
-			if( $thumbstat['size'] == 0 ) {
+			if( $thumbstat['size'] == 0 || $retval != 0 ) {
+				wfDebugLog( 'thumbnail',
+					sprintf( 'Removing bad %d-byte thumbnail "%s"',
+						$thumbstat['size'], $thumbPath ) );
 				unlink( $thumbPath );
-			} else {
-				// All good
-				$err = true;
 			}
 		}
-		if ( $err !== true ) {
+		if ( $retval != 0 ) {
 			wfDebugLog( 'thumbnail',
-				sprintf( 'thumbnail failed on %s: "%s" from "%s"',
-					wfHostname(), trim($err), $cmd ) );
+				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
+					wfHostname(), $retval, trim($err), $cmd ) );
 			return wfMsg( 'thumbnail_error', $err );
 		} else {
 			return true;
