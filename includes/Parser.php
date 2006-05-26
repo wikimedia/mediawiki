@@ -151,7 +151,15 @@ class Parser
 			'titles' => array()
 		);
 		$this->mRevisionId = null;
-		$this->mUniqPrefix = 'UNIQ' . Parser::getRandomString();
+		
+		/**
+		 * Prefix for temporary replacement strings for the multipass parser.
+		 * \x07 should never appear in input as it's disallowed in XML.
+		 * Using it at the front also gives us a little extra robustness
+		 * since it shouldn't match when butted up against identifier-like
+		 * string constructs.
+		 */
+		$this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
 
 		# Clear these on every parse, bug 4549
  		$this->mTemplates = array();

@@ -4115,6 +4115,36 @@ blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER 
 
 !! end
 
+!!test
+Fuzz testing: URL adjacent extension (with space, clean)
+!! options
+!! input
+http://example.com <nowiki>junk</nowiki>
+!! result
+<p><a href="http://example.com" class='external free' title="http://example.com" rel="nofollow">http://example.com</a> junk
+</p>
+!!end
+
+!!test
+Fuzz testing: URL adjacent extension (no space, dirty; nowiki)
+!! options
+!! input
+http://example.com<nowiki>junk</nowiki>
+!! result
+<p><a href="http://example.com" class='external free' title="http://example.com" rel="nofollow">http://example.com</a>junk
+</p>
+!!end
+
+!!test
+Fuzz testing: URL adjacent extension (no space, dirty; pre)
+!! options
+!! input
+http://example.com<pre>junk</pre>
+!! result
+<a href="http://example.com" class='external free' title="http://example.com" rel="nofollow">http://example.com</a><pre>junk</pre>
+
+!!end
+
 #
 #
 #

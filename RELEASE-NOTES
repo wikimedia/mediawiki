@@ -343,6 +343,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Failed, but not zero-length, thumbnail renderings are now removed.
   Should help clean up when rsvg fails in weird ways.
 * (bug 6081) Change description for Turkmen language
+* Increase robustness of parser placeholders; fixes some glitches when
+  adjacent to identifier-ish constructs such as URLs.
+* Shut up the parser test whining about files in a temp directory.
 
 == Compatibility ==
 
