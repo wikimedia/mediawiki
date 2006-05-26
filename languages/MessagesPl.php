@@ -161,6 +161,7 @@
 'talk' => 'dyskusja',
 'toolbox' => 'Narzędzia',
 'userpage' => 'Strona użytkownika',
+'projectpage' => 'Strona projektu',
 'imagepage' => 'Strona grafiki',
 'viewtalkpage' => 'Strona dyskusji',
 'otherlanguages' => 'W innych językach',
@@ -206,7 +207,7 @@ użytkownika o prawach "$2". Zobacz $1.',
 'nstab-user' => 'Strona użytkownika',
 'nstab-media' => 'Media',
 'nstab-special' => 'Strona specjalna',
-'nstab-project' => 'Meta',
+'nstab-project' => 'Strona projektu',
 'nstab-image' => 'Plik',
 'nstab-mediawiki' => 'Komunikat',
 'nstab-template' => 'Szablon',
@@ -280,12 +281,9 @@ Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.',
 # Login and logout pages
 #
 'logouttitle' => 'Wylogowanie użytkownika',
-'logouttext' => '<strong>Wylogowano Cię</strong>.<br />
-Możesz kontynuować pracę jako niezarejestrowany użytkownik
-albo zalogować się ponownie jako ten sam lub inny użytkownik.',
+'logouttext' => '<strong>Wylogowano Cię</strong>.<br />Możesz kontynuować pracę jako niezarejestrowany użytkownik albo zalogować się ponownie jako ten sam lub inny użytkownik.',
 
-'welcomecreation' => '<h2>Witaj, $1!</h2><p>Właśnie utworzyliśmy dla Ciebie konto.
-Nie zapomnij dostosować [[{{ns:Special}}:Preferences|preferencji]].',
+'welcomecreation' => '==Witaj, $1!== Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:Special}}:Preferences|preferencji]].',
 
 'loginpagetitle' => 'Logowanie',
 'yourname' => 'Login',
@@ -329,12 +327,14 @@ lub twojej strony dyskusji bez potrzeby ujawniania twoich danych identyfikacyjny
 'loginsuccess' => 'Zalogowano Cię do serwisu {{SITENAME}} jako "$1".',
 'nosuchuser' => 'Nie ma użytkownika nazywającego się "$1". Sprawdź pisownię lub użyj poniższego formularza by utworzyć nowe konto.',
 'nosuchusershort' => 'Nie ma użytkownika nazywającego się "$1".',
+'nouserspecified' => 'Musisz podać nazwę użytkownika.',
 'wrongpassword' => 'Podane przez Ciebie hasło jest nieprawidłowe. Spróbuj jeszcze raz.',
 'wrongpasswordempty' => 'Wprowadzone hasło jest puste. Spróbuj ponownie.',
 'mailmypassword' => 'Wyślij mi nowe hasło',
 'passwordremindertitle' => '{{SITENAME}} przypomina o haśle',
 'passwordremindertext' => 'Ktoś (prawdopodobnie Ty, spod adresu $1)
-poprosił od nas o wysłanie nowego hasła dostępu do serwisu {{SITENAME}}.
+poprosił od nas o wysłanie nowego hasła dostępu do serwisu
+{{SITENAME}} ($4).
 Aktualne hasło dla użytkownika "$2" to "$3".
 Najlepiej będzie jak zalogujesz się teraz i od razu zmienisz hasło.',
 'noemail' => 'W bazie nie ma adresu e-mailowego dla użytkownika "$1".',
@@ -407,7 +407,7 @@ Twój adres IP to $3.',
 'accmailtext' => 'Hasło dla użytkownika "$1" zostało wysłane pod adres $2.',
 'newarticle' => '(Nowy)',
 'newarticletext' => 'Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu <i>Wstecz</i>.',
-'anontalkpagetext' => '---- <i>To jest strona dyskusyjna dla użytkowników anonimowych - takich, którzy nie mają jeszcze swojego konta lub nie chcą go w tej chwili używać. By ich identyfikować używamy [[IP|numerów IP]]. Jeśli jesteś anonimowym użytkownikiem i wydaje Ci się, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[{{ns:Special}}:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.</i>',
+'anontalkpagetext' => '---- <i>To jest strona dyskusyjna dla użytkowników anonimowych - takich, którzy nie mają jeszcze swojego konta lub nie chcą go w tej chwili używać. By ich identyfikować używamy numerów IP. Jeśli jesteś anonimowym użytkownikiem i wydaje Ci się, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[{{ns:Special}}:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.</i>',
 'noarticletext' => 'Nie ma jeszcze artykułu o tym tytule. Możesz [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} utworzyć artykuł {{FULLPAGENAME}}] lub [[{{ns:Special}}:Search/{{FULLPAGENAME}}|poszukać {{FULLPAGENAME}} w innych artykułach]].',
 'clearyourcache' => '<strong>Uwaga:</strong> po zapisaniu zmian musisz zaktualizować pamięć podręczną (cache) przeglądarki: <strong>Mozilla / Firefox:</strong> kliknij <i>Reload</i> (lub <i>Ctrl-R</i>), <strong>IE / Opera:</strong> <i>Ctrl-F5</i>, <strong>Safari:</strong> <i>Cmd-R</i>, <strong>Konqueror</strong> <i>Ctrl-R</i>.',
 'usercssjsyoucanpreview' => '<strong>Wskazówka:</strong> Użyj przycisku "Podgląd", aby przetestować Twój nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
@@ -420,9 +420,9 @@ Twój adres IP to $3.',
 'session_fail_preview' => '<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji. Spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>',
 'previewconflict' => 'Wersja podglądana odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona jeśli zdecydujesz się ją zapisać.',
 'importing' => 'Importowanie $1',
-'editing' => 'Edytujesz $1',
-'editingsection' => 'Edytujesz $1 (fragment)',
-'editingcomment' => 'Edytujesz $1 (komentarz)',
+'editing' => 'Edytujesz "$1"',
+'editingsection' => 'Edytujesz "$1" (fragment)',
+'editingcomment' => 'Edytujesz "$1" (komentarz)',
 'editconflict' => 'Konflikt edycji: $1',
 'explainconflict' => 'Ktoś zdążył wprowadzić swoją wersję artykułu w trakcie Twojej edycji.
 Górne pole edycji zawiera tekst strony aktualnie zapisany w bazie danych.
@@ -548,7 +548,7 @@ liczba znalezionych artykułów: $3.',
 'recentchangescount' => 'Liczba pozycji na liście ostatnich zmian:',
 'savedprefs' => 'Twoje preferencje zostały zapisane.',
 'timezonelegend' => 'Strefa czasowa',
-'timezonetext' => '¹ Podaj liczbę godzin różnicy między Twoim czasem, a czasem uniwersalnym (UTC). Np. dla Polski jest to liczba "2" (czas letni) lub "1" (czas zimowy).',
+'timezonetext' => 'Podaj liczbę godzin różnicy między Twoim czasem, a czasem uniwersalnym (UTC). Np. dla Polski jest to liczba "2" (czas letni) lub "1" (czas zimowy).',
 'localtime' => 'Twój czas:',
 'timezoneoffset' => 'Różnica ¹',
 'servertime' => 'Aktualny czas serwera',
@@ -559,7 +559,15 @@ liczba znalezionych artykułów: $3.',
 'files' => 'Pliki',
 
 # User rights
+'userrights-lookup-user' => 'Zarządzaj grupami użytkownika',
 'userrights-user-editname' => 'Wprowadź nazwę użytkownika:',
+'editusergroup' => 'Edytuj grupy użytkownika',
+
+'userrights-editusergroup' => 'Edytuj grupy użytkownika',
+'saveusergroups' => 'Zapisz',
+'userrights-groupsmember' => 'Członek grup:',
+'userrights-groupsavailable' => 'Dostępne grupy:',
+'userrights-groupshelp' => 'Zaznacz grupy do których użytkownik ma zostać dodany lub z których ma zostać usunięty. Niezaznaczone grupy nie zostaną zmienione. Możesz odznaczyć grupę za pomocą CTRL + lewy przycisk myszy.',
 
 # Groups
 'group' => 'Grupa:',
@@ -567,6 +575,7 @@ liczba znalezionych artykułów: $3.',
 'group-sysop' => 'Sysopi',
 'group-bureaucrat' => 'Biurokraci',
 'group-steward' => 'Stewardzi',
+'group-all' => '(wszyscy)',
 
 'group-bot-member' => 'Bot',
 'group-sysop-member' => 'Sysop',
@@ -581,7 +590,6 @@ liczba znalezionych artykułów: $3.',
 #
 'changes' => 'zmiany',
 'recentchanges' => 'Ostatnie zmiany',
-'recentchanges-url' => '{{ns:Special}}:Recentchanges',
 'recentchangestext' => 'Ta strona przedstawia historię ostatnich zmian w serwisie.',
 'rcnote' => 'To ostatnie <strong>$1</strong> zmian dokonanych w ciągu ostatnich <strong>$2</strong> dni.',
 'rcnotefrom' => 'Poniżej pokazano zmiany dokonane po <b>$2</b> (nie więcej niż <b>$1</b> pozycji).',
@@ -601,6 +609,7 @@ liczba znalezionych artykułów: $3.',
 'newpageletter' => 'N',
 'sectionlink' => '→',
 'rc_categories' => 'Ogranicz do kategorii (oddzielaj za pomocą "|")',
+'rc_categories_any' => 'Wszystkie',
 
 # Upload
 #
@@ -621,7 +630,7 @@ liczba znalezionych artykułów: $3.',
 'fileuploadsummary' => 'Opis:',
 'filestatus' => 'Status prawny',
 'filesource' => 'Kod źródłowy',
-'copyrightpage' => "{{ns:4}}:Prawa_autorskie",
+'copyrightpage' => "{{ns:Project}}:Prawa_autorskie",
 'copyrightpagename' => "prawami autorskimi serwisu {{SITENAME}}",
 'uploadedfiles' => 'Przesłane pliki',
 'ignorewarning' => 'Zignoruj ostrzeżenia i wymuś zapisanie pliku.',
@@ -643,6 +652,7 @@ liczba znalezionych artykułów: $3.',
 'uploadedimage' => 'przesłano "[[$1]]"',
 'uploaddisabled' => 'Przesyłanie plików wyłączone',
 'uploaddisabledtext' => 'Możliwość przesyłania plików została wyłączona.',
+'uploadscripted' => 'Ten plik zawiera kod HTML lub skrypt który może zostać błędnie zinterpretowany przez przeglądarkę internetową.',
 'uploadcorrupt' => 'Ten plik jest uszkodzony lub ma nieprawidłowe rozszerzenie. Proszę sprawdzić plik i załadować poprawną wersję.',
 'uploadvirus' => 'W tym pliku jest wirus! Szczegóły: $1',
 'sourcefilename' => 'Nazwa oryginalna',
@@ -677,7 +687,7 @@ liczba znalezionych artykułów: $3.',
 'sharedupload' => 'Plik [[Commons:Image:{{PAGENAME}}|{{PAGENAME}}]] umieszczony jest we wspólnym repozytorium i może być używany w innych projektach.',
 'noimage' => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
 'noimage-linktext' => 'przesłać',
-'uploadnewversion' => '[$1 Załaduj nowszą wersję tego pliku]',
+'uploadnewversion' => 'Załaduj nowszą wersję tego pliku',
 
 # Mime search
 #
@@ -702,16 +712,16 @@ liczba znalezionych artykułów: $3.',
 # Statistics
 #
 'statistics' => 'Statystyka',
-'sitestats' => 'Statystyki artykułów',
+'sitestats' => 'Statystyka artykułów',
 'userstats' => 'Statystyka użytkowników',
 'sitestatstext' => 'W bazie danych jest w sumie <b>$1</b> stron.
 
 Ta liczba uwzględnia strony dyskusji, strony na temat serwisu {{SITENAME}}, strony prowizorycznych ("stub"), strony przekierowujące, oraz inne, które trudno uznać za artykuły. Wyłączając powyższe, jest prawdopodobnie <b>$2</b> stron, które można uznać za artykuły.
 
-Użytkownicy od startu serwisu wykonali <b>$4</b> edycji, średnio <b>$5</b> edycji na stronę.
+Użytkownicy od startu serwisu wykonali <b>$4</b> edycji, średnio <b>$5</b> edycji na stronę. W sumie było <b>$3</b> odwiedzin, średnio <b>$6</b> odwiedzin na edycję.
 
 Ilość przesłanych plików: <b>$8</b>',
-'userstatstext' => 'Jest <b>$1</b>zarejestrowanych użytkowników. Spośród nich <b>$2</b> (czyli <b>$4%</b>) ma status administratora (zobacz $3).',
+'userstatstext' => 'Jest <b>$1</b> zarejestrowanych użytkowników. Spośród nich <b>$2</b> (czyli <b>$4%</b>) ma status administratora (zobacz $3).',
 
 'disambiguations' => 'Strony ujednoznaczniające',
 'disambiguationspage' => '{{ns:Template}}:disambig',
@@ -729,7 +739,7 @@ Ilość przesłanych plików: <b>$8</b>',
 'nbytes' => '$1 {{PLURAL:$1|bajt|bajtów}}',
 'ncategories' => '$1 {{PLURAL:$1|kategoria|kategorii}}',
 'nlinks' => '$1 {{PLURAL:$1|link|linków}}',
-'nmembers' => '$1 {{PLURAL:$1|członek|członków}}',
+'nmembers' => '$1 {{PLURAL:$1|element|elementów}}',
 'nrevisions' => '$1 {{PLURAL:$1|wersja|wersji}}',
 'nviews' => 'odwiedzono $1 {{PLURAL:$1|raz|razy}}',
 
@@ -881,10 +891,10 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na "Przest
 'rollbacklink' => 'cofnij',
 'rollbackfailed' => 'Nie udało się cofnąć zmiany',
 'cantrollback' => 'Nie można cofnąć edycji; jest tylko jedna wersja tej strony.',
-'alreadyrolled' => 'Nie można cofnąć ostatniej zmiany strony [[$1]], której autorem jest [[User:$2|$2]] ([[User_talk:$2|Dyskusja]]). Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony. Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User_talk:$3|Dyskusja]]).',
+'alreadyrolled' => 'Nie można cofnąć ostatniej zmiany strony [[:$1|$1]], której autorem jest [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|dyskusja]]). Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony. Autorem ostatniej zmiany jest teraz [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|dyskusja]]).',
 # only shown if there is an edit comment
 'editcomment' => 'Opisano ją następująco: "<i>$1</i>".',
-'revertpage' => 'Przywrócono przedostatnią wersję, jej autor to [[User:$1|$1]]. Autor wycofanej edycji to [[User:$2|$2]].',
+'revertpage' => 'Wycofano edycję użytkownika [[{{ns:Special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|dyskusja]]). Autor przywróconej wersji to [[{{ns:user}}:$1|$1]].',
 'sessionfailure' => 'Błąd weryfikacji sesji. Twoje polecenie zostało anulowane, aby uniknąć przechwycenia sesji.
 
 Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
@@ -989,7 +999,7 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'blocklink' => 'zablokuj',
 'unblocklink' => 'odblokuj',
 'contribslink' => 'wkład',
-'autoblocker' => 'Zablokowano Cię automatycznie ponieważ używasz tego samego adresu IP co użytkownik "[[User:$1|$1]]". Powód: "<b>$2</b>".',
+'autoblocker' => 'Zablokowano Cię automatycznie ponieważ używasz tego samego adresu IP co użytkownik "[[{{ns:user}}:$1|$1]]". Powód: "<b>$2</b>".',
 'blocklogpage' => 'Zablokowani',
 'blocklogentry' => 'zablokowano "[[$1]]", czas blokady: $2',
 'blocklogtext' => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP. Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny. By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[{{ns:Special}}:Ipblocklist|Zablokowane adresy IP]].',
@@ -1521,12 +1531,21 @@ Kod zawarty w linku straci ważność $4.',
 'createarticle' => 'Utwórz artykuł',
 
 # Scary transclusion
+'scarytranscludefailed' => '[Nie powiodło się pobranie szablonu dla $1]',
 'scarytranscludetoolong' => '[URL za długi]',
+
+# Trackbacks
+'trackbackbox' => '<div id="mw_trackbacks">
+Sygnały Trackback dla tego artykułu:<br />
+$1
+</div>',
+'trackbackremove' => ' ([$1 Usuń])',
+'trackbackdeleteok' => 'Trackback został usunięty.',
 
 # delete conflict
 
 'deletedwhileediting' => 'Uwaga: Ta strona została usunięta po tym, jak rozpoczęłeś jej edycję!',
-'confirmrecreate' => 'Użytkownik [[User:$1|$1]] ([[User talk:$1|Dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
+'confirmrecreate' => 'Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
 : <b>$2</b>
 Potwierdź chęć odtworzenia tego artykułu.',
 'recreate' => 'Odtwórz',
