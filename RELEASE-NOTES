@@ -351,7 +351,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add $wgIgnoreImageErrors to suppress error messages for thumbnail rendering
   problems. If errors are transitory, this should reduce annoying messages
   making it into cached display.
-
+* (bug 6103) Wrap self-links in a CSS class ("selflink")
 
 == Compatibility ==
 
