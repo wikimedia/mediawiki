@@ -1169,11 +1169,6 @@ class Image
 				unlink( $thumbPath );
 			} else {
 				// All good
-				if( $err !== true ) {
-					wfDebugLog( 'thumbnail',
-						sprintf( 'thumbnail maybe failed on %s, non-empty output kept: "%s" from "%s"',
-							wfHostname(), trim($err), $cmd ) );
-				}
 				$err = true;
 			}
 		}
