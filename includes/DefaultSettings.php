@@ -1326,6 +1326,18 @@ $wgMaxImageArea = 1.25e7;
  */
 $wgThumbnailEpoch = '20030516000000';
 
+/**
+ * If set, inline scaled images will still produce <img> tags ready for
+ * output instead of showing an error message.
+ *
+ * This may be useful if errors are transitory, especially if the site
+ * is configured to automatically render thumbnails on request.
+ *
+ * On the other hand, it may obscure error conditions from debugging.
+ * Enable the debug log or the 'thumbnail' log group to make sure errors
+ * are logged to a file for review.
+ */
+$wgIgnoreImageErrors = false;
 
 
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */

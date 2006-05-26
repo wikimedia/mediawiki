@@ -1011,6 +1011,10 @@ class Image
 				$this->lastError = $this->reallyRenderThumb( $thumbPath, $width, $height );
 				if ( $this->lastError === true ) {
 					$done = true;
+				} elseif( $GLOBALS['wgIgnoreImageErrors'] ) {
+					// Log the error but output anyway.
+					// With luck it's a transitory error...
+					$done = true;
 				}
 
 				# Purge squid
