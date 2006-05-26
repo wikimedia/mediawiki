@@ -520,7 +520,7 @@ class ParserTest {
 		@rmdir( "$dir/thumb/3/39" ); # wtf?
 		@rmdir( "$dir/thumb/3" );
 		@rmdir( "$dir/thumb" );
-		rmdir( "$dir" );
+		@rmdir( "$dir" );
 	}
 
 	/**
