@@ -93,6 +93,28 @@ class LanguageHe extends LanguageUtf8 {
 
 	function isRTL() { return true; }
 
+	/**
+	 * Needed for Hebrew as some words also has a form for two instances - for example, year or shoe -
+	 * and the third parameter is used for them.
+	 *
+	 * When the word has only signular and plural forms, the plural form will be used for 2.
+	 *
+	 * @param integer $count
+	 * @param string $wordform1
+	 * @param string $wordform2
+	 * @param string $wordform3 (optional)
+	 * @return string
+	 */
+	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+		if ( $count == '1' ) {
+			return $wordform1;
+		} elseif ( $count == '2' && $wordform3 ) {
+			return $wordform3;
+		} else {
+			return $wordform2;
+		}
+	}
+
 	function fallback8bitEncoding() { return "iso8859-8"; }
 
 }
