@@ -426,7 +426,7 @@ class Linker {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		return "<strong>{$prefix}{$text}{$inside}</strong>{$trail}";
+		return "<span class=\"selflink\"><strong>{$prefix}{$text}{$inside}</strong></span>{$trail}";
 	}
 
 	/** @todo document */
