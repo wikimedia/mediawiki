@@ -671,6 +671,27 @@ function wfDebugDieBacktrace( $msg = '' ) {
 	die( -1 );
 }
 
+/**
+ * Fetch server name for use in error reporting etc.
+ * Use real server name if available, so we know which machine
+ * in a server farm generated the current page.
+ * @return string
+ */
+function wfHostname() {
+	if ( function_exists( 'posix_uname' ) ) {
+		// This function not present on Windows
+		$uname = @posix_uname();
+	} else {
+		$uname = false;
+	}
+	if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
+		return $uname['nodename'];
+	} else {
+		# This may be a virtual server.
+		return $_SERVER['SERVER_NAME'];
+	}
+}
+
 	/**
 	 * Returns a HTML comment with the elapsed time since request.
 	 * This method has no side effects.
@@ -684,21 +705,8 @@ function wfDebugDieBacktrace( $msg = '' ) {
 		$start = (float)$sec + (float)$usec;
 		$elapsed = $now - $start;
 
-		# Use real server name if available, so we know which machine
-		# in a server farm generated the current page.
-		if ( function_exists( 'posix_uname' ) ) {
-			$uname = @posix_uname();
-		} else {
-			$uname = false;
-		}
-		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
-			$hostname = $uname['nodename'];
-		} else {
-			# This may be a virtual server.
-			$hostname = $_SERVER['SERVER_NAME'];
-		}
 		$com = sprintf( "<!-- Served by %s in %01.3f secs. -->",
-		  $hostname, $elapsed );
+		  wfHostname(), $elapsed );
 		return $com;
 	}
 

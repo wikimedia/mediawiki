@@ -337,6 +337,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed hardcoded 'done.' when removing watchlist entries.
 * (bug 5962) Update for Italian language (it)
 * (bug 6086) Remove vestigial attempt to call Article::validate()
+* wfHostname() function for consistent server hostname use in debug messages
+* Send thumbnailing error messages to 'thumbnail' log group
 
 
 == Compatibility ==
