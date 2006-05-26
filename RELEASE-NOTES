@@ -348,6 +348,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Shut up the parser test whining about files in a temp directory.
 * (bug 6098) Add Aragonese language support (an)
 * (bug 6101) Update for Russian language (ru)
+* Add $wgIgnoreImageErrors to suppress error messages for thumbnail rendering
+  problems. If errors are transitory, this should reduce annoying messages
+  making it into cached display.
+
 
 == Compatibility ==
 
