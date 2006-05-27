@@ -1275,7 +1275,7 @@ title=[[Main Page]]
 !! input
 [[Main<nowiki> Page</nowiki>]] [[Main Page|the main page <nowiki>[it's not very good]</nowiki>]]
 !! result
-<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a> <a href="/wiki/Main_Page" title="Main Page">the main page [it's not very good]</a>
+<p>[[Main Page]] <a href="/wiki/Main_Page" title="Main Page">the main page [it's not very good]</a>
 </p>
 !! end
 
