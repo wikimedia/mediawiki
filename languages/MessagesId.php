@@ -709,7 +709,7 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 'shareduploadwiki-linktext' => 'halaman deskripsi berkas',
 'noimage'       => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
 'noimage-linktext'       => 'memuat berkas',
-'uploadnewversion' => 'Muatkan versi yang lebih baru dari berkas ini',
+'uploadnewversion-linktext' => 'Muatkan versi yang lebih baru dari berkas ini',
 
 # Mime search
 #

@@ -717,7 +717,7 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 'shareduploadwiki-linktext' => 'Page de description du fichier',
 'noimage'       => 'Aucun fichier possèdant ce nom n\'existe, vous pouvez $1.',
 'noimage-linktext'       => 'le copier',
-'uploadnewversion' => '[$1 Copier une nouvelle version de ce fichier]',
+'uploadnewversion-linktext' => 'Copier une nouvelle version de ce fichier',
 
 # Mime search
 #

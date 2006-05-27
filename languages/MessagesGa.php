@@ -795,7 +795,7 @@ seanleagan seo, (ath) = athúsáid an seanleagan seo.
 'shareduploadwiki' => 'Féach ar an [leathanach cur síos don comhad $1] le tuilleadh eolais.',
 'shareddescriptionfollows' => '-',
 'noimage'       => 'Níl aon chomhad ann leis an ainm seo, ba féidir leat [$1 é a uaslódáil]',
-'uploadnewversion' => '[$1 Uaslódáil leagan nua den comhad seo]',
+'uploadnewversion-linktext' => 'Uaslódáil leagan nua den comhad seo',
 
 # Statistics
 #

@@ -974,7 +974,7 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'uploadlogpagetext' => 'Di handap mangrupa daptar muatan koropak nu panganyarna. Titimangsa nu katémbong dumasar titimangsa server (UTC).
 <ul>
 </ul>',
-'uploadnewversion' => '[$1 ngamuatkeun vérsi anyar koropak ieu]',
+'uploadnewversion-linktext' => 'ngamuatkeun vérsi anyar koropak ieu',
 'uploadnologin' => 'Can asup log',
 'uploadnologintext' => 'Anjeun kudu [[Special:Userlogin|asup log]] pikeun ngamuat koropak.',
 'uploadscripted' => 'Koropak ieu ngandung kode HTML atawa skrip nu bisa dibaca ngaco ku panyungsi ramat (\'\'web browser\'\').',

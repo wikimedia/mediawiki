@@ -670,7 +670,7 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'shareduploadwiki-linktext' => 'filskildringssida',
 'noimage'               => 'Det finst ikkje noka fil med dette namnet, men du kan $1',
 'noimage-linktext'      => 'laste ho opp',
-'uploadnewversion'      => '[$1 Last opp ny versjon av denne fila]',
+'uploadnewversion-linktext' => 'Last opp ny versjon av denne fila',
 
 # Statistics
 #

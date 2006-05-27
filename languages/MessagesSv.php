@@ -657,7 +657,7 @@ när den skapades, vem som gjort den, om själva innehållet, och så mycket om 
 'shareduploadwiki-linktext'=> 'Filens beskrivningssida',
 'noimage'               => 'Det finns ingen fil med detta namn. Du kan $1.',
 'noimage-linktext'      => 'ladda upp den',
-'uploadnewversion'      => '[$1 Ladda upp en ny version av filen]',
+'uploadnewversion-linktext' => 'Ladda upp en ny version av filen',
 'mimesearch'            => 'MIME-sökning',
 'mimetype'              => 'MIME-typ:',
 'download'              => 'ladda ner',

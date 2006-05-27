@@ -752,7 +752,7 @@ og af hvem, og andre ting du ved om filen.",
 'shareduploadwiki-linktext' => 'siden med billedbeskrivelsen',
 'noimage'       => 'Der eksisterer ingen fil med dette navn, du kan $1',
 'noimage-linktext' => 'lægge den op',
-'uploadnewversion' => '[$1 Læg en ny version af denne fil op]',
+'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
 
 # Statistics
 #

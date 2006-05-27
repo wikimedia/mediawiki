@@ -738,7 +738,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 'shareduploadwiki-linktext'	=> 'Datei-Beschreibungsseite',
 'noimage'			=> 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 'noimage-linktext'		=> 'hochladen',
-'uploadnewversion'	=> 'Eine neue Version dieser Datei hochladen',
+'uploadnewversion-linktext'	=> 'Eine neue Version dieser Datei hochladen',
 
 # List redirects
 'listredirects' => 'Weiterleitungsliste',

@@ -687,7 +687,7 @@ liczba znalezionych artykułów: $3.',
 'sharedupload' => 'Plik [[Commons:Image:{{PAGENAME}}|{{PAGENAME}}]] umieszczony jest we wspólnym repozytorium i może być używany w innych projektach.',
 'noimage' => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
 'noimage-linktext' => 'przesłać',
-'uploadnewversion' => 'Załaduj nowszą wersję tego pliku',
+'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
 
 # Mime search
 #

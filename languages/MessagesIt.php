@@ -760,7 +760,7 @@ Seguire il collegamento: $2 per modificare la pagina di descrizione del file app
 "shareduploadwiki-linktext" => "la relativa pagina di descrizione",
 "noimage"       => "Un file con questo nome non esiste; $1?",
 "noimage-linktext"       => "caricarlo ora",
-"uploadnewversion" => "Carica una nuova versione di questo file",
+"uploadnewversion-linktext" => "Carica una nuova versione di questo file",
 
 # Mime search
 #

@@ -514,7 +514,7 @@ Eğer bu bir resim ise <tt><nowiki>[[Resim:$1|thumb|açıklama]]</nowiki></tt> �
 'sharedupload' => 'Bu dosya ortak alana yüklenmiştir ve diğer projelerde de kullanılıyor olabilir.',
 'noimage' => 'Bu isimde dosya yok. Siz $1.',
 'noimage-linktext' => 'yükleyebilirsiniz',
-'uploadnewversion' => '[$1 Dosyanın yenisini yükleyin]',
+'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
 
 
 # Mime search

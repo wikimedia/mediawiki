@@ -735,7 +735,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'shareddescriptionfollows' => '-',
 'noimage' => 'このファイル名の画像はありません。$1。',
 'noimage-linktext' => 'このファイル名でアップロードする',
-'uploadnewversion' => '[$1 このファイルの新しいバージョンをアップロードする]',
+'uploadnewversion-linktext' => 'このファイルの新しいバージョンをアップロードする',
 
 # Mime search
 #

@@ -781,7 +781,7 @@
 "shareduploadwiki-linktext" => "דף תיאור הקובץ",
 "noimage"                   => "לא נמצא קובץ בשם זה, אך יש באפשרותכם $1 חלופי.",
 "noimage-linktext"          => "להעלות קובץ",
-"uploadnewversion"          => "העלו גרסה חדשה של קובץ זה",
+"uploadnewversion-linktext"          => "העלו גרסה חדשה של קובץ זה",
 
 # MIME search
 "mimesearch" => "חיפוש MIME",
