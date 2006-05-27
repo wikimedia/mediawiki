@@ -1255,7 +1255,7 @@ title=[[Bug462]]
 !! input
 [[Bu&#103;462]] [[Bug462]]
 !! result
-<p><strong>Bu&#103;462</strong> <strong>Bug462</strong>
+<p><strong class="selflink">Bu&#103;462</strong> <strong class="selflink">Bug462</strong>
 </p>
 !! end
 
