@@ -357,6 +357,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   &#61; when making URLs for template parameters.
 * Markup anality: escape </ as <\/ in toolbar javascript for pure correctness
   under HTML-compatible browsers.
+* (bug 5077) Added hook 'BeforePageDisplay' to SkinTemplate::outputPage
 
 
 == Compatibility ==
