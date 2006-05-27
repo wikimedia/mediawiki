@@ -470,7 +470,7 @@ Before any other mail is sent to the account, you will have to follow the instru
 'next'            => 'след',
 'last'            => 'посл',
 'orig'            => 'ориг',
-'histlegend'      => '<i>Разлики:</i> Изберете версиите, които желаете да сравните, чрез превключвателите срещу тях и натиснете &lt;Enter&gt; или бутона за сравнение.<br/>
+'histlegend'      => '<i>Разлики:</i> Изберете версиите, които желаете да сравните, чрез превключвателите срещу тях и натиснете &lt;Enter&gt; или бутона за сравнение.<br />
 <i>Легенда:</i> (<b>тек</b>) = разлика с текущата версия, (<b>посл</b>) = разлика с предишната версия, <b>м</b>&nbsp;=&nbsp;малка промяна',
 'history_copyright' => '-',
 'deletedrev' => '[изтрита]',
@@ -1378,7 +1378,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 
 # Trackbacks
 'trackbackbox' => '<div id="mw_trackbacks">
-Trackbacks for this article:<br/>
+Trackbacks for this article:<br />
 $1
 </div>',
 'trackback' => '; $4$5 : [$2 $1]',

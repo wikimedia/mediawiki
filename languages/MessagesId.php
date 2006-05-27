@@ -864,7 +864,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "watchnologin" => "Belum masuk log",
 "watchnologintext" => "Anda harus [[Special:Userlogin|masuk log]] untuk mengubah daftar pantauan.",
 "addedwatch" => "Telah ditambahkan ke daftar pantauan",
-"addedwatchtext" => "Halaman \"[[:$1]]\" telah ditambahkan ke [[Special:Watchlist|daftar pantauan]]. Perubahan yang terjadi di masa yang akan datang pada halaman tersebut dan halaman bicara terkaitnya akan tercantum di sini, dan halaman itu akan ditampilkan ''tebal'' pada [[Special:Recentchanges|daftar perubahan terbaru]] agar lebih mudah terlihat.<br/><br/>Jika Anda ingin menghapus halaman ini dari daftar pantauan, klik \"Berhenti memantau\" pada menu.",
+"addedwatchtext" => "Halaman \"[[:$1]]\" telah ditambahkan ke [[Special:Watchlist|daftar pantauan]]. Perubahan yang terjadi di masa yang akan datang pada halaman tersebut dan halaman bicara terkaitnya akan tercantum di sini, dan halaman itu akan ditampilkan ''tebal'' pada [[Special:Recentchanges|daftar perubahan terbaru]] agar lebih mudah terlihat.<br /><br />Jika Anda ingin menghapus halaman ini dari daftar pantauan, klik \"Berhenti memantau\" pada menu.",
 "removedwatch" => "Telah dihapus dari daftar pantauan",
 "removedwatchtext" => "Halaman \"$1\" telah dihapus dari daftar pantauan.",
 'watch' => 'Pantau',

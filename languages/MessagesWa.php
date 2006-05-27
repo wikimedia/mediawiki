@@ -488,7 +488,7 @@ Verifyîz l\' hårdêye ki vs avoz eployî po-z ariver sol pådje s\' i vs plait
 'orig' => 'oridj.',
 'histlegend' => 'Tchoezi les modêyes a comparer: clitchîz so les botons radio des deus modêyes
 ki vos vloz comparer et s\' tchôkîz sol tape «enter» ou clitchîz sol
-boton do dzo.<br/>
+boton do dzo.<br />
 Ledjinde: (ast.) = diferince avou l\' modêye d\' asteure,
 (dif.) = diferince avou l\' modêye di dvant, M = candjmint mineur.',
 'history_copyright'    => '-',

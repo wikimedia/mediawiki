@@ -427,7 +427,7 @@ Asupan jeung bantuan salajengna:
 'hist' => 'juj',
 'histfirst' => 'Pangheubeulna',
 'histlast' => 'Pangahirna',
-'histlegend' => 'Pilihan béda: tandaan wadah buleud vérsina pikeun ngabandingkeun sarta pencét énter atawa tombol di handap.<br/>
+'histlegend' => 'Pilihan béda: tandaan wadah buleud vérsina pikeun ngabandingkeun sarta pencét énter atawa tombol di handap.<br />
 Katerangan: (kiw) = bédana jeung vérsi kiwari,
 (ahir) = bédana jeung vérsi nu harita, m = éditan minor.',
 'history' => 'Jujutan kaca',
@@ -908,7 +908,7 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'tog-previewontop' => 'Témbongkeun sawangan méméh kotak édit (lain sanggeusna)',
 'tog-rememberpassword' => 'Inget sandi liwat sési',
 'tog-shownumberswatching' => 'Témbongkeun jumlah nu ngawaskeun',
-'tog-showtoc' => 'Témbongkeun daptar eusi<br/>(pikeun kaca nu leuwih ti tilu subjudul)',
+'tog-showtoc' => 'Témbongkeun daptar eusi<br />(pikeun kaca nu leuwih ti tilu subjudul)',
 'tog-showtoolbar' => 'Témbongkeun \'\'toolbar\'\' édit (JavaScript)',
 'tog-underline' => 'Garis-handapan tumbu',
 'tog-watchdefault' => 'Tambahkeun kaca nu diédit ku anjeun kana awaskeuneun anjeun',

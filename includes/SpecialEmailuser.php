@@ -117,7 +117,7 @@ class EmailUserForm {
 </td>
 </tr>
 </table>
-<span id='wpTextLabel'><label for=\"wpText\">{$emm}:</label><br></span>
+<span id='wpTextLabel'><label for=\"wpText\">{$emm}:</label><br /></span>
 <textarea name=\"wpText\" rows='20' cols='80' wrap='virtual' style=\"width: 100%;\">" . htmlspecialchars( $this->text ) .
 "</textarea>
 <input type='submit' name=\"wpSend\" value=\"{$ems}\" />

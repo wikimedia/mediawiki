@@ -253,7 +253,7 @@ $1 を参照してください。',
 <blockquote><tt>$1</tt></blockquote>
 
 from within function "<tt>$2</tt>". MySQL returned error "<tt>$3: $4</tt>".',
-'noconnect' => '申し訳ありません。何らかの問題によりデータベースに接続できません。<br/>$1',
+'noconnect' => '申し訳ありません。何らかの問題によりデータベースに接続できません。<br />$1',
 'nodb' => 'データベース $1 を選択できません。',
 'cachederror' => 'あなたがアクセスしたページのコピーを保存したものを表示しています。また、コピーは更新されません。',
 'laggedslavemode' => '警告: ページに最新の編集が反映されていない可能性があります。反映されるまでしばらくお待ちください。',
@@ -1064,7 +1064,7 @@ $NEWPAGE
 'ipbotheroption' => 'その他',
 'badipaddress' => 'IPアドレスが異常です。',
 'blockipsuccesssub' => 'ブロックに成功しました。',
-'blockipsuccesstext' => 'IPアドレスまたはユーザー "$1" は投稿をブロックされました。<br/>
+'blockipsuccesstext' => 'IPアドレスまたはユーザー "$1" は投稿をブロックされました。<br />
 [[Special:Ipblocklist|投稿ブロック中のユーザーやIPアドレス]]で確認できます。',
 'unblockip' => 'IPアドレスの投稿ブロックを解除する',
 'unblockiptext' => '以下のフォームでIPアドレスまたはユーザーの投稿ブロックを解除できます。',

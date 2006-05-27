@@ -499,7 +499,7 @@ Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.",
 "next"	  => "lns",
 "last"	  => "rmh",
 "orig"	  => "bun",
-'histlegend'    => "Difríochtaí a roghnú: marcáil na boscaí de na eagráin atá ag teastail uait á cuir i gcomparáid, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br/>
+'histlegend'    => "Difríochtaí a roghnú: marcáil na boscaí de na eagráin atá ag teastail uait á cuir i gcomparáid, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br />
 Eochair: (rth) = difríocht leis an leagan láithreach,
 (rmh) = difríocht leis an eagrán roimhe, M = mionathrú",
 'history_copyright'    => '-',
@@ -625,7 +625,7 @@ den am an freastalaí (UTC).",
 measfar go bhfuil ainm teachtaireacha ann sa chuid eile, agus mar sin
 beidh an téacs san ainmspás MediaWiki.',
 'groups-editgroup-name'     => 'Ainm an ghrúpa:',
-'groups-editgroup-description' => 'Cur síos ar an ngrúpa (255 carachtar an uasmhéid):<br/>',
+'groups-editgroup-description' => 'Cur síos ar an ngrúpa (255 carachtar an uasmhéid):<br />',
 'savegroup'	         => 'Sábháil an Ghrúpa',
 'groups-tableheader'	=> 'ID || Ainm || Cur Síos || Cearta',
 'groups-existing'	   => 'Grúpaí atá ann cheana féin',
@@ -1130,7 +1130,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).",
 "badipaddress"  => "Níl aon úsáideoir ann leis an ainm seo.",
 "blockipsuccesssub" => "D'éirigh leis an cosc",
 "blockipsuccesstext" => "Choisceadh [[{{ns:Special}}:Contributions/$1|$1]].
-<br/>Féach ar an g[[{{ns:Special}}:Ipblocklist|liosta coisc IP]] chun coisc a athbhreithniú.",
+<br />Féach ar an g[[{{ns:Special}}:Ipblocklist|liosta coisc IP]] chun coisc a athbhreithniú.",
 "unblockip"     => "Díchoisc úsáideoir",
 "unblockiptext" => "Úsáid an foirm anseo thíos chun bealach scríofa a thabhairt ar ais do seoladh
 IP nó ainm úsáideora a raibh faoi chosc roimhe seo.",
