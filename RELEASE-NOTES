@@ -359,6 +359,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   under HTML-compatible browsers.
 * (bug 5077) Added hook 'BeforePageDisplay' to SkinTemplate::outputPage
 * Replace fatally changed 'uploadnewversion' with 'uploadnewversion-linktext'
+* Move parameter replacement before brace transformations in most of the
+  wfMsg() family (except for wfMsgHtml). This allows things like {{plural:}},
+  {{urlencode:}}, and {{fullurl:}} to be used in most cases correctly.
+  The content or UI language will be used accordingly for (forContent)?.
 
 
 == Compatibility ==
