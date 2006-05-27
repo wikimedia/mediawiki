@@ -145,6 +145,10 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::outputPage';
 		wfProfileIn( $fname );
 
+		// Hook that allows last minute changes to the output page, e.g.
+		// adding of CSS or Javascript by extensions.
+		wfRunHooks( 'BeforePageDisplay', array( &$out ) );
+
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
 		wfProfileIn( "$fname-init" );
