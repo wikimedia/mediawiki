@@ -355,6 +355,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6102) For consistency with other markup, normalize all HTML-encoded
   character entities in URLs, not just ampersands. This allows use of eg
   &#61; when making URLs for template parameters.
+* Markup anality: escape </ as <\/ in toolbar javascript for pure correctness
+  under HTML-compatible browsers.
 
 
 == Compatibility ==
