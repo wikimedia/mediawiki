@@ -1522,15 +1522,15 @@ END
 					'key'	=>	'M'
 				),
 			array(	'image'	=>'button_math.png',
-					'open'	=>	"\\<math\\>",
-					'close'	=>	"\\</math\\>",
+					'open'	=>	"<math>",
+					'close'	=>	"<\\/math>",
 					'sample'=>	wfMsg('math_sample'),
 					'tip'	=>	wfMsg('math_tip'),
 					'key'	=>	'C'
 				),
 			array(	'image'	=>'button_nowiki.png',
-					'open'	=>	"\\<nowiki\\>",
-					'close'	=>	"\\</nowiki\\>",
+					'open'	=>	"<nowiki>",
+					'close'	=>	"<\\/nowiki>",
 					'sample'=>	wfMsg('nowiki_sample'),
 					'tip'	=>	wfMsg('nowiki_tip'),
 					'key'	=>	'N'
