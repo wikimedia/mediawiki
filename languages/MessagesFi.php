@@ -725,7 +725,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'shareduploadwiki-linktext' => 'kuvaussivulta',
 'noimage'             => 'Tämän nimistä tiedostoa ei ole olemassa. Voit $1 {{GRAMMAR:genitive|{{SITENAME}}}}',
 'noimage-linktext'    => 'tallentaa tiedoston',
-'uploadnewversion'    => 'Tallenna uusi versio tästä tiedostosta',
+'uploadnewversion-linktext'    => 'Tallenna uusi versio tästä tiedostosta',
 
 # Mime search
 #

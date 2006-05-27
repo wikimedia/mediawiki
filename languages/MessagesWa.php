@@ -760,7 +760,7 @@ cisse viye modêye la, (mod.) = rivni a cisse viye modêye la.
 #'shareddescriptionfollows' => '-',
 'noimage' => 'I n\' a nou fitchî avou ç\' no la, vos l\' poloz $1',
 'noimage-linktext' => 'eberweter',
-'uploadnewversion' => '[$1 Eberweter ene nouve modêye di ci fitchî chal]',
+'uploadnewversion-linktext' => 'Eberweter ene nouve modêye di ci fitchî chal',
 
 # Mime search
 #

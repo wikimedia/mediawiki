@@ -869,7 +869,7 @@ this old version, (rev) = revert to this old version.
 'shareddescriptionfollows' => '-',
 'noimage'       => 'No file by this name exists, you can $1.',
 'noimage-linktext'       => 'upload it',
-'uploadnewversion' => 'Upload a new version of this file',
+'uploadnewversion-linktext' => 'Upload a new version of this file',
 
 # Mime search
 #

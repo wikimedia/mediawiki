@@ -596,7 +596,7 @@ esta versión antigua, (rev) = revertir a esta versión antigua.
 'shareddescriptionfollows' => '-',
 'noimage'       => 'No existe un archivo con este nombre, puedes $1.',
 'noimage-linktext'       => 'subirlo',
-'uploadnewversion' => '[$1 Subir una nueva versión de este archivo]',
+'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
 
 
 # Mime search

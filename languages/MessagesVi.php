@@ -1282,7 +1282,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'yourdomainname' => 'Tên miền của bạn',
 'yourvariant' => 'Ngôn ngữ địa phương',
 'sitesupport-url' => '{{ns:4}}:Quyên_góp',
-'uploadnewversion' => '[$1 Tải lên phiên bản mới]',
+'uploadnewversion-linktext' => 'Tải lên phiên bản mới',
 'selfmove' => 'Tên mới giống tên cũ; không đổi tên được.',
 'ipadressorusername' => 'Địa chỉ IP hay tên thành viên',
 'fileinfo' => ' $1Ko, kiểu MIME: <tt>$2</tt>',

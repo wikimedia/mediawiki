@@ -833,7 +833,7 @@ $1',
 'shareduploadwiki-linktext' => 'странице описания файла',
 'noimage'       => 'Файла с таким именем не существует, вы можете $1.',
 'noimage-linktext'       => 'загрузить его',
-'uploadnewversion' => 'Загрузить новую версию этого файла',
+'uploadnewversion-linktext' => 'Загрузить новую версию этого файла',
 
 # Mime search
 #

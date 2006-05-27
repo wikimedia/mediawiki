@@ -767,7 +767,7 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 'shareduploadwiki-linktext' => "stránka opisu súboru",
 'noimage' => 'Súbor s takým menom neexistuje, môžete ho $1',
 'noimage-linktext' => 'nahrať',
-'uploadnewversion' => '[$1 Nahrajte novú verziu tohto súboru.]',
+'uploadnewversion-linktext' => 'Nahrajte novú verziu tohto súboru.',
 
 # Statistics
 #

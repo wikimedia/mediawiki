@@ -1392,7 +1392,7 @@ aktivnoj upotrebi.',
 Sva vremena su serverska vremena (UTC).
 <ul>
 </ul>',
-'uploadnewversion' => '[$1 Pošaljite noviju verziju ove datoteke]',
+'uploadnewversion-linktext' => 'Pošaljite noviju verziju ove datoteke',
 'uploadnologin' => 'Niste prijavljeni',
 'uploadnologintext' => 'Morate biti [[{{ns:-1}}:Userlogin|prijavljeni]]
 da biste slali fajlove.',

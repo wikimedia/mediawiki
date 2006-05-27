@@ -744,7 +744,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'shareddescriptionfollows' => '-',
 'noimage'       => 'Не съществува файл с това име, можете $1.',
 'noimage-linktext' => 'да го качите',
-'uploadnewversion' => '[$1 Качване на нова версия на файла]',
+'uploadnewversion-linktext' => 'Качване на нова версия на файла',
 
 # Statistics
 #

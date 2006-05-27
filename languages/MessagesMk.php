@@ -531,7 +531,7 @@ global $wgRightsText;
 'shareduploadwiki-linktext'		=>	'описот на датотеката',
 'noimage'			=>	'Не постои датотека со тоа име, можете $1',
 'noimage-linktext'			=>	'да го подигнете',
-'uploadnewversion'		=>	'[$1 Подигни нова верзија на оваа датотека]',
+'uploadnewversion-linktext' => 'Подигни нова верзија на оваа датотека',
 
 "statistics"			=>	"Статистики",
 "sitestats"			=>	"Статистики за сајтот",

@@ -785,7 +785,7 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 #'shareddescriptionfollows' => '-', # ignore list
 'noimage'       => 'Nenhum ficheiro com este nome existe, se desejar pode $1',
 'noimage-linktext'       => 'carrega-lo',
-'uploadnewversion' => '[$1 Carregar uma nova versão deste ficheiro]',
+'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
 
 # Unwatchedpages
 #

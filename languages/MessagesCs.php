@@ -816,7 +816,7 @@ váš uživatelský účet zablokován.",
 'shareddescriptionfollows' => '-',
 'noimage'       => 'Soubor s tímto jménem neexistuje, můžete ho $1',
 'noimage-linktext' => 'načíst',
-'uploadnewversion' => '[$1 Načíst novou verzi tohoto souboru]',
+'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',
 
 # Mime search
 #

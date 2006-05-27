@@ -826,7 +826,7 @@ zadnju inačicu, (vra) = vrati sliku na prethodnu inačicu.
 'shareduploadwiki-linktext' => 'stranica s opisom datoteke',
 'noimage'       => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'       => 'postaviti',
-'uploadnewversion' => '[$1 Postavi novu inačicu datoteke]',
+'uploadnewversion-linktext' => 'Postavi novu inačicu datoteke',
 
 # Mime search
 #

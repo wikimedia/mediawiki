@@ -500,7 +500,7 @@
 "shareduploadwiki"  => "Sila lihat [halaman huraian fail $1] untuk maklumat lanjut.",
 "shareddescriptionfollows" => '-',
 "noimage"           => "Tiada fail yang mengandungi nama ini. Anda boleh muat naik $1.",
-"uploadnewversion"  => "[Muat naik versi baru untuk fail ini: $1]",
+"uploadnewversion-linktext"  => "Muat naik versi baru untuk fail ini",
 
 
 # Statistics

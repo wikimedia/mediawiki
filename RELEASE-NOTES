@@ -358,6 +358,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Markup anality: escape </ as <\/ in toolbar javascript for pure correctness
   under HTML-compatible browsers.
 * (bug 5077) Added hook 'BeforePageDisplay' to SkinTemplate::outputPage
+* Replace fatally changed 'uploadnewversion' with 'uploadnewversion-linktext'
 
 
 == Compatibility ==

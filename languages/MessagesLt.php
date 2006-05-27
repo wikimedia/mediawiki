@@ -866,7 +866,7 @@ archyve, todėl jie gali būti atstatyti. Archyvas gali būti periodiškai valom
 'uploadlog' => 'įkėlimų sąrašas',
 'uploadlogpage' => 'Įkėlimų_sąrašas',
 'uploadlogpagetext' => 'Žemiau pateikiamas naujausių failų įkėlimų sąrašas.',
-'uploadnewversion' => '[$1 Įkelti naują failo versiją]',
+'uploadnewversion-linktext' => 'Įkelti naują failo versiją',
 'uploadnologin' => 'Reikia prisijungti',
 'uploadnologintext' => 'Norėdami įkelti failą, turite būti [[Special:Userlogin|prisijungęs]].',
 'uploadtext' => '<div style="border: 1px solid grey; background: #ddf; padding: 5px; margin: 0 auto;">
