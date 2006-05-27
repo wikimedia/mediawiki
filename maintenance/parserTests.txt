@@ -561,6 +561,15 @@ Old &amp; use: http://x&amp;y
 !! end
 
 !! test
+External links: encoded equals (bug 6102)
+!! input
+http://example.com/?foo&#61;bar
+!! result
+<p><a href="http://example.com/?foo=bar" class='external free' title="http://example.com/?foo=bar" rel="nofollow">http://example.com/?foo=bar</a>
+</p>
+!! end
+
+!! test
 External links: [raw ampersand]
 !! input
 Old &amp; use: [http://x&y]
@@ -575,6 +584,15 @@ External links: [encoded ampersand]
 Old &amp; use: [http://x&amp;y]
 !! result
 <p>Old &amp; use: <a href="http://x&amp;y" class='external autonumber' title="http://x&amp;y" rel="nofollow">[1]</a>
+</p>
+!! end
+
+!! test
+External links: [encoded equals] (bug 6102)
+!! input
+[http://example.com/?foo&#61;bar]
+!! result
+<p><a href="http://example.com/?foo=bar" class='external autonumber' title="http://example.com/?foo=bar" rel="nofollow">[1]</a>
 </p>
 !! end
 

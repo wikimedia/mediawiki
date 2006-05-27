@@ -352,6 +352,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   problems. If errors are transitory, this should reduce annoying messages
   making it into cached display.
 * (bug 6103) Wrap self-links in a CSS class ("selflink")
+* (bug 6102) For consistency with other markup, normalize all HTML-encoded
+  character entities in URLs, not just ampersands. This allows use of eg
+  &#61; when making URLs for template parameters.
+
 
 == Compatibility ==
 
