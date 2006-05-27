@@ -489,7 +489,7 @@ Você terá que mesclar suas modificações no texto existente.
 'editingold'    => "<strong>CUIDADO: Encontra-se a editar uma revisão desactualizada deste artigo.
 Se salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>",
 'yourdiff'              => 'Diferenças',
-/*'copyrightwarning' => "Por favor note que todas as contribuições para a {{SITENAME}} são imediatamente colocadas sob a <b>GNU Free Documentation License</b> (consulte $1 para detalhes). Se você não quer que seu texto esteja sujeito a estes termos, então não o envie.<br/>
+/*'copyrightwarning' => "Por favor note que todas as contribuições para a {{SITENAME}} são imediatamente colocadas sob a <b>GNU Free Documentation License</b> (consulte $1 para detalhes). Se você não quer que seu texto esteja sujeito a estes termos, então não o envie.<br />
 Você também garante que está nos enviando um artigo escrito por você mesmo, ou extraído de uma fonte em domínio público.
 <strong>Não ENVIE </strong>",*/
 'copyrightwarning2' => "Tenha em consideração que todas as contribuições para o projecto {{SITENAME}}
@@ -1722,7 +1722,7 @@ irá expirar a $4.",
 
 # Trackbacks
 'trackbackbox' => "<div id='mw_trackbacks'>
-Trackbacks for this article:<br/>
+Trackbacks for this article:<br />
 $1
 </div>",
 'trackback' => "; $4$5 : [$2 $1]",
