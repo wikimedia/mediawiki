@@ -590,6 +590,7 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} d
 #'rev-delundel' => 'del/undel',
 'rev-delundel' => 'show/hide',
 
+'history-feed-title' => 'Revision history',
 'history-feed-item-nocomment' => '$1 at $2', # user at time
 'history-feed-empty' => 'The requested page doesn\'t exist.
 It may have been deleted from the wiki, or renamed.

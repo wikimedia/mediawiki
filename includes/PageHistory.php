@@ -587,7 +587,7 @@ class PageHistory {
 		}
 		
 		$feed = new $wgFeedClasses[$type](
-			$this->mTitle->getPrefixedText() . ' - ' . wfMsg( 'revhistory' ),
+			$this->mTitle->getPrefixedText() . ' - ' . wfMsg( 'history-feed-title' ),
 			'Revision history for this page on the wiki',
 			$this->mTitle->getFullUrl( 'action=history' ) );
 
