@@ -51,7 +51,7 @@ class Profiler {
 		global $wgRequestTime;
 		if ( !empty( $wgRequestTime ) ) {
 			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime, 0 );
-			$this->mStack[] = array( '-setup', 1, $wgRequestTime, 0, microtime(), 0 );
+			$this->mStack[] = array( '-setup', 1, $wgRequestTime, 0, microtime(true), 0 );
 		} else {
 			$this->profileIn( '-total' );
 		}
@@ -163,7 +163,7 @@ class Profiler {
 
 	function getCallTreeLine($entry) {
 		list ($fname, $level, $start, $x, $end) = $entry;
-		$delta = $this->microDelta($start, $end);
+		$delta = $end - $start;
 		$space = str_repeat(' ', $level);
 
 		# The ugly double sprintf is to work around a PHP bug,
@@ -173,18 +173,8 @@ class Profiler {
 			$space, $fname );
 	}
 
-	function micro2Float( $micro ) {
-		list( $whole, $fractional ) = explode( ' ', $micro );
-		return (float)$whole + (float)$fractional;
-	}
-
-	function microDelta( $start, $end ) {
-		return $this->micro2Float( $end ) -
-		       $this->micro2Float( $start );
-	}
-
 	function getTime() {
-		return microtime();
+		return microtime(true);
 		#return $this->getUserTime();
 	}
 
@@ -217,10 +207,8 @@ class Profiler {
 		foreach ($this->mStack as $entry) {
 			$fname = $entry[0];
 			$thislevel = $entry[1];
-			$start = explode(' ', $entry[2]);
-			$start = (float) $start[0] + (float) $start[1];
-			$end = explode(' ', $entry[4]);
-			$end = (float) $end[0] + (float) $end[1];
+			$start = $entry[2];
+			$end = $entry[4];
 			$elapsed = $end - $start;
 			$memory = $entry[5] - $entry[3];
 
@@ -240,10 +228,8 @@ class Profiler {
 		foreach ($this->mStack as $index => $entry) {
 			$fname = $entry[0];
 			$thislevel = $entry[1];
-			$start = explode(' ', $entry[2]);
-			$start = (float) $start[0] + (float) $start[1];
-			$end = explode(' ', $entry[4]);
-			$end = (float) $end[0] + (float) $end[1];
+			$start = $entry[2];
+			$end = $entry[4];
 			$elapsed = $end - $start;
 
 			$memory = $entry[5] - $entry[3];

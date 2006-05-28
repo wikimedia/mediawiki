@@ -5,7 +5,7 @@
  * @subpackage Maintenance
  */
 
-$wgRequestTime = microtime();
+$wgRequestTime = microtime(true);
 
 /** */
 # Abort if called from a web server

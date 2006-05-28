@@ -916,8 +916,7 @@ function wfQuotedPrintable( $string, $charset = '' ) {
  * @return float
  */
 function wfTime() {
-	$st = explode( ' ', microtime() );
-	return (float)$st[0] + (float)$st[1];
+	return microtime(true);
 }
 
 /**
