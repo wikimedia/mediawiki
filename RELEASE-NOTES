@@ -359,14 +359,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   under HTML-compatible browsers.
 * (bug 5077) Added hook 'BeforePageDisplay' to SkinTemplate::outputPage
 * Replace fatally changed 'uploadnewversion' with 'uploadnewversion-linktext'
-* Move parameter replacement before brace transformations in most of the
-  wfMsg() family (except for wfMsgHtml). This allows things like {{plural:}},
-  {{urlencode:}}, and {{fullurl:}} to be used in most cases correctly.
-  The content or UI language will be used accordingly for (forContent)?.
-* Work around glitch with the above in {{int:}}; skip redundant transformations,
-  allow the including parser to do it.
-* Fix {{int:}} to use content language, so it won't break caches and links
-  tables and randomly include data from the wrong language.
 * (bug 472) Syndication feeds for the last few edits of page history
 * Format edit comments in Recent Changes feed
 * Switch incorrectly ordered column headers on Recent Changes feed diffs

@@ -310,10 +310,6 @@ function wfReadOnly() {
  * addWikiText will do the escaping for you. Use wfMsgHtml()
  * if you need an escaped message.
  *
- * Brace transformation is done *after* parameter replacement, so
- * constructs like {{plural:$1}} may be used. Be aware this may
- * have security implications for HTML message output.
- *
  * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
  */
@@ -351,10 +347,6 @@ function wfMsgNoTrans( $key ) {
  * customize over 70 messages in order to, e.g., fix a link in every
  * possible language.
  *
- * Brace transformation is done *after* parameter replacement, so
- * constructs like {{plural:$1}} may be used. Be aware this may
- * have security implications for HTML message output.
- *
  * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
  */
@@ -385,10 +377,6 @@ function wfMsgForContentNoTrans( $key ) {
 
 /**
  * Get a message from the language file, for the UI elements
- *
- * Brace transformation is done *after* parameter replacement, so
- * constructs like {{plural:$1}} may be used. Be aware this may
- * have security implications for HTML message output.
  */
 function wfMsgNoDB( $key ) {
 	$args = func_get_args();
@@ -398,10 +386,6 @@ function wfMsgNoDB( $key ) {
 
 /**
  * Get a message from the language file, for the content
- *
- * Brace transformation is done *after* parameter replacement, so
- * constructs like {{plural:$1}} may be used. Be aware this may
- * have security implications for HTML message output.
  */
 function wfMsgNoDBForContent( $key ) {
 	global $wgForceUIMsgAsContentMsg;
@@ -417,11 +401,6 @@ function wfMsgNoDBForContent( $key ) {
 
 /**
  * Really get a message
- *
- * Brace transformation is done *after* parameter replacement, so
- * constructs like {{plural:$1}} may be used. Be aware this may
- * have security implications for HTML message output.
- *
  * @return $key String: key to get.
  * @return $args
  * @return $useDB Boolean
@@ -430,14 +409,8 @@ function wfMsgNoDBForContent( $key ) {
 function wfMsgReal( $key, $args, $useDB, $forContent=false, $transform = true ) {
 	$fname = 'wfMsgReal';
 
-	$message = wfMsgGetKey( $key, $useDB, $forContent, false );
+	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
-	if( $transform && strstr( $message, '{{' ) !== false ) {
-		global $wgParser, $wgMsgParserOptions;
-		$old = $wgMsgParserOptions->setInterfaceMessage( !$forContent );
-		$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
-		$wgMsgParserOptions->setInterfaceMessage( $old );
-	}
 	return $message;
 }
 
@@ -543,9 +516,6 @@ function wfMsgReplaceArgs( $message, $args ) {
  * to pre-escape them if you really do want plaintext, or just wrap
  * the whole thing in htmlspecialchars().
  *
- * Brace transformation is done *before* parameter replacement, so
- * constructs like {{plural:$1}} will not work.
- *
  * @param string $key
  * @param string ... parameters
  * @return string
@@ -562,9 +532,6 @@ function wfMsgHtml( $key ) {
  * so parameters may contain HTML (eg links or form controls). Be sure
  * to pre-escape them if you really do want plaintext, or just wrap
  * the whole thing in htmlspecialchars().
- *
- * Brace transformation is done *before* parameter replacement, so
- * constructs like {{plural:$1}} will not work.
  *
  * @param string $key
  * @param string ... parameters
