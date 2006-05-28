@@ -587,8 +587,9 @@ class PageHistory {
 		}
 		
 		$feed = new $wgFeedClasses[$type](
-			$this->mTitle->getPrefixedText() . ' - ' . wfMsg( 'history-feed-title' ),
-			'Revision history for this page on the wiki',
+			$this->mTitle->getPrefixedText() . ' - ' .
+				wfMsgForContent( 'history-feed-title' ),
+			wfMsgForContent( 'history-feed-description' ),
 			$this->mTitle->getFullUrl( 'action=history' ) );
 
 		$items = $this->fetchRevisions(10, 0, DIR_NEXT);
