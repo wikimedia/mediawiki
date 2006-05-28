@@ -527,6 +527,12 @@ M = Kleine Änderung",
 'revdelete-logentry'		=> 'Versionszugang geändert für [[$1]]',
 'rev-delundel'			=> 'zeige/verstecke',
 
+'history-feed-title'		=> 'Versionsgeschichte',
+'history-feed-description'	=> 'Versionsgeschichte für diese Seite im Wiki',
+'history-feed-item-nocomment'	=> '$1 um $2', # user at time
+'history-feed-empty'		=> 'Die angeforderte Seite exisitiert nicht.
+Vielleicht wurde sie aus dem Wiki gelöscht oder verschoben.
+[[Special:Search|Durchsuchen]] Sie das Wiki für passende neue Seiten.',
 'revisiondelete'		=> 'Versionen löschen/wiederherstellen',
 'revdelete-selected'		=> 'Ausgewählte Version von [[:$1]]:',
 'revdelete-text'		=> 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
