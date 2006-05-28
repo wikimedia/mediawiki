@@ -174,13 +174,13 @@ class LanguageGa extends LanguageUtf8 {
 
 	# Convert day names
 	# Invoked with {{GRAMMAR:transformation|word}}
-	function convertGrammar( $word, $what ) {
+	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset($wgGrammarForms['ga'][$case][$word]) ) {
 			return $wgGrammarForms['ga'][$case][$word];
 		}
 
-		switch ( $what ) {
+		switch ( $case ) {
 		case 'genitive':
 			switch ($word) {
 			case 'Vicipéid':     $word = 'Vicipéide'; break;
