@@ -251,6 +251,7 @@ See $1.',
 'viewdeleted' => 'View $1?',
 'restorelink' => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
 'feedlinks' => 'Feed:',
+'feed-invalid' => 'Invalid subscription feed type.',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 'anonnotice' => '-',
 
@@ -588,6 +589,11 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} d
 </div>',
 #'rev-delundel' => 'del/undel',
 'rev-delundel' => 'show/hide',
+
+'history-feed-item-nocomment' => '$1 at $2', # user at time
+'history-feed-empty' => 'The requested page doesn\'t exist.
+It may have been deleted from the wiki, or renamed.
+Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 
 # Revision deletion
 #

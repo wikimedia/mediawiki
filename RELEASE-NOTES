@@ -367,6 +367,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   allow the including parser to do it.
 * Fix {{int:}} to use content language, so it won't break caches and links
   tables and randomly include data from the wrong language.
+* (bug 472) Syndication feeds for the last few edits of page history
+* Format edit comments in Recent Changes feed
+* Switch incorrectly ordered column headers on Recent Changes feed diffs
 
 
 == Compatibility ==
