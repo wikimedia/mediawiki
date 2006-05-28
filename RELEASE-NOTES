@@ -365,11 +365,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6117) Use message for history feed description, add German localization
 * (bug 1017) fixed thumbnails of animated gifs.
 * Add APC as object caching option
+* Update to Albanian localization (sq)
+* (bug 6099) Introduce {{DIRECTIONMARK}} magic word (with {{DIRMARK}} as an alias)
 * Use optimized php5-only microtime()
 * Add possibility to store local message cache as PHP executable script
 * Fix profiling table definition
-* Update to Albanian localization (sq)
-* (bug 6099) Introduce {{DIRECTIONMARK}} magic word (with {{DIRMARK}} as an alias)
+* Pass a second parameter to "nogomatch" containing the search terms minus the
+  preceding colon, allowing prettied-up messages
 
 == Compatibility ==
 
