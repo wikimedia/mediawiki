@@ -53,7 +53,7 @@ class SpecialVersion {
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
 		copyright (C) 2001-2006 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
-		Niklas Laxström, Domas Mituzas and others.
+		Niklas Laxström, Domas Mituzas, Rob Church and others.
 
 		MediaWiki is free software; you can redistribute it and/or modify
 		it under the terms of the GNU General Public License as published by
