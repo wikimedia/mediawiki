@@ -71,6 +71,9 @@ function &wfGetCache( $inputType ) {
 			if ( function_exists( 'eaccelerator_get' ) ) {
 				require_once( 'BagOStuff.php' );
 				$wgCaches[CACHE_ACCEL] = new eAccelBagOStuff;
+			} elseif ( function_exists( 'apc_fetch') ) {
+				require_once( 'BagOStuff.php' );
+				$wgCaches[CACHE_ACCEL] = new APCBagOStuff;
 			} elseif ( function_exists( 'mmcache_get' ) ) {
 				require_once( 'BagOStuff.php' );
 				$wgCaches[CACHE_ACCEL] = new TurckBagOStuff;
