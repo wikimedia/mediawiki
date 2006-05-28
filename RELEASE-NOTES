@@ -372,6 +372,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix profiling table definition
 * Pass a second parameter to "nogomatch" containing the search terms minus the
   preceding colon, allowing prettied-up messages
+* (bug 6040) Run pre-save transform before calculating the diff. when doing a
+  "show changes" operation in the editor
 
 == Compatibility ==
 
