@@ -365,7 +365,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6117) Use message for history feed description, add German localization
 * (bug 1017) fixed thumbnails of animated gifs.
 * Add APC as object caching option
-
+* Update to Albanian localization (sq)
 
 == Compatibility ==
 
