@@ -1229,6 +1229,24 @@ Link containing "<#" and ">#" as a hex sequences
 !! end
 
 !! test
+Link containing double-single-quotes '' (bug 4598)
+!! input
+[[Lista d''e paise d''o munno]]
+!! result
+<p><a href="/index.php?title=Lista_d%27%27e_paise_d%27%27o_munno&amp;action=edit" class="new" title="Lista d''e paise d''o munno">Lista d''e paise d''o munno</a>
+</p>
+!! end
+
+!! test
+Link containing double-single-quotes '' in text (bug 4598 sanity check)
+!! input
+[[Link|Lista d''e paise d''o munno]]
+!! result
+<p><a href="/index.php?title=Link&amp;action=edit" class="new" title="Link">Lista d<i>e paise d</i>o munno</a>
+</p>
+!! end
+
+!! test
 Plain link to URL
 !! input
 [[http://www.example.org]]
