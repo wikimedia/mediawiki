@@ -587,14 +587,14 @@ class Parser
 		}
 
 		# Must expand in reverse order, otherwise nested tags will be corrupted
-		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
-			$text = str_replace( key( $state['nowiki'] ), $content, $text );
+		foreach( array_reverse( $state['nowiki'], true ) as $uniq => $content ) {
+			$text = str_replace( $uniq, $content, $text );
 		}
 
 		global $wgRawHtml;
 		if ($wgRawHtml) {
-			for ( $content = end($state['html']); $content !== false; $content = prev( $state['html'] ) ) {
-				$text = str_replace( key( $state['html'] ), $content, $text );
+			foreach( array_reverse( $state['html'], true ) as $uniq => $content ) {
+				$text = str_replace( $uniq, $content, $text );
 			}
 		}
 
