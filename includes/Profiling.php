@@ -319,7 +319,7 @@ class Profiler {
 	 */
 	function logToDB($name, $timeSum, $eventCount) {
 		# Warning: $wguname is a live patch, it should be moved to Setup.php
-		global $wguname;
+		global $wguname, $wgProfilePerHost;
 
 		$fname = 'Profiler::logToDB';
 		$dbw = & wfGetDB(DB_MASTER);
@@ -330,14 +330,21 @@ class Profiler {
 
 		$name = substr($name, 0, 255);
 		$encname = $dbw->strencode($name);
+		
+		if ($wgProfilePerHost) {
+			$pfhost = $wguname['nodename'];
+		} else {
+			$pfhost = '';
+		}
+
 		$sql = "UPDATE $profiling "."SET pf_count=pf_count+{$eventCount}, "."pf_time=pf_time + {$timeSum} ".
-			"WHERE pf_name='{$encname}' AND pf_server='{$wguname['nodename']}'";
+			"WHERE pf_name='{$encname}' AND pf_server='{$pfhost}'";
 		$dbw->query($sql);
 
 		$rc = $dbw->affectedRows();
 		if ($rc == 0) {
 			$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount,
-				'pf_time' => $timeSum, 'pf_server' => $wguname['nodename'] ), $fname, array ('IGNORE'));
+				'pf_time' => $timeSum, 'pf_server' => $pfhost ), $fname, array ('IGNORE'));
 		}
 		// When we upgrade to mysql 4.1, the insert+update
 		// can be merged into just a insert with this construct added:

@@ -1125,6 +1125,8 @@ $wgProfileSampleRate = 1;
 $wgProfileCallTree = false;
 /** If not empty, specifies profiler type to load */
 $wgProfilerType = '';
+/** Should application server host be put into profiling table */
+$wgProfilePerHost = false;
 
 /** Settings for UDP profiler */
 $wgUDPProfilerHost = '127.0.0.1';
