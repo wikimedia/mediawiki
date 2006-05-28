@@ -481,6 +481,30 @@ class TurckBagOStuff extends BagOStuff {
 }
 
 /**
+ * This is a wrapper for APC's shared memory functions
+ *
+ * @package MediaWiki
+ */
+
+class APCBagOStuff extends BagOStuff {
+	function get($key) {
+		$val = apc_fetch($key);
+		return (is_string($val))?$val:unserialize($val);
+	}
+	
+	function set($key, $value, $exptime=0) {
+		apc_store($key, $value, $exptime);
+		return true;
+	}
+	
+	function delete($key) {
+		apc_delete($key);
+		return true;
+	}
+}
+
+
+/**
  * This is a wrapper for eAccelerator's shared memory functions.
  *
  * This is basically identical to the Turck MMCache version,
