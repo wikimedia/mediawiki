@@ -3,7 +3,7 @@
  * Main wiki script; see docs/design.txt
  * @package MediaWiki
  */
-$wgRequestTime = microtime();
+$wgRequestTime = microtime(true);
 
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
 if ( function_exists ( 'getrusage' ) ) {
