@@ -829,6 +829,25 @@ Bug 4781, 5267: %28, %29 in bracketed URL
 </p>
 !! end
 
+!! test
+External link containing double-single-quotes in text '' (bug 4598 sanity check)
+!! input
+Some [http://example.com/ pretty ''italics'' and stuff]!
+!! result
+<p>Some <a href="http://example.com/" class='external text' title="http://example.com/" rel="nofollow">pretty <i>italics</i> and stuff</a>!
+</p>
+!! end
+
+!! test
+External link containing double-single-quotes in text embedded in italics (bug 4598 sanity check)
+!! input
+''Some [http://example.com/ pretty ''italics'' and stuff]!''
+!! result
+<p><i>Some </i><a href="http://example.com/" class='external text' title="http://example.com/" rel="nofollow"><i>pretty </i>italics<i> and stuff</i></a><i>!</i>
+</p>
+!! end
+
+
 
 ###
 ### Quotes
@@ -1240,9 +1259,18 @@ Link containing double-single-quotes '' (bug 4598)
 !! test
 Link containing double-single-quotes '' in text (bug 4598 sanity check)
 !! input
-[[Link|Lista d''e paise d''o munno]]
+Some [[Link|pretty ''italics'' and stuff]]!
 !! result
-<p><a href="/index.php?title=Link&amp;action=edit" class="new" title="Link">Lista d<i>e paise d</i>o munno</a>
+<p>Some <a href="/index.php?title=Link&amp;action=edit" class="new" title="Link">pretty <i>italics</i> and stuff</a>!
+</p>
+!! end
+
+!! test
+Link containing double-single-quotes '' in text embedded in italics (bug 4598 sanity check)
+!! input
+''Some [[Link|pretty ''italics'' and stuff]]!
+!! result
+<p><i>Some </i><a href="/index.php?title=Link&amp;action=edit" class="new" title="Link"><i>pretty </i>italics<i> and stuff</i></a><i>!</i>
 </p>
 !! end
 
