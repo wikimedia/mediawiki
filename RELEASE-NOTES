@@ -374,6 +374,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   preceding colon, allowing prettied-up messages
 * (bug 6040) Run pre-save transform before calculating the diff. when doing a
   "show changes" operation in the editor
+* (bug 4033) Respect $wgStyleDirectory when checking available skins
 
 == Compatibility ==
 

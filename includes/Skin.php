@@ -12,12 +12,12 @@ if ( ! defined( 'MEDIAWIKI' ) )
 require_once( 'Linker.php' );
 require_once( 'Image.php' );
 
-# Get a list of all skins available in /skins/
+# Get a list of available skins
 # Build using the regular expression '^(.*).php$'
 # Array keys are all lower case, array value keep the case used by filename
 #
 
-$skinDir = dir($IP.'/skins');
+$skinDir = dir( $wgStyleDirectory );
 
 # while code from www.php.net
 while (false !== ($file = $skinDir->read())) {
