@@ -1097,6 +1097,8 @@ class Image
 			$cmd  =  wfEscapeShellArg($wgImageMagickConvertCommand) .
 				" {$quality} -background white -size {$width} ".
 				wfEscapeShellArg($this->imagePath) .
+				// Coalesce is needed to scale animated GIFs properly (bug 1017).
+				' -coalesce ' .
 				// For the -resize option a "!" is needed to force exact size,
 				// or ImageMagick may decide your ratio is wrong and slice off
 				// a pixel.
