@@ -204,6 +204,7 @@
 'viewdeleted' => '$1 anzeigen?',
 'restorelink'		=> '{{PLURAL:$1|einer gelöschten Version|$1 gelöschten Versionen}}',
 "feedlinks" => "Feed:",
+'feed-invalid'		=> 'Ungültiger Abonnenement-Typ.',
 'permalink'     => 'Permanentlink',
 "listingcontinuesabbrev" => "(Forts.)",
 
@@ -552,7 +553,7 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 # Search results
 #
 "searchresults" => "Suchergebnisse",
-'searchresulttext'	=> 'Für mehr Information über {{SITENAME}}, siehe [[{{ns:project}}:Suche|{{SITENAME}} durchsuchen]].',
+'searchresulttext'	=> 'Für mehr Informationen zur Suche siehe „[[{{ns:project}}:Suche|{{SITENAME}} durchsuchen]]“.',
 "searchquery"	=> "Für die Suchanfrage \"$1\"",
 "badquery"		=> "Falsche Suchanfrage",
 "badquerytext"	=> "Wir konnten Ihre Suchanfrage nicht verarbeiten.
@@ -563,8 +564,12 @@ Möglicherweise haben Sie auch die Anfrage falsch formuliert, z.B.
 Bitte versuchen Sie eine anders formulierte Anfrage.",
 "matchtotals"	=> "Die Anfrage \"$1\" stimmt mit $2 Artikelüberschriften
 und dem Text von $3 Artikeln überein.",
-"nogomatch" => "Es existiert kein Artikel [[$1]]. Bitte versuchen
-Sie die Volltextsuche oder [[$1|legen Sie den Artikel neu an]].",
+'nogomatch'	=> '\'\'\'Es existiert kein Artikel mit diesem Namen.\'\'\'
+
+Versuchen Sie es über die Volltextsuche.
+Alternativ können Sie auch den [[{{ns:special}}:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
+
+Wenn Sie sich mit dem Thema auskennen, können Sie selbst den Artikel „[[$1]]“ verfassen.',
 "titlematches"	=> "Übereinstimmungen mit Überschriften",
 "notitlematches" => "Keine Übereinstimmungen",
 "textmatches"	=> "Übereinstimmungen mit Texten",
@@ -577,7 +582,7 @@ Sie die Volltextsuche oder [[$1|legen Sie den Artikel neu an]].",
 "nonefound"		=> "<strong>Hinweis</strong>:
 Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewöhnlichen' Worten zu suchen; diese sind nicht indiziert.",
 "powersearch" => "Suche",
-'powersearchtext'	=> 'Suche in den Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
+'powersearchtext'	=> 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
 "searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>",
 "blanknamespace" => "(Artikel)",
 
@@ -646,7 +651,7 @@ Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewö
 'sectionlink'		=> '→',
 'number_of_watching_users_RCview'	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 Benutzer beobachten diese Seite]',
-'rc_categories'		=> 'Kategorienbegrenzung (getrennt mit "|")',
+'rc_categories'		=> 'Nur Kategorien (getrennt mit "|"):',
 'rc_categories_any'	=> 'Alle',
 
 
@@ -662,15 +667,18 @@ Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewö
 "uploaderror"	=> "Fehler beim Hochladen",
 'uploadtext'		=> 'Gehen Sie zu der [[{{ns:special}}:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen.
 
-Benutzen Sie das Formular, um neue Dateien hochzuladen. Klicken Sie auf \'\'\'„Durchsuchen...“\'\'\', um einen Dateiauswahl-Dialog zu öffnen.
-Nach der Auswahl einer Datei, wird der Dateiname im Textfeld \'\'\'„Quelldatei“\'\'\' angezeigt.
+Benutzen Sie dieses Formular, um neue Dateien hochzuladen. Klicken Sie auf \'\'\'„Durchsuchen...“\'\'\', um einen Dateiauswahl-Dialog zu öffnen.
+Nach der Auswahl einer Datei wird der Dateiname im Textfeld \'\'\'„Quelldatei“\'\'\' angezeigt.
 Bestätigen Sie dann die Copyright-Vereinbarung und klicken anschliessend auf \'\'\'„Datei hochladen“\'\'\'.
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
-Für Photos wird das JPEG-Format, für Zeichnungen und Symbole das PNG-Format bevorzugt.
-Um ein Bild in einem Artikel zu verwenden, schreiben Sie an Stelle des Bildes
-\'\'\'<nowiki>[[{{ns:image}}:datei.jpg]]</nowiki>\'\'\' oder
-\'\'\'<nowiki>[[{{ns:image}}:datei.jpg|Beschreibung]]</nowiki>\'\'\'.
+Um ein \'\'\'Bild\'\'\' in einem Artikel zu verwenden, schreiben Sie an Stelle des Bildes zum Beispiel:
+* \'\'\'<nowiki>[[{{ns:image}}:Datei.jpg]]</nowiki>\'\'\'
+* \'\'\'<nowiki>[[{{ns:image}}:Datei.jpg|Link-Text]]</nowiki>\'\'\'
+
+Um \'\'\'Mediendateien\'\'\' einzubinden, verwenden Sie zum Beispiel:
+* \'\'\'<nowiki>[[{{ns:media}}:Datei.ogg]]</nowiki>\'\'\'
+* \'\'\'<nowiki>[[{{ns:media}}:Datei.ogg|Link-Text]]</nowiki>\'\'\'
 
 Bitte beachten Sie, dass, genau wie bei den Artikeln, andere Benutzer Ihre Dateien löschen oder verändern können.',
 "uploadlog"		=> "Datei-Logbuch",
@@ -693,7 +701,7 @@ Alle Zeiten sind UTC.
 'illegalfilename'	=> 'Der Dateiname "$1" enthält mindestens ein nicht erlaubtes Zeichen. Bitte benennen Sie die Datei um und versuchen Sie diese erneut hochzuladen.',
 'badfilename'		=> 'Der Dateiname wurde in "$1" geändert.',
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
-'largefile'		=> 'Bitte keine Dateien größer $1 Bytes hochladen. Diese Datei hat $2 Bytes',
+'largefile'		=> 'Es wird nicht empfohlen Dateien hochzuladen, die größer als $1 Bytes sind. Diese Datei ist $2 Bytes groß.',
 'largefileserver'	=> 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
 'fileexists'		=> 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf "Datei speichern" klicken, wird die Datei überschrieben. Bitte prüfen Sie $1, wenn Sie sich nicht sicher sind.',
@@ -910,6 +918,7 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
 'wlhideshowown'		=> '$1 meine Änderungen',
 'wlhideshowbots'	=> '$1 von Bot-Änderungen.',
+'wldone'		=> 'Erledigt.',
 
 'updatedmarker'			=> '(geändert)',
 'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
@@ -953,8 +962,11 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen besuchen Sie: {{fullurl:
 "deletesub"		=> "(Lösche \"$1\")",
 "historywarning" => "WARNUNG: Die Seite die Sie zu löschen gedenken hat
 eine Versionsgeschichte:",
-"confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen endgültig aus der Datenbank zu löschen.
-Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[{{ns:project}}:Leitlinien|Leitlinien]] handeln.",
+'confirmdeletetext'	=> 'Sie sind dabei, einen Artikel oder eine Datei und alle zugehörigen älteren Versionen
+permanent aus der Datenbank zu löschen. Bitte bestätigen Sie dazu, dass Sie sich der Konsequenzen bewusst sind,
+und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschregeln]] handeln.
+
+\'\'\'Achtung:\'\'\' Im Unterschied zu Textseiten können hochgeladene Dateien nicht wieder hergestellt werden.',
 "actioncomplete" => "Aktion beendet",
 "deletedtext"	=> "\"$1\" wurde gelöscht.
 Im $2 finden Sie eine Liste der letzten Löschungen.",
@@ -1244,7 +1256,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 '1movedto2_redir'	=> 'hat [[$1]] nach [[$2]] verschoben und dabei eine Weiterleitung überschrieben.',
 'movelogpage'		=> 'Verschiebungs-Logbuch',
 'movelogpagetext'	=> 'Dies ist eine Liste aller verschobenen Seiten.',
-'allmessages'		=> 'Seiten im MediaWiki-Namensraum',
+'allmessages'		=> 'MediaWiki-Meldungen',
 'allmessagesname'	=> 'Name',
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
 'allmessagesnotsupportedUI' => 'Die aktuelle Sprache Ihrer Benutzeroberfläche <b>$1</b> wird auf dieser Seite nicht von {{ns:special}}:Allmessages unterstützt.',
@@ -1274,7 +1286,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 "unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
 "confirmprotecttext" => "Soll diese Seite wirklich geschützt werden?",
-'protect-text'		=> "Hier können Sie den Schutzstatus für die Seite <strong>$1</strong> einsehen und ändern. Bitte stellen Sie sicher, dass Sie die [[{{ns:project}}:Geschützte Seiten|Projekt-Richtlinien]] einhalten.",
+'protect-text'		=> 'Hier können Sie den Schutzstatus für die Seite \'\'\'$1\'\'\' einsehen und ändern. Bitte stellen Sie sicher, dass Sie die [[{{ns:project}}:Geschützte Seiten|Projektrichtlinien]] einhalten.',
 'protect-level-autoconfirmed'	=> 'nicht registrierte Benuter blocken',
 'protect-level-sysop'	=> 'nur Sysops',
 'restriction-edit'	=> 'bearbeiten',
@@ -1290,7 +1302,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 "ip_range_invalid"	=> "Ungültiger IP-Addressbereich.",
 "confirmprotect" 	=> "Sperrung bestätigen",
 'protectmoveonly'	=> 'Nur vor dem Verschieben schützen',
-"protectcomment" 	=> "Grund der Sperrung",
+'protectcomment' 	=> 'Grund der Sperrung:',
 "unprotectsub"		=> "(Aufhebung der Sperrung von \"$1\")",
 "confirmunprotecttext"	=> "Wollen Sie wirklich die Sperrung dieser Seite aufheben?",
 "confirmunprotect"	=> "Aufhebung der Sperrung bestätigen",
@@ -1373,16 +1385,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'passwordtooshort' => 'Ihr Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
 
 # Media Warning
-'mediawarning' => '
-===Warnung!===
-Diese Art von Datei kann böswilligen Programmcode enthalten.
-Durch das Herunterladen oder Öffnen der Datei kann der Computer beschädigt werden.
-Bereits das Anklicken des Links kann dazu führen dass der Browser die Datei öffnet
-und unbekannter Programmcode zur Ausführung kommt.
-
-Die Betreiber dieses Wikis können keine Verantwortung für den Inhalte
-dieser Datei übernehmen. Sollte diese Datei tatsächlich böswilligen Programmcode enthalten,
-sollte umgehend ein Administrator informiert werden!',
+'mediawarning'		=> '\'\'\'Warnung:\'\'\' Diese Art von Datei kann böswilligen Programmcode enthalten. Durch das Herunterladen oder Öffnen der Datei kann Ihr Computer beschädigt werden.<hr />',
 
 'fileinfo'		=> '$1 kB, MIME Typ: <code>$2</code>',
 
