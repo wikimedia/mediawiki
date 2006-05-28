@@ -547,6 +547,12 @@ $wgMemCachedPersistent = false;
  * Directory for local copy of message cache, for use in addition to memcached
  */
 $wgLocalMessageCache = false;
+/**
+ * Defines format of local cache
+ * true - Serialized object
+ * false - PHP source file (Warning - security risk)
+ */
+$wgLocalMessageCacheSerialized = true;
 
 /**
  * Directory for compiled constant message array databases
