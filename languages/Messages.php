@@ -640,7 +640,7 @@ example "fish and and scales".
 Please try another query.',
 'matchtotals'	=> "The query \"$1\" matched $2 page titles
 and the text of $3 pages.",
-'nogomatch' => "'''There is no page titled \"$1\".''' You can [[$1|create this page]].",
+'nogomatch' => "'''There is no page titled \"$2\".''' You can [[$1|create this page]].",
 'titlematches'	=> 'Article title matches',
 'notitlematches' => 'No page title matches',
 'textmatches'	=> 'Page text matches',

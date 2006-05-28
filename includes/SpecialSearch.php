@@ -114,7 +114,7 @@ class SpecialSearch {
 				$editurl = $t->escapeLocalURL( 'action=edit' );
 			}
 		}
-		$wgOut->addWikiText( wfMsg('nogomatch', ":$term" ) );
+		$wgOut->addWikiText( wfMsg('nogomatch', ":$term", $term ) );
 
 		return $this->showResults( $term );
 	}
