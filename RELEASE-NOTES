@@ -363,6 +363,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   wfMsg() family (except for wfMsgHtml). This allows things like {{plural:}},
   {{urlencode:}}, and {{fullurl:}} to be used in most cases correctly.
   The content or UI language will be used accordingly for (forContent)?.
+* Work around glitch with the above in {{int:}}; skip redundant transformations,
+  allow the including parser to do it.
+* Fix {{int:}} to use content language, so it won't break caches and links
+  tables and randomly include data from the wrong language.
 
 
 == Compatibility ==
