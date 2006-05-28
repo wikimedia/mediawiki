@@ -614,27 +614,41 @@ function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
  * Format a diff for the newsfeed
  */
 function rcFormatDiff( $row ) {
-	global $wgFeedDiffCutoff, $wgContLang;
+	$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
+	return rcFormatDiffRow( $titleObj,
+		$row->rc_last_oldid, $row->rc_this_oldid,
+		$row->rc_timestamp,
+		$row->rc_comment );
+}
+
+function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment ) {
+	global $wgFeedDiffCutoff, $wgContLang, $wgUser;
 	$fname = 'rcFormatDiff';
 	wfProfileIn( $fname );
 
 	require_once( 'DifferenceEngine.php' );
-	$completeText = '<p>' . htmlspecialchars( $row->rc_comment ) . "</p>\n";
+	$skin = $wgUser->getSkin();
+	$completeText = '<p>' . $skin->formatComment( $comment ) . "</p>\n";
 
-	if( $row->rc_namespace >= 0 ) {
-		if( $row->rc_last_oldid ) {
+	if( $title->getNamespace() >= 0 ) {
+		if( $oldid ) {
 			wfProfileIn( "$fname-dodiff" );
 
-			$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
-			$de = new DifferenceEngine( $titleObj, $row->rc_last_oldid, $row->rc_this_oldid );
-			$diffText = $de->getDiff( wfMsg( 'revisionasof', $wgContLang->timeanddate( $row->rc_timestamp ) ),
-				wfMsg( 'currentrev' ) );
+			$de = new DifferenceEngine( $title, $oldid, $newid );
+			#$diffText = $de->getDiff( wfMsg( 'revisionasof',
+			#	$wgContLang->timeanddate( $timestamp ) ),
+			#	wfMsg( 'currentrev' ) );
+			$diffText = $de->getDiff(
+				wfMsg( 'previousrevision' ), // hack
+				wfMsg( 'revisionasof',
+					$wgContLang->timeanddate( $timestamp ) ) );
+				
 
 			if ( strlen( $diffText ) > $wgFeedDiffCutoff ) {
 				// Omit large diffs
-				$diffLink = $titleObj->escapeFullUrl(
-					'diff=' . $row->rc_this_oldid .
-					'&oldid=' . $row->rc_last_oldid );
+				$diffLink = $title->escapeFullUrl(
+					'diff=' . $newid .
+					'&oldid=' . $oldid );
 				$diffText = '<a href="' .
 					$diffLink .
 					'">' .
@@ -642,7 +656,7 @@ function rcFormatDiff( $row ) {
 					'</a>';
 			} elseif ( $diffText === false ) {
 				// Error in diff engine, probably a missing revision
-				$diffText = "<p>Can't load revision $row->rc_this_oldid</p>";
+				$diffText = "<p>Can't load revision $newid</p>";
 			} else {
 				// Diff output fine, clean up any illegal UTF-8
 				$diffText = UtfNormal::cleanUp( $diffText );
@@ -650,7 +664,7 @@ function rcFormatDiff( $row ) {
 			}
 			wfProfileOut( "$fname-dodiff" );
 		} else {
-			$rev = Revision::newFromId( $row->rc_this_oldid );
+			$rev = Revision::newFromId( $newid );
 			if( is_null( $rev ) ) {
 				$newtext = '';
 			} else {

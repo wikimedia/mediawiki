@@ -71,6 +71,13 @@ class PageHistory {
 		$wgOut->setArticleFlag( false );
 		$wgOut->setArticleRelated( true );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setSyndicated( true );
+
+		$feedType = $wgRequest->getVal( 'feed' );
+		if( $feedType ) {
+			wfProfileOut( $fname );
+			return $this->feed( $feedType );
+		}
 
 		/*
 		 * Fail if article doesn't exist.
@@ -561,6 +568,91 @@ class PageHistory {
 		return $this->mSkin->makeKnownLinkObj(
 				$this->mTitle, $text,
 				wfArrayToCGI( $query, array( 'action' => 'history' )));
+	}
+	
+	
+	/**
+	 * Output a subscription feed listing recent edits to this page.
+	 * @param string $type
+	 */
+	function feed( $type ) {
+		require_once 'Feed.php';
+		require_once 'SpecialRecentchanges.php';
+		
+		global $wgFeedClasses;
+		if( !isset( $wgFeedClasses[$type] ) ) {
+			global $wgOut;
+			$wgOut->addWikiText( wfMsg( 'feed-invalid' ) );
+			return;
+		}
+		
+		$feed = new $wgFeedClasses[$type](
+			$this->mTitle->getPrefixedText() . ' - ' . wfMsg( 'revhistory' ),
+			'Revision history for this page on the wiki',
+			$this->mTitle->getFullUrl( 'action=history' ) );
+
+		$items = $this->fetchRevisions(10, 0, DIR_NEXT);
+		$feed->outHeader();
+		if( $items ) {
+			foreach( $items as $row ) {
+				$feed->outItem( $this->feedItem( $row ) );
+			}
+		} else {
+			$feed->outItem( $this->feedEmpty() );
+		}
+		$feed->outFooter();
+	}
+	
+	function feedEmpty() {
+		global $wgOut;
+		return new FeedItem(
+			wfMsgForContent( 'nohistory' ),
+			$wgOut->parse( wfMsgForContent( 'history-feed-empty' ) ),
+			$this->mTitle->getFullUrl(),
+			wfTimestamp( TS_MW ),
+			'',
+			$this->mTitle->getTalkPage()->getFullUrl() );
+	}
+	
+	/**
+	 * Generate a FeedItem object from a given revision table row
+	 * Borrows Recent Changes' feed generation functions for formatting;
+	 * includes a diff to the previous revision (if any).
+	 *
+	 * @param $row
+	 * @return FeedItem
+	 */
+	function feedItem( $row ) {
+		$rev = new Revision( $row );
+		$text = rcFormatDiffRow( $this->mTitle,
+			$this->mTitle->getPreviousRevisionID( $rev->getId() ),
+			$rev->getId(),
+			$rev->getTimestamp(),
+			$rev->getComment() );
+		
+		if( $rev->getComment() == '' ) {
+			global $wgContLang;
+			$title = wfMsgForContent( 'history-feed-item-nocomment',
+				$rev->getUserText(),
+				$wgContLang->timeanddate( $rev->getTimestamp() ) );
+		} else {
+			$title = $rev->getUserText() . ": " . $this->stripComment( $rev->getComment() );
+		}
+
+		return new FeedItem(
+			$title,
+			$text,
+			$this->mTitle->getFullUrl( 'diff=' . $rev->getId() . '&oldid=prev' ),
+			$rev->getTimestamp(),
+			$rev->getUserText(),
+			$this->mTitle->getTalkPage()->getFullUrl() );
+	}
+	
+	/**
+	 * Quickie hack... strip out wikilinks to more legible form from the comment.
+	 */
+	function stripComment( $text ) {
+		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
 	}
 
 
