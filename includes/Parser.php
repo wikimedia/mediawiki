@@ -2574,7 +2574,8 @@ class Parser
 			$mwInt =& MagicWord::get( MAG_INT );
 			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
 				if ( $this->incrementIncludeCount( 'int:'.$part1 ) ) {
-					$text = $linestart . wfMsgReal( $part1, $args, true );
+					$text = $linestart . wfMsgReal( $part1, $args, true,
+						/* ui language */false, /* transform */false );
 					$found = true;
 				}
 			}
