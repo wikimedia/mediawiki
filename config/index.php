@@ -326,14 +326,22 @@ $conf->turck = function_exists( 'mmcache_get' );
 if ( $conf->turck ) {
 	print "<li><a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> installed</li>\n";
 }
+
+$conf->apc = function_exists('apc_fetch');
+if ($conf->apc ) {
+	print '<li><a href="http://www.php.net/apc">APC</a> installed</li>\n';
+}
+
 $conf->eaccel = function_exists( 'eaccelerator_get' );
 if ( $conf->eaccel ) {
     $conf->turck = 'eaccelerator';
     print "<li><a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> installed</li>\n";
 }
-if (!$conf->turck && !$conf->eaccel) {
-	print "<li>Neither <a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> nor <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> are installed, " .
-	  "can't use object caching functions</li>\n";
+if (!$conf->turck && !$conf->eaccel && !$conf->apc) {
+	print "<li>Neither <a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> nor ".
+		"<a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> nor ".
+		"<a href=\"http://www.php.net/apc\">APC</a> are installed, " .
+		"can't use object caching functions</li>\n";
 }
 
 $conf->diff3 = false;
@@ -883,8 +891,11 @@ if( count( $errs ) ) {
 				aField( $conf, "Shm", "Turck MMCache", "radio", "turck" );
 				echo "</li>";
 			}
-		?>
-		<?php
+			if ( $conf->apc ) {
+				echo "<li>";
+				aField( $conf, "Shm", "APC", "radio", "apc" );
+				echo "</li>";
+			}
 			if ( $conf->eaccel ) {
 				echo "<li>";
 				aField( $conf, "Shm", "eAccelerator", "radio", "eaccel" );
@@ -896,8 +907,8 @@ if( count( $errs ) ) {
 		<div style="clear:left"><?php aField( $conf, "MCServers", "Memcached servers:", "text" ) ?></div>
 	</div>
 	<p class="config-desc">
-		Using a shared memory system such as Turck MMCache, eAccelerator, or Memcached will speed
-		up MediaWiki significantly. Memcached is the best solution but needs to be
+		Using a shared memory system such as Turck MMCache, APC, eAccelerator, or Memcached 
+		will speed up MediaWiki significantly. Memcached is the best solution but needs to be
 		installed. Specify the server addresses and ports in a comma-separted list. Only
 		use Turck shared memory if the wiki will be running on a single Apache server.
 	</p>
@@ -1111,6 +1122,7 @@ function writeLocalSettings( $conf ) {
 			$mcservers = var_export( $conf->MCServerArray, true );
 			break;
 		case 'turck':
+		case 'apc':
 		case 'eaccel':
 			$cacheType = 'CACHE_ACCEL';
 			$mcservers = 'array()';

@@ -376,7 +376,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "show changes" operation in the editor
 * (bug 4033) Respect $wgStyleDirectory when checking available skins
 * Remove hideous backslashes from MessagesBr.php
-
+* Fix APC object cache issues, add functionality to installer
 
 == Compatibility ==
 
