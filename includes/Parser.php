@@ -439,9 +439,9 @@ class Parser
 			foreach( $html_content as $marker => $content ) {
 				if ($render ) {
 					# Raw and unchecked for validity.
-					$html_content[$marker] = $content;
+					$state['html'][$marker] = $content;
 				} else {
-					$html_content[$marker] = '<html>'.$content.'</html>';
+					$state['html'][$marker] = '<html>'.$content.'</html>';
 				}
 			}
 		}
@@ -450,9 +450,9 @@ class Parser
 		$text = Parser::extractTags('nowiki', $text, $nowiki_content, $uniq_prefix);
 		foreach( $nowiki_content as $marker => $content ) {
 			if( $render ){
-				$nowiki_content[$marker] = wfEscapeHTMLTagsOnly( $content );
+				$state['nowiki'][$marker] = wfEscapeHTMLTagsOnly( $content );
 			} else {
-				$nowiki_content[$marker] = '<nowiki>'.$content.'</nowiki>';
+				$state['nowiki'][$marker] = '<nowiki>'.$content.'</nowiki>';
 			}
 		}
 
@@ -461,9 +461,9 @@ class Parser
 			$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
 			foreach( $math_content as $marker => $content ){
 				if( $render ) {
-					$math_content[$marker] = renderMath( $content );
+					$state['math'][$marker] = renderMath( $content );
 				} else {
-					$math_content[$marker] = '<math>'.$content.'</math>';
+					$state['math'][$marker] = '<math>'.$content.'</math>';
 				}
 			}
 		}
@@ -472,9 +472,9 @@ class Parser
 		$text = Parser::extractTags('pre', $text, $pre_content, $uniq_prefix);
 		foreach( $pre_content as $marker => $content ){
 			if( $render ){
-				$pre_content[$marker] = '<pre>' . wfEscapeHTMLTagsOnly( $content ) . '</pre>';
+				$state['pre'][$marker] = '<pre>' . wfEscapeHTMLTagsOnly( $content ) . '</pre>';
 			} else {
-				$pre_content[$marker] = '<pre>'.$content.'</pre>';
+				$state['pre'][$marker] = '<pre>'.$content.'</pre>';
 			}
 		}
 
@@ -483,9 +483,9 @@ class Parser
 		foreach( $gallery_content as $marker => $content ) {
 			require_once( 'ImageGallery.php' );
 			if ( $render ) {
-				$gallery_content[$marker] = $this->renderImageGallery( $content );
+				$state['gallery'][$marker] = $this->renderImageGallery( $content );
 			} else {
-				$gallery_content[$marker] = '<gallery>'.$content.'</gallery>';
+				$state['gallery'][$marker] = '<gallery>'.$content.'</gallery>';
 			}
 		}
 
@@ -504,13 +504,13 @@ class Parser
 				$full_tag = $ext_tags[$tag][$marker];
 				$params = $ext_params[$tag][$marker];
 				if ( $render )
-					$ext_content[$tag][$marker] = call_user_func_array( $callback, array( $content, $params, &$this ) );
+					$state[$tag][$marker] = call_user_func_array( $callback, array( $content, $params, $this ) );
 				else {
 					if ( is_null( $content ) ) {
 						// Empty element tag
-						$ext_content[$tag][$marker] = $full_tag;
+						$state[$tag][$marker] = $full_tag;
 					} else {
-						$ext_content[$tag][$marker] = "$full_tag$content</$tag>";
+						$state[$tag][$marker] = "$full_tag$content</$tag>";
 					}
 				}
 			}
@@ -524,32 +524,13 @@ class Parser
 			$tempstate = array( 'comment' => $comment_content );
 			$text = $this->unstrip( $text, $tempstate );
 			$comment_content = array();
-		}
-
-		# Merge state with the pre-existing state, if there is one
-		if ( $state ) {
-			$state['html'] = $state['html'] + $html_content;
-			$state['nowiki'] = $state['nowiki'] + $nowiki_content;
-			$state['math'] = $state['math'] + $math_content;
-			$state['pre'] = $state['pre'] + $pre_content;
-			$state['gallery'] = $state['gallery'] + $gallery_content;
-			$state['comment'] = $state['comment'] + $comment_content;
-
-			foreach( $ext_content as $tag => $array ) {
-				if ( array_key_exists( $tag, $state ) ) {
-					$state[$tag] = $state[$tag] + $array;
-				}
-			}
 		} else {
-			$state = array(
-			  'html' => $html_content,
-			  'nowiki' => $nowiki_content,
-			  'math' => $math_content,
-			  'pre' => $pre_content,
-			  'gallery' => $gallery_content,
-			  'comment' => $comment_content,
-			) + $ext_content;
+			if( !isset( $state['comment'] ) ) {
+				$state['comment'] = array();
+			}
+			$state['comment'] += $comment_content;
 		}
+
 		return $text;
 	}
 
@@ -587,12 +568,13 @@ class Parser
 		}
 
 		# Must expand in reverse order, otherwise nested tags will be corrupted
-		foreach( array_reverse( $state['nowiki'], true ) as $uniq => $content ) {
-			$text = str_replace( $uniq, $content, $text );
-		}
+		if( isset( $state['nowiki'] ) )
+			foreach( array_reverse( $state['nowiki'], true ) as $uniq => $content ) {
+				$text = str_replace( $uniq, $content, $text );
+			}
 
 		global $wgRawHtml;
-		if ($wgRawHtml) {
+		if ($wgRawHtml && isset( $state['html'] ) ) {
 			foreach( array_reverse( $state['html'], true ) as $uniq => $content ) {
 				$text = str_replace( $uniq, $content, $text );
 			}
