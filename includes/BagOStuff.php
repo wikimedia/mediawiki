@@ -489,7 +489,7 @@ class TurckBagOStuff extends BagOStuff {
 class APCBagOStuff extends BagOStuff {
 	function get($key) {
 		$val = apc_fetch($key);
-		return (is_string($val))?$val:unserialize($val);
+		return $val;
 	}
 	
 	function set($key, $value, $exptime=0) {
