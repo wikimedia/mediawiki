@@ -572,12 +572,12 @@ in active use.",
 'uploadnologin' => "Óinnskráð(ur)",
 'uploadnologintext' => "You must be [[Special:Userlogin|logged in]]
 to upload files.",
-'uploadtext' => "'''Áður en skrá er hlaðið inn''':
+/*'uploadtext' => "'''Áður en skrá er hlaðið inn''':
 * Notaðu [[JPEG]] skráarsniðið fyrir ljósmyndir, [[GIF]] fyrir hreyfimyndir, [[PNG]] fyrir aðrar myndir og [[Ogg Vorbis]] fyrir hljóðskrár.
 
 '''Eftir að skrá er hlaðið inn''':
 * Veittu nákvæmar upplýsingar um skránna á skráarsíðunni, t.d. um myndina (hvenær hún er tekin, hvar o.s.f.)
-* Gefðu upplýsingar um leyfið sem hún er undir, <code><nowiki>{{</nowiki>GFDL<nowiki>}}</nowiki></code> fyrir [[commons:Commons:Copyright tags#GNU Licenses|GNU FDL]] og <code><nowiki>{{</nowiki>Óhöfundaréttvarið<nowiki>}}</nowiki></code> ef hún er óvernduð af alþjóða höfundarlögum.",
+* Gefðu upplýsingar um leyfið sem hún er undir, <code><nowiki>{{</nowiki>GFDL<nowiki>}}</nowiki></code> fyrir [[commons:Commons:Copyright tags#GNU Licenses|GNU FDL]] og <code><nowiki>{{</nowiki>Óhöfundaréttvarið<nowiki>}}</nowiki></code> ef hún er óvernduð af alþjóða höfundarlögum.",*/
 'uploadwarning' => "Aðvörun",
 'usercssjsyoucanpreview' => "<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript kóða áður en hann er vistaður.",
 'userlogin' => "Innskrá",
