@@ -135,7 +135,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "lastmodified"	=> "Viimane muutmine: $1",
 "viewcount"		=> "Seda lehekülge on külastatud $1 korda.",
 # aegunud, võib vist eemaldada, asendada järgmisega:
-"copyright" => "Kogu tekst on kasutatav litsentsi <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Vaba Dokumentatsiooni Litsentsi</a> (GFDL) tingimustel.",
+"copyright" => "Kogu tekst on kasutatav litsentsi $1 tingimustel.",
 'poweredby'     => "{{SITENAME}} kasutab avatud koodiga wiki mootorit [http://www.mediawiki.org/ MediaWiki].",
 "printsubtitle" => "(Allikas: {{SERVER}})",
 "protectedpage" => "Kaitstud artikkel",
