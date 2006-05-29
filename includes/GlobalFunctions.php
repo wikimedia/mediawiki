@@ -249,11 +249,9 @@ function logProfilingData() {
 	global $wgProfiling, $wgUser;
 	$now = wfTime();
 
-	list( $usec, $sec ) = explode( ' ', $wgRequestTime );
-	$start = (float)$sec + (float)$usec;
-	$elapsed = $now - $start;
+	$elapsed = $now - $wgRequestTime;
 	if ( $wgProfiling ) {
-		$prof = wfGetProfilingOutput( $start, $elapsed );
+		$prof = wfGetProfilingOutput( $wgRequestTime, $elapsed );
 		$forward = '';
 		if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
 			$forward = ' forwarded for ' . $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -701,9 +699,7 @@ function wfHostname() {
 		global $wgRequestTime;
 
 		$now = wfTime();
-		list( $usec, $sec ) = explode( ' ', $wgRequestTime );
-		$start = (float)$sec + (float)$usec;
-		$elapsed = $now - $start;
+		$elapsed = $now - $wgRequestTime;
 
 		$com = sprintf( "<!-- Served by %s in %01.3f secs. -->",
 		  wfHostname(), $elapsed );

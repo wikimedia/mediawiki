@@ -24,7 +24,7 @@ header( "Content-type: text/html; charset=utf-8" );
 @ini_set( "display_errors", true );
 
 # In case of errors, let output be clean.
-$wgRequestTime = microtime();
+$wgRequestTime = microtime( true );
 
 # Attempt to set up the include path, to fix problems with relative includes
 $IP = dirname( dirname( __FILE__ ) );
