@@ -377,6 +377,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4033) Respect $wgStyleDirectory when checking available skins
 * Remove hideous backslashes from MessagesBr.php
 * Fix APC object cache issues, add functionality to installer
+* (bug 6133) Update strip state as we work. This mostly fixes extensions
+  used in Cite.php <ref> tags when Tidy is on.
+
 
 == Compatibility ==
 
