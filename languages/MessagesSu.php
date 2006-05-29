@@ -1,6 +1,6 @@
 <?php
 
-
+global $wgAllMessagesSu;
 $wgAllMessagesSu = array(
 
 # dates
@@ -238,7 +238,7 @@ mangga pastikeun yén anjeun rék nyieun deui artikel ieu.',
 'contribslink' => 'sumbang',
 'contribsub' => 'Pikeun $1',
 'contributions' => 'Kontribusi pamaké',
-'copyright' => 'Sadaya kandungan ieu loka aya dina panangtayungan <a class=\'internal\' href="{{localurle:{{ns:project}}:Téks_Lisénsi Dokumén Bébas GNU}}">Lisénsi Dokumén Bébas GNU</a> (tingal <b><a class=\'internal\' href="{{localurle:{{ns:project}}:Hak cipta}}">Hak cipta</a></b> sangkan leuwih jéntré).<br />',
+/*'copyright' => 'Sadaya kandungan ieu loka aya dina panangtayungan <a class=\'internal\' href="{{localurle:{{ns:project}}:Téks_Lisénsi Dokumén Bébas GNU}}">Lisénsi Dokumén Bébas GNU</a> (tingal <b><a class=\'internal\' href="{{localurle:{{ns:project}}:Hak cipta}}">Hak cipta</a></b> sangkan leuwih jéntré).<br />',*/
 'copyrightpage' => '{{ns:project}}:Hak cipta',
 'copyrightpagename' => 'Hak cipta {{SITENAME}}',
 /*'copyrightwarning' => 'Parobahan jieunan anjeun bakal geuwat katémbong.
