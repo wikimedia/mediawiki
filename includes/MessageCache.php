@@ -148,14 +148,20 @@ class MessageCache {
 		$file = fopen( $filename.'.tmp', 'w');
 		fwrite($file,"<?php\n//$hash\n\n \$this->mCache = array(");
 		
-		$re="/(?<!\\\\)'/";
 		foreach ($array as $key => $message) {
-			fwrite($file, "'". preg_replace($re, "\'", $key).
-				"' => '" . preg_replace( $re, "\'", $message) . "',\n");
+			fwrite($file, "'". $this->escapeForScript($key).
+				"' => '" . $this->escapeForScript($message). 
+				"',\n");
 		}
 		fwrite($file,");\n?>");
 		fclose($file);
 		rename($filename.'.tmp',$filename);
+	}
+
+	function escapeForScript($string) {
+		$string = str_replace( '\\', '\\\\', $string );
+		$string = str_replace( '\'', '\\\'', $string );
+		return $string;
 	}
 
 	/**
