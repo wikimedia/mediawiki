@@ -53,7 +53,7 @@ require_once( 'LanguageUtf8.php' );
 );
 
 if (!$wgCachedMessageArrays) {
-	require_once('MessagesAf.php');
+	require_once('MessagesBr.php');
 }
 
 class LanguageBr extends LanguageUtf8 {
