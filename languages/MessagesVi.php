@@ -522,7 +522,7 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9",
 *Kiểm tra hình ảnh đã tải lên trước đây tại [[Đặc_biệt:Imagelist|danh sách những hình đã tải lên]].
 Khi truyền hình lên:
 *Tuân thủ [[{{ns:4}}:Quy định về hình ảnh|quy định về sử dụng hình ảnh]].
-*Ghi rõ thẻ quyền. Ví dụ <nowiki>{{PD}}</nowiki> hay <nowiki>{{GFDL}}</nowiki>,... Xem thêm [[{{ns:4}}:Thẻ quyền cho hình ảnh|thẻ quyền cho hình ảnh]].
+*Ghi rõ thẻ quyền. Ví dụ {{<nowiki>PD</nowiki>}} hay {{<nowiki>GFDL</nowiki>}},... Xem thêm [[{{ns:4}}:Thẻ quyền cho hình ảnh|thẻ quyền cho hình ảnh]].
 *Dùng định dạng JPEG cho ảnh chụp, PNG cho hình vẽ, và OGG cho âm thanh hay video.
 *Ghi tóm lược về hình ảnh giúp người khác có thể dùng lại hình của bạn.
 Sau khi truyền hình lên:
