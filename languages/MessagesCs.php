@@ -182,6 +182,7 @@
 'newmessageslink' => 'nové zprávy',
 'newmessagesdifflink' => 'rozdíl oproti předchozí verzi',
 'editsection'=>'editovat',
+'editold'=>'editovat',
 'editsectionhint' => 'Editace části $1',
 'toc' => 'Obsah',
 'showtoc' => 'zobrazit',

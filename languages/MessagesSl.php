@@ -114,6 +114,7 @@
 "retrievedfrom"         => "Vzpostavljeno iz \"$1\"",
 "newmessageslink"       => "novih sporočil",
 "editsection"=>"spremeni",
+"editold"=>"spremeni",
 "toc" => "Vsebina",
 "showtoc" => "prikaži",
 "hidetoc" => "skrij",

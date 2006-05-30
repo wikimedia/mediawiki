@@ -635,6 +635,7 @@ De beluifs os auch das e dees tèks zelf höbs gesjreve, of gekopieerd van 'n [[
 'editingcomment' => "Bewirk $1 (commentaar)",
 'editingsection' => "Bewirke van sectie van $1",
 'editsection' => "bewirk",
+'editold' => "bewirk",
 'emptyfile' => "'t Besjtand das e höbs geupload is laeg. Dit kump waorsjienliek doer 'n tiepfout in de besjtandsnaom. Kiek estebleef of se dit besjtand wirkelik wils uploade.",
 'exbeforeblank' => "inhawd veur 't wisse waor:",
 'exblank' => "pazjena waor laeg",

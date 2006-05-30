@@ -163,6 +163,7 @@ global $wgRightsText;
 'retrievedfrom'			=>	"Преземено од \"$1\"",
 'newmessageslink'		=>	'нови пораки',
 'editsection' 			=>	'промени',
+'editold' 			=>	'промени',
 'toc'				=>	'Содржина',
 'showtoc'			=>	'прикажи',
 'hidetoc'			=>	'скриј',

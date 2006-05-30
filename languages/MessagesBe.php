@@ -158,6 +158,7 @@ $wgAllMessagesBe = array(
 'editingcomment' => 'Рэдагаваньне: $1 (камэнтар)',
 'editingsection' => 'Рэдагаваньне: $1 (сэкцыя)',
 'editsection' => 'рэдагаваць',
+'editold' => 'рэдагаваць',
 'editsectionhint' => 'Рэдагаваць сэкцыю «$1»',
 'editthispage' => 'Рэдагаваць гэтую старонку',
 'editusergroup' => 'Рэдагаваць групы ўдзельнікаў і ўдзельніц',

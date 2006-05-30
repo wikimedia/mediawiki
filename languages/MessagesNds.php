@@ -148,6 +148,7 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'retrievedfrom'         => 'Vun „$1“',
 'newmessageslink'       => 'niege Norichten',
 'editsection'           => 'bearbeiden',
+'editold'           => 'bearbeiden',
 'toc'                   => 'Inholtsverteken',
 'showtoc'               => 'wiesen',
 'hidetoc'               => 'Nich wiesen',

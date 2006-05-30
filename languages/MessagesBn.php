@@ -96,6 +96,7 @@
 'retrievedfrom' => '\'$1\' থেকে আনীত',
 'newmessageslink' => 'নতুন বার্তা',
 'editsection'=>'সম্পাদনা করুন',
+'editold'=>'সম্পাদনা করুন',
 'toc' => 'সূচীপত্র',
 'showtoc' => 'দেখাও',
 'hidetoc' => 'সরিয়ে রাখ',

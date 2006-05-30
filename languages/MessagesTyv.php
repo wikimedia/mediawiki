@@ -119,6 +119,7 @@
 'retrievedfrom' => "\"$1\" арынында парлаттынган", //Retrieved from \"$1\"
 'newmessageslink' => 'чаа чагаалар', //new messages
 'editsection'=>'өскертир', //edit
+'editold'=>'өскертир', //edit
 'toc' => 'Допчу', //Contents
 'showtoc' => 'көргүзер', //show
 'hidetoc' => 'чажырар', //hide

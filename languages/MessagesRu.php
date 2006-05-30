@@ -217,6 +217,7 @@
 'newmessageslink' => 'новые сообщения',
 'newmessagesdifflink' => 'последнее изменение',
 'editsection'=>'править',
+'editold'=>'править',
 'editsectionhint' => 'Править секцию: $1',
 'toc' => 'Содержание',
 'showtoc' => 'показать',

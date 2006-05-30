@@ -153,6 +153,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'editingold'	=> "<strong>ATENZION: tu stâs cambiant une version vecje e no inzornade di cheste pagjine. Se tu la salvis, ducj i cambiaments fats di chê volte in ca a laran pierdûts.</strong>",
 'editingsection' => "Cambiament di $1 (sezion)",
 'editsection' => "cambie",
+'editold' => "cambie",
 'editthispage' => "Cambie cheste pagjine",
 'email'			=> 'Pueste eletroniche',
 'emailauthenticated'  => 'La tô direzion email e je stade autenticade su $1.',

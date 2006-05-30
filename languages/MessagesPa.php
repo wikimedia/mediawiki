@@ -142,6 +142,7 @@
 'retrievedfrom'	=> '\'$1\' ਤੋਂ ਪ੍ਰਾਪਤ ਕੀਤਾ ਗਿਆ ਹੈ',
 'newmessageslink'	=> 'ਨਵੇਂ ਸੰਦੇਸ਼',
 'editsection'		=> 'ਬਦਲੋ',
+'editold'		=> 'ਬਦਲੋ',
 'toc'			=> 'ਵਿਸ਼ਾ-ਸੂਚੀ',
 'showtoc'		=> 'ਦਿਖਾਓ',
 'hidetoc'		=> 'ਛੁਪਾਓ',

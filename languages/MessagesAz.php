@@ -128,6 +128,7 @@
 'youhavenewmessages' => 'Hal-hazırda $1 var. ($2)',
 'newmessageslink' => 'yeni mesajlar!',
 'editsection' => 'redaktə',
+'editold' => 'redaktə',
 'toc' => 'Mündəricat',
 'showtoc' => 'göstər',
 'hidetoc' => 'gizlə',

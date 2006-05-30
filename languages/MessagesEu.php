@@ -30,6 +30,7 @@
 'edithelppage' => '{{ns:project}}:Editatzeko laguntza',
 'editing' => '"$1" editatzen',
 'editsection' => 'editatu',
+'editold' => 'editatu',
 'editthispage' => 'Orria editatu',
 'go' => 'Joan',
 'headline_sample' => 'Goiburuko',

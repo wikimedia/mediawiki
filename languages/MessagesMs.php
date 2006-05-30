@@ -156,6 +156,7 @@
 "sitesubtitle"                => '',
 "retrievedfrom"         => "Diperolehi daripada \"$1\"", #"Retrieved from \"$1\"",
 "editsection"           => "Sunting",
+"editold"           => "Sunting",
 "toc"                   => "Jadual Kandungan",
 "showtoc"               => "Paparkan",
 "hidetoc"               => "sorok",

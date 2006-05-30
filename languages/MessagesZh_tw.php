@@ -94,6 +94,7 @@
 "retrievedfrom" => "取自\"$1\"",
 "newmessageslink" => "新信息",
 "editsection"=>"編輯",
+"editold"=>"編輯",
 "toc" => "目錄",
 "showtoc" => "顯示",
  	 "hidetoc" => "隱藏",

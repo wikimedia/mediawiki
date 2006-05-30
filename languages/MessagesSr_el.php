@@ -331,6 +331,7 @@ reviziju ove stranice.
 Ako je snimite, sve promene učinjene od ove revizije biće izgubljene.</strong>',
 'editingsection' => 'Menjate $1 (deo)',
 'editsection' => 'uredi',
+'editold' => 'uredi',
 'editthispage' => 'Uredi ovu stranicu',
 'editusergroup' => 'Menjaj grupe korisnika',
 'email' => 'E-pošta',

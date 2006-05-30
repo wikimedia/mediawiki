@@ -235,6 +235,7 @@ Fiecare rând care conţine legături către prima sau a doua redirijare, ca şi
 'editing' => "Editare $1",
 'editingold' => "<strong>ATENŢIE! Editezi o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune şi până la cea curentă se vor pierde!</strong>",
 'editsection' => "editează",
+'editold' => "editează",
 'editthispage' => "Editează pagina",
 'emailforlost' => "Dacă ţi-ai pierdut parola, poţi cere să ţi se trimită una nouă la adresa de e-mail.",
 'emailfrom' => "De la",

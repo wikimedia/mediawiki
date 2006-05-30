@@ -33,6 +33,7 @@
 'diff' => "хицæн.",
 'edit' => "Баив æй",
 'editsection' => "баив æй",
+'editold' => "баив æй",
 'emailpage' => "Электронон фыстæг йæм барвит",
 'error' => "Рæдыд",
 'errorpagetitle' => "Рæдыд",

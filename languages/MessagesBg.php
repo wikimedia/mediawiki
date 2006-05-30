@@ -179,6 +179,7 @@
 'retrievedfrom' => 'Взето от „$1“.',
 'newmessageslink' => 'нови съобщения',
 'editsection' => 'редактиране',
+'editold' => 'редактиране',
 'toc' => 'Съдържание',
 'showtoc' => 'показване',
 'hidetoc' => 'скриване',

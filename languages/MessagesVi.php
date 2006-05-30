@@ -166,6 +166,7 @@
 'retrievedfrom' => 'Lấy từ « $1 »',
 'newmessageslink' => 'tin nhắn mới',
 'editsection'	=> 'Sửa',
+'editold'	=> 'Sửa',
 'toc'		=> 'Mục lục',
 'showtoc'	=> 'xem',
 'hidetoc'	=> 'giấu',
