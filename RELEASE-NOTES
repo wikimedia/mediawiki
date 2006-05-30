@@ -381,6 +381,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   used in Cite.php <ref> tags when Tidy is on.
 * (bug 6139) Workaround for transclusion oddities in Vietnamese upload text
 * (bug 6136) Update to Catalan language (ca)
+* Update to Japanese localization (ja)
 
 == Compatibility ==
 

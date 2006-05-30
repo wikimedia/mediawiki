@@ -1,79 +1,98 @@
 <?php
 /**
-  * @package MediaWiki
-  * @subpackage Language
-  */
-global $IP;
+ * Japan (日本語)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
+
 require_once( "LanguageUtf8.php" );
-
-/* private */ $wgNamespaceNamesJa = array(
-	NS_MEDIA          => "Media", /* Media */
-	NS_SPECIAL        => "特別", /* Special */
-	NS_MAIN           => "",
-	NS_TALK           => "ノート", /* Talk */
-	NS_USER           => "利用者", /* User */
-	NS_USER_TALK      => "利用者‐会話", /* User_talk */
-	NS_PROJECT        => $wgMetaNamespace, /* Wikipedia */
-	NS_PROJECT_TALK   => "{$wgMetaNamespace}‐ノート", /* Wikipedia_talk */
-	NS_IMAGE          => "画像", /* Image */
-	NS_IMAGE_TALK     => "画像‐ノート", /* Image_talk */
-	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */
-	NS_MEDIAWIKI_TALK => "MediaWiki‐ノート", /* MediaWiki_talk */
-	NS_TEMPLATE       => "Template", /* Template */
-	NS_TEMPLATE_TALK  => "Template‐ノート", /* Template_talk */
-	NS_HELP           => "Help", /* Help */
-	NS_HELP_TALK      => "Help‐ノート", /* Help_talk */
-	NS_CATEGORY       => "Category", /* Category */
-	NS_CATEGORY_TALK  => "Category‐ノート" /* Category_talk */
-) + $wgNamespaceNamesEn;
-
-/* private */ $wgQuickbarSettingsJa = array(
-	"なし", "左端", "右端", "ウィンドウの左上に固定"
-);
-
-/* private */ $wgSkinNamesJa = array(
-	'standard' => "標準",
-	'nostalgia' => "ノスタルジア",
-	'cologneblue' => "ケルンブルー",
-) + $wgSkinNamesEn;
-
-/* private */ $wgDateFormatsJa = array(
-	MW_DATE_DEFAULT => '2001年1月15日 16:12 (デフォルト)',
-	MW_DATE_ISO => '2001-01-15 16:12:34'
-);
-
-/* private */ $wgWeekdayAbbreviationsJa = array(
-	"日", "月", "火", "水", "木", "金", "土"
-);
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesJa.php');
 }
 
 class LanguageJa extends LanguageUtf8 {
+	private $mMessagesJa, $mNamespaceNamesJa = null;
+
+	private $mQuickbarSettingsJa = array(
+		"なし", "左端", "右端", "ウィンドウの左上に固定"
+	);
+	
+	private $mSkinNamesJa = array(
+		'standard' => "標準",
+		'nostalgia' => "ノスタルジア",
+		'cologneblue' => "ケルンブルー",
+	);
+	
+	private $mDateFormatsJa = array(
+		MW_DATE_DEFAULT => '2001年1月15日 16:12 (デフォルト)',
+		MW_DATE_ISO => '2001-01-15 16:12:34'
+	);
+	
+	private $mWeekdayAbbreviationsJa = array(
+		"日", "月", "火", "水", "木", "金", "土"
+	);
+
+	function LanguageJa() {
+		LanguageUtf8::LanguageUtf8();
+
+		global $wgAllMessagesJa;
+		$this->mMessagesJa =& $wgAllMessagesJa;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesJa = array(
+			NS_MEDIA          => "Media", /* Media */
+			NS_SPECIAL        => "特別", /* Special */
+			NS_MAIN           => "",
+			NS_TALK           => "ノート", /* Talk */
+			NS_USER           => "利用者", /* User */
+			NS_USER_TALK      => "利用者‐会話", /* User_talk */
+			NS_PROJECT        => $wgMetaNamespace, /* Wikipedia */
+			NS_PROJECT_TALK   => "{$wgMetaNamespace}‐ノート", /* Wikipedia_talk */
+			NS_IMAGE          => "画像", /* Image */
+			NS_IMAGE_TALK     => "画像‐ノート", /* Image_talk */
+			NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */
+			NS_MEDIAWIKI_TALK => "MediaWiki‐ノート", /* MediaWiki_talk */
+			NS_TEMPLATE       => "Template", /* Template */
+			NS_TEMPLATE_TALK  => "Template‐ノート", /* Template_talk */
+			NS_HELP           => "Help", /* Help */
+			NS_HELP_TALK      => "Help‐ノート", /* Help_talk */
+			NS_CATEGORY       => "Category", /* Category */
+			NS_CATEGORY_TALK  => "Category‐ノート" /* Category_talk */
+
+		);
+	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesJa;
-		return $wgNamespaceNamesJa;
+		return $this->mNamespaceNamesJa + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsJa;
-		return $wgQuickbarSettingsJa;
+		return $this->mQuickbarSettingsJa;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesJa;
-		return $wgSkinNamesJa;
+		return $this->mSkinNamesJa + parent::getSkinNames();
 	}
 
 	function getDateFormats() {
-		global $wgDateFormatsJa;
-		return $wgDateFormatsJa;
+		return $this->mDateFormatsJa;
+	}
+
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesJa[$key] ) ) {
+			return $this->mMessagesJa[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesJa;
 	}
 
 	function date( $ts, $adj = false, $format = true, $tc = false ) {
-		global $wgWeekdayAbbreviationsJa;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $tc ); }
 		$datePreference = $this->dateFormat( $format );
@@ -97,7 +116,7 @@ class LanguageJa extends LanguageUtf8 {
 		$d = $year . "年" .
 				$this->getMonthAbbreviation( $month ) .
 				$mday . "日 (" .
-				$wgWeekdayAbbreviationsJa[ $date['wday'] ]. ")";
+				$this->mWeekdayAbbreviationsJa[ $date['wday'] ]. ")";
 		return $d;
 	}
 
@@ -115,14 +134,6 @@ class LanguageJa extends LanguageUtf8 {
 
 	function timeanddate( $ts, $adj = false, $format = true, $tc = false ) {
 		return $this->date( $ts, $adj, $format, $tc ) . " " . $this->time( $ts, $adj, $format, $tc );
-	}
-
-	function getMessage( $key ) {
-		global $wgAllMessagesJa;
-		if(array_key_exists($key, $wgAllMessagesJa))
-			return $wgAllMessagesJa[$key];
-		else
-			return parent::getMessage($key);
 	}
 
 	function stripForSearch( $string ) {
