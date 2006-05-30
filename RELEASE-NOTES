@@ -382,6 +382,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6139) Workaround for transclusion oddities in Vietnamese upload text
 * (bug 6136) Update to Catalan language (ca)
 * Update to Japanese localization (ja)
+* Add /usr/local/bin to the diff3 search paths in the installer
 
 == Compatibility ==
 
