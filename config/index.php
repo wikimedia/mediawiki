@@ -345,7 +345,7 @@ if (!$conf->turck && !$conf->eaccel && !$conf->apc) {
 }
 
 $conf->diff3 = false;
-$diff3locations = array("/usr/bin", "/opt/csw/bin", "/usr/gnu/bin", "/usr/sfw/bin") + explode($sep, getenv("PATH"));
+$diff3locations = array("/usr/bin", "/usr/local/bin", "/opt/csw/bin", "/usr/gnu/bin", "/usr/sfw/bin") + explode($sep, getenv("PATH"));
 $diff3names = array("gdiff3", "diff3", "diff3.exe");
 
 $diff3versioninfo = array('$1 --version 2>&1', 'diff3 (GNU diffutils)');
