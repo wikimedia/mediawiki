@@ -380,7 +380,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6133) Update strip state as we work. This mostly fixes extensions
   used in Cite.php <ref> tags when Tidy is on.
 * (bug 6139) Workaround for transclusion oddities in Vietnamese upload text
-
+* (bug 6136) Update to Catalan language (ca)
 
 == Compatibility ==
 
