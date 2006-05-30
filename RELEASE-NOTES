@@ -5,9 +5,9 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == Mediawiki 1.6.7 ==
 
-
 * (bug 6051) Improvement to German localisation (de)
 * (bug 6017) Update bookstore list for German language (de)
+* (bug 6138) Minor grammar tweak in "loginreqlink"
 
 == MediaWiki 1.6.6 ==
 
