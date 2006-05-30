@@ -187,6 +187,7 @@ Shiko $1',
 'newmessageslink'       => 'mesazhe të reja',
 'newmessagesdifflink'   => 'ndryshimi i fundit',
 'editsection'           => 'redaktoni',
+'editold'               => 'redaktoni',
 'editsectionhint'       => 'Redaktoni seksionin: 
 Edit section: $1',
 'toc'                   => 'Tabela e përmbajtjeve',

@@ -126,6 +126,7 @@
 "retrievedfrom" => "取自\"$1\"",
 "newmessageslink" => "新信息",
 "editsection"=>"编辑",
+"editold"=>"编辑",
 "toc" => "目录",
 "showtoc" => "显示",
 "hidetoc" => "隐藏",

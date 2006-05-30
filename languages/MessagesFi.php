@@ -213,6 +213,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'newmessageslink'     => 'uusia viestejä',
 'newmessagesdifflink' => 'viimeisin muutos',
 'editsection'         => 'muokkaa',
+'editold'         => 'muokkaa',
 'editsectionhint'     => 'Muokkaa osiota $1',
 'toc'                 => 'Sisällysluettelo',
 'showtoc'             => 'näytä',

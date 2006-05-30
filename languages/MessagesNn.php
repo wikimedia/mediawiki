@@ -185,6 +185,7 @@
 'retrievedfrom'           => 'Henta frå «$1»',
 'newmessageslink'         => 'nye meldingar',
 'editsection'             => 'endre',
+'editold'             => 'endre',
 'toc'                     => 'Innhaldsliste',
 'showtoc'                 => 'vis',
 'hidetoc'                 => 'gøym',

@@ -150,6 +150,7 @@ Vaata $1.",
 "ok"			=> "OK",
 "retrievedfrom" => "Välja otsitud andmebaasist \"$1\"", # parandaks sõnastust?
 'editsection'=>'redigeeri',
+'editold'=>'redigeeri',
 'toc' => 'Sisukord',
 'showtoc' => 'näita',
 'hidetoc' => 'peida',

@@ -330,6 +330,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'editingold' => '<strong>PERHATOSAN: Anjeun ngédit révisi kadaluwarsa kaca ieu. Mun ku anjeun disimpen, sagala parobahan nu dijieun sanggeus révisi ieu bakal leungit.</strong>',
 'editingsection' => 'Ngédit $1 (bagian)',
 'editsection' => 'édit',
+'editold' => 'édit',
 'editthispage' => 'Édit kaca ieu',
 'editusergroup' => 'Édit Golongan Pamaké',
 'email' => 'Surélék',

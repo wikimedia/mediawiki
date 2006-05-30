@@ -489,17 +489,19 @@ CONTROL;
 
 		// Set assorted variables
 		if( $this->mNewRev->isCurrent() ) {
-			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$this->mNewPage = $this->mTitle;
 			$newLink = $this->mNewPage->escapeLocalUrl();
-			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
+			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
+			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
 		} else {
 			$this->mNewPage = $this->mNewRev->getTitle();
-			$newLink = $this->mNewPage->escapeLocalUrl ('oldid=' . $this->mNewid );
+			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
+			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mNewid );
 			$t = $wgLang->timeanddate( $this->mNewRev->getTimestamp(), true );
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
-			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 		}
+		$this->mNewtitle = "<strong><a href='$newLink'>{$this->mPagetitle}</a></strong>"
+			. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
 
 		// Load the old revision object
 		$this->mOldRev = false;
@@ -526,7 +528,9 @@ CONTROL;
 
 			$t = $wgLang->timeanddate( $this->mOldRev->getTimestamp(), true );
 			$oldLink = $this->mOldPage->escapeLocalUrl( 'oldid=' . $this->mOldid );
-			$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) ) . '</a>';
+			$oldEdit = $this->mOldPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mOldid );
+			$this->mOldtitle = "<strong><a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) )
+				. "</a></strong> (<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
 		}
 
 		return true;

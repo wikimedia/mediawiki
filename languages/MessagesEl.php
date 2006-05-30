@@ -199,6 +199,7 @@ $wgAllMessagesEl = array(
 'retrievedfrom' => 'Ανακτήθηκε από το "$1".',
 'newmessageslink' => 'νέο μήνυμα',
 'editsection' => 'επεξεργασία',
+'editold' => 'επεξεργασία',
 'toc' => 'Πίνακας περιεχομένων',
 'showtoc' => 'εμφάνιση',
 'hidetoc' => 'απόκρυψη',

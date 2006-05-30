@@ -116,6 +116,7 @@
 "ok"			=> "Goed",
 "retrievedfrom" 	=> "Untfongen fan \"$1\"",
 "editsection"	=> "edit",
+"editold"	=> "edit",
 "toc" 		=> "Ynhâld",
 "showtoc" 		=> "sjen litte",
 "hidetoc" 		=> "net sjen litte",

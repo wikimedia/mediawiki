@@ -133,6 +133,7 @@ Vidu $1.',
 'ok'			=> 'Ek!', #FIXME
 'newmessageslink' => 'nova mesaĝo',
 'editsection'   => 'redaktu',
+'editold'   => 'redaktu',
 'toc'           => 'Enhavo',
 'showtoc'       => 'montru',
 'hidetoc'       => 'kaŝu',

@@ -196,6 +196,7 @@
 "newmessageslink" => "neue Nachrichten",
 'newmessagesdifflink'	=> 'Unterschied zur vorletzten Version',
 "editsection" => "bearbeiten",
+"editold" => "bearbeiten",
 'editsectionhint' => 'Abschnitt bearbeiten: $1',
 "toc" => "Inhaltsverzeichnis",
 "showtoc" => "Anzeigen",

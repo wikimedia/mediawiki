@@ -207,6 +207,7 @@ $wgAllMessagesId = array(
 "newmessageslink" => "pesan baru",
 'newmessagesdifflink' => 'lihat perbedaan dari revisi sebelumnya',
 "editsection" => "sunting",
+"editold" => "sunting",
 'editsectionhint' => 'Sunting bagian: $1',
 "toc" => "Daftar isi",
 "showtoc" => "tampilkan",

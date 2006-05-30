@@ -125,6 +125,7 @@
 "sitesubtitle" => "",
 "newmessageslink" => "een nieuw bericht",
 "editsection" => "bewerken",
+"editold" => "bewerken",
 "toc" => "Inhoud",
 "showtoc" => "Tonen",
 "hidetoc" => "Niet tonen",

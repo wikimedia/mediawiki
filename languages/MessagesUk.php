@@ -132,6 +132,7 @@
 "retrievedfrom" => "Отримано від \"$1\"",
 "newmessageslink" => "нові повідомлення",
 "editsection"=>"ред.",
+"editold"=>"ред.",
 "toc" => "Зміст",
 "showtoc" => "показати",
 "hidetoc" => "сховати",

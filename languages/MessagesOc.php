@@ -134,6 +134,7 @@ Voir $1.",
 "retrievedfrom" => "Récupérée de \"$1\"",
 "newmessageslink" => "nouveaux messages",
 "editsection"	=> "modifier",
+"editold"	=> "modifier",
 "toc"		=> "Sommaire",			// Looxix "Table"
 "showtoc"	=> "montrer",			// Looxix
 "hidetoc"	=> "cacher",			// Looxix

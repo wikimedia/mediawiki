@@ -257,6 +257,7 @@ Pogledajte $1.',
 reviziju ove stranice.
 Ako je snimite, sve promjene učinjene od ove revizije će biti izgubljene.</strong>',
 'editsection' => 'uredite',
+'editold' => 'uredite',
 'editthispage' => 'Uredite ovu stranicu',
 'emailforlost' => '* Unošenje adrese e-pošte nije obavezno.  Međutim, unos će omogućiti ljude da Vas kontaktiraju kroz sajt, a da ne morate da im otkrijete svoju adresu.  Takođe će Vam pomoći ukoliko zaboravite svoju lozinku.',
 'emailfrom' => 'Od',

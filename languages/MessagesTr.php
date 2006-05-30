@@ -157,6 +157,7 @@
 'newmessageslink' => 'mesajınız!',
 'newmessagesdifflink' => 'Bir önceki sürüme göre eklenen yazı farkı',
 'editsection' => 'değiştir',
+'editold' => 'değiştir',
 'toc' => 'Konu başlıkları',
 'showtoc' => 'göster',
 'hidetoc' => 'gizle',

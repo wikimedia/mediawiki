@@ -207,6 +207,7 @@
 "newmessageslink"     => "הודעות חדשות",
 "newmessagesdifflink" => "השוואה לגרסה הקודמת",
 "editsection"         => "עריכה",
+"editold"         => "עריכה",
 "editsectionhint"     => "עריכת פסקה: $1",
 "toc"                 => "תוכן עניינים",
 "showtoc"             => "הראה",
