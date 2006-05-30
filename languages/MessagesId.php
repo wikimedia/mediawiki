@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesId = array(
+global $wgAllMessagesId;
+$wgAllMessagesId = array(
 
 # User preference toggles
 'tog-underline' => 'Garis bawahi pranala',
@@ -105,7 +105,7 @@
 "helppage" => "Help:Isi",
 "bugreports" => "Laporan bug",
 "bugreportspage" => "{{ns:project}}:Laporan bug",
-'sitesupport'   => 'Donasi',
+'sitesupport'   => 'Sumbangan',
 "sitesupport-url" => "{{ns:project}}:Sumbangan",
 "faq" => "FAQ",
 "faqpage" => "{{ns:project}}:FAQ",
@@ -132,7 +132,7 @@
 "currentevents" => "Peristiwa terkini",
 'currentevents-url' => 'Peristiwa terkini',
 
-"disclaimers" => "Penyangkalan umum",
+"disclaimers" => "Penyangkalan",
 "disclaimerpage" => "{{ns:project}}:Penyangkalan umum",
 'privacy' => 'Kebijakan kerahasiaan',
 'privacypage' => '{{ns:project}}:Kebijakan kerahasiaan',
@@ -152,7 +152,7 @@
 'print' => 'Cetak',
 'edit' => 'Sunting',
 "editthispage" => "Sunting halaman ini",
-'delete' => 'Hapus',
+'delete' => 'hapus',
 "deletethispage" => "Hapus halaman ini",
 'undelete_short1' => 'Batal hapus satu suntingan',
 'undelete_short' => 'Batal hapus $1 suntingan',
@@ -180,7 +180,7 @@
 'redirectpagesub' => 'Halaman peralihan',
 "lastmodified" => "Halaman ini terakhir diubah pada $1.",
 "viewcount" => "Halaman ini telah diakses sebanyak $1 kali.",
-"copyright" => "Isi tersedia dibawah $1.",
+"copyright" => "Seluruh teks tersedia dalam naungan $1.",
 "protectedpage" => "Halaman yang dilindungi",
 'administrators' => '{{ns:project}}:Pengurus',
 'jumpto' => 'Langsung ke:',
@@ -203,7 +203,7 @@
 'pagetitle'		=> '$1 - {{SITENAME}}',
 
 "retrievedfrom" => "Diperoleh dari \"$1\"",
-'youhavenewmessages' => 'Anda memiliki $1 ($2).',
+'youhavenewmessages' => 'Anda mempunyai $1 ($2).',
 "newmessageslink" => "pesan baru",
 'newmessagesdifflink' => 'lihat perbedaan dari revisi sebelumnya',
 "editsection" => "sunting",
@@ -215,6 +215,7 @@
 'viewdeleted' => 'Lihat $1?',
 'restorelink' => '$1 suntingan dihapus', # no need for plural
 'feedlinks' => 'Feed:',
+'feed-invalid' => 'Tipe permintaan feed tidak tepat.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Artikel',
@@ -223,7 +224,7 @@
 'nstab-special' => 'Istimewa',
 'nstab-project' => 'Halaman proyek',
 'nstab-image' => 'Berkas',
-'nstab-mediawiki' => 'Pesan',
+'nstab-mediawiki' => 'Pesan sistem',
 'nstab-template' => 'Templat',
 'nstab-help' => 'Bantuan',
 'nstab-category' => 'Kategori',
@@ -239,7 +240,7 @@
 #
 "error" => "Kesalahan",
 "databaseerror" => "Kesalahan basis data",
-"dberrortext" => "Ada kesalahan sintaks pada permintaan basis data. Kesalahan ini mungkin menandakan adanya bug dalam perangkat lunak. Permintaan basis data yang terakhir adalah: <blockquote><tt>$1</tt></blockquote> dari dalam fungsi \"<tt>$2</tt>\". Kesalahan MySQL \"<tt>$3: $4</tt>\".",
+"dberrortext" => "Ada kesalahan sintaks pada permintaan basis data. Kesalahan ini mungkin menandakan adanya ''bug'' dalam perangkat lunak. Permintaan basis data yang terakhir adalah: <blockquote><tt>$1</tt></blockquote> dari dalam fungsi \"<tt>$2</tt>\". Kesalahan MySQL \"<tt>$3: $4</tt>\".",
 "dberrortextcl" => "Ada kesalahan sintaks pada permintaan basis data. Permintaan basis data yang terakhir adalah: \"$1\" dari dalam fungsi \"$2\". Kesalahan MySQL \"$3: $4\".",
 'noconnect' => 'Maaf! Wiki mengalami masalah teknis dan tidak dapat menghubungi basis data.<br />$1',
 "nodb" => "Tidak dapat memilih basis data $1",
@@ -451,7 +452,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'previousrevision'      => '←Revisi yang lebih tua',
 'nextrevision'          => 'Revisi yang lebih baru→',
 'currentrevisionlink'   => 'lihat revisi sekarang',
-"cur" => "kini",
+"cur" => "skr",
 "next" => "berikut",
 "last" => "akhir",
 "orig" => "asli",
@@ -464,6 +465,11 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Detil mungkin tersedia di [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log penghapusan].</div>',
 'rev-deleted-text-view' => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Sebagai seorang pengurus situs, Anda dapat melihatnya; detil mungkin tersedia di [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log penghapusan].</div>',
 'rev-delundel' => 'tampilkan/sembunyikan',
+
+'history-feed-title' => 'Riwayat revisi',
+'history-feed-description'	=> 'Riwayat revisi halaman ini di wiki',
+'history-feed-item-nocomment' => '$1 pada $2', # user at time
+'history-feed-empty' => 'Halaman yang diminta tak ditemukan. Kemungkinan telah dihapus dari wiki, atau diberi nama baru. Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang relevan.',
 
 # Revision deletion
 #
@@ -676,7 +682,7 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 'uploadcorrupt' => 'Berkas tersebut rusak atau ekstensinya salah. Silakan periksa berkas tersebut dan muatkan kembali.',
 'uploadvirus' => 'Berkas tersebut mengandung virus! Detil: $1',
 'sourcefilename' => 'Nama berkas sumber',
-'destfilename' => 'Nama berkas tujuan',
+'destfilename' => 'Nama berkas yang dituju',
 'filewasdeleted' => 'Suatu berkas dengan nama ini pernah dimuat dan selanjutnya dihapus. Harap cek $1 sebelum memuat lagi berkas tersebut.',
 
 'license' => 'Lisensi',
@@ -698,7 +704,7 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 "imglegend" => "Legenda: (desc) = lihat/sunting deskripsi gambar.",
 "imghistory" => "Sejarah gambar",
 "revertimg" => "kembalikan",
-"deleteimg" => "hapus",
+"deleteimg" => "hps",
 'deleteimgcompletely' => 'Hapus semua revisi',
 "imghistlegend" => "Legend: (kini) = ini adalah gambar yang sekarang, (hapus) = hapus versi lama ini, (rv) = kembalikan ke versi lama ini. <br /><em>Klik pada tanggal untuk melihat gambar yang dimuat pada tanggal tersebut</em>.",
 "imagelinks" => "Pranala gambar",
@@ -748,7 +754,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 
 "disambiguations" => "Halaman disambiguasi",
 "disambiguationspage" => "Project:Pranala_ke_halaman_disambiguation",
-"disambiguationstext" => "Halaman-halaman berikut ini berpaut ke sebuah <em>halaman disambiguation</em>. Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang tepat.<br />Satu halaman dianggap sebagai disambiguation apabila halaman tersebut disambung dari $1.<br />Pranala dari namespace lain <em>tidak</em> terdaftar di sini.",
+"disambiguationstext" => "Halaman-halaman berikut ini berpaut ke sebuah halaman disambiguasi. Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang tepat.<br />Satu halaman dianggap sebagai disambiguation apabila halaman tersebut disambung dari $1.<br />Pranala dari namespace lain <em>tidak</em> terdaftar di sini.",
 
 "doubleredirects" => "Peralihan halaman ganda",
 "doubleredirectstext" => "Setiap baris mengandung pranala ke peralihan pertama dan kedua, dan juga baris pertama dari teks peralihan kedua, yang biasanya memberikan artikel tujuan yang \"sesungguhnya\", yang seharusnya ditunjuk oleh peralihan yang pertama.",
@@ -891,6 +897,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "wlsaved" => "Ini adalah versi tersimpan dari daftar pantauan Anda.",
 'wlhideshowown'   	=> '$1 suntingan saya.',
 'wlhideshowbots'   	=> '$1 suntingan bot.',
+'wldone'			=> 'Selesai.',
 
 'enotif_mailer' 		=> 'Pengirim Notifikasi {{SITENAME}}',
 'enotif_reset'			=> 'Tandai semua halaman sebagai telah dikunjungi',
@@ -937,7 +944,7 @@ Masukan dan bantuan lanjutan:
 "confirmdeletetext" => "Anda akan menghapus halaman atau gambar ini secara permanen berikut semua sejarahnya dari basis data.  Pastikan bahwa Anda memang ingin berbuat demikian, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{ns:project}}:Kebijakan|kebijakan {{SITENAME}}]].",
 "actioncomplete" => "Proses selesai",
 "deletedtext" => "\"$1\" telah dihapus. Lihat $2 untuk log terkini halaman yang telah dihapus.",
-"deletedarticle" => "menghapus \"$1\"",
+"deletedarticle" => "menghapus \"[[$1]]\"",
 "dellogpage" => "Log penghapusan",
 "dellogpagetext" => "Di bawah ini adalah daftar terkini halaman yang telah dihapus. Semua waktu yang ditunjukkan adalah waktu server (UTC).",
 "deletionlog" => "log penghapusan",
@@ -1133,11 +1140,11 @@ Masukan dan bantuan lanjutan:
 'revertmove'	=> 'kembalikan',
 'delete_and_move' => 'Hapus dan pindahkan',
 'delete_and_move_text'	=>
-'==Diperlukan penghapusan==
+'==Penghapusan diperlukan==
 
-Artikel yang dituju "[[$1]]" telah mempunyai isi. Apakah Anda hendak menghapusnya untuk memberikan ruang bagi pemindahan?',
+Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapusnya untuk memberikan ruang bagi pemindahan?',
 'delete_and_move_confirm' => 'Ya, hapus halaman tersebut',
-'delete_and_move_reason' => 'Dihapus untuk memberikan ruang bagi pemindahan',
+'delete_and_move_reason' => 'Dihapus untuk mengantisipasikan pemindahan halaman',
 'selfmove' => "Pemindahan halaman tidak dapat dilakukan karena judul sumber dan judul tujuan sama.",
 'immobile_namespace' => "Judul tujuan termasuk tipe khusus; tidak dapat memindahkan halaman ke namespace tersebut.",
 
@@ -1312,7 +1319,7 @@ ta[\'ca-nstab-help\'] = new Array(\'c\',\'Lihat halaman bantuan\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 
 # image deletion
-'deletedrevision' => 'Menghapus revisi tua $1.',
+'deletedrevision' => 'Revisi lama yang dihapus $1.',
 
 # browsing diffs
 'previousdiff' => '← Ke diff sebelumnya',
@@ -1713,7 +1720,7 @@ Silakan konfirmasi jika Anda ingin membuat ulang artikel ini.',
 'redirectingto' => 'Dialihkan ke [[$1]]...',
 
 # action=purge
-'confirm_purge' => "Hapus cache halaman ini?\n\n$1",
+'confirm_purge' => "Hapus ''cache'' halaman ini?\n\n$1",
 'confirm_purge_button' => 'OK',
 
 'youhavenewmessagesmulti' => "Anda mendapat pesan-pesan baru $1",

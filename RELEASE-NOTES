@@ -383,6 +383,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6136) Update to Catalan language (ca)
 * Update to Japanese localization (ja)
 * Add /usr/local/bin to the diff3 search paths in the installer
+* (bug 6106) Update to Indonesian localisation (id) #17
 
 == Compatibility ==
 
