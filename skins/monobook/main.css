@@ -569,7 +569,7 @@ span.diffchange {
 ** keep the whitespace in front of the ^=, hides rule from konqueror
 ** this is css3, the validator doesn't like it when validating as css2
 */
-#bodyContent a.external,
+#bodyContent a.external[DIR="ltr"],
 #bodyContent a[href ^="gopher://"] {
 	background: url(external.png) center right no-repeat;
 	padding-right: 13px;
@@ -676,6 +676,8 @@ special external link styling */
 	list-style-type: square;
 	list-style-image: url(bullet.gif);
 	font-size: 95%;
+	margin: .3em 0 0 1.5em;
+	padding: 0;
 }
 .portlet li {
 	padding: 0;
@@ -718,7 +720,7 @@ special external link styling */
 }
 
 #p-navigation .pBody {
-	padding-right: 0;
+/*	padding-right: 0; */
 }
 
 #p-navigation a {

@@ -391,7 +391,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6126) Allow fallback to customized primary language when user language
   message contains '-'; fixes licenses selector on Commons configuration after
   recent addition of the message to Messages.php
-
+* (bug 6100) BiDi: different directionality for user interface and wiki content
 
 == Compatibility ==
 
