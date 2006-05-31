@@ -895,7 +895,12 @@ class Linker {
 			if( $title ) {
 				$section = $auto;
 
-				# This is hackish but should work in most cases.
+				# Generate a valid anchor name from the section title.
+				# Hackish, but should generally work - we strip wiki
+				# syntax, including the magic [[: that is used to
+				# "link rather than show" in case of images and
+				# interlanguage links.
+				$section = str_replace( '[[:', '', $section );
 				$section = str_replace( '[[', '', $section );
 				$section = str_replace( ']]', '', $section );
 				$sectionTitle = wfClone( $title );
