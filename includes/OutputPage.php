@@ -332,7 +332,9 @@ class OutputPage {
 		$text =	$parserOutput->getText();
 		wfRunHooks( 'OutputPageBeforeHTML',array( &$this, &$text ) );
 		$parserOutput->setText( $text );
+		$this->addHTML( '<div id="realContent"' . contentdir() . '>');
 		$this->addHTML( $parserOutput->getText() );
+		$this->addHTML( '</div><!-- realContent -->');
 	}
 
 	/**
@@ -385,7 +387,9 @@ class OutputPage {
 			$this->mNewSectionLink = $parserOutput->getNewSection();
 			$text = $parserOutput->getText();
 			wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
+			$this->addHTML( '<div id="realContent"' . contentdir() . '>');
 			$this->addHTML( $text );
+			$this->addHTML( '</div><!-- realContent -->');
 			$t = $parserOutput->getTitleText();
 			if( !empty( $t ) ) {
 				$this->setPageTitle( $t );
@@ -948,6 +952,7 @@ class OutputPage {
 	function headElement() {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle;
+		global $wgLang, $wgLanguageCode;
 
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
 			$ret = "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
@@ -961,8 +966,8 @@ class OutputPage {
 			$this->setHTMLTitle(  wfMsg( 'pagetitle', $this->getPageTitle() ));
 		}
 
-		$rtl = $wgContLang->isRTL() ? " dir='RTL'" : '';
-		$ret .= "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
+		$rtl = $wgLang->isRTL() ? " dir='RTL'" : '';
+		$ret .= "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"$wgLanguageCode\" lang=\"$wgLanguageCode\" $rtl>\n";
 		$ret .= "<head>\n<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
 

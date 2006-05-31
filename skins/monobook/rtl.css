@@ -52,19 +52,11 @@ html>body .portlet {
 }
 
 /* Fix alignment */
-.documentByLine,
 .portletDetails,
 .portletMore,
 #p-personal {
 	text-align: left;
 }
-
-div div.thumbcaption {
-	text-align: right;
-}
-
-div.magnify,
-#div.townBox,
 #p-logo {
 	left: auto;
 	right: 0;
@@ -73,7 +65,20 @@ div.magnify,
 	left: auto;
 	right: 0;
 }
+#p-navigation .pBody {
+	padding-right: auto;
+}
 
+/* the icon in front of the user name, single quotes
+in bg url to hide it from iemac */
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
+	background: url(user.gif) top right no-repeat;
+	padding-left: 0px;
+	padding-right: 20px;
+	text-transform: none;
+}
 #p-cactions {
 	left: auto;
 	right: 11.5em;
@@ -104,39 +109,21 @@ li#ca-watch,li#ca-unwatch {
 /* Fix margins for non-css2 browsers */
 /* top right bottom left */
 
-ul {
+.portlet ul {
 	margin-left: 0;
 	margin-right: 1.5em;
 }
-ol {
+.portlet ol {
 	margin-left: 0;
 	margin-right: 2.4em;
 }
-dd {
+.portlet dd {
 	margin-left: 0;
 	margin-right: 1.6em;
 }
 #contentSub {
 	margin-right: 1em;
 	margin-left: 0;
-}
-.tocindent {
-	margin-left: 0;
-	margin-right: 2em;
-}
-div.tright, div.floatright, table.floatright {
-	clear: none;
-}
-div.tleft, div.floatleft, table.floatleft {
-	clear: left;
-}
-div.townBox {
-	margin-left: 0;
-	margin-right: 1em;
-}
-div.townBox dl dd {
-	margin-left: 0;
-	margin-right: 1.1em;
 }
 #p-personal li {
 	margin-left: 0;
@@ -151,11 +138,6 @@ li#ca-watch {
 
 #p-personal li {
 	float: left;
-}
-/* Fix link icons */
-.external {
-	padding: 0 !important;
-	background: none !important;
 }
 #footer {
 	clear: both;
@@ -189,16 +171,6 @@ li#ca-watch {
 
 .prefsection {
 	padding-right: 2em;
-}
-
-/* workaround for moz bug, displayed bullets on left side */
-
-#toc ul {
-	text-align: right;
-}
-
-#toc ul ul {
-	margin: 0 2em 0 0;
 }
 
 input#wpSave, input#wpDiff {

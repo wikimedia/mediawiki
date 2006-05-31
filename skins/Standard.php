@@ -52,16 +52,18 @@ class SkinStandard extends Skin {
 	 *
 	 */
 	function doGetUserStyles() {
-		global $wgStylePath;
+		global $wgStylePath, $wgLang, $wgUser;
 
 		$s = parent::doGetUserStyles();
 		$qb = $this->qbSetting();
 
-		if ( 2 == $qb ) { # Right
+		if ( (!$wgUser->isLoggedIn() && $wgLang->isRTL() ) ||
+		     ( 2 == $qb ) ) { # Right
 			$s .= "#quickbar { position: absolute; top: 4px; right: 4px; " .
 			  "border-left: 2px solid #000000; }\n" .
 			  "#article { margin-left: 4px; margin-right: 152px; }\n";
-		} else if ( 1 == $qb || 3 == $qb ) {
+		} else if ( (!$wgUser->isLoggedIn()) ||
+		  ( 1 == $qb || 3 == $qb ) ) {
 			$s .= "#quickbar { position: absolute; top: 4px; left: 4px; " .
 			  "border-right: 1px solid gray; }\n" .
 			  "#article { margin-left: 152px; margin-right: 4px; }\n";
@@ -90,7 +92,7 @@ class SkinStandard extends Skin {
 	}
 
 	function doAfterContent() {
-		global $wgContLang;
+		global $wgLang;
 		$fname =  'SkinStandard::doAfterContent';
 		wfProfileIn( $fname );
 		wfProfileIn( $fname.'-1' );
@@ -105,14 +107,14 @@ class SkinStandard extends Skin {
 		$qb = $this->qbSetting();
 		$shove = ($qb != 0);
 		$left = ($qb == 1 || $qb == 3);
-		if($wgContLang->isRTL()) $left = !$left;
+		if($wgLang->isRTL()) $left = !$left;
 
 		if ( $shove && $left ) { # Left
 				$s .= $this->getQuickbarCompensator();
 		}
 		wfProfileOut( $fname.'-2' );
 		wfProfileIn( $fname.'-3' );
-		$l = $wgContLang->isRTL() ? 'right' : 'left';
+		$l = $wgLang->isRTL() ? 'right' : 'left';
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();

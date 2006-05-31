@@ -134,7 +134,7 @@ class SkinTemplate extends Skin {
 	 */
 	function outputPage( &$out ) {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
-		global $wgScript, $wgStylePath, $wgContLanguageCode;
+		global $wgScript, $wgStylePath, $wgLanguageCode, $wgContLanguageCode;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
@@ -247,8 +247,20 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'stylepath', $wgStylePath );
 		$tpl->setRef( 'logopath', $wgLogo );
 		$tpl->setRef( "lang", $wgContLanguageCode );
-		$tpl->set( 'dir', $wgContLang->isRTL() ? "rtl" : "ltr" );
-		$tpl->set( 'rtl', $wgContLang->isRTL() );
+		$tpl->setRef( 'uselang', $wgLanguageCode );
+		$tpl->set( 'dir', $wgLang->isRTL() ? "rtl" : "ltr" );
+		$tpl->set( 'rtl', $wgLang->isRTL() );
+		/* display, if needed, dir=ltr or dir=rtl for the
+		   firstHeading title. This is when the title is
+		   content, eg a site-localized string;
+		   that is the case for all the pages not in Special:
+		   when action is view or history
+		 */
+		$tpl->set( 'titledir',
+			($this->mTitle->getNamespace() != NS_SPECIAL &&
+			 ($action == 'view' || $action == 'history')) ?
+				contentdir() : ""
+	       	);
 		$tpl->set( 'langname', $wgContLang->getLanguageName( $wgContLanguageCode ) );
 		$tpl->set( 'showjumplinks', $wgUser->getOption( 'showjumplinks' ) );
 		$tpl->setRef( 'username', $this->username );
@@ -392,7 +404,7 @@ class SkinTemplate extends Skin {
 				$nt = Title::newFromText( $l );
 				$language_urls[] = array(
 					'href' => $nt->getFullURL(),
-					'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+					'text' => ($wgLang->getLanguageName( $nt->getInterwiki()) != ''?$wgLang->getLanguageName( $nt->getInterwiki()) : $l),
 					'class' => $class
 				);
 			}
@@ -887,7 +899,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupUserCss';
 		wfProfileIn( $fname );
 
-		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
+		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgLang, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
 
 		$sitecss = '';
 		$usercss = '';
@@ -911,7 +923,8 @@ class SkinTemplate extends Skin {
 			$siteargs .= '&ts=' . $wgUser->mTouched;
 		}
 
-		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
+		if ($wgLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
+		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/content_rtl.css";' . "\n";
 
 		# If we use the site's dynamic CSS, throw that in, too
 		if ( $wgUseSiteCss ) {
