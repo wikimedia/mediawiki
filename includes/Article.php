@@ -734,7 +734,7 @@ class Article {
 	 * the given title.
 	*/
 	function view()	{
-		global $wgUser, $wgOut, $wgRequest, $wgLang;
+		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol, $wgParser;
 		global $wgUseTrackbacks;
 		$sk = $wgUser->getSkin();
@@ -891,7 +891,7 @@ class Article {
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Display redirect
-				$imageDir = $wgLang->isRTL() ? 'rtl' : 'ltr';
+				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 				$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
 				# Don't overwrite the subtitle if this was an old revision
 				if( !$wasRedirected && $this->isCurrent() ) {

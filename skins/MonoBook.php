@@ -51,7 +51,7 @@ class MonoBookTemplate extends QuickTemplate {
 		wfSuppressWarnings();
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php $this->text('uselang') ?>" lang="<?php $this->text('uselang') ?>" dir="<?php $this->text('dir') ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
 	<head>
 		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
 		<?php $this->html('headlinks') ?>
@@ -93,7 +93,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<div id="content">
 		<a name="top" id="top"></a>
 		<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
-		<h1 class="firstHeading"<?php $this->text('titledir') ?>><?php $this->data['displaytitle']!=""?$this->text('title'):$this->html('title') ?></h1>
+		<h1 class="firstHeading"><?php $this->data['displaytitle']!=""?$this->text('title'):$this->html('title') ?></h1>
 		<div id="bodyContent">
 			<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
 			<div id="contentSub"><?php $this->html('subtitle') ?></div>
@@ -124,9 +124,6 @@ class MonoBookTemplate extends QuickTemplate {
 		<h5><?php $this->msg('personaltools') ?></h5>
 		<div class="pBody">
 			<ul>
-<?php 			if ($this->data['rtl'] == "1") 
-				$this->data['personal_urls'] = 
-				array_reverse($this->data['personal_urls'], true); ?>
 <?php 			foreach($this->data['personal_urls'] as $key => $item) { ?>
 				<li id="pt-<?php echo htmlspecialchars($key) ?>"<?php
 					if ($item['active']) { ?> class="active"<?php } ?>><a href="<?php
