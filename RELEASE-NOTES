@@ -386,6 +386,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6106) Update to Indonesian localisation (id) #17
 * (bug 6125) Add links to edit old versions to diff views
 * (bug 5127) Auto edit summary when creating redirect page
+* (bug 3926) Introduce {{#language:}} magic word
 
 == Compatibility ==
 
