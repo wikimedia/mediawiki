@@ -576,6 +576,14 @@ class EditPage {
 					return false;
 			}
 
+			# If no edit comment was given when creating a new page, and what's being
+			# created is a redirect, be smart and fill in a neat auto-comment
+			if( $this->summary == '' ) {
+				$rt = Title::newFromRedirect( $this->textbox1 );
+				if( is_object( $rt ) )
+					$this->summary = wfMsgForContent( 'autoredircomment', $rt->getPrefixedText() );
+			}
+
 			$isComment=($this->section=='new');
 			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
 				$this->minoredit, $this->watchthis, false, $isComment);

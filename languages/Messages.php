@@ -206,6 +206,7 @@ parent class in order maintain consistency across languages.
 'viewtalkpage' => 'View discussion',
 'otherlanguages' => 'In other languages',
 'redirectedfrom' => '(Redirected from $1)',
+'autoredircomment' => 'Redirecting to [[$1]]',
 'redirectpagesub' => 'Redirect page',
 'lastmodified'	=> 'This page was last modified $1.',
 'viewcount'		=> 'This page has been accessed {{plural:$1|one time|$1 times}}.',
