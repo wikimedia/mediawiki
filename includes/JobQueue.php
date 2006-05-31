@@ -23,9 +23,14 @@ class Job {
 	function queueLinksJobs( $titles ) {
 		$fname = 'Job::queueLinksJobs';
 		wfProfileIn( $fname );
-		foreach ( $titles as $title ) {
-			$job = new Job( 'refreshLinks', $title );
-			$job->insert();
+		$batchSize = 100;
+		for( $i = 0; $i < count( $titles ); $i += $batchSize ) {
+			$batch = array_slice( $titles, $i, $batchSize, true );
+			$jobs = array();
+			foreach( $batch as $title ) {
+				$jobs[] = new Job( 'refreshLinks', $title );
+			}
+			Job::batchInsert( $jobs );
 		}
 		wfProfileOut( $fname );
 	}
@@ -95,6 +100,10 @@ class Job {
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
 		$job = new Job( $row->job_cmd, $title, $row->job_params, $row->job_id );
+		
+		// Remove any duplicates it may have later in the queue
+		$dbw->delete( 'job', $job->insertFields(), $fname );
+		
 		wfProfileOut( $fname );
 		return $job;
 	}
@@ -114,15 +123,13 @@ class Job {
 		$this->removeDuplicates = true;
 	}
 
+	/**
+	 * Insert a single job into the queue.
+	 */
 	function insert() {
 		$fname = 'Job::insert';
-
-		$fields = array(
-			'job_cmd' => $this->command,
-			'job_namespace' => $this->title->getNamespace(),
-			'job_title' => $this->title->getDBkey(),
-			'job_params' => $this->params
-		);
+		
+		$fields = $this->insertFields();
 
 		$dbw =& wfGetDB( DB_MASTER );
 		
@@ -134,6 +141,38 @@ class Job {
 		}
 		$fields['job_id'] = $dbw->nextSequenceValue( 'job_job_id_seq' );
 		$dbw->insert( 'job', $fields, $fname );
+	}
+	
+	protected function insertFields() {
+		return array(
+			'job_cmd' => $this->command,
+			'job_namespace' => $this->title->getNamespace(),
+			'job_title' => $this->title->getDBkey(),
+			'job_params' => $this->params
+		);
+	}
+	
+	/**
+	 * Batch-insert a group of jobs into the queue.
+	 * This will be wrapped in a transaction with a forced commit.
+	 *
+	 * This may add duplicate at insert time, but they will be
+	 * removed later on, when the first one is popped.
+	 *
+	 * @param $jobs array of Job objects
+	 */
+	static function batchInsert( $jobs ) {
+		$fname = __CLASS__ . '::' . __FUNCTION__;
+		
+		if( count( $jobs ) ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
+			foreach( $jobs as $job ) {
+				$rows[] = $job->insertFields();
+			}
+			$dbw->insert( 'job', $rows, $fname, 'IGNORE' );
+			$dbw->immediateCommit();
+		}
 	}
 
 	/**
