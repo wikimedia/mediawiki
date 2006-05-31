@@ -330,7 +330,6 @@ class Skin extends Linker {
 
 	/**
 	 * Some styles that are set by user through the user settings interface.
-	 * @todo undefined variables (bug #4940)
 	 */
 	function doGetUserStyles() {
 		global $wgUser, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
@@ -338,8 +337,7 @@ class Skin extends Linker {
 		$s = '';
 
 		if( $wgAllowUserCss && $wgUser->isLoggedIn() ) { # logged in
-			# FIXME: $action undefined, bug #4940
-			if($wgTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
+			if($wgTitle->isCssSubpage() && $this->userCanPreview( $wgRequest->getText( 'action' ) ) ) {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
 				$userpage = $wgUser->getUserPage();
