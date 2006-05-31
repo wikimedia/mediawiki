@@ -297,12 +297,11 @@ class Skin extends Linker {
 
 	# get the user/site-specific stylesheet, SkinTemplate loads via RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
-		global $wgStylePath, $wgRequest, $wgLang, $wgContLang, $wgSquidMaxage;
+		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
-		if($wgLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
-		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_content_rtl.css\";\n";
+		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
 
 		$query = "action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
 		$s .= '@import "' . $this->makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) . "\";\n" .
@@ -435,7 +434,7 @@ END;
 	}
 
 	function doBeforeContent() {
-		global $wgLang;
+		global $wgContLang;
 		$fname = 'Skin::doBeforeContent';
 		wfProfileIn( $fname );
 
@@ -456,7 +455,7 @@ END;
 
 		$shove = ($qb != 0);
 		$left = ($qb == 1 || $qb == 3);
-		if($wgLang->isRTL()) $left = !$left;
+		if($wgContLang->isRTL()) $left = !$left;
 
 		if ( !$shove ) {
 			$s .= "<td class='top' align='left' valign='top' rowspan='{$rows}'>\n" .
@@ -464,13 +463,13 @@ END;
 		} elseif( $left ) {
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
-		$l = $wgLang->isRTL() ? 'right' : 'left';
+		$l = $wgContLang->isRTL() ? 'right' : 'left';
 		$s .= "<td {$borderhack} align='$l' valign='top'>\n";
 
 		$s .= $this->topLinks() ;
 		$s .= "<p class='subtitle'>" . $this->pageTitleLinks() . "</p>\n";
 
-		$r = $wgLang->isRTL() ? "left" : "right";
+		$r = $wgContLang->isRTL() ? "left" : "right";
 		$s .= "</td>\n<td {$borderhack} valign='top' align='$r' nowrap='nowrap'>";
 		$s .= $this->nameAndLogin();
 		$s .= "\n<br />" . $this->searchForm() . "</td>";
@@ -997,7 +996,7 @@ END;
 		if ( '' != $align ) { $a = " align='{$align}'"; }
 		else { $a = ''; }
 
-		$mp = wfMsgForContent( 'mainpage' );
+		$mp = wfMsg( 'mainpage' );
 		$titleObj = Title::newFromText( $mp );
 		if ( is_object( $titleObj ) ) {
 			$url = $titleObj->escapeLocalURL();
@@ -1252,7 +1251,7 @@ END;
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgLang, $wgHideInterlanguageLinks;
+		global $wgOut, $wgContLang, $wgHideInterlanguageLinks;
 
 		if ( $wgHideInterlanguageLinks ) {
 			return '';
@@ -1265,20 +1264,20 @@ END;
 
 		$s = wfMsg( 'otherlanguages' ) . ': ';
 		$first = true;
-		if($wgLang->isRTL()) $s .= '<span dir="LTR">';
+		if($wgContLang->isRTL()) $s .= '<span dir="LTR">';
 		foreach( $a as $l ) {
 			if ( ! $first ) { $s .= ' | '; }
 			$first = false;
 
 			$nt = Title::newFromText( $l );
 			$url = $nt->escapeFullURL();
-			$text = $wgLang->getLanguageName( $nt->getInterwiki() );
+			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
 
 			if ( '' == $text ) { $text = $l; }
 			$style = $this->getExternalLinkAttributes( $l, $text );
 			$s .= "<a href=\"{$url}\"{$style}>{$text}</a>";
 		}
-		if($wgLang->isRTL()) $s .= '</span>';
+		if($wgContLang->isRTL()) $s .= '</span>';
 		return $s;
 	}
 

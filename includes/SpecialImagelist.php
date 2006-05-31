@@ -95,7 +95,7 @@ function wfSpecialImagelist() {
 			$ul = $sk->makeLinkObj( Title::makeTitle( NS_USER, $ut ), $ut );
 		}
 
-		$dirmark = $wgLang->getDirMark(); // to keep text in correct direction
+		$dirmark = $wgContLang->getDirMark(); // to keep text in correct direction
 
 		$ilink = "<a href=\"" . htmlspecialchars( Image::imageUrl( $name ) ) .
 		  "\">" . strtr(htmlspecialchars( $name ), '_', ' ') . "</a>";

@@ -1634,12 +1634,8 @@ function in_string( $needle, $str ) {
 }
 
 function wfSpecialList( $page, $details ) {
-	global $wgLang, $wgContLang;
-
-	if ($wgLang->isRTL() != $wgContLang->isRTL()) {
-		$page = "<span" . contentdir() . ">$page</span>";
-	}
-	$details = $details ? ' ' . $wgLang->getDirMark() . "($details)" : "";
+	global $wgContLang;
+	$details = $details ? ' ' . $wgContLang->getDirMark() . "($details)" : "";
 	return $page . $details;
 }
 
@@ -1852,36 +1848,6 @@ function wfExplodeMarkup( $separator, $text ) {
 	}
 	
 	return $items;
-}
-
-/** @todo document */
-/* returns a dir="rtl" or dir="ltr" for the layout (eg: uselang) */
-function layoutdir() {
-	global $wgLang, $wgLanguageCode, $wgContLang, $wgContLanguageCode;
-	$lang = "";
-	$dir = "";
-	if ( $wgLanguageCode != $wgContLanguageCode ) {
-		$lang = " lang='$wgLanguageCode'";
-	}
-	if ( $wgLang->isRTL() != $wgContLang->isRTL() ) {
-		$dir = $wgLang->isRTL() ? " dir='rtl'" : " dir='ltr'";
-	}
-	return $lang . $dir;
-}
-	
-/** @todo document */
-/* returns a dir="rtl" or dir="ltr" for the content (wiki lang) */
-function contentdir() {
-	global $wgLang, $wgLanguageCode, $wgContLang, $wgContLanguageCode;
-	$lang = "";
-	$dir = "";
-	if ( $wgLanguageCode != $wgContLanguageCode ) {
-		$lang = " lang='$wgContLanguageCode'";
-	}
-	if ( $wgLang->isRTL() != $wgContLang->isRTL() ) {
-		$dir = $wgContLang->isRTL() ? " dir='rtl'" : " dir='ltr'";
-	}
-	return $lang . $dir;
 }
 
 class ReplacerCallback {

@@ -98,15 +98,14 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function doGetUserStyles() {
-		global $wgOut, $wgLang, $wgUser;
+		global $wgOut;
 		$s = parent::doGetUserStyles();
 		$qb = $this->qbSetting();
 
-		if ( (!$wgUser->isLoggedIn() && $wgLang->isRTL() ) ||
-		     ( 2 == $qb ) ) { # Right
+		if ( 2 == $qb ) { # Right
 			$s .= "#quickbar { position: absolute; right: 4px; }\n" .
 			  "#article { margin-left: 4px; margin-right: 148px; }\n";
-		} else if ( (!$wgUser->isLoggedIn()) || ( 1 == $qb ) ) {
+		} else if ( 1 == $qb ) {
 			$s .= "#quickbar { position: absolute; left: 4px; }\n" .
 			  "#article { margin-left: 148px; margin-right: 4px; }\n";
 		} else if ( 3 == $qb ) { # Floating left

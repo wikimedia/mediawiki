@@ -1313,10 +1313,7 @@ END
 			$wgOut->addParserOutputNoText( $parserOutput );
 
 			wfProfileOut( $fname );
-			return $previewhead . 
-			'<div id="realContent"' . contentdir() . '>' .
-			$previewHTML . 
-			'</div><!-- realContent -->';
+			return $previewhead . $previewHTML;
 		}
 	}
 
