@@ -24,8 +24,6 @@ To test:
 */
 #realContent {
 	direction: rtl;
-/*    unicode-bidi: bidi-override;*/
-	unicode-bidi: embed;
 }
 
 /* Fix alignment */
@@ -46,15 +44,15 @@ div.magnify,
 /* Fix margins for non-css2 browsers */
 /* top right bottom left */
 
-ul {
+#realContent ul {
 	margin-left: 0;
 	margin-right: 1.5em;
 }
-ol {
+#realContent ol {
 	margin-left: 0;
 	margin-right: 2.4em;
 }
-dd {
+#realContent dd {
 	margin-left: 0;
 	margin-right: 1.6em;
 }
