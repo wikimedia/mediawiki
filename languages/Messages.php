@@ -1,4 +1,4 @@
-<?php
+ the<?php
 
 
 #-------------------------------------------------------------------
@@ -372,7 +372,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'nologin'	=> 'Don\'t have a login? $1.',
 'nologinlink'	=> 'Create an account',
 'createaccount'	=> 'Create account',
-'gotaccount'	=> 'Already got an account? $1.',
+'gotaccount'	=> 'Already have an account? $1.',
 'gotaccountlink'	=> 'Log in',
 'createaccountmail'	=> 'by e-mail',
 'badretype'		=> 'The passwords you entered do not match.',
