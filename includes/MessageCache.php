@@ -457,7 +457,7 @@ class MessageCache {
 		}
 
 		# Is this a custom message? Try the default language in the db...
-		if( $message === false &&
+		if( ($message === false || $message === '-' ) &&
 			!$this->mDisable && $useDB &&
 			!$isfullkey && ($langcode != $wgContLanguageCode) ) {
 			$message = $this->getFromCache( $lang->ucfirst( $key ) );

@@ -388,6 +388,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5127) Auto edit summary when creating redirect page
 * (bug 3926) Introduce {{#language:}} magic word
 * Fix section links from edit comments for [[:Image:Bla.jpg]] in section titles
+* (bug 6126) Allow fallback to customized primary language when user language
+  message contains '-'; fixes licenses selector on Commons configuration after
+  recent addition of the message to Messages.php
+
 
 == Compatibility ==
 
