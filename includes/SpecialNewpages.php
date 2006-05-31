@@ -75,7 +75,7 @@ class NewPagesPage extends QueryPage {
 		global $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol;
 		$u = $result->user;
 		$ut = $result->user_text;
-		$dirmark = $wgContLang->getDirMark(); // To keep text in correct order
+		$dirmark = $wgLang->getDirMark(); // To keep text in correct order
 
 		$length = wfMsgExt( 'nbytes', array('parsemag', 'escape'),
 			$wgLang->formatNum( $result->length ) );

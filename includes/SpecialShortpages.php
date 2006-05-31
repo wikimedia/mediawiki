@@ -58,7 +58,7 @@ class ShortPagesPage extends QueryPage {
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$link = $skin->makeKnownLinkObj( $title, htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
 		$histlink = $skin->makeKnownLinkObj( $title, wfMsgHtml('hist'), 'action=history' );
-		$dirmark = $wgContLang->getDirMark();
+		$dirmark = $wgLang->getDirMark();
 
 		return "({$histlink}) {$dirmark}$link {$dirmark}({$nb})";
 	}

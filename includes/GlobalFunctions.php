@@ -1634,8 +1634,12 @@ function in_string( $needle, $str ) {
 }
 
 function wfSpecialList( $page, $details ) {
-	global $wgContLang;
-	$details = $details ? ' ' . $wgContLang->getDirMark() . "($details)" : "";
+	global $wgLang, $wgContLang;
+
+	if ($wgLang->isRTL() != $wgContLang->isRTL()) {
+		$page = "<span" . contentdir() . ">$page</span>";
+	}
+	$details = $details ? ' ' . $wgLang->getDirMark() . "($details)" : "";
 	return $page . $details;
 }
 

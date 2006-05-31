@@ -48,7 +48,7 @@ class UnusedimagesPage extends QueryPage {
 		$title = Title::makeTitle( NS_IMAGE, $result->title );
 
 		$imageUrl = htmlspecialchars( Image::imageUrl( $result->title ) );
-		$dirmark = $wgContLang->getDirMark(); // To keep text in correct order
+		$dirmark = $wgLang->getDirMark(); // To keep text in correct order
 
 		$return =
 		# The 'desc' linking to the image page
