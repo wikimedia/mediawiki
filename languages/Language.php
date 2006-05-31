@@ -289,6 +289,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_URLENCODE            => array( 0,    'URLENCODE:'             ),
 	MAG_CURRENTTIMESTAMP     => array( 1,    'CURRENTTIMESTAMP'       ),
 	MAG_DIRECTIONMARK        => array( 1,    'DIRECTIONMARK', 'DIRMARK' ),
+	MAG_LANGUAGE			 => array( 0,	 '#LANGUAGE:' ),
 );
 
 if (!$wgCachedMessageArrays) {

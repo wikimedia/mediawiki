@@ -2713,6 +2713,16 @@ class Parser
 			}
 		}
 
+		# #LANGUAGE:
+		if( !$found ) {
+			$mwLanguage =& MagicWord::get( MAG_LANGUAGE );
+			if( $mwLanguage->matchStartAndRemove( $part1 ) ) {
+				$lang = $wgContLang->getLanguageName( strtolower( $part1 ) );
+				$text = $linestart . ( $lang != '' ? $lang : $part1 );
+				$found = true;
+			}		
+		}
+
 		# Extensions
 		if ( !$found && substr( $part1, 0, 1 ) == '#' ) {
 			$colonPos = strpos( $part1, ':' );
