@@ -391,6 +391,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6126) Allow fallback to customized primary language when user language
   message contains '-'; fixes licenses selector on Commons configuration after
   recent addition of the message to Messages.php
+* (bug 5527) Batch up job queue insertions for, hopefully, better survivability
+  of lock contention etc. Duplicates are now removed at pop time instead of
+  at insert time.
+
 
 == Compatibility ==
 
