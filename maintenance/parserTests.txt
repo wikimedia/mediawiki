@@ -266,6 +266,14 @@ Comment semantics: nesting
 </p>
 !! end
 
+!! test
+Comment semantics: unclosed comment at end
+!! input
+<!--This comment will run out to the end of the document
+!! result
+
+!! end
+
 
 ###
 ### Preformatted text
@@ -2422,7 +2430,7 @@ This template has <!-- a comment --> in it.
 !! test
 pre-save transform: unclosed tag
 !! options
-pst
+pst noxml
 !! input
 <nowiki>'''not wiki'''
 !! result
@@ -2432,7 +2440,7 @@ pst
 !! test
 pre-save transform: mixed tag case
 !! options
-pst
+pst noxml
 !! input
 <NOwiki>'''not wiki'''</noWIKI>
 !! result
