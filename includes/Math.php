@@ -248,15 +248,13 @@ class MathRenderer {
 		wfDebug( "TeX: getHashPath, hash is: $this->hash, path is: $path\n" );
 		return $path;
 	}
-
-
-}
-
-function renderMath( $tex ) {
-	global $wgUser;
-	$math = new MathRenderer( $tex );
-	$math->setOutputMode( $wgUser->getOption('math'));
-	return $math->render();
+	
+	static function renderMath ( $tex ) {
+		global $wgUser;
+		$math = new MathRenderer( $tex );
+		$math->setOutputMode( $wgUser->getOption('math'));
+		return $math->render();
+	}
 }
 
 ?>

@@ -5,11 +5,6 @@
  * @package MediaWiki
  */
 
-/**
- *
- */
-require_once( 'WatchedItem.php' );
-
 # Number of characters in user_token field
 define( 'USER_TOKEN_LENGTH', 32 );
 
@@ -433,7 +428,7 @@ class User {
 		wfDebug( "$fname: checking...\n" );
 
 		$this->mBlockedby = 0;
-		$ip = wfGetIP();
+		$ip = ProxyTools::getIP();
 
 		# User/IP blocking
 		$block = new Block();
@@ -454,7 +449,7 @@ class User {
 		if ( !$this->isAllowed('proxyunbannable') && !in_array( $ip, $wgProxyWhitelist ) ) {
 
 			# Local list
-			if ( wfIsLocallyBlockedProxy( $ip ) ) {
+			if ( ProxyTools::isLocallyBlockedProxy( $ip ) ) {
 				$this->mBlockedby = wfMsg( 'proxyblocker' );
 				$this->mBlockreason = wfMsg( 'proxyblockreason' );
 			}
@@ -538,7 +533,7 @@ class User {
 		$limits = $wgRateLimits[$action];
 		$keys = array();
 		$id = $this->getId();
-		$ip = wfGetIP();
+		$ip = ProxyTools::getIP();
 
 		if( isset( $limits['anon'] ) && $id == 0 ) {
 			$keys["$wgDBname:limiter:$action:anon"] = $limits['anon'];
@@ -790,7 +785,7 @@ class User {
 	function getName() {
 		$this->loadFromDatabase();
 		if ( $this->mName === false ) {
-			$this->mName = wfGetIP();
+			$this->mName = ProxyTools::getIP();
 		}
 		return $this->mName;
 	}
@@ -1526,7 +1521,7 @@ class User {
 		}
 
 		# Check if this IP address is already blocked
-		$ipblock = Block::newFromDB( wfGetIP() );
+		$ipblock = Block::newFromDB( ProxyTools::getIP() );
 		if ( $ipblock->isValid() ) {
 			# If the user is already blocked. Then check if the autoblock would
 			# excede the user block. If it would excede, then do nothing, else
@@ -1541,8 +1536,8 @@ class User {
 		}
 
 		# Make a new block object with the desired properties
-		wfDebug( "Autoblocking {$this->mName}@" . wfGetIP() . "\n" );
-		$ipblock->mAddress = wfGetIP();
+		wfDebug( "Autoblocking {$this->mName}@" . ProxyTools::getIP() . "\n" );
+		$ipblock->mAddress = ProxyTools::getIP();
 		$ipblock->mUser = 0;
 		$ipblock->mBy = $userblock->mBy;
 		$ipblock->mReason = wfMsg( 'autoblocker', $this->getName(), $userblock->mReason );
@@ -1762,7 +1757,7 @@ class User {
 		$url = $this->confirmationTokenUrl( $expiration );
 		return $this->sendMail( wfMsg( 'confirmemail_subject' ),
 			wfMsg( 'confirmemail_body',
-				wfGetIP(),
+				ProxyTools::getIP(),
 				$this->getName(),
 				$url,
 				$wgContLang->timeanddate( $expiration, false ) ) );

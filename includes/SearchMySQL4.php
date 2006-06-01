@@ -23,8 +23,6 @@
  * @subpackage Search
  */
 
-require_once( 'SearchMySQL.php' );
-
 /**
  * @package MediaWiki
  * @subpackage Search

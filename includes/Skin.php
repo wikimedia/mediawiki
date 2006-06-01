@@ -8,27 +8,10 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @subpackage Skins
  */
 
-# See skin.txt
-require_once( 'Linker.php' );
-require_once( 'Image.php' );
-
 # Get a list of available skins
 # Build using the regular expression '^(.*).php$'
 # Array keys are all lower case, array value keep the case used by filename
 #
-
-$skinDir = dir( $wgStyleDirectory );
-
-# while code from www.php.net
-while (false !== ($file = $skinDir->read())) {
-	// Skip non-PHP files, hidden files, and '.dep' includes
-	if(preg_match('/^([^.]*)\.php$/',$file, $matches)) {
-		$aSkin = $matches[1];
-		$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
-	}
-}
-$skinDir->close();
-unset($matches);
 
 /**
  * The main skin class that provide methods and properties for all other skins.
@@ -55,7 +38,33 @@ class Skin extends Linker {
 	 */
 	function getSkinNames() {
 		global $wgValidSkinNames;
+		if (!is_array($wgValidSkinNames)) {
+			Skin::initializeSkinNames();
+		}
 		return $wgValidSkinNames;
+	}
+
+	/** 
+	 * Initializes set of available skins.
+	 * @return array of strings - skin names
+	 * @static
+	 */
+	
+	function initializeSkinNames() {
+		global $wgStyleDirectory, $wgValidSkinNames;
+		$skinDir = dir( $wgStyleDirectory );
+
+		# while code from www.php.net
+		while (false !== ($file = $skinDir->read())) {
+			// Skip non-PHP files, hidden files, and '.dep' includes
+			if(preg_match('/^([^.]*)\.php$/',$file, $matches)) {
+				$aSkin = $matches[1];
+				$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
+			}
+		}
+		$skinDir->close();
+		unset($matches);
+		
 	}
 
 	/**
@@ -745,7 +754,7 @@ END;
 		$s = '';
 		if ( $wgUser->isAnon() ) {
 			if( $wgShowIPinHeader && isset( $_COOKIE[ini_get('session.name')] ) ) {
-				$n = wfGetIP();
+				$n = ProxyTools::getIP();
 
 				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
 				  $wgLang->getNsText( NS_TALK ) );
@@ -896,8 +905,7 @@ END;
 		}
 
 	        if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
-		    require_once('Credits.php');
-		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
+		    $s .= ' ' . Credits::getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
 		} else {
 		    $s .= $this->lastModified();
 		}
@@ -1015,7 +1023,6 @@ END;
 	 */
 	function specialPagesList() {
 		global $wgUser, $wgContLang, $wgServer, $wgRedirectScript, $wgAvailableRights;
-		require_once('SpecialPage.php');
 		$a = array();
 		$pages = SpecialPage::getPages();
 

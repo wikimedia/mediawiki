@@ -5,9 +5,6 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @package MediaWiki
  */
 
-if ( $wgUseTeX )
-	require_once 'Math.php';
-
 /**
  * @todo document
  * @package MediaWiki
@@ -650,7 +647,7 @@ class OutputPage {
 
 		$id = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
-		$ip = wfGetIP();
+		$ip = ProxyTools::getIP();
 
 		if ( is_numeric( $id ) ) {
 			$name = User::whoIs( $id );
