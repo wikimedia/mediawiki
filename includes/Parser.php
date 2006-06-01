@@ -441,7 +441,8 @@ class Parser
 				$content = strtr( $content, $commentState );
 			}
 			if( $render ) {
-				switch( $element ) {
+				$tagName = strtolower( $element );
+				switch( $tagName ) {
 				case 'html':
 					if( $wgRawHtml ) {
 						$output = $content;
@@ -463,7 +464,6 @@ class Parser
 					$output = $this->renderImageGallery( $content );
 					break;
 				default:
-					$tagName = strtolower( $element );
 					if( isset( $this->mTagHooks[$tagName] ) ) {
 						$output = call_user_func_array( $this->mTagHooks[$tagName],
 							array( $content, $params, $this ) );
