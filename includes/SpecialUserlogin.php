@@ -210,7 +210,7 @@ class LoginForm {
 			return false;
 		}
 
-		$ip = wfGetIP();
+		$ip = ProxyTools::getIP();
 		if ( $wgEnableSorbs && !in_array( $ip, $wgProxyWhitelist ) &&
 		  $wgUser->inSorbsBlacklist( $ip ) )
 		{
@@ -416,7 +416,7 @@ class LoginForm {
 
 		$u->saveSettings();
 
-		$ip = wfGetIP();
+		$ip = ProxyTools::getIP();
 		if ( '' == $ip ) { $ip = '(Unknown)'; }
 
 		$m = wfMsg( 'passwordremindertext', $ip, $u->getName(), $np, $wgServer . $wgScript );

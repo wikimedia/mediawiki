@@ -5,9 +5,6 @@
  * @subpackage DifferenceEngine
  */
 
-/** */
-require_once( 'Revision.php' );
-
 define( 'MAX_DIFF_LINE', 10000 );
 define( 'MAX_DIFF_XREF_LENGTH', 10000 );
 

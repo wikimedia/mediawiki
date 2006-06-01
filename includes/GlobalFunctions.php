@@ -27,8 +27,6 @@ $wgTotalEdits = -1;
 
 
 require_once( 'DatabaseFunctions.php' );
-require_once( 'UpdateClasses.php' );
-require_once( 'LogPage.php' );
 require_once( 'normal/UtfNormalUtil.php' );
 require_once( 'XmlFunctions.php' );
 
@@ -1508,11 +1506,6 @@ function &wfGetMimeMagic() {
 		return $wgMimeMagic;
 	}
 
-	if (!class_exists("MimeMagic")) {
-		#include on demand
-		require_once("MimeMagic.php");
-	}
-
 	$wgMimeMagic= new MimeMagic();
 
 	return $wgMimeMagic;
@@ -1860,5 +1853,28 @@ class ReplacerCallback {
 		return str_replace( $this->from, $this->to, $matches[1] );
 	}
 }
+
+/***** DEPRECATED INTERFACES *******/
+function wfGetForwardedFor() { return ProxyTools::getForwardedFor(); }
+function wfGetIP() { return ProxyTools::getIP(); }
+function wfIP2Unsigned($ip) { return ProxyTools::IP2Unsigned($ip); }
+function wfIP2Hex($ip) { return ProxyTools::IP2Hex($ip); }
+function wfIsIPPublic($ip) { return ProxyTools::isIPPublic($ip); }
+function wfProxyCheck() { return ProxyTools::proxyCheck(); }
+function wfParseCIDR($range) { return ProxyTools::parseCIDR($range); }
+function wfIsLocallyBlockedProxy($ip) { return ProxyTools::isLocallyBlockedProxy($ip); }
+
+function wfGetCache($type) { return ObjectCacheManager::getCache($type); }
+function wfGetMainCache() { return ObjectCacheManager::getMainCache(); }
+function wfGetMessageCacheStorage() { return ObjectCacheManager::getMessageCache(); }
+function wfGetParserCacheStorage() { return ObjectCacheManager::getParserCache(); }
+
+function renderMath($tex) { return MathRenderer::renderMath($tex); }
+
+function showCreditsPage($article) { return Credits::showCreditsPage($article); }
+function getCredits($article, $cnt, $showIfMax=true) { return Credits::getCredits($article,$cnt,$showIfMax); }
+
+function wfGetHTTP( $url, $timeout = 'default' ) { return HttpFunctions::getHTTP($url,$timeout); }
+function wfIsLocalURL( $url ) { return HttpFunctions::isLocalURL($url); }
 
 ?>

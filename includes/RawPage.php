@@ -10,9 +10,6 @@
  * @package MediaWiki
  */
 
-/** */
-require_once( 'Revision.php' );
-
 /**
  * @todo document
  * @package MediaWiki

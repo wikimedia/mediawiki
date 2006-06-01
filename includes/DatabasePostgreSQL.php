@@ -14,11 +14,6 @@
  */
 
 /**
- * Depends on database
- */
-require_once( 'Database.php' );
-
-/**
  *
  * @package MediaWiki
  */

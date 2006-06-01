@@ -6,11 +6,6 @@
  * @subpackage Parser
  */
 
-/** */
-require_once( 'Sanitizer.php' );
-require_once( 'HttpFunctions.php' );
-require_once( 'ImageGallery.php' );
-
 /**
  * Update this version number when the ParserOutput format
  * changes in an incompatible way, so the parser cache
@@ -452,7 +447,7 @@ class Parser
 					$output = wfEscapeHTMLTagsOnly( $content );
 					break;
 				case 'math':
-					$output = renderMath( $content );
+					$output = MathRenderer::renderMath( $content );
 					break;
 				case 'pre':
 					// Backwards-compatibility hack
@@ -2972,7 +2967,7 @@ class Parser
 			}
 		}
 
-		$text = wfGetHTTP($url);
+		$text = HttpFunctions::getHTTP($url);
 		if (!$text)
 			return wfMsg('scarytranscludefailed', $url);
 
