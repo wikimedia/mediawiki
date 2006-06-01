@@ -213,7 +213,11 @@ function __autoload($class_name) {
 		'memcached' => 'memcached-client.php',
 		'UtfNormal' => 'normal/UtfNormal.php'
 	);
-	require($classes[$class_name]);
+	if (array_key_exists($class_name, $classes)) {
+		require($classes[$class_name]);
+	} else {
+		return false;
+	}
 }
 
 ?>
