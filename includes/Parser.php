@@ -9,6 +9,7 @@
 /** */
 require_once( 'Sanitizer.php' );
 require_once( 'HttpFunctions.php' );
+require_once( 'ImageGallery.php' );
 
 /**
  * Update this version number when the ParserOutput format
@@ -319,63 +320,60 @@ class Parser
 	 * If $tag is set to STRIP_COMMENTS, the function will extract
 	 * <!-- HTML comments -->
 	 *
+	 * $output: array( 'UNIQ-xxxxx' => array(
+	 *    'element',
+	 *    'tag content',
+	 *    array( 'param' => 'x' ),
+	 *    '<element param="x">' ) )
 	 * @private
 	 * @static
 	 */
-	function extractTagsAndParams($tag, $text, &$content, &$tags, &$params, $uniq_prefix = ''){
-		$rnd = $uniq_prefix . '-' . $tag . Parser::getRandomString();
-		if ( !$content ) {
-			$content = array( );
-		}
+	function extractTagsAndParams($elements, $text, &$matches, $uniq_prefix = ''){
+		$rand = Parser::getRandomString();
 		$n = 1;
 		$stripped = '';
+		$matches = array();
 
-		if ( !$tags ) {
-			$tags = array( );
-		}
-
-		if ( !$params ) {
-			$params = array( );
-		}
-
-		if( $tag == STRIP_COMMENTS ) {
-			$start = '/<!--()/';
-			$end   = '/-->/';
+		if( $elements == STRIP_COMMENTS ) {
+			$start = '/<!--()()/';
 		} else {
-			$start = "/<$tag(\\s+[^>]*|\\s*\/?)>/i";
-			$end   = "/<\\/$tag\\s*>/i";
+			$taglist = implode( '|', $elements );
+			$start = "/<($taglist)(\\s+[^>]*|\\s*\/?)>/i";
 		}
 
 		while ( '' != $text ) {
 			$p = preg_split( $start, $text, 2, PREG_SPLIT_DELIM_CAPTURE );
 			$stripped .= $p[0];
-			if( count( $p ) < 3 ) {
+			if( count( $p ) < 4 ) {
 				break;
 			}
-			$attributes = $p[1];
-			$inside     = $p[2];
+			$element    = $p[1];
+			$attributes = $p[2];
+			$inside     = $p[3];
 
 			// If $attributes ends with '/', we have an empty element tag, <tag />
-			if( $tag != STRIP_COMMENTS && substr( $attributes, -1 ) == '/' ) {
+			if( $element != '' && substr( $attributes, -1 ) == '/' ) {
 				$attributes = substr( $attributes, 0, -1);
 				$empty = '/';
 			} else {
 				$empty = '';
 			}
 
-			$marker = $rnd . sprintf('%08X', $n++);
+			$marker = "$uniq_prefix-$element-$rand" . sprintf('%08X', $n++);
 			$stripped .= $marker;
-
-			$tags[$marker] = "<$tag$attributes$empty>";
-			$params[$marker] = Sanitizer::decodeTagAttributes( $attributes );
 
 			if ( $empty === '/' ) {
 				// Empty element tag, <tag />
-				$content[$marker] = null;
+				$content = null;
 				$text = $inside;
 			} else {
+				if( $element ) {
+					$end = "/<\\/$element\\s*>/i";
+				} else {
+					$end = '/-->/';
+				}
 				$q = preg_split( $end, $inside, 2 );
-				$content[$marker] = $q[0];
+				$content = $q[0];
 				if( count( $q ) < 2 ) {
 					# No end tag -- let it run out to the end of the text.
 					break;
@@ -383,24 +381,13 @@ class Parser
 					$text = $q[1];
 				}
 			}
+			
+			$matches[$marker] = array( $element,
+				$content,
+				Sanitizer::decodeTagAttributes( $attributes ),
+				"<$element$attributes$empty>" );
 		}
 		return $stripped;
-	}
-
-	/**
-	 * Wrapper function for extractTagsAndParams
-	 * for cases where $tags and $params isn't needed
-	 * i.e. where tags will never have params, like <nowiki>
-	 *
-	 * @private
-	 * @static
-	 */
-	function extractTags( $tag, $text, &$content, $uniq_prefix = '' ) {
-		$dummy_tags = array();
-		$dummy_params = array();
-
-		return Parser::extractTagsAndParams( $tag, $text, $content,
-			$dummy_tags, $dummy_params, $uniq_prefix );
 	}
 
 	/**
@@ -418,124 +405,102 @@ class Parser
 	 */
 	function strip( $text, &$state, $stripcomments = false ) {
 		$render = ($this->mOutputType == OT_HTML);
-		$html_content = array();
-		$nowiki_content = array();
-		$math_content = array();
-		$pre_content = array();
-		$comment_content = array();
-		$ext_content = array();
-		$ext_tags = array();
-		$ext_params = array();
-		$gallery_content = array();
 
 		# Replace any instances of the placeholders
 		$uniq_prefix = $this->mUniqPrefix;
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
-
-		# html
+		
+		$elements = array_merge(
+			array( 'nowiki', 'pre', 'gallery' ),
+			array_keys( $this->mTagHooks ) );
 		global $wgRawHtml;
 		if( $wgRawHtml ) {
-			$text = Parser::extractTags('html', $text, $html_content, $uniq_prefix);
-			foreach( $html_content as $marker => $content ) {
-				if ($render ) {
-					# Raw and unchecked for validity.
-					$state['html'][$marker] = $content;
-				} else {
-					$state['html'][$marker] = '<html>'.$content.'</html>';
-				}
-			}
+			$elements[] = 'html';
 		}
-
-		# nowiki
-		$text = Parser::extractTags('nowiki', $text, $nowiki_content, $uniq_prefix);
-		foreach( $nowiki_content as $marker => $content ) {
-			if( $render ){
-				$state['nowiki'][$marker] = wfEscapeHTMLTagsOnly( $content );
-			} else {
-				$state['nowiki'][$marker] = '<nowiki>'.$content.'</nowiki>';
-			}
-		}
-
-		# math
 		if( $this->mOptions->getUseTeX() ) {
-			$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
-			foreach( $math_content as $marker => $content ){
-				if( $render ) {
-					$state['math'][$marker] = renderMath( $content );
-				} else {
-					$state['math'][$marker] = '<math>'.$content.'</math>';
-				}
+			$elements[] = 'math';
+		}
+		
+
+		// Strip comments in a first pass.
+		// This saves us from needlessly rendering extensions in comment text
+		$text = Parser::extractTagsAndParams(STRIP_COMMENTS, $text, $comment_matches, $uniq_prefix);
+		$commentState = array();
+		foreach( $comment_matches as $marker => $data ){
+			list( $element, $content, $params, $tag ) = $data;
+			$commentState[$marker] = '<!--' . $content . '-->';
+		}
+		
+		$matches = array();
+		$text = Parser::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
+		
+		foreach( $matches as $marker => $data ) {
+			list( $element, $content, $params, $tag ) = $data;
+			// Restore any comments; the extension can deal with them.
+			if( $content !== null) {
+				$content = strtr( $content, $commentState );
 			}
-		}
-
-		# pre
-		$text = Parser::extractTags('pre', $text, $pre_content, $uniq_prefix);
-		foreach( $pre_content as $marker => $content ){
-			if( $render ){
-				$state['pre'][$marker] = '<pre>' . wfEscapeHTMLTagsOnly( $content ) . '</pre>';
-			} else {
-				$state['pre'][$marker] = '<pre>'.$content.'</pre>';
-			}
-		}
-
-		# gallery
-		$text = Parser::extractTags('gallery', $text, $gallery_content, $uniq_prefix);
-		foreach( $gallery_content as $marker => $content ) {
-			require_once( 'ImageGallery.php' );
-			if ( $render ) {
-				$state['gallery'][$marker] = $this->renderImageGallery( $content );
-			} else {
-				$state['gallery'][$marker] = '<gallery>'.$content.'</gallery>';
-			}
-		}
-
-		# Comments
-		$text = Parser::extractTags(STRIP_COMMENTS, $text, $comment_content, $uniq_prefix);
-		foreach( $comment_content as $marker => $content ){
-			$comment_content[$marker] = '<!--'.$content.'-->';
-		}
-
-		# Extensions
-		foreach ( $this->mTagHooks as $tag => $callback ) {
-			$ext_content[$tag] = array();
-			$text = Parser::extractTagsAndParams( $tag, $text, $ext_content[$tag],
-				$ext_tags[$tag], $ext_params[$tag], $uniq_prefix );
-			foreach( $ext_content[$tag] as $marker => $content ) {
-				$full_tag = $ext_tags[$tag][$marker];
-				$params = $ext_params[$tag][$marker];
-				if ( $render )
-					$state[$tag][$marker] = call_user_func_array( $callback, array( $content, $params, $this ) );
-				else {
-					if ( is_null( $content ) ) {
-						// Empty element tag
-						$state[$tag][$marker] = $full_tag;
+			if( $render ) {
+				switch( $element ) {
+				case 'html':
+					if( $wgRawHtml ) {
+						$output = $content;
+						break;
+					}
+					// Shouldn't happen otherwise. :)
+				case 'nowiki':
+					$output = wfEscapeHTMLTagsOnly( $content );
+					break;
+				case 'math':
+					$output = renderMath( $content );
+					break;
+				case 'pre':
+					// Backwards-compatibility hack
+					$content = preg_replace( '!<nowiki>(.*?)</nowiki>!is', '\\1', $content );
+					$output = '<pre>' . wfEscapeHTMLTagsOnly( $content ) . '</pre>';
+					break;
+				case 'gallery':
+					$output = $this->renderImageGallery( $content );
+					break;
+				default:
+					$tagName = strtolower( $element );
+					if( isset( $this->mTagHooks[$tagName] ) ) {
+						$output = call_user_func_array( $this->mTagHooks[$tagName],
+							array( $content, $params, $this ) );
 					} else {
-						$state[$tag][$marker] = "$full_tag$content</$tag>";
+						wfDebugDieBacktrace( "Invalid call hook $element" );
 					}
 				}
+			} else {
+				// Just stripping tags; keep the source
+				if( $content === null ) {
+					$output = $tag;
+				} else {
+					$output = "$tag$content</$element>";
+				}
 			}
+			$state[$element][$marker] = $output;
 		}
 
 		# Unstrip comments unless explicitly told otherwise.
 		# (The comments are always stripped prior to this point, so as to
 		# not invoke any extension tags / parser hooks contained within
 		# a comment.)
-		if ( !$stripcomments ) {
-			$tempstate = array( 'comment' => $comment_content );
-			$text = $this->unstrip( $text, $tempstate );
-			$comment_content = array();
-		} else {
-			if( !isset( $state['comment'] ) ) {
-				$state['comment'] = array();
+		if ( $stripcomments ) {
+			// Add remaining comments to the state array
+			foreach( $commentState as $marker => $content ) {
+				$state['comment'][$marker] = $content;
 			}
-			$state['comment'] += $comment_content;
+		} else {
+			// Put them all back and forget them
+			$text = strtr( $text, $commentState );
 		}
 
 		return $text;
 	}
 
 	/**
-	 * restores pre, math, and hiero removed by strip()
+	 * Restores pre, math, and other extensions removed by strip()
 	 *
 	 * always call unstripNoWiki() after this one
 	 * @private
@@ -545,20 +510,21 @@ class Parser
 			return $text;
 		}
 
-		# Must expand in reverse order, otherwise nested tags will be corrupted
-		foreach( array_reverse( $state, true ) as $tag => $contentDict ) {
+		$replacements = array();
+		foreach( $state as $tag => $contentDict ) {
 			if( $tag != 'nowiki' && $tag != 'html' ) {
-				foreach( array_reverse( $contentDict, true ) as $uniq => $content ) {
-					$text = str_replace( $uniq, $content, $text );
+				foreach( $contentDict as $uniq => $content ) {
+					$replacements[$uniq] = $content;
 				}
 			}
 		}
+		$text = strtr( $text, $replacements );
 
 		return $text;
 	}
 
 	/**
-	 * always call this after unstrip() to preserve the order
+	 * Always call this after unstrip() to preserve the order
 	 *
 	 * @private
 	 */
@@ -567,18 +533,15 @@ class Parser
 			return $text;
 		}
 
-		# Must expand in reverse order, otherwise nested tags will be corrupted
-		if( isset( $state['nowiki'] ) )
-			foreach( array_reverse( $state['nowiki'], true ) as $uniq => $content ) {
-				$text = str_replace( $uniq, $content, $text );
-			}
-
-		global $wgRawHtml;
-		if ($wgRawHtml && isset( $state['html'] ) ) {
-			foreach( array_reverse( $state['html'], true ) as $uniq => $content ) {
-				$text = str_replace( $uniq, $content, $text );
+		$replacements = array();
+		foreach( $state as $tag => $contentDict ) {
+			if( $tag == 'nowiki' || $tag == 'html' ) {
+				foreach( $contentDict as $uniq => $content ) {
+					$replacements[$uniq] = $content;
+				}
 			}
 		}
+		$text = strtr( $text, $replacements );
 
 		return $text;
 	}
@@ -593,14 +556,7 @@ class Parser
 	function insertStripItem( $text, &$state ) {
 		$rnd = $this->mUniqPrefix . '-item' . Parser::getRandomString();
 		if ( !$state ) {
-			$state = array(
-			  'html' => array(),
-			  'nowiki' => array(),
-			  'math' => array(),
-			  'pre' => array(),
-			  'comment' => array(),
-			  'gallery' => array(),
-			);
+			$state = array();
 		}
 		$state['item'][$rnd] = $text;
 		return $rnd;
