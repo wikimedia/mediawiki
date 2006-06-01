@@ -174,6 +174,7 @@
 "viewtalkpage"      => "צפו בדף השיחה",
 "otherlanguages"    => "שפות אחרות",
 "redirectedfrom"    => "(הופנה מהדף $1)",
+"autoredircomment"  => "הפניה לדף [[$1]]",
 "redirectpagesub"   => "דף הפניה",
 "lastmodified"      => "שונה לאחרונה ב־$1.",
 "viewcount"         => "דף זה נצפה {{plural:$1|פעם אחת|$1 פעמים|פעמיים}}.",
@@ -216,6 +217,7 @@
 "viewdeleted"         => "הציגו $1?",
 "restorelink"         => "{{plural:$1|גרסה מחוקה אחת|$1 גרסאות מחוקות}}",
 "feedlinks"           => "הזנה:",
+"feed-invalid"        => "סוג הזנת המנוי שגוי.",
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 "nstab-main"      => "דף תוכן",
@@ -541,6 +543,13 @@
 # "rev-delundel"              => "מחק/שחזר",
 "rev-delundel"                => "הצג/הסתר",
 
+"history-feed-title"          => "היסטוריית גרסאות",
+"history-feed-description"    => "היסטוריית הגרסאות של הדף הזה בוויקי",
+"history-feed-item-nocomment" => "$1 ב־$2", # user at time
+"history-feed-empty"          => "הדף המבוקש לא נמצא.
+ייתכן שהוא נמחק מהוויקי, או ששמו שונה.
+נסו [[{{ns:special}}:Search|לחפש בוויקי]] אחר דפים רלוונטיים חדשים.",
+
 # Revision deletion
 "revisiondelete"            => "מחיקת ושחזור גרסאות",
 "revdelete-selected"        => "הגרסאות שנבחרו של [[:$1]]:",
@@ -574,7 +583,7 @@
 
 ניתן לנסות שאילתה אחרת.',
 "matchtotals"       => 'לחיפוש "$1" נמצאו $2 דפים עם כותרות תואמות ו־$3 דפים עם תוכן תואם',
-"nogomatch"         => 'אין דף שכותרתו "$1". באפשרותכם [[$1|ליצור את הדף]].',
+"nogomatch"         => 'אין דף שכותרתו "$2". באפשרותכם [[$1|ליצור את הדף]].',
 "titlematches"      => "כותרות דפים תואמות",
 "notitlematches"    => "אין כותרות דפים תואמות",
 "textmatches"       => "דפים עם תוכן תואם",
@@ -709,7 +718,7 @@
 "uploadnologintext"           => "עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי להעלות קבצים.",
 "upload_directory_read_only"  => "תיקיית ההעלאות ($1) אינה ניתנת לכתיבה על־ידי שרת האינטרנט, ולפיכך הוא אינו יכול להעלות את התמונה.",
 "uploaderror"                 => "שגיאה בהעלאת הקובץ",
-"uploadtext"                  => "השתמשו בטופס להלן כדי להעלות תמונות. כדי לראות או לחפש תמונות שהועלו בעבר אנא פנו ל[[{{ns:special}}:Imagelist|רשימת הקבצים המועלים]], וכמו כן, העלאות ומחיקות מתוארות ב[[{{ns:special}}:Log/delete]].
+"uploadtext"                  => "השתמשו בטופס להלן כדי להעלות תמונות. כדי לראות או לחפש תמונות שהועלו בעבר אנא פנו ל[[{{ns:special}}:Imagelist|רשימת הקבצים המועלים]], וכמו כן, העלאות מוצגות ב[[{{ns:special}}:Log/upload|יומן ההעלאות]], ומחיקות ב[[{{ns:special}}:Log/delete|יומן המחיקות]].
 
 כדי לכלול תמונה בדף, השתמשו בקישור בצורות '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>''' לתמונות בפורמט JPG (המיועד לתצלומים), '''<nowiki>[[{{ns:image}}:file.png]]</nowiki>''' לתמונות בפורמט PNG (לאיורים, שרטוטים וסמלים). כדי לקשר ישירות לקובץ קול, השתמשו בקישור בצורה '''<nowiki>[[{{ns:media}}:file.jpg]]</nowiki>''' לקבצי קול בפורמט OGG.",
 "uploadlog"                   => "יומן העלאות קבצים",
@@ -1074,9 +1083,9 @@ $NEWPAGE
 "undeletecomment"        => "תקציר:",
 "undeletedarticle"       => "שיחזר את [[:$1]]",
 "undeletedrevisions"     => "שיחזר $1 גרסאות",
-"undeletedtext"          => "הדף [[:$1]] שוחזר בהצלחה.
+"undeletedpage"          => "'''הדף $1 שוחזר בהצלחה.'''
 
-ראו [[{{ns:special}}:Log/delete]] לרשימה של מחיקות ושיחזורים אחרונים.",
+ראו את [[{{ns:special}}:Log/delete|יומן המחיקות]] לרשימה של מחיקות ושיחזורים אחרונים.",
 
 # Namespace form on various pages
 "namespace" => "מרחב שם:",
