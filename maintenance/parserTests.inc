@@ -92,6 +92,8 @@ class ParserTest {
 			# Matches anything
 			$this->regex = '';
 		}
+		
+		$this->hooks = array();
 	}
 
 	/**
@@ -142,6 +144,20 @@ class ParserTest {
 						wfDie( "'endarticle' without 'article' at line $n\n" );
 					}
 					$this->addArticle($this->chomp($data['article']), $this->chomp($data['text']), $n);
+					$data = array();
+					$section = null;
+					continue;
+				}
+				if( $section == 'endhooks' ) {
+					if( !isset( $data['hooks'] ) ) {
+						wfDie( "'endhooks' without 'hooks' at line $n\n" );
+					}
+					foreach( explode( "\n", $data['hooks'] ) as $line ) {
+						$line = trim( $line );
+						if( $line ) {
+							$this->requireHook( $line );
+						}
+					}
 					$data = array();
 					$section = null;
 					continue;
@@ -242,6 +258,9 @@ class ParserTest {
 		$noxml = (bool)preg_match( '~\\b noxml \\b~x', $opts );
 
 		$parser =& new Parser();
+		foreach( $this->hooks as $tag => $callback ) {
+			$parser->setHook( $tag, $callback );
+		}
 		wfRunHooks( 'ParserTestParser', array( &$parser ) );
 		
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
@@ -659,7 +678,6 @@ class ParserTest {
 	 * @param string $name the title, including any prefix
 	 * @param string $text the article text
 	 * @param int $line the input line number, for reporting errors
-	 * @static
 	 * @private
 	 */
 	function addArticle($name, $text, $line) {
@@ -677,6 +695,21 @@ class ParserTest {
 		$art = new Article($title);
 		$art->insertNewArticle($text, '', false, false );
 		$this->teardownGlobals();
+	}
+	
+	/**
+	 * Steal a callback function from the primary parser, save it for
+	 * application to our scary parser. If the hook is not installed,
+	 * die a painful dead to warn the others.
+	 * @param string $name
+	 */
+	private function requireHook( $name ) {
+		global $wgParser;
+		if( isset( $wgParser->mTagHooks[$name] ) ) {
+			$this->hooks[$name] = $wgParser->mTagHooks[$name];
+		} else {
+			wfDie( "This test suite requires the '$name' hook extension.\n" );
+		}
 	}
 
 	/*

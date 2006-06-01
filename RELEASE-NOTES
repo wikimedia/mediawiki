@@ -395,6 +395,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of lock contention etc. Duplicates are now removed at pop time instead of
   at insert time.
 * When showing the "blah has been undeleted" page, make sure it's a blue link
+* parserTests.php accepts a --file parameter to run an alternate test sutie
+* parser tests can now test extensions using !!hooks sections
+
 
 == Compatibility ==
 
