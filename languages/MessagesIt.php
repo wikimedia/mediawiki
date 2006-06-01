@@ -670,7 +670,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "show"			=> "mostra",
 "minoreditletter" => "m",
 "newpageletter" => "N",
-"sectionlink" => "â†’",
+"sectionlink" => "→",
 "number_of_watching_users_RCview" 	=> "[$1]",
 "number_of_watching_users_pageview" 	=> "[osservata da $1 utenti]",
 "rc_categories"	=> "Limita alle categorie (separate da \"|\")",
@@ -683,7 +683,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "reupload"		=> "Carica di nuovo",
 "reuploaddesc"	=> "Torna al modulo per il caricamento.",
 "uploadnologin" => "Accesso non effettuato",
-"uploadnologintext"	=> "Il caricamento dei file è consentito solo agli utenti che hanno eseguito [[Special:Userlogin|l'accesso]] al sito.",
+"uploadnologintext"	=> "Il caricamento dei file è consentito solo agli utenti registrati che hanno eseguito [[Special:Userlogin|l'accesso]] al sito.",
 "upload_directory_read_only" => "Il server web non è in grado di scrivere nella directory di upload ($1).",
 "uploaderror"	=> "Errore nel caricamento",
 "uploadtext"	=> "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:Imagelist|log dei file caricati]]. Caricamenti e cancellazioni di file sono registrati nel [[Special:Log/upload|log degli upload]].
@@ -880,10 +880,10 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' proces
 #
 "mailnologin"	=> "Nessun indirizzo cui inviare il messaggio",
 "mailnologintext" => "Per inviare messaggi e-mail ad altri utenti è necessario [[Special:Userlogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].",
-"emailuser"	=> "Scrivi all\'utente",
-"emailpage"	=> "Invia un messaggio e-mail all\'utente",
+"emailuser"	=> "Scrivi all'utente",
+"emailpage"	=> "Invia un messaggio e-mail all'utente",
 "emailpagetext"	=> "Se l'utente ha registrato un indirizzo e-mail valido nelle proprie preferenze, il modulo qui sotto consente di scrivere allo stesso un solo messaggio. L'indirizzo indicato nelle preferenze del mittente apparirà nel campo \"Da:\" del messaggio per consentire al destinatario l'eventuale risposta.",
-"usermailererror"	=> "L\'oggetto mail ha restituito l\'errore:",
+"usermailererror"	=> "L'oggetto mail ha restituito l'errore:",
 "defemailsubject"	=> "Messaggio da {{SITENAME}}",
 "noemailtitle"	=> "Nessun indirizzo e-mail",
 "noemailtext"	=> "Questo utente non ha indicato un indirizzo e-mail valido, oppure ha scelto di non ricevere messaggi di posta elettronica dagli altri utenti.",
@@ -1131,83 +1131,291 @@ La modifica più recente alla pagina è stata apportata da [[{{ns:User}}:$3|$3]]
 "unlockdbsuccesstext" => " Il database è stato sbloccato.",
 
 # Make sysop
+"makesysoptitle"	=> "Rendi amministratore un utente",
+"makesysoptext"	=> "Questo form può essere usato dai burocrati per far diventare amministratori gli utenti che non lo sono. Scrivere il nome dell'utente nella casella e premere il pulsante per farlo diventare amministratore.",
+"makesysopname"	=> "Nome dell'utente:",
+"makesysopsubmit"	=> "Rendi l'utente amministratore",
+"makesysopok"	=> "<b>L'utente \"$1\" è ora amministratore</b>",
+"makesysopfail"	=> "<b>Impossibile far diventare amministratore l'utente \"$1\". Verificare che il nome utente sia stato scritto correttamente.</b>",
+"setbureaucratflag"	=> "Assegna i diritti di burocrate",
+"setstewardflag"	=> "Assegna i diritti di steward",
+"rightslog"	=> "Diritti degli utenti",
+"rightslogtext"	=> "Questo è il log delle modifiche ai diritti assegnati agli utenti.",
+"rightslogentry"	=> "ha modificato l'appartenenza di $1 dal gruppo $2 al gruppo $3",
+"rights"	=> "Diritti:",
+"set_user_rights"	=> "Imposta diritti utente",
+"user_rights_set"	=> "<b>I diritti utente per \"$1\" sono stati aggiornati</b>",
+"set_rights_fail"	=> "<b>Impossibile aggiornare i diritti utente per \"$1\". Verificare che il nome utente sia stato scritto correttamente.</b>",
+"makesysop"	=> "Rendi l'utente amministratore",
+"already_sysop"	=> "Questo utente è già amministratore",
+"already_bureaucrat"	=> "Questo utente è già burocrate",
+"already_steward"	=> "Questo utente è già steward",
+"rightsnone"	=> "(nessuno)",
 
 # Move page
 #
-"movepage"		=> "Spostamento di pagina",
-"movepagetext"	=> "Con il modulo sottostante puoi rinominare una pagina, spostando anche tutta la sua cronologia al nuovo nome.
-Il vecchio titolo diverrà automaticamente un redirect che punta al nuovo titolo.
-I link alla vecchia pagina non saranno aggiornati (e punteranno quindi al redirect); accertati di [[Special:Manutenzioni|controllare con cura]] che non si creino doppi redirects o redirects interrotti.
-Resta nella tua responsabilità di accertarti che i link continuino a puntare verso dove devono dirigersi.
+"movepage"	=> "Spostamento di pagina",
+"movepagetext"	=> "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. I collegamenti esistenti non saranno aggiornati; verificare che lo spostamento non abbia creato doppi redirect o redirect errati. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
 
-Nota bene: la pagina '''non''' sarà spostata se vi fosse già un articolo con il nuovo nome, a meno che non sia una pagina vuota o un redirect, e sempre che non abbia cronologia. Questo significa che, se commetti un errore, puoi nuovamente rinominare una pagina col vecchio titolo, ma non puoi sovrascrivere una pagina già esistente.
+Si noti che la pagina '''non''' sarà spostata se ne esiste già una con il nuovo nome, a meno che non sia vuota o costituita solo da un redirect alla vecchia e sia priva di versioni precedenti. In caso di spostamento errato si può quindi tornare subito al vecchio titolo, e non è possibile sovrascrivere per errore una pagina già esistente.
 
-<b>ATTENZIONE!</b>
-Questo cambiamento drastico potrebbe creare inattesi contrattempi, specialmente se si tratta di una pagina molto visitata. Accertati di aver ben valutato le conseguenze dello spostamento, prima di procedere. Nel dubbio, contatta un Amministratore.",
-"movepagetalktext" => "La corrispondente pagina di discussione, se esiste, sarà spostata automaticamente insieme all'articolo, '''tranne che nei seguenti casi:'''
-*Spostamento della pagina fra i namespaces,
-*Una pagina di discussione (non vuota) già esiste per il nuovo nome, oppure
-*Hai deselezionato la casellina qui sotto.
-In questi casi, se lo ritieni opportuno, dovrai spostare o aggiungere manualmente la pagina di discussione.",
-"movearticle"	=> "Rinomina articolo",
-"movenologin"	=> "Non hai effettuato il login",
-"movenologintext" => "Devi essere un Utente registrato ed aver effettuato il [[Special:Userlogin|login]]
-per poter spostare una pagina.",
-"newtitle"		=> "Al nuovo titolo di",
-"movepagebtn"	=> "Sposta questa pagina",
+<b>ATTENZIONE:</b>
+Un cambiamento così drastico può creare contrattempi e problemi, soprattutto per le pagine più visitate. Accertarsi di aver valutato le conseguenze dello spostamento prima di procedere.",
+"movepagetalktext"	=> "La corrispondente pagina di discussione, se esiste, sarà spostata automaticamente insieme alla pagina principale, '''tranne che nei seguenti casi:'''
+* Lo spostamento della pagina è tra namespace diversi
+* In corrispondenza del nuovo titolo esiste già una pagina di discussione (non vuota)
+* La casella qui sotto è stata deselezionata.
+
+In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manualmente le informazioni contenute nella pagina di discussione.",
+"movearticle"	=> "Sposta la pagina",
+"movenologin"	=> "Accesso non effettuato",
+"movenologintext"	=> "Lo spostamento delle pagine è consentito solo agli utenti registrati che hanno eseguito l'[[Special:Userlogin|accesso]] al sito.",
+"newtitle"	=> "Nuovo titolo:",
+"movepagebtn"	=> "Sposta la pagina",
 "pagemovedsub"	=> "Spostamento effettuato con successo",
-"pagemovedtext" => "Pagina \"[[$1]]\" rinominata in \"[[$2]]\".",
-"articleexists" => "Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br />
-Scegli, per cortesia, un titolo diverso per l'articolo.",
-"talkexists"	=> "La pagina è stata spostata correttamente, ma non si è potuto spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Per favore, modifica manualmente i contenuti delle due pagine discussione, così da mantenerle entrambe per non perdere potenzialmente interessanti riflessioni.",
-"movedto"		=> "spostata a",
-"movetalk"		=> "Sposta anche la corrispondente pagina \"discussione\", se possibile.",
-"talkpagemoved" => "Anche la corrispondente pagina di discussione è stata spostata.",
-"talkpagenotmoved" => "La corrispondente pagina di discussione <strong>non è stata spostata</strong>."
+"pagemovedtext"	=> "La pagina \"[[$1]]\" è stata spostata al titolo \"[[$2]]\".",
+"articleexists"	=> "Una pagina con questo nome esiste già, oppure il nome scelto non è valido. Scegliere un altro titolo.",
+"talkexists"	=> "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
+"movedto"	=> "spostata a",
+"movetalk"	=> "Sposta anche la pagina di discussione.",
+"talkpagemoved"	=> "Anche la rispettiva pagina di discussione è stata spostata.",
+"talkpagenotmoved"	=> "La rispettiva pagina di discussione <strong>non</strong> è stata spostata.",
+"1movedto2"	=> "ha spostato [[$1]] a [[$2]]",
+"1movedto2_redir"	=> "[[$1]] spostata a [[$2]] tramite redirect",
+"movelogpage"	=> "Spostamenti",
+"movelogpagetext"	=> "Questo è l'elenco delle pagine spostate.",
+"movereason"	=> "Motivo",
+"revertmove"	=> "ripristina",
+"delete_and_move"	=> "Cancella e sposta",
+"delete_and_move_text"	=> "==Richiesta di cancellazione==
+
+La pagina di destinazione [[$1]] esiste già. Si desidera cancellarla per rendere possibile lo spostamento?",
+"delete_and_move_confirm"	=> "Sì, sovrascrivi la pagina esistente",
+"delete_and_move_reason"	=> "Cancellata per rendere possibile lo spostamento",
+"selfmove"	=> "Il nuovo titolo è uguale al vecchio; impossibile spostare la pagina su se stessa.",
+"immobile_namespace"	=> "Il nuovo titolo corrisponde a una pagina speciale; impossibile spostare pagine in quel namespace.",
 
 # Export
+"export"	=> "Esporta pagine",
+"exporttext"	=> "È possibile esportare il testo e la cronologia delle modifiche di una pagina o di un gruppo di pagine in formato XML per importarle in altri siti che utilizzano il software MediaWiki, attraverso la pagina Special:Import.
+
+Per esportare le pagine indicare i titoli nella casella di testo sottostante, uno per riga, e specificare se si desidera ottenere la versione corrente e tutte le versioni precedenti, con i dati della cronologia della pagina, oppure soltanto l'ultima versione e i dati corrispondenti all'ultima modifica.
+
+In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] per esportare {{Mediawiki:mainpage}}.",
+"exportcuronly"	=> "Includi solo la revisione attuale, non l'intera cronologia",
+"exportnohistory"	=> "----
+'''Nota:''' l'esportazione dell'intera cronologia delle pagine attraverso questa interfaccia è stata disattivata per motivi legati alle prestazioni del sistema.",
 
 # Namespace 8 related
 
+"allmessages"	=> "Messaggi di sistema",
+"allmessagesname"	=> "Nome",
+"allmessagesdefault"	=> "Testo predefinito",
+"allmessagescurrent"	=> "Testo attuale",
+"allmessagestext"	=> "Questa è la lista di tutti i messaggi di sistema disponibili nel namespace MediaWiki:",
+"allmessagesnotsupportedUI"	=> "La lingua selezionata per l'interfaccia, <b>$1</b>, non è supportata da Special:Allmessages su questo sito.",
+"allmessagesnotsupportedDB"	=> "'''Special:AllMessages''' non è supportato perché il flag '''\$wgUseDatabaseMessages''' non è attivo.",
+"allmessagesfilter"	=> "Filtro sui messaggi:",
+"allmessagesmodified"	=> "Mostra solo quelli modificati",
+
+
 # Thumbnails
 
+"thumbnail-more"	=> "Ingrandisci",
+"missingimage"	=> "<b>Immagine mancante</b><br /><i>$1</i>",
+"filemissing"	=> "File mancante",
+"thumbnail_error"	=> "Errore nella creazione della miniatura: $1",
+
 # Special:Import
+"import"	=> "Importa pagine",
+"importinterwiki"	=> "Importazione transwiki",
+"importtext"	=> "Si prega di esportare il file dal sito wiki di origine con la funzione Special:Export, salvarlo sul proprio disco e poi caricarlo qui.",
+"importfailed"	=> "Importazione non riuscita: $1",
+"importnotext"	=> "Testo vuoto o mancante",
+"importsuccess"	=> "Importazione riuscita.",
+"importhistoryconflict"	=> "La cronologia contiene delle versioni in conflitto (questa pagina potrebbe essere già stata importata)",
+"importnosources"	=> "Non è stata definita una fonte per l'importazione transwiki; l'importazione diretta della cronologia non è attiva.",
+"importnofile"	=> "Non è stato caricato nessun file per l'importazione,",
+"importuploaderror"	=> "Importazione del file per l'importazione non riuscita; è possibile che il file sia di dimensioni superiori a quelle ammesse per gli upload.",
 
 # Keyboard access keys for power users
+"accesskey-search"	=> "f",
+"accesskey-minoredit"	=> "i",
+"accesskey-save"	=> "s",
+"accesskey-preview"	=> "p",
+"accesskey-diff"	=> "d",
+"accesskey-compareselectedversions"	=> "v",
+"accesskey-watch"	=> "w",
 
 # tooltip help for some actions, most are in Monobook.js
+"tooltip-search"	=> "Cerca in {{SITENAME}} [alt-f]",
+"tooltip-minoredit"	=> "Segnala come modifica minore [alt-i]",
+"tooltip-save"	=> "Salva le modifiche [alt-s]",
+"tooltip-preview"	=> "Anteprima delle modifiche (consigliata, prima di salvare!) [alt-p]",
+"tooltip-diff"	=> "Guarda le modifiche apportate al testo. [alt-d]",
+"tooltip-compareselectedversions"	=> "Guarda le differenze tra le due versioni selezionate di questa pagina. [alt-v]",
+"tooltip-watch"	=> "Aggiungi questa pagina alla lista degli osservati speciali [alt-w]",
 
 # stylesheets
+"Monobook.css" => "/* modificare questo file per personalizzare l'aspetto della skin MonoBook per l'intero sito */",
 
 # Metadata
+"nodublincore"	=> "Metadati Dublin Core RDF non attivi su questo server.",
+"nocreativecommons"	=> "Metadati Commons RDF non attivi su questo server.",
+"notacceptable"	=> "Il server wiki non è in grado di fornire i dati in un formato leggibile dal client utilizzato.",
 
 # Attribution
+"anonymous"	=> "uno o più utenti anonimi di {{SITENAME}}",
+"siteuser"	=> "$1, utente di {{SITENAME}}",
+"lastmodifiedby"	=> "Questa pagina è stata modificata per l'ultima volta il $1 da $2.",
+"and"	=> "e",
+"othercontribs"	=> "Il testo attuale è basato su contributi di $1.",
+"others"	=> "altri",
+"siteusers"	=> "$1, utenti di {{SITENAME}}",
+"creditspage"	=> "Autori della pagina",
+"nocredits"	=> "Nessuna informazione sugli autori disponibile per questa pagina.",
 
 # Spam protection
+"spamprotectiontitle"	=> "Filtro anti-spam",
+"spamprotectiontext"	=> "La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno bloccato.",
+"spamprotectionmatch"	=> "Il filtro anti-spam è stato attivato dal seguente testo: $1",
+"subcategorycount"	=> "Questa categoria contiene {{PLURAL:$1|una sottocategoria| $1 sottocategorie}}.",
+"categoryarticlecount"	=> "Questa categoria contiene {{PLURAL:$1|una pagina|$1 pagine}}.",
+"listingcontinuesabbrev"	=> " cont.",
+"spambot_username"	=> "MediaWiki - sistema di rimozione spam",
+"spam_reverting"	=> "Ripristinata l'ultima versione priva di collegamenti a $1",
+"spam_blanking"	=> "Pagina svuotata, tutte le versioni contenevano collegamenti a $1",
 
 # Info page
+"infosubtitle"	=> "Informazioni per la pagina",
+"numedits"	=> "Numero di modifiche (pagina): $1",
+"numtalkedits"	=> "Numero di modifiche (pagina di discussione): $1",
+"numwatchers"	=> "Numero di osservatori: $1",
+"numauthors"	=> "Numero di autori distinti (pagina): $1",
+"numtalkauthors"	=> "Numero di autori distinti (pagina di discussione): $1",
 
 # Math options
+"mw_math_png"	=> "Mostra sempre in PNG",
+"mw_math_simple"	=> "HTML se molto semplice, altrimenti PNG",
+"mw_math_html"	=> "HTML se possibile, altrimenti PNG",
+"mw_math_source"	=> "Lascia in formato TeX (per browser testuali)",
+"mw_math_modern"	=> "Formato consigliato per i browser moderni",
+"mw_math_mathml"	=> "Usa MathML se possibile (sperimentale)",
 
 # Patrolling
+"markaspatrolleddiff"	=> "Segna la modifica come verificata",
+"markaspatrolledlink"	=> "[$1]",
+"markaspatrolledtext"	=> "Segna questa voce come verificata",
+"markedaspatrolled"	=> "Segnato come verificato",
+"markedaspatrolledtext"	=> "La revisione selezionata è stata segnata come verificata.",
+"rcpatroldisabled"	=> "La verifica delle ultime modifiche è disattivata",
+"rcpatroldisabledtext"	=> "La funzione di verifica delle ultime modifiche al momento non è attiva.",
+"markedaspatrollederror"	=> "Impossibile contrassegnare la voce come verificata",
+"markedaspatrollederrortext"	=> "Occorre specificare una revisione da contrassegnare come verificata.",
 
 # Monobook.js: tooltips and access keys for monobook
+'Monobook.js' => '/* tooltips and access keys */
+ta = new Object();
+ta[\'pt-userpage\'] = new Array(\'.\',\'La tua pagina utente\'); 
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La pagina utente di questo indirizzo IP\'); 
+ta[\'pt-mytalk\'] = new Array(\'n\',\'La tua pagina di discussione\'); 
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Discussioni sulle modifiche fatte da questo indirizzo IP\'); 
+ta[\'pt-preferences\'] = new Array(\'\',\'Le tue preferenze\'); 
+ta[\'pt-watchlist\'] = new Array(\'l\',\'La lista delle pagine che stai tenendo sotto osservazione\'); 
+ta[\'pt-mycontris\'] = new Array(\'y\',\'L\\\'elenco dei tuoi contributi\'); 
+ta[\'pt-login\'] = new Array(\'o\',\'La registrazione è consigliata, anche se non obbligatoria\'); 
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'La registrazione è consigliata, anche se non obbligatoria\'); 
+ta[\'pt-logout\'] = new Array(\'o\',\'Uscita (logout)\'); 
+ta[\'ca-talk\'] = new Array(\'t\',\'Vedi le discussioni relative a questa pagina\'); 
+ta[\'ca-edit\'] = new Array(\'e\',\'Puoi modificare questa pagina. Per favore usa il pulsante di anteprima prima di salvare\'); 
+ta[\'ca-addsection\'] = new Array(\'+\',\'Aggiungi un commento a questa discussione\'); 
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Questa pagina è protetta, ma puoi vedere il suo codice sorgente\'); 
+ta[\'ca-history\'] = new Array(\'h\',\'Versioni precedenti di questa pagina\'); 
+ta[\'ca-protect\'] = new Array(\'=\',\'Proteggi questa pagina\');
+ta[\'ca-unprotect\'] = new Array(\'=\',\'Sblocca questa pagina\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Cancella questa pagina\'); 
+ta[\'ca-undelete\'] = new Array(\'d\',\'Ripristina la pagina com\\\'era prima della cancellazione\'); 
+ta[\'ca-move\'] = new Array(\'m\',\'Sposta questa pagina (cambia titolo)\'); 
+ta[\'ca-watch\'] = new Array(\'w\',\'Aggiungi questa pagina alla tua lista di osservati speciali\'); 
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Elimina questa pagina dalla tua lista di osservati speciali\'); 
+ta[\'search\'] = new Array(\'f\',\'Cerca all\\\'interno del sito\'); 
+ta[\'p-logo\'] = new Array(\'\',\'Pagina principale\'); 
+ta[\'n-mainpage\'] = new Array(\'z\',\'Visita la pagina principale\'); 
+ta[\'n-portal\'] = new Array(\'\',\'Descrizione del progetto, cosa puoi fare, dove trovare le cose\'); 
+ta[\'n-currentevents\'] = new Array(\'\',\'Informazioni sugli eventi di attualità\'); 
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Elenco delle ultime modifiche del sito\'); 
+ta[\'n-randompage\'] = new Array(\'x\',\'Mostra una pagina a caso\'); 
+ta[\'n-help\'] = new Array(\'a\',\'Pagine di aiuto\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Aiutaci\'); 
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Elenco di tutte le pagine che sono collegate a questa\'); 
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Elenco delle ultime modifiche alle pagine collegate a questa\'); 
+ta[\'feed-rss\'] = new Array(\'\',\'Feed RSS per questa pagina\'); 
+ta[\'feed-atom\'] = new Array(\'\',\'Feed Atom per questa pagina\'); 
+ta[\'t-contributions\'] = new Array(\'\',\'Lista dei contributi di questo utente\'); 
+ta[\'t-emailuser\'] = new Array(\'\',\'Invia un messaggio e-mail a questo utente\'); 
+ta[\'t-upload\'] = new Array(\'u\',\'Carica immagini o file multimediali\'); 
+ta[\'t-specialpages\'] = new Array(\'q\',\'Lista di tutte le pagine speciali\'); 
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'Vedi la voce\'); 
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'Vedi la pagina utente\'); 
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'Vedi la pagina del file multimediale\'); 
+ta[\'ca-nstab-special\'] = new Array(\'\',\'Questa è una pagina speciale, non può essere modificata\'); 
+ta[\'ca-nstab-wp\'] = new Array(\'c\',\'Vedi la pagina di servizio\'); 
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'Vedi la pagina dell\\\'immagine\'); 
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Vedi il messaggio di sistema\'); 
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vedi il template\'); 
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Vedi la pagina di aiuto\'); 
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vedi la pagina della categoria\');',
 
 # image deletion
+"deletedrevision"	=> "Revisione precedente, cancellata: $1.",
 
 # browsing diffs
+"previousdiff"	=> "← Differenza precedente",
+"nextdiff"		=> "Differenza successiva →",
+
+"imagemaxsize"	=> "Dimensione massima delle immagini sulle relative pagine di discussione:",
+"thumbsize"	=> "Grandezza delle miniature:",
+"showbigimage"	=> "Scarica la versione ad alta risoluzione ($1x$2, $3 KB)",
+
+"newimages"	=> "Galleria dei nuovi file",
+"showhidebots"	=> "($1 i bot)",
+"noimages"	=> "Non c'è nulla da vedere.",
 
 # short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.
 # 'variantname-zh-sg' => 'disable',
 
+# Not translated
+
 # variants for Serbian language
 
+# Not translated
+
 # labels for User: and Title: on Special:Log pages
+"specialloguserlabel"	=> "Utente:",
+"speciallogtitlelabel"	=> "Titolo:",
+
+"passwordtooshort"	=> "La password inserita è troppo breve. Deve contenere almeno $1 caratteri.",
 
 # Media Warning
+"mediawarning"	=> "'''Attenzione''': Questo file può contenere codice maligno; la sua esecuzione può danneggiare il proprio sistema informatico.
+
+<hr>",
+
+"fileinfo"	=> "Dimensioni: $1 KB, Tipo MIME: <code>$2</code>",
 
 # Metadata
+"metadata"	=> "Metadati",
+"metadata-help"	=> "Questo file contiene informazioni aggiuntive, probabilmente aggiunte dalla fotocamera o dallo scanner usati per crearla o digitalizzarla. Se il file è stato modificato, alcuni dettagli potrebbero non corrispondere alle modifiche apportate.",
+"metadata-expand"	=> "Mostra dettagli",
+"metadata-collapse"	=> "Nascondi dettagli",
+"metadata-fields"	=> "I campi relativi ai metadati EXIF elencati in questo messaggio verranno mostrati sulla pagina dell'immagine quando la tabella dei metadati è presentata nella forma breve. Per impostazione predefinita, gli altri campi verranno nascosti.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength",
 
 # Exif tags
 
@@ -1216,24 +1424,79 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 # Exif attributes
 
 # external editor support
+"edit-externally"	=> "Modifica questo file usando un programma esterno",
+"edit-externally-help"	=> "Per maggiori informazioni consultare le [http://meta.wikimedia.org/wiki/Help:External_editors istruzioni] (in inglese)",
 
 # 'all' in various places, this might be different for inflected languages
+"recentchangesall"	=> "tutte",
+"imagelistall"	=> "tutte",
+"watchlistall1"	=> "tutte",
+"watchlistall2"	=> "tutte",
+"namespacesall"	=> "Tutti",
 
 # E-mail address confirmation
+"confirmemail"	=> "Conferma indirizzo e-mail",
+"confirmemail_text"	=> "Questo sito richiede la verifica dell'indirizzo e-mail prima di poter usare le funzioni connesse all'email. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
+"confirmemail_send"	=> "Invia un codice di conferma via e-mail.",
+"confirmemail_sent"	=> "Messaggio e-mail di conferma inviato.",
+"confirmemail_sendfailed"	=> "Impossibile inviare il messaggio e-mail di conferma. Verificare che l'indirizzo non contenga caratteri non validi.",
+"confirmemail_invalid"	=> "Codice di conferma non valido. Il codice potrebbe essere scaduto.",
+"confirmemail_needlogin"	=> "È necessario $1 per confermare il proprio indirizzo e-mail.",
+"confirmemail_success"	=> "L'indirizzo e-mail è confermato. Ora è possibile eseguire l'accesso e fare pieno uso del sito.",
+"confirmemail_loggedin"	=> "L'indirizzo e-mail è stato confermato.",
+"confirmemail_error"	=> "Errore nel salvataggio della conferma.",
+
+"confirmemail_subject"	=> "{{SITENAME}}: richiesta di conferma dell'indirizzo",
+"confirmemail_body"	=> "Qualcuno, probabilmente tu stesso dall'indirizzo IP $1, ha registrato l'account \"$2\" su {{SITENAME}} indicando questo indirizzo e-mail.
+
+Per confermare che l'account ti appartiene e attivare le funzioni relative all'invio di e-mail su {{SITENAME}}, apri il collegamento seguente con il tuo browser:
+
+$3
+
+Se l'account *non* ti appartiene, non seguire il collegamento. Questo codice di conferma scadrà automaticamente alle $4.",
 
 # Inputbox extension, may be useful in other contexts as well
+"tryexact"	=> "Cerca corrispondenza esatta",
+"searchfulltext"	=> "Ricerca nel testo",
+"createarticle"	=> "Crea voce",
 
 # Scary transclusion
+"scarytranscludedisabled"	=> "[L'inclusione di pagine tra siti wiki non è attiva]",
+"scarytranscludefailed"	=> "[Errore: Impossibile ottenere il template $1]",
+"scarytranscludetoolong"	=> "[Errore: URL troppo lunga]",
 
 # Trackbacks
+"trackback"	=> "<div id=\"mw_trackbacks\">
+Informazioni di trackback per questa voce:<br />
+$1
+</div>",
+"trackback" => "; $4$5 : [$2 $1]",
+"trackbackexcerpt"	=> "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>",
+"trackbackremove"	=> " ([$1 Elimina])",
+"trackbacklink"	=> "Trackback",
+"trackbackdeleteok"	=> "Informazioni di trackback eliminate correttamente.",
 
 # delete conflict
+"deletedwhileediting"	=> "Attenzione: Questa pagina è stata cancellata dopo che hai iniziato a modificarla.",
+"confirmrecreate"	=> "L'utente [[Utente:$1|$1]] ([[Discussioni utente:$1|discussioni]]) ha cancellato questa voce dopo che hai iniziato a modificarla, per il seguente motivo: ''$2''
+Per favore, conferma che desideri veramente ricreare questa voce.",
+"recreate"	=> "Ricrea",
 
 # HTML dump
+"redirectingto"	=> "Reindirizzamento a [[$1]]...",
 
 # action=purge
+"confirm_purge"	=> "Si desidera pulire la cache di questa pagina?\n\n$1",
+"confirm_purge_button"	=> "Conferma",
+
+"youhavenewmessagesmulti"	=> "Hai nuovi messaggi su $1",
+"searchcontaining"	=> "Ricerca delle voci che contengono ''$1''.",
+"searchnamed"	=> "Ricerca delle voci con titolo ''$1''.",
+"articletitles"	=> "Ricerca delle voci che iniziano con ''$1''",
+"hideresults"	=> "Nascondi i risultati",
 
 # DISPLAYTITLE
+"displaytitle"	=> "(Per i collegamenti a questa pagina, usare [[$1]])",
 
 );
 
