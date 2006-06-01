@@ -311,20 +311,20 @@ class Parser
 	function getOptions() { return $this->mOptions; }
 
 	/**
-	 * Replaces all occurrences of <$tag>content</$tag> in the text
-	 * with a random marker and returns the new text. the output parameter
-	 * $content will be an associative array filled with data on the form
-	 * $unique_marker => content.
+	 * Replaces all occurrences of HTML-style comments and the given tags
+	 * in the text with a random marker and returns teh next text. The output
+	 * parameter $matches will be an associative array filled with data in
+	 * the form:
+	 *   'UNIQ-xxxxx' => array(
+	 *     'element',
+	 *     'tag content',
+	 *     array( 'param' => 'x' ),
+	 *     '<element param="x">tag content</element>' ) )
 	 *
-	 * If $content is already set, the additional entries will be appended
-	 * If $tag is set to STRIP_COMMENTS, the function will extract
-	 * <!-- HTML comments -->
+	 * @param $elements list of element names. Comments are always extracted.
+	 * @param $text Source text string.
+	 * @param $uniq_prefix
 	 *
-	 * $output: array( 'UNIQ-xxxxx' => array(
-	 *    'element',
-	 *    'tag content',
-	 *    array( 'param' => 'x' ),
-	 *    '<element param="x">' ) )
 	 * @private
 	 * @static
 	 */
@@ -334,58 +334,59 @@ class Parser
 		$stripped = '';
 		$matches = array();
 
-		if( $elements == STRIP_COMMENTS ) {
-			$start = '/<!--()()/';
-		} else {
-			$taglist = implode( '|', $elements );
-			$start = "/<($taglist)(\\s+[^>]*|\\s*\/?)>/i";
-		}
+		$taglist = implode( '|', $elements );
+		$start = "/<($taglist)(\\s+[^>]*?|\\s*?)(\/?>)|<(!--)/i";
 
 		while ( '' != $text ) {
 			$p = preg_split( $start, $text, 2, PREG_SPLIT_DELIM_CAPTURE );
 			$stripped .= $p[0];
-			if( count( $p ) < 4 ) {
+			if( count( $p ) < 5 ) {
 				break;
 			}
-			$element    = $p[1];
-			$attributes = $p[2];
-			$inside     = $p[3];
-
-			// If $attributes ends with '/', we have an empty element tag, <tag />
-			if( $element != '' && substr( $attributes, -1 ) == '/' ) {
-				$attributes = substr( $attributes, 0, -1);
-				$empty = '/';
+			if( count( $p ) > 5 ) {
+				// comment
+				$element    = $p[4];
+				$attributes = '';
+				$close      = '';
+				$inside     = $p[5];
 			} else {
-				$empty = '';
+				// tag
+				$element    = $p[1];
+				$attributes = $p[2];
+				$close      = $p[3];
+				$inside     = $p[4];
 			}
 
 			$marker = "$uniq_prefix-$element-$rand" . sprintf('%08X', $n++);
 			$stripped .= $marker;
 
-			if ( $empty === '/' ) {
+			if ( $close === '/>' ) {
 				// Empty element tag, <tag />
 				$content = null;
 				$text = $inside;
+				$tail = null;
 			} else {
-				if( $element ) {
-					$end = "/<\\/$element\\s*>/i";
+				if( $element == '!--' ) {
+					$end = '/(-->)/';
 				} else {
-					$end = '/-->/';
+					$end = "/(<\\/$element\\s*>)/i";
 				}
-				$q = preg_split( $end, $inside, 2 );
+				$q = preg_split( $end, $inside, 2, PREG_SPLIT_DELIM_CAPTURE );
 				$content = $q[0];
-				if( count( $q ) < 2 ) {
+				if( count( $q ) < 3 ) {
 					# No end tag -- let it run out to the end of the text.
+					$tail = '';
 					$text = '';
 				} else {
-					$text = $q[1];
+					$tail = $q[1];
+					$text = $q[2];
 				}
 			}
 			
 			$matches[$marker] = array( $element,
 				$content,
 				Sanitizer::decodeTagAttributes( $attributes ),
-				"<$element$attributes$empty>" );
+				"<$element$attributes$close$content$tail" );
 		}
 		return $stripped;
 	}
@@ -409,6 +410,7 @@ class Parser
 		# Replace any instances of the placeholders
 		$uniq_prefix = $this->mUniqPrefix;
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
+		$commentState = array();
 		
 		$elements = array_merge(
 			array( 'nowiki', 'pre', 'gallery' ),
@@ -422,27 +424,24 @@ class Parser
 		}
 		
 
-		// Strip comments in a first pass.
-		// This saves us from needlessly rendering extensions in comment text
-		$text = Parser::extractTagsAndParams(STRIP_COMMENTS, $text, $comment_matches, $uniq_prefix);
-		$commentState = array();
-		foreach( $comment_matches as $marker => $data ){
-			list( $element, $content, $params, $tag ) = $data;
-			$commentState[$marker] = '<!--' . $content . '-->';
-		}
-		
 		$matches = array();
 		$text = Parser::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
 		
 		foreach( $matches as $marker => $data ) {
 			list( $element, $content, $params, $tag ) = $data;
-			// Restore any comments; the extension can deal with them.
-			if( $content !== null) {
-				$content = strtr( $content, $commentState );
-			}
 			if( $render ) {
 				$tagName = strtolower( $element );
 				switch( $tagName ) {
+				case '!--':
+					// Comment
+					if( substr( $tag, -3 ) == '-->' ) {
+						$output = $tag;
+					} else {
+						// Unclosed comment in input.
+						// Close it so later stripping can remove it
+						$output = "$tag-->";
+					}
+					break;
 				case 'html':
 					if( $wgRawHtml ) {
 						$output = $content;
@@ -473,25 +472,20 @@ class Parser
 				}
 			} else {
 				// Just stripping tags; keep the source
-				if( $content === null ) {
-					$output = $tag;
-				} else {
-					$output = "$tag$content</$element>";
-				}
+				$output = $tag;
 			}
-			$state[$element][$marker] = $output;
+			if( !$stripcomments && $element == '!--' ) {
+				$commentState[$marker] = $output;
+			} else {
+				$state[$element][$marker] = $output;
+			}
 		}
 
 		# Unstrip comments unless explicitly told otherwise.
 		# (The comments are always stripped prior to this point, so as to
 		# not invoke any extension tags / parser hooks contained within
 		# a comment.)
-		if ( $stripcomments ) {
-			// Add remaining comments to the state array
-			foreach( $commentState as $marker => $content ) {
-				$state['comment'][$marker] = $content;
-			}
-		} else {
+		if ( !$stripcomments ) {
 			// Put them all back and forget them
 			$text = strtr( $text, $commentState );
 		}
