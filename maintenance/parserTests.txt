@@ -2419,6 +2419,26 @@ pst
 This template has <!-- a comment --> in it.
 !! end
 
+!! test
+pre-save transform: unclosed tag
+!! options
+pst
+!! input
+<nowiki>'''missing end tag!'''
+!! result
+<nowiki>'''not wiki'''
+!! end
+
+!! test
+pre-save transform: mixed tag case
+!! options
+pst
+!! input
+<NOwiki>'''missing end tag!'''</noWIKI>
+!! result
+<NOwiki>'''not wiki'''</noWIKI>
+!! end
+
 
 !! article
 Template:dangerous
