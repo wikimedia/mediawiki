@@ -23,6 +23,9 @@
  * @subpackage Search
  */
 
+/** */
+require_once( 'SearchEngine.php' );
+
 /**
  * @todo document
  * @package MediaWiki

@@ -4,6 +4,10 @@
  * @todo document
  */
 
+/** */
+require_once( 'Database.php' );
+require_once( 'Article.php' );
+
 /** @+ */
 define( 'MW_REV_DELETED_TEXT',       1 );
 define( 'MW_REV_DELETED_COMMENT',    2 );
@@ -510,6 +514,7 @@ class Revision {
 				wfProfileOut( $fname );
 				return false;
 			}
+			require_once('ExternalStore.php');
 			$text=ExternalStore::fetchFromURL($url);
 		}
 
@@ -599,6 +604,7 @@ class Revision {
 			} else {
 				$store = $wgDefaultExternalStore;
 			}
+			require_once('ExternalStore.php');
 			// Store and get the URL
 			$data = ExternalStore::insert( $store, $data );
 			if ( !$data ) {

@@ -3,6 +3,8 @@
 if( !defined( 'MEDIAWIKI' ) )
         die( -1 );
 
+require_once('WebRequest.php');
+
 /**
  * Function converts an Javascript escaped string back into a string with
  * specified charset (default is UTF-8).

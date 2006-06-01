@@ -24,6 +24,9 @@
  * @subpackage Search
  */
 
+/** */
+require_once( 'SearchEngine.php' );
+
 /** @package MediaWiki */
 class SearchMySQL extends SearchEngine {
 	/**

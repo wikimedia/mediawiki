@@ -167,6 +167,17 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 	}
 }
 
+
+/**
+ * One-step cache variable to hold base blobs; operations that
+ * pull multiple revisions may often pull multiple times from
+ * the same blob. By keeping the last-used one open, we avoid
+ * redundant unserialization and decompression overhead.
+ */
+global $wgBlobCache;
+$wgBlobCache = array();
+
+
 /**
  * @package MediaWiki
  */
@@ -204,15 +215,6 @@ class HistoryBlobStub {
 	function getText() {
 		$fname = 'HistoryBlob::getText';
 		global $wgBlobCache;
-		/**
-		 * One-step cache variable to hold base blobs; operations that
-		 * pull multiple revisions may often pull multiple times from
-		 * the same blob. By keeping the last-used one open, we avoid
-		 * redundant unserialization and decompression overhead.
-		 */
-		if (!is_array($wgBlobCache)) {
-			$wgBlobCache = array();
-		}
 		if( isset( $wgBlobCache[$this->mOldId] ) ) {
 			$obj = $wgBlobCache[$this->mOldId];
 		} else {
@@ -229,6 +231,7 @@ class HistoryBlobStub {
 					wfProfileOut( $fname );
 					return false;
 				}
+				require_once('ExternalStore.php');
 				$row->old_text=ExternalStore::fetchFromUrl($url);
 
 			}

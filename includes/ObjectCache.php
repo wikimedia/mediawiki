@@ -33,91 +33,93 @@ class FakeMemCachedClient {
 global $wgCaches;
 $wgCaches = array();
 
-class ObjectCacheManager {
-	/* @static */
-	function getCache( $inputType ) {
-		global $wgCaches, $wgMemCachedServers, $wgMemCachedDebug, $wgMemCachedPersistent;
-		$cache = false;
+/** @todo document */
+function &wfGetCache( $inputType ) {
+	global $wgCaches, $wgMemCachedServers, $wgMemCachedDebug, $wgMemCachedPersistent;
+	$cache = false;
 
-		if ( $inputType == CACHE_ANYTHING ) {
-			reset( $wgCaches );
-			$type = key( $wgCaches );
-			if ( $type === false || $type === CACHE_NONE ) {
-				$type = CACHE_DB;
-			}
-		} else {
-			$type = $inputType;
+	if ( $inputType == CACHE_ANYTHING ) {
+		reset( $wgCaches );
+		$type = key( $wgCaches );
+		if ( $type === false || $type === CACHE_NONE ) {
+			$type = CACHE_DB;
 		}
+	} else {
+		$type = $inputType;
+	}
 
-		if ( $type == CACHE_MEMCACHED ) {
-			if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ){
-				$wgCaches[CACHE_DB] = new MemCachedClientforWiki(
-					array('persistant' => $wgMemCachedPersistent, 'compress_threshold' => 1500 ) );
-				$cache =& $wgCaches[CACHE_DB];
-				$cache->set_servers( $wgMemCachedServers );
-				$cache->set_debug( $wgMemCachedDebug );
-			}
-		} elseif ( $type == CACHE_ACCEL ) {
-			if ( !array_key_exists( CACHE_ACCEL, $wgCaches ) ) {
-				if ( function_exists( 'eaccelerator_get' ) ) {
-					$wgCaches[CACHE_ACCEL] = new eAccelBagOStuff;
-				} elseif ( function_exists( 'apc_fetch') ) {
-					$wgCaches[CACHE_ACCEL] = new APCBagOStuff;
-				} elseif ( function_exists( 'mmcache_get' ) ) {
-					$wgCaches[CACHE_ACCEL] = new TurckBagOStuff;
-				} else {
-					$wgCaches[CACHE_ACCEL] = false;
+	if ( $type == CACHE_MEMCACHED ) {
+		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ){
+			require_once( 'memcached-client.php' );
+
+			if (!class_exists("MemcachedClientforWiki")) {
+				class MemCachedClientforWiki extends memcached {
+					function _debugprint( $text ) {
+						wfDebug( "memcached: $text\n" );
+					}
 				}
 			}
-			if ( $wgCaches[CACHE_ACCEL] !== false ) {
-				$cache =& $wgCaches[CACHE_ACCEL];
-			}
-		}
 
-		if ( $type == CACHE_DB || ( $inputType == CACHE_ANYTHING && $cache === false ) ) {
-			if ( !array_key_exists( CACHE_DB, $wgCaches ) ) {
-				$wgCaches[CACHE_DB] = new MediaWikiBagOStuff('objectcache');
-			}
+			$wgCaches[CACHE_DB] = new MemCachedClientforWiki(
+				array('persistant' => $wgMemCachedPersistent, 'compress_threshold' => 1500 ) );
 			$cache =& $wgCaches[CACHE_DB];
+			$cache->set_servers( $wgMemCachedServers );
+			$cache->set_debug( $wgMemCachedDebug );
 		}
-
-		if ( $cache === false ) {
-			if ( !array_key_exists( CACHE_NONE, $wgCaches ) ) {
-				$wgCaches[CACHE_NONE] = new FakeMemCachedClient;
+	} elseif ( $type == CACHE_ACCEL ) {
+		if ( !array_key_exists( CACHE_ACCEL, $wgCaches ) ) {
+			if ( function_exists( 'eaccelerator_get' ) ) {
+				require_once( 'BagOStuff.php' );
+				$wgCaches[CACHE_ACCEL] = new eAccelBagOStuff;
+			} elseif ( function_exists( 'apc_fetch') ) {
+				require_once( 'BagOStuff.php' );
+				$wgCaches[CACHE_ACCEL] = new APCBagOStuff;
+			} elseif ( function_exists( 'mmcache_get' ) ) {
+				require_once( 'BagOStuff.php' );
+				$wgCaches[CACHE_ACCEL] = new TurckBagOStuff;
+			} else {
+				$wgCaches[CACHE_ACCEL] = false;
 			}
-			$cache =& $wgCaches[CACHE_NONE];
 		}
-
-		return $cache;
-	}
-	
-	/** @static */
-	function &getMainCache() {
-		global $wgMainCacheType;
-		$ret =& ObjectCacheManager::getCache( $wgMainCacheType );
-		return $ret;
+		if ( $wgCaches[CACHE_ACCEL] !== false ) {
+			$cache =& $wgCaches[CACHE_ACCEL];
+		}
 	}
 
-	/** @static */
-	function &getMessageCache() {
-		global $wgMessageCacheType;
-		$ret =& ObjectCacheManager::getCache( $wgMessageCacheType );
-		return $ret;
+	if ( $type == CACHE_DB || ( $inputType == CACHE_ANYTHING && $cache === false ) ) {
+		if ( !array_key_exists( CACHE_DB, $wgCaches ) ) {
+			require_once( 'BagOStuff.php' );
+			$wgCaches[CACHE_DB] = new MediaWikiBagOStuff('objectcache');
+		}
+		$cache =& $wgCaches[CACHE_DB];
 	}
-	
-	/** @static */
-	function &getParserCache() {
-		global $wgParserCacheType;
-		$ret =& ObjectCacheManager::getCache( $wgParserCacheType );
-		return $ret;
+
+	if ( $cache === false ) {
+		if ( !array_key_exists( CACHE_NONE, $wgCaches ) ) {
+			$wgCaches[CACHE_NONE] = new FakeMemCachedClient;
+		}
+		$cache =& $wgCaches[CACHE_NONE];
 	}
-	
+
+	return $cache;
 }
 
-class MemCachedClientforWiki extends memcached {
-	function _debugprint( $text ) {
-		wfDebug( "memcached: $text\n" );
-	}
+function &wfGetMainCache() {
+	global $wgMainCacheType;
+	$ret =& wfGetCache( $wgMainCacheType );
+	return $ret;
+}
+
+function &wfGetMessageCacheStorage() {
+	global $wgMessageCacheType;
+	$ret =& wfGetCache( $wgMessageCacheType );
+	return $ret;
+}
+
+function &wfGetParserCacheStorage() {
+	global $wgParserCacheType;
+	$ret =& wfGetCache( $wgParserCacheType );
+	return $ret;
 }
 
 ?>

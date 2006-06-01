@@ -5,6 +5,9 @@
  * @subpackage Cache
  */
 
+/** */
+require_once( 'Revision.php' );
+
 /**
  *
  */

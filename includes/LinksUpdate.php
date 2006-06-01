@@ -119,6 +119,7 @@ class LinksUpdate {
 		if ( $this->mRecursive ) {
 			$tlto = $this->mTitle->getTemplateLinksTo();
 			if ( count( $tlto ) ) {
+				require_once( 'JobQueue.php' );
 				Job::queueLinksJobs( $tlto );
 			}
 		}
@@ -154,6 +155,7 @@ class LinksUpdate {
 		if ( $this->mRecursive ) {
 			$tlto = $this->mTitle->getTemplateLinksTo();
 			if ( count( $tlto ) ) {
+				require_once( 'JobQueue.php' );
 				Job::queueLinksJobs( $tlto );
 			}
 		}

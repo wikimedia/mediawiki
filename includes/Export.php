@@ -22,6 +22,9 @@
  * @subpackage SpecialPage
  */
 
+/** */
+require_once( 'Revision.php' );
+
 define( 'MW_EXPORT_FULL',     0 );
 define( 'MW_EXPORT_CURRENT',  1 );
 

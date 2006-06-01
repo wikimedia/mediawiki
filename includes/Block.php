@@ -169,7 +169,7 @@ class Block
 	{
 		$fname = 'Block::loadRange';
 
-		$iaddr = ProxyTools::IP2Hex( $address );
+		$iaddr = wfIP2Hex( $address );
 		if ( $iaddr === false ) {
 			# Invalid address
 			return false;
@@ -207,7 +207,7 @@ class Block
 	 * Determine if a given integer IPv4 address is in a given CIDR network
 	 */
 	function isAddressInRange( $addr, $range ) {
-		list( $network, $bits ) = ProxyTools::parseCIDR( $range );
+		list( $network, $bits ) = wfParseCIDR( $range );
 		if ( $network !== false && $addr >> ( 32 - $bits ) == $network >> ( 32 - $bits ) ) {
 			return true;
 		} else {
@@ -241,7 +241,7 @@ class Block
 		$this->mRangeStart = '';
 		$this->mRangeEnd = '';
 		if ( $this->mUser == 0 ) {
-			list( $network, $bits ) = ProxyTools::parseCIDR( $this->mAddress );
+			list( $network, $bits ) = wfParseCIDR( $this->mAddress );
 			if ( $network !== false ) {
 				$this->mRangeStart = sprintf( '%08X', $network );
 				$this->mRangeEnd = sprintf( '%08X', $network + (1 << (32 - $bits)) - 1 );
@@ -431,7 +431,7 @@ class Block
 		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
 			$shift = 32 - $parts[1];
-			$ipint = ProxyTools::IP2Unsigned( $parts[0] );
+			$ipint = wfIP2Unsigned( $parts[0] );
 			$ipint = $ipint >> $shift << $shift;
 			$newip = long2ip( $ipint );
 			$range = "$newip/{$parts[1]}";

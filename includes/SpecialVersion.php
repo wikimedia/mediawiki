@@ -190,7 +190,7 @@ class SpecialVersion {
 	 * @return string
 	 */
 	function IPInfo() {
-		$ip =  str_replace( '--', ' - ', htmlspecialchars( ProxyTools::getIP() ) );
+		$ip =  str_replace( '--', ' - ', htmlspecialchars( wfGetIP() ) );
 		return "<!-- visited from $ip -->\n" .
 			"<span style='display:none'>visited from $ip</span>";
 	}

@@ -5,7 +5,8 @@
  * @package MediaWiki
  */
 
-global $wgTitleInterwikiCache, $wgTitleCache;
+/** */
+require_once( 'normal/UtfNormal.php' );
 
 $wgTitleInterwikiCache = array();
 $wgTitleCache = array();
@@ -333,6 +334,7 @@ class Title {
 	 */
 	/* static */ function indexTitle( $ns, $title ) {
 		global $wgContLang;
+		require_once( 'SearchEngine.php' );
 
 		$lc = SearchEngine::legalSearchChars() . '&#;';
 		$t = $wgContLang->stripForSearch( $title );
@@ -1160,7 +1162,8 @@ class Title {
 	 * Check that the corresponding skin exists
 	 */
 	function isValidCssJsSubpage() {
-		return( $this->isCssJsSubpage() && array_key_exists( $this->getSkinFromCssJsSubpage(), Skin::getSkinNames() ) );
+		global $wgValidSkinNames;
+		return( $this->isCssJsSubpage() && array_key_exists( $this->getSkinFromCssJsSubpage(), $wgValidSkinNames ) );
 	}
 	/**
 	 * Trim down a .css or .js subpage title to get the corresponding skin name

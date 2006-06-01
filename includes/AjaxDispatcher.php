@@ -1,5 +1,18 @@
 <?php
 
+//$wgRequestTime = microtime();
+
+// unset( $IP );
+// @ini_set( 'allow_url_fopen', 0 ); # For security...
+
+# Valid web server entry point, enable includes.
+# Please don't move this line to includes/Defines.php. This line essentially defines
+# a valid entry point. If you put it in includes/Defines.php, then any script that includes
+# it becomes an entry point, thereby defeating its purpose.
+// define( 'MEDIAWIKI', true );
+// require_once( './includes/Defines.php' );
+// require_once( './LocalSettings.php' );
+// require_once( 'includes/Setup.php' );
 require_once( 'AjaxFunctions.php' );
 
 if ( ! $wgUseAjax ) {

@@ -444,7 +444,7 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function mainPrefsForm( $status , $message = '' ) {
-		global $wgUser, $wgOut, $wgLang, $wgContLang;
+		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits, $wgThumbLimits;
 		global $wgDisableLangConversion;
 		global $wgEnotifWatchlist, $wgEnotifUserTalk,$wgEnotifMinorEdits;
@@ -723,7 +723,7 @@ class PreferencesForm {
 		$previewtext = wfMsg('skinpreview');
 		# Only show members of $wgValidSkinNames rather than
 		# $skinNames (skins is all skin names from Language.php)
-		foreach (Skin::getSkinNames() as $skinkey => $skinname ) {
+		foreach ($wgValidSkinNames as $skinkey => $skinname ) {
 			if ( in_array( $skinkey, $wgSkipSkins ) ) {
 				continue;
 			}

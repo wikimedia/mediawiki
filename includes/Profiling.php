@@ -278,6 +278,7 @@ class Profiler {
 			}
 		}
 		$prof .= "\nTotal: $total\n\n";
+
 		return $prof;
 	}
 
@@ -321,6 +322,7 @@ class Profiler {
 		} else {
 			$pfhost = '';
 		}
+
 		$sql = "UPDATE $profiling "."SET pf_count=pf_count+{$eventCount}, "."pf_time=pf_time + {$timeSum} ".
 			"WHERE pf_name='{$encname}' AND pf_server='{$pfhost}'";
 		$dbw->query($sql);

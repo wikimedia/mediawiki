@@ -9,6 +9,8 @@
 if( !defined( 'MEDIAWIKI' ) )
 	die( -1 );
 
+require_once( 'Image.php' );
+
 /**
  * Special handling for image description pages
  * @package MediaWiki
@@ -307,8 +309,9 @@ END
 		$wgOut->addHTML($sharedtext);
 
 		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
+			require_once("HttpFunctions.php");
 			$ur = ini_set('allow_url_fopen', true);
-			$text = HttpFunctions::getHTTP($url . '?action=render');
+			$text = wfGetHTTP($url . '?action=render');
 			ini_set('allow_url_fopen', $ur);
 			if ($text)
 				$this->mExtraDescription = $text;
@@ -671,6 +674,7 @@ END
 	}
 
 	function blockedIPpage() {
+		require_once( 'EditPage.php' );
 		$edit = new EditPage( $this );
 		return $edit->blockedIPpage();
 	}
