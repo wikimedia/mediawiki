@@ -407,6 +407,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   in behavior based on the order tags are loaded.
 * (bug 885) Pre-save transform no longer silently appends close tags
 * Pre-save transform no longer changes the case of close tags
+* (bug 6164) Fix regression with <gallery> resetting <ref> state
 
 
 == Compatibility ==
