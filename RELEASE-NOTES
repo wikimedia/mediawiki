@@ -398,6 +398,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * parserTests.php accepts a --file parameter to run an alternate test sutie
 * parser tests can now test extensions using !!hooks sections
 * Fix oddity with open tag parameters getting stuck on </li>
+* (bug 5384) Fix <!-- comments --> in <ref> extension
+* Nesting of different tag extensions and comments should now work more
+  consistently and more safely. A cleaner, one-pass tag strip lets the
+  'outer' tag either take source (<nowiki>-style) or pass it down to
+  further parsing (<ref>-style). There should no longer be surprise
+  expansion of foreign extensions inside HTML output, or differences
+  in behavior based on the order tags are loaded.
 
 
 == Compatibility ==
