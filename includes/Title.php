@@ -5,6 +5,8 @@
  * @package MediaWiki
  */
 
+global $wgTitleInterwikiCache, $wgTitleCache;
+
 $wgTitleInterwikiCache = array();
 $wgTitleCache = array();
 
