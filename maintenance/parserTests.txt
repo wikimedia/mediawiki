@@ -2439,6 +2439,15 @@ pst
 <NOwiki>'''not wiki'''</noWIKI>
 !! end
 
+!! test
+pre-save transform: unclosed comment in <nowiki>
+!! options
+pst noxml
+!! input
+wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
+!! result
+wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
+!!end
 
 !! article
 Template:dangerous
