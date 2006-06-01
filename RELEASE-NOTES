@@ -397,6 +397,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * When showing the "blah has been undeleted" page, make sure it's a blue link
 * parserTests.php accepts a --file parameter to run an alternate test sutie
 * parser tests can now test extensions using !!hooks sections
+* Fix oddity with open tag parameters getting stuck on </li>
 
 
 == Compatibility ==
