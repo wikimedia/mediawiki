@@ -3664,6 +3664,7 @@ class Parser
 	 * @return The old value of the mTagHooks array associated with the hook
 	 */
 	function setHook( $tag, $callback ) {
+		$tag = strtolower( $tag );
 		$oldVal = @$this->mTagHooks[$tag];
 		$this->mTagHooks[$tag] = $callback;
 
