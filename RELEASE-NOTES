@@ -394,7 +394,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5527) Batch up job queue insertions for, hopefully, better survivability
   of lock contention etc. Duplicates are now removed at pop time instead of
   at insert time.
-
+* When showing the "blah has been undeleted" page, make sure it's a blue link
 
 == Compatibility ==
 

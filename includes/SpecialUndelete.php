@@ -554,11 +554,13 @@ class UndeleteForm {
 	}
 
 	function undelete() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		if( !is_null( $this->mTargetObj ) ) {
 			$archive = new PageArchive( $this->mTargetObj );
 			if( $archive->undelete( $this->mTargetTimestamp, $this->mComment ) ) {
-				$wgOut->addWikiText( wfMsg( "undeletedtext", $this->mTarget ) );
+				$skin =& $wgUser->getSkin();
+				$link = $skin->makeKnownLinkObj( $this->mTargetObj );
+				$wgOut->addHtml( wfMsgWikiHtml( 'undeletedpage', $link ) );
 
 				if (NS_IMAGE == $this->mTargetObj->getNamespace()) {
 					/* refresh image metadata cache */
