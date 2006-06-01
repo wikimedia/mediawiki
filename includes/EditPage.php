@@ -725,7 +725,7 @@ class EditPage {
 		$this->summary = '';
 		if ( !$this->mArticle->exists() && $this->mArticle->mTitle->getNamespace() == NS_MEDIAWIKI )
 			$this->textbox1 = wfMsgWeirdKey ( $this->mArticle->mTitle->getText() ) ;
-		ProxyTools::proxyCheck();
+		wfProxyCheck();
 	}
 
 	/**
@@ -1118,6 +1118,7 @@ END
 		$wgOut->addHTML( "<input type=\"hidden\" name=\"wpAutoSummary\" value=\"$autosumm\" />\n" );
 
 		if ( $this->isConflict ) {
+			require_once( "DifferenceEngine.php" );
 			$wgOut->addWikiText( '==' . wfMsg( "yourdiff" ) . '==' );
 
 			$de = new DifferenceEngine( $this->mTitle );
@@ -1617,6 +1618,7 @@ END
 	 * @return string HTML
 	 */
 	function getDiff() {
+		require_once( 'DifferenceEngine.php' );
 		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );

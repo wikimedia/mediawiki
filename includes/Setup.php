@@ -22,14 +22,13 @@ if ( !isset( $wgVersion ) ) {
 	die( -1 );
 }
 
-require('AutoLoader.php');
-
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
 if ( function_exists( 'wfProfileIn' ) ) {
 	/* nada, everything should be done already */
 } elseif ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
+	require_once( 'Profiling.php' );
 	$wgProfiling = true;
 	if ($wgProfilerType == "") {
 		$wgProfiler = new Profiler();
@@ -49,8 +48,29 @@ wfProfileIn( $fname.'-includes' );
 require_once( 'GlobalFunctions.php' );
 require_once( 'Hooks.php' );
 require_once( 'Namespace.php' );
+require_once( 'User.php' );
+require_once( 'Skin.php' );
+require_once( 'OutputPage.php' );
+require_once( 'LinkCache.php' );
+require_once( 'LinkBatch.php' );
+require_once( 'Title.php' );
+require_once( 'Article.php' );
 require_once( 'MagicWord.php' );
+require_once( 'Block.php' );
+require_once( 'MessageCache.php' );
+require_once( 'Parser.php' );
+require_once( 'ParserCache.php' );
+require_once( 'WebRequest.php' );
+require_once( 'LoadBalancer.php' );
+require_once( 'HistoryBlob.php' );
+require_once( 'ProxyTools.php' );
+require_once( 'ObjectCache.php' );
+require_once( 'WikiError.php' );
+require_once( 'SpecialPage.php' );
 
+if ( $wgUseDynamicDates ) {
+	require_once( 'DateFormatter.php' );
+}
 
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
@@ -88,9 +108,9 @@ $wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 
-$wgMemc =& ObjectCacheManager::getMainCache();
-$messageMemc =& ObjectCacheManager::getMessageCache();
-$parserMemc =& ObjectCacheManager::getParserCache();
+$wgMemc =& wfGetMainCache();
+$messageMemc =& wfGetMessageCacheStorage();
+$parserMemc =& wfGetParserCacheStorage();
 
 wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
        "\nMessage cache: " . get_class( $messageMemc ) .
@@ -188,6 +208,7 @@ foreach ( $wgSkinExtensionFunctions as $func ) {
 }
 
 if( !is_object( $wgAuth ) ) {
+	require_once( 'AuthPlugin.php' );
 	$wgAuth = new AuthPlugin();
 }
 
@@ -275,6 +296,7 @@ $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 
 if ( $wgUseXMLparser ) {
+	require_once( 'ParserXML.php' );
 	$wgParser = new ParserXML();
 } else {
 	$wgParser = new Parser();

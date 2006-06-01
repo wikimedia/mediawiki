@@ -205,7 +205,7 @@ class RecentChange
 		}
 
 		if ( !$ip ) {
-			$ip = ProxyTools::getIP();
+			$ip = wfGetIP();
 			if ( !$ip ) {
 				$ip = '';
 			}
@@ -249,7 +249,7 @@ class RecentChange
 	  $ip='', $size = 0, $newId = 0 )
 	{
 		if ( !$ip ) {
-			$ip = ProxyTools::getIP();
+			$ip = wfGetIP();
 			if ( !$ip ) {
 				$ip = '';
 			}
@@ -294,7 +294,7 @@ class RecentChange
 	/*static*/ function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
 	{
 		if ( !$ip ) {
-			$ip = ProxyTools::getIP();
+			$ip = wfGetIP();
 			if ( !$ip ) {
 				$ip = '';
 			}
@@ -344,7 +344,7 @@ class RecentChange
 	   $type, $action, $target, $logComment, $params )
 	{
 		if ( !$ip ) {
-			$ip = ProxyTools::getIP();
+			$ip = wfGetIP();
 			if ( !$ip ) {
 				$ip = '';
 			}

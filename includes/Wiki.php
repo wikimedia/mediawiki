@@ -176,8 +176,10 @@ class MediaWiki {
 	
 		switch( $title->getNamespace() ) {
 		case NS_IMAGE:
+			require_once( 'includes/ImagePage.php' );
 			return new ImagePage( $title );
 		case NS_CATEGORY:
+			require_once( 'includes/CategoryPage.php' );
 			return new CategoryPage( $title );
 		default:
 			return new Article( $title );
@@ -282,6 +284,8 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
+		require_once( 'JobQueue.php' );
+
 		while ( $n-- && false != ($job = Job::pop())) {
 			$output = $job->toString() . "\n";
 			if ( !$job->run() ) {
@@ -355,7 +359,8 @@ class MediaWiki {
 				}
 				break;
 			case 'credits':
-				Credits::showCreditsPage( $article );
+				require_once( 'includes/Credits.php' );
+				showCreditsPage( $article );
 				break;
 			case 'submit':
 				if( !$this->getVal( 'CommandLineMode' ) && !$request->checkSessionCookie() ) {
@@ -370,9 +375,11 @@ class MediaWiki {
 				$oldid = $request->getVal( 'oldid' );
 				if( !$this->getVal( 'UseExternalEditor' ) || $action=='submit' || $internal ||
 				   $section || $oldid || ( !$user->getOption( 'externaleditor' ) && !$external ) ) {
+					require_once( 'includes/EditPage.php' );
 					$editor = new EditPage( $article );
 					$editor->submit();
 				} elseif( $this->getVal( 'UseExternalEditor' ) && ( $external || $user->getOption( 'externaleditor' ) ) ) {
+					require_once( 'includes/ExternalEdit.php' );
 					$mode = $request->getVal( 'mode' );
 					$extedit = new ExternalEdit( $article, $mode );
 					$extedit->edit();
@@ -382,10 +389,12 @@ class MediaWiki {
 				if( $_SERVER['REQUEST_URI'] == $title->getInternalURL( 'action=history' ) ) {
 					$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				}
+				require_once( 'includes/PageHistory.php' );
 				$history = new PageHistory( $article );
 				$history->history();
 				break;
 			case 'raw':
+				require_once( 'includes/RawPage.php' );
 				$raw = new RawPage( $article );
 				$raw->view();
 				break;

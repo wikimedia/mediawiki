@@ -37,6 +37,7 @@ class SearchUpdate {
 		$fname = 'SearchUpdate::doUpdate';
 		wfProfileIn( $fname );
 
+		require_once( 'SearchEngine.php' );
 		$search = SearchEngine::create();
 		$lc = $search->legalSearchChars() . '&#;';
 

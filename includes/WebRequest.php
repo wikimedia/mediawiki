@@ -117,6 +117,7 @@ class WebRequest {
 					$data = $wgContLang->checkTitleEncoding( $data );
 				}
 			}
+			require_once( 'normal/UtfNormal.php' );
 			$data = $this->normalizeUnicode( $data );
 			return $data;
 		} else {

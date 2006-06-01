@@ -7,6 +7,7 @@
 /**
  * Depends on the database object
  */
+require_once( 'Database.php' );
 
 # Valid database indexes
 # Operation-based indexes
@@ -439,14 +440,12 @@ class LoadBalancer {
 		}
 
 		extract( $server );
-
 		# Get class for this database type
-		if ($type != 'mysql' ) {
-			$class = 'Database' . ucfirst( $type );
-		} else {
-			$class = 'Database';
+		$class = 'Database' . ucfirst( $type );
+		if ( !class_exists( $class ) ) {
+			require_once( "$class.php" );
 		}
-		
+
 		# Create object
 		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
 		$db->setLBInfo( $server );

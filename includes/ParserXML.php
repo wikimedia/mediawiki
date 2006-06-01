@@ -5,6 +5,9 @@
  * @subpackage Experimental
  */
 
+/** */
+require_once ('Parser.php');
+
 /**
  * This should one day become the XML->(X)HTML parser
  * Based on work by Jan Hidders and Magnus Manske

@@ -15,10 +15,6 @@
  * @subpackage SpecialPage
  */
 
-/**
- * @todo put all global specialpages stuff into class
- */
-global $wgSpecialPages, $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 
 /**
  * @access private
