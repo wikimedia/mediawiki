@@ -36,7 +36,9 @@ function wfParserTestStaticParserHookHook( $in, $argv ) {
 		// wtf?
 		die(
 			"\nCall this extension as <statictag>string</statictag> or as" .
-			" <statictag action=flush/>, not in any other way.\n"
+			" <statictag action=flush/>, not in any other way.\n" .
+			"text: " . var_export( $in, true ) . "\n" .
+			"argv: " . var_export( $argv, true ) . "\n"
 		);
 }
 ?>

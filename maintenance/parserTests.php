@@ -29,13 +29,15 @@ if( isset( $options['help'] ) ) {
     echo <<<END
 MediaWiki $wgVersion parser test suite
 Usage: php parserTests.php [--quick] [--quiet] [--color[=(yes|no|light)]]
-                           [--regex <expression>] [--help]
+                           [--regex=<expression>] [--file=<testfile>]
+                           [--help]
 Options:
   --quick  Suppress diff output of failed tests
   --quiet  Suppress notification of passed tests (shows only failed tests)
   --color  Override terminal detection and force color output on or off
            'light' option is similar to 'yes' but with color for dark backgrounds
   --regex  Only run tests whose descriptions which match given regex
+  --file   Run test cases from a custom file instead of parserTests.txt
   --help   Show this help message
 
 
@@ -49,9 +51,14 @@ END;
 $wgTitle = Title::newFromText( 'Parser test script do not use' );
 $tester =& new ParserTest();
 
-# Note: the command line setup changes the current working directory
-# to the parent, which is why we have to put the subdir here:
-$ok = $tester->runTestsFromFile( $IP.'/maintenance/parserTests.txt' );
+if( isset( $options['file'] ) ) {
+	$file = $options['file'];
+} else {
+	# Note: the command line setup changes the current working directory
+	# to the parent, which is why we have to put the subdir here:
+	$file = $IP.'/maintenance/parserTests.txt';
+}
+$ok = $tester->runTestsFromFile( $file );
 
 exit ($ok ? 0 : -1);
 ?>
