@@ -89,7 +89,7 @@
 == קישורים שימושיים ==
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings רשימת ההגדרות]
 * [http://www.mediawiki.org/wiki/Help:FAQ שאלות נפוצות]
-* [http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]",
+* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]",
 
 "portal"          => "שער הקהילה",
 "portal-url"      => "{{ns:project}}:שער הקהילה",
@@ -203,9 +203,7 @@
 "nrevisions"          => "$1 גרסאות",
 "widthheight"         => "$1x$2",
 "ok"                  => "אישור",
-"sitetitle"           => "{{SITENAME}}",
 "pagetitle"           => "$1 – {{SITENAME}}",
-"sitesubtitle"        => "",
 "retrievedfrom"       => '<br /><span style="font-size: smaller;">מקור: $1</span>',
 "youhavenewmessages"  => "יש לכם $1 ($2).",
 "newmessageslink"     => "הודעות חדשות",
@@ -358,7 +356,7 @@
 "yournick"                   => "בחרו כינוי (לחתימות)",
 "badsig"                     => "חתימה מסוגננת שגויה; אנא בדקו את תגיות ה־HTML.",
 "email"                      => 'דוא"ל',
-"emailforlost"               => "",
+"emailforlost"               => '<div style="width: 30em;"><p>* אופציונאלי. כתובת דוא"ל מאפשרת לאחרים ליצור איתכם קשר דרך האתר מבלי שתצטרכו לגלות להם את כתובתך, ומאפשרת לנו לשלוח לכם סיסמה חדשה באם תשכחו אותה.</p><p>שמכם האמיתי ישמש כדי לייחס את עבדותך אליכם.</p></div>',
 "prefs-help-email-enotif"    => 'כתובת זו משמשת גם למשלוח עדכונים דרך הדוא"ל (אם אפשרתם זאת).',
 "prefs-help-realname"        => "* שם אמיתי (אופציונאלי): אם תבחרו לספק שם זה, הוא ישמש לייחוס עבודתכם אליכם.",
 "loginerror"                 => "שגיאה בכניסה לאתר",
@@ -457,12 +455,10 @@
 "newarticletext"           => 'הגעתם לדף שעדיין איננו קיים. כדי ליצור דף חדש, כתבו את התוכן שלכם בתיבת הטקסט למטה.
 
 אם הגעתם לכאן בטעות, פשוט לחצו על מקש ה־\'\'\'Back\'\'\' בדפדפן שלכם.',
-"newarticletextanon"       => "{{int:newarticletext}}",
 "anontalkpagetext"         => "----
 '''זהו דף שיחה של משתמש אנונימי שעדיין לא יצר חשבון במערכת, או שהוא לא משתמש בו. כיוון שכך, אנו צריכים להשתמש בכתובת ה־IP כדי לזהותו. ייתכן שכתובת IP זו תייצג מספר משתמשים. אם אתם משתמשים אנונימיים ומרגישים שקיבלתם הודעות בלתי רלוונטיות, אנא [[{{ns:special}}:Userlogin|צרו חשבון או הכנסו]] כדי להימנע מבלבול עתידי עם משתמשים אנונימיים נוספים.'''
 ----",
 "noarticletext"            => "אין עדיין טקסט בדף זה. באפשרותכם [[{{ns:special}}:Search/{{PAGENAME}}|לחפש את {{PAGENAME}} באתר]], או [{{fullurl:{{FULLPAGENAME}}|action=edit}} ליצור דף זה].",
-"noarticletextanon"        => "{{int:noarticletext}}",
 "clearyourcache"           => "'''הערה:''' לאחר השמירה, עליכם לנקות את זכרון המטמון (Cache) של הדפדפן על־מנת להבחין בשינויים.
 * ב'''מוזילה''', '''פיירפוקס''' או '''ספארי''', לחצו על מקש ה־Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו Ctrl+Shift+R (או Cmd+Shift+R במקינטוש של אפל).
 * ב'''אינטרנט אקספלורר''', לחצו על מקש ה־Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על Ctrl+F5.
@@ -725,7 +721,7 @@
 "uploadnologintext"           => "עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי להעלות קבצים.",
 "upload_directory_read_only"  => "תיקיית ההעלאות ($1) אינה ניתנת לכתיבה על־ידי שרת האינטרנט, ולפיכך הוא אינו יכול להעלות את התמונה.",
 "uploaderror"                 => "שגיאה בהעלאת הקובץ",
-"uploadtext"                  => "השתמשו בטופס להלן כדי להעלות תמונות. כדי לראות או לחפש תמונות שהועלו בעבר אנא פנו ל[[{{ns:special}}:Imagelist|רשימת הקבצים המועלים]], וכמו כן, העלאות ומחיקות מתוארות ב[[{{ns:special}}:Log/delete]].
+"uploadtext"                  => "השתמשו בטופס להלן כדי להעלות תמונות. כדי לראות או לחפש תמונות שהועלו בעבר אנא פנו ל[[{{ns:special}}:Imagelist|רשימת הקבצים המועלים]], וכמו כן, העלאות מוצגות ב[[{{ns:special}}:Log/upload|יומן ההעלאות]], ומחיקות ב[[{{ns:special}}:Log/delete|יומן המחיקות]].
 
 כדי לכלול תמונה בדף, השתמשו בקישור בצורות '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>''' לתמונות בפורמט JPG (המיועד לתצלומים), '''<nowiki>[[{{ns:image}}:file.png]]</nowiki>''' לתמונות בפורמט PNG (לאיורים, שרטוטים וסמלים). כדי לקשר ישירות לקובץ קול, השתמשו בקישור בצורה '''<nowiki>[[{{ns:media}}:file.jpg]]</nowiki>''' לקבצי קול בפורמט OGG.",
 "uploadlog"                   => "יומן העלאות קבצים",
@@ -773,6 +769,7 @@
 # Image list
 "imagelist"                 => "רשימת תמונות",
 "imagelisttext"             => "להלן רשימה של <strong>$1</strong> תמונות, ממוינות <strong>$2</strong>:",
+"imagelistforuser"          => "מוצגות רק התמונות שהועלו על־ידי $1.",
 "getimagelist"              => "מושך את רשימת התמונות",
 "ilsubmit"                  => "חיפוש",
 "showlast"                  => "הצג $1 תמונות אחרונות ממוינות $2",
@@ -887,8 +884,6 @@
 
 "booksourcetext" => "להלן רשימת קישורים לאתרים אחרים המוכרים ספרים חדשים ויד־שנייה, ושבהם עשוי להיות מידע נוסף לגבי ספרים שאתם מחפשים. לאתר אין קשר לעקסים אלו, ואין לראות ברשימה זו המלצה, פרסום או עידוד לעשות שימוש באתרים אלו ספציפית.",
 "isbn"           => "ISBN",
-"rfcurl"         => "http://www.ietf.org/rfc/rfc$1.txt",
-"pubmedurl"      => "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1",
 "alphaindexline" => "$1 עד $2",
 "version"        => "גרסת התוכנה",
 "log"            => "יומנים",
@@ -1069,9 +1064,9 @@ $NEWPAGE
 "undeletebtn"            => "שחזר!",
 "undeletedarticle"       => "שיחזר את [[:$1]]",
 "undeletedrevisions"     => "שיחזר $1 גרסאות",
-"undeletedtext"          => "הדף [[:$1]] שוחזר בהצלחה.
+"undeletedtext"          => "'''הדף [[:$1]] שוחזר בהצלחה.'''
 
-ראו [[{{ns:special}}:Log/delete]] לרשימה של מחיקות ושיחזורים אחרונים.",
+ראו את [[{{ns:special}}:Log/delete|יומן המחיקות]] לרשימה של מחיקות ושיחזורים אחרונים.",
 
 # Namespace form on various pages
 "namespace" => "מרחב שם:",

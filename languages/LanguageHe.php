@@ -7,7 +7,7 @@
 require_once("LanguageUtf8.php");
 
 /* private */ $wgNamespaceNamesHe = array(
-	NS_MEDIA          => "Media",
+	NS_MEDIA          => "מדיה",
 	NS_SPECIAL        => "מיוחד",
 	NS_MAIN           => "",
 	NS_TALK           => "שיחה",
@@ -41,8 +41,6 @@ require_once("LanguageUtf8.php");
 	'myskin' => 'MySkin',
 	'chick' => 'Chick'
 ) + $wgSkinNamesEn;
-
-
 
 /* private */ $wgBookstoreListHe = array(
 	"מיתוס" => "http://www.mitos.co.il/ ",
