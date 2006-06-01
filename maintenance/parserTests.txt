@@ -2424,7 +2424,7 @@ pre-save transform: unclosed tag
 !! options
 pst
 !! input
-<nowiki>'''missing end tag!'''
+<nowiki>'''not wiki'''
 !! result
 <nowiki>'''not wiki'''
 !! end
@@ -2434,7 +2434,7 @@ pre-save transform: mixed tag case
 !! options
 pst
 !! input
-<NOwiki>'''missing end tag!'''</noWIKI>
+<NOwiki>'''not wiki'''</noWIKI>
 !! result
 <NOwiki>'''not wiki'''</noWIKI>
 !! end
