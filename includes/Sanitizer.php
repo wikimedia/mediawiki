@@ -400,8 +400,8 @@ class Sanitizer {
 							if ( $t == 'table' ) {
 								$tagstack = array_pop( $tablestack );
 							}
-							$newparams = '';
 						}
+						$newparams = '';
 					} else {
 						# Keep track for later
 						if ( in_array( $t, $tabletags ) &&

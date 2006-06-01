@@ -4013,6 +4013,15 @@ HTML nested ordered list, open tags (bug 5497)
 
 !! end
 
+!! test
+HTML ordered list item with parameters oddity
+!! input
+<ol><li id="fragment">One</li></ol>
+!! result
+<ol><li id="fragment">One</li></ol>
+
+!! end
+
 !!test
 bug 5918: autonumbering
 !! input
