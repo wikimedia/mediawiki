@@ -3904,10 +3904,6 @@ class Parser
 	 * 'A tree'.
 	 */
 	function renderImageGallery( $text ) {
-		# Setup the parser
-		$parserOptions = new ParserOptions;
-		$localParser = new Parser();
-
 		$ig = new ImageGallery();
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
@@ -3933,7 +3929,12 @@ class Parser
 				$label = '';
 			}
 
-			$pout = $localParser->parse( $label , $this->mTitle, $parserOptions );
+			$pout = $this->parse( $label,
+				$this->mTitle,
+				$this->mOptions,
+				false, // Strip whitespace...?
+				false  // Don't clear state!
+			);
 			$html = $pout->getText();
 
 			$ig->add( new Image( $nt ), $html );
@@ -3942,13 +3943,6 @@ class Parser
 			if ( $nt->getNamespace() == NS_IMAGE ) {
 				$this->mOutput->addImage( $nt->getDBkey() );
 			}
-			
-			# Register links with the parent parser
-			foreach( $pout->getLinks() as $ns => $keys ) {
-				foreach( $keys as $dbk => $id )
-					$this->mOutput->addLink( Title::makeTitle( $ns, $dbk ), $id );
-			}
-			
 		}
 		return $ig->toHTML();
 	}
