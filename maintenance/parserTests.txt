@@ -287,6 +287,22 @@ And a <a href="/wiki/Main_Page" title="Main Page">link</a>
 </pre>
 !! end
 
+!! test
+<pre> with <nowiki> inside (compatibility with 1.6 and earlier)
+!! input
+<pre><nowiki>
+<b>
+<cite>
+<em>
+</nowiki></pre>
+!! result
+<pre>
+&lt;b&gt;
+&lt;cite&gt;
+&lt;em&gt;
+</pre>
+!! end
+
 ###
 ### Definition lists
 ###
