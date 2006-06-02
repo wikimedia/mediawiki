@@ -1991,7 +1991,8 @@ class Parser
 			return false;
 		}
 		
-		if( strpos( $str, '<' ) === false ) {
+		$lt = strpos( $str, '<' );
+		if( $lt === false || $lt > $pos ) {
 			// Easy; no tag nesting to worry about
 			$before = substr( $str, 0, $pos );
 			$after = substr( $str, $pos+1 );
@@ -2025,7 +2026,31 @@ class Parser
 					// Embedded in a tag; don't break it.
 					break;
 				default:
-					// ignore
+					// Skip ahead looking for something interesting
+					$colon = strpos( $str, ':', $i );
+					if( $colon === false ) {
+						// Nothing else interesting
+						wfProfileOut( $fname );
+						return false;
+					}
+					$lt = strpos( $str, '<', $i );
+					if( $stack === 0 ) {
+						if( $lt === false || $colon < $lt ) {
+							// We found it!
+							$before = substr( $str, 0, $colon );
+							$after = substr( $str, $colon + 1 );
+							wfProfileOut( $fname );
+							return $i;
+						}
+					}
+					if( $lt === false ) {
+						// Nothing else interesting to find; abort!
+						// We're nested, but there's no close tags left. Abort!
+						break 2;
+					}
+					// Skip ahead to next tag start
+					$i = $lt;
+					$state = MW_COLON_STATE_TAGSTART;
 				}
 				break;
 			case 1: // MW_COLON_STATE_TAG:
