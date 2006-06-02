@@ -8,7 +8,8 @@
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 
-/* private */ $wgAllMessagesEn = array(
+global $wgAllMessagesEn;
+$wgAllMessagesEn = array(
 /*
 The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and
@@ -1228,6 +1229,8 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'uclinks'       => "View the last $1 changes; view the last $2 days.",
 'uctop'         => ' (top)' ,
 'newbies'       => 'newbies',
+
+'sp-newimages-showfrom' => 'Show new images starting from $1',
 
 'sp-contributions-newest' => 'Newest',
 'sp-contributions-oldest' => 'Oldest',
