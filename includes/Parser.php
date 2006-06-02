@@ -59,6 +59,16 @@ define( 'EXT_IMAGE_REGEX',
 	'('.EXT_IMAGE_FNAME_CLASS.'+)\\.((?i)'.EXT_IMAGE_EXTENSIONS.')$/S' # Filename
 );
 
+// State constants for the definition list colon extraction
+define( 'MW_COLON_STATE_TEXT', 0 );
+define( 'MW_COLON_STATE_TAG', 1 );
+define( 'MW_COLON_STATE_TAGSTART', 2 );
+define( 'MW_COLON_STATE_CLOSETAG', 3 );
+define( 'MW_COLON_STATE_TAGSLASH', 4 );
+define( 'MW_COLON_STATE_COMMENT', 5 );
+define( 'MW_COLON_STATE_COMMENTDASH', 6 );
+define( 'MW_COLON_STATE_COMMENTDASHDASH', 7 );
+
 /**
  * PHP Parser
  *
@@ -1963,43 +1973,142 @@ class Parser
 	}
 
 	/**
-	 * Split up a string on ':', ignoring any occurences inside
-	 * <a>..</a> or <span>...</span>
+	 * Split up a string on ':', ignoring any occurences inside tags
+	 * to prevent illegal overlapping.
 	 * @param string $str the string to split
 	 * @param string &$before set to everything before the ':'
 	 * @param string &$after set to everything after the ':'
 	 * return string the position of the ':', or false if none found
 	 */
 	function findColonNoLinks($str, &$before, &$after) {
-		# I wonder if we should make this count all tags, not just <a>
-		# and <span>. That would prevent us from matching a ':' that
-		# comes in the middle of italics other such formatting....
-		# -- Wil
 		$fname = 'Parser::findColonNoLinks';
 		wfProfileIn( $fname );
-		$pos = 0;
-		do {
-			$colon = strpos($str, ':', $pos);
-
-			if ($colon !== false) {
-				$before = substr($str, 0, $colon);
-				$after = substr($str, $colon + 1);
-
-				# Skip any ':' within <a> or <span> pairs
-				$a = substr_count($before, '<a');
-				$s = substr_count($before, '<span');
-				$ca = substr_count($before, '</a>');
-				$cs = substr_count($before, '</span>');
-
-				if ($a <= $ca and $s <= $cs) {
-					# Tags are balanced before ':'; ok
+		
+		$pos = strpos( $str, ':' );
+		if( $pos === false ) {
+			// Nothing to find!
+			wfProfileOut( $fname );
+			return false;
+		}
+		
+		if( strpos( $str, '<' ) === false ) {
+			// Easy; no tag nesting to worry about
+			$before = substr( $str, 0, $pos );
+			$after = substr( $str, $pos+1 );
+			wfProfileOut( $fname );
+			return $pos;
+		}
+		
+		// Ugly state machine to walk through avoiding tags.
+		$state = MW_COLON_STATE_TEXT;
+		$stack = 0;
+		$len = strlen( $str );
+		for( $i = 0; $i < $len; $i++ ) {
+			$c = $str{$i};
+			
+			switch( $state ) {
+			// (Using the number is a performance hack for common cases)
+			case 0: // MW_COLON_STATE_TEXT:
+				switch( $c ) {
+				case "<":
+					// Could be either a <start> tag or an </end> tag
+					$state = MW_COLON_STATE_TAGSTART;
 					break;
+				case ":":
+					if( $stack == 0 ) {
+						// We found it!
+						$before = substr( $str, 0, $i );
+						$after = substr( $str, $i + 1 );
+						wfProfileOut( $fname );
+						return $i;
+					}
+					// Embedded in a tag; don't break it.
+					break;
+				default:
+					// ignore
 				}
-				$pos = $colon + 1;
+				break;
+			case 1: // MW_COLON_STATE_TAG:
+				// In a <tag>
+				switch( $c ) {
+				case ">":
+					$stack++;
+					$state = MW_COLON_STATE_TEXT;
+					break;
+				case "/":
+					// Slash may be followed by >?
+					$state = MW_COLON_STATE_TAGSLASH;
+					break;
+				default:
+					// ignore
+				}
+				break;
+			case 2: // MW_COLON_STATE_TAGSTART:
+				switch( $c ) {
+				case "/":
+					$state = MW_COLON_STATE_CLOSETAG;
+					break;
+				case "!":
+					$state = MW_COLON_STATE_COMMENT;
+					break;
+				case ">":
+					// Illegal early close? This shouldn't happen D:
+					$state = MW_COLON_STATE_TEXT;
+					break;
+				default:
+					$state = MW_COLON_STATE_TAG;
+				}
+				break;
+			case 3: // MW_COLON_STATE_CLOSETAG:
+				// In a </tag>
+				if( $c == ">" ) {
+					$stack--;
+					if( $stack < 0 ) {
+						wfDebug( "Invalid input in $fname; too many close tags\n" );
+						wfProfileOut( $fname );
+						return false;
+					}
+					$state = MW_COLON_STATE_TEXT;
+				}
+				break;
+			case MW_COLON_STATE_TAGSLASH:
+				if( $c == ">" ) {
+					// Yes, a self-closed tag <blah/>
+					$state = MW_COLON_STATE_TEXT;
+				} else {
+					// Probably we're jumping the gun, and this is an attribute
+					$state = MW_COLON_STATE_TAG;
+				}
+				break;
+			case 5: // MW_COLON_STATE_COMMENT:
+				if( $c == "-" ) {
+					$state = MW_COLON_STATE_COMMENTDASH;
+				}
+				break;
+			case MW_COLON_STATE_COMMENTDASH:
+				if( $c == "-" ) {
+					$state = MW_COLON_STATE_COMMENTDASHDASH;
+				} else {
+					$state = MW_COLON_STATE_COMMENT;
+				}
+				break;
+			case MW_COLON_STATE_COMMENTDASHDASH:
+				if( $c == ">" ) {
+					$state = MW_COLON_STATE_TEXT;
+				} else {
+					$state = MW_COLON_STATE_COMMENT;
+				}
+				break;
+			default:
+				wfDebugDieBacktrace( "State machine error in $fname" );
 			}
-		} while ($colon !== false);
+		}
+		if( $stack > 0 ) {
+			wfDebug( "Invalid input in $fname; not enough close tags (stack $stack, state $state)\n" );
+			return false;
+		}
 		wfProfileOut( $fname );
-		return $colon;
+		return false;
 	}
 
 	/**

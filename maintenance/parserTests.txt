@@ -406,6 +406,27 @@ Definition lists: colon in external link text
 
 !! end
 
+!! test
+Definition lists: colon in HTML attribute
+!! input
+;<b style="display: inline">bold</b>
+!! result
+<dl><dt><b style="display: inline">bold</b>
+</dt></dl>
+
+!! end
+
+
+!! test
+Definition lists: self-closed tag
+!! input
+;one<br/>two : two-line fun
+!! result
+<dl><dt>one<br />two&nbsp;</dt><dd> two-line fun
+</dd></dl>
+
+!! end
+
 
 ###
 ### External links
