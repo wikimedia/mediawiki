@@ -410,6 +410,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6164) Fix regression with <gallery> resetting <ref> state
 * Hackaround for IE 7 wrapping bug in MonoBook footer
 * New message sp-newimages-showfrom replaces rclistfrom on special:newimages
+* Improve handling of ;: definition list construct with overlapping or
+  nested HTML tags
+
 
 == Compatibility ==
 
