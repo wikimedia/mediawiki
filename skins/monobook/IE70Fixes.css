@@ -67,3 +67,9 @@ div.tleft {
 	position: relative;
 }
 */
+
+
+#footer li {
+	/* Work around bug with inline <li> tags with right margins and nowrap */
+	margin-right: 0;
+}
