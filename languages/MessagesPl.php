@@ -1,6 +1,7 @@
 <?php
 
-/* private */ $wgAllMessagesPl = array(
+global $wgAllMessagesPl;
+$wgAllMessagesPl = array(
 
 # User preference toggles
 'tog-underline' => 'Podkreślenie linków:',
@@ -166,6 +167,7 @@
 'viewtalkpage' => 'Strona dyskusji',
 'otherlanguages' => 'W innych językach',
 'redirectedfrom' => '(Przekierowano z $1)',
+'autoredircomment' => 'Przekierowanie do [[$1]]',
 'redirectpagesub' => 'Strona przekierowująca',
 'lastmodified' => 'Tę stronę ostatnio zmodyfikowano $1.',
 'viewcount' => 'Tę stronę obejrzano {{plural:$1|jeden raz|$1 razy}}.',
@@ -202,6 +204,8 @@ użytkownika o prawach "$2". Zobacz $1.',
 'thisisdeleted' => 'Pokaż/odtwórz $1',
 'viewdeleted' => 'Zobacz $1',
 'restorelink' => '{{PLURAL:$1|jedną skasowaną wersję|skasowane wersje (w sumie $1)}}',
+'feedlinks' => 'Kanały:',
+'feed-invalid' => 'Niewłaściwy typ kanału informacyjnego.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Artykuł',
@@ -471,6 +475,10 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'rev-deleted-user' => '(użytkownik usunięty)',
 'rev-delundel' => 'pokaż/ukryj',
 
+'history-feed-title' => 'Historia wersji',
+'history-feed-description' => 'Historia wersji tej strony wiki',
+'history-feed-empty' => 'Wybrana strona nie istnieje. Mogła ona zostać usunięta lub przeniesiona pod inną nazwę. Możesz także [[{{ns:special}}:Search|poszukać]] tej strony.',
+
 # Diffs
 #
 'difference' => '(Różnice między wersjami)',
@@ -490,7 +498,7 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'badquerytext' => 'Nie można zrealizować Twojego zapytania. Prawdopodobna przyczyna to obecność słowa krótszego niż trzyliterowe. Spróbuj, proszę, innego zapytania.',
 'matchtotals' => 'Zapytanie "$1", liczba znalezionych tytułów: $2,
 liczba znalezionych artykułów: $3.',
-'nogomatch' => 'Nie ma stron zatytułowanych "$1". Możesz [[$1|utworzyć tę stronę]] lub spróbować pełnego przeszukiwania.',
+'nogomatch' => 'Nie ma stron zatytułowanych "$2". Możesz [[:$1|utworzyć tę stronę]] lub spróbować pełnego przeszukiwania.',
 'titlematches' => 'Znaleziono w tytułach:',
 'notitlematches' => 'Nie znaleziono w tytułach',
 'textmatches' => 'Znaleziono na stronach:',
@@ -833,7 +841,7 @@ Ilość przesłanych plików: <b>$8</b>',
 'watchnologin' => 'Brak logowania',
 'watchnologintext' => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
 'addedwatch' => 'Dodana do listy obserwowanych',
-'addedwatchtext' => 'Strona "<b>[[:$1]]</b>" została dodana do Twojej [[{{ns:Special}}:Watchlist|listy obserwowanych]]. Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony Dyskusji, a nazwa samej strony zostanie <b>wytłuszczona</b> na [[{{ns:Special}}:Recentchanges|liście ostatnich zmian]], aby łatwiej było Ci sam fakt zmiany zauważyć.
+'addedwatchtext' => 'Strona "<b>[[:$1|$1]]</b>" została dodana do Twojej [[{{ns:Special}}:Watchlist|listy obserwowanych]]. Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony Dyskusji, a nazwa samej strony zostanie <b>wytłuszczona</b> na [[{{ns:Special}}:Recentchanges|liście ostatnich zmian]], aby łatwiej było Ci sam fakt zmiany zauważyć.
 
 Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na "Przestań obserwować".',
 'removedwatch' => 'Usunięto z listy obserwowanych',
@@ -860,6 +868,7 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na "Przest
 'wlsaved' => 'To jest ostatnia zapisana kopia Twojej listy obserwowanych.',
 'wlhideshowown' => '$1 moje edycje',
 'wlhideshowbots' => '$1 edycje botów',
+'wldone' => 'Wykonano.',
 
 'enotif_reset' => 'Zaznacz wszystkie strony jako odwiedzone',
 'enotif_newpagetext'=> 'To jest nowa strona.',
@@ -913,8 +922,8 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'confirmunprotect' => 'potwierdź odbezpieczenie',
 'unprotectcomment' => 'Powód odbezpieczenia',
 'protect-unchain' => 'Odblokowanie możliwości przenoszenia strony',
-'protect-text' => 'Możesz tu zobaczyć i zmienić poziom zabezpieczenia strony [[$1]]. Upewnij się, że przestrzegasz [[{{ns:Project}}:Blokowanie stron|zasad zabezpieczania stron]].',
-'protect-viewtext' => 'Nie masz uprawnień do zmiany poziomu zabezpieczenia strony. Obecne ustawienia dla strony [[$1]] to:',
+'protect-text' => 'Możesz tu zobaczyć i zmienić poziom zabezpieczenia strony <strong>$1</strong>. Upewnij się, że przestrzegasz [[{{ns:Project}}:Blokowanie stron|zasad zabezpieczania stron]].',
+'protect-viewtext' => 'Nie masz uprawnień do zmiany poziomu zabezpieczenia strony. Obecne ustawienia dla strony <strong>$1</strong> to:',
 'protect-default' => '(wszyscy)',
 'protect-level-autoconfirmed' => 'tylko zarejestrowani',
 'protect-level-sysop' => 'tylko sysopowie',
@@ -939,7 +948,9 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'undeletecomment' => 'Powód odtworzenia:',
 'undeletedarticle' => 'odtworzono "$1"',
 'undeletedrevisions' => 'liczba odtworzonych wersji: $1',
-'undeletedtext' => 'Pomyślnie odtworzono stronę [[:$1|$1]]. Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio skasowanych i odtworzonych stron.',
+'undeletedpage' => '<big>Odtworzono stronę $1.</big>
+
+Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio skasowanych i odtworzonych stron.',
 
 # Namespace form on various pages
 'namespace' => 'Przestrzeń nazw:',
@@ -1075,7 +1086,7 @@ W takich przypadkach tekst dyskusji trzeba przenieść, i ewentualnie połączy�
 'newtitle' => 'Nowy tytuł',
 'movepagebtn' => 'Przenieś stronę',
 'pagemovedsub' => 'Przeniesienie powiodło się',
-'pagemovedtext' => 'Strona "[[$1]]" została przeniesiona do "[[$2]]".',
+'pagemovedtext' => 'Strona "[[:$1|$1]]" została przeniesiona do "[[:$2|$2]]".',
 'articleexists' => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna. Wybierz, proszę, nową nazwę.',
 'talkexists' => 'Strona artykułu została przeniesiona, natomiast strona dyskusji nie - strona dyskusji o nowym tytule już istnieje. Połącz, proszę, teksty obu dyskusji ręcznie.',
 'movedto' => 'przeniesiono do',
@@ -1091,7 +1102,7 @@ W takich przypadkach tekst dyskusji trzeba przenieść, i ewentualnie połączy�
 'delete_and_move' => 'Usuń i przenieś',
 'delete_and_move_text' => '== Wymagane usunięcie ==
 
-Artykuł docelowy "[[$1]]" już istnieje. Czy chcesz go usunąć, by zrobić miejsce dla przenoszonego artykułu?',
+Artykuł docelowy "[[:$1|$1]]" już istnieje. Czy chcesz go usunąć, by zrobić miejsce dla przenoszonego artykułu?',
 'delete_and_move_confirm' => 'Tak, usuń stronę',
 'delete_and_move_reason' => 'Usunięto by zrobić miejsce dla przenoszonego artykułu',
 'selfmove' => 'Nazwy stron źródłowej i docelowej są takie same. Strony nie można przenieść na nią samą!',
@@ -1226,8 +1237,8 @@ ta[\'n-help\'] = new Array(\'\',\'Zapoznaj się z obsługą wiki\');
 ta[\'n-sitesupport\'] = new Array(\'\',\'Wesprzyj nas\'); 
 ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Pokaż listę stron linkujących do tego artykułu\'); 
 ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Ostatnie zmiany w stronach linkujących do tej strony\'); 
-ta[\'feed-rss\'] = new Array(\'\',\'Nagłówki RSS z tej strony\'); 
-ta[\'feed-atom\'] = new Array(\'\',\'Atom feed dla tej strony\'); 
+ta[\'feed-rss\'] = new Array(\'\',\'Kanał RSS dla tej strony\'); 
+ta[\'feed-atom\'] = new Array(\'\',\'Kanał Atom dla tej strony\'); 
 ta[\'t-contributions\'] = new Array(\'\',\'Pokaż listę edycji tego użytkownika\'); 
 ta[\'t-emailuser\'] = new Array(\'\',\'Wyślij e-mail do tego użytkownika\'); 
 ta[\'t-upload\'] = new Array(\'u\',\'Wyślij plik na serwer\'); 
@@ -1552,7 +1563,7 @@ Potwierdź chęć odtworzenia tego artykułu.',
 'recreate' => 'Odtwórz',
 
 # HTML dump
-'redirectingto' => 'Przechodzenie do [[$1]]...',
+'redirectingto' => 'Przechodzenie do [[:$1|$1]]...',
 
 # action=purge
 'confirm_purge' => 'Wyczyścić bufor dla tej strony?
@@ -1566,7 +1577,7 @@ $1',
 'hideresults' => 'Ukryj wyniki',
 
 # DISPLAYTITLE
-'displaytitle' => '(Link do tej strony to [[$1]])',
+'displaytitle' => '(Link do tej strony to [[:$1|$1]])',
 
 );
 
