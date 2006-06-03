@@ -4025,7 +4025,6 @@ HTML nested bullet list, open tags (bug 5497)
 <li>Sub-one
 <li>Sub-two
 </ul>
-</li>
 </ul>
 !! result
 <ul>
@@ -4074,7 +4073,6 @@ HTML nested ordered list, open tags (bug 5497)
 <li>Sub-one
 <li>Sub-two
 </ol>
-</li>
 </ol>
 !! result
 <ol>
@@ -4317,8 +4315,8 @@ Parsing optional HTML elements (Bug 6171)
 <table>
   <tr>
     <td> Some tabular data</td>
-    <td> More tabular data ...</td>
-    <td> And yet som tabular data</td>
+    <td> More tabular data ...
+    </td><td> And yet som tabular data</td>
   </tr>
 </table>
 
