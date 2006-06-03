@@ -603,15 +603,17 @@ class Linker {
 		if ( $manual_thumb != '' ) # Use manually specified thumbnail
 		{
 			$manual_title = Title::makeTitleSafe( NS_IMAGE, $manual_thumb ); #new Title ( $manual_thumb ) ;
-			$manual_img = new Image( $manual_title );
-			$thumbUrl = $manual_img->getViewURL();
-			if ( $manual_img->exists() )
-			{
-				$width  = $manual_img->getWidth();
-				$height = $manual_img->getHeight();
-				$boxwidth = $width ;
-				$boxheight = $height ;
-				$oboxwidth = $boxwidth + 2 ;
+			if( $manual_title ) {
+				$manual_img = new Image( $manual_title );
+				$thumbUrl = $manual_img->getViewURL();
+				if ( $manual_img->exists() )
+				{
+					$width  = $manual_img->getWidth();
+					$height = $manual_img->getHeight();
+					$boxwidth = $width ;
+					$boxheight = $height ;
+					$oboxwidth = $boxwidth + 2 ;
+				}
 			}
 		}
 

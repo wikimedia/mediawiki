@@ -415,6 +415,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6171) Fix sanitizing of HTML-elements with an optional closing
   tag. The sanitizer still needs to learn how to make well-formed XML
   in this case.
+* Fix fatal error when specifying illegal name for manual thumbnail
+
 
 == Compatibility ==
 
