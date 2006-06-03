@@ -4293,6 +4293,15 @@ http://example.com<pre>junk</pre>
 
 !!end
 
+!!test
+Fuzz testing: image with bogus manual thumbnail
+!!input
+[[Image:foobar.jpg|thumbnail= ]]
+!!result
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title=""><img src="http://example.com/images/3/3a/Foobar.jpg" alt="" width="180" height="-1" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div></div></div></div>
+
+!!end
+
 !! test
 Parsing optional HTML elements (Bug 6171)
 !! options
