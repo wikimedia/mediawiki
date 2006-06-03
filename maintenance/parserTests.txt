@@ -4293,6 +4293,49 @@ http://example.com<pre>junk</pre>
 
 !!end
 
+!! test
+Parsing optional HTML elements (Bug 6171)
+!! options
+!! input
+<table>
+  <tr>
+    <td> Some tabular data</td>
+    <td> More tabular data ...
+    <td> And yet som tabular data</td>
+  </tr>
+</table>
+!! result
+<table>
+  <tr>
+    <td> Some tabular data</td>
+    <td> More tabular data ...</td>
+    <td> And yet som tabular data</td>
+  </tr>
+</table>
+
+!! end
+
+!! test
+Correct handling of <td>, <tr> (Bug 6171)
+!! options
+!! input
+<table>
+  <tr>
+    <td> Some tabular data</td>
+    <td> More tabular data ...</td>
+    <td> And yet som tabular data</td>
+  </tr>
+</table>
+!! result
+<table>
+  <tr>
+    <td> Some tabular data</td>
+    <td> More tabular data ...</td>
+    <td> And yet som tabular data</td>
+  </tr>
+</table>
+
+!! end
 #
 #
 #
