@@ -7,8 +7,8 @@
 # steward = mwaisse-manaedjeu tot avå
 #
 
-global $wgAllMessagesWa;	
-private $wgAllMessagesWa = array(
+global $wgAllMessagesWa;
+$wgAllMessagesWa = array(
 # User preference toggles
 'tog-underline' => 'Sorlignî les loyéns',
 'tog-highlightbroken' => 'Håyner les vudes loyéns <a href="" class="new">come çouchal</a><br /> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href="" class="internal">?</a>).',
