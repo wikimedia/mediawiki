@@ -418,6 +418,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix fatal error when specifying illegal name for manual thumbnail
 * (bug 6184) Use shinier Linker::userLink() to make user links in Special:Undelete
 * (bug 6170) Update for Kashubian translation (csb)
+* (bug 6191) Update to Indonesian translation (id) #18
 
 == Compatibility ==
 
