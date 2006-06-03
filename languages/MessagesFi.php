@@ -449,7 +449,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'nocreatetext'        => 'Et voi luoda uusia sivuja. Voit muokata olemassa olevia sivuja tai luoda [[Special:Userlogin|käyttäjätunnukssen]].',
 
 # History pages
-#
+# 
 'revhistory'          => 'Muutoshistoria',
 'nohistory'           => 'Tällä sivulla ei ole muutoshistoriaa.',
 'revnotfound'         => 'Versiota ei löydy',
@@ -509,7 +509,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'badquery'            => 'Kelvoton hakumerkkijono',
 'badquerytext'        => 'Tekemäsi kysely ei ole kelvollinen. Tämä johtuu todennäköisesti siitä, että et ole määritellyt hakumerkkijonoa.',
 'matchtotals'         => 'Haulla \'\'\'$1\'\'\' löytyi $2 osumaa sivujen otsikoista ja $3 osumaa sivujen sisällöistä.',
-'nogomatch'           => '<big>Täsmälleen tällä otsikolla ei ole sivua.</big>
+'nogomatch'           => '<big>Otsikolla $2 ei ole sivua.</big>
 
 :Voit [[$1|luoda aiheesta uuden sivun]].
 :<small>Etsi ensin vastaavaa sivua, joka voi olla kirjoitusasultaan hieman erilainen</small>',
@@ -1713,6 +1713,24 @@ Ole hyvä ja varmista, että haluat luoda sivun uudelleen.',
 
 # DISPLAYTITLE
 'displaytitle'        => '(Linkitä tämä sivu merkinnällä [[$1]])',
+
+# If creating a redirect page and summary is empty, then use this
+'autoredircomment'    => 'Uudelleenohjaus sivulle [[$1]]',
+
+# Page history in an feed (RSS / Atom)
+'feed-invalid'        => 'Virheellinen syötetyyppi.',
+'history-feed-title'  => 'Muutoshistoria',
+'history-feed-description'    => 'Tämän sivun muutoshistoria',
+'history-feed-item-nocomment' => '$1 ($2)',
+'history-feed-empty'  => 'Pyydettyä sivua ei ole olemassa. 
+Se on saatettu poistaa wikistä tai nimetä uudelleen. 
+Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
+
+# Shown to the admin after s/he's undeleted a page.
+'undeletedpage'       => '<big>\'\'\'$1 on palautettu\'\'\'</big>
+
+[[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.',
+'sp-newimages-showfrom' => 'Näytä uudet kuvat alkaen $1',
 
 );
 ?>
