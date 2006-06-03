@@ -484,19 +484,32 @@ class LoadBalancer {
 		wfProfileOut( $fname );
 	}
 
-	function getWriterIndex()
-	{
+	function getWriterIndex() {
 		return 0;
 	}
 
-	function force( $i )
-	{
+	/**
+	 * Force subsequent calls to getConnection(DB_SLAVE) to return the 
+	 * given index. Set to -1 to restore the original load balancing
+	 * behaviour. I thought this was a good idea when I originally 
+	 * wrote this class, but it has never been used.
+	 */
+	function force( $i ) {
 		$this->mForce = $i;
 	}
 
-	function haveIndex( $i )
-	{
+	/**
+	 * Returns true if the specified index is a valid server index
+	 */
+	function haveIndex( $i ) {
 		return array_key_exists( $i, $this->mServers );
+	}
+
+	/**
+	 * Returns true if the specified index is valid and has non-zero load
+	 */
+	function isNonZeroLoad( $i ) {
+		return array_key_exists( $i, $this->mServers ) && $this->mLoads[$i] != 0;
 	}
 
 	/**

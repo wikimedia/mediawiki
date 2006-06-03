@@ -5,12 +5,17 @@ require_once( 'commandLine.inc' );
 
 //$wgDebugLogFile = '/dev/stdout';
 
-$numServers = count( $wgDBservers );
+$slaveIndexes = array();
+for ( $i = 1; $i < count( $wgDBservers ); $i++ ) {
+	if ( $wgLoadBalancer->isNonZeroLoad( $i ) ) {
+		$slaveIndexes[] = $i;
+	}
+}
 /*
 foreach ( $wgLoadBalancer->mServers as $i => $server ) {
 	$wgLoadBalancer->mServers[$i]['flags'] |= DBO_DEBUG;
 }*/
-define( 'REPORTING_INTERVAL', 1000 );
+$reportingInterval = 1000;
 
 if ( isset( $args[0] ) ) {
 	desyncFixPage( $args[0] );
@@ -19,29 +24,31 @@ if ( isset( $args[0] ) ) {
 	$maxPage = $dbw->selectField( 'page', 'MAX(page_id)', false, 'fixDesync.php' );
 	for ( $i=1; $i <= $maxPage; $i++ ) {
 		desyncFixPage( $i );
-		if ( !($i % REPORTING_INTERVAL) ) {
+		if ( !($i % $reportingInterval) ) {
 			print "$i\n";
 		}
 	}
 }
 
 function desyncFixPage( $pageID ) {
-	global $numServers;
+	global $slaveIndexes;
 	$fname = 'desyncFixPage';
 
 	# Check for a corrupted page_latest
 	$dbw =& wfGetDB( DB_MASTER );
 	$realLatest = $dbw->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ), $fname );
-	for ( $i = 1; $i < $numServers; $i++ ) {
+	$found = false;
+	foreach ( $slaveIndexes as $i ) {
 		$db =& wfGetDB( $i );
 		$latest = $db->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ), $fname );
 		$max = $db->selectField( 'revision', 'MAX(rev_id)', false, $fname );
 		if ( $latest != $realLatest && $realLatest < $max ) {
 			print "page_latest corrupted in page $pageID, server $i\n";
+			$found = true;
 			break;
 		}
 	}
-	if ( $i == $numServers ) {
+	if ( !$found ) {
 		return;
 	}
 
@@ -67,14 +74,14 @@ function desyncFixPage( $pageID ) {
 			print "$rid ";
 			# Revision
 			$row = $dbw->selectRow( 'revision', '*', array( 'rev_id' => $rid ), $fname );
-			for ( $i = 1; $i < $numServers; $i++ ) {
+			foreach ( $slaveIndexes as $i ) {
 				$db =& wfGetDB( $i );
 				$db->insert( 'revision', get_object_vars( $row ), $fname, 'IGNORE' );
 			}
 
 			# Text
 			$row = $dbw->selectRow( 'text', '*', array( 'old_id' => $row->rev_text_id ), $fname );
-			for ( $i = 1; $i < $numServers; $i++ ) {
+			foreach ( $slaveIndexes as $i ) {
 				$db =& wfGetDB( $i );
 				$db->insert( 'text', get_object_vars( $row ), $fname, 'IGNORE' );
 			}
@@ -83,7 +90,7 @@ function desyncFixPage( $pageID ) {
 	}
 
 	print "Fixing page_latest... ";
-	for ( $i = 1; $i < $numServers; $i++ ) {
+	foreach ( $slaveIndexes as $i ) {
 		$db =& wfGetDB( $i );
 		$db->update( 'page', array( 'page_latest' => $realLatest ), array( 'page_id' => $pageID ), $fname );
 	}
