@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesCsb = array(
+global $wgAllMessagesCsb;
+$wgAllMessagesCsb = array(
 '1movedto2' => '$1 przeniesłé do $2',
 'aboutpage' => '{{ns:4}}:Ò_{{SITENAME}}',
 'aboutsite' => 'Ò {{SITENAME}}',
@@ -27,7 +27,7 @@
 'bydate' => 'wedle datumù',
 'byname' => 'wedle miona',
 'bysize' => 'wedle wiôlgòscë',
-'categories' => 'Kategòrëje',
+'categories' => '{{PLURAL:$1|Kategòrëjô|Kategòrëje}}',
 'categoryarticlecount' => 'W ny kategòrëje je $1 artiklów.',
 'category_header' => 'Artikle w kategòrëji "$1"',
 'category' => 'Kategòrëjô',
@@ -47,7 +47,6 @@
 'couldntremove' => 'Ni móg rëmac pòzycëje "$1"...',
 'createaccount' => 'Założë nowé kònto',
 'cur' => 'aktualnô',
-'currentevents' => '-',
 'databaseerror' => 'Fela w pòdôwkòwi baze',
 'dateformat' => 'Fòrmat datumù',
 'debug' => 'Òdplëskwianié "(debug-òwónié)"',
@@ -69,6 +68,8 @@
 'doubleredirects' => 'Dëbeltné przeczérowania',
 'editcurrent' => 'Editëjë aktualną wersëjã ny starnë',
 'edit' => 'Edicëjô',
+'editold' => 'Edicëjô',
+'editsection' => 'Edicëjô',
 'editthispage' => 'Editëjë ną starnã',
 'emailfrom' => 'Òd',
 'emailmessage' => 'Wiadło',
@@ -78,7 +79,7 @@
 'emailto' => 'Do',
 'emailuser' => 'Wëslë e-maila do negò brëkòwnika',
 'errorpagetitle' => 'Brida',
-'excontent' => 'Zamkłosc starnë',
+'excontent' => 'Zamkłosc starnë "$1"',
 'explainconflict' => 'Chtos sfórtowôł wprowadzëc swòją wersëjã artikla òbczôs Twòji edicëji. Górné pòle edicëji zamëkô w se tekst starnë aktualno zapisóny w pòdôwkòwi baze. Twòje zmianë są w dólnym pòlu edicëji. Bë wprowadzëc swòje zmianë mùszisz zmòdifikòwac tekst z górnégò pòla. <b>Blós</b> tekst z górnégò pòla mdze zapisóny w baze czej wcësniesz "Zapiszë".',
 'export' => 'Ekspòrt starnów',
 'faqpage' => '{{ns:4}}:FAQ',
@@ -122,7 +123,7 @@
 'july' => 'Lëpinc',
 'june' => 'Czerwińc',
 'june-gen' => 'Czerwińca',
-'largefile' => 'Nôlepi bë lopk ni miôł wicy jak 100 kilobajtów.',
+'largefile' => 'Nôlepi bë lopk ni miôł wicy jak $1 bajtów.',
 'lastmodifiedby' => 'Na starna bëła slédno editowónô $1 przez $2.',
 'lastmodified' => 'Na starna bëła slédno editowónô ò $1;',
 'last' => 'pòslédnô',
@@ -203,7 +204,7 @@
 'pagemovedsub' => 'Przeniesenié darzëło sã',
 'pagemovedtext' => 'Starna "[[$1]]" òsta przeniesłô do "[[$2]]".',
 'pagetitle' => '$1 - {{SITENAME}}',
-'passwordremindertext' => 'Chtos (prôwdëjuwerno Të, z adresë $1) pòprosëł ò wësłanié nowi parolë dopùscënkù do {{SITENAME}}. Aktualnô parola dlô brëkòwnika "$2" je "$3". Nôlepi mdze czej wlogùjesz sã terô ë zarô zmienisz parolã.',
+'passwordremindertext' => 'Chtos (prôwdëjuwerno Të, z adresë $1) pòprosëł ò wësłanié nowi parolë dopùscënkù do {{SITENAME}} ($4). Aktualnô parola dlô brëkòwnika "$2" je "$3". Nôlepi mdze czej wlogùjesz sã terô ë zarô zmienisz parolã.',
 'personaltools' => 'Priwatné przërëchtënczi',
 'popularpages' => 'Nôwidzalszé starnë',
 'portal' => 'Pòrtal wëcmaniznë',
@@ -254,7 +255,6 @@
 'showtoc' => 'pokôż',
 'sitestats' => 'Statistika artiklów',
 'sitestatstext' => 'W pòdôwkòwi baze je w sëmie <b>$1</b> starn. Na wielëna zamëkô w se starnë <i>Diskùsëji</i>, starnë ò {{SITENAME}}, starnë ôrtë <i>stub</i> (ùzémk), starnë przeczerowóniô, ë jińszé, chtërné grãdo je klasyfikòwac jakno artikle. Bez nëch to prôwdëjuwerno da <b>$2</b> starn artiklów.<p>\nBëło w sëmie <b>$3</b> òdwiôdënów ë <b>$4</b> edicëji òd sztótu, czej miôł plac\nupgrade soft-wôrë.\nDôwó to strzédno <b>$5</b> edicëji na jedną starnã ë <b>$6</b> òdwiôdënów na jedną edicëjã.',
-'sitesubtitle' => '',
 'siteuser' => 'Brëkòwnik {{SITENAME}} $1',
 'skin' => 'Wëzdrzatk',
 'spamprotectiontitle' => 'Anti-spamòwi filter',
