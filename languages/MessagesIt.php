@@ -121,6 +121,8 @@ I seguenti collegamenti sono in lingua inglese:
 "qbpageoptions"		=> "Opzioni pagina",
 "qbpageinfo"		=> "Informazioni sulla pagina",
 "qbmyoptions"		=> "Le mie pagine",
+"qbspecialpages"	=> "Pagine speciali",
+"moredotdotdot"		=> "Altro...",
 "mypage"		=> "La mia pagina",
 "mytalk"		=> "Le mie discussioni",
 "anontalk"		=> "Discussioni per questo IP",
@@ -175,8 +177,9 @@ I seguenti collegamenti sono in lingua inglese:
 "imagepage" => 	"Vedi la pagina di descrizione dell'immagine",
 "viewtalkpage" => "Vedi la pagina di discussione",
 "otherlanguages" => "Altre lingue",
-"redirectedfrom" => "(Rinvio da $1)",
-"redirectpagesub" => "Pagina di rinvio",
+"redirectedfrom" => "(Redirect da $1)",
+"autoredircomment" => "Redirect alla pagina [[$1]]",
+"redirectpagesub" => "Pagina di redirect",
 "lastmodified"	=> "Ultima modifica per la pagina: $1.",
 "viewcount"		=> "Questa pagina è stata letta {{plural:$1|una volta|$1 volte}}.",
 "copyright"	=> "Contenuti soggetti a licenza d'uso $1.",
@@ -218,6 +221,7 @@ Vedi $1.",
 "viewdeleted" => "Vedi $1?",
 "restorelink" => "{{PLURAL:$1|una modifica cancellata|$1 modifiche cancellate}}",
 "feedlinks" => "Feed:",
+"feed-invalid" => "Modalità di sottoscrizione del feed non valida.",
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Voce',
@@ -351,6 +355,8 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 "loginsuccesstitle" => "Accesso effettuato",
 "loginsuccess"	=> "'''Il collegamento al server di {{SITENAME}} con il nome utente \"$1\" è attivo.'''",
 "nosuchuser"	=> "Non è registrato alcun utente di nome \"$1\". Verificare il nome inserito o creare un nuovo accesso.",
+"nosuchusershort"	=> "Non è registrato alcun utente di nome \"$1\". Verificare il nome inserito.",
+"nouserspecified"	=> "È necessario specificare un nome utente.",
 "wrongpassword"	=> "La password inserita non è corretta. Riprovare.",
 "wrongpasswordempty"	=> "La password inserita è vuota. Riprovare.",
 "mailmypassword" => "Invia password via e-mail",
@@ -463,9 +469,9 @@ Premendo il pulsante 'Salva la pagina', verrà salvato <b>solo</b> il testo cont
 "editingold"	=> "<strong>Attenzione: si sta modificando una versione non aggiornata della pagina.<br />
 Se si sceglie di salvarla, tutti i cambiamenti apportati dopo questa revisione andranno perduti.</strong>",
 "yourdiff"		=> "Differenze",
-/*"copyrightwarning" => "Nota: tutti i contributi a {{SITENAME}} si considerano rilasciati nei termini della licenza d'uso $2 (vedi $1 per maggiori dettagli). Se non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli a {{SITENAME}}.<br />
+"copyrightwarning" => "Nota: tutti i contributi a {{SITENAME}} si considerano rilasciati nei termini della licenza d'uso $2 (vedi $1 per maggiori dettagli). Se non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli a {{SITENAME}}.<br />
 Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il testo è stato scritto da te personalmente oppure che è stato copiato da una fonte di pubblico dominio o analogamente libera.
-<strong>NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!</strong>",*/
+<strong>NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!</strong>",
 "copyrightwarning2" => "Nota: tutti i contributi inviati a {{SITENAME}} possono essere modificati, stravolti o cancellati da parte degli altri partecipanti. Se non desideri che i tuoi testi possano essere modificati senza alcun riguardo, non inviarli a questo sito.<br />
 Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il testo è stato scritto da te personalmente oppure che è stato copiato da una fonte di pubblico dominio o analogamente libera. (vedi $1 per maggiori dettagli)
 <strong>NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!</strong>",
@@ -516,6 +522,11 @@ Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancella
 </div>',
 "rev-delundel" => "mostra/nascondi",
 
+"history-feed-title" => "Cronologia",
+"history-feed-description"	=> "Cronologia della pagina su questo sito",
+"history-feed-item-nocomment" => "$1 il $2", # user at time
+"history-feed-empty" => "La pagina richiesta non esiste; potrebbe essere stata cancellata dal sito o rinominata. Verificare con la [[Special:Search|pagina di ricerca]] se vi sono nuove pagine.",
+
 # Revision deletion
 #
 "revisiondelete" => "Cancella o ripristina versioni",
@@ -550,6 +561,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "badquery"		=> "Richiesta mal posta",
 "badquerytext"	=> "Impossibile elaborare la richiesta. Questo potrebbe dipendere dall'aver cercato una parola più corta di 4 caratteri, il che al momento è impossibile, oppure da una errore nella forma della richiesta, ad esempio \"pesce and and azzurro\". Per favore, riprova.",
 "matchtotals"	=> "La ricerca di \"$1\" ha trovato $2 riscontri nel titolo e $3 riscontri nel testo.",
+"nogomatch" => "'''La pagina \"$2\" non esiste.''' È possibile [[$1|crearla ora]].",
 "titlematches"	=> "Corrispondenze nel titolo delle pagine",
 "notitlematches" => "Nessuna corrispondenza nei titoli delle pagine",
 "textmatches"	=> "Corrispondenze nel testo delle pagine",
@@ -1003,7 +1015,7 @@ La modifica più recente alla pagina è stata apportata da [[{{ns:User}}:$3|$3]]
 "protectlogpage"	=> "Protezioni",
 "protectlogtext"	=> "Di seguito sono elencate le azioni di protezione e sblocco delle pagine. Si veda [[{{ns:Project}}:Pagina protetta]] per maggiori informazioni.",
 "protectedarticle"	=> "ha protetto \"[[$1]]\"",
-"unprotectedarticle"	=> "ha sprotetto \"[[$1]]\"",
+"unprotectedarticle"	=> "ha sbloccato \"[[$1]]\"",
 "protectsub"	=> "(Protezione di \"$1\")",
 "confirmprotecttext"	=> "Proteggere questa pagina?",
 "confirmprotect"	=> "Conferma la protezione",
@@ -1027,16 +1039,22 @@ La modifica più recente alla pagina è stata apportata da [[{{ns:User}}:$3|$3]]
 # Undelete
 "undelete" => "Visualizza pagine cancellate",
 "undeletepage" => "Visualizza e recupera le pagine cancellate",
+"viewdeletedpage" => "Visualizza le pagine cancellate",
 "undeletepagetext" => "Le pagine indicate di seguito sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate. L'archivio può essere svuotato periodicamente.",
+"undeleteextrahelp" => "Per recuperare l'intera pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reset''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
 "undeletearticle" => "Recupera una pagina cancellata",
 "undeleterevisions" => "$1 revisioni in archivio",
 "undeletehistory" => "Recuperando questa pagina, tutte le sue revisioni verranno inserite di nuovo nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.",
 "undeletehistorynoadmin"	=> "La pagina è stata cancellata. Il motivo della cancellazione è indicato di seguito, assieme ai dati degli utenti che avevano modificato la pagina prima della cancellazione. Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.",
 "undeleterevision" => "Revisione cancellata, inserita il $1",
 "undeletebtn" => "Ripristina",
+"undeletereset" => "Reset",
 "undeletecomment"	=> "Commento:",
 "undeletedarticle"	=> "ha recuperato \"[[$1]]\"",
-"undeletedtext"   => "La pagina [[:$1|$1]] è stata recuperata. Si veda l'apposito [[Special:Log/delete|log]] per l'elenco delle pagine cancellate e recuperate di recente.",
+"undeletedrevisions" => "$1 revisioni recuperate",
+"undeletedpage" => "<big>'''$1 è stata recuperata'''</big>
+
+Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni e i recuperi più recenti.",
 
 # Namespace form on various pages
 "namespace" => "Namespace:",
@@ -1052,6 +1070,8 @@ La modifica più recente alla pagina è stata apportata da [[{{ns:User}}:$3|$3]]
 "uclinks"		=> "Mostra le ultime $1 modifiche; mostra gli ultimi $2 giorni.",
 "uctop"		=> " (ultima per la pagina)" ,
 "newbies"       => "nuovi utenti",
+
+"sp-newimages-showfrom"	=> "Mostra le immagini più recenti a partire da $1",
 
 "sp-contributions-newest"	=> "Ultimi",
 "sp-contributions-oldest"	=> "Primi",
@@ -1418,10 +1438,281 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vedi la pagina della categoria\');
 * focallength",
 
 # Exif tags
+"exif-imagewidth"	=> "Larghezza",
+"exif-imagelength"	=> "Altezza",
+"exif-bitspersample"	=> "Bit per campione",
+"exif-compression"	=> "Meccanismo di compressione",
+"exif-photometricinterpretation"	=> "Struttura dei pixel",
+"exif-orientation"	=> "Orientamento",
+"exif-samplesperpixel"	=> "Numero delle componenti",
+"exif-planarconfiguration"	=> "Disposizione dei dati",
+"exif-ycbcrsubsampling"	=> "Rapporto di campionamento Y / C",
+"exif-ycbcrpositioning"	=> "Posizionamento componenti Y e C",
+"exif-xresolution"	=> "Risoluzione orizzontale",
+"exif-yresolution"	=> "Risoluzione verticale",
+"exif-resolutionunit"	=> "Unità di misura risoluzione X e Y",
+"exif-stripoffsets"	=> "Posizione dei dati immagine",
+"exif-rowsperstrip"	=> "Numero righe per striscia",
+"exif-stripbytecounts"	=> "Numero di byte per striscia compressa",
+"exif-jpeginterchangeformat"	=> "Posizione byte SOI JPEG",
+"exif-jpeginterchangeformatlength"	=> "Numero di byte di dati JPEG",
+"exif-transferfunction"	=> "Funzione di trasferimento",
+"exif-whitepoint"	=> "Coordinate cromatiche del punto di bianco",
+"exif-primarychromaticities"	=> "Coordinate cromatiche dei colori primari",
+"exif-ycbcrcoefficients"	=> "Coefficienti matrice di trasformazione spazi dei colori",
+"exif-referenceblackwhite"	=> "Coppia di valori di riferimento (nero e bianco)",
+"exif-datetime"	=> "Data e ora di modifica del file",
+"exif-imagedescription"	=> "Descrizione dell'immagine",
+"exif-make"	=> "Produttore fotocamera",
+"exif-model"	=> "Modello fotocamera",
+"exif-software"	=> "Software",
+"exif-artist"	=> "Autore",
+"exif-copyright"	=> "Informazioni sul copyright",
+"exif-exifversion"	=> "Versione del formato Exif",
+"exif-flashpixversion"	=> "Versione Flashpix supportata",
+"exif-colorspace"	=> "Spazio dei colori",
+"exif-componentsconfiguration"	=> "Significato di ciascuna componente",
+"exif-compressedbitsperpixel"	=> "Modalità di compressione immagine",
+"exif-pixelydimension"	=> "Larghezza effettiva immagine",
+"exif-pixelxdimension"	=> "Altezza effettiva immagine",
+"exif-makernote"	=> "Note del produttore",
+"exif-usercomment"	=> "Note dell'utente",
+"exif-relatedsoundfile"	=> "File audio collegato",
+"exif-datetimeoriginal"	=> "Data e ora di creazione dei dati",
+"exif-datetimedigitized"	=> "Data e ora di digitalizzazione",
+"exif-subsectime"	=> "Data e ora, frazioni di secondo",
+"exif-subsectimeoriginal"	=> "Data e ora di creazione, frazioni di secondo",
+"exif-subsectimedigitized"	=> "Data e ora di digitalizzazione, frazioni di secondo",
+"exif-exposuretime"	=> "Tempo di esposizione",
+"exif-exposuretime-format"	=> "$1 s ($2)",
+"exif-fnumber"	=> "Rapporto focale",
+"exif-fnumber-format"	=> "f/$1",
+"exif-exposureprogram"	=> "Programma di esposizione",
+"exif-spectralsensitivity"	=> "Sensibilità spettrale",
+"exif-isospeedratings"	=> "Sensibilità ISO",
+"exif-oecf"	=> "Fattore di conversione optoelettronica",
+"exif-shutterspeedvalue"	=> "Tempo di esposizione",
+"exif-aperturevalue"	=> "Apertura",
+"exif-brightnessvalue"	=> "Luminosità",
+"exif-exposurebiasvalue"	=> "Correzione esposizione",
+"exif-maxaperturevalue"	=> "Apertura massima",
+"exif-subjectdistance"	=> "Distanza del soggetto",
+"exif-meteringmode"	=> "Metodo di misurazione",
+"exif-lightsource"	=> "Sorgente luminosa",
+"exif-flash"	=> "Caratteristiche e stato del flash",
+"exif-focallength"	=> "Distanza focale obiettivo",
+"exif-focallength-format"	=> "$1 mm",
+"exif-subjectarea"	=> "Area inquadrante il soggetto",
+"exif-flashenergy"	=> "Potenza del flash",
+"exif-spatialfrequencyresponse"	=> "Risposta in frequenza spaziale",
+"exif-focalplanexresolution"	=> "Risoluzione X sul piano focale",
+"exif-focalplaneyresolution"	=> "Risoluzione Y sul piano focale",
+"exif-focalplaneresolutionunit"	=> "Unità di misura risoluzione sul piano focale",
+"exif-subjectlocation"	=> "Posizione del soggetto",
+"exif-exposureindex"	=> "Sensibilità impostata",
+"exif-sensingmethod"	=> "Metodo di rilevazione",
+"exif-filesource"	=> "Origine del file",
+"exif-scenetype"	=> "Tipo di inquadratura",
+"exif-cfapattern"	=> "Disposizione filtro colore",
+"exif-customrendered"	=> "Elaborazione personalizzata",
+"exif-exposuremode"	=> "Modalità di esposizione",
+"exif-whitebalance"	=> "Bilanciamento del bianco",
+"exif-digitalzoomratio"	=> "Rapporto zoom digitale",
+"exif-focallengthin35mmfilm"	=> "Focale equivalente su 35 mm",
+"exif-scenecapturetype"	=> "Tipo di acquisizione",
+"exif-gaincontrol"	=> "Controllo inquadratura",
+"exif-contrast"	=> "Controllo contrasto",
+"exif-saturation"	=> "Controllo saturazione",
+"exif-sharpness"	=> "Controllo nitidezza",
+"exif-devicesettingdescription"	=> "Descrizione impostazioni dispositivo",
+"exif-subjectdistancerange"	=> "Scala distanza soggetto",
+"exif-imageuniqueid"	=> "ID univoco immagine",
+"exif-gpsversionid"	=> "Versione dei tag GPS",
+"exif-gpslatituderef"	=> "Latitudine Nord/Sud",
+"exif-gpslatitude"	=> "Latitudine",
+"exif-gpslongituderef"	=> "Longitudine Est/Ovest",
+"exif-gpslongitude"	=> "Longitudine",
+"exif-gpsaltituderef"	=> "Riferimento per l'altitudine",
+"exif-gpsaltitude"	=> "Altitudine",
+"exif-gpstimestamp"	=> "Ora GPS (orologio atomico)",
+"exif-gpssatellites"	=> "Satelliti usati per la misurazione",
+"exif-gpsstatus"	=> "Stato del ricevitore",
+"exif-gpsmeasuremode"	=> "Modalità di misurazione",
+"exif-gpsdop"	=> "Precisione della misurazione",
+"exif-gpsspeedref"	=> "Unità di misura della velocità",
+"exif-gpsspeed"	=> "Velocità del ricevitore GPS",
+"exif-gpstrackref"	=> "Riferimento per la direzione movimento",
+"exif-gpstrack"	=> "Direzione del movimento",
+"exif-gpsimgdirectionref"	=> "Riferimento per la direzione dell'immagine",
+"exif-gpsimgdirection"	=> "Direzione dell'immagine",
+"exif-gpsmapdatum"	=> "Rilevamento geodetico usato",
+"exif-gpsdestlatituderef"	=> "Riferimento per la latitudine della destinazione",
+"exif-gpsdestlatitude"	=> "Latitudine della destinazione",
+"exif-gpsdestlongituderef"	=> "Riferimento per la longitudine della destinazione",
+"exif-gpsdestlongitude"	=> "Longitudine della destinazione",
+"exif-gpsdestbearingref"	=> "Riferimento per la direzione della destinazione",
+"exif-gpsdestbearing"	=> "Direzione della destinazione",
+"exif-gpsdestdistanceref"	=> "Riferimento per la distanza della destinazione",
+"exif-gpsdestdistance"	=> "Distanza della destinazione",
+"exif-gpsprocessingmethod"	=> "Nome del metodo di elaborazione GPS",
+"exif-gpsareainformation"	=> "Nome della zona GPS",
+"exif-gpsdatestamp"	=> "Data GPS",
+"exif-gpsdifferential"	=> "Correzione differenziale GPS",
 
 # Make & model, can be wikified in order to link to the camera and model name
 
+"exif-make-value"	=> "$1",
+"exif-model-value"	=> "$1",
+"exif-software-value"	=> "$1",
+
 # Exif attributes
+
+"exif-compression-1"	=> "Nessuno",
+"exif-compression-6"	=> "JPEG",
+
+"exif-photometricinterpretation-2"	=> "RGB",
+"exif-photometricinterpretation-6"	=> "YCbCr",
+
+"exif-orientation-1"	=> "Normale",
+"exif-orientation-2"	=> "Capovolto orizzontalmente",
+"exif-orientation-3"	=> "Ruotato di 180°",
+"exif-orientation-4"	=> "Capovolto verticalmente",
+"exif-orientation-5"	=> "Ruotato 90° in senso antiorario e capovolto verticalmente",
+"exif-orientation-6"	=> "Ruotato 90° in senso orario",
+"exif-orientation-7"	=> "Ruotato 90° in senso orario e capovolto verticalmente",
+"exif-orientation-8"	=> "Ruotato 90° in senso antiorario",
+
+"exif-planarconfiguration-1"	=> "a blocchi (chunky)",
+"exif-planarconfiguration-2"	=> "lineare (planar)",
+
+"exif-xyresolution-i"	=> "$1 punti per pollice (dpi)",
+"exif-xyresolution-c"	=> "$1 punti per centimetro (dpc)",
+
+"exif-colorspace-1"	=> "sRGB",
+"exif-colorspace-ffff.h"	=> "Non calibrato",
+
+"exif-componentsconfiguration-0"	=> "assente",
+"exif-componentsconfiguration-1"	=> "Y",
+"exif-componentsconfiguration-2"	=> "Cb",
+"exif-componentsconfiguration-3"	=> "Cr",
+"exif-componentsconfiguration-4"	=> "R",
+"exif-componentsconfiguration-5"	=> "G",
+"exif-componentsconfiguration-6"	=> "B",
+
+
+"exif-exposureprogram-0"	=> "Non definito",
+"exif-exposureprogram-1"	=> "Manuale",
+"exif-exposureprogram-2"	=> "Standard",
+"exif-exposureprogram-3"	=> "Priorità al diaframma",
+"exif-exposureprogram-4"	=> "Priorità all'esposizione",
+"exif-exposureprogram-5"	=> "Artistico (orientato alla profondità di campo)",
+"exif-exposureprogram-6"	=> "Sportivo (orientato alla velocità di ripresa)",
+"exif-exposureprogram-7"	=> "Ritratto (soggetti vicini con sfondo fuori fuoco)",
+"exif-exposureprogram-8"	=> "Panorama (soggetti lontani con sfondo a fuoco)",
+
+"exif-subjectdistance-value"	=> "$1 metri",
+
+"exif-meteringmode-0"	=> "Sconosciuto",
+"exif-meteringmode-1"	=> "Media",
+"exif-meteringmode-2"	=> "Media pesata centrata",
+"exif-meteringmode-3"	=> "Spot",
+"exif-meteringmode-4"	=> "MultiSpot",
+"exif-meteringmode-5"	=> "Pattern",
+"exif-meteringmode-6"	=> "Parziale",
+"exif-meteringmode-255"	=> "Altro",
+
+"exif-lightsource-0"	=> "Sconosciuta",
+"exif-lightsource-1"	=> "Luce diurna",
+"exif-lightsource-2"	=> "Lampada a fluorescenza",
+"exif-lightsource-3"	=> "Lampada al tungsteno (a incandescenza)",
+"exif-lightsource-4"	=> "Flash",
+"exif-lightsource-9"	=> "Bel tempo",
+"exif-lightsource-10"	=> "Nuvoloso",
+"exif-lightsource-11"	=> "In ombra",
+"exif-lightsource-12"	=> "Daylight fluorescent (D 5700 â€“ 7100K)",
+"exif-lightsource-13"	=> "Day white fluorescent (N 4600 â€“ 5400K)",
+"exif-lightsource-14"	=> "Cool white fluorescent (W 3900 â€“ 4500K)",
+"exif-lightsource-15"	=> "White fluorescent (WW 3200 â€“ 3700K)", 
+"exif-lightsource-17"	=> "Luce standard A",
+"exif-lightsource-18"	=> "Luce standard B",
+"exif-lightsource-19"	=> "Luce standard C",
+"exif-lightsource-20"	=> "Illuminante D55",
+"exif-lightsource-21"	=> "Illuminante D65",
+"exif-lightsource-22"	=> "Illuminante D75",
+"exif-lightsource-23"	=> "Illuminante D50",
+"exif-lightsource-24"	=> "Lampada da studio ISO al tungsteno",
+"exif-lightsource-255"	=> "Altra sorgente luminosa",
+
+"exif-focalplaneresolutionunit-2"	=> "pollici",
+
+"exif-sensingmethod-1"	=> "Non definito",
+"exif-sensingmethod-2"	=> "Sensore area colore a 1 chip",
+"exif-sensingmethod-3"	=> "Sensore area colore a 2 chip",
+"exif-sensingmethod-4"	=> "Sensore area colore a 3 chip",
+"exif-sensingmethod-5"	=> "Sensore area colore sequenziale",
+"exif-sensingmethod-7"	=> "Sensore trilineare",
+"exif-sensingmethod-8"	=> "Sensore lineare colore sequenziale",
+
+"exif-filesource-3"	=> "DSC",
+
+"exif-scenetype-1"	=> "Fotografia diretta",
+
+"exif-customrendered-0"	=> "Processo normale",
+"exif-customrendered-1"	=> "Processo personalizzato",
+
+"exif-exposuremode-0"	=> "Esposizione automatica",
+"exif-exposuremode-1"	=> "Esposizione manuale",
+"exif-exposuremode-2"	=> "Bracketing automatico",
+
+"exif-whitebalance-0"	=> "Bilanciamento del bianco automatico",
+"exif-whitebalance-1"	=> "Bilanciamento del bianco manuale",
+
+"exif-scenecapturetype-0"	=> "Standard",
+"exif-scenecapturetype-1"	=> "Panorama",
+"exif-scenecapturetype-2"	=> "Ritratto",
+"exif-scenecapturetype-3"	=> "Notturna",
+
+"exif-gaincontrol-0"	=> "Nessuno",
+"exif-gaincontrol-1"	=> "Enfasi per basso guadagno",
+"exif-gaincontrol-2"	=> "Enfasi per alto guadagno",
+"exif-gaincontrol-3"	=> "Deenfasi per basso guadagno",
+"exif-gaincontrol-4"	=> "Deenfasi per alto guadagno",
+
+"exif-contrast-0"	=> "Normale",
+"exif-contrast-1"	=> "Alto contrasto",
+"exif-contrast-2"	=> "Basso contrasto",
+
+"exif-saturation-0"	=> "Normale",
+"exif-saturation-1"	=> "Bassa saturazione",
+"exif-saturation-2"	=> "Alta saturazione",
+
+"exif-sharpness-0"	=> "Normale",
+"exif-sharpness-1"	=> "Minore nitidezza",
+"exif-sharpness-2"	=> "Maggiore nitidezza",
+
+"exif-subjectdistancerange-0"	=> "Sconosciuta",
+"exif-subjectdistancerange-1"	=> "Macro",
+"exif-subjectdistancerange-2"	=> "Soggetto vicino",
+"exif-subjectdistancerange-3"	=> "Soggetto lontano",
+
+"exif-gpslatitude-n"	=> "Latitudine Nord",
+"exif-gpslatitude-s"	=> "Latitudine Sud",
+
+"exif-gpslongitude-e"	=> "Longitudine Est",
+"exif-gpslongitude-w"	=> "Longitudine Ovest",
+
+"exif-gpsstatus-a"	=> "Misurazione in corso", #rivedere
+"exif-gpsstatus-v"	=> "Misurazione interoperabile", #rivedere
+
+"exif-gpsmeasuremode-2"	=> "Misurazione bidimensionale",
+"exif-gpsmeasuremode-3"	=> "Misurazione tridimensionale",
+
+"exif-gpsspeed-k"	=> "Chilometri orari",
+"exif-gpsspeed-m"	=> "Miglia orarie",
+"exif-gpsspeed-n"	=> "Nodi",
+
+"exif-gpsdirection-t"	=> "Direzione reale",
+"exif-gpsdirection-m"	=> "Direzione magnetica",
 
 # external editor support
 "edit-externally"	=> "Modifica questo file usando un programma esterno",
@@ -1466,7 +1757,7 @@ Se l'account *non* ti appartiene, non seguire il collegamento. Questo codice di 
 "scarytranscludetoolong"	=> "[Errore: URL troppo lunga]",
 
 # Trackbacks
-"trackback"	=> "<div id=\"mw_trackbacks\">
+"trackbackbox"	=> "<div id=\"mw_trackbacks\">
 Informazioni di trackback per questa voce:<br />
 $1
 </div>",
