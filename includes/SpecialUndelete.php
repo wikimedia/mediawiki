@@ -474,6 +474,17 @@ class UndeleteForm {
 
 		# List all stored revisions
 		$revisions = $archive->listRevisions();
+		
+		# Batch existence check on user and talk pages
+		if( $revisions->numRows() > 0 ) {
+			$batch = new LinkBatch();
+			while( $row = $revisions->fetchObject() ) {
+				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->ar_user_text ) );
+				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->ar_user_text ) );
+			}
+			$batch->execute();
+			$revisions->seek( 0 );
+		}
 
 		if ( $this->mAllowed ) {
 			$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
@@ -496,12 +507,9 @@ class UndeleteForm {
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( wfMsg( "history" ) ) . "</h2>\n" );
 		
 		if( $this->mAllowed ) {
-			# Brief explanation of how it all works
-			$wgOut->addHtml( '<fieldset>' );
-			#$wgOut->addWikiText( wfMsg( 'undeleteextrahelp' ) );
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
-			$table = '<table><tr>';
+			$table = '<fieldset><table><tr>';
 			$table .= '<td colspan="2">' . wfMsgWikiHtml( 'undeleteextrahelp' ) . '</td></tr><tr>';
 			$table .= '<td align="right"><strong>' . wfMsgHtml( 'undeletecomment' ) . '</strong></td>';
 			$table .= '<td>' . wfInput( 'wpComment', 50, $this->mComment ) . '</td>';
@@ -526,16 +534,7 @@ class UndeleteForm {
 				$checkBox = '';
 				$pageLink = $wgLang->timeanddate( $ts, true );
 			}
-			$userLink = htmlspecialchars( $row->ar_user_text );
-			if( $row->ar_user ) {
-				$userLink = $sk->makeKnownLinkObj(
-					Title::makeTitle( NS_USER, $row->ar_user_text ),
-					$userLink );
-			} else {
-				$userLink = $sk->makeKnownLinkObj(
-					Title::makeTitle( NS_SPECIAL, 'Contributions' ),
-					$userLink, 'target=' . $row->ar_user_text );
-			}
+			$userLink = $sk->userLink( $row->ar_user, $row->ar_user_text );
 			$comment = $sk->commentBlock( $row->ar_comment );
 			$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $comment</li>\n" );
 
