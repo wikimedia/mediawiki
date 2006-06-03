@@ -412,7 +412,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New message sp-newimages-showfrom replaces rclistfrom on special:newimages
 * Improve handling of ;: definition list construct with overlapping or
   nested HTML tags
-
+* (bug 6171) Fix sanitizing of HTML-elements with an optional closing
+  tag. The sanitizer still needs to learn how to make well-formed XML
+  in this case.
 
 == Compatibility ==
 

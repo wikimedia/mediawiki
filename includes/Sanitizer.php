@@ -367,8 +367,8 @@ class Sanitizer {
 			$tabletags = array();
 		}
 
-		$htmlsingle = array_merge( $tabletags, $htmlsingle );
-		$htmlelements = array_merge( $htmlsingle, $htmlpairs );
+		$htmlsingleallowed = array_merge( $htmlsingle, $tabletags );
+		$htmlelements = array_merge( $htmlsingle, $htmlpairs, $htmlnest );
 
 		# Remove HTML comments
 		$text = Sanitizer::removeHTMLcomments( $text );
@@ -391,10 +391,28 @@ class Sanitizer {
 						if( in_array( $t, $htmlsingleonly ) ) {
 							$badtag = 1;
 						} elseif ( ( $ot = @array_pop( $tagstack ) ) != $t ) {
-							@array_push( $tagstack, $ot );
-							# <li> can be nested in <ul> or <ol>, skip those cases:
-							if(!(in_array($ot, $htmllist) && in_array($t, $listtags) )) {
-								$badtag = 1;
+							if ( in_array($ot, $htmlsingleallowed) ) {
+								# Pop all elements with an optional close tag
+								# and see if we find a match below them
+								$optstack = array();
+								array_push ($optstack, $ot);
+								while ( ( ( $ot = @array_pop( $tagstack ) ) != $t ) &&
+												in_array($ot, $htmlsingleallowed) ) {
+									array_push ($optstack, $ot);
+								}
+								if ( $t != $ot ) {
+									# No match. Push the optinal elements back again
+									$badtag = 1;
+									while ( $ot = @array_pop( $optstack ) ) {
+										array_push( $tagstack, $ot );
+									}
+								}
+							} else {
+								@array_push( $tagstack, $ot );
+								# <li> can be nested in <ul> or <ol>, skip those cases:
+								if(!(in_array($ot, $htmllist) && in_array($t, $listtags) )) {
+									$badtag = 1;
+								}
 							}
 						} else {
 							if ( $t == 'table' ) {
