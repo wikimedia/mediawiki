@@ -425,7 +425,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add <ol> to the list of block elements for doBlockLevels; avoids <p>s being
   interspersed into your ordered lists.
 * (bug 5021) Transcluding the same special page twice now works
-
+* Add 'SiteNoticeBefore' and 'SiteNoticeAfter' hooks
 
 == Compatibility ==
 
