@@ -1844,6 +1844,12 @@ $wgNoFollowLinks = true;
 $wgNoFollowNsExceptions = array();
 
 /**
+ * Robot policies for namespaces
+ * e.g. $wgNamespaceRobotPolicies = array( NS_TALK => 'noindex' );
+ */
+$wgNamespaceRobotPolicies = array();
+
+/**
  * Specifies the minimal length of a user password. If set to
  * 0, empty passwords are allowed.
  */
