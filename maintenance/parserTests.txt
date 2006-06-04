@@ -4344,6 +4344,41 @@ Correct handling of <td>, <tr> (Bug 6171)
 
 !! end
 
+
+!! test
+Parsing crashing regression (fr:JavaScript)
+!! input
+</body></x>
+!! result
+<p>&lt;/body&gt;&lt;/x&gt;
+</p>
+!! end
+
+!! test
+Inline wiki vs wiki block nesting
+!! input
+'''Bold paragraph
+
+New wiki paragraph
+!! result
+<p><b>Bold paragraph</b>
+</p><p>New wiki paragraph
+</p>
+!! end
+
+!! test
+Inline HTML vs wiki block nesting
+!! input
+<b>Bold paragraph
+
+New wiki paragraph
+!! result
+<p><b>Bold paragraph</b>
+</p><p>New wiki paragraph
+</p>
+!! end
+
+
 !!test
 Mixing markup for italics and bold
 !! options
