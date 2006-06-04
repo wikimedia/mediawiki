@@ -4389,6 +4389,41 @@ Mixing markup for italics and bold
 </p>
 !! end
 
+
+!! article
+Xyzzyx
+!! text
+Article for special page transclusion test
+!! endarticle
+
+!! test
+Special page transclusion
+!! options
+!! input
+{{Special:Prefixindex/Xyzzyx}}
+!! result
+<p><br />
+</p>
+<table style="background: inherit;" border="0" width="100%"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
+
+!! end
+
+!! test
+Special page transclusion twice (bug 5021)
+!! options
+!! input
+{{Special:Prefixindex/Xyzzyx}}
+{{Special:Prefixindex/Xyzzyx}}
+!! result
+<p><br />
+</p>
+<table style="background: inherit;" border="0" width="100%"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
+<p><br />
+</p>
+<table style="background: inherit;" border="0" width="100%"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
+
+!! end
+
 #
 #
 #
