@@ -2918,7 +2918,11 @@ class Parser
 				# Use the original $piece['title'] not the mangled $part1, so that
 				# modifiers such as RAW: produce separate cache entries
 				if( $found ) {
-					$this->mTemplates[$piece['title']] = $text;
+					if( $isHTML ) {
+						// A special page; don't store it in the template cache.
+					} else {
+						$this->mTemplates[$piece['title']] = $text;
+					}
 					$text = $linestart . $text;
 				}
 			}
