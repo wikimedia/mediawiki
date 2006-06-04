@@ -20,48 +20,22 @@ class SiteConfiguration {
 	var $settings = array();
 	var $localVHosts = array();
 
-	/**
-	 * Get a setting 
-	 */
+	/** */
 	function get( $setting, $wiki, $suffix, $params = array() ) {
-		# Keys in order of increasing specificity
-		$keys = array( 'default', $suffix, $wiki );
-
-		# Process ordinary settings
-		if ( isset( $this->settings[$setting] ) ) {
-			$retval = NULL;
-			foreach ( $keys as $key ) {
-				if ( isset( $this->settings[$setting][$key] ) ) {
-					$retval = $this->settings[$setting][$key];
-				}
+		if ( array_key_exists( $setting, $this->settings ) ) {
+			if ( array_key_exists( $wiki, $this->settings[$setting] ) ) {
+				$retval = $this->settings[$setting][$wiki];
+			} elseif ( array_key_exists( $suffix, $this->settings[$setting] ) ) {
+				$retval = $this->settings[$setting][$suffix];
+			} elseif ( array_key_exists( 'default', $this->settings[$setting] ) ) {
+				$retval = $this->settings[$setting]['default'];
+			} else {
+				$retval = NULL;
 			}
 		} else {
 			$retval = NULL;
 		}
 
-		if ( is_array( $retval ) ) {
-			# Array overrides
-			$skey = "+$setting";
-			if ( isset( $this->settings[$skey] ) ) {
-				foreach ( $keys as $key ) {
-					if ( isset( $this->settings[$skey][$key] ) ) {
-						$retval = $this->settings[$skey][$key] + $retval;
-					}
-				}
-			}
-
-			# Array appends
-			$skey = ".$setting";
-			if ( isset( $this->settings[$skey] ) ) {
-				foreach ( $keys as $key ) {
-					if ( isset( $this->settings[$skey][$key] ) ) {
-						$retval = array_merge( $retval, $this->settings[$skey][$key] );
-					}
-				}
-			}				
-		}
-
-		# Replace parameters
 		if ( !is_null( $retval ) && count( $params ) ) {
 			foreach ( $params as $key => $value ) {
 				$retval = str_replace( '$' . $key, $value, $retval );
