@@ -422,6 +422,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6114) Update to Walloon localization (wa)
 * Added $wgNamespaceRobotPolicies to allow customisation of robot policies on a 
   per-namespace basis.
+* Add <ol> to the list of block elements for doBlockLevels; avoids <p>s being
+  interspersed into your ordered lists.
+
 
 == Compatibility ==
 
