@@ -736,12 +736,15 @@ class Article {
 	function view()	{
 		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol, $wgParser;
-		global $wgUseTrackbacks;
+		global $wgUseTrackbacks, $wgNamespaceRobotPolicies;
 		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
 		wfProfileIn( $fname );
+
 		$parserCache =& ParserCache::singleton();
+		$ns = $this->mTitle->getNamespace(); # shortcut
+		
 		# Get variables from query string
 		$oldid = $this->getOldID();
 
@@ -757,7 +760,13 @@ class Article {
 		$rdfrom = $wgRequest->getVal( 'rdfrom' );
 
 		$wgOut->setArticleFlag( true );
-		$wgOut->setRobotpolicy( 'index,follow' );
+		if ( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
+			$policy = $wgNamespaceRobotPolicies[$ns];
+		} else {
+			$policy = 'index,follow';
+		}
+		$wgOut->setRobotpolicy( $policy );
+
 		# If we got diff and oldid in the query, we want to see a
 		# diff page instead of the article.
 
@@ -884,7 +893,7 @@ class Article {
 			# wrap user css and user js in pre and don't parse
 			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
 			if (
-				$this->mTitle->getNamespace() == NS_USER &&
+				$ns == NS_USER &&
 				preg_match('/\\/[\\w]+\\.(css|js)$/', $this->mTitle->getDBkey())
 			) {
 				$wgOut->addWikiText( wfMsg('clearyourcache'));
@@ -932,7 +941,7 @@ class Article {
 		}
 		
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
-		if( $this->mTitle->getNamespace() == NS_USER_TALK &&
+		if( $ns == NS_USER_TALK &&
 			User::isIP( $this->mTitle->getText() ) ) {
 			$wgOut->addWikiText( wfMsg('anontalkpagetext') );
 		}
