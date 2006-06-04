@@ -4343,6 +4343,17 @@ Correct handling of <td>, <tr> (Bug 6171)
 </table>
 
 !! end
+
+!!test
+Mixing markup for italics and bold
+!! options
+!! input
+'''bold''''''bold''bolditalics'''''
+!! result
+<p><b>bold</b><b>bold<i>bolditalics></i></b>
+</p>
+!! end
+
 #
 #
 #
