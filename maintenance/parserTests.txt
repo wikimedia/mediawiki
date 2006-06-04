@@ -4350,7 +4350,7 @@ Mixing markup for italics and bold
 !! input
 '''bold''''''bold''bolditalics'''''
 !! result
-<p><b>bold</b><b>bold<i>bolditalics></i></b>
+<p><b>bold</b><b>bold<i>bolditalics</i></b>
 </p>
 !! end
 
