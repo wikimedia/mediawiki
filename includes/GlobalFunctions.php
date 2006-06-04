@@ -1470,22 +1470,26 @@ function wfGetSiteNotice() {
 	global $wgUser, $wgSiteNotice;
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
+	$siteNotice = '';	
 	
-	if( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
-		$siteNotice = wfGetCachedNotice( 'sitenotice' );
-		$siteNotice = !$siteNotice ? $wgSiteNotice : $siteNotice;
-	} else {
-		$anonNotice = wfGetCachedNotice( 'anonnotice' );
-		if( !$anonNotice ) {
+	if( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice ) ) ) {
+		if( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
 			$siteNotice = wfGetCachedNotice( 'sitenotice' );
 			$siteNotice = !$siteNotice ? $wgSiteNotice : $siteNotice;
 		} else {
-			$siteNotice = $anonNotice;
+			$anonNotice = wfGetCachedNotice( 'anonnotice' );
+			if( !$anonNotice ) {
+				$siteNotice = wfGetCachedNotice( 'sitenotice' );
+				$siteNotice = !$siteNotice ? $wgSiteNotice : $siteNotice;
+			} else {
+				$siteNotice = $anonNotice;
+			}
 		}
 	}
 
+	wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice ) );
 	wfProfileOut( $fname );
-	return( $siteNotice );
+	return $siteNotice;
 }
 
 /** Global singleton instance of MimeMagic. This is initialized on demand,
