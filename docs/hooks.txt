@@ -386,6 +386,15 @@ my talk page, my contributions" etc).
 &$personal_urls: Array of link specifiers (see SkinTemplate.php)
 &$title: Title object representing the current page
 
+'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
+&$siteNotice: HTML returned as the sitenotice
+Return true to allow the normal method of notice selection/rendering to work,
+or change the value of $siteNotice and return false to alter it.
+
+'SiteNoticeAfter': After the sitenotice/anonnotice is composed
+&$siteNotice: HTML sitenotice
+Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
+
 'TitleMoveComplete': after moving an article (title)
 $old: old title
 $nt: new title
