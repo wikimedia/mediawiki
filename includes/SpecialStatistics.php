@@ -55,7 +55,7 @@ function wfSpecialStatistics() {
 	if ($action == 'raw') {
 		$wgOut->disable();
 		header( 'Pragma: nocache' );
-		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins;images=$images\n";
+		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins;images=$images;jobs=$numJobs\n";
 		return;
 	} else {
 		$text = '==' . wfMsg( 'sitestats' ) . "==\n" ;
@@ -76,7 +76,7 @@ function wfSpecialStatistics() {
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
 			'[[' . wfMsgForContent( 'administrators' ) . ']]',
-			// should logically be after #admins, danm backwards compatability!
+			// should logically be after #admins, damn backwards compatability!
 			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) )
 		);
 
