@@ -269,6 +269,9 @@ class ParserTest {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
 		} elseif (preg_match('/\\bmsg\\b/i', $opts)) {
 			$out = $parser->transformMsg( $input, $options );
+		} elseif( preg_match( '/\\bsection=(\d+)\b/', $opts, $matches ) ) {
+			$section = intval( $matches[1] );
+			$out = Article::getSection( $input, $section );
 		} else {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$out = $output->getText();

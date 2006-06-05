@@ -4424,6 +4424,246 @@ Special page transclusion twice (bug 5021)
 
 !! end
 
+!! test
+Invalid header with following text
+!! input
+= x = y
+!! result
+<p>= x = y
+</p>
+!! end
+
+
+!! test
+Section extraction test (section 0)
+!! options
+section=0
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+!! end
+
+!! test
+Section extraction test (section 1)
+!! options
+section=1
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+==a==
+===aa===
+====aaa====
+!! end
+
+!! test
+Section extraction test (section 2)
+!! options
+section=2
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+===aa===
+====aaa====
+!! end
+
+!! test
+Section extraction test (section 3)
+!! options
+section=3
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+====aaa====
+!! end
+
+!! test
+Section extraction test (section 4)
+!! options
+section=4
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+!! end
+
+!! test
+Section extraction test (section 5)
+!! options
+section=5
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+===ba===
+!! end
+
+!! test
+Section extraction test (section 6)
+!! options
+section=6
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+===bb===
+====bba====
+!! end
+
+!! test
+Section extraction test (section 7)
+!! options
+section=7
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+====bba====
+!! end
+
+!! test
+Section extraction test (section 8)
+!! options
+section=8
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+===bc===
+!! end
+
+!! test
+Section extraction test (section 9)
+!! options
+section=9
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+==c==
+===ca===
+!! end
+
+!! test
+Section extraction test (section 10)
+!! options
+section=10
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+===ca===
+!! end
+
+
 #
 #
 #
