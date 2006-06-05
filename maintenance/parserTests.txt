@@ -4780,6 +4780,66 @@ section=2
 !!end
 
 
+!! test
+Section extraction, mixed wiki and html (section 1) (bug 2607)
+!! options
+section=1
+!! input
+<h2>1</h2>
+one
+==2==
+two
+==3==
+three
+!! result
+<h2>1</h2>
+one
+!! end
+
+!! test
+Section extraction, mixed wiki and html (section 2) (bug 2607)
+!! options
+section=2
+!! input
+<h2>1</h2>
+one
+==2==
+two
+==3==
+three
+!! result
+==2==
+two
+!! end
+
+
+!! test
+Section extraction, heading surrounded by <noinclude> (bug 3342)
+!! options
+section=1
+!! input
+<noinclude>==a==</noinclude>
+text
+!! result
+<noinclude>==a==</noinclude>
+text
+!!end
+
+
+!! test
+Section extraction, HTML heading subsections (bug 5272)
+!! options
+section=1
+!! input
+<h2>a</h2>
+<h3>aa</h3>
+<h2>b</h2>
+!! result
+<h2>a</h2>
+<h3>aa</h3>
+!! end
+
+
 #
 #
 #
