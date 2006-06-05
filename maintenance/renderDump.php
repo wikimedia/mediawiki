@@ -43,7 +43,7 @@ class DumpRenderer {
 	function handleRevision( $rev ) {
 		$title = $rev->getTitle();
 		if (!$title) {
-			$this->progress( "Got bogus revision with null title!" );
+			fprintf( $this->stderr, "Got bogus revision with null title!" );
 			return;
 		}
 		$display = $title->getPrefixedText();
