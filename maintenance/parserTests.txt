@@ -4663,6 +4663,122 @@ start
 ===ca===
 !! end
 
+!! test
+Section extraction test (nonexistent section 11)
+!! options
+section=11
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+!! end
+
+!! test
+Section extraction test with bogus heading (section 1)
+!! options
+section=1
+!! input
+==a==
+==bogus== not a legal section
+==b==
+!! result
+==a==
+==bogus== not a legal section
+!! end
+
+!! test
+Section extraction test with bogus heading (section 2)
+!! options
+section=2
+!! input
+==a==
+==bogus== not a legal section
+==b==
+!! result
+==b==
+!! end
+
+!! test
+Section extraction test with comment after heading (section 1)
+!! options
+section=1
+!! input
+==a==
+==legal== <!-- a legal section -->
+==b==
+!! result
+==a==
+!! end
+
+!! test
+Section extraction test with comment after heading (section 2)
+!! options
+section=2
+!! input
+==a==
+==legal== <!-- a legal section -->
+==b==
+!! result
+==legal== <!-- a legal section -->
+!! end
+
+!! test
+Section extraction test with bogus <nowiki> heading (section 1)
+!! options
+section=1
+!! input
+==a==
+==bogus== <nowiki>not a legal section</nowiki>
+==b==
+!! result
+==a==
+==bogus== <nowiki>not a legal section</nowiki>
+!! end
+
+!! test
+Section extraction test with bogus <nowiki> heading (section 2)
+!! options
+section=2
+!! input
+==a==
+==bogus== <nowiki>not a legal section</nowiki>
+==b==
+!! result
+==b==
+!! end
+
+
+!! test
+Section extraction prefixed by comment (section 1) (bug 2587)
+!! options
+section=1
+!! input
+<!-- -->==sec1==
+==sec2==
+!!result
+<!-- -->==sec1==
+!!end
+
+!! test
+Section extraction prefixed by comment (section 2) (bug 2587)
+!! options
+section=2
+!! input
+<!-- -->==sec1==
+==sec2==
+!!result
+==sec2==
+!!end
+
 
 #
 #
