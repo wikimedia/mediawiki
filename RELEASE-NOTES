@@ -416,7 +416,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   tag. The sanitizer still needs to learn how to make well-formed XML
   in this case.
 * Fix fatal error when specifying illegal name for manual thumbnail
-* (bug 6184) Use shinier Linker::userLink() to make user links in Special:Undelete
+* (bug 6184) Use shinier Linker::userLink() to make user links in
+  Special:Undelete
 * (bug 6170) Update for Kashubian translation (csb)
 * (bug 6191) Update to Indonesian translation (id) #18
 * (bug 6114) Update to Walloon localization (wa)
@@ -426,6 +427,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   interspersed into your ordered lists.
 * (bug 5021) Transcluding the same special page twice now works
 * Add 'SiteNoticeBefore' and 'SiteNoticeAfter' hooks
+* (bug 6182) Date passed in "sp-newimages-showfrom" not adjusted to user time
+  preferences
 
 == Compatibility ==
 
