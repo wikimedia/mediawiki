@@ -436,7 +436,7 @@ class LoadBalancer {
 	 */
 	function reallyOpenConnection( &$server ) {
 		if( !is_array( $server ) ) {
-			wfDebugDieBacktrace( 'You must update your load-balancing configuration. See DefaultSettings.php entry for $wgDBservers.' );
+			throw new MWException( 'You must update your load-balancing configuration. See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
 		extract( $server );
@@ -477,7 +477,8 @@ class LoadBalancer {
 				} else {
 					$conn->failFunction( false );
 				}
-				$conn->reportConnectionError( "{$this->mLastError} ({$conn->mServer})" );
+				$server = $conn->getProperty( 'mServer' );
+				$conn->reportConnectionError( "{$this->mLastError} ({$server})" );
 			}
 			$reporting = false;
 		}
