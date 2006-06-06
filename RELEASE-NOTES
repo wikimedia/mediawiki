@@ -3,6 +3,12 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== Mediawiki 1.6.8 ==
+
+plapla
+
+* (bug 5957) Updates to Hebrew translation (he)
+
 == Mediawiki 1.6.7 ==
 
 June 6, 2006
