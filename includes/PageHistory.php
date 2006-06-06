@@ -6,9 +6,6 @@
  * @package MediaWiki
  */
 
-define('DIR_PREV', 0);
-define('DIR_NEXT', 1);
-
 /**
  * This class handles printing the history page for an article.  In order to
  * be efficient, it uses timestamps rather than offsets for paging, to avoid
@@ -21,6 +18,9 @@ define('DIR_NEXT', 1);
  */
 
 class PageHistory {
+	const DIR_PREV = 0;
+	const DIR_NEXT = 1;
+	
 	var $mArticle, $mTitle, $mSkin;
 	var $lastdate;
 	var $linesonpage;
@@ -146,7 +146,7 @@ class PageHistory {
 			$this->linesonpage = count($revisions) - 1;
 
 		/* Un-reverse revisions */
-		if ($direction == DIR_PREV)
+		if ($direction == PageHistory::DIR_PREV)
 			$revisions = array_reverse($revisions);
 
 		/*
@@ -432,9 +432,9 @@ class PageHistory {
 	function getDirection() {
 		global $wgRequest;
 		if ($wgRequest->getText("dir") == "prev")
-			return DIR_PREV;
+			return PageHistory::DIR_PREV;
 		else
-			return DIR_NEXT;
+			return PageHistory::DIR_NEXT;
 	}
 
 	/** @todo document */
@@ -443,9 +443,9 @@ class PageHistory {
 
 		$dbr =& wfGetDB( DB_SLAVE );
 
-		if ($direction == DIR_PREV)
+		if ($direction == PageHistory::DIR_PREV)
 			list($dirs, $oper) = array("ASC", ">=");
-		else /* $direction == DIR_NEXT */
+		else /* $direction == PageHistory::DIR_NEXT */
 			list($dirs, $oper) = array("DESC", "<=");
 
 		if ($offset)
@@ -510,7 +510,7 @@ class PageHistory {
 		 * When we're displaying previous revisions, we need to reverse
 		 * the array, because it's queried in reverse order.
 		 */
-		if ($direction == DIR_PREV)
+		if ($direction == PageHistory::DIR_PREV)
 			$revisions = array_reverse($revisions);
 
 		/*
@@ -591,7 +591,7 @@ class PageHistory {
 			wfMsgForContent( 'history-feed-description' ),
 			$this->mTitle->getFullUrl( 'action=history' ) );
 
-		$items = $this->fetchRevisions(10, 0, DIR_NEXT);
+		$items = $this->fetchRevisions(10, 0, PageHistory::DIR_NEXT);
 		$feed->outHeader();
 		if( $items ) {
 			foreach( $items as $row ) {
