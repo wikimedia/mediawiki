@@ -27,7 +27,8 @@ Some small localization and user interface updates are also included.
 * (bug 6017) Update bookstore list for German language (de)
 * (bug 6138) Minor grammar tweak in "loginreqlink"
 * (bug 5957) Update for Hebrew language (he)
-* Fix oddity with open tag parameters getting stuck on </li>
+* Increase robustness of parser placeholders; fixes some glitches when
+  adjacent to identifier-ish constructs such as URLs.
 * (bug 5384) Fix <!-- comments --> in <ref> extension
 * Nesting of different tag extensions and comments should now work more
   consistently and more safely. A cleaner, one-pass tag strip lets the
