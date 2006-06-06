@@ -27,7 +27,6 @@ $wgTotalEdits = -1;
 
 
 require_once( 'DatabaseFunctions.php' );
-require_once( 'UpdateClasses.php' );
 require_once( 'LogPage.php' );
 require_once( 'normal/UtfNormalUtil.php' );
 require_once( 'XmlFunctions.php' );
