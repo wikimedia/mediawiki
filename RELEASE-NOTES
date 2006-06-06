@@ -446,6 +446,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3202) Attributes now allowed on <pre> tags
 * Sanitizer::validateTagAttributes now available to discard illegal/unsafe
   attribute values from an array.
+* (bug 3837) Leave <center> as is instead of doing an unsafe text replacement
+  to <div class="center">. <center> is perfectly valid in the target doctype
+  (XHTML 1.0 Transitional), while the replacement didn't catch all cases and
+  could even result in invalid output from valid input. 
 
 
 == Compatibility ==
