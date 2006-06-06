@@ -10,7 +10,6 @@
  */
 require_once( 'Feed.php' );
 require_once( 'ChangesList.php' );
-require_once( 'Revision.php' );
 
 /**
  * Constructor

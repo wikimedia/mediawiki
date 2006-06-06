@@ -8,7 +8,6 @@
  * Need the CacheManager to be loaded
  */
 require_once( 'CacheManager.php' );
-require_once( 'Revision.php' );
 
 $wgArticleCurContentFields = false;
 $wgArticleOldContentFields = false;

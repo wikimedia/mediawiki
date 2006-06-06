@@ -8,9 +8,6 @@
  * @subpackage Special pages
  */
 
-/** */
-require_once( 'Revision.php' );
-
 /**
  *
  */
