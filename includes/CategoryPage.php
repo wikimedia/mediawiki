@@ -9,11 +9,6 @@
 if( !defined( 'MEDIAWIKI' ) )
 	die( -1 );
 
-global $wgCategoryMagicGallery;
-if( $wgCategoryMagicGallery )
-	/** */
-	require_once('ImageGallery.php');
-
 /**
  * @package MediaWiki
  */

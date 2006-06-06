@@ -176,10 +176,8 @@ class MediaWiki {
 	
 		switch( $title->getNamespace() ) {
 		case NS_IMAGE:
-			require_once( 'includes/ImagePage.php' );
 			return new ImagePage( $title );
 		case NS_CATEGORY:
-			require_once( 'includes/CategoryPage.php' );
 			return new CategoryPage( $title );
 		default:
 			return new Article( $title );
