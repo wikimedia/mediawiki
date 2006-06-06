@@ -403,7 +403,7 @@ function wfMsgNoDBForContent( $key ) {
  * @return $useDB Boolean
  * @return String: the requested message.
  */
-function wfMsgReal( $key, $args, $useDB, $forContent=false, $transform = true ) {
+function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = true ) {
 	$fname = 'wfMsgReal';
 
 	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
