@@ -513,6 +513,13 @@ If you are here by mistake, just click your browser's '''back''' button.",
 Please try again. If it still doesn\'t work, try logging out and logging back in.</strong>',
 'previewconflict' => 'This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.',
+'session_fail_preview_html' => '<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
+
+\'\'Because this wiki has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.\'\'
+
+<strong>If this is a legitimate edit attempt, please try again. If it still doesn\'t work, try logging out and logging back in.</strong>',
+'previewconflict' => 'This preview reflects the text in the upper
+text editing area as it will appear if you choose to save.',
 'importing' => 'Importing $1',
 'editing' => 'Editing $1',
 'editingsection' => 'Editing $1 (section)',

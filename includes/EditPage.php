@@ -23,7 +23,7 @@ class EditPage {
 	var $formtype;
 	var $firsttime;
 	var $lastDelete;
-	var $mTokenOk = true;
+	var $mTokenOk = false;
 	var $tooBig = false;
 	var $kblength = false;
 	var $missingComment = false;
@@ -358,19 +358,17 @@ class EditPage {
 				$this->preview = $request->getCheck( 'wpPreview' ) || $request->getCheck( 'wpLivePreview' );
 				$this->diff = $request->getCheck( 'wpDiff' );
 
-				if( !$this->preview ) {
-					if ( $this->tokenOk( $request ) ) {
-						# Some browsers will not report any submit button
-						# if the user hits enter in the comment box.
-						# The unmarked state will be assumed to be a save,
-						# if the form seems otherwise complete.
-						wfDebug( "$fname: Passed token check.\n" );
-					} else {
-						# Page might be a hack attempt posted from
-						# an external site. Preview instead of saving.
-						wfDebug( "$fname: Failed token check; forcing preview\n" );
-						$this->preview = true;
-					}
+				if ( $this->tokenOk( $request ) ) {
+					# Some browsers will not report any submit button
+					# if the user hits enter in the comment box.
+					# The unmarked state will be assumed to be a save,
+					# if the form seems otherwise complete.
+					wfDebug( "$fname: Passed token check.\n" );
+				} else {
+					# Page might be a hack attempt posted from
+					# an external site. Preview instead of saving.
+					wfDebug( "$fname: Failed token check; forcing preview\n" );
+					$this->preview = true;
 				}
 			}
 			$this->save    = ! ( $this->preview OR $this->diff );
@@ -1115,7 +1113,7 @@ END
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in a hidden field.
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
-		$wgOut->addHTML( "<input type=\"hidden\" name=\"wpAutoSummary\" value=\"$autosumm\" />\n" );
+		$wgOut->addHtml( wfHidden( 'wpAutoSummary', $autosumm ) );
 
 		if ( $this->isConflict ) {
 			require_once( "DifferenceEngine.php" );
@@ -1276,9 +1274,17 @@ END
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
 		$parserOptions->setEditSection( false );
 
+		global $wgRawHtml;
+		if( $wgRawHtml && !$this->mTokenOk ) {
+			// Could be an offsite preview attempt. This is very unsafe if
+			// HTML is enabled, as it could be an attack.
+			return $wgOut->parse( "<div class='previewnote'>" .
+				wfMsg( 'session_fail_preview_html' ) . "</div>" );
+		}
+
 		# don't parse user css/js, show message about preview
 		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
-
+		
 		if ( $this->isCssJsSubpage ) {
 			if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
 				$previewtext = wfMsg('usercsspreview');

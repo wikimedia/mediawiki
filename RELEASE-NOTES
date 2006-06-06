@@ -438,6 +438,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix for HTML headings improperly not detected with preceding/following text
 * Section extraction and replacement functions merged into one implementation
   on the Parser object, so they can't get out of sync with each other.
+* Edit security precautions in raw HTML mode, etc
 
 
 == Compatibility ==
