@@ -256,7 +256,12 @@ class LanguageConverter {
 			return $text;
 
 		$plang = $this->getPreferredVariant();
-		$fallback = $this->mVariantFallbacks[$plang];
+		if( isset( $this->mVariantFallbacks[$plang] ) ) {
+			$fallback = $this->mVariantFallbacks[$plang];
+		} else {
+			// This sounds... bad?
+			$fallback = '';
+		}
 
 		$tarray = explode($this->mMarkup['begin'], $text);
 		$tfirst = array_shift($tarray);
