@@ -5,9 +5,6 @@
  * @subpackage SpecialPage
  */
 
-/** */
-require_once( 'ImageGallery.php' );
-
 /**
  *
  */

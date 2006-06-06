@@ -9,7 +9,6 @@
 /** */
 require_once( 'Sanitizer.php' );
 require_once( 'HttpFunctions.php' );
-require_once( 'ImageGallery.php' );
 
 /**
  * Update this version number when the ParserOutput format
