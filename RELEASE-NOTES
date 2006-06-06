@@ -440,6 +440,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on the Parser object, so they can't get out of sync with each other.
 * Edit security precautions in raw HTML mode, etc
 * (bug 6197) Update to Indonesian translation (id) #19
+* (bug 6175) Improvement to German translation (de)
 
 
 == Compatibility ==
