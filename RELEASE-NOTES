@@ -442,6 +442,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6197) Update to Indonesian translation (id) #19
 * (bug 6175) Improvement to German translation (de)
 * Redirect Special:Logs to Special:Log
+* (bug 6206) Linktrail for Swedish localization (se)
+
 
 == Compatibility ==
 
