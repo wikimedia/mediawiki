@@ -312,6 +312,42 @@ And a <a href="/wiki/Main_Page" title="Main Page">link</a>
 
 !! end
 
+!! test
+<pre> with attributes (bug 3202)
+!! input
+<pre style="background: blue; color:white">Bluescreen of WikiDeath</pre>
+!! result
+<pre style="background: blue; color:white">Bluescreen of WikiDeath</pre>
+
+!! end
+
+!! test
+<pre> with width attribute (bug 3202)
+!! input
+<pre width="8">Narrow screen goodies</pre>
+!! result
+<pre width="8">Narrow screen goodies</pre>
+
+!! end
+
+!! test
+<pre> with forbidden attribute (bug 3202)
+!! input
+<pre width="8" onmouseover="alert(document.cookie)">Narrow screen goodies</pre>
+!! result
+<pre width="8">Narrow screen goodies</pre>
+
+!! end
+
+!! test
+<pre> with forbidden attribute values (bug 3202)
+!! input
+<pre width="8" style="border-width: expression(alert(document.cookie))">Narrow screen goodies</pre>
+!! result
+<pre width="8">Narrow screen goodies</pre>
+
+!! end
+
 ###
 ### Definition lists
 ###
