@@ -9,7 +9,6 @@
  *
  */
 require_once( 'SpecialRecentchanges.php' );
-require_once( 'WatchedItem.php' );
 
 /**
  * Constructor
