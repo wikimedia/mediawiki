@@ -5,11 +5,6 @@
  * @package MediaWiki
  */
 
-/**
- *
- */
-require_once( 'WatchedItem.php' );
-
 # Number of characters in user_token field
 define( 'USER_TOKEN_LENGTH', 32 );
 
