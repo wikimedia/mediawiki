@@ -8,7 +8,6 @@
 /**
  *
  */
-require_once( 'Feed.php' );
 require_once( 'ChangesList.php' );
 
 /**

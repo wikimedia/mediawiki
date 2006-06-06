@@ -5,11 +5,6 @@
  */
 
 /**
- *
- */
-require_once 'Feed.php';
-
-/**
  * List of query page classes and their associated special pages, for periodic update purposes
  */
 global $wgQueryPages; // not redundant

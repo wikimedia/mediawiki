@@ -576,7 +576,6 @@ class PageHistory {
 	 * @param string $type
 	 */
 	function feed( $type ) {
-		require_once 'Feed.php';
 		require_once 'SpecialRecentchanges.php';
 		
 		global $wgFeedClasses;
