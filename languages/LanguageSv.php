@@ -1,75 +1,101 @@
 <?php
 /**
-  * @package MediaWiki
-  * @subpackage Language
-  */
-#
-# Swedish localisation for MediaWiki
-#
+ * Swedish (Svenska)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
 require_once( "LanguageUtf8.php" );
-
-/* private */ $wgNamespaceNamesSv = array(
-	NS_MEDIA            => "Media",
-	NS_SPECIAL          => "Special",
-	NS_MAIN	            => "",
-	NS_TALK	            => "Diskussion",
-	NS_USER             => "Användare",
-	NS_USER_TALK        => "Användardiskussion",
-	NS_PROJECT	        => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace . "diskussion",
-	NS_IMAGE            => "Bild",
-	NS_IMAGE_TALK       => "Bilddiskussion",
-	NS_MEDIAWIKI        => "MediaWiki",
-	NS_MEDIAWIKI_TALK   => "MediaWiki_diskussion",
-	NS_TEMPLATE         => "Mall",
-	NS_TEMPLATE_TALK    => "Malldiskussion",
-	NS_HELP             => "Hjälp",
-	NS_HELP_TALK        => "Hjälp_diskussion",
-	NS_CATEGORY	    => "Kategori",
-	NS_CATEGORY_TALK    => "Kategoridiskussion"
-) + $wgNamespaceNamesEn;
-
-/* inherit standard defaults */
-
-/* private */ $wgQuickbarSettingsSv = array(
-	"Ingen",
-	"Fast vänster",
-	"Fast höger",
-	"Flytande vänster"
-);
-
-/* private */ $wgSkinNamesSv = array(
-	'standard' => "Standard",
-	'nostalgia' => "Nostalgi",
-	'cologneblue' => "Cologne Blå",
-) + $wgSkinNamesEn;
-
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesSv.php');
 }
 
 class LanguageSv extends LanguageUtf8 {
+	private $mMessagesSv, $mNamespaceNamesSv;
+	
+	private $mQuickbarSettingsSv = array(
+		"Ingen",
+		"Fast vänster",
+		"Fast höger",
+		"Flytande vänster"
+	);
+	
+	private $mSkinNamesSv = array(
+		'standard' => "Standard",
+		'nostalgia' => "Nostalgi",
+		'cologneblue' => "Cologne Blå",
+	);
+
+	function LanguageSv() {
+		LanguageUtf8::LanguageUtf8();
+
+		global $wgAllMessagesSv;
+		$this->mMessagesSv =& $wgAllMessagesSv;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesSv = array(
+			NS_MEDIA            => "Media",
+			NS_SPECIAL          => "Special",
+			NS_MAIN	            => "",
+			NS_TALK	            => "Diskussion",
+			NS_USER             => "Användare",
+			NS_USER_TALK        => "Användardiskussion",
+			NS_PROJECT	        => $wgMetaNamespace,
+			NS_PROJECT_TALK     => $wgMetaNamespace . "diskussion",
+			NS_IMAGE            => "Bild",
+			NS_IMAGE_TALK       => "Bilddiskussion",
+			NS_MEDIAWIKI        => "MediaWiki",
+			NS_MEDIAWIKI_TALK   => "MediaWiki_diskussion",
+			NS_TEMPLATE         => "Mall",
+			NS_TEMPLATE_TALK    => "Malldiskussion",
+			NS_HELP             => "Hjälp",
+			NS_HELP_TALK        => "Hjälp_diskussion",
+			NS_CATEGORY         => "Kategori",
+			NS_CATEGORY_TALK    => "Kategoridiskussion"
+		);
+	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesSv;
-		return $wgNamespaceNamesSv;
+		return $this->mNamespaceNamesSv + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsSv;
-		return $wgQuickbarSettingsSv;
+		return $this->mQuickbarSettingsSv;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesSv;
-		return $wgSkinNamesSv;
+		return $this->mSkinNamesSv + parent::getSkinNames();
+	}
+
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesSv[$key] ) ) {
+			return $this->mMessagesSv[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesSv;
+	}
+
+	function linkTrail() {
+		return '/^([a-zåäöéÅÄÖÉ]+)(.*)$/sDu';
+	}
+
+
+	function separatorTransformTable() {
+		return array(
+			',' => "\xc2\xa0", // @bug 2749
+			'.' => ','
+		);
 	}
 
 	// "." is used as the character to separate the
 	// hours from the minutes in the date output
-	function timeSeparator() {
+	function timeSeparator( $format ) {
 		return '.';
 	}
 
@@ -82,22 +108,6 @@ class LanguageSv extends LanguageUtf8 {
 				" kl." .
 				$this->time( $ts, $adj, $format, $timecorrection );
 		}
-	}
-
-	function getMessage( $key ) {
-		global $wgAllMessagesSv;
-		if( isset( $wgAllMessagesSv[$key] ) ) {
-			return $wgAllMessagesSv[$key];
-		} else {
-			return parent::getMessage( $key );
-		}
-	}
-
-	function separatorTransformTable() {
-		return array(
-			',' => "\xc2\xa0", // @bug 2749
-			'.' => ','
-		);
 	}
 
 }
