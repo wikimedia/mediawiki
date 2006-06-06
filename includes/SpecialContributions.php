@@ -391,7 +391,7 @@ function ucListEdit( $sk, $row ) {
 		}
 
 	}
-	if( $rev->userCan( MW_REV_DELETED_TEXT ) ) {
+	if( $rev->userCan( Revision::MW_REV_DELETED_TEXT ) ) {
 		$difftext = '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
 	} else {
 		$difftext = '(' . $messages['diff'] . ')';
@@ -401,7 +401,7 @@ function ucListEdit( $sk, $row ) {
 	$comment = $sk->revComment( $rev );
 	$d = $wgLang->timeanddate( wfTimestamp(TS_MW, $row->rev_timestamp), true );
 	
-	if( $rev->isDeleted( MW_REV_DELETED_TEXT ) ) {
+	if( $rev->isDeleted( Revision::MW_REV_DELETED_TEXT ) ) {
 		$d = '<span class="history-deleted">' . $d . '</span>';
 	}
 
@@ -412,7 +412,7 @@ function ucListEdit( $sk, $row ) {
 	}
 
 	$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}";
-	if( $rev->isDeleted( MW_REV_DELETED_TEXT ) ) {
+	if( $rev->isDeleted( Revision::MW_REV_DELETED_TEXT ) ) {
 		$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 	}
 	$ret = "<li>$ret</li>\n";

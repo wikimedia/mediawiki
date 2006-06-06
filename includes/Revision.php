@@ -8,18 +8,16 @@
 require_once( 'Database.php' );
 require_once( 'Article.php' );
 
-/** @+ */
-define( 'MW_REV_DELETED_TEXT',       1 );
-define( 'MW_REV_DELETED_COMMENT',    2 );
-define( 'MW_REV_DELETED_USER',       4 );
-define( 'MW_REV_DELETED_RESTRICTED', 8 );
-/** @- */
-
 /**
  * @package MediaWiki
  * @todo document
  */
 class Revision {
+	const MW_REV_DELETED_TEXT 	= 1;
+	const MW_REV_DELETED_COMMENT 	= 2;
+	const MW_REV_DELETED_USER 	= 4;
+	const MW_REV_DELETED_RESTRICTED = 8;
+	
 	/**
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
@@ -343,7 +341,7 @@ class Revision {
 	 * @return int
 	 */
 	function getUser() {
-		if( $this->isDeleted( MW_REV_DELETED_USER ) ) {
+		if( $this->isDeleted( self::MW_REV_DELETED_USER ) ) {
 			return 0;
 		} else {
 			return $this->mUser;
@@ -363,7 +361,7 @@ class Revision {
 	 * @return string
 	 */
 	function getUserText() {
-		if( $this->isDeleted( MW_REV_DELETED_USER ) ) {
+		if( $this->isDeleted( self::MW_REV_DELETED_USER ) ) {
 			return "";
 		} else {
 			return $this->mUserText;
@@ -383,7 +381,7 @@ class Revision {
 	 * @return string
 	 */
 	function getComment() {
-		if( $this->isDeleted( MW_REV_DELETED_COMMENT ) ) {
+		if( $this->isDeleted( self::MW_REV_DELETED_COMMENT ) ) {
 			return "";
 		} else {
 			return $this->mComment;
@@ -418,7 +416,7 @@ class Revision {
 	 * @return string
 	 */
 	function getText() {
-		if( $this->isDeleted( MW_REV_DELETED_TEXT ) ) {
+		if( $this->isDeleted( self::MW_REV_DELETED_TEXT ) ) {
 			return "";
 		} else {
 			return $this->getRawText();
@@ -729,15 +727,15 @@ class Revision {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
-	 * @param int $field one of MW_REV_DELETED_TEXT,
-	 *                          MW_REV_DELETED_COMMENT,
-	 *                          MW_REV_DELETED_USER
+	 * @param int $field one of self::MW_REV_DELETED_TEXT,
+	 *                          self::MW_REV_DELETED_COMMENT,
+	 *                          self::MW_REV_DELETED_USER
 	 * @return bool
 	 */
 	function userCan( $field ) {
 		if( ( $this->mDeleted & $field ) == $field ) {
 			global $wgUser;
-			$permission = ( $this->mDeleted & MW_REV_DELETED_RESTRICTED ) == MW_REV_DELETED_RESTRICTED
+			$permission = ( $this->mDeleted & self::MW_REV_DELETED_RESTRICTED ) == self::MW_REV_DELETED_RESTRICTED
 				? 'hiderevision'
 				: 'deleterevision';
 			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );

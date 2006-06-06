@@ -263,7 +263,7 @@ class PageHistory {
 		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
 			$s .= ' <span class="updatedmarker">' .  wfMsgHtml( 'updatedmarker' ) . '</span>';
 		}
-		if( $row->rev_deleted & MW_REV_DELETED_TEXT ) {
+		if( $row->rev_deleted & Revision::MW_REV_DELETED_TEXT ) {
 			$s .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
 		$s .= "</li>\n";
@@ -275,13 +275,13 @@ class PageHistory {
 	function revLink( $rev ) {
 		global $wgLang;
 		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $rev->getTimestamp()), true );
-		if( $rev->userCan( MW_REV_DELETED_TEXT ) ) {
+		if( $rev->userCan( Revision::MW_REV_DELETED_TEXT ) ) {
 			$link = $this->mSkin->makeKnownLinkObj(
 				$this->mTitle, $date, "oldid=" . $rev->getId() );
 		} else {
 			$link = $date;
 		}
-		if( $rev->isDeleted( MW_REV_DELETED_TEXT ) ) {
+		if( $rev->isDeleted( Revision::MW_REV_DELETED_TEXT ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
@@ -290,7 +290,7 @@ class PageHistory {
 	/** @todo document */
 	function curLink( $rev, $latest ) {
 		$cur = wfMsgExt( 'cur', array( 'escape') );
-		if( $latest || !$rev->userCan( MW_REV_DELETED_TEXT ) ) {
+		if( $latest || !$rev->userCan( Revision::MW_REV_DELETED_TEXT ) ) {
 			return $cur;
 		} else {
 			return $this->mSkin->makeKnownLinkObj(
@@ -313,7 +313,7 @@ class PageHistory {
 					$last,
 					"diff=" . $rev->getId() . "&oldid=prev" );
 			}
-		} elseif( !$rev->userCan( MW_REV_DELETED_TEXT ) ) {
+		} elseif( !$rev->userCan( Revision::MW_REV_DELETED_TEXT ) ) {
 			return $last;
 		} else {
 			return $this->mSkin->makeKnownLinkObj(
@@ -337,7 +337,7 @@ class PageHistory {
 #				'title' => wfMsgHtml( 'selectolderversionfordiff' )
 			);
 
-			if( !$rev->userCan( MW_REV_DELETED_TEXT ) ) {
+			if( !$rev->userCan( Revision::MW_REV_DELETED_TEXT ) ) {
 				$radio['disabled'] = 'disabled';
 			}
 
