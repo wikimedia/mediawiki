@@ -320,8 +320,6 @@ class ParserTest {
 		} else {
 			$lang = 'en';
 		}
-		$langClass = 'Language' . str_replace( '-', '_', ucfirst( $lang ) );
-		$langObj = setupLangObj( $langClass );
 
 		$settings = array(
 			'wgServer' => 'http://localhost',
@@ -339,8 +337,8 @@ class ParserTest {
 			'wgDBprefix' => 'parsertest_',
 			'wgDefaultUserOptions' => array(),
 
-			'wgLang' => $langObj,
-			'wgContLang' => $langObj,
+			'wgLang' => null,
+			'wgContLang' => null,
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
 			'wgMaxTocLevel' => 999,
 			'wgCapitalLinks' => true,
@@ -355,6 +353,11 @@ class ParserTest {
 			$this->savedGlobals[$var] = $GLOBALS[$var];
 			$GLOBALS[$var] = $val;
 		}
+		$langClass = 'Language' . str_replace( '-', '_', ucfirst( $lang ) );
+		$langObj = setupLangObj( $langClass );
+		$GLOBALS['wgLang'] = $langObj;
+		$GLOBALS['wgContLang'] = $langObj;
+
 		$GLOBALS['wgLoadBalancer']->loadMasterPos();
 		$GLOBALS['wgMessageCache']->initialise( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 		$this->setupDatabase();
