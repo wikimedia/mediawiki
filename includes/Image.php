@@ -12,9 +12,6 @@
  * extension=extensions/php_exif.dll
  */
 
-if ($wgShowEXIF)
-	require_once('Exif.php');
-
 /**
  * Bump this number when serialized cache records may be incompatible.
  */
