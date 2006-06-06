@@ -43,6 +43,12 @@ if ( function_exists( 'wfProfileIn' ) ) {
 
 $fname = 'Setup.php';
 wfProfileIn( $fname );
+
+wfProfileIn( $fname.'-exception' );
+require_once( 'Exception.php' );
+wfInstallExceptionHandler();
+wfProfileOut( $fname.'-exception' );
+
 wfProfileIn( $fname.'-includes' );
 
 require_once( 'AutoLoader.php' );

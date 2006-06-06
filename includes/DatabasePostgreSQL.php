@@ -45,7 +45,7 @@ class DatabasePgsql extends Database {
 	function open( $server, $user, $password, $dbName ) {
 		# Test for PostgreSQL support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
-			wfDie( "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
+			throw new DBConnectionError( $this, "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
 		}
 
 		global $wgDBschema;
@@ -101,7 +101,7 @@ class DatabasePgsql extends Database {
 
 	function freeResult( $res ) {
 		if ( !@pg_free_result( $res ) ) {
-			wfDebugDieBacktrace( "Unable to free PostgreSQL result\n" );
+			throw new DBUnexpectedError($this,  "Unable to free PostgreSQL result\n" );
 		}
 	}
 
@@ -113,7 +113,7 @@ class DatabasePgsql extends Database {
 		# hashar : not sure if the following test really trigger if the object
 		#          fetching failled.
 		if( pg_last_error($this->mConn) ) {
-			wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
+			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
 		return $row;
 	}
@@ -121,7 +121,7 @@ class DatabasePgsql extends Database {
 	function fetchRow( $res ) {
 		@$row = pg_fetch_array( $res );
 		if( pg_last_error($this->mConn) ) {
-			wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
+			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
 		return $row;
 	}
@@ -129,7 +129,7 @@ class DatabasePgsql extends Database {
 	function numRows( $res ) {
 		@$n = pg_num_rows( $res );
 		if( pg_last_error($this->mConn) ) {
-			wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
+			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
 		return $n;
 	}
@@ -183,13 +183,13 @@ class DatabasePgsql extends Database {
 	}
 
 	function fieldInfo( $table, $field ) {
-		wfDebugDieBacktrace( 'Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre' );
+		throw new DBUnexpectedError($this,  'Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre' );
 		/*
 		$res = $this->query( "SELECT * FROM '$table' LIMIT 1" );
 		$n = pg_num_fields( $res );
 		for( $i = 0; $i < $n; $i++ ) {
 			// FIXME
-			wfDebugDieBacktrace( "Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre" );
+			throw new DBUnexpectedError($this,  "Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre" );
 			$meta = mysql_fetch_field( $res, $i );
 			if( $field == $meta->name ) {
 				return $meta;
@@ -328,7 +328,7 @@ class DatabasePgsql extends Database {
 	# DELETE where the condition is a join
 	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = "Database::deleteJoin" ) {
 		if ( !$conds ) {
-			wfDebugDieBacktrace( 'Database::deleteJoin() called with empty $conds' );
+			throw new DBUnexpectedError($this,  'Database::deleteJoin() called with empty $conds' );
 		}
 
 		$delTable = $this->tableName( $delTable );
@@ -404,7 +404,7 @@ class DatabasePgsql extends Database {
 			"Query: $sql\n" .
 			"Function: $fname\n" .
 			"Error: $errno $error\n";
-		wfDebugDieBacktrace($message);
+		throw new DBUnexpectedError($this, $message);
 	}
 
 	/**
