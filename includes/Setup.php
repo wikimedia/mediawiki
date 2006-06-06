@@ -45,6 +45,7 @@ $fname = 'Setup.php';
 wfProfileIn( $fname );
 wfProfileIn( $fname.'-includes' );
 
+require_once( 'AutoLoader.php' );
 require_once( 'GlobalFunctions.php' );
 require_once( 'Hooks.php' );
 require_once( 'Namespace.php' );
