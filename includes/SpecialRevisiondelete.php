@@ -46,10 +46,10 @@ class RevisionDeleteForm {
 		
 		$this->skin = $wgUser->getSkin();
 		$this->checks = array(
-			array( 'revdelete-hide-text', 'wpHideText', MW_REV_DELETED_TEXT ),
-			array( 'revdelete-hide-comment', 'wpHideComment', MW_REV_DELETED_COMMENT ),
-			array( 'revdelete-hide-user', 'wpHideUser', MW_REV_DELETED_USER ),
-			array( 'revdelete-hide-restricted', 'wpHideRestricted', MW_REV_DELETED_RESTRICTED ) );
+			array( 'revdelete-hide-text', 'wpHideText', Revision::MW_REV_DELETED_TEXT ),
+			array( 'revdelete-hide-comment', 'wpHideComment', Revision::MW_REV_DELETED_COMMENT ),
+			array( 'revdelete-hide-user', 'wpHideUser', Revision::MW_REV_DELETED_USER ),
+			array( 'revdelete-hide-restricted', 'wpHideRestricted', Revision::MW_REV_DELETED_RESTRICTED ) );
 	}
 	
 	/**
@@ -222,9 +222,9 @@ class RevisionDeleter {
 	function updateRecentChanges( $rev, $bitfield ) {
 		$this->db->update( 'recentchanges',
 			array(
-				'rc_user' => ($bitfield & MW_REV_DELETED_USER) ? 0 : $rev->getUser(),
-				'rc_user_text' => ($bitfield & MW_REV_DELETED_USER) ? wfMsg( 'rev-deleted-user' ) : $rev->getUserText(),
-				'rc_comment' => ($bitfield & MW_REV_DELETED_COMMENT) ? wfMsg( 'rev-deleted-comment' ) : $rev->getComment() ),
+				'rc_user' => ($bitfield & Revision::MW_REV_DELETED_USER) ? 0 : $rev->getUser(),
+				'rc_user_text' => ($bitfield & Revision::MW_REV_DELETED_USER) ? wfMsg( 'rev-deleted-user' ) : $rev->getUserText(),
+				'rc_comment' => ($bitfield & Revision::MW_REV_DELETED_COMMENT) ? wfMsg( 'rev-deleted-comment' ) : $rev->getComment() ),
 			array(
 				'rc_this_oldid' => $rev->getId() ),
 			'RevisionDeleter::updateRecentChanges' );
