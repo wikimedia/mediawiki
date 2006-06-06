@@ -282,8 +282,6 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		require_once( 'JobQueue.php' );
-
 		while ( $n-- && false != ($job = Job::pop())) {
 			$output = $job->toString() . "\n";
 			if ( !$job->run() ) {
