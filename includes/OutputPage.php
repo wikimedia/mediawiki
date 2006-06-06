@@ -5,9 +5,6 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @package MediaWiki
  */
 
-if ( $wgUseTeX )
-	require_once 'Math.php';
-
 /**
  * @todo document
  * @package MediaWiki
