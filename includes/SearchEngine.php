@@ -195,10 +195,8 @@ class SearchEngine {
 			$class = $wgSearchType;
 		} elseif( $wgDBtype == 'mysql' ) {
 			$class = 'SearchMySQL4';
-			require_once( 'SearchMySQL4.php' );
 		} else if ( $wgDBtype == 'PostgreSQL' ) {
 			$class = 'SearchTsearch2';
-			require_once( 'SearchTsearch2.php' );
 		} else {
 			$class = 'SearchEngineDummy';
 		}

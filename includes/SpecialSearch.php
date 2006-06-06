@@ -24,7 +24,6 @@
  */
 
 /** */
-require_once( 'SearchEngine.php' );
 require_once( 'Revision.php' );
 
 /**

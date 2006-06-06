@@ -334,7 +334,6 @@ class Title {
 	 */
 	/* static */ function indexTitle( $ns, $title ) {
 		global $wgContLang;
-		require_once( 'SearchEngine.php' );
 
 		$lc = SearchEngine::legalSearchChars() . '&#;';
 		$t = $wgContLang->stripForSearch( $title );
