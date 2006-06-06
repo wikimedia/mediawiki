@@ -429,6 +429,16 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add 'SiteNoticeBefore' and 'SiteNoticeAfter' hooks
 * (bug 6182) Date passed in "sp-newimages-showfrom" not adjusted to user time
   preferences
+* (bug 2587) Fix for section editing with comment prefix
+* (bug 2607) Fix for section editing with mix of wiki and HTML headings
+* (bug 3342) Fix for section editing with headings wrapped in <noinclude>
+* (bug 3476) Fix for section editing with faux headings in extensions
+* (bug 5272) Fix for section editing with HTML-heading subsections
+* Fix for bogus wiki headings improperly detected with following text
+* Fix for HTML headings improperly not detected with preceding/following text
+* Section extraction and replacement functions merged into one implementation
+  on the Parser object, so they can't get out of sync with each other.
+
 
 == Compatibility ==
 
