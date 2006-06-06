@@ -9,11 +9,6 @@
  */
 require_once( 'CacheManager.php' );
 
-global $wgArticleCurContentFields, $wgArticleOldContentFields;
-
-$wgArticleCurContentFields = false;
-$wgArticleOldContentFields = false;
-
 /**
  * Class representing a MediaWiki article and history.
  *
