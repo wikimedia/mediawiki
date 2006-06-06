@@ -9,8 +9,6 @@
  *
  */
 require_once 'Image.php';
-require_once 'MacBinary.php';
-require_once 'Licenses.php';
 /**
  * Entry point
  */
