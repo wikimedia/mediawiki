@@ -5,9 +5,6 @@
  * @subpackage SpecialPage
  */
 
-/** */
-require_once('QueryPage.php');
-
 /**
  *
  * @package MediaWiki
