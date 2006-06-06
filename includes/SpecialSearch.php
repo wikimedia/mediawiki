@@ -23,9 +23,6 @@
  * @subpackage SpecialPage
  */
 
-/** */
-require_once( 'Revision.php' );
-
 /**
  * Entry point
  *
