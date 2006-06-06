@@ -367,7 +367,7 @@ class Parser
 				$inside     = $p[4];
 			}
 
-			$marker = "$uniq_prefix-$element-$rand" . sprintf('%08X', $n++);
+			$marker = "$uniq_prefix-$element-$rand" . sprintf('%08X', $n++) . '-QINU';
 			$stripped .= $marker;
 
 			if ( $close === '/>' ) {
@@ -883,7 +883,7 @@ class Parser
 		wfProfileIn( $fname );
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = str_repeat( '=', $i );
-			$text = preg_replace( "/^{$h}(.+){$h}(\\s|$)/m",
+			$text = preg_replace( "/^{$h}(.+){$h}\\s*$/m",
 			  "<h{$i}>\\1</h{$i}>\\2", $text );
 		}
 		wfProfileOut( $fname );
@@ -4209,6 +4209,165 @@ class Parser
 	 */
 	function getTags() { return array_keys( $this->mTagHooks ); }
 	/**#@-*/
+
+
+	/**
+	 * Break wikitext input into sections, and either pull or replace
+	 * some particular section's text.
+	 *
+	 * External callers should use the getSection and replaceSection methods.
+	 *
+	 * @param $text Page wikitext
+	 * @param $section Numbered section. 0 pulls the text before the first
+	 *                 heading; other numbers will pull the given section
+	 *                 along with its lower-level subsections.
+	 * @param $mode One of "get" or "replace"
+	 * @param $newtext Replacement text for section data.
+	 * @return string for "get", the extracted section text.
+	 *                for "replace", the whole page with the section replaced.
+	 */
+	private function extractSections( $text, $section, $mode, $newtext='' ) {
+		# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
+		# comments to be stripped as well)
+		$striparray = array();
+		
+		$oldOutputType = $this->mOutputType;
+		$oldOptions = $this->mOptions;
+		$this->mOptions = new ParserOptions();
+		$this->mOutputType = OT_WIKI;
+		
+		$striptext = $this->strip( $text, $striparray, true );
+		
+		$this->mOutputType = $oldOutputType;
+		$this->mOptions = $oldOptions;
+
+		# now that we can be sure that no pseudo-sections are in the source,
+		# split it up by section
+		$uniq = preg_quote( $this->uniqPrefix(), '/' );
+		$comment = "(?:$uniq-!--.*?QINU)";
+		$secs = preg_split(
+		/*
+			"/
+			^(
+			(?:$comment|<\/?noinclude>)* # Initial comments will be stripped
+			(?:
+				(=+) # Should this be limited to 6?
+				.+?  # Section title...
+				\\2  # Ending = count must match start
+			|
+				^
+				<h([1-6])\b.*?>
+				.*?
+				<\/h\\3\s*>
+			)
+			(?:$comment|<\/?noinclude>|\s+)* # Trailing whitespace ok
+			)$
+			/mix",
+		*/
+			"/
+			(
+				^
+				(?:$comment|<\/?noinclude>)* # Initial comments will be stripped
+				(=+) # Should this be limited to 6?
+				.+?  # Section title...
+				\\2  # Ending = count must match start
+				(?:$comment|<\/?noinclude>|\s+)* # Trailing whitespace ok
+				$
+			|
+				<h([1-6])\b.*?>
+				.*?
+				<\/h\\3\s*>
+			)
+			/mix",
+			$striptext, -1,
+			PREG_SPLIT_DELIM_CAPTURE);
+		
+		if( $mode == "get" ) {
+			if( $section == 0 ) {
+				// "Section 0" returns the content before any other section.
+				$rv = $secs[0];
+			} else {
+				$rv = "";
+			}
+		} elseif( $mode == "replace" ) {
+			if( $section == 0 ) {
+				$rv = $newtext . "\n\n";
+				$remainder = true;
+			} else {
+				$rv = $secs[0];
+				$remainder = false;
+			}
+		}
+		$count = 0;
+		$sectionLevel = 0;
+		for( $index = 1; $index < count( $secs ); ) {
+			$headerLine = $secs[$index++];
+			if( $secs[$index] ) {
+				// A wiki header
+				$headerLevel = strlen( $secs[$index++] );
+			} else {
+				// An HTML header
+				$index++;
+				$headerLevel = intval( $secs[$index++] );
+			}
+			$content = $secs[$index++];
+
+			$count++;
+			if( $mode == "get" ) {
+				if( $count == $section ) {
+					$rv = $headerLine . $content;
+					$sectionLevel = $headerLevel;
+				} elseif( $count > $section ) {
+					if( $sectionLevel && $headerLevel > $sectionLevel ) {
+						$rv .= $headerLine . $content;
+					} else {
+						// Broke out to a higher-level section
+						break;
+					}
+				}
+			} elseif( $mode == "replace" ) {
+				if( $count < $section ) {
+					$rv .= $headerLine . $content;
+				} elseif( $count == $section ) {
+					$rv .= $newtext . "\n\n";
+					$sectionLevel = $headerLevel;
+				} elseif( $count > $section ) {
+					if( $headerLevel <= $sectionLevel ) {
+						// Passed the section's sub-parts.
+						$remainder = true;
+					}
+					if( $remainder ) {
+						$rv .= $headerLine . $content;
+					}
+				}
+			}
+		}
+		# reinsert stripped tags
+		$rv = $this->unstrip( $rv, $striparray );
+		$rv = $this->unstripNoWiki( $rv, $striparray );
+		$rv = trim( $rv );
+		return $rv;
+	}
+	
+	/**
+	 * This function returns the text of a section, specified by a number ($section).
+	 * A section is text under a heading like == Heading == or \<h1\>Heading\</h1\>, or
+	 * the first section before any such heading (section 0).
+	 *
+	 * If a section contains subsections, these are also returned.
+	 *
+	 * @param $text String: text to look in
+	 * @param $section Integer: section number
+	 * @return string text of the requested section
+	 */
+	function getSection( $text, $section ) {
+		return $this->extractSections( $text, $section, "get" );
+	}
+	
+	function replaceSection( $oldtext, $section, $text ) {
+		return $this->extractSections( $oldtext, $section, "replace", $text );
+	}
+
 }
 
 /**

@@ -4839,6 +4839,437 @@ section=1
 <h3>aa</h3>
 !! end
 
+!! test
+Section extraction, HTML headings should be ignored in extensions (bug 3476)
+!! options
+section=2
+!! input
+<h2>a</h2>
+<tag>
+<h2>not b</h2>
+</tag>
+<h2>b</h2>
+!! result
+<h2>b</h2>
+!! end
+
+!! test
+Section replacement test (section 0)
+!! options
+replace=0,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+xxx
+
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! end
+
+!! test
+Section replacement test (section 1)
+!! options
+replace=1,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+xxx
+
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! end
+
+!! test
+Section replacement test (section 2)
+!! options
+replace=2,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+xxx
+
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! end
+
+!! test
+Section replacement test (section 3)
+!! options
+replace=3,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+===aa===
+xxx
+
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! end
+
+!! test
+Section replacement test (section 4)
+!! options
+replace=4,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+===aa===
+====aaa====
+xxx
+
+==c==
+===ca===
+!! end
+
+!! test
+Section replacement test (section 5)
+!! options
+replace=5,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+===aa===
+====aaa====
+==b==
+xxx
+
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! end
+
+!! test
+Section replacement test (section 6)
+!! options
+replace=6,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+xxx
+
+===bc===
+==c==
+===ca===
+!! end
+
+!! test
+Section replacement test (section 7)
+!! options
+replace=7,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+xxx
+
+===bc===
+==c==
+===ca===
+!! end
+
+!! test
+Section replacement test (section 8)
+!! options
+replace=8,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+xxx
+
+==c==
+===ca===
+!!end
+
+!! test
+Section replacement test (section 9)
+!! options
+replace=9,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+xxx
+!! end
+
+!! test
+Section replacement test (section 10)
+!! options
+replace=10,"xxx"
+!! input
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+===ca===
+!! result
+start
+==a==
+===aa===
+====aaa====
+==b==
+===ba===
+===bb===
+====bba====
+===bc===
+==c==
+xxx
+!! end
+
+
+!! test
+Section extraction, HTML headings not at line boundaries (section 0)
+!! options
+section=0
+!! input
+<h2>Evil</h2><i>blah blah blah</i>
+
+evil blah
+
+<h2>Nice</h2>
+
+nice blah
+
+<i>extra evil</i><h2>Extra nasty</h2>
+
+extra nasty
+!! result
+!! end
+
+!! test
+Section extraction, HTML headings not at line boundaries (section 1)
+!! options
+section=1
+!! input
+<h2>Evil</h2><i>blah blah blah</i>
+
+evil blah
+
+<h2>Nice</h2>
+
+nice blah
+
+<i>extra evil</i><h2>Extra nasty</h2>
+
+extra nasty
+!! result
+<h2>Evil</h2><i>blah blah blah</i>
+
+evil blah
+!! end
+
+!! test
+Section extraction, HTML headings not at line boundaries (section 2)
+!! options
+section=2
+!! input
+<h2>Evil</h2><i>blah blah blah</i>
+
+evil blah
+
+<h2>Nice</h2>
+
+nice blah
+
+<i>extra evil</i><h2>Extra nasty</h2>
+
+extra nasty
+!! result
+<h2>Nice</h2>
+
+nice blah
+
+<i>extra evil</i>
+!! end
+
+!! test
+Section extraction, HTML headings not at line boundaries (section 3)
+!! options
+section=3
+!! input
+<h2>Evil</h2><i>blah blah blah</i>
+
+evil blah
+
+<h2>Nice</h2>
+
+nice blah
+
+<i>extra evil</i><h2>Extra nasty</h2>
+
+extra nasty
+!! result
+<h2>Extra nasty</h2>
+
+extra nasty
+!! end
 
 #
 #

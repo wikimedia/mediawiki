@@ -242,62 +242,8 @@ class Article {
 	 * @return string text of the requested section
 	 */
 	function getSection($text,$section) {
-
-		# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
-		# comments to be stripped as well)
-		$striparray=array();
-		$parser=new Parser();
-		$parser->mOutputType=OT_WIKI;
-		$parser->mOptions = new ParserOptions();
-		$striptext=$parser->strip($text, $striparray, true);
-
-		# now that we can be sure that no pseudo-sections are in the source,
-		# split it up by section
-		$secs =
-		  preg_split(
-		  '/(^=+.+?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)(?!\S)/mi',
-		  $striptext, -1,
-		  PREG_SPLIT_DELIM_CAPTURE);
-		if($section==0) {
-			$rv=$secs[0];
-		} else {
-			$headline=$secs[$section*2-1];
-			preg_match( '/^(=+).+?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>(?!\S)/mi',$headline,$matches);
-			$hlevel=$matches[1];
-
-			# translate wiki heading into level
-			if(strpos($hlevel,'=')!==false) {
-				$hlevel=strlen($hlevel);
-			}
-
-			$rv=$headline. $secs[$section*2];
-			$count=$section+1;
-
-			$break=false;
-			while(!empty($secs[$count*2-1]) && !$break) {
-
-				$subheadline=$secs[$count*2-1];
-				preg_match( '/^(=+).+?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>(?!\S)/mi',$subheadline,$matches);
-				$subhlevel=$matches[1];
-				if(strpos($subhlevel,'=')!==false) {
-					$subhlevel=strlen($subhlevel);
-				}
-				if($subhlevel > $hlevel) {
-					$rv.=$subheadline.$secs[$count*2];
-				}
-				if($subhlevel <= $hlevel) {
-					$break=true;
-				}
-				$count++;
-
-			}
-		}
-		# reinsert stripped tags
-		$rv=$parser->unstrip($rv,$striparray);
-		$rv=$parser->unstripNoWiki($rv,$striparray);
-		$rv=trim($rv);
-		return $rv;
-
+		global $wgParser;
+		return $wgParser->getSection( $text, $section );
 	}
 
 	/**
@@ -1288,8 +1234,10 @@ class Article {
 	function replaceSection($section, $text, $summary = '', $edittime = NULL) {
 		$fname = 'Article::replaceSection';
 		wfProfileIn( $fname );
-
-		if ($section != '') {
+		
+		if( $section == '' ) {
+			// Whole-page edit; let the text through unmolested.
+		} else {
 			if( is_null( $edittime ) ) {
 				$rev = Revision::newFromTitle( $this->mTitle );
 			} else {
@@ -1307,71 +1255,11 @@ class Article {
 				if($summary) $subject="== {$summary} ==\n\n";
 				$text=$oldtext."\n\n".$subject.$text;
 			} else {
-
-				# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
-				# comments to be stripped as well)
-				$striparray=array();
-				$parser=new Parser();
-				$parser->mOutputType=OT_WIKI;
-				$parser->mOptions = new ParserOptions();
-				$oldtext=$parser->strip($oldtext, $striparray, true);
-
-				# now that we can be sure that no pseudo-sections are in the source,
-				# split it up
-				# Unfortunately we can't simply do a preg_replace because that might
-				# replace the wrong section, so we have to use the section counter instead
-				$secs=preg_split('/(^=+.+?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)(?!\S)/mi',
-				  $oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
-				$secs[$section*2]=$text."\n\n"; // replace with edited
-
-				# section 0 is top (intro) section
-				if($section!=0) {
-
-					# headline of old section - we need to go through this section
-					# to determine if there are any subsections that now need to
-					# be erased, as the mother section has been replaced with
-					# the text of all subsections.
-					$headline=$secs[$section*2-1];
-					preg_match( '/^(=+).+?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>(?!\S)/mi',$headline,$matches);
-					$hlevel=$matches[1];
-
-					# determine headline level for wikimarkup headings
-					if(strpos($hlevel,'=')!==false) {
-						$hlevel=strlen($hlevel);
-					}
-
-					$secs[$section*2-1]=''; // erase old headline
-					$count=$section+1;
-					$break=false;
-					while(!empty($secs[$count*2-1]) && !$break) {
-
-						$subheadline=$secs[$count*2-1];
-						preg_match(
-						 '/^(=+).+?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>(?!\S)/mi',$subheadline,$matches);
-						$subhlevel=$matches[1];
-						if(strpos($subhlevel,'=')!==false) {
-							$subhlevel=strlen($subhlevel);
-						}
-						if($subhlevel > $hlevel) {
-							// erase old subsections
-							$secs[$count*2-1]='';
-							$secs[$count*2]='';
-						}
-						if($subhlevel <= $hlevel) {
-							$break=true;
-						}
-						$count++;
-
-					}
-
-				}
-				$text=join('',$secs);
-				# reinsert the stuff that we stripped out earlier
-				$text=$parser->unstrip($text,$striparray);
-				$text=$parser->unstripNoWiki($text,$striparray);
+				global $wgParser;
+				$text = $wgParser->replaceSection( $oldtext, $section, $text );
 			}
-
 		}
+
 		wfProfileOut( $fname );
 		return $text;
 	}
