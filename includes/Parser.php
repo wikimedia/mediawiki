@@ -874,7 +874,7 @@ class Parser
 		wfProfileIn( $fname );
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = str_repeat( '=', $i );
-			$text = preg_replace( "/^{$h}(.+){$h}(\\s|$)/m",
+			$text = preg_replace( "/^{$h}(.+){$h}\\s*$/m",
 			  "<h{$i}>\\1</h{$i}>\\2", $text );
 		}
 		wfProfileOut( $fname );
