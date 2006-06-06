@@ -674,7 +674,6 @@ END
 	}
 
 	function blockedIPpage() {
-		require_once( 'EditPage.php' );
 		$edit = new EditPage( $this );
 		return $edit->blockedIPpage();
 	}

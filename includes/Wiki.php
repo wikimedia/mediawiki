@@ -371,11 +371,9 @@ class MediaWiki {
 				$oldid = $request->getVal( 'oldid' );
 				if( !$this->getVal( 'UseExternalEditor' ) || $action=='submit' || $internal ||
 				   $section || $oldid || ( !$user->getOption( 'externaleditor' ) && !$external ) ) {
-					require_once( 'includes/EditPage.php' );
 					$editor = new EditPage( $article );
 					$editor->submit();
 				} elseif( $this->getVal( 'UseExternalEditor' ) && ( $external || $user->getOption( 'externaleditor' ) ) ) {
-					require_once( 'includes/ExternalEdit.php' );
 					$mode = $request->getVal( 'mode' );
 					$extedit = new ExternalEdit( $article, $mode );
 					$extedit->edit();
@@ -385,12 +383,10 @@ class MediaWiki {
 				if( $_SERVER['REQUEST_URI'] == $title->getInternalURL( 'action=history' ) ) {
 					$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				}
-				require_once( 'includes/PageHistory.php' );
 				$history = new PageHistory( $article );
 				$history->history();
 				break;
 			case 'raw':
-				require_once( 'includes/RawPage.php' );
 				$raw = new RawPage( $article );
 				$raw->view();
 				break;
