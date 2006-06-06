@@ -25,8 +25,6 @@
  * @package MediaWiki
  */
 
-require_once( 'WikiError.php' );
-
 /**
  * Converts a string into a valid RFC 822 "phrase", such as is used for the sender name
  */
