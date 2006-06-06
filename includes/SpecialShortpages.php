@@ -6,11 +6,6 @@
  */
 
 /**
- *
- */
-require_once("QueryPage.php");
-
-/**
  * SpecialShortpages extends QueryPage. It is used to return the shortest
  * pages in the database.
  * @package MediaWiki
