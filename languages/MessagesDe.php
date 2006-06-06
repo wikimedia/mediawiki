@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesDe = array(
+global $wgAllMessagesDe;
+$wgAllMessagesDe = array(
 'Monobook.css' =>
 '/** Do not force \'lowercase\' */
 .portlet h5,
@@ -167,6 +167,7 @@
 "viewtalkpage" => "Diskussion",
 "otherlanguages" => "Andere Sprachen",
 "redirectedfrom" => "(Weitergeleitet von $1)",
+'autoredircomment'	=> 'Weiterleitung nach [[$1]]',
 'redirectpagesub' => 'Weiterleitung',
 "lastmodified"	=> "Diese Seite wurde zuletzt geändert um $1.",
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
@@ -179,7 +180,7 @@
 'sysoptitle'		=> 'Administrator-Zugang notwendig',
 'sysoptext'		=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Administratoren durchgeführt werden. Siehe auch $1.',
 "developertitle" => "Entwickler-Zugang notwendig",
-'developertext'	=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit"Entwickler"-Status durchgeführt werden. Siehe auch $1.',
+'developertext'		=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit "Entwickler"-Status durchgeführt werden. Siehe auch $1.',
 'badaccess'	=> 'Keine ausreichenden Rechte.',
 'badaccesstext'	=> 'Diese Aktion ist Anwendern mit den Rechten "$2" vorbehalten. Siehe $1.',
 'versionrequired'	=> 'Version $1 von MediaWiki ist erforderlich',
@@ -238,7 +239,7 @@
 "nowiki_tip"=>"Unformatierter Text",
 "image_sample"=>"Beispiel.jpg",
 'image_tip'		=> 'Bildverweis',
-"media_sample"=>"Beispiel.mp3",
+'media_sample'		=> 'Beispiel.ogg',
 "media_tip"=>"Mediendatei-Verweis",
 "sig_tip"=>"Ihre Signatur mit Zeitstempel",
 "hr_tip"=>"Horizontale Linie (sparsam verwenden)",
@@ -295,7 +296,7 @@ Query: $2",
 "viewsource" => "Quelltext betrachten",
 'viewsourcefor' => 'für $1',
 'protectedtext'		=> 'Diese Seite ist für das Bearbeiten gesperrt. Sie können jedoch den Quelltext dieser Seite betrachten und kopieren:',
-'protectedinterface'	=> 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
+'protectedinterface'	=> 'Diese Seite enthält Text für die Benutzeroberfläche der MediaWiki-Software und ist gesperrt, um Missbrauch zu verhindern.',
 'editinginterface'	=> '\'\'\'Warnung:\'\'\' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.',
 'sqlhidden'		=> '(SQL-Abfrage versteckt)',
 
@@ -424,10 +425,8 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
 'newarticletext'	=> 'Hier den Text des neuen Artikels eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
-#ignore 'newarticletextanon'	=> '{{int:newarticletext}}',
 'anontalkpagetext'	=> '---- \'\'Dies ist die Diskussionsseite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische IP-Adresse zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
 'noarticletext'		=> '(Dieser Artikel enthält momentan noch keinen Text)',
-#ignore 'noarticletextanon'	=> '{{int:noarticletext}}',
 'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihren Browser anweisen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview' => "== Vorschau Ihres Benutzer-JavaScript. ==
@@ -458,8 +457,7 @@ Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
 "editingold"	=> "<strong>ACHTUNG: Sie bearbeiten eine alte Version dieses Artikels.
 Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>",
 "yourdiff"		=> "Unterschiede",
-"copyrightwarning" => "
-<strong>Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</strong><br />
+"copyrightwarning" => "<strong>Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</strong><br />
 Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
 <i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"$2\" stehen (siehe $1 für Details). Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
 'copyrightwarning2' => 'Bitte beachten Sie, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können.
@@ -512,12 +510,12 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 Als Administrator können Sie sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Spezial:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
 "orig"			=> "Original",
-"histlegend"	=> "Diff Auswahl: Die Boxen der gewünschten
-Versionen markieren und 'Enter' drücken oder den Button unten klicken/alt-v.<br />
+'histlegend'		=> 'Diff Auswahl: Die Boxen der gewünschten
+Versionen markieren und "Enter" drücken oder den Button unten klicken/alt-v.<br />
 Legende:
 (Aktuell) = Unterschied zur aktuellen Version,
 (Letzte) = Unterschied zur vorherigen Version,
-M = Kleine Änderung",
+K = Kleine Änderung',
 
 'revdelete-legend'		=> 'Einschränkungen für die Versionen festlegen:',
 'revdelete-hide-text'		=> 'Verstecke den Text der Version',
@@ -534,7 +532,7 @@ M = Kleine Änderung",
 'history-feed-item-nocomment'	=> '$1 um $2', # user at time
 'history-feed-empty'		=> 'Die angeforderte Seite exisitiert nicht.
 Vielleicht wurde sie aus dem Wiki gelöscht oder verschoben.
-[[Special:Search|Durchsuchen]] Sie das Wiki für passende neue Seiten.',
+[[{{ns:special}}:Search|Durchsuchen]] Sie das Wiki für passende neue Seiten.',
 'revisiondelete'		=> 'Versionen löschen/wiederherstellen',
 'revdelete-selected'		=> 'Ausgewählte Version von [[:$1]]:',
 'revdelete-text'		=> 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
@@ -565,7 +563,7 @@ Möglicherweise haben Sie auch die Anfrage falsch formuliert, z.B.
 Bitte versuchen Sie eine anders formulierte Anfrage.",
 "matchtotals"	=> "Die Anfrage \"$1\" stimmt mit $2 Artikelüberschriften
 und dem Text von $3 Artikeln überein.",
-'nogomatch'	=> '\'\'\'Es existiert kein Artikel mit diesem Namen.\'\'\'
+'nogomatch'	=> '\'\'\'Es existiert kein Artikel mit dem Namen „$2“.\'\'\'
 
 Versuchen Sie es über die Volltextsuche.
 Alternativ können Sie auch den [[{{ns:special}}:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
@@ -584,7 +582,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst den Artikel „[[$1]]�
 Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewöhnlichen' Worten zu suchen; diese sind nicht indiziert.",
 "powersearch" => "Suche",
 'powersearchtext'	=> 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
-"searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>",
+'searchdisabled'	=> 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen über Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 "blanknamespace" => "(Artikel)",
 
 # Preferences page
@@ -749,6 +747,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 'imagelinks'		=> 'Dateiverweise',
 'linkstoimage'		=> 'Die folgenden Artikel benutzen diese Datei:',
 'nolinkstoimage'	=> 'Kein Artikel benutzt diese Datei.',
+'sharedupload'			=> 'Diese Datei ist ein gemeinsam genutzter Upload und kann von anderen Projekten verwendet werden.',
 'shareduploadwiki'		=> 'Für weitere Informationen siehe $1.',
 'shareduploadwiki-linktext'	=> 'Datei-Beschreibungsseite',
 'noimage'			=> 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
@@ -919,7 +918,7 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
 'wlhideshowown'		=> '$1 meine Änderungen',
 'wlhideshowbots'	=> '$1 von Bot-Änderungen.',
-'wldone'		=> 'Erledigt.',
+'wldone'		=> 'Erfolgreich ausgeführt.',
 
 'updatedmarker'			=> '(geändert)',
 'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
@@ -1022,7 +1021,9 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'undeletecomment' => 'Begründung:',
 "undeletedarticle" => "\"$1\" wiederhergestellt",
 'undeletedrevisions' => "$1 Versionen wiederhergestellt.",
-"undeletedtext"   => "Der Artikel [[:$1|$1]] wurde erfolgreich wiederhergestellt.",
+'undeletedpage'		=> '<big>\'\'\'$1 wurde wiederhergestellt\'\'\'</big>
+
+Im [[{{ns:special}}:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlich gelöschten und wiederhergestellten Seiten.',
 
 # Namespace form on various pages
 'namespace'	=> 'Namensraum:',
@@ -1038,6 +1039,8 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 "uclinks"		=> "Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.",
 "uctop"		=> " (top)" ,
 'newbies'	=> 'Newbies',
+
+'sp-newimages-showfrom'		=> 'Neue Dateien seit $1 anzeigen',
 
 'sp-contributions-newest'	=> 'Jüngste',
 'sp-contributions-oldest'	=> 'Älteste',
@@ -1058,26 +1061,27 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 
 # Block/unblock IP
 #
-"blockip"		=> "IP-Adresse blockieren",
-"blockiptext"	=> "Benutzen Sie das Formular, um eine IP-Adresse zu blockieren.
-Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[{{ns:project}}:Leitlinien|Leitlinien]].
-Bitte tragen Sie den Grund für die Blockade ein.",
+'blockip'		=> 'Benutzer blockieren',
+'blockiptext'		=> 'Benutzen Sie das Formular, um einen Benutzer oder eine IP-Adresse zu blockieren.
+Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit unseren [[{{ns:project}}:Leitlinien|Leitlinien]] geschehen.
+Bitte geben Sie den Grund für die Blockade an.',
 "ipaddress"		=> "IP-Adresse",
 'ipadressorusername'	=> 'IP-Adresse oder Benutzername',
 "ipbreason"		=> "Grund",
-"ipbsubmit"		=> "Adresse blockieren",
+'ipbsubmit'		=> 'Benutzer blockieren',
 'ipbother'		=> 'Andere Dauer',
 'ipboptions'		=> '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
-'ipbotheroption'	=> 'andere',
+'ipbotheroption'	=> '{{int:ipbother}}',
 "badipaddress"	=> "Die IP-Adresse hat ein falsches Format.",
 "blockipsuccesssub" => "Blockade erfolgreich",
-"blockipsuccesstext" => "Die IP-Adresse \"$1\" wurde blockiert.
-<br />Auf [[{{ns:special}}:Ipblocklist|IP block list]] ist eine Liste der Blockaden.",
+'blockipsuccesstext'	=> 'Der Benutzer/die IP-Adresse [[{{ns:special}}:Contributions/$1|$1]] wurde blockiert.
+
+Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
 "unblockip"		=> "IP-Adresse freigeben",
 "unblockiptext"	=> "Benutzen Sie das Formular, um eine blockierte IP-Adresse freizugeben.",
 "ipusubmit"		=> "Diese Adresse freigeben",
 "ipusuccess"	=> "IP-Adresse \"$1\" wurde freigegeben",
-"ipblocklist"	=> "Liste blockierter IP-Adressen",
+"ipblocklist"	=> "Liste blockierter Benutzer/IP-Adressen",
 'ipblocklistempty'	=> 'Die Liste der Benutzersperrungen hat keine Einträge.',
 "blocklistline"	=> "$1, $2 blockierte $3 ($4)",
 'infiniteblock'		=> 'unbegrenzt',
@@ -1488,7 +1492,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'exif-gpsdestlongituderef'	=> 'Referenz für die Länge',
 #'exif-gpsdifferential'		=> 'GPS differential correction',
 'exif-gpsdirection-m'		=> 'Magnetische Richtung',
-#'exif-gpsdirection-t'		=> 'True direction',
+'exif-gpsdirection-t'		=> 'Tatsächliche Richtung',
 'exif-gpsdop'			=> 'Maßpräzision',
 'exif-gpsimgdirection'		=> 'Bildrichtung',
 #'exif-gpsimgdirectionref'	=> 'Reference for direction of image',
@@ -1500,11 +1504,11 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'exif-gpslongitude-e'		=> 'östl. Länge',
 'exif-gpslongitude-w'		=> 'westl. Länge',
 'exif-gpslongituderef'		=> 'östl. oder westl. Länge',
-#'exif-gpsmapdatum'		=> 'Geodetic survey data used',
+'exif-gpsmapdatum'		=> 'Geodätisches Datum benutzt',
 'exif-gpsmeasuremode'		=> 'Messverfahren',
 'exif-gpsmeasuremode-2'		=> '2-dimensionale Messung',
 'exif-gpsmeasuremode-3'		=> '3-dimensionale Messung',
-#'exif-gpsprocessingmethod'	=> 'Name of GPS processing method',
+'exif-gpsprocessingmethod'	=> 'Name des GPS Verfahrens',
 'exif-gpssatellites'		=> 'Für die Messung benutzte Satelliten',
 'exif-gpsspeed'			=> 'Geschwindigkeit des GPS Empfängers',
 'exif-gpsspeed-k'		=> 'km/h',
@@ -1516,8 +1520,8 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 #'exif-gpsstatus-v'		=> 'Measurement interoperability',
 'exif-gpstimestamp'		=> 'GPS-Zeit ([http://de.wikipedia.org/wiki/Internationale_Atomzeit TAI])',
 'exif-gpstrack'			=> 'Bewegungsrichtung',
-#'exif-gpstrackref'		=> 'Reference for direction of movement',
-#'exif-gpsversionid'		=> 'GPS tag version',
+'exif-gpstrackref'		=> 'Referenz für Bewegungsrichtung',
+'exif-gpsversionid'		=> 'GPS Tag-Version',
 'exif-imagedescription'		=> 'Bildtitel',
 'exif-imagelength'		=> 'Länge',
 'exif-imageuniqueid'		=> 'Bild-ID',
@@ -1542,7 +1546,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'exif-lightsource-21'		=> 'D65',
 'exif-lightsource-22'		=> 'D75',
 'exif-lightsource-23'		=> 'D50',
-'exif-lightsource-24'		=> 'ISO studio tungsten',
+'exif-lightsource-24'		=> 'ISO Studio Kunstlicht',
 'exif-lightsource-255'		=> 'Andere Lichtquelle',
 'exif-lightsource-3'		=> 'Glühlampe',
 'exif-lightsource-4'		=> 'Blitz',
@@ -1578,8 +1582,8 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'exif-pixelxdimension'		=> 'Gültige Bildhöhe',
 'exif-pixelydimension'		=> 'Gültige Bildbreite',
 'exif-planarconfiguration'	=> 'Datenausrichtung',
-#'exif-planarconfiguration-1'	=> 'chunky format',
-#'exif-planarconfiguration-2'	=> 'planar format',
+'exif-planarconfiguration-1'	=> 'Grobformat',
+'exif-planarconfiguration-2'	=> 'Planar Format',
 #'exif-primarychromaticities'	=> 'Chromaticities of primarities',
 'exif-referenceblackwhite'	=> 'Schwarz/Weiß-Referenzpunkte',
 'exif-relatedsoundfile'		=> 'Zugehörige Tondatei',
