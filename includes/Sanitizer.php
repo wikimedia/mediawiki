@@ -538,53 +538,26 @@ class Sanitizer {
 	}
 
 	/**
-	 * Take a tag soup fragment listing an HTML element's attributes
-	 * and normalize it to well-formed XML, discarding unwanted attributes.
+	 * Take an array of attribute names and values and normalize or discard
+	 * illegal values for the given element type.
 	 *
-	 * - Normalizes attribute names to lowercase
 	 * - Discards attributes not on a whitelist for the given element
-	 * - Turns broken or invalid entities into plaintext
-	 * - Double-quotes all attribute values
-	 * - Attributes without values are given the name as attribute
-	 * - Double attributes are discarded
 	 * - Unsafe style attributes are discarded
-	 * - Prepends space if there are attributes.
 	 *
-	 * @param string $text
+	 * @param array $attribs
 	 * @param string $element
-	 * @return string
+	 * @return array
 	 *
 	 * @todo Check for legal values where the DTD limits things.
 	 * @todo Check for unique id attribute :P
 	 */
-	function fixTagAttributes( $text, $element ) {
-		if( trim( $text ) == '' ) {
-			return '';
-		}
-
-		# Unquoted attribute
-		# Since we quote this later, this can be anything distinguishable
-		# from the end of the attribute
-		$pairs = array();
-		if( !preg_match_all(
-			MW_ATTRIBS_REGEX,
-			$text,
-			$pairs,
-			PREG_SET_ORDER ) ) {
-			return '';
-		}
-
+	function validateTagAttributes( $attribs, $element ) {
 		$whitelist = array_flip( Sanitizer::attributeWhitelist( $element ) );
-		$attribs = array();
-		foreach( $pairs as $set ) {
-			$attribute = strtolower( $set[1] );
+		$out = array();
+		foreach( $attribs as $attribute => $value ) {
 			if( !isset( $whitelist[$attribute] ) ) {
 				continue;
 			}
-
-			$raw   = Sanitizer::getTagAttributeCallback( $set );
-			$value = Sanitizer::normalizeAttributeValue( $raw );
-
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
 			if( $attribute == 'style' ) {
@@ -592,7 +565,7 @@ class Sanitizer {
 
 				// Remove any comments; IE gets token splitting wrong
 				$stripped = preg_replace( '!/\\*.*?\\*/!S', ' ', $stripped );
-				$value = htmlspecialchars( $stripped );
+				$value = $stripped;
 
 				// ... and continue checks
 				$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
@@ -608,9 +581,48 @@ class Sanitizer {
 			if ( $attribute === 'id' )
 				$value = Sanitizer::escapeId( $value );
 
+			// If this attribute was previously set, override it.
+			// Output should only have one attribute of each name.
+			$out[$attribute] = $value;
+		}
+		return $out;
+	}
+
+	/**
+	 * Take a tag soup fragment listing an HTML element's attributes
+	 * and normalize it to well-formed XML, discarding unwanted attributes.
+	 * Output is safe for further wikitext processing, with escaping of
+	 * values that could trigger problems.
+	 *
+	 * - Normalizes attribute names to lowercase
+	 * - Discards attributes not on a whitelist for the given element
+	 * - Turns broken or invalid entities into plaintext
+	 * - Double-quotes all attribute values
+	 * - Attributes without values are given the name as attribute
+	 * - Double attributes are discarded
+	 * - Unsafe style attributes are discarded
+	 * - Prepends space if there are attributes.
+	 *
+	 * @param string $text
+	 * @param string $element
+	 * @return string
+	 */
+	function fixTagAttributes( $text, $element ) {
+		if( trim( $text ) == '' ) {
+			return '';
+		}
+		
+		$stripped = Sanitizer::validateTagAttributes(
+			Sanitizer::decodeTagAttributes( $text ), $element );
+		
+		$attribs = array();
+		foreach( $stripped as $attribute => $value ) {
+			$encAttribute = htmlspecialchars( $attribute );
+			
+			$encValue = htmlspecialchars( $value );
 			# Templates and links may be expanded in later parsing,
 			# creating invalid or dangerous output. Suppress this.
-			$value = strtr( $value, array(
+			$encValue = strtr( $encValue, array(
 				'<'    => '&lt;',   // This should never happen,
 				'>'    => '&gt;',   // we've received invalid input
 				'"'    => '&quot;', // which should have been escaped.
@@ -625,16 +637,13 @@ class Sanitizer {
 			) );
 
 			# Stupid hack
-			$value = preg_replace_callback(
+			$encValue = preg_replace_callback(
 				'/(' . wfUrlProtocols() . ')/',
 				array( 'Sanitizer', 'armorLinksCallback' ),
-				$value );
-
-			// If this attribute was previously set, override it.
-			// Output should only have one attribute of each name.
-			$attribs[$attribute] = "$attribute=\"$value\"";
+				$encValue );
+			
+			$attribs[] = "$encAttribute=\"$encValue\"";
 		}
-
 		return count( $attribs ) ? ' ' . implode( ' ', $attribs ) : '';
 	}
 

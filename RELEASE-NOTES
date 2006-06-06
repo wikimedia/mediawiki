@@ -443,6 +443,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6175) Improvement to German translation (de)
 * Redirect Special:Logs to Special:Log
 * (bug 6206) Linktrail for Swedish localization (se)
+* (bug 3202) Attributes now allowed on <pre> tags
+* Sanitizer::validateTagAttributes now available to discard illegal/unsafe
+  attribute values from an array.
 
 
 == Compatibility ==

@@ -132,6 +132,7 @@ class Parser
 		$this->mTagHooks = array();
 		$this->mFunctionHooks = array();
 		$this->clearState();
+		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
 	}
 
 	/**
@@ -422,7 +423,7 @@ class Parser
 		$commentState = array();
 		
 		$elements = array_merge(
-			array( 'nowiki', 'pre', 'gallery' ),
+			array( 'nowiki', 'gallery' ),
 			array_keys( $this->mTagHooks ) );
 		global $wgRawHtml;
 		if( $wgRawHtml ) {
@@ -462,11 +463,6 @@ class Parser
 					break;
 				case 'math':
 					$output = MathRenderer::renderMath( $content );
-					break;
-				case 'pre':
-					// Backwards-compatibility hack
-					$content = preg_replace( '!<nowiki>(.*?)</nowiki>!is', '\\1', $content );
-					$output = '<pre>' . wfEscapeHTMLTagsOnly( $content ) . '</pre>';
 					break;
 				case 'gallery':
 					$output = $this->renderImageGallery( $content );
@@ -4031,6 +4027,19 @@ class Parser
 		return $matches[0];
 	}
 
+	/**
+	 * Tag hook handler for 'pre'.
+	 */
+	function renderPreTag( $text, $attribs, $parser ) {
+		// Backwards-compatibility hack
+		$content = preg_replace( '!<nowiki>(.*?)</nowiki>!is', '\\1', $text );
+		
+		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
+		return wfOpenElement( 'pre', $attribs ) .
+			wfEscapeHTMLTagsOnly( $content ) .
+			'</pre>';
+	}
+	
 	/**
 	 * Renders an image gallery from a text with one line per image.
 	 * text labels may be given by using |-style alternative text. E.g.
