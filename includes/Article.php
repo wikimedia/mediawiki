@@ -1189,7 +1189,6 @@ class Article {
 
 		Article::onArticleCreate( $this->mTitle );
 		if(!$suppressRC) {
-			require_once( 'RecentChange.php' );
 			$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default',
 			  '', strlen( $text ), $revisionId );
 			# Mark as patrolled if the user can and has the option set
@@ -1338,7 +1337,6 @@ class Article {
 				$dbw->rollback();
 			} else {
 				# Update recentchanges and purge cache and whatnot
-				require_once( 'RecentChange.php' );
 				$bot = (int)($wgUser->isBot() || $forceBot);
 				$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
 					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
@@ -1462,7 +1460,6 @@ class Article {
 		$rcid = $wgRequest->getVal( 'rcid' );
 		if ( !is_null ( $rcid ) ) {
 			if( wfRunHooks( 'MarkPatrolled', array( &$rcid, &$wgUser, false ) ) ) {
-				require_once( 'RecentChange.php' );
 				RecentChange::markPatrolled( $rcid );
 				wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, false ) );
 				$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
