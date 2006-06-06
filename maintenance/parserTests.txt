@@ -265,6 +265,14 @@ Comment semantics: nesting
 </p>
 !! end
 
+!! test
+Comment semantics: unclosed comment at end
+!! input
+<!--This comment will run out to the end of the document
+!! result
+
+!! end
+
 
 ###
 ### Preformatted text
@@ -2337,6 +2345,35 @@ pst
 This template has <!-- a comment --> in it.
 !! end
 
+!! test
+pre-save transform: unclosed tag
+!! options
+pst noxml
+!! input
+<nowiki>'''not wiki'''
+!! result
+<nowiki>'''not wiki'''
+!! end
+
+!! test
+pre-save transform: mixed tag case
+!! options
+pst noxml
+!! input
+<NOwiki>'''not wiki'''</noWIKI>
+!! result
+<NOwiki>'''not wiki'''</noWIKI>
+!! end
+
+!! test
+pre-save transform: unclosed comment in <nowiki>
+!! options
+pst noxml
+!! input
+wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
+!! result
+wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
+!!end
 
 !! article
 Template:dangerous

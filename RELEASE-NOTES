@@ -5,10 +5,40 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == Mediawiki 1.6.7 ==
 
+June 6, 2006
+
+MediaWiki 1.6.7 is a security and bugfix maintenance release of the
+Spring 2006 snapshot:
+
+An HTML/JavaScript-injection vulnerability in the edit form has been closed.
+This vulnerability was new in 1.6.0; MediaWiki versions 1.5.x or earlier are
+not affected.
+
+Extensions, comments, and <nowiki> sections are now handled in a one-pass
+way which is more reliable and safer. Under earlier versions of MediaWiki,
+certain extensions could be abused to inject HTML/JavaScript into the page.
+
+Additional precautions are made against offsite form submissions when
+the restricted raw HTML mode is enabled.
+
+Some small localization and user interface updates are also included.
+
 * (bug 6051) Improvement to German localisation (de)
 * (bug 6017) Update bookstore list for German language (de)
 * (bug 6138) Minor grammar tweak in "loginreqlink"
 * (bug 5957) Update for Hebrew language (he)
+* Fix oddity with open tag parameters getting stuck on </li>
+* (bug 5384) Fix <!-- comments --> in <ref> extension
+* Nesting of different tag extensions and comments should now work more
+  consistently and more safely. A cleaner, one-pass tag strip lets the
+  'outer' tag either take source (<nowiki>-style) or pass it down to
+  further parsing (<ref>-style). There should no longer be surprise
+  expansion of foreign extensions inside HTML output, or differences
+  in behavior based on the order tags are loaded.
+* (bug 885) Pre-save transform no longer silently appends close tags
+* Pre-save transform no longer changes the case of close tags
+* Edit security precautions in raw HTML mode, etc
+
 
 == MediaWiki 1.6.6 ==
 
