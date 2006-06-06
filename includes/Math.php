@@ -249,14 +249,11 @@ class MathRenderer {
 		return $path;
 	}
 
-
+	function renderMath( $tex ) {
+		global $wgUser;
+		$math = new MathRenderer( $tex );
+		$math->setOutputMode( $wgUser->getOption('math'));
+		return $math->render();
+	}
 }
-
-function renderMath( $tex ) {
-	global $wgUser;
-	$math = new MathRenderer( $tex );
-	$math->setOutputMode( $wgUser->getOption('math'));
-	return $math->render();
-}
-
 ?>

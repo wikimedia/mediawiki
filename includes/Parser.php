@@ -462,7 +462,7 @@ class Parser
 					$output = wfEscapeHTMLTagsOnly( $content );
 					break;
 				case 'math':
-					$output = renderMath( $content );
+					$output = MathRenderer::renderMath( $content );
 					break;
 				case 'pre':
 					// Backwards-compatibility hack

@@ -243,8 +243,6 @@ class ParserTest {
 
 		if (preg_match('/\\bmath\\b/i', $opts)) {
 			# XXX this should probably be done by the ParserOptions
-			require_once('Math.php');
-
 			$options->setUseTex(true);
 		}
 
