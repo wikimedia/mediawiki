@@ -55,7 +55,6 @@ require_once( 'OutputPage.php' );
 require_once( 'LinkCache.php' );
 require_once( 'LinkBatch.php' );
 require_once( 'Title.php' );
-require_once( 'Article.php' );
 require_once( 'MagicWord.php' );
 require_once( 'Block.php' );
 require_once( 'MessageCache.php' );
