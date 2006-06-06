@@ -9,6 +9,8 @@
  */
 require_once( 'CacheManager.php' );
 
+global $wgArticleCurContentFields, $wgArticleOldContentFields;
+
 $wgArticleCurContentFields = false;
 $wgArticleOldContentFields = false;
 
