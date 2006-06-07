@@ -742,7 +742,7 @@ class Sanitizer {
 			# For 'reduced' form, return explicitly the attribute name here.
 			return $set[1];
 		} else {
-			wfDebugDieBacktrace( "Tag conditions not met. This should never happen and is a bug." );
+			throw new MWException( "Tag conditions not met. This should never happen and is a bug." );
 		}
 	}
 

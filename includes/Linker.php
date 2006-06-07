@@ -194,7 +194,7 @@ class Linker {
 
 		# Fail gracefully
 		if ( ! is_object($nt) ) {
-			# wfDebugDieBacktrace();
+			# throw new MWException();
 			wfProfileOut( $fname );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
@@ -343,7 +343,7 @@ class Linker {
 	function makeBrokenLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		# Fail gracefully
 		if ( ! isset($nt) ) {
-			# wfDebugDieBacktrace();
+			# throw new MWException();
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 
@@ -658,7 +658,7 @@ class Linker {
 	function makeBrokenImageLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		# Fail gracefully
 		if ( ! isset($nt) ) {
-			# wfDebugDieBacktrace();
+			# throw new MWException();
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 

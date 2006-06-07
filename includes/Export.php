@@ -634,7 +634,7 @@ class DumpNamespaceFilter extends DumpFilter {
 				$ns = intval( $key );
 				$this->namespaces[$ns] = true;
 			} else {
-				wfDie( "Unrecognized namespace key '$key'\n" );
+				throw new MWException( "Unrecognized namespace key '$key'\n" );
 			}
 		}
 	}

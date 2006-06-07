@@ -99,7 +99,7 @@ class UploadForm {
 
 		# Check uploading enabled
 		if( !$wgEnableUploads ) {
-			$wgOut->errorPage( 'uploaddisabled', 'uploaddisabledtext' );
+			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext' );
 			return;
 		}
 
@@ -110,7 +110,7 @@ class UploadForm {
 				return;
 			}
 		} else {
-			$wgOut->errorPage( 'uploadnologin', 'uploadnologintext' );
+			$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
 			return;
 		}
 
@@ -132,7 +132,9 @@ class UploadForm {
 		}
 
 		if( $this->mReUpload ) {
-			$this->unsaveUploadedFile();
+			if ( !$this->unsaveUploadedFile() ) {
+				return;
+			}
 			$this->mainUploadForm();
 		} else if ( 'submit' == $this->mAction || $this->mUpload ) {
 			$this->processUpload();
@@ -343,7 +345,7 @@ class UploadForm {
 			} else {
 				// Image::recordUpload() fails if the image went missing, which is
 				// unlikely, hence the lack of a specialised message
-				$wgOut->fileNotFoundError( $this->mUploadSaveName );
+				$wgOut->showFileNotFoundError( $this->mUploadSaveName );
 			}
 		}
 	}
@@ -376,7 +378,7 @@ class UploadForm {
 			wfRestoreWarnings();
 
 			if( ! $success ) {
-				$wgOut->fileRenameError( $this->mSavedFile,
+				$wgOut->showFileRenameError( $this->mSavedFile,
 				  "${archive}/{$this->mUploadOldVersion}" );
 				return false;
 			}
@@ -393,7 +395,7 @@ class UploadForm {
 		wfRestoreWarnings();
 
 		if( ! $success ) {
-			$wgOut->fileCopyError( $tempName, $this->mSavedFile );
+			$wgOut->showFileCopyError( $tempName, $this->mSavedFile );
 			return false;
 		} else {
 			wfDebug("$fname: wrote tempfile $tempName to ".$this->mSavedFile."\n");
@@ -424,7 +426,7 @@ class UploadForm {
 			? rename( $tempName, $stash )
 			: move_uploaded_file( $tempName, $stash );
 		if ( !$success ) {
-			$wgOut->fileCopyError( $tempName, $stash );
+			$wgOut->showFileCopyError( $tempName, $stash );
 			return false;
 		}
 
@@ -460,6 +462,7 @@ class UploadForm {
 	/**
 	 * Remove a temporarily kept file stashed by saveTempUploadedFile().
 	 * @access private
+	 * @return success
 	 */
 	function unsaveUploadedFile() {
 		global $wgOut;
@@ -467,7 +470,10 @@ class UploadForm {
 		$success = unlink( $this->mUploadTempName );
 		wfRestoreWarnings();
 		if ( ! $success ) {
-			$wgOut->fileDeleteError( $this->mUploadTempName );
+			$wgOut->showFileDeleteError( $this->mUploadTempName );
+			return false;
+		} else {
+			return true;
 		}
 	}
 

@@ -59,7 +59,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 
 	function ConcatenatedGzipHistoryBlob() {
 		if ( !function_exists( 'gzdeflate' ) ) {
-			wfDie( "Need zlib support to read or write this kind of history object (ConcatenatedGzipHistoryBlob)\n" );
+			throw new MWException( "Need zlib support to read or write this kind of history object (ConcatenatedGzipHistoryBlob)\n" );
 		}
 	}
 

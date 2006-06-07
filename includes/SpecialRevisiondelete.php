@@ -19,7 +19,7 @@ function wfSpecialRevisiondelete( $par = null ) {
 	$page = Title::newFromUrl( $target );
 	
 	if( is_null( $page ) ) {
-		$wgOut->errorpage( 'notargettitle', 'notargettext' );
+		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 		return;
 	}
 	

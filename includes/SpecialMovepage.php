@@ -13,7 +13,7 @@ function wfSpecialMovepage( $par = null ) {
 
 	# check rights. We don't want newbies to move pages to prevents possible attack
 	if ( !$wgUser->isAllowed( 'move' ) or $wgUser->isBlocked() or ($wgOnlySysopMayMove and $wgUser->isNewbie())) {
-		$wgOut->errorpage( "movenologin", "movenologintext" );
+		$wgOut->showErrorPage( "movenologin", "movenologintext" );
 		return;
 	}
 	# We don't move protected pages
@@ -60,7 +60,7 @@ class MovePageForm {
 
 		$ot = Title::newFromURL( $this->oldTitle );
 		if( is_null( $ot ) ) {
-			$wgOut->errorpage( 'notargettitle', 'notargettext' );
+			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 			return;
 		}
 		$oldTitle = $ot->getPrefixedText();

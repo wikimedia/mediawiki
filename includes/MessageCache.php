@@ -291,7 +291,7 @@ class MessageCache {
 		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( !$dbr ) {
-			wfDebugDieBacktrace( 'Invalid database object' );
+			throw new MWException( 'Invalid database object' );
 		}
 		$conditions = array( 'page_is_redirect' => 0,
 					'page_namespace' => NS_MEDIAWIKI);

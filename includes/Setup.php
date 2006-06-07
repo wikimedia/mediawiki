@@ -19,7 +19,7 @@ if( defined( 'MEDIAWIKI' ) ) {
 // Check to see if we are at the file scope
 if ( !isset( $wgVersion ) ) {
 	echo "Error, Setup.php must be included from the file scope, after DefaultSettings.php\n";
-	die( -1 );
+	die( 1 );
 }
 
 if( !isset( $wgProfiling ) )

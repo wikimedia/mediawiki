@@ -34,7 +34,7 @@ function wfRunHooks($event, $args = null) {
 	$fname = 'wfRunHooks';
 
 	if (!is_array($wgHooks)) {
-		wfDebugDieBacktrace("Global hooks array is not an array!\n");
+		throw new MWException("Global hooks array is not an array!\n");
 		return false;
 	}
 
@@ -43,7 +43,7 @@ function wfRunHooks($event, $args = null) {
 	}
 
 	if (!is_array($wgHooks[$event])) {
-		wfDebugDieBacktrace("Hooks array for event '$event' is not an array!\n");
+		throw new MWException("Hooks array for event '$event' is not an array!\n");
 		return false;
 	}
 
@@ -62,7 +62,7 @@ function wfRunHooks($event, $args = null) {
 
 		if (is_array($hook)) {
 			if (count($hook) < 1) {
-				wfDebugDieBacktrace("Empty array in hooks for " . $event . "\n");
+				throw new MWException("Empty array in hooks for " . $event . "\n");
 			} else if (is_object($hook[0])) {
 				$object =& $wgHooks[$event][$index][0];
 				if (count($hook) < 2) {
@@ -82,7 +82,7 @@ function wfRunHooks($event, $args = null) {
 				}
 			} else {
 				var_dump( $wgHooks );
-				wfDebugDieBacktrace("Unknown datatype in hooks for " . $event . "\n");
+				throw new MWException("Unknown datatype in hooks for " . $event . "\n");
 			}
 		} else if (is_string($hook)) { # functions look like strings, too
 			$func = $hook;
@@ -90,7 +90,7 @@ function wfRunHooks($event, $args = null) {
 			$object =& $wgHooks[$event][$index];
 			$method = "on" . $event;
 		} else {
-			wfDebugDieBacktrace("Unknown datatype in hooks for " . $event . "\n");
+			throw new MWException("Unknown datatype in hooks for " . $event . "\n");
 		}
 
 		/* We put the first data element on, if needed. */
@@ -119,7 +119,7 @@ function wfRunHooks($event, $args = null) {
 
 		if (is_string($retval)) {
 			global $wgOut;
-			$wgOut->fatalError($retval);
+			$wgOut->showFatalError($retval);
 			return false;
 		} else if (!$retval) {
 			return false;

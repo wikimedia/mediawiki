@@ -94,7 +94,7 @@ END
 		$fp = fopen( $wgReadOnlyFile, 'w' );
 
 		if ( false === $fp ) {
-			$wgOut->fileNotFoundError( $wgReadOnlyFile );
+			$wgOut->showFileNotFoundError( $wgReadOnlyFile );
 			return;
 		}
 		fwrite( $fp, $this->reason );

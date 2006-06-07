@@ -18,7 +18,7 @@ function wfQuery( $sql, $db, $fname = '' ) {
 	global $wgOut;
 	if ( !is_numeric( $db ) ) {
 		# Someone has tried to call this the old way
-		$wgOut->fatalError( wfMsgNoDB( 'wrong_wfQuery_params', $db, $sql ) );
+		throw new FatalError( wfMsgNoDB( 'wrong_wfQuery_params', $db, $sql ) );
 	}
 	$c =& wfGetDB( $db );
 	if ( $c !== false ) {

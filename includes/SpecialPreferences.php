@@ -104,7 +104,7 @@ class PreferencesForm {
 		global $wgUser, $wgOut;
 
 		if ( $wgUser->isAnon() ) {
-			$wgOut->errorpage( 'prefsnologin', 'prefsnologintext' );
+			$wgOut->showErrorPage( 'prefsnologin', 'prefsnologintext' );
 			return;
 		}
 		if ( wfReadOnly() ) {

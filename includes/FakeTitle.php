@@ -4,7 +4,7 @@
  * Fake title class that triggers an error if any members are called
  */
 class FakeTitle {
-	function error() { wfDebugDieBacktrace( "Attempt to call member function of FakeTitle\n" ); }
+	function error() { throw new MWException( "Attempt to call member function of FakeTitle\n" ); }
 
 	// PHP 5.1 method overload
 	function __call( $name, $args ) { $this->error(); }

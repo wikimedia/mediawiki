@@ -65,7 +65,7 @@ class ProtectionForm {
 		if( is_null( $this->mTitle ) ||
 			!$this->mTitle->exists() ||
 			$this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			$wgOut->fatalError( wfMsg( 'badarticleerror' ) );
+			$wgOut->showFatalError( wfMsg( 'badarticleerror' ) );
 			return;
 		}
 
@@ -98,13 +98,12 @@ class ProtectionForm {
 
 		$token = $wgRequest->getVal( 'wpEditToken' );
 		if( !$wgUser->matchEditToken( $token ) ) {
-			$wgOut->fatalError( wfMsg( 'sessionfailure' ) );
-			return false;
+			throw new FatalError( wfMsg( 'sessionfailure' ) );
 		}
 
 		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason );
 		if( !$ok ) {
-			$wgOut->fatalError( "Unknown error at restriction save time." );
+			throw new FatalError( "Unknown error at restriction save time." );
 		}
 		return $ok;
 	}

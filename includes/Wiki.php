@@ -51,7 +51,7 @@ class MediaWiki {
 			} elseif( is_string( $article ) ) {
 				$output->redirect( $article );
 			} else {
-				wfDebugDieBacktrace( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
+				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
 			}
 		}
 		wfProfileOut( 'MediaWiki::initialize' );
@@ -129,7 +129,8 @@ class MediaWiki {
 			wfSpecialSearch();
 		} else if( !$title or $title->getDBkey() == '' ) {
 			$title = Title::newFromText( wfMsgForContent( 'badtitle' ) );
-			$output->errorpage( 'badtitle', 'badtitletext' );
+			# Die now before we mess up $wgArticle and the skin stops working
+			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 		} else if ( $title->getInterwiki() != '' ) {
 			if( $rdfrom = $request->getVal( 'rdfrom' ) ) {
 				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
@@ -141,7 +142,7 @@ class MediaWiki {
 				$output->redirect( $url );
 			} else {
 				$title = Title::newFromText( wfMsgForContent( 'badtitle' ) );
-				$output->errorpage( 'badtitle', 'badtitletext' );
+				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
 		} else if ( ( $action == 'view' ) &&
 			(!isset( $this->GET['title'] ) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
@@ -392,7 +393,7 @@ class MediaWiki {
 				break;
 			default:
 				if( wfRunHooks( 'UnknownAction', array( $action, $article ) ) ) {
-					$output->errorpage( 'nosuchaction', 'nosuchactiontext' );
+					$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
 		wfProfileOut( 'MediaWiki::performAction' );

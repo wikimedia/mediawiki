@@ -84,7 +84,7 @@ END
 			return;
 		}
 		if ( @! unlink( $wgReadOnlyFile ) ) {
-			$wgOut->fileDeleteError( $wgReadOnlyFile );
+			$wgOut->showFileDeleteError( $wgReadOnlyFile );
 			return;
 		}
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
