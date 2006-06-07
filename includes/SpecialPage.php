@@ -291,7 +291,7 @@ class SpecialPage
 					$retVal = $redir;
 				} else {
 					$wgOut->setArticleRelated( false );
-					$wgOut->setRobotpolicy( 'noindex,follow' );
+					$wgOut->setRobotpolicy( 'noindex,nofollow' );
 					$wgOut->setStatusCode( 404 );
 					$wgOut->errorpage( 'nosuchspecialpage', 'nospecialpagetext' );
 					$retVal = false;
@@ -428,7 +428,7 @@ class SpecialPage
 	function setHeaders() {
 		global $wgOut;
 		$wgOut->setArticleRelated( false );
-		$wgOut->setRobotPolicy( "noindex,follow" );
+		$wgOut->setRobotPolicy( "noindex,nofollow" );
 		$wgOut->setPageTitle( $this->getDescription() );
 	}
 

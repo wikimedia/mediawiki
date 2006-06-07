@@ -1438,7 +1438,7 @@ class Article {
 	 */
 	function markpatrolled() {
 		global $wgOut, $wgRequest, $wgUseRCPatrol, $wgUser;
-		$wgOut->setRobotpolicy( 'noindex,follow' );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		# Check RC patrol config. option
 		if( !$wgUseRCPatrol ) {
@@ -1487,7 +1487,7 @@ class Article {
 		
 		if( $this->doWatch() ) {
 			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
-			$wgOut->setRobotpolicy( 'noindex,follow' );
+			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 			$link = $this->mTitle->getPrefixedText();
 			$text = wfMsg( 'addedwatchtext', $link );
@@ -1535,7 +1535,7 @@ class Article {
 		
 		if( $this->doUnwatch() ) {
 			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
-			$wgOut->setRobotpolicy( 'noindex,follow' );
+			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 			$link = $this->mTitle->getPrefixedText();
 			$text = wfMsg( 'removedwatchtext', $link );

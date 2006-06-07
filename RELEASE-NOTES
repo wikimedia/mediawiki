@@ -450,6 +450,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to <div class="center">. <center> is perfectly valid in the target doctype
   (XHTML 1.0 Transitional), while the replacement didn't catch all cases and
   could even result in invalid output from valid input. 
+* (bug 4280) Use 'noindex,nofollow' instead of 'noindex,follow' for default
+  meta robots tag on diff view and special pages. Should reduce impact of
+  robots on scrolling special pages, diffs etc on sites where robots.txt
+  doesn't forbid access.
 
 
 == Compatibility ==
