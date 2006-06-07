@@ -157,6 +157,7 @@ nowiki 3
 
 !! end
 
+
 ###
 ### Comments
 ###
@@ -540,6 +541,26 @@ External links: open square bracket forbidden in URL (named) (bug 4377)
 [http://example.com/1[2345]
 !! result
 <p><a href="http://example.com/1" class='external text' title="http://example.com/1" rel="nofollow">[2345</a>
+</p>
+!!end
+
+!! test
+External links: nowiki in URL link text (bug 6230)
+!!input
+[http://example.com/ <nowiki>''example site''</nowiki>]
+!! result
+<p><a href="http://example.com/" class='external text' title="http://example.com/" rel="nofollow">''example site''</a>
+</p>
+!! end
+
+!! test
+External links: newline forbidden in text (bug 6230 regression check)
+!! input
+[http://example.com/ first
+second]
+!! result
+<p>[<a href="http://example.com/" class='external free' title="http://example.com/" rel="nofollow">http://example.com/</a> first
+second]
 </p>
 !!end
 
