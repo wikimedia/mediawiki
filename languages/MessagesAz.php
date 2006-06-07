@@ -1,6 +1,7 @@
 <?php
 
-/* private */ $wgAllMessagesAz = array(
+global $wgAllMessagesAz;
+$wgAllMessagesAz = array(
 
 # User preference toggles  # Kullanıcı seçenekleri
 'tog-fancysig' => 'Xam imza (daxili bağlantı yaratmaz)',
