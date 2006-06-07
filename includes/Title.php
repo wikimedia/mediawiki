@@ -8,6 +8,9 @@
 /** */
 require_once( 'normal/UtfNormal.php' );
 
+$wgTitleInterwikiCache = array();
+$wgTitleCache = array();
+
 define ( 'GAID_FOR_UPDATE', 1 );
 
 # Title::newFromTitle maintains a cache to avoid
@@ -25,13 +28,6 @@ define( 'MW_TITLECACHE_MAX', 1000 );
  * @package MediaWiki
  */
 class Title {
-	/**
-	 * Static cache variables
-	 */
-	static private $titleCache=array();
-	static private $interwikiCache=array();
-	
-	
 	/**
 	 * All member variables should be considered private
 	 * Please use the accessor functions
@@ -109,6 +105,7 @@ class Title {
 	 * @access public
 	 */
 	function newFromText( $text, $defaultNamespace = NS_MAIN ) {
+		global $wgTitleCache;
 		$fname = 'Title::newFromText';
 
 		if( is_object( $text ) ) {
@@ -123,8 +120,8 @@ class Title {
 		 *
 		 * In theory these are value objects and won't get changed...
 		 */
-		if( $defaultNamespace == NS_MAIN && isset( Title::$titleCache[$text] ) ) {
-			return Title::$titleCache[$text];
+		if( $defaultNamespace == NS_MAIN && isset( $wgTitleCache[$text] ) ) {
+			return $wgTitleCache[$text];
 		}
 
 		/**
@@ -141,11 +138,11 @@ class Title {
 			if( $defaultNamespace == NS_MAIN ) {
 				if( $cachedcount >= MW_TITLECACHE_MAX ) {
 					# Avoid memory leaks on mass operations...
-					Title::$titleCache = array();
+					$wgTitleCache = array();
 					$cachedcount=0;
 				}
 				$cachedcount++;
-				Title::$titleCache[$text] =& $t;
+				$wgTitleCache[$text] =& $t;
 			}
 			return $t;
 		} else {
@@ -377,15 +374,15 @@ class Title {
 	 * @access public
 	 */
 	function getInterwikiLink( $key )  {
-		global $wgMemc, $wgDBname, $wgInterwikiExpiry;
+		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
 		global $wgInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
 
 		$key = strtolower( $key );
 
 		$k = $wgDBname.':interwiki:'.$key;
-		if( array_key_exists( $k, Title::$interwikiCache ) ) {
-			return Title::$interwikiCache[$k]->iw_url;
+		if( array_key_exists( $k, $wgTitleInterwikiCache ) ) {
+			return $wgTitleInterwikiCache[$k]->iw_url;
 		}
 
 		if ($wgInterwikiCache) {
@@ -395,7 +392,7 @@ class Title {
 		$s = $wgMemc->get( $k );
 		# Ignore old keys with no iw_local
 		if( $s && isset( $s->iw_local ) && isset($s->iw_trans)) {
-			Title::$interwikiCache[$k] = $s;
+			$wgTitleInterwikiCache[$k] = $s;
 			return $s->iw_url;
 		}
 
@@ -416,7 +413,7 @@ class Title {
 			$s->iw_trans = 0;
 		}
 		$wgMemc->set( $k, $s, $wgInterwikiExpiry );
-		Title::$interwikiCache[$k] = $s;
+		$wgTitleInterwikiCache[$k] = $s;
 
 		return $s->iw_url;
 	}
@@ -431,6 +428,7 @@ class Title {
 	 */
 	function getInterwikiCached( $key ) {
 		global $wgDBname, $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
+		global $wgTitleInterwikiCache;
 		static $db, $site;
 
 		if (!$db)
@@ -461,7 +459,7 @@ class Title {
 			$s->iw_url=$url;
 			$s->iw_local=(int)$local;
 		}
-		Title::$interwikiCache[$wgDBname.':interwiki:'.$key] = $s;
+		$wgTitleInterwikiCache[$wgDBname.':interwiki:'.$key] = $s;
 		return $s->iw_url;
 	}
 	/**
@@ -473,13 +471,13 @@ class Title {
 	 * @access public
 	 */
 	function isLocal() {
-		global $wgDBname;
+		global $wgTitleInterwikiCache, $wgDBname;
 
 		if ( $this->mInterwiki != '' ) {
 			# Make sure key is loaded into cache
 			$this->getInterwikiLink( $this->mInterwiki );
 			$k = $wgDBname.':interwiki:' . $this->mInterwiki;
-			return (bool)(Title::$interwikiCache[$k]->iw_local);
+			return (bool)($wgTitleInterwikiCache[$k]->iw_local);
 		} else {
 			return true;
 		}
@@ -493,14 +491,14 @@ class Title {
 	 * @access public
 	 */
 	function isTrans() {
-		global $wgDBname;
+		global $wgTitleInterwikiCache, $wgDBname;
 
 		if ($this->mInterwiki == '')
 			return false;
 		# Make sure key is loaded into cache
 		$this->getInterwikiLink( $this->mInterwiki );
 		$k = $wgDBname.':interwiki:' . $this->mInterwiki;
-		return (bool)(Title::$interwikiCache[$k]->iw_trans);
+		return (bool)($wgTitleInterwikiCache[$k]->iw_trans);
 	}
 
 	/**
