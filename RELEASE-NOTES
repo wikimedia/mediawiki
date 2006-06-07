@@ -454,6 +454,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   meta robots tag on diff view and special pages. Should reduce impact of
   robots on scrolling special pages, diffs etc on sites where robots.txt
   doesn't forbid access.
+* Regression fix: suppress warning about session failure when clicking to
+  edit with 'preview on first edit' enabled.
 
 
 == Compatibility ==

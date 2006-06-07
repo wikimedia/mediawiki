@@ -24,6 +24,7 @@ class EditPage {
 	var $firsttime;
 	var $lastDelete;
 	var $mTokenOk = false;
+	var $mTriedSave = false;
 	var $tooBig = false;
 	var $kblength = false;
 	var $missingComment = false;
@@ -358,6 +359,10 @@ class EditPage {
 				$this->preview = $request->getCheck( 'wpPreview' ) || $request->getCheck( 'wpLivePreview' );
 				$this->diff = $request->getCheck( 'wpDiff' );
 
+				// Remember whether a save was requested, so we can indicate
+				// if we forced preview due to session failure.
+				$this->mTriedSave = !$this->preview;
+				
 				if ( $this->tokenOk( $request ) ) {
 					# Some browsers will not report any submit button
 					# if the user hits enter in the comment box.
@@ -1260,10 +1265,10 @@ END
 		$fname = 'EditPage::getPreviewText';
 		wfProfileIn( $fname );
 
-		if ( $this->mTokenOk ) {
-			$msg = 'previewnote';
-		} else {
+		if ( $this->mTriedSave && !$this->mTokenOk ) {
 			$msg = 'session_fail_preview';
+		} else {
+			$msg = 'previewnote';
 		}
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
 			"<div class='previewnote'>" . $wgOut->parse( wfMsg( $msg ) ) . "</div>\n";
