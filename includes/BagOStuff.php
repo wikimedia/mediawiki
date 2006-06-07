@@ -33,9 +33,8 @@
  * $bag = new MysqlBagOStuff($tablename); # connect to db first
  *
  * @package MediaWiki
- * @abstract
  */
-abstract class BagOStuff {
+class BagOStuff {
 	var $debugmode;
 
 	function BagOStuff() {
