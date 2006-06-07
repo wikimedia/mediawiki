@@ -45,6 +45,7 @@ function __autoload($class_name) {
 		'WordLevelDiff' => 'DifferenceEngine.php',
 		'TableDiffFormatter' => 'DifferenceEngine.php',
 		'EditPage' => 'EditPage.php',
+		'MWException' => 'Exception.php',
 		'Exif' => 'Exif.php',
 		'FormatExif' => 'Exif.php',
 		'WikiExporter' => 'Export.php',
