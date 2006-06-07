@@ -16,7 +16,7 @@
 require_once( 'AjaxFunctions.php' );
 
 if ( ! $wgUseAjax ) {
-	die ( -1 );
+	die( 1 );
 }
 
 class AjaxDispatcher {
