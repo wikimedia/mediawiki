@@ -28,7 +28,6 @@ if( !isset( $wgProfiling ) )
 if ( function_exists( 'wfProfileIn' ) ) {
 	/* nada, everything should be done already */
 } elseif ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
-	require_once( 'Profiling.php' );
 	$wgProfiling = true;
 	if ($wgProfilerType == "") {
 		$wgProfiler = new Profiler();
@@ -62,8 +61,6 @@ require_once( 'MagicWord.php' );
 require_once( 'Block.php' );
 require_once( 'MessageCache.php' );
 require_once( 'Parser.php' );
-require_once( 'ParserCache.php' );
-require_once( 'WebRequest.php' );
 require_once( 'LoadBalancer.php' );
 require_once( 'HistoryBlob.php' );
 require_once( 'ProxyTools.php' );
