@@ -20,7 +20,6 @@ if (!file_exists('LocalSettings.php'))
 require_once('./LocalSettings.php');
 require_once('includes/Setup.php');
 
-require_once('Title.php');
 require_once('DatabaseFunctions.php');
 
 /**
