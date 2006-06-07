@@ -7,66 +7,75 @@
 
 require_once( 'LanguageUtf8.php' );
 
-/* private */ $wgNamespaceNamesAf = array(
-	NS_MEDIA		=> "Media",
-	NS_SPECIAL		=> "Spesiaal",
-	NS_MAIN			=> "",
-	NS_TALK			=> "Bespreking",
-	NS_USER			=> "Gebruiker",
-	NS_USER_TALK		=> "Gebruikerbespreking",
-	NS_PROJECT		=> $wgMetaNamespace,
-	NS_PROJECT_TALK		=> $wgMetaNamespace."bespreking",
-	NS_IMAGE		=> "Beeld",
-	NS_IMAGE_TALK		=> "Beeldbespreking",
-	NS_MEDIAWIKI		=> "MediaWiki",
-	NS_MEDIAWIKI_TALK	=> "MediaWikibespreking",
-	NS_TEMPLATE		=> 'Sjabloon',
-	NS_TEMPLATE_TALK	=> 'Sjabloonbespreking',
-	NS_HELP			=> 'Hulp',
-	NS_HELP_TALK		=> 'Hulpbespreking',
-	NS_CATEGORY		=> 'Kategorie',
-	NS_CATEGORY_TALK	=> 'Kategoriebespreking'
-) + $wgNamespaceNamesEn;
-
-/* private */ $wgQuickbarSettingsAf = array(
-	"Geen.", "Links vas.", "Regs vas.", "Dryf links."
-);
-
-/* private */ $wgSkinNamesAf = array(
-	'standard' => "Standaard",
-	'nostalgia' => "Nostalgie",
-	'cologneblue' => "Keulen blou",
-) + $wgSkinNamesEn;
-
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesAf.php');
 }
 
-
 class LanguageAf extends LanguageUtf8 {
+	private $mMessagesAf, $mNamespaceNamesAf = null;
+
+	private $mQuickbarSettingsAf = array(
+		"Geen.", "Links vas.", "Regs vas.", "Dryf links."
+	);
+	
+	private $mSkinNamesAf = array(
+		'standard' => "Standaard",
+		'nostalgia' => "Nostalgie",
+		'cologneblue' => "Keulen blou",
+	);
+
+	function LanguageAf() {
+		LanguageUtf8::LanguageUtf8();
+
+		global $wgAllMessagesAf;
+		$this->mMessagesAf =& $wgAllMessagesAf;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesAf = array(
+			NS_MEDIA          => "Media",
+			NS_SPECIAL        => "Spesiaal",
+			NS_MAIN           => "",
+			NS_TALK           => "Bespreking",
+			NS_USER           => "Gebruiker",
+			NS_USER_TALK      => "Gebruikerbespreking",
+			NS_PROJECT        => $wgMetaNamespace,
+			NS_PROJECT_TALK   => $wgMetaNamespace."bespreking",
+			NS_IMAGE          => "Beeld",
+			NS_IMAGE_TALK     => "Beeldbespreking",
+			NS_MEDIAWIKI      => "MediaWiki",
+			NS_MEDIAWIKI_TALK => "MediaWikibespreking",
+			NS_TEMPLATE       => 'Sjabloon',
+			NS_TEMPLATE_TALK  => 'Sjabloonbespreking',
+			NS_HELP           => 'Hulp',
+			NS_HELP_TALK      => 'Hulpbespreking',
+			NS_CATEGORY       => 'Kategorie',
+			NS_CATEGORY_TALK  => 'Kategoriebespreking'
+		);
+
+	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesAf;
-		return $wgNamespaceNamesAf;
+		return $this->mNamespaceNamesAf + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsAf;
-		return $wgQuickbarSettingsAf;
+		return $this->mQuickbarSettingsAf;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesAf;
-		return $wgSkinNamesAf;
+		return $this->mSkinNamesAf + parent::getSkinNames();
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesAf;
-		if( isset( $wgAllMessagesAf[$key] ) ) {
-			return $wgAllMessagesAf[$key];
+		if( isset( $this->mMessagesAf[$key] ) ) {
+			return $this->mMessagesAf[$key];
 		} else {
 			return parent::getMessage( $key );
 		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesAf;
 	}
 
 	# South Africa uses space for thousands and comma for decimal
