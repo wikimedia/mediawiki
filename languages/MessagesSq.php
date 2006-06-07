@@ -257,8 +257,8 @@ Tregojani këtë përmbledhje një administruesi, duke shënuar edhe URL-in.',
 'perfdisabledsub'       => 'Kjo është nje kopje e ruajtur nga $1:',
 'perfcached'            => 'Informacioni i mëposhtëm është kopje e ruajtur dhe mund të mos jetë i freskët:',
 'perfcachedts'          => 'Informacioni i mëposhtëm është një kopje e rifreskuar më $1.',
-'wrong_wfQuery_params'  => 'Parametra gabim tek wfQuery()<br>
-Funksioni: $1<br>
+'wrong_wfQuery_params'  => 'Parametra gabim tek wfQuery()<br />
+Funksioni: $1<br />
 Pyetja: $2',
 'viewsource'            => 'Shikoni tekstin',
 'viewsourcefor'         => 'e $1',
@@ -280,8 +280,8 @@ Mund të shikoni dhe kopjoni tekstin e kësaj faqeje:',
 'remembermypassword'    => 'Mbaj mënd fjalëkalimin tim për tërë vizitat e ardhshme.',
 'yourdomainname'        => 'Faqja juaj',
 'externaldberror'       => 'Ose kishte një gabim tek regjistri i identifikimit të jashtëm, ose nuk ju lejohet të përtërini llogarinë tuaje të jashtme.',
-'loginproblem'          => '<b>Kishte një problem me hyrjen tuaj.</b><br>Provojeni përsëri!',
-'alreadyloggedin'       => '<font color=red><b>Përdorues $1, keni hyrë brënda më parë!</b></font><br>',
+'loginproblem'          => '<b>Kishte një problem me hyrjen tuaj.</b><br />Provojeni përsëri!',
+'alreadyloggedin'       => '<font color=red><b>Përdorues $1, keni hyrë brënda më parë!</b></font><br />',
 'login'                 => 'Hyni',
 'loginprompt'           => 'Duhet të pranoni "biskota" për të hyrë brënda në {{SITENAME}}.',
 'userlogin'             => 'Hyni ose hapni një llogari',
@@ -505,8 +505,8 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'showingresultsnum'     => 'Më poshtë tregohen <b>$3</b> përfundime duke filluar me #<b>$2</b>.',
 'nonefound'             => '<strong>Shënim</strong>: kërkimet pa përfundime ndodhin kur kërkoni për fjalë që rastisen shpesh si "ke" and "nga", të cilat nuk janë të futura në regjistër, ose duke dhënë më shumë se një fjalë (vetëm faqet që i kanë të gjitha ato fjalë do të tregohen si përfundime).',
 'powersearch'           => 'Kërko',
-'powersearchtext'       => 'Kërko në hapësirën:<br>
-$1<br>
+'powersearchtext'       => 'Kërko në hapësirën:<br />
+$1<br />
 $2 Lidhje përcjellëse   Kërko për $3 $9',
 'searchdisabled'        => '<p>Kërkimi me tekst të plotë është bllokuar tani për tani ngaqë shërbyesi është shumë i ngarkuar; shpresojmë ta nxjerrim prapë në gjendje normale pas disa punimeve. Deri atëherë mund të përdorni Google-in për kërkime:</p>',
 'blanknamespace'        => '(Artikujt)',
@@ -995,7 +995,7 @@ Afati është sipas standardit GNU Tar (http://www.gnu.org/software/tar/manual/h
 'badipaddress'          => 'Nuk ka asnjë përdorues me atë emër',
 'blockipsuccesssub'     => 'Bllokimi u bë me sukses',
 'blockipsuccesstext'    => 'Përdoruesi [[{{ns:user}}:$1|$1]] ([[{ns:user_talk}}:$1|Diskutimet]] · [[{{ns:special}}:Contributions/$1|Kontributet]]) u bllokua.
-<br>Veprimi u regjistrua te [[{{ns:special}}:Log/block|Regjistri i bllokimeve]]. Shiko këtu [{{fullurl:{{ns:special}}:Ipblocklist|action=unblock&ip=$1}} për ta çbllokuar] përdoruesin.',
+<br />Veprimi u regjistrua te [[{{ns:special}}:Log/block|Regjistri i bllokimeve]]. Shiko këtu [{{fullurl:{{ns:special}}:Ipblocklist|action=unblock&ip=$1}} për ta çbllokuar] përdoruesin.',
 'unblockip'             => 'Çblloko përdoruesin',
 'unblockiptext'         => 'Përdor formularin e më poshtëm për t\'i ridhënë leje shkrimi
 një përdoruesi ose IP adreseje të bllokuar.',
