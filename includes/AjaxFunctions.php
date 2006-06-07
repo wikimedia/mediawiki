@@ -1,7 +1,7 @@
 <?php
 
 if( !defined( 'MEDIAWIKI' ) )
-        die( -1 );
+        die( 1 );
 
 require_once('WebRequest.php');
 

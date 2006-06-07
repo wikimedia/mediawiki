@@ -21,7 +21,7 @@
 # This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
 if( !defined( 'MEDIAWIKI' ) ) {
 	echo "This file is part of MediaWiki and is not a valid entry point\n";
-	die( -1 );
+	die( 1 );
 }
 
 /**
