@@ -471,7 +471,7 @@ class Parser
 						$output = call_user_func_array( $this->mTagHooks[$tagName],
 							array( $content, $params, $this ) );
 					} else {
-						wfDebugDieBacktrace( "Invalid call hook $element" );
+						throw new MWException( "Invalid call hook $element" );
 					}
 				}
 			} else {
@@ -1329,7 +1329,7 @@ class Parser
 		$useLinkPrefixExtension = $wgContLang->linkPrefixExtension();
 
 		if( is_null( $this->mTitle ) ) {
-			wfDebugDieBacktrace( 'nooo' );
+			throw new MWException( 'nooo' );
 		}
 		$nottalk = !$this->mTitle->isTalkPage();
 
@@ -2119,7 +2119,7 @@ class Parser
 				}
 				break;
 			default:
-				wfDebugDieBacktrace( "State machine error in $fname" );
+				throw new MWException( "State machine error in $fname" );
 			}
 		}
 		if( $stack > 0 ) {

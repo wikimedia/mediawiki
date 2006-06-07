@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'MEDIAWIKI' ) )
-	die( -1 );
+	die( 1 );
 /**
  * @package MediaWiki
  */
@@ -666,7 +666,7 @@ class OutputPage {
 	/**
 	 * Note: these arguments are keys into wfMsg(), not text!
 	 */
-	function errorpage( $title, $msg ) {
+	function showErrorPage( $title, $msg ) {
 		global $wgTitle;
 
 		$this->mDebugtext .= 'Original title: ' .
@@ -681,11 +681,13 @@ class OutputPage {
 		$this->mBodytext = '';
 		$this->addWikiText( wfMsg( $msg ) );
 		$this->returnToMain( false );
-
-		$this->output();
-		wfErrorExit();
 	}
 
+	/** @obsolete */
+	function errorpage( $title, $msg ) {
+		throw new ErrorPageError( $title, $msg );
+	}
+		
 	/**
 	 * Display an error page indicating that a given version of MediaWiki is
 	 * required to use it
@@ -779,34 +781,9 @@ class OutputPage {
 		$this->returnToMain();
 	}
 
+	/** @obsolete */
 	function databaseError( $fname, $sql, $error, $errno ) {
-		global $wgUser, $wgCommandLineMode, $wgShowSQLErrors;
-
-		$this->setPageTitle( wfMsgNoDB( 'databaseerror' ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-		$this->enableClientCache( false );
-		$this->mRedirect = '';
-
-		if( !$wgShowSQLErrors ) {
-			$sql = wfMsg( 'sqlhidden' );
-		}
-
-		if ( $wgCommandLineMode ) {
-			$msg = wfMsgNoDB( 'dberrortextcl', htmlspecialchars( $sql ),
-						htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
-		} else {
-			$msg = wfMsgNoDB( 'dberrortext', htmlspecialchars( $sql ),
-						htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
-		}
-
-		if ( $wgCommandLineMode || !is_object( $wgUser )) {
-			print $msg."\n";
-			wfErrorExit();
-		}
-		$this->mBodytext = $msg;
-		$this->output();
-		wfErrorExit();
+		throw new MWException( "OutputPage::databaseError is obsolete\n" );
 	}
 
 	function readOnlyPage( $source = null, $protected = false ) {
@@ -857,36 +834,63 @@ class OutputPage {
 		$this->returnToMain( false );
 	}
 
-	function fatalError( $message ) {
+	/** @obsolete */
+	function fatalError( $message ) { 
+		throw new FatalError( $message ); 
+	}
+	
+	/** @obsolete */
+	function unexpectedValueError( $name, $val ) {
+		throw new FatalError( wfMsg( 'unexpected', $name, $val ) );
+	}
+
+	/** @obsolete */
+	function fileCopyError( $old, $new ) {
+		throw new FatalError( wfMsg( 'filecopyerror', $old, $new ) );
+	}
+
+	/** @obsolete */
+	function fileRenameError( $old, $new ) {
+		throw new FatalError( wfMsg( 'filerenameerror', $old, $new ) );
+	}
+
+	/** @obsolete */
+	function fileDeleteError( $name ) {
+		throw new FatalError( wfMsg( 'filedeleteerror', $name ) );
+	}
+
+	/** @obsolete */
+	function fileNotFoundError( $name ) {
+		throw new FatalError( wfMsg( 'filenotfound', $name ) );
+	}
+
+	function showFatalError( $message ) {
 		$this->setPageTitle( wfMsg( "internalerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
-
 		$this->mBodytext = $message;
-		$this->output();
-		wfErrorExit();
 	}
 
-	function unexpectedValueError( $name, $val ) {
-		$this->fatalError( wfMsg( 'unexpected', $name, $val ) );
+	function showUnexpectedValueError( $name, $val ) {
+		$this->showFatalError( wfMsg( 'unexpected', $name, $val ) );
 	}
 
-	function fileCopyError( $old, $new ) {
-		$this->fatalError( wfMsg( 'filecopyerror', $old, $new ) );
+	function showFileCopyError( $old, $new ) {
+		$this->showFatalError( wfMsg( 'filecopyerror', $old, $new ) );
 	}
 
-	function fileRenameError( $old, $new ) {
-		$this->fatalError( wfMsg( 'filerenameerror', $old, $new ) );
+	function showFileRenameError( $old, $new ) {
+		$this->showFatalError( wfMsg( 'filerenameerror', $old, $new ) );
 	}
 
-	function fileDeleteError( $name ) {
-		$this->fatalError( wfMsg( 'filedeleteerror', $name ) );
+	function showFileDeleteError( $name ) {
+		$this->showFatalError( wfMsg( 'filedeleteerror', $name ) );
 	}
 
-	function fileNotFoundError( $name ) {
-		$this->fatalError( wfMsg( 'filenotfound', $name ) );
+	function showFileNotFoundError( $name ) {
+		$this->showFatalError( wfMsg( 'filenotfound', $name ) );
 	}
 
 	/**

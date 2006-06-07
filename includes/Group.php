@@ -90,7 +90,7 @@ class Group {
 	/** Initialise a new row in the database */
 	function addToDatabase() {
 		if ( Group::getStaticGroups() ) {
-			wfDebugDieBacktrace( "Can't modify groups in static mode" );
+			throw new MWException( "Can't modify groups in static mode" );
 		}
 
 		$fname = 'Group::addToDatabase';
@@ -110,7 +110,7 @@ class Group {
 		global $wgMemc;
 
 		if ( Group::getStaticGroups() ) {
-			wfDebugDieBacktrace( "Can't modify groups in static mode" );
+			throw new MWException( "Can't modify groups in static mode" );
 		}
 		if($this->id == 0) { return; }
 
@@ -136,7 +136,7 @@ class Group {
 		global $wgMemc;
 
 		if ( Group::getStaticGroups() ) {
-			wfDebugDieBacktrace( "Can't modify groups in static mode" );
+			throw new MWException( "Can't modify groups in static mode" );
 		}
 		if($this->id == 0) { return; }
 

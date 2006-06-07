@@ -43,13 +43,13 @@ class WhatLinksHerePage {
 		$targetString = isset($this->par) ? $this->par : $this->request->getVal( 'target' );
 
 		if (is_null($targetString)) {
-			$wgOut->errorpage( 'notargettitle', 'notargettext' );
+			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 			return;
 		}
 
 		$this->target = Title::newFromURL( $targetString );
 		if( !$this->target ) {
-			$wgOut->errorpage( 'notargettitle', 'notargettext' );
+			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 			return;
 		}
 		$this->selfTitle = Title::makeTitleSafe( NS_SPECIAL,

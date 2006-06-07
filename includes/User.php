@@ -1192,7 +1192,7 @@ class User {
 	 * @deprecated
 	 */
 	function isSysop() {
-		wfDebugDieBacktrace( "Call to deprecated (v1.7) User::isSysop() method\n" );
+		throw new MWException( "Call to deprecated (v1.7) User::isSysop() method\n" );
 		#return $this->isAllowed( 'protect' );
 	}
 
@@ -1201,7 +1201,7 @@ class User {
 	 * @deprecated
 	 */
 	function isDeveloper() {
-		wfDebugDieBacktrace( "Call to deprecated (v1.7) User::isDeveloper() method\n" );
+		throw new MWException( "Call to deprecated (v1.7) User::isDeveloper() method\n" );
 		#return $this->isAllowed( 'siteadmin' );
 	}
 
@@ -1210,7 +1210,7 @@ class User {
 	 * @deprecated
 	 */
 	function isBureaucrat() {
-		wfDebugDieBacktrace( "Call to deprecated (v1.7) User::isBureaucrat() method\n" );
+		throw new MWException( "Call to deprecated (v1.7) User::isBureaucrat() method\n" );
 		#return $this->isAllowed( 'makesysop' );
 	}
 

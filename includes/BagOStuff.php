@@ -35,7 +35,7 @@
  * @package MediaWiki
  * @abstract
  */
-class BagOStuff {
+abstract class BagOStuff {
 	var $debugmode;
 
 	function BagOStuff() {
@@ -212,7 +212,7 @@ CREATE TABLE objectcache (
  * @abstract
  * @package MediaWiki
  */
-class SqlBagOStuff extends BagOStuff {
+abstract class SqlBagOStuff extends BagOStuff {
 	var $table;
 	var $lastexpireall = 0;
 
@@ -292,16 +292,9 @@ class SqlBagOStuff extends BagOStuff {
 	function _blobencode($str) {
 		return $str;
 	}
-	function _doinsert($table, $vals) {
-		wfDie( 'abstract function SqlBagOStuff::_doinsert() must be defined' );
-	}
-	function _doquery($sql) {
-		wfDie( 'abstract function SqlBagOStuff::_doquery() must be defined' );
-	}
 
-	function _fetchrow($res) {
-		wfDie( 'abstract function SqlBagOStuff::_fetchrow() must be defined' );
-	}
+	abstract function _doinsert($table, $vals);
+	abstract function _doquery($sql);
 
 	function _freeresult($result) {
 		/* stub */
@@ -313,13 +306,8 @@ class SqlBagOStuff extends BagOStuff {
 		return 'unknown error';
 	}
 
-	function _maxdatetime() {
-		wfDie( 'abstract function SqlBagOStuff::_maxdatetime() must be defined' );
-	}
-
-	function _fromunixtime() {
-		wfDie( 'abstract function SqlBagOStuff::_fromunixtime() must be defined' );
-	}
+	abstract function _maxdatetime();
+	abstract function _fromunixtime($ts);
 
 	function garbageCollect() {
 		/* Ignore 99% of requests */
@@ -427,7 +415,7 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 			/* This is actually a hack, we should be able
 			   to use Language classes here... or not */
 			if (!$dbw)
-				wfDie("Could not connect to database");
+				throw new MWException("Could not connect to database");
 			$this->table = $dbw->tableName( $this->table );
 			$this->tableInitialised = true;
 		}

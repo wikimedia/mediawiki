@@ -284,7 +284,7 @@ class Revision {
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
 		} else {
-			wfDebugDieBacktrace( 'Revision constructor passed invalid row format.' );
+			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
 	}
 
@@ -606,7 +606,7 @@ class Revision {
 			$data = ExternalStore::insert( $store, $data );
 			if ( !$data ) {
 				# This should only happen in the case of a configuration error, where the external store is not valid
-				wfDebugDieBacktrace( "Unable to store text to external storage $store" );
+				throw new MWException( "Unable to store text to external storage $store" );
 			}
 			if ( $flags ) {
 				$flags .= ',';

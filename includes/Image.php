@@ -75,7 +75,7 @@ class Image
 
 	function Image( $title ) {
 		if( !is_object( $title ) ) {
-			wfDebugDieBacktrace( 'Image constructor given bogus title.' );
+			throw new MWException( 'Image constructor given bogus title.' );
 		}
 		$this->title =& $title;
 		$this->name = $title->getDBkey();
@@ -994,7 +994,7 @@ class Image
 							unlink( $thumbPath );
 						} else {
 							// This should have been dealt with already
-							wfDebugDieBacktrace( "Directory where image should be: $thumbPath" );
+							throw new MWException( "Directory where image should be: $thumbPath" );
 						}
 					}
 					// Rename the old image into the new location
@@ -1270,16 +1270,24 @@ class Image
 		}
 		# img_name must be unique
 		if ( !$db->indexUnique( 'image', 'img_name' ) && !$db->indexExists('image','PRIMARY') ) {
-			wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
+			throw new MWException( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
 		}
 
-		#new fields must exist
+		# new fields must exist
+		# 
+		# Not really, there's hundreds of checks like this that we could do and they're all pointless, because 
+		# if the fields are missing, the database will loudly report a query error, the first time you try to do 
+		# something. The only reason I put the above schema check in was because the absence of that particular
+		# index would lead to an annoying subtle bug. No error message, just some very odd behaviour on duplicate
+		# uploads. -- TS
+		/*
 		if ( !$db->fieldExists( 'image', 'img_media_type' )
 		  || !$db->fieldExists( 'image', 'img_metadata' )
 		  || !$db->fieldExists( 'image', 'img_width' ) ) {
 
-			wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/update.php' );
-		}
+			throw new MWException( 'Database schema not up to date, please run maintenance/update.php' );
+		 }
+		 */
 	}
 
 	/**

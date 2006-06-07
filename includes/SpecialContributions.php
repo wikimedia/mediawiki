@@ -157,13 +157,13 @@ function wfSpecialContributions( $par = null ) {
 
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 	if (!strlen($target)) {
-		$wgOut->errorpage('notargettitle', 'notargettext');
+		$wgOut->showErrorPage('notargettitle', 'notargettext');
 		return;
 	}
 
 	$nt = Title::newFromURL( $target );
 	if (!$nt) {
-		$wgOut->errorpage( 'notargettitle', 'notargettext' );
+		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 		return;
 	}
 

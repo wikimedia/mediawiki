@@ -293,7 +293,7 @@ class SpecialPage
 					$wgOut->setArticleRelated( false );
 					$wgOut->setRobotpolicy( 'noindex,nofollow' );
 					$wgOut->setStatusCode( 404 );
-					$wgOut->errorpage( 'nosuchspecialpage', 'nospecialpagetext' );
+					$wgOut->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
 					$retVal = false;
 				}
 			}

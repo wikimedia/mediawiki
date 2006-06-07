@@ -7,7 +7,7 @@
  *
  */
 if( !defined( 'MEDIAWIKI' ) )
-	die( -1 );
+	die( 1 );
 
 require_once( 'Image.php' );
 
@@ -453,7 +453,7 @@ END
 		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
 		if ( ( !is_null( $image ) )
 		  && ( '' == trim( $image ) ) ) {
-			$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
+			$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
 			return;
 		}
 
@@ -464,7 +464,7 @@ END
 			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
 				$this->doDelete();
 			} else {
-				$wgOut->fatalError( wfMsg( 'sessionfailure' ) );
+				$wgOut->showFatalError( wfMsg( 'sessionfailure' ) );
 			}
 			return;
 		}
@@ -492,11 +492,11 @@ END
 
 		if ( !is_null( $oldimage ) ) {
 			if ( strlen( $oldimage ) < 16 ) {
-				$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
 			if ( strstr( $oldimage, "/" ) || strstr( $oldimage, "\\" ) ) {
-				$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
 
@@ -511,7 +511,9 @@ END
 				);
 				wfPurgeSquidServers($urlArr);
 			}
-			$this->doDeleteOldImage( $oldimage );
+			if ( !$this->doDeleteOldImage( $oldimage ) ) {
+				return;
+			}
 			$dbw->delete( 'oldimage', array( 'oi_archive_name' => $oldimage ) );
 			$deleted = $oldimage;
 		} else {
@@ -524,7 +526,7 @@ END
 			$targetFile = "{$dest}/{$image}";
 			if( file_exists( $targetFile ) && ! @unlink( $targetFile ) ) {
 				# If the deletion operation actually failed, bug out:
-				$wgOut->fileDeleteError( $targetFile );
+				$wgOut->showFileDeleteError( $targetFile );
 				return;
 			}
 			$dbw->delete( 'image', array( 'img_name' => $image ) );
@@ -541,7 +543,9 @@ END
 			# Purge archive URLs from the squid
 			$urlArr = Array();
 			while ( $s = $dbw->fetchObject( $res ) ) {
-				$this->doDeleteOldImage( $s->oi_archive_name );
+				if ( !$this->doDeleteOldImage( $s->oi_archive_name ) ) {
+					return;
+				}
 				$urlArr[] = wfImageArchiveUrl( $s->oi_archive_name );
 			}
 
@@ -581,6 +585,9 @@ END
 		$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
 	}
 
+	/**
+	 * @return success
+	 */
 	function doDeleteOldImage( $oldimage )
 	{
 		global $wgOut;
@@ -598,11 +605,13 @@ END
 		$targetFile = "{$archive}/{$oldimage}";
 		if( $oldimage != '' && file_exists( $targetFile ) && !@unlink( $targetFile ) ) {
 			# If we actually have a file and can't delete it, throw an error.
-			$wgOut->fileDeleteError( "{$archive}/{$oldimage}" );
+			$wgOut->showFileDeleteError( "{$archive}/{$oldimage}" );
+			return false;
 		} else {
 			# Log the deletion
 			$log = new LogPage( 'delete' );
 			$log->addEntry( 'delete', $this->mTitle, wfMsg('deletedrevision',$oldimage) );
+			return true;
 		}
 	}
 
@@ -611,11 +620,11 @@ END
 
 		$oldimage = $wgRequest->getText( 'oldimage' );
 		if ( strlen( $oldimage ) < 16 ) {
-			$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 			return;
 		}
 		if ( strstr( $oldimage, "/" ) || strstr( $oldimage, "\\" ) ) {
-			$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 			return;
 		}
 
@@ -624,7 +633,7 @@ END
 			return;
 		}
 		if( $wgUser->isAnon() ) {
-			$wgOut->errorpage( 'uploadnologin', 'uploadnologintext' );
+			$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
 			return;
 		}
 		if ( ! $this->mTitle->userCanEdit() ) {
@@ -635,7 +644,7 @@ END
 			return $this->blockedIPpage();
 		}
 		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
-			$wgOut->errorpage( 'internalerror', 'sessionfailure' );
+			$wgOut->showErrorPage( 'internalerror', 'sessionfailure' );
 			return;
 		}
 		$name = substr( $oldimage, 15 );
@@ -645,7 +654,7 @@ END
 		$curfile = "{$dest}/{$name}";
 
 		if ( ! is_file( $curfile ) ) {
-			$wgOut->fileNotFoundError( htmlspecialchars( $curfile ) );
+			$wgOut->showFileNotFoundError( htmlspecialchars( $curfile ) );
 			return;
 		}
 		$oldver = wfTimestampNow() . "!{$name}";
@@ -654,11 +663,12 @@ END
 		$size = $dbr->selectField( 'oldimage', 'oi_size', array( 'oi_archive_name' => $oldimage )  );
 
 		if ( ! rename( $curfile, "${archive}/{$oldver}" ) ) {
-			$wgOut->fileRenameError( $curfile, "${archive}/{$oldver}" );
+			$wgOut->showFileRenameError( $curfile, "${archive}/{$oldver}" );
 			return;
 		}
 		if ( ! copy( "{$archive}/{$oldimage}", $curfile ) ) {
-			$wgOut->fileCopyError( "${archive}/{$oldimage}", $curfile );
+			$wgOut->showFileCopyError( "${archive}/{$oldimage}", $curfile );
+			return;
 		}
 
 		# Record upload and update metadata cache

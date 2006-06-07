@@ -44,7 +44,7 @@ class LinksUpdate {
 		$this->mDb =& wfGetDB( DB_MASTER );
 
 		if ( !is_object( $title ) ) {
-			wfDebugDieBacktrace( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
+			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
 				"Please see Article::editUpdates() for an invocation example.\n" );
 		}
 		$this->mTitle = $title;

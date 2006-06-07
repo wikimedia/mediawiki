@@ -109,7 +109,7 @@ class Title {
 		$fname = 'Title::newFromText';
 
 		if( is_object( $text ) ) {
-			wfDebugDieBacktrace( 'Title::newFromText given an object' );
+			throw new MWException( 'Title::newFromText given an object' );
 		}
 
 		/**

@@ -642,7 +642,7 @@ function wfErrorExit() {
  */
 function wfDie( $msg='' ) {
 	echo $msg;
-	die( -1 );
+	die( 1 );
 }
 
 /**
@@ -665,7 +665,7 @@ function wfDebugDieBacktrace( $msg = '' ) {
 	}
 	echo $msg;
 	echo wfReportTime()."\n";
-	die( -1 );
+	die( 1 );
 }
 
 /**
@@ -1364,7 +1364,7 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		case TS_ORACLE:
 			return gmdate( 'd-M-y h.i.s A', $uts) . ' +00:00';
 		default:
-			wfDebugDieBacktrace( 'wfTimestamp() called with illegal output type.');
+			throw new MWException( 'wfTimestamp() called with illegal output type.');
 	}
 }
 
@@ -1605,7 +1605,7 @@ function wfEncryptPassword( $userid, $password ) {
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
 	if ( is_null( $changed ) ) {
-		wfDebugDieBacktrace('GlobalFunctions::wfAppendToArrayIfNotDefault got null');
+		throw new MWException('GlobalFunctions::wfAppendToArrayIfNotDefault got null');
 	}
 	if ( $default[$key] !== $value ) {
 		$changed[$key] = $value;
@@ -1726,7 +1726,7 @@ function wfUsePHP( $req_ver ) {
 	$php_ver = PHP_VERSION;
 
 	if ( version_compare( $php_ver, (string)$req_ver, '<' ) )
-		 wfDebugDieBacktrace( "PHP $req_ver required--this is only $php_ver" );
+		 throw new MWException( "PHP $req_ver required--this is only $php_ver" );
 }
 
 /**
@@ -1746,7 +1746,7 @@ function wfUseMW( $req_ver ) {
 	global $wgVersion;
 
 	if ( version_compare( $wgVersion, (string)$req_ver, '<' ) )
-		wfDebugDieBacktrace( "MediaWiki $req_ver required--this is only $wgVersion" );
+		throw new MWException( "MediaWiki $req_ver required--this is only $wgVersion" );
 }
 
 /**

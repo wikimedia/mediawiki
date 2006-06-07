@@ -110,6 +110,25 @@ class FatalError extends MWException {
 	}
 }
 
+class ErrorPageError extends MWException {
+	public $title, $msg;
+	
+	/**
+	 * Note: these arguments are keys into wfMsg(), not text!
+	 */
+	function __construct( $title, $msg ) {
+		$this->title = $title;
+		$this->msg = $msg;
+		parent::__construct( wfMsg( $msg ) );
+	}
+
+	function report() {
+		global $wgOut;
+		$wgOut->showErrorPage( $this->title, $this->msg );
+		$wgOut->output();
+	}
+}
+
 /**
  * Install an exception handler for MediaWiki exception types.
  */
@@ -150,20 +169,22 @@ function wfReportException( Exception $e ) {
  *   try {
  *       ...
  *   } catch ( MWException $e ) {
- * 
  *       $e->report();
  *   } catch ( Exception $e ) {
  *       echo $e->__toString();
  *   }
  */
 function wfExceptionHandler( $e ) {
+	global $wgFullyInitialised;
 	wfReportException( $e );
 	
 	// Final cleanup, similar to wfErrorExit()
-	try {
-		wfProfileClose();
-		logProfilingData();
-	} catch ( Exception $e ) {}
+	if ( $wgFullyInitialised ) {
+		try {
+			wfProfileClose();
+			logProfilingData(); // uses $wgRequest, hence the $wgFullyInitialised condition
+		} catch ( Exception $e ) {}
+	}
 
 	// Exit value should be nonzero for the benefit of shell jobs
 	exit( 1 );

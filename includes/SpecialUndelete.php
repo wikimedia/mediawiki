@@ -28,7 +28,7 @@ class PageArchive {
 
 	function PageArchive( &$title ) {
 		if( is_null( $title ) ) {
-			wfDebugDieBacktrace( 'Archiver() given a null title.');
+			throw new MWException( 'Archiver() given a null title.');
 		}
 		$this->title =& $title;
 	}
@@ -566,7 +566,7 @@ class UndeleteForm {
 				return true;
 			}
 		}
-		$wgOut->fatalError( wfMsg( "cannotundelete" ) );
+		$wgOut->showFatalError( wfMsg( "cannotundelete" ) );
 		return false;
 	}
 }

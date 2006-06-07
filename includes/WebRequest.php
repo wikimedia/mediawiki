@@ -452,7 +452,7 @@ class FauxRequest extends WebRequest {
 		if( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
-			wfDebugDieBacktrace( "FauxRequest() got bogus data" );
+			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
 	}
@@ -479,11 +479,11 @@ class FauxRequest extends WebRequest {
 	}
 
 	function getRequestURL() {
-		wfDebugDieBacktrace( 'FauxRequest::getRequestURL() not implemented' );
+		throw new MWException( 'FauxRequest::getRequestURL() not implemented' );
 	}
 
 	function appendQuery( $query ) {
-		wfDebugDieBacktrace( 'FauxRequest::appendQuery() not implemented' );
+		throw new MWException( 'FauxRequest::appendQuery() not implemented' );
 	}
 
 }

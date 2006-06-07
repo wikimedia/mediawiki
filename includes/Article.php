@@ -1464,7 +1464,7 @@ class Article {
 			$wgOut->returnToMain( false, $rcTitle->getPrefixedText() );
 		}
 		else {
-			$wgOut->errorpage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+			$wgOut->showErrorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
 		}
 	}
 
@@ -1477,7 +1477,7 @@ class Article {
 		global $wgUser, $wgOut;
 
 		if ( $wgUser->isAnon() ) {
-			$wgOut->errorpage( 'watchnologin', 'watchnologintext' );
+			$wgOut->showErrorPage( 'watchnologin', 'watchnologintext' );
 			return;
 		}
 		if ( wfReadOnly() ) {
@@ -1525,7 +1525,7 @@ class Article {
 		global $wgUser, $wgOut;
 
 		if ( $wgUser->isAnon() ) {
-			$wgOut->errorpage( 'watchnologin', 'watchnologintext' );
+			$wgOut->showErrorPage( 'watchnologin', 'watchnologintext' );
 			return;
 		}
 		if ( wfReadOnly() ) {
@@ -1658,7 +1658,7 @@ class Article {
 	 */
 	function flattenRestrictions( $limit ) {
 		if( !is_array( $limit ) ) {
-			wfDebugDieBacktrace( 'Article::flattenRestrictions given non-array restriction set' );
+			throw new MWException( 'Article::flattenRestrictions given non-array restriction set' );
 		}
 		$bits = array();
 		ksort( $limit );
@@ -1705,7 +1705,7 @@ class Article {
 		$conds = $this->mTitle->pageCond();
 		$latest = $dbw->selectField( 'page', 'page_latest', $conds, $fname );
 		if ( $latest === false ) {
-			$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
+			$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
 			return;
 		}
 
@@ -1899,7 +1899,7 @@ class Article {
 				$wgOut->returnToMain( false );
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason));
 			} else {
-				$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
+				$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
 			}
 		}
 	}
@@ -2522,7 +2522,7 @@ class Article {
 		$fname = 'Article::info';
 
 		if ( !$wgAllowPageInfo ) {
-			$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
+			$wgOut->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 			return;
 		}
 
