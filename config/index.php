@@ -500,7 +500,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		print "<li>Database type: {$conf->DBtype}</li>\n";
 		$dbclass = 'Database'.ucfirst($conf->DBtype);
-		require_once("$dbclass.php");
 		$wgDBtype = $conf->DBtype;
 		$wgDBadminuser = "root";
 		$wgDBadminpassword = $conf->RootPW;
@@ -550,7 +549,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				$wgDBadminpassword = $db_pass;
 				echo( "success.</li>\n" );
 				$wgDatabase->ignoreErrors( true );
-				$myver = mysql_get_server_info( $wgDatabase->mConn );
+				$myver = $wgDatabase->getServerVersion();
 			} else {
 				# There were errors, report them and back out
 				$ok = false;
@@ -620,7 +619,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 			print "</li>\n";
 
-			@$sel = mysql_select_db( $wgDBname, $wgDatabase->mConn );
+			@$sel = $wgDatabase->selectDB( $wgDBname );
 			if( $sel ) {
 				print "<li>Database <tt>" . htmlspecialchars( $wgDBname ) . "</tt> exists</li>\n";
 			} else {
@@ -1422,15 +1421,6 @@ function locate_executable($loc, $names, $versioninfo = false) {
 		}
 	}
 	return false;
-}
-
-function get_db_version() {
-	global $wgDatabase, $conf;
-	if ($conf->DBtype == 'mysql')
-		return mysql_get_server_info( $wgDatabase->mConn );
-	else if ($conf->DBtype == 'oracle')
-		return oci_server_version($wgDatabase->mConn);
-	else return 'unknown';
 }
 
 # Test a memcached server
