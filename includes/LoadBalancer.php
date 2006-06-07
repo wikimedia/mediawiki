@@ -469,7 +469,7 @@ class LoadBalancer {
 					$conn->reportConnectionError( $this->mLastError );
 				} else {
 					// If all servers were busy, mLastError will contain something sensible
-					wfEmergencyAbort( $conn, $this->mLastError );
+					throw new DBConnectionError( $conn, $this->mLastError );
 				}
 			} else {
 				if ( $this->mFailFunction ) {
