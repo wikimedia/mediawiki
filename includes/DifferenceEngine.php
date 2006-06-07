@@ -138,7 +138,7 @@ CONTROL;
 			$wgOut->setPageTitle( $oldTitle . ', ' . $newTitle );
 		}
 		$wgOut->setSubtitle( wfMsg( 'difference' ) );
-		$wgOut->setRobotpolicy( 'noindex,follow' );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
 			$wgOut->loginToUse();
