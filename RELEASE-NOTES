@@ -456,6 +456,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   doesn't forbid access.
 * Regression fix: suppress warning about session failure when clicking to
   edit with 'preview on first edit' enabled.
+* (bug 6230) Regression fix: <nowiki> in [URL link text]
 
 
 == Compatibility ==
