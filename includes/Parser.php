@@ -2747,8 +2747,9 @@ class Parser
 		if ( !$found && $argc >= 2 ) {
 			$mwPluralForm =& MagicWord::get( MAG_PLURAL );
 			if ( $mwPluralForm->matchStartAndRemove( $part1 ) ) {
-				if ($argc==2) {$args[2]=$args[1];}
-				$text = $linestart . $lang->convertPlural( $part1, $args[0], $args[1], $args[2]);
+				while ( count($args) < 5 ) { $args[] = $args[count($args)-1]; }
+				$text = $linestart . $lang->convertPlural( $part1, $args[0], $args[1],
+					$args[2], $args[3], $args[4]);
 				$found = true;
 			}
 		}
