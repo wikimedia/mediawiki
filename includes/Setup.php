@@ -25,6 +25,8 @@ if ( !isset( $wgVersion ) ) {
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
+require_once( 'AutoLoader.php' );
+
 if ( function_exists( 'wfProfileIn' ) ) {
 	/* nada, everything should be done already */
 } elseif ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
@@ -50,7 +52,6 @@ wfProfileOut( $fname.'-exception' );
 
 wfProfileIn( $fname.'-includes' );
 
-require_once( 'AutoLoader.php' );
 require_once( 'GlobalFunctions.php' );
 require_once( 'Hooks.php' );
 require_once( 'Namespace.php' );
