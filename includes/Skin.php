@@ -9,7 +9,26 @@ if ( ! defined( 'MEDIAWIKI' ) )
  */
 
 # See skin.txt
+require_once( 'Linker.php' );
 require_once( 'Image.php' );
+
+# Get a list of available skins
+# Build using the regular expression '^(.*).php$'
+# Array keys are all lower case, array value keep the case used by filename
+#
+
+$skinDir = dir( $wgStyleDirectory );
+
+# while code from www.php.net
+while (false !== ($file = $skinDir->read())) {
+	// Skip non-PHP files, hidden files, and '.dep' includes
+	if(preg_match('/^([^.]*)\.php$/',$file, $matches)) {
+		$aSkin = $matches[1];
+		$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
+	}
+}
+$skinDir->close();
+unset($matches);
 
 /**
  * The main skin class that provide methods and properties for all other skins.
@@ -25,8 +44,6 @@ class Skin extends Linker {
 	var $rcCacheIndex ; # Recent Changes Cache Counter for visibility toggle
 	var $rcMoveIndex;
 	/**#@-*/
-	
-	private static $validSkinNames;
 
 	/** Constructor, call parent constructor */
 	function Skin() { parent::Linker(); }
@@ -37,31 +54,8 @@ class Skin extends Linker {
 	 * @static
 	 */
 	function getSkinNames() {
-		if (!is_array(Skin::$validSkinNames)) {
-			Skin::initializeSkinNames();
-		}
-		return Skin::$validSkinNames;
-	}
-
-
-	/** Initialize a list of available skins
-	 * Build using the regular expression '^(.*).php$'
-	 * Array keys are all lower case, array value keep the case used by filename
-	 */
-	
-	function initializeSkinNames() {
-		global $wgStyleDirectory;
-		$skinDir = dir( $wgStyleDirectory );
-		
-		# while code from www.php.net
-		while (false !== ($file = $skinDir->read())) {
-			// Skip non-PHP files, hidden files, and '.dep' includes
-			if(preg_match('/^([^.]*)\.php$/',$file, $matches)) {
-				$aSkin = $matches[1];
-				Skin::$validSkinNames[strtolower($aSkin)] = $aSkin;
-			}
-		}
-		$skinDir->close();
+		global $wgValidSkinNames;
+		return $wgValidSkinNames;
 	}
 
 	/**
