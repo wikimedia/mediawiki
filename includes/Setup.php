@@ -57,7 +57,6 @@ require_once( 'Namespace.php' );
 require_once( 'User.php' );
 require_once( 'Skin.php' );
 require_once( 'OutputPage.php' );
-require_once( 'Title.php' );
 require_once( 'MagicWord.php' );
 require_once( 'Block.php' );
 require_once( 'MessageCache.php' );
