@@ -181,7 +181,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
 	
-	static private blobCache = array();
+	static private $blobCache = array();
 
 	/** @todo document */
 	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
