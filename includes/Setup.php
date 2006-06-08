@@ -56,7 +56,6 @@ require_once( 'GlobalFunctions.php' );
 require_once( 'Hooks.php' );
 require_once( 'Namespace.php' );
 require_once( 'User.php' );
-require_once( 'Skin.php' );
 require_once( 'OutputPage.php' );
 require_once( 'MagicWord.php' );
 require_once( 'Block.php' );

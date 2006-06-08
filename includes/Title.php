@@ -1163,8 +1163,7 @@ class Title {
 	 * Check that the corresponding skin exists
 	 */
 	function isValidCssJsSubpage() {
-		global $wgValidSkinNames;
-		return( $this->isCssJsSubpage() && array_key_exists( $this->getSkinFromCssJsSubpage(), $wgValidSkinNames ) );
+		return( $this->isCssJsSubpage() && array_key_exists( $this->getSkinFromCssJsSubpage(), Skin::getSkinNames() ) );
 	}
 	/**
 	 * Trim down a .css or .js subpage title to get the corresponding skin name
