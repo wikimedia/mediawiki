@@ -460,6 +460,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added AutoLoader.php, which loads classes without need of require_once()
 * (bug 5981) Add plural function Slovenian (sl)
 * (bug 5945) Introduce {{CONTENTLANGUAGE}} magic word
+* {{PLURAL}} can now take up to five forms
 
 == Compatibility ==
 
