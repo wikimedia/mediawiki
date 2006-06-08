@@ -5,13 +5,6 @@
  */
 
 /**
- * Some globals
- */
-define ( 'EB_KEEP_EXPIRED', 1 );
-define ( 'EB_FOR_UPDATE', 2 );
-define ( 'EB_RANGE_ONLY', 4 );
-
-/**
  * The block class
  * All the functions in this class assume the object is either explicitly
  * loaded or filled. It is not load-on-demand. There are no accessors.
@@ -27,6 +20,10 @@ class Block
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
 		            $mRangeStart, $mRangeEnd;
 	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster, $mByName;
+	
+	const EB_KEEP_EXPIRED = 1;
+	const EB_FOR_UPDATE = 2;
+	const EB_RANGE_ONLY = 4;
 
 	function Block( $address = '', $user = '', $by = 0, $reason = '',
 		$timestamp = '' , $auto = 0, $expiry = '' )
@@ -258,7 +255,7 @@ class Block
 		global $wgAntiLockFlags;
 
 		$block = new Block();
-		if ( $flags & EB_FOR_UPDATE ) {
+		if ( $flags & Block::EB_FOR_UPDATE ) {
 			$db =& wfGetDB( DB_MASTER );
 			if ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) {
 				$options = '';
@@ -270,7 +267,7 @@ class Block
 			$db =& wfGetDB( DB_SLAVE );
 			$options = '';
 		}
-		if ( $flags & EB_RANGE_ONLY ) {
+		if ( $flags & Block::EB_RANGE_ONLY ) {
 			$cond = " AND ipb_range_start <> ''";
 		} else {
 			$cond = '';
@@ -287,11 +284,11 @@ class Block
 
 		while ( $row = $db->fetchObject( $res ) ) {
 			$block->initFromRow( $row );
-			if ( ( $flags & EB_RANGE_ONLY ) && $block->mRangeStart == '' ) {
+			if ( ( $flags & Block::EB_RANGE_ONLY ) && $block->mRangeStart == '' ) {
 				continue;
 			}
 
-			if ( !( $flags & EB_KEEP_EXPIRED ) ) {
+			if ( !( $flags & Block::EB_KEEP_EXPIRED ) ) {
 				if ( $block->mExpiry && $now > $block->mExpiry ) {
 					$block->delete();
 				} else {
