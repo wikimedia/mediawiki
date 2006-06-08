@@ -459,6 +459,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6230) Regression fix: <nowiki> in [URL link text]
 * Added AutoLoader.php, which loads classes without need of require_once()
 * (bug 5981) Add plural function Slovenian (sl)
+* (bug 5945) Introduce {{CONTENTLANGUAGE}} magic word
 
 == Compatibility ==
 

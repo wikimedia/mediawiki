@@ -92,6 +92,7 @@ $magicWords = array(
 	'MAG_CURRENTTIMESTAMP',
 	'MAG_DIRECTIONMARK',
 	'MAG_LANGUAGE',
+	'MAG_CONTENTLANGUAGE',
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
@@ -146,6 +147,7 @@ $wgVariableIDs = array(
 	MAG_CURRENTTIMESTAMP,
 	MAG_DIRECTIONMARK,
 	MAG_LANGUAGE,
+	MAG_CONTENTLANGUAGE,
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordwgVariableIDs', array( &$wgVariableIDs ) );
