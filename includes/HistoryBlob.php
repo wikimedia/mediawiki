@@ -174,15 +174,14 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
  * the same blob. By keeping the last-used one open, we avoid
  * redundant unserialization and decompression overhead.
  */
-global $wgBlobCache;
-$wgBlobCache = array();
-
 
 /**
  * @package MediaWiki
  */
 class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
+	
+	static private blobCache = array();
 
 	/** @todo document */
 	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
@@ -214,9 +213,8 @@ class HistoryBlobStub {
 	/** @todo document */
 	function getText() {
 		$fname = 'HistoryBlob::getText';
-		global $wgBlobCache;
-		if( isset( $wgBlobCache[$this->mOldId] ) ) {
-			$obj = $wgBlobCache[$this->mOldId];
+		if( isset( HistoryBlobStub::$blobCache[$this->mOldId] ) ) {
+			$obj = HistoryBlobStub::$blobCache[$this->mOldId];
 		} else {
 			$dbr =& wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'text', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
@@ -255,7 +253,7 @@ class HistoryBlobStub {
 			// Save this item for reference; if pulling many
 			// items in a row we'll likely use it again.
 			$obj->uncompress();
-			$wgBlobCache = array( $this->mOldId => $obj );
+			HistoryBlobStub::$blobCache = array( $this->mOldId => $obj );
 		}
 		return $obj->getItem( $this->mHash );
 	}
