@@ -599,6 +599,8 @@ function wfMsgExt( $key, $options ) {
 /**
  * Just like exit() but makes a note of it.
  * Commits open transactions except if the error parameter is set
+ *
+ * @obsolete Please return control to the caller or throw an exception
  */
 function wfAbruptExit( $error = false ){
 	global $wgLoadBalancer;
@@ -629,7 +631,7 @@ function wfAbruptExit( $error = false ){
 }
 
 /**
- * @todo document
+ * @obsolete Please return control the caller or throw an exception
  */
 function wfErrorExit() {
 	wfAbruptExit( true );
@@ -646,26 +648,13 @@ function wfDie( $msg='' ) {
 }
 
 /**
- * Die with a backtrace
- * This is meant as a debugging aid to track down where bad data comes from.
- * Shouldn't be used in production code except maybe in "shouldn't happen" areas.
+ * Throw a debugging exception. This function previously once exited the process, 
+ * but now throws an exception instead, with similar results.
  *
  * @param string $msg Message shown when dieing.
  */
 function wfDebugDieBacktrace( $msg = '' ) {
-	global $wgCommandLineMode;
-
-	$backtrace = wfBacktrace();
-	if ( $backtrace !== false ) {
-		if ( $wgCommandLineMode ) {
-			$msg .= "\nBacktrace:\n$backtrace";
-		} else {
-			$msg .= "\n<p>Backtrace:</p>\n$backtrace";
-		}
-	}
-	echo $msg;
-	echo wfReportTime()."\n";
-	die( 1 );
+	throw new MWException( $msg );
 }
 
 /**
