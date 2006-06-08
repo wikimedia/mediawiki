@@ -25,7 +25,7 @@ class MediaWiki {
 	}
 	
 	/**
-	 * Retieves key/value pairs to circumvent global variables
+	 * Retrieves key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
 	 */
 	function getVal( $key, $default = '' ) {
