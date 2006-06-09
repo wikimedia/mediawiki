@@ -470,6 +470,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6255) Fix transclusions starting with "#" or "*" in HTML attributes
 * Whitespace now normalized more or less properly in HTML attributes
 * Fix regression(?) in behavior of initial-whitespace-pre in <center>
+* (bug 6260) Update to Interlingua localization (ia)
 
 
 == Compatibility ==
