@@ -3497,7 +3497,7 @@ Bug 2304: HTML attribute safety (unsafe breakout parameter 2; 2309)
 !! input
 {{div style|" ><script>alert(document.cookie)</script>}}
 !! result
-<div style="float: right; ">Magic div</div>
+<div style="float: right;">Magic div</div>
 
 !! end
 
@@ -3665,6 +3665,42 @@ Table attribute safety
 <tr>
 <th> status
 </th></tr></table>
+
+!! end
+
+
+!! article
+Template:Identity
+!! text
+{{{1}}}
+!! endarticle
+
+!! test
+Expansion of multi-line templates in attribute values (bug 6255)
+!! input
+<div style="background: {{identity|#00FF00}}">-</div>
+!! result
+<div style="background: #00FF00">-</div>
+
+!! end
+
+
+!! test
+Expansion of multi-line templates in attribute values (bug 6255 sanity check)
+!! input
+<div style="background: 
+#00FF00">-</div>
+!! result
+<div style="background: #00FF00">-</div>
+
+!! end
+
+!! test
+Expansion of multi-line templates in attribute values (bug 6255 sanity check)
+!! input
+<div style="background: &#10;#00FF00">-</div>
+!! result
+<div style="background: &#10;#00FF00">-</div>
 
 !! end
 
@@ -4290,7 +4326,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <table>
 
 <u class="&#124;">} &gt;
-<br style="onmouseover='alert(document.cookie);' " />
+<br style="onmouseover='alert(document.cookie);'" />
 
 MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <tr>

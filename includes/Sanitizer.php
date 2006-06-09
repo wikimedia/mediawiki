@@ -618,33 +618,64 @@ class Sanitizer {
 		$attribs = array();
 		foreach( $stripped as $attribute => $value ) {
 			$encAttribute = htmlspecialchars( $attribute );
-			
-			$encValue = htmlspecialchars( $value );
-			# Templates and links may be expanded in later parsing,
-			# creating invalid or dangerous output. Suppress this.
-			$encValue = strtr( $encValue, array(
-				'<'    => '&lt;',   // This should never happen,
-				'>'    => '&gt;',   // we've received invalid input
-				'"'    => '&quot;', // which should have been escaped.
-				'{'    => '&#123;',
-				'['    => '&#91;',
-				"''"   => '&#39;&#39;',
-				'ISBN' => '&#73;SBN',
-				'RFC'  => '&#82;FC',
-				'PMID' => '&#80;MID',
-				'|'    => '&#124;',
-				'__'   => '&#95;_',
-			) );
-
-			# Stupid hack
-			$encValue = preg_replace_callback(
-				'/(' . wfUrlProtocols() . ')/',
-				array( 'Sanitizer', 'armorLinksCallback' ),
-				$encValue );
+			$encValue = Sanitizer::safeEncodeAttribute( $value );
 			
 			$attribs[] = "$encAttribute=\"$encValue\"";
 		}
 		return count( $attribs ) ? ' ' . implode( ' ', $attribs ) : '';
+	}
+
+	/**
+	 * Encode an attribute value for HTML output.
+	 * @param $text
+	 * @return HTML-encoded text fragment
+	 */
+	function encodeAttribute( $text ) {
+		$encValue = htmlspecialchars( $text );
+		
+		// Whitespace is normalized during attribute decoding,
+		// so if we've been passed non-spaces we must encode them
+		// ahead of time or they won't be preserved.
+		$encValue = strtr( $encValue, array(
+			"\n" => '&#10;',
+			"\r" => '&#13;',
+			"\t" => '&#9;',
+		) );
+		
+		return $encValue;
+	}
+	
+	/**
+	 * Encode an attribute value for HTML tags, with extra armoring
+	 * against further wiki processing.
+	 * @param $text
+	 * @return HTML-encoded text fragment
+	 */
+	function safeEncodeAttribute( $text ) {
+		$encValue = Sanitizer::encodeAttribute( $text );
+		
+		# Templates and links may be expanded in later parsing,
+		# creating invalid or dangerous output. Suppress this.
+		$encValue = strtr( $encValue, array(
+			'<'    => '&lt;',   // This should never happen,
+			'>'    => '&gt;',   // we've received invalid input
+			'"'    => '&quot;', // which should have been escaped.
+			'{'    => '&#123;',
+			'['    => '&#91;',
+			"''"   => '&#39;&#39;',
+			'ISBN' => '&#73;SBN',
+			'RFC'  => '&#82;FC',
+			'PMID' => '&#80;MID',
+			'|'    => '&#124;',
+			'__'   => '&#95;_',
+		) );
+
+		# Stupid hack
+		$encValue = preg_replace_callback(
+			'/(' . wfUrlProtocols() . ')/',
+			array( 'Sanitizer', 'armorLinksCallback' ),
+			$encValue );
+		return $encValue;
 	}
 
 	/**
@@ -711,6 +742,12 @@ class Sanitizer {
 		foreach( $pairs as $set ) {
 			$attribute = strtolower( $set[1] );
 			$value = Sanitizer::getTagAttributeCallback( $set );
+			
+			// Normalize whitespace
+			$value = preg_replace( '/[\t\r\n ]+/', ' ', $value );
+			$value = trim( $value );
+			
+			// Decode character references
 			$attribs[$attribute] = Sanitizer::decodeCharReferences( $value );
 		}
 		return $attribs;

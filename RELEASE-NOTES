@@ -467,6 +467,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 2069) Merge the LanguageUtf8 class into the Language class
 * Update to Yiddish localization (yi)
 * (bug 6254) Update to Indonesian translation (id) #20
+* (bug 6255) Fix transclusions starting with "#" or "*" in HTML attributes
+* Whitespace now normalized more or less properly in HTML attributes
+
 
 == Compatibility ==
 
