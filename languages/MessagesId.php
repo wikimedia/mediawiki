@@ -80,7 +80,7 @@ $wgAllMessagesId = array(
 
 # Bits of text used by many pages:
 #
-'categories' => 'Kategori', # no need for plural
+'categories' => '{{PLURAL:$1|Kategori|Kategori}}',
 "category" => "kategori",
 "category_header" => "Artikel dalam kategori \"$1\"",
 "subcategories" => "Subkategori",
@@ -96,19 +96,19 @@ $wgAllMessagesId = array(
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
 
 'portal' => 'Portal komunitas',
-'portal-url' => '{{ns:project}}:Portal komunitas',
+'portal-url' => 'Project:Portal komunitas',
 "about" => "Tentang",
 "aboutsite" => "Tentang {{SITENAME}}",
-"aboutpage" => "{{ns:project}}:Tentang",
+"aboutpage" => "Project:Tentang",
 'article' => 'Artikel',
 "help" => "Bantuan",
 "helppage" => "{{ns:help}}:Isi",
 "bugreports" => "Laporan bug",
-"bugreportspage" => "{{ns:project}}:Laporan bug",
+"bugreportspage" => "Project:Laporan bug",
 'sitesupport'   => 'Sumbangan dana',
-"sitesupport-url" => "{{ns:project}}:Sumbangan dana",
+"sitesupport-url" => "Project:Sumbangan dana",
 "faq" => "FAQ",
-"faqpage" => "{{ns:project}}:FAQ",
+"faqpage" => "Project:FAQ",
 "edithelp" => "Bantuan penyuntingan",
 "newwindow" => "(buka di jendela baru)",
 "edithelppage" => "{{ns:help}}:Penyuntingan",
@@ -133,9 +133,9 @@ $wgAllMessagesId = array(
 'currentevents-url' => 'Peristiwa terkini',
 
 "disclaimers" => "Penyangkalan",
-"disclaimerpage" => "{{ns:project}}:Penyangkalan umum",
+"disclaimerpage" => "Project:Penyangkalan umum",
 'privacy' => 'Kebijakan kerahasiaan',
-'privacypage' => '{{ns:project}}:Kebijakan kerahasiaan',
+'privacypage' => 'Project:Kebijakan kerahasiaan',
 "errorpagetitle" => "Kesalahan",
 "returnto" => "Kembali ke $1.",
 "tagline" => "Dari {{SITENAME}}",
@@ -266,7 +266,7 @@ $wgAllMessagesId = array(
 "badtitletext" => "Judul halaman yang diminta tidak sah, kosong, atau judul antarbahasa atau antarwiki yang salah sambung.",
 "perfdisabled" => "Maaf! Fitur ini dimatikan sementara karena memperlambat basis data hingga tidak ada yang dapat menggunakan wiki ini.",
 "perfdisabledsub" => "Ini adalah salinan tersimpan dari $1:",
-"perfcached" => "Data berikut ini diambil dari <em>cache</em> dan mungkin tidak <em>up-to-date</em>:",
+"perfcached" => "Data berikut ini diambil dari <em>cache</em> dan mungkin bukan data mutakhir:",
 'perfcachedts' => 'Data berikut ini diambil dari <em>cache</em>, dan terakhir diperbarui pada $1.',
 "wrong_wfQuery_params" => "Parameter salah ke wfQuery()<br />Fungsi: $1<br />Kueri: $2",
 "viewsource" => "Lihat sumber",
@@ -297,7 +297,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 
 "login" => "Masuk log",
 "loginprompt" => "Anda harus mengaktifkan cookies untuk dapat masuk log ke {{SITENAME}}.",
-"userlogin" => "Masuk log / Buka akun baru",
+"userlogin" => "Masuk log / buat akun",
 "logout" => "Keluar log",
 "userlogout" => "Keluar log",
 "notloggedin" => "Belum masuk log",
@@ -418,6 +418,11 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "previewnote" => "Ingatlah bahwa ini hanyalah pratayang yang belum disimpan!",
 'session_fail_preview' => '<strong>Maaf, kami tidak dapat mengolah suntingan Anda akibat terhapusnya data sesi. Silakan coba sekali lagi. Jika masih tidak berhasil, cobalah keluar log dan masuk log kembali.</strong>',
 "previewconflict" => "Pratayang ini mencerminkan teks pada bagian atas kotak suntingan teks sebagaimana akan terlihat bila Anda menyimpannya.",
+'session_fail_preview_html' => '<strong>Maaf! Kami tidak dapat memproses suntingan Anda karena hilangnya data sesi.</strong>
+
+\'\'Karena wiki ini mengizinkan penggunaan HTML mentah, pratayang disembunyikan sebagai pencegahan terhadap serangan JavaScript.\'\'
+
+<strong>Jika ini merupakan upaya suntingan yang sahih, silakan coba lagi. Jika masih tetap tidak berhasil, cobalah keluar log dan masuk kembali.</strong>',
 'importing' => 'Sedang mengimpor $1',
 "editing" => "Menyunting $1",
 'editingsection' => 'Menyunting $1 (bagian)',
@@ -427,7 +432,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "yourtext" => "Teks Anda",
 "storedversion" => "Versi tersimpan",
 'nonunicodebrowser' => "<strong>PERINGATAN: Penjelajah web Anda tidak mendukung Unicode, silakan ganti penjelajah web Anda sebelum menyunting artikel.</strong>",
-"editingold" => "<strong>PERINGATAN: Anda menyunting revisi lama suatu halaman. Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hilang.</strong>",
+"editingold" => "'''Peringatan:''' Anda menyunting revisi lama suatu halaman. Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hilang.",
 "yourdiff" => "Perbedaan",
 "copyrightwarning" => "Perhatikan bahwa semua sumbangan terhadap {{SITENAME}} dianggap dilisensikan di bawah lisensi $2 (lihat $1 untuk informasi lebih lanjut). Jika Anda tidak ingin tulisan Anda disunting dan disebarkan ke halaman web yang lain, jangan kirimkan artikel Anda ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain. <strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>",
 'copyrightwarning2' => "Perhatikan bahwa semua sumbangan terhadap {{SITENAME}} dapat disunting, diubah, atau dihapus oleh penyumbang lainnya. Jika Anda tidak ingin tulisan Anda disunting orang lain, jangan kirimkan artikel Anda ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain (lihat $1 untuk informasi lebih lanjut). <strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>",
@@ -611,7 +616,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "changes" => "perubahan",
 "recentchanges" => "Perubahan terbaru",
 
-"recentchangestext" => "",
+
 'rcnote' => "Di bawah ini adalah <strong>$1</strong> perubahan terbaru dalam <strong>$2</strong> hari terakhir sampai $3.",
 "rcnotefrom" => "Di bawah ini adalah perubahan sejak <strong>$2</strong> (ditampilkan sampai <strong>$1</strong> perubahan).",
 "rclistfrom" => "Perlihatkan perubahan terbaru sejak $1",
@@ -658,7 +663,7 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 'fileuploadsummary' => 'Ringkasan:',
 "filestatus" => "Status hak cipta",
 "filesource" => "Sumber",
-"copyrightpage" => "{{ns:project}}:Hak cipta",
+"copyrightpage" => "Project:Hak cipta",
 "copyrightpagename" => "Hak cipta {{SITENAME}}",
 "uploadedfiles" => "Berkas yang telah dimuat",
 'ignorewarning'        => 'Abaikan peringatan dan langsung simpan berkas.',
@@ -735,7 +740,7 @@ Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan 
 # Unused templates
 'unusedtemplates' => 'Templat yang tak digunakan',
 'unusedtemplatestext' => 'Daftar berikut adalah halaman pada namespace templat yang tidak dipakai di halaman manapun. Cek dahulu pranala ke templat tersebut sebelum menghapusnya.',
-'unusedtemplateswlh' => 'pranala lain',
+'unusedtemplateswlh' => 'pranala ke halaman ini',
 
 # Random redirect
 'randomredirect' => 'Pengalihan sembarang',
@@ -755,14 +760,14 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "userstatstext" => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$4%''') diantaranya adalah pengurus (lihat $3).",
 
 "disambiguations" => "Halaman disambiguasi",
-'disambiguationspage'	=> '{{ns:template}}:disambig',
+'disambiguationspage'	=> '{{ns:template}}:Disambig',
 "disambiguationstext" => "Halaman-halaman berikut ini berpaut ke sebuah halaman disambiguasi. Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang tepat.<br />Satu halaman dianggap sebagai disambiguation apabila halaman tersebut disambung dari $1.<br />Pranala dari namespace lain <em>tidak</em> terdaftar di sini.",
 
 "doubleredirects" => "Peralihan halaman ganda",
 "doubleredirectstext" => "Setiap baris mengandung pranala ke peralihan pertama dan kedua, dan juga baris pertama dari teks peralihan kedua, yang biasanya memberikan artikel tujuan yang \"sesungguhnya\", yang seharusnya ditunjuk oleh peralihan yang pertama.",
 
 "brokenredirects" => "Peralihan halaman rusak",
-"brokenredirectstext" => "Peralihan halaman berikut berpaut ke halaman yang tidak ada",
+"brokenredirectstext" => "Peralihan halaman berikut berpaut ke halaman yang tidak ada.",
 
 
 # Miscellaneous special pages
@@ -890,7 +895,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "watchmethod-list" => "periksa halaman yang dipantau terhadap perubahan terbaru",
 "removechecked" => "Keluarkan halaman yang ditandai dari daftar pantauan",
 "watchlistcontains" => "Daftar pantauan Anda berisi $1 halaman.",
-"watcheditlist" => "Berikut ini adalah daftar halaman-halaman yang Anda pantau. Untuk menghapus halaman dari daftar pantauan Anda, berikan tanda cek pada kotak cek di sebelah judul halaman yang ingin Anda hapus, lalu klik tombol 'hapus halaman yang dicek' yang terletak di bagian bawah layar.",
+"watcheditlist" => "Berikut ini adalah daftar halaman-halaman yang Anda pantau. Untuk menghapus halaman dari daftar pantauan Anda, berikan tanda cek pada kotak cek di sebelah judul halaman yang ingin Anda hapus, lalu klik tombol 'Keluarkan halaman yang ditandai dari daftar pantauan' yang terletak di bagian bawah layar.",
 "removingchecked" => "Menghapus halaman yang diminta dari daftar pantauan Anda...",
 "couldntremove" => "Tidak dapat menghapus halaman '$1' dari daftar pantauan...",
 "iteminvalidname" => "Ada masalah dengan '$1', namanya tidak sah...",
@@ -958,7 +963,7 @@ Masukan dan bantuan lanjutan:
 "rollbacklink" => "kembalikan",
 "rollbackfailed" => "Pengembalian gagal dilakukan",
 "cantrollback" => "Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.",
-"alreadyrolled" => "Tidak dapat melakukan pengembalian ke suntingan terakhir [[$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Bicara); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut.\n\Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Bicara]]).",
+"alreadyrolled" => "Tidak dapat melakukan pengembalian ke suntingan terakhir [[$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Bicara]]).",
 "editcomment" => "Komentar penyuntingan adalah: \"<em>$1</em>\".",
 'revertpage'	=> "Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]",
 'sessionfailure' => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
@@ -1131,7 +1136,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "newtitle" => "Ke judul baru",
 "movepagebtn" => "Pindahkan halaman",
 "pagemovedsub" => "Pemindahan berhasil",
-"pagemovedtext" => "Halaman \"[[$1]]\" dipindahkan ke \"[[$2]]\".",
+"pagemovedtext" => "<div class=\"plainlinks\">Halaman \"[{{fullurl:<nowiki>$1</nowiki>|redirect=no}} $1]\" dipindahkan ke \"[[$2]]\".</div>",
 "articleexists" => "Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.",
 "talkexists" => "Halaman tersebut berhasil dipindahkan, tetapi halaman pembicaraan dari halaman tersebut tidak dapat dipindahkan karena telah ada halaman pembicaraan pada judul yang baru. Silakan gabungkan halaman-halaman pembicaraan tersebut secara manual.",
 "movedto" => "dipindahkan ke",
@@ -1157,7 +1162,7 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 # Export
 
 "export" => "Ekspor halaman",
-'exporttext'    => 'Anda dapat mengekspor teks dan sejarah penyuntingan suatu halaman tertentu atau sejumlah halaman terbungkus dalam XML tertentu. Di masa depan, hasil ekspor ini dapat diimpor di wiki lainnya yang menggunakan perangkat lunak MediaWiki, meskipun fitur impor belum tersedia dalam versi ini.\n\nUntuk mengekspor halaman-halaman artikel, masukkan judul-judul dalam kotak teks di bawah ini, satu judul per baris, dan pilih apakah anda ingin mengekspor versi sekarang dengan versi sebelumnya, dengan catatan sejarah halaman, atau hanya versi sekarang dengan catatan penyuntingan terakhir.\n\nJika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal ini dengan lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{ns:Special}}:Export/Train]] untuk mengekspor artikel [[Train]].',
+'exporttext'    => 'Anda dapat mengekspor teks dan sejarah penyuntingan suatu halaman tertentu atau sejumlah halaman terbungkus dalam XML tertentu. Di masa depan, hasil ekspor ini dapat diimpor di wiki lainnya yang menggunakan perangkat lunak MediaWiki, meskipun fitur impor belum tersedia dalam versi ini.\n\nUntuk mengekspor halaman-halaman artikel, masukkan judul-judul dalam kotak teks di bawah ini, satu judul per baris, dan pilih apakah anda ingin mengekspor versi sekarang dengan versi sebelumnya, dengan catatan sejarah halaman, atau hanya versi sekarang dengan catatan penyuntingan terakhir.\n\nJika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal ini dengan lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{ns:special}}:Export/Train]] untuk mengekspor artikel [[Train]].',
 "exportcuronly" => "Hanya ekspor revisi sekarang, bukan seluruh sejarah",
 'exportnohistory' => "----
 '''Catatan:''' mengekspor keseluruhan riwayat suntingan halaman melalui isian ini telah dinon-aktifkan karena alasan kinerja.",
@@ -1670,7 +1675,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 
 # E-mail address confirmation
 'confirmemail' => 'Konfirmasi alamat surat-e',
-'confirmemail_text' => "{{NS:4}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surat elektronik Anda sebelum fitur-fitur surat elektronik dapat digunakan. Tekan tombol di bawah ini untuk mengirimi Anda sebuah surat elektronik yang berisi kode konfirmasi yang berupa sebuah alamat internet. Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan {{NS:4}} bahwa alamat surat elektronik Anda valid.",
+'confirmemail_text' => "{{ns:project}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surat elektronik Anda sebelum fitur-fitur surat elektronik dapat digunakan. Tekan tombol di bawah ini untuk mengirimi Anda sebuah surat elektronik yang berisi kode konfirmasi yang berupa sebuah alamat internet. Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan {{ns:project}} bahwa alamat surat elektronik Anda valid.",
 'confirmemail_send' => 'Kirim kode konfirmasi',
 'confirmemail_sent' => 'Surat elektronik berisi kode konfirmasi telah dikirim.',
 'confirmemail_sendfailed' => 'Surat-e konfirmasi tidak berhasil dikirim. Harap cek kemungkinan karakter ilegal pada alamat surat-e.',
