@@ -466,6 +466,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   usages already have separate label text. Such transforms are wasteful on each page view.
 * (bug 2069) Merge the LanguageUtf8 class into the Language class
 * Update to Yiddish localization (yi)
+* (bug 6254) Update to Indonesian translation (id) #20
 
 == Compatibility ==
 
