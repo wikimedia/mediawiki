@@ -464,7 +464,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6243) Fix email for usernames containing dots when using PEAR::Mail
 * Remove a number of needless {{ns:project}}-type transforms from messages files. These
   usages already have separate label text. Such transforms are wasteful on each page view.
-* (bug 2069) Merge the LanguageUtf8 class into the Language class
 * Update to Yiddish localization (yi)
 * (bug 6254) Update to Indonesian translation (id) #20
 * (bug 6255) Fix transclusions starting with "#" or "*" in HTML attributes
