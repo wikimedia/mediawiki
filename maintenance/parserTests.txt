@@ -314,6 +314,20 @@ And a <a href="/wiki/Main_Page" title="Main Page">link</a>
 !! end
 
 !! test
+Regression with preformatted in <center>
+!! input
+<center>
+ Blah
+</center>
+!! result
+<center>
+<pre>Blah
+</pre>
+</center>
+
+!! end
+
+!! test
 <pre> with attributes (bug 3202)
 !! input
 <pre style="background: blue; color:white">Bluescreen of WikiDeath</pre>
