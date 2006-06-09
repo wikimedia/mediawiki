@@ -40,6 +40,10 @@ class LanguageAn extends LanguageUtf8 {
 		return $this->mNamespaceNamesAn + parent::getNamespaces();
 	}
 
+	function getAllMessages() {
+		return null;
+	}
+
 }
 
 ?>
