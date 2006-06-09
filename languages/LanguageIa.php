@@ -17,12 +17,16 @@
 	NS_IMAGE_TALK     => "Discussion_Imagine",
 	NS_MEDIAWIKI      => "MediaWiki",
 	NS_MEDIAWIKI_TALK => "Discussion_MediaWiki",
-	NS_TEMPLATE       => "Template",
-	NS_TEMPLATE_TALK  => "Template_talk"
+	NS_TEMPLATE       => "Patrono",
+	NS_TEMPLATE_TALK  => "Discussion_Patrono",
+	NS_HELP           => 'Adjuta',
+	NS_HELP_TALK      => 'Discussion_Adjuta',
+	NS_CATEGORY       => 'Categoria',
+	NS_CATEGORY_TALK  => 'Discussion_Categoria'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsIa = array(
-	"Necun", "Fixe a sinistra", "Fixe a dextera", "Flottante a sinistra"
+	"Nulle", "Fixe a sinistra", "Fixe a dextera", "Flottante a sinistra"
 );
 
 /* private */ $wgSkinNamesIa = array(
