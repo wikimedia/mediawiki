@@ -732,73 +732,41 @@ class Language {
 		return iconv( $in, $out, $string );
 	}
 
-	function ucfirst( $str ) {
-		return $this->uc( $str, true );
+	function ucfirst( $string ) {
+		# For most languages, this is a wrapper for ucfirst()
+		return ucfirst( $string );
 	}
 
-	function uc( $str, $first = false ) {
-		if ( function_exists( 'mb_strtoupper' ) )
-			if ( $first )
-				if ( $this->isMultibyte( $str ) )
-					return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-				else
-					return ucfirst( $str );
-			else
-				return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
-		else
-			if ( $this->isMultibyte( $str ) ) {
-				global $wikiUpperChars;
-				$x = $first ? '^' : '';
-				return preg_replace(
-					"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-					"strtr( \"\$1\" , \$wikiUpperChars )",
-					$str
-				);
-			} else
-				return $first ? ucfirst( $str ) : strtoupper( $str );
+	function uc( $str ) {
+		return strtoupper( $str );
 	}
 
-	function lcfirst( $str ) {
-		return $this->lc( $str, true );
+	function lcfirst( $s ) {
+		return strtolower( $s{0} ). substr( $s, 1 );
 	}
 
-	function lc( $str, $first = false ) {
-		if ( function_exists( 'mb_strtolower' ) )
-			if ( $first )
-				if ( $this->isMultibyte( $str ) )
-					return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-				else
-					return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
-			else
-				return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
-		else
-			if ( $this->isMultibyte( $str ) ) {
-				global $wikiLowerChars;
-				$x = $first ? '^' : '';
-				return preg_replace(
-					"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-					"strtr( \"\$1\" , \$wikiLowerChars )",
-					$str
-				);
-			} else
-				return $first ? strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 ) : strtolower( $str );
+	function lc( $str ) {
+		return strtolower( $str );
 	}
 
 	function checkTitleEncoding( $s ) {
 		global $wgInputEncoding;
 
-		if( is_array( $s ) ) {
-			wfDebugDieBacktrace( 'Given array to checkTitleEncoding.' );
-		}
-		# Check for non-UTF-8 URLs
+		# Check for UTF-8 URLs; Internet Explorer produces these if you
+		# type non-ASCII chars in the URL bar or follow unescaped links.
 		$ishigh = preg_match( '/[\x80-\xff]/', $s);
-		if(!$ishigh) return $s;
+		$isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+		         '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
 
-		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
-		if( $isutf8 ) return $s;
+		if( ($wgInputEncoding != 'utf-8') and $ishigh and $isutf )
+			return @iconv( 'UTF-8', $wgInputEncoding, $s );
 
-		return $this->iconv( $this->fallback8bitEncoding(), "utf-8", $s );
+		if( ($wgInputEncoding == 'utf-8') and $ishigh and !$isutf )
+			return utf8_encode( $s );
+
+		# Other languages can safely leave this function, or replace
+		# it with one to detect and convert another legacy encoding.
+		return $s;
 	}
 
 	/**
@@ -806,33 +774,11 @@ class Language {
 	 * or characters which need to be converted for MySQL's
 	 * indexing to grok it correctly. Make such changes here.
 	 *
-	 * @param string $string
+	 * @param string $in
 	 * @return string
 	 */
-	function stripForSearch( $string ) {
-		# MySQL fulltext index doesn't grok utf-8, so we
-		# need to fold cases and convert to hex
-
-		# In Language:: it just returns lowercase, maybe
-		# all strtolower on stripped output or argument
-		# should be removed and all stripForSearch
-		# methods adjusted to that.
-
-		wfProfileIn( "Language::stripForSearch" );
-		if( function_exists( 'mb_strtolower' ) ) {
-			$out = preg_replace(
-				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"'U8' . bin2hex( \"$1\" )",
-				mb_strtolower( $string ) );
-		} else {
-			global $wikiLowerChars;
-			$out = preg_replace(
-				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-				$string );
-		}
-		wfProfileOut( "Language::stripForSearch" );
-		return $out;
+	function stripForSearch( $in ) {
+		return strtolower( $in );
 	}
 
 	function convertForSearchResult( $termsArray ) {
@@ -850,10 +796,7 @@ class Language {
 	 * @return string
 	 */
 	function firstChar( $s ) {
-		preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/', $s, $matches);
-
-		return isset( $matches[1] ) ? $matches[1] : "";
+		return $s[0];
 	}
 
 	function initEncoding() {
@@ -1038,7 +981,7 @@ class Language {
 	#
 	# $length does not include the optional ellipsis.
 	# If $length is negative, snip from the beginning
-	function truncate( $string, $length, $ellipsis = "" ) {
+	function truncate( $string, $length, $ellipsis = '' ) {
 		if( $length == 0 ) {
 			return $ellipsis;
 		}
@@ -1047,24 +990,9 @@ class Language {
 		}
 		if( $length > 0 ) {
 			$string = substr( $string, 0, $length );
-			$char = ord( $string[strlen( $string ) - 1] );
-			if ($char >= 0xc0) {
-				# We got the first byte only of a multibyte char; remove it.
-				$string = substr( $string, 0, -1 );
-			} elseif( $char >= 0x80 &&
-			          preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
-			                      '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) ) {
-			    # We chopped in the middle of a character; remove it
-				$string = $m[1];
-			}
 			return $string . $ellipsis;
 		} else {
 			$string = substr( $string, $length );
-			$char = ord( $string[0] );
-			if( $char >= 0x80 && $char < 0xc0 ) {
-				# We chopped in the middle of a character; remove the whole thing
-				$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
-			}
 			return $ellipsis . $string;
 		}
 	}
@@ -1262,33 +1190,12 @@ class Language {
 		return str_replace( '_', '-', strtolower( substr( get_class( $this ), 8 ) ) );
 	}
 
-	function isMultibyte( $str ) {
-		return (bool)preg_match( '/^[\x80-\xff]/', $str );
-	}
 
-	function fallback8bitEncoding() {
-		# Windows codepage 1252 is a superset of iso 8859-1
-		# override this to use difference source encoding to
-		# translate incoming 8-bit URLs.
-		return "windows-1252";
-	}
 }
 
-if( function_exists( 'mb_strtoupper' ) ) {
-	mb_internal_encoding('UTF-8');
-} else {
-	# Hack our own case conversion routines
-
-	# Loading serialized arrays is faster than parsing code :P
-	$wikiUpperChars = $wgMemc->get( $key1 = "$wgDBname:utf8:upper" );
-	$wikiLowerChars = $wgMemc->get( $key2 = "$wgDBname:utf8:lower" );
-
-	if(empty( $wikiUpperChars) || empty($wikiLowerChars )) {
-		require_once( "includes/Utf8Case.php" );
-		$wgMemc->set( $key1, $wikiUpperChars );
-		$wgMemc->set( $key2, $wikiLowerChars );
-	}
-}
+# FIXME: Merge all UTF-8 support code into Language base class.
+# We no longer support Latin-1 charset.
+require_once( 'LanguageUtf8.php' );
 
 # This should fail gracefully if there's not a localization available
 wfSuppressWarnings();
