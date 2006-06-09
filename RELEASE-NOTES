@@ -462,7 +462,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5945) Introduce {{CONTENTLANGUAGE}} magic word
 * {{PLURAL}} can now take up to five forms
 * (bug 6243) Fix email for usernames containing dots when using PEAR::Mail
-
+* Remove a number of needless {{ns:project}}-type transforms from messages files. These
+  usages already have separate label text. Such transforms are wasteful on each page view.
 
 == Compatibility ==
 
