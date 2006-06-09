@@ -461,6 +461,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5981) Add plural function Slovenian (sl)
 * (bug 5945) Introduce {{CONTENTLANGUAGE}} magic word
 * {{PLURAL}} can now take up to five forms
+* (bug 6243) Fix email for usernames containing dots when using PEAR::Mail
+
 
 == Compatibility ==
 

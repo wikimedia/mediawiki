@@ -49,7 +49,8 @@ class EmailConfirmation extends SpecialPage {
 	function showRequestForm() {
 		global $wgOut, $wgUser, $wgLang, $wgRequest;
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getText( 'token' ) ) ) {
-			$message = $wgUser->sendConfirmationMail() ? 'confirmemail_sent' : 'confirmemail_sendfailed';
+			$ok = $wgUser->sendConfirmationMail();
+			$message = WikiError::isError( $ok ) ? 'confirmemail_sendfailed' : 'confirmemail_sent';
 			$wgOut->addWikiText( wfMsg( $message ) );
 		} else {
 			if( $wgUser->isEmailConfirmed() ) {

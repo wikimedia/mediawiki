@@ -54,7 +54,11 @@ class MailAddress {
 	 */
 	function toString() {
 		if( $this->name != '' ) {
-			return wfQuotedPrintable( $this->name ) . " <" . $this->address . ">";
+			$quoted = wfQuotedPrintable( $this->name );
+			if( strpos( $quoted, '.' ) !== false ) {
+				$quoted = '"' . $quoted . '"';
+			}
+			return "$quoted <{$this->address}>";
 		} else {
 			return $this->address;
 		}
@@ -80,10 +84,10 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 		require_once( 'Mail.php' );
 
 		$timestamp = time();
-		$dest = $to->toString();
+		$dest = $to->address;
 
 		$headers['From'] = $from->toString();
-		$headers['To'] = $dest;
+		$headers['To'] = $to->toString();
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto;
 		}
@@ -97,7 +101,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 
 		// Create the mail object using the Mail::factory method
 		$mail_object =& Mail::factory('smtp', $wgSMTP);
-		wfDebug( "Sending mail via PEAR::Mail to $dest" );
+		wfDebug( "Sending mail via PEAR::Mail to $dest\n" );
 		$mailResult =& $mail_object->send($dest, $headers, $body);
 
 		# Based on the result return an error string,
