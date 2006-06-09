@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesIa = array(
+global $wgAllMessagesIa;
+$wgAllMessagesIa = array(
 
 # User Toggles
 #
