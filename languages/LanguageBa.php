@@ -13,14 +13,18 @@
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
   */
 
-/**
- *
- */
 require_once 'LanguageRu.php';
 
-/**
- *
- */
-class LanguageBa extends LanguageRu {}
+class LanguageBa extends LanguageRu {
+
+	function getFallbackLanguage() {
+		return 'ru';
+	}
+
+	function getAllMessages() {
+		return null;
+	}
+
+}
 
 ?>

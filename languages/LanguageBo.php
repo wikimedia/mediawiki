@@ -10,6 +10,11 @@
 require_once( 'LanguageUtf8.php' );
 
 class LanguageBo extends LanguageUtf8 {
+
+	function getAllMessages() {
+		return null;
+	}
+
 	function digitTransformTable() {
 		return array(
 			'0' => '༠',
