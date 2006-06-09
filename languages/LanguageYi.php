@@ -9,31 +9,56 @@
 
 require_once 'LanguageUtf8.php';
 
-$wgNamespaceNamesYi = array(
-	NS_MEDIA => 'מעדיע',
-	NS_SPECIAL => 'באַזונדער',
-	NS_MAIN => '',
-	NS_TALK => 'רעדן',
-	NS_USER => 'באַניצער',
-	NS_USER_TALK => 'באַניצער_רעדן',
-	NS_PROJECT => $wgMetaNamespace,
-	NS_PROJECT_TALK => $wgMetaNamespace . '_רעדן',
-	NS_IMAGE => 'בילד',
-	NS_IMAGE_TALK => 'בילד_רעדן',
-	NS_MEDIAWIKI => 'מעדיעװיקי',
-	NS_MEDIAWIKI_TALK => 'מעדיעװיקי_רעדן',
-	NS_TEMPLATE => 'מוסטער',
-	NS_TEMPLATE_TALK => 'מוסטער_רעדן',
-	NS_HELP => 'הילף',
-	NS_HELP_TALK => 'הילף_רעדן',
-	NS_CATEGORY => 'קאַטעגאָריע',
-	NS_CATEGORY_TALK=> 'קאַטעגאָריע_רעדן'
-);
+if (!$wgCachedMessageArrays) {
+	require_once('MessagesYi.php');
+}
 
 class LanguageYi extends LanguageUtf8 {
+	private $mMessagesYi, $mNamespaceNamesYi = null;
+
+	function LanguageYi() {
+		LanguageUtf8::LanguageUtf8();
+
+		global $wgAllMessagesYi;
+		$this->mMessagesYi =& $wgAllMessagesYi;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesYi = array(
+			NS_MEDIA          => 'מעדיע',
+			NS_SPECIAL        => 'באַזונדער',
+			NS_MAIN           => '',
+			NS_TALK           => 'רעדן',
+			NS_USER           => 'באַניצער',
+			NS_USER_TALK      => 'באַניצער_רעדן',
+			NS_PROJECT        => $wgMetaNamespace,
+			NS_PROJECT_TALK   => $wgMetaNamespace . '_רעדן',
+			NS_IMAGE          => 'בילד',
+			NS_IMAGE_TALK     => 'בילד_רעדן',
+			NS_MEDIAWIKI      => 'מעדיעװיקי',
+			NS_MEDIAWIKI_TALK => 'מעדיעװיקי_רעדן',
+			NS_TEMPLATE       => 'מוסטער',
+			NS_TEMPLATE_TALK  => 'מוסטער_רעדן',
+			NS_HELP           => 'הילף',
+			NS_HELP_TALK      => 'הילף_רעדן',
+			NS_CATEGORY       => 'קאַטעגאָריע',
+			NS_CATEGORY_TALK  => 'קאַטעגאָריע_רעדן'
+		);
+	}
+
 	function getNamespaces() {
-		global $wgNamespaceNamesYi;
-		return $wgNamespaceNamesYi;
+		return $this->mNamespaceNamesYi + parent::getNamespaces();
+	}
+
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesYi[$key] ) ) {
+			return $this->mMessagesYi[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesYi;
 	}
 
 	function getDefaultUserOptions() {
@@ -48,9 +73,9 @@ class LanguageYi extends LanguageUtf8 {
 	}
 
 	function getNsIndex( $text ) {
-		global $wgNamespaceNamesYi, $wgSitename;
+		global $wgSitename;
 
-		foreach ( $wgNamespaceNamesYi as $i => $n ) {
+		foreach ( $this->mNamespaceNamesYi as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		if( $wgSitename == 'װיקיפּעדיע' ) {
