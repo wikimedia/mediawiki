@@ -5,7 +5,7 @@
   * @subpackage Language
   */
 /**
- * @access private
+ * @private
  */
 $wgNamespaceNamesLi = array(
 	NS_MEDIA			=> 'Media',

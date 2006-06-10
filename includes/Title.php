@@ -38,7 +38,7 @@ class Title {
 	 */
 
 	 /**#@+
-	 * @access private
+	 * @private
 	 */
 
 	var $mTextform;           # Text form (spaces not underscores) of the main part
@@ -61,7 +61,7 @@ class Title {
 
 	/**
 	 * Constructor
-	 * @access private
+	 * @private
 	 */
 	/* private */ function Title() {
 		$this->mInterwiki = $this->mUrlform =
@@ -996,7 +996,7 @@ class Title {
 	 * Can $wgUser perform $action this page?
 	 * @param string $action action that permission needs to be checked for
 	 * @return boolean
-	 * @access private
+	 * @private
  	 */
 	function userCan($action) {
 		$fname = 'Title::userCan';
@@ -1350,7 +1350,7 @@ class Title {
 	 *
 	 * @param string $name the text
 	 * @return string the prefixed text
-	 * @access private
+	 * @private
 	 */
 	/* private */ function prefix( $name ) {
 		global $wgContLang;
@@ -1374,7 +1374,7 @@ class Title {
 	 * namespace prefixes, sets the other forms, and canonicalizes
 	 * everything.
 	 * @return bool true on success
-	 * @access private
+	 * @private
 	 */
 	/* private */ function secureAndSplit() {
 		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
@@ -1808,7 +1808,7 @@ class Title {
 	 *
 	 * @param Title &$nt the page to move to, which should currently
 	 * 	be a redirect
-	 * @access private
+	 * @private
 	 */
 	function moveOverExistingRedirect( &$nt, $reason = '' ) {
 		global $wgUseSquid, $wgMwRedir;
@@ -1886,7 +1886,7 @@ class Title {
 	/**
 	 * Move page to non-existing title.
 	 * @param Title &$nt the new Title
-	 * @access private
+	 * @private
 	 */
 	function moveToNewTitle( &$nt, $reason = '' ) {
 		global $wgUseSquid;

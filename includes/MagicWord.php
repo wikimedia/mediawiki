@@ -168,7 +168,7 @@ if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
  */
 class MagicWord {
 	/**#@+
-	 * @access private
+	 * @private
 	 */
 	var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
 	var $mRegexStart, $mBaseRegex, $mVariableRegex;
@@ -213,7 +213,7 @@ class MagicWord {
 
 	/**
 	 * Preliminary initialisation
-	 * @access private
+	 * @private
 	 */
 	function initRegex() {
 		#$variableClass = Title::legalChars();
@@ -422,7 +422,7 @@ class MagicWord {
 
 /**
  * Used in matchAndRemove()
- * @access private
+ * @private
  **/
 function pregRemoveAndRecord( $match ) {
 	global $wgMagicFound;

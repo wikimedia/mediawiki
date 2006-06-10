@@ -48,7 +48,7 @@ class SearchEngine {
 	 * @static
 	 * @param string $term
 	 * @return Title
-	 * @access private
+	 * @private
 	 */
 	function getNearMatch( $term ) {
 		# Exact match? No need to look further.
@@ -187,7 +187,7 @@ class SearchEngine {
 	 * active database backend, and return a configured instance.
 	 *
 	 * @return SearchEngine
-	 * @access private
+	 * @private
 	 */
 	function create() {
 		global $wgDBtype, $wgSearchType;

@@ -25,7 +25,7 @@ $wgNamespaceNamesEt = array(
 	NS_CATEGORY_TALK    => 'Kategooria_arutelu'
 ) + $wgNamespaceNamesEn;
 
-/* private */ $wgSkinNamesEt = array(
+/* @private */ $wgSkinNamesEt = array(
 	'standard' => "Standard",
 	'nostalgia' => "Nostalgia",
 	'cologneblue' => "Kölni sinine",
@@ -38,7 +38,7 @@ $wgNamespaceNamesEt = array(
 );
 
 
-/* private */ $wgDateFormatsEt = array(
+/* @private */ $wgDateFormatsEt = array(
 	'Eelistus puudub',
 	'15.01.2001, kell 16.12',
 	'15. jaanuar 2001, kell 16.12',
@@ -47,14 +47,14 @@ $wgNamespaceNamesEt = array(
 );
 
 
-/* private */ $wgQuickbarSettingsEt = array(
+/* @private */ $wgQuickbarSettingsEt = array(
 	"Ei_ole", "Püsivalt_vasakul", "Püsivalt paremal", "Ujuvalt vasakul"
 );
 
 #Lisasin eestimaised poed, aga võõramaiseid ei julenud kustutada.
 
 
-/* private */ $wgBookstoreListEt = array(
+/* @private */ $wgBookstoreListEt = array(
 	"Apollo" => "http://www.apollo.ee/search.php?keyword=$1&search=OTSI",
 	"minu Raamat" => "http://www.raamat.ee/advanced_search_result.php?keywords=$1",
 	"Raamatukoi" => "http://www.raamatukoi.ee/cgi-bin/index?valik=otsing&paring=$1",
@@ -65,7 +65,7 @@ $wgNamespaceNamesEt = array(
 );
 
 
-/* private */ $wgMagicWordsEt = array(
+/* @private */ $wgMagicWordsEt = array(
 #   ID                                 CASE  SYNONYMS
 	MAG_REDIRECT             => array( 0,    '#redirect', "#suuna"    ),
 	MAG_NOTOC                => array( 0,    '__NOTOC__'              ),

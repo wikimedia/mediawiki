@@ -6,7 +6,7 @@
 
 /**
  * Definitions of the NS_ constants are in Defines.php
- * @access private
+ * @private
  */
 $wgCanonicalNamespaceNames = array(
 	NS_MEDIA            => 'Media',
