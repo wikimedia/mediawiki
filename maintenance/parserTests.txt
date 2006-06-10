@@ -2604,6 +2604,26 @@ pst
 <!-- <math>data</math> -->
 !!end
 
+!! test
+pre-save transform: <noinclude> in subst (bug 3298)
+!! options
+pst
+!! input
+{{subst:Includes}}
+!! result
+Foobar
+!! end
+
+!! test
+pre-save transform: <onlyinclude> in subst (bug 3298)
+!! options
+pst
+!! input
+{{subst:Includes2}}
+!! result
+Foo
+!! end
+
 
 ###
 ### Message transform tests
@@ -2627,6 +2647,27 @@ msg
 !! result
 ''test''
 !! end
+
+!! test
+message transform: <noinclude> in transcluded template (bug 4926)
+!! options
+msg
+!! input
+{{Includes}}
+!! result
+Foobar
+!! end
+
+!! test
+message transform: <onlyinclude> in transcluded template (bug 4926)
+!! options
+msg
+!! input
+{{Includes2}}
+!! result
+Foo
+!! end
+
 
 ###
 ### Images
