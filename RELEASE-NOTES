@@ -471,7 +471,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression(?) in behavior of initial-whitespace-pre in <center>
 * (bug 6260) Update to Interlingua localization (ia)
 * Update to Vlax Romany localization (rmy)
-
+* Update to Latin translation (la)
 
 == Compatibility ==
 
