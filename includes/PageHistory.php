@@ -229,6 +229,7 @@ class PageHistory {
 	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false, $latest = false, $firstInList = false ) {
 		global $wgUser;
 		$rev = new Revision( $row );
+		$rev->setTitle( $this->mTitle );
 
 		$s = '<li>';
 		$curlink = $this->curLink( $rev, $latest );
@@ -493,6 +494,11 @@ class PageHistory {
 				'wl_user' => $wgUser->getID()
 			),
 			$fname);
+		
+		// Don't use the special value reserved for telling whether the field is filled
+		if ( is_null( $this->mNotificationTimestamp ) ) {
+			$this->mNotificationTimestamp = false;
+		}
 
 		return $this->mNotificationTimestamp;
 	}
@@ -624,6 +630,7 @@ class PageHistory {
 	 */
 	function feedItem( $row ) {
 		$rev = new Revision( $row );
+		$rev->setTitle( $this->mTitle );
 		$text = rcFormatDiffRow( $this->mTitle,
 			$this->mTitle->getPreviousRevisionID( $rev->getId() ),
 			$rev->getId(),

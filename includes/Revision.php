@@ -320,12 +320,20 @@ class Revision {
 			array( 'page_namespace', 'page_title' ),
 			array( 'page_id=rev_page',
 			       'rev_id' => $this->mId ),
-			'Revision::getTItle' );
+			'Revision::getTitle' );
 		if( $row ) {
 			$this->mTitle = Title::makeTitle( $row->page_namespace,
 			                                   $row->page_title );
 		}
 		return $this->mTitle;
+	}
+
+	/**
+	 * Set the title of the revision
+	 * @param Title $title
+	 */
+	function setTitle( $title ) {
+		$this->mTitle = $title;
 	}
 
 	/**
