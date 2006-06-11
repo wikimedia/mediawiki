@@ -225,7 +225,7 @@ Não se esqueça de personalizar suas preferências na {{SITENAME}}.",
 "userexists"    => "O nome de usuário que você digitou já existe. Por favor, escolha um nome diferente.",
 "youremail"     => "Seu e-mail*",
 "yournick"      => "Seu apelido (para assinaturas)",
-"emailforlost"  => "* Colocar o endereço de e-mail é opcional.  Mas permite que as pessoas entrem em contato com você sem que você tenha que revelar seu e-mail �  elas, e também é útil se você se esquecer da sua senha.",
+/*"emailforlost"  => "* Colocar o endereço de e-mail é opcional.  Mas permite que as pessoas entrem em contato com você sem que você tenha que revelar seu e-mail �  elas, e também é útil se você se esquecer da sua senha.",*/
 "loginerror"    => "Erro de autenticação",
 "noname"        => "Você não colocou um nome de usuário válido.",
 "loginsuccesstitle" => "Login bem sucedido",
@@ -439,7 +439,7 @@ Um problema legal poderia realmente prejudicar o projeto de maneira que pedimos,
 "uploadnologintext" => "Você deve estar [[Special:Userlogin|autenticado]]
 para carregar arquivos.",
 "uploaderror"   => "Erro ao Carregar",
-"uploadtext"    => "'''PARE!''' Antes de você carregar arquivos aqui,
+/*"uploadtext"    => "'''PARE!''' Antes de você carregar arquivos aqui,
 tenha certeza de ter lido e estar em acordo com a
 [[Project:Política_de_imagens|política de uso de imagens da {{SITENAME}}]].
 
@@ -462,7 +462,7 @@ Para incluir uma imagem em um artigo, use um link na forma
 '''<nowiki>[[image:arquivo.png|texto descritivo]]</nowiki>''' ou
 '''<nowiki>[[media:audio.ogg]]</nowiki> para sons.
 
-Por favor, note que com as páginas da {{SITENAME}}, outros usuários podem modificar ou deletar seus uploads se eles acharem que isto seja útil �  {{SITENAME}}, e você possa estar bloqueado para uploads devido a abusos do sistema.",
+Por favor, note que com as páginas da {{SITENAME}}, outros usuários podem modificar ou deletar seus uploads se eles acharem que isto seja útil �  {{SITENAME}}, e você possa estar bloqueado para uploads devido a abusos do sistema.",*/
 "uploadlog"     => "log de uploads",
 "uploadlogpage" => "Log_de_Uploads",
 "uploadlogpagetext" => "Segue uma lista dos uploads mais recentes.
@@ -480,8 +480,8 @@ Todas as datas mostradas são do servidor (UTC).
 "badfiletype"   => "\".$1\" não está em um formato recomendável.",
 "largefile"     => "É recomendado que as imagens não tenham mais que 100k de tamanho.",
 "successfulupload" => "Carregamento efetuado com sucesso",
-"fileuploaded"  => "Arquivo \"$1\" carregado com sucesso.
-Por favor, siga este link : ($2) para ir �  página de descrição e preencha-a com informações sobre o arquivo, como de onde veio , quando e por quem foi criada, e qualquer outra coisa a mais que você saiba.",
+/*"fileuploaded"  => "Arquivo \"$1\" carregado com sucesso.
+Por favor, siga este link : ($2) para ir �  página de descrição e preencha-a com informações sobre o arquivo, como de onde veio , quando e por quem foi criada, e qualquer outra coisa a mais que você saiba.",*/
 "uploadwarning" => "Aviso de Upload",
 "savefile"      => "Salvar arquivo",
 "uploadedimage" => "\"[[$1]]\" carregado",
@@ -605,7 +605,7 @@ O endereço de e-mail que você disponibilizou em suas preferências aparecerá 
 "watchnologin"  => "Não está autenticado",
 "watchnologintext"  => "Você deve estar [[Special:Userlogin|autenticado]]
 para modificar sua lista de artigos interessantes.",
-"addedwatch"    => "Adicionados �  lista",
+/*"addedwatch"    => "Adicionados �  lista",*/
 "addedwatchtext" => "A página \"$1\" foi adicionada a sua <a href=\"{{localurle:Special:Watchlist}}\">lista de artigos de vosso interesse</a>.
 Modificações futuras neste artigo e páginas Talk associadas serão listadas aqui,
 e a página aparecerá <b>negritada</b> na <a href=\"{{localurle:Special:Recentchanges}}\">lista de mudanças recentes</a> para que
@@ -701,15 +701,15 @@ Veja [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations
 "notargettext"  => "Você não especificou um alvo ou usuário para performar esta função.",
 "linklistsub"   => "(Lista de ligações)",
 "linkshere"     => "Os seguintes artigos contém ligações que apontam para cá:",
-"nolinkshere"   => "Nenhuma página relaciona-se �  esta.",
+/*"nolinkshere"   => "Nenhuma página relaciona-se �  esta.",*/
 "isredirect"    => "página de redirecionamento",
 
 # Block/unblock IP
 #
 "blockip"       => "Bloquear endereço de IP",
-"blockiptext"   => "Utilize o formulário de e-mail �  seguir para bloquear o acesso a escrita de um endereço específico de IP.
+/*"blockiptext"   => "Utilize o formulário de e-mail �  seguir para bloquear o acesso a escrita de um endereço específico de IP.
 Isto só pode ser feito para previnir vandalismo , e em acordo com a  [[{{ns:4}}:Policy|política da {{SITENAME}}]].
-Preencha com um motivo específico (por exemplo, citando páginas que sofreram vandalismo).",
+Preencha com um motivo específico (por exemplo, citando páginas que sofreram vandalismo).",*/
 "ipaddress"     => "Endereço de IP",
 "ipbreason"     => "Motivo",
 "ipbsubmit"     => "Bloquear este endereço",
