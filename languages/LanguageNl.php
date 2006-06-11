@@ -1,68 +1,83 @@
 <?php
-/**
-  * @package MediaWiki
-  * @subpackage Language
-  */
-#
-# Nederlands localisation for MediaWiki
-#
+/** Dutch (Nederlands)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-require_once( "LanguageUtf8.php" );
-
-/* private */ $wgNamespaceNamesNl = array(
-	NS_MEDIA			=> "Media",
-	NS_SPECIAL			=> "Speciaal",
-	NS_MAIN				=> "",
-	NS_TALK				=> "Overleg",
-	NS_USER				=> "Gebruiker",
-	NS_USER_TALK		=> "Overleg_gebruiker",
-	NS_PROJECT			=> $wgMetaNamespace,
-	NS_PROJECT_TALK		=> "Overleg_$wgMetaNamespace",
-	NS_IMAGE			=> "Afbeelding",
-	NS_IMAGE_TALK		=> "Overleg_afbeelding",
-	NS_MEDIAWIKI		=> "MediaWiki",
-	NS_MEDIAWIKI_TALK	=> "Overleg_MediaWiki",
-	NS_TEMPLATE			=> "Sjabloon",
-	NS_TEMPLATE_TALK	=> "Overleg_sjabloon",
-	NS_HELP				=> "Help",
-	NS_HELP_TALK		=> "Overleg_help",
-	NS_CATEGORY			=> "Categorie",
-	NS_CATEGORY_TALK	=> "Overleg_categorie"
-
-) + $wgNamespaceNamesEn;
-
-/* private */ $wgQuickbarSettingsNl = array(
- "Uitgeschakeld", "Links vast", "Rechts vast", "Links zwevend"
-);
-
-/* private */ $wgSkinNamesNl = array(
-	'standard' => "Standaard",
-	'nostalgia' => "Nostalgie",
-	'cologneblue' => "Keuls blauw",
-) + $wgSkinNamesEn;
+require_once( 'LanguageUtf8.php' );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesNl.php');
 }
 
 class LanguageNl extends LanguageUtf8 {
+	private $mMessagesNl, $mNamespaceNamesNl = null;
+
+	private $mQuickbarSettingsNl = array(
+		'Uitgeschakeld', 'Links vast', 'Rechts vast', 'Links zwevend'
+	);
+	
+	private $mSkinNamesNl = array(
+		'standard' => 'Standaard',
+		'nostalgia' => 'Nostalgie',
+		'cologneblue' => 'Keuls blauw',
+	);
+
+	function LanguageNl() {
+		LanguageUtf8::LanguageUtf8();
+
+		global $wgAllMessagesNl;
+		$this->mMessagesNl =& $wgAllMessagesNl;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesNl = array(
+			NS_MEDIA          => 'Media',
+			NS_SPECIAL        => 'Speciaal',
+			NS_MAIN           => '',
+			NS_TALK           => 'Overleg',
+			NS_USER           => 'Gebruiker',
+			NS_USER_TALK      => 'Overleg_gebruiker',
+			NS_PROJECT        => $wgMetaNamespace,
+			NS_PROJECT_TALK   => 'Overleg_' . $wgMetaNamespace,
+			NS_IMAGE          => 'Afbeelding',
+			NS_IMAGE_TALK     => 'Overleg_afbeelding',
+			NS_MEDIAWIKI      => 'MediaWiki',
+			NS_MEDIAWIKI_TALK => 'Overleg_MediaWiki',
+			NS_TEMPLATE       => 'Sjabloon',
+			NS_TEMPLATE_TALK  => 'Overleg_sjabloon',
+			NS_HELP           => 'Help',
+			NS_HELP_TALK      => 'Overleg_help',
+			NS_CATEGORY       => 'Categorie',
+			NS_CATEGORY_TALK  => 'Overleg_categorie'
+		);
+	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesNl;
-		return $wgNamespaceNamesNl;
+		return $this->mNamespaceNamesNl + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsNl;
-		return $wgQuickbarSettingsNl;
+		return $this->mQuickbarSettingsNl;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesNl;
-		return $wgSkinNamesNl;
+		return $this->mSkinNamesNl + parent::getSkinNames();
 	}
 
-	function timeBeforeDate( $format ) {
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesNl[$key] ) ) {
+			return $this->mMessagesNl[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesNl;
+	}
+
+	function timeBeforeDate( ) {
 		return false;
 	}
 
@@ -74,17 +89,12 @@ class LanguageNl extends LanguageUtf8 {
 		return $this->getMonthAbbreviation( $month );
 	}
 
-	function getMessage( $key ) {
-		global $wgAllMessagesNl;
-		if( isset( $wgAllMessagesNl[$key] ) ) {
-			return $wgAllMessagesNl[$key];
-		} else {
-			return parent::getMessage( $key );
-		}
-	}
-
 	function separatorTransformTable() {
 		return array(',' => '.', '.' => ',' );
+	}
+
+	function linkTrail() {
+		return '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 	}
 
 }
