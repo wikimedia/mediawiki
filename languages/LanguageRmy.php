@@ -21,17 +21,32 @@ if (!$wgCachedMessageArrays) {
 	require_once('MessagesRmy.php');
 }
 
-/**
- *
- */
 class LanguageRmy extends LanguageRo {
+	private $mMessagesRmy = null;
+
+	function LanguageRmy() {
+		parent::LanguageRo();
+
+		global $wgAllMessagesRmy;
+		$this->mMessagesRmy =& $wgAllMessagesRmy;
+
+	}
+
 	function getMessage( $key ) {
-		 global $wgAllMessagesRmy;
-		 if( isset( $wgAllMessagesRmy[$key] ) ) {
-			 return $wgAllMessagesRmy[$key];
-		 } else {
-			 return parent::getMessage( $key );
+		if( isset( $this->mMessagesRmy[$key] ) ) {
+			return $this->mMessagesRmy[$key];
+		} else {
+			return parent::getMessage( $key );
 		}
 	}
+
+	function getAllMessages() {
+		return $this->mMessagesRmy;
+	}
+
+	function getFallbackLanguage() {
+		return 'ro';
+	}
+
 }
 ?>
