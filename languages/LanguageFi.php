@@ -3,105 +3,104 @@
  *
  * @package MediaWiki
  * @subpackage Language
+ *
+ * @author Niklas Laxström
  */
 
 require_once( 'LanguageUtf8.php' );
-
-# Revised 2005-12-24 for MediaWiki 1.6dev -- Nikerabbit
-
-/* private */ $wgNamespaceNamesFi = array(
-	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Toiminnot',
-	NS_MAIN             => '',
-	NS_TALK             => 'Keskustelu',
-	NS_USER             => 'Käyttäjä',
-	NS_USER_TALK        => 'Keskustelu_käyttäjästä',
-	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => FALSE,  # Set in constructor
-	NS_IMAGE            => 'Kuva',
-	NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
-	NS_TEMPLATE         => 'Malline',
-	NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
-	NS_HELP             => 'Ohje',
-	NS_HELP_TALK        => 'Keskustelu_ohjeesta',
-	NS_CATEGORY         => 'Luokka',
-	NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
-
-) + $wgNamespaceNamesEn;
-
-/* private */ $wgQuickbarSettingsFi = array(
-	'Ei mitään', 'Tekstin mukana, vasen', 'Tekstin mukana, oikea', 'Pysyen vasemmalla'
-);
-
-/* private */ $wgSkinNamesFi = array(
-	'standard'          => 'Perus',
-	'cologneblue'       => 'Kölnin sininen',
-	'myskin'            => 'Oma tyylisivu'
-) + $wgSkinNamesEn;
-
-/* private */ $wgDateFormatsFi = array(
-	MW_DATE_DEFAULT => 'Ei valintaa',
-	1               => '15. tammikuuta 2001 kello 16.12',
-	2               => '15. tammikuuta 2001 kello 16:12:34',
-	3               => '15.1.2001 16.12',
-	MW_DATE_ISO     => '2001-01-15 16:12:34'
-);
-
-/* private */ $wgBookstoreListFi = array(
-	'Akateeminen kirjakauppa'       => 'http://www.akateeminen.com/search/tuotetieto.asp?tuotenro=$1',
-	'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
-	'Helsingin yliopiston kirjasto' => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1&submit=Hae&engine_helka=ON',
-	'Pääkaupunkiseudun kirjastot'   => 'http://www.helmet.fi/search*fin/i?SEARCH=$1',
-	'Tampereen seudun kirjastot'    => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1-1&lang=kaikki&mat_type=kaikki&submit=Hae&engine_tampere=ON'
-) + $wgBookstoreListEn;
-
-# Current practices (may be changed if not good ones)
-# Refer namespaces with the English name or 'Project' in case of project namespace
-# Avoid any hard coded references to any particular subject which may not apply everywhere, e.g. artikkeli, wikipedia
-# Don't use participial phrases (lauseenkastikkeita) incorrectly
-# Avoid unnecessary parenthesis, quotes and html code
-#
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesFi.php');
 }
 
-#--------------------------------------------------------------------------
-# Internationalisation code
-#--------------------------------------------------------------------------
-
 class LanguageFi extends LanguageUtf8 {
+	private $mMessagesFi, $mNamespaceNamesFi = null;
+	
+	private $mSkinNamesFi = array(
+		'standard'          => 'Perus',
+		'cologneblue'       => 'Kölnin sininen',
+		'myskin'            => 'Oma tyylisivu'
+	);
+	
+	private $mQuickbarSettingsFi = array(
+		'Ei mitään', 'Tekstin mukana, vasen', 'Tekstin mukana, oikea', 'Pysyen vasemmalla', 'Pysyen oikealla'
+	);
+	
+	private $mDateFormatsFi = array(
+		MW_DATE_DEFAULT => 'Ei valintaa',
+		1               => '15. tammikuuta 2001 kello 16.12',
+		2               => '15. tammikuuta 2001 kello 16:12:34',
+		3               => '15.1.2001 16.12',
+		MW_DATE_ISO     => '2001-01-15 16:12:34'
+	);
+	
+	private $mBookstoreListFi = array(
+		'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
+		'Helsingin yliopiston kirjasto' => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1&submit=Hae&engine_helka=ON',
+		'Pääkaupunkiseudun kirjastot'   => 'http://www.helmet.fi/search*fin/i?SEARCH=$1',
+		'Tampereen seudun kirjastot'    => 'http://kirjasto.tampere.fi/Piki?formid=fullt&typ0=6&dat0=$1'
+	);
+
 	function LanguageFi() {
-		global $wgNamespaceNamesFi, $wgMetaNamespace;
 		LanguageUtf8::LanguageUtf8();
-		$wgNamespaceNamesFi[NS_PROJECT_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
+
+		global $wgAllMessagesFi;
+		$this->mMessagesFi =& $wgAllMessagesFi;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesFi = array(
+			NS_MEDIA            => 'Media',
+			NS_SPECIAL          => 'Toiminnot',
+			NS_MAIN             => '',
+			NS_TALK             => 'Keskustelu',
+			NS_USER             => 'Käyttäjä',
+			NS_USER_TALK        => 'Keskustelu_käyttäjästä',
+			NS_PROJECT          => $wgMetaNamespace,
+			NS_PROJECT_TALK     => 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' ),
+			NS_IMAGE            => 'Kuva',
+			NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
+			NS_MEDIAWIKI        => 'MediaWiki',
+			NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+			NS_TEMPLATE         => 'Malline',
+			NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
+			NS_HELP             => 'Ohje',
+			NS_HELP_TALK        => 'Keskustelu_ohjeesta',
+			NS_CATEGORY         => 'Luokka',
+			NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
+		);
+
 	}
 
 	function getBookstoreList () {
-		global $wgBookstoreListFi ;
-		return $wgBookstoreListFi ;
+		return $this->mBookstoreListFi;
 	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesFi;
-		return $wgNamespaceNamesFi;
+		return $this->mNamespaceNamesFi + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsFi;
-		return $wgQuickbarSettingsFi;
+		return $this->mQuickbarSettingsFi;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesFi;
-		return $wgSkinNamesFi;
+		return $this->mSkinNamesFi + parent::getSkinNames();
 	}
 
 	function getDateFormats() {
-		global $wgDateFormatsFi;
-		return $wgDateFormatsFi;
+		return $this->mDateFormatsFi;
+	}
+
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesFi[$key] ) ) {
+			return $this->mMessagesFi[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesFi;
 	}
 
 	/**
@@ -155,15 +154,6 @@ class LanguageFi extends LanguageUtf8 {
 			case '3':
 			case MW_DATE_ISO: return "$date $time";
 			default: return "$date kello $time";
-		}
-	}
-
-	function getMessage( $key ) {
-		global $wgAllMessagesFi;
-		if( isset( $wgAllMessagesFi[$key] ) ) {
-			return $wgAllMessagesFi[$key];
-		} else {
-			return parent::getMessage( $key );
 		}
 	}
 
