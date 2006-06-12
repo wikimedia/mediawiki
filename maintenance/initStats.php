@@ -25,7 +25,8 @@ echo( "Counting total edits..." );
 $edits = $dbr->selectField( 'revision', 'COUNT(*)', '', $fname );
 echo( "{$edits}\nCounting number of articles..." );
 
-$good  = $dbr->selectField( 'page', 'COUNT(*)', array( 'page_namespace' => 0, 'page_is_redirect' => 0, 'page_len > 0' ), $fname );
+global $wgContentNamespaces;
+$good  = $dbr->selectField( 'page', 'COUNT(*)', array( 'page_namespace' => $wgContentNamespaces, 'page_is_redirect' => 0, 'page_len > 0' ), $fname );
 echo( "{$good}\nCounting total pages..." );
 
 $pages = $dbr->selectField( 'page', 'COUNT(*)', '', $fname );

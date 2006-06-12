@@ -538,11 +538,11 @@ class Article {
 	 * @return bool
 	 */
 	function isCountable( $text ) {
-		global $wgUseCommaCount;
+		global $wgUseCommaCount, $wgContentNamespaces;
 
 		$token = $wgUseCommaCount ? ',' : '[[';
 		return
-			$this->mTitle->getNamespace() == NS_MAIN
+			array_search( $this->mTitle->getNamespace(), $wgContentNamespaces ) !== false
 			&& ! $this->isRedirect( $text )
 			&& in_string( $token, $text );
 	}
