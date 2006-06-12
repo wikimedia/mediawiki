@@ -473,6 +473,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Update to Vlax Romany localization (rmy)
 * Update to Latin translation (la)
 * Update to Dutch translation (nl)
+* Avoid some notices in page history with bad input
+
 
 == Compatibility ==
 

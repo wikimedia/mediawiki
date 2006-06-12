@@ -106,6 +106,7 @@ class PageHistory {
 		 * "go=last" means to jump to the last history page.
 		 */
 		if (($gowhere = $wgRequest->getText("go")) !== NULL) {
+			$gourl = null;
 			switch ($gowhere) {
 			case "first":
 				if (($lastid = $this->getLastOffsetForPaging($this->mTitle->getArticleID(), $limit)) === NULL)
@@ -113,8 +114,6 @@ class PageHistory {
 				$gourl = $wgTitle->getLocalURL("action=history&limit={$limit}&offset=".
 						wfTimestamp(TS_MW, $lastid));
 				break;
-			default:
-				$gourl = NULL;
 			}
 
 			if (!is_null($gourl)) {
@@ -529,6 +528,9 @@ class PageHistory {
 		if( count( $revisions ) ) {
 			$latestShown = wfTimestamp(TS_MW, $revisions[0]->rev_timestamp);
 			$earliestShown = wfTimestamp(TS_MW, $revisions[count($revisions) - 1]->rev_timestamp);
+		} else {
+			$latestShown = null;
+			$earliestShown = null;
 		}
 
 		/* Don't announce the limit everywhere if it's the default */
