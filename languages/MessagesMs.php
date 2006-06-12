@@ -351,7 +351,7 @@
 "badquery"       => "Format pertanyaan untuk pencarian adalah salah", #"Badly formed search query",
 "badquerytext"           => "Kami tidak dapat melaksanakan pertanyaan anda. Hal ini mungkin disebabkan kerana anda cuba mencari perkataan yang mengandungi kurang daripada tiga huruf (perisian sistem masih belum dapat mendukungnya buat sekarang), ataupun anda tersalah taip ungkapan untuk pertanyaan; contohnya \"ikan dan dan udang\". Sila cuba pertanyaan yang lain.",
 "matchtotals"    => "Pertanyaan \"$1\" sepadan dengan tajuk halaman $2 dan teks halaman $3.", #"The query \"$1\" matched $2 page titles and the text of $3 pages.",
-"nogomatch"        => "Tiada halaman yang mempunyai tajuk tepat ini. Sila cuba mencari melalui teks yang penuh.", #"No page with this exact title exists, trying full text search.",
+"noexactmatch"        => "Tiada halaman yang mempunyai tajuk tepat ini. Sila cuba mencari melalui teks yang penuh.", #"No page with this exact title exists, trying full text search.",
 "titlematches"           => "Tajuk rencana yang sepadan", #"Article title matches",
 "notitlematches"   => "Tiada tajuk halaman yang sepadan", #"No page title matches",
 "textmatches"    => "Teks rencana yang sepadan", #"Article text matches",

@@ -684,7 +684,7 @@ De beluifs os auch das e dees tèks zelf höbs gesjreve, of gekopieerd van 'n [[
 'newwindow' => "(in nuui venster)",
 'nextdiff' => "Gank nao de volgende diff →",
 'nextpage' => "Volgende pazjena ($1)",
-'nogomatch' => "Inne pazjena mit exak dees titel besjtit neet, probeer noe alle teks doer te zeuke.",
+'noexactmatch' => "Inne pazjena mit exak dees titel besjtit neet, probeer noe alle teks doer te zeuke.",
 'noimages' => "Niks te zeen.",
 'nonunicodebrowser' => "<strong>WAARSJUWING: Diene browser is voldit neet aan de unicode sjtandaarde, gebroek estebleef inne angere browser veurdas e artikele gis bewirke.</strong>",
 'nstab-category' => "Kategorie",

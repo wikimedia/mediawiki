@@ -358,7 +358,7 @@ Lehet az is hogy elgépelted a kifejezést, például \"hal and and mérleg\".
 Kérlek próbálj másik kifejezést keresni.",
 "matchtotals"	=> "A \"$1\" keresés $2 címszót talált és
 $3 szócikk szövegét.",
-"nogomatch"		=> "Nincs pontosan ezzel megegyező címszó,
+"noexactmatch"		=> "Nincs pontosan ezzel megegyező címszó,
 próbálom a keresést a cikkek szövegében.",
 "titlematches"	=> "Címszó egyezik",
 "notitlematches" => "Nincs egyező címszó",

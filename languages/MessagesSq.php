@@ -487,7 +487,7 @@ Shiko tek [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} regjistri i 
 'badquerytext'          => 'Nuk munda t\'i përgjigjem pyetjes tuaj. Kjo ka mundësi të ketë ndodhur ngaqë provuat të kërkoni për një fjalë me më pak se tre gërma, gjë që s\'mund të behet akoma. Ka mundësi që edhe të keni shtypur keq pyetjen, për shembull "peshku dhe dhe halat". Provoni një pyetje tjetër.',
 'matchtotals'           => 'Pyetja "$1" u përpuq $2 tituj faqesh
 dhe teksti i $3 artikujve te pasardhshëm.',
-'nogomatch'             => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Faqja me atë titull nuk është krijuar akoma</span>
+'noexactmatch'             => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Faqja me atë titull nuk është krijuar akoma</span>
 
 <span style="display: block; margin: 1.5em 2em">
 Mund të [[$1|filloni një artikull]] me këtë titull.

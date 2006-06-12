@@ -418,7 +418,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'badquery'  => 'Truy vấn sai',
 'badquerytext' => "Truy vấn sai: ngắn hơn 3 chữ cái, hoặc sai chính tả ví dụ như \"mèo và và chuột\". Xin mời thử lại.",
 'matchtotals' => "Truy vấn \"$1\" phù hợp với $2 tên bài và câu chữ trong $3 bài.",
-'nogomatch' => "Không có trang tên như này, xin thử công cụ tìm.",
+'noexactmatch' => "Không có trang tên như này, xin thử công cụ tìm.",
 'titlematches' => "Đề mục tương tự",
 'notitlematches' => "Không có tên bài nào có nội dung tương tự",
 'textmatches' => "Câu chữ tương tự",

@@ -362,7 +362,7 @@ Ayrıca, buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldı
 # Search results
 #
 'searchresulttext' => '{{SITENAME}} içinde arama yapmak ile ilgili bilgi almak için [[Project:Arama|"{{SITENAME}} içinde arama"]] sayfasına bakabilirsiniz.',
-'nogomatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Başlığı bu olan bir madde bulunamadı.</span> <span style="display: block; margin: 1.5em 2em"> Bu maddenin yazılmasını [[$1|\'\'\'siz başlatabilirsiniz\'\'\']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. <span style="display:block; font-size: 89%; margin-left:.2em">Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.</span> </span>',
+'noexactmatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Başlığı bu olan bir madde bulunamadı.</span> <span style="display: block; margin: 1.5em 2em"> Bu maddenin yazılmasını [[:$1|\'\'\'siz başlatabilirsiniz\'\'\']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. <span style="display:block; font-size: 89%; margin-left:.2em">Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.</span> </span>',
 'prevn' => 'önceki $1',
 'nextn' => 'sonraki $1',
 'viewprevnext' => '($1) ($2) ($3).',

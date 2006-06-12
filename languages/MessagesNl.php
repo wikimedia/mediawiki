@@ -493,7 +493,7 @@ Andere moderatoren van deze wiki kunnen nog steeds de verborgen inhoud benaderen
 'badquery'              => 'Slecht geformuleerde zoekopdracht',
 'badquerytext'          => 'Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een \'woord\' van 1 letter te zoeken, of 1 van de \'\'\'Verboden woorden\'\'\' (zie voor uitleg [http://nl.wikipedia.org/wiki/Wikipedia:Woorden_die_niet_als_zoekterm_gebruikt_kunnen_worden Wikipedia]). Probeer een andere zoekterm.',
 'matchtotals'           => 'De zoekterm "$1" is gevonden in $2 paginatitels en in de tekst van $3 pagina\'s.',
-'nogomatch'             => '\'\'\'Er bestaat geen artikel met de titel [[$2]].\'\'\' U kunt deze [[$1|aanmaken]].',
+'noexactmatch'             => '\'\'\'Er bestaat geen artikel met de titel $1.\'\'\' U kunt deze [[:$1|aanmaken]].',
 'titlematches'          => 'Overeenkomst met volgende titels',
 'notitlematches'        => 'Geen enkele paginatitel gevonden met de opgegeven zoekterm',
 'textmatches'           => 'Overeenkomst met artikel inhoud',

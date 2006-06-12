@@ -498,7 +498,7 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'badquerytext' => 'Nie można zrealizować Twojego zapytania. Prawdopodobna przyczyna to obecność słowa krótszego niż trzyliterowe. Spróbuj, proszę, innego zapytania.',
 'matchtotals' => 'Zapytanie "$1", liczba znalezionych tytułów: $2,
 liczba znalezionych artykułów: $3.',
-'nogomatch' => 'Nie ma stron zatytułowanych "$2". Możesz [[:$1|utworzyć tę stronę]] lub spróbować pełnego przeszukiwania.',
+'noexactmatch' => 'Nie ma stron zatytułowanych "$1". Możesz [[:$1|utworzyć tę stronę]] lub spróbować pełnego przeszukiwania.',
 'titlematches' => 'Znaleziono w tytułach:',
 'notitlematches' => 'Nie znaleziono w tytułach',
 'textmatches' => 'Znaleziono na stronach:',

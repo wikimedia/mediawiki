@@ -459,7 +459,7 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'badquery'              => 'Felaktigt utformat sökbegrepp',
 'badquerytext'          => 'Tyvärr, den sökningen fungerade inte. Detta beror troligen på att att du har försökt söka på ett ord som är kortare än tre bokstäver, vilket i nuläget inte stöds. Det kan också vara som så att du har skrivit in uttrycket fel, till exempel "katt och och råtta". Vänligen försök igen.',
 'matchtotals'           => 'Sökordet "$1" gav $2 träffar i uppslagsord, och $3 träffar i texten på artiklar.',
-'nogomatch'             => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Det finns ingen artikel med den titeln.</span> <span style="display: block; margin: 1.5em 2em"> Du kan själv [[:$1|skapa en artikel]] med den titeln om du vill.</span>',
+'noexactmatch'             => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Det finns ingen artikel med den titeln.</span> <span style="display: block; margin: 1.5em 2em"> Du kan själv [[:$1|skapa en artikel]] med den titeln om du vill.</span>',
 'titlematches'          => 'Träffar i uppslagsord',
 'notitlematches'        => 'Det finns ingen artikel vars titel överensstämmer med sökordet.',
 'textmatches'           => 'Artikeltexter som innehåller sökordet:',

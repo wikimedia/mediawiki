@@ -416,7 +416,7 @@ Klasket hoc'h eus, moarvat, ur ger dindan teir lizherenn, ar pezh n'hallomp ket 
 Klaskit gant ur goulenn all.",
 'matchtotals' => "Klotañ a ra ar goulenn \"$1\" gant $2 (d/z)titl
 pennad ha gant testenn $3 (b/f)pennad.",
-'nogomatch' => "N'eus pajenn ebet ganti an titl-mañ, esaeañ gant ar c'hlask klok.",
+'noexactmatch' => "N'eus pajenn ebet ganti an titl-mañ, esaeañ gant ar c'hlask klok.",
 'titlematches' => "Klotadurioù gant an titloù",
 'notitlematches' => "N'emañ ar ger(ioù) goulennet e titl pennad ebet",
 'textmatches' => "Klotadurioù en testennoù",

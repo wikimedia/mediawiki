@@ -370,8 +370,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use optimized php5-only microtime()
 * Add possibility to store local message cache as PHP executable script
 * Fix profiling table definition
-* Pass a second parameter to "nogomatch" containing the search terms minus the
-  preceding colon, allowing prettied-up messages
 * (bug 6040) Run pre-save transform before calculating the diff. when doing a
   "show changes" operation in the editor
 * (bug 4033) Respect $wgStyleDirectory when checking available skins
@@ -476,6 +474,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Avoid some notices in page history with bad input
 * Use double quoted consistently on attributes in linker output; preparing
   for new normalization code when tidy not in use
+* Replace "nogomatch" with "noexactmatch" and place the magic colon in the messages
+  themselves. Some minor tweaks to the actual message content.
 
 
 == Compatibility ==

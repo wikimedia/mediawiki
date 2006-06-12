@@ -110,7 +110,7 @@ class SpecialSearch {
 				$editurl = $t->escapeLocalURL( 'action=edit' );
 			}
 		}
-		$wgOut->addWikiText( wfMsg('nogomatch', ":$term", $term ) );
+		$wgOut->addWikiText( wfMsg( 'noexactmatch', $term ) );
 
 		return $this->showResults( $term );
 	}

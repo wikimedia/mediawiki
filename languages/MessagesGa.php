@@ -531,7 +531,7 @@ B'fhéidir freisin go mhíchlóshcríobh tú an leagan, mar shampla
 \"éisc agus agus lanna\". Déan athiarracht.",
 "matchtotals"   => "Bhí an cheist \"$1\" ina mhacasamhail le $2 teidil alt
 agus leis an téacs i $3 ailt.",
-"nogomatch" => "Níl aon leathanach ann leis an teideal áirithe seo air. Tá cuardach á dhéanamh sa téacs iomlán...",
+"noexactmatch" => "Níl aon leathanach ann leis an teideal áirithe seo air. Tá cuardach á dhéanamh sa téacs iomlán...",
 "titlematches"  => "Tá macasamhla teidil alt ann",
 "notitlematches" => "Níl macasamhla teidil alt ann",
 "textmatches"   => "Tá macasamhla téacs alt ann",

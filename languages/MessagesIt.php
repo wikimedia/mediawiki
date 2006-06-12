@@ -561,7 +561,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "badquery"		=> "Richiesta mal posta",
 "badquerytext"	=> "Impossibile elaborare la richiesta. Questo potrebbe dipendere dall'aver cercato una parola più corta di 4 caratteri, il che al momento è impossibile, oppure da una errore nella forma della richiesta, ad esempio \"pesce and and azzurro\". Per favore, riprova.",
 "matchtotals"	=> "La ricerca di \"$1\" ha trovato $2 riscontri nel titolo e $3 riscontri nel testo.",
-"nogomatch" => "'''La pagina \"$2\" non esiste.''' È possibile [[$1|crearla ora]].",
+"noexactmatch" => "'''La pagina \"$1\" non esiste.''' È possibile [[:$1|crearla ora]].",
 "titlematches"	=> "Corrispondenze nel titolo delle pagine",
 "notitlematches" => "Nessuna corrispondenza nei titoli delle pagine",
 "textmatches"	=> "Corrispondenze nel testo delle pagine",

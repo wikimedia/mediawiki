@@ -592,9 +592,9 @@ nastavite.',
 'noemailtext' => 'Ovaj korisnik nije naveo ispravnu adresu e-pošte,
 ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'noemailtitle' => 'Nema adrese e-pošte',
-'nogomatch' => 'Nema stranice sa takvim imenom.
+'noexactmatch' => 'Nema stranice sa takvim imenom.
 
-Možete \'\'\'[[$1|da napravite članak sa tim naslovom]]\'\'\' ili [[{{ns:4}}:Zahtjevani članci|da stavite zahtjev za ovaj članak]] ili [[{{ns:-1}}:Allpages/$1|potražite na drugim stranicama]].
+Možete \'\'\'[[:$1|da napravite članak sa tim naslovom]]\'\'\' ili [[{{ns:4}}:Zahtjevani članci|da stavite zahtjev za ovaj članak]] ili [[{{ns:-1}}:Allpages/$1|potražite na drugim stranicama]].
 
 ::*\'\'\'\'\'<u>Opomena: Nemojte da kopirate materijale za koje nemate dozvolu!</u>\'\'\'\'\'',
 'nohistory' => 'Ne postoji istorija izmjena za ovu stranicu.',

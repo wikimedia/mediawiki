@@ -559,7 +559,7 @@ exemplo "peixes <strong>e e</strong> escalas".
 Por favor realize outro pedido de pesquisa.',
 'matchtotals'   => "A pesquisa \"$1\" resultou $2 títulos de artigos
 e $3 artigos com o texto procurado.",
-'nogomatch' => 'Não existe uma página com o título \"$1\". Pode criar [[$1|esta página]].',
+'noexactmatch' => 'Não existe uma página com o título \"$1\". Pode criar [[:$1|esta página]].',
 'titlematches'  => 'Resultados nos títulos dos artigos',
 'notitlematches' => 'Nenhum título de página coincide',
 'textmatches'   => 'Resultados dos textos dos artigos',
