@@ -1944,7 +1944,7 @@ Magic links: RFC (bug 479)
 !! input
 RFC 822
 !! result
-<p><a href='http://www.ietf.org/rfc/rfc822.txt' class="external" title="http://www.ietf.org/rfc/rfc822.txt">RFC 822</a>
+<p><a href="http://www.ietf.org/rfc/rfc822.txt" class="external" title="http://www.ietf.org/rfc/rfc822.txt">RFC 822</a>
 </p>
 !! end
 
@@ -1962,7 +1962,7 @@ Magic links: PMID incorrectly converts space to underscore
 !! input
 PMID 1234
 !! result
-<p><a href='http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234' class="external" title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234">PMID 1234</a>
+<p><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234" class="external" title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234">PMID 1234</a>
 </p>
 !! end
 
@@ -2751,7 +2751,7 @@ BUG 1887: A RFC with a thumbnail
 !! input
 [[Image:foobar.jpg|thumb|This is RFC 12354]]
 !! result
-<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is RFC 12354"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="This is RFC 12354" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div>This is <a href='http://www.ietf.org/rfc/rfc12354.txt' class="external" title="http://www.ietf.org/rfc/rfc12354.txt">RFC 12354</a></div></div></div>
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is RFC 12354"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="This is RFC 12354" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div>This is <a href="http://www.ietf.org/rfc/rfc12354.txt" class="external" title="http://www.ietf.org/rfc/rfc12354.txt">RFC 12354</a></div></div></div>
 
 !! end
 

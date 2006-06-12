@@ -3549,7 +3549,7 @@ class Parser
 				$url = wfMsg( $urlmsg, $id);
 				$sk =& $this->mOptions->getSkin();
 				$la = $sk->getExternalLinkAttributes( $url, $keyword.$id );
-				$text .= "<a href='{$url}'{$la}>{$keyword}{$id}</a>{$x}";
+				$text .= "<a href=\"{$url}\"{$la}>{$keyword}{$id}</a>{$x}";
 			}
 
 			/* Check if the next RFC keyword is preceed by [[ */
