@@ -474,6 +474,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Update to Latin translation (la)
 * Update to Dutch translation (nl)
 * Avoid some notices in page history with bad input
+* Use double quoted consistently on attributes in linker output; preparing
+  for new normalization code when tidy not in use
 
 
 == Compatibility ==

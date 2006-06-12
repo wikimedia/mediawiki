@@ -30,7 +30,7 @@ class Linker {
 	function getExternalLinkAttributes( $link, $text, $class='' ) {
 		$link = htmlspecialchars( $link );
 
-		$r = ($class != '') ? " class='$class'" : " class='external'";
+		$r = ($class != '') ? " class=\"$class\"" : " class=\"external\"";
 
 		$r .= " title=\"{$link}\"";
 		return $r;
@@ -45,7 +45,7 @@ class Linker {
 		$link = preg_replace( '/[\\x00-\\x1f]/', ' ', $link );
 		$link = htmlspecialchars( $link );
 
-		$r = ($class != '') ? " class='$class'" : " class='external'";
+		$r = ($class != '') ? " class=\"$class\"" : " class=\"external\"";
 
 		$r .= " title=\"{$link}\"";
 		return $r;
@@ -721,7 +721,7 @@ class Linker {
 				$text = $alt;
 			}
 			$u = htmlspecialchars( $url );
-			return "<a href=\"{$u}\" class='$class' title=\"{$alt}\">{$text}</a>";
+			return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$text}</a>";
 		}
 	}
 
@@ -966,7 +966,7 @@ class Linker {
 			return '';
 		} else {
 			$formatted = $this->formatComment( $comment, $title );
-			return " <span class='comment'>($formatted)</span>";
+			return " <span class=\"comment\">($formatted)</span>";
 		}
 	}
 	
@@ -980,11 +980,11 @@ class Linker {
 		if( $rev->userCan( Revision::MW_REV_DELETED_COMMENT ) ) {
 			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle() );
 		} else {
-			$block = " <span class='comment'>" .
+			$block = " <span class=\"comment\">" .
 				wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		}
 		if( $rev->isDeleted( Revision::MW_REV_DELETED_COMMENT ) ) {
-			return " <span class='history-deleted'>$block</span>";
+			return " <span class=\"history-deleted\">$block</span>";
 		}
 		return $block;
 	}
@@ -1003,7 +1003,7 @@ class Linker {
 	 * parameter level defines if we are on an indentation level
 	 */
 	function tocLine( $anchor, $tocline, $tocnumber, $level ) {
-		return "\n<li class='toclevel-$level'><a href=\"#" .
+		return "\n<li class=\"toclevel-$level\"><a href=\"#" .
 			$anchor . '"><span class="tocnumber">' .
 			$tocnumber . '</span> <span class="toctext">' .
 			$tocline . '</span></a>';
