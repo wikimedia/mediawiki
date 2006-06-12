@@ -2795,6 +2795,21 @@ class Parser
 				}
 			}
 		}
+		
+		# PAGESINNAMESPACE
+		if( !$found ) {
+			$mwPagesInNs =& MagicWord::get( MAG_PAGESINNAMESPACE );
+			if( $mwPagesInNs->matchStartAndRemove( $part1 ) ) {
+				$found = true;
+				$count = wfPagesInNs( intval( $part1 ) );
+				$mwRawSuffix =& MagicWord::get( MAG_RAWSUFFIX );
+				if( isset( $args[0] ) && $mwRawSuffix->match( $args[0] ) ) {
+					$text = $linestart . $count;
+				} else {
+					$text = $linestart . $wgContLang->formatNum( $count );
+				}
+			}
+		}
 
 		# #LANGUAGE:
 		if( !$found ) {
@@ -4638,6 +4653,23 @@ function wfNumberOfPages() {
 	$count = $dbr->selectField( 'site_stats', 'ss_total_pages', array(), 'wfNumberOfPages' );
 	wfProfileOut( 'wfNumberOfPages' );
 	return (int)$count;
+}
+
+/**
+ * Count the number of pages in a particular namespace
+ *
+ * @param $ns Namespace
+ * @return integer
+ */
+function wfPagesInNs( $ns ) {
+	static $pageCount = array();
+	wfProfileIn( 'wfPagesInNs' );
+	if( !isset( $pageCount[$ns] ) ) {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$pageCount[$ns] = $dbr->selectField( 'page', 'COUNT(*)', array( 'page_namespace' => $ns ), 'wfPagesInNs' );
+	}
+	wfProfileOut( 'wfPagesInNs' );
+	return (int)$pageCount[$ns];
 }
 
 /**
