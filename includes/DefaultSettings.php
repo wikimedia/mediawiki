@@ -2067,4 +2067,12 @@ $wgReservedUsernames = array( 'MediaWiki default', 'Conversion script' );
  */
 $wgAllowTitlesInSVG = false;
 
+/**
+ * Array of namespaces which can be deemed to contain valid "content", as far
+ * as the site statistics are concerned. Useful if additional namespaces also
+ * contain "content" which should be considered when generating a count of the
+ * number of articles in the wiki.
+ */
+$wgContentNamespaces = array( NS_MAIN );
+
 ?>

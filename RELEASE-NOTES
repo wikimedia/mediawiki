@@ -476,7 +476,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for new normalization code when tidy not in use
 * Replace "nogomatch" with "noexactmatch" and place the magic colon in the messages
   themselves. Some minor tweaks to the actual message content.
-
+* Introduce $wgContentNamespaces which allows for articles to exist in namespaces other
+  than the main namespace, and still be counted as valid content in the site statistics.
 
 == Compatibility ==
 
