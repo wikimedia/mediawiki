@@ -598,7 +598,7 @@ Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką
 * \'\'\'Jei sukūrėte šį straipsnį prieš keletą minučių ir matote šį pranešimą, tai gali būti dėl techninių trukdžių atnaujinant duomenų bazes.\'\'\' Prašome palaukti ir vėl patikrinti prieš bandant iš naujo kurti straipsnį.
 * Jei anksčiau esate sukūręs straipsnį šiuo pavadinimu, jis gali būti ištrintas dėl įvairių priežasčių.
 </div>',
-'nogomatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Straipsnis tiksliu įvestu pavadinimu neegzistuoja.</span>
+'noexactmatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Straipsnis tiksliu įvestu pavadinimu neegzistuoja.</span>
 
 <span style="display: block; margin: 1.5em 2em">
 Galite \'\'\'[[:<nowiki>$1</nowiki>|sukurti straipsnį šiuo pavadinimu]]\'\'\'.

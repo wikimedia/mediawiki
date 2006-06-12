@@ -602,7 +602,7 @@ I s\' pout eto ki vos avoz må tapé l\' ratourneure,
 metans «oujhea eyet eyet plomes».
 Rissayîz avou ene ôte tchinne di cweraedje.',
 'matchtotals' => 'Li cweraedje «$1» a trové $2 {{PLURAL:$2|årtike|årtikes}} avou l\' tite ki corespond eyet $3 {{PLURAL:$3|årtike|årtikes}} avou do tecse ki corespond.',
-'nogomatch' => '\'\'\'I n\' a nole pådje avou l\' tite «[[$2]]».\'\'\' Vos poloz [[$1|ahiver cisse pådje la]].',
+'noexactmatch' => '\'\'\'I n\' a nole pådje avou l\' tite «$1».\'\'\' Vos poloz [[:$1|ahiver cisse pådje la]].',
 'titlematches' => 'Årtikes avou on tite ki corespond',
 'notitlematches' => 'Nol årtike avou on tite ki corespond',
 'textmatches' => 'Årtikes avou do tecse ki corespond',

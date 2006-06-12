@@ -578,7 +578,7 @@ Razlog je vjerojatno u tome što ste pokušali tražiti riječ kraću od tri
 slova, što još nije moguće.
 Možda ste pogriješili pri upisu pretrage. Pokušajte ponovo.",
 "matchtotals"	        => "Upitu \"$1\" odgovara $2 naslova stranica i $3 tekstova stranica.",
-"nogomatch"             => "Ne postoji stranica s točno takvim naslovom, pokušava se pretraga cijelog sadržaja.",
+"noexactmatch"             => "Ne postoji stranica s točno takvim naslovom, pokušava se pretraga cijelog sadržaja.",
 "titlematches"	        => "Pronađene stranice prema naslovu",
 "notitlematches"        => "Nema pronađenih stranica prema naslovu",
 "textmatches"	        => "Pronađene stranice prema tekstu članka",

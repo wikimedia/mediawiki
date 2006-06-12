@@ -968,9 +968,9 @@ neće raditi.',
 'noemailtext' => 'Ovaj korisnik nije naveo ispravnu adresu e-pošte,
 ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'noemailtitle' => 'Nema adrese e-pošte',
-'nogomatch' => 'Ne postoji stranica sa ovakvim naslovom.
+'noexactmatch' => 'Ne postoji stranica sa ovakvim naslovom.
 
-Možete [[$1|napisati članak]] sa ovim naslovom.
+Možete [[:$1|napisati članak]] sa ovim naslovom.
 
 Molimo Vas pretražite Vikipediju, pre kreiranja članka da bismo izbegli dupliranje već postojećeg.',
 'nohistory' => 'Ne postoji istorija izmena za ovu stranicu.',

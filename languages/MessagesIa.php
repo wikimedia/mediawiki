@@ -314,7 +314,7 @@ error syntactic in le consulta, per exemplo,
 Reformula tu consulta.",
 "matchtotals"	=> "Le consulta \"$1\" coincide con le titulos de $2 articulos
 e le texto de $3 articulos.",
-"nogomatch" => "Non existe un pagina con iste titulo exacte, io recurre al recerca de texto integral. ",
+"noexactmatch" => "Non existe un pagina con iste titulo exacte, io recurre al recerca de texto integral. ",
 "titlematches"	=> "Coincidentias con titulos de articulos",
 "notitlematches" => "Necun coincidentia",
 "textmatches"	=> "Coincidentias con textos de articulos",

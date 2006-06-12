@@ -348,7 +348,7 @@ También puede ser que hayas cometido un error de escritura en la expresión.
 Por favor, intenta una búsqueda diferente.",
 "matchtotals"	=> "La consulta \"$1\" coincidió con $2 títulos de artículos
 y el texto de $3 artículos.",
-'nogomatch' => 'No existe ninguna página exactamente con [[$1|este título]], estamos intentando una búsqueda en todo el texto.',
+'nogomatch' => 'No existe ninguna página exactamente con [[:$1|este título]], estamos intentando una búsqueda en todo el texto.',
 "titlematches"	=> "Coincidencias de título de artículo",
 "notitlematches" => "No hay coincidencias de título de artículo",
 "textmatches"	=> "Coincidencias de texto de artículo",

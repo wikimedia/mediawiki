@@ -509,7 +509,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'badquery'            => 'Kelvoton hakumerkkijono',
 'badquerytext'        => 'Tekemäsi kysely ei ole kelvollinen. Tämä johtuu todennäköisesti siitä, että et ole määritellyt hakumerkkijonoa.',
 'matchtotals'         => 'Haulla \'\'\'$1\'\'\' löytyi $2 osumaa sivujen otsikoista ja $3 osumaa sivujen sisällöistä.',
-'nogomatch'           => '<big>Otsikolla $2 ei ole sivua.</big>
+'noexactmatch'           => '<big>Otsikolla $1 ei ole sivua.</big>
 
 :Voit [[$1|luoda aiheesta uuden sivun]].
 :<small>Etsi ensin vastaavaa sivua, joka voi olla kirjoitusasultaan hieman erilainen</small>',

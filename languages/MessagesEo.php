@@ -343,7 +343,7 @@ esprimon'.
 '. Bonvolu reserĉi per alia mendo.',
 'matchtotals'	=> 'La serĉmendo "$1" liveris $2 artikolojn laŭ titolo
 kaj $3 artikolojn laŭ enhavo.',
-'nogomatch'	=> 'Neniu paĝo havas precize la titolon; provas tekstoserĉon...',
+'noexactmatch'	=> 'Neniu paĝo havas precize la titolon; provas tekstoserĉon...',
 'titlematches'	=> 'Trovitaj laŭ titolo',
 'notitlematches' => 'Neniu trovita laŭ titolo',
 'textmatches'	=> 'Trovitaj laŭ enhavo',

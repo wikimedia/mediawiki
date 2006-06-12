@@ -505,7 +505,7 @@ Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ul
 'noemailtext' => "Utilizatorul nu a specificat o adresă validă de e-mail,
 sau a ales să nu primească e-mail de la alţi utilizatori.",
 'noemailtitle' => "Fără adresă de e-mail",
-'nogomatch' => "Nici o pagină cu acest titlu nu a fost găsită, încearcă să căuţi textul şi în pagini. ",
+'noexactmatch' => "Nici o pagină cu acest titlu nu a fost găsită, încearcă să căuţi textul şi în pagini. ",
 'nohistory' => "Nu există istorie pentru această pagină.",
 'nolinkshere' => "Nici o pagină nu se leagă aici.",
 'nolinkstoimage' => "Nici o pagină nu se leagă la această imagine.",

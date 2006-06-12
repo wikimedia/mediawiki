@@ -452,8 +452,8 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'badquery'		  => 'Feil utforma førespurnad',
 'badquerytext'	          => 'Vi kunne ikkje svara på denne førespurnaden &mdash; Truleg fordi du prøvde å søkje etter eit ord med færre enn tre bokstavar, noko som ikkje er mogleg enno. Det kan òg vera du skreiv feil... Prøv om att.',
 'matchtotals'	          => 'Førespurnaden «$1» gav treff på $2 sidetitlar og på teksten på $3 sider.',
-'nogomatch'               => '* \'\'\'{{SITENAME}} har ikkje noka side med [[$1|dette namnet]].\'\'\'
-* <big>\'\'\'Du kan [[$1|opprette ho no]]\'\'\'</big>.<br />
+'noexactmatch'               => '* \'\'\'{{SITENAME}} har ikkje noka side med [[:$1|dette namnet]].\'\'\'
+* <big>\'\'\'Du kan [[:$1|opprette ho no]]\'\'\'</big>.<br />
 (Men du bør søkje etter andre namnevariasjonar først, slik at du ikkje lagar ei side som allereie finst under eit anna namn!)',
 'titlematches'	          => 'Sidetitlar med treff på førespurnaden',
 'notitlematches'          => 'Ingen sidetitlar hadde treff på førespurnaden',

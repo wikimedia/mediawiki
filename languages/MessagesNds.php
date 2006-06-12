@@ -415,7 +415,7 @@ Sachts hest du versöökt, en Word to söken, dat kötter as twee Bookstaven is.
 Dit funktschoneert in\'n Momang noch nich.
 Mööglicherwies hest du ok de Anfraag falsch formuleert, to\'n Bispeel \'Lohn un un Stüern\'. Versöök en anners formuleerte Anfraag.',
 'matchtotals'         => 'De Anfraag „$1“ stimmt mit $2 Sietenöverschriften un den Text vun $3 Sieten överein.',
-'nogomatch'         => 'Dor existeert kene Siet mit dissen Naam. Versöök de Vulltextsöök oder legg de Siet <a href=\'$1\'>nieg</a> an.',
+'noexactmatch'         => 'Dor existeert kene Siet mit dissen Naam. Versöök de Vulltextsöök oder legg de Siet [[:$1|nieg]] an.',
 'titlematches'       => 'Övereenstimmen mit Överschriften',
 'notitlematches'    => 'Kene Övereenstimmen',
 'textmatches'           => 'Övereenstimmen mit Texten',

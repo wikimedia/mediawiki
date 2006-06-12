@@ -340,7 +340,7 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 Dit is faaks om't jo besyke hawwe en sykje in word fan ien of twa letters, wat it programma noch net kin.
 Of it soe kinne dat jo de fraach misskreaun hawwe, lykas \"frysk en en frei\". Besykje it nochris.",
 "matchtotals"	=> "Foar \"$1\" binne $2 titles fûn en $3 siden.",
-"nogomatch" => "Der is gjin side mei krekt dizze titel. Faaks is it better en Sykje nei dizze tekst.",
+"noexactmatch" => "Der is gjin side mei krekt dizze titel. Faaks is it better en Sykje nei dizze tekst.",
 "titlematches"	=> "Titels",
 "notitlematches" => "Gjin titels",
 "textmatches"	=> "Siden",

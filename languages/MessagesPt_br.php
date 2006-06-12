@@ -339,7 +339,7 @@ exemplo \"peixes <strong>and and</strong> scales\".
 Por favor realize ouro pedido de busca.",
 "matchtotals"   => "A pesquisa \"$1\" resultou $2 títulos de artigos
 e $3 artigos com o texto procurado.",
-"nogomatch" => "Nenhum artigo com um título exatamente igual a este foi encontrado, tentando na pesquisa completa por texto.",
+"noexactmatch" => "Nenhum artigo com um título exatamente igual a este foi encontrado, tentando na pesquisa completa por texto.",
 "titlematches"  => "Resultados nos títulos dos artigos",
 "notitlematches" => "Sem resultados nos títulos dos artigos",
 "textmatches"   => "Resultados nos textos dos artigos",

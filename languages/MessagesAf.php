@@ -282,7 +282,7 @@ het om toegang te kry tot hierdie bladsy, reg is.",
 Dit is miskien omdat jy gesoek het vir iets wat minder as drie letters bevat. Jy het miskien die navraag verkeerd ingetik.",
 "matchtotals"	=> "Die navraag \"$1\" pas $2 artikeltitels
 en teks in $3 artikels.",
-"nogomatch" => "Geen bladsy met hierdie presiese titel bestaan nie, probeer 'n volteksnavraag. ",
+"noexactmatch" => "Geen bladsy met hierdie presiese titel bestaan nie, probeer 'n volteksnavraag. ",
 "titlematches"	=> "Artikeltitel resultate",
 "notitlematches" => "Geen artikeltitel resultate nie",
 "textmatches"	=> "Artikelteks resultate",

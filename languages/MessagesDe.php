@@ -563,7 +563,7 @@ Möglicherweise haben Sie auch die Anfrage falsch formuliert, z.B.
 Bitte versuchen Sie eine anders formulierte Anfrage.",
 "matchtotals"	=> "Die Anfrage \"$1\" stimmt mit $2 Artikelüberschriften
 und dem Text von $3 Artikeln überein.",
-'nogomatch'	=> '\'\'\'Es existiert kein Artikel mit dem Namen „$2“.\'\'\'
+'noexactmatch'	=> '\'\'\'Es existiert kein Artikel mit dem Namen „$1“.\'\'\'
 
 Versuchen Sie es über die Volltextsuche.
 Alternativ können Sie auch den [[{{ns:special}}:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.

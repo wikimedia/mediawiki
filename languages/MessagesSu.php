@@ -645,7 +645,7 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol \'\'\'back\'\'\' na panyungsi a
 'noemailprefs' => '<strong>Teu aya alamat surélék</strong>, fitur di handap moal bisa jalan.',
 'noemailtext' => 'Pamaké ieu teu méré alamat surélék nu sah atawa milih teu narima surélék ti pamaké séjén.',
 'noemailtitle' => 'Teu aya alamat surélék',
-'nogomatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Teu aya kaca nu judulna kitu</span>
+'noexactmatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Teu aya kaca nu judulna kitu</span>
 
 <span style="display: block; margin: 1.5em 2em">
 Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel nu judulna kitu]]\'\'\' atawa [[{{ns:project}}:Artikel pamundut|mundut dijieunna éta artikel]].

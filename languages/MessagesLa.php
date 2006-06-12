@@ -250,7 +250,7 @@ Confrima URL paginae.',
 Fortasse verba minora quam tres litteras longa quaerere conatus es, vel fortasse error in quaestione erat. Conare denuo.',
 'matchtotals'           => 'Investigatio "$1" indicibus $2 rerum 
 et verbis $3 rerum congruit.',
-'nogomatch'             => 'Nullae paginae cum hoc indice exacto est, conari totorum verborum quaerere.',
+'noexactmatch'             => 'Nullae paginae cum hoc indice exacto est, conari totorum verborum quaerere.',
 'titlematches'          => 'Exaequata indicibus rerum',
 'notitlematches'        => 'Nulla exaequata',
 'prevn'                 => '$1 proxima',
