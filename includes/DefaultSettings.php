@@ -1079,7 +1079,7 @@ $wgCookieSecure = ($wgProto == 'https');
 $wgDisableCookieCheck = false;
 
 /**  Whether to allow inline image pointing to other websites */
-$wgAllowExternalImages = true;
+$wgAllowExternalImages = false;
 
 /** If the above is false, you can specify an exception here. Image URLs
   * that start with this string are then rendered, while all others are not.

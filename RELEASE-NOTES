@@ -18,6 +18,12 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+== Configuration changes ==
+
+Some default configuration options have changed:
+* $wgAllowExternalImages now defaults to off for increased security.
+
+
 == Changes since 1.6 ==
 
 * (bug 5458) Fix double-URL encoding in block log link in contribs and contribs
@@ -479,6 +485,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce $wgContentNamespaces which allows for articles to exist in namespaces other
   than the main namespace, and still be counted as valid content in the site statistics.
 * (bug 5932) Introduce {{PAGESINNAMESPACE}} magic word
+* Disable $wgAllowExternalImages by default.
+
 
 == Compatibility ==
 
