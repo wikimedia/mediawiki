@@ -486,6 +486,7 @@ Some default configuration options have changed:
   than the main namespace, and still be counted as valid content in the site statistics.
 * (bug 5932) Introduce {{PAGESINNAMESPACE}} magic word
 * Disable $wgAllowExternalImages by default.
+* (bug 2700) Nice things like link completion and signatures now work in <gallery> tags.
 
 
 == Compatibility ==

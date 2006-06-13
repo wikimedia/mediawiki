@@ -411,10 +411,13 @@ class Parser
 	 *  will be stripped in addition to other tags. This is important
 	 *  for section editing, where these comments cause confusion when
 	 *  counting the sections in the wikisource
+	 * 
+	 * @param array dontstrip contains tags which should not be stripped;
+	 *  used to prevent stipping of <gallery> when saving (fixes bug 2700)
 	 *
 	 * @private
 	 */
-	function strip( $text, &$state, $stripcomments = false ) {
+	function strip( $text, &$state, $stripcomments = false , $dontstrip = array () ) {
 		$render = ($this->mOutputType == OT_HTML);
 
 		# Replace any instances of the placeholders
@@ -433,10 +436,15 @@ class Parser
 			$elements[] = 'math';
 		}
 		
-
+		# Removing $dontstrip tags from $elements list (currently only 'gallery', fixing bug 2700)
+		foreach ( $elements AS $k => $v ) {
+			if ( !in_array ( $v , $dontstrip ) ) continue;
+			unset ( $elements[$k] );
+		}
+		
 		$matches = array();
 		$text = Parser::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
-		
+
 		foreach( $matches as $marker => $data ) {
 			list( $element, $content, $params, $tag ) = $data;
 			if( $render ) {
@@ -485,7 +493,7 @@ class Parser
 				$state[$element][$marker] = $output;
 			}
 		}
-
+		
 		# Unstrip comments unless explicitly told otherwise.
 		# (The comments are always stripped prior to this point, so as to
 		# not invoke any extension tags / parser hooks contained within
@@ -3599,7 +3607,7 @@ class Parser
 			"\r\n" => "\n",
 		);
 		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
-		$text = $this->strip( $text, $stripState, true );
+		$text = $this->strip( $text, $stripState, true, array( 'gallery' ) );
 		$text = $this->pstPass2( $text, $stripState, $user );
 		$text = $this->unstrip( $text, $stripState );
 		$text = $this->unstripNoWiki( $text, $stripState );
@@ -3633,7 +3641,7 @@ class Parser
 		$text = $this->replaceVariables( $text );
 		
 		# Strip out <nowiki> etc. added via replaceVariables
-		$text = $this->strip( $text, $stripState );
+		$text = $this->strip( $text, $stripState, false, array( 'gallery' ) );
 	
 		# Signatures
 		$sigText = $this->getUserSig( $user );
