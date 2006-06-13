@@ -24,6 +24,13 @@ does not.</p>
 		}
 	}
 	
+	$type = wfGetType( $fname );
+	if ( $type and $type!="unknown/unknown") {
+		header("Content-type: $type");
+	} else {
+		header('Content-type: application/x-wiki');
+	}
+
 	if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 		$modsince = preg_replace( '/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
 		$sinceTime = strtotime( $modsince );
@@ -34,13 +41,6 @@ does not.</p>
 	}
 
 	header( 'Content-Length: ' . $stat['size'] );
-
-	$type = wfGetType( $fname );
-	if ( $type and $type!="unknown/unknown") {
-		header("Content-type: $type");
-	} else {
-		header('Content-type: application/x-wiki');
-	}
 
 	readfile( $fname );
 }
