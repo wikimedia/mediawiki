@@ -487,6 +487,8 @@ Some default configuration options have changed:
 * (bug 5932) Introduce {{PAGESINNAMESPACE}} magic word
 * Disable $wgAllowExternalImages by default.
 * (bug 2700) Nice things like link completion and signatures now work in <gallery> tags.
+* Cancel output buffering in StreamFile; when used inside gzip buffering this
+  could cause funny timeout behavior as the Content-Length was wrong.
 
 
 == Compatibility ==
