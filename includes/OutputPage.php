@@ -28,6 +28,7 @@ class OutputPage {
 	var $mArticleBodyOnly = false;
 	
 	var $mNewSectionLink = false;
+	var $mNoGallery = false;
 
 	/**
 	 * Constructor
