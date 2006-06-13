@@ -863,7 +863,6 @@ class Article {
 				$wgOut->addPrimaryWikiText( $text, $this );
 			} else {
 				# Display content, don't attempt to save to parser cache
-
 				# Don't show section-edit links on old revisions... this way lies madness.
 				if( !$this->isCurrent() ) {
 					$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
@@ -881,7 +880,7 @@ class Article {
 		if( empty( $t ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 		}
-		
+
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 		if( $ns == NS_USER_TALK &&
 			User::isIP( $this->mTitle->getText() ) ) {

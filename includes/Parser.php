@@ -843,6 +843,7 @@ class Parser
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
 		$text = $this->stripToc( $text );
+		$this->stripNoGallery( $text );
 		$text = $this->doHeadings( $text );
 		if($this->mOptions->getUseDynamicDates()) {
 			$df =& DateFormatter::getInstance();
@@ -3173,6 +3174,16 @@ class Parser
 	}
 
 	/**
+	 * Detect __NOGALLERY__ magic word and set a placeholder
+	 */
+	function stripNoGallery( &$text ) {
+		# if the string __NOGALLERY__ (not case-sensitive) occurs in the HTML,
+		# do not add TOC
+		$mw = MagicWord::get( MAG_NOGALLERY );
+		$this->mOutput->mNoGallery = $mw->matchAndRemove( $text ) ;
+	}
+
+	/**
 	 * Detect __TOC__ magic word and set a placeholder
 	 */
 	function stripToc( $text ) {
@@ -4424,7 +4435,8 @@ class ParserOutput
 		$mExternalLinks,    # External link URLs, in the key only
 		$mHTMLtitle,		# Display HTML title
 		$mSubtitle,			# Additional subtitle
-		$mNewSection;		# Show a new section link?
+		$mNewSection,		# Show a new section link?
+		$mNoGallery;		# No gallery on category page? (__NOGALLERY__)
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -4443,6 +4455,7 @@ class ParserOutput
 		$this->mHTMLtitle = "" ;
 		$this->mSubtitle = "" ;
 		$this->mNewSection = false;
+		$this->mNoGallery = false;
 	}
 
 	function getText()                   { return $this->mText; }
@@ -4455,6 +4468,7 @@ class ParserOutput
 	function &getTemplates()             { return $this->mTemplates; }
 	function &getImages()                { return $this->mImages; }
 	function &getExternalLinks()         { return $this->mExternalLinks; }
+	function getNoGallery()              { return $this->mNoGallery; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }

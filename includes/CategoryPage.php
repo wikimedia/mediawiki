@@ -40,7 +40,12 @@ class CategoryPage extends Article {
 		global $wgOut, $wgRequest;
 		$from = $wgRequest->getVal( 'from' );
 		$until = $wgRequest->getVal( 'until' );
+		
+		global $wgCategoryMagicGallery;
+		$cmg = $wgCategoryMagicGallery;
+		$wgCategoryMagicGallery = !$wgOut->mNoGallery;
 		$wgOut->addHTML( $this->doCategoryMagic( $from, $until ) );
+		$wgCategoryMagicGallery = $cmg;
 	}
 
 	/**

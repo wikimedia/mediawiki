@@ -94,6 +94,7 @@ $magicWords = array(
 	'MAG_LANGUAGE',
 	'MAG_CONTENTLANGUAGE',
 	'MAG_PAGESINNAMESPACE',
+	'MAG_NOGALLERY',
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
