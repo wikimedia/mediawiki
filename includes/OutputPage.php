@@ -327,6 +327,7 @@ class OutputPage {
 
 		$this->addParserOutputNoText( $parserOutput );
 		$text =	$parserOutput->getText();
+		$this->mNoGallery = $parserOutput->getNoGallery();
 		wfRunHooks( 'OutputPageBeforeHTML',array( &$this, &$text ) );
 		$parserOutput->setText( $text );
 		$this->addHTML( $parserOutput->getText() );
@@ -380,6 +381,7 @@ class OutputPage {
 			$this->addCategoryLinks( $parserOutput->getCategories() );
 			$this->addKeywords( $parserOutput );
 			$this->mNewSectionLink = $parserOutput->getNewSection();
+			$this->mNoGallery = $parserOutput->getNoGallery();
 			$text = $parserOutput->getText();
 			wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
 			$this->addHTML( $text );

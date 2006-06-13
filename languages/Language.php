@@ -213,6 +213,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 #   ID                                 CASE  SYNONYMS
 	MAG_REDIRECT             => array( 0,    '#REDIRECT'              ),
 	MAG_NOTOC                => array( 0,    '__NOTOC__'              ),
+	MAG_NOGALLERY			 => array( 0,    '__NOGALLERY__'          ),
 	MAG_FORCETOC             => array( 0,    '__FORCETOC__'           ),
 	MAG_TOC                  => array( 0,    '__TOC__'                ),
 	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__'      ),
