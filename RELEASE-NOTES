@@ -491,6 +491,7 @@ Some default configuration options have changed:
   could cause funny timeout behavior as the Content-Length was wrong.
 * Return correct content-type header with 304 responses for StreamFile;
   it confuses Safari if you let it return "text/html".
+* (bug 6280) Correct GRAMMAR for Slovenian localisation (sl)
 
 
 == Compatibility ==

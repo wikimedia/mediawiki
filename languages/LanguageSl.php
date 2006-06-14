@@ -99,6 +99,9 @@ class LanguageSl extends LanguageUtf8 {
 
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
+	/**
+	 * Cases: rodilnik, dajalnik, tožilnik, orodnik, mestnik
+	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset($wgGrammarForms['sl'][$case][$word]) ) {
@@ -151,7 +154,7 @@ class LanguageSl extends LanguageUtf8 {
 					$word = 'Wikislovar';
 				}
 			break;
-			case 'mestnik': # locative
+			case 'orodnik': # instrumental
 				if ( $word == 'Wikipedija' ) {
 					$word = 'z Wikipedijo';
 				} elseif ( $word == 'Wikiknjige' ) {
@@ -168,7 +171,7 @@ class LanguageSl extends LanguageUtf8 {
 					$word = 'z ' . $word;
 				}
 			break;
-			case 'orodnik': # instrumental
+			case 'mestnik': # locative
 				if ( $word == 'Wikipedija' ) {
 					$word = 'o Wikipediji';
 				} elseif ( $word == 'Wikiknjige' ) {
