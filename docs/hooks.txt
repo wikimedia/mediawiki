@@ -302,6 +302,10 @@ $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
 $newRev: Revision object of the "new" revision
 
+'EditFormPreloadText': Allows population of the edit form when creating new pages
+&$text: Text to preload with
+&$title: Title object representing the page being created
+
 'EditFilter': Perform checks on an edit
 $editor: Edit form (see includes/EditPage.php)
 $text: Contents of the edit box
