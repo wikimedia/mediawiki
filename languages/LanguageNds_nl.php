@@ -60,6 +60,11 @@ class LanguageNds_nl extends LanguageNds {
 		global $wgSkinNamesNds_nl;
 		return $wgSkinNamesNds_nl;
 	}
+
+	function formatDay( $day, $format ) {
+		return Language::formatDay( $day, $format );
+	}
+
 }
 
 ?>

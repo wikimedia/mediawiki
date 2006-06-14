@@ -492,7 +492,7 @@ Some default configuration options have changed:
 * Return correct content-type header with 304 responses for StreamFile;
   it confuses Safari if you let it return "text/html".
 * (bug 6280) Correct GRAMMAR for Slovenian localisation (sl)
-
+* (bug 6162) Change date format for Dutch Low Saxon (nds-nl)
 
 == Compatibility ==
 
