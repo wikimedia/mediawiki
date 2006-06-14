@@ -304,6 +304,8 @@ class EditPage {
 		# checking, etc.
 		if ( 'initial' == $this->formtype || $this->firsttime ) {
 			$this->initialiseForm();
+			if( !$this->mTitle->getArticleId() ) 
+				wfRunHooks( 'EditFormPreloadText', array( &$this->textbox1, &$this->mTitle ) );
 		}
 
 		$this->showEditForm();
