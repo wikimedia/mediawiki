@@ -62,8 +62,7 @@ class LanguageSl extends LanguageUtf8 {
 		global $wgNamespaceNamesSl, $wgMetaNamespace;
 		LanguageUtf8::LanguageUtf8();
 		$wgNamespaceNamesSl[NS_PROJECT_TALK] = 'Pogovor_' .
-			str_replace( ' ', '_',
-				$this->convertGrammar( $wgMetaNamespace, 'orodnik' ) );
+			str_replace( ' ', '_', $this->convertGrammar( $wgMetaNamespace, 'mestnik' ) );
 	}
 
 	function getNamespaces() {
@@ -154,23 +153,6 @@ class LanguageSl extends LanguageUtf8 {
 					$word = 'Wikislovar';
 				}
 			break;
-			case 'orodnik': # instrumental
-				if ( $word == 'Wikipedija' ) {
-					$word = 'z Wikipedijo';
-				} elseif ( $word == 'Wikiknjige' ) {
-					$word = 'z Wikiknjigami';
-				} elseif ( $word == 'Wikinovice' ) {
-					$word = 'z Wikinovicami';
-				} elseif ( $word == 'Wikinavedek' ) {
-					$word = 'z Wikinavedkom';
-				} elseif ( $word == 'Wikivir' ) {
-					$word = 'z Wikivirom';
-				} elseif ( $word == 'Wikislovar' ) {
-					$word = 'z Wikislovarjem';
-				} else {
-					$word = 'z ' . $word;
-				}
-			break;
 			case 'mestnik': # locative
 				if ( $word == 'Wikipedija' ) {
 					$word = 'o Wikipediji';
@@ -186,6 +168,23 @@ class LanguageSl extends LanguageUtf8 {
 					$word = 'o Wikislovarju';
 				} else {
 					$word = 'o ' . $word;
+				}
+			break;
+			case 'orodnik': # instrumental
+				if ( $word == 'Wikipedija' ) {
+					$word = 'z Wikipedijo';
+				} elseif ( $word == 'Wikiknjige' ) {
+					$word = 'z Wikiknjigami';
+				} elseif ( $word == 'Wikinovice' ) {
+					$word = 'z Wikinovicami';
+				} elseif ( $word == 'Wikinavedek' ) {
+					$word = 'z Wikinavedkom';
+				} elseif ( $word == 'Wikivir' ) {
+					$word = 'z Wikivirom';
+				} elseif ( $word == 'Wikislovar' ) {
+					$word = 'z Wikislovarjem';
+				} else {
+					$word = 'z ' . $word;
 				}
 			break;
 		}
