@@ -56,7 +56,7 @@ class ChangesList {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
 			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last '.
-				'blocklink changes history' ) as $msg ) {
+				'blocklink changes history boteditletter' ) as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
 			}
 		}
@@ -64,13 +64,14 @@ class ChangesList {
 
 
 	/**
-	 * Returns the appropiate flags for new page, minor change and patrolling
+	 * Returns the appropriate flags for new page, minor change and patrolling
 	 */
-	function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;' ) {
+	function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false ) {
 		$f = $new ? '<span class="newpage">' . $this->message['newpageletter'] . '</span>'
 				: $nothing;
 		$f .= $minor ? '<span class="minor">' . $this->message['minoreditletter'] . '</span>'
 				: $nothing;
+		$f .= $bot ? '<span class="bot">' . $this->message['boteditletter'] . '</span>' : $nothing;
 		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
 		return $f;
 	}
@@ -243,8 +244,8 @@ class OldChangesList extends ChangesList {
 
 			$this->insertDiffHist($s, $rc, $unpatrolled);
 
-			# M, N and ! (minor, new and unpatrolled)
-			$s .= ' ' . $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '' );
+			# M, N, b and ! (minor, new, bot and unpatrolled)
+			$s .= ' ' . $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot );
 			$this->insertArticleLink($s, $rc, $unpatrolled, $watched);
 
 			wfProfileOut($fname.'-page');
@@ -402,6 +403,7 @@ class EnhancedChangesList extends ChangesList {
 			if( $rcObj->unpatrolled ) {
 				$unpatrolled = true;
 			}
+			$bot = $rcObj->mAttribs['rc_bot'];
 			$userlinks[$u]++;
 		}
 
@@ -430,7 +432,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Main line
 		$r .= '<tt>';
-		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled );
+		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled, '', $bot );
 
 		# Timestamp
 		$r .= ' '.$block[0]->timestamp.' ';
@@ -474,7 +476,7 @@ class EnhancedChangesList extends ChangesList {
 
 			$r .= $this->spacerArrow();
 			$r .= '<tt>&nbsp; &nbsp; &nbsp; &nbsp;';
-			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled );
+			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '', $rc_bot );
 			$r .= '&nbsp;</tt>';
 
 			$o = '';
@@ -580,7 +582,7 @@ class EnhancedChangesList extends ChangesList {
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;&nbsp;';
 		} else {
-			$r .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled );
+			$r .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
 		}
 		$r .= ' '.$rcObj->timestamp.' </tt>';
 

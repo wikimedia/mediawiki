@@ -787,6 +787,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'show'			=> 'Show',
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
+'boteditletter' => 'b',
 'sectionlink' => '→',
 'number_of_watching_users_RCview' 	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 watching user/s]',
