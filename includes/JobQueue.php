@@ -187,9 +187,14 @@ class Job {
 				$retval = $this->refreshLinks();
 				break;
 			default:
-				$this->error = "Invalid job type {$this->command}, ignoring";
-				wfDebug( $this->error . "\n" );
-				$retval = false;
+				$retval = true;
+				if( wfRunHooks( 'RunUnknownJob', array( &$this, &$retval ) ) ) {
+					$this->error = "Invalid job type {$this->command}, ignoring";
+					wfDebug( $this->error . "\n" );
+					$retval = false;
+				} else {
+					$retval = true;
+				}
 		}
 		wfProfileOut( $fname );
 		return $retval;
