@@ -70,16 +70,16 @@ class LanguageCa extends LanguageUtf8 {
 		return $this->mSkinNamesCa + parent::getSkinNames();
 	}
 
+	function getBookstoreList () {
+		return $this->mBookstoreListCa + parent::getBookstoreList();
+	}
+
 	function getMessage( $key ) {
 		if( isset( $this->mMessagesCa[$key] ) ) {
 			return $this->mMessagesCa[$key];
 		} else {
 			return parent::getMessage( $key );
 		}
-	}
-
-	function getBookstoreList () {
-		return $this->mBookstoreListCa + parent::getBookstoreList();
 	}
 
 	function getAllMessages() {
@@ -92,6 +92,10 @@ class LanguageCa extends LanguageUtf8 {
 
 	function separatorTransformTable() {
 		return array(',' => '.', '.' => ',' );
+	}
+
+	function linkTrail() {
+		return '/^([a-zàèéíòóúç·ïü\']+)(.*)$/sDu';
 	}
 
 }

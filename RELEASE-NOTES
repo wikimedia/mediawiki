@@ -497,6 +497,7 @@ Some default configuration options have changed:
 * Introduce EditFormPreloadText hook, see docs/hooks.txt for more information
 * (bug 6095) Introduce RunUnknownJob hook, see docs/hooks.txt for more information
 * (bug 4054) Add "boteditletter" to recent changes flags
+* Update to Catalan localization (ca)
 
 == Compatibility ==
 
