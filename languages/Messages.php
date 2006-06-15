@@ -468,8 +468,6 @@ format. Please enter a well-formatted address or empty that field.',
 'showdiff'	=> 'Show changes',
 'anoneditwarning' => "'''Warning:''' You are not logged in. Your IP address will be recorded in this page's edit history.",
 'missingsummary' => "'''Reminder:''' You have not provided an edit summary. If you click Save again, your edit will be saved without one.",
-'editinguserpage' => "'''Note:''' You are editing a [[Help:User page|user page]]. To leave this user a message, $1.",
-'editinguserpagetalklink' => 'edit their talk page',
 'missingcommenttext' => 'Please enter a comment below.',
 'blockedtitle'	=> 'User is blocked',
 'blockedtext'	=> 'Your user name or IP address has been blocked by $1.
