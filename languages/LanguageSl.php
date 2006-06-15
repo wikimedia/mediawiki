@@ -99,7 +99,7 @@ class LanguageSl extends LanguageUtf8 {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
 	/**
-	 * Cases: rodilnik, dajalnik, tožilnik, orodnik, mestnik
+	 * Cases: rodilnik, dajalnik, tožilnik, mestnik, orodnik
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
