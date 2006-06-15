@@ -243,6 +243,23 @@ class LanguageCs extends LanguageUtf8 {
 		# unknown
 		return $word;
 	}
+
+  # Plural form transformations, needed for some languages.
+  # Invoked by {{plural:count|wordform1|wordform2|wordform3}}
+  function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+    switch ( $count ) {
+      case 1:
+        return $wordform1;
+
+      case 2:
+      case 3:
+      case 4:
+        return $wordform2;
+
+      default:
+        return $wordform3;
+    };
+  }
 }
 
 ?>
