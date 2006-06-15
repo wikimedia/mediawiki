@@ -390,6 +390,14 @@ my talk page, my contributions" etc).
 &$personal_urls: Array of link specifiers (see SkinTemplate.php)
 &$title: Title object representing the current page
 
+'RunUnknownJob': Handle additional, unknown job queue commands
+&$job: Job object to be handled
+&$retval: Return value indicating whether or not the operation was successful
+
+Return true to continue with processing the job through other hooks and code,
+or false if the job has been completed. Alter $retval to indicate success or
+failure when performing the actual steps to "process" the job.
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
 Return true to allow the normal method of notice selection/rendering to work,

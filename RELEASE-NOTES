@@ -495,6 +495,7 @@ Some default configuration options have changed:
 * (bug 6162) Change date format for Dutch Low Saxon (nds-nl)
 * (bug 6296) Update to Indonesian localisation (id) #21
 * Introduce EditFormPreloadText hook, see docs/hooks.txt for more information
+* (bug 6095) Introduce RunUnknownJob hook, see docs/hooks.txt for more information
 
 == Compatibility ==
 
