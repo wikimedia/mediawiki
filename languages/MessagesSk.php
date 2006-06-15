@@ -1184,13 +1184,13 @@ existujúcí článok.
 '''POZOR!'''
 Toto môže byť drastická a nečakaná zmena pre populárny článok;
 ubezpečte sa preto, skôr ako budete pokračovať, že chápete
-dôsledky svojho činu.',
-'movepagetalktext' => 'Príslušná Diskusná stránka (ak vôbec existuje) bude premiestnená spolu so samotným článkom; '''nestane sa tak, iba ak:'''
+dôsledky svojho činu.",
+'movepagetalktext' => 'Príslušná Diskusná stránka (ak vôbec existuje) bude premiestnená spolu so samotným článkom; \'\'\'nestane sa tak, iba ak:\'\'\'
 *premiestňujete článok do iného menného priestoru,
 *už existuje Diskusná stránka pod týmto novým menom, alebo
 *nezaškrtnete nižšie sa nachádzajúci textový rámček.
 
-V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlúčiť článok ručne.",
+V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlúčiť článok ručne.',
 'movearticle' => 'Presuň článok',
 'movenologin' => 'Neprihlásený/á',
 'movenologintext' => "Musíte byť registrovaný redaktor a [[Special:Userlogin|prihlásený]] aby ste mohli presunúť článok.",
