@@ -814,15 +814,6 @@ class EditPage {
 			}
 		}
 
-		$curUP = $wgUser->getUserPage();
-		$editingOTP = substr( $this->mTitle->getPrefixedText(), 0, strlen( $curUP->getPrefixedText() ) ) != $curUP->getPrefixedText()
-			&& $this->formtype != 'preview'
-			&& $this->formtype != 'diff';
-		if( $editingOTP ) {
-			$utpLink = $sk->makeKnownLinkObj( $this->mTitle->getTalkPage(), wfMsgHtml( 'editinguserpagetalklink' ), 'action=edit' );
-			$wgOut->addHtml( wfMsgWikiHtml( 'editinguserpage', $utpLink ) );
-		}
-
 		if( wfReadOnly() ) {
 			$wgOut->addWikiText( wfMsg( 'readonlywarning' ) );
 		} elseif( $wgUser->isAnon() && $this->formtype != 'preview' ) {
