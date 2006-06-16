@@ -499,79 +499,25 @@ END
 				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
-
-			# Invalidate description page cache
-			$this->mTitle->invalidateCache();
-
-			# Squid purging
-			if ( $wgUseSquid ) {
-				$urlArr = array(
-					wfImageArchiveUrl( $oldimage ),
-					$this->mTitle->getInternalURL()
-				);
-				wfPurgeSquidServers($urlArr);
-			}
 			if ( !$this->doDeleteOldImage( $oldimage ) ) {
 				return;
 			}
-			$dbw->delete( 'oldimage', array( 'oi_archive_name' => $oldimage ) );
 			$deleted = $oldimage;
 		} else {
-			$image = $this->mTitle->getDBkey();
-			$dest = wfImageDir( $image );
-			$archive = wfImageDir( $image );
-
-			# Delete the image file if it exists; due to sync problems
-			# or manual trimming sometimes the file will be missing.
-			$targetFile = "{$dest}/{$image}";
-			if( file_exists( $targetFile ) && ! @unlink( $targetFile ) ) {
+			$ok = $this->img->delete( $reason );
+			if( !$ok ) {
 				# If the deletion operation actually failed, bug out:
-				$wgOut->showFileDeleteError( $targetFile );
+				$wgOut->showFileDeleteError( $this->img->getName() );
 				return;
 			}
-			$dbw->delete( 'image', array( 'img_name' => $image ) );
-
-			if ( $dbw->affectedRows() ) {
-				# Update site_stats
-				$site_stats = $dbw->tableName( 'site_stats' );
-				$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", $fname );
-			}
 			
-
-			$res = $dbw->select( 'oldimage', array( 'oi_archive_name' ), array( 'oi_name' => $image ) );
-
-			# Purge archive URLs from the squid
-			$urlArr = Array();
-			while ( $s = $dbw->fetchObject( $res ) ) {
-				if ( !$this->doDeleteOldImage( $s->oi_archive_name ) ) {
-					return;
-				}
-				$urlArr[] = wfImageArchiveUrl( $s->oi_archive_name );
-			}
-
-			# And also the HTML of all pages using this image
-			$linksTo = $this->img->getLinksTo();
-			if ( $wgUseSquid ) {
-				$u = SquidUpdate::newFromTitles( $linksTo, $urlArr );
-				array_push( $wgPostCommitUpdateList, $u );
-			}
-
-			$dbw->delete( 'oldimage', array( 'oi_name' => $image ) );
-
 			# Image itself is now gone, and database is cleaned.
 			# Now we remove the image description page.
-
+	
 			$article = new Article( $this->mTitle );
 			$article->doDeleteArticle( $reason ); # ignore errors
 
-			# Invalidate parser cache and client cache for pages using this image
-			# This is left until relatively late to reduce lock time
-			Title::touchArray( $linksTo );
-
-			/* Delete thumbnails and refresh image metadata cache */
-			$this->img->purgeCache();
-
-			$deleted = $image;
+			$deleted = $this->img->getName();
 		}
 
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
@@ -592,27 +538,17 @@ END
 	{
 		global $wgOut;
 
-		$name = substr( $oldimage, 15 );
-		$archive = wfImageArchiveDir( $name );
-
-		# Delete the image if it exists. Sometimes the file will be missing
-		# due to manual intervention or weird sync problems; treat that
-		# condition gracefully and continue to delete the database entry.
-		# Also some records may end up with an empty oi_archive_name field
-		# if the original file was missing when a new upload was made;
-		# don't try to delete the directory then!
-		#
-		$targetFile = "{$archive}/{$oldimage}";
-		if( $oldimage != '' && file_exists( $targetFile ) && !@unlink( $targetFile ) ) {
+		$ok = $this->img->deleteOld( $oldimage, '' );
+		if( !$ok ) {
 			# If we actually have a file and can't delete it, throw an error.
-			$wgOut->showFileDeleteError( "{$archive}/{$oldimage}" );
-			return false;
+			# Something went awry...
+			$wgOut->showFileDeleteError( "$oldimage" );
 		} else {
 			# Log the deletion
 			$log = new LogPage( 'delete' );
 			$log->addEntry( 'delete', $this->mTitle, wfMsg('deletedrevision',$oldimage) );
-			return true;
 		}
+		return $ok;
 	}
 
 	function revert() {
