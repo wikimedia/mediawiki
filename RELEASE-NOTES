@@ -512,6 +512,7 @@ Some default configuration options have changed:
   $wgFileStore['deleted']['directory']
 * (bug 6324) Fix regression in enhanced RC alignment
 * Introduce {{NUMBEROFADMINS}} magic word
+* Update to Slovak translation (sk)
 
 == Compatibility ==
 
