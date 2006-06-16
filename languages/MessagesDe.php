@@ -147,7 +147,6 @@ $wgAllMessagesDe = array(
 "deletethispage" => "Diese Seite löschen",
 'undelete_short'	=> '$1 Änderungen wiederherstellen',
 'undelete_short1'	=> 'eine Änderung Wiederherstellen',
-#bug6032 'nundelete_short'	=> '{{PLURAL:$1|eine Änderung|$1 Änderungen}} wiederherstellen',
 "protect" => "schützen",
 "protectthispage" => "Artikel schützen",
 'unprotect'		=> 'freigeben',
@@ -441,6 +440,11 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 'session_fail_preview' => '<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Ihre Sitzungsdaten verloren gegangen sind.
 Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, logge Sie sich kurz aus und wieder ein.</strong>',
 "previewconflict" => "Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder; so wird der Artikel aussehen, wenn Sie jetzt speichern.",
+'session_fail_preview_html'	=> '<strong>Entschuldigung! Wir konnten Ihre Änderung nicht verarbeiten, da Ihre Sitzungsdaten verloren gegangen sind.</strong>
+
+\'\'Da in diesem Wiki reines HTML aktiviert ist, wurde die Vorschau ausgeblendet um JavaScript Attacken vorzubeugen.\'\'
+
+<strong>Versuchen Sie es erneut, falls dies ein legitimer Änderungsversuch ist. Falls es weiterhin nicht funktioniert, versuchen Sie sich ab- und wieder anzumelden.</strong>',
 'importing'		=> 'importiere $1',
 "editing"		=> "Bearbeiten von $1",
 "editingsection"	=> "Bearbeiten von $1 (Absatz)",
@@ -647,6 +651,7 @@ Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewö
 "show"			=> "einblenden",
 'minoreditletter'	=> 'K',
 'newpageletter'		=> 'N',
+'boteditletter'		=> 'B',
 'sectionlink'		=> '→',
 'number_of_watching_users_RCview'	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 Benutzer beobachten diese Seite]',
@@ -1021,6 +1026,9 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'undeletecomment' => 'Begründung:',
 "undeletedarticle" => "\"$1\" wiederhergestellt",
 'undeletedrevisions' => "$1 Versionen wiederhergestellt.",
+'undeletedrevisions-files'	=> '$1 Änderungen und $2 Dateien wiederhergestellt',
+'undeletedfiles'	=> '$1 Dateien wiederhergestellt',
+'cannotundelete'	=> 'Löschen fehlgeschlagen; jemand anderes hat diese Seite zuerst gelöscht.',
 'undeletedpage'		=> '<big>\'\'\'$1 wurde wiederhergestellt\'\'\'</big>
 
 Im [[{{ns:special}}:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlich gelöschten und wiederhergestellten Seiten.',
@@ -1534,14 +1542,14 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'exif-lightsource-1'		=> 'Tageslicht',
 'exif-lightsource-10'		=> 'Bewölkt',
 'exif-lightsource-11'		=> 'Schatten',
-#'exif-lightsource-12'		=> 'Daylight fluorescent (D 5700 – 7100K)',
-#'exif-lightsource-13'		=> 'Day white fluorescent (N 4600 – 5400K)',
-#'exif-lightsource-14'		=> 'Cool white fluorescent (W 3900 – 4500K)',
-#'exif-lightsource-15'		=> 'White fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-12'		=> 'Tageslicht fluoreszierend (D 5700 – 7100K)',
+'exif-lightsource-13'		=> 'Tagesweiß fluoreszierend (N 4600 – 5400K)',
+'exif-lightsource-14'		=> 'Kaltweiß fluoreszierend (W 3900 – 4500K)',
+'exif-lightsource-15'		=> 'Weiß fluoreszierend (WW 3200 – 3700K)',
 'exif-lightsource-17'		=> 'Standardlicht A',
 'exif-lightsource-18'		=> 'Standardlicht B',
 'exif-lightsource-19'		=> 'Standardlicht C',
-#'exif-lightsource-2'		=> 'Fluorescent',
+'exif-lightsource-2'		=> 'Fluoreszierend',
 'exif-lightsource-20'		=> 'D55',
 'exif-lightsource-21'		=> 'D65',
 'exif-lightsource-22'		=> 'D75',
@@ -1643,7 +1651,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'exif-xyresolution-i'		=> '$1 dpi',
 'exif-ycbcrcoefficients'	=> 'YCbCr-Koeffizienten',
 'exif-ycbcrpositioning'		=> 'Y und C Positionierung',
-#'exif-ycbcrsubsampling'	=> 'Subsampling ratio of Y to C',
+'exif-ycbcrsubsampling'		=> 'Subsampling Rate von Y bis C',
 'exif-yresolution'		=> 'Vertikale Auflösung',
 
 # 'all' in various places, this might be different for inflected languages
@@ -1696,19 +1704,17 @@ Wenn diese E-Mail-Adresse *nicht* zu dem genannten Benutzerkonto gehört, folgen
 Trackbacks für diesen Artikel:<br />
 $1
 </div>',
-#'trackback' => '; $4$5 : [$2 $1]',
-#'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => '([$1 löschen])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'Trackback wurde erfolgreich gelöscht.',
 
 # delete conflict
 'deletedwhileediting' => 'Warnung. Diese Seite wurde gelöscht, nach dem Sie angefangen haben diese zu bearbeiten!',
-'confirmrecreate' => 'Benutzer [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Diskussion]]) hat diesen Artikel gelöscht, nachdem Sie angefangen haben ihn zu bearbeiten. Die Begründung lautete:
+'confirmrecreate'	=> 'Benutzer [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben ihn zu bearbeiten. Die Begründung lautete:
 \'\'$2\'\'
-Bitte bestätigen Sie, dass Sie diesen Artikel wirklich wiederherstellen möchten.',
+Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.',
 'recreate' => 'Wiederherstellen',
-'tooltip-recreate' => 'Wiederherstellen',
+'tooltip-recreate' => 'Seite neu erstellen, obwohl sie gelöscht wurde.',
 
 'unit-pixel' => 'px',
 
