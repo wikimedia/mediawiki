@@ -510,6 +510,7 @@ Some default configuration options have changed:
 * (bug 2099) Deleted image files can now be archived and undeleted.
   Set $wgSaveDeletedFiles on and an appropriate directory path in
   $wgFileStore['deleted']['directory']
+* (bug 6324) Fix regression in enhanced RC alignment
 
 
 == Compatibility ==

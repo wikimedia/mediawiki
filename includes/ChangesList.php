@@ -432,7 +432,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Main line
 		$r .= '<tt>';
-		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled, '', $bot );
+		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
 
 		# Timestamp
 		$r .= ' '.$block[0]->timestamp.' ';
@@ -476,7 +476,7 @@ class EnhancedChangesList extends ChangesList {
 
 			$r .= $this->spacerArrow();
 			$r .= '<tt>&nbsp; &nbsp; &nbsp; &nbsp;';
-			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '', $rc_bot );
+			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
 			$r .= '&nbsp;</tt>';
 
 			$o = '';
