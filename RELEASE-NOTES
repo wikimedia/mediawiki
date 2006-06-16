@@ -513,6 +513,7 @@ Some default configuration options have changed:
 * (bug 6324) Fix regression in enhanced RC alignment
 * Introduce {{NUMBEROFADMINS}} magic word
 * Update to Slovak translation (sk)
+* Update to Alemannic localization (gsw)
 
 == Compatibility ==
 
