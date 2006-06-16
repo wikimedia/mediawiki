@@ -514,6 +514,7 @@ Some default configuration options have changed:
 * Introduce {{NUMBEROFADMINS}} magic word
 * Update to Slovak translation (sk)
 * Update to Alemannic localization (gsw)
+* (bug 6300) Bug fixes for sr: variants
 
 == Compatibility ==
 
