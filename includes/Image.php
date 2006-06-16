@@ -1320,7 +1320,7 @@ class Image
 		
 		// Purge cache of all pages using this image
 		$linksTo = $this->getLinksTo();
-		global $wgUseSquid;
+		global $wgUseSquid, $wgPostCommitUpdateList;
 		if ( $wgUseSquid ) {
 			$u = SquidUpdate::newFromTitles( $linksTo, $urlArr );
 			array_push( $wgPostCommitUpdateList, $u );
@@ -1754,7 +1754,7 @@ class Image
 	function delete( $reason ) {
 		$fname = __CLASS__ . '::' . __FUNCTION__;
 		$transaction = new FSTransaction();
-		$urlArr = array();
+		$urlArr = array( $this->getURL() );
 		
 		if( !FileStore::lock() ) {
 			wfDebug( "$fname: failed to acquire file store lock, aborting\n" );
