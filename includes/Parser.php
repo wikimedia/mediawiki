@@ -2898,6 +2898,12 @@ class Parser
 			}
 			$title = Title::newFromText( $part1, $ns );
 
+			$checkVariantLink = sizeof($wgContLang->getVariants())>1;
+			# Check for language variants if the template is not found
+			if($checkVariantLink && $title->getArticleID() == 0){
+				$wgContLang->findVariantLink($part1, $title);
+			}
+
 			if ( !is_null( $title ) ) {
 				if ( !$title->isExternal() ) {
 					# Check for excessive inclusion

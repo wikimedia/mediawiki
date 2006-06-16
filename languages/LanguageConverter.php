@@ -145,7 +145,12 @@ class LanguageConverter {
 			$marker = '|' . $wgParser->UniqPrefix() . '[\-a-zA-Z0-9]+';
 		else
 			$marker = "";
-		$reg = '/<[^>]+>|&[a-z#][a-z0-9]+;' . $marker . '/';
+
+		// this one is needed when the text is inside an html markup
+		$htmlfix = '|<[^>]+=\"[^(>=)]*$|^[^(<>=\")]*\"[^>]*>';
+
+		$reg = '/<[^>]+>|&[a-z#][a-z0-9]+;' . $marker . $htmlfix . '/';
+	
 		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
 
@@ -393,7 +398,7 @@ class LanguageConverter {
 			if(isset($cache[$v]))
 				continue;
 			$cache[$v] = 1;
-			$varnt = Title::newFromText( $v );
+			$varnt = Title::newFromText( $v, $ns );
 			if( $varnt && $varnt->getArticleID() > 0 ) {
 				$nt = $varnt;
 				if( !$wgDisableLangConversion )

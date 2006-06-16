@@ -68,7 +68,30 @@ class SrConverter extends LanguageConverter {
 	*/
 	function parseManualRule($rule, $flags) {
 
-		$choices = explode($this->mMarkup['varsep'], $rule);
+		$echoices = preg_split("/(<[^>]+>)/",$rule,-1,PREG_SPLIT_DELIM_CAPTURE);
+		$choices = array();
+
+		// check if we did a split across an HTML tag
+		// if so, glue them back together
+
+		$ctold = '';
+		foreach($echoices as $ct){
+			if($ct=='');
+			else if(preg_match('/<[^>]+>/',$ct)){ 
+				$ctold.=$ct;
+			}
+			else{
+				$c = explode($this->mMarkup['varsep'],$ct);
+				if(count($c)>1){
+					$choices[]=$ctold.array_shift($c);
+					$ctold=array_pop($c);
+					$choices=array_merge($choices,$c);
+				}
+				else $ctold.=array_pop($c);			
+			}
+		}
+		if($ctold!='') $choices[]=$ctold;
+
 		$carray = array();
 		if(sizeof($choices) == 1) {
 			if(in_array('W', $flags)) {
@@ -117,6 +140,56 @@ class SrConverter extends LanguageConverter {
 		}
 		return $carray;
 	}
+
+	/*
+	 * Override function from LanguageConvertor
+	 * Additional checks: 
+	 *  - There should be no conversion for Talk pages
+	 */
+	function getPreferredVariant(){
+		global $wgTitle;
+		if($wgTitle!=NULL && $wgTitle->isTalkPage()){
+			return $this->mMainLanguageCode;
+		}
+		return parent::getPreferredVariant();
+	}
+
+
+	/*
+	 * A function wrapper, if there is no selected variant, 
+	 * leave the link names as they were
+	 */
+	function findVariantLink( &$link, &$nt ) {
+		$oldlink=$link;
+		parent::findVariantLink($link,$nt);
+		if($this->getPreferredVariant()==$this->mMainLanguageCode)
+			$link=$oldlink;
+	}
+
+
+	/*
+	 * We want our external link captions to be converted in variants,
+	 * so we return the original text instead -{$text}-, except for URLs
+	 */
+	function markNoConversion($text) {
+		if(preg_match("/^https?:\/\/|ftp:\/\/|irc:\/\//",$text))
+			return parent::markNoConversion($text);
+		return $text;
+	}
+
+	/*
+	 * An ugly function wrapper for parsing Image titles
+	 * (to prevent image name conversion)
+	 */
+	function autoConvert($text, $toVariant=false) {
+		global $wgTitle;
+		if($wgTitle->getNameSpace()==NS_IMAGE){ 
+			$imagename = $wgTitle->getNsText();
+			if(preg_match("/^$imagename:/",$text)) return $text;
+		}
+		return parent::autoConvert($text,$toVariant);
+	} 
+
 
 }
 
