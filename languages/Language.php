@@ -293,6 +293,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_LANGUAGE			 => array( 0,	 '#LANGUAGE:' ),
 	MAG_CONTENTLANGUAGE		 => array( 1,	 'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	MAG_PAGESINNAMESPACE	 => array( 1,	 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
+	MAG_NUMBEROFADMINS		 => array( 1,	 'NUMBEROFADMINS' ),
 );
 
 if (!$wgCachedMessageArrays) {
