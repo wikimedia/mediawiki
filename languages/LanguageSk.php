@@ -171,6 +171,10 @@ class LanguageSk extends LanguageUtf8 {
 		);
 	}
 
+	function linkTrail() {
+		return '/^([a-záäčďéíľĺňóôŕšťúýž]+)(.*)$/sDu';
+	}
+
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
 	/**
