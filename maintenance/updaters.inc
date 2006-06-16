@@ -30,6 +30,7 @@ $wgNewTables = array(
 	array( 'job',           'patch-job.sql' ),
 	array( 'langlinks',     'patch-langlinks.sql' ),
 	array( 'querycache_info', 'patch-querycacheinfo.sql' ),
+	array( 'filearchive',   'patch-filearchive.sql' ),
 );
 
 $wgNewFields = array(

@@ -125,6 +125,29 @@ $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
 $wgUploadBaseUrl    = "";
 /**#@-*/
 
+
+/**
+ * By default deleted files are simply discarded; to save them and
+ * make it possible to undelete images, create a directory which
+ * is writable to the web server but is not exposed to the internet.
+ *
+ * Set $wgSaveDeletedFiles to true and set up the save path in
+ * $wgFileStore['deleted']['directory'].
+ */
+$wgSaveDeletedFiles = false;
+
+/**
+ * New file storage paths; currently used only for deleted files.
+ * Set it like this:
+ *
+ *   $wgFileStore['deleted']['directory'] = '/var/wiki/private/deleted';
+ *
+ */
+$wgFileStore = array();
+$wgFileStore['deleted']['directory'] = null; // Don't forget to set this.
+$wgFileStore['deleted']['url'] = null;       // Private
+$wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
+
 /**
  * Allowed title characters -- regex character class
  * Don't change this unless you know what you're doing

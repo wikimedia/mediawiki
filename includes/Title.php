@@ -1256,6 +1256,10 @@ class Title {
 			$dbr =& wfGetDB( DB_SLAVE );
 			$n = $dbr->selectField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(),
 				'ar_title' => $this->getDBkey() ), $fname );
+			if( $this->getNamespace() == NS_IMAGE ) {
+				$n += $dbr->selectField( 'filearchive', 'COUNT(*)',
+					array( 'fa_name' => $this->getDBkey() ), $fname );
+			}
 		}
 		return (int)$n;
 	}

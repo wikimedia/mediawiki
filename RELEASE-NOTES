@@ -23,6 +23,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 Some default configuration options have changed:
 * $wgAllowExternalImages now defaults to off for increased security.
 
+== Major new features ==
+
+* Deleted files can now be archived and undeleted, if you set up
+  an appropriate non-web-accessible directory.
+  Set $wgSaveDeletedFiles on and an appropriate directory path in
+  $wgFileStore['deleted']['directory']
+
+
+
 
 == Changes since 1.6 ==
 
@@ -498,6 +507,10 @@ Some default configuration options have changed:
 * (bug 6095) Introduce RunUnknownJob hook, see docs/hooks.txt for more information
 * (bug 4054) Add "boteditletter" to recent changes flags
 * Update to Catalan localization (ca)
+* (bug 2099) Deleted image files can now be archived and undeleted.
+  Set $wgSaveDeletedFiles on and an appropriate directory path in
+  $wgFileStore['deleted']['directory']
+
 
 == Compatibility ==
 

@@ -1216,6 +1216,9 @@ before deletion. The actual text of these deleted revisions is only available to
 'undeletecomment' => 'Comment:',
 'undeletedarticle' => "restored \"[[$1]]\"",
 'undeletedrevisions' => "$1 revisions restored",
+'undeletedrevisions-files' => "$1 revisions and $2 file(s) restored",
+'undeletedfiles' => "$1 file(s) restored",
+'cannotundelete' => 'Undelete failed; someone else may have undeleted the page first.',
 'undeletedpage' => "<big>'''$1 has been restored'''</big>
 
 Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
