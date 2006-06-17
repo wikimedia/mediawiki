@@ -106,19 +106,19 @@ class Skin extends Linker {
 	 * @static
 	 */
 	function &newFromKey( $key ) {
+		global $wgStyleDirectory;
+		
 		$key = Skin::normalizeKey( $key );
 
 		$skinNames = Skin::getSkinNames();
 		$skinName = $skinNames[$key];
 
-		global $IP;
-
 		# Grab the skin class and initialise it.
 		wfSuppressWarnings();
 		// Preload base classes to work around APC/PHP5 bug
-		include_once( $IP.'/skins/'.$skinName.'.deps.php' );
+		include_once( "{$wgStyleDirectory}/{$skinName}.deps.php" );
 		wfRestoreWarnings();
-		require_once( $IP.'/skins/'.$skinName.'.php' );
+		require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 
 		# Check if we got if not failback to default skin
 		$className = 'Skin'.$skinName;
@@ -129,7 +129,7 @@ class Skin extends Linker {
 			# is no longer valid.
 			wfDebug( "Skin class does not exist: $className\n" );
 			$className = 'SkinStandard';
-			require_once( $IP.'/skins/Standard.php' );
+			require_once( "{$wgStyleDirectory}/Standard.php" );
 		}
 		$skin =& new $className;
 		return $skin;
