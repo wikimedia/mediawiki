@@ -1594,6 +1594,14 @@ class Image
 			$article->insertNewArticle( $textdesc, $desc, $minor, $watch, $suppressRC );
 		}
 
+		# Add the log entry
+		$log = new LogPage( 'upload' );
+		$log->addEntry( 'upload', $descTitle, $desc );
+
+		# Commit the transaction now, in case something goes wrong later
+		# The most important thing is that images don't get lost, especially archives
+		$dbw->immediateCommit();
+
 		# Invalidate cache for all pages using this image
 		$linksTo = $this->getLinksTo();
 
@@ -1602,9 +1610,6 @@ class Image
 			array_push( $wgPostCommitUpdateList, $u );
 		}
 		Title::touchArray( $linksTo );
-
-		$log = new LogPage( 'upload' );
-		$log->addEntry( 'upload', $descTitle, $desc );
 
 		return true;
 	}
