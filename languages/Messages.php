@@ -952,6 +952,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'lonelypages'	=> 'Orphaned pages',
 'uncategorizedpages'	=> 'Uncategorized pages',
 'uncategorizedcategories'	=> 'Uncategorized categories',
+'uncategorizedimages' => 'Uncategorized images',
 'unusedcategories' => 'Unused categories',
 'unusedimages'	=> 'Unused files',
 'popularpages'	=> 'Popular pages',
