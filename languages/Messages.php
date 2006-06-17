@@ -53,7 +53,7 @@ parent class in order maintain consistency across languages.
 'tog-previewontop' => 'Show preview before edit box',
 'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
-'tog-enotifwatchlistpages' 	=> 'E-mail me on page changes',
+'tog-enotifwatchlistpages' 	=> 'E-mail me when a page I\'m watching is changed',
 'tog-enotifusertalkpages' 	=> 'E-mail me when my user talk page is changed',
 'tog-enotifminoredits' 		=> 'E-mail me also for minor edits of pages',
 'tog-enotifrevealaddr' 		=> 'Reveal my e-mail address in notification mails',
