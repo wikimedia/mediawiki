@@ -515,6 +515,9 @@ Some default configuration options have changed:
 * Update to Slovak translation (sk)
 * Update to Alemannic localization (gsw)
 * (bug 6300) Bug fixes for sr: variants
+* namespaceDupes.php can now accept an arbitrary prefix, for checking rogue
+  interwikis and such. Not yet fully automated.
+
 
 == Compatibility ==
 
