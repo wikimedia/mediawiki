@@ -888,7 +888,7 @@ class Image
 	 *
 	 * @param integer $width	maximum width of the generated thumbnail
 	 * @param integer $height	maximum height of the image (optional)
-	 * @return ThumbnailImage
+	 * @return ThumbnailImage or null on failure
 	 * @public
 	 */
 	function getThumbnail( $width, $height=-1 ) {
@@ -904,9 +904,6 @@ class Image
 		}
 		else $thumb= NULL; #not a bitmap or renderable image, don't try.
 
-		if( is_null( $thumb ) ) {
-			$thumb = $this->iconThumb();
-		}
 		return $thumb;
 	}
 
@@ -936,7 +933,7 @@ class Image
 	 * Returns an object which can return the pathname, URL, and physical
 	 * pixel size of the thumbnail -- or null on failure.
 	 *
-	 * @return ThumbnailImage
+	 * @return ThumbnailImage or null on failure
 	 * @private
 	 */
 	function renderThumb( $width, $useScript = true ) {
