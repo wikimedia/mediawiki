@@ -517,7 +517,7 @@ Some default configuration options have changed:
 * (bug 6300) Bug fixes for sr: variants
 * namespaceDupes.php can now accept an arbitrary prefix, for checking rogue
   interwikis and such. Not yet fully automated.
-
+* (bug 6344) Add Special:Uncategorizedimages page
 
 == Compatibility ==
 
