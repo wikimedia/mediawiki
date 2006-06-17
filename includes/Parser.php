@@ -4697,7 +4697,7 @@ function wfNumberOfAdmins() {
 	wfProfileIn( 'wfNumberOfAdmins' );
 	if( $admins == -1 ) {
 		$dbr =& wfGetDB( DB_SLAVE );
-		$admins = $dbr->selectField( 'site_stats', 'ss_admins', array( 'ss_row_id' => 1 ), 'wfNumberOfAdmins' );
+		$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), 'wfNumberOfAdmins' );
 	}
 	wfProfileOut( 'wfNumberOfAdmins' );
 	return (int)$admins;
