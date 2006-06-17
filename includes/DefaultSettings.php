@@ -2098,4 +2098,9 @@ $wgAllowTitlesInSVG = false;
  */
 $wgContentNamespaces = array( NS_MAIN );
 
+/**
+ * Maximum amount of virtual memory available to shell processes under linux, in KB. 
+ */
+$wgMaxShellMemory = 102400;
+
 ?>
