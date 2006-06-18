@@ -518,6 +518,7 @@ Some default configuration options have changed:
 * namespaceDupes.php can now accept an arbitrary prefix, for checking rogue
   interwikis and such. Not yet fully automated.
 * (bug 6344) Add Special:Uncategorizedimages page
+* (bug 6357) Update to Russian translation (ru)
 
 == Compatibility ==
 
