@@ -1181,7 +1181,6 @@ class Article {
 		# Update the page record with revision data
 		$this->updateRevisionOn( $dbw, $revision, 0 );
 
-		Article::onArticleCreate( $this->mTitle );
 		if(!$suppressRC) {
 			$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default',
 			  '', strlen( $text ), $revisionId );
@@ -1207,11 +1206,14 @@ class Article {
 			       'page_title' => $ttl ),
 			$fname );
 
-		# standard deferred updates
+		# Update links, etc.
 		$this->editUpdates( $text, $summary, $isminor, $now, $revisionId );
 
-		$oldid = 0; # new article
-		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid );
+		# Clear caches
+		Article::onArticleCreate( $this->mTitle );
+
+		# Output a redirect back to the article
+		$this->doRedirect( $this->isRedirect( $text ) );
 
 		wfRunHooks( 'ArticleInsertComplete', array( &$this, &$wgUser, $text,
 			$summary, $isminor,
@@ -1318,7 +1320,6 @@ class Article {
 				'text'       => $text
 				) );
 
-			$dbw->immediateCommit();
 			$dbw->begin();
 			$revisionId = $revision->insertOn( $dbw );
 
@@ -1330,7 +1331,7 @@ class Article {
 				$good = false;
 				$dbw->rollback();
 			} else {
-				# Update recentchanges and purge cache and whatnot
+				# Update recentchanges
 				$bot = (int)($wgUser->isBot() || $forceBot);
 				$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
 					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
@@ -1342,9 +1343,6 @@ class Article {
 				}
 					
 				$dbw->commit();
-
-				// Update caches outside the main transaction
-				Article::onArticleEdit( $this->mTitle );
 			}
 		} else {
 			// Keep the same revision ID, but do some updates on it
@@ -1356,52 +1354,28 @@ class Article {
 		}
 
 		if ( $good ) {
+			# Invalidate cache of this article and all pages using this article 
+			# as a template. Partly deferred.
+			Article::onArticleEdit( $this->mTitle );
+			
 			if ($watchthis) {
 				if (!$this->mTitle->userIsWatching()) {
-					$dbw->immediateCommit();
 					$dbw->begin();
 					$this->doWatch();
 					$dbw->commit();
 				}
 			} else {
 				if ( $this->mTitle->userIsWatching() ) {
-					$dbw->immediateCommit();
 					$dbw->begin();
 					$this->doUnwatch();
 					$dbw->commit();
 				}
 			}
-			# standard deferred updates
+			# Update links tables, site stats, etc.
 			$this->editUpdates( $text, $summary, $minor, $now, $revisionId );
 
-
-			$urls = array();
-			# Invalidate caches of all articles using this article as a template
-
-			# Template namespace
-			# Purge all articles linking here
-			$titles = $this->mTitle->getTemplateLinksTo();
-			Title::touchArray( $titles );
-			if ( $wgUseSquid ) {
-					foreach ( $titles as $title ) {
-						$urls[] = $title->getInternalURL();
-					}
-			}
-
-			# Squid updates
-			if ( $wgUseSquid ) {
-				$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
-				$u = new SquidUpdate( $urls );
-				array_push( $wgPostCommitUpdateList, $u );
-			}
-
-			# File cache
-			if ( $wgUseFileCache ) {
-				$cm = new CacheManager($this->mTitle);
-				@unlink($cm->fileCacheName());
-			}
-
-			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision );
+			# Output a redirect back to the article
+			$this->doRedirect( $this->isRedirect( $text ), $sectionanchor );
 		}
 		wfRunHooks( 'ArticleSaveComplete',
 			array( &$this, &$wgUser, $text,
@@ -1412,26 +1386,29 @@ class Article {
 	}
 
 	/**
-	 * After we've either updated or inserted the article, update
-	 * the link tables and redirect to the new page.
-	 * @todo FIXME some function arguments never used
+	 * @deprecated wrapper for doRedirect
 	 */
 	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
-		global $wgOut;
-
-		$fname = 'Article::showArticle';
-		wfProfileIn( $fname );
-
-		# Output the redirect
-		if( $this->isRedirect( $text ) )
-			$r = 'redirect=no';
-		else
-			$r = '';
-		$wgOut->redirect( $this->mTitle->getFullURL( $r ).$sectionanchor );
-
-		wfProfileOut( $fname );
+		$this->doRedirect( $this->isRedirect( $text ), $sectionanchor );
 	}
 
+	/**
+	 * Output a redirect back to the article.
+	 * This is typically used after an edit.
+	 *
+	 * @param boolean $noRedir Add redirect=no
+	 * @param string $sectionAnchor section to redirect to, including "#"
+	 */
+	function doRedirect( $noRedir = false, $sectionAnchor = '' ) {
+		global $wgOut;
+		if ( $noRedir ) {
+			$query = 'redirect=no';
+		} else {
+			$query = '';
+		}
+		$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $sectionAnchor );
+	}
+		
 	/**
 	 * Mark this particular edit as patrolled
 	 */
@@ -1927,24 +1904,6 @@ class Article {
 		$u = new SiteStatsUpdate( 0, 1, -(int)$this->isCountable( $this->getContent() ), -1 );
 		array_push( $wgDeferredUpdateList, $u );
 
-		$linksTo = $this->mTitle->getLinksTo();
-
-		# Squid purging
-		if ( $wgUseSquid ) {
-			$urls = array(
-				$this->mTitle->getInternalURL(),
-				$this->mTitle->getInternalURL( 'history' )
-			);
-
-			$u = SquidUpdate::newFromTitles( $linksTo, $urls );
-			array_push( $wgPostCommitUpdateList, $u );
-
-		}
-
-		# Client and file cache invalidation
-		Title::touchArray( $linksTo );
-
-
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
@@ -1985,6 +1944,7 @@ class Article {
 		# Finally, clean up the link tables
 		$t = $this->mTitle->getPrefixedDBkey();
 
+		# Clear caches
 		Article::onArticleDelete( $this->mTitle );
 
 		# Delete outgoing links
@@ -2042,12 +2002,10 @@ class Article {
 		$tt = $this->mTitle->getDBKey();
 		$n = $this->mTitle->getNamespace();
 
-		# Get the last editor, lock table exclusively
-		$dbw->begin();
+		# Get the last editor
 		$current = Revision::newFromTitle( $this->mTitle );
 		if( is_null( $current ) ) {
 			# Something wrong... no page?
-			$dbw->rollback();
 			$wgOut->addHTML( wfMsg( 'notanarticle' ) );
 			return;
 		}
@@ -2082,7 +2040,6 @@ class Article {
 			);
 		if( $s === false ) {
 			# Something wrong
-			$dbw->rollback();
 			$wgOut->setPageTitle(wfMsg('rollbackfailed'));
 			$wgOut->addHTML( wfMsg( 'cantrollback' ) );
 			return;
@@ -2119,9 +2076,7 @@ class Article {
 		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newComment ) . "</h2>\n<hr />\n" );
 
 		$this->updateArticle( $target->getText(), $newComment, 1, $this->mTitle->userIsWatching(), $bot );
-		Article::onArticleEdit( $this->mTitle );
 
-		$dbw->commit();
 		$wgOut->returnToMain( false );
 	}
 
@@ -2149,7 +2104,9 @@ class Article {
 
 	/**
 	 * Do standard deferred updates after page edit.
+	 * Update links tables, site stats, search index and message cache.
 	 * Every 1000th edit, prune the recent changes table.
+	 * 
 	 * @private
 	 * @param string $text
 	 */
@@ -2447,27 +2404,22 @@ class Article {
 	 * @param $title_obj a title object
 	 */
 
-	function onArticleCreate($title_obj) {
-		global $wgUseSquid, $wgPostCommitUpdateList;
-
-		$title_obj->touchLinks();
-		$titles = $title_obj->getLinksTo();
-
-		# Purge squid
-		if ( $wgUseSquid ) {
-			$urls = $title_obj->getSquidURLs();
-			foreach ( $titles as $linkTitle ) {
-				$urls[] = $linkTitle->getInternalURL();
-			}
-			$u = new SquidUpdate( $urls );
-			array_push( $wgPostCommitUpdateList, $u );
-		}
+	static function onArticleCreate($title) {
+		$title->touchLinks();
+		$title->purgeSquid();
 	}
 
-	function onArticleDelete( $title ) {
-		global $wgMessageCache;
+	static function onArticleDelete( $title ) {
+		global $wgUseFileCache, $wgMessageCache;
 
 		$title->touchLinks();
+		$title->purgeSquid();
+		
+		# File cache
+		if ( $wgUseFileCache ) {
+			$cm = new CacheManager( $title );
+			@unlink( $cm->fileCacheName() );
+		}
 
 		if( $title->getNamespace() == NS_MEDIAWIKI) {
 			$wgMessageCache->replace( $title->getDBkey(), false );
@@ -2477,31 +2429,19 @@ class Article {
 	/**
 	 * Purge caches on page update etc
 	 */
-	function onArticleEdit( $title ) {
-		global $wgUseSquid, $wgPostCommitUpdateList, $wgUseFileCache;
+	static function onArticleEdit( $title ) {
+		global $wgDeferredUpdateList, $wgUseFileCache;
 
 		$urls = array();
 
-		// Template namespace? Purge all articles linking here.
-		// FIXME: When a templatelinks table arrives, use it for all includes.
-		if ( $title->getNamespace() == NS_TEMPLATE) {
-			$titles = $title->getLinksTo();
-			Title::touchArray( $titles );
-			if ( $wgUseSquid ) {
-				foreach ( $titles as $link ) {
-					$urls[] = $link->getInternalURL();
-				}
-			}
-		}
+		// Invalidate caches of articles which include this page
+		$update = new HTMLCacheUpdate( $title, 'templatelinks' );
+		$wgDeferredUpdateList[] = $update;
 
-		# Squid updates
-		if ( $wgUseSquid ) {
-			$urls = array_merge( $urls, $title->getSquidURLs() );
-			$u = new SquidUpdate( $urls );
-			array_push( $wgPostCommitUpdateList, $u );
-		}
+		# Purge squid for this page only
+		$title->purgeSquid();
 
-		# File cache
+		# Clear file cache
 		if ( $wgUseFileCache ) {
 			$cm = new CacheManager( $title );
 			@unlink( $cm->fileCacheName() );

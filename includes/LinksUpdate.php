@@ -85,7 +85,7 @@ class LinksUpdate {
 	function doIncrementalUpdate() {
 		$fname = 'LinksUpdate::doIncrementalUpdate';
 		wfProfileIn( $fname );
-
+		
 		# Page links
 		$existing = $this->getExistingLinks();
 		$this->incrTableUpdate( 'pagelinks', 'pl', $this->getLinkDeletions( $existing ),
@@ -115,14 +115,6 @@ class LinksUpdate {
 		$this->incrTableUpdate( 'templatelinks', 'tl', $this->getTemplateDeletions( $existing ),
 			$this->getTemplateInsertions( $existing ) );
 
-		# Refresh links of all pages including this page
-		if ( $this->mRecursive ) {
-			$tlto = $this->mTitle->getTemplateLinksTo();
-			if ( count( $tlto ) ) {
-				Job::queueLinksJobs( $tlto );
-			}
-		}
-
 		# Category links
 		$existing = $this->getExistingCategories();
 		$this->incrTableUpdate( 'categorylinks', 'cl', $this->getCategoryDeletions( $existing ),
@@ -132,6 +124,12 @@ class LinksUpdate {
 		$categoryUpdates = array_diff_assoc( $existing, $this->mCategories ) + array_diff_assoc( $this->mCategories, $existing );
 		$this->invalidateCategories( $categoryUpdates );
 
+		# Refresh links of all pages including this page
+		# This will be in a separate transaction
+		if ( $this->mRecursive ) {
+			$this->queueRecursiveJobs();
+		}
+		
 		wfProfileOut( $fname );
 	}
 
@@ -150,14 +148,6 @@ class LinksUpdate {
 		$existing = $this->getExistingImages();
 		$imageUpdates = array_diff_key( $existing, $this->mImages ) + array_diff_key( $this->mImages, $existing );
 
-		# Refresh links of all pages including this page
-		if ( $this->mRecursive ) {
-			$tlto = $this->mTitle->getTemplateLinksTo();
-			if ( count( $tlto ) ) {
-				Job::queueLinksJobs( $tlto );
-			}
-		}
-
 		$this->dumbTableUpdate( 'pagelinks',     $this->getLinkInsertions(),     'pl_from' );
 		$this->dumbTableUpdate( 'imagelinks',    $this->getImageInsertions(),    'il_from' );
 		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
@@ -169,7 +159,45 @@ class LinksUpdate {
 		$this->invalidateCategories( $categoryUpdates );
 		$this->invalidateImageDescriptions( $imageUpdates );
 
+		# Refresh links of all pages including this page
+		# This will be in a separate transaction
+		if ( $this->mRecursive ) {
+			$this->queueRecursiveJobs();
+		}
+
 		wfProfileOut( $fname );
+	}
+
+	function queueRecursiveJobs() {
+		wfProfileIn( __METHOD__ );
+		
+		$batchSize = 100;
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'templatelinks', 'page' ), 
+			array( 'page_namespace', 'page_title' ),
+			array( 
+				'page_id=tl_from', 
+				'tl_namespace' => $this->mTitle->getNamespace(),
+				'tl_title' => $this->mTitle->getDBkey()
+			), __METHOD__
+		);
+
+		$done = false;
+		while ( !$done ) {
+			$jobs = array();
+			for ( $i = 0; $i < $batchSize; $i++ ) {
+				$row = $dbr->fetchObject( $res );
+				if ( !$row ) {
+					$done = true;
+					break;
+				}
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$jobs[] = Job::factory( 'refreshLinks', $title );
+			}
+			Job::batchInsert( $jobs );
+		}
+		$dbr->freeResult( $res );
+		wfProfileOut( __METHOD__ );
 	}
 	
 	/**

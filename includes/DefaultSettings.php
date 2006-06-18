@@ -62,6 +62,7 @@ $wgProto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : '
 $wgServer = $wgProto.'://' . $wgServerName;
 # If the port is a non-standard one, add it to the URL
 if(    isset( $_SERVER['SERVER_PORT'] )
+	&& !strpos( $wgServerName, ':' )
     && (    ( $wgProto == 'http' && $_SERVER['SERVER_PORT'] != 80 )
 	 || ( $wgProto == 'https' && $_SERVER['SERVER_PORT'] != 443 ) ) ) {
 
@@ -2059,6 +2060,16 @@ $wgJobRunRate = 1;
  * Log file for job execution
  */
 $wgJobLogFile = false;
+
+/**
+ * Number of rows to update per job
+ */
+$wgUpdateRowsPerJob = 500;
+
+/**
+ * Number of rows to update per query
+ */
+$wgUpdateRowsPerQuery = 10;
 
 /**
  * Enable use of AJAX features, currently auto suggestion for the search bar
