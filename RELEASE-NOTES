@@ -522,6 +522,8 @@ Some default configuration options have changed:
 * Workaround possible bug in Firefox nightlies by properly removing the
   Content-Encoding header instead of sending explicit 'identity' value
   in StreamFile
+* (bug 6304) Show timestamp for current revision in diff pages
+* Vertically align current version with old version header in diff display
 
 
 == Compatibility ==
