@@ -577,7 +577,9 @@ class Database {
 		}
 
 		# If DBO_TRX is set, start a transaction
-		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() && $sql != 'BEGIN' ) {
+		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() && 
+			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK' 
+		) {
 			$this->begin();
 		}
 
@@ -1699,26 +1701,19 @@ class Database {
 	}
 
 	/**
-	 * Begin a transaction, or if a transaction has already started, continue it
+	 * Begin a transaction, committing any previously open transaction
 	 */
 	function begin( $fname = 'Database::begin' ) {
-		if ( !$this->mTrxLevel ) {
-			$this->immediateBegin( $fname );
-		} else {
-			$this->mTrxLevel++;
-		}
+		$this->query( 'BEGIN', $fname );
+		$this->mTrxLevel = 1;
 	}
 
 	/**
-	 * End a transaction, or decrement the nest level if transactions are nested
+	 * End a transaction
 	 */
 	function commit( $fname = 'Database::commit' ) {
-		if ( $this->mTrxLevel ) {
-			$this->mTrxLevel--;
-		}
-		if ( !$this->mTrxLevel ) {
-			$this->immediateCommit( $fname );
-		}
+		$this->query( 'COMMIT', $fname );
+		$this->mTrxLevel = 0;
 	}
 
 	/**
@@ -1731,18 +1726,18 @@ class Database {
 
 	/**
 	 * Begin a transaction, committing any previously open transaction
+	 * @deprecated use begin()
 	 */
 	function immediateBegin( $fname = 'Database::immediateBegin' ) {
-		$this->query( 'BEGIN', $fname );
-		$this->mTrxLevel = 1;
+		$this->begin();
 	}
 
 	/**
 	 * Commit transaction, if one is open
+	 * @deprecated use commit()
 	 */
 	function immediateCommit( $fname = 'Database::immediateCommit' ) {
-		$this->query( 'COMMIT', $fname );
-		$this->mTrxLevel = 0;
+		$this->commit();
 	}
 
 	/**
@@ -1994,7 +1989,7 @@ class ResultWrapper {
 	/**
 	 * @todo document
 	 */
-	function &fetchRow() {
+	function fetchRow() {
 		return $this->db->fetchRow( $this->result );
 	}
 
