@@ -519,6 +519,10 @@ Some default configuration options have changed:
   interwikis and such. Not yet fully automated.
 * (bug 6344) Add Special:Uncategorizedimages page
 * (bug 6357) Update to Russian translation (ru)
+* Workaround possible bug in Firefox nightlies by properly removing the
+  Content-Encoding header instead of sending explicit 'identity' value
+  in StreamFile
+
 
 == Compatibility ==
 

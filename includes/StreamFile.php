@@ -20,7 +20,7 @@ does not.</p>
 	while( $status = ob_get_status() ) {
 		ob_end_clean();
 		if( $status['name'] == 'ob_gzhandler' ) {
-			header( 'Content-Encoding: identity' );
+			header( 'Content-Encoding:' );
 		}
 	}
 	
