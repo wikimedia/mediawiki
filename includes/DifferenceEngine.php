@@ -169,7 +169,7 @@ CONTROL;
 		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'previousdiff' ),
 			'diff=prev&oldid='.$this->mOldid, '', '', 'id="differences-prevlink"' );
 		if ( $this->mNewRev->isCurrent() ) {
-			$nextlink = '';
+			$nextlink = '&nbsp;';
 		} else {
 			$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ),
 				'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
@@ -486,20 +486,24 @@ CONTROL;
 		}
 
 		// Set assorted variables
+		$timestamp = $wgLang->timeanddate( $this->mNewRev->getTimestamp(), true );
+		$this->mNewPage = $this->mNewRev->getTitle();
 		if( $this->mNewRev->isCurrent() ) {
-			$this->mNewPage = $this->mTitle;
 			$newLink = $this->mNewPage->escapeLocalUrl();
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
+			
+			$this->mNewtitle = "<strong><a href='$newLink'>{$this->mPagetitle}</a> ($timestamp)</strong>"
+				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+
 		} else {
-			$this->mNewPage = $this->mNewRev->getTitle();
 			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mNewid );
-			$t = $wgLang->timeanddate( $this->mNewRev->getTimestamp(), true );
-			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
+			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $timestamp ) );
+			
+			$this->mNewtitle = "<strong><a href='$newLink'>{$this->mPagetitle}</a></strong>"
+				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
 		}
-		$this->mNewtitle = "<strong><a href='$newLink'>{$this->mPagetitle}</a></strong>"
-			. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
 
 		// Load the old revision object
 		$this->mOldRev = false;
