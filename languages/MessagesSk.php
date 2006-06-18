@@ -18,7 +18,7 @@ $wgAllMessagesSk = array(
 'tog-editwidth'         => 'Maximálna šírka okna na úpravy',
 'tog-watchcreations'    => 'Pridaj stránky, ktoré vytvorím do môjho zoznamu sledovaných stránok',
 'tog-watchdefault'      => 'Upozorňuj na nové a novo upravené stránky',
-'tog-minordefault'      => 'Označ všetky zmeny ako drobné',
+'tog-minordefault'      => 'Označ všetky zmeny štandardne ako drobné',
 'tog-previewontop'      => 'Zobrazuj ukážku pred oknom na úpravy, a nie až za ním',
 'tog-previewonfirst'    => 'Zobraz náhľad pri prvom upravovaní',
 'tog-nocache'           => 'Vypni ukladanie stránok do vyrovnávacej pamäte',
@@ -71,7 +71,7 @@ $wgAllMessagesSk = array(
 'oct'                   => 'okt',
 'nov'                   => 'nov',
 'dec'                   => 'dec',
-'categories'            => '{{PLURAL:$1|Kategória|Kategórie|Kategórií}}',
+'categories'            => '{{PLURAL:$1|Kategória|Kategórie}}',
 'category'              => 'kategória',
 'category_header'       => 'články v kategórii „$1“',
 'subcategories'         => 'Podkategórie',
@@ -327,7 +327,7 @@ Vaše skutočné meno, ak sa rozhodnete ho uverejniť, bude priradené k vašej 
 'mailmypassword'        => 'Pošlite mi e-mailom dočasné heslo',
 'passwordremindertitle' => 'Oznámenie o hesle z {{GRAMMAR:genitív|{{SITENAME}}}}',
 'passwordremindertext'  => 'Niekto (pravdepodobne vy, z IP adresy $1)
-požiadal, aby sme vám zaslali nové prihlasovacie heslo do {{SITENAME}} ($4).
+požiadal, aby sme vám zaslali nové prihlasovacie heslo do {{GRAMMAR:genitív|{{SITENAME}}}} ($4).
 Heslo pre redaktora "$2" je teraz "$3".
 Teraz by ste sa mali prihlásiť a zmeniť vaše heslo.
 
@@ -403,7 +403,7 @@ Vaša IP adresa je $3. Prosíme zahrňte túto adresu do každého dotazu, ktor�
 'loginreqlink'          => 'prihlásiť',
 'loginreqpagetext'      => 'Na prezeranie ďalších článkov sa musíte $1.',
 'accmailtitle'          => 'Heslo odoslané.',
-'accmailtext'           => 'Heslo pre \'$1\' bolo poslané $2.',
+'accmailtext'           => 'Heslo pre \'$1\' bolo poslané na $2.',
 'newarticle'            => '(Nový)',
 'newarticletext'        => '<div style="border: 1px solid #ccc; padding: 7px;">\'\'\'{{SITENAME}} ešte neobsahuje článok s názvom {{PAGENAME}}.\'\'\'
 * Na vytvorenie nového článku, začnite písať do dolného okna a potom kliknite "Uložiť článok". Vaše zmeny budú ihneď viditeľné.
@@ -760,15 +760,13 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 'statistics'            => 'Štatistiky',
 'sitestats'             => 'Štatistika webu',
 'userstats'             => 'Štatistika k redaktorom',
-'sitestatstext'         => '<p style="font-size:125%;margin-bottom:0">{{SITENAME}} momentálne má \'\'\'$2\'\'\' článkov.</p>
-<p style="margin-top:0">Do toho sa nezapočítavajú presmerovania, portály, diskusné stránky, popisné stránky obrázkov, stránky používateľských profilov, šablóny, stránky Pomocníka, portály, články bez odkazov na iné články a stránky o {{GRAMMAR:lokál|{{SITENAME}}}}.
-Vrátane týchto máme spolu \'\'\'$1\'\'\' stránok.</p>
+'sitestatstext'         => '{{SITENAME}} momentálne má \'\'\'$2\'\'\' článkov.
+Do toho sa nezapočítavajú presmerovania, diskusné stránky, popisné stránky obrázkov, stránky používateľských profilov, šablóny, stránky Pomocníka, portály, články bez odkazov na iné články a stránky o {{GRAMMAR:lokál|{{SITENAME}}}}.
+Vrátane týchto máme spolu \'\'\'$1\'\'\' stránok.
 
 Celkovo bolo nahraných \'\'\'$8\'\'\' súborov.
 
-Celkovo boli stránky navštívené \'\'\'$3\'\'\'-krát a upravené \'\'\'$4\'\'\'-krát,
-od posledného vylepšenia (upgrade) softvéru (20. júla 2002).
-To znamená, že pripadá priemerne \'\'\'$5\'\'\' úprav na každý článok a \'\'\'$6\'\'\' návštev na každú úpravu (od posledného vylepšenia (upgrade) softvéru 20. júla 2002).
+Celkovo boli stránky navštívené \'\'\'$3\'\'\'-krát a upravené \'\'\'$4\'\'\'-krát. To znamená, že pripadá priemerne \'\'\'$5\'\'\' úprav na každý článok a \'\'\'$6\'\'\' návštev na každú úpravu (od posledného vylepšenia (upgrade) softvéru 20. júla 2002).
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Dĺžka frontu úloh] je momentálne \'\'\'$7\'\'\'.',
 'userstatstext'         => 'Celkovo je \'\'\'$1\'\'\' zaregistrovaných redaktorov,
@@ -1598,7 +1596,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriam
 'exif-gpsdirection-t'   => 'Skutočný smer',
 'exif-gpsdirection-m'   => 'Magnetický smer',
 'edit-externally'       => 'Uprav tento súbor pomocou externého programu',
-'edit-externally-help'  => 'Viac informácií je na [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions].',
+'edit-externally-help'  => 'Viac informácií poskytnú inštrukcie pre nastavenie [http://meta.wikimedia.org/wiki/Help:External_editors externého editora].',
 'recentchangesall'      => 'všetky',
 'imagelistall'          => 'všetky',
 'watchlistall1'         => 'všetky',
