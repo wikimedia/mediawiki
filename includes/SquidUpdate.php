@@ -81,10 +81,10 @@ class SquidUpdate {
 	/* static */ function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;
 
-		if ( (@$wgSquidServers[0]) == 'echo' ) {
+		/*if ( (@$wgSquidServers[0]) == 'echo' ) {
 			echo implode("<br />\n", $urlArr) . "<br />\n";
 			return;
-		}
+		}*/
 
 		if ( $wgHTCPMulticastAddress && $wgHTCPPort )
 			SquidUpdate::HTCPPurge( $urlArr );
