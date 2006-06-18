@@ -54,6 +54,10 @@ class SquidUpdate {
 	}
 
 	/* static */ function newFromTitles( &$titles, $urlArr = array() ) {
+		global $wgMaxSquidPurgeTitles;
+		if ( count( $titles ) > $wgMaxSquidPurgeTitles ) {
+			$titles = array_slice( $titles, 0, $wgMaxSquidPurgeTitles );
+		}
 		foreach ( $titles as $title ) {
 			$urlArr[] = $title->getInternalURL();
 		}
@@ -77,8 +81,8 @@ class SquidUpdate {
 	/* static */ function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;
 
-		if ( $wgSquidServers == 'echo' ) {
-			echo implode("<br />\n", $urlArr);
+		if ( (@$wgSquidServers[0]) == 'echo' ) {
+			echo implode("<br />\n", $urlArr) . "<br />\n";
 			return;
 		}
 

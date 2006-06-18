@@ -631,8 +631,8 @@ END
 		$this->img = new Image( $this->mTitle );
 		if( $this->img->exists() ) {
 			wfDebug( "ImagePage::doPurge purging " . $this->img->getName() . "\n" );
-			$linksTo = $this->img->getLinksTo();
-			Title::touchArray( $linksTo );
+			$update = new HTMLCacheUpdate( $this->mTitle, 'imagelinks' );
+			$update->doUpdate();
 			$this->img->purgeCache();
 		} else {
 			wfDebug( "ImagePage::doPurge no image\n" );

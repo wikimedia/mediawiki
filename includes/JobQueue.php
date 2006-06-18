@@ -4,7 +4,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
 }
 
-class Job {
+abstract class Job {
 	var $command,
 		$title,
 		$params,
@@ -15,50 +15,37 @@ class Job {
 	/*-------------------------------------------------------------------------
 	 * Static functions
 	 *------------------------------------------------------------------------*/
-	/**
-	 * Add an array of refreshLinks jobs to the queue
-	 * @param array $titles Array of title objects.
-	 * @static
+
+	/** 
+	 * @deprecated use LinksUpdate::queueRecursiveJobs()
 	 */
-	function queueLinksJobs( $titles ) {
-		$fname = 'Job::queueLinksJobs';
-		wfProfileIn( $fname );
-		$batchSize = 100;
-		for( $i = 0; $i < count( $titles ); $i += $batchSize ) {
-			$batch = array_slice( $titles, $i, $batchSize, true );
-			$jobs = array();
-			foreach( $batch as $title ) {
-				$jobs[] = new Job( 'refreshLinks', $title );
-			}
-			Job::batchInsert( $jobs );
-		}
-		wfProfileOut( $fname );
-	}
+	/**
+	 * static function queueLinksJobs( $titles ) {}
+	 */
 
 	/**
 	 * Pop a job off the front of the queue
 	 * @static
 	 * @return Job or false if there's no jobs
 	 */
-	function pop() {
-		$fname = 'Job::pop';
-		wfProfileIn( $fname );
+	static function pop() {
+		wfProfileIn( __METHOD__ );
 
 		$dbr =& wfGetDB( DB_SLAVE );
 
 		// Get a job from the slave
-		$row = $dbr->selectRow( 'job', '*', '', $fname,
+		$row = $dbr->selectRow( 'job', '*', '', __METHOD__,
 			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 )
 		);
 
 		if ( $row === false ) {
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		// Try to delete it from the master
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), $fname );
+		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 		$affected = $dbw->affectedRows();
 		$dbw->immediateCommit();
 
@@ -66,30 +53,30 @@ class Job {
 			// Failed, someone else beat us to it
 			// Try getting a random row
 			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob',
-				'MAX(job_id) as maxjob' ), '', $fname );
+				'MAX(job_id) as maxjob' ), '', __METHOD__ );
 			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
 				// No jobs to get
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			// Get the random row
 			$row = $dbw->selectRow( 'job', '*',
-				array( 'job_id' => mt_rand( $row->minjob, $row->maxjob ) ),	$fname );
+				array( 'job_id' => mt_rand( $row->minjob, $row->maxjob ) ),	__METHOD__ );
 			if ( $row === false ) {
 				// Random job gone before we got the chance to select it
 				// Give up
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			// Delete the random row
-			$dbw->delete( 'job', array( 'job_id' => $row->job_id ), $fname );
+			$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 			$affected = $dbw->affectedRows();
 			$dbw->immediateCommit();
 			
 			if ( !$affected ) {
 				// Random job gone before we exclusively deleted it
 				// Give up
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 		}
@@ -99,20 +86,50 @@ class Job {
 		$namespace = $row->job_namespace;
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
-		$job = new Job( $row->job_cmd, $title, $row->job_params, $row->job_id );
+		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ), $row->job_id );
 		
 		// Remove any duplicates it may have later in the queue
-		$dbw->delete( 'job', $job->insertFields(), $fname );
+		$dbw->delete( 'job', $job->insertFields(), __METHOD__ );
 		
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $job;
+	}
+
+	/** 
+	 * Create an object of a subclass
+	 */
+	static function factory( $command, $title, $params = false, $id = 0 ) {
+		switch ( $command ) {
+			case 'refreshLinks':
+				return new RefreshLinksJob( $title, $params, $id );
+			case 'html_cache_update':
+				return new HTMLCacheUpdateJob( $title, $params['table'], $params['start'], $params['end'], $id );
+			default:
+				throw new MWException( "Invalid job command \"$command\"" );
+		}
+	}
+
+	static function makeBlob( $params ) {
+		if ( $params !== false ) {
+			return serialize( $params );
+		} else {
+			return '';
+		}
+	}
+
+	static function extractBlob( $blob ) {
+		if ( (string)$blob !== '' ) {
+			return unserialize( $blob );
+		} else {
+			return false;
+		}
 	}
 
 	/*-------------------------------------------------------------------------
 	 * Non-static functions
 	 *------------------------------------------------------------------------*/
 
-	function Job( $command, $title, $params = '', $id = 0 ) {
+	function __construct( $command, $title, $params = false, $id = 0 ) {
 		$this->command = $command;
 		$this->title = $title;
 		$this->params = $params;
@@ -127,20 +144,18 @@ class Job {
 	 * Insert a single job into the queue.
 	 */
 	function insert() {
-		$fname = 'Job::insert';
-		
 		$fields = $this->insertFields();
 
 		$dbw =& wfGetDB( DB_MASTER );
 		
 		if ( $this->removeDuplicates ) {
-			$res = $dbw->select( 'job', array( '1' ), $fields, $fname );
+			$res = $dbw->select( 'job', array( '1' ), $fields, __METHOD__ );
 			if ( $dbw->numRows( $res ) ) {
 				return;
 			}
 		}
 		$fields['job_id'] = $dbw->nextSequenceValue( 'job_job_id_seq' );
-		$dbw->insert( 'job', $fields, $fname );
+		$dbw->insert( 'job', $fields, __METHOD__ );
 	}
 	
 	protected function insertFields() {
@@ -148,7 +163,7 @@ class Job {
 			'job_cmd' => $this->command,
 			'job_namespace' => $this->title->getNamespace(),
 			'job_title' => $this->title->getDBkey(),
-			'job_params' => $this->params
+			'job_params' => Job::makeBlob( $this->params )
 		);
 	}
 	
@@ -162,16 +177,14 @@ class Job {
 	 * @param $jobs array of Job objects
 	 */
 	static function batchInsert( $jobs ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
-		
 		if( count( $jobs ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
 			foreach( $jobs as $job ) {
 				$rows[] = $job->insertFields();
 			}
-			$dbw->insert( 'job', $rows, $fname, 'IGNORE' );
-			$dbw->immediateCommit();
+			$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
+			$dbw->commit();
 		}
 	}
 
@@ -179,35 +192,47 @@ class Job {
 	 * Run the job
 	 * @return boolean success
 	 */
-	function run() {
-		$fname = 'Job::run';
-		wfProfileIn( $fname );
-		switch ( $this->command ) {
-			case 'refreshLinks':
-				$retval = $this->refreshLinks();
-				break;
-			default:
-				$retval = true;
-				if( wfRunHooks( 'RunUnknownJob', array( &$this, &$retval ) ) ) {
-					$this->error = "Invalid job type {$this->command}, ignoring";
-					wfDebug( $this->error . "\n" );
-					$retval = false;
-				} else {
-					$retval = true;
+	abstract function run();
+	
+	function toString() {
+		$paramString = '';
+		if ( $this->params ) {
+			foreach ( $this->params as $key => $value ) {
+				if ( $paramString != '' ) {
+					$paramString .= ' ';
 				}
+				$paramString .= "$key=$value";
+			}
 		}
-		wfProfileOut( $fname );
-		return $retval;
+
+		if ( is_object( $this->title ) ) {
+			$s = "{$this->command} " . $this->title->getPrefixedDBkey();
+			if ( $paramString !== '' ) {
+				$s .= ' ' . $paramString;
+			}
+			return $s;
+		} else {
+			return "{$this->command} $paramString";
+		}
+	}
+
+	function getLastError() {
+		return $this->error;
+	}
+}
+
+class RefreshLinksJob extends Job {
+	function __construct( $title, $params = '', $id = 0 ) {
+		parent::__construct( 'refreshLinks', $title, $params, $id );
 	}
 
 	/**
 	 * Run a refreshLinks job
 	 * @return boolean success
 	 */
-	function refreshLinks() {
+	function run() {
 		global $wgParser;
-		$fname = 'Job::refreshLinks';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		# FIXME: $dbw never used.
 		$dbw =& wfGetDB( DB_MASTER );
@@ -217,43 +242,28 @@ class Job {
 		
 		if ( is_null( $this->title ) ) {
 			$this->error = "refreshLinks: Invalid title";
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		$revision = Revision::newFromTitle( $this->title );
 		if ( !$revision ) {
 			$this->error = 'refreshLinks: Article not found "' . $this->title->getPrefixedDBkey() . '"';
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
-		wfProfileIn( "$fname-parse" );
+		wfProfileIn( __METHOD__.'-parse' );
 		$options = new ParserOptions;
 		$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options, true, true, $revision->getId() );
-		wfProfileOut( "$fname-parse" );
-		wfProfileIn( "$fname-update" );
+		wfProfileOut( __METHOD__.'-parse' );
+		wfProfileIn( __METHOD__.'-update' );
 		$update = new LinksUpdate( $this->title, $parserOutput, false );
 		$update->doUpdate();
-		wfProfileOut( "$fname-update" );
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__.'-update' );
+		wfProfileOut( __METHOD__ );
 		return true;
 	}
-
-	function toString() {
-		if ( is_object( $this->title ) ) {
-			$s = "{$this->command} " . $this->title->getPrefixedDBkey();
-			if ( $this->params !== '' ) {
-				$s .= ', ' . $this->params;
-			}
-			return $s;
-		} else {
-			return "{$this->command} {$this->params}";
-		}
-	}
-
-	function getLastError() {
-		return $this->error;
-	}
 }
+
 ?>

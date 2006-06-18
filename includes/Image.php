@@ -1316,16 +1316,8 @@ class Image
 		$this->purgeDescription();
 		
 		// Purge cache of all pages using this image
-		$linksTo = $this->getLinksTo();
-		global $wgUseSquid, $wgPostCommitUpdateList;
-		if ( $wgUseSquid ) {
-			$u = SquidUpdate::newFromTitles( $linksTo, $urlArr );
-			array_push( $wgPostCommitUpdateList, $u );
-		}
-
-		// Invalidate parser cache and client cache for pages using this image
-		// This is left until relatively late to reduce lock time
-		Title::touchArray( $linksTo );
+		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
+		$update->doUpdate();
 	}
 
 	function checkDBSchema(&$db) {
@@ -1461,7 +1453,7 @@ class Image
 	 * Record an image upload in the upload log and the image table
 	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false ) {
-		global $wgUser, $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
+		global $wgUser, $wgUseCopyrightUpload;
 
 		$fname = 'Image::recordUpload';
 		$dbw =& wfGetDB( DB_MASTER );
@@ -1528,8 +1520,6 @@ class Image
 			$fname,
 			'IGNORE'
 		);
-		$descTitle = $this->getTitle();
-		$purgeURLs = array();
 
 		if( $dbw->affectedRows() == 0 ) {
 			# Collision, this is an update of an image
@@ -1575,6 +1565,7 @@ class Image
 			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", $fname );
 		}
 
+		$descTitle = $this->getTitle();
 		$article = new Article( $descTitle );
 		$minor = false;
 		$watch = $watch || $wgUser->isWatched( $descTitle );
@@ -1588,7 +1579,7 @@ class Image
 
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
-			$purgeURLs[] = $descTitle->getInternalURL();
+			$descTitle->purgeSquid();
 		} else {
 			// New image; create the description page.
 			$article->insertNewArticle( $textdesc, $desc, $minor, $watch, $suppressRC );
@@ -1603,13 +1594,8 @@ class Image
 		$dbw->immediateCommit();
 
 		# Invalidate cache for all pages using this image
-		$linksTo = $this->getLinksTo();
-
-		if ( $wgUseSquid ) {
-			$u = SquidUpdate::newFromTitles( $linksTo, $purgeURLs );
-			array_push( $wgPostCommitUpdateList, $u );
-		}
-		Title::touchArray( $linksTo );
+		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
+		$update->doUpdate();
 
 		return true;
 	}
@@ -1619,6 +1605,8 @@ class Image
 	 * Also adds their IDs to the link cache
 	 *
 	 * This is mostly copied from Title::getLinksTo()
+	 *
+	 * @deprecated Use HTMLCacheUpdate, this function uses too much memory
 	 */
 	function getLinksTo( $options = '' ) {
 		$fname = 'Image::getLinksTo';

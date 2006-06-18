@@ -206,6 +206,21 @@ class Title {
 	}
 
 	/**
+	 * Make an array of titles from an array of IDs 
+	 */
+	function newFromIDs( $ids ) {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ),
+			'page_id IN (' . $dbr->makeList( $ids ) . ')', __METHOD__ );
+
+		$titles = array();
+		while ( $row = $dbr->fetchObject( $res ) ) {
+			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
+		}
+		return $titles;
+	}
+
+	/**
 	 * Create a new Title from a namespace index and a DB key.
 	 * It's assumed that $ns and $title are *valid*, for instance when
 	 * they came directly from the database or a special page name.
@@ -1572,6 +1587,9 @@ class Title {
 	 * Get an array of Title objects linking to this Title
 	 * Also stores the IDs in the link cache.
 	 *
+	 * WARNING: do not use this function on arbitrary user-supplied titles!
+	 * On heavily-used templates it will max out the memory.
+	 *
 	 * @param string $options may be FOR UPDATE
 	 * @return array the Title objects linking here
 	 * @access public
@@ -1611,6 +1629,9 @@ class Title {
 	/**
 	 * Get an array of Title objects using this Title as a template
 	 * Also stores the IDs in the link cache.
+	 *
+	 * WARNING: do not use this function on arbitrary user-supplied titles!
+	 * On heavily-used templates it will max out the memory.
 	 *
 	 * @param string $options may be FOR UPDATE
 	 * @return array the Title objects linking here
@@ -1671,6 +1692,15 @@ class Title {
 			$this->getInternalURL(),
 			$this->getInternalURL( 'action=history' )
 		);
+	}
+
+	function purgeSquid() {
+		global $wgUseSquid;
+		if ( $wgUseSquid ) {
+			$urls = $this->getSquidURLs();
+			$u = new SquidUpdate( $urls );
+			$u->doUpdate();
+		}
 	}
 
 	/**
@@ -1953,21 +1983,9 @@ class Title {
 				'pl_title'     => $nt->getDBkey() ),
 			$fname );
 
-		# Non-existent target may have had broken links to it; these must
-		# now be touched to update link coloring.
-		$nt->touchLinks();
-
 		# Purge old title from squid
 		# The new title, and links to the new title, are purged in Article::onArticleCreate()
-		$titles = $nt->getLinksTo();
-		if ( $wgUseSquid ) {
-			$urls = $this->getSquidURLs();
-			foreach ( $titles as $linkTitle ) {
-				$urls[] = $linkTitle->getInternalURL();
-			}
-			$u = new SquidUpdate( $urls );
-			$u->doUpdate();
-		}
+		$this->purgeSquid();
 	}
 
 	/**
@@ -2190,44 +2208,18 @@ class Title {
 	}
 
 	/**
-	 * Update page_touched timestamps on pages linking to this title.
-	 * In principal, this could be backgrounded and could also do squid
-	 * purging.
+	 * Update page_touched timestamps and send squid purge messages for
+	 * pages linking to this title.	May be sent to the job queue depending 
+	 * on the number of links. Typically called on create and delete.
 	 */
 	function touchLinks() {
-		$fname = 'Title::touchLinks';
+		$u = new HTMLCacheUpdate( $this, 'pagelinks' );
+		$u->doUpdate();
 
-		$dbw =& wfGetDB( DB_MASTER );
-
-		$res = $dbw->select( 'pagelinks',
-			array( 'pl_from' ),
-			array(
-				'pl_namespace' => $this->getNamespace(),
-				'pl_title'     => $this->getDbKey() ),
-			$fname );
-
-		$toucharr = array();
-		while( $row = $dbw->fetchObject( $res ) ) {
-			$toucharr[] = $row->pl_from;
+		if ( $this->getNamespace() == NS_CATEGORY ) {
+			$u = new HTMLCacheUpdate( $this, 'categorylinks' );
+			$u->doUpdate();
 		}
-		$dbw->freeResult( $res );
-
-		if( $this->getNamespace() == NS_CATEGORY ) {
-			// Categories show up in a separate set of links as well
-			$res = $dbw->select( 'categorylinks',
-				array( 'cl_from' ),
-				array( 'cl_to' => $this->getDbKey() ),
-				$fname );
-			while( $row = $dbw->fetchObject( $res ) ) {
-				$toucharr[] = $row->cl_from;
-			}
-			$dbw->freeResult( $res );
-		}
-
-		if (!count($toucharr))
-			return;
-		$dbw->update( 'page', /* SET */ array( 'page_touched' => $dbw->timestamp() ),
-							/* WHERE */ array( 'page_id' => $toucharr ),$fname);
 	}
 
 	function trackbackURL() {

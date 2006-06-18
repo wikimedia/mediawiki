@@ -80,6 +80,8 @@ function __autoload($class_name) {
 		'ConcatenatedGzipHistoryBlob' => 'HistoryBlob.php',
 		'HistoryBlobStub' => 'HistoryBlob.php',
 		'HistoryBlobCurStub' => 'HistoryBlob.php',
+		'HTMLCacheUpdate' => 'HTMLCacheUpdate.php',
+		'HTMLCacheUpdateJob' => 'HTMLCacheUpdate.php',
 		'Image' => 'Image.php',
 		'ThumbnailImage' => 'Image.php',
 		'ImageGallery' => 'ImageGallery.php',
