@@ -102,7 +102,8 @@ abstract class Job {
 		switch ( $command ) {
 			case 'refreshLinks':
 				return new RefreshLinksJob( $title, $params, $id );
-			case 'html_cache_update':
+			case 'htmlCacheUpdate':
+			case 'html_cache_update': # BC
 				return new HTMLCacheUpdateJob( $title, $params['table'], $params['start'], $params['end'], $id );
 			default:
 				throw new MWException( "Invalid job command \"$command\"" );
