@@ -170,6 +170,8 @@ class ChangesList {
 			: '';
 		$articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 		if($watched) $articlelink = '<strong>'.$articlelink.'</strong>';
+		global $wgContLang;
+		$articlelink .= $wgContLang->getDirMark();
 
 		$s .= ' '.$articlelink;
 	}
