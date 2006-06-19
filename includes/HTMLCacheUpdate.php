@@ -201,7 +201,7 @@ class HTMLCacheUpdateJob extends Job {
 			'table' => $table, 
 			'start' => $start, 
 			'end' => $end );
-		parent::__construct( 'html_cache_update', $title, $params, $id );
+		parent::__construct( 'htmlCacheUpdate', $title, $params, $id );
 		$this->table = $table;
 		$this->start = intval( $start );
 		$this->end = intval( $end );
