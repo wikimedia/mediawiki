@@ -863,6 +863,7 @@ $wgAllMessagesHe = array(
 "lonelypages"             => "דפים יתומים",
 "uncategorizedpages"      => "דפים חסרי קטגוריה",
 "uncategorizedcategories" => "קטגוריות חסרות קטגוריה",
+"uncategorizedimages"     => "תמונות חסרות קטגוריה",
 "unusedcategories"        => "קטגוריות שאינן בשימוש",
 "unusedimages"            => "תמונות שאינן בשימוש",
 "popularpages"            => "דפים פופולריים",
