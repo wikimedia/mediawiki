@@ -200,7 +200,7 @@ class RecentChange
 		$oldId, $lastTimestamp, $bot = "default", $ip = '', $oldSize = 0, $newSize = 0,
 		$newId = 0)
 	{
-		if ( $bot == 'default ' ) {
+		if ( $bot == 'default' ) {
 			$bot = $user->isBot();
 		}
 
