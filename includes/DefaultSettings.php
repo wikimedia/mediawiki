@@ -1811,13 +1811,7 @@ $wgLogActions = array(
 	'block/unblock'     => 'unblocklogentry',
 	'protect/protect'   => 'protectedarticle',
 	'protect/unprotect' => 'unprotectedarticle',
-
-	// TODO: This whole section should be moved to extensions/Makesysop/SpecialMakesysop.php
 	'rights/rights'     => 'rightslogentry',
-	'rights/addgroup'   => 'addgrouplogentry',
-	'rights/rngroup'    => 'renamegrouplogentry',
-	'rights/chgroup'    => 'changegrouplogentry',
-
 	'delete/delete'     => 'deletedarticle',
 	'delete/restore'    => 'undeletedarticle',
 	'delete/revision'   => 'revdelete-logentry',
