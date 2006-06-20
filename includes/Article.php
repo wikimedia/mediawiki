@@ -1217,9 +1217,6 @@ class Article {
 	 * Change an existing article or create a new article. Updates RC and all necessary caches, 
 	 * optionally via the deferred update array.
 	 *
-	 * It is possible to call this function from a command-line script, but note that you should
-	 * first set $wgUser, and clean up $wgDeferredUpdates after each edit.
-	 *
 	 * $wgUser must be set before calling this function.
 	 *
 	 * @param string $text New text
