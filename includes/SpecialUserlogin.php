@@ -472,6 +472,11 @@ class LoginForm {
 		global $wgCookiePrefix;
 		global $wgAuth;
 
+		if ( $this->mType == 'signup' && !$wgUser->isAllowedToCreateAccount() ) {
+			$this->userNotPrivilegedMessage();
+			return;
+		}
+
 		if ( '' == $this->mName ) {
 			if ( $wgUser->isLoggedIn() ) {
 				$this->mName = $wgUser->getName();
@@ -524,7 +529,6 @@ class LoginForm {
 		$template->set( 'action', $titleObj->getLocalUrl( $q ) );
 		$template->set( 'message', $msg );
 		$template->set( 'messagetype', $msgtype );
-		$template->set( 'create', $wgUser->isAllowedToCreateAccount() );
 		$template->set( 'createemail', $wgEnableEmail && $wgUser->isLoggedIn() );
 		$template->set( 'userealname', $wgAllowRealName );
 		$template->set( 'useemail', $wgEnableEmail );
