@@ -101,7 +101,6 @@ class UsercreateTemplate extends QuickTemplate {
 <?php } ?>
 <div id="userlogin">
 
-<?php if( $this->data['create'] ) { ?>
 <form name="userlogin2" id="userlogin2" method="post" action="<?php $this->text('action') ?>">
 	<h2><?php $this->msg('createaccount') ?></h2>
 	<p id="userloginlink"><?php $this->html('link') ?></p>
@@ -182,7 +181,6 @@ class UsercreateTemplate extends QuickTemplate {
 				<?php } ?>
 			</td>
 		</tr>
-	<?php } ?>
 	</table>
 	<?php
 
