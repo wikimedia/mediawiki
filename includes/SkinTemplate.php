@@ -694,7 +694,7 @@ class SkinTemplate extends Skin {
 						$undelTitle = Title::makeTitle( NS_SPECIAL, 'Undelete' );
 						$content_actions['undelete'] = array(
 							'class' => false,
-							'text' => ($n == 1) ? wfMsg( 'undelete_short1' ) : wfMsg('undelete_short', $n ),
+							'text' => wfMsgExt( 'undelete_short', array( 'parsemag' ), $n ),
 							'href' => $undelTitle->getLocalUrl( 'target=' . urlencode( $this->thispage ) )
 							#'href' => $this->makeSpecialUrl("Undelete/$this->thispage")
 						);
