@@ -1353,12 +1353,15 @@ END
 		global $wgUser, $wgOut;
 		$skin = $wgUser->getSkin();
 		
+		$loginTitle = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
+	
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		
-		$wgOut->addHtml( wfMsgWikiHtml( 'whitelistedittext', $skin->loginLink( $this->mTitle ) ) );
-		$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
+		$wgOut->addHtml( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
+		$wgOut->returnToMain( false, $this->mTitle->getPrefixedUrl() );
 	}
 
 	/**
@@ -1770,15 +1773,9 @@ END
 	}
 
 	function noCreatePermission() {
-		global $wgUser, $wgOut;
-		$skin = $wgUser->getSkin();
-		
+		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'nocreatetitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
-		
-		$wgOut->addHtml( wfMsgWikiHtml( 'nocreatetext', $skin->loginLink( $this->mTitle ) ) );
-		$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
+		$wgOut->addWikiText( wfMsg( 'nocreatetext' ) );
 	}
 
 }

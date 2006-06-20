@@ -776,10 +776,12 @@ class OutputPage {
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleFlag( false );
 		
-		$this->addHtml( wfMsgWikiHtml( 'loginreqpagetext', $skin->loginLink() ) );
+		$loginTitle = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
+		$this->addHtml( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
 		$this->addHtml( "\n<!--" . $wgTitle->getPrefixedUrl() . "-->" );
 		
-		$this->returnToMain( false );
+		$this->returnToMain();
 	}
 
 	/** @obsolete */
