@@ -123,7 +123,6 @@ Eger tu qeyd bikî, hemû guhertinên ji vê revîzyonê piştre winda dibin.
 'editsection' => 'biguherîne',
 'editold' => 'biguherîne',
 'editthispage' => 'Vê rûpelê biguherîne',
-'emailforlost' => '* Nivîsandina navnîşana te \'\'ne mecbûrî\'\' ye. Lê eger tu navnîşana xwe binîvîsî, mirov dikare e-mailekê ji te re bişîne bêyî ku navnîşana te zanibe. Her wiha, eger tu şîfreya xwe ji bîr bikî, {{SITENAME}} dikare şîfreya te bişîne ji vê navnîşana te re.',
 'emailfrom' => 'Ji',
 'emailmessage' => 'Name',
 'emailpage' => 'E-name bikarhêner',

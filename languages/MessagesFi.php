@@ -317,7 +317,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'yournick'            => 'Nimimerkki allekirjoituksia varten:',
 'badsig'              => 'Allekirjoitus on epävalidi.',
 'email'               => 'Sähköpostitoiminnot',
-'emailforlost'        => '&nbsp;',
 'prefs-help-email-enotif' => 'Tätä osoitetta käytetään myös artikkelien muuttumisilmoituksiin, jos ominaisuus on käytössä.',
 'prefs-help-realname' => 'Nimi (vapaaehtoinen): Nimeäsi käytetään antaamaan kunnia työllesi.',
 'loginerror'          => 'Sisäänkirjautumisvirhe',

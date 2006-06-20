@@ -524,6 +524,7 @@ Some default configuration options have changed:
   in StreamFile
 * (bug 6304) Show timestamp for current revision in diff pages
 * Vertically align current version with old version header in diff display
+* (bug 6174) Remove redundant "emailforlost" message 
 
 
 == Compatibility ==

@@ -369,8 +369,6 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.
 'badsig' => "Kôd vašeg potpisa nije valjan; provjerite HTML tagove.",
 'email' => "Adresa elektronske pošte *",
 "yourrealname"		=> "Pravo ime (nije obvezno)*",
-"emailforlost"	        => '* <div style="width:30em">* Nije obvezno. Unošenje e-mail adrese omogućava drugima da vam se jave kroz wiki bez da znaju vašu adresu,
-a ako zaboravite lozinku, možemo vam na ovu adresu poslati novu. Pravo ime koristit će se za atribuciju (pripisivanje) vaših doprinosa</div>.',
 'prefs-help-email' 	=> '* E-mail (nije obvezno): Omogućuje drugima da vas kontaktiraju na suradničkoj stranici ili stranici za razgovor bez javnog otkrivanja vaše e-mail adrese.
 Također, ako zaboravite lozinku možemo vam na ovu adresu poslati novu, privremenu.',
 'prefs-help-email-enotif' => 'Ova će se adresa koristiti i za slanje izvješća o promjenama u wikiju, ako ih uključite.',

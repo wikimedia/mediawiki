@@ -207,10 +207,6 @@ Ferjit net se oan jo foarkar oan te passen.",
 "userexists"	=> "Dy brûkersname wurdt al brûkt. Besykje in oarenien.",
 "youremail"		=> "Jo e-postadres (*).",
 "yournick"		=> "Jo alias (foar sinjaturen)",
-"emailforlost"	=> "* In e-postadres hoecht net.<br />
-Mar it helpt, soenen jo jo wachtwurd ferjitte.
-En mei in e-postadres kinne oaren fan de web siden contact mei jo krije,
-sûnder dat se dat adres witte. (Dat leste kin ek wer útset by de instellings.)",
 
 "loginerror"	=> "Oanmeldflater",
 "noname"		=> "Jo moatte in brûkersnamme opjaan.",

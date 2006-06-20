@@ -213,7 +213,6 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 "userexists"    => "Le nom d'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.",
 "youremail"     => "Mon adresse électronique",
 "yournick"      => "Mon surnom (pour les signatures)",
-"emailforlost"  => "Si vous égarez votre mot de passe, vous pouvez demander à ce qu'un nouveau vous soit envoyé à votre adresse électronique.",
 "loginerror"    => "Problème d'identification",
 "noname"        => "Vous n'avez pas saisi de nom d'utilisateur.",
 "loginsuccesstitle" => "Identification réussie.",

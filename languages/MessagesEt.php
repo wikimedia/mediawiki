@@ -263,7 +263,6 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 "userexists"	=> "Sisestatud kasutajanimi on juba kasutusel. Valige uus nimi.",
 "youremail"		=> "Teie e-posti aadress*",
 "yournick"		=> "Teie hüüdnimi (allakirjutamiseks)",
-"emailforlost"	=> "* Meiliaadressi sisestamine ei ole kohustuslik. Kuid see aitab inimestel Teiega veebisaidi kaudu ühendust võtta, ilma et Te peaksite neile oma meiliaadressi avaldama, ning samuti on sellest kasu, kui unustate parooli. <br /><br />Teie päris nime, kui otsustate selle avaldada, kasutatakse Teie tööpanuse seostamiseks Teiega.",
 'prefs-help-realname' => '* <strong>Tegelik nimi</strong> (pole kohustuslik): kui otsustate selle avaldada, kasutatakse seda Teie tööpanuse seostamiseks Teiega.<br />',
 'prefs-help-email' => '* <strong>E-post</strong> (pole kohustuslik): Võimaldab inimestel Teiega veebisaidi kaudu ühendust võtta, ilma et Te peaksite neile oma meiliaadressi avaldama, samuti on sellest kasu, kui unustate parooli.',
 

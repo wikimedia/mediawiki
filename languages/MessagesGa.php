@@ -329,10 +329,6 @@ Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta {{GRAMMA
 'yourlanguage'  => 'Teanga',
 'yourvariant'  => 'Malairt',
 "yournick"      => "Do leasainm (i síniuithe)",
-"emailforlost"  => "* Níl na boscaí le réalt (*, **) ach roghnach.  Le seoladh ríomhphoist i dtaisce, ba féidir le
-daoine teagmhail a dhéanamh leat tríd an suíomh gan do sheoladh ríomhphoist a nochtaigh dóibh. Ina theannta sin,
-is cabhair é má dheanfá dearmad ar d'fhocal faire.<br /><br />Má toghaíonn tú d'ainm ceart a chur isteach,
-úsáidfear é chun do chuid dreachtaí a chur i leith tusa.",
 'prefs-help-email'      => '** <strong>Ríomhphost</strong> (roghnach): Leis an tréith seo is féidir teagmháil a dhéanamh leat tríd do leathanach úsáideora nó phlé_úsáideora gan do sheoladh ríomhphost a thaispeáint.',
 'prefs-help-email-enotif' => 'Úsáidtear an seoladh seo chun fógraíocht ríomhphoist a sheoladh dhuit, má chumasaigh tú an rogha sin.',
 'prefs-help-realname'   => '* <strong>Fíorainm</strong> (roghnach): má toghaíonn tú é sin a chur ar fáil, úsáidfear é chun

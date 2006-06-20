@@ -291,7 +291,6 @@ Brukarkontoen din har vorte oppretta. Det er tilrådd at du skriv litt om deg sj
 'yourvariant'             => 'Språkvariant',
 'yournick'		          => 'Kallenamn (for signaturar)',
 'email'                   => 'E-post',
-'emailforlost'	          => 'Felt merkte med ei stjerne (*) er valfrie. E-postadressa gjer det mogleg for andre brukarar å ta kontakt med deg utan at du offentleggjer ho. Ho kan òg bli brukt til å sende deg nytt passord. Namnet ditt, dersom du vel å fylle ut dette feltet, vil bli brukt til å godskrive arbeid du har gjort.<br /><br />',
 'prefs-help-email-enotif' => 'Denne adressa blir også brukt til å sende deg endringsmeldingar dersom du har valt å ta den funksjonen i bruk.',
 'prefs-help-realname'     => '* Namn (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.',
 'loginerror'	          => 'Innloggingsfeil',

@@ -305,11 +305,6 @@ Nezabudnite si nastaviť vaše redaktorské nastavenia.',
 'yournick'              => 'Vaša prezývka',
 'badsig'                => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML tagy.',
 'email'                 => 'e-mail',
-'emailforlost'          => 'Polia označené horným indexom sú nepovinné. Uvedenie e-mailovej adresy umožňuje
-ľuďom vás kontaktovať cez rozhranie prehliadača bez toho, aby ste týmto ľuďom museli prezradiť vašu
-e-mailovú adresu. Navyše možno e-mailovú adresu použiť na zaslanie nového hesla, ak ho náhodou zabudnete.
-<br /><br />
-Vaše skutočné meno, ak sa rozhodnete ho uverejniť, bude priradené k vašej práci.',
 'prefs-help-email-enotif'=> 'Táto adresa sa používa aj na posielanie e-mailových upozornení, ak ste túto možnosť povolili.',
 'prefs-help-realname'   => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie Vašej práce.',
 'loginerror'            => 'Chyba pri prihlasovaní',

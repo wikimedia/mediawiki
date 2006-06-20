@@ -274,7 +274,6 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'youremail'     => 'Thư điện tử *',
 'yournick'      => 'Chữ ký trong thảo luận (dùng <tt><nowiki>~~~</nowiki></tt>)&nbsp;',
 'yourrealname'	=> 'Tên thật *',
-'emailforlost'  => 'Nếu quên mật khẩu, bạn có thể yêu cầu mật khẩu mới được gửi về thư điện tử của bạn.',
 'prefs-help-realname' => '* <strong>Tên thật</strong> (tùy): tên này (nếu được nhập) sẽ được dùng trong các đóng góp của bạn.',
 'prefs-help-email' => '* <strong>Thư điện tử</strong> (tùy): người khác có thể gửi thư từ trang này cho bạn mà họ vẫn không biết địa chỉ thư của bạn; địa chỉ thư còn giúp gửi bạn mật khẩu nếu bạn quên.',
 'loginerror'    => 'Lỗi đăng nhập',

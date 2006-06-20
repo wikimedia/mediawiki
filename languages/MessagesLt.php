@@ -314,8 +314,6 @@ Jei išsaugosite savo keitimus, prieš tai daryti pakeitimai pradings.</strong>'
 'editusergroup' => 'Redaguoti naudotojo gruoes',
 'email' => 'El. paštas',
 'emailconfirmlink' => 'Patvirtinkite savo el.pašto adresą',
-'emailforlost' => '<!--* Elektroninio pašto adresas nėra privalomas. Tačiau jei įvesite, kiti vartotojai galės siųsti jums laiškus nesužinodami adreso. Taip pat pašto adresas gelbsti pamiršus slaptažodį.
--->',
 'emailfrom' => 'Nuo',
 'emailmessage' => 'Tekstas',
 'emailnotauthenticated' => 'Jūsų el.pašto adresas <strong>nėra patvirtintas</strong>. El.laiškas

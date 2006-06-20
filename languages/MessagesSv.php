@@ -280,7 +280,6 @@ Denna sida har skrivskyddats, för att hindra redigering. Du kan se och kopiera 
 'yournick'              => 'Ditt smeknamn (till signaturer)',
 'badsig'                => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
 'email'                 => 'E-post',
-'emailforlost'          => 'Om du glömt ditt lösenord, kan du få ett nytt lösenord skickat till din e-post.',
 'prefs-help-email-enotif'=> 'Om du slagit på funktionen för att få meddelanden om uppdateringar i mail, kommer denna adress att användas även för det.',
 'prefs-help-realname'   => '¹ Riktigt namn (valfritt): Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'loginerror'            => 'Inloggningsproblem',

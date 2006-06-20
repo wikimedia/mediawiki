@@ -344,7 +344,6 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 'yourvariant'		=> 'Variante',
 'badsig'		=> 'Die Syntax der Signatur ist ungültig; bitte HTML überprüfen.',
 'email'			=> 'E-Mail',
-"emailforlost"	=> "Falls Sie Ihr Passwort vergessen haben, kann Ihnen ein neues an Ihre E-Mail-Adresse gesendet werden.",
 'prefs-help-email' 	=> '** <strong>E-Mail-Adresse</strong> (optional): Erlaubt anderen Benutzern Sie über Ihre Benutzerseiten zu kontaktieren,
 ohne dass Sie Ihre E-Mail-Adresse veröffentlichen müssen.
 Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen ein temporäres Einmal-Passwort gesendet werden.',

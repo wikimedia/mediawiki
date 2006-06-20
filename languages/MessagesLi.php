@@ -159,7 +159,6 @@ U kan {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezel
 "userexists" => "De gebroekersnaam die u heeft ingevoerd is al in gebruik. Gelieve een andere naam te kiezen.",
 "youremail"  => "Uw e-mailadres",
 "yournick"  => "Uw bijnaam (voor handtekeningen)",
-"emailforlost" => "Als u uw wachtwoord bent vergeten kun u een nieuw naar uw e-mailadres laten opsturen.",
 "loginerror" => "Inlogfout",
 "noname"  => "U dient een gebroekersnaam op te geven.",
 "loginsuccesstitle" => "Aanmelden gelukt.",

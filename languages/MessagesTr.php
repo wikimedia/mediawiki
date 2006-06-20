@@ -239,7 +239,6 @@ Soldaki [[Yardım:İçindekiler|yardıma]] tıklayarak işe başlayın. Kolay ge
 'yournick' => 'İmzalarda gözükmesini istediğiniz isim',
 'yourrealname' => 'Gerçek isminiz*',
 'email' => 'Eposta',
-'emailforlost' => 'Yıldız (*) ile belirtilmiş alanlar zorunlu değildir. E-posta adresinizi vermeniz, insanların sizinle Web sitesi aracılığı ile \'\'\'adresinizi görmeden\'\'\' haberleşmelerini sağlar, ve parolanızı unuttuğunuzda size yeni bir parola gönderilmesini de mümkün kılar.',
 'prefs-help-email' => '* E-posta (isteğe bağlı): Diğer kullanıcıların kullanıcı sayfanız aracılığıyla <strong>adresinizi bilmeksizin</strong> sizle iletişim kurmasını sağlar.',
 'loginsuccess' => '{{SITENAME}} sitesinde "$1" kullanıcı adıyla oturum açmış bulunmaktasınız.',
 'loginsuccesstitle' => 'Oturum açıldı',

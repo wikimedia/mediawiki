@@ -270,7 +270,6 @@ Na zisoñjit ket da bersonelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penn
 'youremail'     => 'Ma chomlec\'h elektronek',
 'yournick'      => 'Sinadur evit ar c\'haozeadennoù (gant <tt><nowiki>~~~</nowiki></tt>)&nbsp;',
 'yourrealname'	=> 'Hoc\'h anv gwir*',
-'emailforlost'  => 'Ma tiankit ho ker-tremen e c\'hallit goulenn ma vo kaset deoc\'h ur ger-tremen nevez d\'ho chomlec\'h postel.',
 'prefs-help-realname' => '* <strong>Hoc\'h anv</strong> (diret): ma vez spisaet ganeoc\'h e vo implijet evit merkañ ho tegasadennoù.',
 'prefs-help-email' => '* <strong>Chomlec\'h postel</strong> (diret): gantañ e vo aes mont e darempred ganeoc\'h adal al lec\'hienn o terc\'hel kuzh ho chomlec\'h, hag adkas ur ger-tremen deoc\'h ma tichañsfe deoc\'h koll ho hini.',
 'loginerror'    => 'Kudenn zisklêriañ',

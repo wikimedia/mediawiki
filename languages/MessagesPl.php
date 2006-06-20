@@ -321,7 +321,6 @@ Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.',
 'yourvariant' => 'Wariant',
 'yournick' => 'Twój podpis',
 'badsig' => 'Błędny podpis, sprawdź tagi HTML.',
-'emailforlost' => '<div style="width:30em">* Wpisanie adresu e-mailowego nie jest obowiązkowe. Pozwala to jednak innym użytkownikom skontaktowanie się z Tobą bez jawnej znajomości Twojego adresu. Przyda się także, gdy zapomnisz hasła - możesz wtedy poprosić o przesłanie nowego na podany adres.</div>',
 'loginerror' => 'Błąd logowania',
 'prefs-help-email' => '* E-mail (opcjonalnie): Podanie e-maila pozwala innym skontaktować się z tobą za pośrednictwem twojej strony użytkownika
 lub twojej strony dyskusji bez potrzeby ujawniania twoich danych identyfikacyjnych.',

@@ -221,7 +221,6 @@ Gallwch chi defnyddio'r {{SITENAME}} yn anhysbys, neu gallwch chi mewngofnodi et
 "userexists" => "Mae rhywun arall wedi dewis yr enw defnyddwr. Dewiswch un arall os gwelwch yn dda.",
 "youremail" => "Eich cyfeiriad e-bost",
 "yournick" => "Eich llysenw (am llofnod)",
-"emailforlost" => "Os anghofiwch eich allweddair, cewch cael un newydd postwyd i'ch cyfeiriad e-bost.",
 "loginerror" => "Problem mewngofnodi",
 "nocookiesnew" => "Mae'r accownt defnyddiwr wedi gael eu creu, ond dydwch chi ddim wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, felly mewngofnodwch gyda'ch enw defnyddiwr a cyfrinair newydd.",
 "nocookieslogin" => "Mae {{SITENAME}} yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, a triwch eto.",

@@ -242,10 +242,6 @@ Vergis nid, dyni [[Special:Preferences|Ystelligen]] aazpasse.',
 'yournick'              => 'Spitzname (zuem Untrschriibe):',
 'badsig'                => 'Dr Syntax vun de Signatur isch ungültig; luege uffs HTML.',
 'email'                 => 'E-Bost',
-'emailforlost'          => '* <u>E-Mail-Adrässe</u> (optional): We du en E-Mail-Adrässen aagisch, de chöi dir anderi Lüt über nes Web-Interface E-Mails schicke. Dyni E-Mail-Adrässe wird daderby aber \'\'\'nid\'\'\' aazeigt. Falls du dys Passwort vergissisch, cha dir ussertdäm a die E-Mail-Adrässe nes nöis gschickt wärde.
-<br />
-<br />
-<div align="center" style="background-color:white; font-size:14px;"><b>Willkomme in dr {{SITENAME}}!</b></div>',
 'prefs-help-email-enotif'=> 'A die Adrässe wärden o Mails mit Benachrichtigunge geschickt, falls du das ygschalte hesch.',
 'prefs-help-realname'   => '* <strong>Dy ächt Name</strong> (optional): We du wosch, das dyni Änderigen uf di chöi zrüggfüert wärde.',
 'loginerror'            => 'Fähler bir Aamäldig',

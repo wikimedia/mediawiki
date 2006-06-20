@@ -228,7 +228,6 @@ No olvides personalizar [[Especial:Preferences|tus preferencias]] de {{SITENAME}
 "userexists"	=> "El nombre que entraste ya está en uso. Por favor, elige un nombre diferente.",
 "youremail"		=> "Tu dirección de correo electrónico",
 "yournick"		=> "Tu apodo (para firmas)",
-"emailforlost"	=> "Ingresar una dirección electrónica es opcional, pero permite a los demás usuarios contactarse contigo a través del sitio web sin tener que revelarles tu dirección electrónica. Además, si pierdes u olvidas tu contraseña, puedes pedir que se te envíe una nueva.",
 "loginerror"	=> "Error de inicio de sesión",
 "noname"		=> "No has especificado un nombre de usuario válido.",
 "loginsuccesstitle" => "Inicio de sesión exitoso",

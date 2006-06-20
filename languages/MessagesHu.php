@@ -222,10 +222,6 @@ Ne felejtsd el átnézni a személyes {{SITENAME}} beállításaidat.",
 "userexists"	=> "A név amit megadtál már létezik. Kérlek, adj meg más nevet.",
 "youremail"		=> "Az emailed*",
 "yournick"		=> "A beceneved (aláírásokhoz)",
-"emailforlost"	=> "* Az email cím megadása nem kötelező, viszont lehetővé
-teszi másoknak, hogy kapcsolatba lépjenek veled a weblapon keresztül
-anélkül, hogy a címedet megtudnák. Segítségedre lehet akkor is, ha
-elfelejted a jelszavadat.",
 "loginerror"	=> "Belépési hiba.",
 "noname"		=> "Nem adtál meg érvényes felhasználói nevet.",
 "loginsuccesstitle" => "Sikeres belépés",
