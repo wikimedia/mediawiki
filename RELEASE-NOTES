@@ -526,7 +526,7 @@ Some default configuration options have changed:
 * Vertically align current version with old version header in diff display
 * (bug 6174) Remove redundant "emailforlost" message 
 * (bug 6189) Show an error to an unprivilleged user trying to create account
-
+* (bug 6365) Show user information in the "old revision" navigation links
 
 == Compatibility ==
 
