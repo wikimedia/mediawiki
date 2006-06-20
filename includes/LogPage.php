@@ -154,8 +154,6 @@ class LogPage {
 							}
 							break;
 						case 'rights':
-							if( trim( $params[0] ) == '' )
-								$params[0] = wfMsg( 'rightsnone' );
 							$text = $wgContLang->ucfirst( $title->getText() );
 							$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
 							break;
@@ -165,6 +163,17 @@ class LogPage {
 
 				} else {
 					$titleLink = $title->getPrefixedText();
+				}
+				if( $key == 'rights/rights' ) {
+					if ($skin) {
+						$rightsnone = wfMsg( 'rightsnone' );
+					} else {
+						$rightsnone = wfMsgForContent( 'rightsnone' );
+					}
+					if( !isset( $params[0] ) || trim( $params[0] ) == '' )
+						$params[0] = $rightsnone;
+					if( !isset( $params[1] ) || trim( $params[1] ) == '' )
+						$params[1] = $rightsnone;
 				}
 				if( count( $params ) == 0 ) {
 					if ( $skin ) {
