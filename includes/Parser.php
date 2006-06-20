@@ -2160,19 +2160,37 @@ class Parser
 		$ts = time();
 		wfRunHooks( 'ParserGetVariableValueTs', array( &$this, &$ts ) );
 
+		# Use the time zone
+		global $wgLocaltimezone;
+		if ( isset( $wgLocaltimezone ) ) {
+			$oldtz = getenv( 'TZ' );
+			putenv( 'TZ='.$wgLocaltimezone );
+		}
+		$timestamp = date( 'YmdHis', $ts );
+		$month = date( 'm', $ts );
+		$monthname = date( 'n', $ts );
+		$day = date( 'j', $ts );
+		$day2 = date( 'd', $ts );
+		$dayofweek = date( 'w', $ts );
+		$week = date( 'W', $ts );
+		$year = date( 'Y', $ts );
+		if ( isset( $wgLocaltimezone ) ) {
+			putenv( 'TZ='.$oldtz );
+		}
+
 		switch ( $index ) {
 			case MAG_CURRENTMONTH:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'm', $ts ) );
+				return $varCache[$index] = $wgContLang->formatNum( $month );
 			case MAG_CURRENTMONTHNAME:
-				return $varCache[$index] = $wgContLang->getMonthName( date( 'n', $ts ) );
+				return $varCache[$index] = $wgContLang->getMonthName( $monthname );
 			case MAG_CURRENTMONTHNAMEGEN:
-				return $varCache[$index] = $wgContLang->getMonthNameGen( date( 'n', $ts ) );
+				return $varCache[$index] = $wgContLang->getMonthNameGen( $monthname );
 			case MAG_CURRENTMONTHABBREV:
-				return $varCache[$index] = $wgContLang->getMonthAbbreviation( date( 'n', $ts ) );
+				return $varCache[$index] = $wgContLang->getMonthAbbreviation( $monthname );
 			case MAG_CURRENTDAY:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'j', $ts ) );
+				return $varCache[$index] = $wgContLang->formatNum( $day );
 			case MAG_CURRENTDAY2:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'd', $ts ) );
+				return $varCache[$index] = $wgContLang->formatNum( $day2 );
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
 			case MAG_PAGENAMEE:
@@ -2224,17 +2242,17 @@ class Parser
 			case MAG_SUBJECTSPACEE:
 				return( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
 			case MAG_CURRENTDAYNAME:
-				return $varCache[$index] = $wgContLang->getWeekdayName( date( 'w', $ts ) + 1 );
+				return $varCache[$index] = $wgContLang->getWeekdayName( $dayofweek + 1 );
 			case MAG_CURRENTYEAR:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'Y', $ts ), true );
+				return $varCache[$index] = $wgContLang->formatNum( $year, true );
 			case MAG_CURRENTTIME:
-				return $varCache[$index] = $wgContLang->time( wfTimestamp( TS_MW, $ts ), false, false );
+				return $varCache[$index] = $wgContLang->time( $timestamp, false, false );
 			case MAG_CURRENTWEEK:
 				// @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
-				return $varCache[$index] = $wgContLang->formatNum( (int)date( 'W', $ts ) );
+				return $varCache[$index] = $wgContLang->formatNum( (int)$week );
 			case MAG_CURRENTDOW:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'w', $ts ) );
+				return $varCache[$index] = $wgContLang->formatNum( $dayofweek );
 			case MAG_NUMBEROFARTICLES:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_NUMBEROFFILES:
@@ -2246,7 +2264,7 @@ class Parser
 			case MAG_NUMBEROFADMINS:
 				return $varCache[$index]  = $wgContLang->formatNum( wfNumberOfAdmins() );
 			case MAG_CURRENTTIMESTAMP:
-				return $varCache[$index] = wfTimestampNow();
+				return $varCache[$index] = $timestamp;
 			case MAG_CURRENTVERSION:
 				global $wgVersion;
 				return $wgVersion;
