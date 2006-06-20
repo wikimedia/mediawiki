@@ -336,7 +336,6 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'email' => 'Surélék',
 'emailauthenticated' => 'Alamat surélék anjeun geus dioténtikasi $1.',
 'emailconfirmlink' => 'Konfirmasi alamat surélék anjeun',
-'emailforlost' => 'Widang nu ditandaan béntang (*) sipatna pilihan. Neundeun alamat surélék bisa dimangpaatkeun ku nu séjén pikeun nepungan anjeun ngaliwatan website tanpa kudu mikeun alamat surélék urang ka maranéhna, sarta bisa ogé dipaké pikeun nepikeun sandi anyar mun anjeun poho.<br /><br />Ngaran asli anjeun, mun anjeun milih nyadiakeun, bakal dipaké pikeun ngararangkénan anjeun ku karya-karya anjeun.',
 'emailfrom' => 'Ti',
 'emailmessage' => 'Pesen',
 'emailnotauthenticated' => 'Alamat surélék anjeun <strong>can dioténtikasi</strong>. Moal aya surélék nu bakal dikirim pikeun fitur-fitur di handap ieu.',

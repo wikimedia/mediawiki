@@ -186,9 +186,18 @@ class UsercreateTemplate extends QuickTemplate {
 	</table>
 	<?php
 
-		if( $this->data['useemail'] ) {
-			echo '<div id="login-emailforlost">';
-			$this->msgHtml( 'emailforlost' );
+		if ($this->data['userealname'] || $this->data['useemail']) {
+			echo '<div id="login-sectiontip">';
+			if ( $this->data['useemail'] ) {
+				echo '<div>';
+				$this->msg('prefs-help-email');
+				echo '</div>';
+			}
+			if ( $this->data['userealname'] ) {
+				echo '<div>';
+				$this->msg('prefs-help-realname');
+				echo '</div>';
+			}
 			echo '</div>';
 		}
 

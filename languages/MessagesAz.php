@@ -185,7 +185,6 @@ $wgAllMessagesAz = array(
 'yournick' => 'Ləqəb:',
 'yourrealname' => 'Həqiqi adınız *',
 'email' => 'E-məktub',
-'emailforlost' => '<div style="width:30em">* E-məktub ünvanı məcburi deyildir. E-məktub ünvanı digər istifadəçilərin sizə ünvanınız aşkar edilmədən e-məktub göndərməyinə və parolunuzu yaddan çıxarsanız, sizə yeni parol göndərməyimizə imkan verir.<br /><br />Your real name will be used to give you attribution for your work.</div>',
 'prefs-help-email' => '* E-məktub (qeyri-məcburi): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
 'loginsuccess' => '\'\'\'"$1" olaraq {{SITENAME}}-ya daxil oldunuz.\'\'\'',
 'loginsuccesstitle' => 'Daxil olundu',

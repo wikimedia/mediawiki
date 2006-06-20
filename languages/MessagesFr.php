@@ -314,7 +314,6 @@ N\'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfé
 'yournick'      => 'Pseudonyme :',
 'badsig'	=> 'Signature brute incorrecte, vérifiez vos balises HTML.',
 'email'		=> 'Courriel',
-'emailforlost'  => 'Si vous égarez votre mot de passe, vous pouvez demander à ce qu\'un nouveau vous soit envoyé à votre adresse électronique.',
 'prefs-help-email-enotif' => 'Cette adresse est aussi utilisée pour vous envoyer des notifications par courriel si vous avez activé les options correspondantes.',
 'prefs-help-realname' => '* Nom réel (facultatif): si vous le spécifiez, il sera utilisé pour l\'attribution de vos contributions.',
 'loginerror'    => 'Problème d\'identification',

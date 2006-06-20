@@ -237,7 +237,6 @@ Fiecare rând care conţine legături către prima sau a doua redirijare, ca şi
 'editsection' => "editează",
 'editold' => "editează",
 'editthispage' => "Editează pagina",
-'emailforlost' => "Dacă ţi-ai pierdut parola, poţi cere să ţi se trimită una nouă la adresa de e-mail.",
 'emailfrom' => "De la",
 'emailmessage' => "Mesaj",
 'emailpage' => "E-mail către utilizator",

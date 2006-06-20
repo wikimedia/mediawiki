@@ -308,7 +308,6 @@ Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|n
 'yournick'              => 'Alternativní podpis',
 'badsig'		=> 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'email'			=> 'E-mail',
-'emailforlost'  => 'Pole označená hvězdičkami (*, **) nejsou povinná. Pokud zadáte e-mailovou adresu, budou vás moci ostatní uživatelé kontaktovat, aniž by tato adresa byla zobrazena; také vám na tuto adresu může být zasláno nové heslo v případě, že své heslo zapomenete.<br /><br />Vaše skutečné jméno, pokud ho zadáte, bude použito pro označení autorství vaší práce.',
 'prefs-help-email-enotif' => 'Na tuto adresu vám budou zasílány informace o změně stránek, pokud o ně požádáte.',
 'prefs-help-realname' 	=> '**) Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.<br />',
 'loginerror'    => 'Chyba při přihlašování',

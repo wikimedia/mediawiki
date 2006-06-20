@@ -225,7 +225,6 @@ kiel la sama aŭ kiel alia uzulo.", #FIXME
 'userexists'	=> 'Jam estas uzulo kun la nomo kiun vi elektis. Bonvolu elekti alian nomon.',
 'youremail'		=> 'Via retpoŝtadreso',
 'yournick'		=> 'Via kaŝnomo (por subskriboj)', #FIXME - ĉu kaŝnomo, plumnomo? / 'Kaŝnomo' ŝajnas bona /Bertilo
-'emailforlost'	=> 'Se vi forgesos vian pasvorton, vi povas peti ke ni sendu novan al via retpoŝtadreso.',
 'loginerror'	=> 'Ensaluta eraro', #FIXME
 'noname'		=> 'Vi ne enmetis validan salutnomon.',
 'loginsuccesstitle' => 'Ensalutado sukcesis',

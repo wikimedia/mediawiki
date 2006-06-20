@@ -178,7 +178,6 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 "userexists"	=> "Siamo spiacenti. Lo user name che hai scelto è già usato da un altro Utente. Ti preghiamo perciò di voler scegliere uno user name diverso.",
 "youremail"		=> "La tua e-mail",
 "yournick"		=> "Il tuo diminutivo o soprannome (per le firme)",
-"emailforlost"	=> "Se per caso ti dimenticassi della tua password, ne potresti ricevere una nuova di zecca presso la casella e-mail che ci hai indicato.",
 "loginerror"	=> "Errore di Login",
 "noname"		=> "Lo user name indicato non è valido, non è possibile creare un account a questo nome.",
 "loginsuccesstitle" => "Login effettuato con successo!",

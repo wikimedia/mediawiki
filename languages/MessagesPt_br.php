@@ -225,7 +225,6 @@ Não se esqueça de personalizar suas preferências na {{SITENAME}}.",
 "userexists"    => "O nome de usuário que você digitou já existe. Por favor, escolha um nome diferente.",
 "youremail"     => "Seu e-mail*",
 "yournick"      => "Seu apelido (para assinaturas)",
-/*"emailforlost"  => "* Colocar o endereço de e-mail é opcional.  Mas permite que as pessoas entrem em contato com você sem que você tenha que revelar seu e-mail �  elas, e também é útil se você se esquecer da sua senha.",*/
 "loginerror"    => "Erro de autenticação",
 "noname"        => "Você não colocou um nome de usuário válido.",
 "loginsuccesstitle" => "Login bem sucedido",

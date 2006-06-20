@@ -337,7 +337,6 @@ Ako je snimite, sve promene učinjene od ove revizije biće izgubljene.</strong>
 'email' => 'E-pošta',
 'emailauthenticated' => 'Vaša adresa e-pošte je proverena na $1.',
 'emailconfirmlink' => 'Potvrdite vašu adresu e-pošte',
-'emailforlost' => '* Unošenje adrese e-pošte nije obavezno. Međutim, unos će omogućiti ljudima da Vas kontatiraju kroz sajt, a da ne morate da im otkrijete svoju adresu. Takođe će Vam pomoći ukoliko zaboravite vašu lozinku.',
 'emailfrom' => 'Od',
 'emailmessage' => 'Poruka',
 'emailnotauthenticated' => 'Vaša adresa e-pošte <strong>još uvek nije potvrđena</strong>. E-pošta neće biti poslata ni za jednu od sledećih mogućnosti.',

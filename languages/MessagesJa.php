@@ -295,7 +295,6 @@ The database has been automatically locked while the slave database servers catc
 'yournick'              => 'ニックネーム（署名用）:',
 'badsig'                => '署名が正しくありません。HTMLタグを見直してください。',
 'email'                 => 'メールアドレス',
-'emailforlost'          => '<div style="width:30em">* メールアドレスの登録は任意です。メールアドレスを入力すると、他の利用者があなたのメールアドレスを知ることなくあなたにメールを送れるようになります。また、パスワードを忘れた際にメールでパスワードの再発行を受けられます。</div>',
 'prefs-help-email-enotif'=> 'このアドレスはあなたが有効にした各種メール通知の送信先としても利用されます。',
 'prefs-help-realname'   => '* 本名 (任意): 本名を入力すると、ページ・クレジットに利用者名（アカウント名）の代わりに本名が表示されます。',
 'loginerror'            => 'ログイン失敗',

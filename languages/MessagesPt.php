@@ -353,7 +353,6 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'yournick'              => 'Alcunha:',
 'badsig'                => 'Assinatura inválida; verifique o código HTML utilizado.',
 'email'                 => 'Correio electrónico',
-'emailforlost'          => "Os campos marcados são opcionais. Colocando o seu endereço de correio electrónico permite que outras pessoas entrem em contacto consigo sem que tenha que revelar o esse mesmo endereço a elas, e também é útil caso se esquecer da sua palavra-chave.<br /><br />O seu nome real, se o indicar, será utilizado para dar atribuição do seu trabalho.",
 'prefs-help-email-enotif' => 'Este endereço é também utilizado para enviar-lhe notificações caso as active nas preferências.',
 'prefs-help-realname'   => '* Nome verdadeiro (opcional): caso decida indicar, este será utilizado para lhe dar atributo do seu trabalho.',
 'loginerror'    => 'Erro de autentificação',

@@ -334,13 +334,6 @@ Vosse conte a stî ahivé.
 'yourvariant' => 'Variante do lingaedje',
 'yournick' => 'Vosse no metou (po les sinateures)',
 'email' => 'Emile',
-'emailforlost' => 'Les tchamps avou ene sitoele (*) èn sont nén obligatweres.<br />
-L\' adresse emile, si vos ndè dnez ene, vos permetrè di rçure et 
-d\' evoyî des emiles å dtruviè di cisse waibe chal, sins vos dveur 
-diner voste adresse emile, çoula vos srè eto foirt ahessåve si vos rovyîz 
-måy vosse sicret (on novea scret vos pôrè-st esse evoyî pa emile).<br />
-Vosse vraiy no, si vos l\' dinez, pôrè esse eployî po mete a costé
-di vos ovraedjes.',
 'prefs-help-email-enotif' => 'Ciste adresse chal est ossu eployeye po vs evoyî des notifiaedjes pa emile si vos avoz tchoezi cisse tchuze la.',
 'prefs-help-realname' => '* Li vraiy no da vosse (opcionel): si vos tchoezixhoz del diner i serè-st eployî po les contribouwaedjes da vosse.',
 'loginerror' => 'Aroke d\' elodjaedje',

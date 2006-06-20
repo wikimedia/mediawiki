@@ -184,7 +184,6 @@ Lahko nadaljujete z uporabo Wikipedije nepodpisani, ali pa se lahko ponovno vpi�
 "userexists"	        => "Uporabniško ime, ki ste ga vnesli, je že v uporabi. Prosimo izberite drugačno ime.",
 "youremail"		=> "Vaša elektronska pošta",
 "yournick"		=> "Vaš vzdevek (za podpise)",
-"emailforlost"	        => "Če ste pozabili geslo, imate lahko novo, poslano na naslov vaše elektronske pošte.",
 "loginerror"	        => "Napaka vpisa",
 "noname"		=> "Niste navedli veljavnega uporabniškega imena.",
 "loginsuccesstitle"     => "Vpis uspešen",

@@ -273,7 +273,6 @@ Vergeet nich, dien [[Special:Preferences|Instellen]] antopassen.',
 'yourrealname'                  => 'Dien echten Naam (kene Plicht)',
 'yourlanguage'           => 'Snittstellenspraak',
 'yourvariant'           => 'Dien Spraak',
-'emailforlost'          => 'Wenn du dien Password vergeten hest, kann en nieg Password an dien E-Mail-Adress send warrn.',
 // FIXME: following should be split to 'prefs-help-realname' & 'prefs-help-email'
 #'prefs-help-userdata'   => '* <strong>E-Mail</strong> (kene Plicht): Wenn du en E-Mailadress angiffst, könen annere di E-Mails sennen,
 #ahn dat diene Adress no buten künnig warrt. Wenn du dien ol Password vergeten hest,

@@ -344,7 +344,6 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 "yournick"		=> "Soprannome (nickname):",
 "badsig"		=> "Errore nella firma non standard, verificare i tag HTML.",
 "email"			=> "Indirizzo e-mail",
-"emailforlost"	=> '<div style="width:30em">* Dati opzionali. Specificando un indirizzo e-mail si può essere contattati dagli altri utenti del sito (senza dover rivelare l\'indirizzo stesso) e si può ricevere una nuova password qualora venisse dimenticata.<br /><br />Il nome vero verrà utilizzato, se lo si desidera, per attribuire la paternità dei contenuti inviati.</div>',
 "prefs-help-email-enotif" => "L'indirizzo verrà inoltre usato per le segnalazioni via e-mail, se richieste con le apposite opzioni.",
 "prefs-help-realname" 	=> "* Nome vero (opzionale): se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 "loginerror"	=> "Errore nell'accesso",
