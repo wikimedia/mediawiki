@@ -26,10 +26,8 @@ class Article {
 	var $mContent;			//!<
 	var $mContentLoaded;	//!<
 	var $mCounter;			//!<
-	var $mFileCache;		//!<
 	var $mForUpdate;		//!<
 	var $mGoodAdjustment;	//!<
-	var $mId;				//!<
 	var $mLatest;			//!<
 	var $mMinorEdit;		//!<
 	var $mOldId;			//!<
@@ -37,7 +35,6 @@ class Article {
 	var $mRedirectUrl;		//!<
 	var $mRevIdFetched;		//!<
 	var $mRevision;			//!<
-	var $mTable;			//!<
 	var $mTimestamp;		//!<
 	var $mTitle;			//!<
 	var $mTotalAdjustment;	//!<
@@ -125,7 +122,7 @@ class Article {
 		$this->mCurID = $this->mUser = $this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = null; # Title object if set
 		$this->mUserText =
-		$this->mTimestamp = $this->mComment = $this->mFileCache = '';
+		$this->mTimestamp = $this->mComment = '';
 		$this->mGoodAdjustment = $this->mTotalAdjustment = 0;
 		$this->mTouched = '19700101000000';
 		$this->mForUpdate = false;
@@ -154,12 +151,11 @@ class Article {
 		$section = $wgRequest->getText( 'section' );
 		$preload = $wgRequest->getText( 'preload' );
 
-		$fname =  'Article::getContent';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		if ( 0 == $this->getID() ) {
 			if ( 'edit' == $action ) {
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 
 				# If requested, preload some text.
 				$text=$this->getPreloadedText($preload);
@@ -169,7 +165,7 @@ class Article {
 				# This is now shown above the edit box instead.
 				return $text;
 			}
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
@@ -184,7 +180,7 @@ class Article {
 			if($action=='edit') {
 				if($section!='') {
 					if($section=='new') {
-						wfProfileOut( $fname );
+						wfProfileOut( __METHOD__ );
 						$text=$this->getPreloadedText($preload);
 						return $text;
 					}
@@ -192,11 +188,11 @@ class Article {
 					# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
 					# comments to be stripped as well)
 					$rv=$this->getSection($this->mContent,$section);
-					wfProfileOut( $fname );
+					wfProfileOut( __METHOD__ );
 					return $rv;
 				}
 			}
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return $this->mContent;
 		}
 	}
@@ -400,7 +396,6 @@ class Article {
 		}
 
 		$dbr =& $this->getDB();
-		$fname = 'Article::fetchContent';
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
@@ -413,12 +408,12 @@ class Article {
 		if( $oldid ) {
 			$revision = Revision::newFromId( $oldid );
 			if( is_null( $revision ) ) {
-				wfDebug( "$fname failed to retrieve specified revision, id $oldid\n" );
+				wfDebug( __METHOD__." failed to retrieve specified revision, id $oldid\n" );
 				return false;
 			}
 			$data = $this->pageDataFromId( $dbr, $revision->getPage() );
 			if( !$data ) {
-				wfDebug( "$fname failed to get page data linked to revision id $oldid\n" );
+				wfDebug( __METHOD__." failed to get page data linked to revision id $oldid\n" );
 				return false;
 			}
 			$this->mTitle = Title::makeTitle( $data->page_namespace, $data->page_title );
@@ -427,14 +422,14 @@ class Article {
 			if( !$this->mDataLoaded ) {
 				$data = $this->pageDataFromTitle( $dbr, $this->mTitle );
 				if( !$data ) {
-					wfDebug( "$fname failed to find page data for title " . $this->mTitle->getPrefixedText() . "\n" );
+					wfDebug( __METHOD__." failed to find page data for title " . $this->mTitle->getPrefixedText() . "\n" );
 					return false;
 				}
 				$this->loadPageData( $data );
 			}
 			$revision = Revision::newFromId( $this->mLatest );
 			if( is_null( $revision ) ) {
-				wfDebug( "$fname failed to retrieve current page, rev_id {$data->page_latest}\n" );
+				wfDebug( __METHOD__." failed to retrieve current page, rev_id {$data->page_latest}\n" );
 				return false;
 			}
 		}
@@ -637,8 +632,6 @@ class Article {
 	 * @param $offset Integer: default 0.
 	 */
 	function getContributors($limit = 0, $offset = 0) {
-		$fname = 'Article::getContributors';
-
 		# XXX: this is expensive; cache this info somewhere.
 
 		$title = $this->mTitle;
@@ -661,7 +654,7 @@ class Article {
 		if ($limit > 0) { $sql .= ' LIMIT '.$limit; }
 		$sql .= ' '. $this->getSelectOptions();
 
-		$res = $dbr->query($sql, $fname);
+		$res = $dbr->query($sql, __METHOD__);
 
 		while ( $line = $dbr->fetchObject( $res ) ) {
 			$contribs[] = array($line->rev_user, $line->rev_user_text, $line->user_real_name);
@@ -681,8 +674,7 @@ class Article {
 		global $wgUseTrackbacks, $wgNamespaceRobotPolicies;
 		$sk = $wgUser->getSkin();
 
-		$fname = 'Article::view';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$parserCache =& ParserCache::singleton();
 		$ns = $this->mTitle->getNamespace(); # shortcut
@@ -693,7 +685,7 @@ class Article {
 		# getOldID may want us to redirect somewhere else
 		if ( $this->mRedirectUrl ) {
 			$wgOut->redirect( $this->mRedirectUrl );
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -725,7 +717,7 @@ class Article {
 				# Run view updates for current revision only
 				$this->viewUpdates();
 			}
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		
@@ -733,13 +725,13 @@ class Article {
 			$wgOut->setETag($parserCache->getETag($this, $wgUser));
 
 			if( $wgOut->checkLastModified( $this->mTouched ) ){
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return;
 			} else if ( $this->tryFileCache() ) {
 				# tell wgOut that output is taken care of
 				$wgOut->disable();
 				$this->viewUpdates();
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return;
 			}
 		}
@@ -904,7 +896,7 @@ class Article {
 			$this->addTrackbacks();
 
 		$this->viewUpdates();
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	function addTrackbacks() {
@@ -1027,8 +1019,7 @@ class Article {
 	 * @private
 	 */
 	function insertOn( &$dbw, $restrictions = '' ) {
-		$fname = 'Article::insertOn';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$page_id = $dbw->nextSequenceValue( 'page_page_id_seq' );
 		$dbw->insert( 'page', array(
@@ -1043,12 +1034,12 @@ class Article {
 			'page_touched'      => $dbw->timestamp(),
 			'page_latest'       => 0, # Fill this in shortly...
 			'page_len'          => 0, # Fill this in shortly...
-		), $fname );
+		), __METHOD__ );
 		$newid = $dbw->insertId();
 
 		$this->mTitle->resetArticleId( $newid );
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $newid;
 	}
 
@@ -1066,8 +1057,7 @@ class Article {
 	 * @private
 	 */
 	function updateRevisionOn( &$dbw, $revision, $lastRevision = null ) {
-		$fname = 'Article::updateToRevision';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$conditions = array( 'page_id' => $this->getId() );
 		if( !is_null( $lastRevision ) ) {
@@ -1085,9 +1075,9 @@ class Article {
 				'page_len'         => strlen( $text ),
 			),
 			$conditions,
-			$fname );
+			__METHOD__ );
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return ( $dbw->affectedRows() != 0 );
 	}
 
@@ -1099,8 +1089,7 @@ class Article {
 	 * @param Revision $revision
 	 */
 	function updateIfNewerOn( &$dbw, $revision ) {
-		$fname = 'Article::updateIfNewerOn';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$row = $dbw->selectRow(
 			array( 'revision', 'page' ),
@@ -1108,10 +1097,10 @@ class Article {
 			array(
 				'page_id' => $this->getId(),
 				'page_latest=rev_id' ),
-			$fname );
+			__METHOD__ );
 		if( $row ) {
 			if( wfTimestamp(TS_MW, $row->rev_timestamp) >= $revision->getTimestamp() ) {
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			$prev = $row->rev_id;
@@ -1121,115 +1110,15 @@ class Article {
 		}
 
 		$ret = $this->updateRevisionOn( $dbw, $revision, $prev );
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $ret;
-	}
-
-	/**
-	 * Insert a new article into the database
-	 * @private
-	 */
-	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
-		global $wgUser;
-
-		$fname = 'Article::insertNewArticle';
-		wfProfileIn( $fname );
-
-		if( !wfRunHooks( 'ArticleSave', array( &$this, &$wgUser, &$text,
-			&$summary, &$isminor, &$watchthis, NULL ) ) ) {
-			wfDebug( "$fname: ArticleSave hook aborted save!\n" );
-			wfProfileOut( $fname );
-			return false;
-		}
-
-		$ns = $this->mTitle->getNamespace();
-		$ttl = $this->mTitle->getDBkey();
-
-		# If this is a comment, add the summary as headline
-		if($comment && $summary!="") {
-			$text="== {$summary} ==\n\n".$text;
-		}
-		$text = $this->preSaveTransform( $text );
-
-
-		# Set statistics members
-		# We work out if it's countable after PST to avoid counter drift 
-		# when articles are created with {{subst:}}
-		$this->mGoodAdjustment = (int)$this->isCountable( $text );
-		$this->mTotalAdjustment = 1;
-
-		/* Silently ignore minoredit if not allowed */
-		$isminor = $isminor && $wgUser->isAllowed('minoredit');
-		$now = wfTimestampNow();
-
-		$dbw =& wfGetDB( DB_MASTER );
-
-		# Add the page record; stake our claim on this title!
-		$newid = $this->insertOn( $dbw );
-
-		# Save the revision text...
-		$revision = new Revision( array(
-			'page'       => $newid,
-			'comment'    => $summary,
-			'minor_edit' => $isminor,
-			'text'       => $text
-			) );
-		$revisionId = $revision->insertOn( $dbw );
-
-		$this->mTitle->resetArticleID( $newid );
-
-		# Update the page record with revision data
-		$this->updateRevisionOn( $dbw, $revision, 0 );
-
-		if(!$suppressRC) {
-			$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default',
-			  '', strlen( $text ), $revisionId );
-			# Mark as patrolled if the user can and has the option set
-			if( $wgUser->isAllowed( 'patrol' ) && $wgUser->getOption( 'autopatrol' ) ) {
-				RecentChange::markPatrolled( $rcid );
-			}
-		}
-
-		if ($watchthis) {
-			if(!$this->mTitle->userIsWatching()) $this->doWatch();
-		} else {
-			if ( $this->mTitle->userIsWatching() ) {
-				$this->doUnwatch();
-			}
-		}
-
-		# The talk page isn't in the regular link tables, so we need to update manually:
-		$talkns = $ns ^ 1; # talk -> normal; normal -> talk
-		$dbw->update( 'page',
-			array( 'page_touched' => $dbw->timestamp($now) ),
-			array( 'page_namespace' => $talkns,
-			       'page_title' => $ttl ),
-			$fname );
-
-		# Update links, etc.
-		$this->editUpdates( $text, $summary, $isminor, $now, $revisionId );
-
-		# Clear caches
-		Article::onArticleCreate( $this->mTitle );
-
-		# Output a redirect back to the article
-		$this->doRedirect( $this->isRedirect( $text ) );
-
-		wfRunHooks( 'ArticleInsertComplete', array( &$this, &$wgUser, $text,
-			$summary, $isminor,
-			$watchthis, NULL ) );
-		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text,
-			$summary, $isminor,
-			$watchthis, NULL ) );
-		wfProfileOut( $fname );
 	}
 
 	/**
 	 * @return string Complete article text, or null if error
 	 */
 	function replaceSection($section, $text, $summary = '', $edittime = NULL) {
-		$fname = 'Article::replaceSection';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		
 		if( $section == '' ) {
 			// Whole-page edit; let the text through unmolested.
@@ -1256,108 +1145,53 @@ class Article {
 			}
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
 	/**
-	 * Change an existing article. Puts the previous version back into the old table, updates RC
-	 * and all necessary caches, mostly via the deferred update array.
-	 *
-	 * It is possible to call this function from a command-line script, but note that you should
-	 * first set $wgUser, and clean up $wgDeferredUpdates after each edit.
+	 * @deprecated use Article::doEdit()
 	 */
-	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
-		global $wgUser, $wgDBtransactions, $wgUseSquid;
-		global $wgPostCommitUpdateList, $wgUseFileCache;
+	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
+		$flags = EDIT_NEW | EDIT_DEFER_UPDATES |
+			( $isminor ? EDIT_MINOR : 0 ) |
+			( $suppressRC ? EDIT_SUPPRESS_RC : 0 );
 
-		$fname = 'Article::updateArticle';
-		wfProfileIn( $fname );
-		$good = true;
-
-		if( !wfRunHooks( 'ArticleSave', array( &$this, &$wgUser, &$text,
-			&$summary, &$minor,
-			&$watchthis, &$sectionanchor ) ) ) {
-			wfDebug( "$fname: ArticleSave hook aborted save!\n" );
-			wfProfileOut( $fname );
-			return false;
+		# If this is a comment, add the summary as headline
+		if ( $comment && $summary != "" ) {
+			$text = "== {$summary} ==\n\n".$text;
 		}
+		
+		$this->doEdit( $text, $summary, $flags );
 
-		$isminor = $minor && $wgUser->isAllowed('minoredit');
-
-		$text = $this->preSaveTransform( $text );
 		$dbw =& wfGetDB( DB_MASTER );
-		$now = wfTimestampNow();
-
-		# Update article, but only if changed.
-
-		# It's important that we either rollback or complete, otherwise an attacker could
-		# overwrite cur entries by sending precisely timed user aborts. Random bored users
-		# could conceivably have the same effect, especially if cur is locked for long periods.
-		if( !$wgDBtransactions ) {
-			$userAbort = ignore_user_abort( true );
-		}
-
-		$oldtext = $this->getContent();
-		$oldsize = strlen( $oldtext );
-		$newsize = strlen( $text );
-		$lastRevision = 0;
-		$revisionId = 0;
-
-		if ( 0 != strcmp( $text, $oldtext ) ) {
-			$this->mGoodAdjustment = (int)$this->isCountable( $text )
-			  - (int)$this->isCountable( $oldtext );
-			$this->mTotalAdjustment = 0;
-			$now = wfTimestampNow();
-
-			$lastRevision = $dbw->selectField(
-				'page', 'page_latest', array( 'page_id' => $this->getId() ) );
-
-			$revision = new Revision( array(
-				'page'       => $this->getId(),
-				'comment'    => $summary,
-				'minor_edit' => $isminor,
-				'text'       => $text
-				) );
-
-			$dbw->begin();
-			$revisionId = $revision->insertOn( $dbw );
-
-			# Update page
-			$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
-
-			if( !$ok ) {
-				/* Belated edit conflict! Run away!! */
-				$good = false;
-				$dbw->rollback();
-			} else {
-				# Update recentchanges
-				$bot = (int)($wgUser->isBot() || $forceBot);
-				$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
-					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
-					$revisionId );
-					
-				# Mark as patrolled if the user can do so and has it set in their options
-				if( $wgUser->isAllowed( 'patrol' ) && $wgUser->getOption( 'autopatrol' ) ) {
-					RecentChange::markPatrolled( $rcid );
-				}
-					
+		if ($watchthis) {
+			if (!$this->mTitle->userIsWatching()) {
+				$dbw->begin();
+				$this->doWatch();
 				$dbw->commit();
 			}
 		} else {
-			// Keep the same revision ID, but do some updates on it
-			$revisionId = $this->getRevIdFetched();
+			if ( $this->mTitle->userIsWatching() ) {
+				$dbw->begin();
+				$this->doUnwatch();
+				$dbw->commit();
+			}
 		}
+		$this->doRedirect( $this->isRedirect( $text ) );
+	}
 
-		if( !$wgDBtransactions ) {
-			ignore_user_abort( $userAbort );
-		}
+	/**
+	 * @deprecated use Article::doEdit()
+	 */
+	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
+		$flags = EDIT_UPDATE | EDIT_DEFER_UPDATES |
+			( $minor ? EDIT_MINOR : 0 ) |
+			( $forceBot ? EDIT_FORCE_BOT : 0 );
 
+		$good = $this->doEdit( $text, $summary, $flags );
 		if ( $good ) {
-			# Invalidate cache of this article and all pages using this article 
-			# as a template. Partly deferred.
-			Article::onArticleEdit( $this->mTitle );
-			
+			$dbw =& wfGetDB( DB_MASTER );
 			if ($watchthis) {
 				if (!$this->mTitle->userIsWatching()) {
 					$dbw->begin();
@@ -1371,17 +1205,220 @@ class Article {
 					$dbw->commit();
 				}
 			}
-			# Update links tables, site stats, etc.
-			$this->editUpdates( $text, $summary, $minor, $now, $revisionId );
 
-			# Output a redirect back to the article
 			$this->doRedirect( $this->isRedirect( $text ), $sectionanchor );
 		}
+		return $good;
+	}
+
+	/**
+	 * Article::doEdit()
+	 *
+	 * Change an existing article or create a new article. Updates RC and all necessary caches, 
+	 * optionally via the deferred update array.
+	 *
+	 * It is possible to call this function from a command-line script, but note that you should
+	 * first set $wgUser, and clean up $wgDeferredUpdates after each edit.
+	 *
+	 * $wgUser must be set before calling this function.
+	 *
+	 * @param string $text New text
+	 * @param string $summary Edit summary
+	 * @param integer $flags bitfield:
+	 *      EDIT_NEW
+	 *          Article is known or assumed to be non-existent, create a new one
+	 *      EDIT_UPDATE
+	 *          Article is known or assumed to be pre-existing, update it
+	 *      EDIT_MINOR
+	 *          Mark this edit minor, if the user is allowed to do so
+	 *      EDIT_SUPPRESS_RC
+	 *          Do not log the change in recentchanges
+	 *      EDIT_FORCE_BOT
+	 *          Mark the edit a "bot" edit regardless of user rights
+	 *      EDIT_DEFER_UPDATES
+	 *          Defer some of the updates until the end of index.php
+	 * 
+	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected. 
+	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will return false. If 
+	 * EDIT_NEW is specified and the article does exist, a duplicate key error will cause an exception
+	 * to be thrown from the Database. These two conditions are also possible with auto-detection due
+	 * to MediaWiki's performance-optimised locking strategy.
+	 *
+	 * @return bool success
+	 */
+	function doEdit( $text, $summary, $flags = 0 ) {
+		global $wgUser, $wgDBtransactions;
+
+		wfProfileIn( __METHOD__ );
+		$good = true;
+
+		if ( !($flags & EDIT_NEW) && !($flags & EDIT_UPDATE) ) {
+			$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
+			if ( $aid ) {
+				$flags |= EDIT_UPDATE;
+			} else {
+				$flags |= EDIT_NEW;
+			}
+		}
+
+		if( !wfRunHooks( 'ArticleSave', array( &$this, &$wgUser, &$text,
+			&$summary, $flags & EDIT_MINOR,
+			null, null, &$flags ) ) ) 
+		{
+			wfDebug( __METHOD__ . ": ArticleSave hook aborted save!\n" );
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		# Silently ignore EDIT_MINOR if not allowed
+		$isminor = ( $flags & EDIT_MINOR ) && $wgUser->isAllowed('minoredit');
+		$bot = $wgUser->isBot() || ( $flags & EDIT_FORCE_BOT );
+
+		$text = $this->preSaveTransform( $text );
+
+		$dbw =& wfGetDB( DB_MASTER );
+		$now = wfTimestampNow();
+		
+		if ( $flags & EDIT_UPDATE ) {
+			# Update article, but only if changed.
+
+			# Make sure the revision is either completely inserted or not inserted at all
+			if( !$wgDBtransactions ) {
+				$userAbort = ignore_user_abort( true );
+			}
+
+			$oldtext = $this->getContent();
+			$oldsize = strlen( $oldtext );
+			$newsize = strlen( $text );
+			$lastRevision = 0;
+			$revisionId = 0;
+
+			if ( 0 != strcmp( $text, $oldtext ) ) {
+				$this->mGoodAdjustment = (int)$this->isCountable( $text )
+				  - (int)$this->isCountable( $oldtext );
+				$this->mTotalAdjustment = 0;
+
+				$lastRevision = $dbw->selectField(
+					'page', 'page_latest', array( 'page_id' => $this->getId() ) );
+
+				if ( !$lastRevision ) {
+					# Article gone missing
+					wfDebug( __METHOD__.": EDIT_UPDATE specified but article doesn't exist\n" );
+					wfProfileOut( __METHOD__ );
+					return false;
+				}
+				
+				$revision = new Revision( array(
+					'page'       => $this->getId(),
+					'comment'    => $summary,
+					'minor_edit' => $isminor,
+					'text'       => $text
+					) );
+
+				$dbw->begin();
+				$revisionId = $revision->insertOn( $dbw );
+
+				# Update page
+				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
+
+				if( !$ok ) {
+					/* Belated edit conflict! Run away!! */
+					$good = false;
+					$dbw->rollback();
+				} else {
+					# Update recentchanges
+					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
+						$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
+							$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
+							$revisionId );
+							
+						# Mark as patrolled if the user can do so and has it set in their options
+						if( $wgUser->isAllowed( 'patrol' ) && $wgUser->getOption( 'autopatrol' ) ) {
+							RecentChange::markPatrolled( $rcid );
+						}
+					}
+					$dbw->commit();
+				}
+			} else {
+				// Keep the same revision ID, but do some updates on it
+				$revisionId = $this->getRevIdFetched();
+				// Update page_touched, this is usually implicit in the page update
+				// Other cache updates are done in onArticleEdit()
+				$this->mTitle->invalidateCache();
+			}
+
+			if( !$wgDBtransactions ) {
+				ignore_user_abort( $userAbort );
+			}
+
+			if ( $good ) {
+				# Invalidate cache of this article and all pages using this article 
+				# as a template. Partly deferred.
+				Article::onArticleEdit( $this->mTitle );
+				
+				# Update links tables, site stats, etc.
+				$this->editUpdates( $text, $summary, $isminor, $now, $revisionId );
+			}
+		} else {
+			# Create new article
+			
+			# Set statistics members
+			# We work out if it's countable after PST to avoid counter drift 
+			# when articles are created with {{subst:}}
+			$this->mGoodAdjustment = (int)$this->isCountable( $text );
+			$this->mTotalAdjustment = 1;
+
+			$dbw->begin();
+
+			# Add the page record; stake our claim on this title!
+			# This will fail with a database query exception if the article already exists
+			$newid = $this->insertOn( $dbw );
+
+			# Save the revision text...
+			$revision = new Revision( array(
+				'page'       => $newid,
+				'comment'    => $summary,
+				'minor_edit' => $isminor,
+				'text'       => $text
+				) );
+			$revisionId = $revision->insertOn( $dbw );
+
+			$this->mTitle->resetArticleID( $newid );
+
+			# Update the page record with revision data
+			$this->updateRevisionOn( $dbw, $revision, 0 );
+
+			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
+				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, $bot,
+				  '', strlen( $text ), $revisionId );
+				# Mark as patrolled if the user can and has the option set
+				if( $wgUser->isAllowed( 'patrol' ) && $wgUser->getOption( 'autopatrol' ) ) {
+					RecentChange::markPatrolled( $rcid );
+				}
+			}
+			$dbw->commit();
+
+			# Update links, etc.
+			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId );
+
+			# Clear caches
+			Article::onArticleCreate( $this->mTitle );
+
+			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$wgUser, $text,
+				$summary, $flags & EDIT_MINOR,
+				null, null, &$flags ) );
+		}
+
+		if ( $good && !( $flags & EDIT_DEFER_UPDATES ) ) {
+			wfDoUpdates();
+		}
+
 		wfRunHooks( 'ArticleSaveComplete',
 			array( &$this, &$wgUser, $text,
-			$summary, $minor,
-			$watchthis, $sectionanchor ) );
-		wfProfileOut( $fname );
+			$summary, $flags & EDIT_MINOR,
+			null, null, &$flags ) );
+		
+		wfProfileOut( __METHOD__ );
 		return $good;
 	}
 
@@ -1651,7 +1688,6 @@ class Article {
 	 */
 	function delete() {
 		global $wgUser, $wgOut, $wgRequest;
-		$fname = 'Article::delete';
 		$confirm = $wgRequest->wasPosted() &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 		$reason = $wgRequest->getText( 'wpReason' );
@@ -1679,7 +1715,7 @@ class Article {
 		# Better double-check that it hasn't been deleted yet!
 		$dbw =& wfGetDB( DB_MASTER );
 		$conds = $this->mTitle->pageCond();
-		$latest = $dbw->selectField( 'page', 'page_latest', $conds, $fname );
+		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 		if ( $latest === false ) {
 			$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
 			return;
@@ -1769,8 +1805,7 @@ class Article {
 	 * @return array Array of authors, duplicates not removed
 	 */
 	function getLastNAuthors( $num, $revLatest = 0 ) {
-		$fname = 'Article::getLastNAuthors';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		// First try the slave
 		// If that doesn't have the latest revision, try the master
@@ -1783,13 +1818,13 @@ class Article {
 					'page_namespace' => $this->mTitle->getNamespace(),
 					'page_title' => $this->mTitle->getDBkey(),
 					'rev_page = page_id'
-				), $fname, $this->getSelectOptions( array(
+				), __METHOD__, $this->getSelectOptions( array(
 					'ORDER BY' => 'rev_timestamp DESC',
 					'LIMIT' => $num
 				) )
 			);
 			if ( !$res ) {
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return array();
 			}
 			$row = $db->fetchObject( $res );
@@ -1805,7 +1840,7 @@ class Article {
 		while ( $row = $db->fetchObject( $res ) ) {
 			$authors[] = $row->rev_user_text;
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $authors;
 	}
 	
@@ -1858,8 +1893,7 @@ class Article {
 	 */
 	function doDelete( $reason ) {
 		global $wgOut, $wgUser;
-		$fname = 'Article::doDelete';
-		wfDebug( $fname."\n" );
+		wfDebug( __METHOD__."\n" );
 
 		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason))) {
 			if ( $this->doDeleteArticle( $reason ) ) {
@@ -1889,8 +1923,7 @@ class Article {
 		global $wgUseSquid, $wgDeferredUpdateList;
 		global $wgPostCommitUpdateList, $wgUseTrackbacks;
 
-		$fname = 'Article::doDeleteArticle';
-		wfDebug( $fname."\n" );
+		wfDebug( __METHOD__."\n" );
 
 		$dbw =& wfGetDB( DB_MASTER );
 		$ns = $this->mTitle->getNamespace();
@@ -1928,18 +1961,18 @@ class Article {
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
-			), $fname
+			), __METHOD__
 		);
 
 		# Now that it's safely backed up, delete it
-		$dbw->delete( 'revision', array( 'rev_page' => $id ), $fname );
-		$dbw->delete( 'page', array( 'page_id' => $id ), $fname);
+		$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
+		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
 
 		if ($wgUseTrackbacks)
-			$dbw->delete( 'trackbacks', array( 'tb_page' => $id ), $fname );
+			$dbw->delete( 'trackbacks', array( 'tb_page' => $id ), __METHOD__ );
 
  		# Clean up recentchanges entries...
-		$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), $fname );
+		$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), __METHOD__ );
 
 		# Finally, clean up the link tables
 		$t = $this->mTitle->getPrefixedDBkey();
@@ -1970,7 +2003,6 @@ class Article {
 	 */
 	function rollback() {
 		global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
-		$fname = 'Article::rollback';
 
 		if( $wgUser->isAllowed( 'rollback' ) ) {
 			if( $wgUser->isBlocked() ) {
@@ -2033,7 +2065,7 @@ class Article {
 			array(
 				'rev_page' => $current->getPage(),
 				"rev_user <> {$user} OR rev_user_text <> {$user_text}"
-			), $fname,
+			), __METHOD__,
 			array(
 				'USE INDEX' => 'page_timestamp',
 				'ORDER BY'  => 'rev_timestamp DESC' )
@@ -2061,7 +2093,7 @@ class Article {
 					'rc_cur_id'    => $current->getPage(),
 					'rc_user_text' => $current->getUserText(),
 					"rc_timestamp > '{$s->rev_timestamp}'",
-				), $fname
+				), __METHOD__
 			);
 		}
 
@@ -2113,8 +2145,7 @@ class Article {
 	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid) {
 		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgParser;
 
-		$fname = 'Article::editUpdates';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		# Parse the text
 		$options = new ParserOptions;
@@ -2148,7 +2179,7 @@ class Article {
 		$shortTitle = $this->mTitle->getDBkey();
 
 		if ( 0 == $id ) {
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -2177,7 +2208,7 @@ class Article {
 			$wgMessageCache->replace( $shortTitle, $text );
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -2277,7 +2308,6 @@ class Article {
 	 *
 	 */
 	function checkTouched() {
-		$fname = 'Article::checkTouched';
 		if( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
@@ -2315,8 +2345,7 @@ class Article {
 	 * @param bool $minor whereas it's a minor modification
 	 */
 	function quickEdit( $text, $comment = '', $minor = 0 ) {
-		$fname = 'Article::quickEdit';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->begin();
@@ -2331,7 +2360,7 @@ class Article {
 		$this->updateRevisionOn( $dbw, $revision );
 		$dbw->commit();
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -2405,6 +2434,15 @@ class Article {
 	 */
 
 	static function onArticleCreate($title) {
+		# The talk page isn't in the regular link tables, so we need to update manually:
+		if ( $title->isTalkPage() ) {
+			$other = $title->getSubjectPage();
+		} else {
+			$other = $title->getTalkPage();
+		}
+		$other->invalidateCache();
+		$other->purgeSquid();
+
 		$title->touchLinks();
 		$title->purgeSquid();
 	}
@@ -2458,7 +2496,6 @@ class Article {
 	 */
 	function info() {
 		global $wgLang, $wgOut, $wgAllowPageInfo, $wgUser;
-		$fname = 'Article::info';
 
 		if ( !$wgAllowPageInfo ) {
 			$wgOut->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
@@ -2487,7 +2524,7 @@ class Article {
 				'watchlist',
 				'COUNT(*)',
 				$wl_clause,
-				$fname,
+				__METHOD__,
 				$this->getSelectOptions() );
 
 			$pageInfo = $this->pageCountInfo( $page );
@@ -2524,20 +2561,19 @@ class Article {
 		$dbr =& wfGetDB( DB_SLAVE );
 
 		$rev_clause = array( 'rev_page' => $id );
-		$fname = 'Article::pageCountInfo';
 
 		$edits = $dbr->selectField(
 			'revision',
 			'COUNT(rev_page)',
 			$rev_clause,
-			$fname,
+			__METHOD__,
 			$this->getSelectOptions() );
 
 		$authors = $dbr->selectField(
 			'revision',
 			'COUNT(DISTINCT rev_user_text)',
 			$rev_clause,
-			$fname,
+			__METHOD__,
 			$this->getSelectOptions() );
 
 		return array( 'edits' => $edits, 'authors' => $authors );
