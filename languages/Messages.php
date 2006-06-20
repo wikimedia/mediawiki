@@ -158,7 +158,7 @@ parent class in order maintain consistency across languages.
 'navigation' => 'Navigation',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata (see [[Project:Metadata]] for an explanation):',
+'metadata_help' => 'Metadata (see [[{{ns:project}}:Metadata]] for an explanation):',
 
 'currentevents' => 'Current events',
 'currentevents-url' => 'Current events',
@@ -184,7 +184,7 @@ parent class in order maintain consistency across languages.
 'editthispage'	=> 'Edit this page',
 'delete' => 'Delete',
 'deletethispage' => 'Delete this page',
-'undelete_short'	=> 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
+'undelete_short' => 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
 'protect' => 'Protect',
 'protectthispage' => 'Protect this page',
 'unprotect' => 'unprotect',
@@ -275,7 +275,7 @@ See $1.',
 'nosuchactiontext' => 'The action specified by the URL is not
 recognized by the wiki',
 'nosuchspecialpage' => 'No such special page',
-'nospecialpagetext' => 'You have requested an invalid special page, a list of valid special pages may be found at [[Special:Specialpages]].',
+'nospecialpagetext' => 'You have requested an invalid special page, a list of valid special pages may be found at [[{{ns:special}}:Specialpages]].',
 
 # General errors
 #
@@ -333,7 +333,7 @@ Query: $2',
 'viewsourcefor' => 'for $1',
 'protectedtext' => 'This page has been locked to prevent editing; there are
 a number of reasons why this may be so, please see
-[[Project:Protected page]].
+[[{{ns:project}}:Protected page]].
 
 You can view and copy the source of this page:',
 'protectedinterface' => 'This page provides interface text for the software, and is locked to prevent abuse.',
@@ -470,7 +470,7 @@ format. Please enter a well-formatted address or empty that field.',
 'blockedtitle'	=> 'User is blocked',
 'blockedtext'	=> 'Your user name or IP address has been blocked by $1.
 The reason given is this:<br />\'\'$2\'\'<br />You may contact $1 or one of the other
-[[Project:Administrators|administrators]] to discuss the block.
+[[{{ns:project}}:Administrators|administrators]] to discuss the block.
 
 Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
 
@@ -492,12 +492,12 @@ Your IP address is $3. Please include this address in any queries you make.',
 'newarticletext' =>
 "You've followed a link to a page that doesn't exist yet.
 To create the page, start typing in the box below
-(see the [[Help:Contents|help page]] for more info).
+(see the [[{{ns:help}}:Contents|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon' => '{{int:newarticletext}}',
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
-'noarticletext' => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} edit this page].',
+'noarticletext' => 'There is currently no text in this page, you can [[{{ns:special}}:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon' => '{{int:noarticletext}}',
 'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools→Preferences''.",
 'usercssjsyoucanpreview' => '<strong>Tip:</strong> Use the \'Show preview\' button to test your new CSS/JS before saving.',
@@ -548,7 +548,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'readonlywarning' => '<strong>WARNING: The database has been locked for maintenance,
 so you will not be able to save your edits right now. You may wish to cut-n-paste
 the text into a text file and save it for later.</strong>',
-'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it. Be sure you are following the [[Project:Protected page guidelines|protected page guidelines]].</strong>",
+'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it. Be sure you are following the [[{{ns:project}}:Protected page guidelines|protected page guidelines]].</strong>",
 'semiprotectedpagewarning' => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'templatesused'	=> 'Templates used on this page:',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
@@ -634,7 +634,7 @@ is placed by the site operators.",
 # Search results
 #
 'searchresults' => 'Search results',
-'searchresulttext' => "For more information about searching {{SITENAME}}, see [[Project:Searching|Searching {{SITENAME}}]].",
+'searchresulttext' => "For more information about searching {{SITENAME}}, see [[{{ns:project}}:Searching|Searching {{SITENAME}}]].",
 'searchquery'	=> "For query \"$1\"",
 'badquery'		=> 'Badly formed search query',
 'badquerytext'	=> 'We could not process your query.
@@ -759,9 +759,9 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'group-bureaucrat-member' => 'Bureaucrat',
 'group-steward-member'    => 'Steward',
 
-'grouppage-bot' => 'Project:Bots',
-'grouppage-sysop' => 'Project:Administrators',
-'grouppage-bureaucrat' => 'Project:Bureaucrats',
+'grouppage-bot' => '{{ns:project}}:Bots',
+'grouppage-sysop' => '{{ns:project}}:Administrators',
+'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrats',
 
 # Recent changes
 #
@@ -806,9 +806,9 @@ to upload files.",
 'uploadtext'	=> "Use the form below to upload files, to view or search previously uploaded images go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
 
 To include the image in a page, use a link in the form
-'''<nowiki>[[Image:File.jpg]]</nowiki>''',
-'''<nowiki>[[Image:File.png|alt text]]</nowiki>''' or
-'''<nowiki>[[Media:File.ogg]]</nowiki>''' for directly linking to the file.",
+'''<nowiki>[[{{ns:image}}:File.jpg]]</nowiki>''',
+'''<nowiki>[[{{ns:image}}:File.png|alt text]]</nowiki>''' or
+'''<nowiki>[[{{ns:media}}:File.ogg]]</nowiki>''' for directly linking to the file.",
 'uploadlog'		=> 'upload log',
 'uploadlogpage' => 'Upload log',
 'uploadlogpagetext' => 'Below is a list of the most recent file uploads.',
@@ -1116,10 +1116,10 @@ There will be no other notifications in case of further changes unless you visit
 
 --
 To change your watchlist settings, visit
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Feedback and further assistance:
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:{{ns:help}}:Contents}}',
 
 # Delete/protect/revert
 #
@@ -1136,7 +1136,7 @@ Feedback and further assistance:
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[Project:Policy]].",
+[[{{ns:project}}:Policy]].",
 'actioncomplete' => 'Action complete',
 'deletedtext'	=> "\"$1\" has been deleted.
 See $2 for a record of recent deletions.",
@@ -1164,7 +1164,7 @@ this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage' => 'Protection log',
 'protectlogtext' => "Below is a list of page locks/unlocks.
-See [[Project:Protected page]] for more information.",
+See [[{{ns:project}}:Protected page]] for more information.",
 'protectedarticle' => 'protected "[[$1]]"',
 'unprotectedarticle' => 'unprotected "[[$1]]"',
 'protectsub' => '(Protecting "$1")',
@@ -1178,7 +1178,7 @@ See [[Project:Protected page]] for more information.",
 'unprotectcomment' => 'Reason for unprotecting',
 'protect-unchain' => 'Unlock move permissions',
 'protect-text' => 'You may view and change the protection level here for the page <strong>$1</strong>.
-Please be sure you are following the [[Project:Protected page|project guidelines]].',
+Please be sure you are following the [[{{ns:project}}:Protected page|project guidelines]].',
 'protect-viewtext' => 'Your account does not have permission to change
 page protection levels. Here are the current settings for the page <strong>$1</strong>:',
 'protect-default' => '(default)',
@@ -1264,7 +1264,7 @@ to perform this function on.',
 'blockiptext'	=> "Use the form below to block write access
 from a specific IP address or username.
 This should be done only only to prevent vandalism, and in
-accordance with [[Project:Policy|policy]].
+accordance with [[{{ns:project}}:Policy|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 'ipaddress'		=> 'IP Address',
@@ -1277,8 +1277,8 @@ pages that were vandalized).",
 'ipbotheroption'	=> 'other',
 'badipaddress'	=> 'Invalid IP address',
 'blockipsuccesssub' => 'Block succeeded',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] has been blocked.
-<br />See [[Special:Ipblocklist|IP block list]] to review blocks.',
+'blockipsuccesstext' => '[[{{ns:Special}}:Contributions/$1|$1]] has been blocked.
+<br />See [[{{ns:Special}}:Ipblocklist|IP block list]] to review blocks.',
 'unblockip'		=> 'Unblock user',
 'unblockiptext'	=> 'Use the form below to restore write access
 to a previously blocked IP address or username.',
@@ -1427,7 +1427,7 @@ To export pages, enter the titles in the text box below, one title per line, and
 select whether you want the current version as well as all old versions, with the page
 history lines, or just the current version with the info about the last edit.
 
-In the latter case you can also use a link, e.g. [[Special:Export/{{int:mainpage}}]] for the page {{int:mainpage}}.',
+In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{int:mainpage}}]] for the page {{int:mainpage}}.',
 'exportcuronly'	=> 'Include only the current revision, not the full history',
 'exportnohistory' => "----
 '''Note:''' exporting the full history of pages through this form has been disabled due to performance reasons.",
