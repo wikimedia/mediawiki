@@ -164,5 +164,15 @@ define( 'RC_LOG', 3);
 define( 'RC_MOVE_OVER_REDIRECT', 4);
 /**#@-*/
 
+/**#@+
+ * Article edit flags
+ */
+define( 'EDIT_NEW', 1 );
+define( 'EDIT_UPDATE', 2 );
+define( 'EDIT_MINOR', 4 ); 
+define( 'EDIT_SUPPRESS_RC', 8 );
+define( 'EDIT_FORCE_BOT', 16 );
+define( 'EDIT_DEFER_UPDATES', 32 );
+/**#@-*/
 
 ?>
