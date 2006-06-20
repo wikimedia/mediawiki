@@ -2220,6 +2220,8 @@ class Article {
 	function setOldSubtitle( $oldid=0 ) {
 		global $wgLang, $wgOut, $wgUser;
 
+		$revision = Revision::newFromId( $oldid );
+
 		$current = ( $oldid == $this->mLatest );
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
 		$sk = $wgUser->getSkin();
@@ -2233,7 +2235,11 @@ class Article {
 		$nextlink = $current
 			? wfMsg( 'nextrevision' )
 			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
-		$r = wfMsg( 'revisionasofwithlink', $td, $lnk, $prevlink, $nextlink );
+		
+		$userlinks = $sk->userLink( $revision->getUser(), $revision->getUserText() )
+						. $sk->userToolLinks( $revision->getUser(), $revision->getUserText() );
+		
+		$r = wfMsg( 'oldrevisionnavigation', $td, $lnk, $prevlink, $nextlink, $userlinks );
 		$wgOut->setSubtitle( $r );
 	}
 
