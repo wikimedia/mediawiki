@@ -477,15 +477,13 @@ Note that you may not use the "e-mail this user" feature unless you have a valid
 Your IP address is $3. Please include this address in any queries you make.',
 'whitelistedittitle' => 'Login required to edit',
 'whitelistedittext' => 'You have to $1 to edit pages.',
-'whitelistreadtitle' => 'Login required to read',
-'whitelistreadtext' => 'You have to [[Special:Userlogin|login]] to read pages.',
 'whitelistacctitle' => 'You are not allowed to create an account',
-'whitelistacctext' => 'To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
+'whitelistacctext' => 'To be allowed to create accounts in this Wiki you have to log in and have the appropriate permissions.',
 'confirmedittitle' => 'E-mail confirmation required to edit',
 'confirmedittext' => 'You must confirm your e-mail address before editing pages. Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
-'loginreqtitle'	=> 'Login Required',
+'loginreqtitle'	=> 'Login required to view',
 'loginreqlink' => 'log in',
-'loginreqpagetext'	=> 'You must $1 to view other pages.',
+'loginreqpagetext'	=> 'You must $1 to view pages.',
 'accmailtitle' => 'Password sent.',
 'accmailtext' => 'The password for "$1" has been sent to $2.',
 'newarticle'	=> '(New)',
@@ -554,7 +552,7 @@ the text into a text file and save it for later.</strong>',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'nocreatetitle' => 'Page creation limited',
 'nocreatetext' => 'This site has restricted the ability to create new pages.
-You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
+You can go back and edit an existing page, or $1.',
 
 # History pages
 #
