@@ -120,11 +120,11 @@ class LanguageHe extends LanguageUtf8 {
 	 * @return string of the wanted message
 	 */
 	function getMessage( $key ) {
-		global $wgAllMessagesHe;
-		if(array_key_exists($key, $wgAllMessagesHe))
-			return $wgAllMessagesHe[$key];
-		else
-			return parent::getMessage($key);
+		if( isset( $this->mMessagesHe[$key] ) ) {
+			return $this->mMessagesHe[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
 	}
 	
 	/**
