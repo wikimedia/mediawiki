@@ -826,7 +826,21 @@ class Linker {
 			wfMsgHtml( 'blocklink' ), 'ip=' . urlencode( $userText ) );
 		return $blockLink;
 	}
-	
+
+	/**
+	 * @param string the title to return to
+	 *
+	 * @return string of the link to the login page, returning to the specified title.
+	*/
+	function loginLink( $returnto = null ) {
+		if( !isset( $returnto ) ) {
+			global $wgTitle;
+			$returnto = &$wgTitle;
+		}
+		$loginTitle = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		return $this->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $returnto->getPrefixedUrl() );
+	}
+
 	/**
 	 * Generate a user link if the current user is allowed to view it
 	 * @param $rev Revision object.
