@@ -532,6 +532,9 @@ Some default configuration options have changed:
 * (bug 6351) Update to German translation (de)
 * Respect language directionality when displaying arrow in Special:Brokenredirects
 * Remove unused "validation" table definitions from the schema files
+* (bug 6398) Work around apparent PCRE bug breaking section editing when
+  massively-indented preformatted text immediately followed a header
+
 
 == Compatibility ==
 
