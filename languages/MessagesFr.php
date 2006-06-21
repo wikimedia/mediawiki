@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesFr = array(
+global $wgAllMessagesFr;
+$wgAllMessagesFr = array(
 
 # User preference Toggles
 
