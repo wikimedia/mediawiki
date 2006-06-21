@@ -11,14 +11,18 @@
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
   */
 
-/**
- *
- */
 require_once 'LanguageEs.php';
 
-/**
- *
- */
-class LanguageQu extends LanguageEs {}
+class LanguageQu extends LanguageEs {
+
+	function getFallbackLanguage() {
+		return 'es';
+	}
+
+	function getAllMessages() {
+		return null;
+	}
+
+}
 
 ?>
