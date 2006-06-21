@@ -2,6 +2,7 @@
 
 /* Messages for LanguageLt */
 
+global $wgAllMessagesLt;
 $wgAllMessagesLt = array(
 '1movedto2' => 'Straipsnis \'$1\' pervadintas į \'$2\'',
 '1movedto2_redir' => '\'$1\' pervadintas į \'$2\' (anksčiau buvo nukreipiamasis)',

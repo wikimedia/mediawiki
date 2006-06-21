@@ -1,90 +1,93 @@
 <?php
-/**
-  * @package MediaWiki
-  * @subpackage Language
-  */
+/** Lithuanian (Lietuvių)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ *
+ */
 
-require_once( "LanguageUtf8.php" );
-
-/* private */ $wgNamespaceNamesLt = array(
-	NS_MEDIA            => 'Medija',
-	NS_SPECIAL          => 'Specialus',
-	NS_MAIN	            => '',
-	NS_TALK	            => 'Aptarimas',
-	NS_USER             => 'Naudotojas',
-	NS_USER_TALK        => 'Naudotojo_aptarimas',
-	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace.'_aptarimas',
-	NS_IMAGE            => 'Vaizdas',
-	NS_IMAGE_TALK       => 'Vaizdo_aptarimas',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_aptarimas',
-	NS_TEMPLATE         => 'Šablonas',
-	NS_TEMPLATE_TALK    => 'Šablono_aptarimas',
-	NS_HELP             => 'Pagalba',
-	NS_HELP_TALK        => 'Pagalbos_aptarimas',
-	NS_CATEGORY         => 'Kategorija',
-	NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
-);
-
-/* private */ $wgQuickbarSettingsLt = array(
-	"Nerodyti", "Fiksuoti kairėje", "Fiksuoti dešinėje", "Plaukiojantis kairėje"
-);
-
-/* private */ $wgSkinNamesLt = array(
-	'standard' => 'Standartinė',
-	'nostalgia' => 'Nostalgija',
-	'cologneblue' => 'Kiolno Mėlyna',
-	'davinci' => 'Da Vinči',
-	'mono' => 'Mono',
-	'monobook' => 'MonoBook',
-	'myskin' => 'MySkin',
-	'chick' => 'Chick'
-) + $wgSkinNamesEn;
+require_once( 'LanguageUtf8.php' );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesLt.php');
 }
 
-#--------------------------------------------------------------------------
-# Internationalisation code
-#--------------------------------------------------------------------------
+class LanguageLt extends LanguageUtf8 {
+	private $mMessagesLt, $mNamespaceNamesLt = null;
 
-class LanguageLt extends LanguageUtf8  {
-	# Inherent default user options unless customization is desired
+	function __construct() {
+		parent::__construct();
 
-	function getQuickbarSettings() {
-		global $wgQuickbarSettingsLt;
-		return $wgQuickbarSettingsLt;
+		global $wgAllMessagesLt;
+		$this->mMessagesLt =& $wgAllMessagesLt;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesLt = array(
+			NS_MEDIA            => 'Medija',
+			NS_SPECIAL          => 'Specialus',
+			NS_MAIN	            => '',
+			NS_TALK	            => 'Aptarimas',
+			NS_USER             => 'Naudotojas',
+			NS_USER_TALK        => 'Naudotojo_aptarimas',
+			NS_PROJECT          => $wgMetaNamespace,
+			NS_PROJECT_TALK     => $wgMetaNamespace . '_aptarimas',
+			NS_IMAGE            => 'Vaizdas',
+			NS_IMAGE_TALK       => 'Vaizdo_aptarimas',
+			NS_MEDIAWIKI        => 'MediaWiki',
+			NS_MEDIAWIKI_TALK   => 'MediaWiki_aptarimas',
+			NS_TEMPLATE         => 'Šablonas',
+			NS_TEMPLATE_TALK    => 'Šablono_aptarimas',
+			NS_HELP             => 'Pagalba',
+			NS_HELP_TALK        => 'Pagalbos_aptarimas',
+			NS_CATEGORY         => 'Kategorija',
+			NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
+		);
+
 	}
+	
+	private $mQuickbarSettingsLt = array(
+		'Nerodyti', 'Fiksuoti kairėje', 'Fiksuoti dešinėje', 'Plaukiojantis kairėje'
+	);
+	
+	private $mSkinNamesLt = array(
+		'standard' => 'Standartinė',
+		'nostalgia' => 'Nostalgija',
+		'cologneblue' => 'Kiolno Mėlyna',
+		'davinci' => 'Da Vinči',
+		'mono' => 'Mono',
+		'monobook' => 'MonoBook',
+		'myskin' => 'MySkin',
+		'chick' => 'Chick'
+	);
 
 	function getNamespaces() {
-		global $wgNamespaceNamesLt;
-		return $wgNamespaceNamesLt;
+		return $this->mNamespaceNamesLt + parent::getNamespaces();
+	}
+
+	function getQuickbarSettings() {
+		return $this->mQuickbarSettingsLt;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesLt;
-		return $wgSkinNamesLt;
-	}
-
-	function fallback8bitEncoding() {
-		return "windows-1257";
+		return $this->mSkinNamesLt + parent::getSkinNames();
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesLt;
-
-		if(array_key_exists($key, $wgAllMessagesLt))
-			return $wgAllMessagesLt[$key];
-		else
-			return parent::getMessage($key);
+		if( isset( $this->mMessagesLt[$key] ) ) {
+			return $this->mMessagesLt[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
 	}
 
 	function getAllMessages() {
-		global $wgAllMessagesLt;
-		return $wgAllMessagesLt;
+		return $this->mMessagesLt;
 	}
+
+	function fallback8bitEncoding() {
+		return 'windows-1257';
+	}
+
 
 	function separatorTransformTable() {
 		return array(',' => ' ', '.' => ',' );
