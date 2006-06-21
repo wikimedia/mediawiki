@@ -529,6 +529,7 @@ Some default configuration options have changed:
 * Introduce 'FetchChangesList' hook; see docs/hooks.txt for more information
 * (bug 6345) Update to Indonesian localisation (id) #22
 * (bug 6279) Add genitive month names to Slovenian localisation
+* (bug 6351) Update to German translation (de)
 
 == Compatibility ==
 
