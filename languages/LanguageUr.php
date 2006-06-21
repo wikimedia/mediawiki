@@ -1,14 +1,37 @@
 <?php
-/**
-  * @package MediaWiki
-  * @subpackage Language
-  */
-
-# Stub for Urdu
+/** Urdu (اردو)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
 require_once( "LanguageUtf8.php" );
 
+if (!$wgCachedMessageArrays) {
+	require_once('MessagesUr.php');
+}
+
 class LanguageUr extends LanguageUtf8 {
+	private $mMessagesUr = null;
+
+	function __construct() {
+		parent::__construct();
+
+		global $wgAllMessagesUr;
+		$this->mMessagesUr =& $wgAllMessagesUr;
+	}
+
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesUr[$key] ) ) {
+			return $this->mMessagesUr[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesUr;
+	}
 
 	function getDefaultUserOptions() {
 		$opt = parent::getDefaultUserOptions();
