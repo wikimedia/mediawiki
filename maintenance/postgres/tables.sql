@@ -303,19 +303,6 @@ CREATE TABLE transcache (
   tc_time      TIMESTAMPTZ NOT NULL
 );
 
-
-CREATE TABLE validate (
-  val_user      INTEGER NOT NULL REFERENCES "user"(user_id) ON DELETE CASCADE,
-  val_page      INTEGER NOT NULL REFERENCES page(page_id) ON DELETE CASCADE,
-  val_revision  INTEGER DEFAULT 0 NOT NULL,
-  val_type      INTEGER DEFAULT 0 NOT NULL,
-  val_value     INTEGER DEFAULT 0,
-  val_comment   TEXT,
-  val_ip        TEXT -- change to CIDR later
-);
-CREATE INDEX val_user ON validate (val_user,val_revision);
-
-
 CREATE TABLE logging (
   log_type        TEXT NOT NULL,
   log_action      TEXT NOT NULL,

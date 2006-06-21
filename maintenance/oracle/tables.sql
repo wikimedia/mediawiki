@@ -290,17 +290,6 @@ CREATE TABLE objectcache (
 CREATE UNIQUE INDEX oc_keyname_idx ON objectcache(keyname);
 CREATE INDEX oc_exptime_idx ON objectcache(exptime);
 
-CREATE TABLE "validate" (
-	val_user	NUMBER(11) DEFAULT 0 NOT NULL,
-	val_page	NUMBER(11) DEFAULT 0 NOT NULL,
-	val_revision	NUMBER(11) DEFAULT 0 NOT NULL,
-	val_type	NUMBER(11) DEFAULT 0 NOT NULL,
-	val_value	NUMBER(11) DEFAULT 0,
-	val_comment	VARCHAR2(255),
-	val_ip		VARCHAR2(20)
-);
-CREATE INDEX val_user ON "validate" (val_user,val_revision);
-
 CREATE TABLE logging (
   log_type		VARCHAR2(10) NOT NULL,
   log_action		VARCHAR2(10) NOT NULL,
