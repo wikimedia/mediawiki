@@ -903,21 +903,26 @@ class OutputPage {
 	 */
 	function returnToMain( $auto = true, $returnto = NULL ) {
 		global $wgUser, $wgOut, $wgRequest;
-
+		
 		if ( $returnto == NULL ) {
 			$returnto = $wgRequest->getText( 'returnto' );
 		}
-		$returnto = htmlspecialchars( $returnto );
-
-		$sk = $wgUser->getSkin();
-		if ( '' == $returnto ) {
+		
+		if ( '' === $returnto ) {
 			$returnto = wfMsgForContent( 'mainpage' );
 		}
-		$link = $sk->makeLinkObj( Title::newFromText( $returnto ), '' );
+
+		if ( is_object( $returnto ) ) {
+			$titleObj = $returnto;
+		} else {
+			$titleObj = Title::newFromText( $returnto );
+		}
+
+		$sk = $wgUser->getSkin();
+		$link = $sk->makeLinkObj( $titleObj, '' );
 
 		$r = wfMsg( 'returnto', $link );
 		if ( $auto ) {
-			$titleObj = Title::newFromText( $returnto );
 			$wgOut->addMeta( 'http:Refresh', '10;url=' . $titleObj->escapeFullURL() );
 		}
 		$wgOut->addHTML( "\n<p>$r</p>\n" );
