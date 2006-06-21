@@ -1812,14 +1812,18 @@ class Database {
 		# dubious, but unfortunately there's no easy rigorous way
 		$slaveThreads = 0;
 		while ( $row = $this->fetchObject( $res ) ) {
-			if ( $row->User == 'system user' ) {
-				if ( ++$slaveThreads == 2 ) {
-					# This is it, return the time (except -ve)
-					if ( $row->Time > 0x7fffffff ) {
-						return false;
-					} else {
-						return $row->Time;
-					}
+			/* This should work for most situations - when default db 
+			 * for thread is not specified, it had no events executed, 
+			 * and therefore it doesn't know yet how lagged it is.
+			 *
+			 * Relay log I/O thread does not select databases.
+			 */
+			if ( $row->User == 'system user' && $row->db != '' ) {
+				# This is it, return the time (except -ve)
+				if ( $row->Time > 0x7fffffff ) {
+					return false;
+				} else {
+					return $row->Time;
 				}
 			}
 		}
