@@ -528,6 +528,7 @@ Some default configuration options have changed:
 * (bug 6365) Show user information in the "old revision" navigation links
 * Introduce 'FetchChangesList' hook; see docs/hooks.txt for more information
 * (bug 6345) Update to Indonesian localisation (id) #22
+* (bug 6279) Add genitive month names to Slovenian localisation
 
 == Compatibility ==
 
