@@ -24,7 +24,7 @@ $wgAllMessagesId = array(
 'tog-previewontop' => 'Perlihatkan pratayang sebelum kotak sunting dan tidak sesudahnya',
 'tog-previewonfirst' => 'Perlihatkan pratayang pada suntingan pertama',
 'tog-nocache' => 'Matikan <em>cache</em> halaman',
-'tog-enotifwatchlistpages' 	=> 'Surat-e saya jika halaman berubah',
+'tog-enotifwatchlistpages' 	=> 'Surat-e saya jika suatu halaman yang saya pantau berubah',
 'tog-enotifusertalkpages' 	=> 'Surat-e saya jika halaman bicara saya berubah',
 'tog-enotifminoredits' 		=> 'Surat-e saya juga pada perubahan kecil',
 'tog-enotifrevealaddr' 		=> 'Berikan surat-e saya pada surat notifikasi',
@@ -147,15 +147,14 @@ $wgAllMessagesId = array(
 'history_short' => 'Versi terdahulu',
 'updatedmarker' => 'diubah sejak kunjungan terakhir saya',
 'info_short' => 'Informasi',
-"printableversion" => "Versi untuk dicetak",
+"printableversion" => "Versi cetak",
 'permalink'     => 'Pranala permanen',
 'print' => 'Cetak',
 'edit' => 'Sunting',
 "editthispage" => "Sunting halaman ini",
 'delete' => 'hapus',
 "deletethispage" => "Hapus halaman ini",
-'undelete_short1' => 'Batal hapus satu suntingan',
-'undelete_short' => 'Batal hapus $1 suntingan',
+'undelete_short' => 'Batal hapus {{PLURAL:$1|satu suntingan|$1 suntingan}}',
 'protect' => 'Lindungi',
 "protectthispage" => "Lindungi halaman ini",
 'unprotect' => 'Ubah perlindungan',
@@ -401,11 +400,12 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "accmailtitle" => "Kata sandi telah terkirim.",
 "accmailtext" => "Kata sandi untuk '$1' telah dikirimkan ke $2.",
 "newarticle" => "(Baru)",
-"newarticletext" => "Anda mengikuti pranala ke halaman yang belum ada.\nUntuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini\n(lihat [[{{ns:project}}:Bantuan|halaman bantuan]] untuk informasi lebih lanjut).\nJika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
+"newarticletext" => "Anda mengikuti pranala ke halaman yang belum ada.\nUntuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini\n(lihat [[{{ns:help}}:Isi|halaman bantuan]] untuk informasi lebih lanjut).\nJika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
 
 
 "anontalkpagetext" => "---- ''Ini adalah halaman diskusi seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena ia tidak membuat akun, kami terpaksa harus memakai alamat IP-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[{{ns:special}}:Userlogin|membuat akun atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.''",
 "noarticletext" => "(Tidak ada teks dalam halaman ini)",
+'noarticletext' => 'Saat ini tidak ada teks dalam halaman ini. Anda dapat [[{{ns:special}}:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} sunting halaman ini].',
 
 'clearyourcache' => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
 'usercssjsyoucanpreview' => "<strong>Tips:</strong> Gunakan tombol 'Lihat pratayang' untuk menguji CSS/JS baru Anda sebelum menyimpannya.",
@@ -438,7 +438,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "longpagewarning" => "'''PERINGATAN: Halaman ini panjangnya adalah $1 kilobita; beberapa penjelajah web mungkin mengalami masalah dalam menyunting halaman yang panjangnya 32 kb atau lebih. Harap pertimbangkan untuk memecah halaman menjadi beberapa bagian yang lebih kecil.'''",
 'longpageerror' => "<strong>KESALAHAN: Teks yang Anda kirimkan sebesar $1 kilobita\n, yang berarti lebih besar dari jumlah maksimum $2 kilobita. Teks tidak dapat disimpan.</strong>",
 "readonlywarning" => "<strong>PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak akan dapat menyimpan hasil penyuntingan Anda. Anda mungkin perlu memindahkan hasil penyuntingan Anda ini ke tempat lain untuk disimpan belakangan.</strong>",
-"protectedpagewarning" => "<strong>PERINGATAN:  Halaman ini telah dikunci sehingga hanya pemakai dengan status pengurus saja yang dapat menyuntingnya. Pastikan Anda mengikuti [[{{ns:project}}:Halaman yang dilindungi|pedoman dalam melindungi halaman]].</strong>",
+"protectedpagewarning" => "<strong>PERINGATAN:  Halaman ini telah dikunci sehingga hanya pemakai dengan status pengurus saja yang dapat menyuntingnya. Pastikan Anda mengikuti [[{{ns:project}}:pedoman halaman yang dilindungi|pedoman halaman yang dilindungi]].</strong>",
 'semiprotectedpagewarning' => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.",
 'templatesused' => 'Templat yang digunakan di halaman ini:',
 'edittools' => '<!-- Teks di sini akan dimunculkan dibawah isian suntingan dan pemuatan.-->',
@@ -454,10 +454,10 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "loadhist" => "Memuat halaman sejarah",
 "currentrev" => "Revisi sekarang",
 "revisionasof" => "Revisi per $1",
-'revisionasofwithlink'  => 'Revisi per $1; $2<br />$3 | $4',
+'oldrevisionnavigation'  => 'Revisi per $1; $5<br />$3 | $2 | $4',
 'previousrevision'      => '← Revisi sebelumnya',
 'nextrevision'          => 'Revisi selanjutnya →',
-'currentrevisionlink'   => 'lihat revisi sekarang',
+'currentrevisionlink'   => 'Revisi sekarang',
 "cur" => "skr",
 "next" => "selanjutnya",
 "last" => "akhir",
@@ -632,6 +632,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "show" => "Tampilkan",
 "minoreditletter" => "m",
 "newpageletter" => "B",
+'boteditletter' => 'b',
 'sectionlink' => '→',
 'number_of_watching_users_RCview' 	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 pemantau]',
@@ -651,9 +652,9 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'uploadtext'	=> "Gunakan isian di bawah untuk memuat berkas. Untuk menampilkan atau mencari berkas atau gambar yang telah dimuat sebelumnya, gunakan [[{{ns:special}}:Imagelist|daftar gambar]]. Log pemuatan dan penghapusan juga dapat dilihat di [[{{ns:special}}:Log/upload|log pemuatan]].
 
 Untuk menampilkan gambar atau berkas pada suatu halaman, gunakan pranala dengan format
-'''<nowiki>[[{{ns:6}}:gambar.jpg]]</nowiki>''',
-'''<nowiki>[[{{ns:6}}:gambar.png|teks alternatif]]</nowiki>''' atau
-'''<nowiki>[[{{ns:-2}}:berkas.ogg]]</nowiki>''' untuk langsung menuju berkas yang dimaksud.",
+'''<nowiki>[[{{ns:image}}:Berkas.jpg]]</nowiki>''',
+'''<nowiki>[[{{ns:image}}:Berkas.png|teks alternatif]]</nowiki>''' atau
+'''<nowiki>[[{{ns:media}}:Berkas.ogg]]</nowiki>''' untuk langsung menuju berkas yang dimaksud.",
 "uploadlog" => "log pemuatan",
 "uploadlogpage" => "Log pemuatan",
 "uploadlogpagetext" => "Di bawah ini adalah daftar terkini berkas yang dimuat. Semua waktu yang ditunjukkan adalah waktu server (UTC).",
@@ -781,6 +782,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "lonelypages" => "Halaman tak bertuan",
 'uncategorizedpages' => 'Halaman yang tak terkategori',
 'uncategorizedcategories' => 'Kategori yang tak terkategori',
+'uncategorizedimages' => 'Gambar yang tak terkategori',
 'unusedcategories' => 'Kategori yang tak digunakan',
 "unusedimages" => "Gambar yang tak digunakan",
 "popularpages" => "Halaman populer",
@@ -930,10 +932,10 @@ Kami tidak akan mengirimkan pemberitahuan lain jika terjadi perubahan lagi, kecu
 
 --
 Untuk mengubah preferensi daftar pantauan Anda, kunjungi
-{{SERVER}}{{localurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Masukan dan bantuan lanjutan:
-{{SERVER}}{{localurl:{{ns:help}}:Isi}}',
+{{fullurl:{{ns:help}}:Isi}}',
 
 
 # Delete/protect/revert
@@ -983,12 +985,12 @@ Masukan dan bantuan lanjutan:
 'protect-text' => 'Anda dapat melihat atau mengganti tingkatan perlindungan untuk halaman <strong>$1</strong> di sini. Yakinkan bahwa Anda telah mengikuti [[{{ns:project}}:Halaman yang dilindungi|pedoman {{SITENAME}}]].',
 'protect-viewtext' => 'Akun Anda tidak memiliki akses untuk mengganti tingkat perlindungan halaman. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
 'protect-default' => '(baku)',
-'protect-level-autoconfirmed' => 'Blokir pengguna tak terdaftar',
+'protect-level-autoconfirmed' => 'Hanya pengguna terdaftar',
 'protect-level-sysop' => 'Hanya pengurus',
 
 # restrictions (nouns)
-'restriction-edit' => 'Sunting',
-'restriction-move' => 'Pindahkan',
+'restriction-edit' => 'Penyuntingan',
+'restriction-move' => 'Pemindahan',
 
 # Undelete
 "undelete" => "Kembalikan halaman yang telah dihapus",
@@ -1006,6 +1008,9 @@ Masukan dan bantuan lanjutan:
 'undeletecomment' => 'Komentar:',
 "undeletedarticle" => "\"$1\" telah dikembalikan",
 'undeletedrevisions' => "$1 revisi telah dikembalikan",
+'undeletedrevisions-files' => "$1 revisi and $2 berkas dikembalikan",
+'undeletedfiles' => "$1 berkas dikembalikan",
+'cannotundelete' => 'Pembatalan penghapusan gagal; mungkin ada orang lain yang telah terlebih dahulu melakukan pembatalan.',
 'undeletedpage' => "<big>'''$1 berhasil dikembalikan'''</big>
 
 Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan pengembalian.",
@@ -1161,7 +1166,7 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 # Export
 
 "export" => "Ekspor halaman",
-'exporttext'    => 'Anda dapat mengekspor teks dan sejarah penyuntingan suatu halaman tertentu atau sejumlah halaman terbungkus dalam XML tertentu. Di masa depan, hasil ekspor ini dapat diimpor di wiki lainnya yang menggunakan perangkat lunak MediaWiki, meskipun fitur impor belum tersedia dalam versi ini.\n\nUntuk mengekspor halaman-halaman artikel, masukkan judul-judul dalam kotak teks di bawah ini, satu judul per baris, dan pilih apakah anda ingin mengekspor versi sekarang dengan versi sebelumnya, dengan catatan sejarah halaman, atau hanya versi sekarang dengan catatan penyuntingan terakhir.\n\nJika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal ini dengan lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{ns:special}}:Export/Train]] untuk mengekspor artikel [[Train]].',
+'exporttext'    => 'Anda dapat mengekspor teks dan sejarah penyuntingan suatu halaman tertentu atau sejumlah halaman terbungkus dalam XML tertentu. Di masa depan, hasil ekspor ini dapat diimpor ke wiki lainnya yang menggunakan perangkat lunak MediaWiki, dengan menggunakan Special:Import page.\n\nUntuk mengekspor halaman-halaman artikel, masukkan judul-judul dalam kotak teks di bawah ini, satu judul per baris, dan pilih apakah anda ingin mengekspor versi sekarang dengan versi sebelumnya, dengan catatan sejarah halaman, atau hanya versi sekarang dengan catatan penyuntingan terakhir.\n\nJika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal ini dengan lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{ns:special}}:Export/{{int:mainpage}}]] untuk mengekspor artikel {{int:mainpage}}.',
 "exportcuronly" => "Hanya ekspor revisi sekarang, bukan seluruh sejarah",
 'exportnohistory' => "----
 '''Catatan:''' mengekspor keseluruhan riwayat suntingan halaman melalui isian ini telah dinon-aktifkan karena alasan kinerja.",
@@ -1718,11 +1723,11 @@ $1
 # delete conflict
 
 'deletedwhileediting' => 'Perhatian: Halaman ini telah dihapus setelah Anda mulai melakukan penyuntingan!',
-'confirmrecreate' => 'Pengguna [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|talk]]) telah menghapus artikel selagi Anda mulai melakukan penyuntingan dengan alasan:
+'confirmrecreate' => 'Pengguna [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|talk]]) telah menghapus halaman selagi Anda mulai melakukan penyuntingan dengan alasan:
 : \'\'$2\'\'
-Silakan konfirmasi jika Anda ingin membuat ulang artikel ini.',
+Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.',
 'recreate' => 'Buat ulang',
-'tooltip-recreate' => '',
+'tooltip-recreate' => 'Buat ulang halaman walaupun sebenarnya telah dihapus',
 
 'unit-pixel' => 'px',
 

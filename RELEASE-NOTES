@@ -527,6 +527,7 @@ Some default configuration options have changed:
 * (bug 6189) Show an error to an unprivilleged user trying to create account
 * (bug 6365) Show user information in the "old revision" navigation links
 * Introduce 'FetchChangesList' hook; see docs/hooks.txt for more information
+* (bug 6345) Update to Indonesian localisation (id) #22
 
 == Compatibility ==
 
