@@ -39,12 +39,20 @@ class ChangesList {
 		$this->preCacheMessages();
 	}
 
+	/**
+	 * Fetch an appropriate changes list class for the specified user
+	 * Some users might want to use an enhanced list format, for instance
+	 *
+	 * @param $user User to fetch the list class for
+	 * @return ChangesList derivative
+	 */
 	function newFromUser( &$user ) {
 		$sk =& $user->getSkin();
-		if( $user->getOption('usenewrc') ) {
-			return new EnhancedChangesList( $sk );
+		$list = NULL;
+		if( wfRunHooks( 'FetchChangesList', array( &$user, &$skin, &$list ) ) ) {
+			return $user->getOption( 'usenewrc' ) ? new EnhancedChangesList( $sk ) : new OldChangesList( $sk );
 		} else {
-			return new OldChangesList( $sk );
+			return $list;
 		}
 	}
 
