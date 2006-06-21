@@ -530,6 +530,8 @@ Some default configuration options have changed:
 * (bug 6345) Update to Indonesian localisation (id) #22
 * (bug 6279) Add genitive month names to Slovenian localisation
 * (bug 6351) Update to German translation (de)
+* Show an arrow in the right direction also in Broken Redirects special page,
+  not only in the Double Redirects.
 
 == Compatibility ==
 
