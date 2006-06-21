@@ -335,6 +335,12 @@ $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
 
+'FetchChangesList': When fetching the ChangesList derivative for a particular user
+&$user: User the list is being fetched for
+&$skin: Skin object to be used with the list
+&$list: List object (defaults to NULL, change it to an object instance and return
+false override the list derivative used)
+
 'GetInternalURL': modify fully-qualified URLs used for squid cache purging
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
