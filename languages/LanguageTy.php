@@ -11,14 +11,18 @@
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
   */
 
-/**
- *
- */
 require_once 'LanguageFr.php';
 
-/**
- *
- */
-class LanguageTy extends LanguageFr {}
+class LanguageTy extends LanguageFr {
+
+	function getFallbackLanguage() {
+		return 'fr';
+	}
+
+	function getAllMessages() {
+		return null;
+	}
+
+}
 
 ?>
