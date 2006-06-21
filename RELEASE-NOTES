@@ -8,6 +8,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 plapla
 
 * (bug 5957) Updates to Hebrew translation (he)
+* Show an arrow in the right direction also in Broken Redirects special page,
+  not only in the Double Redirects.
 
 == Mediawiki 1.6.7 ==
 

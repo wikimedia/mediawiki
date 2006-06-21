@@ -52,6 +52,8 @@ class BrokenRedirectsPage extends PageQueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
+		global $wgContLang;
+		
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
 		if ( isset( $result->pl_title ) ) {
 			$toObj = Title::makeTitle( $result->pl_namespace, $result->pl_title );
@@ -72,8 +74,9 @@ class BrokenRedirectsPage extends PageQueryPage {
 		$from = $skin->makeKnownLinkObj( $fromObj ,'', 'redirect=no' );
 		$edit = $skin->makeBrokenLinkObj( $fromObj , "(".wfMsg("qbedit").")" , 'redirect=no');
 		$to   = $skin->makeBrokenLinkObj( $toObj );
+		$arr = $wgContLang->isRTL() ? '&larr;' : '&rarr;';
 
-		return "$from $edit &rarr; $to";
+		return "$from $edit $arr $to";
 	}
 }
 
