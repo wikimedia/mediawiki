@@ -5419,6 +5419,31 @@ extra nasty
 extra nasty
 !! end
 
+
+!! test
+Section extraction, heading followed by pre with 20 spaces (bug 6398)
+!! options
+section=1
+!! input
+==a==
+                    a
+!! result
+==a==
+                    a
+!! end
+
+!! test
+Section extraction, heading followed by pre with 19 spaces (bug 6398 sanity check)
+!! options
+section=1
+!! input
+==a==
+                   a
+!! result
+==a==
+                   a
+!! end
+
 #
 #
 #
