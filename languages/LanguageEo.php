@@ -4,56 +4,57 @@
   * @subpackage Language
   */
 
-/** */
 require_once('LanguageUtf8.php');
-
-/* private */ $wgNamespaceNamesEo = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Speciala',
-	NS_MAIN           => '',
-	NS_TALK           => 'Diskuto',
-	NS_USER           => 'Vikipediisto',
-	NS_USER_TALK      => 'Vikipediista_diskuto',
-	NS_PROJECT	      => $wgMetaNamespace, # FIXME: Generalize v-isto kaj v-io
-	NS_PROJECT_TALK   => $wgMetaNamespace.'_diskuto', # FIXME
-	NS_IMAGE          => 'Dosiero', #FIXME: Check the magic for Image: and Media:
-	NS_IMAGE_TALK     => 'Dosiera_diskuto',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_diskuto',
-	NS_TEMPLATE       => 'Ŝablono',
-	NS_TEMPLATE_TALK  => 'Ŝablona_diskuto',
-	NS_HELP           => 'Helpo',
-	NS_HELP_TALK      => 'Helpa_diskuto',
-	NS_CATEGORY       => 'Kategorio',
-	NS_CATEGORY_TALK  => 'Kategoria_diskuto',
-
-) + $wgNamespaceNamesEn;
-
-/* private */ $wgQuickbarSettingsEo = array(
-	'Nenia', 'Fiksiĝas maldekstre', 'Fiksiĝas dekstre', 'Ŝvebas maldekstre'
-);
-
-/* private */ $wgSkinNamesEo = array(
-	'standard' => 'Klasika',
-	'nostalgia' => 'Nostalgio',
-	'cologneblue' => 'Kolonja Bluo',
-	'mono' => 'Senkolora',
-	'monobook' => 'Librejo',
-	'chick' => 'Kokido',
-) + $wgSkinNamesEn;
-
-
-
-# Se eble, trovu Esperantajn libroservoj traserĉeblaj laŭ ISBN
-# $wgBookstoreListEo = ..
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesEo.php');
 }
 
-/** @package MediaWiki */
 class LanguageEo extends LanguageUtf8 {
+	private $mMessagesEo, $mNamespaceNamesEo = null;
 
+	private $mQuickbarSettingsEo = array(
+		'Nenia', 'Fiksiĝas maldekstre', 'Fiksiĝas dekstre', 'Ŝvebas maldekstre'
+	);
+	
+	private $mSkinNamesEo = array(
+		'standard' => 'Klasika',
+		'nostalgia' => 'Nostalgio',
+		'cologneblue' => 'Kolonja Bluo',
+		'mono' => 'Senkolora',
+		'monobook' => 'Librejo',
+		'chick' => 'Kokido',
+	);
+		
+	function __construct() {
+		parent::__construct();
+
+		global $wgAllMessagesEo;
+		$this->mMessagesEo =& $wgAllMessagesEo;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesEo = array(
+			NS_MEDIA          => 'Media',
+			NS_SPECIAL        => 'Speciala',
+			NS_MAIN           => '',
+			NS_TALK           => 'Diskuto',
+			NS_USER           => 'Vikipediisto',
+			NS_USER_TALK      => 'Vikipediista_diskuto',
+			NS_PROJECT        => $wgMetaNamespace, # FIXME: Generalize v-isto kaj v-io
+			NS_PROJECT_TALK   => $wgMetaNamespace.'_diskuto', # FIXME
+			NS_IMAGE          => 'Dosiero', #FIXME: Check the magic for Image: and Media:
+			NS_IMAGE_TALK     => 'Dosiera_diskuto',
+			NS_MEDIAWIKI      => 'MediaWiki',
+			NS_MEDIAWIKI_TALK => 'MediaWiki_diskuto',
+			NS_TEMPLATE       => 'Ŝablono',
+			NS_TEMPLATE_TALK  => 'Ŝablona_diskuto',
+			NS_HELP           => 'Helpo',
+			NS_HELP_TALK      => 'Helpa_diskuto',
+			NS_CATEGORY       => 'Kategorio',
+			NS_CATEGORY_TALK  => 'Kategoria_diskuto',
+		);
+
+	}
 	function getDefaultUserOptions () {
 		$opt = parent::getDefaultUserOptions();
 		$opt['altencoding'] = 0;
@@ -61,28 +62,27 @@ class LanguageEo extends LanguageUtf8 {
 	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesEo;
-		return $wgNamespaceNamesEo;
-	}
-
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesEo;
-
-		foreach ( $wgNamespaceNamesEo as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
+		return $this->mNamespaceNamesEo + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsEo;
-		return $wgQuickbarSettingsEo;
+		return $this->mQuickbarSettingsEo;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesEo;
-		return $wgSkinNamesEo;
+		return $this->mSkinNamesEo + parent::getSkinNames();
+	}
+
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesEo[$key] ) ) {
+			return $this->mMessagesEo[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesEo;
 	}
 
 	# La dato- kaj tempo-funkciojn oni povas precizigi laŭ lingvo
@@ -92,14 +92,6 @@ class LanguageEo extends LanguageUtf8 {
 
 	function formatDay( $day, $format ) {
 		return parent::formatDay( $day, $format ) . '.';
-	}
-
-	function getMessage( $key ) {
-		global $wgAllMessagesEo;
-		if(array_key_exists($key, $wgAllMessagesEo))
-			return $wgAllMessagesEo[$key];
-		else
-			return parent::getMessage($key);
 	}
 
 	function iconv( $in, $out, $string ) {
