@@ -4327,7 +4327,7 @@ class Parser
 				(=+) # Should this be limited to 6?
 				.+?  # Section title...
 				\\2  # Ending = count must match start
-				(?:$comment|<\/?noinclude>|\s+)* # Trailing whitespace ok
+				(?:$comment|<\/?noinclude>|[ \\t]+)* # Trailing whitespace ok
 				$
 			|
 				<h([1-6])\b.*?>
