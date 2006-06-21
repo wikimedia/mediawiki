@@ -188,12 +188,12 @@ class UsercreateTemplate extends QuickTemplate {
 			echo '<div id="login-sectiontip">';
 			if ( $this->data['useemail'] ) {
 				echo '<div>';
-				$this->msg('prefs-help-email');
+				$this->msgHtml('prefs-help-email');
 				echo '</div>';
 			}
 			if ( $this->data['userealname'] ) {
 				echo '<div>';
-				$this->msg('prefs-help-realname');
+				$this->msgHtml('prefs-help-realname');
 				echo '</div>';
 			}
 			echo '</div>';
