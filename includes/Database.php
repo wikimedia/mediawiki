@@ -1818,7 +1818,13 @@ class Database {
 			 *
 			 * Relay log I/O thread does not select databases.
 			 */
-			if ( $row->User == 'system user' && $row->db != '' ) {
+			if ( $row->User == 'system user' && 
+				$row->State != 'Waiting for master to send event' &&
+				$row->State != 'Connecting to master' && 
+				$row->State != 'Queueing master event to the relay log' &&
+				$row->State != 'Waiting for master update' &&
+				$row->State != 'Requesting binlog dump'
+				) {
 				# This is it, return the time (except -ve)
 				if ( $row->Time > 0x7fffffff ) {
 					return false;
