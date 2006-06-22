@@ -7,10 +7,6 @@
 
 require_once( "LanguageUtf8.php" );
 
-if (!$wgCachedMessageArrays) {
-	require_once('MessagesUr.php');
-}
-
 class LanguageUr extends LanguageUtf8 {
 	private $mMessagesUr = null;
 
