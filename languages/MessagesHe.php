@@ -1570,6 +1570,8 @@ $1",
 
 # DISPLAYTITLE
 "displaytitle" => "(קשרו לדף זה בשם [[$1]])",
+
+"loginlanguagelabel" => "שפה: $1",
 );
 
 ?>
