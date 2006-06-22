@@ -626,7 +626,7 @@ class LoginForm {
 	
 	/**
 	 * Produce a bar of links which allow the user to select another language
-	 * during login/registration but retain "returnto" and certain form values
+	 * during login/registration but retain "returnto"
 	 *
 	 * @return string
 	 */
@@ -646,6 +646,13 @@ class LoginForm {
 		}
 	}
 	
+	/**
+	 * Create a language selector link for a particular language
+	 * Links back to this page preserving type and returnto
+	 *
+	 * @param $text Link text
+	 * @param $lang Language code
+	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
 		global $wgUser;
 		$self = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
