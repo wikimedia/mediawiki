@@ -1378,8 +1378,7 @@ an existing page.
 This can be a drastic and unexpected change for a popular page;
 please be sure you understand the consequences of this before
 proceeding.',
-'movepagetalktext' => 'The associated talk page, if any, will be automatically moved along with it \'\'\'unless:\'\'\'
-*You are moving the page across namespaces,
+'movepagetalktext' => 'The associated talk page will be automatically moved along with it \'\'\'unless:\'\'\'
 *A non-empty talk page already exists under the new name, or
 *You uncheck the box below.
 
