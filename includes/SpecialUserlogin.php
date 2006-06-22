@@ -27,7 +27,7 @@ function wfSpecialUserlogin() {
 class LoginForm {
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
-	var $mLoginattempt, $mRemember, $mEmail, $mDomain;
+	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
 
 	/**
 	 * Constructor
@@ -53,6 +53,7 @@ class LoginForm {
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
+		$this->mLanguage = $request->getText( 'uselang' );
 
 		if( $wgEnableEmail ) {
 			$this->mEmail = $request->getText( 'wpEmail' );
@@ -141,6 +142,12 @@ class LoginForm {
 		if( $u == NULL )
 			return;
 			
+		# If we showed up language selection links, and one was in use, be
+		# smart (and sensible) and save that language as the user's preference
+		global $wgLoginLanguageSelector;
+		if( $wgLoginLanguageSelector && $this->mLanguage )
+			$u->setOption( 'language', $this->mLanguage );
+		
 		# Save user settings and send out an email authentication message if needed
 		$u->saveSettings();
 		if( $wgEmailAuthentication && User::isValidEmailAddr( $u->getEmail() ) )
@@ -533,6 +540,13 @@ class LoginForm {
 		$template->set( 'userealname', $wgAllowRealName );
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
+				
+		global $wgLoginLanguageSelector;
+		if( $wgLoginLanguageSelector ) {
+			$template->set( 'languages', $this->makeLanguageSelector() );
+			if( $this->mLanguage )
+				$template->set( 'uselang', $this->mLanguage );
+		}
 		
 		// Give authentication and captcha plugins a chance to modify the form
 		$wgAuth->modifyUITemplate( $template );
@@ -609,5 +623,40 @@ class LoginForm {
 
 		$wgOut->addWikiText( wfMsg( 'acct_creation_throttle_hit', $limit ) );
 	}
+	
+	/**
+	 * Produce a bar of links which allow the user to select another language
+	 * during login/registration but retain "returnto" and certain form values
+	 *
+	 * @return string
+	 */
+	function makeLanguageSelector() {
+		$msg = wfMsgForContent( 'loginlanguagelinks' );
+		if( $msg != '' && $msg != '&lt;loginlanguagelinks&gt;' ) {
+			$langs = explode( "\n", $msg );
+			$links = array();
+			foreach( $langs as $lang ) {
+				$lang = trim( $lang, '* ' );
+				$parts = explode( '|', $lang );
+				$links[] = $this->makeLanguageSelectorLink( $parts[0], $parts[1] );
+			}
+			return count( $links ) > 0 ? wfMsgHtml( 'loginlanguagelabel', implode( ' | ', $links ) ) : '';
+		} else {
+			return '';
+		}
+	}
+	
+	function makeLanguageSelectorLink( $text, $lang ) {
+		global $wgUser;
+		$self = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$attr[] = 'uselang=' . $lang;
+		if( $this->mType == 'signup' )
+			$attr[] = 'type=signup';
+		if( $this->mReturnTo )
+			$attr[] = 'returnto=' . $this->mReturnTo;
+		$skin =& $wgUser->getSkin();
+		return $skin->makeKnownLinkObj( $self, htmlspecialchars( $text ), implode( '&', $attr ) );
+	}
+	
 }
 ?>

@@ -2021,7 +2021,17 @@ Please confirm that really want to recreate this page.',
 # Please don't localise this
 'catseparator' => '|',
 
-);
+'loginlanguagelabel' => 'Language: $1',
 
+# Don't duplicate this in translations; defaults should remain consistent
+'loginlanguagelinks' => "* Deutsch|de
+* English|en
+* Esperanto|eo
+* Français|fr
+* Español|es
+* Italiano|it
+* Nederlands|nl",
+
+);
 
 ?>
