@@ -691,12 +691,14 @@ class PreferencesForm {
 		}
 		# </FIXME>
 
-		if ($wgAllowRealName || $wgEnableEmail) {
-			$wgOut->addHTML("<div class='prefsectiontip'>");
-			$rn = $wgAllowRealName ? wfMsg('prefs-help-realname') : '';
-			$em = $wgEnableEmail ? '<br />' .  wfMsg('prefs-help-email') : '';
-			$wgOut->addHTML( $rn . $em  . '</div>');
-		}
+		# Show little "help" tips for the real name and email address options
+		if( $wgAllowRealName || $wgEnableEmail ) {
+			if( $wgAllowRealName )
+				$tips[] = wfMsg( 'prefs-help-realname' );
+			if( $wgEnableEmail )
+				$tips[] = wfMsg( 'prefs-help-email' );
+			$wgOut->addHtml( '<div class="prefsectiontip">' . implode( '<br />', $tips ) . '</div>' );
+		}		
 
 		$wgOut->addHTML( '</fieldset>' );
 
