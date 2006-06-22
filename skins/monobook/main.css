@@ -1098,7 +1098,7 @@ div#userlogin .captcha {
 }
 
 
-#userloginprompt {
+#userloginprompt, #languagelinks {
 	font-size: 85%;
 }
 

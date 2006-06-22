@@ -663,6 +663,13 @@ $wgMsgCacheExpiry	= 86400;
 # Whether to enable language variant conversion.
 $wgDisableLangConversion = false;
 
+/**
+ * Show a bar of language selection links in the user login and user
+ * registration forms; edit the "loginlanguagelinks" message to
+ * customise these
+ */
+$wgLoginLanguageSelector = false;
+
 # Whether to use zhdaemon to perform Chinese text processing
 # zhdaemon is under developement, so normally you don't want to
 # use it unless for testing

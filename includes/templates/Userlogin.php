@@ -31,6 +31,7 @@ class UserloginTemplate extends QuickTemplate {
 	<h2><?php $this->msg('login') ?></h2>
 	<p id="userloginlink"><?php $this->html('link') ?></p>
 	<div id="userloginprompt"><?php  $this->msgWiki('loginprompt') ?></div>
+	<?php if( @$this->haveData( 'languages' ) ) { ?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php } ?>
 	<table>
 		<tr>
 			<td align='right'><label for='wpName1'><?php $this->msg('yourname') ?>:</label></td>
@@ -79,6 +80,7 @@ class UserloginTemplate extends QuickTemplate {
 			</td>
 		</tr>
 	</table>
+<?php if( @$this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->html( 'uselang' ); ?>" /><?php } ?>
 </form>
 </div>
 <div id="loginend"><?php $this->msgWiki( 'loginend' ); ?></div>
@@ -105,6 +107,7 @@ class UsercreateTemplate extends QuickTemplate {
 	<h2><?php $this->msg('createaccount') ?></h2>
 	<p id="userloginlink"><?php $this->html('link') ?></p>
 	<?php $this->html('header'); /* pre-table point for form plugins... */ ?>
+	<?php if( @$this->haveData( 'languages' ) ) { ?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php } ?>
 	<table>
 		<tr>
 			<td align='right'><label for='wpName2'><?php $this->msg('yourname') ?>:</label></td>
@@ -200,6 +203,7 @@ class UsercreateTemplate extends QuickTemplate {
 		}
 
 	?>
+<?php if( @$this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 </form>
 </div>
 <div id="signupend"><?php $this->msgWiki( 'signupend' ); ?></div>
