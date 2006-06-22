@@ -80,7 +80,7 @@ class UserloginTemplate extends QuickTemplate {
 			</td>
 		</tr>
 	</table>
-<?php if( @$this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->html( 'uselang' ); ?>" /><?php } ?>
+<?php if( @$this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 </form>
 </div>
 <div id="loginend"><?php $this->msgWiki( 'loginend' ); ?></div>
