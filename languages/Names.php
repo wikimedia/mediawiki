@@ -42,7 +42,7 @@
 	'cr' => 'Nēhiyaw / ᓀᐦᐃᔭᐤ',		# Cree
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
-	'cv' => 'Чӑваш',	# Chuvash
+	'cv' => 'Чăвашла',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
 	'de' => 'Deutsch',		# German

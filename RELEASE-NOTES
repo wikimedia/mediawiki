@@ -535,7 +535,8 @@ Some default configuration options have changed:
 * (bug 6398) Work around apparent PCRE bug breaking section editing when
   massively-indented preformatted text immediately followed a header
 * (bug 6392) Fix misbehaving <br /> in preferences form
-* Add translated magic words to Hebrew localization.
+* Add translated magic words to Hebrew localization
+* (bug 6396) Change name for Chuvash language
 
 == Compatibility ==
 
