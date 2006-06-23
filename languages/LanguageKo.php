@@ -4,90 +4,104 @@
   * @package MediaWiki
   * @subpackage Language
   */
+
 require_once('LanguageUtf8.php');
-
-/* private */ $wgNamespaceNamesKo = array(
-	NS_MEDIA	    => 'Media',
-	NS_SPECIAL	  => '특수기능',
-	NS_MAIN	     => '',
-	NS_TALK	     => '토론',
-	NS_USER	     => '사용자',
-	NS_USER_TALK	=> '사용자토론',
-	NS_PROJECT	  => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace.'토론',
-	NS_IMAGE	    => '그림',
-	NS_IMAGE_TALK       => '그림토론',
-	NS_HELP             => '도움말',
-	NS_HELP_TALK        => '도움말토론',
-	NS_CATEGORY	 => '분류',
-	NS_CATEGORY_TALK    => '분류토론',
-) + $wgNamespaceNamesEn;
-
-/* private */ $wgQuickbarSettingsKo = array(
-	'없음', '왼쪽 붙박이', '오른쪽 붙박이', '왼쪽 떠다님'
-
-);
-
-/* private */ $wgSkinNamesKo = array(
-	'standard' => '보통',
-	'nostalgia' => '그리움',
-	'cologneblue' => '쾰른 파랑',
-	'davinci' => '다빈치',
-	'mono' => '모노',
-	'monobook' => '모노북(기본값)',
-	'my skin' => '내 스킨',
-	'chick' => '칙(Chick)',
-) + $wgSkinNamesEn;
-
-
-/* private */ $wgBookstoreListKo = array(
-	'Aladdin.co.kr' => 'http://www.aladdin.co.kr/catalog/book.asp?ISBN=$1'
-) + $wgBookstoreListEn;
-
-
-
-# (Okay, I think I got it right now. This can be adjusted
-#  in the 'date' function down at the bottom. --Brion)
-#
-# Thanks. And it's usual that the time comes after dates.
-# So I've change the timeanddate function, just exchanged $time and $date
-# But you should check before you install it, 'cause I'm quite stupid about
-# the programming.
-#
-
-/* private */ $wgWeekdayAbbreviationsKo = array(
-	'일', '월', '화', '수', '목',
-	'금', '토'
-);
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesKo.php');
 }
 
 class LanguageKo extends LanguageUtf8 {
+	private $mMessagesKo, $mNamespaceNamesKo = null;
 
-	function getBookstoreList() {
-		global $wgBookstoreListKo;
-		return $wgBookstoreListKo;
+		private $mQuickbarSettingsKo = array(
+			'없음', '왼쪽 붙박이', '오른쪽 붙박이', '왼쪽 떠다님'
+		);
+		
+		private $mSkinNamesKo = array(
+			'standard' => '보통',
+			'nostalgia' => '그리움',
+			'cologneblue' => '쾰른 파랑',
+			'davinci' => '다빈치',
+			'mono' => '모노',
+			'monobook' => '모노북(기본값)',
+			'my skin' => '내 스킨',
+			'chick' => '칙(Chick)',
+		);
+		
+		private $mBookstoreListKo = array(
+			'Aladdin.co.kr' => 'http://www.aladdin.co.kr/catalog/book.asp?ISBN=$1'
+		);
+		
+		# (Okay, I think I got it right now. This can be adjusted
+		#  in the 'date' function down at the bottom. --Brion)
+		#
+		# Thanks. And it's usual that the time comes after dates.
+		# So I've change the timeanddate function, just exchanged $time and $date
+		# But you should check before you install it, 'cause I'm quite stupid about
+		# the programming.
+		#
+		
+		private $mWeekdayAbbreviationsKo = array(
+			'일', '월', '화', '수', '목', '금', '토'
+		);
+
+	function __construct() {
+		parent::__construct();
+
+		global $wgAllMessagesKo;
+		$this->mMessagesKo =& $wgAllMessagesKo;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesKo = array(
+			NS_MEDIA          => 'Media',
+			NS_SPECIAL        => '특수기능',
+			NS_MAIN           => '',
+			NS_TALK           => '토론',
+			NS_USER           => '사용자',
+			NS_USER_TALK      => '사용자토론',
+			NS_PROJECT        => $wgMetaNamespace,
+			NS_PROJECT_TALK   => $wgMetaNamespace.'토론',
+			NS_IMAGE          => '그림',
+			NS_IMAGE_TALK     => '그림토론',
+			NS_HELP           => '도움말',
+			NS_HELP_TALK      => '도움말토론',
+			NS_CATEGORY       => '분류',
+			NS_CATEGORY_TALK  => '분류토론',
+		);
+
 	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesKo;
-		return $wgNamespaceNamesKo;
+		return $this->mNamespaceNamesKo + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsKo;
-		return $wgQuickbarSettingsKo;
+		return $this->mQuickbarSettingsKo;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesKo;
-		return $wgSkinNamesKo;
+		return $this->mSkinNamesKo + parent::getSkinNames();
+	}
+
+	function getBookstoreList() {
+		return $this->mBookstoreListKo + parent::getBookstoreList();
 	}
 
 	function getDateFormats() {
 		return false;
+	}
+
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesKo[$key] ) ) {
+			return $this->mMessagesKo[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesKo;
 	}
 
 	function date( $ts, $adj = false ) {
@@ -109,11 +123,6 @@ class LanguageKo extends LanguageUtf8 {
 
 	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
-	}
-
-	function getMessage( $key ) {
-		global $wgAllMessagesKo;
-		return isset($wgAllMessagesKo[$key]) ? $wgAllMessagesKo[$key] : parent::getMessage($key);
 	}
 
 	function firstChar( $s ) {
