@@ -95,6 +95,14 @@ class PageHistory {
 		 * offset, the timestamp to begin at, from the URL.
 		 */
 		$limit = $wgRequest->getInt('limit', $this->defaultLimit);
+		if ( $limit <= 0 ) {
+			$limit = $this->defaultLimit;
+		} elseif ( $limit > 50000 ) {
+			# Arbitrary maximum
+			# Any more than this and we'll probably get an out of memory error
+			$limit = 50000;
+		}
+
 		$offset = $wgRequest->getText('offset');
 
 		/* Offset must be an integral. */
