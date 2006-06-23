@@ -49,9 +49,7 @@ END;
 $wgTitle = Title::newFromText( 'Parser test script do not use' );
 $tester =& new ParserTest();
 
-# Note: the command line setup changes the current working directory
-# to the parent, which is why we have to put the subdir here:
-$ok = $tester->runTestsFromFile( 'maintenance/parserTests.txt' );
+$ok = $tester->runTestsFromFile( "$IP/maintenance/parserTests.txt" );
 
 exit ($ok ? 0 : -1);
 ?>
