@@ -5,12 +5,18 @@
   * @subpackage Language
   */
 
-/** */
 require_once( 'LanguageIt.php' );
 
-/** @package MediaWiki */
 class LanguageNap extends LanguageIt {
-	# Inherit everything
+
+	function getFallbackLanguage() {
+		return 'it';
+	}
+
+	function getAllMessages() {
+		return null;
+	}
+
 }
 
 ?>
