@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesEs = array(
+global $wgAllMessagesEs;
+$wgAllMessagesEs = array(
 # User Toggles
 
 "tog-underline" => "Subrayar enlaces",
