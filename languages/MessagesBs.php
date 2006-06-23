@@ -1,6 +1,6 @@
 <?php
 
-
+global $wgAllMessagesBs;
 $wgAllMessagesBs = array(
 '1movedto2' => 'stranica [[$1]] premještena u stranicu [[$2]]',
 '1movedto2_redir' => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
