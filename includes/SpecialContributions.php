@@ -199,7 +199,7 @@ function wfSpecialContributions( $par = null ) {
 	$finder->setOffset( $options['offset'] );
 
 	if ( ( $ns = $wgRequest->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
-		#$options['namespace'] = intval( $ns );
+		$options['namespace'] = intval( $ns );
 		$finder->setNamespace( $options['namespace'] );
 	} else {
 		$options['namespace'] = '';
