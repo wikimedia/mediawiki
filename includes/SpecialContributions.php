@@ -186,6 +186,7 @@ function wfSpecialContributions( $par = null ) {
 
 	$nsurl = $xnsurl = '';
 	if (($ns = $wgRequest->getVal('namespace', null)) !== null && $ns !== '') {
+		$ns = intval( $ns );
 		$nsurl = '&namespace='.$ns;
 		$xnsurl = htmlspecialchars($nsurl);
 		$finder->set_namespace($ns);

@@ -55,7 +55,12 @@ class OutputPage {
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ) ; }
-	function redirect( $url, $responsecode = '302' ) { $this->mRedirect = $url; $this->mRedirectCode = $responsecode; }
+
+	function redirect( $url, $responsecode = '302' ) { 
+		# Strip newlines as a paranoia check for header injection in PHP<5.1.2
+		$this->mRedirect = str_replace( "\n", '', $url );
+		$this->mRedirectCode = $responsecode; 
+	}
 	function setStatusCode( $statusCode ) { $this->mStatusCode = $statusCode; }
 
 	# To add an http-equiv meta tag, precede the name with "http:"
