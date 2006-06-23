@@ -538,11 +538,12 @@ Some default configuration options have changed:
 * Add translated magic words to Hebrew localization
 * (bug 6396) Change name for Chuvash language
 * Introduce optional (off by default) language selector bar for user login
-  and registration.
-    Customisable via the "loginlanguagelinks" message, the links will preserve
-  "returnto" values. If the user creates an account while using such a link,
-  then the language in use will be saved as their language preference.
+  and registration. Customisable via the "loginlanguagelinks" message, the
+  links will preserve "returnto" values. If the user creates an account while
+  using such a link, then the language in use will be saved as their language
+  preference.
 * Make sure '~~~' '~~~~' '~~~~~' are removed in Nickname preference.
+* Rename "ipusuccess" to "unblocked", change the format (now wiki text)
 
 == Compatibility ==
 
