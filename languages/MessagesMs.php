@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesMs = array(
+global $wgAllMessagesMs;
+$wgAllMessagesMs = array(
 
 # User Toggles
 
@@ -75,7 +75,6 @@
 
 # Bits of text used by many pages:
 #
-'linktrail'             => '/^([a-z]+)(.*)$/sD',
 "mainpage"            => "Halaman Utama", #"Main Page",
 "mainpagetext"                => "Atur cara Wiki berjaya dipasang.",
 "portal"              => "Portal Masyarakat",
