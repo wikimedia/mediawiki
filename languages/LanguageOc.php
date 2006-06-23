@@ -28,8 +28,8 @@ class LanguageOc extends LanguageUtf8 {
 		'Amazon.fr' => 'http://www.amazon.fr/exec/obidos/ISBN=$1'
 	);
 
-	function LanguageOc() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesOc;
 		$this->mMessagesOc =& $wgAllMessagesOc;
