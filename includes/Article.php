@@ -436,7 +436,7 @@ class Article {
 
 		// FIXME: Horrible, horrible! This content-loading interface just plain sucks.
 		// We should instead work with the Revision object when we need it...
-		$this->mContent = $revision->userCan( Revision::MW_REV_DELETED_TEXT ) ? $revision->getRawText() : "";
+		$this->mContent = $revision->userCan( Revision::DELETED_TEXT ) ? $revision->getRawText() : "";
 		//$this->mContent   = $revision->getText();
 
 		$this->mUser      = $revision->getUser();
@@ -803,8 +803,8 @@ class Article {
 					// FIXME: This would be a nice place to load the 'no such page' text.
 				} else {
 					$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
-					if( $this->mRevision->isDeleted( Revision::MW_REV_DELETED_TEXT ) ) {
-						if( !$this->mRevision->userCan( Revision::MW_REV_DELETED_TEXT ) ) {
+					if( $this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
+						if( !$this->mRevision->userCan( Revision::DELETED_TEXT ) ) {
 							$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
 							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 							return;

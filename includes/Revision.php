@@ -12,10 +12,10 @@ require_once( 'Database.php' );
  * @todo document
  */
 class Revision {
-	const MW_REV_DELETED_TEXT 	= 1;
-	const MW_REV_DELETED_COMMENT 	= 2;
-	const MW_REV_DELETED_USER 	= 4;
-	const MW_REV_DELETED_RESTRICTED = 8;
+	const DELETED_TEXT 	= 1;
+	const DELETED_COMMENT 	= 2;
+	const DELETED_USER 	= 4;
+	const DELETED_RESTRICTED = 8;
 	
 	/**
 	 * Load a page revision from a given revision ID number.
@@ -348,7 +348,7 @@ class Revision {
 	 * @return int
 	 */
 	function getUser() {
-		if( $this->isDeleted( self::MW_REV_DELETED_USER ) ) {
+		if( $this->isDeleted( self::DELETED_USER ) ) {
 			return 0;
 		} else {
 			return $this->mUser;
@@ -368,7 +368,7 @@ class Revision {
 	 * @return string
 	 */
 	function getUserText() {
-		if( $this->isDeleted( self::MW_REV_DELETED_USER ) ) {
+		if( $this->isDeleted( self::DELETED_USER ) ) {
 			return "";
 		} else {
 			return $this->mUserText;
@@ -388,7 +388,7 @@ class Revision {
 	 * @return string
 	 */
 	function getComment() {
-		if( $this->isDeleted( self::MW_REV_DELETED_COMMENT ) ) {
+		if( $this->isDeleted( self::DELETED_COMMENT ) ) {
 			return "";
 		} else {
 			return $this->mComment;
@@ -411,7 +411,7 @@ class Revision {
 	}
 
 	/**
-	 * int $field one of MW_REV_DELETED_* bitfield constants
+	 * int $field one of DELETED_* bitfield constants
 	 * @return bool
 	 */
 	function isDeleted( $field ) {
@@ -423,7 +423,7 @@ class Revision {
 	 * @return string
 	 */
 	function getText() {
-		if( $this->isDeleted( self::MW_REV_DELETED_TEXT ) ) {
+		if( $this->isDeleted( self::DELETED_TEXT ) ) {
 			return "";
 		} else {
 			return $this->getRawText();
@@ -734,15 +734,15 @@ class Revision {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
-	 * @param int $field one of self::MW_REV_DELETED_TEXT,
-	 *                          self::MW_REV_DELETED_COMMENT,
-	 *                          self::MW_REV_DELETED_USER
+	 * @param int $field one of self::DELETED_TEXT,
+	 *                          self::DELETED_COMMENT,
+	 *                          self::DELETED_USER
 	 * @return bool
 	 */
 	function userCan( $field ) {
 		if( ( $this->mDeleted & $field ) == $field ) {
 			global $wgUser;
-			$permission = ( $this->mDeleted & self::MW_REV_DELETED_RESTRICTED ) == self::MW_REV_DELETED_RESTRICTED
+			$permission = ( $this->mDeleted & self::DELETED_RESTRICTED ) == self::DELETED_RESTRICTED
 				? 'hiderevision'
 				: 'deleterevision';
 			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
@@ -752,6 +752,31 @@ class Revision {
 		}
 	}
 
+
+	/**
+	 * Get rev_timestamp from rev_id, without loading the rest of the row
+	 * @param integer $id
+	 */
+	static function getTimestampFromID( $id ) {
+		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', 
+			array( 'rev_id' => $id ), __METHOD__ );
+		if ( $timestamp === false ) {
+			# Not in slave, try master
+			$dbw =& wfGetDB( DB_MASTER );
+			$timestamp = $dbw->selectField( 'revision', 'rev_timestamp', 
+				array( 'rev_id' => $id ), __METHOD__ );
+		}
+		return $timestamp;
+	}
 }
+
+/**
+ * Aliases for backwards compatibility with 1.6
+ */
+define( 'MW_REV_DELETED_TEXT', Revision::DELETED_TEXT );
+define( 'MW_REV_DELETED_COMMENT', Revision::DELETED_COMMENT );
+define( 'MW_REV_DELETED_USER', Revision::DELETED_USER );
+define( 'MW_REV_DELETED_RESTRICTED', Revision::DELETED_RESTRICTED );
+
 
 ?>

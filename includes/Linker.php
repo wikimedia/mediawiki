@@ -833,12 +833,12 @@ class Linker {
 	 * @return string HTML
 	 */
 	function revUserLink( $rev ) {
-		if( $rev->userCan( Revision::MW_REV_DELETED_USER ) ) {
+		if( $rev->userCan( Revision::DELETED_USER ) ) {
 			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		}
-		if( $rev->isDeleted( Revision::MW_REV_DELETED_USER ) ) {
+		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
@@ -850,14 +850,14 @@ class Linker {
 	 * @return string HTML
 	 */
 	function revUserTools( $rev ) {
-		if( $rev->userCan( Revision::MW_REV_DELETED_USER ) ) {
+		if( $rev->userCan( Revision::DELETED_USER ) ) {
 			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() ) .
 				' ' .
 				$this->userToolLinks( $rev->getRawUser(), $rev->getRawUserText() );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		}
-		if( $rev->isDeleted( Revision::MW_REV_DELETED_USER ) ) {
+		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
@@ -977,13 +977,13 @@ class Linker {
 	 * @return string HTML
 	 */
 	function revComment( $rev ) {
-		if( $rev->userCan( Revision::MW_REV_DELETED_COMMENT ) ) {
+		if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle() );
 		} else {
 			$block = " <span class=\"comment\">" .
 				wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		}
-		if( $rev->isDeleted( Revision::MW_REV_DELETED_COMMENT ) ) {
+		if( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
 			return " <span class=\"history-deleted\">$block</span>";
 		}
 		return $block;

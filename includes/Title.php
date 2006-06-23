@@ -2152,11 +2152,11 @@ class Title {
 	/**
 	 * Get the revision ID of the previous revision
 	 *
-	 * @param integer $revision  Revision ID. Get the revision that was before this one.
+	 * @param integer $revId  Revision ID. Get the revision that was before this one.
+	 * @param string $timestamp The timestamp of the current revision, if known
 	 * @return interger $oldrevision|false
 	 */
-	function getPreviousRevisionID( $revision ) {
-		$dbr =& wfGetDB( DB_SLAVE );
+	function getPreviousRevisionID( $revId, $timestamp = false ) {
 		return $dbr->selectField( 'revision', 'rev_id',
 			'rev_page=' . intval( $this->getArticleId() ) .
 			' AND rev_id<' . intval( $revision ) . ' ORDER BY rev_id DESC' );
