@@ -1283,7 +1283,7 @@ pages that were vandalized).",
 'unblockiptext'	=> 'Use the form below to restore write access
 to a previously blocked IP address or username.',
 'ipusubmit'		=> 'Unblock this address',
-'ipusuccess'	=> "\"[[$1]]\" unblocked",
+'unblocked' => '[[User:$1|$1]] has been unblocked',
 'ipblocklist'	=> 'List of blocked IP addresses and usernames',
 'blocklistline'	=> "$1, $2 blocked $3 ($4)",
 'infiniteblock' => 'infinite',
