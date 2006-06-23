@@ -79,7 +79,7 @@ class ContribsFinder {
 
 	function getPreviousOffsetForPaging() {
 		list( $index, $usercond ) = $this->getUserCond();
-		$nscond = $this->getNamespace_cond();
+		$nscond = $this->getNamespaceCond();
 
 		$use_index = $this->dbr->useIndexClause( $index );
 		extract( $this->dbr->tableNames( 'page', 'revision' ) );
