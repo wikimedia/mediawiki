@@ -3742,6 +3742,9 @@ class Parser
 			}
 		}
 
+		// Make sure nickname doesnt get a sig in a sig
+		$nickname = $this->cleanSigInSig( $nickname );
+
 		# If we're still here, make it a link to the user page
 		$userpage = $user->getUserPage();
 		return( '[[' . $userpage->getPrefixedText() . '|' . wfEscapeWikiText( $nickname ) . ']]' );
@@ -3760,7 +3763,7 @@ class Parser
 	/**
 	 * Clean up signature text
 	 *
-	 * 1) Strip ~~~, ~~~~ and ~~~~~ out of signatures
+	 * 1) Strip ~~~, ~~~~ and ~~~~~ out of signatures @see cleanSigInSig
 	 * 2) Substitute all transclusions
 	 *
 	 * @param string $text
@@ -3776,10 +3779,20 @@ class Parser
 		$substText = '{{' . $substWord->getSynonym( 0 );
 
 		$text = preg_replace( $substRegex, $substText, $text );
-		$text = preg_replace( '/~{3,5}/', '', $text );
+		$text = cleanSigInSig( $text );
 		$text = $this->replaceVariables( $text );
 		
 		$this->clearState();	
+		return $text;
+	}
+
+	/**
+	 * Strip ~~~, ~~~~ and ~~~~~ out of signatures
+	 * @param string $text
+	 * @return string Signature text with /~{3,5}/ removed
+	 */
+	function cleanSigInSig( $text ) {
+		$text = preg_replace( '/~{3,5}/', '', $text );
 		return $text;
 	}
 	
