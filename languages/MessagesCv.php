@@ -1,6 +1,7 @@
 <?php
 
-/* private */ $wgAllMessagesCv = array(
+global $wgAllMessagesCv;
+$wgAllMessagesCv = array(
 
 'Monobook.js' => '/* tooltips and access keys */
 ta = new Object();
