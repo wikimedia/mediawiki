@@ -243,6 +243,9 @@ class PreferencesForm {
 			} else {
 				$this->mainPrefsForm( 'error', wfMsg( 'badsig' ) );
 			}
+		} else {
+			// When no fancy sig used, make sure ~{3,5} get removed.
+			$this->mNick = $wgParser->cleanSigInSig( $this->mNick );
 		}
 
 		$wgUser->setOption( 'language', $this->mUserLanguage );
