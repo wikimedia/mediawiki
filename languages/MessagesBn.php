@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesBn = array(
+global $wgAllMessagesBn;
+$wgAllMessagesBn = array(
 # Dates
 
 'sunday' => 'রবিবার',
