@@ -1,5 +1,4 @@
 <?php
-
 /** Nahuatl
   *
   * @package MediaWiki
@@ -17,15 +16,35 @@ if (!$wgCachedMessageArrays) {
 	require_once('MessagesNah.php');
 }
 
-class LanguageNah extends LanguageEs {
+# Per conversation with a user in IRC, we inherit from Spanish and work from there
+# Nahuatl was the language of the Aztecs, and a modern speaker is most likely to
+# understand Spanish if a Nah translation is not available
 
-	# Per conversation with a user in IRC, we inherit from Spanish and work from there
-	# Nahuatl was the language of the Aztecs, and a modern speaker is most likely to
-	# understand Spanish if a Nah translation is not available
+class LanguageNah extends LanguageEs {
+	private $mMessagesNah = null;
+
+	function __construct() {
+		parent::__construct();
+
+		global $wgAllMessagesNah;
+		$this->mMessagesNah =& $wgAllMessagesNah;
+
+	}
+
+	function getFallbackLanguage() {
+		return 'es';
+	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesNah;
-		return isset( $wgAllMessagesNah[$key] ) ? $wgAllMessagesNah[$key] : parent::getMessage( $key );
+		if( isset( $this->mMessagesNah[$key] ) ) {
+			return $this->mMessagesNah[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesNah;
 	}
 
 }
