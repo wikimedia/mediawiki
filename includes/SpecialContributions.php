@@ -184,7 +184,7 @@ function wfSpecialContributions( $par = null ) {
 	$finder->set_offset($options['offset']);
 
 	if (($ns = $wgRequest->getVal('namespace', null)) !== null && $ns !== '') {
-		$options['namespace'] = $ns;
+		#$options['namespace'] = intval( $ns );
 		$finder->set_namespace($options['namespace']);
 	} else {
 		$options['namespace'] = '';
