@@ -1,5 +1,5 @@
 <?php
-/** Piedmontese
+/** Piedmontese (Piemontèis)
   * Users are bilingual in Piedmontese and Italian, using Italian as template.
   *
   * @package MediaWiki
@@ -12,14 +12,18 @@
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
   */
 
-/**
- *
- */
 require_once 'LanguageIt.php';
 
-/**
- *
- */
-class LanguagePms extends LanguageIt {}
+class LanguagePms extends LanguageIt {
+
+	function getFallbackLanguage() {
+		return 'it';
+	}
+
+	function getAllMessages() {
+		return null;
+	}
+
+}
 
 ?>
