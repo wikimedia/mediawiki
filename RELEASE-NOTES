@@ -10,6 +10,7 @@ plapla
 * (bug 5957) Updates to Hebrew translation (he)
 * Show an arrow in the right direction also in Broken Redirects special page,
   not only in the Double Redirects.
+* (bug 6415) Typo in Parser.php
 
 == Mediawiki 1.6.7 ==
 
