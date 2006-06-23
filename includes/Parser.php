@@ -1524,6 +1524,7 @@ class Parser
 						$sortkey = $text;
 					}
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
+					$sortkey = str_replace( "\n", '', $sortkey );					
 					$sortkey = $wgContLang->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
