@@ -27,46 +27,59 @@
   * @subpackage Language
   */
 
-/** */
 require_once( 'LanguageUtf8.php' );
-
-$wgNamespaceNamesEl = array(
-	NS_MEDIA            => 'Μέσον',
-	NS_SPECIAL          => 'Ειδικό',
-	NS_MAIN	            => '',
-	NS_TALK	            => 'Συζήτηση',
-	NS_USER             => 'Χρήστης',
-	NS_USER_TALK        => 'Συζήτηση_χρήστη',
-	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace . '_συζήτηση',
-	NS_IMAGE            => 'Εικόνα',
-	NS_IMAGE_TALK       => 'Συζήτηση_εικόνας',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
-	NS_TEMPLATE         => 'Πρότυπο',
-	NS_TEMPLATE_TALK    => 'Συζήτηση_προτύπου',
-	NS_HELP             => 'Βοήθεια',
-	NS_HELP_TALK        => 'Συζήτηση_βοήθειας',
-	NS_CATEGORY         => 'Κατηγορία',
-	NS_CATEGORY_TALK    => 'Συζήτηση_κατηγορίας',
-) + $wgNamespaceNamesEn;
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesEl.php');
 }
 
-/** @package MediaWiki */
 class LanguageEl extends LanguageUtf8 {
+	private $mMessagesEl, $mNamespaceNamesEl = null;
+	
+	function __construct() {
+		parent::__construct();
+
+		global $wgAllMessagesEl;
+		$this->mMessagesEl =& $wgAllMessagesEl;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesEl = array(
+			NS_MEDIA            => 'Μέσον',
+			NS_SPECIAL          => 'Ειδικό',
+			NS_MAIN	            => '',
+			NS_TALK	            => 'Συζήτηση',
+			NS_USER             => 'Χρήστης',
+			NS_USER_TALK        => 'Συζήτηση_χρήστη',
+			NS_PROJECT          => $wgMetaNamespace,
+			NS_PROJECT_TALK     => $wgMetaNamespace . '_συζήτηση',
+			NS_IMAGE            => 'Εικόνα',
+			NS_IMAGE_TALK       => 'Συζήτηση_εικόνας',
+			NS_MEDIAWIKI        => 'MediaWiki',
+			NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+			NS_TEMPLATE         => 'Πρότυπο',
+			NS_TEMPLATE_TALK    => 'Συζήτηση_προτύπου',
+			NS_HELP             => 'Βοήθεια',
+			NS_HELP_TALK        => 'Συζήτηση_βοήθειας',
+			NS_CATEGORY         => 'Κατηγορία',
+			NS_CATEGORY_TALK    => 'Συζήτηση_κατηγορίας',
+		);
+
+	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesEl;
-		return $wgNamespaceNamesEl;
+		return $this->mNamespaceNamesEl + parent::getNamespaces();
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesEl;
+		if( isset( $this->mMessagesEl[$key] ) ) {
+			return $this->mMessagesEl[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
 
-		return isset( $wgAllMessagesEl[$key] ) ? $wgAllMessagesEl[$key] : parent::getMessage( $key );
+	function getAllMessages() {
+		return $this->mMessagesEl;
 	}
 
 	function fallback8bitEncoding() {

@@ -1,6 +1,6 @@
 <?php
 
-
+global $wgAllMessagesEl;
 $wgAllMessagesEl = array(
 
 # User preference toggles
