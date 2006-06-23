@@ -10,7 +10,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @package MediaWiki
  */
 class OutputPage {
-	var $mHeaders, $mMetatags, $mKeywords;
+	var $mMetatags, $mKeywords;
 	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
 	var $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
 	var $mSubtitle, $mRedirect, $mStatusCode;
@@ -35,8 +35,7 @@ class OutputPage {
 	 * Initialise private variables
 	 */
 	function OutputPage() {
-		$this->mHeaders = $this->mMetatags =
-		$this->mKeywords = $this->mLinktags = array();
+		$this->mMetatags = $this->mKeywords = $this->mLinktags = array();
 		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
 		$this->mRedirect = $this->mLastModified =
 		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy =
@@ -54,9 +53,13 @@ class OutputPage {
 		$this->mRevisionId = null;
 		$this->mNewSectionLink = false;
 	}
+	
+	function redirect( $url, $responsecode = '302' ) { 
+		# Strip newlines as a paranoia check for header injection in PHP<5.1.2
+		$this->mRedirect = str_replace( "\n", '', $url );
+		$this->mRedirectCode = $responsecode;
+	}
 
-	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ); }
-	function redirect( $url, $responsecode = '302' ) { $this->mRedirect = $url; $this->mRedirectCode = $responsecode; }
 	function setStatusCode( $statusCode ) { $this->mStatusCode = $statusCode; }
 
 	# To add an http-equiv meta tag, precede the name with "http:"
