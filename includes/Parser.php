@@ -1145,6 +1145,9 @@ class Parser
 			# Normalize any HTML entities in input. They will be
 			# re-escaped by makeExternalLink().
 			$url = Sanitizer::decodeCharReferences( $url );
+			
+			# Escape any control characters introduced by the above step
+			$url = preg_replace( '/[\][<>"\\x00-\\x20\\x7F]/e', "urlencode('\\0')", $url );
 
 			# Process the trail (i.e. everything after this link up until start of the next link),
 			# replacing any non-bracketed links
@@ -1228,6 +1231,9 @@ class Parser
 				# Normalize any HTML entities in input. They will be
 				# re-escaped by makeExternalLink() or maybeMakeExternalImage()
 				$url = Sanitizer::decodeCharReferences( $url );
+				
+				# Escape any control characters introduced by the above step
+				$url = preg_replace( '/[\][<>"\\x00-\\x20\\x7F]/e', "urlencode('\\0')", $url );
 
 				# Is this an external image?
 				$text = $this->maybeMakeExternalImage( $url );
@@ -1536,6 +1542,7 @@ class Parser
 						$sortkey = $text;
 					}
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
+					$sortkey = str_replace( "\n", '', $sortkey );
 					$sortkey = $wgContLang->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
