@@ -1,5 +1,6 @@
 <?php
 
+global $wgAllMessagesNah;
 $wgAllMessagesNah = array(
 
 	# Month names
