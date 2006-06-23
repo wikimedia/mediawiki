@@ -1,8 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesUdm = array(
-'linktrail'  => '/^((?:[a-zа-яёӝӟӥӧӵ“»])+)(.*)$/sDu',
+global $wgAllMessagesUdm;
+$wgAllMessagesUdm = array(
 'linkprefix' => '/^(.*?)(„|«)$/sDu',
 'article' => 'Статья',
 'createaccount' => 'выль вики-авторлэн регистрациез',
