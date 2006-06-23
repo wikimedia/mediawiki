@@ -3779,7 +3779,7 @@ class Parser
 		$substText = '{{' . $substWord->getSynonym( 0 );
 
 		$text = preg_replace( $substRegex, $substText, $text );
-		$text = cleanSigInSig( $text );
+		$text = $this->cleanSigInSig( $text );
 		$text = $this->replaceVariables( $text );
 		
 		$this->clearState();	
