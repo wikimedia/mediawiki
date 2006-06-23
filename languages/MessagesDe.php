@@ -415,9 +415,9 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 'whitelistacctext'	=> 'Um in diesem Wiki Benutzer anlegen zu dürfen, müssen Sie sich [[{{ns:special}}:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.',
 'confirmedittitle'	=> 'Zum Bearbeiten ist die E-Mail-Bestätigung erforderlich.',
 'confirmedittext'	=> 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie bearbeiten können. Bitte ergänzen und bestätigen Sie Ihre E-Mail-Adresse in den [[{{ns:special}}:Preferences|Einstellungen]].',
-"loginreqtitle"	=> "Anmeldung erforderlich",
+'loginreqtitle'		=> 'Anmeldung erforderlich',
 'loginreqlink' => 'anmelden',
-"loginreqpagetext"	=> "Sie müssen sich $1, um andere Seiten betrachten zu können.",
+'loginreqpagetext'	=> 'Sie müssen sich $1, um Seiten lesen zu können.',
 "accmailtitle" => "Passwort wurde verschickt.",
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
@@ -494,10 +494,10 @@ Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmel
 "loadhist"		=> "Lade Liste mit früheren Versionen",
 "currentrev"	=> "Aktuelle Version",
 "revisionasof"	=> "Version vom $1",
-'revisionasofwithlink'	=> 'Version vom $1; $2<br />$3 | $4',
+'oldrevisionnavigation'	=> 'Version vom $1; $5<br />$3 | $2 | $4',
 'nextrevision'		=> 'Nächstjüngere Version →',
 'previousrevision'	=> '← Nächstältere Version',
-'currentrevisionlink'	=> 'Aktuelle Version ansehen',
+'currentrevisionlink'	=> 'Aktuelle Version',
 "cur"			=> "Aktuell",
 "next"			=> "Nächste",
 "last"			=> "Vorherige",
@@ -794,7 +794,7 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'doubleredirects'	=> 'Doppelte Weiterleitungen',
 'doubleredirectstext'	=> '<b>Achtung:</b> Diese Liste kann „falsche Positive“ enthalten. Das ist dann der Fall, wenn eine Weiterleitung außer dem Weiterleitungs-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.',
 'brokenredirects'	=> 'Kaputte Weiterleitungen',
-'brokenredirectstext'	=> 'Die folgenden Weiterleitungen leiten auf einen nicht existierenden Artikel weiter',
+'brokenredirectstext'	=> 'Die folgenden Weiterleitungen verweisen auf nicht existierende Seiten:',
 
 # Miscellaneous special pages
 #
@@ -809,8 +809,8 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'mostimages'		=> 'Meist benutzte Dateien',
 'mostrevisions'		=> 'Artikel mit den meisten Versionen',
 'nlinks'		=> '{{PLURAL:$1|ein Verweis|$1 Verweise}}',
-'nmembers'		=> '{{PLURAL:$1|ein Eintrag|$1 Einträge}}',
-'randompage'		=> 'Zufälliger Artikel',
+'nmembers'		=> '{{PLURAL:$1|ein Mitglied|$1 Mitglieder}}',
+'randompage'		=> 'Zufällige Seite',
 "shortpages"	=> "Kurze Artikel",
 "longpages"		=> "Lange Artikel",
 "listusers"		=> "Benutzerverzeichnis",
@@ -844,8 +844,8 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'noimages'	=> 'Keine Dateien gefunden.',
 
 # Special:Allpages
-'allpages'	=> 'Alle Artikel',
-'prefixindex'	=> 'Alle Artikel (mit Präfix)',
+'allpages'		=> 'Alle Seiten',
+'prefixindex'		=> 'Alle Seiten (mit Präfix)',
 'nextpage'	=> "Nächste Seite ($1)",
 'allpagesfrom'	=> 'Seiten anzeigen ab:',
 'allpagesprefix'	=> 'Seiten anzeigen mit Präfix:',
@@ -1150,12 +1150,11 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit \'\'\'
 #
 'movepage'		=> 'Seite verschieben',
 'movepagetext'		=> 'Mit diesem Formular können Sie einen Artikel umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Verweise auf den alten Titel werden nicht geändert, und die Diskussionsseite wird ebenfalls nicht mitverschoben.',
-"movepagetalktext" => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
-*Sie verschieben die Seite in einen anderen Namensraum, oder
+'movepagetalktext'	=> 'Die dazugehörige Diskussionsseite wird mitverschoben, \'\'\'es sei denn:\'\'\'
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
-*Sie wählen die untenstehende Option ab
+*Sie wählen die untenstehende Option ab.
 
-In diesen Fällen müssen Sie die Seite, falls gewünscht, von Hand verschieben.",
+In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.',
 "movearticle"	=> "Artikel verschieben",
 "movenologin"   => "Sie sind nicht angemeldet",
 "movenologintext" => "Sie müssen ein registrierter Benutzer und
@@ -1746,7 +1745,7 @@ ta[\'n-mainpage\'] = new Array(\'z\',\'Hauptseite anzeigen\');
 ta[\'n-portal\'] = new Array(\'\',\'Über das Portal, was Sie tun können, wo was zu finden ist\');
 ta[\'n-currentevents\'] = new Array(\'\',\'Hintergrundinformationen zu aktuellen Ereignissen\');
 ta[\'n-recentchanges\'] = new Array(\'r\',\'Liste der letzten Änderungen in diesem Wiki.\');
-ta[\'n-randompage\'] = new Array(\'x\',\'Zufälliger Artikel\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Zufällige Seite\');
 ta[\'n-help\'] = new Array(\'\',\'Hilfeseite anzeigen\');
 ta[\'n-sitesupport\'] = new Array(\'\',\'Unterstützen Sie uns\');
 ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Liste aller Seiten, die hierher zeigen\');
@@ -1786,6 +1785,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 
 # DISPLAYTITLE
 'displaytitle' => '(Link zu dieser Seite als [[$1]])',
+
+'loginlanguagelabel'	=> 'Sprache: $1',
 
 );
 
