@@ -920,6 +920,9 @@ class OutputPage {
 		} else {
 			$titleObj = Title::newFromText( $returnto );
 		}
+		if ( !is_object( $titleObj ) ) {
+			$titleObj = Title::newMainPage();
+		}
 
 		$sk = $wgUser->getSkin();
 		$link = $sk->makeLinkObj( $titleObj, '' );
