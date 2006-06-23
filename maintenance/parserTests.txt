@@ -5444,6 +5444,16 @@ section=1
                    a
 !! end
 
+!! test
+Handling of &#x0A; in URLs
+!! input
+**irc://&#x0A;a
+!! result
+<ul><li><ul><li><a href="irc://%0Aa" class="external free" title="irc://%0Aa" rel="nofollow">irc://%0Aa</a>
+</li></ul>
+</li></ul>
+
+!!end
 #
 #
 #
