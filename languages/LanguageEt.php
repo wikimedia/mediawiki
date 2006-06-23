@@ -1,150 +1,127 @@
 <?php
-/**
-  * @package MediaWiki
-  * @subpackage Language
-  */
+/** Estonian (Eesti)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ *
+ */
 
-$wgNamespaceNamesEt = array(
-	NS_MEDIA            => 'Meedia',
-	NS_SPECIAL          => 'Eri',
-	NS_MAIN             => '',
-	NS_TALK             => 'Arutelu',
-	NS_USER             => 'Kasutaja',
-	NS_USER_TALK        => 'Kasutaja_arutelu',
-	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace . '_arutelu',
-	NS_IMAGE            => 'Pilt',
-	NS_IMAGE_TALK       => 'Pildi_arutelu',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_arutelu',
-	NS_TEMPLATE         => 'Mall',
-	NS_TEMPLATE_TALK    => 'Malli_arutelu',
-	NS_HELP             => 'Juhend',
-	NS_HELP_TALK        => 'Juhendi_arutelu',
-	NS_CATEGORY         => 'Kategooria',
-	NS_CATEGORY_TALK    => 'Kategooria_arutelu'
-) + $wgNamespaceNamesEn;
-
-/* @private */ $wgSkinNamesEt = array(
-	'standard' => "Standard",
-	'nostalgia' => "Nostalgia",
-	'cologneblue' => "Kölni sinine",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
-	 "myskin" => "Mu oma nahk"
-);
-
-
-/* @private */ $wgDateFormatsEt = array(
-	'Eelistus puudub',
-	'15.01.2001, kell 16.12',
-	'15. jaanuar 2001, kell 16.12',
-	'15. I 2005, kell 16.12',
-	'ISO 8601' => '2001-01-15 16:12:34'
-);
-
-
-/* @private */ $wgQuickbarSettingsEt = array(
-	"Ei_ole", "Püsivalt_vasakul", "Püsivalt paremal", "Ujuvalt vasakul"
-);
-
-#Lisasin eestimaised poed, aga võõramaiseid ei julenud kustutada.
-
-
-/* @private */ $wgBookstoreListEt = array(
-	"Apollo" => "http://www.apollo.ee/search.php?keyword=$1&search=OTSI",
-	"minu Raamat" => "http://www.raamat.ee/advanced_search_result.php?keywords=$1",
-	"Raamatukoi" => "http://www.raamatukoi.ee/cgi-bin/index?valik=otsing&paring=$1",
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
-
-/* @private */ $wgMagicWordsEt = array(
-#   ID                                 CASE  SYNONYMS
-	MAG_REDIRECT             => array( 0,    '#redirect', "#suuna"    ),
-	MAG_NOTOC                => array( 0,    '__NOTOC__'              ),
-	MAG_FORCETOC             => array( 0,    '__FORCETOC__'           ),
-	MAG_TOC                  => array( 0,    '__TOC__'                ),
-	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__'      ),
-	MAG_START                => array( 0,    '__START__'              ),
-	MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH'           ),
-	MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME'       ),
-	MAG_CURRENTDAY           => array( 1,    'CURRENTDAY'             ),
-	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
-	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
-	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
-	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
-	MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
-	MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
-	MAG_PAGENAMEE                    => array( 1,    'PAGENAMEE'              ),
-	MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
-	MAG_SUBST                => array( 0,    'SUBST:'                 ),
-	MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
-	MAG_END                  => array( 0,    '__END__'                ),
-	MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
-	MAG_IMG_RIGHT            => array( 1,    'right'                  ),
-	MAG_IMG_LEFT             => array( 1,    'left'                   ),
-	MAG_IMG_NONE             => array( 1,    'none'                   ),
-	MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
-	MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
-	MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame' ),
-	MAG_INT                  => array( 0,    'INT:'                   ),
-	MAG_SITENAME             => array( 1,    'SITENAME'               ),
-	MAG_NS                   => array( 0,    'NS:'                    ),
-	MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
-	MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
-	MAG_SERVER               => array( 0,    'SERVER'                 ),
-	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               )
-);
-
+require_once( 'LanguageUtf8.php' );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesEt.php');
 }
 
-require_once( "LanguageUtf8.php" );
-
 class LanguageEt extends LanguageUtf8 {
+	private $mMessagesEt, $mNamespaceNamesEt = null;
 
+	private $mSkinNamesEt = array(
+		'standard' => 'Standard',
+		'nostalgia' => 'Nostalgia',
+		'cologneblue' => 'Kölni sinine',
+		'smarty' => 'Paddington',
+		'montparnasse' => 'Montparnasse',
+		'davinci' => 'DaVinci',
+		'mono' => 'Mono',
+		'monobook' => 'MonoBook',
+		'myskin' => 'Mu oma nahk'
+	);
+	
+	private $mDateFormatsEt = array(
+		'Eelistus puudub',
+		'15.01.2001, kell 16.12',
+		'15. jaanuar 2001, kell 16.12',
+		'15. I 2005, kell 16.12',
+		'ISO 8601' => '2001-01-15 16:12:34'
+	);
+	
+	private $mQuickbarSettingsEt = array(
+		'Ei_ole', 'Püsivalt_vasakul', 'Püsivalt paremal', 'Ujuvalt vasakul'
+	);
+	
+	#Lisasin eestimaised poed, aga võõramaiseid ei julenud kustutada.
+	
+	private $mBookstoreListEt = array(
+		'Apollo' => 'http://www.apollo.ee/search.php?keyword=$1&search=OTSI',
+		'minu Raamat' => 'http://www.raamat.ee/advanced_search_result.php?keywords=$1',
+		'Raamatukoi' => 'http://www.raamatukoi.ee/cgi-bin/index?valik=otsing&paring=$1',
+		'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
+		'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
+		'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
+		'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	);
+	
+	
+	private $mMagicWordsEt = array(
+	#   ID                                 CASE  SYNONYMS
+		MAG_REDIRECT             => array( 0,    '#redirect', "#suuna"    ),
+	);
+	
+	function __construct() {
+		parent::__construct();
 
-	function getBookstoreList () {
-		global $wgBookstoreListEt ;
-		return $wgBookstoreListEt ;
-	}
+		global $wgAllMessagesEt;
+		$this->mMessagesEt =& $wgAllMessagesEt;
 
-	function getDateFormats() {
-		global $wgDateFormatsEt;
-		return $wgDateFormatsEt;
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesEt = array(
+			NS_MEDIA            => 'Meedia',
+			NS_SPECIAL          => 'Eri',
+			NS_MAIN             => '',
+			NS_TALK             => 'Arutelu',
+			NS_USER             => 'Kasutaja',
+			NS_USER_TALK        => 'Kasutaja_arutelu',
+			NS_PROJECT          => $wgMetaNamespace,
+			NS_PROJECT_TALK     => $wgMetaNamespace . '_arutelu',
+			NS_IMAGE            => 'Pilt',
+			NS_IMAGE_TALK       => 'Pildi_arutelu',
+			NS_MEDIAWIKI        => 'MediaWiki',
+			NS_MEDIAWIKI_TALK   => 'MediaWiki_arutelu',
+			NS_TEMPLATE         => 'Mall',
+			NS_TEMPLATE_TALK    => 'Malli_arutelu',
+			NS_HELP             => 'Juhend',
+			NS_HELP_TALK        => 'Juhendi_arutelu',
+			NS_CATEGORY         => 'Kategooria',
+			NS_CATEGORY_TALK    => 'Kategooria_arutelu'
+		);
+
 	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesEt;
-		return $wgNamespaceNamesEt;
+		return $this->mNamespaceNamesEt + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsEt;
-		return $wgQuickbarSettingsEt;
+		return $this->mQuickbarSettingsEt;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesEt;
-		return $wgSkinNamesEt;
+		return $this->mSkinNamesEt + parent::getSkinNames();
+	}
+
+	function getDateFormats() {
+		return $this->mDateFormatsEt;
+	}
+
+	function getBookstoreList() {
+		return $this->mBookstoreListEt;
+	}
+
+	function &getMagicWords()  {
+		$t = $this->mMagicWordsEt + parent::getMagicWords();
+		return $t;
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesEt;
-		if( isset( $wgAllMessagesEt[$key] ) ) {
-			return $wgAllMessagesEt[$key];
+		if( isset( $this->mMessagesEt[$key] ) ) {
+			return $this->mMessagesEt[$key];
 		} else {
 			return parent::getMessage( $key );
 		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesEt;
 	}
 
 	/**
@@ -165,9 +142,6 @@ class LanguageEt extends LanguageUtf8 {
 			return $_;
 		}
 	}
-
-
-
 
 	/**
 	 * @access public
@@ -204,8 +178,6 @@ class LanguageEt extends LanguageUtf8 {
 		}
 	}
 
-
-
 	/**
 	* @access public
 	* @param mixed  $ts the time format which needs to be turned into a
@@ -235,9 +207,6 @@ class LanguageEt extends LanguageUtf8 {
 		return $t;
 	}
 
-
-
-
 	/**
 	* @access public
 	* @param mixed  $ts the time format which needs to be turned into a
@@ -263,7 +232,6 @@ class LanguageEt extends LanguageUtf8 {
 		}
 
 	}
-
 
 	/**
 	* retuns latin number corresponding to given month number
