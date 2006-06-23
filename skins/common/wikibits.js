@@ -114,7 +114,7 @@ function diffcheck() {
 	var oli = false; // the li where the oldid radio is checked
 	var hf = document.getElementById('pagehistory');
 	if (!hf)
-		return;
+		return true;
 	var lis = hf.getElementsByTagName('li');
 	for (i=0;i<lis.length;i++) {
 		var inputs = historyRadios(lis[i]);
@@ -125,7 +125,7 @@ function diffcheck() {
 				if (oli) { // it's the second checked radio
 					if (inputs[1].checked) {
 						oli.className = "selected";
-						return false
+						return false;
 					}
 				} else if (inputs[0].checked) {
 					return false;
@@ -151,6 +151,7 @@ function diffcheck() {
 			}
 		}
 	}
+	return true;
 }
 
 // generate toc from prefs form, fold sections
@@ -164,15 +165,15 @@ function tabbedprefs() {
 		return; // Occasional IE problem
 	prefform.className = prefform.className + 'jsprefs';
 	var sections = new Array();
-	children = prefform.childNodes;
+	var children = prefform.childNodes;
 	var seci = 0;
-	for (i = 0; i < children.length; i++) {
+	for (var i = 0; i < children.length; i++) {
 		if (children[i].nodeName.toLowerCase() == 'fieldset') {
 			children[i].id = 'prefsection-' + seci;
 			children[i].className = 'prefsection';
 			if (is_opera || is_khtml)
 				children[i].className = 'prefsection operaprefsection';
-			legends = children[i].getElementsByTagName('legend');
+			var legends = children[i].getElementsByTagName('legend');
 			sections[seci] = new Object();
 			legends[0].className = 'mainLegend';
 			if (legends[0] && legends[0].firstChild.nodeValue)
@@ -207,15 +208,15 @@ function tabbedprefs() {
 }
 
 function uncoversection() {
-	oldsecid = this.parentNode.parentNode.selectedid;
-	newsec = document.getElementById(this.secid);
+	var oldsecid = this.parentNode.parentNode.selectedid;
+	var newsec = document.getElementById(this.secid);
 	if (oldsecid != this.secid) {
-		ul = document.getElementById('preftoc');
+		var ul = document.getElementById('preftoc');
 		document.getElementById(oldsecid).style.display = 'none';
 		newsec.style.display = 'block';
 		ul.selectedid = this.secid;
-		lis = ul.getElementsByTagName('li');
-		for (i = 0; i< lis.length; i++) {
+		var lis = ul.getElementsByTagName('li');
+		for (var i = 0; i< lis.length; i++) {
 			lis[i].className = '';
 		}
 		this.parentNode.className = 'selected';
@@ -239,7 +240,7 @@ function checkTimezone(tz, msg) {
 }
 
 function unhidetzbutton() {
-	tzb = document.getElementById('guesstimezonebutton')
+	var tzb = document.getElementById('guesstimezonebutton');
 	if (tzb)
 		tzb.style.display = 'inline';
 }
@@ -348,6 +349,7 @@ function mwInsertEditButton(parent, item) {
 	}
 	
 	parent.appendChild(image);
+	return true;
 }
 
 function mwSetupToolbar() {
@@ -368,6 +370,7 @@ function mwSetupToolbar() {
 	for (var i in mwCustomEditButtons) {
 		mwInsertEditButton(toolbar, mwCustomEditButtons[i]);
 	}
+	return true;
 }
 
 function escapeQuotes(text) {
