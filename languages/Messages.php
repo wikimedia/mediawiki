@@ -1484,8 +1484,8 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{int:m
 'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
 
 # stylesheets
-'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
-#'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
+'Common.css' => '/** CSS placed here will be applied to all skins */',
+'Monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF metadata disabled for this server.',

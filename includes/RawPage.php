@@ -153,7 +153,11 @@ class RawPage {
 		if( $this->mTitle ) {
 			// If it's a MediaWiki message we can just hit the message cache
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$text = wfMsgForContentNoTrans( $this->mTitle->getDbkey() );
+				$key = $this->mTitle->getDBkey();
+				$text = wfMsgForContentNoTrans( $key );
+				# If the message doesn't exist, return a blank
+				if( $text == '&lt;' . $key . '&gt;' )
+					$text = '';
 				$found = true;
 			} else {
 				// Get it from the DB
