@@ -15,18 +15,15 @@ class LanguageKo extends LanguageUtf8 {
 	private $mMessagesKo, $mNamespaceNamesKo = null;
 
 		private $mQuickbarSettingsKo = array(
-			'없음', '왼쪽 붙박이', '오른쪽 붙박이', '왼쪽 떠다님'
+			'없음', '왼쪽', '오른쪽', '왼쪽 고정', '오른쪽 고정'
 		);
 		
 		private $mSkinNamesKo = array(
-			'standard' => '보통',
-			'nostalgia' => '그리움',
-			'cologneblue' => '쾰른 파랑',
+			'standard' => '기본값',
 			'davinci' => '다빈치',
 			'mono' => '모노',
-			'monobook' => '모노북(기본값)',
+			'monobook' => '모노북',
 			'my skin' => '내 스킨',
-			'chick' => '칙(Chick)',
 		);
 		
 		private $mBookstoreListKo = array(
@@ -105,24 +102,33 @@ class LanguageKo extends LanguageUtf8 {
 	}
 
 	function date( $ts, $adj = false ) {
-		global $wgWeekdayAbbreviationsKo;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-		# This is horribly inefficient; I need to rework this
-		$x = getdate(mktime(( (int)substr( $ts, 8, 2) ),
-			(int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-			(int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-			(int)substr( $ts, 0, 4 )));
+		$year = (int)substr( $ts, 0, 4 );
+		$month = (int)substr( $ts, 4, 2 );
+		$mday = (int)substr( $ts, 6, 2 );
+		$hour = (int)substr( $ts, 8, 2 );
+		$minute = (int)substr( $ts, 10, 2 );
+		$second = (int)substr( $ts, 12, 2 );
+		$time = mktime( $hour, $minute, $second, $month, $mday, $year );
+		$date = getdate( $time );
 
-		$d = substr( $ts, 0, 4 ) . "년 " .
-			$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . "월 " .
-			(0 + substr( $ts, 6, 2 )) . "일 " .
-			"(" . $wgWeekdayAbbreviationsKo[$x["wday"]] . ")";
+		# "xxxx년 xx월 xx일 (월)"
+		# timeanddate works "xxxx년 xx월 xx일 (월) xx:xx"
+		$d = $year . "년 " .
+			$this->getMonthAbbreviation( $month ) . "월 " .
+			$mday . "일 ".
+			"(" . $this->mWeekdayAbbreviationsKo[ $date['wday'] ]. ")";
+
 		return $d;
 	}
 
-	function timeanddate( $ts, $adj = false ) {
-		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
+	function timeBeforeDate() {
+		return false;
+	}
+
+	function timeDateSeparator( $format ) {
+		return ' ';
 	}
 
 	function firstChar( $s ) {
