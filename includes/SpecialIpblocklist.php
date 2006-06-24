@@ -18,7 +18,7 @@ function wfSpecialIpblocklist() {
 	$ipu = new IPUnblockForm( $ip, $reason );
 
 	if ( "success" == $action ) {
-		$ipu->showList( wfMsgWikiHtml( 'unblocked', $ip ) );
+		$ipu->showList( wfMsgWikiHtml( 'unblocked', htmlspecialchars( $ip ) ) );
 	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
 		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		if ( ! $wgUser->isAllowed('block') ) {
