@@ -150,8 +150,8 @@ Noli oblivisci praeferentias tuas mutare.',
 'yourpassword'          => 'Tessera tua',
 'yourpasswordagain'     => 'Tesseram tuam adfirmare',
 'remembermypassword'    => 'Tessera mea inter conventa memento',
-'loginproblem'          => '<b>Problema erat aperiens conventum tuum.</b><br>Conare denuo!',
-'alreadyloggedin'       => '<font color=red><b>Usor $1, conventum tuum iam apertum est!</b></font><br>',
+'loginproblem'          => '<b>Problema erat aperiens conventum tuum.</b><br />Conare denuo!',
+'alreadyloggedin'       => '<font color=red><b>Usor $1, conventum tuum iam apertum est!</b></font><br />',
 'login'                 => 'Aperire conventum',
 'loginprompt'           => 'Cookies potestatem facere debes ut conventum aperire.',
 'userlogin'             => 'Aperire conventum',
@@ -191,7 +191,7 @@ Monemus qui novum conventum aperis et tesseram tuam mutas.',
 'showdiff'              => 'Mutata ostendere',
 'anoneditwarning'       => 'You are not logged in. Your IP address will be recorded in this page\'s edit history.',
 'blockedtitle'          => 'Usor obstructus est.',
-'blockedtext'           => 'Nomen usoris tuum aut locus de IP obstructum est ab usore $1. Causa:<br>
+'blockedtext'           => 'Nomen usoris tuum aut locus de IP obstructum est ab usore $1. Causa:<br />
 \'\'$2\'\'
 <p>Vel usorem $1 appellare potes, vel alios [[Project:Administratores|administratores]] si vis obstructionem disputare.</p>',
 'whitelistedittext'     => 'You have to [[{{ns:special}}:Userlogin|login]] to edit pages.',
@@ -217,7 +217,7 @@ Mutationes tuae in verbam superiorem adiungare debes.
 Si eam servabis, totae mutationes noviores amittentur.</strong>',
 'yourdiff'              => 'Diversa',
 'copyrightwarning'      => 'Nota omnia {{SITENAME}} contributa divulgata ac liberata esse habentur ex Potestatis tabulae liberae *** GNU (vide singula apud $1).
-Nisi vis verba tua crudelissime recenseri, mutari et ad libidinem redistribui, noli ea submittere.<br>
+Nisi vis verba tua crudelissime recenseri, mutari et ad libidinem redistribui, noli ea submittere.<br />
 Nobis etiam spondes te esse ipsum horum verborum scriptorem, nisi ex opere in "dominio publico" exscripsisti.
 <strong>NOLI OPERIBUS SUB IURE DIVULGANDI UTI NISI POTESTATE FACTA!</strong>',
 'longpagewarning'       => 'MONITIO: Haec pagina $1 kilobytes longa est;
@@ -259,8 +259,8 @@ et verbis $3 rerum congruit.',
 'showingresultsnum'     => 'Monstrens subter <b>$3</b> eventa incipiens cum #<b>$2</b>.',
 'nonefound'             => '<strong>Nota</strong>: investigationes saepe infelices sunt propter verba frequentes huiusmodi "que" et "illo", aut quod plus unum verba quaerere designavisti (solae paginae qui tota verba investigationis continent in evento apparebit).',
 'powersearch'           => 'Quaerere',
-'powersearchtext'       => 'Quaerere in contexto :<br>
-$1<br>
+'powersearchtext'       => 'Quaerere in contexto :<br />
+$1<br />
 $2 Monstrare redirectiones   Quaerere $3 $9',
 'searchdisabled'        => '<p>Quaerere ad tempum debilitata est. Sis Google aut Yahoo! usere.</p>',
 'preferences'           => 'Praeferentiae',
@@ -302,7 +302,7 @@ Adde quae scis, sed memento addita tua mutari ameliorarique posse ab aliis utent
 'rcnote'                => 'Subter <strong>$1</strong> mutationes recentissimae sunt in <strong>$2</strong> diebus proximis.',
 'rcnotefrom'            => 'Subter <b>$1</b> mutationes recentissimas sunt in proxima <b>$2</b> die.',
 'rclistfrom'            => 'Monstrare mutationes novas incipiens ex $1',
-'rclinks'               => 'Monstrare $1 mutationes recentissimas in $2 diebus proximis.<br>$3',
+'rclinks'               => 'Monstrare $1 mutationes recentissimas in $2 diebus proximis.<br />$3',
 'diff'                  => 'diss',
 'hide'                  => 'celare',
 'show'                  => 'monstrare',
@@ -363,7 +363,7 @@ et fasciculum describere.',
 'imglegend'             => 'Titulus: (desc) = monstrare/mutare descriptionem imaginis',
 'imghistory'            => 'Historia imaginis',
 'imghistlegend'         => 'Titulus: (nov) = haec est imago recentissima, (del) = delere hanc formam vetus, (rev) = reverte ad hanc formam vetus.
-<br><i>Premere in diem ut imaginem in illum diem oneratum videre.</i>',
+<br /><i>Premere in diem ut imaginem in illum diem oneratum videre.</i>',
 'imagelinks'            => 'Nexus ad imaginem',
 'linkstoimage'          => 'Paginae insequentes huic imagini nectunt:',
 'nolinkstoimage'        => 'Nullae paginae huic imagini nectunt.',
@@ -535,7 +535,7 @@ Si paginam novam cum ipse nomine post deletionem creata est, recensita restituta
 'badipaddress'          => 'Locus IP formatus malus est.',
 'blockipsuccesssub'     => 'Locus obstructus est.',
 'blockipsuccesstext'    => 'Locus IP [[Special:Contributions/$1|$1]] obstructus est.
-<br>Vide [[Special:Ipblocklist|Indicem obstructorum IP]] ut obstructos revideas.',
+<br />Vide [[Special:Ipblocklist|Indicem obstructorum IP]] ut obstructos revideas.',
 'unblockip'             => 'Deobstruere locum IP',
 'unblockiptext'         => 'Formam inferam usere ut locum IP deobstruere.',
 'ipusubmit'             => 'Deobstruere hanc locum',
@@ -561,7 +561,7 @@ Adfirmare qui basem dati obstruere vis, et que basem dati deobstruebis ut primum
 'lockdbsuccesssub'      => 'Basis dati obstructa est',
 'unlockdbsuccesssub'    => 'Basis dati deobstructa est',
 'lockdbsuccesstext'     => 'Basis dati de {{SITENAME}} obstructa est.
-<br>Memento eam deobstruere ubi alimentum tuum finiveris.',
+<br />Memento eam deobstruere ubi alimentum tuum finiveris.',
 'unlockdbsuccesstext'   => 'Basis dati de {{SITENAME}} deobstructa est.',
 'movepage'              => 'Motare paginam',
 'movepagetext'          => 'Formam inferam utere ut paginam renominare et historia eius ad nominem novum motare. Index vetus paginam redirectionis ad indicem novum fiet. Nexus paginae veteris non mutabitur; redectiones duplices aut fractas [[Special:Maintenance|quaerere et figere]] debebis.

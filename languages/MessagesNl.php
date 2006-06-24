@@ -245,8 +245,8 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 'perfdisabledsub'       => 'We kunnen u wel onderstaande kopie van $1 tonen; deze is echter mogelijk niet up-to-date.',
 'perfcached'            => 'De onderstaande gegevens zijn eerder opgeslagen en het is mogelijk dat ze niet overeenkomen met de actuele stand van zaken.',
 'perfcachedts'          => 'Dit is een statische pagina en deze werd de laatste keer bijgewerkt op $1.',
-'wrong_wfQuery_params'  => 'Incorrecte parameters voor wfQuery()<br>
-Function: $1<br>
+'wrong_wfQuery_params'  => 'Incorrecte parameters voor wfQuery()<br />
+Function: $1<br />
 Query: $2',
 'viewsource'            => 'Brontekst bekijken',
 'viewsourcefor'         => 'voor $1',
@@ -265,8 +265,8 @@ Hieronder kunt u de wikitekst van de pagina bekijken, maar niet bewerken.',
 'remembermypassword'    => 'Mijn wachtwoord onthouden voor latere sessies.',
 'yourdomainname'        => 'Uw domein',
 'externaldberror'       => 'Er was een externe authenticatie database fout of u heeft geen toesetemming uw externe account te updaten.',
-'loginproblem'          => '<b>Er is een probleem met het aanmelden.</b><br>Probeer het opnieuw a.u.b.',
-'alreadyloggedin'       => '<strong>Gebruiker $1, u bent al aangemeld.</strong><br>',
+'loginproblem'          => '<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.',
+'alreadyloggedin'       => '<strong>Gebruiker $1, u bent al aangemeld.</strong><br />',
 'login'                 => 'Aanmelden & Inschrijven',
 'loginprompt'           => 'Uw webbrowser moet cookies accepteren om dit te kunnen gebruiken.',
 'userlogin'             => 'Aanmelden',
@@ -356,7 +356,7 @@ Voer alstublieft de correcte opmaak van het adres in, of laat het veld blanco.',
 'missingsummary'        => '\'\'\'Herinnering:\'\'\' U heeft geen samenvatting opgegeven voor uw bewerking. Als u nogmaals op \'\'Pagina opslaan\'\' klikt wordt de bewerking zonder samenvatting opgeslagen.',
 'missingcommenttext'    => 'Wilt u a.u.b. hieronder commentaar plaatsten.',
 'blockedtitle'          => 'Gebruiker is geblokkeerd',
-'blockedtext'           => 'Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br>$2<p>. Elke computer die verbonden is met het internet krijgt een IP-adres toegewezen van zijn internetprovider. In veel gevallen krijgt een gebruiker regelmatig een ander IP-adres toegewezen. Het door u gebruikte IP-adres is recent gebruikt door u of iemand anders voor bewerkingen die niet passen in het doel van dit project.
+'blockedtext'           => 'Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br />$2<p>. Elke computer die verbonden is met het internet krijgt een IP-adres toegewezen van zijn internetprovider. In veel gevallen krijgt een gebruiker regelmatig een ander IP-adres toegewezen. Het door u gebruikte IP-adres is recent gebruikt door u of iemand anders voor bewerkingen die niet passen in het doel van dit project.
 
 Uw IP addres is $3. Vermeldt dit alstublieft wanneer u hierover verdere informatie verzoekt.',
 'whitelistedittitle'    => 'Aanmelden verplicht',
@@ -410,7 +410,7 @@ Probeer opnieuw. Als het nog steeds niet werkt, probeer of afmelden en opnieuw a
 'editingsection'        => 'Bewerkingspagina: $1 (deelpagina)',
 'editingcomment'        => 'Wijzigt $1 (commentaar)',
 'editconflict'          => 'Wijzig conflict: $1',
-'explainconflict'       => 'Iemand anders heeft deze pagina gewijzigd nadat u aan deze bewerking bent begonnen. Het bovenste tekstveld toont de huidige versie van de pagina. U zal uw eigen wijzigingen moeten integreren in die tekst. Alleen de tekst in het bovenste veld wordt bewaard wanneer u kiest voor "Pagina opslaan".<br>
+'explainconflict'       => 'Iemand anders heeft deze pagina gewijzigd nadat u aan deze bewerking bent begonnen. Het bovenste tekstveld toont de huidige versie van de pagina. U zal uw eigen wijzigingen moeten integreren in die tekst. Alleen de tekst in het bovenste veld wordt bewaard wanneer u kiest voor "Pagina opslaan".<br />
 
 \'\'\'Dit wil niet zeggen dat u uw tekst zeker kwijt bent\'\'\'. U kunt het volgende proberen: Gebruik de "back"-knop van uw browser om terug te gaan naar de vorige pagina. Er is een grote kans dat uw tekst daar nog in het tekstveld staat. Knip de tekst uit dat tekstveld, klik opnieuw op bewerk, en plak uw tekst in het bewerkingsveld.',
 'yourtext'              => 'Uw tekst',
@@ -418,8 +418,8 @@ Probeer opnieuw. Als het nog steeds niet werkt, probeer of afmelden en opnieuw a
 'nonunicodebrowser'     => '<strong>WAARSCHUWING: Uw browser kan niet goed overweg met unicode, schakel over op een andere browser voor u wijzigingen aanbrengt!</strong>',
 'editingold'            => '<strong><font colour="red">Waarschuwing! U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren. ([{{fullurl:{{FULLPAGENAME}}|action=edit}} bewerk huidige versie])</font></strong>',
 'yourdiff'              => 'Wijzigingen',
-'copyrightwarning'      => 'Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details). Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor \'Pagina Opslaan\'.<br> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ U DAARTOE TOESTEMMING HEEFT!</strong>',
-'copyrightwarning2'     => 'Al uw bijdragen aan {{SITENAME}} kunnen herschreven, veranderd of verwijderd worden door andere gebruikers. Als u niet wilt dat uw teksten rigoureus aangepast worden door anderen, plaats ze dan niet op deze wiki. <br>
+'copyrightwarning'      => 'Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details). Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor \'Pagina Opslaan\'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ U DAARTOE TOESTEMMING HEEFT!</strong>',
+'copyrightwarning2'     => 'Al uw bijdragen aan {{SITENAME}} kunnen herschreven, veranderd of verwijderd worden door andere gebruikers. Als u niet wilt dat uw teksten rigoureus aangepast worden door anderen, plaats ze dan niet op deze wiki. <br />
 Bij het opslaan van een tekst op deze wiki belooft u dat u de oorspronkelijke auteur bent van dit materiaal, of dat u het heeft gekopieerd van een bron uit het publieke domein, of een soortgelijke vrije bron (zie $1 voor details).
 <strong> GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>',
 'longpagewarning'       => '<strong>Deze pagina is $1 kilobytes groot; sommige browser hebben problemen bij het editen van pagina\'s die groter zijn dan 32kb. Misschien kan deze pagina gesplitst worden in kleinere delen.</strong>',
@@ -507,8 +507,8 @@ Andere moderatoren van deze wiki kunnen nog steeds de verborgen inhoud benaderen
 Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op {{SITENAME}} over dit onderwerp. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op {{SITENAME}}, zodat de volgende die zoekt wat u zocht het wel kan vinden.',
 'powersearch'           => 'Zoeken',
 'powersearchtext'       => '
- Zoek in naamruimten :<br>
-$1<br>
+ Zoek in naamruimten :<br />
+$1<br />
 $2 Toon redirects   Zoek: $3 $9',
 'searchdisabled'        => '{{SITENAME}} zoeken is niet beschikbaar. U kunt zo lang gebruik maken van Google. De gegevens van {{SITENAME}} zijn mogelijk niet up to date.',
 'blanknamespace'        => '(hoofdnaamruimte)',
@@ -809,7 +809,7 @@ te vermelden om deze functie te kunnen gebruiken.',
 'watchnologintext'      => 'Om uw volglijst te veranderen dient u eerst [[{{ns:special}}:Userlogin|aangemeld]]
 te zijn.',
 'addedwatch'            => 'Toegevoegd aan volglijst',
-'addedwatchtext'        => 'De pagina "$1" is aan uw [[Special:Watchlist|volglijst]] toegevoegd. <p>Toekomstige wijzigingen aan deze pagina en overlegpagina zullen op [[Speciaal:Watchlist|uw volglijst]] vermeld worden.<br/> Ook zullen deze pagina\'s in het <b>vet</b> verschijnen in de [[Special:Recentchanges|lijst van recente wijzigingen]] zodat u ze eenvoudiger kunt opmerken.</p> <p>Indien u een pagina wenst te verwijderen van uw volglijst ga dan naar de pagina en klik op "Niet meer volgen" in de menubalk.<br/> Er is ook op uw [[Speciaal:Watchlist|volglijst]] een pagina waar u ook kunt aanvinken welke pagina\'s u niet meer op uw volglijst wilt.</p>',
+'addedwatchtext'        => 'De pagina "$1" is aan uw [[Special:Watchlist|volglijst]] toegevoegd. <p>Toekomstige wijzigingen aan deze pagina en overlegpagina zullen op [[Speciaal:Watchlist|uw volglijst]] vermeld worden.<br /> Ook zullen deze pagina\'s in het <b>vet</b> verschijnen in de [[Special:Recentchanges|lijst van recente wijzigingen]] zodat u ze eenvoudiger kunt opmerken.</p> <p>Indien u een pagina wenst te verwijderen van uw volglijst ga dan naar de pagina en klik op "Niet meer volgen" in de menubalk.<br /> Er is ook op uw [[Speciaal:Watchlist|volglijst]] een pagina waar u ook kunt aanvinken welke pagina\'s u niet meer op uw volglijst wilt.</p>',
 'removedwatch'          => 'Van volglijst verwijderen',
 'removedwatchtext'      => 'De pagina "$1" is van uw volglijst verwijderd.',
 'watch'                 => 'Volg',
@@ -975,7 +975,7 @@ In de [[Special:Log/delete|deletion log]] vindt u records voor recente verwijder
 'ipbotheroption'        => 'ander verloop',
 'badipaddress'          => 'Geen bestaande gebruikersnaam of geldig IP-adres',
 'blockipsuccesssub'     => 'Blokkering gelukt',
-'blockipsuccesstext'    => '"$1" is geblokkeerd.<br>
+'blockipsuccesstext'    => '"$1" is geblokkeerd.<br />
 Zie de [[{{ns:special}}:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'unblockip'             => 'Deblokkeer gebruiker',
 'unblockiptext'         => 'Gebruik het onderstaande formulier om opnieuw schrijftoegang te geven aan een geblokkeerde gebruiker of IP-adres.',
@@ -1069,10 +1069,10 @@ U wordt vriendelijk verzocht om in de desbetreffende artikelen na de hernoeming 
 'newtitle'              => 'Naar de nieuwe titel',
 'movepagebtn'           => 'Wijzig titel',
 'pagemovedsub'          => 'Wijzigen titel geslaagd',
-'pagemovedtext'         => 'Pagina "[[$1]]" is verplaatst naar "[[$2]]", inclusief de voorgeschiedenis.<br>
-"[[$1]]" is nu een doorverwijzing naar "[[$2]]".<br><br> 
+'pagemovedtext'         => 'Pagina "[[$1]]" is verplaatst naar "[[$2]]", inclusief de voorgeschiedenis.<br />
+"[[$1]]" is nu een doorverwijzing naar "[[$2]]".<br /><br /> 
 [[{{ns:special}}:Whatlinkshere/$2|Kijk na]] of hierdoor [[{{ns:help}}:dubbele redirects|dubbele redirects]] zijn ontstaan. Deze redirects graag herstellen door ze direct naar de nieuwe titel te laten verwijzen.',
-'articleexists'         => 'Er is reeds een pagina met deze titel of de titel is ongeldig. <br>Gelieve een andere titel te kiezen.',
+'articleexists'         => 'Er is reeds een pagina met deze titel of de titel is ongeldig. <br />Gelieve een andere titel te kiezen.',
 'talkexists'            => 'De pagina zelf is verplaatst, maar de Overlegpagina kon niet worden verplaatst, omdat de doeltitel al een niet-lege overlegpagina had. Combineer de overlegpagina\'s a.u.b. handmatig.',
 'movedto'               => 'Titel gewijzigd in',
 'movetalk'              => 'Geef de overlegpagina indien mogelijk ook een nieuwe titel.',
@@ -1228,7 +1228,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Laat de rubriekpagina zien\');',
 'deletedrevision'       => 'Oude versie $1 verwijderd.',
 'previousdiff'          => '? Vorige wijziging',
 'nextdiff'              => 'Volgende wijziging ?',
-'imagemaxsize'          => 'Maximale grootte van afbeeldingen<br>op de beschrijvingspagina:',
+'imagemaxsize'          => 'Maximale grootte van afbeeldingen<br />op de beschrijvingspagina:',
 'thumbsize'             => 'Grootte thumbnail:',
 'showbigimage'          => 'Download afbeelding in origineel formaat ($1x$2 pixels, $3 kB)',
 'newimages'             => 'Nieuwe afbeeldingen',
@@ -1393,7 +1393,7 @@ Als u zichzelf *niet* heeft aangemeld, open deze link dan niet. De bevestigingsc
 'searchfulltext'        => 'Volledige tekst doorzoeken',
 'createarticle'         => 'Maak nieuwe pagina',
 'trackbackbox'          => '<div id=\'mw_trackbacks\'>
-Trackbacks voor dit artikel:<br>
+Trackbacks voor dit artikel:<br />
 $1
 </div>',
 'trackbackexcerpt'      => '; $4$5 : [$2 $1]: $3',
