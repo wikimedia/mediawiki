@@ -2845,17 +2845,6 @@ class Parser
 			$colonPos = strpos( $part1, ':' );
 			if ( $colonPos !== false ) {
 				$function = strtolower( substr( $part1, 1, $colonPos - 1 ) );
-				if ( !isset( $this->mFunctionHooks[$function] ) ) {
-					foreach ($this->mFunctionHooks as $key => $value) {
-						if( is_int( $key ) ) {
-							$mwExtension =& MagicWord::get( $key );
-							if( $mwExtension->matchVariableStartToEnd( $function ) ) {
-								$function = $key;
-								break;
-							}
-						}
-					}
-				}
 				if ( isset( $this->mFunctionHooks[$function] ) ) {
 					$funcArgs = array_map( 'trim', $args );
 					$funcArgs = array_merge( array( &$this, trim( substr( $part1, $colonPos + 1 ) ) ), $funcArgs );
@@ -3894,17 +3883,15 @@ class Parser
 	 *
 	 * @public
 	 *
-	 * @param mixed $id The magic word ID, or (deprecated) the function name. Function names are case-insensitive.
+	 * @param string $name The function name. Function names are case-insensitive.
 	 * @param mixed $callback The callback function (and object) to use
 	 *
 	 * @return The old callback function for this name, if any
 	 */
-	function setFunctionHook( $id, $callback ) {
-		if( is_string( $id ) ) {
-			$id = strtolower( $id );
-		}
-		$oldVal = @$this->mFunctionHooks[$id];
-		$this->mFunctionHooks[$id] = $callback;
+	function setFunctionHook( $name, $callback ) {
+		$name = strtolower( $name );
+		$oldVal = @$this->mFunctionHooks[$name];
+		$this->mFunctionHooks[$name] = $callback;
 		return $oldVal;
 	}
 
