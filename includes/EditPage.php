@@ -194,7 +194,7 @@ class EditPage {
 			# When previewing, don't check blocked state - will get caught at save time.
 			# Also, check when starting edition is done against slave to improve performance.
 			wfDebug( "$fname: user is blocked\n" );
-			$wgOut->blockedPage();
+			$this->blockedPage();
 			wfProfileOut( $fname );
 			return;
 		}
@@ -511,7 +511,7 @@ class EditPage {
 		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
-			$this->blockedIPpage();
+			$this->blockedPage();
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return false;
@@ -1341,9 +1341,22 @@ END
 	/**
 	 * Call the stock "user is blocked" page
 	 */
-	function blockedIPpage() {
-		global $wgOut;
-		$wgOut->blockedPage();
+	function blockedPage() {
+		global $wgOut, $wgUser;
+		$wgOut->blockedPage( false ); # Standard block notice on the top, don't 'return'
+		
+		# If the user made changes, preserve them when showing the markup
+		# (This happens when a user is blocked during edit, for instance)		
+		$first = $this->firsttime || ( !$this->save && $this->textbox1 == '' );
+		$source = $first ? $this->mArticle->getContent() : $this->textbox1;
+		
+		# Spit out the source or the user's modified version
+		$rows = $wgUser->getOption( 'rows' );
+		$cols = $wgUser->getOption( 'cols' );
+		$attribs = array( 'id' => 'wpTextbox1', 'name' => 'wpTextbox1', 'cols' => $cols, 'rows' => $rows, 'readonly' => 'readonly' );
+		$wgOut->addHtml( '<hr />' );
+		$wgOut->addWikiText( wfMsg( $first ? 'blockedoriginalsource' : 'blockededitsource', $this->mTitle->getPrefixedText() ) );
+		$wgOut->addHtml( wfElement( 'textarea', $attribs, $source ) );
 	}
 
 	/**

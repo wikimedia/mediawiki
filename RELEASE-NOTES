@@ -555,6 +555,8 @@ Some default configuration options have changed:
   were causing the newtalk flag to trigger inappropriately)
 * Parser functions are now set using magic words.
 * (bug 6428) Incorrect form action URL on Special:Newimages with hidebots = 0 set
+* (bug 4990) Show page source to blocked users on edits, or their modified version
+  if blocked during an edit
 
 == Compatibility ==
 

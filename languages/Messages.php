@@ -475,6 +475,8 @@ The reason given is this:<br />\'\'$2\'\'<br />You may contact $1 or one of the 
 Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
 
 Your IP address is $3. Please include this address in any queries you make.',
+'blockedoriginalsource' => "The source of '''$1''' is shown below:",
+'blockededitsource' => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle' => 'Login required to edit',
 'whitelistedittext' => 'You have to $1 to edit pages.',
 'whitelistreadtitle' => 'Login required to read',
