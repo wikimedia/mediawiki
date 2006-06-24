@@ -347,6 +347,7 @@ class ParserTest {
 			'wgThumbnailScriptPath' => false,
 			'wgUseTeX' => false,
 			'wgLocaltimezone' => 'UTC',
+			'wgAllowExternalImages' => true,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
