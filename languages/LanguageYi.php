@@ -1,23 +1,21 @@
 <?php
 /** Yiddish (ייִדיש)
   *
-  * @bug 3810
-  *
   * @package MediaWiki
   * @subpackage Language
   */
 
-require_once 'LanguageUtf8.php';
+require_once("LanguageHe.php");
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesYi.php');
 }
 
-class LanguageYi extends LanguageUtf8 {
+class LanguageYi extends LanguageHe {
 	private $mMessagesYi, $mNamespaceNamesYi = null;
 
-	function LanguageYi() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesYi;
 		$this->mMessagesYi =& $wgAllMessagesYi;
