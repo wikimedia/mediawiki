@@ -41,6 +41,7 @@ function __autoload($class_name) {
 		'Diff' => 'DifferenceEngine.php',
 		'MappedDiff' => 'DifferenceEngine.php',
 		'DiffFormatter' => 'DifferenceEngine.php',
+		'DjVuImage' => 'DjVuImage.php',
 		'_HWLDF_WordAccumulator' => 'DifferenceEngine.php',
 		'WordLevelDiff' => 'DifferenceEngine.php',
 		'TableDiffFormatter' => 'DifferenceEngine.php',
