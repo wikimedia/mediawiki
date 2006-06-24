@@ -25,6 +25,7 @@ image/jpeg jpeg jpg jpe
 image/png png
 image/svg+xml svg
 image/tiff tiff tif
+image/vnd.djvu djvu
 text/plain txt
 text/html html htm
 video/ogg ogm ogg
@@ -52,6 +53,7 @@ image/jpeg [BITMAP]
 image/png [BITMAP]
 image/svg image/svg+xml [DRAWING]
 image/tiff [BITMAP]
+image/vnd.djvu [BITMAP]
 text/plain [TEXT]
 text/html [TEXT]
 video/ogg [VIDEO]
@@ -320,7 +322,7 @@ class MimeMagic {
 			'gif', 'jpeg', 'jpg', 'png', 'swf', 'psd',
 			'bmp', 'tiff', 'tif', 'jpc', 'jp2',
 			'jpx', 'jb2', 'swc', 'iff', 'wbmp',
-			'xbm'
+			'xbm', 'djvu'
 		);
 		return in_array( strtolower( $extension ), $types );
 	}
@@ -551,6 +553,13 @@ class MimeMagic {
 				return $m;
 			}
 			else $notAnImage= true;
+		} else {
+			// Also test DjVu
+			$deja = new DjVuImage( $file );
+			if( $deja->isValid() ) {
+				wfDebug("$fname: detected $file as image/vnd.djvu\n");
+				return 'image/vnd.djvu';
+			}
 		}
 
 		#if desired, look at extension as a fallback.

@@ -548,6 +548,9 @@ Some default configuration options have changed:
 * Allow setting the skin object that ImageGallery will use; needed during parse
   operations (the skin must come from the ParserOptions, not $wgUser)
 * Fix notice in MacBinary detection debug data for files of certain lengths
+* (bug 6131) Add type detection for DjVu files, allowing them to be uploaded
+  with validity checking and size detection. No inline thumbnailing yet,
+  but could be added in the future.
 
 
 == Compatibility ==
