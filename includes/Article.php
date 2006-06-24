@@ -1354,7 +1354,8 @@ class Article {
 				Article::onArticleEdit( $this->mTitle );
 				
 				# Update links tables, site stats, etc.
-				$this->editUpdates( $text, $summary, $isminor, $now, $revisionId );
+				$changed = ( strcmp( $oldtext, $text ) != 0 );
+				$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
 			}
 		} else {
 			# Create new article
@@ -1396,7 +1397,7 @@ class Article {
 			$dbw->commit();
 
 			# Update links, etc.
-			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId );
+			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, true );
 
 			# Clear caches
 			Article::onArticleCreate( $this->mTitle );
@@ -2137,9 +2138,14 @@ class Article {
 	 * Every 1000th edit, prune the recent changes table.
 	 * 
 	 * @private
-	 * @param string $text
+	 * @param $text New text of the article
+	 * @param $summary Edit summary
+	 * @param $minoredit Minor edit
+	 * @param $timestamp_of_pagechange Timestamp associated with the page change
+	 * @param $newid rev_id value of the new revision
+	 * @param $changed Whether or not the content actually changed
 	 */
-	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid) {
+	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid, $changed = true ) {
 		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgParser;
 
 		wfProfileIn( __METHOD__ );
@@ -2186,8 +2192,9 @@ class Article {
 		array_push( $wgDeferredUpdateList, $u );
 
 		# If this is another user's talk page, update newtalk
-
-		if ($this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getName()) {
+		# Don't do this if $changed = false otherwise some idiot can null-edit a
+		# load of user talk pages and piss people off
+		if( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getName() && $changed ) {
 			if (wfRunHooks('ArticleEditUpdateNewTalk', array(&$this)) ) {
 				$other = User::newFromName( $shortTitle );
 				if( is_null( $other ) && User::isIP( $shortTitle ) ) {

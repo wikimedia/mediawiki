@@ -551,7 +551,8 @@ Some default configuration options have changed:
 * (bug 6131) Add type detection for DjVu files, allowing them to be uploaded
   with validity checking and size detection. No inline thumbnailing yet,
   but could be added in the future.
-
+* (bug 6423) Don't update newtalk flag if page content didn't change (null edits
+  were causing the newtalk flag to trigger inappropriately)
 
 == Compatibility ==
 
