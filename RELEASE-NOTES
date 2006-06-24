@@ -553,6 +553,7 @@ Some default configuration options have changed:
   but could be added in the future.
 * (bug 6423) Don't update newtalk flag if page content didn't change (null edits
   were causing the newtalk flag to trigger inappropriately)
+* (bug 6428) Incorrect form action URL on Special:Newimages with hidebots = 0 set
 
 == Compatibility ==
 
