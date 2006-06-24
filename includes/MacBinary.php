@@ -254,12 +254,15 @@ class MacBinary {
 		for( $remaining = strlen( $data ); $remaining > 0; $remaining -= $width ) {
 			$line = sprintf( "%04x:", $at );
 			$printable = '';
-			for( $i = 0; $i < $width; $i++ ) {
+			for( $i = 0; $i < $width && $remaining - $i > 0; $i++ ) {
 				$byte = ord( $data{$at++} );
 				$line .= sprintf( " %02x", $byte );
 				$printable .= ($byte >= 32 && $byte <= 126 )
 					? chr( $byte )
 					: '.';
+			}
+			if( $i < $width ) {
+				$line .= str_repeat( '   ', $width - $i );
 			}
 			wfDebug( "MacBinary: $line $printable\n" );
 		}
