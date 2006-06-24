@@ -544,6 +544,9 @@ Some default configuration options have changed:
   preference.
 * Make sure '~~~' '~~~~' '~~~~~' are removed in Nickname preference.
 * Rename "ipusuccess" to "unblocked", change the format (now wiki text)
+* (bug 2316) Add "caption" attribute to <gallery> tag
+* Allow setting the skin object that ImageGallery will use; needed during parse
+  operations (the skin must come from the ParserOptions, not $wgUser)
 
 == Compatibility ==
 

@@ -1222,6 +1222,11 @@ table.gallery td {
 	border: solid 2px white;
 }
 
+table.gallery td.galleryheader {
+	text-align: center;
+	font-weight: bold;
+}
+
 div.gallerybox {
 	margin: 2px;
 	width:  150px;
