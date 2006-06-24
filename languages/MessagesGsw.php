@@ -360,7 +360,7 @@ Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Qu
 'cur'                   => 'Jetz',
 'next'                  => 'Nächschti',
 'last'                  => 'vorane',
-'histlegend'            => 'Du chasch zwei Versionen uswähle und verglyche.<br/>
+'histlegend'            => 'Du chasch zwei Versionen uswähle und verglyche.<br />
 Erklärig: (aktuell) = Underschid zu jetz,
 (vorane) = Underschid zur alte Version, <strong>K</strong> = chlyni Änderig',
 'histfirst'             => 'Eltischti',
