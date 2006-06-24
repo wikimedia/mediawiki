@@ -1,7 +1,7 @@
 <?php
 /**
  * This file contain a class to easily build HTML forms as well as custom
- * functions used by SpecialUserrights.php and SpecialGroups.php
+ * functions used by SpecialUserrights.php
  * @package MediaWiki
  */
 
@@ -110,7 +110,7 @@ class HTMLForm {
 } // end class
 
 
-// functions used by SpecialUserrights.php and SpecialGroups.php
+// functions used by SpecialUserrights.php
 
 /** Build a select with all defined groups
  * @param $selectname String: name of this element. Name of form is automaticly prefixed.
