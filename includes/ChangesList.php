@@ -213,6 +213,16 @@ class ChangesList {
 		return( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) );
 	}
 
+	/**
+	 * Format a number according to the user's locale
+	 *
+	 * @param $number Number to format
+	 * @return string
+	 */
+	function formatNum( $number ) {
+		global $wgLang;
+		return $wgLang->formatNum( $number );
+	}
 
 }
 
@@ -225,7 +235,6 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 */
 	function recentChangesLine( &$rc, $watched = false ) {
-		global $wgContLang;
 
 		$fname = 'ChangesList::recentChangesLineOld';
 		wfProfileIn( $fname );
@@ -268,7 +277,7 @@ class OldChangesList extends ChangesList {
 		$this->insertComment($s, $rc);
 
 		if($rc->numberofWatchingusers > 0) {
-			$s .= ' ' . wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($rc->numberofWatchingusers));
+			$s .= ' ' . wfMsg('number_of_watching_users_RCview', $this->formatNum( $rc->numberofWatchingusers ) );
 		}
 
 		$s .= "</li>\n";
@@ -473,8 +482,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= $users;
 
 		if($block[0]->numberofWatchingusers > 0) {
-			global $wgContLang;
-			$r .= wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($block[0]->numberofWatchingusers));
+			$r .= wfMsg('number_of_watching_users_RCview',  $this->formatNum($block[0]->numberofWatchingusers));
 		}
 		$r .= "<br />\n";
 
@@ -575,7 +583,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string a HTML formated line (generated using $r)
 	 */
 	function recentChangesBlockLine( $rcObj ) {
-		global $wgContLang;
 
 		# Get rc_xxxx variables
 		extract( $rcObj->mAttribs );
@@ -614,7 +621,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		if( $rcObj->numberofWatchingusers > 0 ) {
-			$r .= wfMsg('number_of_watching_users_RCview', $wgContLang->formatNum($rcObj->numberofWatchingusers));
+			$r .= wfMsg('number_of_watching_users_RCview', $this->formatNum( $rcObj->numberofWatchingusers ) );
 		}
 
 		$r .= "<br />\n";
