@@ -43,7 +43,7 @@ class ZhConverter extends LanguageConverter {
 */
 class LanguageZh extends LanguageZh_cn {
 
-	function LanguageZh() {
+	function __construct() {
 		global $wgHooks;
 		$this->mConverter = new ZhConverter($this, 'zh',
                                             array('zh', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk'),

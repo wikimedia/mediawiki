@@ -49,12 +49,6 @@ if (!$wgCachedMessageArrays) {
 }
 
 class LanguageOs extends LanguageRu {
-	function LanguageOs() {
-		# FIXME: Are the globals really used ?
-		global $wgNamespaceNamesOs, $wgMetaNamespace;
-		LanguageUtf8::LanguageUtf8();
-	}
-
 	function getNamespaces() {
 		global $wgNamespaceNamesOs;
 		return $wgNamespaceNamesOs;

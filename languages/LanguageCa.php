@@ -29,8 +29,8 @@ class LanguageCa extends LanguageUtf8 {
 		'Totselsllibres.com' => 'http://www.totselsllibres.com/tel/publi/busquedaAvanzadaLibros.do?ISBN=$1',
 	);
 
-	function LanguageCa() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesCa;
 		$this->mMessagesCa =& $wgAllMessagesCa;

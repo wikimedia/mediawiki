@@ -50,8 +50,8 @@ class LanguageRo extends LanguageUtf8 {
 	);
 
 	
-	function LanguageRo() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesRo;
 		$this->mMessagesRo =& $wgAllMessagesRo;

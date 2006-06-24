@@ -65,9 +65,9 @@ if (!$wgCachedMessageArrays) {
 #--------------------------------------------------------------------------
 
 class LanguageTyv extends LanguageUtf8 {
-	function LanguageTyv() {
+	function __construct() {
 		global $wgNamespaceNamesTyv, $wgMetaNamespace;
-		LanguageUtf8::LanguageUtf8();
+		parent::__construct();
 		$wgNamespaceNamesTyv[NS_PROJECT_TALK] = $wgMetaNamespace . '_чугаа';
 	}
 

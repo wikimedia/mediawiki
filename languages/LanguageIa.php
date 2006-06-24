@@ -23,8 +23,8 @@ class LanguageIa extends LanguageUtf8 {
 	);
 
 
-	function LanguageIa() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesIa;
 		$this->mMessagesIa =& $wgAllMessagesIa;

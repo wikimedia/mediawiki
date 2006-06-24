@@ -22,8 +22,8 @@ class LanguageLa extends LanguageUtf8 {
 		'cologneblue' => 'Caerulus Colonia'
 	);
 
-	function LanguageLa() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesLa;
 		$this->mMessagesLa =& $wgAllMessagesLa;

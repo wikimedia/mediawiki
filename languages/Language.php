@@ -322,7 +322,7 @@ class fakeConverter {
 
 class Language {
 	var $mConverter;
-	function Language() {
+	function __construct() {
 		$this->mConverter = new fakeConverter($this);
 	}
 
