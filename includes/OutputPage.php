@@ -644,7 +644,7 @@ class OutputPage {
 	/**
 	 * Produce a "user is blocked" page
 	 */
-	function blockedPage() {
+	function blockedPage( $return = true ) {
 		global $wgUser, $wgContLang, $wgTitle;
 
 		$this->setPageTitle( wfMsg( 'blockedtitle' ) );
@@ -665,8 +665,10 @@ class OutputPage {
 		$this->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name ) );
 		
 		# Don't auto-return to special pages
-		$return = $wgTitle->getNamespace() > -1 ? $wgTitle->getPrefixedText() : NULL;	
-		$this->returnToMain( false, $return );
+		if( $return ) {
+			$return = $wgTitle->getNamespace() > -1 ? $wgTitle->getPrefixedText() : NULL;
+			$this->returnToMain( false, $return );
+		}
 	}
 
 	/**
