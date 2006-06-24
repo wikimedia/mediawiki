@@ -557,6 +557,9 @@ Some default configuration options have changed:
 * (bug 6428) Incorrect form action URL on Special:Newimages with hidebots = 0 set
 * (bug 4990) Show page source to blocked users on edits, or their modified version
   if blocked during an edit
+* (bug 5903) When requesting the raw source of a non-existent message page,
+  return blank content (as opposed to the message key)
+* Improve default blank content of MediaWiki:Common.css and MediaWiki:Monobook.css
 
 == Compatibility ==
 
