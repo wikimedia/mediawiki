@@ -560,7 +560,6 @@ Some default configuration options have changed:
 * (bug 5903) When requesting the raw source of a non-existent message page,
   return blank content (as opposed to the message key)
 * Improve default blank content of MediaWiki:Common.css and MediaWiki:Monobook.css
-* (bug 5852) Localise "number of watching users" according to user locale
 
 == Compatibility ==
 
