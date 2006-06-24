@@ -151,10 +151,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	$sub = wfMsg( 'ilsubmit' );
 	$titleObj = Title::makeTitle( NS_SPECIAL, 'Newimages' );
-	$action = $titleObj->escapeLocalURL();
-	if(!$hidebots) {
-		$action.='&hidebots=0';
-	}
+	$action = $titleObj->escapeLocalURL( $hidebots ? '' : 'hidebots=0' );
 	if ($shownav) {
 		$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 		  "{$action}\">" .
