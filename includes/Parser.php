@@ -4125,7 +4125,7 @@ class Parser
 		$ig->useSkin( $this->mOptions->getSkin() );
 
 		if( isset( $params['caption'] ) )
-			$ig->setCaption( $this->replaceInternalLinks( $params['caption'] ) );
+			$ig->setCaption( $params['caption'] );
 		
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
