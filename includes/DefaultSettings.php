@@ -2052,7 +2052,7 @@ $wgAllowCategorizedRecentChanges = false ;
 /**
  * Number of jobs to perform per request. May be less than one in which case
  * jobs are performed probabalistically. If this is zero, jobs will not be done
- * during ordinary apache requests. In this case, maintenance/doJobs.php should
+ * during ordinary apache requests. In this case, maintenance/runJobs.php should
  * be run periodically.
  */
 $wgJobRunRate = 1;
