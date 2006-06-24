@@ -379,3 +379,8 @@ table.collapsed tr.collapsable {
 #jump-to-nav {
   display: none;
 }
+
+table.gallery td.galleryheader {
+	text-align: center;
+	font-weight: bold;
+}

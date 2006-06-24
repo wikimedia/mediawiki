@@ -473,7 +473,7 @@ class Parser
 					$output = MathRenderer::renderMath( $content );
 					break;
 				case 'gallery':
-					$output = $this->renderImageGallery( $content );
+					$output = $this->renderImageGallery( $content, $params );
 					break;
 				default:
 					if( isset( $this->mTagHooks[$tagName] ) ) {
@@ -4117,13 +4117,17 @@ class Parser
 	 * labeled 'The number "1"' and
 	 * 'A tree'.
 	 */
-	function renderImageGallery( $text ) {
+	function renderImageGallery( $text, $params ) {
 		$ig = new ImageGallery();
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
 		$ig->setParsing();
-		$lines = explode( "\n", $text );
+		$ig->useSkin( $this->mOptions->getSkin() );
 
+		if( isset( $params['caption'] ) )
+			$ig->setCaption( $this->replaceInternalLinks( $params['caption'] ) );
+		
+		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
 			# match lines like these:
 			# Image:someimage.jpg|This is some image
