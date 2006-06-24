@@ -120,8 +120,8 @@ class LanguageBe extends LanguageUtf8 {
 		MAG_URLENCODE            => array( 0,    'URLENCODE:' ),
 	);
 
-	function LanguageBe() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesBe;
 		$this->mMessagesBe =& $wgAllMessagesBe;

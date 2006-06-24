@@ -116,9 +116,9 @@ if (!$wgCachedMessageArrays) {
 
 /* Please, see Language.php for general function comments */
 class LanguageRu extends LanguageUtf8 {
-	function LanguageRu() {
+	function __construct() {
 		global $wgNamespaceNamesRu, $wgMetaNamespace;
-		LanguageUtf8::LanguageUtf8();
+		parent::__construct();
 		$wgNamespaceNamesRu[NS_PROJECT_TALK] = 'Обсуждение_' . $this->convertGrammar( $wgMetaNamespace, 'genitive' );
 	}
 

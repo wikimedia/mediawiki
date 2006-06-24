@@ -30,7 +30,7 @@ class LanguageConverter {
 	 * @param array $flags array defining the custom strings that maps to the flags
      * @access public
      */
-	function LanguageConverter($langobj, $maincode,
+	function __construct($langobj, $maincode,
 								$variants=array(),
 								$variantfallbacks=array(),
 								$markup=array(),

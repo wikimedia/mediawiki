@@ -41,8 +41,8 @@ class LanguageWa extends LanguageUtf8 {
 
 
 
-	function LanguageWa() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesWa;
 		$this->mMessagesWa =& $wgAllMessagesWa;

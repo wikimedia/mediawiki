@@ -41,8 +41,8 @@ class LanguageFi extends LanguageUtf8 {
 		'Tampereen seudun kirjastot'    => 'http://kirjasto.tampere.fi/Piki?formid=fullt&typ0=6&dat0=$1'
 	);
 
-	function LanguageFi() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesFi;
 		$this->mMessagesFi =& $wgAllMessagesFi;

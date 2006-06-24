@@ -24,8 +24,8 @@ if (!$wgCachedMessageArrays) {
 class LanguageGsw extends LanguageDe {
 	private $mMessagesGsw = null;
 
-	function LanguageGsw() {
-		LanguageDe::LanguageDe();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesGsw;
 		$this->mMessagesGsw =& $wgAllMessagesGsw;

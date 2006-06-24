@@ -28,8 +28,8 @@ class LanguageSv extends LanguageUtf8 {
 		'cologneblue' => "Cologne Blå",
 	);
 
-	function LanguageSv() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesSv;
 		$this->mMessagesSv =& $wgAllMessagesSv;

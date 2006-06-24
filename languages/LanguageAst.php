@@ -10,8 +10,8 @@ require_once( 'LanguageUtf8.php' );
 class LanguageAst extends LanguageUtf8 {
 	private $mNamespaceNamesAst = null;
 
-	function LanguageAst() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgMetaNamespace;
 		$this->mNamespaceNamesAst = array(

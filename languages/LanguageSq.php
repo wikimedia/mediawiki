@@ -30,8 +30,8 @@ class LanguageSq extends LanguageUtf8 {
 		MW_DATE_ISO => '2001-01-15 16:12:34'
 	);
 
-	function LanguageSq() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesSq;
 		$this->mMessagesSq =& $wgAllMessagesSq;

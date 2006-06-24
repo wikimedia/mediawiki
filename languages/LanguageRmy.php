@@ -24,8 +24,8 @@ if (!$wgCachedMessageArrays) {
 class LanguageRmy extends LanguageRo {
 	private $mMessagesRmy = null;
 
-	function LanguageRmy() {
-		parent::LanguageRo();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesRmy;
 		$this->mMessagesRmy =& $wgAllMessagesRmy;

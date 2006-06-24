@@ -22,8 +22,8 @@ class LanguageAz extends LanguageUtf8 {
 		MW_DATE_ISO => '2001-01-15 16:12:34'
 	);
 
-	function LanguageAz() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesAz;
 		$this->mMessagesAz =& $wgAllMessagesAz;

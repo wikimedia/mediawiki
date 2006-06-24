@@ -194,7 +194,7 @@ class SrConverter extends LanguageConverter {
 }
 
 class LanguageSr extends LanguageSr_ec {
-	function LanguageSr() {
+	function __construct() {
 		global $wgHooks;
 		$variants = array('sr', 'sr-ec', 'sr-jc', 'sr-el', 'sr-jl');
 		$variantfallbacks = array(

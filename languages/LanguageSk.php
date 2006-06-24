@@ -88,8 +88,8 @@ class LanguageSk extends LanguageUtf8 {
 		MAG_REVISIONID => array( 1, 'REVISIONID' ),
 	);
 
-	function LanguageSk() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesSk;
 		$this->mMessagesSk =& $wgAllMessagesSk;

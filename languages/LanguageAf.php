@@ -24,8 +24,8 @@ class LanguageAf extends LanguageUtf8 {
 		'cologneblue' => "Keulen blou",
 	);
 
-	function LanguageAf() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesAf;
 		$this->mMessagesAf =& $wgAllMessagesAf;

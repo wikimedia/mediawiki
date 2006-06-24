@@ -131,7 +131,7 @@ class LanguageHe extends LanguageUtf8 {
 	 * Constructor, setting the namespaces
 	 */
 	function __construct() {
-		LanguageUtf8::LanguageUtf8();
+		parent::__construct();
 		
 		global $wgAllMessagesHe;
 		$this->mMessagesHe = &$wgAllMessagesHe;

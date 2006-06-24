@@ -34,8 +34,8 @@ class LanguageJa extends LanguageUtf8 {
 		"日", "月", "火", "水", "木", "金", "土"
 	);
 
-	function LanguageJa() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesJa;
 		$this->mMessagesJa =& $wgAllMessagesJa;

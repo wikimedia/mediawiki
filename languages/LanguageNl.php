@@ -24,8 +24,8 @@ class LanguageNl extends LanguageUtf8 {
 		'cologneblue' => 'Keuls blauw',
 	);
 
-	function LanguageNl() {
-		LanguageUtf8::LanguageUtf8();
+	function __construct() {
+		parent::__construct();
 
 		global $wgAllMessagesNl;
 		$this->mMessagesNl =& $wgAllMessagesNl;
