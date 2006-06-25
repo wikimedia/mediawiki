@@ -90,7 +90,6 @@ require_once('LanguageUtf8.php');
 #	MAG_UC                   => array( 0,    'UC:'                    ),
 #	MAG_RAW                  => array( 0,    'RAW:'                   ),
 );
-wfRunHooks( 'AddMagicWordsAr', array( &$wgMagicWordsAr ) );
 
 
 if (!$wgCachedMessageArrays) {

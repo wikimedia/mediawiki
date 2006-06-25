@@ -295,7 +295,6 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_PAGESINNAMESPACE	 => array( 1,	 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	MAG_NUMBEROFADMINS		 => array( 1,	 'NUMBEROFADMINS' ),
 );
-wfRunHooks( 'AddMagicWordsEn', array( &$wgMagicWordsEn ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('Messages.php');
