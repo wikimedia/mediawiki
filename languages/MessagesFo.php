@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesFo = array(
+global $wgAllMessagesFo;
+$wgAllMessagesFo = array(
 
 # User toggles
 "tog-underline"	   => "Undurstrika ávísingar",
