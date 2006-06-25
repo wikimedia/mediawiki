@@ -1,11 +1,7 @@
 <?php
 
-
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
-
-/* private */ $wgAllMessagesFa = array(
+global $wgAllMessagesFa;
+$wgAllMessagesFa = array(
 # User toggles
 
 'tog-underline' => "زیر پیوندها خط کشیده شود",
