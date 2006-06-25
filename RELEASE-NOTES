@@ -567,6 +567,7 @@ Some default configuration options have changed:
 * Adding the language code parameter to the hook "LanguageGetMagic", to allow
   localizble extensions magic words.
 * Update to Romanian translation (ro)
+* Update to Esperanto translation (eo)
 
 == Compatibility ==
 
