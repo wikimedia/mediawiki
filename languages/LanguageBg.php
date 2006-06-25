@@ -95,7 +95,6 @@
 	MAG_CURRENTDOW           => array( 1, 'CURRENTDOW'             ),
 	MAG_REVISIONID           => array( 1, 'REVISIONID'             ),
 );
-wfRunHooks( 'AddMagicWordsBg', array( &$wgMagicWordsBg ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesBg.php');

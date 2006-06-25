@@ -77,8 +77,7 @@ class LanguageRo extends LanguageUtf8 {
 			NS_CATEGORY       => 'Categorie',
 			NS_CATEGORY_TALK  => 'Discuţie_Categorie'
 		);
-		
-		wfRunHooks( 'AddMagicWordsRo', array( &$this->mMagicWordsRo ) );
+
 	}
 
 	function getNamespaces() {

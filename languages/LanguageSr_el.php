@@ -114,7 +114,6 @@ require_once( "LanguageUtf8.php" );
 	MAG_LC                   => array( 0, 'LC:', 'LC:' ),
 	MAG_UC                   => array( 0, 'UC:', 'UC:' ),
 );
-wfRunHooks( 'AddMagicWordsSr_el', array( &$wgMagicWordsSr_el ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesSr_el.php');

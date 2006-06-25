@@ -131,7 +131,6 @@ require_once( 'LanguageUtf8.php' );
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
 	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),
 );
-wfRunHooks( 'AddMagicWordsPt', array( &$wgMagicWordsPt ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesPt.php');

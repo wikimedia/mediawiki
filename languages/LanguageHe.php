@@ -157,8 +157,6 @@ class LanguageHe extends LanguageUtf8 {
 			NS_CATEGORY       => "קטגוריה",
 			NS_CATEGORY_TALK  => "שיחת_קטגוריה",
 		);
-		
-		wfRunHooks( 'AddMagicWordsHe', array( &$this->mMagicWordsHe ) );
 	}
 	
 	/**

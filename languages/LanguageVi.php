@@ -89,7 +89,6 @@ require_once( 'LanguageUtf8.php' );
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
 	MAG_REVISIONID           => array( 1,    'REVISIONID'  , 'SỐBẢN'           ),
  );
-wfRunHooks( 'AddMagicWordsVi', array( &$wgMagicWordsVi ) );
 
 /* private */ $wgDateFormatsVi = array(
     MW_DATE_DEFAULT => 'Không lựa chọn',

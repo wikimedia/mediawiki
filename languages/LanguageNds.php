@@ -99,8 +99,7 @@ class LanguageNds extends LanguageUtf8 {
 			NS_CATEGORY         => 'Kategorie',
 			NS_CATEGORY_TALK    => 'Kategorie_Diskuschoon'
 		);
-		
-		wfRunHooks( 'AddMagicWordsNds', array( &$this->mMagicWordsNds ) );
+
 	}
 
 	function getBookstoreList() {
