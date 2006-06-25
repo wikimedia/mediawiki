@@ -64,22 +64,17 @@ function wfSpecialExport( $page = '' ) {
 
 	$wgOut->addWikiText( wfMsg( "exporttext" ) );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Export" );
-	$action = $titleObj->escapeLocalURL( 'action=submit' );
+	
+	$form = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalUrl() ) );
+	$form .= wfOpenElement( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ) ) . '</textarea><br />';
 	if( $wgExportAllowHistory ) {
-		$checkbox = "<label><input type='checkbox' name='curonly' value='true' checked='checked' />
-" . wfMsgHtml( 'exportcuronly' ) . "</label><br />";
+		$form .= wfCheck( 'curonly', true, array( 'value' => 'true', 'id' => 'curonly' ) );
+		$form .= wfLabel( wfMsg( 'exportcuronly' ), 'curonly' ) . '<br />';
 	} else {
-		$checkbox = "";
-		$wgOut->addWikiText( wfMsg( "exportnohistory" ) );
+		$wgOut->addWikiText( wfMsg( 'exportnohistory' ) );
 	}
-	$wgOut->addHTML( "
-<form method='post' action=\"$action\">
-<input type='hidden' name='action' value='submit' />
-<textarea name='pages' cols='40' rows='10'></textarea><br />
-$checkbox
-<input type='submit' />
-</form>
-" );
+	$form .= wfSubmitButton( wfMsg( 'export-submit' ) ) . '</form>';
+	$wgOut->addHtml( $form );
 }
 
 ?>
