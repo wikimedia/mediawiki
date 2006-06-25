@@ -163,7 +163,6 @@ $wgAllMessagesAz = array(
 'yourname' => 'İstifadəçi adı',
 'yourpassword' => 'Parol',
 'yourpasswordagain' => 'Parolu təkrar yazın',
-'newusersonly' => ' (yalnız yeni istifadəçilər)',
 'remembermypassword' => 'Məni xatırla',
 'alreadyloggedin' => '<strong>User $1, Siz onsuz da daxil olmusunuz!</strong><br />',
 

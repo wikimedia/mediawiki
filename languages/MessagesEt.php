@@ -136,8 +136,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "viewcount"		=> "Seda lehekülge on külastatud $1 korda.",
 # aegunud, võib vist eemaldada, asendada järgmisega:
 "copyright" => "Kogu tekst on kasutatav litsentsi $1 tingimustel.",
-'poweredby'     => "{{SITENAME}} kasutab avatud koodiga wiki mootorit [http://www.mediawiki.org/ MediaWiki].",
-"printsubtitle" => "(Allikas: {{SERVER}})",
 "protectedpage" => "Kaitstud artikkel",
 "administrators" => "{{ns:4}}:Administraatorid",
 "sysoptitle"	=> "Nõutav süsteemi operaatori staatus",
@@ -247,7 +245,6 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 "yourname"		=> "Teie kasutajanimi",
 "yourpassword"	=> "Teie parool",
 "yourpasswordagain" => "Sisestage parool uuesti",
-"newusersonly"	=> " (ainult uued kasutajad)",
 "remembermypassword" => "Parooli meeldejätmine tulevasteks seanssideks.",
 "loginproblem"	=> "<b>Sisselogimine ei õnnestunud.</b><br />Proovige uuesti!",
 "alreadyloggedin" => "<strong>Kasutaja $1, Te olete juba sisse loginud!</strong><br />",

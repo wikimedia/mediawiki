@@ -76,7 +76,6 @@ Honaino nahigabe helduz gero, zure arakatzaileko \'\'\'atzera\'\'\' botoia sakat
 'newpageletter' => 'B',
 'newpages' => 'Orri berriak',
 'newtitle' => 'Izenburu berria',
-'newusersonly' => ' (lankide berriak bakarrik)',
 'nextn' => 'hurrengo $1ak',
 'nlinks' => '$1 esteka',
 'noname' => 'Lankide izena ez duzu eman.',

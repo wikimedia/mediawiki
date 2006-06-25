@@ -625,7 +625,6 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol \'\'\'back\'\'\' na panyungsi a
 'newpages' => 'Kaca anyar',
 'newpassword' => 'Sandi anyar',
 'newtitle' => 'Ka judul anyar',
-'newusersonly' => ' (pamaké anyar wungkul)',
 'newwindow' => '(buka na jandéla anyar)',
 'next' => 'salajengna',
 'nextdiff' => 'Ka béda salajengna, jung&rarr;',
@@ -718,7 +717,6 @@ Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel 
 'portal' => 'Panglawungan',
 'portal-url' => '{{ns:project}}: Panglawungan',
 'postcomment' => 'Kirim koméntar',
-'poweredby' => '{{SITENAME}} dipatéakeun ku [http://www.mediawiki.org/ MédiaWiki], mesin wiki nembrak.',
 'powersearch' => 'Téang',
 'powersearchtext' => 'Téang na spasi-ngaran:<br />
 $1<br />
@@ -741,7 +739,6 @@ $2 Daptarkeun alihan &nbsp; Téang $3 $9',
 'prevn' => '$1 saméméhna',
 'print' => 'Citak',
 'printableversion' => 'Vérsi citakeun',
-'printsubtitle' => '(Ti {{SITENAME}})',
 'privacy' => 'Kawijakan privasi',
 'privacypage' => 'Project:Kawijakan privasi',
 'protect' => 'Konci',

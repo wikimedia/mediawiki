@@ -939,7 +939,6 @@ $NEWPAGE
 'newpages' => 'Нове странице',
 'newpassword' => 'Нова шифра',
 'newtitle' => 'Нови наслов',
-'newusersonly' => '(само за нове кориснике)',
 'newwindow' => '(нови прозор)',
 'next' => 'след',
 'nextdiff' => 'Следећа измена →',
@@ -1049,7 +1048,6 @@ $NEWPAGE
 'portal' => 'Трг',
 'portal-url' => 'Project:Трг',
 'postcomment' => 'Пошаљи коментар',
-'poweredby' => '{{SITENAME}} је омогућена од стране [http://www.mediawiki.org/ МедијаВикија], вики машине слободног кода.',
 'powersearch' => 'Тражи',
 'powersearchtext' => 'Претрага у именским просторима:<br />
 $1<br />
@@ -1075,7 +1073,6 @@ $2 Излистај преусмерења &nbsp; Тражи $3 $9',
 'prevn' => 'претходних $1',
 'print' => 'Штампа',
 'printableversion' => 'Верзија за штампу',
-'printsubtitle' => '(Са {{SERVER}})',
 'protect' => 'заштити',
 'protectcomment' => 'Разлог заштите',
 'protectedarticle' => 'заштићено $1',
