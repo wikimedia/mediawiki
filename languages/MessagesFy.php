@@ -1,6 +1,7 @@
 <?php
 
-/* private */ $wgAllMessagesFy = array(
+global $wgAllMessagesFy;
+$wgAllMessagesFy = array(
 # User Toggles
 
 "tog-underline"		=> "Keppelings ûnderstreekje",
@@ -56,7 +57,6 @@
 
 # Bits of text used by many pages:
 #
-"linktrail"		=> "/^([a-zàáèéìíòóùúâêîôûäëïöü]+)(.*)\$/sDu",
 "mainpage"		=> "Haadside",
 "mainpagetext"	=> "Wiki-programma goed installearre.",
 "about"		=> "Ynfo",
