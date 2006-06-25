@@ -566,7 +566,7 @@ Some default configuration options have changed:
 * (bug 6438) Update to Indonesian translation (id) #23
 * Adding the language code parameter to the hook "LanguageGetMagic", to allow
   localizble extensions magic words.
-
+* Update to Romanian translation (ro)
 
 == Compatibility ==
 
