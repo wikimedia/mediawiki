@@ -882,6 +882,8 @@ class Image
 	 * provide access to the actual file, the real size of the thumb,
 	 * and can produce a convenient <img> tag for you.
 	 *
+	 * For non-image formats, this may return a filetype-specific icon.
+	 *
 	 * @param integer $width	maximum width of the generated thumbnail
 	 * @param integer $height	maximum height of the image (optional)
 	 * @return ThumbnailImage or null on failure
@@ -896,11 +898,11 @@ class Image
 		if ($this->canRender()) {
 			if ( $width > $this->width * $height / $this->height )
 				$width = wfFitBoxWidth( $this->width, $this->height, $height );
-			$thumb = $this->renderThumb( $width );
+			return $this->renderThumb( $width );
+		} else {
+			// not a bitmap or renderable image, don't try.
+			return $this->iconThumb();
 		}
-		else $thumb= NULL; #not a bitmap or renderable image, don't try.
-
-		return $thumb;
 	}
 
 	/**
