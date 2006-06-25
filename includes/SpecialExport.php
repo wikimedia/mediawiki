@@ -73,6 +73,7 @@ function wfSpecialExport( $page = '' ) {
 	} else {
 		$wgOut->addWikiText( wfMsg( 'exportnohistory' ) );
 	}
+	$form .= wfHidden( 'action', 'submit' );
 	$form .= wfSubmitButton( wfMsg( 'export-submit' ) ) . '</form>';
 	$wgOut->addHtml( $form );
 }
