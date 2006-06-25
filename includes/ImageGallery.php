@@ -184,9 +184,6 @@ class ImageGallery
 
 			$s .= ($i%4==0) ? '<tr>' : '';
 			$thumb = $img->getThumbnail( 120, 120 );
-			if ( !$thumb && $wgIgnoreImageErrors ) {
-				$thumb = $img->iconThumb();
-			}
 			if ( $thumb ) {
 				$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
 				$s .= '<td><div class="gallerybox">' . '<div class="thumb" style="padding: ' . $vpad . 'px 0;">';

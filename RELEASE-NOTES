@@ -562,6 +562,8 @@ Some default configuration options have changed:
 * Improve default blank content of MediaWiki:Common.css and MediaWiki:Monobook.css
 * (bug 6434) Allow customisation of submit button text on Special:Export
 * (bug 6314) Add user tool links on page histories
+* Fix display of file-type icons in galleries when $wgIgnoreImageErrors is off
+
 
 == Compatibility ==
 
