@@ -387,7 +387,7 @@ $wgAllMessagesHe = array(
 "acct_creation_throttle_hit" => "מצטערים, יצרת כבר $1 חשבונות. אינך יכול ליצור חשבונות נוספים.",
 "emailauthenticated"         => 'כתובת הדוא"ל שלך אושרה על־ידי $1.',
 "emailnotauthenticated"      => 'כתובת הדוא"ל שלך <strong>עדיין לא אושרה</strong>. אף דוא"ל לא יישלח מאף אחת מהתכונות הבאות.',
-"noemailprefs"               => '<strong>אנא ציינו כתובת דוא"ל כדי שתכונות אלה יעבדו.</strong>',
+"noemailprefs"               => 'אנא ציינו כתובת דוא"ל כדי שתכונות אלה יעבדו.',
 "emailconfirmlink"           => 'אשר את כתובת הדוא"ל שלך',
 "invalidemailaddress"        => 'כתובת הדוא"ל אינה מתקבלת כיוון שנראה שהיא בפורמט לא נכון. אנא הכנס כתובת נכונה או ותר על השדה הזה.',
 "accountcreated"             => "החשבון נוצר",
@@ -1276,6 +1276,7 @@ $NEWPAGE
 "exportcuronly"   => "כלול רק את הגרסה הנוכחית, ללא כל ההיסטוריה",
 "exportnohistory" => "----
 '''הערה:''' ייצוא ההיסטוריה המלאה של דפים דרך טופס זה הופסקה עקב בעיות ביצוע.",
+"export-submit"   => "ייצוא",
 
 # Namespace 8 related
 "allmessages"               => "הודעות המערכת",
@@ -1329,7 +1330,8 @@ $NEWPAGE
 "tooltip-watch"                   => "הוסיפו דף זה לרשימת המעקב שלכם [Alt+W]",
 
 # Stylesheets
-"Monobook.css" => "/* ערכו קובץ זה כדי להתאים את הרקע Monobook באתר כולו */",
+"Common.css"   => '/* הסגנונות הנכתבים כאן ישפיעו על כל הרקעים */',
+"Monobook.css" => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Monobook בלבד */',
 
 # Metadata
 "nodublincore"      => "Dublin Core RDF metadata מנוטרל בשרת זה.",
