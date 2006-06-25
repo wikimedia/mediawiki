@@ -1431,7 +1431,8 @@ history lines, or just the current version with the info about the last edit.
 In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{int:mainpage}}]] for the page {{int:mainpage}}.',
 'exportcuronly'	=> 'Include only the current revision, not the full history',
 'exportnohistory' => "----
-'''Note:''' exporting the full history of pages through this form has been disabled due to performance reasons.",
+'''Note:''' Exporting the full history of pages through this form has been disabled due to performance reasons.",
+'export-submit' => 'Export',
 
 # Namespace 8 related
 
