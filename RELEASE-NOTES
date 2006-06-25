@@ -563,6 +563,7 @@ Some default configuration options have changed:
 * (bug 6434) Allow customisation of submit button text on Special:Export
 * (bug 6314) Add user tool links on page histories
 * Fix display of file-type icons in galleries when $wgIgnoreImageErrors is off
+* (bug 6438) Update to Indonesian translation (id) #23
 
 
 == Compatibility ==
