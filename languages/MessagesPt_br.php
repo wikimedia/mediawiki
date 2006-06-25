@@ -104,7 +104,7 @@
 "articlepage"   => "Ver atigo",
 "subjectpage"   => "Ver assunto", # For compatibility
 "userpage" => "Ver página de usuário",
-"wikipediapage" => "Ver meta página",
+"projectpage" => "Ver meta página",
 "imagepage" =>  "Ver página de imagens",
 "viewtalkpage" => "Ver discussões",
 "otherlanguages" => "Outras línguas",

@@ -110,7 +110,7 @@
 "articlepage"	=> "Voir l'article",
 "subjectpage"   => "Page sujet",
 "userpage"      => "Page utilisateur",
-"wikipediapage" => "Page méta",
+"projectpage" => "Page méta",
 "imagepage"     => "Page image",
 "viewtalkpage"  => "Page de discussion",
 "otherlanguages" => "Autres langues",

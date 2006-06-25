@@ -52,7 +52,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Pogledajte sadržaj članka\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Pogledajte korisničku stranicu\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Pogledajte medija fajl\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Ovo je specijalna stranica i zato je ne možete uređivati\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Pogledajte projekat stranicu\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Pogledajte projekat stranicu\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Pogledajte stranicu slike\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Pogledajte sistemsku poruku\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Pogledajte šablon\');
@@ -634,7 +634,7 @@ na kome bi se izvela ova funkcija.',
 'nstab-special' => 'Posebna',
 'nstab-template' => 'Šablon',
 'nstab-user' => 'Korisnička stranica',
-'nstab-wp' => 'Članak',
+'nstab-project' => 'Članak',
 'nviews' => '$1 puta pogledano',
 'oct' => 'okt',
 'october' => 'oktobar',
@@ -1030,7 +1030,7 @@ Ne zaboravite da prilagodite sebi svoja podešavanja.',
 'whitelistedittitle' => 'Obavezno je prijavljivanje za uređivanje',
 'whitelistreadtext' => 'Morate da se [[{{ns:-1}}:Userlogin|prijavite]] da bi ste čitali članke.',
 'whitelistreadtitle' => 'Obavezno je prijavljivanje za čitanje',
-'wikipediapage' => 'Pogledaj stranu o ovoj strani',
+'projectpage' => 'Pogledaj stranu o ovoj strani',
 'wlheader-enotif' => '* Obavještavanje e-poštom je omogućeno.',
 'wlheader-showupdated' => '* Stranice koje su izmjenjene od kad ste ih poslednji put posjetili su prikazane \'\'\'podebljanim slovima\'\'\'',
 'wlhide' => 'Sakrij',

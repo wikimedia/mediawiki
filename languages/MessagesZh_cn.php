@@ -103,7 +103,7 @@
 "articlepage"	=> "查看文章",
 "subjectpage"	=> "查看主题", # For compatibility
 "userpage" => "查看用户页",
-"wikipediapage" => "查看meta页",
+"projectpage" => "查看meta页",
 "imagepage" => 	"查看图像页面",
 "viewtalkpage" => "查看讨论",
 "otherlanguages" => "其它语言",
@@ -800,7 +800,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 'nstab-special' => "特殊",//"Special",
 'nstab-template' => "模板", //"Template",
 'nstab-user' => "用户页面", //"User page",
-'nstab-wp' => "关于", //"About",
+'nstab-project' => "关于", //"About",
 'portal' => "社区",//"Community portal",
 'prefs-help-realname' => "*<strong>真实姓名</strong>（可选）：用以对您的贡献署名。<br />",
 'prefs-help-email' => "*<strong>点子邮件</strong>（可选）：让他人通过网站在不知道您的电子邮件地址的情况下通过电子邮件与您联络，以及通过电子邮件取得遗忘的密码。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />

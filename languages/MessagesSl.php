@@ -92,7 +92,7 @@
 "articlepage"	        => "Poglej članek",
 "subjectpage"	        => "Poglej temo", # For compatibility
 "userpage"              => "Poglej uporabnikovo stran",
-"wikipediapage"         => "Poglej meta stran",
+"projectpage"         => "Poglej meta stran",
 "imagepage"             => "Poglej stran slike",
 "viewtalkpage"          => "Poglej pogovor",
 "otherlanguages"        => "Drugi jeziki",

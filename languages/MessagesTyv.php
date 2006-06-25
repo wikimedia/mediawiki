@@ -131,7 +131,7 @@
 'nstab-user' => 'Ажыглакчының арыны', //User page
 'nstab-media' => 'Медиа арыны', //Media page
 'nstab-special' => 'Тускай', //Special
-'nstab-wp' => 'Проект арыны', //Project page
+'nstab-project' => 'Проект арыны', //Project page
 'nstab-image' => 'Файл', //File
 'nstab-mediawiki' => 'Чагаа', //Message
 'nstab-template' => 'Хээ', //Template

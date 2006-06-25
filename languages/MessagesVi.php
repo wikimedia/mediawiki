@@ -140,7 +140,7 @@
 'talk'		=> 'Thảo luận',
 'toolbox'	=> 'Công cụ',
 'userpage'      => 'Trang thành viên',
-'wikipediapage' => 'Trang Wikipedia',
+'projectpage' => 'Trang Wikipedia',
 'imagepage'     => 'Trang hình',
 'viewtalkpage'  => 'Trang thảo luận',
 'otherlanguages' => 'Ngôn ngữ khác',
@@ -181,7 +181,7 @@
 'nstab-user' => 'Trang thành viên',
 'nstab-media' => 'Phương tiện',
 'nstab-special' => 'Đặc biệt',
-'nstab-wp' => 'Giới thiệu',
+'nstab-project' => 'Giới thiệu',
 'nstab-image' => 'Hình',
 'nstab-mediawiki' => 'Tin nhắn',
 'nstab-template' => 'Tiêu bản',
@@ -1111,7 +1111,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Xem trang này\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Xem trang về người này\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Xem trang phương tiện\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Đây là một trang dặc biệt, bạn không thể sửa đổi được nó.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Xem trang dự án\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Xem trang dự án\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Xem trang hình\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Xem thông báo hệ thống\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Xem tiêu bản\');

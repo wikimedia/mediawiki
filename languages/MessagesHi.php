@@ -61,7 +61,7 @@
 "articlepage"	        => "लेख देखें",
 "subjectpage"	        => "विषय देखें", # For compatibility
 "userpage"              => "सदस्य पृष्ठ देखें",
-"wikipediapage"         => "मेटा पृष्ठ देखें",
+"projectpage"         => "मेटा पृष्ठ देखें",
 "imagepage"             => "चित्र पृष्ठ देखें",
 "viewtalkpage"          => "चर्चा देखें",
 "otherlanguages"        => "अन्य भाषायें",

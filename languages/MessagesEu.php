@@ -155,7 +155,7 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.',
 'welcomecreation' => '<h2>Ongi etorri, $1!</h2><p>Zure kontua sotu duzu.
 Ez ahaztu zure hobespenak pertsonalizatu.',
 'whatlinkshere' => 'Honekin lotzen diren orriak',
-'wikipediapage' => 'Erakutsi Meta-orria',
+'projectpage' => 'Erakutsi Meta-orria',
 'wrongpassword' => 'Pasahitza ez da zuzena. Saiatu berriro.',
 'yourdiff' => 'Desberdintasunak',
 'youremail' => 'Zure helbide elektronikoa (e-mail)*',

@@ -94,7 +94,7 @@
 "articlepage"	=> "Lees artikel",
 "subjectpage"	=> "Lees onderwerp", # For compatibility
 "userpage" => "Lees gebruikersbladsy",
-"wikipediapage" => "Lees metabladsy",
+"projectpage" => "Lees metabladsy",
 "imagepage" => 	"Lees bladsy oor prent",
 "viewtalkpage" => "Lees bespreking",
 "otherlanguages" => "Ander tale",

@@ -241,7 +241,7 @@ $2",
 'nstab-mediawiki' => "ಸಂದೇಶ",
 'nstab-special' => "ವಿಶೇಷ",
 'nstab-user' => "ಸದಸ್ಯರ ಪುಟ",
-'nstab-wp' => "ಬಗ್ಗೆ",
+'nstab-project' => "ಬಗ್ಗೆ",
 
 
 'ok' => "ಸರಿ",

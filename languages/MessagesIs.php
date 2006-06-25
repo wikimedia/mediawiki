@@ -60,7 +60,7 @@ ta['ca-nstab-main'] = new Array('c','Sýna síðuna');
 ta['ca-nstab-user'] = new Array('c','Sýna notendasíðuna');
 ta['ca-nstab-media'] = new Array('c','Sýna margmiðlunarsíðuna');
 ta['ca-nstab-special'] = new Array('','Þetta er kerfissíða, þér er óhæft að breyta henni.');
-ta['ca-nstab-wp'] = new Array('a','Sýna verkefnasíðuna');
+ta['ca-nstab-project'] = new Array('a','Sýna verkefnasíðuna');
 ta['ca-nstab-image'] = new Array('c','Sýna myndasíðuna');
 ta['ca-nstab-mediawiki'] = new Array('c','Sýna kerfisskilaboðin');
 ta['ca-nstab-template'] = new Array('c','View the template');
@@ -387,7 +387,7 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'nstab-mediawiki' => "Skilaboð",
 'nstab-template' => "Forsnið",
 'nstab-user' => "Notandasíða",
-'nstab-wp' => "Um",
+'nstab-project' => "Um",
 'oct' => "okt",
 'october' => "október",
 'oldpassword' => "Gamla lykilorðið",
@@ -616,7 +616,7 @@ Ekki gleyma að breyta {{SITENAME}} stillingunum þínum.",
 'whitelistedittitle' => "Þú verður að skrá þig inn til að geta breytt síðum.",
 'whitelistreadtext' => "Þú verður að [[Special:Userlogin|skrá þig inn]] til að lesa síður.",
 'whitelistreadtitle' => "Notandi verður að skrá sig inn til að geta lesið.",
-'wikipediapage' => "Sýna verkefnissíðu",
+'projectpage' => "Sýna verkefnissíðu",
 'wlnote' => "Að neðan eru síðustu <b>$1</b> breytingar síðustu <b>$2</b> klukkutíma.",
 'wlsaved' => "Þetta er vistuð útgáfa af vaktlistanum þínum.",
 'wlshowlast' => "Sýna síðustu $1 klukkutíma, $2 daga, $3",

@@ -97,7 +97,7 @@
 "articlepage"	=> "Side lêze",
 "subjectpage"	=> "Side lêze", # For compatibility
 "userpage" 		=> "Brûkerside",
-"wikipediapage" 	=> "Metaside",
+"projectpage" 	=> "Metaside",
 "imagepage" 	=> "Ofbyldside",
 "viewtalkpage" 	=> "Oerlisside",
 "otherlanguages" 	=> "Oare talen",

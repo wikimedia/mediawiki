@@ -127,7 +127,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 'talk' => 'Arutelu',
 'toolbox' => 'Tööriistakast',
 "userpage" => "Kasutajalehekülg",
-"wikipediapage" => "Metalehekülg",
+"projectpage" => "Metalehekülg",
 "imagepage" => 	"Pildilehekülg",
 "viewtalkpage" => "Arutelulehekülg",
 "otherlanguages" => "Teised keeled",
@@ -164,7 +164,7 @@ Vaata $1.",
 'nstab-user' => 'Kasutaja',
 'nstab-media' => 'Meedia',
 'nstab-special' => 'Eri',
-'nstab-wp' => 'Tiitelandmed', # about
+'nstab-project' => 'Tiitelandmed', # about
 'nstab-image' => 'Pilt',
 'nstab-mediawiki' => 'Sõnum', # Message
 'nstab-template' => 'Mall',

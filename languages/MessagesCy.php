@@ -109,7 +109,7 @@
 "articlepage" => "Gwyliwch erthygl",
 "subjectpage" => "Gwyliwch pwnc", # For compatibility
 "userpage" => "Gwyliwch tudalen defnyddiwr",
-"wikipediapage" => "Gwyliwch tudalen meta",
+"projectpage" => "Gwyliwch tudalen meta",
 "imagepage" => "Gwyliwch tudalen llun",
 "viewtalkpage" => "Gwyliwch sgwrs",
 "otherlanguages" => "Ieithoed eraill",

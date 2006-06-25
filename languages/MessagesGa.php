@@ -162,7 +162,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'views' => 'Tuairimí',
 'toolbox' => 'Bosca uirlisí',
 "userpage"      => "Féach ar lch úsáideora",
-"wikipediapage" => "Féach ar lch thionscadail",
+"projectpage" => "Féach ar lch thionscadail",
 "imagepage"     => "Féach ar lch íomhá",
 "viewtalkpage"  => "Féach ar phlé",
 "otherlanguages"    => "I dteangacha eile",
@@ -209,7 +209,7 @@ See $1.',
 'nstab-user' => 'Lch úsáideora',
 'nstab-media' => 'Lch meáin',
 'nstab-special' => 'Speisialta',
-'nstab-wp' => 'Lch thionscadail',
+'nstab-project' => 'Lch thionscadail',
 'nstab-image' => 'Comhad',
 'nstab-mediawiki' => 'Teachtaireacht',
 'nstab-template' => 'Teimpléad',
@@ -1421,7 +1421,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Féach ar an leathanach ábhair\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Féach ar an leathanach úsáideora\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Féach ar an leathanach meáin\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Is leathanach speisialta é seo, ní féidir leat an leathanach é fhéin a athrú.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Féach ar an leathanach thionscadail\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Féach ar an leathanach thionscadail\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Féach ar an leathanach íomhá\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Féach ar an teachtaireacht córais\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Féach ar an teimpléad\');

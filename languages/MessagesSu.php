@@ -87,7 +87,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Témbongkeun eusi kaca\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Témbongkeun kaca pamaké\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Témbongkeun kaca média\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Ieu kaca husus, anjeun teu bisa ngédit ku sorangan.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Témbongkeun kaca proyék\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Témbongkeun kaca proyék\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Témbongkeun kaca gambar\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Témbongkeun pesen sistim\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Témbongkeun citakan\');
@@ -687,7 +687,7 @@ Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel 
 'nstab-special' => 'Husus',
 'nstab-template' => 'Citakan',
 'nstab-user' => 'Kaca pamaké',
-'nstab-wp' => 'Ngeunaan',
+'nstab-project' => 'Ngeunaan',
 'numauthors' => 'Jumlah pangarang nu béda (artikel): $1',
 'number_of_watching_users_pageview' => '[$1 pamaké nu ngawaskeun]',
 'numedits' => 'Jumlah éditan (artikel): $1',
@@ -1032,7 +1032,7 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'whitelistedittitle' => 'Perlu asup log sangkan bisa ngédit',
 'whitelistreadtext' => 'Anjeun kudu asup \'\'[[Special:Userlogin|log]]\'\' sangkan bisa maca.',
 'whitelistreadtitle' => 'Perlu asup log pikeun maca',
-'wikipediapage' => 'Témbongkeun kaca proyék',
+'projectpage' => 'Témbongkeun kaca proyék',
 'wlheader-enotif' => '* Pangémbar surélék difungsikeun.',
 'wlheader-showupdated' => '* Kaca nu robah ti panungtungan anjeun sindang ditémbongkeun kalawan \'\'\'kandel\'\'\'',
 'wlhide' => 'Sumputkeun',
