@@ -148,7 +148,6 @@
 'lastmodified'  => 'Lần sửa cuối : $1.',
 'viewcount'     => 'Trang này đã được đọc $1 lần.',
 'copyright'	=> 'Bản quyền $1.',
-'printsubtitle' => '(từ {{SERVER}})',
 'protectedpage' => 'Trang bị khóa',
 'administrators' => '{{ns:4}}:Người_quản_lý',
 'sysoptitle'    => 'Dành cho quản lý',
@@ -174,7 +173,6 @@
 'restorelink'	=> 'Phục hồi 1 sửa đổi',
 'feedlinks'	=> 'Nạp:',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
-'poweredby'	=> "{{SITENAME}} sử dụng [http://www.mediawiki.org/ MediaWiki], một phần mềm wiki mở.",
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Bài',
@@ -256,7 +254,6 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'yourname'           => 'Tên',
 'yourpassword'       => 'Mật khẩu',
 'yourpasswordagain'  => 'Vào lại mật khẩu',
-'newusersonly'       => ' (chỉ dành cho thành viên mới)',
 'remembermypassword' => 'Nhớ mật khẩu (cookie)',
 'loginproblem'       => '<b>Trục trặc đăng nhập.</b><br />Mời thử lại!',
 'alreadyloggedin'    => '\'\'\'$1, bạn đã đăng nhập rồi!\'\'\'<br />',

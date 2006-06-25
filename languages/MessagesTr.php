@@ -214,7 +214,6 @@ Soldaki [[Yardım:İçindekiler|yardıma]] tıklayarak işe başlayın. Kolay ge
 'yourname' => 'Kullanıcı adınız',
 'yourpassword' => 'Parolanız',
 'yourpasswordagain' => 'Parolayı yeniden yaz',
-'newusersonly' => ' (sadece yeni kullanıcılar)',
 'remembermypassword' => 'Parolayı hatırla.',
 'alreadyloggedin' => '<strong>$1, zaten açık bir oturumunuz var!</strong><br />',
 

@@ -118,7 +118,6 @@
 'redirectedfrom' => '(Alidirektita el $1)',
 'lastmodified'	=> 'Laste redaktita je $1.',
 'viewcount'		=> 'Montrita $1-foje.',
-'printsubtitle' => '(El {{SERVER}})',
 'protectedpage' => 'Protektita paĝo', #FIXME: ĉu 'gardita' ktp?
 'administrators' => '{{ns:4}}:Administrantoj', # FIXME?
 'sysoptitle'	=> 'Konto de administranto bezonatas',
@@ -210,7 +209,6 @@ kiel la sama aŭ kiel alia uzulo.", #FIXME
 'yourname'		=> 'Via salutnomo', #FIXME ĉu kaŝnomo ĉu uzantonomo ĉu kontonomo ktp?
 'yourpassword'	=> 'Via pasvorto',
 'yourpasswordagain' => 'Retajpu pasvorton',
-'newusersonly'	=> ' (nur novaj uzuloj)',
 'remembermypassword' => 'Rememoru mian pasvorton.',
 "loginproblem"	=> "<b>Okazis problemo pri via ensalutado.</b><br />Bonvolu reprovi!",
 "alreadyloggedin" => "<strong>Uzulo $1, vi jam estas ensalutinta!</strong><br />",

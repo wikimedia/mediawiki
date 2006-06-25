@@ -1765,14 +1765,11 @@ $1',
 #
 ####################
 #
-'poweredby' => '{{SITENAME}} rote avou [http://www.mediawiki.org/ MediaWiki], on moteur wiki e libe programe.',
-'printsubtitle' => '(di {{SERVER}})',
 'searchnearmatches' => '<b>Les pådjes shuvantes ont des tites ki ravizèt çou k\' vos avoz cwerou:</b>',
 'searchnext' => '<span style=\'font-size: small\'>Shuv.</span> →',
 'searchnoresults' => 'Mande escuzes, mins i gn a rén ki corespond.',
 'searchnumber' => '<strong>Rizultats: $1-$2 di $3</strong>',
 'searchprev' => '← <span style=\'font-size: small\'>Div.</span>',
-'newusersonly' => ' (seulmint po les noveas uzeus)',
 'metadata_page' => '{{ns:project}}:Meta-dnêyes',
 'checkuser' => 'Verifyî l\' uzeu',
 
