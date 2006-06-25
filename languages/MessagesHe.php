@@ -161,7 +161,6 @@ $wgAllMessagesHe = array(
 "specialpage"       => "דף מיוחד",
 "personaltools"     => "כלים אישיים",
 "postcomment"       => "הוסף הערה לדף השיחה",
-"addsection"        => "+",
 "articlepage"       => "צפו בדף",
 "subjectpage"       => "צפו בנושא", # For compatibility
 "talk"              => "שיחה",
@@ -709,7 +708,6 @@ $wgAllMessagesHe = array(
 "newpageletter"                     => "ח",
 "boteditletter"                     => "ב",
 "sectionlink"                       => "←",
-"number_of_watching_users_RCview"   => "[$1]",
 "number_of_watching_users_pageview" => "[$1 משתמש/ים צופים]",
 "rc_categories"                     => 'הגבל לקטגוריות (הפרד עם "|")',
 "rc_categories_any"                 => "הכול",
@@ -1377,7 +1375,6 @@ $NEWPAGE
 
 # Patrolling
 "markaspatrolleddiff"        => "סמן שינוי כבדוק",
-"markaspatrolledlink"        => "[$1]",
 "markaspatrolledtext"        => "סמן דף זה כבדוק",
 "markedaspatrolled"          => "השינוי נבדק",
 "markedaspatrolledtext"      => "השינוי שנבחר נבדק.",
@@ -1539,8 +1536,6 @@ $3
 טרקבקים לדף זה:<br />
 $1
 </div>',
-"trackback"         => "; $4$5 : [$2 $1]",
-"trackbackexcerpt"  => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>",
 "trackbackremove"   => " ([$1 מחיקה])",
 "trackbacklink"     => "טרקבק",
 "trackbackdeleteok" => "הטרקבק נמחק בהצלחה.",
