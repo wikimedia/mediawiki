@@ -879,7 +879,7 @@ class Language {
 	function getMagic( &$mw ) {
 		$raw = $this->getMagicWords();
 
-		wfRunHooks( 'LanguageGetMagic', array( &$raw ) );
+		wfRunHooks( 'LanguageGetMagic', array( &$raw, $this->getCode() ) );
 
 		if( !isset( $raw[$mw->mId] ) ) {
 			# Fall back to English if local list is incomplete
