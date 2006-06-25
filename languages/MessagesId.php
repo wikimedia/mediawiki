@@ -385,7 +385,13 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'missingsummary' => "'''Peringatan:''' Anda tidak memasukkan ringkasan penyuntingan. Jika Anda kembali menekan tombol Simpan, suntingan Anda akan disimpan tanpa ringkasan penyuntingan.",
 'missingcommenttext' => 'Harap masukkan komentar di bawah ini.',
 "blockedtitle" => "Pengguna diblokir",
-"blockedtext" => "Nama pengguna atau alamat IP Anda telah diblokir oleh $1. Alasannya karena :<br />$2<p>Anda dapat menghubungi [[{{ns:project}}:Administrators|para pengurus]] untuk membicarakan blokir ini.\n\nPerhatikan bahwa Anda tidak dapat menggunakan fasilitas \"surat-e pengguna ini\" kecuali Anda mempunyai sebuah alamat surat-e yang sah dan alamat surat-e tersebut tercatat di dalam [[{{ns:special}}:Preferences|preferensi Anda]].\n\nAlamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang Anda buat",
+"blockedtext" => "Nama pengguna atau alamat IP Anda telah diblokir oleh $1. Alasannya karena :<br />'''$2'''<br />Anda dapat menghubungi $1 atau [[{{ns:project}}:Administrators|pengurus lainnya]] untuk membicarakan hal ini.
+
+Perhatikan bahwa Anda tidak dapat menggunakan fasilitas \"surat-e pengguna ini\" kecuali Anda mempunyai sebuah alamat surat-e yang sah dan alamat surat-e tersebut tercatat di dalam [[{{ns:special}}:Preferences|preferensi Anda]].
+
+Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang Anda buat",
+'blockedoriginalsource' => "Isi sumber '''$1''' ditunjukkan berikut ini:",
+'blockededitsource' => "Teks '''suntingan Anda''' terhadap '''$1''' ditunjukkan berikut ini:",
 "whitelistedittitle" => "Perlu masuk log untuk menyunting",
 "whitelistedittext" => "Anda harus $1 untuk dapat menyunting artikel.",
 "whitelistreadtitle" => "Perlu masuk log untuk membaca",
@@ -402,9 +408,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "newarticle" => "(Baru)",
 "newarticletext" => "Anda mengikuti pranala ke halaman yang belum ada.\nUntuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini\n(lihat [[{{ns:help}}:Isi|halaman bantuan]] untuk informasi lebih lanjut).\nJika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
 
-
 "anontalkpagetext" => "---- ''Ini adalah halaman diskusi seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena ia tidak membuat akun, kami terpaksa harus memakai alamat IP-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[{{ns:special}}:Userlogin|membuat akun atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.''",
-"noarticletext" => "(Tidak ada teks dalam halaman ini)",
 'noarticletext' => 'Saat ini tidak ada teks dalam halaman ini. Anda dapat [[{{ns:special}}:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} sunting halaman ini].',
 
 'clearyourcache' => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
@@ -1067,7 +1071,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "unblockip" => "Hilangkan blokir terhadap alamat IP atau pengguna",
 "unblockiptext" => "Gunakan formulir di bawah untuk mengembalikan kemampuan menulis sebuah alamat IP atau pengguna yang sebelumnya telah diblokir.",
 "ipusubmit" => "Hilangkan blokir terhadap alamat ini",
-"ipusuccess" => "Blokir terhadap alamat IP atau pengguna \"$1\" telah dihilangkan",
+'unblocked' => 'Blokir terhadap [[User:$1|$1]] telah dihilangkan',
 "ipblocklist" => "Daftar alamat IP dan pengguna yang diblokir",
 "blocklistline" => "$1, $2 memblokir $3 ($4)",
 'infiniteblock' => 'tak terbatas',
@@ -1133,7 +1137,12 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 #
 "movepage" => "Pindahkan halaman",
 "movepagetext" => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru. Judul yang lama akan menjadi halaman peralihan menuju judul yang baru. Pranala kepada judul lama tidak akan berubah. Pastikan untuk memeriksa terhadap peralihan halaman yang rusak atau berganda setelah pemindahan. Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.\n\nPerhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman di pada judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan. Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.\n\n<strong>PERINGATAN!</strong> Ini dapat mengakibatkan perubahan yang tak terduga dan drastis  bagi halaman yang populer. Pastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
-"movepagetalktext" => "Halaman pembicaraan yang berkaitan, jika ada, juga akan dipindahkan secara otomatis '''kecuali apabila:'''\n*Anda memindahkan halaman melintasi namespace,\n*Sebuah halaman pembicaraan yang tidak kosong telah ada di bawah judul baru, atau\n*Anda tidak memberi tanda cek pada kotak cek di bawah ini.\n\nDalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabungkan halaman secara manual.",
+"movepagetalktext" => "Halaman pembicaraan yang berkaitan juga akan dipindahkan secara otomatis '''kecuali apabila:'''
+
+*Sebuah halaman pembicaraan yang tidak kosong telah ada di bawah judul baru, atau
+*Anda tidak memberi tanda cek pada kotak di bawah ini
+
+Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabungkan halaman secara manual.",
 "movearticle" => "Pindahkan halaman",
 "movenologin" => "Belum masuk log",
 "movenologintext" => "Anda harus menjadi pengguna terdaftar dan telah [[{{ns:special}}:Userlogin|masuk log]] untuk memindahkan halaman.",
@@ -1170,6 +1179,7 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 "exportcuronly" => "Hanya ekspor revisi sekarang, bukan seluruh sejarah",
 'exportnohistory' => "----
 '''Catatan:''' mengekspor keseluruhan riwayat suntingan halaman melalui isian ini telah dinon-aktifkan karena alasan kinerja.",
+'export-submit' => 'Ekspor',
 
 # Namespace 8 related
 
@@ -1222,8 +1232,8 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 
 # stylesheets
 
-'Monobook.css' => '/* sunting berkas ini untuk mengganti kulit monobook untuk keseluruhan situs */',
-#'Monobook.js' => '/* sunting berkas ini untuk mengganti hal-hal js untuk kulit monobook */',
+'Common.css' => '/** CSS yang berada di sini akan diterapkan untuk semua kulit */',
+'Monobook.css' => '/* CSS yang berada di sini akan mempengaruhi semua pengguna yang menggunakan kulit Monobook */',
 
 # Metadata
 "nodublincore" => "Metadata Dublin Core RDF dimatikan di server ini.",
@@ -1748,7 +1758,7 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.',
 # DISPLAYTITLE
 'displaytitle' => '(Pranala ke halaman ini sebagai [[$1]])',
 
-# Separator for categories in page lists
+'loginlanguagelabel' => 'Bahasa: $1',
 
 );
 
