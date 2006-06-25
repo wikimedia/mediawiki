@@ -2,14 +2,17 @@
 
 global $wgAllMessagesDe;
 $wgAllMessagesDe = array(
-'Monobook.css' =>
-'/** Do not force \'lowercase\' */
+
+# stylesheets
+'Common.css'		=> '/** CSS an dieser Stelle wirkt sich auf alle Skins aus */',
+'Monobook.css'		=> '/** Kleinschreibung nicht erzwingen */
 .portlet h5,
 .portlet h6,
 #p-personal ul,
 #p-cactions li a {
 	text-transform: none;
 }',
+
 # User preference toggles
 "tog-underline"               => "Verweise unterstreichen:",
 "tog-highlightbroken"         => "Verweise auf leere Artikel hervorheben",
@@ -407,6 +410,8 @@ Folgender Grund wurde angegeben: $2
 Sie können $1 oder die [[{{ns:project}}:Administratoren]] kontaktieren, um über die Blockierung zu diskutieren.
 
 Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
+'blockedoriginalsource'	=> 'Der Quelltext von \'\'\'$1\'\'\' wird hier angezeigt:',
+'blockededitsource'	=> 'Der Text von \'\'\'Ihren Änderungen\'\'\' an \'\'\'$1\'\'\' wird hier angezeigt:',
 "whitelistedittitle" => "Zum Bearbeiten ist es erforderlich, angemeldet zu sein",
 'whitelistedittext'	=> 'Sie müssen sich $1, um Artikel bearbeiten zu können.',
 "whitelistreadtitle" => "Zum Lesen ist es erforderlich, angemeldet zu sein",
@@ -424,10 +429,10 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 'newarticletext'	=> 'Hier den Text des neuen Artikels eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
 'anontalkpagetext'	=> '---- \'\'Dies ist die Diskussionsseite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische IP-Adresse zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
 'noarticletext'		=> '(Dieser Artikel enthält momentan noch keinen Text)',
-'usercsspreview'	=> "== Vorschau Ihres Benutzer-CSS ==
-'''Beachten Sie:''' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userjspreview' => "== Vorschau Ihres Benutzer-JavaScript ==
-'''Beachten Sie:''' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'usercsspreview'	=> '== Vorschau Ihres Benutzer-CSS ==
+\'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: \'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
+'userjspreview'		=> '== Vorschau Ihres Benutzer-JavaScript ==
+\'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: \'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'userinvalidcssjstitle'	=> '\'\'\'Warnung:\'\'\' Es existiert kein Skin „$1“. Bitte bedenken Sie, dass benutzerspezifische .css- and .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also z.B. Benutzer:Foo/monobook.css an Stelle von Benutzer:Foo/Monobook.css.',
 'clearyourcache'	=> '\'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden:<br />
 \'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
@@ -512,8 +517,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 Als Administrator können Sie sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Spezial:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
 "orig"			=> "Original",
-'histlegend'		=> 'Diff Auswahl: Die Boxen der gewünschten
-Versionen markieren und "Enter" drücken oder den Button unten klicken/alt-v.<br />
+'histlegend'		=> 'Diff Auswahl: Die Boxen der gewünschten Versionen markieren und „Enter“ drücken oder den Button unten klicken/alt-v.<br />
 Legende:
 (Aktuell) = Unterschied zur aktuellen Version,
 (Letzte) = Unterschied zur vorherigen Version,
@@ -743,7 +747,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 'imghistory'		=> 'Dateiversionen',
 "revertimg"		=> "Zurücksetzen",
 "deleteimg"		=> "Löschen",
-"deleteimgcompletely"		=> "Löschen",
+'deleteimgcompletely'	=> 'Alle Versionen dieser Datei löschen',
 'imghistlegend'		=> 'Legende: (Aktuell) = Dies ist die aktuelle Datei, (Löschen) = lösche diese alte Version, (Zurücksetzen) = diese alte Version wiederherstellen.',
 'imagelinks'		=> 'Dateiverweise',
 'linkstoimage'		=> 'Die folgenden Artikel benutzen diese Datei:',
@@ -1082,7 +1086,7 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 "unblockip"		=> "IP-Adresse freigeben",
 "unblockiptext"	=> "Benutzen Sie das Formular, um eine blockierte IP-Adresse freizugeben.",
 "ipusubmit"		=> "Diese Adresse freigeben",
-'ipusuccess'		=> 'IP-Adresse „$1“ wurde freigegeben',
+'unblocked'		=> '[[{{ns:user}}:$1|$1]] wurde freigegeben',
 "ipblocklist"	=> "Liste blockierter Benutzer/IP-Adressen",
 'ipblocklistempty'	=> 'Die Liste der Benutzersperrungen hat keine Einträge.',
 "blocklistline"	=> "$1, $2 blockierte $3 ($4)",
@@ -1281,7 +1285,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'rcshowhidemine' => 'Eigene Beiträge $1',
 "uploaddisabled"	=> "Entschuldigung, das Hochladen ist deaktiviert.",
 "deadendpages"		=> "Sackgassenartikel",
-"intl"			=> "InterWikiLinks",
+'intl'			=> 'Interwiki Links',
 "version"		=> "Version",
 "log"			=> "Logbücher",
 'alllogstext'		=> 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Benutzerblockaden- und Rechte-Logbücher.<br />Sie können die Anzeige durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels einschränken.',
@@ -1655,9 +1659,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 
 # E-mail address confirmation
 'confirmemail'		=> 'Bestätigung der E-Mail-Adresse (Authentifizierung)',
-'confirmemail_text'	=> 'Dieses Wiki erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren),
-bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Ein Klick auf die Schaltfläche unten sendet eine E-Mail an Sie.
-Diese E-Mail enthält einen Link mit einem Bestätigungs-Code; durch Klicken auf diesen Link wird bestätigt, dass Ihre Adresse gültig ist.',
+'confirmemail_text'	=> 'Dieses Wiki erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren), bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Durch einen Klick auf die Schaltfläche unten wird eine E-Mail an Sie gesendet. Diese E-Mail enthält einen Link mit einem Bestätigungs-Code. Durch Klicken auf diesen Link wird bestätigt, dass Ihre E-Mail-Adresse gültig ist.',
 'confirmemail_send' => 'Anforderung einer E-Mail zur Adressenbestätigung',
 'confirmemail_sent' => 'Es wurde Ihnen eine E-Mail zur Adressenbestätigung gesendet.',
 'confirmemail_sendfailed' => 'Eine Bestätigung konnte auf Grund einer Fehlkonfiguration des Servers oder ungültigen Zeichen in der E-Mail-Adresse nicht verschickt werden.',
@@ -1687,7 +1689,7 @@ Wenn diese E-Mail-Adresse *nicht* zu dem genannten Benutzerkonto gehört, folgen
 'createarticle' => 'Artikel anlegen',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Interwiki-Einbindung ist deaktiviert]',
+'scarytranscludedisabled'	=> '[Interwiki Einbindung ist deaktiviert]',
 'scarytranscludefailed' => '[Vorlageneinbindung für $1 ist gescheitert]',
 'scarytranscludetoolong' => '[URL ist zu lang; Entschuldigung]',
 
