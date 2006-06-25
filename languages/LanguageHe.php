@@ -233,19 +233,51 @@ class LanguageHe extends LanguageUtf8 {
 	function isRTL() {
 		return true;
 	}
-
+	
+	/**
+	 * Convert grammar forms of words.
+	 *
+	 * Available cases:
+	 * "prefixed" (or "תחילית") - when the word has a prefix
+	 *
+	 * @param string the word to convert
+	 * @param string the case
+	 */
+	function convertGrammar( $word, $case ) {
+		global $wgGrammarForms;
+		if ( isset($wgGrammarForms['he'][$case][$word]) ) {
+			return $wgGrammarForms['he'][$case][$word];
+		}
+		
+		switch ( $case ) {
+			case 'prefixed':
+			case 'תחילית':
+				# Duplicate the "Waw" if prefixed
+				if ( substr( $word, 0, 2 ) == "ו" && substr( $word, 0, 4 ) != "וו" ) {
+					$word = "ו".$word;
+				}
+				
+				# Remove the "He" if prefixed
+				if ( substr( $word, 0, 2 ) == "ה" ) {
+					$word = substr( $word, 2 );
+				}
+				
+				# Add a hyphen if non-Hebrew letters
+				if ( substr( $word, 0, 2 ) < "א" || substr( $word, 0, 2 ) > "ת" ) {
+					$word = "־".$word;
+				}
+		}
+		
+		return $word;
+	}
+	
 	/**
 	 * Gets a number and uses the suited form of the word.
 	 *
-	 * Needed for Hebrew as some words also has a form for two instances - for example, year or shoe -
-	 * and the third parameter is used for them.
-	 *
-	 * When the word has only signular and plural forms, the plural form will be used for 2.
-	 *
-	 * @param integer $count
-	 * @param string $wordform1
-	 * @param string $wordform2
-	 * @param string $wordform3 (optional)
+	 * @param integer the number of items
+	 * @param string the first form (singular)
+	 * @param string the second form (plural)
+	 * @param string the third form (2 items, plural is used if not applicable and not specified)
 	 *
 	 * @return string of the suited form of word
 	 */
