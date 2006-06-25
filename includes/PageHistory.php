@@ -243,8 +243,10 @@ class PageHistory {
 		$lastlink = $this->lastLink( $rev, $next, $counter );
 		$arbitrary = $this->diffButtons( $rev, $firstInList, $counter );
 		$link = $this->revLink( $rev );
-		$user = $this->mSkin->revUserLink( $rev );
-
+		
+		$user = $this->mSkin->userLink( $rev->getUser(), $rev->getUserText() )
+				. $this->mSkin->userToolLinks( $rev->getUser(), $rev->getUserText() );
+		
 		$s .= "($curlink) ($lastlink) $arbitrary";
 		
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
