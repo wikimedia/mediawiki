@@ -1,6 +1,6 @@
 <?php
 
-
+global $wgAllMessagesFur;
 $wgAllMessagesFur = array(
 '1movedto2'		=> "$1 movût in $2",
 'about' => "Informazions",
@@ -278,7 +278,6 @@ cheste vecje version, (rip) = torne a ripristinâ cheste vecje version.
 'linklistsub' => "(Liste di leams)",
 'linkshere' => "Lis pagjinis ca sot a son leadis a cheste:",
 'linkstoimage' => "Lis pagjinis ca sot a son leadis a cheste figure:",
-'linktrail' => "/^([a-z]+)(.*)$/sD",
 'listingcontinuesabbrev' => " cont.",
 'listredirects' => 'Liste des redirezions',
 'listusers' => "Liste dai utents",
