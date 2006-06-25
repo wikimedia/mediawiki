@@ -1,100 +1,29 @@
 <?php
 /**
- * SpecialPage: handling special pages and lists thereof
- * $wgSpecialPages is a list of all SpecialPage objects. These objects are
- * either instances of SpecialPage or a sub-class thereof. They have an
- * execute() method, which sends the HTML for the special page to $wgOut.
- * The parent class has an execute() method which distributes the call to
- * the historical global functions. Additionally, execute() also checks if the
- * user has the necessary access privileges and bails out if not.
+ * SpecialPage: handling special pages and lists thereof.
  *
- * To add a special page at run-time, use SpecialPage::addPage().
- * DO NOT manipulate this array at run-time.
+ * To add a special page in an extension, add to $wgSpecialPages either 
+ * an object instance or an array containing the name and constructor 
+ * parameters. The latter is preferred for performance reasons. 
+ *
+ * The object instantiated must be either an instance of SpecialPage or a 
+ * sub-class thereof. It must have an execute() method, which sends the HTML 
+ * for the special page to $wgOut. The parent class has an execute() method 
+ * which distributes the call to the historical global functions. Additionally, 
+ * execute() also checks if the user has the necessary access privileges 
+ * and bails out if not.
+ *
+ * To add a core special page, use the similar static list in 
+ * SpecialPage::$mList. To remove a core static special page at runtime, use
+ * a SpecialPage_initList hook.
  *
  * @package MediaWiki
  * @subpackage SpecialPage
  */
 
-
 /**
  * @access private
  */
-$wgSpecialPages = array(
-	'DoubleRedirects'	=> new SpecialPage ( 'DoubleRedirects' ),
-	'BrokenRedirects'	=> new SpecialPage ( 'BrokenRedirects' ),
-	'Disambiguations'	=> new SpecialPage ( 'Disambiguations' ),
-
-	'Userlogin'         => new SpecialPage( 'Userlogin' ),
-	'Userlogout'        => new UnlistedSpecialPage( 'Userlogout' ),
-	'Preferences'       => new SpecialPage( 'Preferences' ),
-	'Watchlist'         => new SpecialPage( 'Watchlist' ),
-
-	'Recentchanges'     => new IncludableSpecialPage( 'Recentchanges' ),
-	'Upload'            => new SpecialPage( 'Upload' ),
-	'Imagelist'         => new SpecialPage( 'Imagelist' ),
-	'Newimages'         => new IncludableSpecialPage( 'Newimages' ),
-	'Listusers'         => new SpecialPage( 'Listusers' ),
-	'Statistics'        => new SpecialPage( 'Statistics' ),
-	'Random'        => new SpecialPage( 'Randompage' ),
-	'Lonelypages'       => new SpecialPage( 'Lonelypages' ),
-	'Uncategorizedpages'=> new SpecialPage( 'Uncategorizedpages' ),
-	'Uncategorizedcategories'=> new SpecialPage( 'Uncategorizedcategories' ),
-	'Uncategorizedimages' => new SpecialPage( 'Uncategorizedimages' ),
-	'Unusedcategories'	=> new SpecialPage( 'Unusedcategories' ),
-	'Unusedimages'      => new SpecialPage( 'Unusedimages' ),
-	'Wantedpages'	=> new IncludableSpecialPage( 'Wantedpages' ),
-	'Wantedcategories' => new SpecialPage( 'Wantedcategories' ),
-	'Mostlinked'	=> new SpecialPage( 'Mostlinked' ),
-	'Mostlinkedcategories' => new SpecialPage( 'Mostlinkedcategories' ),
-	'Mostcategories' => new SpecialPage( 'Mostcategories' ),
-	'Mostimages' => new SpecialPage( 'Mostimages' ),
-	'Mostrevisions' => new SpecialPage( 'Mostrevisions' ),
-	'Shortpages'	=> new SpecialPage( 'Shortpages' ),
-	'Longpages'		=> new SpecialPage( 'Longpages' ),
-	'Newpages'		=> new IncludableSpecialPage( 'Newpages' ),
-	'Ancientpages'	=> new SpecialPage( 'Ancientpages' ),
-	'Deadendpages'  => new SpecialPage( 'Deadendpages' ),
-	'Allpages'		=> new IncludableSpecialPage( 'Allpages' ),
-	'Prefixindex'	=> new IncludableSpecialPage( 'Prefixindex' ) ,
-	'Ipblocklist'	=> new SpecialPage( 'Ipblocklist' ),
-	'Specialpages'  => new UnlistedSpecialPage( 'Specialpages' ),
-	'Contributions' => new UnlistedSpecialPage( 'Contributions' ),
-	'Emailuser'		=> new UnlistedSpecialPage( 'Emailuser' ),
-	'Whatlinkshere' => new UnlistedSpecialPage( 'Whatlinkshere' ),
-	'Recentchangeslinked' => new UnlistedSpecialPage( 'Recentchangeslinked' ),
-	'Movepage'		=> new UnlistedSpecialPage( 'Movepage' ),
-	'Blockme'       => new UnlistedSpecialPage( 'Blockme' ),
-	'Booksources'	=> new SpecialPage( 'Booksources' ),
-	'Categories'	=> new SpecialPage( 'Categories' ),
-	'Export'		=> new SpecialPage( 'Export' ),
-	'Version'		=> new SpecialPage( 'Version' ),
-	'Allmessages'	=> new SpecialPage( 'Allmessages' ),
-	'Log'           => new SpecialPage( 'Log' ),
-	'Blockip'		=> new SpecialPage( 'Blockip', 'block' ),
-	'Undelete'		=> new SpecialPage( 'Undelete', 'deletedhistory' ),
-	"Import"		=> new SpecialPage( "Import", 'import' ),
-	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
-	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
-	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
-	'MIMEsearch'    => new SpecialPage( 'MIMEsearch' ),
-	'Unwatchedpages' => new SpecialPage( 'Unwatchedpages', 'unwatchedpages' ),
-	'Listredirects' => new SpecialPage( 'Listredirects' ),
-	'Revisiondelete' => new SpecialPage( 'Revisiondelete', 'deleterevision' ),
-	'Unusedtemplates' => new SpecialPage( 'Unusedtemplates' ),
-	'Randomredirect' => new SpecialPage( 'Randomredirect' ),
-);
-
-if( !$wgDisableCounters ) {
-	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
-}
-
-if( !$wgDisableInternalSearch ) {
-	$wgSpecialPages['Search'] = new SpecialPage( 'Search' );
-}
-
-if( $wgEmailAuthentication ) {
-	$wgSpecialPages['Confirmemail'] = new UnlistedSpecialPage( 'Confirmemail' );
-}
 
 /**
  * Parent special page class, also static functions for handling the special
@@ -137,29 +66,144 @@ class SpecialPage
 	 */
 	var $mIncludable;
 
+	static public $mList = array(
+		'DoubleRedirects'	=> array( 'SpecialPage', 'DoubleRedirects' ),
+		'BrokenRedirects'	=> array( 'SpecialPage', 'BrokenRedirects' ),
+		'Disambiguations'	=> array( 'SpecialPage', 'Disambiguations' ),
+
+		'Userlogin'         => array( 'SpecialPage', 'Userlogin' ),
+		'Userlogout'        => array( 'UnlistedSpecialPage', 'Userlogout' ),
+		'Preferences'       => array( 'SpecialPage', 'Preferences' ),
+		'Watchlist'         => array( 'SpecialPage', 'Watchlist' ),
+
+		'Recentchanges'     => array( 'IncludableSpecialPage', 'Recentchanges' ),
+		'Upload'            => array( 'SpecialPage', 'Upload' ),
+		'Imagelist'         => array( 'SpecialPage', 'Imagelist' ),
+		'Newimages'         => array( 'IncludableSpecialPage', 'Newimages' ),
+		'Listusers'         => array( 'SpecialPage', 'Listusers' ),
+		'Statistics'        => array( 'SpecialPage', 'Statistics' ),
+		'Random'            => array( 'SpecialPage', 'Randompage' ),
+		'Lonelypages'       => array( 'SpecialPage', 'Lonelypages' ),
+		'Uncategorizedpages'=> array( 'SpecialPage', 'Uncategorizedpages' ),
+		'Uncategorizedcategories'=> array( 'SpecialPage', 'Uncategorizedcategories' ),
+		'Uncategorizedimages' => array( 'SpecialPage', 'Uncategorizedimages' ),
+		'Unusedcategories'	=> array( 'SpecialPage', 'Unusedcategories' ),
+		'Unusedimages'      => array( 'SpecialPage', 'Unusedimages' ),
+		'Wantedpages'	    => array( 'IncludableSpecialPage', 'Wantedpages' ),
+		'Wantedcategories'  => array( 'SpecialPage', 'Wantedcategories' ),
+		'Mostlinked'	    => array( 'SpecialPage', 'Mostlinked' ),
+		'Mostlinkedcategories' => array( 'SpecialPage', 'Mostlinkedcategories' ),
+		'Mostcategories'    => array( 'SpecialPage', 'Mostcategories' ),
+		'Mostimages'        => array( 'SpecialPage', 'Mostimages' ),
+		'Mostrevisions'     => array( 'SpecialPage', 'Mostrevisions' ),
+		'Shortpages'	    => array( 'SpecialPage', 'Shortpages' ),
+		'Longpages'		    => array( 'SpecialPage', 'Longpages' ),
+		'Newpages'		    => array( 'IncludableSpecialPage', 'Newpages' ),
+		'Ancientpages'	    => array( 'SpecialPage', 'Ancientpages' ),
+		'Deadendpages'      => array( 'SpecialPage', 'Deadendpages' ),
+		'Allpages'		    => array( 'IncludableSpecialPage', 'Allpages' ),
+		'Prefixindex'	    => array( 'IncludableSpecialPage', 'Prefixindex' ) ,
+		'Ipblocklist'	    => array( 'SpecialPage', 'Ipblocklist' ),
+		'Specialpages'      => array( 'UnlistedSpecialPage', 'Specialpages' ),
+		'Contributions'     => array( 'UnlistedSpecialPage', 'Contributions' ),
+		'Emailuser'		    => array( 'UnlistedSpecialPage', 'Emailuser' ),
+		'Whatlinkshere'     => array( 'UnlistedSpecialPage', 'Whatlinkshere' ),
+		'Recentchangeslinked' => array( 'UnlistedSpecialPage', 'Recentchangeslinked' ),
+		'Movepage'		    => array( 'UnlistedSpecialPage', 'Movepage' ),
+		'Blockme'           => array( 'UnlistedSpecialPage', 'Blockme' ),
+		'Booksources'	    => array( 'SpecialPage', 'Booksources' ),
+		'Categories'	    => array( 'SpecialPage', 'Categories' ),
+		'Export'		    => array( 'SpecialPage', 'Export' ),
+		'Version'		    => array( 'SpecialPage', 'Version' ),
+		'Allmessages'	    => array( 'SpecialPage', 'Allmessages' ),
+		'Log'               => array( 'SpecialPage', 'Log' ),
+		'Blockip'		    => array( 'SpecialPage', 'Blockip', 'block' ),
+		'Undelete'		    => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
+		"Import"		    => array( 'SpecialPage', "Import", 'import' ),
+		'Lockdb'		    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
+		'Unlockdb'		    => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
+		'Userrights'	    => array( 'SpecialPage', 'Userrights', 'userrights' ),
+		'MIMEsearch'        => array( 'SpecialPage', 'MIMEsearch' ),
+		'Unwatchedpages'    => array( 'SpecialPage', 'Unwatchedpages', 'unwatchedpages' ),
+		'Listredirects'     => array( 'SpecialPage', 'Listredirects' ),
+		'Revisiondelete'    => array( 'SpecialPage', 'Revisiondelete', 'deleterevision' ),
+		'Unusedtemplates'   => array( 'SpecialPage', 'Unusedtemplates' ),
+		'Randomredirect'    => array( 'SpecialPage', 'Randomredirect' ),
+	);
+
+	static public $mListInitialised = false;
 
 	/**#@-*/
 
+	/**
+	 * Initialise the special page list
+	 * This must be called before accessing SpecialPage::$mList
+	 */
+	static function initList() {
+		global $wgSpecialPages;
+		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
+
+		#throw new MWException( __METHOD__ );
+
+		if ( self::$mListInitialised ) {
+			return;
+		}
+		wfProfileIn( __METHOD__ );
+		
+		if( !$wgDisableCounters ) {
+			self::$mList['Popularpages'] = array( 'SpecialPage', 'Popularpages' );
+		}
+
+		if( !$wgDisableInternalSearch ) {
+			self::$mList['Search'] = array( 'SpecialPage', 'Search' );
+		}
+
+		if( $wgEmailAuthentication ) {
+			self::$mList['Confirmemail'] = array( 'UnlistedSpecialPage', 'Confirmemail' );
+		}
+
+		# Add extension special pages
+		self::$mList = array_merge( self::$mList, $wgSpecialPages );
+
+		# Better to set this now, to avoid infinite recursion in carelessly written hooks
+		self::$mListInitialised = true;
+
+		# Run hooks
+		# This hook can be used to remove undesired built-in special pages
+		wfRunHooks( 'SpecialPage_initList', array( &self::$mList ) );
+		wfProfileOut( __METHOD__ );
+	}
 
 	/**
-	 * Add a page to the list of valid special pages
-	 * $obj->execute() must send HTML to $wgOut then return
-	 * Use this for a special page extension
+	 * Add a page to the list of valid special pages. This used to be the preferred 
+	 * method for adding special pages in extensions. It's now suggested that you add 
+	 * an associative record to $wgSpecialPages. This avoids autoloading SpecialPage.
+	 *
+	 * @param mixed $page Must either be an array specifying a class name and 
+	 *                    constructor parameters, or an object. The object,
+	 *                    when constructed, must have an execute() method which
+	 *                    sends HTML to $wgOut.
 	 * @static
 	 */
-	static function addPage( &$obj ) {
-		global $wgSpecialPages;
-		$wgSpecialPages[$obj->mName] = $obj;
+	static function addPage( &$page ) {
+		if ( !self::$mListInitialised ) {
+			self::initList();
+		}
+		self::$mList[$page->mName] = $page;
 	}
 
 	/**
 	 * Remove a special page from the list
-	 * Occasionally used to disable expensive or dangerous special pages
+	 * Formerly used to disable expensive or dangerous special pages. The 
+	 * preferred method is now to add a SpecialPage_initList hook.
+	 * 
 	 * @static
 	 */
 	static function removePage( $name ) {
-		global $wgSpecialPages;
-		unset( $wgSpecialPages[$name] );
+		if ( !self::$mListInitialised ) {
+			self::initList();
+		}
+		unset( self::$mList[$name] );
 	}
 
 	/**
@@ -168,13 +212,24 @@ class SpecialPage
 	 * @param string $name
 	 */
 	static function getPage( $name ) {
-		global $wgSpecialPages;
-		if ( array_key_exists( $name, $wgSpecialPages ) ) {
-			return $wgSpecialPages[$name];
+		if ( !self::$mListInitialised ) {
+			self::initList();
+		}
+		if ( array_key_exists( $name, self::$mList ) ) {
+			$rec = self::$mList[$name];
+			if ( is_string( $rec ) ) {
+				$className = $rec;
+				self::$mList[$name] = new $className;
+			} elseif ( is_array( $rec ) ) {
+				$className = array_shift( $rec );
+				self::$mList[$name] = wfCreateObject( $className, $rec );
+			}
+			return self::$mList[$name];
 		} else {
 			return NULL;
 		}
 	}
+
 
 	/**
 	 * @static
@@ -231,16 +286,19 @@ class SpecialPage
 	 * @static
 	 */
 	static function getPages() {
-		global $wgSpecialPages;
+		if ( !self::$mListInitialised ) {
+			self::initList();
+		}
 		$pages = array(
 		  '' => array(),
 		  'sysop' => array(),
 		  'developer' => array()
 		);
 
-		foreach ( $wgSpecialPages as $name => $page ) {
+		foreach ( self::$mList as $name => $rec ) {
+			$page = self::getPage( $name );
 			if ( $page->isListed() ) {
-				$pages[$page->getRestriction()][$page->getName()] =& $wgSpecialPages[$name];
+				$pages[$page->getRestriction()][$page->getName()] = $page;
 			}
 		}
 		return $pages;

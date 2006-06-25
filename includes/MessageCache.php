@@ -315,6 +315,11 @@ class MessageCache {
 				$this->mCache[$uckey] = false;
 			}
 		}
+
+		# Make sure all extension messages are available
+		wfLoadAllExtensions();
+
+		# Add them to the cache
 		foreach ( $this->mExtensionMessages as $key => $value ) {
 			$uckey = $wgLang->ucfirst( $key );
 			if ( !array_key_exists( $uckey, $this->mCache ) ) {
