@@ -564,6 +564,7 @@ Some default configuration options have changed:
 * (bug 6314) Add user tool links on page histories
 * Fix display of file-type icons in galleries when $wgIgnoreImageErrors is off
 * (bug 6438) Update to Indonesian translation (id) #23
+* Adding the hooks "AddMagicWordsXX" to allow addition of localized magic words.
 
 
 == Compatibility ==

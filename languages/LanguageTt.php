@@ -73,6 +73,7 @@ require_once( "LanguageUtf8.php" );
 	MAG_LOCALURLE            => array( 0,    'URINLIURLE:'             ),
 	MAG_SERVER               => array( 0,    'SERVER'                 )
 ) + $wgMagicWordsEn;
+wfRunHooks( 'AddMagicWordsTt', array( &$wgMagicWordsTt ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesTt.php');

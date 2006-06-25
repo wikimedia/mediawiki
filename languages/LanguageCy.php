@@ -76,6 +76,7 @@
 	MAG_INT                  => array( 0,    "INT:"                                       )
 
 );
+wfRunHooks( 'AddMagicWordsCy', array( &$wgMagicWordsCy ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesCy.php');

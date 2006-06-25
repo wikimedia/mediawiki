@@ -115,6 +115,8 @@ class LanguageSk extends LanguageUtf8 {
 			NS_CATEGORY       => 'Kategória',
 			NS_CATEGORY_TALK  => 'Diskusia_ku_kategórii'
 		);
+		
+		wfRunHooks( 'AddMagicWordsSk', array( &$this->mMagicWordsSk ) );
 	}
 
 	function getNamespaces() {

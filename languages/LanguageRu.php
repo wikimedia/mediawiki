@@ -109,6 +109,7 @@ require_once( 'LanguageUtf8.php' );
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW','ТЕКУЩИЙДЕНЬНЕДЕЛИ'),
 	MAG_REVISIONID           => array( 1,    'REVISIONID', 'ИДВЕРСИИ'),
 );
+wfRunHooks( 'AddMagicWordsRu', array( &$wgMagicWordsRu ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesRu.php');

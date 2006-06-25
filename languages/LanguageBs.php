@@ -125,6 +125,8 @@ class LanguageBs extends LanguageUtf8 {
 			NS_CATEGORY         => 'Kategorija',
 			NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 		);
+		
+		wfRunHooks( 'AddMagicWordsBs', array( &$this->mMagicWordsBs ) );
 	}
 
 	function getNamespaces() {

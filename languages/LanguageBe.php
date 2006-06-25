@@ -148,6 +148,7 @@ class LanguageBe extends LanguageUtf8 {
 			NS_CATEGORY_TALK  => 'Абмеркаваньне_катэгорыі'
 		);
 
+		wfRunHooks( 'AddMagicWordsBe', array( &$this->mMagicWordsBe ) );
 	}
 
 	function getNamespaces() {
