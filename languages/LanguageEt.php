@@ -85,6 +85,7 @@ class LanguageEt extends LanguageUtf8 {
 			NS_CATEGORY_TALK    => 'Kategooria_arutelu'
 		);
 
+		wfRunHooks( 'AddMagicWordsEt', array( &$this->mMagicWordsEt ) );
 	}
 
 	function getNamespaces() {

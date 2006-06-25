@@ -100,6 +100,7 @@ default:
 	MAG_SERVER               => array( 0,    'SERVER'                 ),
 	MAG_REVISIONID           => array( 1,    'REVISIONID',       'IDREVIZE'           )
 );
+wfRunHooks( 'AddMagicWordsCs', array( &$wgMagicWordsCs ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesCs.php');

@@ -114,7 +114,8 @@ class LanguageGa extends LanguageUtf8 {
 			NS_CATEGORY         => 'Catagóir',
 			NS_CATEGORY_TALK    => 'Plé_catagóire'
 		);
-
+		
+		wfRunHooks( 'AddMagicWordsGa', array( &$this->mMagicWordsGa ) );
 	}
 
 	function getNamespaces() {

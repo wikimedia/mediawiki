@@ -67,7 +67,8 @@ class LanguageIs extends LanguageUtf8 {
 			NS_CATEGORY       => 'Flokkur',
 			NS_CATEGORY_TALK  => 'Flokkaspjall'
 		);
-
+		
+		wfRunHooks( 'AddMagicWordsIs', array( &$this->mMagicWordsIs ) );
 	}
 
 	function getNamespaces() {
