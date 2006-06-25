@@ -174,7 +174,7 @@
 'views' => 'Vistas',
 'toolbox' => 'Ferramentas',
 'userpage' => 'Ver página de utilizador',
-'wikipediapage' => 'Ver página do projecto',
+'projectpage' => 'Ver página do projecto',
 'imagepage' =>       'Ver página de imagens',
 'viewtalkpage' => 'Ver discussão',
 'otherlanguages' => 'Outras línguas',

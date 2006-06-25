@@ -159,7 +159,7 @@
 'views'                   => 'Visningar',
 'toolbox'                 => 'Verktøy',
 'userpage'                => 'Vis brukarside',
-'wikipediapage'           => 'Vis prosjektside',
+'projectpage'           => 'Vis prosjektside',
 'imagepage'               => 'Vis filside',
 'viewtalkpage'            => 'Vis diskusjon',
 'otherlanguages'          => 'På andre språk',
@@ -201,7 +201,7 @@
 'nstab-user'              => 'Brukarside',
 'nstab-media'             => 'Filside',
 'nstab-special'           => 'Spesial',
-'nstab-wp'                => 'Prosjektside',
+'nstab-project'                => 'Prosjektside',
 'nstab-image'             => 'Fil',
 'nstab-mediawiki'         => 'Systemmelding',
 'nstab-template'          => 'Mal',
@@ -1214,7 +1214,7 @@ ta[\'ca-nstab-main\']           = new Array(\'c\',\'Vis innhaldssida\');
 ta[\'ca-nstab-user\']           = new Array(\'c\',\'Vis brukarsida\');
 ta[\'ca-nstab-media\']          = new Array(\'c\',\'Direktelenkje (filpeikar) til fil\');
 ta[\'ca-nstab-special\']        = new Array(\'\',\'Dette er ei spesialside, du kan ikkje endre ho.\');
-ta[\'ca-nstab-wp\']             = new Array(\'c\',\'Vis prosjektside\');
+ta[\'ca-nstab-project\']             = new Array(\'c\',\'Vis prosjektside\');
 ta[\'ca-nstab-image\']          = new Array(\'c\',\'Vis filside\');
 ta[\'ca-nstab-mediawiki\']      = new Array(\'c\',\'Vis systemmelding\');
 ta[\'ca-nstab-template\']       = new Array(\'c\',\'Vis mal\');

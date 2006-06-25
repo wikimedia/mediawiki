@@ -91,7 +91,7 @@
 "articlepage"	=> "Leggi articolo",
 "subjectpage"	=> "Vedi articolo ", # For compatibility
 "userpage" => "Vedi pagina Utente",
-"wikipediapage" => "Vedi pagina meta",
+"projectpage" => "Vedi pagina meta",
 "imagepage" => 	"Vedi pagina immagine",
 "otherlanguages" => "Altre lingue",
 "redirectedfrom" => "(Reindirizzamento da $1)",

@@ -70,7 +70,7 @@
 "articlepage"	=> "查看文章",
 "subjectpage"	=> "查看主題", # For compatibility
 "userpage" => "查看用戶頁",
-"wikipediapage" => "查看元維基頁",
+"projectpage" => "查看元維基頁",
 "imagepage" => 	"查看圖像頁面",
 "viewtalkpage" => "查看討論",
 "otherlanguages" => "其它語言",
@@ -790,7 +790,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 'nstab-special' => "特殊",//"Special",
 'nstab-template' => "模板", //"Template",
 'nstab-user' => "用戶頁面", //"User page",
-'nstab-wp' => "關於", //"About",
+'nstab-project' => "關於", //"About",
 'portal' => "社區",//"Community portal",
 'prefs-help-realname' => "*<strong>真實姓名</strong>（可選）：用以對您的貢獻署名。<br />",
 'prefs-help-email' => "*<strong>點子郵件</strong>（可選）：讓他人通過網站在不知道您的電子郵件地址的情況下通過電子郵件與您聯絡，以及通過電子郵件取得遺忘的密碼。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />

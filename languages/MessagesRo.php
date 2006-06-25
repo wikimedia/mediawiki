@@ -49,7 +49,7 @@ ta['ca-nstab-main'] = new Array('c','Vezi articolul');
 ta['ca-nstab-user'] = new Array('c','Vezi pagina de utilizator');
 ta['ca-nstab-media'] = new Array('c','Vezi pagina media');
 ta['ca-nstab-special'] = new Array('','Aceasta este o pagină specială, (nu) poţi edita pagina în sine.');
-ta['ca-nstab-wp'] = new Array('a','Vezi pagina proiectului');
+ta['ca-nstab-project'] = new Array('a','Vezi pagina proiectului');
 ta['ca-nstab-image'] = new Array('c','Vezi pagina imaginii');
 ta['ca-nstab-mediawiki'] = new Array('c','Vezi mesajul de sistem');
 ta['ca-nstab-template'] = new Array('c','Vezi formatul');
@@ -536,7 +536,7 @@ Verifică dacă ai scris corect sau foloseşte această pagină pentru a crea un
 #'nstab-special' => "Special",
 'nstab-template' => "Format",
 'nstab-user' => "Pagină de utilizator",
-'nstab-wp' => "Despre",
+'nstab-project' => "Despre",
 #'numauthors' => "Număr de autori diferiţi (articol): ",
 #'numedits' => "Numbăr de editări (articol): ",
 #'numtalkauthors' => "Număr de autori diferiţi (pagină de discuţie): ",
@@ -884,7 +884,7 @@ Nu uita să-ţi personalizezi preferinţele în {{SITENAME}}.",
 'whitelistedittitle' => "Este necesară autentificarea pentru a edita",
 'whitelistreadtext' => "Trebuie să te [[{{ns:Special}}:Userlogin|autentifici]] pentru a citi articole.",
 'whitelistreadtitle' => "Este necesară autentificarea pentru a citi",
-'wikipediapage' => "Vezi pagina meta",
+'projectpage' => "Vezi pagina meta",
 'wlnote' => "Dedesubt găseşti ultimele $1 schimbări din ultimele <b>$2</b> ore.",
 'wlsaved' => "Aceasta este o versiune salvată a listei tale de pagini urmărite.",
 'wlshowlast' => "Arată ultimele $1 ore $2 zile $3",

@@ -137,7 +137,7 @@
 'talk' => 'Tartışma',
 'toolbox' => 'Araçlar',
 'userpage' => 'Kullanıcı sayfasını görüntüle',
-'wikipediapage' => 'Proje sayfasını göster',
+'projectpage' => 'Proje sayfasını göster',
 'viewtalkpage' => 'Tartışma sayfasına git',
 'otherlanguages' => 'Diğer diller',
 'redirectedfrom' => '($1 sayfasından yönlendirildi)',
@@ -166,7 +166,7 @@
 'nstab-main' => 'Madde',
 'nstab-user' => 'Kullanıcı Sayfası',
 'nstab-special' => 'Özel',
-'nstab-wp' => 'Proje',
+'nstab-project' => 'Proje',
 'nstab-image' => 'Dosya',
 'nstab-mediawiki' => 'Arayüz Metni',
 'nstab-template' => 'Şablon',
@@ -909,7 +909,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Sayfayı göster\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Kullanıcı sayfasını göster\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Medya sayfasını göster\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Bu özel sayfa olduğu için değişiklik yapamazsınız.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Proje sayfasını göster\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Proje sayfasını göster\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Resim sayfasını göster\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Sistem mesajını göster\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Şablonu göster\');

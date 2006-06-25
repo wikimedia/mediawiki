@@ -151,7 +151,7 @@
 'views' => 'Прегледи',
 'toolbox' => 'Инструменти',
 'userpage' => 'Потребителска страница',
-'wikipediapage' => 'Основна страница',
+'projectpage' => 'Основна страница',
 'imagepage' =>   'Преглед на файл',
 'viewtalkpage' => 'Преглед на беседа',
 'otherlanguages' => 'На други езици',
@@ -194,7 +194,7 @@
 'nstab-user' => 'Потребител',
 'nstab-media' => 'Медия',
 'nstab-special' => 'Специална страница',
-'nstab-wp' => 'Проект',
+'nstab-project' => 'Проект',
 'nstab-image' => 'Файл',
 'nstab-mediawiki' => 'Съобщение',
 'nstab-template' => 'Шаблон',
@@ -1302,7 +1302,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
  ta[\'ca-nstab-user\'] = new Array(\'c\',\'Преглед на потребителската страница\');
  ta[\'ca-nstab-media\'] = new Array(\'c\',\'Преглед на медийната страница\');
  ta[\'ca-nstab-special\'] = new Array(\'\',\'Това е специална страница, която не може да се редактира.\');
- ta[\'ca-nstab-wp\'] = new Array(\'c\',\'Преглед на проектната страница\');
+ ta[\'ca-nstab-project\'] = new Array(\'c\',\'Преглед на проектната страница\');
  ta[\'ca-nstab-image\'] = new Array(\'c\',\'Преглед на страницата на файла\');
  ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Преглед на системното съобщение\');
  ta[\'ca-nstab-template\'] = new Array(\'c\',\'Преглед на шаблона\');

@@ -111,7 +111,7 @@
 'talk'			=> 'Diskuto',
 'toolbox'		=> 'Iloj',
 'userpage'		=> 'Vidu personan paĝon',
-'wikipediapage'	=> 'Vidu meta-paĝon',
+'projectpage'	=> 'Vidu meta-paĝon',
 'imagepage'		=> 'Vidu dosieropaĝon',
 'viewtalkpage'	=> 'Vidu diskutopaĝon',
 'otherlanguages' => 'Aliaj lingvoj',

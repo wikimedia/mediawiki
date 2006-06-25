@@ -52,7 +52,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Видети садржај чланк
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Видети корисничку страницу\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Видети медија фајл\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Ово је специјална страница и зато је не можете самостално уређивати.\');
-ta[\'ca-nstab-wp\'] = new Array(\'c\',\'Видети пројекат страницу\');
+ta[\'ca-nstab-project\'] = new Array(\'c\',\'Видети пројекат страницу\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Видети страницу слике\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Видети системску поруку\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Видети шаблон\');
@@ -1016,7 +1016,7 @@ $NEWPAGE
 'nstab-special' => 'Посебна',
 'nstab-template' => 'Шаблон',
 'nstab-user' => 'Корисничка страна',
-'nstab-wp' => 'Чланак',
+'nstab-project' => 'Чланак',
 'numauthors' => 'Број различитих аутора (чланак): $1',
 'number_of_watching_users_pageview' => '[$1 корисник/а који надгледа/ју]',
 'numedits' => 'Број промена (чланак): $1',
@@ -1472,7 +1472,7 @@ $3...)<br />
 'whitelistedittitle' => 'Обавезно је [[{{ns:-1}}:Userlogin|пријављивање]] за мењање',
 'whitelistreadtext' => 'Морате да се [[{{ns:-1}}:Userlogin|пријавите]] да бисте читали чланке.',
 'whitelistreadtitle' => 'Обавезно је пријављивање за читање',
-'wikipediapage' => 'Погледај страну о овој страни',
+'projectpage' => 'Погледај страну о овој страни',
 'wlheader-enotif' => '* Обавештавање е-поштом је омогућено.',
 'wlheader-showupdated' => '* Стране које су измењене од када сте их последњи пут посетили су приказане \'\'\'масним словима\'\'\'',
 'wlhide' => 'Сакриј',

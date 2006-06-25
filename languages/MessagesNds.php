@@ -125,7 +125,7 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'articlepage'             => 'Artikel',
 'subjectpage'             => 'Bedrap ankieken',
 'toolbox'               => 'Warktüüch',
-'wikipediapage'         => 'Meta-Text',
+'projectpage'         => 'Meta-Text',
 'userpage'              => 'Brukersiet',
 'imagepage'             => 'Bildsiet',
 'viewtalkpage'          => 'Diskuschoon',
@@ -161,7 +161,7 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'nstab-user'            => 'Brukersiet',
 'nstab-media'           => 'Media',
 'nstab-special'         => 'Spezial',
-'nstab-wp'              => 'Över',
+'nstab-project'              => 'Över',
 'nstab-image'           => 'Bild',
 'nstab-mediawiki'       => 'Noricht',
 'nstab-template'        => 'Vörlaag',
@@ -1041,7 +1041,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Siet ankieken\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Brukersiet ankieken\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Mediensiet ankieken\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Dit is en Spezialsiet, du kannst disse Siet nich ännern.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Portalsiet ankieken\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Portalsiet ankieken\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Bildsiet ankieken\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Systemnorichten ankieken\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vörlaag ankieken\');

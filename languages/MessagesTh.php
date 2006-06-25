@@ -113,7 +113,7 @@
 "articlepage"	=> "View article",
 "subjectpage"	=> "View subject", # For compatibility
 "userpage" => "View user page",
-"wikipediapage" => "View meta page",
+"projectpage" => "View meta page",
 "imagepage" => 	"View image page",
 "viewtalkpage" => "View discussion",
 "otherlanguages" => "Other languages",

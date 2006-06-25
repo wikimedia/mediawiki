@@ -1464,7 +1464,7 @@ ta[\'ca-nstab-main\'] = new Array(\'c\',\'Vey li pådje di contnou\');
 ta[\'ca-nstab-user\'] = new Array(\'c\',\'Vey li pådje di l\\\' uzeu\');
 ta[\'ca-nstab-media\'] = new Array(\'c\',\'Vey li pådje di media\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Çouchal, c\\\' est ene pådje sipeciåle, vos n\\\' poloz nén candjî l\\\' pådje leyminme.\');
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Vey li pådje di pordjet\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Vey li pådje di pordjet\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Vey li pådje d\\\' imådje\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Vey li messaedje ratournåve do sistinme\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vey li modele\');
@@ -1934,7 +1934,7 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 'val_details_th_user' => 'Uzeu $1',
 'val_revision_stats_link' => 'detays',
 'val_total' => 'Totå',
-'wikipediapage' => 'Vey li meta-pådje',
+'projectpage' => 'Vey li meta-pådje',
 'contribs-showhideminor' => '$1 candjmints mineurs',
 'wlshow' => 'Mostrer',
 'wlhide' => 'Catchî',
@@ -1999,7 +1999,7 @@ eyet l\' tecse seré ratourné d\' après l\' espåce di lomaedje MediaWiki',
 'listform' => 'djivêye',
 'nchanges' => '$1 candjmints',
 'uploadlink' => 'Eberweter des imådjes',
-'nstab-wp' => 'Pådje',
+'nstab-project' => 'Pådje',
 'rcloaderr' => 'Tcherdjant les dierins candjmints',
 'showhideminor' => '$1 candjmints mineurs | $2 robots | $3 uzeus eredjîstrés | $4 candjmints rwaitîs',
 'rchide' => 'e $4; $1 candjmints mineurs; $2 nos d\' espåces segondaires; $3 candjmints multipes.',

@@ -108,7 +108,7 @@
 "articlepage"	=> "Szócikk megtekintése",
 "subjectpage"	=> "Témalap megtekintése", # For compatibility
 "userpage" 		=> "Felhasználói lap",
-"wikipediapage" => "Metalap",
+"projectpage" => "Metalap",
 "imagepage" 	=> "Képlap",
 "viewtalkpage"	=> "Beszélgetés megtekintése",
 "otherlanguages" => "Egyéb nyelvek",

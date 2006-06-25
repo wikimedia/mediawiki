@@ -109,7 +109,7 @@
 "articlepage"	=> "Vis artikkel",
 "subjectpage"	=> "Vis emne", # For compatibility
 "userpage" => "Brukerside",
-"wikipediapage" => "Metaside",
+"projectpage" => "Metaside",
 "imagepage" => 	"Billedside",
 "viewtalkpage" => "Vis diskusjon",
 "otherlanguages" => "Andre språk",
