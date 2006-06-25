@@ -199,7 +199,6 @@ $wgAllMessagesHe = array(
 
 למידע נוסף, ראו [[{{ns:special}}:Version]].',
 
-"widthheight"         => "$1x$2",
 "ok"                  => "אישור",
 "pagetitle"           => "$1 – {{SITENAME}}",
 "retrievedfrom"       => '<br /><span style="font-size: smaller;">מקור: $1</span>',
