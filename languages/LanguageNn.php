@@ -116,7 +116,6 @@ require_once( 'LanguageUtf8.php' );
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW', 'VEKEDAGNRNO', 'UKEDAGNRNÅ'                              ),
 	MAG_REVISIONID           => array( 1,    'REVISIONID', 'VERSJONSID'                                             )
 ) + $wgMagicWordsEn;
-wfRunHooks( 'AddMagicWordsNn', array( &$wgMagicWordsNn ) );
 
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesNn.php');
