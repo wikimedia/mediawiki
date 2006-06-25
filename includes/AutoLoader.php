@@ -1,8 +1,10 @@
 <?php
 
 /* This defines autoloading handler for whole MediaWiki framework */
-function __autoload($class_name) {
-	$classes = array(
+function __autoload($className) {
+	global $wgAutoloadClasses;
+
+	static $localClasses = array(
 		'AjaxDispatcher' => 'AjaxDispatcher.php',
 		'AjaxCachePolicy' => 'AjaxFunctions.php',
 		'Article' => 'Article.php',
@@ -218,10 +220,21 @@ function __autoload($class_name) {
 		'memcached' => 'memcached-client.php',
 		'UtfNormal' => 'normal/UtfNormal.php'
 	);
-	if (array_key_exists($class_name, $classes)) {
-		require($classes[$class_name]);
+	if ( isset( $localClasses[$className] ) ) {
+		require($localClasses[$className]);
+	} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
+		require( $wgAutoloadClasses[$className] );
 	} else {
 		return false;
+	}
+}
+
+function wfLoadAllExtensions() {
+	global $wgAutoloadClasses;
+	foreach( $wgAutoloadClasses as $class => $file ) {
+		if ( ! class_exists( $class ) ) {
+			require( $file );
+		}
 	}
 }
 

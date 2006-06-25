@@ -4,6 +4,11 @@
  * @package MediaWiki
  */
 
+/**
+ * Version constants for the benefit of extensions
+ */
+define( 'MW_SPECIALPAGE_VERSION', 2 );
+
 /**#@+
  * Database related constants
  */
