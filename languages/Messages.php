@@ -424,7 +424,7 @@ to confirm that the account is actually yours.',
 'emailauthenticated'        => 'Your e-mail address was authenticated on $1.',
 'emailnotauthenticated'     => 'Your e-mail address is <strong>not yet authenticated</strong>. No e-mail
 will be sent for any of the following features.',
-'noemailprefs'              => '<strong>Specify an e-mail address for these features to work.</strong>',
+'noemailprefs'              => 'Specify an e-mail address for these features to work.',
 'emailconfirmlink' => 'Confirm your e-mail address',
 'invalidemailaddress'	=> 'The e-mail address cannot be accepted as it appears to have an invalid
 format. Please enter a well-formatted address or empty that field.',
