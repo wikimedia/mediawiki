@@ -570,6 +570,7 @@ Some default configuration options have changed:
 * Update to Esperanto translation (eo)
 * Check for preg_match() existence when installing and die out whining about PCRE
   if it's not there, instead of throwing a fatal error
+* (bug 672) Add MathAfterTexvc hook
 
 == Compatibility ==
 

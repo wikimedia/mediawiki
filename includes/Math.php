@@ -73,6 +73,7 @@ class MathRenderer {
 			}
 
 			$retval = substr ($contents, 0, 1);
+			$errmsg = '';
 			if (($retval == 'C') || ($retval == 'M') || ($retval == 'L')) {
 				if ($retval == 'C')
 					$this->conservativeness = 2;
@@ -106,14 +107,23 @@ class MathRenderer {
 			} else {
 				$errbit = htmlspecialchars( substr($contents, 1) );
 				switch( $retval ) {
-					case 'E': return $this->_error( 'math_lexing_error', $errbit );
-					case 'S': return $this->_error( 'math_syntax_error', $errbit );
-					case 'F': return $this->_error( 'math_unknown_function', $errbit );
-					default:  return $this->_error( 'math_unknown_error', $errbit );
+					case 'E': $errmsg = $this->_error( 'math_lexing_error', $errbit );
+					case 'S': $errmsg = $this->_error( 'math_syntax_error', $errbit );
+					case 'F': $errmsg = $this->_error( 'math_unknown_function', $errbit );
+					default:  $errmsg = $this->_error( 'math_unknown_error', $errbit );
 				}
 			}
 
-			$this->hash = substr ($contents, 1, 32);
+			if ( !$errmsg ) {
+				 $this->hash = substr ($contents, 1, 32);
+			}
+
+			$res = wfRunHooks( 'MathAfterTexvc', array( &$this, &$errmsg ) );
+
+			if ( $errmsg ) {
+				 return $errmsg;
+			}
+
 			if (!preg_match("/^[a-f0-9]{32}$/", $this->hash)) {
 				return $this->_error( 'math_unknown_error' );
 			}
