@@ -380,6 +380,11 @@ $user: user (object) who marked the edit patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user
  must be a sysop to patrol the edit
 
+'MathAfterTexvc': after texvc is executed when rendering mathematics
+$mathRenderer: instance of MathRenderer
+$errmsg: error message, in HTML (string). Nonempty indicates failure
+ of rendering the formula
+
 'OutputPageBeforeHTML': a page has been processed by the parser and
 the resulting HTML is about to be displayed.  
 $parserOutput: the parserOutput (object) that corresponds to the page 
