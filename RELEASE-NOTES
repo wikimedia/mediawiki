@@ -579,19 +579,14 @@ At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 
 == Upgrading ==
 
-Several changes to the database have been made from 1.5; these are relatively
-minor but do require that the update process be run before the new code will
-work properly:
+Several changes to the database have been made from 1.6:
 
-* A new "templatelinks" table tracks template inclusions.
-* A new "externallinks" table tracks URL links; this can be used by a
-  mass spam-cleanup tool in the SpamBlacklist extension.
-* A new "jobs" table stores a queue of pages to update in the background; this
-  is used to update links in including pages when templates are edited.
+* A new "langlinks" table tracks interlanguage links
+* A new "filearchive" table stores information on deleted files
+* A new "querycache_info" table stores information on query page updates
 
 To ensure that these tables are filled with data, run refreshLinks.php after
 the upgrade.
-
 
 If you are upgrading from MediaWiki 1.4.x or earlier, some major database
 changes are made, and there is a slightly higher chance that things could
