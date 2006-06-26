@@ -22,11 +22,11 @@ require_once( 'Database.php' );
  *
  * @package MediaWiki
  */
-class DatabasePgsql extends Database {
+class DatabasePostgres extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
 
-	function DatabasePgsql($server = false, $user = false, $password = false, $dbName = false,
+	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
 		Database::Database( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
@@ -35,7 +35,7 @@ class DatabasePgsql extends Database {
 	/* static */ function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
-		return new DatabasePgsql( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
+		return new DatabasePostgres( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
 	}
 
 	/**
@@ -431,13 +431,6 @@ class DatabasePgsql extends Database {
 		$searchpath=$this->makeList($schemas,LIST_NAMES);
 		$this->query("SET search_path = $searchpath");
 	}
-}
-
-/**
- * Just an alias.
- * @package MediaWiki
- */
-class DatabasePostgreSQL extends DatabasePgsql {
 }
 
 ?>
