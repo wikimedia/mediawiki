@@ -571,6 +571,7 @@ Some default configuration options have changed:
 * Check for preg_match() existence when installing and die out whining about PCRE
   if it's not there, instead of throwing a fatal error
 * (bug 672) Add MathAfterTexvc hook
+* Update to Piedmontese localization (pms)
 
 == Compatibility ==
 
