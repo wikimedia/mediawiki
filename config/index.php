@@ -293,6 +293,10 @@ if( $conf->xml ) {
 if( !function_exists( 'session_name' ) )
 	dieout( "PHP's session module is missing. MediaWiki requires session support in order to function." );
 
+# Likewise for PCRE
+if( !function_exists( 'preg_match' ) )
+	dieout( "The PCRE regular expression functions are missing. MediaWiki requires these in order to function." );
+
 $memlimit = ini_get( "memory_limit" );
 $conf->raiseMemory = false;
 if( empty( $memlimit ) || $memlimit == -1 ) {
