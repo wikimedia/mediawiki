@@ -14,14 +14,56 @@
 
 require_once 'LanguageIt.php';
 
+if (!$wgCachedMessageArrays) {
+	require_once('MessagesPms.php');
+}
+
 class LanguagePms extends LanguageIt {
+
+	function __construct() {
+		parent::__construct();
+
+		global $wgAllMessagesPms;
+		$this->mMessagesPms =& $wgAllMessagesPms;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesPms = array(
+			NS_MEDIA            => 'Media',
+			NS_SPECIAL          => 'Special',
+			NS_MAIN             => '',
+			NS_TALK             => 'Discussion',
+			NS_USER             => 'Utent',
+			NS_USER_TALK        => 'Ciaciarade',
+			NS_PROJECT          => $wgMetaNamespace,
+			NS_PROJECT_TALK     => 'Discussion_ant_sla' . $wgMetaNamespace,
+			NS_IMAGE            => 'Figura',
+			NS_IMAGE_TALK       => 'Discussion_dla_figura',
+			NS_MEDIAWIKI        => 'MediaWiki',
+			NS_MEDIAWIKI_TALK   => 'Discussion_dla_MediaWiki',
+			NS_TEMPLATE         => 'Stamp',
+			NS_TEMPLATE_TALK    => 'Discussion_dlë_stamp',
+			NS_HELP             => 'Agiut',
+			NS_HELP_TALK        => 'Discussion_ant_sl\'agiut',
+			NS_CATEGORY         => 'Categorìa',
+			NS_CATEGORY_TALK    => 'Discussion_ant_sla_categorìa'
+		);
+
+	}
 
 	function getFallbackLanguage() {
 		return 'it';
 	}
 
+	function getMessage( $key ) {
+		if( isset( $this->mMessagesPms[$key] ) ) {
+			return $this->mMessagesPms[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
 	function getAllMessages() {
-		return null;
+		return $this->mMessagesPms;
 	}
 
 }
