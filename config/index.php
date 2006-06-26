@@ -333,7 +333,7 @@ if ( $conf->turck ) {
 
 $conf->apc = function_exists('apc_fetch');
 if ($conf->apc ) {
-	print '<li><a href="http://www.php.net/apc">APC</a> installed</li>\n';
+	print "<li><a href=\"http://www.php.net/apc\">APC</a> installed</li>";
 }
 
 $conf->eaccel = function_exists( 'eaccelerator_get' );
