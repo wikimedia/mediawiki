@@ -1388,6 +1388,9 @@ function getLanguageList() {
 	$codes = array();
 
 	$d = opendir( "../languages" );
+	/* In case we are called from the root directory */
+	if (!$d)
+		$d = opendir( "languages");
 	while( false !== ($f = readdir( $d ) ) ) {
 		$m = array();
 		if( preg_match( '/Language([A-Z][a-z_]+)\.php$/', $f, $m ) ) {
