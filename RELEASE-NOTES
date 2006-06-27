@@ -573,6 +573,7 @@ Some default configuration options have changed:
 * (bug 672) Add MathAfterTexvc hook
 * Update to Piedmontese localization (pms)
 * dumpBackup can optionally compress via dbzip2
+* (bug 2483) Run link updates on change via XML import
 
 
 == Compatibility ==
