@@ -809,7 +809,7 @@ if( count( $errs ) ) {
 		?>
 	</div>
 	<p class="config-desc">
-		Preferably a short word without punctuation, i.e. "Wikipedia".<br>
+		Preferably a short word without punctuation, e.g. "Wikipedia".<br>
 		Will appear as the namespace name for "meta" pages, and throughout the interface.
 	</p>
 
