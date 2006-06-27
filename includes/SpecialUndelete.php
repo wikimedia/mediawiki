@@ -260,7 +260,7 @@ class PageArchive {
 
 		# Does this page already exist? We'll have to update it...
 		$article = new Article( $this->title );
-		$options = ( $wgDBtype == 'PostgreSQL' )
+		$options = ( $wgDBtype == 'postgres' )
 			? '' // pg doesn't support this?
 			: 'FOR UPDATE';
 		$page = $dbw->selectRow( 'page',
