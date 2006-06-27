@@ -414,7 +414,7 @@ class ParserTest {
 			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
 				# Database that supports CREATE TABLE ... LIKE
 				global $wgDBtype;
-				if( $wgDBtype == 'PostgreSQL' ) {
+				if( $wgDBtype == 'postgres' ) {
 					$def = 'INCLUDING DEFAULTS';
 				} else {
 					$def = '';
