@@ -55,8 +55,12 @@ function wfSpecialImport( $page = '' ) {
 		if( WikiError::isError( $source ) ) {
 			$wgOut->addWikiText( wfEscapeWikiText( $source->getMessage() ) );
 		} else {
+			$wgOut->addWikiText( wfMsg( "importstart" ) );
 			$importer = new WikiImporter( $source );
+			$reporter = new ImportReporter( $importer );
+			$reporter->open();
 			$result = $importer->doImport();
+			$reporter->close();
 			if( WikiError::isError( $result ) ) {
 				$wgOut->addWikiText( wfMsg( "importfailed",
 					wfEscapeWikiText( $result->getMessage() ) ) );
@@ -109,6 +113,37 @@ function wfSpecialImport( $page = '' ) {
 	</form>
 </fieldset>
 " );
+	}
+}
+
+/**
+ * Reporting callback
+ */
+class ImportReporter {
+	function __construct( $importer ) {
+		$importer->setPageCallback( array( $this, 'reportPage' ) );
+		$this->pageCount = 0;
+	}
+	
+	function open() {
+		global $wgOut;
+		$wgOut->addHtml( "<ul>\n" );
+	}
+	
+	function reportPage( $pageName ) {
+		global $wgOut, $wgUser;
+		$skin = $wgUser->getSkin();
+		$title = Title::newFromText( $pageName );
+		$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) . "</li>\n" );
+		$this->pageCount++;
+	}
+	
+	function close() {
+		global $wgOut;
+		if( $this->pageCount == 0 ) {
+			$wgOut->addHtml( "<li>" . wfMsgHtml( 'importnopages' ) . "</li>\n" );
+		}
+		$wgOut->addHtml( "</ul>\n" );
 	}
 }
 

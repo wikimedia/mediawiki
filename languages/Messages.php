@@ -1458,6 +1458,8 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{int:m
 'import'	=> 'Import pages',
 'importinterwiki' => 'Transwiki import',
 'importtext'	=> 'Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.',
+'importstart'	=> "Importing pages...",
+'importnopages'	=> "No pages to import.",
 'importfailed'	=> "Import failed: $1",
 'importnotext'	=> 'Empty or no text',
 'importsuccess'	=> 'Import succeeded!',
