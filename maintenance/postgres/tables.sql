@@ -167,7 +167,7 @@ CREATE TABLE site_stats (
   ss_good_articles  INTEGER DEFAULT 0,
   ss_total_pages    INTEGER DEFAULT -1,
   ss_users          INTEGER DEFAULT -1,
-  ss_admins         INTEGER DEFAULT -1
+  ss_admins         INTEGER DEFAULT -1,
   ss_images         INTEGER DEFAULT 0
 );
 
@@ -226,6 +226,35 @@ CREATE TABLE oldimage (
   oi_timestamp     TIMESTAMPTZ NOT NULL
 );
 CREATE INDEX oi_name ON oldimage (oi_name);
+
+
+CREATE TABLE filearchive (
+  fa_id                 SERIAL      NOT NULL PRIMARY KEY,
+  fa_name               TEXT        NOT NULL,
+  fa_archive_name       TEXT,  
+  fa_storage_group      VARCHAR(16),
+  fa_storage_key        CHAR(64),
+  fa_deleted_user       INTEGER         NULL REFERENCES "user"(user_id) ON DELETE SET NULL,
+  fa_deleted_timestamp  TIMESTAMPTZ NOT NULL,
+  fa_deleted_reason     TEXT,
+  fa_size               SMALLINT    NOT NULL,
+  fa_width              SMALLINT    NOT NULL,
+  fa_height             SMALLINT    NOT NULL,
+  fa_metadata           TEXT,
+  fa_bits               SMALLINT,
+  fa_media_type         TEXT,
+  fa_major_mime         TEXT                   DEFAULT 'unknown',
+  fa_minor_mime         TEXT                   DEFAULT 'unknown',
+  fa_description        TEXT        NOT NULL,
+  fa_user               INTEGER         NULL REFERENCES "user"(user_id) ON DELETE SET NULL,
+  fa_user_text          TEXT        NOT NULL,
+  fa_timestamp          TIMESTAMPTZ
+);
+CREATE INDEX fa_name_time ON filearchive(fa_name, fa_timestamp);
+CREATE INDEX fa_dupe ON filearchive(fa_storage_group, fa_storage_key);
+CREATE INDEX fa_notime ON filearchive(fa_deleted_timestamp);
+CREATE INDEX fa_nouser ON filearchive(fa_deleted_user);
+
 
 CREATE SEQUENCE rc_rc_id_seq;
 CREATE TABLE recentchanges (
