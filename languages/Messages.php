@@ -1457,6 +1457,11 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{int:m
 # Special:Import
 'import'	=> 'Import pages',
 'importinterwiki' => 'Transwiki import',
+'import-interwiki-text' => 'Select a wiki and page title to import.
+Revision dates and editors\' names will be preserved.
+All transwiki import actions are logged at the [[Special:Log/import|import log]].',
+'import-interwiki-history' => 'Copy all history versions for this page',
+'import-interwiki-submit' => 'Import',
 'importtext'	=> 'Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.',
 'importstart'	=> "Importing pages...",
 'importnopages'	=> "No pages to import.",

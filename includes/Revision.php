@@ -768,6 +768,23 @@ class Revision {
 		}
 		return $timestamp;
 	}
+	
+	static function countByPageId( $db, $id ) {
+		$row = $db->selectRow( 'revision', 'COUNT(*) AS revCount',
+			array( 'rev_page' => $id ), __METHOD__ );
+		if( $row ) {
+			return $row->revCount;
+		}
+		return 0;
+	}
+	
+	static function countByTitle( $db, $title ) {
+		$id = $title->getArticleId();
+		if( $id ) {
+			return Revision::countByPageId( $db, $id );
+		}
+		return 0;
+	}
 }
 
 /**

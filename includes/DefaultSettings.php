@@ -1470,6 +1470,14 @@ $wgImportSources = array();
  * disabled on Wikimedia's sites.
  */
 $wgExportAllowHistory = true;
+
+/**
+ * If set nonzero, Special:Export requests for history of pages with
+ * more revisions than this will be rejected. On some big sites things
+ * could get bogged down by very very long pages.
+ */
+$wgExportMaxHistory = 0;
+
 $wgExportAllowListContributors = false ;
 
 
