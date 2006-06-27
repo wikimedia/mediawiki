@@ -8,14 +8,14 @@
 /** */
 function convertLinks() {
 	global $wgDBtype;
-	if( $wgDBtype == 'Postgres' ) {
+	if( $wgDBtype == 'PostgreSQL' ) {
 		print "Links table already ok on PostgreSQL.\n";
 		return;
 	}
 
 	print "Converting links table to ID-ID...\n";
 
-	global $wgLang, $wgDBserver, $wgDBport, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
+	global $wgLang, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
 	global $noKeys, $logPerformance, $fh;
 
 	$numRows = $tuplesAdded = $numBadLinks = $curRowsRead = 0; #counters etc
@@ -147,7 +147,7 @@ function convertLinks() {
 	#--------------------------------------------------------------------
 
 	if ( $overwriteLinksTable ) {
-		$dbConn = Database::newFromParams( $wgDBserver, $wgDBport, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+		$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 		if (!($dbConn->isOpen())) {
 			print "Opening connection to database failed.\n";
 			return;
@@ -174,9 +174,9 @@ function convertLinks() {
 #--------------------------------------------------------------------
 
 function createTempTable() {
-	global $wgDBserver, $wgDBport, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
+	global $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
 	global $noKeys;
-	$dbConn = Database::newFromParams( $wgDBserver, $wgDBport, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+	$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 
 	if (!($dbConn->isOpen())) {
 		print "Opening connection to database failed.\n";

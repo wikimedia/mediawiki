@@ -7,6 +7,9 @@
  * than MySQL ones, some of them should be moved to parent
  * Database class.
  *
+ * STATUS: Working PG implementation of MediaWiki
+ * TODO: Installer support
+ *
  * @package MediaWiki
  */
 
@@ -15,28 +18,31 @@
  */
 require_once( 'Database.php' );
 
+/**
+ *
+ * @package MediaWiki
+ */
 class DatabasePostgres extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
 
-	function DatabasePostgres($server = false, $port = false, $user = false, $password = false, $dbName = false,
+	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0 )
 	{
-		Database::__construct( $server, $port, $user, $password, $dbName, $failFunction, $flags );
+		Database::__construct( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 
-	static function newFromParams( $server = false, $port = false, $user = false, $password = false, $dbName = false,
+	static function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0)
 	{
-		return new DatabasePostgres( $server, $port, $user, $password, $dbName, $failFunction, $flags );
+		return new DatabasePostgres( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 
 	/**
 	 * Usually aborts on failure
 	 * If the failFunction is set to a non-zero integer, returns success
 	 */
-	function open( $server, $port, $user, $password, $dbName ) {
-
+	function open( $server, $user, $password, $dbName ) {
 		# Test for PostgreSQL support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw new DBConnectionError( $this, "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
@@ -50,7 +56,6 @@ class DatabasePostgres extends Database {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 		$this->mSchemas = array($wgDBschema,'public');
-		$this->mPort = $port;
 
 		$success = false;
 
@@ -59,9 +64,6 @@ class DatabasePostgres extends Database {
 			$hstring="";
 			if ($server!=false && $server!="") {
 				$hstring="host=$server ";
-			}
-			if ($port!=false && $port != '') {
-				$hstring .= "port=$port ";
 			}
 
 			@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
@@ -195,7 +197,7 @@ class DatabasePostgres extends Database {
 		$n = pg_num_fields( $res );
 		for( $i = 0; $i < $n; $i++ ) {
 			// FIXME
-			throw new DBUnexpectedError($this,  "Database::fieldInfo() error : mysql_fetch_field() not implemented for postgres" );
+			throw new DBUnexpectedError($this,  "Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre" );
 			$meta = mysql_fetch_field( $res, $i );
 			if( $field == $meta->name ) {
 				return $meta;
@@ -437,44 +439,6 @@ class DatabasePostgres extends Database {
 		$searchpath=$this->makeList($schemas,LIST_NAMES);
 		$this->query("SET search_path = $searchpath");
 	}
-
-
-	/**
-	 * Query whether a given table exists
-	 */
-	function tableExists( $table ) {
-		global $wgDBschema;
-		$safetable = preg_replace("/'/", "''", $table);
-		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n WHERE c.relnamespace = n.oid "
-			. "AND c.relname = '$safetable' AND n.nspname = '$wgDBschema'";
-		$res = $this->query($SQL);
-		if( $res ) {
-			$this->freeResult( $res );
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	function fieldExists( $table, $field, $fname = 'DatabasePostgres::fieldExists' ) {
-		global $wgDBschema;
-		$safetable = preg_replace("/'/", "''", $table);
-		$safecol = preg_replace("/'/", "''", $field);
-		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n, pg_attribute a "
-			. "WHERE c.relnamespace = n.oid AND c.relname = '$safetable' AND n.nspname = '$wgDBschema' "
-			. "AND a.attrelid = c.oid AND a.attname = '$safecol'";
-		$res = $this->query($SQL, $fname);
-		if( $res ) {
-			$this->freeResult( $res );
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-
-
-
 }
 
 ?>

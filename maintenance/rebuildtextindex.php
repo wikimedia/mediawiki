@@ -13,7 +13,7 @@ require_once( "commandLine.inc" );
 require_once( "rebuildtextindex.inc" );
 $wgTitle = Title::newFromText( "Rebuild text index script" );
 
-$database = Database::newFromParams( $wgDBserver, $wgDBport, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+$database = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 
 dropTextIndex( $database );
 rebuildTextIndex( $database );
