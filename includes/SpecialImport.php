@@ -35,8 +35,12 @@ function wfSpecialImport( $page = '' ) {
 	###
 
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
+		$isUpload = false;
+		$interwiki = false;
+		
 		switch( $wgRequest->getVal( "source" ) ) {
 		case "upload":
+			$isUpload = true;
 			if( $wgUser->isAllowed( 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
@@ -44,8 +48,9 @@ function wfSpecialImport( $page = '' ) {
 			}
 			break;
 		case "interwiki":
+			$interwiki = $wgRequest->getVal( "interwiki" );
 			$source = ImportStreamSource::newFromInterwiki(
-				$wgRequest->getVal( "interwiki" ),
+				$interwiki,
 				$wgRequest->getText( "frompage" ) );
 			break;
 		default:
@@ -56,11 +61,14 @@ function wfSpecialImport( $page = '' ) {
 			$wgOut->addWikiText( wfEscapeWikiText( $source->getMessage() ) );
 		} else {
 			$wgOut->addWikiText( wfMsg( "importstart" ) );
+			
 			$importer = new WikiImporter( $source );
-			$reporter = new ImportReporter( $importer );
+			$reporter = new ImportReporter( $importer, $isUpload, $interwiki );
+			
 			$reporter->open();
 			$result = $importer->doImport();
 			$reporter->close();
+			
 			if( WikiError::isError( $result ) ) {
 				$wgOut->addWikiText( wfMsg( "importfailed",
 					wfEscapeWikiText( $result->getMessage() ) ) );
@@ -120,9 +128,11 @@ function wfSpecialImport( $page = '' ) {
  * Reporting callback
  */
 class ImportReporter {
-	function __construct( $importer ) {
+	function __construct( $importer, $upload, $interwiki ) {
 		$importer->setPageCallback( array( $this, 'reportPage' ) );
-		$this->pageCount = 0;
+		$this->mPageCount = 0;
+		$this->mIsUpload = $upload;
+		$this->mInterwiki = $interwiki;
 	}
 	
 	function open() {
@@ -134,13 +144,24 @@ class ImportReporter {
 		global $wgOut, $wgUser;
 		$skin = $wgUser->getSkin();
 		$title = Title::newFromText( $pageName );
+		$this->mPageCount++;
+		
 		$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) . "</li>\n" );
-		$this->pageCount++;
+		
+		$log = new LogPage( 'import' );
+		if( $this->mIsUpload ) {
+			$log->addEntry( 'upload', $title, '' );
+		} else {
+			$interwiki = '[[:' . $this->mInterwiki . ':' .
+				$title->getPrefixedText() . ']]';
+			$log->addEntry( 'interwiki', $title,
+				wfMsg( 'import-logentry-interwiki-source', $interwiki ) );
+		}
 	}
 	
 	function close() {
 		global $wgOut;
-		if( $this->pageCount == 0 ) {
+		if( $this->mPageCount == 0 ) {
 			$wgOut->addHtml( "<li>" . wfMsgHtml( 'importnopages' ) . "</li>\n" );
 		}
 		$wgOut->addHtml( "</ul>\n" );
