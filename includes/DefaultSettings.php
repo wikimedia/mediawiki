@@ -433,12 +433,13 @@ $wgSMTP				= false;
 $wgDBserver         = 'localhost';
 /** name of the database */
 $wgDBname           = 'wikidb';
+/** port number for databases that use them (e.g. postgres) */
+$wgDBport           = 5432;
 /** */
 $wgDBconnection     = '';
 /** Database username */
 $wgDBuser           = 'wikiuser';
 /** Database type
- * "mysql" for working code and "PostgreSQL" for development/broken code
  */
 $wgDBtype           = "mysql";
 /** Search type

@@ -14,13 +14,15 @@ require_once( 'PHPUnit.php' );
 
 $testOptions = array(
 	'mysql4' => array(
-		'server' => null,
-		'user' => null,
+		'server'   => null,
+		'port'     => null,
+		'user'     => null,
 		'password' => null,
 		'database' => null ),
 	'postgres' => array(
-		'server' => null,
-		'user' => null,
+		'server'   => null,
+		'port'     => null
+		'user'     => null,
 		'password' => null,
 		'database' => null ),
 	);

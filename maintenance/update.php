@@ -32,7 +32,7 @@ if( !isset( $wgDBadminuser ) || !isset( $wgDBadminpassword ) ) {
 
 # Attempt to connect to the database as a privileged user
 # This will vomit up an error if there are permissions problems
-$wgDatabase = $dbc->newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname, 1 );
+$wgDatabase = $dbc->newFromParams( $wgDBserver, $wgDBport, $wgDBadminuser, $wgDBadminpassword, $wgDBname, 1 );
 
 if( !$wgDatabase->isOpen() ) {
 	# Appears to have failed

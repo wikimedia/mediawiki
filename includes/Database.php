@@ -240,7 +240,7 @@ class Database {
 
 	protected $mLastQuery = '';
 
-	protected $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
+	protected $mServer, $mPort, $mUser, $mPassword, $mConn = null, $mDBname;
 	protected $mOut, $mOpened = false;
 
 	protected $mFailFunction;
@@ -371,6 +371,7 @@ class Database {
 
 	/**@{{
 	 * @param string $server database server host
+	 * @param string $port database server port
 	 * @param string $user database user name
 	 * @param string $password database user password
 	 * @param string $dbname database name
@@ -381,8 +382,8 @@ class Database {
 	 * @param $flags
 	 * @param $tablePrefix String: database table prefixes. By default use the prefix gave in LocalSettings.php
 	 */
-	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' ) {
+	function __construct( $server = false, $port = false, $user = false, $password = false, $dbName = false,
+		$failFunction = false, $flags = 0, $tablePrefix = 'get from global') {
 
 		global $wgOut, $wgDBprefix, $wgCommandLineMode;
 		# Can't get a reference if it hasn't been set yet
@@ -416,8 +417,8 @@ class Database {
 			$this->mTablePrefix = $tablePrefix;
 		}
 
-		if ( $server ) {
-			$this->open( $server, $user, $password, $dbName );
+		if ( $server or $port) {
+			$this->open( $server, $port, $user, $password, $dbName );
 		}
 	}
 
@@ -426,17 +427,17 @@ class Database {
 	 * @param failFunction
 	 * @param $flags
 	 */
-	static function newFromParams( $server, $user, $password, $dbName,
+	static function newFromParams( $server, $port, $user, $password, $dbName,
 		$failFunction = false, $flags = 0 )
 	{
-		return new Database( $server, $user, $password, $dbName, $failFunction, $flags );
+		return new Database( $server, $port, $user, $password, $dbName, $failFunction, $flags );
 	}
 
 	/**
 	 * Usually aborts on failure
 	 * If the failFunction is set to a non-zero integer, returns success
 	 */
-	function open( $server, $user, $password, $dbName ) {
+	function open( $server, $port, $user, $password, $dbName ) {
 		global $wguname;
 
 		# Test for missing mysql.so
@@ -1923,7 +1924,7 @@ class Database {
 	 */
 	protected function replaceVars( $ins ) {
 		$varnames = array(
-			'wgDBserver', 'wgDBname', 'wgDBintlname', 'wgDBuser',
+			'wgDBserver', 'wgDBport', 'wgDBname', 'wgDBintlname', 'wgDBuser',
 			'wgDBpassword', 'wgDBsqluser', 'wgDBsqlpassword',
 			'wgDBadminuser', 'wgDBadminpassword',
 		);
