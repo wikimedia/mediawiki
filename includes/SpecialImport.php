@@ -211,6 +211,9 @@ class WikiRevision {
 		if( $pageId == 0 ) {
 			# must create the page...
 			$pageId = $article->insertOn( $dbw );
+			$created = true;
+		} else {
+			$created = false;
 		}
 
 		# FIXME: Check for exact conflicts
@@ -232,8 +235,27 @@ class WikiRevision {
 			'minor_edit' => $this->minor,
 			) );
 		$revId = $revision->insertOn( $dbw );
-		$article->updateIfNewerOn( $dbw, $revision );
+		$changed = $article->updateIfNewerOn( $dbw, $revision );
 
+		if( $created ) {
+			wfDebug( __METHOD__ . ": running onArticleCreate\n" );
+			Article::onArticleCreate( $this->title );
+		} else {
+			if( $changed ) {
+				wfDebug( __METHOD__ . ": running onArticleEdit\n" );
+				Article::onArticleEdit( $this->title );
+			}
+		}
+		if( $created || $changed ) {
+			wfDebug( __METHOD__ . ": running edit updates\n" );
+			$article->editUpdates(
+				$this->getText(),
+				$this->getComment(),
+				$this->minor,
+				$this->timestamp,
+				$revId );
+		}
+		
 		return true;
 	}
 
