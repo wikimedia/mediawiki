@@ -584,6 +584,7 @@ Some default configuration options have changed:
   pages with more than $wgExportMaxHistory revisions are excluded from
   export when history is requested.
 * Fix transwiki import of pages with space in name
+* Save null edit when importing pages through Special:Import
 
 
 == Compatibility ==
