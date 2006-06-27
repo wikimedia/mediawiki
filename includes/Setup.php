@@ -147,6 +147,7 @@ wfProfileIn( $fname.'-database' );
 if ( !$wgDBservers ) {
 	$wgDBservers = array(array(
 		'host' => $wgDBserver,
+		'port' => $wgDBport,
 		'user' => $wgDBuser,
 		'password' => $wgDBpassword,
 		'dbname' => $wgDBname,

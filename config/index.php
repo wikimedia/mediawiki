@@ -476,13 +476,13 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 
 <?php
 	$conf->DBserver = importPost( "DBserver", "localhost" );
+	$conf->DBport = importPost( "DBport", "5432" );
 	$conf->DBname = importPost( "DBname", "wikidb" );
 	$conf->DBuser = importPost( "DBuser", "wikiuser" );
 	$conf->DBpassword = importPost( "DBpassword" );
 	$conf->DBpassword2 = importPost( "DBpassword2" );
 	$conf->DBprefix = importPost( "DBprefix" );
 	$conf->DBschema = importPost( "DBschema", "mediawiki" );
-	$conf->DBport = importPost( "DBport", "5432" );
 	$conf->DBmysql5 = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
 	$conf->RootUser = importPost( "RootUser", "root" );
 	$conf->RootPW = importPost( "RootPW", "-" );
@@ -620,7 +620,7 @@ error_reporting( E_ALL );
 			
 			# Attempt to connect
 			echo( "<li>Attempting to connect to database server as $db_user..." );
-			$wgDatabase = Database::newFromParams( $wgDBserver, $db_user, $db_pass, '', 1 );
+			$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBport, $db_user, $db_pass, '', 1 );
 
 			# Check the connection and respond to errors
 			if( $wgDatabase->isOpen() ) {
@@ -664,7 +664,7 @@ error_reporting( E_ALL );
 
 		} else /* not mysql */ {
 			echo( "<li>Attempting to connect to database server as $wgDBuser..." );
-			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1);
+			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBport, $wgDBuser, $wgDBpassword, $wgDBname, 1);
 			if (!$wgDatabase->isOpen()) {
 				print " error: " . $wgDatabase->lastError() . "</li>\n";
 			} else {
@@ -728,7 +728,7 @@ error_reporting( E_ALL );
 
 			# Create user if required
 			if ( $conf->Root ) {
-				$conn = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
+				$conn = $dbc->newFromParams( $wgDBserver, $wgDBport, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
 				if ( $conn->isOpen() ) {
 					print "<li>DB user account ok</li>\n";
 					$conn->close();
@@ -785,7 +785,7 @@ error_reporting( E_ALL );
 			# Set up the "regular user" account *if we can, and if we need to*
 			if( $conf->Root ) {
 				# See if we need to
-				$wgDatabase2 = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
+				$wgDatabase2 = $dbc->newFromParams( $wgDBserver, $wgDBport, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
 				if( $wgDatabase2->isOpen() ) {
 					# Nope, just close the test connection and continue
 					$wgDatabase2->close();
@@ -1340,6 +1340,7 @@ if ( \$wgCommandLineMode ) {
 \$wgEmailAuthentication = $eauthent;
 
 \$wgDBserver         = \"{$slconf['DBserver']}\";
+\$wgDBport           = \"{$slconf['DBport']}\";
 \$wgDBname           = \"{$slconf['DBname']}\";
 \$wgDBuser           = \"{$slconf['DBuser']}\";
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
