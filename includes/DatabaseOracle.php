@@ -40,7 +40,7 @@ class DatabaseOracle extends Database {
 		Database::Database( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
 	}
 
-	/* static */ function newFromParams( $server = false, $port = false, $user = false, $password = false, $dbName = false,
+	/* static */ function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
 		return new DatabaseOracle( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
