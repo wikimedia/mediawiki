@@ -22,6 +22,11 @@
  * @subpackage SpecialPage
  */
 
+class DumpDBZip2Output extends DumpPipeOutput {
+	function DumpDBZip2Output( $file ) {
+		parent::DumpPipeOutput( "dbzip2", $file );
+	}
+}
 
 class BackupDumper {
 	var $reportingInterval = 100;
@@ -44,6 +49,7 @@ class BackupDumper {
 		$this->registerOutput( 'file', 'DumpFileOutput' );
 		$this->registerOutput( 'gzip', 'DumpGZipOutput' );
 		$this->registerOutput( 'bzip2', 'DumpBZip2Output' );
+		$this->registerOutput( 'dbzip2', 'DumpDBZip2Output' );
 		$this->registerOutput( '7zip', 'Dump7ZipOutput' );
 
 		$this->registerFilter( 'latest', 'DumpLatestFilter' );
