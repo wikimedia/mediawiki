@@ -27,15 +27,15 @@ class DatabasePostgres extends Database {
 	var $mLastResult = NULL;
 
 	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
+		$failFunction = false, $flags = 0 )
 	{
-		Database::Database( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
+		Database::__construct( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 
-	/* static */ function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
+	static function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
+		$failFunction = false, $flags = 0)
 	{
-		return new DatabasePostgres( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
+		return new DatabasePostgres( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 
 	/**
@@ -65,6 +65,7 @@ class DatabasePostgres extends Database {
 			if ($server!=false && $server!="") {
 				$hstring="host=$server ";
 			}
+
 			@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
 			if ( $this->mConn == false ) {
 				wfDebug( "DB connection error\n" );
@@ -144,7 +145,14 @@ class DatabasePostgres extends Database {
 	}
 
 	function dataSeek( $res, $row ) { return pg_result_seek( $res, $row ); }
-	function lastError() { return pg_last_error(); }
+	function lastError() {
+		if ( $this->mConn ) {
+			return pg_last_error();
+		}
+		else {
+			return "No database connection";
+		}
+	}
 	function lastErrno() { return 1; }
 
 	function affectedRows() {
