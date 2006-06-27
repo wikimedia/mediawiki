@@ -30,17 +30,18 @@ require_once( 'Export.php' );
  */
 function wfSpecialExport( $page = '' ) {
 	global $wgOut, $wgRequest, $wgExportAllowListContributors;
-	global $wgExportAllowHistory;
+	global $wgExportAllowHistory, $wgExportMaxHistory;
 
+	$curonly = true;
 	if( $wgRequest->getVal( 'action' ) == 'submit') {
 		$page = $wgRequest->getText( 'pages' );
-		if( $wgExportAllowHistory ) {
-			$curonly = $wgRequest->getCheck( 'curonly' );
-		} else {
-			$curonly = true;
-		}
-	} else {
-		# Pre-check the 'current version only' box in the UI
+		$curonly = $wgRequest->getCheck( 'curonly' );
+	}
+	if( $wgRequest->getCheck( 'history' ) ) {
+		$curonly = false;
+	}
+	if( !$wgExportAllowHistory ) {
+		// Override
 		$curonly = true;
 	}
 	
@@ -49,6 +50,15 @@ function wfSpecialExport( $page = '' ) {
 
 	if( $page != '' ) {
 		$wgOut->disable();
+		
+		// Cancel output buffering and gzipping if set
+		// This should provide safer streaming for pages with history
+		while( $status = ob_get_status() ) {
+			ob_end_clean();
+			if( $status['name'] == 'ob_gzhandler' ) {
+				header( 'Content-Encoding:' );
+			}
+		}
 		header( "Content-type: application/xml; charset=utf-8" );
 		$pages = explode( "\n", $page );
 
@@ -57,7 +67,22 @@ function wfSpecialExport( $page = '' ) {
 		$exporter = new WikiExporter( $db, $history );
 		$exporter->list_authors = $list_authors ;
 		$exporter->openStream();
-		$exporter->pagesByName( $pages );
+		
+		foreach( $pages as $page ) {
+			if( $wgExportMaxHistory && !$curonly ) {
+				$title = Title::newFromText( $page );
+				if( $title ) {
+					$count = Revision::countByTitle( $db, $title );
+					if( $count > $wgExportMaxHistory ) {
+						wfDebug( __FUNCTION__ .
+							": Skipped $page, $count revisions too big\n" );
+						continue;
+					}
+				}
+			}
+			$exporter->pagesByName( $pages );
+		}
+		
 		$exporter->closeStream();
 		return;
 	}

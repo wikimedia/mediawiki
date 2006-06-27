@@ -576,6 +576,14 @@ Some default configuration options have changed:
 * (bug 2483) Run link updates on change via XML import
 * (bug 2481) List imported pages during Special:Import
 * (bug 2482) Log and RC entries for Special:Import events
+* Allow fetching all revisions from transwiki Special:Import
+* Allow fetching all revisions from Special:Export GET request
+* Disable output buffering on Special:Export; should help with streaming
+  large numbers of history items.
+* Allow setting a maximum number of revisions for history Special:Export;
+  pages with more than $wgExportMaxHistory revisions are excluded from
+  export when history is requested.
+* Fix transwiki import of pages with space in name
 
 
 == Compatibility ==

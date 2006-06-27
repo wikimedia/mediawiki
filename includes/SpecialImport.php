@@ -48,10 +48,12 @@ function wfSpecialImport( $page = '' ) {
 			}
 			break;
 		case "interwiki":
-			$interwiki = $wgRequest->getVal( "interwiki" );
+			$interwiki = $wgRequest->getVal( 'interwiki' );
+			$history = $wgRequest->getCheck( 'interwikiHistory' );
 			$source = ImportStreamSource::newFromInterwiki(
 				$interwiki,
-				$wgRequest->getText( "frompage" ) );
+				$wgRequest->getText( "frompage" ),
+				$history );
 			break;
 		default:
 			$source = new WikiError( "Unknown import source type" );
@@ -105,19 +107,39 @@ function wfSpecialImport( $page = '' ) {
 		$wgOut->addHTML( "
 <fieldset>
 	<legend>" . wfMsgHtml('importinterwiki') . "</legend>
-	<form method='post' action=\"$action\">
+	<form method='post' action=\"$action\">" .
+		$wgOut->parse( wfMsg( 'import-interwiki-text' ) ) . "
 		<input type='hidden' name='action' value='submit' />
 		<input type='hidden' name='source' value='interwiki' />
-		<select name='interwiki'>
-" );
+		<table>
+			<tr>
+				<td>
+					<select name='interwiki'>" );
 		foreach( $wgImportSources as $interwiki ) {
 			$iw = htmlspecialchars( $interwiki );
 			$wgOut->addHTML( "<option value=\"$iw\">$iw</option>\n" );
 		}
 		$wgOut->addHTML( "
-		</select>
-		<input name='frompage' />
-		<input type='submit' />
+					</select>
+				</td>
+				<td>" .
+					wfInput( 'frompage', 40 ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>" .
+					wfCheckLabel( wfMsg( 'import-interwiki-history' ),
+						'interwikiHistory', 'interwikiHistory', true ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>" .
+					wfSubmitButton( wfMsg( 'import-interwiki-submit' ) ) .
+				"</td>
+			</tr>
+		</table>
 	</form>
 </fieldset>
 " );
@@ -705,6 +727,7 @@ class ImportStreamSource {
 	}
 
 	function newFromURL( $url ) {
+		wfDebug( __METHOD__ . ": opening $url\n" );
 		# fopen-wrappers are normally turned off for security.
 		ini_set( "allow_url_fopen", true );
 		$ret = ImportStreamSource::newFromFile( $url );
@@ -712,13 +735,14 @@ class ImportStreamSource {
 		return $ret;
 	}
 
-	function newFromInterwiki( $interwiki, $page ) {
+	function newFromInterwiki( $interwiki, $page, $history=false ) {
 		$base = Title::getInterwikiLink( $interwiki );
-		if( empty( $base ) ) {
+		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
+		if( empty( $base ) || empty( $link ) ) {
 			return new WikiError( 'Bad interwiki link' );
 		} else {
-			$import = wfUrlencode( "Special:Export/$page" );
-			$url = str_replace( "$1", $import, $base );
+			$params = $history ? 'history=1' : '';
+			$url = $link->getFullUrl( $params );
 			return ImportStreamSource::newFromURL( $url );
 		}
 	}
