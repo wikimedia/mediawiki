@@ -1802,7 +1802,14 @@ $wgHooks = array();
  * an action, which is a specific kind of event that can exist in that
  * log type.
  */
-$wgLogTypes = array( '', 'block', 'protect', 'rights', 'delete', 'upload', 'move' );
+$wgLogTypes = array( '',
+	'block',
+	'protect',
+	'rights',
+	'delete',
+	'upload',
+	'move',
+	'import' );
 
 /**
  * Lists the message key string for each log type. The localized messages
@@ -1817,7 +1824,8 @@ $wgLogNames = array(
 	'rights'  => 'rightslog',
 	'delete'  => 'dellogpage',
 	'upload'  => 'uploadlogpage',
-	'move'    => 'movelogpage' );
+	'move'    => 'movelogpage',
+	'import'  => 'importlogpage' );
 
 /**
  * Lists the message key string for descriptive text to be shown at the
@@ -1832,7 +1840,8 @@ $wgLogHeaders = array(
 	'rights'  => 'rightslogtext',
 	'delete'  => 'dellogpagetext',
 	'upload'  => 'uploadlogpagetext',
-	'move'    => 'movelogpagetext' );
+	'move'    => 'movelogpagetext',
+	'import'  => 'importlogpagetext', );
 
 /**
  * Lists the message key string for formatting individual events of each
@@ -1852,7 +1861,9 @@ $wgLogActions = array(
 	'upload/upload'     => 'uploadedimage',
 	'upload/revert'     => 'uploadedimage',
 	'move/move'         => '1movedto2',
-	'move/move_redir'   => '1movedto2_redir' );
+	'move/move_redir'   => '1movedto2_redir',
+	'import/upload'     => 'import-logentry-upload',
+	'import/interwiki'  => 'import-logentry-interwiki' );
 
 /**
  * Experimental preview feature to fetch rendered text

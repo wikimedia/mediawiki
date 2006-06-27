@@ -1468,6 +1468,14 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{int:m
 'importnofile' => 'No import file was uploaded.',
 'importuploaderror' => 'Upload of import file failed; perhaps the file is bigger than the allowed upload size.',
 
+# import log
+'importlogpage' => 'Import log',
+'importlogpagetext' => 'Administrative imports of pages with edit history from other wikis.',
+'import-logentry-upload' => 'imported $1 by file upload',
+'import-logentry-interwiki' => 'transwikied $1',
+'import-logentry-interwiki-source' => 'from $1',
+
+
 # Keyboard access keys for power users
 'accesskey-search' => 'f',
 'accesskey-minoredit' => 'i',

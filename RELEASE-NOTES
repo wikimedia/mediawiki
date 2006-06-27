@@ -575,6 +575,7 @@ Some default configuration options have changed:
 * dumpBackup can optionally compress via dbzip2
 * (bug 2483) Run link updates on change via XML import
 * (bug 2481) List imported pages during Special:Import
+* (bug 2482) Log and RC entries for Special:Import events
 
 
 == Compatibility ==
