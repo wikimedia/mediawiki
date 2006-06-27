@@ -574,6 +574,7 @@ Some default configuration options have changed:
 * Update to Piedmontese localization (pms)
 * dumpBackup can optionally compress via dbzip2
 * (bug 2483) Run link updates on change via XML import
+* (bug 2481) List imported pages during Special:Import
 
 
 == Compatibility ==
