@@ -572,6 +572,8 @@ Some default configuration options have changed:
   if it's not there, instead of throwing a fatal error
 * (bug 672) Add MathAfterTexvc hook
 * Update to Piedmontese localization (pms)
+* dumpBackup can optionally compress via dbzip2
+
 
 == Compatibility ==
 
