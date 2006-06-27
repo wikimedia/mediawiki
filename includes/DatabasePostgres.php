@@ -7,9 +7,6 @@
  * than MySQL ones, some of them should be moved to parent
  * Database class.
  *
- * STATUS: Working PG implementation of MediaWiki
- * TODO: Installer support
- *
  * @package MediaWiki
  */
 
@@ -18,10 +15,6 @@
  */
 require_once( 'Database.php' );
 
-/**
- *
- * @package MediaWiki
- */
 class DatabasePostgres extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
@@ -191,6 +184,7 @@ class DatabasePostgres extends Database {
 	}
 
 	function fieldInfo( $table, $field ) {
+		return false;
 		throw new DBUnexpectedError($this,  'Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre' );
 		/*
 		$res = $this->query( "SELECT * FROM '$table' LIMIT 1" );
@@ -439,6 +433,41 @@ class DatabasePostgres extends Database {
 		$searchpath=$this->makeList($schemas,LIST_NAMES);
 		$this->query("SET search_path = $searchpath");
 	}
+
+	/**
+	 * Query whether a given table exists
+	 */
+	function tableExists( $table, $fname = 'DatabasePostgres:tableExists' ) {
+		global $wgDBschema;
+		$stable = preg_replace("/'/", "''", $table);
+		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
+			. "WHERE c.relnamespace = n.oid AND c.relname = '$stable AND n.nspname = '$wgDBschema'";
+		$res = $this->query( $SQL, $fname );
+		if ($res) {
+			$this->freeResult( $res );
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Query whether a given column exists
+	 */
+	function fieldExists( $table, $field, $fname = 'DatabasePostgres::fieldExists' ) {
+		global $wgDBschema;
+		$stable = preg_replace("/'/", "''", $table);
+		$scol = preg_replace("/'/", "''", $field);
+		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n, pg_catalog.pg_attribute a "
+			. "WHERE c.relnamespace = n.oid AND c.relname = '$stable' AND n.nspname = '$wgDBschema' "
+			. "AND a.attrelid = c.oid AND a.attname = '$safecol'";
+		$res = $this->query( $SQL, $fname );
+		if ($res) {
+			$this->freeResult( $res );
+			return true;
+		}
+		return false;
+	}
+
 }
 
 ?>
