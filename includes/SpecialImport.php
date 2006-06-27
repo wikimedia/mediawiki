@@ -151,7 +151,7 @@ function wfSpecialImport( $page = '' ) {
  */
 class ImportReporter {
 	function __construct( $importer, $upload, $interwiki ) {
-		$importer->setPageCallback( array( $this, 'reportPage' ) );
+		$importer->setPageOutCallback( array( $this, 'reportPage' ) );
 		$this->mPageCount = 0;
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
@@ -162,23 +162,40 @@ class ImportReporter {
 		$wgOut->addHtml( "<ul>\n" );
 	}
 	
-	function reportPage( $pageName ) {
-		global $wgOut, $wgUser;
+	function reportPage( $pageName, $revisionCount ) {
+		global $wgOut, $wgUser, $wgLang, $wgContLang;
+		
 		$skin = $wgUser->getSkin();
 		$title = Title::newFromText( $pageName );
+		
 		$this->mPageCount++;
 		
-		$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) . "</li>\n" );
+		$localCount = $wgLang->formatNum( $revisionCount );
+		$contentCount = $wgContLang->formatNum( $revisionCount );
+		
+		$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) .
+			" " .
+			wfMsgHtml( 'import-revision-count', $localCount ) .
+			"</li>\n" );
 		
 		$log = new LogPage( 'import' );
 		if( $this->mIsUpload ) {
-			$log->addEntry( 'upload', $title, '' );
+			$detail = wfMsgForContent( 'import-logentry-upload-detail',
+				$contentCount );
+			$log->addEntry( 'upload', $title, $detail );
 		} else {
 			$interwiki = '[[:' . $this->mInterwiki . ':' .
 				$title->getPrefixedText() . ']]';
-			$log->addEntry( 'interwiki', $title,
-				wfMsg( 'import-logentry-interwiki-source', $interwiki ) );
+			$detail = wfMsgForContent( 'import-logentry-interwiki-detail',
+				$contentCount, $interwiki );
+			$log->addEntry( 'interwiki', $title, $detail );
 		}
+		
+		$comment = $detail; // quick
+		$dbw = wfGetDB( DB_MASTER );
+		$nullRevision = Revision::newNullRevision(
+			$dbw, $title->getArticleId(), $comment, true );
+		$nullRevId = $nullRevision->insertOn( $dbw );
 	}
 	
 	function close() {
@@ -347,6 +364,7 @@ class WikiRevision {
 class WikiImporter {
 	var $mSource = null;
 	var $mPageCallback = null;
+	var $mPageOutCallback = null;
 	var $mRevisionCallback = null;
 	var $lastfield;
 
@@ -415,6 +433,18 @@ class WikiImporter {
 	}
 
 	/**
+	 * Sets the action to perform as each page in the stream is completed.
+	 * Callback accepts the page title and a count of revisions.
+	 * @param callable $callback
+	 * @return callable
+	 */
+	function setPageOutCallback( $callback ) {
+		$previous = $this->mPageOutCallback;
+		$this->mPageOutCallback = $callback;
+		return $previous;
+	}
+
+	/**
 	 * Sets the action to perform as each page revision is reached.
 	 * @param callable $callback
 	 * @return callable
@@ -464,6 +494,18 @@ class WikiImporter {
 		}
 	}
 
+	/**
+	 * Notify the callback function when a </page> is closed.
+	 * @param Title $title
+	 * @param int $revisionCount
+	 * @private
+	 */
+	function pageOutCallback( $title, $revisionCount ) {
+		if( is_callable( $this->mPageOutCallback ) ) {
+			call_user_func( $this->mPageOutCallback, $title, $revisionCount );
+		}
+	}
+
 
 	# XML parser callbacks from here out -- beware!
 	function donothing( $parser, $x, $y="" ) {
@@ -483,6 +525,7 @@ class WikiImporter {
 		if( $name == 'siteinfo' ) {
 			xml_set_element_handler( $parser, "in_siteinfo", "out_siteinfo" );
 		} elseif( $name == 'page' ) {
+			$this->workRevisionCount = 0;
 			xml_set_element_handler( $parser, "in_page", "out_page" );
 		} else {
 			return $this->throwXMLerror( "Expected <page>, got <$name>" );
@@ -535,6 +578,7 @@ class WikiImporter {
 		case "revision":
 			$this->workRevision = new WikiRevision;
 			$this->workRevision->setTitle( $this->workTitle );
+			$this->workRevisionCount++;
 			xml_set_element_handler( $parser, "in_revision", "out_revision" );
 			break;
 		default:
@@ -549,8 +593,11 @@ class WikiImporter {
 		}
 		xml_set_element_handler( $parser, "in_mediawiki", "out_mediawiki" );
 
+		$this->pageOutCallback( $this->workTitle, $this->workRevisionCount );
+		
 		$this->workTitle = NULL;
 		$this->workRevision = NULL;
+		$this->workRevisionCount = 0;
 	}
 
 	function in_nothing( $parser, $name, $attribs ) {

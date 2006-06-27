@@ -1464,6 +1464,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'import-interwiki-submit' => 'Import',
 'importtext'	=> 'Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.',
 'importstart'	=> "Importing pages...",
+'import-revision-count' => '$1 revision(s)',
 'importnopages'	=> "No pages to import.",
 'importfailed'	=> "Import failed: $1",
 'importnotext'	=> 'Empty or no text',
@@ -1477,8 +1478,9 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'importlogpage' => 'Import log',
 'importlogpagetext' => 'Administrative imports of pages with edit history from other wikis.',
 'import-logentry-upload' => 'imported $1 by file upload',
+'import-logentry-upload-detail' => '$1 revision(s)',
 'import-logentry-interwiki' => 'transwikied $1',
-'import-logentry-interwiki-source' => 'from $1',
+'import-logentry-interwiki-detail' => '$1 revision(s) from $2',
 
 
 # Keyboard access keys for power users
