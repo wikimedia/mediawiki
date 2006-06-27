@@ -267,8 +267,8 @@ class Database {
 	 * Output page, used for reporting errors
 	 * FALSE means discard output
 	 */
-	function &setOutputPage( &$out ) {
-		$this->mOut =& $out;
+	function setOutputPage( $out ) {
+		$this->mOut = $out;
 	}
 
 	/**
