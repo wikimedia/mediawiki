@@ -6,6 +6,7 @@
 -- Please make sure all dollar-quoting uses $mw$ at the start of the line
 -- We can't use SERIAL everywhere: the sequence names are hard-coded into the PHP
 -- TODO: Change CHAR to BOOL, TEXT to CIDR, allow custom schema
+-- TODO: Remove the hardcoded schemas below, enforce through ALTER USER
 
 SET client_min_messages = 'ERROR';
 DROP SCHEMA mediawiki CASCADE;
