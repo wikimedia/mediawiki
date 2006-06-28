@@ -79,9 +79,9 @@ class NamespaceConflictChecker {
 	/**
 	 * @fixme: do this for reals
 	 */
-	function checkInterwiki( $prefix, $fix, $suffix = '' ) {
-		echo "Checking interwiki prefix \"$prefix\"\n";
-		return $this->checkNamespace( 0, $prefix, $fix, $suffix );
+	function checkPrefix( $key, $prefix, $fix, $suffix = '' ) {
+		echo "Checking prefix \"$prefix\" vs namespace $key\n";
+		return $this->checkNamespace( $key, $prefix, $fix, $suffix );
 	}
 
 	function getConflicts( $ns, $name ) {
@@ -173,11 +173,12 @@ $wgTitle = Title::newFromText( 'Namespace title conflict cleanup script' );
 $fix = isset( $options['fix'] );
 $suffix = isset( $options['suffix'] ) ? $options['suffix'] : '';
 $prefix = isset( $options['prefix'] ) ? $options['prefix'] : '';
+$key = isset( $options['key'] ) ? intval( $options['key'] ) : 0;
 $dbw =& wfGetDB( DB_MASTER );
 $duper = new NamespaceConflictChecker( $dbw );
 
 if( $prefix ) {
-	$retval = $duper->checkInterwiki( $prefix, $fix, $suffix );
+	$retval = $duper->checkPrefix( $key, $prefix, $fix, $suffix );
 } else {
 	$retval = $duper->checkAll( $fix, $suffix );
 }
