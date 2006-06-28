@@ -586,6 +586,7 @@ Some default configuration options have changed:
 * Fix transwiki import of pages with space in name
 * Save null edit when importing pages through Special:Import
 * Update to Korean translation (ko)
+* Show a more specific message when an anonymous user tries to access Special:Watchlist
 
 == Compatibility ==
 

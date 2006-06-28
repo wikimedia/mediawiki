@@ -22,16 +22,19 @@ function wfSpecialWatchlist( $par ) {
 	global $wgEnotifWatchlist;
 	$fname = 'wfSpecialWatchlist';
 
-	$wgOut->setPagetitle( wfMsg( 'watchlist' ) );
-	$sub = htmlspecialchars( wfMsg( 'watchlistsub', $wgUser->getName() ) );
-	$wgOut->setSubtitle( $sub );
-	$wgOut->setRobotpolicy( 'noindex,nofollow' );
-
+	$skin =& $wgUser->getSkin();
 	$specialTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
+	$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
+	# Anons don't get a watchlist
 	if( $wgUser->isAnon() ) {
-		$wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
+		$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
+		$llink = $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Userlogin' ), wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
+		$wgOut->addHtml( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
 		return;
+	} else {
+		$wgOut->setPageTitle( wfMsg( 'watchlist' ) );
+		$wgOut->setSubtitle( wfMsgWikiHtml( 'watchlistfor', htmlspecialchars( $wgUser->getName() ) ) );
 	}
 
 	if( wlHandleClear( $wgOut, $wgRequest, $par ) ) {
