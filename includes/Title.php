@@ -2009,19 +2009,24 @@ class Title {
 
 		if ( !$obj || 0 == $obj->page_is_redirect ) {
 			# Not a redirect
+			wfDebug( __METHOD__ . ": not a redirect\n" );
 			return false;
 		}
 		$text = Revision::getRevisionText( $obj );
 
 		# Does the redirect point to the source?
+		# Or is it a broken self-redirect, usually caused by namespace collisions?
 		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $text, $m ) ) {
 			$redirTitle = Title::newFromText( $m[1] );
 			if( !is_object( $redirTitle ) ||
-				$redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() ) {
+				( $redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() &&
+				$redirTitle->getPrefixedDBkey() != $nt->getPrefixedDBkey() ) ) {
+				wfDebug( __METHOD__ . ": redirect points to other page\n" );
 				return false;
 			}
 		} else {
 			# Fail safe
+			wfDebug( __METHOD__ . ": failsafe\n" );
 			return false;
 		}
 
