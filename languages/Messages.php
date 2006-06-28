@@ -1045,10 +1045,10 @@ or has chosen not to receive e-mail from other users.',
 'emailsenttext' => 'Your e-mail message has been sent.',
 
 # Watchlist
-#
 'watchlist'			=> 'My watchlist',
-'watchlistsub'		=> "(for user \"$1\")",
+'watchlistfor' => "(for '''$1''')",
 'nowatchlist'		=> 'You have no items on your watchlist.',
+'watchlistanontext' => 'Please $1 to view or edit items on your watchlist.',
 'watchlistcount' 	=> "'''You have $1 items on your watchlist, including talk pages.'''",
 'clearwatchlist' 	=> 'Clear watchlist',
 'watchlistcleartext' => 'Are you sure you wish to remove them?',
