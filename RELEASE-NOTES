@@ -590,6 +590,7 @@ Some default configuration options have changed:
 * (bug 3278) Paging links in Special:Prefixindex
 * Added Latvian localization (lv)
 * (bug 6472) Fix regression in Special:Export with multiple pages
+* Update to Macedonian translation (mk)
 
 
 == Compatibility ==
