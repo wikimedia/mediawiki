@@ -582,6 +582,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDBadminuser = "root";
 		$wgDBadminpassword = $conf->RootPW;
 		$wgDBprefix = $conf->DBprefix;
+		$wgDBport = $conf->DBport;
 		$wgCommandLineMode = true;
 		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
 		require_once( "includes/Setup.php" );
@@ -725,8 +726,8 @@ error_reporting( E_ALL );
 		if( $wgDatabase->tableExists( "cur" ) || $wgDatabase->tableExists( "revision" ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
 
-			# Create user if required
-			if ( $conf->Root ) {
+			# Create user if required (todo: other databases)
+			if ( $conf->Root && $conf->DBtype == 'mysql') {
 				$conn = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
 				if ( $conn->isOpen() ) {
 					print "<li>DB user account ok</li>\n";
