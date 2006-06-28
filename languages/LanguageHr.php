@@ -15,20 +15,20 @@ class LanguageHr extends LanguageUtf8 {
 	private $mMessagesHr, $mNamespaceNamesHr = null;
 
 	private $mQuickbarSettingsHr = array(
-	'Bez', 'Lijevo nepomično', 'Desno nepomično', 'Lijevo leteće'
+		'Bez', 'Lijevo nepomično', 'Desno nepomično', 'Lijevo leteće'
 	);
 	
 	private $mSkinNamesHr = array(
-	'standard'  => 'Standardna',
-	'nostalgia'  => 'Nostalgija',
-	'cologneblue'  => 'Kölnska plava',
-	'smarty'  => 'Paddington',
-	'montparnasse'  => 'Montparnasse',
-	'davinci'  => 'DaVinci',
-	'mono'   => 'Mono',
-	'monobook'  => 'MonoBook',
-	'myskin'  => 'MySkin',
-	'chick'  => 'Chick'
+		'standard'  => 'Standardna',
+		'nostalgia'  => 'Nostalgija',
+		'cologneblue'  => 'Kölnska plava',
+		'smarty'  => 'Paddington',
+		'montparnasse'  => 'Montparnasse',
+		'davinci'  => 'DaVinci',
+		'mono'   => 'Mono',
+		'monobook'  => 'MonoBook',
+		'myskin'  => 'MySkin',
+		'chick'  => 'Chick'
 	);
 
 	function __construct() {
@@ -107,6 +107,10 @@ class LanguageHr extends LanguageUtf8 {
  	function fallback8bitEncoding() {
 		return 'iso-8859-2';
  	}
+
+	function linkTrail() {
+		return '/^([čšžćđßa-z]+)(.*)$/sDu';
+	}
 
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
 		$count = str_replace ('.', '', $count);
