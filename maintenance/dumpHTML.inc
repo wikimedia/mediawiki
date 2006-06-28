@@ -41,6 +41,9 @@ class DumpHTML {
 
 	# List of raw pages used in the current article
 	var $rawPages;
+	
+	# Skin to use
+	var $skin = 'dumphtml';
 
 	function DumpHTML( $settings ) {
 		foreach ( $settings as $var => $value ) {
@@ -344,7 +347,7 @@ class DumpHTML {
 		}
 
 		$wgUser = new User;
-		$wgUser->setOption( 'skin', 'htmldump' );
+		$wgUser->setOption( 'skin', $this->skin );
 		$wgUser->setOption( 'editsection', 0 );
 
 		$this->sharedStaticPath = "$wgUploadDirectory/shared";

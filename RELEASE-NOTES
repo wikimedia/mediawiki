@@ -595,7 +595,7 @@ Some default configuration options have changed:
   as part of namespace rearrangements, and it's easier to clean them up if
   we can move over them.
 * Show some error results in moveBatch.php
-
+* (bug 6479) Allow specification of the skin to use during HTML dumps
 
 == Compatibility ==
 
