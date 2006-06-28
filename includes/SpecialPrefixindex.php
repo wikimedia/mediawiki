@@ -16,6 +16,7 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 
 	# GET values
 	$from = $wgRequest->getVal( 'from' );
+	$prefix = $wgRequest->getVal( 'prefix' );
 	$namespace = $wgRequest->getInt( 'namespace' );
 
 	$namespaces = $wgContLang->getNamespaces();
@@ -31,12 +32,15 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 		);
 
 
+
 	if ( isset($par) ) {
-		$indexPage->showChunk( $namespace, $par, $specialPage->including() );
+		$indexPage->showChunk( $namespace, $par, $specialPage->including(), $from );
+	} elseif ( isset($prefix) ) {
+		$indexPage->showChunk( $namespace, $prefix, $specialPage->including(), $from );
 	} elseif ( isset($from) ) {
-		$indexPage->showChunk( $namespace, $from, $specialPage->including() );
+		$indexPage->showChunk( $namespace, $from, $specialPage->including(), $from );
 	} else {
-		$wgOut->addHtml($indexPage->namespaceForm ( $namespace, $from ));
+		$wgOut->addHtml($indexPage->namespaceForm ( $namespace, null ));
 	}
 }
 
@@ -51,18 +55,21 @@ class SpecialPrefixindex extends SpecialAllpages {
  * @param integer $namespace (Default NS_MAIN)
  * @param string $from list all pages from this name (default FALSE)
  */
-function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
+function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = null ) {
 	global $wgOut, $wgUser, $wgContLang;
 
 	$fname = 'indexShowChunk';
 
 	$sk = $wgUser->getSkin();
 
-	$fromTitle = Title::newFromURL( $from );
-	if ($namespace == NS_MAIN and $fromTitle) {
-		$namespace = $fromTitle->getNamespace();
+	$prefixTitle = Title::newFromURL( $prefix );
+	if ($namespace == NS_MAIN and $prefixTitle) {
+		$namespace = $prefixTitle->getNamespace();
 	}
+	$prefixKey = is_null( $prefixTitle ) ? '' : $prefixTitle->getDBkey();
 
+	if (!isset($from)) $from = $prefix;
+	$fromTitle = Title::newFromURL( $from );
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -71,7 +78,8 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		array( 'page_namespace', 'page_title', 'page_is_redirect' ),
 		array(
 			'page_namespace' => $namespace,
-			'page_title LIKE \'' . $dbr->escapeLike( $fromKey ) .'%\''
+			'page_title LIKE \'' . $dbr->escapeLike( $prefixKey ) .'%\'',
+			'page_title >= ' . $dbr->addQuotes( $fromKey ),
 		),
 		$fname,
 		array(
@@ -113,7 +121,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	if ( $including ) {
 		$out2 = '';
 	} else {
-		$nsForm = $this->namespaceForm ( $namespace, $from );
+		$nsForm = $this->namespaceForm ( $namespace, $prefix );
 		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
@@ -124,7 +132,8 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 			$out2 .= " | " . $sk->makeKnownLink(
 				$wgContLang->specialPage( $this->name ),
 				wfMsg ( 'nextpage', $s->page_title ),
-				"from=" . wfUrlEncode ( $s->page_title ) . $namespaceparam );
+				"from=" . wfUrlEncode ( $s->page_title ) .
+				"&prefix=" . wfUrlEncode ( $prefix ) . $namespaceparam );
 		}
 		$out2 .= "</td></tr></table><hr />";
 	}

@@ -587,6 +587,7 @@ Some default configuration options have changed:
 * Save null edit when importing pages through Special:Import
 * Update to Korean translation (ko)
 * Show a more specific message when an anonymous user tries to access Special:Watchlist
+* (bug 3278) Paging links in Special:Prefixindex
 
 == Compatibility ==
 
