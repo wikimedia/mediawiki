@@ -380,11 +380,9 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
 'emailconfirmlink' 	=> 'E-Mail-Adresse bestätigen (authentifizieren).',
 'emailauthenticated' 	=> 'Ihre E-Mail-Adresse wurde am $1 authentifiziert.',
-'emailnotauthenticated'	=> 'Ihre E-Mail-Adresse ist <strong>noch nicht authentifiziert</strong> und die erweiterten E-Mailfunktionen sind bis zur Authentifizierung ohne Funktion <strong>(aus)</strong>.<br />
-Für die Authentifizierung melden Sie sich bitte mit dem per E-Mail geschickten temporären Passwort an, oder fordern Sie auf der Anmeldeseite ein neues an.',
+'emailnotauthenticated'	=> 'Ihre E-Mail-Adresse ist <strong>noch nicht authentifiziert</strong>. Es wird Ihnen keine E-Mail für eine der folgenden Funktionen zugesendet.',
 'invalidemailaddress'	=> 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte geben Sie eine Adresse in einem gültigen Format ein, oder leeren Sie das Feld.',
-'noemailprefs'	=> '<strong>Sie haben keine E-Mail-Adresse angegeben</strong>, die folgenden
-Funktionen sind zur Zeit deshalb nicht möglich.',
+'noemailprefs'		=> 'Geben Sie eine E-Mail-Adresse an, damit diese Funktionen zur Verfügung stehen.',
 'wrongpasswordempty'	=> 'Das eingegebene Passwort war leer. Bitte versuchen Sie es erneut.',
 
 # Edit pages
@@ -884,8 +882,9 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 # Beobachtungsliste
 #
 "watchlist"		=> "Beobachtungsliste",
-'watchlistsub'		=> '(für Benutzer „$1“)',
+'watchlistfor'		=> '(für \'\'\'$1\'\'\')',
 "nowatchlist"	=> "Sie haben keine Einträge auf Ihrer Beobachtungsliste.",
+'watchlistanontext'	=> 'Sie müssen sich $1, damit Sie Einträge in Ihrer Beobachtungsliste ansehen oder bearbeiten können.',	// $1 -> 'loginreqlink'
 'watchlistcount'	=> "'''Sie haben $1 Einträge auf Ihrer Beobachtungsliste einschließlich Diskussionsseiten.'''",
 'clearwatchlist'	=> 'Beobachtungsliste löschen',
 'watchlistcleartext'	=> 'Sind Sie sicher, dass Sie diese vollständig löschen wollen?',
@@ -1198,6 +1197,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 'exportnohistory' => '----
 \'\'\'Hinweis:\'\'\' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.',
+'export-submit'		=> 'Seiten exportieren',
 "missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>",
 'filemissing' => 'Datei fehlt',
 'thumbnail_error' => 'Fehler beim Erstellen des Vorschaubildes: $1',
@@ -1339,14 +1339,33 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 # Special:Import
 'import'		=> 'Seiten importieren',
 'importinterwiki'	=> 'Transwiki Import',
+'import-interwiki-text'	=> 'Wählen Sie ein Wiki und eine Seite zum Importieren aus.
+Das Datum der jeweiligen Versionen und die Authoren bleiben erhalten.
+Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logbuch]] protokolliert.',
+'import-interwiki-history'	=> 'Alle Versionen dieser Seite kopieren',
+'import-interwiki-submit'	=> 'Import',
 'importtext'		=> 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
+'importstart'		=> 'Importiere Seiten...',
+'import-revision-count'	=> '$1 Version(en)',
+'importnopages'		=> 'Keine Seiten zum Importieren.',
 'importfailed'		=> 'Import fehlgeschlagen: $1',
+'importunknownsource'	=> 'Unbekannte Importquelle',
+'importcantopen'	=> 'Konnte Importdatei nicht öffnen',
+'importbadinterwiki'	=> 'Falscher Interwiki Link',
 'importnotext'		=> 'Leer oder kein Text',
 'importsuccess'		=> 'Import erfolgreich!',
 'importhistoryconflict'	=> 'Es existieren bereits ältere Versionen, die mit diesen kollidieren. (Möglicherweise wurde die Seite bereits vorher importiert)',
 'importnosources'	=> 'Für den Transwiki Import sind keine Quellen definiert. Das direkte Hochladen von Versionen ist blockiert.',
 'importnofile'		=> 'Es ist keine Importdatei ausgewählt worden!',
 'importuploaderror'	=> 'Das Hochladen der Importdatei ist fehlgeschlagen. Vielleicht ist die Datei größer als erlaubt.',
+
+# import log
+'importlogpage'		=> 'Import-Logbuch',
+'importlogpagetext'	=> 'Administrativer Import von Seiten mit Versionsgeschichte von anderen Wikis.',
+'import-logentry-upload'	=> '$1 wurde importiert',
+'import-logentry-upload-detail'	=> '$1 Version(en)',
+#'import-logentry-interwiki'	=> 'transwikied $1',
+'import-logentry-interwiki-detail'	=> '$1 Version(en) von $2',
 
 "isbn"			=> "ISBN",
 "siteuser" => "{{SITENAME}}-Benutzer $1",
@@ -1672,7 +1691,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'confirmemail_subject'	=> '[{{SITENAME}}] Bestätigung Ihrer E-Mail-Adresse',
 'confirmemail_body'	=> 'Hallo,
 
-jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat eine Bestätigung dieser E-Mail-Adresse für das Benutzerkonto „$2“ für {{SITENAME}} angefordert.
+jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat eine Bestätigung dieser E-Mail-Adresse für das Benutzerkonto "$2" für {{SITENAME}} angefordert.
 
 Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen, dass dieses Benutzerkonto wirklich zu Ihrer E-Mail-Adresse und damit zu Ihnen gehört, öffnen Sie bitte folgenden Link in Ihrem Browser: $3
 
