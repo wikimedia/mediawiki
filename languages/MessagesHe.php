@@ -1297,16 +1297,32 @@ $NEWPAGE
 "thumbnail_error" => "שגיאה ביצירת תמונה ממוזערת: $1",
 
 # Special:Import
-"import"                => "ייבוא דפים",
-"importinterwiki"       => "ייבוא בין־אתרי",
-"importtext"            => "אנא ייצאו את הקובץ מאתר המקור תוך שימוש בעזר הייצוא, שמרו אותו לדיסק הקשיח שלכם והעלו אותו לכאן.",
-"importfailed"          => "הייבוא נכשל: $1",
-"importnotext"          => "ריק או חסר טקסט",
-"importsuccess"         => "הייבוא הושלם בהצלחה!",
-"importhistoryconflict" => "ישנה התנגשות עם ההיסטוריה הקיימת של הדף (ייתכן שהדף יובא בעבר)",
-"importnosources"       => "אין מקורות לייבוא בין־אתרי, וייבוא ישיר של דף עם היסטוריה אינו מאופשר כעת.",
-"importnofile"          => "לא הועלה קובץ ייבוא.",
-"importuploaderror"     => "העלאת קובץ ייבוא נכשלה; ייתכן שהקובץ גדול מגודל ההעלאה המותר.",
+"import"                   => "ייבוא דפים",
+"importinterwiki"          => "ייבוא בין־אתרי",
+"import-interwiki-text"    => "אנא בחרו אתר ויקי ואת כותרת הדף לייבוא.
+תאריכי ועורכי הגרסאות יישמרו בעת הייבוא.
+כל פעולות הייבוא הבין־אתרי נשמרות ביומן הייבוא.",
+"import-interwiki-history" => "העתק את כל היסטוריית העריכות של דף זה",
+"import-interwiki-submit"  => "ייבוא",
+"importtext"               => "אנא ייצאו את הקובץ מאתר המקור תוך שימוש בעזר הייצוא, שמרו אותו לדיסק הקשיח שלכם והעלו אותו לכאן.",
+"importstart"              => "מייבא דפים…",
+"import-revision-count"    => "$1 גרסאות",
+"importnopages"            => "אין דפים לייבוא.",
+"importfailed"             => "הייבוא נכשל: $1",
+"importnotext"             => "ריק או חסר טקסט",
+"importsuccess"            => "הייבוא הושלם בהצלחה!",
+"importhistoryconflict"    => "ישנה התנגשות עם ההיסטוריה הקיימת של הדף (ייתכן שהדף יובא בעבר)",
+"importnosources"          => "אין מקורות לייבוא בין־אתרי, וייבוא ישיר של דף עם היסטוריה אינו מאופשר כעת.",
+"importnofile"             => "לא הועלה קובץ ייבוא.",
+"importuploaderror"        => "העלאת קובץ ייבוא נכשלה; ייתכן שהקובץ גדול מגודל ההעלאה המותר.",
+
+# Import log
+"importlogpage"                    => "יומן ייבוא",
+"importlogpagetext"                => "ייבוא מנהלי של דפים כולל היסטוריית העריכות שלהם מאתרי ויקי אחרים.",
+"import-logentry-upload"           => "ייבא את $1 על־ידי העלאת קובץ",
+"import-logentry-upload-detail"    => "$1 גרסאות",
+"import-logentry-interwiki"        => "ייבא את $1 בייבוא בין־אתרי",
+"import-logentry-interwiki-detail" => "$1 גרסאות מהאתר $2",
 
 # Keyboard access keys for power users
 "accesskey-search"                  => "f",
