@@ -56,7 +56,7 @@ function wfSpecialImport( $page = '' ) {
 				$history );
 			break;
 		default:
-			$source = new WikiError( "Unknown import source type" );
+			$source = new WikiErrorMsg( "importunknownsource" );
 		}
 
 		if( WikiError::isError( $source ) ) {
@@ -751,7 +751,7 @@ class ImportStreamSource {
 	function newFromFile( $filename ) {
 		$file = @fopen( $filename, 'rt' );
 		if( !$file ) {
-			return new WikiError( "Couldn't open import file" );
+			return new WikiErrorMsg( "importcantopen" );
 		}
 		return new ImportStreamSource( $file );
 	}
@@ -786,7 +786,7 @@ class ImportStreamSource {
 		$base = Title::getInterwikiLink( $interwiki );
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
 		if( empty( $base ) || empty( $link ) ) {
-			return new WikiError( 'Bad interwiki link' );
+			return new WikiErrorMsg( 'importbadinterwiki' );
 		} else {
 			$params = $history ? 'history=1' : '';
 			$url = $link->getFullUrl( $params );
