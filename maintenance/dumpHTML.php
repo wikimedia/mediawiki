@@ -81,7 +81,8 @@ if ( $options['special'] ) {
 		"Starting from page_id $start of $end.\n");
 
 	$dbr =& wfGetDB( DB_SLAVE );
-	print "Using database {$dbr->mServer}\n";
+	$server = $dbr->getProperty( 'mServer' );
+	print "Using database {$server}\n";
 
 	$wgHTMLDump->doArticles( $start, $end );
 	if ( !isset( $options['e'] ) ) {
