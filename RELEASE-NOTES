@@ -589,6 +589,8 @@ Some default configuration options have changed:
 * Show a more specific message when an anonymous user tries to access Special:Watchlist
 * (bug 3278) Paging links in Special:Prefixindex
 * Added Latvian localization (lv)
+* (bug 6472) Fix regression in Special:Export with multiple pages
+
 
 == Compatibility ==
 
