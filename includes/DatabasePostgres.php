@@ -22,7 +22,18 @@ class DatabasePostgres extends Database {
 	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0 )
 	{
-		Database::__construct( $server, $user, $password, $dbName, $failFunction, $flags );
+
+		global $wgOut, $wgDBprefix, $wgCommandLineMode;
+		# Can't get a reference if it hasn't been set yet
+		if ( !isset( $wgOut ) ) {
+			$wgOut = NULL;
+		}
+		$this->mOut =& $wgOut;
+		$this->mFailFunction = $failFunction;
+		$this->mFlags = $flags;
+
+		$this->open( $server, $user, $password, $dbName);
+
 	}
 
 	static function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
@@ -41,34 +52,76 @@ class DatabasePostgres extends Database {
 			throw new DBConnectionError( $this, "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
 		}
 
-		global $wgDBschema;
+		global $wgDBschema, $wgDBport;
 
 		$this->close();
 		$this->mServer = $server;
+		$port = $wgDBport;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
-		$this->mSchemas = array($wgDBschema,'public');
+		$schema = $wgDBschema;
 
 		$success = false;
 
-		if ( '' != $dbName ) {
-			# start a database connection
-			$hstring="";
-			if ($server!=false && $server!="") {
-				$hstring="host=$server ";
+		$hstring="";
+		if ($server!=false && $server!="") {
+			$hstring="host=$server ";
+		}
+		if ($port!=false && $port!="") {
+			$hstring .= "port=$port ";
+		}
+
+		error_reporting( E_ALL );
+
+		@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
+
+		if ( $this->mConn == false ) {
+			wfDebug( "DB connection error\n" );
+			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
+			wfDebug( $this->lastError()."\n" );
+			return false;
+		}
+
+		$this->mOpened = true;
+		## If this is the initial connection, setup the schema stuff
+		if (defined('MEDIAWIKI_INSTALL')) {
+			## Does the schema already exist? Who owns it?
+			$result = $this->schemaExists($schema);
+			if (!$result) {
+				print "<li>Creating schema <b>$schema</b> ...";
+				$result = $this->doQuery("CREATE SCHEMA $schema");
+				if (!$result) {
+					print "FAILED.</li>\n";
+					return false;
+				}
+				print "ok</li>\n";
+			}
+			else if ($result != $user) {
+				print "<li>Schema <b>$schema</b> exists but is not owned by <b>$user</b>. Not ideal.</li>\n";
+			}
+			else {
+				print "<li>Schema <b>$schema</b> exists and is owned by <b>$user ($result)</b>. Excellent.</li>\n";
 			}
 
-			@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
-			if ( $this->mConn == false ) {
-				wfDebug( "DB connection error\n" );
-				wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
-				wfDebug( $this->lastError()."\n" );
-			} else {
-				$this->setSchema();
-				$this->mOpened = true;
+			## Fix up the search paths if needed
+			print "<li>Setting the search path for user <b>$user</b> ...";
+			$SQL = "ALTER USER $user SET search_path = $schema, public";
+			$result = pg_query($this->mConn, $SQL);
+			if (!$result) {
+				print "FAILED.</li>\n";
+				return false;
+			}
+			print "ok</li>\n";
+			## Set for the rest of this session
+			$SQL = "SET search_path = $schema, public";
+			$result = pg_query($this->mConn, $SQL);
+			if (!$result) {
+				print "<li>Failed to set search_path</li>\n";
+				return false;
 			}
 		}
+
 		return $this->mConn;
 	}
 
@@ -164,7 +217,7 @@ class DatabasePostgres extends Database {
 		}
 
 		while ( $row = $this->fetchObject( $res ) ) {
-			if ( $row->Key_name == $index ) {
+			if ( $row->indexname == $index ) {
 				return $row;
 			}
 		}
@@ -181,23 +234,6 @@ class DatabasePostgres extends Database {
 			return true;
 		return false;
 
-	}
-
-	function fieldInfo( $table, $field ) {
-		return false;
-		throw new DBUnexpectedError($this,  'Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre' );
-		/*
-		$res = $this->query( "SELECT * FROM '$table' LIMIT 1" );
-		$n = pg_num_fields( $res );
-		for( $i = 0; $i < $n; $i++ ) {
-			// FIXME
-			throw new DBUnexpectedError($this,  "Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre" );
-			$meta = mysql_fetch_field( $res, $i );
-			if( $field == $meta->name ) {
-				return $meta;
-			}
-		}
-		return false;*/
 	}
 
 	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
@@ -230,9 +266,6 @@ class DatabasePostgres extends Database {
 	}
 
 	function tableName( $name ) {
-		# First run any transformations from the parent object
-		$name = parent::tableName( $name );
-
 		# Replace backticks into double quotes
 		$name = strtr($name,'`','"');
 
@@ -427,27 +460,35 @@ class DatabasePostgres extends Database {
 		return $version;
 	}
 
-	function setSchema($schema=false) {
-		$schemas=$this->mSchemas;
-		if ($schema) { array_unshift($schemas,$schema); }
-		$searchpath=$this->makeList($schemas,LIST_NAMES);
-		$this->query("SET search_path = $searchpath");
-	}
 
 	/**
-	 * Query whether a given table exists
+	 * Query whether a given table exists (in the default schema)
 	 */
 	function tableExists( $table, $fname = 'DatabasePostgres:tableExists' ) {
 		global $wgDBschema;
 		$stable = preg_replace("/'/", "''", $table);
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
-			. "WHERE c.relnamespace = n.oid AND c.relname = '$stable AND n.nspname = '$wgDBschema'";
+			. "WHERE c.relnamespace = n.oid AND c.relname = '$stable' AND n.nspname = '$wgDBschema'";
 		$res = $this->query( $SQL, $fname );
-		if ($res) {
+		$count = $res ? pg_num_rows($res) : 0;
+		if ($res)
 			$this->freeResult( $res );
-			return true;
-		}
-		return false;
+		return $count;
+	}
+
+	/**
+	 * Query whether a given schema exists. Returns the name of the owner
+	 */
+	function schemaExists( $schema, $fname = 'DatabasePostgres:schemaExists' ) {
+		$sschema = preg_replace("/'/", "''", $schema);
+		$SQL = "SELECT rolname FROM pg_catalog.pg_namespace n, pg_catalog.pg_roles r "
+				."WHERE n.nspowner=r.oid AND n.nspname = '$sschema'";
+		$res = $this->query($SQL, $fname);
+		$res = $this->query( $SQL, $fname );
+		$owner = $res ? pg_num_rows($res) ? pg_fetch_result($res, 0, 0) : false : false;
+		if ($res)
+			$this->freeResult($res);
+		return $owner;
 	}
 
 	/**
@@ -459,13 +500,18 @@ class DatabasePostgres extends Database {
 		$scol = preg_replace("/'/", "''", $field);
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n, pg_catalog.pg_attribute a "
 			. "WHERE c.relnamespace = n.oid AND c.relname = '$stable' AND n.nspname = '$wgDBschema' "
-			. "AND a.attrelid = c.oid AND a.attname = '$safecol'";
+			. "AND a.attrelid = c.oid AND a.attname = '$scol'";
 		$res = $this->query( $SQL, $fname );
-		if ($res) {
+		$count = $res ? pg_num_rows($res) : 0;
+		if ($res)
 			$this->freeResult( $res );
-			return true;
-		}
-		return false;
+		return $count;
+	}
+
+	function fieldInfo( $table, $field ) {
+		$res = $this->query( "SELECT $field FROM $table LIMIT 1" );
+		$type = pg_field_type( $res, 0 );
+		return $type;
 	}
 
 }
