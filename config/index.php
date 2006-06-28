@@ -256,8 +256,7 @@ if (!$phpdatabases) {
 		print "<li>For <b>$full</b>, compile PHP using <b>--with-$comp</b>, "
 			."or install the $comp.so module</li>\n";
 	}
-	print "</ul></ul></body></html>\n";
-	exit;
+	dieout( "</ul></ul>" );
 }
 
 print "<li>Found database drivers for:";
@@ -1345,6 +1344,7 @@ if ( \$wgCommandLineMode ) {
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
 \$wgDBtype           = \"{$slconf['DBtype']}\";
+\$wgDBschema         = \"{$slconf['DBschema']}\";
 
 # Experimental charset support for MySQL 4.1/5.0.
 \$wgDBmysql5 = {$conf->DBmysql5};
