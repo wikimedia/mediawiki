@@ -431,6 +431,8 @@ $wgSMTP				= false;
  */
 /** database host name or ip address */
 $wgDBserver         = 'localhost';
+/** database port number */
+$wgDBport           = '';
 /** name of the database */
 $wgDBname           = 'wikidb';
 /** */
@@ -499,7 +501,7 @@ $wgDBservers		= false;
 /** How long to wait for a slave to catch up to the master */
 $wgMasterWaitTimeout = 10;
 
-/** File to log MySQL errors to */
+/** File to log database errors to */
 $wgDBerrorLog		= false;
 
 /** When to give an error message */
