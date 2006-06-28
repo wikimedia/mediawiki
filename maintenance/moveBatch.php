@@ -68,7 +68,10 @@ for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 
 	print $source->getPrefixedText();
 	$dbw->begin();
-	$source->moveTo( $dest, false, $reason );
+	$err = $source->moveTo( $dest, false, $reason );
+	if( $err !== true ) {
+		print "\nFAILED: $err";
+	}
 	$dbw->immediateCommit();
 	print "\n";
 

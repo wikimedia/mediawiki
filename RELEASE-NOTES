@@ -591,6 +591,10 @@ Some default configuration options have changed:
 * Added Latvian localization (lv)
 * (bug 6472) Fix regression in Special:Export with multiple pages
 * Update to Macedonian translation (mk)
+* Allow page moves over historyless self-redirects. Such are usually created
+  as part of namespace rearrangements, and it's easier to clean them up if
+  we can move over them.
+* Show some error results in moveBatch.php
 
 
 == Compatibility ==
