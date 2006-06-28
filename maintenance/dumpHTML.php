@@ -12,6 +12,7 @@
  * -d <dest>      destination directory
  * -s <start>     start ID
  * -e <end>       end ID
+ * -k <skin>	  skin to use (defaults to dumphtml)
  * --images       only do image description pages
  * --categories   only do category pages
  * --redirects    only do redirects
@@ -21,7 +22,7 @@
  */
 
 
-$optionsWithArgs = array( 's', 'd', 'e' );
+$optionsWithArgs = array( 's', 'd', 'e', 'k' );
 
 $profiling = false;
 
@@ -60,11 +61,14 @@ if ( !empty( $options['d'] ) ) {
 	$dest = 'static';
 }
 
+$skin = isset( $options['k'] ) ? $options['k'] : 'dumphtml';
+
 $wgHTMLDump = new DumpHTML( array(
 	'dest' => $dest,
 	'forceCopy' => $options['force-copy'],
 	'alternateScriptPath' => $options['interlang'],
 	'interwiki' => $options['interlang'],
+	'skin' => $skin,
 ));
 
 
