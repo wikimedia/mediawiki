@@ -66,32 +66,37 @@ class NewPagesPage extends QueryPage {
 			$dbo->dataSeek( $res, 0 );
 	}
 
+	/**
+	 * Format a row, providing the timestamp, links to the page/history, size, user links, and a comment
+	 *
+	 * @param $skin Skin to use
+	 * @param $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
-		global $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol;
-		$u = $result->user;
-		$ut = $result->user_text;
-		$dirmark = $wgContLang->getDirMark(); // To keep text in correct order
+		global $wgLang, $wgContLang;
+		$dm = $wgContLang->getDirMark();
 
-		$length = wfMsgExt( 'nbytes', array('parsemag', 'escape'),
-			$wgLang->formatNum( $result->length ) );
-		$d = $wgLang->timeanddate( $result->timestamp, true );
+		$title = Title::makeTitleSafe( $result->namespace, $result->title );
+		$time = $wgLang->timeAndDate( $result->timestamp, true );
+		$plink = $skin->makeKnownLinkObj( $title, '', $this->patrollable( $result ) ? 'rcid=' . $result->rcid : '' );
+		$hist = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
+		$length = wfMsgHtml( 'nbytes', $wgLang->formatNum( htmlspecialchars( $result->length ) ) );
+		$ulink = $skin->userLink( $result->user, $result->user_text ) . $skin->userToolLinks( $result->user, $result->user_text );
+		$comment = $skin->commentBlock( $result->comment );
 
-		# Since there is no diff link, we need to give users a way to
-		# mark the article as patrolled if it isn't already
-		$ns = $wgContLang->getNsText( $result->namespace );
-		if( $wgUseRCPatrol && !is_null( $result->usepatrol ) && $result->usepatrol && $result->patrolled == 0 && $wgUser->isAllowed( 'patrol' ) ) {
-			$link = $skin->makeKnownLink( $ns . ':' . $result->title, '', "rcid={$result->rcid}" );
-		} else {
-			$link = $skin->makeKnownLink( $ns . ':' . $result->title, '' );
-		}
+		return "{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}";
+	}
 
-		$userLink = $skin->userLink( $u, $ut );
-		$userTools = $skin->userToolLinks( $u, $ut );
-
-		$s = "{$d} {$dirmark}{$link} {$dirmark}({$length}) . . " .
-			"{$dirmark}{$userLink}{$dirmark}{$userTools}";
-		$s .= $dirmark . $skin->commentBlock( $result->comment );
-		return $s;
+	/**
+	 * Should a specific result row provide "patrollable" links?
+	 *
+	 * @param $result Result row
+	 * @return bool
+	 */
+	function patrollable( $result ) {
+		global $wgUser, $wgUseRCPatrol;
+		return $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) && !$result->patrolled;
 	}
 
 	function feedItemDesc( $row ) {

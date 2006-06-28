@@ -596,6 +596,7 @@ Some default configuration options have changed:
   we can move over them.
 * Show some error results in moveBatch.php
 * (bug 6479) Allow specification of the skin to use during HTML dumps
+* (bug 6461) Link to page histories in Special:Newpages
 
 == Compatibility ==
 
