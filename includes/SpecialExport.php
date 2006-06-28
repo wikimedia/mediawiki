@@ -80,7 +80,7 @@ function wfSpecialExport( $page = '' ) {
 					}
 				}
 			}
-			$exporter->pagesByName( $pages );
+			$exporter->pageByName( $page );
 		}
 		
 		$exporter->closeStream();
