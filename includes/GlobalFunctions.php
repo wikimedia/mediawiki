@@ -417,11 +417,11 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = 
  */
 function wfMsgWeirdKey ( $key ) {
 	$subsource = str_replace ( ' ' , '_' , $key ) ;
-	$source = wfMsg ( $subsource ) ;
+	$source = wfMsgForContentNoTrans( $subsource ) ;
 	if ( $source == "&lt;{$subsource}&gt;" ) {
 		# Try again with first char lower case
 		$subsource = strtolower ( substr ( $subsource , 0 , 1 ) ) . substr ( $subsource , 1 ) ;
-		$source = wfMsg ( $subsource ) ;
+		$source = wfMsgForContentNoTrans( $subsource ) ;
 	}
 	if ( $source == "&lt;{$subsource}&gt;" ) {
 		# Didn't work either, return blank text
