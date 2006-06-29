@@ -96,6 +96,7 @@ $magicWords = array(
 	'MAG_PAGESINNAMESPACE',
 	'MAG_NOGALLERY',
 	'MAG_NUMBEROFADMINS',
+	'MAG_FORMATNUM',
 );
 if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
 	wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
