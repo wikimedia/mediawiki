@@ -451,11 +451,6 @@ $wgDBtype           = "mysql";
 $wgSearchType	    = null;
 /** Table name prefix */
 $wgDBprefix         = '';
-/** Database schema
- * on some databases this allows separate
- * logical namespace for application data
- */
-$wgDBschema	    = 'mediawiki';
 /**#@-*/
 
 /** Live high performance sites should disable this - some checks acquire giant mysql locks */
