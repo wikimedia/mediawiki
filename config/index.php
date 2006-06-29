@@ -479,16 +479,21 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->DBuser = importPost( "DBuser", "wikiuser" );
 	$conf->DBpassword = importPost( "DBpassword" );
 	$conf->DBpassword2 = importPost( "DBpassword2" );
-	$conf->DBprefix = importPost( "DBprefix" );
-	$conf->DBschema = importPost( "DBschema", "mediawiki" );
-	$conf->DBport = importPost( "DBport", "5432" );
-	$conf->DBmysql5 = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
-	$conf->RootUser = importPost( "RootUser", "root" );
-	$conf->RootPW = importPost( "RootPW", "-" );
-	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
+
+	## MySQL specific:
+	$conf->DBprefix     =  importPost( "DBprefix" );
+	$conf->DBmysql5     = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
+	$conf->RootUser     =  importPost( "RootUser", "root" );
+	$conf->RootPW       =  importPost( "RootPW", "-" );
+	$conf->LanguageCode =  importPost( "LanguageCode", "en" );
+
+	## Postgres specific:
+	$conf->DBport      = importPost( "DBport",      "5432" );
+	$conf->DBmwschema  = importPost( "DBmwschema",  "mediawiki" );
+	$conf->DBts2schema = importPost( "DBts2schema", "public" );
 
 /* Check for validity */
 $errs = array();
@@ -581,8 +586,15 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDBtype = $conf->DBtype;
 		$wgDBadminuser = "root";
 		$wgDBadminpassword = $conf->RootPW;
+
+		## Mysql specific:
 		$wgDBprefix = $conf->DBprefix;
-		$wgDBport = $conf->DBport;
+
+		## Postgres specific:
+		$wgDBport      = $conf->DBport;
+		$wgDBmwschema  = $conf->DBmwschema;
+		$wgDBts2schema = $conf->DBts2schema;
+
 		$wgCommandLineMode = true;
 		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
 		require_once( "includes/Setup.php" );
@@ -1124,10 +1136,13 @@ if( count( $errs ) ) {
 		aField( $conf, "DBport", "Database port:" );
 	?></div>
 	<div class="config-input"><?php
-		aField( $conf, "DBschema", "Database schema:" );
+		aField( $conf, "DBmwschema", "Schema for mediawiki:" );
+	?></div>
+	<div class="config-input"><?php
+		aField( $conf, "DBts2schema", "Schema for tsearch2:" );
 	?></div>
 	<div class="config-desc">
-		<p>The username specified above will have it's search path set to the above schema, 
+		<p>The username specified above will have it's search path set to the above schemas, 
            so it is recommended that you create a new user.</p>
 	</div>
 	</div>
@@ -1346,7 +1361,6 @@ if ( \$wgCommandLineMode ) {
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
 \$wgDBtype           = \"{$slconf['DBtype']}\";
-\$wgDBschema         = \"{$slconf['DBschema']}\";
 \$wgDBport           = \"{$slconf['DBport']}\";
 
 # Experimental charset support for MySQL 4.1/5.0.
