@@ -136,6 +136,15 @@ class AuthPlugin {
 	}
 
 	/**
+	 * Can users change their passwords?
+	 *
+	 * @return bool
+	 */
+	function allowPasswordChange() {
+		return true;
+	}
+
+	/**
 	 * Set the given password in the authentication database.
 	 * Return true if successful.
 	 *

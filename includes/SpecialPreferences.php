@@ -205,7 +205,7 @@ class PreferencesForm {
 		global $wgAuth;
 
 
-		if ( '' != $this->mNewpass ) {
+		if ( '' != $this->mNewpass && $wgAuth->allowPasswordChange() ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
 				$this->mainPrefsForm( 'error', wfMsg( 'badretype' ) );
 				return;
@@ -453,7 +453,7 @@ class PreferencesForm {
 		global $wgEnotifWatchlist, $wgEnotifUserTalk,$wgEnotifMinorEdits;
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
-		global $wgContLanguageCode, $wgDefaultSkin, $wgSkipSkins;
+		global $wgContLanguageCode, $wgDefaultSkin, $wgSkipSkins, $wgAuth;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
@@ -652,26 +652,28 @@ class PreferencesForm {
 		$wgOut->addHTML('</table>');
 
 		# Password
-		$this->mOldpass = htmlspecialchars( $this->mOldpass );
-		$this->mNewpass = htmlspecialchars( $this->mNewpass );
-		$this->mRetypePass = htmlspecialchars( $this->mRetypePass );
-
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'changepassword' ) . '</legend><table>');
-		$wgOut->addHTML(
-			$this->addRow(
-				'<label for="wpOldpass">' . wfMsg( 'oldpassword' ) . '</label>',
-				"<input type='password' name='wpOldpass' id='wpOldpass' value=\"{$this->mOldpass}\" size='20' />"
-			) .
-			$this->addRow(
-				'<label for="wpNewpass">' . wfMsg( 'newpassword' ) . '</label>',
-				"<input type='password' name='wpNewpass' id='wpNewpass' value=\"{$this->mNewpass}\" size='20' />"
-			) .
-			$this->addRow(
-				'<label for="wpRetypePass">' . wfMsg( 'retypenew' ) . '</label>',
-				"<input type='password' name='wpRetypePass' id='wpRetypePass' value=\"{$this->mRetypePass}\" size='20' />"
-			) .
-			"</table>\n" .
-			$this->getToggle( "rememberpassword" ) . "</fieldset>\n\n" );
+		if( $wgAuth->allowPasswordChange() ) {
+			$this->mOldpass = htmlspecialchars( $this->mOldpass );
+			$this->mNewpass = htmlspecialchars( $this->mNewpass );
+			$this->mRetypePass = htmlspecialchars( $this->mRetypePass );
+	
+			$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'changepassword' ) . '</legend><table>');
+			$wgOut->addHTML(
+				$this->addRow(
+					'<label for="wpOldpass">' . wfMsg( 'oldpassword' ) . '</label>',
+					"<input type='password' name='wpOldpass' id='wpOldpass' value=\"{$this->mOldpass}\" size='20' />"
+				) .
+				$this->addRow(
+					'<label for="wpNewpass">' . wfMsg( 'newpassword' ) . '</label>',
+					"<input type='password' name='wpNewpass' id='wpNewpass' value=\"{$this->mNewpass}\" size='20' />"
+				) .
+				$this->addRow(
+					'<label for="wpRetypePass">' . wfMsg( 'retypenew' ) . '</label>',
+					"<input type='password' name='wpRetypePass' id='wpRetypePass' value=\"{$this->mRetypePass}\" size='20' />"
+				) .
+				"</table>\n" .
+				$this->getToggle( "rememberpassword" ) . "</fieldset>\n\n" );
+		}
 
 		# <FIXME>
 		# Enotif
