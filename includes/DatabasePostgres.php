@@ -85,7 +85,7 @@ class DatabasePostgres extends Database {
 
 		$this->mOpened = true;
 		## If this is the initial connection, setup the schema stuff
-		if (defined('MEDIAWIKI_INSTALL')) {
+		if (defined('MEDIAWIKI_INSTALL') and !defined('POSTGRES_SEARCHPATH')) {
 			## Does the schema already exist? Who owns it?
 			$result = $this->schemaExists($schema);
 			if (!$result) {
@@ -120,6 +120,7 @@ class DatabasePostgres extends Database {
 				print "<li>Failed to set search_path</li>\n";
 				return false;
 			}
+			define( "POSTGRES_SEARCHPATH", true );
 		}
 
 		return $this->mConn;
@@ -512,6 +513,37 @@ class DatabasePostgres extends Database {
 		$res = $this->query( "SELECT $field FROM $table LIMIT 1" );
 		$type = pg_field_type( $res, 0 );
 		return $type;
+	}
+
+	function commit( $fname = 'Database::commit' ) {
+		## XXX
+		return;
+		$this->query( 'COMMIT', $fname );
+		$this->mTrxLevel = 0;
+	}
+
+	function limitResultForUpdate($sql, $num) {
+		return $sql;
+	}
+
+	function update_interwiki() {
+		## Avoid the non-standard "REPLACE INTO" syntax
+		## Called by config/index.php
+		$f = fopen( "../maintenance/interwiki.sql", 'r' );
+		if ($f == false ) {
+			dieout( "<li>Could not find the interwiki.sql file");
+		}
+		## We simply assume it is already empty as we have just created it
+		$SQL = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
+		while ( ! feof( $f ) ) {
+			$line = fgets($f,1024);
+			if (!preg_match("/^\s*(\(.+?),(\d)\)/", $line, $matches)) {
+				continue;
+			}
+			$yesno = $matches[2]; ## ? "'true'" : "'false'";
+			$this->query("$SQL $matches[1],$matches[2])");
+		}
+		print " (table interwiki successfully populated)...\n";
 	}
 
 }
