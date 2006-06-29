@@ -66,6 +66,7 @@ class CategoryPage extends Article {
 		$showGallery = $wgCategoryMagicGallery && !$wgOut->mNoGallery;
 		if( $showGallery ) {
 			$ig = new ImageGallery();
+			$ig->setParsing();
 		}
 
 		$dbr =& wfGetDB( DB_SLAVE );

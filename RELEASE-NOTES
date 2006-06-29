@@ -603,6 +603,8 @@ Some default configuration options have changed:
 * (bug 6489) Use appropriate link colour on Special:Shortpages
 * Added formatnum magic word
 * Added Javanese localization (jv)
+* (bug 6491) Apply bad image list in category galleries
+
 
 == Compatibility ==
 
