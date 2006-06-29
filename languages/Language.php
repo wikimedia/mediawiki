@@ -290,10 +290,12 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_URLENCODE            => array( 0,    'URLENCODE:'             ),
 	MAG_CURRENTTIMESTAMP     => array( 1,    'CURRENTTIMESTAMP'       ),
 	MAG_DIRECTIONMARK        => array( 1,    'DIRECTIONMARK', 'DIRMARK' ),
-	MAG_LANGUAGE			 => array( 0,	 '#LANGUAGE:' ),
-	MAG_CONTENTLANGUAGE		 => array( 1,	 'CONTENTLANGUAGE', 'CONTENTLANG' ),
-	MAG_PAGESINNAMESPACE	 => array( 1,	 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
-	MAG_NUMBEROFADMINS		 => array( 1,	 'NUMBEROFADMINS' ),
+	MAG_LANGUAGE             => array( 0,    '#LANGUAGE:' ),
+	MAG_CONTENTLANGUAGE      => array( 1,    'CONTENTLANGUAGE', 'CONTENTLANG' ),
+	MAG_PAGESINNAMESPACE     => array( 1,    'PAGESINNAMESPACE:', 'PAGESINNS:' ),
+	MAG_NUMBEROFADMINS       => array( 1,    'NUMBEROFADMINS' ),
+	MAG_FORMATNUM            => array( 0,    'FORMATNUM' ),
+
 );
 
 if (!$wgCachedMessageArrays) {
@@ -334,8 +336,8 @@ class Language {
 	 * @return array
 	 */
 	function getDefaultUserOptions() {
-		global $wgDefaultUserOptionsEn ;
-		return $wgDefaultUserOptionsEn ;
+		global $wgDefaultUserOptionsEn;
+		return $wgDefaultUserOptionsEn;
 	}
 
 	/**
@@ -343,8 +345,8 @@ class Language {
 	 * @return array
 	 */
 	function getBookstoreList() {
-		global $wgBookstoreListEn ;
-		return $wgBookstoreListEn ;
+		global $wgBookstoreListEn;
+		return $wgBookstoreListEn;
 	}
 
 	/**

@@ -2753,6 +2753,15 @@ class Parser
 		}
 
 		$lang = $this->mOptions->getInterfaceMessage() ? $wgLang : $wgContLang;
+		if ( !$found && $argc == 1 ) {
+			$mwGrammar =& MagicWord::get( MAG_FORMATNUM );
+			if ( $mwGrammar->matchStartAndRemove( $part1 ) ) {
+				$text = $linestart . $lang->formatNum( $args[0] );
+				$found = true;
+			}
+		}
+
+
 		# GRAMMAR
 		if ( !$found && $argc == 1 ) {
 			$mwGrammar =& MagicWord::get( MAG_GRAMMAR );
