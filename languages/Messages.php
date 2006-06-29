@@ -331,9 +331,7 @@ Function: $1<br />
 Query: $2',
 'viewsource' => 'View source',
 'viewsourcefor' => 'for $1',
-'protectedtext' => 'This page has been locked to prevent editing; there are
-a number of reasons why this may be so, please see
-[[{{ns:project}}:Protected page]].
+'protectedtext' => 'This page has been locked to prevent editing.
 
 You can view and copy the source of this page:',
 'protectedinterface' => 'This page provides interface text for the software, and is locked to prevent abuse.',
@@ -550,7 +548,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'readonlywarning' => '<strong>WARNING: The database has been locked for maintenance,
 so you will not be able to save your edits right now. You may wish to cut-n-paste
 the text into a text file and save it for later.</strong>',
-'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it. Be sure you are following the [[{{ns:project}}:Protected page guidelines|protected page guidelines]].</strong>",
+'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it.</strong>",
 'semiprotectedpagewarning' => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'templatesused'	=> 'Templates used on this page:',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
@@ -1165,8 +1163,7 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage' => 'Protection log',
-'protectlogtext' => "Below is a list of page locks/unlocks.
-See [[{{ns:project}}:Protected page]] for more information.",
+'protectlogtext' => "Below is a list of page locks and unlocks.",
 'protectedarticle' => 'protected "[[$1]]"',
 'unprotectedarticle' => 'unprotected "[[$1]]"',
 'protectsub' => '(Protecting "$1")',
@@ -1179,8 +1176,7 @@ See [[{{ns:project}}:Protected page]] for more information.",
 'confirmunprotect' => 'Confirm unprotection',
 'unprotectcomment' => 'Reason for unprotecting',
 'protect-unchain' => 'Unlock move permissions',
-'protect-text' => 'You may view and change the protection level here for the page <strong>$1</strong>.
-Please be sure you are following the [[{{ns:project}}:Protected page|project guidelines]].',
+'protect-text' => 'You may view and change the protection level here for the page <strong>$1</strong>.',
 'protect-viewtext' => 'Your account does not have permission to change
 page protection levels. Here are the current settings for the page <strong>$1</strong>:',
 'protect-default' => '(default)',
