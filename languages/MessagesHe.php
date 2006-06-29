@@ -769,7 +769,7 @@ $wgAllMessagesHe = array(
 
 # Image list
 "imagelist"                 => "רשימת תמונות",
-"imagelisttext"             => "להלן רשימה של <strong>$1</strong> תמונות, ממוינות <strong>$2</strong>:",
+"imagelisttext"             => "להלן רשימה של {{plural:$1|תמונה אחת|$1 תמונות}}, ממוינות $2:",
 "imagelistforuser"          => "מוצגות רק התמונות שהועלו על־ידי $1.",
 "getimagelist"              => "מושך את רשימת התמונות",
 "ilsubmit"                  => "חיפוש",
