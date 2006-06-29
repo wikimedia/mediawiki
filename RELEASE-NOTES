@@ -600,6 +600,7 @@ Some default configuration options have changed:
 * (bug 6484) Don't do message transformations when preloading messages for editing
 * (bug 6201) Treat spaces as underscores in parameters to {{ns:}}
 * (bug 6006) Allow hiding the password change fields using an authentication plugin
+* (bug 6489) Use appropriate link colour on Special:Shortpages
 
 == Compatibility ==
 
