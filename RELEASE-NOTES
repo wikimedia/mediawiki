@@ -597,6 +597,7 @@ Some default configuration options have changed:
 * Show some error results in moveBatch.php
 * (bug 6479) Allow specification of the skin to use during HTML dumps
 * (bug 6461) Link to page histories in Special:Newpages
+* (bug 6484) Don't do message transformations when preloading messages for editing
 
 == Compatibility ==
 

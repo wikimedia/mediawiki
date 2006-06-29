@@ -737,7 +737,7 @@ class EditPage {
 		$this->textbox1 = $this->mArticle->getContent();
 		$this->summary = '';
 		if ( !$this->mArticle->exists() && $this->mArticle->mTitle->getNamespace() == NS_MEDIAWIKI )
-			$this->textbox1 = wfMsgWeirdKey ( $this->mArticle->mTitle->getText() ) ;
+			$this->textbox1 = wfMsgWeirdKey( $this->mArticle->mTitle->getText() ) ;
 		wfProxyCheck();
 	}
 
