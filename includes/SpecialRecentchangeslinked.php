@@ -86,6 +86,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 				rc_user_text,
 				rc_timestamp,
 				rc_minor,
+				rc_bot,
 				rc_new,
 				rc_patrolled,
 				rc_type
@@ -116,6 +117,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 			rc_last_oldid,
 			rc_timestamp,
 			rc_minor,
+			rc_bot,
 			rc_new,
 			rc_patrolled,
 			rc_type
