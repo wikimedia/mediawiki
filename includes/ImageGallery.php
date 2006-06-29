@@ -149,18 +149,24 @@ class ImageGallery
 			$name = $img->getName();
 			$nt = $img->getTitle();
 
-			# If we're dealing with a non-image, or a blacklisted image,
-			# spit out the name and be done with it
-			if( $nt->getNamespace() != NS_IMAGE
-				|| ( $this->mParsing && wfIsBadImage( $nt->getDBkey() ) ) ) {
-				$s .=
-					(($i%4==0) ? "<tr>\n" : '') .
-					'<td><div class="gallerybox" style="height: 152px;">' .
-					htmlspecialchars( $nt->getText() ) . '</div></td>' .  
-					(($i%4==3) ? "</tr>\n" : '');
-				$i++;
-
-				continue;
+			if( $nt->getNamespace() != NS_IMAGE ) {
+				# We're dealing with a non-image, spit out the name and be done with it.
+				$thumbhtml = '<div style="height: 152px;">' . htmlspecialchars( $nt->getText() ) . '</div>';
+ 			}
+			else if( $this->mParsing && wfIsBadImage( $nt->getDBkey() ) ) {
+				# The image is blacklisted, just show it as a text link.
+				$thumbhtml = '<div style="height: 152px;">'
+					. $sk->makeKnownLinkObj( $nt, htmlspecialchars( $nt->getText() ) ) . '</div>';
+			}
+			else if( !( $thumb = $img->getThumbnail( 120, 120 ) ) ) {
+				# Error generating thumbnail.
+				$thumbhtml = '<div style="height: 152px;">'
+					. htmlspecialchars( $img->getLastError() ) . '</div>';
+			}
+			else {
+				$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
+				$thumbhtml = '<div class="thumb" style="padding: ' . $vpad . 'px 0;">'
+					. $sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div>';
 			}
 
 			//TODO
@@ -182,28 +188,14 @@ class ImageGallery
 				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . "<br />\n" :
 				'' ;
 
-			$s .= ($i%4==0) ? '<tr>' : '';
-			$thumb = $img->getThumbnail( 120, 120 );
-			if ( $thumb ) {
-				$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
-				$s .= '<td><div class="gallerybox">' . '<div class="thumb" style="padding: ' . $vpad . 'px 0;">';
+			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
+			# in version 4.8.6 generated crackpot html in its absence, see:
+			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
 
-				# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
-				# in version 4.8.6 generated crackpot html in its absence, see:
-				# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
-				$s .= $sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div><div class="gallerytext">' . "\n" .
-					$textlink . $text . $nb .
-					'</div>';
-				$s .= "</div></td>\n";
-			} else {
-				# Error during thumbnail generation
-				$s .= '<td><div class="gallerybox" style="height: 152px;">' .
-					#htmlspecialchars( $nt->getText() ) . "<br />\n" .
-					htmlspecialchars( $img->getLastError() ) .
-					"</div><div class=\"gallerytext\">\n" .
-					$textlink . $text . $nb .
-					"</div></td>\n";
-			}
+			$s .= ($i%4==0) ? '<tr>' : '';
+			$s .= '<td><div class="gallerybox">' . $thumbhtml
+				. '<div class="gallerytext">' . "\n" . $textlink . $text . $nb
+				. "</div></div></td>\n";
 			$s .= ($i%4==3) ? '</tr>' : '';
 			$i++;
 		}
