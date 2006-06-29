@@ -52,7 +52,7 @@ class DatabasePostgres extends Database {
 			throw new DBConnectionError( $this, "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
 		}
 
-		global $wgDBschema, $wgDBport;
+		global $wgDBport;
 
 		$this->close();
 		$this->mServer = $server;
@@ -60,7 +60,6 @@ class DatabasePostgres extends Database {
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
-		$schema = $wgDBschema;
 
 		$success = false;
 
@@ -86,11 +85,23 @@ class DatabasePostgres extends Database {
 		$this->mOpened = true;
 		## If this is the initial connection, setup the schema stuff
 		if (defined('MEDIAWIKI_INSTALL') and !defined('POSTGRES_SEARCHPATH')) {
+			global $wgDBmwschema, $wgDBts2schema;
+
+			## Do we have the basic tsearch2 table?
+			print "<li>Checking for tsearch2 ...";
+			if (! $this->tableExists("pg_ts_dict", $wgDBts2schema)) {
+				print "FAILED. Make sure tsearch2 is installed. See <a href=";
+				print "'http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
+				print " for instructions.</li>\n";
+				dieout("</ul>");
+			}				
+			print "OK</li>\n";
+
 			## Does the schema already exist? Who owns it?
-			$result = $this->schemaExists($schema);
+			$result = $this->schemaExists($wgDBmwschema);
 			if (!$result) {
-				print "<li>Creating schema <b>$schema</b> ...";
-				$result = $this->doQuery("CREATE SCHEMA $schema");
+				print "<li>Creating schema <b>$wgDBmwschema</b> ...";
+				$result = $this->doQuery("CREATE SCHEMA $wgDBmwschema");
 				if (!$result) {
 					print "FAILED.</li>\n";
 					return false;
@@ -98,15 +109,20 @@ class DatabasePostgres extends Database {
 				print "ok</li>\n";
 			}
 			else if ($result != $user) {
-				print "<li>Schema <b>$schema</b> exists but is not owned by <b>$user</b>. Not ideal.</li>\n";
+				print "<li>Schema <b>$wgDBmwschema</b> exists but is not owned by <b>$user</b>. Not ideal.</li>\n";
 			}
 			else {
-				print "<li>Schema <b>$schema</b> exists and is owned by <b>$user ($result)</b>. Excellent.</li>\n";
+				print "<li>Schema <b>$wgDBmwschema</b> exists and is owned by <b>$user ($result)</b>. Excellent.</li>\n";
 			}
 
 			## Fix up the search paths if needed
 			print "<li>Setting the search path for user <b>$user</b> ...";
-			$SQL = "ALTER USER $user SET search_path = $schema, public";
+			$path = "$wgDBmwschema";
+			if ($wgDBts2schema !== $wgDBmwschema)
+				$path .= ", $wgDBts2schema";
+			if ($wgDBmwschema !== 'public' and $wgDBts2schema !== 'public')
+				$path .= ", public";
+			$SQL = "ALTER USER $user SET search_path = $path";
 			$result = pg_query($this->mConn, $SQL);
 			if (!$result) {
 				print "FAILED.</li>\n";
@@ -114,13 +130,13 @@ class DatabasePostgres extends Database {
 			}
 			print "ok</li>\n";
 			## Set for the rest of this session
-			$SQL = "SET search_path = $schema, public";
+			$SQL = "SET search_path = $path";
 			$result = pg_query($this->mConn, $SQL);
 			if (!$result) {
 				print "<li>Failed to set search_path</li>\n";
 				return false;
 			}
-			define( "POSTGRES_SEARCHPATH", true );
+			define( "POSTGRES_SEARCHPATH", $path );
 		}
 
 		return $this->mConn;
@@ -463,29 +479,32 @@ class DatabasePostgres extends Database {
 
 
 	/**
-	 * Query whether a given table exists (in the default schema)
+	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
 	 */
-	function tableExists( $table, $fname = 'DatabasePostgres:tableExists' ) {
-		global $wgDBschema;
-		$stable = preg_replace("/'/", "''", $table);
+	function tableExists( $table, $schema = false ) {
+		global $wgDBmwschema;
+		if (! $schema )
+			$schema = $wgDBmwschema;
+		$etable = preg_replace("/'/", "''", $table);
+		$eschema = preg_replace("/'/", "''", $schema);
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
-			. "WHERE c.relnamespace = n.oid AND c.relname = '$stable' AND n.nspname = '$wgDBschema'";
-		$res = $this->query( $SQL, $fname );
+			. "WHERE c.relnamespace = n.oid AND c.relname = '$etable' AND n.nspname = '$eschema'";
+		$res = $this->query( $SQL );
 		$count = $res ? pg_num_rows($res) : 0;
 		if ($res)
 			$this->freeResult( $res );
 		return $count;
 	}
 
+
 	/**
 	 * Query whether a given schema exists. Returns the name of the owner
 	 */
-	function schemaExists( $schema, $fname = 'DatabasePostgres:schemaExists' ) {
-		$sschema = preg_replace("/'/", "''", $schema);
+	function schemaExists( $schema ) {
+		$eschema = preg_replace("/'/", "''", $schema);
 		$SQL = "SELECT rolname FROM pg_catalog.pg_namespace n, pg_catalog.pg_roles r "
-				."WHERE n.nspowner=r.oid AND n.nspname = '$sschema'";
-		$res = $this->query($SQL, $fname);
-		$res = $this->query( $SQL, $fname );
+				."WHERE n.nspowner=r.oid AND n.nspname = '$eschema'";
+		$res = $this->query( $SQL );
 		$owner = $res ? pg_num_rows($res) ? pg_fetch_result($res, 0, 0) : false : false;
 		if ($res)
 			$this->freeResult($res);
@@ -493,16 +512,17 @@ class DatabasePostgres extends Database {
 	}
 
 	/**
-	 * Query whether a given column exists
+	 * Query whether a given column exists in the mediawiki schema
 	 */
-	function fieldExists( $table, $field, $fname = 'DatabasePostgres::fieldExists' ) {
-		global $wgDBschema;
-		$stable = preg_replace("/'/", "''", $table);
-		$scol = preg_replace("/'/", "''", $field);
+	function fieldExists( $table, $field ) {
+		global $wgDBmwschema;
+		$etable = preg_replace("/'/", "''", $table);
+		$eschema = preg_replace("/'/", "''", $wgDBmwschema);
+		$ecol = preg_replace("/'/", "''", $field);
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n, pg_catalog.pg_attribute a "
-			. "WHERE c.relnamespace = n.oid AND c.relname = '$stable' AND n.nspname = '$wgDBschema' "
-			. "AND a.attrelid = c.oid AND a.attname = '$scol'";
-		$res = $this->query( $SQL, $fname );
+			. "WHERE c.relnamespace = n.oid AND c.relname = '$etable' AND n.nspname = '$eschema' "
+			. "AND a.attrelid = c.oid AND a.attname = '$ecol'";
+		$res = $this->query( $SQL );
 		$count = $res ? pg_num_rows($res) : 0;
 		if ($res)
 			$this->freeResult( $res );
@@ -522,6 +542,7 @@ class DatabasePostgres extends Database {
 		$this->mTrxLevel = 0;
 	}
 
+	/* Not even sure why this is used in the main codebase... */
 	function limitResultForUpdate($sql, $num) {
 		return $sql;
 	}
