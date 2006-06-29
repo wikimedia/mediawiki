@@ -858,7 +858,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 # Image list
 #
 'imagelist'		=> 'File list',
-'imagelisttext'	=> 'Below is a list of <strong>$1</strong> files sorted <strong>$2</strong>.',
+'imagelisttext' => "Below is a list of '''$1''' {{plural:$1|file|files}} sorted $2.",
 'imagelistforuser' => "This shows only images uploaded by $1.",
 'getimagelist'	=> 'fetching file list',
 'ilsubmit'		=> 'Search',
