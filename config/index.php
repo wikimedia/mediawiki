@@ -741,13 +741,14 @@ error_reporting( E_ALL );
 					dbsource( "../maintenance/users.sql", $wgDatabase );
 				}
 			}
-			print "<pre>\n";
-			chdir( ".." );
-			flush();
-			do_all_updates();
-			chdir( "config" );
-
-			print "</pre>\n";
+			if ( $conf->DBtype == 'mysql') {
+				print "<pre>\n";
+				chdir( ".." );
+				flush();
+				do_all_updates();
+				chdir( "config" );
+				print "</pre>\n";
+			}
 			print "<li>Finished update checks.</li>\n";
 		} else {
 			# FIXME: Check for errors
@@ -1346,6 +1347,7 @@ if ( \$wgCommandLineMode ) {
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
 \$wgDBtype           = \"{$slconf['DBtype']}\";
 \$wgDBschema         = \"{$slconf['DBschema']}\";
+\$wgDBport           = \"{$slconf['DBport']}\";
 
 # Experimental charset support for MySQL 4.1/5.0.
 \$wgDBmysql5 = {$conf->DBmysql5};
