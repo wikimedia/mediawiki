@@ -42,7 +42,7 @@ function wfSpecialImagelist() {
 	$sql .= " LIMIT {$limit}";
 
 	$wgOut->addWikiText( wfMsg( 'imglegend' ) );
-	$wgOut->addWikiText( wfMsg( 'imagelisttext', $lt, wfMsg( $sort ) ) );
+	$wgOut->addHTML( wfMsgExt( 'imagelisttext', array('parse'), $lt, wfMsg( $sort ) ) );
 
 	$sk = $wgUser->getSkin();
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
