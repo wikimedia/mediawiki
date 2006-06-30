@@ -605,6 +605,7 @@ Some default configuration options have changed:
 * Added Javanese localization (jv)
 * (bug 6491) Apply bad image list in category galleries
 * (bug 6488) Show relevant log fragment in Special:Movepage
+* Fix potential PHP notice in Special:Blockme when $wgBlockOpenProxies is true
 
 == Compatibility ==
 
