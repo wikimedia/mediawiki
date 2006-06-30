@@ -172,6 +172,8 @@ class MovePageForm {
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
+	$this->showLogFragment( $ot, $wgOut );
+
 	}
 
 	function doSubmit() {
@@ -269,5 +271,13 @@ class MovePageForm {
 			}
 		}
 	}
+	
+	function showLogFragment( $title, &$out ) {
+		$out->addHtml( wfElement( 'h2', NULL, LogPage::logName( 'move' ) ) );
+		$request = new FauxRequest( array( 'page' => $title->getPrefixedText(), 'type' => 'move' ) );
+		$viewer = new LogViewer( new LogReader( $request ) );
+		$viewer->showList( $out );
+	}
+	
 }
 ?>
