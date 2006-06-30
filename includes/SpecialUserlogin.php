@@ -474,10 +474,8 @@ class LoginForm {
 	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
-		global $wgUser, $wgOut;
-		global $wgAllowRealName, $wgEnableEmail;
-		global $wgCookiePrefix;
-		global $wgAuth;
+		global $wgUser, $wgOut, $wgAllowRealName, $wgEnableEmail;
+		global $wgCookiePrefix, $wgAuth, $wgLoginLanguageSelector;
 
 		if ( $this->mType == 'signup' && !$wgUser->isAllowedToCreateAccount() ) {
 			$this->userNotPrivilegedMessage();
@@ -514,6 +512,10 @@ class LoginForm {
 			$q .= $returnto;
 			$linkq .= $returnto;
 		}
+		
+		# Pass any language selection on to the mode switch link
+		if( $wgLoginLanguageSelector && $this->mLanguage )
+			$linkq .= '&uselang=' . $this->mLanguage;
 
 		$link = '<a href="' . htmlspecialchars ( $titleObj->getLocalUrl( $linkq ) ) . '">';
 		$link .= wfMsgHtml( $linkmsg . 'link' );
@@ -541,7 +543,7 @@ class LoginForm {
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
 				
-		global $wgLoginLanguageSelector;
+		# Prepare language selection links as needed
 		if( $wgLoginLanguageSelector ) {
 			$template->set( 'languages', $this->makeLanguageSelector() );
 			if( $this->mLanguage )
