@@ -612,6 +612,7 @@ Some default configuration options have changed:
   "dumb" byte replacement can be actively dangerous; UTF-8 is always safe
   in this regard due to the bit patterns which make head and tail bytes
   distinct.
+* (bug 6497) Use $wgMetaNamespaceTalk for Esperanto if set
 
 
 == Compatibility ==
