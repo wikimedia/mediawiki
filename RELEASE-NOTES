@@ -613,6 +613,7 @@ Some default configuration options have changed:
   in this regard due to the bit patterns which make head and tail bytes
   distinct.
 * (bug 6497) Use $wgMetaNamespaceTalk for Esperanto if set
+* (bug 6498) Use localized forms for image size in Special:Undelete
 
 
 == Compatibility ==
