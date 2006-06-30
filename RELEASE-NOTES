@@ -606,6 +606,13 @@ Some default configuration options have changed:
 * (bug 6491) Apply bad image list in category galleries
 * (bug 6488) Show relevant log fragment in Special:Movepage
 * Fix potential PHP notice in Special:Blockme when $wgBlockOpenProxies is true
+* Use mysql_real_escape_string instead of addslashes for string escaping in
+  the MySQL Database class. This may fix some rare breakage with binary fields.
+  Note that MediaWiki does not support the multibyte character sets where a
+  "dumb" byte replacement can be actively dangerous; UTF-8 is always safe
+  in this regard due to the bit patterns which make head and tail bytes
+  distinct.
+
 
 == Compatibility ==
 
