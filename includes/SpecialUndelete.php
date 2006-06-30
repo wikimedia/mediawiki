@@ -687,8 +687,13 @@ class UndeleteForm {
 					$pageLink = $wgLang->timeanddate( $ts, true );
 				}
 				$userLink = $sk->userLink( $row->fa_user, $row->fa_user_text );
-				$data = $row->fa_width . 'x' . $row->fa_height . " (" .
-					$row->fa_size . " bytes)";
+				$data =
+					wfMsgHtml( 'widthheight',
+						$wgLang->formatNum( $row->fa_width ),
+						$wgLang->formatNum( $row->fa_height ) ) .
+					' (' .
+					wfMsgHtml( 'nbytes', $wgLang->formatNum( $row->fa_size ) ) .
+					')';
 				$comment = $sk->commentBlock( $row->fa_description );
 				$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $data $comment</li>\n" );
 			}
