@@ -83,7 +83,7 @@ class CategoryPage extends Article {
 		$limit = $wgCategoryPagingLimit;
 		$res = $dbr->select(
 			array( 'page', 'categorylinks' ),
-			array( 'page_title', 'page_namespace', 'page_is_redirect', 'page_len', 'cl_sortkey' ),
+			array( 'page_title', 'page_namespace', 'page_len', 'cl_sortkey' ),
 			array( $pageCondition,
 			       'cl_from          =  page_id',
 			       'cl_to'           => $this->mTitle->getDBKey()),
