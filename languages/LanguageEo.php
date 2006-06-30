@@ -32,16 +32,16 @@ class LanguageEo extends LanguageUtf8 {
 		global $wgAllMessagesEo;
 		$this->mMessagesEo =& $wgAllMessagesEo;
 
-		global $wgMetaNamespace;
+		global $wgMetaNamespace, $wgMetaNamespaceTalk;
 		$this->mNamespaceNamesEo = array(
 			NS_MEDIA          => 'Media',
 			NS_SPECIAL        => 'Speciala',
 			NS_MAIN           => '',
 			NS_TALK           => 'Diskuto',
-			NS_USER           => 'Vikipediisto',
+			NS_USER           => 'Vikipediisto', # FIXME: Generalize v-isto kaj v-io
 			NS_USER_TALK      => 'Vikipediista_diskuto',
-			NS_PROJECT        => $wgMetaNamespace, # FIXME: Generalize v-isto kaj v-io
-			NS_PROJECT_TALK   => $wgMetaNamespace.'_diskuto', # FIXME
+			NS_PROJECT        => $wgMetaNamespace,
+			NS_PROJECT_TALK   => ( $wgMetaNamespaceTalk ? $wgMetaNamespaceTalk : $wgMetaNamespace.'_diskuto' ),
 			NS_IMAGE          => 'Dosiero', #FIXME: Check the magic for Image: and Media:
 			NS_IMAGE_TALK     => 'Dosiera_diskuto',
 			NS_MEDIAWIKI      => 'MediaWiki',
