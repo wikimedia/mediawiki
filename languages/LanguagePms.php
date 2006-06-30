@@ -35,7 +35,7 @@ class LanguagePms extends LanguageIt {
 			NS_USER             => 'Utent',
 			NS_USER_TALK        => 'Ciaciarade',
 			NS_PROJECT          => $wgMetaNamespace,
-			NS_PROJECT_TALK     => 'Discussion_ant_sla' . $wgMetaNamespace,
+			NS_PROJECT_TALK     => 'Discussion_ant_sla_' . $wgMetaNamespace,
 			NS_IMAGE            => 'Figura',
 			NS_IMAGE_TALK       => 'Discussion_dla_figura',
 			NS_MEDIAWIKI        => 'MediaWiki',
@@ -52,6 +52,10 @@ class LanguagePms extends LanguageIt {
 
 	function getFallbackLanguage() {
 		return 'it';
+	}
+
+	function getNamespaces() {
+		return $this->mNamespaceNamesPms + parent::getNamespaces();
 	}
 
 	function getMessage( $key ) {
