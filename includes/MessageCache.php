@@ -322,7 +322,8 @@ class MessageCache {
 		# Add them to the cache
 		foreach ( $this->mExtensionMessages as $key => $value ) {
 			$uckey = $wgLang->ucfirst( $key );
-			if ( !array_key_exists( $uckey, $this->mCache ) ) {
+			if ( !array_key_exists( $uckey, $this->mCache ) &&
+			 ( isset( $this->mExtensionMessages[$key][$wgLang->getCode()] ) || isset( $this->mExtensionMessages[$key]['en'] ) )  ) {
 				$this->mCache[$uckey] = false;
 			}
 		}
@@ -435,7 +436,11 @@ class MessageCache {
 		}
 		# Try the extension array
 		if( $message === false && array_key_exists( $key, $this->mExtensionMessages ) ) {
-			$message = $this->mExtensionMessages[$key];
+			if ( isset( $this->mExtensionMessages[$key][$langcode] ) ) {
+				$message = $this->mExtensionMessages[$key][$langcode];
+			} elseif ( isset( $this->mExtensionMessages[$key]['en'] ) ) {
+				$message = $this->mExtensionMessages[$key]['en'];
+			}
 		}
 
 		# Try the array in the language object
@@ -540,19 +545,21 @@ class MessageCache {
 	 *
 	 * @param mixed $key
 	 * @param mixed $value
+	 * @param string $lang The messages language, English by default
 	 */
-	function addMessage( $key, $value ) {
-		$this->mExtensionMessages[$key] = $value;
+	function addMessage( $key, $value, $lang = 'en' ) {
+		$this->mExtensionMessages[$key][$lang] = $value;
 	}
 
 	/**
 	 * Add an associative array of message to the cache
 	 *
 	 * @param array $messages An associative array of key => values to be added
+	 * @param string $lang The messages language, English by default
 	 */
-	function addMessages( $messages ) {
+	function addMessages( $messages, $lang = 'en' ) {
 		foreach ( $messages as $key => $value ) {
-			$this->addMessage( $key, $value );
+			$this->addMessage( $key, $value, $lang );
 		}
 	}
 
