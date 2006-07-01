@@ -2239,14 +2239,20 @@ class Article {
 		$prevlink = $prev
 			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid )
 			: wfMsg( 'previousrevision' );
+		$prevdiff = $prev
+			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=prev&oldid='.$oldid )
+			: wfMsg( 'diff' );
 		$nextlink = $current
 			? wfMsg( 'nextrevision' )
 			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
+		$nextdiff = $current
+			? wfMsg( 'diff' )
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=next&oldid='.$oldid );
 		
 		$userlinks = $sk->userLink( $revision->getUser(), $revision->getUserText() )
 						. $sk->userToolLinks( $revision->getUser(), $revision->getUserText() );
 		
-		$r = wfMsg( 'oldrevisionnavigation', $td, $lnk, $prevlink, $nextlink, $userlinks );
+		$r = wfMsg( 'oldrevisionnavigation', $td, $lnk, $prevlink, $nextlink, $userlinks, $prevdiff, $nextdiff );
 		$wgOut->setSubtitle( $r );
 	}
 
