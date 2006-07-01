@@ -25,7 +25,7 @@ if ( !isset( $wgVersion ) ) {
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
-require_once( 'AutoLoader.php' );
+require_once( "$IP/includes/AutoLoader.php" );
 
 if ( function_exists( 'wfProfileIn' ) ) {
 	/* nada, everything should be done already */
@@ -39,36 +39,36 @@ if ( function_exists( 'wfProfileIn' ) ) {
 		$wgProfiler = new $prclass();
 	}
 } else {
-	require_once( 'ProfilerStub.php' );
+	require_once( "$IP/includes/ProfilerStub.php" );
 }
 
 $fname = 'Setup.php';
 wfProfileIn( $fname );
 
 wfProfileIn( $fname.'-exception' );
-require_once( 'Exception.php' );
+require_once( "$IP/includes/Exception.php" );
 wfInstallExceptionHandler();
 wfProfileOut( $fname.'-exception' );
 
 wfProfileIn( $fname.'-includes' );
 
-require_once( 'GlobalFunctions.php' );
-require_once( 'Hooks.php' );
-require_once( 'Namespace.php' );
-require_once( 'User.php' );
-require_once( 'Skin.php' );
-require_once( 'OutputPage.php' );
-require_once( 'MagicWord.php' );
-require_once( 'Block.php' );
-require_once( 'MessageCache.php' );
-require_once( 'Parser.php' );
-require_once( 'LoadBalancer.php' );
-require_once( 'HistoryBlob.php' );
-require_once( 'ProxyTools.php' );
-require_once( 'ObjectCache.php' );
+require_once( "$IP/includes/GlobalFunctions.php" );
+require_once( "$IP/includes/Hooks.php" );
+require_once( "$IP/includes/Namespace.php" );
+require_once( "$IP/includes/User.php" );
+require_once( "$IP/includes/Skin.php" );
+require_once( "$IP/includes/OutputPage.php" );
+require_once( "$IP/includes/MagicWord.php" );
+require_once( "$IP/includes/Block.php" );
+require_once( "$IP/includes/MessageCache.php" );
+require_once( "$IP/includes/Parser.php" );
+require_once( "$IP/includes/LoadBalancer.php" );
+require_once( "$IP/includes/HistoryBlob.php" );
+require_once( "$IP/includes/ProxyTools.php" );
+require_once( "$IP/includes/ObjectCache.php" );
 
 if ( $wgUseDynamicDates ) {
-	require_once( 'DateFormatter.php' );
+	require_once( "$IP/includes/DateFormatter.php" );
 }
 
 wfProfileOut( $fname.'-includes' );
