@@ -470,7 +470,7 @@ Che as controla për piasì l\'adrëssa (URL) che a l\'ha dovrà për rivé a st
 'loadhist'              => 'I soma antramentr che i carioma la stòria dë sta pàgina-sì',
 'currentrev'            => 'Versione dël dì d\'ancheuj',
 'revisionasof'          => 'Revision $1',
-'oldrevisionnavigation' => 'Revision al $1; $5<br />$3 | $2 | $4',
+'oldrevisionnavigation' => 'Revision al $1; $5<br />($6) $3 | $2 | $4 ($7)',
 'previousrevision'      => '←Version pì veja',
 'nextrevision'          => 'Revision pì neuve→',
 'currentrevisionlink'   => 'vardé la version corenta',
