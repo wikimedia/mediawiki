@@ -217,7 +217,7 @@ class EditPage {
 			wfProfileOut($fname);
 			return;
 		}
-		if ( !$this->mTitle->userCan( 'create' ) && !$this->mTitle->exists() ) {
+		if ( !$this->mTitle->userCanCreate() && !$this->mTitle->exists() ) {
 			wfDebug( "$fname: no create permission\n" );
 			$this->noCreatePermission();
 			wfProfileOut( $fname );
@@ -567,7 +567,7 @@ class EditPage {
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 		if ( 0 == $aid ) {
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCan( 'create' ) ) {
+			if ( !$this->mTitle->userCanCreate() ) {
 				wfDebug( "$fname: no create permission\n" );
 				$this->noCreatePermission();
 				wfProfileOut( $fname );
