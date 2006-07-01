@@ -1,7 +1,7 @@
 <?php
 
-
-/* private */ $wgAllMessagesPt_br = array(
+global $wgAllMessagesPt_br;
+$wgAllMessagesPt_br = array(
 # User Toggles
 "tog-underline" => "Sublinha links",
 "tog-highlightbroken" => "Formata links quebrados <a href=\"\" class=\"new\"> como isto </a> (alternative: como isto<a href=\"\" class=\"internal\">?</a>).",
