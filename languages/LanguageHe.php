@@ -42,7 +42,7 @@ class LanguageHe extends LanguageUtf8 {
 	);
 	
 	private $mMagicWordsHe = array(
-		MAG_REDIRECT            => array( 0,    '#הפניה', '#הפנייה',                       '#REDIRECT'              ),
+		MAG_REDIRECT            => array( 0,    '#הפניה',                                  '#REDIRECT'              ),
 		MAG_NOTOC               => array( 0,    '__ללא_תוכן_עניינים__', '__ללא_תוכן__',    '__NOTOC__'              ),
 		MAG_NOGALLERY           => array( 0,    '__ללא_גלריה__',                          '__NOGALLERY__'          ),
 		MAG_FORCETOC            => array( 0,    '__חייב_תוכן_עניינים__', '__חייב_תוכן__',   '__FORCETOC__'           ),
