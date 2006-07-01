@@ -128,7 +128,7 @@ class MediaWiki {
 			$title = Title::makeTitle( NS_SPECIAL, 'Search' );
 			wfSpecialSearch();
 		} else if( !$title or $title->getDBkey() == '' ) {
-			$title = Title::newFromText( wfMsgForContent( 'badtitle' ) );
+			$title = Title::makeTitle( NS_SPECIAL, 'Badtitle' );
 			# Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 		} else if ( $title->getInterwiki() != '' ) {
@@ -141,7 +141,7 @@ class MediaWiki {
 			if ( !preg_match( '/^' . preg_quote( $this->getVal('Server'), '/' ) . '/', $url ) && $title->isLocal() ) {
 				$output->redirect( $url );
 			} else {
-				$title = Title::newFromText( wfMsgForContent( 'badtitle' ) );
+				$title = Title::makeTitle( NS_SPECIAL, 'Badtitle' );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
 		} else if ( ( $action == 'view' ) &&
