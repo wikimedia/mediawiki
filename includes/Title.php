@@ -1093,6 +1093,15 @@ class Title {
 	}
 
 	/**
+	 * Can $wgUser create this page?
+	 * @return boolean
+	 * @access public
+	 */
+	function userCanCreate() {
+		return $this->userCan('create');
+	}
+
+	/**
 	 * Can $wgUser move this page?
 	 * @return boolean
 	 * @access public
