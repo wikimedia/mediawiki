@@ -201,7 +201,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 			}
 		} else {
 			$article = new Article( $titleObj );
-			$newid = $article->insertOn( $dbw, 'sysop' );
+			$newid = $article->insertOn( $dbw );
 			# FIXME: set restrictions
 			$revision = new Revision( array(
 				'page'      => $newid,
