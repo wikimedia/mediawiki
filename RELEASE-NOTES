@@ -622,6 +622,7 @@ Some default configuration options have changed:
 * (bug 6506) Update to German localisation (de)
 * (bug 502) Avoid silly tabs on bad title by using virtual special page
 * (bug 6511) Add diff links to old revision navigation bar
+* (bug 6511) Remove 'oldrevisionnavigation' message, use 'revisionasof' with stuff appended instead
 
 
 == Compatibility ==

@@ -495,7 +495,6 @@ Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmel
 "loadhist"		=> "Lade Liste mit früheren Versionen",
 "currentrev"	=> "Aktuelle Version",
 "revisionasof"	=> "Version vom $1",
-'oldrevisionnavigation'	=> 'Version vom $1; $5<br />($6) $3 | $2 | $4 ($7)',
 'nextrevision'		=> 'Nächstjüngere Version →',
 'previousrevision'	=> '← Nächstältere Version',
 'currentrevisionlink'	=> 'Aktuelle Version',

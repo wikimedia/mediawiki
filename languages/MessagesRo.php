@@ -421,7 +421,6 @@ ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este pos
 'loadhist'              => 'Încarc istoria versiunilor',
 'currentrev'            => 'Versiunea curentă',
 'revisionasof'          => 'Versiunea de la data $1',
-'oldrevisionnavigation' => 'Revizia pentru $1; $5<br />
 $3 | $2 | $4',
 'previousrevision'      => '←Versiunea anterioară',
 'nextrevision'          => 'Versiunea următoare →',

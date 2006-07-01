@@ -522,7 +522,6 @@ $wgAllMessagesHe = array(
 "loadhist"                    => "טוען את היסטוריית השינויים של הדף",
 "currentrev"                  => "גרסה נוכחית",
 "revisionasof"                => "גרסה מתאריך $1",
-"oldrevisionnavigation"       => "גרסה מתאריך $1; $5<br />($6) $3 | $2 | $4 ($7)",
 "previousrevision"            => "→ הגרסה הקודמת",
 "nextrevision"                => "הגרסה הבאה ←",
 "currentrevisionlink"         => "הגרסה הנוכחית",

@@ -2252,7 +2252,7 @@ class Article {
 		$userlinks = $sk->userLink( $revision->getUser(), $revision->getUserText() )
 						. $sk->userToolLinks( $revision->getUser(), $revision->getUserText() );
 		
-		$r = wfMsg( 'oldrevisionnavigation', $td, $lnk, $prevlink, $nextlink, $userlinks, $prevdiff, $nextdiff );
+		$r = wfMsg( 'revisionasof', $td ) . "; $userlinks<br />($prevdiff) $prevlink | $lnk | $nextlink ($nextdiff)";
 		$wgOut->setSubtitle( $r );
 	}
 
