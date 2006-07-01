@@ -619,6 +619,7 @@ Some default configuration options have changed:
 * Add target namespace override selector for transwiki imports.
   $wgImportTargetNamespace specifies the default, to be used for
   Wiktionary's 'Transwiki:' namespace etc.
+* (bug 6506) Update to German localisation (de)
 
 
 == Compatibility ==
