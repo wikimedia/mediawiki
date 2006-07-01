@@ -1,76 +1,81 @@
 <?php
-/**
+/** Punjabi (Gurmukhi)
   * @package MediaWiki
   * @subpackage Language
   */
-# Punjabi (Gurmukhi)
 # This file is dual-licensed under GFDL and GPL.
 #
 # See: http://bugzilla.wikimedia.org/show_bug.cgi?id=1478
 
 require_once('LanguageUtf8.php');
 
-/* private */ $wgNamespaceNamesPa = array(
-	NS_MEDIA		=> 'ਮੀਡੀਆ',
-	NS_SPECIAL		=> 'ਖਾਸ',
-	NS_MAIN			=> '',
-	NS_TALK			=> 'ਚਰਚਾ',
-	NS_USER			=> 'ਮੈਂਬਰ',
-	NS_USER_TALK		=> 'ਮੈਂਬਰ_ਚਰਚਾ',
-	NS_PROJECT		=> $wgMetaNamespace, /* Wikipedia?: ਵਿਕਿਪੀਡਿਆ */
-	NS_PROJECT_TALK		=> $wgMetaNamespace . '_ਚਰਚਾ',
-	NS_IMAGE		=> 'ਤਸਵੀਰ',
-	NS_IMAGE_TALK		=> 'ਤਸਵੀਰ_ਚਰਚਾ',
-	NS_MEDIAWIKI		=> 'ਮੀਡੀਆਵਿਕਿ',
-	NS_MEDIAWIKI_TALK	=> 'ਮੀਡੀਆਵਿਕਿ_ਚਰਚਾ',
-	NS_TEMPLATE		=> 'ਨਮੂਨਾ',
-	NS_TEMPLATE_TALK	=> 'ਨਮੂਨਾ_ਚਰਚਾ',
-	NS_HELP			=> 'ਮਦਦ',
-	NS_HELP_TALK		=> 'ਮਦਦ_ਚਰਚਾ',
-	NS_CATEGORY		=> 'ਸ਼੍ਰੇਣੀ',
-	NS_CATEGORY_TALK	=> 'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ'
-);
-
-/* private */ $wgQuickbarSettingsPa = array(
-	'ਕੋਈ ਨਹੀਂ', 'ਸਥਿਰ ਖੱਬੇ', 'ਸਥਿਰ ਸੱਜਾ', 'ਤੈਰਦਾ ਖੱਬੇ'
-);
-
-/* private */ $wgSkinNamesPa = array(
-	'standard'      => 'ਮਿਆਰੀ',
-) + $wgSkinNamesEn;
-
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesPa.php');
 }
 
-#--------------------------------------------------------------------------
-# Internationalisation code
-#--------------------------------------------------------------------------
-
 class LanguagePa extends LanguageUtf8 {
+	private $mMessagesPa, $mNamespaceNamesPa = null;
+
+	private $mQuickbarSettingsPa = array(
+		'ਕੋਈ ਨਹੀਂ', 'ਸਥਿਰ ਖੱਬੇ', 'ਸਥਿਰ ਸੱਜਾ', 'ਤੈਰਦਾ ਖੱਬੇ'
+	);
+	
+	private $mSkinNamesPa = array(
+		'standard'      => 'ਮਿਆਰੀ',
+	);
+
+	function __construct() {
+		parent::__construct();
+
+		global $wgAllMessagesPa;
+		$this->mMessagesPa =& $wgAllMessagesPa;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesPa = array(
+			NS_MEDIA          => 'ਮੀਡੀਆ',
+			NS_SPECIAL        => 'ਖਾਸ',
+			NS_MAIN           => '',
+			NS_TALK           => 'ਚਰਚਾ',
+			NS_USER           => 'ਮੈਂਬਰ',
+			NS_USER_TALK      => 'ਮੈਂਬਰ_ਚਰਚਾ',
+			NS_PROJECT        => $wgMetaNamespace,
+			NS_PROJECT_TALK   => $wgMetaNamespace . '_ਚਰਚਾ',
+			NS_IMAGE          => 'ਤਸਵੀਰ',
+			NS_IMAGE_TALK     => 'ਤਸਵੀਰ_ਚਰਚਾ',
+			NS_MEDIAWIKI      => 'ਮੀਡੀਆਵਿਕਿ',
+			NS_MEDIAWIKI_TALK => 'ਮੀਡੀਆਵਿਕਿ_ਚਰਚਾ',
+			NS_TEMPLATE       => 'ਨਮੂਨਾ',
+			NS_TEMPLATE_TALK  => 'ਨਮੂਨਾ_ਚਰਚਾ',
+			NS_HELP           => 'ਮਦਦ',
+			NS_HELP_TALK      => 'ਮਦਦ_ਚਰਚਾ',
+			NS_CATEGORY       => 'ਸ਼੍ਰੇਣੀ',
+			NS_CATEGORY_TALK  => 'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ'
+		);
+
+	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesPa;
-		return $wgNamespaceNamesPa;
+		return $this->mNamespaceNamesPa + parent::getNamespaces();
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsPa;
-		return $wgQuickbarSettingsPa;
+		return $this->mQuickbarSettingsPa;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesPa;
-		return $wgSkinNamesPa;
+		return $this->mSkinNamesPa + parent::getSkinNames();
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesPa;
-		if( isset( $wgAllMessagesPa[$key] ) ) {
-			return $wgAllMessagesPa[$key];
+		if( isset( $this->mMessagesPa[$key] ) ) {
+			return $this->mMessagesPa[$key];
 		} else {
 			return parent::getMessage( $key );
 		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesPa;
 	}
 
 	function digitTransformTable() {

@@ -1,11 +1,7 @@
 <?php
 
-
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
-
-/* private */ $wgAllMessagesPa = array(
+global $wgAllMessagesPa;
+$wgAllMessagesPa = array(
 # Bits of text used by many pages:
 #
 
