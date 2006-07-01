@@ -620,6 +620,7 @@ Some default configuration options have changed:
   $wgImportTargetNamespace specifies the default, to be used for
   Wiktionary's 'Transwiki:' namespace etc.
 * (bug 6506) Update to German localisation (de)
+* (bug 502) Avoid silly tabs on bad title by using virtual special page
 
 
 == Compatibility ==
