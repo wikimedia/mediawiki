@@ -1462,6 +1462,15 @@ $wgCapitalLinks = true;
 $wgImportSources = array();
 
 /**
+ * Optional default target namespace for interwiki imports.
+ * Can use this to create an incoming "transwiki"-style queue.
+ * Set to numeric key, not the name.
+ *
+ * Users may override this in the Special:Import dialog.
+ */
+$wgImportTargetNamespace = null;
+
+/**
  * If set to false, disables the full-history option on Special:Export.
  * This is currently poorly optimized for long edit histories, so is
  * disabled on Wikimedia's sites.

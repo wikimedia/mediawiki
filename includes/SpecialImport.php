@@ -28,15 +28,16 @@
  */
 function wfSpecialImport( $page = '' ) {
 	global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgImportSources;
+	global $wgImportTargetNamespace;
 
-	###
-#	$wgOut->addWikiText( "Special:Import is not ready for this beta release, sorry." );
-#	return;
-	###
-
+	$interwiki = false;
+	$namespace = $wgImportTargetNamespace;
+	$frompage = '';
+	$history = true;
+	
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
 		$isUpload = false;
-		$interwiki = false;
+		$namespace = $wgRequest->getIntOrNull( 'namespace' );
 		
 		switch( $wgRequest->getVal( "source" ) ) {
 		case "upload":
@@ -50,9 +51,10 @@ function wfSpecialImport( $page = '' ) {
 		case "interwiki":
 			$interwiki = $wgRequest->getVal( 'interwiki' );
 			$history = $wgRequest->getCheck( 'interwikiHistory' );
+			$frompage = $wgRequest->getText( "frompage" );
 			$source = ImportStreamSource::newFromInterwiki(
 				$interwiki,
-				$wgRequest->getText( "frompage" ),
+				$frompage,
 				$history );
 			break;
 		default:
@@ -65,6 +67,9 @@ function wfSpecialImport( $page = '' ) {
 			$wgOut->addWikiText( wfMsg( "importstart" ) );
 			
 			$importer = new WikiImporter( $source );
+			if( !is_null( $namespace ) ) {
+				$importer->setTargetNamespace( $namespace );
+			}
 			$reporter = new ImportReporter( $importer, $isUpload, $interwiki );
 			
 			$reporter->open();
@@ -115,23 +120,31 @@ function wfSpecialImport( $page = '' ) {
 			<tr>
 				<td>
 					<select name='interwiki'>" );
-		foreach( $wgImportSources as $interwiki ) {
-			$iw = htmlspecialchars( $interwiki );
-			$wgOut->addHTML( "<option value=\"$iw\">$iw</option>\n" );
+		foreach( $wgImportSources as $prefix ) {
+			$iw = htmlspecialchars( $prefix );
+			$selected = ($interwiki === $prefix) ? ' selected="selected"' : '';
+			$wgOut->addHTML( "<option value=\"$iw\"$selected>$iw</option>\n" );
 		}
 		$wgOut->addHTML( "
 					</select>
 				</td>
 				<td>" .
-					wfInput( 'frompage', 40 ) .
+					wfInput( 'frompage', 50, $frompage ) .
 				"</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>" .
 					wfCheckLabel( wfMsg( 'import-interwiki-history' ),
-						'interwikiHistory', 'interwikiHistory', true ) .
+						'interwikiHistory', 'interwikiHistory', $history ) .
 				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					Transfer pages into namespace: " .
+						HTMLnamespaceselector( $namespace, '' ) . "
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -162,11 +175,10 @@ class ImportReporter {
 		$wgOut->addHtml( "<ul>\n" );
 	}
 	
-	function reportPage( $pageName, $revisionCount ) {
+	function reportPage( $title, $origTitle, $revisionCount ) {
 		global $wgOut, $wgUser, $wgLang, $wgContLang;
 		
 		$skin = $wgUser->getSkin();
-		$title = Title::newFromText( $pageName );
 		
 		$this->mPageCount++;
 		
@@ -185,7 +197,7 @@ class ImportReporter {
 			$log->addEntry( 'upload', $title, $detail );
 		} else {
 			$interwiki = '[[:' . $this->mInterwiki . ':' .
-				$title->getPrefixedText() . ']]';
+				$origTitle->getPrefixedText() . ']]';
 			$detail = wfMsgForContent( 'import-logentry-interwiki-detail',
 				$contentCount, $interwiki );
 			$log->addEntry( 'interwiki', $title, $detail );
@@ -213,7 +225,7 @@ class ImportReporter {
  * @subpackage SpecialPage
  */
 class WikiRevision {
-	var $title = NULL;
+	var $title = null;
 	var $id = 0;
 	var $timestamp = "20010115000000";
 	var $user = 0;
@@ -222,8 +234,14 @@ class WikiRevision {
 	var $comment = "";
 	var $minor = false;
 
-	function setTitle( $text ) {
-		$this->title = Title::newFromText( $text );
+	function setTitle( $title ) {
+		if( is_object( $title ) ) {
+			$this->title = $title;
+		} elseif( is_null( $title ) ) {
+			throw new MWException( "WikiRevision given a null title in import." );
+		} else {
+			throw new MWException( "WikiRevision given non-object title in import." );
+		}
 	}
 
 	function setID( $id ) {
@@ -366,6 +384,7 @@ class WikiImporter {
 	var $mPageCallback = null;
 	var $mPageOutCallback = null;
 	var $mRevisionCallback = null;
+	var $mTargetNamespace = null;
 	var $lastfield;
 
 	function WikiImporter( $source ) {
@@ -434,7 +453,10 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each page in the stream is completed.
-	 * Callback accepts the page title and a count of revisions.
+	 * Callback accepts the page title (as a Title object), a second object
+	 * with the original title form (in case it's been overridden into a
+	 * local namespace), and a count of revisions.
+	 *
 	 * @param callable $callback
 	 * @return callable
 	 */
@@ -453,6 +475,21 @@ class WikiImporter {
 		$previous = $this->mRevisionCallback;
 		$this->mRevisionCallback = $callback;
 		return $previous;
+	}
+	
+	/**
+	 * Set a target namespace to override the defaults
+	 */
+	function setTargetNamespace( $namespace ) {
+		if( is_null( $namespace ) ) {
+			// Don't override namespaces
+			$this->mTargetNamespace = null;
+		} elseif( $namespace >= 0 ) {
+			// FIXME: Check for validity
+			$this->mTargetNamespace = intval( $namespace );
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -497,12 +534,14 @@ class WikiImporter {
 	/**
 	 * Notify the callback function when a </page> is closed.
 	 * @param Title $title
+	 * @param Title $origTitle
 	 * @param int $revisionCount
 	 * @private
 	 */
-	function pageOutCallback( $title, $revisionCount ) {
+	function pageOutCallback( $title, $origTitle, $revisionCount ) {
 		if( is_callable( $this->mPageOutCallback ) ) {
-			call_user_func( $this->mPageOutCallback, $title, $revisionCount );
+			call_user_func( $this->mPageOutCallback, $title, $origTitle,
+				$revisionCount );
 		}
 	}
 
@@ -577,7 +616,7 @@ class WikiImporter {
 			break;
 		case "revision":
 			$this->workRevision = new WikiRevision;
-			$this->workRevision->setTitle( $this->workTitle );
+			$this->workRevision->setTitle( $this->pageTitle );
 			$this->workRevisionCount++;
 			xml_set_element_handler( $parser, "in_revision", "out_revision" );
 			break;
@@ -593,11 +632,14 @@ class WikiImporter {
 		}
 		xml_set_element_handler( $parser, "in_mediawiki", "out_mediawiki" );
 
-		$this->pageOutCallback( $this->workTitle, $this->workRevisionCount );
+		$this->pageOutCallback( $this->pageTitle, $this->origTitle,
+			$this->workRevisionCount );
 		
-		$this->workTitle = NULL;
-		$this->workRevision = NULL;
+		$this->workTitle = null;
+		$this->workRevision = null;
 		$this->workRevisionCount = 0;
+		$this->pageTitle = null;
+		$this->origTitle = null;
 	}
 
 	function in_nothing( $parser, $name, $attribs ) {
@@ -619,6 +661,13 @@ class WikiImporter {
 		switch( $this->appendfield ) {
 		case "title":
 			$this->workTitle = $this->appenddata;
+			$this->origTitle = Title::newFromText( $this->workTitle );
+			if( !is_null( $this->mTargetNamespace ) && !is_null( $this->origTitle ) ) {
+				$this->pageTitle = Title::makeTitle( $this->mTargetNamespace,
+					$this->origTitle->getDbKey() );
+			} else {
+				$this->pageTitle = Title::newFromText( $this->workTitle );
+			}
 			$this->pageCallback( $this->workTitle );
 			break;
 		case "id":
