@@ -363,6 +363,8 @@ $1',
 'loadhist'              => '문서역사를 받고 있습니다.',
 'currentrev'            => '현재 버전',
 'revisionasof'          => '$1 버전',
+'old-revision-navigation' => '$1 버전; $5<br />
+$3 | $2 | $4',
 'previousrevision'      => '←이전 버전',
 'nextrevision'          => '다음 버전→',
 'currentrevisionlink'   => '현재 버전의 문서 보기',
