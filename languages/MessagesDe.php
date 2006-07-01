@@ -477,10 +477,8 @@ Sie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder
 Seite für Wartungsarbeiten gesperrt, so dass Sie die Seite im Moment nicht
 speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.</strong>",
-'protectedpagewarning' => '<strong>ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur
-durch Benutzer mit Admninistratorrechten bearbeitet werden kann. Beachten Sie bitte die
-[[{{ns:project}}:Geschützte Seiten|Regeln für geschützte Seiten]].</strong>',
-'semiprotectedpagewarning'	=> '\'\'\'Halbsperrung:\'\'\' Die Seite wurde so gesperrt, dass neu registrierte oder anonyme Benutzer diese nicht ändern können.',
+'protectedpagewarning'	=> '\'\'\'ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Admninistratorrechten bearbeitet werden kann.\'\'\'',
+'semiprotectedpagewarning'	=> '\'\'\'Halbsperrung:\'\'\' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.',
 'templatesused'		=> 'Folgende Vorlagen werden von diesem Artikel verwendet:',
 'edittools'		=> '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'		=> 'Die Erstellung neuer Seiten ist eingeschränkt.',
@@ -731,7 +729,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 # Image list
 #
 'imagelist'		=> 'Dateiliste',
-'imagelisttext'		=> 'Hier ist eine Liste von <strong>$1</strong> Dateien, sortiert <strong>$2</strong>.',
+'imagelisttext'		=> 'Hier ist eine Liste von \'\'\'$1\'\'\' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.',
 'imagelistforuser'	=> 'Diese Seite zeigt nur Dateien, die von $1 hochgeladen wurden.',
 'getimagelist'		=> 'Lade Dateiliste',
 "ilsubmit"		=> "Suche",
@@ -1191,9 +1189,9 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'exporttext'		=> 'Mit dieser Spezialseite können  Sie den Text (und die Bearbeitungs-/Versionsgeschichte) einzelner Seiten nach XML exportieren.
 Das Ergebnis kann in ein anderes Wiki mit MediaWiki-Software eingespielt, bearbeitet oder archiviert werden.
 
-Tragen Sie einfach den oder die entsprechenden Artikeltitel in das folgende Textfeld ein (pro Zeile jeweils nur für einen Artikel).
+Tragen Sie einfach den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für einen Artikel).
 
-Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
+Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 'exportnohistory' => '----
 \'\'\'Hinweis:\'\'\' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.',
@@ -1291,12 +1289,12 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Artikeltitel“ 
 'alllogstext'		=> 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Benutzerblockaden- und Rechte-Logbücher.<br />Sie können die Anzeige durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels einschränken.',
 'logempty'		=> 'Keine passenden Einträge.',
 "protectlogpage"	=> "Seitenschutz-Logbuch",
-'protectlogtext'	=> 'Dies ist eine Liste der blockierten Seiten. Siehe [[{{ns:project}}:Geschützte Seiten]] für mehr Informationen.',
-"protectedarticle" => "Artikel [[$1]] geschützt",
-"unprotectedarticle" => "Artikel [[$1]] freigegeben",
+'protectlogtext'	=> 'Dies ist eine Liste der blockierten Seiten.',
+'protectedarticle'	=> '„[[$1]]“ geschützt',
+'unprotectedarticle'	=> '„[[$1]]“ freigegeben',
 'protectsub'		=> '(Sperren von „$1“)',
 "confirmprotecttext" => "Soll diese Seite wirklich geschützt werden?",
-'protect-text'		=> 'Hier können Sie den Schutzstatus für die Seite \'\'\'$1\'\'\' einsehen und ändern. Bitte stellen Sie sicher, dass Sie die [[{{ns:project}}:Geschützte Seiten|Portalrichtlinien]] einhalten.',
+'protect-text'		=> 'Hier können Sie den Schutzstatus für die Seite \'\'\'$1\'\'\' einsehen und ändern.',
 'protect-level-autoconfirmed'	=> 'nicht registrierte Benuter blocken',
 'protect-level-sysop'	=> 'nur Administratoren',
 'restriction-edit'	=> 'bearbeiten',
