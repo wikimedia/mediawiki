@@ -622,7 +622,7 @@ class SkinTemplate extends Skin {
 				true);
 
 			wfProfileIn( "$fname-edit" );
-			if ( $this->mTitle->userCanEdit() ) {
+			if ( $this->mTitle->userCanEdit() && ( $this->mTitle->exists() || $this->mTitle->userCanCreate() ) ) {
 				$istalk = $this->mTitle->isTalkPage();
 				$istalkclass = $istalk?' istalk':'';
 				$content_actions['edit'] = array(
