@@ -308,6 +308,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "searchresults" => "搜索結果",
 "searchresulttext" => "有關搜索{{SITENAME}}的更多詳情,參見$1。",
 "searchsubtitle"	=> "查詢\"[[$1]]\"",
+"searchsubtitleinvalid"	=> "查詢\"$1\"",
 "badquery"		=> "搜索查詢不正確",
 "badquerytext"	=> "我們無法處理您的查詢。
 這可能是由於您試圖搜索一個短於3個字母的外文單詞，

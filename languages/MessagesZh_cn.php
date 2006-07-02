@@ -305,6 +305,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "searchresults" => "搜索结果",
 "searchresulttext" => "有关搜索{{SITENAME}}的更多详情,参见[[Project:搜索|搜索{{SITENAME}}]]。",
 "searchsubtitle"	=> "查询\"[[$1]]\"",
+"searchsubtitleinvalid"	=> "查询\"$1\"",
 "badquery"		=> "搜索查询不正确",
 "badquerytext"	=> "我们无法处理您的查询。
 这可能是由于您试图搜索一个短于3个字母的外文单词，

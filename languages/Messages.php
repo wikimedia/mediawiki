@@ -636,6 +636,7 @@ is placed by the site operators.",
 'searchresults' => 'Search results',
 'searchresulttext' => "For more information about searching {{SITENAME}}, see [[{{ns:project}}:Searching|Searching {{SITENAME}}]].",
 'searchsubtitle' => "You searched for '''[[$1]]'''",
+'searchsubtitleinvalid' => "You searched for '''$1'''",
 'badquery'		=> 'Badly formed search query',
 'badquerytext'	=> 'We could not process your query.
 This is probably because you have attempted to search for a

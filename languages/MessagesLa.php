@@ -244,6 +244,7 @@ Confrima URL paginae.',
 'searchresults'         => 'Eventum investigationis',
 'searchresulttext'      => 'Pro plure nuntii de investigatione {{SITENAME}}, vide $1.',
 'searchsubtitle'           => 'Pro investigatione "[[$1]]"',
+'searchsubtitleinvalid'           => 'Pro investigatione "$1"',
 'badquery'              => 'Investigatio formata male',
 'badquerytext'          => 'Investigatio tua procedere non poterat.
 Fortasse verba minora quam tres litteras longa quaerere conatus es, vel fortasse error in quaestione erat. Conare denuo.',

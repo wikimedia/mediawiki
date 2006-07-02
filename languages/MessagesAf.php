@@ -274,6 +274,7 @@ het om toegang te kry tot hierdie bladsy, reg is.",
 "searchresults" => "soekresultate",
 "searchresulttext" => "Vir meer inligting oor {{SITENAME}} soekresultate, lees [[Project:Soek|Soek in {{SITENAME}}]].",
 "searchsubtitle"	=> "Vir navraag \"[[$1]]\"",
+"searchsubtitleinvalid"	=> "Vir navraag \"$1\"",
 "badquery"		=> "Verkeerd gestelde navraag",
 "badquerytext"	=> "Ons kon nie jou naavraag prosesseer nie.
 Dit is miskien omdat jy gesoek het vir iets wat minder as drie letters bevat. Jy het miskien die navraag verkeerd ingetik.",

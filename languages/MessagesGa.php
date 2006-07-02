@@ -516,6 +516,7 @@ Eochair: (rth) = difríocht leis an leagan láithreach,
 "searchresults" => "Torthaí an chuardaigh",
 "searchresulttext" => "Féach ar [[{{ns:project}}:Cuardach|Cuardach sa {{SITENAME}}]] chun a thuilleadh eolais a fháil maidir le cuardaigh {{GRAMMAR:genitive|{{SITENAME}}}}.",
 "searchsubtitle"   => "Don iarratas \"[[$1]]\"",
+"searchsubtitleinvalid"   => "Don iarratas \"$1\"",
 "badquery"      => "Iarratas fiosraithe neamhbhailí",
 "badquerytext"  => "Nior éirigh linn d'iarratas a phróiseáil.
 Is dócha go rinne tú cuardach ar focal le níos lú ná trí litir,

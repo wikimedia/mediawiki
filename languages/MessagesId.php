@@ -518,6 +518,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 "searchresults" => "Hasil pencarian",
 "searchresulttext" => "Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{ns:project}}:Pencarian|Melakukan pencarian di {{SITENAME}}]].",
 "searchsubtitle" => "Untuk kueri \"[[$1]]\"",
+"searchsubtitleinvalid" => "Untuk kueri \"$1\"",
 "badquery" => "Format kueri pencarian salah",
 "badquerytext" => "Kami tidak dapat memproses kueri Anda. Hal ini mungkin disebabkan karena Anda mencoba mencari kata yang panjangnya kurang dari tiga huruf, yang masih belum didukung oleh sistem ini. Hal ini juga dapat disebabkan oleh kesalahan pengetikan ekspresi, misalnya \"fish and and scales\". Silakan coba kueri yang lain.",
 "matchtotals" => "Kueri \"$1\" cocok dengan $2 judul halaman dan teks dari $3 artikel.",

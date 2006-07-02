@@ -329,6 +329,7 @@ Por favor verifique a URL que você usou para acessar esta página.",
 "searchresults" => "Buscar resultados",
 "searchresulttext" => "Para mais informações sobre busca na {{SITENAME}}, veja [[Project:Procurando|Busca na {{SITENAME}}]].",
 "searchsubtitle"   => "Para pedido de busca \"[[$1]]\"",
+"searchsubtitleinvalid"   => "Para pedido de busca \"$1\"",
 "badquery"      => "Linha de busca incorretamente formada",
 "badquerytext"  => "Nós não pudemos processar seu pedido de busca.
 Isto acoenteceu provavelmente porque você tentou procurar uma palavra de menos que três letras, coisa que o software ainda não consegue realizar. Isto também pode ter ocorrido porque você digitou incorretamente a expressão, por

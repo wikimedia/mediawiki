@@ -557,6 +557,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "searchresults" => "Risultati della ricerca",
 "searchresulttext" => "Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{ns:project}}:Ricerca|Ricerca in {{SITENAME}}]].",
 "searchsubtitle"	=> "Richiesta \"[[$1]]\"",
+"searchsubtitleinvalid"	=> "Richiesta \"$1\"",
 "badquery"		=> "Richiesta mal posta",
 "badquerytext"	=> "Impossibile elaborare la richiesta. Questo potrebbe dipendere dall'aver cercato una parola più corta di 4 caratteri, il che al momento è impossibile, oppure da una errore nella forma della richiesta, ad esempio \"pesce and and azzurro\". Per favore, riprova.",
 "matchtotals"	=> "La ricerca di \"$1\" ha trovato $2 riscontri nel titolo e $3 riscontri nel testo.",
