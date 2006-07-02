@@ -221,7 +221,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	$fromList = $this->getNamespaceKeyAndText($namespace, $from);
 
 	if ( !$fromList ) {
-		$out = wfMsgWikiHtml( 'badtitletext' );
+		$out = wfMsgWikiHtml( 'allpagesbadtitle' );
 	} else {
 		list( $namespace, $fromKey, $from ) = $fromList;
 

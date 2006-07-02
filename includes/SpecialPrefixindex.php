@@ -68,7 +68,7 @@ function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = n
 	$prefixList = $this->getNamespaceKeyAndText($namespace, $prefix);
 
 	if ( !$prefixList || !$fromList ) {
-		$out = wfMsgWikiHtml( 'badtitletext' );
+		$out = wfMsgWikiHtml( 'allpagesbadtitle' );
 	} else {
 		list( $namespace, $prefixKey, $prefix ) = $prefixList;
 		list( $fromNs, $fromKey, $from ) = $fromList;

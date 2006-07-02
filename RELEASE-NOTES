@@ -627,6 +627,7 @@ Some default configuration options have changed:
 * (bug 4037) Make input handling in Special:Allpages and Special:Prefixindex
   more consistent: Accept just a namespace prefix and a colon, reject input
   with interwiki prefixes, otherwise do what Title::makeTitleSafe() does.
+* New 'allpagesbadtitle' message for Special:Allpages, based on 'badtitletext'.
 
 == Compatibility ==
 
