@@ -1509,7 +1509,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vey li pådje di categoreye\');
 'passwordtooshort' => 'Li scret est pår trop court. I doet esse di pol moens $1 caracteres.',
 
 # Media Warning
-'mediawarning' => '\'\'\'Asteme\'\'\': Ci fitchî chal pôreut esse evirussé, si vos l\' enondez vos pôrîz infecter l\' sistinme da vosse.<hr>',
+'mediawarning' => '\'\'\'Asteme\'\'\': Ci fitchî chal pôreut esse evirussé, si vos l\' enondez vos pôrîz infecter l\' sistinme da vosse.<hr />',
 
 'fileinfo' => '$1Ko, sôre MIME: <code>$2</code>',
 

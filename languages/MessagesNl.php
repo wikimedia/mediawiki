@@ -374,7 +374,7 @@ Uw IP addres is $3. Vermeldt dit alstublieft wanneer u hierover verdere informat
 'accmailtext'           => 'Het wachtwoord voor \'$1\' is verzonden naar $2.',
 'newarticle'            => '(Nieuw)',
 'newarticletext'        => 'Er bestaat nog geen artikel over dit onderwerp.<br />Als u wilt, kunt u hieronder een nieuw artikel schrijven.<br />Was dit niet de bedoeling, gebruik dan de \'Terug\'-knop van uw browser.<p>WAARSCHUWING: Let er goed op dat uw tekst vrij van auteursrechten is, bijvoorbeeld omdat u het zelf geschreven heeft. Neem geen teksten over uit boeken, tijdschriften of andere websites tenzij u zeker weet dat deze vrij van auteursrechten zijn.',
-'anontalkpagetext'      => '<hr>Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het kan echter zijn dat meerdere personen hetzelfde IP-adres gebruiken. Het kan daarom zijn dat u hier berichten ontvangt die niet voor u bedoeld zijn. Mocht u dat willen voorkomen, dan kunt u [[{{ns:special}}:Userlogin|een gebruikersnaam aanvragen of u aanmelden]].',
+'anontalkpagetext'      => '<hr />Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het kan echter zijn dat meerdere personen hetzelfde IP-adres gebruiken. Het kan daarom zijn dat u hier berichten ontvangt die niet voor u bedoeld zijn. Mocht u dat willen voorkomen, dan kunt u [[{{ns:special}}:Userlogin|een gebruikersnaam aanvragen of u aanmelden]].',
 'noarticletext'         => '(Deze pagina bevat momenteel geen tekst)',
 'clearyourcache'        => '<span id="coordinates" class="coordinates">[[{{ns:help}}:Voorkeuren|Hulp bij het instellen van uw voorkeuren]]</span>
 \'\'\'Let op!\'\'\' Nadat u de veranderingen heeft opgeslagen, moet u de cache van uw browser nog legen om ze daadwerkelijk te zien.
@@ -1237,7 +1237,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Laat de rubriekpagina zien\');',
 'speciallogtitlelabel'  => 'Titel:',
 'passwordtooshort'      => 'Uw wachtwoord is te kort. Het moet uit minstens $1 tekens bestaan',
 'mediawarning'          => '\'\'\'Waarschuwing\'\'\': dit bestand bevat misschien codering die slecht is voor het systeem.
-<hr>',
+<hr />',
 'metadata'              => 'Metadata',
 'metadata-help'         => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Wanneer het bestand aangepast is, dan kunnen details niet overeenkomen met de gewijzigde afbeelding.',
 'metadata-expand'       => 'Toon uitgebreide gegevens',

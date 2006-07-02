@@ -236,8 +236,8 @@ malĝuste ligita interlingva aŭ intervikia titolo.',
 provizore por konservi la rapidecon de la servilo.',
 'perfdisabledsub'       => 'Jen konservita kopio laŭ $1:',
 'perfcached'            => 'La sekvantaj informoj venas el kaŝmemoro kaj eble ne estas ĝisdataj :',
-'wrong_wfQuery_params'  => 'Malĝustaj parametroj por wfQuery()<br>
-Funkcio: $1<br>
+'wrong_wfQuery_params'  => 'Malĝustaj parametroj por wfQuery()<br />
+Funkcio: $1<br />
 Peto: $2',
 'viewsource'            => 'Vidu vikitekston',
 'viewsourcefor'         => 'por $1',
@@ -395,7 +395,7 @@ Se vi konservos vian redakton, ĉiuj ŝanĝoj faritaj post tiu versio perdiĝos.
 'copyrightwarning'      => 'Bonvolu noti, ke ĉiu kontribuaĵo al la {{SITENAME}} estu rigardata kiel eldonita laŭ $2 (vidu je $1). Se vi volas, ke via verkaĵo ne estu redaktota senkompate kaj disvastigota laŭvole, ne alklaku "Konservu".<br />
 Vi ankaŭ ĵuras, ke vi mem verkis la tekston, aŭ ke vi kopiis ĝin el fonto senkopirajta.
 <strong>NE UZU KOPIRAJTAJN VERKOJN SENPERMESE!</strong>',
-'copyrightwarning2'     => 'Bonvolu noti ke ĉiuj kontribuoj al {{SITENAME}} povas esti reredaktita, ŝanĝita aŭ forigita de aliaj kontribuantoj. Se vi ne deziras ke viaj verkoj estu senkompate reredaktitaj, ne publikigu ilin ĉi tie.  <br/>
+'copyrightwarning2'     => 'Bonvolu noti ke ĉiuj kontribuoj al {{SITENAME}} povas esti reredaktita, ŝanĝita aŭ forigita de aliaj kontribuantoj. Se vi ne deziras ke viaj verkoj estu senkompate reredaktitaj, ne publikigu ilin ĉi tie.  <br />
 Vi ankaŭ promesu al ni ke vi verkis tion mem aŭ kopiis el publika domajno aŭ simila libera fonto (vidu $1 por detaloj). 
 <strong>NE PROPONU KOPIRAJTITAJN VERKOJN SEN PERMESO! </strong>',
 'longpagewarning'       => '<strong>AVERTO: Tiu ĉi paĝo longas $1 kilobitokojn; kelkaj retumiloj
@@ -1160,7 +1160,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'speciallogtitlelabel'  => 'Titolo:',
 'passwordtooshort'      => 'Via pasvorto estas tro mallonga. Ĝi entenu minimume $1 karaktrojn.',
 'mediawarning'          => '\'\'\'Warning\'\'\': This file may contain malicious code, by executing it your system may be compromised.
-<hr>',
+<hr />',
 'metadata-expand'       => 'Montru etendajn detalojn',
 'metadata-collapse'     => 'Kaŝu etendajn detalojn',
 'exif-artist'           => 'Kreinto',

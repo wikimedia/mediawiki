@@ -1380,7 +1380,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');',
 
 # Media Warning
 'mediawarning' => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udfører den.
-<hr>",
+<hr />",
 # external editor support
 'edit-externally' => 'Rediger denne fil med en ekstern editor',
 'edit-externally-help' => 'Se [http://meta.wikimedia.org/wiki/Help:External_editors setup instruktionerne] for mere information.',

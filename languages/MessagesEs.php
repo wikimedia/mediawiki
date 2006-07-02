@@ -1085,7 +1085,7 @@ En el último caso puedes usar un enlace, por ejemplo [[{{ns:Special}}:Export/{{
 
 # Media Warning
 'mediawarning' => '\'\'\'Aviso\'\'\': Este archivo podría contener código malicioso, ejecutándolo tu sistema podría resultar comprometido.
-<hr>',
+<hr />',
 
 'fileinfo' => '$1KB, tipo MIME: <code>$2</code>',
 

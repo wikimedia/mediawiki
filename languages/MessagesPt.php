@@ -1464,7 +1464,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 
 # Media Warning
 'mediawarning' => '\'\'\'Aviso\'\'\': Este ficheiro pode conter código malicioso, ao executar o seu sistema poderá estar comprometido.
-<hr>',
+<hr />',
 
 'fileinfo' => '$1KB, tipo MIME: <code>$2</code>',
 

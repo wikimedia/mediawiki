@@ -1338,7 +1338,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 # Media Warning
 # TODO Превод
 'mediawarning' => '\'\'\'Внимание\'\'\': This file may contain malicious code, by executing it your system may be compromised.
-<hr>',
+<hr />',
 
 'fileinfo' => '$1 КБ, MIME type: <code>$2</code>',
 

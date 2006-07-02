@@ -1344,7 +1344,7 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'passwordtooshort'    => 'Salasanasi on liian lyhyt. Salasanan pitää olla vähintään $1 merkkiä pitkä.',
 
 # Media Warning
-'mediawarning'        => '\'\'\'Varoitus\'\'\': Tämä tiedosto saattaa sisältää vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr>',
+'mediawarning'        => '\'\'\'Varoitus\'\'\': Tämä tiedosto saattaa sisältää vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />',
 
 'fileinfo'            => '$1 KiB, MIME-tyyppi: <code>$2</code>',
 

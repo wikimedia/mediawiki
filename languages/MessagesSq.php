@@ -1259,7 +1259,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Shikoni faqen e kategorisë\');',
 'speciallogtitlelabel'  => 'Titulli:',
 'passwordtooshort'      => 'Fjalëkalimi juaj është shumë i shkurtër. Ai duhet të ketë së paku $1 shkronja.',
 'mediawarning'          => '\'\'\'Warning\'\'\': This file may contain malicious code, by executing it your system may be compromised.
-<hr>',
+<hr />',
 'fileinfo'              => '$1KB, lloji MIME: <code>$2</code>',
 'metadata'              => 'Metadata',
 'metadata-help'         => 'Kjo skedë përmban hollësira të tjera të cilat mund të jenë shtuar nga kamera ose skaneri dizhital që është përdorur për ta krijuar. Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mund të mos pasqyrojnë skedën e tanishme.',

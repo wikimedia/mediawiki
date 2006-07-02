@@ -1242,7 +1242,7 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 
 # Media Warning
 'mediawarning'         => '\'\'\'Åtvaring\'\'\': Denne fila kan innehalda skadelege program, ved å opna ho kan systemet ditt ta skade.
-<hr>',
+<hr />',
 
 'fileinfo'             => '$1KB, MIME-type: <code>$2</code>',
 

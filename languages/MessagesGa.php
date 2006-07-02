@@ -1447,7 +1447,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Féach ar an leathanach catagóire
 
 # Media Warning
 'mediawarning' => '\'\'\'Aire\'\'\': Tá seans ann go bhfuil cód mailíseach sa comhad seo - b\'fheidir go gcuirfear do chóras i gcontúirt dá rithfeá é.
-<hr>',
+<hr />',
 
 'fileinfo' => '$1KB, saghas MIME: <code>$2</code>',
 
