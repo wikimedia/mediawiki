@@ -223,7 +223,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 # Zoek resultaten
 "searchresults" => "Zoekresultaten",
 "searchresulttext" => "Voor meer informatie over zoeken op {{SITENAME}}: zie $1.",
-"searchquery" => "Voor zoekopdracht \"$1\"",
+"searchsubtitle" => "Voor zoekopdracht \"[[$2]]\"",
 "badquery"  => "Slecht geformuleerde zoekopdracht",
 "badquerytext" => "Uw zoekopdracht kon neet worden uitgevoerd. Dit komt wellicht doordat u heeft geprobeerd een woord van minder dan drie letters te zoeken; dat wordt door de software neet ondersteund. Het is ook mogelijk dat u de zoekterm verkeerd hebt ingetypt, zoals bij \"vissen en en schubben\".",
 "matchtotals" => "De zoekterm \"$1\" is gevonden in $2 paginatitels en in de tekst van $3 pagina's.",

@@ -527,7 +527,7 @@ na restrission adissional da j\'operator dël sit.',
 'compareselectedversions'=> 'Paragon-a le version selessionà',
 'searchresults'         => 'Arsultà dl\'arserca',
 'searchresulttext'      => 'Per avej pì d\'anformassion ant sl\'arserca interna ëd {{SITENAME}}, che a varda [[Project:Ricerca|Arserca ant la {{SITENAME}}]].',
-'searchquery'           => 'Domanda "$1"',
+'searchsubtitle'           => 'Domanda "[[$2]]"',
 'badquery'              => 'Domanda mal faita',
 'badquerytext'          => 'Soa domanda a l\'é pa podusse processé.
 Sòn a podrìa dipende da lòn che chiel (chila) a l\'ha arsercà na paròla con manch che tre caràter.

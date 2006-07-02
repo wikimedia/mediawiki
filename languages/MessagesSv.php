@@ -454,7 +454,7 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'compareselectedversions'=> 'Jämför angivna versioner',
 'searchresults'         => 'Sökresultat',
 'searchresulttext'      => 'Läs mera om [[{{ns:project}}:Sökning|sökning på {{SITENAME}}]].',
-'searchquery'           => 'För sökbegreppet $1',
+'searchsubtitle'           => 'För sökbegreppet [[$2]]',
 'badquery'              => 'Felaktigt utformat sökbegrepp',
 'badquerytext'          => 'Tyvärr, den sökningen fungerade inte. Detta beror troligen på att att du har försökt söka på ett ord som är kortare än tre bokstäver, vilket i nuläget inte stöds. Det kan också vara som så att du har skrivit in uttrycket fel, till exempel "katt och och råtta". Vänligen försök igen.',
 'matchtotals'           => 'Sökordet "$1" gav $2 träffar i uppslagsord, och $3 träffar i texten på artiklar.',
