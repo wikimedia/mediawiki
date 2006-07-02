@@ -136,7 +136,7 @@ function wfSajaxSearch( $term ) {
 		$more = '';
 	}
 
-	$subtitlemsg = ( Title::newFromtext($term) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
+	$subtitlemsg = ( Title::newFromText($term) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
 	$subtitle = $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) );
 
 	$term = htmlspecialchars( $term );
