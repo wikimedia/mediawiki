@@ -630,6 +630,8 @@ Some default configuration options have changed:
 * (bug 6516) Update to Russian translation
 * New 'allpagesbadtitle' message for Special:Allpages, based on 'badtitletext'.
 * Rename "searchquery" to "searchsubtitle" and support wiki text in it
+* Introduce updateArticleCount maintenance script which uses a better check that
+  reflects what Article::isCountable() tests for
 
 == Compatibility ==
 
