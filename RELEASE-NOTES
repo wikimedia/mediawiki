@@ -629,6 +629,7 @@ Some default configuration options have changed:
   with interwiki prefixes, otherwise do what Title::makeTitleSafe() does.
 * (bug 6516) Update to Russian translation
 * New 'allpagesbadtitle' message for Special:Allpages, based on 'badtitletext'.
+* Rename "searchquery" to "searchsubtitle" and support wiki text in it
 
 == Compatibility ==
 
