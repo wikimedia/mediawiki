@@ -1419,7 +1419,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vedi la pagina della categoria\');
 # Media Warning
 "mediawarning"	=> "'''Attenzione''': Questo file può contenere codice maligno; la sua esecuzione può danneggiare il proprio sistema informatico.
 
-<hr>",
+<hr />",
 
 "fileinfo"	=> "Dimensioni: $1 KB, Tipo MIME: <code>$2</code>",
 

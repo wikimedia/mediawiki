@@ -1231,7 +1231,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'ipbotheroption' => 'khác',
 'log' => 'Nhật trình',
 "mainpagedocfooter" => "Xin đọc [http://meta.wikimedia.org/wiki/MediaWiki_i18n tài liệu hướng dẫn cách tùy biến giao diện] và [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Cẩm nang sử dụng] (bằng tiếng Anh) để biết cách dùng và thiết lập thông số.",
-'mediawarning' => " '''Cảnh báo''': Tệp tin này có thể làm hại máy tính của bạn. <hr>",
+'mediawarning' => " '''Cảnh báo''': Tệp tin này có thể làm hại máy tính của bạn. <hr />",
 'movelogpage' => 'Nhật trình đổi tên',
 'movelogpagetext' => 'Các trang bị đổi tên.',
 'namespace' => 'Không gian:',

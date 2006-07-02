@@ -1366,7 +1366,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'speciallogtitlelabel'  => 'Tìtol:',
 'passwordtooshort'      => 'Soa ciav a l\'é pa assé longa. A la dev avej almanch $1 caràter.',
 'mediawarning'          => '\'\'\'Atension!\'\'\': st\'archivi-sì a podrìa avej andrinta dël còdes butà-lì da cheidun për fé ëd darmagi, e se parej a fussa, ën fasend-lo travajé ansima a sò calcolador chiel a podrìa porteje ëd dann a sò sistema. 
-<hr>',
+<hr />',
 'fileinfo'              => 'amzura $1[[Kilobyte|KB]], sòrt [[MIME]]: <code>[[$2]]</code>',
 'metadata'              => 'Dat adissionaj',
 'metadata-help'         => 'Costi-sì a son dij dat adissionaj, che a l\'é belfé che a sio stait giontà da la màchina fotogràfica digital ò pura da lë scanner che a l\'é stiat dovrà për creé la figura digital. Se la figura a fussa mai staita modificà da \'nt soa forma original, a podrìa ëdcò riveje che chèich detaj a fussa ancò butà coma ant l\'original, donca sensa pa ten-e cont ëd le modìfiche.',

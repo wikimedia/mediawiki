@@ -226,9 +226,9 @@ Hesabınız yaratıldı. {{SITENAME}} tercihlerinizi değiştirmeyi unutmayın.'
 'yourpasswordagain'     => 'Parolayı yeniden yaz',
 'remembermypassword'    => 'Parolayı hatırla.',
 'yourdomainname'        => 'Alan adınız',
-'alreadyloggedin'       => '<font color=red><b>$1 rumuzlu kullanıcı, halen açık bir oturum var!</b></font><br>',
+'alreadyloggedin'       => '<font color=red><b>$1 rumuzlu kullanıcı, halen açık bir oturum var!</b></font><br />',
 'login'                 => 'Oturum aç',
-'loginprompt'           => 'Dikkat: {{SITENAME}} sitesinde oturum açabilmek için tarayıcınızda çerezlerin (cookies) aktifleştirilmiş olması gerekmektedir.<br>
+'loginprompt'           => 'Dikkat: {{SITENAME}} sitesinde oturum açabilmek için tarayıcınızda çerezlerin (cookies) aktifleştirilmiş olması gerekmektedir.<br />
 Kullanıcı adınız Türkçe karakter, boşluk \'\'\'içerebilir\'\'\'. Kullanıcı adınıza e-posta adresi \'\'\'girmemeniz\'\'\' tavsiye edilir.',
 'userlogin'             => 'Oturum aç ya da yeni hesap edin',
 'logout'                => 'Oturumu kapat',
@@ -826,7 +826,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'badipaddress'          => 'Geçersiz IP adresi',
 'blockipsuccesssub'     => 'IP adresi engelleme işlemi başarılı oldu',
 'blockipsuccesstext'    => '"$1" engellendi.
-<br>[[Special:Ipblocklist|IP adresi engellenenler]] listesine bakınız .',
+<br />[[Special:Ipblocklist|IP adresi engellenenler]] listesine bakınız .',
 'unblockip'             => 'Kullanıcının engellemesini kaldır',
 'ipusubmit'             => 'Bu adresin engellemesini kaldır',
 'ipblocklist'           => 'Erişimi durdurulmuş kullanıcılar ve IP adresleri listesi',
@@ -999,7 +999,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'speciallogtitlelabel'  => 'Başlık:',
 'passwordtooshort'      => 'Parolanız çok kısa. En az $1 harf ve/veya rakam içermeli.',
 'mediawarning'          => '\'\'\'DİKKAT!\'\'\': Bu dosyada kötü amaçlı (virüs gibi) kısım bulunabilir ve işletim sisteminize zarar verebilir.
-<hr>',
+<hr />',
 'metadata'              => 'Resim detayları',
 'metadata-expand'       => 'Ayrıntıları göster',
 'metadata-collapse'     => 'Ayrıntıları gösterme',

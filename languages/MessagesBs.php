@@ -502,7 +502,7 @@ i tekst $3 članaka.',
 'media_sample' => 'ime_medija_fajla.ogg',
 'media_tip' => 'Putanja ka multimedijalnom fajlu',
 'mediawarning' => '\'\'\'Upozorenje\'\'\': Ovaj fajl sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.
-<hr>',
+<hr />',
 'metadata' => 'Metapodaci',
 'metadata_page' => '{{ns:project}}:Metapodaci',
 'mimesearch' => 'MIME pretraga',
