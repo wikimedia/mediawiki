@@ -555,7 +555,7 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 #
 "searchresults" => "Suchergebnisse",
 'searchresulttext'	=> 'Für mehr Informationen zur Suche siehe „[[{{ns:project}}:Suche|{{SITENAME}} durchsuchen]]“.',
-'searchsubtitle' => 'Für die Suchanfrage „[[$1]]“',
+'searchsubtitle'	=> 'Für Ihre Suchanfrage „[[$1]]“.',
 "badquery"		=> "Falsche Suchanfrage",
 'badquerytext'		=> 'Wir konnten Ihre Suchanfrage nicht verarbeiten.
 Vermutlich haben Sie versucht, ein Wort zu suchen, das kürzer als vier Buchstaben ist.
