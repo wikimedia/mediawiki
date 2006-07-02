@@ -17,6 +17,7 @@ define( 'MW_NO_OUTPUT_BUFFER', true );
 require_once( './includes/Defines.php' );
 require_once( './LocalSettings.php' );
 require_once( 'GlobalFunctions.php' );
+require_once( 'ImageFunctions.php' );
 
 $wgTrivialMimeDetection = true; //don't use fancy mime detection, just check the file extension for jpg/gif/png.
 
