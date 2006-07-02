@@ -1,6 +1,9 @@
 <?php
 
 /* This defines autoloading handler for whole MediaWiki framework */
+
+ini_set('unserialize_callback_func', '__autoload' );
+
 function __autoload($className) {
 	global $wgAutoloadClasses;
 
@@ -83,6 +86,7 @@ function __autoload($className) {
 		'HistoryBlobCurStub' => 'includes/HistoryBlob.php',
 		'HTMLCacheUpdate' => 'includes/HTMLCacheUpdate.php',
 		'HTMLCacheUpdateJob' => 'includes/HTMLCacheUpdate.php',
+		'Http' => 'includes/HttpFunctions.php',
 		'Image' => 'includes/Image.php',
 		'ThumbnailImage' => 'includes/Image.php',
 		'ImageGallery' => 'includes/ImageGallery.php',
@@ -215,6 +219,7 @@ function __autoload($className) {
 		'WikiError' => 'includes/WikiError.php',
 		'WikiErrorMsg' => 'includes/WikiError.php',
 		'WikiXmlError' => 'includes/WikiError.php',
+		'Xml' => 'includes/Xml.php',
 		'ZhClient' => 'includes/ZhClient.php',
 		'memcached' => 'includes/memcached-client.php',
 		'UtfNormal' => 'includes/normal/UtfNormal.php'
@@ -224,7 +229,19 @@ function __autoload($className) {
 	} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
 		$filename = $wgAutoloadClasses[$className];
 	} else {
-		return;
+		# Try a different capitalisation
+		# The case can sometimes be wrong when unserializing PHP 4 objects
+		$filename = false;
+		$lowerClass = strtolower( $className );
+		foreach ( $localClasses as $class2 => $file2 ) {
+			if ( strtolower( $class2 ) == $lowerClass ) {
+				$filename = $file2;
+			}
+		}
+		if ( !$filename ) {
+			# Give up
+			return;
+		}
 	}
 
 	# Make an absolute path, this improves performance by avoiding some stat calls

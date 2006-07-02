@@ -1564,6 +1564,13 @@ $wgExtensionFunctions = array();
  */
 $wgSkinExtensionFunctions = array();
 
+/**
+ * List of valid skin names.
+ * The key should be the name in all lower case, the value should be a display name.
+ * The default skins will be added later, by Skin::getSkinNames(). Use 
+ * Skin::getSkinNames() as an accessor if you wish to have access to the full list.
+ */
+$wgValidSkinNames = array();
 
 /**
  * Special page list.

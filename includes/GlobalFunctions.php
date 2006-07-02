@@ -1964,4 +1964,14 @@ function wfCreateObject( $name, $p ){
 	}
 }
 
+/**
+ * Aliases for modularized functions
+ */
+function wfGetHTTP( $url, $timeout = 'default' ) { 
+	return Http::get( $url, $timeout ); 
+}
+function wfIsLocalURL( $url ) { 
+	return Http::isLocalURL( $url ); 
+}
+
 ?>

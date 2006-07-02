@@ -56,16 +56,14 @@ require_once( "$IP/includes/GlobalFunctions.php" );
 require_once( "$IP/includes/Hooks.php" );
 require_once( "$IP/includes/Namespace.php" );
 require_once( "$IP/includes/User.php" );
-require_once( "$IP/includes/Skin.php" );
 require_once( "$IP/includes/OutputPage.php" );
 require_once( "$IP/includes/MagicWord.php" );
-require_once( "$IP/includes/Block.php" );
 require_once( "$IP/includes/MessageCache.php" );
 require_once( "$IP/includes/Parser.php" );
 require_once( "$IP/includes/LoadBalancer.php" );
-require_once( "$IP/includes/HistoryBlob.php" );
 require_once( "$IP/includes/ProxyTools.php" );
 require_once( "$IP/includes/ObjectCache.php" );
+require_once( "$IP/includes/ImageFunctions.php" );
 
 if ( $wgUseDynamicDates ) {
 	require_once( "$IP/includes/DateFormatter.php" );
@@ -254,8 +252,7 @@ if( $wgLangClass == $wgContLangClass ) {
 wfProfileOut( $fname.'-language2' );
 wfProfileIn( $fname.'-MessageCache' );
 
-$wgMessageCache = new MessageCache;
-$wgMessageCache->initialise( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname);
+$wgMessageCache = new MessageCache( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname);
 
 wfProfileOut( $fname.'-MessageCache' );
 
@@ -292,7 +289,6 @@ $wgDeferredUpdateList = array();
 $wgPostCommitUpdateList = array();
 
 $wgMagicWords = array();
-$wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 
 if ( $wgUseXMLparser ) {
 	require_once( 'ParserXML.php' );

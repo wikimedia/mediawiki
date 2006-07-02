@@ -143,8 +143,6 @@ class SpecialPage
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 
-		#throw new MWException( __METHOD__ );
-
 		if ( self::$mListInitialised ) {
 			return;
 		}

@@ -25,7 +25,7 @@ class MessageCache {
 	var $mInitialised = false;
 	var $mDeferred = true;
 
-	function initialise( &$memCached, $useDB, $expiry, $memcPrefix) {
+	function __construct( &$memCached, $useDB, $expiry, $memcPrefix) {
 		$fname = 'MessageCache::initialise';
 		wfProfileIn( $fname );
 
@@ -39,7 +39,7 @@ class MessageCache {
 		$this->mInitialised = true;
 
 		wfProfileIn( $fname.'-parseropt' );
-		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
+		$this->mParserOptions = new ParserOptions( $u=NULL );
 		wfProfileOut( $fname.'-parseropt' );
 		wfProfileIn( $fname.'-parser' );
 		$this->mParser = new Parser;
@@ -558,9 +558,11 @@ class MessageCache {
 	 * @param string $lang The messages language, English by default
 	 */
 	function addMessages( $messages, $lang = 'en' ) {
+		wfProfileIn( __METHOD__ );
 		foreach ( $messages as $key => $value ) {
 			$this->addMessage( $key, $value, $lang );
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
