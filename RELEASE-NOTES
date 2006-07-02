@@ -624,7 +624,9 @@ Some default configuration options have changed:
 * (bug 6511) Add diff links to old revision navigation bar
 * (bug 6511) Replace 'oldrevisionnavigation' message with 'old-revision-navigation'
 * Fix regression in Polish genitive month forms
-
+* (bug 4037) Make input handling in Special:Allpages and Special:Prefixindex
+  more consistent: Accept just a namespace prefix and a colon, reject input
+  with interwiki prefixes, otherwise do what Title::makeTitleSafe() does.
 
 == Compatibility ==
 
