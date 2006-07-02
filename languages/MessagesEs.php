@@ -335,7 +335,7 @@ Por favor revisa el URL que usaste para acceder a esta página.",
 #
 "searchresults" => "Resultados de búsqueda",
 "searchresulttext" => "Para más información acerca de búsquedas en {{SITENAME}}, ve a [[Project:Búsqueda|Buscando en {{SITENAME}}]].",
-"searchquery"	=> "Para consulta \"$1\"",
+"searchsubtitle"	=> "Para consulta \"[[$2]]\"",
 
 "badquery"		=> "Consulta de búsqueda formateada en forma incorrecta",
 "badquerytext"	=> "No pudimos procesar tu búsqueda.

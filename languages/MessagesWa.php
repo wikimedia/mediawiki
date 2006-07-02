@@ -585,7 +585,7 @@ Les ôtes manaedjeus so ç\' wiki ci pôront todi vey li contnou catchî eyet l\
 #
 'searchresults' => 'Rizultats do cweraedje',
 'searchresulttext' => 'Po pus di racsegnes sol manire di fé des cweraedjes so {{SITENAME}}, loukîz [[{{ns:project}}:Cweraedje|Cweraedje so {{SITENAME}}]].',
-'searchquery' => 'Pol cweraedje «$1»',
+'searchsubtitle' => 'Pol cweraedje «[[$2]]»',
 'badquery' => 'Halcrosse tchinne di cweraedje',
 'badquerytext' => 'Vosse cweraedje èn s\' a nén polou fé.
 C\' est motoit bén paski vos avoz sayî d\' cweri

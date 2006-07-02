@@ -550,7 +550,7 @@ Legenda: (actu) = diferenças da versão actual,
 #
 'searchresults' => 'Resultados de pesquisa',
 'searchresulttext' => "Para mais informações de como pesquisar na {{SITENAME}}, consulte [[{{ns:project}}:Pesquisa|Pesquisando {{SITENAME}}]].",
-'searchquery'   => "Para consulta \"$1\"",
+'searchsubtitle'   => "Para consulta \"[[$2]]\"",
 'badquery'              => 'Linha de pesquisa inválida',
 'badquerytext'  => 'Não foi possível processar seu pedido de pesquisa.
 Aconteceu provavelmente porque tentou procurar uma palavra com menos de três letras. Isto também pode ter ocorrido porque digitou incorrectamente a expressão, por

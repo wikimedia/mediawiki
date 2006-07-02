@@ -344,7 +344,7 @@ A = Apró változtatás",
 #
 "searchresults" => "A keresés eredménye",
 "searchresulttext" => "További információkkal a keresésről [[Project:Keresés|Keresés a {{SITENAME}}]] szolgál.",
-"searchquery"	=> "A \"$1\" kereséshez",
+"searchsubtitle"	=> "A \"[[$2]]\" kereséshez",
 "badquery"		=> "Hibás formájú keresés",
 "badquerytext"	=> "Nem tudjuk a kérésedet végrehajtani.
 Ennek oka valószínűleg az, hogy három betűnél rövidebb

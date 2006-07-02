@@ -243,7 +243,7 @@ Confrima URL paginae.',
 'editcurrent'           => 'Recensere formam recentissimam huius paginae',
 'searchresults'         => 'Eventum investigationis',
 'searchresulttext'      => 'Pro plure nuntii de investigatione {{SITENAME}}, vide $1.',
-'searchquery'           => 'Pro investigatione "$1"',
+'searchsubtitle'           => 'Pro investigatione "[[$2]]"',
 'badquery'              => 'Investigatio formata male',
 'badquerytext'          => 'Investigatio tua procedere non poterat.
 Fortasse verba minora quam tres litteras longa quaerere conatus es, vel fortasse error in quaestione erat. Conare denuo.',
