@@ -110,8 +110,6 @@ function __autoload($className) {
 		'MimeMagic' => 'includes/MimeMagic.php',
 		'Namespace' => 'includes/Namespace.php',
 		'FakeMemCachedClient' => 'includes/ObjectCache.php',
-		'ObjectCacheManager' => 'includes/ObjectCache.php',
-		'MemCachedClientforWiki' => 'includes/ObjectCache.php',
 		'OutputPage' => 'includes/OutputPage.php',
 		'PageHistory' => 'includes/PageHistory.php',
 		'Parser' => 'includes/Parser.php',
