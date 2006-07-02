@@ -228,7 +228,8 @@ function __autoload($className) {
 	}
 
 	# Make an absolute path, this improves performance by avoiding some stat calls
-	if ( substr( $filename, 0, 1 ) == '/' || substr( $filename, 1, 1 ) == ':' ) {
+	if ( substr( $filename, 0, 1 ) != '/' && substr( $filename, 1, 1 ) != ':' ) {
+		global $IP;
 		$filename = "$IP/$filename";
 	}
 	require( $filename );
