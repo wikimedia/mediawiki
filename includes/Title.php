@@ -286,9 +286,9 @@ class Title {
 	 * @access public
 	 */
 	function newFromRedirect( $text ) {
-		global $wgMwRedir;
+		$mwRedir = MagicWord::get( MAG_REDIRECT );
 		$rt = NULL;
-		if ( $wgMwRedir->matchStart( $text ) ) {
+		if ( $mwRedir->matchStart( $text ) ) {
 			if ( preg_match( '/\[{2}(.*?)(?:\||\]{2})/', $text, $m ) ) {
 				# categories are escaped using : for example one can enter:
 				# #REDIRECT [[:Category:Music]]. Need to remove it.
@@ -1187,8 +1187,12 @@ class Title {
 	 * Check that the corresponding skin exists
 	 */
 	function isValidCssJsSubpage() {
-		global $wgValidSkinNames;
-		return( $this->isCssJsSubpage() && array_key_exists( $this->getSkinFromCssJsSubpage(), $wgValidSkinNames ) );
+		if ( $this->isCssJsSubpage() ) {
+			$skinNames = Skin::getSkinNames();
+			return array_key_exists( $this->getSkinFromCssJsSubpage(), $skinNames );
+		} else {
+			return false;
+		}
 	}
 	/**
 	 * Trim down a .css or .js subpage title to get the corresponding skin name
@@ -1854,7 +1858,7 @@ class Title {
 	 * @private
 	 */
 	function moveOverExistingRedirect( &$nt, $reason = '' ) {
-		global $wgUseSquid, $wgMwRedir;
+		global $wgUseSquid;
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 
@@ -1893,7 +1897,8 @@ class Title {
 		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Recreate the redirect, this time in the other direction.
-		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
+		$mwRedir = MagicWord::get( MAG_REDIRECT );
+		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 		$redirectArticle = new Article( $this );
 		$newid = $redirectArticle->insertOn( $dbw );
 		$redirectRevision = new Revision( array(
@@ -1933,7 +1938,6 @@ class Title {
 	 */
 	function moveToNewTitle( &$nt, $reason = '' ) {
 		global $wgUseSquid;
-		global $wgMwRedir;
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		if ( $reason ) {
@@ -1966,7 +1970,8 @@ class Title {
 		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Insert redirect
-		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
+		$mwRedir = MagicWord::get( MAG_REDIRECT );
+		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 		$redirectArticle = new Article( $this );
 		$newid = $redirectArticle->insertOn( $dbw );
 		$redirectRevision = new Revision( array(

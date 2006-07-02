@@ -6,10 +6,6 @@
  * @subpackage Parser
  */
 
-/** */
-require_once( 'Sanitizer.php' );
-require_once( 'HttpFunctions.php' );
-
 /**
  * Update this version number when the ParserOutput format
  * changes in an incompatible way, so the parser cache
@@ -3165,7 +3161,7 @@ class Parser
 			}
 		}
 
-		$text = wfGetHTTP($url);
+		$text = Http::get($url);
 		if (!$text)
 			return wfMsg('scarytranscludefailed', $url);
 
@@ -4605,18 +4601,26 @@ class ParserOptions
 	var $mTidy;                      # Ask for tidy cleanup
 	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
 
+	var $mUser;                      # Stored user object, just used to initialise the skin
+
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
-	function &getSkin()                         { return $this->mSkin; }
 	function getDateFormat()                    { return $this->mDateFormat; }
 	function getEditSection()                   { return $this->mEditSection; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
+
+	function &getSkin() {
+		if ( !isset( $this->mSkin ) ) {
+			$this->mSkin = $this->mUser->getSkin();
+		}
+		return $this->mSkin;
+	}
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
@@ -4631,9 +4635,8 @@ class ParserOptions
 	function setSkin( &$x ) { $this->mSkin =& $x; }
 	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
 
-	function ParserOptions() {
-		global $wgUser;
-		$this->initialiseFromUser( $wgUser );
+	function ParserOptions( $user = null ) {
+		$this->initialiseFromUser( $user );
 	}
 
 	/**
@@ -4641,9 +4644,7 @@ class ParserOptions
 	 * @static
 	 */
 	function newFromUser( &$user ) {
-		$popts = new ParserOptions;
-		$popts->initialiseFromUser( $user );
-		return $popts;
+		return new ParserOptions( $user );
 	}
 
 	/** Get user options */
@@ -4653,20 +4654,25 @@ class ParserOptions
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
-			$user = new User;
-			$user->setLoaded( true );
+			global $wgUser;
+			if ( isset( $wgUser ) ) {
+				$user = $wgUser;
+			} else {
+				$user = new User;
+				$user->setLoaded( true );
+			}
 		} else {
 			$user =& $userInput;
 		}
+
+		$this->mUser = $user;
 
 		$this->mUseTeX = $wgUseTeX;
 		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
-		wfProfileIn( $fname.'-skin' );
-		$this->mSkin =& $user->getSkin();
-		wfProfileOut( $fname.'-skin' );
+		$this->mSkin = null; # Deferred
 		$this->mDateFormat = $user->getOption( 'date' );
 		$this->mEditSection = true;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
