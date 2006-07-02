@@ -478,7 +478,7 @@ $1 または他の[[{{int:administrators}}|{{int:group-sysop}}]]にこの件に�
 'compareselectedversions'=> '選択した版同士を比較',
 'searchresults'         => '検索結果',
 'searchresulttext'      => '{{SITENAME}}の検索に関する詳しい情報は、[[{{ns:project}}:検索]]をご覧ください。',
-'searchsubtitle'           => '問い合わせ: "[[$2]]"',
+'searchsubtitle'           => '問い合わせ: "[[$1]]"',
 'badquery'              => 'おかしな形式の検索問い合わせ',
 'badquerytext'          => '問い合わせを処理できませんでした。おそらく3文字未満の語を検索しようとしたためですが、まだ対応していません。例えば「魚 and and 大きさ」のように、表現を誤記しているのかもしれません。',
 'matchtotals'           => '"$1" を検索し、 $2 の項目名及び $3 ページの本文と一致しました。',

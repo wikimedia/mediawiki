@@ -302,7 +302,7 @@ vous suivez les [[Project:Page protégée|directives concernant les pages proté
 #
 "searchresults" => "Résultat de la recherche",
 "searchresulttext" => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir [[Project:Recherche|Chercher dans {{SITENAME}}]].",
-"searchsubtitle" => "Pour la requête \"[[$2]]\"",
+"searchsubtitle" => "Pour la requête \"[[$1]]\"",
 "badquery"  => "Requête mal formulée",
 "badquerytext" => "Nous n'avons pas pu traiter votre requête.
 Vous avez probablement recherché un mot d'une longueur inférieure

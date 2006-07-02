@@ -730,7 +730,7 @@ Patikrinkite adresą (URL), kurio patekote į šį puslapį.',
 'search' => 'Paieška',
 'searchdisabled' => '<p style="margin: 1.5em 2em 1em">Projekto \'{{SITENAME}}\' paieška yra uždrausta dėl techninių kliūčių. Galite mėginti ieškoti Google paieškos sistemoje.
 <span style="font-size: 89%; display: block; margin-left: .2em">Išorinėse paieškos sistemose (kaip Google) Vikipedijos gali būti šiek tiek pasenę duomenys.</span></p>',
-'searchsubtitle' => 'Ieškoma "[[$2]]"',
+'searchsubtitle' => 'Ieškoma "[[$1]]"',
 'searchresults' => 'Paieškos rezultatai',
 'searchresultshead' => 'Paieškos nustatymai',
 'searchresulttext' => 'Daugiau informacijos apie paiešką {{SITENAME}} projekte rasite - [[Help:Searching|Paieška projekte]].',

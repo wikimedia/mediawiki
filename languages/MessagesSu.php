@@ -826,7 +826,7 @@ Please check the URL you used to access this page.',
 'search' => 'Téang',
 'searchdisabled' => '<p style="margin: 1.5em 2em 1em">Punten! Néangan téks lengkep di {{SITENAME}} kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu.
 <span style="font-size: 89%; display: block; margin-left: .2em">Catet yén indéxna ngeunaan eusi {{SITENAME}} bisa jadi teu mutahir.</span></p>',
-'searchsubtitle' => 'Pikeun pamundut "[[$2]]"',
+'searchsubtitle' => 'Pikeun pamundut "[[$1]]"',
 'searchresults' => 'Hasil néangan',
 'searchresultshead' => 'Aturan hasil néang',
 'searchresulttext' => 'Pikeun iber nu leuwih lengkep ngeunaan nyaksrak di {{SITENAME}}, buka [[{{ns:project}}:Nyaksrak|Nyaksrak {{SITENAME}}]].',

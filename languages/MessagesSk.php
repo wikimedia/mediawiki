@@ -532,7 +532,7 @@ nie sú stanovené ďakšie obmedzenia.',
 'compareselectedversions'=> 'Porovnaj označené verzie',
 'searchresults'         => 'Výsledky vyhľadávania',
 'searchresulttext'      => 'Viac informácií o vyhľadávaní vo {{GRAMMAR:lokál|{{SITENAME}}}} je uvedených na $1.',
-'searchsubtitle'           => 'Na vyhľadávací dotaz "[[$2]]"',
+'searchsubtitle'           => 'Na vyhľadávací dotaz "[[$1]]"',
 'badquery'              => 'Nesprávne formulovaná požiadavka na vyhľadávanie',
 'badquerytext'          => 'Váš text na prehľadávanie sme nemohli spracovať. Dôvodom je pravdepodobne to, že ste hľadali slovo kratšie ako tri písmená, čo zatiaľ {{SITENAME}} neumožňuje. Alebo ste možno výraz zle napísali, napríklad „dom a a záhrada“. Skúste iný text na prehľadávanie.',
 'matchtotals'           => 'Výsledkom dotazu "$1" je $2 nadpisov článkov

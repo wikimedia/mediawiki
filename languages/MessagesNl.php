@@ -488,7 +488,7 @@ Andere moderatoren van deze wiki kunnen nog steeds de verborgen inhoud benaderen
 'compareselectedversions'=> 'Vergelijk geselecteerde versies',
 'searchresults'         => 'Zoekresultaten',
 'searchresulttext'      => 'Voor meer informatie over zoeken op {{SITENAME}}: zie [[{{ns:project}}:Zoeken|Zoeken op {{SITENAME}}]].',
-'searchsubtitle'           => 'Voor zoekopdracht "[[$2]]"',
+'searchsubtitle'           => 'Voor zoekopdracht "[[$1]]"',
 'badquery'              => 'Slecht geformuleerde zoekopdracht',
 'badquerytext'          => 'Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een \'woord\' van 1 letter te zoeken, of 1 van de \'\'\'Verboden woorden\'\'\' (zie voor uitleg [http://nl.wikipedia.org/wiki/Wikipedia:Woorden_die_niet_als_zoekterm_gebruikt_kunnen_worden Wikipedia]). Probeer een andere zoekterm.',
 'matchtotals'           => 'De zoekterm "$1" is gevonden in $2 paginatitels en in de tekst van $3 pagina\'s.',
