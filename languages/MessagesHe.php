@@ -918,6 +918,7 @@ $wgAllMessagesHe = array(
 "allpagesnext"      => "הבא",
 "allpagessubmit"    => "עבור",
 "allpagesprefix"    => "הדפים ששמם מתחיל ב…:",
+"allpagesbadtitle"  => "כותרת הדף המבוקש הייתה לא־חוקית, ריקה, קישור ויקי פנימי, או פנים שפה שגוי. ייתכן שהיא כוללת תו אחד או יותר האסורים לשימוש בכותרות.",
 
 # Email this user
 "mailnologin"     => "אין כתובת לשליחה",
