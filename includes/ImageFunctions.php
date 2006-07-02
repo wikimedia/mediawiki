@@ -217,20 +217,27 @@ function wfGetSVGsize( $filename ) {
  */
 function wfIsBadImage( $name ) {
 	static $titleList = false;
-	
-	if( !$titleList ) {
-		# Build the list now
-		$titleList = array();
-		$lines = explode( "\n", wfMsgForContent( 'bad_image_list' ) );
-		foreach( $lines as $line ) {
-			if( preg_match( '/^\*\s*\[\[:?(.*?)\]\]/i', $line, $matches ) ) {
-				$title = Title::newFromText( $matches[1] );
-				if( is_object( $title ) && $title->getNamespace() == NS_IMAGE )
-					$titleList[ $title->getDBkey() ] = true;
+	wfProfileIn( __METHOD__ );
+	$bad = false;
+	if( wfRunHooks( 'BadImage', array( $name, &$bad ) ) {
+		if( !$titleList ) {
+			# Build the list now
+			$titleList = array();
+			$lines = explode( "\n", wfMsgForContent( 'bad_image_list' ) );
+			foreach( $lines as $line ) {
+				if( preg_match( '/^\*\s*\[\[:?(.*?)\]\]/i', $line, $matches ) ) {
+					$title = Title::newFromText( $matches[1] );
+					if( is_object( $title ) && $title->getNamespace() == NS_IMAGE )
+						$titleList[ $title->getDBkey() ] = true;
+				}
 			}
 		}
+		wfProfileOut( __METHOD__ );
+		return array_key_exists( $name, $titleList );
+	} else {
+		wfProfileOut( __METHOD__ );
+		return $bad;
 	}
-	return array_key_exists( $name, $titleList );
 }
 
 /**

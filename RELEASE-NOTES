@@ -632,6 +632,7 @@ Some default configuration options have changed:
 * Rename "searchquery" to "searchsubtitle" and support wiki text in it
 * Introduce updateArticleCount maintenance script which uses a better check that
   reflects what Article::isCountable() tests for
+* Introduce 'BadImage' hook; see docs/hooks.txt for more information
 
 == Compatibility ==
 
