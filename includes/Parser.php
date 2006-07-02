@@ -128,6 +128,8 @@ class Parser
 	function Parser() {
 		$this->mTagHooks = array();
 		$this->mFunctionHooks = array();
+		$this->mFunctionSynonymsValid = true;
+		$this->mFunctionSynonyms = array();
 		$this->clearState();
 		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
 	}
@@ -175,7 +177,11 @@ class Parser
 
 		$this->mShowToc = true;
 		$this->mForceTocPosition = false;
-		
+
+		# This doesn't actually clear anything, but it seemed like a nice place to put it
+		# Fill the function cache, if it needs filling
+		$this->refreshFunctionCache();
+
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 	}
 
@@ -2851,16 +2857,8 @@ class Parser
 			$colonPos = strpos( $part1, ':' );
 			if ( $colonPos !== false ) {
 				$function = strtolower( substr( $part1, 1, $colonPos - 1 ) );
-				if ( !isset( $this->mFunctionHooks[$function] ) ) {
-					foreach ($this->mFunctionHooks as $key => $value) {
-						if( is_int( $key ) ) {
-							$mwExtension =& MagicWord::get( $key );
-							if( $mwExtension->matchVariableStartToEnd( $function ) ) {
-								$function = $key;
-								break;
-							}
-						}
-					}
+				if ( isset( $this->mFunctionSynonyms[$function] ) ) {
+					$function = $this->mFunctionSynonyms[$function];
 				}
 				if ( isset( $this->mFunctionHooks[$function] ) ) {
 					$funcArgs = array_map( 'trim', $args );
@@ -3911,7 +3909,28 @@ class Parser
 		}
 		$oldVal = @$this->mFunctionHooks[$id];
 		$this->mFunctionHooks[$id] = $callback;
+		# Invalidate function synonym cache
+		$this->mFunctionSynonymsValid = false;
 		return $oldVal;
+	}
+
+	/**
+	 * Make sure the function synonym cache is up to date
+	 */
+	function refreshFunctionCache() {
+		if ( !$this->mFunctionSynonymsValid ) {
+			$this->mFunctionSynonyms = array();
+			foreach( $this->mFunctionHooks as $key => $value ) {
+				if ( is_int( $key ) ) {
+					$mw = MagicWord::get( $key );
+					$synonyms = $mw->getSynonyms();
+					foreach( $synonyms as $synonym ) {
+						$this->mFunctionSynonyms[strtolower($synonym)] = $key;
+					}
+				}
+			}
+			$this->mFunctionSynonymsValid = true;
+		}
 	}
 
 	/**
