@@ -16,7 +16,7 @@ let h_header = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\""^
 	     "<html><head><title>texvc</title></head><body>"^
 	     "<form method=post action=\"http://wroclaw.taw.pl.eu.org/~taw/cgi-bin/newcodebase/math/texvc_cgi\">"^
 	     "<textarea name='math' rows=10 cols=80>"
-let h_middle = "</textarea><br><input type=submit value=\"Preview\" name='preview'></form>"
+let h_middle = "</textarea><br /><input type=submit value=\"Preview\" name='preview'></form>"
 let h_footer = "</body></html>\n"
 
 let render tmppath finalpath tree =
