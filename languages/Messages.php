@@ -635,7 +635,7 @@ is placed by the site operators.",
 #
 'searchresults' => 'Search results',
 'searchresulttext' => "For more information about searching {{SITENAME}}, see [[{{ns:project}}:Searching|Searching {{SITENAME}}]].",
-'searchquery'	=> "For query \"$1\"",
+'searchsubtitle' => "You searched for '''[[$1]]'''",
 'badquery'		=> 'Badly formed search query',
 'badquerytext'	=> 'We could not process your query.
 This is probably because you have attempted to search for a
@@ -655,7 +655,7 @@ and the text of $3 pages.",
 'viewprevnext'	=> "View ($1) ($2) ($3).",
 'showingresults' => "Showing below up to <b>$1</b> results starting with #<b>$2</b>.",
 'showingresultsnum' => "Showing below <b>$3</b> results starting with #<b>$2</b>.",
-'nonefound'		=> "'''Note''': unsuccessful searches are
+'nonefound'		=> "'''Note''': Unsuccessful searches are
 often caused by searching for common words like \"have\" and \"from\",
 which are not indexed, or by specifying more than one search term (only pages
 containing all of the search terms will appear in the result).",
