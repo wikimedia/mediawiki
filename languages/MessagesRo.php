@@ -473,6 +473,7 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'searchresults'         => 'Rezultatele căutării',
 'searchresulttext'      => 'Pentru mai multe detalii despre căutarea în {{SITENAME}}, vezi [[Project:Căutare]].',
 'searchsubtitle'           => 'Pentru căutarea "[[$1]]"',
+'searchsubtitleinvalid'           => 'Pentru căutarea "$1"',
 'badquery'              => 'Căutare invalidă',
 'badquerytext'          => 'Căutarea dvs. nu a putut fi procesată.
 Aceasta se întâmplă probabil pentru că aţi încercat să căutaţi un cuvânt format din mai puţin de trei litere.

@@ -633,6 +633,7 @@ Some default configuration options have changed:
 * Introduce updateArticleCount maintenance script which uses a better check that
   reflects what Article::isCountable() tests for
 * Introduce 'BadImage' hook; see docs/hooks.txt for more information
+* Add "searchsubtitleinvalid" message for searches that are not valid titles.
 
 == Compatibility ==
 

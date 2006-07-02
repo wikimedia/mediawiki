@@ -221,7 +221,8 @@ class SpecialSearch {
 	function setupPage( $term ) {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'searchresults' ) );
-		$wgOut->setSubtitle( $wgOut->parse( wfMsg( 'searchsubtitle', $term ) ) );
+		$subtitlemsg = ( Title::newFromtext($term) ? 'searchsubtitle' :'searchsubtitleinvalid' );
+		$wgOut->setSubtitle( $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 	}

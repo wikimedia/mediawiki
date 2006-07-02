@@ -271,6 +271,7 @@ Prosimo preverite URL, ki ste ga uporabili za dostop do te strani.",
 "searchresults"         => "Izidi iskanja",
 "searchresulttext"      => "Za več sporočil o iskanju v Wikipediji glej [[{{ns:project}}:Iskanje|Iščem v Wikipediji]].",
 "searchsubtitle"	        => "Za povpraševanje \"[[$1]]\"",
+"searchsubtitleinvalid"	        => "Za povpraševanje \"$1\"",
 "badquery"		=> "Slabo oblikovano iskalno povpraševanje",
 "badquerytext"	        => "Ne moremo obdelati vašega povpraševanja.
 To je verjetno zaradi tega, ker ste hoteli iskati besedo, dolgo manj kot tri črke, kar še ni podprto.

@@ -136,11 +136,14 @@ function wfSajaxSearch( $term ) {
 		$more = '';
 	}
 
+	$subtitlemsg = ( Title::newFromtext($term) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
+	$subtitle = $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) );
+
 	$term = htmlspecialchars( $term );
 	return '<div style="float:right; border:solid 1px black;background:gainsboro;padding:2px;"><a onclick="Searching_Hide_Results();">' 
 		. wfMsg( 'hideresults' ) . '</a></div>'
 		. '<h1 class="firstHeading">'.wfMsg('search')
-		. '</h1><div id="contentSub">'. $wgOut->parse( wfMsg( 'searchsubtitle', $term ) ) . '</div><ul><li>'
+		. '</h1><div id="contentSub">'. $subtitle . '</div><ul><li>'
 		. $l->makeKnownLink( $wgContLang->specialPage( 'Search' ),
 					wfMsg( 'searchcontaining', $term ),
 					"search=$term&fulltext=Search" )

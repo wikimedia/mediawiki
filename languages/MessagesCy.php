@@ -342,6 +342,7 @@ gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
 "searchresults" => "Canlyniadau chwiliad",
 "searchresulttext" => "Am mwy o hysbys amdano chwilio {{SITENAME}}, gwelwch [[{{ns:project}}:Yn chwilio|Yn chwilio {{SITENAME}}]].",
 "searchsubtitle" => "Am gofyniad \"[[$1]]\"",
+"searchsubtitleinvalid" => "Am gofyniad \"$1\"",
 "badquery" => "Gofyniad chwilio drwg",
 "badquerytext" => "Roedd yn amhosibl i prosesu'ch gofyniad.
 Mae'n tebygol roedd hyn am achos yr ydych wedi trio chwilio a gair gyda llai na tri llythyrau. Hefyd, wyrach rydych wedi cam-teipio'r gofyniad. Triwch gofyniad arall.",

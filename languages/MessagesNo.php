@@ -329,6 +329,7 @@ versjonen, (forrige) = forskjell fra den forrige versjonen, M = mindre endring",
 "searchresulttext" => "For mer informasjon om søking i {{SITENAME}}, se
 $1.",
 "searchsubtitle"	=> "For forespørsel \"[[$1]]\"",
+"searchsubtitleinvalid"	=> "For forespørsel \"$1\"",
 "badquery"		=> "Galt utformet forespørsel",
 "badquerytext"	=> "Vi kunne ikke utføre forespørselen.
 Det er sannsynligvis fordi du har forsøkt å søke etter et ord med

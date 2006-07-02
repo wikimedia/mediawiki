@@ -259,6 +259,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.",
 "searchresults" => "Risultato della ricerca",
 "searchresulttext" => "Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[Project:Ricerca|Ricerca in {{SITENAME}}]].",
 "searchsubtitle"	=> "Richiesta \"[[$1]]\"",
+"searchsubtitleinvalid"	=> "Richiesta \"$1\"",
 "badquery"		=> "Richiesta mal inoltrata",
 "badquerytext"	=> "La tua richiesta non ha potuto essere processata.
 Questo potrebbe dipendere dall'aver ricercato una parola di meno di tre caratteri.

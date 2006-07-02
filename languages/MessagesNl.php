@@ -520,6 +520,7 @@ Andere beheerders van deze wiki kunnen nog steeds de verborgen inhoud benaderen 
 'searchresults'         => 'Zoekresultaten',
 'searchresulttext'      => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[Project:Zoeken|Zoeken op {{SITENAME}}]].',
 'searchsubtitle'        => 'Voor zoekopdracht "[[$1]]"',
+'searchsubtitleinvalid'        => 'Voor zoekopdracht "$1"',
 'badquery'              => 'Verkeerd geformuleerde zoekopdracht',
 'badquerytext'          => 'Uw vraag kan niet verwerkt worden.
 Dit komt waarschijnlijk doordat u heeft gezocht op woorden met minder dan drie letters, wat niet mogelijk is.
