@@ -581,7 +581,7 @@ function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
 		$categories = trim ( $wgRequest->getVal ( 'categories' , "" ) ) ;
 		$cb_arr = array( 'type' => 'checkbox', 'name' => 'categories_any', 'value' => "1" ) ;
 		if ( $categories_any ) $cb_arr['checked'] = "checked" ;
-		$catbox = "<br/>" ;
+		$catbox = "<br />" ;
 		$catbox .= wfMsgExt('rc_categories', array('parseinline')) . " ";
 		$catbox .= wfElement('input', array( 'type' => 'text', 'name' => 'categories', 'value' => $categories));
 		$catbox .= " &nbsp;" ;

@@ -903,7 +903,7 @@ if( count( $errs ) ) {
 		?>
 	</div>
 	<p class="config-desc">
-		Preferably a short word without punctuation, i.e. "Wikipedia".<br>
+		Preferably a short word without punctuation, i.e. "Wikipedia".<br />
 		Will appear as the namespace name for "meta" pages, and throughout the interface.
 	</p>
 
@@ -973,7 +973,7 @@ if( count( $errs ) ) {
 		<?php aField( $conf, "SysopPass2", "Password confirm:", "password" ) ?>
 	</div>
 	<p class="config-desc">
-		An admin can lock/delete pages, block users from editing, and other maintenance tasks.<br>
+		An admin can lock/delete pages, block users from editing, and other maintenance tasks.<br />
 		A new account will be added only when creating a new wiki database.
 	</p>
 
