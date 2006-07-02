@@ -328,7 +328,7 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 #
 "searchresults" => "Sykresultaat",
 "searchresulttext" => "\"[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]\" troch de {{SITENAME}}.",
-"searchsubtitle"	=> "Foar fraach \"[[$2]]\"",
+"searchsubtitle"	=> "Foar fraach \"[[$1]]\"",
 "badquery"		=> "Misfoarme sykfraach",
 "badquerytext"	=> "Jo fraach koe net ferwurke wurde.
 Dit is faaks om't jo besyke hawwe en sykje in word fan ien of twa letters, wat it programma noch net kin.

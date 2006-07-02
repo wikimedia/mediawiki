@@ -492,7 +492,7 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 #
 'searchresults' => 'Wyniki wyszukiwania',
 'searchresulttext' => 'Aby dowiedzieć się więcej o przeszukiwaniu serwisu {{SITENAME}}, zobacz stronę [[{{ns:Project}}:Przeszukiwanie|Przeszukiwanie]].',
-'searchsubtitle' => 'Dla zapytania "[[$2]]"',
+'searchsubtitle' => 'Dla zapytania "[[$1]]"',
 'badquery' => 'Źle sformułowane zapytanie',
 'badquerytext' => 'Nie można zrealizować Twojego zapytania. Prawdopodobna przyczyna to obecność słowa krótszego niż trzyliterowe. Spróbuj, proszę, innego zapytania.',
 'matchtotals' => 'Zapytanie "$1", liczba znalezionych tytułów: $2,

@@ -406,7 +406,7 @@ N'eus nemet an implijerien ganto ar statud a verourien a c'hall degas kemmoù en
 #
 'searchresults' => 'Disoc\'h ar c\'hlask',
 'searchresulttext' => "Evit kaout muioc'h a ditouroù diwar-benn ar c'hlask e {{SITENAME}}, sellet ouzh [[Project:Klask|Klask e-barzh {{SITENAME}}]].",
-'searchsubtitle' => "Evit ar goulenn \"[[$2]]\"",
+'searchsubtitle' => "Evit ar goulenn \"[[$1]]\"",
 'badquery'  => 'Goulenn savet a-dreuz',
 'badquerytext' => "N'eus ket bet gallet plediñ gant ho koulenn.
 Klasket hoc'h eus, moarvat, ur ger dindan teir lizherenn, ar pezh n'hallomp ket ober evit c'hoazh. Gallet hoc'h eus ober, ivez, ur fazi ereadur evel \"pesked ha skantenn\".

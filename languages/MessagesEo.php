@@ -436,7 +436,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b',
 'compareselectedversions'=> 'Komparu la selektitajn versiojn',
 'searchresults'         => 'Serĉrezultoj',
 'searchresulttext'      => 'Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu [[Project:Serĉado|serĉi en {{SITENAME}}]].',
-'searchsubtitle'           => 'Serĉmendo "[[$2]]"',
+'searchsubtitle'           => 'Serĉmendo "[[$1]]"',
 'badquery'              => 'Misformita serĉmendo',
 'badquerytext'          => 'Via serĉmendo ne estis plenumebla.
 Eble vi provis serĉi vorton kun malpli ol tri literoj.
