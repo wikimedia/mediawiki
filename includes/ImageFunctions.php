@@ -219,7 +219,7 @@ function wfIsBadImage( $name ) {
 	static $titleList = false;
 	wfProfileIn( __METHOD__ );
 	$bad = false;
-	if( wfRunHooks( 'BadImage', array( $name, &$bad ) ) {
+	if( wfRunHooks( 'BadImage', array( $name, &$bad ) ) ) {
 		if( !$titleList ) {
 			# Build the list now
 			$titleList = array();
