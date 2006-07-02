@@ -62,61 +62,65 @@ function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = n
 
 	$sk = $wgUser->getSkin();
 
-	$prefixTitle = Title::newFromURL( $prefix );
-	if ($namespace == NS_MAIN and $prefixTitle) {
-		$namespace = $prefixTitle->getNamespace();
-	}
-	$prefixKey = is_null( $prefixTitle ) ? '' : $prefixTitle->getDBkey();
-
 	if (!isset($from)) $from = $prefix;
-	$fromTitle = Title::newFromURL( $from );
-	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 
-	$dbr =& wfGetDB( DB_SLAVE );
+	$fromList = $this->getNamespaceKeyAndText($namespace, $from);
+	$prefixList = $this->getNamespaceKeyAndText($namespace, $prefix);
 
-	$res = $dbr->select( 'page',
-		array( 'page_namespace', 'page_title', 'page_is_redirect' ),
-		array(
-			'page_namespace' => $namespace,
-			'page_title LIKE \'' . $dbr->escapeLike( $prefixKey ) .'%\'',
-			'page_title >= ' . $dbr->addQuotes( $fromKey ),
-		),
-		$fname,
-		array(
-			'ORDER BY'  => 'page_title',
-			'LIMIT'     => $this->maxPerPage + 1,
-			'USE INDEX' => 'name_title',
-		)
-	);
+	if ( !$prefixList || !$fromList ) {
+		$out = wfMsgWikiHtml( 'badtitletext' );
+	} else {
+		list( $namespace, $prefixKey, $prefix ) = $prefixList;
+		list( $fromNs, $fromKey, $from ) = $fromList;
 
-	### FIXME: side link to previous
+		### FIXME: should complain if $fromNs != $namespace
 
-	$n = 0;
-	$out = '<table style="background: inherit;" border="0" width="100%">';
+		$dbr =& wfGetDB( DB_SLAVE );
 
-	$namespaces = $wgContLang->getFormattedNamespaces();
-	while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
-		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
-		if( $t ) {
-			$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
-				$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
-				($s->page_is_redirect ? '</div>' : '' );
-		} else {
-			$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
+		$res = $dbr->select( 'page',
+			array( 'page_namespace', 'page_title', 'page_is_redirect' ),
+			array(
+				'page_namespace' => $namespace,
+				'page_title LIKE \'' . $dbr->escapeLike( $prefixKey ) .'%\'',
+				'page_title >= ' . $dbr->addQuotes( $fromKey ),
+			),
+			$fname,
+			array(
+				'ORDER BY'  => 'page_title',
+				'LIMIT'     => $this->maxPerPage + 1,
+				'USE INDEX' => 'name_title',
+			)
+		);
+
+		### FIXME: side link to previous
+
+		$n = 0;
+		$out = '<table style="background: inherit;" border="0" width="100%">';
+
+		$namespaces = $wgContLang->getFormattedNamespaces();
+		while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
+			$t = Title::makeTitle( $s->page_namespace, $s->page_title );
+			if( $t ) {
+				$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
+					$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
+					($s->page_is_redirect ? '</div>' : '' );
+			} else {
+				$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
+			}
+			if( $n % 3 == 0 ) {
+				$out .= '<tr>';
+			}
+			$out .= "<td>$link</td>";
+			$n++;
+			if( $n % 3 == 0 ) {
+				$out .= '</tr>';
+			}
 		}
-		if( $n % 3 == 0 ) {
-			$out .= '<tr>';
-		}
-		$out .= "<td>$link</td>";
-		$n++;
-		if( $n % 3 == 0 ) {
+		if( ($n % 3) != 0 ) {
 			$out .= '</tr>';
 		}
+		$out .= '</table>';
 	}
-	if( ($n % 3) != 0 ) {
-		$out .= '</tr>';
-	}
-	$out .= '</table>';
 
 	if ( $including ) {
 		$out2 = '';
@@ -127,7 +131,7 @@ function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = n
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
 				$sk->makeKnownLink( $wgContLang->specialPage( $this->name ),
 					wfMsg ( 'allpages' ) );
-		if ( ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
+		if ( $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$namespaceparam = $namespace ? "&namespace=$namespace" : "";
 			$out2 .= " | " . $sk->makeKnownLink(
 				$wgContLang->specialPage( $this->name ),
