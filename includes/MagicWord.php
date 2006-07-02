@@ -387,6 +387,10 @@ class MagicWord {
 		return $this->mSynonyms[$i];
 	}
 
+	function getSynonyms() {
+		return $this->mSynonyms;
+	}
+
 	/**
 	 * Returns true if the last call to replace() or substituteCallback()
 	 * returned a modified text, otherwise false.
