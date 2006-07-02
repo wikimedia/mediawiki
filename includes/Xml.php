@@ -273,7 +273,7 @@ class Xml {
 			'<html>' .
 			$text .
 			'</html>';
-		return Xml::isWellFormedXml( $html );
+		return Xml::isWellFormed( $html );
 	}
 }
 ?>
