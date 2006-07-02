@@ -1015,6 +1015,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 'allpagesnext'		=> 'Next',
 'allpagessubmit'	=> 'Go',
 'allpagesprefix'	=> 'Display pages with prefix:',
+'allpagesbadtitle'	=> 'The given page title was invalid or had an inter-language or inter-wiki prefix. It may contain one more characters which cannot be used in titles.',
 
 # E this user
 #
