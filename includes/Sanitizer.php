@@ -561,18 +561,8 @@ class Sanitizer {
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
 			if( $attribute == 'style' ) {
-				$stripped = Sanitizer::decodeCharReferences( $value );
-
-				// Remove any comments; IE gets token splitting wrong
-				$stripped = preg_replace( '!/\\*.*?\\*/!S', ' ', $stripped );
-				$value = $stripped;
-
-				// ... and continue checks
-				$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
-					'codepointToUtf8(hexdec("$1"))', $stripped );
-				$stripped = str_replace( '\\', '', $stripped );
-				if( preg_match( '/(expression|tps*:\/\/|url\\s*\().*/is',
-						$stripped ) ) {
+				$value = Sanitizer::checkCss( $value );
+				if( $value === false ) {
 					# haxx0r
 					continue;
 				}
@@ -586,6 +576,35 @@ class Sanitizer {
 			$out[$attribute] = $value;
 		}
 		return $out;
+	}
+	
+	/**
+	 * Pick apart some CSS and check it for forbidden or unsafe structures.
+	 * Returns a sanitized string, or false if it was just too evil.
+	 *
+	 * Currently URL references, 'expression', 'tps' are forbidden.
+	 *
+	 * @param string $value
+	 * @return mixed
+	 */
+	static function checkCss( $value ) {
+		$stripped = Sanitizer::decodeCharReferences( $value );
+
+		// Remove any comments; IE gets token splitting wrong
+		$stripped = preg_replace( '!/\\*.*?\\*/!S', ' ', $stripped );
+		$value = $stripped;
+
+		// ... and continue checks
+		$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
+			'codepointToUtf8(hexdec("$1"))', $stripped );
+		$stripped = str_replace( '\\', '', $stripped );
+		if( preg_match( '/(expression|tps*:\/\/|url\\s*\().*/is',
+				$stripped ) ) {
+			# haxx0r
+			return false;
+		}
+		
+		return $value;
 	}
 
 	/**
