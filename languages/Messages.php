@@ -1460,6 +1460,7 @@ Revision dates and editors\' names will be preserved.
 All transwiki import actions are logged at the [[Special:Log/import|import log]].',
 'import-interwiki-history' => 'Copy all history versions for this page',
 'import-interwiki-submit' => 'Import',
+'import-interwiki-namespace' => 'Transfer pages into namespace:',
 'importtext'	=> 'Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.',
 'importstart'	=> "Importing pages...",
 'import-revision-count' => '$1 revision(s)',
