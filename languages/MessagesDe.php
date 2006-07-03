@@ -854,6 +854,7 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'allpagesprev'	=> 'Vorherige',
 'allpagesnext'	=> 'Nächste',
 'allpagessubmit'	=> 'Zeige',
+'allpagesbadtitle'	=> 'Der angegeben Seitentitel war ungültig oder hatte einen Inter-Language oder Interwiki Präfix. Eventuell enthält er auch ein Zeichen, das nicht in einem Titel verwendet werden kann.',
 
 # Email this user
 #
@@ -1336,10 +1337,11 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ m
 'import'		=> 'Seiten importieren',
 'importinterwiki'	=> 'Transwiki Import',
 'import-interwiki-text'	=> 'Wählen Sie ein Wiki und eine Seite zum Importieren aus.
-Das Datum der jeweiligen Versionen und die Authoren bleiben erhalten.
+Das Datum der jeweiligen Versionen und die Autoren bleiben erhalten.
 Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logbuch]] protokolliert.',
 'import-interwiki-history'	=> 'Alle Versionen dieser Seite kopieren',
 'import-interwiki-submit'	=> 'Import',
+'import-interwiki-namespace'	=> 'Importiere Seiten in Namensraum:',
 'importtext'		=> 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'		=> 'Importiere Seiten...',
 'import-revision-count'	=> '$1 Version(en)',
