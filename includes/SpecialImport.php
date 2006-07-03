@@ -142,7 +142,7 @@ function wfSpecialImport( $page = '' ) {
 			<tr>
 				<td></td>
 				<td>
-					Transfer pages into namespace: " .
+					" . wfMsgHtml( 'import-interwiki-namespace' ) . " " .
 						HTMLnamespaceselector( $namespace, '' ) . "
 				</td>
 			</tr>
