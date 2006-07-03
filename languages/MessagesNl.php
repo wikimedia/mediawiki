@@ -519,7 +519,7 @@ Andere beheerders van deze wiki kunnen nog steeds de verborgen inhoud benaderen 
 'compareselectedversions'=> 'Vergelijk geselecteerde versies',
 'searchresults'         => 'Zoekresultaten',
 'searchresulttext'      => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[Project:Zoeken|Zoeken op {{SITENAME}}]].',
-'searchsubtitle'        => 'Voor zoekopdracht "[[$1]]"',
+'searchsubtitle'        => 'Voor zoekopdracht "[[:$1]]"',
 'searchsubtitleinvalid'        => 'Voor zoekopdracht "$1"',
 'badquery'              => 'Verkeerd geformuleerde zoekopdracht',
 'badquerytext'          => 'Uw vraag kan niet verwerkt worden.

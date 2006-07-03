@@ -534,7 +534,7 @@ pokud to provozovatel serveru nezakázal.',
 #
 'searchresults' => 'Výsledky hledání',
 'searchresulttext' => 'Pro více informací o tom, jak hledat na {{grammar:6sg|{{SITENAME}}}}, se podívejte na [[Nápověda:Hledání]].',
-'searchsubtitle'	=> 'Hledáno „[[$1]]“',
+'searchsubtitle'	=> 'Hledáno „[[:$1]]“',
 'searchsubtitleinvalid'	=> 'Hledáno „$1“',
 'badquery'              => 'Špatně vytvořený vyhledávací dotaz',
 'badquerytext'  => 'Nemůžeme zpracovat vaše zadání. Je to pravděpodobně tím, že hledáte slovo kratší než tři písmena, což zatím není podporováno. Může to být také tím, že zadání bylo napsáno nesprávně. Prosím zkuste jiné zadání.',

@@ -484,7 +484,7 @@ postavili dodatna ograničenja.',
 'compareselectedversions'=> 'Usporedi odabrane inačice',
 'searchresults'         => 'Rezultati pretrage',
 'searchresulttext'      => 'Za više obavijesti o pretraživanju projekta {{SITENAME}} vidi [[Project:Tražilica]].',
-'searchsubtitle'           => 'Za upit "[[$1]]"',
+'searchsubtitle'           => 'Za upit "[[:$1]]"',
 'searchsubtitleinvalid'           => 'Za upit "$1"',
 'badquery'              => 'Loše oblikovan upit',
 'badquerytext'          => 'Nismo mogli provesti vašu pretragu.

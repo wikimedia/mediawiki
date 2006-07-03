@@ -341,7 +341,7 @@ gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
 #
 "searchresults" => "Canlyniadau chwiliad",
 "searchresulttext" => "Am mwy o hysbys amdano chwilio {{SITENAME}}, gwelwch [[{{ns:project}}:Yn chwilio|Yn chwilio {{SITENAME}}]].",
-"searchsubtitle" => "Am gofyniad \"[[$1]]\"",
+"searchsubtitle" => "Am gofyniad \"[[:$1]]\"",
 "searchsubtitleinvalid" => "Am gofyniad \"$1\"",
 "badquery" => "Gofyniad chwilio drwg",
 "badquerytext" => "Roedd yn amhosibl i prosesu'ch gofyniad.

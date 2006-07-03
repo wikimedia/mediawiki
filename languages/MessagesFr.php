@@ -500,7 +500,7 @@ D\'autres administrateurs sur ce wiki pourront toujours accèder au contenu cach
 #
 'searchresults' => 'Résultat de la recherche',
 'searchresulttext' => 'Pour plus d\'informations sur la recherche dans {{SITENAME}}, voir [[Aide:Recherche|Chercher dans {{SITENAME}}]].',
-'searchsubtitle' => 'Pour la requête « [[$1]] »',
+'searchsubtitle' => 'Pour la requête « [[:$1]] »',
 'searchsubtitleinvalid' => 'Pour la requête « $1 »',
 'badquery'  => 'Requête mal formulée',
 'badquerytext' => 'Nous n\'avons pas pu traiter votre requête. Vous avez probablement recherché un mot d\'une longueur inférieure à trois lettres, ce qui n\'est pas encore possible. Vous avez aussi pu faire une erreur de syntaxe, telle que « poisson et et écailles ». Veuillez essayer une autre requête.',

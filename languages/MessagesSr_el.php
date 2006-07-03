@@ -1178,7 +1178,7 @@ Molimo vas da proverite URL koji ste upotrebili da biste pristupili ovoj stranic
 'search' => 'Traži',
 'searchdisabled' => '<p>Izvinjavamo se! Puna pretraga teksta je privremeno onemogućena, zbog bržeg rada Vikipedije. U međuvremenu, možete koristiti Gugl pretragu ispod, koja može biti zastarela.</p>',
 'searchfulltext' => 'Pretraži ceo tekst',
-'searchsubtitle' => 'Tražili ste [[$1]] [[Special:Allpages/$1|&#x5B;Sadržaj&#x5D;]]',
+'searchsubtitle' => 'Tražili ste [[:$1]] [[Special:Allpages/$1|&#x5B;Sadržaj&#x5D;]]',
 'searchsubtitleinvalid' => 'Tražili ste $1 ',
 'searchresults' => 'Rezultati pretrage',
 'searchresultshead' => 'Podešavanja rezultata pretrage',

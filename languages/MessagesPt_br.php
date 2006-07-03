@@ -328,7 +328,7 @@ Por favor verifique a URL que você usou para acessar esta página.",
 #
 "searchresults" => "Buscar resultados",
 "searchresulttext" => "Para mais informações sobre busca na {{SITENAME}}, veja [[Project:Procurando|Busca na {{SITENAME}}]].",
-"searchsubtitle"   => "Para pedido de busca \"[[$1]]\"",
+"searchsubtitle"   => "Para pedido de busca \"[[:$1]]\"",
 "searchsubtitleinvalid"   => "Para pedido de busca \"$1\"",
 "badquery"      => "Linha de busca incorretamente formada",
 "badquerytext"  => "Nós não pudemos processar seu pedido de busca.

@@ -382,7 +382,7 @@ cookieها را از کار انداخته‌اید. لطفاً cookieها را 
 #
 'searchresults' => "نتایج جستجو",
 'searchresulttext' => "برای اطلاعات بیشتر درباره‌ی جستجوی {{SITENAME}}، به [[{{ns:project}}:جستجو کردن|جستجوی {{SITENAME}}]] مراجعه کنید.",
-'searchsubtitle'	=> "برای پرس‌وجوی «[[$1]]»",
+'searchsubtitle'	=> "برای پرس‌وجوی «[[:$1]]»",
 'searchsubtitleinvalid'	=> "برای پرس‌وجوی «$1»",
 'badquery'		=> "پرس‌وجوی جستجویی بدشکل",
 'badquerytext'	=> "نتوانستیم پرس‌وجوی شما را پردازش کنیم.

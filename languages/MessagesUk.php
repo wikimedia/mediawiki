@@ -326,7 +326,7 @@ GNU Free Documentation License без незмінюваних секцій
 #
 "searchresults" => "Результати пошуку",
 "searchresulttext" => "Для отримання детальнішої інформації про пошук в {{SITENAME}}, див. [[Project:Пошук|Пошук в {{SITENAME}}]].",
-"searchsubtitle"	=> "На запит \"[[$1]]\"",
+"searchsubtitle"	=> "На запит \"[[:$1]]\"",
 "searchsubtitleinvalid"	=> "На запит \"$1\"",
 "badquery"		=> "Невірно зфомульований запит",
 "badquerytext"	=> "Неможливо обробити ваш запит.
