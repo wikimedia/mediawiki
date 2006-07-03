@@ -40,6 +40,7 @@ class MessageCache {
 		wfProfileIn( __METHOD__.'-parseropt' );
 		$this->mParserOptions = new ParserOptions( $u=NULL );
 		wfProfileOut( __METHOD__.'-parseropt' );
+		$this->mParser = null;
 
 		# When we first get asked for a message,
 		# then we'll fill up the cache. If we
@@ -522,9 +523,12 @@ class MessageCache {
 
 	function transform( $message ) {
 		global $wgParser;
-		if( !$this->mDisableTransform && isset( $wgParser ) ) {
+		if ( !$this->mParser && isset( $wgParser ) ) {
+			$this->mParser = clone $wgParser;
+		}
+		if ( !$this->mDisableTransform && $this->mParser ) {
 			if( strpos( $message, '{{' ) !== false ) {
-				$message = $wgParser->transformMsg( $message, $this->mParserOptions );
+				$message = $this->mParser->transformMsg( $message, $this->mParserOptions );
 			}
 		}
 		return $message;
