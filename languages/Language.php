@@ -879,15 +879,23 @@ class Language {
 
 	# Fill a MagicWord object with data from here
 	function getMagic( &$mw ) {
-		$raw = $this->getMagicWords();
-
-		wfRunHooks( 'LanguageGetMagic', array( &$raw, $this->getCode() ) );
-
-		if( !isset( $raw[$mw->mId] ) ) {
-			# Fall back to English if local list is incomplete
-			$raw =& Language::getMagicWords();
+		if ( !isset( $this->mMagicExtensions ) ) {
+			$this->mMagicExtensions = array();
+			wfRunHooks( 'LanguageGetMagic', array( &$this->mMagicExtensions, $this->getCode() ) );
 		}
-		$rawEntry = $raw[$mw->mId];
+		if ( isset( $this->mMagicExtensions[$mw->mId] ) ) {
+			$rawEntry = $this->mMagicExtensions[$mw->mId];
+		} else {
+			$magicWords =& $this->getMagicWords();
+			if ( isset( $magicWords[$mw->mId] ) ) {
+				$rawEntry = $magicWords[$mw->mId];
+			} else {
+				# Fall back to English if local list is incomplete
+				$magicWords =& Language::getMagicWords();
+				$rawEntry = $magicWords[$mw->mId];
+			}
+		}
+
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}
