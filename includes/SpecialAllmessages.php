@@ -35,8 +35,8 @@ function wfSpecialAllmessages() {
 	$messages = array();
 	$wgMessageCache->disableTransform();
 
-	foreach ( $sortedArray as $key => $enMsg ) {
-		$messages[$key]['enmsg'] = $enMsg;
+	foreach ( $sortedArray as $key => $value ) {
+		$messages[$key]['enmsg'] = is_array( $value ) ? $value['en'] : $value;
 		$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 		$messages[$key]['msg'] = wfMsg ( $key );
 	}
