@@ -716,7 +716,7 @@ END;
 		# Height and width
 		$gis = false;
 		if( $mime == 'image/svg' ) {
-			$gis = wfGetSVGsize( $this->imagePath );
+			$gis = wfGetSVGsize( $filename );
 		} elseif( $magic->isPHPImageType( $mime ) ) {
 			$gis = getimagesize( $filename );
 		} else {

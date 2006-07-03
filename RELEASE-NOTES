@@ -636,6 +636,8 @@ Some default configuration options have changed:
 * Add "searchsubtitleinvalid" message for searches that are not valid titles.
 * (bug 5962) Update to Italian localisation
 * (bug 6530) Update to Indonesian localisation (id) #25
+* (bug 6523) Fix SVG issue in rebuildImages.php
+
 
 == Compatibility ==
 
