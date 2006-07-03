@@ -27,6 +27,7 @@ function __autoload($className) {
 		'ChangesList' => 'includes/ChangesList.php',
 		'OldChangesList' => 'includes/ChangesList.php',
 		'EnhancedChangesList' => 'includes/ChangesList.php',
+		'CoreParserFunctions' => 'includes/CoreParserFunctions.php',
 		'DBObject' => 'includes/Database.php',
 		'Database' => 'includes/Database.php',
 		'DatabaseMysql' => 'includes/Database.php',

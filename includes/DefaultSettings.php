@@ -1128,6 +1128,8 @@ $wgUseWatchlistCache = false;
 $wgWLCacheTimeout = 3600;
 /** Number of links to a page required before it is deemed "wanted" */
 $wgWantedPagesThreshold = 1;
+/** Enable slow parser functions */
+$wgAllowSlowParserFunctions = false;
 
 /**
  * To use inline TeX, you need to compile 'texvc' (in the 'math' subdirectory of
