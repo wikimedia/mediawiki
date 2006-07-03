@@ -33,6 +33,9 @@ define( 'OT_HTML', 1 );
 define( 'OT_WIKI', 2 );
 define( 'OT_MSG' , 3 );
 
+# Flags for setFunctionHook
+define( 'SFH_NO_HASH', 1 );
+
 # string parameter for extractTags which will cause it
 # to strip HTML comments in addition to regular
 # <XML>-style tags. This should not be anything we
@@ -100,11 +103,11 @@ class Parser
 	 * @private
 	 */
 	# Persistent:
-	var $mTagHooks, $mFunctionHooks;
+	var $mTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables;
 
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
-	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
+	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	var $mInterwikiLinkHolders, $mLinkHolders, $mUniqPrefix;
 	var $mTemplates,	// cache of already loaded templates, avoids
 		                // multiple SQL queries for the same string
@@ -128,10 +131,55 @@ class Parser
 	function Parser() {
 		$this->mTagHooks = array();
 		$this->mFunctionHooks = array();
-		$this->mFunctionSynonyms = array();
-		$this->clearState();
-		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
+		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
+		$this->mFirstCall = true;
 	}
+
+	/**
+	 * Do various kinds of initialisation on the first call of the parser
+	 */
+	function firstCallInit() {
+		if ( !$this->mFirstCall ) {
+			return;
+		}
+
+		wfProfileIn( __METHOD__ );
+		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
+
+		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
+
+		$this->setFunctionHook( MAG_NS, array( 'CoreParserFunctions', 'ns' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_URLENCODE, array( 'CoreParserFunctions', 'urlencode' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_LCFIRST, array( 'CoreParserFunctions', 'lcfirst' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_UCFIRST, array( 'CoreParserFunctions', 'ucfirst' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_LC, array( 'CoreParserFunctions', 'lc' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_UC, array( 'CoreParserFunctions', 'uc' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_LOCALURL, array( 'CoreParserFunctions', 'localurl' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_LOCALURLE, array( 'CoreParserFunctions', 'localurle' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_FULLURL, array( 'CoreParserFunctions', 'fullurl' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_FULLURLE, array( 'CoreParserFunctions', 'fullurle' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_FORMATNUM, array( 'CoreParserFunctions', 'formatnum' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_GRAMMAR, array( 'CoreParserFunctions', 'grammar' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_PLURAL, array( 'CoreParserFunctions', 'plural' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_NUMBEROFPAGES, array( 'CoreParserFunctions', 'numberofpages' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_NUMBEROFUSERS, array( 'CoreParserFunctions', 'numberofusers' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_NUMBEROFARTICLES, array( 'CoreParserFunctions', 'numberofarticles' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_NUMBEROFFILES, array( 'CoreParserFunctions', 'numberoffiles' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_NUMBEROFADMINS, array( 'CoreParserFunctions', 'numberofadmins' ), SFH_NO_HASH );
+		$this->setFunctionHook( MAG_LANGUAGE, array( 'CoreParserFunctions', 'language' ), SFH_NO_HASH );
+
+		if ( $wgAllowDisplayTitle ) {
+			$this->setFunctionHook( MAG_DISPLAYTITLE, array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
+		}
+		if ( $wgAllowSlowParserFunctions ) {
+			$this->setFunctionHook( MAG_PAGESINNAMESPACE, array( 'CoreParserFunctions', 'pagesinnamespace' ), SFH_NO_HASH );
+		}
+		
+		$this->initialiseVariables();
+
+		$this->mFirstCall = false;
+		wfProfileOut( __METHOD__ );
+	}		
 
 	/**
 	 * Clear Parser state
@@ -139,11 +187,13 @@ class Parser
 	 * @private
 	 */
 	function clearState() {
+		if ( $this->mFirstCall ) {
+			$this->firstCallInit();
+		}
 		$this->mOutput = new ParserOutput;
 		$this->mAutonumber = 0;
 		$this->mLastSection = '';
 		$this->mDTopen = false;
-		$this->mVariables = false;
 		$this->mIncludeCount = array();
 		$this->mStripState = array();
 		$this->mArgStack = array();
@@ -316,6 +366,11 @@ class Parser
 
 	function &getTitle() { return $this->mTitle; }
 	function getOptions() { return $this->mOptions; }
+
+	function getFunctionLang() {
+		global $wgLang, $wgContLang;
+		return $this->mOptions->getInterfaceMessage() ? $wgLang : $wgContLang;
+	}
 
 	/**
 	 * Replaces all occurrences of HTML-style comments and the given tags
@@ -2285,6 +2340,7 @@ class Parser
 		$fname = 'Parser::initialiseVariables';
 		wfProfileIn( $fname );
 		global $wgVariableIDs;
+
 		$this->mVariables = array();
 		foreach ( $wgVariableIDs as $id ) {
 			$mw =& MagicWord::get( $id );
@@ -2520,9 +2576,6 @@ class Parser
 		$fname = 'Parser::variableSubstitution';
 		$varname = $matches[1];
 		wfProfileIn( $fname );
-		if ( !$this->mVariables ) {
-			$this->initialiseVariables();
-		}
 		$skip = false;
 		if ( $this->mOutputType == OT_WIKI ) {
 			# Do only magic variables prefixed by SUBST
@@ -2661,199 +2714,26 @@ class Parser
 			}
 		}
 
-		# NS
+		# Parser functions
 		if ( !$found ) {
-			# Check for NS: (namespace expansion)
-			$mwNs = MagicWord::get( MAG_NS );
-			if ( $mwNs->matchStartAndRemove( $part1 ) ) {
-				if ( intval( $part1 ) || $part1 == "0" ) {
-					$text = $linestart . $wgContLang->getNsText( intval( $part1 ) );
-					$found = true;
-				} else {
-					$param = str_replace( ' ', '_', strtolower( $part1 ) );
-					$index = Namespace::getCanonicalIndex( strtolower( $param ) );
-					if ( !is_null( $index ) ) {
-						$text = $linestart . $wgContLang->getNsText( $index );
-						$found = true;
-					}
-				}
-			}
-		}
-
-		# URLENCODE
-		if( !$found ) {
-			$urlencode =& MagicWord::get( MAG_URLENCODE );
-			if( $urlencode->matchStartAndRemove( $part1 ) ) {
-				$text = $linestart . urlencode( $part1 );
-				$found = true;
-			}
-		}
-
-		# LCFIRST, UCFIRST, LC and UC
-		if ( !$found ) {
-			$lcfirst =& MagicWord::get( MAG_LCFIRST );
-			$ucfirst =& MagicWord::get( MAG_UCFIRST );
-			$lc =& MagicWord::get( MAG_LC );
-			$uc =& MagicWord::get( MAG_UC );
-			if ( $lcfirst->matchStartAndRemove( $part1 ) ) {
-				$text = $linestart . $wgContLang->lcfirst( $part1 );
-				$found = true;
-			} else if ( $ucfirst->matchStartAndRemove( $part1 ) ) {
-				$text = $linestart . $wgContLang->ucfirst( $part1 );
-				$found = true;
-			} else if ( $lc->matchStartAndRemove( $part1 ) ) {
-				$text = $linestart . $wgContLang->lc( $part1 );
-				$found = true;
-			} else if ( $uc->matchStartAndRemove( $part1 ) ) {
-				 $text = $linestart . $wgContLang->uc( $part1 );
-				 $found = true;
-			}
-		}
-
-		# LOCALURL and FULLURL
-		if ( !$found ) {
-			$mwLocal =& MagicWord::get( MAG_LOCALURL );
-			$mwLocalE =& MagicWord::get( MAG_LOCALURLE );
-			$mwFull =& MagicWord::get( MAG_FULLURL );
-			$mwFullE =& MagicWord::get( MAG_FULLURLE );
-
-
-			if ( $mwLocal->matchStartAndRemove( $part1 ) ) {
-				$func = 'getLocalURL';
-			} elseif ( $mwLocalE->matchStartAndRemove( $part1 ) ) {
-				$func = 'escapeLocalURL';
-			} elseif ( $mwFull->matchStartAndRemove( $part1 ) ) {
-				$func = 'getFullURL';
-			} elseif ( $mwFullE->matchStartAndRemove( $part1 ) ) {
-				$func = 'escapeFullURL';
-			} else {
-				$func = false;
-			}
-
-			if ( $func !== false ) {
-				$title = Title::newFromText( $part1 );
-				# Due to order of execution of a lot of bits, the values might be encoded
-				# before arriving here; if that's true, then the title can't be created
-				# and the variable will fail. If we can't get a decent title from the first
-				# attempt, url-decode and try for a second.
-				if( is_null( $title ) )
-					$title = Title::newFromUrl( urldecode( $part1 ) );
-				if ( !is_null( $title ) ) {
-					if ( $argc > 0 ) {
-						$text = $linestart . $title->$func( $args[0] );
-					} else {
-						$text = $linestart . $title->$func();
-					}
-					$found = true;
-				}
-			}
-		}
-
-		$lang = $this->mOptions->getInterfaceMessage() ? $wgLang : $wgContLang;
-		if ( !$found && $argc == 1 ) {
-			$mwGrammar =& MagicWord::get( MAG_FORMATNUM );
-			if ( $mwGrammar->matchStartAndRemove( $part1 ) ) {
-				$text = $linestart . $lang->formatNum( $args[0] );
-				$found = true;
-			}
-		}
-
-
-		# GRAMMAR
-		if ( !$found && $argc == 1 ) {
-			$mwGrammar =& MagicWord::get( MAG_GRAMMAR );
-			if ( $mwGrammar->matchStartAndRemove( $part1 ) ) {
-				$text = $linestart . $lang->convertGrammar( $args[0], $part1 );
-				$found = true;
-			}
-		}
-
-		# PLURAL
-		if ( !$found && $argc >= 2 ) {
-			$mwPluralForm =& MagicWord::get( MAG_PLURAL );
-			if ( $mwPluralForm->matchStartAndRemove( $part1 ) ) {
-				while ( count($args) < 5 ) { $args[] = $args[count($args)-1]; }
-				$text = $linestart . $lang->convertPlural( $part1, $args[0], $args[1],
-					$args[2], $args[3], $args[4]);
-				$found = true;
-			}
-		}
-		
-		# DISPLAYTITLE
-		if ( !$found && $argc == 1 && $wgAllowDisplayTitle ) {
-			$mwDT =& MagicWord::get( MAG_DISPLAYTITLE );
-			if ( $mwDT->matchStartAndRemove( $part1 ) ) {
-				
-				# Set title in parser output object
-				$param = $args[0];
-				$parserOptions = new ParserOptions;
-				$local_parser = new Parser ();
-				$t2 = $local_parser->parse ( $param, $this->mTitle, $parserOptions, false );
-				$this->mOutput->mHTMLtitle = $t2->GetText();
-
-				# Add subtitle
-				$t = $this->mTitle->getPrefixedText();
-				$this->mOutput->mSubtitle .= wfMsg('displaytitle', $t);
-				$text = "" ;
-				$found = true ;
-			}
-		}		
-
-		# NUMBEROFPAGES, NUMBEROFUSERS, NUMBEROFARTICLES, and NUMBEROFFILES
-		if( !$found ) {
-			$mwWordsToCheck = array( MAG_NUMBEROFPAGES => 'wfNumberOfPages',
-									 MAG_NUMBEROFUSERS => 'wfNumberOfUsers',
-									 MAG_NUMBEROFARTICLES => 'wfNumberOfArticles',
-									 MAG_NUMBEROFFILES => 'wfNumberOfFiles',
-									 MAG_NUMBEROFADMINS => 'wfNumberOfAdmins' );
-			foreach( $mwWordsToCheck as $word => $func ) {
-				$mwCurrentWord =& MagicWord::get( $word );
-				if( $mwCurrentWord->matchStartAndRemove( $part1 ) ) {
-					$mwRawSuffix =& MagicWord::get( MAG_RAWSUFFIX );
-					if( isset( $args[0] ) && $mwRawSuffix->match( $args[0] ) ) {
-						# Raw and unformatted
-						$text = $linestart . call_user_func( $func );
-					} else {
-						# Formatted according to the content default
-						$text = $linestart . $wgContLang->formatNum( call_user_func( $func ) );
-					}
-					$found = true;
-				}
-			}
-		}
-		
-		# PAGESINNAMESPACE
-		if( !$found ) {
-			$mwPagesInNs =& MagicWord::get( MAG_PAGESINNAMESPACE );
-			if( $mwPagesInNs->matchStartAndRemove( $part1 ) ) {
-				$found = true;
-				$count = wfPagesInNs( intval( $part1 ) );
-				$mwRawSuffix =& MagicWord::get( MAG_RAWSUFFIX );
-				if( isset( $args[0] ) && $mwRawSuffix->match( $args[0] ) ) {
-					$text = $linestart . $count;
-				} else {
-					$text = $linestart . $wgContLang->formatNum( $count );
-				}
-			}
-		}
-
-		# #LANGUAGE:
-		if( !$found ) {
-			$mwLanguage =& MagicWord::get( MAG_LANGUAGE );
-			if( $mwLanguage->matchStartAndRemove( $part1 ) ) {
-				$lang = $wgContLang->getLanguageName( strtolower( $part1 ) );
-				$text = $linestart . ( $lang != '' ? $lang : $part1 );
-				$found = true;
-			}		
-		}
-
-		# Extensions
-		if ( !$found && substr( $part1, 0, 1 ) == '#' ) {
+			wfProfileIn( __METHOD__ . '-pfunc' );
+			
 			$colonPos = strpos( $part1, ':' );
 			if ( $colonPos !== false ) {
-				$function = strtolower( substr( $part1, 1, $colonPos - 1 ) );
-				if ( isset( $this->mFunctionSynonyms[$function] ) ) {
-					$function = $this->mFunctionSynonyms[$function];
+				# Case sensitive functions
+				$function = substr( $part1, 0, $colonPos );
+				if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
+					$function = $this->mFunctionSynonyms[1][$function];
+				} else {
+					# Case insensitive functions
+					$function = strtolower( $function );
+					if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
+						$function = $this->mFunctionSynonyms[0][$function];
+					} else {
+						$function = false;
+					}
+				}
+				if ( $function ) {
 					$funcArgs = array_map( 'trim', $args );
 					$funcArgs = array_merge( array( &$this, trim( substr( $part1, $colonPos + 1 ) ) ), $funcArgs );
 					$result = call_user_func_array( $this->mFunctionHooks[$function], $funcArgs );
@@ -2862,10 +2742,12 @@ class Parser
 					// The text is usually already parsed, doesn't need triple-brace tags expanded, etc.
 					//$noargs = true;
 					//$noparse = true;
-					
+
 					if ( is_array( $result ) ) {
-						$text = $linestart . $result[0];
-						unset( $result[0] );
+						if ( isset( $result[0] ) ) {
+							$text = $linestart . $result[0];
+							unset( $result[0] );
+						}
 
 						// Extract flags into the local scope
 						// This allows callers to set flags such as nowiki, noparse, found, etc.
@@ -2875,6 +2757,7 @@ class Parser
 					}
 				}
 			}
+			wfProfileOut( __METHOD__ . '-pfunc' );			
 		}
 
 		# Template table test
@@ -3893,21 +3776,42 @@ class Parser
 	 *
 	 * @param mixed $id The magic word ID, or (deprecated) the function name. Function names are case-insensitive.
 	 * @param mixed $callback The callback function (and object) to use
+	 * @param integer $flags a combination of the following flags: 
+	 *                SFH_NO_HASH No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
 	 *
 	 * @return The old callback function for this name, if any
 	 */
-	function setFunctionHook( $id, $callback ) {
+	function setFunctionHook( $id, $callback, $flags = 0 ) {
 		if( is_string( $id ) ) {
 			$id = strtolower( $id );
 		}
 		$oldVal = @$this->mFunctionHooks[$id];
 		$this->mFunctionHooks[$id] = $callback;
+
 		# Add to function cache
 		if ( is_int( $id ) ) {
 			$mw = MagicWord::get( $id );
-			$mw->addToArray( $this->mFunctionSynonyms, $id );
+			$synonyms = $mw->getSynonyms();
+			$sensitive = intval( $mw->isCaseSensitive() );
 		} else {
-			$this->mFunctionSynonyms[$id] = $id;
+			$synonyms = array( $id );
+			$sensitive = 0;
+		}
+
+		foreach ( $synonyms as $syn ) {
+			# Case
+			if ( !$sensitive ) {
+				$syn = strtolower( $syn );
+			}
+			# Add leading hash
+			if ( !( $flags & SFH_NO_HASH ) ) {
+				$syn = '#' . $syn;
+			}
+			# Remove trailing colon
+			if ( substr( $syn, -1, 1 ) == ':' ) {
+				$syn = substr( $syn, 0, -1 );
+			}
+			$this->mFunctionSynonyms[$sensitive][$syn] = $id;
 		}
 		return $oldVal;
 	}
