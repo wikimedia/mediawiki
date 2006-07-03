@@ -278,7 +278,7 @@ Be sure you are following the
 'compareselectedversions'=> 'Guhartoyan Helsengêne',
 'searchresults'         => 'Encamên lêgerînê',
 'searchresulttext'      => 'Ji bo zêdetir agahî der barê lêgerînê di {{SITENAME}} de, binêre [[Project:Searching|Searching {{SITENAME}}]].',
-'searchsubtitle'           => 'Ji bo query "[[$1]]"',
+'searchsubtitle'           => 'Ji bo query "[[:$1]]"',
 'searchsubtitleinvalid'           => 'Ji bo query "$1"',
 'titlematches'          => 'Dîtinên di sernivîsên gotaran de',
 'notitlematches'        => 'Di nav sernivîsan de nehat dîtin.',

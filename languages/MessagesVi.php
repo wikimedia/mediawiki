@@ -410,7 +410,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 #
 'searchresults' => 'Kết quả tìm',
 'searchresulttext' => "Xem thêm [[{{ns:4}}:Tìm_kiếm|hướng dẫn tìm kiếm {{SITENAME}}]].",
-'searchsubtitle' => "Cho truy vấn \"[[$1]]\"",
+'searchsubtitle' => "Cho truy vấn \"[[:$1]]\"",
 'searchsubtitleinvalid' => "Cho truy vấn \"$1\"",
 'badquery'  => 'Truy vấn sai',
 'badquerytext' => "Truy vấn sai: ngắn hơn 3 chữ cái, hoặc sai chính tả ví dụ như \"mèo và và chuột\". Xin mời thử lại.",

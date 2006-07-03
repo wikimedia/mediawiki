@@ -411,7 +411,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 #
 "searchresults" => "Otsingu tulemid",
 "searchresulttext" => "Lisainfot otsimise kohta vaata $1.",
-"searchsubtitle"	=> "Päring \"[[$1]]\"",
+"searchsubtitle"	=> "Päring \"[[:$1]]\"",
 "searchsubtitleinvalid"	=> "Päring \"$1\"",
 "badquery"		=> "Vigane päring",
 "badquerytext"	=> "Teie päringut ei saanud menetleda.

@@ -550,7 +550,7 @@ Legenda: (actu) = diferenças da versão actual,
 #
 'searchresults' => 'Resultados de pesquisa',
 'searchresulttext' => "Para mais informações de como pesquisar na {{SITENAME}}, consulte [[{{ns:project}}:Pesquisa|Pesquisando {{SITENAME}}]].",
-'searchsubtitle'   => "Para consulta \"[[$1]]\"",
+'searchsubtitle'   => "Para consulta \"[[:$1]]\"",
 'searchsubtitleinvalid'   => "Para consulta \"$1\"",
 'badquery'              => 'Linha de pesquisa inválida',
 'badquerytext'  => 'Não foi possível processar seu pedido de pesquisa.

@@ -263,7 +263,7 @@ Reviseu l\'URL que heu emprat per a accedir-hi.',
 'editcurrent'           => 'Edita la versió actual d\'aquesta pàgina',
 'searchresults'         => 'Resultats de la recerca',
 'searchresulttext'      => 'Per a més informació sobre les recerques de la {{SITENAME}}, aneu a [[Project:Recerca|S\'està cercant a la {{SITENAME}}]].',
-'searchsubtitle'           => 'Per consulta "[[$1]]"',
+'searchsubtitle'           => 'Per consulta "[[:$1]]"',
 'searchsubtitleinvalid'           => 'Per consulta "$1"',
 'badquery'              => 'Consulta de recerca formulada de manera incorrecta',
 'badquerytext'          => 'No s\'ha pogut processar la recerca.

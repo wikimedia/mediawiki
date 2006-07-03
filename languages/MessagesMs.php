@@ -345,7 +345,7 @@ $wgAllMessagesMs = array(
 #
 "searchresults"    => "Hasil Carian",
 "searchresulttext" => "Untuk maklumat lanjut mengenai pencarian di {{SITENAME}}, sila lihat [[Project:Mencari|pencarian di {{SITENAME}}]].",
-"searchsubtitle"    => "Untuk pertanyaan \"$1\"", #"For query \"[[$1]]\"",
+"searchsubtitle"    => "Untuk pertanyaan \"$1\"", #"For query \"[[:$1]]\"",
 "searchsubtitleinvalid"    => "Untuk pertanyaan \"$1\"", #"For query \"$1\"",
 "badquery"       => "Format pertanyaan untuk pencarian adalah salah", #"Badly formed search query",
 "badquerytext"           => "Kami tidak dapat melaksanakan pertanyaan anda. Hal ini mungkin disebabkan kerana anda cuba mencari perkataan yang mengandungi kurang daripada tiga huruf (perisian sistem masih belum dapat mendukungnya buat sekarang), ataupun anda tersalah taip ungkapan untuk pertanyaan; contohnya \"ikan dan dan udang\". Sila cuba pertanyaan yang lain.",

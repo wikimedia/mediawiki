@@ -404,7 +404,7 @@ L = Lütte Ännern',
 #
 'searchresults'     => 'Söökresultaten',
 'searchresulttext'  => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{ns:4}}:Söök|{{SITENAME}} dörsöken]].',
-'searchsubtitle'         => 'För de Söökanfraag „[[$1]]“',
+'searchsubtitle'         => 'För de Söökanfraag „[[:$1]]“',
 'searchsubtitleinvalid'         => 'För de Söökanfraag „$1“',
 'badquery'                      => 'Falsche Söökanfraag',
 'badquerytext'       => 'De Söökanfraag kunn nich verarbeid warrn.

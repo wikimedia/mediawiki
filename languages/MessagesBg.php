@@ -487,7 +487,7 @@ Before any other mail is sent to the account, you will have to follow the instru
 #
 'searchresults' => 'Резултати от търсенето',
 'searchresulttext' => 'За повече информация относно {{SITENAME}}, вижте [[Project:Търсене|Търсене в {{SITENAME}}]].',
-'searchsubtitle'  => 'За заявка „[[$1]]“',
+'searchsubtitle'  => 'За заявка „[[:$1]]“',
 'searchsubtitleinvalid'  => 'За заявка „$1“',
 'badquery'    => 'Лошо формулирана заявка за търсене',
 'badquerytext'  => 'Вашата заявка не можа да бъде обработена.
