@@ -26,8 +26,7 @@ class MessageCache {
 	var $mDeferred = true;
 
 	function __construct( &$memCached, $useDB, $expiry, $memcPrefix) {
-		$fname = 'MessageCache::initialise';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$this->mUseCache = !is_null( $memCached );
 		$this->mMemc = &$memCached;
@@ -38,12 +37,9 @@ class MessageCache {
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
 
-		wfProfileIn( $fname.'-parseropt' );
+		wfProfileIn( __METHOD__.'-parseropt' );
 		$this->mParserOptions = new ParserOptions( $u=NULL );
-		wfProfileOut( $fname.'-parseropt' );
-		wfProfileIn( $fname.'-parser' );
-		$this->mParser = new Parser;
-		wfProfileOut( $fname.'-parser' );
+		wfProfileOut( __METHOD__.'-parseropt' );
 
 		# When we first get asked for a message,
 		# then we'll fill up the cache. If we
@@ -51,7 +47,7 @@ class MessageCache {
 		# some extra milliseconds
 		$this->mDeferred = true;
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -525,9 +521,10 @@ class MessageCache {
 	}
 
 	function transform( $message ) {
-		if( !$this->mDisableTransform ) {
+		global $wgParser;
+		if( !$this->mDisableTransform && isset( $wgParser ) ) {
 			if( strpos( $message, '{{' ) !== false ) {
-				$message = $this->mParser->transformMsg( $message, $this->mParserOptions );
+				$message = $wgParser->transformMsg( $message, $this->mParserOptions );
 			}
 		}
 		return $message;
