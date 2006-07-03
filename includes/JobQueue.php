@@ -235,9 +235,6 @@ class RefreshLinksJob extends Job {
 		global $wgParser;
 		wfProfileIn( __METHOD__ );
 
-		# FIXME: $dbw never used.
-		$dbw =& wfGetDB( DB_MASTER );
-
 		$linkCache =& LinkCache::singleton();
 		$linkCache->clear();
 		
