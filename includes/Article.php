@@ -2277,7 +2277,7 @@ class Article {
 	function tryFileCache() {
 		static $called = false;
 		if( $called ) {
-			wfDebug( " tryFileCache() -- called twice!?\n" );
+			wfDebug( "Article::tryFileCache(): called twice!?\n" );
 			return;
 		}
 		$called = true;
@@ -2285,15 +2285,15 @@ class Article {
 			$touched = $this->mTouched;
 			$cache = new CacheManager( $this->mTitle );
 			if($cache->isFileCacheGood( $touched )) {
-				wfDebug( " tryFileCache() - about to load\n" );
+				wfDebug( "Article::tryFileCache(): about to load file\n" );
 				$cache->loadFromFileCache();
 				return true;
 			} else {
-				wfDebug( " tryFileCache() - starting buffer\n" );
+				wfDebug( "Article::tryFileCache(): starting buffer\n" );
 				ob_start( array(&$cache, 'saveToFileCache' ) );
 			}
 		} else {
-			wfDebug( " tryFileCache() - not cacheable\n" );
+			wfDebug( "Article::tryFileCache(): not cacheable\n" );
 		}
 	}
 
