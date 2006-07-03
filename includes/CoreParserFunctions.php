@@ -117,10 +117,10 @@ class CoreParserFunctions {
 
 	function statisticsFunction( $func, $raw = null ) {
 		if ( self::isRaw( $raw ) ) {
+			return call_user_func( $func );
+		} else {
 			global $wgContLang;
 			return $wgContLang->formatNum( call_user_func( $func ) );
-		} else {
-			return call_user_func( $func );
 		}
 	}
 
