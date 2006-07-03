@@ -1300,6 +1300,7 @@ class Image
 	function purgeDescription() {
 		$page = Title::makeTitle( NS_IMAGE, $this->name );
 		$page->invalidateCache();
+		$page->purgeSquid();
 	}
 	
 	/**
@@ -1807,7 +1808,7 @@ class Image
 	 * @return true on success, false on some kind of failure
 	 */
 	function deleteOld( $archiveName, $reason ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
+		$fname = __METHOD__;
 		$transaction = new FSTransaction();
 		$urlArr = array();
 		
@@ -1840,7 +1841,6 @@ class Image
 		if ( $wgUseSquid ) {
 			$urlArr = array(
 				wfImageArchiveUrl( $archiveName ),
-				$page->getInternalURL()
 			);
 			wfPurgeSquidServers( $urlArr );
 		}
