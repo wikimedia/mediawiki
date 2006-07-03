@@ -424,15 +424,13 @@ class MagicWord {
 	 * lookup in a list of magic words
 	 */
 	function addToArray( &$array, $value ) {
-		if ( $this->mCaseSensitive ) {
-			foreach ( $this->mSynonyms as $syn ) {
-				$array[$syn] = $value;
-			}
-		} else {
-			foreach ( $this->mSynonyms as $syn ) {
-				$array[strtolower($syn)] = $value;
-			}
+		foreach ( $this->mSynonyms as $syn ) {
+			$array[$syn] = $value;
 		}
+	}
+
+	function isCaseSensitive() {
+		return $this->mCaseSensitive;
 	}
 }
 
