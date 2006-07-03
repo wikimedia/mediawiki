@@ -285,8 +285,14 @@ class MediaWiki {
 
 		while ( $n-- && false != ($job = Job::pop())) {
 			$output = $job->toString() . "\n";
-			if ( !$job->run() ) {
-				$output .= "Error: " . $job->getLastError() . "\n";
+			$t = -wfTime();
+			$success = $job->run();
+			$t += wfTime();
+			$t = round( $t*1000 );
+			if ( !$success ) {
+				$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
+			} else {
+				$output .= "Success, Time: $t ms\n";
 			}
 			if ( $wgJobLogFile ) {
 				error_log( $output, 3, $wgJobLogFile );
