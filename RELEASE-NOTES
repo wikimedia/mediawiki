@@ -638,6 +638,7 @@ Some default configuration options have changed:
 * (bug 6530) Update to Indonesian localisation (id) #25
 * (bug 6523) Fix SVG issue in rebuildImages.php
 * (bug 6512) Link to page-specific logs on page histories
+* (bug 6504) Allow configuring session name with $wgSessionName
 
 == Compatibility ==
 
