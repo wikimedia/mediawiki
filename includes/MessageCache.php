@@ -524,6 +524,9 @@ class MessageCache {
 	function transform( $message ) {
 		global $wgParser;
 		if ( !$this->mParser && isset( $wgParser ) ) {
+			# Do some initialisation so that we don't have to do it twice
+			$wgParser->firstCallInit();
+			# Clone it and store it
 			$this->mParser = clone $wgParser;
 		}
 		if ( !$this->mDisableTransform && $this->mParser ) {
