@@ -589,6 +589,9 @@ END
 		$archive = wfImageArchiveDir( $name );
 		$curfile = "{$dest}/{$name}";
 
+		if ( !is_dir( $dest ) ) wfMkdirParents( $dest );
+		if ( !is_dir( $archive ) ) wfMkdirParents( $archive );
+
 		if ( ! is_file( $curfile ) ) {
 			$wgOut->showFileNotFoundError( htmlspecialchars( $curfile ) );
 			return;

@@ -134,8 +134,7 @@ class Image
 	 */
 	function loadFromCache() {
 		global $wgUseSharedUploads, $wgMemc;
-		$fname = 'Image::loadFromMemcached';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		$this->dataLoaded = false;
 		$keys = $this->getCacheKeys();
 		$cachedValues = $wgMemc->get( $keys[0] );
@@ -193,7 +192,7 @@ class Image
 			wfIncrStats( 'image_cache_miss' );
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $this->dataLoaded;
 	}
 
@@ -235,14 +234,13 @@ class Image
 	 */
 	function loadFromFile() {
 		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgContLang, $wgShowEXIF;
-		$fname = 'Image::loadFromFile';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		$this->imagePath = $this->getFullPath();
 		$this->fileExists = file_exists( $this->imagePath );
 		$this->fromSharedDirectory = false;
 		$gis = array();
 
-		if (!$this->fileExists) wfDebug("$fname: ".$this->imagePath." not found locally!\n");
+		if (!$this->fileExists) wfDebug(__METHOD__.': '.$this->imagePath." not found locally!\n");
 
 		# If the file is not found, and a shared upload directory is used, look for it there.
 		if (!$this->fileExists && $wgUseSharedUploads && $wgSharedUploadDirectory) {
@@ -285,12 +283,12 @@ class Image
 			}
 			wfRestoreWarnings();
 
-			wfDebug("$fname: ".$this->imagePath." loaded, ".$this->size." bytes, ".$this->mime.".\n");
+			wfDebug(__METHOD__.': '.$this->imagePath." loaded, ".$this->size." bytes, ".$this->mime.".\n");
 		}
 		else {
 			$this->mime = NULL;
 			$this->type = MEDIATYPE_UNKNOWN;
-			wfDebug("$fname: ".$this->imagePath." NOT FOUND!\n");
+			wfDebug(__METHOD__.': '.$this->imagePath." NOT FOUND!\n");
 		}
 
 		if( $gis ) {
@@ -314,7 +312,7 @@ class Image
 		if ( isset( $gis['bits'] ) )  $this->bits = $gis['bits'];
 		else $this->bits = 0;
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -322,8 +320,7 @@ class Image
 	 */
 	function loadFromDB() {
 		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgSharedUploadDBprefix, $wgContLang;
-		$fname = 'Image::loadFromDB';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$dbr =& wfGetDB( DB_SLAVE );
 
@@ -332,7 +329,7 @@ class Image
 		$row = $dbr->selectRow( 'image',
 			array( 'img_size', 'img_width', 'img_height', 'img_bits',
 			       'img_media_type', 'img_major_mime', 'img_minor_mime', 'img_metadata' ),
-			array( 'img_name' => $this->name ), $fname );
+			array( 'img_name' => $this->name ), __METHOD__ );
 		if ( $row ) {
 			$this->fromSharedDirectory = false;
 			$this->fileExists = true;
@@ -353,7 +350,7 @@ class Image
 				array(
 					'img_size', 'img_width', 'img_height', 'img_bits',
 					'img_media_type', 'img_major_mime', 'img_minor_mime', 'img_metadata' ),
-				array( 'img_name' => $name ), $fname );
+				array( 'img_name' => $name ), __METHOD__ );
 			if ( $row ) {
 				$this->fromSharedDirectory = true;
 				$this->fileExists = true;
@@ -381,7 +378,7 @@ class Image
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->dataLoaded = true;
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/*
@@ -433,14 +430,13 @@ class Image
 	 */
 	function upgradeRow() {
 		global $wgDBname, $wgSharedUploadDBname;
-		$fname = 'Image::upgradeRow';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$this->loadFromFile();
 
 		if ( $this->fromSharedDirectory ) {
 			if ( !$wgSharedUploadDBname ) {
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return;
 			}
 
@@ -456,7 +452,7 @@ class Image
 
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
-		wfDebug("$fname: upgrading ".$this->name." to 1.5 schema\n");
+		wfDebug(__METHOD__.': upgrading '.$this->name." to 1.5 schema\n");
 
 		$dbw->update( 'image',
 			array(
@@ -467,12 +463,12 @@ class Image
 				'img_major_mime' => $major,
 				'img_minor_mime' => $minor,
 				'img_metadata' => $this->metadata,
-			), array( 'img_name' => $this->name ), $fname
+			), array( 'img_name' => $this->name ), __METHOD__
 		);
 		if ( $this->fromSharedDirectory ) {
 			$dbw->selectDB( $wgDBname );
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 	
 	/**
@@ -938,8 +934,7 @@ class Image
 		global $wgUseSquid;
 		global $wgSVGMaxSize, $wgMaxImageArea, $wgThumbnailEpoch;
 
-		$fname = 'Image::renderThumb';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$width = intval( $width );
 
@@ -947,14 +942,14 @@ class Image
 		if ( ! $this->exists() )
 		{
 			# If there is no image, there will be no thumbnail
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
 		# Sanity check $width
 		if( $width <= 0 || $this->width <= 0) {
 			# BZZZT
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -965,7 +960,7 @@ class Image
 			$this->getMimeType() !== 'image/jpeg' &&
 			$this->width * $this->height > $wgMaxImageArea )
 		{
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -974,7 +969,7 @@ class Image
 			$width = min( $width, $wgSVGMaxSize );
 		} elseif ( $width > $this->width - 1 ) {
 			$thumb = new ThumbnailImage( $this->getURL(), $this->getWidth(), $this->getHeight() );
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return $thumb;
 		}
 
@@ -984,12 +979,13 @@ class Image
 		if ( $isScriptUrl && $useScript ) {
 			// Use thumb.php to render the image
 			$thumb = new ThumbnailImage( $url, $width, $height );
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return $thumb;
 		}
 
 		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
-		$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ).'/'.$thumbName;
+		$thumbDir = wfImageThumbDir( $this->name, $this->fromSharedDirectory );
+		$thumbPath = $thumbDir.'/'.$thumbName;
 
 		if ( is_dir( $thumbPath ) ) {
 			// Directory where file should be
@@ -1009,7 +1005,15 @@ class Image
 
 		$done = true;
 		if ( !file_exists( $thumbPath ) ||
-			filemtime( $thumbPath ) < wfTimestamp( TS_UNIX, $wgThumbnailEpoch ) ) {
+			filemtime( $thumbPath ) < wfTimestamp( TS_UNIX, $wgThumbnailEpoch ) ) 
+		{
+			// Create the directory if it doesn't exist
+			if ( is_file( $thumbDir ) ) {
+				// File where thumb directory should be, destroy if possible
+				@unlink( $thumbDir );
+			}
+			wfMkdirParents( $thumbDir );
+			
 			$oldThumbPath = wfDeprecatedThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).
 				'/'.$thumbName;
 			$done = false;
@@ -1058,7 +1062,7 @@ class Image
 		} else {
 			$thumb = null;
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $thumb;
 	} // END OF function renderThumb
 
@@ -1357,7 +1361,6 @@ class Image
 	 * @public
 	 */
 	function nextHistoryLine() {
-		$fname = 'Image::nextHistoryLine()';
 		$dbr =& wfGetDB( DB_SLAVE );
 
 		$this->checkDBSchema($dbr);
@@ -1374,7 +1377,7 @@ class Image
 					"'' AS oi_archive_name"
 				),
 				array( 'img_name' => $this->title->getDBkey() ),
-				$fname
+				__METHOD__
 			);
 			if ( 0 == wfNumRows( $this->historyRes ) ) {
 				return FALSE;
@@ -1392,7 +1395,7 @@ class Image
 					'oi_archive_name'
 				),
 				array( 'oi_name' => $this->title->getDBkey() ),
-				$fname,
+				__METHOD__,
 				array( 'ORDER BY' => 'oi_timestamp DESC' )
 			);
 		}
@@ -1454,7 +1457,6 @@ class Image
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false ) {
 		global $wgUser, $wgUseCopyrightUpload;
 
-		$fname = 'Image::recordUpload';
 		$dbw =& wfGetDB( DB_MASTER );
 
 		$this->checkDBSchema($dbw);
@@ -1516,7 +1518,7 @@ class Image
 				'img_user_text' => $wgUser->getName(),
 				'img_metadata' => $this->metadata,
 			),
-			$fname,
+			__METHOD__,
 			'IGNORE'
 		);
 
@@ -1535,7 +1537,7 @@ class Image
 					'oi_description' => 'img_description',
 					'oi_user' => 'img_user',
 					'oi_user_text' => 'img_user_text',
-				), array( 'img_name' => $this->name ), $fname
+				), array( 'img_name' => $this->name ), __METHOD__
 			);
 
 			# Update the current image row
@@ -1555,13 +1557,13 @@ class Image
 					'img_metadata' => $this->metadata,
 				), array( /* WHERE */
 					'img_name' => $this->name
-				), $fname
+				), __METHOD__
 			);
 		} else {
 			# This is a new image
 			# Update the image count
 			$site_stats = $dbw->tableName( 'site_stats' );
-			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", $fname );
+			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", __METHOD__ );
 		}
 
 		$descTitle = $this->getTitle();
@@ -1608,8 +1610,7 @@ class Image
 	 * @deprecated Use HTMLCacheUpdate, this function uses too much memory
 	 */
 	function getLinksTo( $options = '' ) {
-		$fname = 'Image::getLinksTo';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		if ( $options ) {
 			$db =& wfGetDB( DB_MASTER );
@@ -1621,7 +1622,7 @@ class Image
 		extract( $db->tableNames( 'page', 'imagelinks' ) );
 		$encName = $db->addQuotes( $this->name );
 		$sql = "SELECT page_namespace,page_title,page_id FROM $page,$imagelinks WHERE page_id=il_from AND il_to=$encName $options";
-		$res = $db->query( $sql, $fname );
+		$res = $db->query( $sql, __METHOD__ );
 
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
@@ -1633,7 +1634,7 @@ class Image
 			}
 		}
 		$db->freeResult( $res );
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $retVal;
 	}
 	
@@ -1683,8 +1684,6 @@ class Image
 	}
 
 	function updateExifData( $version ) {
-		$fname = 'Image:updateExifData';
-
 		if ( $this->getImagePath() === false ) # Not a local image
 			return;
 
@@ -1705,7 +1704,7 @@ class Image
 		$dbw->update( 'image',
 			array( 'img_metadata' => $this->metadata ),
 			array( 'img_name' => $this->name ),
-			$fname
+			__METHOD__
 		);
 	}
 
@@ -1741,12 +1740,11 @@ class Image
 	 * @return true on success, false on some kind of failure
 	 */
 	function delete( $reason ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
 		$transaction = new FSTransaction();
 		$urlArr = array( $this->getURL() );
 		
 		if( !FileStore::lock() ) {
-			wfDebug( "$fname: failed to acquire file store lock, aborting\n" );
+			wfDebug( __METHOD__.": failed to acquire file store lock, aborting\n" );
 			return false;
 		}
 		
@@ -1774,20 +1772,20 @@ class Image
 			
 			$dbw->immediateCommit();
 		} catch( MWException $e ) {
-			wfDebug( "$fname: db error, rolling back file transactions\n" );
+			wfDebug( __METHOD__.": db error, rolling back file transactions\n" );
 			$transaction->rollback();
 			FileStore::unlock();
 			throw $e;
 		}
 		
-		wfDebug( "$fname: deleted db items, applying file transactions\n" );
+		wfDebug( __METHOD__.": deleted db items, applying file transactions\n" );
 		$transaction->commit();
 		FileStore::unlock();
 
 		
 		// Update site_stats
 		$site_stats = $dbw->tableName( 'site_stats' );
-		$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", $fname );
+		$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", __METHOD__ );
 		
 		$this->purgeEverything( $urlArr );
 		
@@ -1808,12 +1806,11 @@ class Image
 	 * @return true on success, false on some kind of failure
 	 */
 	function deleteOld( $archiveName, $reason ) {
-		$fname = __METHOD__;
 		$transaction = new FSTransaction();
 		$urlArr = array();
 		
 		if( !FileStore::lock() ) {
-			wfDebug( "$fname: failed to acquire file store lock, aborting\n" );
+			wfDebug( __METHOD__.": failed to acquire file store lock, aborting\n" );
 			return false;
 		}
 		
@@ -1824,13 +1821,13 @@ class Image
 			$transaction->add( $this->prepareDeleteOld( $archiveName, $reason ) );
 			$dbw->immediateCommit();
 		} catch( MWException $e ) {
-			wfDebug( "$fname: db error, rolling back file transaction\n" );
+			wfDebug( __METHOD__.": db error, rolling back file transaction\n" );
 			$transaction->rollback();
 			FileStore::unlock();
 			throw $e;
 		}
 		
-		wfDebug( "$fname: deleted db items, applying file transaction\n" );
+		wfDebug( __METHOD__.": deleted db items, applying file transaction\n" );
 		$transaction->commit();
 		FileStore::unlock();
 		
@@ -1853,7 +1850,6 @@ class Image
 	 * @return true on success, false on failure
 	 */
 	private function prepareDeleteCurrent( $reason ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
 		return $this->prepareDeleteVersion(
 			$this->getFullPath(),
 			$reason,
@@ -1874,7 +1870,7 @@ class Image
 				'fa_user_text'    => 'img_user_text',
 				'fa_timestamp'    => 'img_timestamp' ),
 			array( 'img_name' => $this->name ),
-			$fname );
+			__METHOD__ );
 	}
 
 	/**
@@ -1883,7 +1879,6 @@ class Image
 	 * @return true on success, false on failure
 	 */
 	private function prepareDeleteOld( $archiveName, $reason ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
 		$oldpath = wfImageArchiveDir( $this->name ) .
 			DIRECTORY_SEPARATOR . $archiveName;
 		return $this->prepareDeleteVersion(
@@ -1908,7 +1903,7 @@ class Image
 			array(
 				'oi_name' => $this->name,
 				'oi_archive_name' => $archiveName ),
-			$fname );
+			__METHOD__ );
 	}
 
 	/**
@@ -1938,7 +1933,7 @@ class Image
 				$transaction = FileStore::deleteFile( $path );
 			}
 		} else {
-			wfDebug( "$fname deleting already-missing '$path'; moving on to database\n" );
+			wfDebug( __METHOD__." deleting already-missing '$path'; moving on to database\n" );
 			$group = null;
 			$key = null;
 			$transaction = new FSTransaction(); // empty
@@ -1946,7 +1941,7 @@ class Image
 		
 		if( $transaction === false ) {
 			// Fail to restore?
-			wfDebug( "$fname: import to file store failed, aborting\n" );
+			wfDebug( __METHOD__.": import to file store failed, aborting\n" );
 			throw new MWException( "Could not archive and delete file $path" );
 			return false;
 		}
@@ -1969,7 +1964,7 @@ class Image
 		} catch( DBQueryError $e ) {
 			// Something went horribly wrong!
 			// Leave the file as it was...
-			wfDebug( "$fname: database error, rolling back file transaction\n" );
+			wfDebug( __METHOD__.": database error, rolling back file transaction\n" );
 			$transaction->rollback();
 			throw $e;
 		}
@@ -1989,9 +1984,8 @@ class Image
 	 *         or false on failure
 	 */
 	function restore( $versions=array() ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
 		if( !FileStore::lock() ) {
-			wfDebug( "$fname could not acquire filestore lock\n" );
+			wfDebug( __METHOD__." could not acquire filestore lock\n" );
 			return false;
 		}
 		
@@ -2005,7 +1999,7 @@ class Image
 			// first item we restore.
 			$exists = $dbw->selectField( 'image', '1',
 				array( 'img_name' => $this->name ),
-				$fname );
+				__METHOD__ );
 			
 			// Fetch all or selected archived revisions for the file,
 			// sorted from the most recent to the oldest.
@@ -2016,13 +2010,13 @@ class Image
 			
 			$result = $dbw->select( 'filearchive', '*',
 				$conditions,
-				$fname,
+				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
 			
 			if( $dbw->numRows( $result ) < count( $versions ) ) {
 				// There's some kind of conflict or confusion;
 				// we can't restore everything we were asked to.
-				wfDebug( "$fname: couldn't find requested items\n" );
+				wfDebug( __METHOD__.": couldn't find requested items\n" );
 				$dbw->rollback();
 				FileStore::unlock();
 				return false;
@@ -2030,7 +2024,7 @@ class Image
 
 			if( $dbw->numRows( $result ) == 0 ) {
 				// Nothing to do.
-				wfDebug( "$fname: nothing to do\n" );
+				wfDebug( __METHOD__.": nothing to do\n" );
 				$dbw->rollback();
 				FileStore::unlock();
 				return true;
@@ -2041,14 +2035,16 @@ class Image
 				$revisions++;
 				$store = FileStore::get( $row->fa_storage_group );
 				if( !$store ) {
-					wfDebug( "$fname: skipping row with no file.\n" );
+					wfDebug( __METHOD__.": skipping row with no file.\n" );
 					continue;
 				}
 				
 				if( $revisions == 1 && !$exists ) {
-					$destPath = wfImageDir( $row->fa_name ) .
-						DIRECTORY_SEPARATOR .
-						$row->fa_name;
+					$destDir = wfImageDir( $row->fa_name );
+					if ( !is_dir( $destDir ) ) {
+						wfMkdirParents( $destDir );
+					}
+					$destPath = $destDir . DIRECTORY_SEPARATOR . $row->fa_name;
 					
 					// We may have to fill in data if this was originally
 					// an archived file revision.
@@ -2092,8 +2088,11 @@ class Image
 							wfTimestamp( TS_MW, $row->fa_deleted_timestamp ) .
 							'!' . $row->fa_name;
 					}
-					$destPath = wfImageArchiveDir( $row->fa_name ) .
-						DIRECTORY_SEPARATOR . $archiveName;
+					$destDir = wfImageArchiveDir( $row->fa_name );
+					if ( !is_dir( $destDir ) ) {
+						wfMkdirParents( $destDir );
+					}
+					$destPath = $destDir . DIRECTORY_SEPARATOR . $archiveName;
 					
 					$table = 'oldimage';
 					$fields = array(
@@ -2109,11 +2108,11 @@ class Image
 						'oi_timestamp'    => $row->fa_timestamp );
 				}
 				
-				$dbw->insert( $table, $fields, $fname );
+				$dbw->insert( $table, $fields, __METHOD__ );
 				/// @fixme this delete is not totally safe, potentially
 				$dbw->delete( 'filearchive',
 					array( 'fa_id' => $row->fa_id ),
-					$fname );
+					__METHOD__ );
 				
 				// Check if any other stored revisions use this file;
 				// if so, we shouldn't remove the file from the deletion
@@ -2123,9 +2122,9 @@ class Image
 					array(
 						'fa_storage_group' => $row->fa_storage_group,
 						'fa_storage_key'   => $row->fa_storage_key ),
-					$fname );
+					__METHOD__ );
 				if( $useCount == 0 ) {
-					wfDebug( "$fname: nothing else using {$row->fa_storage_key}, will deleting after\n" );
+					wfDebug( __METHOD__.": nothing else using {$row->fa_storage_key}, will deleting after\n" );
 					$flags = FileStore::DELETE_ORIGINAL;
 				} else {
 					$flags = 0;
@@ -2137,7 +2136,7 @@ class Image
 			
 			$dbw->immediateCommit();
 		} catch( MWException $e ) {
-			wfDebug( "$fname caught error, aborting\n" );
+			wfDebug( __METHOD__." caught error, aborting\n" );
 			$transaction->rollback();
 			throw $e;
 		}
@@ -2147,15 +2146,15 @@ class Image
 		
 		if( $revisions > 0 ) {
 			if( !$exists ) {
-				wfDebug( "$fname restored $revisions items, creating a new current\n" );
+				wfDebug( __METHOD__." restored $revisions items, creating a new current\n" );
 				
 				// Update site_stats
 				$site_stats = $dbw->tableName( 'site_stats' );
-				$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", $fname );
+				$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", __METHOD__ );
 				
 				$this->purgeEverything();
 			} else {
-				wfDebug( "$fname restored $revisions as archived versions\n" );
+				wfDebug( __METHOD__." restored $revisions as archived versions\n" );
 				$this->purgeDescription();
 			}
 		}

@@ -2,7 +2,6 @@
 
 /**
  * Returns the image directory of an image
- * If the directory does not exist, it is created.
  * The result is an absolute path.
  *
  * This function is called from thumb.php before Setup.php is included
@@ -16,19 +15,13 @@ function wfImageDir( $fname ) {
 	if (!$wgHashedUploadDirectory) { return $wgUploadDirectory; }
 
 	$hash = md5( $fname );
-	$oldumask = umask(0);
-	$dest = $wgUploadDirectory . '/' . $hash{0};
-	if ( ! is_dir( $dest ) ) { mkdir( $dest, 0777 ); }
-	$dest .= '/' . substr( $hash, 0, 2 );
-	if ( ! is_dir( $dest ) ) { mkdir( $dest, 0777 ); }
+	$dest = $wgUploadDirectory . '/' . $hash{0} . '/' . substr( $hash, 0, 2 );
 
-	umask( $oldumask );
 	return $dest;
 }
 
 /**
  * Returns the image directory of an image's thubnail
- * If the directory does not exist, it is created.
  * The result is an absolute path.
  *
  * This function is called from thumb.php before Setup.php is included
@@ -41,22 +34,6 @@ function wfImageThumbDir( $fname, $shared = false ) {
 	$base = wfImageArchiveDir( $fname, 'thumb', $shared );
 	if ( Image::isHashed( $shared ) ) {
 		$dir =  "$base/$fname";
-
-		if ( !is_dir( $base ) ) {
-			$oldumask = umask(0);
-			@mkdir( $base, 0777 );
-			umask( $oldumask );
-		}
-
-		if ( ! is_dir( $dir ) ) {
-			if ( is_file( $dir ) ) {
-				// Old thumbnail in the way of directory creation, kill it
-				unlink( $dir );
-			}
-			$oldumask = umask(0);
-			@mkdir( $dir, 0777 );
-			umask( $oldumask );
-		}
 	} else {
 		$dir = $base;
 	}
@@ -73,7 +50,6 @@ function wfDeprecatedThumbDir( $thumbName , $subdir='thumb', $shared=false) {
 
 /**
  * Returns the image directory of an image's old version
- * If the directory does not exist, it is created.
  * The result is an absolute path.
  *
  * This function is called from thumb.php before Setup.php is included
@@ -90,22 +66,8 @@ function wfImageArchiveDir( $fname , $subdir='archive', $shared=false ) {
 	$hashdir = $shared ? $wgHashedSharedUploadDirectory : $wgHashedUploadDirectory;
 	if (!$hashdir) { return $dir.'/'.$subdir; }
 	$hash = md5( $fname );
-	$oldumask = umask(0);
 
-	# Suppress warning messages here; if the file itself can't
-	# be written we'll worry about it then.
-	wfSuppressWarnings();
-
-	$archive = $dir.'/'.$subdir;
-	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
-	$archive .= '/' . $hash{0};
-	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
-	$archive .= '/' . substr( $hash, 0, 2 );
-	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
-
-	wfRestoreWarnings();
-	umask( $oldumask );
-	return $archive;
+	return $dir.'/'.$subdir.'/'.$hash[0].'/'.substr( $hash, 0, 2 );
 }
 
 
