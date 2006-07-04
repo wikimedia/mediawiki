@@ -316,7 +316,7 @@ class LogViewer {
 			$linkCache->addBadLinkObj( $title );
 		}
 
-		$userLink = $this->skin->makeLinkObj( $user, htmlspecialchars( $s->user_name ) );
+		$userLink = $this->skin->userLink( $s->log_user, $s->user_name ) . $this->skin->userToolLinks( $s->log_user, $s->user_name );
 		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
 		$revert = '';
