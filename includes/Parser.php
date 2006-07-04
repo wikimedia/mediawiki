@@ -1575,6 +1575,9 @@ class Parser
 
 						wfProfileOut( "$fname-image" );
 						continue;
+					} else {
+						# We still need to record the image's presence on the page
+						$this->mOutput->addImage( $nt->getDBkey() );
 					}
 					wfProfileOut( "$fname-image" );
 
