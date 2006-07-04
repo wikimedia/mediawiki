@@ -2367,6 +2367,7 @@ class Parser
 	 * @private
 	 */
 	function replace_callback ($text, $callbacks) {
+		wfProfileIn( __METHOD__ . '-self' );
 		$openingBraceStack = array();	# this array will hold a stack of parentheses which are not closed yet
 		$lastOpeningBrace = -1;			# last not closed parentheses
 
@@ -2475,7 +2476,9 @@ class Parser
 										 'lineStart' => (($pieceStart > 0) && ($text[$pieceStart-1] == "\n")),
 										 );
 						# finally we can call a user callback and replace piece of text
+						wfProfileOut( __METHOD__ . '-self' );
 						$replaceWith = call_user_func( $matchingCallback, $cbArgs );
+						wfProfileIn( __METHOD__ . '-self' );
 						$text = substr($text, 0, $pieceStart) . $replaceWith . substr($text, $pieceEnd);
 						$i = $pieceStart + strlen($replaceWith) - 1;
 					}
@@ -2523,6 +2526,7 @@ class Parser
 			}
 		}
 
+		wfProfileOut( __METHOD__ . '-self' );
 		return $text;
 	}
 
@@ -2788,6 +2792,7 @@ class Parser
 		# Load from database
 		$lastPathLevel = $this->mTemplatePath;
 		if ( !$found ) {
+			wfProfileIn( __METHOD__ . '-loadtpl' );
 			$ns = NS_TEMPLATE;
 			# declaring $subpage directly in the function call
 			# does not work correctly with references and breaks
@@ -2860,6 +2865,7 @@ class Parser
 					$text = $linestart . $text;
 				}
 			}
+			wfProfileOut( __METHOD__ . '-loadtpl' );			
 		}
 
 		# Recursive parsing, escaping and link table handling
@@ -2931,6 +2937,7 @@ class Parser
 			wfProfileOut( $fname );
 			return $piece['text'];
 		} else {
+			wfProfileIn( __METHOD__ . '-placeholders' );
 			if ( $isHTML ) {
 				# Replace raw HTML by a placeholder
 				# Add a blank line preceding, to prevent it from mucking up
@@ -2964,6 +2971,7 @@ class Parser
 					}
 				}
 			}
+			wfProfileOut( __METHOD__ . '-placeholders' );
 		}
 
 		# Prune lower levels off the recursion check path
