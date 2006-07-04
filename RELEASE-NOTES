@@ -637,7 +637,6 @@ Some default configuration options have changed:
 * (bug 5962) Update to Italian localisation
 * (bug 6530) Update to Indonesian localisation (id) #25
 * (bug 6523) Fix SVG issue in rebuildImages.php
-* Add missing colon ([[$1]] -> [[:$1]]) to 'searchsubtitle' messages
 * (bug 6512) Link to page-specific logs on page histories
 
 == Compatibility ==
