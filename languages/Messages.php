@@ -559,6 +559,7 @@ You can go back and edit an existing page, or [[Special:Userlogin|log in or crea
 # History pages
 #
 'revhistory'	=> 'Revision history',
+'viewpagelogs' => 'View logs for this page',
 'nohistory'		=> 'There is no edit history for this page.',
 'revnotfound'	=> 'Revision not found',
 'revnotfoundtext' => "The old revision of the page you asked for could not be found.

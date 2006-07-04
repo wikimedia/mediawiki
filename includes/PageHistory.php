@@ -67,11 +67,16 @@ class PageHistory {
 		 * Setup page variables.
 		 */
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-		$wgOut->setSubtitle( wfMsg( 'revhistory' ) );
 		$wgOut->setArticleFlag( false );
 		$wgOut->setArticleRelated( true );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setSyndicated( true );
+
+		$logPage = Title::makeTitle( NS_SPECIAL, 'Log' );
+		$logLink = $this->mSkin->makeKnownLinkObj( $logPage, wfMsgHtml( 'viewpagelogs' ), 'page=' . $this->mTitle->getPrefixedUrl() );
+
+		$subtitle = wfMsgHtml( 'revhistory' ) . '<br />' . $logLink;
+		$wgOut->setSubtitle( $subtitle );
 
 		$feedType = $wgRequest->getVal( 'feed' );
 		if( $feedType ) {
