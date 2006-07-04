@@ -369,6 +369,9 @@ class UploadForm {
 
 		$dest = wfImageDir( $saveName );
 		$archive = wfImageArchiveDir( $saveName );
+		if ( !is_dir( $dest ) ) wfMkdirParents( $dest );
+		if ( !is_dir( $archive ) ) wfMkdirParents( $archive );
+		
 		$this->mSavedFile = "{$dest}/{$saveName}";
 
 		if( is_file( $this->mSavedFile ) ) {
@@ -420,6 +423,7 @@ class UploadForm {
 	function saveTempUploadedFile( $saveName, $tempName ) {
 		global $wgOut;
 		$archive = wfImageArchiveDir( $saveName, 'temp' );
+		if ( !is_dir ( $archive ) ) wfMkdirParents( $archive );
 		$stash = $archive . '/' . gmdate( "YmdHis" ) . '!' . $saveName;
 
 		$success = $this->mRemoveTempFile
