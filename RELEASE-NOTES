@@ -640,6 +640,7 @@ Some default configuration options have changed:
 * (bug 6512) Link to page-specific logs on page histories
 * (bug 6504) Allow configuring session name with $wgSessionName
 * (bug 6185) Add standard user tool links to log page views
+* Update to Venetian translation (vec)
 
 == Compatibility ==
 
