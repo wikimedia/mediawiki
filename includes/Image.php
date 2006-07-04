@@ -886,14 +886,13 @@ class Image
 	 * @public
 	 */
 	function getThumbnail( $width, $height=-1 ) {
-		if ( $height <= 0 ) {
-			return $this->renderThumb( $width );
-		}
-		$this->load();
-
 		if ($this->canRender()) {
-			if ( $width > $this->width * $height / $this->height )
-				$width = wfFitBoxWidth( $this->width, $this->height, $height );
+			if ( $height > 0 ) {
+				$this->load();
+				if ( $width > $this->width * $height / $this->height ) {
+					$width = wfFitBoxWidth( $this->width, $this->height, $height );
+				}
+			}
 			return $this->renderThumb( $width );
 		} else {
 			// not a bitmap or renderable image, don't try.
