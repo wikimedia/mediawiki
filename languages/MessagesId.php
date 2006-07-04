@@ -458,6 +458,7 @@ Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang And
 # History pages
 #
 "revhistory" => "Sejarah revisi",
+'viewpagelogs' => 'Lihat log halaman ini',
 "nohistory" => "Tidak ada sejarah penyuntingan untuk halaman ini",
 "revnotfound" => "Revisi tidak ditemukan",
 "revnotfoundtext" => "Revisi lama halaman yang Anda minta tidak dapat ditemukan. Silakan periksa URL yang digunakan untuk mengakses halaman ini.",
