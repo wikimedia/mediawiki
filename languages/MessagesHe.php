@@ -516,13 +516,14 @@ $wgAllMessagesHe = array(
 
 # History pages
 "revhistory"                  => "היסטוריית שינויים",
+"viewpagelogs"                => "הצג יומנים עבור דף זה",
 "nohistory"                   => "אין היסטוריית שינויים עבור דף זה.",
 "revnotfound"                 => "גרסה זו לא נמצאה",
 "revnotfoundtext"             => "הגרסה הישנה של דף זה לא נמצאה. אנא בדקו את כתובת הקישור שהוביל אתכם הנה.",
 "loadhist"                    => "טוען את היסטוריית השינויים של הדף",
 "currentrev"                  => "גרסה נוכחית",
 "revisionasof"                => "גרסה מתאריך $1",
-"old-revision-navigation"       => "גרסה מתאריך $1; $5<br />($6) $3 | $2 | $4 ($7)",
+"old-revision-navigation"     => "גרסה מתאריך $1; $5<br />($6) $3 | $2 | $4 ($7)",
 "previousrevision"            => "→ הגרסה הקודמת",
 "nextrevision"                => "הגרסה הבאה ←",
 "currentrevisionlink"         => "הגרסה הנוכחית",
