@@ -268,7 +268,7 @@ class MediaWiki {
 	 * Do a job from the job queue
 	 */
 	function doJobs() {
-		global $wgJobLogFile, $wgJobRunRate;
+		global $wgJobRunRate;
 		
 		if ( $wgJobRunRate <= 0 ) {
 			return;
@@ -294,9 +294,7 @@ class MediaWiki {
 			} else {
 				$output .= "Success, Time: $t ms\n";
 			}
-			if ( $wgJobLogFile ) {
-				error_log( $output, 3, $wgJobLogFile );
-			}
+			wfDebugLog( 'jobqueue', $output );
 		}
 	}
 	

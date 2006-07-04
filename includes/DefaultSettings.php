@@ -2122,11 +2122,6 @@ $wgAllowCategorizedRecentChanges = false ;
 $wgJobRunRate = 1;
 
 /**
- * Log file for job execution
- */
-$wgJobLogFile = false;
-
-/**
  * Number of rows to update per job
  */
 $wgUpdateRowsPerJob = 500;
