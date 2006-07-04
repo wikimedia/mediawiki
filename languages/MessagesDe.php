@@ -205,7 +205,7 @@ $wgAllMessagesDe = array(
 'viewdeleted' => '$1 anzeigen?',
 'restorelink'		=> '{{PLURAL:$1|einer gelöschten Version|$1 gelöschten Versionen}}',
 "feedlinks" => "Feed:",
-'feed-invalid'		=> 'Ungültiger Abonnenement-Typ.',
+'feed-invalid'		=> 'Ungültiger Abonnement-Typ.',
 'permalink'     => 'Permanentlink',
 "listingcontinuesabbrev" => "(Forts.)",
 
@@ -439,11 +439,11 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 'session_fail_preview' => '<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Ihre Sitzungsdaten verloren gegangen sind.
 Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, logge Sie sich kurz aus und wieder ein.</strong>',
 "previewconflict" => "Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder; so wird der Artikel aussehen, wenn Sie jetzt speichern.",
-'session_fail_preview_html'	=> '<strong>Entschuldigung! Wir konnten Ihre Änderung nicht verarbeiten, da Ihre Sitzungsdaten verloren gegangen sind.</strong>
+'session_fail_preview_html'	=> '<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Ihre Sitzungsdaten verloren gegangen sind.</strong>
 
 \'\'Da in diesem Wiki reines HTML aktiviert ist, wurde die Vorschau ausgeblendet um JavaScript Attacken vorzubeugen.\'\'
 
-<strong>Versuchen Sie es erneut, falls dies ein legitimer Änderungsversuch ist. Falls es weiterhin nicht funktioniert, versuchen Sie sich ab- und wieder anzumelden.</strong>',
+<strong>Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, melden Sie sich kurz ab und wieder an.</strong>',
 'importing'		=> 'importiere $1',
 "editing"		=> "Bearbeiten von $1",
 "editingsection"	=> "Bearbeiten von $1 (Absatz)",
@@ -487,6 +487,7 @@ Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmel
 # History pages
 #
 "revhistory"	=> "Frühere Versionen",
+'viewpagelogs'		=> 'Logbücher für diese Seite anzeigen',
 'nohistory'		=> 'Es gibt keine früheren Versionen dieses Artikels.',
 'revnotfound'		=> 'Diese Version wurde nicht gefunden.',
 "revnotfoundtext" => "Die Version dieses Artikels, nach der Sie suchen, konnte nicht gefunden werden. Bitte überprüfen Sie die URL dieser Seite.",
@@ -854,7 +855,7 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'allpagesprev'	=> 'Vorherige',
 'allpagesnext'	=> 'Nächste',
 'allpagessubmit'	=> 'Zeige',
-'allpagesbadtitle'	=> 'Der angegeben Seitentitel war ungültig oder hatte einen Inter-Language oder Interwiki Präfix. Eventuell enthält er auch ein Zeichen, das nicht in einem Titel verwendet werden kann.',
+'allpagesbadtitle'	=> 'Der eingegebene Seitenname ist ungültig: Er hat entweder ein vorangestelltes Sprach-, ein Interwiki-Kürzel oder enthält ein oder mehrere Zeichen, welche in Seitennamen nicht verwendet werden dürfen.',
 
 # Email this user
 #
