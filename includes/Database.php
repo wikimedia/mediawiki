@@ -1854,6 +1854,10 @@ class Database {
 		return $b;
 	}
 
+	function decodeBlob($b) {
+		return $b;
+	}
+
 	/**
 	 * Read and execute SQL commands from a file.
 	 * Returns true on success, error string on failure
