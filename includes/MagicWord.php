@@ -313,8 +313,9 @@ class MagicWord {
 		} elseif ( count($matches) == 1 ) {
 			return $matches[0];
 		} else {
-			# multiple matched parts (variable match); some will be empty because of synonyms
-			# the variable will be the second non-empty one so remove any blank elements and re-sort the indices
+			# multiple matched parts (variable match); some will be empty because of
+			# synonyms. The variable will be the second non-empty one so remove any
+			# blank elements and re-sort the indices.
 			$matches = array_values(array_filter($matches));
 			return $matches[1];
 		}
