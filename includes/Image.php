@@ -882,10 +882,13 @@ class Image
 	 *
 	 * @param integer $width	maximum width of the generated thumbnail
 	 * @param integer $height	maximum height of the image (optional)
+	 * @param boolean $render	True to render the thumbnail if it doesn't exist,
+	 *                       	false to just return the URL
+	 *
 	 * @return ThumbnailImage or null on failure
 	 * @public
 	 */
-	function getThumbnail( $width, $height=-1 ) {
+	function getThumbnail( $width, $height=-1, $render = true ) {
 		if ($this->canRender()) {
 			if ( $height > 0 ) {
 				$this->load();
@@ -893,7 +896,23 @@ class Image
 					$width = wfFitBoxWidth( $this->width, $this->height, $height );
 				}
 			}
-			return $this->renderThumb( $width );
+			if ( $render ) {
+				return $this->renderThumb( $width );
+			} else {
+				// Don't render, just return the URL
+				if ( $this->validateThumbParams( $width, $height ) ) {
+					if ( $width == $this->width && $height == $this->height ) {
+						$url = $this->getURL();
+					} else {
+						list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
+					}
+					echo "Thumbnail requested, $url, $width x $height\n";
+					return new ThumbnailImage( $url, $width, $height );
+				} else {
+					echo "Bogus thumbnail, returning null";
+					return null;
+				}
+			}
 		} else {
 			// not a bitmap or renderable image, don't try.
 			return $this->iconThumb();
@@ -918,6 +937,55 @@ class Image
 	}
 
 	/**
+	 * Validate thumbnail parameters and fill in the correct height
+	 *
+	 * @param integer &$width Specified width (input/output)
+	 * @param integer &$height Height (output only)
+	 * @return false to indicate that an error should be returned to the user. 
+	 */
+	function validateThumbParams( &$width, &$height ) {
+		global $wgSVGMaxSize, $wgMaxImageArea;
+		
+		$this->load();
+
+		if ( ! $this->exists() )
+		{
+			# If there is no image, there will be no thumbnail
+			return false;
+		}
+		
+		$width = intval( $width );
+		
+		# Sanity check $width
+		if( $width <= 0 || $this->width <= 0) {
+			# BZZZT
+			return false;
+		}
+
+		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
+		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
+		# an exception for it.
+		if ( $this->getMediaType() == MEDIATYPE_BITMAP &&
+			$this->getMimeType() !== 'image/jpeg' &&
+			$this->width * $this->height > $wgMaxImageArea )
+		{
+			return false;
+		}
+
+		# Don't make an image bigger than the source, or wgMaxSVGSize for SVGs
+		if ( $this->mustRender() ) {
+			$width = min( $width, $wgSVGMaxSize );
+		} elseif ( $width > $this->width - 1 ) {
+			$width = $this->width;
+			$height = $this->height;
+			return true;
+		}
+
+		$height = round( $this->height * $width / $this->width );
+		return true;
+	}
+	
+	/**
 	 * Create a thumbnail of the image having the specified width.
 	 * The thumbnail will not be created if the width is larger than the
 	 * image's width. Let the browser do the scaling in this case.
@@ -930,50 +998,24 @@ class Image
 	 * @private
 	 */
 	function renderThumb( $width, $useScript = true ) {
-		global $wgUseSquid;
-		global $wgSVGMaxSize, $wgMaxImageArea, $wgThumbnailEpoch;
+		global $wgUseSquid, $wgThumbnailEpoch;
 
 		wfProfileIn( __METHOD__ );
 
-		$width = intval( $width );
-
 		$this->load();
-		if ( ! $this->exists() )
-		{
-			# If there is no image, there will be no thumbnail
-			wfProfileOut( __METHOD__ );
+		$height = -1;
+		if ( !$this->validateThumbParams( $width, $height ) ) {
+			# Validation error
 			return null;
 		}
 
-		# Sanity check $width
-		if( $width <= 0 || $this->width <= 0) {
-			# BZZZT
-			wfProfileOut( __METHOD__ );
-			return null;
-		}
-
-		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
-		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
-		# an exception for it.
-		if ( $this->getMediaType() == MEDIATYPE_BITMAP &&
-			$this->getMimeType() !== 'image/jpeg' &&
-			$this->width * $this->height > $wgMaxImageArea )
-		{
-			wfProfileOut( __METHOD__ );
-			return null;
-		}
-
-		# Don't make an image bigger than the source, or wgMaxSVGSize for SVGs
-		if ( $this->mustRender() ) {
-			$width = min( $width, $wgSVGMaxSize );
-		} elseif ( $width > $this->width - 1 ) {
-			$thumb = new ThumbnailImage( $this->getURL(), $this->getWidth(), $this->getHeight() );
+		if ( $width == $this->width && $height == $this->height ) {
+			# validateThumbParams (or the user) wants us to return the unscaled image
+			$thumb = new ThumbnailImage( $this->getURL(), $width, $height );
 			wfProfileOut( __METHOD__ );
 			return $thumb;
 		}
-
-		$height = round( $this->height * $width / $this->width );
-
+		
 		list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
 		if ( $isScriptUrl && $useScript ) {
 			// Use thumb.php to render the image

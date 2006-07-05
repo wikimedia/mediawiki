@@ -1380,6 +1380,14 @@ $wgThumbnailEpoch = '20030516000000';
  */
 $wgIgnoreImageErrors = false;
 
+/**
+ * Allow thumbnail rendering on page view. If this is false, a valid 
+ * thumbnail URL is still output, but no file will be created at 
+ * the target location. This may save some time if you have a 
+ * thumb.php or 404 handler set up which is faster than the regular 
+ * webserver(s).  
+ */
+$wgGenerateThumbnailOnParse = true;
 
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */
 if( !isset( $wgCommandLineMode ) ) {
