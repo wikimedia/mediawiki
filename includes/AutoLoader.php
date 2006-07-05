@@ -138,7 +138,7 @@ function __autoload($className) {
 		'SearchMySQL' => 'includes/SearchMySQL.php',
 		'MySQLSearchResultSet' => 'includes/SearchMySQL.php',
 		'SearchMySQL4' => 'includes/SearchMySQL4.php',
-		'SearchTsearch2' => 'includes/SearchTsearch2.php',
+		'SearchPostgres' => 'includes/SearchPostgres.php',
 		'SearchUpdate' => 'includes/SearchUpdate.php',
 		'SearchUpdateMyISAM' => 'includes/SearchUpdate.php',
 		'SiteConfiguration' => 'includes/SiteConfiguration.php',
