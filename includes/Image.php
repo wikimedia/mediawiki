@@ -889,6 +889,7 @@ class Image
 	 * @public
 	 */
 	function getThumbnail( $width, $height=-1, $render = true ) {
+		wfProfileIn( __METHOD__ );
 		if ($this->canRender()) {
 			if ( $height > 0 ) {
 				$this->load();
@@ -897,7 +898,7 @@ class Image
 				}
 			}
 			if ( $render ) {
-				return $this->renderThumb( $width );
+				$thumb = $this->renderThumb( $width );
 			} else {
 				// Don't render, just return the URL
 				if ( $this->validateThumbParams( $width, $height ) ) {
@@ -906,15 +907,17 @@ class Image
 					} else {
 						list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
 					}
-					return new ThumbnailImage( $url, $width, $height );
+					$thumb = new ThumbnailImage( $url, $width, $height );
 				} else {
-					return null;
+					$thumb = null;
 				}
 			}
 		} else {
 			// not a bitmap or renderable image, don't try.
-			return $this->iconThumb();
+			$thumb = $this->iconThumb();
 		}
+		wfProfileOut( __METHOD__ );
+		return $thumb;
 	}
 
 	/**
@@ -1004,6 +1007,7 @@ class Image
 		$height = -1;
 		if ( !$this->validateThumbParams( $width, $height ) ) {
 			# Validation error
+			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
