@@ -55,7 +55,7 @@ CREATE TABLE page (
   page_counter       BIGINT         NOT NULL  DEFAULT 0,
   page_is_redirect   CHAR           NOT NULL  DEFAULT 0,
   page_is_new        CHAR           NOT NULL  DEFAULT 0,
-  page_random        NUMERIC(15,14) NOT NULL,
+  page_random        NUMERIC(15,14) NOT NULL  DEFAULT RANDOM(),
   page_touched       TIMESTAMPTZ,
   page_latest        INTEGER        NOT NULL, -- FK?
   page_len           INTEGER        NOT NULL
