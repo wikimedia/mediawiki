@@ -902,7 +902,7 @@ class Image
 			} else {
 				// Don't render, just return the URL
 				if ( $this->validateThumbParams( $width, $height ) ) {
-					if ( $width == $this->width && $height == $this->height ) {
+					if ( !$this->mustRender() && $width == $this->width && $height == $this->height ) {
 						$url = $this->getURL();
 					} else {
 						list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
@@ -1011,7 +1011,7 @@ class Image
 			return null;
 		}
 
-		if ( $width == $this->width && $height == $this->height ) {
+		if ( !$this->mustRender() && $width == $this->width && $height == $this->height ) {
 			# validateThumbParams (or the user) wants us to return the unscaled image
 			$thumb = new ThumbnailImage( $this->getURL(), $width, $height );
 			wfProfileOut( __METHOD__ );
