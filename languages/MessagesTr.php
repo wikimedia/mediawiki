@@ -396,8 +396,7 @@ Ayrıca, buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldı
 'compareselectedversions'=> 'Seçilen sürümleri karşılaştır',
 'searchresults'         => 'Arama sonuçları',
 'searchresulttext'      => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[Project:Arama|"{{SITENAME}} içinde arama"]] sayfasına bakabilirsiniz.',
-'searchsubtitle'           => 'Aranan: "[[:$1]]" [[Özel:Allpages/$1|&#x5B;Indeks&#x5D;]]',
-'searchsubtitleinvalid'           => 'Aranan: "$1" ',
+'searchsubtitle'        => 'Aranan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
 'noexactmatch'          => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Başlığı bu olan bir madde bulunamadı.</span> <span style="display: block; margin: 1.5em 2em"> Bu maddenin yazılmasını [[:$1|\'\'\'siz başlatabilirsiniz\'\'\']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. <span style="display:block; font-size: 89%; margin-left:.2em">Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.</span> </span>',
 'titlematches'          => 'Madde adı eşleşiyor',
 'notitlematches'        => 'Hiçbir başlıkta bulunamadı',
@@ -501,10 +500,10 @@ $2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 yüklenenler ve silinmişler [[Special:Log/upload|yükleme kaydı sayfasında da]] görülebilir.
 
 Sayfaya resim koymak için;
-*\'\'\'<nowiki>[[{{ns:image}}:Örnek.jpg]]</nowiki>\'\'\'
-*\'\'\'<nowiki>[[{{ns:image}}:Örnek.png|açıklama]]</nowiki>\'\'\'
+*\'\'\'<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Örnek.jpg]]</nowiki>\'\'\'
+*\'\'\'<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Örnek.png|açıklama]]</nowiki>\'\'\'
 veya doğrudan bağlantı için
-*\'\'\'<nowiki>[[{{ns:media}}:Örnek.ogg]]</nowiki>\'\'\'',
+*\'\'\'<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:Örnek.ogg]]</nowiki>\'\'\'',
 'uploadlog'             => 'yükleme kaydı',
 'uploadlogpage'         => 'Dosya yükleme kayıtları',
 'uploadlogpagetext'     => 'Aşağıda en son eklenen dosyaların bir listesi bulunmaktadır.',
@@ -528,7 +527,7 @@ veya doğrudan bağlantı için
 
 Lütfen $2 bağlantısını takip ederek dosya ile ilgili açıklama yazısı yazınız. Dosya nerden geldi, kim tarafından ne zaman oluşturuldu ya da hakında bildiğiniz diğer bilgiler gibi.
 
-Eğer bu bir resim ise <tt><nowiki>[[Image:$1|thumb|açıklama]]</nowiki></tt> şeklinde sayfaya yerleştirebilirsiniz. (açıklama yerine resim ile ilgili yazı yazınız)',
+Eğer bu bir resim ise <tt><nowiki>[[{{ns:Image}}:$1|thumb|açıklama]]</nowiki></tt> şeklinde sayfaya yerleştirebilirsiniz. (açıklama yerine resim ile ilgili yazı yazınız)',
 'uploadwarning'         => 'Yükleme uyarısı',
 'savefile'              => 'Dosyayı kaydet',
 'uploadedimage'         => 'Yüklenen: "[[$1]]"',
@@ -1084,6 +1083,7 @@ Bu onay kodu $4 tarihine kadar geçerli olacak.',
 'deletedwhileediting'   => 'Uyarı: Bu sayfa siz değişiklik yapmaya başladıktan sonra silinmiş!',
 'redirectingto'         => 'Yönlendirme [[$1]]...',
 'confirm_purge'         => 'Sayfa önbelleği temizlesin mi? $1',
+'confirm_purge_button'  => 'Tamam',
 'youhavenewmessagesmulti'=> '$1\'de yeni mesajınız var.',
 'articletitles'         => '\'\'$1\'\' ile başlayan maddeler',
 'displaytitle'          => '(Bu sayfaya [[$1]] olarak bağlan)',
