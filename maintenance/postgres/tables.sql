@@ -5,8 +5,9 @@
 -- For information about each table, please see the notes in maintenance/tables.sql
 -- Please make sure all dollar-quoting uses $mw$ at the start of the line
 -- We can't use SERIAL everywhere: the sequence names are hard-coded into the PHP
--- TODO: Change CHAR to BOOL, TEXT to CIDR, allow custom schema
+-- TODO: Change CHAR to BOOL
 
+BEGIN;
 SET client_min_messages = 'ERROR';
 
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
@@ -35,11 +36,11 @@ CREATE TABLE user_groups (
   ug_user   INTEGER      NULL  REFERENCES "user"(user_id) ON DELETE CASCADE,
   ug_group  TEXT     NOT NULL
 );
-CREATE UNIQUE INDEX user_groups_unique ON user_groups (ug_group, ug_user);
+CREATE UNIQUE INDEX user_groups_unique ON user_groups (ug_user, ug_group);
 
 CREATE TABLE user_newtalk (
   user_id  INTEGER NOT NULL  REFERENCES "user"(user_id) ON DELETE CASCADE,
-  user_ip  TEXT        NULL
+  user_ip  CIDR        NULL
 );
 CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
 CREATE INDEX user_newtalk_ip_idx ON user_newtalk (user_ip);
@@ -60,6 +61,11 @@ CREATE TABLE page (
   page_len           INTEGER        NOT NULL
 );
 CREATE UNIQUE INDEX page_unique_name ON page (page_namespace, page_title);
+CREATE INDEX page_main_title         ON page (page_title) WHERE page_namespace = 0;
+CREATE INDEX page_talk_title         ON page (page_title) WHERE page_namespace = 1;
+CREATE INDEX page_user_title         ON page (page_title) WHERE page_namespace = 2;
+CREATE INDEX page_utalk_title        ON page (page_title) WHERE page_namespace = 3;
+CREATE INDEX page_project_title      ON page (page_title) WHERE page_namespace = 4;
 CREATE INDEX page_random_idx         ON page (page_random);
 CREATE INDEX page_len_idx            ON page (page_len);
 
@@ -175,7 +181,7 @@ CREATE TABLE hitcounter (
 CREATE SEQUENCE ipblocks_ipb_id_val;
 CREATE TABLE ipblocks (
   ipb_id           INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_val'),
-  ipb_address      TEXT             NULL,
+  ipb_address      CIDR             NULL,
   ipb_user         INTEGER          NULL  REFERENCES "user"(user_id) ON DELETE SET NULL,
   ipb_by           INTEGER      NOT NULL  REFERENCES "user"(user_id) ON DELETE CASCADE,
   ipb_reason       TEXT         NOT NULL,
@@ -271,7 +277,7 @@ CREATE TABLE recentchanges (
   rc_moved_to_ns     SMALLINT,
   rc_moved_to_title  TEXT,
   rc_patrolled       CHAR         NOT NULL  DEFAULT '0',
-  rc_ip              TEXT
+  rc_ip              CIDR
 );
 CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
 CREATE INDEX rc_namespace_title ON recentchanges (rc_namespace, rc_title);
@@ -321,7 +327,7 @@ CREATE TABLE querycache_info (
 
 CREATE TABLE objectcache (
   keyname  CHAR(255)              UNIQUE,
-  value    TEXT         NOT NULL  DEFAULT '',
+  value    BYTEA        NOT NULL  DEFAULT '',
   exptime  TIMESTAMPTZ  NOT NULL
 );
 CREATE INDEX objectcacache_exptime ON objectcache (exptime);
@@ -369,17 +375,46 @@ CREATE TABLE job (
 );
 CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
 
+-- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 
-CREATE TABLE searchindex (
-  si_page     INTEGER           NULL  REFERENCES page (page_id) ON DELETE CASCADE,
-  si_title    VARCHAR(255)  NOT NULL  DEFAULT '',
-  si_text     TEXT          NOT NULL  DEFAULT ''
-);
+ALTER TABLE page ADD titlevector tsvector;
+CREATE INDEX ts2_page_title ON page USING gist(titlevector);
+CREATE FUNCTION ts2_page_title() RETURNS TRIGGER LANGUAGE plpgsql AS
+$mw$
+BEGIN
+IF TG_OP = 'INSERT' THEN
+  NEW.titlevector = to_tsvector(NEW.page_title);
+ELSIF NEW.page_title != OLD.page_title THEN
+  NEW.titlevector := to_tsvector(NEW.page_title);
+END IF;
+RETURN NEW;
+END;
+$mw$;
+
+CREATE TRIGGER ts2_page_title BEFORE INSERT OR UPDATE ON page
+FOR EACH ROW EXECUTE PROCEDURE ts2_page_title();
 
 
+ALTER TABLE text ADD textvector tsvector;
+CREATE INDEX ts2_page_text ON text USING gist(textvector);
+CREATE FUNCTION ts2_page_text() RETURNS TRIGGER LANGUAGE plpgsql AS
+$mw$
+BEGIN
+IF TG_OP = 'INSERT' THEN
+  NEW.textvector = to_tsvector(NEW.old_text);
+ELSIF NEW.old_text != OLD.old_text THEN
+  NEW.textvector := to_tsvector(NEW.old_text);
+END IF;
+RETURN NEW;
+END;
+$mw$;
+
+CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON text
+FOR EACH ROW EXECUTE PROCEDURE ts2_page_text();
 
 CREATE OR REPLACE FUNCTION add_interwiki (TEXT,INT,CHAR) RETURNS INT LANGUAGE SQL AS
 $mw$
   INSERT INTO interwiki (iw_prefix, iw_url, iw_local) VALUES ($1,$2,$3);
   SELECT 1;
 $mw$;
+COMMIT;
