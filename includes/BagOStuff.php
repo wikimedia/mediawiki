@@ -231,7 +231,7 @@ abstract class SqlBagOStuff extends BagOStuff {
 		}
 		if($row=$this->_fetchobject($res)) {
 			$this->_debug("get: retrieved data; exp time is " . $row->exptime);
-			return $this->_unserialize($row->value);
+			return $this->_unserialize($this->_blobdecode($row->value));
 		} else {
 			$this->_debug('get: no matching rows');
 		}
@@ -289,6 +289,9 @@ abstract class SqlBagOStuff extends BagOStuff {
 		return str_replace( "'", "''", $str );
 	}
 	function _blobencode($str) {
+		return $str;
+	}
+	function _blobdecode($str) {
 		return $str;
 	}
 
@@ -407,6 +410,10 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	function _blobencode($s) {
 		$dbw =& wfGetDB( DB_MASTER );
 		return $dbw->encodeBlob($s);
+	}
+	function _blobdecode($s) {
+		$dbw =& wfGetDB( DB_MASTER );
+		return $dbw->decodeBlob($s);
 	}
 	function getTableName() {
 		if ( !$this->tableInitialised ) {
