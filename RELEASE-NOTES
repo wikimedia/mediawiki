@@ -642,7 +642,7 @@ Some default configuration options have changed:
 * (bug 6185) Add standard user tool links to log page views
 * Update to Venetian translation (vec)
 * Update to Slovenian translation (sl)
-* Add standard user tool links to page deleted history.
+* Add standard user tool links to deleted revision list
 
 == Compatibility ==
 
