@@ -906,10 +906,8 @@ class Image
 					} else {
 						list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
 					}
-					echo "Thumbnail requested, $url, $width x $height\n";
 					return new ThumbnailImage( $url, $width, $height );
 				} else {
-					echo "Bogus thumbnail, returning null";
 					return null;
 				}
 			}
