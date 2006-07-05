@@ -658,7 +658,7 @@ class UndeleteForm {
 					$checkBox = '';
 					$pageLink = $wgLang->timeanddate( $ts, true );
 				}
-				$userLink = $sk->userLink( $row->ar_user, $row->ar_user_text );
+				$userLink = $sk->userLink( $row->ar_user, $row->ar_user_text ) . $sk->userToolLinks( $row->ar_user, $row->ar_user_text );
 				$comment = $sk->commentBlock( $row->ar_comment );
 				$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $comment</li>\n" );
 	
@@ -686,7 +686,7 @@ class UndeleteForm {
 					$checkBox = '';
 					$pageLink = $wgLang->timeanddate( $ts, true );
 				}
-				$userLink = $sk->userLink( $row->fa_user, $row->fa_user_text );
+ 				$userLink = $sk->userLink( $row->fa_user, $row->fa_user_text ) . $sk->userToolLinks( $row->fa_user, $row->fa_user_text );
 				$data =
 					wfMsgHtml( 'widthheight',
 						$wgLang->formatNum( $row->fa_width ),
