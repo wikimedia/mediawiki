@@ -49,6 +49,74 @@ class EditPage {
 		global $wgTitle;
 		$this->mTitle =& $wgTitle;
 	}
+	
+	/**
+	 * Fetch initial editing page content.
+	 */
+	private function getContent() {
+		global $wgRequest, $wgParser;
+
+		# Get variables from query string :P
+		$section = $wgRequest->getVal( 'section' );
+		$preload = $wgRequest->getVal( 'preload' );
+
+		wfProfileIn( __METHOD__ );
+
+		$text = '';
+		if( !$this->mTitle->exists() ) {
+
+			# If requested, preload some text.
+			$text = $this->getPreloadedText( $preload );
+
+			# We used to put MediaWiki:Newarticletext here if
+			# $text was empty at this point.
+			# This is now shown above the edit box instead.
+		} else {
+			// FIXME: may be better to use Revision class directly
+			// But don't mess with it just yet. Article knows how to
+			// fetch the page record from the high-priority server,
+			// which is needed to guarantee we don't pick up lagged
+			// information.
+			
+			$text = $this->mArticle->getContent();
+			
+			if( $section != '' ) {
+				if( $section == 'new' ) {
+					$text = $this->getPreloadedText( $preload );
+				} else {
+					$text = $wgParser->getSection( $text, $section );
+				}
+			}
+		}
+		
+		wfProfileOut( __METHOD__ );
+		return $text;
+	}
+
+	/**
+	 * Get the contents of a page from its title and remove includeonly tags
+	 *
+	 * @param $preload String: the title of the page.
+	 * @return string The contents of the page.
+	 */
+	private function getPreloadedText($preload) {
+		if ( $preload === '' )
+			return '';
+		else {
+			$preloadTitle = Title::newFromText( $preload );
+			if ( isset( $preloadTitle ) && $preloadTitle->userCanRead() ) {
+				$rev=Revision::newFromTitle($preloadTitle);
+				if ( is_object( $rev ) ) {
+					$text = $rev->getText();
+					// TODO FIXME: AAAAAAAAAAA, this shouldn't be implementing
+					// its own mini-parser! -ævar
+					$text = preg_replace( '~</?includeonly>~', '', $text );
+					return $text;
+				} else
+					return '';
+			}
+		}
+	}
 
 	/**
 	 * This is the function that extracts metadata from the article body on the first view.
@@ -61,7 +129,7 @@ class EditPage {
 		if ( !$wgUseMetadataEdit ) return ;
 		if ( $wgMetadataWhitelist == '' ) return ;
 		$s = '' ;
-		$t = $this->mArticle->getContent();
+		$t = $this->getContent();
 
 		# MISSING : <nowiki> filtering
 
@@ -185,7 +253,7 @@ class EditPage {
 
 		if ( ! $this->mTitle->userCanEdit() ) {
 			wfDebug( "$fname: user can't edit\n" );
-			$wgOut->readOnlyPage( $this->mArticle->getContent(), true );
+			$wgOut->readOnlyPage( $this->getContent(), true );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -206,7 +274,7 @@ class EditPage {
 				return;
 			} else {
 				wfDebug( "$fname: read-only page\n" );
-				$wgOut->readOnlyPage( $this->mArticle->getContent(), true );
+				$wgOut->readOnlyPage( $this->getContent(), true );
 				wfProfileOut( $fname );
 				return;
 			}
@@ -230,7 +298,7 @@ class EditPage {
 			} else if ( $this->diff ) {
 				$this->formtype = 'diff';
 			} else {
-				$wgOut->readOnlyPage( $this->mArticle->getContent() );
+				$wgOut->readOnlyPage( $this->getContent() );
 				wfProfileOut( $fname );
 				return;
 			}
@@ -734,7 +802,7 @@ class EditPage {
 	 */
 	function initialiseForm() {
 		$this->edittime = $this->mArticle->getTimestamp();
-		$this->textbox1 = $this->mArticle->getContent();
+		$this->textbox1 = $this->getContent();
 		$this->summary = '';
 		if ( !$this->mArticle->exists() && $this->mArticle->mTitle->getNamespace() == NS_MEDIAWIKI )
 			$this->textbox1 = wfMsgWeirdKey( $this->mArticle->mTitle->getText() ) ;
@@ -768,7 +836,7 @@ class EditPage {
 			$wgOut->addWikiText( wfMsg( 'explainconflict' ) );
 
 			$this->textbox2 = $this->textbox1;
-			$this->textbox1 = $this->mArticle->getContent();
+			$this->textbox1 = $this->getContent();
 			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
 
@@ -1314,7 +1382,7 @@ END
 		} else {
 			# if user want to see preview when he edit an article
 			if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
-				$this->textbox1 = $this->mArticle->getContent();
+				$this->textbox1 = $this->getContent();
 			}
 
 			$toparse = $this->textbox1;
@@ -1348,7 +1416,7 @@ END
 		# If the user made changes, preserve them when showing the markup
 		# (This happens when a user is blocked during edit, for instance)		
 		$first = $this->firsttime || ( !$this->save && $this->textbox1 == '' );
-		$source = $first ? $this->mArticle->getContent() : $this->textbox1;
+		$source = $first ? $this->getContent() : $this->textbox1;
 		
 		# Spit out the source or the user's modified version
 		$rows = $wgUser->getOption( 'rows' );
