@@ -458,7 +458,7 @@ class Linker {
 	function makeImageLinkObj( $nt, $label, $alt, $align = '', $width = false, $height = false, $framed = false,
 	  $thumb = false, $manual_thumb = '' )
 	{
-		global $wgContLang, $wgUser, $wgThumbLimits;
+		global $wgContLang, $wgUser, $wgThumbLimits, $wgGenerateThumbnailOnParse;
 
 		$img   = new Image( $nt );
 		if ( !$img->allowInlineDisplay() && $img->exists() ) {
@@ -512,7 +512,7 @@ class Linker {
 			if ( $height == false )
 				$height = -1;
 			if ( $manual_thumb == '') {
-				$thumb = $img->getThumbnail( $width, $height );
+				$thumb = $img->getThumbnail( $width, $height, $wgGenerateThumbnailOnParse );
 				if ( $thumb ) {
 					// In most cases, $width = $thumb->width or $height = $thumb->height.
 					// If not, we're scaling the image larger than it can be scaled,
@@ -563,7 +563,7 @@ class Linker {
 	 * $img is an Image object
 	 */
 	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
-		global $wgStylePath, $wgContLang;
+		global $wgStylePath, $wgContLang, $wgGenerateThumbnailOnParse;
 		$url  = $img->getViewURL();
 		$thumbUrl = '';
 		$error = '';
@@ -588,7 +588,7 @@ class Linker {
 			if ( $boxheight === false )
 				$boxheight = -1;
 			if ( '' == $manual_thumb ) {
-				$thumb = $img->getThumbnail( $boxwidth, $boxheight );
+				$thumb = $img->getThumbnail( $boxwidth, $boxheight, $wgGenerateThumbnailOnParse );
 				if ( $thumb ) {
 					$thumbUrl = $thumb->getUrl();
 					$boxwidth = $thumb->width;
