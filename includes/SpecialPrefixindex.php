@@ -131,7 +131,7 @@ function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = n
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
 				$sk->makeKnownLink( $wgContLang->specialPage( $this->name ),
 					wfMsg ( 'allpages' ) );
-		if ( $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
+		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$namespaceparam = $namespace ? "&namespace=$namespace" : "";
 			$out2 .= " | " . $sk->makeKnownLink(
 				$wgContLang->specialPage( $this->name ),
