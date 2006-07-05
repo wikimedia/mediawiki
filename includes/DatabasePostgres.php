@@ -85,16 +85,28 @@ class DatabasePostgres extends Database {
 		$this->mOpened = true;
 		## If this is the initial connection, setup the schema stuff
 		if (defined('MEDIAWIKI_INSTALL') and !defined('POSTGRES_SEARCHPATH')) {
-			global $wgDBmwschema, $wgDBts2schema;
+			global $wgDBmwschema, $wgDBts2schema, $wgDBname;
 
 			## Do we have the basic tsearch2 table?
 			print "<li>Checking for tsearch2 ...";
 			if (! $this->tableExists("pg_ts_dict", $wgDBts2schema)) {
-				print "FAILED. Make sure tsearch2 is installed. See <a href=";
+				print "<b>FAILED</b>. Make sure tsearch2 is installed. See <a href=";
 				print "'http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
 				print " for instructions.</li>\n";
 				dieout("</ul>");
 			}				
+			print "OK</li>\n";
+
+			## Do we have plpgsql installed?
+			print "<li>Checking for plpgsql ...";
+			$SQL = "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'";
+			$res = $this->doQuery($SQL);
+			$rows = $this->numRows($this->doQuery($SQL));
+			if ($rows < 1) {
+				print "<b>FAILED</b>. Make sure the language plpgsql is installed for the database <tt>$wgDBname</tt>t</li>";
+				## XXX Better help
+				dieout("</ul>");
+			}
 			print "OK</li>\n";
 
 			## Does the schema already exist? Who owns it?
@@ -298,17 +310,16 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	function strencode( $s ) {
-		return pg_escape_string( $s );
-	}
-
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
 	 */
 	function nextSequenceValue( $seqName ) {
-		$value = $this->selectField(''," nextval('" . $seqName . "')");
-		$this->mInsertId = $value;
-		return $value;
+		$safeseq = preg_replace( "/'/", "''", $seqName );
+		$res = $this->query( "SELECT nextval('$safeseq')" );
+		$row = $this->fetchRow( $res );
+		$this->mInsertId = $row[0];
+		$this->freeResult( $res );
+		return $this->mInsertId;
 	}
 
 	/**
@@ -536,8 +547,6 @@ class DatabasePostgres extends Database {
 	}
 
 	function commit( $fname = 'Database::commit' ) {
-		## XXX
-		return;
 		$this->query( 'COMMIT', $fname );
 		$this->mTrxLevel = 0;
 	}
@@ -565,6 +574,27 @@ class DatabasePostgres extends Database {
 			$this->query("$SQL $matches[1],$matches[2])");
 		}
 		print " (table interwiki successfully populated)...\n";
+	}
+
+	function encodeBlob($b) {
+		return array('bytea',pg_escape_bytea($b));
+	}
+	function decodeBlob($b) {
+		return pg_unescape_bytea( $b );
+	}
+
+	function strencode( $s ) { ## Should not be called by us
+		return pg_escape_string( $s );
+	}
+
+	function addQuotes( $s ) {
+		if ( is_null( $s ) ) {
+			return 'NULL';
+		} else if (is_array( $s )) { ## Assume it is bytea data
+			return "E'$s[1]'";
+		}
+		return "'" . pg_escape_string($s) . "'";
+		return "E'" . pg_escape_string($s) . "'";
 	}
 
 }
