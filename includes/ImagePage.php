@@ -165,7 +165,8 @@ class ImagePage extends Article {
 	}
 
 	function openShowImage() {
-		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgUseImageResize;
+		global $wgOut, $wgUser, $wgImageLimits, $wgRequest;
+		global $wgUseImageResize, $wgGenerateThumbnailOnParse;
 
 		$full_url  = $this->img->getURL();
 		$anchoropen = '';
@@ -213,7 +214,7 @@ class ImagePage extends Article {
 					}
 
 					if( $wgUseImageResize ) {
-						$thumbnail = $this->img->getThumbnail( $width );
+						$thumbnail = $this->img->getThumbnail( $width, -1, $wgGenerateThumbnailOnParse );
 						if ( $thumbnail == null ) {
 							$url = $this->img->getViewURL();
 						} else {

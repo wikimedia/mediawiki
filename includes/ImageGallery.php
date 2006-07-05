@@ -133,7 +133,7 @@ class ImageGallery
 	 *
 	 */
 	function toHTML() {
-		global $wgLang, $wgIgnoreImageErrors;
+		global $wgLang, $wgIgnoreImageErrors, $wgGenerateThumbnailOnParse;
 
 		$sk =& $this->getSkin();
 
@@ -158,7 +158,7 @@ class ImageGallery
 				$thumbhtml = '<div style="height: 152px;">'
 					. $sk->makeKnownLinkObj( $nt, htmlspecialchars( $nt->getText() ) ) . '</div>';
 			}
-			else if( !( $thumb = $img->getThumbnail( 120, 120 ) ) ) {
+			else if( !( $thumb = $img->getThumbnail( 120, 120, $wgGenerateThumbnailOnParse ) ) ) {
 				# Error generating thumbnail.
 				$thumbhtml = '<div style="height: 152px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
