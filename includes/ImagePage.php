@@ -259,11 +259,13 @@ class ImagePage extends Article {
 					ceil($this->img->getSize()/1024.0),
 					$this->img->getMimeType() );
 
+				global $wgContLang;
+				$dirmark = $wgContLang->getDirMark();
 				if (!$this->img->isSafeFile()) {
 					$warning = wfMsg( 'mediawarning' );
 					$wgOut->addWikiText( <<<END
 <div class="fullMedia">
-<span class="dangerousLink">[[Media:$filename|$filename]]</span>
+<span class="dangerousLink">[[Media:$filename|$filename]]</span>$dirmark
 <span class="fileInfo"> ($info)</span>
 </div>
 
@@ -273,7 +275,7 @@ END
 				} else {
 					$wgOut->addWikiText( <<<END
 <div class="fullMedia">
-[[Media:$filename|$filename]] <span class="fileInfo"> ($info)</span>
+[[Media:$filename|$filename]]$dirmark <span class="fileInfo"> ($info)</span>
 </div>
 END
 						);
