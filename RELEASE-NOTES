@@ -647,7 +647,6 @@ Some default configuration options have changed:
   Cleans up read-only-mode warning on empty pages and neats up some code.
 * (bug 6565) Strict JavaScript writing
 * (bug 6570) Update to Indonesian localisation (id) #26
-* (bug 6571) Protect page: "Unlock move permissions" appears when "move" is not an option
 * Added Telugu translation (te)
 
 == Compatibility ==
