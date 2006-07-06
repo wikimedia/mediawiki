@@ -156,9 +156,7 @@ class ProtectionForm {
 			$out .= "</tbody>\n";
 			$out .= "</table>\n";
 			$out .= "</form>\n";
-			if( count( $this->mRestrictions ) > 1 ) {
-				$out .= $this->buildCleanupScript();
-			}
+			$out .= $this->buildCleanupScript();
 		}
 
 		return $out;
