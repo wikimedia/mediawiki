@@ -3405,7 +3405,7 @@ class Parser
 			}
 
 			$isbn = $blank = '' ;
-			while ( ' ' == $x{0} ) {
+			while ( $x !== '' && ' ' == $x{0} ) {
 				$blank .= ' ';
 				$x = substr( $x, 1 );
 			}
