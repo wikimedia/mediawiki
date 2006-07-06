@@ -9,9 +9,9 @@
 
 require_once( 'LanguageUtf8.php' );
 
-/*if (!$wgCachedMessageArrays) {
+if (!$wgCachedMessageArrays) {
 	require_once('MessagesTe.php');
-}*/
+}
 
 class LanguageTe extends LanguageUtf8 {
 	private $mMessagesTe, $mNamespaceNamesTe = null;
@@ -19,8 +19,8 @@ class LanguageTe extends LanguageUtf8 {
 	function __construct() {
 		parent::__construct();
 
-		/*global $wgAllMessagesTe;
-		$this->mMessagesTe =& $wgAllMessagesTe;*/
+		global $wgAllMessagesTe;
+		$this->mMessagesTe =& $wgAllMessagesTe;
 
 		global $wgMetaNamespace;
 		$this->mNamespaceNamesTe = array(

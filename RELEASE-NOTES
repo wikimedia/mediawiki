@@ -648,7 +648,7 @@ Some default configuration options have changed:
 * (bug 6565) Strict JavaScript writing
 * (bug 6570) Update to Indonesian localisation (id) #26
 * (bug 6571) Protect page: "Unlock move permissions" appears when "move" is not an option
-
+* Added Telugu translation (te)
 
 == Compatibility ==
 
