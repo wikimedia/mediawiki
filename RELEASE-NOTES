@@ -3,9 +3,15 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.7 ==
+== MediaWiki 1.7.0 ==
 
-THIS IS NOT A RELEASE YET.
+July 6, 2006
+
+This is the quarterly release snapshot for Summer 2006. While the code
+has been running on Wikipedia for some time, installation and upgrade
+bits may be less well tested. Bug fix releases may follow in the coming
+days or weeks.
+
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -18,10 +24,42 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+
+== Compatibility ==
+
+MediaWiki 1.7 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
+
+If you are unable to run PHP 5, you may have to stick with 1.6 for now.
+
+MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
+At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
+
+Experimental Oracle support has been dropped as it is unmaintained.
+
+
+== Upgrading ==
+
+Several changes to the database have been made from 1.6:
+
+* A new "langlinks" table tracks interlanguage links
+* A new "filearchive" table stores information on deleted files
+* A new "querycache_info" table stores information on query page updates
+
+To ensure that these tables are filled with data, run refreshLinks.php after
+the upgrade.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, some major database
+changes are made, and there is a slightly higher chance that things could
+break. Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions.
+
+
 == Configuration changes ==
 
 Some default configuration options have changed:
 * $wgAllowExternalImages now defaults to off for increased security.
+
 
 == Major new features ==
 
@@ -29,7 +67,9 @@ Some default configuration options have changed:
   an appropriate non-web-accessible directory.
   Set $wgSaveDeletedFiles on and an appropriate directory path in
   $wgFileStore['deleted']['directory']
-
+* Experimental PostgreSQL support has been updated. It may or may
+  not be in usable shape; those interested in PostgreSQL are encouraged
+  to follow 1.8 development.
 
 
 
@@ -653,32 +693,6 @@ Some default configuration options have changed:
 * Added namespace translation to Kannada (ka)
 * (bug 6566) Improve input validation on timestamp conversion
 * Implicit group "emailconfirmed" for all users whose email addresses are confirmed
-
-== Compatibility ==
-
-MediaWiki 1.7 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
-
-MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
-At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
-
-
-== Upgrading ==
-
-Several changes to the database have been made from 1.6:
-
-* A new "langlinks" table tracks interlanguage links
-* A new "filearchive" table stores information on deleted files
-* A new "querycache_info" table stores information on query page updates
-
-To ensure that these tables are filled with data, run refreshLinks.php after
-the upgrade.
-
-If you are upgrading from MediaWiki 1.4.x or earlier, some major database
-changes are made, and there is a slightly higher chance that things could
-break. Don't forget to always back up your database before upgrading!
-
-See the file UPGRADE for more detailed upgrade instructions.
-
 
 
 === Caveats ===
