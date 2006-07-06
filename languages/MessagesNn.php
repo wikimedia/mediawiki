@@ -1169,7 +1169,7 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 <pre>
 */
 /* verktøytips og snøggtastar */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\']             = new Array(\'.\',\'Brukarsida mi\');
 ta[\'pt-anonuserpage\']         = new Array(\'.\',\'Brukarsida for ip-adressa du endrar under\');
 ta[\'pt-mytalk\']               = new Array(\'n\',\'Diskusjonssida mi\');

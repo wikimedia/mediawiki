@@ -1733,7 +1733,7 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Eigene Benutzerseite\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Benutzerseite der IP-Adresse von der aus Sie Änderungen durchführen\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Eigene Diskussionsseite\');

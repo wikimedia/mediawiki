@@ -1167,7 +1167,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'markedaspatrollederror'=> 'Kan ikke merke som godkjent',
 'markedaspatrollederrortext'=> 'Du må spesifisere en versjon å merke som godkjent.',
 'Monobook.js'           => '/* tooltips and access keys */
- ta = new Object();
+ var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Min brukerside\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Brukersiden for IP-adressa du redigerer fra\');
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Min diskusjonsside\');

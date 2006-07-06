@@ -1339,7 +1339,7 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => "/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta['pt-userpage'] = new Array('.','Moje uživatelská stránka');
 ta['pt-anonuserpage'] = new Array('.','Uživatelská stránka pro IP adresu, ze které editujete');
 ta['pt-mytalk'] = new Array('n','Moje diskusní stránka');

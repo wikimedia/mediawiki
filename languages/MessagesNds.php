@@ -996,7 +996,7 @@ Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat mö�
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js'           => '/* Tooltips un Togriepslötel */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Mien Brukersiet\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'De Brukersiet för de IP-Adress ünner de du schriffst\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Mien Diskuschoonssiet\');

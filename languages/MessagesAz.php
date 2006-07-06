@@ -573,7 +573,7 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 */
 
 /* qisa yol tuşlari və kömək balunları */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Öz Səhifəm\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Danişiq Səhifəm\');

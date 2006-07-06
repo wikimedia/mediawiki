@@ -1103,7 +1103,7 @@ För att exportera artiklar, skriv in dess titel (uppslagsordet) i rutan nedan. 
 
 /* tooltips and access keys <pre> */
 
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Min användarsida\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Användarsida för ip-numret du redigerar från\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Min diskussionssida\');

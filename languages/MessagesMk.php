@@ -1191,7 +1191,7 @@ $NEWPAGE
 'markedaspatrollederror'=> 'Неможам да означам како проверена',
 'markedaspatrollederrortext'=> 'Морате да внесете верзија за да ја означите како проверена.',
 'Monobook.js'           => '/* tooltips and access keys */
- ta = new Object();
+ var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Мојата корисничка страница\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Корисничка страница за IP адресата од која уредувате\');
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Мојата страница за разговор \');

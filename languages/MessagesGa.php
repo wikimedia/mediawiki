@@ -1375,7 +1375,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* leideanna uirlisí agus cnaipí rochtana */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Mo leathanach úsáideora\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Leathanach úsáideora don IP ina dhéanann tú do chuid athruithe\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Mo leathanach phlé\');

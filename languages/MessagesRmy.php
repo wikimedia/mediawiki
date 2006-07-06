@@ -238,7 +238,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'and'                   => 'thai',
 'others'                => 'aver',
 'Monobook.js'           => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Miri labyarneski pajina\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Miri labyarneski pajina ki akanutni IP adress\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Miri diskuciyaki pajina\');

@@ -1422,7 +1422,7 @@ Dins ç\' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{ns:special}}:E
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* <pre> <nowiki> */
 /* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Pådje d\\\' uzeu da minne\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Li pådje d\\\' uzeu po l\\\' adresse IP ki vos eployîz pol moumint\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Pådje di copene da minne\');

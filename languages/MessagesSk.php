@@ -1274,7 +1274,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 'markedaspatrollederror'=> 'Nie je možné označiť ako strážený',
 'markedaspatrollederrortext'=> 'Pre označenie ako strážený je potrebné uviesť revíziu, ktorá sa má označiť ako strážená.',
 'Monobook.js'           => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja redaktorská stránka\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Stránka redaktora pre ip adresu, ktorú upravujete ako\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Moja diskusná stránka\');

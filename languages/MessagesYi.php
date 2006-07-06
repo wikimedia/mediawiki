@@ -312,7 +312,7 @@ make it easier to pick out.
 'subcategorycount'      => 'ס\'איז דאָ $1 אונטערקאַטעגאָריעס צו די קאַטעגאָריע.',
 'categoryarticlecount'  => 'ס\'איז דאָ $1 אַרטיקלען אין די קאַטעגאָריע.',
 'Monobook.js'           => '/* <div style="direction: ltr;"><pre> */
-ta = new Object();
+var ta = new Object();
 ta["pt-userpage"]           = [".", "מיין באניצער בלאט"];
 ta["pt-anonuserpage"]       = [".", "באניצער בלאט פון אנינונימער באניצער"];
 ta["pt-mytalk"]             = ["n", "מיין רעדן בלאט"];

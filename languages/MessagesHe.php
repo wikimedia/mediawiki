@@ -1410,7 +1410,7 @@ $NEWPAGE
 # Monobook.js: tooltips and access keys for monobook
 "Monobook.js" => '/* ערכו קובץ זה כדי להריץ סקריפטים ב־JavaScript ברקע Monobook באתר כולו */
 /* חלונות קופצים ומקשים חמים */
-ta = new Object();
+var ta = new Object();
 ta["pt-userpage"]           = [".", "דף המשתמש שלי"];
 ta["pt-anonuserpage"]       = [".", "דף המשתמש של משתמש אנונימי זה"];
 ta["pt-mytalk"]             = ["n", "דף השיחה שלי"];

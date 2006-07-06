@@ -1176,7 +1176,7 @@ $NEWPAGE
 'markedaspatrollederrortext'=> 'パトロール済みにするためにはどの版かを指定する必要があります。',
 'Monobook.js'           => '/* <pre> */
 /* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'自分の利用者ページ\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'あなたのIPアドレス用の利用者ページ\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'自分の会話ページ\');

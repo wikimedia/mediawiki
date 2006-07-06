@@ -1289,7 +1289,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* infobulles et touches d\'accès */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Ma page utilisateur\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La page utilisateur de l\\\'IP avec laquelle vous éditez\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Ma page de discussion\');

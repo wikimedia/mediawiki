@@ -1270,7 +1270,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => "/* <pre> */
-ta = new Object();
+var ta = new Object();
 ta['pt-userpage'] = new Array('.','Oma käyttäjäsivu');
 ta['pt-anonuserpage'] = new Array('.','IP-osoitteesi käyttäjäsivu');
 ta['pt-mytalk'] = new Array('n','Oma keskustelusivu');

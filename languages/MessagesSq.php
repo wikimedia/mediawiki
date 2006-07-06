@@ -1187,7 +1187,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'markedaspatrollederror'=> 'Nuk munda ta shënoj të patrulluar',
 'markedaspatrollederrortext'=> 'Duhet të përcaktoni versionin për tu shënuar i patrulluar.',
 'Monobook.js'           => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Faqja juaj e përdoruesit\'); 
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Faqja e përdoruesve anonim nga kjo adresë IP\'); 
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Faqja juaj e diskutimeve\'); 

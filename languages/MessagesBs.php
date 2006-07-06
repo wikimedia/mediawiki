@@ -8,7 +8,7 @@ $wgAllMessagesBs = array(
 */',
 'Monobook.js' => '
 /* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja korisnička stranica\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Korisnička stranica za ip koju Vi uređujete kao\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Moja stranica za razgovor\');

@@ -1307,7 +1307,7 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Min brugerside\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Brugersiden for den ip-adresse du redigerer som\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Min diskussionsside\');

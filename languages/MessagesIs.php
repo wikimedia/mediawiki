@@ -17,7 +17,7 @@ $wgAllMessagesIs = array(
 .portlet h5 { text-transform: inherit;}     /* flakk, leit, verkfæri... */
 #p-cactions li a {text-transform: inherit;} /* notandasíða, spjall... */",
 'Monobook.js' => "/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta['pt-userpage'] = new Array('.','Notendasíðan mín');
 ta['pt-anonuserpage'] = new Array('.','Notendasíðan fyrir IP töluna þína');
 ta['pt-mytalk'] = new Array('n','Spallsíðan mín');

@@ -1257,7 +1257,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'Monobook.js' => '
  /* чрез редактиране на този файл можете да промените някои неща на Javascript за облика Monobook */
  /* tooltips and access keys */
- ta = new Object();
+ var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Вашата потребителска страница\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Потребителската страница за адреса, от който редактирате\');
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Вашата дискусионна страница\');
