@@ -57,8 +57,9 @@ See the file UPGRADE for more detailed upgrade instructions.
 
 == Configuration changes ==
 
-Some default configuration options have changed:
+Some configuration options have changed:
 * $wgAllowExternalImages now defaults to off for increased security.
+* $wgLocalTZoffset was in hours, it is now using minutes.
 
 
 == Major new features ==
