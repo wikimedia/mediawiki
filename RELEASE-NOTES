@@ -60,6 +60,8 @@ See the file UPGRADE for more detailed upgrade instructions.
 Some configuration options have changed:
 * $wgAllowExternalImages now defaults to off for increased security.
 * $wgLocalTZoffset was in hours, it is now using minutes.
+* Extensions may register special pages via the $wgSpecialPages array
+  without forcing an early load of the SpecialPage.php class file.
 
 
 == Major new features ==
