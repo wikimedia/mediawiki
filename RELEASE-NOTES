@@ -652,7 +652,7 @@ Some default configuration options have changed:
 * (bug 6560) Avoid PHP notice when trimming ISBN whitespace
 * Added namespace translation to Kannada (ka)
 * (bug 6566) Improve input validation on timestamp conversion
-
+* Implicit group "emailconfirmed" for all users whose email addresses are confirmed
 
 == Compatibility ==
 
