@@ -648,6 +648,7 @@ Some default configuration options have changed:
 * (bug 6565) Strict JavaScript writing
 * (bug 6570) Update to Indonesian localisation (id) #26
 * Added Telugu translation (te)
+* Update to Catalan translation (ca)
 
 == Compatibility ==
 
