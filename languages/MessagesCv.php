@@ -4,7 +4,7 @@ global $wgAllMessagesCv;
 $wgAllMessagesCv = array(
 
 'Monobook.js' => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Пользователь страници\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'My talk page\');

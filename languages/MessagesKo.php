@@ -776,7 +776,7 @@ $3 | $2 | $4',
 'mw_math_source'        => 'TeX로 남겨둠 (텍스트 브라우저용)',
 'mw_math_mathml'        => '가능하면 MathML로 (experimental)',
 'Monobook.js'           => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'내 사용자 문서\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'당신이 사용하는 IP를 위한 사용자 문서\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'내 토론 문서\');

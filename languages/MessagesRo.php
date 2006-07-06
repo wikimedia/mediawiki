@@ -1199,7 +1199,7 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'markedaspatrollederror'=> 'Nu se poate marca ca patrulat',
 'markedaspatrollederrortext'=> 'Trebuie să specificaţi o revizie care să fie marcată ca patrulată.',
 'Monobook.js'           => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'history-prevlink\'] = new Array(\'-\',\'Previous\');
 ta[\'history-nextlink\'] = new Array(\'+\',\'Next\');
 ta[\'pt-userpage\'] = new Array(\'.\',\'Pagina mea de utilizator\');

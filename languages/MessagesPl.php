@@ -1203,7 +1203,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja osobista strona\'); 
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Strona użytkownika numeru IP spod którego edytujesz\'); 
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Moja strona dyskusji\'); 

@@ -1065,7 +1065,7 @@ Nếu không phải bạn, đừng mở địa chỉ này. Mã xác nhận này 
 'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Trang của tôi\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Trang của IP bạn đang dùng\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Thảo luận với tôi\');

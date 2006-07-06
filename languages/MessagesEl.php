@@ -1413,7 +1413,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 # Monobook.js: tooltips and access keys for monobook
 #------------------------------------------------------------------------------------#
 'Monobook.js' => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Η προσωπική μου σελίδα στο Wiκi\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Η σελίδα χρήστη στον οποίο αντιστοιχεί η διεύθυνση IP που έχετε\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Η σελίδα συζητήσεών μου\');

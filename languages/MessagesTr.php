@@ -937,7 +937,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'mw_math_modern'        => 'Modern tarayıcılar için tavsiye edilen',
 'mw_math_mathml'        => 'Mümkünse MathML (daha deneme aşamasında)',
 'Monobook.js'           => '/* Kısa yol tuşları ve yardım balonları */
- ta = new Object();
+ var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Kişisel sayfam\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Mesaj sayfam\');

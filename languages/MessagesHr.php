@@ -1172,7 +1172,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'markedaspatrollederror'=> 'Ne mogu označiti za pregledano',
 'markedaspatrollederrortext'=> 'Morate odabrati inačicu koju treba označiti za pregledanu.',
 'Monobook.js'           => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja suradnička stranica\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Suradnička stranica za IP adresu pod kojom uređujete\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Moja stranica za razgovor\');

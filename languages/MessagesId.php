@@ -1330,7 +1330,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* bantuan peralatan dan kunci akses */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Halaman pengguna saya\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Halaman pengguna IP Anda\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Halaman pembicaraan saya\');

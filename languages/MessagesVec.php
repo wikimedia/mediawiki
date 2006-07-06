@@ -875,7 +875,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'markedaspatrollederror'=> 'Impossibiłe contrassegnare ła voçe come verificà',
 'markedaspatrollederrortext'=> 'Occorre speçificare na revixion da contrazsegnare come verificà.',
 'Monobook.js'           => '/* tooltips and access keys */
- ta = new Object();
+ var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'La me paxèna utente\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La paxèna utente de l\'ip che te stè usando\');
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Le me discussion\');

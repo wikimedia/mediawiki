@@ -1295,7 +1295,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'markedaspatrollederror'=> 'As peul pa marchè verificà',
 'markedaspatrollederrortext'=> 'A venta che a specìfica che version che a veul marchè verificà.',
 'Monobook.js'           => '/* tooltips and access keys */
- ta = new Object();
+ var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mia pàgina Utent.\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Pàgina Utent për l\'IP dont a scriv coma anònim.\');
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Mia pàgina ëd discussion e ciaciarade.\');

@@ -1239,7 +1239,7 @@ Hier is een reguliere expressie met de patronen die momenteel geblokkeerd worden
 'markedaspatrollederrortext'=> 'Selecteren een wijziging om als gecontroleerd aan te merken.',
 'Monobook.js'           => '/* tooltips and access keys */ 
 
- ta = new Object();
+ var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mijn gebruikerspagina\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Gebruikerspagina voor het IP-adres dat u gebruikt\');
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Mijn overlegpagina\');

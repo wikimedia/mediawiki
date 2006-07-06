@@ -1,4 +1,4 @@
-// Wikipedia JavaScript support functions
+// MediaWiki JavaScript support functions
 
 var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
@@ -88,7 +88,7 @@ function histrowinit() {
 	if (!hf)
 		return;
 	var lis = hf.getElementsByTagName('li');
-	for (i = 0; i < lis.length; i++) {
+	for (var i = 0; i < lis.length; i++) {
 		var inputs = historyRadios(lis[i]);
 		if (inputs[0] && inputs[1]) {
 			inputs[0].onclick = diffcheck;
@@ -316,8 +316,8 @@ function toggleToc() {
 	}
 }
 
-mwEditButtons = [];
-mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
+var mwEditButtons = [];
+var mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
 
 // this function generates the actual toolbar buttons with localized text
 // we use it to avoid creating the toolbar where javascript is not enabled

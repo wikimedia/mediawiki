@@ -1499,7 +1499,7 @@ The wiki server can\'t provide data in a format your client can read.',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Моя страница пользователя\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Страница пользователя для моего IP\');
 ta[\'pt-mytalk\'] = new Array(\'n\',\'Моя страница обсуждений\');

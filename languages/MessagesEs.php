@@ -1144,7 +1144,7 @@ En el último caso puedes usar un enlace, por ejemplo [[{{ns:Special}}:Export/{{
 'deletedrevision' => "Borrada revisión antigua $1.",
 
 'Monobook.js' => "/* tooltips and access keys */
-ta = new Object();
+var ta = new Object();
 ta['pt-userpage'] = new Array('.','Mi página de usuario');
 ta['pt-anonuserpage'] = new Array('.','La página de usuario de la IP desde la que editas');
 ta['pt-mytalk'] = new Array('n','Mi página de discusión');

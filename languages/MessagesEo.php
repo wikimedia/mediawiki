@@ -1099,7 +1099,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'rcpatroldisabled'      => 'Patrolado de lastaj ŝanĝoj malaktivigita',
 'rcpatroldisabledtext'  => 'La funkcio patrolado de la lastaj ŝanĝoj estas nun malaktivigita.',
 'Monobook.js'           => '/* iletikedoj kaj rektaj klavoj */   
- ta = new Object();
+ var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mia uzantopaĝo\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La uzantopaĝo por la IP adreso sub kiu vi estas redaktanta\');  
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Mia diskutpaĝo\');
