@@ -773,6 +773,17 @@ class User {
 			if( $accountAge >= $wgAutoConfirmAge ) {
 				$implicitGroups[] = 'autoconfirmed';
 			}
+			
+			# Implicit group for users whose email addresses are confirmed
+			global $wgEmailAuthentication;
+			if( $this->isValidEmailAddr( $this->mEmail ) ) {
+				if( $wgEmailAuthentication ) {
+					if( $this->mEmailAuthenticated )
+						$implicitGroups[] = 'emailconfirmed';
+				} else {
+					$implicitGroups[] = 'emailconfirmed';
+				}
+			}
 
 			$effectiveGroups = array_merge( $implicitGroups, $this->mGroups );
 			$this->mRights = $this->getGroupPermissions( $effectiveGroups );

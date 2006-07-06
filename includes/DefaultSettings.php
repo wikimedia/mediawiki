@@ -882,6 +882,10 @@ $wgGroupPermissions['user' ]['minoredit']       = true;
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
 
+// Implicit group for accounts with confirmed email addresses
+// This has little use when email address confirmation is off
+$wgGroupPermissions['emailconfirmed']['emailconfirmed'] = true;
+
 // Users with bot privilege can have their edits hidden
 // from various log pages by default
 $wgGroupPermissions['bot'  ]['bot']             = true;
