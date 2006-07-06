@@ -21,6 +21,43 @@ if (!$wgCachedMessageArrays) {
 }
 
 class LanguageKn extends LanguageUtf8 {
+	private $mMessagesKn, $mNamespaceNamesKn = null;
+
+	function __construct() {
+		parent::__construct();
+
+		global $wgAllMessagesKn;
+		$this->mMessagesKn =& $wgAllMessagesKn;
+
+		global $wgMetaNamespace;
+		$this->mNamespaceNamesKn = array(
+			NS_MEDIA            => 'ಮೀಡಿಯ',
+			NS_SPECIAL          => 'ವಿಶೇಷ',
+			NS_MAIN             => '',
+			NS_TALK             => 'ಚರ್ಚೆಪುಟ',
+			NS_USER             => 'ಸದಸ್ಯ',
+			NS_USER_TALK        => 'ಸದಸ್ಯರ_ಚರ್ಚೆಪುಟ',
+			NS_PROJECT          => $wgMetaNamespace,
+			NS_PROJECT_TALK     => $wgMetaNamespace . '_ಚರ್ಚೆ',
+			NS_IMAGE            => 'ಚಿತ್ರ',
+			NS_IMAGE_TALK       => 'ಚಿತ್ರ_ಚರ್ಚೆಪುಟ',
+			NS_MEDIAWIKI        => 'ಮೀಡಿಯವಿಕಿ',
+			NS_MEDIAWIKI_TALK   => 'ಮೀಡೀಯವಿಕಿ_ಚರ್ಚೆ',
+			NS_TEMPLATE         => 'ಟೆಂಪ್ಲೇಟು',
+			NS_TEMPLATE_TALK    => 'ಟೆಂಪ್ಲೇಟು_ಚರ್ಚೆ',
+			NS_HELP             => 'ಸಹಾಯ',
+			NS_HELP_TALK        => 'ಸಹಾಯ_ಚರ್ಚೆ',
+			NS_CATEGORY         => 'ವರ್ಗ',
+			NS_CATEGORY_TALK    => 'ವರ್ಗ_ಚರ್ಚೆ'
+		);
+
+	}
+
+	function getNamespaces() {
+		return $this->mNamespaceNamesKn + parent::getNamespaces();
+	}
+
+
 	function digitTransformTable() {
 		return array(
 			'0' => '೦',
@@ -37,11 +74,15 @@ class LanguageKn extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesKn;
-		if( array_key_exists( $key, $wgAllMessagesKn ) )
-			return $wgAllMessagesKn[$key];
-		else
-			return parent::getMessage($key);
+		if( isset( $this->mMessagesKn[$key] ) ) {
+			return $this->mMessagesKn[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
+
+	function getAllMessages() {
+		return $this->mMessagesKn;
 	}
 
 }

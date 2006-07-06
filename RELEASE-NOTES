@@ -650,6 +650,7 @@ Some default configuration options have changed:
 * Added Telugu translation (te)
 * Update to Catalan translation (ca)
 * (bug 6560) Avoid PHP notice when trimming ISBN whitespace
+* Added namespace translation to Kannada (ka)
 
 
 == Compatibility ==
