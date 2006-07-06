@@ -271,7 +271,7 @@ Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silak
 "perfdisabledsub" => "Ini adalah salinan tersimpan dari $1:",
 "perfcached" => "Data berikut ini diambil dari <em>cache</em> dan mungkin bukan data mutakhir:",
 'perfcachedts' => 'Data berikut ini diambil dari <em>cache</em>, dan terakhir diperbarui pada $1.',
-"wrong_wfQuery_params" => "Parameter salah ke wfQuery()<br />Fungsi: $1<br />Kueri: $2",
+"wrong_wfQuery_params" => "Parameter salah ke wfQuery()<br />Fungsi: $1<br />Permintaan: $2",
 "viewsource" => "Lihat sumber",
 'viewsourcefor' => 'dari $1',
 'protectedtext' => 'Halaman ini telah dikunci untuk menghindari penyuntingan.
@@ -279,7 +279,7 @@ Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silak
 Anda dapat melihat atau menyalin sumber halaman ini:',
 'protectedinterface' => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
 'editinginterface' => "'''Peringatan:''' Anda menyunting halaman yang digunakan untuk menyediakan teks antarmuka dengan perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada pengguna lain.",
-'sqlhidden' => '(Kueri SQL disembunyikan)',
+'sqlhidden' => '(Permintaan SQL disembunyikan)',
 
 # Login and logout pages
 #
@@ -518,11 +518,11 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 #
 "searchresults" => "Hasil pencarian",
 "searchresulttext" => "Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{ns:project}}:Pencarian|Melakukan pencarian di {{SITENAME}}]].",
-"searchsubtitle" => "Untuk kueri \"[[:$1]]\"",
-"searchsubtitleinvalid" => "Untuk kueri \"$1\"",
-"badquery" => "Format kueri pencarian salah",
-"badquerytext" => "Kami tidak dapat memproses kueri Anda. Hal ini mungkin disebabkan karena Anda mencoba mencari kata yang panjangnya kurang dari tiga huruf, yang masih belum didukung oleh sistem ini. Hal ini juga dapat disebabkan oleh kesalahan pengetikan ekspresi, misalnya \"fish and and scales\". Silakan coba kueri yang lain.",
-"matchtotals" => "Kueri \"$1\" cocok dengan $2 judul halaman dan teks dari $3 artikel.",
+'searchsubtitle' => "Anda mencari '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Anda mencari '''$1'''",
+"badquery" => "Format permintaan pencarian salah",
+"badquerytext" => "Kami tidak dapat memproses permintaan Anda. Hal ini mungkin disebabkan karena Anda mencoba mencari kata yang panjangnya kurang dari tiga huruf, yang masih belum didukung oleh sistem ini. Hal ini juga dapat disebabkan oleh kesalahan pengetikan ekspresi, misalnya \"fish and and scales\". Silakan coba permintaan yang lain.",
+"matchtotals" => "Permintaan \"$1\" cocok dengan $2 judul halaman dan teks dari $3 artikel.",
 'noexactmatch' => "'''Tidak ada halaman yang berjudul \"$1\".''' Anda dapat [[:$1|membuat halaman ini]].",
 "titlematches" => "Judul artikel yang sama",
 "notitlematches" => "Tidak ada judul halaman yang cocok",
@@ -663,7 +663,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 "uploadnologintext" => "Anda harus [[{{ns:special}}:Userlogin|masuk log]] untuk dapat memuatkan berkas.",
 'upload_directory_read_only' => 'Direktori pemuatan ($1) tidak dapat ditulis oleh server web.',
 "uploaderror" => "Kesalahan pemuatan",
-'uploadtext'	=> "Gunakan isian di bawah untuk memuat berkas. Gunakan [[{{ns:special}}:Imagelist|daftar gambar]] atau [[{{ns:special}}:Log/upload|log pemuatan]] untuk menampilkan atau mencari berkas atau gambar yang telah dimuat sebelumnya.
+'uploadtext'	=> "Gunakan isian di bawah untuk memuat berkas. Gunakan [[{{ns:special}}:Imagelist|daftar berkas]] atau [[{{ns:special}}:Log/upload|log pemuatan]] untuk menampilkan atau mencari berkas atau gambar yang telah dimuat sebelumnya.
 
 Untuk menampilkan atau menyertakan gambar atau berkas pada suatu halaman, gunakan pranala dengan format
 '''<nowiki>[[{{ns:image}}:Berkas.jpg]]</nowiki>''',
@@ -711,32 +711,32 @@ Untuk menampilkan atau menyertakan gambar atau berkas pada suatu halaman, gunaka
 
 # Image list
 #
-"imagelist" => "Daftar gambar",
+"imagelist"		=> "Daftar berkas",
 'imagelisttext' => "Di bawah ini adalah daftar '''$1''' {{plural:$1|berkas|berkas}} diurutkan $2.",
-'imagelistforuser' => "Hanya gambar yang dimuat oleh $1.",
-"getimagelist" => "memperoleh daftar gambar",
-"ilsubmit" => "Cari",
-"showlast" => "Tampilkan $1 gambar terakhir yang telah diurutkan $2.",
-"byname" => "berdasarkan nama",
-"bydate" => "berdasarkan tanggal",
-"bysize" => "berdasarkan ukuran",
-"imgdelete" => "hps",
-"imgdesc" => "desk",
-"imglegend" => "Keterangan: (desk) = lihat/sunting deskripsi gambar.",
-"imghistory" => "Sejarah gambar",
-"revertimg" => "kbl",
-"deleteimg" => "hps",
-'deleteimgcompletely' => 'Hapus semua revisi',
-"imghistlegend" => "Keterangan: (skr) = ini adalah gambar yang sekarang, (hps) = hapus versi lama ini, (kbl) = kembalikan ke versi lama ini. <br /><em>Klik pada tanggal untuk melihat gambar yang dimuat pada tanggal tersebut</em>.",
-"imagelinks" => "Pranala gambar",
-"linkstoimage" => "Halaman-halaman berikut berpaut ke gambar ini:",
-"nolinkstoimage" => "Tidak ada halaman yang berpaut ke gambar ini.",
-"sharedupload" => "Berkas ini adalah pemuatan bersama yang mungkin juga dipakai oleh proyek lain.",
-'shareduploadwiki' => 'Lihat $1 untuk informasi detil.',
+'imagelistforuser'	=> "Hanya berkas yang dimuat oleh $1.",
+"getimagelist"	=> "mengambil daftar berkas",
+"ilsubmit"		=> "Cari",
+"showlast"		=> "Tampilkan $1 berkas terakhir diurutkan $2.",
+"byname"		=> "berdasarkan nama",
+"bydate"		=> "berdasarkan tanggal",
+"bysize"		=> "berdasarkan ukuran",
+"imgdelete"		=> "hps",
+"imgdesc"		=> "desk",
+"imglegend"		=> "Keterangan: (desk) = lihat/sunting deskripsi berkas.",
+"imghistory"	=> "Riwayat berkas",
+"revertimg"		=> "kbl",
+"deleteimg"		=> "hps",
+'deleteimgcompletely'	=> 'Hapus semua revisi',
+"imghistlegend"	=> "Keterangan: (skr) = ini adalah berkas yang sekarang, (hps) = hapus versi lama ini, (kbl) = kembalikan ke versi lama ini. <br /><em>Klik pada tanggal untuk melihat berkas yang dimuat pada tanggal tersebut</em>.",
+"imagelinks"	=> "Pautan",
+"linkstoimage"	=> "Halaman-halaman berikut berpaut ke berkas ini:",
+"nolinkstoimage"	=> "Tidak ada halaman yang berpaut ke berkas ini.",
+"sharedupload"	=> "Berkas ini adalah pemuatan bersama yang mungkin juga dipakai oleh proyek lain.",
+'shareduploadwiki'	=> 'Lihat $1 untuk informasi detil.',
 'shareduploadwiki-linktext' => 'halaman deskripsi berkas',
-'noimage'       => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
-'noimage-linktext'       => 'memuat berkas',
-'uploadnewversion-linktext' => 'Muatkan versi yang lebih baru dari berkas ini',
+'noimage'		=> 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
+'noimage-linktext'	=> 'memuat berkas',
+'uploadnewversion-linktext'	=> 'Muatkan versi yang lebih baru dari berkas ini',
 
 # Mime search
 #
@@ -1391,9 +1391,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'thumbsize'	=> 'Ukuran gambar kecil (<em>thumbnail</em>):',
 'showbigimage' => 'Unduhkan versi resolusi tinggi ($1x$2, $3 KB)',
 
-'newimages' => 'Galeri gambar baru',
-'showhidebots' => '($1 bot)',
-'noimages'  => 'Tidak ada yang dilihat.',
+'newimages'		=> 'Galeri berkas baru',
+'showhidebots'	=> '($1 bot)',
+'noimages'		=> 'Tidak ada yang dilihat.',
 
 # short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.
