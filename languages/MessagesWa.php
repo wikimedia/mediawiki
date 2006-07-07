@@ -310,7 +310,7 @@ Vosse conte a stî ahivé.
 'remembermypassword' => 'Rimimbrer m\' sicret inte les sessions.',
 'yourdomainname' => 'Vosse dominne',
 'loginproblem' => '<b>Åk n\' a nén stî tot vs elodjant.</b><br />Rissayîz s\' i vs plait!',
-'alreadyloggedin' => '<font color=red><strong>Uzeu $1, vos estoz ddja elodjî!</strong></font><br />',
+'alreadyloggedin' => '<span style="color:#ff0000"><strong>Uzeu $1, vos estoz ddja elodjî!</strong></span><br />',
 
 'login' => 'S\' elodjî',
 'loginprompt' => 'Vos dvoz permete les coûkes po vs elodjî so {{SITENAME}}.',

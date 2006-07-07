@@ -1020,7 +1020,7 @@ side og flyttet hele historikken til det nye navnet.
 Den gamle tittelen vil bli en omdirigeringsside til den nye tittelen.
 Lenker til den gamle tittelen vil ikke bli endret. Eventuelle omdirigeringer vil bli brutt.
 
-<font color="red"><b>Det er <u>ditt ansvar</u> å rette alle omdirigeringer (bruk «Lenker hit» for å finne dem) hvis du flytter en side!</b></font>
+<span style="color:#ff0000"><b>Det er <u>ditt ansvar</u> å rette alle omdirigeringer (bruk «Lenker hit» for å finne dem) hvis du flytter en side!</b></span>
 
 Legg merke til at siden \'\'\'ikke\'\'\' kan flyttes hvis det allerede finnes en side 
 med den nye tittelen, med mindre den siden er tom eller er en omdirigering 

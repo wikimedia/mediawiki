@@ -229,7 +229,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt \'\'{{
 'yourdomainname'        => 'Tavs domēns',
 'externaldberror'       => 'Notikusi vai nu ārējās autentifikācijas datubāzes kļūda, vai arī tev nav atļauts izmainīt savu ārējo kontu.',
 'loginproblem'          => '<b>Radās problēma ar ieiešanu.</b><br />Mēģini vēlreiz!',
-'alreadyloggedin'       => '<font color=red><b>Lietotāj $1, tu jau esi iegājis!</b></font><br />',
+'alreadyloggedin'       => '<span style="color:#ff0000"><b>Lietotāj $1, tu jau esi iegājis!</b></span><br />',
 'login'                 => 'Ieiet',
 'loginprompt'           => 'Lai ieietu {{grammar:lokatīvs|{{SITENAME}}}}, tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
 'userlogin'             => 'Izveidot jaunu lietotāju vai doties iekšā',

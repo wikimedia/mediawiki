@@ -226,7 +226,7 @@ Hesabınız yaratıldı. {{SITENAME}} tercihlerinizi değiştirmeyi unutmayın.'
 'yourpasswordagain'     => 'Parolayı yeniden yaz',
 'remembermypassword'    => 'Parolayı hatırla.',
 'yourdomainname'        => 'Alan adınız',
-'alreadyloggedin'       => '<font color=red><b>$1 rumuzlu kullanıcı, halen açık bir oturum var!</b></font><br />',
+'alreadyloggedin'       => '<span style="color:#ff0000"><b>$1 rumuzlu kullanıcı, halen açık bir oturum var!</b></span><br />',
 'login'                 => 'Oturum aç',
 'loginprompt'           => 'Dikkat: {{SITENAME}} sitesinde oturum açabilmek için tarayıcınızda çerezlerin (cookies) aktifleştirilmiş olması gerekmektedir.<br />
 Kullanıcı adınız Türkçe karakter, boşluk \'\'\'içerebilir\'\'\'. Kullanıcı adınıza e-posta adresi \'\'\'girmemeniz\'\'\' tavsiye edilir.',

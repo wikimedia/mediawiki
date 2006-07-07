@@ -249,7 +249,7 @@ Vi ja rajtas vidi kaj kopii la fontotekston de la vikipaĝo:',
 'logouttext'            => '<strong>Vi elsalutis kaj finis vian seancon.</strong><br />
 Vi rajtas daŭre vikiumi sennome, aŭ vi povas reensaluti kiel la sama aŭ kiel alia uzanto.',
 'welcomecreation'       => '<h2>Bonvenon, $1!</h2> Via konto estas kreita.
-<font color="red">Ne forgesu fari viajn {{SITENAME}}-preferojn!</font>',
+<span style="color:#ff0000">Ne forgesu fari viajn {{SITENAME}}-preferojn!</span>',
 'loginpagetitle'        => 'Ensalutu / enskribu',
 'yourname'              => 'Via salutnomo',
 'yourpassword'          => 'Via pasvorto',
