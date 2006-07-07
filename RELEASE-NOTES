@@ -696,6 +696,7 @@ Some configuration options have changed:
 * Added namespace translation to Kannada (ka)
 * (bug 6566) Improve input validation on timestamp conversion
 * Implicit group "emailconfirmed" for all users whose email addresses are confirmed
+* (bug 6577) Avoid multiline parser breakage on <pre> with newline in attribute
 
 
 === Caveats ===
