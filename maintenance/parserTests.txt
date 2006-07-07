@@ -5463,6 +5463,226 @@ Handling of &#x0A; in URLs
 </li></ul>
 
 !!end
+
+!! test
+5 quotes, code coverage +1 line
+!! input
+'''''
+!! result
+!! end
+
+!! test
+Special:Search page linking.
+!! input
+{{Special:search}}
+!! result
+<p><a href="/wiki/Special:Search" title="Special:Search">Special:Search</a>
+</p>
+!! end
+
+!! test
+Say the magic word
+!! input
+* {{PAGENAME}}
+* {{BASEPAGENAME}}
+* {{SUBPAGENAME}}
+* {{SUBPAGENAMEE}}
+* {{BASEPAGENAME}}
+* {{BASEPAGENAMEE}}
+* {{TALKPAGENAME}}
+* {{TALKPAGENAMEE}}
+* {{SUBJECTPAGENAME}}
+* {{SUBJECTPAGENAMEE}}
+* {{NAMESPACEE}}
+* {{NAMESPACE}}
+* {{TALKSPACE}}
+* {{TALKSPACEE}}
+* {{SUBJECTSPACE}}
+* {{SUBJECTSPACEE}}
+* {{Dynamic|{{NUMBEROFUSERS}}|{{NUMBEROFPAGES}}|{{CURRENTVERSION}}|{{CONTENTLANGUAGE}}|{{DIRECTIONMARK}}|{{CURRENTTIMESTAMP}}|{{NUMBEROFARTICLES}}}}
+!! result
+<ul><li> Parser test
+</li><li> Parser test
+</li><li> Parser test
+</li><li> Parser_test
+</li><li> Parser test
+</li><li> Parser_test
+</li><li> Talk:Parser test
+</li><li> Talk:Parser_test
+</li><li> Parser test
+</li><li> Parser_test
+</li><li> 
+</li><li> 
+</li><li> Talk
+</li><li> Talk
+</li><li> 
+</li><li> 
+</li><li> <a href="/index.php?title=Template:Dynamic&amp;action=edit" class="new" title="Template:Dynamic">Template:Dynamic</a>
+</li></ul>
+
+!! end
+### Note: Above tests excludes the "{{NUMBEROFADMINS}}" magic word because it generates a MySQL error when included.
+
+!! test
+Gallery
+!! input
+<gallery>
+image1.png |
+image2.gif|||||
+
+image3|
+image4    |300px| centre
+ image5.svg| http://///////
+[[x|xx]]]]
+* image6
+</gallery>
+!! result
+<table class="gallery" cellspacing="0" cellpadding="0"><tr><td><div class="gallerybox"><div style="height: 152px;">Image1.png</div><div class="gallerytext">
+</div></div></td>
+<td><div class="gallerybox"><div style="height: 152px;">Image2.gif</div><div class="gallerytext">
+||||</div></div></td>
+<td><div class="gallerybox"><div style="height: 152px;">Image3</div><div class="gallerytext">
+</div></div></td>
+<td><div class="gallerybox"><div style="height: 152px;">Image4</div><div class="gallerytext">
+300px| centre</div></div></td>
+</tr><tr><td><div class="gallerybox"><div style="height: 152px;">Image5.svg</div><div class="gallerytext">
+ <a href="http://///////" class="external free" title="http://///////" rel="nofollow">http://///////</a></div></div></td>
+<td><div class="gallerybox"><div style="height: 152px;">* image6</div><div class="gallerytext">
+</div></div></td>
+</tr>
+</table>
+
+!! end
+
+!! test
+HTML Hex character encoding.
+!! input
+&#x4A;&#x061;&#x0076;&#x00061;&#x000053;&#x0000063;&#114;&#x0000069;&#00000112;&#x0000000074;
+!! result
+<p>JavaScript
+</p>
+!! end
+
+!! test
+__FORCETOC__ override
+!! input 
+__NEWSECTIONLINK__
+__FORCETOC__
+!! result
+<p><br />
+</p>
+!! end
+
+!! test
+ISBN code coverage
+!! input
+ISBN  983&#x20;987
+!! result
+<p><a href="/index.php?title=Special:Booksources&amp;isbn=983" class="internal">ISBN 983</a>&#x20;987
+</p>
+!! end
+
+!! test
+ISBN followed by 5 spaces
+!! input
+ISBN    
+!! result
+<p>ISBN    
+</p>
+!! end
+
+!! test
+Double ISBN
+!! options
+disabled # Disabled until Bug 6560 resolved
+!! input
+ISBN ISBN 1234
+!! result
+<p>ISBN <a href="/wiki/index.php?title=Special:Booksources&amp;isbn=1234" class="internal">ISBN 1234</a>
+</p>
+!! end
+
+!! test
+Double RFC
+!! input
+RFC RFC 1234
+!! result
+<p>RFC <a href="http://www.ietf.org/rfc/rfc1234.txt" class="external" title="http://www.ietf.org/rfc/rfc1234.txt">RFC 1234</a>
+</p>
+!! end
+
+!! test
+Double RFC with a wiki link 
+!! input
+RFC [[RFC 1234
+!! result
+<p>RFC [[RFC 1234
+</p>
+!! end
+
+!! test
+RFC code coverage
+!! input
+RFC   983&#x20;987
+!! result
+<p><a href="http://www.ietf.org/rfc/rfc983.txt" class="external" title="http://www.ietf.org/rfc/rfc983.txt">RFC 983</a>&#x20;987
+</p>
+!! end
+
+!! test
+Centre-aligned image
+!! input
+[[Image:foobar.jpg|centre]]
+!! result
+<div class="center"><div class="floatnone"><span><a href="/wiki/Image:Foobar.jpg" class="image" title=""><img src="http://example.com/images/3/3a/Foobar.jpg" alt="" width="1941" height="220" longdesc="/wiki/Image:Foobar.jpg" /></a></span></div></div>
+
+!!end
+
+!! test
+None-aligned image
+!! input
+[[Image:foobar.jpg|none]]
+!! result
+<div class="floatnone"><span><a href="/wiki/Image:Foobar.jpg" class="image" title=""><img src="http://example.com/images/3/3a/Foobar.jpg" alt="" width="1941" height="220" longdesc="/wiki/Image:Foobar.jpg" /></a></span></div>
+
+!!end
+
+!! test
+Width + Height sized image (using px) (height is ignored)
+!! input
+[[Image:foobar.jpg|640x480px]]
+!! result
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title=""><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg" alt="" width="640" height="73" longdesc="/wiki/Image:Foobar.jpg" /></a>
+</p>
+!!end
+
+!! test
+Another italics / bold test
+!! input
+ ''' ''x'
+!! result
+<pre>'<i> </i>x'
+</pre>
+!!end
+
+# Note the results may be incorrect, as parserTest output included this:
+# XML error: Mismatched tag at byte 6120:
+# ...<dd> </dt></dl> </dd...
+!! test
+dt/dd/dl test
+!! input
+:;;;::
+!! result
+<dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd>
+</dt></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+!!end
+
 #
 #
 #
@@ -5473,3 +5693,4 @@ more tables
 math
 character entities
 and much more
+Try for 100% code coverage
