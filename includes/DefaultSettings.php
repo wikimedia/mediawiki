@@ -1563,9 +1563,6 @@ $wgDefaultUserOptions = array();
 /** Whether or not to allow and use real name fields. Defaults to true. */
 $wgAllowRealName = true;
 
-/** Use XML parser? */
-$wgUseXMLparser = false ;
-
 /*****************************************************************************
  *  Extensions 
  */

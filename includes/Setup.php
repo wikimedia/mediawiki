@@ -289,12 +289,8 @@ $wgPostCommitUpdateList = array();
 
 $wgMagicWords = array();
 
-if ( $wgUseXMLparser ) {
-	require_once( 'ParserXML.php' );
-	$wgParser = new ParserXML();
-} else {
-	$wgParser = new Parser();
-}
+$wgParser = new Parser();
+
 $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 $wgMsgParserOptions = ParserOptions::newFromUser($wgUser);
 wfSeedRandom();

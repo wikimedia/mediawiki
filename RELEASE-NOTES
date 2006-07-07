@@ -31,7 +31,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Changes since 1.7 ==
 
-* None!
+* (bug 6562) Removed unmaintained ParserXml.php for now
 
 
 == Compatibility ==
