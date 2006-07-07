@@ -164,7 +164,7 @@ class LanguageHe extends LanguageUtf8 {
 	 *
 	 * @return array of the default user options
 	 */
-	function getDefaultUserOptions() {
+	public function getDefaultUserOptions() {
 		$opt = parent::getDefaultUserOptions();
 		$opt["quickbar"] = 2;
 		return $opt;
@@ -173,28 +173,28 @@ class LanguageHe extends LanguageUtf8 {
 	/**
 	 * @return array of Hebrew bookstore list
 	 */
-	function getBookstoreList() {
+	public function getBookstoreList() {
 		return $this->mBookstoreListHe;
 	}
 	
 	/**
 	 * @return array of Hebrew namespace names
 	 */
-	function getNamespaces() {
+	public function getNamespaces() {
 		return $this->mNamespaceNamesHe + parent::getNamespaces();
 	}
 	
 	/**
 	 * @return array of Hebrew skin names
 	 */
-	function getSkinNames() {
+	public function getSkinNames() {
 		return $this->mSkinNamesHe + parent::getSkinNames();
 	}
 	
 	/**
 	 * @return array of Hebrew quickbar settings
 	 */
-	function getQuickbarSettings() {
+	public function getQuickbarSettings() {
 		return $this->mQuickbarSettingsHe;
 	}
 	
@@ -205,7 +205,7 @@ class LanguageHe extends LanguageUtf8 {
 	 *
 	 * @return string of the wanted message
 	 */
-	function getMessage( $key ) {
+	public function getMessage( $key ) {
 		if( isset( $this->mMessagesHe[$key] ) ) {
 			return $this->mMessagesHe[$key];
 		} else {
@@ -216,22 +216,29 @@ class LanguageHe extends LanguageUtf8 {
 	/**
 	 * @return array of all the Hebrew messages
 	 */
-	function getAllMessages() {
+	public function getAllMessages() {
 		return $this->mMessagesHe;
 	}
 	
 	/**
 	 * @return array of all the magic words
 	 */
-	function &getMagicWords() {
+	public function &getMagicWords() {
 		return $this->mMagicWordsHe;
 	}
 	
 	/**
 	 * @return true, as Hebrew is RTL language
 	 */
-	function isRTL() {
+	public function isRTL() {
 		return true;
+	}
+	
+	/**
+	 * @return regular expression which includes the word trails in the link
+	 */
+	public function linkTrail() {
+		return '/^([a-z,א-ת]+)(.*)$/sD';
 	}
 	
 	/**
@@ -243,7 +250,7 @@ class LanguageHe extends LanguageUtf8 {
 	 * @param string the word to convert
 	 * @param string the case
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset($wgGrammarForms['he'][$case][$word]) ) {
 			return $wgGrammarForms['he'][$case][$word];
@@ -281,7 +288,7 @@ class LanguageHe extends LanguageUtf8 {
 	 *
 	 * @return string of the suited form of word
 	 */
-	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+	public function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
 		if ( $count == '1' ) {
 			return $wordform1;
 		} elseif ( $count == '2' && $wordform3 ) {
@@ -294,7 +301,7 @@ class LanguageHe extends LanguageUtf8 {
 	/**
 	 * @return string of the best 8-bit encoding for Hebrew, if UTF-8 cannot be used
 	 */
-	function fallback8bitEncoding() {
+	public function fallback8bitEncoding() {
 		return "windows-1255";
 	}
 }
