@@ -33,6 +33,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * (bug 6562) Removed unmaintained ParserXml.php for now
 * History paging overlap bug fixed
+* Added linktrail to Telugu (te)
 
 == Compatibility ==
 
