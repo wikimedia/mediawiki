@@ -238,7 +238,7 @@ class LanguageHe extends LanguageUtf8 {
 	 * @return regular expression which includes the word trails in the link
 	 */
 	public function linkTrail() {
-		return '/^([a-z,א-ת]+)(.*)$/sD';
+		return '/^([a-z,א-ת]+)(.*)$/sDu';
 	}
 	
 	/**
