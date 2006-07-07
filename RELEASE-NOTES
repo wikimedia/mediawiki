@@ -36,6 +36,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added linktrail to Telugu (te)
 * (bug 6586) Regression in "unblocked" subtitle
 * Update to Hungarian translation (hu)
+* Don't put empty-page message into view-source when page text is blank
+
 
 == Compatibility ==
 
