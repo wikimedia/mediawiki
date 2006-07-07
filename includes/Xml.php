@@ -20,7 +20,7 @@ class Xml {
 		$out = '<' . $element;
 		if( !is_null( $attribs ) ) {
 			foreach( $attribs as $name => $val ) {
-				$out .= ' ' . $name . '="' . htmlspecialchars( $val ) . '"';
+				$out .= ' ' . $name . '="' . Sanitizer::encodeAttribute( $val ) . '"';
 			}
 		}
 		if( is_null( $contents ) ) {

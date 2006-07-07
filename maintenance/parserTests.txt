@@ -4449,6 +4449,15 @@ Fuzz testing: image with bogus manual thumbnail
 !!end
 
 !! test
+Fuzz testing: encoded newline in generated HTML replacements (bug 6577)
+!! input
+<pre dir="&#10;"></pre>
+!! result
+<pre dir="&#10;"></pre>
+
+!! end
+
+!! test
 Parsing optional HTML elements (Bug 6171)
 !! options
 !! input
