@@ -250,7 +250,7 @@ Administrátor, ktorý nariadil uzamknutie, uvádza tento dôvod: $1',
 pretože tak spomaľuje databázu, že nikto nemôže používať
 wiki.',
 'perfdisabledsub'       => 'Tu je uložená kópia z $1:',
-'perfcached'            => '<font color=red><strong>Nasledujúce dáta sú z dočasnej pamäte a nemusia byť úplne aktuálne:</strong></font>',
+'perfcached'            => '<span style="color:#ff0000"><strong>Nasledujúce dáta sú z dočasnej pamäte a nemusia byť úplne aktuálne:</strong></span>',
 'perfcachedts'          => 'Nasledujúce údaje pochádzajú z cache a naposledy boli aktualizované $1.',
 'wrong_wfQuery_params'  => 'Nesprávny parameter v wfQuery()<br />
 Funkcia: $1<br />
