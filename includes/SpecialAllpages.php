@@ -91,10 +91,6 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	# in the querycache table.
 
 	$dbr =& wfGetDB( DB_SLAVE );
-	$page = $dbr->tableName( 'page' );
-	$fromwhere = "FROM $page WHERE page_namespace=$namespace";
-	$order_arr = array ( 'ORDER BY' => 'page_title' );
-	$order_str = 'ORDER BY page_title';
 	$out = "";
 	$where = array( 'page_namespace' => $namespace );
 
