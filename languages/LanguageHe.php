@@ -235,6 +235,13 @@ class LanguageHe extends LanguageUtf8 {
 	}
 	
 	/**
+	 * @return regular expression which includes the word trails in the link
+	 */
+	function linkTrail() {
+		return '/^([a-z,א-ת]+)(.*)$/sD';
+	}
+	
+	/**
 	 * Convert grammar forms of words.
 	 *
 	 * Available cases:
