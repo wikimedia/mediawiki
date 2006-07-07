@@ -828,7 +828,7 @@ class OutputPage {
 				if ( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
 					$source = wfMsgWeirdKey ( $wgTitle->getText() );
 				} else {
-					$source = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
+					$source = '';
 				}
 			}
 			$rows = $wgUser->getIntOption( 'rows' );
