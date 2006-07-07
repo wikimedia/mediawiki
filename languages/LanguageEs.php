@@ -95,6 +95,10 @@ class LanguageEs extends LanguageUtf8 {
 		return array(',' => '.', '.' => ',' );
 	}
 
+	function linkTrail() {
+		return '/^([a-záéíóúñ]+)(.*)$/sDu';
+	}
+
 }
 
 ?>
