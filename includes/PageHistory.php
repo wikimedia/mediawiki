@@ -107,6 +107,7 @@ class PageHistory {
 		 */
 		$pager = new PageHistoryPager( $this );
 		$navbar = $pager->getNavigationBar();
+		$this->linesonpage = $pager->getNumRows();
 		$wgOut->addHTML(
 			$pager->getNavigationBar() . 
 			$this->beginHistoryList() . 
@@ -520,7 +521,6 @@ class PageHistoryPager extends ReverseChronologicalPager {
 	function getStartBody() {
 		$this->mLastRow = false;
 		$this->mCounter = 1;
-		$this->mPageHistory->linesonpage = $this->getNumRows();
 		return '';
 	}
 
