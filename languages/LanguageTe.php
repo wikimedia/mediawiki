@@ -62,6 +62,11 @@ class LanguageTe extends LanguageUtf8 {
 		return $this->mMessagesTe;
 	}
 
+	function linkTrail() {
+		/* Range from U+0C01 to U+0C6F */
+		return "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
+	}
+
 	// nobody seems to use these anymore
 	/*function digitTransformTable() {
 		 
