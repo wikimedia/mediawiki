@@ -32,7 +32,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 == Changes since 1.7 ==
 
 * (bug 6562) Removed unmaintained ParserXml.php for now
-
+* History paging overlap bug fixed
 
 == Compatibility ==
 
