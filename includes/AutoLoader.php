@@ -113,6 +113,8 @@ function __autoload($className) {
 		'FakeMemCachedClient' => 'includes/ObjectCache.php',
 		'OutputPage' => 'includes/OutputPage.php',
 		'PageHistory' => 'includes/PageHistory.php',
+		'IndexPager' => 'includes/Pager.php',
+		'ReverseChronologicalPager' => 'includes/Pager.php',
 		'Parser' => 'includes/Parser.php',
 		'ParserOutput' => 'includes/Parser.php',
 		'ParserOptions' => 'includes/Parser.php',
