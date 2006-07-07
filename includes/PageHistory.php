@@ -112,8 +112,8 @@ class PageHistory {
 			$pager->getNavigationBar() . 
 			$this->beginHistoryList() . 
 			$pager->getBody() . 
-			$pager->getNavigationBar() . 
-			$this->endHistoryList()
+			$this->endHistoryList() .
+			$pager->getNavigationBar()
 		);
 		wfProfileOut( $fname );
 	}
