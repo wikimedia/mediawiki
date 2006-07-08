@@ -1447,7 +1447,7 @@ class Article {
 			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-			$link = $this->mTitle->getPrefixedText();
+			$link = wfEscapeWikiText( $this->mTitle->getPrefixedText() );
 			$text = wfMsg( 'addedwatchtext', $link );
 			$wgOut->addWikiText( $text );
 		}
@@ -1495,7 +1495,7 @@ class Article {
 			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-			$link = $this->mTitle->getPrefixedText();
+			$link = wfEscapeWikiText( $this->mTitle->getPrefixedText() );
 			$text = wfMsg( 'removedwatchtext', $link );
 			$wgOut->addWikiText( $text );
 		}
