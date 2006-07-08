@@ -1951,7 +1951,9 @@ class User {
 
 	/**
 	 * Return the set of defined explicit groups.
-	 * The * and 'user' groups are not included.
+	 * The *, 'user', 'autoconfirmed' and 'emailconfirmed'
+	 * groups are not included, as they are defined
+	 * automatically, not in the database.
 	 * @return array
 	 * @static
 	 */
@@ -1959,7 +1961,7 @@ class User {
 		global $wgGroupPermissions;
 		return array_diff(
 			array_keys( $wgGroupPermissions ),
-			array( '*', 'user', 'autoconfirmed' ) );
+			array( '*', 'user', 'autoconfirmed', 'emailconfirmed' ) );
 	}
 	
 	/**
