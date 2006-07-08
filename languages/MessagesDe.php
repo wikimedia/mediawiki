@@ -1345,7 +1345,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'import-interwiki-namespace'	=> 'Importiere Seiten in Namensraum:',
 'importtext'		=> 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'		=> 'Importiere Seiten...',
-'import-revision-count'	=> '$1 Version(en)',
+'import-revision-count'	=> '$1 {{PLURAL:$1|Version|Versionen}}',
 'importnopages'		=> 'Keine Seiten zum Importieren.',
 'importfailed'		=> 'Import fehlgeschlagen: $1',
 'importunknownsource'	=> 'Unbekannte Importquelle',

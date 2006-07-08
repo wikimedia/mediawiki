@@ -187,7 +187,7 @@ class ImportReporter {
 		
 		$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) .
 			" " .
-			wfMsgHtml( 'import-revision-count', $localCount ) .
+			wfMsgExt( 'import-revision-count', array( 'parsemag', 'escape' ), $localCount ) .
 			"</li>\n" );
 		
 		$log = new LogPage( 'import' );
