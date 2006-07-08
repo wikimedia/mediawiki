@@ -249,8 +249,8 @@ class MovePageForm {
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 		$wgOut->setSubtitle( wfMsg( 'pagemovedsub' ) );
 
-		$oldText = $wgRequest->getVal('oldtitle');
-		$newText = $wgRequest->getVal('newtitle');
+		$oldText = wfEscapeWikiText( $wgRequest->getVal('oldtitle') );
+		$newText = wfEscapeWikiText( $wgRequest->getVal('newtitle') );
 		$talkmoved = $wgRequest->getVal('talkmoved');
 
 		$text = wfMsg( 'pagemovedtext', $oldText, $newText );
