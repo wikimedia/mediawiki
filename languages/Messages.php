@@ -1464,7 +1464,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'import-interwiki-namespace' => 'Transfer pages into namespace:',
 'importtext'	=> 'Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.',
 'importstart'	=> "Importing pages...",
-'import-revision-count' => '$1 revision(s)',
+'import-revision-count' => '$1 {{PLURAL:$1|revision|revisions}}',
 'importnopages'	=> "No pages to import.",
 'importfailed'	=> "Import failed: $1",
 'importunknownsource'	=> "Unknown import source type",
