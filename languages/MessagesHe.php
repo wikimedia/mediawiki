@@ -1311,7 +1311,7 @@ $NEWPAGE
 "import-interwiki-namespace" => "העבר את הדפים לתוך מרחב השם:",
 "importtext"                 => "אנא ייצאו את הקובץ מאתר המקור תוך שימוש בעזר הייצוא, שמרו אותו לדיסק הקשיח שלכם והעלו אותו לכאן.",
 "importstart"                => "מייבא דפים…",
-"import-revision-count"      => "$1 גרסאות",
+"import-revision-count"      => "{{plural:$1|גרסה אחת|$1 גרסאות}}",
 "importnopages"              => "אין דפים לייבוא.",
 "importfailed"               => "הייבוא נכשל: $1",
 "importunknownsource"        => "סוג ייבוא בלתי ידוע",
