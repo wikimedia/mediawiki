@@ -879,7 +879,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' proces
 "nextpage"	=> "Pagina successiva ($1)",
 "allpagesfrom"	=> "Mostra le pagine a partire da:",
 "allarticles"	=> "Tutte le voci",
-"allnonarticles"	=> "Tutte le pagine tranne le voci",
 "allinnamespace"	=> "Tutte le pagine del namespace $1",
 "allnotinnamespace"	=> "Tutte le pagine, escluso il namespace $1",
 "allpagesprev"	=> "Precedenti",

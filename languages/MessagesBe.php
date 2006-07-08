@@ -42,7 +42,6 @@ $wgAllMessagesBe = array(
 'allmessagesnotsupportedDB' => "'''{{ns:Special}}:AllMessages''' не падтрымліваецца, таму што адключанае '''\$wgUseDatabaseMessages'''.",
 'allmessagesnotsupportedUI' => 'Ваша цяперашняя мова <b>$1</b> інтэрфэйсу не падтрымліваецца {{ns:Special}}:AllMessages гэтага сайту.',
 'allmessagestext' => 'Сьпіс усіх сыстэмных паведамленьняў, якія існуюць у прасторы назваў MediaWiki.',
-'allnonarticles' => 'Усе не-артыкулы',
 'allnotinnamespace'	=> 'Усе старонкі (не ў прасторы назваў $1)',
 'allowemail' => 'Дазволіць атрыманьне лістоў ад іншых удзельнікаў і ўдзельніц',
 'allpages' => 'Усе старонкі',

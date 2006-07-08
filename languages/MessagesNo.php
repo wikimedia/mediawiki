@@ -746,7 +746,6 @@ Det har vært totalt \'\'\'$3\'\'\' sidevisninger, og \'\'\'$4\'\'\' redigeringe
 'nextpage'              => 'Neste side ($1)',
 'allpagesfrom'          => 'Vis sider som starter med:',
 'allarticles'           => 'Alle artikler',
-'allnonarticles'        => 'Alle ikke-artikler',
 'allinnamespace'        => 'Alle sider i $1-navnerommet',
 'allnotinnamespace'     => 'Alle sider (ikke i $1-navnerommet)',
 'allpagesprev'          => 'Forrige',

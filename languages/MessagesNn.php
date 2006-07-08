@@ -757,7 +757,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'nextpage'              => 'Neste side ($1)',
 'allpagesfrom'          => 'Vis sider frå:',
 'allarticles'           => 'Alle sider',
-'allnonarticles'        => 'Alle sider som ikkje er innhaldssider',
 'allinnamespace'        => 'Alle sider ($1 namnerom)',
 'allnotinnamespace'     => 'Alle sider (ikkje i $1-namnerommet)',
 'allpagesprev'          => 'Førre',

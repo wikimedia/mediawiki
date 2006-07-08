@@ -821,7 +821,6 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'nextpage'          	=> 'Page suivante ($1)',
 'allpagesfrom'		=> 'Afficher les pages à partir de :',
 'allarticles'		=> 'Tous les articles',
-'allnonarticles'	=> 'Tous les noms articles',
 'allinnamespace' 	=> 'Toutes les pages (espace de nom $1)',
 'allnotinnamespace'	=> 'Toutes les pages (n\’étant pas dans l\'espace de nom $1)',
 'allpagesnext'		=> 'Suivant',

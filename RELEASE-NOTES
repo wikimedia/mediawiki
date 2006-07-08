@@ -33,12 +33,18 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * (bug 6562) Removed unmaintained ParserXml.php for now
 * History paging overlap bug fixed
-* Added linktrail to Telugu (te)
 * (bug 6586) Regression in "unblocked" subtitle
-* Update to Hungarian translation (hu)
 * Don't put empty-page message into view-source when page text is blank
-* Update to Albanian translation (sq)
+* (bug 6587) Remove redundant "allnonarticles" message
 
+== Languages updated ==
+
+* Albanian (sq)
+* English (en)
+* German (de)
+* Hebrew (he)
+* Hungarian (hu)
+* Telugu (te)
 
 == Compatibility ==
 

@@ -643,7 +643,6 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'nextpage'              => 'Sonraki sayfa ($1)',
 'allpagesfrom'          => 'Listelemeye başlanılacak harfler:',
 'allarticles'           => 'Tüm maddeler',
-'allnonarticles'        => 'Madde olanları hariç bütünü',
 'allinnamespace'        => 'Tüm sayfalar ($1 sayfaları)',
 'allnotinnamespace'     => 'Tüm sayfalar ($1 alanında olmayanlar)',
 'allpagesprev'          => 'Önceki',

@@ -913,7 +913,6 @@ $wgAllMessagesHe = array(
 "nextpage"          => "הדף הבא ($1)",
 "allpagesfrom"      => "הראה דפים החל מ:",
 "allarticles"       => "כל הדפים",
-"allnonarticles"    => "כל הדפים שאינם דפי תוכן",
 "allinnamespace"    => "כל הדפים (מרחב שם $1)",
 "allnotinnamespace" => "כל הדפים (שלא במרחב השם $1)",
 "allpagesprev"      => "הקודם",

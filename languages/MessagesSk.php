@@ -829,7 +829,6 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, meno redaktora alebo dotyč
 'nextpage'              => 'Ďalšia stránka ($1)',
 'allpagesfrom'          => 'Zobraz články od článku:',
 'allarticles'           => 'Všetky články',
-'allnonarticles'        => 'Všetky ne-články',
 'allinnamespace'        => 'Všetky stránky (menný priestor $1)',
 'allnotinnamespace'     => 'Všetky stránky (nie z menného priestoru $1)',
 'allpagesprev'          => 'Predchádzajúci',

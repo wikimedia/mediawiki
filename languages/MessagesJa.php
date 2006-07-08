@@ -764,7 +764,6 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'nextpage'              => '次のページ（$1）',
 'allpagesfrom'          => '表示開始ページ:',
 'allarticles'           => '全ページ',
-'allnonarticles'        => '記事以外の全ページ',
 'allinnamespace'        => '全ページ ($1 名前空間)',
 'allnotinnamespace'     => '全ページ ($1 名前空間を除く)',
 'allpagesprev'          => '前へ',

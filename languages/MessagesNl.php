@@ -809,7 +809,6 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is \'
 'nextpage'              => 'Volgende pagina ($1)',
 'allpagesfrom'          => 'Toon pagina\'s vanaf:',
 'allarticles'           => 'Alle pagina\'s',
-'allnonarticles'        => 'Alle niet-pagina\'s',
 'allinnamespace'        => 'Alle pagina\'s (naamruimte $1)',
 'allnotinnamespace'     => 'Alle pagina\'s (niet in naamruimte $1)',
 'allpagesprev'          => 'Vorige',

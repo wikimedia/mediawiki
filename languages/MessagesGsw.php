@@ -523,7 +523,6 @@ Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Syten
 'nextpage'              => 'Nächscht Syte ($1)',
 'allpagesfrom'          => 'Syte aazeige vo:',
 'allarticles'           => 'alli Artikel',
-'allnonarticles'        => 'alli Systene wo cheini Artikel sin',
 'allinnamespace'        => 'alli Sytene im Namensruum $1',
 'allnotinnamespace'     => 'alli Sytene wo nit im $1 Namensruum sin',
 'allpagesprev'          => 'Füehrigs',

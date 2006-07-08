@@ -857,7 +857,6 @@ Du kan sortere i visningen ved at vælge type, brugernavn og/eller en udvalgt si
 'nextpage'          => 'Næste side ($1)',
 'allpagesfrom'		=> 'Vis sider startende fra: $1',
 'allarticles'       => 'Alle artikler',
-'allnonarticles'	=> 'Alle ikke-artikler',
 'allinnamespace'	=> 'Alle sider (i $1 navnerummet)',
 'allnotinnamespace'	=> 'Alle sider (ikke i $1 navnerummet)',
 'allpagesprev'      => 'Forrige',

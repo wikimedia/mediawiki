@@ -794,7 +794,6 @@ një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto 
 'nextpage'              => 'Faqja më pas ($1)',
 'allpagesfrom'          => 'Trego faqet duke filluar nga:',
 'allarticles'           => 'Të gjithë artikujt',
-'allnonarticles'        => 'Të gjitha faqet që s\'janë artikuj',
 'allinnamespace'        => 'Të gjitha faqet (hapësira $1)',
 'allnotinnamespace'     => 'Të gjitha faqet (jo në hapësirën $1)',
 'allpagesprev'          => 'Më para',

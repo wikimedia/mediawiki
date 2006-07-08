@@ -754,7 +754,6 @@ nya och begagnade böcker, och mycket annan information om de böcker du söker.
 'nextpage'              => 'Nästa sida ($1)',
 'allpagesfrom'          => 'Visa sidor från och med:',
 'allarticles'           => 'Alla artiklar',
-'allnonarticles'        => 'Alla sidor utom artiklar',
 'allinnamespace'        => 'Alla sidor (i namnrymden $1)',
 'allnotinnamespace'     => 'Alla sidor (inte i namnrymden $1)',
 'allpagesprev'          => 'Föregående',

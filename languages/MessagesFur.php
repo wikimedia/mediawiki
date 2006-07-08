@@ -25,7 +25,6 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'allmessagesmodified' => 'Mostre dome modificâts',
 'allmessagesname' => "Non",
 'allmessagestext'	=> "Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki:",
-'allnonarticles'	=> "Dutis lis robis che no son vôs",
 'allnotinnamespace'	=> "Dutis lis pagjinis (no tal non dal spazi $1)",
 'allpages' => "Dutis lis pagjinis",
 'allpagesfrom'		=> "Mostre pagjinis scomençant di:",
