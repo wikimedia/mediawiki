@@ -767,7 +767,6 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'nextpage'              => 'Sljedeća stranica ($1)',
 'allpagesfrom'          => 'Pokaži stranice počevši od:',
 'allarticles'           => 'Svi članci',
-'allnonarticles'        => 'Svi ne-članci',
 'allinnamespace'        => 'Svi članci (prostor $1)',
 'allnotinnamespace'     => 'Sve stranice koje nisu u prostoru $1',
 'allpagesprev'          => 'Prijašnje',

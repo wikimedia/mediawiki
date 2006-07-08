@@ -955,7 +955,6 @@ Vos ploz limiter l\' håynaedje tot tchoezixhant ene sôre di djournå, on no d\
 'nextpage' => 'Pådje shuvante ($1)',
 'allpagesfrom' => 'Håyner les pådjes a pårti di:',
 'allarticles' => 'Tos les årtikes',
-'allnonarticles' => 'Totes les pådjes ki n\' sont nén des årtikes',
 'allinnamespace' => 'Totes les pådjes (espåce di lomaedje $1)',
 'allnotinnamespace' => 'Totes les pådjes (foû d\' l\' espåce di lomaedje $1)',
 'allpagesprev' => 'Di dvant',

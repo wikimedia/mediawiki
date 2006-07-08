@@ -83,7 +83,6 @@ Buduće promene ove stranice i njoj pridružene stranice za razgovor će biti na
 'allmessagesnotsupportedDB' => '[[{{ns:-1}}:AllMessages|Sistemske poruke]] nisu podržane zato što je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessagesnotsupportedUI' => 'Vaš trenutni jezik interfejsa <b>$1</b> nije podržan u [[{{ns:-1}}:AllMessages|sistemskim porukama]] na ovoj viki.',
 'allmessagestext' => 'Ovo je spisak svih poruka koje su u {{ns:8}}: imenskom prostoru',
-'allnonarticles' => 'Sve stranice koje nisu članci',
 'allnotinnamespace' => 'Sve stranice (koje nisu u $1 imenskom prostoru)',
 'allpages' => 'Sve stranice',
 'allpagesfrom' => 'Prikaži stranice početno sa:',

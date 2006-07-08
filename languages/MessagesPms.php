@@ -846,7 +846,6 @@ A peul sern-se n\'arsultà pì strèit ën selessionand na sòrt ëd registr sol
 'nextpage'              => 'Pàgina che a-i ven ($1)',
 'allpagesfrom'          => 'Most-me la pàgine ën partend da:',
 'allarticles'           => 'Tùit j\'artìcoj',
-'allnonarticles'        => 'Tut lòn che a resta nen n\'artìcol',
 'allinnamespace'        => 'Tute le pàgine (spassi nominal $1)',
 'allnotinnamespace'     => 'Tute le pàgine (che a son nen ant lë spassi nominal $1)',
 'allpagesprev'          => 'Cole prima',

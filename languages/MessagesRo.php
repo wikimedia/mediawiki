@@ -769,7 +769,6 @@ iar lista de mai jos nu constituie nici un fel de garanţie sau validare a servi
 'nextpage'              => 'Pagina următoare ($1)',
 'allpagesfrom'          => 'Afişează paginile pornind de la:',
 'allarticles'           => 'Toate articolele',
-'allnonarticles'        => 'Toate non-articolele',
 'allinnamespace'        => 'Toate paginile (spaţiu de nume $1)',
 'allnotinnamespace'     => 'Toate paginile (în afara spaţiului de nume $1)',
 'allpagesprev'          => 'Anterior',

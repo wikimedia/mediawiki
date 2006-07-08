@@ -1180,7 +1180,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Xem trang thể loại\');',
 
 #Logs
 'alllogstext' => 'Xem nhật trình tải lên, xóa, khóa, cấm, quản lý. Có thể xem theo từng loại, theo tên thành viên, hoặc tên trang.',
-'allnonarticles' =>  'Các trang không phải bài viết',
 'allnotinnamespace' => 'Mọi trang (không trong không gian $1)',
 'allpagesfrom' => 'Xem trang từ:',
 

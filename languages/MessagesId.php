@@ -848,7 +848,6 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'nextpage'          => 'Halaman berikutnya ($1)',
 'allpagesfrom'		=> 'Tampilkan halaman dimulai dengan:',
 'allarticles'       => 'Semua artikel',
-'allnonarticles'	=> 'Semua yang bukan artikel',
 'allinnamespace'	=> 'Semua halaman (namespace $1)',
 'allnotinnamespace'	=> 'Semua halaman (bukan namespace $1)',
 'allpagesprev'      => 'Sebelumnya',

@@ -426,7 +426,6 @@ Dirêjahiya [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] \'\'\'$7\'
 'nextpage'              => 'Rûpela pêşî ($1)',
 'allpagesfrom'          => 'Pêşdîtina rûpelan bi dest pê kirin ji',
 'allarticles'           => 'Hemû gotar',
-'allnonarticles'        => 'Hemû rûpelên ku ne gotar in',
 'allinnamespace'        => 'Hemû rûpelan ($1 boşahî a nav)',
 'allpagesprev'          => 'Pêş',
 'allpagesnext'          => 'Paş',

@@ -83,7 +83,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Видети страницу ка
 'allmessagesnotsupportedDB' => '[[{{ns:-1}}:AllMessages|Системске поруке]] нису подржане зато што је <i>wgUseDatabaseMessages</i> искључен.',
 'allmessagesnotsupportedUI' => 'Ваш тренутни језик интерфејса <b>$1</b> није подржан у [[{{ns:-1}}:AllMessages|системским порукама]] на овој вики.',
 'allmessagestext' => 'Ово је списак свих порука које су у {{ns:8}}: именском простору',
-'allnonarticles' => 'Све странице које нису чланци',
 'allnotinnamespace' => 'Све странице (које нису у $1 именском простору)',
 'allpages' => 'Све странице',
 'allpagesfrom' => 'Прикажи странице почетно са:',

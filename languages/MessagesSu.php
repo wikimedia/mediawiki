@@ -117,7 +117,6 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'allmessagesnotsupportedDB' => 'Special:AllMessages teu dirojong sabab wgUseDatabaseMessages pareum.',
 'allmessagesnotsupportedUI' => 'Basa antarbeungeut anjeun kiwari <b>$1</b> teu dirojong ku Special:AllMessages na loka ieu.',
 'allmessagestext' => 'Ieu mangrupa daptar sadaya pesen sistim nu aya na spasi ngaran MediaWiki:.',
-'allnonarticles' => 'Sadaya nu lain artikel',
 'allnotinnamespace' => 'Sadaya kaca (teu na $1 ngaranspasi)',
 'allowemail' => 'Buka koropak pikeun nampa surélék ti nu séjén',
 'allpages' => 'Sadaya kaca',

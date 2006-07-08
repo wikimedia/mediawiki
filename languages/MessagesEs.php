@@ -729,7 +729,6 @@ Puedes filtrar esta vista seleccionando el tipo de registro, el nombre de usuari
 'nextpage'              => 'Siguiente página ($1)',
 'allpagesfrom'          => 'Mostrar páginas comenzando en:',
 'allarticles'           => 'Todos los artículos',
-'allnonarticles'        => 'Todos los «no-artículos»',
 'allinnamespace'        => 'Todas las páginas (espacio $1)',
 'allnotinnamespace'     => 'Todas las páginas (fuera del espacio $1)',
 'allpagesprev'          => 'Anterior',

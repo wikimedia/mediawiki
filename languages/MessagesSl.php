@@ -782,7 +782,6 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'nextpage'              => 'Naslednja stran ($1)',
 'allpagesfrom'          => 'Prikaži strani, ki se začnejo na:',
 'allarticles'           => 'Vsi članki',
-'allnonarticles'        => 'Vsi nečlanki',
 'allinnamespace'        => 'Vse strani (imenski prostor $1)',
 'allnotinnamespace'     => 'Vse strani (brez imenskega prostora $1)',
 'allpagesprev'          => 'Predhodna',

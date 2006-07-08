@@ -905,7 +905,6 @@ Pode diminuir a lista escolhendo um tipo de registo, um nome de utilizar, ou uma
 'nextpage'          => 'Próxima página ($1)',
 'allpagesfrom'          => 'Mostrar páginas começando em:',
 'allarticles'           => 'Todos artigos',
-'allnonarticles'        => 'Todos não-artigos',
 'allinnamespace'        => 'Todas páginas (domínio $1)',
 'allnotinnamespace'     => 'Todas páginas (não no domínio $1)',
 'allpagesprev'          => 'Anterior',

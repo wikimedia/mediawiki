@@ -883,7 +883,6 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'nextpage'          => 'Další stránka ($1)',
 'allpagesfrom'		=> 'Všechny stránky počínaje od:',
 'allarticles'		=> 'Všechny články',
-'allnonarticles'	=> 'Všechny nečlánky',
 'allinnamespace'	=> 'Všechny stránky (jmenný prostor $1)',
 'allnotinnamespace'	=> 'Všechny stránky (mimo jmenný prostor $1)',
 'allpagesprev'		=> 'Předchozí',

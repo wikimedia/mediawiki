@@ -560,7 +560,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contegne \'\'\'{{FORMATN
 'nextpage'              => 'Paxèna dopo ($1)',
 'allpagesfrom'          => 'Mostra łe paxène cominzsiando da:',
 'allarticles'           => 'Tuti le voçi',
-'allnonarticles'        => 'Tute łe paxène che non le xè voçi',
 'allinnamespace'        => 'Tute łe paxène ($1 namespace)',
 'allnotinnamespace'     => 'Tute łe paxène (no ne el namespace $1)',
 'allpagesprev'          => 'Preçedenti',

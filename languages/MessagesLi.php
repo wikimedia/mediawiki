@@ -527,7 +527,6 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'nextpage'              => 'Volgende pazjena ($1)',
 'allpagesfrom'          => 'Tuin pazjena\'s vanaaf:',
 'allarticles'           => 'Alle artikele',
-'allnonarticles'        => 'Alle neet-artikele',
 'allinnamespace'        => 'Alle pazjena\'s (naamruumde $1)',
 'allnotinnamespace'     => 'Alle pazjena\'s (neet in naamruumde $1)',
 'allpagesprev'          => 'Veurige',
