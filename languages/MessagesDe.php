@@ -437,7 +437,7 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 "note"			=> "<strong>Hinweis:</strong>",
 "previewnote"	=> "Dies ist nur eine Vorschau, der Artikel wurde noch nicht gespeichert!",
 'session_fail_preview' => '<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Ihre Sitzungsdaten verloren gegangen sind.
-Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, logge Sie sich kurz aus und wieder ein.</strong>',
+Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, loggen Sie sich kurz aus und wieder ein.</strong>',
 "previewconflict" => "Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder; so wird der Artikel aussehen, wenn Sie jetzt speichern.",
 'session_fail_preview_html'	=> '<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Ihre Sitzungsdaten verloren gegangen sind.</strong>
 
@@ -512,11 +512,9 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 Als Administrator können Sie sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Spezial:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
 "orig"			=> "Original",
-'histlegend'		=> 'Diff Auswahl: Die Boxen der gewünschten Versionen markieren und „Enter“ drücken oder den Button unten klicken/alt-v.<br />
-Legende:
-(Aktuell) = Unterschied zur aktuellen Version,
-(Letzte) = Unterschied zur vorherigen Version,
-K = Kleine Änderung',
+'histlegend'		=> 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken („alt-v“).<br />
+* (Aktuell) = Unterschied zur aktuellen Version, (Vorherige) = Unterschied zur vorherigen Version
+* Uhrzeit/Datum = Artikel zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, K = Kleine Änderung',
 
 'revdelete-legend'		=> 'Einschränkungen für die Versionen festlegen:',
 'revdelete-hide-text'		=> 'Verstecke den Text der Version',
@@ -1362,7 +1360,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'importlogpagetext'	=> 'Administrativer Import von Seiten mit Versionsgeschichte von anderen Wikis.',
 'import-logentry-upload'	=> '$1 wurde importiert',
 'import-logentry-upload-detail'	=> '$1 Version(en)',
-#'import-logentry-interwiki'	=> 'transwikied $1',
+'import-logentry-interwiki'	=> '$1 wurde importiert (Transwiki)',
 'import-logentry-interwiki-detail'	=> '$1 Version(en) von $2',
 
 "isbn"			=> "ISBN",
