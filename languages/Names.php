@@ -102,7 +102,7 @@
 	'kg' => 'Kongo',		# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 	'ki' => 'Gĩkũyũ',	# Kikuyu, correctness not guaranteed
 	'kj' => 'Kuanyama',		# Kuanyama (FIXME!)
-	'kk' => 'қазақша',	# Kazakh
+	'kk' => 'Қазақша',	# Kazakh
 	'kl' => 'Kalaallisut',	# Greenlandic
 	'km' => 'ភាសាខ្មែរ',	# Cambodian
 	'kn' => 'ಕನ್ನಡ',	# Kannada
