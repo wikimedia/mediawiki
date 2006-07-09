@@ -20,6 +20,8 @@ if it's not being used.
 * Fix for 'emailconfirmed' implicit user group
 * Fix for upgrades on some versions of MySQL 4.0.x
 * Fixed potential XSS in profileinfo.php
+* Installer now shows clear error message about old PHP versions
+  rather than a confusing parse error
 
 
 == MediaWiki 1.7.0 ==

@@ -37,6 +37,12 @@ if( !ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages" ) ) {
 # Define an entry point and include some files
 define( "MEDIAWIKI", true );
 define( "MEDIAWIKI_INSTALL", true );
+
+// Run version checks before including other files
+// so people don't see a scary parse error.
+require_once( "install-utils.inc" );
+install_version_checks();
+
 require_once( "includes/Defines.php" );
 require_once( "includes/DefaultSettings.php" );
 require_once( "includes/MagicWord.php" );
@@ -197,7 +203,6 @@ if( !is_writable( "." ) ) {
 }
 
 
-require_once( "install-utils.inc" );
 require_once( "maintenance/updaters.inc" );
 
 class ConfigData {
