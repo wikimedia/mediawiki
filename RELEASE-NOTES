@@ -5,8 +5,21 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.7.1 ==
 
+July 8, 2006
+
+MediaWiki 1.7.1 is a security and bugfix maintenance release of the
+Summer 2006 snapshot:
+
+A potential HTML/JavaScript-injection vulnerability in a debugging script
+has been fixed. Only versions and configurations of PHP vulnerable to the
+$GLOBALS overwrite vulnerability are affected.
+
+As a workaround for existing installs, profileinfo.php may simply be deleted
+if it's not being used.
+
 * Fix for 'emailconfirmed' implicit user group
 * Fix for upgrades on some versions of MySQL 4.0.x
+* Fixed potential XSS in profileinfo.php
 
 
 == MediaWiki 1.7.0 ==
