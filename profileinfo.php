@@ -48,7 +48,6 @@ $wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgEnableProfile
 
 define("MEDIAWIKI", 1);
 if ( isset( $_REQUEST['GLOBALS'] ) ) {
-	print $GLOBALS;
 	echo '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>';
 	die( -1 );
 }
