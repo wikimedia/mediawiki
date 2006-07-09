@@ -5,11 +5,23 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == Mediawiki 1.6.8 ==
 
-plapla
+July 8, 2006
+
+MediaWiki 1.6.8 is a security and bugfix maintenance release of the
+Spring 2006 snapshot:
+
+A potential HTML/JavaScript-injection vulnerability in a debugging script
+has been fixed. Only versions and configurations of PHP vulnerable to the
+$GLOBALS overwrite vulnerability are affected.
+
+As a workaround for existing installs, profileinfo.php may simply be deleted
+if it's not being used.
 
 * (bug 5957) Updates to Hebrew translation (he)
 * Respect language directionality when displaying arrow in Special:Brokenredirects
 * (bug 6415) Typo in Parser.php
+* Fixed potential XSS in profileinfo.php
+
 
 == Mediawiki 1.6.7 ==
 
