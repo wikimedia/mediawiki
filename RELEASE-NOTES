@@ -3,6 +3,12 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.7.1 ==
+
+* Fix for 'emailconfirmed' implicit user group
+* Fix for upgrades on some versions of MySQL 4.0.x
+
+
 == MediaWiki 1.7.0 ==
 
 July 6, 2006
