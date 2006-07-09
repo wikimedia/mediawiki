@@ -185,7 +185,7 @@ Vegeu $1.',
 'retrievedfrom'         => 'Obtingut de "$1"',
 'youhavenewmessages'    => 'Teniu $1 ($2).',
 'newmessageslink'       => 'nous missatges',
-'newmessagesdifflink'   => 'últims canvis',
+'newmessagesdifflink'   => 'darrers canvis',
 'editsection'           => 'edita',
 'editold'               => 'edita',
 'editsectionhint'       => 'Edita la secció: $1',
@@ -230,16 +230,16 @@ $1',
 'cachederror'           => 'Tot seguit és una còpia provinent de la memòria cau de la pàgina que hi heu demanat i, per això, podria no estar actualitzada.',
 'laggedslavemode'       => 'Avís: La pàgina podria mancar de modificacions recents.',
 'readonly'              => 'La base de dades es troba blocada',
-'enterlockreason'       => 'Escrigueu un motiu pel bloqueig, així com una estimació de quan tindrà lloc el desbloqueig',
-'readonlytext'          => 'La base de dades està temporalment bloquejada segurament per tasques de manteniment, després de les quals es tornarà a la normalitat.
+'enterlockreason'       => 'Escrigueu un motiu pel blocatge, així com una estimació de quan tindrà lloc el desblocatge',
+'readonlytext'          => 'La base de dades està temporalment blocada segurament per tasques de manteniment, després de les quals es tornarà a la normalitat.
 
-L\'administrador que l\'ha bloquejada ha donat aquesta explicació: $1',
+L\'administrador que l\'ha blocada ha donat aquesta explicació: $1',
 'missingarticle'        => 'La base de dades no ha trobat el text d\'una
 pàgina que hauria d\'haver trobat, anomenada "$1".
 Això acostuma a passar a quan se segueix un enllaç a una pàgina que ha estat eliminada.
 
 Si aquest no és el cas, probablement es tracta d\'un error en el programari.
-Informeu-ne si us plau a un administrador, fent-ne arribar la direcció URL.',
+Informeu-ne si us plau a un administrador, fent-ne arribar l\'adreça URL.',
 'readonly_lag'          => 'S\'ha blocada la base de dades automàticament per a la sincronització dels servidors',
 'internalerror'         => 'Fallida interna',
 'filecopyerror'         => 'No s\'ha pogut copiar el fitxer "$1" com "$2".',
@@ -254,7 +254,7 @@ Informeu-ne si us plau a un administrador, fent-ne arribar la direcció URL.',
 'badtitletext'          => 'El títol de la pàgina que heu demanada no és correcte, és en blanc o és un enllaç inter-lingüístic trencat. Podria haver-hi algun caràcter no permés per al seu ús en els títols.',
 'perfdisabled'          => 'S\'ha desactivat temporalment aquesta funcionalitat perquè sobrecarrega la base de dades fins al punt d\'inutilitzar el programari wiki.',
 'perfdisabledsub'       => 'Això és una còpia desada de $1:',
-'perfcached'            => 'Tot seguit es mostren les dades que es troben a la memòria cau, i podria no tenir els últims canvis del dia:',
+'perfcached'            => 'Tot seguit es mostren les dades que es troben a la memòria cau, i podria no tenir els darrers canvis del dia:',
 'perfcachedts'          => 'Tot seguit es mostra les dades que es troben a la memòria cau, la darrera actualització de la qual fou el $1.',
 'wrong_wfQuery_params'  => 'Paràmetres incorrectes per a wfQuery()<br />
 Funció: $1<br />
@@ -332,7 +332,7 @@ la vostra antiga contrasenya.',
 'noemail'               => 'No hi ha cap adreça electrònica registrada de l\'usuari "$1".',
 'passwordsent'          => 'S\'ha enviat una nova contrasenya a l\'adreça electrònica registrada per "$1".
 Inicieu una sessió després que la rebeu.',
-'eauthentsent'          => 'S\'ha enviat un correu electrònic a la direcció especificada. Abans no s\'envïi cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.',
+'eauthentsent'          => 'S\'ha enviat un correu electrònic a l\'adreça especificada. Abans no s\'envïi cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.',
 'mailerror'             => 'S\'ha produït un error en enviar el missatge: $1',
 'acct_creation_throttle_hit'=> 'Ho sentim, no és permés de tenir-hi més de $1 comptes d\'usuari per persona.',
 'emailauthenticated'    => 'S\'ha autenticat la vostra adreça electrònica a $1.',
@@ -372,10 +372,10 @@ Introduïu una adreça amb un format adequat o bé buideu el camp.',
 'showpreview'           => 'Mostra una vista prèvia',
 'showlivepreview'       => 'Vista ràpida',
 'showdiff'              => 'Mostra els canvis',
-'anoneditwarning'       => '\'\'\'Atenció:\'\'\' No esteu registrats amb un nom d\'usuari. Es guardarà la vostra adreça IP en l\'historial de la pàgina.',
-'missingsummary'        => '\'\'\'Recordatori\'\'\': Heu deixat en blanc el sumari d\'edició. Si torneu a clicar el botó de desar, l\'edició es guardarà sense sumari.',
+'anoneditwarning'       => '\'\'\'Atenció:\'\'\' No esteu registrats amb un nom d\'usuari. Es desarà la vostra adreça IP en l\'historial de la pàgina.',
+'missingsummary'        => '\'\'\'Recordatori\'\'\': Heu deixat en blanc el sumari d\'edició. Si torneu a clicar el botó de desar, l\'edició es desarà sense sumari.',
 'missingcommenttext'    => 'Introduïu un comentari a continuació.',
-'blockedtitle'          => 'L\'usuari està bloquejat',
+'blockedtitle'          => 'L\'usuari està blocat',
 'blockedtext'           => 'El vostre nom d\'usuari o adreça IP ha estat blocada per $1.
 El motiu és:<br />$2<p>Podeu contactar $1 o un dels [[Project:Administrators|administradors]] per a discutir el blocatge.
 
@@ -399,10 +399,10 @@ La vostra adreça IP és $3. Si us plau, incloeu aquesta adreça en totes les co
 'accmailtext'           => 'S\'ha enviat a $2 la contrasenya per a «$1».',
 'newarticle'            => '(Nou)',
 'newarticletext'        => 'Heu seguit un enllaç a una pàgina que encara no existeix.
-Per a crear-la començeu a escriure en l\'espai d\'abaix
+Per a crear-la comenceu a escriure en l\'espai d\'abaix
 (vegeu l\'[[Project:Ajuda|ajuda]] per a més informació).
 Si sou ací per error simplement cliqueu el botó "enrere" del vostre navegador.',
-'anontalkpagetext'      => '----\'\'Aquesta és la pàgina de discussió d\'un usuari anònim que encara no ha creat un compte o que no usa el seu nom registrat. Per tant hem de usar la seva adreça IP numèrica per identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim i trobau que us han adreçat comentaris inoportuns, si us plau, [[Special:Userlogin|creeu-vos un compte]] per evitar futures confusions amb altres usuaris anònims.\'\'',
+'anontalkpagetext'      => '----\'\'Aquesta és la pàgina de discussió d\'un usuari anònim que encara no ha creat un compte o que no usa el seu nom registrat. Per tant hem d\'emprar la seva adreça IP numèrica per identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim i trobau que us han adreçat comentaris inoportuns, si us plau, [[Special:Userlogin|creeu-vos un compte]] per evitar futures confusions amb altres usuaris anònims.\'\'',
 'noarticletext'         => 'En aquest moment no hi ha text en aquesta pàgina. Podeu [[Special:Search/{{PAGENAME}}|cercar-ne el títol]] en altres pàgines o [{{fullurl:{{FULLPAGENAME}}|action=edit}} començar a escriure-hi].',
 'clearyourcache'        => '\'\'\'Nota:\'\'\' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. \'\'\'Mozilla / Firefox / Safari:\'\'\' Premeu \'\'Shift\'\' mentre cliqueu \'\'Actualitza\'\' (Reload), o premeu \'\'Ctrl+Shift+R\'\' (\'\'Cmd+Shift+R\'\' en un Mac Apple); \'\'\'Internet Explorer:\'\'\' premeu \'\'Ctrl\'\' mentre cliqueu \'\'Actualitza\'\' (Refresh), o premeu \'\'Ctrl+F5\'\'; \'\'\'Konqueror:\'\'\': simplement cliqueu el botó \'\'Recarregar\'\' (Reload), o premeu \'\'F5\'\'; \'\'\'Opera\'\'\' haureu d\'esborrar completament la vostra memòria cau (caché) a \'\'Tools→Preferences\'\'.',
 'updated'               => '(Actualitzat)',
@@ -432,8 +432,8 @@ Si la graveu, els canvis fets des d\'eixa revisió es perdran.</strong>',
 'readonlywarning'       => '<strong>ADVERTÈNCIA: La base de dades està tancada per manteniment
 i no podeu desar les vostres contribucions en aquests moments. podeu retallar i enganxar el codi
 en un fitxer de text i desar-lo més tard.</strong>',
-'protectedpagewarning'  => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris [[Project:Administradors|administradors]].</strong>',
-'semiprotectedpagewarning'=> '\'\'\'Atenció:\'\'\' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.',
+'protectedpagewarning'  => '<strong>ATENCIÓ: Aquesta pàgina està blocada i només pot ser editada per usuaris [[Project:Administradors|administradors]].</strong>',
+'semiprotectedpagewarning'=> '\'\'\'Atenció:\'\'\' Aquesta pàgina està blocada i només pot ser editada per usuaris registrats.',
 'templatesused'         => 'Aquesta pàgina fa servir les següents plantilles:',
 'nocreatetitle'         => 'S\'ha limitat la creació de pàgines',
 'nocreatetext'          => 'Està restringida la possibilitat de crear noves pàgines.
@@ -457,7 +457,7 @@ Reviseu l\'URL que heu emprat per a accedir-hi.',
 (prev) = diferència amb la versió prèvia, m = edició menor',
 'deletedrev'            => '[suprimit]',
 'histfirst'             => 'El primer',
-'histlast'              => 'L\'últim',
+'histlast'              => 'El darrer',
 'rev-deleted-comment'   => '(s\'ha suprimit el comentari)',
 'rev-deleted-user'      => '(s\'ha suprimit el nom d\'usuari)',
 'rev-delundel'          => 'mostra/amaga',
@@ -508,7 +508,7 @@ que contenen tots els termes d\'una recerca apareixeran en el resultat).',
 Cerca en espais de nom :<br />
 $1<br />
 $2 Llista redireccions   Cerca $3 $9',
-'searchdisabled'        => 'La cerca dins el projecte {{SITENAME}} està desactivat. Mentrestant podeu buscar a través de Google, però tingueu en compte que la seva base de dades no estarà actualitzada.',
+'searchdisabled'        => 'La cerca dins el projecte {{SITENAME}} està desactivat. Mentrestant podeu cercar a través de Google, però tingueu en compte que la seva base de dades no estarà actualitzada.',
 'blanknamespace'        => '(Portada)',
 'preferences'           => 'Preferències',
 'prefsnologin'          => 'No heu iniciat una sessió',
@@ -594,13 +594,13 @@ i l\'hora del servidor (UTC).',
 'upload'                => 'Carrega',
 'uploadbtn'             => 'Carrega un arxiu',
 'reupload'              => 'Carrega de nou',
-'reuploaddesc'          => 'Torna al formulari per pujar.',
+'reuploaddesc'          => 'Torna al formulari per apujar.',
 'uploadnologin'         => 'No heu iniciat una sessió',
 'uploadnologintext'     => 'Heu d\'[[Special:Userlogin|iniciar una sessió]]
 per a penjar-hi fitxers.',
 'upload_directory_read_only'=> 'El servidor web no pot escriure el directori de càrrega ($1)',
 'uploaderror'           => 'S\'ha produït un error en l\'intent de carregar',
-'uploadtext'            => 'Per a visualitzar o cercar imatges que s\'hagin pujat anteriorment, aneu a la [[Special:Imagelist|llista de fitxers carregats]].
+'uploadtext'            => 'Per a visualitzar o cercar imatges que s\'hagin apujat anteriorment, aneu a la [[Special:Imagelist|llista de fitxers carregats]].
 Les càrregues i les supressions es registren en el [[Project:Registre de càrregues|registre de càrregues]].
 
 Consulteu també la [[Project:Política d\'ús d\'imatges|política d\'ús d\'imatges]].
@@ -612,7 +612,7 @@ Quan trieu un fitxer, el nom d\'aqueix fitxer apareixerà en el camp de text
 al costat del botó.
 També heu d\'activar la casella afirmant que no esteu violant cap dret d\'autor en carregar el fitxer.
 Cliqueu el botó «Carrega» per a completar la càrrega.
-Això pot trigar un temps si teniu una connexió lenta a Internet.
+Això pot trigar una estona si teniu una connexió lenta a Internet.
 
 Els formats preferits són el JPEG, per a imatges fotogràfiques, el PNG,
 per a dibuixos i imatges d\'icones, i OGG per a sons.
@@ -624,10 +624,10 @@ o per a sons
 * \'\'\'<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:Fitxer.ogg]]</nowiki>\'\'\'
 
 Tingueu en compte, que de la mateixa manera com passa amb les pàgines de la {{SITENAME}}, hom pot
-editar-hi o suprimir-hi els fitxers que hi heu carregat si pensen que és recomanable per al projecte. També se us pot bloquejar, impedint-vos doncs carregar fitxers si feu un abús del sistema.',
+editar-hi o suprimir-hi els fitxers que hi heu carregat si pensen que és recomanable per al projecte. També se us pot blocar, impedint-vos doncs carregar fitxers si feu un abús del sistema.',
 'uploadlog'             => 'registre de càrregues',
 'uploadlogpage'         => 'Registre de càrregues',
-'uploadlogpagetext'     => 'A sota hi ha un llistat dels fitxers que s\'han pujat més recentment.
+'uploadlogpagetext'     => 'A sota hi ha un llistat dels fitxers que s\'han apujat més recentment.
 Totes les hores són les del servidor (UTC).',
 'filename'              => 'Nom de fitxer',
 'filedesc'              => 'Sumari',
@@ -656,7 +656,7 @@ i l\'autor, i qualsevol altra cosa que pugueu saber al respecte.',
 'imagelisttext'         => 'Llista {{plural:$1|d\'un arxiu|de \'\'\'$1\'\'\' arxius ordenats $2}}.',
 'getimagelist'          => ' obtenint el llistat d\'imatges',
 'ilsubmit'              => 'Cerca',
-'showlast'              => 'Mostra les últimes $1 imatges ordenades  $2.',
+'showlast'              => 'Mostra les darreres $1 imatges ordenades $2.',
 'byname'                => 'per nom',
 'bydate'                => 'per data',
 'bysize'                => 'per mida',
@@ -671,7 +671,7 @@ aquesta versió antiga, (rev) = reverteix a aquesta versió antiga.
 'imagelinks'            => 'Enllaços a la imatge',
 'linkstoimage'          => 'Les següents pàgines enllacen a aquesta imatge:',
 'nolinkstoimage'        => 'No hi ha pàgines que enllacin aquesta imatge.',
-'sharedupload'          => 'Aquest fitxer està compartit i pot ser usat per altres projectes.',
+'sharedupload'          => 'Aquest fitxer està compartit i pot ser emprat per altres projectes.',
 'noimage'               => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
 'noimage-linktext'      => 'Carrega',
 'uploadnewversion-linktext'=> 'Carrega una nova versió d\'aquest arxiu',
@@ -755,20 +755,20 @@ El projecte {{SITENAME}} no està afiliat amb cap d\'aquests negocis, i aquest l
 'allpagesprev'          => 'Anterior',
 'allpagesnext'          => 'Següent',
 'allpagesprefix'        => 'Mostra les pàgines amb prefix:',
-'mailnologin'           => 'No enviïs la direcció',
+'mailnologin'           => 'No enviïs l\'adreça',
 'mailnologintext'       => 'Heu d\'haver [[Special:Userlogin|entrat]]
-i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|preferències]]
+i tenir una adreça electrònica vàlida en les vostres [[Special:Preferences|preferències]]
 per enviar un correu electrònic a altres usuaris.',
 'emailuser'             => 'Envia un missatge de correu electrònic a aquest usuari',
 'emailpage'             => 'Correu electrònic a usuari',
-'emailpagetext'         => 'Si aquest usuari ha entrat una direcció electrònica vàlida en les vostres preferències d\'usuari, el següent formulari
+'emailpagetext'         => 'Si aquest usuari ha entrat una adreça electrònica vàlida en les vostres preferències d\'usuari, el següent formulari
 
 serveix per enviar-li un missatge.
-La direcció electrònica que heu entrat en les vostres preferències d\'usuari apareixerà en el remitent, de manera que el destinatari pugui
+L\'adreça electrònica que heu entrat en les vostres preferències d\'usuari apareixerà en el remitent, de manera que el destinatari pugui
 
 respondre.',
-'noemailtitle'          => 'No hi ha cap direcció electrònica',
-'noemailtext'           => 'Aquest usuari no ha especificat una direcció electrònica vàlida, o ha escollit no rebre correu electrònic d\'altres usuaris
+'noemailtitle'          => 'No hi ha cap adreça electrònica',
+'noemailtext'           => 'Aquest usuari no ha especificat una adreça electrònica vàlida, o ha escollit no rebre correu electrònic d\'altres usuaris
 
 .',
 'emailfrom'             => 'De',
@@ -786,7 +786,7 @@ per modificar el vostre llistat de seguiment.',
 'addedwatch'            => 'S\'ha afegit la pàgina a la llista de seguiment',
 'addedwatchtext'        => 'S\'ha afegit la pàgina "$1" a la vostra <a href="{{localurle:Especial:Watchlist}}">llista de seguiment</a>.
 
-Els canvis futurs que tindran lloc en aquesta pàgina i la seua corresponent discussió s\'avisaràn a la vostra <a href="{{localurle:Especial:Watchlist}}">llista de seguiment</a>, resaltant-se també <b>en negreta</b> en la <a href="{{localurle:Especial:Recentchanges}}">llista de canvis recents</a> per adonar-se\'n més fàcilment.</p>
+Els canvis futurs que tindran lloc en aquesta pàgina i la seua corresponent discussió s\'avisaran a la vostra <a href="{{localurle:Especial:Watchlist}}">llista de seguiment</a>, resaltant-se també <b>en negreta</b> en la <a href="{{localurle:Especial:Recentchanges}}">llista de canvis recents</a> per adonar-se\'n més fàcilment.</p>
 
 <p>Si voleu deixar de vigilar la pàgina, cliqueu sobre l\'enllaç de "Desatén" a la barra lateral.',
 'removedwatch'          => 'S\'ha extret del llistat de seguiment',
@@ -828,7 +828,7 @@ Suggeriments i ajuda:
 'confirmdeletetext'     => 'Esteu a punt d\'esborrar una pàgina o imatge
 de forma permanent, així com tota la seva història de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
-conseqüències, i que el esteu fent està d\'acord amb [[Project:Polítiques]].',
+conseqüències, i que el que esteu fent està d\'acord amb [[Project:Polítiques]].',
 'actioncomplete'        => 'S\'ha realitzat l\'acció de manera satisfactòria.',
 'deletedtext'           => '"$1" ha estat esborrat.
 Mostra $2 per a un registre dels esborrats més recents.',
@@ -844,7 +844,7 @@ Tots els temps es mostren en l\'hora del servidor (UTC).
 'imagereverted'         => 'S\'ha revertit amb èxit a una versió anterior.',
 'rollback'              => 'Reverteix edicions',
 'rollbacklink'          => 'Reverteix',
-'cantrollback'          => 'No s\'ha pogut revertir les edicions; l\'últim col·laborador és l\'únic autor d\'aquest article.',
+'cantrollback'          => 'No s\'ha pogut revertir les edicions; el darrer col·laborador és l\'únic autor d\'aquest article.',
 'revertpage'            => 'Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]); s\'ha recuperat la darrera versió de [[User:$1|$1]]',
 'confirmprotecttext'    => 'Voleu realment protegir aquesta pàgina?',
 'confirmprotect'        => 'Confirmeu la protecció',
@@ -869,8 +869,8 @@ revisió actual del la pàgina "viva" no serà substituïda automàticament.',
 'mycontris'             => 'Contribucions',
 'contribsub'            => 'Per $1',
 'nocontribs'            => 'No s\'ha trobat canvis que encaixessin amb aquests criteris.',
-'ucnote'                => 'A sota hi ha els últims <b>$1</b> canvis d\'aquest usuari en els últims <b>$2</b> dies.',
-'uclinks'               => 'Mostra els últims $1 canvis; mostra els últims $2 dies.',
+'ucnote'                => 'A sota hi ha els darrers <b>$1</b> canvis d\'aquest usuari en els darrers <b>$2</b> dies.',
+'uclinks'               => 'Mostra els darrers $1 canvis; mostra els darrers $2 dies.',
 'uctop'                 => ' (actual)',
 'newbies'               => 'novells',
 'sp-newimages-showfrom' => 'Mostra imatges des de $1',
@@ -896,58 +896,58 @@ quines pàgines en concret estan sent vandalitzades).',
 'ipadressorusername'    => 'Adreça IP o nom de l\'usuari',
 'ipbexpiry'             => 'Caducitat',
 'ipbreason'             => 'Motiu',
-'ipbsubmit'             => 'Bloqueja aquesta adreça',
+'ipbsubmit'             => 'Bloca aquesta adreça',
 'ipbother'              => 'Un altre termini',
 'ipboptions'            => '2 hores:2 hours,1 dia:1 day,3 dies:3 days,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite',
 'ipbotheroption'        => 'un altre',
 'badipaddress'          => 'L\'adreça IP no té el format correcte.',
-'blockipsuccesssub'     => 'S\'ha bloquejat amb èxit',
+'blockipsuccesssub'     => 'S\'ha blocat amb èxit',
 'blockipsuccesstext'    => 'L\'usuari "[[Special:Contributions/$1|$1]]" ha estat blocat.
 <br />Vegeu la [[Special:Ipblocklist|llista d\'IP blocades]] per revisar els bloquejos.',
 'unblockip'             => 'Desbloca l\'usuari',
 'unblockiptext'         => 'Empreu el següent formulari per restaurar
-l\'accés a l\'escriptura a una adreça IP o un usuari prèviament bloquejat.',
-'ipusubmit'             => 'Desbloca aquesta direcció',
-'unblocked'             => 'S\'ha desbloquejat l\'usuari [[User:$1|$1]]',
+l\'accés a l\'escriptura a una adreça IP o un usuari prèviament blocat.',
+'ipusubmit'             => 'Desbloca aquesta adreça',
+'unblocked'             => 'S\'ha desblocat l\'usuari [[User:$1|$1]]',
 'ipblocklist'           => 'Llista d\'adreces IP i noms d\'usuaris blocats',
-'blocklistline'         => '$1, $2 bloqueja $3 ($4)',
+'blocklistline'         => '$1, $2 bloca $3 ($4)',
 'infiniteblock'         => 'infinit',
 'expiringblock'         => 'venç el $1',
 'ipblocklistempty'      => 'La llista està buida.',
-'blocklink'             => 'bloqueja',
-'unblocklink'           => 'desbloqueja',
+'blocklink'             => 'bloca',
+'unblocklink'           => 'desbloca',
 'contribslink'          => 'contribucions',
 'autoblocker'           => 'Heu estat blocat perquè compartiu adreça IP amb "$1". Motiu: "$2"',
 'blocklogpage'          => 'Registre de blocatges',
 'blocklogentry'         => 's\'ha blocat "[[$1]]" per a un període de $2',
-'blocklogtext'          => 'Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:Ipblocklist|llista d\'usuaris actualment bloquejats]].',
-'unblocklogentry'       => 'desbloquejat $1',
+'blocklogtext'          => 'Això és una relació d\'accions de blocatge i desblocatge. Les adreces IP blocades automàticament no apareixen. Vegeu la [[Special:Ipblocklist|llista d\'usuaris actualment blocats]].',
+'unblocklogentry'       => 'desblocat $1',
 'range_block_disabled'  => 'La facultat dels administradors per crear blocatges de rang està desactivada.',
 'ipb_expiry_invalid'    => 'Data d\'acabament no vàlida.',
-'ip_range_invalid'      => 'Rang de IP no vàlid.',
-'proxyblockreason'      => 'La vostra adreça IP ha estat bloquejada perquè és un proxy obert. Si us plau contactau el vostre proveïdor d\'Internet o servei tècnic i informau-los d\'aquest seriós problema de seguretat.',
+'ip_range_invalid'      => 'Rang d\'IP no vàlid.',
+'proxyblockreason'      => 'La vostra adreça IP ha estat blocada perquè és un proxy obert. Si us plau contactau el vostre proveïdor d\'Internet o servei tècnic i informau-los d\'aquest seriós problema de seguretat.',
 'proxyblocksuccess'     => 'Fet.',
-'lockdb'                => 'Bloqueja la base de dades',
-'unlockdb'              => 'Desbloqueja la base de dades',
-'lockdbtext'            => 'Bloquejant la base de dades s\'anul·larà la capacitat de tots els
+'lockdb'                => 'Bloca la base de dades',
+'unlockdb'              => 'Desbloca la base de dades',
+'lockdbtext'            => 'Blocant la base de dades s\'anul·larà la capacitat de tots els
 usuaris d\'editar pàgines, canviar les preferències, editar els llistats de seguiments, i
 altres canvis que requereixen canvis en la base de dades.
 Confirmeu que això és el que intenteu fer, i sobretot no us oblideu
-de desbloquejar la base de dades quan acabeu el manteniment.',
-'unlockdbtext'          => 'Desbloquejant la base de dades es restaurarà l\'habilitat de tots
+de desblocar la base de dades quan acabeu el manteniment.',
+'unlockdbtext'          => 'Desblocant la base de dades es restaurarà l\'habilitat de tots
 els usuaris d\'editar pàgines, canviar les preferències, editar els llistats de seguiment, i
 altres accions que requereixen canvis en la base de dades.
 Confirmeu que això és el que voleu fer.',
-'lockconfirm'           => 'Sí, realment vull bloquejar la base de dades.',
-'unlockconfirm'         => 'Sí, realment vull desbloquejar la base dades.',
-'lockbtn'               => 'Bloqueja la base de dades',
-'unlockbtn'             => 'Desbloqueja la base de dades',
+'lockconfirm'           => 'Sí, realment vull blocar la base de dades.',
+'unlockconfirm'         => 'Sí, realment vull desblocar la base dades.',
+'lockbtn'               => 'Bloca la base de dades',
+'unlockbtn'             => 'Desbloca la base de dades',
 'locknoconfirm'         => 'No heu respost al diàleg de confirmació.',
 'lockdbsuccesssub'      => 'S\'ha blocat la base de dades',
-'unlockdbsuccesssub'    => 'S\'ha eliminat el bloqueig de la base de dades',
-'lockdbsuccesstext'     => 'S\'ha bloquejat la base de dades del projecte {{SITENAME}}.
-<br />Recordeu-vos de treure el bloqueig quan hàgiu acabat el manteniment.',
-'unlockdbsuccesstext'   => 'S\'ha desbloquejat la base de dades del projecte {{SITENAME}}.',
+'unlockdbsuccesssub'    => 'S\'ha eliminat el blocatge de la base de dades',
+'lockdbsuccesstext'     => 'S\'ha blocat la base de dades del projecte {{SITENAME}}.
+<br />Recordeu-vos de treure el blocatge quan hàgiu acabat el manteniment.',
+'unlockdbsuccesstext'   => 'S\'ha desblocat la base de dades del projecte {{SITENAME}}.',
 'makesysoptitle'        => 'Converteix en administrador',
 'makesysoptext'         => 'Aquest formulari serveix per a que els buròcrates puguin convertir un usuari en administrador.
 Escrigueu el nom de l\'usuari i premeu el botó per acceptar-ho.',
@@ -979,7 +979,7 @@ assegureu-vos-en d\'entendre les conseqüències que comporta
 abans de seguir endavant.',
 'movepagetalktext'      => 'La pàgina de discussió associada, si existeix, serà traslladada automàticament \'\'\'a menys que:\'\'\'
 *Ja existeixi una pàgina de discussió no buida amb el nom nou, o
-*Hàgiu desseleccionat la opció de sota.
+*Hàgiu desseleccionat l\'opció de sota.
 
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.',
 'movearticle'           => 'Reanomena la pàgina',
@@ -1022,7 +1022,7 @@ L\'article de destí, "[[$1]]", ja existeix. Voleu esborrar-lo per fer lloc per 
 'import'                => 'Importa les pàgines',
 'importfailed'          => 'La importació ha fallat: $1',
 'importsuccess'         => 'S\'ha importat amb èxit!',
-'importnofile'          => 'No s\'ha pujat cap fitxer d\'importació.',
+'importnofile'          => 'No s\'ha apujat cap fitxer d\'importació.',
 'accesskey-search'      => 'f',
 'accesskey-minoredit'   => 'i',
 'accesskey-save'        => 's',
@@ -1108,7 +1108,7 @@ L\'article de destí, "[[$1]]", ja existeix. Voleu esborrar-lo per fer lloc per 
 'nextdiff'              => 'Vés a la pròxima diferència →',
 'imagemaxsize'          => 'Limita les imatges de les pàgines de descripció d\'imatges a:',
 'thumbsize'             => 'Mida de la miniatura:',
-'showbigimage'          => 'Baixa la versió d\'alta resolució ($1x$2, $3 kB)',
+'showbigimage'          => 'Abaixa la versió d\'alta resolució ($1x$2, $3 kB)',
 'newimages'             => 'Galeria de nous fitxers',
 'noimages'              => 'Res per veure.',
 'specialloguserlabel'   => 'Usuari:',
