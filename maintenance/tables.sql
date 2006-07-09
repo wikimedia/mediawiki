@@ -492,7 +492,7 @@ CREATE TABLE /*$wgDBprefix*/langlinks (
 
   UNIQUE KEY (ll_from, ll_lang),
   KEY (ll_lang, ll_title)
-) ENGINE=InnoDB;
+) TYPE=InnoDB;
 
 --
 -- Contains a single row with some aggregate info
