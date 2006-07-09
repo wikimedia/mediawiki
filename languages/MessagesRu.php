@@ -1,8 +1,8 @@
 <?php
 /** Russian (русский язык)
   *
-  * Based on Messages.php 15216 (2006-07-02)
-  * and ru.wikipedia MediaWiki namespace (2006-07-02)
+  * Based on Messages.php 15372 (2006-07-06)
+  * and ru.wikipedia MediaWiki namespace (2006-07-09)
   *
   * You can contact Alexander Sigachov (alexander.sigachov на Googgle Mail)
   *
@@ -512,6 +512,7 @@ $1',
 # History pages
 #
 'revhistory'    => 'Журнал изменений',
+'viewpagelogs' => 'Показать журналы для этой страницы',
 'nohistory'             => 'Для этой страницы журнал изменений отсутствует.',
 'revnotfound'   => 'Версия не найдена',
 'revnotfoundtext' => 'Старая версия страницы не найдена.
@@ -969,6 +970,7 @@ $1',
 'allinnamespace' => 'Все страницы ($1 пространство имён)',
 'allpagessubmit'    => 'Выполнить',
 'allpagesprefix'        => 'Отобразить страницы с префиксом:',
+'allpagesbadtitle'      => 'Заголовок данной страницы не является допустимым либо содержит интервики или межязыковый префикс. Возможно он содержит символы запрещённые в заголовках.',
 
 # Email this user
 #
@@ -999,7 +1001,7 @@ $1',
 'nowatchlist'           => 'Ваш список наблюдения пуст.',
 'watchlistanontext' => 'Вы должны $1, чтобы просмотреть или отредактировать список наблюдения.',
 'watchlistcount'        => "'''В вашем списке наблюдения $1 страниц, включая страницы обсуждения.'''",
-'clearwatchlist'        => 'Очистка списока наблюдения',
+'clearwatchlist'        => 'Очистка списка наблюдения',
 'watchlistcleartext' => 'Вы уверены, что хотите удалить их?',
 'watchlistclearbutton' => 'Очистить список наблюдения',
 'watchlistcleardone' => 'Ваш список наблюдения очищен. $1 страниц удалено из списка.',
@@ -1381,6 +1383,8 @@ IP-адреса.',
 Все операции межвики импорта регистрируются в [[Special:Log/import|соответствующем журнале]].',
 'import-interwiki-history' => 'Копировать всю историю изменений этой страницы',
 'import-interwiki-submit' => 'Импортировать',
+'import-interwiki-namespace' => 'Помещать страницы в пространство имён:',
+
 'importtext'    => 'Пожалуйста, экспортируйте страницу из исходной вики используя инструмент Special:Export, сохраните файл на диск, а затем загрузите его сюда.',
 'importstart'   => "Импортирование страниц...",
 'import-revision-count' => '$1 версий',
