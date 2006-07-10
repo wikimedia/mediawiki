@@ -454,6 +454,9 @@ Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang And
 'edittools' => '<!-- Teks di sini akan dimunculkan dibawah isian suntingan dan pemuatan.-->',
 'nocreatetitle' => 'Pembuatan halaman baru dibatasi',
 'nocreatetext' => 'Situs ini membatasi kemampuan membuat halaman baru. Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[{{ns:special}}:Userlogin|masuk log atau mendaftar]]',
+'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
+'cantcreateaccounttext' => 'Pembuatan akun dari alamat IP ini (<b>$1</b>) diblokir. 
+Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah atau penyedia jasa Internet Anda.',
 
 # History pages
 #
@@ -821,6 +824,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "recentchangeslinked" => "Perubahan terkait",
 "rclsub" => "(untuk halaman yang berpaut dari \"$1\")",
 "newpages" => "Halaman baru",
+'newpages-username' => 'Nama pengguna:',
 "ancientpages" => "Artikel tertua",
 "intl" => "Pranala antarbahasa",
 'move' => 'Pindahkan',
@@ -1071,6 +1075,8 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipadressorusername' => 'Alamat IP atau nama pengguna',
 "ipbexpiry" => "Kadaluwarsa",
 "ipbreason" => "Alasan",
+'ipbanononly'   => 'Hanya blokir pengguna anonim',
+'ipbcreateaccount' => 'Cegah pembuatan akun',
 "ipbsubmit" => "Kirimkan",
 'ipbother'		=> 'Waktu lain',
 'ipboptions'		=> '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite',
@@ -1086,6 +1092,8 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "blocklistline" => "$1, $2 memblokir $3 ($4)",
 'infiniteblock' => 'tak terbatas',
 'expiringblock' => 'kadaluwarsa $1',
+'anononlyblock' => 'hanya anon',
+'createaccountblock' => 'pembuatan akun diblokir',
 'ipblocklistempty'	=> 'Daftar pemblokiran kosong.',
 "blocklink" => "blokir",
 "unblocklink" => "hilangkan blokir",
@@ -1097,8 +1105,10 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "unblocklogentry" => 'menghilangkan blokir "$1"',
 "range_block_disabled" => "Kemampuan pengurus dalam membuat blokir blok IP dimatikan.",
 "ipb_expiry_invalid" => "Waktu kadaluwarsa tidak sah.",
+'ipb_already_blocked' => '"$1" telah diblokir',
 "ip_range_invalid" => "Blok IP tidak sah.",
 "proxyblocker" => "Pemblokir proxy",
+'ipb_cant_unblock' => 'Kesalahan: Blokir dengan ID $1 tidak ditemukan. Blokir tersebut kemungkinan telah dibuka.',
 "proxyblockreason" => "Alamat IP Anda telah diblokir karena alamat IP Anda adalah proxy terbuka. Silakan hubungi penyedia jasa internet Anda atau dukungan teknis dan beritahukan mereka masalah keamanan serius ini.",
 "proxyblocksuccess" => "Selesai.",
 'sorbs' => 'SORBS DNSBL',
@@ -1142,6 +1152,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "unlockdbsuccesssub" => "Pembukaan kunci basis data berhasil",
 "lockdbsuccesstext" => "Basis data telah dikunci. <br />Pastikan Anda membuka kuncinya setelah pemeliharaan selesai.",
 "unlockdbsuccesstext" => "Kunci basis data telah dibuka.",
+'lockfilenotwritable' => 'Berkas kunci basis data tidak dapat ditulis. Untuk mengunci atau membuka basis data, berkas ini harus dapat ditulis oleh server web.',
 
 # Move page
 #
@@ -1216,7 +1227,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 "thumbnail-more" => "Perbesar",
 "missingimage" => "<strong>Gambar hilang</strong><br /><em>$1</em>",
 'filemissing' => 'Berkas hilang',
-'thumbnail_error'   => 'Kesalahan sewaktu pembuatan gambar kecil (<em>thumbnail</em>): $1',
+'thumbnail_error'   => 'Kesalahan sewaktu pembuatan gambar kecil (thumbnail): $1',
 
 # Special:Import
 "import" => "Impor halaman",
