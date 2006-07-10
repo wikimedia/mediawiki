@@ -356,6 +356,9 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporä
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
 "passwordsent"	=> "Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.",
+'eauthentsent'		=>  'Eine Bestätigungsmail wurde an die angegebene E-Mail-Adresse verschickt.
+
+Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolgen Sie die Hinweise in der Bestätigungsmail.',
 "loginend"		=> "&nbsp;",
 "mailerror" => "Fehler beim Senden von Mail: $1",
 'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
