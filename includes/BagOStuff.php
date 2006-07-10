@@ -491,7 +491,7 @@ class APCBagOStuff extends BagOStuff {
 		return true;
 	}
 	
-	function delete($key) {
+	function delete($key, $time=0) {
 		apc_delete($key);
 		return true;
 	}
