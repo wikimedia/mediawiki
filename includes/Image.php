@@ -1489,7 +1489,7 @@ class Image
 	 * @return bool
 	 * @static
 	 */
-	function isHashed( $shared ) {
+	public static function isHashed( $shared ) {
 		global $wgHashedUploadDirectory, $wgHashedSharedUploadDirectory;
 		return $shared ? $wgHashedSharedUploadDirectory : $wgHashedUploadDirectory;
 	}
