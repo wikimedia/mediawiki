@@ -50,7 +50,7 @@ class LoadBalancer {
 		$this->mAllowLag = false;
 	}
 
-	function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
+	static function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
 	{
 		$lb = new LoadBalancer;
 		$lb->initialise( $servers, $failFunction, $waitTimeout );

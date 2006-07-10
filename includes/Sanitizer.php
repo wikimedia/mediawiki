@@ -920,8 +920,9 @@ class Sanitizer {
 	 * @param string $text
 	 * @return string
 	 * @public
+	 * @static
 	 */
-	function decodeCharReferences( $text ) {
+	public static function decodeCharReferences( $text ) {
 		return preg_replace_callback(
 			MW_CHAR_REFS_REGEX,
 			array( 'Sanitizer', 'decodeCharReferencesCallback' ),
@@ -932,7 +933,7 @@ class Sanitizer {
 	 * @param string $matches
 	 * @return string
 	 */
-	function decodeCharReferencesCallback( $matches ) {
+	static function decodeCharReferencesCallback( $matches ) {
 		if( $matches[1] != '' ) {
 			return Sanitizer::decodeEntity( $matches[1] );
 		} elseif( $matches[2] != '' ) {

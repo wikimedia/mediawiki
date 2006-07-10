@@ -108,7 +108,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function newFromText( $text, $defaultNamespace = NS_MAIN ) {
+	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		$fname = 'Title::newFromText';
 
 		if( is_object( $text ) ) {
@@ -233,7 +233,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function &makeTitle( $ns, $title ) {
+	public static function &makeTitle( $ns, $title ) {
 		$t =& new Title();
 		$t->mInterwiki = '';
 		$t->mFragment = '';
