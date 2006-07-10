@@ -15,6 +15,13 @@ function wfSpecialLockdb() {
 		$wgOut->permissionRequired( 'siteadmin' );
 		return;
 	}
+	
+	# If the lock file isn't writable, we can do sweet bugger all
+	global $wgReadOnlyFile;
+	if( !is_writable( dirname( $wgReadOnlyFile ) ) ) {
+		DBLockForm::notWritable();
+		return;
+	}
 
 	$action = $wgRequest->getVal( 'action' );
 	$f = new DBLockForm();
@@ -92,10 +99,13 @@ END
 			$this->showForm( wfMsg( 'locknoconfirm' ) );
 			return;
 		}
-		$fp = fopen( $wgReadOnlyFile, 'w' );
+		$fp = @fopen( $wgReadOnlyFile, 'w' );
 
 		if ( false === $fp ) {
-			$wgOut->showFileNotFoundError( $wgReadOnlyFile );
+			# This used to show a file not found error, but the likeliest reason for fopen()
+			# to fail at this point is insufficient permission to write to the file...good old
+			# is_writable() is plain wrong in some cases, it seems...
+			$this->notWritable();
 			return;
 		}
 		fwrite( $fp, $this->reason );
@@ -114,6 +124,12 @@ END
 		$wgOut->setSubtitle( wfMsg( 'lockdbsuccesssub' ) );
 		$wgOut->addWikiText( wfMsg( 'lockdbsuccesstext' ) );
 	}
+	
+	function notWritable() {
+		global $wgOut;
+		$wgOut->errorPage( 'lockdb', 'lockfilenotwritable' );
+	}
+	
 }
 
 ?>
