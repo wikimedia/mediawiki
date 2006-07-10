@@ -4556,7 +4556,7 @@ class ParserOptions
 	 * Get parser options
 	 * @static
 	 */
-	function newFromUser( &$user ) {
+	static function newFromUser( &$user ) {
 		return new ParserOptions( $user );
 	}
 
