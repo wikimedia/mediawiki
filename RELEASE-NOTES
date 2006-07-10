@@ -45,6 +45,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6618) Improve permissions/error detection in Special:Lockdb
 * Quick hack for extension testing: parser test doesn't create new message
   cache object.
+* (bug 6299) Maintain parser's revision ID across recursive calls to fix
+  {{REVISIONID}} when Cite extension is used
 
 
 == Languages updated ==

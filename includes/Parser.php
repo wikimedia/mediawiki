@@ -268,7 +268,10 @@ class Parser
 
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
-		$this->mRevisionId = $revid;
+		$oldRevisionId = $this->mRevisionId;
+		if( $revid !== null ) {
+			$this->mRevisionId = $revid;
+		}
 		$this->mOutputType = OT_HTML;
 
 		//$text = $this->strip( $text, $this->mStripState );
@@ -349,6 +352,7 @@ class Parser
 		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
 
 		$this->mOutput->setText( $text );
+		$this->mRevisionId = $oldRevisionId;
 		wfProfileOut( $fname );
 
 		return $this->mOutput;
