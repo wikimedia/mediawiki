@@ -11,10 +11,11 @@
 function wfSpecialUnlockdb() {
 	global $wgUser, $wgOut, $wgRequest;
 
-	if ( ! $wgUser->isAllowed('siteadmin') ) {
-		$wgOut->developerRequired();
+	if( !$wgUser->isAllowed( 'siteadmin' ) ) {
+		$wgOut->permissionRequired( 'siteadmin' );
 		return;
 	}
+
 	$action = $wgRequest->getVal( 'action' );
 	$f = new DBUnlockForm();
 
