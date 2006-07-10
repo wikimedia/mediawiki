@@ -552,7 +552,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_id int(8) NOT NULL auto_increment,
   
   -- Blocked IP address in dotted-quad form or user name.
-  ipb_address varchar(40) binary NOT NULL default '',
+  ipb_address tinyblob NOT NULL default '',
   
   -- Blocked user ID or 0 for IP blocks.
   ipb_user int(8) unsigned NOT NULL default '0',
@@ -570,20 +570,32 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   -- Indicates that the IP address was banned because a banned
   -- user accessed a page through it. If this is 1, ipb_address
   -- will be hidden, and the block identified by block ID number.
-  ipb_auto tinyint(1) NOT NULL default '0',
+  ipb_auto boolean NOT NULL default 0,
+
+  -- If set to 1, block applies only to logged-out users
+  ipb_anon_only boolean NOT NULL default 0,
+
+  -- Block prevents account creation from matching IP addresses
+  ipb_create_account boolean NOT NULL default 1,
   
   -- Time at which the block will expire.
   ipb_expiry char(14) binary NOT NULL default '',
   
   -- Start and end of an address range, in hexadecimal
   -- Size chosen to allow IPv6
-  ipb_range_start varchar(32) NOT NULL default '',
-  ipb_range_end varchar(32) NOT NULL default '',
+  ipb_range_start tinyblob NOT NULL default '',
+  ipb_range_end tinyblob NOT NULL default '',
   
   PRIMARY KEY ipb_id (ipb_id),
-  INDEX ipb_address (ipb_address),
+
+  -- Unique index to support "user already blocked" messages
+  -- Any new options which prevent collisions should be included
+  UNIQUE INDEX ipb_address (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only),
+
   INDEX ipb_user (ipb_user),
-  INDEX ipb_range (ipb_range_start(8), ipb_range_end(8))
+  INDEX ipb_range (ipb_range_start(8), ipb_range_end(8)),
+  INDEX ipb_timestamp (ipb_timestamp),
+  INDEX ipb_expiry (ipb_expiry)
 
 ) TYPE=InnoDB;
 
@@ -913,10 +925,10 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
 -- Cache of interwiki transclusion
 --
 CREATE TABLE /*$wgDBprefix*/transcache (
-	tc_url		VARCHAR(255) NOT NULL,
-	tc_contents	TEXT,
-	tc_time		INT NOT NULL,
-	UNIQUE INDEX tc_url_idx(tc_url)
+  tc_url		VARCHAR(255) NOT NULL,
+  tc_contents	TEXT,
+  tc_time		INT NOT NULL,
+  UNIQUE INDEX tc_url_idx(tc_url)
 ) TYPE=InnoDB;
 
 CREATE TABLE /*$wgDBprefix*/logging (
@@ -951,14 +963,14 @@ CREATE TABLE /*$wgDBprefix*/logging (
 ) TYPE=InnoDB;
 
 CREATE TABLE /*$wgDBprefix*/trackbacks (
-	tb_id integer AUTO_INCREMENT PRIMARY KEY,
-	tb_page	integer REFERENCES page(page_id) ON DELETE CASCADE,
-	tb_title varchar(255) NOT NULL,
-	tb_url	varchar(255) NOT NULL,
-	tb_ex text,
-	tb_name varchar(255),
+  tb_id integer AUTO_INCREMENT PRIMARY KEY,
+  tb_page	integer REFERENCES page(page_id) ON DELETE CASCADE,
+  tb_title varchar(255) NOT NULL,
+  tb_url	varchar(255) NOT NULL,
+  tb_ex text,
+  tb_name varchar(255),
 
-	INDEX (tb_page)
+  INDEX (tb_page)
 ) TYPE=InnoDB;
 
 
@@ -986,13 +998,15 @@ CREATE TABLE /*$wgDBprefix*/job (
 -- Details of updates to cached special pages
 CREATE TABLE /*$wgDBprefix*/querycache_info (
 
-	-- Special page name
-	-- Corresponds to a qc_type value
-	qci_type varchar(32) NOT NULL default '',
+  -- Special page name
+  -- Corresponds to a qc_type value
+  qci_type varchar(32) NOT NULL default '',
 
-	-- Timestamp of last update
-	qci_timestamp char(14) NOT NULL default '19700101000000',
+  -- Timestamp of last update
+  qci_timestamp char(14) NOT NULL default '19700101000000',
 
-	UNIQUE KEY ( qci_type )
+UNIQUE KEY ( qci_type )
 
 ) TYPE=InnoDB;
+
+-- vim: sw=2 sts=2 et
