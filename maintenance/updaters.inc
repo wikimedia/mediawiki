@@ -762,6 +762,23 @@ function do_templatelinks_update() {
 	echo "Done. Please run maintenance/refreshLinks.php for a more thorough templatelinks update.\n";
 }
 
+# July 2006
+# Add ( rc_namespace, rc_user_text ) index [R. Church]
+function do_rc_indices_update() {
+	global $wgDatabase;
+	echo( "Checking for additional recent changes indices...\n" );
+	# See if we can find the index we want
+	$info = $wgDatabase->indexInfo( 'recentchanges', 'rc_ns_usertext', __METHOD__ );
+	if( !$info ) {
+		# None, so create
+		echo( "...index on ( rc_namespace, rc_user_text ) not found; creating\n" );
+		dbsource( archive( 'patch-recentchanges-utindex.sql' ) );
+	} else {
+		# Index seems to exist
+		echo( "...seems to be ok\n" );
+	}
+}
+
 function do_all_updates( $doShared = false ) {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase;
 
@@ -820,6 +837,8 @@ function do_all_updates( $doShared = false ) {
 	do_logging_timestamp_index(); flush();
 
 	do_page_random_update(); flush();
+	
+	do_rc_indices_update(); flush();
 
 	initialiseMessages(); flush();
 }
