@@ -159,7 +159,7 @@ A última tentativa de pesquisa no banco de dados foi:
 com a função\"$2\".
 MySQL retornou o erro \"$3: $4\".",
 "noconnect"     => "Desculpe! O wiki está passando por algumas
-dificuldades técnicas, e não pode contatar o servidor de bando de dados.",
+dificuldades técnicas, e não pode contactar o servidor de bando de dados.",
 "nodb"          => "Não foi possível selecionar o banco de dados $1",
 "cachederror"       => "O que segue é uma cópia em cache da página
 solicitada, e pode não estar atualizada.",
@@ -188,8 +188,8 @@ Por favor, comunique isto ao administrador, tenha nota da URL.",
 "badarticleerror" => "Esta acção não pode ser performada nesta página.",
 "cannotdelete"  => "Não foi possível excluir página ou imagem especificada. (Ela já pode ter sido deletada por alguém.)",
 "badtitle"      => "Título ruim",
-"badtitletext"  => "O título de pagina requisitado era inválido, vazio, ou
-uma ligação incorreta de inter-linguagem ou título inter-wiki .",
+"badtitletext"  => "O título de página requisitado era inválido, vazio, ou
+um link incorreto de inter-linguagem ou título inter-wiki .",
 "perfdisabled" => "Desculpe! Esta opção foi temporariamente desabilitada
 porque tornava o banco de dados lento demais a ponto de impossibilitar o wiki.",
 "perfdisabledsub" => "Aqui está uma cópia salva de $1:",
@@ -264,16 +264,16 @@ O motivo é:<br />''$2''<p>Você pode contactar $1 ou outro
 "accmailtext" => "A senha de '$1' foi enviada para $2.",
 "newarticle"    => "(Novo)",
 "newarticletext" =>
-"Você seguiu um link para um artigo que não existe mais.
-Para criar a página, começe escrevendo na caixa a baixo
-(veja [[{{ns:4}}:Ajuda| a página de ajuda]] para mais informações).
-Se você chegou aqui por engano, apenas clique no botão  '''volta''' do seu navegador.",
+"Você seguiu um link para um artigo que não existe.
+Para criá-lo, começe escrevendo na caixa abaixo 
+(veja [[{{ns:4}}:Ajuda|a página de ajuda]] para mais informações).
+Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
 
-"anontalkpagetext" => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo(la). Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentifique-se]] para evitar futuras confusões com outros usuários anônimos.'' ",
+"anontalkpagetext" => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo. Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros usuários anônimos.'' ",
 "noarticletext" => "(Não há atualmente nenhum texto nesta página)",
 "updated"       => "(Atualizado)",
 "note"          => "<strong>Nota:</strong> ",
-"previewnote"   => "Lembre-se que isto é apenas uma previsão, e não foi ainda salvo!",
+"previewnote"   => "Lembre-se que isto é apenas uma previsão. O conteúdo ainda não foi salvo!",
 "previewconflict" => "Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.",
 "editing"         => "Editando $1",
 "editingsection"  => "Editando $1 (seção)",
@@ -281,7 +281,7 @@ Se você chegou aqui por engano, apenas clique no botão  '''volta''' do seu nav
 "editconflict"  => "Conflito de edição: $1",
 "explainconflict" => "Alguém mudou a página enquanto você a estava editando.
 A área de texto acima mostra o texto original.
-Suas mudanças são mostradas na área a baixo.
+Suas mudanças são mostradas na área abaixo.
 Você terá que mesclar suas modificações no texto existente.
 <b>SOMENTE</b> o texto na área acima será salvo quando você pressionar \"Salvar página\".<br />",
 "yourtext"      => "Seu texto",
@@ -296,9 +296,9 @@ Você também promete que está nos enviando um artigo escrito por você mesmo, 
 <strong>NÃO ENVIE TRABALHO SOB COPYRIGHT SEM PERMISSÃO!</strong>",*/
 "longpagewarning" => "<strong>CUIDADO: Esta página tem $1 kilobytes ; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
 Por favor considere quebrar a página em sessões menores.</strong>",
-"readonlywarning" => "<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção,
-você não está habilitado a salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo mais tarde.</strong>",
-"protectedpagewarning" => "<strong>CUIDADO:  Está página foi bloqueada então apenas os usuários com privilégios de sysop podem editá-la. Certifique-se de que você está seguindo o [[Project:Guia_de_páginas_protegidas|guia de páginas protegidas]].</strong>",
+"readonlywarning" => "<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção.
+No momento não é possível salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo ao wiki mais tarde.</strong>",
+"protectedpagewarning" => "<strong>CUIDADO: Apenas os usuários com privilégios de sysop podem editar esta página pois ela foi bloqueada. Certifique-se de que você está seguindo o [[Project:Guia_de_páginas_protegidas|guia de páginas protegidas]].</strong>",
 
 # History pages
 #
@@ -333,7 +333,7 @@ Por favor verifique a URL que você usou para acessar esta página.",
 "badquery"      => "Linha de busca incorretamente formada",
 "badquerytext"  => "Nós não pudemos processar seu pedido de busca.
 Isto acoenteceu provavelmente porque você tentou procurar uma palavra de menos que três letras, coisa que o software ainda não consegue realizar. Isto também pode ter ocorrido porque você digitou incorretamente a expressão, por
-exemplo \"peixes <strong>and and</strong> scales\".
+exemplo: \"peixes <strong>and and</strong> scales\".
 Por favor realize ouro pedido de busca.",
 "matchtotals"   => "A pesquisa \"$1\" resultou $2 títulos de artigos
 e $3 artigos com o texto procurado.",
@@ -366,7 +366,7 @@ para definir suas preferências.",
 "qbsettings"    => "Configurações da Barra Rápida",
 "changepassword" => "Mudar senha",
 "skin"          => "Aparência(Skin)",
-"math"          => "Rendering math",
+"math"          => "Renderização matemática",
 "dateformat"    => "Formato da Data",
 "math_failure"      => "Falhou ao checar gramática(parse)",
 "math_unknown_error"    => "erro desconhecido",
@@ -374,11 +374,11 @@ para definir suas preferências.",
 "math_lexing_error" => "erro léxico",
 "math_syntax_error" => "erro de síntaxe",
 "saveprefs"     => "Salvar preferências",
-"resetprefs"    => "Reconfigurar preferências",
+"resetprefs"    => "Redefinir preferências",
 "oldpassword"   => "Senha antiga",
 "newpassword"   => "Nova senha",
 "retypenew"     => "Redigite a nova senha",
-"textboxsize"   => "Tamanho da Caixa de texto",
+"textboxsize"   => "Tamanho da caixa de texto",
 "rows"          => "Linhas",
 "columns"       => "Colunas",
 "searchresultshead" => "Configurar resultados de pesquisas",
@@ -554,7 +554,7 @@ Destes, <b>$2</b> são administradores (veja $3).",
 "wantedpages"   => "Páginas procuradas",
 "nlinks"        => "$1 links",
 "allpages"      => "Todas as páginas",
-"randompage"    => "Página randômica",
+"randompage"    => "Página aleatória",
 "shortpages"    => "Páginas Curtas",
 "longpages"     => "Paginas Longas",
 "listusers"     => "Lista de Usuários",
@@ -569,7 +569,7 @@ Destes, <b>$2</b> são administradores (veja $3).",
 "intl"      => "Links interlínguas",
 "movethispage"  => "Mover esta página",
 "unusedimagestext" => "<p>Por favor note que outros websites como
-as Wikipedias internacionais podem apontar para uma imagem com uma URL direta, e por isto pode estar aparecendo aqui mesmo estando em uso ativo.",
+as Wikipédias internacionais podem apontar para uma imagem com uma URL direta, e por isto pode estar aparecendo aqui mesmo estando em uso ativo.",
 "booksources"   => "Fontes de livros",
 "booksourcetext" => "Segue uma lista de links para outros sites que vendem livros novos e usados , e podem ter informações adicionais sobre livros que você esteja procurando.
 A {{SITENAME}} não é afiliada a nenhum destes empreendimentos, e a lista não deve ser construída  como apoio.",
@@ -577,14 +577,14 @@ A {{SITENAME}} não é afiliada a nenhum destes empreendimentos, e a lista não 
 
 # Email this user
 #
-"mailnologin"   => "No send address",
+"mailnologin"   => "Sem endereço ed envio",
 "mailnologintext" => "Você deve estar [[Special:Userlogin|autenticado]]
 e ter um e-mail válido em suas [[Special:Preferences|preferências]]
 para poder enviar e-mails para outros usuários.",
 "emailuser"     => "Contactar usuário",
 "emailpage"     => "Enviar e-mail ao usuário",
-"emailpagetext" => "Se este usuário disponibilizou um endereço válido de -mail em suas preferências, o formulário a seguir enviará uma mensagem única.
-O endereço de e-mail que você disponibilizou em suas preferências aparecerá como Remetente da mensagem, então, o usuário poderá responder a você diretamente.",
+"emailpagetext" => "Se este usuário disponibilizou um endereço válido de e-mail em suas preferências, o formulário a seguir enviará uma mensagem única.
+O endereço de e-mail que você disponibilizou em suas preferências aparecerá como remetente da mensagem, então, o usuário poderá responder a você diretamente.",
 "noemailtitle"  => "Sem endereço de e-mail",
 "noemailtext"   => "Este usuário não especificou um endereço de e-mail válido, ou optou por não receber mensagens de outros usuários.",
 "emailfrom"     => "De",
@@ -602,21 +602,21 @@ O endereço de e-mail que você disponibilizou em suas preferências aparecerá 
 "nowatchlist"   => "Você não está monitorando nenhum artigo.",
 "watchnologin"  => "Não está autenticado",
 "watchnologintext"  => "Você deve estar [[Special:Userlogin|autenticado]]
-para modificar sua lista de artigos interessantes.",
+para modificar a lista de artigos do seu interesse.",
 /*"addedwatch"    => "Adicionados �  lista",*/
-"addedwatchtext" => "A página \"$1\" foi adicionada a sua <a href=\"{{localurle:Special:Watchlist}}\">lista de artigos de vosso interesse</a>.
-Modificações futuras neste artigo e páginas Talk associadas serão listadas aqui,
-e a página aparecerá <b>negritada</b> na <a href=\"{{localurle:Special:Recentchanges}}\">lista de mudanças recentes</a> para que
-possa pegá-lo com maior facilidade.</p>
+"addedwatchtext" => "A página \"$1\" foi adicionada à <a href=\"{{localurle:Special:Watchlist}}\">lista de artigos do seu interesse</a>.
+Modificações futuras neste artigo e páginas de discussão associadas serão listadas aqui,
+e a página aparecerá <b>em negrito</b> na <a href=\"{{localurle:Special:Recentchanges}}\">lista de mudanças recentes</a> para que
+possa achá-la com maior facilidade.</p>
 
-<p>Se você quiser remover futuramente o artigo da sua lista monitoramento, clique em  \"Desinteressar-se\" na barra lateral.",
-"removedwatch"  => "Removida da lista de observações",
+<p>Se você quiser remover futuramente o artigo da sua lista de artigos vigiados, clique em  \"Desinteressar-se\" na barra lateral.",
+"removedwatch"  => "Removida da lista de monitoramento",
 "removedwatchtext" => "A página \"$1\" não é mais de seu interesse e portanto foi removida de sua lista de monitoramento.",
 "watchthispage" => "Interessar-se por esta página",
 "unwatchthispage" => "Desinteressar-se",
 "notanarticle"  => "Não é um artigo",
 "watchnochange" => "Nenhum dos itens monitorados foram editados no período exibido.",
-"watchdetails" => "($1 páginas monitoradas excluindo-se as páginas talk;
+"watchdetails" => "($1 páginas monitoradas excluindo-se as páginas de discussão;
 $2 páginas editadas desde data limite;
 $3...
 [$4 mostrar e editar a lista completa].)",
@@ -640,9 +640,9 @@ $3...
 "exblank" => "página estava vazia",
 "confirmdelete" => "Confirmar deleção",
 "deletesub"     => "(Apagando \"$1\")",
-"historywarning" => "Atenção: A página que você quer deletar tem um histório: ",
+"historywarning" => "Atenção: A página que você quer deletar tem um histórico: ",
 "confirmdeletetext" => "Você está  prestes a deletar permanentemente uma página ou imagem junto com todo seu histórico do banco de dados.
-Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{{ns:4}}:Policy| Política da Wkipedia]].",
+Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{{ns:4}}:Policy| Política da {{SITENAME}}]].",
 "actioncomplete" => "Ação efetuada com sucesso",
 "deletedtext"   => "\"$1\" foi deletada.
 Veja $2 para um registro de deleções recentes.",
@@ -661,7 +661,7 @@ Todos os horários mostrados estão no horário do servidor (UTC).
 "rollbackfailed" => "Rollback falhou",
 "cantrollback"  => "Não foi possível reverter a edição; o último contribuidor é o único autor deste artigo.",
 "alreadyrolled" => "Não foi possível reverter as edições de  [[$1]]
-por [[User:$2|$2]] ([[User talk:$2|Talk]]); alguém o editou ou já o reverteu.
+por [[User:$2|$2]] ([[User talk:$2|discussão]]); alguém o editou ou já o reverteu.
 
 A última edição foi de  [[User:$3|$3]] ([[User talk:$3|Conversar com ele]]). ",
 #   only shown if there is an edit comment
@@ -680,7 +680,7 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 "undeletebtn" => "Restaurar!",
 "undeletedarticle" => " \"$1\" restaurado",
 "undeletedtext"   => "O artigo [[:$1|$1]] foi restaurado com sucesso.
-Veja [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations.",
+Veja [[{{ns:4}}:Deletion_log]] para um registro das deleções e das restaurações recentes.",
 
 # Contributions
 #
@@ -697,8 +697,8 @@ Veja [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations
 "whatlinkshere" => "Artigos Relacionado",
 "notargettitle" => "Sem alvo",
 "notargettext"  => "Você não especificou um alvo ou usuário para performar esta função.",
-"linklistsub"   => "(Lista de ligações)",
-"linkshere"     => "Os seguintes artigos contém ligações que apontam para cá:",
+"linklistsub"   => "(Lista de links)",
+"linkshere"     => "Os seguintes artigos contém links que apontam para cá:",
 /*"nolinkshere"   => "Nenhuma página relaciona-se �  esta.",*/
 "isredirect"    => "página de redirecionamento",
 
@@ -729,9 +729,9 @@ Preencha com um motivo específico (por exemplo, citando páginas que sofreram v
 #
 "lockdb"        => "Trancar Banco de Dados",
 "unlockdb"      => "Destrancar Banco de Dados",
-"lockdbtext"    => "Trancar o banco de dados suspenderá a abilidade de todos os usuários de editarem páginas, mudarem suas preferências, lista de monitoração e  outras coisas que requerem mudanças no banco de dados.
+"lockdbtext"    => "Trancar o banco de dados suspenderá a habilidade de todos os usuários de editarem páginas, mudarem suas preferências, listas de monitoramento e outras coisas que requerem mudanças no banco de dados.
 Por favor confirme que você realmente pretende fazer isto, e que você vai desbloquear o banco de dados quando sua manutenção estiver completa.",
-"unlockdbtext"  => "Desbloquear o banco de dados vai restaurar a abilidade de todos os usuários de editar  artigos,  mudar suas preferências, editar suas listas de monitoramento e outras coisas que requerem mudanças no banco de dados. Por favor , confirme que você realmente pretende fazer isto.",
+"unlockdbtext"  => "Desbloquear o banco de dados vai restaurar a habilidade de todos os usuários de editar artigos, mudar suas preferências, editar suas listas de monitoramento e outras coisas que requerem mudanças no banco de dados. Por favor, confirme que você realmente pretende fazer isto.",
 "lockconfirm"   => "SIM, eu realmente pretendo trancar o banco de dados.",
 "unlockconfirm" => "SIM, eu realmente pretendo destrancar o banco de dados.",
 "lockbtn"       => "Trancar banco",
@@ -746,7 +746,7 @@ Por favor confirme que você realmente pretende fazer isto, e que você vai desb
 # Move page
 #
 "movepage"      => "Mover página",
-"movepagetext"  => "Usando o formulário a seguir você poderá renomear uma página , movendo todo o histórico para o novo nome.
+"movepagetext"  => "Usando o formulário a seguir você poderá renomear uma página, movendo todo o histórico para o novo nome.
 O título antigo será transformado num redirecionamento para o novo título.
 Links para as páginas antigas não serão mudados; certifique-se de checar redirecionamentos  quebrados ou artigos duplos.
 Você é responsável por certificar-se que os links continuam apontando para onde eles deveriam apontar.
@@ -772,11 +772,11 @@ para mover uma página.",
 "pagemovedtext" => "Página \"[[$1]]\" movida para \"[[$2]]\".",
 "articleexists" => "Uma página com este nome já existe, ou o nome que você escolheu é inválido.
 Por favor, escolha outro nome.",
-"talkexists"    => "A página em si foi movida com sucesso, porém a página talk não pode ser movida por que já existe uma com este nome. Por favor, mescle-as manualmente.",
+"talkexists"    => "A página em si foi movida com sucesso, porém a página de discussão não pode ser movida por que já existe uma com este nome. Por favor, mescle-as manualmente.",
 "movedto"       => "movido para",
-"movetalk"      => "Mover página  \"talk\" também, se aplicável.",
-"talkpagemoved" => "A página talk correspondente foi movida com sucesso.",
-"talkpagenotmoved" => "A página talk correspondente  <strong>não</strong> foi movida.",
+"movetalk"      => "Mover página  de discussão também, se aplicável.",
+"talkpagemoved" => "A página de discussão correspondente foi movida com sucesso.",
+"talkpagenotmoved" => "A página de discussão correspondente  <strong>não</strong> foi movida.",
 # Math
 'mw_math_png' => "Sempre renderizar PNG",
 'mw_math_simple' => "HTML se for bem simples e PNG",
