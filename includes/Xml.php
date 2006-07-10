@@ -56,8 +56,8 @@ class Xml {
 	}
 
 	// Shortcuts
-	function openElement( $element, $attribs = null ) { return self::element( $element, $attribs, null ); }
-	function closeElement( $element ) { return "</$element>"; }
+	public static function openElement( $element, $attribs = null ) { return self::element( $element, $attribs, null ); }
+	public static function closeElement( $element ) { return "</$element>"; }
 
 	/**
 	 * Create a namespace selector
@@ -216,7 +216,7 @@ class Xml {
 	 * @param string $string
 	 * @return string
 	 */
-	function escapeJsString( $string ) {
+	public static function escapeJsString( $string ) {
 		// See ECMA 262 section 7.8.4 for string literal format
 		$pairs = array(
 			"\\" => "\\\\",

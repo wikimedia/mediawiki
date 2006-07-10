@@ -13,7 +13,7 @@ class ParserCache {
 	/**
 	 * Get an instance of this object
 	 */
-	function &singleton() {
+	public static function &singleton() {
 		static $instance;
 		if ( !isset( $instance ) ) {
 			global $parserMemc;

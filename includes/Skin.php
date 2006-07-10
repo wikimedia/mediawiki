@@ -33,7 +33,7 @@ class Skin extends Linker {
 	 * @return array of strings
 	 * @static
 	 */
-	function &getSkinNames() {
+	static function &getSkinNames() {
 		global $wgValidSkinNames;
 		static $skinsInitialised = false;
 		if ( !$skinsInitialised ) {
@@ -68,7 +68,7 @@ class Skin extends Linker {
 	 * @return string
 	 * @static
 	 */
-	function normalizeKey( $key ) {
+	static function normalizeKey( $key ) {
 		global $wgDefaultSkin;
 		$skinNames = Skin::getSkinNames();
 
@@ -107,7 +107,7 @@ class Skin extends Linker {
 	 * @return Skin
 	 * @static
 	 */
-	function &newFromKey( $key ) {
+	static function &newFromKey( $key ) {
 		global $wgStyleDirectory;
 		
 		$key = Skin::normalizeKey( $key );

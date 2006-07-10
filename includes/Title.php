@@ -256,7 +256,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function makeTitleSafe( $ns, $title ) {
+	public static function makeTitleSafe( $ns, $title ) {
 		$t = new Title();
 		$t->mDbkeyform = Title::makeName( $ns, $title );
 		if( $t->secureAndSplit() ) {
@@ -273,7 +273,7 @@ class Title {
 	 * @return Title the new object
 	 * @access public
 	 */
-	function newMainPage() {
+	public static function newMainPage() {
 		return Title::newFromText( wfMsgForContent( 'mainpage' ) );
 	}
 
@@ -285,7 +285,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function newFromRedirect( $text ) {
+	public static function newFromRedirect( $text ) {
 		$mwRedir = MagicWord::get( MAG_REDIRECT );
 		$rt = NULL;
 		if ( $mwRedir->matchStart( $text ) ) {
@@ -336,7 +336,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function legalChars() {
+	public static function legalChars() {
 		global $wgLegalTitleChars;
 		return $wgLegalTitleChars;
 	}
@@ -376,7 +376,7 @@ class Title {
 	 * @param string $title the DB key form the title
 	 * @return string the prefixed form of the title
 	 */
-	/* static */ function makeName( $ns, $title ) {
+	public static function makeName( $ns, $title ) {
 		global $wgContLang;
 
 		$n = $wgContLang->getNsText( $ns );

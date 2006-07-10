@@ -21,7 +21,7 @@ class LinkCache {
 	/**
 	 * Get an instance of this class
 	 */
-	function &singleton() {
+	static function &singleton() {
 		static $instance;
 		if ( !isset( $instance ) ) {
 			$instance = new LinkCache;

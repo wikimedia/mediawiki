@@ -259,7 +259,7 @@ class MathRenderer {
 		return $path;
 	}
 
-	function renderMath( $tex ) {
+	public static function renderMath( $tex ) {
 		global $wgUser;
 		$math = new MathRenderer( $tex );
 		$math->setOutputMode( $wgUser->getOption('math'));

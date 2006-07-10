@@ -1081,7 +1081,7 @@ class Linker {
 	 *
 	 * @static
 	 */
-	function splitTrail( $trail ) {
+	static function splitTrail( $trail ) {
 		static $regex = false;
 		if ( $regex === false ) {
 			global $wgContLang;
