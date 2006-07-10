@@ -483,6 +483,9 @@ später einzuspielen.</strong>",
 'nocreatetext'		=> 'Der Server hat das Erstellen neuer Seiten eingeschränkt.
 
 Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmelden]].',
+'cantcreateaccounttitle'	=> 'Benutzerkonto kann nicht erstellt werden',
+'cantcreateaccounttext'	=> 'Die Erstellung eines Benutzerkontos von dieser IP-Adresse (<b>$1</b>) wurde gesperrt.
+Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Ihrer Bildungseinrichtung oder anderen Benutzern Ihres Internet-Service-Provider.',
 
 # History pages
 #
@@ -817,6 +820,7 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'recentchangeslinked'	=> 'Änderungen an verlinkten Seiten',
 'rclsub'		=> '(auf Artikel von „$1“)',
 "newpages"		=> "Neue Artikel",
+'newpages-username'	=> 'Benutzername:',
 'ancientpages'		=> 'Lange unbearbeitete Artikel',
 "movethispage"	=> "Artikel verschieben",
 'unusedimagestext'	=> '<p>Bitte beachten Sie, dass andere Wikis möglicherweise einige dieser Dateien verwenden.',
@@ -1068,6 +1072,8 @@ Bitte geben Sie den Grund für die Blockade an.',
 "ipaddress"		=> "IP-Adresse",
 'ipadressorusername'	=> 'IP-Adresse oder Benutzername',
 'ipbreason'		=> 'Begründung',
+'ipbanononly'		=> 'Nur anonyme Benutzer sperren',
+'ipbcreateaccount'	=> 'Erstellung von Benutzerkonten verhindern',
 'ipbsubmit'		=> 'Benutzer blockieren',
 'ipbother'		=> 'Andere Dauer',
 'ipboptions'		=> '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
@@ -1086,6 +1092,8 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 "blocklistline"	=> "$1, $2 blockierte $3 ($4)",
 'infiniteblock'		=> 'unbegrenzt',
 'expiringblock'		=> 'erlischt $1',
+'anononlyblock'		=> 'nur Anonyme',
+'createaccountblock'	=> 'Erstellung von Benutzerkonten gesperrt',
 "blocklink"		=> "blockieren",
 "unblocklink"	=> "freigeben",
 "contribslink"	=> "Beiträge",
@@ -1107,6 +1115,7 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 "lockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde gesperrt.
 <br />Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
 "unlockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde freigegeben.",
+'lockfilenotwritable' => 'Die Datenbank-Sperrdatei ist nicht beschreibbar. Zum Sperren oder Freigeben der Datenbank muss diese für den Webserver beschreibbar sein.',
 
 # User levels special page
 #
@@ -1304,6 +1313,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ m
 'unblocklogentry'	=> 'Blockade von [[{{ns:user}}:$1]] aufgehoben',
 "range_block_disabled"	=> "Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.",
 "ipb_expiry_invalid"	=> "Die angegebeben Ablaufzeit ist ungültig.",
+'ipb_already_blocked'	=> '„$1“ ist bereits gesperrt',
 "ip_range_invalid"	=> "Ungültiger IP-Addressbereich.",
 "confirmprotect" 	=> "Sperrung bestätigen",
 'protectmoveonly'	=> 'Nur vor dem Verschieben schützen',
@@ -1315,6 +1325,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ m
 'protect-viewtext'	=> 'Sie sind nicht berechtigt, den Seitenschutzstatus zu ändern. Hier ist der aktuelle Schutzstatus der Seite: [[$1]]',
 'protect-default'	=> '(Standard)',
 "proxyblocker"  	=> "Proxyblocker",
+'ipb_cant_unblock'	=> 'Fehler: Block ID $1 nicht gefunden. Die Sperre wurde vermutlich bereits aufgehoben.',
 "proxyblockreason"      => "Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Provider oder Ihre Systemtechnik und informieren Sie sie über dieses mögliche Sicherheitsproblem.",
 "proxyblocksuccess"     => "Fertig.",
 'sorbs'			=> 'SORBS DNSbl',
