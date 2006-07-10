@@ -1082,9 +1082,9 @@ class Sanitizer {
 			# 11.2.1
 			'table'      => array_merge( $common,
 								array( 'summary', 'width', 'border', 'frame',
-											 'rules', 'cellspacing', 'cellpadding',
-											 'align', 'bgcolor', 'frame', 'rules',
-											 'border' ) ),
+										'rules', 'cellspacing', 'cellpadding',
+										'align', 'bgcolor', 'rules',
+								) ),
 
 			# 11.2.2
 			'caption'    => array_merge( $common, array( 'align' ) ),
