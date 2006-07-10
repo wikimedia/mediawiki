@@ -981,6 +981,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'recentchangeslinked' => 'Related changes',
 'rclsub'		=> "(to pages linked from \"$1\")",
 'newpages'		=> 'New pages',
+'newpages-username' => 'Username:',
 'ancientpages'		=> 'Oldest pages',
 'intl'		=> 'Interlanguage links',
 'move' => 'Move',

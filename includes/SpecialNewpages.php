@@ -11,10 +11,13 @@
  * @subpackage SpecialPage
  */
 class NewPagesPage extends QueryPage {
-	var $namespace;
 
-	function NewPagesPage( $namespace = NS_MAIN ) {
+	var $namespace;
+	var $username = '';
+
+	function NewPagesPage( $namespace = NS_MAIN, $username = '' ) {
 		$this->namespace = $namespace;
+		$this->username = $username;
 	}
 
 	function getName() {
@@ -26,11 +29,17 @@ class NewPagesPage extends QueryPage {
 		return false;
 	}
 
+	function makeUserWhere( &$dbo ) {
+		return $this->username ? ' AND rc_user_text = ' . $dbo->addQuotes( $this->username ) : '';
+	}
+
 	function getSQL() {
 		global $wgUser, $wgUseRCPatrol;
 		$usepatrol = ( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) ) ? 1 : 0;
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'recentchanges', 'page', 'text' ) );
+
+		$uwhere = $this->makeUserWhere( $dbr );
 
 		# FIXME: text will break with compression
 		return
@@ -50,7 +59,8 @@ class NewPagesPage extends QueryPage {
 				page_latest as rev_id
 			FROM $recentchanges,$page
 			WHERE rc_cur_id=page_id AND rc_new=1
-			AND rc_namespace=" . $this->namespace . " AND page_is_redirect=0";
+			AND rc_namespace=" . $this->namespace . " AND page_is_redirect=0
+			{$uwhere}";
 	}
 	
 	function preprocessResults( &$dbo, &$res ) {
@@ -112,34 +122,20 @@ class NewPagesPage extends QueryPage {
 	}
 	
 	/**
-	 * Show a namespace selection form for filtering
+	 * Show a form for filtering namespace and username
 	 *
 	 * @return string
 	 */	
 	function getPageHeader() {
-		$thisTitle = Title::makeTitle( NS_SPECIAL, $this->getName() );
-		$form  = wfOpenElement( 'form', array(
-			'method' => 'post',
-			'action' => $thisTitle->getLocalUrl() ) );
-		$form .= wfElement( 'label', array( 'for' => 'namespace' ),
-			wfMsg( 'namespace' ) ) . ' ';
-		$form .= HtmlNamespaceSelector( $this->namespace );
-		# Preserve the offset and limit
-		$form .= wfElement( 'input', array(
-			'type' => 'hidden',
-			'name' => 'offset',
-			'value' => $this->offset ) );
-		$form .= wfElement( 'input', array(
-			'type' => 'hidden',
-			'name' => 'limit',
-			'value' => $this->limit ) );
-		$form .= wfElement( 'input', array(
-			'type' => 'submit',
-			'name' => 'submit',
-			'id' => 'submit',
-			'value' => wfMsg( 'allpagessubmit' ) ) );
-		$form .= wfCloseElement( 'form' );
-		return( $form );
+		$self = Title::makeTitle( NS_SPECIAL, $this->getName() );
+		$form = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
+		$form .= '<table><tr><td align="right">' . wfMsgHtml( 'namespace' ) . '</td>';
+		$form .= '<td>' . HtmlNamespaceSelector( $this->namespace ) . '</td><tr>';
+		$form .= '<tr><td align="right">' . wfMsgHtml( 'newpages-username' ) . '</td>';
+		$form .= '<td>' . wfInput( 'username', 30, $this->username ) . '</td></tr>';
+		$form .= '<tr><td></td><td>' . wfSubmitButton( wfMsg( 'allpagessubmit' ) ) . '</td></tr></table>';
+		$form .= wfHidden( 'offset', $this->offset ) . wfHidden( 'limit', $this->limit ) . '</form>';
+		return $form;
 	}
 	
 	/**
@@ -148,7 +144,7 @@ class NewPagesPage extends QueryPage {
 	 * @return array
 	 */
 	function linkParameters() {
-		return( array( 'namespace' => $this->namespace ) );
+		return( array( 'namespace' => $this->namespace, 'username' => $this->username ) );
 	}
 	
 }
@@ -161,6 +157,7 @@ function wfSpecialNewpages($par, $specialPage) {
 
 	list( $limit, $offset ) = wfCheckLimits();
 	$namespace = NS_MAIN;
+	$username = '';
 
 	if ( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -184,12 +181,14 @@ function wfSpecialNewpages($par, $specialPage) {
 	} else {
 		if( $ns = $wgRequest->getInt( 'namespace', 0 ) )
 			$namespace = $ns;
+		if( $un = $wgRequest->getText( 'username' ) )
+			$username = $un;
 	}
 	
 	if ( ! isset( $shownavigation ) )
 		$shownavigation = ! $specialPage->including();
 
-	$npp = new NewPagesPage( $namespace );
+	$npp = new NewPagesPage( $namespace, $username );
 
 	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ), $limit ) )
 		$npp->doQuery( $offset, $limit, $shownavigation );

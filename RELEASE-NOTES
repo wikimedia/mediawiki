@@ -41,6 +41,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   attempts to create an account. Fixed inefficiency of Special:Ipblocklist in 
   the presence of large numbers of blocks; added indexes and implemented an 
   indexed pager.
+* (bug 6448) Allow filtering of Special:Newpages according to username
 
 == Languages updated ==
 
