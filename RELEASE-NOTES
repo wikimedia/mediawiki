@@ -43,6 +43,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   indexed pager.
 * (bug 6448) Allow filtering of Special:Newpages according to username
 * (bug 6618) Improve permissions/error detection in Special:Lockdb
+* Quick hack for extension testing: parser test doesn't create new message
+  cache object.
+
 
 == Languages updated ==
 
