@@ -80,7 +80,10 @@ class LanguageDa extends LanguageUtf8 {
 		return $wgDateFormatsDa;
 	}
 
-	function date( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . ". " .
@@ -89,7 +92,10 @@ class LanguageDa extends LanguageUtf8 {
 		return $d;
 	}
 
-	function timeanddate( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		return $this->date( $ts, $adj ) . " kl. " . $this->time( $ts, $adj );
 	}
 

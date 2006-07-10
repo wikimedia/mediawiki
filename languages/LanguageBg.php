@@ -167,7 +167,7 @@ class LanguageBg extends LanguageUtf8 {
 	* Exports $wgMagicWordsBg
 	* @return array
 	*/
-	function getMagicWords()  {
+	function &getMagicWords()  {
 		global $wgMagicWordsBg;
 		return $wgMagicWordsBg;
 	}

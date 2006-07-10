@@ -66,7 +66,7 @@ class SrConverter extends LanguageConverter {
 	/* rules should be defined as -{ekavian | iyekavian-} -or-
 		-{code:text | code:text | ...}-
 	*/
-	function parseManualRule($rule, $flags) {
+	function parseManualRule($rule, $flags=array()) {
 
 		$echoices = preg_split("/(<[^>]+>)/",$rule,-1,PREG_SPLIT_DELIM_CAPTURE);
 		$choices = array();

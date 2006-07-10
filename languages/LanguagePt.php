@@ -194,7 +194,7 @@ class LanguagePt extends LanguageUtf8 {
 	* Exports $wgMagicWordsPt
 	* @return array
 	*/
-	function getMagicWords()  {
+	function &getMagicWords()  {
 		global $wgMagicWordsPt;
 		return $wgMagicWordsPt;
 	}

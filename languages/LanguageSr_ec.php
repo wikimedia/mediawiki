@@ -157,7 +157,7 @@ class LanguageSr_ec extends LanguageUtf8 {
 	* Exports $wgMagicWordsSr_ec
 	* @return array
 	*/
-	function getMagicWords()  {
+	function &getMagicWords()  {
 		global $wgMagicWordsSr_ec;
 		return $wgMagicWordsSr_ec;
 	}

@@ -94,8 +94,10 @@ class LanguageBr extends LanguageUtf8 {
 		return $wgSkinNamesBr;
 	}
 
-
-	function date( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . " " .
@@ -104,7 +106,10 @@ class LanguageBr extends LanguageUtf8 {
 		return $d;
 	}
 
-	function timeanddate( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		return $this->date( $ts, $adj ) . " da " . $this->time( $ts, $adj );
 	}
 

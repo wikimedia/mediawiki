@@ -147,7 +147,7 @@ class LanguageAr extends LanguageUtf8 {
 		return 'windows-1256';
 	}
 
-	function getMagicWords()  {
+	function &getMagicWords()  {
 		global $wgMagicWordsAr;
 		return $wgMagicWordsAr;
 	}

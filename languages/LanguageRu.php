@@ -154,7 +154,7 @@ class LanguageRu extends LanguageUtf8 {
 	//only for quotation mark
 	function linkPrefixExtension() { return true; }
 
-	function getMagicWords()  {
+	function &getMagicWords()  {
 		global $wgMagicWordsRu;
 		return $wgMagicWordsRu;
 	}

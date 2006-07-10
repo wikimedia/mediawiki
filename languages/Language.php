@@ -1048,8 +1048,8 @@ class Language {
 	 * @param string $wordform3 (optional)
 	 * @return string
 	 */
-	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
-		return $count == '1' ? $wordform1 : $wordform2;
+	function convertPlural( $count, $w1, $w2, $w3) {
+		return $count == '1' ? $w1 : $w2;
 	}
 
 	/**

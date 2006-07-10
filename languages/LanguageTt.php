@@ -90,8 +90,10 @@ class LanguageTt extends LanguageUtf8 {
 		return $wgDateFormatsTt;
 	}
 
-
-	function date( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . ". " .
@@ -100,14 +102,20 @@ class LanguageTt extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with language::time
+	 */
+	function time($ts, $adj = false, $format = true, $timecorrection = false) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
 		return $t;
 	}
 
-	function timeanddate( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
 	}
 
