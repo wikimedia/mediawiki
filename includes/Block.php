@@ -24,7 +24,7 @@ class Block
 	const EB_FOR_UPDATE = 2;
 	const EB_RANGE_ONLY = 4;
 
-	function Block( $address = '', $user = '', $by = 0, $reason = '',
+	function Block( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0 )
 	{
 		$this->mId = 0;
@@ -338,6 +338,12 @@ class Block
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->begin();
+
+		# Unset ipb_anon_only and ipb_create_account for user blocks, makes no sense
+		if ( $this->mUser ) {
+			$this->mAnonOnly = 0;
+			$this->mCreateAccount = 0;
+		}
 
 		# Don't collide with expired blocks
 		Block::purgeExpired();
