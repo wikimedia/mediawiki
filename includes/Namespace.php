@@ -49,7 +49,7 @@ class Namespace {
 	 * Check if the given namespace might be moved
 	 * @return bool
 	 */
-	function isMovable( $index ) {
+	static function isMovable( $index ) {
 		return !( $index < NS_MAIN || $index == NS_IMAGE  || $index == NS_CATEGORY );
 	}
 
@@ -57,7 +57,7 @@ class Namespace {
 	 * Check if the given namespace is not a talk page
 	 * @return bool
 	 */
-	function isMain( $index ) {
+	static function isMain( $index ) {
 		return ! Namespace::isTalk( $index );
 	}
 
@@ -73,7 +73,7 @@ class Namespace {
 	/**
 	 * Get the talk namespace corresponding to the given index
 	 */
-	function getTalk( $index ) {
+	static function getTalk( $index ) {
 		if ( Namespace::isTalk( $index ) ) {
 			return $index;
 		} else {
@@ -82,7 +82,7 @@ class Namespace {
 		}
 	}
 
-	function getSubject( $index ) {
+	static function getSubject( $index ) {
 		if ( Namespace::isTalk( $index ) ) {
 			return $index - 1;
 		} else {
@@ -93,7 +93,7 @@ class Namespace {
 	/**
 	 * Returns the canonical (English Wikipedia) name for a given index
 	 */
-	function getCanonicalName( $index ) {
+	static function getCanonicalName( $index ) {
 		global $wgCanonicalNamespaceNames;
 		return $wgCanonicalNamespaceNames[$index];
 	}
@@ -102,7 +102,7 @@ class Namespace {
 	 * Returns the index for a given canonical name, or NULL
 	 * The input *must* be converted to lower case first
 	 */
-	function getCanonicalIndex( $name ) {
+	static function getCanonicalIndex( $name ) {
 		global $wgCanonicalNamespaceNames;
 		static $xNamespaces = false;
 		if ( $xNamespaces === false ) {
@@ -122,7 +122,7 @@ class Namespace {
 	 * Can this namespace ever have a talk namespace?
 	 * @param $index Namespace index
 	 */
-	 function canTalk( $index ) {
+	 static function canTalk( $index ) {
 	 	return( $index >= NS_MAIN );
 	 }
 }
