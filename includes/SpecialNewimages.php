@@ -130,7 +130,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$ut = $s->img_user_text;
 
 		$nt = Title::newFromText( $name, NS_IMAGE );
-		$img = Image::newFromTitle( $nt );
+		$img = new Image( $nt );
 		$ul = $sk->makeLinkObj( Title::makeTitle( NS_USER, $ut ), $ut );
 
 		$gallery->add( $img, "$ul<br />\n<i>".$wgLang->timeanddate( $s->img_timestamp, true )."</i><br />\n" );

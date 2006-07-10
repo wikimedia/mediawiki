@@ -124,11 +124,13 @@ class CategoryPage extends Article {
 				array_push( $children_start_char, $wgContLang->convert( $sortkey ) ) ;
 			} elseif( $showGallery && $title->getNamespace() == NS_IMAGE ) {
 				// Show thumbnails of categorized images, in a separate chunk
+				$anImage = new Image($title);
 				if( $flip ) {
-					$ig->insert( Image::newFromTitle( $title ) );
+					$ig->insert( $anImage );
 				} else {
-					$ig->add( Image::newFromTitle( $title ) );
+					$ig->add( $anImage );
 				}
+				unset($anImage);
 			} else {
 				// Page in this category
 				array_push( $articles, $sk->makeSizeLinkObj( $x->page_len, $title, $wgContLang->convert( $title->getPrefixedText() ) ) ) ;
