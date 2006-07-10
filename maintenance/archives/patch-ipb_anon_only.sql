@@ -33,8 +33,8 @@ CREATE TABLE /*$wgDBprefix*/ipblocks_newunique (
 ) TYPE=InnoDB;
 
 INSERT IGNORE INTO /*$wgDBprefix*/ipblocks_newunique 
-        (ipb_id, ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry, ipb_range_start, ipb_range_end) 
-  SELECT ipb_id, ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry, ipb_range_start, ipb_range_end 
+        (ipb_id, ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry, ipb_range_start, ipb_range_end, ipb_anon_only, ipb_create_account) 
+  SELECT ipb_id, ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry, ipb_range_start, ipb_range_end, 0            , ipb_user=0
   FROM /*$wgDBprefix*/ipblocks;
 
 DROP TABLE IF EXISTS /*$wgDBprefix*/ipblocks_old;
