@@ -583,8 +583,14 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   -- Indicates that the IP address was banned because a banned
   -- user accessed a page through it. If this is 1, ipb_address
   -- will be hidden, and the block identified by block ID number.
-  ipb_auto tinyint(1) NOT NULL default '0',
+  ipb_auto boolean NOT NULL default '0',
   
+  -- If set to 1, block applies only to logged-out users
+  ipb_anon_only boolean NOT NULL default 0,
+
+  -- Block prevents account creation from matching IP addresses
+  ipb_create_account boolean NOT NULL default 1,
+    
   -- Time at which the block will expire.
   ipb_expiry char(14) binary NOT NULL default '',
   
@@ -594,9 +600,15 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_range_end varchar(32) NOT NULL default '',
 
   PRIMARY KEY ipb_id (ipb_id),
-  INDEX ipb_address (ipb_address),
+
+  -- Unique index to support "user already blocked" messages
+  -- Any new options which prevent collisions should be included
+  UNIQUE INDEX ipb_address (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only),
+
   INDEX ipb_user (ipb_user),
-  INDEX ipb_range (ipb_range_start(8), ipb_range_end(8))
+  INDEX ipb_range (ipb_range_start(8), ipb_range_end(8)),
+  INDEX ipb_timestamp (ipb_timestamp),
+  INDEX ipb_expiry (ipb_expiry)
 
 ) TYPE=InnoDB, DEFAULT CHARSET=utf8;
 

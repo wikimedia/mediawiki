@@ -24,6 +24,7 @@ class User {
 	 */
 	var $mBlockedby;	//!<
 	var $mBlockreason;	//!<
+	var $mBlock;        //!<
 	var $mDataLoaded;	//!<
 	var $mEmail;		//!<
 	var $mEmailAuthenticated; //!<
@@ -114,8 +115,6 @@ class User {
 	 */
 	function __sleep() {
 		return array(
-'mBlockedby',
-'mBlockreason',
 'mDataLoaded',
 'mEmail',
 'mEmailAuthenticated',
@@ -436,16 +435,17 @@ class User {
 		$ip = wfGetIP();
 
 		# User/IP blocking
-		$block = new Block();
-		$block->fromMaster( !$bFromSlave );
-		if ( $block->load( $ip , $this->mId ) ) {
+		$this->mBlock = new Block();
+		$this->mBlock->fromMaster( !$bFromSlave );
+		if ( $this->mBlock->load( $ip , $this->mId ) ) {
 			wfDebug( "$fname: Found block.\n" );
-			$this->mBlockedby = $block->mBy;
-			$this->mBlockreason = $block->mReason;
+			$this->mBlockedby = $this->mBlock->mBy;
+			$this->mBlockreason = $this->mBlock->mReason;
 			if ( $this->isLoggedIn() ) {
 				$this->spreadBlock();
 			}
 		} else {
+			$this->mBlock = null;
 			wfDebug( "$fname: No block.\n" );
 		}
 
@@ -694,6 +694,8 @@ class User {
 			$user->loadFromDatabase();
 		} else {
 			wfDebug( "User::loadFromSession() got from cache!\n" );
+			# Set block status to unloaded, that should be loaded every time
+			$user->mBlockedby = -1;
 		}
 
 		if ( isset( $_SESSION['wsToken'] ) ) {
@@ -1532,13 +1534,13 @@ class User {
 		}
 
 		$userblock = Block::newFromDB( '', $this->mId );
-		if ( !$userblock->isValid() ) {
+		if ( !$userblock ) {
 			return;
 		}
 
 		# Check if this IP address is already blocked
 		$ipblock = Block::newFromDB( wfGetIP() );
-		if ( $ipblock->isValid() ) {
+		if ( $ipblock ) {
 			# If the user is already blocked. Then check if the autoblock would
 			# excede the user block. If it would excede, then do nothing, else
 			# prolong block time
@@ -1612,8 +1614,13 @@ class User {
 		return $confstr;
 	}
 
+	function isBlockedFromCreateAccount() {
+		$this->getBlockedStatus();
+		return $this->mBlock && $this->mBlock->mCreateAccount;
+	}
+
 	function isAllowedToCreateAccount() {
-		return $this->isAllowed( 'createaccount' ) && !$this->isBlocked();
+		return $this->isAllowed( 'createaccount' ) && !$this->isBlockedFromCreateAccount();
 	}
 
 	/**
