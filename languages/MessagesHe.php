@@ -513,6 +513,8 @@ $wgAllMessagesHe = array(
 "edittools"                 => "<!-- הטקסט הנכתב כאן יוצג מתחת לטפסי עריכת דפים והעלאת קבצים, ולפיכך ניתן לכתוב להציג בו תווים קשים לכתיבה, קטעים מוכנים של טקסט ועוד. -->",
 "nocreatetitle"             => "יצירת הדפים הוגבלה",
 "nocreatetext"              => "אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[{{ns:special}}:Userlogin|להיכנס לחשבון]].",
+"cantcreateaccounttitle"    => "לא ניתן ליצור את החשבון",
+"cantcreateaccounttext"     => "אפשרות יצירת החשבונות מכתובת ה־IP הזו (<b>$1</b>) נחסמה, כנראה עקב השחתות מתמשכות מבית־הספר או ספק האינטרנט שלך.",
 
 # History pages
 "revhistory"                  => "היסטוריית שינויים",
@@ -886,6 +888,7 @@ $wgAllMessagesHe = array(
 "recentchangeslinked"     => "שינויים בדפים המקושרים",
 "rclsub"                  => '(לדפים המקושרים מהדף "$1")',
 "newpages"                => "דפים חדשים",
+"newpages-username"       => "שם משתמש:",
 "ancientpages"            => "דפים מוזנחים",
 "intl"                    => "קישורים בינלשוניים",
 "move"                    => "העבר",
@@ -1140,9 +1143,11 @@ $NEWPAGE
 "ipadressorusername"          => "כתובת IP או שם משתמש",
 "ipbexpiry"                   => "פקיעה",
 "ipbreason"                   => "סיבה",
+"ipbanononly"                 => "חסום משתמשים אנונימיים בלבד",
+"ipbcreateaccount"            => "חסום יצירת חשבונות",
 "ipbsubmit"                   => "חסום משתמש זה",
 "ipbother"                    => "זמן אחר",
-"ipboptions"                  => "5 דקות:5 minutes,10 דקות:10 minutes,חצי שעה:30 minutes,שעה:1 hours,שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite",
+"ipboptions"                  => "שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite",
 "ipbotheroption"              => "אחר",
 "badipaddress"                => "משתמש או כתובת IP שגויים.",
 "blockipsuccesssub"           => "החסימה הושלמה בהצלחה",
@@ -1157,6 +1162,8 @@ $NEWPAGE
 "blocklistline"               => '$1 $2 חסם את $3 ($4)',
 "infiniteblock"               => "לצמיתות",
 "expiringblock"               => "פוקע $1",
+"anononlyblock"               => "משתמשים אנונימיים בלבד",
+"createaccountblock"          => "יצירת חשבונות נחסמה",
 "ipblocklistempty"            => "רשימת המשתמשים החסומים ריקה.",
 "blocklink"                   => "חסום",
 "unblocklink"                 => "שחרר חסימה",
@@ -1170,7 +1177,9 @@ $NEWPAGE
 "unblocklogentry"             => "שיחרר את [[$1]]",
 "range_block_disabled"        => "היכולת לחסום טווח כתובות איננה פעילה.",
 "ipb_expiry_invalid"          => "זמן פקיעת חסימה בלתי חוקי",
+"ipb_already_blocked"         => 'המשתמש "$1" כבר נחסם',
 "ip_range_invalid"            => "טווח IP שגוי.",
+"ipb_cant_unblock"            => "שגיאה: חסימה מספר $1 לא נמצאה. ייתכן שהיא כבר שוחררה.",
 "proxyblocker"                => "חוסם פרוקסי",
 "proxyblockreason"            => "כתובת ה־IP שלכם נחסמה משום שהיא כתובת פרוקסי פתוחה. אנא צרו קשר עם ספק האינטרנט שלכם והודיעו לו על בעיית האבטחה החמורה הזו.",
 "proxyblocksuccess"           => "בוצע.",
@@ -1197,6 +1206,7 @@ $NEWPAGE
 
 זכרו לשחרר את הנעילה לאחר שפעולת התחזוקה הסתיימה.",
 "unlockdbsuccesstext" => "שוחררה הנעילה של בסיס הנתונים",
+"lockfilenotwritable" => "קובץ נעילת מסד הנתונים אינו ניתן לכתיבה. כדי שאפשר יהיה לנעול את מסד הנתונים או לבטל את נעילתו, שרת האינטרנט צריך לקבל הרשאות לכתוב אליו.",
 
 # Make sysop
 "makesysoptitle"     => "הפוך משתמש למפעיל מערכת",
