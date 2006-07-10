@@ -65,7 +65,7 @@ class Namespace {
 	 * Check if the give namespace is a talk page
 	 * @return bool
 	 */
-	function isTalk( $index ) {
+	static function isTalk( $index ) {
 		return ($index > NS_MAIN)  // Special namespaces are negative
 			&& ($index % 2); // Talk namespaces are odd-numbered
 	}

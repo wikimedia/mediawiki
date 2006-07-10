@@ -313,7 +313,7 @@ class SpecialPage
 	 * @param $title          a title object
 	 * @param $including      output is being captured for use in {{special:whatever}}
 	 */
-	function executePath( &$title, $including = false ) {
+	static function executePath( &$title, $including = false ) {
 		global $wgOut, $wgTitle;
 		$fname = 'SpecialPage::executePath';
 		wfProfileIn( $fname );
