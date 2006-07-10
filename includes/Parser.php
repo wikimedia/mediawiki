@@ -1634,7 +1634,7 @@ class Parser
 				$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
 				continue;
 			} elseif( $ns == NS_IMAGE ) {
-				$img = Image::newFromTitle( $nt );
+				$img = new Image( $nt );
 				if( $img->exists() ) {
 					// Force a blue link if the file exists; may be a remote
 					// upload on the shared repository, and we want to see its
