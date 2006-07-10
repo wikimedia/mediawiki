@@ -109,8 +109,10 @@ class LanguageHu extends LanguageUtf8 {
 		return "iso8859-2";
 	}
 
-	# localised date and time
-	function date( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = substr( $ts, 0, 4 ) . ". " .
@@ -119,7 +121,10 @@ class LanguageHu extends LanguageUtf8 {
 		return $d;
 	}
 
-	function timeanddate( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
 	}
 

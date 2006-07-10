@@ -95,7 +95,10 @@ class LanguageZh_cn extends LanguageUtf8 {
 		return false;
 	}
 
-	function date( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = substr( $ts, 0, 4 ) . "年" .
@@ -104,7 +107,10 @@ class LanguageZh_cn extends LanguageUtf8 {
 		return $d;
 	}
 
-	function timeanddate( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
 	}
 

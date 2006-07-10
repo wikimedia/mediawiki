@@ -101,7 +101,10 @@ class LanguageKo extends LanguageUtf8 {
 		return $this->mMessagesKo;
 	}
 
-	function date( $ts, $adj = false ) {
+	/**
+	 * $format and $timecorrection are for compatibility with Language::date
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$year = (int)substr( $ts, 0, 4 );

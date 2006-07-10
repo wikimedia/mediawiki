@@ -127,7 +127,7 @@ class LanguageCy extends LanguageUtf8 {
 		return $wgAllMessagesCy;
 	}
 
-	function getMagicWords() {
+	function &getMagicWords() {
 		global $wgMagicWordsCy, $wgMagicWordsEn;
 		return $wgMagicWordsCy + $wgMagicWordsEn;
 	}

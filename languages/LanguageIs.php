@@ -103,7 +103,10 @@ class LanguageIs extends LanguageUtf8 {
 		return $this->mMessagesIs;
 	}
 
-	function date( $ts, $adj = false, $format = true) {
+	/**
+	 * $timecorrection is for compatibility with Language::date
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
 		$format = $this->dateFormat($format);
 
@@ -123,7 +126,10 @@ class LanguageIs extends LanguageUtf8 {
 
 	}
 
-	function time($ts, $adj = false, $format = true) {
+	/**
+	 * $timecorrection is for compatibility with language::time
+	 */
+	function time($ts, $adj = false, $format = true, $timecorrection = false) {
 		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
 
@@ -137,7 +143,10 @@ class LanguageIs extends LanguageUtf8 {
 
 	}
 
-	function timeanddate( $ts, $adj = false, $format = true) {
+	/**
+	 * $timecorrection is for compatibility with Language::date
+	 */
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		global $wgUser;
 
 		$format = $this->dateFormat($format);
