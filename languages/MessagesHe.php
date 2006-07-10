@@ -1143,7 +1143,7 @@ $NEWPAGE
 "ipbreason"                   => "סיבה",
 "ipbsubmit"                   => "חסום משתמש זה",
 "ipbother"                    => "זמן אחר",
-"ipboptions"                  => "5 דקות:5 minutes,10 דקות:10 minutes,חצי שעה:30 minutes,שעה:1 hours,שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite",
+"ipboptions"                  => "שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite",
 "ipbotheroption"              => "אחר",
 "badipaddress"                => "משתמש או כתובת IP שגויים.",
 "blockipsuccesssub"           => "החסימה הושלמה בהצלחה",
