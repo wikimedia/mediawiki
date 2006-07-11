@@ -1,19 +1,19 @@
 <?php
-
 /**
  * Aliases for functions in the Xml module
+ * Look at the Xml class (Xml.php) for the implementations.
  */
-function wfElement( $element, $attribs = null, $contents = '') { 
-	return Xml::element( $element, $attribs, $contents ); 
+function wfElement( $element, $attribs = null, $contents = '') {
+	return Xml::element( $element, $attribs, $contents );
 }
 function wfElementClean( $element, $attribs = array(), $contents = '') {
 	return Xml::elementClean( $element, $attribs, $contents );
 }
-function wfOpenElement( $element, $attribs = null ) { 
-	return Xml::openElement( $element, $attribs ); 
+function wfOpenElement( $element, $attribs = null ) {
+	return Xml::openElement( $element, $attribs );
 }
-function wfCloseElement( $element ) { 
-	return "</$element>"; 
+function wfCloseElement( $element ) {
+	return "</$element>";
 }
 function &HTMLnamespaceselector($selected = '', $allnamespaces = null, $includehidden=false) {
 	return Xml::namespaceSelector( $selected, $allnamespaces, $includehidden );
