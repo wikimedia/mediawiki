@@ -81,6 +81,22 @@ function wfSpecialStatistics() {
 		);
 
 		$wgOut->addWikiText( $text );
+		
+		global $wgDisableCounters, $wgUser, $wgLang;
+		if( !$wgDisableCounters ) {
+			$res = $dbr->query( "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 ORDER BY page_counter DESC LIMIT 0,10", __METHOD__ );
+			if( $res ) {
+				$wgOut->addHtml( '<h2>' . wfMsgHtml( 'statistics-mostpopular' ) . '</h2>' );
+				$skin =& $wgUser->getSkin();
+				$wgOut->addHtml( '<ol>' );
+				while( $row = $dbr->fetchObject( $res ) ) {
+					$link = $skin->makeKnownLinkObj( Title::makeTitleSafe( $row->page_namespace, $row->page_title ) );
+					$wgOut->addHtml( '<li>' . $link . ' [' . $wgLang->formatNum( $row->page_counter ) . ']</li>' );
+				}
+				$wgOut->addHtml( '</ol>' );
+			}
+		}
+		
 	}
 }
 ?>

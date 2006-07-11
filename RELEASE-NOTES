@@ -47,10 +47,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   cache object.
 * (bug 6299) Maintain parser's revision ID across recursive calls to fix
   {{REVISIONID}} when Cite extension is used
-* (bug 6622) Removed deprecated function image::newFromTitle
+* (bug 6622) Removed deprecated function Image::newFromTitle
 * (bug 6627) Fix regression in Special:Ipblocklist with table prefix
 * Removed forced dereferencements (new() returns a reference in PHP5)
 * Note about $wgUploadSizeWarning using byte
+* (bug 6592) Add most viewed pages summary to Special:Statistics
 
 == Languages updated ==
 
