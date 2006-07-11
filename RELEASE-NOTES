@@ -52,6 +52,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed forced dereferencements (new() returns a reference in PHP5)
 * Note about $wgUploadSizeWarning using byte
 * (bug 6592) Add most viewed pages summary to Special:Statistics
+* Pre-strip characters ignored in IDNs from URLs so they can't be used
+  to break the blacklists for regular URLs
+
 
 == Languages updated ==
 

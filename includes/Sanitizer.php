@@ -1181,6 +1181,47 @@ class Sanitizer {
 		$out .= "]>\n";
 		return $out;
 	}
+	
+	static function cleanUrl( $url, $hostname=true ) {
+		# Normalize any HTML entities in input. They will be
+		# re-escaped by makeExternalLink().
+		$url = Sanitizer::decodeCharReferences( $url );
+
+		# Escape any control characters introduced by the above step
+		$url = preg_replace( '/[\][<>"\\x00-\\x20\\x7F]/e', "urlencode('\\0')", $url );
+		
+		# Validate hostname portion
+		if( preg_match( '!^([^:]+:)(//[^/]+)?(.*)$!iD', $url, $matches ) ) {
+			list( $whole, $protocol, $host, $rest ) = $matches;
+			
+			// Characters that will be ignored in IDNs.
+			// http://tools.ietf.org/html/3454#section-3.1
+			// Strip them before further processing so blacklists and such work.
+			$strip = "/
+				\\s|          # general whitespace
+				\xc2\xad|     # 00ad SOFT HYPHEN
+				\xe1\xa0\x86| # 1806 MONGOLIAN TODO SOFT HYPHEN
+				\xe2\x80\x8b| # 200b ZERO WIDTH SPACE
+				\xe2\x81\xa0| # 2060 WORD JOINER
+				\xef\xbb\xbf| # feff ZERO WIDTH NO-BREAK SPACE
+				\xcd\x8f|     # 034f COMBINING GRAPHEME JOINER
+				\xe1\xa0\x8b| # 180b MONGOLIAN FREE VARIATION SELECTOR ONE
+				\xe1\xa0\x8c| # 180c MONGOLIAN FREE VARIATION SELECTOR TWO
+				\xe1\xa0\x8d| # 180d MONGOLIAN FREE VARIATION SELECTOR THREE
+				\xe2\x80\x8c| # 200c ZERO WIDTH NON-JOINER
+				\xe2\x80\x8d| # 200d ZERO WIDTH JOINER
+				[\xef\xb8\x80-\xef\xb8\x8f] # fe00-fe00f VARIATION SELECTOR-1-16
+				/xuD";
+			
+			$host = preg_replace( $strip, '', $host );
+			
+			// @fixme: validate hostnames here
+			
+			return $protocol . $host . $rest;
+		} else {
+			return $url;
+		}
+	}
 
 }
 
