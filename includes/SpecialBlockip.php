@@ -73,8 +73,6 @@ class IPBlockForm {
 		$mIpbothertime = wfMsgHtml( 'ipbotheroption' );
 		$mIpbreason = wfMsgHtml( 'ipbreason' );
 		$mIpbsubmit = wfMsgHtml( 'ipbsubmit' );
-		$mIpbanononly = wfMsgHtml( 'ipbanononly' );
-		$mIpbcreateaccount = wfMsgHtml( 'ipbcreateaccount' );
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
@@ -88,8 +86,6 @@ class IPBlockForm {
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
 		$scBlockOtherTime = htmlspecialchars( $this->BlockOther );
 		$scBlockExpiryOptions = htmlspecialchars( wfMsgForContent( 'ipboptions' ) );
-		$anonOnlyChecked = $this->BlockAnonOnly ? 'checked' : '';
-		$createAccountChecked = $this->BlockCreateAccount ? 'checked' : '';
 
 		$showblockoptions = $scBlockExpiryOptions != '-';
 		if (!$showblockoptions)
@@ -146,19 +142,15 @@ class IPBlockForm {
 		<tr>
 			<td>&nbsp;</td>
 			<td align=\"left\">
-				<label>
-				<input type='checkbox' name='wpAnonOnly' value='1' $anonOnlyChecked />
-				{$mIpbanononly}
-				</label>
+				" . wfCheckLabel( wfMsg( 'ipbanononly' ),
+					'wpAnonOnly', 'wpAnonOnly', $this->BlockAnonOnly ) . "
 			</td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
 			<td align=\"left\">
-				<label>
-				<input type='checkbox' name='wpCreateAccount' value='1' $createAccountChecked />
-				{$mIpbcreateaccount}
-				</label>
+				" . wfCheckLabel( wfMsg( 'ipbcreateaccount' ),
+					'wpCreateAccount', 'wpCreateAccount', $this->BlockCreateAccount ) . "
 			</td>
 		</tr>
 		<tr>
@@ -198,7 +190,7 @@ class IPBlockForm {
 				# Username block
 				if ( $wgSysopUserBans ) {
 					$user = User::newFromName( $this->BlockAddress );
-					if ( $user->getID() ) {
+					if( !is_null( $user ) && $user->getID() ) {
 						# Use canonical name
 						$this->BlockAddress = $user->getName();
 					} else {
