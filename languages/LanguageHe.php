@@ -288,13 +288,13 @@ class LanguageHe extends LanguageUtf8 {
 	 *
 	 * @return string of the suited form of word
 	 */
-	public function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+	public function convertPlural( $count, $w1, $w2, $w3) {
 		if ( $count == '1' ) {
-			return $wordform1;
-		} elseif ( $count == '2' && $wordform3 ) {
-			return $wordform3;
+			return $w1;
+		} elseif ( $count == '2' && $w3 ) {
+			return $w3;
 		} else {
-			return $wordform2;
+			return $w2;
 		}
 	}
 	
