@@ -235,9 +235,8 @@ function wfSpecialWatchlist( $par ) {
 			$wgOut->addHTML( '</ul>' );
 		}
 		$wgOut->addHTML(
-			"<input type='submit' name='remove' value=\"" .
-			htmlspecialchars( wfMsg( "removechecked" ) ) . "\" />\n" .
-			"</form>\n"
+			wfSubmitButton( htmlspecialchars( wfMsg('removechecked') ), array('name' => 'remove') ) .
+			"\n</form>\n"
 		);
 
 		return;
@@ -313,14 +312,15 @@ function wfSpecialWatchlist( $par ) {
 	$numRows = $dbr->numRows( $res );
 
 	/* Start bottom header */
-	$wgOut->addHTML( "<hr />\n<p>" );
+	$wgOut->addHTML( "<hr />\n" );
 
-	if($days >= 1)
+	if($days >= 1) {
 		$wgOut->addWikiText( wfMsg( 'rcnote', $wgLang->formatNum( $numRows ),
 			$wgLang->formatNum( $days ), $wgLang->timeAndDate( wfTimestampNow(), true ) ) . '<br />' , false );
-	elseif($days > 0)
+	} elseif($days > 0) {
 		$wgOut->addWikiText( wfMsg( 'wlnote', $wgLang->formatNum( $numRows ),
 			$wgLang->formatNum( round($days*24) ) ) . '<br />' , false );
+	}
 
 	$wgOut->addHTML( "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n" );
 
@@ -343,24 +343,27 @@ function wfSpecialWatchlist( $par ) {
 	$wgOut->addHTML( implode( ' | ', $links ) );
 
 	# Form for namespace filtering
-	$thisAction = $thisTitle->escapeLocalUrl();
-	$nsForm  = "<form method=\"post\" action=\"{$thisAction}\">\n";
-	$nsForm .= "<label for=\"namespace\">" . wfMsgExt( 'namespace', array( 'parseinline') ) . "</label> ";
-	$nsForm .= HTMLnamespaceselector( $nameSpace, '' ) . "\n";
-	$nsForm .= ( $hideOwn ? "<input type=\"hidden\" name=\"hideown\" value=\"1\" />\n" : "" );
-	$nsForm .= ( $hideBots ? "<input type=\"hidden\" name=\"hidebots\" value=\"1\" />\n" : "" );
-	$nsForm .= "<input type=\"hidden\" name=\"days\" value=\"" . $days . "\" />\n";
-	$nsForm .= "<input type=\"submit\" name=\"submit\" value=\"" . wfMsgExt( 'allpagessubmit', array( 'escape') ) . "\" />\n";
-	$nsForm .= "</form>\n";
-	$wgOut->addHTML( $nsForm );
+	$wgOut->addHTML(
+		wfOpenElement( 'form', array(
+				'method' => 'post',
+				'action' => $thisTitle->escapeLocalUrl(),
+			) ) .
+		wfLabel( 
+			wfMsgExt( 'namespace', array( 'parseinline') ),
+			'namespace' ) .
+		HTMLnamespaceselector( $nameSpace, '' ) . "\n" .
+		( $hideOwn ? wfHidden('hideown', 1)."\n" : '' ) .
+		( $hideBots ? wfHidden('hidebots', 1)."\n" : '' ) .
+		wfHidden( 'days', $days ) . "\n" .
+		wfSubmitButton( wfMsgExt( 'allpagessubmit', array( 'escape') ) ) . "\n" .
+		wfCloseElement( 'form' ) . "\n"
+	);
 
 	if ( $numRows == 0 ) {
 		$wgOut->addWikitext( "<br />" . wfMsg( 'watchnochange' ), false );
-		$wgOut->addHTML( "</p>\n" );
 		return;
 	}
 
-	$wgOut->addHTML( "</p>\n" );
 	/* End bottom header */
 
 	$list = ChangesList::newFromUser( $wgUser );
@@ -494,9 +497,11 @@ function wlHandleClear( &$out, &$request, $par ) {
 				$out->addHTML( wfElement( 'form', array( 'method' => 'post', 'action' => $wlTitle->getLocalUrl( 'action=clear' ) ), NULL ) );
 				$out->addWikiText( wfMsg( 'watchlistcount', $count ) );
 				$out->addWikiText( wfMsg( 'watchlistcleartext' ) );
-				$out->addHTML( wfElement( 'input', array( 'type' => 'hidden', 'name' => 'token', 'value' => $wgUser->editToken( 'clearwatchlist' ) ), '' ) );
-				$out->addHTML( wfElement( 'input', array( 'type' => 'submit', 'name' => 'submit', 'value' => wfMsgHtml( 'watchlistclearbutton' ) ), '' ) );
-				$out->addHTML( wfCloseElement( 'form' ) ); 
+				$out->addHTML(
+					wfElement( 'input', array( 'type' => 'hidden', 'name' => 'token', 'value' => $wgUser->editToken( 'clearwatchlist' ) ), '' ) .
+					wfElement( 'input', array( 'type' => 'submit', 'name' => 'submit', 'value' => wfMsgHtml( 'watchlistclearbutton' ) ), '' ) .
+					wfCloseElement( 'form' )
+				);
 			}
 			return( true );
 		} else {
@@ -509,5 +514,4 @@ function wlHandleClear( &$out, &$request, $par ) {
 		return( false );
 	}
 }
-
 ?>
