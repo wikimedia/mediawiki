@@ -834,12 +834,12 @@ $wgAllMessagesHe = array(
 
 # Disambiguations Page
 "disambiguations"            => "דפי פירושונים",
-"disambiguationspage"        => "{{ns:project}}:דפי פירושונים",
+"disambiguationspage"        => "{{ns:template}}:פירושונים",
 "disambiguationstext"        => "<p>הדפים שלהלן מקשרים אל <b>דפי פירושונים</b>. תפקיד דפים אלה הוא להפנות לדף הנושא הרלוונטי.</p>
 
 <p>אנו מתייחסים לדף כדף פירושונים אם הוא מקושר לדף $1.</p>
 
-<p>קישורים המגיעים לדף ממרחבי שם אחרים '''אינם''' מוצגים כאן.</p>",
+<p>קישורים המגיעים לדף ממרחבי שם אחרים <b>אינם</b> מוצגים כאן.</p>",
 
 # Double redirects page
 "doubleredirects"            => "הפניות כפולות",
