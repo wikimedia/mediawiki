@@ -193,6 +193,7 @@ class IPBlockForm {
 					if( !is_null( $user ) && $user->getID() ) {
 						# Use canonical name
 						$this->BlockAddress = $user->getName();
+						$userId = $user->getID();
 					} else {
 						$this->showForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->BlockAddress ) ) );
 						return;
