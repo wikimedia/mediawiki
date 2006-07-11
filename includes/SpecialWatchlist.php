@@ -235,7 +235,7 @@ function wfSpecialWatchlist( $par ) {
 			$wgOut->addHTML( '</ul>' );
 		}
 		$wgOut->addHTML(
-			wfSubmitButton( htmlspecialchars( wfMsg('removechecked') ), array('name' => 'remove') ) .
+			wfSubmitButton( wfMsg('removechecked'), array('name' => 'remove') ) .
 			"\n</form>\n"
 		);
 
@@ -346,7 +346,7 @@ function wfSpecialWatchlist( $par ) {
 	$wgOut->addHTML(
 		wfOpenElement( 'form', array(
 				'method' => 'post',
-				'action' => $thisTitle->escapeLocalUrl(),
+				'action' => $thisTitle->getLocalURL(),
 			) ) .
 		wfLabel( 
 			wfMsgExt( 'namespace', array( 'parseinline') ),
@@ -498,7 +498,7 @@ function wlHandleClear( &$out, &$request, $par ) {
 				$out->addWikiText( wfMsg( 'watchlistcount', $count ) );
 				$out->addWikiText( wfMsg( 'watchlistcleartext' ) );
 				$out->addHTML(
-					wfElement( 'input', array( 'type' => 'hidden', 'name' => 'token', 'value' => $wgUser->editToken( 'clearwatchlist' ) ), '' ) .
+					wfHidden( 'token', $wgUser->editToken( 'clearwatchlist' ) ) .
 					wfElement( 'input', array( 'type' => 'submit', 'name' => 'submit', 'value' => wfMsgHtml( 'watchlistclearbutton' ) ), '' ) .
 					wfCloseElement( 'form' )
 				);
