@@ -336,7 +336,7 @@ class IPBlocklistPager extends ReverseChronologicalPager {
 		$conds[] = 'ipb_by=user_id';
 		return array(
 			'tables' => array( 'ipblocks', 'user' ),
-			'fields' => 'ipblocks.*,user_name',
+			'fields' => $this->mDb->tableName( 'ipblocks' ) . '.*,user_name',
 			'conds' => $conds,
 		);
 	}
