@@ -94,6 +94,7 @@ function wfSpecialStatistics() {
 					$wgOut->addHtml( '<li>' . $link . ' [' . $wgLang->formatNum( $row->page_counter ) . ']</li>' );
 				}
 				$wgOut->addHtml( '</ol>' );
+				$dbr->freeResult( $res );
 			}
 		}
 		
