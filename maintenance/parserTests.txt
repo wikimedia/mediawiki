@@ -714,6 +714,15 @@ External links: [encoded equals] (bug 6102)
 !! end
 
 !! test
+External links: [illegal character reference in hostname]
+!! input
+[http://e&zwnj;xample.com/]
+!! result
+<p>[http://e&zwnj;xample.com/]
+</p>
+!! end
+
+!! test
 External links: www.jpeg.org (bug 554)
 !! input
 http://www.jpeg.org
