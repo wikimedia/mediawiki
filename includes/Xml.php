@@ -78,7 +78,7 @@ class Xml {
 				$selected = intval( $selected );
 			}
 		}
-		$s = "<select id='namespace' name='namespace' class='namespaceselector'>\n\t";
+		$s = "\n<select id='namespace' name='namespace' class='namespaceselector'>\n";
 		$arr = $wgContLang->getFormattedNamespaces();
 		if( !is_null($allnamespaces) ) {
 			$arr = array($allnamespaces => wfMsg('namespacesall')) + $arr;
@@ -89,14 +89,14 @@ class Xml {
 			$name = $index !== 0 ? $name : wfMsg('blanknamespace');
 
 			if ($index === $selected) {
-				$s .= self::element("option",
+				$s .= "\t" . self::element("option",
 						array("value" => $index, "selected" => "selected"),
-						$name);
+						$name) . "\n";
 			} else {
-				$s .= self::element("option", array("value" => $index), $name);
+				$s .= "\t" . self::element("option", array("value" => $index), $name) . "\n";
 			}
 		}
-		$s .= "\n</select>\n";
+		$s .= "</select>\n";
 		return $s;
 	}
 
