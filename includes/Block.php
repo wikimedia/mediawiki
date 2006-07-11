@@ -130,8 +130,36 @@ class Block
 		}
 
 		# Try IP block
+		# TODO: improve performance by merging this query with the autoblock one
+		# Slightly tricky while handling killExpired as well
 		if ( $address ) {
-			$conds = array( 'ipb_address' => $address );
+			$conds = array( 'ipb_address' => $address, 'ipb_auto' => 0 );
+			$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
+			if ( $this->loadFromResult( $res, $killExpired ) ) {
+				if ( $user && $this->mAnonOnly ) {
+					# Block is marked anon-only
+					# Whitelist this IP address against autoblocks and range blocks
+					$this->clear();
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+
+		# Try range block
+		if ( $this->loadRange( $address, $killExpired, $user == 0 ) ) {
+			if ( $user && $this->mAnonOnly ) {
+				$this->clear();
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		# Try autoblock
+		if ( $address ) {
+			$conds = array( 'ipb_address' => $address, 'ipb_auto' => 1 );
 			if ( $user ) {
 				$conds['ipb_anon_only'] = 0;
 			}
@@ -140,12 +168,7 @@ class Block
 				return true;
 			}
 		}
-
-		# Try range block
-		if ( $this->loadRange( $address, $killExpired, $user == 0 ) ) {
-			return true;
-		}
-
+		
 		# Give up
 		$this->clear();
 		return false;
@@ -189,7 +212,7 @@ class Block
 	 * Search the database for any range blocks matching the given address, and
 	 * load the row if one is found.
 	 */
-	function loadRange( $address, $killExpired = true, $isAnon = true )
+	function loadRange( $address, $killExpired = true )
 	{
 		$iaddr = wfIP2Hex( $address );
 		if ( $iaddr === false ) {
@@ -208,9 +231,6 @@ class Block
 			"ipb_range_start <= '$iaddr'",
 			"ipb_range_end >= '$iaddr'"
 		);
-		if ( !$isAnon ) {
-			$conds['ipb_anon_only'] = 0;
-		}
 
 		$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
 		$success = $this->loadFromResult( $res, $killExpired );
