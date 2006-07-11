@@ -435,6 +435,7 @@ END
 		global $wgUser, $wgOut, $wgRequest;
 
 		$confirm = $wgRequest->wasPosted();
+		$reason = $wgRequest->getVal( 'wpReason' );
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 
@@ -465,7 +466,7 @@ END
 		# Deleting old images doesn't require confirmation
 		if ( !is_null( $oldimage ) || $confirm ) {
 			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
-				$this->doDelete();
+				$this->doDelete( $reason );
 			} else {
 				$wgOut->showFatalError( wfMsg( 'sessionfailure' ) );
 			}
@@ -482,13 +483,16 @@ END
 		return $this->confirmDelete( $q, $wgRequest->getText( 'wpReason' ) );
 	}
 
-	function doDelete()	{
+	/*
+	 * Delete an image.
+	 * @param $reason User provided reason for deletion.
+	 */
+	function doDelete( $reason ) {
 		global $wgOut, $wgRequest, $wgUseSquid;
 		global $wgPostCommitUpdateList;
 
 		$fname = 'ImagePage::doDelete';
 
-		$reason = $wgRequest->getVal( 'wpReason' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 
 		$dbw =& wfGetDB( DB_MASTER );
