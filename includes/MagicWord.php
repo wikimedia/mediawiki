@@ -310,14 +310,16 @@ class MagicWord {
 		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
 		if ( $matchcount == 0 ) {
 			return NULL;
-		} elseif ( count($matches) == 1 ) {
-			return $matches[0];
 		} else {
 			# multiple matched parts (variable match); some will be empty because of
 			# synonyms. The variable will be the second non-empty one so remove any
 			# blank elements and re-sort the indices.
+			# See also bug 6526
+
 			$matches = array_values(array_filter($matches));
-			return $matches[1];
+
+			if ( count($matches) == 1 ) { return $matches[0]; }
+			else { return $matches[1]; }
 		}
 	}
 
