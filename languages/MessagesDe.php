@@ -785,6 +785,7 @@ Daraus ergeben sich \'\'\'$5\'\'\' Bearbeitungen pro Seite und \'\'\'$6\'\'\' Se
 Länge der „Job queue“: \'\'\'$7\'\'\'',
 'userstatstext'		=> 'Es gibt \'\'\'$1\'\'\' registrierte [[{{ns:special}}:Listusers|Benutzer]].
 Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
+'statistics-mostpopular'	=> 'Meist besuchte Seiten',
 
 # Maintenance Page
 #
