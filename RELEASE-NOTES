@@ -48,6 +48,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6299) Maintain parser's revision ID across recursive calls to fix
   {{REVISIONID}} when Cite extension is used
 * (bug 6622) Removed deprecated function image::newFromTitle
+* (bug 6627) Fix regression in Special:Ipblocklist with table prefix
 
 
 == Languages updated ==
