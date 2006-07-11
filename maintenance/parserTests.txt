@@ -4043,6 +4043,16 @@ Something, but defenetly not <br id="9" />...
 !! end
 
 !! test
+Sanitizer: Validating id attribute uniqueness (bug 4515, bug 6301)
+!! options
+disabled
+!! input
+<br id="foo" /><br id="foo" />
+!! result
+Something need to be done. foo-2 ? 
+!! end
+
+!! test
 Language converter: output gets cut off unexpectedly (bug 5757)
 !! options
 language=zh
