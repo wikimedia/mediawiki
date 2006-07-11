@@ -1086,7 +1086,7 @@ class Sanitizer {
 			'table'      => array_merge( $common,
 								array( 'summary', 'width', 'border', 'frame',
 										'rules', 'cellspacing', 'cellpadding',
-										'align', 'bgcolor', 'rules',
+										'align', 'bgcolor',
 								) ),
 
 			# 11.2.2
