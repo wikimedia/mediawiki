@@ -41,3 +41,4 @@ DROP TABLE IF EXISTS /*$wgDBprefix*/ipblocks_old;
 RENAME TABLE /*$wgDBprefix*/ipblocks TO /*$wgDBprefix*/ipblocks_old;
 RENAME TABLE /*$wgDBprefix*/ipblocks_newunique TO /*$wgDBprefix*/ipblocks;
 
+UPDATE /*$wgDBprefix*/ipblocks SET ipb_expiry='infinity' WHERE ipb_expiry='';
