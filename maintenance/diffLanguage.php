@@ -128,7 +128,7 @@ if ( isset($args[0]) ) {
 }
 
 /** parsertest is used to do differences */
-$myParserTest =& new ParserTest();
+$myParserTest = new ParserTest();
 
 # Get all references messages and check if they exist in the tested language
 $i = 0;

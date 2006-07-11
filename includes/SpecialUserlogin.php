@@ -522,12 +522,12 @@ class LoginForm {
 		require_once( 'templates/Userlogin.php' );
 
 		if ( $this->mType == 'signup' ) {
-			$template =& new UsercreateTemplate();
+			$template = new UsercreateTemplate();
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
 			$linkmsg = 'gotaccount';
 		} else {
-			$template =& new UserloginTemplate();
+			$template = new UserloginTemplate();
 			$q = 'action=submitlogin&type=login';
 			$linkq = 'type=signup';
 			$linkmsg = 'nologin';

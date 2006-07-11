@@ -221,7 +221,7 @@ class BackupDumper {
 		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBname, $wgDebugDumpSql;
 		$flags = ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT; // god-damn hack
-		$db =& new Database( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname, false, $flags );
+		$db = new Database( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname, false, $flags );
 		$timeout = 3600 * 24;
 		$db->query( "SET net_read_timeout=$timeout" );
 		$db->query( "SET net_write_timeout=$timeout" );

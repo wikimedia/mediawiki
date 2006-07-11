@@ -412,7 +412,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 }
 
 
-$suite =& new PHPUnit_TestSuite( 'CleanUpTest' );
+$suite = new PHPUnit_TestSuite( 'CleanUpTest' );
 $result = PHPUnit::run( $suite );
 echo $result->toString();
 

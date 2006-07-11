@@ -64,7 +64,7 @@ class FiveUpgrade {
 	function &newConnection() {
 		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBserver, $wgDBname;
-		$db =& new Database( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+		$db = new Database( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 		return $db;
 	}
 

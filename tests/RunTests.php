@@ -57,7 +57,7 @@ foreach( $tests as $test ) {
 function &buildTestDatabase( $serverType, $tables ) {
 	global $testOptions, $wgDBprefix;
 	$wgDBprefix = 'parsertest';
-	$db =& new Database(
+	$db = new Database(
 		$testOptions[$serverType]['server'],
 		$testOptions[$serverType]['user'],
 		$testOptions[$serverType]['password'],

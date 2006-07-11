@@ -373,7 +373,7 @@ END
 		$line = $this->img->nextHistoryLine();
 
 		if ( $line ) {
-			$list =& new ImageHistoryList( $sk );
+			$list = new ImageHistoryList( $sk );
 			$s = $list->beginImageHistoryList() .
 				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $line->img_timestamp),
 					$this->mTitle->getDBkey(),  $line->img_user,
