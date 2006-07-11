@@ -54,6 +54,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6592) Add most viewed pages summary to Special:Statistics
 * Pre-strip characters ignored in IDNs from URLs so they can't be used
   to break the blacklists for regular URLs
+* Fix regression in blocking of user accounts
 
 
 == Languages updated ==
