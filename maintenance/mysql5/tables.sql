@@ -583,13 +583,13 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   -- Indicates that the IP address was banned because a banned
   -- user accessed a page through it. If this is 1, ipb_address
   -- will be hidden, and the block identified by block ID number.
-  ipb_auto boolean NOT NULL default '0',
+  ipb_auto bool NOT NULL default '0',
   
   -- If set to 1, block applies only to logged-out users
-  ipb_anon_only boolean NOT NULL default 0,
+  ipb_anon_only bool NOT NULL default 0,
 
   -- Block prevents account creation from matching IP addresses
-  ipb_create_account boolean NOT NULL default 1,
+  ipb_create_account bool NOT NULL default 1,
     
   -- Time at which the block will expire.
   ipb_expiry char(14) binary NOT NULL default '',
