@@ -714,11 +714,20 @@ External links: [encoded equals] (bug 6102)
 !! end
 
 !! test
-External links: [illegal character reference in hostname]
+External links: [IDN ignored character reference in hostname; strip it right off]
 !! input
 [http://e&zwnj;xample.com/]
 !! result
-<p>[http://e&zwnj;xample.com/]
+<p><a href="http://example.com/" class="external autonumber" title="http://example.com/" rel="nofollow">[1]</a>
+</p>
+!! end
+
+!! test
+External links: IDN ignored character reference in hostname; strip it right off
+!! input
+http://e&zwnj;xample.com/
+!! result
+<p><a href="http://example.com/" class="external free" title="http://example.com/" rel="nofollow">http://example.com/</a>
 </p>
 !! end
 

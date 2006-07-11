@@ -1197,13 +1197,8 @@ class Parser
 			}
 
 			$text = $wgContLang->markNoConversion($text);
-
-			# Normalize any HTML entities in input. They will be
-			# re-escaped by makeExternalLink().
-			$url = Sanitizer::decodeCharReferences( $url );
-
-			# Escape any control characters introduced by the above step
-			$url = preg_replace( '/[\][<>"\\x00-\\x20\\x7F]/e', "urlencode('\\0')", $url );
+			
+			$url = Sanitizer::cleanUrl( $url );
 
 			# Process the trail (i.e. everything after this link up until start of the next link),
 			# replacing any non-bracketed links
@@ -1284,12 +1279,7 @@ class Parser
 					$url = substr( $url, 0, -$numSepChars );
 				}
 
-				# Normalize any HTML entities in input. They will be
-				# re-escaped by makeExternalLink() or maybeMakeExternalImage()
-				$url = Sanitizer::decodeCharReferences( $url );
-
-				# Escape any control characters introduced by the above step
-				$url = preg_replace( '/[\][<>"\\x00-\\x20\\x7F]/e', "urlencode('\\0')", $url );
+				$url = Sanitizer::cleanUrl( $url );
 
 				# Is this an external image?
 				$text = $this->maybeMakeExternalImage( $url );
