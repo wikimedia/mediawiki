@@ -41,7 +41,7 @@ class DumpHTML {
 
 	# List of raw pages used in the current article
 	var $rawPages;
-	
+
 	# Skin to use
 	var $skin = 'dumphtml';
 
@@ -265,9 +265,12 @@ class DumpHTML {
 
 		wfMkdirParents( $fullDir, 0755 );
 
+		wfSuppressWarnings();
 		$file = fopen( $fullName, 'w' );
+		wfRestoreWarnings();
+
 		if ( !$file ) {
-			print("Can't open file $fullName for writing\n");
+			die("Can't open file '$fullName' for writing.\nCheck permissions or use another destination (-d).\n");
 			return;
 		}
 
