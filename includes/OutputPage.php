@@ -46,7 +46,8 @@ class OutputPage {
 		$this->mCategoryLinks = array();
 		$this->mDoNothing = false;
 		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
-		$this->mParserOptions = ParserOptions::newFromUser( $temp = NULL );
+		$nullvalue = NULL;
+		$this->mParserOptions = ParserOptions::newFromUser( $nullvalue );
 		$this->mSquidMaxage = 0;
 		$this->mScripts = '';
 		$this->mETag = false;
