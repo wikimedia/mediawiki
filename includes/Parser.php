@@ -4561,12 +4561,12 @@ class ParserOptions
 	 * Get parser options
 	 * @static
 	 */
-	static function newFromUser( &$user ) {
+	static function newFromUser( $user ) {
 		return new ParserOptions( $user );
 	}
 
 	/** Get user options */
-	function initialiseFromUser( &$userInput ) {
+	function initialiseFromUser( $userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion;
 		$fname = 'ParserOptions::initialiseFromUser';
