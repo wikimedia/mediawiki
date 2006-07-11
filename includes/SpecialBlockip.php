@@ -197,8 +197,11 @@ class IPBlockForm {
 			} else {
 				# Username block
 				if ( $wgSysopUserBans ) {
-					$userId = User::idFromName( $this->BlockAddress );
-					if ( $userId == 0 ) {
+					$user = User::newFromName( $this->BlockAddress );
+					if ( $user->getID() ) {
+						# Use canonical name
+						$this->BlockAddress = $user->getName();
+					} else {
 						$this->showForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->BlockAddress ) ) );
 						return;
 					}
