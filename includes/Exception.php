@@ -27,7 +27,7 @@ class MWException extends Exception
 	}
 
 	function getText() {
-		return $this->getMessage() .  
+		return $this->getMessage() .
 			"\nBacktrace:\n" . $this->getTraceAsString() . "\n";
 	}
 	
@@ -93,11 +93,11 @@ class MWException extends Exception
 
 	function htmlFooter() {
 		echo "</body></html>";
-	}		
+	}
 }
 
 /**
- * Exception class which takes an HTML error message, and does not 
+ * Exception class which takes an HTML error message, and does not
  * produce a backtrace. Replacement for OutputPage::fatalError().
  */
 class FatalError extends MWException {
@@ -145,11 +145,11 @@ function wfReportException( Exception $e ) {
 			 $e->report();
 		 } catch ( Exception $e2 ) {
 			 // Exception occurred from within exception handler
-			 // Show a simpler error message for the original exception, 
+			 // Show a simpler error message for the original exception,
 			 // don't try to invoke report()
 			 $message = "MediaWiki internal error.\n\n" .
-			 "Original exception: " . $e->__toString() . 
-			 "\n\nException caught inside exception handler: " . 
+			 "Original exception: " . $e->__toString() .
+			 "\n\nException caught inside exception handler: " .
 			 $e2->__toString() . "\n";
 
 			 if ( !empty( $GLOBALS['wgCommandLineMode'] ) ) {
@@ -165,7 +165,7 @@ function wfReportException( Exception $e ) {
 
 /**
  * Exception handler which simulates the appropriate catch() handling:
- * 
+ *
  *   try {
  *       ...
  *   } catch ( MWException $e ) {

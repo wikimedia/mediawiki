@@ -324,8 +324,8 @@ class Parser
 		} else {
 			# attempt to sanitize at least some nesting problems
 			# (bug #2702 and quite a few others)
-			$tidyregs = array(	
-				# ''Something [http://www.cool.com cool''] --> 
+			$tidyregs = array(
+				# ''Something [http://www.cool.com cool''] -->
 				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
 				'/(<([bi])>)(<([bi])>)?([^<]*)(<\/?a[^<]*>)([^<]*)(<\/\\4>)?(<\/\\2>)/' =>
 				'\\1\\3\\5\\8\\9\\6\\1\\3\\7\\8\\9',
@@ -340,10 +340,10 @@ class Parser
 				'\\1\\3&lt;div\\5&gt;\\6&lt;/div&gt;\\8\\9',
 				# remove empty italic or bold tag pairs, some
 				# introduced by rules above
-				'/<([bi])><\/\\1>/' => '' 
+				'/<([bi])><\/\\1>/' => '',
 			);
 
-			$text = preg_replace( 
+			$text = preg_replace(
 				array_keys( $tidyregs ),
 				array_values( $tidyregs ),
 				$text );
@@ -549,7 +549,7 @@ class Parser
 				$state[$element][$marker] = $output;
 			}
 		}
-		
+
 		# Unstrip comments unless explicitly told otherwise.
 		# (The comments are always stripped prior to this point, so as to
 		# not invoke any extension tags / parser hooks contained within
@@ -801,13 +801,13 @@ class Parser
 				}
 				$after = substr ( $x , 1 ) ;
 				if ( $fc == '!' ) $after = str_replace ( '!!' , '||' , $after ) ;
-				
+
 				// Split up multiple cells on the same line.
 				// FIXME: This can result in improper nesting of tags processed
 				// by earlier parser steps, but should avoid splitting up eg
 				// attribute values containing literal "||".
 				$after = wfExplodeMarkup( '||', $after );
-				
+
 				$t[$k] = '' ;
 
 				# Loop through each table cell
@@ -885,7 +885,7 @@ class Parser
 		$text = strtr( $text, array( '<onlyinclude>' => '' , '</onlyinclude>' => '' ) );
 		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
 		$text = preg_replace( '/<includeonly>.*?<\/includeonly>/s', '', $text );
-		
+
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ) );
 
 		$text = $this->replaceVariables( $text, $args );
@@ -1201,7 +1201,7 @@ class Parser
 			# Normalize any HTML entities in input. They will be
 			# re-escaped by makeExternalLink().
 			$url = Sanitizer::decodeCharReferences( $url );
-			
+
 			# Escape any control characters introduced by the above step
 			$url = preg_replace( '/[\][<>"\\x00-\\x20\\x7F]/e', "urlencode('\\0')", $url );
 
@@ -1287,7 +1287,7 @@ class Parser
 				# Normalize any HTML entities in input. They will be
 				# re-escaped by makeExternalLink() or maybeMakeExternalImage()
 				$url = Sanitizer::decodeCharReferences( $url );
-				
+
 				# Escape any control characters introduced by the above step
 				$url = preg_replace( '/[\][<>"\\x00-\\x20\\x7F]/e', "urlencode('\\0')", $url );
 
@@ -1461,7 +1461,7 @@ class Parser
 					$m[3] = $n[1];
 				}
 				# fix up urlencoded title texts
-				if(preg_match('/%/', $m[1] )) 
+				if(preg_match('/%/', $m[1] ))
 					# Should anchors '#' also be rejected?
 					$m[1] = str_replace( array('<', '>'), array('&lt;', '&gt;'), urldecode($m[1]) );
 				$trail = $m[3];
@@ -2053,14 +2053,14 @@ class Parser
 	function findColonNoLinks($str, &$before, &$after) {
 		$fname = 'Parser::findColonNoLinks';
 		wfProfileIn( $fname );
-		
+
 		$pos = strpos( $str, ':' );
 		if( $pos === false ) {
 			// Nothing to find!
 			wfProfileOut( $fname );
 			return false;
 		}
-		
+
 		$lt = strpos( $str, '<' );
 		if( $lt === false || $lt > $pos ) {
 			// Easy; no tag nesting to worry about
@@ -2069,14 +2069,14 @@ class Parser
 			wfProfileOut( $fname );
 			return $pos;
 		}
-		
+
 		// Ugly state machine to walk through avoiding tags.
 		$state = MW_COLON_STATE_TEXT;
 		$stack = 0;
 		$len = strlen( $str );
 		for( $i = 0; $i < $len; $i++ ) {
 			$c = $str{$i};
-			
+
 			switch( $state ) {
 			// (Using the number is a performance hack for common cases)
 			case 0: // MW_COLON_STATE_TEXT:
@@ -2578,7 +2578,7 @@ class Parser
 		wfProfileOut( $fname );
 		return $text;
 	}
-	
+
 	/**
 	 * Replace magic variables
 	 * @private
@@ -2768,7 +2768,7 @@ class Parser
 					}
 				}
 			}
-			wfProfileOut( __METHOD__ . '-pfunc' );			
+			wfProfileOut( __METHOD__ . '-pfunc' );
 		}
 
 		# Template table test
@@ -2856,7 +2856,7 @@ class Parser
 					}
 					$found = true;
 				}
-				
+
 				# Template cache array insertion
 				# Use the original $piece['title'] not the mangled $part1, so that
 				# modifiers such as RAW: produce separate cache entries
@@ -2869,7 +2869,7 @@ class Parser
 					$text = $linestart . $text;
 				}
 			}
-			wfProfileOut( __METHOD__ . '-loadtpl' );			
+			wfProfileOut( __METHOD__ . '-loadtpl' );
 		}
 
 		# Recursive parsing, escaping and link table handling
@@ -3116,15 +3116,15 @@ class Parser
 		if( $mw->matchAndRemove( $text ) ) {
 			$this->mShowToc = false;
 		}
-		
+
 		$mw = MagicWord::get( MAG_TOC );
 		if( $mw->match( $text ) ) {
 			$this->mShowToc = true;
 			$this->mForceTocPosition = true;
-			
+
 			// Set a placeholder. At the end we'll fill it in with the TOC.
 			$text = $mw->replace( '<!--MWTOC-->', $text, 1 );
-			
+
 			// Only keep the first one.
 			$text = $mw->replace( '', $text );
 		}
@@ -3480,7 +3480,7 @@ class Parser
 				$text .= $keyword . $x;
 				continue;
 			}
-			
+
 			$id = $blank = '' ;
 
 			/** remove and save whitespaces in $blank */
@@ -3573,10 +3573,10 @@ class Parser
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
 		$text = $this->replaceVariables( $text );
-		
+
 		# Strip out <nowiki> etc. added via replaceVariables
 		$text = $this->strip( $text, $stripState, false, array( 'gallery' ) );
-	
+
 		# Signatures
 		$sigText = $this->getUserSig( $user );
 		$text = strtr( $text, array(
@@ -3635,7 +3635,7 @@ class Parser
 		$username = $user->getName();
 		$nickname = $user->getOption( 'nickname' );
 		$nickname = $nickname === '' ? $username : $nickname;
-	
+
 		if( $user->getBoolOption( 'fancysig' ) !== false ) {
 			# Sig. might contain markup; validate this
 			if( $this->validateSig( $nickname ) !== false ) {
@@ -3665,7 +3665,7 @@ class Parser
 	function validateSig( $text ) {
 		return( wfIsWellFormedXmlFragment( $text ) ? $text : false );
 	}
-	
+
 	/**
 	 * Clean up signature text
 	 *
@@ -3679,7 +3679,7 @@ class Parser
 	function cleanSig( $text, $parsing = false ) {
 		global $wgTitle;
 		$this->startExternalParse( $wgTitle, new ParserOptions(), $parsing ? OT_WIKI : OT_MSG );
-	
+
 		$substWord = MagicWord::get( MAG_SUBST );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
 		$substText = '{{' . $substWord->getSynonym( 0 );
@@ -3687,8 +3687,8 @@ class Parser
 		$text = preg_replace( $substRegex, $substText, $text );
 		$text = $this->cleanSigInSig( $text );
 		$text = $this->replaceVariables( $text );
-		
-		$this->clearState();	
+
+		$this->clearState();
 		return $text;
 	}
 
@@ -3701,7 +3701,7 @@ class Parser
 		$text = preg_replace( '/~{3,5}/', '', $text );
 		return $text;
 	}
-	
+
 	/**
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
@@ -4037,13 +4037,13 @@ class Parser
 	function renderPreTag( $text, $attribs, $parser ) {
 		// Backwards-compatibility hack
 		$content = preg_replace( '!<nowiki>(.*?)</nowiki>!is', '\\1', $text );
-		
+
 		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
 		return wfOpenElement( 'pre', $attribs ) .
 			wfEscapeHTMLTagsOnly( $content ) .
 			'</pre>';
 	}
-	
+
 	/**
 	 * Renders an image gallery from a text with one line per image.
 	 * text labels may be given by using |-style alternative text. E.g.
@@ -4062,7 +4062,7 @@ class Parser
 
 		if( isset( $params['caption'] ) )
 			$ig->setCaption( $params['caption'] );
-		
+
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
 			# match lines like these:
@@ -4247,14 +4247,14 @@ class Parser
 		# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
 		# comments to be stripped as well)
 		$striparray = array();
-		
+
 		$oldOutputType = $this->mOutputType;
 		$oldOptions = $this->mOptions;
 		$this->mOptions = new ParserOptions();
 		$this->mOutputType = OT_WIKI;
-		
+
 		$striptext = $this->strip( $text, $striparray, true );
-		
+
 		$this->mOutputType = $oldOutputType;
 		$this->mOptions = $oldOptions;
 
@@ -4298,7 +4298,7 @@ class Parser
 			/mix",
 			$striptext, -1,
 			PREG_SPLIT_DELIM_CAPTURE);
-		
+
 		if( $mode == "get" ) {
 			if( $section == 0 ) {
 				// "Section 0" returns the content before any other section.
@@ -4365,7 +4365,7 @@ class Parser
 		$rv = trim( $rv );
 		return $rv;
 	}
-	
+
 	/**
 	 * This function returns the text of a section, specified by a number ($section).
 	 * A section is text under a heading like == Heading == or \<h1\>Heading\</h1\>, or
@@ -4380,7 +4380,7 @@ class Parser
 	function getSection( $text, $section ) {
 		return $this->extractSections( $text, $section, "get" );
 	}
-	
+
 	function replaceSection( $oldtext, $section, $text ) {
 		return $this->extractSections( $oldtext, $section, "replace", $text );
 	}
