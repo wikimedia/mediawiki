@@ -343,14 +343,12 @@ function wfSpecialWatchlist( $par ) {
 	$wgOut->addHTML( implode( ' | ', $links ) );
 
 	# Form for namespace filtering
-	$wgOut->addHTML(
+	$wgOut->addHTML( "\n" .
 		wfOpenElement( 'form', array(
 				'method' => 'post',
 				'action' => $thisTitle->getLocalURL(),
 			) ) .
-		wfLabel( 
-			wfMsgExt( 'namespace', array( 'parseinline') ),
-			'namespace' ) .
+		wfMsgExt( 'namespace', array( 'parseinline') ) .
 		HTMLnamespaceselector( $nameSpace, '' ) . "\n" .
 		( $hideOwn ? wfHidden('hideown', 1)."\n" : '' ) .
 		( $hideBots ? wfHidden('hidebots', 1)."\n" : '' ) .
