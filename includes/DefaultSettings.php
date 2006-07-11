@@ -1280,7 +1280,7 @@ $wgCheckFileExtensions = true;
  */
 $wgStrictFileExtensions = true;
 
-/** Warn if uploaded files are larger than this */
+/** Warn if uploaded files are larger than this (in bytes)*/
 $wgUploadSizeWarning = 150 * 1024;
 
 /** For compatibility with old installations set to false */
