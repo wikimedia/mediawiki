@@ -1551,6 +1551,8 @@ class User {
 			# Just update the timestamp
 			$ipblock->updateTimestamp();
 			return;
+		} else {
+			$ipblock = new Block;
 		}
 
 		# Make a new block object with the desired properties
