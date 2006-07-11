@@ -13,7 +13,7 @@ class DatabaseTest extends PHPUnit_TestCase {
 	}
 
 	function setUp() {
-		$this->db =& new Database();
+		$this->db = new Database();
 	}
 
 	function tearDown() {

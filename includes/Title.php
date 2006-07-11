@@ -132,7 +132,7 @@ class Title {
 		 */
 		$filteredText = Sanitizer::decodeCharReferences( $text );
 
-		$t =& new Title();
+		$t = new Title();
 		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
 		$t->mDefaultNamespace = $defaultNamespace;
 
@@ -234,7 +234,7 @@ class Title {
 	 * @access public
 	 */
 	public static function &makeTitle( $ns, $title ) {
-		$t =& new Title();
+		$t = new Title();
 		$t->mInterwiki = '';
 		$t->mFragment = '';
 		$t->mNamespace = intval( $ns );

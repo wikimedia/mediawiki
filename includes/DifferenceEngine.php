@@ -411,8 +411,8 @@ CONTROL;
 		# Native PHP diff
 		$ota = explode( "\n", $wgContLang->segmentForDiff( $otext ) );
 		$nta = explode( "\n", $wgContLang->segmentForDiff( $ntext ) );
-		$diffs =& new Diff( $ota, $nta );
-		$formatter =& new TableDiffFormatter();
+		$diffs = new Diff( $ota, $nta );
+		$formatter = new TableDiffFormatter();
 		return $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) );
 	}
 		

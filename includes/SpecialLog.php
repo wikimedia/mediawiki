@@ -28,11 +28,11 @@
  */
 function wfSpecialLog( $par = '' ) {
 	global $wgRequest;
-	$logReader =& new LogReader( $wgRequest );
+	$logReader = new LogReader( $wgRequest );
 	if( $wgRequest->getVal( 'type' ) == '' && $par != '' ) {
 		$logReader->limitType( $par );
 	}
-	$logViewer =& new LogViewer( $logReader );
+	$logViewer = new LogViewer( $logReader );
 	$logViewer->show();
 }
 

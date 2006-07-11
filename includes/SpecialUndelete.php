@@ -500,7 +500,7 @@ class UndeleteForm {
 
 		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
 
-		$archive =& new PageArchive( $this->mTargetObj );
+		$archive = new PageArchive( $this->mTargetObj );
 		$text = $archive->getRevisionText( $timestamp );
 
 		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
@@ -620,7 +620,7 @@ class UndeleteForm {
 		# Show relevant lines from the deletion log:
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
 		require_once( 'SpecialLog.php' );
-		$logViewer =& new LogViewer(
+		$logViewer = new LogViewer(
 			new LogReader(
 				new FauxRequest(
 					array( 'page' => $this->mTargetObj->getPrefixedText(),

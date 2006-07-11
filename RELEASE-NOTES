@@ -49,6 +49,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   {{REVISIONID}} when Cite extension is used
 * (bug 6622) Removed deprecated function image::newFromTitle
 * (bug 6627) Fix regression in Special:Ipblocklist with table prefix
+* Removed forced dereferencements (new() returns a reference in PHP5)
 
 
 == Languages updated ==

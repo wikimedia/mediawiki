@@ -18,7 +18,7 @@ class SearchMySQL4Test extends SearchEngine_TestCase {
 		if( $this->db ) {
 			$this->insertSearchData();
 		}
-		$this->search =& new SearchMySQL4( $this->db );
+		$this->search = new SearchMySQL4( $this->db );
 	}
 
 	function tearDown() {

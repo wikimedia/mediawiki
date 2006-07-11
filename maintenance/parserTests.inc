@@ -238,7 +238,7 @@ class ParserTest {
 
 		$this->setupGlobals($opts);
 
-		$user =& new User();
+		$user = new User();
 		$options = ParserOptions::newFromUser( $user );
 
 		if (preg_match('/\\bmath\\b/i', $opts)) {
@@ -255,7 +255,7 @@ class ParserTest {
 
 		$noxml = (bool)preg_match( '~\\b noxml \\b~x', $opts );
 
-		$parser =& new Parser();
+		$parser = new Parser();
 		foreach( $this->hooks as $tag => $callback ) {
 			$parser->setHook( $tag, $callback );
 		}

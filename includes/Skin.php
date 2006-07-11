@@ -133,7 +133,7 @@ class Skin extends Linker {
 			$className = 'SkinStandard';
 			require_once( "{$wgStyleDirectory}/Standard.php" );
 		}
-		$skin =& new $className;
+		$skin = new $className;
 		return $skin;
 	}
 
