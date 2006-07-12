@@ -64,12 +64,13 @@ class DBLockForm {
 		$elr = htmlspecialchars( wfMsg( 'enterlockreason' ) );
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Lockdb' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
+		$reason = htmlspecialchars( $this->reason );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( <<<END
 <form id="lockdb" method="post" action="{$action}">
 {$elr}:
-<textarea name="wpLockReason" rows="10" cols="60" wrap="virtual"></textarea>
+<textarea name="wpLockReason" rows="10" cols="60" wrap="virtual">{$reason}</textarea>
 <table border="0">
 	<tr>
 		<td align="right">
