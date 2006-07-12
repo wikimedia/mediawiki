@@ -1641,7 +1641,7 @@ class Article {
 
 		# Check permissions
 		if( $wgUser->isAllowed( 'delete' ) ) {
-			if( $wgUser->isBlocked() ) {
+			if( $wgUser->isBlocked( !$confirm ) ) {
 				$wgOut->blockedPage();
 				return;
 			}
