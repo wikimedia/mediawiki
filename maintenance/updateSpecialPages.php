@@ -28,13 +28,13 @@ foreach ( $wgQueryPages as $page ) {
 		continue;
 	}
 
-	$specialObj = SpecialPage::getPage( $special );
+	$specialObj = SpecialPage::getPage( $special,
 	if ( !$specialObj ) {
 		print "No such special page: $special\n";
 		exit;
 	}
-	$file = $specialObj->getFile();
-	if ( $file ) {
+	if ( !class_exists( $class ) ) {
+		$file = $specialObj->getFile();
 		require_once( $file );
 	}
 	$queryPage = new $class;
