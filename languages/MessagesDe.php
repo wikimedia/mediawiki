@@ -1113,10 +1113,11 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 "locknoconfirm" => "Sie haben das Bestätigungsfeld nicht markiert.",
 "lockdbsuccesssub" => "Datenbank wurde erfolgreich gesperrt",
 "unlockdbsuccesssub" => "Datenbank wurde erfolgreich freigegeben",
-"lockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde gesperrt.
-<br />Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
+'lockdbsuccesstext'	=> 'Die {{SITENAME}}-Datenbank wurde gesperrt.
+<br />Bitte geben Sie die Datenbank [[Special:Unlockdb|wieder frei]], sobald die Wartung abgeschlossen ist.',
 "unlockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde freigegeben.",
 'lockfilenotwritable' => 'Die Datenbank-Sperrdatei ist nicht beschreibbar. Zum Sperren oder Freigeben der Datenbank muss diese für den Webserver beschreibbar sein.',
+'databasenotlocked'	=> 'Die Datenbank ist nicht gesperrt.',
 
 # User levels special page
 #
