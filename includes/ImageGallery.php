@@ -55,7 +55,7 @@ class ImageGallery
 	 *
 	 * @param $skin Skin object
 	 */
-	function useSkin( &$skin ) {
+	function useSkin( $skin ) {
 		$this->mSkin =& $skin;
 	}
 	
@@ -135,7 +135,7 @@ class ImageGallery
 	function toHTML() {
 		global $wgLang, $wgIgnoreImageErrors, $wgGenerateThumbnailOnParse;
 
-		$sk =& $this->getSkin();
+		$sk = $this->getSkin();
 
 		$s = '<table class="gallery" cellspacing="0" cellpadding="0">';
 		if( $this->mCaption )
