@@ -61,6 +61,7 @@ require_once( "$IP/includes/MagicWord.php" );
 require_once( "$IP/includes/MessageCache.php" );
 require_once( "$IP/includes/Parser.php" );
 require_once( "$IP/includes/LoadBalancer.php" );
+require_once( "$IP/includes/IP.php" );
 require_once( "$IP/includes/ProxyTools.php" );
 require_once( "$IP/includes/ObjectCache.php" );
 require_once( "$IP/includes/ImageFunctions.php" );

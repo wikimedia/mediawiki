@@ -171,7 +171,7 @@ class IPUnblockForm {
 			// No extra conditions
 		} elseif ( substr( $this->ip, 0, 1 ) == '#' ) {
 			$conds['ipb_id'] = substr( $this->ip, 1 );
-		} elseif ( wfIP2Unsigned( $this->ip ) !== false ) {
+		} elseif ( IP::ToUnsigned( $this->ip ) !== false ) {
 			$conds['ipb_address'] = $this->ip;
 			$conds['ipb_auto'] = 0;
 		} elseif( preg_match( "/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\\/(\\d{1,2})$/", $this->ip, $matches ) ) {

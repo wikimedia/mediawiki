@@ -55,7 +55,7 @@ function wfGetIP() {
 		# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
 		foreach ( $ipchain as $i => $curIP ) {
 			if ( array_key_exists( $curIP, $trustedProxies ) ) {
-				if ( isset( $ipchain[$i + 1] ) && wfIsIPPublic( $ipchain[$i + 1] ) ) {
+				if ( isset( $ipchain[$i + 1] ) && IP::IsPublic( $ipchain[$i + 1] ) ) {
 					$ip = $ipchain[$i + 1];
 				}
 			} else {
@@ -67,68 +67,6 @@ function wfGetIP() {
 	wfDebug( "IP: $ip\n" );
 	$wgIP = $ip;
 	return $ip;
-}
-
-/**
- * Given an IP address in dotted-quad notation, returns an unsigned integer.
- * Like ip2long() except that it actually works and has a consistent error return value.
- */
-function wfIP2Unsigned( $ip ) {
-	$n = ip2long( $ip );
-	if ( $n == -1 || $n === false ) { # Return value on error depends on PHP version
-		$n = false;
-	} elseif ( $n < 0 ) {
-		$n += pow( 2, 32 );
-	}
-	return $n;
-}
-
-/**
- * Return a zero-padded hexadecimal representation of an IP address
- */
-function wfIP2Hex( $ip ) {
-	$n = wfIP2Unsigned( $ip );
-	if ( $n !== false ) {
-		$n = sprintf( '%08X', $n );
-	}
-	return $n;
-}
-
-/**
- * Determine if an IP address really is an IP address, and if it is public,
- * i.e. not RFC 1918 or similar
- */
-function wfIsIPPublic( $ip ) {
-	$n = wfIP2Unsigned( $ip );
-	if ( !$n ) {
-		return false;
-	}
-	
-	// ip2long accepts incomplete addresses, as well as some addresses
-	// followed by garbage characters. Check that it's really valid.
-	if( $ip != long2ip( $n ) ) {
-		return false;
-	}
-
-	static $privateRanges = false;
-	if ( !$privateRanges ) {
-		$privateRanges = array(
-			array( '10.0.0.0',    '10.255.255.255' ),   # RFC 1918 (private)
-			array( '172.16.0.0',  '172.31.255.255' ),   #     "
-			array( '192.168.0.0', '192.168.255.255' ),  #     "
-			array( '0.0.0.0',     '0.255.255.255' ),    # this network
-			array( '127.0.0.0',   '127.255.255.255' ),  # loopback
-		);
-	}
-
-	foreach ( $privateRanges as $r ) {
-		$start = wfIP2Unsigned( $r[0] );
-		$end = wfIP2Unsigned( $r[1] );
-		if ( $n >= $start && $n <= $end ) {
-			return false;
-		}
-	}
-	return true;
 }
 
 /**
@@ -186,7 +124,7 @@ function wfParseCIDR( $range ) {
 	if ( count( $parts ) != 2 ) {
 		return array( false, false );
 	}
-	$network = wfIP2Unsigned( $parts[0] );
+	$network = IP::ToUnsigned( $parts[0] );
 	if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 32 ) {
 		$bits = $parts[1];
 	} else {
