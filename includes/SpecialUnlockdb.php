@@ -39,6 +39,12 @@ class DBUnlockForm {
 	{
 		global $wgOut, $wgUser;
 
+		global $wgReadOnlyFile;
+		if( !file_exists( $wgReadOnlyFile ) ) {
+			$wgOut->addWikiText( wfMsg( 'databasenotlocked' ) );
+			return;
+		}
+
 		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );
 		$wgOut->addWikiText( wfMsg( "unlockdbtext" ) );
 

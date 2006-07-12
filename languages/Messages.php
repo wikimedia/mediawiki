@@ -1346,6 +1346,7 @@ Please confirm that this is what you intend to do.',
 <br />Remember to [[Special:Unlockdb|remove the lock]] after your maintenance is complete.',
 'unlockdbsuccesstext' => 'The database has been unlocked.',
 'lockfilenotwritable' => 'The database lock file is not writable. To lock or unlock the database, this needs to be writable by the web server.',
+'databasenotlocked' => 'The database is not locked.',
 
 # Make sysop
 'makesysoptitle'	=> 'Make a user into a sysop',
