@@ -174,10 +174,17 @@ class IPUnblockForm {
 		} elseif ( wfIP2Unsigned( $this->ip ) !== false ) {
 			$conds['ipb_address'] = $this->ip;
 			$conds['ipb_auto'] = 0;
+		} elseif( preg_match( "/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\\/(\\d{1,2})$/", $this->ip, $matches ) ) {
+			$conds['ipb_address'] = Block::normaliseRange( $this->ip );
+			$conds['ipb_auto'] = 0;
 		} else {
 			$user = User::newFromName( $this->ip );
-			if ( ( $id = $user->getID() ) != 0 ) {
+			if ( $user && ( $id = $user->getID() ) != 0 ) {
 				$conds['ipb_user'] = $id;
+			} else {
+				// Uh...?
+				$conds['ipb_address'] = $this->ip;
+				$conds['ipb_auto'] = 0;
 			}
 		}
 
@@ -196,11 +203,12 @@ class IPUnblockForm {
 	}
 
 	function searchForm() {
-		global $wgTitle, $wgRequest;
+		global $wgTitle, $wgScript, $wgRequest;
 		return
 			wfElement( 'form', array(
-				'action' => $wgTitle->getLocalUrl() ),
+				'action' => $wgScript ),
 				null ) .
+			wfHidden( 'title', $wgTitle->getPrefixedDbKey() ) .
 			wfElement( 'input', array(
 				'type' => 'hidden',
 				'name' => 'action',
