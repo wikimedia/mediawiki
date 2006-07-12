@@ -59,6 +59,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression searching Ipblocklist with ugly URLs
 * (bug 6639) Use a consistent default for upload directories
 * Preserve entered reason when reporting unconfirmed lock on Special:Lockdb
+* (bug 6642) Don't offer to unlock the database when it isn't locked
 
 == Languages updated ==
 
