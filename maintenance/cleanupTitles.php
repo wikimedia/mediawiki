@@ -2,9 +2,9 @@
 /*
  * Script to clean up broken, unparseable titles.
  *
- * Usage: php cleanupTitles.php [--dry-run]
+ * Usage: php cleanupTitles.php [--fix]
  * Options:
- *   --dry-run  don't actually try moving them
+ *   --fix  Actually clean up titles; otherwise just checks for them
  *
  * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
@@ -29,8 +29,6 @@
  * @subpackage maintenance
  */
 
-$options = array( 'dry-run' );
-
 require_once( 'commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
@@ -43,6 +41,11 @@ class TitleCleanup extends FiveUpgrade {
 	}
 
 	function cleanup() {
+		if( $this->dryrun ) {
+			echo "Checking for bad titles...\n";
+		} else {
+			echo "Checking and fixing bad titles...\n";
+		}
 		$this->runTable( 'page',
 			'', //'WHERE page_namespace=0',
 			array( &$this, 'processPage' ) );
@@ -204,7 +207,7 @@ class TitleCleanup extends FiveUpgrade {
 }
 
 $wgUser->setName( 'Conversion script' );
-$caps = new TitleCleanup( isset( $options['dry-run'] ) );
+$caps = new TitleCleanup( !isset( $options['fix'] ) );
 $caps->cleanup();
 
 ?>
