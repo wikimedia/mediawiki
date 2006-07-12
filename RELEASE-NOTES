@@ -57,7 +57,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression in blocking of user accounts
 * (bug 6635) Fix regression searching for range blocks on Ipblocklist
 * Fix regression searching Ipblocklist with ugly URLs
-
+* (bug 6639) Use a consistent default for upload directories
 
 == Languages updated ==
 
