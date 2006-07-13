@@ -98,7 +98,6 @@ $wgAllMessagesPl = array(
 
 'about' => 'O serwisie',
 'aboutsite' => 'O serwisie {{SITENAME}}',
-'aboutpage' => '{{ns:Project}}:About',
 'article' => 'Artykuł',
 'help' => 'Pomoc',
 'helppage' => '{{ns:Project}}:Pomoc',
@@ -106,7 +105,6 @@ $wgAllMessagesPl = array(
 'bugreportspage' => '{{ns:Project}}:Błędy',
 'sitesupport' => 'Dary pieniężne',
 'faq' => 'FAQ',
-'faqpage' => '{{ns:Project}}:FAQ',
 'edithelp' => 'Pomoc w edycji',
 'newwindow' => '(otwiera się w nowym oknie)',
 'edithelppage' => '{{ns:Project}}:Jak_edytować_stronę',
@@ -128,7 +126,6 @@ $wgAllMessagesPl = array(
 'currentevents-url' => 'Bieżące wydarzenia',
 
 'disclaimers' => 'Informacje Prawne',
-'disclaimerpage' => '{{ns:Project}}:General_disclaimer',
 'privacy' => 'Zasady ochrony prywatności',
 'privacypage' => '{{ns:Project}}:Zasady ochrony prywatności',
 'errorpagetitle' => 'Błąd',
@@ -146,8 +143,7 @@ $wgAllMessagesPl = array(
 'editthispage' => 'Edytuj tę stronę',
 'delete' => 'Usuń',
 'deletethispage' => 'Usuń tę stronę',
-'undelete_short1' => 'Odtwórz jedną wersję',
-'undelete_short' => 'Odtwórz $1 wersji',
+'undelete_short' => 'Odtwórz {{PLURAL:$1|jedną wersję|$1 wersji}}',
 'protect' => 'Zabezpiecz',
 'protectthispage' => 'Zabezpiecz tę stronę',
 'unprotect' => 'Odbezpiecz',
@@ -280,7 +276,7 @@ dla których jest to robione - zobacz [[{{ns:Project}}:Strona_zabezpieczona]].
 
 Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.',
 'protectedinterface' => 'Ta strona dostarcza tekst interfejsu do oprogramowania i została zablokowana możliwość jej edycji.',
-'editinginterface' => '<strong>Ostrzeżenie:</strong> Edytujesz stronę, która jest użyta w celu dostarczenia tekstu interfejsu do oprogramowania. Zmiany na tej stronie zmienią wygląd interfejsu użytkownika dla innych użytkowników.',
+'editinginterface' => '<b>Ostrzeżenie:</b> Edytujesz stronę, która jest użyta w celu dostarczenia tekstu interfejsu do oprogramowania. Zmiany na tej stronie zmienią wygląd interfejsu użytkownika dla innych użytkowników.',
 'sqlhidden' => '(ukryto zapytanie SQL)',
 
 # Login and logout pages
@@ -321,6 +317,7 @@ Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.',
 'yourvariant' => 'Wariant',
 'yournick' => 'Twój podpis',
 'badsig' => 'Błędny podpis, sprawdź tagi HTML.',
+'prefs-help-realname' => '* Imię i nazwisko (opcjonalnie): jeśli zdecydujesz się je podać, zostaną użyte, aby zapewnić Twojej pracy atrybucję.',
 'loginerror' => 'Błąd logowania',
 'prefs-help-email' => '* E-mail (opcjonalnie): Podanie e-maila pozwala innym skontaktować się z tobą za pośrednictwem twojej strony użytkownika
 lub twojej strony dyskusji bez potrzeby ujawniania twoich danych identyfikacyjnych.',
@@ -448,20 +445,23 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'templatesused' => 'Szablony użyte na tej stronie:',
 'nocreatetitle' => 'Ograniczono tworzenie stron',
 'nocreatetext' => 'Ograniczono możliwość tworzenia nowych stron. Możesz edytować istniejące strony lub [[{{ns:Special}}:Userlogin|zalogować się albo utworzyć nowe konto]].',
+'cantcreateaccounttitle' => 'Nie można utworzyć konta',
+'cantcreateaccounttext' => 'Możliwość utworzenia konta z tego adresu IP (<b>$1</b>) została zablokowana. Stało się to prawdopodobnie wskutek ciągłych aktów wandalizmu z Twojej szkoły/uczelni lub wandalizmów innych użytkowników Twojego providera internetowego.',
 
 # History pages
 #
 'revhistory' => 'Historia modyfikacji',
+'viewpagelogs' => 'Zobacz rejestry operacji dla tej strony',
 'nohistory' => 'Ta strona nie ma swojej historii edycji.',
 'revnotfound' => 'Wersja nie została odnaleziona',
 'revnotfoundtext' => 'Starsza wersja strony nie może zostać odnaleziona. Sprawdź, proszę, URL użyty przez Ciebie by uzyskać dostęp do tej strony.',
 'loadhist' => 'Pobieranie historii tej strony',
 'currentrev' => 'Aktualna wersja',
 'revisionasof' => 'Wersja z dnia $1',
-'revisionasofwithlink' => 'Wersja z dnia $1; $2<br />$3 | $4',
+'old-revision-navigation' => 'Wersja z dnia $1; $5<br />($6) $3 | $2 | $4 ($7)',
 'previousrevision' => '← Poprzednia wersja',
 'nextrevision' => 'Następna wersja →',
-'currentrevisionlink' => 'przejdź do aktualnej wersji',
+'currentrevisionlink' => 'Aktualna wersja',
 'cur' => 'bież',
 'next' => 'następna',
 'last' => 'poprz',
@@ -476,6 +476,7 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 
 'history-feed-title' => 'Historia wersji',
 'history-feed-description' => 'Historia wersji tej strony wiki',
+'history-feed-item-nocomment' => '$1 o $2',
 'history-feed-empty' => 'Wybrana strona nie istnieje. Mogła ona zostać usunięta lub przeniesiona pod inną nazwę. Możesz także [[{{ns:special}}:Search|poszukać]] tej strony.',
 
 # Diffs
@@ -600,7 +601,7 @@ liczba znalezionych artykułów: $3.',
 'changes' => 'zmiany',
 'recentchanges' => 'Ostatnie zmiany',
 'recentchangestext' => 'Ta strona przedstawia historię ostatnich zmian w serwisie.',
-'rcnote' => 'To ostatnie <strong>$1</strong> zmian dokonanych w ciągu ostatnich <strong>$2</strong> dni.',
+'rcnote' => 'To ostatnie <strong>$1</strong> zmian dokonanych w ciągu ostatnich <strong>$2</strong> dni, poczynając od $3.',
 'rcnotefrom' => 'Poniżej pokazano zmiany dokonane po <b>$2</b> (nie więcej niż <b>$1</b> pozycji).',
 'rclistfrom' => 'Pokaż nowe zmiany począwszy od $1',
 'rcshowhideminor' => '$1 drobne zmiany',
@@ -674,7 +675,7 @@ liczba znalezionych artykułów: $3.',
 # Image list
 #
 'imagelist' => 'Lista plików',
-'imagelisttext' => 'To jest lista <strong>$1</strong> plików posortowanych <strong>$2</strong>.',
+'imagelisttext' => 'To jest lista <b>$1</b> plików posortowanych $2.',
 'imagelistforuser' => 'Lista grafik załadowanych przez $1.',
 'getimagelist' => 'pobieranie listy plików',
 'ilsubmit' => 'Szukaj',
@@ -727,10 +728,13 @@ liczba znalezionych artykułów: $3.',
 
 Ta liczba uwzględnia strony dyskusji, strony na temat serwisu {{SITENAME}}, strony prowizorycznych ("stub"), strony przekierowujące, oraz inne, które trudno uznać za artykuły. Wyłączając powyższe, jest prawdopodobnie <b>$2</b> stron, które można uznać za artykuły.
 
+Ilość przesłanych plików: <b>$8</b>
+
 Użytkownicy od startu serwisu wykonali <b>$4</b> edycji, średnio <b>$5</b> edycji na stronę. W sumie było <b>$3</b> odwiedzin, średnio <b>$6</b> odwiedzin na edycję.
 
-Ilość przesłanych plików: <b>$8</b>',
+Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi <b>$7</b>.',
 'userstatstext' => 'Jest <b>$1</b> zarejestrowanych użytkowników. Spośród nich <b>$2</b> (czyli <b>$4%</b>) ma status administratora (zobacz $3).',
+'statistics-mostpopular' => 'Najczęściej odwiedzane strony',
 
 'disambiguations' => 'Strony ujednoznaczniające',
 'disambiguationspage' => '{{ns:Template}}:disambig',
@@ -755,6 +759,7 @@ Ilość przesłanych plików: <b>$8</b>',
 'lonelypages' => 'Porzucone strony',
 'uncategorizedpages' => 'Nieskategoryzowane strony',
 'uncategorizedcategories' => 'Nieskategoryzowane kategorie',
+'uncategorizedimages' => 'Nieskategoryzowane grafiki',
 'unusedcategories' => 'Nieużywane kategorie',
 'unusedimages' => 'Nie używane pliki',
 'popularpages' => 'Najpopularniejsze strony',
@@ -778,6 +783,7 @@ Ilość przesłanych plików: <b>$8</b>',
 'recentchangeslinked' => 'Zmiany w dolinkowanych',
 'rclsub' => '(dla stron dolinkowanych do "$1")',
 'newpages' => 'Nowe strony',
+'newpages-username' => 'Nazwa użytkownika:',
 'ancientpages' => 'Najstarsze strony',
 'intl' => 'Linki interwiki',
 'move' => 'Przenieś',
@@ -830,8 +836,9 @@ Ilość przesłanych plików: <b>$8</b>',
 # Watchlist
 #
 'watchlist' => 'Obserwowane',
-'watchlistsub' => '(dla użytkownika "$1")',
+'watchlistfor' => '(dla użytkownika <b>$1</b>)',
 'nowatchlist' => 'Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.',
+'watchlistanontext' => '$1 aby obejrzeć lub edytować elementy listy obserwowanych.',
 'watchlistcount' => '<b>Masz $1 stron na liście obserwowanych, włączając strony dyskusji.</b>',
 'clearwatchlist' => 'Wyczyść obserwowane',
 'watchlistcleartext' => 'Czy jesteś pewien, że chcesz je usunąć?',
@@ -946,7 +953,10 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'undeletereset' => 'Wyczyść',
 'undeletecomment' => 'Powód odtworzenia:',
 'undeletedarticle' => 'odtworzono "$1"',
-'undeletedrevisions' => 'liczba odtworzonych wersji: $1',
+'undeletedrevisions' => 'Liczba odtworzonych wersji: $1',
+'undeletedrevisions-files' => "Odtworzono $1 wersji i $2 plik(i)",
+'undeletedfiles' => "Odtworzono $1 plik(i)",
+'cannotundelete' => 'Odtworzenie nie powiodło się. Ktoś inny mógł odtworzyć stronę pierwszy.',
 'undeletedpage' => '<big>Odtworzono stronę $1.</big>
 
 Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio skasowanych i odtworzonych stron.',
@@ -965,6 +975,8 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'uclinks' => 'Zobacz ostatnie $1 zmian; zobacz ostatnie $2 dni.',
 'uctop' => ' (jako ostatnia)' ,
 'newbies' => 'początkujący',
+
+'sp-newimages-showfrom' => 'Pokaż nowe grafiki od $1',
 
 'sp-contributions-newest' => 'Najnowsze',
 'sp-contributions-oldest' => 'Najstarsze',
@@ -991,6 +1003,8 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'ipadressorusername' => 'Adres IP lub nazwa użytkownika:',
 'ipbexpiry' => 'Czas blokady',
 'ipbreason' => 'Powód',
+'ipbanononly' => 'Zablokuj tylko anonimowych użytkowników',
+'ipbcreateaccount' => 'Zapobiegnij utworzeniu konta',
 'ipbsubmit' => 'Zablokuj użytkownika',
 'ipbother' => 'Inny czas',
 'ipboptions' => '2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,nieskończony:infinite',
@@ -1001,11 +1015,13 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'unblockip' => 'Odblokuj użytkownika',
 'unblockiptext' => 'Użyj poniższego formularza by przywrócić prawa zapisu dla poprzednio zablokowanego użytkownika lub adresu IP.',
 'ipusubmit' => 'Odblokuj użytkownika',
-'ipusuccess' => '"[[$1]]" został odblokowany',
+'unblocked' => '[[{{ns:User}}:$1|$1]] został odblokowany.',
 'ipblocklist' => 'Lista zablokowanych użytkowników i adresów IP',
 'blocklistline' => '$1, $2 zablokował $3 ($4)',
 'infiniteblock' => 'na zawsze',
 'expiringblock' => 'wygasa $1',
+'anononlyblock' => 'tylko anonimowi',
+'createaccountblock' => 'Zablokowano możliwość utworzenia konta',
 'ipblocklistempty' => 'Lista zablokowanych użytkowników i adresów IP jest pusta',
 'blocklink' => 'zablokuj',
 'unblocklink' => 'odblokuj',
@@ -1017,7 +1033,9 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'unblocklogentry' => 'odblokowano "$1"',
 'range_block_disabled' => 'Możliwość blokowania zakresu numerów IP została wyłączona.',
 'ipb_expiry_invalid' => 'Błędny czas wygaśnięcia.',
+'ipb_already_blocked' => '"$1" jest już zablokowany.',
 'ip_range_invalid' => 'Niewłaściwy zakres adresów IP.',
+'ipb_cant_unblock' => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać odblokowana wcześniej.',
 'proxyblockreason' => 'Twój adres IP został zablokowany - jest to otwarte proxy. Sprawę należy rozwiązać u dostawcy Internetu.',
 'proxyblocksuccess' => 'Wykonane.',
 'sorbsreason' => 'Twój adres IP znajduje się na liście serwerów open proxy w [http://www.sorbs.net SORBS] DNSBL.',
@@ -1036,8 +1054,9 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'locknoconfirm' => 'Nie zaznaczyłeś pola potwierdzenia.',
 'lockdbsuccesssub' => 'Baza danych została pomyślnie zablokowana',
 'unlockdbsuccesssub' => 'Blokada bazy danych usunięta',
-'lockdbsuccesstext' => 'Baza danych została zablokowana.<br />Pamiętaj by usunąć blokadę po zakończeniu spraw administracyjnych.',
+'lockdbsuccesstext' => 'Baza danych została zablokowana.<br />Pamiętaj by [[{{ns:Special}}:Unlockdb|usunąć blokadę]] po zakończeniu działań administracyjnych.',
 'unlockdbsuccesstext' => 'Baza danych została odblokowana.',
+'databasenotlocked' => 'Baza danych nie jest zablokowana.',
 
 # Make sysop
 'makesysoptitle' => 'Nadaj użytkownikowi uprawnienia administratora',
@@ -1118,6 +1137,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exportcuronly' => 'Tylko bieżąca wersja, bez historii',
 'exportnohistory' => '----
 <b>Uwaga:</b> możliwość eksportowania pełnej historii stron została wyłączona.',
+'export-submit' => 'Eksportuj',
 
 # Namespace 8 related
 
@@ -1139,12 +1159,29 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 
 # Special:Import
 'import' => 'Importuj strony',
-'importinterwiki' => 'Transwiki import',
+'importinterwiki' => 'Import transwiki',
+'import-interwiki-text' => 'Wybierz wiki i nazwę strony do importowania. Daty oraz nazwy autorów zostaną zachowane. Wszystkie operacje importu transwiki są odnotowywane w [[{{ns:Special}}:Log/import|rejestrze importu]].',
+'import-interwiki-history' => 'Kopiuj całą historię edycji tej strony',
+'import-interwiki-submit' => 'Importuj',
+'import-interwiki-namespace' => 'Przenieś strony do przestrzeni nazw:',
+'importtext' => 'Używając narzędzia Special:Export wyeksportuj plik ze źródłowej wiki, zapisz go na swoim dysku, a następnie prześlij go tutaj.',
+'importstart' => 'Trwa importowanie stron...',
+'import-revision-count' => '$1 {{PLURAL:$1|wersja|wersji}}',
+'importnopages' => 'Brak stron do importu.',
 'importfailed' => 'Import nie powiódł się: $1',
+'importunknownsource' => 'Nieznany format importu źródłowego',
+'importcantopen' => 'Nie można otworzyć importowanego pliku',
+'importbadinterwiki' => 'Błędny link interwiki',
 'importnotext' => 'Brak tekstu lub zawartości',
 'importsuccess' => 'Import zakończony powodzeniem!',
 'importnosources' => 'Możliwość bezpośredniego importu historii została wyłączona: nie zdefiniowano źródła.',
 'importnofile' => 'Importowany plik nie został załadowany.',
+'importuploaderror' => 'Przesłanie pliku nie powiodło się. Możliwe, że plik jest większy od dozwolonego limitu.',
+
+# import log
+'importlogpage' => 'Rejestr importu',
+'importlogpagetext' => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
+
 
 # tooltip help for some actions, most are in Monobook.js
 'tooltip-search' => 'Przeszukaj serwis {{SITENAME}} [alt-f]',
@@ -1155,8 +1192,13 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'tooltip-compareselectedversions' => 'Zobacz różnice między dwoma wybranymi wersjami strony. [alt-v]',
 'tooltip-watch' => 'Dodaj tę stronę do listy obserwowanych [alt-w]',
 
+# stylesheets
+'Common.css' => '/* Kod CSS umieszczony tutaj zostanie zastosowany we wszystkich skórkach */',
+'Monobook.css' => '/* Kod CSS umieszczony tutaj wpłynie na wygląd skórki Monobook */',
+
 # Attribution
 
+'anonymous' => 'Anonimowy użytkownik/cy serwisu {{SITENAME}}',
 'lastmodifiedby' => 'Ostatnia edycja tej strony: $1 (autor zmian: $2)',
 'and' => 'oraz',
 'others' => 'inni',
@@ -1556,10 +1598,11 @@ $1
 # delete conflict
 
 'deletedwhileediting' => 'Uwaga: Ta strona została usunięta po tym, jak rozpoczęłeś jej edycję!',
-'confirmrecreate' => 'Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
+'confirmrecreate' => 'Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|dyskusja]]) usunął tę stronę po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
 : <b>$2</b>
-Potwierdź chęć odtworzenia tego artykułu.',
+Potwierdź chęć odtworzenia tej strony.',
 'recreate' => 'Odtwórz',
+'tooltip-recreate' => 'Odtworzono stronę pomimo jej wcześniejszego usunięcia.',
 
 # HTML dump
 'redirectingto' => 'Przechodzenie do [[:$1|$1]]...',
@@ -1578,6 +1621,7 @@ $1',
 # DISPLAYTITLE
 'displaytitle' => '(Link do tej strony to [[:$1|$1]])',
 
+'loginlanguagelabel' => 'Język: $1',
 );
 
 
