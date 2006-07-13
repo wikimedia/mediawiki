@@ -75,6 +75,10 @@ abstract class TableCleanup extends FiveUpgrade {
 		$this->log( "Finished $table... $this->updated of $this->processed rows updated" );
 		$this->dbr->freeResult( $result );
 	}
+
+	function hexChar( $matches ) {
+		return sprintf( "\\x%02x", ord( $matches[1] ) );
+	}
 	
 	abstract function processPage( $row );
 	

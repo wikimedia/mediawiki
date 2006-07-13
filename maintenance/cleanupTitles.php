@@ -132,10 +132,6 @@ class TitleCleanup extends TableCleanup {
 			$linkCache->clear();
 		}
 	}
-
-	function hexChar( $matches ) {
-		return sprintf( "\\x%02x", ord( $matches[1] ) );
-	}
 }
 
 $wgUser->setName( 'Conversion script' );
