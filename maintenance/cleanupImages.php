@@ -50,7 +50,7 @@ class ImageCleanup extends TableCleanup {
 		$cleaned = $source;
 		
 		// About half of old bad image names have percent-codes
-		$cleaned = urldecode( $cleaned );
+		$cleaned = rawurldecode( $cleaned );
 		
 		// Some are old latin-1
 		$cleaned = $wgContLang->checkTitleEncoding( $cleaned );
@@ -89,7 +89,17 @@ class ImageCleanup extends TableCleanup {
 		}
 	}
 	
+	function filePath( $name ) {
+		return wfImageDir( $name ) . "/$name";
+	}
+	
 	function pokeFile( $orig, $new ) {
+		$path = $this->filePath( $orig );
+		if( !file_exists( $path ) ) {
+			$this->log( "missing file: $path" );
+			return $this->killRow( $orig );
+		}
+		
 		$db = wfGetDB( DB_MASTER );
 		$version = 0;
 		$final = $new;
@@ -98,23 +108,40 @@ class ImageCleanup extends TableCleanup {
 			array( 'img_name' => $final ), __METHOD__ ) ) {
 			$this->log( "Rename conflicts with '$final'..." );
 			$version++;
-			$final = $this->appendTitle( $new, $final );
+			$final = $this->appendTitle( $new, "_$version" );
 		}
 		
+		$finalPath = $this->filePath( $final );
+		
 		if( $this->dryrun ) {
-			$this->log( "DRY RUN: would rename '$orig' to '$final'" );
+			$this->log( "DRY RUN: would rename $path to $finalPath" );
 		} else {
-			$this->log( "renaming '$orig' to '$final'" );
+			$this->log( "renaming $path to $finalPath" );
+			$db->begin();
 			$db->update( 'image',
 				array( 'img_name' => $final ),
 				array( 'img_name' => $orig ),
 				__METHOD__ );
+			$dir = dirname( $finalPath );
+			if( !file_exists( $dir ) ) {
+				if( !mkdir( $dir, 0777, true ) ) {
+					$this->log( "RENAME FAILED, COULD NOT CREATE $dir" );
+					$db->rollback();
+					return;
+				}
+			}
+			if( rename( $path, $finalPath ) ) {
+				$db->commit();
+			} else {
+				$this->log( "RENAME FAILED" );
+				$db->rollback();
+			}
 		}
 	}
 	
 	function appendTitle( $name, $suffix ) {
 		return preg_replace( '/^(.*)(\..*?)$/',
-			"\1$suffix\2", $name );
+			"\\1$suffix\\2", $name );
 	}
 	
 	function buildSafeTitle( $name ) {
