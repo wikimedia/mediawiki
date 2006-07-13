@@ -82,7 +82,7 @@ function wfSpecialStatistics() {
 
 		$wgOut->addWikiText( $text );
 		
-		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang;
+		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
 		if( !$wgDisableCounters && !$wgMiserMode ) {
 			$res = $dbr->query( "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 AND page_counter > 0 ORDER BY page_counter DESC LIMIT 0,10", __METHOD__ );
 			if( $res ) {
@@ -91,7 +91,8 @@ function wfSpecialStatistics() {
 				$wgOut->addHtml( '<ol>' );
 				while( $row = $dbr->fetchObject( $res ) ) {
 					$link = $skin->makeKnownLinkObj( Title::makeTitleSafe( $row->page_namespace, $row->page_title ) );
-					$wgOut->addHtml( '<li>' . $link . ' [' . $wgLang->formatNum( $row->page_counter ) . ']</li>' );
+					$dirmark = $wgContLang->getDirMark();
+					$wgOut->addHtml( '<li>' . $link . $dirmark . ' [' . $wgLang->formatNum( $row->page_counter ) . ']</li>' );
 				}
 				$wgOut->addHtml( '</ol>' );
 				$dbr->freeResult( $res );
