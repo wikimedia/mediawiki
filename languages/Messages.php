@@ -466,13 +466,13 @@ format. Please enter a well-formatted address or empty that field.',
 'missingsummary' => "'''Reminder:''' You have not provided an edit summary. If you click Save again, your edit will be saved without one.",
 'missingcommenttext' => 'Please enter a comment below.',
 'blockedtitle'	=> 'User is blocked',
-'blockedtext'	=> 'Your user name or IP address has been blocked by $1.
-The reason given is this:<br />\'\'$2\'\'<br />You may contact $1 or one of the other
-[[{{ns:project}}:Administrators|administrators]] to discuss the block.
+'blockedtext' => "<big>'''Your user name or IP address has been blocked.'''</big>
 
-Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
+The block was made by $1. The reason given is ''$2''.
 
-Your IP address is $3. Please include this address in any queries you make.',
+You can contact $1 or another [[{{ns:project}}:Administrators|administrator]] to discuss the block.
+You cannot use the 'email this user' feature unless a valid email address is specified in your
+[[Special:Preferences|account preferences]]. Your current IP address is $3. Please include this in any queries.",
 'blockedoriginalsource' => "The source of '''$1''' is shown below:",
 'blockededitsource' => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle' => 'Login required to edit',

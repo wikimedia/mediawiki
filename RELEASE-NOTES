@@ -65,6 +65,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6660) Fix behaviour of EditPage::blockedPage() when the article does
   not exist; now doesn't show the source box if the user hasn't provided it
   (blocked mid-edit) and the page doesn't exist
+* Improve default value of "blockedtext"
 
 == Languages updated ==
 
