@@ -62,7 +62,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6642) Don't offer to unlock the database when it isn't locked
 * cleanupTitles.php changed from --dry-run option to --fix, so default
   behavior is now a non-invasive check as with namespaceDupes.php
-
+* (bug 6660) Fix behaviour of EditPage::blockedPage() when the article does
+  not exist; now doesn't show the source box if the user hasn't provided it
+  (blocked mid-edit) and the page doesn't exist
 
 == Languages updated ==
 
