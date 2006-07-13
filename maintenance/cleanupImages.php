@@ -147,8 +147,8 @@ class ImageCleanup extends TableCleanup {
 	function buildSafeTitle( $name ) {
 		$x = preg_replace_callback(
 			"/([^$wgLegalTitleChars])/",
-			$name,
-			array( $this, 'hexChar' ) );
+			array( $this, 'hexChar' ),
+			$name );
 		
 		$test = Title::makeTitleSafe( NS_IMAGE, $x );
 		if( is_null( $test ) || $test->getDbKey() !== $x ) {
