@@ -84,7 +84,9 @@ function wfSpecialStatistics() {
 		
 		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
 		if( !$wgDisableCounters && !$wgMiserMode ) {
-			$res = $dbr->query( "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 AND page_counter > 0 ORDER BY page_counter DESC LIMIT 0,10", __METHOD__ );
+			$sql = "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 AND page_counter > 0 ORDER BY page_counter DESC";
+			$sql = $dbr->limitResult($sql, 10, 0);
+			$res = $dbr->query( $sql, $fname );
 			if( $res ) {
 				$wgOut->addHtml( '<h2>' . wfMsgHtml( 'statistics-mostpopular' ) . '</h2>' );
 				$skin =& $wgUser->getSkin();
