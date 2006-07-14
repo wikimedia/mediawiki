@@ -36,7 +36,7 @@ class CategoriesPage extends QueryPage {
 				1 as value,
 				COUNT(*) as count
 			   FROM $categorylinks
-			   GROUP BY cl_to";
+			   GROUP BY 1,2,3,4";
 		return $s;
 	}
 

@@ -29,7 +29,7 @@ class MostimagesPage extends QueryPage {
 				il_to as title,
 				COUNT(*) as value
 			FROM $imagelinks
-			GROUP BY il_to
+			GROUP BY 1,2,3
 			HAVING COUNT(*) > 1
 			";
 	}
