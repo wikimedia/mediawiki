@@ -207,13 +207,13 @@ class LogPage {
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMsg.* functions
 	 */
-	function addEntry( $action, &$target, $comment, $params = array() ) {
+	function addEntry( $action, $target, $comment, $params = array() ) {
 		if ( !is_array( $params ) ) {
 			$params = array( $params );
 		}
 
 		$this->action = $action;
-		$this->target =& $target;
+		$this->target = $target;
 		$this->comment = $comment;
 		$this->params = LogPage::makeParamBlob( $params );
 
