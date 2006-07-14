@@ -578,6 +578,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			if ($conf->DBtype === $db)
 				$conf->DBtypename = $ourdb[$db]['fullname'];
 		}
+		if ( ! strlen($conf->DBtype)) {
+			$errs["DBpicktype"] = "Please choose a database type";
+			continue;
+		}
+
 		if (! $conf->DBtypename) {
 			$errs["DBtype"] = "Unknown database type '$conf->DBtype'";
 			continue;
@@ -1073,6 +1078,7 @@ if( count( $errs ) ) {
 <div class="config-section">
 <div class="config-input">
 		<label class='column'>Database type:</label>
+<?php if (isset($errs['DBpicktype'])) print "<span class='error'>$errs[DBpicktype]</span>\n"; ?>
 		<ul class='plain'><?php database_picker($conf) ?></ul>
 	</div>
 
