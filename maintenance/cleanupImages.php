@@ -145,6 +145,7 @@ class ImageCleanup extends TableCleanup {
 	}
 	
 	function buildSafeTitle( $name ) {
+		global $wgLegalTitleChars;
 		$x = preg_replace_callback(
 			"/([^$wgLegalTitleChars])/",
 			array( $this, 'hexChar' ),
