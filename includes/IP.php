@@ -7,22 +7,23 @@
  * @License GPL v2 or later
  */
 
-class IP {
-	// Some regex definition to "play" with IP address and IP address blocks
+// Some regex definition to "play" with IP address and IP address blocks
 
-	// An IP is made of 4 bytes from x00 to xFF which is d0 to d255
-	const RE_BYTE = '(25[0-5]|2[0-4]\d|1?\d{1,2})';
-	const RE_ADD = self::RE_BYTE . '\.' . self::RE_BYTE . '\.' . self::RE_BYTE . '\.' . self::RE_BYTE;
-	// An IP block is an IP address and a prefix (d1 to d32)
-	const RE_PREFIX = '(3[0-2]|[12]?\d)';
-	const RE_BLOCK = self::RE_ADD . '\/' . self::RE_PREFIX;
+// An IP is made of 4 bytes from x00 to xFF which is d0 to d255
+define( 'RE_IP_BYTE', '(25[0-5]|2[0-4]\d|1?\d{1,2})');
+define( 'RE_IP_ADD' , RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE );
+// An IP block is an IP address and a prefix (d1 to d32)
+define( 'RE_IP_PREFIX' , '(3[0-2]|[12]?\d)');
+define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX);
+
+class IP {
 
 	/**
 	 * Validate an IP address.
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValid( $ip ) {
-		return preg_match( '/^' . self::RE_ADD . '$/', $ip, $matches) ;
+		return preg_match( '/^' . RE_IP_ADD . '$/', $ip, $matches) ;
 	}
 
 	/**
@@ -79,7 +80,7 @@ class IP {
 	 * @return array
 	 */
 	public static function toArray( $ipblock ) {
-		if(! preg_match( '/^' . self::RE_ADD . '(?:\/(?:'.self::RE_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
+		if(! preg_match( '/^' . RE_IP_ADD . '(?:\/(?:'.RE_IP_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
 			return false;
 		} else {
 			return $matches;
