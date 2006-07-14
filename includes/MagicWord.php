@@ -6,90 +6,20 @@
  */
 
 /**
- * private
- */
-$wgMagicFound = false;
-
-/**
- * To add magic words in an extension, use the LanguageGetMagic hook. For 
- * magic words which are also Parser variables, add a MagicWordwgVariableIDs
- * hook. Use string keys. Do use the interface immediately below, 
- * MagicWordMagicWords. It is deprecated.
- */
-
-$magicWords = array();
-if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
-	wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
-
-for ( $i = 0; $i < count( $magicWords ); ++$i )
-	define( $magicWords[$i], $magicWords[$i] );
-
-
-$wgVariableIDs = array(
-	'currentmonth',
-	'currentmonthname',
-	'currentmonthnamegen',
-	'currentmonthabbrev',
-	'currentday',
-	'currentday2',
-	'currentdayname',
-	'currentyear',
-	'currenttime',
-	'numberofarticles',
-	'numberoffiles',
-	'sitename',
-	'server',
-	'servername',
-	'scriptpath',
-	'pagename',
-	'pagenamee',
-	'fullpagename',
-	'fullpagenamee',
-	'namespace',
-	'namespacee',
-	'currentweek',
-	'currentdow',
-	'revisionid',
-	'subpagename',
-	'subpagenamee',
-	'displaytitle',
-	'talkspace',
-	'talkspacee',
-	'subjectspace',
-	'subjectspacee',
-	'talkpagename',
-	'talkpagenamee',
-	'subjectpagename',
-	'subjectpagenamee',
-	'numberofusers',
-	'rawsuffix',
-	'newsectionlink',
-	'numberofpages',
-	'currentversion',
-	'basepagename',
-	'basepagenamee',
-	'urlencode',
-	'currenttimestamp',
-	'directionmark',
-	'language',
-	'contentlanguage',
-	'pagesinnamespace',
-	'numberofadmins',
-);
-if ( ! defined( 'MEDIAWIKI_INSTALL' ) )
-	wfRunHooks( 'MagicWordwgVariableIDs', array( &$wgVariableIDs ) );
-
-/**
  * This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.
  * Usage:
  *     if (MagicWord::get( 'redirect' )->match( $text ) )
  *
  * Possible future improvements:
  *   * Simultaneous searching for a number of magic words
- *   * $wgMagicWords in shared memory
+ *   * MagicWord::$mObjects in shared memory
  *
  * Please avoid reading the data out of one of these objects and then writing
  * special case code. If possible, add another match()-like function here.
+ *
+ * To add magic words in an extension, use the LanguageGetMagic hook. For 
+ * magic words which are also Parser variables, add a MagicWordwgVariableIDs
+ * hook. Use string keys.
  *
  * @package MediaWiki
  */
@@ -99,7 +29,63 @@ class MagicWord {
 	 */
 	var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
 	var $mRegexStart, $mBaseRegex, $mVariableRegex;
-	var $mModified;
+	var $mModified, $mFound;
+
+	static public $mVariableIDsInitialised = false;
+	static public $mVariableIDs = array(
+		'currentmonth',
+		'currentmonthname',
+		'currentmonthnamegen',
+		'currentmonthabbrev',
+		'currentday',
+		'currentday2',
+		'currentdayname',
+		'currentyear',
+		'currenttime',
+		'numberofarticles',
+		'numberoffiles',
+		'sitename',
+		'server',
+		'servername',
+		'scriptpath',
+		'pagename',
+		'pagenamee',
+		'fullpagename',
+		'fullpagenamee',
+		'namespace',
+		'namespacee',
+		'currentweek',
+		'currentdow',
+		'revisionid',
+		'subpagename',
+		'subpagenamee',
+		'displaytitle',
+		'talkspace',
+		'talkspacee',
+		'subjectspace',
+		'subjectspacee',
+		'talkpagename',
+		'talkpagenamee',
+		'subjectpagename',
+		'subjectpagenamee',
+		'numberofusers',
+		'rawsuffix',
+		'newsectionlink',
+		'numberofpages',
+		'currentversion',
+		'basepagename',
+		'basepagenamee',
+		'urlencode',
+		'currenttimestamp',
+		'directionmark',
+		'language',
+		'contentlanguage',
+		'pagesinnamespace',
+		'numberofadmins',
+	);
+
+	static public $mObjects = array();
+
 	/**#@-*/
 
 	function MagicWord($id = 0, $syn = '', $cs = false) {
@@ -118,17 +104,31 @@ class MagicWord {
 	 * @static
 	 */
 	static function &get( $id ) {
-		global $wgMagicWords;
-
-		if ( !is_array( $wgMagicWords ) ) {
-			throw new MWException( "Incorrect initialisation order, \$wgMagicWords does not exist\n" );
-		}
-		if (!array_key_exists( $id, $wgMagicWords ) ) {
+		if (!array_key_exists( $id, self::$mObjects ) ) {
 			$mw = new MagicWord();
 			$mw->load( $id );
-			$wgMagicWords[$id] = $mw;
+			self::$mObjects[$id] = $mw;
 		}
-		return $wgMagicWords[$id];
+		return self::$mObjects[$id];
+	}
+
+	/**
+	 * Get an array of parser variable IDs
+	 */
+	static function getVariableIDs() {
+		if ( !self::$mVariableIDsInitialised ) {
+			# Deprecated constant definition hook, available for extensions that need it
+			$magicWords = array();
+			wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
+			foreach ( $magicWords as $word ) {
+				define( $word, $word );
+			}
+
+			# Get variable IDs
+			wfRunHooks( 'MagicWordwgVariableIDs', array( &self::$mVariableIDs ) );
+			self::$mVariableIDsInitialised = true;
+		}
+		return self::$mVariableIDs;
 	}
 
 	# Initialises this object with an ID
@@ -250,19 +250,25 @@ class MagicWord {
 	 * input string, removing all instances of the word
 	 */
 	function matchAndRemove( &$text ) {
-		global $wgMagicFound;
-		$wgMagicFound = false;
-		$text = preg_replace_callback( $this->getRegex(), 'pregRemoveAndRecord', $text );
-		return $wgMagicFound;
+		$this->mFound = false;
+		$text = preg_replace_callback( $this->getRegex(), array( &$this, 'pregRemoveAndRecord' ), $text );
+		return $this->mFound;
 	}
 
 	function matchStartAndRemove( &$text ) {
-		global $wgMagicFound;
-		$wgMagicFound = false;
-		$text = preg_replace_callback( $this->getRegexStart(), 'pregRemoveAndRecord', $text );
-		return $wgMagicFound;
+		$this->mFound = false;
+		$text = preg_replace_callback( $this->getRegexStart(), array( &$this, 'pregRemoveAndRecord' ), $text );
+		return $this->mFound;
 	}
 
+	/**
+	 * Used in matchAndRemove()
+	 * @private
+	 **/
+	function pregRemoveAndRecord( $match ) {
+		$this->mFound = true;
+		return '';
+	}
 
 	/**
 	 * Replaces the word with something else
@@ -356,16 +362,6 @@ class MagicWord {
 	function isCaseSensitive() {
 		return $this->mCaseSensitive;
 	}
-}
-
-/**
- * Used in matchAndRemove()
- * @private
- **/
-function pregRemoveAndRecord( $match ) {
-	global $wgMagicFound;
-	$wgMagicFound = true;
-	return '';
 }
 
 ?>

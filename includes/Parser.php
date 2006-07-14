@@ -2336,10 +2336,10 @@ class Parser
 	function initialiseVariables() {
 		$fname = 'Parser::initialiseVariables';
 		wfProfileIn( $fname );
-		global $wgVariableIDs;
+		$variableIDs = MagicWord::getVariableIDs();
 
 		$this->mVariables = array();
-		foreach ( $wgVariableIDs as $id ) {
+		foreach ( $variableIDs as $id ) {
 			$mw =& MagicWord::get( $id );
 			$mw->addToArray( $this->mVariables, $id );
 		}

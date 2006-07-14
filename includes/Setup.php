@@ -42,7 +42,6 @@ require_once( "$IP/includes/Hooks.php" );
 require_once( "$IP/includes/Namespace.php" );
 require_once( "$IP/includes/User.php" );
 require_once( "$IP/includes/OutputPage.php" );
-require_once( "$IP/includes/MagicWord.php" );
 require_once( "$IP/includes/MessageCache.php" );
 require_once( "$IP/includes/Parser.php" );
 require_once( "$IP/includes/LoadBalancer.php" );
@@ -272,8 +271,6 @@ wfProfileIn( $fname.'-misc2' );
 
 $wgDeferredUpdateList = array();
 $wgPostCommitUpdateList = array();
-
-$wgMagicWords = array();
 
 $wgParser = new Parser();
 
