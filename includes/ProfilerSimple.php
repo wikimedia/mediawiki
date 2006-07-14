@@ -8,7 +8,7 @@
  * @todo document
  * @package MediaWiki
  */
-require_once(dirname(__FILE__).'/Profiling.php');
+require_once(dirname(__FILE__).'/Profiler.php');
 
 class ProfilerSimple extends Profiler {
 	function ProfilerSimple() {
@@ -86,9 +86,14 @@ class ProfilerSimple extends Profiler {
 	}
 
 	function getCpuTime($ru=null) {
-		if ($ru==null)
-			$ru=getrusage();
-		return ($ru['ru_utime.tv_sec']+$ru['ru_stime.tv_sec']+($ru['ru_utime.tv_usec']+$ru['ru_stime.tv_usec'])*1e-6);
+		if ( function_exists( getrusage() ) {
+			if ( $ru == null )
+				$ru = getrusage();
+			return ($ru['ru_utime.tv_sec'] + $ru['ru_stime.tv_sec'] + ($ru['ru_utime.tv_usec'] + 
+				$ru['ru_stime.tv_usec']) * 1e-6);
+		} else {
+			return 0;
+		}
 	}
 
 	/* If argument is passed, it assumes that it is dual-format time string, returns proper float time value */

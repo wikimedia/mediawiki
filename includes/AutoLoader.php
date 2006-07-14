@@ -122,7 +122,7 @@ function __autoload($className) {
 		'ParserCache' => 'includes/ParserCache.php',
 		'ProfilerSimple' => 'includes/ProfilerSimple.php',
 		'ProfilerSimpleUDP' => 'includes/ProfilerSimpleUDP.php',
-		'Profiler' => 'includes/Profiling.php',
+		'Profiler' => 'includes/Profiler.php',
 		'ProxyTools' => 'includes/ProxyTools.php',
 		'ProtectionForm' => 'includes/ProtectionForm.php',
 		'QueryPage' => 'includes/QueryPage.php',

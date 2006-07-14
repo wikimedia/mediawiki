@@ -8,7 +8,10 @@
  * This file is not a valid entry point, perform no further processing unless
  * MEDIAWIKI is defined
  */
-if( defined( 'MEDIAWIKI' ) ) {
+if( !defined( 'MEDIAWIKI' ) ) {
+	echo "This file is part of MediaWiki, it is not a valid entry point.\n";
+	exit( 1 );
+}	
 
 # The main wiki script and things like database
 # conversion and maintenance scripts all share a
@@ -16,34 +19,16 @@ if( defined( 'MEDIAWIKI' ) ) {
 # setting up a few globals.
 #
 
+$fname = 'Setup.php';
+wfProfileIn( $fname );
+
 // Check to see if we are at the file scope
 if ( !isset( $wgVersion ) ) {
 	echo "Error, Setup.php must be included from the file scope, after DefaultSettings.php\n";
 	die( 1 );
 }
 
-if( !isset( $wgProfiling ) )
-	$wgProfiling = false;
-
 require_once( "$IP/includes/AutoLoader.php" );
-
-if ( function_exists( 'wfProfileIn' ) ) {
-	/* nada, everything should be done already */
-} elseif ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
-	$wgProfiling = true;
-	if ($wgProfilerType == "") {
-		$wgProfiler = new Profiler();
-	} else {
-		$prclass="Profiler{$wgProfilerType}";
-		require_once( $prclass.".php" );
-		$wgProfiler = new $prclass();
-	}
-} else {
-	require_once( "$IP/includes/ProfilerStub.php" );
-}
-
-$fname = 'Setup.php';
-wfProfileIn( $fname );
 
 wfProfileIn( $fname.'-exception' );
 require_once( "$IP/includes/Exception.php" );
@@ -323,5 +308,4 @@ $wgFullyInitialised = true;
 wfProfileOut( $fname.'-extensions' );
 wfProfileOut( $fname );
 
-}
 ?>

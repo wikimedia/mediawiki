@@ -302,8 +302,7 @@ class MediaWiki {
 	 * Ends this task peacefully
 	 */
 	function restInPeace ( &$loadBalancer ) {
-		wfProfileClose();
-		logProfilingData();
+		wfLogProfilingData();
 		$loadBalancer->closeAll();
 		wfDebug( "Request ended normally\n" );
 	}
