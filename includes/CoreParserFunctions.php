@@ -106,7 +106,7 @@ class CoreParserFunctions {
 	function isRaw( $param ) {
 		static $mwRaw;
 		if ( !$mwRaw ) {
-			$mwRaw =& MagicWord::get( MAG_RAWSUFFIX );
+			$mwRaw =& MagicWord::get( 'rawsuffix' );
 		}
 		if ( is_null( $param ) ) {
 			return false;
