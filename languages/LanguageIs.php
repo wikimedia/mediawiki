@@ -37,7 +37,7 @@ class LanguageIs extends LanguageUtf8 {
 	);
 
 	private $mMagicWordsIs = array(
-		MAG_REDIRECT => array( 0, '#tilvísun', '#TILVÍSUN', '#redirect' ), // MagicWord::initRegex() sucks
+		'redirect'   => array( 0, '#tilvísun', '#TILVÍSUN', '#redirect' ), // MagicWord::initRegex() sucks
 	);
 
 	function __construct() {

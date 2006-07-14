@@ -286,7 +286,7 @@ class Title {
 	 * @access public
 	 */
 	public static function newFromRedirect( $text ) {
-		$mwRedir = MagicWord::get( MAG_REDIRECT );
+		$mwRedir = MagicWord::get( 'redirect' );
 		$rt = NULL;
 		if ( $mwRedir->matchStart( $text ) ) {
 			if ( preg_match( '/\[{2}(.*?)(?:\||\]{2})/', $text, $m ) ) {
@@ -1897,7 +1897,7 @@ class Title {
 		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Recreate the redirect, this time in the other direction.
-		$mwRedir = MagicWord::get( MAG_REDIRECT );
+		$mwRedir = MagicWord::get( 'redirect' );
 		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 		$redirectArticle = new Article( $this );
 		$newid = $redirectArticle->insertOn( $dbw );
@@ -1970,7 +1970,7 @@ class Title {
 		$linkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Insert redirect
-		$mwRedir = MagicWord::get( MAG_REDIRECT );
+		$mwRedir = MagicWord::get( 'redirect' );
 		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 		$redirectArticle = new Article( $this );
 		$newid = $redirectArticle->insertOn( $dbw );

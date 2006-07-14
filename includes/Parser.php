@@ -148,31 +148,31 @@ class Parser
 
 		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
 
-		$this->setFunctionHook( MAG_NS, array( 'CoreParserFunctions', 'ns' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_URLENCODE, array( 'CoreParserFunctions', 'urlencode' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_LCFIRST, array( 'CoreParserFunctions', 'lcfirst' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_UCFIRST, array( 'CoreParserFunctions', 'ucfirst' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_LC, array( 'CoreParserFunctions', 'lc' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_UC, array( 'CoreParserFunctions', 'uc' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_LOCALURL, array( 'CoreParserFunctions', 'localurl' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_LOCALURLE, array( 'CoreParserFunctions', 'localurle' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_FULLURL, array( 'CoreParserFunctions', 'fullurl' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_FULLURLE, array( 'CoreParserFunctions', 'fullurle' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_FORMATNUM, array( 'CoreParserFunctions', 'formatnum' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_GRAMMAR, array( 'CoreParserFunctions', 'grammar' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_PLURAL, array( 'CoreParserFunctions', 'plural' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_NUMBEROFPAGES, array( 'CoreParserFunctions', 'numberofpages' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_NUMBEROFUSERS, array( 'CoreParserFunctions', 'numberofusers' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_NUMBEROFARTICLES, array( 'CoreParserFunctions', 'numberofarticles' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_NUMBEROFFILES, array( 'CoreParserFunctions', 'numberoffiles' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_NUMBEROFADMINS, array( 'CoreParserFunctions', 'numberofadmins' ), SFH_NO_HASH );
-		$this->setFunctionHook( MAG_LANGUAGE, array( 'CoreParserFunctions', 'language' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'ns', array( 'CoreParserFunctions', 'ns' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'urlencode', array( 'CoreParserFunctions', 'urlencode' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'lcfirst', array( 'CoreParserFunctions', 'lcfirst' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'ucfirst', array( 'CoreParserFunctions', 'ucfirst' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'lc', array( 'CoreParserFunctions', 'lc' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'uc', array( 'CoreParserFunctions', 'uc' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'localurl', array( 'CoreParserFunctions', 'localurl' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'localurle', array( 'CoreParserFunctions', 'localurle' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'fullurl', array( 'CoreParserFunctions', 'fullurl' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'fullurle', array( 'CoreParserFunctions', 'fullurle' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'formatnum', array( 'CoreParserFunctions', 'formatnum' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'grammar', array( 'CoreParserFunctions', 'grammar' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'plural', array( 'CoreParserFunctions', 'plural' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofpages', array( 'CoreParserFunctions', 'numberofpages' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofusers', array( 'CoreParserFunctions', 'numberofusers' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofarticles', array( 'CoreParserFunctions', 'numberofarticles' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberoffiles', array( 'CoreParserFunctions', 'numberoffiles' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofadmins', array( 'CoreParserFunctions', 'numberofadmins' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'language', array( 'CoreParserFunctions', 'language' ), SFH_NO_HASH );
 
 		if ( $wgAllowDisplayTitle ) {
-			$this->setFunctionHook( MAG_DISPLAYTITLE, array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
+			$this->setFunctionHook( 'displaytitle', array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
 		}
 		if ( $wgAllowSlowParserFunctions ) {
-			$this->setFunctionHook( MAG_PAGESINNAMESPACE, array( 'CoreParserFunctions', 'pagesinnamespace' ), SFH_NO_HASH );
+			$this->setFunctionHook( 'pagesinnamespace', array( 'CoreParserFunctions', 'pagesinnamespace' ), SFH_NO_HASH );
 		}
 		
 		$this->initialiseVariables();
@@ -2217,106 +2217,106 @@ class Parser
 		wfRunHooks( 'ParserGetVariableValueTs', array( &$this, &$ts ) );
 
 		switch ( $index ) {
-			case MAG_CURRENTMONTH:
+			case 'currentmonth':
 				return $varCache[$index] = $wgContLang->formatNum( date( 'm', $ts ) );
-			case MAG_CURRENTMONTHNAME:
+			case 'currentmonthname':
 				return $varCache[$index] = $wgContLang->getMonthName( date( 'n', $ts ) );
-			case MAG_CURRENTMONTHNAMEGEN:
+			case 'currentmonthnamegen':
 				return $varCache[$index] = $wgContLang->getMonthNameGen( date( 'n', $ts ) );
-			case MAG_CURRENTMONTHABBREV:
+			case 'currentmonthabbrev':
 				return $varCache[$index] = $wgContLang->getMonthAbbreviation( date( 'n', $ts ) );
-			case MAG_CURRENTDAY:
+			case 'currentday':
 				return $varCache[$index] = $wgContLang->formatNum( date( 'j', $ts ) );
-			case MAG_CURRENTDAY2:
+			case 'currentday2':
 				return $varCache[$index] = $wgContLang->formatNum( date( 'd', $ts ) );
-			case MAG_PAGENAME:
+			case 'pagename':
 				return $this->mTitle->getText();
-			case MAG_PAGENAMEE:
+			case 'pagenamee':
 				return $this->mTitle->getPartialURL();
-			case MAG_FULLPAGENAME:
+			case 'fullpagename':
 				return $this->mTitle->getPrefixedText();
-			case MAG_FULLPAGENAMEE:
+			case 'fullpagenamee':
 				return $this->mTitle->getPrefixedURL();
-			case MAG_SUBPAGENAME:
+			case 'subpagename':
 				return $this->mTitle->getSubpageText();
-			case MAG_SUBPAGENAMEE:
+			case 'subpagenamee':
 				return $this->mTitle->getSubpageUrlForm();
-			case MAG_BASEPAGENAME:
+			case 'basepagename':
 				return $this->mTitle->getBaseText();
-			case MAG_BASEPAGENAMEE:
+			case 'basepagenamee':
 				return wfUrlEncode( str_replace( ' ', '_', $this->mTitle->getBaseText() ) );
-			case MAG_TALKPAGENAME:
+			case 'talkpagename':
 				if( $this->mTitle->canTalk() ) {
 					$talkPage = $this->mTitle->getTalkPage();
 					return $talkPage->getPrefixedText();
 				} else {
 					return '';
 				}
-			case MAG_TALKPAGENAMEE:
+			case 'talkpagenamee':
 				if( $this->mTitle->canTalk() ) {
 					$talkPage = $this->mTitle->getTalkPage();
 					return $talkPage->getPrefixedUrl();
 				} else {
 					return '';
 				}
-			case MAG_SUBJECTPAGENAME:
+			case 'subjectpagename':
 				$subjPage = $this->mTitle->getSubjectPage();
 				return $subjPage->getPrefixedText();
-			case MAG_SUBJECTPAGENAMEE:
+			case 'subjectpagenamee':
 				$subjPage = $this->mTitle->getSubjectPage();
 				return $subjPage->getPrefixedUrl();
-			case MAG_REVISIONID:
+			case 'revisionid':
 				return $this->mRevisionId;
-			case MAG_NAMESPACE:
+			case 'namespace':
 				return str_replace('_',' ',$wgContLang->getNsText( $this->mTitle->getNamespace() ) );
-			case MAG_NAMESPACEE:
+			case 'namespacee':
 				return wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
-			case MAG_TALKSPACE:
+			case 'talkspace':
 				return $this->mTitle->canTalk() ? str_replace('_',' ',$this->mTitle->getTalkNsText()) : '';
-			case MAG_TALKSPACEE:
+			case 'talkspacee':
 				return $this->mTitle->canTalk() ? wfUrlencode( $this->mTitle->getTalkNsText() ) : '';
-			case MAG_SUBJECTSPACE:
+			case 'subjectspace':
 				return $this->mTitle->getSubjectNsText();
-			case MAG_SUBJECTSPACEE:
+			case 'subjectspacee':
 				return( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
-			case MAG_CURRENTDAYNAME:
+			case 'currentdayname':
 				return $varCache[$index] = $wgContLang->getWeekdayName( date( 'w', $ts ) + 1 );
-			case MAG_CURRENTYEAR:
+			case 'currentyear':
 				return $varCache[$index] = $wgContLang->formatNum( date( 'Y', $ts ), true );
-			case MAG_CURRENTTIME:
+			case 'currenttime':
 				return $varCache[$index] = $wgContLang->time( wfTimestamp( TS_MW, $ts ), false, false );
-			case MAG_CURRENTWEEK:
+			case 'currentweek':
 				// @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
 				return $varCache[$index] = $wgContLang->formatNum( (int)date( 'W', $ts ) );
-			case MAG_CURRENTDOW:
+			case 'currentdow':
 				return $varCache[$index] = $wgContLang->formatNum( date( 'w', $ts ) );
-			case MAG_NUMBEROFARTICLES:
+			case 'numberofarticles':
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
-			case MAG_NUMBEROFFILES:
+			case 'numberoffiles':
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfFiles() );
-			case MAG_NUMBEROFUSERS:
+			case 'numberofusers':
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfUsers() );
-			case MAG_NUMBEROFPAGES:
+			case 'numberofpages':
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfPages() );
-			case MAG_NUMBEROFADMINS:
+			case 'numberofadmins':
 				return $varCache[$index]  = $wgContLang->formatNum( wfNumberOfAdmins() );
-			case MAG_CURRENTTIMESTAMP:
+			case 'currenttimestamp':
 				return $varCache[$index] = wfTimestampNow();
-			case MAG_CURRENTVERSION:
+			case 'currentversion':
 				global $wgVersion;
 				return $wgVersion;
-			case MAG_SITENAME:
+			case 'sitename':
 				return $wgSitename;
-			case MAG_SERVER:
+			case 'server':
 				return $wgServer;
-			case MAG_SERVERNAME:
+			case 'servername':
 				return $wgServerName;
-			case MAG_SCRIPTPATH:
+			case 'scriptpath':
 				return $wgScriptPath;
-			case MAG_DIRECTIONMARK:
+			case 'directionmark':
 				return $wgContLang->getDirMark();
-			case MAG_CONTENTLANGUAGE:
+			case 'contentlanguage':
 				global $wgContLanguageCode;
 				return $wgContLanguageCode;
 			default:
@@ -2580,7 +2580,7 @@ class Parser
 		$skip = false;
 		if ( $this->mOutputType == OT_WIKI ) {
 			# Do only magic variables prefixed by SUBST
-			$mwSubst =& MagicWord::get( MAG_SUBST );
+			$mwSubst =& MagicWord::get( 'subst' );
 			if (!$mwSubst->matchStartAndRemove( $varname ))
 				$skip = true;
 			# Note that if we don't substitute the variable below,
@@ -2674,7 +2674,7 @@ class Parser
 
 		# SUBST
 		if ( !$found ) {
-			$mwSubst =& MagicWord::get( MAG_SUBST );
+			$mwSubst =& MagicWord::get( 'subst' );
 			if ( $mwSubst->matchStartAndRemove( $part1 ) xor ($this->mOutputType == OT_WIKI) ) {
 				# One of two possibilities is true:
 				# 1) Found SUBST but not in the PST phase
@@ -2690,23 +2690,23 @@ class Parser
 		# MSG, MSGNW, INT and RAW
 		if ( !$found ) {
 			# Check for MSGNW:
-			$mwMsgnw =& MagicWord::get( MAG_MSGNW );
+			$mwMsgnw =& MagicWord::get( 'msgnw' );
 			if ( $mwMsgnw->matchStartAndRemove( $part1 ) ) {
 				$nowiki = true;
 			} else {
 				# Remove obsolete MSG:
-				$mwMsg =& MagicWord::get( MAG_MSG );
+				$mwMsg =& MagicWord::get( 'msg' );
 				$mwMsg->matchStartAndRemove( $part1 );
 			}
 			
 			# Check for RAW:
-			$mwRaw =& MagicWord::get( MAG_RAW );
+			$mwRaw =& MagicWord::get( 'raw' );
 			if ( $mwRaw->matchStartAndRemove( $part1 ) ) {
 				$forceRawInterwiki = true;
 			}
 			
 			# Check if it is an internal message
-			$mwInt =& MagicWord::get( MAG_INT );
+			$mwInt =& MagicWord::get( 'int' );
 			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
 				if ( $this->incrementIncludeCount( 'int:'.$part1 ) ) {
 					$text = $linestart . wfMsgReal( $part1, $args, true );
@@ -3092,7 +3092,7 @@ class Parser
 	function stripNoGallery( &$text ) {
 		# if the string __NOGALLERY__ (not case-sensitive) occurs in the HTML,
 		# do not add TOC
-		$mw = MagicWord::get( MAG_NOGALLERY );
+		$mw = MagicWord::get( 'nogallery' );
 		$this->mOutput->mNoGallery = $mw->matchAndRemove( $text ) ;
 	}
 
@@ -3102,12 +3102,12 @@ class Parser
 	function stripToc( $text ) {
 		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML,
 		# do not add TOC
-		$mw = MagicWord::get( MAG_NOTOC );
+		$mw = MagicWord::get( 'notoc' );
 		if( $mw->matchAndRemove( $text ) ) {
 			$this->mShowToc = false;
 		}
 
-		$mw = MagicWord::get( MAG_TOC );
+		$mw = MagicWord::get( 'toc' );
 		if( $mw->match( $text ) ) {
 			$this->mShowToc = true;
 			$this->mForceTocPosition = true;
@@ -3146,7 +3146,7 @@ class Parser
 		}
 
 		# Inhibit editsection links if requested in the page
-		$esw =& MagicWord::get( MAG_NOEDITSECTION );
+		$esw =& MagicWord::get( 'noeditsection' );
 		if( $esw->matchAndRemove( $text ) ) {
 			$showEditLink = 0;
 		}
@@ -3162,13 +3162,13 @@ class Parser
 
 		# Allow user to stipulate that a page should have a "new section"
 		# link added via __NEWSECTIONLINK__
-		$mw =& MagicWord::get( MAG_NEWSECTIONLINK );
+		$mw =& MagicWord::get( 'newsectionlink' );
 		if( $mw->matchAndRemove( $text ) )
 			$this->mOutput->setNewSection( true );
 
 		# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
 		# override above conditions and always show TOC above first header
-		$mw =& MagicWord::get( MAG_FORCETOC );
+		$mw =& MagicWord::get( 'forcetoc' );
 		if ($mw->matchAndRemove( $text ) ) {
 			$this->mShowToc = true;
 			$enoughToc = true;
@@ -3604,10 +3604,10 @@ class Parser
 		}
 
 		# Trim trailing whitespace
-		# MAG_END (__END__) tag allows for trailing
+		# 'end' (__END__) tag allows for trailing
 		# whitespace to be deliberately included
 		$text = rtrim( $text );
-		$mw =& MagicWord::get( MAG_END );
+		$mw =& MagicWord::get( 'end' );
 		$mw->matchAndRemove( $text );
 
 		return $text;
@@ -3670,7 +3670,7 @@ class Parser
 		global $wgTitle;
 		$this->startExternalParse( $wgTitle, new ParserOptions(), $parsing ? OT_WIKI : OT_MSG );
 
-		$substWord = MagicWord::get( MAG_SUBST );
+		$substWord = MagicWord::get( 'subst' );
 		$substRegex = '/\{\{(?!(?:' . $substWord->getBaseRegex() . '))/x' . $substWord->getRegexCase();
 		$substText = '{{' . $substWord->getSynonym( 0 );
 
@@ -4112,14 +4112,14 @@ class Parser
 
 		$part = explode( '|', $options);
 
-		$mwThumb  =& MagicWord::get( MAG_IMG_THUMBNAIL );
-		$mwManualThumb =& MagicWord::get( MAG_IMG_MANUALTHUMB );
-		$mwLeft   =& MagicWord::get( MAG_IMG_LEFT );
-		$mwRight  =& MagicWord::get( MAG_IMG_RIGHT );
-		$mwNone   =& MagicWord::get( MAG_IMG_NONE );
-		$mwWidth  =& MagicWord::get( MAG_IMG_WIDTH );
-		$mwCenter =& MagicWord::get( MAG_IMG_CENTER );
-		$mwFramed =& MagicWord::get( MAG_IMG_FRAMED );
+		$mwThumb  =& MagicWord::get( 'img_thumbnail' );
+		$mwManualThumb =& MagicWord::get( 'img_manualthumb' );
+		$mwLeft   =& MagicWord::get( 'img_left' );
+		$mwRight  =& MagicWord::get( 'img_right' );
+		$mwNone   =& MagicWord::get( 'img_none' );
+		$mwWidth  =& MagicWord::get( 'img_width' );
+		$mwCenter =& MagicWord::get( 'img_center' );
+		$mwFramed =& MagicWord::get( 'img_framed' );
 		$caption = '';
 
 		$width = $height = $framed = $thumb = false;
@@ -4145,7 +4145,7 @@ class Parser
 				# remember to set an alignment, don't render immediately
 				$align = 'none';
 			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
-				wfDebug( "MAG_IMG_WIDTH match: $match\n" );
+				wfDebug( "'img_width' match: $match\n" );
 				# $match is the image width in pixels
 				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
 					$width = intval( $m[1] );

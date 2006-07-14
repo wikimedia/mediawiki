@@ -54,7 +54,7 @@ class LanguageEt extends LanguageUtf8 {
 	
 	private $mMagicWordsEt = array(
 	#   ID                                 CASE  SYNONYMS
-		MAG_REDIRECT             => array( 0,    '#redirect', "#suuna"    ),
+		'redirect'               => array( 0,    '#redirect', "#suuna"    ),
 	);
 	
 	function __construct() {
