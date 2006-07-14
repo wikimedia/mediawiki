@@ -7,31 +7,30 @@
  * @License GPL v2 or later
  */
 
-// Some regex definition to "play" with IP address and IP address blocks
-
-// An IP is made of 4 bytes from x00 to xFF which is d0 to d255
-define( 'RE_IP_BYTE', '(25[0-5]|2[0-4]\d|1?\d{1,2})');
-define( 'RE_IP_ADD' , RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE );
-// An IP block is an IP address and a prefix (d1 to d32)
-define( 'RE_IP_PREFIX' , '(3[0-2]|[12]?\d)');
-define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX);
-
 class IP {
+	// Some regex definition to "play" with IP address and IP address blocks
+
+	// An IP is made of 4 bytes from x00 to xFF which is d0 to d255
+	const RE_BYTE = '(25[0-5]|2[0-4]\d|1?\d{1,2})';
+	const RE_ADD = self::RE_BYTE . '\.' . self::RE_BYTE . '\.' . self::RE_BYTE . '\.' . self::RE_BYTE;
+	// An IP block is an IP address and a prefix (d1 to d32)
+	const RE_PREFIX = '(3[0-2]|[12]?\d)';
+	const RE_BLOCK = self::RE_ADD . '\/' . self::RE_PREFIX;
 
 	/**
 	 * Validate an IP address.
 	 * @return boolean True if it is valid.
 	 */
-	public static function IsValid( $ip ) {
-		return preg_match( '/^' . RE_IP_ADD . '$/', $ip, $matches) ;
+	public static function isValid( $ip ) {
+		return preg_match( '/^' . self::RE_ADD . '$/', $ip, $matches) ;
 	}
 
 	/**
 	 * Validate an IP Block.
 	 * @return boolean True if it is valid.
 	 */
-	public static function IsValidBlock( $ipblock ) {
-		return ( count(self::ToArray($ipblock)) == 1 + 5 );
+	public static function isValidBlock( $ipblock ) {
+		return ( count(self::toArray($ipblock)) == 1 + 5 );
 	}
 
 	/**
@@ -39,8 +38,8 @@ class IP {
 	 * i.e. not RFC 1918 or similar
 	 * Comes from ProxyTools.php
 	 */
-	function IsPublic( $ip ) {
-		$n = IP::ToUnsigned( $ip );
+	function isPublic( $ip ) {
+		$n = IP::toUnsigned( $ip );
 		if ( !$n ) {
 			return false;
 		}
@@ -63,8 +62,8 @@ class IP {
 		}
 
 		foreach ( $privateRanges as $r ) {
-			$start = IP::ToUnsigned( $r[0] );
-			$end = IP::ToUnsigned( $r[1] );
+			$start = IP::toUnsigned( $r[0] );
+			$end = IP::toUnsigned( $r[1] );
 			if ( $n >= $start && $n <= $end ) {
 				return false;
 			}
@@ -79,8 +78,8 @@ class IP {
 	 * @parameter $ip string A quad dotted IP address
 	 * @return array
 	 */
-	public static function ToArray( $ipblock ) {
-		if(! preg_match( '/^' . RE_IP_ADD . '(?:\/(?:'.RE_IP_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
+	public static function toArray( $ipblock ) {
+		if(! preg_match( '/^' . self::RE_ADD . '(?:\/(?:'.self::RE_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
 			return false;
 		} else {
 			return $matches;
@@ -92,8 +91,8 @@ class IP {
 	 * Comes from ProxyTools.php
 	 * @param $ip Quad dotted IP address.
 	 */
-	public static function ToHex( $ip ) {
-		$n = self::ToUnsigned( $ip );
+	public static function toHex( $ip ) {
+		$n = self::toUnsigned( $ip );
 		if ( $n !== false ) {
 			$n = sprintf( '%08X', $n );
 		}
@@ -106,7 +105,7 @@ class IP {
 	 * Comes from ProxyTools.php
 	 * @param $ip Quad dotted IP address.
 	 */
-	public static function ToUnsigned( $ip ) {
+	public static function toUnsigned( $ip ) {
 		$n = ip2long( $ip );
 		if ( $n == -1 || $n === false ) { # Return value on error depends on PHP version
 			$n = false;

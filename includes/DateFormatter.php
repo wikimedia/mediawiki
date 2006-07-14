@@ -1,24 +1,10 @@
 <?php
 /**
- * Contain things
- * @todo document
+ * Date formatter, recognises dates in plain text and formats them accoding to user preferences.
+ *
  * @package MediaWiki
  * @subpackage Parser
  */
-
-/** */
-define('DF_ALL', -1);
-define('DF_NONE', 0);
-define('DF_MDY', 1);
-define('DF_DMY', 2);
-define('DF_YMD', 3);
-define('DF_ISO1', 4);
-define('DF_LASTPREF', 4);
-define('DF_ISO2', 5);
-define('DF_YDM', 6);
-define('DF_DM', 7);
-define('DF_MD', 8);
-define('DF_LAST', 8);
 
 /**
  * @todo preferences, OutputPage
@@ -32,6 +18,19 @@ class DateFormatter
 
 	var $regexes, $pDays, $pMonths, $pYears;
 	var $rules, $xMonths;
+	
+	const ALL = -1;
+	const NONE = 0;
+	const MDY = 1;
+	const DMY = 2;
+	const YMD = 3;
+	const ISO1 = 4;
+	const LASTPREF = 4;
+	const ISO2 = 5;
+	const YDM = 6;
+	const DM = 7;
+	const MD = 8;
+	const LAST = 8;
 
 	/**
 	 * @todo document
@@ -55,43 +54,43 @@ class DateFormatter
 		$this->prxISO2 = '\[\[(-?\d{4})-(\d{2})-(\d{2})]]';
 
 		# Real regular expressions
-		$this->regexes[DF_DMY] = "/{$this->prxDM} *,? *{$this->prxY}{$this->regexTrail}";
-		$this->regexes[DF_YDM] = "/{$this->prxY} *,? *{$this->prxDM}{$this->regexTrail}";
-		$this->regexes[DF_MDY] = "/{$this->prxMD} *,? *{$this->prxY}{$this->regexTrail}";
-		$this->regexes[DF_YMD] = "/{$this->prxY} *,? *{$this->prxMD}{$this->regexTrail}";
-		$this->regexes[DF_DM] = "/{$this->prxDM}{$this->regexTrail}";
-		$this->regexes[DF_MD] = "/{$this->prxMD}{$this->regexTrail}";
-		$this->regexes[DF_ISO1] = "/{$this->prxISO1}{$this->regexTrail}";
-		$this->regexes[DF_ISO2] = "/{$this->prxISO2}{$this->regexTrail}";
+		$this->regexes[self::DMY] = "/{$this->prxDM} *,? *{$this->prxY}{$this->regexTrail}";
+		$this->regexes[self::YDM] = "/{$this->prxY} *,? *{$this->prxDM}{$this->regexTrail}";
+		$this->regexes[self::MDY] = "/{$this->prxMD} *,? *{$this->prxY}{$this->regexTrail}";
+		$this->regexes[self::YMD] = "/{$this->prxY} *,? *{$this->prxMD}{$this->regexTrail}";
+		$this->regexes[self::DM] = "/{$this->prxDM}{$this->regexTrail}";
+		$this->regexes[self::MD] = "/{$this->prxMD}{$this->regexTrail}";
+		$this->regexes[self::ISO1] = "/{$this->prxISO1}{$this->regexTrail}";
+		$this->regexes[self::ISO2] = "/{$this->prxISO2}{$this->regexTrail}";
 
 		# Extraction keys
 		# See the comments in replace() for the meaning of the letters
-		$this->keys[DF_DMY] = 'jFY';
-		$this->keys[DF_YDM] = 'Y jF';
-		$this->keys[DF_MDY] = 'FjY';
-		$this->keys[DF_YMD] = 'Y Fj';
-		$this->keys[DF_DM] = 'jF';
-		$this->keys[DF_MD] = 'Fj';
-		$this->keys[DF_ISO1] = 'ymd'; # y means ISO year
-		$this->keys[DF_ISO2] = 'ymd';
+		$this->keys[self::DMY] = 'jFY';
+		$this->keys[self::YDM] = 'Y jF';
+		$this->keys[self::MDY] = 'FjY';
+		$this->keys[self::YMD] = 'Y Fj';
+		$this->keys[self::DM] = 'jF';
+		$this->keys[self::MD] = 'Fj';
+		$this->keys[self::ISO1] = 'ymd'; # y means ISO year
+		$this->keys[self::ISO2] = 'ymd';
 
 		# Target date formats
-		$this->targets[DF_DMY] = '[[F j|j F]] [[Y]]';
-		$this->targets[DF_YDM] = '[[Y]], [[F j|j F]]';
-		$this->targets[DF_MDY] = '[[F j]], [[Y]]';
-		$this->targets[DF_YMD] = '[[Y]] [[F j]]';
-		$this->targets[DF_DM] = '[[F j|j F]]';
-		$this->targets[DF_MD] = '[[F j]]';
-		$this->targets[DF_ISO1] = '[[Y|y]]-[[F j|m-d]]';
-		$this->targets[DF_ISO2] = '[[y-m-d]]';
+		$this->targets[self::DMY] = '[[F j|j F]] [[Y]]';
+		$this->targets[self::YDM] = '[[Y]], [[F j|j F]]';
+		$this->targets[self::MDY] = '[[F j]], [[Y]]';
+		$this->targets[self::YMD] = '[[Y]] [[F j]]';
+		$this->targets[self::DM] = '[[F j|j F]]';
+		$this->targets[self::MD] = '[[F j]]';
+		$this->targets[self::ISO1] = '[[Y|y]]-[[F j|m-d]]';
+		$this->targets[self::ISO2] = '[[y-m-d]]';
 
 		# Rules
 		#            pref    source 	  target
-		$this->rules[DF_DMY][DF_MD] 	= DF_DM;
-		$this->rules[DF_ALL][DF_MD] 	= DF_MD;
-		$this->rules[DF_MDY][DF_DM] 	= DF_MD;
-		$this->rules[DF_ALL][DF_DM] 	= DF_DM;
-		$this->rules[DF_NONE][DF_ISO2] 	= DF_ISO1;
+		$this->rules[self::DMY][self::MD] 	= self::DM;
+		$this->rules[self::ALL][self::MD] 	= self::MD;
+		$this->rules[self::MDY][self::DM] 	= self::MD;
+		$this->rules[self::ALL][self::DM] 	= self::DM;
+		$this->rules[self::NONE][self::ISO2] 	= self::ISO1;
 	}
 
 	/**
@@ -116,14 +115,14 @@ class DateFormatter
 	 */
 	function reformat( $preference, $text ) {
 		if ($preference == 'ISO 8601') $preference = 4; # The ISO 8601 option used to be 4
-		for ( $i=1; $i<=DF_LAST; $i++ ) {
+		for ( $i=1; $i<=self::LAST; $i++ ) {
 			$this->mSource = $i;
 			if ( @$this->rules[$preference][$i] ) {
 				# Specific rules
 				$this->mTarget = $this->rules[$preference][$i];
-			} elseif ( @$this->rules[DF_ALL][$i] ) {
+			} elseif ( @$this->rules[self::ALL][$i] ) {
 				# General rules
-				$this->mTarget = $this->rules[DF_ALL][$i];
+				$this->mTarget = $this->rules[self::ALL][$i];
 			} elseif ( $preference ) {
 				# User preference
 				$this->mTarget = $preference;
@@ -131,7 +130,7 @@ class DateFormatter
 				# Default
 				$this->mTarget = $i;
 			}
-			$text = preg_replace_callback( $this->regexes[$i], 'wfMainDateReplace', $text );
+			$text = preg_replace_callback( $this->regexes[$i], array( &$this, 'replace' ), $text );
 		}
 		return $text;
 	}
@@ -275,14 +274,6 @@ class DateFormatter
 		}
 		return $text;
 	}
-}
-
-/**
- * @todo document
- */
-function wfMainDateReplace( $matches ) {
-	$df =& DateFormatter::getInstance();
-	return $df->replace( $matches );
 }
 
 ?>
