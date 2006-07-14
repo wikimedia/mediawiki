@@ -3604,7 +3604,7 @@ class Parser
 		}
 
 		# Trim trailing whitespace
-		# 'end' (__END__) tag allows for trailing
+		# __END__ tag allows for trailing
 		# whitespace to be deliberately included
 		$text = rtrim( $text );
 		$mw =& MagicWord::get( 'end' );
@@ -3779,7 +3779,7 @@ class Parser
 	 *
 	 * @public
 	 *
-	 * @param mixed $id The magic word ID, or (deprecated) the function name. Function names are case-insensitive.
+	 * @param mixed $id The magic word ID
 	 * @param mixed $callback The callback function (and object) to use
 	 * @param integer $flags a combination of the following flags: 
 	 *                SFH_NO_HASH No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
@@ -3787,21 +3787,18 @@ class Parser
 	 * @return The old callback function for this name, if any
 	 */
 	function setFunctionHook( $id, $callback, $flags = 0 ) {
-		if( is_string( $id ) ) {
-			$id = strtolower( $id );
-		}
 		$oldVal = @$this->mFunctionHooks[$id];
 		$this->mFunctionHooks[$id] = $callback;
 
 		# Add to function cache
-		if ( is_int( $id ) ) {
-			$mw = MagicWord::get( $id );
-			$synonyms = $mw->getSynonyms();
-			$sensitive = intval( $mw->isCaseSensitive() );
-		} else {
-			$synonyms = array( $id );
-			$sensitive = 0;
+		$mw = MagicWord::get( $id );
+		if ( !$mw ) {
+			throw new MWException( 'The calling convention to Parser::setFunctionHook() has changed, ' .
+				'it is now required to pass a MagicWord ID as the first parameter.' );
 		}
+
+		$synonyms = $mw->getSynonyms();
+		$sensitive = intval( $mw->isCaseSensitive() );
 
 		foreach ( $synonyms as $syn ) {
 			# Case
@@ -4145,7 +4142,7 @@ class Parser
 				# remember to set an alignment, don't render immediately
 				$align = 'none';
 			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
-				wfDebug( "'img_width' match: $match\n" );
+				wfDebug( "img_width match: $match\n" );
 				# $match is the image width in pixels
 				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
 					$width = intval( $m[1] );
