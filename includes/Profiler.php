@@ -4,6 +4,8 @@
  * @package MediaWiki
  */
 
+$wgProfiling = true;
+
 /**
  * @param $functioname name of the function we will profile
  */
@@ -265,7 +267,7 @@ class Profiler {
 		$this->mCalls['-overhead-total'] = $profileCount;
 
 		# Output
-		asort($this->mCollated, SORT_NUMERIC);
+		arsort($this->mCollated, SORT_NUMERIC);
 		foreach ($this->mCollated as $fname => $elapsed) {
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;

@@ -4,18 +4,10 @@
  * PHP script to stream out an image thumbnail.
  * If the file exists, we make do with abridged MediaWiki initialisation.
  */
-
-define( 'MEDIAWIKI', true );
-unset( $IP );
-if ( isset( $_REQUEST['GLOBALS'] ) ) {
-	echo '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>';
-	die( -1 );
-}
-
-define( 'MW_NO_OUTPUT_BUFFER', true );
-
-require_once( './includes/Defines.php' );
-require_once( './LocalSettings.php' );
+define( 'MW_NO_SETUP', 1 );
+require_once( './includes/WebStart.php' );
+wfProfileIn( 'thumb.php' );
+wfProfileIn( 'thumb.php-start' );
 require_once( 'GlobalFunctions.php' );
 require_once( 'ImageFunctions.php' );
 
@@ -52,12 +44,14 @@ $thumbPath = wfImageThumbDir( $fileName ) . '/' . $thumbName;
 
 if ( is_file( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath ) ) {
 	wfStreamFile( $thumbPath );
+	// Can't log profiling data with no Setup.php
 	exit;
 }
 
 // OK, no valid thumbnail, time to get out the heavy machinery
+wfProfileOut( 'thumb.php-start' );
 require_once( 'Setup.php' );
-wfProfileIn( 'thumb.php' );
+wfProfileIn( 'thumb.php-render' );
 
 $img = Image::newFromName( $fileName );
 if ( $img ) {
@@ -79,7 +73,8 @@ if ( $thumb && $thumb->path ) {
 </body></html>";
 }
 
+wfProfileOut( 'thumb.php-render' );
 wfProfileOut( 'thumb.php' );
-
+wfLogProfilingData();
 
 ?>

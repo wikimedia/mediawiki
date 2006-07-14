@@ -7,18 +7,9 @@
  * to an array of pages you want everyone to be able to access. Your server must
  * support PATH_INFO, CGI-based configurations generally don't.
  */
-# Valid web server entry point, enable includes
-define( 'MEDIAWIKI', true );
-
-if ( isset( $_REQUEST['GLOBALS'] ) ) {
-	echo '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>';
-	die( -1 );
-}
-
-require_once( 'includes/Defines.php' );
-require_once( './LocalSettings.php' );
-require_once( 'includes/Setup.php' );
-require_once( 'includes/StreamFile.php' );
+require_once( './includes/WebStart.php' );
+wfProfileIn( 'img_auth.php' );
+require_once( './includes/StreamFile.php' );
 
 if( !isset( $_SERVER['PATH_INFO'] ) ) {
 	wfForbidden();
@@ -47,6 +38,7 @@ if( is_dir( $filename ) ) {
 
 # Write file
 wfStreamFile( $filename );
+wfLogProfilingData();
 
 function wfForbidden() {
 	header( 'HTTP/1.0 403 Forbidden' );
@@ -55,6 +47,7 @@ function wfForbidden() {
 <h1>Access denied</h1>
 <p>You need to log in to access files on this server</p>
 </body></html>";
+	wfLogProfilingData();
 	exit;
 }
 

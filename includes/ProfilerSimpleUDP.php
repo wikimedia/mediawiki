@@ -3,7 +3,7 @@
    (the one from wikipedia/udpprofile CVS )
 */
 
-require_once(dirname(__FILE__).'/Profiling.php');
+require_once(dirname(__FILE__).'/Profiler.php');
 require_once(dirname(__FILE__).'/ProfilerSimple.php');
 
 class ProfilerSimpleUDP extends ProfilerSimple {
