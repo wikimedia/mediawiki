@@ -31,9 +31,9 @@ class MostrevisionsPage extends QueryPage {
 				page_title as title,
 				COUNT(*) as value
 			FROM $revision
-			LEFT JOIN $page ON page_id = rev_page
+			JOIN $page ON page_id = rev_page
 			WHERE page_namespace = " . NS_MAIN . "
-			GROUP BY rev_page
+			GROUP BY 1,2,3
 			HAVING COUNT(*) > 1
 			";
 	}
