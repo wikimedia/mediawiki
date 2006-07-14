@@ -41,6 +41,7 @@ require_once( "includes/Defines.php" );
 require_once( "includes/DefaultSettings.php" );
 require_once( "includes/MagicWord.php" );
 require_once( "includes/Namespace.php" );
+require_once( "includes/ProfilerStub.php" );
 
 ## Databases we support:
 
