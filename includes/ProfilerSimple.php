@@ -86,7 +86,7 @@ class ProfilerSimple extends Profiler {
 	}
 
 	function getCpuTime($ru=null) {
-		if ( function_exists( getrusage() ) {
+		if ( function_exists( getrusage() ) ) {
 			if ( $ru == null )
 				$ru = getrusage();
 			return ($ru['ru_utime.tv_sec'] + $ru['ru_stime.tv_sec'] + ($ru['ru_utime.tv_usec'] + 
