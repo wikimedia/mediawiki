@@ -45,14 +45,9 @@ require_once( "$IP/includes/OutputPage.php" );
 require_once( "$IP/includes/MessageCache.php" );
 require_once( "$IP/includes/Parser.php" );
 require_once( "$IP/includes/LoadBalancer.php" );
-require_once( "$IP/includes/IP.php" );
 require_once( "$IP/includes/ProxyTools.php" );
 require_once( "$IP/includes/ObjectCache.php" );
 require_once( "$IP/includes/ImageFunctions.php" );
-
-if ( $wgUseDynamicDates ) {
-	require_once( "$IP/includes/DateFormatter.php" );
-}
 
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );

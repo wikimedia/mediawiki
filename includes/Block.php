@@ -214,7 +214,7 @@ class Block
 	 */
 	function loadRange( $address, $killExpired = true )
 	{
-		$iaddr = IP::ToHex( $address );
+		$iaddr = IP::toHex( $address );
 		if ( $iaddr === false ) {
 			# Invalid address
 			return false;
@@ -507,7 +507,7 @@ class Block
 		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
 			$shift = 32 - $parts[1];
-			$ipint = IP::ToUnsigned( $parts[0] );
+			$ipint = IP::toUnsigned( $parts[0] );
 			$ipint = $ipint >> $shift << $shift;
 			$newip = long2ip( $ipint );
 			$range = "$newip/{$parts[1]}";

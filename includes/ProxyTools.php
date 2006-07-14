@@ -55,7 +55,7 @@ function wfGetIP() {
 		# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
 		foreach ( $ipchain as $i => $curIP ) {
 			if ( array_key_exists( $curIP, $trustedProxies ) ) {
-				if ( isset( $ipchain[$i + 1] ) && IP::IsPublic( $ipchain[$i + 1] ) ) {
+				if ( isset( $ipchain[$i + 1] ) && IP::isPublic( $ipchain[$i + 1] ) ) {
 					$ip = $ipchain[$i + 1];
 				}
 			} else {
@@ -124,7 +124,7 @@ function wfParseCIDR( $range ) {
 	if ( count( $parts ) != 2 ) {
 		return array( false, false );
 	}
-	$network = IP::ToUnsigned( $parts[0] );
+	$network = IP::toUnsigned( $parts[0] );
 	if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 32 ) {
 		$bits = $parts[1];
 	} else {
