@@ -1570,12 +1570,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'exif-gpsdatestamp' =>'Tanggal GPS',
 'exif-gpsdifferential' =>'Koreksi diferensial GPS',
 
-# Make & model, can be wikified in order to link to the camera and model name
-
-'exif-make-value' => '$1',
-'exif-model-value' =>'$1',
-'exif-software-value' => '$1',
-
 # Exif attributes
 
 'exif-compression-1' => 'Tak terkompresi',

@@ -1569,11 +1569,6 @@ est raptiti. Les ôtes seront catchîs.
 'exif-gpsdatestamp' => 'Date do GPS',
 'exif-gpsdifferential' => 'Coridjaedje diferenciel do GPS',
 
-# Make & model, can be wikified in order to link to the camera and model name
-'exif-make-value' => '$1',
-'exif-model-value' => '$1',
-'exif-software-value' => '$1',
-
 # Exif attributes
 'exif-compression-6' => 'JPEG',
 
