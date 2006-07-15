@@ -760,8 +760,8 @@ class Database {
 	 */
 	function fetchObject( $res ) {
 		@/**/$row = mysql_fetch_object( $res );
-		if( mysql_errno() ) {
-			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( mysql_error() ) );
+		if( $this->lastErrno() ) {
+			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $row;
 	}
@@ -772,8 +772,8 @@ class Database {
 	 */
  	function fetchRow( $res ) {
 		@/**/$row = mysql_fetch_array( $res );
-		if (mysql_errno() ) {
-			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( mysql_error() ) );
+		if ( $this->lastErrno() ) {
+			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $row;
 	}
@@ -783,8 +783,8 @@ class Database {
 	 */
 	function numRows( $res ) {
 		@/**/$n = mysql_num_rows( $res );
-		if( mysql_errno() ) {
-			throw new DBUnexpectedError( $this, 'Error in numRows(): ' . htmlspecialchars( mysql_error() ) );
+		if( $this->lastErrno() ) {
+			throw new DBUnexpectedError( $this, 'Error in numRows(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $n;
 	}
