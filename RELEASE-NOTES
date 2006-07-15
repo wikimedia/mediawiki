@@ -66,6 +66,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   not exist; now doesn't show the source box if the user hasn't provided it
   (blocked mid-edit) and the page doesn't exist
 * Improve default value of "blockedtext"
+* (bug 6680) Added localisation for Dutch bookstore list (nl)
 
 == Languages updated ==
 
