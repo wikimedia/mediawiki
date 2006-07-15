@@ -6,6 +6,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 == Mediawiki 1.6.9 ==
 
 * (bug 6621) Backported German translation for 'eauthentsent'
+* (bug 6680) Added localisation for Dutch bookstore list (nl)
 
 
 == Mediawiki 1.6.8 ==

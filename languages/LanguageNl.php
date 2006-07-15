@@ -41,11 +41,20 @@ require_once( "LanguageUtf8.php" );
 	'cologneblue' => "Keuls blauw",
 ) + $wgSkinNamesEn;
 
+/* private */ $wgBookstoreListNl = array(
+	'Koninklijke Bibliotheek' => 'http://opc4.kb.nl/DB=1/SET=5/TTL=1/CMD?ACT=SRCH&IKT=1007&SRT=RLV&TRM=$1'
+);
+
 if (!$wgCachedMessageArrays) {
 	require_once('MessagesNl.php');
 }
 
 class LanguageNl extends LanguageUtf8 {
+
+	function getBookstoreList() {
+		global $wgBookstoreListNl ;
+		return $wgBookstoreListNl ;
+	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesNl;
