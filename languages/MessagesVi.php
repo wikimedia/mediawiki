@@ -591,9 +591,6 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 
 # Maintenance Page
 #
-'maintenance'		=> 'Trangbảo trì',
-'maintnancepagetext'	=> 'Trang này có một số công cụ hữu ích để thực hiện công tác bảo trì. Một số chức năng tạo tải nặng lên cơ sở dữ liệu, vì vậy nên hạn chế tải lại trang mỗi khi sửa xong một mục nào đó.',
-'maintenancebacklink'	=> 'Quay lại trang bảo trì',
 'disambiguations'	=> 'Trang định hướng',
 'disambiguationspage'	=> "{{ns:4}}:Trang_định_hướng",
 'disambiguationstext'	=> "Những trang sau đây liên kết đến một <i>trang định hướng</i>. Lẽ ra chúng nên liên kết thẳng đến một trang phù hợp.<br />Xin xem thêm [$1 thông tin về trang định hướng].<br />Chú ý, dưới đây <i>không</i> liệt kê liên kết từ các không gian tên khác.",
@@ -843,7 +840,6 @@ Chức năng này chỉ nên dùng để ngăn những hành vi phá hoại, và
 'unblockip'     => 'Bỏ cấm',
 'unblockiptext' => 'Mẫu sau để khôi phục lại quyền sửa bài đối với một địa chỉ IP hoặc tài khoản đã bị cấm trước đó.',
 'ipusubmit'     => 'Bỏ cấm',
-'ipusuccess'    => "\"$1\" đã hết bị cấm",
 'ipblocklist'   => 'Danh sách cấm',
 'blocklistline' => "$1, $2 đã cấm $3 (thời hạn $4)",
 'blocklink'     => 'cấm',

@@ -447,9 +447,6 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 
 # Maintenance Page
 #
-"maintenance"		=> "Instandhoudingsbladsy",
-"maintnancepagetext"	=> "Hierdie bladsy bevat handige gereedskap vir alledaagse instandhouding. Party van hierdie funksies gebruik die databasis, so moet asseblief nie die bladsy herlaai na elke item wat jy verander het nie ;-)",
-"maintenancebacklink"	=> "Terug na die instandhoudingsbladsy",
 "disambiguations"	=> "Bladsye wat onduidelikhede opklaar",
 "disambiguationspage"	=> "{{ns:4}}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "Die volgende artikels skakel na 'n <i>bladsy wat onduidelikhede opklaar</i>. Hulle behoort eerder na die relevante onderwerp te skakel.<br />'n Bladsy word gesien as een wat onduidelikhede opklaar as $1 daarna toe skakel.<br />Skakels van ander naamkontekste is <i>nie</i> hier gelys nie.",
@@ -607,7 +604,6 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 "unblockip"		=> "Maak IP-adres oop",
 "unblockiptext"	=> "Gebruik die vorm hier onder om skryftoegang te herstel vir 'n voorheen geblokkeerde IP-adres.",
 "ipusubmit"		=> "Maak hierdie adres oop",
-"ipusuccess"	=> "IP-adres \"$1\" is oopgemaak",
 "ipblocklist"	=> "Lys van geblokkeerde IP-adresse",
 'blocklistline'	=> '$1, $2 het $3 geblok ($4)',
 "blocklink"		=> "blok",

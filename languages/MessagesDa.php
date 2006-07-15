@@ -748,12 +748,6 @@ Det vil sige, at der har været '''$5''' gennemsnitlige redigeringer pr. side.",
 
 # Maintenance Page
 #
-"maintenance"		=> "Vedligeholdelsesside",
-"maintnancepagetext"	=> "På denne side er der forskellige smarte
-værktøjer til at vedligeholde {{SITENAME}}. Nogle af disse funktioner er ret
-hårde for databasen (de tager lang tid), så lad være med at opdatere siden
-hver gang du har rettet en enkelt ting ;-)",
-"maintenancebacklink"	=> "Tilbage til vedligeholdelsessiden",
 "disambiguations"	=> "Artikler med flertydige titler",
 "disambiguationspage"	=> "Project:Henvisninger til artikler med flertydige titler",
 "disambiguationstext"	=> "De følgende artikler henviser til
@@ -1051,7 +1045,6 @@ sidste <b>$2</b> dage.",
 "unblockiptext"	=> "Brug formularen herunder for at gendanne skriveadgangen
 for en tidligere blokeret IP-adresse eller bruger.",
 "ipusubmit"		=> "Ophæv blokeringen af denne adresse",
-"ipusuccess"	=> "\"$1\" har fået ophævet blokeringen",
 "ipblocklist"	=> "Liste over blokerede IP-adresser og brugernavne",
 'blocklistline'	=> '$1, $2 blokerede $3 ($4)',
 'infiniteblock' => 'udløber infinite', //fixme

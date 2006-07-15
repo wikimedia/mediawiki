@@ -708,7 +708,6 @@ $wgAllMessagesMs = array(
 "unblockip"       => "Nyahkan sekatan alamat IP atau pengguna", #"Unblock IP address or user",
 "unblockiptext"           => "Gunakan borang di bawah untuk memulihkan capaian tulis kepada alamat IP atau nama pengguna yang telah disekat.",
 "ipusubmit"       => "Nyahkan sekatan bagi alamat ini.", #"Unblock this address",
-"ipusuccess"      => "Alamat IP atau pengguna \"$1\" dinyahsekat", #"IP address or user \"$1\" unblocked",
 "ipblocklist"     => "Senarai alamat IP dan nama pengguna yang tersekat", #"List of blocked IP addresses and users",
 'infiniteblock'     => "tak terbatas",
 'expiringblock'     => "$1 tamat tempohnya",

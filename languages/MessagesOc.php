@@ -501,9 +501,6 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 
 # Maintenance Page
 #
-"maintenance"		=> "Page de maintenance",
-"maintnancepagetext"	=> "Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.",
-"maintenancebacklink"	=> "Retour à la page de maintenance",
 "disambiguations"	=> "Pages d'homonymie",
 "disambiguationspage"	=> "{{ns:project}}:Liens_aux_pages_d'homonymie",
 "disambiguationstext"	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br />Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br />Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
@@ -694,7 +691,6 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 "unblockiptext" => "Utilisez le formulaire ci-dessous pour rétablir l'accès en écriture
 à partir d'une adresse IP précédemment bloquée.",
 "ipusubmit"	=> "Débloquer cette adresse",
-"ipusuccess"	=> "Adresse IP \"$1\" débloquée",
 "ipblocklist"	=> "Liste des adresses IP bloquées",
 "blocklistline" => "$1, $2 a bloqué $3 ($4)",
 "blocklink"	=> "bloquer",

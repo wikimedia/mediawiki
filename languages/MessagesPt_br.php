@@ -522,9 +522,6 @@ Destes, <b>$2</b> são administradores (veja $3).",
 
 # Maintenance Page
 #
-"maintenance"       => "Página de Manutenção",
-"maintnancepagetext"    => "Esta página possui diversas ferramentas úteis para a manutenção diária da {{SITENAME}}. Algumas destas funções costumam estressar o banco de dados, então, por favor, não pressione o botão de Recarregar para cada item que você consertar ;-)",
-"maintenancebacklink"   => "Voltar para a página de Manutenção",
 "disambiguations"   => "Páginas de desambiguamento",
 "disambiguationspage"   => "{{ns:4}}:Links_para_desambiguar_páginas",
 "disambiguationstext"   => "Os artigos a seguir apontam para uma <i>página de desambiguamento</i>. Ao invés disso, eles deveriam apontar para um tópico apropriado.<br /> Uma página é tratada como disambiguamento se ela é por $1.<br />Links de outros namespaces <i>não</i> estão listados aqui.",
@@ -712,7 +709,6 @@ Preencha com um motivo específico (por exemplo, citando páginas que sofreram v
 "unblockip"     => "Desbloquear endereço de IP",
 "unblockiptext" => "Utilize o formulário a seguir para restaurar o acesso a escrita para um endereço de IP previamente bloqueado.",
 "ipusubmit"     => "Desbloquear este endereço",
-"ipusuccess"    => "Endereço de IP  \"$1\" foi desbloqueado",
 "ipblocklist"   => "Lista de IP's bloqueados",
 "blocklistline" => "$1, $2 bloqueado $3 ($4)",
 "blocklink"     => "block",

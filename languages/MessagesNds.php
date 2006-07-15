@@ -593,9 +593,6 @@ Dorvun hebbt <b>$2</b> Administrater-Rechten (kiek $3).',
 
 # Maintenance Page
 #
-'maintenance'                           => 'Pleegsieten',
-'maintnancepagetext'            => 'Disse Siet bargt en Reeg praktische Funktschoonen för de dägliche Pleeg vun {{SITENAME}}. En poor vun disse Funktschonen könen de Datenbank bannig in Anspröök nehmen, also nich no elk Ännern nieg laden ;-)',
-'maintenancebacklink'           => 'Trüch to de Pleegsieten',
 'disambiguations'               => 'Begreepklorensieten',
 'disambiguationspage'        => '{{ns:4}}:Begreepkloren',
 'disambiguationstext'           => 'Disse Sieten wiest no en <i>Begreepklorensiet</i>. Se schallen staats dat no de Siet wiesen, de egentlich meent is.<br />En Siet warrt as Begreepklorensiet ansehn, wenn $1 op se verwiest.<br />Verwiesen ut Naamrüüm sünd hier <i>nich</i> oplist.',
@@ -805,7 +802,6 @@ Ok den Grund för dat Blocken indregen.',
 'unblockip'                     => 'IP-Adress freegeven',
 'unblockiptext'              => 'Bruuk dat Formular, üm en blockte IP-Adress freetogeven.',
 'ipusubmit'                     => 'Disse Adress freegeven',
-'ipusuccess'               => 'IP-Adress „$1“ is freegeven',
 'ipblocklist'           => 'List vun blockte IP-Adressen',
 'blocklistline'              => '$1, $2 hett $3 blockt ($4)',
 'blocklink'                     => 'blocken',

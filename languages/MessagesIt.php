@@ -1111,7 +1111,6 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 "unblockip"		=> " Sblocca utente",
 "unblockiptext"	=> "Usare il modulo sottostante per restituire l'accesso in scrittura ad un utente o indirizzo IP bloccato.",
 "ipusubmit"		=> "Sblocca l'utente",
-"ipusuccess"	=> "[[User:$1|$1] è stato sbloccato",
 "ipblocklist"	=> "Lista degli utenti e indirizzi IP bloccati",
 "blocklistline"	=> "$1, $2 ha bloccato $3 ($4)",
 "infiniteblock" => "senza scadenza",

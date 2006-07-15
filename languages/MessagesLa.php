@@ -540,7 +540,6 @@ Si paginam novam cum ipse nomine post deletionem creata est, recensita restituta
 'unblockip'             => 'Deobstruere locum IP',
 'unblockiptext'         => 'Formam inferam usere ut locum IP deobstruere.',
 'ipusubmit'             => 'Deobstruere hanc locum',
-'ipusuccess'            => 'Locus IP "$1" deobstructus',
 'ipblocklist'           => 'Index locorum IP obstructorum',
 'blocklistline'         => '$1, $2 obstruxit $3 (exire $4)',
 'blocklink'             => 'obstruere',

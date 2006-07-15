@@ -599,8 +599,6 @@ Alates uuele programmile üleminekust 18. detsembril 2003 on lehekülgi vaadatud
 Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
 # Maintenance Page
 #
-"maintenance"		=> "Hoolduslehekülg",
-"maintenancebacklink"	=> "Tagasi hooldusleheküljele",
 
 "selflinks"		=> "Iseendale viitavad leheküljed",
 "selflinkstext"		=> "Järgmised leheküljed sisaldavad viita iseendale, mis ei ole soovitatav.",
@@ -749,7 +747,6 @@ pages that were vandalized).",
 "unblockiptext"	=> "Use the form below to restore write access
 to a previously blocked IP address.",
 "ipusubmit"		=> "Unblock this address",
-"ipusuccess"	=> "IP address \"$1\" unblocked",
 "ipblocklist"	=> "Blokeeritud IP-aadresside loend",
 "blocklistline"	=> "$1, $2 blocked $3 ($4)",
 "blocklink"		=> "blokeeri",

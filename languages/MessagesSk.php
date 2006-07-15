@@ -1056,7 +1056,6 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'unblockiptext'         => 'Použite nižšie uvedený formulár na obnovenie možnosti zápisov
 z doteraz zablokovanej IP adresy alebo od redaktora.',
 'ipusubmit'             => 'Odblokovať túto adresu',
-'ipusuccess'            => '"[[$1]]" odblokovaný/á',
 'ipblocklist'           => 'Zablokovaní/é redaktori/IP adresy',
 'blocklistline'         => '$1, $2 zablokoval $3 (ukončenie $4)',
 'infiniteblock'         => 'ukončenie na neurčito',

@@ -495,11 +495,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 
 # Maintenance Page
 #
-"maintenance"		=> "维护页",
-"maintnancepagetext"	=> "这页面提供了几个帮助{{SITENAME}}日常维护的工具。
-但其中几个会对我们的数据库造成压力，
-所以请您不要在每修理好几个项目后就按重新载入 ;-)",
-"maintenancebacklink"	=> "返回维护页",
 "disambiguations"	=> "消含糊页",
 "disambiguationspage"	=> "{{ns:project}}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "以下的条目都有到消含糊页的链接，但它们应该是链到适当的题目。<br />一个页面会被视为消含糊页如果它是链自$1.<br />由其它他名字空间来的链接<i>不会</i>在这儿被列出来。",
@@ -686,7 +681,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "unblockip"		=> "解除禁封IP地址",
 "unblockiptext"	=> "用下面的表单来恢复先前被禁封的IP地址的书写权。",
 "ipusubmit"		=> "解除禁封",
-"ipusuccess"	=> "IP地址“$1”已经被解除禁封",
 "ipblocklist"	=> "被封IP地址列表",
 "blocklistline"	=> "$1，$2禁封$3 ($4)",
 "blocklink"		=> "禁封",
