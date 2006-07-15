@@ -394,7 +394,6 @@ Before any other mail is sent to the account, you will have to follow the instru
 Ако сте дошли тук погрешка, просто натиснете '''бутона за връщане''' на Вашия браузър.
 
 Вашата добавка ще бъде видима '''веднага''' след съхранението, затова ако просто искате да изпробвате как работят нещата, използвайте нашия '''[[Project:Пясъчник|пясъчник]]'''.</div>",
-'talkpagetext' => '<!-- МедияУики:talkpagetext -->',
 'anontalkpagetext' => "----
 ''Това е дискусионната страница на анонимен потребител, който  все още няма сметка или не я използва. Затова се налага да използваме IP-адрес, за да го/я идентифицираме. Такъв адрес може да се споделя от няколко потребители.''
 
@@ -655,7 +654,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'minoreditletter' => 'м',
 'newpageletter' => 'Н',
 'sectionlink' => '→',
-'number_of_watching_users_RCview'       => '[$1]',
 'number_of_watching_users_pageview'     => '[$1 наблюдаващ(и) потребител(и)]',
 
 # Upload
@@ -736,7 +734,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'sharedupload' => 'Този файл е споделен и може да бъде използван от други проекти.',
 'shareduploadwiki' => 'Моля, разгледайте $1 за по-нататъшна информация.',
 'shareduploadwiki-linktext' => 'описателната страница на файла',
-'shareddescriptionfollows' => '-',
 'noimage'       => 'Не съществува файл с това име, можете $1.',
 'noimage-linktext' => 'да го качите',
 'uploadnewversion-linktext' => 'Качване на нова версия на файла',
@@ -1238,7 +1235,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 
 # Patrolling
 'markaspatrolleddiff'   => 'Отбелязване като проверена версия',//'Mark as patrolled',
-'markaspatrolledlink'   => '[$1]',
 'markaspatrolledtext'   => 'Отбелязване на версията като проверена',//'Mark this article as patrolled',
 'markedaspatrolled'     => 'Проверена версия', //'Marked as patrolled',
 'markedaspatrolledtext' => 'Избраната версия беше отбелязана като проверена.',//'The selected revision has been marked as patrolled.',

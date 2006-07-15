@@ -453,7 +453,6 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 "Seguiu um link para um artigo que ainda não existe. Para criá-lo, escreva o seu conteúdo na caixa abaixo, mas se chegou aqui por engano clique no botão '''volta''' (ou ''back'') do seu navegador. Por favor, '''NÃO''' crie páginas apenas para fazer [[Project:Artigos pedidos|pedidos]] ou [[Project:Página de testes|testes]].
 
 (Consulte [[{{ns:project}}:Ajuda|a página de ajuda]] para mais informações)",
-'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => "----
 ''Esta é a página de discussão para um utilizador anónimo que ainda não criou uma conta ou que não a utiliza. De modo a que temos que utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser partilhado por vários utilizadores. Se é um utilizador anónimo e acha relevante que os comentários sejam direccionados a si, por favor [[{{ns:special}}:Userlogin|crie uma conta ou autentifique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
 'noarticletext' => 'Não existe actualmente texto nesta página, pode [[{{ns:special}}:Search/{{PAGENAME}}|pesquisar pelo título desta página noutras páginas]] ou [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} editar esta página].',
@@ -683,7 +682,6 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
 'sectionlink' => '→',
-'number_of_watching_users_RCview'       => '[$1]',
 'number_of_watching_users_pageview'     => '[$1 utilizador/es a vigiar]',
 'rc_categories'	=> 'Limite para categorias (separar com "|")',
 'rc_categories_any'	=> 'Qualquer',
@@ -777,7 +775,6 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'sharedupload' => 'Este ficheiro encontra-se partilhado e pode ser utilizado por outros projectos.',
 'shareduploadwiki' => 'Por favor consulte a $1 para mais informação.',
 'shareduploadwiki-linktext' => 'página de descrição',
-#'shareddescriptionfollows' => '-', # ignore list
 'noimage'       => 'Nenhum ficheiro com este nome existe, se desejar pode $1',
 'noimage-linktext'       => 'carrega-lo',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
@@ -1362,7 +1359,6 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 
 # Patrolling
 'markaspatrolleddiff'   => "Marcar como verificado",
-'markaspatrolledlink'   => "[$1]",
 'markaspatrolledtext'   => "Marcar este artigo como verificado",
 'markedaspatrolled'     => "Marcado como verificado",
 'markedaspatrolledtext' => "A revisão seleccionada foi marcada como verificada.",

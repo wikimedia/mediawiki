@@ -1093,7 +1093,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategoriesiet ankieken\');',
 
 # Patrolleern
 'markaspatrolleddiff'       => 'As patrolleert markeern',
-'markaspatrolledlink'       => '[$1]',
 'markaspatrolledtext'       => 'Disse Siet as patrolleert markeern',
 'markedaspatrolled'         => 'As patrolleert markeert',
 'markedaspatrolledtext'     => 'Disse Revision is as patrolleert markeert.',

@@ -666,7 +666,6 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
 'sectionlink' => '→',
-'number_of_watching_users_RCview' 	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 {{plural:$1|sledující uživatel|sledující uživatelé|sledujících uživatelů}}]',
 'rc_categories'	=> 'Omezit na kategorie (oddělené „|“)',
 'rc_categories_any'	=> 'Všechny',
@@ -1325,7 +1324,6 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 
 # Patrolling
 'markaspatrolleddiff'   => 'Označit jako prověřené',
-'markaspatrolledlink'   => '<div class="patrollink">[$1]</div>',
 'markaspatrolledtext'   => 'Označit tento článek jako prověřený',
 'markedaspatrolled'     => 'Označeno jako prověřené',
 'markedaspatrolledtext' => 'Vybraná verze byla označena jako prověřená.',
