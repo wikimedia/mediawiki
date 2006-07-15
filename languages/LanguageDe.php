@@ -50,11 +50,12 @@ require_once( 'LanguageUtf8.php' );
 
 
 /* private */ $wgBookstoreListDe = array(
-	'Verzeichnis lieferbarer Bücher' => 'http://www.buchhandel.de/vlb/vlb.cgi?type=voll&isbn=$1',
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
-	'Amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
+	'amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
 	'buch.de' => 'http://www.buch.de/de.buch.shop/shop/1/home/schnellsuche/buch/?fqbi=$1',
-	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1',
+	'buchhandel.de' => 'http://www.buchhandel.de/vlb/vlb.cgi?type=voll&isbn=$1',
+	'Karlsruher Virtueller Katalog (KVK)' => 'http://www.ubka.uni-karlsruhe.de/kvk.html?SB=$1',
+	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
 );
 
 if (!$wgCachedMessageArrays) {
