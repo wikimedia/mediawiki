@@ -1659,7 +1659,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'exif-subjectlocation'		=> 'Motivstandort',
 'exif-subsectime'		=> 'Speicherzeitpunkt (1/100 s)',
 'exif-subsectimedigitized'	=> 'Digitalisierungszeitpunkt (1/100 s)',
-'exif-subsectimeoriginal'	=> 'Erfassungszeitpunkt (1/100 s',
+'exif-subsectimeoriginal'	=> 'Erfassungszeitpunkt (1/100 s)',
 'exif-transferfunction'		=> 'Übertragungsfunktion',
 'exif-usercomment'		=> 'Benutzerkommentare',
 'exif-whitebalance'		=> 'Weißabgleich',
