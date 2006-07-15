@@ -631,7 +631,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'minoreditletter'     => 'p',
 'newpageletter'       => 'U',
 'sectionlink'         => '→',
-'number_of_watching_users_RCview'   => '[$1]',
 'number_of_watching_users_pageview' => '[$1 tarkkailevaa käyttäjää]', // TODO sigplu
 'rc_categories'       => 'Vain luokista (erotin on ”|”)',
 'rc_categories_any'   => 'Mikä tahansa',
@@ -1252,7 +1251,6 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Merkitse tarkastetuksi',
-'markaspatrolledlink'   => '[$1]',
 'markaspatrolledtext'   => 'Merkitse muokkaus tarkastetuksi',
 'markedaspatrolled'     => 'Tarkastettu',
 'markedaspatrolledtext' => 'Valittu versio on tarkastettu.',

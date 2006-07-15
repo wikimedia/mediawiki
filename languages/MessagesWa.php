@@ -434,7 +434,6 @@ cmincî a taper vosse tecse dins l\' boesse di tecse chal pa dzo
 Si vos n\' voloz nén scrire cisse pådje chal, clitchîz simplumint
 sol boton \'\'\'En erî\'\'\' di vosse betchteu waibe po rivni al pådje di dvant.',
 #'newarticletextanon' => '{{int:newarticletext}}',
-#'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => '---- \'\'Çouchal, c\' est li pådje di copene po èn uzeu anonime ki n\' a nén (co) fwait on conte por lu s\' elodjî, ou ki n\' l\' eploye nén. Ça fwait k\' on doet eployî si adresse IP limerike po l\' idintifyî. Come ene sifwaite adresse IP pout esse eployeye pa pus d\' èn uzeu, i s\' pout ki vos voeyoz chal des rmåkes et des messaedjes ki n\' sont nén por vos. Loukîz s\' i vs plait po [[{{ns:special}}:Userlogin|fé on novea conte ou s\' elodjî]] po n\' pus aveur d\' ecramiaedje avou des ôtes uzeus anonimes.\'\'',
 'noarticletext' => 'I gn a pol moumint nou tecse e cisse pådje chal, vos ploz [[{{ns:special}}:Search/{{PAGENAME}}|cweri après l\' tite di cisse pådje ci]] dins des ôtès pådjes, oudonbén [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} ahiver l\' pådje].',
 #'noarticletextanon' => '{{int:noarticletext}}',
@@ -726,7 +725,6 @@ Les groupes nén tchoezis èn seront nén candjîs. Vos ploz distchoezi on group
 #'minoreditletter' => 'm',
 #'newpageletter' => 'N',
 #'sectionlink' => '→',
-#'number_of_watching_users_RCview' => '[$1]',
 'number_of_watching_users_pageview' => '[shuvou pa $1 uzeu(s)]',
 'rc_categories'	=> 'Limiter åzès categoreyes (separer avou des «|»)',
 'rc_categories_any' => 'Totes',
@@ -826,7 +824,6 @@ cisse viye modêye la, (mod.) = rivni a cisse viye modêye la.
 'sharedupload' => 'Ci fitchî ci est so on ridant pårtaedjî ey i s\' pout k\' i soeye eployî pa ds ôtes pordjets.',
 'shareduploadwiki' => 'Loukîz li $1 po pus di racsegnes.',
 'shareduploadwiki-linktext' => 'pådje di discrijhaedje',
-#'shareddescriptionfollows' => '-',
 'noimage' => 'I n\' a nou fitchî avou ç\' no la, vos l\' poloz $1',
 'noimage-linktext' => 'eberweter',
 'uploadnewversion-linktext' => 'Eberweter ene nouve modêye di ci fitchî ci',
@@ -1403,8 +1400,6 @@ Dins ç\' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{ns:special}}:E
 'mw_math_modern' => 'Ricmandé po les betchteus modienes',
 'mw_math_mathml' => 'Eployî MathML si c\' est possibe (esperimintå)',
 
-# Patrolling
-#'markaspatrolledlink' => '[$1]',
 
 # NOTE: les apostrofes divèt esse escapêyes.
 # Monobook.js: tooltips and access keys for monobook

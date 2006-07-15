@@ -653,7 +653,6 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 "newpageletter" => "B",
 'boteditletter' => 'b',
 'sectionlink' => '→',
-'number_of_watching_users_RCview' 	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 pemantau]',
 'rc_categories'	=> 'Batasi sampai kategori (dipisah dengan "|")',
 'rc_categories_any'	=> 'Apapun',
@@ -1334,7 +1333,6 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 
 # Patrolling
 'markaspatrolleddiff'   => "Tandai telah dipatroli",
-'markaspatrolledlink'   => "[$1]",
 'markaspatrolledtext'   => "Tandai artikel ini telah dipatroli",
 'markedaspatrolled'     => "Ditandai telah dipatroli",
 'markedaspatrolledtext' => "Revisi yang dipilih telah ditandai terpatroli",

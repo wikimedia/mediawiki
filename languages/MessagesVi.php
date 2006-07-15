@@ -925,7 +925,6 @@ Hãy gõ tên của thành viên cần phong quyền quản lý vào ô này và
 # Patrolling
 #
 'markaspatrolleddiff'   => "Đánh dấu tuần tra",
-'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
 'markaspatrolledtext'   => "Đánh dấu tuần tra",
 'markedaspatrolled'     => "Đã đánh dấu tuần tra",
 'markedaspatrolledtext' => "Bản được đánh dấu đã tuần tra.",

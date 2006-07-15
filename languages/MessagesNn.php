@@ -369,7 +369,6 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.',
 * Om du er ny her er det tilrådd å sjå på [[Project:Retningsliner|retningsliner]] og [[Help:Innhald|hjelp]] først.
 * Om du lagrar ei testside, vil du ikkje kunne slette ho sjølv. Ver difor venleg og bruk [[Project:Sandkasse|sandkassa]] til å eksperimentere.
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på \'\'\'attende\'\'\'-knappen i nettlesaren din.',
-'talkpagetext'            => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext'        => '---- \'\'Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[{{ns:-1}}:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.\'\'',
 'noarticletext'           => '\'\'\'Sida «{{PAGENAME}}» finst ikkje på {{SITENAME}} enno.\'\'\'
 * Klikk på \'\'\'[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} endre]\'\'\' for å opprette sida.',
@@ -585,7 +584,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'minoreditletter'       => 'u',
 'newpageletter'         => 'n',
 'sectionlink'           => '→',
-'number_of_watching_users_RCview'     => '[$1]',
 'number_of_watching_users_pageview'     => '[$1 brukar(ar) overvakar]',
 
 # Upload
@@ -1148,7 +1146,6 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 
 # Patrolling
 'markaspatrolleddiff'   => 'Merk som patruljert',
-'markaspatrolledlink'   => '[$1]',
 'markaspatrolledtext'   => 'Merk denne innhaldssida som patruljert',
 'markedaspatrolled'     => 'Merk som patruljert',
 'markedaspatrolledtext' => 'Den valde versjonen er vorten merkt som patruljert.',

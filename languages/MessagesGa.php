@@ -421,7 +421,6 @@ isteach]] agus caithfidh go bhfuil an cead riachtanach agat.",
 Chun an leathanach a chruthú, tosaigh ag clóscríobh san bosca anseo thíos
 (féach ar an [[{{ns:project}}:Cabhair|leathanach cabhrach]] chun a thuilleadh eolais a fháil).
 Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do líonléitheoir.",
-'talkpagetext' => '<!-- MediaWiki:teacsphlé -->',
 "anontalkpagetext" => "---- ''Is é seo an leathanach plé do úsáideoir gan ainm nach chruthaigh
 cuntas fós nó nach úsáideann a chuntas phéarsanta. Dá bhrí sin, caithfimid an [[seoladh IP]] uimhriúil a úsáid
 chun é/í a ionannaigh. Is féidir cuid mhaith úsáideoirí an seoladh IP céanna a úsáid. Má tá tú
@@ -676,7 +675,6 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 "minoreditletter" => "m",
 "newpageletter" => "N",
 'sectionlink' => '?',
-'number_of_watching_users_RCview'       => '[$1]',
 'number_of_watching_users_pageview'     => '[$1 úsáideoirí ag breathnú]',
 
 # Upload
@@ -785,7 +783,6 @@ seanleagan seo, (ath) = athúsáid an seanleagan seo.
 "nolinkstoimage" => "Níl aon leathanach ann a nascaíonn chuig an íomhá seo.",
 'sharedupload' => 'Is uaslodáil roinnte atá ann sa comhad seo, agus is féidir le tionscadail eile é a úsáid.',
 'shareduploadwiki' => 'Féach ar an [leathanach cur síos don comhad $1] le tuilleadh eolais.',
-'shareddescriptionfollows' => '-',
 'noimage'       => 'Níl aon chomhad ann leis an ainm seo, ba féidir leat [$1 é a uaslódáil]',
 'uploadnewversion-linktext' => 'Uaslódáil leagan nua den comhad seo',
 
@@ -1361,8 +1358,6 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 
 # Patrolling
 'markaspatrolleddiff'   => "Marcáil bheith patrólaithe",
-'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
-'markaspatrolledtext'   => "Marcáil go bhfuil an alt seo patrólaithe",
 'markedaspatrolled'     => "Marcáil bheith patrólaithe",
 'markedaspatrolledtext' => "Marcáladh an athrú áirithe seo bheith patrólaithe.",
 'rcpatroldisabled'      => "Mhíchumasaíodh Patról na n-Athruithe is Déanaí",

@@ -402,7 +402,6 @@ Sørg venligst for at medtage denne IP-adresse i alle henvendelser til en admini
 'accmailtext' => "Adgangskoden for '$1' er sendt til $2.",
 "newarticle"	=> "(Ny)",
 "newarticletext" => "<div style=\"font-size:small;color:\#003333;border-width:1px;border-style:solid;border-color:\#aaaaaa;padding:3px\">'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{ns:4}}:Hjælp|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[{{ns:-1}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen. '''Dit bidrag til {{SITENAME}} vil fremkomme omgående''', så hvis du bare vil teste tingene, så brug venligst [[{{ns:4}}:Sandkassen|sandkassen]]!</div>",
-'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 "anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske [[IP-adresse]] til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Speciel:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
 "noarticletext" => "<div style=\"border: 1px solid \#ccc; padding: 7px; background-color: \#fff; color: \#000\">'''{{SITENAME}} har ikke nogen side med præcis dette navn.''' * Du kan se om {{PAGENAME}} findes i [[Wiktionary:{{NAMESPACE}}:{{PAGENAME}}|wikiordbogen]] eller på '''[[:no:{{PAGENAME}}|norsk]]''', '''[[:nn:{{PAGENAME}}|nynorsk]]''', eller '''[[:sv:{{PAGENAME}}|svensk]]'''. * Du kan '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} starte siden {{PAGENAME}}]''' * Eller [[{{ns:special}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}}]] i andre artikler ---- * Hvis du har oprettet denne artikel indenfor de sidste få minutter, så kan de skyldes at der er lidt forsinkelse i opdateringen af {{SITENAME}}s cache. Vent venligst og tjek igen senere om artiklen dukker op, inden du forsøger at oprette artiklen igen. </div>",
 'clearyourcache' => "'''Bemærk''', efter at have gemt, er du nødt til at tømme din browsers cache for at kunne se ændringerne. '''Mozilla / Firefox / Safari''': hold ''shifttasten'' nede og klik på ''reload'' eller tryk på ''control-shift-r'' (Mac: ''cmd-shift-r''); '''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''; '''Konqueror''': klik på ''reload'' eller tryk på ''F5''",
@@ -640,7 +639,6 @@ sidste <strong>$2</strong> dage.",
 "minoreditletter" => "m",
 "newpageletter" => "N",
 'sectionlink' => '→',
-'number_of_watching_users_RCview' 	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 overvågende bruger/e]',
 
 # Upload
@@ -1290,7 +1288,6 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 
 # Patrolling
 'markaspatrolleddiff'   => "Markér som patruljeret",
-'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
 'markaspatrolledtext'   => "Markér denne artikel som patruljeret",
 'markedaspatrolled'     => "Markeret som patruljeret",
 'markedaspatrolledtext' => "Den valgte revision er nu markeret som patruljeret.",
