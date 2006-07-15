@@ -802,11 +802,6 @@ Tá '''$2''' de na úsáideoirí seo ina riarthóirí (féach ar $3).",
 
 # Maintenance Page
 #
-"maintenance"       => "Leathanach cothabhála",
-"maintnancepagetext"    => "Sa leathanach seo faightear uirlisí éagsúla don gnáthcothabháil. Is féidir le roinnt
-de na feidhmeanna seo an bunachar sonraí a cuir strus ar, mar sin ná athbhruigh athlódáil tar éis gach mír a
-chríochnaíonn tú ;-)",
-"maintenancebacklink"   => "Ar ais go dtí an Leathanach Cothabhála",
 "disambiguations"   => "Leathanaigh idirdhealaithe",
 "disambiguationspage"   => "{{ns:project}}:Naisc_go_leathanaigh_idirdhealaithe",
 "disambiguationstext"   => "Nascaíonn na ailt seo a leanas go <i>leathanach
@@ -1114,7 +1109,6 @@ leathanaigh áirithe a rinne an duine damáiste ar).",
 "unblockiptext" => "Úsáid an foirm anseo thíos chun bealach scríofa a thabhairt ar ais do seoladh
 IP nó ainm úsáideora a raibh faoi chosc roimhe seo.",
 "ipusubmit"     => "Díchoisc an seoladh seo",
-"ipusuccess"    => "Díchoisceadh \"$1\"",
 "ipblocklist"   => "Liosta seoltaí IP agus ainmneacha úsáideoirí coiscthe",
 "blocklistline" => "$1, $2 a choisc $3 (am éaga $4)",
 "blocklink"     => "Cosc",

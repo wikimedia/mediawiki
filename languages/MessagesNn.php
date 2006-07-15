@@ -674,9 +674,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 
 # Maintenance Page
 #
-'maintenance'		=> 'Vedlikehaldsside',
-'maintnancepagetext'	=> 'På denne sida er det ulike verktøy for å halde {{SITENAME}} ved like. Nokre av desse funksjonane er harde for databasen (dei tar lang tid), så lat vera å oppdatere sida kvar gong du har retta ein enkelt ting',
-'maintenancebacklink'	=> 'Attende til vedlikehaldssida',
 'disambiguations'	=> 'Fleirtydingssider',
 'disambiguationspage'	=> 'Template:Fleirtyding',
 'disambiguationstext'	=> 'Dei følgjande artiklane har lenkjer til <i>artiklar med fleirtydige titlar</i>. Dei burde heller lenkje til ein ikkje-fleirtydig  tittel i staden.<br />Ein artikkeltittel blir handsama som fleirtydig om han har lenkjer frå $1.<br />Lenkjer frå andre namnerom er <i>ikkje</i> opprekna her.',
@@ -939,7 +936,6 @@ For informasjon om korleis ein kan blokkere seriar av IP-adresser, sjå [http://
 'unblockip'		=> 'Opphev blokkering',
 'unblockiptext'	        => 'Bruk skjemaet nedanfor for å oppheve blokkeringa av ein tidlegare blokkert brukar.',
 'ipusubmit'		=> 'Opphev blokkering',
-'ipusuccess'	        => '«[[$1]]» har fått oppheva blokkeringa',
 'ipblocklist'	        => 'Blokkerte IP-adresser og brukarnamn',
 'blocklistline'	        => '$1, $2 blokkerte $3 ($4)',
 'infiniteblock'         => 'uendeleg opphørstid',

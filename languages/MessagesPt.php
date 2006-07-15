@@ -813,9 +813,6 @@ Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 
 # Maintenance Page
 #
-'maintenance'           => 'Página de manutenção',
-'maintnancepagetext'    => 'Esta página inclui várias ferramentas úteis para a manutenção. Algumas destas funcionalidades tendem a sobrecarregar a base de dados, por isso modere a sua utilização ;-)',
-'maintenancebacklink'   => 'Voltar para a Página de manutenção',
 'disambiguations'       => 'Página de desambiguações',
 'disambiguationspage'   => 'Template:disambig',
 'disambiguationstext'   => "As seguintes páginas ligam com uma <i>página de desambiguação</i>. Estas páginas deviam ligar com o tópico apropriado.<br />Qualquer página ligada com $1 é considerada página de desambiguação.<br />As ligações de outros domínios não são listadas aqui.",
@@ -1133,7 +1130,6 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:proje
 'unblockip'             => 'Desbloquear utilizador',
 'unblockiptext' => 'Utilize o formulário a seguir para restaurar o acesso a escrita para um endereço de IP ou nome de utilizador previamente bloqueado.',
 'ipusubmit'             => 'Desbloquear este utilizador',
-'ipusuccess'    => "\"[[$1]]\" foi desbloqueado",
 'ipblocklist'   => 'Lista de IPs bloqueados',
 'blocklistline' => "$1, $2 bloqueou $3 ($4)",
 'ipblocklistempty'      => 'A lista de IPs bloqueados encontra-se vazia.',

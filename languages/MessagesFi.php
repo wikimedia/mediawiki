@@ -1042,7 +1042,6 @@ Palaute ja lisäapu osoitteessa:
 'unblockip'           => 'Muokkauseston poisto',
 'unblockiptext'       => 'Tällä lomakkeella voit poistaa käyttäjän tai IP-osoitteen muokkauseston.',
 'ipusubmit'           => 'Poista esto',
-'ipusuccess'          => 'IP-osoitteen tai käyttäjän <b>$1</b> esto poistettu', // TODO NOWIKIMARKUP
 'ipblocklist'         => 'Lista estetyistä IP-osoitteista',
 'ipblocklistempty'    => 'Estolista on tyhjä.',
 'blocklistline'       => '$1 — $2 on estänyt käyttäjän $3 ($4)',

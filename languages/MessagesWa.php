@@ -1193,7 +1193,6 @@ stî vandalijheyes).',
 'unblockip' => 'Disbloker èn uzeu',
 'unblockiptext' => 'Rimplixhoz les tchamps chal pa dzo po ridner accès e scrijhaedje a èn uzeu ou adresse IP k\' estént blokés.',
 'ipusubmit' => 'Disbloker ciste adresse ci',
-'ipusuccess' => '«[[$1]]» a stî disbloké',
 'ipblocklist' => 'Djivêye d\' adresses IP et di nos d\' uzeus ki sont blokés',
 'blocklistline' => '$1, $2 a bloké $3 ($4)',
 'infiniteblock' => 'po todi',
@@ -1914,13 +1913,6 @@ Cweraedje di: $3 $9',
 
 # Maintenance Page
 #
-'maintenance' => 'Pådje di manaedjmint',
-'maintnancepagetext' => 'Cisse pådje chal a sacwantès ahessåvès usteyes
-po manaedjî les årtikes. Sacwantes di ces fonccions chal polèt esse
-sitrindåves pol båze di dnêyes, do côp on vs dimandrè di n\' nén
-clitchî sol boton «rafrister» di vosse betchteu a tchaeke côp
-ki vos fjhoz on ptit candjmint ;-)',
-'maintenancebacklink' => 'Rivni al pådje di manaedjmint',
 'groups-lookup-group' => 'Manaedjî les droets do groupe',
 'groups-group-edit' => 'Groupes k\' i gn a:',
 'editgroup' => 'Candjî groupe',

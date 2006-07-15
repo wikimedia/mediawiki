@@ -392,7 +392,6 @@ ovu staru verziju, (vrt) = vrati na ovu staru verziju.
 'ipbreason' => 'Razlog',
 'ipbsubmit' => 'Blokirajte ovog korisnika',
 'ipusubmit' => 'Deblokirajte ovog korisnika',
-'ipusuccess' => '"[[$1]]" deblokiran',
 'isredirect' => 'preusmjerivač',
 'italic_sample' => 'Kurzivan tekst',
 'italic_tip' => 'Kurzivan tekst',

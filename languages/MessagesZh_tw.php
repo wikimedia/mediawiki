@@ -492,11 +492,6 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 
 # Maintenance Page
 #
-"maintenance"		=> "維護頁",
-"maintnancepagetext"	=> "這頁面提供了幾個幫助{{SITENAME}}日常維護的工具。
-但其中幾個會對我們的數據庫造成壓力，
-所以請您不要在每修理好幾個項目後就按重新載入 ;-)",
-"maintenancebacklink"	=> "返回維護頁",
 "disambiguations"	=> "消含糊頁",
 "disambiguationspage"	=> "{{ns:project}}:鏈接到消歧義的頁面",
 "disambiguationstext"	=> "以下的條目都有到消含糊頁的鏈接，但它們應該是鏈到適當的題目。<br />一個頁面會被視為消含糊頁如果它是鏈自$1.<br />由其它他名字空間來的鏈接<i>不會</i>在這兒被列出來。",
@@ -682,7 +677,6 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "unblockip"		=> "解除禁封網址",
 "unblockiptext"	=> "用下面的表單來恢復先前被禁封的網址的書寫權。",
 "ipusubmit"		=> "解除禁封",
-"ipusuccess"	=> "網址”$1”已經被解除禁封",
 "ipblocklist"	=> "被封網址列表",
 "blocklistline"	=> "$1，$2禁封$3 ($4)",
 "blocklink"		=> "禁封",

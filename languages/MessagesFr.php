@@ -1056,7 +1056,6 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'unblockiptext' => 'Utilisez le formulaire ci-dessous pour rétablir l\'accès en écriture
 d\'une adresse IP précédemment bloquée.',
 'ipusubmit'	=> 'Débloquer cette adresse',
-'ipusuccess'	=> 'L\'adresse IP « $1 » débloquée.',
 'ipblocklist'	=> 'Liste des blocages',
 'blocklistline' => '$1, $2 a bloqué $3 ($4)',
 'infiniteblock' => 'permanent',

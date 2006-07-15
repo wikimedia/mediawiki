@@ -617,9 +617,6 @@ En o zouez, <b>$2</b> zo ganto ar statud merour (sellet ouzh $3).',
 
 # Maintenance Page
 #
-'maintenance'		=> 'Pajenn drezalc\'h',
-'maintnancepagetext'	=> "War ar bajenn-mañ e vo kavet meur a vaveg evit an trezalc'h pemdeziek. Ostilhoù zo zo techet da wallgargañ ar bank roadennoù; na adkargit ket ar bajenn goude pep kemm.",
-'maintenancebacklink'	=> 'Distro d\'ar bajenn drezalc\'h',
 'disambiguations'	=> 'Pajennoù disheñvelaat',
 'disambiguationspage'	=> "{{ns:4}}:Liammoù_ouzh_ar_pajennoù_disheñvelaat",
 'disambiguationstext'	=> "Liammet eo ar pennadoù da-heul ouzh ur <i>bajenn zisheñvelaat</i>. Padal e tlefent bezañ liammet ouzh an danvez anezho.<br />Sellet e vez ouzh ur bajenn evel ouzh ur bajenn zisheñvelaat m'eo liammet adal $1.<br />ne vez ket kemeret e kont al liammoù adal <i>lec'hioù</i> all.",
@@ -844,7 +841,6 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'unblockip'	=> "Distankañ ur chomlec'h IP",
 'unblockiptext' => 'Grit gant ar furmskrid a-is evit adsevel ar moned skrivañ ouzh ur chomlec\'h IP bet stanket a-gent.',
 'ipusubmit'	=> 'Distankañ ar chomlec\'h-mañ',
-'ipusuccess'	=> 'Chomlec\'h IP « $1 » distanket',
 'ipblocklist'	=> 'Roll ar chomlec\'hioù IP stanket outo',
 'blocklistline' => '$1, $2 en/he deus stanket $3',
 'blocklink'	=> 'stankañ',

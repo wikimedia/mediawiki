@@ -1107,7 +1107,6 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'unblockip'             => 'Odblokovat IP adresu',
 'unblockiptext' => 'Tímto formulářem je možno obnovit právo blokované IP adresy či uživatele opět přispívat do {{grammar:2sg|{{SITENAME}}}}.',
 'ipusubmit'             => 'Odblokovat',
-'ipusuccess'	=> 'Uživatel „[[$1]]“ byl úspěšně odblokován',
 'ipblocklist'   => 'Seznam blokovaných IP adres',
 'blocklistline' => '$1 $2 zablokoval $3 ($4)',
 'infiniteblock' => 'do odvolání',

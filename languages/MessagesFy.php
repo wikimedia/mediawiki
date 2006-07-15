@@ -532,12 +532,6 @@ It tal fan behearders dêrfan is: <b>$2</b>.",
 
 # Maintenance Page
 #
-"maintenance"		=> "Underhâld",
-"maintnancepagetext"	=> "Op dizze side stiet ark foar it deistich ûnderhâld.
-In part fan de funksjes freegje in soad fan de databank, dus freegje net nei
-eltse oanpassing daalks in fernijde side op.",
-
-"maintenancebacklink"	=> "Werom nei Underhâldside",
 "disambiguations"		=> "Trochverwizings",
 "disambiguationspage"	=> "{{ns:project}}:trochferwizing",
 "disambiguationstext"	=> "Dizze siden binne keppele fia in
@@ -749,7 +743,6 @@ Meld de krekte reden! Begelyk, neam de siden dy't oantaaste waarden.",
 "unblockip"		=> "Lit brûker der wer yn",
 "unblockiptext"	=> "Brûk dizze fjilden om in brûker wer skriuwtagong te jaan.",
 "ipusubmit"		=> "Lit dizze brûker der wer yn",
-"ipusuccess"	=> "Brûker \"$1\" ynlitten",
 "ipblocklist"	=> "List fan útsletten Ynternet-adressen en brûkersnammen",
 "blocklistline"	=> '"$3", troch "$2" op $1 ($4)',
 "blocklink"		=> "slut út",

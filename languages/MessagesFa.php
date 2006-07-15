@@ -591,8 +591,6 @@ you may be blocked from uploading if you abuse the system.",
 
 # Maintenance Page
 #
-'maintenance'		=> "صفحه‌ی نگهداری",
-'maintenancebacklink'	=> "بازگشت به صفحه‌ی نگهداری",
 'disambiguations'	=> "صفحات رفع ابهام",
 'disambiguationspage'	=> "{{ns:project}}:پیوند به صفحات رفع ابهام",
 'disambiguationstext'	=> "مقاله‌های زیر به یک <i>صفحه‌ی رفع ابهام</i> پیوند دارند. به جای این، این صفحات باید به
@@ -796,7 +794,6 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 'unblockiptext'	=> "برای باز گرداندن دسترسی نوشتن به یک نشانی IP یا نام کاربری بسته‌شده
 از فرم زیر استفاده کنید.",
 'ipusubmit'		=> "باز کردن این نشانی",
-'ipusuccess'	=> "«$1» باز شد",
 'ipblocklist'	=> "فهرست نشانی‌های IP و نام‌های کاربری بسته‌شده",
 'blocklistline'	=> "$1، $2 بست $3 را ($4)",
 'blocklink'		=> "بسته شود",

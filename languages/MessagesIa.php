@@ -516,11 +516,6 @@ del quales <b>$2</b> es administratores (vide $3).",
 
 # Maintenance Page
 #
-"maintenance"		=> "Pagina de mantenentia",
-"maintnancepagetext"	=> "Iste pagina include plure utensiles commode pro le mantenentia quotidian del encyclopedia.
-Alcunes del functiones tende a tensionar le base de datos, pro isto per favor
-non preme \"Reload\" post cata item reparate. ;-)",
-"maintenancebacklink"	=> "Retornar al pagina de mantenentia",
 "disambiguations"	=> "Paginas de disambiguation",
 "disambiguationspage"	=> "{{ns:project}}:Ligamines_a_paginas_de_disambiguation",
 "disambiguationstext"	=> "Le articulos sequente se liga a un <i>pagina de disambiguation</i>.
@@ -707,7 +702,6 @@ specific que ha essite vandalisate).",
 "unblockiptext"	=> "Usa le formulario infra pro restaurar le accesso de scriptura
 a un adresse de IP blocate previemente.",
 "ipusubmit"		=> "Disbloca iste adresse",
-"ipusuccess"	=> "Adresse IP \"$1\" disblocate",
 "ipblocklist"	=> "Lista de adresses IP blocate",
 "blocklistline"	=> "$1, $2 ha blockate $3 ($4)",
 "blocklink"		=> "blocar",

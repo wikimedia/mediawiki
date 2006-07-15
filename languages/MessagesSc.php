@@ -423,9 +423,6 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 
 # Maintenance Page
 #
-"maintenance"		=> "Pagina manutenzioni",
-"maintnancepagetext"	=> "In questa pagina sono elencati alcuni utili strumenti per una comoda manutenzione quotidiana della nostra enciclopedia. Alcune delle funzioni tendono a stressare il database, assorbendo molte risorse, perciò non fatene un uso continuo: non aggiornate le pagine (reload, refresh) subito dopo ogni singolo intervento. ;-)",
-"maintenancebacklink"	=> "Torna alla pagina manutenzione",
 "disambiguations"	=> "Disambiguation pages",
 "disambiguationspage"	=> "{{ns:project}}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
@@ -580,7 +577,6 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 "unblockip"		=> " Sblocca indirizzo IP",
 "unblockiptext"	=> "Usa il modulo sottostante per restituire il diritto di scrittura ad un indirizzo IP precedentemente bloccato.",
 "ipusubmit"		=> "Sblocca questo indirizzo IP",
-"ipusuccess"	=> "Indirizzo IP \"$1\" sbloccato",
 "ipblocklist"	=> "Lista degli indirizzi IP bloccati",
 "blocklistline"	=> "$1, $2 ha bloccato $3 ($4)",
 "blocklink"		=> "blocca",
