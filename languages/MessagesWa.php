@@ -935,9 +935,6 @@ Les loyéns a pårti d\' ôtes espåces di lomaedje èn sont <i>nén</i> håyné
 
 'booksourcetext' => 'Chal pa dzo c\' est ene djivêye di hårdêyes viè des waibes ki vindèt des lives, noûs ou di deujhinme mwin, et ki polèt aveur pus d\' informåcions åd fwait des lives ki vos cweroz après.',
 'isbn' => 'ISBN',
-#'rfcurl' =>  'http://www.ietf.org/rfc/rfc$1.txt',
-'rfcurl' => 'http://www.faqs.org/rfcs/rfc$1.html',
-#'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline' => 'di $1 a $2',
 'version' => 'Modêye des programes',
 'log' => 'Djournås',

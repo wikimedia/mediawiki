@@ -884,7 +884,6 @@ breise acu maidir leis na leabhair a bhfuil tú ag iarradh ar.
 Níl aon baint ag {{SITENAME}} le gnó ar bith anseo, agus ní
 aontú leo é an liosta seo.",
 'isbn'  => 'ISBN',
-'rfcurl' =>  "http://www.ietf.org/rfc/rfc$1.txt",
 "alphaindexline" => "$1 go $2",
 'version'	       => 'Leagan',
 'log'	   => 'Logaí',

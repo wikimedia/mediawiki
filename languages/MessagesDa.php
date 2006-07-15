@@ -842,8 +842,6 @@ yderligere oplysninger om bøger du leder efter.
 {{SITENAME}} er ikke associeret med nogen af disse steder,
 og denne liste skal ikke ses som en anbefaling af disse.",
 'isbn'	=> 'ISBN',
-'rfcurl' =>  'http://www.faqs.org/rfcs/rfc$1.html',
-'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 "alphaindexline" => "$1 til $2",
 'version'		=> 'Information om MediaWiki',
 'log'		=> 'Logs',

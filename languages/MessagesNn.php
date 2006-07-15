@@ -742,8 +742,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'groups'                => 'Brukargrupper',
 'booksourcetext'        => 'Her er ei liste over lenkjer til internettsider som låner ut og/eller sel nye og/eller brukte bøker, og som kanskje har meir informasjon om bøker du leitar etter. {{SITENAME}} er ikkje nødvendigvis assosiert med nokon av desse sidene, og lista er <b>ikkje</b> å rekne som ei spesifikk tilråding om å bruke dei.',
 'isbn'	                => 'ISBN',
-'rfcurl'                => 'http://www.ifi.uio.no/doc/rfc/rfc$1.txt',
-'pubmedurl'             => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&otool=bibsys&list_uids=$1',
 'alphaindexline'        => '$1 til $2',
 'version'		=> 'Versjon',
 'log'                   => 'Loggar',
