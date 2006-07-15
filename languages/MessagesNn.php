@@ -152,7 +152,6 @@
 'specialpage'             => 'Spesialside',
 'personaltools'           => 'Personlege verktøy',
 'postcomment'             => 'Legg til kommentar',
-'addsection'              => '+',
 'articlepage'	          => 'Vis innhaldsside',
 'subjectpage'	          => 'Vis emne', # For compatibility
 'talk'                    => 'Diskusjon',
@@ -423,7 +422,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'last'			  => 'førre',
 'orig'			  => 'orig',
 'histlegend'	          => 'Merk av for dei versjonane du vil samanlikne og trykk [Enter] eller klikk på knappen nedst på sida.<br />Forklaring: (no) = skilnad frå den noverande versjonen, (førre) = skilnad frå den førre versjonen, <b>u</b> = uviktig endring',
-'history_copyright'       => '-',
 'deletedrev'              => '[sletta]',
 'histfirst'               => 'Første',
 'histlast'                => 'Siste',

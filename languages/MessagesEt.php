@@ -121,7 +121,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 'specialpage' => 'Erilehekülg',
 'personaltools' => 'Personaalsed tööriistad',
 'postcomment'   => 'Lisa kommentaar',
-'addsection'   => '+',
 "articlepage"	=> "Artiklilehekülg",
 "subjectpage"	=> "Teema", # For compatibility
 'talk' => 'Arutelu',
@@ -397,7 +396,6 @@ Palun kontrollige aadressi, millel Te seda lehekülge leida püüdsite.",
 "histlegend"	=> "Märgi versioonid, mida tahad võrrelda ja vajuta võrdlemisnupule.
 Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 (eel) = erinevused võrreldes eelmise redaktsiooniga, P = pisimuudatus",
-'history_copyright'    => '-',
 # Diffs
 #
 "difference"	=> "(Erinevused redaktsioonide vahel)",

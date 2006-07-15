@@ -121,7 +121,6 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'specialpage'           => 'Spezialsiet',
 'personaltools'         => 'Persönliche Warktüüch',
 'postcomment'           => 'Kommentar hentofögen',
-'addsection'            => '+',
 'articlepage'             => 'Artikel',
 'subjectpage'             => 'Bedrap ankieken',
 'toolbox'               => 'Warktüüch',

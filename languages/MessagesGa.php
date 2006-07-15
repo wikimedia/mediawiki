@@ -155,7 +155,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'specialpage' => 'Leathanach Speisialta',
 'personaltools' => 'Uirlisí phearsánta',
 "postcomment"   => "Caint ar an lch",
-'addsection'   => '+',
 "articlepage"   => "Féach ar an alt",
 "subjectpage"   => "Féach ar an t-ábhar", # For compatibility
 'talk' => 'Plé',
@@ -496,7 +495,6 @@ Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.",
 'histlegend'    => "Difríochtaí a roghnú: marcáil na boscaí de na eagráin atá ag teastail uait á cuir i gcomparáid, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br />
 Eochair: (rth) = difríocht leis an leagan láithreach,
 (rmh) = difríocht leis an eagrán roimhe, M = mionathrú",
-'history_copyright'    => '-',
 'deletedrev' => '[scriosta]',
 'histfirst' => 'An ceann is luaithe',
 'histlast' => 'An ceann is déanaí',

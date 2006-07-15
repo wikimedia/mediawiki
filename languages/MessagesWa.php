@@ -157,7 +157,6 @@ $wgAllMessagesWa = array(
 'specialpage' => 'Pådje sipeciåle',
 'personaltools' => 'Usteyes da vosse',
 'postcomment' => 'Sicrire on comintaire',
-#'addsection'   => '+',
 'articlepage' => 'Vey l\' årtike',
 'subjectpage' => 'Vey li sudjet', # For compatibility
 'talk' => 'Copene',
@@ -533,7 +532,6 @@ ki vos vloz comparer et s\' tchôkîz sol tape «enter» ou clitchîz sol
 boton do dzo.<br />
 Ledjinde: (ast.) = diferince avou l\' modêye d\' asteure,
 (dif.) = diferince avou l\' modêye di dvant, M = candjmint mineur.',
-#'history_copyright'    => '-',
 'deletedrev' => '[disfacé]',
 'histfirst' => 'Li pus vî',
 'histlast' => 'Li dierin',
@@ -1750,10 +1748,6 @@ $1',
 'hideresults' => 'Catchî les rzultats',
 
 # DISPLAYTITLE
-
-# Separator for categories in page lists
-# Please don't localise this
-#'catseparator' => '|',
 
 ####################
 #

@@ -134,7 +134,6 @@
 'specialpage'	=> 'Trang đặc biệt',
 'personaltools'	=> 'Công cụ cá nhân',
 'postcomment'	=> 'Thêm bàn luận',
-'addsection'   => '+',
 'articlepage'	=> 'Xem bài',
 'subjectpage'   => 'Trang chủ đề',
 'talk'		=> 'Thảo luận',

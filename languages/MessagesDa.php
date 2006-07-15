@@ -146,7 +146,6 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 'specialpage' => 'Speciel side',
 'personaltools' => 'Personlige værktøjer',
 "postcomment"   => "Tilføj en kommentar",
-'addsection'   => '+',
 "articlepage"	=> "Se artiklen",
 "subjectpage"	=> "Se emnesiden",
 'talk' => 'Diskussion',
@@ -466,7 +465,6 @@ ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.",
 "orig"			=> "originale",
 "histlegend"	=> "Forklaring: (nuværende) = forskel til den nuværende
 version, (forrige) = forskel til den forrige version, M = mindre ændring",
-'history_copyright'    => '-',
 'deletedrev' => '[slettet]',
 
 # Diffs

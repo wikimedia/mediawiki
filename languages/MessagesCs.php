@@ -130,7 +130,6 @@
 'specialpage' => 'Speciální stránka',
 'personaltools' => 'Osobní nástroje',
 'postcomment'   => 'Přidat komentář',
-'addsection'   => '+',
 'articlepage'   => 'Prohlédnout si článek',
 'subjectpage'   => 'Stránka námětu', #FIXME: ? (zřejmě se vůbec nepoužívá)
 'talk' => 'Diskuse',

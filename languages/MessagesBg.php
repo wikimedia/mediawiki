@@ -144,7 +144,6 @@
 'specialpage' => 'Специална страница',
 'personaltools' => 'Лични инструменти',
 'postcomment'   => 'Оставяне на съобщение',
-'addsection'   => '+',
 'articlepage'  => 'Преглед на страница',
 'subjectpage'  => 'Преглед на тема', # For compatibility
 'talk' => 'Беседа',
@@ -469,7 +468,6 @@ Before any other mail is sent to the account, you will have to follow the instru
 'orig'            => 'ориг',
 'histlegend'      => '<i>Разлики:</i> Изберете версиите, които желаете да сравните, чрез превключвателите срещу тях и натиснете &lt;Enter&gt; или бутона за сравнение.<br />
 <i>Легенда:</i> (<b>тек</b>) = разлика с текущата версия, (<b>посл</b>) = разлика с предишната версия, <b>м</b>&nbsp;=&nbsp;малка промяна',
-'history_copyright' => '-',
 'deletedrev' => '[изтрита]',
 'histfirst' => 'Първи',
 'histlast' => 'Последни',

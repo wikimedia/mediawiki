@@ -164,7 +164,6 @@ $wgAllMessagesId = array(
 'specialpage' => 'Halaman istimewa',
 'personaltools' => 'Peralatan pribadi',
 "postcomment" => "Kirim komentar",
-"addsection" => "+",
 "articlepage" => "Lihat artikel",
 "subjectpage" => "Halaman subyek",
 'talk' => 'Diskusi',
