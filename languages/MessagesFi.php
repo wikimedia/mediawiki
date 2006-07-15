@@ -160,7 +160,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'delete'              => 'Poista',
 'deletethispage'      => 'Poista tämä sivu',
 'undelete_short'      => 'Palauta $1 muokkausta',
-'undelete_short1'     => 'Palauta 1 muokkaus',
 'protect'             => 'Suojaa',
 'protectthispage'     => 'Suojaa tämä sivu',
 'unprotect'           => 'Poista suojaus',
@@ -993,7 +992,6 @@ Palaute ja lisäapu osoitteessa:
 'undeletecomment'     => 'Kommentti:',
 'undeletedarticle'    => 'palautti sivun [[$1]]',
 'undeletedrevisions'  => '$1 versiota palautettiin',
-'undeletedtext'       => 'Sivu [[:$1|$1]] on palautettu onnistuneesti. Lista viimeisimmistä poistoista ja palautuksista on [[Special:Log/delete|poistolokissa]].',
 
 'namespace'           => 'Nimiavaruus',
 'invert'              => 'Käännä nimiavaruusvalinta päinvastaiseksi',

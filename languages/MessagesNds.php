@@ -766,7 +766,6 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 'undeleterevision'      => 'Löschte Version vun de $1',
 'undeletebtn'           => 'Weerholen!',
 'undeletedarticle'      => '„$1“ weerholt',
-'undeletedtext'         => 'De Siet [[:$1|$1]] is mit Spood weerholt worrn.',
 
 # Bidreeg
 #
@@ -956,9 +955,7 @@ Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat mö�
 'nocookiesnew'          => 'De Brukertogang is anleggt, aver du büst nich inloggt. {{SITENAME}} bruukt för disse Funktschoon Cookies, aktiveer de Cookies un logg di denn mit dien nieg Brukernaam un den Password in.',
 'nocookieslogin'        => '{{SITENAME}} bruukt Cookies för dat Inloggen vun de Bruker. Du hest Cookies deaktiveert, aktiveer de Cookies un versöök dat noch eenmal.',
 'subcategorycount'      => 'Disse Kategorie hett $1 Ünnerkategorien.',
-'subcategorycount1'     => 'To disse Kategorie höört $1 Ünnerkategorie.',
 'categoryarticlecount'  => 'To disse Kategorie höört $1 Sieten.',
-'categoryarticlecount1' => 'To disse Kategorie höört $1 Siet.',
 
 # Math
 'mw_math_png'           => 'Jümmer as PNG dorstellen',

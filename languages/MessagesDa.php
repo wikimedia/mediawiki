@@ -135,7 +135,6 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 "editthispage"	=> "Redigér side",
 'delete' => 'Slet',
 "deletethispage" => "Slet side",
-'undelete_short1' => 'Fortryd sletning af en version',
 "undelete_short" => "Fortryd sletning af $1 versioner",
 'protect' => 'Beskyt',
 "protectthispage" => "Beskyt side",
@@ -1009,9 +1008,6 @@ på siden.",
 "undeletebtn" => "Gendan!",
 "undeletedarticle" => "gendannede \"$1\"",
 'undeletedrevisions' => "$1 versioner gendannet",
-"undeletedtext"   => "Artiklen [[:$1|$1]] er blevet gendannet med succes.
-Se [[{{ns:project}}:Sletningslog]] for en fortegnelse over nylige
-sletninger og gendannelser.",
 
 # Namespace form on various pages
 'namespace' => 'Namvnerum:',
@@ -1252,9 +1248,7 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 'spamprotectiontext' => 'Siden du prøver at få adgang til er blokeret af spamfilteret. Dette skyldes sandsynligvis et link til et eksternt websted. Se [[m:spam blacklist]] for en komplet liste af blokerede websteder. Hvis du mener at spamfilteret blokerede redigeringen ved en fejl, så kontakt en [[m:Special:Listadmins|m:administrator]]. Det følgende er et udtræk af siden der bevirkede blokeringen:',
 'spamprotectionmatch' => 'Følgende tekst udløste vores spamfilter: $1',
 'subcategorycount' => "Der er $1 underkategorier i denne kategori.",
-'subcategorycount1' => "Der er $1 underkategori i denne kategori.",
 'categoryarticlecount' => "Der er $1 artikler i denne kategori.",
-'categoryarticlecount1' => "Der er $1 artikel i denne kategori.",
 'listingcontinuesabbrev' => " forts.",
 
 # Info page

@@ -131,7 +131,6 @@ $wgAllMessagesSk = array(
 'editthispage'          => 'Upravuj túto stránku',
 'delete'                => 'Vymaž',
 'deletethispage'        => 'Vymaž tento článok',
-'undelete_short1'       => 'Obnov jednu úpravu',
 'undelete_short'        => 'Obnov $1 úprav',
 'protect'               => 'Zamkni',
 'protectthispage'       => 'Zamkni tento článok',

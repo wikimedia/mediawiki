@@ -649,8 +649,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "undeleterevision" => "删除$1时的版本",
 "undeletebtn" => "恢复！",
 "undeletedarticle" => "已经恢复“$1”",
-"undeletedtext"   => "[[:$1|$1]]已经被成功复原。
-有关{{SITENAME}}最近的删除与复原，参见[[{{ns:project}}:删除纪录]]",
 
 # Contributions
 #

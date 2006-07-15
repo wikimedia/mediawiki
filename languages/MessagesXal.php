@@ -14,7 +14,6 @@
 'nstab-category' => 'Янз',
 'talkpage' => 'Ухалвр',
 'history_short' => 'Чикллһнə бүрткл',
-'categories1' => 'Янз',
 'category' => 'Янз',
 
 

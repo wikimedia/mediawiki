@@ -544,8 +544,6 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 "undeleterevision" => "Cancellata revisione $1",
 "undeletebtn" => "RIPRISTINA!",
 "undeletedarticle" => "Recuperata \"$1\"",
-"undeletedtext"   => "La pagina [[:$1|$1]] è stata recuperata.
-Vedi [[{{ns:project}}:Deletion_log]] per un elenco delle pagine cancellate e recuperate di recente.",
 
 # Contributions
 #

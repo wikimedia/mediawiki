@@ -660,8 +660,6 @@ Gwelwch [[{{ns:project}}:Tudalen amddiffynol]] am mwy o wybodaeth.",
 "undeletebtn" => "Adferiwch!",
 "undeletedarticle" => "wedi adferio \"$1\"",
 
-"undeletedtext" => "Mae'r erthygl [[:$1|$1]] wedi cael eu adferio'n llwyddiannus.
-Gwyliwch [[{{ns:project}}:Log_dileuon]] am record dileuon ac adferion diweddar.",
 
 # Contributions
 #

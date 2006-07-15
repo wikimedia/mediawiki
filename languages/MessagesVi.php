@@ -74,7 +74,6 @@
 'category_header' => 'Các bài trong Thể loại "$1"',
 'subcategories'	=> 'Tiểu thể loại',
 'subcategorycount' => 'Thể loại này có $1 tiểu thể loại.',
-'subcategorycount1' => 'Thể loại này có $1 tiểu thể loại.',
 'allarticles'   => 'Mọi bài',
 'linktrail'     =>
 "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD",
@@ -124,7 +123,6 @@
 'delete'	=> 'Xóa',
 'deletethispage' => 'Xóa trang này',
 'undelete_short' => 'Phục hồi',
-'undelete_short1' => 'Phục hồi',
 'protect' => 'Khóa',
 'protectthispage' => 'Khóa trang này',
 'unprotect' => 'Mở',
@@ -390,7 +388,6 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 #
 'categoriespagetext' => "Các thể loại :",
 'categoryarticlecount' => "Có $1 bài trong thể loại này.",
-'categoryarticlecount1' => "Có $1 bài trong thể loại này.",
 
 
 #  Diffs
@@ -810,7 +807,6 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'undeletebtn' => 'Khôi phục',
 'undeletedarticle' => "đã khôi phục \"$1\"",
 'undeletedrevisions' => "$1 bản được khôi phục",
-'undeletedtext'   => "[[:$1|$1]] đã được khôi phục. Xem danh sách các xóa bỏ và khôi phục tại [[Đặc_biệt:Log/delete]].",
 
 # Contributions
 'contributions' => 'Đóng góp',
@@ -914,9 +910,7 @@ Hãy gõ tên của thành viên cần phong quyền quản lý vào ô này và
 'spamprotectionmatch' => 'Nội dung sau đây đã kích hoạt bộ lọc thư rác: $1',
 
 'subcategorycount' => "Có $1 tiểu thể loại trong thể loại này.",
-'subcategorycount1' => "Có $1 tiểu thể loại trong thể loại này.",
 'categoryarticlecount' => "Có $1 bài trong thể loại này.",
-'categoryarticlecount1' => "Có $1 bài trong thể loại này.",
 'listingcontinuesabbrev' => " tiếp",
 
 # Patrolling

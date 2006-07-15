@@ -145,7 +145,6 @@ $wgAllMessagesFr = array(
 'editthispage'  => 'Modifier cette page',
 'delete'	=> 'Supprimer',
 'deletethispage' => 'Supprimer cette page',
-'undelete_short1' => 'Restaurer une modification',
 'undelete_short' => 'Restaurer $1 modifications',
 'protect' => 'Protéger',
 'protectthispage' => 'Protéger cette page',
@@ -1000,9 +999,6 @@ Si une nouvelle page avec le même nom a été créée depuis la suppression, le
 'undeletecomment' => 'Commentaire :',
 'undeletedarticle' => 'a restauré « [[$1]] »',
 'undeletedrevisions' => '$1 versions ont été restaurées',
-'undeletedtext'   => 'L\'article [[$1]] a été restauré avec succès.
-
-Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.',
 
 # Namespace form on various pages
 'namespace' => 'Espace de nom :',

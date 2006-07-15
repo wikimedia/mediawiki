@@ -70,7 +70,6 @@
 'uncategorizedcategories' => 'Rummadoù hep rummadoù',
 'uncategorizedpages' => 'Pajennoù hep rummad ebet',
 'subcategorycount' => '$1 isrummad zo d\'ar rummad-mañ.',
-'subcategorycount1' => '$1 isrummad zo d\'ar rummad-mañ.',
 
 'allarticles'   => 'An holl bennadoù',
 'linktrail'     => "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu",
@@ -120,7 +119,6 @@
 'delete'	=> 'Diverkañ',
 'deletethispage' => 'Diverkañ ar bajenn-mañ',
 'undelete_short' => 'Diziverkañ',
-'undelete_short1' => 'Diziverkañ',
 'protect' => 'Gwareziñ',
 'protectthispage' => 'Gwareziñ ar bajenn-mañ',
 'unprotect' => 'Diwareziñ',
@@ -389,7 +387,6 @@ N'eus nemet an implijerien ganto ar statud a verourien a c'hall degas kemmoù en
 #
 'categoriespagetext' => "War ar wiki emañ ar rummadoù da-heul :",
 'categoryarticlecount' => "$1 pennad zo er rummad-mañ.",
-'categoryarticlecount1' => "N'eus pennad ebet er rummad-mañ.",
 
 
 #  Diffs
@@ -809,8 +806,6 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 "undeleterevision" => "Stumm diverket ($1)",
 'undeletebtn'	=> 'Diziverkañ!',
 'undeletedarticle' => "Diziverket\"$1\"",
-'undeletedtext'   => "Diziverket eo bet ar pennad [[:$1|$1]] da vat.
-Sellet ouzh [[{{ns:4}}:Aspadennoù an diverkadennoù]] evit kaout roll an diverkadennoù hag an diziverkadennoù diwezhañ.",
 'undeletedrevisions' => "$1 stumm bet diziverket",
 
 # Contributions

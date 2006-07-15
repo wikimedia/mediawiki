@@ -50,7 +50,6 @@
 
 # Bits of text used by many pages:
 #
-'categories1' => 'Бөлүк', //Category
 'categories' => 'Бөлүктер', //Categories
 'category' => 'бөлүк', //Category
 'category_header' => '"$1" бөлүкте чүүлдер', //Articles in category $1

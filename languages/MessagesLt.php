@@ -170,7 +170,6 @@ Nurodykite tikslią priežastį apačioje (pavyzdžiui nurodydami sugadintus pus
 'category' => 'kategorija',
 'category_header' => 'Kategorijos "$1" straipsniai',
 'categoryarticlecount' => 'Kategorijoje straipsnių - $1',
-'categoryarticlecount1' => 'Straipsnių kategorijoje - $1.',
 'changed' => 'pakeitė',
 'changegrouplogentry' => 'Pakeitė grupę $2',
 'changepassword' => 'Pakeisti slaptažodį',
@@ -748,7 +747,6 @@ Nuo wiki pradžios yra atlikta \'\'\'$4\'\'\' puslapių redagavimų - vidutiniš
 'storedversion' => 'Išsaugota versija',
 'subcategories' => 'Subkategorijos',
 'subcategorycount' => 'Kategorijoje esančių kategorijų - $1',
-'subcategorycount1' => 'Šioje kategorijoje esančių kategorijų - $1.',
 'subject' => 'Tema/antraštė',
 'successfulupload' => 'Įkelta sėkmingai',
 'summary' => 'Komentaras',
@@ -809,13 +807,10 @@ $1
 'uncategorizedpages' => 'Puslapiai, nepriskirti jokiai kategorijai',
 'undelete' => 'Atstatyti ištrintą puslapį',
 'undelete_short' => 'Atstatyti $1 redagavimus',
-'undelete_short1' => 'Atstatyti vieną redagavimą',
 'undeletearticle' => 'Atstatyti ištrintą straipsnį',
 'undeletebtn' => 'Atstatyti!',
 'undeletedarticle' => 'atstatyta "[[$1]]"',
 'undeletedrevisions' => 'atstatyta $1 revizijų',
-'undeletedtext' => 'Straipsnis [[:$1|$1]] sėkmingai atstatytas.
-[[Special:Log/delete|Ištrinimų sąraše]] galite peržiūrėti nesenų trynimų ir atstatymų sąrašą.',
 'undeletehistory' => 'Jei atstatysite straipsnį, istorijoje bus atstatytos visos versijos.
 Jei po ištrynimo buvo sukurtas straipsnis tokiu pačiu pavadinimu,
 atstatytos versijos atsiras ankstesnėje istorijoje, o dabartinė versija

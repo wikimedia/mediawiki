@@ -667,7 +667,6 @@ $wgAllMessagesMs = array(
 'undeletedrevisions' => "$1 semakan telah dipulih",
 "undeletebtn"       => "Pemulihan berjaya!", #"Restore!",
 "undeletedarticle"  => "telah dipulih", #"restored \"$1\"",
-"undeletedtext"     => "Pemulihan [[$1]] berjaya. Sila lihat [[Special:Log/delete|log pemadaman]] untuk rekod pemadaman dan pemulihan terkini.",
 
 
 # Contributions

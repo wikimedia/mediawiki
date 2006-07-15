@@ -569,8 +569,6 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 "undeleterevision" => "Geskrape weergawes vanaf $1",
 "undeletebtn" => "Herstel!",
 "undeletedarticle" => "het \"$1\" herstel",
-"undeletedtext"   => "Die bladsy [[:$1|$1]] is sukselsvol herstel.
-Kyk na [[{{ns:4}}:Deletion_log]] vir 'n rekord van onlangse skrappings en herstellings.",
 
 # Contributions
 #
