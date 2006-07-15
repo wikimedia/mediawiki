@@ -1790,8 +1790,6 @@ kódu vyprší $4.',
 Zpětné odkazy k tomuto článku:<br />
 $1
 </div>",
-'trackback' => "; $4$5: [$2 $1]",
-'trackbackexcerpt' => "; $4$5: [$2 $1]: <nowiki>$3</nowiki>",
 'trackbackremove' => ' ([$1 Smazat])',
 'trackbacklink' => 'Zpětný odkaz',
 'trackbackdeleteok' => 'Zpětný odkaz byl úspěšně smazán.',

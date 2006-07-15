@@ -281,7 +281,6 @@ Sinu {{SITENAME}}.",
 "noemail"		=> "Kasutaja \"$1\" meiliaadressi meil kahjuks pole.",
 "passwordsent"	=> "Uus parool on saadetud kasutaja \"$1\" registreeritud meiliaadressil.
 Pärast parooli saamist logige palun sisse.",
-'loginend'              => '',
 'mailerror' => "Viga kirja saatmisel: $1",
 'acct_creation_throttle_hit' => 'Vabandame, aga te olete loonud juba $1 kontot. Rohkem te ei saa.',
 

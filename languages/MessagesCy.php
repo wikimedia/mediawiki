@@ -233,7 +233,6 @@ Sicrhau rydych chi wedi sillafu'n iawn, neu creuwch accownt newydd gyda'r ffurfl
 Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid yr allweddair.",
 "noemail" => "Does dim cyfeiriad e-bost wedi cofrestru dros defnyddwr \"$1\".",
 "passwordsent" => "Mae allweddair newydd wedi gael eu ddanfon at y cyfeiriad e-bost cofrestredig am \"$1\". Mewngofnodwch eto, os gwelwch yn dda, ar ol i chi dderbyn yr allweddair.",
-"loginend" => "",
 
 # Edit page toolbar
 "bold_sample" => "Testun cryf",

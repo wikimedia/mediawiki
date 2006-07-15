@@ -287,7 +287,6 @@ Prööv de Schrievwies oder mell di as niegen Bruker an.',
 Dat Password för Bruker „$2“ is nu „$3“. Bitte mell di nu an un änner dien Password.',
 'noemail'                       => 'Bruker „$1“ hett kene E-Mail-Adress angeven.',
 'passwordsent'           => 'En nieg Password is an de E-Mail-Adress vun Bruker „$1“ send worrn. Mell di an, wenn du dat Password kriegt hest.',
-'loginend'                          => '',
 'mailerror'             => 'Fehler bi dat Sennen vun de E-Mail: $1',
 'acct_creation_throttle_hit' => 'Du hest al $1 Brukerkontos anleggt. Du kannst nich noch mehr anleggen.',
 

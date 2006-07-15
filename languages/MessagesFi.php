@@ -1667,8 +1667,6 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 
 # Trackbacks
 'trackbackbox' => '<div id="mw_trackbacks">Artikkelin trackbackit:<br />$1</div>',
-'trackback' => '; $4$5 : [$2 $1]',
-'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => ' ([$1 poista])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'Trackback poistettiin.',

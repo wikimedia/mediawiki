@@ -285,7 +285,6 @@ cheste vecje version, (rip) = torne a ripristinâ cheste vecje version.
 'log'		=> 'Regjistris',
 'logempty' => 'Nissun element corispondint tal regjistri.',
 'login' => "Jentre",
-'loginend' => "&nbsp;",
 'loginerror' => "Erôr te jentrade",
 'loginpagetitle' => "Jentrade dal utent",
 'loginprompt'	=> 'Tu âs di vê abilitâts i cookies par jentrâ in {{SITENAME}}.',

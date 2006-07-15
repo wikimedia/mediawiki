@@ -432,18 +432,6 @@ Molimo Vas da potvrdite da je ovo zaista ono što namjeravate da uradite, i da �
 otkučati bazu kad završite posao oko njenog održavanja.',
 'locknoconfirm' => 'Niste potvrdili svoju namjeru.',
 'login' => 'Prijavi se',
-'loginend' => '\'\'\'Registrovanje besplatnih naloga vam oduzima samo nekoliko sekundi, i ima mnoge prednosti\'\'\'
-
-*\'\'\'Za registranicu, izaberite korisničko ime i lozinku i kliknite "napravi nalog".\'\'\'
-*Izbjegavajte korisnička imena koja su neprikladna ili zbunjujuća.
-*Molimo Vas da izaberete čitka imena, a ne brojeve.
-*Izbjegavajte korisnička imena koja su ime političkog vođe, partije, slavne ličnosti i sličnih.
-
-\'\'\'Registrovani korisnici moraju samo popuniti korisničko ime i lozinku.\'\'\'
-
-*Morate imati odobrene \'\'kolačiće\'\' (\'\'\'cookies\'\'\') da bi ste pristupili na projekat {{SITENAME}}.
-
-Adresa e-pošte nije obavezna.  Ukoliko odaberete da je unesete, omogućeno će biti da vam ostali korisnici mogu slati poruke bez znanja vaše prave adrese e-pošte, i dozvoljava vam da ukoliko zaboravite lozinku možete da je povratite. \'\'\'Niko neći moći vidjeti adresu vaše e-pošte.\'\'\'',
 'loginerror' => 'Greška pri prijavljivanju',
 'loginpagetitle' => 'Prijavljivanje',
 'loginproblem' => '<b>Bilo je problema sa vašim prijavljivanjem.</b><br />Probajte ponovo!',

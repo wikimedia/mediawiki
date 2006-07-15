@@ -778,21 +778,6 @@ otključati bazu kada završite posao oko njenog održavanja.',
 'locknoconfirm' => 'Niste potvrdili svoju nameru.',
 'log' => 'Protokoli',
 'login' => 'Prijavi se',
-'loginend' => '\'\'\'Registrovanje besplatnih naloga vam oduzima samo nekoliko sekundi, i ima mnoge prednosti\'\'\'
-
-*\'\'\'Za registraciju, izaberite korisničko ime i šifru i kliknite "napravi nalog".\'\'\'
-*Izbegavajte korisnička imena koja su neprikladna ili zbunjujuća.
-*Molimo Vas izaberite čitka imena, a ne brojeve.
-*Korisnička imena moraju počinjati velikim slovom.
-*Izbegavajte korisnička imena koja su ime vašeg političkog vođe, partije, slavne ličnosti i drugih.
-</div>
-
-\'\'\'Registrovani korisnici moraju samo popuniti korisničko ime i šifru.\'\'\'
-
-*Morate imati odobrene [[HTTP cookie|kolačiće]] (\'\'\'cookies\'\'\') da bi ste pristupili na projekat {{ns:4}}.
-*[[{{ns:12}}:Kako da se registrujem|Pogledajte više o registraciji]].
-
-Adresa e-pošte nije obavezna. Ukoliko odaberete da unesete adresu e-pošte, to vam omogućva da ostali korisnici mogu da vam šalju poruke bez znanja vaše prave adrese e-pošte, i dozvoljava vam da ukoliko zaboravite lozinku možete da je povratite. \'\'\'Niko ne može da vidi adresu vaše e-pošte.\'\'\'',
 'loginerror' => 'Greška pri prijavljivanju',
 'loginpagetitle' => 'Prijavljivanje',
 'loginproblem' => '<b>Bilo je problema sa vašim prijavljivanjem.</b><br />Probajte ponovo!',
@@ -1305,10 +1290,8 @@ razlikuje od serverskog vremena (UTC).',
 'tooltip-save' => 'Snimite Vaše izmene [alt-s]',
 'tooltip-search' => 'Pretražite Viki',
 'tooltip-watch' => 'Dodajte ovu stranicu na Vaš spisak nadgledanja [alt-w]',
-'trackback' => '<div id=\'mw_trackbacks\'> Vraćanja za ovaj članak:<br /> $1 </div>',
 'trackbackbox' => '; $4$5 : [$2 $1]',
 'trackbackdeleteok' => 'Vraćanje je uspešno obrisano.',
-'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbacklink' => 'Vraćanje',
 'trackbackremove' => '([$1 Brisanje])',
 'tryexact' => 'Pokušaj tačno',

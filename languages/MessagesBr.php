@@ -287,7 +287,6 @@ Erbediñ a reomp deoc'h en em lugañ ha kemmañ ar ger-termen-mañ an abretañ a
 'noemail'  => "N'eus bet enrollet chomlec'h elektronek ebet evit an implijer \"$1\".",
 'passwordsent' => "Kaset ez eus bet ur ger-tremen nevez da chomlec'h elektronek an implijer \"$1\".
 Trugarez deoc'h evit en em zisklêriañ kerkent ha ma vo bet resevet ganeoc'h.",
-'loginend'	=> '&nbsp;',
 'mailerror'	=> 'Fazi en ur gas ar postel : $1',
 'acct_creation_throttle_hit' => 'Ho tigarez, krouet ez eus bet $1 (c\'h)gont ganeoc\'h dija. N\'hallit ket krouiñ unan nevez.',
 

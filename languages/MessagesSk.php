@@ -1624,8 +1624,6 @@ vyprší o $4.',
 Trackback pre tento článok:<br />
 $1
 </div>',
-'trackback'             => '; $4$5 : [$2 $1]',
-'trackbackexcerpt'      => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove'       => ' ([$1 Zmazať])',
 'trackbacklink'         => 'Trackback',
 'trackbackdeleteok'     => 'Trackback úspešne zmazaný.',

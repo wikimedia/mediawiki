@@ -284,7 +284,6 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'passwordremindertext' => "Ai đó (có thể là bạn) có địa chỉ IP $1 đã xin gửi mật khẩu mới tới thư điện tử của bạn. Mật khẩu mới của \"$2\" là \"$3\". Bạn nên đăng nhập và thay đổi mật khẩu này.",
 'noemail'  => "Thành viên \"$1\" không có thư điện tử.",
 'passwordsent' => "Mật khẩu mới đã được gửi tới thư điện tử của thành viên \"$1\". Xin đăng nhập ngay khi nhận được.",
-'loginend'	=> '&nbsp;',
 'mailerror'	=> 'Lỗi gửi thư : $1',
 'acct_creation_throttle_hit' => 'Bạn đã mở $1 tài khoản. Không thể mở thêm được nữa.',
 
