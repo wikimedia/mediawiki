@@ -24,6 +24,10 @@ class LanguageNl extends LanguageUtf8 {
 		'cologneblue' => 'Keuls blauw',
 	);
 
+	private $mBookstoreListNl = array(
+		'Koninklijke Bibliotheek' => 'http://opc4.kb.nl/DB=1/SET=5/TTL=1/CMD?ACT=SRCH&IKT=1007&SRT=RLV&TRM=$1'
+	);
+
 	function __construct() {
 		parent::__construct();
 
@@ -51,6 +55,10 @@ class LanguageNl extends LanguageUtf8 {
 			NS_CATEGORY       => 'Categorie',
 			NS_CATEGORY_TALK  => 'Overleg_categorie'
 		);
+	}
+
+	function getBookstoreList () {
+		return $this->mBookstoreListNl;
 	}
 
 	function getNamespaces() {
