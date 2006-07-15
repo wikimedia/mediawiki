@@ -544,7 +544,6 @@ Destes, <b>$2</b> são administradores (veja $3).",
 
 # Miscellaneous special pages
 #
-"orphans"       => "Páginas órfãns",
 "lonelypages"   => "Páginas órfãns",
 "unusedimages"  => "Imagens não utilizadas",
 "popularpages"  => "Páginas populares",
@@ -561,7 +560,6 @@ Destes, <b>$2</b> são administradores (veja $3).",
 "protectpage"   => "Páginas Protegidas",
 "recentchangeslinked" => "Páginas relacionadas",
 "rclsub"        => "(para páginas linkadas de \"$1\")",
-"debug"         => "Debug",
 "newpages"      => "Páginas novas",
 "ancientpages"      => "Artigos mais antigos",
 "intl"      => "Links interlínguas",

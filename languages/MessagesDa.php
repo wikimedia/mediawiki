@@ -788,7 +788,6 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Forældreløse artikler",
 "lonelypages"	=> "Forældreløse artikler",
 'uncategorizedpages'	=> 'Ukategoriserede sider',
 'uncategorizedcategories'	=> 'Ukategoriserede kategorier',
@@ -809,7 +808,6 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "protectpage"	=> "Beskyt side",
 "recentchangeslinked" => "Relaterede ændringer",
 "rclsub"		=> "(til sider henvist fra \"$1\")",
-"debug"			=> "Aflus",
 "newpages"		=> "Nyeste artikler",
 "ancientpages"		=> "Ældste artikler",
 "intl"		=> "Sproghenvisninger",
@@ -907,8 +905,6 @@ i bunden af skærmen.",
 "wlnote" => "Nedenfor er de seneste $1 ændringer i de sidste <b>$2</b> timer.",
 'wlshowlast' 		=> "Vis de seneste $1 timer $2 dage $3",
 'wlsaved'			=> 'Dette er en gemt version af din overvågningsliste.',
-'wlshow'		=> 'Vis',
-'wlhide'		=> 'Skjul',
 'wlhideshowown'		=> '$1 mine redigeringer.',
 'wlhideshowbots'		=> '$1 robotredigeringer.',
 'wldone'			=> 'Gennemført.',

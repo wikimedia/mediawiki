@@ -612,7 +612,6 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 
 # Miscellaneous special pages
 #
-'orphans'		=> "صفحات یتیم",
 'lonelypages'	=> "صفحات یتیم",
 'unusedimages'	=> "تصاویر بلااستفاده",
 'popularpages'	=> "صفحات محبوب",
@@ -630,7 +629,6 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 'protectpage'	=> "محافظت از صفحه",
 'recentchangeslinked' => "تغییرات مرتبط",
 'rclsub'		=> "(به صفحات پیونددار از «$1»)",
-'debug'			=> "اشکال‌زدایی",
 'newpages'		=> "صفحات جدید",
 'ancientpages'		=> "قدیمی‌ترین مقاله‌ها",
 'intl'		=> "پیوندهای بین زبانی",

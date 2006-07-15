@@ -619,7 +619,6 @@ In Klammern angevene Wöör geven de korrekte Schrievwies weer.',
 
 # Verscheden Spezialsieten
 #
-'orphans'                              => 'Weetsieten',
 'lonelypages'                   => 'Weetsieten',
 'uncategorizedpages'        => 'Unkategoriseerte Sieten',
 'uncategorizedcategories'       => 'Unkategoriseerte Kategorien',
@@ -638,7 +637,6 @@ In Klammern angevene Wöör geven de korrekte Schrievwies weer.',
 'protectpage'               => 'Siet schulen',
 'recentchangeslinked'     => 'Verlinkte Sieten',
 'rclsub'                                => '(op Artikel vun „$1“)',
-'debug'                                 => 'Fehlerkorregeern',
 'newpages'                              => 'Niege Sieten',
 'ancientpages'            => 'Öllste Sieten',
 'move'                    => 'Schuven',

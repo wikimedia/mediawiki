@@ -567,7 +567,6 @@ Dêr soe ek stean moatte hoe't it (goed skreaun) wurdt.",
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Lossteande siden",
 "lonelypages"	=> "Lossteande siden",
 "unusedimages"	=> "Lossteande ôbylden",
 "popularpages"	=> "Grage siden",
@@ -584,7 +583,6 @@ Dêr soe ek stean moatte hoe't it (goed skreaun) wurdt.",
 "protectpage"	=> "Beskerm side",
 "recentchangeslinked" => "Folgje keppelings",
 "rclsub"		=> "(nei siden dêr't \"$1\" keppelings nei hat)",
-"debug"		=> "Breksykje",
 "newpages"		=> "Nije siden",
 "ancientpages"	=> "Alde siden",
 "movethispage"	=> "Move this side",

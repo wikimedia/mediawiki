@@ -608,7 +608,6 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Üksildased artiklid",
 "lonelypages"	=> "Üksildased artiklid",
 "unusedimages"	=> "Kasutamata pildid",
 "popularpages"	=> "Populaarsed leheküljed",
@@ -625,7 +624,6 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
 "protectpage"	=> "Kaitse lehekülge",
 "recentchangeslinked" => "Seotud muudatused",
 "rclsub"		=> "(lehekülgedel, millele \"$1\" viitab)", #
-"debug"			=> "Silu",
 "newpages"		=> "Uued leheküljed",
 'ancientpages'          => 'Vanimad leheküljed',
 "intl"		=> "Keeltevahelised lingid",

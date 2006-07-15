@@ -469,7 +469,6 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Weesbladsye",
 "lonelypages"	=> "Weesbladsye",
 "unusedimages"	=> "Ongebruikte prente",
 "popularpages"	=> "Populêre bladsye",
@@ -486,7 +485,6 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "protectpage"	=> "Beskerm bladsy",
 "recentchangeslinked" => "Verwante veranderings",
 "rclsub"		=> "(na bladsye waarna \"$1\" skakel)",
-"debug"			=> "Ontfout",
 "newpages"		=> "Nuwe bladsye",
 "movethispage"	=> "Skuif hierdie bladsy",
 "unusedimagestext" => "<p>Let asseblief op dat ander webwerwe, soos die internasionale {{SITENAME}}s, dalk met 'n direkte URL na 'n prent skakel, so die prent sal dus hier verskyn al word dit aktief gebruik.", // TODO: grammar

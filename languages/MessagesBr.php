@@ -644,7 +644,6 @@ En o zouez, <b>$2</b> zo ganto ar statud merour (sellet ouzh $3).',
 
 # Miscellaneous special pages
 #
-'orphans'       => 'Pajennoù en o-unan',
 'lonelypages'   => 'Pajennoù en o-unan',
 'unusedimages'  => 'Skeudennoù en o-unan',
 'popularpages'  => 'Pajennoù sellet ar muiañ',
@@ -661,7 +660,6 @@ En o zouez, <b>$2</b> zo ganto ar statud merour (sellet ouzh $3).',
 'protectpage'   => 'Gwareziñ ar bajenn',
 'recentchangeslinked' => 'Heuliañ al liammoù',
 'rclsub'        => "(eus ar pajennoù liammet ouzh \"$1\")",
-'debug'         => 'Dizreinañ',
 'newpages'      => 'Pajennoù nevez',
 'ancientpages'	=> 'Pennadoù koshañ',
 'move'		=> 'adenvel',

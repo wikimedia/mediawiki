@@ -523,7 +523,6 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 
 # Miscellaneous special pages
 #
-"orphans"       => "Pages orphelines",
 "lonelypages"   => "Pages orphelines",
 "unusedimages"  => "Images orphelines",
 "popularpages"  => "Pages les plus consultées",
@@ -540,7 +539,6 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "protectpage"   => "Protéger la page",
 "recentchangeslinked" => "Suivi des liens",
 "rclsub"        => "(des pages liées à \"$1\")",
-"debug"         => "Déboguer",
 "newpages"      => "Nouvelles pages",
 "ancientpages"	=> "Articles les plus anciens",	// Looxix
 // "intl"		    => "Liens inter-langues",
