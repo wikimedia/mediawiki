@@ -391,9 +391,13 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'missingsummary' => "'''Peringatan:''' Anda tidak memasukkan ringkasan penyuntingan. Jika Anda kembali menekan tombol Simpan, suntingan Anda akan disimpan tanpa ringkasan penyuntingan.",
 'missingcommenttext' => 'Harap masukkan komentar di bawah ini.',
 "blockedtitle" => "Pengguna diblokir",
-"blockedtext" => "Nama pengguna atau alamat IP Anda telah diblokir oleh $1. Alasannya karena :<br />'''$2'''<br />Anda dapat menghubungi $1 atau [[{{ns:project}}:Administrators|pengurus lainnya]] untuk membicarakan hal ini.
+'blockedtext' => "<big>'''Nama pengguna atau alamat IP Anda telah diblokir.'''</big>
 
-Perhatikan bahwa Anda tidak dapat menggunakan fasilitas \"surat-e pengguna ini\" kecuali Anda mempunyai sebuah alamat surat-e yang sah dan alamat surat-e tersebut tercatat di dalam [[{{ns:special}}:Preferences|preferensi Anda]].
+Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''. 
+
+Anda dapat menghubungi $1 atau [[{{ns:project}}:Pengurus|pengurus lainnya]] untuk membicarakan hal ini.
+
+Anda tidak dapat menggunakan fitur 'Kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang sah di [[{{ns:project}}:Preferences|preferensi]] Anda.
 
 Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang Anda buat",
 'blockedoriginalsource' => "Isi sumber '''$1''' ditunjukkan berikut ini:",
@@ -775,6 +779,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Antrian job] adalah sebanyak '''$7'''.",
 "userstatstext" => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$4%''') diantaranya adalah pengurus (lihat $3).",
+'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
 
 "disambiguations" => "Halaman disambiguasi",
 'disambiguationspage'	=> '{{ns:template}}:Disambig',
@@ -1150,9 +1155,11 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "locknoconfirm" => "Anda tidak memberikan tanda cek pada kotak konfirmasi.",
 "lockdbsuccesssub" => "Penguncian basis data berhasil",
 "unlockdbsuccesssub" => "Pembukaan kunci basis data berhasil",
-"lockdbsuccesstext" => "Basis data telah dikunci. <br />Pastikan Anda membuka kuncinya setelah pemeliharaan selesai.",
+'lockdbsuccesstext' => 'Basis data telah dikunci.
+<br />Pastikan Anda [[Special:Unlockdb|membuka kuncinya]] setelah pemeliharaan selesai.',
 "unlockdbsuccesstext" => "Kunci basis data telah dibuka.",
 'lockfilenotwritable' => 'Berkas kunci basis data tidak dapat ditulis. Untuk mengunci atau membuka basis data, berkas ini harus dapat ditulis oleh server web.',
+'databasenotlocked' => 'Basis data tidak terkunci.',
 
 # Move page
 #
