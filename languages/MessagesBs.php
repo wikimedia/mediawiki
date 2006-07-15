@@ -823,10 +823,8 @@ Totalni broj stranica u bazi:  \'\'\'$1\'\'\'.</p>
 Bilo je \'\'\'$3\'\'\' pogleda stranica, i \'\'\'$4\'\'\' izmjena otkad je viki bio instaliran.
 To izađe u prosjeku oko \'\'\'$5\'\'\' izmjena po stranici, i \'\'\'$6\'\'\' pogleda po izmjeni.
 </p>',
-'sitesubtitle' => 'Slobodni Riječnik',
 'sitesupport' => 'Donacije',
 'sitesupport-url' => '{{ns:4}}:Donacije',
-'sitetitle' => '{{SITENAME}}',
 'siteuser' => '{{SITENAME}} korisnik $1',
 'siteusers' => '{{SITENAME}} korisnik (korisnici) $1',
 'skin' => 'Koža',

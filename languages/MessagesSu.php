@@ -857,10 +857,8 @@ Please check the URL you used to access this page.',
 'sitestatstext' => 'Jumlah-jamléh aya \'\'\'$1\'\'\' kaca na database, kaasup kaca "obrolan", kaca-kaca ngeunaan MédiaWiki, kaca "tukung", alihan, sarta nu séjénna nu meureun teu kaasup artikel. Lian ti nu éta, aya \'\'\'$2\'\'\' kaca nu dianggap artikel nu bener.
 
 jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan ti saprak Wiki ieu ngadeg. Jadi hartina aya rata-rata \'\'\'$5\'\'\' éditan per kaca sarta \'\'\'$6\'\'\' ulasan per édit.',
-'sitesubtitle' => 'Énsiklopédi Bébas',
 'sitesupport' => 'Sumbangan',
 'sitesupport-url' => 'Project:Ngarojong loka',
-'sitetitle' => '{{SITENAME}}',
 'siteuser' => 'Pamaké $1 {{SITENAME}}',
 'siteusers' => 'Pamaké $1 {{SITENAME}}',
 'skin' => 'Kulit',

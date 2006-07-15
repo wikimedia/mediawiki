@@ -204,7 +204,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'versionrequired'     => 'Mediawikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
 
-'widthheight'         => '$1×$2',
 'go'                  => 'Siirry',
 'ok'                  => 'OK',
 'pagetitle'           => '$1 — {{SITENAME}}',

@@ -204,7 +204,6 @@ $wgAllMessagesEl = array(
 'thisisdeleted' => 'Εμφάνιση ή αποκατάσταση της $1;',
 'restorelink' => '$1 επεξεργασίες έχουν διαγραφεί.',
 'feedlinks' => 'Ροή δεδομένων:',
-#'sitenotice' => '-', # the equivalent to wgSiteNotice
 
 
 # Short words for each namespace, by default used in the 'article' tab in monobook

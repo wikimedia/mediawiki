@@ -74,8 +74,6 @@
 "sysoptext"		=> "आप जो करना चाहते हैं‌ उसे केवल \"sysop\" स्तर के सदस्य कर सकते हैं. $1 देखें.",
 "developertitle"        => "Developer आवश्यक है",
 "developertext"	=> "आप जो करना चाहते हैं‌ उसे केवल \"developer\" स्तर के सदस्य कर सकते हैं. $1 देखें.",
-"sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	        => "",
 "retrievedfrom"         => "\"$1\" से लिया गया",
 
 # Main script and global functions

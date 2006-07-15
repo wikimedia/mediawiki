@@ -108,8 +108,6 @@ Vedi $1.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Vai",
 "ok"			=> "OK",
-"sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	=> '',
 "retrievedfrom" => "Ricavato da  \"$1\"",
 
 # Main script and global functions

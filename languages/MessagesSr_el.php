@@ -1219,7 +1219,6 @@ Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda poku�
 Ovaj broj isključuje redirekte, stranice za razgovor, stranice sa opisom slike, korisničke stranice, šablone, stranice za pomoć, članke bez ijedne poveznice, i stranice o Vikipediji. Uključujući ove, imamo \'\'\'$1\'\'\' stranica.</p>
 
 Korisnici su napravili \'\'\'$4\'\'\' izmena od jula 2002 godine; u proseku \'\'\'$5\'\'\' izmena po stranici.',
-'sitesubtitle' => '',
 'sitesupport' => 'Donacije',
 'sitesupport-url' => 'Project:Fundraising',
 'siteuser' => '{{ns:4}} korisnik $1',

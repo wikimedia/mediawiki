@@ -88,8 +88,6 @@
 "nbytes"		=> "$1字節",
 "go"			=> "進入",
 "ok"			=> "好",
-"sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	=> "",
 "retrievedfrom" => "取自\"$1\"",
 "newmessageslink" => "新信息",
 "editsection"=>"編輯",

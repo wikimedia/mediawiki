@@ -208,11 +208,8 @@ $wgAllMessagesRu = array(
 'versionrequired' => 'Требуется MediaWiki версии $1',
 'versionrequiredtext' => 'Для работы с этой страницей требуется MediaWiki версии $1. См. [[Special:Version]].',
 
-'widthheight'           => '$1 × $2',
 'ok'                    => 'OK',
-'sitetitle'             => '{{SITENAME}}',
 'pagetitle'             => '$1 — {{SITENAME}}',
-'sitesubtitle'  => '',
 'retrievedfrom' => 'Получено с $1',
 'youhavenewmessages' => 'Вы получили $1 ($2).',
 'newmessageslink' => 'новые сообщения',

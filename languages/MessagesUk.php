@@ -126,8 +126,6 @@
 "nbytes"		=> "$1 байт(ів)",
 "go"			=> "Перейти",
 "ok"			=> "OK",
-"sitetitle"		=> '{{SITENAME}}',
-"sitesubtitle"	=> "",
 "retrievedfrom" => "Отримано від \"$1\"",
 "newmessageslink" => "нові повідомлення",
 "editsection"=>"ред.",
