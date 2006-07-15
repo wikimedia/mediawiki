@@ -130,7 +130,6 @@
 'specialpage'	=> 'Pajenn zibar',
 'personaltools'	=> 'Ostilhoù personel',
 'postcomment'	=> 'Ouzhpennañ e soñj',
-'addsection'   => '+',
 'articlepage'	=> 'Sellet ouzh ar pennad',
 'subjectpage'   => 'Pajenn danvez',
 'talk'		=> 'Kaozeadenn',

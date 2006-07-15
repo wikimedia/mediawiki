@@ -172,7 +172,6 @@ $wgAllMessagesRu = array(
 'specialpage' => 'Служебная страница',
 'personaltools' => 'Личные инструменты',
 'postcomment'   => 'Комментировать',
-'addsection'   => '+',
 'articlepage'   => 'Просмотреть статью',
 'subjectpage'   => 'Просмотреть тему', # For compatibility
 'talk' => 'Обсуждение',
@@ -526,7 +525,6 @@ $1',
 'last'                  => 'пред.',
 'orig'                  => 'перв.',
 'histlegend'    => "Пояснения: (текущ.) — отличие от текущей версии; (пред.) — отличие от предшествующей версии; '''м''' — малозначимое изменение",
-'history_copyright'    => '—',
 'deletedrev' => '[удалена]',
 'histfirst' => 'Первый',
 'histlast' => 'Последний',
@@ -1945,10 +1943,6 @@ $1
 # DISPLAYTITLE
 'displaytitle' => '(Ссылка на эту страницу — $1)',
  
-# Separator for categories in page lists
-# Please don't localise this
-'catseparator' => '|',
-
 'loginlanguagelabel' => 'Язык: $1',
 );
 

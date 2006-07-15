@@ -222,7 +222,6 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'hidetoc' => "plate",
 'hist' => "stor",
 'history' => "Storic de pagjine",
-'history_copyright' => "-",
 'history_short' => "Storic",
 'historywarning' => 'Atenzion: la pagjine che tu stâs eliminant e à un storic.',
 'hr_tip' => "Rie orizontâl (no stâ doprâle masse spes)",

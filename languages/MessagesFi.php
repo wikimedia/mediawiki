@@ -170,7 +170,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'specialpage'         => 'Toimintosivu',
 'personaltools'       => 'Henkilökohtaiset työkalut',
 'postcomment'         => 'Kommentti sivun loppuun',
-'addsection'          => '+',
 'articlepage'         => 'Näytä varsinainen sivu',
 'subjectpage'         => 'Näytä aihe', # For compatibility
 'talk'                => 'Keskustelu',

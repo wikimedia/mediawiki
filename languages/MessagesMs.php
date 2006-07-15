@@ -131,7 +131,6 @@ $wgAllMessagesMs = array(
 "personaltools"         => "Alatan Peribadi",
 "postcomment"           => "Kirimkan komen",
 "toolbox"               => "Kotak Peralatan",
-"addsection"            => "Tambahkan bahagian",
 "articlepage"         => "Lihat rencana", #"View article",
 "subjectpage"         => "Halaman Tajuk",
 "userpage"              => "Lihat halaman pengguna", #"View user page",
@@ -332,7 +331,6 @@ $wgAllMessagesMs = array(
 "last"                  => "akhir",
 "orig"                  => "asal",
 "histlegend"    => "Cara untuk pembandingan: Tandakan butang radio versi-versi untuk dibanding, lalu tekan butang ''enter'' atau butang di bawah. <br />Legenda: (kini) = perbezaan dengan versi terkini, (akhir) = perbezaan dengan versi terakhir, K = suntingan kecil", #'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />Legend: (cur) = difference with current version, (last) = difference with preceding version, K = minor edit.',
-"history_copyright" => "-",
 "deletedrev"        => "[dipadam]", #'[deleted]',
 "histfirst"         => "Terawal", #'Earliest'
 "histlast"          => "Terkini", #'Latest'

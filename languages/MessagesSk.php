@@ -142,7 +142,6 @@ $wgAllMessagesSk = array(
 'specialpage'           => 'Špeciálna stránka',
 'personaltools'         => 'Osobné nástroje',
 'postcomment'           => 'Pridaj komentár',
-'addsection'            => '+',
 'articlepage'           => 'Zobraz článok',
 'subjectpage'           => 'Zobraz tému',
 'talk'                  => 'Diskusia',

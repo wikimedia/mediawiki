@@ -167,7 +167,6 @@
 'specialpage' => 'Página Especial',
 'personaltools' => 'Ferramentas pessoais',
 'postcomment'   => 'Envie um comentário',
-'addsection'   => '+',
 'articlepage'   => 'Ver artigo',
 'subjectpage'   => 'Ver assunto', # For compatibility
 'talk' => 'Discussão',
@@ -528,7 +527,6 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:Userlogin|au
 'histlegend'    => 'Selecção de diferença: marque as caixas para das versões que deseja comparar e carregue no botão.<br />
 Legenda: (actu) = diferenças da versão actual,
 (ult) = diferença da versão precedente, m = edição minoritária',
-#'history_copyright'    => '-', # ignore list
 'deletedrev' => '[eliminada]',
 'histfirst' => 'Mais antigas',
 'histlast' => 'Mais recentes',
