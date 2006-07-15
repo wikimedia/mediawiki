@@ -621,7 +621,6 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 #
 "changes" => "ændringer",
 "recentchanges" => "Seneste ændringer",
-'recentchanges-url' => 'Speciel:Recentchanges',
 "rcloaderr"		=> "Indlæser seneste ændrede sider",
 "rcnote"		=> "Nedenfor er de seneste <strong>$1</strong> ændringer i de
 sidste <strong>$2</strong> dage.",
@@ -811,7 +810,6 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "nlinks"		=> "$1 henvisninger",
 "allpages"		=> "Alle artikler",
 "randompage"	=> "Tilfældig artikel",
-'randompage-url'=> 'Speciel:Randompage',
 "shortpages"	=> "Korte artikler",
 "longpages"		=> "Lange artikler",
 'deadendpages'  => 'Blindgydesider',

@@ -566,7 +566,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 #
 'changes'               => 'endringar',
 'recentchanges'         => 'Siste endringar',
-'recentchanges-url'     => 'Special:Recentchanges',
 'recentchangestext'     => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'rcloaderr'		=> 'Lastar sist endra sider',
 'rcnote'		=> 'Nedanfor er dei siste <strong>$1</strong> endringane gjort dei siste <strong>$2</strong> dagane.',
@@ -714,7 +713,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'allpages'		=> 'Alle sider',
 'prefixindex'           => 'Prefiksindeks',
 'randompage'	        => 'Tilfeldig side',
-'randompage-url'        => 'Special:Random',
 'shortpages'	        => 'Korte sider',
 'longpages'		=> 'Lange sider',
 'deadendpages'          => 'Blindvegsider',

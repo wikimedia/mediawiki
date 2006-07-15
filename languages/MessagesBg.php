@@ -633,7 +633,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 #
 'changes' => 'промени',
 'recentchanges' => 'Последни промени',
-'recentchanges-url' => 'Special:Recentchanges',
 'recentchangestext' => 'Проследяване на последните промени в {{SITENAME}}.
 
 Легенда: <b>тек</b> = разлика на текущата версия,
@@ -792,7 +791,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'allpages'    => 'Всички страници',
 'prefixindex'   => 'Азбучен списък на представки',
 'randompage'  => 'Случайна страница',
-'randompage-url'=> 'Special:Random',
 'shortpages'  => 'Кратки страници',
 'longpages'    => 'Дълги страници',
 'deadendpages'  => 'Задънени страници',
