@@ -39,8 +39,8 @@ class IP {
 	 * i.e. not RFC 1918 or similar
 	 * Comes from ProxyTools.php
 	 */
-	function isPublic( $ip ) {
-		$n = IP::toUnsigned( $ip );
+	public static function IsPublic( $ip ) {
+		$n = IP::ToUnsigned( $ip );
 		if ( !$n ) {
 			return false;
 		}
