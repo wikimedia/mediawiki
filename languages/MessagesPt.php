@@ -376,7 +376,6 @@ Por favor, volte a efectuar a autentificação ao recebê-la.",
 'eauthentsent'             =>  "Um email de confirmação foi enviado para o endereço de correio electrónico nomeado.
 Antes de qualquer outro email seja enviado para a conta, terá seguir as instruções no email,
 de modo a confirmar que a conta é mesmo sua.",
-#'loginend'                          => '', # ignore list
 #'signupend'                         => '{{int:loginend}}', # ignore list
 'mailerror'                 => "Erro a enviar o mail: $1",
 'acct_creation_throttle_hit' => 'Pedimos desculpa, mas já foram criadas $1 contas por si. Não lhe é possível criar mais nenhuma.',
@@ -1706,8 +1705,6 @@ irá expirar a $4.",
 Trackbacks for this article:<br />
 $1
 </div>",
-'trackback' => "; $4$5 : [$2 $1]",
-'trackbackexcerpt' => "; $4$5 : [$2 $1]: $3",
 'trackbackremove' => ' ([$1 Eliminar])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',

@@ -334,15 +334,6 @@ Du bør logge på nu og ændre din adgangskode.",
 "passwordsent"	=> "En ny adgangskode er sendt til e-mail-adressen,
 som er registreret for \"$1\".
 Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mail'en.",
-'loginend'		=> "'''For at oprette en konto skal du vælge et brugernavn og en adgangskode og trykke på \"Opret en ny konto\"'''
-
-* Brugernavnet skal starte med stort bogstav og det må gerne indeholde mellemrum.
-
-'''Hvis du allerede har en konto, skal du kun udfylde brugernavn og adgangskode og trykke \"Log på\"'''
-
-* Du skal have cookies slået til for at kunne logge på.
-
-<nowiki>*</nowiki> Det er valgfrit om du vil oplyse din e-mail-adresse. Men det gør andre brugere i stand til at sende dig en e-mail, uden at du behøver at offentliggøre din e-mail-adresse. Samtidig giver det mulighed for at få sendt en ny adgangskode til din e-mail-adresse. '''Vi videregiver aldrig din e-mail-adresse til nogen som helst.'''",
 'mailerror' => "Fejl ved afsendelse af e-mail: $1",
 'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 kontoer. Du kan ikke oprette flere.',
 'emailauthenticated' 	=> 'Din e-mail-adresse blev bekræftet på $1.',

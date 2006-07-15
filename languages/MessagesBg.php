@@ -325,9 +325,6 @@ $1',
 # TODO
 'eauthentsent'  =>  'A confirmation email has been sent to the nominated email address.
 Before any other mail is sent to the account, you will have to follow the instructions in the email, to confirm that the account is actually yours.',
-'loginend'   => '<p>За да се регистрирате, просто въведете потребителско име и парола (два пъти) и щракнете върху бутона „<b>Регистриране</b>“.</p>
-<p>
-Следващия път е достатъчно да попълните само първите две полета и да щракнете върху „<b>Влизане</b>“.</p>',
 'mailerror' => 'Грешка при изпращане на писмо: $1',
 'acct_creation_throttle_hit' => 'Съжаляваме, създали сте вече $1 сметки и нямате право на повече.',
 # TODO
@@ -1368,8 +1365,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 Trackbacks for this article:<br />
 $1
 </div>',
-'trackback' => '; $4$5 : [$2 $1]',
-'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => ' ([$1 Изтриване])',
 #'trackbacklink' => 'Trackback',
 #'trackbackdeleteok' => 'The trackback was successfully deleted.',

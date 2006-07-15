@@ -254,7 +254,6 @@ $wgAllMessagesMs = array(
 "noemail"             => "Tiada alamat emel dalam rekod untuk pengguna \"$1\".",
 "passwordsent"                => "Kata laluan baru telah diemelkan kepada \"$1\". Sila log masuk semula setelah penerimaannya.", #"A new password has been sent to the e-mail address registered for \"$1\". Please log in again after you receive it.",
 "eauthentsent"          => "Emel pengesahan telah dikirimkan ke alamat emel anda. Sebelum kami mengirimkan emel yang lain kepada anda, anda dikehendaki mematuhi arahan-arahan dalam emel ini untuk membuktikan pemilikan.", #"A confirmation email has been sent to the nominated email address. Before any other mail is sent to the account, you will have to follow the instructions in the email, to confirm that the account is actually yours.",
-'loginend'              => '',
 'mailerror'             => "Ralat dalam pengiriman emel: $1", #"Error sending mail: $1",
 'acct_creation_throttle_hit' => "Maaf, anda telah membuka akaun $1. Oleh sebab itu, anda tidak dibenarkan membuka akaun lagi.", #"Sorry, you have already created $1 accounts. You can\'t make any more.",
 'emailauthenticated'    => "Alamat emel anda telah disahkan pada $1.", #"Your email address was authenticated on $1.",

@@ -1778,8 +1778,6 @@ Se l'account *non* ti appartiene, non seguire il collegamento. Questo codice di 
 Informazioni di trackback per questa voce:<br />
 $1
 </div>",
-"trackback" => "; $4$5 : [$2 $1]",
-"trackbackexcerpt"	=> "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>",
 "trackbackremove"	=> " ([$1 Elimina])",
 "trackbacklink"	=> "Trackback",
 "trackbackdeleteok"	=> "Informazioni di trackback eliminate correttamente.",

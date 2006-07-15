@@ -1767,8 +1767,6 @@ Jika Anda merasa *tidak pernah* mendaftar, jangan ikuti pranala di atas. Kode ko
 Pelacakan balik untuk artikel ini:<br />
 $1
 </div>',
-'trackback' => '; $4$5 : [$2 $1]',
-'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => ' ([$1 Hapus])',
 'trackbacklink' => 'Lacak balik',
 'trackbackdeleteok' => 'Pelacakan balik berhasil dihapus.',

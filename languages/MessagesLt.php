@@ -466,24 +466,6 @@ seną versiją, (atst) = atstatyti seną versiją.
 'localtime' => 'Rodomas vietinis laikas',
 'log' => 'Specialiųjų veiksmų istorija',
 'login' => 'Prisijungti/Registruotis',
-'loginend' => '\'\'\'Vartotojo sukūrimas trunka tik kelias sekundes.\'\'\'
-
-<div style="font-size:88%">
-*\'\'\'Norėdami sukurti vartotoją, pasirinkite vartotojo vardą bei slaptažodį ir spustelkite "Sukurkite vartotoją".\'\'\'
-*Vengite vardų, kurie galėtų būti įžeidžiantys ar nevienareikšmiškai suprantami.
-*Pasirinkite skaitomą vardą, ne skaičių.
-*Vartotojo vardas turi prasidėti iš didžiosios raidės.
-*Vengite įžymybių vardų, taip pat vardų, panašių į įžymybės vardą ar žinomo projekto vartotojo vardą.
-</div>
-
-\'\'\'Jei jau esate susikūrę vartotoją, tereikia įvesti vartotojo vardą ir pasirinktą slaptažodį.\'\'\'
-
-<div style="font-size:88%">
-*Norėdami prisijungti, turite būti įjunge "sausainėlius" (\'\'cookies\'\') savo naršyklėje.
-</div>
-<div style="clear: both; padding-top: 2em;">
-Elektroninio pašto adresas nėra privalomas - patvirtinimo laiškai nėra siunčiami. Tačiau, jei įvestumėte el.pašto adresą, kiti vartotojai galėtų jums siųsti žinutes tuo adresu, nesužinodami pačio adreso. Taip pat el.pašto adresas būtinas, jei pamirštumėte savo slaptažodį. \'\'\'Garantuojame, kad el.pašto adresas nebus niekam atskleistas.\'\'\'
-</div>',
 'loginerror' => 'Prisijungimo klaida',
 'loginpagetitle' => 'Prisijungimas',
 'loginproblem' => '<b>Problemos su jūsų prisijungimu.</b><br />Pabandykite iš naujo!',
@@ -817,12 +799,10 @@ Prašome sujungti šiuos puslapius.',
 'tooltip-save' => 'Išsaugoti pakeitimus [alt-s]',
 'tooltip-search' => 'Ieškoti lietuviškame wiki [alt-f]',
 'tooltip-watch' => 'Pridėti šį straipsnį prie stebimų [alt-w]',
-'trackback' => '; $4$5 : [$2 $1]',
 'trackbackbox' => '<div id=\'mw_trackbacks\'>
 Trackbacks for this article:<br />
 $1
 </div>',
-'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'tuesday' => 'Antradienis',
 'uctop' => ' (paskutinis)',
 'uncategorizedcategories' => 'Kategorijos, nepriskirtos jokiai kategorijai',

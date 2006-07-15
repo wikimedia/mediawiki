@@ -335,7 +335,6 @@ Le mot de passe de l\'utilisateur « $2 » est à présent « $3 ».
 Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible. Si vous n\'êtes pas l\'auteur de cette demande, ou si vous vous souvenez à présent de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
 'noemail'  => 'Aucune adresse électronique n\'a été enregistrée pour l\'utilisateur « $1 ».',
 'passwordsent' => 'Un nouveau mot de passe a été envoyé à l\'adresse électronique de l\'utilisateur « $1 ».',
-'loginend'	=> '&nbsp;',
 'mailerror'	=> 'Erreur en envoyant le courriel : $1',
 'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé $1 comptes. Vous ne pouvez pas en créer de nouveaux.',
 'emailauthenticated'        => 'Votre adresse de courriel a été authentifiée le $1..',

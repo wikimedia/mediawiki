@@ -354,7 +354,6 @@ Ba chóir duit lógail isteach anois agus d'fhocal faire a athrú.",
 Nuair atá sé agat, logáil isteach arís le do thoil chun fíordheimhniu a dhéanamh.",
 'eauthentsent'	     =>  "Cuireadh teachtaireacht ríomhphoist chuig an seoladh
 chun fíordheimhniú a dhéanamh. Chun fíordheimhniú a dhéanamh gur leatsa an cuntas, caithfidh tú glac leis an teachtaireacht sin nó ní sheolfar aon rud eile chuig do chuntas.",
-'loginend'	      => '',
 'mailerror' => "Tharlaigh earráid leis an seoladh: $1",
 'acct_creation_throttle_hit' => 'Tá brón orainn, ach tá tú i ndiadh $1 cuntas á chruthú. Ní féidir leat níos mó a dhéanamh.',
 

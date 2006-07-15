@@ -358,7 +358,6 @@ racsegneye po l\' uzeu «$1».
 Relodjîz vs avou ç\' noû scret on côp ki vos l\' åroz rçuvou s\' i vs plait.',
 'eauthentsent' => 'Èn emile d\' acertinaedje a stî evoyî a l\' adresse emile tchoezeye.
 Divant d\' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instruccions di l\' emile ki vos alez rçure, po-z acertiner ki l\' conte est bén da vosse.',
-#'loginend' => '',
 #'signupend' => '{{int:loginend}}',
 'mailerror' => 'Åk n\' a nén stî tot-z evoyant l\' emile: $1',
 'acct_creation_throttle_hit' => 'Mande escuzes, mins vos avoz ddja ahivé $1 contes. Vos n\' endè ploz nén fé des ôtes.',
@@ -1702,9 +1701,6 @@ po l\' $4.',
 
 # Scary transclusion
 
-# Trackbacks
-#'trackback' => '; $4$5 : [$2 $1]',
-#'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 
 # delete conflict
 'deletedwhileediting' => 'Asteme: Cisse pådje ci a stî disfacêye sol tins ki vos scrijhîz!',

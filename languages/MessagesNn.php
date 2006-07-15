@@ -305,7 +305,6 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'noemail'	         	  => 'Det er ikkje registrert noka e-postadresse åt brukaren «$1».',
 'passwordsent'	          => 'Eit nytt passord er sendt åt e-postadressa registrert på brukaren «$1».',
 'eauthentsent'            => 'Ein stadfestings-e-post er sendt til den oppgjevne e-postadressa. For at adressa skal kunna brukast, må du følgje instruksjonane i e-posten for å stadfeste at ho faktisk tilhøyrer deg.',
-'loginend'		  => '&nbsp;',
 'mailerror'               => 'Ein feil oppstod ved sending av e-post: $1',
 'acct_creation_throttle_hit' => 'Beklagar, du har allereie laga $1 brukarkontoar. Du har ikkje høve til å laga fleire.',
 'emailauthenticated'      => 'E-postadressa di vart stadfest $1.',
@@ -1503,8 +1502,6 @@ blir forelda $4.',
 Attendelenkjer for denne sida:<br />
 $1
 </div>",
-'trackback' => "; $4$5 : [$2 $1]",
-'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>",
 'trackbackremove'        => ' ([$1 Slett])',
 'trackbacklink'          => 'Attendelenkje',
 'trackbackdeleteok'      => 'Attendelenkja vart sletta.',
