@@ -558,7 +558,6 @@ Gjavant chestis, o vin '''$2''' pagjinis che a son probabilmentri pagjinis di co
 
 O vin vût in dut '''$3''' viodudis de pagjinis e '''$4''' cambiaments aes pagjinis di cuant che la wiki e je stade implantade.
 Chest al vûl dî une medie di '''$5''' cambiaments par pagjine, e '''$6''' viodudis par ogni cambiament.",
-'sitesubtitle' => "",
 'sitesupport' => 'Doninus',
 'sitesupport-url' => 'Project:Supuarte il sît',
 'siteuser' => 'Utent $1 di {{SITENAME}}',

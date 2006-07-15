@@ -121,7 +121,6 @@
 "nbytes"		=> "$1字节",
 "go"			=> "进入",
 "ok"			=> "OK",
-"sitesubtitle"	=> "",
 "retrievedfrom" => "取自\"$1\"",
 "newmessageslink" => "新信息",
 "editsection"=>"编辑",

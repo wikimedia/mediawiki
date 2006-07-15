@@ -186,7 +186,6 @@ See $1.',
 "thisisdeleted" => "Se eller gendan $1?",
 "restorelink" => "$1 slettede ændringer",
 'feedlinks' => 'Feed:',
-'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 'tagline' => 'Fra {{SITENAME}}',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook

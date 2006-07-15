@@ -199,11 +199,8 @@ Loukîz a $1.',
 'versionrequired' => 'I vs fåt l\' modêye $1 di MediaWiki',
 'versionrequiredtext' => 'I vs fåt l\' modêye $1 di MediaWiki po-z eployî cisse pådje ci. Loukîz a [[Special:Version]]',
 
-'widthheight' => '$1x$2',
 'ok' => '\'l est bon',
-#'sitetitle' => '{{SITENAME}}',
 'pagetitle' => '$1 - {{SITENAME}}',
-#'sitesubtitle'	=> '',
 'retrievedfrom' => 'Prin del pådje «$1»',
 'youhavenewmessages' => 'Vos avoz des $1 ($2).',
 'newmessageslink' => 'noveas messaedjes',
@@ -219,7 +216,6 @@ Loukîz a $1.',
 'restorelink' => '{{PLURAL:$1|on candjmint disfacé|$1 candjmints disfacés}}',
 'feedlinks' => 'Sindicåcion:',
 'feed-invalid' => 'Sôre di sindicåcion nén valide.',
-#'sitenotice' => '-', # the equivalent to wgSiteNotice
 #'anonnotice' => '-',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook

@@ -197,7 +197,6 @@ $wgAllMessagesId = array(
 'versionrequired' => 'Dibutuhkan MediaWiki versi $1',
 'versionrequiredtext' => 'MediaWiki versi $1 dibutuhkan untuk menggunakan halaman ini. Lihat [[{{ns:special}}:Version]]',
 
-'widthheight'		=> '$1×$2',
 "ok" => "OK",
 
 'pagetitle'		=> '$1 - {{SITENAME}}',

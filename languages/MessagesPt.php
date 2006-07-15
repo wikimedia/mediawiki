@@ -204,9 +204,7 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para ser utilizada. Consulte [[Special:Version]]',
 
 'ok'                    => 'OK',
-'sitetitle'             => "{{SITENAME}}",
 'pagetitle'             => "$1 - {{SITENAME}}",
-'sitesubtitle'  => '',
 'retrievedfrom' => 'Retirado de "$1"',
 'youhavenewmessages' => "Você tem $1 ($2).",
 'newmessageslink' => 'novas mensagens',
@@ -221,7 +219,6 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'viewdeleted' => 'Ver $1?',
 'restorelink' => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'feedlinks' => 'Feed:',
-#'sitenotice'    => '-', # the equivalent to wgSiteNotice; ignore list
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Artigo',

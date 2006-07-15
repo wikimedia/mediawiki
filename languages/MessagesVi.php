@@ -160,8 +160,6 @@
 'pagetitle'	=> '$1 - {{SITENAME}}',
 'history'	=> 'Lịch sử trang',
 'history_short' => 'Lịch sử',
-'sitetitle'     => '{{SITENAME}}',
-'sitesubtitle'  => '',
 'retrievedfrom' => 'Lấy từ « $1 »',
 'newmessageslink' => 'tin nhắn mới',
 'editsection'	=> 'Sửa',
@@ -172,7 +170,6 @@
 'thisisdeleted' => 'Xem hay phục hồi $1 ?',
 'restorelink'	=> 'Phục hồi 1 sửa đổi',
 'feedlinks'	=> 'Nạp:',
-'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Bài',

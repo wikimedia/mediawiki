@@ -179,7 +179,6 @@
 'versionrequiredtext'     => 'For å bruke denne sida trengst MediaWiki versjon $1. Sjå [[{{ns:special}}:Version]]',
 'nbytes'		  => '$1 byte',
 'ok'			  => 'OK',
-'sitesubtitle'	          => '',
 'retrievedfrom'           => 'Henta frå «$1»',
 'newmessageslink'         => 'nye meldingar',
 'editsection'             => 'endre',
@@ -192,7 +191,6 @@
 'restorelink1'            => 'ein sletta versjon',
 'restorelink'             => '$1 sletta versjonar',
 'feedlinks'               => 'Mating:',
-'sitenotice'	          => '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'              => 'Innhaldsside',

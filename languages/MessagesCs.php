@@ -171,7 +171,6 @@
 'nrevisions'		=> '$1 {{plural:$1|revize|revize|revizí}}',
 'nviews'        => '$1 zobrazení',
 
-'widthheight'		=> '$1×$2',
 'ok'              => 'OK',
 'pagetitle'		=> '$1 - {{SITENAME}}',
 'retrievedfrom' => 'Citováno z „$1“', #FIXME: Ukazuje se po tisku strany
