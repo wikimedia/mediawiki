@@ -1379,7 +1379,6 @@ Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navede
 'exif-gpsareainformation'=> 'Ime GPS-območja',
 'exif-gpsdatestamp'     => 'GPS-datum',
 'exif-gpsdifferential'  => 'Diferencialni popravek GPS',
-'exif-make-value'       => '[[$1]]',
 'exif-compression-1'    => 'Nestisnjeno',
 'exif-orientation-1'    => 'Navadna',
 'exif-orientation-2'    => 'Vodoravno zrcaljeno',
