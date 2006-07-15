@@ -951,7 +951,6 @@ Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat mö�
 'importsuccess'                => 'Import hett Spood!',
 'importhistoryconflict' => 'Dor sünd al öllere Versionen, de mit dissen kollideert. (Mööglicherwies is de Siet al vörher importeert worrn)',
 'isbn'                                  => 'ISBN',
-'rfcurl'                              => 'http://www.faqs.org/rfcs/rfc$1.html',
 'siteuser'              => '{{SITENAME}}-Bruker $1',
 'siteusers'             => '{{SITENAME}}-Bruker $1',
 'watch'                 => 'Oppassen',

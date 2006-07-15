@@ -819,8 +819,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 
 'booksourcetext' => 'Показани са препратки към други сайтове, които продават нови и използвани книги и могат да имат допълнителна информация за книгите, които търсите.',
 'isbn'  => 'ISBN',
-'rfcurl' =>  'http://www.ietf.org/rfc/rfc$1.txt',
-'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline' => 'от $1 до $2',
 'version'       => 'Версия',
 'log'           => 'Дневници',

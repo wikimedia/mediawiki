@@ -945,8 +945,6 @@ $1',
 # FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 'booksourcetext' => 'Ниже приведён список ссылок на другие веб-сайты, на которых продаются новые и бывшие в употреблении книги, а также на них может быть информация о книгах, которые вы ищете.',
 'isbn'  => 'ISBN',
-'rfcurl' =>  'http://www.ietf.org/rfc/rfc$1.txt',
-'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline' => 'от $1 до $2',
 'version'               => 'Версия MediaWiki',
 'log'           => 'Журналы',

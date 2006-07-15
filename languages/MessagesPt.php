@@ -887,8 +887,6 @@ Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 
 'booksourcetext' => "Abaixo encontra-se uma lista de ligações para outros websites que vendem livros novos ou usados, e poderão ter mais informações sobre os livros que procura.",
 'isbn'  => 'ISBN',
-'rfcurl' =>  'http://www.ietf.org/rfc/rfc$1.txt',
-'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline' => "$1 até $2",
 'version'               => 'Versão',
 'log'           => 'Registos',

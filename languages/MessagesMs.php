@@ -555,8 +555,6 @@ $wgAllMessagesMs = array(
 "booksources"           => "Sumber Buku",
 "booksourcetext"          => "Di bawah ini adalah senarai pautan ke laman lain yang menjual buku,baik buku baru ataupun buku terpakai, dan mungkin mempunyai maklumat lanjut tentang buku yang anda sedang mencari. {{SITENAME}} tidak bergabung dengan mana-mana perniagaan di atas, dan senarai ini bukan merupakan penyokongan.",
 "isbn"                          => "ISBN",
-"rfcurl"                  => "http://www.ietf.org/rfc/rfc$1.txt",
-"pubmedurl"               => "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1",
 "alphaindexline"          => "$1 ke $2",
 "version"               => "Versi",
 "log"                   => "Log",

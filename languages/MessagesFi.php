@@ -815,7 +815,6 @@ Ohjelmiston ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 
 
 # No reason to overwrite
-//  'rfcurl'              => 'http://www.faqs.org/rfcs/rfc$1.html',
 'alphaindexline'      => '$1…$2',
 'version'             => 'Versio',
 'log'                 => 'Lokit',
