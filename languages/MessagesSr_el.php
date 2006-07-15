@@ -1099,7 +1099,6 @@ Pogledajte [[{{ns:4}}:Pravila o zaštiti stranica|pravila o zaštiti stranica]] 
 'qbsettings' => 'Podešavanja brze palete',
 'qbspecialpages' => 'Posebne stranice',
 'randompage' => 'Slučajna stranica',
-'randompage-url' => '{{ns:-1}}:Random',
 'range_block_disabled' => 'Administratorska mogućnost da blokira IP grupe je isključena.',
 'rchide' => 'u $4 obliku; $1 male izmene; $2 sekundarni imenski prostori; $3 višestruke izmene.',
 'rclinks' => 'Pokaži poslednjih $1 promena u poslednjih $2 dana; $3 male izmene',
@@ -1122,7 +1121,6 @@ Administrator koji ju je zaključao ponudio je ovo objašnjenje:
 tako da nećete moći da snimite svoje izmene upravo sada. Možda želite da iskopirate i nalepite
 tekst u tekst editor i snimite ga za kasnije.',
 'recentchanges' => 'Skorašnje izmene',
-'recentchanges-url' => '{{ns:-1}}:Recentchanges',
 'recentchangesall' => 'sve',
 'recentchangescount' => 'Broj naslova u skorašnjim promenama',
 'recentchangeslinked' => 'Srodne promene',

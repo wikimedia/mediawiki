@@ -533,7 +533,6 @@ $wgAllMessagesMs = array(
 "allpages"              => "Semua Halaman",
 "nextpage"              => 'Halaman yang berikut ($1)',
 "randompage"            => "Halaman Rawak",
-"randompage-url"          => "{{ns:special}}:Random",
 "shortpages"            => "Halaman Pendek",
 "longpages"             => "Halaman Panjang",
 "deadendpages"            => "Halaman Buntu",

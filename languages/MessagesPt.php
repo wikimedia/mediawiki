@@ -665,7 +665,6 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 #
 'changes' => 'mudanças',
 'recentchanges' => 'Mudanças recentes',
-'recentchanges-url' => 'Special:Recentchanges',
 'recentchangestext' => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.',
 'rcnote'                => "Abaixo estão as últimas <strong>$1</strong> alterações nos últimos <strong>$2</strong> dias, desde $3.",
 'rcnotefrom'    => "Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).",
@@ -862,7 +861,6 @@ Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 'allpages'              => 'Todas as páginas',
 'prefixindex'   => 'Índice de prefixo',
 'randompage'    => 'Página aleatória',
-#'randompage-url'=> 'Special:Random', # ignore list
 'shortpages'    => 'Páginas curtas',
 'longpages'             => 'Páginas longas',
 'deadendpages'  => 'Páginas sem saída',

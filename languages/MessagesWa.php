@@ -708,7 +708,6 @@ Les groupes nén tchoezis èn seront nén candjîs. Vos ploz distchoezi on group
 #
 'changes' => 'candjmints',
 'recentchanges' => 'Dierins candjmints',
-'recentchanges-url' => '{{ns:special}}:Recentchanges',
 'recentchangestext' => 'Shuvoz chal les dierins candjmints k\' i gn a yeu dsu {{SITENAME}}.',
 'rcnote' => 'Chal pa dzo les <strong>$1</strong> dierins candjmints des dierins <strong>$2</strong> djoûs, å $3.',
 'rcnotefrom' => 'Chal pa dzo les candjmints dispoy li <b>$2</b> (disk\' a <b>$1</b> di mostrés).',
@@ -909,7 +908,6 @@ Les loyéns a pårti d\' ôtes espåces di lomaedje èn sont <i>nén</i> håyné
 'allpages' => 'Totes les pådjes',
 'prefixindex'   => 'Indecse pa betchete',
 'randompage' => 'Årtike a l\' astcheyance',
-'randompage-url' => '{{ns:special}}:Random',
 'shortpages' => 'Coûtès pådjes',
 'longpages' => 'Longowès pådjes',
 'deadendpages' => 'Pådjes sins nou loyén wiki',
