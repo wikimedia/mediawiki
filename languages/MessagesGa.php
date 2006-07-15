@@ -835,7 +835,6 @@ taispeántar athsheolaidh nó fo-leathanaigh.",
 
 # Miscellaneous special pages
 #
-"orphans"       => "Leathanaigh dhílleachtacha",
 "lonelypages"   => "Leathanaigh dhílleachtacha",
 'uncategorizedpages'    => 'Leathanaigh gan catagóir',
 'unusedcategories' => 'Catagóirí nach úsáidtear',
@@ -857,7 +856,6 @@ taispeántar athsheolaidh nó fo-leathanaigh.",
 "protectpage"   => "Glasáil leathanach",
 "recentchangeslinked" => "Athruithe gaolmhara",
 "rclsub"	=> "(go leathanaigh nasctha ó \"$1\")",
-"debug"	 => "Bain fabhtanna",
 "newpages"      => "Leathanaigh nua",
 "ancientpages"      => "Na leathanaigh is sine",
 "intl"      => "Naisc idirtheangacha",
@@ -957,8 +955,6 @@ an cnaipe 'bain amach le marcanna' ag bun an leathanaigh.",
 "wlshowlast" => "Taispeáin an $1 uair $2 lá seo caite$3", #FIXME
 'wlsaved'	 => 'Leagan sábháilte is ea seo de do liosta faire.',
 'wlhideshowown'   => '$1 mo chuid athruithe.',
-'wlshow'		=> 'Taispeáin',
-'wlhide'		=> 'Folaigh',
 
 'updatedmarker'	 => 'leasaithe (ó shin mo chuairt dheireanach)',
 

@@ -522,7 +522,6 @@ Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob 
 
 # Miscellaneous special pages
 #
-"orphans" => "Erthyglau heb cysylltiadau",
 "lonelypages" => "Erthyglau heb cysylltiadau",
 "unusedimages"	=> "Lluniau di-defnyddio",
 "popularpages"	=> "Erthyglau poblogol",
@@ -540,7 +539,6 @@ Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob 
 "protectpage" => "Sicrhau erthygl",
 "recentchangeslinked" => "Newidiadau perthnasol",
 "rclsub" => "(i erthyglau cysyllt oddiwrth \"$1\")",
-"debug"	=> "Debug",
 "newpages" => "Erthyglau newydd",
 "ancientpages" => "Erthyglau hynach",
 "intl" => "Cysylltiadau rhwng ieithau",

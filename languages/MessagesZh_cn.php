@@ -523,7 +523,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 
 # Miscellaneous special pages
 #
-"orphans"		=> "孤立条目",
 "lonelypages"	=> "孤立页面",
 "unusedimages"	=> "未使用图像",
 "popularpages"	=> "热点条目",
@@ -540,7 +539,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "protectpage"	=> "保护页面",
 "recentchangeslinked" => "链出更改",
 "rclsub"		=> "（从 \"$1\"链出的页面）",
-"debug"			=> "除错",
 "newpages"		=> "新页面",
 "intl"		=> "跨语言链接",
 "movethispage"	=> "移动本页",

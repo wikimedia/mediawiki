@@ -547,7 +547,6 @@ al qual le prime redirection deberea referer se.",
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Paginas orphanas",
 "lonelypages"	=> "Paginas orphanas",
 "unusedimages"	=> "Imagines non usate",
 "popularpages"	=> "Paginas popular",
@@ -564,7 +563,6 @@ al qual le prime redirection deberea referer se.",
 "protectpage"	=> "Proteger pagina",
 "recentchangeslinked" => "Modificationes correlate",
 "rclsub"		=> "(a paginas ligate a partir de \"$1\")",
-"debug"			=> "Reparar disfunctiones",
 "newpages"		=> "Nove paginas",
 "movethispage"	=> "Mover iste pagina",
 "unusedimagestext" => "<p>Nota que altere sitos del web

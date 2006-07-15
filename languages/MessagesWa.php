@@ -1904,10 +1904,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 'val_total' => 'Totå',
 'projectpage' => 'Vey li meta-pådje',
 'contribs-showhideminor' => '$1 candjmints mineurs',
-'wlshow' => 'Mostrer',
-'wlhide' => 'Catchî',
-'debug' => 'Disbugaedje',
-'orphans' => 'Pådjes ôrfulinnes',
 'lucenepowersearchtext' => 'Cweraedje dins les espåces di lomaedje: $1 <br />
 Cweraedje di: $3 $9',
 'selflinks' => 'Pådjes avou des loyéns viè zeles minmes',

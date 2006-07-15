@@ -696,7 +696,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 
 # Miscellaneous special pages
 #
-'orphans'		=> 'Foreldrelause sider',
 'lonelypages'	        => 'Foreldrelause sider',
 'uncategorizedpages'	=> 'Ikkje kategoriserte sider',
 'uncategorizedcategories' => 'Ikkje kategoriserte kategoriar',
@@ -721,7 +720,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'protectpage'	        => 'Vern side',
 'recentchangeslinked'   => 'Relaterte endringar',
 'rclsub'		=> '(til sider med lenkje frå «$1»)',
-'debug'			=> 'Feilsøk',
 'newpages'		=> 'Nye sider',
 'ancientpages'		=> 'Eldste sider',
 'intl'		        => 'Språklenkjer',
@@ -805,8 +803,6 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'wlshowlast' 		    => 'Vis siste $1 timar $2 dagar $3',
 'wlsaved'		        => 'Dette er ein mellomlagra versjon av overvakingslista di.',
 'wlhideshowown'         => '$1 eigne endringar.',
-'wlshow'                => 'Vis',
-'wlhide'                => 'Gøym',
 
 'enotif_mailer'         => '{{SITENAME}}-endringsmeldingssendar',
 'enotif_reset'          => 'Merk alle sider som vitja',

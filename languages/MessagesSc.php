@@ -445,7 +445,6 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Pagine orfane",
 "lonelypages"	=> "Pagine solitarie",
 "unusedimages"	=> "Immagini non utilizzate",
 "popularpages"	=> "Pagine più viste",
@@ -462,7 +461,6 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "protectpage"	=> "Proteggi questa pagina",
 "recentchangeslinked" => "Modifiche correlate",
 "rclsub"		=> "(alle pagine linkate da \"$1\")",
-"debug"			=> "Debug",
 "newpages"		=> "Pagine nuove",
 "movethispage"	=> "Sposta questa pagina",
 "unusedimagestext" => "<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.",

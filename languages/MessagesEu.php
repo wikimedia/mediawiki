@@ -87,7 +87,6 @@ Honaino nahigabe helduz gero, zure arakatzaileko \'\'\'atzera\'\'\' botoia sakat
 'nstab-mediawiki' => 'Oharra',
 'nstab-special' => 'Berezia',
 'nstab-template' => 'Txantiloia',
-'orphans' => 'Orri umezurtzak',
 'otherlanguages' => 'Beste hizkuntzak',
 'pagemovedtext' => '"$1"-ren izenburua "$2"-en truke aldatu da.',
 'passwordremindertext' => 'Norbaitek (zu seguruenik, IP $1 helbidetik) {{SITENAME}}n saio berria hasteko pasahitza bidaltzea eskatu du.
