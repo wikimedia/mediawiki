@@ -141,7 +141,6 @@
 'editthispage'	          => 'Endre sida',
 'delete'                  => 'Slett',
 'deletethispage'          => 'Slett side',
-'undelete_short1'         => 'Attopprett 1 endring',
 'undelete_short'          => 'Attopprett $1 endringar',
 'protect'                 => 'Vern',
 'protectthispage'         => 'Vern denne sida',
@@ -894,7 +893,6 @@ Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusj
 'undeletebtn'           => 'Attopprett!',
 'undeletedarticle'      => 'attoppretta «[[$1]]»',
 'undeletedrevisions'    => '$1 versjonar attoppretta',
-'undeletedtext'         => 'Sida [[:$1|$1]] er attoppretta. Sjå [[Special:Log/delete]] for oversyn over nylege slettingar og attopprettingar.',
 
  # Namespace form on various pages
 'namespace'             => 'Namnerom:',
@@ -1118,9 +1116,7 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 'spamprotectiontext'    => 'Sida du prøvde å lagre vart blokkert av filteret for vern mot reklame (spam). Dette skjedde truleg på grunn av ei ekstern lenkje.',
 'spamprotectionmatch'   => 'Den følgjande teksten utløyste reklamefilteret: $1',
 'subcategorycount'      => 'Det er $1 underkategoriar av denne kategorien.',
-'subcategorycount1'     => 'Det er $1 underkategori av denne kategorien.',
 'categoryarticlecount'  => 'Det er $1 innhaldssider i denne kategorien.',
-'categoryarticlecount1' => 'Det er $1 innhaldsside i denne kategorien.',
 'listingcontinuesabbrev' => ' vidare',
 
 # Info page

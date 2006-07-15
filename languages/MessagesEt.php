@@ -111,7 +111,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "delete" => "Kustuta",
 "deletethispage" => "Kustuta see artikkel",
 "undelete_short" => "Taasta $1 muudatust",
-"undelete_short1" => "Taasta 1 muudatust",
 "protect" => "Kaitse",
 "protectthispage" => "Kaitse seda artiklit",
 "unprotect" => "Ära kaitse",
@@ -709,8 +708,6 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 "undeleterevision" => "Kustutatud versioon seisuga $1",
 "undeletebtn" => "Taasta!",
 "undeletedarticle" => "\"$1\" taastatud",
-"undeletedtext"   => "Artikkel [[:$1|$1]] on taastatud.
-Viimaste kustutamiste ja taastamiste logi on esitatud lehel [[{{ns:4}}:Kustutatud_leheküljed]].",
 
 # Contributions
 #

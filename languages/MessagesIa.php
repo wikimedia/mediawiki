@@ -665,8 +665,6 @@ non essera automaticamente substituite.",
 "undeleterevision" => "Revision eliminate in $1",
 "undeletebtn" => "Restautar!",
 "undeletedarticle" => "\"$1\" restaurate",
-"undeletedtext"   => "Le articulo [[:$1|$1]] ha essite restaurate con successo.
-Vide [[{{ns:project}}:Registro_de_eliminationes]] pro un registro de eliminationes e restaurationes recente.",
 
 # Contributions
 #

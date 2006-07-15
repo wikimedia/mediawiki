@@ -144,7 +144,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "editthispage"  => "Athraigh an lch seo",
 "delete"	=> "Scrios",
 "deletethispage"    => "Scrios an lch seo",
-'undelete_short1' => 'Díscrios athrú amháin',
 "undelete_short" => "Díscrios $1 athruithe",
 "protect"	=> "Glasáil",
 "protectthispage" => "Glasáil an lch seo",
@@ -1058,8 +1057,6 @@ leathanaigh go huathoibríoch.",
 "undeleterevision" => "Leagan scriosta den dáta $1",
 "undeletebtn" => "Díscrios!",
 "undeletedarticle" => "Díscriosadh \"$1\" ar ais",
-"undeletedtext"   => "Díscriosadh an alt [[:$1|$1]] go rathúil.
-Féach ar [[{{ns:4}}:Cuntas_scriosaidh]] chun cuntas de scriosaidh agus athchóirithe deireanacha a fháil.",
 
 
 # Namespace form on various pages
@@ -1330,9 +1327,7 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.',
 iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'spamprotectionmatch' => 'Truicear ár scagaire dramhála ag an téacs seo a leanas: $1',
 'subcategorycount' => "Tá $1 fo-chatagóirí sa chatagóir seo.",
-'subcategorycount1' => "Tá fó-chatagóir amháin sa chatagóir seo.",
 'categoryarticlecount' => "Tá $1 ailt sa chatagóir seo.",
-'categoryarticlecount1' => "Tá alt amháin sa chatagóir seo.",
 
 # Info page
 "infosubtitle" => "Eolas don leathanach",

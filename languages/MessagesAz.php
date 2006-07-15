@@ -103,7 +103,6 @@ $wgAllMessagesAz = array(
 'editthispage' => 'Bu səhifəni redaktə edin',
 'delete' => 'Sil',
 'deletethispage' => 'Bu səhifəni sil',
-'undelete_short1' => 'Undelete one edit',
 'protect' => 'Qoru',
 'protectthispage' => 'Bu səhifəni qoru',
 'unprotect' => 'Qorumanı bitir',
@@ -562,9 +561,7 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 
 # Spam protection
 'subcategorycount' => 'Bu kategoriyada $1 alt kategoriya var.',
-'subcategorycount1' => 'Bu kategoriyada $1 alt kategoriya var.',
 'categoryarticlecount' => 'Bu kategoriyada $1 məqalə var.',
-'categoryarticlecount1' => 'Bu kategoriyada $1 məqalə var.',
 'listingcontinuesabbrev' => '(davam)',
 
 # Monobook.js: tooltips and access keys for monobook

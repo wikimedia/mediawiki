@@ -104,7 +104,6 @@ $wgAllMessagesGsw = array(
 'editthispage'          => 'Syte bearbeite',
 'delete'                => 'lösche',
 'deletethispage'        => 'Syte lösche',
-'undelete_short1'       => 'widerherstelle',
 'undelete_short'        => '$1 widerherstelle',
 'protect'               => 'schütze',
 'protectthispage'       => 'Artikel schütze',

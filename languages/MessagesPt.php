@@ -156,7 +156,6 @@
 'editthispage'  => 'Editar esta página',
 'delete' => 'Eliminar',
 'deletethispage' => 'Eliminar esta página',
-'undelete_short1' => 'Restaurar uma edição',
 'undelete_short' => 'Restaurar $1 edições',
 'protect' => 'Proteger',
 'protectthispage' => 'Proteger esta página',
@@ -1083,8 +1082,6 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 'undeletecomment' => 'Comentário:',
 'undeletedarticle' => "restaurado \"[[$1]]\"",
 'undeletedrevisions' => "$1 revisões restauradas",
-'undeletedtext'   => "O artigo [[:$1|$1]] foi restaurado com sucesso.
-É mantido um [[Especial:Log/delete|registo de eliminações]] e restauros recentes.",
 
 # Namespace form on various pages
 'namespace' => 'Domínio:',

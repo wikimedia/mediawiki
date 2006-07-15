@@ -120,7 +120,6 @@
 'delete' => 'Smazat',
 'deletethispage' => 'Smazat stránku',
 'undelete_short' => 'Obnovit $1 {{plural:$1|verzi|verze|verzí}}',
-'undelete_short1' => 'Obnovit $1 verzi',
 'protect' => 'Zamknout',
 'protectthispage' => 'Zamknout stránku',
 'unprotect' => 'Odemknout',

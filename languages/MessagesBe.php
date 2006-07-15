@@ -91,7 +91,6 @@ $wgAllMessagesBe = array(
 'cancel' => 'Адмяніць',
 'cannotdelete' => 'Немагчыма выдаліць указаную старонку альбо выяву. (Магчыма, яна ўжо выдаленая кімсьці іншым.)',
 'categories' => 'Катэгорыі',
-'categories1' => 'Катэгорыя',
 'categoriespagetext' => 'У {{GRAMMAR:месны|{{SITENAME}}}} існуюць наступныя катэгорыі:',
 'category' => 'катэгорыя',
 'category_header' => 'Артыкулы ў катэгорыі «$1»',

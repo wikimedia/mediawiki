@@ -146,7 +146,6 @@ $wgAllMessagesWa = array(
 'editthispage' => 'Candjî l\' pådje',
 'delete' => 'Disfacer',
 'deletethispage' => 'Disfacer l\' pådje',
-'undelete_short1' => 'Rapexhî on candjmint',
 'undelete_short' => 'Rapexhî $1 candjmints',
 'protect' => 'Protedjî',
 'protectthispage' => 'Protedjî l\' pådje',
@@ -1876,8 +1875,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 ###########
 #======================= obsoleted
 ###########
-# replaecî pa undeletedpage
-'undeletedtext' => 'L\' årtike [[:$1|$1]] a stî rapexhî comifåt. Loukîz l\' [[{{ns:special}}:Log/delete|djournå des disfaçaedjes]] po ene djivêye des dierins disfaçaedjes eyet rapexhaedjes.',
 # replaecî pa uploadnewversion-linktext
 'uploadnewversion' => '[$1 Eberweter ene nouve modêye di ci fitchî ci]',
 # replaecî pa protectthispage?

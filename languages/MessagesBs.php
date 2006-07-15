@@ -827,7 +827,6 @@ To izađe u prosjeku oko \'\'\'$5\'\'\' izmjena po stranici, i \'\'\'$6\'\'\' po
 'stubthreshold' => 'Granica za prikazivanje klica',
 'subcategories' => 'Potkategorije',
 'subcategorycount' => '$1 potkategorija su u ovoj kategoriji.',
-'subcategorycount1' => '$1 potkategorija je u ovoj kategoriji.',
 'subject' => 'Tema/naslov',
 'subjectpage' => 'Pogledajte temu',
 'successfulupload' => 'Uspješno slanje',
@@ -900,13 +899,10 @@ ili korisničkom imenu.',
 'uncategorizedpages' => 'Nekategorisane stranice',
 'undelete' => 'Pogledaj izbrisane stranice',
 'undelete_short' => 'Vrati $1 obrisanih izmjena',
-'undelete_short1' => 'Vrati jednu izbrisanu izmjenu',
 'undeletearticle' => 'Vrati izbrisani članak',
 'undeletebtn' => 'Vrati!',
 'undeletedarticle' => 'vraćeno "$1"',
 'undeletedrevisions' => '$1 revizija vraćeno',
-'undeletedtext' => 'Članak [[:$1|$1]] je uspješno vraćen.
-Pogledajte [[{{ns:-1}}:Log/delete]] za zapis o skorašnjem brisanjima i vraćanjima.',
 'undeletehistory' => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj istoriji.
 Ako je nova stranica istog imena napravljena od brisanja, vraćene
 revizije će se pojaviti u ranijoj istoriji, a trenutna revizija sadašnje stranice
