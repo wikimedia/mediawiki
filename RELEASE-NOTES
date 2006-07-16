@@ -8,6 +8,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Note about $wgUploadSizeWarning using byte
 * Update to German bookstore list (de)
 * (bug 6680) Added localisation for Dutch bookstore list (nl)
+* (bug 6708) Minor updates to Russian translation (ru)
 
 == MediaWiki 1.7.1 ==
 
