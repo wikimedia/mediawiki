@@ -851,7 +851,6 @@ Ohjelmiston ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 # Watchlist
 #
 'watchlist'           => 'Tarkkailulista',
-'watchlistsub'        => 'Käyttäjälle $1',
 'nowatchlist'         => 'Tarkkailulistallasi ei ole sivuja.',
 'watchlistcount'      => 'Tarkkailulistallasi on <b>$1</b> sivua, keskustelusivut mukaanlukien.',
 'clearwatchlist'      => 'Tarkkailulistan tyhjentäminen',

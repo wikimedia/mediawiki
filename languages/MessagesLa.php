@@ -441,7 +441,6 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "De" inscriptione appa
 'emailsend'             => 'Mittere',
 'emailsenttext'         => 'Nuntius tuus missus est.',
 'watchlist'             => 'Paginae custoditae',
-'watchlistsub'          => '(pro usore "$1")',
 'nowatchlist'           => 'Nullas paginas custodis.',
 'watchnologin'          => 'Conventum non apertum est',
 'watchnologintext'      => '[[Special:Userlogin|Aperire conventum]] debes ut indicem paginarum custoditarum mutes.',

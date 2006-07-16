@@ -597,8 +597,6 @@ De schallen denn löscht warrn. Elk Reeg wiest de eerste un tweete Wiederleiden 
 to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleiden mehrst wiesen schall.',
 'brokenredirects'            => 'Kaputte Wiederleiden',
 'brokenredirectstext'          => 'Disse Wiederleiden wiesen to en Siet, de nich existeert',
-'selflinks'                             => 'Sieten, de op sik sülvst wiesen',
-'selflinkstext'                     => 'Disse Sieten wiesen op sik sülvst, wat se nich schallt.',
 
 
 # Verscheden Spezialsieten
@@ -618,7 +616,6 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'listusers'                          => 'Brukerlist',
 'specialpages'                  => 'Spezialsieten',
 'spheading'                             => 'Spezialsieten för alle Bruker',
-'protectpage'               => 'Siet schulen',
 'recentchangeslinked'     => 'Verlinkte Sieten',
 'rclsub'                                => '(op Artikel vun „$1“)',
 'newpages'                              => 'Niege Sieten',
@@ -668,7 +665,6 @@ Du kannst de List kötter maken, wenn du den Logtyp, den Brukernaam oder de de S
 # Oppasslist
 #
 'watchlist'                     => 'Oppasslist',
-'watchlistsub'           => '(för Bruker „$1“)',
 'nowatchlist'           => 'Du hest kene Indreeg op dien Oppasslist.',
 'watchnologin'            => 'Du büst nich anmellt',
 'watchnologintext'      => 'Du muttst [[Spezial:Userlogin|anmellt]] ween, wenn du dien Oppasslist ännern willst.',

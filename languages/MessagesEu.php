@@ -142,7 +142,6 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.',
 'wantedpages' => 'Orri eskatutakoenak',
 'watchlist' => 'Segimendu zerrenda',
 'watchlistcontains' => 'Zure segimendu zerrenda $1 orri ditu.',
-'watchlistsub' => '("$1" lankidearena)',
 'watchthis' => 'Artikulua zelatatu',
 'watchthispage' => 'Orria zelatatu',
 'welcomecreation' => '<h2>Ongi etorri, $1!</h2><p>Zure kontua sotu duzu.

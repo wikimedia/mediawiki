@@ -973,7 +973,6 @@ Do côp, c\' est nén possibe di lyi evoyî èn emile.',
 # Watchlist
 #
 'watchlist' => 'Pådjes shuvowes',
-'watchlistsub' => '(po l\' uzeu «$1»)',
 'nowatchlist' => 'Vosse djivêye des pådjes a shuve est vude.',
 'watchlistcount' => '\'\'\'Vos avoz $1 cayets dins vosse djivêye des shuvous, tot contant les pådjes di copene.\'\'\'',
 'clearwatchlist' => 'Netyî l\' djivêye des shuvous',
@@ -1869,11 +1868,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 'boardvote_novotes' => 'I gn a co nolu k\' a vôté.',
 'boardvote_time' => 'Date ey eure',
 'boardvote_user' => 'Uzeu',
-###########
-#======================= obsoleted
-###########
-# replaecî pa protectthispage?
-'protectpage' => 'Protedjî l\' pådje',
 
 ###########
 #======================= obsolete?
@@ -1890,8 +1884,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 'projectpage' => 'Vey li meta-pådje',
 'lucenepowersearchtext' => 'Cweraedje dins les espåces di lomaedje: $1 <br />
 Cweraedje di: $3 $9',
-'selflinks' => 'Pådjes avou des loyéns viè zeles minmes',
-'selflinkstext' => 'Les pådjes shuvantes ont on loyén viè zeles minmes, çou ki n\' si dvreut nén fé.',
 
 # Maintenance Page
 #

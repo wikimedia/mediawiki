@@ -671,7 +671,6 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'watchlistall1' => "ducj",
 'watchlistall2' => "dutis",
 'watchlistcontains' => "Tu stâs tignint di voli $1 pagjinis.",
-'watchlistsub'		=> "(par l'utent \"$1\")",
 'watchnochange' 	=> 'Nissun element di chei tignûts di voli al è stât cambiât tal periodi mostrât.',
 'watchdetails'		=> "* $1 pagjinis tignudis di voli cence contâ lis pagjinis di discussion
 * [[Special:Watchlist/edit|Mostre e modfiche la liste complete]]",

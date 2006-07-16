@@ -590,8 +590,6 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 'doubleredirects'	=> "تغییرمسیرهای دوتایی",
 'brokenredirects'	=> "تغییرمسیرهای خراب",
 'brokenredirectstext'	=> "تغییرمسیرهای زیر به یک صفحه‌ی ناموجود پیوند دارند.",
-'selflinks'		=> "صفحات با پیوند به خود",
-'selflinkstext'		=> "این صفحات به خودشان پیوند دارند، که نباید داشته باشند.",
 
 
 # Miscellaneous special pages
@@ -610,7 +608,6 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 'listusers'		=> "فهرست کاربران",
 'specialpages'	=> "صفحات ویژه",
 'spheading'		=> "صفحات ویژه‌ی همه‌ی کاربران",
-'protectpage'	=> "محافظت از صفحه",
 'recentchangeslinked' => "تغییرات مرتبط",
 'rclsub'		=> "(به صفحات پیونددار از «$1»)",
 'newpages'		=> "صفحات جدید",
@@ -654,7 +651,6 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 # Watchlist
 #
 'watchlist'			=> "فهرست تعقیبات من",
-'watchlistsub'		=> "(برای کاربر «$1»)",
 'nowatchlist'		=> "در فهرست تعقیبات شما هیچ موردی نیست.",
 'watchnologin'		=> "به سیستم وارد نشده‌اید",
 'watchnologintext'	=> "برای تغییر فهرست تعقیباتتان باید [[ویژه:Userlogin|به سیستم وارد شوید]].",

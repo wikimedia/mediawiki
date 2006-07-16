@@ -499,8 +499,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 通常显示的都会是\“真正\” 的目标页面，也就是第一个重定向页应该指向的条目。",
 "brokenredirects"	=> "损坏的重定向页",
 "brokenredirectstext"	=> "以下的重定向页指向的是不存在的条目。",
-"selflinks"		=> "有自我链接的页面",
-"selflinkstext"		=> "以下的页面都错误地包含了连到自己的链接。",
 
 
 # Miscellaneous special pages
@@ -518,7 +516,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "listusers"		=> "用户列表",
 "specialpages"	=> "特殊页面",
 "spheading"		=> "特殊页面",
-"protectpage"	=> "保护页面",
 "recentchangeslinked" => "链出更改",
 "rclsub"		=> "（从 \"$1\"链出的页面）",
 "newpages"		=> "新页面",
@@ -557,7 +554,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 # Watchlist
 #
 "watchlist"		=> "监视列表",
-"watchlistsub"	=> "(用户\"$1\")",
 "nowatchlist"	=> "您的监视列表为空。",
 "watchnologin"	=> "未登录",
 "watchnologintext"	=> "您必须先[[Special:Userlogin|登录]]

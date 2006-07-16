@@ -749,9 +749,6 @@ skulle have peget på.",
 "brokenredirects"	=> "Dårlige omdirigeringer",
 "brokenredirectstext"	=> "De følgende omdirigeringer peger på en side der
 ikke eksisterer.",
-"selflinks"		=> "Sider der henviser til sig selv",
-"selflinkstext"		=> "De følgende sider indeholder henvisninger til sig selv,
-men det burde de ikke.",
 
 
 # Miscellaneous special pages
@@ -773,7 +770,6 @@ men det burde de ikke.",
 "specialpages"	=> "Specielle sider",
 "spheading"		=> "Specielle sider for alle brugere",
 'restrictedpheading'	=> 'Specielle sider med begrænset adgang',
-"protectpage"	=> "Beskyt side",
 "recentchangeslinked" => "Relaterede ændringer",
 "rclsub"		=> "(til sider henvist fra \"$1\")",
 "newpages"		=> "Nyeste artikler",
@@ -838,7 +834,6 @@ eller har valgt ikke at modtage e-mail fra andre brugere.",
 # Watchlist
 #
 "watchlist"		=> "Overvågningsliste",
-"watchlistsub"	=> "(for bruger \"$1\")",
 "nowatchlist"	=> "Du har ingenting i din overvågningsliste.",
 "watchnologin"	=> "Ikke logget på",
 "watchnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]] for at kunne ændre din overvågningsliste.",

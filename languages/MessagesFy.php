@@ -540,8 +540,6 @@ de twadde trochferwizing, wat it \"echte\" doel wêze moat.",
 
 "brokenredirects"		=> "Misse trochferwizings",
 "brokenredirectstext"	=> "Dizze trochferwizings ferwize nei siden dy't der net binne.",
-"selflinks"			=> "Siden mei sels-ferwizings",
-"selflinkstext"		=> "Dizze siden hawwe in keppeling nei de side sels, wat net sa wêze moat.",
 
 
 # Miscellaneous special pages
@@ -559,7 +557,6 @@ de twadde trochferwizing, wat it \"echte\" doel wêze moat.",
 "listusers"		=> "Brûkerlist",
 "specialpages"	=> "Bysûndere siden",
 "spheading"		=> "Bysûndere siden foar all brûkers",
-"protectpage"	=> "Beskerm side",
 "recentchangeslinked" => "Folgje keppelings",
 "rclsub"		=> "(nei siden dêr't \"$1\" keppelings nei hat)",
 "newpages"		=> "Nije siden",
@@ -599,7 +596,6 @@ of hat oanjaan gjin post fan oare brûkers krije te wollen.",
 # Watchlist
 #
 "watchlist"		=> "Folchlist",
-"watchlistsub"	=> "(foar brûker \"$1\")",
 "nowatchlist"	=> "Jo hawwe gjin siden op jo folchlist.",
 "watchnologin"	=> "Not oanmeld in",
 "watchnologintext"=> "Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om jo folchlist te feroarjen.",

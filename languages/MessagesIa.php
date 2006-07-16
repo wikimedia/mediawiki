@@ -524,8 +524,6 @@ secunde texto de redirection, generalmente exhibiente le articulo scopo \"real\"
 al qual le prime redirection deberea referer se.",
 "brokenredirects"	=> "Redirectiones van",
 "brokenredirectstext"	=> "Le redirectiones sequente se liga a articulos inexistente.",
-"selflinks"		=> "Paginas con ligamines circular",
-"selflinkstext"		=> "Le paginas sequente contine un ligamine a se mesme, lo que non se recommenda.",
 
 
 # Miscellaneous special pages
@@ -543,7 +541,6 @@ al qual le prime redirection deberea referer se.",
 "listusers"		=> "Lista de usatores",
 "specialpages"	=> "Paginas special",
 "spheading"		=> "Paginas special",
-"protectpage"	=> "Proteger pagina",
 "recentchangeslinked" => "Modificationes correlate",
 "rclsub"		=> "(a paginas ligate a partir de \"$1\")",
 "newpages"		=> "Nove paginas",
@@ -586,7 +583,6 @@ o ha optate pro non reciper e-mail de altere usatores.",
 # Watchlist
 #
 "watchlist"		=> "Paginas sub observation",
-"watchlistsub"	=> "(pro usator \"$1\")",
 "nowatchlist"	=> "Tu non ha paginas sub observation.",
 "watchnologin"	=> "Session non aperte",
 "watchnologintext"	=> "Tu debe [[Special:Userlogin|aperir un session]]

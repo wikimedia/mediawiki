@@ -665,8 +665,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'doubleredirectstext'	=> 'Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den første lina frå den andre omdirigeringsteksten. Det gjev som regel den «rette» målartikkelen, som den første omdirigeringa skulle ha peikt på.',
 'brokenredirects'	    => 'Blindvegsomdirigeringar',
 'brokenredirectstext'	=> 'Dei følgjande omdirigeringane viser til ei side som ikkje finst.',
-'selflinks'		=> 'Sider som viser til seg sjølve',
-'selflinkstext'		=> 'Dei følgjande sidene inneheld tilvisingar til seg sjølve, og det bør dei ikkje.',
 
 # Miscellaneous special pages
 #
@@ -691,7 +689,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'spheading'		=> 'Spesialsider for alle brukarar',
 'restrictedpheading'    => 'Spesialsider med avgrensa tilgang',
 
-'protectpage'	        => 'Vern side',
 'recentchangeslinked'   => 'Relaterte endringar',
 'rclsub'		=> '(til sider med lenkje frå «$1»)',
 'newpages'		=> 'Nye sider',
@@ -746,7 +743,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 # Watchlist
 #
 'watchlist'		=> 'Overvakingsliste',
-'watchlistsub'	        => '(for brukar «$1»)',
 'nowatchlist'	        => 'Du har ikkje noko i overvakingslista di.',
 'watchnologin'	        => 'Ikkje innlogga',
 'watchnologintext'	    => 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna endre overvakingslista.',

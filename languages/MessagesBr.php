@@ -616,8 +616,6 @@ En o zouez, <b>$2</b> zo ganto ar statud merour (sellet ouzh $3).',
 'doubleredirectstext'	=> "<b>Diwallit:</b> Gallout a ra bezañ \"pozitivoù faos\ er roll-mañ. D'ar mare-se eo moarvat peogwir ez eus testenn war bajenn an #REDIRECT kentañ ivez.<br />War bep linenn emañ al liammoù war-du pajenn an adkas 1{{añ}} hag en eil hag ivez linenn gentañ pajenn an eil adkas zo sañset reiñ ar pal \"gwirion\". War-du ar pal-se e tlefe liammañ an #REDIRECT kentañ.",
 'brokenredirects'	=> 'Adkasoù torret',
 'brokenredirectstext'	=> 'Kas a ra an adkasoù-mañ d\'ur bajenn n\'eus ket anezhi.',
-'selflinks'		=> 'Pajenn enni ul liamm tro',
-'selflinkstext'		=> 'Er pajennoù da-heul ez eus ul liamm war o zu dezho o-unan, ar pezh n\'hall ket bezañ.',
 
 
 # Miscellaneous special pages
@@ -635,7 +633,6 @@ En o zouez, <b>$2</b> zo ganto ar statud merour (sellet ouzh $3).',
 'listusers'     => 'Roll ar berzhidi',
 'specialpages'  => 'Pajennoù dibar',
 'spheading'     => 'Pajennoù dibar',
-'protectpage'   => 'Gwareziñ ar bajenn',
 'recentchangeslinked' => 'Heuliañ al liammoù',
 'rclsub'        => "(eus ar pajennoù liammet ouzh \"$1\")",
 'newpages'      => 'Pajennoù nevez',
@@ -681,7 +678,6 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 # Watchlist
 #
 'watchlist'	=> 'Rollad evezhiañ',
-'watchlistsub'	=> '(evit an implijer « $1 »)',
 'nowatchlist'	=> "N'eus pennad ebet en ho rollad evezhiañ.",
 'watchnologin'	=> "Diluget",
 'watchnologintext' => "Ret eo deoc'h bezañ [[Special:Userlogin|luget]]

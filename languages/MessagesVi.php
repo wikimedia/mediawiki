@@ -590,8 +590,6 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 'doubleredirectstext'	=> "Mỗi hàng có chứa các liên kết đến trang chuyển hướng thứ nhất và thứ hai, cũng như dòng đầu tiên của nội dung trang chuyển hướng thứ hai, thường chỉ tới trang đích \"thực sự\", là nơi mà trang chuyển hướng đầu tiên phải trỏ đến.",
 'brokenredirects'	=> 'Đổi hướng sai',
 'brokenredirectstext'	=> 'Các trang đổi hướng sau đây liên kết đến một trang không tồn tại.',
-'selflinks'		=> 'Trang liên kết đến chính nó',
-'selflinkstext'		=> 'Những trang sau đây chứa một liên kết đến chính nó, điều này là không nên.',
 
 
 # Miscellaneous special pages
@@ -611,7 +609,6 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 'listusers'     => 'Danh sách thành viên',
 'specialpages'  => 'Các trang đặc biệt',
 'spheading'     => 'Các trang đặc biệt',
-'protectpage'   => 'Khóa trang',
 'recentchangeslinked' => 'Thay đổi liên quan',
 'rclsub'        => "(trang liên kết đến \"$1\")",
 'newpages'      => 'Các bài mới nhất',
@@ -654,7 +651,6 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 # Watchlist
 #
 'watchlist'	=> 'Trang tôi theo dõi',
-'watchlistsub'	=> '(cho thành viên « $1 »)',
 'nowatchlist'	=> "Chưa có gì.",
 'watchnologin'	=> 'Chưa đăng nhập',
 'watchnologintext' => "Bạn phải [[Đặc_biệt:Userlogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.",

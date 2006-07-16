@@ -593,8 +593,6 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
 # Maintenance Page
 #
 
-"selflinks"		=> "Iseendale viitavad leheküljed",
-"selflinkstext"		=> "Järgmised leheküljed sisaldavad viita iseendale, mis ei ole soovitatav.",
 
 # Miscellaneous special pages
 #
@@ -611,7 +609,6 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
 "listusers"		=> "Kasutajad",
 "specialpages"	=> "Erileheküljed",
 "spheading"		=> "Erileheküljed",
-"protectpage"	=> "Kaitse lehekülge",
 "recentchangeslinked" => "Seotud muudatused",
 "rclsub"		=> "(lehekülgedel, millele \"$1\" viitab)", #
 "newpages"		=> "Uued leheküljed",
@@ -641,7 +638,6 @@ ei tohiks konstrueerida reklaami tegemiseks.",
 # Watchlist
 #
 "watchlist"		=> "Minu jälgimisloend",
-"watchlistsub"	=> "(kasutajale nimega \"$1\")",
 "nowatchlist"	=> "Teie jälgimisloend on tühi.",
 "watchnologin"	=> "Ei ole sisse loginud",
 "watchnologintext"	=> "Jälgimisloendi muutmiseks peate [[Special:Userlogin|sisse logima]].",

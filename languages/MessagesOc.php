@@ -502,8 +502,6 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
 "brokenredirects"	=> "Redirections cassées",
 "brokenredirectstext"	=> "Ces redirections mènent a une page qui n'existe pas.",
-"selflinks"		=> "Page avec un lien circulaire",
-"selflinkstext"		=> "Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n'est pas permis.",
 
 
 # Miscellaneous special pages
@@ -521,7 +519,6 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "listusers"     => "Liste des participants",
 "specialpages"  => "Pages spéciales",
 "spheading"     => "Pages spéciales",
-"protectpage"   => "Protéger la page",
 "recentchangeslinked" => "Suivi des liens",
 "rclsub"        => "(des pages liées à \"$1\")",
 "newpages"      => "Nouvelles pages",
@@ -557,7 +554,6 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 # Watchlist
 #
 "watchlist"	=> "Liste de suivi",
-"watchlistsub"	=> "(pour l'utilisateur \"$1\")",
 "nowatchlist"	=> "Votre liste de suivi ne contient aucun article.",
 "watchnologin"	=> "Non connecté",
 "watchnologintext" => "Vous devez être [[Special:Userlogin|connecté]]

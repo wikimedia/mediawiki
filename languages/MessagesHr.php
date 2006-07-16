@@ -793,7 +793,6 @@ E-mail adresa iz vaših postavki nalazit će se u "From" polju poruke i primatel
 'emailsent'             => 'E-mail poslan',
 'emailsenttext'         => 'Vaša poruka je poslana.',
 'watchlist'             => 'Moj popis praćenja',
-'watchlistsub'          => '(za suradnika "$1")',
 'nowatchlist'           => 'Na vašem popisu praćenja nema nijednog članka.',
 'watchnologin'          => 'Niste prijavljeni',
 'watchnologintext'      => 'Morate biti [[Special:Userlogin|prijavljeni]]

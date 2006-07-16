@@ -556,7 +556,6 @@ $wgAllMessagesBe = array(
 'wantedpages' => 'Запатрабаваныя старонкі',
 'watch' => 'Назіраць',
 'watchlist' => 'Мой сьпіс назіраньня',
-'watchlistsub' => '(для ўдзельніка/удзельніцы «$1»)',
 'watchthis' => 'Назіраць за гэтай старонкай',
 'watchthispage' => 'Назіраць за гэтай старонкай',
 'wednesday' => 'серада',
