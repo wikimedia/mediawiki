@@ -681,12 +681,26 @@ error_reporting( E_ALL );
 			if( !$ok ) { continue; }
 
 		} else /* not mysql */ {
-			echo( "<li>Attempting to connect to database server as $wgDBuser..." );
+			error_reporting( E_ALL );
+			$wgSuperUser = '';
+			## Possible connect as a superuser
+			if( $conf->RootPW != '-' and strlen($conf->RootPW)) {
+				$wgDBsuperuser = $conf->RootUser;
+				echo( "<li>Attempting to connect to database \"postgres\" as superuser \"$wgDBsuperuser\"..." );
+				$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBsuperuser, $conf->RootPW, "postgres", 1);
+				if (!$wgDatabase->isOpen()) {
+					print " error: " . $wgDatabase->lastError() . "</li>\n";
+					$errs["DBserver"] = "Couldn't connect to database as superuser";
+					$errs["RootUser"] = "Check username";
+					$errs["RootPW"] = "and password";
+					continue;
+				}
+			}
+			echo( "<li>Attempting to connect to database \"$wgDBname\" as \"$wgDBuser\"..." );
 			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1);
 			if (!$wgDatabase->isOpen()) {
 				print " error: " . $wgDatabase->lastError() . "</li>\n";
 			} else {
-				$wgDatabase->ignoreErrors(true);
 				$myver = $wgDatabase->getServerVersion();
 			}
 		}
@@ -798,7 +812,7 @@ error_reporting( E_ALL );
 				       'ss_good_articles' => 0 ) );
 					   
 			# Set up the "regular user" account *if we can, and if we need to*
-			if( $conf->Root ) {
+			if( $conf->Root and $conf->DBtype == 'mysql') {
 				# See if we need to
 				$wgDatabase2 = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
 				if( $wgDatabase2->isOpen() ) {
