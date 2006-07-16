@@ -201,7 +201,7 @@ class RecentChange
 		$newId = 0)
 	{
 		if ( $bot == 'default' ) {
-			$bot = $user->isBot();
+			$bot = $user->isAllowed( 'bot' );
 		}
 
 		if ( !$ip ) {
@@ -260,7 +260,7 @@ class RecentChange
 			}
 		}
 		if ( $bot == 'default' ) {
-			$bot = $user->isBot();
+			$bot = $user->isAllowed( 'bot' );
 		}
 
 		$rc = new RecentChange;
@@ -319,7 +319,7 @@ class RecentChange
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
-			'rc_bot'	=> $user->isBot() ? 1 : 0,
+			'rc_bot'	=> $user->isAllowed( 'bot' ) ? 1 : 0,
 			'rc_moved_to_ns'	=> $newTitle->getNamespace(),
 			'rc_moved_to_title'	=> $newTitle->getDBkey(),
 			'rc_ip'		=> $ip,
@@ -369,7 +369,7 @@ class RecentChange
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
-			'rc_bot'	=> $user->isBot() ? 1 : 0,
+			'rc_bot'	=> $user->isAllowed( 'bot' ) ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_ip'	=> $ip,
