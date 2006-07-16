@@ -907,7 +907,6 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 # Watchlist
 #
 'watchlist'             => 'Sledované stránky',
-'watchlistsub'	=> '(uživatele „$1“)',
 'nowatchlist'   => 'Na svém seznamu sledovaných stránek nemáte žádné položky.',
 'watchlistcount' 	=> "'''Na svém seznamu sledovaných stránek máte $1 {{plural:$1|položku|položky|položek}} včetně diskusí.'''",
 'clearwatchlist' 	=> 'Smazat seznam sledovaných stránek',

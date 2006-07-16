@@ -527,7 +527,6 @@ Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob 
 "listusers" => "Rhestr defnyddwyr",
 "specialpages" => "Erthyglau arbennig",
 "spheading" => "Erthyglau arbennig",
-"protectpage" => "Sicrhau erthygl",
 "recentchangeslinked" => "Newidiadau perthnasol",
 "rclsub" => "(i erthyglau cysyllt oddiwrth \"$1\")",
 "newpages" => "Erthyglau newydd",
@@ -564,7 +563,6 @@ i anfon e-bost i ddefnyddwyr eraill.",
 # Watchlist
 #
 "watchlist" => "Fy rhestr gwylio",
-"watchlistsub" => "(am defnyddwr \"$1\")",
 "nowatchlist"  => "Does ganddoch chi ddim eitem ar eich rhestr gwylio.",
 "watchnologin"	=> "Dydych chi ddim wedi mewngofnodi",
 "watchnologintext" => "Rhaid i chi bod wedi [[Special:Userlogin|mewngofnodi]]

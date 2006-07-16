@@ -819,8 +819,6 @@ Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 'doubleredirectstext'   => "Cada linha contém ligações para o primeiro e segundo redireccionamento, bem como a primeira linha de conteúdo do segundo redireccionamento, geralmente contendo a página destino \"real\", que devia ser o destino do primeiro redireccionamento.",
 'brokenredirects'       => 'Redireccionamentos quebrados',
 'brokenredirectstext'   => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',
-'selflinks'             => 'Páginas que ligam consigo próprias',
-'selflinkstext'             => 'As páginas seguintes ligam consigo próprias:',
 
 # Miscellaneous special pages
 #
@@ -915,7 +913,6 @@ para que o destinatário lhe possa responder.',
 # Watchlist
 #
 'watchlist'                     => 'Artigos vigiados',
-'watchlistsub'          => "(do utilizador \"$1\")",
 'nowatchlist'           => 'Não existem itens na sua lista de artigos vigiados.',
 'watchlistcount'     => "'''Tem $1 items na sua lista de artigos vigiados, incluindo páginas de discussão.'''",
 'clearwatchlist'     => 'Limpar lista de artigos vigiados',

@@ -850,7 +850,6 @@ L\'adresse électronique que vous avez indiquée dans vos préférences apparaî
 # Watchlist
 #
 'watchlist'	=> 'Liste de suivi',
-'watchlistsub'	=> '(pour l\'utilisateur « $1 »)',
 'nowatchlist'	=> 'Votre liste de suivi ne contient aucun article.',
 'watchlistcount' 	=> '\'\'\'Vous avez $1 pages dans votre liste de suivi, en incluant les pages de discussion\'\'\'',
 'clearwatchlist' 	=> 'Nettoyer votre liste de suivi',

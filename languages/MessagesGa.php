@@ -800,8 +800,6 @@ gach sraith tá náisc chuig an chéad is an dara athsheoladh, chomh maith le ch
 ghnáth tugann sé sin an sprioc-alt \"fíor\".",
 "brokenredirects"   => "Athsheolaidh Briste",
 "brokenredirectstext"   => "Is iad na athsheolaidh seo a leanas a nascaíonn go ailt nach bhfuil ann fós.",
-"selflinks"     => "Leathanaigh le féin-naisc",
-"selflinkstext"     => "Sna leathanaigh seo a leanas tá naisc a nascaíonn chuig an leathanach céanna é fhéin. Tá an méid seo flúirseach.",
 
 
 # Miscellaneous special pages
@@ -824,7 +822,6 @@ ghnáth tugann sé sin an sprioc-alt \"fíor\".",
 "specialpages"  => "Leathanaigh speisialta",
 "spheading"     => "Leathanaigh speisialta do gach úsáideoir",
 
-"protectpage"   => "Glasáil leathanach",
 "recentchangeslinked" => "Athruithe gaolmhara",
 "rclsub"	=> "(go leathanaigh nasctha ó \"$1\")",
 "newpages"      => "Leathanaigh nua",
@@ -889,7 +886,6 @@ mian leis ríomhphost a fháil ón úsáideoirí eile.",
 # Watchlist
 #
 "watchlist"     => "Mo liosta faire",
-"watchlistsub"  => "(don úsáideoir \"$1\")",
 "nowatchlist"   => "Níl aon rud i do liosta faire.",
 "watchnologin"  => "Níl tú logáilte isteach",
 "watchnologintext"  => "Ní mór duit <a href=\"" .

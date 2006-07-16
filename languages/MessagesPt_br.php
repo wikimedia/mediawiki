@@ -522,8 +522,6 @@ Destes, <b>$2</b> são administradores (veja $3).",
 "doubleredirectstext"   => "<b>Atenção:</b> Esta lista pode conter positivos falsos. O que usualmente significa que há texto adicional com links depois do primeiro #REDIRECT.<br />\nCada linha contem links para o primeiro e segundo redirecionamento, bem como a primeira linha do segundo texto redirecionado , geralmente dando o artigo alvo \"real\" , para onde o primeiro redirecionamento deveria apontar.",
 "brokenredirects"   => "Redirecionamentos Quebrados",
 "brokenredirectstext"   => "Os seguintes redirecionamentos apontam para um artigo inexistente.",
-"selflinks"     => "Páginas com links próprios",
-"selflinkstext"     => "As páginas a seguir possuem links para si mesmas, o que não deveria acontecer.",
 
 
 # Miscellaneous special pages
@@ -541,7 +539,6 @@ Destes, <b>$2</b> são administradores (veja $3).",
 "listusers"     => "Lista de Usuários",
 "specialpages"  => "Páginas especiais",
 "spheading"     => "Páginas especiais para todos os usuários",
-"protectpage"   => "Páginas Protegidas",
 "recentchangeslinked" => "Páginas relacionadas",
 "rclsub"        => "(para páginas linkadas de \"$1\")",
 "newpages"      => "Páginas novas",
@@ -578,7 +575,6 @@ O endereço de e-mail que você disponibilizou em suas preferências aparecerá 
 # Watchlist
 #
 "watchlist"     => "Artigos do meu interesse",
-"watchlistsub"  => "(do usuário \"$1\")",
 "nowatchlist"   => "Você não está monitorando nenhum artigo.",
 "watchnologin"  => "Não está autenticado",
 "watchnologintext"  => "Você deve estar [[Special:Userlogin|autenticado]]

@@ -424,8 +424,6 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "doubleredirectstext"	=> "<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br />\nOgni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il \"reale\" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.",
 "brokenredirects"	=> "Redirects errati",
 "brokenredirectstext"	=> "I seguenti redirects puntano ad articoli non ancora creati.",
-"selflinks"		=> "Pagine con Auto-Links",
-"selflinkstext"		=> "Le pagine seguenti contengono link che puntano a sé stesse, e in questo caso occorre eliminare questi auto-links.",
 
 
 # Miscellaneous special pages
@@ -443,7 +441,6 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "listusers"		=> "Elenco degli Utenti",
 "specialpages"	=> "Pagine speciali",
 "spheading"		=> "Pagine speciali",
-"protectpage"	=> "Proteggi questa pagina",
 "recentchangeslinked" => "Modifiche correlate",
 "rclsub"		=> "(alle pagine linkate da \"$1\")",
 "newpages"		=> "Pagine nuove",
@@ -473,7 +470,6 @@ oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.",
 # Watchlist
 #
 "watchlist"		=> "Osservati Speciali",
-"watchlistsub"	=> "(per l'Utente \"$1\")",
 "nowatchlist"	=> "Non hai indicato articoli da tenere d'occhio.",
 "watchnologin"	=> "Manca il login",
 "watchnologintext"	=> "Devi prima fare il [[Special:Userlogin|login]]

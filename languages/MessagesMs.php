@@ -579,7 +579,6 @@ $wgAllMessagesMs = array(
 # Watchlist
 #
 "watchlist"             => "Senarai Pantau",
-"watchlistsub"                  => "(untuk pengguna \"$1\")",   #"(for user \"$1\")",
 "nowatchlist"           => "Tiada sebarang rencana dalam senarai pantau anda.", #"You have no items on your watchlist.",
 "watchnologin"                  => "Belum log masuk", #"Not logged in",
 "watchnologintext"      => "Anda mesti [[{{ns:special}}:Userlogin|log masuk]] untuk mengubahkan senarai pantau.",

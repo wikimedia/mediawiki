@@ -448,8 +448,6 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "doubleredirectstext"	=> "<b>Let op:</b> Hierdie lys bevat moontlik false positiewe. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT is.<br />\nElke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuurteks, wat gewoonlik die \"regte\" teikenbladsy gee waarna die eerste aanstuur behoort te wys.",
 "brokenredirects"	=> "Stukkende aansture",
 "brokenredirectstext"	=> "Die volgende aansture skakel na 'n bladsy wat nie bestaan nie.",
-"selflinks"		=> "Bladsye met selfskakels",
-"selflinkstext"		=> "Die volgende bladsy bevat 'n skakel na hulself, en dit behoort nie te gebeur nie.",
 
 
 # Miscellaneous special pages
@@ -467,7 +465,6 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "listusers"		=> "Gebruikerslys",
 "specialpages"	=> "Spesiale bladsye",
 "spheading"		=> "Spesiale bladsye",
-"protectpage"	=> "Beskerm bladsy",
 "recentchangeslinked" => "Verwante veranderings",
 "rclsub"		=> "(na bladsye waarna \"$1\" skakel)",
 "newpages"		=> "Nuwe bladsye",
@@ -500,7 +497,6 @@ Die e-posadres wat jy in jou gebruikersvoorkeure het sal verkyn as die \"Van\" a
 # Watchlist
 #
 "watchlist"		=> "My dophoulys",
-"watchlistsub"	=> "(vir gebruiker \"$1\")",
 "nowatchlist"	=> "Jy het geen items in jou dophoulys nie.",
 "watchnologin"	=> "Nie ingeteken nie",
 "watchnologintext"	=> "Jy moet [[Special:Userlogin|ingeteken]]
