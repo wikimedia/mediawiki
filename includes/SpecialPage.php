@@ -410,7 +410,7 @@ class SpecialPage
 	 *     and displayRestrictionError()
 	 *
 	 * @param string $name Name of the special page, as seen in links and URLs
-	 * @param string $restriction Minimum user level required, e.g. "sysop" or "developer".
+	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param boolean $listed Whether the page is listed in Special:Specialpages
 	 * @param string $function Function called by execute(). By default it is constructed from $name
 	 * @param string $file File which is included by execute(). It is also constructed from $name by default
@@ -460,15 +460,7 @@ class SpecialPage
 	 * special page (as defined by $mRestriction)
 	 */
 	function userCanExecute( &$user ) {
-		if ( $this->mRestriction == "" ) {
-			return true;
-		} else {
-			if ( in_array( $this->mRestriction, $user->getRights() ) ) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+		return $user->isAllowed( $this->mRestriction );
 	}
 
 	/**
