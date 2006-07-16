@@ -781,11 +781,7 @@ error_reporting( E_ALL );
 				}
 				dbsource( "../maintenance/interwiki.sql", $wgDatabase );
 			} else if ($conf->DBtype == 'postgres') {
-				dbsource( "../maintenance/postgres/tables.sql", $wgDatabase );
-				$wgDatabase->update_interwiki();
-			} else if ($conf->DBtype == 'oracle') {
-				dbsource( "../maintenance/oracle/tables.sql", $wgDatabase );
-				dbsource( "../maintenance/oracle/interwiki.sql", $wgDatabase );
+				$wgDatabase->setup_database();
 			}
 			else {
 				$errs["DBtype"] = "Do not know how to handle database type '$conf->DBtype'";
