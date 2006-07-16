@@ -486,7 +486,6 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'hist'                              => 'Versionen',
 'hide'                          => 'Nich wiesen',
 'show'                          => 'Wiesen',
-'tableform'                     => 'Tabell',
 'minoreditletter'    => 'L',
 'newpageletter'      => 'N',
 
@@ -495,7 +494,6 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 #
 'upload'                        => 'Hoochladen',
 'uploadbtn'                    => 'Datei hoochladen',
-'uploadlink'            => 'Biller hoochladen',
 'reupload'                      => 'Nieg hoochladen',
 'reuploaddesc'          => 'Trüch to de Hoochladen-Siet.',
 'uploadnologin'     => 'Nich anmellt',

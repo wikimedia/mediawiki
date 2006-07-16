@@ -499,7 +499,6 @@ Mar fell deoc'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ daf
 'hist'            => 'ist',
 'hide'            => 'kuzhat',
 'show'            => 'diskouez',
-'tableform'       => 'taolenn',
 'minoreditletter' => 'D',
 'newpageletter'   => 'N',
 
@@ -507,7 +506,6 @@ Mar fell deoc'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ daf
 #
 'upload'       => 'Eilañ war ar servijer',
 'uploadbtn'    => 'Eilañ ur restr',
-'uploadlink'   => 'Eilañ skeudennoù',
 'reupload'     => 'Eilañ adarre',
 'reuploaddesc' => 'Distreiñ d\'ar furmskrid.',
 

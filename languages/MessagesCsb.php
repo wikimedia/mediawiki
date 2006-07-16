@@ -274,7 +274,6 @@ $wgAllMessagesCsb = array(
 'uploaddisabled' => 'Przeprôszómë! Mòżlëwòta wladënkù lopków na nen serwer òsta wëłączonô.',
 'uploadedfiles' => 'Wladowóné lopczi',
 'uploadedimage' => 'wladënk: "$1"',
-'uploadlink' => 'Wladëjë lënk',
 'uploadlog' => 'Lësta wladënków',
 'uploadlogpage' => 'Dołączoné',
 'uploadlogpagetext' => 'Hewò je lësta slédno wladowónëch lopków.\nWszëtczé gòdzënë tikają conë ùniwersalnégò czasë (UTC).\n<ul>\n</ul>',

@@ -488,7 +488,6 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9",
 'hist'            => 'sử',
 'hide'            => 'giấu',
 'show'            => 'xem',
-'tableform'       => 'bảng',
 'minoreditletter' => 'n',
 'newpageletter'   => 'M',
 
@@ -496,7 +495,6 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9",
 #
 'upload'       => 'Tải lên',
 'uploadbtn'    => 'Tải lên',
-'uploadlink'   => 'Tải hình',
 'reupload'     => 'Tải lại',
 'reuploaddesc' => 'Quay lại.',
 

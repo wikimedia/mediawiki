@@ -1874,8 +1874,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 ###########
 #======================= obsoleted
 ###########
-# replaecî pa uploadnewversion-linktext
-'uploadnewversion' => '[$1 Eberweter ene nouve modêye di ci fitchî ci]',
 # replaecî pa protectthispage?
 'protectpage' => 'Protedjî l\' pådje',
 # replaecî pa youhavenewmessages?
@@ -1884,7 +1882,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 'bureaucratlog' => 'Djournå des manaedjeus',
 # replaecî pa rightslogentry
 'bureaucratlogentry' => 'les droets po l\' uzeu «$1» ont stî metous a «$2»',
-'usenewcategorypage' => '1\n\nCandjîz l\' prumî caractere a «0» po dismete li novea epådjnaedje des pådjes di categoreye.',
 
 ###########
 #======================= obsolete?
@@ -1947,8 +1944,6 @@ eyet l\' tecse seré ratourné d\' après l\' espåce di lomaedje MediaWiki',
 'group-steward-name' => 'Mwaisse-manaedjeu tot avå',
 'group-steward-desc' => 'Accès a ttafwait',
 
-'tableform' => 'tåvlea',
-'uploadlink' => 'Eberweter des imådjes',
 'nstab-project' => 'Pådje',
 'showhideminor' => '$1 candjmints mineurs | $2 robots | $3 uzeus eredjîstrés | $4 candjmints rwaitîs',
 ###################

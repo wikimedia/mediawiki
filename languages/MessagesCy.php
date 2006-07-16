@@ -345,7 +345,6 @@ gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
 "badquerytext" => "Roedd yn amhosibl i prosesu'ch gofyniad.
 Mae'n tebygol roedd hyn am achos yr ydych wedi trio chwilio a gair gyda llai na tri llythyrau. Hefyd, wyrach rydych wedi cam-teipio'r gofyniad. Triwch gofyniad arall.",
 "matchtotals" => "Mae'r gofyniad \"$1\" wedi cyfatebu $2 teitlau erthyglau, a'r testun oddiwrth $3 erthyglau.",
-"nogomatch" => "Does dim erthygl gyda'r union teitl hon, yn trio chwiliad testun cyfan. ",
 "titlematches" => "Teitlau erthygl yn cyfateb",
 "notitlematches" => "Does dim teitlau erthygl yn cyfateb",
 "textmatches" => "Testun erthygl yn cyfateb",
@@ -417,7 +416,6 @@ i setio ffafraethau defnyddwr.",
 "hist"	=> "hanes",
 "hide"	=> "cuddio",
 "show"	=> "dangos",
-"tableform" => "taflen",
 "minoreditletter" => "B",
 "newpageletter" => "N",
 
@@ -425,7 +423,6 @@ i setio ffafraethau defnyddwr.",
 #
 "upload" => "Llwytho ffeil i fynu",
 "uploadbtn" => "Llwytho ffeil i fynu",
-"uploadlink" => "Llwytho lluniau i fynu",
 "reupload" => "Ail-llwytho i fynu",
 "reuploaddesc"	=> "Return to the upload form.",
 "uploadnologin" => "Nid wedi mewngofnodi",

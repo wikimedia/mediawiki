@@ -863,7 +863,6 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'summary' => 'Ringkesan',
 'sysoptext' => 'Peta nu dipénta ku anjeun ngan bisa dipigawé ku pamaké nu statusna kuncén. Tempo $1.',
 'sysoptitle' => 'Kudu ku kuncén',
-'tableform' => 'tabel',
 'talk' => 'Sawala',
 'talkexists' => 'Kacana geus hasil dipindahkeun, ngan kaca obrolanana teu bisa dipindahkeun sabab geus aya nu anyar na judul anyar. Mangga gabungkeun sacara manual.',
 'talkpage' => 'Sawalakeun kaca ieu',
@@ -947,7 +946,6 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'uploadedfiles' => 'Koropak nu geus dimuat',
 'uploadedimage' => '"$1" geus dimuat',
 'uploaderror' => 'Kasalahan muat',
-'uploadlink' => 'Muat gambar',
 'uploadlog' => 'log muatan',
 'uploadlogpage' => 'Log_muatan',
 'uploadlogpagetext' => 'Di handap mangrupa daptar muatan koropak nu panganyarna. Titimangsa nu katémbong dumasar titimangsa server (UTC).
