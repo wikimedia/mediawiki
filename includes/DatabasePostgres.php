@@ -52,6 +52,7 @@ class DatabasePostgres extends Database {
 			throw new DBConnectionError( $this, "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
 		}
 
+
 		global $wgDBport;
 
 		$this->close();
@@ -70,6 +71,10 @@ class DatabasePostgres extends Database {
 			$hstring .= "port=$port ";
 		}
 
+		if (!strlen($user)) { ## e.g. the class is being loaded
+			return;
+		}
+
 		error_reporting( E_ALL );
 		@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
 
@@ -81,12 +86,79 @@ class DatabasePostgres extends Database {
 		}
 
 		$this->mOpened = true;
-		## If this is the initial connection, setup the schema stuff
-		if (defined('MEDIAWIKI_INSTALL') and !defined('POSTGRES_SEARCHPATH')) {
-			global $wgDBmwschema, $wgDBts2schema, $wgDBname;
+		## If this is the initial connection, setup the schema stuff and possibly create the user
+		if (defined('MEDIAWIKI_INSTALL')) {
+			global $wgDBname, $wgDBuser, $wgDBpass, $wgDBsuperuser, $wgDBmwschema, $wgDBts2schema;
+			print "OK</li>\n";
+
+			## Are we connecting as a superuser for the first time?
+			if ($wgDBsuperuser) {
+				$SQL = "SELECT 1 FROM pg_catalog.pg_user WHERE usename = " . $this->addQuotes($wgDBuser);
+				$rows = $this->numRows($this->doQuery($SQL));
+				if ($rows) {
+					print "<li>User \"$wgDBuser\" already exists, skipping account creation.</li>";
+				}
+				else {
+					## Can we create users?
+					$SQL = "SELECT 1 FROM pg_catalog.pg_user WHERE usesuper IS TRUE AND ".
+						"usename = " . $this->addQuotes($wgDBsuperuser);
+					$rows = $this->numRows($this->doQuery($SQL));
+					if (!$rows) {
+						print "<li>ERROR: the user \"$wgDBsuperuser\" cannot create other users. ";
+						print 'Please use a different Postgres user.</li>';
+						dieout('</ul>');
+					}
+					print "<li>Creating user <b>$wgDBuser</b>...";
+					$safepass = $this->addQuotes($wgDBpass);
+					$SQL = "CREATE USER \"$wgDBuser\" NOCREATEDB PASSWORD $safepass";
+					$this->doQuery($SQL);
+					print "OK</li>\n";
+				}
+				## User now exists, check out the database
+				$safename = $this->addQuotes($wgDBname);
+				$SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = $safename";
+				$rows = $this->numRows($this->doQuery($SQL));
+				if ($rows) {
+					print "<li>Database \"$wgDBname\" already exists, skipping database creation.</li>";
+				}
+				else {
+					print "<li>Creating database <b>$wgDBname</b>...";
+					$SQL = "CREATE DATABASE \"$wgDBname\" OWNER \"$wgDBuser\" ";
+					$this->doQuery($SQL);
+					print "OK</li>\n";
+					## Hopefully tsearch2 and plpgsql are in template1...
+				}
+
+				## Reconnect to check out tsearch2 rights for this user
+				print "<li>Connecting to \"$wgDBname\" as superuser \"$wgDBsuperuser\" to check rights...";
+				@$this->mConn = pg_connect("$hstring dbname=$wgDBname user=$user password=$password");
+				if ( $this->mConn == false ) {
+					print "<b>FAILED TO CONNECT!</b></li>";
+					dieout("</uL>");
+				}
+				print "OK!";
+				print "<li>Checking that tsearch2 is installed in the database \"$wgDBname\"...";
+				if (! $this->tableExists("pg_ts_cfg", $wgDBts2schema)) {
+					print "<b>FAILED</b>. tsearch2 must be installed in the database \"$wgDBname\".";
+					print "Please see 'http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
+					print " for instructions or ask on #postgresql on irc.freenode.net</li>\n";
+					dieout("</ul>");
+				}				
+				print "OK</li>\n";
+				print "Ensuring that user \"$wgDBuser\" has select rights on the tsearch2 tables...";
+				foreach (array('cfg','cfgmap','dict','parser') as $table) {
+					$SQL = "GRANT SELECT ON pg_ts_$table TO \"$wgDBuser\"";
+					$this->doQuery($SQL);
+				}
+
+				$wgDBsuperuser = '';
+				return true; ## Reconnect as regular user
+			}
+
+		if (!defined('POSTGRES_SEARCHPATH')) {
 
 			## Do we have the basic tsearch2 table?
-			print "<li>Checking for tsearch2 ...";
+			print "<li>Checking for tsearch2 in the schema \"$wgDBts2schema\"...";
 			if (! $this->tableExists("pg_ts_dict", $wgDBts2schema)) {
 				print "<b>FAILED</b>. Make sure tsearch2 is installed. See <a href=";
 				print "'http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
@@ -94,6 +166,18 @@ class DatabasePostgres extends Database {
 				dieout("</ul>");
 			}				
 			print "OK</li>\n";
+
+			## Does this user have the rights to the tsearch2 tables?
+			print "<li>Checking tsearch2 permissions...";
+			$SQL = "SELECT 1 FROM $wgDBts2schema.pg_ts_cfg";
+			error_reporting( 0 );
+			$res = $this->doQuery($SQL);
+			error_reporting( E_ALL );
+			if (!$res) {
+				print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" has SELECT access to the tsearch2 tables</li>\n";
+				dieout("</uL>");
+			}
+			print "OK</li>";
 
 			## Do we have plpgsql installed?
 			print "<li>Checking for plpgsql ...";
@@ -112,20 +196,20 @@ class DatabasePostgres extends Database {
 				print "<li>Creating schema <b>$wgDBmwschema</b> ...";
 				$result = $this->doQuery("CREATE SCHEMA $wgDBmwschema");
 				if (!$result) {
-					print "FAILED.</li>\n";
+					print "<b>FAILED</b>.</li>\n";
 					return false;
 				}
 				print "ok</li>\n";
 			}
 			else if ($result != $user) {
-				print "<li>Schema <b>$wgDBmwschema</b> exists but is not owned by <b>$user</b>. Not ideal.</li>\n";
+				print "<li>Schema \"$wgDBmwschema\" exists but is not owned by \"$user\". Not ideal.</li>\n";
 			}
 			else {
-				print "<li>Schema <b>$wgDBmwschema</b> exists and is owned by <b>$user</b>. Excellent.</li>\n";
+				print "<li>Schema \"$wgDBmwschema\" exists and is owned by \"$user\". Excellent.</li>\n";
 			}
 
 			## Fix up the search paths if needed
-			print "<li>Setting the search path for user <b>$user</b> ...";
+			print "<li>Setting the search path for user \"$user\" ...";
 			$path = "$wgDBmwschema";
 			if ($wgDBts2schema !== $wgDBmwschema)
 				$path .= ", $wgDBts2schema";
@@ -134,7 +218,7 @@ class DatabasePostgres extends Database {
 			$SQL = "ALTER USER $user SET search_path = $path";
 			$result = pg_query($this->mConn, $SQL);
 			if (!$result) {
-				print "FAILED.</li>\n";
+				print "<b>FAILED</b>.</li>\n";
 				return false;
 			}
 			print "ok</li>\n";
@@ -146,7 +230,7 @@ class DatabasePostgres extends Database {
 				return false;
 			}
 			define( "POSTGRES_SEARCHPATH", $path );
-		}
+		}}
 
 		return $this->mConn;
 	}
