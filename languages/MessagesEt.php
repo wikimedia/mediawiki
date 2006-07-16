@@ -417,7 +417,6 @@ et päring oli vigane, nt. \"koer and and kass\" ei ole lubatav.
 Palun proovige teistsugust päringut.",
 "matchtotals"	=> "Otsitud sõna \"$1\" leidub $2 artikli pealkirjas
 ning $3 artikli tekstis.",
-"nogomatch" => "Täpselt sellise pealkirjaga lehekülge ei ole, proovime täistekstotsingut.",
 "titlematches"	=> "Tabamused artiklipealkirjades",
 "notitlematches" => "Artiklipealkirjades tabamusi ei ole",
 "textmatches"	=> "Tabamused artiklitekstides",
@@ -487,7 +486,6 @@ sisse logida.",
 "hist"			=> "ajal",
 "hide"			=> "peida",
 "show"			=> "näita",
-"tableform"		=> "tabel",
 "minoreditletter" => "P",
 "newpageletter" => "U",
 
@@ -495,7 +493,6 @@ sisse logida.",
 #
 "upload"		=> "Faili üleslaadimine",
 "uploadbtn"		=> "Üleslaadimine",
-"uploadlink"	=> "Piltide üleslaadimine",
 "reupload"		=> "Uuesti üleslaadimine",
 "reuploaddesc"	=> "Tagasi üleslaadimise vormi juurde.",
 "uploadnologin" => "sisse logimata",

@@ -830,7 +830,6 @@ To izađe u prosjeku oko \'\'\'$5\'\'\' izmjena po stranici, i \'\'\'$6\'\'\' po
 izvesti samo administratori.
 Pogledajte $1.',
 'sysoptitle' => 'Neophodan je administratorski pristup',
-'tableform' => 'tabela',
 'talk' => 'Razgovor',
 'talkexists' => 'Sama stranica je uspješno premještena, ali
 stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.',
@@ -941,7 +940,6 @@ aktivnoj upotrebi.</p>',
 'uploadedfiles' => 'Poslati fajlovi',
 'uploadedimage' => 'poslato "[[$1]]"',
 'uploaderror' => 'Greška pri slanju',
-'uploadlink' => 'Pošalji slike',
 'uploadlog' => 'log slanja',
 'uploadlogpage' => 'istorija slanja',
 'uploadlogpagetext' => 'Ispod je spisak najskorijih slanja.',

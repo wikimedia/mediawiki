@@ -573,7 +573,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'hist'			=> 'hist',
 'hide'			=> 'gøym',
 'show'			=> 'vis',
-'tableform'		=> 'tabell',
 'minoreditletter'       => 'u',
 'newpageletter'         => 'n',
 'sectionlink'           => '→',
@@ -583,7 +582,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 #
 'upload'		=> 'Last opp fil',
 'uploadbtn'		=> 'Last opp fil',
-'uploadlink'	        => 'Last opp fil',
 'reupload'		=> 'Nytt forsøk',
 'reuploaddesc'	        => 'Attende til opplastingsskjemaet.',
 'uploadnologin'         => 'Ikkje innlogga',

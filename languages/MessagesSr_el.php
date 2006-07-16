@@ -1221,7 +1221,6 @@ Korisnici su napravili \'\'\'$4\'\'\' izmena od jula 2002 godine; u proseku \'\'
 izvesti samo korisnici sa statusom administratora.
 Pogledajte $1.',
 'sysoptitle' => 'Neophodan je administratorski pristup',
-'tableform' => 'tabela',
 'tagline' => 'Iz Vikipedije, slobodne enciklopedije.',
 'talk' => 'Razgovor',
 'talkexists' => 'Sama stranica je uspešno premeštena, ali
@@ -1345,7 +1344,6 @@ aktivnoj upotrebi.',
 'uploadedfiles' => 'Poslati fajlovi',
 'uploadedimage' => 'poslato "[[$1]]"',
 'uploaderror' => 'Greška pri slanju',
-'uploadlink' => 'Pošalji slike',
 'uploadlog' => 'log slanja',
 'uploadlogpage' => 'istorija slanja',
 'uploadlogpagetext' => 'Ispod je spisak najskorijih slanja.

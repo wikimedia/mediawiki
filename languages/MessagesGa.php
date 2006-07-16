@@ -664,7 +664,6 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 "hist"	  => "stáir",
 "hide"	  => "Folaigh",
 "show"	  => "taispeán",
-"tableform"     => "tábla",
 "minoreditletter" => "m",
 "newpageletter" => "N",
 'sectionlink' => '?',
@@ -674,7 +673,6 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 #
 "upload"	=> "Uaslódáil comhad",
 "uploadbtn"     => "Uaslódáil comhad",
-"uploadlink"    => "Uaslódáil íomhánna",
 "reupload"      => "Athuaslódáil",
 "reuploaddesc"  => "Dul ar ais chuig an fhoirm uaslódála.",
 "uploadnologin" => "Nil tú logáilte isteach",

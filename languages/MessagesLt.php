@@ -829,7 +829,6 @@ archyve, todėl jie gali būti atstatyti. Archyvas gali būti periodiškai valom
 'uploadbtn' => 'Įkelti',
 'uploadedimage' => 'įkėlė "$1"',
 'uploaderror' => 'Įkėlimo klaida',
-'uploadlink' => 'Įkelti paveikslėlius',
 'uploadlog' => 'įkėlimų sąrašas',
 'uploadlogpage' => 'Įkėlimų_sąrašas',
 'uploadlogpagetext' => 'Žemiau pateikiamas naujausių failų įkėlimų sąrašas.',

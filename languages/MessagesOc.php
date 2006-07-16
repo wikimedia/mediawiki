@@ -393,7 +393,6 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 "hist"            => "hist",
 "hide"            => "cacher",
 "show"            => "montrer",
-"tableform"       => "table",
 "minoreditletter" => "M",
 "newpageletter"   => "N",
 
@@ -401,7 +400,6 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 #
 "upload"       => "Copier sur le serveur",
 "uploadbtn"    => "Copier un fichier",
-"uploadlink"   => "Copier des images",
 "reupload"     => "Copier à nouveau",
 "reuploaddesc" => "Retour au formulaire.",
 
