@@ -417,4 +417,18 @@ $mw$
   INSERT INTO interwiki (iw_prefix, iw_url, iw_local) VALUES ($1,$2,$3);
   SELECT 1;
 $mw$;
+
+CREATE TABLE mediawiki_version (
+  type         TEXT         NOT NULL,
+  mw_version   TEXT         NOT NULL,
+  sql_version  TEXT             NULL,
+  sql_date     TIMESTAMPTZ      NULL,
+  pg_version   TEXT             NULL,
+  cdate        TIMESTAMPTZ  NOT NULL DEFAULT now()
+);
+
+INSERT INTO mediawiki_version (type,mw_version,sql_version,sql_date)
+VALUES ('Creation','??','$LastChangedRevision$','$LastChangedDate$');
+
+
 COMMIT;
