@@ -69,6 +69,18 @@ CREATE INDEX page_project_title      ON page (page_title) WHERE page_namespace =
 CREATE INDEX page_random_idx         ON page (page_random);
 CREATE INDEX page_len_idx            ON page (page_len);
 
+CREATE FUNCTION page_deleted() RETURNS TRIGGER LANGUAGE plpgsql AS
+$mw$
+BEGIN
+DELETE FROM recentchanges WHERE rc_namespace = OLD.page_namespace AND rc_title = OLD.page_title;
+RETURN NULL;
+END;
+$mw$;
+
+CREATE TRIGGER page_deleted AFTER DELETE ON page
+FOR EACH ROW EXECUTE PROCEDURE page_deleted();
+
+
 -- Create a dummy page to satisfy fk contraints where a page_id of "0" is added
 INSERT INTO page (page_id,page_namespace,page_title,page_random,page_latest,page_len)
 VALUES (0,0,'',0.0,0,0);
@@ -77,7 +89,7 @@ VALUES (0,0,'',0.0,0,0);
 CREATE SEQUENCE rev_rev_id_val;
 CREATE TABLE revision (
   rev_id          INTEGER      NOT NULL  UNIQUE DEFAULT nextval('rev_rev_id_val'),
-  rev_page        INTEGER          NULL  REFERENCES page (page_id) ON DELETE SET NULL,
+  rev_page        INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE,
   rev_text_id     INTEGER          NULL, -- FK
   rev_comment     TEXT,
   rev_user        INTEGER      NOT NULL  REFERENCES "user"(user_id),
@@ -272,7 +284,7 @@ CREATE TABLE recentchanges (
   rc_minor           CHAR         NOT NULL  DEFAULT '0',
   rc_bot             CHAR         NOT NULL  DEFAULT '0',
   rc_new             CHAR         NOT NULL  DEFAULT '0',
-  rc_cur_id          INTEGER      NOT NULL  REFERENCES page(page_id),
+  rc_cur_id          INTEGER          NULL  REFERENCES page(page_id) ON DELETE SET NULL,
   rc_this_oldid      INTEGER      NOT NULL,
   rc_last_oldid      INTEGER      NOT NULL,
   rc_type            CHAR         NOT NULL  DEFAULT '0',
