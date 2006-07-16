@@ -1216,7 +1216,7 @@ class Article {
 
 		# Silently ignore EDIT_MINOR if not allowed
 		$isminor = ( $flags & EDIT_MINOR ) && $wgUser->isAllowed('minoredit');
-		$bot = $wgUser->isBot() || ( $flags & EDIT_FORCE_BOT );
+		$bot = $wgUser->isAllowed( 'bot' ) || ( $flags & EDIT_FORCE_BOT );
 
 		$text = $this->preSaveTransform( $text );
 
