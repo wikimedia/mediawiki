@@ -456,11 +456,7 @@ class SpecialPage
 	 * special page (as defined by $mRestriction)
 	 */
 	function userCanExecute( &$user ) {
-		if ( $this->mRestriction == "" ) {
-			return true;
-		} else {
-			return $user->isAllowed( $this->mRestriction );
-		}
+		return $user->isAllowed( $this->mRestriction );
 	}
 
 	/**
