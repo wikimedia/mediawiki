@@ -423,7 +423,6 @@ $wgAllMessagesBe = array(
 'revertimg' => 'вярнуць',
 'revhistory' => 'Гісторыя зьменаў',
 'revisionasof' => 'Вэрсія ад $1',
-'revisionasofwithlink' => 'Вэрсія ад $1; $2<br />$3 | $4',
 'revnotfound' => 'Вэрсія ня знойдзеная',
 'rollback' => 'Адмяніць рэдагаваньні',
 'rows' => 'Радкоў:',

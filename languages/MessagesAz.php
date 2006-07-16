@@ -242,7 +242,6 @@ $wgAllMessagesAz = array(
 'revhistory' => 'Versiya tarixçəsi',
 'currentrev' => 'Hal-hazırkı versiya',
 'revisionasof' => '$1 versiyası',
-'revisionasofwithlink' => '$1 versiyası; $2<br />$3 | $4',
 'previousrevision' => '←Əvvəlki versiya',
 'nextrevision' => 'Sonrakı versiya→',
 'currentrevisionlink' => 'Hal-hazırkı versiyanı göstər',
@@ -518,7 +517,6 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 #
 
 # Make sysop
-'bureaucratlog' => 'Bureaucrat_log',
 'already_sysop' => 'Bu istifadəçi hazirdə idarəçidir',
 'already_bureaucrat' => 'Bu istifadəçi hazirdə bürokratdı',
 'already_steward' => 'Bu istifadəçi hazirdə steward',

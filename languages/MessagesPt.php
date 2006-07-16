@@ -513,7 +513,6 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:Userlogin|au
 'loadhist'              => 'Carregando histórico',
 'currentrev'    => 'Revisão actual',
 'revisionasof'          => 'Revisão de $1',
-'revisionasofwithlink'  => 'Revisão de $1; $2<br />$3 | $4',
 'previousrevision'      => '← Versão anterior',
 'nextrevision'          => 'Versão posterior →',
 'currentrevisionlink'   => 'ver versão actual',

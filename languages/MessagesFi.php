@@ -453,7 +453,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'loadhist'            => 'Ladataan sivuhistoriaa',
 'currentrev'          => 'Nykyinen versio',
 'revisionasof'        => 'Versio $1',
-'revisionasofwithlink'=> 'Versio, joka luotiin $1.<br />$3 | $2 | $4',
 'previousrevision'    => '← Vanhempi versio',
 'nextrevision'        => 'Uudempi versio →',
 'currentrevisionlink' => 'Nykyinen versio',

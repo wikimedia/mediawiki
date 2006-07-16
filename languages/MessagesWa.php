@@ -516,7 +516,6 @@ Verifyîz l\' hårdêye ki vs avoz eployî po-z ariver sol pådje s\' i vs plait
 'loadhist' => 'Tcherdjaedje del pådje di l\' istwere',
 'currentrev' => 'Modêye d\' asteure',
 'revisionasof' => 'Modêye do $1',
-'revisionasofwithlink' => 'Modêye do $1; $2<br />$3 | $4',
 'previousrevision' => '←Modêye di dvant',
 'nextrevision' => 'Modêye shuvante→',
 'currentrevisionlink' => 'vey li modêye d\' asteure',
@@ -1875,12 +1874,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 ###########
 # replaecî pa protectthispage?
 'protectpage' => 'Protedjî l\' pådje',
-# replaecî pa youhavenewmessages?
-'newmessages' => 'Vos avoz des $1.',
-# replaecî pa rightslog
-'bureaucratlog' => 'Djournå des manaedjeus',
-# replaecî pa rightslogentry
-'bureaucratlogentry' => 'les droets po l\' uzeu «$1» ont stî metous a «$2»',
 
 ###########
 #======================= obsolete?

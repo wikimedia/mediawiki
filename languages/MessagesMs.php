@@ -322,7 +322,6 @@ $wgAllMessagesMs = array(
 "loadhist"      => "Muat turun halaman sejarah", #"Loading page history",
 "currentrev"    => "Semakan terkini", #"Current revision",
 "revisionasof"          => "Semakan sejak $1", #"Revision as of $1",
-"revisionasofwithlink" => "Semakan sejak $1; $2<br />$3 | $4",
 "previousrevision"     => "Semakan terdahulu",
 "cur"           => "kini", #"cur",
 "next"                  => "berikut",

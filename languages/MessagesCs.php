@@ -468,7 +468,6 @@ Můžete se vrátit a editovat již existující stránku, nebo [[Special:Userlo
 'loadhist'              => 'Načítá se stránka historie editací', #FIXME Apparently not used
 'currentrev'    => 'Aktuální verze',
 'revisionasof'          => 'Verze z $1',
-'revisionasofwithlink'  => 'Verze z $1; $2<br />$3 | $4',
 'previousrevision' => '← Starší verze',
 'nextrevision'		=> 'Novější verze →',
 'currentrevisionlink'   => 'zobrazit aktuální verzi',

@@ -473,7 +473,6 @@ Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránk
 'loadhist'              => 'Sťahovanie histórie stránky',
 'currentrev'            => 'Aktuálna verzia',
 'revisionasof'          => 'Verzia zo dňa a času $1',
-'revisionasofwithlink'  => 'Verzia zo dňa $1; $2<br />$3 | $4',
 'previousrevision'      => '← Staršia verzia',
 'nextrevision'          => 'Novšia verzia →',
 'currentrevisionlink'   => 'Zobrazenie aktuálnej úpravy',
