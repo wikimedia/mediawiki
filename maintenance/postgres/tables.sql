@@ -200,9 +200,9 @@ CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
 
 CREATE TABLE image (
   img_name         TEXT      NOT NULL  PRIMARY KEY,
-  img_size         SMALLINT  NOT NULL,
-  img_width        SMALLINT  NOT NULL,
-  img_height       SMALLINT  NOT NULL,
+  img_size         INTEGER   NOT NULL,
+  img_width        INTEGER   NOT NULL,
+  img_height       INTEGER   NOT NULL,
   img_metadata     TEXT,
   img_bits         SMALLINT,
   img_media_type   TEXT,
