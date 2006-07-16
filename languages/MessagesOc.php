@@ -504,12 +504,6 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "brokenredirectstext"	=> "Ces redirections mènent a une page qui n'existe pas.",
 "selflinks"		=> "Page avec un lien circulaire",
 "selflinkstext"		=> "Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n'est pas permis.",
-"mispeelings"           => "Pages avec fautes d'orthographe",
-"mispeelingstext"               => "Les pages suivantes contiennent une faute d'orthographe courante (la liste de celles-ci est sur $1). L'orthographe correcte est peut-être (ceci).",
-"mispeelingspage"       => "Liste de fautes d'orthographe courantes",
-"missinglanguagelinks"  => "Liens inter-langues manquants",
-"missinglanguagelinksbutton"    => "Je n'ai pas trouvé de lien/langue pour cette page",
-"missinglanguagelinkstext"      => "Ces articles ne lient pas à leur 'contrepartie' in $1. Les redirections et les liens ne sont pas affichés.",
 
 
 # Miscellaneous special pages

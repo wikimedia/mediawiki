@@ -524,12 +524,6 @@ Destes, <b>$2</b> são administradores (veja $3).",
 "brokenredirectstext"   => "Os seguintes redirecionamentos apontam para um artigo inexistente.",
 "selflinks"     => "Páginas com links próprios",
 "selflinkstext"     => "As páginas a seguir possuem links para si mesmas, o que não deveria acontecer.",
-"mispeelings"           => "Páginas com erros ortográficos",
-"mispeelingstext"               => "As páginas a seguir contém erros comuns que estão listados em $1. A ortografia correta deve ser dada (como isto).",
-"mispeelingspage"       => "Lista de erros comuns",
-"missinglanguagelinks"  => "Missing Language Links",
-"missinglanguagelinksbutton"    => "Find missing language links for",
-"missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
 
 
 # Miscellaneous special pages

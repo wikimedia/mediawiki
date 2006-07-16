@@ -830,9 +830,6 @@ i tekst $3 članaka.',
 'minlength' => 'Imena slika moraju imati bar tri slova.',
 'minoredit' => 'Ovo je mala izmena',
 'minoreditletter' => 'M',
-'mispeelings' => 'Stranice sa greškama u kucanju',
-'mispeelingspage' => 'Spisak čestih grešaka u kucanju',
-'mispeelingstext' => 'Sledeće stranice sadrže česte greške u kucanju, koje su navedene na $1. Ispravne reči mogu biti date (ovako).',
 'missingarticle' => 'Baza nije našla tekst stranice
 koji je trebalo, nazvan "$1".
 
@@ -842,9 +839,6 @@ stranice koja je obrisana.
 <p>Ako ovo nije slučaj, možda ste pronašli grešku u softveru.
 Molimo vas prijavite ovo jednom od [[{{ns:4}}:Administratori|administratora]], zajedno sa URL-om.',
 'missingimage' => '<b>Ovde nedostaje slika</b><br /><i>$1</i>',
-'missinglanguagelinks' => 'Nedostajući jezičke veze',
-'missinglanguagelinksbutton' => 'Nađi nedostajuće jezičke veze za',
-'missinglanguagelinkstext' => 'Ovi članci <i>nisu</i> povezani sa njima odgovarajućim u $1. Preusmerenja i podstranice <i>nisu</i> prikazani.',
 'monday' => 'ponedeljak',
 'moredotdotdot' => 'Još...',
 'mostlinked' => 'Najviše povezane strane',

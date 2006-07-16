@@ -592,12 +592,6 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 'brokenredirectstext'	=> "تغییرمسیرهای زیر به یک صفحه‌ی ناموجود پیوند دارند.",
 'selflinks'		=> "صفحات با پیوند به خود",
 'selflinkstext'		=> "این صفحات به خودشان پیوند دارند، که نباید داشته باشند.",
-'mispeelings'           => "صفحات با غلط املایی",
-'mispeelingstext'               => "صفحات زیر یک غلط املایی معمول دارند، که در $1 آمده است. ممکن است املای درست (به این شکل) آمده باشد.",
-'mispeelingspage'       => "فهرست غلط‌های املایی معمول",
-'missinglanguagelinks'  => "پیوندهای زبانی گم‌شده",
-'missinglanguagelinksbutton'    => "یافتن پیوندهای زبانی گم‌شده برای",
-'missinglanguagelinkstext'      => "این مقاله‌ها به همتایشان در $1 پیوند <i>ندارند</i>. Redirects و زیرصفحه‌ها نشان داده <i>نشده‌اند</i>.",
 
 
 # Miscellaneous special pages

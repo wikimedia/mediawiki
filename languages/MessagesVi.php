@@ -592,14 +592,7 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 'brokenredirectstext'	=> 'Các trang đổi hướng sau đây liên kết đến một trang không tồn tại.',
 'selflinks'		=> 'Trang liên kết đến chính nó',
 'selflinkstext'		=> 'Những trang sau đây chứa một liên kết đến chính nó, điều này là không nên.',
-'mispeelings'           => 'Trang sai chính tả',
-'mispeelingstext'               => 'Những trang sau có lỗi chính tả thường gặp, được liệt kê trong $1. Chính tả đúng phải là.',
-'mispeelingspage'       => 'Lỗi chính tả thường gặp',
 
-
-'missinglanguagelinks'  => 'Liên kết liên ngôn ngữ bị thiếu',
-'missinglanguagelinksbutton'    => 'Tìm liên kết liên ngôn ngữ bị thiếu',
-'missinglanguagelinkstext'      => "Những trang này <i>không</i> liên kết đến các trang tương đương của chúng trong $1. Các trang chuyển hướng hoặc các liên kết đến nó <i>không</i> được hiển thị.",
 
 # Miscellaneous special pages
 'uncategorizedpages'    => 'Trang chưa xếp thể loại',

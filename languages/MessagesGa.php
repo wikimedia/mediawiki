@@ -802,14 +802,6 @@ ghnáth tugann sé sin an sprioc-alt \"fíor\".",
 "brokenredirectstext"   => "Is iad na athsheolaidh seo a leanas a nascaíonn go ailt nach bhfuil ann fós.",
 "selflinks"     => "Leathanaigh le féin-naisc",
 "selflinkstext"     => "Sna leathanaigh seo a leanas tá naisc a nascaíonn chuig an leathanach céanna é fhéin. Tá an méid seo flúirseach.",
-"mispeelings"	   => "Leathanaigh mílitrithe",
-"mispeelingstext"	       => "Sna leathanaigh seo a leanas tá mílitriú coiteanta, atá san liosta ar $1. Is
-dócha go taispeántar an litriú ceart (mar sin).",
-"mispeelingspage"       => "Liosta mhílitriuithe coitianta",
-"missinglanguagelinks"  => "Naisc Teangacha Ar Iarraidh",
-"missinglanguagelinksbutton"    => "Cuardaigh ar naisc teangacha ar iarraidh do",
-"missinglanguagelinkstext"      => "<i>Ní</i> nascaíonn na hailt seo chuig a macasamhail sa $1. <i>Ní</i>
-taispeántar athsheolaidh nó fo-leathanaigh.",
 
 
 # Miscellaneous special pages

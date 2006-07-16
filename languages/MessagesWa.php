@@ -1892,12 +1892,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 Cweraedje di: $3 $9',
 'selflinks' => 'Pådjes avou des loyéns viè zeles minmes',
 'selflinkstext' => 'Les pådjes shuvantes ont on loyén viè zeles minmes, çou ki n\' si dvreut nén fé.',
-'mispeelings' => 'Pådjes avou des flotches',
-'mispeelingstext' => 'Les pådjes shuvantes ont ene ou sacwantès flotches, di cenes metowes so $1. Li scrijhaedje corek pout esse mostré inte åtchetes a costé do mot må scrît.',
-'mispeelingspage' => 'Djivêye des flotches les pus corantes',
-'missinglanguagelinks' => 'Loyéns eterlingaedje ki mankèt',
-'missinglanguagelinksbutton' => 'Trover les loyéns eterlingaedje ki mankèt po',
-'missinglanguagelinkstext' => 'Ces årtikes chal èn loynut <i>nén</i> viè leu-z omologues so «$1». Les redjiblaedjes eyet les dzo-pådjes èn sont <i>nén</i> mostrêyes.',
 
 # Maintenance Page
 #

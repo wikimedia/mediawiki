@@ -618,14 +618,6 @@ En o zouez, <b>$2</b> zo ganto ar statud merour (sellet ouzh $3).',
 'brokenredirectstext'	=> 'Kas a ra an adkasoù-mañ d\'ur bajenn n\'eus ket anezhi.',
 'selflinks'		=> 'Pajenn enni ul liamm tro',
 'selflinkstext'		=> 'Er pajennoù da-heul ez eus ul liamm war o zu dezho o-unan, ar pezh n\'hall ket bezañ.',
-'mispeelings'           => 'Pajennoù enno fazioù reizhskrivañ',
-'mispeelingstext'               => 'Er pajennoù da-heul ez eus ur fazi reizhskrivañ boas (kavet e vez ar roll anezho war $1). Marteze eo se ar reizhskrivadenn vat.',
-'mispeelingspage'       => 'Roll ar fazioù reizhskrivañ boas',
-
-# ne vez ket implijet an 3 c\'hemennad da-heul ken (pajenn zibar ebet Special:Intl ebet ken)
-'missinglanguagelinks'  => 'Liammoù etreyezhel a vank',
-'missinglanguagelinksbutton'    => 'N\'eus ket bet kavet liamm/yezh ebet evit ar bajenn-mañ',
-'missinglanguagelinkstext'      => "N'eo ket liammet ar pennadoù-se ouzh ar 'pennadoù par' e $1. N'emañ ket war wel an adkasoù hag al liammoù anezho.",
 
 
 # Miscellaneous special pages

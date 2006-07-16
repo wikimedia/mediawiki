@@ -526,12 +526,6 @@ al qual le prime redirection deberea referer se.",
 "brokenredirectstext"	=> "Le redirectiones sequente se liga a articulos inexistente.",
 "selflinks"		=> "Paginas con ligamines circular",
 "selflinkstext"		=> "Le paginas sequente contine un ligamine a se mesme, lo que non se recommenda.",
-"mispeelings"           => "Paginas con errores orthographic",
-"mispeelingstext"               => "Le paginas sequente contine un error orthographic commun, que es listate in $1. Illo debe esser substituite per le orthographia correcte (assi).",
-"mispeelingspage"       => "Lista de errores orthographic commun",
-"missinglanguagelinks"  => "Ligamines interlinguistic absente",
-"missinglanguagelinksbutton"    => "Trovar ligamines interlinguistic mancante pro",
-"missinglanguagelinkstext"      => "Iste articulos <i>non</i> se liga a lor equivalentes in $1. Redirectiones e subpaginas <i>non</i> es monstrate.",
 
 
 # Miscellaneous special pages

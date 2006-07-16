@@ -501,13 +501,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "brokenredirectstext"	=> "以下的重定向页指向的是不存在的条目。",
 "selflinks"		=> "有自我链接的页面",
 "selflinkstext"		=> "以下的页面都错误地包含了连到自己的链接。",
-"mispeelings"           => "拼写错误的页面",
-"mispeelingstext"               => "以下页面包含了一些常见的拼写错误（见$1）。正确的拼法已经给出。",
-"mispeelingspage"       => "常见拼写错误列表",
-"missinglanguagelinks"  => "无语言链接",
-"missinglanguagelinksbutton"    => "寻找没有该语言的页面",
-"missinglanguagelinkstext"      => "这些条目<i>没有</i>链接到$1。
-重定向页与副页<b>并没有</b>包括在内。",
 
 
 # Miscellaneous special pages

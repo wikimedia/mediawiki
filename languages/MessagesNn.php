@@ -667,12 +667,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'brokenredirectstext'	=> 'Dei følgjande omdirigeringane viser til ei side som ikkje finst.',
 'selflinks'		=> 'Sider som viser til seg sjølve',
 'selflinkstext'		=> 'Dei følgjande sidene inneheld tilvisingar til seg sjølve, og det bør dei ikkje.',
-'mispeelings'           => 'Sider med stavefeil',
-'mispeelingstext'       => 'Dei følgjande sidene inneheld ein av dei vanlege stavefeila som er lista på $1. Den rette stavemåten kan bli attgjeven i parentes etter feilstavinga (slik).',
-'mispeelingspage'       => 'Liste over vanlege stavefeil',
-'missinglanguagelinks'  => 'Manglande språklenkjer',
-'missinglanguagelinksbutton' => 'Finn manglande språklenkjer for',
-'missinglanguagelinkstext' => 'Desse innhaldssidene har <i>ikkje</i> lenkjer til den same sida på $1. Omdirigeringar og undersider er <i>ikkje</i> viste.',
 
 # Miscellaneous special pages
 #
