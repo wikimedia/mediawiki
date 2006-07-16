@@ -1910,28 +1910,27 @@ class Article {
 		);
 
 		# Now that it's safely backed up, delete it
-		$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
 
-		if ($wgUseTrackbacks)
-			$dbw->delete( 'trackbacks', array( 'tb_page' => $id ), __METHOD__ );
+		if ($wgDBtype == 'mysql') {
+			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
+			if ($wgUseTrackbacks)
+				$dbw->delete( 'trackbacks', array( 'tb_page' => $id ), __METHOD__ );
 
- 		# Clean up recentchanges entries...
-		$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), __METHOD__ );
+ 			# Clean up recentchanges entries...
+			$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), __METHOD__ );
 
-		# Finally, clean up the link tables
-		$t = $this->mTitle->getPrefixedDBkey();
+			# Delete outgoing links
+			$dbw->delete( 'pagelinks', array( 'pl_from' => $id ) );
+			$dbw->delete( 'imagelinks', array( 'il_from' => $id ) );
+			$dbw->delete( 'categorylinks', array( 'cl_from' => $id ) );
+			$dbw->delete( 'templatelinks', array( 'tl_from' => $id ) );
+			$dbw->delete( 'externallinks', array( 'el_from' => $id ) );
+			$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
+		}
 
 		# Clear caches
 		Article::onArticleDelete( $this->mTitle );
-
-		# Delete outgoing links
-		$dbw->delete( 'pagelinks', array( 'pl_from' => $id ) );
-		$dbw->delete( 'imagelinks', array( 'il_from' => $id ) );
-		$dbw->delete( 'categorylinks', array( 'cl_from' => $id ) );
-		$dbw->delete( 'templatelinks', array( 'tl_from' => $id ) );
-		$dbw->delete( 'externallinks', array( 'el_from' => $id ) );
-		$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
 
 		# Log the deletion
 		$log = new LogPage( 'delete' );
