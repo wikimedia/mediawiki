@@ -426,12 +426,6 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "brokenredirectstext"	=> "I seguenti redirects puntano ad articoli non ancora creati.",
 "selflinks"		=> "Pagine con Auto-Links",
 "selflinkstext"		=> "Le pagine seguenti contengono link che puntano a sé stesse, e in questo caso occorre eliminare questi auto-links.",
-"mispeelings"           => "Pagine con errori di ortografia",
-"mispeelingstext"               => "Le pagine che seguono contengono errori comuni di ortografia, che sono elencati alla pagina $1.",
-"mispeelingspage"       => "Lista di comuni errori di ortografia",
-"missinglanguagelinks"  => "Link interlinguistici mancanti",
-"missinglanguagelinksbutton"    => "Trova i Link interlinguistici da aggiungere per",
-"missinglanguagelinkstext"      => "Questi articoli <i>non</i> hanno link verso i corrispondenti articoli in $1. Redirects e sub-pagine <i>non</i> sono elencati.",
 
 
 # Miscellaneous special pages

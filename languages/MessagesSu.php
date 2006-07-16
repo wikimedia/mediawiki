@@ -543,19 +543,7 @@ Katerangan: (kiw) = bédana jeung vérsi kiwari,
 'mimetype' => 'MIME type:',
 'minlength' => 'Ngaran gambar sahenteuna kudu tilu aksara.',
 'minoredit' => 'Ieu éditan minor',
-'mispeelings' => 'Kaca nu ngandung salah éjah',
-'mispeelingspage' => 'Daptar salah éjah nu ilahar',
-'mispeelingstext' => 'Kaca di handap ieu ngandung salah éjah ilahar nu didaptarkeun na $1. Éjahan nu bener meureun geus disadiakeun (kawas kieu).',
-'missingarticle' => 'Database teu manggihan téks kaca nu sakuduna aya, ngaranna "$1".
-
-<p>This is usually caused by following an outdated diff or history link to a
-page that has been deleted.
-
-<p>Mun lain kitu masalahna, jigana anjeun geus manggihan kutu na \'\'software\'\'na. Mangga wartoskeun ka kuncén, dugikeun ogé URLna.',
 'missingimage' => '<b>Gambar leungit</b><br /><i>$1</i>',
-'missinglanguagelinks' => 'Tumbu Basa Leungit',
-'missinglanguagelinksbutton' => 'Téangan tumbu basa nu leungit pikeun',
-'missinglanguagelinkstext' => 'Kaca ieu <i>teu</i> numbu ka baturna na $1. Alihan jeung subkaca <i>henteu</i> ditémbongkeun.',
 'moredotdotdot' => 'Deui...',
 'move' => 'Pindahkeun',
 'movearticle' => 'Pindahkeun kaca',

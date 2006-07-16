@@ -542,14 +542,6 @@ de twadde trochferwizing, wat it \"echte\" doel wêze moat.",
 "brokenredirectstext"	=> "Dizze trochferwizings ferwize nei siden dy't der net binne.",
 "selflinks"			=> "Siden mei sels-ferwizings",
 "selflinkstext"		=> "Dizze siden hawwe in keppeling nei de side sels, wat net sa wêze moat.",
-"mispeelings"           => "Siden mei skriuwflaters",
-"mispeelingstext"		=> "Op dizze siden stiet in skriuw- of typ-flater dy't in soad makke wurd, lykas oanjoen op \"$1\".
-Dêr soe ek stean moatte hoe't it (goed skreaun) wurdt.",
-"mispeelingspage"       => "List fan faak makke flaters",
-"missinglanguagelinks"  => "Untbrekkende taalkeppelings",
-"missinglanguagelinksbutton"    => "Fyn ûntbrekkende taalkeppelings foar",
-"missinglanguagelinkstext"      => "Dizze siden hawwe gjin taalkeppeling nei deselde side yn taal \"$1\".
-(Ferwizings en oanheake siden binne net <i>net</i> besocht.",
 
 
 # Miscellaneous special pages

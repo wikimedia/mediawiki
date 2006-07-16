@@ -450,12 +450,6 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "brokenredirectstext"	=> "Die volgende aansture skakel na 'n bladsy wat nie bestaan nie.",
 "selflinks"		=> "Bladsye met selfskakels",
 "selflinkstext"		=> "Die volgende bladsy bevat 'n skakel na hulself, en dit behoort nie te gebeur nie.",
-"mispeelings"           => "Bladsye met spelfoute",
-"mispeelingstext"               => "Die volgende bladsye bevat 'n algemene spelfout, soos gelys op $1. Die regte spelling word dalk (so) gegee.",
-"mispeelingspage"       => "Lys van algemene spelfoute",
-"missinglanguagelinks"  => "Weggelate taalskakels",
-"missinglanguagelinksbutton"    => "Het weggelate taalskakels gevind vir",
-"missinglanguagelinkstext"      => "Hierdie artikels skakel <i>nie</i> na hul eweknie in $1. Aansture en subbladsye word <i>nie</i> gewys nie.",
 
 
 # Miscellaneous special pages

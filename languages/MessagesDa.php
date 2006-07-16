@@ -752,16 +752,6 @@ ikke eksisterer.",
 "selflinks"		=> "Sider der henviser til sig selv",
 "selflinkstext"		=> "De følgende sider indeholder henvisninger til sig selv,
 men det burde de ikke.",
-"mispeelings"           => "Sider med stavefejl",
-"mispeelingstext"               => "De følgende sider indeholder en af de
-almindelig stavefejl, som er listet på $1. Den korrekte stavemåde kan
-angives i paranteser efter den fejlagtige stavemåde (sådan her).",
-"mispeelingspage"       => "Liste over almindelige stavefejl",
-"missinglanguagelinks"  => "Manglende sproghenvisninger",
-"missinglanguagelinksbutton"    => "Find manglende sproghenvisninger for",
-"missinglanguagelinkstext"      => "Disse artikler har <i>ikke</i> nogen
-henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
-<i>ikke</i> vist.",
 
 
 # Miscellaneous special pages

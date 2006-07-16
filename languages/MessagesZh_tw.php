@@ -498,13 +498,6 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "brokenredirectstext"	=> "以下的重定向頁指向的是不存在的條目。",
 "selflinks"		=> "有自我鏈接的頁面",
 "selflinkstext"		=> "以下的頁面都錯誤地包含了連到自己的鏈接。",
-"mispeelings"           => "拼寫錯誤的頁面",
-"mispeelingstext"               => "以下頁面包含了一些常見的拼寫錯誤（見$1）。正確的拼法已經給出。",
-"mispeelingspage"       => "常見拼寫錯誤列表",
-"missinglanguagelinks"  => "無語言鏈接",
-"missinglanguagelinksbutton"    => "尋找沒有該語言的頁面",
-"missinglanguagelinkstext"      => "這些條目<i>沒有</i>鏈接到$1。
-重定向頁與副頁<b>並沒有</b>包括在內。",
 
 # Miscellaneous special pages
 #

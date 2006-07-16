@@ -821,12 +821,6 @@ Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 'brokenredirectstext'   => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',
 'selflinks'             => 'Páginas que ligam consigo próprias',
 'selflinkstext'             => 'As páginas seguintes ligam consigo próprias:',
-'mispeelings'           => 'Páginas com erros ortográficos',
-'mispeelingstext'               => "As páginas seguintes contém erros ortográficos comuns, alguns deles listados em $1. Lá pode encontrar a grafia correcta (assim).",
-'mispeelingspage'       => 'Lista de erros ortográficos comuns',
-'missinglanguagelinks'  => 'Ligações interlinguísticas não encontradas',
-'missinglanguagelinksbutton'    => 'Procurar ligações interlinguísticas inexistentes para',
-'missinglanguagelinkstext'      => "Estas páginas <i>não</i> estão correctamente ligadas ao artigo relativo ao tema em $1. '''Não''' são incluídos redireccionamentos e subpáginas.",
 
 # Miscellaneous special pages
 #

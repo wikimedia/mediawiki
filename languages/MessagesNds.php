@@ -599,13 +599,6 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'brokenredirectstext'          => 'Disse Wiederleiden wiesen to en Siet, de nich existeert',
 'selflinks'                             => 'Sieten, de op sik sülvst wiesen',
 'selflinkstext'                     => 'Disse Sieten wiesen op sik sülvst, wat se nich schallt.',
-'mispeelings'                => 'Sieten mit falsch schrevene Wöör',
-'mispeelingstext'            => 'Op disse Sieten kümmt falsch schrevene Wöör vör, de op $1 as falsch defineert sünd.
-In Klammern angevene Wöör geven de korrekte Schrievwies weer.',
-'mispeelingspage'            => 'List vun Tippfehlern',
-'missinglanguagelinks'       => 'Fehlende Spraakverwiesen',
-'missinglanguagelinksbutton' => 'Wies fehlende Spraakverwiesen no',
-'missinglanguagelinkstext'   => 'Disse Sieten hebbt <i>kenen</i> Verwies to ehr Gegenpart in $1. Wiederleiden un Ünnersieten warrn <i>nich</i> wiest.',
 
 
 # Verscheden Spezialsieten
