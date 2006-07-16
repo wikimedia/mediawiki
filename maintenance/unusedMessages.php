@@ -1,6 +1,6 @@
 <?php
 /**
- * Prints out messages that are no longer used.
+ * Prints out messages in localisation files that are no longer used.
  *
  * @package MediaWiki
  * @subpackage Maintenance
@@ -24,5 +24,5 @@ foreach ( $$msgarray as $code => $msg ) {
 	}
 }
 
-print "{$count} messages of {$total} are redundant\n";
+print "{$count} messages of {$total} are unused\n";
 ?>
