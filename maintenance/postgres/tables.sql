@@ -187,7 +187,7 @@ CREATE TABLE ipblocks (
   ipb_reason          TEXT         NOT NULL,
   ipb_timestamp       TIMESTAMPTZ  NOT NULL,
   ipb_auto            CHAR         NOT NULL  DEFAULT '0',
-  ipb_anon_only bool  CHAR         NOT NULL  DEFAULT '0',
+  ipb_anon_only       CHAR         NOT NULL  DEFAULT '0',
   ipb_create_account  CHAR         NOT NULL  DEFAULT '1',
   ipb_expiry          TIMESTAMPTZ  NOT NULL,
   ipb_range_start     TEXT,
