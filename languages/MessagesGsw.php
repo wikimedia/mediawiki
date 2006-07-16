@@ -352,7 +352,6 @@ Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Qu
 'revhistory'            => 'Früecheri Versione',
 'currentrev'            => 'Itzigi Version',
 'revisionasof'          => 'Version vo $1',
-'revisionasofwithlink'  => 'Version vo $1; $2<br />$3 | $4',
 'previousrevision'      => '← Vorderi Version',
 'nextrevision'          => 'Nächschti Version →',
 'currentrevisionlink'   => 'Itzigi Version',

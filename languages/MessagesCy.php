@@ -715,8 +715,6 @@ Teipiwch enw'r defnyddiwr yn y blwch a cliciwch y botwm i troi'r defnyddiwr i gw
 "makesysopok" => "<b>Mae defnyddwr '$1' rwan yn gweinyddwr</b>",
 "makesysopfail"	=> "<b>Wedi methu troi defnyddwr '$1' i gweinyddwr. (Ydych chi wedi sillafu'r enw'n iawn?)</b>",
 "setbureaucratflag" => "Gosod y fflag biwrocrat",
-"bureaucratlog"	=> "Log_biwrocrat",
-"bureaucratlogentry" => " gosod $1: $2",
 
 # Move page
 #

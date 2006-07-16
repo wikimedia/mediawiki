@@ -870,8 +870,6 @@ Kadarnait, mar plij, eo se hoc'h eus c'hoant da ober.",
 'unlockdbsuccesstext' => 'Dibrennet eo bank roadennoù {{SITENAME}}.',
 
 # Special:Makesysop
-'bureaucratlog'		=> 'Log_Penn-bras',
-'bureaucratlogentry'	=> 'Gwirioù an implijer(ez) « $1 » kaset da « $2 »',
 'makesysoptitle'	=> 'A ro ar gwirioù merañ.',
 'makesysoptext'		=> 'Graet e vez gant ar furmskrid-mañ gant ar Pennoù-bras a-benn reiñ ar gwirioù merañ.
 Lakait anv an implijer er voest ha pouezit war ar bouton evit reiñ ar gwirioù dezhañ/i.',

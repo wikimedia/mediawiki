@@ -122,7 +122,6 @@
 'toc' => 'Допчу', //Contents
 'showtoc' => 'көргүзер', //show
 'hidetoc' => 'чажырар', //hide
-'restorelink1' => 'бир балаттынганны өскертир', //one deleted edit
 'restorelink' => "$1 балаттынган өскерилгелер", //$1 deleted edits
 
 # Short words for each namespace, by default used in the 'article' tab in monobook

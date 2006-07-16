@@ -867,8 +867,6 @@ Xin hãy khẳng định đây là điều bạn định làm.',
 'unlockdbsuccesstext' => 'Cơ sở dữ liệu đã được mở khóa.',
 
 # Special:Makesysop
-'bureaucratlog'		=> 'Nhật trình tổng quản lý',
-'bureaucratlogentry'	=> 'Quyền của « $1 » chuyển thành « $2 »',
 'makesysoptitle'    => 'Phong một thành viên làm quản lý',
 'makesysoptext'     => 'Mẫu này được các tổng quản lý dùng để phong các thành viên bình thường thành người quản lý.
 Hãy gõ tên của thành viên cần phong quyền quản lý vào ô này và nhấn nút.',
@@ -877,9 +875,7 @@ Hãy gõ tên của thành viên cần phong quyền quản lý vào ô này và
 'makesysopok'       => "<b>Thành viên \"$1\" đã thành quản lý</b>",
 'makesysopfail'     => "<b>Thành viên \"$1\" không thể trở thành quản lý được. (Liệu bạn có nhập tên đúng không?)</b>",
 'setbureaucratflag' => 'Đặt cờ tổng quản lý',
-'bureaucratlog'     => 'Nhật trình tổng quản lý',
 'rightslogtext'     => 'Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.',
-'bureaucratlogentry'    => "Quyền hạn cho thành viên \"$1\" được xác lập \"$2\"",
 'rights'            => 'Quyền:',
 'set_user_rights'   => 'Đặt quyền hạn cho thành viên',
 'user_rights_set'   => "<b>Quyền hạn thành viên của \"$1\" đã được cập nhật</b>",
@@ -1213,7 +1209,6 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'recentchangesall' => 'tất cả',
 'restrictedpheading' => 'Trang đặc biệt hạn chế',
 'revertmove' => 'lùi lại',
-'revisionasofwithlink' => 'Sửa đổi lúc $1; $2<br />$3 | $4',
 'savegroup' => 'Lưu nhóm',
 'saveusergroups' => 'Lưu nhóm thành viên',
 'scarytranscludedisabled' => 'Liên wiki bị tắt',
