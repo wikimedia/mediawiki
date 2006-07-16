@@ -117,7 +117,6 @@
 
 # Metadata in edit box
 'metadata'                => '<b>Metadata</b> (for forklaring, sjå <a href="$1">her</a>)',
-'metadata_page'           => 'Project:Metadata',
 
 'currentevents'           => 'Aktuelt',
 'currentevents-url'       => 'Aktuelt',
@@ -515,8 +514,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 # switching pan
 'groups-lookup-group'   => 'Administrer gruppetilgang',
 'groups-group-edit'     => 'Eksisterande grupper:',
-'editgroup'             => 'Endre gruppe',
-'addgroup'              => 'Legg til gruppe',
 
 'userrights-lookup-user' => 'Administrer brukargrupper',
 'userrights-user-editname' => 'Skriv inn brukarnamn:',
@@ -533,9 +530,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'groups-existing'           => 'Grupper',
 'groups-noname'             => 'Gje eit gyldig gruppenamn',
 'groups-already-exists'     => 'Det er allereie ei gruppe med det namnet',
-'addgrouplogentry'          => 'La til gruppe $2',
-'changegrouplogentry'       => 'Endra gruppe $2',
-'renamegrouplogentry'       => 'Endra namnet på $2 til $3',
 
 # user groups editing
 #
@@ -567,7 +561,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'rcnote'		=> 'Nedanfor er dei siste <strong>$1</strong> endringane gjort dei siste <strong>$2</strong> dagane.',
 'rcnotefrom'	        => 'Nedanfor er endringane frå <b>$2</b> inntil <b>$1</b> viste.',
 'rclistfrom'	        => 'Vis nye endringar frå $1',
-'showhideminor'         => '$1 uviktige endringar | $2 bottar | $3 innlogga brukarar | $4 patruljerte endringar',
 'rclinks'		=> 'Vis siste $1 endringar dei siste $2 dagane<br />$3',
 'diff'			=> 'skil',
 'hist'			=> 'hist',

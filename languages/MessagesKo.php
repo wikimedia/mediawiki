@@ -700,7 +700,6 @@ $wgAllMessagesKo = array(
 'nextpage'              => '다음 문서 ($1)',
 'allpagesfrom'          => '다음으로 시작하는 문서들을 보여주기:',
 'allarticles'           => '모든 문서',
-'allnonarticles'        => '일반 문서를 제외한 모든 목록',
 'allinnamespace'        => '$1 네임스페이스의 모든 문서',
 'allnotinnamespace'     => '$1 네임스페이스를 제외한 모든 문서 목록',
 'allpagesprev'          => '이전',

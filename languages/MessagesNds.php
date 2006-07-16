@@ -891,7 +891,6 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'allmessagestext'             => 'Dit is en List vun alle mööglichen Norichten in den MediaWiki-Naamruum.',
 'thumbnail-more'               => 'vergröttern',
 'and'                                   => 'un',
-'showhideminor'                 => 'lütte Ännern $1 | $2 bots | $3 logged in users | $4 patrolled edits',
 'uploaddisabled'               => 'Dat Hoochladen is deaktiveert.',
 'deadendpages'                  => 'Sackstraatsieten',
 'intl'                          => 'Interwiki-Links',
@@ -1040,8 +1039,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategoriesiet ankieken\');',
 
 
 # Schalttafel
-'editgroup'                             => 'Grupp bearbeiden',
-'addgroup'                              => 'Grupp hentofögen',
 
 'editusergroup'                         => 'Brukergruppen bearbeiden',
 

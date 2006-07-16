@@ -109,7 +109,6 @@
 
 # Metadata in edit box
 'metadata' => '<b>Метаданни</b> (<a href="$1">разяснение</a>)',
-'metadata_page' => 'Project:Метаданни',
 
 'currentevents' => 'Текущи събития',
 'currentevents-url' => 'Текущи събития',
@@ -580,8 +579,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 # switching pan
 'groups-lookup-group' => 'Управляване на групови права',#Manage group rights
 'groups-group-edit' => 'Съществуващи групи:',
-'editgroup' => 'Редактиране на група',
-'addgroup' => 'Добавяне на група',
 
 'userrights-lookup-user' => 'Управляване на потребителските групи',#Manage user groups
 'userrights-user-editname' => 'Въведете потребителско име:', #Enter a username:
@@ -599,9 +596,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'groups-existing'           => 'Съществуващи групи',
 'groups-noname'             => 'Please specify a valid group name',
 'groups-already-exists'     => 'A group of that name already exists',
-'addgrouplogentry'          => 'Added group $2',
-'changegrouplogentry'       => 'Changed group $2',
-'renamegrouplogentry'       => 'Renamed group $2 to $3',
 
 # user groups editing
 'userrights-editusergroup' => 'Редактиране на потребителските групи',#Edit user groups
@@ -636,7 +630,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'rcnotefrom'  => 'Дадени са промените от <b>$2</b> (до <b>$1</b> показани).',
 'rclistfrom'  => 'Показване на промени, като се започва от $1.',
 'rclinks'    => 'Показване на последните $1 промени през последните $2 дни<br />$3',
-'showhideminor' => '$1 на малки промени | $2 на ботове | $3 на влезли потребители | $4 на проверени редакции',
 'diff'      => 'разл',
 'hist'      => 'ист',
 'hide'      => 'Скриване',

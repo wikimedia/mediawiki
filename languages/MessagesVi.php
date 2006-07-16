@@ -482,7 +482,6 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9",
 'rcnote'  => "<strong>$1</strong> thay đổi của <strong>$2</strong> ngày qua.",
 'rcnotefrom'	=> "Thay đổi từ <strong>$2</strong> (<b>$1</b> tối đa).",
 'rclistfrom'	=> "Xem thay đổi từ $1.",
-'showhideminor' => "$1 sửa nhỏ | $2 robot | $3 thành viên | $4 tuần tra", // Full version
 'rclinks'	=> "Xem $1 thay đổi của $2 ngày qua; $3.",	// Looxix
 'diff'            => 'khác',
 'hist'            => 'sử',
@@ -739,10 +738,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'unprotectcomment' => 'Lý do',
 
 # Groups
-'addgroup' => 'Thêm nhóm',
-'editgroup' => 'Sửa nhóm',
 'editusergroup' => 'Sửa các nhóm thành viên',
-'addgrouplogentry' => 'Đã thêm nhóm $2',
 
 'groups-lookup-group' => 'Quản lý quyền hạn các nhóm',
 'groups-group-edit' => 'Các nhóm hiện nay:',
@@ -761,9 +757,6 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'groups-existing'           => 'Các nhóm hiện nay',
 'groups-noname'             => 'Xin nhập tên nhóm hợp lệ',
 'groups-already-exists'     => 'Một nhóm đã có tên đó',
-'addgrouplogentry'          => 'Nhóm $2 đã được thêm',
-'changegrouplogentry'       => 'Nhóm $2 đã thay đổi',
-'renamegrouplogentry'       => 'Nhóm $2 đã đổi tên thành $3',
 
 # user groups editing
 #
@@ -1162,7 +1155,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Xem trang thể loại\');',
 'already_steward' => 'Người này đã là tiếp viên',
 'already_sysop' => 'Người này đã là quản lý',
 'changed' => 'Đã sửa',
-'changegrouplogentry' => 'Đã sửa nhóm $2',
 'compareselectedversions' => 'So sánh các bản đã chọn',
 'createarticle' => 'Viết bài mới',
 'created' => 'đã viết mới',
@@ -1219,7 +1211,6 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'prefs-help-email-enotif' => 'Địa chỉ thư này cũng được dùng để gửi bạn thư thông báo nếu bạn lựa chọn chức năng này.',
 'print' => 'In',
 'recentchangesall' => 'tất cả',
-'renamegrouplogentry' => 'Đã đổi tên nhóm $2 đến $3',
 'restrictedpheading' => 'Trang đặc biệt hạn chế',
 'revertmove' => 'lùi lại',
 'revisionasofwithlink' => 'Sửa đổi lúc $1; $2<br />$3 | $4',

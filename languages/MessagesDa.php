@@ -114,7 +114,6 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 
 # Metadata in edit box
 'metadata' => '<b>Metadata</b> (for en foklaring se <a href="$1">her</a>)',
-'metadata_page' => '{{ns:4}}:Metadata',
 
 "currentevents" => "Aktuelle begivenheder",
 'currentevents-url' => 'Aktuelle begivenheder',
@@ -558,8 +557,6 @@ ellers skulle man for eksempel for dansk vintertid, indtaste \"1\"
 # switching pan
 'groups-lookup-group' => 'Administrér grupperettigheder',
 'groups-group-edit' => 'Eksisterende grupper:',
-'editgroup' => 'Redigér gruppe',
-'addgroup' => 'Tilføj gruppe',
 
 'userrights-lookup-user' => 'Administrér brugergrupper',
 'userrights-user-editname' => 'Skriv et brugernavn:',
@@ -578,9 +575,6 @@ en besked i MediaWiki navnerummet',
 'groups-existing'           => 'Eksisterende grupper',
 'groups-noname'             => 'Angiv venligst et lovligt gruppenavn',
 'groups-already-exists'     => 'En gruppe ved et navn eksisterer allerede',
-'addgrouplogentry'          => 'Tilføjet gruppe $2',
-'changegrouplogentry'       => 'Ændret gruppe $2',
-'renamegrouplogentry'       => 'Omdøbt gruppe $2 to $3',
 
 # user groups editing
 #
@@ -614,7 +608,6 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 sidste <strong>$2</strong> dage.",
 "rcnotefrom"	=> "Nedenfor er ændringerne fra <b>$2</b> indtil <b>$1</b> vist.",
 "rclistfrom"	=> "Vis nye ændringer startende fra $1",
-'showhideminor' => "$1 mindre ændringer | $2 robotter | $3 brugere der er logget på | $4 patruljerede ændringer",
 "rclinks"		=> "Vis seneste $1 ændringer i de sidste $2 dage<br />$3",
 "diff"			=> "forskel",
 "hist"			=> "historik",

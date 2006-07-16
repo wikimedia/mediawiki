@@ -121,7 +121,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 
 # Metadata in edit box
 'metadata' => '<b>Meiteashonraí</b> (féach ar <a href="$1">here</a> le haghaidh a thuilleadh eolais)',
-'metadata_page' => '{{ns:4}}:Meiteashonraí',
 
 "currentevents" => "Cursaí reatha",
 'currentevents-url' => 'Cursaí reatha',
@@ -598,8 +597,6 @@ den am an freastalaí (UTC).",
 #
 
 # switching pan
-'editgroup' => 'Cuir Grúpa In Eagar',
-'addgroup' => 'Cuir Grúpa Leis',
 'editusergroup' => 'Cuir Grúpái Úsáideoirí In Eagar',
 
 # group editing
@@ -621,9 +618,6 @@ beidh an téacs san ainmspás MediaWiki.',
 'groups-existing'	   => 'Grúpaí atá ann cheana féin',
 'groups-noname'	     => 'Cuir ainm bailí i leith don ghrúpa',
 'groups-already-exists'     => 'Tá grúpa ann leis an ainm sin cheana féin',
-'addgrouplogentry'	  => 'Cuireadh an ghrúpa $2 leis',
-'changegrouplogentry'       => 'Athraíodh an ghrúpa $2',
-'renamegrouplogentry'       => 'Athainmníodh an ghrúpa $2 mar $3',
 
 # user groups editing
 #
@@ -656,7 +650,6 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 "rcnote"	=> "Is iad seo a leanas na <strong>$1</strong> athruithe is déanaí sna <strong>$2</strong> lae seo caite.",
 "rcnotefrom"    => "Is iad seo a leanas na hathruithe ó <b>$2</b> (go dti <b>$1</b> taispeánaithe).",
 "rclistfrom"    => "Taispeáin nua-athruithe dom ó <b>$1</b> anuas)",
-'showhideminor' => "$1 mionathruithe | $2 robait | $3 úsáideoirí atá logáilte isteach | $4 athruithe faoi phatról",
 # "rclinks"     => "Taispeáin na $1 athruithe is déanaí sna $2 uaire seo caite / $3 laethanta seo caite.",
 # "rclinks"     => "Taispeáin na $1 athruithe is déanaí sna $2 laethanta seo caite.",
 "rclinks"       => "Taispeáin na $1 athruithe is déanaí sna $2 laethanta seo caite; $3 mionathruithe",
