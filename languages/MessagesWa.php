@@ -1739,7 +1739,6 @@ $1',
 'searchnoresults' => 'Mande escuzes, mins i gn a rén ki corespond.',
 'searchnumber' => '<strong>Rizultats: $1-$2 di $3</strong>',
 'searchprev' => '← <span style=\'font-size: small\'>Div.</span>',
-'metadata_page' => '{{ns:project}}:Meta-dnêyes',
 'checkuser' => 'Verifyî l\' uzeu',
 
 #####################
@@ -1911,8 +1910,6 @@ Cweraedje di: $3 $9',
 #
 'groups-lookup-group' => 'Manaedjî les droets do groupe',
 'groups-group-edit' => 'Groupes k\' i gn a:',
-'editgroup' => 'Candjî groupe',
-'addgroup' => 'Radjouter groupe',
 
 # group editing
 'groups-editgroup' => 'Candjî groupe',
@@ -1927,9 +1924,6 @@ eyet l\' tecse seré ratourné d\' après l\' espåce di lomaedje MediaWiki',
 'groups-existing' => 'Groupes k\' i gn a',
 'groups-noname' => 'Dinez on no d\' groupe valide s\' i vs plait',
 'groups-already-exists' => 'I gn a ddja on groupe ki s\' lome insi',
-'addgrouplogentry' => 'Groupe $2 radjouté',
-'changegrouplogentry' => 'Groupe $2 candjî',
-'renamegrouplogentry' => 'Groupe $2 rilomé viè $3',
 
 # Default group names and descriptions
 #
@@ -1945,7 +1939,6 @@ eyet l\' tecse seré ratourné d\' après l\' espåce di lomaedje MediaWiki',
 'group-steward-desc' => 'Accès a ttafwait',
 
 'nstab-project' => 'Pådje',
-'showhideminor' => '$1 candjmints mineurs | $2 robots | $3 uzeus eredjîstrés | $4 candjmints rwaitîs',
 ###################
 #
 # eployî pa côps el boesse di naiviaedje di waibes k' i gn a:

@@ -493,7 +493,6 @@ Mar fell deoc'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ daf
 'rcnote'  => "Setu aze an/ar <strong>$1</strong> (g/c'h)kemm diwezhañ bet c'hoarvezet e-pad an/ar <strong>$2</strong> deiz diwezhañ.",
 'rcnotefrom'	=> "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an/ar <strong>$2</strong> (<b>$1</b> d'ar muiañ).",
 'rclistfrom'	=> "Diskouez ar c'hemmoù diwezhañ abaoe an/ar $1.",
-'showhideminor' => "$1 (g/c'h)kemm dister | $2 robot | $3 implijerien enrollet | $4 patrolled edits",
 'rclinks'	=> "Diskouez an/ar $1 (g/c'h)kemm diwezhañ c'hoarvezet e-pad an/ar $2 devezh diwezhañ; $3 kemmoù dister.",	// Looxix
 'diff'            => 'diforc\'h',
 'hist'            => 'ist',
@@ -778,8 +777,6 @@ Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxi
 
 # Groups
 #
-'addgroup' => 'Ouzhpennañ ur strollad',
-'editgroup' => 'Kemmañ ar strollad',
 'editusergroup' => 'Kemmañ ar strolladoù implijerien',
 
 # Special:Undelete

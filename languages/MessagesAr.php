@@ -387,7 +387,6 @@
 'shortpages' => 'صفحات قصيرة',
 'show' => 'عرض',
 'showdiff' => 'أظهر الفرق',
-'showhideminor' => '$1 التعديلات الطفيفة',
 'showpreview' => 'عرض التعديلات',
 'showtoc' => 'إظهار',
 'sitestats' => 'إحصاءات الموقع',

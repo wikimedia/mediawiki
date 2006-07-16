@@ -489,7 +489,6 @@ i tekst $3 članaka.',
 'mediawarning' => '\'\'\'Upozorenje\'\'\': Ovaj fajl sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.
 <hr />',
 'metadata' => 'Metapodaci',
-'metadata_page' => '{{ns:project}}:Metapodaci',
 'mimesearch' => 'MIME pretraga',
 'mimetype' => 'MIME tip:',
 'minlength' => 'Imena fajlova moraju imati bar tri slova.',

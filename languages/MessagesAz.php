@@ -86,7 +86,6 @@ $wgAllMessagesAz = array(
 'navigation' => 'Rəhbər',
 
 # Metadata in edit box
-'metadata_page' => '{{ns:4}}:Metadata',
 
 'currentevents' => 'Güncəl hadisələr',
 'currentevents-url' => 'Project:Güncəl Hadisələr',
@@ -306,7 +305,6 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 #
 
 # switching pan
-'addgroup' => 'Bir qrup əlavə edin.',
 'userrights-lookup-user' => 'İstifadəçi qruplarını idarə et',
 'userrights-user-editname' => 'İstifadəçi adınızı yazın:',
 
