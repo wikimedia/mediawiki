@@ -287,11 +287,7 @@ class SpecialPage
 		if ( !self::$mListInitialised ) {
 			self::initList();
 		}
-		$pages = array(
-		  '' => array(),
-		  'sysop' => array(),
-		  'developer' => array()
-		);
+		$pages = array();
 
 		foreach ( self::$mList as $name => $rec ) {
 			$page = self::getPage( $name );
