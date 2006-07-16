@@ -67,6 +67,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   (blocked mid-edit) and the page doesn't exist
 * Improve default value of "blockedtext"
 * (bug 6680) Added localisation for Dutch bookstore list (nl)
+* Renamed maintainace script redundanttrans.php to unusedMessages.php - clearer usage
 
 == Languages updated ==
 
