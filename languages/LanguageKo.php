@@ -19,7 +19,7 @@ class LanguageKo extends LanguageUtf8 {
 		);
 		
 		private $mSkinNamesKo = array(
-			'standard' => '기본값',
+			'standard' => '표준',
 			'davinci' => '다빈치',
 			'mono' => '모노',
 			'monobook' => '모노북',
@@ -61,12 +61,15 @@ class LanguageKo extends LanguageUtf8 {
 			NS_PROJECT_TALK   => $wgMetaNamespace.'토론',
 			NS_IMAGE          => '그림',
 			NS_IMAGE_TALK     => '그림토론',
+			NS_MEDIAWIKI      => 'MediaWiki',
+			NS_MEDIAWIKI_TALK => 'MediaWiki토론',
+			NS_TEMPLATE       => '틀',
+			NS_TEMPLATE_TALK  => '틀토론',
 			NS_HELP           => '도움말',
 			NS_HELP_TALK      => '도움말토론',
 			NS_CATEGORY       => '분류',
 			NS_CATEGORY_TALK  => '분류토론',
 		);
-
 	}
 
 	function getNamespaces() {
