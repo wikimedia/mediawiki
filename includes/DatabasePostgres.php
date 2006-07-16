@@ -62,7 +62,6 @@ class DatabasePostgres extends Database {
 		$this->mDBname = $dbName;
 
 		$success = false;
-
 		$hstring="";
 		if ($server!=false && $server!="") {
 			$hstring="host=$server ";
@@ -72,7 +71,6 @@ class DatabasePostgres extends Database {
 		}
 
 		error_reporting( E_ALL );
-
 		@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
 
 		if ( $this->mConn == false ) {
@@ -104,7 +102,6 @@ class DatabasePostgres extends Database {
 			$rows = $this->numRows($this->doQuery($SQL));
 			if ($rows < 1) {
 				print "<b>FAILED</b>. Make sure the language plpgsql is installed for the database <tt>$wgDBname</tt>t</li>";
-				## XXX Better help
 				dieout("</ul>");
 			}
 			print "OK</li>\n";
@@ -124,7 +121,7 @@ class DatabasePostgres extends Database {
 				print "<li>Schema <b>$wgDBmwschema</b> exists but is not owned by <b>$user</b>. Not ideal.</li>\n";
 			}
 			else {
-				print "<li>Schema <b>$wgDBmwschema</b> exists and is owned by <b>$user ($result)</b>. Excellent.</li>\n";
+				print "<li>Schema <b>$wgDBmwschema</b> exists and is owned by <b>$user</b>. Excellent.</li>\n";
 			}
 
 			## Fix up the search paths if needed
@@ -563,9 +560,26 @@ class DatabasePostgres extends Database {
 		return $sql;
 	}
 
-	function update_interwiki() {
+	function setup_database() {
+		global $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgDBport;
+
+		dbsource( "../maintenance/postgres/tables.sql", $this);
+
+		## Update version information
+		$mwv = $this->addQuotes($wgVersion);
+		$pgv = $this->addQuotes($this->getServerVersion());
+		$pgu = $this->addQuotes($this->mUser);
+		$mws = $this->addQuotes($wgDBmwschema);
+		$tss = $this->addQuotes($wgDBts2schema);
+		$pgp = $this->addQuotes($wgDBport);
+		$dbn = $this->addQuotes($this->mDBname);
+
+		$SQL = "UPDATE mediawiki_version SET mw_version=$mwv, pg_version=$pgv, pg_user=$pgu, ".
+				"mw_schema = $mws, ts2_schema = $tss, pg_port=$pgp, pg_dbname=$dbn ".
+				"WHERE type = 'Creation'";
+		$this->query($SQL);
+
 		## Avoid the non-standard "REPLACE INTO" syntax
-		## Called by config/index.php
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
 		if ($f == false ) {
 			dieout( "<li>Could not find the interwiki.sql file");
