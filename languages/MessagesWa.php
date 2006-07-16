@@ -1899,7 +1899,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 'val_revision_stats_link' => 'detays',
 'val_total' => 'Totå',
 'projectpage' => 'Vey li meta-pådje',
-'contribs-showhideminor' => '$1 candjmints mineurs',
 'lucenepowersearchtext' => 'Cweraedje dins les espåces di lomaedje: $1 <br />
 Cweraedje di: $3 $9',
 'selflinks' => 'Pådjes avou des loyéns viè zeles minmes',
@@ -1949,14 +1948,9 @@ eyet l\' tecse seré ratourné d\' après l\' espåce di lomaedje MediaWiki',
 'group-steward-desc' => 'Accès a ttafwait',
 
 'tableform' => 'tåvlea',
-'listform' => 'djivêye',
-'nchanges' => '$1 candjmints',
 'uploadlink' => 'Eberweter des imådjes',
 'nstab-project' => 'Pådje',
-'rcloaderr' => 'Tcherdjant les dierins candjmints',
 'showhideminor' => '$1 candjmints mineurs | $2 robots | $3 uzeus eredjîstrés | $4 candjmints rwaitîs',
-'rchide' => 'e $4; $1 candjmints mineurs; $2 nos d\' espåces segondaires; $3 candjmints multipes.',
-'rcliu' => '; $1 candjmints pa des uzeus eredjîstrés',
 ###################
 #
 # eployî pa côps el boesse di naiviaedje di waibes k' i gn a:

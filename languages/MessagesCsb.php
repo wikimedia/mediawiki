@@ -224,7 +224,6 @@ $wgAllMessagesCsb = array(
 'qbmyoptions' => 'Mòje òptacëje',
 'qbspecialpages' => 'Specjalné starnë',
 'randompage' => 'Kawlowô starna',
-'rcloaderr' => 'Ladëjë slédné edicëje',
 'readonly' => 'Baza pòdôwków je zablokòwónô',
 'readonlywarning' => 'BÔCZËNK: Pòdôwkòwô baza òsta sztërkòwô zablokòwónô dlô administracëjnëch célów. Nie mòże tej timczasã zapisac nowi wersëje artikla. Bédëjemë przeniesc ji tekst do priwatnégò lopka
 (wëtnij/wstôw) ë zachòwac na pózni.',

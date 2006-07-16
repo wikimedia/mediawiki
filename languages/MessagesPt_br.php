@@ -407,20 +407,15 @@ e [[{{ns:4}}:Most common {{SITENAME}} faux pas|most common {{SITENAME}} faux pas
 
 Se você quer ver a {{SITENAME}} crescer, é muito importante que você não adicione material restrito por outras [[{{ns:4}}:Copyrights|copyrights]].
 Um problema legal poderia realmente prejudicar o projeto de maneira que pedimos, por avor, não faça isso.",
-"rcloaderr"     => "Carregando alterações recentes",
 "rcnote"        => "Abaixo estão as últimas <strong>$1</strong> alterações nos últimos <strong>$2</strong> dias.",
 "rcnotefrom"    => "Abaixo estão as mudanças desde <b>$2</b> (até <b>$1</b> mostradas).",
 "rclistfrom"    => "Mostrar as novas alterações a partir de $1",
 "rclinks"       => "Mostrar as últimas $1 mudanças nos últimos $2 dias; $3 edições minoritárias",
-"rchide"        => "em $4 formulários; $1 edições minoritárias; $2 namespaces secundários; $3 múltiplas edições.",
-"rcliu"         => "; $1 edições de usuários autenticados",
 "diff"          => "dif",
 "hist"          => "hist",
 "hide"          => "esconde",
 "show"          => "mostra",
 "tableform"     => "tabela",
-"listform"      => "lista",
-"nchanges"      => "$1 mudanças",
 "minoreditletter" => "M",
 "newpageletter" => "N",
 

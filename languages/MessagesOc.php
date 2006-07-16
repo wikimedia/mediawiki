@@ -383,21 +383,17 @@ Jetez un coup d'\x{0153}il sur ces pages : [[{{ns:project}}:FAQ|foire aux questi
 et [[{{ns:project}}:Les faux-pas les plus courants|les faux-pas les plus courants]].
 
 Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[{{ns:project}}:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
-"rcloaderr"  => "Chargement des dernières modifications",
 "rcnote"  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
 "rcnotefrom"	=> "Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
 "rclistfrom"	=> "Afficher les nouvelles modifications depuis le $1.",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
 "rclinks"	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
-"rchide"  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
 "diff"            => "diff",
 "hist"            => "hist",
 "hide"            => "cacher",
 "show"            => "montrer",
 "tableform"       => "table",
-"listform"        => "liste",
-"nchanges"        => "$1 modification(s)",
 "minoreditletter" => "M",
 "newpageletter"   => "N",
 
