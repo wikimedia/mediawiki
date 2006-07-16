@@ -289,10 +289,13 @@ class OutputPage {
 
 	function addWikiTextTitle($text, &$title, $linestart) {
 		global $wgParser;
+		$fname = 'OutputPage:addWikiTextTitle';
+		wfProfileIn($fname);
 		wfIncrStats('pcache_not_possible');
 		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions,
 			$linestart, true, $this->mRevisionId );
 		$this->addParserOutput( $parserOutput );
+		wfProfileOut($fname);
 	}
 
 	function addParserOutputNoText( &$parserOutput ) {
