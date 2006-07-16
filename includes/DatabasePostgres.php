@@ -182,10 +182,9 @@ class DatabasePostgres extends Database {
 			## Do we have plpgsql installed?
 			print "<li>Checking for plpgsql ...";
 			$SQL = "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'";
-			$res = $this->doQuery($SQL);
 			$rows = $this->numRows($this->doQuery($SQL));
 			if ($rows < 1) {
-				print "<b>FAILED</b>. Make sure the language plpgsql is installed for the database <tt>$wgDBname</tt>t</li>";
+				print "<b>FAILED</b>. Make sure the language plpgsql is installed for the database <tt>$wgDBname</tt></li>";
 				dieout("</ul>");
 			}
 			print "OK</li>\n";
