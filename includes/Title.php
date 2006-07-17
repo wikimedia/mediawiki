@@ -246,7 +246,7 @@ class Title {
 	}
 
 	/**
-	 * Create a new Title frrom a namespace index and a DB key.
+	 * Create a new Title from a namespace index and a DB key.
 	 * The parameters will be checked for validity, which is a bit slower
 	 * than makeTitle() but safer for user-provided data.
 	 *
