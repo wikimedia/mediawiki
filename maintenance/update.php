@@ -37,11 +37,7 @@ $wgDatabase = $dbc->newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpasswo
 if( !$wgDatabase->isOpen() ) {
 	# Appears to have failed
 	echo( "A connection to the database could not be established. Check the\n" );
-	# Let's be a bit clever and guess at what's wrong
-	if( isset( $wgDBadminuser ) && isset( $wgDBadminpassword ) ) {
-		# Tell the user the value(s) are wrong
-		echo( 'values of $wgDBadminuser and $wgDBadminpassword.' . "\n" );
-	}
+	echo( "values of \$wgDBadminuser and \$wgDBadminpassword.\n" );
 	exit();
 }
 
