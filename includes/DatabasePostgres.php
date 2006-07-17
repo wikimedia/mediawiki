@@ -30,8 +30,9 @@ class DatabasePostgres extends Database {
 		}
 		$this->mOut =& $wgOut;
 		$this->mFailFunction = $failFunction;
+		$this->mCascadingDeletes = true;
+		$this->mCleanupTriggers = true;
 		$this->mFlags = $flags;
-
 		$this->open( $server, $user, $password, $dbName);
 
 	}

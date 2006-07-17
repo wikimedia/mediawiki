@@ -244,6 +244,8 @@ class Database {
 	protected $mTrxLevel = 0;
 	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
+	protected $mCascadingDeletes = false;
+	protected $mCleanupTriggers = false;
 
 #------------------------------------------------------------------------------
 # Accessors
@@ -332,6 +334,20 @@ class Database {
 		} else {
 			$this->mLBInfo[$name] = $value;
 		}
+	}
+
+	/**
+	 * Returns true if this database supports (and uses) cascading deletes
+	 */
+	function cascadingDeletes() {
+		return $this->mCascadingDeletes;
+	}
+
+	/**
+	 * Returns true if this database supports (and uses) triggers (e.g. on the page table)
+	 */
+	function cleanupTriggers() {
+		return $this->mCleanupTriggers;
 	}
 
 	/**#@+
