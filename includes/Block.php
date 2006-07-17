@@ -359,10 +359,9 @@ class Block
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->begin();
 
-		# Unset ipb_anon_only and ipb_create_account for user blocks, makes no sense
+		# Unset ipb_anon_only for user blocks, makes no sense
 		if ( $this->mUser ) {
 			$this->mAnonOnly = 0;
-			$this->mCreateAccount = 0;
 		}
 
 		# Don't collide with expired blocks
