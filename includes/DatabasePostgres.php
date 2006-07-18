@@ -530,9 +530,8 @@ class DatabasePostgres extends Database {
 		return false;
 	}
 
-	# Return DB-style timestamp used for MySQL schema
 	function timestamp( $ts=0 ) {
-		return wfTimestamp(TS_DB,$ts);
+		return wfTimestamp(TS_POSTGRES,$ts);
 	}
 
 	/**
