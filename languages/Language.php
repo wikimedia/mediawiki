@@ -315,6 +315,7 @@ class fakeConverter {
 	function getParsedTitle() {return '';}
 	function markNoConversion($text) {return $text;}
 	function convertCategoryKey( $key ) {return $key; }
+	function convertLinkToAllVariants($text){ return array( $this->mLang->getCode() => $text); }
 
 }
 
@@ -1152,6 +1153,17 @@ class Language {
 	function findVariantLink( &$link, &$nt ) {
 		$this->mConverter->findVariantLink($link, $nt);
 	}
+
+	/**
+	 * If a language supports multiple variants, converts text
+	 * into an array of all possible variants of the text:
+	 *  'variant' => text in that variant
+	 */
+
+	function convertLinkToAllVariants($text){
+		return $this->mConverter->convertLinkToAllVariants($text);
+	}
+
 
 	/**
 	 * returns language specific options used by User::getPageRenderHash()
