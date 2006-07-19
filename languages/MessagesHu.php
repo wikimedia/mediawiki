@@ -64,6 +64,7 @@ $wgAllMessagesHu = array(
 'category'              => 'kategória',
 'category_header'       => '„$1” kategóriába tartozó szócikkek',
 'subcategories'         => 'Alkategóriák',
+'linktrail'             => '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu',
 'mainpage'              => 'Kezdőlap',
 'mainpagetext'          => 'Wiki szoftver sikeresen telepítve.',
 'portal'                => 'Közösségi portál',
