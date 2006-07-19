@@ -1885,37 +1885,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 'lucenepowersearchtext' => 'Cweraedje dins les espåces di lomaedje: $1 <br />
 Cweraedje di: $3 $9',
 
-# Maintenance Page
-#
-'groups-lookup-group' => 'Manaedjî les droets do groupe',
-'groups-group-edit' => 'Groupes k\' i gn a:',
-
-# group editing
-'groups-editgroup' => 'Candjî groupe',
-'groups-addgroup' => 'Radjouter groupe',
-'groups-editgroup-preamble' => 'Si l\' no ou l\' discrijhaedje atake avou on dobe pont (:),
-çou ki shût après serè veyou come on no d\' messaedje,
-eyet l\' tecse seré ratourné d\' après l\' espåce di lomaedje MediaWiki',
-'groups-editgroup-name' => 'No do groupe:',
-'groups-editgroup-description' => 'Discrijhaedje do groupe (255 caracteres å pus):<br />',
-'savegroup' => 'Schaper l\' groupe',
-'groups-tableheader' => 'ID || No || Discrijhaedje || Droets',
-'groups-existing' => 'Groupes k\' i gn a',
-'groups-noname' => 'Dinez on no d\' groupe valide s\' i vs plait',
-'groups-already-exists' => 'I gn a ddja on groupe ki s\' lome insi',
-
-# Default group names and descriptions
-#
-'group-anon-name' => 'Anonime',
-'group-anon-desc' => 'Uzeus anonimes',
-'group-loggedin-name' => 'Uzeu',
-'group-loggedin-desc' => 'Uzeus eredjîstrés',
-'group-admin-name' => 'Manaedjeu',
-'group-admin-desc' => 'Des uzeus k\' on nd a fiyåte et ki polèt bloker des uzeus ou disfacer des årtikes',
-'group-bureaucrat-name' => 'Mwaisse-manaedjeu',
-'group-bureaucrat-desc' => 'Les mimbes di ç\' groupe ci polèt dner l\' livea manaedjeu a ds ôtès uzeus',
-'group-steward-name' => 'Mwaisse-manaedjeu tot avå',
-'group-steward-desc' => 'Accès a ttafwait',
 
 'nstab-project' => 'Pådje',
 ###################
