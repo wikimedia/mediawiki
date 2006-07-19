@@ -36,7 +36,6 @@ class LanguageConverter {
 								$markup=array(),
 								$flags = array()) {
 		global $wgDBname;
-		global $wgLegalTitleChars;
 		$this->mLangObj = $langobj;
 		$this->mMainLanguageCode = $maincode;
 		$this->mVariants = $variants;
@@ -47,11 +46,6 @@ class LanguageConverter {
 		$this->mMarkup = array_merge($m, $markup);
 		$f = array('A'=>'A', 'T'=>'T');
 		$this->mFlags = array_merge($f, $flags);
-
-		// enable escape characters -{ }- in titles
-		if(!preg_match('/\{/',$wgLegalTitleChars)) $wgLegalTitleChars.='\{';
-		if(!preg_match('/\}/',$wgLegalTitleChars)) $wgLegalTitleChars.='\}';
-
 	}
 
 	/**
@@ -121,34 +115,6 @@ class LanguageConverter {
 	}
 
 	/**
-	 *  This function should be called on bare text
-	 *  It translates text into variant, specials:
-	 *    - ommiting roman numbers
-	 */
-	function translateText($text, $toVariant){
-		$breaks = '[^\w\x80-\xff]';
-
-		// regexp for roman numbers
-		$roman = 'M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})';
-
-		$reg = '/^'.$roman.'$|^'.$roman.$breaks.'|'.$breaks.$roman.'$|'.$breaks.$roman.$breaks.'/';
-
-		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
-
-		
-		$m = array_shift($matches);
-		$ret = strtr($m[0], $this->mTables[$toVariant]);
-		$mstart = $m[1]+strlen($m[0]);
-		foreach($matches as $m) {
-			$ret .= substr($text, $mstart, $m[1]-$mstart);
-			$ret .= strtr($m[0], $this->mTables[$toVariant]);
-			$mstart = $m[1] + strlen($m[0]);
-		}
-
-		return $ret;
-	}
-
-	/**
      * dictionary-based conversion
      *
      * @param string $text the text to be converted
@@ -181,21 +147,19 @@ class LanguageConverter {
 			$marker = "";
 
 		// this one is needed when the text is inside an html markup
-		$htmlfix = '|<[^>]+$|^[^<>]*>';
+		$htmlfix = '|<[^>]+=\"[^(>=)]*$|^[^(<>=\")]*\"[^>]*>';
 
-		// disable convert to variants between <code></code> tags
-		$codefix = '<code>.+?<\/code>|';
-
-		$reg = '/'.$codefix.'<[^>]+>|&[a-z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
+		$reg = '/<[^>]+>|&[a-z#][a-z0-9]+;' . $marker . $htmlfix . '/';
 	
 		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
+
 		$m = array_shift($matches);
-		$ret = $this->translateText($m[0],$toVariant);
+		$ret = strtr($m[0], $this->mTables[$toVariant]);
 		$mstart = $m[1]+strlen($m[0]);
 		foreach($matches as $m) {
 			$ret .= substr($text, $mstart, $m[1]-$mstart);
-			$ret .= $this->translateText($m[0],$toVariant);
+			$ret .= strtr($m[0], $this->mTables[$toVariant]);
 			$mstart = $m[1] + strlen($m[0]);
 		}
 		wfProfileOut( $fname );
@@ -207,9 +171,9 @@ class LanguageConverter {
      *
      * @param string $text the text to be converted
      * @return array of string
-     * @public
+     * @private
      */
-	function autoConvertToAllVariants($text, $includeFixedVariant=true) {
+	function autoConvertToAllVariants($text) {
 		$fname="LanguageConverter::autoConvertToAllVariants";
 		wfProfileIn( $fname );
 		if( !$this->mTablesLoaded )
@@ -217,50 +181,11 @@ class LanguageConverter {
 
 		$ret = array();
 		foreach($this->mVariants as $variant) {
-			$ret[$variant] = $this->translateText($text,$variant);
+			$ret[$variant] = strtr($text, $this->mTables[$variant]);
 		}
-		if($includeFixedVariant)
-			$ret[$this->mMainLanguageCode.'-fixed'] = $this->mMarkup['begin'].$text.$this->mMarkup['end'];
-
 		wfProfileOut( $fname );
 		return $ret;
 	}
-
-	/**
-     * convert link text to all supported variants
-     *
-     * @param string $text the text to be converted
-     * @return array of string
-     * @public
-     */
-	function convertLinkToAllVariants($text,$includeFixedVariant=true) {
-		if( !$this->mTablesLoaded )
-			$this->loadTables();
-
-		$ret = array();
-		$tarray = explode($this->mMarkup['begin'], $text);
-		$tfirst = array_shift($tarray);
-
-		foreach($this->mVariants as $variant)
-			$ret[$variant] = $this->translateText($tfirst,$variant);
-
-		foreach($tarray as $txt) {
-			$marked = explode($this->mMarkup['end'], $txt, 2);
-
-			foreach($this->mVariants as $variant){
-				$ret[$variant] .= $this->mMarkup['begin'].$marked[0].$this->mMarkup['end'];
-				if(array_key_exists(1, $marked))
-					$ret[$variant] .= $this->translateText($marked[1],$variant);
-			}
-			
-		}
-
-		if($includeFixedVariant)
-			$ret[$this->mMainLanguageCode.'-fixed'] = $this->mMarkup['begin'].$text.$this->mMarkup['end'];
-
-		return $ret;
-	}
-
 
 	/**
 	 * Convert text using a parser object for context
@@ -269,7 +194,7 @@ class LanguageConverter {
 		global $wgDisableLangConversion;
 		/* don't do anything if this is the conversion table */
 		if ( $parser->mTitle->getNamespace() == NS_MEDIAWIKI &&
-				 strpos($parser->mTitle->getText(), "Conversiontable") !== false ) 
+			strpos($parser->mTitle->getText, "Conversiontable") !== false ) 
 		{
 			return $text;
 		}
@@ -327,7 +252,7 @@ class LanguageConverter {
 				return $text;
 			}
 			else {
-				$this->mTitleDisplay = $this->convert($text);
+				$this->mTitleDisplay = $this->autoConvert($text);
 				return $this->mTitleDisplay;
 			}
 		}
@@ -364,7 +289,7 @@ class LanguageConverter {
 			else
 				$rules = $marked[0];
 
-			//FIXME: may cause trouble here...
+#FIXME: may cause trouble here...
 			//strip &nbsp; since it interferes with the parsing, plus,
 			//all spaces should be stripped in this tag anyway.
 			$rules = str_replace('&nbsp;', '', $rules);
@@ -456,16 +381,23 @@ class LanguageConverter {
      * @access public
 	 */
 	function findVariantLink( &$link, &$nt ) {
+		static $count=0; //used to limit this operation
+		static $cache=array();
 		global $wgDisableLangConversion;
 		$pref = $this->getPreferredVariant();
 		$ns=0;
 		if(is_object($nt))
 			$ns = $nt->getNamespace();
-
+		if( $count > 50 && $ns != NS_CATEGORY )
+			return;
+		$count++;
 		$variants = $this->autoConvertToAllVariants($link);
 		if($variants == false) //give up
 			return;
 		foreach( $variants as $v ) {
+			if(isset($cache[$v]))
+				continue;
+			$cache[$v] = 1;
 			$varnt = Title::newFromText( $v, $ns );
 			if( $varnt && $varnt->getArticleID() > 0 ) {
 				$nt = $varnt;

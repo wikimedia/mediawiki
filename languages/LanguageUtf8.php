@@ -94,51 +94,6 @@ class LanguageUtf8 extends Language {
 				return $first ? strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 ) : strtolower( $str );
 	}
 
-	function ucwords($str) {
-		global $wikiUpperChars;
-
-		if ( LanguageUtf8::isMultibyte( $str ) ) {
-			$str = LanguageUtf8::lc($str);
-
-			if ( function_exists( 'mb_strtoupper' ) )
-				$replaceCall = "mb_strtoupper(\"\$0\")";
-			else 
-				$replaceCall = "strtr( \"\$0\" , \$wikiUpperChars )";
-
-			return preg_replace(
-					"/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)| ([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-					$replaceCall,
-					$str
-				);
-		}
-		else
-			return ucwords( strtolower( $str ) );
-	}	
-
-	function ucwordbreaks($str){
-		global $wikiUpperChars;
-
-		if (LanguageUtf8::isMultibyte( $str ) ) {
-			$str = LanguageUtf8::lc($str);
-
-			if ( function_exists( 'mb_strtoupper' ) )
-				$replaceCall = "mb_strtoupper(\"\$0\")";
-			else 
-				$replaceCall = "strtr( \"\$0\" , \$wikiUpperChars )";
-
-			// since \b doesn't work for UTF-8, we explicitely define word break chars
-			$breaks= "[ \-\(\)\}\{\.,\?!]";
-
-			return preg_replace(
-					"/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)|$breaks([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-					$replaceCall,
-					$str
-				);
-		}
-		else
-			return Language::ucwordbreaks($str);
-	}
-
 	function isMultibyte( $str ) {
 		return (bool)preg_match( '/^[\x80-\xff]/', $str );
 	}

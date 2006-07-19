@@ -196,17 +196,14 @@ class SrConverter extends LanguageConverter {
 class LanguageSr extends LanguageSr_ec {
 	function __construct() {
 		global $wgHooks;
-
-		// these variants are currently UNUSED:
-		// 'sr-jc', 'sr-jl' 
-		$variants = array('sr', 'sr-ec', 'sr-el');
+		$variants = array('sr', 'sr-ec', 'sr-jc', 'sr-el', 'sr-jl');
 		$variantfallbacks = array(
 			'sr'    => 'sr-ec',
-			'sr-ec' => 'sr-ec',
-			'sr-el' => 'sr-el',
-			); 
-
-
+			'sr-ec' => 'sr-jc',
+			'sr-jc' => 'sr-ec',
+			'sr-el' => 'sr-jl',
+			'sr-jl' => 'sr-el'
+		);
 		$marker = array();//don't mess with these, leave them as they are
 		$flags = array(
 			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
