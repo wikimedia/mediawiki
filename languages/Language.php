@@ -755,6 +755,21 @@ class Language {
 		return strtolower( $str );
 	}
 
+	function ucwords($str) {
+		return ucwords( strtolower( $str ) );
+	}
+
+  # capitalize words at word breaks
+	function ucwordbreaks($str){
+		return preg_replace_callback(
+			'/\b([\w\x80-\xff]+)\b/',
+			create_function( '$matches', '
+				global $wgContLang;
+				return $wgContLang->ucfirst($matches[1]);
+				' ),
+			$str );
+	}
+
 	function checkTitleEncoding( $s ) {
 		global $wgInputEncoding;
 

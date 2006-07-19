@@ -121,6 +121,34 @@ class LanguageConverter {
 	}
 
 	/**
+	 *  This function should be called on bare text
+	 *  It translates text into variant, specials:
+	 *    - ommiting roman numbers
+	 */
+	function translateText($text, $toVariant){
+		$breaks = '[^\w\x80-\xff]';
+
+		// regexp for roman numbers
+		$roman = 'M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})';
+
+		$reg = '/^'.$roman.'$|^'.$roman.$breaks.'|'.$breaks.$roman.'$|'.$breaks.$roman.$breaks.'/';
+
+		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
+
+		
+		$m = array_shift($matches);
+		$ret = strtr($m[0], $this->mTables[$toVariant]);
+		$mstart = $m[1]+strlen($m[0]);
+		foreach($matches as $m) {
+			$ret .= substr($text, $mstart, $m[1]-$mstart);
+			$ret .= strtr($m[0], $this->mTables[$toVariant]);
+			$mstart = $m[1] + strlen($m[0]);
+		}
+
+		return $ret;
+	}
+
+	/**
      * dictionary-based conversion
      *
      * @param string $text the text to be converted
@@ -153,19 +181,21 @@ class LanguageConverter {
 			$marker = "";
 
 		// this one is needed when the text is inside an html markup
-		$htmlfix = '|<[^>]+=\"[^(>=)]*$|^[^(<>=\")]*\"[^>]*>';
+		$htmlfix = '|<[^>]+$|^[^<>]*>';
 
-		$reg = '/<[^>]+>|&[a-z#][a-z0-9]+;' . $marker . $htmlfix . '/';
+		// disable convert to variants between <code></code> tags
+		$codefix = '<code>.+?<\/code>|';
+
+		$reg = '/'.$codefix.'<[^>]+>|&[a-z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
 	
 		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
-
 		$m = array_shift($matches);
-		$ret = strtr($m[0], $this->mTables[$toVariant]);
+		$ret = $this->translateText($m[0],$toVariant);
 		$mstart = $m[1]+strlen($m[0]);
 		foreach($matches as $m) {
 			$ret .= substr($text, $mstart, $m[1]-$mstart);
-			$ret .= strtr($m[0], $this->mTables[$toVariant]);
+			$ret .= $this->translateText($m[0],$toVariant);
 			$mstart = $m[1] + strlen($m[0]);
 		}
 		wfProfileOut( $fname );
@@ -187,7 +217,7 @@ class LanguageConverter {
 
 		$ret = array();
 		foreach($this->mVariants as $variant) {
-			$ret[$variant] = strtr($text, $this->mTables[$variant]);
+			$ret[$variant] = $this->translateText($text,$variant);
 		}
 		if($includeFixedVariant)
 			$ret[$this->mMainLanguageCode.'-fixed'] = $this->mMarkup['begin'].$text.$this->mMarkup['end'];
@@ -212,7 +242,7 @@ class LanguageConverter {
 		$tfirst = array_shift($tarray);
 
 		foreach($this->mVariants as $variant)
-			$ret[$variant] = strtr($tfirst, $this->mTables[$variant]);
+			$ret[$variant] = $this->translateText($tfirst,$variant);
 
 		foreach($tarray as $txt) {
 			$marked = explode($this->mMarkup['end'], $txt, 2);
@@ -220,7 +250,7 @@ class LanguageConverter {
 			foreach($this->mVariants as $variant){
 				$ret[$variant] .= $this->mMarkup['begin'].$marked[0].$this->mMarkup['end'];
 				if(array_key_exists(1, $marked))
-					$ret[$variant] .= strtr($marked[1], $this->mTables[$variant]);
+					$ret[$variant] .= $this->translateText($marked[1],$variant);
 			}
 			
 		}
