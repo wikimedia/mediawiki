@@ -789,7 +789,7 @@ class PreferencesForm {
 		if ($dateopts) {
 			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg( 'dateformat' ) . "</legend>\n" );
 			$idCnt = 0;
-			$epoch = '20010408091234';
+			$epoch = '20010115161234'; # Wikipedia day
 			foreach($dateopts as $key => $option) {
 				if( $key == MW_DATE_DEFAULT ) {
 					$formatted = wfMsgHtml( 'datedefault' );
