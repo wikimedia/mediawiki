@@ -554,26 +554,10 @@ ellers skulle man for eksempel for dansk vintertid, indtaste \"1\"
 #
 
 # switching pan
-'groups-lookup-group' => 'Administrér grupperettigheder',
-'groups-group-edit' => 'Eksisterende grupper:',
 
 'userrights-lookup-user' => 'Administrér brugergrupper',
 'userrights-user-editname' => 'Skriv et brugernavn:',
 'editusergroup' => 'Redigér brugergrupper',
-
-# group editing
-'groups-editgroup' => 'Redigér gruppe',
-'groups-addgroup' => 'Tilføj gruppe',
-'groups-editgroup-preamble' => 'Hvis navn eller beskrivelse starter med et kolon, så vil
-resten blive behandlet som et navn på en besked, og derfor vil teksten blive behandlet som
-en besked i MediaWiki navnerummet',
-'groups-editgroup-name' => 'Gruppenavn:',
-'groups-editgroup-description' => 'Gruppebeskrivelse (max 255 tegn):<br />',
-'savegroup' => 'Gem gruppe',
-'groups-tableheader'        => 'ID || Navn || Beskrivelse || Rettigheder',
-'groups-existing'           => 'Eksisterende grupper',
-'groups-noname'             => 'Angiv venligst et lovligt gruppenavn',
-'groups-already-exists'     => 'En gruppe ved et navn eksisterer allerede',
 
 # user groups editing
 #
@@ -584,20 +568,6 @@ en besked i MediaWiki navnerummet',
 'userrights-groupshelp' => 'Vælg grupper som du ønsker brugeren skal fjernes fra eller føjes til.
 Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en gruppe ved hjælp af CTRL-tasten og et venstreklik.',
 'userrights-logcomment' => 'Ændret gruppemedlemskab fra $1 til $2',
-
-# Default group names and descriptions
-#
-'group-anon-name'       => 'Anonym',
-'group-anon-desc'       => 'Anonyme brugere',
-'group-loggedin-name'   => 'Bruger',
-'group-loggedin-desc'   => 'Generel bruger der er logget på',
-'group-admin-name'      => 'Administrator',
-'group-admin-desc'      => 'En bruger der kan blokere andre brugere og slette sider',
-'group-bureaucrat-name' => 'Bureaukrat',
-'group-bureaucrat-desc' => 'Bureaukrater kan udnævne administratorer',
-'group-steward-name'    => 'Steward',
-'group-steward-desc'    => 'Fuld adgang',
-
 
 # Recent changes
 #

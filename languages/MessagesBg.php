@@ -574,26 +574,9 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 
 # User levels special page
 
-# switching pan
-'groups-lookup-group' => 'Управляване на групови права',#Manage group rights
-'groups-group-edit' => 'Съществуващи групи:',
-
 'userrights-lookup-user' => 'Управляване на потребителските групи',#Manage user groups
 'userrights-user-editname' => 'Въведете потребителско име:', #Enter a username:
 'editusergroup' => 'Редактиране на потребителските групи', #Edit User Groups
-
-# group editing
-'groups-editgroup' => 'Редактиране на група',
-'groups-addgroup' => 'Добавяне на група',
-# TODO
-'groups-editgroup-preamble' => 'If the name or description starts with a colon, the remainder will be treated as a message name, and hence the text will be localised using the MediaWiki namespace',
-'groups-editgroup-name' => 'Име на група:',
-'groups-editgroup-description' => 'Определение на група (до 255 знака):<br />',
-'savegroup' => 'Съхранение на група',
-'groups-tableheader'        => 'ID || Име || Описание || Права',
-'groups-existing'           => 'Съществуващи групи',
-'groups-noname'             => 'Please specify a valid group name',
-'groups-already-exists'     => 'A group of that name already exists',
 
 # user groups editing
 'userrights-editusergroup' => 'Редактиране на потребителските групи',#Edit user groups
@@ -603,18 +586,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'userrights-groupshelp' => 'Изберете групите, към които искате той да бъде прибавен или от които да бъде премахнат. Неизбраните групи няма да бъдат променени. Можете да отизберете група чрез <CTRL> + ляв бутон на мишката',
 'userrights-logcomment' => 'Смяна на груповата принадлежност от $1 към $2',
 
-# Default group names and descriptions
-#
-'group-anon-name'       => 'Анонимен',
-'group-anon-desc'       => 'Анонимни потребители',
-'group-loggedin-name'   => 'Потребител',
-'group-loggedin-desc'   => 'Обикновени влезли потребители',
-'group-admin-name'      => 'Администратор',
-'group-admin-desc'      => 'Доверените потребители могат да блокират потребители и да трият страници',
-'group-bureaucrat-name' => 'Бюрократ',
-'group-bureaucrat-desc' => 'Бюрократите могат да дават администраторски права',
-'group-steward-name'    => 'Стюард',
-'group-steward-desc'    => 'Неограничен достъп',
 
 # Recent changes
 #

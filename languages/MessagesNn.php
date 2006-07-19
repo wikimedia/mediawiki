@@ -510,24 +510,10 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 #
 
 # switching pan
-'groups-lookup-group'   => 'Administrer gruppetilgang',
-'groups-group-edit'     => 'Eksisterande grupper:',
 
 'userrights-lookup-user' => 'Administrer brukargrupper',
 'userrights-user-editname' => 'Skriv inn brukarnamn:',
 'editusergroup'         => 'Endre brukargrupper',
-
-# group editing
-'groups-editgroup'      => 'Endre gruppe',
-'groups-addgroup'       => 'Legg til gruppe',
-'groups-editgroup-preamble' => 'Dersom namnet eller skildringa byrjar med ein kolon så vil resten bli tolka som eit systemmeldingsnamn og dermed bli omsett gjennom MediaWiki-namnerommet.',
-'groups-editgroup-name' => 'Gruppenamn:',
-'groups-editgroup-description' => 'Gruppeskildring (maks 255 teikn):<br />',
-'savegroup'             => 'Lagre gruppe',
-'groups-tableheader'        => 'ID || Namn || Skildring || Tilgang',
-'groups-existing'           => 'Grupper',
-'groups-noname'             => 'Gje eit gyldig gruppenamn',
-'groups-already-exists'     => 'Det er allereie ei gruppe med det namnet',
 
 # user groups editing
 #
@@ -537,19 +523,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'userrights-groupsavailable' => 'Tilgjengelege grupper:',
 'userrights-groupshelp' => 'Vel grupper du vil at brukaren skal fjernast frå eller leggjast til. Grupper som ikkje er valde vil ikkje bli endra. Du kan velja vekk ei gruppe med [CTRL + venstreklikk]',
 'userrights-logcomment' => 'Endra gruppemedlemskap frå $1 til $2',
-
-# Default group names and descriptions
-#
-'group-anon-name'       => 'Anonym',
-'group-anon-desc'       => 'Anonyme brukarar',
-'group-loggedin-name'   => 'Brukar',
-'group-loggedin-desc'   => 'Standard innlogga brukarar',
-'group-admin-name'      => 'Administrator',
-'group-admin-desc'      => 'Truverdige brukarar som kan blokkera brukartilgang og sletta sider',
-'group-bureaucrat-name' => 'Byråkrat',
-'group-bureaucrat-desc' => 'Administratorar som kan gje andre brukarar administratortilgang',
-'group-steward-name'    => 'Stuert',
-'group-steward-desc'    => 'Full tilgang',
 
 # Recent changes
 #

@@ -598,25 +598,8 @@ den am an freastalaí (UTC).",
 # switching pan
 'editusergroup' => 'Cuir Grúpái Úsáideoirí In Eagar',
 
-# group editing
-'savegroup' => 'Sábháil an Ghrúpa',
-
 # user groups editing
 'saveusergroups' => 'Sábháil Grúpaí Úsáideoirí',
-
-# group editing
-'groups-editgroup'	  => 'Cuir grúpa in eagar',
-'groups-addgroup'	   => 'Cuir grúpa leis',
-'groups-editgroup-preamble' => 'Má thosaíonn an ainm nó an cur síos le hidirstad,
-measfar go bhfuil ainm teachtaireacha ann sa chuid eile, agus mar sin
-beidh an téacs san ainmspás MediaWiki.',
-'groups-editgroup-name'     => 'Ainm an ghrúpa:',
-'groups-editgroup-description' => 'Cur síos ar an ngrúpa (255 carachtar an uasmhéid):<br />',
-'savegroup'	         => 'Sábháil an Ghrúpa',
-'groups-tableheader'	=> 'ID || Ainm || Cur Síos || Cearta',
-'groups-existing'	   => 'Grúpaí atá ann cheana féin',
-'groups-noname'	     => 'Cuir ainm bailí i leith don ghrúpa',
-'groups-already-exists'     => 'Tá grúpa ann leis an ainm sin cheana féin',
 
 # user groups editing
 #
@@ -628,18 +611,6 @@ beidh an téacs san ainmspás MediaWiki.',
 Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a díroghnú le húsáid CTRL + cléchliceáil',
 'userrights-logcomment' => 'Athraíodh an ballraíocht grúpa ó $1 go $2',
 
-# Default group names and descriptions
-#
-'group-anon-name'       => 'Gan ainm',
-'group-anon-desc'       => 'úsáideoirí gan ainmneacha',
-'group-loggedin-name'   => 'Úsáideoir',
-'group-loggedin-desc'   => 'Gnáth-úsáideoirí atá logáilte isteach',
-'group-admin-name'      => 'Riarthóir',
-'group-admin-desc'      => 'Úsáideoirí iontaofa, atá ar a gcumas úsáideoirí a chosc agus ailt a scriosadh',
-'group-bureaucrat-name' => 'Maorlathach',
-'group-bureaucrat-desc' => 'Is féidir le grúpa na maorlathach oibreoirí córais a dhéanamh',
-'group-steward-name'    => 'Maor',
-'group-steward-desc'    => 'Rochtain iomlán',
 
 # Recent changes
 #

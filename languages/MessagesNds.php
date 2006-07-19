@@ -1028,8 +1028,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategoriesiet ankieken\');',
 
 'editusergroup'                         => 'Brukergruppen bearbeiden',
 
-# Gruppen bearbeiden
-'savegroup'                             => 'Grupp spiekern',
 
 # Brukergruppen bearbeiden
 'saveusergroups'                        => 'Brukergruppen spiekern',

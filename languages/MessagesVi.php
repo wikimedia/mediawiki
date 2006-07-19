@@ -729,23 +729,9 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 # Groups
 'editusergroup' => 'Sửa các nhóm thành viên',
 
-'groups-lookup-group' => 'Quản lý quyền hạn các nhóm',
-'groups-group-edit' => 'Các nhóm hiện nay:',
 
 'userrights-lookup-user' => 'Quản lý nhóm thành viên',
 'userrights-user-editname' => 'Nhập tên thành viên:',
-
-# group editing
-'groups-editgroup'          => 'Sửa nhóm',
-'groups-addgroup'           => 'Thêm nhóm',
-'groups-editgroup-preamble' => 'Nếu một tên hoặc một mô tả bắt đầu bằng dấu phẩy, phần còn lại được coi như tên một tin nhắn, do đó nội dung sẽ được địa phương hóa qua không gian MediaWiki',
-'groups-editgroup-name' => 'Tên nhóm:',
-'groups-editgroup-description' => 'Mô tả nhóm (tối đa 255 chữ):<br />',
-'savegroup'                 => 'Lưu nhóm',
-'groups-tableheader'        => 'ID || Tên || Mô tả || Quyền',
-'groups-existing'           => 'Các nhóm hiện nay',
-'groups-noname'             => 'Xin nhập tên nhóm hợp lệ',
-'groups-already-exists'     => 'Một nhóm đã có tên đó',
 
 # user groups editing
 #
@@ -755,18 +741,6 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'userrights-groupsavailable' => 'Các nhóm hiện nay:',
 'userrights-groupshelp' => 'Chọn nhóm mà bạn muốn thêm hay bớt thành viên. Các nhóm không được chọn sẽ không thay đổi. Có thể chọn nhóm bằng CTRL + Chuột trái',
 'userrights-logcomment' => 'Thành viên nhóm đã đổi từ $1 đến $2',
-
-# Default group names and descriptions
-'group-anon-name'       => 'Vô danh',
-'group-anon-desc'       => 'Các thành viên vô danh',
-'group-loggedin-name'   => 'Thành viên',
-'group-loggedin-desc'   => 'Các thành viên đăng nhập',
-'group-admin-name'      => 'Quản lý',
-'group-admin-desc'      => 'Các thành viên được tín nhiệm để chặn phá hoại hay xóa bài',
-'group-bureaucrat-name' => 'Tổng quản lý',
-'group-bureaucrat-desc' => 'Các thành viên có thể bổ nhiệm quản lý',
-'group-steward-name'    => 'Tiếp viên',
-'group-steward-desc'    => 'Có mọi quyền hạn',
 
 # Special:Undelete
 'undelete' => 'Khôi phục',
@@ -1198,7 +1172,6 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'recentchangesall' => 'tất cả',
 'restrictedpheading' => 'Trang đặc biệt hạn chế',
 'revertmove' => 'lùi lại',
-'savegroup' => 'Lưu nhóm',
 'saveusergroups' => 'Lưu nhóm thành viên',
 'scarytranscludedisabled' => 'Liên wiki bị tắt',
 'scarytranscludefailed' => 'Tiêu bản cho $1 bị tắt',
