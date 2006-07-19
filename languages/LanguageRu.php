@@ -241,5 +241,18 @@ class LanguageRu extends LanguageUtf8 {
 		);
 	}
 
+	function getMonthNameGen( $key ) {
+		global $wgMonthNamesGenEn, $wgContLang;
+		// see who called us and use the correct message function
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
+			return wfMsgForContent( $wgMonthNamesGenEn[$key-1] );
+		else
+			return wfMsg( $wgMonthNamesGenEn[$key-1] );
+	}
+
+	function formatMonth( $month, $format ) {
+		return $this->getMonthNameGen( $month );
+	}
+
 }
 ?>
