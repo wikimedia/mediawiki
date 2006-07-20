@@ -66,7 +66,7 @@ class LinkBatch {
 	 */
 	 function execute() {
 	 	$linkCache =& LinkCache::singleton();
-	 	$this->executeInto( $linkCache );
+	 	return $this->executeInto( $linkCache );
 	 }
 
 	/**
