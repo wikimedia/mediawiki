@@ -52,6 +52,7 @@ class ListredirectsPage extends QueryPage {
 
 		# Check the language; RTL wikis need a &larr;
 		$arr = $wgContLang->isRTL() ? ' &larr; ' : ' &rarr; ';
+		$arr .= $wgContLang->getDirMark();
 
 		# Format the whole thing and return it
 		return( $rd_link . $arr . $targetLink );
