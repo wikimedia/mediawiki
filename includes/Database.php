@@ -449,6 +449,7 @@ class Database {
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		global $wguname;
+		wfProfileIn( __METHOD__ );
 
 		# Test for missing mysql.so
 		# First try to load it
@@ -508,6 +509,7 @@ class Database {
 		}
 
 		$this->mOpened = $success;
+		wfProfileOut( __METHOD__ );
 		return $success;
 	}
 	/**@}}*/
