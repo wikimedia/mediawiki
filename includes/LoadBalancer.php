@@ -627,6 +627,7 @@ class LoadBalancer {
 	function getLagTimes() {
 		global $wgDBname;
 
+		wfProfileIn( __METHOD__ );
 		$expiry = 5;
 		$requestRate = 10;
 
@@ -638,6 +639,7 @@ class LoadBalancer {
 			$chance = max( 0, ( $expiry - $elapsed ) * $requestRate );
 			if ( mt_rand( 0, $chance ) != 0 ) {
 				unset( $times['timestamp'] );
+				wfProfileOut( __METHOD__ );
 				return $times;
 			}
 		}
@@ -659,6 +661,8 @@ class LoadBalancer {
 
 		# But don't give the timestamp to the caller
 		unset($times['timestamp']);
+		wfIncrStats( 'lag_cache_miss' );
+		wfProfileOut( __METHOD__ );
 		return $times;
 	}
 }
