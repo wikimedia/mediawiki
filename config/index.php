@@ -730,7 +730,7 @@ error_reporting( E_ALL );
 		print "<li>Connected to $myver";
 		if ($conf->DBtype == 'mysql') {
 			if( version_compare( $myver, "4.0.14" ) < 0 ) {
-				die( " -- mysql 4.0.14 or later required. Aborting." );
+				dieout( " -- mysql 4.0.14 or later required. Aborting." );
 			}
 			$mysqlNewAuth   = version_compare( $myver, "4.1.0", "ge" );
 			if( $mysqlNewAuth && $mysqlOldClient ) {
@@ -770,6 +770,11 @@ error_reporting( E_ALL );
 				print "<li>Created database <tt>" . htmlspecialchars( $wgDBname ) . "</tt></li>\n";
 			}
 			$wgDatabase->selectDB( $wgDBname );
+		}
+		else if ($conf->DBtype == 'postgres') {
+			if( version_compare( $myver, "PostgreSQL 8.0" ) < 0 ) {
+				dieout( " <b>Postgres 8.0 or later is required</b>. Aborting.</li></ul>" );
+			}
 		}
 
 		if( $wgDatabase->tableExists( "cur" ) || $wgDatabase->tableExists( "revision" ) ) {
