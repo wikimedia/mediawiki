@@ -70,6 +70,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Renamed maintainace script redundanttrans.php to unusedMessages.php - clearer usage
 * Fix regression which allowed some blocked users to create additional accounts
 * (bug 6657) Fix Hungarian linktrail
+* (bug 6751) Fix preview of blanked section with edit on first preview option
 
 
 == Languages updated ==

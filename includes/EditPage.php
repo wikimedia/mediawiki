@@ -1380,11 +1380,6 @@ END
 			wfProfileOut( $fname );
 			return $previewhead;
 		} else {
-			# if user want to see preview when he edit an article
-			if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
-				$this->textbox1 = $this->getContent();
-			}
-
 			$toparse = $this->textbox1;
 
 			# If we're adding a comment, we need to show the
