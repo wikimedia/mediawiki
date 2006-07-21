@@ -309,7 +309,9 @@ class DatabasePostgres extends Database {
 			return "No database connection";
 		}
 	}
-	function lastErrno() { return 1; }
+	function lastErrno() {
+		return pg_last_error() ? 1 : 0;
+	}
 
 	function affectedRows() {
 		return pg_affected_rows( $this->mLastResult );
