@@ -50,11 +50,13 @@ $ourdb['mysql']['fullname']      = 'MySQL';
 $ourdb['mysql']['havedriver']    = 0;
 $ourdb['mysql']['compile']       = 'mysql';
 $ourdb['mysql']['bgcolor']       = '#ffe5a7';
+$ourdb['mysql']['rootuser']      = 'root';
 
 $ourdb['postgres']['fullname']   = 'PostgreSQL';
 $ourdb['postgres']['havedriver'] = 0;
 $ourdb['postgres']['compile']    = 'pgsql';
 $ourdb['postgres']['bgcolor']    = '#aaccff';
+$ourdb['postgres']['rootuser']   = 'postgres';
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -142,17 +144,32 @@ $ourdb['postgres']['bgcolor']    = '#aaccff';
 	</style>
 	<script type="text/javascript">
 	<!--
+	var firstrun = 1;
 	function hideall() {
 		<?php foreach (array_keys($ourdb) as $db) {
-		echo "document.getElementById('$db').style.display='none';\n";
+		echo "\n		document.getElementById('$db').style.display='none';";
 		}
 		?>
+
 	}
-	function togglearea(id) {
+	function toggleDBarea(id) {
 		hideall();
 		var dbarea = document.getElementById(id).style;
-		dbarea.display = dbarea.display = 'none' ? 'block' : 'none';
-  	}
+		dbarea.display = (dbarea.display == 'none') ? 'block' : 'none';
+		if (firstrun == 1) {
+			firstrun = 0;
+			return;
+		}
+		if (firstrun ==2 ) {
+			return;
+		}
+		var db = document.getElementById('RootUser');
+		<?php foreach (array_keys($ourdb) as $db) {
+		echo "\n		if (id == '$db') { db.value = '".$ourdb[$db]['rootuser']."';}";
+		}
+		?>
+
+	}
 	// -->
 	</script>
 </head>
@@ -483,12 +500,12 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
+	$conf->RootUser     =  importPost( "RootUser", "root" );
+	$conf->RootPW       =  importPost( "RootPW", "-" );
 
 	## MySQL specific:
 	$conf->DBprefix     =  importPost( "DBprefix" );
 	$conf->DBmysql5     = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
-	$conf->RootUser     =  importPost( "RootUser", "root" );
-	$conf->RootPW       =  importPost( "RootPW", "-" );
 	$conf->LanguageCode =  importPost( "LanguageCode", "en" );
 
 	## Postgres specific:
@@ -1189,7 +1206,7 @@ if( count( $errs ) ) {
 </div>
 
 <script type="text/javascript">
-window.onload = togglearea('<?php echo $conf->DBtype; ?>');
+window.onload = toggleDBarea('<?php echo $conf->DBtype; ?>');
 </script>
 
 </form>
@@ -1492,7 +1509,7 @@ function aField( &$conf, $field, $text, $type = "text", $value = "", $onclick = 
 	}
 	echo "\t\t<input $xtype name=\"$field\" id=\"$id\" class=\"iput-$type\" $checked ";
 	if ($onclick) {
-		echo " onclick='togglearea(\"$value\")' " ;
+		echo " onclick='toggleDBarea(\"$value\")' " ;
 	}
 	echo "value=\"";
 	if( $type == "radio" ) {
