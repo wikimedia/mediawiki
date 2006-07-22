@@ -1106,6 +1106,7 @@ Molimo vas da proverite URL koji ste upotrebili da biste pristupili ovoj stranic
 'scarytranscludefailed' => '[Donošenje šablona neuspešno; žao nam je]',
 'scarytranscludetoolong' => '[URL je predugačak; žao nam je]',
 'search' => 'Traži',
+'searchbutton' => 'Traži',
 'searchdisabled' => '<p>Izvinjavamo se! Puna pretraga teksta je privremeno onemogućena, zbog bržeg rada Vikipedije. U međuvremenu, možete koristiti Gugl pretragu ispod, koja može biti zastarela.</p>',
 'searchfulltext' => 'Pretraži ceo tekst',
 'searchsubtitle' => 'Tražili ste [[:$1]] [[Special:Allpages/$1|&#x5B;Sadržaj&#x5D;]]',

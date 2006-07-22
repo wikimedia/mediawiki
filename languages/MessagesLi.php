@@ -95,6 +95,7 @@ $wgAllMessagesLi = array(
 'returnto'              => 'Truuk nao $1.',
 'tagline'               => 'Van {{SITENAME}}',
 'search'                => 'Zeuke',
+'searchbutton'          => 'Zeuke',
 'go'                    => 'OK',
 'history'               => 'Historie',
 'history_short'         => 'Historie',

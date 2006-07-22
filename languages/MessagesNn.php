@@ -129,6 +129,7 @@
 'whatlinkshere'	          => 'Sider med lenkjer hit',
 'help'			  => 'Hjelp',
 'search'		  => 'Søk',
+'searchbutton'	  => 'Søk',
 'go'		          => 'Vis',
 'history'		  => 'Sidehistorikk',
 'history_short'           => 'Historikk',

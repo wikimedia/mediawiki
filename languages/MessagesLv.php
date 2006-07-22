@@ -110,6 +110,7 @@ $wgAllMessagesLv = array(
 'returnto'              => 'Atgriezties: $1.',
 'tagline'               => 'No \'\'{{grammar:ģenitīvs|{{SITENAME}}}}\'\'',
 'search'                => 'Meklēt',
+'searchbutton'          => 'Meklēt',
 'go'                    => 'Aiziet!',
 'history'               => 'hronoloģija',
 'history_short'         => 'Hronoloģija',

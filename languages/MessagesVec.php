@@ -88,6 +88,7 @@ $wgAllMessagesVec = array(
 'currentevents-url'     => 'Atuałità',
 'errorpagetitle'        => 'Erór',
 'search'                => 'Serca',
+'searchbutton'          => 'Serca',
 'history'               => 'Versión precedenti',
 'history_short'         => 'Cronołogia',
 'info_short'            => 'Informazsion',

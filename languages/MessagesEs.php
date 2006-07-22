@@ -115,6 +115,7 @@ $wgAllMessagesEs = array(
 'returnto'              => 'Regresa a $1.',
 'tagline'               => 'De {{SITENAME}}',
 'search'                => 'Buscar',
+'searchbutton'          => 'Buscar',
 'go'                    => 'Ir',
 'history'               => 'Historial',
 'history_short'         => 'Historial',

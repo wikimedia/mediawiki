@@ -140,6 +140,7 @@ $wgAllMessagesDe = array(
 'tagline'		=> 'Aus {{SITENAME}}',
 "help"			=> "Hilfe",
 "search"		=> "Suche",
+"searchbutton"	=> "Suche",
 "history"		=> "Versionen",
 'info_short'		=> 'Information',
 "history_short" => "Versionen",

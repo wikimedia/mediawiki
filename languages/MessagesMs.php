@@ -114,6 +114,7 @@ $wgAllMessagesMs = array(
 "whatlinkshere"               => "Halaman yang dipautkan ke sini", #"Pages that link here",
 "help"                        => "Bantuan",
 "search"              => "Cari",
+"searchbutton"        => "Cari",
 "go"                  => "Paparkan",
 "history"             => "Sejarah Halaman",
 "history_short"         => "Sejarah",

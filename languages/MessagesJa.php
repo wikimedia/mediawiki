@@ -118,6 +118,7 @@ $wgAllMessagesJa = array(
 'returnto'              => '$1 に戻る。',
 'tagline'               => '出典: {{SITENAME}}',
 'search'                => '検索',
+'searchbutton'          => '検索',
 'go'                    => '表示',
 'history'               => '履歴',
 'history_short'         => '履歴',

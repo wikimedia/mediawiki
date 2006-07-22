@@ -122,6 +122,7 @@ $wgAllMessagesKo = array(
 'returnto'              => '$1(으)로 돌아가기',
 'tagline'               => '{{SITENAME}}',
 'search'                => '찾기',
+'searchbutton'          => '찾기',
 'go'                    => '가기',
 'history'               => '문서 역사',
 'history_short'         => '역사',

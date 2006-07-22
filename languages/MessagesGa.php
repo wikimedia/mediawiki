@@ -133,6 +133,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "whatlinkshere" => "Leathanaigh a nascaíonn chuig an leathanach seo",
 "help"      => "Cabhair",
 "search"	=> "Cuardaigh",
+"searchbutton"	=> "Cuardaigh",
 "go"	    => "Téir",
 "history"       => "Stair an lgh seo",
 'history_short' => 'Stair',

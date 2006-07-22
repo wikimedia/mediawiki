@@ -120,6 +120,7 @@
 'whatlinkshere'  => 'Какво сочи насам',
 'help'      => 'Помощ',
 'search'    => 'Търсене',
+'searchbutton'    => 'Търсене',
 'go'    => 'Отваряне',
 'history'    => 'История',
 'history_short' => 'История',

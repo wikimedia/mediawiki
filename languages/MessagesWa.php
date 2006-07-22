@@ -135,6 +135,7 @@ $wgAllMessagesWa = array(
 'returnto' => 'Rivni al pådje «$1».',
 'tagline' => 'Èn årtike di {{SITENAME}}.',
 'search' => 'Cweri',
+'searchbutton' => 'Cweri',
 'go' => 'Potchî',
 'history' => 'Istwere del pådje',
 'history_short' => 'Istwere',

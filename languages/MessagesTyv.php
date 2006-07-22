@@ -87,6 +87,7 @@
 'whatlinkshere'	=> 'Pages that link here', //Pages that link here
 'help'			=> 'Дуза', //Help
 'search'		=> 'Дилээр', //Search
+'searchbutton'	=> 'Дилээр', //Search
 'go'		=> 'Чоруур', //Go
 'history'		=> 'Арынның Төөгүзү', //Page history
 'history_short' => 'Төөгү', //History

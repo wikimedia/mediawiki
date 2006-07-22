@@ -91,6 +91,7 @@ $wgAllMessagesPt_br = array(
 "whatlinkshere" => "Páginas que se ligam a essa",
 "help"          => "Ajuda",
 "search"        => "Busca",
+"searchbutton"  => "Busca",
 "go"        => "Vai",
 "history"       => "Histórico",
 "printableversion" => "Versão para impressão",

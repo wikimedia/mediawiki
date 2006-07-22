@@ -80,6 +80,7 @@ $wgAllMessagesLa = array(
 'disclaimers'           => 'Repudiationes',
 'tagline'               => 'E {{SITENAME}}',
 'search'                => 'Quaerere',
+'searchbutton'          => 'Quaerere',
 'go'                    => 'Ire',
 'history'               => 'Historia',
 'history_short'         => 'Historia',

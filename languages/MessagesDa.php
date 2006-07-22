@@ -125,6 +125,7 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 "whatlinkshere"	=> "Hvad henviser hertil",
 "help"			=> "Hjælp",
 "search"		=> "Søg",
+"searchbutton"	=> "Søg",
 "go"		=> "Gå til",
 "history"		=> "Historik",
 'history_short' => 'Historik',

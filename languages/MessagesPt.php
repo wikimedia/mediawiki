@@ -144,6 +144,7 @@
 'tagline'       => 'De {{SITENAME}}',
 'help'                  => 'Ajuda',
 'search'                => 'Pesquisa',
+'searchbutton'          => 'Pesquisa',
 'go'            => 'Ir',
 "history"             => 'Histórico',
 'history_short' => 'História',

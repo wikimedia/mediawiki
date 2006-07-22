@@ -116,6 +116,7 @@
 'whatlinkshere' => 'Liên kết tới đây',
 'help'          => 'Trợ giúp',
 'search'        => 'Tìm kiếm',
+'searchbutton'  => 'Tìm kiếm',
 'history'       => 'Lịch sử',
 'printableversion' => 'Bản để in',
 'edit'		=> 'Sửa',

@@ -103,6 +103,7 @@ $wgAllMessagesHu = array(
 'returnto'              => 'Vissza a $1 cikkhez.',
 'tagline'               => 'A {{SITENAME}}BÓL',
 'search'                => 'Keresés',
+'searchbutton'          => 'Keresés',
 'go'                    => 'Menj',
 'history'               => 'laptörténet',
 'history_short'         => 'Laptörténet',

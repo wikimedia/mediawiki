@@ -120,6 +120,7 @@ in [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'returnto'              => 'Vrnitev na: $1.',
 'tagline'               => 'Iz {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'search'                => 'Iskanje',
+'searchbutton'          => 'Iskanje',
 'go'                    => 'Pojdi na',
 'history'               => 'Zgodovina strani',
 'history_short'         => 'Zgodovina strani',

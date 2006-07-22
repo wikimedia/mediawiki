@@ -158,6 +158,7 @@ parent class in order maintain consistency across languages.
 'returnto'              => 'Terug naar $1.',
 'tagline'               => 'Van {{SITENAME}}',
 'search'                => 'Zoeken',
+'searchbutton'          => 'Zoeken',
 'go'                    => 'OK',
 'history'               => 'Geschiedenis',
 'history_short'         => 'Geschiedenis',

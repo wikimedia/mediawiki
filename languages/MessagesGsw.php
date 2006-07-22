@@ -95,6 +95,7 @@ $wgAllMessagesGsw = array(
 'returnto'              => 'Zrügg zur Syte $1.',
 'tagline'               => 'Us {{SITENAME}}',
 'search'                => 'Suech',
+'searchbutton'          => 'Suech',
 'history'               => 'Versione',
 'history_short'         => 'Versione/Autore',
 'printableversion'      => 'Druck-Aasicht',

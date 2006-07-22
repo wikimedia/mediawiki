@@ -85,6 +85,7 @@ $wgAllMessagesFy = array(
 "whatlinkshere"	=> "Siden mei in keppeling hjirhinne",
 "help"		=> "Help",
 "search"		=> "Sykje",
+"searchbutton"	=> "Sykje",
 "go"			=> "Side",
 "history"		=> "Sideskiednis",
 "printableversion" => "Ofdruk-ferzje",

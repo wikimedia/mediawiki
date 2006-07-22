@@ -26,6 +26,7 @@ $wgAllMessagesRmy = array(
 'errorpagetitle'        => 'Dosh',
 'returnto'              => 'Ja palpale kai $1.',
 'search'                => 'Rod',
+'searchbutton'          => 'Rod',
 'go'                    => 'Ja',
 'history'               => 'Puraneder versiye',
 'history_short'         => 'Puranipen',

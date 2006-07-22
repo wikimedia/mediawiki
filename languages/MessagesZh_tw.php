@@ -57,6 +57,7 @@
 "whatlinkshere"	=> "鏈入頁面",
 "help"			=> "幫助",
 "search"		=> "搜索",
+"searchbutton"	=> "搜索",
 "go"		=> "進入",
 "history"		=> "較早版本",
 "printableversion" => "可列印版",

@@ -119,6 +119,7 @@ $wgAllMessagesSv = array(
 'returnto'              => 'Tillbaka till $1.',
 'tagline'               => '{{SITENAME}}',
 'search'                => 'Sök',
+'searchbutton'          => 'Sök',
 'go'                    => 'Gå till',
 'history'               => 'Versionshistorik',
 'history_short'         => 'Historik',

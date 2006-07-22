@@ -112,6 +112,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'returnto'              => 'Vrati se na $1.',
 'tagline'               => 'Izvor: {{SITENAME}}',
 'search'                => 'Traži',
+'searchbutton'          => 'Traži',
 'go'                    => 'Kreni',
 'history'               => 'Stare izmjene',
 'history_short'         => 'Stare izmjene',

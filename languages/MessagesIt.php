@@ -143,6 +143,7 @@ I seguenti collegamenti sono in lingua inglese:
 "tagline"      	=> "Da {{SITENAME}}.",
 "help"			=> "Aiuto",
 "search"		=> "Ricerca",
+"searchbutton"	=> "Ricerca",
 "go"		=> "Vai",
 "history"		=> "Versioni precedenti",
 "history_short" => "Cronologia",

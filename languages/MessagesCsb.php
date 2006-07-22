@@ -240,6 +240,7 @@ $wgAllMessagesCsb = array(
 'savearticle' => 'Zapiszë artikel',
 'savefile' => 'Zapiszë lôpk',
 'search' => 'Szëkba',
+'searchbutton' => 'Szëkba',
 'september-gen' => 'Séwnika',
 'september' => 'Séwnik',
 'servertime' => 'Aktualny czas serwera',

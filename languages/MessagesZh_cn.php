@@ -90,6 +90,7 @@
 "whatlinkshere"	=> "链入页面",
 "help"			=> "帮助",
 "search"		=> "搜索",
+"searchbutton"	=> "搜索",
 "go"		=> "进入",
 "history"		=> "较早版本",
 "printableversion" => "可打印版",

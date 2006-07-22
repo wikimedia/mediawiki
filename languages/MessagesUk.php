@@ -97,6 +97,7 @@
 "whatlinkshere"	=> "Статті, що вказують на дану",
 "help"			=> "Довідка",
 "search"		=> "Пошук",
+"searchbutton"	=> "Пошук",
 "go"		=> "Перейти",
 "history"		=> "Старі версії",
 "printableversion" => "Версія для друку",

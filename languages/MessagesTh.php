@@ -100,6 +100,7 @@
 "whatlinkshere"	=> "หน้าที่ลิงก์มายังที่นี่",
 "help"			=> "ความช่วยเหลือ",
 "search"		=> "ค้นหา",
+"searchbutton"	=> "ค้นหา",
 "go"		=> "ไป",
 "history"		=> "ประวัติของหน้านี้",
 "printableversion" => "Printable version",

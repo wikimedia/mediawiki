@@ -100,6 +100,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "whatlinkshere"	=> "Siia viitavad artiklid",
 "help"			=> "Juhend",
 "search"		=> "Otsi",
+"searchbutton"	=> "Otsi",
 "go"		=> "Mine",
 "history"		=> "Artikli ajalugu",
 'history_short' => 'Ajalugu',

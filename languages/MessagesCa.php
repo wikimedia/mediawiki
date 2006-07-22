@@ -125,6 +125,7 @@ $wgAllMessagesCa = array(
 'returnto'              => 'Torna cap a $1.',
 'tagline'               => 'De {{SITENAME}}',
 'search'                => 'Cerca',
+'searchbutton'          => 'Cerca',
 'go'                    => 'Vés-hi',
 'history'               => 'Historial de canvis',
 'history_short'         => 'Historial',

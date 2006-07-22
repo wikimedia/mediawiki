@@ -98,6 +98,7 @@
 "whatlinkshere" => "Références à cette page",
 "help"          => "Aide",
 "search"        => "Rechercher",
+"searchbutton"  => "Rechercher",
 "history"       => "Historique",
 "printableversion" => "Version imprimable",
 "editthispage"  => "Modifier cette page",

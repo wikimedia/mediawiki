@@ -126,6 +126,7 @@ $wgAllMessagesSq = array(
 'returnto'              => 'Kthehu tek $1.',
 'tagline'               => 'Nga {{SITENAME}}, Enciklopedia e Lirë',
 'search'                => 'Kërko',
+'searchbutton'          => 'Kërko',
 'go'                    => 'Shko',
 'history'               => 'Historiku i faqes',
 'history_short'         => 'Historiku',

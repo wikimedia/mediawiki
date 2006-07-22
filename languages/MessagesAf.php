@@ -82,6 +82,7 @@
 "whatlinkshere"	=> "Bladsye wat hierheen skakel",
 "help"			=> "Hulp",
 "search"		=> "Soek",
+"searchbutton"		=> "Soek",
 "go"		=> "Wys",
 "history"		=> "Ouer weergawes",
 "printableversion" => "Drukbare weergawe",
