@@ -71,6 +71,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression which allowed some blocked users to create additional accounts
 * (bug 6657) Fix Hungarian linktrail
 * (bug 6751) Fix preview of blanked section with edit on first preview option
+* (bug 5456) Separate MediaWiki:Search into messages for both noun and verb,
+  introduced 'MediaWiki:Searchbutton'
 
 
 == Languages updated ==
