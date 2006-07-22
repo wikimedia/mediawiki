@@ -29,8 +29,8 @@ CREATE TABLE "user" (
 CREATE INDEX user_email_token_idx ON "user" (user_email_token);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
-INSERT INTO "user" VALUES
-  (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
+INSERT INTO "user"
+  VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
 
 CREATE TABLE user_groups (
   ug_user   INTEGER      NULL  REFERENCES "user"(user_id) ON DELETE CASCADE,
@@ -78,12 +78,12 @@ END;
 $mw$;
 
 CREATE TRIGGER page_deleted AFTER DELETE ON page
-FOR EACH ROW EXECUTE PROCEDURE page_deleted();
+  FOR EACH ROW EXECUTE PROCEDURE page_deleted();
 
 
 -- Create a dummy page to satisfy fk contraints where a page_id of "0" is added
 INSERT INTO page (page_id,page_namespace,page_title,page_random,page_latest,page_len)
-VALUES (0,0,'',0.0,0,0);
+  VALUES (0,0,'',0.0,0,0);
 
 
 CREATE SEQUENCE rev_rev_id_val;
@@ -421,7 +421,7 @@ END;
 $mw$;
 
 CREATE TRIGGER ts2_page_title BEFORE INSERT OR UPDATE ON page
-FOR EACH ROW EXECUTE PROCEDURE ts2_page_title();
+  FOR EACH ROW EXECUTE PROCEDURE ts2_page_title();
 
 
 ALTER TABLE text ADD textvector tsvector;
@@ -439,9 +439,9 @@ END;
 $mw$;
 
 CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON text
-FOR EACH ROW EXECUTE PROCEDURE ts2_page_text();
+  FOR EACH ROW EXECUTE PROCEDURE ts2_page_text();
 
-CREATE OR REPLACE FUNCTION add_interwiki (TEXT,INT,CHAR) RETURNS INT LANGUAGE SQL AS
+CREATE FUNCTION add_interwiki (TEXT,INT,CHAR) RETURNS INT LANGUAGE SQL AS
 $mw$
   INSERT INTO interwiki (iw_prefix, iw_url, iw_local) VALUES ($1,$2,$3);
   SELECT 1;
@@ -464,7 +464,7 @@ CREATE TABLE mediawiki_version (
 );
 
 INSERT INTO mediawiki_version (type,mw_version,sql_version,sql_date)
-VALUES ('Creation','??','$LastChangedRevision$','$LastChangedDate$');
+  VALUES ('Creation','??','$LastChangedRevision$','$LastChangedDate$');
 
 
 COMMIT;
