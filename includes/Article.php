@@ -2147,7 +2147,7 @@ class Article {
 		# If this is another user's talk page, update newtalk
 		# Don't do this if $changed = false otherwise some idiot can null-edit a
 		# load of user talk pages and piss people off
-		if( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getName() && $changed ) {
+		if( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getTitleKey() && $changed ) {
 			if (wfRunHooks('ArticleEditUpdateNewTalk', array(&$this)) ) {
 				$other = User::newFromName( $shortTitle );
 				if( is_null( $other ) && User::isIP( $shortTitle ) ) {
