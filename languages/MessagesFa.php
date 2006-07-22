@@ -96,6 +96,7 @@ $wgAllMessagesFa = array(
 'whatlinkshere'	=> "صفحاتی که به اینجا پیوند دارند",
 'help'			=> "راهنما",
 'search'		=> "جستجو شود",
+'searchbutton'	=> "جستجو شود",
 'go'		=> "برود",
 'history'		=> "تاریخچه‌ی صفحه",
 'printableversion' => "نسخه‌ی قابل چاپ",

@@ -96,6 +96,7 @@
 "whatlinkshere"	=> "Tudalennau sydd yn cysyllti fan hyn",
 "help" => "Help",
 "search" => "Chwilio",
+"searchbutton" => "Chwilio",
 "go" => "Mynd",
 "history" => "Hanes y tudalen",
 "printableversion" => "Fersiwn argraffiol",

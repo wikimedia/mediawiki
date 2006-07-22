@@ -499,6 +499,7 @@ $wgAllMessagesBe = array(
 'saveprefs' => 'Захаваць',
 'saveusergroups' => 'Захаваць групы ўдзельнікаў і ўдзельніц',
 'search' => 'Пошук',
+'searchbutton' => 'Пошук',
 'searchresults' => 'Вынікі пошуку',
 'searchresultshead' => 'Пошук',
 'searchresulttext' => 'Для атрыманьня больш падрабязнай інфармацыі пра пошук у {{GRAMMAR:месны|{{SITENAME}}}}, глядзіце [[{{ns:project}}:Пошук|Пошук у {{GRAMMAR:месны|{{SITENAME}}}}]].',

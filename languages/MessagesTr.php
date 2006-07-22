@@ -117,6 +117,7 @@ $wgAllMessagesTr = array(
 'returnto'              => '$1.',
 'tagline'               => '{{SITENAME}}, özgür ansiklopedi',
 'search'                => 'Ara',
+'searchbutton'          => 'Ara',
 'go'                    => 'Git',
 'history'               => 'Sayfanın geçmişi',
 'history_short'         => 'Geçmiş',

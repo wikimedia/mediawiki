@@ -142,6 +142,7 @@ $wgAllMessagesId = array(
 "whatlinkshere" => "Pranala ke halaman ini",
 "help" => "Bantuan",
 "search" => "Cari",
+"searchbutton" => "Cari",
 "go" => "Tuju ke",
 "history" => "Versi terdahulu",
 'history_short' => 'Versi terdahulu',

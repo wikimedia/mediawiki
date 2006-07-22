@@ -107,6 +107,7 @@
 'tagline' => 'Z {{grammar:2sg|{{SITENAME}}}}',
 'help'                  => 'Nápověda',
 'search'                => 'Hledat',
+'searchbutton'          => 'Hledat',
 'go'            => 'Jít na', #FIXME
 'history'               => 'Historie stránky',
 'history_short' => 'Historie',

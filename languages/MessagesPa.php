@@ -89,6 +89,7 @@ $wgAllMessagesPa = array(
 'whatlinkshere'	=> 'ਪੰਨੇ ਜੋ ਇੱਥੇ ਜੁੜਦੇ ਹਨ',
 'help'		=> 'ਮਦਦ',
 'search'		=> 'ਖੋਜ',
+'searchbutton'	=> 'ਖੋਜ',
 'go'			=> 'ਜਾਓ',
 'history'		=> 'ਪੁਰਾਣੇ ਆਵਰਤਣ',
 'history_short'	=> 'ਇਤਿਹਾਸ',

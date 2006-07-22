@@ -172,7 +172,7 @@ parent class in order maintain consistency across languages.
 'tagline'      	=> 'From {{SITENAME}}',
 'help'			=> 'Help',
 'search'		=> 'Search',
-'searchbutton'		=> '{{int:search}}', # see bug 5456
+'searchbutton'		=> 'Search',
 'go'		=> 'Go',
 'history'		=> 'Page history',
 'history_short' => 'History',

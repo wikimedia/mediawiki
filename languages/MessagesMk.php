@@ -119,6 +119,7 @@ $wgAllMessagesMk = array(
 'returnto'              => 'Врати се на $1.',
 'tagline'               => 'Од {{SITENAME}}',
 'search'                => 'Пребарај',
+'searchbutton'          => 'Пребарај',
 'go'                    => 'Оди',
 'history'               => 'Историја на страницата',
 'history_short'         => 'Историја',

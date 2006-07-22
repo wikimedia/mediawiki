@@ -119,6 +119,7 @@ $wgAllMessagesSk = array(
 'returnto'              => 'Späť na $1.',
 'tagline'               => 'Z {{GRAMMAR:genitív|{{SITENAME}}}}',
 'search'                => 'Hľadaj',
+'searchbutton'          => 'Hľadaj',
 'go'                    => 'Choď',
 'history'               => 'História článku',
 'history_short'         => 'História',

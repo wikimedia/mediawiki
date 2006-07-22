@@ -104,6 +104,7 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'whatlinkshere'         => 'Wat wiest hierher',
 'help'                          => 'Hülp',
 'search'                        => 'Söök',
+'searchbutton'                  => 'Söök',
 'history'                            => 'Historie',
 'history_short'         => 'Historie',
 'info_short'               => 'Informatschoon',

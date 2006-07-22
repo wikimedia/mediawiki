@@ -94,6 +94,7 @@ $wgAllMessagesTa = array(
 "whatlinkshere"	=> "இங்கு இணைக்கப்பட்டுள்ள பக்கங்கள்",
 "help"			=> "உதவி",
 "search"		=> "தேடு",
+"searchbutton"	=> "தேடு",
 "go"		=> "செல்",
 "history"		=> "பக்க வரலாறு",
 "printableversion" => "அச்சுக்குகந்த பதிப்பு",

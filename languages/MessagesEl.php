@@ -139,6 +139,7 @@ $wgAllMessagesEl = array(
 'whatlinkshere' => 'Αναφορές στη σελίδα',
 'help' => 'Βοήθεια',
 'search' => 'Αναζήτηση',
+'searchbutton' => 'Αναζήτηση',
 'go' => 'Μετάβαση',
 'history_short' => 'Ιστορικό',
 'info_short' => 'Πληροφορίες',

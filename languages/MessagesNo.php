@@ -124,6 +124,7 @@ $wgAllMessagesNo = array(
 'returnto'              => 'Tilbake til $1.',
 'tagline'               => 'Fra {{SITENAME}}',
 'search'                => 'Søk',
+'searchbutton'          => 'Søk',
 'go'                    => 'Gå',
 'history'               => 'Historikk',
 'history_short'         => 'Historikk',

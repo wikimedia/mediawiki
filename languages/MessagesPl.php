@@ -132,6 +132,7 @@ $wgAllMessagesPl = array(
 'returnto' => 'Wróć do strony: $1.',
 'help' => 'Pomoc',
 'search' => 'Szukaj',
+'searchbutton' => 'Szukaj',
 'go' => 'OK',
 'history' => 'Historia strony',
 'history_short' => 'Historia i autorzy',

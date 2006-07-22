@@ -94,6 +94,7 @@ $wgAllMessagesAz = array(
 'returnto' => '$1 səhifəsinə qayıt.',
 'go' => 'Gətir',
 'search' => 'Axtar',
+'searchbutton' => 'Axtar',
 'history' => 'Səhifənin tarixçəsi',
 'history_short' => 'Tarixçə',
 'printableversion' => 'Çap variantı',

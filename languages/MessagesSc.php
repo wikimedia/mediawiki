@@ -81,6 +81,7 @@
 "whatlinkshere"	=> "Pagine che linkano questa",
 "help"			=> "Aiuto",
 "search"		=> "Cerca",
+"searchbutton"	=> "Cerca",
 "history"		=> "Versioni precedenti",
 "printableversion" => "Versione stampabile",
 "editthispage"	=> "Modifica questo articolo",

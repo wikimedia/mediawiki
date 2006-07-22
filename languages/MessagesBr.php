@@ -112,6 +112,7 @@
 'whatlinkshere' => 'Daveennoù d\'ar bajenn-mañ',
 'help'          => 'Skoazell',
 'search'        => 'Klask',
+'searchbutton'  => 'Klask',
 'history'       => 'Istor',
 'printableversion' => 'Stumm da voullañ',
 'edit'		=> 'Kemmañ',

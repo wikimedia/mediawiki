@@ -162,6 +162,7 @@ $wgAllMessagesRu = array(
 'tagline'             => 'Материал из {{grammar:genitive|{{SITENAME}}}}.',
 'help'                  => 'Справка',
 'search'                => 'Поиск',
+'searchbutton'          => 'Поиск',
 'go'            => 'Перейти',
 'history'             => 'История',
 'history_short' => 'История',

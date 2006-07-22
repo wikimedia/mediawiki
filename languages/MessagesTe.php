@@ -92,6 +92,7 @@ $wgAllMessagesTe = array(
 'returnto'              => 'తిరిగి $1 పేజీకి వెళ్లు.',
 'tagline'               => '{{SITENAME}} నుండి',
 'search'                => 'అన్వేషణ',
+'searchbutton'          => 'అన్వేషణ',
 'go'                    => 'వెళ్లు',
 'history'               => 'పేజీ చరిత్ర',
 'history_short'         => 'చరిత్ర',

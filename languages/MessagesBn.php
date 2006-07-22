@@ -66,6 +66,7 @@ $wgAllMessagesBn = array(
 'whatlinkshere' => 'যেসব পাতা থেকে এখানে সংযোগ আছে',
 'help'      => 'সহায়িকা',
 'search'    => 'খঁুজে দেখ',
+'searchbutton'    => 'খঁুজে দেখ',
 'go'    => 'চল',
 'history'   => 'এ পৃষ্ঠার ইতিহাস',
 'printableversion' => 'ছাপার যোগ্য সংস্করণ',

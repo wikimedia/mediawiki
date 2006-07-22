@@ -73,6 +73,7 @@ $wgAllMessagesKu = array(
 'returnto'              => 'Bizivire $1.',
 'tagline'               => 'Ji {{SITENAME}}',
 'search'                => 'Lêbigere',
+'searchbutton'          => 'Lêbigere',
 'go'                    => 'Gotar',
 'history'               => 'Dîroka rûpelê',
 'history_short'         => 'Dîrok',

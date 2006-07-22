@@ -147,6 +147,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'whatlinkshere'       => 'Tänne viittaavat sivut',
 'help'                => 'Ohje',
 'search'              => 'Etsi',
+'searchbutton'        => 'Etsi',
 'go'                  => 'Siirry',
 'history'             => 'Historia',
 'history_short'       => 'Historia',

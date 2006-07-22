@@ -86,6 +86,7 @@ $wgAllMessagesIa = array(
 "whatlinkshere"	=> "Referentias a iste pagina",
 "help"			=> "Adjuta",
 "search"		=> "Recercar",
+"searchbutton"	=> "Recercar",
 "go"		=> "Ir",
 "history"		=> "Chronologia",
 "printableversion" => "Version imprimibile",

@@ -110,6 +110,7 @@ $wgAllMessagesEo = array(
 'returnto'              => 'Revenu al $1.',
 'tagline'               => 'El {{SITENAME}}',
 'search'                => 'Serĉu',
+'searchbutton'          => 'Serĉu',
 'go'                    => 'Ek!',
 'history'               => 'Malnovaj versioj',
 'history_short'         => 'Historio',

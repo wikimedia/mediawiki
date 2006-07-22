@@ -134,6 +134,7 @@ $wgAllMessagesFr = array(
 'returnto'      => 'Revenir à la page $1.',
 'tagline'       => 'Un article de {{SITENAME}}.',
 'search'        => 'Rechercher',
+'searchbutton'  => 'Rechercher',
 'go'            => 'Consulter',
 'history'	=> 'Historique de la page',
 'history_short' => 'Historique',

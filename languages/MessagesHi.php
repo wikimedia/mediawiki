@@ -51,6 +51,7 @@
 "returnto"		=> "लौटें $1.",
 "help"			=> "सहायता ",
 "search"		=> "खोज ",
+"searchbutton"	=> "खोज ",
 "go"		        => "जायें",
 "editthispage"	        => "इस पृष्ठ को बदलें",
 "deletethispage"        => "इस पृष्ठ को हटायें",
