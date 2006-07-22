@@ -23,7 +23,7 @@
 -- in early 2002 after a lot of trouble with the fields
 -- auto-updating.
 --
--- The PostgreSQL backend uses DATETIME fields for timestamps,
+-- The Postgres backend uses DATETIME fields for timestamps,
 -- and we will migrate the MySQL definitions at some point as
 -- well.
 --
@@ -152,7 +152,8 @@ CREATE TABLE /*$wgDBprefix*/user_newtalk (
   user_ip varchar(40) NOT NULL default '',
   INDEX user_id (user_id),
   INDEX user_ip (user_ip)
-);
+
+) TYPE=InnoDB;
 
 
 --
