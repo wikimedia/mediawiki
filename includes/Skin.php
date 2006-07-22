@@ -803,7 +803,7 @@ END;
 		  . '<input type="text" name="search" size="19" value="'
 		  . htmlspecialchars(substr($search,0,256)) . "\" />\n"
 		  . '<input type="submit" name="go" value="' . wfMsg ('go') . '" />&nbsp;'
-		  . '<input type="submit" name="fulltext" value="' . wfMsg ('search') . "\" />\n</form>";
+		  . '<input type="submit" name="fulltext" value="' . wfMsg ('searchbutton') . "\" />\n</form>";
 
 		return $s;
 	}

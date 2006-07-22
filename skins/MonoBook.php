@@ -165,7 +165,7 @@ class MonoBookTemplate extends QuickTemplate {
 					if( isset( $this->data['search'] ) ) {
 						?> value="<?php $this->text('search') ?>"<?php } ?> />
 				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('go') ?>" />&nbsp;
-				<input type='submit' name="fulltext" class="searchButton" value="<?php $this->msg('search') ?>" />
+				<input type='submit' name="fulltext" class="searchButton" value="<?php $this->msg('searchbutton') ?>" />
 			</div></form>
 		</div>
 	</div>

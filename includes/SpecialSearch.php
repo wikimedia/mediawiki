@@ -151,7 +151,7 @@ class SpecialSearch {
 				wfMsg( 'googlesearch',
 					htmlspecialchars( $term ),
 					htmlspecialchars( $wgInputEncoding ),
-					htmlspecialchars( wfMsg( 'search' ) )
+					htmlspecialchars( wfMsg( 'searchbutton' ) )
 				)
 			);
 			wfProfileOut( $fname );
