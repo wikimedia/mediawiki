@@ -144,7 +144,6 @@ $ourdb['postgres']['rootuser']   = 'postgres';
 	</style>
 	<script type="text/javascript">
 	<!--
-	var firstrun = 1;
 	function hideall() {
 		<?php foreach (array_keys($ourdb) as $db) {
 		echo "\n		document.getElementById('$db').style.display='none';";
@@ -156,13 +155,6 @@ $ourdb['postgres']['rootuser']   = 'postgres';
 		hideall();
 		var dbarea = document.getElementById(id).style;
 		dbarea.display = (dbarea.display == 'none') ? 'block' : 'none';
-		if (firstrun == 1) {
-			firstrun = 0;
-			return;
-		}
-		if (firstrun ==2 ) {
-			return;
-		}
 		var db = document.getElementById('RootUser');
 		<?php foreach (array_keys($ourdb) as $db) {
 		echo "\n		if (id == '$db') { db.value = '".$ourdb[$db]['rootuser']."';}";
