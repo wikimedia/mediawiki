@@ -80,12 +80,6 @@ $mw$;
 CREATE TRIGGER page_deleted AFTER DELETE ON page
   FOR EACH ROW EXECUTE PROCEDURE page_deleted();
 
-
--- Create a dummy page to satisfy fk contraints where a page_id of "0" is added
-INSERT INTO page (page_id,page_namespace,page_title,page_random,page_latest,page_len)
-  VALUES (0,0,'',0.0,0,0);
-
-
 CREATE SEQUENCE rev_rev_id_val;
 CREATE TABLE revision (
   rev_id          INTEGER      NOT NULL  UNIQUE DEFAULT nextval('rev_rev_id_val'),
