@@ -75,10 +75,8 @@ define( 'MW_MATH_MATHML', 5 );
 /**#@-*/
 
 /**
- * User rights management
- * a big array of string defining a right, that's how they are saved in the
- * database.
- * @todo Is this necessary?
+ * User rights list
+ * @deprecated
  */
 $wgAvailableRights = array(
 	'block',

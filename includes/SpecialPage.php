@@ -292,7 +292,8 @@ class SpecialPage
 		foreach ( self::$mList as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page->isListed() ) {
-				$pages[$page->getRestriction()][$page->getName()] = $page;
+				$restricted = $page->getRestriction() == '' ? '' : 'restricted';
+				$pages[$restricted][$page->getName()] = $page;
 			}
 		}
 		return $pages;
