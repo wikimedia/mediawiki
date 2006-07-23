@@ -113,6 +113,11 @@ class RecentChange
 		$this->mAttribs['rc_cur_time'] = $dbw->timestamp($this->mAttribs['rc_cur_time']);
 		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'rc_rc_id_seq' );
 
+		## If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
+		if ( $dbw->cascadingDeletes() and $this->mAttribs['rc_cur_id']==0 ) {
+			unset ( $this->mAttribs['rc_cur_id'] );
+		}
+
 		# Insert new row
 		$dbw->insert( 'recentchanges', $this->mAttribs, $fname );
 
