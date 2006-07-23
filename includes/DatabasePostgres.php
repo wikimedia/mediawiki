@@ -378,16 +378,12 @@ class DatabasePostgres extends Database {
 	}
 
 	function tableName( $name ) {
-		# Replace backticks into double quotes
-		$name = strtr($name,'`','"');
-
-		# Now quote PG reserved keywords
+		# Replace reserved words with better ones
 		switch( $name ) {
 			case 'user':
-			case 'old':
-			case 'group':
-				return '"' . $name . '"';
-
+				return 'mwuser';
+			case 'text':
+				return 'pagecontent';
 			default:
 				return $name;
 		}
