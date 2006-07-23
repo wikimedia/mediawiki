@@ -98,8 +98,8 @@ class SearchPostgres extends SearchEngine {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 
 		$query = "SELECT page_id, page_namespace, page_title, old_text AS page_text ".
-			"FROM page p, revision r, text t WHERE p.page_latest = r.rev_id " .
-			"AND r.rev_text_id = t.old_id AND $fulltext @@ to_tsquery('$match')";
+			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
+			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery('$match')";
 
 		## Redirects
 		if (! $this->showRedirects)

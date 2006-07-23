@@ -11,7 +11,7 @@ BEGIN;
 SET client_min_messages = 'ERROR';
 
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
-CREATE TABLE "user" (
+CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_id                   INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('user_user_id_seq'),
   user_name                 TEXT     NOT NULL  UNIQUE,
   user_real_name            TEXT,
@@ -26,20 +26,20 @@ CREATE TABLE "user" (
   user_touched              TIMESTAMPTZ,
   user_registration         TIMESTAMPTZ
 );
-CREATE INDEX user_email_token_idx ON "user" (user_email_token);
+CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
-INSERT INTO "user"
+INSERT INTO mwuser
   VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
 
 CREATE TABLE user_groups (
-  ug_user   INTEGER      NULL  REFERENCES "user"(user_id) ON DELETE CASCADE,
+  ug_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
   ug_group  TEXT     NOT NULL
 );
 CREATE UNIQUE INDEX user_groups_unique ON user_groups (ug_user, ug_group);
 
 CREATE TABLE user_newtalk (
-  user_id  INTEGER NOT NULL  REFERENCES "user"(user_id) ON DELETE CASCADE,
+  user_id  INTEGER NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
   user_ip  CIDR        NULL
 );
 CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
@@ -86,7 +86,7 @@ CREATE TABLE revision (
   rev_page        INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE,
   rev_text_id     INTEGER          NULL, -- FK
   rev_comment     TEXT,
-  rev_user        INTEGER      NOT NULL  REFERENCES "user"(user_id),
+  rev_user        INTEGER      NOT NULL  REFERENCES mwuser(user_id),
   rev_user_text   TEXT         NOT NULL,
   rev_timestamp   TIMESTAMPTZ  NOT NULL,
   rev_minor_edit  CHAR         NOT NULL  DEFAULT '0',
@@ -99,7 +99,7 @@ CREATE INDEX rev_user_text_idx      ON revision (rev_user_text);
 
 
 CREATE SEQUENCE text_old_id_val;
-CREATE TABLE "text" (
+CREATE TABLE pagecontent ( -- replaces reserved word 'text'
   old_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('text_old_id_val'),
   old_text   TEXT,
   old_flags  TEXT
@@ -111,7 +111,7 @@ CREATE TABLE archive2 (
   ar_title       TEXT         NOT NULL,
   ar_text        TEXT,
   ar_comment     TEXT,
-  ar_user        INTEGER          NULL  REFERENCES "user"(user_id) ON DELETE SET NULL,
+  ar_user        INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   ar_user_text   TEXT         NOT NULL,
   ar_timestamp   TIMESTAMPTZ  NOT NULL,
   ar_minor_edit  CHAR         NOT NULL  DEFAULT '0',
@@ -203,8 +203,8 @@ CREATE SEQUENCE ipblocks_ipb_id_val;
 CREATE TABLE ipblocks (
   ipb_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_val'),
   ipb_address         CIDR             NULL,
-  ipb_user            INTEGER          NULL  REFERENCES "user"(user_id) ON DELETE SET NULL,
-  ipb_by              INTEGER      NOT NULL  REFERENCES "user"(user_id) ON DELETE CASCADE,
+  ipb_user            INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
+  ipb_by              INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
   ipb_reason          TEXT         NOT NULL,
   ipb_timestamp       TIMESTAMPTZ  NOT NULL,
   ipb_auto            CHAR         NOT NULL  DEFAULT '0',
@@ -230,7 +230,7 @@ CREATE TABLE image (
   img_major_mime   TEXT                DEFAULT 'unknown',
   img_minor_mime   TEXT                DEFAULT 'unknown',
   img_description  TEXT      NOT NULL,
-  img_user         INTEGER       NULL  REFERENCES "user"(user_id) ON DELETE SET NULL,
+  img_user         INTEGER       NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   img_user_text    TEXT      NOT NULL,
   img_timestamp    TIMESTAMPTZ
 );
@@ -245,7 +245,7 @@ CREATE TABLE oldimage (
   oi_height        SMALLINT     NOT NULL,
   oi_bits          SMALLINT     NOT NULL,
   oi_description   TEXT,
-  oi_user          INTEGER          NULL  REFERENCES "user"(user_id) ON DELETE SET NULL,
+  oi_user          INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   oi_user_text     TEXT         NOT NULL,
   oi_timestamp     TIMESTAMPTZ  NOT NULL
 );
@@ -258,7 +258,7 @@ CREATE TABLE filearchive (
   fa_archive_name       TEXT,
   fa_storage_group      VARCHAR(16),
   fa_storage_key        CHAR(64),
-  fa_deleted_user       INTEGER          NULL  REFERENCES "user"(user_id) ON DELETE SET NULL,
+  fa_deleted_user       INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   fa_deleted_timestamp  TIMESTAMPTZ  NOT NULL,
   fa_deleted_reason     TEXT,
   fa_size               SMALLINT     NOT NULL,
@@ -270,7 +270,7 @@ CREATE TABLE filearchive (
   fa_major_mime         TEXT                   DEFAULT 'unknown',
   fa_minor_mime         TEXT                   DEFAULT 'unknown',
   fa_description        TEXT         NOT NULL,
-  fa_user               INTEGER          NULL  REFERENCES "user"(user_id) ON DELETE SET NULL,
+  fa_user               INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   fa_user_text          TEXT         NOT NULL,
   fa_timestamp          TIMESTAMPTZ
 );
@@ -285,7 +285,7 @@ CREATE TABLE recentchanges (
   rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('rc_rc_id_seq'),
   rc_timestamp       TIMESTAMPTZ  NOT NULL,
   rc_cur_time        TIMESTAMPTZ  NOT NULL,
-  rc_user            INTEGER          NULL  REFERENCES "user"(user_id) ON DELETE SET NULL,
+  rc_user            INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   rc_user_text       TEXT         NOT NULL,
   rc_namespace       SMALLINT     NOT NULL,
   rc_title           TEXT         NOT NULL,
@@ -310,7 +310,7 @@ CREATE INDEX rc_ip              ON recentchanges (rc_ip);
 
 
 CREATE TABLE watchlist (
-  wl_user                   INTEGER     NOT NULL  REFERENCES "user"(user_id) ON DELETE CASCADE,
+  wl_user                   INTEGER     NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
   wl_namespace              SMALLINT    NOT NULL  DEFAULT 0,
   wl_title                  TEXT        NOT NULL,
   wl_notificationtimestamp  TIMESTAMPTZ
@@ -366,7 +366,7 @@ CREATE TABLE logging (
   log_type        TEXT         NOT NULL,
   log_action      TEXT         NOT NULL,
   log_timestamp   TIMESTAMPTZ  NOT NULL,
-  log_user        INTEGER                REFERENCES "user"(user_id) ON DELETE SET NULL,
+  log_user        INTEGER                REFERENCES mwuser(user_id) ON DELETE SET NULL,
   log_namespace   SMALLINT     NOT NULL,
   log_title       TEXT         NOT NULL,
   log_comment     TEXT,
@@ -418,8 +418,8 @@ CREATE TRIGGER ts2_page_title BEFORE INSERT OR UPDATE ON page
   FOR EACH ROW EXECUTE PROCEDURE ts2_page_title();
 
 
-ALTER TABLE text ADD textvector tsvector;
-CREATE INDEX ts2_page_text ON text USING gist(textvector);
+ALTER TABLE pagecontent ADD textvector tsvector;
+CREATE INDEX ts2_page_text ON pagecontent USING gist(textvector);
 CREATE FUNCTION ts2_page_text() RETURNS TRIGGER LANGUAGE plpgsql AS
 $mw$
 BEGIN
@@ -432,7 +432,7 @@ RETURN NEW;
 END;
 $mw$;
 
-CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON text
+CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON pagecontent
   FOR EACH ROW EXECUTE PROCEDURE ts2_page_text();
 
 CREATE FUNCTION add_interwiki (TEXT,INT,CHAR) RETURNS INT LANGUAGE SQL AS
