@@ -72,6 +72,7 @@ my %new;
 my ($infunction,$inview,$inrule) = (0,0,0);
 while (<$newfh>) {
 	next if /^\s*\-\-/ or /^\s*$/;
+	s/\s*\-\- [\w ']+$//;
 	next if /^BEGIN;/ or /^SET / or /^COMMIT;/;
 	next if /^CREATE SEQUENCE/;
 	next if /^CREATE(?: UNIQUE)? INDEX/;
@@ -79,7 +80,6 @@ while (<$newfh>) {
 	next if /^CREATE TRIGGER/ or /^  FOR EACH ROW/;
 	next if /^INSERT INTO/ or /^  VALUES \(/;
 	next if /^ALTER TABLE/;
-	s/\s*\-\- [\w ]+$//;
 	chomp;
 
 	if (/^\$mw\$;?$/) {
@@ -118,9 +118,11 @@ close $newfh;
 ## Read in known exceptions
 my %ok;
 while (<DATA>) {
-	next unless /^(\w+)\s*:\s*(\S+)/;
+	next unless /^(\w+)\s*:\s*([^#]+)/;
 	my ($name,$val) = ($1,$2);
-	$ok{$name}{$val}=1;
+	for (split(/\s+/ => $val)) {
+		$ok{$name}{$_}=1;
+	}
 }
 
 ## Old but not new
@@ -157,5 +159,7 @@ __DATA__
 ## Known exceptions
 OLD: searchindex          ## We use tsearch2 directly on the page table instead
 OLD: archive              ## This is a view due to the char(14) timestamp hack
+OLD: user text            ## Reserved words, so we use something else
+NEW: mwuser pagecontent   ## This is what we use
 NEW: archive2             ## The real archive table
 NEW: mediawiki_version    ## Just us, for now
