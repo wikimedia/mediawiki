@@ -109,10 +109,11 @@ class HTMLForm {
 	}
 } // end class
 
-
-// functions used by SpecialUserrights.php
-
 /** Build a select with all defined groups
+ *
+ * used by SpecialUserrights.php
+ * @todo move it to there, and don't forget to copy it for SpecialMakesysop.php
+ *
  * @param $selectname String: name of this element. Name of form is automaticly prefixed.
  * @param $selectmsg String: FIXME
  * @param $selected Array: array of element selected when posted. Only multiples will show them.
@@ -154,24 +155,4 @@ function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=
 	return $out;
 }
 
-/** Build a select with all existent rights
- * @param $selected Array: Names(?) of user rights that should be selected.
- * @return string HTML select.
- */
-function HTMLSelectRights($selected='') {
-	global $wgAvailableRights;
-	$out = '<select name="editgroup-getrights[]" multiple="multiple">';
-	$groupRights = explode(',',$selected);
-
-	foreach($wgAvailableRights as $right) {
-
-		// check box when right exist
-		if(in_array($right, $groupRights)) { $selected = 'selected="selected" '; }
-		else { $selected = ''; }
-
-		$out .= '<option value="'.$right.'" '.$selected.'>'.$right."</option>\n";
-	}
-	$out .= "</select>\n";
-	return $out;
-}
 ?>
