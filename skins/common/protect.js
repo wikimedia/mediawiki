@@ -18,6 +18,9 @@ function protectInitialize(tableId, labelText) {
 		check.onclick = protectChainUpdate;
 		col2.appendChild(check);
 		
+		var space = document.createTextNode(" ");
+		col2.appendChild(space);
+		
 		var label = document.createElement('label');
 		label.setAttribute("for", "mwProtectUnchained");
 		label.appendChild(document.createTextNode(labelText));
