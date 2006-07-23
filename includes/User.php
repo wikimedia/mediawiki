@@ -1234,7 +1234,7 @@ class User {
 
 	/**
 	 * Check if user is allowed to access a feature / make an action
-	 * @param string $action Action to be checked (see $wgAvailableRights in Defines.php for possible actions).
+	 * @param string $action Action to be checked
 	 * @return boolean True: action is allowed, False: action should not be allowed
 	 */
 	function isAllowed($action='') {

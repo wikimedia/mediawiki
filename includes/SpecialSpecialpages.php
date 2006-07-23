@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialSpecialpages() {
-	global $wgOut, $wgUser, $wgAvailableRights;
+	global $wgOut, $wgUser;
 
 	$wgOut->setRobotpolicy( 'index,nofollow' );
 	$sk = $wgUser->getSkin();
@@ -22,13 +22,9 @@ function wfSpecialSpecialpages() {
 
 	/** Restricted special pages */
 	$rpages = array();
-	foreach($wgAvailableRights as $right) {
-		/** only show pages a user can access */
-		if( $wgUser->isAllowed($right) ) {
-			/** some rights might not have any special page associated */
-			if(isset($pages[$right])) {
-				$rpages = array_merge( $rpages, $pages[$right] );
-			}
+	foreach ( $pages['restricted'] as $name => $page ) {
+		if( $wgUser->isAllowed( $page->getRestriction() ) ) {
+			$rpages[$name] = $page;
 		}
 	}
 	wfSpecialSpecialpages_gen( $rpages, 'restrictedpheading', $sk );
