@@ -4427,6 +4427,7 @@ class ParserOutput
 	function &getImages()                { return $this->mImages; }
 	function &getExternalLinks()         { return $this->mExternalLinks; }
 	function getNoGallery()              { return $this->mNoGallery; }
+	function getSubtitle()               { return $this->mSubtitle; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -4434,7 +4435,8 @@ class ParserOutput
 	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategories, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
-	function setTitleText( $t )          { return wfSetVar ($this->mTitleText, $t); }
+	function setTitleText( $t )          { return wfSetVar($this->mTitleText, $t); }
+	function setSubtitle( $st )          { return wfSetVar( $this->mSubtitle, $st ); }
 
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addImage( $name )           { $this->mImages[$name] = 1; }
