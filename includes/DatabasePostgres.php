@@ -92,52 +92,72 @@ class DatabasePostgres extends Database {
 			global $wgDBname, $wgDBuser, $wgDBpass, $wgDBsuperuser, $wgDBmwschema, $wgDBts2schema;
 			print "OK</li>\n";
 
+			$safeuser = $this->quote_ident($wgDBuser);
 			## Are we connecting as a superuser for the first time?
 			if ($wgDBsuperuser) {
+				## Are we really a superuser? Check out our rights
+				$SQL = "SELECT
+						CASE WHEN usesuper IS TRUE THEN
+							CASE WHEN usecreatedb IS TRUE THEN 3 ELSE 1 END
+							ELSE CASE WHEN usecreatedb IS TRUE THEN 2 ELSE 0 END
+                        END AS rights
+						FROM pg_catalog.pg_user WHERE usename = " . $this->addQuotes($wgDBsuperuser);
+				$rows = $this->numRows($res = $this->doQuery($SQL));
+				if (!$rows) {
+					print "<li>ERROR: Could not read permissions for user \"$wgDBsuperuser\"</li>\n";
+					dieout('</ul>');
+				}
+				$perms = pg_fetch_result($res, 0, 0);
+
 				$SQL = "SELECT 1 FROM pg_catalog.pg_user WHERE usename = " . $this->addQuotes($wgDBuser);
 				$rows = $this->numRows($this->doQuery($SQL));
 				if ($rows) {
 					print "<li>User \"$wgDBuser\" already exists, skipping account creation.</li>";
 				}
 				else {
-					## Can we create users?
-					$SQL = "SELECT 1 FROM pg_catalog.pg_user WHERE usesuper IS TRUE AND ".
-						"usename = " . $this->addQuotes($wgDBsuperuser);
-					$rows = $this->numRows($this->doQuery($SQL));
-					if (!$rows) {
+					if ($perms != 1 and $perms != 3) {
 						print "<li>ERROR: the user \"$wgDBsuperuser\" cannot create other users. ";
 						print 'Please use a different Postgres user.</li>';
 						dieout('</ul>');
 					}
 					print "<li>Creating user <b>$wgDBuser</b>...";
 					$safepass = $this->addQuotes($wgDBpass);
-					$SQL = "CREATE USER \"$wgDBuser\" NOCREATEDB PASSWORD $safepass";
+					$SQL = "CREATE USER $safeuser NOCREATEDB PASSWORD $safepass";
 					$this->doQuery($SQL);
 					print "OK</li>\n";
 				}
 				## User now exists, check out the database
-				$safename = $this->addQuotes($wgDBname);
-				$SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = $safename";
-				$rows = $this->numRows($this->doQuery($SQL));
-				if ($rows) {
-					print "<li>Database \"$wgDBname\" already exists, skipping database creation.</li>";
-				}
-				else {
-					print "<li>Creating database <b>$wgDBname</b>...";
-					$SQL = "CREATE DATABASE \"$wgDBname\" OWNER \"$wgDBuser\" ";
-					$this->doQuery($SQL);
+				if ($dbName != $wgDBname) {
+					$SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $this->addQuotes($wgDBname);
+					$rows = $this->numRows($this->doQuery($SQL));
+					if ($rows) {
+						print "<li>Database \"$wgDBname\" already exists, skipping database creation.</li>";
+					}
+					else {
+						if ($perms < 2) {
+							print "<li>ERROR: the user \"$wgDBsuperuser\" cannot create databases. ";
+							print 'Please use a different Postgres user.</li>';
+							dieout('</ul>');
+						}
+						print "<li>Creating database <b>$wgDBname</b>...";
+						$safename = $this->quote_ident($wgDBname);
+						$SQL = "CREATE DATABASE $safename OWNER $safeuser ";
+						$this->doQuery($SQL);
+						print "OK</li>\n";
+						## Hopefully tsearch2 and plpgsql are in template1...
+					}
+
+					## Reconnect to check out tsearch2 rights for this user
+					print "<li>Connecting to \"$wgDBname\" as superuser \"$wgDBsuperuser\" to check rights...";
+					@$this->mConn = pg_connect("$hstring dbname=$wgDBname user=$user password=$password");
+					if ( $this->mConn == false ) {
+						print "<b>FAILED TO CONNECT!</b></li>";
+						dieout("</uL>");
+					}
 					print "OK</li>\n";
-					## Hopefully tsearch2 and plpgsql are in template1...
 				}
 
-				## Reconnect to check out tsearch2 rights for this user
-				print "<li>Connecting to \"$wgDBname\" as superuser \"$wgDBsuperuser\" to check rights...";
-				@$this->mConn = pg_connect("$hstring dbname=$wgDBname user=$user password=$password");
-				if ( $this->mConn == false ) {
-					print "<b>FAILED TO CONNECT!</b></li>";
-					dieout("</uL>");
-				}
-				print "OK!";
+				## Tsearch2 checks
 				print "<li>Checking that tsearch2 is installed in the database \"$wgDBname\"...";
 				if (! $this->tableExists("pg_ts_cfg", $wgDBts2schema)) {
 					print "<b>FAILED</b>. tsearch2 must be installed in the database \"$wgDBname\".";
@@ -146,10 +166,25 @@ class DatabasePostgres extends Database {
 					dieout("</ul>");
 				}				
 				print "OK</li>\n";
-				print "Ensuring that user \"$wgDBuser\" has select rights on the tsearch2 tables...";
+				print "<li>Ensuring that user \"$wgDBuser\" has select rights on the tsearch2 tables...";
 				foreach (array('cfg','cfgmap','dict','parser') as $table) {
-					$SQL = "GRANT SELECT ON pg_ts_$table TO \"$wgDBuser\"";
+					$SQL = "GRANT SELECT ON pg_ts_$table TO $safeuser";
 					$this->doQuery($SQL);
+				}
+				print "OK</li>\n";
+
+
+				## Setup the schema for this user if needed
+				$result = $this->schemaExists($wgDBmwschema);
+				if (!$result) {
+					print "<li>Creating schema <b>$wgDBmwschema</b> ...";
+					$safeschema = $this->quote_ident($wgDBmwschema);
+					$result = $this->doQuery("CREATE SCHEMA $safeschema AUTHORIZATION $safeuser");
+					if (!$result) {
+						print "<b>FAILED</b>.</li>\n";
+						dieout("</ul>");
+					}
+					print "OK</li>\n";
 				}
 
 				$wgDBsuperuser = '';
@@ -181,7 +216,7 @@ class DatabasePostgres extends Database {
 			print "OK</li>";
 
 			## Do we have plpgsql installed?
-			print "<li>Checking for plpgsql ...";
+			print "<li>Checking for Pl/Pgsql ...";
 			$SQL = "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'";
 			$rows = $this->numRows($this->doQuery($SQL));
 			if ($rows < 1) {
@@ -197,9 +232,9 @@ class DatabasePostgres extends Database {
 				$result = $this->doQuery("CREATE SCHEMA $wgDBmwschema");
 				if (!$result) {
 					print "<b>FAILED</b>.</li>\n";
-					return false;
+					dieout("</ul>");
 				}
-				print "ok</li>\n";
+				print "OK</li>\n";
 			}
 			else if ($result != $user) {
 				print "<li>Schema \"$wgDBmwschema\" exists but is not owned by \"$user\". Not ideal.</li>\n";
@@ -210,24 +245,24 @@ class DatabasePostgres extends Database {
 
 			## Fix up the search paths if needed
 			print "<li>Setting the search path for user \"$user\" ...";
-			$path = "$wgDBmwschema";
+			$path = $this->quote_ident($wgDBmwschema);
 			if ($wgDBts2schema !== $wgDBmwschema)
-				$path .= ", $wgDBts2schema";
+				$path .= ", ". $this->quote_ident($wgDBts2schema);
 			if ($wgDBmwschema !== 'public' and $wgDBts2schema !== 'public')
 				$path .= ", public";
-			$SQL = "ALTER USER $user SET search_path = $path";
+			$SQL = "ALTER USER $safeuser SET search_path = $path";
 			$result = pg_query($this->mConn, $SQL);
 			if (!$result) {
 				print "<b>FAILED</b>.</li>\n";
-				return false;
+				dieout("</ul>");
 			}
-			print "ok</li>\n";
+			print "OK</li>\n";
 			## Set for the rest of this session
 			$SQL = "SET search_path = $path";
 			$result = pg_query($this->mConn, $SQL);
 			if (!$result) {
 				print "<li>Failed to set search_path</li>\n";
-				return false;
+				dieout("</ul>");
 			}
 			define( "POSTGRES_SEARCHPATH", $path );
 		}}
@@ -697,6 +732,10 @@ class DatabasePostgres extends Database {
 		}
 		return "'" . pg_escape_string($s) . "'";
 		return "E'" . pg_escape_string($s) . "'";
+	}
+
+	function quote_ident( $s ) {
+		return '"' . preg_replace( '/"/', '""', $s) . '"';
 	}
 
 }
