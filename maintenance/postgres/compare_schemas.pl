@@ -120,8 +120,14 @@ my %ok;
 while (<DATA>) {
 	next unless /^(\w+)\s*:\s*([^#]+)/;
 	my ($name,$val) = ($1,$2);
+	if ($name eq 'RENAME') {
+		die "Invalid rename\n" unless $val =~ /(\w+)\s+(\w+)/;
+		$ok{OLD}{$1} = $2;
+		$ok{NEW}{$2} = $1;
+		next;
+	}
 	for (split(/\s+/ => $val)) {
-		$ok{$name}{$_}=1;
+		$ok{$name}{$_} = 0;
 	}
 }
 
@@ -131,9 +137,10 @@ for my $t (sort keys %old) {
 		print "Table not in $new: $t\n";
 		next;
 	}
-	next if exists $ok{OLD}{$t};
+	next if exists $ok{OLD}{$t} and !$ok{OLD}{$t};
+	my $newt = exists $ok{OLD}{$t} ? $ok{OLD}{$t} : $t;
 	my $oldcol = $old{$t}{column};
-	my $newcol = $new{$t}{column};
+	my $newcol = $new{$newt}{column};
 	for my $c (keys %$oldcol) {
 		if (!exists $newcol->{$c}) {
 			print "Column $t.$c not in new\n";
@@ -159,7 +166,7 @@ __DATA__
 ## Known exceptions
 OLD: searchindex          ## We use tsearch2 directly on the page table instead
 OLD: archive              ## This is a view due to the char(14) timestamp hack
-OLD: user text            ## Reserved words, so we use something else
-NEW: mwuser pagecontent   ## This is what we use
+RENAME: user mwuser       ## Reserved word causing lots of problems
+RENAME: text pagecontent  ## Reserved word
 NEW: archive2             ## The real archive table
 NEW: mediawiki_version    ## Just us, for now
