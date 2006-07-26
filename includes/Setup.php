@@ -82,6 +82,10 @@ if($wgMetaNamespace === FALSE) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
+# These are now the same, always
+# To determine the user language, use $wgLang->getCode()
+$wgContLanguageCode = $wgLanguageCode;
+
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 
@@ -132,11 +136,6 @@ if ( !$wgDBservers ) {
 		'flags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT
 	));
 }
-
-# $wgLanguageCode may be changed later to fit with user preference.
-# The content language will remain fixed as per the configuration,
-# so let's keep it.
-$wgContLanguageCode = $wgLanguageCode;
 
 $wgLoadBalancer = new StubObject( 'wgLoadBalancer', 'LoadBalancer', 
 	array( $wgDBservers, false, $wgMasterWaitTimeout, true ) );

@@ -62,10 +62,10 @@ function wfSpecialAllmessages() {
  *
  */
 function makePhp($messages) {
-	global $wgLanguageCode;
+	global $wgLang;
 	$txt = "\n\n\$messages = array(\n";
 	foreach( $messages as $key => $m ) {
-		if(strtolower($wgLanguageCode) != 'en' and $m['msg'] == $m['enmsg'] ) {
+		if($wgLang->getCode() != 'en' and $m['msg'] == $m['enmsg'] ) {
 			//if (strstr($m['msg'],"\n")) {
 			//	$txt.='/* ';
 			//	$comment=' */';
@@ -90,7 +90,7 @@ function makePhp($messages) {
  *
  */
 function makeHTMLText( $messages ) {
-	global $wgLang, $wgUser, $wgLanguageCode, $wgContLanguageCode;
+	global $wgLang, $wgContLang, $wgUser;
 	$fname = "makeHTMLText";
 	wfProfileIn( $fname );
 
@@ -148,8 +148,8 @@ function makeHTMLText( $messages ) {
 	foreach( $messages as $key => $m ) {
 
 		$title = $wgLang->ucfirst( $key );
-		if($wgLanguageCode != $wgContLanguageCode)
-			$title.="/$wgLanguageCode";
+		if($wgLang->getCode() != $wgContLang->getCode())
+			$title.= '/' . $wgLang->getCode();
 
 		$titleObj =& Title::makeTitle( NS_MEDIAWIKI, $title );
 		$talkPage =& Title::makeTitle( NS_MEDIAWIKI_TALK, $title );

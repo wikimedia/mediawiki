@@ -1438,7 +1438,7 @@ END;
 	 */
 	function buildSidebar() {
 		global $wgDBname, $parserMemc, $wgEnableSidebarCache;
-		global $wgLanguageCode, $wgContLanguageCode;
+		global $wgLang, $wgContLang;
 
 		$fname = 'SkinTemplate::buildSidebar';
 
@@ -1446,7 +1446,7 @@ END;
 
 		$key = "{$wgDBname}:sidebar";
 		$cacheSidebar = $wgEnableSidebarCache &&
-			($wgLanguageCode == $wgContLanguageCode);
+			($wgLang->getCode() == $wgContLang->getCode());
 		
 		if ($cacheSidebar) {
 			$cachedsidebar = $parserMemc->get( $key );

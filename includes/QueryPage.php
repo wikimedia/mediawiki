@@ -448,10 +448,10 @@ class QueryPage {
 	}
 
 	function feedTitle() {
-		global $wgLanguageCode, $wgSitename;
+		global $wgContLanguageCode, $wgSitename;
 		$page = SpecialPage::getPage( $this->getName() );
 		$desc = $page->getDescription();
-		return "$wgSitename - $desc [$wgLanguageCode]";
+		return "$wgSitename - $desc [$wgContLanguageCode]";
 	}
 
 	function feedDesc() {
