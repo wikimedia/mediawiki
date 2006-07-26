@@ -12,7 +12,9 @@ class LanguageConverter {
 	var $mMainLanguageCode;
 	var $mVariants, $mVariantFallbacks;
 	var $mTablesLoaded = false;
+	var $mUseFss = false;
 	var $mTables;
+	var $mFssObjects;
 	var $mTitleDisplay='';
 	var $mDoTitleConvert=true, $mDoContentConvert=true;
 	var $mCacheKey;
@@ -46,6 +48,9 @@ class LanguageConverter {
 		$this->mMarkup = array_merge($m, $markup);
 		$f = array('A'=>'A', 'T'=>'T');
 		$this->mFlags = array_merge($f, $flags);
+		if ( function_exists( 'fss_prep_replace' ) ) {
+			$this->mUseFss = true;
+		}
 	}
 
 	/**
@@ -158,15 +163,33 @@ class LanguageConverter {
 
 
 		$m = array_shift($matches);
-		$ret = strtr($m[0], $this->mTables[$toVariant]);
+		$ret = $this->translate($m[0], $toVariant);
 		$mstart = $m[1]+strlen($m[0]);
 		foreach($matches as $m) {
 			$ret .= substr($text, $mstart, $m[1]-$mstart);
-			$ret .= strtr($m[0], $this->mTables[$toVariant]);
+			$ret .= $this->translate($m[0], $toVariant);
 			$mstart = $m[1] + strlen($m[0]);
 		}
 		wfProfileOut( $fname );
 		return $ret;
+	}
+
+	/**
+	 * Translate a string to a variant
+	 * Doesn't process markup or do any of that other stuff, for that use convert()
+	 *
+	 * @param string $text Text to convert
+	 * @param string $variant Variant language code
+	 * @return string Translated text
+	 */
+	function translate( $text, $variant ) {
+		if( !$this->mTablesLoaded )
+			$this->loadTables();
+		if ( $this->mUseFss ) {
+			return fss_exec_replace( $this->mFssObjects[$variant], $text );
+		} else {
+			return strtr( $text, $this->mTables[$variant] );
+		}
 	}
 
 	/**
@@ -184,7 +207,7 @@ class LanguageConverter {
 
 		$ret = array();
 		foreach($this->mVariants as $variant) {
-			$ret[$variant] = strtr($text, $this->mTables[$variant]);
+			$ret[$variant] = $this->translate($text, $variant);
 		}
 		wfProfileOut( $fname );
 		return $ret;
@@ -333,6 +356,9 @@ class LanguageConverter {
 							$this->mTables[$vto][$carray[$vfrom]] = $carray[$vto];
 
 						}
+					}
+					if ( $this->mUseFss ) {
+						$this->generateFssObjects();
 					}
 				}
 			}
@@ -497,6 +523,18 @@ class LanguageConverter {
 		if($this->lockCache()) {
 			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
 			$this->unlockCache();
+		}
+		if ( $this->mUseFss ) {
+			$this->generateFssObjects();
+		}
+	}
+
+	/**
+	 * Generate FSS objects. The FSS extension must be available.
+	 */
+	function generateFssObjects() {
+		foreach ( $this->mTables as $variant => $table ) {
+			$this->mFssObjects[$variant] = fss_prep_replace( $table );
 		}
 	}
 
