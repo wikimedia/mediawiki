@@ -3584,23 +3584,16 @@ class Parser
 		$namespacechar = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
 		$conpat = "/^({$np}+) \\(({$tc}+)\\)$/";
 
-		$p1 = "/\[\[({$np}+) \\(({$np}+)\\)\\|]]/";		# [[page (context)|]]
-		$p2 = "/\[\[\\|({$tc}+)]]/";					# [[|page]]
-		$p3 = "/\[\[(:*$namespacechar+):({$np}+)\\|]]/";		# [[namespace:page|]] and [[:namespace:page|]]
-		$p4 = "/\[\[(:*$namespacechar+):({$np}+) \\(({$np}+)\\)\\|]]/"; # [[ns:page (cont)|]] and [[:ns:page (cont)|]]
-		$context = '';
-		$t = $this->mTitle->getText();
-		if ( preg_match( $conpat, $t, $m ) ) {
-			$context = $m[2];
-		}
-		$text = preg_replace( $p4, '[[\\1:\\2 (\\3)|\\2]]', $text );
-		$text = preg_replace( $p1, '[[\\1 (\\2)|\\1]]', $text );
-		$text = preg_replace( $p3, '[[\\1:\\2|\\2]]', $text );
+		$p1 = "/\[\[(:?$namespacechar+:|:|)({$np}+)( \\({$np}+\\)|)\\|]]/";	# [[ns:page (context)|]]
+		$p2 = "/\[\[\\|({$tc}+)]]/";						# [[|page]]
 
-		if ( '' == $context ) {
-			$text = preg_replace( $p2, '[[\\1]]', $text );
+		$text = preg_replace( $p1, '[[\\1\\2\\3|\\2]]', $text );
+
+		$t = $this->mTitle->getText();
+		if ( preg_match( $conpat, $t, $m ) && '' != $m[2] ) {
+			$text = preg_replace( $p2, "[[\\1 ({$m[2]})|\\1]]", $text );
 		} else {
-			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
+			$text = preg_replace( $p2, '[[\\1]]', $text );
 		}
 
 		# Trim trailing whitespace
