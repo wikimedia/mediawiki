@@ -1,7 +1,56 @@
 <?php
+/** Limburgian (Limburgs)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+ */
 
-global $wgAllMessagesLi;
-$wgAllMessagesLi = array(
+$quickbarSettings = array(
+	'Oetgesjakeld', 'Links vas', 'Rechts vas', 'Links zwevend'
+);
+
+$skinNames = array(
+	'standard' => 'Standaard',
+	'nostalgia' => 'Nostalgie',
+	'cologneblue' => 'Keuls blauw',
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Speciaal',
+	NS_MAIN           => '',
+	NS_TALK           => 'Euverlik',
+	NS_USER           => 'Gebroeker',
+	NS_USER_TALK      => 'Euverlik_gebroeker',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'Euverlik_$1',
+	NS_IMAGE          => 'Aafbeilding',
+	NS_IMAGE_TALK     => 'Euverlik_afbeelding',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Euverlik_MediaWiki',
+	NS_TEMPLATE       => 'Sjabloon',
+	NS_TEMPLATE_TALK  => 'Euverlik_sjabloon',
+	NS_HELP           => 'Help',
+	NS_HELP_TALK      => 'Euverlik_help',
+	NS_CATEGORY       => 'Kategorie',
+	NS_CATEGORY_TALK  => 'Euverlik_kategorie'
+);
+
+$dateFormats = array(	
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j, Y',
+	'mdy both' => 'M j, Y H:i',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'j M Y H:i',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'Y M j H:i',
+);
+
+$messages = array(
 'tog-underline'         => 'Links ongersjtreipe',
 'tog-highlightbroken'   => 'Formatteer gebraoke links <a href="" class="new">op dees meneer</a> (angesj: zoe<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Paragrafe oetvulle',

@@ -1,12 +1,89 @@
 <?php
+/** Icelandic (Íslenska)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
+$quickbarSettings = array(
+	'Sleppa', 'Fast vinstra megin', 'Fast hægra megin', 'Fljótandi til vinstri'
+);
 
+$skinNames = array(
+	'standard'	=> 'Klassískt',
+	'nostalgia'	=> 'Gamaldags',
+	'cologneblue'	=> 'Kölnarblátt',
+	'myskin'	=> 'Mitt þema',
+);
+
+$datePreferences = array(
+	'default',
+	'dmyt',
+	'short dmyt',
+	'tdmy',
+	'short tdmy',
+	'ISO 8601',
+);
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'dmyt',
+	'short dmyt',
+	'tdmy',
+	'short tdmy',
+);	
+
+$dateFormats = array(
+	'dmyt time' => 'H:i',
+	'dmyt date' => 'j. F Y',
+	'dmyt both' => 'j. F Y "kl." H:i',
+
+	'short dmyt time' => 'H:i',
+	'short dmyt date' => 'j. M. Y',
+	'short dmyt both' => 'j. M. Y "kl." H:i',
+
+	'tdmy time' => 'H:i',
+	'tdmy date' => 'j. F Y',
+	'tdmy both' => 'H:i, j. F Y',
+
+	'short tdmy time' => 'H:i',
+	'short tdmy date' => 'j. M. Y',
+	'short tdmy both' => 'H:i, j. M. Y',
+);
+
+$magicWords = array(
+	'redirect'   => array( 0, '#tilvísun', '#TILVÍSUN', '#redirect' ), // MagicWord::initRegex() sucks
+);
+$namespaceNames = array(
+	NS_MEDIA          => 'Miðill',
+	NS_SPECIAL        => 'Kerfissíða',
+	NS_MAIN           => '',
+	NS_TALK           => 'Spjall',
+	NS_USER           => 'Notandi',
+	NS_USER_TALK      => 'Notandaspjall',
+	NS_PROJECT_TALK   => '$1spjall',
+	NS_IMAGE          => 'Mynd',
+	NS_IMAGE_TALK     => 'Myndaspjall',
+	NS_MEDIAWIKI      => 'Melding',
+	NS_MEDIAWIKI_TALK => 'Meldingarspjall',
+	NS_TEMPLATE       => 'Snið',
+	NS_TEMPLATE_TALK  => 'Sniðaspjall',
+	NS_HELP           => 'Hjálp',
+	NS_HELP_TALK      => 'Hjálparspjall',
+	NS_CATEGORY       => 'Flokkur',
+	NS_CATEGORY_TALK  => 'Flokkaspjall'
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$linkPrefixExtension = true;
+$linkTrail = '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu';
+
+	
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
 
-$wgAllMessagesIs = array(
-'linktrail' => '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu',
+$messages = array(
 'linkprefix'=> '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
 
 '1movedto2' => "$1 færð á $2",

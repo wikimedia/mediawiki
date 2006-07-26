@@ -1,7 +1,40 @@
 <?php
 
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'विशेष',
+	NS_MAIN           => '',
+	NS_TALK           => 'वार्ता',
+	NS_USER           => 'सदस्य',
+	NS_USER_TALK      => 'सदस्य_वार्ता',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_वार्ता',
+	NS_IMAGE          => 'चित्र',
+	NS_IMAGE_TALK     => 'चित्र_वार्ता',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_talk',
+	NS_TEMPLATE       => 'Template',
+	NS_TEMPLATE_TALK  => 'Template_talk',
+	NS_CATEGORY       => 'श्रेणी',
+	NS_CATEGORY_TALK  => 'श्रेणी_वार्ता',
+);
 
-/* private */ $wgAllMessagesHi = array(
+$digitTransformTable = array(
+	"0" => "०",
+	"1" => "१",
+	"2" => "२",
+	"3" => "३",
+	"4" => "४",
+	"5" => "५",
+	"6" => "६",
+	"7" => "७",
+	"8" => "८",
+	"9" => "९"
+);
+$linkTrail = "/^([a-z]+)(.*)\$/sD";
+
+
+$messages = array(
 
 # Dates
 #
@@ -39,7 +72,6 @@
 
 # Bits of text used by many pages:
 #
-"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "मुख्य पृष्ठ",
 "about"			=> "अबाउट",
 "aboutsite"             => "{{SITENAME}} के बारे में",

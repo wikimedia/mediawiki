@@ -1,11 +1,64 @@
 <?php
+/** Danish (Dansk)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+ */
 
+$namespaceNames = array(
+	NS_MEDIA			=> 'Media',
+	NS_SPECIAL			=> 'Speciel',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Diskussion',
+	NS_USER				=> 'Bruger',
+	NS_USER_TALK		=> 'Bruger_diskussion',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK		=> '$1_diskussion',
+	NS_IMAGE			=> 'Billede',
+	NS_IMAGE_TALK		=> 'Billede_diskussion',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'MediaWiki_diskussion',
+	NS_TEMPLATE  		=> 'Skabelon',
+	NS_TEMPLATE_TALK	=> 'Skabelon_diskussion',
+	NS_HELP				=> 'Hjælp',
+	NS_HELP_TALK		=> 'Hjælp_diskussion',
+	NS_CATEGORY			=> 'Kategori',
+	NS_CATEGORY_TALK	=> 'Kategori_diskussion'
+
+);
+
+$quickbarSettings = array(
+	'Ingen', 'Fast venstre', 'Fast højre', 'Flydende venstre'
+);
+
+$skinNames = array(
+	'standard' => 'Klassisk',
+	'nostalgia' => 'Nostalgi',
+	'cologneblue' => 'Cologne-blå',
+);
+
+$datePreferences = false;
+$defaultDateFormat = 'dmy';
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. M Y',
+	'dmy both' => 'j. M Y "kl." H:i',
+);
+
+$bookstoreList = array(
+	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
+	"Bogguide.dk" => "http://www.bogguide.dk/find_boeger_bog.asp?ISBN=$1",
+	'inherit' => true,
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$linkTrail = '/^([a-zæøå]+)(.*)$/sDu';
 
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
 
-/* private */ $wgAllMessagesDa = array(
+$messages = array(
 # User preference toggles
 "tog-underline" => "Understreg henvisninger",
 "tog-highlightbroken" => "Brug røde henvisninger til tomme sider",
@@ -75,7 +128,6 @@
 "category_header" => 'Artikler i kategorien "$1"',
 "subcategories" => "Underkategorier",
 
-"linktrail"		=> '/^([a-zæøå]+)(.*)$/sDu',
 "mainpage"		=> "Forside",
 "mainpagetext"	=> "MediaWiki er nu installeret.",
 "mainpagedocfooter" => "Se vores engelsksprogede [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentation om tilpasning af brugergrænsefladen]

@@ -1,9 +1,51 @@
 <?php
+/** Lithuanian (Lietuvių)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ *
+ */
 
-/* Messages for LanguageLt */
+$namespaceNames = array(
+	NS_MEDIA            => 'Medija',
+	NS_SPECIAL          => 'Specialus',
+	NS_MAIN	            => '',
+	NS_TALK	            => 'Aptarimas',
+	NS_USER             => 'Naudotojas',
+	NS_USER_TALK        => 'Naudotojo_aptarimas',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1_aptarimas',
+	NS_IMAGE            => 'Vaizdas',
+	NS_IMAGE_TALK       => 'Vaizdo_aptarimas',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_aptarimas',
+	NS_TEMPLATE         => 'Šablonas',
+	NS_TEMPLATE_TALK    => 'Šablono_aptarimas',
+	NS_HELP             => 'Pagalba',
+	NS_HELP_TALK        => 'Pagalbos_aptarimas',
+	NS_CATEGORY         => 'Kategorija',
+	NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
+);
 
-global $wgAllMessagesLt;
-$wgAllMessagesLt = array(
+$quickbarSettings = array(
+	'Nerodyti', 'Fiksuoti kairėje', 'Fiksuoti dešinėje', 'Plaukiojantis kairėje'
+);
+
+$skinNames = array(
+	'standard' => 'Standartinė',
+	'nostalgia' => 'Nostalgija',
+	'cologneblue' => 'Kiolno Mėlyna',
+	'davinci' => 'Da Vinči',
+	'mono' => 'Mono',
+	'monobook' => 'MonoBook',
+	'myskin' => 'MySkin',
+	'chick' => 'Chick'
+);
+$fallback8bitEncoding = 'windows-1257';
+$separatorTransformTable = array(',' => ' ', '.' => ',' );
+
+
+$messages = array(
 '1movedto2' => 'Straipsnis \'$1\' pervadintas į \'$2\'',
 '1movedto2_redir' => '\'$1\' pervadintas į \'$2\' (anksčiau buvo nukreipiamasis)',
 'Monobook.js' => '/* tooltips and access keys */

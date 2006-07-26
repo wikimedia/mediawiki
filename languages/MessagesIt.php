@@ -1,7 +1,51 @@
 <?php
+/** Italian (Italiano)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Speciale',
+	NS_MAIN             => '',
+	NS_TALK             => 'Discussione',
+	NS_USER             => 'Utente',
+	NS_USER_TALK        => 'Discussioni_utente',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Discussioni_$1',
+	NS_IMAGE            => 'Immagine',
+	NS_IMAGE_TALK       => 'Discussioni_immagine',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Discussioni_MediaWiki',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Discussioni_template',
+	NS_HELP             => 'Aiuto',
+	NS_HELP_TALK        => 'Discussioni_aiuto',
+	NS_CATEGORY         => 'Categoria',
+	NS_CATEGORY_TALK    => 'Discussioni_categoria'
+);
 
-global $wgAllMessagesIt;
-$wgAllMessagesIt = array(
+$quickbarSettings = array(
+	'Nessuno', 'Fisso a sinistra', 'Fisso a destra', 'Fluttuante a sinistra'
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j, Y',
+	'mdy both' => 'H:i, M j, Y',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'H:i, j M Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'H:i, Y M j',
+);
+
+$messages = array(
 
 # User preference toggles
 "tog-underline" => "Sottolinea i collegamenti",

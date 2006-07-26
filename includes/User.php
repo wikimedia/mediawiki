@@ -42,8 +42,87 @@ class User {
 	var $mSkin;			//!<
 	var $mToken;		//!<
 	var $mTouched;		//!<
+	var $mDatePreference; // !<
 	var $mVersion;		//!< serialized version
 	/**@}} */
+
+	/**
+	 * Default user options
+	 * To change this array at runtime, use a UserDefaultOptions hook
+	 */
+	static public $mDefaultOptions = array( 
+		'quickbar' 		=> 1,
+		'underline' 		=> 2,
+		'cols'			=> 80,
+		'rows' 			=> 25,
+		'searchlimit' 		=> 20,
+		'contextlines' 		=> 5,
+		'contextchars' 		=> 50,
+		'skin' 			=> false,
+		'math' 			=> 1,
+		'rcdays' 		=> 7,
+		'rclimit' 		=> 50,
+		'wllimit' 		=> 250,
+		'highlightbroken'	=> 1,
+		'stubthreshold' 	=> 0,
+		'previewontop' 		=> 1,
+		'editsection'		=> 1,
+		'editsectiononrightclick'=> 0,
+		'showtoc'		=> 1,
+		'showtoolbar' 		=> 1,
+		'date' 			=> 'default',
+		'imagesize' 		=> 2,
+		'thumbsize'		=> 2,
+		'rememberpassword' 	=> 0,
+		'enotifwatchlistpages' 	=> 0,
+		'enotifusertalkpages' 	=> 1,
+		'enotifminoredits' 	=> 0,
+		'enotifrevealaddr' 	=> 0,
+		'shownumberswatching' 	=> 1,
+		'fancysig' 		=> 0,
+		'externaleditor' 	=> 0,
+		'externaldiff' 		=> 0,
+		'showjumplinks'		=> 1,
+		'numberheadings'	=> 0,
+		'uselivepreview'	=> 0,
+		'watchlistdays' 	=> 3.0,
+	);
+
+	static public $mToggles = array(
+		'highlightbroken',
+		'justify',
+		'hideminor',
+		'extendwatchlist',
+		'usenewrc',
+		'numberheadings',
+		'showtoolbar',
+		'editondblclick',
+		'editsection',
+		'editsectiononrightclick',
+		'showtoc',
+		'rememberpassword',
+		'editwidth',
+		'watchcreations',
+		'watchdefault',
+		'minordefault',
+		'previewontop',
+		'previewonfirst',
+		'nocache',
+		'enotifwatchlistpages',
+		'enotifusertalkpages',
+		'enotifminoredits',
+		'enotifrevealaddr',
+		'shownumberswatching',
+		'fancysig',
+		'externaleditor',
+		'externaldiff',
+		'showjumplinks',
+		'uselivepreview',
+		'autopatrol',
+		'forceeditsummary',
+		'watchlisthideown',
+		'watchlisthidebots',
+	);		
 
 	/** Constructor using User:loadDefaults() */
 	function User()	{
@@ -348,6 +427,7 @@ class User {
 		$this->mRights = array();
 		$this->mGroups = array();
 		$this->mOptions = User::getDefaultOptions();
+		$this->mDatePreference = null;
 
 		foreach( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
 			$this->mOptions['searchNs'.$nsnum] = $val;
@@ -382,13 +462,13 @@ class User {
 		/**
 		 * Site defaults will override the global/language defaults
 		 */
-		global $wgContLang, $wgDefaultUserOptions;
-		$defOpt = $wgDefaultUserOptions + $wgContLang->getDefaultUserOptions();
+		global $wgContLang;
+		$defOpt = self::$mDefaultOptions + $wgContLang->getDefaultUserOptionOverrides();
 
 		/**
 		 * default language setting
 		 */
-		$variant = $wgContLang->getPreferredVariant();
+		$variant = $wgContLang->getPreferredVariant( false );
 		$defOpt['variant'] = $variant;
 		$defOpt['language'] = $variant;
 
@@ -411,6 +491,18 @@ class User {
 			return '';
 		}
 	}
+
+	/**
+	 * Get a list of user toggle names
+	 * @return array
+	 */
+	static function getToggles() {
+		global $wgContLang;
+		$extraToggles = array();
+		wfRunHooks( 'UserToggles', array( &$extraToggles ) );
+		return array_merge( self::$mToggles, $extraToggles, $wgContLang->getExtraUserToggles() );
+	}
+
 
 	/**
 	 * Get blocking information
@@ -638,19 +730,10 @@ class User {
 
 	/**
 	 * Initialise php session
+	 * @deprecated use wfSetupSession()
 	 */
 	function SetupSession() {
-		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
-		if( $wgSessionsInMemcached ) {
-			require_once( 'MemcachedSessions.php' );
-		} elseif( 'files' != ini_get( 'session.save_handler' ) ) {
-			# If it's left on 'user' or another setting from another
-			# application, it will end up failing. Try to recover.
-			ini_set ( 'session.save_handler', 'files' );
-		}
-		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
-		session_cache_limiter( 'private, must-revalidate' );
-		@session_start();
+		wfSetupSession();
 	}
 
 	/**
@@ -1071,6 +1154,23 @@ class User {
 	}
 
 	/**
+	 * Get the user's date preference, including some important migration for 
+	 * old user rows.
+	 */
+	function getDatePreference() {
+		if ( is_null( $this->mDatePreference ) ) {
+			global $wgLang;
+			$value = $this->getOption( 'date' );
+			$map = $wgLang->getDatePreferenceMigrationMap();
+			if ( isset( $map[$value] ) ) {
+				$value = $map[$value];
+			}
+			$this->mDatePreference = $value;
+		}
+		return $this->mDatePreference;
+	}
+
+	/**
 	 * @param string $oname The option to check
 	 * @return bool False if the option is not selected, true if it is
 	 */
@@ -1401,6 +1501,8 @@ class User {
 	 * @private
 	 */
 	function decodeOptions( $str ) {
+		global $wgLang;
+		
 		$a = explode( "\n", $str );
 		foreach ( $a as $s ) {
 			if ( preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
@@ -1586,7 +1688,7 @@ class User {
 	 * @return string
 	 */
 	function getPageRenderingHash() {
-		global $wgContLang;
+		global $wgContLang, $wgUseDynamicDates;
 		if( $this->mHash ){
 			return $this->mHash;
 		}
@@ -1596,7 +1698,9 @@ class User {
 
 		$confstr =        $this->getOption( 'math' );
 		$confstr .= '!' . $this->getOption( 'stubthreshold' );
-		$confstr .= '!' . $this->getOption( 'date' );
+		if ( $wgUseDynamicDates ) {
+			$confstr .= '!' . $this->getDatePreference();
+		}
 		$confstr .= '!' . ($this->getOption( 'numberheadings' ) ? '1' : '');
 		$confstr .= '!' . $this->getOption( 'language' );
 		$confstr .= '!' . $this->getOption( 'thumbsize' );

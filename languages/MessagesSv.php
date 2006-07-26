@@ -1,7 +1,65 @@
 <?php
+/**
+ * Swedish (Svenska)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesSv;
-$wgAllMessagesSv = array(
+$quickbarSettings = array(
+	"Ingen",
+	"Fast vänster",
+	"Fast höger",
+	"Flytande vänster"
+);
+
+$skinNames = array(
+	'standard' => "Standard",
+	'nostalgia' => "Nostalgi",
+	'cologneblue' => "Cologne Blå",
+);
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_MAIN	            => '',
+	NS_TALK	            => 'Diskussion',
+	NS_USER             => 'Användare',
+	NS_USER_TALK        => 'Användardiskussion',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1diskussion',
+	NS_IMAGE            => 'Bild',
+	NS_IMAGE_TALK       => 'Bilddiskussion',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskussion',
+	NS_TEMPLATE         => 'Mall',
+	NS_TEMPLATE_TALK    => 'Malldiskussion',
+	NS_HELP             => 'Hjälp',
+	NS_HELP_TALK        => 'Hjälp_diskussion',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Kategoridiskussion'
+);
+
+$linkTrail = '/^([a-zåäöéÅÄÖÉ]+)(.*)$/sDu';
+$separatorTransformTable =  array(
+	',' => "\xc2\xa0", // @bug 2749
+	'.' => ','
+);
+
+$dateFormats = array(
+	'mdy time' => 'H.i',
+	'mdy date' => 'F j, Y',
+	'mdy both' => 'F j, Y "kl." H.i',
+
+	'dmy time' => 'H.i',
+	'dmy date' => 'j F Y',
+	'dmy both' => 'j F Y "kl." H.i',
+
+	'ymd time' => 'H.i',
+	'ymd date' => 'Y F j',
+	'ymd both' => 'Y F j "kl." H.i',
+);
+
+$messages = array(
 'tog-underline'         => 'Stryk under länkar',
 'tog-highlightbroken'   => 'Formatera trasiga länkar <a href="" class="new">så här</a> (alternativt: <a href="" class="internal">så här</a>).',
 'tog-justify'           => 'Justera indrag',

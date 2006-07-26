@@ -873,9 +873,7 @@ error_reporting( E_ALL );
 			$revid = $revision->insertOn( $wgDatabase );
 			$article->updateRevisionOn( $wgDatabase, $revision );
 
-			print "<li><pre>";
-			initialiseMessages();
-			print "</pre></li>\n";
+			initialiseMessages( false, false, 'printListItem' );
 		}
 
 		/* Write out the config file now that all is well */
@@ -1539,7 +1537,7 @@ function getLanguageList() {
 		$d = opendir( "languages");
 	while( false !== ($f = readdir( $d ) ) ) {
 		$m = array();
-		if( preg_match( '/Language([A-Z][a-z_]+)\.php$/', $f, $m ) ) {
+		if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $f, $m ) ) {
 			$code = str_replace( '_', '-', strtolower( $m[1] ) );
 			if( isset( $wgLanguageNames[$code] ) ) {
 				$name = $code . ' - ' . $wgLanguageNames[$code];
@@ -1640,6 +1638,10 @@ function database_switcher($db) {
 	$full = $ourdb[$db]['fullname'];
 	print "<div id='$db' style='display:none; background: $color'>\n";
 	print "<h3>$full specific options:</h3>\n";
+}
+
+function printListItem( $item ) {
+	print "<li>$item</li>";
 }
 
 ?>

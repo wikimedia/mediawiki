@@ -1,7 +1,68 @@
 <?php
+/** Norwegian (Norsk (bokmål))
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesNo;
-$wgAllMessagesNo = array(
+$quickbarSettings = array(
+	'Ingen', 'Fast venstre', 'Fast høyre', 'Flytende venstre'
+);
+
+$skinNames = array(
+	'standard'    => 'Standard',
+	'nostalgia'   => 'Nostalgi',
+	'cologneblue' => 'Kölnerblå'
+);
+
+$bookstoreList = array(
+	'Antikvariat.net' => 'http://www.antikvariat.net/',
+	'Frida' => 'http://wo.uio.no/as/WebObjects/frida.woa/wa/fres?action=sok&isbn=$1&visParametre=1&sort=alfabetisk&bs=50',
+	'Bibsys' => 'http://ask.bibsys.no/ask/action/result?cmd=&kilde=biblio&fid=isbn&term=$1&op=and&fid=bd&term=&arstall=&sortering=sortdate-&treffPrSide=50',
+	'Akademika' => 'http://www.akademika.no/sok.php?ts=4&sok=$1',
+	'Haugenbok' => 'http://www.haugenbok.no/resultat.cfm?st=extended&isbn=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'Medium',
+	NS_SPECIAL        => 'Spesial',
+	NS_MAIN           => '',
+	NS_TALK           => 'Diskusjon',
+	NS_USER           => 'Bruker',
+	NS_USER_TALK      => 'Brukerdiskusjon',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1-diskusjon',
+	NS_IMAGE          => 'Bilde',
+	NS_IMAGE_TALK     => 'Bildediskusjon',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki-diskusjon',
+	NS_TEMPLATE       => 'Mal',
+	NS_TEMPLATE_TALK  => 'Maldiskusjon',
+	NS_HELP           => 'Hjelp',
+	NS_HELP_TALK      => 'Hjelpdiskusjon',
+	NS_CATEGORY       => 'Kategori',
+	NS_CATEGORY_TALK  => 'Kategoridiskusjon',
+);
+
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j., Y',
+	'mdy both' => 'M j., Y "kl." H:i',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. M Y',
+	'dmy both' => 'j. M Y "kl." H:i',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j.',
+	'ymd both' => 'Y M j. "kl." H:i',
+);
+
+
+$messages = array(
 'tog-underline'         => 'Strek under lenker:',
 'tog-highlightbroken'   => 'Formater ødelagte lenker <a href="" class="new">slik</a> (alternativt: slik<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Blokkjusterte avsnitt',

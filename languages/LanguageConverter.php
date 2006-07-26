@@ -72,11 +72,12 @@ class LanguageConverter {
 
 
 	/**
-     * get preferred language variants.
+	 * get preferred language variants.
+	 * @param boolean $fromUser Get it from $wgUser's preferences
      * @return string the preferred language code
      * @access public
 	*/
-	function getPreferredVariant() {
+	function getPreferredVariant( $fromUser = true ) {
 		global $wgUser, $wgRequest;
 
 		if($this->mPreferredVariant)
@@ -90,7 +91,9 @@ class LanguageConverter {
 		}
 
 		// get language variant preference from logged in users
-		if(is_object($wgUser) && $wgUser->isLoggedIn() )  {
+		// Don't call this on stub objects because that causes infinite 
+		// recursion during initialisation
+		if( $fromUser && $wgUser->isLoggedIn() )  {
 			$this->mPreferredVariant = $wgUser->getOption('variant');
 			return $this->mPreferredVariant;
 		}

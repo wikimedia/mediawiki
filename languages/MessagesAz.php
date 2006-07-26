@@ -1,7 +1,35 @@
 <?php
+/** Azerbaijani (Azərbaycan)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-global $wgAllMessagesAz;
-$wgAllMessagesAz = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Mediya',
+	NS_SPECIAL          => 'Xüsusi',
+	NS_MAIN             => '',
+	NS_TALK             => 'Müzakirə',
+	NS_USER             => 'İstifadəçi',
+	NS_USER_TALK        => 'İstifadəçi_müzakirəsi',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1_müzakirəsi',
+	NS_IMAGE            => 'Şəkil',
+	NS_IMAGE_TALK       => 'Şəkil_müzakirəsi',
+	NS_MEDIAWIKI        => 'MediyaViki',
+	NS_MEDIAWIKI_TALK   => 'MediyaViki_müzakirəsi',
+	NS_TEMPLATE         => 'Şablon',
+	NS_TEMPLATE_TALK    => 'Şablon_müzakirəsi',
+	NS_HELP             => 'Kömək',
+	NS_HELP_TALK        => 'Kömək_müzakirəsi',
+	NS_CATEGORY         => 'Kateqoriya',
+	NS_CATEGORY_TALK    => 'Kateqoriya_müzakirəsi',
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+
+
+$messages = array(
 
 # User preference toggles  # Kullanıcı seçenekleri
 'tog-fancysig' => 'Xam imza (daxili bağlantı yaratmaz)',

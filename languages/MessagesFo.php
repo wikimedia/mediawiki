@@ -1,7 +1,55 @@
 <?php
+/** Faroese (Føroyskt)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-global $wgAllMessagesFo;
-$wgAllMessagesFo = array(
+$quickbarSettings = array(
+	'Eingin', 'Fast vinstru', 'Fast høgru', 'Flótandi vinstru'
+);
+
+$skinNames = array(
+	'Standardur', 'Nostalgiskur', 'Cologne-bláur', 'Paddington', 'Montparnasse'
+);
+
+$bookstoreList = array(
+	'Bokasolan.fo' => 'http://www.bokasolan.fo/vleitari.asp?haattur=bok.alfa&Heiti=&Hovindur=&Forlag=&innbinding=Oell&bolkur=Allir&prisur=Allir&Aarstal=Oell&mal=Oell&status=Oell&ISBN=$1',
+	'inherit' => true,
+);
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Miðil',
+	NS_SPECIAL          => 'Serstakur',
+	NS_MAIN             => '',
+	NS_TALK             => 'Kjak',
+	NS_USER             => 'Brúkari',
+	NS_USER_TALK        => 'Brúkari_kjak',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1_kjak',
+	NS_IMAGE            => 'Mynd',
+	NS_IMAGE_TALK       => 'Mynd_kjak',
+	NS_MEDIAWIKI        => 'MidiaWiki',
+	NS_MEDIAWIKI_TALK   => 'MidiaWiki_kjak',
+	NS_TEMPLATE         => 'Fyrimynd',
+	NS_TEMPLATE_TALK    => 'Fyrimynd_kjak',
+	NS_HELP             => 'Hjálp',
+	NS_HELP_TALK        => 'Hjálp_kjak',
+	NS_CATEGORY         => 'Bólkur',
+	NS_CATEGORY_TALK    => 'Bólkur_kjak'
+);
+
+$datePreferences = false;
+$defaultDateFormat = 'dmy';
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. M Y',
+	'dmy both' => 'j. M Y "kl." H:i',
+);
+
+$linkTrail = '/^([áðíóúýæøa-z]+)(.*)$/sDu';
+
+$messages = array(
 
 # User toggles
 "tog-underline"	   => "Undurstrika ávísingar",
@@ -63,7 +111,6 @@ $wgAllMessagesFo = array(
 'mw_math_modern' => "Tilmælt nýtíðarkagara",
 'mw_math_mathml' => 'MathML if possible (experimental)',
 
-'linktrail' => '/^([áðíóúýæøa-z]+)(.*)$/sDu',
 );
 
 ?>

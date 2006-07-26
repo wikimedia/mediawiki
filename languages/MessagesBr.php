@@ -1,7 +1,64 @@
 <?php
 
+$namespaceNames = array(
+	NS_MEDIA			=> 'Media',
+	NS_SPECIAL			=> 'Dibar',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Kaozeal',
+	NS_USER				=> 'Implijer',
+	NS_USER_TALK		=> 'Kaozeadenn_Implijer',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK		=> 'Kaozeadenn_$1',
+	NS_IMAGE			=> 'Skeudenn',
+	NS_IMAGE_TALK		=> 'Kaozeadenn_Skeudenn',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'Kaozeadenn_MediaWiki',
+	NS_TEMPLATE			=> 'Patrom',
+	NS_TEMPLATE_TALK	=> 'Kaozeadenn_Patrom',
+	NS_HELP				=> 'Skoazell',
+	NS_HELP_TALK		=> 'Kaozeadenn_Skoazell',
+	NS_CATEGORY			=> 'Rummad',
+	NS_CATEGORY_TALK	=> 'Kaozeadenn_Rummad'
+);
 
-/* private */ $wgAllMessagesBr = array(
+$quickbarSettings = array(
+	'Hini ebet', 'Kleiz', 'Dehou', 'War-neuñv a-gleiz'
+);
+
+$skinNames = array(
+	'standard'		=> 'Standard',
+	'nostalgia'		=> 'Melkoni',
+	'cologneblue'	=> 'Glaz Kologn',
+	'smarty'		=> 'Paddington',
+	'montparnasse'	=> 'Montparnasse',
+	'davinci'		=> 'DaVinci',
+	'mono'			=> 'Mono',
+	'monobook'		=> 'MonoBook',
+	'myskin'		=> 'MySkin'
+);
+
+
+
+$bookstoreList = array(
+	'Amazon.fr'		=> 'http://www.amazon.fr/exec/obidos/ISBN=$1',
+	'alapage.fr'	=> 'http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&',
+	'fnac.com'		=> 'http://www3.fnac.com/advanced/book.do?isbn=$1',
+	'chapitre.com'	=> 'http://www.chapitre.com/frame_rec.asp?isbn=$1',
+);
+
+$datePreferences = false;
+$defaultDateFormat = 'dmy';
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'j M Y "da" H:i',
+);
+
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$linkTrail = "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu";
+
+
+$messages = array(
 
 # User Toggles
 
@@ -72,7 +129,6 @@
 'subcategorycount' => '$1 isrummad zo d\'ar rummad-mañ.',
 
 'allarticles'   => 'An holl bennadoù',
-'linktrail'     => "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu",
 'mainpage'      => 'Degemer',
 'mainpagetext'	=> 'Meziant {{SITENAME}} staliet.',
 'portal'        => 'Porched ar gumuniezh',

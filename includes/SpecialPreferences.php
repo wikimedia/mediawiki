@@ -74,7 +74,7 @@ class PreferencesForm {
 		# User toggles  (the big ugly unsorted list of checkboxes)
 		$this->mToggles = array();
 		if ( $this->mPosted ) {
-			$togs = $wgLang->getUserToggles();
+			$togs = User::getToggles();
 			foreach ( $togs as $tname ) {
 				$this->mToggles[$tname] = $request->getCheck( "wpOp$tname" ) ? 1 : 0;
 			}
@@ -356,7 +356,7 @@ class PreferencesForm {
 		$this->mQuickbar = $wgUser->getOption( 'quickbar' );
 		$this->mSkin = Skin::normalizeKey( $wgUser->getOption( 'skin' ) );
 		$this->mMath = $wgUser->getOption( 'math' );
-		$this->mDate = $wgUser->getOption( 'date' );
+		$this->mDate = $wgUser->getDatePreference();
 		$this->mRows = $wgUser->getOption( 'rows' );
 		$this->mCols = $wgUser->getOption( 'cols' );
 		$this->mStubs = $wgUser->getOption( 'stubthreshold' );
@@ -371,7 +371,7 @@ class PreferencesForm {
 		$this->mUnderline = $wgUser->getOption( 'underline' );
 		$this->mWatchlistDays = $wgUser->getOption( 'watchlistdays' );
 
-		$togs = $wgLang->getUserToggles();
+		$togs = User::getToggles();
 		foreach ( $togs as $tname ) {
 			$ttext = wfMsg('tog-'.$tname);
 			$this->mToggles[$tname] = $wgUser->getOption( $tname );
@@ -470,8 +470,8 @@ class PreferencesForm {
 		$qbs = $wgLang->getQuickbarSettings();
 		$skinNames = $wgLang->getSkinNames();
 		$mathopts = $wgLang->getMathNames();
-		$dateopts = $wgLang->getDateFormats();
-		$togs = $wgLang->getUserToggles();
+		$dateopts = $wgLang->getDatePreferences();
+		$togs = User::getToggles();
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Preferences' );
 		$action = $titleObj->escapeLocalURL();
@@ -595,7 +595,7 @@ class PreferencesForm {
 		 * Make sure the site language is in the list; a custom language code
 		 * might not have a defined name...
 		 */
-		$languages = $wgLang->getLanguageNames();
+		$languages = $wgLang->getLanguageNames( true );
 		if( !array_key_exists( $wgContLanguageCode, $languages ) ) {
 			$languages[$wgContLanguageCode] = $wgContLanguageCode;
 		}
@@ -610,12 +610,8 @@ class PreferencesForm {
 		$selbox = null;
 		foreach($languages as $code => $name) {
 			global $IP;
-			/* only add languages that have a file */
-			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
-			if(file_exists($langfile) || $code == $wgContLanguageCode) {
-				$sel = ($code == $selectedLang)? ' selected="selected"' : '';
-				$selbox .= "<option value=\"$code\"$sel>$code - $name</option>\n";
-			}
+			$sel = ($code == $selectedLang)? ' selected="selected"' : '';
+			$selbox .= "<option value=\"$code\"$sel>$code - $name</option>\n";
 		}
 		$wgOut->addHTML(
 			$this->addRow(
@@ -764,20 +760,20 @@ class PreferencesForm {
 			<legend>" . wfMsg( 'files' ) . "</legend>
 			<div><label for='wpImageSize'>" . wfMsg('imagemaxsize') . "</label> <select id='wpImageSize' name='wpImageSize'>");
 
-			$imageLimitOptions = null;
-			foreach ( $wgImageLimits as $index => $limits ) {
-				$selected = ($index == $this->mImageSize) ? 'selected="selected"' : '';
-				$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}×{$limits[1]}". wfMsgHtml('unit-pixel') ."</option>\n";
-			}
+		$imageLimitOptions = null;
+		foreach ( $wgImageLimits as $index => $limits ) {
+			$selected = ($index == $this->mImageSize) ? 'selected="selected"' : '';
+			$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}×{$limits[1]}". wfMsgHtml('unit-pixel') ."</option>\n";
+		}
 
-			$imageThumbOptions = null;
-			$wgOut->addHTML( "{$imageLimitOptions}</select></div>
-				<div><label for='wpThumbSize'>" . wfMsg('thumbsize') . "</label> <select name='wpThumbSize' id='wpThumbSize'>");
-			foreach ( $wgThumbLimits as $index => $size ) {
-				$selected = ($index == $this->mThumbSize) ? 'selected="selected"' : '';
-				$imageThumbOptions .= "<option value=\"{$index}\" {$selected}>{$size}". wfMsgHtml('unit-pixel') ."</option>\n";
-			}
-			$wgOut->addHTML( "{$imageThumbOptions}</select></div></fieldset>\n\n");
+		$imageThumbOptions = null;
+		$wgOut->addHTML( "{$imageLimitOptions}</select></div>
+			<div><label for='wpThumbSize'>" . wfMsg('thumbsize') . "</label> <select name='wpThumbSize' id='wpThumbSize'>");
+		foreach ( $wgThumbLimits as $index => $size ) {
+			$selected = ($index == $this->mThumbSize) ? 'selected="selected"' : '';
+			$imageThumbOptions .= "<option value=\"{$index}\" {$selected}>{$size}". wfMsgHtml('unit-pixel') ."</option>\n";
+		}
+		$wgOut->addHTML( "{$imageThumbOptions}</select></div></fieldset>\n\n");
 
 		# Date format
 		#
@@ -790,8 +786,8 @@ class PreferencesForm {
 			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg( 'dateformat' ) . "</legend>\n" );
 			$idCnt = 0;
 			$epoch = '20010115161234'; # Wikipedia day
-			foreach($dateopts as $key => $option) {
-				if( $key == MW_DATE_DEFAULT ) {
+			foreach( $dateopts as $key ) {
+				if( $key == 'default' ) {
 					$formatted = wfMsgHtml( 'datedefault' );
 				} else {
 					$formatted = htmlspecialchars( $wgLang->timeanddate( $epoch, false, $key ) );

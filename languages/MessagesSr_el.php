@@ -1,7 +1,198 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
+
+$namespaceNames = array(
+	NS_MEDIA            => "Medija",
+	NS_SPECIAL          => "Posebno",
+	NS_MAIN             => "",
+	NS_TALK             => "Razgovor",
+	NS_USER             => "Korisnik",
+	NS_USER_TALK        => "Razgovor_sa_korisnikom",
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => "Razgovor_o_$1",
+	NS_IMAGE            => "Slika",
+	NS_IMAGE_TALK       => "Razgovor_o_slici",
+	NS_MEDIAWIKI        => "MedijaViki",
+	NS_MEDIAWIKI_TALK   => "Razgovor_o_MedijaVikiju",
+	NS_TEMPLATE         => 'Šablon',
+	NS_TEMPLATE_TALK    => 'Razgovor_o_šablonu',
+	NS_HELP             => 'Pomoć',
+	NS_HELP_TALK        => 'Razgovor_o_pomoći',
+	NS_CATEGORY         => 'Kategorija',
+	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
+);
+
+$quickbarSettings = array(
+ "Nikakva", "Pričvršćena levo", "Pričvršćena desno", "Plutajuća levo"
+);
+
+$skinNames = array(
+ "Obična", "Nostalgija", "Kelnsko plavo", "Pedington", "Monparnas"
+);
+
+$extraUserToggles = array(
+	'nolangconversion',
+);
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'hh:mm d. month y.',
+	'hh:mm d month y',
+	'hh:mm dd.mm.yyyy',
+	'hh:mm d.m.yyyy',
+	'hh:mm d. mon y.',
+	'hh:mm d mon y',
+	'h:mm d. month y.',
+	'h:mm d month y',
+	'h:mm dd.mm.yyyy',
+	'h:mm d.m.yyyy',
+	'h:mm d. mon y.',
+	'h:mm d mon y',
+);
+
+$datePreferences = array(
+	'default',
+	'hh:mm d. month y.',
+	'hh:mm d month y',
+	'hh:mm dd.mm.yyyy',
+	'hh:mm d.m.yyyy',
+	'hh:mm d. mon y.',
+	'hh:mm d mon y',
+	'h:mm d. month y.',
+	'h:mm d month y',
+	'h:mm dd.mm.yyyy',
+	'h:mm d.m.yyyy',
+	'h:mm d. mon y.',
+	'h:mm d mon y',
+);
+
+$defaultDateFormat = 'hh:mm d. month y.';
+
+$dateFormats = array(
+	/*
+	'Није битно',
+	'06:12, 5. јануар 2001.',
+	'06:12, 5 јануар 2001',
+	'06:12, 05.01.2001.',
+	'06:12, 5.1.2001.',
+	'06:12, 5. јан 2001.',
+	'06:12, 5 јан 2001',
+	'6:12, 5. јануар 2001.',
+	'6:12, 5 јануар 2001',
+	'6:12, 05.01.2001.',
+	'6:12, 5.1.2001.',
+	'6:12, 5. јан 2001.',
+	'6:12, 5 јан 2001',
+	 */
+	
+	'hh:mm d. month y. time'    => 'H:i',
+	'hh:mm d month y time'      => 'H:i',
+	'hh:mm dd.mm.yyyy time'     => 'H:i',
+	'hh:mm d.m.yyyy time'       => 'H:i',
+	'hh:mm d. mon y. time'      => 'H:i',
+	'hh:mm d mon y time'        => 'H:i',
+	'h:mm d. month y. time'     => 'G:i',
+	'h:mm d month y time'       => 'G:i',
+	'h:mm dd.mm.yyyy time'      => 'G:i',
+	'h:mm d.m.yyyy time'        => 'G:i',
+	'h:mm d. mon y. time'       => 'G:i',
+	'h:mm d mon y time'         => 'G:i',
+
+	'hh:mm d. month y. date'    => 'j. F Y.',
+	'hh:mm d month y date'      => 'j F Y',  
+	'hh:mm dd.mm.yyyy date'     => 'd.m.Y',  
+	'hh:mm d.m.yyyy date'       => 'j.n.Y',  
+	'hh:mm d. mon y. date'      => 'j. M Y.',
+	'hh:mm d mon y date'        => 'j M Y',  
+	'h:mm d. month y. date'     => 'j. F Y.',
+	'h:mm d month y date'       => 'j F Y',  
+	'h:mm dd.mm.yyyy date'      => 'd.m.Y',  
+	'h:mm d.m.yyyy date'        => 'j.n.Y',  
+	'h:mm d. mon y. date'       => 'j. M Y.',
+	'h:mm d mon y date'         => 'j M Y',  
+
+	'hh:mm d. month y. both'    =>'H:i, j. F Y.', 
+	'hh:mm d month y both'      =>'H:i, j F Y',   
+	'hh:mm dd.mm.yyyy both'     =>'H:i, d.m.Y',   
+	'hh:mm d.m.yyyy both'       =>'H:i, j.n.Y',   
+	'hh:mm d. mon y. both'      =>'H:i, j. M Y.', 
+	'hh:mm d mon y both'        =>'H:i, j M Y',   
+	'h:mm d. month y. both'     =>'G:i, j. F Y.', 
+	'h:mm d month y both'       =>'G:i, j F Y',   
+	'h:mm dd.mm.yyyy both'      =>'G:i, d.m.Y',   
+	'h:mm d.m.yyyy both'        =>'G:i, j.n.Y',   
+	'h:mm d. mon y. both'       =>'G:i, j. M Y.', 
+	'h:mm d mon y both'         =>'G:i, j M Y',   
+);
 
 
-$wgAllMessagesSr_el = array(
+/* NOT USED IN STABLE VERSION */
+$magicWords = array(
+#	ID                                CASE SYNONYMS
+	'redirect'               => array( 0, '#Preusmeri', '#redirect', '#preusmeri', '#PREUSMERI' ),
+	'notoc'                  => array( 0, '__NOTOC__', '__BEZSADRŽAJA__' ),
+	'forcetoc'               => array( 0, '__FORCETOC__', '__FORSIRANISADRŽAJ__' ),
+	'toc'                    => array( 0, '__TOC__', '__SADRŽAJ__' ),
+	'noeditsection'          => array( 0, '__NOEDITSECTION__', '__BEZ_IZMENA__', '__BEZIZMENA__' ),
+	'start'                  => array( 0, '__START__', '__POČETAK__' ),
+	'end'                    => array( 0, '__END__', '__KRAJ__' ),
+	'currentmonth'           => array( 1, 'CURRENTMONTH', 'TRENUTNIMESEC' ),
+	'currentmonthname'       => array( 1, 'CURRENTMONTHNAME', 'TRENUTNIMESECIME' ),
+	'currentmonthnamegen'    => array( 1, 'CURRENTMONTHNAMEGEN', 'TRENUTNIMESECROD' ),
+	'currentmonthabbrev'     => array( 1, 'CURRENTMONTHABBREV', 'TRENUTNIMESECSKR' ),
+	'currentday'             => array( 1, 'CURRENTDAY', 'TRENUTNIDAN' ),
+	'currentdayname'         => array( 1, 'CURRENTDAYNAME', 'TRENUTNIDANIME' ),
+	'currentyear'            => array( 1, 'CURRENTYEAR', 'TRENUTNAGODINA' ),
+	'currenttime'            => array( 1, 'CURRENTTIME', 'TRENUTNOVREME' ),
+	'numberofarticles'       => array( 1, 'NUMBEROFARTICLES', 'BROJČLANAKA' ),
+	'numberoffiles'          => array( 1, 'NUMBEROFFILES', 'BROJDATOTEKA', 'BROJFAJLOVA' ),
+	'pagename'               => array( 1, 'PAGENAME', 'STRANICA' ),
+	'pagenamee'              => array( 1, 'PAGENAMEE', 'STRANICE' ),
+	'namespace'              => array( 1, 'NAMESPACE', 'IMENSKIPROSTOR' ),
+	'namespacee'             => array( 1, 'NAMESPACEE', 'IMENSKIPROSTORI' ),
+	'fullpagename'           => array( 1, 'FULLPAGENAME', 'PUNOIMESTRANE' ),
+	'fullpagenamee'          => array( 1, 'FULLPAGENAMEE', 'PUNOIMESTRANEE' ),
+	'msg'                    => array( 0, 'MSG:', 'POR:' ),
+	'subst'                  => array( 0, 'SUBST:', 'ZAMENI:' ),
+	'msgnw'                  => array( 0, 'MSGNW:', 'NVPOR:' ),
+	'img_thumbnail'          => array( 1, 'thumbnail', 'thumb', 'mini' ),
+	'img_manualthumb'        => array( 1, 'thumbnail=$1', 'thumb=$1', 'mini=$1' ),
+	'img_right'              => array( 1, 'right', 'desno', 'd' ),
+	'img_left'               => array( 1, 'left', 'levo', 'l' ),
+	'img_none'               => array( 1, 'none', 'n', 'bez' ),
+	'img_width'              => array( 1, '$1px', '$1piskel' , '$1p' ),
+	'img_center'             => array( 1, 'center', 'centre', 'centar', 'c' ),
+	'img_framed'             => array( 1, 'framed', 'enframed', 'frame', 'okvir', 'ram' ),
+	'int'                    => array( 0, 'INT:', 'INT:' ),
+	'sitename'               => array( 1, 'SITENAME', 'IMESAJTA' ),
+	'ns'                     => array( 0, 'NS:', 'IP:' ),
+	'localurl'               => array( 0, 'LOCALURL:', 'LOKALNAADRESA:' ),
+	'localurle'              => array( 0, 'LOCALURLE:', 'LOKALNEADRESE:' ),
+	'server'                 => array( 0, 'SERVER', 'SERVER' ),
+	'servername'             => array( 0, 'SERVERNAME', 'IMESERVERA' ),
+	'scriptpath'             => array( 0, 'SCRIPTPATH', 'SKRIPTA' ),
+	'grammar'                => array( 0, 'GRAMMAR:', 'GRAMATIKA:' ),
+	'notitleconvert'         => array( 0, '__NOTITLECONVERT__', '__NOTC__', '__BEZTC__' ),
+	'nocontentconvert'       => array( 0, '__NOCONTENTCONVERT__', '__NOCC__', '__BEZCC__' ),
+	'currentweek'            => array( 1, 'CURRENTWEEK', 'TRENUTNANEDELjA' ),
+	'currentdow'             => array( 1, 'CURRENTDOW', 'TRENUTNIDOV' ),
+	'revisionid'             => array( 1, 'REVISIONID', 'IDREVIZIJE' ),
+	'plural'                 => array( 0, 'PLURAL:', 'MNOŽINA:' ),
+	'fullurl'                => array( 0, 'FULLURL:', 'PUNURL:' ),
+	'fullurle'               => array( 0, 'FULLURLE:', 'PUNURLE:' ),
+	'lcfirst'                => array( 0, 'LCFIRST:', 'LCPRVI:' ),
+	'ucfirst'                => array( 0, 'UCFIRST:', 'UCPRVI:' ),
+	'lc'                     => array( 0, 'LC:', 'LC:' ),
+	'uc'                     => array( 0, 'UC:', 'UC:' ),
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+
+
+$messages = array(
 # stylesheets
 'Common.css'  => '/** CSS koji važi za sve skinove */',
 'Monobook.css'  => '/** Samo za MonoBook skin */',

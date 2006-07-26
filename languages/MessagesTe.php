@@ -1,7 +1,49 @@
 <?php
+/** Telugu (Telugu)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  *
+  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+  */
 
-global $wgAllMessagesTe;
-$wgAllMessagesTe = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'మీడియా',
+	NS_SPECIAL          => 'ప్రత్యేక',
+	NS_MAIN             => '',
+	NS_TALK             => 'చర్చ',
+	NS_USER             => 'సభ్యుడు',
+	NS_USER_TALK        => 'సభ్యునిపై_చర్చ',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1_చర్చ',
+	NS_IMAGE            => 'బొమ్మ',
+	NS_IMAGE_TALK       => 'బొమ్మపై_చర్చ',
+	NS_MEDIAWIKI        => 'మీడియావికీ',
+	NS_MEDIAWIKI_TALK   => 'మీడియావికీ_చర్చ',
+	NS_TEMPLATE         => 'మూస',
+	NS_TEMPLATE_TALK    => 'మూస_చర్చ',
+	NS_HELP             => 'సహాయము',
+	NS_HELP_TALK        => 'సహాయము_చర్చ',
+	NS_CATEGORY         => 'వర్గం',
+	NS_CATEGORY_TALK    => 'వర్గం_చర్చ'
+);
+$linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
+
+// nobody seems to use these anymore
+/*$digitTransformTable = array(
+	'0' => '౦',
+	'1' => '౧',
+	'2' => '౨',
+	'3' => '౩',
+	'4' => '౪',
+	'5' => '౫',
+	'6' => '౬',
+	'7' => '౭',
+	'8' => '౮',
+	'9' => '౯'
+);*/
+
+$messages = array(
 'tog-underline'         => 'లింకుల కింద గీతగీయి:',
 'tog-highlightbroken'   => 'తెగిపోయిన లింకులను <a href="" class="new">ఇలా చూపించు</a> (ఇంకో పధ్ధతి: <a href="" class="internal">?</a>).',
 'tog-justify'           => 'పేరాలను ఇరు పక్కలా సమానంగా సర్దు',

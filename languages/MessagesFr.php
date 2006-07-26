@@ -1,7 +1,65 @@
 <?php
+/** French (Français)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ *
+ */
+$quickbarSettings = array(
+	'Aucune', 'Gauche', 'Droite', 'Flottante à gauche'
+);
 
-global $wgAllMessagesFr;
-$wgAllMessagesFr = array(
+$skinNames = array(
+	'standard'  => 'Standard',
+	'nostalgia' => 'Nostalgie',
+);
+
+$bookstoreList = array(
+	'Amazon.fr'    => 'http://www.amazon.fr/exec/obidos/ISBN=$1',
+	'alapage.fr'   => 'http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&',
+	'fnac.com'     => 'http://www3.fnac.com/advanced/book.do?isbn=$1',
+	'chapitre.com' => 'http://www.chapitre.com/frame_rec.asp?isbn=$1',
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Special',
+	NS_MAIN           => '',
+	NS_TALK           => 'Discuter',
+	NS_USER           => 'Utilisateur',
+	NS_USER_TALK      => 'Discussion_Utilisateur',
+	NS_PROJECT        => '$1',
+	NS_PROJECT_TALK   => 'Discussion_$1',
+	NS_IMAGE          => 'Image',
+	NS_IMAGE_TALK     => 'Discussion_Image',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Discussion_MediaWiki',
+	NS_TEMPLATE       => 'Modèle',
+	NS_TEMPLATE_TALK  => 'Discussion_Modèle',
+	NS_HELP           => 'Aide',
+	NS_HELP_TALK      => 'Discussion_Aide',
+	NS_CATEGORY       => 'Catégorie',
+	NS_CATEGORY_TALK  => 'Discussion_Catégorie'
+);
+$linkTrail = '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu';
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'F j, Y',
+	'mdy both' => 'F j, Y à H:i',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j F Y',
+	'dmy both' => 'j F Y à H:i',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y F j',
+	'ymd both' => 'Y F j à H:i',
+);
+
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
+
+$messages = array(
 
 # User preference Toggles
 
@@ -87,7 +145,6 @@ $wgAllMessagesFr = array(
 'category_header' => 'Articles dans la catégorie « $1 ».',
 'subcategories'	=> 'Sous-catégories',
 
-'linktrail'     => '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu',
 'mainpage'      => 'Accueil',
 'mainpagetext'	=> '<big>\'\'\'MediaWiki a été installé avec succès.\'\'\'</big>',
 'mainpagedocfooter' => 'Consultez le [http://meta.wikipedia.org/wiki/Aide:Contenu Guide de l\'utilisateur] pour plus d\'informations sur l\'utilisation de ce logiciel.',

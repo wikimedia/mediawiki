@@ -10,68 +10,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-require_once( 'LanguageUtf8.php' );
-
-if (!$wgCachedMessageArrays) {
-	require_once('MessagesLv.php');
-}
-
-class LanguageLv extends LanguageUtf8 {
-	private $mMessagesLv, $mNamespaceNamesLv = null;
-
-	function __construct() {
-		parent::__construct();
-
-		global $wgAllMessagesLv;
-		$this->mMessagesLv =& $wgAllMessagesLv;
-
-		global $wgMetaNamespace;
-		$this->mNamespaceNamesLv = array(
-			NS_MEDIA            => 'Media',
-			NS_SPECIAL          => 'Special',
-			NS_MAIN             => '',
-			NS_TALK             => 'Diskusija',
-			NS_USER             => 'Lietotājs',
-			NS_USER_TALK        => 'Lietotāja_diskusija',
-			NS_PROJECT          => $wgMetaNamespace,
-			NS_PROJECT_TALK     => $this->convertGrammar( $wgMetaNamespace, 'ģenitīvs' ) . '_diskusija',
-			NS_IMAGE            => 'Attēls',
-			NS_IMAGE_TALK       => 'Attēla_diskusija',
-			NS_MEDIAWIKI        => 'MediaWiki',
-			NS_MEDIAWIKI_TALK   => 'MediaWiki_diskusija',
-			NS_TEMPLATE         => 'Veidne',
-			NS_TEMPLATE_TALK    => 'Veidnes_diskusija',
-			NS_HELP             => 'Palīdzība',
-			NS_HELP_TALK        => 'Palīdzības_diskusija',
-			NS_CATEGORY         => 'Kategorija',
-			NS_CATEGORY_TALK    => 'Kategorijas_diskusija',
-		);
-
-	}
-
-	function getNamespaces() {
-		return $this->mNamespaceNamesLv + parent::getNamespaces();
-	}
-
-	function getMessage( $key ) {
-		if( isset( $this->mMessagesLv[$key] ) ) {
-			return $this->mMessagesLv[$key];
-		} else {
-			return parent::getMessage( $key );
-		}
-	}
-
-	function getAllMessages() {
-		return $this->mMessagesLv;
-	}
-
-	/**
-	 * Latvian numeric formatting is 123 456,78.
-	 */
-	function separatorTransformTable() {
-		return array(',' => "\xc2\xa0", '.' => ',' );
-	}
-
+class LanguageLv extends Language {
 	/**
 	 * Plural form transformations. Using the first form for words with the last digit 1, but not for words with the last digits 11, and the second form for all the others.
 	 *

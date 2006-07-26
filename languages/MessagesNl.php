@@ -1,5 +1,61 @@
 <?php
+/** Dutch (Nederlands)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
+$quickbarSettings = array(
+	'Uitgeschakeld', 'Links vast', 'Rechts vast', 'Links zwevend'
+);
+
+$skinNames = array(
+	'standard' => 'Standaard',
+	'nostalgia' => 'Nostalgie',
+	'cologneblue' => 'Keuls blauw',
+);
+
+$bookstoreList = array(
+	'Koninklijke Bibliotheek' => 'http://opc4.kb.nl/DB=1/SET=5/TTL=1/CMD?ACT=SRCH&IKT=1007&SRT=RLV&TRM=$1'
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Speciaal',
+	NS_MAIN           => '',
+	NS_TALK           => 'Overleg',
+	NS_USER           => 'Gebruiker',
+	NS_USER_TALK      => 'Overleg_gebruiker',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'Overleg_$1',
+	NS_IMAGE          => 'Afbeelding',
+	NS_IMAGE_TALK     => 'Overleg_afbeelding',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Overleg_MediaWiki',
+	NS_TEMPLATE       => 'Sjabloon',
+	NS_TEMPLATE_TALK  => 'Overleg_sjabloon',
+	NS_HELP           => 'Help',
+	NS_HELP_TALK      => 'Overleg_help',
+	NS_CATEGORY       => 'Categorie',
+	NS_CATEGORY_TALK  => 'Overleg_categorie'
+);
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j, Y',
+	'mdy both' => 'M j, Y H:i',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'j M Y H:i',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'Y M j H:i',
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 
 #-------------------------------------------------------------------
 # Default messages
@@ -8,8 +64,7 @@
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 
-global $wgAllMessagesNl;
-$wgAllMessagesNl = array(
+$messages = array(
 /*
 The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and

@@ -4515,7 +4515,6 @@ class ParserOptions
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
-	function getDateFormat()                    { return $this->mDateFormat; }
 	function getEditSection()                   { return $this->mEditSection; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
@@ -4527,6 +4526,13 @@ class ParserOptions
 			$this->mSkin = $this->mUser->getSkin();
 		}
 		return $this->mSkin;
+	}
+
+	function getDateFormat() { 
+		if ( !isset( $this->mDateFormat ) ) {
+			$this->mDateFormat = $this->mUser->getDatePreference();
+		}
+		return $this->mDateFormat;
 	}
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
@@ -4580,7 +4586,7 @@ class ParserOptions
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
 		$this->mSkin = null; # Deferred
-		$this->mDateFormat = $user->getOption( 'date' );
+		$this->mDateFormat = null; # Deferred
 		$this->mEditSection = true;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mAllowSpecialInclusion = $wgAllowSpecialInclusion;

@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialAllmessages() {
-	global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache, $wgTitle;
+	global $wgOut, $wgRequest, $wgMessageCache, $wgTitle;
 	global $wgUseDatabaseMessages;
 
 	# The page isn't much use if the MediaWiki namespace is not being used
@@ -30,7 +30,7 @@ function wfSpecialAllmessages() {
 	wfLoadAllExtensions();
 
 	$first = true;
-	$sortedArray = array_merge( $wgAllMessagesEn, $wgMessageCache->mExtensionMessages );
+	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->mExtensionMessages );
 	ksort( $sortedArray );
 	$messages = array();
 	$wgMessageCache->disableTransform();
@@ -63,7 +63,7 @@ function wfSpecialAllmessages() {
  */
 function makePhp($messages) {
 	global $wgLanguageCode;
-	$txt = "\n\n".'$wgAllMessages'.ucfirst($wgLanguageCode).' = array('."\n";
+	$txt = "\n\n\$messages = array(\n";
 	foreach( $messages as $key => $m ) {
 		if(strtolower($wgLanguageCode) != 'en' and $m['msg'] == $m['enmsg'] ) {
 			//if (strstr($m['msg'],"\n")) {

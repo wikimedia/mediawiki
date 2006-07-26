@@ -11,9 +11,9 @@
  */
 
 /** */
-function initialiseMessages( $overwrite = false, $messageArray = false ) {
+function initialiseMessages( $overwrite = false, $messageArray = false, $outputCallback = false ) {
 	global $wgContLang, $wgContLanguageCode;
-	global $wgContLangClass, $wgAllMessagesEn;
+	global $wgContLangClass;
 	global $wgDisableLangConversion;
 	global $wgForceUIMsgAsContentMsg;
 	global $wgLanguageNames;
@@ -26,7 +26,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	if ( $messageArray ) {
 		$sortedArray = $messageArray;
 	} else {
-		$sortedArray = $wgAllMessagesEn;
+		$sortedArray = Language::getMessagesFor( 'en' );
 	}
 
 	ksort( $sortedArray );
@@ -37,11 +37,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		$variants[]=$wgContLanguageCode;
 
 	foreach ($variants as $v) {
-		$langclass = 'Language'. str_replace( '-', '_', ucfirst( $v ) );
-		if( !class_exists($langclass) ) {
-			wfDie( "class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?" );
-		}
-		$lang = new $langclass;
+		$lang = Language::factory( $v );
 
 		if($v==$wgContLanguageCode)
 			$suffix='';
@@ -69,12 +65,12 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			}
 		}
 	}
-	initialiseMessagesReal( $overwrite, $messages );
+	initialiseMessagesReal( $overwrite, $messages, $outputCallback );
 }
 
 /** */
-function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
-	global $wgContLang, $wgScript, $wgServer, $wgAllMessagesEn;
+function initialiseMessagesReal( $overwrite = false, $messageArray = false, $outputCallback = false ) {
+	global $wgContLang, $wgScript, $wgServer, $wgLanguageCode;
 	global $wgOut, $wgArticle, $wgUser;
 	global $wgMessageCache, $wgMemc, $wgDBname, $wgUseMemCached;
 
@@ -91,14 +87,24 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 
 	$fname = 'initialiseMessages';
 	$ns = NS_MEDIAWIKI;
-	# cur_user_text responsible for the modifications
+	# username responsible for the modifications
 	# Don't change it unless you're prepared to update the DBs accordingly, otherwise the
-	# default messages won't be overwritte
+	# default messages won't be overwritten
 	$username = 'MediaWiki default';
 
+	if ( !$outputCallback ) {
+		# Print is not a function, and there doesn't appear to be any built-in 
+		# workalikes, so let's just make our own anonymous function to do the 
+		# same thing. 
+		$outputCallback = create_function( '$s', 'print $s;' );
+	}
 
-	print "Initialising \"MediaWiki\" namespace...\n";
+	$outputCallback( "Initialising \"MediaWiki\" namespace for language code $wgLanguageCode...\n" );
 
+	# Check that the serialized data files are OK
+	if ( Language::isLocalisationOutOfDate( $wgLanguageCode ) ) {
+		$outputCallback( "Warning: serialized data file may be out of date.\n" );
+	}
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	$dbw =& wfGetDB( DB_MASTER );
@@ -107,13 +113,11 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 
 	$timestamp = wfTimestampNow();
 
-	#$sql = "SELECT cur_title,cur_is_new,cur_user_text FROM $cur WHERE cur_namespace=$ns AND cur_title IN(";
-	# Get keys from $wgAllMessagesEn, which is more complete than the local language
 	$first = true;
 	if ( $messageArray ) {
 		$sortedArray = $messageArray;
 	} else {
-		$sortedArray = $wgAllMessagesEn;
+		$sortedArray = $wgContLang->getAllMessages();
 	}
 
 	ksort( $sortedArray );
@@ -132,7 +136,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	foreach ($chunks as $chunk) {
 		$first = true;
 		$sql = "SELECT page_title,page_is_new,rev_user_text FROM $page, $revision WHERE
-			page_namespace=$ns AND rev_page=page_id AND page_title IN(";
+			page_namespace=$ns AND rev_id=page_latest AND page_title IN(";
 
 		foreach ( $chunk as $key => $enMsg ) {
 			if ( $key == '' ) {
@@ -171,20 +175,28 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	$talk = $wgContLang->getNsText( NS_TALK );
 	$mwtalk = $wgContLang->getNsText( NS_MEDIAWIKI_TALK );
 
+	$numUpdated = 0;
+	$numKept = 0;
+	$numInserted = 0;
+	
 	# Merge these into a single transaction for speed
 	$dbw->begin();
 
 	# Process each message
-	foreach ( $sortedArray as $key => $enMsg ) {
+	foreach ( $sortedArray as $key => $message ) {
 		if ( $key == '' ) {
 			continue; // Skip odd members
 		}
 		# Get message text
-		if ( $messageArray ) {
-			$message = $enMsg;
-		} else {
+		if ( !$messageArray ) {
 			$message = wfMsgNoDBForContent( $key );
 		}
+		if ( is_null( $message ) ) {
+			# This happens sometimes with out of date serialized data files
+			$outputCallback( "Warning: Skipping null message $key\n" );
+			continue;
+		}
+
 		$titleObj = Title::newFromText( $wgContLang->ucfirst( $key ), NS_MEDIAWIKI );
 		$title = $titleObj->getDBkey();
 
@@ -197,7 +209,12 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 				if( is_null( $revision ) || $revision->getText() != $message ) {
 					$article = new Article( $titleObj );
 					$article->quickEdit( $message );
+					++$numUpdated;
+				} else {
+					++$numKept;
 				}
+			} else {
+				++$numKept;
 			}
 		} else {
 			$article = new Article( $titleObj );
@@ -212,14 +229,14 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 				) );
 			$revid = $revision->insertOn( $dbw );
 			$article->updateRevisionOn( $dbw, $revision );
+			++$numInserted;
 		}
 	}
 	$dbw->commit();
 
 	# Clear the relevant memcached key
-	print 'Clearing message cache...';
 	$wgMessageCache->clear();
-	print "Done.\n";
+	$outputCallback( "Done. Updated: $numUpdated, inserted: $numInserted, kept: $numKept.\n" );
 }
 
 /** */

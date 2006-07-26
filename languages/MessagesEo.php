@@ -1,7 +1,50 @@
 <?php
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Speciala',
+	NS_MAIN           => '',
+	NS_TALK           => 'Diskuto',
+	NS_USER           => 'Vikipediisto', # FIXME: Generalize v-isto kaj v-io
+	NS_USER_TALK      => 'Vikipediista_diskuto',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_diskuto',
+	NS_IMAGE          => 'Dosiero', #FIXME: Check the magic for Image: and Media:
+	NS_IMAGE_TALK     => 'Dosiera_diskuto',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_diskuto',
+	NS_TEMPLATE       => 'Ŝablono',
+	NS_TEMPLATE_TALK  => 'Ŝablona_diskuto',
+	NS_HELP           => 'Helpo',
+	NS_HELP_TALK      => 'Helpa_diskuto',
+	NS_CATEGORY       => 'Kategorio',
+	NS_CATEGORY_TALK  => 'Kategoria_diskuto',
+);
 
-global $wgAllMessagesEo;
-$wgAllMessagesEo = array(
+$quickbarSettings =  array(
+	'Nenia', 'Fiksiĝas maldekstre', 'Fiksiĝas dekstre', 'Ŝvebas maldekstre'
+);
+
+$skinNames = array(
+	'standard' => 'Klasika',
+	'nostalgia' => 'Nostalgio',
+	'cologneblue' => 'Kolonja Bluo',
+	'mono' => 'Senkolora',
+	'monobook' => 'Librejo',
+	'chick' => 'Kokido',
+);
+
+$separatorTransformTable = array(',' => ' ', '.' => ',' );
+
+$datePreferences = false;
+$defaultDateFormat = 'dmy';
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. M Y',
+	'dmy both' => 'H:i, j. M Y',
+);
+
+
+$messages = array(
 'tog-underline'         => 'Substreku ligilojn',
 'tog-highlightbroken'   => 'Ruĝigu ligilojn al neekzistantaj paĝoj',
 'tog-justify'           => 'Alkadrigu liniojn',

@@ -1,7 +1,56 @@
 <?php
+/** Spanish (Español)
+  *
+  * @bug 4401
+  * @bug 4424
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-global $wgAllMessagesEs;
-$wgAllMessagesEs = array(
+$quickbarSettings = array(
+	'Ninguna', 'Fija a la izquierda', 'Fija a la derecha', 'Flotante a la izquierda'
+);
+
+$skinNames = array(
+	'standard' => 'Estándar',
+);
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Especial',
+	NS_MAIN           => '',
+	NS_TALK           => 'Discusión',
+	NS_USER           => 'Usuario',
+	NS_USER_TALK      => 'Usuario_Discusión',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_Discusión',
+	NS_IMAGE          => 'Imagen',
+	NS_IMAGE_TALK     => 'Imagen_Discusión',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_Discusión',
+	NS_TEMPLATE       => 'Plantilla',
+	NS_TEMPLATE_TALK  => 'Plantilla_Discusión',
+	NS_HELP           => 'Ayuda',
+	NS_HELP_TALK      => 'Ayuda_Discusión',
+	NS_CATEGORY       => 'Categoría',
+	NS_CATEGORY_TALK  => 'Categoría_Discusión',
+);
+
+$datePreferences = false;
+$defaultDateFormat = 'dmy';
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'H:i j M Y',
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
+
+
+
+
+$messages = array(
 'tog-underline'         => 'Subrayar enlaces',
 'tog-highlightbroken'   => 'Destacar enlaces a artículos vacíos <a href="" class="new">como este</a> (alternativa: como éste<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Ajustar párrafos',

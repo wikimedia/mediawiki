@@ -84,8 +84,14 @@ function &wfGetCache( $inputType ) {
 		if ( $wgCaches[CACHE_ACCEL] !== false ) {
 			$cache =& $wgCaches[CACHE_ACCEL];
 		}
+	} elseif ( $type == CACHE_DBA ) {
+		if ( !array_key_exists( CACHE_DBA, $wgCaches ) ) {
+			require_once( 'BagOStuff.php' );
+			$wgCaches[CACHE_DBA] = new DBABagOStuff;
+		}
+		$cache =& $wgCaches[CACHE_DBA];
 	}
-
+	
 	if ( $type == CACHE_DB || ( $inputType == CACHE_ANYTHING && $cache === false ) ) {
 		if ( !array_key_exists( CACHE_DB, $wgCaches ) ) {
 			require_once( 'BagOStuff.php' );

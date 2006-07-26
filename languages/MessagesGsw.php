@@ -1,7 +1,9 @@
 <?php
 
-global $wgAllMessagesGsw;
-$wgAllMessagesGsw = array(
+$fallback = 'de';
+$linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
+
+$messages = array(
 'tog-underline'         => 'Links unterstryche',
 'tog-highlightbroken'   => 'Links uf lääri Themene durestryche',
 'tog-justify'           => 'Tekscht als Blocksatz',

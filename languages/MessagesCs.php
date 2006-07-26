@@ -1,7 +1,110 @@
 <?php
+/** Czech (česky)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
+$fallback8bitEncoding = 'cp1250';
 
-/* private */ $wgAllMessagesCs = array(
+$namespaceNames = array(
+	NS_MEDIA              => 'Média',
+	NS_SPECIAL            => 'Speciální',
+	NS_MAIN               => '',
+	NS_TALK               => 'Diskuse',
+	NS_USER               => 'Uživatel',
+	NS_USER_TALK          => '$1_diskuse',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK	      => '$1_diskuse',
+	NS_IMAGE              => 'Soubor',
+	NS_IMAGE_TALK         => 'Soubor_diskuse',
+	NS_MEDIAWIKI          => 'MediaWiki',
+	NS_MEDIAWIKI_TALK     => 'MediaWiki_diskuse',
+	NS_TEMPLATE           => 'Šablona',
+	NS_TEMPLATE_TALK      => 'Šablona_diskuse',
+	NS_HELP               => 'Nápověda',
+	NS_HELP_TALK          => 'Nápověda_diskuse',
+	NS_CATEGORY           => 'Kategorie',
+	NS_CATEGORY_TALK      => 'Kategorie_diskuse',
+);
+
+$quickbarSettings = array(
+	'Žádný', 'Leží vlevo', 'Leží vpravo', 'Visí vlevo'
+);
+
+$skinNames = array(
+	'standard'            => 'Standard',
+	'nostalgia'           => 'Nostalgie',
+	'cologneblue'         => 'Kolínská modř',
+	'chick'               => 'Kuře'
+);
+
+# Hledání knihy podle ISBN
+# $wgBookstoreListCs = ..
+$bookstoreList = array(
+    'Národní knihovna'			=> 'http://sigma.nkp.cz/F/?func=find-a&find_code=ISN&request=$1',
+	'Státní technická knihovna' => 'http://www.stk.cz/cgi-bin/dflex/CZE/STK/BROWSE?A=01&V=$1',
+	'inherit' => true,
+);
+
+# Note to translators:
+#   Please include the English words as synonyms.  This allows people
+#   from other wikis to contribute more easily.
+#
+# Nepoužívá se, pro používání je třeba povolit getMagicWords dole v LanguageCs.
+$magicWords = array(
+##   ID                                 CASE  SYNONYMS
+	'redirect'               => array( 0,    '#REDIRECT',        '#PŘESMĚRUJ'     ),
+	'notoc'                  => array( 0,    '__NOTOC__',        '__BEZOBSAHU__'  ),
+	'forcetoc'               => array( 0,    '__FORCETOC__',     '__VŽDYOBSAH__'  ),
+	'toc'                    => array( 0,    '__TOC__',          '__OBSAH__'      ),
+	'noeditsection'          => array( 0,    '__NOEDITSECTION__', '__BEZEDITOVATČÁST__' ),
+	'start'                  => array( 0,    '__START__',        '__ZAČÁTEK__'        ),
+	'currentmonth'           => array( 1,    'CURRENTMONTH',     'AKTUÁLNÍMĚSÍC'      ),
+	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME', 'AKTUÁLNÍMĚSÍCJMÉNO' ),
+	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN', 'AKTUÁLNÍMĚSÍCGEN' ),
+#	'currentmonthabbrev'     => array( 1,    'CURRENTMONTHABBREV' 'AKTUÁLNÍMĚSÍCZKR'  ),
+	'currentday'             => array( 1,    'CURRENTDAY',       'AKTUÁLNÍDEN' ),
+	'currentdayname'         => array( 1,    'CURRENTDAYNAME',   'AKTUÁLNÍDENJMÉNO'   ),
+	'currentyear'            => array( 1,    'CURRENTYEAR',      'AKTUÁLNÍROK'        ),
+	'currenttime'            => array( 1,    'CURRENTTIME',      'AKTUÁLNÍČAS'        ),
+	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES', 'POČETČLÁNKŮ'        ),
+	'pagename'               => array( 1,    'PAGENAME',         'NÁZEVSTRANY'        ),
+	'pagenamee'  			 => array( 1,    'PAGENAMEE',        'NÁZEVSTRANYE'       ),
+	'namespace'              => array( 1,    'NAMESPACE',        'JMENNÝPROSTOR'      ),
+	'msg'                    => array( 0,    'MSG:'                   ),
+	'subst'                  => array( 0,    'SUBST:',           'VLOŽIT:'            ),
+	'msgnw'                  => array( 0,    'MSGNW:',           'VLOŽITNW:'          ),
+	'end'                    => array( 0,    '__END__',          '__KONEC__'          ),
+	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb', 'náhled'           ),
+	'img_right'              => array( 1,    'right',            'vpravo'             ),
+	'img_left'               => array( 1,    'left',             'vlevo'              ),
+	'img_none'               => array( 1,    'none',             'žádné'              ),
+	'img_width'              => array( 1,    '$1px'                   ),
+	'img_center'             => array( 1,    'center', 'centre', 'střed'              ),
+	'img_framed'  	         => array( 1,    'framed', 'enframed', 'frame', 'rám'     ),
+	'int'                    => array( 0,    'INT:'                   ),
+	'sitename'               => array( 1,    'SITENAME',         'NÁZEVSERVERU'       ),
+	'ns'                     => array( 0,    'NS:'                    ),
+	'localurl'               => array( 0,    'LOCALURL:',        'MÍSTNÍURL:'         ),
+	'localurle'              => array( 0,    'LOCALURLE:',       'MÍSTNÍURLE:'        ),
+	'server'                 => array( 0,    'SERVER'                 ),
+	'revisionid'             => array( 1,    'REVISIONID',       'IDREVIZE'           )
+);
+
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$linkTrail = '/^([a-záčďéěíňóřšťúůýž]+)(.*)$/sDu';
+
+$datePreferences = false;
+$defaultDateFormat = 'dmy';
+
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. n. Y',
+	'dmy both' => 'H:i, j. n. Y',
+);
+
+$messages = array(
 
 # Části textu používané různými stránkami:
 'categories' => 'Kategorie',
@@ -59,7 +162,6 @@
 'dec' => '12.',
 
 # Písmena, která se mají objevit jako část odkazu ve formě '[[jazyk]]y' atd:
-'linktrail'     => '/^([a-záčďéěíňóřšťúůýž]+)(.*)$/sDu',
 'mainpage'              => 'Hlavní strana',
 'mainpagetext'  => 'Wiki software úspěšně nainstalován.',
 'mainpagedocfooter' => 'Podívejte se prosím do [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentace k nastavení rozhraní] a [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide uživatelské příručky] pro nápovědu k použití a nastavení.',

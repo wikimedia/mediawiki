@@ -1,7 +1,43 @@
 <?php
+/** Brazilian Portugese (Portuguêsi do Brasil)
+  * @package MediaWiki
+  * @subpackage Language
+  */
+#
+# This translation was made by Yves Marques Junqueira
+# and Rodrigo Calanca Nishino from Portuguese Wikipedia
+#
 
-global $wgAllMessagesPt_br;
-$wgAllMessagesPt_br = array(
+$fallback = 'pt';
+
+$skinNames = array(
+	'standard' => 'Padrão',
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Especial',
+	NS_MAIN           => '',
+	NS_TALK           => 'Discussão',
+	NS_USER           => 'Usuário',
+	NS_USER_TALK      => 'Usuário_Discussão',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_Discussão',
+	NS_IMAGE          => 'Imagem',
+	NS_IMAGE_TALK     => 'Imagem_Discussão',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_Discussão',
+	NS_TEMPLATE       => 'Predefinição',
+	NS_TEMPLATE_TALK  => 'Predefinição_Discussão',
+	NS_HELP           => 'Ajuda',
+	NS_HELP_TALK      => 'Ajuda_Discussão',
+	NS_CATEGORY       => 'Categoria',
+	NS_CATEGORY_TALK  => 'Categoria_Discussão'
+);
+$linkTrail = "/^([a-z]+)(.*)\$/sD";
+
+
+$messages = array(
 # User Toggles
 "tog-underline" => "Sublinha links",
 "tog-highlightbroken" => "Formata links quebrados <a href=\"\" class=\"new\"> como isto </a> (alternative: como isto<a href=\"\" class=\"internal\">?</a>).",
@@ -62,7 +98,6 @@ $wgAllMessagesPt_br = array(
 "category_header" => "Articles in category \"$1\"",
 "subcategories" => "Subcategories",
 
-"linktrail"     => "/^([a-z]+)(.*)\$/sD",
 "mainpage"      => "Página principal",
 "mainpagetext"  => "Software Wiki instalado com sucesso.",
 "about"         => "Sobre",

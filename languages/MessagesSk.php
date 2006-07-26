@@ -1,7 +1,160 @@
 <?php
+/**
+ * Slovak (Slovenčina)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesSk;
-$wgAllMessagesSk = array(
+
+$quickbarSettings = array(
+	'Žiadne', 'Ukotvené vľavo', 'Ukotvené vpravo', 'Plávajúce vľavo'
+);
+
+$datePreferences = array(
+	'default',
+	'dmyt',
+	'short dmyt',
+	'tdmy',
+	'short dmyt',
+	'ISO 8601',
+);
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'dmyt',
+	'short dmyt',
+	'tdmy',
+	'short tdmy',
+);
+
+$dateFormats = array(
+	/*
+	'Default',
+	'15. január 2001 16:12',
+	'15. jan. 2001 16:12',
+	'16:12, 15. január 2001',
+	'16:12, 15. jan. 2001',
+	'ISO 8601' => '2001-01-15 16:12:34'*/
+
+	'dmyt time' => 'H:i',
+	'dmyt date' => 'j. F Y',
+	'dmyt both' => 'j. F Y H:i',
+
+	'short dmyt time' => 'H:i',
+	'short dmyt date' => 'j. M. Y',
+	'short dmyt both' => 'j. M. Y H:i',
+
+	'tdmy time' => 'H:i',
+	'tdmy date' => 'j. F Y',
+	'tdmy both' => 'H:i, j. F Y',
+
+	'short tdmy time' => 'H:i',
+	'short tdmy date' => 'j. M. Y',
+	'short tdmy both' => 'H:i, j. M. Y',
+	
+);
+
+$bookstoreList = array(
+	'Bibsys' => 'http://ask.bibsys.no/ask/action/result?cmd=&kilde=biblio&fid=isbn&term=$1',
+	'BokBerit' => 'http://www.bokberit.no/annet_sted/bocker/$1.html',
+	'Bokkilden' => 'http://www.bokkilden.no/ProductDetails.aspx?ProductId=$1',
+	'Haugenbok' => 'http://www.haugenbok.no/searchresults.cfm?searchtype=simple&isbn=$1',
+	'Akademika' => 'http://www.akademika.no/sok.php?isbn=$1',
+	'Gnist' => 'http://www.gnist.no/sok.php?isbn=$1',
+	'Amazon.co.uk' => 'http://www.amazon.co.uk/exec/obidos/ISBN=$1',
+	'Amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
+# Note to translators:
+# Please include the English words as synonyms. This allows people
+# from other wikis to contribute more easily.
+#
+$magicWords = array(
+	# ID CASE SYNONYMS
+	'redirect'   => array( 0, '#redirect', '#presmeruj' ),
+	'notoc'   => array( 0, '__NOTOC__', '__BEZOBSAHU__' ),
+	'forcetoc'   => array( 0, '__FORCETOC__', '__VYNÚŤOBSAH__' ),
+	'toc'   => array( 0, '__TOC__', '__OBSAH__' ),
+	'noeditsection'   => array( 0, '__NOEDITSECTION__', '__NEUPRAVUJSEKCIE__' ),
+	'start'   => array( 0, '__START__', '__ŠTART__' ),
+	'currentmonth'   => array( 1, 'CURRENTMONTH', 'MESIAC' ),
+	'currentmonthname'   => array( 1, 'CURRENTMONTHNAME', 'MENOMESIACA' ),
+	'currentmonthnamegen'   => array( 1, 'CURRENTMONTHNAMEGEN', 'MENOAKTUÁLNEHOMESIACAGEN' ),
+	'currentmonthabbrev'     => array( 1, 'CURRENTMONTHABBREV', 'MENOAKTUÁLNEHOMESIACASKRATKA' ),
+	'currentday'   => array( 1, 'CURRENTDAY', 'AKTUÁLNYDEŇ' ),
+	'currentdayname'   => array( 1, 'CURRENTDAYNAME', 'MENOAKTUÁLNEHODŇA' ),
+	'currentyear'   => array( 1, 'CURRENTYEAR', 'AKTUÁLNYROK' ),
+	'currenttime'   => array( 1, 'CURRENTTIME', 'AKTUÁLNYČAS' ),
+	'numberofarticles'   => array( 1, 'NUMBEROFARTICLES', 'POČETČLÁNKOV' ),
+	'pagename'   => array( 1, 'PAGENAME', 'MENOSTRÁNKY' ),
+	'pagenamee'   => array( 1, 'PAGENAMEE' ),
+	'namespace'   => array( 1, 'NAMESPACE', 'MENNÝPRIESTOR' ),
+	'msg'   => array( 0, 'MSG:', 'SPRÁVA:' ),
+	'subst'   => array( 0, 'SUBST:' ),
+	'msgnw'   => array( 0, 'MSGNW:' ),
+	'end'   => array( 0, '__END__', '__KONIEC__' ),
+	'img_thumbnail'   => array( 1, 'thumbnail', 'thumb', 'náhľad', 'náhľadobrázka' ),
+	'img_right'   => array( 1, 'right', 'vpravo' ),
+	'img_left'   => array( 1, 'left', 'vľavo' ),
+	'img_none'   => array( 1, 'none', 'žiadny' ),
+	'img_width'   => array( 1, '$1px', '$1bod' ),
+	'img_center'   => array( 1, 'center', 'centre', 'stred' ),
+	'img_framed'   => array( 1, 'framed', 'enframed', 'frame', 'rám' ),
+	'int'   => array( 0, 'INT:' ),
+	'sitename'   => array( 1, 'SITENAME', 'MENOLOKALITY' ),
+	'ns'   => array( 0, 'NS:', 'MP:' ),
+	'localurl'   => array( 0, 'LOCALURL:' ),
+	'localurle'   => array( 0, 'LOCALURLE:' ),
+	'server'   => array( 0, 'SERVER' ),
+	'grammar'   => array( 0, 'GRAMMAR:', 'GRAMATIKA:' ),
+	'notitleconvert'   => array( 0, '__NOTITLECONVERT__', '__NOTC__' ),
+	'nocontentconvert'   => array( 0, '__NOCONTENTCONVERT__', '__NOCC__' ),
+	'currentweek'   => array( 1, 'CURRENTWEEK', 'AKTUÁLNYTÝŽDEŇ' ),
+	'currentdow'   => array( 1, 'CURRENTDOW' ),
+	'revisionid'   => array( 1, 'REVISIONID' ),
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'Médiá',
+	NS_SPECIAL        => 'Špeciálne',
+	NS_MAIN           => '',
+	NS_TALK           => 'Diskusia',
+	NS_USER           => 'Redaktor',
+	NS_USER_TALK      => 'Diskusia_s_redaktorom',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'Diskusia_k_{{grammar:datív|$1}}',
+	NS_IMAGE          => 'Obrázok',
+	NS_IMAGE_TALK     => 'Diskusia_k_obrázku',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Diskusia_k_MediaWiki',
+	NS_TEMPLATE       => 'Šablóna',
+	NS_TEMPLATE_TALK  => 'Diskusia_k_šablóne',
+	NS_HELP           => 'Pomoc',
+	NS_HELP_TALK      => 'Diskusia_k_pomoci',
+	NS_CATEGORY       => 'Kategória',
+	NS_CATEGORY_TALK  => 'Diskusia_ku_kategórii'
+);
+
+# Compatbility with old names
+$namespaceAliases = array(
+	"Komentár"               => NS_TALK,
+	"Komentár_k_redaktorovi" => NS_USER_TALK,
+	"Komentár_k_Wikipédii"   => NS_PROJECT_TALK,
+	"Komentár_k_obrázku"     => NS_IMAGE_TALK,
+	"Komentár_k_MediaWiki"   => NS_MEDIAWIKI_TALK,
+);
+
+$separatorTransformTable = array(
+	',' => "\xc2\xa0",
+	'.' => ','
+);
+
+$linkTrail = '/^([a-záäčďéíľĺňóôŕšťúýž]+)(.*)$/sDu';
+
+
+$messages = array(
 'tog-underline'         => 'Podčiarkuj odkazy',
 'tog-highlightbroken'   => 'Neexistujúce odkazy zobrazuj červenou',
 'tog-justify'           => 'Zarovnávaj odstavce',

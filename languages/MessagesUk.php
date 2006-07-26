@@ -1,7 +1,49 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Медіа',
+	NS_SPECIAL          => 'Спеціальні',
+	NS_MAIN             => '',
+	NS_TALK             => 'Обговорення',
+	NS_USER             => 'Користувач',
+	NS_USER_TALK        => 'Обговорення_користувача',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Обговорення_$1',
+	NS_IMAGE            => 'Зображення',
+	NS_IMAGE_TALK       => 'Обговорення_зображення',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Обговорення_MediaWiki',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Обговорення_шаблону',
+	NS_HELP             => 'Довідка',
+	NS_HELP_TALK        => 'Обговорення_довідки',
+	NS_CATEGORY         => 'Категорія',
+	NS_CATEGORY_TALK    => 'Обговорення_категорії'
+);
+
+$quickbarSettings = array(
+	"Не показувати панель", "Фіксована зліва", "Фіксована справа", "Плаваюча зліва"
+);
+
+$skinNames = array(
+	'standard' => "Стандартне",
+	'nostalgia' => "Ностальгія",
+	'cologneblue' => "Кельнське Синє"
+);
 
 
-/* private */ $wgAllMessagesUk = array(
+$datePreferences = false;
+
+$fallback8bitEncoding = "windows-1251";
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$linkTrail = "/^([a-z]+)(.*)\$/sD";
+
+
+$messages = array(
 # User Toggles
 
 "tog-underline" => "Підкреслювати зв'язки",
@@ -67,7 +109,6 @@
 
 # Bits of text used by many pages:
 #
-"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Головна стаття",
 "mainpagetext"	=> "Програмне забезпечення вікі встановлено.",
 "about"			=> "Про",

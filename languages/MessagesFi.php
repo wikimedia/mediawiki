@@ -1,7 +1,83 @@
 <?php
+/** Finnish (Suomi)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesFi;
-$wgAllMessagesFi = array(
+$skinNames = array(
+	'standard'          => 'Perus',
+	'cologneblue'       => 'Kölnin sininen',
+	'myskin'            => 'Oma tyylisivu'
+);
+
+$quickbarSettings = array(
+	'Ei mitään', 'Tekstin mukana, vasen', 'Tekstin mukana, oikea', 'Pysyen vasemmalla', 'Pysyen oikealla'
+);
+
+$datePreferences = array(
+	'default',
+	'fi normal',
+	'fi seconds',
+	'fi numeric',
+);
+
+$dateFormats = array(
+	'fi normal time' => 'H.i',
+	'fi normal date' => 'j. F Y',
+	'fi normal both' => 'j. F Y "kello" H.i',
+
+	'fi seconds time' => 'H:i:s',
+	'fi seconds date' => 'j. F Y',
+	'fi seconds both' => 'j. F Y "kello" H:i:s',
+
+	'fi numeric time' => 'H.i',
+	'fi numeric date' => 'j.n.Y',
+	'fi numeric both' => 'j.n.Y "kello" H.i',
+);
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'fi normal',
+	'fi seconds',
+	'fi numeric',
+);
+
+$bookstoreList = array(
+	'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
+	'Helsingin yliopiston kirjasto' => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1&submit=Hae&engine_helka=ON',
+	'Pääkaupunkiseudun kirjastot'   => 'http://www.helmet.fi/search*fin/i?SEARCH=$1',
+	'Tampereen seudun kirjastot'    => 'http://kirjasto.tampere.fi/Piki?formid=fullt&typ0=6&dat0=$1'
+);
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Toiminnot',
+	NS_MAIN             => '',
+	NS_TALK             => 'Keskustelu',
+	NS_USER             => 'Käyttäjä',
+	NS_USER_TALK        => 'Keskustelu_käyttäjästä',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Keskustelu_{{grammar:elative|$1}}',
+	NS_IMAGE            => 'Kuva',
+	NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+	NS_TEMPLATE         => 'Malline',
+	NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
+	NS_HELP             => 'Ohje',
+	NS_HELP_TALK        => 'Keskustelu_ohjeesta',
+	NS_CATEGORY         => 'Luokka',
+	NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
+);
+
+
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$linkTrail = '/^([a-zäö]+)(.*)$/sDu';
+
+
+
+$messages = array(
 
 # User preference toggles
 'tog-underline'       => 'Alleviivaa linkit:',

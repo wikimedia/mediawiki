@@ -5,53 +5,7 @@
  * @subpackage Language
  */
 
-/*
-<Melancholie> for the moment it would be the best if LanguageAls.php would be
-              the same like LanguageDe.php. That would help us a lot at als.
-<Melancholie> at the moment all is in English
-<TimStarling> ok
-<Melancholie> great
-<TimStarling> I'll make a stub language file that fetches everything from de
-<Melancholie> cool
-*/
-
-include_once( "LanguageDe.php" );
-
-if (!$wgCachedMessageArrays) {
-	require_once('MessagesGsw.php');
-}
-
-class LanguageGsw extends LanguageDe {
-	private $mMessagesGsw = null;
-
-	function __construct() {
-		parent::__construct();
-
-		global $wgAllMessagesGsw;
-		$this->mMessagesGsw =& $wgAllMessagesGsw;
-
-	}
-
-	function getMessage( $key ) {
-		if( isset( $this->mMessagesGsw[$key] ) ) {
-			return $this->mMessagesGsw[$key];
-		} else {
-			return parent::getMessage( $key );
-		}
-	}
-
-	function getAllMessages() {
-		return $this->mMessagesGsw;
-	}
-
-	function getFallbackLanguage() {
-		return 'de';
-	}
-
-	function linkTrail() {
-		return '/^([äöüßa-z]+)(.*)$/sDu';
-	}
-
+class LanguageGsw extends Language {
    # Convert from the nominative form of a noun to some other case
    # Invoked with result
 

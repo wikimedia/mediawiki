@@ -9,16 +9,6 @@
  */
 require_once( 'Database.php' );
 
-# Valid database indexes
-# Operation-based indexes
-define( 'DB_SLAVE', -1 );     # Read from the slave (or only server)
-define( 'DB_MASTER', -2 );    # Write to master (or only server)
-define( 'DB_LAST', -3 );     # Whatever database was used last
-
-# Obsolete aliases
-define( 'DB_READ', -1 );
-define( 'DB_WRITE', -2 );
-
 
 # Scale polling time so that under overload conditions, the database server
 # receives a SHOW STATUS query at an average interval of this many microseconds
@@ -38,26 +28,7 @@ class LoadBalancer {
 	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
 
-	function LoadBalancer()
-	{
-		$this->mServers = array();
-		$this->mConnections = array();
-		$this->mFailFunction = false;
-		$this->mReadIndex = -1;
-		$this->mForce = -1;
-		$this->mLastIndex = -1;
-		$this->mErrorConnection = false;
-		$this->mAllowLag = false;
-	}
-
-	static function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
-	{
-		$lb = new LoadBalancer;
-		$lb->initialise( $servers, $failFunction, $waitTimeout );
-		return $lb;
-	}
-
-	function initialise( $servers, $failFunction = false, $waitTimeout = 10 )
+	function LoadBalancer( $servers, $failFunction = false, $waitTimeout = 10, $waitForMasterNow = false )
 	{
 		$this->mServers = $servers;
 		$this->mFailFunction = $failFunction;
@@ -71,6 +42,8 @@ class LoadBalancer {
 		$this->mWaitForPos = false;
 		$this->mWaitTimeout = $waitTimeout;
 		$this->mLaggedSlaveMode = false;
+		$this->mErrorConnection = false;
+		$this->mAllowLag = false;
 
 		foreach( $servers as $i => $server ) {
 			$this->mLoads[$i] = $server['load'];
@@ -83,6 +56,14 @@ class LoadBalancer {
 				}
 			}
 		}
+		if ( $waitForMasterNow ) {
+			$this->loadMasterPos();
+		}
+	}
+
+	static function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
+	{
+		return new LoadBalancer( $servers, $failFunction, $waitTimeout );
 	}
 
 	/**
