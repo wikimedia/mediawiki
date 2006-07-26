@@ -3579,19 +3579,18 @@ class Parser
 		#
 		global $wgLegalTitleChars;
 		$tc = "[$wgLegalTitleChars]";
-		$np = str_replace( array( '(', ')' ), array( '', '' ), $tc ); # No parens
 
 		$namespacechar = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
-		$conpat = "/^({$np}+) \\(({$tc}+)\\)$/";
+		$conpat = "/^{$tc}+? \\(({$tc}+)\\)$/";
 
-		$p1 = "/\[\[(:?$namespacechar+:|:|)({$np}+)( \\({$np}+\\)|)\\|]]/";	# [[ns:page (context)|]]
+		$p1 = "/\[\[(:?$namespacechar+:|:|)({$tc}+?)( \\({$tc}+\\)|)\\|]]/";	# [[ns:page (context)|]]
 		$p2 = "/\[\[\\|({$tc}+)]]/";						# [[|page]]
 
 		$text = preg_replace( $p1, '[[\\1\\2\\3|\\2]]', $text );
 
 		$t = $this->mTitle->getText();
-		if ( preg_match( $conpat, $t, $m ) && '' != $m[2] ) {
-			$text = preg_replace( $p2, "[[\\1 ({$m[2]})|\\1]]", $text );
+		if ( preg_match( $conpat, $t, $m ) && '' != $m[1] ) {
+			$text = preg_replace( $p2, "[[\\1 ({$m[1]})|\\1]]", $text );
 		} else {
 			$text = preg_replace( $p2, '[[\\1]]', $text );
 		}
