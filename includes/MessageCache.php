@@ -414,15 +414,13 @@ class MessageCache {
 	}
 
 	function get( $key, $useDB = true, $forcontent = true, $isfullkey = false ) {
-		global $wgContLanguageCode, $wgContLang;
+		global $wgContLanguageCode, $wgContLang, $wgLang;
 		if( $forcontent ) {
 			$lang =& $wgContLang;
-			$langcode = $wgContLanguageCode;
 		} else {
-			global $wgLang, $wgLanguageCode;
 			$lang =& $wgLang;
-			$langcode = $wgLanguageCode;
 		}
+		$langcode = $lang->getCode();
 		# If uninitialised, someone is trying to call this halfway through Setup.php
 		if( !$this->mInitialised ) {
 			return '&lt;' . htmlspecialchars($key) . '&gt;';

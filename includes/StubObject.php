@@ -102,20 +102,19 @@ class StubUserLang extends StubObject {
 	}
 
 	function _newObject() {
-		global $wgLanguageCode, $wgContLanguageCode, $wgRequest, $wgUser, $wgContLang;
-		// wgLanguageCode now specifically means the UI language
-		$wgLanguageCode = $wgRequest->getText('uselang', '');
-		if ($wgLanguageCode == '')
-			$wgLanguageCode = $wgUser->getOption('language');
-		# Validate $wgLanguageCode
-		if( empty( $wgLanguageCode ) || !preg_match( '/^[a-z]+(-[a-z]+)?$/', $wgLanguageCode ) ) {
-			$wgLanguageCode = $wgContLanguageCode;
+		global $wgContLanguageCode, $wgRequest, $wgUser, $wgContLang;
+		$code = $wgRequest->getText('uselang', '');
+		if ($code == '')
+			$code = $wgUser->getOption('language');
+		# Validate $code
+		if( empty( $code ) || !preg_match( '/^[a-z]+(-[a-z]+)?$/', $code ) ) {
+			$code = $wgContLanguageCode;
 		}
 
-		if( $wgLanguageCode == $wgContLanguageCode ) {
+		if( $code == $wgContLanguageCode ) {
 			return $wgContLang;
 		} else {
-			$obj = Language::factory( $wgLanguageCode );
+			$obj = Language::factory( $code );
 			return $obj;
 		}
 	}
