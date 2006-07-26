@@ -2654,6 +2654,8 @@ pst
 [[:Bar:Article (context)|]]
 [[|Article]]
 [[|Article (context)]]
+[[Bar:X (Y) Z|]]
+[[:Bar:X (Y) Z|]]
 !! result
 [[Article (context)|Article]]
 [[Bar:Article|Article]]
@@ -2662,6 +2664,8 @@ pst
 [[:Bar:Article (context)|Article]]
 [[Article]]
 [[Article (context)]]
+[[Bar:X (Y) Z|X (Y) Z]]
+[[:Bar:X (Y) Z|X (Y) Z]]
 !! end
 
 !! test
