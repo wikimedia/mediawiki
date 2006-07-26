@@ -286,7 +286,7 @@ class EmailNotification {
 			);
 			# FIXME what do we do on failure ?
 		}
-
+		wfProfileOut( $fname );
 	} # function NotifyOnChange
 
 	/**
