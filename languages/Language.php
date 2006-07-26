@@ -1473,6 +1473,10 @@ class Language {
 			}
 			$this->namespaceNames[NS_PROJECT_TALK] = $talk;
 		}
+		
+		# The above mixing may leave namespaces out of canonical order.
+		# Re-order by namespace ID number...
+		ksort( $this->namespaceNames );
 
 		# Put namespace names and aliases into a hashtable.
 		# If this is too slow, then we should arrange it so that it is done 
