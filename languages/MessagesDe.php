@@ -346,7 +346,7 @@ Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software 
 'filedeleteerror'	=> 'Konnte Datei „$1“ nicht löschen.',
 'filenotfound'		=> 'Konnte Datei „$1“ nicht finden.',
 'unexpected'		=> 'Unerwarteter Wert: „$1“=„$2“.',
-"formerror"		=> "Fehler: Konnte Formular nicht verarbeiten",
+'formerror'		=> 'Fehler: Die Eingaben konnten nicht verarbeitet werden.',
 'badarticleerror'	=> 'Diese Aktion kann auf diese Seite nicht angewendet werden.',
 'cannotdelete'		=> 'Die gewählte Seite kann nicht gelöscht werden. Möglicherweise wurde sie bereits gelöscht.',
 "badtitle"		=> "Ungültiger Titel",
@@ -533,7 +533,7 @@ Reichen Sie hier keine Texte ein, falls Sie nicht wollen dass diese ohne Einschr
 
 Sie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder diese von einer gemeinfreien Quelle kopiert haben
 (siehe $1 für weitere Details). <strong>ÜBERTRAGEN SIE OHNE GENEHMIGUNG KEINE URHEBERRECHTLICH GESCHÜTZEN INHALTE!</strong>',
-"longpagewarning" => "<strong>WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
+"longpagewarning" => "<strong>WARNUNG: Diese Seite ist $1 kB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32 kB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>",
 'longpageerror'		=> '<strong>FEHLER: Der Text, den Sie zu speichern versuchen, ist $1 kB groß. Das ist größer als das erlaubte Maximum von $2 kB. Speicherung nicht möglich.</strong>',
 "readonlywarning" => "<strong>WARNUNG: Die Datenbank wurde während dem Ändern der
@@ -692,11 +692,11 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst den Artikel „[[$1]]�
 'guesstimezone'		=> 'Aus Browser übernehmen',
 'allowemail'		=> 'E-Mails von anderen Benutzern empfangen.',
 "defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
-'default'		=> 'default',
+'default'		=> 'Voreinstellung',
 'files'			=> 'Dateien',
 'imagemaxsize'		=> 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
 'thumbsize'		=> 'Größe der Vorschaubilder (Thumbnails):',
-'showbigimage'		=> 'Version mit hoher Auflösung herunterladen ($1 x $2 Pixel, $3 KB)',
+'showbigimage'		=> 'Version mit hoher Auflösung herunterladen ($1 x $2 Pixel, $3 kB)',
 
 # Recent changes
 #
