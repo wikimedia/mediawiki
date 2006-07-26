@@ -3581,7 +3581,7 @@ class Parser
 		$tc = "[$wgLegalTitleChars]";
 
 		$namespacechar = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
-		$conpat = "/^{$tc}+? \\(({$tc}+)\\)$/";
+		$conpat = "/^{$tc}+?( \\({$tc}+\\)|)$/";
 
 		$p1 = "/\[\[(:?$namespacechar+:|:|)({$tc}+?)( \\({$tc}+\\)|)\\|]]/";	# [[ns:page (context)|]]
 		$p2 = "/\[\[\\|({$tc}+)]]/";						# [[|page]]
@@ -3590,8 +3590,9 @@ class Parser
 
 		$t = $this->mTitle->getText();
 		if ( preg_match( $conpat, $t, $m ) && '' != $m[1] ) {
-			$text = preg_replace( $p2, "[[\\1 ({$m[1]})|\\1]]", $text );
+			$text = preg_replace( $p2, "[[\\1{$m[1]}|\\1]]", $text );
 		} else {
+			# if $m[1] is empty, don't bother duplicating the title
 			$text = preg_replace( $p2, '[[\\1]]', $text );
 		}
 
