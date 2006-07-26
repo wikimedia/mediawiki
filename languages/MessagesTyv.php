@@ -1,10 +1,57 @@
 <?php
+/** Tyvan localization (Тыва дыл)
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-/** Tyvan localization (Тыва дыл) */
 # From friends at tyvawiki.org
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Медиа', //Media
+	NS_SPECIAL          => 'Тускай', //Special
+	NS_MAIN	            => '',
+	NS_TALK	            => 'Чугаа', //Talk
+	NS_USER             => 'Aжыглакчы', //User
+	NS_USER_TALK        => 'Aжыглакчы_чугаа', //User_talk
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1_чугаа', //_talk
+	NS_IMAGE            => 'Чурук', //Image
+	NS_IMAGE_TALK       => 'Чурук_чугаа', //Image_talk
+	NS_MEDIAWIKI        => 'МедиаВики', //MediaWiki
+	NS_MEDIAWIKI_TALK   => 'МедиаВики_чугаа', //MediaWiki_talk
+	NS_TEMPLATE         => 'Хээ', //Template
+	NS_TEMPLATE_TALK    => 'Хээ_чугаа', //Template_talk
+	NS_HELP             => 'Дуза', //Help
+	NS_HELP_TALK        => 'Дуза_чугаа', //Help_talk
+	NS_CATEGORY         => 'Бөлүк', //Category
+	NS_CATEGORY_TALK    => 'Бөлүк_чугаа', //Category_talk
+);
 
-/* private */ $wgAllMessagesTyv = array(
+$skinNames = array(
+	'standard' => 'Classic', //Classic
+	'nostalgia' => 'Nostalgia', //Nostalgia
+	'cologneblue' => 'Cologne Blue', //Cologne Blue
+	'davinci' => 'ДаВинчи', //DaVinci
+	'mono' => 'Моно', //Mono
+	'monobook' => 'Моно-Ном', //MonoBook
+	'myskin' => 'MySkin', //MySkin
+	'chick' => 'Chick' //Chick
+);
+
+$bookstoreList = array(
+	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
+	'Books.Ru' => 'http://www.books.ru/shop/search/advanced?as%5Btype%5D=books&as%5Bname%5D=&as%5Bisbn%5D=$1&as%5Bauthor%5D=&as%5Bmaker%5D=&as%5Bcontents%5D=&as%5Binfo%5D=&as%5Bdate_after%5D=&as%5Bdate_before%5D=&as%5Bprice_less%5D=&as%5Bprice_more%5D=&as%5Bstrict%5D=%E4%E0&as%5Bsub%5D=%E8%F1%EA%E0%F2%FC&x=22&y=8',
+	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
+	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
+	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
+	'Barnes & Noble' => 'http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1'
+);
+
+$fallback8bitEncoding = "windows-1251";
+
+
+$messages = array(
 
 # User preference toggles
 'tog-hideminor' => 'Сөөлгү өскерлиишкиннер арында бичии өскерлиишкиннер чажырар', //Hide minor edits in recent changes

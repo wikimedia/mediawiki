@@ -1,7 +1,60 @@
 <?php
+/** Occitan (Occitan)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
+$quickbarSettings = array(
+	'Cap', 'Esquèr', 'Drech', 'Flotejant a esquèr'
+);
+
+$skinNames = array(
+	'standard' => 'Normal',
+	'nostalgia' => 'Nostalgia',
+	'cologneblue' => 'Còlonha Blau',
+);
+
+$bookstoreList = array(
+	'Amazon.fr' => 'http://www.amazon.fr/exec/obidos/ISBN=$1'
+);
+
+$namespaceNames = array(
+	NS_SPECIAL        => 'Especial',
+	NS_MAIN           => '',
+	NS_TALK           => 'Discutir',
+	NS_USER           => 'Utilisator',
+	NS_USER_TALK      => 'Discutida_Utilisator',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'Discutida_$1',
+	NS_IMAGE          => 'Imatge',
+	NS_IMAGE_TALK     => 'Discutida_Imatge',
+	NS_MEDIAWIKI      => 'Mediaòiqui',
+	NS_MEDIAWIKI_TALK => 'Discutida_Mediaòiqui',
+	NS_TEMPLATE       => 'Modèl',
+	NS_TEMPLATE_TALK  => 'Discutida_Modèl',
+	NS_HELP           => 'Ajuda',
+	NS_HELP_TALK      => 'Discutida_Ajuda',
+	NS_CATEGORY       => 'Categoria',
+	NS_CATEGORY_TALK  => 'Discutida_Categoria',
+);
+$linkTrail = "/^([a-zàâçéèêîôû]+)(.*)\$/sDu";
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j, Y',
+	'mdy both' => 'M j, Y à H:i',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'j M Y à H:i',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'Y M j à H:i',
+);
 
 
-/* private */ $wgAllMessagesOc = array(
+$messages = array(
 
 # User Toggles
 
@@ -67,7 +120,6 @@
 "subcategories"	=> "Sous-catégories", // Looxix "Subcategories",
 
 
-"linktrail"     => "/^([a-zàâçéèêîôû]+)(.*)\$/sDu",
 "mainpage"      => "Accueil",
 "mainpagetext"  => "Logiciel {{SITENAME}} installé.",
 "about"         => "À propos",

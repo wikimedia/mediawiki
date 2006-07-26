@@ -17,7 +17,7 @@ class DateFormatter
 	var $monthNames = '', $rxDM, $rxMD, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
 
 	var $regexes, $pDays, $pMonths, $pYears;
-	var $rules, $xMonths;
+	var $rules, $xMonths, $preferences;
 	
 	const ALL = -1;
 	const NONE = 0;
@@ -91,6 +91,14 @@ class DateFormatter
 		$this->rules[self::MDY][self::DM] 	= self::MD;
 		$this->rules[self::ALL][self::DM] 	= self::DM;
 		$this->rules[self::NONE][self::ISO2] 	= self::ISO1;
+
+		$this->preferences = array(
+			'default' => self::NONE,
+			'dmy' => self::DMY,
+			'mdy' => self::MDY,
+			'ymd' => self::YMD,
+			'ISO 8601' => self::ISO1,
+		);
 	}
 
 	/**
@@ -110,11 +118,15 @@ class DateFormatter
 	}
 
 	/**
-	 * @param $preference
-	 * @param $text
+	 * @param string $preference User preference
+	 * @param string $text Text to reformat
 	 */
 	function reformat( $preference, $text ) {
-		if ($preference == 'ISO 8601') $preference = 4; # The ISO 8601 option used to be 4
+		if ( isset( $this->preferences[$preference] ) ) {
+			$preference = $this->preferences[$preference];
+		} else {
+			$preference = self::NONE;
+		}
 		for ( $i=1; $i<=self::LAST; $i++ ) {
 			$this->mSource = $i;
 			if ( @$this->rules[$preference][$i] ) {

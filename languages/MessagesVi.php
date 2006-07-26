@@ -1,7 +1,107 @@
 <?php
+/**
+  * Based on Language.php 1.645
+  * @package MediaWiki
+  * @subpackage Language
+  * Compatible to MediaWiki 1.5
+  * Initial translation by Trần Thế Trung and Nguyễn Thanh Quang
+  * Last update 28 August 2005 (UTC)
+  */
+
+$namespaceNames = array(
+	NS_MEDIA			=> 'Phương_tiện',
+	NS_SPECIAL			=> 'Đặc_biệt',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Thảo_luận',
+	NS_USER				=> 'Thành_viên',
+	NS_USER_TALK		=> 'Thảo_luận_Thành_viên',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK		=> 'Thảo_luận_$1',
+	NS_IMAGE			=> 'Hình',
+	NS_IMAGE_TALK		=> 'Thảo_luận_Hình',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'Thảo_luận_MediaWiki',
+	NS_TEMPLATE			=> 'Tiêu_bản',
+	NS_TEMPLATE_TALK	=> 'Thảo_luận_Tiêu_bản',
+	NS_HELP				=> 'Trợ_giúp',
+	NS_HELP_TALK		=> 'Thảo_luận_Trợ_giúp',
+	NS_CATEGORY			=> 'Thể_loại',
+	NS_CATEGORY_TALK	=> 'Thảo_luận_Thể_loại'
+);
+
+$quickbarSettings = array(
+	'Không', 'Trái', 'Phải', 'Nổi bên trái'
+);
+
+$skinNames = array(
+	'standard'		=> 'Cổ điển',
+	'nostalgia'		=> 'Vọng cổ',
+	'myskin'		=> 'Cá nhân'
+);
+
+$magicWords = array(
+	'redirect'               => array( 0,    '#redirect' , '#đổi'             ),
+	'notoc'                  => array( 0,    '__NOTOC__' , '__KHÔNGMỤCMỤC__'             ),
+	'forcetoc'               => array( 0,    '__FORCETOC__', '__LUÔNMỤCLỤC__'        ),
+	'toc'                    => array( 0,    '__TOC__' , '__MỤCLỤC__'               ),
+	'noeditsection'          => array( 0,    '__NOEDITSECTION__', '__KHÔNGSỬAMỤC__'      ),
+	'start'                  => array( 0,    '__START__' , '__BẮTĐẦU__'             ),
+	'currentmonth'           => array( 1,    'CURRENTMONTH' , 'THÁNGNÀY'          ),
+	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME'  , 'TÊNTHÁNGNÀY'     ),
+	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN' , 'TÊNDÀITHÁNGNÀY'   ),
+	'currentmonthabbrev'     => array( 1,    'CURRENTMONTHABBREV'  , 'TÊNNGẮNTHÁNGNÀY'  ),
+	'currentday'             => array( 1,    'CURRENTDAY'       , 'NGÀYNÀY'     ),
+	'currentdayname'         => array( 1,    'CURRENTDAYNAME'   , 'TÊNNGÀYNÀY'      ),
+	'currentyear'            => array( 1,    'CURRENTYEAR'    , 'NĂMNÀY'        ),
+	'currenttime'            => array( 1,    'CURRENTTIME'     , 'GIỜNÀY'       ),
+	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES'  , 'SỐBÀI'     ),
+	'numberoffiles'          => array( 1,    'NUMBEROFFILES'   , 'SỐTẬPTIN'       ),
+	'pagename'               => array( 1,    'PAGENAME'      , 'TÊNTRANG'        ),
+	'pagenamee'              => array( 1,    'PAGENAMEE'   , 'TÊNTRANG2'           ),
+	'namespace'              => array( 1,    'NAMESPACE'   , 'KHÔNGGIANTÊN'           ),
+	'msg'                    => array( 0,    'MSG:'     , 'NHẮN:'              ),
+	'subst'                  => array( 0,    'SUBST:'   ,  'THẾ:'            ),
+	'msgnw'                  => array( 0,    'MSGNW:'    ,  'NHẮNMỚI:'             ),
+	'end'                    => array( 0,    '__END__'    , '__KẾT__'            ),
+	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb' , 'nhỏ'    ),
+	'img_right'              => array( 1,    'right' , 'phải'                 ),
+	'img_left'               => array( 1,    'left'  , 'trái'                ),
+	'img_none'               => array( 1,    'none'  , 'không'                 ),
+	'img_width'              => array( 1,    '$1px'                   ),
+	'img_center'             => array( 1,    'center', 'centre' , 'giữa'      ),
+	'img_framed'             => array( 1,    'framed', 'enframed', 'frame' , 'khung'),
+	'int'                    => array( 0,    'INT:'                   ),
+	'sitename'               => array( 1,    'SITENAME'  , 'TÊNMẠNG'             ),
+	'ns'                     => array( 0,    'NS:'                    ),
+	'localurl'               => array( 0,    'LOCALURL:'              ),
+	'localurle'              => array( 0,    'LOCALURLE:'             ),
+	'server'                 => array( 0,    'SERVER'    , 'MÁYCHỦ'             ),
+	'servername'             => array( 0,    'SERVERNAME' , 'TÊNMÁYCHỦ'            ),
+	'scriptpath'             => array( 0,    'SCRIPTPATH'  , ''           ),
+	'grammar'                => array( 0,    'GRAMMAR:'   , 'NGỮPHÁP'            ),
+	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__',
+'__NOTC__', '__KHÔNGCHUYỂNTÊN__'),
+	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__',
+'__NOCC__', '__KHÔNGCHUYỂNNỘIDUNG__'),
+	'currentweek'            => array( 1,    'CURRENTWEEK' , 'TUẦNNÀY'           ),
+	'currentdow'             => array( 1,    'CURRENTDOW'             ),
+	'revisionid'             => array( 1,    'REVISIONID'  , 'SỐBẢN'           ),
+ );
+
+$dateFormats = array(
+    MW_DATE_DEFAULT => 'Không lựa chọn',
+    1 => '16:12, tháng 1 ngày 15 năm 2001',
+    2 => '16:12, ngày 15 tháng 1 năm 2001',
+    3 => '16:12, năm 2001 tháng 1 ngày 15',
+    4 => '',
+    MW_DATE_ISO => '2001-01-15 16:12:34'
+);
+
+$linkTrail = "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD";
+$separatorTransformTable = array(',' => '.', '.' => ',' );
 
 
-/* private */ $wgAllMessagesVi = array(
+$messages = array(
 # User Toggles
 
 'tog-editwidth' => 'Cửa sổ soạn thảo mở rộng',
@@ -75,8 +175,6 @@
 'subcategories'	=> 'Tiểu thể loại',
 'subcategorycount' => 'Thể loại này có $1 tiểu thể loại.',
 'allarticles'   => 'Mọi bài',
-'linktrail'     =>
-"/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD",
 'mainpage'      => 'Trang đầu',
 'mainpagetext'	=> 'Phần mềm {{SITENAME}} đã cài đặt.',
 'portal'        => 'Cộng đồng',

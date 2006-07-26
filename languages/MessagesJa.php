@@ -1,7 +1,57 @@
 <?php
+/**
+ * Japanese (日本語)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesJa;
-$wgAllMessagesJa = array(
+$quickbarSettings = array(
+	"なし", "左端", "右端", "ウィンドウの左上に固定"
+);
+
+$skinNames = array(
+	'standard' => "標準",
+	'nostalgia' => "ノスタルジア",
+	'cologneblue' => "ケルンブルー",
+);
+
+$datePreferences = array(
+	'default',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'ja';
+
+$dateFormats = array(
+	'ja time' => 'H:i',
+	'ja date' => 'Y年n月j日 (D)',
+	'ja both' => 'Y年n月j日 (D) H:i',
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => "Media", /* Media */
+	NS_SPECIAL        => "特別", /* Special */
+	NS_MAIN           => "",
+	NS_TALK           => "ノート", /* Talk */
+	NS_USER           => "利用者", /* User */
+	NS_USER_TALK      => "利用者‐会話", /* User_talk */
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1‐ノート', /* Wikipedia_talk */
+	NS_IMAGE          => "画像", /* Image */
+	NS_IMAGE_TALK     => "画像‐ノート", /* Image_talk */
+	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */
+	NS_MEDIAWIKI_TALK => "MediaWiki‐ノート", /* MediaWiki_talk */
+	NS_TEMPLATE       => "Template", /* Template */
+	NS_TEMPLATE_TALK  => "Template‐ノート", /* Template_talk */
+	NS_HELP           => "Help", /* Help */
+	NS_HELP_TALK      => "Help‐ノート", /* Help_talk */
+	NS_CATEGORY       => "Category", /* Category */
+	NS_CATEGORY_TALK  => "Category‐ノート" /* Category_talk */
+);
+
+
+$messages = array(
 'tog-underline'         => 'リンクの下線:',
 'tog-highlightbroken'   => '未作成のページへのリンクをハイライトする',
 'tog-justify'           => '段落を均等割り付けする',
@@ -47,6 +97,13 @@ $wgAllMessagesJa = array(
 'thursday'              => '木曜日',
 'friday'                => '金曜日',
 'saturday'              => '土曜日',
+'sun'                   => '日',
+'mon'                   => '月',
+'tue'                   => '火',
+'wed'                   => '水',
+'thu'                   => '木',
+'fri'                   => '金',
+'sat'                   => '土',
 'january'               => '1月',
 'february'              => '2月',
 'march'                 => '3月',

@@ -1,7 +1,32 @@
 <?php
+/** Kurdish (Kurdî / كوردي)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-global $wgAllMessagesKu;
-$wgAllMessagesKu = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Medya',
+	NS_SPECIAL          => 'Taybet',
+	NS_MAIN             => '',
+	NS_TALK             => 'Nîqaş',
+	NS_USER             => 'Bikarhêner',
+	NS_USER_TALK        => 'Bikarhêner_nîqaş',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1_nîqaş',
+	NS_IMAGE            => 'Wêne',
+	NS_IMAGE_TALK       => 'Wêne_nîqaş',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_nîqaş',
+	NS_TEMPLATE         => 'Şablon',
+	NS_TEMPLATE_TALK    => 'Şablon_nîqaş',
+	NS_HELP             => 'Alîkarî',
+	NS_HELP_TALK        => 'Alîkarî_nîqaş',
+	NS_CATEGORY         => 'Kategorî',
+	NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
+);
+
+$messages = array(
 'skinpreview'           => '(Pêşdîtin)',
 'sunday'                => 'yekşem',
 'monday'                => 'duşem',

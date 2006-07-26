@@ -1,7 +1,39 @@
 <?php
+/** Latvian (Latviešu)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ *
+ * @author Niklas Laxström
+ *
+ * @copyright Copyright © 2006, Niklas Laxström
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
 
-global $wgAllMessagesLv;
-$wgAllMessagesLv = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_MAIN             => '',
+	NS_TALK             => 'Diskusija',
+	NS_USER             => 'Lietotājs',
+	NS_USER_TALK        => 'Lietotāja_diskusija',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '{{grammar:ģenitīvs|$1}}_diskusija',
+	NS_IMAGE            => 'Attēls',
+	NS_IMAGE_TALK       => 'Attēla_diskusija',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskusija',
+	NS_TEMPLATE         => 'Veidne',
+	NS_TEMPLATE_TALK    => 'Veidnes_diskusija',
+	NS_HELP             => 'Palīdzība',
+	NS_HELP_TALK        => 'Palīdzības_diskusija',
+	NS_CATEGORY         => 'Kategorija',
+	NS_CATEGORY_TALK    => 'Kategorijas_diskusija',
+);
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+
+
+$messages= array(
 'tog-underline'         => 'Pasvītrot saites:',
 'tog-highlightbroken'   => 'Saites uz neesošām lapām rādīt <a href="" class="new">šādi</a> (alternatīva: šādi<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Taisnot rindkopas',

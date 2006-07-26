@@ -22,7 +22,7 @@ class OutputPage {
 	var $mDoNothing;
 	var $mContainsOldMagic, $mContainsNewMagic;
 	var $mIsArticleRelated;
-	var $mParserOptions;
+	protected $mParserOptions; // lazy initialised, use parserOptions()
 	var $mShowFeedLinks = false;
 	var $mEnableClientCache = true;
 	var $mArticleBodyOnly = false;
@@ -46,7 +46,7 @@ class OutputPage {
 		$this->mCategoryLinks = array();
 		$this->mDoNothing = false;
 		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
-		$this->mParserOptions = ParserOptions::newFromUser( NULL );
+		$this->mParserOptions = null;
 		$this->mSquidMaxage = 0;
 		$this->mScripts = '';
 		$this->mETag = false;
@@ -255,10 +255,13 @@ class OutputPage {
 
 	/* @deprecated */
 	function setParserOptions( $options ) {
-		return $this->ParserOptions( $options );
+		return $this->parserOptions( $options );
 	}
 
-	function ParserOptions( $options = null ) {
+	function parserOptions( $options = null ) {
+		if ( !$this->mParserOptions ) {
+			$this->mParserOptions = new ParserOptions;
+		}
 		return wfSetVar( $this->mParserOptions, $options );
 	}
 
@@ -292,7 +295,7 @@ class OutputPage {
 		$fname = 'OutputPage:addWikiTextTitle';
 		wfProfileIn($fname);
 		wfIncrStats('pcache_not_possible');
-		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions,
+		$parserOutput = $wgParser->parse( $text, $title, $this->parserOptions(),
 			$linestart, true, $this->mRevisionId );
 		$this->addParserOutput( $parserOutput );
 		wfProfileOut($fname);
@@ -326,10 +329,11 @@ class OutputPage {
 	function addPrimaryWikiText( $text, $article, $cache = true ) {
 		global $wgParser, $wgUser;
 
-		$this->mParserOptions->setTidy(true);
+		$popts = $this->parserOptions();
+		$popts->setTidy(true);
 		$parserOutput = $wgParser->parse( $text, $article->mTitle,
-			$this->mParserOptions, true, true, $this->mRevisionId );
-		$this->mParserOptions->setTidy(false);
+			$popts, true, true, $this->mRevisionId );
+		$popts->setTidy(false);
 		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache =& ParserCache::singleton();
 			$parserCache->save( $parserOutput, $article, $wgUser );
@@ -348,9 +352,10 @@ class OutputPage {
 	 */
 	function addSecondaryWikiText( $text, $linestart = true ) {
 		global $wgTitle;
-		$this->mParserOptions->setTidy(true);
+		$popts = $this->parserOptions();
+		$popts->setTidy(true);
 		$this->addWikiTextTitle($text, $wgTitle, $linestart);
-		$this->mParserOptions->setTidy(false);
+		$popts->setTidy(false);
 	}
 
 
@@ -370,10 +375,11 @@ class OutputPage {
 	 */
 	function parse( $text, $linestart = true, $interface = false ) {
 		global $wgParser, $wgTitle;
-		if ( $interface) { $this->mParserOptions->setInterfaceMessage(true); }
-		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions,
+		$popts = $this->parserOptions();
+		if ( $interface) { $popts->setInterfaceMessage(true); }
+		$parserOutput = $wgParser->parse( $text, $wgTitle, $popts,
 			$linestart, true, $this->mRevisionId );
-		if ( $interface) { $this->mParserOptions->setInterfaceMessage(false); }
+		if ( $interface) { $popts->setInterfaceMessage(false); }
 		return $parserOutput->getText();
 	}
 
@@ -614,11 +620,6 @@ class OutputPage {
 		global $wgUser, $wgContLang;
 
 		$wgInputEncoding = strtolower( $wgInputEncoding );
-
-		if( $wgUser->getOption( 'altencoding' ) ) {
-			$wgContLang->setAltEncoding();
-			return;
-		}
 
 		if ( empty( $_SERVER['HTTP_ACCEPT_CHARSET'] ) ) {
 			$wgOutputEncoding = strtolower( $wgOutputEncoding );

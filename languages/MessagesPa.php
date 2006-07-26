@@ -1,7 +1,57 @@
 <?php
+/** Punjabi (Gurmukhi)
+  * @package MediaWiki
+  * @subpackage Language
+  */
+# This file is dual-licensed under GFDL and GPL.
+#
+# See: http://bugzilla.wikimedia.org/show_bug.cgi?id=1478
 
-global $wgAllMessagesPa;
-$wgAllMessagesPa = array(
+$quickbarSettings = array(
+	'ਕੋਈ ਨਹੀਂ', 'ਸਥਿਰ ਖੱਬੇ', 'ਸਥਿਰ ਸੱਜਾ', 'ਤੈਰਦਾ ਖੱਬੇ'
+);
+
+$skinNames = array(
+	'standard'      => 'ਮਿਆਰੀ',
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'ਮੀਡੀਆ',
+	NS_SPECIAL        => 'ਖਾਸ',
+	NS_MAIN           => '',
+	NS_TALK           => 'ਚਰਚਾ',
+	NS_USER           => 'ਮੈਂਬਰ',
+	NS_USER_TALK      => 'ਮੈਂਬਰ_ਚਰਚਾ',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_ਚਰਚਾ',
+	NS_IMAGE          => 'ਤਸਵੀਰ',
+	NS_IMAGE_TALK     => 'ਤਸਵੀਰ_ਚਰਚਾ',
+	NS_MEDIAWIKI      => 'ਮੀਡੀਆਵਿਕਿ',
+	NS_MEDIAWIKI_TALK => 'ਮੀਡੀਆਵਿਕਿ_ਚਰਚਾ',
+	NS_TEMPLATE       => 'ਨਮੂਨਾ',
+	NS_TEMPLATE_TALK  => 'ਨਮੂਨਾ_ਚਰਚਾ',
+	NS_HELP           => 'ਮਦਦ',
+	NS_HELP_TALK      => 'ਮਦਦ_ਚਰਚਾ',
+	NS_CATEGORY       => 'ਸ਼੍ਰੇਣੀ',
+	NS_CATEGORY_TALK  => 'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ'
+);
+
+$digitTransformTable = array(
+	'0' => '੦',
+	'1' => '੧',
+	'2' => '੨',
+	'3' => '੩',
+	'4' => '੪',
+	'5' => '੫',
+	'6' => '੬',
+	'7' => '੭',
+	'8' => '੮',
+	'9' => '੯'
+);
+$linkTrail = '/^([ਁਂਃਅਆਇਈਉਊਏਐਓਔਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਲ਼ਵਸ਼ਸਹ਼ਾਿੀੁੂੇੈੋੌ੍ਖ਼ਗ਼ਜ਼ੜਫ਼ੰੱੲੳa-z]+)(.*)$/sDu';
+
+
+$messages = array(
 # Bits of text used by many pages:
 #
 
@@ -43,7 +93,6 @@ $wgAllMessagesPa = array(
 'category_header'	=> 'ਸ਼੍ਰੇਣੀ \'$1\' ਵਾਲੇ ਲੇਖ',
 'subcategories'	=> 'ਉਪਸ਼੍ਰੇਣੀਆਂ',
 
-'linktrail'		=> '/^([ਁਂਃਅਆਇਈਉਊਏਐਓਔਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਲ਼ਵਸ਼ਸਹ਼ਾਿੀੁੂੇੈੋੌ੍ਖ਼ਗ਼ਜ਼ੜਫ਼ੰੱੲੳa-z]+)(.*)$/sDu',
 'mainpage'		=> 'ਮੁੱਖ ਪੰਨਾ',
 'mainpagetext'	=> 'ਵਿਕਿ ਸਾਫ਼ਟਵੇਅਰ ਚੰਗੀ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੋ ਗਿਆ ਹੈ',
 

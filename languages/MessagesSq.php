@@ -1,7 +1,60 @@
 <?php
+/** Albanian (Shqip)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesSq;
-$wgAllMessagesSq = array(
+$quickbarSettings = array(
+	'Asnjë', 'Lidhur majtas', 'Lidhur djathtas', 'Pezull majtas', 'Pezull djathtas'
+);
+
+$skinNames = array(
+	'standard' => 'Standarte',
+	'nostalgia' => 'Nostalgjike',
+	'cologneblue' => 'Kolonjë Blu'
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Speciale',
+	NS_MAIN           => '',
+	NS_TALK           => 'Diskutim',
+	NS_USER           => 'Përdoruesi',
+	NS_USER_TALK      => 'Përdoruesi_diskutim',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_diskutim',
+	NS_IMAGE          => 'Figura',
+	NS_IMAGE_TALK     => 'Figura_diskutim',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_diskutim',
+	NS_TEMPLATE       => 'Stampa',
+	NS_TEMPLATE_TALK  => 'Stampa_diskutim',
+	NS_HELP           => 'Ndihmë',
+	NS_HELP_TALK      => 'Ndihmë_diskutim'
+);
+
+# Compatbility with alt names
+$namespaceAliases = array(
+	'Perdoruesi' => NS_USER,
+	'Perdoruesi_diskutim' => NS_USER_TALK,
+);
+
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ISO 8601',
+);
+$defaultDateFormat = 'dmy';
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j F Y',
+	'dmy both' => 'j F Y H:i',
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+
+$messages = array(
 'tog-underline'         => 'Nënvizo lidhjet',
 'tog-highlightbroken'   => 'Trego lidhjet e faqeve bosh <a href="" class="new">kështu </a> (ndryshe: kështu<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Rregullim i kryeradhës',

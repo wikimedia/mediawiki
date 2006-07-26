@@ -1,7 +1,36 @@
 <?php
+/**
+ * Turkish (Türkçe)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */	
 
-global $wgAllMessagesTr;
-$wgAllMessagesTr = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Özel',
+	NS_MAIN             => '',
+	NS_TALK             => 'Tartışma',
+	NS_USER             => 'Kullanıcı',
+	NS_USER_TALK        => 'Kullanıcı_mesaj',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1_tartışma',
+	NS_IMAGE            => 'Resim',
+	NS_IMAGE_TALK       => 'Resim_tartışma',
+	NS_MEDIAWIKI        => 'MedyaViki',
+	NS_MEDIAWIKI_TALK   => 'MedyaViki_tartışma',
+	NS_TEMPLATE         => 'Şablon',
+	NS_TEMPLATE_TALK    => 'Şablon_tartışma',
+	NS_HELP             => 'Yardım',
+	NS_HELP_TALK        => 'Yardım_tartışma',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Kategori_tartışma',
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+
+
+$messages = array(
 'tog-underline'         => 'Bağlatıların altını çiz',
 'tog-highlightbroken'   => 'Boş bağlantıları <a href="" class="new">bu şekilde</a> (alternatif: bu şekilde<a href="" class="internal">?</a>) göster.',
 'tog-justify'           => 'Paragraf iki yana yaslayarak ayarla',

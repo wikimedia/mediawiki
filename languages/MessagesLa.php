@@ -1,7 +1,41 @@
 <?php
+/** Latin (lingua Latina)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-global $wgAllMessagesLa;
-$wgAllMessagesLa = array(
+$quickbarSettings = array(
+	'Nullus', 'Constituere a sinistra', 'Constituere a dextra', 'Innens a sinistra'
+);
+
+$skinNames = array(
+	'standard' => 'Norma',
+	'nostalgia' => 'Nostalgia',
+	'cologneblue' => 'Caerulus Colonia'
+);
+
+$namespaceNames = array(
+	NS_SPECIAL        => 'Specialis',
+	NS_MAIN           => '',
+	NS_TALK           => 'Disputatio',
+	NS_USER           => 'Usor',
+	NS_USER_TALK      => 'Disputatio_Usoris',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'Disputatio_{{grammar:genitive|$1}}',
+	NS_IMAGE          => 'Imago',
+	NS_IMAGE_TALK     => 'Disputatio_Imaginis',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Disputatio_MediaWiki',
+	NS_TEMPLATE       => 'Formula',
+	NS_TEMPLATE_TALK  => 'Disputatio_Formulae',
+	NS_HELP           => 'Auxilium',
+	NS_HELP_TALK      => 'Disputatio_Auxilii',
+	NS_CATEGORY       => 'Categoria',
+	NS_CATEGORY_TALK  => 'Disputatio_Categoriae',
+);
+
+$messages = array(
 'tog-underline'         => 'Subscribere nexi',
 'tog-highlightbroken'   => 'Formare nexos fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Saepire capites',

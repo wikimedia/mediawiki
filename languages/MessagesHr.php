@@ -1,7 +1,63 @@
 <?php
+/** Croatian (hrvatski)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-global $wgAllMessagesHr;
-$wgAllMessagesHr = array(
+
+$quickbarSettings = array(
+	'Bez', 'Lijevo nepomično', 'Desno nepomično', 'Lijevo leteće'
+);
+
+$skinNames = array(
+	'standard'  => 'Standardna',
+	'nostalgia'  => 'Nostalgija',
+	'cologneblue'  => 'Kölnska plava',
+	'smarty'  => 'Paddington',
+	'montparnasse'  => 'Montparnasse',
+	'davinci'  => 'DaVinci',
+	'mono'   => 'Mono',
+	'monobook'  => 'MonoBook',
+	'myskin'  => 'MySkin',
+	'chick'  => 'Chick'
+);
+
+$namespaceNames = array(
+	NS_MEDIA           => 'Mediji',
+	NS_SPECIAL         => 'Posebno',
+	NS_MAIN            => '',
+	NS_TALK            => 'Razgovor',
+	NS_USER            => 'Suradnik',
+	NS_USER_TALK       => 'Razgovor_sa_suradnikom',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK    => 'Razgovor_$1',
+	NS_IMAGE           => 'Slika',
+	NS_IMAGE_TALK      => 'Razgovor_o_slici',
+	NS_MEDIAWIKI       => 'MediaWiki',
+	NS_MEDIAWIKI_TALK  => 'MediaWiki_razgovor',
+	NS_TEMPLATE        => 'Predložak',
+	NS_TEMPLATE_TALK   => 'Razgovor_o_predlošku',
+	NS_HELP            => 'Pomoć',
+	NS_HELP_TALK       => 'Razgovor_o_pomoći',
+	NS_CATEGORY        => 'Kategorija',
+	NS_CATEGORY_TALK   => 'Razgovor_o_kategoriji'
+);
+
+$datePreferences = false;
+$defaultDateFormat = 'dmy';
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. F Y.',
+	'dmy both' => 'H:i, j. F Y.',
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$fallback8bitEncoding = 'iso-8859-2';
+$linkTrail = '/^([čšžćđßa-z]+)(.*)$/sDu';
+
+
+$messages = array(
 'tog-underline'         => 'Podcrtane poveznice',
 'tog-highlightbroken'   => 'Istakni prazne poveznice drugom bojom (inače, upitnikom na kraju).',
 'tog-justify'           => 'Poravnaj odlomke i zdesna',

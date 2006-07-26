@@ -1,7 +1,67 @@
 <?php
+/** Persian (فارسی)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
+$quickbarSettings = array(
+	'نباشد', 'ثابت چپ', 'ثابت راست', 'شناور چپ'
+);
 
-global $wgAllMessagesFa;
-$wgAllMessagesFa = array(
+$skinNames = array(
+	'standard' => 'استاندارد',
+	'nostalgia' => 'نوستالژی',
+	'cologneblue' => 'آبی کلون',
+	'smarty' => 'پدینگتون',
+	'montparnasse' => 'مون‌پارناس',
+);
+$namespaceNames = array(
+	NS_MEDIA          => 'مدیا',
+	NS_SPECIAL        => 'ویژه',
+	NS_MAIN	          => '',
+	NS_TALK	          => 'بحث',
+	NS_USER           => 'کاربر',
+	NS_USER_TALK      => 'بحث_کاربر',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'بحث_$1',
+	NS_IMAGE          => 'تصویر',
+	NS_IMAGE_TALK     => 'بحث_تصویر',
+	NS_MEDIAWIKI      => 'مدیاویکی',
+	NS_MEDIAWIKI_TALK	=> 'بحث_مدیاویکی',
+	NS_TEMPLATE       => 'الگو',
+	NS_TEMPLATE_TALK  => 'بحث_الگو',
+	NS_HELP           => 'راهنما',
+	NS_HELP_TALK      => 'بحث_راهنما',
+	NS_CATEGORY       => 'رده',
+	NS_CATEGORY_TALK  => 'بحث_رده'
+);
+
+$digitTransformTable = array(
+	"0" => "۰",
+	"1" => "۱",
+	"2" => "۲",
+	"3" => "۳",
+	"4" => "۴",
+	"5" => "۵",
+	"6" => "۶",
+	"7" => "۷",
+	"8" => "۸",
+	"9" => "۹",
+	"%" => "٪",
+	"." => "٫", // wrong table?
+	"," => "٬"
+);
+
+$rtl = true;
+$defaultUserOptionOverrides = array(
+	# Swap sidebar to right side by default
+	'quickbar' => 2,
+	# Underlines seriously harm legibility. Force off:
+	'underline' => 0,
+);
+$linkTrail = "/^([a-z]+)(.*)\$/sD"; /* This may need to be changed --RP */
+
+$messages = array(
 # User toggles
 
 'tog-underline' => "زیر پیوندها خط کشیده شود",
@@ -62,7 +122,6 @@ $wgAllMessagesFa = array(
 'category_header' => "مقاله‌های رده‌ی «$1»",
 'subcategories' => "زیررده‌ها",
 
-'linktrail'		=> "/^([a-z]+)(.*)\$/sD", /* This may need to be changed --RP */
 'mainpage'		=> "صفحه‌ی اصلی",
 'mainpagetext'	=> "نرم‌افزار ویکی با موفقیت نصب شد.",
 'about'			=> "درباره",

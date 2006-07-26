@@ -3,7 +3,8 @@
 class MWException extends Exception
 {
 	function useOutputPage() {
-		return !empty( $GLOBALS['wgFullyInitialised'] );
+		return !empty( $GLOBALS['wgFullyInitialised'] ) && 
+			!empty( $GLOBALS['wgArticle'] ) && !empty( $GLOBALS['wgTitle'] );
 	}
 
 	function useMessageCache() {

@@ -1,7 +1,55 @@
 <?php
+/** Indonesian (Bahasa Indonesia)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesId;
-$wgAllMessagesId = array(
+$quickbarSettings = array(
+	'Tidak ada', 'Tetap sebelah kiri', 'Tetap sebelah kanan', 'Mengambang sebelah kiri'
+);
+
+$skinNames = array(
+	'standard'    => 'Standar',
+);
+
+$bookstoreList = array(
+	'Gramedia Cyberstore (via Google)' => 'http://www.google.com/search?q=%22ISBN+:+$1%22+%22product_detail%22+site:www.gramediacyberstore.com+OR+site:www.gramediaonline.com+OR+site:www.kompas.com&hl=id',
+	'Bhinneka.com bookstore' => 'http://www.bhinneka.com/Buku/Engine/search.asp?fisbn=$1',
+);
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Istimewa',
+	NS_MAIN             => '',
+	NS_TALK             => 'Bicara',
+	NS_USER             => 'Pengguna',
+	NS_USER_TALK        => 'Bicara_Pengguna',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Pembicaraan_$1',
+	NS_IMAGE            => 'Gambar',
+	NS_IMAGE_TALK       => 'Pembicaraan_Gambar',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Pembicaraan_MediaWiki',
+	NS_TEMPLATE         => 'Templat',
+	NS_TEMPLATE_TALK    => 'Pembicaraan_Templat',
+	NS_HELP             => 'Bantuan',
+	NS_HELP_TALK        => 'Pembicaraan_Bantuan',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Pembicaraan_Kategori'
+);
+
+$namespaceAliases = array(
+	'Gambar_Pembicaraan'    => NS_IMAGE_TALK,
+	'MediaWiki_Pembicaraan' => NS_MEDIAWIKI_TALK,
+	'Templat_Pembicaraan'   => NS_TEMPLATE_TALK,
+	'Bantuan_Pembicaraan'   => NS_HELP_TALK,
+	'Kategori_Pembicaraan'  => NS_CATEGORY_TALK,
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$datePreferences = false;
+
+$messages = array(
 
 # User preference toggles
 'tog-underline' => 'Garis bawahi pranala',

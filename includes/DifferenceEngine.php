@@ -188,7 +188,7 @@ CONTROL;
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 
 		if( !$this->mNewRev->isCurrent() ) {
-			$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
+			$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
 		}
 
 		$this->loadNewText();
@@ -198,7 +198,7 @@ CONTROL;
 		$wgOut->addSecondaryWikiText( $this->mNewtext );
 
 		if( !$this->mNewRev->isCurrent() ) {
-			$wgOut->mParserOptions->setEditSection( $oldEditSectionSetting );
+			$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
 		}
 
 		wfProfileOut( $fname );

@@ -1,4 +1,64 @@
 <?php
+/**
+ * Walloon (Walon)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
+
+$quickbarSettings = array(
+	"Nole bår", "Aclawêye a hintche", "Aclawêye a droete", "Flotante a hintche", "Flotante a droete"
+);
+
+# lists "no preferences", normall (long) walloon date,
+# short walloon date, and ISO format
+# MW_DATE_DMY is alias for long format, as it is dd mmmmm yyyy.
+$datePreferences = array(
+	'default',
+	'dmy',
+	'walloon short',
+	'ISO 8601'
+);
+
+$datePreferenceMigrationMap = array(
+	0 => 'default',
+	2 => 'dmy',
+	4 => 'walloon short',
+);
+$defaultDateFormat = 'dmy';
+
+$dateFormats = array(
+	'walloon short time' => 'H:i'
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => "Media", /* Media */
+	NS_SPECIAL        => "Sipeciås", /* Special */
+	NS_MAIN           => "",
+	NS_TALK           => "Copene", /* Talk */
+	NS_USER	          => "Uzeu", /* User */
+	NS_USER_TALK      => "Uzeu_copene", /* User_talk */
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_copene',
+	NS_IMAGE          => "Imådje", /* Image */
+	NS_IMAGE_TALK     => "Imådje_copene", /* Image_talk */
+	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */
+	NS_MEDIAWIKI_TALK => "MediaWiki_copene", /* MediaWiki_talk */
+	NS_TEMPLATE       => "Modele",
+	NS_TEMPLATE_TALK  => "Modele_copene",
+	NS_HELP           => "Aidance",
+	NS_HELP_TALK      => "Aidance_copene",
+	NS_CATEGORY       => "Categoreye",
+	NS_CATEGORY_TALK  => "Categoreye_copene",
+);
+
+# definixha del cogne po les limeros
+# (number format definition)
+# en: 12,345.67 -> wa: 12 345,67
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+
+#$linkTrail = '/^([a-zåâêîôûçéèA-ZÅÂÊÎÔÛÇÉÈ]+)(.*)$/sDu';
+$linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';
 
 #
 # NOTE:
@@ -7,8 +67,7 @@
 # steward = mwaisse-manaedjeu tot avå
 #
 
-global $wgAllMessagesWa;
-$wgAllMessagesWa = array(
+$messages = array(
 # User preference toggles
 'tog-underline' => 'Sorlignî les loyéns',
 'tog-highlightbroken' => 'Håyner les vudes loyéns <a href="" class="new">come çouchal</a><br /> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href="" class="internal">?</a>).',
@@ -88,7 +147,6 @@ $wgAllMessagesWa = array(
 'category_header' => 'Årtikes el categoreye «$1»',
 'subcategories' => 'Dizo-categoreyes',
 # using uppercase A-Z break things...
-#'linktrail' => '/^([a-zåâêîôûçéèA-ZÅÂÊÎÔÛÇÉÈ]+)(.*)$/sDu',
 'linktrail' => '/^([a-zåâêîôûçéè]+)(.*)$/sDu',
 #'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage' => 'Mwaisse pådje',

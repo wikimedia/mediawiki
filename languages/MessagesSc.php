@@ -1,7 +1,42 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
+$namespaceNames = array(
+	NS_SPECIAL         => 'Speciale',
+	NS_MAIN            => '',
+	NS_TALK            => 'Contièndha',
+	NS_USER            => 'Utente',
+	NS_USER_TALK       => 'Utente_discussioni',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK    => '$1_discussioni',
+	NS_IMAGE           => 'Immàgini',
+	NS_IMAGE_TALK      => 'Immàgini_contièndha'
+);
 
-/* private */ $wgAllMessagesSc = array(
+$quickbarSettings = array(
+	"Nessuno", "Fisso a sinistra", "Fisso a destra", "Fluttuante a sinistra"
+);
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j, Y',
+	'mdy both' => 'H:i, M j, Y',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'H:i, j M Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'H:i, Y M j',
+);
+
+$linkTrail = "/^([a-z]+)(.*)\$/sD";
+
+$messages = array(
 # User Toggles
 
 "tog-underline" => "Sottolinea links",
@@ -52,7 +87,6 @@
 
 # Bits of text used by many pages:
 #
-"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 'mainpage'		=> 'Pàggina principali',
 'about'			=> 'A proposito di',
 'aboutsite'      => 'A proposito di {{SITENAME}}',

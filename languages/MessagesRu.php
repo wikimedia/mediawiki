@@ -8,8 +8,130 @@
   *
   */
 
-global $wgAllMessagesRu;
-$wgAllMessagesRu = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Служебная',
+	NS_MAIN             => '',
+	NS_TALK             => 'Обсуждение',
+	NS_USER             => 'Участник',
+	NS_USER_TALK        => 'Обсуждение_участника',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Обсуждение_{{grammar:genitive|$1}}',
+	NS_IMAGE            => 'Изображение',
+	NS_IMAGE_TALK       => 'Обсуждение_изображения',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Обсуждение_MediaWiki',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Обсуждение_шаблона',
+	NS_HELP             => 'Справка',
+	NS_HELP_TALK        => 'Обсуждение_справки',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Обсуждение_категории',
+);
+
+
+$quickbarSettings = array(
+	'Не показывать', 'Неподвижная слева', 'Неподвижная справа', 'Плавающая слева', 'Плавающая справа'
+);
+
+$skinNames = array(
+	'standard' => 'Стандартный',
+	'nostalgia' => 'Ностальгия',
+	'cologneblue' => 'Кёльнская тоска',
+	'davinci' => 'Да Винчи',
+	'mono' => 'Моно',
+	'monobook' => 'Моно-книга',
+	'myskin' => 'Своё',
+	'chick' => 'Цыпа'
+);
+
+
+$bookstoreList = array(
+	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
+	'Books.Ru' => 'http://www.books.ru/shop/search/advanced?as%5Btype%5D=books&as%5Bname%5D=&as%5Bisbn%5D=$1&as%5Bauthor%5D=&as%5Bmaker%5D=&as%5Bcontents%5D=&as%5Binfo%5D=&as%5Bdate_after%5D=&as%5Bdate_before%5D=&as%5Bprice_less%5D=&as%5Bprice_more%5D=&as%5Bstrict%5D=%E4%E0&as%5Bsub%5D=%E8%F1%EA%E0%F2%FC&x=22&y=8',
+	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
+
+# Note to translators:
+#   Please include the English words as synonyms.  This allows people
+#   from other wikis to contribute more easily.
+#
+$magicWords = array(
+#   ID                                 CASE  SYNONYMS
+	'redirect'               => array( 0,    '#REDIRECT', '#ПЕРЕНАПРАВЛЕНИЕ', '#ПЕРЕНАПР'),
+	'notoc'                  => array( 0,    '__NOTOC__', '__БЕЗСОДЕРЖАНИЯ__'),
+	'forcetoc'               => array( 0,    '__FORCETOC__'),
+	'toc'                    => array( 0,    '__TOC__', '__СОДЕРЖАНИЕ__'),
+	'noeditsection'          => array( 0,    '__NOEDITSECTION__', '__БЕЗРЕДАКТИРОВАНИЯРАЗДЕЛА__'),
+	'start'                  => array( 0,    '__START__', '__НАЧАЛО__'),
+	'currentmonth'           => array( 1,    'CURRENTMONTH', 'ТЕКУЩИЙМЕСЯЦ'),
+	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦА'),
+	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦАРОД'),
+	'currentmonthabbrev'     => array( 1,    'CURRENTMONTHABBREV', 'НАЗВАНИЕТЕКУЩЕГОМЕСЯЦААБР'),
+	'currentday'             => array( 1,    'CURRENTDAY','ТЕКУЩИЙДЕНЬ'),
+	'currentday2'            => array( 1,    'CURRENTDAY2','ТЕКУЩИЙДЕНЬ2'),
+	'currentdayname'         => array( 1,    'CURRENTDAYNAME','НАЗВАНИЕТЕКУЩЕГОДНЯ'),
+	'currentyear'            => array( 1,    'CURRENTYEAR','ТЕКУЩИЙГОД'),
+	'currenttime'            => array( 1,    'CURRENTTIME','ТЕКУЩЕЕВРЕМЯ'),
+	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES','КОЛИЧЕСТВОСТАТЕЙ'),
+	'numberoffiles'          => array( 1,    'NUMBEROFFILES', 'КОЛИЧЕСТВОФАЛОВ'),
+	'pagename'               => array( 1,    'PAGENAME','НАЗВАНИЕСТРАНИЦЫ'),
+	'pagenamee'              => array( 1,    'PAGENAMEE','НАЗВАНИЕСТРАНИЦЫ2'),
+	'namespace'              => array( 1,    'NAMESPACE','ПРОСТРАНСТВОИМЁН'),
+	'msg'                    => array( 0,    'MSG:'),
+	'subst'                  => array( 0,    'SUBST:','ПОДСТ:'),
+	'msgnw'                  => array( 0,    'MSGNW:'),
+	'end'                    => array( 0,    '__END__','__КОНЕЦ__'),
+	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb', 'мини'),
+	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1', 'мини=$1'),
+	'img_right'              => array( 1,    'right','справа'),
+	'img_left'               => array( 1,    'left','слева'),
+	'img_none'               => array( 1,    'none'),
+	'img_width'              => array( 1,    '$1px','$1пкс'),
+	'img_center'             => array( 1,    'center', 'centre','центр'),
+	'img_framed'             => array( 1,    'framed', 'enframed', 'frame','обрамить'),
+	'int'                    => array( 0,    'INT:'),
+	'sitename'               => array( 1,    'SITENAME','НАЗВАНИЕСАЙТА'),
+	'ns'                     => array( 0,    'NS:','ПИ:'),
+	'localurl'               => array( 0,    'LOCALURL:'),
+	'localurle'              => array( 0,    'LOCALURLE:'),
+	'server'                 => array( 0,    'SERVER','СЕРВЕР'),
+	'servername'             => array( 0,    'SERVERNAME', 'НАЗВАНИЕСЕРВЕРА'),
+	'scriptpath'             => array( 0,    'SCRIPTPATH', 'ПУТЬКСКРИПТУ'),
+	'grammar'                => array( 0,    'GRAMMAR:'),
+	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__', '__NOTC__', '__БЕЗПРЕОБРАЗОВАНИЯЗАГОЛОВКА__'),
+	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__', '__БЕЗПРЕОБРАЗОВАНИЯТЕКСТА__'),
+	'currentweek'            => array( 1,    'CURRENTWEEK','ТЕКУЩАЯНЕДЕЛЯ'),
+	'currentdow'             => array( 1,    'CURRENTDOW','ТЕКУЩИЙДЕНЬНЕДЕЛИ'),
+	'revisionid'             => array( 1,    'REVISIONID', 'ИДВЕРСИИ'),
+);
+
+$separatorTransformTable = array(
+	',' => "\xc2\xa0",
+	'.' => ','
+);
+
+$fallback8bitEncoding = 'windows-1251';
+$linkPrefixExtension = true;
+$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'xg j, Y',
+	'mdy both' => 'H:i, xg j, Y',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j xg Y',
+	'dmy both' => 'H:i, j xg Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y xg j',
+	'ymd both' => 'H:i, Y xg j',
+);
+
+$messages = array(
 
 # User preference toggles
 'tog-underline' => 'Подчёркивать ссылки:',
@@ -105,7 +227,6 @@ $wgAllMessagesRu = array(
 'subcategories' => 'Подкатегории',
 
 
-'linktrail'             => '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu',
 'linkprefix'            => '/^(.*?)(„|«)$/sD',
 'mainpage'              => 'Заглавная страница',
 'mainpagetext'  => '<big>Вики-движок «MediaWiki» успешно установлен.</big>',

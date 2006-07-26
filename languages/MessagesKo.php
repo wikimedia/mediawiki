@@ -1,7 +1,56 @@
 <?php
+/** Korean (한국어)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => '특수기능',
+	NS_MAIN           => '',
+	NS_TALK           => '토론',
+	NS_USER           => '사용자',
+	NS_USER_TALK      => '사용자토론',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1토론',
+	NS_IMAGE          => '그림',
+	NS_IMAGE_TALK     => '그림토론',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki토론',
+	NS_TEMPLATE       => '틀',
+	NS_TEMPLATE_TALK  => '틀토론',
+	NS_HELP           => '도움말',
+	NS_HELP_TALK      => '도움말토론',
+	NS_CATEGORY       => '분류',
+	NS_CATEGORY_TALK  => '분류토론',
+);
 
-global $wgAllMessagesKo;
-$wgAllMessagesKo = array(
+$quickbarSettings = array(
+	'없음', '왼쪽', '오른쪽', '왼쪽 고정', '오른쪽 고정'
+);
+
+$skinNames = array(
+	'standard' => '표준',
+	'davinci' => '다빈치',
+	'mono' => '모노',
+	'monobook' => '모노북',
+	'my skin' => '내 스킨',
+);
+
+$bookstoreList = array(
+	'Aladdin.co.kr' => 'http://www.aladdin.co.kr/catalog/book.asp?ISBN=$1',
+	'inherit' => true,
+);
+
+$datePreferences = false;
+$defaultDateFormat = 'ko';
+$dateFormats = array(
+	'ko time' => 'H:i',
+	'ko date' => 'Y년 M월 j일 (D)',
+	'ko both' => 'Y년 M월 j일 (D) H:i',
+);
+
+$messages = array(
 'tog-underline'         => '고리에 밑줄치기:',
 'tog-highlightbroken'   => '없는 문서로 가는 고리를 <a href="" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
 'tog-justify'           => '문단 정렬',
@@ -45,6 +94,13 @@ $wgAllMessagesKo = array(
 'thursday'              => '목요일',
 'friday'                => '금요일',
 'saturday'              => '토요일',
+'sun'                   => '일', 
+'mon'                   => '월', 
+'tue'                   => '화', 
+'wed'                   => '수', 
+'thu'                   => '목', 
+'fri'                   => '금', 
+'sat'                   => '토',
 'january'               => '1월',
 'february'              => '2월',
 'march'                 => '3월',

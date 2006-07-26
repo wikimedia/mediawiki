@@ -1,11 +1,111 @@
 <?php
+/** Irish (Gaeilge)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
+
+$quickbarSettings = array(
+	'Faic', 'Greamaithe ar chlé', 'Greamaithe ar dheis', 'Ag faoileáil ar chlé', 'Ag faoileáil ar dheis'
+);
+
+$skinNames = array(
+	'standard' => 'Gnáth',
+	'nostalgia' => 'Sean-nós',
+	'cologneblue' => 'Gorm na Colóna',
+	'smarty' => 'Paddington',
+	'montparnasse' => 'Montparnasse',
+	'davinci' => 'DaVinci',
+	'mono' => 'Mono',
+	'monobook' => 'MonoBook',
+	'myskin' => 'MySkin',
+	'chick' => 'Chick'
+);
+
+$magicWords = array(
+	#   ID	                         CASE  SYNONYMS
+	'redirect'               => array( 0,    '#redirect', '#athsheoladh' ),
+	'notoc'                  => array( 0,    '__NOTOC__', '__GANCÁ__'              ),
+	'forcetoc'               => array( 0,    '__FORCETOC__',         '__CÁGACHUAIR__'  ),
+	'toc'                    => array( 0,    '__TOC__', '__CÁ__'                ),
+	'noeditsection'          => array( 0,    '__NOEDITSECTION__',    '__GANMHÍRATHRÚ__'  ),
+	'start'                  => array( 0,    '__START__', '__TÚS__'              ),
+	'currentmonth'           => array( 1,    'CURRENTMONTH',  'MÍLÁITHREACH'  ),
+	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME',     'AINMNAMÍOSALÁITHREAÍ'  ),
+	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN',  'GINAINMNAMÍOSALÁITHREAÍ'  ),
+	'currentmonthabbrev'     => array( 1,    'CURRENTMONTHABBREV',   'GIORRÚNAMÍOSALÁITHREAÍ'  ),
+	'currentday'             => array( 1,    'CURRENTDAY',           'LÁLÁITHREACH'  ),
+	'currentdayname'         => array( 1,    'CURRENTDAYNAME',       'AINMANLAELÁITHRIGH'  ),
+	'currentyear'            => array( 1,    'CURRENTYEAR',          'BLIAINLÁITHREACH'  ),
+	'currenttime'            => array( 1,    'CURRENTTIME',          'AMLÁITHREACH'  ),
+	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES',     'LÍONNANALT'  ),
+	'numberoffiles'          => array( 1,    'NUMBEROFFILES',        'LÍONNAGCOMHAD'  ),
+	'pagename'               => array( 1,    'PAGENAME',             'AINMANLGH'  ),
+	'pagenamee'              => array( 1,    'PAGENAMEE',            'AINMANLGHB'  ),
+	'namespace'              => array( 1,    'NAMESPACE',            'AINMSPÁS'  ),
+	'msg'                    => array( 0,    'MSG:',                 'TCHT:'  ),
+	'subst'                  => array( 0,    'SUBST:',               'IONAD:'  ),
+	'msgnw'                  => array( 0,    'MSGNW:',               'TCHTFS:'  ),
+	'end'                    => array( 0,    '__END__',              '__DEIREADH__'  ),
+	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb',   'mionsamhail', 'mion'  ),
+	'img_right'              => array( 1,    'right',                'deas'  ),
+	'img_left'               => array( 1,    'left',                 'clé'  ),
+	'img_none'               => array( 1,    'none',                 'faic'  ),
+	'img_width'              => array( 1,    '$1px'                   ),
+	'img_center'             => array( 1,    'center', 'centre',     'lár'  ),
+	'img_framed'             => array( 1,    'framed', 'enframed', 'frame', 'fráma', 'frámaithe' ),
+	'int'                    => array( 0,    'INT:', 'INMH:'                   ),
+	'sitename'               => array( 1,    'SITENAME',             'AINMANTSUÍMH'  ),
+	'ns'                     => array( 0,    'NS:', 'AS:'                    ),
+	'localurl'               => array( 0,    'LOCALURL:',            'URLÁITIÚIL'  ),
+	'localurle'              => array( 0,    'LOCALURLE:',           'URLÁITIÚILB'  ),
+	'server'                 => array( 0,    'SERVER',               'FREASTALAÍ'  ),
+	'servername'             => array( 0,    'SERVERNAME',            'AINMANFHREASTALAÍ' ),
+	'scriptpath'             => array( 0,    'SCRIPTPATH',           'SCRIPTCHOSÁN'  ),
+	'grammar'                => array( 0,    'GRAMMAR:',             'GRAMADACH:'  ),
+	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__', '__NOTC__', '__GANTIONTÚNADTEIDEAL__', '__GANTT__'),
+	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__', '__GANTIONTÚNANÁBHAIR__', '__GANTA__' ),
+	'currentweek'            => array( 1,    'CURRENTWEEK',          'SEACHTAINLÁITHREACH'  ),
+	'currentdow'             => array( 1,    'CURRENTDOW',           'LÁLÁITHREACHNAS'  ),
+	'revisionid'             => array( 1,    'REVISIONID',           'IDANLEASAITHE'  ),
+);
+
+$namespaceNames = array(
+	NS_MEDIA	          => 'Meán',
+	NS_SPECIAL          => 'Speisialta',
+	NS_MAIN             => '',
+	NS_TALK             => 'Plé',
+	NS_USER             => 'Úsáideoir',
+	NS_USER_TALK        => 'Plé_úsáideora',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Plé_{{grammar:genitive|$1}}',
+	NS_IMAGE            => 'Íomhá',
+	NS_IMAGE_TALK       => 'Plé_íomhá',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Plé_MediaWiki',
+	NS_TEMPLATE         => 'Teimpléad',
+	NS_TEMPLATE_TALK    => 'Plé_teimpléid',
+	NS_HELP             => 'Cabhair',
+	NS_HELP_TALK        => 'Plé_cabhrach',
+	NS_CATEGORY         => 'Catagóir',
+	NS_CATEGORY_TALK    => 'Plé_catagóire'
+);
+
+$namespaceAliases = array(
+	'Plé_í­omhá' => NS_IMAGE_TALK,
+	'Múnla' => NS_TEMPLATE,
+	'Plé_múnla' => NS_TEMPLATE_TALK,
+	'Rang' => NS_CATEGORY
+);
+
+$linkTrail = '/^([a-z]+)(.*)\$/sD';
 
 
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
 
-/* private */ $wgAllMessagesGa = array(
+$messages = array(
 
 # User Toggles'tog-underline'	         => "Cuir línte faoi na naisc",
 'tog-highlightbroken'	   => "Cuir dath dearg ar naisc briste, <a href=\"\" class=\"new\">mar sin</a>
@@ -82,7 +182,6 @@
 'category_header' => 'Ailt sa chatagóir "$1"',
 "subcategories" => "Fo-chatagóirí",
 
-"linktrail"     => '/^([a-z]+)(.*)\$/sD',
 "mainpage"      => "Príomhleathanach",
 "mainpagetext"  => "Suiteáladh an ríomhchlár vicí go rathúil.",
 "mainpagedocfooter" => "Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_i18n doiciméid um conas an chomhéadán a athrú]

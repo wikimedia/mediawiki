@@ -1,7 +1,71 @@
 <?php
 
-global $wgAllMessagesDe;
-$wgAllMessagesDe = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Spezial',
+	NS_MAIN             => '',
+	NS_TALK             => 'Diskussion',
+	NS_USER             => 'Benutzer',
+	NS_USER_TALK        => 'Benutzer_Diskussion',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => '$1_Diskussion',
+	NS_IMAGE            => 'Bild',
+	NS_IMAGE_TALK       => 'Bild_Diskussion',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Diskussion',
+	NS_TEMPLATE         => 'Vorlage',
+	NS_TEMPLATE_TALK    => 'Vorlage_Diskussion',
+	NS_HELP             => 'Hilfe',
+	NS_HELP_TALK        => 'Hilfe_Diskussion',
+	NS_CATEGORY         => 'Kategorie',
+	NS_CATEGORY_TALK    => 'Kategorie_Diskussion'
+);
+
+$quickbarSettings = array(
+	'Keine', 'Links, fest', 'Rechts, fest', 'Links, schwebend'
+);
+
+$skinNames = array(
+	'standard'      => 'Klassik',
+	'nostalgia'     => 'Nostalgie',
+	'cologneblue'   => 'Kölnisch Blau',
+	'smarty'        => 'Paddington',
+	'montparnasse'  => 'Montparnasse',
+	'davinci'       => 'DaVinci',
+	'mono'          => 'Mono',
+	'monobook'      => 'MonoBook',
+	'myskin'        => 'MySkin',
+	'chick'         => 'Küken'
+);
+
+
+$bookstoreList = array(
+	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
+	'amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
+	'buch.de' => 'http://www.buch.de/de.buch.shop/shop/1/home/schnellsuche/buch/?fqbi=$1',
+	'buchhandel.de' => 'http://www.buchhandel.de/vlb/vlb.cgi?type=voll&isbn=$1',
+	'Karlsruher Virtueller Katalog (KVK)' => 'http://www.ubka.uni-karlsruhe.de/kvk.html?SB=$1',
+	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
+);
+
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j. Y',
+	'mdy both' => 'H:i, M j. Y',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. M Y',
+	'dmy both' => 'H:i, j. M Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'H:i, Y M j',
+);
+
+$messages = array(
 
 # stylesheets
 'Common.css'		=> '/** CSS an dieser Stelle wirkt sich auf alle Skins aus */',

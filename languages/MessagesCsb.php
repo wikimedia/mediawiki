@@ -1,7 +1,31 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesCsb;
-$wgAllMessagesCsb = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Specjalnô',
+	NS_MAIN             => '',
+	NS_TALK             => 'Diskùsëjô',
+	NS_USER             => 'Brëkòwnik',
+	NS_USER_TALK        => 'Diskùsëjô_brëkòwnika',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Diskùsëjô_$1',
+	NS_IMAGE            => 'Òbrôzk',
+	NS_IMAGE_TALK       => 'Diskùsëjô_òbrôzków',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Diskùsëjô_MediaWiki',
+	NS_TEMPLATE         => 'Szablóna',
+	NS_TEMPLATE_TALK    => 'Diskùsëjô_Szablónë',
+	NS_HELP             => 'Pòmòc',
+	NS_HELP_TALK        => 'Diskùsëjô_Pòmòcë',
+	NS_CATEGORY         => 'Kategòrëjô',
+	NS_CATEGORY_TALK    => 'Diskùsëjô_Kategòrëji'
+);
+
+$messages = array(
 '1movedto2' => '$1 przeniesłé do $2',
 'aboutpage' => '{{ns:4}}:Ò_{{SITENAME}}',
 'aboutsite' => 'Ò {{SITENAME}}',

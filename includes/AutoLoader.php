@@ -221,7 +221,9 @@ function __autoload($className) {
 		'Xml' => 'includes/Xml.php',
 		'ZhClient' => 'includes/ZhClient.php',
 		'memcached' => 'includes/memcached-client.php',
-		'UtfNormal' => 'includes/normal/UtfNormal.php'
+		'UtfNormal' => 'includes/normal/UtfNormal.php',
+		'Language' => 'languages/Language.php',
+		'LanguageUtf8' => 'languages/LanguageUtf8.php',
 	);
 	if ( isset( $localClasses[$className] ) ) {
 		$filename = $localClasses[$className];

@@ -37,8 +37,17 @@ $wgVersion			= '1.8alpha';
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
 
-/** Will be same as you set @see $wgSitename */
-$wgMetaNamespace    = FALSE;
+/** 
+ * Name of the project namespace. If left set to false, $wgSitename will be 
+ * used instead.
+ */
+$wgMetaNamespace    = false;
+
+/**
+ * Name of the project talk namespace. If left set to false, a name derived
+ * from the name of the project namespace will be used.
+ */
+$wgMetaNamespaceTalk = false;
 
 
 /** URL of the server. It will be automatically built including https mode */
@@ -1545,16 +1554,6 @@ $wgTidyInternal = function_exists( 'tidy_load_config' );
 
 /** See list of skins and their symbolic names in languages/Language.php */
 $wgDefaultSkin = 'monobook';
-
-/**
- * Settings added to this array will override the language globals for the user
- * preferences used by anonymous visitors and newly created accounts. (See names
- * and sample values in languages/Language.php)
- * For instance, to disable section editing links:
- *  $wgDefaultUserOptions ['editsection'] = 0;
- *
- */
-$wgDefaultUserOptions = array();
 
 /** Whether or not to allow and use real name fields. Defaults to true. */
 $wgAllowRealName = true;

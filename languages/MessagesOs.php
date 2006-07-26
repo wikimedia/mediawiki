@@ -1,7 +1,51 @@
 <?php
+/** Ossetic (Иронау)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
+$fallback = 'ru';
+
+$quickbarSettings = array(
+	'Ма равдис', 'Галиуырдыгæй', 'Рахизырдыгæй', 'Рахизырдыгæй ленккæнгæ'
+);
+
+$skinNames = array(
+	'standard' => 'Стандартон',
+	'nostalgia' => 'Æнкъард',
+	'cologneblue' => 'Кёльны æрхæндæг',
+	'davinci' => 'Да Винчи',
+	'mono' => 'Моно',
+	'monobook' => 'Моно-чиныг',
+	'myskin' => 'Мæхи',
+	'chick' => 'Карк'
+);
+$namespaceNames = array(
+	NS_MEDIA            => 'Media', //чтоб не писать "Мультимедия"
+	NS_SPECIAL          => 'Сæрмагонд',
+	NS_MAIN             => '',
+	NS_TALK             => 'Дискусси',
+	NS_USER             => 'Архайæг',
+	NS_USER_TALK        => 'Архайæджы_дискусси',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Дискусси_$1',
+	NS_IMAGE            => 'Ныв',
+	NS_IMAGE_TALK       => 'Нывы_тыххæй_дискусси',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Дискусси_MediaWiki',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Шаблоны_тыххæй_дискусси',
+	NS_HELP             => 'Æххуыс',
+	NS_HELP_TALK        => 'Æххуысы_тыххæй_дискусси',
+	NS_CATEGORY         => 'Категори',
+	NS_CATEGORY_TALK    => 'Категорийы_тыххæй_дискусси',
+);
+
+$linkTrail = '/^((?:[a-z]|а|æ|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я|“|»)+)(.*)$/sDu';
+$fallback8bitEncoding =  'windows-1251';
 
 
-/* private */ $wgAllMessagesOs = array(
+$messages = array(
 'titlematches' => 'Статьяты сæргæндты æмцаутæ',
 'toc' => 'Сæргæндтæ',
 'addedwatch' => "Дæ цæст кæмæ дарыс, уыцы статьятæм бафтыд.",

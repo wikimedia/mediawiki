@@ -1,7 +1,41 @@
 <?php
+/** Piedmontese (Piemontèis)
+  * Users are bilingual in Piedmontese and Italian, using Italian as template.
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  *
+  * @bug 5362
+  *
+  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
+  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank
+  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+  */
+$fallback = 'it';
 
-global $wgAllMessagesPms;
-$wgAllMessagesPms = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_MAIN             => '',
+	NS_TALK             => 'Discussion',
+	NS_USER             => 'Utent',
+	NS_USER_TALK        => 'Ciaciarade',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Discussion_ant_sla_$1',
+	NS_IMAGE            => 'Figura',
+	NS_IMAGE_TALK       => 'Discussion_dla_figura',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Discussion_dla_MediaWiki',
+	NS_TEMPLATE         => 'Stamp',
+	NS_TEMPLATE_TALK    => 'Discussion_dlë_stamp',
+	NS_HELP             => 'Agiut',
+	NS_HELP_TALK        => 'Discussion_ant_sl\'agiut',
+	NS_CATEGORY         => 'Categorìa',
+	NS_CATEGORY_TALK    => 'Discussion_ant_sla_categorìa'
+);
+
+
+$messages = array(
 'tog-underline'         => 'Anliure con la sotliniadura',
 'tog-highlightbroken'   => 'Buta an evidensa j\'anliure che a men-o a<br />
 dj\'artìcol ancó pa scrit',

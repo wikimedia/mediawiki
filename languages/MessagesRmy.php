@@ -1,7 +1,21 @@
 <?php
+/** Vlax Romany (Romani)
+  *
+  * @subpackage Language
+  *
+  * @bug 5422
+  *
+  * @author Niklas Laxström
+  *
+  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+  */
 
-global $wgAllMessagesRmy;
-$wgAllMessagesRmy = array(
+/**
+ * Use Romanian as default instead of English
+ */
+$fallback = 'ro';
+
+$messages = array(
 'subcategories'         => 'Telekategoriye',
 'mainpage'              => 'Sherutni patrin',
 'portal'                => 'Maladipnasko than',

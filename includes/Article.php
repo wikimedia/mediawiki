@@ -804,13 +804,13 @@ class Article {
 				# Display content, don't attempt to save to parser cache
 				# Don't show section-edit links on old revisions... this way lies madness.
 				if( !$this->isCurrent() ) {
-					$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
+					$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
 				}
 				# Display content and don't save to parser cache
 				$wgOut->addPrimaryWikiText( $text, $this, false );
 
 				if( !$this->isCurrent() ) {
-					$wgOut->mParserOptions->setEditSection( $oldEditSectionSetting );
+					$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
 				}
 			}
 		}

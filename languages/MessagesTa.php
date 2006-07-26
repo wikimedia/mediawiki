@@ -1,7 +1,54 @@
 <?php
+/**
+ * Tamil (தமிழ்)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesTa;
-$wgAllMessagesTa = array(
+
+$quickbarSettings = array(
+	"எதுவுமில்லை", "இடம் நிலைத்த", "வலம் நிலைத்த", "இடம் மிதப்பு"
+);
+
+$skinNames = array(
+	'standard' => "இயல்பான",
+	'nostalgia' => "பசுமை நினைவு (Nostalgia)",
+	'cologneblue' => "கொலோன் (Cologne) நீலம் Blue",
+	'smarty' => "பாடிங்டன் (Paddington)",
+	'montparnasse' => "மொண்ட்பார்னாசே (Montparnasse)",
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'ஊடகம்',
+	NS_SPECIAL        => 'சிறப்பு',
+	NS_MAIN           => '',
+	NS_TALK           => 'பேச்சு',
+	NS_USER           => 'பயனர்',
+	NS_USER_TALK      => 'பயனர்_பேச்சு',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_பேச்சு',
+	NS_IMAGE          => 'படிமம்',
+	NS_IMAGE_TALK     => 'படிமப்_பேச்சு',
+	NS_MEDIAWIKI      => 'மீடியாவிக்கி',
+	NS_MEDIAWIKI_TALK => 'மீடியாவிக்கி_பேச்சு',
+	NS_TEMPLATE       => 'வார்ப்புரு',
+	NS_TEMPLATE_TALK  => 'வார்ப்புரு_பேச்சு',
+	NS_HELP           => 'உதவி',
+	NS_HELP_TALK      => 'உதவி_பேச்சு',
+	NS_CATEGORY       => 'பகுப்பு',
+	NS_CATEGORY_TALK  => 'பகுப்பு_பேச்சு',
+);
+
+$namespaceAliases = array(
+	'விக்கிபீடியா' => NS_PROJECT,
+	'விக்கிபீடியா_பேச்சு' => NS_PROJECT_TALK,
+	'உருவப்_பேச்சு' => NS_IMAGE_TALK
+);
+$linkTrail = "/^([\xE0\xAE\x80-\xE0\xAF\xBF]+)(.*)$/sDu";
+
+
+$messages = array(
 
 # User Toggles
 #

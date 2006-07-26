@@ -1,7 +1,58 @@
 <?php
+/** Polish (Polski)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
-global $wgAllMessagesPl;
-$wgAllMessagesPl = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Specjalna',
+	NS_MAIN             => '',
+	NS_TALK             => 'Dyskusja',
+	NS_USER             => 'Użytkownik',
+	NS_USER_TALK        => 'Dyskusja_użytkownika',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Dyskusja_$1',
+	NS_IMAGE            => 'Grafika',
+	NS_IMAGE_TALK       => 'Dyskusja_grafiki',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Dyskusja_MediaWiki',
+	NS_TEMPLATE         => 'Szablon',
+	NS_TEMPLATE_TALK    => 'Dyskusja_szablonu',
+	NS_HELP             => 'Pomoc',
+	NS_HELP_TALK        => 'Dyskusja_pomocy',
+	NS_CATEGORY         => 'Kategoria',
+	NS_CATEGORY_TALK    => 'Dyskusja_kategorii'
+);
+
+$quickbarSettings = array(
+	'Brak', 'Stały, z lewej', 'Stały, z prawej', 'Unoszący się, z lewej'
+);
+
+$dateFormats = array(
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j, Y',
+	'mdy both' => 'H:i, M j, Y',
+
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'H:i, j M Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'H:i, Y M j',
+);
+
+$fallback8bitEncoding = 'iso-8859-2';
+$separatorTransformTable = array(
+	',' => "\xc2\xa0", // @bug 2749
+	'.' => ','
+);
+$linkTrail = '/^([a-zęóąśłżźćńĘÓĄŚŁŻŹĆŃ]+)(.*)$/sDu';
+
+
+$messages = array(
 
 # User preference toggles
 'tog-underline' => 'Podkreślenie linków:',

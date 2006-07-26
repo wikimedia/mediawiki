@@ -1,7 +1,54 @@
 <?php
+/** Slovenian (Slovenščina)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ *
+ */
 
-global $wgAllMessagesSl;
-$wgAllMessagesSl = array(
+#
+# Revision/
+# Inačica 1.00.00 XJamRastafire 2003-07-08 |NOT COMPLETE
+#         1.00.10 XJamRastafire 2003-11-03 |NOT COMPLETE
+# ______________________________________________________
+#         1.00.20 XJamRastafire 2003-11-05 |    COMPLETE
+#         1.00.30 romanm        2003-11-07 |    minor changes
+#         1.00.31 romanm        2003-11-11 |    merged incorrectly broken lines
+#         1.00.32 romanm        2003-11-19 |    merged incorrectly broken lines
+#         1.00.40 romanm        2003-11-21 |    fixed Google search
+
+
+$quickbarSettings = array(
+	'Brez', 'Levo nepomično', 'Desno nepomično', 'Levo leteče'
+);
+
+$namespaceNames = array(
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Posebno',
+	NS_MAIN           => '',
+	NS_TALK           => 'Pogovor',
+	NS_USER           => 'Uporabnik',
+	NS_USER_TALK      => 'Uporabniški_pogovor',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'Pogovor_{{grammar:mestnik|$1}}',
+	NS_IMAGE          => 'Slika',
+	NS_IMAGE_TALK     => 'Pogovor_o_sliki',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Pogovor_o_MediaWiki',
+	NS_TEMPLATE       => 'Predloga',
+	NS_TEMPLATE_TALK  => 'Pogovor_o_predlogi',
+	NS_HELP           => 'Pomoč',
+	NS_HELP_TALK      => 'Pogovor_o_pomoči',
+	NS_CATEGORY       => 'Kategorija',
+	NS_CATEGORY_TALK  => 'Pogovor_o_kategoriji'
+);
+
+$datePreferences = false;
+$fallback8bitEncoding = "iso-8859-2";
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+
+
+$messages = array(
 'tog-underline'         => 'Podčrtavanje povezav:',
 'tog-highlightbroken'   => 'Oblikuj pretrgane povezave <a href="" class="new">kot</a> (druga možnost: kot<a href="" class="internal">?</a>)',
 'tog-justify'           => 'Poravnavaj odstavke',
@@ -71,6 +118,18 @@ $wgAllMessagesSl = array(
 'oct'                   => 'okt.',
 'nov'                   => 'nov.',
 'dec'                   => 'dec.',
+'january-gen'           => 'januarja',  
+'february-gen'          => 'februarja', 
+'march-gen'             => 'marca',  
+'april-gen'             => 'aprila',  
+'may-gen'               => 'maja',  
+'june-gen'              => 'junija',
+'july-gen'              => 'julija',  
+'august-gen'            => 'avgusta',  
+'september-gen'         => 'septembra', 
+'october-gen'           => 'oktobra',  
+'november-gen'          => 'novembra', 
+'december-gen'          => 'decembra',
 'categories'            => '{{plural:$1|Kategorija|Kategoriji|Kategorije|Kategorije|Kategorije}}',
 'category'              => 'Kategorija',
 'category_header'       => 'Strani v kategoriji »$1«',

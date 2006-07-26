@@ -3,11 +3,8 @@
   * @package MediaWiki
   * @subpackage Language
   */
-require_once( "LanguageConverter.php" );
-require_once( "LanguageZh_cn.php");
-require_once( "LanguageZh_tw.php");
-require_once( "LanguageZh_sg.php");
-require_once( "LanguageZh_hk.php");
+require_once( dirname(__FILE__).'/LanguageConverter.php' );
+require_once( dirname(__FILE__).'/LanguageZh_cn.php' );
 
 class ZhConverter extends LanguageConverter {
 	function loadDefaultTables() {
@@ -45,6 +42,7 @@ class LanguageZh extends LanguageZh_cn {
 
 	function __construct() {
 		global $wgHooks;
+		parent::__construct();
 		$this->mConverter = new ZhConverter($this, 'zh',
                                             array('zh', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk'),
 											array('zh'=>'zh-cn',

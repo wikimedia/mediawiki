@@ -1,7 +1,38 @@
 <?php
+/** Bengali (বাংলা)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-global $wgAllMessagesBn;
-$wgAllMessagesBn = array(
+$namespaceNames = array(
+	NS_SPECIAL        => 'বিশেষ',
+	NS_MAIN           => '',
+	NS_TALK           => 'আলাপ',
+	NS_USER           => 'ব্যবহারকারী',
+	NS_USER_TALK      => 'ব্যবহারকারী_আলাপ',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => '$1_আলাপ',
+	NS_IMAGE          => 'চিত্র',
+	NS_IMAGE_TALK     => 'চিত্র_আলাপ',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_আলাপ'
+);
+$datePreferences = false;
+$digitTransformTable = array(
+	'0' => '০',
+	'1' => '১',
+	'2' => '২',
+	'3' => '৩',
+	'4' => '৪',
+	'5' => '৫',
+	'6' => '৬',
+	'7' => '৭',
+	'8' => '৮',
+	'9' => '৯'
+);
+
+
+$messages = array(
 # Dates
 
 'sunday' => 'রবিবার',

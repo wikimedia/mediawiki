@@ -36,10 +36,6 @@ class MessageCache {
 		$this->mMemcKey = $memcPrefix.':messages';
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
-
-		wfProfileIn( __METHOD__.'-parseropt' );
-		$this->mParserOptions = new ParserOptions( $u=NULL );
-		wfProfileOut( __METHOD__.'-parseropt' );
 		$this->mParser = null;
 
 		# When we first get asked for a message,
@@ -49,6 +45,13 @@ class MessageCache {
 		$this->mDeferred = true;
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	function getParserOptions() {
+		if ( !$this->mParserOptions ) {
+			$this->mParserOptions = new ParserOptions;
+		}
+		return $this->mParserOptions;
 	}
 
 	/**
@@ -190,6 +193,9 @@ class MessageCache {
 				} else {
 					$this->loadFromScript( $hash );
 				}
+				if ( $this->mCache ) {
+					wfDebug( "MessageCache::load(): got from local cache\n" );
+				}
 			}
 			wfProfileOut( $fname.'-fromlocal' );
 
@@ -197,18 +203,20 @@ class MessageCache {
 			if ( !$this->mCache ) {
 				wfProfileIn( $fname.'-fromcache' );
 				$this->mCache = $this->mMemc->get( $this->mMemcKey );
-
-				# Save to local cache
-				if ( $wgLocalMessageCache !== false ) {
-					$serialized = serialize( $this->mCache );
-					if ( !$hash ) {
-						$hash = md5( $serialized );
-						$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
-					}
-					if ($wgLocalMessageCacheSerialized) {
-						$this->saveToLocal( $serialized,$hash );
-					} else {
-						$this->saveToScript( $this->mCache, $hash );
+				if ( $this->mCache ) {
+					wfDebug( "MessageCache::load(): got from global cache\n" );
+					# Save to local cache
+					if ( $wgLocalMessageCache !== false ) {
+						$serialized = serialize( $this->mCache );
+						if ( !$hash ) {
+							$hash = md5( $serialized );
+							$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
+						}
+						if ($wgLocalMessageCacheSerialized) {
+							$this->saveToLocal( $serialized,$hash );
+						} else {
+							$this->saveToScript( $this->mCache, $hash );
+						}
 					}
 				}
 				wfProfileOut( $fname.'-fromcache' );
@@ -283,7 +291,7 @@ class MessageCache {
 	 * Loads all or main part of cacheable messages from the database
 	 */
 	function loadFromDB() {
-		global $wgAllMessagesEn, $wgLang;
+		global $wgLang;
 
 		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
@@ -306,7 +314,8 @@ class MessageCache {
 		# Negative caching
 		# Go through the language array and the extension array and make a note of
 		# any keys missing from the cache
-		foreach ( $wgAllMessagesEn as $key => $value ) {
+		$allMessages = Language::getMessagesFor( 'en' );
+		foreach ( $allMessages as $key => $value ) {
 			$uckey = $wgLang->ucfirst( $key );
 			if ( !array_key_exists( $uckey, $this->mCache ) ) {
 				$this->mCache[$uckey] = false;
@@ -332,10 +341,11 @@ class MessageCache {
 	 * Not really needed anymore
 	 */
 	function getKeys() {
-		global $wgAllMessagesEn, $wgContLang;
+		global $wgContLang;
 		if ( !$this->mKeys ) {
 			$this->mKeys = array();
-			foreach ( $wgAllMessagesEn as $key => $value ) {
+			$allMessages = Language::getMessagesFor( 'en' );
+			foreach ( $allMessages as $key => $value ) {
 				$title = $wgContLang->ucfirst( $key );
 				array_push( $this->mKeys, $title );
 			}
@@ -403,10 +413,9 @@ class MessageCache {
 		$this->mMemc->delete( $lockKey );
 	}
 
-	function get( $key, $useDB, $forcontent=true, $isfullkey = false ) {
-		global $wgContLanguageCode;
+	function get( $key, $useDB = true, $forcontent = true, $isfullkey = false ) {
+		global $wgContLanguageCode, $wgContLang;
 		if( $forcontent ) {
-			global $wgContLang;
 			$lang =& $wgContLang;
 			$langcode = $wgContLanguageCode;
 		} else {
@@ -425,7 +434,7 @@ class MessageCache {
 
 		$message = false;
 		if( !$this->mDisable && $useDB ) {
-			$title = $lang->ucfirst( $key );
+			$title = $wgContLang->ucfirst( $key );
 			if(!$isfullkey && ($langcode != $wgContLanguageCode) ) {
 				$title .= '/' . $langcode;
 			}
@@ -442,6 +451,7 @@ class MessageCache {
 
 		# Try the array in the language object
 		if( $message === false ) {
+			#wfDebug( "Trying language object for message $key\n" );
 			wfSuppressWarnings();
 			$message = $lang->getMessage( $key );
 			wfRestoreWarnings();
@@ -464,7 +474,7 @@ class MessageCache {
 		if( ($message === false || $message === '-' ) &&
 			!$this->mDisable && $useDB &&
 			!$isfullkey && ($langcode != $wgContLanguageCode) ) {
-			$message = $this->getFromCache( $lang->ucfirst( $key ) );
+			$message = $this->getFromCache( $wgContLang->ucfirst( $key ) );
 		}
 
 		# Final fallback
@@ -531,7 +541,7 @@ class MessageCache {
 		}
 		if ( !$this->mDisableTransform && $this->mParser ) {
 			if( strpos( $message, '{{' ) !== false ) {
-				$message = $this->mParser->transformMsg( $message, $this->mParserOptions );
+				$message = $this->mParser->transformMsg( $message, $this->getParserOptions() );
 			}
 		}
 		return $message;
@@ -573,8 +583,12 @@ class MessageCache {
 	 * Clear all stored messages. Mainly used after a mass rebuild.
 	 */
 	function clear() {
+		global $wgLocalMessageCache, $wgDBname;
 		if( $this->mUseCache ) {
+			# Global cache
 			$this->mMemc->delete( $this->mMemcKey );
+			# Invalidate all local caches
+			$this->mMemc->delete( "{$this->mMemcKey}-hash" );
 		}
 	}
 }

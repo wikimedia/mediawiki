@@ -1,7 +1,98 @@
 <?php
 
-global $wgAllMessagesBs;
-$wgAllMessagesBs = array(
+$namespaceNames = array(
+	NS_MEDIA            => 'Medija',
+	NS_SPECIAL          => 'Posebno',
+	NS_MAIN             => '',
+	NS_TALK             => 'Razgovor',
+	NS_USER             => 'Korisnik',
+	NS_USER_TALK        => 'Razgovor_sa_korisnikom',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Razgovor_{{grammar:instrumental|$1}}',
+	NS_IMAGE            => 'Slika',
+	NS_IMAGE_TALK       => 'Razgovor_o_slici',
+	NS_MEDIAWIKI        => 'MedijaViki',
+	NS_MEDIAWIKI_TALK   => 'Razgovor_o_MedijaVikiju',
+	NS_TEMPLATE         => 'Šablon',
+	NS_TEMPLATE_TALK    => 'Razgovor_o_šablonu',
+	NS_HELP             => 'Pomoć',
+	NS_HELP_TALK        => 'Razgovor_o_pomoći',
+	NS_CATEGORY         => 'Kategorija',
+	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
+);
+
+$quickbarSettings = array(
+	'Nikakva', 'Pričvršćena lijevo', 'Pričvršćena desno', 'Plutajuća lijevo'
+);
+
+$skinNames = array(
+	'Obična', 'Nostalgija', 'Kelnsko plavo', 'Pedington', 'Monparnas'
+);
+
+$magicWords = array(
+	# ID                              CASE SYNONYMS
+	'redirect'               => array( 0, '#Preusmjeri', '#redirect', '#preusmjeri', '#PREUSMJERI' ),
+	'notoc'                  => array( 0, '__NOTOC__', '__BEZSADRŽAJA__' ),
+	'forcetoc'               => array( 0, '__FORCETOC__', '__FORSIRANISADRŽAJ__' ),
+	'toc'                    => array( 0, '__TOC__', '__SADRŽAJ__' ),
+	'noeditsection'          => array( 0, '__NOEDITSECTION__', '__BEZ_IZMENA__', '__BEZIZMENA__' ),
+	'start'                  => array( 0, '__START__', '__POČETAK__' ),
+	'end'                    => array( 0, '__END__', '__KRAJ__' ),
+	'currentmonth'           => array( 1, 'CURRENTMONTH', 'TRENUTNIMJESEC' ),
+	'currentmonthname'       => array( 1, 'CURRENTMONTHNAME', 'TRENUTNIMJESECIME' ),
+	'currentmonthnamegen'    => array( 1, 'CURRENTMONTHNAMEGEN', 'TRENUTNIMJESECROD' ),
+	'currentmonthabbrev'     => array( 1, 'CURRENTMONTHABBREV', 'TRENUTNIMJESECSKR' ),
+	'currentday'             => array( 1, 'CURRENTDAY', 'TRENUTNIDAN' ),
+	'currentdayname'         => array( 1, 'CURRENTDAYNAME', 'TRENUTNIDANIME' ),
+	'currentyear'            => array( 1, 'CURRENTYEAR', 'TRENUTNAGODINA' ),
+	'currenttime'            => array( 1, 'CURRENTTIME', 'TRENUTNOVRIJEME' ),
+	'numberofarticles'       => array( 1, 'NUMBEROFARTICLES', 'BROJČLANAKA' ),
+	'numberoffiles'          => array( 1, 'NUMBEROFFILES', 'BROJDATOTEKA', 'BROJFAJLOVA' ),
+	'pagename'               => array( 1, 'PAGENAME', 'STRANICA' ),
+	'pagenamee'              => array( 1, 'PAGENAMEE', 'STRANICE' ),
+	'namespace'              => array( 1, 'NAMESPACE', 'IMENSKIPROSTOR' ),
+	'namespacee'             => array( 1, 'NAMESPACEE', 'IMENSKIPROSTORI' ),
+	'fullpagename'           => array( 1, 'FULLPAGENAME', 'PUNOIMESTRANE' ),
+	'fullpagenamee'          => array( 1, 'FULLPAGENAMEE', 'PUNOIMESTRANEE' ),
+	'msg'                    => array( 0, 'MSG:', 'POR:' ),
+	'subst'                  => array( 0, 'SUBST:', 'ZAMJENI:' ),
+	'msgnw'                  => array( 0, 'MSGNW:', 'NVPOR:' ),
+	'img_thumbnail'          => array( 1, 'thumbnail', 'thumb', 'mini' ),
+	'img_manualthumb'        => array( 1, 'thumbnail=$1', 'thumb=$1', 'mini=$1' ),
+	'img_right'              => array( 1, 'right', 'desno', 'd' ),
+	'img_left'               => array( 1, 'left', 'lijevo', 'l' ),
+	'img_none'               => array( 1, 'none', 'n', 'bez' ),
+	'img_width'              => array( 1, '$1px', '$1piksel' , '$1p' ),
+	'img_center'             => array( 1, 'center', 'centre', 'centar', 'c' ),
+	'img_framed'             => array( 1, 'framed', 'enframed', 'frame', 'okvir', 'ram' ),
+	'int'                    => array( 0, 'INT:', 'INT:' ),
+	'sitename'               => array( 1, 'SITENAME', 'IMESAJTA' ),
+	'ns'                     => array( 0, 'NS:', 'IP:' ),
+	'localurl'               => array( 0, 'LOCALURL:', 'LOKALNAADRESA:' ),
+	'localurle'              => array( 0, 'LOCALURLE:', 'LOKALNEADRESE:' ),
+	'server'                 => array( 0, 'SERVER', 'SERVER' ),
+	'servername'             => array( 0, 'SERVERNAME', 'IMESERVERA' ),
+	'scriptpath'             => array( 0, 'SCRIPTPATH', 'SKRIPTA' ),
+	'grammar'                => array( 0, 'GRAMMAR:', 'GRAMATIKA:' ),
+	'notitleconvert'         => array( 0, '__NOTITLECONVERT__', '__NOTC__', '__BEZTC__' ),
+	'nocontentconvert'       => array( 0, '__NOCONTENTCONVERT__', '__NOCC__', '__BEZCC__' ),
+	'currentweek'            => array( 1, 'CURRENTWEEK', 'TRENUTNASEDMICA' ),
+	'currentdow'             => array( 1, 'CURRENTDOW', 'TRENUTNIDOV' ),
+	'revisionid'             => array( 1, 'REVISIONID', 'IDREVIZIJE' ),
+	'plural'                 => array( 0, 'PLURAL:', 'MNOŽINA:' ),
+	'fullurl'                => array( 0, 'FULLURL:', 'PUNURL:' ),
+	'fullurle'               => array( 0, 'FULLURLE:', 'PUNURLE:' ),
+	'lcfirst'                => array( 0, 'LCFIRST:', 'LCPRVI:' ),
+	'ucfirst'                => array( 0, 'UCFIRST:', 'UCPRVI:' ),
+	'lc'                     => array( 0, 'LC:', 'LC:' ),
+	'uc'                     => array( 0, 'UC:', 'UC:' ),
+);
+
+$fallback8bitEncoding = "iso-8859-2";
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+$linkTrail = '/^([a-zćčžšđž]+)(.*)$/sDu';
+
+$messages = array(
 '1movedto2' => 'stranica [[$1]] premještena u stranicu [[$2]]',
 '1movedto2_redir' => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
 'Monobook.css' => '/*
@@ -204,6 +295,7 @@ nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da 
 'currentrev' => 'Trenutna revizija',
 'databaseerror' => 'Greška u bazi',
 'dateformat' => 'Format datuma',
+'datedefault' => 'Nije bitno',
 'dberrortext' => 'Desila se sintaksna greška upita baze.
 Ovo je moguće zbog ilegalnog upita, ili moguće greške u softveru.
 Poslednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote>
@@ -411,7 +503,6 @@ ovu staru verziju, (vrt) = vrati na ovu staru verziju.
 'linklistsub' => '(Spisak veza)',
 'linkshere' => 'Sledeće stranice su povezane ovdje:',
 'linkstoimage' => 'Sledeće stranice koriste ovu sliku:',
-'linktrail' => '/^([a-zćčžšđž]+)(.*)$/sDu',
 'listusers' => 'Spisak korisnika',
 'loadhist' => 'Učitaje se istorija stranice',
 'loadingrev' => 'učitava se revizija za razliku',
