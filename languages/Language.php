@@ -1471,6 +1471,7 @@ class Language {
 					$this->convertGrammar( trim( $m[2] ), trim( $m[1] ) )
 				);
 			}
+			$this->namespaceNames[NS_PROJECT_TALK] = $talk;
 		}
 
 		# Put namespace names and aliases into a hashtable.

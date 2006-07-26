@@ -99,6 +99,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add the name of the executing maintenance script to the debug log. Start the
   profiler during maintenance scripts.
 * Added "serialized" directory, for storing precompiled data in serialized form.
+* Fix regression in auto-set NS_PROJECT_TALK namespace
 
 
 == Languages updated ==
