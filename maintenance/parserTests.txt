@@ -2642,6 +2642,54 @@ pst
 Foo
 !! end
 
+!! test
+pre-save transform: context links ("pipe trick")
+!! options
+pst
+!! input
+[[Article (context)|]]
+[[Bar:Article|]]
+[[:Bar:Article|]]
+[[Bar:Article (context)|]]
+[[:Bar:Article (context)|]]
+[[|Article]]
+[[|Article (context)]]
+!! result
+[[Article (context)|Article]]
+[[Bar:Article|Article]]
+[[:Bar:Article|Article]]
+[[Bar:Article (context)|Article]]
+[[:Bar:Article (context)|Article]]
+[[Article]]
+[[Article (context)]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with interwiki prefix
+!! options
+pst
+!! input
+[[interwiki:Article|]]
+[[:interwiki:Article|]]
+[[interwiki:Bar:Article|]]
+[[:interwiki:Bar:Article|]]
+!! result
+[[interwiki:Article|Article]]
+[[:interwiki:Article|Article]]
+[[interwiki:Bar:Article|Bar:Article]]
+[[:interwiki:Bar:Article|Bar:Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with parens in title
+!! options
+pst title=[[Somearticle (context)]]
+!! input
+[[|Article]]
+!! result
+[[Article (context)|Article]]
+!! end
+
 
 ###
 ### Message transform tests
