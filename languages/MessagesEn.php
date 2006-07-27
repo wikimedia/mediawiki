@@ -1,4 +1,8 @@
 <?php
+/**
+ * This is the default English localisation file
+ */
+
 
 /**
  * Fallback language, used for all unspecified messages and behaviour. This
