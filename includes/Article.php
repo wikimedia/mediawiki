@@ -719,6 +719,7 @@ class Article {
 		$outputDone = false;
 		if ( $pcache ) {
 			if ( $wgOut->tryParserCache( $this, $wgUser ) ) {
+				wfRunHooks( 'ArticleViewHeader', array( &$this ) );
 				$outputDone = true;
 			}
 		}
@@ -2179,6 +2180,10 @@ class Article {
 	 */
 	function setOldSubtitle( $oldid=0 ) {
 		global $wgLang, $wgOut, $wgUser;
+
+		if ( !wfRunHooks( 'DisplayOldSubtitle', array(&$this, &$oldid) ) ) {
+				return; 
+		}       
 
 		$revision = Revision::newFromId( $oldid );
 
