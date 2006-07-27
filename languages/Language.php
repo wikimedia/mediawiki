@@ -70,7 +70,7 @@ class Language {
 		'defaultDateFormat', 'extraUserToggles' );
 
 	static public $mMergeableMapKeys = array( 'messages', 'namespaceNames', 'mathNames', 
-		'dateFormats', 'defaultUserOptionOverrides' );
+		'dateFormats', 'defaultUserOptionOverrides', 'magicWords' );
 
 	static public $mMergeableListKeys = array( 'extraUserToggles' );
 
