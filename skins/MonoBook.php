@@ -64,7 +64,31 @@ class MonoBookTemplate extends QuickTemplate {
 		<!--[if IE 7]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE70Fixes.css?1";</style><![endif]-->
 		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
 		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-		<script type="<?php $this->text('jsmimetype') ?>">var skin = '<?php $this->text('skinname')?>';var stylepath = '<?php $this->text('stylepath')?>';</script>
+		
+		<script type="<?php $this->text('jsmimetype') ?>">
+			var skin = "<?php $this->jstext('skinname')?>";
+			var stylepath = "<?php $this->jstext('stylepath')?>";
+
+			var wgArticlePath = "<?php $this->jstext( 'articlepath' ); ?>";
+			var wgScriptPath = "<?php $this->jstext( 'scriptpath' ); ?>";
+			var wgServer = "<?php $this->jstext( 'serverurl' ); ?>";
+                        
+			var wgCanonicalNamespace = "<?php $this->jstext( 'nscanonical' ); ?>";
+			var wgPageName = "<?php $this->jstext( 'titleprefixeddbkey' ); ?>";
+			var wgTitle = "<?php $this->jstext( 'titletext' ); ?>";
+			var wgArticleId = <?php (int) $this->jstext( 'articleid' ); ?>;
+                        
+<?php	if($this->data['username']) { ?>
+			var wgUserName = "<?php $this->jstext( 'username' ); ?>";
+			var wgUserLanguage = "<?php $this->jstext( 'userlang' ); ?>";
+<?php	} else { ?>
+			var wgUserName = null;
+			var wgUserLanguage = "<?php $this->jstext( 'userlang' ); ?>";
+<?php	} ?>
+			var wgContentLanguage = "<?php $this->jstext( 'lang' ); ?>";
+			var wgSkinClass = "<?php $this->jstext( 'skinclass' ); ?>";
+		</script>
+                
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?1"><!-- wikibits js --></script>
 <?php	if($this->data['jsvarurl'  ]) { ?>
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"><!-- site js --></script>

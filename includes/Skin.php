@@ -262,7 +262,33 @@ class Skin extends Linker {
 
 	function getHeadScripts() {
 		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType;
-		$r = "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
+		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
+		global $wgTitle, $wgCanonicalNamespaceNames;
+
+		$nsname = @$wgCanonicalNamespaceNames[ $wgTitle->getNamespace() ];
+		if ( $nsname === NULL ) $nsname = $wgTitle->getNsText();
+
+		$r = '<script type= "'.$wgJsMimeType.'">
+			var skin = "' . Xml::escapeJsString( $this->getSkinName() ) . '";
+			var stylepath = "' . Xml::escapeJsString( $wgStylePath ) . '";
+
+			var wgArticlePath = "' . Xml::escapeJsString( $wgArticlePath ) . '";
+			var wgScriptPath = "' . Xml::escapeJsString( $wgScriptPath ) . '";
+			var wgServer = "' . Xml::escapeJsString( $wgServer ) . '";
+                        
+			var wgCanonicalNamespace = "' . Xml::escapeJsString( $nsname ) . '";
+			var wgPageName = "' . Xml::escapeJsString( $wgTitle->getPrefixedDBKey() ) . '";
+			var wgTitle = "' . Xml::escapeJsString( $wgTitle->getText() ) . '";
+			var wgArticleId = ' . (int)$wgTitle->getArticleId() . ';
+                        
+			var wgUserName = ' . ( $wgUser->isAnon() ? 'null' : ( '"' . Xml::escapeJsString( $wgUser->getName() ) . '"' ) ) . ';
+			var wgUserLanguage = "' . Xml::escapeJsString( $wgLang->getCode() ) . '";
+			var wgContentLanguage = "' . Xml::escapeJsString( $wgContLang->getCode() ) . '";
+			var wgSkinClass = "' . Xml::escapeJsString( get_class( $this ) ) . '";
+		</script>
+		';
+
+		$r .= "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
 		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
 			$userjs = htmlspecialchars( $this->makeUrl(
