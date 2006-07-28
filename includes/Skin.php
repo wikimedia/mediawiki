@@ -260,6 +260,29 @@ class Skin extends Linker {
 		$out->out( "\n</body></html>" );
 	}
 
+	/*static*/ function makeGlobalVariablesScript( $data ) {
+		$r = '<script type= "' . $data['jsmimetype'] . '">
+			var skin = "' . Xml::escapeJsString( $data['skinname'] ) . '";
+			var stylepath = "' . Xml::escapeJsString( $data['stylepath'] ) . '";
+
+			var wgArticlePath = "' . Xml::escapeJsString( $data['articlepath'] ) . '";
+			var wgScriptPath = "' . Xml::escapeJsString( $data['scriptpath'] ) . '";
+			var wgServer = "' . Xml::escapeJsString( $data['serverurl'] ) . '";
+                        
+			var wgCanonicalNamespace = "' . Xml::escapeJsString( $data['nscanonical'] ) . '";
+			var wgPageName = "' . Xml::escapeJsString( $data['titleprefixeddbkey'] ) . '";
+			var wgTitle = "' . Xml::escapeJsString( $data['titletext'] ) . '";
+			var wgArticleId = ' . (int)$data['articleid'] . ';
+                        
+			var wgUserName = ' . ( $data['username'] == NULL ? 'null' : ( '"' . Xml::escapeJsString( $data['username'] ) . '"' ) ) . ';
+			var wgUserLanguage = "' . Xml::escapeJsString( $data['userlang'] ) . '";
+			var wgContentLanguage = "' . Xml::escapeJsString( $data['lang'] ) . '";
+		</script>
+		';
+		
+		return $r;
+	}
+
 	function getHeadScripts() {
 		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
@@ -268,26 +291,24 @@ class Skin extends Linker {
 		$nsname = @$wgCanonicalNamespaceNames[ $wgTitle->getNamespace() ];
 		if ( $nsname === NULL ) $nsname = $wgTitle->getNsText();
 
-		$r = '<script type= "'.$wgJsMimeType.'">
-			var skin = "' . Xml::escapeJsString( $this->getSkinName() ) . '";
-			var stylepath = "' . Xml::escapeJsString( $wgStylePath ) . '";
+		$vars = array( 
+			'jsmimetype' => $wgJsMimeType,
+			'skinname' => $this->getSkinName(),
+			'stylepath' => $wgStylePath,
+			'articlepath' => $wgArticlePath,
+			'scriptpath' => $wgScriptPath,
+			'serverurl' => $wgServer,
+			'nscanonical' => $nsname,
+			'titleprefixeddbkey' => $wgTitle->getPrefixedDBKey(),
+			'titletext' => $wgTitle->getText(),
+			'articleid' => $wgTitle->getArticleId(),
+			'username' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
+			'userlang' => $wgLang->getCode(),
+			'lang' => $wgContLang->getCode(),
+		);
 
-			var wgArticlePath = "' . Xml::escapeJsString( $wgArticlePath ) . '";
-			var wgScriptPath = "' . Xml::escapeJsString( $wgScriptPath ) . '";
-			var wgServer = "' . Xml::escapeJsString( $wgServer ) . '";
-                        
-			var wgCanonicalNamespace = "' . Xml::escapeJsString( $nsname ) . '";
-			var wgPageName = "' . Xml::escapeJsString( $wgTitle->getPrefixedDBKey() ) . '";
-			var wgTitle = "' . Xml::escapeJsString( $wgTitle->getText() ) . '";
-			var wgArticleId = ' . (int)$wgTitle->getArticleId() . ';
-                        
-			var wgUserName = ' . ( $wgUser->isAnon() ? 'null' : ( '"' . Xml::escapeJsString( $wgUser->getName() ) . '"' ) ) . ';
-			var wgUserLanguage = "' . Xml::escapeJsString( $wgLang->getCode() ) . '";
-			var wgContentLanguage = "' . Xml::escapeJsString( $wgContLang->getCode() ) . '";
-			var wgSkinClass = "' . Xml::escapeJsString( get_class( $this ) ) . '";
-		</script>
-		';
-
+		$r = Skin::makeGlobalVariablesScript( $vars );
+                
 		$r .= "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
 		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
