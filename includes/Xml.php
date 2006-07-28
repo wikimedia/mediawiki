@@ -228,6 +228,9 @@ class Xml {
 			# To avoid closing the element or CDATA section
 			"<" => "\\x3c",
 			">" => "\\x3e",
+
+			# To avoid any complaints about bad entity refs                        
+			"&" => "\\x26",
 		);
 		return strtr( $string, $pairs );
 	}
