@@ -65,29 +65,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
 		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
 		
-		<script type="<?php $this->text('jsmimetype') ?>">
-			var skin = "<?php $this->jstext('skinname')?>";
-			var stylepath = "<?php $this->jstext('stylepath')?>";
-
-			var wgArticlePath = "<?php $this->jstext( 'articlepath' ); ?>";
-			var wgScriptPath = "<?php $this->jstext( 'scriptpath' ); ?>";
-			var wgServer = "<?php $this->jstext( 'serverurl' ); ?>";
-                        
-			var wgCanonicalNamespace = "<?php $this->jstext( 'nscanonical' ); ?>";
-			var wgPageName = "<?php $this->jstext( 'titleprefixeddbkey' ); ?>";
-			var wgTitle = "<?php $this->jstext( 'titletext' ); ?>";
-			var wgArticleId = <?php (int) $this->jstext( 'articleid' ); ?>;
-                        
-<?php	if($this->data['username']) { ?>
-			var wgUserName = "<?php $this->jstext( 'username' ); ?>";
-			var wgUserLanguage = "<?php $this->jstext( 'userlang' ); ?>";
-<?php	} else { ?>
-			var wgUserName = null;
-			var wgUserLanguage = "<?php $this->jstext( 'userlang' ); ?>";
-<?php	} ?>
-			var wgContentLanguage = "<?php $this->jstext( 'lang' ); ?>";
-			var wgSkinClass = "<?php $this->jstext( 'skinclass' ); ?>";
-		</script>
+		<?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
                 
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?1"><!-- wikibits js --></script>
 <?php	if($this->data['jsvarurl'  ]) { ?>
