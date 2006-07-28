@@ -626,7 +626,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 6566) Improve input validation on timestamp conversion
 * Implicit group "emailconfirmed" for all users whose email addresses are confirmed
 * (bug 6577) Avoid multiline parser breakage on <pre> with newline in attribute
-
+* (bug 6771) Make old revisions of MediaWiki pages available with action=raw
 
 == Changes since 1.5 ==
 
