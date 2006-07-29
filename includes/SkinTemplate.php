@@ -390,6 +390,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'debug', $out->mDebugtext );
 		$tpl->set( 'reporttime', $out->reportTime() );
 		$tpl->set( 'sitenotice', wfGetSiteNotice() );
+		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
 		$out->mBodytext .= $printfooter ;

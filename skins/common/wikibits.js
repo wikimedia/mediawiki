@@ -49,6 +49,8 @@ function hookEvent(hookName, hookFunct) {
 		attachEvent("on" + hookName, hookFunct);
 }
 
+//note: all skins shoud call runOnloadHook() at the end of html output,
+//      so the below should be redundant. It's there just in case.
 hookEvent("load", runOnloadHook);
 
 // document.write special stylesheet links
