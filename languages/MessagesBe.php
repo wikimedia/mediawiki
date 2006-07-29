@@ -20,6 +20,11 @@ $skinNames = array(
 	'chick' => 'Цыпа'
 );
 
+$bookstoreList = array(
+	'OZ.by' => 'http://oz.by/search.phtml?what=books&isbn=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
 $datePreferences = array(
 	'default',
 	'dmy',
@@ -37,6 +42,7 @@ $dateFormats = array(
 $magicWords = array(
 	'redirect'               => array( 0,    '#перанакіраваньне', '#redirect' ),
 	'notoc'                  => array( 0,    '__NOTOC__', '__БЯЗЬ_ЗЬМЕСТУ__' ),
+	'nogallery'              => array( 0,    '__NOGALLERY__', '__БЕЗ_ГАЛЕРЭІ__' ),
 	'forcetoc'               => array( 0,    '__FORCETOC__', '__ЗЬМЕСТ_ПРЫМУСАМ__' ),
 	'toc'                    => array( 0,    '__TOC__', '__ЗЬМЕСТ__' ),
 	'noeditsection'          => array( 0,    '__NOEDITSECTION__', '__БЕЗ_РЭДАГАВАНЬНЯ_СЭКЦЫІ__' ),
@@ -105,13 +111,21 @@ $magicWords = array(
 	'ucfirst'                => array( 0,    'UCFIRST:', 'ПЕРШАЯ_ЛІТАРА_ВЯЛІКАЯ:' ),
 	'lc'                     => array( 0,    'LC:', 'МАЛЫМІ_ЛІТАРАМІ:' ),
 	'uc'                     => array( 0,    'UC:', 'ВЯЛІКІМІ_ЛІТАРАМІ:' ),
-	'raw'                    => array( 0,    'RAW:', 'НЕАПРАЦАВАНЫ' ),
+	'raw'                    => array( 0,    'RAW:', 'НЕАПРАЦАВАНЫ:' ),
 	'displaytitle'           => array( 1,    'DISPLAYTITLE', 'АДЛЮСТРАВАНАЯ_НАЗВА' ),
 	'rawsuffix'              => array( 1,    'R', 'Н' ),
 	'newsectionlink'         => array( 1,    '__NEWSECTIONLINK__', '__СПАСЫЛКА_НА_НОВУЮ_СЭКЦЫЮ__' ),
 	'currentversion'         => array( 1,    'CURRENTVERSION', 'БЯГУЧАЯ_ВЭРСІЯ' ),
 	'urlencode'              => array( 0,    'URLENCODE:' ),
+	'currenttimestamp'       => array( 1,    'CURRENTTIMESTAMP', 'МОМАНТ_ЧАСУ' ),
+	'directionmark'          => array( 1,    'DIRECTIONMARK', 'DIRMARK', 'СЫМБАЛЬ_НАПРАМКУ_ПІСЬМА' ),
+	'language'               => array( 0,    '#LANGUAGE:', '#МОВА:' ),
+	'contentlanguage'        => array( 1,    'CONTENTLANGUAGE', 'CONTENTLANG', 'МОВА_ЗЬМЕСТУ' ),
+	'pagesinnamespace'       => array( 1,    'PAGESINNAMESPACE:', 'PAGESINNS:', 'КОЛЬКАСЬЦЬ_СТАРОНАК_У_ПРАСТОРЫ_НАЗВАЎ:' ),
+	'numberofadmins'         => array( 1,    'NUMBEROFADMINS', 'КОЛЬКАСЬЦЬ_АДМІНІСТРАТАРАЎ' ),
+	'formatnum'              => array( 0,    'FORMATNUM', 'ФАРМАТАВАЦЬ_ЛІК' ),
 );
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Мэдыя',
 	NS_SPECIAL        => 'Спэцыяльныя',
@@ -132,9 +146,10 @@ $namespaceNames = array(
 	NS_CATEGORY       => 'Катэгорыя',
 	NS_CATEGORY_TALK  => 'Абмеркаваньне_катэгорыі'
 );
-$separatorTransformTable = array(',' => '.', '.' => ',' );
-$linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
 
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+
+$linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
 
 $messages = array(
 # Belarusian Cyrillic alphabet:
