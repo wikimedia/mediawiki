@@ -101,6 +101,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added "serialized" directory, for storing precompiled data in serialized form.
 * Fix regression in auto-set NS_PROJECT_TALK namespace
 * Fix regression in ordering of namespaces
+* (bug 6806, 6030) Added several global JS variables for article path, user name,
+  page title, etc. 
+* hooks registered with addOnloadHook are now called at the one of the html body
+  by all skins.
 
 
 == Languages updated ==
