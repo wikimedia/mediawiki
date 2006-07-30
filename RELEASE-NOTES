@@ -107,6 +107,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   by all skins.
 * Split ajax aided search from core ajax framework. Use wgUseAjax to enable the
   framework and wgAjaxSearch to enable the suggest feature for the search box.
+* Added experimental installer for extensions. 
+  See maintenance/installExtension.php
 
 == Languages updated ==
 
