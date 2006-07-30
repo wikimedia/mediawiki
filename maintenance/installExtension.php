@@ -224,7 +224,7 @@ class ExtensionInstaller {
 		return true;
 	}
 
-	function patchLocalSettings( ) {
+	function patchLocalSettings( $nopatch ) {
 		#NOTE: if we get a better way to hook up extensions, that should be used instead.
 		
 		$f = $this->dir . '/install.settings';
@@ -234,7 +234,9 @@ class ExtensionInstaller {
 		#TODO: allow custom installer scripts + sql patches
 		
 		if ( !file_exists( $f ) ) {
+			$this->note( "" );
 			$this->warn( "No install.settings file provided! Please read the instructions and edit LocalSettings.php manually." );
+			$this->note( "" );
 			return '?';
 		}
 		
@@ -246,7 +248,15 @@ class ExtensionInstaller {
 		}
 		                
 		$settings = str_replace( '{{path}}', $this->incpath, $settings );
-		                
+		
+		if ( $nopatch ) {
+			$this->note( "" );
+			$this->note( "Automatic patching is off. Please put the following into your LocalSettings.php:" );
+			print " \n$settings\n";
+			
+			return true;
+		}
+		
 		#NOTE: keep php extension for backup file!
 		$bak = $this->target . '/LocalSettings.install-' . $this->name . '-' . wfTimestamp(TS_MW) . '.bak.php';
 		                
@@ -416,11 +426,13 @@ $src = isset ( $args[1] ) ? $args[1] : $defsrc;
 
 $tgt = isset ( $options['target'] ) ? $options['target'] : $IP;
 
+$nopatch = isset( $options['nopatch'] ) || @$wgExtensionInstallerNoPatch;
+
 if ( !file_exists( "$tgt/LocalSettings.php" ) ) {
 	die("can't find $tgt/LocalSettings.php\n");
 }
 
-if ( !is_writable( "$tgt/LocalSettings.php" ) ) {
+if ( !$nopatch && !is_writable( "$tgt/LocalSettings.php" ) ) {
 	die("can't write to  $tgt/LocalSettings.php\n");
 }
 
@@ -445,10 +457,7 @@ if ( !$installer->confirm("continue") ) die("aborted\n");
 
 $ok = $installer->fetchExtension();
 
-if ( $ok ) {
-	if ( isset( $options['nopatch'] ) ) $installer->note( "skipping patch phase; Please edit LocalSettings.php manually to activate the extension." );
-	else $ok = $installer->patchLocalSettings();
-}
+if ( $ok ) $ok = $installer->patchLocalSettings( $nopatch );
 
 $ok = $installer->printNotices();
 
