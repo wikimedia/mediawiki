@@ -484,7 +484,7 @@ class OutputPage {
 	function output() {
 		global $wgUser, $wgOutputEncoding;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
-		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgScriptPath, $wgServer;
+		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgAjaxSearch, $wgScriptPath, $wgServer;
 
 		if( $this->mDoNothing ){
 			return;
@@ -494,11 +494,12 @@ class OutputPage {
 		$sk = $wgUser->getSkin();
 
 		if ( $wgUseAjax ) {
-			$this->addScript( "<script type=\"{$wgJsMimeType}\">
-				var wgScriptPath=\"{$wgScriptPath}\";
-				var wgServer=\"{$wgServer}\";
-			</script>" );
 			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajax.js\"></script>\n" );
+		}
+
+		if ( $wgUseAjax && $wgAjaxSearch ) {
+			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajaxsearch.js\"></script>\n" );
+			$this->addScript( "<script type=\"{$wgJsMimeType}\">hookEvent(\"load\", sajax_onload);</script>\n" );
 		}
 
 		if ( '' != $this->mRedirect ) {
