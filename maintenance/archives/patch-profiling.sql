@@ -2,9 +2,9 @@
 -- This is optional
 
 CREATE TABLE /*$wgDBprefix*/profiling (
-	pf_count integer not null default 0,
-	pf_time float not null default 0,
-	pf_name varchar(255) not null default '',
-	pf_server varchar(30) not null default '',
-	UNIQUE KEY pf_name_server (pf_name, pf_server)
+  pf_count int NOT NULL default 0,
+  pf_time float NOT NULL default 0,
+  pf_name varchar(255) NOT NULL default '',
+  pf_server varchar(30) NOT NULL default '',
+  UNIQUE KEY pf_name_server (pf_name, pf_server)
 ) TYPE=HEAP;
