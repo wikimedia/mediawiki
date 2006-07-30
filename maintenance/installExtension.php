@@ -146,6 +146,9 @@ class ExtensionInstaller {
 		
 		$src = $this->source;
 		
+		#TODO: check that the required program is available. 
+		#may be used: tar, unzip, svn
+		
 		if ( $proto && $ext ) { #remote file
 			$tmp = wfTempDir() . '/' . basename( $src );
 			
@@ -222,11 +225,13 @@ class ExtensionInstaller {
 	}
 
 	function patchLocalSettings( ) {
+		#NOTE: if we get a better way to hook up extensions, that should be used instead.
+		
 		$f = $this->dir . '/install.settings';
 		$t = $this->target . '/LocalSettings.php';
 		
 		#TODO: assert version ?!
-		#TODO: allow custom installer scripts                
+		#TODO: allow custom installer scripts + sql patches
 		
 		if ( !file_exists( $f ) ) {
 			$this->warn( "No install.settings file provided! Please read the instructions and edit LocalSettings.php manually." );
@@ -313,12 +318,87 @@ class ExtensionInstaller {
 		
 		return true;
 	}
+        
+	/* static */ function listRepository( $repos ) {
+		preg_match( '!([-\w]+://)?.*?(\.[-\w\d.]+)?$!', $repos, $m );
+		$proto = @$m[1];
+		
+		#TODO: right now, this basically lists filenames, so it's not terribly useful. 
+		#In future, there should be a "repository + logical name" scheme
+		
+		if ( $proto == 'http://' ) { #HTML directory listing
+			ExtensionInstaller::note( "listing index from $repos..." );
+			
+			$txt = file_get_contents( $repos );
+			
+			$ok = preg_match_all( '!<a\s[^>]*href\s*=\s*['."'".'"]([^/'."'".'"]+)['."'".'"][^>]*>.*?</a>!si', $txt, $m, PREG_SET_ORDER ); 
+			if ( !$ok ) {
+				ExtensionInstaller::error( "listing index from $repos failed!" );
+				print ( $txt );
+				return false;
+			}
+			
+			foreach ( $m as $l ) {
+				$n = $l[1];
+				
+				if ( preg_match('!^[./?]!', $n) ) continue;
+				
+				ExtensionInstaller::note( "\t$n" );
+			}
+		}
+		else if ( !$proto ) { #local directory
+			ExtensionInstaller::note( "listing directory $repos..." );
+			
+			$ff = glob( "$repos/*" );
+			if ( $ff === false || $ff === NULL ) {
+				ExtensionInstaller::error( "listing directory $repos failed!" );
+				return false;
+			}
+			
+			foreach ( $ff as $f ) {
+				$n = basename($f);
+				
+				ExtensionInstaller::note( "\t$n" );
+			}
+		}
+		else { #assume svn
+			ExtensionInstaller::note( "SVN list $repos..." );
+			$txt = wfShellExec( 'svn ls ' . escapeshellarg( $repos ), $code );
+
+			if ( $code !== 0 ) {
+				ExtensionInstaller::error( "svn list for $repos failed!" );
+				return false;
+			}
+			
+			$ll = preg_split('/(\s*[\r\n]\s*)+/', $txt);
+			
+			foreach ( $ll as $line ) {
+				if ( !preg_match('!^(.*)/$!', $line, $m) ) continue;
+				
+				ExtensionInstaller::note( "\t{$m[1]}" );
+			}
+		}
+	}
+}
+
+if ( isset( $options['list'] ) ) {
+	$repos = $options['list'];
+	if ( $repos === true || $repos === 1 ) {
+		# Default to SVN trunk. Perhaps change that to use the version of the present install,
+		# and/or use bundles at an official download location.
+		$repos = 'http://svn.wikimedia.org/svnroot/mediawiki/trunk/extensions/';
+	}
+
+	ExtensionInstaller::listRepository( $repos );
+
+	exit(0);
 }
 
 if( !isset( $args[0] ) ) {
 	die( "USAGE: installExtension.php [options] name [source]\n" .
 		"OPTIONS: \n" . 
-		"    --target <dir>    mediawiki installation directory\n" .
+		"    --target=<dir>    mediawiki installation directory\n" .
+		"    --nopatch         don't touch LocalSettings.php\n" .
 		"SOURCE: \n" . 
 		"    May be a local file (tgz or zip) or directory.\n" .
 		"    May be the URL of a remote file (tgz or zip).\n" .
@@ -330,7 +410,6 @@ $name = $args[0];
 
 # Default to SVN trunk. Perhaps change that to use the version of the present install,
 # and/or use bundles at an official download location.
-# Also, perhaps use the local systems versioin to select the right branch
 $defsrc = "http://svn.wikimedia.org/svnroot/mediawiki/trunk/extensions/" . urlencode($name);
 
 $src = isset ( $args[1] ) ? $args[1] : $defsrc;
@@ -365,7 +444,13 @@ print "\n";
 if ( !$installer->confirm("continue") ) die("aborted\n");
 
 $ok = $installer->fetchExtension();
-if ( $ok ) $ok = $installer->patchLocalSettings();
-if ( $ok ) $ok = $installer->printNotices();
+
+if ( $ok ) {
+	if ( isset( $options['nopatch'] ) ) $installer->note( "skipping patch phase; Please edit LocalSettings.php manually to activate the extension." );
+	else $ok = $installer->patchLocalSettings();
+}
+
+$ok = $installer->printNotices();
+
 if ( $ok ) $installer->note( "$name extension was installed successfully" );
 ?>
