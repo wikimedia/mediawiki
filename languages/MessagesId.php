@@ -21,13 +21,13 @@ $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Istimewa',
 	NS_MAIN             => '',
-	NS_TALK             => 'Bicara',
+	NS_TALK             => 'Pembicaraan',
 	NS_USER             => 'Pengguna',
-	NS_USER_TALK        => 'Bicara_Pengguna',
+	NS_USER_TALK        => 'Pembicaraan_Pengguna',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Pembicaraan_$1',
-	NS_IMAGE            => 'Gambar',
-	NS_IMAGE_TALK       => 'Pembicaraan_Gambar',
+	NS_IMAGE            => 'Berkas',
+	NS_IMAGE_TALK       => 'Pembicaraan_Berkas',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Pembicaraan_MediaWiki',
 	NS_TEMPLATE         => 'Templat',
@@ -44,6 +44,10 @@ $namespaceAliases = array(
 	'Templat_Pembicaraan'   => NS_TEMPLATE_TALK,
 	'Bantuan_Pembicaraan'   => NS_HELP_TALK,
 	'Kategori_Pembicaraan'  => NS_CATEGORY_TALK,
+	'Gambar'                => NS_IMAGE,
+	'Pembicaraan_Gambar'    => NS_IMAGE_TALK,
+	'Bicara'                => NS_TALK,
+	'Bicara_Pengguna'       => NS_USER_TALK,
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
@@ -589,7 +593,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 "showingresultsnum" => "Di bawah ini ditampilkan <strong>$3</strong> hasil, dimulai dari #<strong>$2</strong>.",
 "nonefound" => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu aturan pencarian (hanya halaman yang mengandung semua aturan pencarianlah yang akan ditampilkan dalam hasil pencarian)",
 "powersearch" => "Cari",
-'powersearchtext' => "Cari dalam namespace:<br />$1<br />$2 Juga tampilkan peralihan<br />Cari $3 $9",
+'powersearchtext' => "Cari dalam ruang nama:<br />$1<br />$2 Juga tampilkan peralihan<br />Cari $3 $9",
 "searchdisabled" => '<p style="margin: 1.5em 2em 1em">Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja. Anda dapat mencari melalui Google untuk sementara waktu. <span style="font-size: 89%; display: block; margin-left: .2em">Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui. Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.</span></p>',
 "blanknamespace" => "(Utama)",
 
@@ -644,7 +648,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 "servertime" => "Waktu server sekarang adalah",
 "guesstimezone" => "Isikan dari penjelajah web",
 'allowemail'		=> 'Ijinkan pengguna lain mengirim surat-e',
-"defaultns" => "Cari dalam namespace berikut ini secara baku:",
+"defaultns" => "Cari dalam ruang nama berikut ini secara baku:",
 'default' => 'baku',
 'files'			=> 'Gambar',
 
@@ -806,7 +810,7 @@ Untuk menampilkan atau menyertakan gambar atau berkas pada suatu halaman, gunaka
 
 # Unused templates
 'unusedtemplates' => 'Templat yang tak digunakan',
-'unusedtemplatestext' => 'Daftar berikut adalah halaman pada namespace templat yang tidak dipakai di halaman manapun. Cek dahulu pranala ke templat tersebut sebelum menghapusnya.',
+'unusedtemplatestext' => 'Daftar berikut adalah halaman pada ruang nama templat yang tidak dipakai di halaman manapun. Cek dahulu pranala ke templat tersebut sebelum menghapusnya.',
 'unusedtemplateswlh' => 'pranala ke halaman ini',
 
 # Random redirect
@@ -829,7 +833,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 
 "disambiguations" => "Halaman disambiguasi",
 'disambiguationspage'	=> '{{ns:template}}:Disambig',
-"disambiguationstext" => "Halaman-halaman berikut ini berpaut ke sebuah halaman disambiguasi. Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang tepat.<br />Satu halaman dianggap sebagai disambiguation apabila halaman tersebut disambung dari $1.<br />Pranala dari namespace lain <em>tidak</em> terdaftar di sini.",
+"disambiguationstext" => "Halaman-halaman berikut ini berpaut ke sebuah halaman disambiguasi. Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang tepat.<br />Satu halaman dianggap sebagai disambiguation apabila halaman tersebut disambung dari $1.<br />Pranala dari ruang nama lain <em>tidak</em> terdaftar di sini.",
 
 "doubleredirects" => "Pengalihan ganda",
 "doubleredirectstext" => "Setiap baris mengandung pranala ke peralihan pertama dan kedua, dan juga baris pertama dari teks peralihan kedua, yang biasanya memberikan artikel tujuan yang \"sesungguhnya\", yang seharusnya ditunjuk oleh peralihan yang pertama.",
@@ -903,8 +907,8 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'nextpage'          => 'Halaman berikutnya ($1)',
 'allpagesfrom'		=> 'Tampilkan halaman dimulai dengan:',
 'allarticles'       => 'Semua artikel',
-'allinnamespace'	=> 'Semua halaman (namespace $1)',
-'allnotinnamespace'	=> 'Semua halaman (bukan namespace $1)',
+'allinnamespace'	=> 'Semua halaman (ruang nama $1)',
+'allnotinnamespace'	=> 'Semua halaman (bukan ruang nama $1)',
 'allpagesprev'      => 'Sebelumnya',
 'allpagesnext'      => 'Selanjutnya',
 'allpagessubmit'    => 'Cari',
@@ -1085,7 +1089,7 @@ Masukan dan bantuan lanjutan:
 Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan pengembalian.",
 
 # Namespace form on various pages
-'namespace' => 'Namespace:',
+'namespace' => 'Ruang nama:',
 'invert' => 'Balikkan pilihan',
 
 # Contributions
@@ -1248,7 +1252,7 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 'delete_and_move_confirm' => 'Ya, hapus halaman tersebut',
 'delete_and_move_reason' => 'Dihapus untuk mengantisipasikan pemindahan halaman',
 'selfmove' => "Pemindahan halaman tidak dapat dilakukan karena judul sumber dan judul tujuan sama.",
-'immobile_namespace' => "Judul tujuan termasuk tipe khusus; tidak dapat memindahkan halaman ke namespace tersebut.",
+'immobile_namespace' => "Judul tujuan termasuk tipe khusus; tidak dapat memindahkan halaman ke ruang nama tersebut.",
 
 # Export
 
@@ -1269,7 +1273,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'allmessagesname' => 'Nama',
 'allmessagesdefault' => 'Teks baku',
 'allmessagescurrent' => 'Teks sekarang',
-'allmessagestext' => 'Ini adalah daftar semua pesan sistem yang tersedia dalam namespace MediaWiki:',
+'allmessagestext' => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki:',
 'allmessagesnotsupportedUI' => 'Bahasa antarmuka Anda saat ini, <strong>$1</strong> tidak didukung oleh {{ns:special}}:AllMessages di situs ini.',
 'allmessagesnotsupportedDB' => '\'\'\'{{ns:special}}:Allmessages\'\'\' tidak didukung karena wgUseDatabaseMessages dimatikan.',
 'allmessagesfilter' => 'Filter nama pesan:',
@@ -1288,7 +1292,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'import-interwiki-text' => 'Pilih suatu wiki dan judul halaman yang akan di impor. Tanggal revisi dan nama penyunting akan dipertahankan. Semua aktivitas impor transwiki akan dilog di [[{{ns:special}}:Log/import|log impor]].',
 'import-interwiki-history' => 'Salin semua versi terdahulu dari halaman ini',
 'import-interwiki-submit' => 'Impor',
-'import-interwiki-namespace' => 'Transfer halaman ke dalam namespace:',
+'import-interwiki-namespace' => 'Transfer halaman ke dalam ruang nama:',
 "importtext" => "Silakan ekspor berkas dari wiki asal dengan menggunakan utilitas [[{{ns:special}}:Export]], simpan ke cakram digital, dan muatkan ke sini.",
 'importstart'	=> "Mengimpor halaman...",
 'import-revision-count' => '$1 versi terdahulu',
