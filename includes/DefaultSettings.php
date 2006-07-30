@@ -2136,14 +2136,22 @@ $wgUpdateRowsPerJob = 500;
 $wgUpdateRowsPerQuery = 10;
 
 /**
- * Enable use of AJAX features, currently auto suggestion for the search bar
+ * Enable AJAX framework
  */
 $wgUseAjax = false;
 
 /**
- * List of Ajax-callable functions
+ * Enable auto suggestion for the search bar 
+ * Requires $wgUseAjax to be true too.
+ * Causes wfSajaxSearch to be added to $wgAjaxExportList
  */
-$wgAjaxExportList = array( 'wfSajaxSearch' );
+$wgAjaxSearch = false;
+
+/**
+ * List of Ajax-callable functions. 
+ * Extensions acting as Ajax callbacks must register here
+ */
+$wgAjaxExportList = array( );
 
 /**
  * Allow DISPLAYTITLE to change title display

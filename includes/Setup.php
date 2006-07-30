@@ -168,6 +168,8 @@ wfProfileIn( $fname.'-misc2' );
 $wgDeferredUpdateList = array();
 $wgPostCommitUpdateList = array();
 
+if ( $wgAjaxSearch ) $wgAjaxExportList[] = 'wfSajaxSearch';
+
 wfSeedRandom();
 
 # Placeholders in case of DB error
