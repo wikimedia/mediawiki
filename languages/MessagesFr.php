@@ -1455,7 +1455,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Voir la page de la catégorie\');'
 'confirmemail_loggedin' => 'Votre adresse est maintenant confirmée',
 'confirmemail_error' => 'Un problème est survenu en voulant enregistrer votre confirmation',
 'confirmemail_subject' => 'Confirmation d\'adresse de courriel pour {{SITENAME}}',
-'confirmemail_body' => 'Quelqu\'un, probablement vous avec l\'adresse email $1, a enregistré un compte « $2 » avec cette adresse de courriel sur le site {{SITENAME}}.
+'confirmemail_body' => 'Quelqu\'un, probablement vous avec l\'adresse IP $1, a enregistré un compte « $2 » avec cette adresse de courriel sur le site {{SITENAME}}.
 
 Pour confirmer que ce compte vous appartient vraiment et activer les fonctions de messagerie sur {{SITENAME}}, veuillez suivre le lien ci dessous dans votre navigateur :
 
