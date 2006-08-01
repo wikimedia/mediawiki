@@ -109,6 +109,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   framework and wgAjaxSearch to enable the suggest feature for the search box.
 * Added experimental installer for extensions. 
   See maintenance/installExtension.php
+* Added Tajic (tg) language file.
 
 == Languages updated ==
 
@@ -128,6 +129,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Polish (pl)
 * Russian (ru)
 * Telugu (te)
+* Tajic (tg)
 
 == Compatibility ==
 
