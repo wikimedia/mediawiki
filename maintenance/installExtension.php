@@ -573,7 +573,7 @@ if ( !$repos && file_exists("$tgt/.svn") && is_dir("$tgt/.svn") ) {
 
 if ( !$repos ) $repos = 'http://svn.wikimedia.org/svnroot/mediawiki/trunk/extensions';
 
-if( !isset( $args[0] ) && !$options['list'] ) {
+if( !isset( $args[0] ) && !@$options['list'] ) {
 	die( "USAGE: installExtension.php [options] <name> [source]\n" .
 		"OPTIONS: \n" . 
 		"    --list            list available extensions. <name> is ignored / may be omitted.\n" .
