@@ -110,6 +110,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added experimental installer for extensions. 
   See maintenance/installExtension.php
 * Added Tajic (tg) language file.
+* (bug 6903) Added Cantonese localisation (zh-yue)
 
 == Languages updated ==
 
@@ -118,6 +119,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Bishnupriya (bpy) stub file
 * Brazilian Portuguese (pt-br)
 * Catalan (ca)
+* Cantonese (zh-yue)
 * Dutch (nl)
 * English (en)
 * French (fr)
