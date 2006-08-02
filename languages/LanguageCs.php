@@ -10,18 +10,6 @@
 #--------------------------------------------------------------------------
 
 class LanguageCs extends Language {
-	function fixUpSettings() {
-		parent::fixUpSettings();
-
-		# Yucky hardcoding hack
-		global $wgMetaNamespace;
-		if ( $wgMetaNamespace == 'Wikipedie' || $wgMetaNamespace == 'Wikipedia' ) {
-			$this->namespaceNames[NS_USER] = 'Wikipedista'; 
-		}
-		$this->namespaceNames[NS_USER_TALK] = str_replace( '$1', 
-			$this->namespaceNames[NS_USER], $this->namespaceNames[NS_USER_TALK] );
-	}
-
 	# Grammatical transformations, needed for inflected languages
 	# Invoked by putting {{grammar:case|word}} in a message
 	function convertGrammar( $word, $case ) {
