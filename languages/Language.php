@@ -120,7 +120,7 @@ class Language {
 			}
 		}
 
-		if ( $recursionLevel > 50 ) {
+		if ( $recursionLevel > 5 ) {
 			throw new MWException( "Language fallback loop detected when creating class $class\n" );
 		}	
 
