@@ -2,10 +2,15 @@
 /**
  * @package MediaWiki
  * @subpackage Maintenance
+ *
+ * Get all the translations messages, as defined in the English language file.
  */
 
-require_once('commandLine.inc');
+require_once( 'commandLine.inc' );
 
-foreach(array_keys($wgAllMessagesEn) as $key)
+$wgLang = new Language();
+foreach( array_keys( $wgLang->getAllMessages() ) as $key ) {
 	echo "$key\n";
+}
+
 ?>
