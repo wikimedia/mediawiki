@@ -41,6 +41,13 @@ class MWException extends Exception
 		}
 	}
 	
+	function getLogMessage() {
+		$file = $this->getFile();
+		$line = $this->getLine();
+		$message = $this->getMessage();
+		return "{$_SERVER['REQUEST_URI']} Exception from line $line of $file: $message";
+	}
+	
 	function reportHTML() {
 		global $wgOut;
 		if ( $this->useOutputPage() ) {
@@ -68,6 +75,10 @@ class MWException extends Exception
 		if ( $wgCommandLineMode ) {
 			$this->reportText();
 		} else {
+			$log = $this->getLogMessage();
+			if ( $log ) {
+				wfDebugLog( 'exception', $log );
+			}
 			$this->reportHTML();
 		}
 	}
@@ -95,6 +106,7 @@ class MWException extends Exception
 	function htmlFooter() {
 		echo "</body></html>";
 	}
+
 }
 
 /**
