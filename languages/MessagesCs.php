@@ -13,7 +13,7 @@ $namespaceNames = array(
 	NS_MAIN               => '',
 	NS_TALK               => 'Diskuse',
 	NS_USER               => 'Uživatel',
-	NS_USER_TALK          => '$1_diskuse',
+	NS_USER_TALK          => 'Uživatel_diskuse',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK	      => '$1_diskuse',
 	NS_IMAGE              => 'Soubor',
