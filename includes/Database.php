@@ -86,6 +86,11 @@ class DBConnectionError extends DBError {
 		return $this->getMessage() . "\n";
 	}
 
+	function getLogMessage() {
+		# Don't send to the exception log
+		return false;
+	}
+
 	function getPageTitle() {
 		global $wgSitename;
 		return "$wgSitename has a problem";
@@ -205,6 +210,11 @@ class DBQueryError extends DBError {
 		}
 	}
 	
+	function getLogMessage() {
+		# Don't send to the exception log
+		return false;
+	}
+
 	function getPageTitle() {
 		return $this->msg( 'databaseerror', 'Database error' );
 	}
