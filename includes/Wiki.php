@@ -270,7 +270,7 @@ class MediaWiki {
 	function doJobs() {
 		global $wgJobRunRate;
 		
-		if ( $wgJobRunRate <= 0 ) {
+		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
 		}
 		if ( $wgJobRunRate < 1 ) {
