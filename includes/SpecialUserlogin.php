@@ -518,9 +518,6 @@ class LoginForm {
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
 
-		require_once( 'SkinTemplate.php' );
-		require_once( 'templates/Userlogin.php' );
-
 		if ( $this->mType == 'signup' ) {
 			$template = new UsercreateTemplate();
 			$q = 'action=submitlogin&type=signup';

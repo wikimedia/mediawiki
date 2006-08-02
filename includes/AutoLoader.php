@@ -222,6 +222,8 @@ function __autoload($className) {
 		'ZhClient' => 'includes/ZhClient.php',
 		'memcached' => 'includes/memcached-client.php',
 		'UtfNormal' => 'includes/normal/UtfNormal.php',
+		'UsercreateTemplate' => 'includes/templates/Userlogin.php',
+		'UserloginTemplate' => 'includes/templates/Userlogin.php',
 		'Language' => 'languages/Language.php',
 		'LanguageUtf8' => 'languages/LanguageUtf8.php',
 	);
