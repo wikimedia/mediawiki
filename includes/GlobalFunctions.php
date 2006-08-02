@@ -2047,4 +2047,18 @@ function wfGetPrecompiledData( $name ) {
 	return false;
 }
 
+function wfGetCaller( $level = 1 ) {
+	$backtrace = debug_backtrace();
+	if ( isset( $backtrace[$level] ) ) {
+		if ( isset( $backtrace[$level]['class'] ) ) {
+			$caller = $backtrace[$level]['class'] . '::' . $backtrace[$level]['function'];
+		} else {
+			$caller = $backtrace[$level]['function'];
+		}
+	} else {
+		$caller = 'unknown';
+	}
+	return $caller;
+}
+
 ?>

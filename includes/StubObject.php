@@ -49,7 +49,7 @@ class StubObject {
 		if ( get_class( $GLOBALS[$this->mGlobal] ) != $this->mClass ) {
 			$fname = __METHOD__.'-'.$this->mGlobal;
 			wfProfileIn( $fname );
-			$caller = Profiler::getCaller( $level );
+			$caller = wfGetCaller( $level );
 			if ( ++$recursionLevel > 2 ) {
 				throw new MWException( "Unstub loop detected on call of \${$this->mGlobal}->$name from $caller\n" );
 			}
