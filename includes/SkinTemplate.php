@@ -31,8 +31,6 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @subpackage Skins
  */
 
-require_once 'GlobalFunctions.php';
-
 /**
  * Wrapper object for MediaWiki's localization functions,
  * to be passed to the template engine.
