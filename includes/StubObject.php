@@ -27,20 +27,6 @@ class StubObject {
 		return is_object( $obj ) && !is_a( $obj, 'StubObject' );
 	}
 
-	static function _getCaller( $level ) {
-		$backtrace = debug_backtrace();
-		if ( isset( $backtrace[$level] ) ) {
-			if ( isset( $backtrace[$level]['class'] ) ) {
-				$caller = $backtrace[$level]['class'] . '::' . $backtrace[$level]['function'];
-			} else {
-				$caller = $backtrace[$level]['function'];
-			}
-		} else {
-			$caller = 'unknown';
-		}
-		return $caller;
-	}
-
 	function _call( $name, $args ) {
 		$this->_unstub( $name, 5 );
 		return call_user_func_array( array( $GLOBALS[$this->mGlobal], $name ), $args );
@@ -63,7 +49,7 @@ class StubObject {
 		if ( get_class( $GLOBALS[$this->mGlobal] ) != $this->mClass ) {
 			$fname = __METHOD__.'-'.$this->mGlobal;
 			wfProfileIn( $fname );
-			$caller = self::_getCaller( $level );
+			$caller = Profiler::getCaller( $level );
 			if ( ++$recursionLevel > 2 ) {
 				throw new MWException( "Unstub loop detected on call of \${$this->mGlobal}->$name from $caller\n" );
 			}

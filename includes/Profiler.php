@@ -349,6 +349,20 @@ class Profiler {
 		$elt = end($this->mWorkStack);
 		return $elt[0];
 	}
+	
+	static function getCaller( $level ) {
+		$backtrace = debug_backtrace();
+		if ( isset( $backtrace[$level] ) ) {
+			if ( isset( $backtrace[$level]['class'] ) ) {
+				$caller = $backtrace[$level]['class'] . '::' . $backtrace[$level]['function'];
+			} else {
+				$caller = $backtrace[$level]['function'];
+			}
+		} else {
+			$caller = 'unknown';
+		}
+		return $caller;
+	}
 
 }
 
