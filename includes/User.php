@@ -426,12 +426,9 @@ class User {
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
 		$this->mGroups = array();
-		$this->mOptions = User::getDefaultOptions();
+		$this->mOptions = null;
 		$this->mDatePreference = null;
 
-		foreach( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
-			$this->mOptions['searchNs'.$nsnum] = $val;
-		}
 		unset( $this->mSkin );
 		$this->mDataLoaded = false;
 		$this->mBlockedby = -1; # Unset
@@ -459,6 +456,7 @@ class User {
 	 * @private
 	 */
 	function getDefaultOptions() {
+		global $wgNamespacesToBeSearchedDefault;
 		/**
 		 * Site defaults will override the global/language defaults
 		 */
@@ -472,6 +470,9 @@ class User {
 		$defOpt['variant'] = $variant;
 		$defOpt['language'] = $variant;
 
+		foreach( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
+			$defOpt['searchNs'.$nsnum] = $val;
+		}
 		return $defOpt;
 	}
 
@@ -1146,6 +1147,9 @@ class User {
 	 */
 	function getOption( $oname ) {
 		$this->loadFromDatabase();
+		if ( is_null( $this->mOptions ) ) {
+			$this->mOptions = User::getDefaultOptions();
+		}
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
 			return trim( $this->mOptions[$oname] );
 		} else {
@@ -1194,6 +1198,9 @@ class User {
 
 	function setOption( $oname, $val ) {
 		$this->loadFromDatabase();
+		if ( is_null( $this->mOptions ) ) {
+			$this->mOptions = User::getDefaultOptions();
+		}
 		if ( $oname == 'skin' ) {
 			# Clear cached skin, so the new one displays immediately in Special:Preferences
 			unset( $this->mSkin );
@@ -1489,6 +1496,9 @@ class User {
 	 * @return string Encoding options
 	 */
 	function encodeOptions() {
+		if ( is_null( $this->mOptions ) ) {
+			$this->mOptions = User::getDefaultOptions();
+		}
 		$a = array();
 		foreach ( $this->mOptions as $oname => $oval ) {
 			array_push( $a, $oname.'='.$oval );
@@ -1503,6 +1513,7 @@ class User {
 	function decodeOptions( $str ) {
 		global $wgLang;
 		
+		$this->mOptions = array();
 		$a = explode( "\n", $str );
 		foreach ( $a as $s ) {
 			if ( preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
