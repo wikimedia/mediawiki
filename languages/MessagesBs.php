@@ -910,7 +910,6 @@ To izađe u prosjeku oko \'\'\'$5\'\'\' izmjena po stranici, i \'\'\'$6\'\'\' po
 'subcategories' => 'Potkategorije',
 'subcategorycount' => '$1 potkategorija su u ovoj kategoriji.',
 'subject' => 'Tema/naslov',
-'subjectpage' => 'Pogledajte temu',
 'successfulupload' => 'Uspješno slanje',
 'summary' => 'Sažetak',
 'sunday' => 'nedelja',

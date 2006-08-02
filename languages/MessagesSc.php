@@ -124,7 +124,6 @@ $messages = array(
 "unprotectthispage" => "Togli la protezione a questa pagina",
 "talkpage"		=> "Discussione sull'articolo",
 "articlepage"	=> "Leggi articolo",
-"subjectpage"	=> "Vedi articolo ", # For compatibility
 "userpage" => "Vedi pagina Utente",
 "projectpage" => "Vedi pagina meta",
 "imagepage" => 	"Vedi pagina immagine",

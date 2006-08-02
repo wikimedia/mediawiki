@@ -356,7 +356,6 @@ $messages = array(
 'personaltools' => 'Lični alati',
 'postcomment' => 'Pošalji komentar',
 'articlepage' => 'Pogledaj članak',
-'subjectpage' => 'Pogledaj temu', # For compatibility
 'talk' => 'Razgovor',
 'views' => 'Pregledi',
 'toolbox' => 'alati',

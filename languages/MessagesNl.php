@@ -237,7 +237,6 @@ parent class in order maintain consistency across languages.
 'personaltools'         => 'Persoonlijke instellingen',
 'postcomment'           => 'Voeg opmerking toe',
 'articlepage'           => 'Toon pagina',
-'subjectpage'           => 'Toon pagina',
 'talk'                  => 'Overleg',
 'views'                 => 'Aspecten/acties',
 'toolbox'               => 'Hulpmiddelen',

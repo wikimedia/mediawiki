@@ -174,7 +174,6 @@ $messages = array(
 'personaltools'         => 'Személyes eszközök',
 'postcomment'           => 'Üzenethagyás',
 'articlepage'           => 'Szócikk megtekintése',
-'subjectpage'           => 'Témalap megtekintése',
 'talk'                  => 'Vitalap',
 'toolbox'               => 'Eszközök',
 'userpage'              => 'Felhasználói lap',

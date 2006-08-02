@@ -176,7 +176,6 @@ $messages = array(
 'personaltools'         => 'Personaj iloj',
 'postcomment'           => 'Afiŝu komenton',
 'articlepage'           => 'Vidu la artikolon',
-'subjectpage'           => 'Vidu la artikolon',
 'talk'                  => 'Diskuto',
 'views'                 => 'Vidoj',
 'toolbox'               => 'Iloj',

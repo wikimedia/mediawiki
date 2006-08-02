@@ -134,7 +134,6 @@ $messages = array(
 'talkpage'              => 'Discussion',
 'specialpage'           => 'Paxèna Speciałe',
 'articlepage'           => 'Varda voçe',
-'subjectpage'           => 'Vedi voçe',
 'talk'                  => 'Discussion',
 'userpage'              => 'Varda paxèna Utente',
 'projectpage'           => 'Varda ła paxèna de servizsio',

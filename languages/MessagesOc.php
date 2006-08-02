@@ -161,7 +161,6 @@ $messages = array(
 "talkpage"      => "Page de discussion",
 "postcomment"	=> "Ajouter un commentaire", // Looxix "Post a comment",
 "articlepage"	=> "Voir l'article",
-"subjectpage"   => "Page sujet",
 "userpage"      => "Page utilisateur",
 "projectpage" => "Page méta",
 "imagepage"     => "Page image",

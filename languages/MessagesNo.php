@@ -209,7 +209,6 @@ $messages = array(
 'personaltools'         => 'Personlige verktøy',
 'postcomment'           => 'Legg til en kommentar',
 'articlepage'           => 'Vis artikkel',
-'subjectpage'           => 'Vis emne',
 'talk'                  => 'Diskusjon',
 'views'                 => 'Visninger',
 'toolbox'               => 'Verktøy',

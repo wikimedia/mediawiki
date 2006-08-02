@@ -122,7 +122,6 @@ $messages = array(
 "talkpage"		=> "討論本頁",
 	 "postcomment"   => "發表評論",
 "articlepage"	=> "查看文章",
-"subjectpage"	=> "查看主題", # For compatibility
 "userpage" => "查看用戶頁",
 "projectpage" => "查看元維基頁",
 "imagepage" => 	"查看圖像頁面",

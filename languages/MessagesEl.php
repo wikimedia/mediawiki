@@ -209,7 +209,6 @@ $messages = array(
 'personaltools' => 'Προσωπικά εργαλεία',
 'postcomment' => 'Καταχωρίστε ένα σχόλιο.',
 'articlepage' => 'Εμφάνιση σελίδας κειμένου',
-'subjectpage' => 'Εμφάνιση θέματος',
 'talk' => 'Συζήτηση',
 'views' => 'Εμφανίσεις',
 'toolbox' => 'Εργαλεία',

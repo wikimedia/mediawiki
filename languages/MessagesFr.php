@@ -214,7 +214,6 @@ $messages = array(
 'personaltools'	=> 'Outils personnels',
 'postcomment'	=> 'Ajouter un commentaire',
 'articlepage'	=> 'Voir l\'article',
-'subjectpage'   => 'Page sujet',
 'views' => 'Affichages',
 'toolbox'	=> 'Boîte à outils',
 'userpage'      => 'Page utilisateur',

@@ -203,7 +203,6 @@ $messages = array(
 'personaltools'         => 'Mjete vetjake',
 'postcomment'           => 'Shtoni koment',
 'articlepage'           => 'Shikoni artikullin',
-'subjectpage'           => 'Shikoni subjektin',
 'talk'                  => 'Diskutimet',
 'views'                 => 'Shikime',
 'toolbox'               => 'Mjete',

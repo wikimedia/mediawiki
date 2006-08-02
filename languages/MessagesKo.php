@@ -201,7 +201,6 @@ $messages = array(
 'specialpage'           => '특수 문서',
 'personaltools'         => '개인 도구',
 'articlepage'           => '문서 보기',
-'subjectpage'           => '본 문서',
 'talk'                  => '토론',
 'toolbox'               => '도구모음',
 'userpage'              => '사용자 문서 보기',

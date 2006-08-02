@@ -201,7 +201,6 @@ $messages = array(
 'personaltools'         => 'Personliga verktyg',
 'postcomment'           => 'Skicka en kommentar',
 'articlepage'           => 'Visa artikel',
-'subjectpage'           => 'Ämnessida',
 'talk'                  => 'diskussion',
 'views'                 => 'Visningar',
 'toolbox'               => 'Verktygslåda',

@@ -92,7 +92,6 @@ $messages = array(
 "newpage"               => "नया पृष्ठ ",
 "talkpage"		=> "इस पृष्ठ के बारे में बात करें",
 "articlepage"	        => "लेख देखें",
-"subjectpage"	        => "विषय देखें", # For compatibility
 "userpage"              => "सदस्य पृष्ठ देखें",
 "projectpage"         => "मेटा पृष्ठ देखें",
 "imagepage"             => "चित्र पृष्ठ देखें",

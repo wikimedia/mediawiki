@@ -218,7 +218,6 @@ $messages = array(
 'personaltools' => 'Peralatan pribadi',
 "postcomment" => "Kirim komentar",
 "articlepage" => "Lihat artikel",
-"subjectpage" => "Halaman subyek",
 'talk' => 'Diskusi',
 'views' => 'Tampilan',
 'toolbox' => 'Kotak peralatan',

@@ -476,7 +476,6 @@ parent class in order maintain consistency across languages.
 'postcomment'   => 'Post a comment',
 'addsection'   => '+',
 'articlepage'	=> 'View content page',
-'subjectpage'	=> 'View subject', # For compatibility
 'talk' => 'Discussion',
 'views' => 'Views',
 'toolbox' => 'Toolbox',

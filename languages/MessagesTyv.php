@@ -154,7 +154,6 @@ $messages = array(
 'specialpage' => 'Тускай Арын', //Special Page
 'personaltools' => 'Херекселдер',  //Personal tools
 'articlepage'	=> 'Допчу арынны көргүзер', //View content page
-'subjectpage'	=> 'View subject', # For compatibility
 'talk' => 'Чугаалажыр', //Discussion
 'userpage' => 'Ажыглакчыниң арынын көргүзер', //View user page
 'imagepage' => 	'Чурук арынын көргүзер', //View image page

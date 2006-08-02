@@ -132,7 +132,6 @@ $messages = array(
 'specialpage'           => 'Pagina specialis',
 'postcomment'           => 'Adnotare',
 'articlepage'           => 'Videre rem',
-'subjectpage'           => 'Videre rem',
 'talk'                  => 'Disputatio',
 'toolbox'               => 'Arca ferramentorum',
 'userpage'              => 'Videre paginam usoris',

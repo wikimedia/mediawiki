@@ -186,7 +186,6 @@ $messages = array(
 'personaltools'	=> 'Ostilhoù personel',
 'postcomment'	=> 'Ouzhpennañ e soñj',
 'articlepage'	=> 'Sellet ouzh ar pennad',
-'subjectpage'   => 'Pajenn danvez',
 'talk'		=> 'Kaozeadenn',
 'toolbox'	=> 'Boest ostilhoù',
 'userpage'      => 'Pajenn implijer',

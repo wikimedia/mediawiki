@@ -301,7 +301,6 @@ $messages = array(
 "personaltools"     => "כלים אישיים",
 "postcomment"       => "הוסף הערה לדף השיחה",
 "articlepage"       => "צפו בדף",
-"subjectpage"       => "צפו בנושא", # For compatibility
 "talk"              => "שיחה",
 "views"             => "צפיות",
 "toolbox"           => "תיבת כלים",

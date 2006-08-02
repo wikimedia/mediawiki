@@ -254,7 +254,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'personaltools' => 'Uirlisí phearsánta',
 "postcomment"   => "Caint ar an lch",
 "articlepage"   => "Féach ar an alt",
-"subjectpage"   => "Féach ar an t-ábhar", # For compatibility
 'talk' => 'Plé',
 'views' => 'Tuairimí',
 'toolbox' => 'Bosca uirlisí',

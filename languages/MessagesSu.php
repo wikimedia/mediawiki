@@ -858,7 +858,6 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'subcategories' => 'Subkategori',
 'subcategorycount' => 'Aya $1 subkategori na kategori ieu.',
 'subject' => 'Jejer/Judul',
-'subjectpage' => 'Témbongkeun subjék',
 'successfulupload' => 'Ngamuat geus hasil',
 'summary' => 'Ringkesan',
 'sysoptext' => 'Peta nu dipénta ku anjeun ngan bisa dipigawé ku pamaké nu statusna kuncén. Tempo $1.',

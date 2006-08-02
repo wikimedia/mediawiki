@@ -216,7 +216,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 'personaltools' => 'Personaalsed tööriistad',
 'postcomment'   => 'Lisa kommentaar',
 "articlepage"	=> "Artiklilehekülg",
-"subjectpage"	=> "Teema", # For compatibility
 'talk' => 'Arutelu',
 'toolbox' => 'Tööriistakast',
 "userpage" => "Kasutajalehekülg",

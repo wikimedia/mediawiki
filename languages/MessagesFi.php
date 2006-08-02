@@ -247,7 +247,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'personaltools'       => 'Henkilökohtaiset työkalut',
 'postcomment'         => 'Kommentti sivun loppuun',
 'articlepage'         => 'Näytä varsinainen sivu',
-'subjectpage'         => 'Näytä aihe', # For compatibility
 'talk'                => 'Keskustelu',
 'views'               => 'Näkymät',
 'toolbox'             => 'Työkalut',

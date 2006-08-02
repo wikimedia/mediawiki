@@ -232,7 +232,6 @@ $messages = array(
 'personaltools'	=> 'Công cụ cá nhân',
 'postcomment'	=> 'Thêm bàn luận',
 'articlepage'	=> 'Xem bài',
-'subjectpage'   => 'Trang chủ đề',
 'talk'		=> 'Thảo luận',
 'toolbox'	=> 'Công cụ',
 'userpage'      => 'Trang thành viên',

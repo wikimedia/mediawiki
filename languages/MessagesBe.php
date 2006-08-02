@@ -681,7 +681,6 @@ $messages = array(
 'subcategories' => 'Падкатэгорыі',
 'subcategorycount' => 'У гэтай катэгорыі ёсьць $1 {{PLURAL:$1|падкатэгорыя|падкатэгорыі|падкатэгорый}}.',
 'subject' => 'Тэма/назва',
-'subjectpage' => 'Паказаць тэму',
 'summary' => 'Кароткае апісаньне зьменаў',
 'sunday' => 'нядзеля',
 'tagline' => 'Зьвесткі зь {{GRAMMAR:родны|{{SITENAME}}}}',

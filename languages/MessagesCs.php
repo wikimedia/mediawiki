@@ -233,7 +233,6 @@ $messages = array(
 'personaltools' => 'Osobní nástroje',
 'postcomment'   => 'Přidat komentář',
 'articlepage'   => 'Prohlédnout si článek',
-'subjectpage'   => 'Stránka námětu', #FIXME: ? (zřejmě se vůbec nepoužívá)
 'talk' => 'Diskuse',
 'views' => 'Zobrazení',
 'toolbox' => 'Nástroje',

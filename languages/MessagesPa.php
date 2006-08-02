@@ -159,7 +159,6 @@ $messages = array(
 'personaltools'	=> 'ਨਿਜੀ ਔਜ਼ਾਰ',
 'postcomment'		=> 'ਆਪਨੇ ਵਿਚਾਰ ਪੇਸ਼ ਕਰੋ',
 'articlepage'		=> 'ਵਿਸ਼ਾ-ਵਸਤੂ ਵਾਲਾ ਪੰਨਾ ਵੇਖੋ',
-'subjectpage'		=> 'ਵਿਸ਼ਾ ਵੇਖੋ',
 'talk'		=> 'ਚਰਚਾ',
 'toolbox'		=> 'ਔਜ਼ਾਰ-ਡੱਬਾ',
 'userpage'		=> 'ਮੈਂਬਰ ਦਾ ਪੰਨਾ ਵੇਖੋ',
