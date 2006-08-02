@@ -2047,7 +2047,7 @@ function wfGetPrecompiledData( $name ) {
 	return false;
 }
 
-function wfGetCaller( $level = 1 ) {
+function wfGetCaller( $level = 2 ) {
 	$backtrace = debug_backtrace();
 	if ( isset( $backtrace[$level] ) ) {
 		if ( isset( $backtrace[$level]['class'] ) ) {
