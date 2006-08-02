@@ -188,7 +188,6 @@ $messages = array(
 'personaltools'         => 'Herramientas personales',
 'postcomment'           => 'Poner un comentario',
 'articlepage'           => 'Ver artículo',
-'subjectpage'           => 'Artículo',
 'talk'                  => 'Discusión',
 'views'                 => 'Vistas',
 'toolbox'               => 'Herramientas',

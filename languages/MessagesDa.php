@@ -198,7 +198,6 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 'personaltools' => 'Personlige værktøjer',
 "postcomment"   => "Tilføj en kommentar",
 "articlepage"	=> "Se artiklen",
-"subjectpage"	=> "Se emnesiden",
 'talk' => 'Diskussion',
 'toolbox' => 'Værktøjer',
 "userpage" => "Se brugersiden",

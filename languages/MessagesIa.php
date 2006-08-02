@@ -130,7 +130,6 @@ $messages = array(
 "newpage" => "Nove pagina",
 "talkpage"		=> "Discuter iste pagina",
 "articlepage"	=> "Vider article",
-"subjectpage"	=> "Vider subjecto", # For compatibility
 "userpage" => "Vider pagina del usator",
 "projectpage" => "Vider metapagina",
 "imagepage" => 	"Vider pagina de imagine",

@@ -162,7 +162,6 @@ $messages = array(
 'specialpage'           => 'Speciaal Pazjena',
 'personaltools'         => 'Persoenlike hulpmiddele',
 'articlepage'           => 'Artikel',
-'subjectpage'           => 'Artikel',
 'talk'                  => 'Euverlik',
 'toolbox'               => 'Gereidsjapskis',
 'userpage'              => 'gebroekerspazjena',

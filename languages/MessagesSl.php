@@ -203,7 +203,6 @@ in [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'personaltools'         => 'Osebna orodja',
 'postcomment'           => 'Objavite pripombo',
 'articlepage'           => 'Prikaže članek',
-'subjectpage'           => 'Prikaži temo',
 'talk'                  => 'Pogovor',
 'views'                 => 'Pogled',
 'toolbox'               => 'Pripomočki',

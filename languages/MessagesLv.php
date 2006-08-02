@@ -166,7 +166,6 @@ $messages= array(
 'personaltools'         => 'Lietotāja rīki',
 'postcomment'           => 'Pievienot komentāru',
 'articlepage'           => 'Apskatīt rakstu',
-'subjectpage'           => 'Skatīt virsrakstu',
 'talk'                  => 'Diskusija',
 'views'                 => 'Apskates',
 'toolbox'               => 'Rīki',

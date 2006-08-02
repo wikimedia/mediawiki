@@ -307,7 +307,6 @@ $messages = array(
 'personaltools' => 'Личные инструменты',
 'postcomment'   => 'Прокомментировать',
 'articlepage'   => 'Просмотреть статью',
-'subjectpage'   => 'Просмотреть тему', # For compatibility
 'talk' => 'Обсуждение',
 'views' => 'Просмотры',
 'toolbox' => 'Инструменты',

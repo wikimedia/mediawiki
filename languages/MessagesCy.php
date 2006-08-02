@@ -182,7 +182,6 @@ $messages = array(
 "talkpage" => "Sgwrsio amdano'r tudalen hon",
 "postcomment" => "Postiwch esboniad",
 "articlepage" => "Gwyliwch erthygl",
-"subjectpage" => "Gwyliwch pwnc", # For compatibility
 "userpage" => "Gwyliwch tudalen defnyddiwr",
 "projectpage" => "Gwyliwch tudalen meta",
 "imagepage" => "Gwyliwch tudalen llun",

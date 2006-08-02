@@ -169,7 +169,6 @@ $messages = array(
 'personaltools'         => 'Kişisel aletler',
 'postcomment'           => 'Yorum ekle',
 'articlepage'           => 'Maddeye git',
-'subjectpage'           => 'Konuyu gör',
 'talk'                  => 'Tartışma',
 'views'                 => 'Görünümler',
 'toolbox'               => 'Araçlar',

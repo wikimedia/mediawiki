@@ -211,7 +211,6 @@ I seguenti collegamenti sono in lingua inglese:
 "personaltools" => "Strumenti personali",
 "postcomment"   => "Aggiungi un commento",
 "articlepage"	=> "Vedi la voce",
-"subjectpage"	=> "Vedi articolo", # For compatibility
 "talk" => "Discussione",
 "views" => "Visite",
 "toolbox" => "Strumenti",

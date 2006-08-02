@@ -108,7 +108,6 @@ $messages = array(
 'newpage' => 'নতুন পাতা',
 'talkpage'    => 'এই পৃষ্ঠা নিয়ে আলোচনা করুন',
 'articlepage' => 'নিবন্ধ দেখুন',
-'subjectpage' => 'বিষয় দেখুন', # For compatibility
 'userpage' => 'ব্যাবহারকারীর পাতা দেখুন',
 'projectpage' => 'মেটা-পাতা দেখুন',
 'imagepage' =>  'ছবির পাতা দেখুন',

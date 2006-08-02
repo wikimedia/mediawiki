@@ -160,7 +160,6 @@ $messages = array(
 "talkpage"		=> "讨论本页",
 	 "postcomment"   => "发表评论",
 "articlepage"	=> "查看文章",
-"subjectpage"	=> "查看主题", # For compatibility
 "userpage" => "查看用户页",
 "projectpage" => "查看meta页",
 "imagepage" => 	"查看图像页面",

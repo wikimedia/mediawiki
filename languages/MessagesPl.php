@@ -206,7 +206,6 @@ $messages = array(
 'personaltools' => 'Osobiste',
 'postcomment' => 'Skomentuj',
 'articlepage' => 'Strona artykułu',
-'subjectpage' => 'Strona dyskutowana',
 'talk' => 'dyskusja',
 'toolbox' => 'Narzędzia',
 'userpage' => 'Strona użytkownika',

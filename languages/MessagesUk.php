@@ -150,7 +150,6 @@ $messages = array(
 "talkpage"		=> "Обговорити статтю",
 "postcomment"   => "Прокоментувати",
 "articlepage"	=> "Переглянути статтю",
-"subjectpage"	=> "Переглянути тему", # For compatibility
 "userpage" => "Переглянути сторінку користувача",
 "projectpage" => "Переглянути мета-сторінку",
 "imagepage" => 	"Переглянути сторінку зображення",

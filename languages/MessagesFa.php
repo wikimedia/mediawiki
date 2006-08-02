@@ -167,7 +167,6 @@ $messages = array(
 'talkpage'		=> "بحث درباره‌ی این صفحه",
 'postcomment'   => "نوشتن نظر",
 'articlepage'	=> "نمایش مقاله",
-'subjectpage'	=> "نمایش موضوع", # For compatibility
 'userpage' => "نمایش صفحه‌ی کاربر",
 'projectpage' => "نمایش فوق صفحه",
 'imagepage' => 	"نمایش صفحه‌ی تصویر",

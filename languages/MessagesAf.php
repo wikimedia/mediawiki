@@ -128,7 +128,6 @@ $messages = array(
 "newpage" => "Nuwe bladsy",
 "talkpage"		=> "Bespreek hierdie bladsy",
 "articlepage"	=> "Lees artikel",
-"subjectpage"	=> "Lees onderwerp", # For compatibility
 "userpage" => "Lees gebruikersbladsy",
 "projectpage" => "Lees metabladsy",
 "imagepage" => 	"Lees bladsy oor prent",

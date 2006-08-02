@@ -241,7 +241,6 @@ $messages = array(
 'personaltools' => 'Лични инструменти',
 'postcomment'   => 'Оставяне на съобщение',
 'articlepage'  => 'Преглед на страница',
-'subjectpage'  => 'Преглед на тема', # For compatibility
 'talk' => 'Беседа',
 'views' => 'Прегледи',
 'toolbox' => 'Инструменти',

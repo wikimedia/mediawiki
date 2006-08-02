@@ -284,7 +284,6 @@ $messages = array(
 'personaltools' => 'Ferramentas pessoais',
 'postcomment'   => 'Envie um comentário',
 'articlepage'   => 'Ver artigo',
-'subjectpage'   => 'Ver assunto', # For compatibility
 'talk' => 'Discussão',
 'views' => 'Vistas',
 'toolbox' => 'Ferramentas',

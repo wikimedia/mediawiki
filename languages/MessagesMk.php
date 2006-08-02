@@ -229,7 +229,6 @@ $messages = array(
 'personaltools'         => 'Лични алатки',
 'postcomment'           => 'Испрати коментар',
 'articlepage'           => 'Види статија',
-'subjectpage'           => 'Види тема',
 'talk'                  => 'Разговор',
 'views'                 => 'Прегледи',
 'toolbox'               => 'Алатник',

@@ -216,7 +216,6 @@ $messages = array(
 'personaltools' => 'Usteyes da vosse',
 'postcomment' => 'Sicrire on comintaire',
 'articlepage' => 'Vey l\' årtike',
-'subjectpage' => 'Vey li sudjet', # For compatibility
 'talk' => 'Copene',
 'toolbox' => 'Boesse ås usteyes',
 'userpage' => 'Vey li pådje di l\' uzeu',

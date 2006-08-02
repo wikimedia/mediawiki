@@ -138,7 +138,6 @@ $messages = array(
 "talkpage"      => "Discutir esta página",
 "postcomment"   => "Post a comment",
 "articlepage"   => "Ver atigo",
-"subjectpage"   => "Ver assunto", # For compatibility
 "userpage" => "Ver página de usuário",
 "projectpage" => "Ver meta página",
 "imagepage" =>  "Ver página de imagens",

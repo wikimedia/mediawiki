@@ -117,7 +117,6 @@ $messages = array(
 'personaltools'         => 'Persönlichi Wärkzüg',
 'postcomment'           => 'Kommentar abgeh',
 'articlepage'           => 'Syte',
-'subjectpage'           => 'Betreff ozeige',
 'toolbox'               => 'Wärkzügkäschtli',
 'userpage'              => 'Benutzersyte',
 'imagepage'             => 'Bildsyte',

@@ -199,7 +199,6 @@ $messages = array(
 'personaltools'         => '個人用ツール',
 'postcomment'           => '新規にコメントを投稿',
 'articlepage'           => '項目を表示',
-'subjectpage'           => 'サブジェクト・ページ',
 'talk'                  => 'ノート',
 'views'                 => '表示',
 'toolbox'               => 'ツールボックス',

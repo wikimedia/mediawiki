@@ -192,7 +192,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'personaltools'         => 'Osobni alati',
 'postcomment'           => 'Napiši komentar',
 'articlepage'           => 'Vidi članak',
-'subjectpage'           => 'Vidi predmet',
 'talk'                  => 'Razgovor',
 'views'                 => 'Pogledi',
 'toolbox'               => 'Traka s alatima',

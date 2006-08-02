@@ -224,7 +224,6 @@ $messages = array(
 "personaltools" => "Persönliche Werkzeuge",
 "postcomment" => "Kommentar hinzufügen",
 "articlepage"	=> "Artikel",
-'subjectpage'	=> 'Betreff anzeigen',
 "toolbox" => "Werkzeuge",
 "projectpage" => "Meta-Text",
 "userpage" => "Benutzerseite",

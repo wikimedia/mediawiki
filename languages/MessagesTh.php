@@ -148,7 +148,6 @@ $messages = array(
 "talkpage"		=> "พูดคุยเกี่ยวกับหน้านี้",
 "postcomment"   => "Post a comment",
 "articlepage"	=> "View article",
-"subjectpage"	=> "View subject", # For compatibility
 "userpage" => "View user page",
 "projectpage" => "View meta page",
 "imagepage" => 	"View image page",

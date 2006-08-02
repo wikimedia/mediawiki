@@ -221,7 +221,6 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'personaltools'         => 'Persönliche Warktüüch',
 'postcomment'           => 'Kommentar hentofögen',
 'articlepage'             => 'Artikel',
-'subjectpage'             => 'Bedrap ankieken',
 'toolbox'               => 'Warktüüch',
 'projectpage'         => 'Meta-Text',
 'userpage'              => 'Brukersiet',

@@ -307,7 +307,6 @@ $messages = array(
 'personaltools'           => 'Personlege verktøy',
 'postcomment'             => 'Legg til kommentar',
 'articlepage'	          => 'Vis innhaldsside',
-'subjectpage'	          => 'Vis emne', # For compatibility
 'talk'                    => 'Diskusjon',
 'views'                   => 'Visningar',
 'toolbox'                 => 'Verktøy',

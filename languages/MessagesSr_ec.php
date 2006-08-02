@@ -353,7 +353,6 @@ $messages = array(
 'personaltools' => 'Лични алати',
 'postcomment' => 'Пошаљи коментар',
 'articlepage' => 'Погледај чланак',
-'subjectpage' => 'Погледај тему', # For compatibility
 'talk' => 'Разговор',
 'views' => 'Прегледи',
 'toolbox' => 'алати',

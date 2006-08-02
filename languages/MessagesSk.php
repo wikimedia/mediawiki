@@ -296,7 +296,6 @@ $messages = array(
 'personaltools'         => 'Osobné nástroje',
 'postcomment'           => 'Pridaj komentár',
 'articlepage'           => 'Zobraz článok',
-'subjectpage'           => 'Zobraz tému',
 'talk'                  => 'Diskusia',
 'views'                 => 'Zobrazení',
 'toolbox'               => 'Nástroje',

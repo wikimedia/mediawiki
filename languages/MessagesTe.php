@@ -155,7 +155,6 @@ $messages = array(
 'personaltools'         => 'స్వకీయమైన పరికరాలు',
 'postcomment'           => 'వ్యాఖ్యానము చేయండి',
 'articlepage'           => 'వ్యాసము చూడండి',
-'subjectpage'           => 'విషయం చూడు',
 'talk'                  => 'చర్చ',
 'toolbox'               => 'పరికరాలపెట్టె',
 'imagepage'             => 'బొమ్మ పేజీని చూపించు',

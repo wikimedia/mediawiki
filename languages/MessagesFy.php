@@ -154,7 +154,6 @@ $messages = array(
 "talkpage"		=> "Sideoerlis",
 "postcomment"   	=> "Skrieuw in opmerking",
 "articlepage"	=> "Side lêze",
-"subjectpage"	=> "Side lêze", # For compatibility
 "userpage" 		=> "Brûkerside",
 "projectpage" 	=> "Metaside",
 "imagepage" 	=> "Ofbyldside",

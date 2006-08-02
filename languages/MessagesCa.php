@@ -200,7 +200,6 @@ $messages = array(
 'personaltools'         => 'Eines de l\'usuari',
 'postcomment'           => 'Envia un comentari',
 'articlepage'           => 'Mostra la pàgina',
-'subjectpage'           => 'Mostra el tema',
 'talk'                  => 'Discussió',
 'views'                 => 'Vistes',
 'toolbox'               => 'Eines',

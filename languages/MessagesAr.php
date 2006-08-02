@@ -521,7 +521,6 @@ $messages = array(
 'subcategories' => 'التصنيفات الفرعية',
 'subcategorycount' => 'يوجد $1 تصنيف فرعي في هذا التصنيف.',
 'subject' => 'موضوع',
-'subjectpage' => 'عرض العنوان',
 'successfulupload' => 'تحميل الملف بنجاح',
 'summary' => 'ملخص',
 'sysoptitle' => 'يتطلب صلاحيات مشغل نظام Sysop',

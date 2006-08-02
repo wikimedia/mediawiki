@@ -168,7 +168,6 @@ $messages = array(
 "postcomment"           => "Kirimkan komen",
 "toolbox"               => "Kotak Peralatan",
 "articlepage"         => "Lihat rencana", #"View article",
-"subjectpage"         => "Halaman Tajuk",
 "userpage"              => "Lihat halaman pengguna", #"View user page",
 "projectpage"         => "Lihat halaman meta", #"View meta page",
 "imagepage"             => "Paparkan halaman imej",
