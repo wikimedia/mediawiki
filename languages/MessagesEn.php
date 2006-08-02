@@ -174,9 +174,9 @@ $dateFormats = array(
 	'ymd date' => 'Y F j',
 	'ymd both' => 'H:i, Y F j',
 
-	'ISO 8601 time' => 'xnH:xni',
+	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
-	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
 $bookstoreList = array(
