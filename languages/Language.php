@@ -1466,11 +1466,9 @@ class Language {
 			# Allowing full message-style parsing would make simple requests 
 			# such as action=raw much more expensive than they need to be. 
 			# This will hopefully cover most cases.
-			if ( preg_match( '/{{grammar:(.*?)\|(.*?)}}/i', $talk, $m ) ) {
-				$talk = str_replace( ' ', '_', 
-					$this->convertGrammar( trim( $m[2] ), trim( $m[1] ) )
-				);
-			}
+			$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/', 
+				array( &$this, 'replaceGrammarInNamespace' ), $talk );
+			$talk = str_replace( ' ', '_', $talk );
 			$this->namespaceNames[NS_PROJECT_TALK] = $talk;
 		}
 		
@@ -1501,6 +1499,10 @@ class Language {
 			$this->defaultDateFormat = $wgAmericanDates ? 'mdy' : 'dmy';
 		}
 		wfProfileOut( __METHOD__ );
+	}
+
+	function replaceGrammarInNamespace( $m ) {
+		return $this->convertGrammar( trim( $m[2] ), trim( $m[1] ) );
 	}
 
 	static function getCaseMaps() {
