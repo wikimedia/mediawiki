@@ -1375,20 +1375,32 @@ END;
 		if( $wgTitle->isTalkPage() ) {
 			$link = $wgTitle->getSubjectPage();
 			switch( $link->getNamespace() ) {
-			case NS_MAIN:
-				$text = wfMsg('articlepage');
-				break;
-			case NS_USER:
-				$text = wfMsg('userpage');
-				break;
-			case NS_PROJECT:
-				$text = wfMsg('projectpage');
-				break;
-			case NS_IMAGE:
-				$text = wfMsg('imagepage');
-				break;
-			default:
-				$text= wfMsg('articlepage');
+				case NS_MAIN:
+					$text = wfMsg( 'articlepage' );
+					break;
+				case NS_USER:
+					$text = wfMsg( 'userpage' );
+					break;
+				case NS_PROJECT:
+					$text = wfMsg( 'projectpage' );
+					break;
+				case NS_IMAGE:
+					$text = wfMsg( 'imagepage' );
+					break;
+				case NS_MEDIAWIKI:
+					$text = wfMsg( 'mediawikipage' );
+					break;
+				case NS_TEMPLATE:
+					$text = wfMsg( 'templatepage' );
+					break;
+				case NS_HELP:
+					$text = wfMsg( 'viewhelppage' );
+					break;
+				case NS_CATEGORY:
+					$text = wfMsg( 'categorypage' );
+					break;
+				default:
+					$text = wfMsg( 'articlepage' );
 			}
 		} else {
 			$link = $wgTitle->getTalkPage();
