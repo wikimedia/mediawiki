@@ -1466,7 +1466,7 @@ class Language {
 			# Allowing full message-style parsing would make simple requests 
 			# such as action=raw much more expensive than they need to be. 
 			# This will hopefully cover most cases.
-			$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/', 
+			$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/i', 
 				array( &$this, 'replaceGrammarInNamespace' ), $talk );
 			$talk = str_replace( ' ', '_', $talk );
 			$this->namespaceNames[NS_PROJECT_TALK] = $talk;
