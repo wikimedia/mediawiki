@@ -225,7 +225,6 @@ function __autoload($className) {
 		'UsercreateTemplate' => 'includes/templates/Userlogin.php',
 		'UserloginTemplate' => 'includes/templates/Userlogin.php',
 		'Language' => 'languages/Language.php',
-		'LanguageUtf8' => 'languages/LanguageUtf8.php',
 	);
 	if ( isset( $localClasses[$className] ) ) {
 		$filename = $localClasses[$className];

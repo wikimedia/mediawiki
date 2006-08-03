@@ -142,7 +142,7 @@ class SpecialVersion {
 		if ( $a['name'] === $b['name'] )
 			return 0;
 		else
-			return LanguageUtf8::lc( $a['name'] ) > LanguageUtf8::lc( $b['name'] ) ? 1 : -1;
+			return Language::lc( $a['name'] ) > Language::lc( $b['name'] ) ? 1 : -1;
 	}
 
 	function formatCredits( $name, $version = null, $author = null, $url = null, $description = null) {
