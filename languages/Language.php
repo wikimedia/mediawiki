@@ -571,11 +571,11 @@ class Language {
 
 	/**
 	 * Calculate the day of the week for a 14-character timestamp
-	 * 0 for Sunday through to 6 for Saturday
+	 * 1 for Sunday through to 7 for Saturday
 	 * This takes about 100us on a slow computer
 	 */
 	static function calculateWeekday( $ts ) {
-		return date( 'w', wfTimestamp( TS_UNIX, $ts ) );
+		return date( 'w', wfTimestamp( TS_UNIX, $ts ) ) + 1;
 	}
 
 	/**
