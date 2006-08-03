@@ -111,6 +111,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   See maintenance/installExtension.php
 * Added Tajic (tg) language file.
 * (bug 6903) Added Cantonese localisation (zh-yue)
+* Fix regression in Korean and Japanese date formatting (day of week)
+
 
 == Languages updated ==
 
