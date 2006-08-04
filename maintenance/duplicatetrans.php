@@ -9,8 +9,6 @@
 
 require_once('commandLine.inc');
 
-echo "Note: the script also lists the messages which are not defined in this language file, please wait for the bugfix.\n\n";
-
 if ( isset( $args[0] ) ) {
 	$code = $args[0];
 } else {
@@ -22,13 +20,20 @@ if ( $code == 'en' ) {
 	exit();
 }
 
+$filename = Language::getFileName( "$IP/languages/Messages", $code, '.php' );
+if ( file_exists( $filename ) ) {
+	require( $filename );
+} else {
+	$messages = array();
+}
+
 $count = $total = 0;
 $wgEnglishMessages = Language::getMessagesFor( 'en' );
-$wgLocalMessages = Language::getMessagesFor( $code );
+$wgLocalMessages = $messages;
 
-foreach ( $wgEnglishMessages as $key => $msg ) {
+foreach ( $wgLocalMessages as $key => $msg ) {
 	++$total;
-	if ( $wgLocalMessages[$key] == $wgEnglishMessages[$key] ) {
+	if ( @$wgEnglishMessages[$key] == $msg ) {
 		echo "* $key\n";
 		++$count;
 	}
