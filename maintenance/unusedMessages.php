@@ -19,9 +19,16 @@ if ( $code == 'en' ) {
 	exit();
 }
 
+$filename = Language::getFileName( "$IP/languages/Messages", $code, '.php' );
+if ( file_exists( $filename ) ) {
+	require( $filename );
+} else {
+	$messages = array();
+}
+
 $count = $total = 0;
 $wgEnglishMessages = Language::getMessagesFor( 'en' );
-$wgLocalMessages = Language::getMessagesFor( $code );
+$wgLocalMessages = $messages;
 
 foreach ( $wgLocalMessages as $key => $msg ) {
 	++$total;

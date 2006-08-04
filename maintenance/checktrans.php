@@ -10,8 +10,6 @@
 /** */
 require_once('commandLine.inc');
 
-#die( "This script currently *does not work*, please wait for fix.\n" );
-
 if ( isset( $args[0] ) ) {
 	$code = $args[0];
 } else {
@@ -23,9 +21,16 @@ if ( $code == 'en' ) {
 	exit();
 }
 
+$filename = Language::getFileName( "$IP/languages/Messages", $code, '.php' );
+if ( file_exists( $filename ) ) {
+	require( $filename );
+} else {
+	$messages = array();
+}
+
 $count = $total = 0;
 $wgEnglishMessages = Language::getMessagesFor( 'en' );
-$wgLocalMessages = Language::getMessagesFor( $code );
+$wgLocalMessages = $messages;
 
 foreach ( $wgEnglishMessages as $key => $msg ) {
 	++$total;
