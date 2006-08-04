@@ -10,7 +10,7 @@
 /** */
 require_once('commandLine.inc');
 
-die( "This script currently *does not work*, please wait for fix." );
+die( "This script currently *does not work*, please wait for fix.\n" );
 
 if ( $wgLang->getCode() == 'en' ) {
 	print "Current selected language is English. Cannot check translations.\n";
