@@ -114,6 +114,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression in Korean and Japanese date formatting (day of week)
 * (bug 6919) Add English alias magic words for Tatar (tt) language file.
 * (bug 6753) Fixed broken Kazakh linktrail (kk)
+* (bug 6700) Added Kazakh language variants to Names.php
 
 == Languages updated ==
 

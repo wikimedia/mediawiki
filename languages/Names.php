@@ -104,6 +104,9 @@
 	'ki' => 'Gĩkũyũ',	# Kikuyu, correctness not guaranteed
 	'kj' => 'Kuanyama',		# Kuanyama (FIXME!)
 	'kk' => 'Қазақша',	# Kazakh
+	'kk-cn' => 'قازاق',	# Kazakh Arabic
+	'kk-kz' => 'Қазақ',	# Kazakh Cyrillic
+	'kk-tr' => 'Qazaq',	# Kazakh Latin
 	'kl' => 'Kalaallisut',	# Greenlandic
 	'km' => 'ភាសាខ្មែរ',	# Cambodian
 	'kn' => 'ಕನ್ನಡ',	# Kannada
