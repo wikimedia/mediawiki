@@ -3772,7 +3772,7 @@ class Parser
 	 *
 	 * @public
 	 *
-	 * @param mixed $id The magic word ID
+	 * @param string $id The magic word ID
 	 * @param mixed $callback The callback function (and object) to use
 	 * @param integer $flags a combination of the following flags: 
 	 *                SFH_NO_HASH No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
