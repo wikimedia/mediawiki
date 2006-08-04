@@ -10,17 +10,21 @@
 /** */
 require_once('commandLine.inc');
 
-if ( 'en' == $wgLanguageCode ) {
+die( "This script currently *does not work*, please wait for fix." );
+
+if ( $wgLang->getCode() == 'en' ) {
 	print "Current selected language is English. Cannot check translations.\n";
 	exit();
 }
 
 $count = $total = 0;
-$msgarray = 'wgAllMessages' . ucfirst( $wgLanguageCode );
+$wgEnglishLang = Language::factory( 'en' );
+$wgEnglishMessages = $wgEnglishLang->getAllMessages();
+$wgLocalMessages = $wgLang->getAllMessages();
 
-foreach ( $wgAllMessagesEn as $code => $msg ) {
+foreach ( $wgEnglishMessages as $code => $msg ) {
 	++$total;
-	if ( ! array_key_exists( $code, $$msgarray ) ) {
+	if ( !isset( $wgLocalMessages[$code] ) ) {
 		print "'{$code}' => \"$msg\",\n";
 		++$count;
 	}
