@@ -29,4 +29,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => "Баҳси_гурӯҳ",
 );
 
+$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхчшъэюяғӣқўҳҷцщыь]+)(.*)$/sDu';
+
 ?>
