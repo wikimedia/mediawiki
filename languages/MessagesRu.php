@@ -1,12 +1,20 @@
 <?php
 /** Russian (русский язык)
   *
-  * Based on Messages.php 15582 (2006-07-17)
-  * and ru.wikipedia MediaWiki namespace (2006-07-17)
+  * Based on MessagesEn.php 15823 (2006-07-30)
+  * and ru.wikipedia MediaWiki namespace (2006-07-30)
   *
-  * You can contact Alexander Sigachov (alexander.sigachov на Googgle Mail)
+  * You can contact Alexander Sigachov (alexander.sigachov на Google Mail)
   *
   */
+
+$separatorTransformTable = array(
+	',' => "\xc2\xa0",
+	'.' => ','
+);
+
+$fallback8bitEncoding = 'windows-1251';
+$linkPrefixExtension = true;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
@@ -14,9 +22,9 @@ $namespaceNames = array(
 	NS_MAIN             => '',
 	NS_TALK             => 'Обсуждение',
 	NS_USER             => 'Участник',
-	NS_USER_TALK        => 'Обсуждение_участника',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => 'Обсуждение_{{grammar:genitive|$1}}',
+	NS_USER_TALK        => 'Обсуждение_участника', 
+	#NS_PROJECT set by $wgMetaNamespace
+  	NS_PROJECT_TALK     => 'Обсуждение_{{grammar:genitive|$1}}',
 	NS_IMAGE            => 'Изображение',
 	NS_IMAGE_TALK       => 'Обсуждение_изображения',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -35,7 +43,7 @@ $quickbarSettings = array(
 );
 
 $skinNames = array(
-	'standard' => 'Стандартный',
+	'standard' => 'Стандартное',
 	'nostalgia' => 'Ностальгия',
 	'cologneblue' => 'Кёльнская тоска',
 	'davinci' => 'Да Винчи',
@@ -44,78 +52,6 @@ $skinNames = array(
 	'myskin' => 'Своё',
 	'chick' => 'Цыпа'
 );
-
-
-$bookstoreList = array(
-	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
-	'Books.Ru' => 'http://www.books.ru/shop/search/advanced?as%5Btype%5D=books&as%5Bname%5D=&as%5Bisbn%5D=$1&as%5Bauthor%5D=&as%5Bmaker%5D=&as%5Bcontents%5D=&as%5Binfo%5D=&as%5Bdate_after%5D=&as%5Bdate_before%5D=&as%5Bprice_less%5D=&as%5Bprice_more%5D=&as%5Bstrict%5D=%E4%E0&as%5Bsub%5D=%E8%F1%EA%E0%F2%FC&x=22&y=8',
-	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
-);
-
-
-# Note to translators:
-#   Please include the English words as synonyms.  This allows people
-#   from other wikis to contribute more easily.
-#
-$magicWords = array(
-#   ID                                 CASE  SYNONYMS
-	'redirect'               => array( 0,    '#REDIRECT', '#ПЕРЕНАПРАВЛЕНИЕ', '#ПЕРЕНАПР'),
-	'notoc'                  => array( 0,    '__NOTOC__', '__БЕЗСОДЕРЖАНИЯ__'),
-	'forcetoc'               => array( 0,    '__FORCETOC__'),
-	'toc'                    => array( 0,    '__TOC__', '__СОДЕРЖАНИЕ__'),
-	'noeditsection'          => array( 0,    '__NOEDITSECTION__', '__БЕЗРЕДАКТИРОВАНИЯРАЗДЕЛА__'),
-	'start'                  => array( 0,    '__START__', '__НАЧАЛО__'),
-	'currentmonth'           => array( 1,    'CURRENTMONTH', 'ТЕКУЩИЙМЕСЯЦ'),
-	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦА'),
-	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦАРОД'),
-	'currentmonthabbrev'     => array( 1,    'CURRENTMONTHABBREV', 'НАЗВАНИЕТЕКУЩЕГОМЕСЯЦААБР'),
-	'currentday'             => array( 1,    'CURRENTDAY','ТЕКУЩИЙДЕНЬ'),
-	'currentday2'            => array( 1,    'CURRENTDAY2','ТЕКУЩИЙДЕНЬ2'),
-	'currentdayname'         => array( 1,    'CURRENTDAYNAME','НАЗВАНИЕТЕКУЩЕГОДНЯ'),
-	'currentyear'            => array( 1,    'CURRENTYEAR','ТЕКУЩИЙГОД'),
-	'currenttime'            => array( 1,    'CURRENTTIME','ТЕКУЩЕЕВРЕМЯ'),
-	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES','КОЛИЧЕСТВОСТАТЕЙ'),
-	'numberoffiles'          => array( 1,    'NUMBEROFFILES', 'КОЛИЧЕСТВОФАЛОВ'),
-	'pagename'               => array( 1,    'PAGENAME','НАЗВАНИЕСТРАНИЦЫ'),
-	'pagenamee'              => array( 1,    'PAGENAMEE','НАЗВАНИЕСТРАНИЦЫ2'),
-	'namespace'              => array( 1,    'NAMESPACE','ПРОСТРАНСТВОИМЁН'),
-	'msg'                    => array( 0,    'MSG:'),
-	'subst'                  => array( 0,    'SUBST:','ПОДСТ:'),
-	'msgnw'                  => array( 0,    'MSGNW:'),
-	'end'                    => array( 0,    '__END__','__КОНЕЦ__'),
-	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb', 'мини'),
-	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1', 'мини=$1'),
-	'img_right'              => array( 1,    'right','справа'),
-	'img_left'               => array( 1,    'left','слева'),
-	'img_none'               => array( 1,    'none'),
-	'img_width'              => array( 1,    '$1px','$1пкс'),
-	'img_center'             => array( 1,    'center', 'centre','центр'),
-	'img_framed'             => array( 1,    'framed', 'enframed', 'frame','обрамить'),
-	'int'                    => array( 0,    'INT:'),
-	'sitename'               => array( 1,    'SITENAME','НАЗВАНИЕСАЙТА'),
-	'ns'                     => array( 0,    'NS:','ПИ:'),
-	'localurl'               => array( 0,    'LOCALURL:'),
-	'localurle'              => array( 0,    'LOCALURLE:'),
-	'server'                 => array( 0,    'SERVER','СЕРВЕР'),
-	'servername'             => array( 0,    'SERVERNAME', 'НАЗВАНИЕСЕРВЕРА'),
-	'scriptpath'             => array( 0,    'SCRIPTPATH', 'ПУТЬКСКРИПТУ'),
-	'grammar'                => array( 0,    'GRAMMAR:'),
-	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__', '__NOTC__', '__БЕЗПРЕОБРАЗОВАНИЯЗАГОЛОВКА__'),
-	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__', '__БЕЗПРЕОБРАЗОВАНИЯТЕКСТА__'),
-	'currentweek'            => array( 1,    'CURRENTWEEK','ТЕКУЩАЯНЕДЕЛЯ'),
-	'currentdow'             => array( 1,    'CURRENTDOW','ТЕКУЩИЙДЕНЬНЕДЕЛИ'),
-	'revisionid'             => array( 1,    'REVISIONID', 'ИДВЕРСИИ'),
-);
-
-$separatorTransformTable = array(
-	',' => "\xc2\xa0",
-	'.' => ','
-);
-
-$fallback8bitEncoding = 'windows-1251';
-$linkPrefixExtension = true;
-$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
@@ -129,7 +65,114 @@ $dateFormats = array(
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y xg j',
 	'ymd both' => 'H:i, Y xg j',
+
+	'ISO 8601 time' => 'xnH:xni',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni',
 );
+
+$bookstoreList = array(
+	'Findbook.ru' => 'http://findbook.ru/search/d0?ptype=4&pvalue=$1',
+	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
+	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
+	'Books.Ru' => 'http://www.books.ru/shop/search/advanced?as%5Btype%5D=books&as%5Bname%5D=&as%5Bisbn%5D=$1&as%5Bauthor%5D=&as%5Bmaker%5D=&as%5Bcontents%5D=&as%5Binfo%5D=&as%5Bdate_after%5D=&as%5Bdate_before%5D=&as%5Bprice_less%5D=&as%5Bprice_more%5D=&as%5Bstrict%5D=%E4%E0&as%5Bsub%5D=%E8%F1%EA%E0%F2%FC&x=22&y=8',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+);
+
+
+# Note to translators:
+#   Please include the English words as synonyms.  This allows people
+#   from other wikis to contribute more easily.
+#
+$magicWords = array(
+#   ID                                 CASE  SYNONYMS
+	'redirect'               => array( 0,    '#REDIRECT', '#ПЕРЕНАПРАВЛЕНИЕ', '#ПЕРЕНАПР'),
+	'notoc'                  => array( 0,    '__NOTOC__', '__БЕЗ_ОГЛ__'),
+	'nogallery'  			 => array( 0,    '__NOGALLERY__', '__БЕЗ_ГАЛЕРЕИ__'),
+	'forcetoc'               => array( 0,    '__FORCETOC__',  '__ОБЯЗ_ОГЛ__'),
+	'toc'                    => array( 0,    '__TOC__', '__ОГЛ__'),
+	'noeditsection'          => array( 0,    '__NOEDITSECTION__', '__БЕЗ_РЕДАКТИРОВАНИЯ_РАЗДЕЛА__'),
+	'start'                  => array( 0,    '__START__', '__НАЧАЛО__'),
+	'currentmonth'           => array( 1,    'CURRENTMONTH', 'ТЕКУЩИЙ_МЕСЯЦ'),
+	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME','НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА'),
+	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN','НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА_РОД'),
+	'currentmonthabbrev'     => array( 1,    'CURRENTMONTHABBREV', 'НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА_АБР'),
+	'currentday'             => array( 1,    'CURRENTDAY','ТЕКУЩИЙ_ДЕНЬ'),
+	'currentday2'            => array( 1,    'CURRENTDAY2','ТЕКУЩИЙ_ДЕНЬ_2'),
+	'currentdayname'         => array( 1,    'CURRENTDAYNAME','НАЗВАНИЕ_ТЕКУЩЕГО_ДНЯ'),
+	'currentyear'            => array( 1,    'CURRENTYEAR','ТЕКУЩИЙ_ГОД'),
+	'currenttime'            => array( 1,    'CURRENTTIME','ТЕКУЩЕЕ_ВРЕМЯ'),
+	'numberofpages'          => array( 1,    'NUMBEROFPAGES', 'КОЛИЧЕСТВО_СТРАНИЦ'),
+	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES','КОЛИЧЕСТВО_СТАТЕЙ'),
+	'numberoffiles'          => array( 1,    'NUMBEROFFILES', 'КОЛИЧЕСТВО_ФАЙЛОВ'),
+	'numberofusers'          => array( 1,    'NUMBEROFUSERS', 'КОЛИЧЕСТВО_УЧАСТНИКОВ'),
+	'pagename'               => array( 1,    'PAGENAME','НАЗВАНИЕ_СТРАНИЦЫ'),
+	'pagenamee'              => array( 1,    'PAGENAMEE','НАЗВАНИЕ_СТРАНИЦЫ_2'),
+	'namespace'              => array( 1,    'NAMESPACE','ПРОСТРАНСТВО_ИМЁН'),
+	'namespacee'              => array( 1,    'NAMESPACEE','ПРОСТРАНСТВО_ИМЁН_2'),
+	'talkspace'              => array( 1,    'TALKSPACE', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ'),
+	'talkspacee'             => array( 1,    'TALKSPACEE', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ_2'),
+	'subjectspace'           => array( 1,    'SUBJECTSPACE', 'ARTICLESPACE', 'ПРОСТРАНСТВО_СТАТЕЙ' ),
+	'subjectspacee'          => array( 1,    'SUBJECTSPACEE', 'ARTICLESPACEE', 'ПРОСТРАНСТВО_СТАТЕЙ_2' ),
+	'fullpagename'           => array( 1,    'FULLPAGENAME', 'ПОЛНОЕ_НАЗВАНИЕ_СТРАНЦЫ' ),
+	'fullpagenamee'          => array( 1,    'FULLPAGENAMEE', 'ПОЛНОЕ_НАЗВАНИЕ_СТРАНЦЫ_2' ),
+	'subpagename'            => array( 1,    'SUBPAGENAME', 'НАЗВАНИЕ_ПОДСТРАНИЦЫ' ),
+	'subpagenamee'           => array( 1,    'SUBPAGENAMEE', 'НАЗВАНИЕ_ПОДСТРАНИЦЫ_2'),
+	'basepagename'           => array( 1,    'BASEPAGENAME', 'ОСНОВА_НАЗВАНИЯ_СТРАНИЦЫ'),
+	'basepagenamee'          => array( 1,    'BASEPAGENAMEE', 'ОСНОВА_НАЗВАНИЯ_СТРАНИЦЫ_2'),
+	'talkpagename'           => array( 1,    'TALKPAGENAME', 'НАЗВАНИЕ_СТРАНИЦЫ_ОБСУЖДЕНИЯ'),
+	'talkpagenamee'          => array( 1,    'TALKPAGENAMEE', 'НАЗВАНИЕ_СТРАНИЦЫ_ОБСУЖДЕНИЯ_2'),
+	'subjectpagename'        => array( 1,    'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'НАЗВАНИЕ_СТРАНИЦЫ_СТАТЬИ' ),
+	'subjectpagenamee'       => array( 1,    'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE', 'НАЗВАНИЕ_СТРАНИЦЫ_СТАТЬИ_2' ),
+	'msg'                    => array( 0,    'MSG:', 'СООБЩ:'),
+	'subst'                  => array( 0,    'SUBST:','ПОДСТ:'),
+	'msgnw'                  => array( 0,    'MSGNW:', 'СООБЩ_БЕЗ_ВИКИ:'),
+	'end'                    => array( 0,    '__END__','__КОНЕЦ__'),
+	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb', 'мини'),
+	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1', 'мини=$1'),
+	'img_right'              => array( 1,    'right','справа'),
+	'img_left'               => array( 1,    'left','слева'),
+	'img_none'               => array( 1,    'none', 'без'),
+	'img_width'              => array( 1,    '$1px','$1пкс'),
+	'img_center'             => array( 1,    'center', 'centre','центр'),
+	'img_framed'             => array( 1,    'framed', 'enframed', 'frame','обрамить'),
+	'int'                    => array( 0,    'INT:', 'ВНУТР:'),
+	'sitename'               => array( 1,    'SITENAME','НАЗВАНИ_ЕСАЙТА'),
+	'ns'                     => array( 0,    'NS:','ПИ:'),
+	'localurl'               => array( 0,    'LOCALURL:', 'ЛОКАЛЬНЫЙ_АДРЕС:'),
+	'localurle'              => array( 0,    'LOCALURLE:', 'ЛОКАЛЬНЫЙ_АДРЕС_2:'),
+	'server'                 => array( 0,    'SERVER','СЕРВЕР'),
+	'servername'             => array( 0,    'SERVERNAME', 'НАЗВАНИЕ_СЕРВЕРА'),
+	'scriptpath'             => array( 0,    'SCRIPTPATH', 'ПУТЬ_К_СКРИПТУ'),
+	'grammar'                => array( 0,    'GRAMMAR:', 'ПАДЕЖ:'),
+	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__', '__NOTC__', '__БЕЗ_ПРЕОБРАЗОВАНИЯ_ЗАГОЛОВКА__'),
+	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__', '__БЕЗ_ПРЕОБРАЗОВАНИЯ_ТЕКСТА__'),
+	'currentweek'            => array( 1,    'CURRENTWEEK','ТЕКУЩАЯ_НЕДЕЛЯ'),
+	'currentdow'             => array( 1,    'CURRENTDOW','ТЕКУЩИЙ_ДЕНЬ_НЕДЕЛИ'),
+	'revisionid'             => array( 1,    'REVISIONID', 'ИД_ВЕРСИИ'),
+	'plural'                 => array( 0,    'PLURAL:', 'МНОЖЕСТВЕННОЕ_ЧИСЛО:' ),
+	'fullurl'                => array( 0,    'FULLURL:', 'ПОЛНЫЙ_АДРЕС:' ),
+	'fullurle'               => array( 0,    'FULLURLE:', 'ПОЛНЫЙ_АДРЕС_2:' ),
+	'lcfirst'                => array( 0,    'LCFIRST:', 'ПЕРВАЯ_БУКВА_МАЛЕНЬКАЯ:' ),
+	'ucfirst'                => array( 0,    'UCFIRST:' , 'ПЕРВАЯ_БУКВА_БОЛЬШАЯ:' ),
+	'lc'                     => array( 0,    'LC:' , 'МАЛЕНЬКИМИ_БУКВАМИ:' ),
+	'uc'                     => array( 0,    'UC:', 'БОЛЬШИМИ_БУКВАМИ:' ),
+	'raw'                    => array( 0,    'RAW:', 'НЕОБРАБ:' ),
+	'displaytitle'           => array( 1,    'DISPLAYTITLE' , 'ПОКАЗАТЬ_ЗАГОЛОВОК' ),
+	'rawsuffix'              => array( 1,    'R' , 'Н' ),
+	'newsectionlink'         => array( 1,    '__NEWSECTIONLINK__', '__ССЫЛКА_НА_НОВЫЙ_РАЗДЕЛ__' ),
+	'currentversion'         => array( 1,    'CURRENTVERSION' , 'ТЕКУЩАЯ_ВЕРСИЯ' ),
+	'urlencode'              => array( 0,    'URLENCODE:' , 'ЗАКОДИРОВАННЫЙ_АДРЕС:' ),
+	'currenttimestamp'       => array( 1,    'CURRENTTIMESTAMP' , 'ТЕКУЩЕЕ_ВРЕМЯ' ),
+	'directionmark'          => array( 1,    'DIRECTIONMARK', 'DIRMARK' , 'НАПРАВЛЕНИЕ_ПИСЬМА' ),
+	'language'               => array( 0,    '#LANGUAGE:' , '#ЯЗЫК:' ),
+	'contentlanguage'        => array( 1,    'CONTENTLANGUAGE', 'CONTENTLANG', 'ЯЗЫК_СОДЕРЖАНИЯ' ),
+	'pagesinnamespace'       => array( 1,    'PAGESINNAMESPACE:', 'PAGESINNS:' , 'СТРАНИЦ_В_ПРОСТРАНСТВЕ_ИМЁН:' ),
+	'numberofadmins'         => array( 1,    'NUMBEROFADMINS', 'КОЛИЧЕСТВО_АДМИНИСТРАТОРОВ' ),
+	'formatnum'              => array( 0,    'FORMATNUM', 'ФОРМАТИРОВАТЬ_ЧИСЛО' ),
+);
+
+$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
 
 $messages = array(
 
@@ -235,7 +278,7 @@ $messages = array(
 == Некоторые полезные ресурсы ==
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Список возможных настроек];
 * [http://www.mediawiki.org/wiki/Help:FAQ Часто задаваемые вопросы и ответы по MediaWiki];
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Список рассылки с уведомлением о выходе новых версий MediaWiki].',
+* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].',
 
 'portal'                => 'Сообщество',
 'portal-url'            => '{{ns:project}}:Портал сообщества',
@@ -283,7 +326,7 @@ $messages = array(
 'tagline'             => 'Материал из {{grammar:genitive|{{SITENAME}}}}.',
 'help'                  => 'Справка',
 'search'                => 'Поиск',
-'searchbutton'          => 'Поиск',
+'searchbutton'          => 'Найти',
 'go'            => 'Перейти',
 'history'             => 'История',
 'history_short' => 'История',
@@ -652,7 +695,7 @@ $1',
 'loadhist'              => 'Загрузка журнала изменений страницы',
 'currentrev'    => 'Текущая версия',
 'revisionasof'          => 'Версия $1',
-'old-revision-navigation'   => 'Версия как $1; $2<br />($6) $3 | $2 | $4 ($7)',
+'old-revision-navigation'   => 'Версия от $1<br />($6) $3 | $2 | $4 ($7)',
 'previousrevision'      => '← Предыдущая',
 'nextrevision'          => 'Следующая →',
 'currentrevisionlink'   => 'Текущая версия',
