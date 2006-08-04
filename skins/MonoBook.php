@@ -269,7 +269,12 @@ class MonoBookTemplate extends QuickTemplate {
 	<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
 </div>
 <?php $this->html('reporttime') ?>
+<?php if ( $this->data['debug'] ): ?>
+<!-- Debug output:
+<?php $this->text( 'debug' ); ?>
 
+-->
+<?php endif; ?>
 </body></html>
 <?php
 	wfRestoreWarnings();
