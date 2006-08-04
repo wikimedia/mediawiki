@@ -11,23 +11,28 @@ require_once('commandLine.inc');
 
 echo "Note: the script also lists the messages which are not defined in this language file, please wait for the bugfix.\n\n";
 
-if ( $wgLang->getCode() == 'en' ) {
+if ( isset( $args[0] ) ) {
+	$code = $args[0];
+} else {
+	$code = $wgLang->getCode();
+}
+
+if ( $code == 'en' ) {
 	print "Current selected language is English. Cannot check translations.\n";
 	exit();
 }
 
 $count = $total = 0;
-$wgEnglishLang = Language::factory( 'en' );
-$wgEnglishMessages = $wgEnglishLang->getAllMessages();
-$wgLocalMessages = $wgLang->getAllMessages();
+$wgEnglishMessages = Language::getMessagesFor( 'en' );
+$wgLocalMessages = Language::getMessagesFor( $code );
 
-foreach ( $wgEnglishMessages as $code => $msg ) {
+foreach ( $wgEnglishMessages as $key => $msg ) {
 	++$total;
-	if ( $wgLocalMessages[$code] == $wgEnglishMessages[$code] ) {
-		echo "* $code\n";
+	if ( $wgLocalMessages[$key] == $wgEnglishMessages[$key] ) {
+		echo "* $key\n";
 		++$count;
 	}
 }
 
-echo "{$count} messages of {$total} are duplicates\n";
+echo "{$count} messages of {$total} are duplicates in the language {$code}\n";
 ?>

@@ -157,7 +157,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	if ( isset( $options['conf'] ) ) {
 		$settingsFile = $options['conf'];
 	} else {
-		$settingsFile = "$IP/LocalSettings.php";
+		$settingsFile = "../he/LocalSettings.php";
 	}
 
 	if ( ! is_readable( $settingsFile ) ) {

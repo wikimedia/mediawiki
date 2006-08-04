@@ -8,8 +8,8 @@
 
 require_once( 'commandLine.inc' );
 
-$wgEnglishLang = Language::factory( 'en' );
-foreach( array_keys( $wgEnglishLang->getAllMessages() ) as $key ) {
+$wgEnglishMessages = array_keys( Language::getMessagesFor( 'en' ) );
+foreach( $wgEnglishMessages as $key ) {
 	echo "$key\n";
 }
 
