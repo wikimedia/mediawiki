@@ -112,7 +112,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added Tajic (tg) language file.
 * (bug 6903) Added Cantonese localisation (zh-yue)
 * Fix regression in Korean and Japanese date formatting (day of week)
-
+* (bug 6919) Add English alias magic words for Tatar (tt) language file.
 
 == Languages updated ==
 
@@ -134,6 +134,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Romani (rmy)
 * Russian (ru)
 * Tajic (tg)
+* Tatar (tt)
 * Telugu (te)
 
 == Compatibility ==
