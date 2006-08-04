@@ -1,7 +1,7 @@
 <?php
 /**
  * Prints out messages that are the same as the message with the corrisponding
- * key in the Language.php file
+ * key in the English file
  *
  * @package MediaWiki
  * @subpackage Maintenance
@@ -9,17 +9,21 @@
 
 require_once('commandLine.inc');
 
-if ( 'en' == $wgLanguageCode ) {
+echo "Note: the script also lists the messages which are not defined in this language file, please wait for the bugfix.\n\n";
+
+if ( $wgLang->getCode() == 'en' ) {
 	print "Current selected language is English. Cannot check translations.\n";
 	exit();
 }
 
 $count = $total = 0;
-$msgarray = 'wgAllMessages' . ucfirst( $wgLanguageCode );
+$wgEnglishLang = Language::factory( 'en' );
+$wgEnglishMessages = $wgEnglishLang->getAllMessages();
+$wgLocalMessages = $wgLang->getAllMessages();
 
-foreach ( $$msgarray as $code => $msg ) {
+foreach ( $wgEnglishMessages as $code => $msg ) {
 	++$total;
-	if ( @$wgAllMessagesEn[$code] == $msg ) {
+	if ( $wgLocalMessages[$code] == $wgEnglishMessages[$code] ) {
 		echo "* $code\n";
 		++$count;
 	}

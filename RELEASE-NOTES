@@ -115,6 +115,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6919) Add English alias magic words for Tatar (tt) language file.
 * (bug 6753) Fixed broken Kazakh linktrail (kk)
 * (bug 6700) Added Kazakh language variants to Names.php
+* (bug 6827) some i18n specific maintenance scripts fails after merge of localisation-work branch
 
 == Languages updated ==
 

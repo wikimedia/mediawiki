@@ -8,17 +8,19 @@
 
 require_once('commandLine.inc');
 
-if ( 'en' == $wgLanguageCode ) {
+if ( $wgLang->getCode() == 'en' ) {
 	print "Current selected language is English. Cannot check translations.\n";
 	exit();
 }
 
 $count = $total = 0;
-$msgarray = 'wgAllMessages' . ucfirst( $wgLanguageCode );
+$wgEnglishLang = Language::factory( 'en' );
+$wgEnglishMessages = $wgEnglishLang->getAllMessages();
+$wgLocalMessages = $wgLang->getAllMessages();
 
-foreach ( $$msgarray as $code => $msg ) {
+foreach ( $wgLocalMessages as $code => $msg ) {
 	++$total;
-	if ( ! array_key_exists( $code, $wgAllMessagesEn ) ) {
+	if ( !isset( $wgEnglishMessages[$code] ) ) {
 		print "* $code\n";
 		++$count;
 	}
