@@ -51,7 +51,11 @@ class WikiExporter {
 	 * main query is still running.
 	 *
 	 * @param Database $db
-	 * @param int $history one of MW_EXPORT_FULL or MW_EXPORT_CURRENT
+	 * @param mixed $history one of MW_EXPORT_FULL or MW_EXPORT_CURRENT, or an 
+	 *                       associative array:
+	 *                         offset: non-inclusive offset at which to start the query
+	 *                         limit: maximum number of rows to return
+	 *                         dir: "asc" or "desc" timestamp order
 	 * @param int $buffer one of MW_EXPORT_BUFFER or MW_EXPORT_STREAM
 	 */
 	function WikiExporter( &$db, $history = MW_EXPORT_CURRENT,
@@ -168,6 +172,9 @@ class WikiExporter {
 		$revision = $this->db->tableName( 'revision' );
 		$text     = $this->db->tableName( 'text' );
 		
+		$order = 'ORDER BY page_id';
+		$limit = '';
+		
 		if( $this->history == MW_EXPORT_FULL ) {
 			$join = 'page_id=rev_page';
 		} elseif( $this->history == MW_EXPORT_CURRENT ) {
@@ -175,6 +182,25 @@ class WikiExporter {
 				$this->do_list_authors ( $page , $revision , $cond );
 			}
 			$join = 'page_id=rev_page AND page_latest=rev_id';
+		} elseif ( is_array( $this->history ) ) {
+			$join = 'page_id=rev_page';
+			if ( $this->history['dir'] == 'asc' ) {
+				$op = '>';
+				$order .= ', rev_timestamp';
+			} else {
+				$op = '<';
+				$order .= ', rev_timestamp DESC';
+			}
+			if ( !empty( $this->history['offset'] ) ) {
+				$join .= " AND rev_timestamp $op " . $this->db->addQuotes( 
+					$this->db->timestamp( $this->history['offset'] ) );
+			}
+			if ( !empty( $this->history['limit'] ) ) {
+				$limitNum = intval( $this->history['limit'] );
+				if ( $limitNum > 0 ) {
+					$limit = "LIMIT $limitNum";
+				}
+			}
 		} else {
 			wfProfileOut( $fname );
 			return new WikiError( "$fname given invalid history dump type." );
@@ -198,14 +224,14 @@ class WikiExporter {
 					$page $pageindex,
 					$revision $revindex
 					WHERE $where $join
-					ORDER BY page_id";
+					$order $limit";
 		} else {
 			$sql = "SELECT $straight * FROM
 					$page $pageindex,
 					$revision $revindex,
 					$text
 					WHERE $where $join AND rev_text_id=old_id
-					ORDER BY page_id";
+					$order $limit";
 		}
 		$result = $this->db->query( $sql, $fname );
 		$wrapper = $this->db->resultObject( $result );
