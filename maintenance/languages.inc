@@ -21,7 +21,6 @@ class languages {
 		'history_copyright',
 		'licenses',
 		'linkprefix',
-		'linktrail',
 		'loginend',
 		'loginlanguagelinks',
 		'markaspatrolledlink',
