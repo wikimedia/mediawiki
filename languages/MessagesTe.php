@@ -103,7 +103,6 @@ $messages = array(
 'nov'                   => 'నవంబర్',
 'dec'                   => 'డిసెంబర్‌',
 'categories'            => '{{PLURAL:$1|వర్గం|వర్గాలు}}',
-'category'              => 'వర్గము',
 'category_header'       => '"$1" వర్గంలో వ్యాసాలు',
 'subcategories'         => 'ఉపవర్గములు',
 'mainpage'              => 'మొదటి పేజీ',

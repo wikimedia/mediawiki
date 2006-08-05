@@ -78,7 +78,6 @@ $messages = array(
 # Bits of text used by many pages: # Birçok sayfada geçen metinler
 #
 'categories' => 'Kateqoriyalar',
-'category' => 'kateqoriya',
 'category_header' => '"$1" kategoriyasındaki məqalələr',
 'subcategories' => 'Alt kategoriyalar',
 

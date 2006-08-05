@@ -133,7 +133,6 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => '{{PLURAL:$1|Kategori|Kategori}}',
-"category" => "kategori",
 "category_header" => "Artikel dalam kategori \"$1\"",
 "subcategories" => "Subkategori",
 

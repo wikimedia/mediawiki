@@ -130,7 +130,6 @@ $messages = array(
 'nov'                   => 'nov',
 'dec'                   => 'dec',
 'categories'            => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category'              => 'kategori',
 'category_header'       => 'Artiklar i kategorin "$1"',
 'subcategories'         => 'Underkategorier',
 'mainpage'              => 'Huvudsida',

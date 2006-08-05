@@ -265,7 +265,6 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => '{{PLURAL:$1|Категория|Категории|Категории}}',
-'category' => 'категория',
 'category_header' => 'Статьи в категории «$1»',
 'subcategories' => 'Подкатегории',
 

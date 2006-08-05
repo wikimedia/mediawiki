@@ -126,7 +126,6 @@ $messages = array(
 'nov'                   => '11',
 'dec'                   => '12',
 'categories'            => '분류',
-'category'              => '분류',
 'category_header'       => '"$1" 분류에 속해 있는 문서',
 'subcategories'         => '하위 분류',
 'mainpage'              => '대문',

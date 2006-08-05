@@ -42,7 +42,6 @@ $messages = array(
 'nstab-category' => 'Янз',
 'talkpage' => 'Ухалвр',
 'history_short' => 'Чикллһнə бүрткл',
-'category' => 'Янз',
 
 
 'createaccount' => 'Выль вики-авторлэн регистрациез',

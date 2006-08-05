@@ -118,9 +118,8 @@ $messages = array(
 # Bits of text used by many pages:
 #
 "categories" => "页面分类",
- 	 "category" => "分类",
- 	 "category_header" => "类别”$1“中的条目",
- 	 "subcategories" => "附分类",
+"category_header" => "类别”$1“中的条目",
+"subcategories" => "附分类",
 "mainpage"		=> "首页",
 "about"			=> "关于",
 "aboutsite"      => "关于{{SITENAME}}",

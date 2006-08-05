@@ -60,7 +60,6 @@ $messages = array(
 'nov'                   => 'ser',
 'dec'                   => 'ber',
 'categories'            => '{{PLURAL:$1|Kategorî|Kategorî}}',
-'category'              => 'kategorî',
 'category_header'       => 'Gotarên di kategoriya "$1" de',
 'subcategories'         => 'Binkategorî',
 'mainpage'              => 'Destpêk',

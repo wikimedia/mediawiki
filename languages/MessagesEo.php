@@ -101,7 +101,6 @@ $messages = array(
 'aug'                   => 'Aŭg',
 'oct'                   => 'Okt',
 'categories'            => '{{PLURAL:$1|Kategorio|Kategorioj}}',
-'category'              => 'kategorio',
 'category_header'       => 'Artikoloj en kategorio "$1"',
 'subcategories'         => 'Subkategorioj',
 'mainpage'              => 'Ĉefpaĝo',

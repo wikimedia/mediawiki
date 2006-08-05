@@ -158,7 +158,6 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories'          => '{{PLURAL:$1|Luokka|Luokat}}',
-'category'            => 'Luokka',
 'category_header'     => 'Sivut, jotka ovat luokassa $1',
 'subcategories'       => 'Alaluokat',
 'mainpage'            => 'Etusivu',

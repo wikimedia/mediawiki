@@ -143,7 +143,6 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => '{{PLURAL:$1|Categoreye|Categoreyes}}',
-'category' => 'categoreye',
 'category_header' => 'Årtikes el categoreye «$1»',
 'subcategories' => 'Dizo-categoreyes',
 # using uppercase A-Z break things...

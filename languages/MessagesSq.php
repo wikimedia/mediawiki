@@ -125,7 +125,6 @@ $messages = array(
 'nov'                   => 'Nën',
 'dec'                   => 'Dhj',
 'categories'            => '{{PLURAL:$1|Kategoria|Kategoritë}}',
-'category'              => 'kategori',
 'category_header'       => 'Artikuj në kategorinë "$1"',
 'subcategories'         => 'Nën-kategori',
 'mainpage'              => 'Faqja Kryesore',

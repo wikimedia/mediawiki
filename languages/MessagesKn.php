@@ -109,7 +109,6 @@ $messages = array(
 'cannotdelete' => "ಈ ಪುಟ ಅಥವಾ ಚಿತ್ರವನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ. (ಬೇರೊಬ್ಬ ಸದಸ್ಯರಿ೦ದ ಆಗಲೇ ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು.)",
 'categories' => "ವರ್ಗಗಳು",
 'categoriespagetext' => "ವಿಕಿಯಲ್ಲಿ ಈ ಕೆಳಗಿನ ವರ್ಗಗಳಿವೆ",
-'category' => "ವರ್ಗ",
 'category_header' => "\"$1\" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು",
 'categoryarticlecount' => "ಈ ವರ್ಗದಲ್ಲಿ $1 ಲೇಖನಗಳಿವೆ.",
 'changepassword' => "ಪ್ರವೇಶ ಪದ ಬದಲಾಯಿಸಿ",

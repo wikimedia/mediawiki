@@ -158,7 +158,6 @@ $messages = array(
 'nov'                   => 'ное',
 'dec'                   => 'дек',
 'categories'            => '{{PLURAL:$1|Категорија|Категории}}',
-'category'              => 'категорија',
 'category_header'       => 'Статии во категоријата "$1"',
 'subcategories'         => 'Подкатегории',
 'mainpage'              => 'Главна страница',

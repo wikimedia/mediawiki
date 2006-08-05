@@ -272,7 +272,6 @@ $messages = array(
 'cantrollback' => 'Немагчыма скасаваць зьмену; апошні рэдактар — адзіны аўтар гэтай старонкі.',
 'categories' => '{{PLURAL:$1|Катэгорыя|Катэгорыі|Катэгорыі}}',
 'categoriespagetext' => 'У {{GRAMMAR:месны|{{SITENAME}}}} існуюць наступныя катэгорыі:',
-'category' => 'катэгорыя',
 'category_header' => 'Артыкулы ў катэгорыі «$1»',
 'categoryarticlecount' => 'У гэтай катэгорыі ёсьць $1 {{PLURAL:$1|артыкул|артыкулы|артыкулаў}}.',
 'changepassword' => 'Зьмяніць пароль',

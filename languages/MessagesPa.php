@@ -89,7 +89,6 @@ $messages = array(
 'dec'			=> 'ਦਸੰਬਰ',
 
 'categories'	=> 'ਸ਼੍ਰੇਣੀਆਂ',
-'category'		=> 'ਸ਼੍ਰੇਣੀ',
 'category_header'	=> 'ਸ਼੍ਰੇਣੀ \'$1\' ਵਾਲੇ ਲੇਖ',
 'subcategories'	=> 'ਉਪਸ਼੍ਰੇਣੀਆਂ',
 

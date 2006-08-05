@@ -66,7 +66,6 @@ $messages = array(
 'bysize' => "асмæ гæсгæ",
 'categories' => "Категоритæ",
 'categoriespagetext' => "Мæнæ ахæм категоритæ ирон Википедийы ис.",
-'category' => "категори",
 'category_header' => "Категори \"$1\"",
 'categoryarticlecount' => "Ацы категорийы мидæг $1 статьяйы ис.",
 'contributions' => "Йæ бавæрд",

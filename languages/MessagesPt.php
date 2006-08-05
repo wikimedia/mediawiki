@@ -198,7 +198,6 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => '{{PLURAL:$1|Categoria|Categorias}}',
-'category' => 'Categoria',
 'category_header' => 'Artigos na categoria "$1"',
 'subcategories' => 'Subcategorias',
 

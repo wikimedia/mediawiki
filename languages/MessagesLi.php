@@ -101,7 +101,6 @@ $messages = array(
 'nov'                   => 'nov',
 'dec'                   => 'dec',
 'categories'            => '{{PLURAL:$1|Categorie|Categorieë}}',
-'category'              => 'Categorie',
 'category_header'       => 'Artikele in categorie "$1"',
 'subcategories'         => 'Subkattegorië',
 'mainpage'              => 'Huidpazjena',
