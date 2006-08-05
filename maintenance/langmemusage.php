@@ -17,8 +17,8 @@ $memlast = $memstart = memory_get_usage();
 
 print 'Base memory usage: '.$memstart."\n";
 
-foreach($langtool->getList() as $langcode) {
-	require_once('languages/Language'.$langcode.'.php');
+foreach ( $langtool->getList() as $langcode ) {
+	require_once( Language::getFileName( "$IP/languages/Language", $langcode, ".php" ) );
 	$memstep = memory_get_usage();
 	printf( "%12s: %d\n", $langcode, ($memstep- $memlast) );
 	$memlast = $memstep;
