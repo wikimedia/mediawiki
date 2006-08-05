@@ -1789,11 +1789,6 @@ $1',
 #
 ####################
 #
-'searchnearmatches' => '<b>Les pådjes shuvantes ont des tites ki ravizèt çou k\' vos avoz cwerou:</b>',
-'searchnext' => '<span style=\'font-size: small\'>Shuv.</span> →',
-'searchnoresults' => 'Mande escuzes, mins i gn a rén ki corespond.',
-'searchnumber' => '<strong>Rizultats: $1-$2 di $3</strong>',
-'searchprev' => '← <span style=\'font-size: small\'>Div.</span>',
 'checkuser' => 'Verifyî l\' uzeu',
 
 #####################
@@ -1939,8 +1934,7 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 'val_revision_stats_link' => 'detays',
 'val_total' => 'Totå',
 'projectpage' => 'Vey li meta-pådje',
-'lucenepowersearchtext' => 'Cweraedje dins les espåces di lomaedje: $1 <br />
-Cweraedje di: $3 $9',
+
 
 
 'nstab-project' => 'Pådje',
