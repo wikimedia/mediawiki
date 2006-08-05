@@ -52,10 +52,10 @@ class languages {
 		$dir = opendir("$IP/languages");
 		while ( $file = readdir( $dir ) ) {
 			if ( preg_match( "/Messages([^.]*?)\.php$/", $file, $matches ) ) {
-				$this->mList[] = $matches[1];
+				$this->mList[] = str_replace( '_', '-', strtolower( substr( $matches[1], 0, 1 ) ) . substr( $matches[1], 1 ) );
 			}
 		}
-		sort($this->mList);
+		sort( $this->mList );
 	}
 
 	/**

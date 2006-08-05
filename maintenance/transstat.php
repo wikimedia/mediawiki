@@ -143,9 +143,9 @@ $langTool = new languages();
 
 //  Load message and compute stuff
 $msgs = array();
-foreach($langTool->getList() as $langcode) {
+foreach ( $langTool->getList() as $langcode ) {
 	// Since they aren't loaded by default..
-	require( 'languages/Messages' . $langcode . '.php' );
+	require( Language::getFileName( "$IP/languages/Messages", $langcode, ".php" ) );
 	if( isset( $messages ) ) {
 		$msgs[$wgContLang->lcfirst($langcode)] = array(
 			'total' => count( $messages ),
