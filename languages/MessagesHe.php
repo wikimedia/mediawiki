@@ -218,7 +218,6 @@ $messages = array(
 
 # Bits of text used by many pages
 "categories"      => "{{plural:$1|קטגוריה|קטגוריות}}",
-"category"        => "קטגוריה",
 "category_header" => 'דפים בקטגוריה "$1"',
 "subcategories"   => "קטגוריות משנה",
 

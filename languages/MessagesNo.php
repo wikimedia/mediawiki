@@ -133,7 +133,6 @@ $messages = array(
 'nov'                   => 'nov',
 'dec'                   => 'des',
 'categories'            => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category'              => 'kategori',
 'category_header'       => 'Artikler i kategorien «$1»',
 'subcategories'         => 'Underkategorier',
 'mainpage'              => 'Hovedside',

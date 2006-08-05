@@ -236,7 +236,6 @@ Nažalost, ovo može da bude nepovoljno za korisnike sa ograničenim vidom i za 
 Kliknite \'nazad\' (\'back\') dugme vašeg brauzera da se vratite na polje za unos teksta.',
 'categories' => 'Kategorije',
 'categoriespagetext' => 'Sledeće kategorije već postoje u {{SITENAME}}',
-'category' => 'kategorija',
 'category_header' => 'Članaka u kategoriji "$1"',
 'changepassword' => 'Promjeni lozinku',
 'changes' => 'izmjene',

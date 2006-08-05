@@ -205,7 +205,6 @@ Nurodykite tikslią priežastį apačioje (pavyzdžiui nurodydami sugadintus pus
 'cantrollback' => 'Negalima atmesti redagavimo; paskutinis keitęs vartotojas yra vienintelis straipsnį redagavęs autorius.',
 'categories' => 'Kategorijos',
 'categoriespagetext' => 'Projekte yra šios kategorijos.',
-'category' => 'kategorija',
 'category_header' => 'Kategorijos "$1" straipsniai',
 'categoryarticlecount' => 'Kategorijoje straipsnių - $1',
 'changed' => 'pakeitė',

@@ -154,7 +154,6 @@ parent class in order maintain consistency across languages.
 # Bits of text used by many pages:
 #
 'categories'            => '{{PLURAL:$1|Categorie|Categorieën}}',
-'category'              => 'categorie',
 'category_header'       => 'Pagina\'s in categorie "$1"',
 'subcategories'         => 'Ondercategorieën',
 

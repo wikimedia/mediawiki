@@ -219,7 +219,6 @@ $messages = array(
 'cancel' => 'إلغاء العملية',
 'categories' => 'تصنيفات الصفحة',
 'categoriespagetext' => 'التصنيفات التالية موجودة في {{SITENAME}}',
-'category' => 'تصنيف',
 'category_header' => 'المقالات في التصنيف "$1"',
 'categoryarticlecount' => 'يوجد $1 مقال في هذا التصنيف.',
 'changepassword' => 'غير كلمة السر',

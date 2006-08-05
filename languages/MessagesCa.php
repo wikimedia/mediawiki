@@ -123,7 +123,6 @@ $messages = array(
 'nov'                   => 'nov',
 'dec'                   => 'des',
 'categories'            => '{{PLURAL:$1|Categoria|Categories}}',
-'category'              => 'categoria',
 'category_header'       => 'Articles a la categoria «$1»',
 'subcategories'         => 'Subcategories',
 'mainpage'              => 'Pàgina principal',

@@ -111,7 +111,6 @@ $messages = array(
 'aug'                   => 'aug',
 'oct'                   => 'Okt',
 'categories'            => '{{PLURAL:$1|Kategória|Kategóriák}}',
-'category'              => 'kategória',
 'category_header'       => '„$1” kategóriába tartozó szócikkek',
 'subcategories'         => 'Alkategóriák',
 'linktrail'             => '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu',

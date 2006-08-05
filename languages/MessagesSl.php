@@ -131,7 +131,6 @@ $messages = array(
 'november-gen'          => 'novembra', 
 'december-gen'          => 'decembra',
 'categories'            => '{{plural:$1|Kategorija|Kategoriji|Kategorije|Kategorije|Kategorije}}',
-'category'              => 'Kategorija',
 'category_header'       => 'Strani v kategoriji »$1«',
 'subcategories'         => 'Podkategorije',
 'mainpage'              => 'Glavna stran',

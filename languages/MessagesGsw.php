@@ -55,7 +55,6 @@ $messages = array(
 'december'              => 'Dezämber',
 'may'                   => 'Mei',
 'categories'            => '{{PLURAL:$1|Kategori|Kategorie}}',
-'category'              => 'Kategori',
 'category_header'       => 'Artikel in de Kategori "$1"',
 'subcategories'         => 'Unterkategorie',
 'mainpage'              => 'Houptsyte',

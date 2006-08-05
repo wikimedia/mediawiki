@@ -195,7 +195,6 @@ $messages = array(
 "restorelink"           => "$1 suntingan dipadam",
 "feedlinks"             => "Menyuap:",
 "categories"            => "Kategori",
-"category"              => "Kategori",
 "category_header"       => "Rencana dalam kategori \"$1\"",
 "subcategories"         => "Subkategori",
 

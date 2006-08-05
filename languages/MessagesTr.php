@@ -100,7 +100,6 @@ $messages = array(
 'nov'                   => 'Kasım',
 'dec'                   => 'Aralık',
 'categories'            => 'Sayfa {{PLURAL:$1|kategorisi|kategorileri}}',
-'category'              => 'kategori',
 'category_header'       => '"$1" kategorisindeki sayfalar',
 'subcategories'         => 'Alt Kategoriler',
 'mainpage'              => 'Ana Sayfa',

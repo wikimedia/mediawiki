@@ -125,7 +125,6 @@ $messages = array(
 'nov'                   => 'stu',
 'dec'                   => 'pro',
 'categories'            => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'category'              => 'Kategorija',
 'category_header'       => 'Članci u kategoriji "$1"',
 'subcategories'         => 'Potkategorije',
 'mainpage'              => 'Glavna stranica',

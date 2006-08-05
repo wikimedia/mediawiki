@@ -54,7 +54,6 @@ $messages = array(
 'categories' => '{{PLURAL:$1|Kategòrëjô|Kategòrëje}}',
 'categoryarticlecount' => 'W ny kategòrëje je $1 artiklów.',
 'category_header' => 'Artikle w kategòrëji "$1"',
-'category' => 'Kategòrëjô',
 'changepassword' => 'Zmiana parolë',
 'compareselectedversions' => 'Przërównôj wëbróné wersëje',
 'confirmdelete' => 'Pòcwierdzë rëmónié',

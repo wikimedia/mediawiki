@@ -163,7 +163,6 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => 'Категории',
-'category' => 'категория',
 'category_header' => 'Страници в категория „$1“',
 'subcategories' => 'Подкатегории',
 'linktrail'   => '/^([a-zабвгдежзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu',

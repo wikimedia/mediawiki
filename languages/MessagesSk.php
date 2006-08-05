@@ -225,7 +225,6 @@ $messages = array(
 'nov'                   => 'nov',
 'dec'                   => 'dec',
 'categories'            => '{{PLURAL:$1|Kategória|Kategórie}}',
-'category'              => 'kategória',
 'category_header'       => 'články v kategórii „$1“',
 'subcategories'         => 'Podkategórie',
 'mainpage'              => 'Hlavná stránka',

@@ -103,7 +103,6 @@ $messages= array(
 'nov'                   => 'novembrī,',
 'dec'                   => 'decembrī,',
 'categories'            => '{{PLURAL:$1|Kategorija|Kategorijas}}',
-'category'              => 'kategorija',
 'category_header'       => 'Raksti, kas ietverti kategorijā "$1".',
 'subcategories'         => 'Apakškategorijas',
 'mainpage'              => 'Sākumlapa',

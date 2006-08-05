@@ -78,7 +78,6 @@ $messages = array(
 'nov'                   => 'Nov',
 'dec'                   => 'Diç',
 'categories'            => '{{PLURAL:$1|Categoria|Categorie}}',
-'category'              => 'Categoria',
 'category_header'       => 'Voçi n\'te ła categoria "$1"',
 'mainpage'              => 'Paxèna prinzsipałe',
 'mainpagetext'          => '\'\'\'MediaWiki xè stà instałà con sucesso.\'\'\'',

@@ -147,7 +147,6 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => 'Kategooriad',
-'category' => 'kategooria',
 'category_header' => 'Selles kategoorias on "$1" artiklit',
 'subcategories' => 'Alamkategooriad',
 

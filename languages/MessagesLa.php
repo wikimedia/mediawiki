@@ -80,7 +80,6 @@ $messages = array(
 'nov'                   => 'nov',
 'dec'                   => 'dec',
 'categories'            => 'Categoriae',
-'category'              => 'Categoria',
 'category_header'       => 'Paginae in categoria "$1"',
 'subcategories'         => 'Categoriae inferiores',
 'mainpage'              => 'Pagina prima',
