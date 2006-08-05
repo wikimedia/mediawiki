@@ -392,7 +392,6 @@ parent class in order maintain consistency across languages.
 'subcategories' => 'Subcategories',
 
 
-'linktrail'		=> '/^([a-z]+)(.*)$/sD',
 'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'		=> 'Main Page',
 'mainpagetext'	=> "<big>'''MediaWiki has been successfully installed.'''</big>",

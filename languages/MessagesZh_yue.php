@@ -137,6 +137,7 @@ $namespaceAliases = array(
 	"分类 讨论" 		=> NS_CATEGORY_TALK,
 );
 
+$linkTrail = '/^([a-z]+)(.*)$/sD';
 
 #-------------------------------------------------------------------
 # Default messages
@@ -236,7 +237,6 @@ $messages = array(
 'subcategories' 	=> '次分類',
 
 
-'linktrail' 		=> '/^([a-z]+)(.*)$/sD',
 'linkprefix' 		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage' 		=> '頭版',
 'mainpagetext' 		=> "<big>'''MediaWiki 已經成功地安裝。'''</big>",
