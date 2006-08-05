@@ -33,7 +33,6 @@ $messages = array(
 
 'edit' => 'Чиклх',
 'article' => 'Халх',
-'discussion' => 'Ухалвр',
 'history' => 'Чикллһнə бүрткл',
 'nstab-main' => 'Халх',
 'nstab-user' => 'Орлцач',
