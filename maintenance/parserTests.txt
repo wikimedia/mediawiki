@@ -1210,7 +1210,7 @@ Invalid attributes in table cell (bug 1830)
 
 # FIXME: this one has incorrect tag nesting still.
 !! test
-Table security: embedded pipes (http://mail.wikipedia.org/pipermail/wikitech-l/2006-April/034637.html)
+TODO: Table security: embedded pipes (http://mail.wikipedia.org/pipermail/wikitech-l/2006-April/034637.html)
 !! input
 {|
 | |[ftp://|x||]" onmouseover="alert(document.cookie)">test
@@ -1383,7 +1383,7 @@ Link containing "<#" and ">#" as a hex sequences
 !! end
 
 !! test
-Link containing double-single-quotes '' (bug 4598)
+TODO: Link containing double-single-quotes '' (bug 4598)
 !! input
 [[Lista d''e paise d''o munno]]
 !! result
@@ -2170,7 +2170,7 @@ Template with complex template as argument
 !! end
 
 !! test
-Template with thumb image (wiht link in description)
+TODO: Template with thumb image (with link in description)
 !! input
 {{paramtest|
   param =[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
@@ -2719,7 +2719,7 @@ msg
 !! end
 
 !! test
-message transform: <noinclude> in transcluded template (bug 4926)
+TODO: message transform: <noinclude> in transcluded template (bug 4926)
 !! options
 msg
 !! input
@@ -2729,7 +2729,7 @@ Foobar
 !! end
 
 !! test
-message transform: <onlyinclude> in transcluded template (bug 4926)
+TODO: message transform: <onlyinclude> in transcluded template (bug 4926)
 !! options
 msg
 !! input
@@ -2808,7 +2808,7 @@ Thumbnail image caption with a free URL
 !! end
 
 !! test
-BUG 1887: A ISBN with a thumbnail
+TODO: BUG 1887: A ISBN with a thumbnail
 !! input
 [[Image:foobar.jpg|thumb|ISBN 12354]]
 !! result
@@ -4174,7 +4174,7 @@ HTML bullet list, closed tags (bug 5497)
 !! end
 
 !! test
-HTML bullet list, unclosed tags (bug 5497)
+TODO: HTML bullet list, unclosed tags (bug 5497)
 !! input
 <ul>
 <li>One
@@ -4204,7 +4204,7 @@ HTML ordered list, closed tags (bug 5497)
 !! end
 
 !! test
-HTML ordered list, unclosed tags (bug 5497)
+TODO: HTML ordered list, unclosed tags (bug 5497)
 !! input
 <ol>
 <li>One
@@ -4244,7 +4244,7 @@ HTML nested bullet list, closed tags (bug 5497)
 !! end
 
 !! test
-HTML nested bullet list, open tags (bug 5497)
+TODO: HTML nested bullet list, open tags (bug 5497)
 !! input
 <ul>
 <li>One
@@ -4292,7 +4292,7 @@ HTML nested ordered list, closed tags (bug 5497)
 !! end
 
 !! test
-HTML nested ordered list, open tags (bug 5497)
+TODO: HTML nested ordered list, open tags (bug 5497)
 !! input
 <ol>
 <li>One
@@ -4538,7 +4538,7 @@ Fuzz testing: encoded newline in generated HTML replacements (bug 6577)
 !! end
 
 !! test
-Parsing optional HTML elements (Bug 6171)
+TODO: Parsing optional HTML elements (Bug 6171)
 !! options
 !! input
 <table>
@@ -4604,7 +4604,7 @@ New wiki paragraph
 !! end
 
 !! test
-Inline HTML vs wiki block nesting
+TODO: Inline HTML vs wiki block nesting
 !! input
 <b>Bold paragraph
 
@@ -4617,7 +4617,7 @@ New wiki paragraph
 
 
 !!test
-Mixing markup for italics and bold
+TODO: Mixing markup for italics and bold
 !! options
 !! input
 '''bold''''''bold''bolditalics'''''
@@ -5545,7 +5545,7 @@ Handling of &#x0A; in URLs
 !!end
 
 !! test
-5 quotes, code coverage +1 line
+TODO: 5 quotes, code coverage +1 line
 !! input
 '''''
 !! result
@@ -5635,7 +5635,7 @@ image4    |300px| centre
 !! end
 
 !! test
-HTML Hex character encoding.
+TODO: HTML Hex character encoding.
 !! input
 &#x4A;&#x061;&#x0076;&#x00061;&#x000053;&#x0000063;&#114;&#x0000069;&#00000112;&#x0000000074;
 !! result
@@ -5694,9 +5694,9 @@ RFC RFC 1234
 !! test
 Double RFC with a wiki link 
 !! input
-RFC [[RFC 1234
+RFC [[RFC 1234]]
 !! result
-<p>RFC [[RFC 1234
+<p>RFC <a href="/index.php?title=RFC_1234&amp;action=edit" class="new" title="RFC 1234">RFC 1234</a>
 </p>
 !! end
 
@@ -5749,7 +5749,7 @@ Another italics / bold test
 # XML error: Mismatched tag at byte 6120:
 # ...<dd> </dt></dl> </dd...
 !! test
-dt/dd/dl test
+TODO: dt/dd/dl test
 !! input
 :;;;::
 !! result
