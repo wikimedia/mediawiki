@@ -35,6 +35,7 @@ $quickbarSettings = array(
 	"ไม่มี", "อยู่ทางซ้าย", "อยู่ทางขวา", "ลอยทางซ้าย"
 );
 
+$linkTrail = '/^([a-z]+)(.*)\$/sD';
 
 
 $messages = array(
@@ -102,7 +103,6 @@ $messages = array(
 "category_header" => "บทความในประเภท \"$1\"",
 "subcategories" => "ประเภทย่อย",
 
-"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "หน้าหลัก",
 "mainpagetext"	=> "Wiki software  ถูกติดตั้งเรียบร้อยแล้ว",
 "about"			=> "เกี่ยวกับ",

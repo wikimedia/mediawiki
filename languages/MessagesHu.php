@@ -51,6 +51,8 @@ $dateFormats = array(
 	'ymd both' => 'Y. F j., H:i',
 );
 
+$linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
+
 $messages = array(
 'tog-underline'         => 'Linkek aláhúzása:',
 'tog-highlightbroken'   => 'Törött linkek <a href="" class="new">így</a> (alternatíva: így<a href="" class="internal">?</a>).',
@@ -113,7 +115,6 @@ $messages = array(
 'categories'            => '{{PLURAL:$1|Kategória|Kategóriák}}',
 'category_header'       => '„$1” kategóriába tartozó szócikkek',
 'subcategories'         => 'Alkategóriák',
-'linktrail'             => '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu',
 'mainpage'              => 'Kezdőlap',
 'mainpagetext'          => 'Wiki szoftver sikeresen telepítve.',
 'portal'                => 'Közösségi portál',

@@ -95,6 +95,8 @@ $magicWords = array(
 	'revisionid'             => array( 1, 'REVISIONID'             ),
 );
 
+$linkTrail = '/^([a-zабвгдежзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu';
+
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
 $messages = array(
@@ -165,7 +167,6 @@ $messages = array(
 'categories' => 'Категории',
 'category_header' => 'Страници в категория „$1“',
 'subcategories' => 'Подкатегории',
-'linktrail'   => '/^([a-zабвгдежзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu',
 'linkprefix'  => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'    => 'Начална страница',
 'mainpagetext'  => 'Уики-системата беше успешно инсталирана.',

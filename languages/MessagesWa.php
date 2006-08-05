@@ -145,8 +145,6 @@ $messages = array(
 'categories' => '{{PLURAL:$1|Categoreye|Categoreyes}}',
 'category_header' => 'Årtikes el categoreye «$1»',
 'subcategories' => 'Dizo-categoreyes',
-# using uppercase A-Z break things...
-'linktrail' => '/^([a-zåâêîôûçéè]+)(.*)$/sDu',
 #'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage' => 'Mwaisse pådje',
 'mainpagetext' => '<big>\'\'\'Li programe Wiki a stî astalé a l\' idêye.\'\'\'</big>',
