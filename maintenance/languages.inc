@@ -231,11 +231,37 @@ class languages {
 		$messagesWithWhitespace = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
 			if ( isset( $this->mMessages['en'][$key] ) && $this->mMessages['en'][$key] !== '' &&
-				$this->mMessages[$code][$key] !== rtrim( $this->mMessages[$code][$key] ) ) {
+				$value !== rtrim( $value ) ) {
 				$messagesWithWhitespace[$key] = $value;
 			}
 		}
 		return $messagesWithWhitespace;
+	}
+
+	/**
+	 * Get the non-XHTML messages.
+	 *
+	 * @param $code The langauge code.
+	 *
+	 * @return The non-XHTML messages for this language.
+	 */
+	public function getNonXHTMLMessages( $code ) {
+		$this->loadMessages( 'en' );
+		$this->loadMessages( $code );
+		$wrongPhrases = array(
+			'<hr *\\?>',
+			'<br *\\?>',
+			'<hr/>',
+			'<br/>',
+		);
+		$wrongPhrases = '~(' . implode( '|', $wrongPhrases ) . ')~sDu';
+		$nonXHTMLMessages = array();
+		foreach ( $this->mMessages[$code] as $key => $value ) {
+			if ( isset( $this->mMessages['en'][$key] ) && preg_match( $wrongPhrases, $value ) ) {
+				$nonXHTMLMessages[$key] = $value;
+			}
+		}
+		return $nonXHTMLMessages;
 	}
 
 	/**
