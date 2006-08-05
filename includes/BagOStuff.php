@@ -576,7 +576,7 @@ class DBABagOStuff extends BagOStuff {
 	 */
 	function decode( $blob ) {
 		if ( !is_string( $blob ) ) {
-			return array( 0, null );
+			return array( null, 0 );
 		} else {
 			return array( 
 				unserialize( substr( $blob, 11 ) ),
@@ -607,6 +607,7 @@ class DBABagOStuff extends BagOStuff {
 
 	function get( $key ) {
 		wfProfileIn( __METHOD__ );
+		wfDebug( __METHOD__."($key)\n" );
 		$handle = $this->getReader();
 		if ( !$handle ) {
 			return null;
@@ -630,6 +631,7 @@ class DBABagOStuff extends BagOStuff {
 
 	function set( $key, $value, $exptime=0 ) {
 		wfProfileIn( __METHOD__ );
+		wfDebug( __METHOD__."($key)\n" );
 		$blob = $this->encode( $value, $exptime );
 		$handle = $this->getWriter();
 		if ( !$handle ) {
