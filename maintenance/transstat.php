@@ -110,13 +110,12 @@ class csvStatsOutput extends statsOutput {
 
 
 function redundant(&$arr, $langcode) {
-	global $wgAllMessagesEn;
-
 	$redundant = 0;
+	$englishMessages = Language::getMessagesFor( 'en' );
 	foreach(array_keys($arr) as $key) {
-		if ( @$wgAllMessagesEn[$key] === null ) {
+		if ( !isset( $englishMessages[$key] ) ) {
 			global $options;
-			if( isset($options['showold']) ) {
+			if( isset( $options['showold'] ) ) {
 				print "Deprecated [$langcode]: $key\n";
 			}
 			++$redundant;
@@ -146,12 +145,11 @@ $langTool = new languages();
 $msgs = array();
 foreach($langTool->getList() as $langcode) {
 	// Since they aren't loaded by default..
-	require_once( 'languages/Language' . $langcode . '.php' );
-	$arr = 'wgAllMessages'.$langcode;
-	if(@is_array($$arr)) {
+	require( 'languages/Messages' . $langcode . '.php' );
+	if( isset( $messages ) ) {
 		$msgs[$wgContLang->lcfirst($langcode)] = array(
-			'total' => count($$arr),
-			'redundant' => redundant($$arr, $langcode),
+			'total' => count( $messages ),
+			'redundant' => redundant( $messages, $langcode ),
 		);
 	} else {
 		$msgs[$wgContLang->lcfirst($langcode)] = array(
@@ -159,6 +157,7 @@ foreach($langTool->getList() as $langcode) {
 			'redundant' => 0,
 		);
 	}
+	unset( $messages );
 }
 
 // Top entry

@@ -13,7 +13,7 @@ class languages {
 	/** some messages for the current lang */
 	var $messages = array();
 
-	function languages() {
+	function __construct() {
 		$this->clear();
 		$this->loadList();
 	}
@@ -30,17 +30,11 @@ class languages {
 		// available language files
 		$dir = opendir("$IP/languages");
 		while ($file = readdir($dir)) {
-			if (preg_match("/Language([^.]*?)\.php$/", $file, $m)) {
+			if (preg_match("/Messages([^.]*?)\.php$/", $file, $m)) {
 				$this->list[] = $m[1];
 			}
 		}
 		sort($this->list);
-
-		// Cleanup file list
-		foreach($this->list as $key => $lang) {
-			if ($lang == 'Utf8' || $lang == '' || $lang == 'Converter')
-				unset($this->list[$key]);
-		}
 	}
 
 	function getList() { return $this->list; }
