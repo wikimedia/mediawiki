@@ -70,4 +70,9 @@ $messagesWithWhitespace = $wgLanguages->getMessagesWithWhitespace( $code );
 $messagesWithWhitespaceNumber = count( $messagesWithWhitespace );
 $wgLanguages->outputMessagesList( $messagesWithWhitespace, "\n$messagesWithWhitespaceNumber messages of $localMessagesNumber in $code have a trailing whitespace:", $wgHideMessages );
 
+# Non-XHTML messages
+$nonXHTMLMessages = $wgLanguages->getNonXHTMLMessages( $code );
+$nonXHTMLMessagesNumber = count( $nonXHTMLMessages );
+$wgLanguages->outputMessagesList( $nonXHTMLMessages, "\n$nonXHTMLMessagesNumber messages of $localMessagesNumber in $code are not well-formed XHTML:", $wgHideMessages );
+
 ?>
