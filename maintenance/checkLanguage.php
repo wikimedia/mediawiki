@@ -75,4 +75,9 @@ $nonXHTMLMessages = $wgLanguages->getNonXHTMLMessages( $code );
 $nonXHTMLMessagesNumber = count( $nonXHTMLMessages );
 $wgLanguages->outputMessagesList( $nonXHTMLMessages, "\n$nonXHTMLMessagesNumber messages of $localMessagesNumber in $code are not well-formed XHTML:", $wgHideMessages );
 
+# Non-XHTML messages
+$messagesWithWrongChars = $wgLanguages->getMessagesWithWrongChars( $code );
+$messagesWithWrongCharsNumber = count( $messagesWithWrongChars );
+$wgLanguages->outputMessagesList( $messagesWithWrongChars, "\n$messagesWithWrongCharsNumber messages of $localMessagesNumber in $code include hidden chars which should not be used in the messages:", $wgHideMessages );
+
 ?>
