@@ -174,19 +174,19 @@ class languages {
 	 *
 	 * @param $code The langauge code.
 	 *
-	 * @return The obsolete messages for this language.
+	 * @return The messages which do not use some variables in this language.
 	 */
 	public function getMessagesWithoutVariables( $code ) {
 		$this->loadMessages( 'en' );
 		$this->loadMessages( $code );
 		$variables = array( '\$1', '\$2', '\$3', '\$4', '\$5', '\$6', '\$7', '\$8', '\$9' );
 		$messagesWithoutVariables = array();
-		foreach ( $this->mMessages['en'] as $key => $value ) {
-			if ( isset( $this->mMessages[$code][$key] ) ) {
+		foreach ( $this->mMessages[$code] as $key => $value ) {
+			if ( isset( $this->mMessages['en'][$key] ) ) {
 				$missing = array();
 				foreach ( $variables as $var ) {
-					if ( preg_match( "/$var/sU", $value ) &&
-						!preg_match( "/$var/sU", $this->mMessages[$code][$key] ) ) {
+					if ( preg_match( "/$var/sU", $this->mMessages['en'][$key] ) &&
+						!preg_match( "/$var/sU", $value ) ) {
 						$missing[] = str_replace( '\$', '$', $var );
 					}
 				}
@@ -199,18 +199,63 @@ class languages {
 	}
 
 	/**
+	 * Get the empty messages.
+	 *
+	 * @param $code The langauge code.
+	 *
+	 * @return The empty messages for this language.
+	 */
+	public function getEmptyMessages( $code ) {
+		$this->loadMessages( 'en' );
+		$this->loadMessages( $code );
+		$emptyMessages = array();
+		foreach ( $this->mMessages[$code] as $key => $value ) {
+			if ( isset( $this->mMessages['en'][$key] ) &&
+				( $this->mMessages[$code][$key] === '' || $this->mMessages[$code][$key] === '-' ) ) {
+				$emptyMessages[$key] = $value;
+			}
+		}
+		return $emptyMessages;
+	}
+
+	/**
+	 * Get the messages with trailing whitespace.
+	 *
+	 * @param $code The langauge code.
+	 *
+	 * @return The messages with trailing whitespace in this language.
+	 */
+	public function getMessagesWithWhitespace( $code ) {
+		$this->loadMessages( 'en' );
+		$this->loadMessages( $code );
+		$messagesWithWhitespace = array();
+		foreach ( $this->mMessages[$code] as $key => $value ) {
+			if ( isset( $this->mMessages['en'][$key] ) && $this->mMessages['en'][$key] !== '' &&
+				$this->mMessages[$code][$key] !== rtrim( $this->mMessages[$code][$key] ) ) {
+				$messagesWithWhitespace[$key] = $value;
+			}
+		}
+		return $messagesWithWhitespace;
+	}
+
+	/**
 	 * Output a messages list.
 	 *
 	 * @param $messages The messages list.
 	 * @param $text The text to show before the list (optional).
+	 * @param $hideMessages Hide the real messages if specified.
 	 */
-	public function outputMessagesList( $messages, $text = '' ) {
+	public function outputMessagesList( $messages, $text = '', $hideMessages = false ) {
 		if ( count( $messages ) > 0 ) {
 			if ( $text ) {
 				echo "$text\n";
 			}
-			foreach ( $messages as $key => $value ) {
-				echo "* '$key':		$value\n";
+			if ( $hideMessages ) {
+				echo "[messages are hidden]\n";
+			} else {
+				foreach ( $messages as $key => $value ) {
+					echo "* '$key':		$value\n";
+				}
 			}
 		}
 	}
