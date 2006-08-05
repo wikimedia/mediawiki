@@ -170,6 +170,35 @@ class languages {
 	}
 
 	/**
+	 * Get the messages which do not use some variables.
+	 *
+	 * @param $code The langauge code.
+	 *
+	 * @return The obsolete messages for this language.
+	 */
+	public function getMessagesWithoutVariables( $code ) {
+		$this->loadMessages( 'en' );
+		$this->loadMessages( $code );
+		$variables = array( '\$1', '\$2', '\$3', '\$4', '\$5', '\$6', '\$7', '\$8', '\$9' );
+		$messagesWithoutVariables = array();
+		foreach ( $this->mMessages['en'] as $key => $value ) {
+			if ( isset( $this->mMessages[$code][$key] ) ) {
+				$missing = array();
+				foreach ( $variables as $var ) {
+					if ( preg_match( "/$var/sU", $value ) &&
+						!preg_match( "/$var/sU", $this->mMessages[$code][$key] ) ) {
+						$missing[] = str_replace( '\$', '$', $var );
+					}
+				}
+				if ( count( $missing ) > 0 ) {
+					$messagesWithoutVariables[$key] = implode( ', ', $missing );
+				}
+			}
+		}
+		return $messagesWithoutVariables;
+	}
+
+	/**
 	 * Output a messages list.
 	 *
 	 * @param $messages The messages list.
@@ -180,8 +209,8 @@ class languages {
 			if ( $text ) {
 				echo "$text\n";
 			}
-			foreach ( array_keys( $messages ) as $key ) {
-				echo "* $key\n";
+			foreach ( $messages as $key => $value ) {
+				echo "* '$key':		$value\n";
 			}
 		}
 	}

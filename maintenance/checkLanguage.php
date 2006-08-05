@@ -30,10 +30,6 @@ $wgLanguages = new languages();
 $englishMessagesNumber = count( $wgLanguages->getMessagesFor( 'en' ) );
 $localMessagesNumber = count( $wgLanguages->getMessagesFor( $code ) );
 
-# Show numbers of defined messages
-echo "There are $englishMessagesNumber messages in en.\n";
-echo "There are $localMessagesNumber messages in $code.\n";
-
 # Untranslated messages
 $untranslatedMessages = $wgLanguages->getUntranslatedMessages( $code );
 $untranslatedMessagesNumber = count( $untranslatedMessages );
@@ -48,5 +44,10 @@ $wgLanguages->outputMessagesList( $duplicateMessages, "\n$duplicateMessagesNumbe
 $obsoleteMessages = $wgLanguages->getObsoleteMessages( $code );
 $obsoleteMessagesNumber = count( $obsoleteMessages );
 $wgLanguages->outputMessagesList( $obsoleteMessages, "\n$obsoleteMessagesNumber messages of $localMessagesNumber are not exist in en, but still exist in $code:" );
+
+# Messages without variables
+$messagesWithoutVariables = $wgLanguages->getMessagesWithoutVariables( $code );
+$messagesWithoutVariablesNumber = count( $messagesWithoutVariables );
+$wgLanguages->outputMessagesList( $messagesWithoutVariables, "\n$messagesWithoutVariablesNumber messages of $localMessagesNumber in $code don't use some variables while en uses them:" );
 
 ?>
