@@ -319,7 +319,6 @@ $messages = array(
 'personaltools' 	=> '個人工具',
 'postcomment'   	=> '寫句意見',
 'articlepage'		=> '睇目錄',
-'subjectpage'		=> '睇標題', # 為咗兼容性
 'talk' 			=> '討論',
 'views' 		=> '去睇', 
 'toolbox' 		=> '工具箱',
@@ -333,7 +332,6 @@ $messages = array(
 'redirectpagesub' 	=> '重新定向頁',
 'lastmodified'		=> '呢一頁嘅最後修改係響$1。',
 'viewcount'		=> '呢一頁已經有$1人次睇過。',
-'printsubtitle' 	=> '（嚟自{{SERVER}}）',
 'protectedpage' 	=> '受保護頁',
 'administrators' 	=> 'Project:管理員',
 'jumpto' 		=> '跳去:',
@@ -665,7 +663,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 唔該睇下條網址啱唔啱。",
 'loadhist'		=> '攞緊版嘅歷史',
 'currentrev'		=> '家下嘅版本',
-'revisionasofwithlink'  => '喺$1嘅修訂； $2<br />$3 | $4',
+'revisionasof'  => '喺$1嘅修訂',
 'old-revision-navigation' => '喺$1嘅修訂； $5<br />($6) $3 | $2 | $4 ($7)', 
 'previousrevision'	=> '←之前嘅修訂',
 'nextrevision'		=> '新啲嘅修訂→',
@@ -813,31 +811,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'files'			=> '檔案',
 
 # User rights
-#
-
 'userrights-lookup-user' => '管理用戶組',
 'userrights-user-editname' => '輸入一個用戶名：',
 'editusergroup' 	=> '編輯用戶組',
 
-# group editing
-'groups-editgroup' 	=> '編輯組',
-'groups-addgroup' 	=> '加組',
-'groups-editgroup-preamble' => '如果組名或描述以半形冒號開頭，
-則餘下部分會被認為係一個變數名，
-並通過MediaWiki空間名將其文字本地化。',
-'groups-editgroup-name'     => '組名：',
-'groups-editgroup-description' => '組描述（最多255個字元）：<br />',
-'savegroup' 		=> '儲存組',
-'groups-tableheader'	=> 'ID || 名 || 描述 || 權',
-'groups-existing' 	=> '現有嘅組',
-'groups-noname' 	=> '請指定一個有效嘅組名',
-'groups-already-exists' => '呢個組名已經存在',
-'addgrouplogentry' 	=> '已加$2組',
-'changegrouplogentry' 	=> '已改$2組',
-'renamegrouplogentry' 	=> '組名已經由$2改到$3',
-
-# user groups editing
-#
 'userrights-editusergroup' 	=> '編輯用戶組',
 'saveusergroups' 		=> '儲存用戶組',
 'userrights-groupsmember' 	=> '屬於：',
@@ -1169,8 +1146,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'wlhideshowown'   	=> '$1我嘅編輯。',
 'wlhideshowbots'   	=> '$1機械人嘅編輯。',
 'wldone' 		=> '完成。',
-'wlshow'		=> '顯示',
-'wlhide'		=> '隱藏',
 
 'enotif_mailer' 	=> '{{SITENAME}}通知郵遞員',
 'enotif_reset'		=> '將所有頁面標成已視察',
