@@ -22,14 +22,16 @@ $datePreferences = array(
 	'fi numeric',
 );
 
+$defaultDateFormat = 'fi normal';
+
 $dateFormats = array(
 	'fi normal time' => 'H.i',
-	'fi normal date' => 'j. F Y',
-	'fi normal both' => 'j. F Y "kello" H.i',
+	'fi normal date' => 'j. F"ta" Y',
+	'fi normal both' => 'j. F"ta" Y "kello" H.i',
 
 	'fi seconds time' => 'H:i:s',
-	'fi seconds date' => 'j. F Y',
-	'fi seconds both' => 'j. F Y "kello" H:i:s',
+	'fi seconds date' => 'j. F"ta" Y',
+	'fi seconds both' => 'j. F"ta" Y "kello" H:i:s',
 
 	'fi numeric time' => 'H.i',
 	'fi numeric date' => 'j.n.Y',
@@ -70,7 +72,6 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'Luokka',
 	NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
 );
-
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 $linkTrail = '/^([a-zäö]+)(.*)$/sDu';
@@ -576,8 +577,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 #
 'searchresults'       => 'Hakutulokset',
 'searchresulttext'    => 'Saadaksesi lisätietoa hakutoiminnoista tällä sivustolla lue [[{{ns:project}}:Hakutoiminnot|sivuston hakuohje]].',
-'searchsubtitle'         => 'Haku termeillä [[:$1]]',
-'searchsubtitleinvalid'         => 'Haku termeillä $1',
+'searchsubtitle'      => 'Haku termeillä [[:$1]]',
+'searchsubtitleinvalid'=> 'Haku termeillä $1',
 'badquery'            => 'Kelvoton hakumerkkijono',
 'badquerytext'        => 'Tekemäsi kysely ei ole kelvollinen. Tämä johtuu todennäköisesti siitä, että et ole määritellyt hakumerkkijonoa.',
 'matchtotals'         => 'Haulla \'\'\'$1\'\'\' löytyi $2 osumaa sivujen otsikoista ja $3 osumaa sivujen sisällöistä.',
@@ -1784,10 +1785,11 @@ Se on saatettu poistaa wikistä tai nimetä uudelleen.
 Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 
 # Shown to the admin after s/he's undeleted a page.
-'undeletedpage'       => '<big>\'\'\'$1 on palautettu\'\'\'</big>
+'undeletedpage'       => '<big>\'\'\'”$1” on palautettu.\'\'\'</big>
 
 [[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.',
 'sp-newimages-showfrom' => 'Näytä uudet kuvat alkaen $1',
+
 
 );
 ?>
