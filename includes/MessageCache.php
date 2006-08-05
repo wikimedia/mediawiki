@@ -497,6 +497,7 @@ class MessageCache {
 		if ( $this->mUseCache ) {
 			$message = $this->mMemc->get( $this->mMemcKey . ':' . $title );
 			if ( $message == '###NONEXISTENT###' ) {
+				$this->mCache[$title] = false;
 				return false;
 			} elseif( !is_null( $message ) ) {
 				$this->mCache[$title] = $message;
@@ -524,6 +525,7 @@ class MessageCache {
 			# Negative caching
 			# Use some special text instead of false, because false gets converted to '' somewhere
 			$this->mMemc->set( $this->mMemcKey . ':' . $title, '###NONEXISTENT###', $this->mExpiry );
+			$this->mCache[$title] = false;
 		}
 
 		return $message;
