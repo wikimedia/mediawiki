@@ -264,6 +264,43 @@ class languages {
 	}
 
 	/**
+	 * Get the messages which include wrong characters.
+	 *
+	 * @param $code The langauge code.
+	 *
+	 * @return The messages which include wrong characters in this language.
+	 */
+	public function getMessagesWithWrongChars( $code ) {
+		$this->loadMessages( 'en' );
+		$this->loadMessages( $code );
+		$wrongChars = array(
+			'[LRM]' => "\xE2\x80\x8E",
+			'[RLM]' => "\xE2\x80\x8F",
+			'[LRE]' => "\xE2\x80\xAA",
+			'[RLE]' => "\xE2\x80\xAB",
+			'[POP]' => "\xE2\x80\xAC",
+			'[LRO]' => "\xE2\x80\xAD",
+			'[RLO]' => "\xE2\x80\xAB",
+			'[ZWSP]'=> "\xE2\x80\x8B",
+			'[NBSP]'=> "\xC2\xA0",
+			'[WJ]'  => "\xE2\x81\xA0",
+			'[BOM]' => "\xEF\xBB\xBF",
+			'[FFFD]'=> "\xEF\xBF\xBD",
+		);
+		$wrongRegExp = '/(' . implode( '|', array_values( $wrongChars ) ) . ')/sDu';
+		$nonXHTMLMessages = array();
+		foreach ( $this->mMessages[$code] as $key => $value ) {
+			if ( isset( $this->mMessages['en'][$key] ) && preg_match( $wrongRegExp, $value ) ) {
+				foreach ( $wrongChars as $viewableChar => $hiddenChar ) {
+					$value = str_replace( $hiddenChar, $viewableChar, $value );
+				}
+				$nonXHTMLMessages[$key] = $value;
+			}
+		}
+		return $nonXHTMLMessages;
+	}
+
+	/**
 	 * Output a messages list.
 	 *
 	 * @param $messages The messages list.
