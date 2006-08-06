@@ -23,7 +23,6 @@ class DisambiguationsPage extends PageQueryPage {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
 
-		#FIXME : probably need to add a backlink to the maintenance page.
 		return '<p>'.wfMsg('disambiguationstext', $sk->makeKnownLink(wfMsgForContent('disambiguationspage')) )."</p><br />\n";
 	}
 
@@ -57,14 +56,16 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
+		global $wgContLang;
 		$title = Title::newFromId( $result->value );
 		$dp = Title::makeTitle( $result->namespace, $result->title );
 
 		$from = $skin->makeKnownLinkObj( $title,'');
 		$edit = $skin->makeBrokenLinkObj( $title, "(".wfMsg("qbedit").")" , 'redirect=no');
+		$arr  = $wgContLang->getArrow();
 		$to   = $skin->makeKnownLinkObj( $dp,'');
 
-		return "$from $edit => $to";
+		return "$from $edit $arr $to";
 	}
 }
 

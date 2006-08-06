@@ -884,16 +884,27 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function getDirMark() { return $this->isRTL() ? "\xE2\x80\x8F" : "\xE2\x80\x8E"; }
+	function getDirMark() {
+		return $this->isRTL() ? "\xE2\x80\x8F" : "\xE2\x80\x8E";
+	}
+
+	/**
+	 * An arrow, depending on the language direction
+	 *
+	 * @return string
+	 */
+	function getArrow() {
+		return $this->isRTL() ? '←' : '→';
+	}
 
 	/**
 	 * To allow "foo[[bar]]" to extend the link over the whole word "foobar"
 	 *
 	 * @return bool
 	 */
-	function linkPrefixExtension() { 
+	function linkPrefixExtension() {
 		$this->load();
-		return $this->linkPrefixExtension; 
+		return $this->linkPrefixExtension;
 	}
 
 	function &getMagicWords() {

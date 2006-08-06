@@ -68,7 +68,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 		$from = $skin->makeKnownLinkObj( $fromObj ,'', 'redirect=no' );
 		$edit = $skin->makeBrokenLinkObj( $fromObj , "(".wfMsg("qbedit").")" , 'redirect=no');
 		$to   = $skin->makeBrokenLinkObj( $toObj );
-		$arr = $wgContLang->isRTL() ? '&larr;' : '&rarr;';
+		$arr = $wgContLang->getArrow();
 
 		return "$from $edit $arr $to";
 	}
