@@ -337,7 +337,7 @@ class languages {
 	 * @param $text The text to show before the list (optional).
 	 * @param $hideMessages Hide the real messages if specified.
 	 */
-	public function outputMessagesList( $messages, $text = '', $hideMessages = false ) {
+	public function outputMessagesList( $messages, $text = '', $hideMessages = false, $hidevalues = false ) {
 		if ( count( $messages ) > 0 ) {
 			if ( $text ) {
 				echo "$text\n";
@@ -346,7 +346,11 @@ class languages {
 				echo "[messages are hidden]\n";
 			} else {
 				foreach ( $messages as $key => $value ) {
-					echo "* '$key':		$value\n";
+					if ( $hidevalues ) {
+						echo "* '$key'\n";
+					} else {
+						echo "* '$key':		'$value'\n";
+					}
 				}
 			}
 		}

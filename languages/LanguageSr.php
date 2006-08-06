@@ -212,8 +212,5 @@ class LanguageSr extends LanguageSr_ec {
 		$this->mConverter = new SrConverter($this, 'sr', $variants, $variantfallbacks, $marker, $flags);
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
-	function getVariantname( $code ) {
-		return wfMsg( "variantname-$code" );
-	}
 }
 ?>
