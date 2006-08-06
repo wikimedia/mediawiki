@@ -244,7 +244,7 @@ class Language {
 	 * @return string
 	 */
 	function getVariantname( $code ) {
-		return wfMsg( "variantname-$code" );
+		return $this->getMessageFromDB( "variantname-$code" );
 	}
 
 	function specialPage( $name ) {
@@ -292,7 +292,7 @@ class Language {
 	}
 
 	function getUserToggle( $tog ) {
-		return wfMsg( "tog-$tog" );
+		return $this->getMessageFromDB( "tog-$tog" );
 	}
 
 	/**
@@ -320,8 +320,8 @@ class Language {
 	}
 
 	/**
-	 * Ugly hack to get a message maybe from the MediaWiki namespace, if this 
-	 * language object is the content or user language. 
+	 * Ugly hack to get a message maybe from the MediaWiki namespace, if this
+	 * language object is the content or user language.
 	 */
 	function getMessageFromDB( $msg ) {
 		global $wgContLang, $wgLang;
@@ -1021,7 +1021,7 @@ class Language {
 			if ($i == $m) {
 				$s = $l[$i];
 			} else if ($i == $m - 1) {
-				$s = $l[$i] . ' ' . wfMsg('and') . ' ' . $s;
+				$s = $l[$i] . ' ' . $this->getMessageFromDB( 'and' ) . ' ' . $s;
 			} else {
 				$s = $l[$i] . ', ' . $s;
 			}
@@ -1112,7 +1112,7 @@ class Language {
 	 */
 	function translateBlockExpiry( $str ) {
 
-		$scBlockExpiryOptions = wfMsg( 'ipboptions' );
+		$scBlockExpiryOptions = $this->getMessageFromDB( 'ipboptions' );
 
 		if ( $scBlockExpiryOptions == '-') {
 			return $str;
