@@ -6,7 +6,7 @@
  * Hack for bugs in ucfirst() and company
  *
  * These are pulled from memcached if possible, as this is faster than filling
- * up a big array manually. See also languages/LanguageUtf8.php
+ * up a big array manually.
  * @package MediaWiki
  * @subpackage Language
  */

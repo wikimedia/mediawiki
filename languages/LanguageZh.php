@@ -84,7 +84,7 @@ class LanguageZh extends LanguageZh_cn {
 		//other way around
 
 		$t = $this->mConverter->autoConvert($t, 'zh-cn');
-		$t = LanguageUtf8::stripForSearch( $t );
+		$t = parent::stripForSearch( $t );
 		wfProfileOut( $fname );
 		return $t;
 

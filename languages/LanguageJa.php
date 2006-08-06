@@ -29,7 +29,7 @@ class LanguageJa extends Language {
 		$s = preg_replace( '/\xef\xbd([\x80-\x99])/e', 'chr((ord("$1") & 0x3f) + 0x60)', $s );
 
 		# Do general case folding and UTF-8 armoring
-		return LanguageUtf8::stripForSearch( $s );
+		return parent::stripForSearch( $s );
 	}
 
 	# Italic is not appropriate for Japanese script
