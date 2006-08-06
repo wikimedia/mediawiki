@@ -642,7 +642,7 @@ class LanguageConverter {
 
 		if ($this->mUcfirst) {
 			foreach ($ret as $k => $v) {
-				$ret[LanguageUtf8::ucfirst($k)] = LanguageUtf8::ucfirst($v);
+				$ret[Language::ucfirst($k)] = Language::ucfirst($v);
 			}
 		}
 		return $ret;

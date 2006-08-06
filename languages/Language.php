@@ -1524,6 +1524,4 @@ class Language {
 	}
 }
 
-/** @deprecated */
-class LanguageUtf8 extends Language {}
 ?>
