@@ -2808,7 +2808,7 @@ Thumbnail image caption with a free URL
 !! end
 
 !! test
-TODO: BUG 1887: A ISBN with a thumbnail
+BUG 1887: A ISBN with a thumbnail
 !! input
 [[Image:foobar.jpg|thumb|ISBN 12354]]
 !! result

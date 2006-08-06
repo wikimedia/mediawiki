@@ -329,75 +329,88 @@ class Sanitizer {
 	 */
 	static function removeHTMLtags( $text, $processCallback = null, $args = array() ) {
 		global $wgUseTidy, $wgUserHtml;
-		$fname = 'Parser::removeHTMLtags';
-		wfProfileIn( $fname );
 
-		if( $wgUserHtml ) {
-			$htmlpairs = array( # Tags that must be closed
-				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
-				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
-				'strike', 'strong', 'tt', 'var', 'div', 'center',
-				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u'
-			);
-			$htmlsingle = array(
-				'br', 'hr', 'li', 'dt', 'dd'
-			);
-			$htmlsingleonly = array( # Elements that cannot have close tags
-				'br', 'hr'
-			);
-			$htmlnest = array( # Tags that can be nested--??
-				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
-				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
-			);
-			$tabletags = array( # Can only appear inside table
-				'td', 'th', 'tr',
-			);
-			$htmllist = array( # Tags used by list
-				'ul','ol',
-			);
-			$listtags = array( # Tags that can appear in a list
-				'li',
-			);
+		static $htmlpairs, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags, 
+			$htmllist, $listtags, $htmlsingleallowed, $htmlelements, $staticInitialised;
+		
+		wfProfileIn( __METHOD__ );
+		
+		if ( !$staticInitialised ) {
+			if( $wgUserHtml ) {
+				$htmlpairs = array( # Tags that must be closed
+					'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
+					'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
+					'strike', 'strong', 'tt', 'var', 'div', 'center',
+					'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
+					'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u'
+				);
+				$htmlsingle = array(
+					'br', 'hr', 'li', 'dt', 'dd'
+				);
+				$htmlsingleonly = array( # Elements that cannot have close tags
+					'br', 'hr'
+				);
+				$htmlnest = array( # Tags that can be nested--??
+					'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
+					'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
+				);
+				$tabletags = array( # Can only appear inside table
+					'td', 'th', 'tr',
+				);
+				$htmllist = array( # Tags used by list
+					'ul','ol',
+				);
+				$listtags = array( # Tags that can appear in a list
+					'li',
+				);
 
-		} else {
-			$htmlpairs = array();
-			$htmlsingle = array();
-			$htmlnest = array();
-			$tabletags = array();
+			} else {
+				$htmlpairs = array();
+				$htmlsingle = array();
+				$htmlnest = array();
+				$tabletags = array();
+			}
+
+			$htmlsingleallowed = array_merge( $htmlsingle, $tabletags );
+			$htmlelements = array_merge( $htmlsingle, $htmlpairs, $htmlnest );
+
+			# Convert them all to hashtables for faster lookup
+			$vars = array( 'htmlpairs', 'htmlsingle', 'htmlsingleonly', 'htmlnest', 'tabletags', 
+				'htmllist', 'listtags', 'htmlsingleallowed', 'htmlelements' );
+			foreach ( $vars as $var ) {
+				$$var = array_flip( $$var );
+			}
+			$staticInitialised = true;
 		}
-
-		$htmlsingleallowed = array_merge( $htmlsingle, $tabletags );
-		$htmlelements = array_merge( $htmlsingle, $htmlpairs, $htmlnest );
 
 		# Remove HTML comments
 		$text = Sanitizer::removeHTMLcomments( $text );
 		$bits = explode( '<', $text );
 		$text = array_shift( $bits );
 		if(!$wgUseTidy) {
-			$tagstack = array(); $tablestack = array();
+			$tagstack = $tablestack = array();
 			foreach ( $bits as $x ) {
 				$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
-				$x, $regs );
+				preg_match( '!^(/?)(\\w+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs );
 				list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				error_reporting( $prev );
 
 				$badtag = 0 ;
-				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
+				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
 					# Check our stack
 					if ( $slash ) {
 						# Closing a tag...
-						if( in_array( $t, $htmlsingleonly ) ) {
+						if( isset( $htmlsingleonly[$t] ) ) {
 							$badtag = 1;
 						} elseif ( ( $ot = @array_pop( $tagstack ) ) != $t ) {
-							if ( in_array($ot, $htmlsingleallowed) ) {
+							if ( isset( $htmlsingleallowed[$ot] ) ) {
 								# Pop all elements with an optional close tag
 								# and see if we find a match below them
 								$optstack = array();
 								array_push ($optstack, $ot);
 								while ( ( ( $ot = @array_pop( $tagstack ) ) != $t ) &&
-												in_array($ot, $htmlsingleallowed) ) {
+										isset( $htmlsingleallowed[$ot] ) ) 
+								{
 									array_push ($optstack, $ot);
 								}
 								if ( $t != $ot ) {
@@ -410,7 +423,7 @@ class Sanitizer {
 							} else {
 								@array_push( $tagstack, $ot );
 								# <li> can be nested in <ul> or <ol>, skip those cases:
-								if(!(in_array($ot, $htmllist) && in_array($t, $listtags) )) {
+								if(!(isset( $htmllist[$ot] ) && isset( $listtags[$t] ) )) {
 									$badtag = 1;
 								}
 							}
@@ -422,20 +435,20 @@ class Sanitizer {
 						$newparams = '';
 					} else {
 						# Keep track for later
-						if ( in_array( $t, $tabletags ) &&
+						if ( isset( $tabletags[$t] ) &&
 						! in_array( 'table', $tagstack ) ) {
 							$badtag = 1;
 						} else if ( in_array( $t, $tagstack ) &&
-						! in_array ( $t , $htmlnest ) ) {
+						! isset( $htmlnest [$t ] ) ) {
 							$badtag = 1 ;
 						# Is it a self closed htmlpair ? (bug 5487)
 						} else if( $brace == '/>' &&
-						in_array($t, $htmlpairs) ) {
+						isset( $htmlpairs[$t] ) ) {
 							$badtag = 1;
-						} elseif( in_array( $t, $htmlsingleonly ) ) {
+						} elseif( isset( $htmlsingleonly[$t] ) ) {
 							# Hack to force empty tag for uncloseable elements
 							$brace = '/>';
-						} else if( in_array( $t, $htmlsingle ) ) {
+						} else if( isset( $htmlsingle[$t] ) ) {
 							# Hack to not close $htmlsingle tags
 							$brace = NULL;
 						} else {
@@ -475,7 +488,7 @@ class Sanitizer {
 				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
 				@list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
-				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
+				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
 					if( is_callable( $processCallback ) ) {
 						call_user_func_array( $processCallback, array( &$params, $args ) );
 					}
@@ -487,7 +500,7 @@ class Sanitizer {
 				}
 			}
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -502,8 +515,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function removeHTMLcomments( $text ) {
-		$fname='Parser::removeHTMLcomments';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 		while (($start = strpos($text, '<!--')) !== false) {
 			$end = strpos($text, '-->', $start + 4);
 			if ($end === false) {
@@ -533,7 +545,7 @@ class Sanitizer {
 				$text = substr_replace($text, '', $start, $end - $start);
 			}
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
