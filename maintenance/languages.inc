@@ -9,6 +9,7 @@
 class languages {
 	private $mList = array();
 	private $mMessages = array();
+	private $mTranslatableMessages = array();
 	private $mIgnoredMessages = array(
 		'sidebar',
 		'addsection',
@@ -24,7 +25,6 @@ class languages {
 		'loginend',
 		'loginlanguagelinks',
 		'markaspatrolledlink',
-		'metadata-fields', // Objection, contains help
 		'newarticletextanon',
 		'noarticletextanon',
 		'number_of_watching_users_RCview',
@@ -80,6 +80,14 @@ class languages {
 				require( $filename );
 				if ( isset( $messages ) ) {
 					$this->mMessages[$code] = $messages;
+					if ( $code == 'en' ) {
+						$this->mTranslatableMessages = $this->mMessages['en'];
+						foreach ( array_keys( $this->mTranslatableMessages ) as $key ) {
+							if ( in_array( $key, $this->mIgnoredMessages ) ) {
+								unset( $this->mTranslatableMessages[$key] );
+							}
+						}
+					}
 				} else {
 					$this->mMessages[$code] = array();
 				}
@@ -103,12 +111,34 @@ class languages {
 	}
 
 	/**
-	 * Get all the messages of all the languages.
+	 * Get all the messages which are translatable - not ignored messages.
+	 *
+	 * @param $code The langauge code.
+	 *
+	 * @return The messages in this language.
 	 */
-	public function getAllMessages() {
-		foreach ( $this->mList as $code ) {
-			$this->getMessages( $code );
+	public function getTranslatableMessages() {
+		$this->loadMessages( 'en' );
+		return $this->mTranslatableMessages;
+	}
+
+	/**
+	 * Get the translated messages for a specific language.
+	 *
+	 * @param $code The langauge code.
+	 *
+	 * @return The translated messages for this language.
+	 */
+	public function getTranslatedMessages( $code ) {
+		$this->loadMessages( 'en' );
+		$this->loadMessages( $code );
+		$translatedMessages = array();
+		foreach ( $this->mTranslatableMessages as $key => $value ) {
+			if ( isset( $this->mMessages[$code][$key] ) ) {
+				$translatedMessages[$key] = $value;
+			}
 		}
+		return $translatedMessages;
 	}
 
 	/**
@@ -122,8 +152,8 @@ class languages {
 		$this->loadMessages( 'en' );
 		$this->loadMessages( $code );
 		$untranslatedMessages = array();
-		foreach ( $this->mMessages['en'] as $key => $value ) {
-			if ( !isset( $this->mMessages[$code][$key] ) && !in_array( $key, $this->mIgnoredMessages ) ) {
+		foreach ( $this->mTranslatableMessages as $key => $value ) {
+			if ( !isset( $this->mMessages[$code][$key] ) ) {
 				$untranslatedMessages[$key] = $value;
 			}
 		}
@@ -142,7 +172,7 @@ class languages {
 		$this->loadMessages( $code );
 		$duplicateMessages = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
-			if ( @$this->mMessages['en'][$key] == $value ) {
+			if ( @$this->mTranslatableMessages[$key] == $value ) {
 				$duplicateMessages[$key] = $value;
 			}
 		}
@@ -161,7 +191,7 @@ class languages {
 		$this->loadMessages( $code );
 		$obsoleteMessages = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
-			if ( !isset( $this->mMessages['en'][$key] ) ) {
+			if ( !isset( $this->mTranslatableMessages[$key] ) ) {
 				$obsoleteMessages[$key] = $value;
 			}
 		}
@@ -181,10 +211,10 @@ class languages {
 		$variables = array( '\$1', '\$2', '\$3', '\$4', '\$5', '\$6', '\$7', '\$8', '\$9' );
 		$messagesWithoutVariables = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
-			if ( isset( $this->mMessages['en'][$key] ) ) {
+			if ( isset( $this->mTranslatableMessages[$key] ) ) {
 				$missing = array();
 				foreach ( $variables as $var ) {
-					if ( preg_match( "/$var/sU", $this->mMessages['en'][$key] ) &&
+					if ( preg_match( "/$var/sU", $this->mTranslatableMessages[$key] ) &&
 						!preg_match( "/$var/sU", $value ) ) {
 						$missing[] = str_replace( '\$', '$', $var );
 					}
@@ -209,7 +239,7 @@ class languages {
 		$this->loadMessages( $code );
 		$emptyMessages = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
-			if ( isset( $this->mMessages['en'][$key] ) &&
+			if ( isset( $this->mTranslatableMessages[$key] ) &&
 				( $this->mMessages[$code][$key] === '' || $this->mMessages[$code][$key] === '-' ) ) {
 				$emptyMessages[$key] = $value;
 			}
@@ -229,7 +259,7 @@ class languages {
 		$this->loadMessages( $code );
 		$messagesWithWhitespace = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
-			if ( isset( $this->mMessages['en'][$key] ) && $this->mMessages['en'][$key] !== '' &&
+			if ( isset( $this->mTranslatableMessages[$key] ) && $this->mTranslatableMessages[$key] !== '' &&
 				$value !== rtrim( $value ) ) {
 				$messagesWithWhitespace[$key] = $value;
 			}
@@ -256,7 +286,7 @@ class languages {
 		$wrongPhrases = '~(' . implode( '|', $wrongPhrases ) . ')~sDu';
 		$nonXHTMLMessages = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
-			if ( isset( $this->mMessages['en'][$key] ) && preg_match( $wrongPhrases, $value ) ) {
+			if ( isset( $this->mTranslatableMessages[$key] ) && preg_match( $wrongPhrases, $value ) ) {
 				$nonXHTMLMessages[$key] = $value;
 			}
 		}
@@ -290,7 +320,7 @@ class languages {
 		$wrongRegExp = '/(' . implode( '|', array_values( $wrongChars ) ) . ')/sDu';
 		$nonXHTMLMessages = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
-			if ( isset( $this->mMessages['en'][$key] ) && preg_match( $wrongRegExp, $value ) ) {
+			if ( isset( $this->mTranslatableMessages[$key] ) && preg_match( $wrongRegExp, $value ) ) {
 				foreach ( $wrongChars as $viewableChar => $hiddenChar ) {
 					$value = str_replace( $hiddenChar, $viewableChar, $value );
 				}

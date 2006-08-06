@@ -18,13 +18,13 @@ function checkLanguage( $code ) {
 	global $wgLanguages, $wgHideMessages;
 
 	# Get messages number
-	$englishMessagesNumber = count( $wgLanguages->getMessagesFor( 'en' ) );
+	$translatableMessagesNumber = count( $wgLanguages->getTranslatableMessages() );
 	$localMessagesNumber = count( $wgLanguages->getMessagesFor( $code ) );
 
 	# Untranslated messages
 	$untranslatedMessages = $wgLanguages->getUntranslatedMessages( $code );
 	$untranslatedMessagesNumber = count( $untranslatedMessages );
-	$wgLanguages->outputMessagesList( $untranslatedMessages, "\n$untranslatedMessagesNumber messages of $englishMessagesNumber are not translated to $code, but exist in en:", $wgHideMessages );
+	$wgLanguages->outputMessagesList( $untranslatedMessages, "\n$untranslatedMessagesNumber messages of $translatableMessagesNumber are not translated to $code, but exist in en:", $wgHideMessages );
 
 	# Duplicate messages
 	$duplicateMessages = $wgLanguages->getDuplicateMessages( $code );
@@ -34,7 +34,7 @@ function checkLanguage( $code ) {
 	# Obsolete messages
 	$obsoleteMessages = $wgLanguages->getObsoleteMessages( $code );
 	$obsoleteMessagesNumber = count( $obsoleteMessages );
-	$wgLanguages->outputMessagesList( $obsoleteMessages, "\n$obsoleteMessagesNumber messages of $localMessagesNumber are not exist in en, but still exist in $code:", $wgHideMessages );
+	$wgLanguages->outputMessagesList( $obsoleteMessages, "\n$obsoleteMessagesNumber messages of $localMessagesNumber are not exist in en (or are in the ignored list), but still exist in $code:", $wgHideMessages );
 
 	# Messages without variables
 	$messagesWithoutVariables = $wgLanguages->getMessagesWithoutVariables( $code );
