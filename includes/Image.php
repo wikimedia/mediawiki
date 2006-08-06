@@ -142,7 +142,7 @@ class Image
 		// Check if the key existed and belongs to this version of MediaWiki
 		if (!empty($cachedValues) && is_array($cachedValues)
 		  && isset($cachedValues['version']) && ( $cachedValues['version'] == MW_IMAGE_VERSION )
-		  && $cachedValues['fileExists'] && isset( $cachedValues['mime'] ) && isset( $cachedValues['metadata'] ) )
+		  && isset( $cachedValues['mime'] ) && isset( $cachedValues['metadata'] ) )
 		{
 			if ( $wgUseSharedUploads && $cachedValues['fromShared']) {
 				# if this is shared file, we need to check if image
@@ -200,13 +200,13 @@ class Image
 	 * Save the image metadata to memcached
 	 */
 	function saveToCache() {
-		global $wgMemc;
+		global $wgMemc, $wgUseSharedUploads;
 		$this->load();
 		$keys = $this->getCacheKeys();
-		if ( $this->fileExists ) {
-			// We can't cache negative metadata for non-existent files,
-			// because if the file later appears in commons, the local
-			// keys won't be purged.
+		// We can't cache negative metadata for non-existent files,
+		// because if the file later appears in commons, the local
+		// keys won't be purged.
+		if ( $this->fileExists || !$wgUseSharedUploads ) {
 			$cachedValues = array(
 				'version'    => MW_IMAGE_VERSION,
 				'name'       => $this->name,
@@ -374,6 +374,7 @@ class Image
 			$this->fileExists = false;
 			$this->fromSharedDirectory = false;
 			$this->metadata = serialize ( array() ) ;
+			$this->mime = false;
 		}
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
@@ -416,9 +417,12 @@ class Image
 				$this->loadFromDB();
 				if ( !$wgSharedUploadDBname && $wgUseSharedUploads ) {
 					$this->loadFromFile();
-				} elseif ( $this->fileExists ) {
+				} elseif ( $this->fileExists || !$wgUseSharedUploads ) {
+					// We can do negative caching for local images, because the cache
+					// will be purged on upload. But we can't do it when shared images
+					// are enabled, since updates to that won't purge foreign caches.
 					$this->saveToCache();
-				}
+				} 
 			}
 			$this->dataLoaded = true;
 		}
@@ -1367,14 +1371,16 @@ class Image
 	}
 
 	function checkDBSchema(&$db) {
+		static $checkDone = false;
 		global $wgCheckDBSchema;
-		if (!$wgCheckDBSchema) {
+		if (!$wgCheckDBSchema || $checkDone) {
 			return;
 		}
 		# img_name must be unique
 		if ( !$db->indexUnique( 'image', 'img_name' ) && !$db->indexExists('image','PRIMARY') ) {
 			throw new MWException( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
 		}
+		$checkDone = true;
 
 		# new fields must exist
 		# 
