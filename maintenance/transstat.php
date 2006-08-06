@@ -141,20 +141,15 @@ $wgOut->blockstart();
 $wgOut->element( 'Language', true );
 $wgOut->element( 'Translated', true );
 $wgOut->element( '%', true );
-$wgOut->element( 'Possibly untranslated', true );
+$wgOut->element( 'Same to English', true );
 $wgOut->element( '%', true );
 $wgOut->element( 'Obsolete', true );
 $wgOut->element( '%', true );
 $wgOut->blockend();
 
 foreach ( $wgLanguages->getList() as $code ) {
-	# Don't check English
-	if ( $code == 'en' ) {
-		continue;
-	}
-	
-	# FIXME - temporary hack for this non-language won't appear
-	if ( $code == 'enRTL' ) {
+	# Don't check English or RTL English
+	if ( $code == 'en' || $code == 'enRTL' ) {
 		continue;
 	}
 
