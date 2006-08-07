@@ -1439,6 +1439,14 @@ class Language {
 		return self::$mLocalisationCache[$code]['messages'];
 	}
 
+	/** 
+	 * Get a message for a given language
+	 */
+	static function getMessageFor( $key, $code ) {
+		self::loadLocalisation( $code );
+		return @self::$mLocalisationCache[$code]['messages'][$key];
+	}
+
 	/**
 	 * Load localisation data for this object
 	 */

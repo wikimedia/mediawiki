@@ -468,6 +468,17 @@ class MessageCache {
 			}
 		}
 
+		# Try the array of another language
+		if( $message === false && strpos( $key, '/' ) ) {
+			$message = explode( '/', $key );
+			wfSuppressWarnings();
+			$message = Language::getMessageFor( $message[0], $message[1] );
+			wfRestoreWarnings();
+			if ( is_null( $message ) ) {
+				$message = false;
+			}
+		}
+
 		# Is this a custom message? Try the default language in the db...
 		if( ($message === false || $message === '-' ) &&
 			!$this->mDisable && $useDB &&
