@@ -193,8 +193,6 @@ $messages = array(
 'jumptonavigation'      => 'navigado',
 'jumptosearch'          => 'serĉo',
 'badaccess'             => 'Vi ne havas sufiĉe da redaktorajtoj por tiu paĝo.',
-'badaccesstext'         => 'La ago kiun vi petis estas limigita nur al uzantoj, kiuj ricevis la rajton de $2.
-Vidu $1.',
 'versionrequired'       => 'Versio $1 de MediaWiki nepras',
 'versionrequiredtext'   => 'La versio $1 de MediaWiki estas necesa por uzi ĉi tiun paĝon. Vidu [[Special:Version]]',
 'ok'                    => 'Ek!',

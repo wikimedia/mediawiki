@@ -155,9 +155,6 @@ Pasirinkite kitą pavadinimą.',
 'august' => 'Rugpjūčio',
 'autoblocker' => 'Automatinis užblokavimas, nes dalinatės IP adresu su vartotoju "$1". Priežastis - "$2".',
 'badaccess' => 'Teisių klaida',
-'badaccesstext' => 'Jūsų pasirinktas veiksmas yra ribotas ir
-leidžiamas tik vartotojiems turintiems šią privilegiją - "$2".
-Žr. $1.',
 'badarticleerror' => 'Veiksmas negalimas šiam puslapiui.',
 'badfilename' => 'Paveiksliukas buvo pervadintas į "$1".',
 'badfiletype' => '".$1" yra nerekomenduojamas paveikslėlio bylos formatas.',

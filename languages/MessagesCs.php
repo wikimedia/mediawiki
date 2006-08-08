@@ -253,7 +253,6 @@ $messages = array(
 'jumptosearch' => 'hledání',
 
 'badaccess'     => 'Nedostatečná oprávnění',
-'badaccesstext' => 'Žádaný úkon může provést jen uživatel s právem „$2“ Podívejte se prosím na $1.',
 
 'versionrequired' => 'Vyžadováno MediaWiki verze $1',
 'versionrequiredtext' => 'Pro použití této stránky je vyžadováno MediaWiki verze $1. Vizte [[{{ns:-1}}:Version]].',

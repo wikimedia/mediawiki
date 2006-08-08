@@ -206,8 +206,6 @@ $messages = array(
 'jumptonavigation'      => 'navegación',
 'jumptosearch'          => 'búsqueda',
 'badaccess'             => 'Error de permisos',
-'badaccesstext'         => 'La acción que has pedido está limitada a los usuarios con el permiso "$2" asignado.
-Consulta $1.',
 'versionrequired'       => 'La versión $1 de MediaWiki es necesaria para emplear esta página',
 'versionrequiredtext'   => 'Se necesita utilizar la versión $1 de MediaWiki para utilizar esta página. Para más información, consulta [[Special:Version]]',
 'retrievedfrom'         => 'Obtenido de "$1"',

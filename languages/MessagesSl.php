@@ -222,7 +222,6 @@ in [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'jumptonavigation'      => 'navigacija',
 'jumptosearch'          => 'iskanje',
 'badaccess'             => 'Napaka pri dovoljenju',
-'badaccesstext'         => 'Želeno dejanje lahko izvedejo le uporabniki s pooblastili »$2«. Glej $1.',
 'versionrequired'       => 'Potrebna je različica MediaWiki $1',
 'versionrequiredtext'   => 'Za uporabo strani je potrebna različica MediaWiki $1. Glejte [[Special:Version]].',
 'ok'                    => 'V redu',

@@ -150,7 +150,6 @@ $messages = array(
 'jumptonavigation'      => 'Navigazsion',
 'jumptosearch'          => 'zserca',
 'badaccess'             => 'Eròr ne i permessi',
-'badaccesstext'         => 'L\'azsion che te ghè richiesto xè limità a i utenti co\'l permezso "$2" azsegnà. Varda $1.',
 'versionrequired'       => 'Verzsion $1 de MediaWiki richiesta',
 'versionrequiredtext'   => 'Par usare sta paxèna xè necessario dispore de ła verzsion $1 del software MediaWiki. Varda [[Special:Version]]',
 'youhavenewmessages'    => 'Te ghè $1 ($2).',

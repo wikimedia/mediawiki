@@ -167,7 +167,6 @@ $messages = array(
 'protectedpage'         => 'సంరక్షణలోని పేజీ',
 'administrators'        => 'Project:నిర్వాహకులు',
 'badaccess'             => 'అనుమతి లోపం',
-'badaccesstext'         => 'మీరడిగిన పని "$2" అనుమతులు ఉన్న వారికే పరిమితం. $1 చూడండి.',
 'ok'                    => 'సరే',
 'pagetitle'             => '$1 - {{SITENAME}}',
 'youhavenewmessages'    => 'మీకు $1 ఉన్నాయి ($2).',

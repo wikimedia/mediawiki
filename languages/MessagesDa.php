@@ -211,9 +211,6 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 "protectedpage" => "Beskyttet side",
 "administrators" => "{{ns:4}}:Administratorer",
 'badaccess'     => 'Permission error',
-'badaccesstext' => 'The action you have requested is limited
-to users with the "$2" permission assigned.
-See $1.',
 
 'nbytes'		=> '$1 bytes',
 "go"			=> "Gå til",

@@ -219,9 +219,6 @@ $messages = array(
 'jumptonavigation'      => 'navegació',
 'jumptosearch'          => 'cerca',
 'badaccess'             => 'Error de permisos',
-'badaccesstext'         => 'L\'acció que heu sol·licitat es limita
-a usuaris amb el permís «$2» assignat.
-Vegeu $1.',
 'versionrequired'       => 'Cal la versió $1 del MediaWiki',
 'versionrequiredtext'   => 'Cal la versió $1 del MediaWiki per a utilitzar aquesta pàgina. Vegeu [[Special:Version]]',
 'ok'                    => 'D\'acord',

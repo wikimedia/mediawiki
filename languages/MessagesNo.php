@@ -228,7 +228,6 @@ $messages = array(
 'jumptonavigation'      => 'navigasjon',
 'jumptosearch'          => 'søk',
 'badaccess'             => 'Rettighetsfeil',
-'badaccesstext'         => 'Handlingen du har prøvd å utføre kan kun utføres av bruker med «$2»-rettigheter. Se $1.',
 'versionrequired'       => 'Versjon $1 av MediaWiki påtrengt',
 'versionrequiredtext'   => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version]]',
 'ok'                    => 'OK',

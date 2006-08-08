@@ -217,7 +217,6 @@ $messages = array(
 'administrators'        => 'Project:관리자',
 'jumptosearch'          => '찾기',
 'badaccess'             => '권한 오류',
-'badaccesstext'         => '해당 동작은 ‘$2’ 권한이 있는 사용자만 실행할 수 있습니다. $1을(를) 보십시오.',
 'versionrequired'       => '미디어위키 $1 버전 필요',
 'versionrequiredtext'   => '이 문서를 보기 위해서는 미디어위키 $1 버전이 필요합니다. [[Special:Version]]을 참고하세요.',
 'ok'                    => '확인',

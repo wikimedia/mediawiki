@@ -203,10 +203,6 @@ dj\'artìcol ancó pa scrit',
 'jumptonavigation'      => 'navigassion',
 'jumptosearch'          => 'arsërca',
 'badaccess'             => 'Përmess nen giust',
-'badaccesstext'         => 'L\'operassion che a l\'ha ciamà a peul mach
-esse faita da Utent che a l\'abio un
-përmess dla sòrt "$2".
-Che a varda $1.',
 'versionrequired'       => 'A-i va për fòrsa la version $1 ëd MediaWiki',
 'versionrequiredtext'   => 'Për dovrè sta pàgina-sì a-i va la version $1 dël programa MediaWiki. Che a varda [[Special:Version]]',
 'ok'                    => 'Va bin',

@@ -233,10 +233,6 @@ $messages = array(
 'jumptosearch' => 'cweri',
 
 'badaccess' => 'Åk n\' a nén stî avou les permissions',
-'badaccesstext' => 'L\' accion ki vos avoz dmandé èn pout
-esse fwaite ki pa des uzeus avou l\' livea
-di «$2».
-Loukîz a $1.',
 
 'versionrequired' => 'I vs fåt l\' modêye $1 di MediaWiki',
 'versionrequiredtext' => 'I vs fåt l\' modêye $1 di MediaWiki po-z eployî cisse pådje ci. Loukîz a [[Special:Version]]',

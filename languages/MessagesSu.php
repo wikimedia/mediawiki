@@ -168,7 +168,6 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'articleexists' => 'Kaca nu ngaranna kitu geus aya, atawa ngaran nu dipilih ku anjeun teu sah. Mangga pilih ngaran séjén.',
 'articlepage' => 'Témbongkeun kaca eusi',
 'autoblocker' => 'Otomatis dipeungpeuk sabab alamat IP anjeun sarua jeung "$1". Alesan "$2".',
-'badaccesstext' => 'Peta nu dipundut diwates ukur pikeun pamaké nu mibanda idin "$2". Tempo $1.',
 'badarticleerror' => 'Peta ieu teu bisa dipigawé na kaca ieu.',
 'badfilename' => 'Ngaran gambar geus dirobah jadi "$1".',
 'badfiletype' => '".$1" lain format koropak gambar nu dianjurkeun.',

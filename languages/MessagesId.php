@@ -242,7 +242,6 @@ $messages = array(
 'jumptosearch' => 'cari',
 
 'badaccess'     => 'Kesalahan hak akses',
-'badaccesstext' => 'Tindakan yang Anda minta dibatasi hanya untuk pengguna dengan hak akses "$2". Lihat $1.',
 
 'versionrequired' => 'Dibutuhkan MediaWiki versi $1',
 'versionrequiredtext' => 'MediaWiki versi $1 dibutuhkan untuk menggunakan halaman ini. Lihat [[{{ns:special}}:Version]]',

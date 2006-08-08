@@ -185,7 +185,6 @@ $messages= array(
 'jumptonavigation'      => 'navigācija',
 'jumptosearch'          => 'meklēt',
 'badaccess'             => 'Atļaujas kļūda',
-'badaccesstext'         => 'Šī darbība ir pieejama tikai lietotājiem ar "$2" atļauju. Sk. $1.',
 'versionrequired'       => 'Nepieciešamā \'\'MediaWiki\'\' versija: $1.',
 'versionrequiredtext'   => 'Lai lietotu šo lapu, nepieciešama \'\'MediaWiki\'\' versija $1. Sk. [[Special:versija]].',
 'ok'                    => 'Labi',

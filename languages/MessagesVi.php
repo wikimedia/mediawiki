@@ -282,7 +282,6 @@ $messages = array(
 # General errors
 'error'		=> 'Lỗi',
 'badaccess' => 'Lỗi truy cập',
-'badaccesstext' => 'Chỉ dành cho thành viên có quyền "$2". Xem $1',
 'databaseerror' => 'Lỗi cơ sở dữ liệu',
 'dberrortext'	=> "Lỗi cú pháp trong cơ sở dữ liệu. Truy vấn vừa rồi là:
 <blockquote><tt>$1</tt></blockquote>

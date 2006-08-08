@@ -231,8 +231,6 @@ I seguenti collegamenti sono in lingua inglese:
 "jumptosearch" => "ricerca",
 
 "badaccess" => "Permessi non sufficienti",
-"badaccesstext"	=> "Questa operazione può essere eseguita solo da utenti che siano dotati degli opportuni permessi (''$2'').
-Vedi $1.",
 
 "versionrequired" => "Versione $1 di MediaWiki richiesta",
 "versionrequiredtext" => "Per usare questa pagina è necessario disporre della versione $1 del software MediaWiki. Vedi [[Special:Version]]",

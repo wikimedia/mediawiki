@@ -371,8 +371,6 @@ $messages = array(
 'jumptosearch' => 'поиск',
 
 'badaccess' => 'Ошибка доступа',
-'badaccesstext' => 'Запрошенное вами действие может быть выполнено
-только участниками с правами доступа «$2». См. $1.',
 
 'versionrequired' => 'Требуется MediaWiki версии $1',
 'versionrequiredtext' => 'Для работы с этой страницей требуется MediaWiki версии $1. См. [[Special:Version]].',

@@ -218,7 +218,6 @@ $messages = array(
 'jumptonavigation'      => 'ナビゲーション',
 'jumptosearch'          => '検索',
 'badaccess'             => '権限がありません',
-'badaccesstext'         => 'あなたの要求した処理は "$2" の権限を持った利用者のみが実行できます。詳しくは $1 を参照してください。',
 'versionrequired'       => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext'   => 'このページの利用には MediaWiki Version $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
 'retrievedfrom'         => ' "$1" より作成',

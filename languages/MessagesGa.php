@@ -269,9 +269,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "administrators"    => "{{ns:4}}:Riarthóirí",
 
 'badaccess'     => 'Earráid ceada',
-'badaccesstext' => 'Ní féidir an gníomh seo a dhéanamh muna bhfuil
-an cead "$2" agat.
-See $1.',
 
 'versionrequired' => 'Tá leagan $1 de MediaWiki de dhíth',
 'versionrequiredtext' => 'Tá an leagan $1 de MediaWiki riachtanach chun an leathanach seo a úsáid. Féach ar [[Speisialta:Version]]',

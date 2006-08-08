@@ -236,8 +236,6 @@ $messages = array(
 #
 'error'		=> 'Fazi',
 'badaccess' => 'Fazi aotre',
-'badaccesstext' => 'Miret eo an ober goulennet evit an implijerien ganto ar gwir "$2".
-Sellet ouzh $1',
 'databaseerror' => 'Fazi bank roadennoù',
 'dberrortext'	=> "Fazi ereadur er bank roadennoù. Setu ar goulenn bet pledet gantañ da ziwezhañ :
 <blockquote><tt>$1</tt></blockquote>

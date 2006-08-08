@@ -256,8 +256,6 @@ $messages = array(
 'protectedpage' => 'Защитена страница',
 'administrators' => 'Project:Администратори',
 'badaccess'     => 'Грешка при достъп', # Permission error
-'badaccesstext' => 'Желаното действие може да се изпълнява само от потребители с права на „$2“.
-Вижте $1.',
 'versionrequired' => 'Изисква се версия $1 на МедияУики',
 'versionrequiredtext' => 'За да използвате тази страница, е необходима версия $1 на МедияУики. Вижте [[Special:Version]].',
 'nbytes'    => '$1 байта',

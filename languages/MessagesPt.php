@@ -303,7 +303,6 @@ $messages = array(
 'jumptosearch' => 'pesquisa',
 
 'badaccess'     => 'Erro de permissão',
-'badaccesstext' => 'A acção que requesitou está limitada a utilizadores com permissão de "$2". Ver $1.',
 
 'versionrequired' => 'Necessária versão $1 do MediaWiki',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para ser utilizada. Consulte [[Special:Version]]',
