@@ -116,6 +116,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6753) Fixed broken Kazakh linktrail (kk)
 * (bug 6700) Added Kazakh language variants to Names.php
 * (bug 6827) some i18n specific maintenance scripts fails after merge of localisation-work branch
+* Throwed an exception for the deprecated functions OutputPage::sysopRequired and
+  OutputPage::developerRequired - use OutputPage::permissionRequired instead.
+* Removed the deprecated functions User::isSysop, User::isBureaucrat and User::isDeveloper -
+  use User::isAllowed instead.
 
 == Languages updated ==
 
