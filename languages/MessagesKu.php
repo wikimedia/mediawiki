@@ -130,8 +130,6 @@ $messages = array(
 'copyright'             => 'Ji bo naverokê $1 derbas dibe.',
 'protectedpage'         => 'Rûpela parastî',
 'administrators'        => 'Project:Koordînasyon',
-'sysoptext'             => 'Çalakiya ku te xwest bi tenê bikarhêneran bi mafên "sysop" dikarin çêkin. 
-Binêre $1.',
 'badaccess'             => 'Eror li bi dest Hînan',
 'ok'                    => 'Temam',
 'retrievedfrom'         => 'Ji "$1" hatiye standin.',

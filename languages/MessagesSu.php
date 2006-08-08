@@ -324,8 +324,6 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 <ul>
 </ul>',
 'destfilename' => 'Ngaran koropak tujuan',
-'developertext' => 'Peta nu dipénta ngan bisa dipigawé ku pamaké nu statusna "developer". Tempo $1.',
-'developertitle' => 'Kudu ku developer',
 'diff' => 'béda',
 'difference' => '(Béda antarrévisi)',
 'disambiguations' => 'Kaca disambiguasi',
@@ -859,8 +857,6 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'subject' => 'Jejer/Judul',
 'successfulupload' => 'Ngamuat geus hasil',
 'summary' => 'Ringkesan',
-'sysoptext' => 'Peta nu dipénta ku anjeun ngan bisa dipigawé ku pamaké nu statusna kuncén. Tempo $1.',
-'sysoptitle' => 'Kudu ku kuncén',
 'talk' => 'Sawala',
 'talkexists' => 'Kacana geus hasil dipindahkeun, ngan kaca obrolanana teu bisa dipindahkeun sabab geus aya nu anyar na judul anyar. Mangga gabungkeun sacara manual.',
 'talkpage' => 'Sawalakeun kaca ieu',

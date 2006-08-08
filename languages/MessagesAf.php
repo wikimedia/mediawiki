@@ -138,12 +138,7 @@ $messages = array(
 "viewcount"		=> "Hierdie bladsy is al $1 keer aangevra.",
 "protectedpage" => "Beskermde bladsy",
 "administrators" => "{{ns:4}}:Administreerders",
-"sysoptitle"	=> "Sisopregte verlang",
 
-
-"sysoptext"		=> "Die wysiging waarvoor jy gevra het kan slegs deur iemand wat \"sisop\"regte het, gedoen word. Lees $1.",
-"developertitle" => "Ontwerperregte verlang",
-"developertext"	=> "Die wysiging waarvoor jy gevra het kan slegs deur iemand wat \"progammeerder\"regte het, gedoen word. Lees $1.",
 "nbytes"		=> "$1 grepe",
 "go"			=> "Doen",
 "ok"			=> "Aanvaar", #fixMe

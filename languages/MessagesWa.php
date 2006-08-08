@@ -232,17 +232,6 @@ $messages = array(
 'jumptonavigation' => 'naiviaedje',
 'jumptosearch' => 'cweri',
 
-'sysoptitle' => 'I vs fåt esse manaedjeu',
-'sysoptext' => 'L\' accion ki vos avoz dmandé èn pout
-esse fwaite ki pa des uzeus avou l\' livea
-di «manaedjeu».
-Loukîz a $1.',
-'developertitle' => 'I vs fåt esse diswalpeu',
-'developertext' => 'L\' accion ki vos avoz dmandé èn pout
-esse fwaite ki pa des uzeus avou l\' livea
-di «diswalpeu».
-Loukîz a $1.',
-
 'badaccess' => 'Åk n\' a nén stî avou les permissions',
 'badaccesstext' => 'L\' accion ki vos avoz dmandé èn pout
 esse fwaite ki pa des uzeus avou l\' livea

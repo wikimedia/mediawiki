@@ -217,12 +217,6 @@ $messages = array(
 'jumpto'                => '移動:',
 'jumptonavigation'      => 'ナビゲーション',
 'jumptosearch'          => '検索',
-'sysoptitle'            => '{{int:group-sysop}}によるアクセスが必要',
-'sysoptext'             => 'あなたの要求した処理は{{int:group-sysop}}のみが実行できます。
-$1を参照してください。',
-'developertitle'        => '開発者によるアクセスが必要',
-'developertext'         => 'あなたの要求した処理は開発者のみが実行できます。
-$1 を参照してください。',
 'badaccess'             => '権限がありません',
 'badaccesstext'         => 'あなたの要求した処理は "$2" の権限を持った利用者のみが実行できます。詳しくは $1 を参照してください。',
 'versionrequired'       => 'MediaWiki バージョン $1 が必要',

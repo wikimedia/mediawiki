@@ -230,13 +230,6 @@ I seguenti collegamenti sono in lingua inglese:
 "jumptonavigation" => "navigazione",
 "jumptosearch" => "ricerca",
 
-"sysoptitle"	=> "Riservato agli amministratori",
-"sysoptext"		=> "Questa operazione può essere eseguita solo da utenti che siano anche amministratori (''sysop'').
-Vedi $1.",
-"developertitle" => "Riservato agli sviluppatori",
-"developertext"	=> "Questa operazione può essere eseguita solo da utenti che siano anche sviluppatori (''developer'').
-Vedi $1.",
-
 "badaccess" => "Permessi non sufficienti",
 "badaccesstext"	=> "Questa operazione può essere eseguita solo da utenti che siano dotati degli opportuni permessi (''$2'').
 Vedi $1.",

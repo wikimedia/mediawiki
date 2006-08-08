@@ -205,14 +205,6 @@ $messages = array(
 'jumpto'                => 'Saltar a',
 'jumptonavigation'      => 'navegación',
 'jumptosearch'          => 'búsqueda',
-'sysoptitle'            => 'Acceso de administrador requerido',
-'sysoptext'             => 'La acción que has requerido sólo puede ser llevada a cabo
- por usuarios con status de administrador.
-Ver $1.',
-'developertitle'        => 'Acceso de developer requerido',
-'developertext'         => 'La acción que has requerido sólo puede ser llevada a cabo
-por usuarios con status de "developer".
-Ver $1.',
 'badaccess'             => 'Error de permisos',
 'badaccesstext'         => 'La acción que has pedido está limitada a los usuarios con el permiso "$2" asignado.
 Consulta $1.',

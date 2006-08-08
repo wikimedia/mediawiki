@@ -191,12 +191,6 @@ $messages = array(
 "viewcount" => "Mae'r tudalen hyn wedi cael ei gweld $1 o weithiau.",
 "protectedpage" => "Tudalen amddiffyniol",
 "administrators" => "{{ns:project}}:Gweinyddwyr",
-"sysoptitle" => "Mynediad Sysop yn unig",
-"sysoptext" => "Mae'r peth rydych wedi gofyn amdano dim ond yn bosibl i ddefnyddwyr gyda statws \"sysop\".
-Gwelwch $1.",
-"developertitle" => "Mynediad Datblygwr yn unig",
-"developertext"	=> "Mae'r peth rydych wedi gofyn amdano dim ond yn bosibl i ddefnyddwyr gyda statws \"datblygwr\".
-Gwelwch $1.",
 "nbytes" => "$1 bytes",
 "go" => "Mynd",
 "ok" => "OK",

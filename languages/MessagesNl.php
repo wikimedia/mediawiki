@@ -256,13 +256,6 @@ parent class in order maintain consistency across languages.
 'jumptonavigation'      => 'navigatie',
 'jumptosearch'          => 'zoek',
 
-'sysoptitle'            => 'Beheerdersrechten vereist',
-'sysoptext'             => 'De gevraagde handeling kan alleen uitgevoerd worden door beheerders. Zie $1.',
-'developertitle'        => 'Ontwikkelaarsrechten vereist',
-'developertext'         => 'De handeling die u wilt uitvoeren is alleen beschikbaar 
-voor gebruikers met de rol "ontwikkelaar".
-Zie $1.',
-
 'badaccess'             => 'Geen toestemming',
 'badaccesstext'         => 'De handeling die u probeerde uit te voeren is alleen beschikbaar voor gebruikers met de rol "$2".
 Zie $1.',

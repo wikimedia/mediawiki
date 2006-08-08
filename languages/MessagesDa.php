@@ -210,12 +210,6 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 'copyright'	=> 'Indholdet&nbsp;er&nbsp;udgivet&nbsp;under&nbsp;$1.',
 "protectedpage" => "Beskyttet side",
 "administrators" => "{{ns:4}}:Administratorer",
-"sysoptitle"	=> "Sysop-adgang påkrævet",
-"sysoptext"		=> "Den funktion du har bedt om kan kun
-udføres af brugere med \"sysop\"-status. Se $1.",
-"developertitle" => "Developer-adgang påkrævet",
-"developertext"	=> "Den funktion du har bedt om, kan kun
-udføres af brugere med \"developer\"-status. Se $1.",
 'badaccess'     => 'Permission error',
 'badaccesstext' => 'The action you have requested is limited
 to users with the "$2" permission assigned.

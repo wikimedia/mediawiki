@@ -314,11 +314,6 @@ $messages = array(
 'jumpto'                => 'Skoč na:',
 'jumptonavigation'      => 'navigácia',
 'jumptosearch'          => 'hľadanie',
-'sysoptitle'            => 'Je potrebné oprávnenie správcu',
-'sysoptext'             => 'Požadovanú akciu môžu vykonať iba redaktori s oprávnením správca. Pozri $1.',
-'developertitle'        => 'Je potrebné oprávnenie typu vývojár',
-'developertext'         => 'Požadovanú akciu môžu vykonať iba redaktori s oprávnením "vývojár".
-Pozri $1.',
 'badaccess'             => 'Chyba povolenia',
 'badaccesstext'         => 'Akcia, o ktorú sa pokúšate, je prístupná iba používateľom s povolením "$2". Pozri $1.',
 'versionrequired'       => 'Požadovaná verzia MediaWiki $1',

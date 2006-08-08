@@ -510,15 +510,6 @@ parent class in order maintain consistency across languages.
 'jumptonavigation' => 'navigation',
 'jumptosearch' => 'search',
 
-'sysoptitle'	=> 'Sysop access required',
-'sysoptext'		=> 'The action you have requested can only be
-performed by users with "sysop" capability.
-See $1.',
-'developertitle' => 'Developer access required',
-'developertext'	=> 'The action you have requested can only be
-performed by users with "developer" capability.
-See $1.',
-
 'badaccess'     => 'Permission error',
 'badaccesstext' => 'The action you have requested is limited
 to users with the "$2" permission assigned.

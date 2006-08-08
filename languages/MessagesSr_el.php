@@ -375,15 +375,6 @@ $messages = array(
 'jumptonavigation' => 'navigacija',
 'jumptosearch' => 'pretraga',
 
-'sysoptitle' => 'Neophodan je administratorski pristup',
-'sysoptext' => 'Akciju koju ste zatražili mogu
-izvesti samo korisnici sa statusom administratora.
-Pogledajte $1.',
-'developertitle' => 'Neophodan je developerski pristup',
-'developertext' => 'Akciju koju ste zatražili mogu
-izvesti samo korisnici sa developerskim statusom.
-Pogledajte $1.',
-
 'badaccess' => 'Greška u dozvolama',
 'badaccesstext' => 'Akcija koju ste tražili je ograničena na korisnike sa "$2" dozvolama. Pogledajte $1.',
 

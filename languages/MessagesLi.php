@@ -174,10 +174,6 @@ $messages = array(
 'copyright'             => 'De inhawd is besjikbaar ónger de $1.',
 'protectedpage'         => 'Beveiligde pazjena',
 'administrators'        => 'Project:Systeemwèrkers',
-'sysoptitle'            => 'Alleen toegank veur adminstrateurs',
-'sysoptext'             => 'De gevraogde handeling kin allein weure oetgevoerd doer administrateurs. Zuug $1.',
-'developertitle'        => 'Allein toegank veur systeemwèrkers.',
-'developertext'         => 'De gevraogde hanjeling kan allein weure oetgeveurd doer systeemwèrkers. Zuug $1.',
 'badaccess'             => 'Toeganksfout',
 'badaccesstext'         => 'De hanjeling die geer höb aangevraog is
 veurbehawwe aan gebroekers mit de "$2"-

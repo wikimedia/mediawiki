@@ -157,14 +157,6 @@ $messages = array(
 "viewcount"		=> "This page has been accessed $1 times.",
 "protectedpage" => "Protected page",
 "administrators" => "{{ns:project}}:Administrators",
-"sysoptitle"	=> "Sysop access required",
-"sysoptext"		=> "The action you have requested can only be
-performed by users with \"sysop\" status.
-See $1.",
-"developertitle" => "Developer access required",
-"developertext"	=> "The action you have requested can only be
-performed by users with \"developer\" status.
-See $1.",
 
 "nbytes"		=> "$1 ไบต์",
 "go"			=> "ไป",

@@ -82,7 +82,6 @@ $messages = array(
 'delete' => 'Rëmôj',
 'deletionlog' => 'register rëmaniów',
 'dellogpage' => 'Rëmóné',
-'developertext' => "Ną òperacëjã mòże wëkònac blós brëkòwnik z prawama\n\"Programista\".\nZdrzë $1.",
 'difference' => '(różnice midzë wersëjama)',
 'disambiguationspage' => '{{ns:4}}:Starnë_ùjednoznacznieniô',
 'disclaimerpage' => '{{ns:4}}:General_disclaimer',

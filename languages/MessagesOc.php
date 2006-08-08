@@ -170,12 +170,6 @@ $messages = array(
 "viewcount"     => "Cette page a été consultée $1 fois.",
 "protectedpage" => "Page protégée",
 "administrators" => "{{ns:project}}:Administrateurs",
-"sysoptitle"    => "Accès administrateur requis",
-"sysoptext"     => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d'\"administrateur\".
-Voir $1.",
-"developertitle" => "Accès développeur requis",
-"developertext" => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de \"développeur\".
-Voir $1.",
 "nbytes"        => "$1 octets",
 "go"            => "Consulter",			// Looxix "OK",
 "ok"            => "OK",

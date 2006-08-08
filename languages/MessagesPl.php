@@ -224,15 +224,6 @@ $messages = array(
 'jumptonavigation' => 'nawigacji',
 'jumptosearch' => 'wyszukiwania',
 
-'sysoptitle' => 'Wymagane prawa dostępu administratora',
-'sysoptext' => 'Ta operacja może być wykonana tylko przez
-użytkowania o statusie "administrator".
-Zobacz $1.',
-'developertitle' => 'Wymagane prawa dostępu Programisty',
-'developertext' => 'Ta operacja może być wykonana tylko przez
-użytkownika o prawach "Programisty".
-Zobacz $1.',
-
 'badaccess' => 'Nieprawidłowe uprawnienia',
 'badaccesstext' => 'Ta operacja może być wykonana tylko przez
 użytkownika o prawach "$2". Zobacz $1.',

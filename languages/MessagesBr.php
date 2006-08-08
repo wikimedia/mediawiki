@@ -198,12 +198,6 @@ $messages = array(
 'copyright'	=> 'Danvez a c\'haller implijout dindan $1.',
 'protectedpage' => 'Pajenn warezet',
 'administrators' => '{{ns:4}}:Merourien',
-'sysoptitle'    => 'Moned merour dre ret',
-'sysoptext'     => 'N\'hall ar pezh hoc\'h eus klasket seveniñ bezañ graet nemet gant un implijer gantañ ar statud "Merour".
-Sellet ouzh $1.',
-'developertitle' => 'Moned diorroer dre ret',
-'developertext' => 'N\'hall ar pezh hoc\'h eus klasket seveniñ bezañ graet nemet gant un implijer gantañ ar statud "Diorroer".
-Voir $1.',
 'nbytes'        => '$1 eizhbit',
 'go'            => 'Kas',
 'ok'            => 'Mat eo',

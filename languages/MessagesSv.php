@@ -219,12 +219,6 @@ $messages = array(
 'jumpto'                => 'Hoppa till:',
 'jumptonavigation'      => 'navigering',
 'jumptosearch'          => 'sök',
-'sysoptitle'            => 'Behörighet som administratör krävs',
-'sysoptext'             => 'Denna åtgärd kan bara utföras av användare med administratörsrättigheter.
-Se $1.',
-'developertitle'        => 'Utvecklarbehörighet krävs',
-'developertext'         => 'Denna funktion kan bara utföras av användare med utvecklarstatus.
-Se $1.',
 'badaccess'             => 'Behörighetsfel',
 'badaccesstext'         => 'Den funktion du ville utföra är begränsad till användare med behörighet till "$2". Se $1.',
 'versionrequired'       => 'Version $1 av MediaWiki krävs',

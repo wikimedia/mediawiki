@@ -229,11 +229,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "copyright" => "Kogu tekst on kasutatav litsentsi $1 tingimustel.",
 "protectedpage" => "Kaitstud artikkel",
 "administrators" => "{{ns:4}}:Administraatorid",
-"sysoptitle"	=> "Nõutav süsteemi operaatori staatus",
-"sysoptext"	=> "Seda toimingut saavad sooritada ainult süsteemi operaatori staatusega kasutajad. Vaata $1.",
-"developertitle" => "Nõutav süsteemiarendaja staatus",
-"developertext"	=> "Seda toimingut saavad sooritada ainult süsteemiarendaja staatusega kasutajad.
-Vaata $1.",
 "nbytes"		=> "$1 baiti",
 "go"			=> "Mine",
 "ok"			=> "OK",

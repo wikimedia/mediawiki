@@ -149,11 +149,6 @@ $messages = array(
 'administrators'        => 'Project:Aministradori',
 'jumptonavigation'      => 'Navigazsion',
 'jumptosearch'          => 'zserca',
-'sysoptitle'            => 'Riservà ai aministradori',
-'sysoptext'             => 'Questa operazione può essere eseguita solo da Utenti con grado di "sysop".
-Vedi $1.',
-'developertitle'        => 'Riservà ai sviłuppatori',
-'developertext'         => 'Stà operazsion la pode esser eseguia solo da Utenti con grado de "developer". Varda $1.',
 'badaccess'             => 'Eròr ne i permessi',
 'badaccesstext'         => 'L\'azsion che te ghè richiesto xè limità a i utenti co\'l permezso "$2" azsegnà. Varda $1.',
 'versionrequired'       => 'Verzsion $1 de MediaWiki richiesta',

@@ -192,13 +192,6 @@ $messages = array(
 'jumpto'                => 'Saltu al:',
 'jumptonavigation'      => 'navigado',
 'jumptosearch'          => 'serĉo',
-'sysoptitle'            => 'Konto de administranto bezonatas',
-'sysoptext'             => 'La ago kiun vi petis fari estas
-farebla nur de uzantoj agnoskitaj kiel "sistemestroj".
-Bonvolu legi $1.',
-'developertitle'        => 'Sistemestra konto nepras',
-'developertext'         => 'Nur tiuj kiuj havas la staton, "programisto", povas fari tiun agon.
-Vidu $1.',
 'badaccess'             => 'Vi ne havas sufiĉe da redaktorajtoj por tiu paĝo.',
 'badaccesstext'         => 'La ago kiun vi petis estas limigita nur al uzantoj, kiuj ricevis la rajton de $2.
 Vidu $1.',

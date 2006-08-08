@@ -143,12 +143,6 @@ $messages = array(
 'copyright'             => 'Res ad manum sub $1.',
 'protectedpage'         => 'Pagina protecta',
 'administrators'        => 'Project:Administratores',
-'sysoptitle'            => 'Reservatum ad Administratores',
-'sysoptext'             => 'Soli administratores hanc actionem peragere possunt.
-Vide $1.',
-'developertitle'        => 'Reservatum ad Explicatores',
-'developertext'         => 'Soli explicatores hanc actionem peragere possunt.
-Vide $1.',
 'retrievedfrom'         => 'Receptum de "$1"',
 'newmessageslink'       => 'nuntios novos',
 'editsection'           => 'recensere',
