@@ -510,10 +510,9 @@ parent class in order maintain consistency across languages.
 'jumptonavigation' => 'navigation',
 'jumptosearch' => 'search',
 
-'badaccess'     => 'Permission error',
-'badaccesstext' => 'The action you have requested is limited
-to users with the "$2" permission assigned.
-See $1.',
+'badaccess'         => 'Permission error',
+'badaccess-group'   => 'The action you have requested is limited to users in the group "$1".',
+'badaccess-nogroup' => 'You are not allowed to execute the action you have requested.',
 
 'versionrequired' => 'Version $1 of MediaWiki required',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version]]',

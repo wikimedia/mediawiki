@@ -354,10 +354,9 @@ $messages = array(
 "jumptonavigation"  => "ניווט",
 "jumptosearch"      => "חיפוש",
 
-"badaccess"     => "תקלה בהרשאות",
-"badaccesstext" => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים עם הרשאת "$2".
-
-למידע נוסף, ראו $1.',
+"badaccess"         => "שגיאה בהרשאות",
+"badaccess-group"   => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים בקבוצה "$1".',
+"badaccess-nogroup" => "אינכם מורשים לבצע את הפעולה שביקשתם.",
 
 "versionrequired"     => "נדרשת גרסה $1 של מדיה־ויקי",
 "versionrequiredtext" => 'גרסה $1 של מדיה־ויקי נדרשת לשימוש בדף זה.
