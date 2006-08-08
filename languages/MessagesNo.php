@@ -609,7 +609,6 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'userrights-groupsmember'=> 'Medlem av:',
 'userrights-groupsavailable'=> 'Tilgjengelige grupper:',
 'userrights-groupshelp' => 'Velg grupper du vil at brukeren skal fjernes fra eller lagt til. Ikke valgte grupper vil ikke bli forandret. Du kan fjerne merkingen av en gruppe med Ctrl + Venstreklikk.',
-'userrights-logcomment' => 'Endret gruppemedlemskap fra $1 til $2',
 'group'                 => 'Gruppe:',
 'group-bot'             => 'Roboter',
 'group-sysop'           => 'Administratorer',

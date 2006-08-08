@@ -665,7 +665,6 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'userrights-groupsmember' => 'Anggota dari:',
 'userrights-groupsavailable' => 'Grup yang tersedia:',
 'userrights-groupshelp' => "Pilih grup yang Anda ingin hapus dari atau tambahkan pada pengguna. Grup yang tak dipilih tak akan diganti. Anda dapat membatalkan pilihan dengan menekan tombol CTRL + Klik kiri",
-'userrights-logcomment' => 'Keanggotaan grup diganti dari $1 ke $2',
 
 # Groups
 'group'                   => 'Grup:',

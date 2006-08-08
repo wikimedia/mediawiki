@@ -707,8 +707,6 @@ den am an freastalaí (UTC).",
 'userrights-groupsavailable' => 'Grúpaí atá le fáil:',
 'userrights-groupshelp' => 'Roghnaigh na grúpaí a bhfuil tú ag cur an úsáideoir leis nó ag baint an úsáideoir de.
 Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a díroghnú le húsáid CTRL + cléchliceáil',
-'userrights-logcomment' => 'Athraíodh an ballraíocht grúpa ó $1 go $2',
-
 
 # Recent changes
 #

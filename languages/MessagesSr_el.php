@@ -862,7 +862,6 @@ da biste podešavali korisnička podešavanja.',
 'userrights-groupsavailable' => 'Dostupne grupe:',
 'userrights-groupshelp' => 'Odabrane grupe od kojih želite da se ukloni korisnik ili da se doda.
 Neodabrane grupe neće biti promenjene. Možete da deselektujete grupu koristeći CTRL + levi klik',
-'userrights-logcomment' => 'Promenjeno članstvo grupe iz $1 u $2',
 
 # Groups
 'group' => 'Grupa:',

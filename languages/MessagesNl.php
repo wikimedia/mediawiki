@@ -728,7 +728,6 @@ Probeer het nog een keer.',
 'userrights-groupsavailable'=> 'Beschikbare groepen:',
 'userrights-groupshelp' => 'Selecteer de groepen waaruit u de gebruiker wilt verwijderen of aan toe wilt voegen.
 Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctrl + linkermuisknop".',
-'userrights-logcomment' => 'Groepslidmaatschap gewijzigd van $1 naar $2',
 
 # Groups
 'group'                 => 'Groep:',

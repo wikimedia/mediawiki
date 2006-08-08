@@ -623,7 +623,6 @@ za podešavanje korisničkih postavki.',
 'userrights-groupsavailable'=> 'Dostupne skupine:',
 'userrights-groupshelp' => 'Izaberite skupine u koje želite dodati ili iz njih ukloniti suradnika.
 Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovremenim pritiskom CTRL + lijeva tipka miša',
-'userrights-logcomment' => 'Članstvo u skupini $1 zamijenjeno članstvom u skupini $2',
 'changes'               => 'promjene',
 'recentchanges'         => 'Nedavne promjene',
 'recentchangestext'     => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',

@@ -764,7 +764,6 @@ od času na serveri (UTC).',
 'userrights-groupsavailable'=> 'Dostupné skupiny:',
 'userrights-groupshelp' => 'Označte skupiny, do ktorých chcete pridať alebo z ktorých chcete
 odobrať redaktora. Neoznačené skupiny nebudú zmenené. Odobrať skupinu možete pomocou CTRL + kliknutie ľavým tlačidlom',
-'userrights-logcomment' => 'Zmenená príslušnosť zo skupiny $1 na skupinu $2',
 'group'                 => 'Skupina:',
 'group-bot'             => 'Boti',
 'group-sysop'           => 'Správcovia',

@@ -723,7 +723,6 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'userrights-groupsavailable' => 'Dostupné skupiny:',
 'userrights-groupshelp' => 'Zvolte skupiny, do/ze kterých chcete uživatele přidat/odebrat.
 Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pomocí CTRL + Levé tlačítko myši',
-'userrights-logcomment' => 'Změněno členství ve skupinách z $1 na $2',
 
 # Default group names and descriptions
 #

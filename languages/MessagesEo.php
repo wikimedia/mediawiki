@@ -563,7 +563,6 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-groupsmember'=> 'Membro de:',
 'userrights-groupsavailable'=> 'Disponeblaj grupoj:',
 'userrights-groupshelp' => 'Selektu grupojn el kiuj vi volas forigi aŭ al kiuj vi volas aldoni uzanton. Neselektitaj grupoj ne estos ŝanĝitaj. Vi povas malselekti grupon per STR.',
-'userrights-logcomment' => 'Estis ŝanĝita la grupa membreco de $1 al $2.',
 'group'                 => 'Grupo:',
 'group-sysop'           => 'Sisopoj',
 'group-bureaucrat'      => 'Burokratoj',

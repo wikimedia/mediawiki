@@ -753,7 +753,6 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'userrights-groupsavailable' => 'Grupos disponíveis:',
 'userrights-groupshelp' => 'Seleccione os grupos no qual deseja que o utilizador seja removido ou adicionado.
 Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a selecção a um grupo com CTRL + Click esquerdo',
-'userrights-logcomment' => 'Alterado membro do grupo de $1 para $2',
 
 # Groups
 'group'                   => 'Grupo:',

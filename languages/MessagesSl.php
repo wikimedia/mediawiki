@@ -637,7 +637,6 @@ $2 Seznam se preusmerja   Iskanje za $3 $9',
 'userrights-groupsavailable'=> 'Skupine, ki so na razpolago:',
 'userrights-groupshelp' => 'Izberite skupine, iz katerih želite odstraniti ali vanje dodati uporabnika.
 Neoznačene skupine ne bodo spremenjene. Skupino lahko odznačite z levim klikom in hkratnim pritiskom tipke CTRL.',
-'userrights-logcomment' => 'Uporabnik je iz skupine $1 prešel v skupino $2.',
 'group'                 => 'Skupina:',
 'group-bot'             => 'Boti',
 'group-sysop'           => 'Administratorji',

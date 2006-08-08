@@ -646,7 +646,6 @@ për podej specifiché ij sò gust.',
 'userrights-groupsavailable'=> 'Partìe disponibij:',
 'userrights-groupshelp' => 'Che as selession-a le partìe d\'andoa che a veul gavé ò andoa che a veul buteje andrinta l\'utent.
 Le partìe nen selessionà a saran nen tocà. Për deselessioné na partìa a venta che a jë sgnaca ansima ën tnisend ësgnacà ëdcò ël tast CTRL ëd soa tastera.',
-'userrights-logcomment' => 'Apartenensa a le partìe passà da $1 a $2',
 'group'                 => 'Partìa:',
 'group-bot'             => 'Trigomiro',
 'group-sysop'           => 'Aministrator',
