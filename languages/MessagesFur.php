@@ -225,29 +225,6 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'filestatus' => 'Stât dal copyright',
 'friday' => "Vinars",
 'go' => "Va",
-'googlesearch' => "
-<div style=\"margin-left: 2em\">
-
-<!-- Google search -->
-<div style=\"width:130px;float:left;text-align:center;position:relative;top:-8px\"><a href=\"http://www.google.com/\" style=\"padding:0;background-image:none\"><img src=\"http://www.google.com/logos/Logo_40wht.gif\" alt=\"Google\" style=\"border:none\" /></a></div>
-
-<form method=\"get\" action=\"http://www.google.com/search\" style=\"margin-left:135px\">
-  <div>
-    <input type=\"hidden\" name=\"domains\" value=\"{{SERVER}}\" />
-    <input type=\"hidden\" name=\"num\" value=\"50\" />
-    <input type=\"hidden\" name=\"ie\" value=\"$2\" />
-    <input type=\"hidden\" name=\"oe\" value=\"$2\" />
-
-    <input type=\"text\" name=\"q\" size=\"31\" maxlength=\"255\" value=\"$1\" />
-    <input type=\"submit\" name=\"btnG\" value=\"Cîr cun Google\" />
-  </div>
-  <div style=\"font-size:90%\">
-    <input type=\"radio\" name=\"sitesearch\" id=\"gwiki\" value=\"{{SERVER}}\" checked=\"checked\" /><label for=\"gwiki\">{{SITENAME}}</label>
-    <input type=\"radio\" name=\"sitesearch\" id=\"gWWW\" value=\"\" /><label for=\"gWWW\">WWW</label>
-  </div>
-</form>
-
-</div>",
 'gotaccount'	=> 'Âstu za une identitât? $1.',
 'gotaccountlink'	=> 'Jentre',
 'guesstimezone' => "Cjape impostazions dal sgarfadôr",
