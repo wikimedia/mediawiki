@@ -676,7 +676,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'userrights-groupsmember' => 'Medlem av:',
 'userrights-groupsavailable' => 'Tilgjengelege grupper:',
 'userrights-groupshelp' => 'Vel grupper du vil at brukaren skal fjernast frå eller leggjast til. Grupper som ikkje er valde vil ikkje bli endra. Du kan velja vekk ei gruppe med [CTRL + venstreklikk]',
-'userrights-logcomment' => 'Endra gruppemedlemskap frå $1 til $2',
 
 # Recent changes
 #

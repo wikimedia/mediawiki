@@ -819,7 +819,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-groupsmember' 	=> '屬於：',
 'userrights-groupsavailable' 	=> '可用嘅組：',
 'userrights-groupshelp' 	=> '選擇你想畀用戶加入或移出嘅組。未選擇嘅組將唔會被改變。你可以用CTRL + 撳滑鼠左掣以取消已經選擇嘅一個組',
-'userrights-logcomment' 	=> '將組用戶組別由 $1 改為 $2',
 
 # Groups
 #

@@ -736,7 +736,6 @@ Rissayîz avou ene ôte tchinne di cweraedje.',
 'userrights-groupsavailable' => 'Groupes k\' i gn a:',
 'userrights-groupshelp' => 'Tchoezixhoz les groupes ki vos vloz ki l\' uzeu (èn) soeye (pus) mimbe.
 Les groupes nén tchoezis èn seront nén candjîs. Vos ploz distchoezi on groupe tot fjhant Ctrl + clitch di hintche',
-'userrights-logcomment' => 'L\' apårtinance å groupe a candjî di $1 viè $2',
 
 # Groups
 'group'                   => 'Groupe:',

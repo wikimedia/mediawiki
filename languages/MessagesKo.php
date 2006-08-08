@@ -561,7 +561,6 @@ $messages = array(
 'userrights-groupsmember'=> '현재 권한:',
 'userrights-groupsavailable'=> '가능한 권한:',
 'userrights-groupshelp' => '현재 권한에서 제거하려는 권한이나, 가능한 권한에서 추가하려는 권한을 선택해 주세요. 선택하지 않은 권한은 변경되지 않습니다. CTRL을 누른 채 클릭하면 선택을 해제할 수 있습니다.',
-'userrights-logcomment' => '권한을 $1에서 $2로 변경했습니다.',
 'group'                 => '권한:',
 'group-bot'             => '봇',
 'group-sysop'           => '관리자',

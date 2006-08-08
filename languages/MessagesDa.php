@@ -618,7 +618,6 @@ ellers skulle man for eksempel for dansk vintertid, indtaste \"1\"
 'userrights-groupsavailable' => 'Tilgængelige grupper:',
 'userrights-groupshelp' => 'Vælg grupper som du ønsker brugeren skal fjernes fra eller føjes til.
 Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en gruppe ved hjælp af CTRL-tasten og et venstreklik.',
-'userrights-logcomment' => 'Ændret gruppemedlemskab fra $1 til $2',
 
 # Recent changes
 #

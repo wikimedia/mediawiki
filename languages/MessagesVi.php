@@ -837,7 +837,6 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'userrights-groupsmember' => 'Thành viên của:',
 'userrights-groupsavailable' => 'Các nhóm hiện nay:',
 'userrights-groupshelp' => 'Chọn nhóm mà bạn muốn thêm hay bớt thành viên. Các nhóm không được chọn sẽ không thay đổi. Có thể chọn nhóm bằng CTRL + Chuột trái',
-'userrights-logcomment' => 'Thành viên nhóm đã đổi từ $1 đến $2',
 
 # Special:Undelete
 'undelete' => 'Khôi phục',

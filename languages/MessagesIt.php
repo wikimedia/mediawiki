@@ -681,7 +681,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "userrights-groupsmember"	=> "Appartiene ai gruppi:",
 "userrights-groupsavailable"	=> "Gruppi disponibili:",
 "userrights-groupshelp"	=> "Selezionare i gruppi ai quali si vuole associare o rimuovere l'utente. L'appartenenza ai gruppi non selezionati non verrà modificata. Per deselezionare un gruppo, premere Ctrl + il tasto sinistro del mouse.",
-"userrights-logcomment"	=> "Modificata appartenenza gruppi da $1 a $2",
 
 # Groups
 "group"	=> "Gruppo:",

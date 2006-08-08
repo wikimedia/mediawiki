@@ -593,7 +593,6 @@ y la hora del servidor (UTC).',
 'userrights-groupsavailable'=> 'Grupos disponibles:',
 'userrights-groupshelp' => 'Selecciona los grupos a los que quieres unir al usuario (o de los que le quieres dar de baja).
 Los grupos no seleccionados no cambiarán. Puedes deseleccionar con CTRL + clic izquierdo',
-'userrights-logcomment' => 'Pertenencia a grupo cambiada de $1 a $2',
 'changes'               => 'cambios',
 'recentchanges'         => 'Cambios recientes',
 'recentchangestext'     => 'Sigue los cambios más recientes a la wiki en esta página.',

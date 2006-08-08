@@ -653,7 +653,6 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
 'userrights-groupsmember' => 'Membre de :',
 'userrights-groupsavailable' => 'Groupes disponibles :',
 'userrights-groupshelp' => 'Choisissez les groupes desquels vous voulez retirer ou rajouter l\'utilsateur. Les groupes non sélectionnés ne seront pas modifiés. Vous pouvez désélectionner un groupe avec CTRL + clic gauche.',
-'userrights-logcomment' => 'Adhésion au groupe changée de $1 à $2',
 
 # Groups
 'group'                   => 'Groupe :',

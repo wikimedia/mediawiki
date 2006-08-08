@@ -1043,7 +1043,6 @@ containing all of the search terms will appear in the result).",
 'userrights-groupsavailable' => 'Available groups:',
 'userrights-groupshelp' => 'Select groups you want the user to be removed from or added to.
 Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
-'userrights-logcomment' => 'Changed group membership from $1 to $2',
 
 # Groups
 'group'                   => 'Group:',

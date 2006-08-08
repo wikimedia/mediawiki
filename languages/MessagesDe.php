@@ -1199,7 +1199,6 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 'userrights-groupsavailable' => 'Verfügbare Gruppen:',
 'userrights-groupshelp' => 'Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
 Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit \'\'\'Strg + Linksklick\'\'\' (bzw. Ctrl + Linksklick) entfernt werden.',
-'userrights-logcomment'		=> 'Gruppenzugehörigkeit geändert von $1 nach $2',
 
 # Groups
 'group'				=> 'Gruppe:',
