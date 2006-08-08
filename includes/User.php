@@ -543,7 +543,6 @@ class User {
 		}
 
 		# Proxy blocking
-		# FIXME ? proxyunbannable is to deprecate the old isSysop()
 		if ( !$this->isAllowed('proxyunbannable') && !in_array( $ip, $wgProxyWhitelist ) ) {
 
 			# Local list

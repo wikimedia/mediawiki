@@ -442,7 +442,7 @@ END
 		# Only sysops can delete images. Previously ordinary users could delete
 		# old revisions, but this is no longer the case.
 		if ( !$wgUser->isAllowed('delete') ) {
-			$wgOut->sysopRequired();
+			$wgOut->permissionRequired( 'delete' );
 			return;
 		}
 		if ( $wgUser->isBlocked() ) {
@@ -580,7 +580,7 @@ END
 			return;
 		}
 		if ( ! $this->mTitle->userCanEdit() ) {
-			$wgOut->sysopRequired();
+			$wgOut->readOnlyPage( $this->getContent(), true );
 			return;
 		}
 		if ( $wgUser->isBlocked() ) {

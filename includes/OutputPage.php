@@ -715,7 +715,6 @@ class OutputPage {
 
 	/**
 	 * Display an error page noting that a given permission bit is required.
-	 * This should generally replace the sysopRequired, developerRequired etc.
 	 * @param string $permission key required
 	 */
 	function permissionRequired( $permission ) {
@@ -737,36 +736,14 @@ class OutputPage {
 	 * @deprecated
 	 */
 	function sysopRequired() {
-		global $wgUser;
-
-		$this->setPageTitle( wfMsg( 'sysoptitle' ) );
-		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-		$this->mBodytext = '';
-
-		$sk = $wgUser->getSkin();
-		$ap = $sk->makeKnownLink( wfMsgForContent( 'administrators' ), '' );
-		$this->addHTML( wfMsgHtml( 'sysoptext', $ap ) );
-		$this->returnToMain();
+		throw new MWException( "Call to deprecated OutputPage::sysopRequired() method\n" );
 	}
 
 	/**
 	 * @deprecated
 	 */
 	function developerRequired() {
-		global $wgUser;
-
-		$this->setPageTitle( wfMsg( 'developertitle' ) );
-		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-		$this->mBodytext = '';
-
-		$sk = $wgUser->getSkin();
-		$ap = $sk->makeKnownLink( wfMsgForContent( 'administrators' ), '' );
-		$this->addHTML( wfMsgHtml( 'developertext', $ap ) );
-		$this->returnToMain();
+		throw new MWException( "Call to deprecated OutputPage::developerRequired() method\n" );
 	}
 
 	/**
