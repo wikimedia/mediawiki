@@ -252,11 +252,6 @@ $messages = array(
 'jumptonavigation' => 'navigace',
 'jumptosearch' => 'hledání',
 
-'sysoptitle'    => 'Pouze pro správce',
-'sysoptext'      => 'Žádaný úkon může provést jen správce. Podívejte se prosím na $1.',
-'developertitle' => 'Jen pro vývojáře',
-'developertext'  => 'Žádaný úkon může provést jen vývojář. Podívejte se prosím na $1.',
-
 'badaccess'     => 'Nedostatečná oprávnění',
 'badaccesstext' => 'Žádaný úkon může provést jen uživatel s právem „$2“ Podívejte se prosím na $1.',
 

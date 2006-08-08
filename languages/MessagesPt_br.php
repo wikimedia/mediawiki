@@ -146,14 +146,6 @@ $messages = array(
 "viewcount"     => "Esta página foi acessada $1 vezes.",
 "protectedpage" => "Página protegida",
 "administrators" => "{{ns:4}}:Administradores",
-"sysoptitle"    => "Acesso de OpSys necessário",
-"sysoptext"     => "A ação que você requisitou só pode ser
-executada por usuários com status de \"opsys\".
-Veja $1.",
-"developertitle" => "Acesso de desenvolvedor necessário",
-"developertext" => "A ação que você requisitou só pode ser
-executada por usuários com status de \"desenvolvedor\".
-Veja $1.",
 "nbytes"        => "$1 bytes",
 "go"            => "vai",
 "ok"            => "OK",

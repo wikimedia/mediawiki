@@ -228,13 +228,6 @@ $messages = array(
 'protectedpage' => 'Page protégée',
 'administrators' => '{{ns:4}}:Administrateurs',
 
-'sysoptitle'    => 'Accès administrateur requis',
-'sysoptext'     => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d\'« administrateur ».
-Voir $1.',
-'developertitle' => 'Accès développeur requis',
-'developertext' => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de « développeur ».
-Voir $1.',
-
 'badaccess' => 'Erreur de permission',
 'badaccesstext' => 'L\'action entreprise est limitée aux utilisateurs possédant le droit « $2 ».
 Voir $1',

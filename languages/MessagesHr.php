@@ -209,14 +209,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'jumpto'                => 'Skoči na:',
 'jumptonavigation'      => 'orijentacija',
 'jumptosearch'          => 'traži',
-'sysoptitle'            => 'Nužne administrativne ovlasti',
-'sysoptext'             => 'Željenu radnju mogu obaviti samo
-suradnici sa statusom "administrator".
-Vidi i $1.',
-'developertitle'        => 'Nužne programerske ovlasti',
-'developertext'         => 'Željenu radnju mogu obaviti samo suradnici
-sa statusom "programer".
-Vidi $1.',
 'badaccess'             => 'Greška u ovlaštenjima',
 'badaccesstext'         => 'Radnju koju ste započeli
 može obaviti samo korisnik s ovlaštenjem "$2".

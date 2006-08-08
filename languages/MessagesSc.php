@@ -133,12 +133,6 @@ $messages = array(
 "viewcount"		=> "Questo articolo è stato letto $1 volte.",
 "protectedpage" => "Pagina protetta",
 "administrators" => "{{ns:project}}:Amministratori",
-"sysoptitle"	=> "Riservato Sysop",
-"sysoptext"		=> "Questa operazione può essere eseguita solo da Utenti con grado di \"sysop\".
-Vedi $1.",
-"developertitle" => "Riservato agli sviluppatori",
-"developertext"	=> " Questa operazione può essere eseguita solo da Utenti con grado di \"developer\".
-Vedi $1.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Vai",
 "ok"			=> "OK",

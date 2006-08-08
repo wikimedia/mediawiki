@@ -302,14 +302,6 @@ $messages = array(
 'jumptonavigation' => 'navegação',
 'jumptosearch' => 'pesquisa',
 
-'sysoptitle'    => 'Necessário acesso de Sysop',
-'sysoptext'             => "A acção que requisitou só pode ser
-executada por utilizadores com status de \"sysop\".<br />
-Veja $1.",
-'developertitle' => 'Necessário acesso de desenvolvedor',
-'developertext' => 'A acção que requisitou só pode ser
-executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
-
 'badaccess'     => 'Erro de permissão',
 'badaccesstext' => 'A acção que requesitou está limitada a utilizadores com permissão de "$2". Ver $1.',
 

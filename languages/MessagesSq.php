@@ -221,10 +221,6 @@ $messages = array(
 'jumpto'                => 'Shko te:',
 'jumptonavigation'      => 'navigacion',
 'jumptosearch'          => 'kërko',
-'sysoptitle'            => 'Nevojitet titulli "administrues"',
-'sysoptext'             => 'Veprimi që kërkuat mund të bëhet vetëm nga një përdorues me titullin "administrues". Shikoni $1.',
-'developertitle'        => 'Nevojitet titulli "zhvillues"',
-'developertext'         => 'Veprimi që kërkuat mund bëhet vetëm nga një përdorues me titullin "zhvillues". Shikoni $1.',
 'badaccess'             => 'Gabim leje',
 'badaccesstext'         => 'Ky veprim është i lejuar vetëm për përdoruesit me titullin $2. 
 Shiko $1',

@@ -354,11 +354,6 @@ $messages = array(
 "jumptonavigation"  => "ניווט",
 "jumptosearch"      => "חיפוש",
 
-"sysoptitle"     => "דרושה הרשאת מפעיל מערכת",
-"sysoptext"      => "כדי לבצע פעולה זו דרושת הרשאת מפעיל מערכת. ראו $1.",
-"developertitle" => "דרושה הרשאת מפתח",
-"developertext"  => "כדי לבצע פעולה זו דרושת הרשאת מפתח, ראו $1.",
-
 "badaccess"     => "תקלה בהרשאות",
 "badaccesstext" => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים עם הרשאת "$2".
 

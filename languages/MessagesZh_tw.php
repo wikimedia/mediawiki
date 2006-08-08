@@ -131,12 +131,6 @@ $messages = array(
 "viewcount"		=> "本頁面已經被瀏覽$1次。",
 "protectedpage" => "被保護頁",
 "administrators" => "{{ns:project}}:管理員",
-"sysoptitle"	=> "需要管理員權限",
-"sysoptext"		=> "您剛才的請求只有擁有管理員權限的用戶才可使用。
-參見$1。",
-"developertitle" => "需要發展者權限",
-"developertext"	=> "您剛才的請求只有擁有發展者權限的用戶才可使用。
-參見$1。",
 "nbytes"		=> "$1字節",
 "go"			=> "進入",
 "ok"			=> "好",

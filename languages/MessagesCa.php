@@ -218,12 +218,6 @@ $messages = array(
 'jumpto'                => 'Dreceres ràpides:',
 'jumptonavigation'      => 'navegació',
 'jumptosearch'          => 'cerca',
-'sysoptitle'            => 'Cal ser un administrador per a accedir-hi',
-'sysoptext'             => 'L\'acció que heu demanada només pot ser duta a terme per usuaris amb estatus de "administrador".
-Vegeu $1.',
-'developertitle'        => 'Cal ser un desenvolupador per a accedir-hi',
-'developertext'         => 'L\'acció que heu demanada només pot ser duta a terme per usuaris amb funcions de "desenvolupador".
-Vegeu $1.',
 'badaccess'             => 'Error de permisos',
 'badaccesstext'         => 'L\'acció que heu sol·licitat es limita
 a usuaris amb el permís «$2» assignat.

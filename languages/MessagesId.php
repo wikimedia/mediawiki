@@ -241,10 +241,6 @@ $messages = array(
 'jumptonavigation' => 'panduan arah',
 'jumptosearch' => 'cari',
 
-"sysoptitle" => "Akses pengurus diperlukan",
-"sysoptext" => 'Tindakan yang Anda minta hanya dapat dilakukan oleh pengguna dengan status "pengurus". Lihat $1.',
-"developertitle" => "Akses pengembang diperlukan",
-"developertext" => "Tindakan yang Anda minta hanya dapat dilakukan oleh pengguna dengan status \"pengembang\". Lihat $1.",
 'badaccess'     => 'Kesalahan hak akses',
 'badaccesstext' => 'Tindakan yang Anda minta dibatasi hanya untuk pengguna dengan hak akses "$2". Lihat $1.',
 

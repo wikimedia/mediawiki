@@ -202,12 +202,6 @@ dj\'artìcol ancó pa scrit',
 'jumpto'                => 'Va a:',
 'jumptonavigation'      => 'navigassion',
 'jumptosearch'          => 'arsërca',
-'sysoptitle'            => 'Riservà a j\'aministrator (Sysop)',
-'sysoptext'             => 'St\'operassion-sì a peul mach esse faita da n\'utent con la qualìfica da aministrator (sysop).
-Che a varda $1.',
-'developertitle'        => 'Riservà a jë svilupator',
-'developertext'         => ' Costa operassion-sì a peul esse faita mach da Utent che a l\'ha la qualìfica "svilupator" (developer).
-Che a varda $1.',
 'badaccess'             => 'Përmess nen giust',
 'badaccesstext'         => 'L\'operassion che a l\'ha ciamà a peul mach
 esse faita da Utent che a l\'abio un

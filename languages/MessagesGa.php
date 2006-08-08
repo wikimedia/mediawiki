@@ -267,14 +267,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'copyright'     => "Tá an t-ábhar le fáil faoin $1.",
 "protectedpage" => "Leathanach glasáilte",
 "administrators"    => "{{ns:4}}:Riarthóirí",
-"sysoptitle"    => "Tá cuntas oibreora córais de dhíth",
-"sysoptext"     => "Ní mór duit bheith i do \"oibreoir córais\"
-chun an gníomh seo a dhéanamh.
-Féach ar $1.",
-"developertitle"    => "Tá cuntas ríomhchláraitheora de dhíth",
-"developertext" => "Ní mór duit bheith i do \"ríomhchláraitheoir\"
-chun an gníomh seo a dhéanamh.
-Féach ar $1.",
 
 'badaccess'     => 'Earráid ceada',
 'badaccesstext' => 'Ní féidir an gníomh seo a dhéanamh muna bhfuil

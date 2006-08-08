@@ -186,7 +186,6 @@ $messages = array(
 'jumpto'                => 'Git ve:',
 'jumptonavigation'      => 'kullan',
 'jumptosearch'          => 'ara',
-'sysoptitle'            => 'Yönetici yetkisi gerekiyor',
 'badaccess'             => 'İzin hatası',
 'versionrequired'       => 'MedyaViki\'nin $1 sürümü gerekiyor',
 'ok'                    => 'TAMAM',

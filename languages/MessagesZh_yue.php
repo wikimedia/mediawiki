@@ -337,13 +337,6 @@ $messages = array(
 'jumptonavigation' 	=> '定向',
 'jumptosearch' 		=> '搵嘢',
 
-'sysoptitle'		=> '需要操作員嘅權限',
-'sysoptext'		=> '你所請求嘅動作只係可以畀有「操作員」能力嘅用戶去執行。
-睇睇$1。',
-'developertitle' 	=> '需要技術員嘅權限',
-'developertext'		=> '你所請求嘅動作只係可以畀有「技術員」能力嘅用戶去執行。
-睇睇$1。',
-
 'badaccess'     	=> '權限錯誤',
 'badaccesstext' 	=> '呢項操作限定得「$2」權限嘅用戶使用。
 請睇睇$1。',

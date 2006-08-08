@@ -266,12 +266,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'jumptonavigation'    => 'valikkoon',
 'jumptosearch'        => 'hakuun',
 
-
-'sysoptitle'          => 'Vaatii ylläpitäjäoikeudet',
-'sysoptext'           => 'Tämän toiminnon voi suorittaa vain käyttäjä, jolla on ylläpitäjäoikeudet. Katso $1.',
-'developertitle'      => 'Ohjelmiston kehittäjän oikeuksia vaaditaan',
-'developertext'       => 'Yrittämäsi toiminnon voi suorittaa vain henkilö, jolla on ohjelmistokehittäjänoikeudet. Katso $1.',
-
 'badaccess'           => 'Lupa evätty',
 'badaccesstext'       => 'Toiminto, jonka halusit suorittaa on rajoitettu käyttäjille, joilla on oikeus ”$2”. Katso $1.',
 

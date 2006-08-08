@@ -191,9 +191,6 @@ $messages = array(
 'jumpto'                => 'Ugrás:',
 'jumptonavigation'      => 'navigáció',
 'jumptosearch'          => 'keresés',
-'sysoptitle'            => 'Sysop hozzáférés szükséges',
-'sysoptext'             => 'Az általad kért tevékenységet csak "sysopok" végezhetik el.
-Lásd $1.',
 'retrievedfrom'         => 'A lap eredeti címe "$1"',
 'youhavenewmessages'    => '$1 van. ($2)',
 'newmessageslink'       => 'Új üzeneted',

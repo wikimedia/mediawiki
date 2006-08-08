@@ -140,14 +140,6 @@ $messages = array(
 "viewcount"		=> "Iste pagina esseva accessate $1 vices.",
 "protectedpage" => "Pagina protegite",
 "administrators" => "{{ns:project}}:Administratores",
-"sysoptitle"	=> "Reservate a Sysops",
-"sysoptext"		=> "Solo usatores con status de \"sysop\"
-pote effectuar iste action.
-Vide $1.",
-"developertitle" => "Reservate a disveloppatores",
-"developertext"	=> "Solo usatores con status de \"developer\"
-pote effectuar iste action.
-Vide $1.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Ir",
 "ok"			=> "OK",

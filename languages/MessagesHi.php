@@ -102,10 +102,6 @@ $messages = array(
 "viewcount"		=> "यह पृष्ठ $1 बार देखा गया है",
 "protectedpage"         => "सुरक्षित पृष्ठ",
 "administrators"        => "{{ns:project}}:प्रबन्धक",
-"sysoptitle"	        => "sysop आवश्यक है",
-"sysoptext"		=> "आप जो करना चाहते हैं‌ उसे केवल \"sysop\" स्तर के सदस्य कर सकते हैं. $1 देखें.",
-"developertitle"        => "Developer आवश्यक है",
-"developertext"	=> "आप जो करना चाहते हैं‌ उसे केवल \"developer\" स्तर के सदस्य कर सकते हैं. $1 देखें.",
 "retrievedfrom"         => "\"$1\" से लिया गया",
 
 # Main script and global functions

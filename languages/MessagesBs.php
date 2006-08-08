@@ -322,10 +322,6 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletionlog' => 'istorija brisanja',
 'dellogpage' => 'istorija brisanja',
 'dellogpagetext' => 'Ispod je spisak najskorijih brisanja.',
-'developertext' => 'Akciju koju ste zatražili mogu izvesti samo
-korisnici sa "developer" statusom.
-Pogledajte $1.',
-'developertitle' => 'Neophodan je developerski pristup',
 'diff' => 'razl',
 'difference' => '(Razlika između revizija)',
 'disambiguations' => 'Stranice za višeznačne odrednice',
@@ -912,10 +908,6 @@ To izađe u prosjeku oko \'\'\'$5\'\'\' izmjena po stranici, i \'\'\'$6\'\'\' po
 'successfulupload' => 'Uspješno slanje',
 'summary' => 'Sažetak',
 'sunday' => 'nedelja',
-'sysoptext' => 'Akciju koju ste zatražili mogu
-izvesti samo administratori.
-Pogledajte $1.',
-'sysoptitle' => 'Neophodan je administratorski pristup',
 'talk' => 'Razgovor',
 'talkexists' => 'Sama stranica je uspješno premještena, ali
 stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.',
