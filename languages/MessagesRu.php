@@ -777,29 +777,6 @@ $1',
 'powersearchtext' => 'Искать в пространствах имён:<br />$1<br />$2 Показывать перенаправления<br /> Искать $3 $9',
 'searchdisabled' => 'Извините, но встроенный полнотекстовый поиск выключен. Вы можете воспользоваться поиском по сайту через поисковые системы общего назначения, однако имейте в виду, что копия сайта в их кэше может быть несколько устаревшей.',
 
-'googlesearch' => '
-<form method="get" action="http://www.google.com/search" id="googlesearch">
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="$3" />
-    <input type="hidden" name="sitesearch" value="{{SERVER}}" />
-</form>
-<br />
-<br />
-<form name="web" method="get" action="http://www.yandex.ru/yandsearch">
-  <input type="hidden" name="serverurl" value="{{SERVER}}" />
-  <input type="hidden" name="server_name" value="{{SITENAME}} (русская версия)" />
-  <input type="hidden" name="rpt" value="rad" />
-  <input type="hidden" name="referrer1" value="{{SERVER}}" />
-  <input type="hidden" name="referrer2" value="{{SITENAME}} (русская версия)" />
-
-  <input type="text" name="text" size="31" maxlength="255" value="$1" />
-  <input type="submit" value="Поиск по сайту с помощью Яндекса" />
-</form>',
 'blanknamespace' => 'Статьи',
 
 # Preferences page

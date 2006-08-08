@@ -591,26 +591,6 @@ Before any other mail is sent to the account, you will have to follow the instru
 $1<br />
 $2 Показване на пренасочвания &nbsp; Търсене на $3 $4',
 'searchdisabled' => 'Търсенето в {{SITENAME}} е временно изключено поради голямото натоварване на сървъра. Междувременно можете да търсите чрез Google. Обърнете внимание обаче, че е възможно съхранените при тях страници да са остарели.',
-'googlesearch' => '
-	<form method="get" action="http://www.google.com/search" style="margin-left:135px">
-		<div>
-			<input type="hidden" name="domains" value="{{SERVER}}" />
-			<input type="hidden" name="num" value="50" />
-			<input type="hidden" name="ie" value="$2" />
-
-			<input type="hidden" name="oe" value="$2" />
-			<input type="text" name="q" size="31" maxlength="255" value="$1" />
-			<input type="submit" name="btnG" value="Google Search" />
-		</div>
-		<div style="font-size:90%">
-			<input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}"
-				checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-			<input type="radio" name="sitesearch" id="gWWW" value="" />
-			<label for="gWWW">Мрежата</label>
-	</div>
-	</form>
-
-Можете да използвате следната препратка, за да създадете или редактирате страницата: <a href="/w/index.php?title=$1&action=edit">$1</a>',
 'blanknamespace' => '(Основно)',
 
 # Preferences page

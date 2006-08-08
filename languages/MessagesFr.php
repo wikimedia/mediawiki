@@ -569,20 +569,6 @@ contenant tous les termes apparaissent dans les résultats).',
 $1<br />
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
 'searchdisabled' => 'La recherche sur {{SITENAME]] a été désactivée. En attendant la réactivation, vous pouvez effectuer une recherche par le biais de Google. Attention, leur indexation du contenu {{SITENAME]] peut ne pas être à jour.',
-'googlesearch' => '
-<form method="get" action="http://www.google.fr/search" id="googlesearch">
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="$3" />
-  <div>
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
-</form>',
 
 # Preferences page
 #

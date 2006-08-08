@@ -641,21 +641,6 @@ Rissayîz avou ene ôte tchinne di cweraedje.',
 'powersearchtext' => 'Cweraedje ezès espåces di nos:<br />$1<br />$2 Håyner les redjiblaedjes &nbsp; Cweri après $3 $9',
 'searchdisabled' => 'Mande escuzes! Li cweraedje å dvins des årtikes a stî dismetou pol moumint, cåze ki l\' sierveu est fortcherdjî. Tot ratindant, vos ploz eployî Google po fé les rcweraedjes so {{SITENAME}}, mins çoula pout esse ene miete vî.',
 
-'googlesearch' => '
-<form method="get" action="http://www.google.com/search" id="googlesearch">
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="hl" value="wa" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="$3" />
-  <div>
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">so {{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">sol Daegntoele</label>
-  </div>
-</form>',
 'blanknamespace' => '(Mwaisse)',
 
 # Preferences page
