@@ -718,7 +718,7 @@ class OutputPage {
 	 * @param string $permission key required
 	 */
 	function permissionRequired( $permission ) {
-		global $wgUser;
+		global $wgGroupPermissions, $wgUser;
 
 		$this->setPageTitle( wfMsg( 'badaccess' ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
@@ -726,10 +726,28 @@ class OutputPage {
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
 
-		$sk = $wgUser->getSkin();
-		$ap = $sk->makeKnownLink( wfMsgForContent( 'administrators' ) );
-		$this->addHTML( wfMsgHtml( 'badaccesstext', $ap, $permission ) );
-		$this->returnToMain();
+		$group = '';
+		foreach ( $wgGroupPermissions as $key => $value ) {
+			if ( isset( $value[$permission] ) && $value[$permission] == true ) {
+				$group = $key;
+				break;
+			}
+		}
+		if ( $group == '' ) {
+			$message = wfMsg( 'badaccess-nogroup' );
+		} else {
+			$groupName = User::getGroupName( $group );
+			$groupPage = User::getGroupPage( $group );
+			if ( $groupPage ) {
+				$sk = $wgUser->getSkin();
+				$groupLink = $sk->makeLinkObj( $groupPage, $groupName );
+			} else {
+				$groupLink = $groupName;
+			}
+			$message = wfMsg( 'badaccess-group', $groupLink );
+		}
+		$this->addHTML( $message );
+		$this->returnToMain( false );
 	}
 
 	/**

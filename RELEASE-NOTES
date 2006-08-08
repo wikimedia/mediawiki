@@ -120,6 +120,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   OutputPage::developerRequired - use OutputPage::permissionRequired instead.
 * Removed the deprecated functions User::isSysop, User::isBureaucrat and User::isDeveloper -
   use User::isAllowed instead.
+* (bug 769) OutputPage::permissionRequired() should suggest groups with the needed permission
 
 == Languages updated ==
 
