@@ -510,9 +510,11 @@ parent class in order maintain consistency across languages.
 'jumptonavigation' => 'navigation',
 'jumptosearch' => 'search',
 
-'badaccess'         => 'Permission error',
-'badaccess-group'   => 'The action you have requested is limited to users in the group "$1".',
-'badaccess-nogroup' => 'You are not allowed to execute the action you have requested.',
+'badaccess'        => 'Permission error',
+'badaccess-group0' => 'You are not allowed to execute the action you have requested.',
+'badaccess-group1' => 'The action you have requested is limited to users in the group $1.',
+'badaccess-group2' => 'The action you have requested is limited to users in one of the groups $1.',
+'badaccess-groups' => 'The action you have requested is limited to users in one of the groups $1.',
 
 'versionrequired' => 'Version $1 of MediaWiki required',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version]]',
