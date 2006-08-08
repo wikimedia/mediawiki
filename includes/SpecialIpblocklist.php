@@ -24,7 +24,7 @@ function wfSpecialIpblocklist() {
 	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
 		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		if ( ! $wgUser->isAllowed('block') ) {
-			$wgOut->sysopRequired();
+			$wgOut->permissionRequired( 'block' );
 			return;
 		}
 		$ipu->doSubmit();

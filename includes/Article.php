@@ -887,7 +887,7 @@ class Article {
 		}
 
 		if ((!$wgUser->isAllowed('delete'))) {
-			$wgOut->sysopRequired();
+			$wgOut->permissionRequired( 'delete' );
 			return;
 		}
 
