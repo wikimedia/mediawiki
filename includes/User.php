@@ -1307,30 +1307,6 @@ class User {
 	}
 
 	/**
-	 * Deprecated in 1.6, die in 1.7, to be removed in 1.8
-	 * @deprecated
-	 */
-	function isSysop() {
-		throw new MWException( "Call to deprecated (v1.7) User::isSysop() method\n" );
-	}
-
-	/**
-	 * Deprecated in 1.6, die in 1.7, to be removed in 1.8
-	 * @deprecated
-	 */
-	function isDeveloper() {
-		throw new MWException( "Call to deprecated (v1.7) User::isDeveloper() method\n" );
-	}
-
-	/**
-	 * Deprecated in 1.6, die in 1.7, to be removed in 1.8
-	 * @deprecated
-	 */
-	function isBureaucrat() {
-		throw new MWException( "Call to deprecated (v1.7) User::isBureaucrat() method\n" );
-	}
-
-	/**
 	 * Whether the user is a bot
 	 * @deprecated
 	 */
