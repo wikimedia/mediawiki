@@ -727,26 +727,26 @@ class OutputPage {
 		$this->mBodytext = '';
 
 		$group = '';
-		foreach ( $wgGroupPermissions as $key => $value ) {
-			if ( isset( $value[$permission] ) && $value[$permission] == true ) {
+		foreach( $wgGroupPermissions as $key => $value ) {
+			if( isset( $value[$permission] ) && $value[$permission] == true ) {
 				$group = $key;
 				break;
 			}
 		}
-		if ( $group == '' ) {
-			$message = wfMsg( 'badaccess-nogroup' );
+		if( $group == '' ) {
+			$message = wfMsgHtml( 'badaccess-nogroup' );
 		} else {
 			$groupName = User::getGroupName( $group );
 			$groupPage = User::getGroupPage( $group );
-			if ( $groupPage ) {
-				$sk = $wgUser->getSkin();
-				$groupLink = $sk->makeLinkObj( $groupPage, $groupName );
+			if( $groupPage ) {
+				$skin =& $wgUser->getSkin();
+				$groupLink = $skin->makeLinkObj( $groupPage, $groupName );
 			} else {
 				$groupLink = $groupName;
 			}
-			$message = wfMsg( 'badaccess-group', $groupLink );
+			$message = wfMsgHtml( 'badaccess-group', $groupLink );
 		}
-		$this->addHTML( $message );
+		$this->addHtml( $message );
 		$this->returnToMain( false );
 	}
 
