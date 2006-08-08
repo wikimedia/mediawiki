@@ -315,7 +315,6 @@ $messages = array(
 'jumptonavigation'      => 'navigácia',
 'jumptosearch'          => 'hľadanie',
 'badaccess'             => 'Chyba povolenia',
-'badaccesstext'         => 'Akcia, o ktorú sa pokúšate, je prístupná iba používateľom s povolením "$2". Pozri $1.',
 'versionrequired'       => 'Požadovaná verzia MediaWiki $1',
 'versionrequiredtext'   => 'Na použitie tejto stránky je požadovaná verzia MediaWiki $1. Pozri [[Special:Version]]',
 'ok'                    => 'OK',

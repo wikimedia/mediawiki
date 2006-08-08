@@ -225,8 +225,6 @@ $messages = array(
 'jumptosearch' => 'wyszukiwania',
 
 'badaccess' => 'Nieprawidłowe uprawnienia',
-'badaccesstext' => 'Ta operacja może być wykonana tylko przez
-użytkownika o prawach "$2". Zobacz $1.',
 
 'retrievedfrom' => 'Źródło: "$1"',
 'youhavenewmessages' => 'Masz $1 ($2).',

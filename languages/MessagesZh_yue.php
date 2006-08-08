@@ -338,8 +338,6 @@ $messages = array(
 'jumptosearch' 		=> '搵嘢',
 
 'badaccess'     	=> '權限錯誤',
-'badaccesstext' 	=> '呢項操作限定得「$2」權限嘅用戶使用。
-請睇睇$1。',
 
 'versionrequired' 	=> '係需要用 $1 版嘅 MediaWiki',
 'versionrequiredtext' 	=> '要用呢一頁，係需要用MediaWiki版本 $1 。睇睇[[Special:Version]]',

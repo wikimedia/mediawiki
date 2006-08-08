@@ -376,7 +376,6 @@ $messages = array(
 'jumptosearch' => 'pretraga',
 
 'badaccess' => 'Greška u dozvolama',
-'badaccesstext' => 'Akcija koju ste tražili je ograničena na korisnike sa "$2" dozvolama. Pogledajte $1.',
 
 'versionrequired' => 'Verzija $1 MedijaVikija je potrebna',
 'versionrequiredtext' => 'Verzija $1 MedijaVikija je potrebna da bi se koristila ova strana. Pogledajte [[{{ns:special}}:Version|verziju]]',

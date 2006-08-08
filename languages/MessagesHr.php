@@ -210,9 +210,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'jumptonavigation'      => 'orijentacija',
 'jumptosearch'          => 'traži',
 'badaccess'             => 'Greška u ovlaštenjima',
-'badaccesstext'         => 'Radnju koju ste započeli
-može obaviti samo korisnik s ovlaštenjem "$2".
-Pogledajte $1.',
 'versionrequired'       => 'Potrebna inačica $1 MediaWikija',
 'versionrequiredtext'   => 'Za korištenje ove stranice potrebna je inačica $1 MediaWiki softvera. Pogledaj [[Special:Version]]',
 'ok'                    => 'U redu',

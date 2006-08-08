@@ -220,7 +220,6 @@ $messages = array(
 'jumptonavigation'      => 'navigering',
 'jumptosearch'          => 'sök',
 'badaccess'             => 'Behörighetsfel',
-'badaccesstext'         => 'Den funktion du ville utföra är begränsad till användare med behörighet till "$2". Se $1.',
 'versionrequired'       => 'Version $1 av MediaWiki krävs',
 'versionrequiredtext'   => 'För att kunna använda den här sidan, behövs version $1 av MediaWiki. Se [[Special:Version]].',
 'ok'                    => 'OK',

@@ -130,7 +130,6 @@ $messages = array(
 'jumpto'                => 'Hops zue:',
 'jumptosearch'          => 'Suech',
 'badaccess'             => 'Kei usreichendi Rechte.',
-'badaccesstext'         => 'Diä Aktion isch Onwender mit de Rechte "$2" vorbhalte. Luege $1.',
 'versionrequired'       => 'Version $1 vun MediaWiki wird bnötigt',
 'versionrequiredtext'   => 'Version $1 vun MediaWiki wird bnötigt um diä Syte zue nutze. Luege [[Special:Version]]',
 'pagetitle'             => '$1 - {{SITENAME}}',

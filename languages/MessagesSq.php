@@ -222,8 +222,6 @@ $messages = array(
 'jumptonavigation'      => 'navigacion',
 'jumptosearch'          => 'kërko',
 'badaccess'             => 'Gabim leje',
-'badaccesstext'         => 'Ky veprim është i lejuar vetëm për përdoruesit me titullin $2. 
-Shiko $1',
 'versionrequired'       => 'Nevojitet versioni $1 i MediaWiki-it',
 'versionrequiredtext'   => 'Nevojitet versioni $1 i MediaWiki-it për përdorimin e kësaj faqeje. Shikoni [[Special:Version|versionin]] tuaj.',
 'ok'                    => 'Shkoni',

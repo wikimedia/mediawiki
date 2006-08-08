@@ -229,8 +229,6 @@ $messages = array(
 'administrators' => '{{ns:4}}:Administrateurs',
 
 'badaccess' => 'Erreur de permission',
-'badaccesstext' => 'L\'action entreprise est limitée aux utilisateurs possédant le droit « $2 ».
-Voir $1',
 
 'versionrequired' => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version]]',

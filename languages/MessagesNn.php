@@ -321,7 +321,6 @@ $messages = array(
 'protectedpage'           => 'Verna side',
 'administrators'          => '{{ns:4}}:Administratorar',
 'badaccess'               => 'Tilgangsfeil',
-'badaccesstext'           => 'Handlinga du har prøvd å få utført kan berre utførast av brukarar med «$2»-tilgang. Sjå $1.',
 'versionrequired'         => 'MediaWiki versjon $1 trengst',
 'versionrequiredtext'     => 'For å bruke denne sida trengst MediaWiki versjon $1. Sjå [[{{ns:special}}:Version]]',
 'nbytes'		  => '$1 byte',

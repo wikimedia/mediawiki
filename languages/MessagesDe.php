@@ -241,7 +241,6 @@ $messages = array(
 'jumptonavigation'	=> 'Navigation',
 'jumptosearch'		=> 'Suche',
 'badaccess'	=> 'Keine ausreichenden Rechte.',
-'badaccesstext'		=> 'Diese Aktion ist Anwendern mit den Rechten „$2“ vorbehalten. Siehe $1.',
 'versionrequired'	=> 'Version $1 von MediaWiki ist erforderlich',
 'versionrequiredtext'	=> 'Version $1 von MediaWiki ist erforderlich um diese Seite zu nutzen. Siehe [[{{ns:special}}:Version]]',
 'nbytes'		=> '$1 {{PLURAL:$1|Byte|Bytes}}',

@@ -175,10 +175,6 @@ $messages = array(
 'protectedpage'         => 'Beveiligde pazjena',
 'administrators'        => 'Project:Systeemwèrkers',
 'badaccess'             => 'Toeganksfout',
-'badaccesstext'         => 'De hanjeling die geer höb aangevraog is
-veurbehawwe aan gebroekers mit de "$2"-
-bevoogheid.
-Zuug $1.',
 'retrievedfrom'         => 'Aafkómstig van "$1"',
 'youhavenewmessages'    => 'Doe höbs $1 ($2).',
 'newmessageslink'       => 'nuuj berichte',

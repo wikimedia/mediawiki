@@ -257,8 +257,6 @@ parent class in order maintain consistency across languages.
 'jumptosearch'          => 'zoek',
 
 'badaccess'             => 'Geen toestemming',
-'badaccesstext'         => 'De handeling die u probeerde uit te voeren is alleen beschikbaar voor gebruikers met de rol "$2".
-Zie $1.',
 
 'versionrequired'       => 'Versie $1 van MediaWiki is vereist',
 'versionrequiredtext'   => 'Versie $1 van MediaWiki is vereist om deze pagina te gebruiken. Zie [[Special:Version]]',

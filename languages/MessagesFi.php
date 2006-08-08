@@ -267,7 +267,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'jumptosearch'        => 'hakuun',
 
 'badaccess'           => 'Lupa evätty',
-'badaccesstext'       => 'Toiminto, jonka halusit suorittaa on rajoitettu käyttäjille, joilla on oikeus ”$2”. Katso $1.',
 
 'versionrequired'     => 'Mediawikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
