@@ -25,4 +25,12 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'კატეგორია_განხილვა'
 );
 
+$linkPrefixExtension = true;
+
+$linkTrail = '/^([a-zაბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ“»]+)(.*)$/sDu';
+
+$messages = array(
+	'linkprefix' => '/^(.*?)(„|«)$/sD',
+);
+
 ?>
