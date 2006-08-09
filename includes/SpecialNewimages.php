@@ -17,7 +17,8 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$shownav = !$specialPage->including();
 	$hidebots = $wgRequest->getBool('hidebots',1);
 
-	if($hidebots) {
+	$hidebotsql = '';
+	if ($hidebots) {
 
 		/** Make a list of group names which have the 'bot' flag
 		    set.
@@ -28,23 +29,26 @@ function wfSpecialNewimages( $par, $specialPage ) {
 				$botconds[]="ug_group='$groupname'";
 			}
 		}
-		$isbotmember=$dbr->makeList($botconds, LIST_OR);
 
-		/** This join, in conjunction with WHERE ug_group
-		    IS NULL, returns only those rows from IMAGE
-		    where the uploading user is not a member of
-		    a group which has the 'bot' permission set.
-		*/
-		$ug = $dbr->tableName('user_groups');
-		$joinsql=" LEFT OUTER JOIN $ug ON img_user=ug_user AND ("
-		  . $isbotmember.')';
+		/* If not bot groups, do not set $hidebotsql */
+		if ($botconds) {
+			$isbotmember=$dbr->makeList($botconds, LIST_OR);
+
+			/** This join, in conjunction with WHERE ug_group
+			    IS NULL, returns only those rows from IMAGE
+		    	where the uploading user is not a member of
+		    	a group which has the 'bot' permission set.
+			*/
+			$ug = $dbr->tableName('user_groups');
+			$hidebotsql = " LEFT OUTER JOIN $ug ON img_user=ug_user AND ($isbotmember)";
+		}
 	}
 
 	$image = $dbr->tableName('image');
 
 	$sql="SELECT img_timestamp from $image";
-	if($hidebots) {
-		$sql.=$joinsql.' WHERE ug_group IS NULL';
+	if ($hidebotsql) {
+		$sql .= "$hidebotsql WHERE ug_group IS NULL";
 	}
 	$sql.=' ORDER BY img_timestamp DESC LIMIT 1';
 	$res = $dbr->query($sql, 'wfSpecialNewImages');
@@ -91,8 +95,8 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$sql='SELECT img_size, img_name, img_user, img_user_text,'.
 	     "img_description,img_timestamp FROM $image";
 
-	if($hidebots) {
-		$sql.=$joinsql;
+	if($hidebotsql) {
+		$sql .= $hidebotsql;
 		$where[]='ug_group IS NULL';
 	}
 	if(count($where)) {
