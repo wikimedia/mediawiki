@@ -471,10 +471,14 @@ class MessageCache {
 		# Try the array of another language
 		if( $message === false && strpos( $key, '/' ) ) {
 			$message = explode( '/', $key );
-			wfSuppressWarnings();
-			$message = Language::getMessageFor( $message[0], $message[1] );
-			wfRestoreWarnings();
-			if ( is_null( $message ) ) {
+			if ( $message[1] ) {
+				wfSuppressWarnings();
+				$message = Language::getMessageFor( $message[0], $message[1] );
+				wfRestoreWarnings();
+				if ( is_null( $message ) ) {
+					$message = false;
+				}
+			} else {
 				$message = false;
 			}
 		}
