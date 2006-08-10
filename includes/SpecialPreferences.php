@@ -156,11 +156,16 @@ class PreferencesForm {
 	/**
 	 * @access private
 	 */
-	function validateDate( &$val, $min = 0, $max=0x7fffffff ) {
-		if ( ( sprintf('%d', $val) === $val && $val >= $min && $val <= $max ) || $val == 'ISO 8601' )
+	function validateDate( $val ) {
+		global $wgLang, $wgContLang;
+		if ( $val !== false && (
+			in_array( $val, (array)$wgLang->getDatePreferences() ) ||
+			in_array( $val, (array)$wgContLang->getDatePreferences() ) ) ) 
+		{
 			return $val;
-		else
-			return 0;
+		} else {
+			return $wgLang->getDefaultDateFormat();
+		}
 	}
 
 	/**
@@ -257,7 +262,7 @@ class PreferencesForm {
 		if( $wgUseTeX ) {
 			$wgUser->setOption( 'math', $this->mMath );
 		}
-		$wgUser->setOption( 'date', $this->validateDate( $this->mDate, 0, 20 ) );
+		$wgUser->setOption( 'date', $this->validateDate( $this->mDate ) );
 		$wgUser->setOption( 'searchlimit', $this->validateIntOrNull( $this->mSearch ) );
 		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
 		$wgUser->setOption( 'contextchars', $this->validateIntOrNull( $this->mSearchChars ) );
