@@ -1905,28 +1905,6 @@ Po pleur vôter vos dvoz aveur contribouwé po pus long ki
 
 
 'nstab-project' => 'Pådje',
-###################
-#
-# eployî pa côps el boesse di naiviaedje di waibes k' i gn a:
-#
-###################
-'villagepump' => 'Li Cåbaret',  # eployî so zh:
-'village pump' => 'Li Cåbaret', # eployî so commons:
-'conversion' => 'Kiviersaedje', # eployî so zh:
-'contact' => 'Contak',          # eployî so en:,zh:,betawiki
-#'goodies' => 'Bistokes',        # eployî so commons:
-'latestfiles' => 'Dierins fitchîs', # eployî so commons:
-'randomimage' => 'Imådje a l\' astcheyance', # eployî so commons:
-'randomcategory' => 'Categoreye a l\' astcheyance', # eployî so commons:
-'support' => 'Sopoirt',         # eployî so commons:
-'welcome' => 'Bénvnowe',	# eployî so betawiki
-'sandbox' => 'Pådje di sayes',	# eployî so betawiki
-'stuff' => 'Ahessåvès cayets',	# eployî so betawiki
-'test' => 'Saye',		# eployî so betawiki
-'sitemap' => 'Plan del waibe',	# eployî so betawiki
-###########
-#=======================
-###########
 
 );
 
