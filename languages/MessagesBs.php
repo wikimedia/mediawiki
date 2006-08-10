@@ -222,18 +222,6 @@ ovaj spisak ne treba da se shvati kao potvrda njihovog kvaliteta.',
 'cancel' => 'Poništite',
 'cannotdelete' => 'Ne može se obrisati navedena stranica ili slika.  (Moguće je da ju je neko drugi već obrisao.)',
 'cantrollback' => 'Ne može se vratiti izmjena; poslednji autor je ujedno i jedini.',
-'captcha-createaccount' => 'Kao zaštita od automatizovanog vandalizma, moraćete da ukucate riječi koje se nalaze na slici da biste registrovali nalog:
-<br />([[{{ns:-1}}:Captcha/help|Šta je ovo?]])',
-'captcha-createaccount-fail' => 'Netačan unos ili nedostatak šifre za potvrđivanje.',
-'captcha-short' => 'Vaša izmjena uključuje nove URL poveznice; kao zaštita od automatizovanog vandalizma, moraćete da ukucate riječi koje su prikazane u slici:
-<br />([[{{ns:-1}}:Captcha/help|Šta je ovo?]])',
-'captchahelp-text' => 'Vebsajtovi koji podržavaju slanje sadržaja iz javnosti, kao što je ovaj viki, često zloupotrebljavaju vandali koji koriste automatizovane alate da šalju svoje poveznice ka mnogim sajtovima.  Iako se ove neželjene poveznice mogu ukloniti, one ipak zadaju veliku muku.
-
-Ponekad, pogotovo kad se dodaju nove internet poveznice na stranicu, viki softver Vam može pokazati sliku obojenog i izvrnutog teksta i tražiti da ukucate traženu riječ.  Pošto je teško automatizovati ovakav zadatak, on omogućuje svim pravim ljudima da vrše svoje izmjene, ali će zato spriječiti vandale i ostale robotske napadače.
-
-Nažalost, ovo može da bude nepovoljno za korisnike sa ograničenim vidom i za one koji koriste brauzere bazirane na tekstu ili govoru.  U ovom trenutku, audio alternativa nije dostupna.  Molimo Vas da kontaktirate administratore sajta radi pomoći ako Vas ovo neočekivano ometa u pravljenju dobrih izmjena.
-
-Kliknite \'nazad\' (\'back\') dugme vašeg brauzera da se vratite na polje za unos teksta.',
 'categories' => 'Kategorije',
 'categoriespagetext' => 'Sledeće kategorije već postoje u {{SITENAME}}',
 'category_header' => 'Članaka u kategoriji "$1"',
