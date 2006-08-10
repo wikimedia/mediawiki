@@ -276,6 +276,11 @@ class Language {
 		return $this->dateFormats;
 	}
 
+	function getDefaultDateFormat() {
+		$this->load();
+		return $this->defaultDateFormat;
+	}
+
 	function getDatePreferenceMigrationMap() {
 		$this->load();
 		return $this->datePreferenceMigrationMap;
