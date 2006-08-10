@@ -52,7 +52,7 @@ class ListredirectsPage extends QueryPage {
 		}
 
 		# Format the whole thing and return it
-		return( $rd_link . $arr . $targetLink );
+		return "$rd_link $arr $targetLink";
 
 	}
 
