@@ -13,19 +13,6 @@
  */
 define( 'MW_PARSER_VERSION', '1.6.1' );
 
-/**
- * Variable substitution O(N^2) attack
- *
- * Without countermeasures, it would be possible to attack the parser by saving
- * a page filled with a large number of inclusions of large pages. The size of
- * the generated page would be proportional to the square of the input size.
- * Hence, we limit the number of inclusions of any given page, thus bringing any
- * attack back to O(N).
- */
-
-define( 'MAX_INCLUDE_REPEAT', 100 );
-define( 'MAX_INCLUDE_SIZE', 1000000 ); // 1 Million
-
 define( 'RLH_FOR_UPDATE', 1 );
 
 # Allowed values for $mOutputType
@@ -90,7 +77,8 @@ define( 'MW_COLON_STATE_COMMENTDASHDASH', 7 );
  * settings:
  *  $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
  *  $wgNamespacesWithSubpages, $wgAllowExternalImages*,
- *  $wgLocaltimezone, $wgAllowSpecialInclusion*
+ *  $wgLocaltimezone, $wgAllowSpecialInclusion*, 
+ *  $wgMaxArticleSize*
  *
  *  * only within ParserOptions
  * </pre>
@@ -109,6 +97,7 @@ class Parser
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	var $mInterwikiLinkHolders, $mLinkHolders, $mUniqPrefix;
+	var $mIncludeSizes;
 	var $mTemplates,	// cache of already loaded templates, avoids
 		                // multiple SQL queries for the same string
 	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
@@ -227,6 +216,11 @@ class Parser
 
 		$this->mShowToc = true;
 		$this->mForceTocPosition = false;
+		$this->mIncludeSizes = array(
+			'pre-expand' => 0,
+			'post-expand' => 0,
+			'arg' => 0
+		);
 
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 		wfProfileOut( __METHOD__ );
@@ -347,6 +341,16 @@ class Parser
 
 		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
 
+		# Information on include size limits, for the benefit of users who try to skirt them
+		if ( max( $this->mIncludeSizes ) > 1000 ) {
+			$max = $this->mOptions->getMaxIncludeSize();
+			$text .= "<!-- \n" .
+				"Pre-expand include size: {$this->mIncludeSizes['pre-expand']} bytes\n" .
+				"Post-expand include size: {$this->mIncludeSizes['post-expand']} bytes\n" .
+				"Template argument size: {$this->mIncludeSizes['arg']} bytes\n" .
+				"Maximum: $max bytes\n" .
+				"-->\n";
+		}
 		$this->mOutput->setText( $text );
 		$this->mRevisionId = $oldRevisionId;
 		wfProfileOut( $fname );
@@ -2611,7 +2615,7 @@ class Parser
 	 */
 	function replaceVariables( $text, $args = array(), $argsOnly = false ) {
 		# Prevent too big inclusions
-		if( strlen( $text ) > MAX_INCLUDE_SIZE ) {
+		if( strlen( $text ) > $this->mOptions->getMaxIncludeSize() ) {
 			return $text;
 		}
 
@@ -2793,10 +2797,8 @@ class Parser
 			# Check if it is an internal message
 			$mwInt =& MagicWord::get( 'int' );
 			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
-				if ( $this->incrementIncludeCount( 'int:'.$part1 ) ) {
-					$text = $linestart . wfMsgReal( $part1, $args, true );
-					$found = true;
-				}
+				$text = $linestart . wfMsgReal( $part1, $args, true );
+				$found = true;
 			}
 		}
 		wfProfileOut( __METHOD__.'-modifiers' );
@@ -2893,25 +2895,21 @@ class Parser
 				}
 
 				if ( !$title->isExternal() ) {
-					# Check for excessive inclusion
-					$dbk = $title->getPrefixedDBkey();
-					if ( $this->incrementIncludeCount( $dbk ) ) {
-						if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() && $this->mOutputType != OT_WIKI ) {
-							$text = SpecialPage::capturePath( $title );
-							if ( is_string( $text ) ) {
-								$found = true;
-								$noparse = true;
-								$noargs = true;
-								$isHTML = true;
-								$this->disableCache();
-							}
-						} else {
-							$articleContent = $this->fetchTemplate( $title );
-							if ( $articleContent !== false ) {
-								$found = true;
-								$text = $articleContent;
-								$replaceHeadings = true;
-							}
+					if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() && $this->mOutputType != OT_WIKI ) {
+						$text = SpecialPage::capturePath( $title );
+						if ( is_string( $text ) ) {
+							$found = true;
+							$noparse = true;
+							$noargs = true;
+							$isHTML = true;
+							$this->disableCache();
+						}
+					} else {
+						$articleContent = $this->fetchTemplate( $title );
+						if ( $articleContent !== false ) {
+							$found = true;
+							$text = $articleContent;
+							$replaceHeadings = true;
 						}
 					}
 
@@ -2946,6 +2944,15 @@ class Parser
 				}
 			}
 			wfProfileOut( __METHOD__ . '-loadtpl' );
+		}
+
+		if ( $found && !$this->incrementIncludeSize( 'pre-expand', strlen( $text ) ) ) {
+			# Error, oversize inclusion
+			$text = $linestart .
+				'{{' . $part1 . '}}' .
+				'<!-- WARNING: template omitted, pre-expand include size too large -->';
+			$noparse = true;
+			$noargs = true;
 		}
 
 		# Recursive parsing, escaping and link table handling
@@ -3012,6 +3019,15 @@ class Parser
 		}
 		# Prune lower levels off the recursion check path
 		$this->mTemplatePath = $lastPathLevel;
+
+		if ( $found && !$this->incrementIncludeSize( 'post-expand', strlen( $text ) ) ) {
+			# Error, oversize inclusion
+			$text = $linestart .
+				'{{' . $part1 . '}}' .
+				'<!-- WARNING: template omitted, post-expand include size too large -->';
+			$noparse = true;
+			$noargs = true;
+		}
 
 		if ( !$found ) {
 			wfProfileOut( $fname );
@@ -3153,22 +3169,27 @@ class Parser
 		} else if ($this->mOutputType == OT_HTML && null != $matches['parts'] && count($matches['parts']) > 0) {
 			$text = $matches['parts'][0];
 		}
+		if ( !$this->incrementIncludeSize( 'arg', strlen( $text ) ) ) {
+			$text = $matches['text'] .
+				'<!-- WARNING: argument omitted, expansion size too large -->';
+		}
 
 		return $text;
 	}
 
 	/**
-	 * Returns true if the function is allowed to include this entity
-	 * @private
+	 * Increment an include size counter
+	 *
+	 * @param string $type The type of expansion
+	 * @param integer $size The size of the text
+	 * @return boolean False if this inclusion would take it over the maximum, true otherwise
 	 */
-	function incrementIncludeCount( $dbk ) {
-		if ( !array_key_exists( $dbk, $this->mIncludeCount ) ) {
-			$this->mIncludeCount[$dbk] = 0;
-		}
-		if ( ++$this->mIncludeCount[$dbk] <= MAX_INCLUDE_REPEAT ) {
-			return true;
-		} else {
+	function incrementIncludeSize( $type, $size ) {
+		if ( $this->mIncludeSizes[$type] + $size > $this->mOptions->getMaxIncludeSize() ) {
 			return false;
+		} else {
+			$this->mIncludeSizes[$type] += $size;
+			return true;
 		}
 	}
 
@@ -4455,6 +4476,7 @@ class ParserOptions
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
 	var $mTidy;                      # Ask for tidy cleanup
 	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
+	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
 
 	var $mUser;                      # Stored user object, just used to initialise the skin
 
@@ -4468,6 +4490,7 @@ class ParserOptions
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
+	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
 
 	function &getSkin() {
 		if ( !isset( $this->mSkin ) ) {
@@ -4495,6 +4518,7 @@ class ParserOptions
 	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x); }
 	function setSkin( &$x ) { $this->mSkin =& $x; }
 	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
+	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
 
 	function ParserOptions( $user = null ) {
 		$this->initialiseFromUser( $user );
@@ -4511,7 +4535,7 @@ class ParserOptions
 	/** Get user options */
 	function initialiseFromUser( $userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
-		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion;
+		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion, $wgMaxArticleSize;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
@@ -4540,6 +4564,7 @@ class ParserOptions
 		$this->mAllowSpecialInclusion = $wgAllowSpecialInclusion;
 		$this->mTidy = false;
 		$this->mInterfaceMessage = false;
+		$this->mMaxIncludeSize = $wgMaxArticleSize * 1024;
 		wfProfileOut( $fname );
 	}
 }
