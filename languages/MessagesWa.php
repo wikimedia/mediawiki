@@ -216,7 +216,7 @@ $messages = array(
 'talk' => 'Copene',
 'toolbox' => 'Boesse ås usteyes',
 'userpage' => 'Vey li pådje di l\' uzeu',
-'projectpage' => 'Vey li pådje do pordjet',
+'projectpage' => 'Vey li meta-pådje',
 'imagepage' => 'Vey li pådje di l\' imådje',
 'viewtalkpage' => 'Vey li pådje di copene',
 'otherlanguages' => 'Ôtes lingaedjes',
@@ -1748,43 +1748,7 @@ $1',
 'articletitles' =>  'Årtikes ki cmincèt avou «\'\'$1\'\'»',
 'hideresults' => 'Catchî les rzultats',
 
-# DISPLAYTITLE
-
-####################
-#
-# novelès intrêyes
-#
-####################
-#
-'checkuser' => 'Verifyî l\' uzeu',
-
-#####################
-#
-# Intrêyes di rawete
-# (extra extension entries)
-#
-#####################
-# cite
-'cite_page' => 'Pådje:',
-
-# new user log
-'newuserlogpage' => 'Djournå des noveas uzeus',
-'newuserlogpagetext' => 'Chal pa dzo c\' est ene djivêye des uzeus novelmint eredjîstrés.',
-'newuserloglog' => 'ahivaedje di l\' uzeu [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|$2]] | [[{{ns:special}}:Contributions/$1|$3]] | [[{{ns:special}}:Blockip/$1|$4]])',
-'newuserlog-create-entry' => 'novea uzeu',
-# NOTE: $2, $3, $4 sont dins l' lingaedje do wiki, nén l' ci d' l' eterface!
-#'newuserlog-create-text' => '[[User talk:$1|$2]] | [[Special:Contributions/$1|$3]] | [[Special:Blockip/$1|$4]]',
-'newuserlog-create-text' => '[[User talk:$1|copene]] | [[Special:Contributions/$1|contribouwaedjes]] | [[Special:Blockip/$1|bloker]]',
-'newuserlog-create2-entry' => 'conte ahivé po $1',
-
-# rename user
-'renameuser' => 'Rilomer èn uzeu',
-'renameuserlogpage' => 'Djournå des candjmints d\' no d\' uzeus',
-'renameuserlogpagetext' => 'Chal pa dzo c\' est ene djivêye des uzeus k\' ont candjî leu no d\' elodjaedje.',
-
-'renameuserlog' => 'L\' uzeu «[[Uzeu:$1|$1]]» (k\' aveut ddja fwait $3 candjmints) a stî rlomé a «[[Uzeu:$2|$2]]»',
-
-# makebot
+# Makebot - FIXME move to the extension
 'makebot' => 'Diner ou rsaetchî l\' livea d\' robot',
 'makebot-header' => '\'\'\'On mwaisse-manaedjeu sol wiki pout eployî cisse pådje ci po dner ou rsaetchî l\' [[{{ns:help}}:Robots|livea d\' robot]] a èn ôte conte d\' uzeu.\'\'\'<br />El livea d\' robot fwait ki les candjmints da cist uzeu la si polèt catchî dins l\' pådje des [[{{special}}:Recentchanges|dierins candjmints]] et des sfwaitès djivêyes, çou k\' est ahessåve po mårker les uzeus ki fjhèt des candjmints otomatikes. Çoula doet esse fwait tot shuvant les rîles ki s\' aplikèt.',
 'makebot-username' => 'No d\' uzeu:',
@@ -1802,109 +1766,6 @@ $1',
 'makebot-notbot' => '[[{{ns:user}}:$1|$1]] n\' a nén l\' livea d\' robot',
 'makebot-privileged' => '[[{{ns:user}}:$1|$1]] a ddja on livea d\' [[{{ns:special}}:Listadmins|manaedjeu ou mwaisse-manaedjeu]], ça fwait k\' i n\' pout nén eployî ç\' conte la po on robot.',
 'makebot-revoked' => '[[{{ns:user}}:$1|$1]] n\' a pus d\' livea d\' robot.',
-
-# anti-spam
-'captcha-createaccount' => 'Po s\' mete a houte des robots di spam, nos vs dimandans d\' acertiner ki vos estoz bén ene djin po-z ahiver vosse conte, po çoula, tapez les mots k\' aparexhèt dins l\' imådje chal pa dzo:<br />([[{{ns:special}}:Captcha/help|Pocwè fjhans ns çoula?]])',
-'captcha-createaccount-fail' => 'Li côde d\' acertinaedje est incorek ou mancant.',
-'captcha-short' => 'Dins vos candjmints i gn a des novelès hårdêyes (URL); po s\' mete a houte des robots di spam, nos vs dimandans d\' acertiner ki vos estoz bén ene djin, po çoula, tapez les mots k\' aparexhèt dins l\' imådje chal pa dzo:<br />([[{{ns:special}}:Captcha/help|Pocwè fjhans ns çoula?]])',
-'captchahelp-text' => 'Les waibes k\' acceptèt des messaedjes do publik, come ci wiki chal, sont sovint eployîs pa des må-fjhants spameus, po pleur mete, avou des usteyes otomatikes, des loyéns di rclame viè les sites da zels.
-Bén seur, on pout todi les disfacer al mwin, mins c\' est on soyant ovraedje.
-
-Adon, pa côps, copurade cwand vos radjoutez des hårdêyes a ene pådje, ou å moumint d\' ahiver on novea conte sol wiki, on eployrè ene passete d\' acertinaedje, dj\' ô bén k\' on vos mostere ene imådje avou on tecse kitoirdou eyet vs dimander di taper les mots so l\' imådje. Come li ricnoxhance di ç\' tecse la est målåjheye a fé otomaticmint pa on robot, çoula permete di leyî les vraiyès djins fé leus candjmints tot arestant l\' plupårt des spameus et des sfwaitès atakes pa robot.
-
-Målureuzmint çoula apoite eto des målåjhminces po les cis k\' ont des problinmes po vey, ou k\' eployèt des betchteus e môde tecse ou båzés sol vwès. Pol moumint, nos n\' avans nén ene alternative odio. S\' i vs plait contactez les manaedjeus do site po d\' l\' aidance si çoula vos espaitche di fé vos candjmints ledjitimes.
-
-Clitchîz sol boton «En erî» di vosse betchteu waibe po rivni al pådje di dvant.',
-'captchahelp-title' => 'Aidance passete d\' acertinaedje',
-
-# boardvote
-'boardvote' => 'Vôtaedje po les manaedjeus del fondåcion Wikimedia',
-'boardvote_days' => 'Djoûs',
-'boardvote_dumplink' => 'Clitchîz chal',
-'boardvote_edits' => 'Contribs',
-'boardvote_entered' => 'Gråces, vosse vôtaedje a stî conté.
-
-Si vos vloz, vos ploz wårder les informåcions shuvantes.
-Vosse bultin a stî eredjîstré come:
-
-<pre>$1</pre>
-
-Il a stî ecripté avou l\' clé publike des manaedjeus do vôtaedje:
-
-<pre>$2</pre>
-
-Vosse bultins ecripté est chal pa dzo. Tos les bultins ecriptés polèt
-esse publicmint veyous so [[Special:Boardvote/dump]]. 
-
-<pre>$3</pre>
-
-[[Special:Boardvote/entry|En erî]]',
-'boardvote_entry' => '* [[Special:Boardvote/vote|Vôter]]
-* [[Special:Boardvote/list|Djivêye des vôtaedjes dedja fwaits]]
-* [[Special:Boardvote/dump|Djiveye des bultins]] (tchaeke bultin est on blok ecripté)',
-'boardvote_intro' => '<p>
-Bénvnowe å prumî vôtaedje po les manaedjeus del fondåcion Wikimedia. 
-Li vôtaedje c\' est po tchoezi deus djins ki cåzront å consey des manaedjeus po les contribouweus des diferins pordjets Wikimedia k\' overnut félmint po lzès fé viker:
-on <strong>rprezintant des mimbes ki sont des contribouweus actifs</strong>,
-eyet on <strong>rprezintant des uzeus volontaires</strong>.
-Il aidront a defini l\' voye ki prindront les pordjets Wikimedia, ossu bén tchaeke pordjet ki zels tos come groupe, dj\' ô bén k\' i rprezintèt <em>vos</em> interesses divant l\' consey des manaedjes. I decidront so des sudjets come l\' ecwårlaedje eyet l\' atribouwaedje des çanses ås diferinnès bouyes.
-</p>
-
-<p>
-Prindoz s\' i vs plait li tins di bén lére li prezintaedje di tchaesconk des candidats dvant d\' vôter.
-Tchaeke des candidats est èn uzeu respecté del kiminaalté, k\' a contribouwé bråmint do tins eyet ds efoirts po fé di ces pordjets èn evironmint amiståve ey ahessåve, et ki croeyèt fel å franc cossemaedje del kinoxhaence amon l\' djin.
-</p>
-
-<p>
-Vos ploz vôter po ostant d\' candidats ki vos vloz dins tchaeke plaece.
-Li candidat avou l\' pus d\' vwès po tchaeke plaece serè rclamé wangneu
-Dins l\' cas k\' i gn årè ewalisté inte deus prumîs candidats, on deujhinme vôtaedje serè fwait po les dispårti.
-</p>
-
-<p>
-Po pus di racsegnes, loukîz a:
-</p>
-<ul>
-<li><a href="http://meta.wikipedia.org/wiki/Election_FAQ" class="external">FAQ sol vôtaedje</a> (en inglès)</li>
-<li><a href="http://meta.wikipedia.org/wiki/Election_Candidates" class="external">Candidats</a></li>
-</ul>',
-'boardvote_intro_change' => '<p>
-Vos avoz ddja voté.
-Mins vos ploz tot l\' minme candjî vosse vôte, po çoula
-rifjhoz ene tchuze tot clitchant so les boesses a clitchîz des
-candidats ki vos estoz d\' acoird avou zels.
-</p>',
-'boardvote_listintro' => '<p>Çouchal, c\' est ene djivêye di totes les djins
-k\' ont ddja vote disk\' asteure.
-$1 po les dnêyes sourdant des bultins.</p>',
-'boardvote_notloggedin' => 'Vos n\' estoz nén elodjî.
-Po pleur vôter vos dvoz esse elodjî eyet vosse conté
-doet aveur stî ahivé i gn a 90 djoûs pol moens.',
-'boardvote_notqualified' => 'Dji rgrete, mins vosse prumî contribouwaedje a stî fwait
-i gn a $1 djoûs seulmint.
-Po pleur vôter vos dvoz aveur contribouwé po pus long ki
-90 djoûs.',
-'boardvote_novotes' => 'I gn a co nolu k\' a vôté.',
-'boardvote_time' => 'Date ey eure',
-'boardvote_user' => 'Uzeu',
-
-###########
-#======================= obsolete?
-###########
-# Validation
-'val_yes' => 'Oyi',
-'val_no' => 'Neni',
-'val_of' => '$1 di $2',
-'val_add' => 'Radjouter',
-'val_del' => 'Disfacer',
-'val_details_th_user' => 'Uzeu $1',
-'val_revision_stats_link' => 'detays',
-'val_total' => 'Totå',
-'projectpage' => 'Vey li meta-pådje',
-
-
-
-'nstab-project' => 'Pådje',
 
 );
 
