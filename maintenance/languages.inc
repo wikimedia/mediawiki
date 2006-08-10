@@ -212,15 +212,15 @@ class languages {
 		$messagesWithoutVariables = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
 			if ( isset( $this->mTranslatableMessages[$key] ) ) {
-				$missing = array();
+				$missing = false;
 				foreach ( $variables as $var ) {
 					if ( preg_match( "/$var/sU", $this->mTranslatableMessages[$key] ) &&
 						!preg_match( "/$var/sU", $value ) ) {
-						$missing[] = str_replace( '\$', '$', $var );
+						$missing = true;
 					}
 				}
-				if ( count( $missing ) > 0 ) {
-					$messagesWithoutVariables[$key] = implode( ', ', $missing );
+				if ( $missing ) {
+					$messagesWithoutVariables[$key] = $value;
 				}
 			}
 		}
@@ -334,22 +334,35 @@ class languages {
 	 * Output a messages list.
 	 *
 	 * @param $messages The messages list.
+	 * @param $code The language code.
 	 * @param $text The text to show before the list (optional).
-	 * @param $hideMessages Hide the real messages if specified.
+	 * @param $level The display level.
+	 * @param $links Show links.
 	 */
-	public function outputMessagesList( $messages, $text = '', $hideMessages = false, $hidevalues = false ) {
+	public function outputMessagesList( $messages, $code, $text = '', $level = 2, $links = false ) {
 		if ( count( $messages ) > 0 ) {
 			if ( $text ) {
 				echo "$text\n";
 			}
-			if ( $hideMessages ) {
+			if ( $level == 1 ) {
 				echo "[messages are hidden]\n";
 			} else {
 				foreach ( $messages as $key => $value ) {
-					if ( $hidevalues ) {
-						echo "* '$key'\n";
+					if ( $links ) {
+						$displayKey = ucfirst( $key );
+						global $wgContLang;
+						if ( $code == $wgContLang->getCode() ) {
+							$displayKey = "[[MediaWiki:$displayKey|$key]]";
+						} else {
+							$displayKey = "[[MediaWiki:$displayKey/$code|$key]]";
+						}
 					} else {
-						echo "* '$key':		'$value'\n";
+						$displayKey = $key;
+					}
+					if ( $level == 2 ) {
+						echo "* $displayKey\n";
+					} else {
+						echo "* $displayKey:		'$value'\n";
 					}
 				}
 			}

@@ -15,7 +15,7 @@ require_once( 'languages.inc' );
  * @param $code The language code.
  */
 function checkLanguage( $code ) {
-	global $wgLanguages, $wgChecks, $wgHideMessages, $wgHideMessagesValues;
+	global $wgLanguages, $wgDisplayLevel, $wgLinks, $wgChecks;
 
 	# Get messages number
 	$translatableMessagesNumber = count( $wgLanguages->getTranslatableMessages() );
@@ -25,56 +25,56 @@ function checkLanguage( $code ) {
 	if ( in_array( 'untranslated', $wgChecks ) ) {
 		$untranslatedMessages = $wgLanguages->getUntranslatedMessages( $code );
 		$untranslatedMessagesNumber = count( $untranslatedMessages );
-		$wgLanguages->outputMessagesList( $untranslatedMessages, "\n$untranslatedMessagesNumber messages of $translatableMessagesNumber are not translated to $code, but exist in en:", $wgHideMessages, $wgHideMessagesValues );
+		$wgLanguages->outputMessagesList( $untranslatedMessages, $code, "\n$untranslatedMessagesNumber messages of $translatableMessagesNumber are not translated to $code, but exist in en:", $wgDisplayLevel, $wgLinks );
 	}
 
 	# Duplicate messages
 	if ( in_array( 'duplicate', $wgChecks ) ) {
 		$duplicateMessages = $wgLanguages->getDuplicateMessages( $code );
 		$duplicateMessagesNumber = count( $duplicateMessages );
-		$wgLanguages->outputMessagesList( $duplicateMessages, "\n$duplicateMessagesNumber messages of $localMessagesNumber are translated the same in en and $code:", $wgHideMessages, $wgHideMessagesValues );
+		$wgLanguages->outputMessagesList( $duplicateMessages, $code, "\n$duplicateMessagesNumber messages of $localMessagesNumber are translated the same in en and $code:", $wgDisplayLevel, $wgLinks );
 	}
 
 	# Obsolete messages
 	if ( in_array( 'obsolete', $wgChecks ) ) {
 		$obsoleteMessages = $wgLanguages->getObsoleteMessages( $code );
 		$obsoleteMessagesNumber = count( $obsoleteMessages );
-		$wgLanguages->outputMessagesList( $obsoleteMessages, "\n$obsoleteMessagesNumber messages of $localMessagesNumber are not exist in en (or are in the ignored list), but still exist in $code:", $wgHideMessages, $wgHideMessagesValues );
+		$wgLanguages->outputMessagesList( $obsoleteMessages, $code, "\n$obsoleteMessagesNumber messages of $localMessagesNumber are not exist in en (or are in the ignored list), but still exist in $code:", $wgDisplayLevel, $wgLinks );
 	}
 
 	# Messages without variables
 	if ( in_array( 'variables', $wgChecks ) ) {
 		$messagesWithoutVariables = $wgLanguages->getMessagesWithoutVariables( $code );
 		$messagesWithoutVariablesNumber = count( $messagesWithoutVariables );
-		$wgLanguages->outputMessagesList( $messagesWithoutVariables, "\n$messagesWithoutVariablesNumber messages of $localMessagesNumber in $code don't use some variables while en uses them:", $wgHideMessages, $wgHideMessagesValues );
+		$wgLanguages->outputMessagesList( $messagesWithoutVariables, $code, "\n$messagesWithoutVariablesNumber messages of $localMessagesNumber in $code don't use some variables while en uses them:", $wgDisplayLevel, $wgLinks );
 	}
 
 	# Empty messages
 	if ( in_array( 'empty', $wgChecks ) ) {
 		$emptyMessages = $wgLanguages->getEmptyMessages( $code );
 		$emptyMessagesNumber = count( $emptyMessages );
-		$wgLanguages->outputMessagesList( $emptyMessages, "\n$emptyMessagesNumber messages of $localMessagesNumber in $code are empty or -:", $wgHideMessages, $wgHideMessagesValues );
+		$wgLanguages->outputMessagesList( $emptyMessages, $code, "\n$emptyMessagesNumber messages of $localMessagesNumber in $code are empty or -:", $wgDisplayLevel, $wgLinks );
 	}
 
 	# Messages with whitespace
 	if ( in_array( 'whitespace', $wgChecks ) ) {
 		$messagesWithWhitespace = $wgLanguages->getMessagesWithWhitespace( $code );
 		$messagesWithWhitespaceNumber = count( $messagesWithWhitespace );
-		$wgLanguages->outputMessagesList( $messagesWithWhitespace, "\n$messagesWithWhitespaceNumber messages of $localMessagesNumber in $code have a trailing whitespace:", $wgHideMessages, $wgHideMessagesValues );
+		$wgLanguages->outputMessagesList( $messagesWithWhitespace, $code, "\n$messagesWithWhitespaceNumber messages of $localMessagesNumber in $code have a trailing whitespace:", $wgDisplayLevel, $wgLinks );
 	}
 
 	# Non-XHTML messages
 	if ( in_array( 'xhtml', $wgChecks ) ) {
 		$nonXHTMLMessages = $wgLanguages->getNonXHTMLMessages( $code );
 		$nonXHTMLMessagesNumber = count( $nonXHTMLMessages );
-		$wgLanguages->outputMessagesList( $nonXHTMLMessages, "\n$nonXHTMLMessagesNumber messages of $localMessagesNumber in $code are not well-formed XHTML:", $wgHideMessages, $wgHideMessagesValues );
+		$wgLanguages->outputMessagesList( $nonXHTMLMessages, $code, "\n$nonXHTMLMessagesNumber messages of $localMessagesNumber in $code are not well-formed XHTML:", $wgDisplayLevel, $wgLinks );
 	}
 
 	# Messages with wrong characters
 	if ( in_array( 'chars', $wgChecks ) ) {
 		$messagesWithWrongChars = $wgLanguages->getMessagesWithWrongChars( $code );
 		$messagesWithWrongCharsNumber = count( $messagesWithWrongChars );
-		$wgLanguages->outputMessagesList( $messagesWithWrongChars, "\n$messagesWithWrongCharsNumber messages of $localMessagesNumber in $code include hidden chars which should not be used in the messages:", $wgHideMessages, $wgHideMessagesValues );
+		$wgLanguages->outputMessagesList( $messagesWithWrongChars, $code, "\n$messagesWithWrongCharsNumber messages of $localMessagesNumber in $code include hidden chars which should not be used in the messages:", $wgDisplayLevel, $wgLinks );
 	}
 }
 
@@ -82,13 +82,13 @@ function checkLanguage( $code ) {
 if ( isset( $options['help'] ) ) {
 	echo "Run this script to check a specific language file.\n";
 	echo "Parameters:\n";
-	echo "\t* lang: Language code, the installation default language will be used if not specified; can also specify \"all\" to check all the languages.\n";
+	echo "\t* lang: Language code (default: the installation default language). You can also specify \"all\" to check all the languages.\n";
 	echo "\t* help: Show help.\n";
-	echo "\t* hide: Only show the numbers of messages with the problem, hide the messages themselves.\n";
-	echo "\t* hidev: Only show the keys of messages with the problem, hide the values of messages.\n";
+	echo "\t* level: Show the following level (default: 2).\n";
+	echo "\t* links: Link the message values (default off).\n";
 	echo "\t* whitelist: Make only the following checks (form: code,code).\n";
 	echo "\t* blacklist: Don't make the following checks (form: code,code).\n";
-	echo "Check codes (ideally, should be zero):\n";
+	echo "Check codes (ideally, should be zero; all the checks are executed by default):\n";
 	echo "\t* untranslated: Messages which are translatable, but not translated.";
 	echo "\t* duplicate: Messages which are translated the same to English.";
 	echo "\t* obsolete: Messages which are untranslatable, but translated.";
@@ -97,6 +97,10 @@ if ( isset( $options['help'] ) ) {
 	echo "\t* whitespace: Messages which have trailing whitespace.";
 	echo "\t* xhtml: Messages which are not well-formed XHTML.";
 	echo "\t* chars: Messages with hidden characters.";
+	echo "Display levels (default: 2):\n";
+	echo "\t* 1: Show only the stub headers and number of wrong messages, without list of messages.";
+	echo "\t* 2: Show only the headers and the message keys, without the message values.";
+	echo "\t* 3: Show both the headers and the complete messages, with both keys and values.";
 	exit();
 }
 
@@ -104,7 +108,7 @@ if ( isset( $options['help'] ) ) {
 if ( isset( $options['lang'] ) ) {
 	$wgCode = $options['lang'];
 } else {
-	$wgCode = $wgLang->getCode();
+	$wgCode = $wgContLang->getCode();
 }
 
 # Can't check English
@@ -113,9 +117,15 @@ if ( $wgCode == 'en' ) {
 	exit();
 }
 
-# Get the options of hiding things
-$wgHideMessages = isset( $options['hide'] );
-$wgHideMessagesValues = isset( $options['hidev'] );
+# Get the display level
+if ( isset( $options['level'] ) ) {
+	$wgDisplayLevel = $options['level'];
+} else {
+	$wgDisplayLevel = 2;
+}
+
+# Get the links option
+$wgLinks = isset( $options['links'] );
 
 # Get the checks to do
 $wgChecks = array( 'untranslated', 'duplicate', 'obsolete', 'variables', 'empty', 'whitespace', 'xhtml', 'chars' );
