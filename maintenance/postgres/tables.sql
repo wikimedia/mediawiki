@@ -454,6 +454,7 @@ CREATE UNIQUE INDEX pf_name_server ON profiling (pf_name, pf_server);
 CREATE TABLE mediawiki_version (
   type         TEXT         NOT NULL,
   mw_version   TEXT         NOT NULL,
+  notes        TEXT             NULL,
 
   pg_version   TEXT             NULL,
   pg_dbname    TEXT             NULL,
