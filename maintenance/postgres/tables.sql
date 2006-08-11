@@ -240,7 +240,7 @@ CREATE INDEX img_timestamp_idx ON image (img_timestamp);
 CREATE TABLE oldimage (
   oi_name          TEXT         NOT NULL  REFERENCES image(img_name),
   oi_archive_name  TEXT         NOT NULL,
-  oi_size          SMALLINT     NOT NULL,
+  oi_size          INTEGER      NOT NULL,
   oi_width         SMALLINT     NOT NULL,
   oi_height        SMALLINT     NOT NULL,
   oi_bits          SMALLINT     NOT NULL,
