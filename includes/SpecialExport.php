@@ -42,7 +42,12 @@ function wfSpecialExport( $page = '' ) {
 	if( $wgRequest->getVal( 'action' ) == 'submit') {
 		$page = $wgRequest->getText( 'pages' );
 		$curonly = $wgRequest->getCheck( 'curonly' );
-		$offset = wfTimestamp( TS_MW, $wgRequest->getVal( 'offset' ) );
+		$rawOffset = $wgRequest->getVal( 'offset' );
+		if( $rawOffset ) {
+			$offset = wfTimestamp( TS_MW, $rawOffset );
+		} else {
+			$offset = null;
+		}
 		$limit = $wgRequest->getInt( 'limit' );
 		$dir = $wgRequest->getVal( 'dir' );
 		$history = array(
