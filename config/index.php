@@ -115,7 +115,7 @@ $ourdb['postgres']['rootuser']   = 'postgres';
 		.error-top {
 			color: red;
 			background-color: #FFF0F0;
-			border: 2px solid	 red;
+			border: 2px solid red;
 			font-size: 130%;
 			font-weight: bold;
 			padding: 1em 1.5em;
@@ -179,7 +179,7 @@ $ourdb['postgres']['rootuser']   = 'postgres';
 /* Check for existing configurations and bug out! */
 
 if( file_exists( "../LocalSettings.php" ) ) {
-	dieout( "	<p><strong>Setup has completed, <a href='../index.php'>your wiki</a> is configured.</strong></p>
+	dieout( "<p><strong>Setup has completed, <a href='../index.php'>your wiki</a> is configured.</strong></p>
 
 	<p>Please delete the /config directory for extra security.</p></div></div></div></div>" );
 }
@@ -285,7 +285,7 @@ if( ini_get( "register_globals" ) ) {
 	<li>
 		<div style="font-size:110%">
 		<strong class="error">Warning:</strong>
-		<strong>PHP's	<tt><a href="http://php.net/register_globals">register_globals</a></tt>	option is enabled. Disable it if you can.</strong>
+		<strong>PHP's <tt><a href="http://php.net/register_globals">register_globals</a></tt> option is enabled. Disable it if you can.</strong>
 		</div>
 		MediaWiki will work, but your server is more exposed to PHP-based security vulnerabilities.
 	</li>
@@ -565,10 +565,10 @@ if ( $conf->Shm == 'memcached' && $conf->MCServers ) {
 }
 
 /* default values for installation */
-$conf->Email	=importRequest("Email", "email_enabled");
-$conf->Emailuser=importRequest("Emailuser", "emailuser_enabled");
-$conf->Enotif	=importRequest("Enotif", "enotif_allpages");
-$conf->Eauthent	=importRequest("Eauthent", "eauthent_enabled");
+$conf->Email     = importRequest("Email", "email_enabled");
+$conf->Emailuser = importRequest("Emailuser", "emailuser_enabled");
+$conf->Enotif    = importRequest("Enotif", "enotif_allpages");
+$conf->Eauthent  = importRequest("Eauthent", "eauthent_enabled");
 
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
 	do { /* So we can 'continue' to end prematurely */
@@ -611,7 +611,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDBts2schema = $conf->DBts2schema;
 
 		$wgCommandLineMode = true;
-		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
+		$wgUseDatabaseMessages = false; /* FIXME: For database failure */
 		require_once( "includes/Setup.php" );
 		chdir( "config" );
 
@@ -619,7 +619,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		$wgTitle = Title::newFromText( "Installation script" );
 		error_reporting( E_ALL );
-	print "<li>Loading class: $dbclass";
+		print "<li>Loading class: $dbclass";
 		$dbc = new $dbclass;
 
 		if( $conf->DBtype == 'mysql' ) {
@@ -727,9 +727,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$mysqlNewAuth = version_compare( $myver, "4.1.0", "ge" );
 			if( $mysqlNewAuth && $mysqlOldClient ) {
 				print "; <b class='error'>You are using MySQL 4.1 server, but PHP is linked
-				 	to old client libraries; if you have trouble with authentication, see
-			 		<a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
-				 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
+					to old client libraries; if you have trouble with authentication, see
+					<a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
+					>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
 			}
 			if( $wgDBmysql5 ) {
 				if( $mysqlNewAuth ) {
@@ -1073,7 +1073,7 @@ if( count( $errs ) ) {
 		</ul>
 	</div>
 	<div class="config-desc">
-		<p>		
+		<p>
 		For this feature to work, an e-mail address must be present for the user account, and the notification
 		options in the user's preferences must be enabled. Also note the 
 		authentication option below. When testing the feature, keep in mind that your own changes will never trigger notifications to be sent to yourself.</p>
@@ -1356,7 +1356,7 @@ if ( \$wgCommandLineMode ) {
 
 \$wgSitename         = \"{$slconf['Sitename']}\";
 
-\$wgScriptPath	     = \"{$slconf['ScriptPath']}\";
+\$wgScriptPath       = \"{$slconf['ScriptPath']}\";
 \$wgScript           = \"\$wgScriptPath/index.php\";
 \$wgRedirectScript   = \"\$wgScriptPath/redirect.php\";
 
@@ -1373,11 +1373,11 @@ if ( \$wgCommandLineMode ) {
 \$wgUploadPath       = \"\$wgScriptPath/images\";
 \$wgUploadDirectory  = \"\$IP/images\";
 
-\$wgEnableEmail = $enableemail;
-\$wgEnableUserEmail = $enableuseremail;
+\$wgEnableEmail      = $enableemail;
+\$wgEnableUserEmail  = $enableuseremail;
 
 \$wgEmergencyContact = \"{$slconf['EmergencyContact']}\";
-\$wgPasswordSender	= \"{$slconf['PasswordSender']}\";
+\$wgPasswordSender = \"{$slconf['PasswordSender']}\";
 
 ## For a detailed description of the following switches see
 ## http://meta.wikimedia.org/Enotif and http://meta.wikimedia.org/Eauthent
@@ -1405,8 +1405,8 @@ if ( \$wgCommandLineMode ) {
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
-\$wgEnableUploads		= false;
-\$wgUseImageResize		= {$conf->UseImageResize};
+\$wgEnableUploads       = false;
+\$wgUseImageResize      = {$conf->UseImageResize};
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$convert}\";
 
@@ -1418,7 +1418,7 @@ if ( \$wgCommandLineMode ) {
 
 ## If you have the appropriate support software installed
 ## you can enable inline LaTeX equations:
-\$wgUseTeX	         = false;
+\$wgUseTeX           = false;
 \$wgMathPath         = \"{\$wgUploadPath}/math\";
 \$wgMathDirectory    = \"{\$wgUploadDirectory}/math\";
 \$wgTmpDirectory     = \"{\$wgUploadDirectory}/tmp\";
@@ -1449,7 +1449,8 @@ if ( \$wgCommandLineMode ) {
 # sure that cached pages are cleared.
 \$configdate = gmdate( 'YmdHis', @filemtime( __FILE__ ) );
 \$wgCacheEpoch = max( \$wgCacheEpoch, \$configdate );
-";
+	"; ## End of setting the $localsettings string
+
 	// Keep things in Unix line endings internally;
 	// the system will write out as local text type.
 	return str_replace( "\r\n", "\n", $localsettings );
