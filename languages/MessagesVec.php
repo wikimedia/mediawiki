@@ -146,7 +146,6 @@ $messages = array(
 'viewcount'             => 'Sta paxèna xè stà leta {{PLURAL:$1|na volta|$1 volte}}.',
 'copyright'             => 'Contenuto disponibile sotto $1.',
 'protectedpage'         => 'Paxèna proteta',
-'administrators'        => 'Project:Aministradori',
 'jumptonavigation'      => 'Navigazsion',
 'jumptosearch'          => 'zserca',
 'badaccess'             => 'Eròr ne i permessi',

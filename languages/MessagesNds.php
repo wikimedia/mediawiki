@@ -231,7 +231,6 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'viewcount'                        => 'Disse Siet is $1 Maal opropen worrn.',
 'copyright'             => 'De Inholt is verfögbor ünner de $1.',
 'protectedpage'         => 'Schulte Sieten',
-'administrators'        => '{{ns:4}}:Administratern',
 'nbytes'                              => '$1 Bytes',
 'go'                                     => 'Los',
 'ok'                                    => 'OK',

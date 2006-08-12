@@ -247,7 +247,6 @@ $messages = array(
 'viewcount'             => 'Stránka byla zobrazena $1krát.',
 'copyright'     => 'Obsah je dostupný pod $1.',
 'protectedpage' => 'Zamčená stránka',
-'administrators' => '{{ns:4}}:Správci',
 'jumpto' => 'Přejít na:',
 'jumptonavigation' => 'navigace',
 'jumptosearch' => 'hledání',

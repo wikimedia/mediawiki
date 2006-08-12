@@ -160,7 +160,6 @@ $messages = array(
 'otherlanguages' => 'Өске дылдарга', //In other languages
 'lastmodified'	=> 'Бо арын сөөлгү каттап $1 өскерилген.', //This page was last modified $1.
 //'viewcount'		=> 'Бо арын $1 каттап ажыттынган.', //This page has been accesed $1 times.
-'administrators' => "Project:Администраторлар", //Project:Administrators
 'retrievedfrom' => "\"$1\" арынында парлаттынган", //Retrieved from \"$1\"
 'newmessageslink' => 'чаа чагаалар', //new messages
 'editsection'=>'өскертир', //edit

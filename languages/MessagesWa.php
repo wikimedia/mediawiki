@@ -227,7 +227,6 @@ $messages = array(
 'viewcount' => 'Cisse pådje la a stî léjhowe {{PLURAL:$1|on côp|$1 côps}}.',
 'copyright' => 'Li contnou est dizo l\' $1.',
 'protectedpage' => 'Pådje protedjeye',
-'administrators' => '{{ns:project}}:Manaedjeus',
 'jumpto' => 'Potchî a:',
 'jumptonavigation' => 'naiviaedje',
 'jumptosearch' => 'cweri',

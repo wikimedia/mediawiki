@@ -163,7 +163,6 @@ $messages = array(
 "lastmodified"	=> "Lêste kear bewurke op $1.",
 "viewcount"		=> "Disse side is $1 kear iepenslein.",
 "protectedpage" 	=> "Beskerme side",
-"administrators" 	=> "{{ns:project}}:Behear",
 "nbytes"		=> "$1 byte",
 "go"			=> "Side",
 "ok"			=> "Goed",

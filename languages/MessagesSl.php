@@ -217,7 +217,6 @@ in [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'viewcount'             => 'Stran je bila naložena $1-krat.',
 'copyright'             => 'Besedilo je na razpolago pod pogoji $1.',
 'protectedpage'         => 'Zaščitena stran',
-'administrators'        => 'Project:Administratorji',
 'jumpto'                => 'Skoči na:',
 'jumptonavigation'      => 'navigacija',
 'jumptosearch'          => 'iskanje',

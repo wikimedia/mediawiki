@@ -169,7 +169,6 @@ $messages = array(
 "lastmodified"  => "Dernière modification de cette page : $1.",
 "viewcount"     => "Cette page a été consultée $1 fois.",
 "protectedpage" => "Page protégée",
-"administrators" => "{{ns:project}}:Administrateurs",
 "nbytes"        => "$1 octets",
 "go"            => "Consulter",			// Looxix "OK",
 "ok"            => "OK",

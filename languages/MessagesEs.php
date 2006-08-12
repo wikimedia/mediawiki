@@ -201,7 +201,6 @@ $messages = array(
 'viewcount'             => 'Esta página ha sido visitada {{PLURAL:$1|una vez|$1 veces}}.',
 'copyright'             => 'El contenido está disponible bajo los términos de la <i>$1</i>',
 'protectedpage'         => 'Página protegida',
-'administrators'        => 'Project:Administradores',
 'jumpto'                => 'Saltar a',
 'jumptonavigation'      => 'navegación',
 'jumptosearch'          => 'búsqueda',

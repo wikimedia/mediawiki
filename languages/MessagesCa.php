@@ -214,7 +214,6 @@ $messages = array(
 'viewcount'             => 'Aquesta pàgina ha estat visitada {{plural:$1|una vegada|$1 vegades}}.',
 'copyright'             => 'El contingut és disponible sota els termes d\'una llicència $1',
 'protectedpage'         => 'Pàgina protegida',
-'administrators'        => 'Project:Administradors',
 'jumpto'                => 'Dreceres ràpides:',
 'jumptonavigation'      => 'navegació',
 'jumptosearch'          => 'cerca',

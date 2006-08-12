@@ -219,7 +219,6 @@ $messages = array(
 'viewcount' => 'Tę stronę obejrzano {{plural:$1|jeden raz|$1 razy}}.',
 'copyright' => 'Tekst udostępniany na licencji $1.',
 'protectedpage' => 'Strona zabezpieczona',
-'administrators' => '{{ns:Project}}:Administratorzy',
 'jumpto' => 'Skocz do:',
 'jumptonavigation' => 'nawigacji',
 'jumptosearch' => 'wyszukiwania',

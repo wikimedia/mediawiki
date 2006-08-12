@@ -243,7 +243,6 @@ $messages = array(
 'viewcount'             => 'Оваа страница била посетена {{plural:$1|еднаш|$1 пати}}.',
 'copyright'             => 'Сите текстови се достапни под условите на $1.',
 'protectedpage'         => 'Заштитена страница',
-'administrators'        => 'Project:Администратори',
 'jumpto'                => 'Скокни на:',
 'jumptonavigation'      => 'навигација',
 'jumptosearch'          => 'барај',

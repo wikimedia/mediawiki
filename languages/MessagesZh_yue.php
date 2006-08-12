@@ -332,7 +332,6 @@ $messages = array(
 'lastmodified'		=> '呢一頁嘅最後修改係響$1。',
 'viewcount'		=> '呢一頁已經有$1人次睇過。',
 'protectedpage' 	=> '受保護頁',
-'administrators' 	=> 'Project:管理員',
 'jumpto' 		=> '跳去:',
 'jumptonavigation' 	=> '定向',
 'jumptosearch' 		=> '搵嘢',

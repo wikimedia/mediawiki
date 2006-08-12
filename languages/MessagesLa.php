@@ -142,7 +142,6 @@ $messages = array(
 'viewcount'             => 'This page has been accessed $1 times.',
 'copyright'             => 'Res ad manum sub $1.',
 'protectedpage'         => 'Pagina protecta',
-'administrators'        => 'Project:Administratores',
 'retrievedfrom'         => 'Receptum de "$1"',
 'newmessageslink'       => 'nuntios novos',
 'editsection'           => 'recensere',

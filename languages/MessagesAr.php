@@ -172,7 +172,6 @@ $messages = array(
 'acct_creation_throttle_hit' => 'معذرة، لقد أقمت $1 حساب. لا يممكنك عمل المزيد.',
 'actioncomplete' => 'انتهاء العملية',
 'addedwatch' => 'تمت الإضافة لقائمة المراقبة',
-'administrators' => '{{ns:project}}:إداريين',
 'allmessages' => 'كافة رسائل النظام',
 'allpages' => 'كل الصفحات',
 'allpagessubmit' => 'اذهب',

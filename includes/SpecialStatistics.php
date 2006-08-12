@@ -75,7 +75,7 @@ function wfSpecialStatistics() {
 		$text .= wfMsg( 'userstatstext',
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
-			'[[' . wfMsgForContent( 'administrators' ) . ']]', # TODO somehow remove, kept for backwards compatibility
+			'[[' . wfMsgForContent( 'grouppage-sysop' ) . ']]', # TODO somehow remove, kept for backwards compatibility
 			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) ),
 			User::makeGroupLinkWiki( 'sysop' )
 		);

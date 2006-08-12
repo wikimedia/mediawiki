@@ -190,7 +190,6 @@ $messages = array(
 "lastmodified" => "Pryd cafodd ei newid diwethaf $1.",
 "viewcount" => "Mae'r tudalen hyn wedi cael ei gweld $1 o weithiau.",
 "protectedpage" => "Tudalen amddiffyniol",
-"administrators" => "{{ns:project}}:Gweinyddwyr",
 "nbytes" => "$1 bytes",
 "go" => "Mynd",
 "ok" => "OK",

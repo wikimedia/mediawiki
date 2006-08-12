@@ -55,7 +55,6 @@ e la pagjine e sarà '''gruessute''' te [[Special:Recentchanges|liste dai ultins
 
 <p>Se tu vuelis gjavâle de liste pi indevant, frache su \"No stâ tignî di voli\" te sbare in alt.",
 
-'administrators' => "Project:Aministradôrs",
 'allarticles' => "Dutis lis vôs",
 'allinnamespace'	=> "Dutis lis pagjinis (non dal spazi $1)",
 'alllogstext'	=> 'Viodude combinade dai regjistris des cjamadis, eliminazions, protezions, blocs e azions day sysop.

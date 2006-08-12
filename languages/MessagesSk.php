@@ -310,7 +310,6 @@ $messages = array(
 'viewcount'             => 'Táto stránka bola navštívená $1-krát.',
 'copyright'             => 'Obsah je dostupný pod $1.',
 'protectedpage'         => 'Zamknutá stránka',
-'administrators'        => 'Project:Správcovia',
 'jumpto'                => 'Skoč na:',
 'jumptonavigation'      => 'navigácia',
 'jumptosearch'          => 'hľadanie',

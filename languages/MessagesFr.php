@@ -226,7 +226,6 @@ $messages = array(
 'viewcount'     => 'Cette page a été consultée $1 fois.',
 'copyright'	=> 'Contenu disponible sous $1.',
 'protectedpage' => 'Page protégée',
-'administrators' => '{{ns:4}}:Administrateurs',
 
 'badaccess' => 'Erreur de permission',
 

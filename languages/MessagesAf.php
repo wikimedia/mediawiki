@@ -137,7 +137,6 @@ $messages = array(
 "lastmodified"	=> "Laaste wysiging op $1.",
 "viewcount"		=> "Hierdie bladsy is al $1 keer aangevra.",
 "protectedpage" => "Beskermde bladsy",
-"administrators" => "{{ns:4}}:Administreerders",
 
 "nbytes"		=> "$1 grepe",
 "go"			=> "Doen",

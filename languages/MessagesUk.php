@@ -159,7 +159,6 @@ $messages = array(
 "lastmodified"	=> "Остання зміна $1.",
 "viewcount"		=> "Цю статтю переглядали $1 разів.",
 "protectedpage" => "Захищена стаття",
-"administrators" => "{{ns:project}}:Адміністратори",
 "nbytes"		=> "$1 байт(ів)",
 "go"			=> "Перейти",
 "ok"			=> "OK",

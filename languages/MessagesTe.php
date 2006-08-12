@@ -165,7 +165,6 @@ $messages = array(
 'viewcount'             => 'ఈ పేజీ {{PLURAL:$1|ఒక్క సారి|$1 సార్లు}} దర్శించబడింది.',
 'copyright'             => 'విషయ సంగ్రహం $1  కి లోబడి లభ్యం.',
 'protectedpage'         => 'సంరక్షణలోని పేజీ',
-'administrators'        => 'Project:నిర్వాహకులు',
 'badaccess'             => 'అనుమతి లోపం',
 'ok'                    => 'సరే',
 'pagetitle'             => '$1 - {{SITENAME}}',

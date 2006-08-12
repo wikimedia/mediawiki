@@ -266,7 +266,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "viewcount"     => "Rochtainíodh an leathanach seo $1 uair.",
 'copyright'     => "Tá an t-ábhar le fáil faoin $1.",
 "protectedpage" => "Leathanach glasáilte",
-"administrators"    => "{{ns:4}}:Riarthóirí",
 
 'badaccess'     => 'Earráid ceada',
 

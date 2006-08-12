@@ -101,7 +101,6 @@ $messages = array(
 "lastmodified"	        => "अन्तिम परिवर्तन $1.",
 "viewcount"		=> "यह पृष्ठ $1 बार देखा गया है",
 "protectedpage"         => "सुरक्षित पृष्ठ",
-"administrators"        => "{{ns:project}}:प्रबन्धक",
 "retrievedfrom"         => "\"$1\" से लिया गया",
 
 # Main script and global functions

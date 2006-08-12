@@ -157,7 +157,6 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar.
 svo auðveldara sé að sjá hana þar meðal fjöldans.
 
 <p>Til að fjarlægja síðu þessa af vaktlistanum þarft þú að ýta á tengilinn er merktur er „afvakta“.",
-'administrators' => "{{ns:4}}:Stjórnendur",
 'allmessages' => "Kerfismeldingar",
 'allmessagescurrent' => "Núverandi texti",
 'allmessagesdefault' => "Sjálfgefinn texti",

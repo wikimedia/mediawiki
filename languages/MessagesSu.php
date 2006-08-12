@@ -133,7 +133,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Témbongkeun kaca kategori\');',
 Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di dinya, sarta kacana bakal katémbong \'\'\'dikandelan\'\'\' dina kaca [[Special:Recentchanges|Nu anyar robah]] sangkan leuwih gampang ngawaskeunana.
 
 <p>Mun jaga anjeun moal deui ngawaskeun parobahan na kaca éta, klik tumbu "Eureun ngawaskeun" na lajursisi.',
-'administrators' => '{{ns:project}}:Kuncén',
 'allarticles' => 'Sadaya artikel',
 'allinnamespace' => 'Sadaya kaca ($1 ngaranspasi)',
 'alllogstext' => 'Témbongan gabungan log muatan, hapusan, koncian, peungpeukan, jeung kuncén. Bisa dipondokkeun ku cara milih tipe log, ngaran pamaké, atawa kaca nu dimaksud.',

@@ -367,7 +367,6 @@ $messages = array(
 'viewcount' => 'Овој страници је приступљено {{PLURAL:$1|једном|$1 пута|$1 пута}}.',
 'copyright' => 'Садржај је објављен под $1.',
 'protectedpage' => 'Заштићена страница',
-'administrators' => '{{ns:project}}:Администратори',
 'jumpto' => 'Скочи на:',
 'jumptonavigation' => 'навигација',
 'jumptosearch' => 'претрага',

@@ -225,7 +225,6 @@ I seguenti collegamenti sono in lingua inglese:
 "viewcount"		=> "Questa pagina è stata letta {{PLURAL:$1|una volta|$1 volte}}.",
 "copyright"	=> "Contenuti soggetti a licenza d'uso $1.",
 "protectedpage" => "Pagina bloccata",
-"administrators" => "Project:Amministratori",
 "jumpto" => "Vai a:",
 "jumptonavigation" => "navigazione",
 "jumptosearch" => "ricerca",

@@ -178,7 +178,6 @@ $messages = array(
 "copyright"             => "Kandungan tersedia di bawah $1.",
 "viewcount"           => "Halaman ini telah dicapai sebanyak $1 kali.", #"This page has been accessed $1 times.",
 "protectedpage"         => "Halaman Dilindungi", #"Protected page",
-"administrators"        => "Special:Listusers/sysop", #"Special:Listadministrators",
 "nbytes"              => "$1 bait",
 "ok"                  => "OK",
 "retrievedfrom"         => "Diperolehi daripada \"$1\"", #"Retrieved from \"$1\"",

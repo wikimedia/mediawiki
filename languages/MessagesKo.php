@@ -214,7 +214,6 @@ $messages = array(
 'viewcount'             => '이 문서는 총 $1번 읽혔습니다.',
 'copyright'             => '문서는 $1 저작권 하에 있습니다.',
 'protectedpage'         => '보호된 문서',
-'administrators'        => 'Project:관리자',
 'jumptosearch'          => '찾기',
 'badaccess'             => '권한 오류',
 'versionrequired'       => '미디어위키 $1 버전 필요',

@@ -215,7 +215,6 @@ $messages = array(
 'viewcount'             => 'Sidan har visats {{PLURAL:$1|en gång|$1 gånger}}.',
 'copyright'             => 'All text tillgänglig under $1.',
 'protectedpage'         => 'Skyddad sida',
-'administrators'        => 'Project:Administratörer',
 'jumpto'                => 'Hoppa till:',
 'jumptonavigation'      => 'navigering',
 'jumptosearch'          => 'sök',

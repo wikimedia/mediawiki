@@ -170,7 +170,6 @@ $messages = array(
 'viewcount'		=> 'ਇਹ ਪੰਨਾ $1 ਵਾਰ ਵੇਖਿਆ ਗਿਆ ਹੈ',
 'copyright'		=> 'ਵਿਸ਼ਾ-ਵਸਤੂ $1 ਤਹਿਤ ਉਪਲੱਬਧ ਹੈ',
 'protectedpage'	=> 'ਸੁਰੱਖਿਅਤ ਪੰਨਾ',
-'administrators'	=> 'Project:ਪ੍ਰਸ਼ਾਸਕ',
 'nbytes'		=> '$1 ਬਾਈਟ',
 'go'			=> 'ਜਾਓ',
 'ok'			=> 'ਠੀਕ ਹੈ',

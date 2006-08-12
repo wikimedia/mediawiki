@@ -168,7 +168,6 @@ $messages = array(
 "lastmodified"	=> "最后更改$1.",
 "viewcount"		=> "本页面已经被浏览$1次。",
 "protectedpage" => "被保护页",
-"administrators" => "{{ns:project}}:管理员",
 "nbytes"		=> "$1字节",
 "go"			=> "进入",
 "ok"			=> "OK",

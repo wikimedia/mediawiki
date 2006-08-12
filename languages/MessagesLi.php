@@ -173,7 +173,6 @@ $messages = array(
 'viewcount'             => 'Dees pazjena is $1 kier bekeke.',
 'copyright'             => 'De inhawd is besjikbaar ónger de $1.',
 'protectedpage'         => 'Beveiligde pazjena',
-'administrators'        => 'Project:Systeemwèrkers',
 'badaccess'             => 'Toeganksfout',
 'retrievedfrom'         => 'Aafkómstig van "$1"',
 'youhavenewmessages'    => 'Doe höbs $1 ($2).',

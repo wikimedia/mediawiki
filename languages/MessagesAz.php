@@ -149,7 +149,6 @@ $messages = array(
 'redirectpagesub' => 'İstiqamətləndirmə səhifəsi',
 'lastmodified' => 'Bu səhifə sonuncu dəfə $1 tarixində redaktə edilib.',
 'copyright' => 'Bu məzmun $1 əhatəsindədir.',
-'administrators' => 'Project:İdarəçilər',
 
 'nbytes' => '$1 bayt',
 'youhavenewmessages' => 'Hal-hazırda $1 var. ($2)',

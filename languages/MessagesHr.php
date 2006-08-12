@@ -205,7 +205,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'viewcount'             => 'Ova stranica je pogledana $1 puta.',
 'copyright'             => 'Sadržaji se koriste u skladu s $1.',
 'protectedpage'         => 'Zaštićena stranica',
-'administrators'        => 'Project:Administratori',
 'jumpto'                => 'Skoči na:',
 'jumptonavigation'      => 'orijentacija',
 'jumptosearch'          => 'traži',

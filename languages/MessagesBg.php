@@ -254,7 +254,6 @@ $messages = array(
 'viewcount'    => 'Страницата е била преглеждана $1 пъти.',
 'copyright'     => 'Съдържанието е достъпно при условията на $1.',
 'protectedpage' => 'Защитена страница',
-'administrators' => 'Project:Администратори',
 'badaccess'     => 'Грешка при достъп', # Permission error
 'versionrequired' => 'Изисква се версия $1 на МедияУики',
 'versionrequiredtext' => 'За да използвате тази страница, е необходима версия $1 на МедияУики. Вижте [[Special:Version]].',

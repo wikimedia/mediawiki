@@ -78,7 +78,6 @@ $messages = array(
 'viewtalkpage'          => 'Dikh i diskucia',
 'otherlanguages'        => 'Avre ćhibande',
 'lastmodified'          => 'O palutno paruvipen $1.',
-'administrators'        => 'Project:Administratorurya',
 'jumpto'                => 'Ja kai:',
 'retrievedfrom'         => 'Lino katar "$1"',
 'editsection'           => 'editisar',

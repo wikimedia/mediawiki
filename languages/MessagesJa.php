@@ -213,7 +213,6 @@ $messages = array(
 'viewcount'             => 'このページは $1 回アクセスされました。',
 'copyright'             => 'コンテンツは$1のライセンスで利用することができます。',
 'protectedpage'         => '保護されたページ',
-'administrators'        => 'Project:{{int:group-sysop}}',
 'jumpto'                => '移動:',
 'jumptonavigation'      => 'ナビゲーション',
 'jumptosearch'          => '検索',
@@ -411,7 +410,7 @@ The database has been automatically locked while the slave database servers catc
 'blockedtext'           => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
 :$2
 
-$1 または他の[[{{int:administrators}}|{{int:group-sysop}}]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。あなたのIPアドレスは「$3」です。問い合わせを行う際には、このIPアドレスを必ず書いてください。',
+$1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。あなたのIPアドレスは「$3」です。問い合わせを行う際には、このIPアドレスを必ず書いてください。',
 'blockedoriginalsource' => '以下に \'\'\'$1\'\'\' のソースを示します:',
 'blockededitsource'     => '\'\'\'$1\'\'\' への \'\'\'あなたの編集\'\'\' を以下に示します:',
 'whitelistedittitle'    => '編集にはログインが必要',

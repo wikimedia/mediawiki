@@ -197,7 +197,6 @@ $messages = array(
 'viewcount'     => 'Sellet ez eus bet ouzh ar bajenn-mañ $1 (g)wech.',
 'copyright'	=> 'Danvez a c\'haller implijout dindan $1.',
 'protectedpage' => 'Pajenn warezet',
-'administrators' => '{{ns:4}}:Merourien',
 'nbytes'        => '$1 eizhbit',
 'go'            => 'Kas',
 'ok'            => 'Mat eo',
