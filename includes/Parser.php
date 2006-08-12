@@ -950,7 +950,7 @@ class Parser
 		wfProfileIn( __METHOD__ );
 		$text = preg_replace_callback( 
 			'!(?:                           # Start cases
-			    <a.*?</a>			# Skip link text
+			    <a.*?</a> |                 # Skip link text
 			    <.*?> |                     # Skip stuff inside HTML elements
 			    (?:RFC|PMID)\s+([0-9]+) |   # RFC or PMID, capture number as m[1]
 			    ISBN\s+([0-9Xx-]+)          # ISBN, capture number as m[2]
