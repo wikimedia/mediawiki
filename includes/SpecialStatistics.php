@@ -75,13 +75,13 @@ function wfSpecialStatistics() {
 		$text .= wfMsg( 'userstatstext',
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
-			'[[' . wfMsgForContent( 'administrators' ) . ']]',
-			// should logically be after #admins, damn backwards compatability!
-			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) )
+			'[[' . wfMsgForContent( 'administrators' ) . ']]', # TODO somehow remove, kept for backwards compatibility
+			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) ),
+			User::makeGroupLinkWiki( 'sysop' )
 		);
 
 		$wgOut->addWikiText( $text );
-		
+
 		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
 		if( !$wgDisableCounters && !$wgMiserMode ) {
 			$sql = "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 AND page_counter > 0 ORDER BY page_counter DESC";

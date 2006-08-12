@@ -189,16 +189,12 @@ class ListUsersPage extends QueryPage {
 
 			if( count( $groups ) > 0 ) {
 				foreach( $groups as $group => $desc ) {
-					if( $page = User::getGroupPage( $group ) ) {
-						$list[] = $skin->makeLinkObj( $page, htmlspecialchars( $desc ) );
-					} else {
-						$list[] = htmlspecialchars( $desc );
-					}
+					$list[] = User::makeGroupLinkHTML( $group, $desc );
 				}
 				$groups = implode( ', ', $list );
 			} else {
 				$groups = '';
-			}				
+			}
 
 		}
 

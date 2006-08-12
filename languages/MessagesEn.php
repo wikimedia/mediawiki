@@ -1222,7 +1222,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.
 
 The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
 'userstatstext' => "There are '''$1''' registered users, of which
-'''$2''' (or '''$4%''') are administrators (see $3).",
+'''$2''' (or '''$4%''') are $5.",
 'statistics-mostpopular' => 'Most viewed pages',
 
 'disambiguations'	=> 'Disambiguation pages',
