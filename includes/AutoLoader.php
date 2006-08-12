@@ -213,6 +213,7 @@ function __autoload($className) {
 		'EmailNotification' => 'includes/UserMailer.php',
 		'WatchedItem' => 'includes/WatchedItem.php',
 		'WebRequest' => 'includes/WebRequest.php',
+		'WebResponse' => 'includes/WebResponse.php',
 		'FauxRequest' => 'includes/WebRequest.php',
 		'MediaWiki' => 'includes/Wiki.php',
 		'WikiError' => 'includes/WikiError.php',

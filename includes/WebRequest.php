@@ -44,6 +44,8 @@ class WebRequest {
 				substr( $_SERVER['PATH_INFO'], 1 );
 		}
 	}
+	
+	private $_response;
 
 	/**
 	 * Recursively strips slashes from the given array;
@@ -437,6 +439,19 @@ class WebRequest {
 		wfDebug( "WebRequest::getFileName() '" . $_FILES[$key]['name'] . "' normalized to '$name'\n" );
 		return $name;
 	}
+	
+	/**
+	 * Return a handle to WebResponse style object, for setting cookies, 
+	 * headers and other stuff, for Request being worked on.
+	 */
+	function response() {
+		/* Lazy initialization of response object for this request */
+		if (!is_object($this->_response)) {
+			$this->_response = new WebResponse;
+		} 
+		return $this->_response;
+	}
+	
 }
 
 /**
