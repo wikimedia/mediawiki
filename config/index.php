@@ -151,16 +151,16 @@ $ourdb['postgres']['rootuser']   = 'postgres';
 		?>
 
 	}
-	function toggleDBarea(id) {
+	function toggleDBarea(id,defaultroot) {
 		hideall();
 		var dbarea = document.getElementById(id).style;
 		dbarea.display = (dbarea.display == 'none') ? 'block' : 'none';
 		var db = document.getElementById('RootUser');
-		<?php foreach (array_keys($ourdb) as $db) {
-		echo "\n		if (id == '$db') { db.value = '".$ourdb[$db]['rootuser']."';}";
+		if (defaultroot) {
+<?php foreach (array_keys($ourdb) as $db) {
+			echo "			if (id == '$db') { db.value = '".$ourdb[$db]['rootuser']."';}\n";
+}?>
 		}
-		?>
-
 	}
 	// -->
 	</script>
@@ -412,14 +412,14 @@ if ($conf->apc ) {
 
 $conf->eaccel = function_exists( 'eaccelerator_get' );
 if ( $conf->eaccel ) {
-    $conf->turck = 'eaccelerator';
-    print "<li><a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> installed</li>\n";
+	$conf->turck = 'eaccelerator';
+	print "<li><a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> installed</li>\n";
 }
 
 if( !$conf->turck && !$conf->eaccel && !$conf->apc ) {
 	echo( '<li>Couldn\'t find <a href="http://turck-mmcache.sourceforge.net">Turck MMCache</a>,
-		  <a href="http://eaccelerator.sourceforge.net">eAccelerator</a> or
-		   <a href="http://www.php.net/apc">APC</a>. Object caching functions cannot be used.</li>' );
+		<a href="http://eaccelerator.sourceforge.net">eAccelerator</a> or
+		<a href="http://www.php.net/apc">APC</a>. Object caching functions cannot be used.</li>' );
 }
 
 $conf->diff3 = false;
@@ -492,8 +492,8 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
-	$conf->RootUser     =  importPost( "RootUser", "root" );
-	$conf->RootPW       =  importPost( "RootPW", "-" );
+	$conf->RootUser = importPost( "RootUser", "root" );
+	$conf->RootPW = importPost( "RootPW", "-" );
 
 	## MySQL specific:
 	$conf->DBprefix     =  importPost( "DBprefix" );
@@ -618,7 +618,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		require_once( "maintenance/InitialiseMessages.inc" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
-error_reporting( E_ALL );
+		error_reporting( E_ALL );
 	print "<li>Loading class: $dbclass";
 		$dbc = new $dbclass;
 
@@ -699,7 +699,7 @@ error_reporting( E_ALL );
 				$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBsuperuser, $conf->RootPW, "postgres", 1);
 				if (!$wgDatabase->isOpen()) {
 					print " error: " . $wgDatabase->lastError() . "</li>\n";
-					$errs["DBserver"] = "Couldn't connect to database as superuser";
+					$errs["DBserver"] = "Could not connect to database as superuser";
 					$errs["RootUser"] = "Check username";
 					$errs["RootPW"] = "and password";
 					continue;
@@ -724,7 +724,7 @@ error_reporting( E_ALL );
 			if( version_compare( $myver, "4.0.14" ) < 0 ) {
 				dieout( " -- mysql 4.0.14 or later required. Aborting." );
 			}
-			$mysqlNewAuth   = version_compare( $myver, "4.1.0", "ge" );
+			$mysqlNewAuth = version_compare( $myver, "4.1.0", "ge" );
 			if( $mysqlNewAuth && $mysqlOldClient ) {
 				print "; <b class='error'>You are using MySQL 4.1 server, but PHP is linked
 				 	to old client libraries; if you have trouble with authentication, see
@@ -820,11 +820,11 @@ error_reporting( E_ALL );
 
 			print "<li>Initializing data...";
 			$wgDatabase->insert( 'site_stats',
-				array( 'ss_row_id'        => 1,
-				       'ss_total_views'   => 0,
-				       'ss_total_edits'   => 0,
-				       'ss_good_articles' => 0 ) );
-					   
+				array ( 'ss_row_id'        => 1,
+						'ss_total_views'   => 0,
+						'ss_total_edits'   => 0,
+						'ss_good_articles' => 0 ) );
+
 			# Set up the "regular user" account *if we can, and if we need to*
 			if( $conf->Root and $conf->DBtype == 'mysql') {
 				# See if we need to
@@ -840,7 +840,7 @@ error_reporting( E_ALL );
 					echo( "success.</li>" );
 				}
 			}
-					   
+
 			if( $conf->SysopName ) {
 				$u = User::newFromName( $conf->getSysopName() );
 				if ( 0 == $u->idForName() ) {
@@ -878,7 +878,7 @@ error_reporting( E_ALL );
 
 		/* Write out the config file now that all is well */
 		print "<p>Creating LocalSettings.php...</p>\n\n";
-		$localSettings =  "<" . "?php$endl$local$endl?" . ">";
+		$localSettings = "<" . "?php$endl$local$endl?" . ">";
 		// Fix up a common line-ending problem (due to CVS on Windows)
 		$localSettings = str_replace( "\r\n", "\n", $localSettings );
 
@@ -1172,7 +1172,7 @@ if( count( $errs ) ) {
 	?></div>
 	<div class="config-desc">
 		<p>The username specified above will have it's search path set to the above schemas, 
-           so it is recommended that you create a new user.</p>
+		so it is recommended that you create a new user.</p>
 	</div>
 	</div>
 
@@ -1201,7 +1201,11 @@ if( count( $errs ) ) {
 </div>
 
 <script type="text/javascript">
-window.onload = toggleDBarea('<?php echo $conf->DBtype; ?>');
+window.onload = toggleDBarea('<?php echo $conf->DBtype; ?>',
+<?php
+	## If they passed in a root user name, don't populate it on page load
+	echo strlen(importPost('RootUser', '')) ? 0 : 1;
+?>);
 </script>
 
 </form>
@@ -1352,7 +1356,7 @@ if ( \$wgCommandLineMode ) {
 
 \$wgSitename         = \"{$slconf['Sitename']}\";
 
-\$wgScriptPath	    = \"{$slconf['ScriptPath']}\";
+\$wgScriptPath	     = \"{$slconf['ScriptPath']}\";
 \$wgScript           = \"\$wgScriptPath/index.php\";
 \$wgRedirectScript   = \"\$wgScriptPath/redirect.php\";
 
@@ -1504,7 +1508,7 @@ function aField( &$conf, $field, $text, $type = "text", $value = "", $onclick = 
 	}
 	echo "\t\t<input $xtype name=\"$field\" id=\"$id\" class=\"iput-$type\" $checked ";
 	if ($onclick) {
-		echo " onclick='toggleDBarea(\"$value\")' " ;
+		echo " onclick='toggleDBarea(\"$value\",1)' " ;
 	}
 	echo "value=\"";
 	if( $type == "radio" ) {
@@ -1582,7 +1586,7 @@ function testMemcachedServer( $server ) {
 	if ( !function_exists( 'fsockopen' ) ) {
 		$errstr = "Can't connect to memcached, fsockopen() not present";
 	}
-	if ( !$errstr &&  count( $hostport ) != 2 ) {
+	if ( !$errstr && count( $hostport ) != 2 ) {
 		$errstr = 'Please specify host and port';
 		var_dump( $hostport );
 	}
