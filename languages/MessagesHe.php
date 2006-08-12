@@ -997,10 +997,10 @@ $messages = array(
 
 בסך הכול בוצעו בממוצע \'\'\'$5\'\'\' עריכות לדף, והיו \'\'\'$6\'\'\' צפיות לכל עריכה.
 
-אורך [http://meta.wikimedia.org/wiki/Help:Job_queue תור המשימות] הוא \'\'\'$7\'\'\'
+אורך [http://meta.wikimedia.org/wiki/Help:Job_queue תור המשימות] הוא \'\'\'$7\'\'\'.
 
 \'\'\'$8\'\'\' קבצים הועלו לאתר עד כה.',
-"userstatstext"          => "ישנם '''$1''' [[{{ns:special}}:Listusers|משתמשים רשומים]] באתר, '''$2''' (או $4%) מתוכם מפעילי מערכת (ראו $3).",
+"userstatstext"          => "ישנם '''$1''' [[{{ns:special}}:Listusers|משתמשים רשומים]] באתר, '''$2''' (או $4%) מתוכם הם $5.",
 "statistics-mostpopular" => "הדפים הנצפים ביותר",
 
 # Disambiguations Page
