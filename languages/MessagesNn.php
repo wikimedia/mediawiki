@@ -319,7 +319,6 @@ $messages = array(
 'viewcount'		  => 'Vist $1 gonger.',
 'copyright'	          => 'Innhaldet er utgjeve under $1.',
 'protectedpage'           => 'Verna side',
-'administrators'          => '{{ns:4}}:Administratorar',
 'badaccess'               => 'Tilgangsfeil',
 'versionrequired'         => 'MediaWiki versjon $1 trengst',
 'versionrequiredtext'     => 'For å bruke denne sida trengst MediaWiki versjon $1. Sjå [[{{ns:special}}:Version]]',

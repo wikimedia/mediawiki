@@ -370,7 +370,6 @@ $messages = array(
 'viewcount' => 'Ovoj stranici je pristupljeno {{PLURAL:$1|jednom|$1 puta|$1 puta}}.',
 'copyright' => 'Sadržaj je objavljen pod $1.',
 'protectedpage' => 'Zaštićena stranica',
-'administrators' => '{{ns:project}}:Administratori',
 'jumpto' => 'Skoči na:',
 'jumptonavigation' => 'navigacija',
 'jumptosearch' => 'pretraga',

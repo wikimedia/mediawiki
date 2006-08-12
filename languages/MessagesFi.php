@@ -261,7 +261,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'viewcount'           => 'Tämä sivu on näytetty {{PLURAL:$1|yhden kerran|$1 kertaa}}.',
 'copyright'           => 'Sisältö on käytettävissä lisenssillä $1.',
 'protectedpage'       => 'Suojattu sivu',
-'administrators'      => '{{ns:project}}:Ylläpitäjät',
 'jumpto'              => 'Loikkaa:',
 'jumptonavigation'    => 'valikkoon',
 'jumptosearch'        => 'hakuun',

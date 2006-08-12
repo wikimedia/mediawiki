@@ -251,7 +251,6 @@ parent class in order maintain consistency across languages.
 'viewcount'             => 'Deze pagina is $1 maal bekeken.',
 'copyright'             => 'Inhoud is beschikbaar onder de $1.',
 'protectedpage'         => 'Beveiligde pagina',
-'administrators'        => 'Project:Beheerders',
 'jumpto'                => 'Ga naar:',
 'jumptonavigation'      => 'navigatie',
 'jumptosearch'          => 'zoek',

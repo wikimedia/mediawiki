@@ -175,7 +175,6 @@ $messages = array(
 'lastmodified'	=> "این صفحه آخرین بار در $1 تغییر کرده است.",
 'viewcount'		=> "این صفحه $1 بار دیده شده است.",
 'protectedpage' => "صفحه‌ی محافظت‌شده",
-'administrators' => "{{ns:project}}:مدیران",
 'nbytes'		=> "$1 بایت",
 'go'			=> "برو",
 'ok'			=> "باشد",

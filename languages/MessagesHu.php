@@ -187,7 +187,6 @@ $messages = array(
 'viewcount'             => 'Ezt a lapot eddig {{PLURAL:$1|egy|$1}} alkalommal látogatták meg.',
 'copyright'             => 'A tartalom a $1 feltételei mellett használható.',
 'protectedpage'         => 'Védett lap',
-'administrators'        => 'Project:Adminisztrátorok',
 'jumpto'                => 'Ugrás:',
 'jumptonavigation'      => 'navigáció',
 'jumptosearch'          => 'keresés',

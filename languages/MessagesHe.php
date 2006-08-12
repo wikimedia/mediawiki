@@ -356,7 +356,6 @@ $messages = array(
 "viewcount"         => "דף זה נצפה {{plural:$1|פעם אחת|$1 פעמים|פעמיים}}.",
 "copyright"         => "התוכן מוגש בכפוף ל־$1.<br /> בעלי זכויות היוצרים מפורטים בהיסטוריית השינויים של הדף.",
 "protectedpage"     => "דף מוגן",
-"administrators"    => "{{ns:project}}:מפעיל מערכת",
 "jumpto"            => "קפיצה אל:",
 "jumptonavigation"  => "ניווט",
 "jumptosearch"      => "חיפוש",

@@ -31,7 +31,6 @@ $messages = array(
 'aboutsite' => 'Ò {{SITENAME}}',
 'actioncomplete' => 'Òperacëjô wëkònónô',
 'addedwatch' => 'Dodónô do lëstë ùzérónëch',
-'administrators' => '{{ns:4}}:Administratorzë',
 'allmessages' => 'Wszëtczé systemòwé ògłosë',
 'ancientpages' => 'Nôstarszé starnë',
 'and' => 'ë',

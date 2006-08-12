@@ -228,7 +228,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 # aegunud, võib vist eemaldada, asendada järgmisega:
 "copyright" => "Kogu tekst on kasutatav litsentsi $1 tingimustel.",
 "protectedpage" => "Kaitstud artikkel",
-"administrators" => "{{ns:4}}:Administraatorid",
 "nbytes"		=> "$1 baiti",
 "go"			=> "Mine",
 "ok"			=> "OK",

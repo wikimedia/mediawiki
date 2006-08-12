@@ -243,7 +243,6 @@ $messages = array(
 'viewcount'     => 'Trang này đã được đọc $1 lần.',
 'copyright'	=> 'Bản quyền $1.',
 'protectedpage' => 'Trang bị khóa',
-'administrators' => '{{ns:4}}:Người_quản_lý',
 'nbytes'        => '$1 byte',
 'go'            => 'Xem',
 'ok'            => 'OK',

@@ -180,7 +180,6 @@ $messages= array(
 'viewcount'             => 'Šī lapa ir tikusi apskatīta $1 reizes.',
 'copyright'             => 'Saturs ir pieejams saskaņā ar $1.',
 'protectedpage'         => 'Aizsargāta lapa',
-'administrators'        => 'Project:Administrācija',
 'jumpto'                => 'Pārlēkt uz:',
 'jumptonavigation'      => 'navigācija',
 'jumptosearch'          => 'meklēt',

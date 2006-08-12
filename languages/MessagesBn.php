@@ -116,7 +116,6 @@ $messages = array(
 'redirectedfrom' => '($1 থেকে ঘুরে এসেছে)',
 'lastmodified'  => 'এ পৃষ্ঠায় শেষ পরিবর্তন হয়েছিল $1.',
 'viewcount'   => 'এ পৃষ্ঠা দেখা হয়েছে $1 বার।',
-'administrators' => '{{ns:project}}:প্রশাসকবৃন্দ',
 'nbytes'    => '$1 বাইট',
 'go'      => 'চল',
 'ok'      => 'ঠিক আছে',

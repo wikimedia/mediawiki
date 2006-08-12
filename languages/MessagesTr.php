@@ -182,7 +182,6 @@ $messages = array(
 'viewcount'             => 'Bu sayfaya $1 defa erişilmiş.',
 'copyright'             => 'İçerik $1 altındadır.',
 'protectedpage'         => 'Korumalı sayfa',
-'administrators'        => 'Project:Yöneticiler',
 'jumpto'                => 'Git ve:',
 'jumptonavigation'      => 'kullan',
 'jumptosearch'          => 'ara',

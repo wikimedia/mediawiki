@@ -365,7 +365,6 @@ $messages = array(
 'copyright'     => 'Содержимое доступно в соответствии с $1.',
 'protectedpage' => 'Защищённая статья',
 
-'administrators' => '{{ns:project}}:Администраторы',
 'jumpto' => 'Перейти к:',
 'jumptonavigation' => 'навигация',
 'jumptosearch' => 'поиск',

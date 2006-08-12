@@ -113,7 +113,6 @@ Būsimi straipsnio bei atitinkamo aptarimo puslapio pakeitimai bus rodomi stebim
 taip pat bus \'\'\'paryškinti\'\'\' [[Special:Recentchanges|naujausių keitimų sąraše]] kad išsiskirtų iš kitų straipsnių.
 
 <p>Jei bet kuriuo metu užsinorėtumėte nustoti stebėti straipsnį, spustelkite "nebestebėti" viršutiniame meniu.',
-'administrators' => '{{ns:project}}:Administratoriai',
 'allarticles' => 'Visi straipsniai',
 'allinnamespace' => 'Visi puslapiai (sritis - $1)',
 'alllogstext' => 'Bendra įdėtų failų, ištrynimų, užrakinimų, blokavimų ir teisių suteikimų istorija.

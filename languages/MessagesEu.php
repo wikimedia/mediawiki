@@ -41,7 +41,6 @@ $messages = array(
 'about' => 'buruz',
 'aboutpage' => '{{ns:project}}:{{SITENAME}}ri_buruz', // TODO: grammar
 'accesskey-diff' => 'd',
-'administrators' => '{{ns:project}}:Administratzaileak',
 'allmessages' => 'Mezu_guztiak',
 'allpages' => 'Orri guztiak',
 'alphaindexline' => '$1 -tik $2 -raino',

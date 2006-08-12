@@ -188,7 +188,6 @@ $messages = array(
 'viewcount'             => 'Montrita $1-foje.',
 'copyright'             => 'La enhavo estas havebla sub $1.',
 'protectedpage'         => 'Protektita paĝo',
-'administrators'        => 'Project:Administrantoj',
 'jumpto'                => 'Saltu al:',
 'jumptonavigation'      => 'navigado',
 'jumptosearch'          => 'serĉo',

@@ -255,7 +255,6 @@ $messages = array(
 "viewcount" => "Halaman ini telah diakses sebanyak $1 kali.<br />",
 "copyright" => "Seluruh teks tersedia dalam naungan $1.",
 "protectedpage" => "Halaman yang dilindungi",
-'administrators' => '{{ns:project}}:Pengurus',
 'jumpto' => 'Langsung ke:',
 'jumptonavigation' => 'panduan arah',
 'jumptosearch' => 'cari',

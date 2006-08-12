@@ -130,7 +130,6 @@ $messages = array(
 "lastmodified"	=> "最後更改$1.",
 "viewcount"		=> "本頁面已經被瀏覽$1次。",
 "protectedpage" => "被保護頁",
-"administrators" => "{{ns:project}}:管理員",
 "nbytes"		=> "$1字節",
 "go"			=> "進入",
 "ok"			=> "好",

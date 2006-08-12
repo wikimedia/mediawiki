@@ -126,7 +126,6 @@ $messages = array(
 'viewcount'             => 'Selli Syte isch {{PLURAL:$1|eimol|$1 Mol}} bsuecht worde.',
 'copyright'             => 'Der Inhalt vo dere Syte steht unter der $1.',
 'protectedpage'         => 'Gschützt Syte',
-'administrators'        => 'Project:Adminischtratore',
 'jumpto'                => 'Hops zue:',
 'jumptosearch'          => 'Suech',
 'badaccess'             => 'Kei usreichendi Rechte.',

@@ -158,7 +158,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledajte stranicu kategorije\');
 'addedwatch' => 'Dodato u spisak praćenih članaka',
 'addedwatchtext' => 'Stranica "[[:$1]]" je dodata vašem [[{{ns:-1}}:Watchlist|spisku praćenih članaka]]. Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti navedene ovde, i stranica će biti <b>podebljana</b> u [[{{ns:-1}}:Recentchanges|spisku]] nedavnih izmjena da bi se lakše uočila.</p>
 <p>Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kliknite na "prekini praćenje" na paleti.',
-'administrators' => '{{ns:4}}:Administratori',
 'allmessages' => 'Sistemske poruke',
 'allmessagesnotsupportedDB' => '[[{{ns:-1}}:Allmessages|sistemske poruke]] nisu podržane zato što je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessagesnotsupportedUI' => 'Vaš trenutni jezik interfejsa <b>$1</b> nije podržan u [[{{ns:-1}}:Allmessages|sistemskim porukama]] na ovoj viki.',

@@ -129,7 +129,6 @@ $messages = array(
 'viewcount'             => 'Ev rûpel $1 car hat xwestin.',
 'copyright'             => 'Ji bo naverokê $1 derbas dibe.',
 'protectedpage'         => 'Rûpela parastî',
-'administrators'        => 'Project:Koordînasyon',
 'badaccess'             => 'Eror li bi dest Hînan',
 'ok'                    => 'Temam',
 'retrievedfrom'         => 'Ji "$1" hatiye standin.',

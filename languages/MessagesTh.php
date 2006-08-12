@@ -156,7 +156,6 @@ $messages = array(
 "lastmodified"	=> "This page was last modified $1.",
 "viewcount"		=> "This page has been accessed $1 times.",
 "protectedpage" => "Protected page",
-"administrators" => "{{ns:project}}:Administrators",
 
 "nbytes"		=> "$1 ไบต์",
 "go"			=> "ไป",

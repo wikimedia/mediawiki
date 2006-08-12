@@ -223,7 +223,6 @@ $messages = array(
 'viewcount'             => 'Denne siden er vist $1 {{plural:$1|gang|ganger}}.',
 'copyright'             => 'Innholdet er tilgjengelig under $1.',
 'protectedpage'         => 'Låst side',
-'administrators'        => 'Project:Administratorer',
 'jumpto'                => 'Gå til:',
 'jumptonavigation'      => 'navigasjon',
 'jumptosearch'          => 'søk',

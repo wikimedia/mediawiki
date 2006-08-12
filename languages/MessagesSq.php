@@ -217,7 +217,6 @@ $messages = array(
 'viewcount'             => 'Kjo faqe është parë $1 herë.',
 'copyright'             => 'Përmbajtja është në disponim nëpërmjet licensës $1.',
 'protectedpage'         => 'Faqe e mbrojtur',
-'administrators'        => 'Project:Administruesit',
 'jumpto'                => 'Shko te:',
 'jumptonavigation'      => 'navigacion',
 'jumptosearch'          => 'kërko',
