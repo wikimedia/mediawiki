@@ -514,25 +514,25 @@ abstract class TablePager extends IndexPager {
 	 * A navigation bar with images
 	 */
 	function getNavigationBar() {
-		global $wgStylePath;
+		global $wgStylePath, $wgContLang;
 		$path = "$wgStylePath/common/images";
-		$labels = array( 
+		$labels = array(
 			'first' => 'table_pager_first',
 			'prev' => 'table_pager_prev',
 			'next' => 'table_pager_next',
 			'last' => 'table_pager_last',
 		);
 		$images = array(
-			'first' => 'arrow_first_25.png',
-			'prev' =>  'arrow_left_25.png',
-			'next' =>  'arrow_right_25.png',
-			'last' =>  'arrow_last_25.png',
+			'first' => $wgContLang->isRTL() ? 'arrow_last_25.png' : 'arrow_first_25.png',
+			'prev' =>  $wgContLang->isRTL() ? 'arrow_right_25.png' : 'arrow_left_25.png',
+			'next' =>  $wgContLang->isRTL() ? 'arrow_left_25.png' : 'arrow_right_25.png',
+			'last' =>  $wgContLang->isRTL() ? 'arrow_first_25.png' : 'arrow_last_25.png',
 		);
 		$disabledImages = array(
-			'first' => 'arrow_disabled_first_25.png',
-			'prev' =>  'arrow_disabled_left_25.png',
-			'next' =>  'arrow_disabled_right_25.png',
-			'last' =>  'arrow_disabled_last_25.png',
+			'first' => $wgContLang->isRTL() ? 'arrow_disabled_last_25.png' : 'arrow_disabled_first_25.png',
+			'prev' =>  $wgContLang->isRTL() ? 'arrow_disabled_right_25.png' : 'arrow_disabled_left_25.png',
+			'next' =>  $wgContLang->isRTL() ? 'arrow_disabled_left_25.png' : 'arrow_disabled_right_25.png',
+			'last' =>  $wgContLang->isRTL() ? 'arrow_disabled_first_25.png' : 'arrow_disabled_last_25.png',
 		);
 			
 		$linkTexts = array();
