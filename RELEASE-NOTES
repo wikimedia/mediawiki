@@ -122,6 +122,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   use User::isAllowed instead.
 * (bug 769) OutputPage::permissionRequired() should suggest groups with the needed permission
 * (bug 6971) Fix regression in Special:Export history view
+* Revamped Special:Imagelist
 
 
 == Languages updated ==

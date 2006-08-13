@@ -16,8 +16,7 @@ interface Pager {
  * 
  * ReverseChronologicalPager is a child class of the abstract IndexPager, and contains 
  * some formatting and display code which is specific to the use of timestamps as 
- * indexes. It is currently the only such child class. Here is a synopsis of the operation
- * of IndexPager and its primary subclass:
+ * indexes. Here is a synopsis of its operation:
  * 
  *    * The query is specified by the offset, limit and direction (dir) parameters, in 
  *      addition to any subclass-specific parameters. 
@@ -212,6 +211,8 @@ abstract class IndexPager implements Pager {
 					$s .= $this->formatRow( $row );
 				}
 			}
+		} else {
+			$s .= $this->getEmptyBody();
 		}
 		$s .= $this->getEndBody();
 		return $s;
@@ -244,6 +245,14 @@ abstract class IndexPager implements Pager {
 		return '';
 	}
 
+	/**
+	 * Hook into getBody(), for the bit between the start and the 
+	 * end when there are no rows
+	 */
+	function getEmptyBody() {
+		return '';
+	}
+	
 	/**
 	 * Title used for self-links. Override this if you want to be able to 
 	 * use a title other than $wgTitle
@@ -290,6 +299,68 @@ abstract class IndexPager implements Pager {
 	}
 
 	/**
+	 * Get a query array for the prev, next, first and last links.
+	 */
+	function getPagingQueries() {
+		if ( !$this->mQueryDone ) {
+			$this->doQuery();
+		}
+		
+		# Don't announce the limit everywhere if it's the default
+		$urlLimit = $this->mLimit == $this->mDefaultLimit ? '' : $this->mLimit;
+		
+		if ( $this->mIsFirst ) {
+			$prev = false;
+			$first = false;
+		} else {
+			$prev = array( 'dir' => 'prev', 'offset' => $this->mFirstShown, 'limit' => $urlLimit );
+			$first = array( 'limit' => $urlLimit );
+		}
+		if ( $this->mIsLast ) {
+			$next = false;
+			$last = false;
+		} else {
+			$next = array( 'offset' => $this->mLastShown, 'limit' => $urlLimit );
+			$last = array( 'dir' => 'prev', 'limit' => $urlLimit );
+		}
+		return compact( 'prev', 'next', 'first', 'last' );
+	}
+
+	/**
+	 * Get paging links. If a link is disabled, the item from $disabledTexts will 
+	 * be used. If there is no such item, the unlinked text from $linkTexts will 
+	 * be used. Both $linkTexts and $disabledTexts are arrays of HTML.
+	 */
+	function getPagingLinks( $linkTexts, $disabledTexts = array() ) {
+		$queries = $this->getPagingQueries();
+		$links = array();
+		foreach ( $queries as $type => $query ) {
+			if ( $query !== false ) {
+				$links[$type] = $this->makeLink( $linkTexts[$type], $queries[$type] );
+			} elseif ( isset( $disabledTexts[$type] ) ) {
+				$links[$type] = $disabledTexts[$type];
+			} else {
+				$links[$type] = $linkTexts[$type];
+			}
+		}
+		return $links;
+	}
+
+	function getLimitLinks() {
+		global $wgLang;
+		$links = array();
+		if ( $this->mIsBackwards ) {
+			$offset = $this->mPastTheEndIndex;
+		} else {
+			$offset = $this->mOffset;
+		}
+		foreach ( $this->mLimitsShown as $limit ) {
+			$links[] = $this->makeLink( $wgLang->formatNum( $limit ),
+				array( 'offset' => $offset, 'limit' => $limit ) );
+		}
+	}
+
+	/**
 	 * Abstract formatting function. This should return an HTML string 
 	 * representing the result row $row. Rows will be concatenated and
 	 * returned by getBody()
@@ -330,49 +401,236 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
-		if ( !$this->mQueryDone ) {
-			$this->doQuery();
-		}
+		$linkTexts = array(
+			'prev' => wfMsgHtml( "prevn", $this->mLimit ),
+			'next' => wfMsgHtml( 'nextn', $this->mLimit ),
+			'first' => wfMsgHtml('histlast'),
+			'last' => wfMsgHtml( 'histfirst' )
+		);
 
-		# Don't announce the limit everywhere if it's the default
-		$urlLimit = $this->mLimit == $this->mDefaultLimit ? '' : $this->mLimit;
-		
-		if ( $this->mIsFirst ) {
-			$prevText = wfMsgHtml("prevn", $this->mLimit);
-			$latestText = wfMsgHtml('histlast');
-		} else {
-			$prevText = $this->makeLink( wfMsgHtml("prevn", $this->mLimit),
-				array( 'dir' => 'prev', 'offset' => $this->mFirstShown, 'limit' => $urlLimit ) );
-			$latestText = $this->makeLink( wfMsgHtml('histlast'),
-				array( 'limit' => $urlLimit ) );
-		}
-		if ( $this->mIsLast ) {
-			$nextText = wfMsgHtml( 'nextn', $this->mLimit);
-			$earliestText = wfMsgHtml( 'histfirst' );
-		} else {
-			$nextText = $this->makeLink( wfMsgHtml( 'nextn', $this->mLimit ),
-				array( 'offset' => $this->mLastShown, 'limit' => $urlLimit ) );
-			$earliestText = $this->makeLink( wfMsgHtml( 'histfirst' ),
-				array( 'dir' => 'prev', 'limit' => $urlLimit ) );
-		}
-		$limits = '';
-		foreach ( $this->mLimitsShown as $limit ) {
-			if ( $limits !== '' ) {
-				$limits .= ' | ';
-			}
-			if ( $this->mIsBackwards ) {
-				$offset = $this->mPastTheEndIndex;
-			} else {
-				$offset = $this->mOffset;
-			}
-			$limits .= $this->makeLink( $wgLang->formatNum($limit),
-				array('offset' => $offset, 'limit' => $limit ) );
-
-		}
+		$pagingLinks = $this->getPagingLinks( $linkTexts );
+		$limitLinks = $this->getLimitLinks();
+		$limits = implode( ' | ', $limitLinks );
 		
 		$this->mNavigationBar = "($latestText | $earliestText) " . wfMsgHtml("viewprevnext", $prevText, $nextText, $limits);
 		return $this->mNavigationBar;
 	}
 }
 
+/**
+ * Table-based display with a user-selectable sort order
+ */
+abstract class TablePager extends IndexPager {
+	var $mSort;
+	var $mCurrentRow;
+
+	function __construct() {
+		global $wgRequest;
+		$this->mSort = $wgRequest->getText( 'sort' );
+		if ( !array_key_exists( $this->mSort, $this->getFieldNames() ) ) {
+			$this->mSort = $this->getDefaultSort();
+		}
+		if ( $wgRequest->getBool( 'asc' ) ) {
+			$this->mDefaultDirection = false;
+		} elseif ( $wgRequest->getBool( 'desc' ) ) {
+			$this->mDefaultDirection = true;
+		} /* Else leave it at whatever the class default is */
+
+		parent::__construct();
+	}
+
+	function getStartBody() {
+		global $wgStylePath;
+		$s = "<table border='1' class=\"TablePager\"><thead><tr>\n";
+		$fields = $this->getFieldNames();
+		foreach ( $fields as $field => $name ) {
+			if ( strval( $name ) == '' ) {
+				$s .= "<th>&nbsp;</th>\n";
+			} elseif ( $this->isFieldSortable( $field ) ) {
+				$query = array( 'sort' => $field, 'limit' => $this->mLimit );
+				if ( $field == $this->mSort ) {
+					# This is the sorted column
+					# Prepare a link that goes in the other sort order
+					if ( $this->mDefaultDirection ) {
+						# Descending
+						$image = 'Arr_u.png';
+						$query['asc'] = '1';
+						$query['desc'] = '';
+						$alt = htmlspecialchars( wfMsg( 'descending_abbrev' ) );
+					} else {
+						# Ascending
+						$image = 'Arr_d.png';
+						$query['asc'] = '';
+						$query['desc'] = '1';
+						$alt = htmlspecialchars( wfMsg( 'ascending_abbrev' ) );
+					}
+					$image = htmlspecialchars( "$wgStylePath/common/images/$image" );
+					$link = $this->makeLink( 
+						"<img width=\"12\" height=\"12\" alt=\"$alt\" src=\"$image\" />" .
+						htmlspecialchars( $name ), $query );
+					$s .= "<th class=\"TablePager_sort\">$link</th>\n";
+				} else {
+					$s .= '<th>' . $this->makeLink( htmlspecialchars( $name ), $query ) . "</th>\n";
+				}
+			} else {
+				$s .= '<th>' . htmlspecialchars( $name ) . "</th>\n";
+			}
+		}
+		$s .= "</tr></thead><tbody>\n";
+		return $s;	
+	}
+
+	function getEndBody() {
+		return '</tbody></table>';
+	}
+
+	function getEmptyBody() {
+		$colspan = count( $this->getFieldNames() );
+		$msgEmpty = wfMsgHtml( 'table_pager_empty' );
+		return "<tr><td colspan=\"$colspan\">$msgEmpty</td></tr>\n";
+	}
+
+	function formatRow( $row ) {
+		$s = "<tr>\n";
+		$fieldNames = $this->getFieldNames();
+		$this->mCurrentRow = $row;  # In case formatValue needs to know
+		foreach ( $fieldNames as $field => $name ) {
+			$value = isset( $row->$field ) ? $row->$field : null;
+			$formatted = strval( $this->formatValue( $field, $value ) );
+			if ( $formatted == '' ) {
+				$formatted = '&nbsp;';
+			}
+			$s .= "<td>$formatted</td>\n";
+		}
+		$s .= "</tr>\n";
+		return $s;
+	}
+
+	function getIndexField() {
+		return $this->mSort;
+	}
+
+	/**
+	 * A navigation bar with images
+	 */
+	function getNavigationBar() {
+		global $wgStylePath;
+		$path = "$wgStylePath/common/images";
+		$labels = array( 
+			'first' => 'table_pager_first',
+			'prev' => 'table_pager_prev',
+			'next' => 'table_pager_next',
+			'last' => 'table_pager_last',
+		);
+		$images = array(
+			'first' => 'arrow_first_25.png',
+			'prev' =>  'arrow_left_25.png',
+			'next' =>  'arrow_right_25.png',
+			'last' =>  'arrow_last_25.png',
+		);
+		$disabledImages = array(
+			'first' => 'arrow_disabled_first_25.png',
+			'prev' =>  'arrow_disabled_left_25.png',
+			'next' =>  'arrow_disabled_right_25.png',
+			'last' =>  'arrow_disabled_last_25.png',
+		);
+			
+		$linkTexts = array();
+		$disabledTexts = array();
+		foreach ( $labels as $type => $label ) {
+			$msgLabel = wfMsgHtml( $label );
+			$linkTexts[$type] = "<img src=\"$path/{$images[$type]}\" alt=\"$msgLabel\"/><br/>$msgLabel";
+			$disabledTexts[$type] = "<img src=\"$path/{$disabledImages[$type]}\" alt=\"$msgLabel\"/><br/>$msgLabel";
+		}
+		$links = $this->getPagingLinks( $linkTexts, $disabledTexts );
+
+		$s = '<table class="TablePager_nav" align="center" cellpadding="3"><tr>';
+		$cellAttrs = 'valign="top" align="center" width="' . 100 / count( $links ) . '%"';
+		foreach ( $labels as $type => $label ) {
+			$s .= "<td $cellAttrs>{$links[$type]}</td>\n";
+		}
+		$s .= '</tr></table>';
+		return $s;
+	}
+
+	/**
+	 * Get a <select> element which has options for each of the allowed limits
+	 */
+	function getLimitSelect() {
+		global $wgLang;
+		$s = "<select name=\"limit\">";
+		foreach ( $this->mLimitsShown as $limit ) {
+			$selected = $limit == $this->mLimit ? 'selected="selected"' : '';
+			$formattedLimit = $wgLang->formatNum( $limit );
+			$s .= "<option value=\"$limit\" $selected>$formattedLimit</option>\n";
+		}
+		$s .= "</select>";
+		return $s;
+	}
+
+	/**
+	 * Get <input type="hidden"> elements for use in a method="get" form. 
+	 * Resubmits all defined elements of the $_GET array, except for a 
+	 * blacklist, passed in the $blacklist parameter.
+	 */
+	function getHiddenFields( $blacklist = array() ) {
+		$blacklist = (array)$blacklist;
+		$query = $_GET;
+		foreach ( $blacklist as $name ) {
+			unset( $query[$name] );
+		}
+		$s = '';
+		foreach ( $query as $name => $value ) {
+			$encName = htmlspecialchars( $name );
+			$encValue = htmlspecialchars( $value );
+			$s .= "<input type=\"hidden\" name=\"$encName\" value=\"$encValue\"/>\n";
+		}
+		return $s;
+	}
+
+	/**
+	 * Get a form containing a limit selection dropdown
+	 */
+	function getLimitForm() {
+		# Make the select with some explanatory text
+		$url = $this->getTitle()->escapeLocalURL();
+		$msgSubmit = wfMsgHtml( 'table_pager_limit_submit' );
+		return
+			"<form method=\"get\" action=\"$url\">" . 
+			wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() ) . 
+			"\n<input type=\"submit\" value=\"$msgSubmit\"/>\n" .
+			$this->getHiddenFields( 'limit' ) . 
+			"</form>\n";
+	}
+
+	/**
+	 * Return true if the named field should be sortable by the UI, false otherwise
+	 * @param string $field
+	 */
+	abstract function isFieldSortable( $field );
+
+	/**
+	 * Format a table cell. The return value should be HTML, but use an empty string
+	 * not &nbsp; for empty cells. Do not include the <td> and </td>. 
+	 *
+	 * @param string $name The database field name
+	 * @param string $value The value retrieved from the database
+	 *
+	 * The current result row is available as $this->mCurrentRow, in case you need 
+	 * more context.
+	 */
+	abstract function formatValue( $name, $value );
+
+	/**
+	 * The database field name used as a default sort order
+	 */
+	abstract function getDefaultSort();
+
+	/**
+	 * An array mapping database field names to a textual description of the field 
+	 * name, for use in the table header. The description should be plain text, it 
+	 * will be HTML-escaped later.
+	 */
+	abstract function getFieldNames();
+}
 ?>

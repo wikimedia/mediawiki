@@ -11,111 +11,148 @@
 function wfSpecialImagelist() {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgMiserMode;
 
-	$sort = $wgRequest->getVal( 'sort' );
-	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
-	$dbr =& wfGetDB( DB_SLAVE );
-	$image = $dbr->tableName( 'image' );
-	$sql = "SELECT img_size,img_name,img_user,img_user_text," .
-	  "img_description,img_timestamp FROM $image";
+	$pager = new ImageListPager;
 
-	if ( !$wgMiserMode && !empty( $wpIlMatch ) ) {
-		$nt = Title::newFromUrl( $wpIlMatch );
-		if($nt ) {
-			$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
-			$m = str_replace( "%", "\\%", $m );
-			$m = str_replace( "_", "\\_", $m );
-			$sql .= " WHERE LCASE(img_name) LIKE '%{$m}%'";
+	$limit = $pager->getForm();
+	$body = $pager->getBody();
+	$nav = $pager->getNavigationBar();
+	$wgOut->addHTML( "
+		$limit
+		<br/>
+		$body
+		$nav" );
+}
+
+class ImageListPager extends TablePager {
+	var $mFieldNames = null;
+	var $mMessages = array();
+	var $mQueryConds = array();
+
+	function __construct() {
+		global $wgRequest, $wgMiserMode;
+		if ( $wgRequest->getText( 'sort', 'img_date' ) == 'img_date' ) {
+			$this->mDefaultDirection = true;
+		} else {
+			$this->mDefaultDirection = false;
 		}
-	}
-
-	if ( "bysize" == $sort ) {
-		$sql .= " ORDER BY img_size DESC";
-	} else if ( "byname" == $sort ) {
-		$sql .= " ORDER BY img_name";
-	} else {
-		$sort = "bydate";
-		$sql .= " ORDER BY img_timestamp DESC";
-	}
-
-	list( $limit, $offset ) = wfCheckLimits( 50 );
-	$lt = $wgLang->formatNum( "${limit}" );
-	$sql .= " LIMIT {$limit}";
-
-	$wgOut->addWikiText( wfMsg( 'imglegend' ) );
-	$wgOut->addHTML( wfMsgExt( 'imagelisttext', array('parse'), $lt, wfMsg( $sort ) ) );
-
-	$sk = $wgUser->getSkin();
-	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
-	$action = $titleObj->escapeLocalURL( "sort={$sort}&limit={$limit}" );
-
-	if ( !$wgMiserMode ) {
-		$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
-		  "{$action}\">" .
-			wfElement( 'input',
-				array(
-					'type' => 'text',
-					'size' => '20',
-					'name' => 'wpIlMatch',
-					'value' => $wpIlMatch, )) .
-			wfElement( 'input',
-				array(
-					'type' => 'submit',
-					'name' => 'wpIlSubmit',
-					'value' => wfMsg( 'ilsubmit'), )) .
-			'</form>' );
-	}
-
-	$here = Title::makeTitle( NS_SPECIAL, 'Imagelist' );
-
-	foreach ( array( 'byname', 'bysize', 'bydate') as $sorttype ) {
-		$urls = null;
-		foreach ( array( 50, 100, 250, 500 ) as $num ) {
-			$urls[] = $sk->makeKnownLinkObj( $here, $wgLang->formatNum( $num ),
-		  "sort={$sorttype}&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
+		$search = $wgRequest->getText( 'ilsearch' );
+		if ( $search != '' && !$wgMiserMode ) {
+			$nt = Title::newFromUrl( $search );
+			if( $nt ) {
+				$dbr =& wfGetDB( DB_SLAVE );
+				$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
+				$m = str_replace( "%", "\\%", $m );
+				$m = str_replace( "_", "\\_", $m );
+				$this->mQueryConds = array( "LCASE(img_name) LIKE '%{$m}%'" );
+			}
 		}
-		$sortlinks[] = wfMsgExt(
-			'showlast',
-			array( 'parseinline', 'replaceafter' ),
-			implode($urls, ' | '),
-			wfMsgExt( $sorttype, array('escape') )
+
+		parent::__construct();
+	}
+
+	function getFieldNames() {
+		if ( !$this->mFieldNames ) {
+			$this->mFieldNames = array(
+				'links' => '',
+				'img_timestamp' => wfMsg( 'imagelist_date' ),
+				'img_name' => wfMsg( 'imagelist_name' ),
+				'img_user_text' => wfMsg( 'imagelist_user' ),
+				'img_size' => wfMsg( 'imagelist_size' ),
+				'img_description' => wfMsg( 'imagelist_description' ),
+			);
+		}
+		return $this->mFieldNames;
+	}
+
+	function isFieldSortable( $field ) {
+		static $sortable = array( 'img_timestamp', 'img_name', 'img_size' );
+		return in_array( $field, $sortable );
+	}
+
+	function getQueryInfo() {
+		$fields = $this->getFieldNames();
+		unset( $fields['links'] );
+		$fields = array_keys( $fields );
+		$fields[] = 'img_user';
+		return array(
+			'tables' => 'image',
+			'fields' => $fields,
+			'conds' => $this->mQueryConds
 		);
 	}
-	$wgOut->addHTML( implode( $sortlinks, "<br />\n") . "\n\n<hr />" );
 
-	// lines
-	$wgOut->addHTML( '<p>' );
-	$res = $dbr->query( $sql, "wfSpecialImagelist" );
-
-	while ( $s = $dbr->fetchObject( $res ) ) {
-		$name = $s->img_name;
-		$ut = $s->img_user_text;
-		if ( 0 == $s->img_user ) {
-			$ul = $ut;
-		} else {
-			$ul = $sk->makeLinkObj( Title::makeTitle( NS_USER, $ut ), $ut );
-		}
-
-		$dirmark = $wgContLang->getDirMark(); // to keep text in correct direction
-
-		$ilink = "<a href=\"" . htmlspecialchars( Image::imageUrl( $name ) ) .
-		  "\">" . strtr(htmlspecialchars( $name ), '_', ' ') . "</a>";
-
-		$nb = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
-			$wgLang->formatNum( $s->img_size ) );
-
-		$desc = $sk->makeKnownLinkObj( Title::makeTitle( NS_IMAGE, $name ),
-		  wfMsg( 'imgdesc' ) );
-
-		$date = $wgLang->timeanddate( $s->img_timestamp, true );
-		$comment = $sk->commentBlock( $s->img_description );
-
-		$l = "({$desc}) {$dirmark}{$ilink} . . {$dirmark}{$nb} . . {$dirmark}{$ul}".
-			" . . {$dirmark}{$date} . . {$dirmark}{$comment}<br />\n";
-		$wgOut->addHTML( $l );
+	function getDefaultSort() {
+		return 'img_timestamp';
 	}
 
-	$dbr->freeResult( $res );
-	$wgOut->addHTML( '</p>' );
+	function getStartBody() {
+		# Do a link batch query for user pages
+		if ( $this->mResult->numRows() ) {
+			$lb = new LinkBatch;
+			$this->mResult->seek( 0 );
+			while ( $row = $this->mResult->fetchObject() ) {
+				if ( $row->img_user ) {
+					$lb->add( NS_USER, str_replace( ' ', '_', $row->img_user_text ) );
+				}
+			}
+			$lb->execute();
+		}
+
+		# Cache messages used in each row
+		$this->mMessages['imgdesc'] = wfMsgHtml( 'imgdesc' );
+		$this->mMessages['imgfile'] = wfMsgHtml( 'imgfile' );
+		
+		return parent::getStartBody();
+	}
+
+	function formatValue( $field, $value ) {
+		global $wgLang;
+		switch ( $field ) {
+			case 'links':
+				$name = $this->mCurrentRow->img_name;
+				$ilink = "<a href=\"" . htmlspecialchars( Image::imageUrl( $name ) ) .
+				  "\">" . $this->mMessages['imgfile'] . "</a>";
+				$desc = $this->getSkin()->makeKnownLinkObj( Title::makeTitle( NS_IMAGE, $name ),
+					$this->mMessages['imgdesc'] );
+				return "$desc | $ilink";
+			case 'img_timestamp':
+				return $wgLang->timeanddate( $value, true );
+			case 'img_name':
+				return htmlspecialchars( $value );
+			case 'img_user_text':
+				if ( $this->mCurrentRow->img_user ) {
+					$link = $this->getSkin()->makeLinkObj( Title::makeTitle( NS_USER, $value ), 
+						htmlspecialchars( $value ) );
+				} else {
+					$link = htmlspecialchars( $value );
+				}
+				return $link;
+			case 'img_size':
+				return $wgLang->formatNum( $value );
+			case 'img_description':
+				return $this->getSkin()->commentBlock( $value );
+		}
+	}
+
+	function getForm() {
+		global $wgRequest, $wgMiserMode;
+		$url = $this->getTitle()->escapeLocalURL();
+		$msgSubmit = wfMsgHtml( 'table_pager_limit_submit' );
+		$msgSearch = wfMsgHtml( 'imagelist_search_for' );
+		$search = $wgRequest->getText( 'ilsearch' );
+		$encSearch = htmlspecialchars( $search );
+		$s = "<form method=\"get\" action=\"$url\">\n" . 
+			wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() );
+		if ( !$wgMiserMode ) {
+			$s .= "<br/>\n" . $msgSearch .
+				" <input type=\"text\" size=\"20\" name=\"ilsearch\" value=\"$encSearch\"/><br/>\n";
+		}
+		$s .= " <input type=\"submit\" value=\"$msgSubmit\"/>\n" .
+			$this->getHiddenFields( array( 'limit', 'ilsearch' ) ) .
+			"</form>\n";
+		return $s;
+	}
+
 }
 
 ?>

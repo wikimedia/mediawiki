@@ -1162,6 +1162,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 'bysize'		=> 'by size',
 'imgdelete'		=> 'del',
 'imgdesc'		=> 'desc',
+'imgfile'       => 'file',
 'imglegend'		=> 'Legend: (desc) = show/edit file description.',
 'imghistory'	=> 'File history',
 'revertimg'		=> 'rev',
@@ -1180,6 +1181,12 @@ this old version, (rev) = revert to this old version.
 'noimage'       => 'No file by this name exists, you can $1.',
 'noimage-linktext'       => 'upload it',
 'uploadnewversion-linktext' => 'Upload a new version of this file',
+'imagelist_date' => 'Date',
+'imagelist_name' => 'Name',
+'imagelist_user' => 'User',
+'imagelist_size' => 'Size (bytes)',
+'imagelist_description' => 'Description',
+'imagelist_search_for' => 'Search for image name:',
 
 # Mime search
 #
@@ -2357,6 +2364,17 @@ Please confirm that really want to recreate this page.',
 * Español|es
 * Italiano|it
 * Nederlands|nl",
+
+# Table pager
+'ascending_abbrev' => 'asc',
+'descending_abbrev' => 'desc',
+'table_pager_next' => 'Next page',
+'table_pager_prev' => 'Previous page',
+'table_pager_first' => 'First page',
+'table_pager_last' => 'Last page',
+'table_pager_limit' => 'Show $1 items per page',
+'table_pager_limit_submit' => 'Go',
+'table_pager_empty' => 'No results',
 
 );
 
