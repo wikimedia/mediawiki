@@ -2262,8 +2262,6 @@ class Image
 		$o = $this->multiPageXML->BODY[0]->OBJECT[$page-1];
 		$this->height = intval( $o['height'] );
 		$this->width = intval( $o['width'] );
-		wfDebug( __METHOD__." >>>>METADATA>>>>\n".$o->asXML() . "\n<<<<<<<\n\n" );
-		wfDebug( __METHOD__." >>>>XML OBJECT>>>>\n". print_r($o,true) . "\n<<<<<<<\n\n" );
 	}
 
 	/**
