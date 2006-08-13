@@ -950,6 +950,7 @@ $messages = array(
 "bysize"                    => "לפי גודל",
 "imgdelete"                 => "מחק",
 "imgdesc"                   => "תיאור",
+"imgfile"                   => "קובץ",
 "imglegend"                 => "מקרא: (תיאור) הצג/ערוך תיאור התמונה.",
 "imghistory"                => "היסטורית קובץ תמונה",
 "revertimg"                 => "חזור",
@@ -965,7 +966,13 @@ $messages = array(
 "shareduploadwiki-linktext" => "דף תיאור הקובץ",
 "noimage"                   => "לא נמצא קובץ בשם זה, אך יש באפשרותכם $1 חלופי.",
 "noimage-linktext"          => "להעלות קובץ",
-"uploadnewversion-linktext"          => "העלו גרסה חדשה של קובץ זה",
+"uploadnewversion-linktext" => "העלו גרסה חדשה של קובץ זה",
+"imagelist_date"            => "תאריך",
+"imagelist_name"            => "שם",
+"imagelist_user"            => "משתמש",
+"imagelist_size"            => "גודל (בתים)",
+"imagelist_description"     => "תיאור",
+"imagelist_search_for"      => "חיפוש תמונה בשם:",
 
 # MIME search
 "mimesearch" => "חיפוש MIME",
@@ -2046,6 +2053,17 @@ $1",
 "displaytitle" => "(קשרו לדף זה בשם [[$1]])",
 
 "loginlanguagelabel" => "שפה: $1",
+
+# Table pager
+"ascending_abbrev"         => "עולה",
+"descending_abbrev"        => "יורד",
+"table_pager_next"         => "הדף הבא",
+"table_pager_prev"         => "הדף הקודם",
+"table_pager_first"        => "הדף הראשון",
+"table_pager_last"         => "הדף האחרון",
+"table_pager_limit"        => "הצג $1 פריטים בדף",
+"table_pager_limit_submit" => "עבור",
+"table_pager_empty"        => "ללא תוצאות",
 );
 
 ?>
