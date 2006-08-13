@@ -1889,6 +1889,14 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 
 'loginlanguagelabel'	=> 'Sprache: $1',
 
+
+# Multipage image navigation
+'imgmultipageprev' => '&larr; vorige Seite',
+'imgmultipagenext' => 'n&auml;chste Seite &rarr;',
+'imgmultigo' => 'OK',
+'imgmultigotopre' => 'Gehe zu Seite',
+'imgmultigotopost' => '',
+
 );
 
 
