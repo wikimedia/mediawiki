@@ -504,6 +504,15 @@ class MimeMagic {
 			# see http://www.php.net/manual/en/ref.mime-magic.php for details.
 
 			$m= mime_content_type($file);
+
+			if ( $m == 'text/plain' ) {
+				// mime_content_type sometimes considers DJVU files to be text/plain.
+				$deja = new DjVuImage( $file );
+				if( $deja->isValid() ) {
+					wfDebug("$fname: (re)detected $file as image/vnd.djvu\n");
+					$m = 'image/vnd.djvu';
+				}
+			}
 		}
 		else wfDebug("$fname: no magic mime detector found!\n");
 

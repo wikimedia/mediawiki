@@ -208,6 +208,22 @@ class DjVuImage {
 			'resolution' => $resolution,
 			'gamma' => $gamma / 10.0 );
 	}
+
+	/**
+	 * Return an XML string describing the DjVu image
+	 * @return string
+	 */
+	function retrieveMetaData() {
+		global $wgDjvuToXML;
+		if ( isset( $wgDjvuToXML ) ) {
+			$cmd = $wgDjvuToXML . ' --without-anno --without-text ' . $this->mFilename;
+			$xml = wfShellExec( $cmd, $retval );
+		} else {
+			$xml = null;
+		}
+		return $xml;
+	}
+		
 }
 
 

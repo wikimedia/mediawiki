@@ -187,6 +187,12 @@ class ImagePage extends Article {
 
 		if ( $this->img->exists() ) {
 			# image
+			$page = $wgRequest->getIntOrNull( 'page' );
+			if ( ! is_null( $page ) ) {
+				$this->img->selectPage( $page );
+			} else {
+				$page = 1;
+			}
 			$width = $this->img->getWidth();
 			$height = $this->img->getHeight();
 			$showLink = false;
@@ -236,9 +242,53 @@ class ImagePage extends Article {
 					$url = $this->img->getViewURL();
 					$showLink = true;
 				}
+
+				if ( $this->img->isMultipage() ) {
+					$wgOut->addHTML( '<table class="multipageimage"><tr><td>' );
+				}
+
 				$wgOut->addHTML( '<div class="fullImageLink" id="file">' . $anchoropen .
 				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
 				     htmlspecialchars( $wgRequest->getVal( 'image' ) ).'" />' . $anchorclose . '</div>' );
+
+				if ( $this->img->isMultipage() ) {
+					$count = $this->img->pageCount();
+
+					if ( $page > 1 ) {
+						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
+						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
+						$this->img->selectPage( $page - 1 );
+						$thumb1 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
+					} else {
+						$thumb1 = '';
+					}
+
+					if ( $page < $count ) {
+						$label = wfMsg( 'imgmultipagenext' );
+						$this->img->selectPage( $page + 1 );
+						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
+						$thumb2 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
+					} else {
+						$thumb2 = '';
+					}
+
+					$select = '<form name="pageselector" action="' . $this->img->getEscapeLocalUrl( '' ) . '" method="GET" onchange="document.pageselector.submit();">' ;
+					$select .= $wgOut->parse( wfMsg( 'imgmultigotopre' ), false ) .
+						' <select id="pageselector" name="page">';
+					for ( $i=1; $i <= $count; $i++ ) {
+						if ( $i == $page ) {
+							$select .= "<option value=\"$i\" selected=\"selected\">$i</option>";
+						} else {
+							$select .= "<option value=\"$i\" >$i</option>\n";
+						}
+					}
+					$select .= '</select>' . $wgOut->parse( wfMsg( 'imgmultigotopost' ), false ) .
+						'<input type="submit" value="' .
+						htmlspecialchars( wfMsg( 'imgmultigo' ) ) . '"></form>';
+
+					$wgOut->addHTML( '</td><td><div class="multipageimagenavbox">' .
+					   "$select<hr />$thumb1\n$thumb2<br clear=\"all\" /></div></td></tr></table>" );
+				}
 			} else {
 				#if direct link is allowed but it's not a renderable image, show an icon.
 				if ($this->img->isSafeFile()) {

@@ -2186,4 +2186,24 @@ $wgContentNamespaces = array( NS_MAIN );
  */
 $wgMaxShellMemory = 102400;
 
+/**
+ * DJVU settings
+ * Path of the djvutoxml executable
+ * Enable this and $wgDjvuRenderer to enable djvu rendering
+ */
+# $wgDjvuToXML = 'djvutoxml';
+
+/**
+ * Path of the ddjvu DJVU renderer
+ * Enable this and $wgDjvuToXML to enable djvu rendering
+ */
+# $wgDjvuRenderer = 'ddjvu';
+
+/**
+ * Path of the DJVU post processor
+ * May include command line options
+ * Default: ppmtojpeg, since ddjvu generates ppm output
+ */
+$wgDjvuPostProcessor = 'ppmtojpeg';
+
 ?>

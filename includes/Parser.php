@@ -4086,9 +4086,11 @@ class Parser
 		$mwWidth  =& MagicWord::get( 'img_width' );
 		$mwCenter =& MagicWord::get( 'img_center' );
 		$mwFramed =& MagicWord::get( 'img_framed' );
+		$mwPage   =& MagicWord::get( 'img_page' );
 		$caption = '';
 
 		$width = $height = $framed = $thumb = false;
+		$page = null;
 		$manual_thumb = '' ;
 
 		foreach( $part as $key => $val ) {
@@ -4098,6 +4100,9 @@ class Parser
 				# use manually specified thumbnail
 				$thumb=true;
 				$manual_thumb = $match;
+			} elseif ( ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
+				# Select a page in a multipage document
+				$page = $match;
 			} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
 				# remember to set an alignment, don't render immediately
 				$align = 'right';
@@ -4136,7 +4141,8 @@ class Parser
 
 		# Linker does the rest
 		$sk =& $this->mOptions->getSkin();
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb );
+		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height,
+				$framed, $thumb, $manual_thumb, $page );
 	}
 
 	/**

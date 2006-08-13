@@ -26,6 +26,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 == Major new features ==
 
 * (bug 550) Allow blocks on anonymous users only.
+* (bug 6420) Render thumbnails for DJVU images, support multipage DJVU display
+  on image pages. Added new 'page=' thumbnail option to select a page from a
+  multipage djvu for thumbnail generation.
 
 == Changes since 1.7 ==
 

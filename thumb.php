@@ -17,13 +17,20 @@ require_once( 'Image.php' );
 require_once( 'StreamFile.php' );
 
 // Get input parameters
+$p=null;
 
 if ( get_magic_quotes_gpc() ) {
 	$fileName = stripslashes( $_REQUEST['f'] );
 	$width = stripslashes( $_REQUEST['w'] );
+	if ( isset( $_REQUEST['p'] ) ) { // optional page number
+		$page = stripslashes( $_REQUEST['p'] );
+	}
 } else {
 	$fileName = $_REQUEST['f'];
 	$width = $_REQUEST['w'];
+	if ( isset( $_REQUEST['p'] ) ) { // optional page number
+		$page =  $_REQUEST['p'] ;
+	}
 }
 
 $pre_render= isset($_REQUEST['r']) && $_REQUEST['r']!="0";
@@ -31,12 +38,18 @@ $pre_render= isset($_REQUEST['r']) && $_REQUEST['r']!="0";
 // Some basic input validation
 
 $width = intval( $width );
+if ( ! is_null( $page ) ) {
+	$page = intval( $page );
+}
 $fileName = strtr( $fileName, '\\/', '__' );
 
 // Work out paths, carefully avoiding constructing an Image object because that won't work yet
 
 $imagePath = wfImageDir( $fileName ) . '/' . $fileName;
 $thumbName = "{$width}px-$fileName";
+if ( ! is_null( $page ) ) {
+	$thumbName = 'page' . $page . '-' . $thumbName;
+}
 if ( $pre_render ) {
 	$thumbName .= '.png';
 }
@@ -55,6 +68,9 @@ wfProfileIn( 'thumb.php-render' );
 
 $img = Image::newFromName( $fileName );
 if ( $img ) {
+	if ( ! is_null( $page ) ) {
+		$img->selectPage( $page );
+	}
 	$thumb = $img->renderThumb( $width, false );
 } else {
 	$thumb = false;

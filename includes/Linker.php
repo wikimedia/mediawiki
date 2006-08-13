@@ -456,11 +456,16 @@ class Linker {
 
 	/** @todo document */
 	function makeImageLinkObj( $nt, $label, $alt, $align = '', $width = false, $height = false, $framed = false,
-	  $thumb = false, $manual_thumb = '' )
+	  $thumb = false, $manual_thumb = '', $page = null )
 	{
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgGenerateThumbnailOnParse;
 
 		$img   = new Image( $nt );
+
+		if ( ! is_null( $page ) ) {
+			$img->selectPage( $page );
+		}
+
 		if ( !$img->allowInlineDisplay() && $img->exists() ) {
 			return $this->makeKnownLinkObj( $nt );
 		}
@@ -468,7 +473,7 @@ class Linker {
 		$url   = $img->getViewURL();
 		$error = $prefix = $postfix = '';
 
-		wfDebug( "makeImageLinkObj: '$width'x'$height'\n" );
+		wfDebug( "makeImageLinkObj: '$width'x'$height', \"$label\"\n" );
 
 		if ( 'center' == $align )
 		{
@@ -564,7 +569,6 @@ class Linker {
 	 */
 	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgContLang, $wgGenerateThumbnailOnParse;
-		$url  = $img->getViewURL();
 		$thumbUrl = '';
 		$error = '';
 
@@ -583,7 +587,7 @@ class Linker {
 			// Use image dimensions, don't scale
 			$boxwidth  = $width;
 			$boxheight = $height;
-			$thumbUrl  = $url;
+			$thumbUrl  = $img->getViewURL();
 		} else {
 			if ( $boxheight === false )
 				$boxheight = -1;
@@ -626,7 +630,7 @@ class Linker {
 		$s = "<div class=\"thumb t{$align}\"><div style=\"width:{$oboxwidth}px;\">";
 		if( $thumbUrl == '' ) {
 			// Couldn't generate thumbnail? Scale the image client-side.
-			$thumbUrl = $url;
+			$thumbUrl = $img->getViewURL();
 		}
 		if ( $error ) {
 			$s .= htmlspecialchars( $error );
