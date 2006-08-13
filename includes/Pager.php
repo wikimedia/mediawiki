@@ -358,6 +358,7 @@ abstract class IndexPager implements Pager {
 			$links[] = $this->makeLink( $wgLang->formatNum( $limit ),
 				array( 'offset' => $offset, 'limit' => $limit ) );
 		}
+		return $links;
 	}
 
 	/**
@@ -412,7 +413,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$limitLinks = $this->getLimitLinks();
 		$limits = implode( ' | ', $limitLinks );
 		
-		$this->mNavigationBar = "($latestText | $earliestText) " . wfMsgHtml("viewprevnext", $prevText, $nextText, $limits);
+		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " . wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
 		return $this->mNavigationBar;
 	}
 }
