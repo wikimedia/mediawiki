@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is PostgreSQL database abstraction layer.
+ * This is Postgres database abstraction layer.
  *
  * As it includes more generic version for DB functions,
  * than MySQL ones, some of them should be moved to parent
@@ -48,9 +48,9 @@ class DatabasePostgres extends Database {
 	 * If the failFunction is set to a non-zero integer, returns success
 	 */
 	function open( $server, $user, $password, $dbName ) {
-		# Test for PostgreSQL support, to avoid suppressed fatal error
+		# Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
-			throw new DBConnectionError( $this, "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
+			throw new DBConnectionError( $this, "Postgres functions missing, have you compiled PHP with the --with-pgsql option?\n" );
 		}
 
 
@@ -152,7 +152,7 @@ class DatabasePostgres extends Database {
 					@$this->mConn = pg_connect("$hstring dbname=$wgDBname user=$user password=$password");
 					if ( $this->mConn == false ) {
 						print "<b>FAILED TO CONNECT!</b></li>";
-						dieout("</uL>");
+						dieout("</ul>");
 					}
 					print "OK</li>\n";
 				}
@@ -176,15 +176,40 @@ class DatabasePostgres extends Database {
 
 				## Setup the schema for this user if needed
 				$result = $this->schemaExists($wgDBmwschema);
+				$safeschema = $this->quote_ident($wgDBmwschema);
 				if (!$result) {
 					print "<li>Creating schema <b>$wgDBmwschema</b> ...";
-					$safeschema = $this->quote_ident($wgDBmwschema);
 					$result = $this->doQuery("CREATE SCHEMA $safeschema AUTHORIZATION $safeuser");
 					if (!$result) {
 						print "<b>FAILED</b>.</li>\n";
 						dieout("</ul>");
 					}
 					print "OK</li>\n";
+				}
+				else {
+					print "<li>Schema already exists, explicitly granting rights...\n";
+					$safeschema2 = $this->addQuotes($wgDBmwschema);
+					$SQL = "SELECT 'GRANT ALL ON '||pg_catalog.quote_ident(relname)||' TO $safeuser;'\n".
+							"FROM pg_catalog.pg_class p, pg_catalog.pg_namespace n\n".
+							"WHERE relnamespace = n.oid AND n.nspname = $safeschema2\n".
+							"AND p.relkind IN ('r','S','v')\n";
+					$SQL .= "UNION\n";
+					$SQL .= "SELECT 'GRANT ALL ON FUNCTION '||pg_catalog.quote_ident(proname)||'('||\n".
+							"pg_catalog.oidvectortypes(p.proargtypes)||') TO $safeuser;'\n".
+							"FROM pg_catalog.pg_proc p, pg_catalog.pg_namespace n\n".
+							"WHERE p.pronamespace = n.oid AND n.nspname = $safeschema2";
+					$res = $this->doQuery($SQL);
+					if (!$res) {
+						print "<b>FAILED</b>. Could not set rights for the user.</li>\n";
+						dieout("</ul>");
+					}
+					$this->doQuery("SET search_path = $safeschema");
+					$rows = $this->numRows($res);
+					while ($rows) {
+						$rows--;
+						$this->doQuery(pg_fetch_result($res, $rows, 0));
+					}
+					print "OK</li>";
 				}
 
 				$wgDBsuperuser = '';
@@ -211,7 +236,7 @@ class DatabasePostgres extends Database {
 			error_reporting( E_ALL );
 			if (!$res) {
 				print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" has SELECT access to the tsearch2 tables</li>\n";
-				dieout("</uL>");
+				dieout("</ul>");
 			}
 			print "OK</li>";
 
@@ -293,7 +318,7 @@ class DatabasePostgres extends Database {
 
 	function freeResult( $res ) {
 		if ( !@pg_free_result( $res ) ) {
-			throw new DBUnexpectedError($this,  "Unable to free PostgreSQL result\n" );
+			throw new DBUnexpectedError($this,  "Unable to free Postgres result\n" );
 		}
 	}
 
@@ -384,7 +409,7 @@ class DatabasePostgres extends Database {
 	}
 
 	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
-		# PostgreSQL doesn't support options
+		# Postgres doesn't support options
 		# We have a go at faking one of them
 		# TODO: DELAYED, LOW_PRIORITY
 
@@ -437,15 +462,14 @@ class DatabasePostgres extends Database {
 	}
 
 	/**
-	 * USE INDEX clause
-	 * PostgreSQL doesn't have them and returns ""
+	 * Postgres does not have a "USE INDEX" clause, so return an empty string
 	 */
 	function useIndexClause( $index ) {
 		return '';
 	}
 
 	# REPLACE query wrapper
-	# PostgreSQL simulates this with a DELETE followed by INSERT
+	# Postgres simulates this with a DELETE followed by INSERT
 	# $row is the row to insert, an associative array
 	# $uniqueIndexes is an array of indexes. Each element may be either a
 	# field name or an array of field names
@@ -547,7 +571,7 @@ class DatabasePostgres extends Database {
 
 	/**
 	 * Returns an SQL expression for a simple conditional.
-	 * Uses CASE on PostgreSQL.
+	 * Uses CASE on Postgres
 	 *
 	 * @param string $cond SQL expression which will result in a boolean value
 	 * @param string $trueVal SQL expression to return if true
