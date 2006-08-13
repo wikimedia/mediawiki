@@ -133,6 +133,7 @@ $magicWords = array(
 	'contentlanguage'       => array( 1,    'שפת תוכן',                           'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'      => array( 1,    'דפים במרחב השם:',                   'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'        => array( 1,    'מספר מפעילים',                      'NUMBEROFADMINS' ),
+	'formatnum'             => array( 0,    'עיצוב מספר',                        'FORMATNUM' ),
 );
 
 $namespaceNames = array(
