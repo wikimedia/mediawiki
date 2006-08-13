@@ -2257,11 +2257,19 @@ class Image
 			$this->load();
 		}
 		if ( ! isset( $this->multiPageXML ) ) {
-			$this->multiPageXML = new SimpleXMLElement( $this->metadata );
+			$this->initializeMultiPageXML();
 		}
 		$o = $this->multiPageXML->BODY[0]->OBJECT[$page-1];
 		$this->height = intval( $o['height'] );
 		$this->width = intval( $o['width'] );
+	}
+
+	function initializeMultiPageXML() {
+		if ( $this->metadata == '0' ) {
+			$deja = new DjVuImage( $this->imagePath );
+			$this->metadata = $deja->retrieveMetaData();
+		}
+		$this->multiPageXML = new SimpleXMLElement( $this->metadata );
 	}
 
 	/**
@@ -2283,7 +2291,7 @@ class Image
 			return null;
 		}
 		if ( ! isset( $this->multiPageXML ) ) {
-			$this->multiPageXML = new SimpleXMLElement( $this->metadata );
+			$this->initializeMultiPageXML();
 		}
 		return count( $this->multiPageXML->xpath( '//OBJECT' ) );
 	}
