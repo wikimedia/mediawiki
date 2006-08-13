@@ -116,6 +116,7 @@ function __autoload($className) {
 		'PageHistory' => 'includes/PageHistory.php',
 		'IndexPager' => 'includes/Pager.php',
 		'ReverseChronologicalPager' => 'includes/Pager.php',
+		'TablePager' => 'includes/Pager.php',
 		'Parser' => 'includes/Parser.php',
 		'ParserOutput' => 'includes/Parser.php',
 		'ParserOptions' => 'includes/Parser.php',
