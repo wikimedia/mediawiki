@@ -5,8 +5,7 @@
  * @package MediaWiki
  * @subpackage Language
  *
- * @author Rotem Dan (July 2003)
- * @author Rotem Liss (March 2006 on)
+ * @author Rotem Liss
  */
 
 class LanguageHe extends Language {

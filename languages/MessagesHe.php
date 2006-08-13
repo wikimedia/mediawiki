@@ -1,4 +1,13 @@
 <?php
+/**
+ * Hebrew (עברית)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ *
+ * @author Rotem Dan (July 2003)
+ * @author Rotem Liss (March 2006 on)
+ */
 
 $rtl = true;
 $defaultUserOptionOverrides = array(
