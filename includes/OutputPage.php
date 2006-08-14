@@ -92,7 +92,7 @@ class OutputPage {
 	 * returns true iff cache-ok headers was sent.
 	 */
 	function checkLastModified ( $timestamp ) {
-		global $wgCachePages, $wgCacheEpoch, $wgUser;
+		global $wgCachePages, $wgCacheEpoch, $wgUser, $wgRequest;
 		$fname = 'OutputPage::checkLastModified';
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
@@ -122,7 +122,7 @@ class OutputPage {
 			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", false );
 			if( ($ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
 				# Make sure you're in a place you can leave when you call us!
-				header( "HTTP/1.0 304 Not Modified" );
+				$wgRequest->response()->header( "HTTP/1.0 304 Not Modified" );
 				$this->mLastModified = $lastmod;
 				$this->sendCacheControl();
 				wfDebug( "$fname: CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
@@ -426,15 +426,15 @@ class OutputPage {
 	}
 
 	function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
+		global $wgUseSquid, $wgUseESI, $wgSquidMaxage, $wgRequest;
 		$fname = 'OutputPage::sendCacheControl';
 
 		if ($this->mETag)
-			header("ETag: $this->mETag");
+			$wgRequest->response()->header("ETag: $this->mETag");
 
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
-		header( 'Vary: Accept-Encoding, Cookie' );
+		$wgRequest->response()->header( 'Vary: Accept-Encoding, Cookie' );
 		if( !$this->uncacheableBecauseRequestvars() && $this->mEnableClientCache ) {
 			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( 'session.name') ] ) &&
 			  ! $this->isPrintable() && $this->mSquidMaxage != 0 )
@@ -446,8 +446,8 @@ class OutputPage {
 					wfDebug( "$fname: proxy caching with ESI; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$this->mSquidMaxage.', content="ESI/1.0"');
-					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
+					$wgRequest->response()->header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$this->mSquidMaxage.', content="ESI/1.0"');
+					$wgRequest->response()->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
@@ -456,24 +456,24 @@ class OutputPage {
 					wfDebug( "$fname: local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					header( 'Cache-Control: s-maxage='.$this->mSquidMaxage.', must-revalidate, max-age=0' );
+					$wgRequest->response()->header( 'Cache-Control: s-maxage='.$this->mSquidMaxage.', must-revalidate, max-age=0' );
 				}
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page.
 				wfDebug( "$fname: private caching; {$this->mLastModified} **\n", false );
-				header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-				header( "Cache-Control: private, must-revalidate, max-age=0" );
+				$wgRequest->response()->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+				$wgRequest->response()->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
-			if($this->mLastModified) header( "Last-modified: {$this->mLastModified}" );
+			if($this->mLastModified) $wgRequest->response()->header( "Last-modified: {$this->mLastModified}" );
 		} else {
 			wfDebug( "$fname: no caching **\n", false );
 
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
-			header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-			header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
-			header( 'Pragma: no-cache' );
+			$wgRequest->response()->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+			$wgRequest->response()->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
+			$wgRequest->response()->header( 'Pragma: no-cache' );
 		}
 	}
 
@@ -482,7 +482,7 @@ class OutputPage {
 	 * the object, let's actually output it:
 	 */
 	function output() {
-		global $wgUser, $wgOutputEncoding;
+		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgAjaxSearch, $wgScriptPath, $wgServer;
 
@@ -510,7 +510,7 @@ class OutputPage {
 			}
 			if( $this->mRedirectCode == '301') {
 				if( !$wgDebugRedirects ) {
-					header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
+					$wgRequest->response()->header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
 				}
 				$this->mLastModified = wfTimestamp( TS_RFC2822 );
 			}
@@ -523,7 +523,7 @@ class OutputPage {
 				print "<p>Location: <a href=\"$url\">$url</a></p>\n";
 				print "</body>\n</html>\n";
 			} else {
-				header( 'Location: '.$this->mRedirect );
+				$wgRequest->response()->header( 'Location: '.$this->mRedirect );
 			}
 			wfProfileOut( $fname );
 			return;
@@ -580,7 +580,7 @@ class OutputPage {
 			);
 
 			if ( $statusMessage[$this->mStatusCode] )
-				header( 'HTTP/1.1 ' . $this->mStatusCode . ' ' . $statusMessage[$this->mStatusCode] );
+				$wgRequest->response()->header( 'HTTP/1.1 ' . $this->mStatusCode . ' ' . $statusMessage[$this->mStatusCode] );
 		}
 
 		# Buffer output; final headers may depend on later processing
@@ -589,8 +589,8 @@ class OutputPage {
 		# Disable temporary placeholders, so that the skin produces HTML
 		$sk->postParseLinkColour( false );
 
-		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
-		header( 'Content-language: '.$wgContLanguageCode );
+		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
+		$wgRequest->response()->header( 'Content-language: '.$wgContLanguageCode );
 
 		if ($this->mArticleBodyOnly) {
 			$this->out($this->mBodytext);
