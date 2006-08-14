@@ -2073,4 +2073,15 @@ function wfGetCaller( $level = 2 ) {
 	return $caller;
 }
 
+/** Return a string consisting all callers in stack, somewhat useful sometimes for profiling specific points */
+function wfGetAllCallers() {
+	return implode('/', array_map(
+		create_function('$frame',' 
+			return isset( $frame["class"] )?
+				$frame["class"]."::".$frame["function"]:
+				$frame["function"]; 
+			'),
+		array_reverse(debug_backtrace())));
+}
+
 ?>
