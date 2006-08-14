@@ -208,6 +208,7 @@ $magicWords = array(
 	'currentdayname'         => array( 1,    'CURRENTDAYNAME'         ),
 	'currentyear'            => array( 1,    'CURRENTYEAR'            ),
 	'currenttime'            => array( 1,    'CURRENTTIME'            ),
+	'currenthour'            => array( 1,    'CURRENTHOUR'            ),
 	'numberofpages'          => array( 1,    'NUMBEROFPAGES'          ),
 	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES'       ),
 	'numberoffiles'          => array( 1,    'NUMBEROFFILES'          ),

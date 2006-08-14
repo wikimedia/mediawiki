@@ -42,6 +42,7 @@ class MagicWord {
 		'currentdayname',
 		'currentyear',
 		'currenttime',
+		'currenthour',
 		'numberofarticles',
 		'numberoffiles',
 		'sitename',
