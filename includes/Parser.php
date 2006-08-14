@@ -19,6 +19,7 @@ define( 'RLH_FOR_UPDATE', 1 );
 define( 'OT_HTML', 1 );
 define( 'OT_WIKI', 2 );
 define( 'OT_MSG' , 3 );
+define( 'OT_PREPROCESS', 4 );
 
 # Flags for setFunctionHook
 define( 'SFH_NO_HASH', 1 );
@@ -108,6 +109,7 @@ class Parser
 	var $mOptions,      // ParserOptions object
 		$mTitle,        // Title context, used for self-link rendering and similar things
 		$mOutputType,   // Output type, one of the OT_xxx constants
+		$ot,            // Shortcut alias, see setOutputType()
 		$mRevisionId;   // ID to display in {{REVISIONID}} tags
 
 	/**#@-*/
@@ -226,6 +228,17 @@ class Parser
 		wfProfileOut( __METHOD__ );
 	}
 
+	function setOutputType( $ot ) {
+		$this->mOutputType = $ot;
+		// Shortcut alias
+		$this->ot = array(
+			'html' => $ot == OT_HTML,
+			'wiki' => $ot == OT_WIKI,
+			'msg' => $ot == OT_MSG,
+			'pre' => $ot == OT_PREPROCESS,
+		);
+	}
+
 	/**
 	 * Accessor for mUniqPrefix.
 	 *
@@ -268,7 +281,7 @@ class Parser
 		if( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
-		$this->mOutputType = OT_HTML;
+		$this->setOutputType( OT_HTML );
 
 		//$text = $this->strip( $text, $this->mStripState );
 		// VOODOO MAGIC FIX! Sometimes the above segfaults in PHP5.
@@ -369,6 +382,26 @@ class Parser
 		$text = $this->strip( $text, $x );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$x ) );
 		$text = $this->internalParse( $text );
+		wfProfileOut( __METHOD__ );
+		return $text;
+	}
+
+	/**
+	 * Expand templates and variables in the text, producing valid, static wikitext
+	 */
+	function preprocess( $text, $title, $options ) {
+		wfProfileIn( __METHOD__ );
+		$this->clearState();
+		$this->setOutputType( OT_PREPROCESS );
+		$this->mOptions = $options;
+		$this->mTitle = $title;
+		$x =& $this->mStripState;
+		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$x ) );
+		$text = $this->strip( $text, $x );
+		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$x ) );
+		$text = $this->replaceVariables( $text );
+		$text = $this->unstrip( $text, $x );
+		$text = $this->unstripNowiki( $text, $x );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -491,9 +524,7 @@ class Parser
 		wfProfileIn( __METHOD__ );
 		$render = ($this->mOutputType == OT_HTML);
 
-		# Replace any instances of the placeholders
 		$uniq_prefix = $this->mUniqPrefix;
-		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
 		$commentState = array();
 		
 		$elements = array_merge(
@@ -2629,7 +2660,7 @@ class Parser
 		if ( !$argsOnly ) {
 			$braceCallbacks[2] = array( &$this, 'braceSubstitution' );
 		}
-		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI ) {
+		if ( !$this->mOutputType != OT_MSG ) {
 			$braceCallbacks[3] = array( &$this, 'argSubstitution' );
 		}
 		if ( $braceCallbacks ) {
@@ -2740,6 +2771,7 @@ class Parser
 
 		$linestart = '';
 
+			
 		# $part1 is the bit before the first |, and must contain only title characters
 		# $args is a list of arguments, starting from index 0, not including $part1
 
@@ -2764,7 +2796,7 @@ class Parser
 		wfProfileIn( __METHOD__.'-modifiers' );
 		if ( !$found ) {
 			$mwSubst =& MagicWord::get( 'subst' );
-			if ( $mwSubst->matchStartAndRemove( $part1 ) xor ($this->mOutputType == OT_WIKI) ) {
+			if ( $mwSubst->matchStartAndRemove( $part1 ) xor $this->ot['wiki'] ) {
 				# One of two possibilities is true:
 				# 1) Found SUBST but not in the PST phase
 				# 2) Didn't find SUBST and in the PST phase
@@ -2895,7 +2927,7 @@ class Parser
 				}
 
 				if ( !$title->isExternal() ) {
-					if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() && $this->mOutputType != OT_WIKI ) {
+					if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() && $this->ot['html'] ) {
 						$text = SpecialPage::capturePath( $title );
 						if ( is_string( $text ) ) {
 							$found = true;
@@ -2914,13 +2946,13 @@ class Parser
 					}
 
 					# If the title is valid but undisplayable, make a link to it
-					if ( $this->mOutputType == OT_HTML && !$found ) {
+					if ( !$found && ( $this->ot['html'] || $this->ot['pre'] ) ) {
 						$text = '[['.$title->getPrefixedText().']]';
 						$found = true;
 					}
 				} elseif ( $title->isTrans() ) {
 					// Interwiki transclusion
-					if ( $this->mOutputType == OT_HTML && !$forceRawInterwiki ) {
+					if ( $this->ot['html'] && !$forceRawInterwiki ) {
 						$text = $this->interwikiTransclude( $title, 'render' );
 						$isHTML = true;
 						$noparse = true;
@@ -2957,9 +2989,9 @@ class Parser
 
 		# Recursive parsing, escaping and link table handling
 		# Only for HTML output
-		if ( $nowiki && $found && $this->mOutputType == OT_HTML ) {
+		if ( $nowiki && $found && ( $this->ot['html'] || $this->ot['pre'] ) ) {
 			$text = wfEscapeWikiText( $text );
-		} elseif ( ($this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI) && $found ) {
+		} elseif ( !$this->ot['msg'] && $found ) {
 			if ( $noargs ) {
 				$assocArgs = array();
 			} else {
@@ -2998,16 +3030,18 @@ class Parser
 				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
 				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
 
-				if( $this->mOutputType == OT_HTML ) {
+				if( $this->ot['html'] || $this->ot['pre'] ) {
 					# Strip <nowiki>, <pre>, etc.
 					$text = $this->strip( $text, $this->mStripState );
-					$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
+					if ( $this->ot['html'] ) {
+						$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
+					}
 				}
 				$text = $this->replaceVariables( $text, $assocArgs );
 
 				# If the template begins with a table or block-level
 				# element, it should be treated as beginning a new line.
-				if (!$piece['lineStart'] && preg_match('/^({\\||:|;|#|\*)/', $text)) {
+				if (!$piece['lineStart'] && preg_match('/^({\\||:|;|#|\*)/', $text)) /*}*/{ 
 					$text = "\n" . $text;
 				}
 			} elseif ( !$noargs ) {
@@ -3042,7 +3076,7 @@ class Parser
 			} else {
 				# replace ==section headers==
 				# XXX this needs to go away once we have a better parser.
-				if ( $this->mOutputType != OT_WIKI && $replaceHeadings ) {
+				if ( !$this->ot['wiki'] && !$this->ot['pre'] && $replaceHeadings ) {
 					if( !is_null( $title ) )
 						$encodedname = base64_encode($title->getPrefixedDBkey());
 					else
@@ -3166,7 +3200,8 @@ class Parser
 
 		if ( array_key_exists( $arg, $inputArgs ) ) {
 			$text = $inputArgs[$arg];
-		} else if ($this->mOutputType == OT_HTML && null != $matches['parts'] && count($matches['parts']) > 0) {
+		} else if (($this->mOutputType == OT_HTML || $this->mOutputType == OT_PREPROCESS ) && 
+		null != $matches['parts'] && count($matches['parts']) > 0) {
 			$text = $matches['parts'][0];
 		}
 		if ( !$this->incrementIncludeSize( 'arg', strlen( $text ) ) ) {
@@ -3496,7 +3531,7 @@ class Parser
 	function preSaveTransform( $text, &$title, &$user, $options, $clearState = true ) {
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
-		$this->mOutputType = OT_WIKI;
+		$this->setOutputType( OT_WIKI );
 
 		if ( $clearState ) {
 			$this->clearState();
@@ -3669,7 +3704,7 @@ class Parser
 	function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
 		$this->mTitle =& $title;
 		$this->mOptions = $options;
-		$this->mOutputType = $outputType;
+		$this->setOutputType( $outputType );
 		if ( $clearState ) {
 			$this->clearState();
 		}
@@ -3699,7 +3734,7 @@ class Parser
 
 		$this->mTitle = $wgTitle;
 		$this->mOptions = $options;
-		$this->mOutputType = OT_MSG;
+		$this->setOutputType( OT_MSG );
 		$this->clearState();
 		$text = $this->replaceVariables( $text );
 
@@ -4207,11 +4242,11 @@ class Parser
 		$oldOutputType = $this->mOutputType;
 		$oldOptions = $this->mOptions;
 		$this->mOptions = new ParserOptions();
-		$this->mOutputType = OT_WIKI;
+		$this->setOutputType( OT_WIKI );
 
 		$striptext = $this->strip( $text, $striparray, true );
 
-		$this->mOutputType = $oldOutputType;
+		$this->setOutputType( $oldOutputType );
 		$this->mOptions = $oldOptions;
 
 		# now that we can be sure that no pseudo-sections are in the source,
