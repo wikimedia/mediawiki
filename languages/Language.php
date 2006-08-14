@@ -1362,7 +1362,7 @@ class Language {
 				throw new MWException( "Error: Circular fallback reference in language code $code" );
 			}
 			$recursionGuard[$code] = true;
-			$newDeps = self::loadLocalisation( $fallback );
+			$newDeps = self::loadLocalisation( $fallback, $disableCache );
 			unset( $recursionGuard[$code] );
 
 			$secondary = self::$mLocalisationCache[$fallback];
