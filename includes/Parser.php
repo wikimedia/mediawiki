@@ -2398,6 +2398,8 @@ class Parser
 				return $varCache[$index] = $wgContLang->formatNum( date( 'Y', $ts ), true );
 			case 'currenttime':
 				return $varCache[$index] = $wgContLang->time( wfTimestamp( TS_MW, $ts ), false, false );
+			case 'currenthour':
+				return $varCache[$index] = $wgContLang->formatNum( date( 'H', $ts ), true );
 			case 'currentweek':
 				// @bug 4594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
