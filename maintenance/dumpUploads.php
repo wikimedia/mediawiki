@@ -13,6 +13,10 @@ class UploadDumper {
 		if( isset( $args['help'] ) ) {
 			$this->mAction = 'help';
 		}
+		
+		if( isset( $args['base'] ) ) {
+			$this->mBasePath = $args['base'];
+		}
 	}
 	
 	function run() {
@@ -29,11 +33,13 @@ Usage:
 php dumpUploads.php [options] > list-o-files.txt
 
 Options:
+--base=<path>  Set base relative path instead of wiki include root
+
+FIXME: other options not implemented yet ;)
+
 --local        List all local files, used or not. No shared files included.
 --used         Skip local images that are not used
 --shared       Include images used from shared repository
-
-FIXME: options not implemented yet ;)
 
 END;
 	}
