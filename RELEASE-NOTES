@@ -128,6 +128,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Revamped Special:Imagelist
 * (bug 7000) updated MessagesPl.php
 * (bug 6946) Fix unexpected behavior change with GET hits to Special:Export
+* (bug 1866) Improve navigation on Special:Listusers; user now a starting
+  point as with Special:Allpages, rather than a pure limit.
 
 
 == Languages updated ==
