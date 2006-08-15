@@ -131,6 +131,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 1866) Improve navigation on Special:Listusers; user now a starting
   point as with Special:Allpages, rather than a pure limit.
 * Clean up tab order on Special:Blockip
+* (bug 5969) Clean up tab order on Special:Userlogin forms
 
 
 == Languages updated ==
