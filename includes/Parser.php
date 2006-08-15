@@ -387,9 +387,10 @@ class Parser
 	}
 
 	/**
-	 * Expand templates and variables in the text, producing valid, static wikitext
+	 * Expand templates and variables in the text, producing valid, static wikitext.
+	 * Also removes comments.
 	 */
-	function preprocess( $text, $title, $options ) {
+	function preprocess( $text, $title, $options, $removeComments = true ) {
 		wfProfileIn( __METHOD__ );
 		$this->clearState();
 		$this->setOutputType( OT_PREPROCESS );
@@ -399,6 +400,9 @@ class Parser
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$x ) );
 		$text = $this->strip( $text, $x );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$x ) );
+		if ( $removeComments ) {
+			$text = Sanitizer::removeHTMLcomments( $text );
+		}
 		$text = $this->replaceVariables( $text );
 		$text = $this->unstrip( $text, $x );
 		$text = $this->unstripNowiki( $text, $x );
