@@ -71,7 +71,7 @@ function wfSpecialExport( $page = '' ) {
 		}
 	} else {
 		// Default to current-only for GET requests
-		$page = $wgRequest->getText( 'pages' );
+		$page = $wgRequest->getText( 'pages', $page );
 		$historyCheck = $wgRequest->getCheck( 'history' );
 		if( $historyCheck ) {
 			$history = MW_EXPORT_FULL;
