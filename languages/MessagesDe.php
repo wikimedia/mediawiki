@@ -246,6 +246,10 @@ $messages = array(
 "projectpage" => "Meta-Text",
 "userpage" => "Benutzerseite",
 "imagepage" => "Bildseite",
+'mediawikipage'		=> 'Artikelseite anzeigen',
+'templatepage'		=> 'Vorlagensenseite anzeigen',
+'viewhelppage'		=> 'Hilfeseite anzeigen',
+'categorypage'		=> 'Kategorieseite anzeigen',
 "viewtalkpage" => "Diskussion",
 "otherlanguages" => "Andere Sprachen",
 "redirectedfrom" => "(Weitergeleitet von $1)",
@@ -258,7 +262,11 @@ $messages = array(
 'jumpto'		=> 'Wechseln zu:',
 'jumptonavigation'	=> 'Navigation',
 'jumptosearch'		=> 'Suche',
-'badaccess'	=> 'Keine ausreichenden Rechte.',
+'badaccess'		=> 'Keine ausreichenden Rechte.',
+'badaccess-group0'	=> 'Sie haben nicht die erforderliche Berechtigung für diese Aktion.',
+'badaccess-group1'	=> 'Diese Aktion ist beschränkt auf Benutzer, die der Gruppe $1 angehören.',
+'badaccess-group2'	=> 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen $1 angehören.',
+'badaccess-groups'	=> 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen $1 angehören.',
 'versionrequired'	=> 'Version $1 von MediaWiki ist erforderlich',
 'versionrequiredtext'	=> 'Version $1 von MediaWiki ist erforderlich um diese Seite zu nutzen. Siehe [[{{ns:special}}:Version]]',
 'nbytes'		=> '$1 {{PLURAL:$1|Byte|Bytes}}',
@@ -815,6 +823,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 'bysize'		=> 'nach Größe',
 "imgdelete"		=> "Löschen",
 "imgdesc"		=> "Beschreibung",
+'imgfile'		=> 'Datei',
 'imglegend'		=> 'Legende: (Beschreibung) = Zeige/Bearbeite Dateibeschreibung.',
 'imghistory'		=> 'Dateiversionen',
 "revertimg"		=> "Zurücksetzen",
@@ -830,6 +839,13 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 'noimage'			=> 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 'noimage-linktext'		=> 'hochladen',
 'uploadnewversion-linktext'	=> 'Eine neue Version dieser Datei hochladen',
+'imagelist_date'	=> 'Datum',
+'imagelist_name'	=> 'Name',
+'imagelist_user'	=> 'User',
+'imagelist_size'	=> 'Größe (Byte)',
+'imagelist_description'	=> 'Beschreibung',
+'imagelist_search_for'	=> 'Suche nach Datei:',
+
 
 # List redirects
 'listredirects' => 'Weiterleitungsliste',
@@ -860,7 +876,7 @@ Daraus ergeben sich \'\'\'$5\'\'\' Bearbeitungen pro Seite und \'\'\'$6\'\'\' Se
 
 Länge der „Job queue“: \'\'\'$7\'\'\'',
 'userstatstext'		=> 'Es gibt \'\'\'$1\'\'\' registrierte [[{{ns:special}}:Listusers|Benutzer]].
-Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
+Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 'statistics-mostpopular'	=> 'Meist besuchte Seiten',
 
 # Maintenance Page
@@ -934,6 +950,9 @@ Davon haben \'\'\'$2\'\'\' (=$4%) Administrator-Rechte (siehe $3).',
 'allpagesnext'	=> 'Nächste',
 'allpagessubmit'	=> 'Zeige',
 'allpagesbadtitle'	=> 'Der eingegebene Seitenname ist ungültig: Er hat entweder ein vorangestelltes Sprach-, ein Interwiki-Kürzel oder enthält ein oder mehrere Zeichen, welche in Seitennamen nicht verwendet werden dürfen.',
+
+# Special:Listusers
+'listusersfrom'		=> 'Zeige Benutzer beginnend mit:',
 
 # Email this user
 #
@@ -1510,6 +1529,13 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'metadata_help'		=> 'Metadaten:',
 'metadata-expand' => 'Erweiterte Details einblenden',
 'metadata-collapse'	=> 'Erweiterte Details ausblenden',
+'metadata-fields'	=> 'Die folgenden EXIF-Metadaten in dieser MediaWiki-Nachricht werden auf Bildbeschreibungsseiten angezeigt. Weitere EXIF-Metadaten werden standardmäßig ausgeblendet.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # Exif tags
 'exif-aperturevalue'		=> 'Blendenwert',
@@ -1896,6 +1922,17 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 'imgmultigo' => 'OK',
 'imgmultigotopre' => 'Gehe zu Seite',
 'imgmultigotopost' => '',
+
+# Table pager
+'ascending_abbrev'	=> 'auf',
+'descending_abbrev'	=> 'ab',
+'table_pager_next'	=> 'Nächste Seite',
+'table_pager_prev'	=> 'Vorherige Seite',
+'table_pager_first'	=> 'Erste Seite',
+'table_pager_last'	=> 'Letzte Seite',
+'table_pager_limit'	=> 'Zeige $1 Einträge pro Seite',
+'table_pager_limit_submit'	=> 'Los',
+'table_pager_empty'	=> 'Keine Ergebnisse',
 
 );
 
