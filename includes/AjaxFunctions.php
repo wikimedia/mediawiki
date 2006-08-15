@@ -72,13 +72,19 @@ function code2utf($num){
 
 class AjaxCachePolicy {
 	var $policy;
+	var $vary;
 
-	function AjaxCachePolicy( $policy = null ) {
+	function AjaxCachePolicy( $policy = null, $vary = null ) {
 		$this->policy = $policy;
+		$this->vary = $vary;
 	}
 
 	function setPolicy( $policy ) {
 		$this->policy = $policy;
+	}
+
+	function setVary( $vary ) {
+		$this->vary = $vary;
 	}
 
 	function writeHeader() {
@@ -92,6 +98,10 @@ class AjaxCachePolicy {
 		} else {
 			header ("Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->policy ) . " GMT");
 			header ("Cache-Control: s-max-age={$this->policy},public,max-age={$this->policy}");
+		}
+		
+		if ( $this->vary ) {
+			header ( "Vary: " . $this->vary );
 		}
 	}
 }
