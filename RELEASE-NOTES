@@ -127,6 +127,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6971) Fix regression in Special:Export history view
 * Revamped Special:Imagelist
 * (bug 7000) updated MessagesPl.php
+* (bug 6946) Fix unexpected behavior change with GET hits to Special:Export
 
 
 == Languages updated ==

@@ -39,7 +39,7 @@ function wfSpecialExport( $page = '' ) {
 		'offset' => false,
 		'limit' => $maxLimit,
 	);
-	if( $wgRequest->getVal( 'action' ) == 'submit') {
+	if( $wgRequest->wasPosted() ) {
 		$page = $wgRequest->getText( 'pages' );
 		$curonly = $wgRequest->getCheck( 'curonly' );
 		$rawOffset = $wgRequest->getVal( 'offset' );
@@ -68,6 +68,15 @@ function wfSpecialExport( $page = '' ) {
 			if ( strtolower( $dir ) == 'desc' ) {
 				$history['dir'] = 'desc';
 			}
+		}
+	} else {
+		// Default to current-only for GET requests
+		$page = $wgRequest->getText( 'pages' );
+		$historyCheck = $wgRequest->getCheck( 'history' );
+		if( $historyCheck ) {
+			$history = MW_EXPORT_FULL;
+		} else {
+			$history = MW_EXPORT_CURRENT;
 		}
 	}
 	if( !$wgExportAllowHistory ) {
