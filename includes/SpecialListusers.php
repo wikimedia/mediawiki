@@ -93,7 +93,7 @@ class ListUsersPage extends QueryPage {
 		$out .= wfCloseElement( 'select' ) . ' ';;# . wfElement( 'br' );
 
 		# Username field
-		$out .= wfElement( 'label', array( 'for' => 'username' ), wfMsg( 'specialloguserlabel' ) ) . ' ';
+		$out .= wfElement( 'label', array( 'for' => 'username' ), wfMsg( 'listusersfrom' ) ) . ' ';
 		$out .= wfElement( 'input', array( 'type' => 'text', 'id' => 'username', 'name' => 'username',
 							'value' => $this->requestedUser ) ) . ' ';
 
@@ -138,19 +138,19 @@ class ListUsersPage extends QueryPage {
 	}
 
 	function userQueryWhere( &$dbr ) {
-		$conds = $this->userQueryConditions();
+		$conds = $this->userQueryConditions( $dbr );
 		return empty( $conds )
 			? ""
 			: "WHERE " . $dbr->makeList( $conds, LIST_AND );
 	}
 
-	function userQueryConditions() {
+	function userQueryConditions( $dbr ) {
 		$conds = array();
 		if( $this->requestedGroup != '' ) {
 			$conds['ug_group'] = $this->requestedGroup;
 		}
 		if( $this->requestedUser != '' ) {
-			$conds['user_name'] = $this->requestedUser;
+			$conds[] = 'user_name >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 		return $conds;
 	}
