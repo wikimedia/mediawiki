@@ -390,7 +390,7 @@ class Parser
 	 * Expand templates and variables in the text, producing valid, static wikitext.
 	 * Also removes comments.
 	 */
-	function preprocess( $text, $title, $options, $removeComments = true ) {
+	function preprocess( $text, $title, $options ) {
 		wfProfileIn( __METHOD__ );
 		$this->clearState();
 		$this->setOutputType( OT_PREPROCESS );
@@ -400,7 +400,7 @@ class Parser
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$x ) );
 		$text = $this->strip( $text, $x );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$x ) );
-		if ( $removeComments ) {
+		if ( $this->mOptions->getRemoveComments() ) {
 			$text = Sanitizer::removeHTMLcomments( $text );
 		}
 		$text = $this->replaceVariables( $text );
@@ -3041,6 +3041,8 @@ class Parser
 					$text = $this->strip( $text, $this->mStripState );
 					if ( $this->ot['html'] ) {
 						$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
+					} elseif ( $this->ot['pre'] && $this->mOptions->getRemoveComments() ) {
+						$text = Sanitizer::removeHTMLcomments( $text );
 					}
 				}
 				$text = $this->replaceVariables( $text, $assocArgs );
@@ -4518,6 +4520,7 @@ class ParserOptions
 	var $mTidy;                      # Ask for tidy cleanup
 	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
 	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
+	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
 
 	var $mUser;                      # Stored user object, just used to initialise the skin
 
@@ -4532,6 +4535,7 @@ class ParserOptions
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
 	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
+	function getRemoveComments()                { return $this->mRemoveComments; }
 
 	function &getSkin() {
 		if ( !isset( $this->mSkin ) ) {
@@ -4560,6 +4564,7 @@ class ParserOptions
 	function setSkin( &$x ) { $this->mSkin =& $x; }
 	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
 	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
+	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
 
 	function ParserOptions( $user = null ) {
 		$this->initialiseFromUser( $user );
@@ -4606,6 +4611,7 @@ class ParserOptions
 		$this->mTidy = false;
 		$this->mInterfaceMessage = false;
 		$this->mMaxIncludeSize = $wgMaxArticleSize * 1024;
+		$this->mRemoveComments = true;
 		wfProfileOut( $fname );
 	}
 }
