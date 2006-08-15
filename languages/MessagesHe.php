@@ -1099,7 +1099,7 @@ $messages = array(
 
 # Special:Allpages
 "nextpage"          => "הדף הבא ($1)",
-"allpagesfrom"      => "הראה דפים החל מ:",
+"allpagesfrom"      => "הצג דפים החל מ:",
 "allarticles"       => "כל הדפים",
 "allinnamespace"    => "כל הדפים (מרחב שם $1)",
 "allnotinnamespace" => "כל הדפים (שלא במרחב השם $1)",
@@ -1108,6 +1108,9 @@ $messages = array(
 "allpagessubmit"    => "עבור",
 "allpagesprefix"    => "הדפים ששמם מתחיל ב…:",
 "allpagesbadtitle"  => "כותרת הדף המבוקש הייתה לא־חוקית, ריקה, קישור ויקי פנימי, או פנים שפה שגוי. ייתכן שהיא כוללת תו אחד או יותר האסורים לשימוש בכותרות.",
+
+# Special:Listusers
+"listusersfrom" => "הצג משתמשים החל מ:",
 
 # Email this user
 "mailnologin"     => "אין כתובת לשליחה",
