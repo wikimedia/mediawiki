@@ -88,16 +88,41 @@ class AjaxCachePolicy {
 	}
 
 	function writeHeader() {
+		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
+		
 		header ("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-		if ( is_null( $this->policy ) ) {
-			// Bust cache in the head
+		
+		if ( $this->policy ) {
+			
+			# If squid caches are configured, tell them to cache the response, 
+			# and tell the client to always check with the squid. Otherwise,
+			# tell the client to use a cached copy, without a way to purge it.
+			
+			if( $wgUseSquid ) {
+				
+				# Expect explicite purge of the proxy cache, but require end user agents
+				# to revalidate against the proxy on each visit.
+				# Surrogate-Control controls our Squid, Cache-Control downstream caches
+				
+				if ( $wgUseESI ) {
+					header( 'Surrogate-Control: max-age='.$this->policy.', content="ESI/1.0"');
+					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
+				} else {
+					header( 'Cache-Control: s-maxage='.$this->policy.', must-revalidate, max-age=0' );
+				}
+				
+			} else {
+			
+				# Let the client do the caching. Cache is not purged.
+				header ("Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->policy ) . " GMT");
+				header ("Cache-Control: s-max-age={$this->policy},public,max-age={$this->policy}");
+			}
+			
+		} else {
+			# always expired, always modified
 			header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    // Date in the past
-			// always modified
 			header ("Cache-Control: no-cache, must-revalidate");  // HTTP/1.1
 			header ("Pragma: no-cache");                          // HTTP/1.0
-		} else {
-			header ("Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->policy ) . " GMT");
-			header ("Cache-Control: s-max-age={$this->policy},public,max-age={$this->policy}");
 		}
 		
 		if ( $this->vary ) {
