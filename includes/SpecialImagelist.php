@@ -153,6 +153,17 @@ class ImageListPager extends TablePager {
 		return $s;
 	}
 
+	function getTableClass() {
+		return 'imagelist ' . parent::getTableClass();
+	}
+
+	function getNavClass() {
+		return 'imagelist_nav ' . parent::getNavClass();
+	}
+
+	function getSortHeaderClass() {
+		return 'imagelist_sort ' . parent::getSortHeaderClass();
+	}
 }
 
 ?>

@@ -442,7 +442,10 @@ abstract class TablePager extends IndexPager {
 
 	function getStartBody() {
 		global $wgStylePath;
-		$s = "<table border='1' class=\"TablePager\"><thead><tr>\n";
+		$tableClass = htmlspecialchars( $this->getTableClass() );
+		$sortClass = htmlspecialchars( $this->getSortHeaderClass() );
+		
+		$s = "<table border='1' class=\"$tableClass\"><thead><tr>\n";
 		$fields = $this->getFieldNames();
 		foreach ( $fields as $field => $name ) {
 			if ( strval( $name ) == '' ) {
@@ -469,7 +472,7 @@ abstract class TablePager extends IndexPager {
 					$link = $this->makeLink( 
 						"<img width=\"12\" height=\"12\" alt=\"$alt\" src=\"$image\" />" .
 						htmlspecialchars( $name ), $query );
-					$s .= "<th class=\"TablePager_sort\">$link</th>\n";
+					$s .= "<th class=\"$sortClass\">$link</th>\n";
 				} else {
 					$s .= '<th>' . $this->makeLink( htmlspecialchars( $name ), $query ) . "</th>\n";
 				}
@@ -511,6 +514,18 @@ abstract class TablePager extends IndexPager {
 		return $this->mSort;
 	}
 
+	function getTableClass() {
+		return 'TablePager';
+	}
+
+	function getNavClass() {
+		return 'TablePager_nav';
+	}
+
+	function getSortHeaderClass() {
+		return 'TablePager_sort';
+	}
+
 	/**
 	 * A navigation bar with images
 	 */
@@ -545,7 +560,8 @@ abstract class TablePager extends IndexPager {
 		}
 		$links = $this->getPagingLinks( $linkTexts, $disabledTexts );
 
-		$s = '<table class="TablePager_nav" align="center" cellpadding="3"><tr>';
+		$navClass = htmlspecialchars( $this->getNavClass() );
+		$s = "<table class=\"$navClass\" align=\"center\" cellpadding=\"3\"><tr>";
 		$cellAttrs = 'valign="top" align="center" width="' . 100 / count( $links ) . '%"';
 		foreach ( $labels as $type => $label ) {
 			$s .= "<td $cellAttrs>{$links[$type]}</td>\n";
