@@ -134,6 +134,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   point as with Special:Allpages, rather than a pure limit.
 * Clean up tab order on Special:Blockip
 * (bug 5969) Clean up tab order on Special:Userlogin forms
+* (bug 3512) namespaceDupes now handles spaces and initial caps properly
 
 
 == Languages updated ==
