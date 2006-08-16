@@ -687,7 +687,7 @@ Daugiau informacijos puslapyje [[{{ns:project}}:Puslapių rakinimas|Puslapių ra
 'rcnote' => 'Pateikiamas <strong>$1</strong> paskutinių pakeitimų sąrašas per paskutiniąsias <strong>$2</strong> dienas(ų).',
 'rcnotefrom' => 'Žemiau yra pakeitimai pradedant <b>$2</b> (rodoma ne daugiau <b>$1</b> pakeitimų).',
 'readonly' => 'Duomenų bazė užrakinta',
-'readonlytext' => 'Enciklopedijuos duomenų bazė šiuo metu yra užrakinta, todėl
+'readonlytext' => 'Enciklopedijos duomenų bazė šiuo metu yra užrakinta, todėl
 negalima rašyti naujų straipsnių ar redaguoti senų,
 paprastai duomenų bazė rakinama techninei profilaktikai,
 taigi vėliau bus atrakinta ir enciklopedija grįš į senas vėžes.
