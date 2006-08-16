@@ -256,6 +256,7 @@ class Database {
 	protected $mLBInfo = array();
 	protected $mCascadingDeletes = false;
 	protected $mCleanupTriggers = false;
+	protected $mStrictIPs = false;
 
 #------------------------------------------------------------------------------
 # Accessors
@@ -358,6 +359,14 @@ class Database {
 	 */
 	function cleanupTriggers() {
 		return $this->mCleanupTriggers;
+	}
+
+	/**
+	 * Returns true if this database is strict about what can be put into an IP field.
+	 * Specifically, it uses a NULL value instead of an empty string.
+	 */
+	function strictIPs() {
+		return $this->mStrictIPs;
 	}
 
 	/**#@+
