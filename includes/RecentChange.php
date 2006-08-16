@@ -108,6 +108,11 @@ class RecentChange
 			$this->mAttribs['rc_ip'] = '';
 		}
 
+		## If our database is strict about IP addresses, use NULL instead of an empty string
+		if ( $dbw->strictIPs() and $this->mAttribs['rc_ip'] == '' ) {
+			unset( $this->mAttribs['rc_ip'] );
+		}
+
 		# Fixup database timestamps
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp($this->mAttribs['rc_timestamp']);
 		$this->mAttribs['rc_cur_time'] = $dbw->timestamp($this->mAttribs['rc_cur_time']);
