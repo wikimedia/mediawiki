@@ -160,7 +160,7 @@ $MYSQLSOCKET and $conninfo .= "\n--   socket    $MYSQLSOCKET";
 print qq{
 -- Dump of MySQL Mediawiki tables for import into a Postgres Mediawiki schema
 -- Performed by the program: $0
--- Version: $VERSION (subversion \$LastChangedRevision\$)
+-- Version: $VERSION (subversion }.q{$LastChangedRevision$}.qq{)
 -- Author: Greg Sabino Mullane <greg\@turnstep.com> Comments welcome
 --
 -- This file was created: $now
