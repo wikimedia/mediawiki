@@ -132,7 +132,6 @@ Galima sumažinti rezultatų patikslinant veiksmo rūšį, vartotoją ar susijus
 'allpagessubmit' => 'Tinka',
 'alphaindexline' => 'Nuo $1 iki $2',
 'already_bureaucrat' => 'Vartotojas jau yra biurokratas',
-'already_steward' => 'Vartotojas jau yra ūkvedys',
 'already_sysop' => 'Vartotojas jau yra administratorius',
 'alreadyloggedin' => '<strong>Jūs jau esate prisijungęs kaip vartotojas User $1!</strong><br />',
 'alreadyrolled' => 'Nepavyko atmesti paskutinio [[Vartotojas:$2|$2]] ([[Vartotojo aptarimas:$2|aptarimas]]) daryto straipsnio [[$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą.

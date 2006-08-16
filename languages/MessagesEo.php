@@ -556,11 +556,9 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'group'                 => 'Grupo:',
 'group-sysop'           => 'Sisopoj',
 'group-bureaucrat'      => 'Burokratoj',
-'group-steward'         => 'Stevardoj',
 'group-all'             => '(ĉiuj)',
 'group-sysop-member'    => 'Sisopo',
 'group-bureaucrat-member'=> 'Burokrato',
-'group-steward-member'  => 'Stevardo',
 'grouppage-bureaucrat'  => 'Project:Burokratoj',
 'changes'               => 'ŝanĝoj',
 'recentchanges'         => 'Lastaj ŝanĝoj',
@@ -1000,7 +998,6 @@ Bonvlolu tajpi la nomon de la uzanto en la skatoleton kaj premu la butonon por i
 'makesysopok'           => '<b>Uzanto "$1" nun estas administranto</b>',
 'makesysopfail'         => '<b>Uzanto "$1" ne povis esti admnistrantigita. (Ĉu vi ĝuste tajis ties nomon ?)</b>',
 'setbureaucratflag'     => 'Aldonu burokratan markilon',
-'setstewardflag'        => 'Aldonu stivardan markilon',
 'rightslogtext'         => 'Ĉi tio estas loglibro de uzulaj rajtŝanĝoj.',
 'rightslogentry'        => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
 'rights'                => 'Rajtoj:',
@@ -1010,7 +1007,6 @@ Bonvlolu tajpi la nomon de la uzanto en la skatoleton kaj premu la butonon por i
 'makesysop'             => 'Igu uzanton administranto',
 'already_sysop'         => 'Tiu ĉi uzanto jam estas administranto.',
 'already_bureaucrat'    => 'Tiu ĉi uzanto jam estas burokrato',
-'already_steward'       => 'Tiu ĉi uzanto jam estas stevardo.',
 'movepage'              => 'Movu paĝon',
 'movepagetext'          => 'Per la jena formulo vi povas ŝanĝi la nomon de iu paĝo, kunportante
 ĝian historion de redaktoj je la nova nomo.

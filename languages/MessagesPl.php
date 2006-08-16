@@ -660,13 +660,11 @@ liczba znalezionych artykułów: $3.',
 'group-bot' => 'Boty',
 'group-sysop' => 'Administratorzy',
 'group-bureaucrat' => 'Biurokraci',
-'group-steward' => 'Zarządcy',
 'group-all' => '(wszyscy)',
 
 'group-bot-member' => 'Bot',
 'group-sysop-member' => 'Administrator',
 'group-bureaucrat-member' => 'Biurokrata',
-'group-steward-member' => 'Zarządca',
 
 'grouppage-bot' => '{{ns:Project}}:Boty',
 'grouppage-sysop' => '{{ns:Project}}:Administratorzy',
@@ -1176,7 +1174,6 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'makesysopok' => '<b>Użytkownik "$1" otrzymał uprawnienia administratora</b>',
 'makesysopfail' => '<b>Użytkownik "$1" nie otrzymał uprawnienień administratora. (Czy wprowadziłeś poprawną nazwę użytkownika?)</b>',
 'setbureaucratflag' => 'Ustaw status biurokraty',
-'setstewardflag' => 'Ustaw status zarządcy',
 'rightslog' => 'Uprawnienia',
 'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
 'rightslogentry' => 'zmienił uprawnienia użytkownika $1 z "$2" na "$3"',
@@ -1187,7 +1184,6 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'makesysop' => 'Przyznaj użytkownikowi uprawnienia administratora',
 'already_sysop' => 'Ten użytkownik jest już administratorem',
 'already_bureaucrat' => 'Ten użytkownik jest już biurokratą',
-'already_steward' => 'Ten użytkownik jest już zarządcą',
 'rightsnone' => '(podstawowe)',
 
 # Move page

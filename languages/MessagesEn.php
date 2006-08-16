@@ -1048,13 +1048,11 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'group-bot'               => 'Bots',
 'group-sysop'             => 'Sysops',
 'group-bureaucrat'        => 'Bureaucrats',
-'group-steward'           => 'Stewards',
 'group-all'               => '(all)',
 
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Sysop',
 'group-bureaucrat-member' => 'Bureaucrat',
-'group-steward-member'    => 'Steward',
 
 'grouppage-bot' => '{{ns:project}}:Bots',
 'grouppage-sysop' => '{{ns:project}}:Administrators',
@@ -1658,7 +1656,6 @@ Type the name of the user in the box and press the button to make the user an ad
 'makesysopok'		=> "<b>User \"$1\" is now a sysop</b>",
 'makesysopfail'		=> "<b>User \"$1\" could not be made into a sysop. (Did you enter the name correctly?)</b>",
 'setbureaucratflag' => 'Set bureaucrat flag',
-'setstewardflag'    => 'Set steward flag',
 'rightslog'		=> 'User rights log',
 'rightslogtext'		=> 'This is a log of changes to user rights.',
 'rightslogentry'	=> 'changed group membership for $1 from $2 to $3',
@@ -1669,7 +1666,6 @@ Type the name of the user in the box and press the button to make the user an ad
 'makesysop'         => 'Make a user into a sysop',
 'already_sysop'     => 'This user is already an administrator',
 'already_bureaucrat' => 'This user is already a bureaucrat',
-'already_steward'   => 'This user is already a steward',
 'rightsnone' 		=> '(none)',
 
 # Move page

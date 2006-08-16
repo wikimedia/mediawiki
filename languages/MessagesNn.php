@@ -1079,7 +1079,6 @@ Dersom du er feilaktig blokkert kan http://www.sorbs.net/faq/retest.shtml vera t
 'makesysopok'		=> '<b>Brukaren «$1» er no administrator</b>',
 'makesysopfail'		=> '<b>Brukaren «$1» kunne ikkje gjerast om til administrator. (Skreiv du brukarnamnet rett?)</b>',
 'setbureaucratflag'     => 'Gje byråkrat-tilgang',
-'setstewardflag'        => 'Gje stuert-tilgang',
 'rightslogtext'         => 'Dette er ein logg over endringar av brukartilgang.',
 'rights'		=> 'Tilgang:',
 'set_user_rights'	=> 'Set brukartilgang',
@@ -1088,7 +1087,6 @@ Dersom du er feilaktig blokkert kan http://www.sorbs.net/faq/retest.shtml vera t
 'makesysop'             => 'Gje brukar administratortilgang',
 'already_sysop'         => 'Denne brukaren har allereie administratortilgang',
 'already_bureaucrat'    => 'Denne brukaren har allereie byråkrat-tilgang',
-'already_steward'       => 'Denne brukaren har allereie stuert-tilgang',
 
 # Move page
 #

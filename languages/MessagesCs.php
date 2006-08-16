@@ -723,13 +723,11 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'group-bot'               => 'Boti',
 'group-sysop'             => 'Správci',
 'group-bureaucrat'        => 'Byrokraté',
-'group-steward'           => 'Stevardi',
 'group-all'               => '(všichni)',
 
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Správce',
 'group-bureaucrat-member' => 'Byrokrat',
-'group-steward-member'    => 'Stevard',
 
 'grouppage-bot' => '{{ns:Project}}:Boti',
 'grouppage-sysop' => '{{ns:Project}}:Správci',
@@ -1246,7 +1244,6 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'makesysopok'		=> '<b>Uživatel „$1“ nyní patří mezi správce</b>',
 'makesysopfail'		=> '<b>Uživatel „$1“ nemůže být učiněn správcem. (Vložili jste jeho jméno správně?)</b>',
 'setbureaucratflag' => 'Nastavit příznak byrokrata',
-'setstewardflag'    => 'Nastavit příznak stevarda',
 'rightslogtext'		=> 'Toto je záznam změn uživatelských oprávnění.',
 'rightslog'		=> 'Kniha práv uživatelů',
 'rightslogtext'		=> 'Toto je záznam změn uživatelských práv.',
@@ -1258,7 +1255,6 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'makesysop'         => 'Učinit uživatele správcem',
 'already_sysop'     => 'Tento uživatel už je správce.',
 'already_bureaucrat' => 'Tento uživatel už je byrokrat.',
-'already_steward'   => 'Tento uživatel už je stevard.',
 'rightsnone' => '(žádné)',
 
 # Move page

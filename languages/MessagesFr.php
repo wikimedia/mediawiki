@@ -1142,7 +1142,6 @@ Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donne
 'makesysopok'		=> '<b>L\'utilisateur « $1 » est désormais administrateur.</b>',
 'makesysopfail'		=> '<b>L\'utilisateur « $1 » ne peut être converti en adminitrateur. (Avez vous entré le nom correctement?)</b>',
 'setbureaucratflag' => 'Ajouter le statut de Bureaucrate',
-'setstewardflag'    => 'Ajouter le statut de Steward',
 'rightslog'		=> 'Journal des droits',
 'rightslogtext'		=> 'Ceci est un journal des modifications de statut d\'utilisateur..',
 'rightslogentry'	=> 'Droits de l\'utilisateur « $1 » de $2 à $3',
@@ -1153,7 +1152,6 @@ Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donne
 'makesysop'         => 'Donner les droits d\'administrateur à un utilisateur',
 'already_sysop'     => 'Cet utilisateur est déjà un administrateur',
 'already_bureaucrat' => 'Cet utilisateur est déjà un bureaucrate',
-'already_steward'   => 'Cet utilisateur est déjà un steward',
 'rightsnone' 		=> '(aucun)',
 
 # Move page

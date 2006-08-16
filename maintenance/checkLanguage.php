@@ -21,6 +21,11 @@ function checkLanguage( $code ) {
 	$translatableMessagesNumber = count( $wgLanguages->getTranslatableMessages() );
 	$localMessagesNumber = count( $wgLanguages->getMessagesFor( $code ) );
 
+	# Skip the checks if specified
+	if ( $wgDisplayLevel == 0 ) {
+		return;
+	}
+
 	# Untranslated messages
 	if ( in_array( 'untranslated', $wgChecks ) ) {
 		$untranslatedMessages = $wgLanguages->getUntranslatedMessages( $code );
@@ -98,6 +103,7 @@ if ( isset( $options['help'] ) ) {
 	echo "\t* xhtml: Messages which are not well-formed XHTML.";
 	echo "\t* chars: Messages with hidden characters.";
 	echo "Display levels (default: 2):\n";
+	echo "\t* 0: Skip the checks (useful for checking syntax).";
 	echo "\t* 1: Show only the stub headers and number of wrong messages, without list of messages.";
 	echo "\t* 2: Show only the headers and the message keys, without the message values.";
 	echo "\t* 3: Show both the headers and the complete messages, with both keys and values.";
@@ -109,12 +115,6 @@ if ( isset( $options['lang'] ) ) {
 	$wgCode = $options['lang'];
 } else {
 	$wgCode = $wgContLang->getCode();
-}
-
-# Can't check English
-if ( $wgCode == 'en' ) {
-	echo "Current selected language is English, which cannot be checked.\n";
-	exit();
 }
 
 # Get the display level
@@ -146,7 +146,14 @@ if ( $wgCode == 'all' ) {
 		}
 	}
 } else {
-	checkLanguage( $wgCode );
+	# Can't check English
+	if ( $wgCode == 'en' ) {
+		echo "Current selected language is English, which cannot be checked.\n";
+	} else if ( $wgCode == 'enRTL' ) {
+		echo "Current selected language is RTL English, which cannot be checked.\n";
+	} else {
+		checkLanguage( $wgCode );
+	}
 }
 
 ?>

@@ -64,7 +64,6 @@ $linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';
 # NOTE:
 # sysop = manaedjeu
 # bureaucrat = mwaisse-manaedjeu
-# steward = mwaisse-manaedjeu tot avå
 #
 
 $messages = array(
@@ -711,13 +710,11 @@ Les groupes nén tchoezis èn seront nén candjîs. Vos ploz distchoezi on group
 'group-bot'               => 'Robots',
 'group-sysop'             => 'Manaedjeus',
 'group-bureaucrat'        => 'Mwaisse-manaedjeus',
-'group-steward'           => 'Mwaisse-manaedjeus tot avå',
 'group-all'               => '(tertos)',
 
 'group-bot-member'        => 'Robot',
 'group-sysop-member'      => 'Manaedjeu',
 'group-bureaucrat-member' => 'Mwaisse-manaedjeu',
-'group-steward-member'    => 'Mwaisse-manaedjeu tot avå',
 
 'grouppage-bot' => '{{ns:project}}:Robots',
 'grouppage-sysop' => '{{ns:project}}:Manaedjeus',
@@ -1249,7 +1246,6 @@ Tapez l\' no d\' l\' uzeu dins l\' boesse di tecse poy clitchîz sol boton po nd
 'makesysopok' => '<b>Asteure l\' uzeu «$1» a l\' livea d\' manaedjeu</b>',
 'makesysopfail' => '<b>L\' uzeu «$1» èn pout nén esse fwait on manaedjeu. (Avoz vs tapé l\' no bén comifåt?)</b>',
 'setbureaucratflag' => 'Mete li drapea mwaisse-manaedjeu',
-'setstewardflag'    => 'Mete li drapea mwaisse-manaedjeu po tos les wikis',
 'rightslog' => 'Djournå des droets des uzeus',
 'rightslogtext' => 'Çouchal, c\' est on djournå des candjmints des droets des uzeus.',
 'rightslogentry' => 'l\' uzeu «$1» a stî candjî do groupe «$2» viè «$3»',
@@ -1260,7 +1256,6 @@ Tapez l\' no d\' l\' uzeu dins l\' boesse di tecse poy clitchîz sol boton po nd
 'makesysop' => 'Diner a èn uzeu on livea di manaedjeu',
 'already_sysop' => 'Cist uzeu ci a ddja l\' livea di manaedjeu',
 'already_bureaucrat' => 'Cist uzeu ci a ddja l\' livea di mwaisse-manaedjeu',
-'already_steward' => 'Cist uzeu ci a ddja l\' livea di mwaisse-manaedjeu so tos les wikis',
 'rightsnone' => '(nouk)',
 
 # Move page
