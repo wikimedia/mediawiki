@@ -1202,7 +1202,6 @@ Iontráil ainm an úsáideora sa bosca seo agus brúigh an cnaipe chun riarthói
 'makesysop'	 => 'Déan oibreoir córais de húsáideoir',
 'already_sysop'     => 'Is oibreoir córais é an usáideoir seo cheana féin',
 'already_bureaucrat' => 'Is maorlathach é an úsáideoir seo cheana féin',
-'already_steward'   => 'Is maor é an úsáideoir seo cheana féin',
 
 # Move page
 #

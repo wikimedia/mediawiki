@@ -749,13 +749,11 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'group-bot'               => 'Robôs',
 'group-sysop'             => 'Administradores',
 'group-bureaucrat'        => 'Burocratas',
-'group-steward'           => 'Stewards',
 'group-all'               => '(todos)',
 
 'group-bot-member'        => 'Robô',
 'group-sysop-member'      => 'Administrador',
 'group-bureaucrat-member' => 'Burocrata',
-'group-steward-member'    => 'Steward',
 
 'grouppage-bot' => '{{ns:project}}:Robôs',
 'grouppage-sysop' => '{{ns:project}}:Administradores',
@@ -1274,7 +1272,6 @@ Introduza o nome do utilizador na caixa e clique no botão para tornar o utiliza
 'makesysopok'           => "<b>Utilizador \"$1\" é agora um administrador</b>",
 'makesysopfail'         => "<b>Não foi possível tornar o utilizador \"$1\" num administrador. (Introduziu o nome correctamente?)</b>",
 'setbureaucratflag' => 'Atribuir flag de burocrata',
-'setstewardflag'    => 'Atribuir flag de steward',
 'rightslog'         => 'Registo de direitos de utilizador',
 'rightslogtext'     => 'Este é um registo de mudanças nos direitos dos utilizadores.',
 'rightslogentry'    => "Alterado grupo do membro de $1 de $2 para $3",
@@ -1285,7 +1282,6 @@ Introduza o nome do utilizador na caixa e clique no botão para tornar o utiliza
 'makesysop'         => 'Tornar um utilizador num administrador',
 'already_sysop'     => 'Este utilizador já é um administrador',
 'already_bureaucrat' => 'Este utilizador já é um burocrata',
-'already_steward'   => 'Este utilizador já é um steward',
 'rightsnone'            => '(nenhum)',
 # Move page
 #

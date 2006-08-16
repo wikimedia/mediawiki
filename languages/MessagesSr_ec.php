@@ -854,13 +854,11 @@ MySQL је вратио грешку "$3: $4".',
 'group-bot' => 'ботови',
 'group-sysop' => 'администратори',
 'group-bureaucrat' => 'бирократе',
-'group-steward' => 'стјуарди',
 'group-all' => '(сви)',
 
 'group-bot-member' => 'бот',
 'group-sysop-member' => 'администратор',
 'group-bureaucrat-member' => 'бирократа',
-'group-steward-member' => 'стјуард',
 
 'grouppage-bot' => 'Project:Ботови',
 'grouppage-sysop' => 'Project:Списак администратора',
@@ -1429,7 +1427,6 @@ $NEWPAGE
 'makesysopok' => '<b>Корисник "$1" је сада администратор</b>',
 'makesysopfail' => '<b>Корисник "$1" не може да постане администратор. (Да ли сте правилно унели име?)</b>',
 'setbureaucratflag' => 'Постави права бирократе',
-'setstewardflag' => 'Постави заставицу стјуарда',
 'rightslog' => 'историја корисничких права',
 'rightslogtext' => 'Ово је историја измена корисничких права.',
 'rightslogentry' => 'је променио права за $1 са $2 на $3',
@@ -1440,7 +1437,6 @@ $NEWPAGE
 'makesysop' => 'Давање администраторских овлашћења кориснику',
 'already_sysop' => 'Овај корисник је већ администратор',
 'already_bureaucrat' => 'Овај корисник је већ бирократа',
-'already_steward' => 'Овај корисник је већ стјуард',
 'rightsnone' => '(нема)',
 
 # Move page

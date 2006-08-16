@@ -855,13 +855,11 @@ $messages = array(
 "group-bot"        => "בוטים",
 "group-sysop"      => "מפעילי מערכת",
 "group-bureaucrat" => "ביורוקרטים",
-"group-steward"    => "דיילים",
 "group-all"        => "(הכול)",
 
 "group-bot-member"        => "בוט",
 "group-sysop-member"      => "מפעיל מערכת",
 "group-bureaucrat-member" => "ביורוקרט",
-"group-steward-member"    => "דייל",
 
 "grouppage-bot"        => "{{ns:project}}:בוט",
 "grouppage-sysop"      => "{{ns:project}}:מפעיל מערכת",
@@ -1405,7 +1403,6 @@ $NEWPAGE
 "makesysopok"        => '\'\'\'המשתמש "$1" הוא עכשיו מפעיל מערכת.\'\'\'',
 "makesysopfail"      => '\'\'\'לא ניתן היה למנות את המשתמש "$1" למפעיל מערכת.\'\'\' (האם הקלדתם נכונה את שם המשתמש?)',
 "setbureaucratflag"  => "הפוך משתמש זה לביורוקרט.",
-"setstewardflag"     => "הפוך משתמש זה לדייל",
 "rightslog"          => "יומן תפקידים",
 "rightslogtext"      => "זהו יומן השינויים בתפקידי המשתמשים.",
 "rightslogentry"     => 'שינה את ההרשאות של "$1" מההרשאות $2 להרשאות $3',
@@ -1416,7 +1413,6 @@ $NEWPAGE
 "makesysop"          => "הפוך משתמש למפעיל מערכת",
 "already_sysop"      => "משתמש זה הוא כבר מפעיל מערכת",
 "already_bureaucrat" => "משתמש זה הוא כבר ביורוקרט",
-"already_steward"    => "משתמש זה הוא כבר דייל",
 "rightsnone"         => "(ללא הרשאות)",
 
 # Move page

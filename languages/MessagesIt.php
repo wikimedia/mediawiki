@@ -677,13 +677,11 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "group-bot"	=> "Bot",
 "group-sysop"	=> "Amministratori",
 "group-bureaucrat"	=> "Burocrati",
-"group-steward"	=> "Steward",
 "group-all"	=> "(utenti)",
 
 "group-bot-member"	=> "Bot",
 "group-sysop-member"	=> "Amministratore",
 "group-bureaucrat-member"	=> "Burocrate",
-"group-steward-member"	=> "Steward",
 
 "grouppage-bot"	=> "Project:Bot",
 "grouppage-sysop"	=> "Project:Amministratori",
@@ -1190,7 +1188,6 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 "makesysopok"	=> "<b>L'utente \"$1\" è ora amministratore</b>",
 "makesysopfail"	=> "<b>Impossibile far diventare amministratore l'utente \"$1\". Verificare che il nome utente sia stato scritto correttamente.</b>",
 "setbureaucratflag"	=> "Assegna i diritti di burocrate",
-"setstewardflag"	=> "Assegna i diritti di steward",
 "rightslog"	=> "Diritti degli utenti",
 "rightslogtext"	=> "Questo è il log delle modifiche ai diritti assegnati agli utenti.",
 "rightslogentry"	=> "ha modificato l'appartenenza di $1 dal gruppo $2 al gruppo $3",
@@ -1201,7 +1198,6 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 "makesysop"	=> "Rendi l'utente amministratore",
 "already_sysop"	=> "Questo utente è già amministratore",
 "already_bureaucrat"	=> "Questo utente è già burocrate",
-"already_steward"	=> "Questo utente è già steward",
 "rightsnone"	=> "(nessuno)",
 
 # Move page

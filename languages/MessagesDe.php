@@ -1237,13 +1237,11 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit \'\'\'
 'group-bot'			=> 'Bots',
 'group-sysop'			=> 'Administratoren',
 'group-bureaucrat'		=> 'Bürokraten',
-'group-steward'			=> 'Stewards',
 'group-all'			=> '(alle)',
 
 'group-bot-member'		=> 'Bot',
 'group-sysop-member'		=> 'Administrator',
 'group-bureaucrat-member'	=> 'Bürokrat',
-'group-steward-member'		=> 'Steward',
 
 'grouppage-bot'			=> '{{ns:project}}:Bots',
 'grouppage-sysop'		=> '{{ns:project}}:Administratoren',
@@ -1349,7 +1347,6 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ m
 'makesysopfail'		=> '<b>Benutzer „$1“ konnte nicht zu einem Administrator gemacht werden. (Haben Sie den Namen richtig geschrieben?)</b>',
 "makesysop"         => "Mache einen Benutzer zum Administrator",
 'setbureaucratflag'	=> 'Mache Benutzer zum Bürokraten',
-'setstewardflag'	=> 'Mache Benutzer zum Steward',
 'rightslog' => 'Rechte-Logbuch',
 'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry'	=> 'Gruppenzugehörigkeit für „[[$1]]“ von „$2“ auf „$3“ geändert.',
@@ -1359,7 +1356,6 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ m
 'set_rights_fail'	=> '<b>Benutzerrechte für „$1“ konnten nicht gesetzt werden. (Haben Sie den Namen korrekt eingegeben?)</b>',
 'already_sysop'		=> 'Dieser Benutzer ist bereits Administrator.',
 'already_bureaucrat'	=> 'Dieser Benutzer ist bereits Bürokrat.',
-'already_steward'	=> 'Dieser Benutzer ist bereits Steward.',
 'rightsnone'		=> '(nichts)',
 
 '1movedto2'		=> 'hat [[$1]] nach [[$2]] verschoben',

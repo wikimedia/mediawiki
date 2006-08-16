@@ -874,7 +874,6 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'user_rights_set'       => '<b>"$1" için kullanıcı hakları güncellendi</b>',
 'already_sysop'         => 'Bu kullanıcı zaten yönetici',
 'already_bureaucrat'    => 'Bu kullanıcı zaten bürokrat',
-'already_steward'       => 'Bu kullanıcı zaten steward',
 'movepage'              => 'İsim değişikliği',
 'movepagetext'          => 'Aşağıdaki form kullanılarak sayfanın adı değiştirilir. Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır. Eski isim yeni isme yönlendirme haline dönüşür. Eski başlığa dogru olan bağlantılar olduğu gibi kalır; çift veya geçersiz yönlendirmeleri [[Special:Maintenance|kontrol ediniz.]] Yapacağınız bu değişikllike tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
 

@@ -688,13 +688,11 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'group-bot'               => 'Bot',
 'group-sysop'             => 'Pengurus',
 'group-bureaucrat'        => 'Birokrat',
-'group-steward'           => 'Steward',
 'group-all'               => '(semua)',
 
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Pengurus',
 'group-bureaucrat-member' => 'Birokrat',
-'group-steward-member'    => 'Steward',
 
 'grouppage-bot' => '{{ns:project}}:Bot',
 'grouppage-sysop' => '{{ns:project}}:Pengurus',
@@ -1196,7 +1194,6 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "makesysopok" => "<strong>Pengguna \"$1\" sekarang adalah seorang pengurus</strong>",
 "makesysopfail" => "<strong>Pengguna \"$1\" tidak dapat dijadikan pengurus. (Apakah Anda mengetikkan namanya dengan benar?)</strong>",
 "setbureaucratflag" => "Beri tanda birokrat",
-'setstewardflag'    => 'Beri tanda steward',
 'rightslog'		=> 'Log perubahan hak akses',
 'rightslogtext' => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
 'rightslogentry'	=> 'mengganti keanggotaan group untuk $1 dari $2 menjadi $3',
@@ -1207,7 +1204,6 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "makesysop" => "Buat seorang pengguna menjadi pengurus",
 'already_sysop'     => 'Pengguna ini sudah menjadi pengurus',
 'already_bureaucrat' => 'Pengguna ini sudah menjadi birokrat',
-'already_steward'   => 'Pengguna ini sudah menjadi steward',
 'rightsnone' 		=> '(tidak ada)',
 
 # Developer tools

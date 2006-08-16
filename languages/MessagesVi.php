@@ -1201,7 +1201,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Xem trang thể loại\');',
 
 # new stuffs
 'already_bureaucrat' => 'Người này đã là tổng quản lý',
-'already_steward' => 'Người này đã là tiếp viên',
 'already_sysop' => 'Người này đã là quản lý',
 'changed' => 'Đã sửa',
 'compareselectedversions' => 'So sánh các bản đã chọn',
@@ -1293,7 +1292,6 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'fileinfo' => ' $1Ko, kiểu MIME: <tt>$2</tt>',
 'groups' => 'Các nhóm',
 'noimage' => 'Không có hình này, bạn có thể [$1 tải nó lên]',
-'setstewardflag' => 'Đặt cờ tiếp viên',
 'proxyblocksuccess'	=> "Xong.",
 
 'namespacesall' => 'tất cả',

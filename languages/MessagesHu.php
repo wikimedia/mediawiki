@@ -854,7 +854,6 @@ Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]) végezte.',
 'rights'                => 'Rights:',
 'already_sysop'         => 'Ez a felhasználó már adminisztrátor.',
 'already_bureaucrat'    => 'Ez a felhasználó már bürokrata.',
-'already_steward'       => 'Ez a felhasználó már helytartó.',
 'movepage'              => 'Lap mozgatása',
 'movepagetext'          => 'A lentebb található űrlap segítségével lehetséges egy lapot átnevezni, és átmozgatni a teljes történetével együtt egy új névre. A régi név átirányítássá válik az új szócikkre. A régi szócikkre hivatkozások nem változnak meg; győződj meg arról, hogy nem hagysz magad után a régi szócikkre hivatkozó linkeket. A te feladatod biztosítani, hogy a linkek oda mutassanak, ahova kell nekik.
 

@@ -816,13 +816,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'group-bot' 			=> '機械人',
 'group-sysop' 			=> '操作員',
 'group-bureaucrat' 		=> '事務員',
-'group-steward' 		=> '執行員',
 'group-all' 			=> '(全部)',
 
 'group-bot-member' 		=> '機械人',
 'group-sysop-member' 		=> '操作員',
 'group-bureaucrat-member' 	=> '事務員',
-'group-steward-member' 		=> '執行員', 
 
 
 # Recent changes
@@ -1379,7 +1377,6 @@ wiki: $PAGEEDITOR_WIKI
 'makesysopok'		=> "<b>用戶 \"$1\" 而家係一位操作員</b>",
 'makesysopfail'		=> "<b>用戶 \"$1\" 唔可以整做一位操作員。（你有冇正確噉樣輸入正確嘅名？）</b>",
 'setbureaucratflag' => '設定事務員旗',
-'setstewardflag'    => '設定執行員旗',
 'rightslog'		=> '用戶權限日誌', 
 'rightslogtext'		=> '呢個係用戶權力嘅修改日誌。',
 'rightslogentry'	=> '已經將$1嘅組別從$2改到去$3',
@@ -1390,7 +1387,6 @@ wiki: $PAGEEDITOR_WIKI
 'makesysop'         => '整一位用戶做操作員',
 'already_sysop'     => '呢位用戶已經係一位管理員',
 'already_bureaucrat' => '呢位用戶已經係一位事務員',
-'already_steward'   => '呢位用戶已經係一位執行員',
 'rightsnone'        => '(無)',
 
 # Move page

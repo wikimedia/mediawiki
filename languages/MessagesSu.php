@@ -152,7 +152,6 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'allpagessubmit' => 'Jung',
 'alphaindexline' => '$1 ka $2',
 'already_bureaucrat' => 'Pamaké ieu geus boga kalungguhan birokrat',
-'already_steward' => 'Pamaké ieu mémang geus jadi \'\'steward\'\'',
 'already_sysop' => 'Pamaké ieu geus boga kalungguhan kuncén',
 'alreadyloggedin' => '<strong>Pamaké $1, anjeun geus asup log!</strong><br />',
 'alreadyrolled' => 'Teu bisa mulangkeun édit ahir [[$1]] ku [[User:$2|$2]] ([[User talk:$2|Obrolan]]); geus aya nu ngédit atawa mulangkeun kacana. 
