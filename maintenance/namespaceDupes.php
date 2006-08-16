@@ -111,12 +111,12 @@ class NamespaceConflictChecker {
 	}
 
 	function reportConflict( $row, $suffix ) {
-		$newTitle = Title::makeTitle( $row->namespace, $row->title );
+		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
 		printf( "... %d (0,\"%s\") -> (%d,\"%s\") [[%s]]\n",
 			$row->id,
 			$row->oldtitle,
-			$row->namespace,
-			$row->title,
+			$newTitle->getNamespace(),
+			$newTitle->getDbKey(),
 			$newTitle->getPrefixedText() );
 
 		$id = $newTitle->getArticleId();
@@ -131,7 +131,7 @@ class NamespaceConflictChecker {
 	function resolveConflict( $row, $resolvable, $suffix ) {
 		if( !$resolvable ) {
 			$row->title .= $suffix;
-			$title = Title::makeTitle( $row->namespace, $row->title );
+			$title = Title::makeTitleSafe( $row->namespace, $row->title );
 			echo "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n";
 		}
 		$tables = $this->newSchema()
@@ -146,10 +146,11 @@ class NamespaceConflictChecker {
 	function resolveConflictOn( $row, $table ) {
 		$fname = 'NamespaceConflictChecker::resolveConflictOn';
 		echo "... resolving on $table... ";
+		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
 		$this->db->update( $table,
 			array(
-				"{$table}_namespace" => $row->namespace,
-				"{$table}_title"     => $row->title,
+				"{$table}_namespace" => $newTitle->getNamespace(),
+				"{$table}_title"     => $newTitle->getDbKey(),
 			),
 			array(
 				"{$table}_namespace" => 0,
