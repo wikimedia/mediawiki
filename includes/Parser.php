@@ -2781,7 +2781,7 @@ class Parser
 		# $part1 is the bit before the first |, and must contain only title characters
 		# $args is a list of arguments, starting from index 0, not including $part1
 
-		$part1 = $piece['title'];
+		$titleText = $part1 = $piece['title'];
 		# If the third subpattern matched anything, it will start with |
 
 		if (null == $piece['parts']) {
@@ -2900,8 +2900,7 @@ class Parser
 				$noargs = true;
 				$found = true;
 				$text = $linestart .
-					'{{' . $part1 . '}}' .
-					'<!-- WARNING: template loop detected -->';
+					"[[$part1]]<!-- WARNING: template loop detected -->";
 				wfDebug( __METHOD__.": template loop broken at '$part1'\n" );
 			} else {
 				# set $text to cached message.
@@ -2926,6 +2925,7 @@ class Parser
 
 
 			if ( !is_null( $title ) ) {
+				$titleText = $title->getPrefixedText();
 				$checkVariantLink = sizeof($wgContLang->getVariants())>1;
 				# Check for language variants if the template is not found
 				if($checkVariantLink && $title->getArticleID() == 0){
@@ -2953,7 +2953,7 @@ class Parser
 
 					# If the title is valid but undisplayable, make a link to it
 					if ( !$found && ( $this->ot['html'] || $this->ot['pre'] ) ) {
-						$text = '[['.$title->getPrefixedText().']]';
+						$text = "[[$titleText]]";
 						$found = true;
 					}
 				} elseif ( $title->isTrans() ) {
@@ -2987,8 +2987,7 @@ class Parser
 		if ( $found && !$this->incrementIncludeSize( 'pre-expand', strlen( $text ) ) ) {
 			# Error, oversize inclusion
 			$text = $linestart .
-				'{{' . $part1 . '}}' .
-				'<!-- WARNING: template omitted, pre-expand include size too large -->';
+				"[[$titleText]]<!-- WARNING: template omitted, pre-expand include size too large -->";
 			$noparse = true;
 			$noargs = true;
 		}
@@ -3065,8 +3064,7 @@ class Parser
 		if ( $found && !$this->incrementIncludeSize( 'post-expand', strlen( $text ) ) ) {
 			# Error, oversize inclusion
 			$text = $linestart .
-				'{{' . $part1 . '}}' .
-				'<!-- WARNING: template omitted, post-expand include size too large -->';
+				"[[$titleText]]<!-- WARNING: template omitted, post-expand include size too large -->";
 			$noparse = true;
 			$noargs = true;
 		}
