@@ -765,7 +765,7 @@ class Language {
 	}
 
 	function isMultibyte( $str ) {
-		return (bool)preg_match( '/^[\x80-\xff]/', $str );
+		return (bool)preg_match( '/[\x80-\xff]/', $str );
 	}
 
 	function checkTitleEncoding( $s ) {
