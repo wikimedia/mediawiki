@@ -413,7 +413,7 @@ class LoginForm {
 		global $wgServer, $wgScript;
 
 		if ( '' == $u->getEmail() ) {
-			return wfMsg( 'noemail', $u->getName() );
+			return new WikiError( wfMsg( 'noemail', $u->getName() ) );
 		}
 
 		$np = $u->randomPassword();
