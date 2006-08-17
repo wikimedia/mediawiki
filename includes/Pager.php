@@ -447,6 +447,8 @@ abstract class TablePager extends IndexPager {
 		
 		$s = "<table border='1' class=\"$tableClass\"><thead><tr>\n";
 		$fields = $this->getFieldNames();
+
+		# Make table header
 		foreach ( $fields as $field => $name ) {
 			if ( strval( $name ) == '' ) {
 				$s .= "<th>&nbsp;</th>\n";
@@ -504,7 +506,8 @@ abstract class TablePager extends IndexPager {
 			if ( $formatted == '' ) {
 				$formatted = '&nbsp;';
 			}
-			$s .= "<td>$formatted</td>\n";
+			$class = 'TablePager_col_' . htmlspecialchars( $field );
+			$s .= "<td class=\"$class\">$formatted</td>\n";
 		}
 		$s .= "</tr>\n";
 		return $s;

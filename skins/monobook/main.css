@@ -1476,10 +1476,15 @@ table.multipageimage td {
 */
 .TablePager_nav a { text-decoration: none; }
 .TablePager { border-collapse: collapse; }
-.TablePager, .TablePager td, .TablePager th { border: 2px outset #666666; }
-.TablePager td, .TablePager th { background-color: #eeeeff }
+.TablePager, .TablePager td, .TablePager th { 
+	border: 0.15em solid #777777;
+	padding: 0 0.15em 0 0.15em;
+}
+.TablePager th { background-color: #eeeeff }
+.TablePager td { background-color: #ffffff }
+.TablePager tr:hover td { background-color: #eeeeff }
 
 .imagelist td, .imagelist th { white-space: nowrap }
-.imagelist td + td { background-color: #ffffff }
-.imagelist td + td + td + td + td { white-space: normal }
+.imagelist .TablePager_col_links { background-color: #eeeeff }
+.imagelist .TablePager_col_img_description { white-space: normal }
 .imagelist th.TablePager_sort { background-color: #ccccff }
