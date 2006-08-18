@@ -145,6 +145,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7054) Validate email address before sending email confirmation message
 * (bug 7061) Format title on "from (page)" links on Special:Allpages
 * (bug 7044) Introduce "padleft" and "padright" colon functions
+* Pass page title as parameters to "linkshere" and "nolinkshere" and update
+  default message text
 
 == Languages updated ==
 
