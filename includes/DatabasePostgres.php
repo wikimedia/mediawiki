@@ -293,6 +293,12 @@ class DatabasePostgres extends Database {
 			define( "POSTGRES_SEARCHPATH", $path );
 		}}
 
+		global $wgCommandLineMode;
+		## If called from the command-line (e.g. importDump), only show errors
+		if ($wgCommandLineMode) {
+			$this->doQuery("SET client_min_messages = 'ERROR'");
+		}
+
 		return $this->mConn;
 	}
 
