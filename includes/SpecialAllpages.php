@@ -276,11 +276,9 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
 					wfMsgHtml ( 'allpages' ) );
 		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
-			$namespaceparam = $namespace ? "&namespace=$namespace" : "";
-			$out2 .= " | " . $sk->makeKnownLink(
-				$wgContLang->specialPage( "Allpages" ),
-				wfMsgHtml ( 'nextpage', $s->page_title ),
-				"from=" . wfUrlEncode ( $s->page_title ) . $namespaceparam );
+			$self = Title::makeTitle( NS_SPECIAL, 'Allpages' );
+			$q = 'from=' . $t->getPrefixedUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
+			$out2 .= ' | ' . $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
 		}
 		$out2 .= "</td></tr></table><hr />";
 	}
