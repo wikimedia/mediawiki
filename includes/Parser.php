@@ -1745,6 +1745,7 @@ class Parser
 					// upload on the shared repository, and we want to see its
 					// auto-generated page.
 					$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
+					$this->mOutput->addLink( $nt );
 					continue;
 				}
 			}
@@ -4460,11 +4461,14 @@ class ParserOutput
 		return (bool)$this->mNewSection;
 	}
 
-	function addLink( $title, $id ) {
+	function addLink( $title, $id = null ) {
 		$ns = $title->getNamespace();
 		$dbk = $title->getDBkey();
 		if ( !isset( $this->mLinks[$ns] ) ) {
 			$this->mLinks[$ns] = array();
+		}
+		if ( is_null( $id ) ) {
+			$id = $title->getArticleID();
 		}
 		$this->mLinks[$ns][$dbk] = $id;
 	}
