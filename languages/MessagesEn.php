@@ -277,6 +277,8 @@ $magicWords = array(
 	'pagesinnamespace'       => array( 1,    'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'         => array( 1,    'NUMBEROFADMINS' ),
 	'formatnum'              => array( 0,    'FORMATNUM' ),
+	'padleft'				 => array( 0, 	 'PADLEFT' ),
+	'padright'				 => array( 0, 	 'PADRIGHT' ),
 
 );
 

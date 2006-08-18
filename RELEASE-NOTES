@@ -144,6 +144,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Avoid duplicate revision imports with Special:Import
 * (bug 7054) Validate email address before sending email confirmation message
 * (bug 7061) Format title on "from (page)" links on Special:Allpages
+* (bug 7044) Introduce "padleft" and "padright" colon functions
 
 == Languages updated ==
 
