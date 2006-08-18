@@ -142,7 +142,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added {{CURRENTHOUR}}
 * Added [[:Image:Foo.png]] style links to the pagelinks table
 * Avoid duplicate revision imports with Special:Import
-
+* (bug 7054) Validate email address before sending email confirmation message
 
 == Languages updated ==
 

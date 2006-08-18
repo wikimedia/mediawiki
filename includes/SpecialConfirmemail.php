@@ -30,7 +30,11 @@ class EmailConfirmation extends SpecialPage {
 		global $wgUser, $wgOut;
 		if( empty( $code ) ) {
 			if( $wgUser->isLoggedIn() ) {
-				$this->showRequestForm();
+				if( User::isValidEmailAddr( $wgUser->getEmail() ) ) {
+					$this->showRequestForm();
+				} else {
+					$wgOut->addWikiText( wfMsg( 'confirmemail_noemail' ) );
+				}
 			} else {
 				$title = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
 				$self = Title::makeTitle( NS_SPECIAL, 'Confirmemail' );
