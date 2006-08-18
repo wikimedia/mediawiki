@@ -141,6 +141,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   has selected to receive only updates for their own talk page
 * Added {{CURRENTHOUR}}
 * Added [[:Image:Foo.png]] style links to the pagelinks table
+* Avoid duplicate revision imports with Special:Import
 
 
 == Languages updated ==
