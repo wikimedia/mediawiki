@@ -128,7 +128,7 @@ class WhatLinksHerePage {
 
 		if ( !$dbr->numRows( $plRes ) && !$dbr->numRows( $tlRes ) ) {
 			if ( 0 == $level ) {
-				$wgOut->addWikiText( wfMsg( 'nolinkshere' ) );
+				$wgOut->addWikiText( wfMsg( 'nolinkshere', $this->target->getPrefixedText() ) );
 			}
 			return;
 		}
@@ -187,7 +187,7 @@ class WhatLinksHerePage {
 		}
 
 		if ( 0 == $level ) {
-			$wgOut->addWikiText( wfMsg( 'linkshere' ) );
+			$wgOut->addWikiText( wfMsg( 'linkshere', $this->target->getPrefixedText() ) );
 		}
 		$isredir = wfMsg( 'isredirect' );
 		$istemplate = wfMsg( 'istemplate' );
