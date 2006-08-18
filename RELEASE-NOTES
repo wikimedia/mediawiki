@@ -137,6 +137,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3512) namespaceDupes now handles spaces and initial caps properly
 * (bug 7037) Fix regression in login tab order
 * (bug 7031) Report missing email on 'email password' instead of false success
+* (bug 7010) Don't send email notifications for watched talk pages when user
+  has selected to receive only updates for their own talk page
 
 
 == Languages updated ==
