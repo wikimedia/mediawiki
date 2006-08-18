@@ -139,6 +139,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7031) Report missing email on 'email password' instead of false success
 * (bug 7010) Don't send email notifications for watched talk pages when user
   has selected to receive only updates for their own talk page
+* Added {{CURRENTHOUR}}
+* Added [[:Image:Foo.png]] style links to the pagelinks table
 
 
 == Languages updated ==
