@@ -75,6 +75,7 @@ $magicWords = array(
 	'currentdayname'        => array( 1,    'שם יום נוכחי',                             'CURRENTDAYNAME'         ),
 	'currentyear'           => array( 1,    'שנה נוכחית',                               'CURRENTYEAR'            ),
 	'currenttime'           => array( 1,    'שעה נוכחית',                               'CURRENTTIME'            ),
+	'currenthour'           => array( 1,    'שעות נוכחיות',                             'CURRENTHOUR'            ),
 	'numberofpages'         => array( 1,    'מספר דפים כולל', 'מספר דפים',             'NUMBEROFPAGES'          ),
 	'numberofarticles'      => array( 1,    'מספר ערכים',                              'NUMBEROFARTICLES'       ),
 	'numberoffiles'         => array( 1,    'מספר קבצים',                              'NUMBEROFFILES'          ),
@@ -143,6 +144,8 @@ $magicWords = array(
 	'pagesinnamespace'      => array( 1,    'דפים במרחב השם:',                   'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'        => array( 1,    'מספר מפעילים',                      'NUMBEROFADMINS' ),
 	'formatnum'             => array( 0,    'עיצוב מספר',                        'FORMATNUM' ),
+	'padleft'               => array( 0,    'ריפוד משמאל',                       'PADLEFT' ),
+	'padright'              => array( 0,    'ריפוד מימין',                       'PADRIGHT' ),
 );
 
 $namespaceNames = array(
@@ -1313,8 +1316,8 @@ $NEWPAGE
 "notargettitle" => "אין דף מטרה",
 "notargettext"  => "לא ציינתם דף מטרה או משתמש לגביו תבוצע פעולה זו.",
 "linklistsub"   => "(רשימת קישורים)",
-"linkshere"     => "הדפים שלהלן מקושרים לכאן:",
-"nolinkshere"   => "אין דפים המקושרים לכאן.",
+"linkshere"     => "הדפים שלהלן מקושרים לדף '''[[$1]]''':",
+"nolinkshere"   => "אין דפים המקושרים לדף '''[[$1]]'''.",
 "isredirect"    => "דף הפניה",
 "istemplate"    => "הכללה",
 
@@ -1995,6 +1998,7 @@ ta["ca-nstab-category"]     = ["c", "צפו בדף הקטגוריה"];',
 
 # E-mail address confirmation
 "confirmemail"            => 'אמתו כתובת דוא"ל',
+"confirmemail_noemail"    => 'אין לכם כתובת דוא"ל תקפה המוגדרת ב[[{{ns:special}}:Preferences|העדפות המשתמש]] שלכם.',
 "confirmemail_text"       => 'אתר זה דורש שתאמתו את כתובת הדוא"ל שלכם לפני שתשתמשו בשירותי הדוא"ל. לחצו על הכפתור למטה כדי לשלוח דוא"ל עם קוד אישור לכתובת הדוא"ל שהזנתם. טענו את הקישור בדפדפן שלכם כדי לאשר שכתובת הדוא"ל תקפה.',
 "confirmemail_send"       => "שלח קוד אישור",
 "confirmemail_sent"       => 'הדוא"ל עם קוד האישור נשלח.',
