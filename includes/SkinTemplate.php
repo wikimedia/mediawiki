@@ -320,7 +320,9 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'newtalk', $ntl );
 		$tpl->setRef( 'skin', $this);
 		$tpl->set( 'logo', $this->logoText() );
-		if ( $wgOut->isArticle() and (!isset( $oldid ) or isset( $diff )) and 0 != $wgArticle->getID() ) {
+		if ( $wgOut->isArticle() and (!isset( $oldid ) or isset( $diff )) and 
+			$wgArticle and 0 != $wgArticle->getID() ) 
+		{
 			if ( !$wgDisableCounters ) {
 				$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
 				if ( $viewcount ) {
@@ -814,7 +816,7 @@ class SkinTemplate extends Skin {
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
 		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
-			$revid = $wgArticle->getLatest();
+			$revid = $wgArticle ? $wgArticle->getLatest() : 0;
 			if ( !( $revid == 0 )  )
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),
