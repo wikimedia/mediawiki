@@ -246,8 +246,22 @@ class DatabasePostgres extends Database {
 			$SQL = "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'";
 			$rows = $this->numRows($this->doQuery($SQL));
 			if ($rows < 1) {
-				print "<b>FAILED</b>. Make sure the language plpgsql is installed for the database <tt>$wgDBname</tt></li>";
-				dieout("</ul>");
+				// plpgsql is not installed, but if we have a pg_pltemplate table, we should be able to create it
+				print "not installed. Attempting to install Pl/Pgsql ...";
+				$SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
+					"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
+				$rows = $this->numRows($this->doQuery($SQL));
+				if ($rows >= 1) {
+					$result = $this->doQuery("CREATE LANGUAGE plpgsql");
+					if (!$result) {
+						print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
+						dieout("</ul>");
+					}
+				}
+				else {
+					print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
+					dieout("</ul>");
+				}
 			}
 			print "OK</li>\n";
 
