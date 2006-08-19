@@ -89,7 +89,7 @@ class MonoBookTemplate extends QuickTemplate {
 	</head>
 <body <?php if($this->data['body_ondblclick']) { ?>ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
 <?php if($this->data['body_onload'    ]) { ?>onload="<?php     $this->text('body_onload')     ?>"<?php } ?>
- class="<?php $this->text('nsclass') ?> <?php $this->text('dir') ?>">
+ class="mediawiki <?php $this->text('nsclass') ?> <?php $this->text('dir') ?>">
 	<div id="globalWrapper">
 		<div id="column-content">
 	<div id="content">
