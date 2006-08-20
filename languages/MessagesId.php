@@ -795,6 +795,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 "bysize"		=> "berdasarkan ukuran",
 "imgdelete"		=> "hps",
 "imgdesc"		=> "desk",
+'imgfile'       => 'berkas',
 "imglegend"		=> "Keterangan: (desk) = lihat/sunting deskripsi berkas.",
 "imghistory"	=> "Riwayat berkas",
 "revertimg"		=> "kbl",
@@ -810,6 +811,12 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'noimage'		=> 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
 'noimage-linktext'	=> 'memuat berkas',
 'uploadnewversion-linktext'	=> 'Muatkan versi yang lebih baru dari berkas ini',
+'imagelist_date' => 'Tanggal',
+'imagelist_name' => 'Nama',
+'imagelist_user' => 'Pengguna',
+'imagelist_size' => 'Ukuran (bita)',
+'imagelist_description' => 'Deskripsi',
+'imagelist_search_for' => 'Cari nama berkas:',
 
 # Mime search
 #
@@ -844,7 +851,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sejak wiki ini dimulai. Ini berarti rata-rata '''$5''' suntingan per halaman, dan '''$6''' penampilan per penyuntingan.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Antrian job] adalah sebanyak '''$7'''.",
-"userstatstext" => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$4%''') diantaranya adalah pengurus (lihat $3).",
+"userstatstext" => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$4%''') diantaranya adalah $5.",
 'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
 
 "disambiguations" => "Halaman disambiguasi",
@@ -930,6 +937,9 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'allpagessubmit'    => 'Cari',
 'allpagesprefix'	=> 'Tampilkan halaman dengan awalan:',
 'allpagesbadtitle'	=> 'Judul halaman yang diberikan tidak sah atau memiliki awalan antar-bahasa atau antar-wiki. Judul tersebut mungkin juga mengandung satu atau lebih aksara yang tidak dapat digunakan dalam judul.',
+
+# Special:Listusers
+'listusersfrom' => 'Tampilkan pengguna diawali dengan:',
 
 # Email this user
 #
@@ -1133,8 +1143,8 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "notargettitle" => "Tidak ada sasaran",
 "notargettext" => "Anda tidak menentukan halaman atau pengguna tujuan fungsi ini.",
 "linklistsub" => "(Daftar pranala)",
-"linkshere" => "Halaman-halaman berikut ini berpaut ke sini:",
-"nolinkshere" => "Tidak ada halaman yang berpaut ke sini.",
+"linkshere" => "Halaman-halaman berikut ini berpaut ke '''[[:$1]]''':",
+"nolinkshere" => "Tidak ada halaman yang berpaut ke '''[[:$1]]'''.",
 "isredirect" => "halaman peralihan",
 'istemplate'	=> 'dengan templat',
 
@@ -1800,6 +1810,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 
 # E-mail address confirmation
 'confirmemail' => 'Konfirmasi alamat surat-e',
+'confirmemail_noemail' => 'Anda tidak memberikan alamat surat-e yang sah di [[Special:Preferences|preferensi pengguna]] Anda.',
 'confirmemail_text' => "{{ns:project}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surat elektronik Anda sebelum fitur-fitur surat elektronik dapat digunakan. Tekan tombol di bawah ini untuk mengirimi Anda sebuah surat elektronik yang berisi kode konfirmasi yang berupa sebuah alamat internet. Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan {{ns:project}} bahwa alamat surat elektronik Anda valid.",
 'confirmemail_send' => 'Kirim kode konfirmasi',
 'confirmemail_sent' => 'Surat elektronik berisi kode konfirmasi telah dikirim.',
@@ -1870,6 +1881,17 @@ $1",
 'displaytitle' => '(Pranala ke halaman ini sebagai [[$1]])',
 
 'loginlanguagelabel' => 'Bahasa: $1',
+
+# Table pager
+'ascending_abbrev' => 'naik',
+'descending_abbrev' => 'turun',
+'table_pager_next' => 'Halaman selanjutnya',
+'table_pager_prev' => 'Halaman sebelumnya',
+'table_pager_first' => 'Halaman pertama',
+'table_pager_last' => 'Halaman terakhir',
+'table_pager_limit' => 'Tampilkan $1 entri per halaman',
+'table_pager_limit_submit' => 'Cari',
+'table_pager_empty' => 'Tidak ditemukan',
 
 );
 
