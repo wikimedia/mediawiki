@@ -1154,8 +1154,8 @@ Im [[{{ns:special}}:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von k
 "notargettitle" => "Kein Artikel angegeben",
 'notargettext'		=> 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 "linklistsub"	=> "(Liste der Verweise)",
-'linkshere'	=> 'Die folgenden Seiten verweisen hierher:',
-'nolinkshere'	=> 'Keine Seiten verweisen hierher.',
+'linkshere'	=> 'Die folgenden Seiten verweisen auf \'\'\'[[:$1]]\'\'\':',
+'nolinkshere'	=> 'Keine Seiten verweisen auf \'\'\'[[:$1]]\'\'\'.',
 'isredirect'		=> 'Weiterleitungsseite',
 'istemplate'	=> 'Vorlageneinbindung',
 
@@ -1780,6 +1780,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 
 # E-mail address confirmation
 'confirmemail'		=> 'Bestätigung der E-Mail-Adresse (Authentifizierung)',
+'confirmemail_noemail'	=> 'Sie haben keine gültige E-Mail-Adresse in Ihrem [[Special:Preferences|Benutzerprofil]] angegeben.',
 'confirmemail_text'	=> 'Dieses Wiki erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren), bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Durch einen Klick auf die Schaltfläche unten wird eine E-Mail an Sie gesendet. Diese E-Mail enthält einen Link mit einem Bestätigungs-Code. Durch Klicken auf diesen Link wird bestätigt, dass Ihre E-Mail-Adresse gültig ist.',
 'confirmemail_send' => 'Anforderung einer E-Mail zur Adressenbestätigung',
 'confirmemail_sent' => 'Es wurde Ihnen eine E-Mail zur Adressenbestätigung gesendet.',
