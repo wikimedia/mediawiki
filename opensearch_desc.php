@@ -7,7 +7,13 @@
 require_once( dirname(__FILE__) . '/includes/WebStart.php' );
 $shortName = htmlspecialchars( mb_substr( $wgSitename, 0, 16 ) );
 $siteName = htmlspecialchars( $wgSitename );
-$favicon = htmlspecialchars( $wgFavicon );
+
+if ( !preg_match( '/^https?:/', $wgFavicon ) ) {
+	$favicon = htmlspecialchars( $wgServer . $wgFavicon );
+} else {
+	$favicon = htmlspecialchars( $wgFavicon );
+}
+
 $title = Title::makeTitle( NS_SPECIAL, 'Search' );
 $template = $title->getFullURL( 'search={searchTerms}' );
 
