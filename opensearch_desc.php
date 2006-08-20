@@ -15,7 +15,7 @@ if ( !preg_match( '/^https?:/', $wgFavicon ) ) {
 }
 
 $title = Title::makeTitle( NS_SPECIAL, 'Search' );
-$template = $title->getFullURL( 'search={searchTerms}' );
+$template = $title->escapeFullURL( 'search={searchTerms}' );
 
 $response = $wgRequest->response();
 $response->header( 'Content-type: application/opensearchdescription+xml' );
