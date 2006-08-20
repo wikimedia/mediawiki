@@ -93,9 +93,9 @@ if ( isset( $options['help'] ) ) {
 	echo "\t* links: Link the message values (default off).\n";
 	echo "\t* whitelist: Make only the following checks (form: code,code).\n";
 	echo "\t* blacklist: Don't make the following checks (form: code,code).\n";
+	echo "\t* duplicate: Check for messages which are translated the same to English (default off).\n";
 	echo "Check codes (ideally, should be zero; all the checks are executed by default):\n";
 	echo "\t* untranslated: Messages which are translatable, but not translated.";
-	echo "\t* duplicate: Messages which are translated the same to English.";
 	echo "\t* obsolete: Messages which are untranslatable, but translated.";
 	echo "\t* variables: Messages without variables which should be used.";
 	echo "\t* empty: Empty messages.";
@@ -128,11 +128,16 @@ if ( isset( $options['level'] ) ) {
 $wgLinks = isset( $options['links'] );
 
 # Get the checks to do
-$wgChecks = array( 'untranslated', 'duplicate', 'obsolete', 'variables', 'empty', 'whitespace', 'xhtml', 'chars' );
+$wgChecks = array( 'untranslated', 'obsolete', 'variables', 'empty', 'whitespace', 'xhtml', 'chars' );
 if ( isset( $options['whitelist'] ) ) {
 	$wgChecks = explode( ',', $options['whitelist'] );
 } elseif ( isset( $options['blacklist'] ) ) {
 	$wgChecks = array_diff( $wgChecks, explode( ',', $options['blacklist'] ) );
+}
+
+# Add duplicate option if specified
+if ( isset( $options['duplicate'] ) ) {
+	$wgChecks[] = 'duplicate';
 }
 
 # Get language objects
