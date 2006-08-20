@@ -93,7 +93,7 @@ if ( isset( $options['help'] ) ) {
 	echo "\t* links: Link the message values (default off).\n";
 	echo "\t* whitelist: Make only the following checks (form: code,code).\n";
 	echo "\t* blacklist: Don't make the following checks (form: code,code).\n";
-	echo "\t* duplicate: Check for messages which are translated the same to English (default off).\n";
+	echo "\t* duplicate: Additionally check for messages which are translated the same to English (default off).\n";
 	echo "Check codes (ideally, should be zero; all the checks are executed by default):\n";
 	echo "\t* untranslated: Messages which are translatable, but not translated.\n";
 	echo "\t* obsolete: Messages which are untranslatable, but translated.\n";
