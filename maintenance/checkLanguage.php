@@ -95,18 +95,18 @@ if ( isset( $options['help'] ) ) {
 	echo "\t* blacklist: Don't make the following checks (form: code,code).\n";
 	echo "\t* duplicate: Check for messages which are translated the same to English (default off).\n";
 	echo "Check codes (ideally, should be zero; all the checks are executed by default):\n";
-	echo "\t* untranslated: Messages which are translatable, but not translated.";
-	echo "\t* obsolete: Messages which are untranslatable, but translated.";
-	echo "\t* variables: Messages without variables which should be used.";
-	echo "\t* empty: Empty messages.";
-	echo "\t* whitespace: Messages which have trailing whitespace.";
-	echo "\t* xhtml: Messages which are not well-formed XHTML.";
-	echo "\t* chars: Messages with hidden characters.";
+	echo "\t* untranslated: Messages which are translatable, but not translated.\n";
+	echo "\t* obsolete: Messages which are untranslatable, but translated.\n";
+	echo "\t* variables: Messages without variables which should be used.\n";
+	echo "\t* empty: Empty messages.\n";
+	echo "\t* whitespace: Messages which have trailing whitespace.\n";
+	echo "\t* xhtml: Messages which are not well-formed XHTML.\n";
+	echo "\t* chars: Messages with hidden characters.\n";
 	echo "Display levels (default: 2):\n";
-	echo "\t* 0: Skip the checks (useful for checking syntax).";
-	echo "\t* 1: Show only the stub headers and number of wrong messages, without list of messages.";
-	echo "\t* 2: Show only the headers and the message keys, without the message values.";
-	echo "\t* 3: Show both the headers and the complete messages, with both keys and values.";
+	echo "\t* 0: Skip the checks (useful for checking syntax).\n";
+	echo "\t* 1: Show only the stub headers and number of wrong messages, without list of messages.\n";
+	echo "\t* 2: Show only the headers and the message keys, without the message values.\n";
+	echo "\t* 3: Show both the headers and the complete messages, with both keys and values.\n";
 	exit();
 }
 
