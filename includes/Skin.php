@@ -157,7 +157,7 @@ class Skin extends Linker {
 	}
 
 	function initPage( &$out ) {
-		global $wgFavicon;
+		global $wgFavicon, $wgScriptPath;
 
 		$fname = 'Skin::initPage';
 		wfProfileIn( $fname );
@@ -165,6 +165,13 @@ class Skin extends Linker {
 		if( false !== $wgFavicon ) {
 			$out->addLink( array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
 		}
+
+		# OpenSearch description link
+		$out->addLink( array( 
+			'rel' => 'search', 
+			'type' => 'application/opensearchdescription+xml',
+			'href' => "$wgScriptPath/opensearch_desc.php"
+		));
 
 		$this->addMetadataLinks($out);
 
