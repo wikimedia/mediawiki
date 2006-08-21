@@ -277,7 +277,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 					wfMsgHtml ( 'allpages' ) );
 		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$self = Title::makeTitle( NS_SPECIAL, 'Allpages' );
-			$q = 'from=' . $t->getPrefixedUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
+			$q = 'from=' . $t->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
 			$out2 .= ' | ' . $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
 		}
 		$out2 .= "</td></tr></table><hr />";
