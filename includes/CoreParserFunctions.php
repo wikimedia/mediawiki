@@ -147,12 +147,20 @@ class CoreParserFunctions {
 		return $lang != '' ? $lang : $arg;
 	}
 	
+	function pad( $string = '', $length = 0, $char = 0, $direction = STR_PAD_RIGHT ) {
+		$length = min( max( $length, 0 ), 500 );
+		$char = substr( $char, 0, 1 );
+		return ( $string && (int)$length > 0 && strlen( trim( (string)$char ) ) > 0 )
+				? str_pad( $string, $length, (string)$char, $direction )
+				: '';
+	}
+	
 	function padleft( $parser, $string = '', $length = 0, $char = 0 ) {
-		return str_pad( $string, $length, (string)$char, STR_PAD_LEFT );
+		return self::pad( $string, $length, $char, STR_PAD_LEFT );
 	}
 	
 	function padright( $parser, $string = '', $length = 0, $char = 0 ) {
-		return str_pad( $string, $length, (string)$char, STR_PAD_RIGHT );
+		return self::pad( $string, $length, $char );
 	}
 	
 }
