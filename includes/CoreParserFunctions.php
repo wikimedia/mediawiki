@@ -147,11 +147,11 @@ class CoreParserFunctions {
 		return $lang != '' ? $lang : $arg;
 	}
 	
-	function padleft( $parser, $string, $length, $char = 0 ) {
+	function padleft( $parser, $string = '', $length = 0, $char = 0 ) {
 		return str_pad( $string, $length, (string)$char, STR_PAD_LEFT );
 	}
 	
-	function padright( $parser, $string, $length, $char = 0 ) {
+	function padright( $parser, $string = '', $length = 0, $char = 0 ) {
 		return str_pad( $string, $length, (string)$char, STR_PAD_RIGHT );
 	}
 	
