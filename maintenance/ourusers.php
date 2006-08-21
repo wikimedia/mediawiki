@@ -48,8 +48,8 @@ $databases = array(
 	'%wik%',
 );
 
-print "/*!40100 set old_passwords=1 */;"
-print "/*!40100 set global old_passwords=1 */;"
+print "/*!40100 set old_passwords=1 */;";
+print "/*!40100 set global old_passwords=1 */;";
 
 foreach( $hosts as $host ) {
 	print "--\n-- $host\n--\n\n-- wikiuser\n\n";
