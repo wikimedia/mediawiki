@@ -30,7 +30,7 @@ class UploadForm {
 	var $mUploadFile, $mUploadDescription, $mLicense ,$mIgnoreWarning, $mUploadError;
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
-	var $mOname, $mSessionKey, $mStashed, $mDestFile, $mRemoveTempFile;
+	var $mOname, $mSessionKey, $mStashed, $mDestFile, $mRemoveTempFile, $mSourceType;
 	/**#@-*/
 
 	/**
@@ -39,6 +39,7 @@ class UploadForm {
 	 * @param $request Data posted.
 	 */
 	function UploadForm( &$request ) {
+		global $wgAllowCopyUploads;
 		$this->mDestFile          = $request->getText( 'wpDestFile' );
 
 		if( !$request->wasPosted() ) {
@@ -55,6 +56,7 @@ class UploadForm {
 		$this->mUploadCopyStatus  = $request->getText( 'wpUploadCopyStatus' );
 		$this->mUploadSource      = $request->getText( 'wpUploadSource' );
 		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
+		$this->mSourceType         = $request->getBool( 'wpSourceType' );
 		wfDebug( "UploadForm: watchthis is: '$this->mWatchthis'\n" );
 
 		$this->mAction            = $request->getVal( 'action' );
@@ -79,16 +81,49 @@ class UploadForm {
 			/**
 			 *Check for a newly uploaded file.
 			 */
-			$this->mUploadTempName = $request->getFileTempName( 'wpUploadFile' );
-			$this->mUploadSize     = $request->getFileSize( 'wpUploadFile' );
-			$this->mOname          = $request->getFileName( 'wpUploadFile' );
-			$this->mUploadError    = $request->getUploadError( 'wpUploadFile' );
-			$this->mSessionKey     = false;
-			$this->mStashed        = false;
-			$this->mRemoveTempFile = false; // PHP will handle this
+			if( $wgAllowCopyUploads && $this->mSourceType == 'web' ) {
+				$this->initialize_web_file( $request );
+			} else {
+				$this->initialize_php_file( $request );
+			}
 		}
 	}
 
+	/**
+	 * Initialize the uploaded file from PHP data
+	 * @access private
+	 */
+	function initialize_php_file( &$request ) {
+		$this->mUploadTempName = $request->getFileTempName( 'wpUploadFile' );
+		$this->mUploadSize     = $request->getFileSize( 'wpUploadFile' );
+		$this->mOname          = $request->getFileName( 'wpUploadFile' );
+		$this->mUploadError    = $request->getUploadError( 'wpUploadFile' );
+		$this->mSessionKey     = false;
+		$this->mStashed        = false;
+		$this->mRemoveTempFile = false; // PHP will handle this
+	}
+
+	/**
+	 * Copy a web file to a temporary file
+	 * @access private
+	 */
+	function initialize_web_file( &$request ) {
+		global $wgTmpDirectory;
+		$url = $request->getText( 'wpUploadFile' );
+		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
+
+		# Maybe check for filesize($url) first?
+		$error = !@copy( $url, $local_file );
+		
+		$this->mUploadTempName = $local_file;
+		$this->mUploadSize     = filesize( $local_file );
+		$this->mOname          = array_pop( explode( '/', $url ) );
+		$this->mUploadError    = $error;
+		$this->mSessionKey     = false;
+		$this->mStashed        = false;
+		$this->mRemoveTempFile = false; // PHP will *not* handle this
+	}
+	
 	/**
 	 * Start doing stuff
 	 * @access public
@@ -126,17 +161,17 @@ class UploadForm {
 		}
 
 		/** Check if the image directory is writeable, this is a common mistake */
-		if ( !is_writeable( $wgUploadDirectory ) ) {
+		if( !is_writeable( $wgUploadDirectory ) ) {
 			$wgOut->addWikiText( wfMsg( 'upload_directory_read_only', $wgUploadDirectory ) );
 			return;
 		}
 
 		if( $this->mReUpload ) {
-			if ( !$this->unsaveUploadedFile() ) {
+			if( !$this->unsaveUploadedFile() ) {
 				return;
 			}
 			$this->mainUploadForm();
-		} else if ( 'submit' == $this->mAction || $this->mUpload ) {
+		} else if( 'submit' == $this->mAction || $this->mUpload ) {
 			$this->processUpload();
 		} else {
 			$this->mainUploadForm();
@@ -156,7 +191,7 @@ class UploadForm {
 		global $wgUser, $wgOut;
 
 		/* Check for PHP error if any, requires php 4.2 or newer */
-		if ( $this->mUploadError == 1/*UPLOAD_ERR_INI_SIZE*/ ) {
+		if( $this->mUploadError == 1/*UPLOAD_ERR_INI_SIZE*/ ) {
 			$this->mainUploadForm( wfMsgHtml( 'largefileserver' ) );
 			return;
 		}
@@ -170,7 +205,7 @@ class UploadForm {
 		}
 
 		# Chop off any directories in the given filename
-		if ( $this->mDestFile ) {
+		if( $this->mDestFile ) {
 			$basename = wfBaseName( $this->mDestFile );
 		} else {
 			$basename = wfBaseName( $this->mOname );
@@ -196,7 +231,7 @@ class UploadForm {
 				$partname .= '.' . $ext[$i];
 		}
 
-		if ( strlen( $partname ) < 3 ) {
+		if( strlen( $partname ) < 3 ) {
 			$this->mainUploadForm( wfMsgHtml( 'minlength' ) );
 			return;
 		}
@@ -363,7 +398,9 @@ class UploadForm {
 	 *                        is a PHP-managed upload temporary
 	 */
 	function saveUploadedFile( $saveName, $tempName, $useRename = false ) {
-		global $wgOut;
+		global $wgOut, $wgAllowCopyUploads;
+		
+		if ( !$useRename AND $wgAllowCopyUploads AND $this->mSourceType == 'web' ) $useRename = true;
 
 		$fname= "SpecialUpload::saveUploadedFile";
 
@@ -586,6 +623,7 @@ class UploadForm {
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser;
 		global $wgUseCopyrightUpload;
+		global $wgRequest, $wgAllowCopyUploads;
 
 		$cols = intval($wgUser->getOption( 'cols' ));
 		$ew = $wgUser->getOption( 'editwidth' );
@@ -623,6 +661,14 @@ class UploadForm {
 		$watchChecked = $wgUser->getOption( 'watchdefault' )
 			? 'checked="checked"'
 			: '';
+		
+		if ( $wgAllowCopyUploads AND $wgRequest->getText('source') == 'web' ) {
+			$sourcetype = 'text';
+			$source_comment = '<input type="hidden" name="wpSourceType" value="web"/>' . wfMsgHtml( 'upload_source_url' );
+		} else {
+			$sourcetype = 'file';
+			$source_comment = '';
+		}
 
 		$wgOut->addHTML( "
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
@@ -630,7 +676,7 @@ class UploadForm {
 		<tr>
 			<td align='right'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
 			<td align='left'>
-				<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " . ($this->mDestFile?"":"onchange='fillDestFilename()' ") . "size='40' />
+				<input tabindex='1' type='{$sourcetype}' name='wpUploadFile' id='wpUploadFile' " . ($this->mDestFile?"":"onchange='fillDestFilename()' ") . "size='40' />{$source_comment}
 			</td>
 		</tr>
 		<tr>
