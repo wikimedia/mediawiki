@@ -108,20 +108,57 @@ class UploadForm {
 	 * @access private
 	 */
 	function initialize_web_file( &$request ) {
-		global $wgTmpDirectory, $wgMaxUploadSize;
+		global $wgTmpDirectory, $wgMaxUploadSize, $wgUploadTempFileSize;
 		$url = $request->getText( 'wpUploadFile' );
 		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
 
-		if ( $wgMaxUploadSize < @filesize ( $url ) ) $error = true ;
-		else $error = !@copy( $url, $local_file );
-		
 		$this->mUploadTempName = $local_file;
-		$this->mUploadSize     = filesize( $local_file );
+		$this->mUploadError    = $this->curl_copy( $url, $local_file );
+		$this->mUploadSize     = $wgUploadTempFileSize ;
 		$this->mOname          = array_pop( explode( '/', $url ) );
-		$this->mUploadError    = $error;
 		$this->mSessionKey     = false;
 		$this->mStashed        = false;
-		$this->mRemoveTempFile = false; // PHP will *not* handle this
+		$this->mRemoveTempFile = file_exists( $local_file ) ; // PHP will *not* handle this
+	}
+	
+	/**
+	 * Safe copy from URL
+	 * Returns true if there was an error, false otherwise
+	 * @access private
+	 */
+	function curl_copy ( $url , $dest ) {
+		global $wgMaxUploadSize, $wgUploadTempFile, $wgUploadTempFileSize, $wgUser;
+
+		if( !$wgUser->isAllowed( 'upload_by_url' ) ) {
+			$wgOut->permissionRequired( 'upload_by_url' );
+			return true;
+		}
+
+		$url = trim ( $url ) ; # Maybe remove some pasting blanks :-)
+		$u = strtolower ( $url ) ;
+		if( substr( $u, 0, 7 ) != 'http://' AND substr( $u, 0, 6 ) != 'ftp://' ) return true ; # Only HTTP or FTP URLs
+
+		# Open temporary file
+		$wgUploadTempFileSize = 0 ;
+		$wgUploadTempFile = @fopen ( $this->mUploadTempName , "wb" ) ;
+		if ( $wgUploadTempFile === false ) return true ; # Could not open temporary file to write in
+		
+		$ch = curl_init();
+		curl_setopt ($ch, CURLOPT_HTTP_VERSION, 1.0); # Probably not needed, but apparently can work around some bug
+		curl_setopt ($ch, CURLOPT_TIMEOUT, 10); # 10 seconds timeout
+		curl_setopt ($ch, CURLOPT_LOW_SPEED_LIMIT, 512); # 0.5KB per second minimum transfer speed
+		curl_setopt ($ch, CURLOPT_URL, $url); 
+		curl_setopt ($ch, CURLOPT_WRITEFUNCTION, 'wfUploadCurlCallback' ) ;
+		curl_exec ( $ch ) ;
+		$error = curl_errno ( $ch ) ? true : false ;
+#		if ( $error ) print curl_error ( $ch ) ; # Debugging output
+		curl_close ($ch); 
+		
+		fclose ( $wgUploadTempFile ) ;
+		unset ( $wgUploadTempFile ) ;
+		if ( $error ) unlink ( $dest ) ;
+		
+		return $error ;
 	}
 	
 	/**
@@ -458,12 +495,15 @@ class UploadForm {
 	 * @access private
 	 */
 	function saveTempUploadedFile( $saveName, $tempName ) {
-		global $wgOut;
+		global $wgOut, $wgAllowCopyUploads;
 		$archive = wfImageArchiveDir( $saveName, 'temp' );
 		if ( !is_dir ( $archive ) ) wfMkdirParents( $archive );
 		$stash = $archive . '/' . gmdate( "YmdHis" ) . '!' . $saveName;
 
-		$success = $this->mRemoveTempFile
+		$remove_file = $this->mRemoveTempFile ;
+		if ( !$remove_file AND $wgAllowCopyUploads AND $this->mSourceType == 'web' ) $remove_file = true;
+
+		$success = $remove_file
 			? rename( $tempName, $stash )
 			: move_uploaded_file( $tempName, $stash );
 		if ( !$success ) {
@@ -661,8 +701,8 @@ class UploadForm {
 		$watchChecked = $wgUser->getOption( 'watchdefault' )
 			? 'checked="checked"'
 			: '';
-		
-		if ( $wgAllowCopyUploads AND $wgRequest->getText('source') == 'web' ) {
+
+		if ( $wgAllowCopyUploads AND $wgRequest->getText('source') == 'web' AND $wgUser->isAllowed( 'upload_by_url' ) ) {
 			$sourcetype = 'text';
 			$source_comment = '<input type="hidden" name="wpSourceType" value="web"/>' . wfMsgHtml( 'upload_source_url' );
 		} else {
@@ -1152,4 +1192,20 @@ class UploadForm {
 	}
 
 }
+
+/**
+ * Callback function for CURL-based web transfer
+ * Apparently needs to be global
+ * @access private
+ */
+function wfUploadCurlCallback ($ch, $data) {
+	global $wgUploadTempFile, $wgMaxUploadSize, $wgUploadTempFileSize;
+	$length = strlen($data);
+	$wgUploadTempFileSize += $length;
+	if( $wgUploadTempFileSize > $wgMaxUploadSize ) return 0;
+	fwrite( $wgUploadTempFile , $data );
+	return $length;
+}
+	
+
 ?>

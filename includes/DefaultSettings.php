@@ -908,7 +908,7 @@ $wgGroupPermissions['bot'  ]['autoconfirmed']   = true;
 $wgGroupPermissions['sysop']['block']           = true;
 $wgGroupPermissions['sysop']['createaccount']   = true;
 $wgGroupPermissions['sysop']['delete']          = true;
-$wgGroupPermissions['sysop']['deletedhistory']  = true; // can view deleted history entries, but not see or restore the text
+$wgGroupPermissions['sysop']['deletedhistory'] 	= true; // can view deleted history entries, but not see or restore the text
 $wgGroupPermissions['sysop']['editinterface']   = true;
 $wgGroupPermissions['sysop']['import']          = true;
 $wgGroupPermissions['sysop']['importupload']    = true;
@@ -921,8 +921,9 @@ $wgGroupPermissions['sysop']['trackback']       = true;
 $wgGroupPermissions['sysop']['upload']          = true;
 $wgGroupPermissions['sysop']['reupload']        = true;
 $wgGroupPermissions['sysop']['reupload-shared'] = true;
-$wgGroupPermissions['sysop']['unwatchedpages']	= true;
+$wgGroupPermissions['sysop']['unwatchedpages']  = true;
 $wgGroupPermissions['sysop']['autoconfirmed']   = true;
+$wgGroupPermissions['sysop']['upload_by_url']   = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
