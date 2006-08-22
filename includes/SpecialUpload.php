@@ -108,12 +108,12 @@ class UploadForm {
 	 * @access private
 	 */
 	function initialize_web_file( &$request ) {
-		global $wgTmpDirectory;
+		global $wgTmpDirectory, $wgMaxUploadSize;
 		$url = $request->getText( 'wpUploadFile' );
 		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
 
-		# Maybe check for filesize($url) first?
-		$error = !@copy( $url, $local_file );
+		if ( $wgMaxUploadSize < @filesize ( $url ) ) $error = true ;
+		else $error = !@copy( $url, $local_file );
 		
 		$this->mUploadTempName = $local_file;
 		$this->mUploadSize     = filesize( $local_file );
