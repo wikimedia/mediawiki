@@ -82,9 +82,9 @@ class UploadForm {
 			 *Check for a newly uploaded file.
 			 */
 			if( $wgAllowCopyUploads && $this->mSourceType == 'web' ) {
-				$this->initialize_web_file( $request );
+				$this->initializeFromUrl( $request );
 			} else {
-				$this->initialize_php_file( $request );
+				$this->initializeFromUpload( $request );
 			}
 		}
 	}
@@ -93,7 +93,7 @@ class UploadForm {
 	 * Initialize the uploaded file from PHP data
 	 * @access private
 	 */
-	function initialize_php_file( &$request ) {
+	function initializeFromUpload( $request ) {
 		$this->mUploadTempName = $request->getFileTempName( 'wpUploadFile' );
 		$this->mUploadSize     = $request->getFileSize( 'wpUploadFile' );
 		$this->mOname          = $request->getFileName( 'wpUploadFile' );
@@ -107,58 +107,84 @@ class UploadForm {
 	 * Copy a web file to a temporary file
 	 * @access private
 	 */
-	function initialize_web_file( &$request ) {
-		global $wgTmpDirectory, $wgMaxUploadSize, $wgUploadTempFileSize;
+	function initializeFromUrl( $request ) {
+		global $wgTmpDirectory, $wgMaxUploadSize;
 		$url = $request->getText( 'wpUploadFile' );
 		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
 
 		$this->mUploadTempName = $local_file;
-		$this->mUploadError    = $this->curl_copy( $url, $local_file );
-		$this->mUploadSize     = $wgUploadTempFileSize ;
+		$this->mUploadError    = $this->curlCopy( $url, $local_file );
+		$this->mUploadSize     = $this->mUploadTempFileSize;
 		$this->mOname          = array_pop( explode( '/', $url ) );
 		$this->mSessionKey     = false;
 		$this->mStashed        = false;
-		$this->mRemoveTempFile = file_exists( $local_file ) ; // PHP will *not* handle this
+		
+		// PHP won't auto-cleanup the file
+		$this->mRemoveTempFile = file_exists( $local_file );
 	}
 	
 	/**
 	 * Safe copy from URL
 	 * Returns true if there was an error, false otherwise
-	 * @access private
 	 */
-	function curl_copy ( $url , $dest ) {
-		global $wgMaxUploadSize, $wgUploadTempFile, $wgUploadTempFileSize, $wgUser;
+	private function curlCopy( $url, $dest ) {
+		global $wgMaxUploadSize, $wgUser;
 
 		if( !$wgUser->isAllowed( 'upload_by_url' ) ) {
 			$wgOut->permissionRequired( 'upload_by_url' );
 			return true;
 		}
 
-		$url = trim ( $url ) ; # Maybe remove some pasting blanks :-)
-		$u = strtolower ( $url ) ;
-		if( substr( $u, 0, 7 ) != 'http://' AND substr( $u, 0, 6 ) != 'ftp://' ) return true ; # Only HTTP or FTP URLs
+		# Maybe remove some pasting blanks :-)
+		$url = strtolower( trim( $url ) );
+		if( substr( $u, 0, 7 ) != 'http://' && substr( $u, 0, 6 ) != 'ftp://' ) {
+			# Only HTTP or FTP URLs
+			return true;
+		}
 
 		# Open temporary file
-		$wgUploadTempFileSize = 0 ;
-		$wgUploadTempFile = @fopen ( $this->mUploadTempName , "wb" ) ;
-		if ( $wgUploadTempFile === false ) return true ; # Could not open temporary file to write in
+		$this->mUploadTempFileSize = 0;
+		$this->mUploadTempFile = @fopen( $this->mUploadTempName, "wb" );
+		if( $this->mUploadTempFile === false ) {
+			# Could not open temporary file to write in
+			return true;
+		}
 		
 		$ch = curl_init();
-		curl_setopt ($ch, CURLOPT_HTTP_VERSION, 1.0); # Probably not needed, but apparently can work around some bug
-		curl_setopt ($ch, CURLOPT_TIMEOUT, 10); # 10 seconds timeout
-		curl_setopt ($ch, CURLOPT_LOW_SPEED_LIMIT, 512); # 0.5KB per second minimum transfer speed
-		curl_setopt ($ch, CURLOPT_URL, $url); 
-		curl_setopt ($ch, CURLOPT_WRITEFUNCTION, 'wfUploadCurlCallback' ) ;
-		curl_exec ( $ch ) ;
-		$error = curl_errno ( $ch ) ? true : false ;
+		curl_setopt( $ch, CURLOPT_HTTP_VERSION, 1.0); # Probably not needed, but apparently can work around some bug
+		curl_setopt( $ch, CURLOPT_TIMEOUT, 10); # 10 seconds timeout
+		curl_setopt( $ch, CURLOPT_LOW_SPEED_LIMIT, 512); # 0.5KB per second minimum transfer speed
+		curl_setopt( $ch, CURLOPT_URL, $url); 
+		curl_setopt( $ch, CURLOPT_WRITEFUNCTION, array( $this, 'uploadCurlCallback' ) );
+		curl_exec( $ch );
+		$error = curl_errno( $ch ) ? true : false;
 #		if ( $error ) print curl_error ( $ch ) ; # Debugging output
-		curl_close ($ch); 
+		curl_close( $ch );
 		
-		fclose ( $wgUploadTempFile ) ;
-		unset ( $wgUploadTempFile ) ;
-		if ( $error ) unlink ( $dest ) ;
+		fclose( $this->mUploadTempFile );
+		unset( $this->mUploadTempFile );
+		if( $error ) {
+			unlink( $dest );
+		}
 		
-		return $error ;
+		return $error;
+	}
+	
+	/**
+	 * Callback function for CURL-based web transfer
+	 * Write data to file unless we've passed the length limit;
+	 * if so, abort immediately.
+	 * @access private
+	 */
+	function uploadCurlCallback( $ch, $data ) {
+		global $wgMaxUploadSize;
+		$length = strlen( $data );
+		$this->mUploadTempFileSize += $length;
+		if( $this->mUploadTempFileSize > $wgMaxUploadSize ) {
+			return 0;
+		}
+		fwrite( $this->mUploadTempFile, $data );
+		return $length;
 	}
 	
 	/**
@@ -495,15 +521,12 @@ class UploadForm {
 	 * @access private
 	 */
 	function saveTempUploadedFile( $saveName, $tempName ) {
-		global $wgOut, $wgAllowCopyUploads;
+		global $wgOut;
 		$archive = wfImageArchiveDir( $saveName, 'temp' );
 		if ( !is_dir ( $archive ) ) wfMkdirParents( $archive );
 		$stash = $archive . '/' . gmdate( "YmdHis" ) . '!' . $saveName;
 
-		$remove_file = $this->mRemoveTempFile ;
-		if ( !$remove_file AND $wgAllowCopyUploads AND $this->mSourceType == 'web' ) $remove_file = true;
-
-		$success = $remove_file
+		$success = $this->mRemoveTempFile
 			? rename( $tempName, $stash )
 			: move_uploaded_file( $tempName, $stash );
 		if ( !$success ) {
@@ -702,9 +725,10 @@ class UploadForm {
 			? 'checked="checked"'
 			: '';
 
-		if ( $wgAllowCopyUploads AND $wgRequest->getText('source') == 'web' AND $wgUser->isAllowed( 'upload_by_url' ) ) {
+		// Fixme: this is a crappy form
+		if( $wgAllowCopyUploads && $wgRequest->getVal( 'source' ) == 'web' && $wgUser->isAllowed( 'upload_by_url' ) ) {
 			$sourcetype = 'text';
-			$source_comment = '<input type="hidden" name="wpSourceType" value="web"/>' . wfMsgHtml( 'upload_source_url' );
+			$source_comment = '<input type="hidden" name="wpSourceType" value="web" />' . wfMsgHtml( 'upload_source_url' );
 		} else {
 			$sourcetype = 'file';
 			$source_comment = '';
@@ -1191,20 +1215,6 @@ class UploadForm {
 		return true;
 	}
 
-}
-
-/**
- * Callback function for CURL-based web transfer
- * Apparently needs to be global
- * @access private
- */
-function wfUploadCurlCallback ($ch, $data) {
-	global $wgUploadTempFile, $wgMaxUploadSize, $wgUploadTempFileSize;
-	$length = strlen($data);
-	$wgUploadTempFileSize += $length;
-	if( $wgUploadTempFileSize > $wgMaxUploadSize ) return 0;
-	fwrite( $wgUploadTempFile , $data );
-	return $length;
 }
 	
 
