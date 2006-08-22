@@ -809,6 +809,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 
 'license'		=> 'Lizenz',
 'nolicense'		=> 'keine Vorauswahl',
+'upload_source_url'	=> '(gültige, öffentlich zugängliche URL)',
 
 # Image list
 #
@@ -1905,6 +1906,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 'confirm_purge' => "Den Cache dieser Seite leeren? $1",
 'confirm_purge_button' => 'OK',
 
+'newtalkseperator'	=> ',_',
 'youhavenewmessagesmulti' => "Sie haben neue Nachrichten: $1",
 
 # DISPLAYTITLE
