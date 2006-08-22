@@ -946,8 +946,9 @@ $messages = array(
 "destfilename"                => "שמור קובץ בשם",
 "filewasdeleted"              => "קובץ בשם זה כבר הועלה בעבר, ולאחר מכן נמחק. אנא בדקו את הדף $1 לפני שתמשיכו להעלותו שנית.",
 
-"license"   => "רישיון",
-"nolicense" => "אין",
+"license"           => "רישיון",
+"nolicense"         => "אין",
+"upload_source_url" => " (כתובת URL תקפה ונגישה)",
 
 # Image list
 "imagelist"                 => "רשימת תמונות",
