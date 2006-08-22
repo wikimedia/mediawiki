@@ -148,6 +148,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Pass page title as parameters to "linkshere" and "nolinkshere" and update
   default message text
 * Allows to upload from publicy accessible URL. Set $wgAllowCopyUploads = true ; in LocalSettings.php
+  Limited to $wgMaxUploadSize (default:100MB)
 
 == Languages updated ==
 
