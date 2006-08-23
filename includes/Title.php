@@ -1075,6 +1075,7 @@ class Title {
 		if( $action == 'create' ) {
 			if( (  $this->isTalkPage() && !$wgUser->isAllowed( 'createtalk' ) ) ||
 				( !$this->isTalkPage() && !$wgUser->isAllowed( 'createpage' ) ) ) {
+				wfProfileOut( $fname );
 				return false;
 			}
 		}
