@@ -279,11 +279,31 @@ class SpecialPage
 	}	
 
 	/**
-	 * Return categorised listable special pages
-	 * Returns a 2d array where the first index is the restriction name
+	 * Return categorised listable special pages for all users
 	 * @static
 	 */
-	static function getPages() {
+	static function getRegularPages() {
+		if ( !self::$mListInitialised ) {
+			self::initList();
+		}
+		$pages = array();
+
+		foreach ( self::$mList as $name => $rec ) {
+			$page = self::getPage( $name );
+			if ( $page->isListed() && $page->getRestriction() == '' ) {
+				$pages[$name] = $page;
+			}
+		}
+		return $pages;
+	}
+
+	/**
+	 * Return categorised listable special pages which are available
+	 * for the current user, but not for everyone
+	 * @static
+	 */
+	static function getRestrictedPages() {
+		global $wgUser;
 		if ( !self::$mListInitialised ) {
 			self::initList();
 		}
@@ -292,8 +312,10 @@ class SpecialPage
 		foreach ( self::$mList as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page->isListed() ) {
-				$restricted = $page->getRestriction() == '' ? '' : 'restricted';
-				$pages[$restricted][$page->getName()] = $page;
+				$restriction = $page->getRestriction();
+				if ( $restriction != '' && $wgUser->isAllowed( $restriction ) ) {
+					$pages[$name] = $page;
+				}
 			}
 		}
 		return $pages;
