@@ -196,9 +196,11 @@ class SkinTemplate extends Skin {
 		if ( $nsname === NULL ) $nsname = $this->mTitle->getNsText();
 		
 		$tpl->set( 'nscanonical', $nsname );
+		$tpl->set( 'nsnumber', $this->mTitle->getNamespace() );
 		$tpl->set( 'titleprefixeddbkey', $this->mTitle->getPrefixedDBKey() );
 		$tpl->set( 'titletext', $this->mTitle->getText() );
 		$tpl->set( 'articleid', $this->mTitle->getArticleId() );
+		$tpl->set( 'isarticle', $wgOut->isArticle() );
 		                
 		$tpl->setRef( "thispage", $this->thispage );
 		$subpagestr = $this->subPageSubtitle();

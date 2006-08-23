@@ -279,9 +279,11 @@ class Skin extends Linker {
 			var wgServer = "' . Xml::escapeJsString( $data['serverurl'] ) . '";
                         
 			var wgCanonicalNamespace = "' . Xml::escapeJsString( $data['nscanonical'] ) . '";
+			var wgNamespaceNumber = ' . (int)$data['nsnumber'] . ';
 			var wgPageName = "' . Xml::escapeJsString( $data['titleprefixeddbkey'] ) . '";
 			var wgTitle = "' . Xml::escapeJsString( $data['titletext'] ) . '";
 			var wgArticleId = ' . (int)$data['articleid'] . ';
+			var wgIsArticle = ' . ( $data['isarticle'] ? 'true' : 'false' ) . ';
                         
 			var wgUserName = ' . ( $data['username'] == NULL ? 'null' : ( '"' . Xml::escapeJsString( $data['username'] ) . '"' ) ) . ';
 			var wgUserLanguage = "' . Xml::escapeJsString( $data['userlang'] ) . '";
@@ -295,7 +297,7 @@ class Skin extends Linker {
 	function getHeadScripts() {
 		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
-		global $wgTitle, $wgCanonicalNamespaceNames;
+		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut;
 
 		$nsname = @$wgCanonicalNamespaceNames[ $wgTitle->getNamespace() ];
 		if ( $nsname === NULL ) $nsname = $wgTitle->getNsText();
@@ -308,9 +310,11 @@ class Skin extends Linker {
 			'scriptpath' => $wgScriptPath,
 			'serverurl' => $wgServer,
 			'nscanonical' => $nsname,
+			'nsnumber' => $wgTitle->getNamespace(),
 			'titleprefixeddbkey' => $wgTitle->getPrefixedDBKey(),
 			'titletext' => $wgTitle->getText(),
 			'articleid' => $wgTitle->getArticleId(),
+			'isarticle' => $wgOut->isArticle(),
 			'username' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
 			'userlang' => $wgLang->getCode(),
 			'lang' => $wgContLang->getCode(),
