@@ -202,13 +202,12 @@ class UploadForm {
 		}
 
 		# Check permissions
-		if( $wgUser->isLoggedIn() ) {
-			if( !$wgUser->isAllowed( 'upload' ) ) {
+		if( !$wgUser->isAllowed( 'upload' ) ) {
+			if( !$wgUser->isLoggedIn() ) {
+				$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
+			} else {
 				$wgOut->permissionRequired( 'upload' );
-				return;
 			}
-		} else {
-			$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
 			return;
 		}
 
