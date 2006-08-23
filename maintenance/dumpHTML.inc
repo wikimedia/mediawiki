@@ -113,6 +113,11 @@ class DumpHTML {
 
 		$title = Title::newMainPage();
 		$text = $this->getArticleHTML( $title );
+		
+		# Parse the XHTML to find the images
+		$images = $this->findImages( $text );
+		$this->copyImages( $images );
+		
 		$file = fopen( "{$this->dest}/index.html", "w" );
 		if ( !$file ) {
 			print "\nCan't open index.html for writing\n";
@@ -290,7 +295,7 @@ class DumpHTML {
 		global $wgUploadPath, $wgLogo, $wgMaxCredits, $wgSharedUploadPath;
 		global $wgHideInterlanguageLinks, $wgUploadDirectory, $wgThumbnailScriptPath;
 		global $wgSharedThumbnailScriptPath, $wgEnableParserCache, $wgHooks, $wgServer;
-		global $wgRightsUrl, $wgRightsText, $wgCopyrightIcon;
+		global $wgRightsUrl, $wgRightsText, $wgCopyrightIcon, $wgEnableSidebarCache;
 
 		static $oldLogo = NULL;
 
@@ -348,6 +353,7 @@ class DumpHTML {
 		$wgThumbnailScriptPath = $wgSharedThumbnailScriptPath = false;
 		$wgEnableParserCache = false;
 		$wgMathPath = "$wgScriptPath/math";
+		$wgEnableSidebarCache = false;
 
 		if ( !empty( $wgRightsText ) ) {
 			$wgRightsUrl = "$wgScriptPath/COPYING.html";

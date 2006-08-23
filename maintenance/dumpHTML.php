@@ -70,7 +70,7 @@ $wgHTMLDump = new DumpHTML( array(
 	'alternateScriptPath' => $options['interlang'],
 	'interwiki' => $options['interlang'],
 	'skin' => $skin,
-	'makeSnapshot' => $options['snapshot'],
+	'makeSnapshot' => $options['image-snapshot'],
 ));
 
 
