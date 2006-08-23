@@ -456,7 +456,7 @@ ENDTEXT;
 		$rel = substr( $srcPath, strlen( $srcPathBase ) + 1 ); // +1 for slash
 		$sourceLoc = "$srcDirBase/$rel";
 		$destLoc = "$destDirBase/$rel";
-		#print "Copying $sourceLoc to $staticLoc\n";
+		#print "Copying $sourceLoc to $destLoc\n";
 		if ( !file_exists( $destLoc ) ) {
 			wfMkdirParents( dirname( $destLoc ), 0755 );
 			if ( function_exists( 'symlink' ) && !$this->forceCopy ) {
@@ -504,12 +504,12 @@ ENDTEXT;
 		foreach ( $images as $escapedImage => $dummy ) {
 			$image = urldecode( $escapedImage );
 
-			if ( $this->makeSnapshot && substr( $image, 0, $uploadPathLength ) == $wgUploadPath ) {
-				$this->copyImage( $image, $wgUploadPath, $wgUploadDirectory, $this->destUploadDirectory );
-			} elseif ( substr( $image, 0, $sharedPathLength ) == $wgSharedUploadPath ) {
+			if ( substr( $image, 0, $sharedPathLength ) == $wgSharedUploadPath ) {
 				$this->copyImage( $image, $wgSharedUploadPath, $wgSharedUploadDirectory, $this->sharedStaticDirectory );
 			} elseif ( substr( $image, 0, $mathPathLength ) == $wgMathPath ) {
 				$this->relativeCopy( $image, $wgMathPath, $wgMathDirectory, "{$this->dest}/math" );
+			} elseif ( $this->makeSnapshot && substr( $image, 0, $uploadPathLength ) == $wgUploadPath ) {
+				$this->copyImage( $image, $wgUploadPath, $wgUploadDirectory, $this->destUploadDirectory );
 			}
 		}
 	}
