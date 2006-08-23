@@ -1078,24 +1078,14 @@ END;
 
 	/**
 	 * show a drop-down box of special pages
-	 * @TODO crash bug913. Need to be rewrote completly.
 	 */
 	function specialPagesList() {
 		global $wgUser, $wgContLang, $wgServer, $wgRedirectScript;
 		require_once('SpecialPage.php');
 		$a = array();
-		$pages = SpecialPage::getPages();
-
-		// special pages without access restriction
-		foreach ( $pages[''] as $name => $page ) {
-			$a[$name] = $page->getDescription();
-		}
-
-		// Other special pages that are restricted.
-		foreach ( $pages['restricted'] as $name => $page ) {
-			if( $wgUser->isAllowed( $page->getRestriction() ) ) {
-				$a[$name] = $page->getDescription();
-			}
+		$pages = array_merge( SpecialPage::getRegularPages(), SpecialPage::getRestrictedPages() );
+		foreach ( $pages as $name => $page ) {
+			$pages[$name] = $page->getDescription();
 		}
 
 		$go = wfMsg( 'go' );
@@ -1108,7 +1098,7 @@ END;
 		$s .= "<option value=\"{$spp}\">{$sp}</option>\n";
 
 
-		foreach ( $a as $name => $desc ) {
+		foreach ( $pages as $name => $desc ) {
 			$p = $wgContLang->specialPage( $name );
 			$s .= "<option value=\"{$p}\">{$desc}</option>\n";
 		}

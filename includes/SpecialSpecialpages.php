@@ -14,20 +14,11 @@ function wfSpecialSpecialpages() {
 	$wgOut->setRobotpolicy( 'index,nofollow' );
 	$sk = $wgUser->getSkin();
 
-	# Get listable pages, in a 2-d array with the first dimension being user right
-	$pages = SpecialPage::getPages();
-
 	/** Pages available to all */
-	wfSpecialSpecialpages_gen($pages[''],'spheading',$sk);
+	wfSpecialSpecialpages_gen( SpecialPage::getRegularPages(), 'spheading', $sk );
 
 	/** Restricted special pages */
-	$rpages = array();
-	foreach ( $pages['restricted'] as $name => $page ) {
-		if( $wgUser->isAllowed( $page->getRestriction() ) ) {
-			$rpages[$name] = $page;
-		}
-	}
-	wfSpecialSpecialpages_gen( $rpages, 'restrictedpheading', $sk );
+	wfSpecialSpecialpages_gen( SpecialPage::getRestrictedPages(), 'restrictedpheading', $sk );
 }
 
 /**
