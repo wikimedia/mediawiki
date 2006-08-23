@@ -21,13 +21,19 @@ class DumpHTML {
 	var $depth = 3;
 
 	# Directory that commons images are copied into
-	var $sharedStaticPath;
+	var $sharedStaticDirectory;
+
+	# Directory that the images are in, after copying
+	var $destUploadDirectory;
 
 	# Relative path to image directory
 	var $imageRel = 'upload';
 
 	# Copy commons images instead of symlinking
 	var $forceCopy = false;
+
+	# Make a copy of all images encountered
+	var $makeSnapshot = false;
 
 	# Make links assuming the script path is in the same directory as
 	# the destination
@@ -43,7 +49,7 @@ class DumpHTML {
 	var $rawPages;
 
 	# Skin to use
-	var $skin = 'dumphtml';
+	var $skin = 'htmldump';
 
 	function DumpHTML( $settings ) {
 		foreach ( $settings as $var => $value ) {
@@ -156,8 +162,8 @@ class DumpHTML {
 		$i = 0;
 		for ( $hash = 0; $hash < 256; $hash++ ) {
 			$dir = sprintf( "%01x/%02x", intval( $hash / 16 ), $hash );
-			$paths = array_merge( glob( "{$this->sharedStaticPath}/$dir/*" ),
-				glob( "{$this->sharedStaticPath}/thumb/$dir/*" ) );
+			$paths = array_merge( glob( "{$this->sharedStaticDirectory}/$dir/*" ),
+				glob( "{$this->sharedStaticDirectory}/thumb/$dir/*" ) );
 
 			foreach ( $paths as $path ) {
 				$file = basename( $path );
@@ -334,8 +340,6 @@ class DumpHTML {
 		$wgCopyrightIcon = str_replace( 'src="/images',
 			'src="' . htmlspecialchars( $wgScriptPath ) . '/images', $this->oldCopyrightIcon );
 
-
-
 		$wgStylePath = "$wgScriptPath/skins";
 		$wgUploadPath = "$wgScriptPath/{$this->imageRel}";
 		$wgSharedUploadPath = "$wgUploadPath/shared";
@@ -353,7 +357,14 @@ class DumpHTML {
 		$wgUser->setOption( 'skin', $this->skin );
 		$wgUser->setOption( 'editsection', 0 );
 
-		$this->sharedStaticPath = "$wgUploadDirectory/shared";
+		if ( $this->makeSnapshot ) {
+			$this->destUploadDirectory = "{$this->dest}/{$this->imageRel}";
+			if ( realpath( $this->destUploadDirectory == $wgUploadDirectory ) ) {
+				$this->makeSnapshot = false;
+			}
+		}
+
+		$this->sharedStaticDirectory = "{$this->destUploadDirectory}/shared";
 
 		$this->setupDone = true;
 	}
@@ -434,66 +445,71 @@ ENDTEXT;
 	}
 
 	/**
+	 * Copy a file specified by a URL to a given directory
+	 * 
+	 * @param string $srcPath The source URL
+	 * @param string $srcPathBase The base directory of the source URL
+	 * @param string $srcDirBase The base filesystem directory of the source URL
+	 * @param string $destDirBase The base filesystem directory of the destination URL
+	 */
+	function relativeCopy( $srcPath, $srcPathBase, $srcDirBase, $destDirBase ) {
+		$rel = substr( $srcPath, strlen( $srcPathBase ) + 1 ); // +1 for slash
+		$sourceLoc = "$srcDirBase/$rel";
+		$destLoc = "$destDirBase/$rel";
+		#print "Copying $sourceLoc to $staticLoc\n";
+		if ( !file_exists( $destLoc ) ) {
+			wfMkdirParents( dirname( $destLoc ), 0755 );
+			if ( function_exists( 'symlink' ) && !$this->forceCopy ) {
+				symlink( $sourceLoc, $destLoc );
+			} else {
+				copy( $sourceLoc, $destLoc );
+			}
+		}
+	}
+
+	/**
+	 * Copy an image, and if it is a thumbnail, copy its parent image too
+	 */
+	function copyImage( $srcPath, $srcPathBase, $srcDirBase, $destDirBase ) {
+		global $wgUploadPath, $wgUploadDirectory, $wgSharedUploadPath;
+		$this->relativeCopy( $srcPath, $srcPathBase, $srcDirBase, $destDirBase );
+		if ( substr( $srcPath, strlen( $srcPathBase ) + 1, 6 ) == 'thumb/' ) {
+			# The image was a thumbnail
+			# Copy the source image as well
+			$rel = substr( $srcPath, strlen( $srcPathBase ) + 1 );
+			$parts = explode( '/', $rel );
+			$rel = "{$parts[1]}/{$parts[2]}/{$parts[3]}";
+			$newSrc = "$srcPathBase/$rel";
+			$this->relativeCopy( $newSrc, $srcPathBase, $srcDirBase, $destDirBase );
+		}
+	}
+	
+	/**
 	 * Copy images (or create symlinks) from commons to a static directory.
 	 * This is necessary even if you intend to distribute all of commons, because
 	 * the directory contents is used to work out which image description pages
 	 * are needed.
 	 *
-	 * Also copies math images
+	 * Also copies math images, and full-sized images if the makeSnapshot option 
+	 * is specified.
 	 *
 	 */
 	function copyImages( $images ) {
-		global $wgSharedUploadPath, $wgSharedUploadDirectory, $wgMathPath, $wgMathDirectory;
+		global $wgUploadPath, $wgUploadDirectory, $wgSharedUploadPath, $wgSharedUploadDirectory, 
+			$wgMathPath, $wgMathDirectory;
 		# Find shared uploads and copy them into the static directory
 		$sharedPathLength = strlen( $wgSharedUploadPath );
 		$mathPathLength = strlen( $wgMathPath );
+		$uploadPathLength = strlen( $wgUploadPath );
 		foreach ( $images as $escapedImage => $dummy ) {
 			$image = urldecode( $escapedImage );
 
-			# Is it shared?
-			if ( substr( $image, 0, $sharedPathLength ) == $wgSharedUploadPath ) {
-				# Reconstruct full filename
-				$rel = substr( $image, $sharedPathLength + 1 ); // +1 for slash
-				$sourceLoc = "$wgSharedUploadDirectory/$rel";
-				$staticLoc = "{$this->sharedStaticPath}/$rel";
-				#print "Copying $sourceLoc to $staticLoc\n";
-				# Copy to static directory
-				if ( !file_exists( $staticLoc ) ) {
-					wfMkdirParents( dirname( $staticLoc ), 0755 );
-					if ( function_exists( 'symlink' ) && !$this->forceCopy ) {
-						symlink( $sourceLoc, $staticLoc );
-					} else {
-						copy( $sourceLoc, $staticLoc );
-					}
-				}
-
-				if ( substr( $rel, 0, 6 ) == 'thumb/' ) {
-					# That was a thumbnail
-					# We will also copy the real image
-					$parts = explode( '/', $rel );
-					$rel = "{$parts[1]}/{$parts[2]}/{$parts[3]}";
-					$sourceLoc = "$wgSharedUploadDirectory/$rel";
-					$staticLoc = "{$this->sharedStaticPath}/$rel";
-					#print "Copying $sourceLoc to $staticLoc\n";
-					if ( !file_exists( $staticLoc ) ) {
-						wfMkdirParents( dirname( $staticLoc ), 0755 );
-						if ( function_exists( 'symlink' ) && !$this->forceCopy ) {
-							symlink( $sourceLoc, $staticLoc );
-						} else {
-							copy( $sourceLoc, $staticLoc );
-						}
-					}
-				}
-			} else
-			# Is it math?
-			if ( substr( $image, 0, $mathPathLength ) == $wgMathPath ) {
-				$rel = substr( $image, $mathPathLength + 1 ); // +1 for slash
-				$source = "$wgMathDirectory/$rel";
-				$dest = "{$this->dest}/math/$rel";
-				@mkdir( "{$this->dest}/math", 0755 );
-				if ( !file_exists( $dest ) ) {
-					copy( $source, $dest );
-				}
+			if ( $this->makeSnapshot && substr( $image, 0, $uploadPathLength ) == $wgUploadPath ) {
+				$this->copyImage( $image, $wgUploadPath, $wgUploadDirectory, $this->destUploadDirectory );
+			} elseif ( substr( $image, 0, $sharedPathLength ) == $wgSharedUploadPath ) {
+				$this->copyImage( $image, $wgSharedUploadPath, $wgSharedUploadDirectory, $this->sharedStaticDirectory );
+			} elseif ( substr( $image, 0, $mathPathLength ) == $wgMathPath ) {
+				$this->relativeCopy( $image, $wgMathPath, $wgMathDirectory, "{$this->dest}/math" );
 			}
 		}
 	}

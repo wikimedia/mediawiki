@@ -9,16 +9,17 @@
  * Usage:
  * php dumpHTML.php [options...]
  *
- * -d <dest>      destination directory
- * -s <start>     start ID
- * -e <end>       end ID
- * -k <skin>	  skin to use (defaults to dumphtml)
- * --images       only do image description pages
- * --categories   only do category pages
- * --redirects    only do redirects
- * --special      only do miscellaneous stuff
- * --force-copy   copy commons instead of symlink, needed for Wikimedia
- * --interlang    allow interlanguage links
+ * -d <dest>          destination directory
+ * -s <start>         start ID
+ * -e <end>           end ID
+ * -k <skin>          skin to use (defaults to htmldump)
+ * --images           only do image description pages
+ * --categories       only do category pages
+ * --redirects        only do redirects
+ * --special          only do miscellaneous stuff
+ * --force-copy       copy commons instead of symlink, needed for Wikimedia
+ * --interlang        allow interlanguage links
+ * --image-snapshot   copy all images used to the destination directory
  */
 
 
@@ -61,7 +62,7 @@ if ( !empty( $options['d'] ) ) {
 	$dest = 'static';
 }
 
-$skin = isset( $options['k'] ) ? $options['k'] : 'dumphtml';
+$skin = isset( $options['k'] ) ? $options['k'] : 'htmldump';
 
 $wgHTMLDump = new DumpHTML( array(
 	'dest' => $dest,
@@ -69,6 +70,7 @@ $wgHTMLDump = new DumpHTML( array(
 	'alternateScriptPath' => $options['interlang'],
 	'interwiki' => $options['interlang'],
 	'skin' => $skin,
+	'makeSnapshot' => $options['snapshot'],
 ));
 
 
