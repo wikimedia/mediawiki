@@ -75,7 +75,13 @@ class SkinHTMLDump extends SkinTemplate {
 		}
 
 		if ( $nt->getNamespace() == NS_CATEGORY ) {
-			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+			# Determine if the category has any articles in it
+			$dbr =& wfGetDB( DB_SLAVE );
+			$hasMembers = $dbr->selectField( 'categorylinks', '1', 
+				array( 'cl_to' => $nt->getDBkey() ), __METHOD__ );
+			if ( $hasMembers ) {
+				return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+			}
 		}
 
 		if ( $text == '' ) {
