@@ -426,10 +426,10 @@ class OutputPage {
 	}
 
 	function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI, $wgSquidMaxage, $wgRequest;
+		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest;
 		$fname = 'OutputPage::sendCacheControl';
 
-		if ($this->mETag)
+		if ($wgUseETag && $this->mETag)
 			$wgRequest->response()->header("ETag: $this->mETag");
 
 		# don't serve compressed data to clients who can't handle it

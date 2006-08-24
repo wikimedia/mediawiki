@@ -1036,6 +1036,9 @@ $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
  */
 $wgUseGzip = false;
 
+/** Whether MediaWiki should send an ETag header */
+$wgUseETag = false;
+
 # Email notification settings
 #
 
