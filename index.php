@@ -22,7 +22,7 @@ if ( $wgUseAjax && $action == 'ajax' ) {
 
 	$dispatcher = new AjaxDispatcher();
 	$dispatcher->performAction();
-
+	$mediaWiki->restInPeace( $wgLoadBalancer );
 	exit;
 }
 

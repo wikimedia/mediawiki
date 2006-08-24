@@ -60,7 +60,7 @@ class AjaxDispatcher {
 	}
 
 	function performAction() {
-		global $wgAjaxCachePolicy, $wgAjaxExportList;
+		global $wgAjaxCachePolicy, $wgAjaxExportList, $wgOut;
 		if ( empty( $this->mode ) ) {
 			return;
 		}
@@ -76,7 +76,7 @@ class AjaxDispatcher {
 			echo $result;
 		}
 		wfProfileOut( 'AjaxDispatcher::performAction' );
-		exit;
+		$wgOut = null;
 	}
 }
 
