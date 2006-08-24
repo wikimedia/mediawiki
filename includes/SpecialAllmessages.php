@@ -27,7 +27,7 @@ function wfSpecialAllmessages() {
 	$navText = wfMsg( 'allmessagestext' );
 
 	# Make sure all extension messages are available
-	wfLoadAllExtensions();
+	MessageCache::loadAllMessages();
 
 	$first = true;
 	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->mExtensionMessages );
