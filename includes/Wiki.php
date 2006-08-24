@@ -170,6 +170,12 @@ class MediaWiki {
 	 * @return Article
 	 */
 	function articleFromTitle( $title ) {
+		$article = null;
+		wfRunHooks('ArticleFromTitle', array( &$title, &$article ) );
+		if ( $article ) {
+			return $article;
+		}
+
 		if( NS_MEDIA == $title->getNamespace() ) {
 			// FIXME: where should this go?
 			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
