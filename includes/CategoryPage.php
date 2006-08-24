@@ -13,7 +13,6 @@ if( !defined( 'MEDIAWIKI' ) )
  * @package MediaWiki
  */
 class CategoryPage extends Article {
-
 	function view() {
 		if(!wfRunHooks('CategoryPageView', array(&$this))) return;
 
@@ -40,10 +39,27 @@ class CategoryPage extends Article {
 		global $wgOut, $wgRequest;
 		$from = $wgRequest->getVal( 'from' );
 		$until = $wgRequest->getVal( 'until' );
-		
-		$wgOut->addHTML( $this->doCategoryMagic( $from, $until ) );
-	}
 
+		$viewer = new CategoryViewer( $this->mTitle, $from, $until );
+		$wgOut->addHTML( $viewer->getHTML() );
+	}
+}
+
+class CategoryViewer {
+	var $title, $limit, $from, $until,
+		$articles, $articles_start_char, 
+		$children, $children_start_char,
+		$showGallery, $gallery,
+		$skin;
+
+	function __construct( $title, $from, $until ) {
+		global $wgCategoryPagingLimit;
+		$this->title = $title;
+		$this->from = $from;
+		$this->until = $until;
+		$this->limit = $wgCategoryPagingLimit;
+	}
+	
 	/**
 	 * Format the category data list.
 	 *
@@ -52,132 +68,196 @@ class CategoryPage extends Article {
 	 * @return string HTML output
 	 * @private
 	 */
-	function doCategoryMagic( $from = '', $until = '' ) {
-		global $wgOut;
-		global $wgContLang,$wgUser, $wgCategoryMagicGallery, $wgCategoryPagingLimit;
-		$fname = 'CategoryPage::doCategoryMagic';
-		wfProfileIn( $fname );
+	function getHTML() {
+		global $wgOut, $wgCategoryMagicGallery, $wgCategoryPagingLimit;
+		wfProfileIn( __METHOD__ );
 
-		$articles = array();
-		$articles_start_char = array();
-		$children = array();
-		$children_start_char = array();
-		
-		$showGallery = $wgCategoryMagicGallery && !$wgOut->mNoGallery;
-		if( $showGallery ) {
-			$ig = new ImageGallery();
-			$ig->setParsing();
+		$this->showGallery = $wgCategoryMagicGallery && !$wgOut->mNoGallery;
+
+		$this->clearCategoryState();
+		$this->doCategoryQuery();
+		$this->finaliseCategoryState();
+
+		$r = $this->getCategoryTop() .
+			$this->getSubcategorySection() .
+			$this->getPagesSection() .
+			$this->getImageSection() .
+			$this->getCategoryBottom();
+
+		wfProfileOut( __METHOD__ );
+		return $r;
+	}
+
+	function clearCategoryState() {
+		$this->articles = array();
+		$this->articles_start_char = array();
+		$this->children = array();
+		$this->children_start_char = array();
+		if( $this->showGallery ) {
+			$this->gallery = new ImageGallery();
+			$this->gallery->setParsing();
 		}
+	}
 
+	function getSkin() {
+		if ( !$this->skin ) {
+			global $wgUser;
+			$this->skin = $wgUser->getSkin();
+		}
+		return $this->skin;
+	}
+
+	/**
+	 * Add a subcategory to the internal lists
+	 */
+	function addSubcategory( $title, $sortkey, $pageLength ) {
+		global $wgContLang;
+		// Subcategory; strip the 'Category' namespace from the link text.
+		$this->children[] = $this->getSkin()->makeKnownLinkObj( 
+			$title, $wgContLang->convertHtml( $title->getText() ) );
+
+		// If there's a link from Category:A to Category:B, the sortkey of the resulting
+		// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
+		// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
+		// else use sortkey...
+		$sortkey = '';
+		if( $title->getPrefixedText() == $sortkey ) {
+			$sortkey = $wgContLang->firstChar( $title->getDBkey() );
+		} else {
+			$sortkey = $wgContLang->firstChar( $sortkey );
+		}
+		$this->children_start_char[] = $wgContLang->convert( $sortkey );
+	}
+
+	/**
+	 * Add a page in the image namespace
+	 */
+	function addImage( $title, $sortkey, $pageLength ) {
+		if ( $this->showGallery ) {
+			$image = new Image( $title );
+			if( $this->flip ) {
+				$this->gallery->insert( $image );
+			} else {
+				$this->gallery->add( $image );
+			}
+		} else {
+			$this->addPage( $title, $sortkey, $pageLength );
+		}
+	}
+
+	/**
+	 * Add a miscellaneous page
+	 */
+	function addPage( $title, $sortkey, $pageLength ) {
+		global $wgContLang;
+		$this->articles[] = $this->getSkin()->makeSizeLinkObj( 
+			$pageLength, $title, $wgContLang->convert( $title->getPrefixedText() ) 
+		);
+		$this->articles_start_char[] = $wgContLang->convert( $wgContLang->firstChar( $sortkey ) );
+	}
+
+	function finaliseCategoryState() {
+		if( $this->flip ) {
+			$this->children            = array_reverse( $this->children );
+			$this->children_start_char = array_reverse( $this->children_start_char );
+			$this->articles            = array_reverse( $this->articles );
+			$this->articles_start_char = array_reverse( $this->articles_start_char );
+		}
+	}
+
+	function doCategoryQuery() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		if( $from != '' ) {
-			$pageCondition = 'cl_sortkey >= ' . $dbr->addQuotes( $from );
-			$flip = false;
-		} elseif( $until != '' ) {
-			$pageCondition = 'cl_sortkey < ' . $dbr->addQuotes( $until );
-			$flip = true;
+		if( $this->from != '' ) {
+			$pageCondition = 'cl_sortkey >= ' . $dbr->addQuotes( $this->from );
+			$this->flip = false;
+		} elseif( $this->until != '' ) {
+			$pageCondition = 'cl_sortkey < ' . $dbr->addQuotes( $this->until );
+			$this->flip = true;
 		} else {
 			$pageCondition = '1 = 1';
-			$flip = false;
+			$this->flip = false;
 		}
-		$limit = $wgCategoryPagingLimit;
 		$res = $dbr->select(
 			array( 'page', 'categorylinks' ),
 			array( 'page_title', 'page_namespace', 'page_len', 'cl_sortkey' ),
 			array( $pageCondition,
 			       'cl_from          =  page_id',
-			       'cl_to'           => $this->mTitle->getDBKey()),
+			       'cl_to'           => $this->title->getDBKey()),
 			       #'page_is_redirect' => 0),
 			#+ $pageCondition,
-			$fname,
-			array( 'ORDER BY' => $flip ? 'cl_sortkey DESC' : 'cl_sortkey',
-			       'LIMIT'    => $limit + 1 ) );
+			__METHOD__,
+			array( 'ORDER BY' => $this->flip ? 'cl_sortkey DESC' : 'cl_sortkey',
+			       'LIMIT'    => $this->limit + 1 ) );
 
-		$sk =& $wgUser->getSkin();
-		$r = "<br style=\"clear:both;\"/>\n";
 		$count = 0;
-		$nextPage = null;
+		$this->nextPage = null;
 		while( $x = $dbr->fetchObject ( $res ) ) {
-			if( ++$count > $limit ) {
+			if( ++$count > $this->limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				$nextPage = $x->cl_sortkey;
+				$this->nextPage = $x->cl_sortkey;
 				break;
 			}
 
 			$title = Title::makeTitle( $x->page_namespace, $x->page_title );
 
 			if( $title->getNamespace() == NS_CATEGORY ) {
-				// Subcategory; strip the 'Category' namespace from the link text.
-				array_push( $children, $sk->makeKnownLinkObj( $title, $wgContLang->convertHtml( $title->getText() ) ) );
-
-				// If there's a link from Category:A to Category:B, the sortkey of the resulting
-				// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
-				// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
-				// else use sortkey...
-				$sortkey='';
-				if( $title->getPrefixedText() == $x->cl_sortkey ) {
-					$sortkey=$wgContLang->firstChar( $x->page_title );
-				} else {
-					$sortkey=$wgContLang->firstChar( $x->cl_sortkey );
-				}
-				array_push( $children_start_char, $wgContLang->convert( $sortkey ) ) ;
-			} elseif( $showGallery && $title->getNamespace() == NS_IMAGE ) {
-				// Show thumbnails of categorized images, in a separate chunk
-				$anImage = new Image($title);
-				if( $flip ) {
-					$ig->insert( $anImage );
-				} else {
-					$ig->add( $anImage );
-				}
-				unset($anImage);
+				$this->addSubcategory( $title, $x->cl_sortkey, $x->page_len );
+			} elseif( $title->getNamespace() == NS_IMAGE ) {
+				$this->addImage( $title, $x->cl_sortkey, $x->page_len );
 			} else {
-				// Page in this category
-				array_push( $articles, $sk->makeSizeLinkObj( $x->page_len, $title, $wgContLang->convert( $title->getPrefixedText() ) ) ) ;
-				array_push( $articles_start_char, $wgContLang->convert( $wgContLang->firstChar( $x->cl_sortkey ) ) );
+				$this->addPage( $title, $x->cl_sortkey, $x->page_len );
 			}
 		}
 		$dbr->freeResult( $res );
+	}
 
-		if( $flip ) {
-			$children            = array_reverse( $children );
-			$children_start_char = array_reverse( $children_start_char );
-			$articles            = array_reverse( $articles );
-			$articles_start_char = array_reverse( $articles_start_char );
+	function getCategoryTop() {
+		$r = "<br style=\"clear:both;\"/>\n";
+		if( $this->until != '' ) {
+			$r .= $this->pagingLinks( $this->title, $this->nextPage, $this->until, $this->limit );
+		} elseif( $this->nextPage != '' || $this->from != '' ) {
+			$r .= $this->pagingLinks( $this->title, $this->from, $this->nextPage, $this->limit );
 		}
+		return $r;
+	}
 
-		if( $until != '' ) {
-			$r .= $this->pagingLinks( $this->mTitle, $nextPage, $until, $limit );
-		} elseif( $nextPage != '' || $from != '' ) {
-			$r .= $this->pagingLinks( $this->mTitle, $from, $nextPage, $limit );
-		}
-
+	function getSubcategorySection() {
 		# Don't show subcategories section if there are none.
-		if( count( $children ) > 0 ) {
+		$r = '';
+		if( count( $this->children ) > 0 ) {
 			# Showing subcategories
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
-			$r .= wfMsgExt( 'subcategorycount', array( 'parse' ), count( $children) );
-			$r .= $this->formatList( $children, $children_start_char );
+			$r .= wfMsgExt( 'subcategorycount', array( 'parse' ), count( $this->children) );
+			$r .= $this->formatList( $this->children, $this->children_start_char );
 		}
-
-		# Showing articles in this category
-		$ti = htmlspecialchars( $this->mTitle->getText() );
-		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
-		$r .= wfMsgExt( 'categoryarticlecount', array( 'parse' ), count( $articles) );
-		$r .= $this->formatList( $articles, $articles_start_char );
-
-		if( $showGallery && ! $ig->isEmpty() ) {
-			$r.= $ig->toHTML();
-		}
-
-		if( $until != '' ) {
-			$r .= $this->pagingLinks( $this->mTitle, $nextPage, $until, $limit );
-		} elseif( $nextPage != '' || $from != '' ) {
-			$r .= $this->pagingLinks( $this->mTitle, $from, $nextPage, $limit );
-		}
-
-		wfProfileOut( $fname );
 		return $r;
+	}
+
+	function getPagesSection() {
+		$ti = htmlspecialchars( $this->title->getText() );
+		$r = '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
+		$r .= wfMsgExt( 'categoryarticlecount', array( 'parse' ), count( $this->articles) );
+		$r .= $this->formatList( $this->articles, $this->articles_start_char );
+		return $r;
+	}
+
+	function getImageSection() {
+		if( $this->showGallery && ! $this->gallery->isEmpty() ) {
+			return $this->gallery->toHTML();
+		} else {
+			return '';
+		}
+	}
+
+	function getCategoryBottom() {
+		if( $this->until != '' ) {
+			return $this->pagingLinks( $this->title, $this->nextPage, $this->until, $this->limit );
+		} elseif( $this->nextPage != '' || $this->from != '' ) {
+			return $this->pagingLinks( $this->title, $this->from, $this->nextPage, $this->limit );
+		} else {
+			return '';
+		}
 	}
 
 	/**
@@ -295,7 +375,7 @@ class CategoryPage extends Article {
 	 */
 	function pagingLinks( $title, $first, $last, $limit, $query = array() ) {
 		global $wgUser, $wgLang;
-		$sk =& $wgUser->getSkin();
+		$sk =& $this->getSkin();
 		$limitText = $wgLang->formatNum( $limit );
 
 		$prevLink = htmlspecialchars( wfMsg( 'prevn', $limitText ) );
