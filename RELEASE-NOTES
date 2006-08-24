@@ -20,11 +20,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Configuration changes ==
 
-* None yet!
+* $wgUseETag, to enable/disable sending of HTTP ETag headers
+  (default: disabled)
 
 
 == Major new features ==
 
+* (bug 7098) Add an option to disable/enable sending of HTTP ETag headers,
+  as it seems to result in broken behaviour in combination with Squid 2.6
+  (disabled by default).
 * (bug 550) Allow blocks on anonymous users only.
 * (bug 6420) Render thumbnails for DJVU images, support multipage DJVU display
   on image pages. Added new 'page=' thumbnail option to select a page from a
