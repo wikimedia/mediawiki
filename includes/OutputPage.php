@@ -315,11 +315,15 @@ class OutputPage {
 		if ( $parserOutput->mSubtitle != '' ) {
 			$this->mSubtitle .= $parserOutput->mSubtitle ;
 		}
+		$this->mNoGallery = $parserOutput->getNoGallery();
+		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}
 
 	function addParserOutput( &$parserOutput ) {
 		$this->addParserOutputNoText( $parserOutput );
-		$this->addHTML( $parserOutput->getText() );
+		$text =	$parserOutput->getText();
+		wfRunHooks( 'OutputPageBeforeHTML',array( &$this, &$text ) );
+		$this->addHTML( $text );
 	}
 
 	/**
@@ -339,12 +343,7 @@ class OutputPage {
 			$parserCache->save( $parserOutput, $article, $wgUser );
 		}
 
-		$this->addParserOutputNoText( $parserOutput );
-		$text =	$parserOutput->getText();
-		$this->mNoGallery = $parserOutput->getNoGallery();
-		wfRunHooks( 'OutputPageBeforeHTML',array( &$this, &$text ) );
-		$parserOutput->setText( $text );
-		$this->addHTML( $parserOutput->getText() );
+		$this->addParserOutput( $parserOutput );
 	}
 
 	/**
@@ -393,10 +392,7 @@ class OutputPage {
 		$parserCache =& ParserCache::singleton();
 		$parserOutput = $parserCache->get( $article, $user );
 		if ( $parserOutput !== false ) {
-			$this->addParserOutputNoText( $parserOutput );
-			$text = $parserOutput->getText();
-			wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
-			$this->addHTML( $text );
+			$this->addParserOutput( $parserOutput );
 			return true;
 		} else {
 			return false;
