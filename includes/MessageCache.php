@@ -323,7 +323,7 @@ class MessageCache {
 		}
 
 		# Make sure all extension messages are available
-		wfLoadAllExtensions();
+		MessageCache::loadAllMessages();
 
 		# Add them to the cache
 		foreach ( $this->mExtensionMessages as $key => $value ) {
@@ -605,6 +605,14 @@ class MessageCache {
 			# Invalidate all local caches
 			$this->mMemc->delete( "{$this->mMemcKey}-hash" );
 		}
+	}
+
+	static function loadAllMessages() {
+		# Some extensions will load their messages when you load their class file
+		wfLoadAllExtensions();
+		# Others will respond to this hook
+		wfRunHooks( 'LoadAllMessages' );
+		# Still others will respond to neither, they are EVIL. We sometimes need to know!
 	}
 }
 ?>
