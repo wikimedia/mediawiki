@@ -2148,7 +2148,9 @@ class Title {
 					$stack[$parent] = array();
 				} else {
 					$nt = Title::newFromText($parent);
-					$stack[$parent] = $nt->getParentCategoryTree( $children + array($parent => 1) );
+					if ( $nt ) {
+						$stack[$parent] = $nt->getParentCategoryTree( $children + array($parent => 1) );
+					}
 				}
 			}
 			return $stack;
