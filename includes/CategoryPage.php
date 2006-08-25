@@ -52,7 +52,7 @@ class CategoryViewer {
 		$showGallery, $gallery,
 		$skin;
 
-	function __construct( $title, $from, $until ) {
+	function __construct( $title, $from = '', $until = '' ) {
 		global $wgCategoryPagingLimit;
 		$this->title = $title;
 		$this->from = $from;
@@ -120,13 +120,12 @@ class CategoryViewer {
 		// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
 		// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
 		// else use sortkey...
-		$sortkey = '';
 		if( $title->getPrefixedText() == $sortkey ) {
-			$sortkey = $wgContLang->firstChar( $title->getDBkey() );
+			$firstChar = $wgContLang->firstChar( $title->getDBkey() );
 		} else {
-			$sortkey = $wgContLang->firstChar( $sortkey );
+			$firstChar = $wgContLang->firstChar( $sortkey );
 		}
-		$this->children_start_char[] = $wgContLang->convert( $sortkey );
+		$this->children_start_char[] = $wgContLang->convert( $firstChar );
 	}
 
 	/**
