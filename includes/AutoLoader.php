@@ -22,6 +22,7 @@ function __autoload($className) {
 		'Block' => 'includes/Block.php',
 		'CacheManager' => 'includes/CacheManager.php',
 		'CategoryPage' => 'includes/CategoryPage.php',
+		'CategoryViewer' => 'includes/CategoryPage.php',
 		'Categoryfinder' => 'includes/Categoryfinder.php',
 		'RCCacheEntry' => 'includes/ChangesList.php',
 		'ChangesList' => 'includes/ChangesList.php',
