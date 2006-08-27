@@ -4177,9 +4177,11 @@ class Parser
 		$mwWidth  =& MagicWord::get( 'img_width' );
 		$mwCenter =& MagicWord::get( 'img_center' );
 		$mwFramed =& MagicWord::get( 'img_framed' );
+		$mwPage   =& MagicWord::get( 'img_page' );
 		$caption = '';
 
 		$width = $height = $framed = $thumb = false;
+		$page = null;
 		$manual_thumb = '' ;
 
 		foreach( $part as $key => $val ) {
@@ -4201,6 +4203,9 @@ class Parser
 			} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
 				# remember to set an alignment, don't render immediately
 				$align = 'none';
+			} elseif ( ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
+				# Select a page in a multipage document
+				$page = $match;
 			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
 				wfDebug( "img_width match: $match\n" );
 				# $match is the image width in pixels
@@ -4227,7 +4232,7 @@ class Parser
 
 		# Linker does the rest
 		$sk =& $this->mOptions->getSkin();
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb );
+		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb, $page );
 	}
 
 	/**
