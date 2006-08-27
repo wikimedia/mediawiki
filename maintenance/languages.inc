@@ -332,15 +332,16 @@ class languages {
 	}
 
 	/**
-	 * Output a messages list.
+	 * Output a messages list
 	 *
-	 * @param $messages The messages list.
-	 * @param $code The language code.
-	 * @param $text The text to show before the list (optional).
-	 * @param $level The display level.
-	 * @param $links Show links.
+	 * @param $messages The messages list
+	 * @param $code The language code
+	 * @param $text The text to show before the list (optional)
+	 * @param $level The display level (optional)
+	 * @param $links Show links (optional)
+	 * @param $wikilang The langauge of the wiki to display the list in, for the links (optional)
 	 */
-	public function outputMessagesList( $messages, $code, $text = '', $level = 2, $links = false ) {
+	public function outputMessagesList( $messages, $code, $text = '', $level = 2, $links = false, $wikilang = 'en' ) {
 		if ( count( $messages ) > 0 ) {
 			if ( $text ) {
 				echo "$text\n";
@@ -351,8 +352,7 @@ class languages {
 				foreach ( $messages as $key => $value ) {
 					if ( $links ) {
 						$displayKey = ucfirst( $key );
-						global $wgContLang;
-						if ( $code == $wgContLang->getCode() ) {
+						if ( $code == $wikilang ) {
 							$displayKey = "[[MediaWiki:$displayKey|$key]]";
 						} else {
 							$displayKey = "[[MediaWiki:$displayKey/$code|$key]]";
