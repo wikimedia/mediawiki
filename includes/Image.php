@@ -2265,9 +2265,22 @@ class Image
 	}
 
 	function initializeMultiPageXML() {
+		#
+		# Check for files uploaded prior to DJVU support activation
+		# They have a '0' in their metadata field.
+		#
 		if ( $this->metadata == '0' ) {
 			$deja = new DjVuImage( $this->imagePath );
 			$this->metadata = $deja->retrieveMetaData();
+			$this->purgeMetadataCache();
+
+			# Update metadata in the database
+			$dbw =& wfGetDB( DB_MASTER );
+			$dbw->update( 'image',
+				array( 'img_metadata' => $this->metadata ),
+				array( 'img_name' => $this->name ),
+				__METHOD__
+			);
 		}
 		$this->multiPageXML = new SimpleXMLElement( $this->metadata );
 	}

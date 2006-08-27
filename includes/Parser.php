@@ -4153,7 +4153,7 @@ class Parser
 	 * Parse image options text and use it to make an image
 	 */
 	function makeImage( &$nt, $options ) {
-		global $wgUseImageResize;
+		global $wgUseImageResize, $wgDjvuRenderer;
 
 		$align = '';
 
@@ -4203,7 +4203,8 @@ class Parser
 			} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
 				# remember to set an alignment, don't render immediately
 				$align = 'none';
-			} elseif ( ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
+			} elseif ( isset( $wgDjvuRenderer ) && $wgDjvuRenderer
+				   && ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
 				# Select a page in a multipage document
 				$page = $match;
 			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
