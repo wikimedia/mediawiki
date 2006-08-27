@@ -20,6 +20,7 @@ class languages {
 		'exif-model-value',
 		'exif-software-value',
 		'history_copyright',
+		'imgmultigotopost',
 		'licenses',
 		'linkprefix',
 		'loginend',
