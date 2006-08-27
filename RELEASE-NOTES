@@ -153,6 +153,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   default message text
 * Allows to upload from publicy accessible URL. Set $wgAllowCopyUploads = true ; in LocalSettings.php
   Limited to $wgMaxUploadSize (default:100MB); URL upload is limited to sysops by default
+* (bug 832) Return to user page after emailing a user
 
 == Languages updated ==
 
