@@ -781,6 +781,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 
 'license' => 'Jenis lisensi',
 'nolicense' => 'Belum dipilih',
+'upload_source_url' => ' (URL yang dapat diakses publik)',
 
 # Image list
 #
@@ -1882,6 +1883,13 @@ $1",
 
 'loginlanguagelabel' => 'Bahasa: $1',
 
+# Multipage image navigation
+'imgmultipageprev' => '&larr; halaman sebelumnya',
+'imgmultipagenext' => 'halaman selanjutnya &rarr;',
+'imgmultigo' => 'Cari!',
+'imgmultigotopre' => 'Ke halaman',
+'imgmultigotopost' => '',
+
 # Table pager
 'ascending_abbrev' => 'naik',
 'descending_abbrev' => 'turun',
@@ -1894,6 +1902,5 @@ $1",
 'table_pager_empty' => 'Tidak ditemukan',
 
 );
-
 
 ?>
