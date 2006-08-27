@@ -49,7 +49,7 @@ function wfSpecialEmailuser( $par ) {
 	$f = new EmailUserForm( $nu );
 
 	if ( "success" == $action ) {
-		$f->showSuccess();
+		$f->showSuccess( $nu );
 	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
 		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		$f->doSubmit();
@@ -148,13 +148,13 @@ class EmailUserForm {
 		}
 	}
 
-	function showSuccess() {
+	function showSuccess( &$user ) {
 		global $wgOut;
 
 		$wgOut->setPagetitle( wfMsg( "emailsent" ) );
 		$wgOut->addHTML( wfMsg( "emailsenttext" ) );
 
-		$wgOut->returnToMain( false );
+		$wgOut->returnToMain( false, $user->getUserPage() );
 	}
 }
 ?>
