@@ -1888,7 +1888,6 @@ $1",
 'imgmultipagenext' => 'halaman selanjutnya &rarr;',
 'imgmultigo' => 'Cari!',
 'imgmultigotopre' => 'Ke halaman',
-'imgmultigotopost' => '',
 
 # Table pager
 'ascending_abbrev' => 'naik',
