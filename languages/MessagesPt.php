@@ -170,6 +170,13 @@ $messages = array(
 'thursday' => 'Quinta-feira',
 'friday' => 'Sexta-feira',
 'saturday' => 'Sábado',
+'sun' => 'Dom',
+'mon' => 'Seg',
+'tue' => 'Ter',
+'wed' => 'Qua',
+'thu' => 'Qui',
+'fri' => 'Sex',
+'sat' => 'Sáb',
 'january' => 'Janeiro',
 'february' => 'Fevereiro',
 'march' => 'Março',
@@ -182,6 +189,18 @@ $messages = array(
 'october' => 'Outubro',
 'november' => 'Novembro',
 'december' => 'Dezembro',
+'january-gen' => 'Janeiro',
+'february-gen' => 'Fevereiro',
+'march-gen' => 'Março',
+'april-gen' => 'Abril',
+'may-gen' => 'Maio',
+'june-gen' => 'Junho',
+'july-gen' => 'Julho',
+'august-gen' => 'Agosto',
+'september-gen' => 'Setembro',
+'october-gen' => 'Outubro',
+'november-gen' => 'Novembro',
+'december-gen' => 'Dezembro',
 'jan' => 'Jan',
 'feb' => 'Fev',
 'mar' => 'Mar',
@@ -289,9 +308,14 @@ $messages = array(
 'userpage' => 'Ver página de utilizador',
 'projectpage' => 'Ver página do projecto',
 'imagepage' =>       'Ver página de imagens',
+'mediawikipage' =>     'Ver página de mensagens',
+'templatepage' =>     'Ver página de predefinições',
+'viewhelppage' =>     'Ver página de ajuda',
+'categorypage' =>     'Ver página de categorias',
 'viewtalkpage' => 'Ver discussão',
 'otherlanguages' => 'Outras línguas',
 'redirectedfrom' => '(Redireccionado de <b>$1</b> para <b>{{PAGENAME}}</b>.)',
+'autoredircomment' => 'Redireccionando para [[$1]]',
 'redirectpagesub' => 'Página de redireccionamento',
 'lastmodified'  => 'Esta página foi modificada pela última vez a $1.',
 'viewcount'             => 'Esta página foi acedida {{plural:$1|uma vez|$1 vezes}}.',
@@ -302,6 +326,10 @@ $messages = array(
 'jumptosearch' => 'pesquisa',
 
 'badaccess'     => 'Erro de permissão',
+'badaccess-group0' => 'Não está autorizado a executar a acção requisitada.',
+'badaccess-group1' => 'A acção que requisitou está limitada a utilizadores do grupo $1.',
+'badaccess-group2' => 'A acção que requisitou está limitada a utilizadores de um dos grupos $1.',
+'badaccess-groups' => 'A acção que requisitou está limitada a utilizadores de um dos grupos $1.',
 
 'versionrequired' => 'Necessária versão $1 do MediaWiki',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para ser utilizada. Consulte [[Special:Version]]',
@@ -322,6 +350,7 @@ $messages = array(
 'viewdeleted' => 'Ver $1?',
 'restorelink' => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'feedlinks' => 'Feed:',
+'feed-invalid' => 'Tipo de subscrição feed inválido.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Artigo',
@@ -538,6 +567,8 @@ Pode contactar [[{{ns:special}}:emailuser/$4|$4]] ou outro
 Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não possuir uma conta na Wikipédia e um endereço de email válido indicado nas suas preferências de utilizador. E lembre-se que só se encontra impossibilitado de editar páginas.<br /><br />
 
 '''O seu endereço de IP é $3.''' Por favor inclua o seu endereço de IP ao contactar um administrador sobre o bloqueio.",
+'blockedoriginalsource' => "A fonte de '''$1''' é mostrada abaixo:",
+'blockededitsource' => "O texto das '''suas edições''' para '''$1''' é mostrado abaixo:",
 'whitelistedittitle' => 'Autentificação necessária para visualizar',
 'whitelistedittext' => 'Precisa de se $1 para poder visualizar páginas.',
 'whitelistreadtitle' => 'Autentificação necessária para visualizar',
@@ -571,6 +602,11 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 'session_fail_preview' => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
 'previewconflict' => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
+'session_fail_preview_html' => '<strong>Pedimos desculpas! Não foi possível processar a sua edição devido a uma perda de dados de sessão.</strong>
+
+\'\'Devido a esta wiki possuir HTML raw activo, a previsão está escondida como forma de precaução contra ataques JavaScript.\'\'
+
+<strong>Por favor tente novamente caso esta seja uma tentativa de edição legítima. Caso continue a não funcionar, por favor tente sair e voltar a entrar na sua conta.</strong>',
 'importing'		=> "Importando $1",
 'editing'               => "Editando $1",
 'editingsection'                => "Editando $1 (secção)",
@@ -608,16 +644,21 @@ em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode salv
 'nocreatetitle' => 'Limitada a criação de páginas',
 'nocreatetext' => 'Este website tem restringida a habilidade de criar novas páginas.
 Pode voltar atrás e editar uma página já existente, ou [[Special:Userlogin|autentificar-se ou criar uma conta]].',
+'cantcreateaccounttitle' => 'Não é possível criar uma conta',
+'cantcreateaccounttext' => 'A criação de contas a partir deste endereço IP (<b>$1</b>) foi bloqueada. 
+Isto é provavelmente devido a vandalismo persistente efectuada a partir da sua escola ou ISP. ',
 
 # History pages
 #
 'revhistory'    => 'Histórico de revisões',
+'viewpagelogs' => 'Ver registos para esta página',
 'nohistory'             => 'Não há histórico de edições para esta página.',
 'revnotfound'   => 'Revisão não encontrada',
 'revnotfoundtext' => "A antiga revisão desta página que requesitou não pode ser encontrada. Por favor verifique o URL que utilizou para aceder esta página.",
 'loadhist'              => 'Carregando histórico',
 'currentrev'    => 'Revisão actual',
 'revisionasof'          => 'Revisão de $1',
+'old-revision-navigation' => 'Revisão de $1; $5<br />($6) $3 | $2 | $4 ($7)',
 'previousrevision'      => '← Versão anterior',
 'nextrevision'          => 'Versão posterior →',
 'currentrevisionlink'   => 'ver versão actual',
@@ -631,6 +672,42 @@ Legenda: (actu) = diferenças da versão actual,
 'deletedrev' => '[eliminada]',
 'histfirst' => 'Mais antigas',
 'histlast' => 'Mais recentes',
+'rev-deleted-comment' => '(comentário removido)',
+'rev-deleted-user' => '(nome de utilizador removido)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Esta revisão desta página foi removida dos arquivos públicos.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de eliminação].
+</div>',
+'rev-deleted-text-view' => '<div class="mw-warning plainlinks">
+A revisão desta página foi removida dos arquivos públicos.
+Como um administrador desta wiki pode a ver;
+mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de eliminação].
+</div>',
+'rev-delundel' => 'mostrar/esconder',
+
+'history-feed-title' => 'História de revisão',
+'history-feed-description'    => 'História de revisão para esta página nesta wiki',
+'history-feed-item-nocomment' => '$1 a $2', # user at time
+'history-feed-empty' => 'A página requisitada não existe.
+Poderá ter sido eliminada da wiki, ou renomeada.
+Tente [[Especial:Search|pesquisar na wiki]] por novas páginas relevantes.',
+
+# Revision deletion
+#
+'revisiondelete' => 'Eliminar/restaurar revisões',
+'revdelete-selected' => 'Revisão seleccionada para [[:$1]]:',
+'revdelete-text' => "Revisões eliminadas continuarão a aparecer na história da página,
+mas o seu conteúdo textual estará inacessível ao público.
+
+Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escondido e restaurá-lo novamente através deste mesmo ''interface'', a menos que uma restrição adicional seja colocada pelos operadores do ''site''.",
+'revdelete-legend' => 'Atribuir restrições de revisões:',
+'revdelete-hide-text' => 'Esconder texto de revisão',
+'revdelete-hide-comment' => 'Esconder comentário de edição',
+'revdelete-hide-user' => 'Esconder nome de utilizador/IP do editor',
+'revdelete-hide-restricted' => 'Aplicar estas restrições a administrador tal como a outros',
+'revdelete-log' => 'Comentário de registo:',
+'revdelete-submit' => 'Aplicar a revisões seleccionadas',
+'revdelete-logentry' => 'modificada visibilidade de revisão para [[$1]]',
 
 # Diffs
 #
@@ -780,6 +857,7 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'show'                  => 'Mostrar',
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
+'boteditletter' => 'r',
 'sectionlink' => '→',
 'number_of_watching_users_pageview'     => '[$1 utilizador/es a vigiar]',
 'rc_categories'	=> 'Limite para categorias (separar com "|")',
@@ -861,6 +939,7 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'bysize'                => 'por tamanho',
 'imgdelete'             => 'eli',
 'imgdesc'               => 'desc',
+'imgfile'       => 'ficheiro',
 'imglegend'             => 'Legenda: (desc) = mostrar/editar descrição de imagem.',
 'imghistory'    => 'História',
 'revertimg'             => 'rev',
@@ -877,6 +956,12 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'noimage'       => 'Nenhum ficheiro com este nome existe, se desejar pode $1',
 'noimage-linktext'       => 'carrega-lo',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
+'imagelist_date' => 'Data',
+'imagelist_name' => 'Nome',
+'imagelist_user' => 'Utilizador',
+'imagelist_size' => 'Tamanho (bytes)',
+'imagelist_description' => 'Descrição',
+'imagelist_search_for' => 'Pesquisar por nome de imagem:',
 
 # Unwatchedpages
 #
@@ -1323,7 +1408,7 @@ Por favor, escolha outro nome.',
 'delete_and_move' => 'Eliminar e mover',
 'delete_and_move_text'  =>
 '==Eliminação necessária==
-O artigo destinatário "[[$1]]" já existe. Deseja o eliminar de modo a poder mover?',
+O artigo destinatário "[[$1]]" já existe. Deseja eliminá-lo de modo a poder mover a página?',
 'delete_and_move_confirm' => 'Sim, eliminar a página',
 'delete_and_move_reason' => 'Eliminada para poder mover outra página para este título',
 'selfmove' => "O título fonte e o título destinatário são os mesmos; não é possível mover uma página para o mesmo sítio.",
