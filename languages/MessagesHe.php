@@ -2087,7 +2087,6 @@ $1",
 "imgmultipagenext" => "לדף הבא &larr;",
 "imgmultigo"       => "עבור!",
 "imgmultigotopre"  => "עבור לדף",
-"imgmultigotopost" => "",
 
 # Table pager
 "ascending_abbrev"         => "עולה",

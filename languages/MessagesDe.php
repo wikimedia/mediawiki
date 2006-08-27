@@ -1920,7 +1920,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 'imgmultipagenext' => 'n&auml;chste Seite &rarr;',
 'imgmultigo' => 'OK',
 'imgmultigotopre' => 'Gehe zu Seite',
-'imgmultigotopost' => '',
 
 # Table pager
 'ascending_abbrev'	=> 'auf',
