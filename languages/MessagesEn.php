@@ -253,6 +253,7 @@ $magicWords = array(
 	'img_width'              => array( 1,    '$1px'                   ),
 	'img_center'             => array( 1,    'center', 'centre'       ),
 	'img_framed'             => array( 1,    'framed', 'enframed', 'frame' ),
+	'img_page'               => array( 1,    'page=$1', 'page $1'     ),
 	'int'                    => array( 0,    'INT:'                   ),
 	'sitename'               => array( 1,    'SITENAME'               ),
 	'ns'                     => array( 0,    'NS:'                    ),
@@ -2381,6 +2382,13 @@ Please confirm that really want to recreate this page.',
 * Español|es
 * Italiano|it
 * Nederlands|nl",
+
+# Multipage image navigation
+'imgmultipageprev' => '&larr; previous page',
+'imgmultipagenext' => 'next page &rarr;',
+'imgmultigo' => 'Go!',
+'imgmultigotopre' => 'Go to page',
+'imgmultigotopost' => '',
 
 # Table pager
 'ascending_abbrev' => 'asc',
