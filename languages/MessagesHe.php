@@ -120,6 +120,7 @@ $magicWords = array(
 	'img_width'             => array( 1,    '$1px',                                 '$1px'                   ),
 	'img_center'            => array( 1,    'מרכז',                                 'center', 'centre'       ),
 	'img_framed'            => array( 1,    'ממוסגר', 'מסגרת',                      'framed', 'enframed', 'frame' ),
+	'img_page'              => array( 1,    'דף=$1', 'דף $1',                       'page=$1', 'page $1'     ),
 	'int'                   => array( 0,    'הודעה:',                               'INT:'                   ),
 	'sitename'              => array( 1,    'שם האתר',                              'SITENAME'               ),
 	'ns'                    => array( 0,    'מרחב שם:',                             'NS:'                    ),
@@ -2080,6 +2081,13 @@ $1",
 "displaytitle" => "(קשרו לדף זה בשם [[$1]])",
 
 "loginlanguagelabel" => "שפה: $1",
+
+# Multipage image navigation
+"imgmultipageprev" => "&rarr; לדף הקודם",
+"imgmultipagenext" => "לדף הבא &larr;",
+"imgmultigo"       => "עבור!",
+"imgmultigotopre"  => "עבור לדף",
+"imgmultigotopost" => "",
 
 # Table pager
 "ascending_abbrev"         => "עולה",
