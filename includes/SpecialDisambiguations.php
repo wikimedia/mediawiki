@@ -70,13 +70,15 @@ class DisambiguationsPage extends PageQueryPage {
             wfDebug("Mediawiki:disambiguationspage message does not link to any templates!\n");
         }
         
-        $sql = "SELECT 'Disambiguations' AS \"type\", pa.page_namespace AS namespace,"
-             ." pa.page_title AS title, la.pl_from AS value"
-             ." FROM {$templatelinks} AS lb, {$page} AS pa, {$pagelinks} AS la"
-             ." WHERE " . $set   # disambiguation template(s)
-             .' AND pa.page_id = lb.tl_from'
-             .' AND pa.page_namespace = la.pl_namespace'
-             .' AND pa.page_title = la.pl_title';
+        $sql = "SELECT 'Disambiguations' AS \"type\", pb.page_namespace AS namespace,"
+             ." pb.page_title AS title, la.pl_from AS value"
+             ." FROM {$templatelinks} AS lb, {$page} AS pb, {$pagelinks} AS la, {$page} AS pa"
+             ." WHERE $set"  # disambiguation template(s)
+             .' AND pa.page_id = la.pl_from'
+             .' AND pa.page_namespace = ' . NS_MAIN  # Limit to just articles in the main namespace
+             .' AND pb.page_id = lb.tl_from'
+             .' AND pb.page_namespace = la.pl_namespace'
+             .' AND pb.page_title = la.pl_title';
 
         return $sql;
 	}
