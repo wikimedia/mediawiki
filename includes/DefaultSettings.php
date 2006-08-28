@@ -453,7 +453,6 @@ $wgDBconnection     = '';
 /** Database username */
 $wgDBuser           = 'wikiuser';
 /** Database type
- * "mysql" for working code and "PostgreSQL" for development/broken code
  */
 $wgDBtype           = "mysql";
 /** Search type
@@ -485,7 +484,7 @@ $wgSharedDB = null;
 #   dbname:      Default database name
 #   user:        DB user
 #   password:    DB password
-#   type:        "mysql" or "pgsql"
+#   type:        "mysql" or "postgres"
 #   load:        ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
 #   groupLoads:  array of load ratios, the key is the query group name. A query may belong
 #                to several groups, the most specific group defined here is used.
