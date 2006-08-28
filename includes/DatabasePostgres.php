@@ -162,7 +162,7 @@ class DatabasePostgres extends Database {
 				print "<li>Checking that tsearch2 is installed in the database \"$wgDBname\"...";
 				if (! $this->tableExists("pg_ts_cfg", $wgDBts2schema)) {
 					print "<b>FAILED</b>. tsearch2 must be installed in the database \"$wgDBname\".";
-					print "Please see 'http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
+					print "Please see <a href='http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
 					print " for instructions or ask on #postgresql on irc.freenode.net</li>\n";
 					dieout("</ul>");
 				}				
@@ -657,7 +657,8 @@ class DatabasePostgres extends Database {
 		$etable = preg_replace("/'/", "''", $table);
 		$eschema = preg_replace("/'/", "''", $schema);
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
-			. "WHERE c.relnamespace = n.oid AND c.relname = '$etable' AND n.nspname = '$eschema'";
+			. "WHERE c.relnamespace = n.oid AND c.relname = '$etable' AND n.nspname = '$eschema' "
+			. "AND c.relkind IN ('r','v')";
 		$res = $this->query( $SQL );
 		$count = $res ? pg_num_rows($res) : 0;
 		if ($res)
