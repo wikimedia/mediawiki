@@ -70,70 +70,8 @@ function code2utf($num){
    return '';
 }
 
-class AjaxCachePolicy {
-	var $policy;
-	var $vary;
-
-	function AjaxCachePolicy( $policy = null, $vary = null ) {
-		$this->policy = $policy;
-		$this->vary = $vary;
-	}
-
-	function setPolicy( $policy ) {
-		$this->policy = $policy;
-	}
-
-	function setVary( $vary ) {
-		$this->vary = $vary;
-	}
-
-	function writeHeader() {
-		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
-		
-		header ("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-		
-		if ( $this->policy ) {
-			
-			# If squid caches are configured, tell them to cache the response, 
-			# and tell the client to always check with the squid. Otherwise,
-			# tell the client to use a cached copy, without a way to purge it.
-			
-			if( $wgUseSquid ) {
-				
-				# Expect explicite purge of the proxy cache, but require end user agents
-				# to revalidate against the proxy on each visit.
-				# Surrogate-Control controls our Squid, Cache-Control downstream caches
-				
-				if ( $wgUseESI ) {
-					header( 'Surrogate-Control: max-age='.$this->policy.', content="ESI/1.0"');
-					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
-				} else {
-					header( 'Cache-Control: s-maxage='.$this->policy.', must-revalidate, max-age=0' );
-				}
-				
-			} else {
-			
-				# Let the client do the caching. Cache is not purged.
-				header ("Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->policy ) . " GMT");
-				header ("Cache-Control: s-max-age={$this->policy},public,max-age={$this->policy}");
-			}
-			
-		} else {
-			# always expired, always modified
-			header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    // Date in the past
-			header ("Cache-Control: no-cache, must-revalidate");  // HTTP/1.1
-			header ("Pragma: no-cache");                          // HTTP/1.0
-		}
-		
-		if ( $this->vary ) {
-			header ( "Vary: " . $this->vary );
-		}
-	}
-}
-			
-
 function wfSajaxSearch( $term ) {
-	global $wgContLang, $wgAjaxCachePolicy, $wgOut;
+	global $wgContLang, $wgOut;
 	$limit = 16;
 	
 	$l = new Linker;
@@ -144,8 +82,6 @@ function wfSajaxSearch( $term ) {
 
 	if ( strlen( str_replace( '_', '', $term ) )<3 )
 		return;
-
-	$wgAjaxCachePolicy->setPolicy( 30*60 );
 
 	$db =& wfGetDB( DB_SLAVE );
 	$res = $db->select( 'page', 'page_title',
@@ -172,10 +108,10 @@ function wfSajaxSearch( $term ) {
 	}
 
 	$subtitlemsg = ( Title::newFromText($term) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
-	$subtitle = $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) );
+	$subtitle = $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) ); #FIXME: parser is missing mTitle !
 
 	$term = htmlspecialchars( $term );
-	return '<div style="float:right; border:solid 1px black;background:gainsboro;padding:2px;"><a onclick="Searching_Hide_Results();">' 
+	$html = '<div style="float:right; border:solid 1px black;background:gainsboro;padding:2px;"><a onclick="Searching_Hide_Results();">' 
 		. wfMsg( 'hideresults' ) . '</a></div>'
 		. '<h1 class="firstHeading">'.wfMsg('search')
 		. '</h1><div id="contentSub">'. $subtitle . '</div><ul><li>'
@@ -187,6 +123,12 @@ function wfSajaxSearch( $term ) {
 					"search=$term&go=Go" )
 		. "</li></ul><h2>" . wfMsg( 'articletitles', $term ) . "</h2>"
 		. '<ul>' .$r .'</ul>'.$more;
+		
+	$response = new AjaxResponse( $html );
+	
+	$response->setCacheDuration( 30*60 );
+		
+	return $response;
 }
 
 ?>

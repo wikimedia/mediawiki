@@ -38,6 +38,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Changes since 1.7 ==
 
+* Introduced AjaxResponse object, superceding AjaxCachePolicy
+* Changes to sajax_do_call: optionally accept an element to fill instead of a
+  callback function; take the target function or element as a third parameter;
+  pass the full XMLHttpRequest object to the handler function, instead of just
+  the resultText value; use HTTP response codes to report errors.
 * (bug 6562) Removed unmaintained ParserXml.php for now
 * History paging overlap bug fixed
 * (bug 6586) Regression in "unblocked" subtitle
