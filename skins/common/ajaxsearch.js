@@ -38,8 +38,15 @@ function Search_Typing() {
 }
 
 // Set the body div to the results
-function Searching_SetResult(result)
+function Searching_SetResult( request )
 {
+	if ( request.status != 200 ) {
+		alert("Error: " + request.status + " " + request.statusText + ": " + request.responseText);
+		return;
+	}
+	
+	var result = request.responseText;
+
         //body.innerHTML = result;
 	t = document.getElementById("searchTarget");
 	if ( t == null ) {
@@ -83,15 +90,11 @@ function Searching_Call()
 		{
 			return;
 		}
-		x_wfSajaxSearch(x, Searching_SetResult);
+		
+		sajax_do_call( "wfSajaxSearch", [ x ], Searching_SetResult );
 	}
 }
 
-function x_wfSajaxSearch() {
-	sajax_do_call( "wfSajaxSearch", x_wfSajaxSearch.arguments );
-}
-
-	
 //Initialize
 function sajax_onload() {
 	x = document.getElementById( 'searchInput' );
