@@ -483,9 +483,9 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'badsig'                => 'Assinatura inválida; verifique o código HTML utilizado.',
 'email'                 => 'Correio electrónico',
 'prefs-help-email-enotif' => 'Este endereço é também utilizado para enviar-lhe notificações caso as active nas preferências.',
-'prefs-help-realname'   => '* Nome verdadeiro (opcional): caso decida indicar, este será utilizado para lhe dar atributo do seu trabalho.',
+'prefs-help-realname'   => '* Nome verdadeiro (opcional): caso decida indicar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'    => 'Erro de autentificação',
-'prefs-help-email'      => '* Email (opcional): Permite às pessoas que entrem em contacto consigo sem que tenha que revelar o seu endereço de e-mail a elas.',
+'prefs-help-email'      => '* Email (opcional): Permite os utilizadores entrem em contacto consigo sem que tenha de lhes revelar o seu endereço de e-mail.',
 'nocookiesnew'  => "A conta de utilizador foi criada, mas você não foi ligado à conta. Tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active, depois autentifique-se com o seu nome de utilizador e a sua palavra-chave.",
 'nocookieslogin'        => "Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active e tente novamente.",
 'noname'                => 'Não colocou um nome de utilizador válido.',
@@ -646,7 +646,7 @@ em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode salv
 Pode voltar atrás e editar uma página já existente, ou [[Special:Userlogin|autentificar-se ou criar uma conta]].',
 'cantcreateaccounttitle' => 'Não é possível criar uma conta',
 'cantcreateaccounttext' => 'A criação de contas a partir deste endereço IP (<b>$1</b>) foi bloqueada. 
-Isto é provavelmente devido a vandalismo persistente efectuada a partir da sua escola ou ISP. ',
+Isto é provavelmente devido a vandalismo persistente efectuada a partir da sua escola ou ISP.',
 
 # History pages
 #
@@ -668,7 +668,7 @@ Isto é provavelmente devido a vandalismo persistente efectuada a partir da sua 
 'orig'                  => 'orig',
 'histlegend'    => 'Selecção de diferença: marque as caixas para das versões que deseja comparar e carregue no botão.<br />
 Legenda: (actu) = diferenças da versão actual,
-(ult) = diferença da versão precedente, m = edição minoritária',
+(ult) = diferença da versão precedente, m = edição menor',
 'deletedrev' => '[eliminada]',
 'histfirst' => 'Mais antigas',
 'histlast' => 'Mais recentes',
@@ -996,6 +996,7 @@ O que nos leva a aproximadamente '''$5''' edições por página, e '''$6''' vist
 O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é de actualmente '''$7'''.",
 'userstatstext' => "Há actualmente '''$1''' utilizadores registados.
 Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
+'statistics-mostpopular' => 'Páginas mais vistas',
 
 # Maintenance Page
 #
@@ -1019,12 +1020,14 @@ Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 'lonelypages'   => 'Páginas órfãs',
 'uncategorizedpages'    => 'Páginas não categorizadas',
 'uncategorizedcategories'       => 'Categorias não categorizadas',
+'uncategorizedimages' => 'Imagens não categorizadas',
 'unusedcategories' => 'Categorias não utilizadas',
 'unusedimages'  => 'Ficheiros não utilizados',
 'popularpages'  => 'Páginas populares',
 'wantedcategories' => 'Categorias pedidas',
 'wantedpages'   => 'Páginas pedidas',
 'mostlinked'    => 'Páginas com mais afluentes',
+'mostlinkedcategories' => 'Categorias com mais afluentes',
 'mostcategories' => 'Artigos com mais categorias',
 'mostimages'    => 'Imagens com mais afluentes',
 'mostrevisions' => 'Artigos com mais revisões',
@@ -1041,6 +1044,7 @@ Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
 'recentchangeslinked' => 'Alterações relacionadas',
 'rclsub'                => "(para páginas linkadas de \"$1\")",
 'newpages'              => 'Páginas novas',
+'newpages-username' => 'Nome de utilizador:',
 'ancientpages'          => 'Páginas mais antigas',
 'intl'          => 'Ligações interlínguas',
 'move' => 'Mover',
@@ -1072,6 +1076,10 @@ Pode diminuir a lista escolhendo um tipo de registo, um nome de utilizar, ou uma
 'allpagesnext'          => 'Próximo',
 'allpagessubmit'        => 'Ir',
 'allpagesprefix'        => 'Exibir páginas com o prefixo:',
+'allpagesbadtitle'    => 'O título de página dado encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki. Poderá conter um ou mais caracteres que não podem ser utilizados em títulos.',
+
+# Special:Listusers
+'listusersfrom' => 'Mostrar utilizadores começando em:',
 
 # E this user
 #
@@ -1100,7 +1108,9 @@ para que o destinatário lhe possa responder.',
 # Watchlist
 #
 'watchlist'                     => 'Artigos vigiados',
+'watchlistfor' => "(para '''$1''')",
 'nowatchlist'           => 'Não existem itens na sua lista de artigos vigiados.',
+'watchlistanontext' => 'Por favor $1 para ver ou editar os itens na sua lista de artigos vigiados.',
 'watchlistcount'     => "'''Tem $1 items na sua lista de artigos vigiados, incluindo páginas de discussão.'''",
 'clearwatchlist'     => 'Limpar lista de artigos vigiados',
 'watchlistcleartext' => 'Tem a certeza que deseja removê-los?',
@@ -1139,6 +1149,7 @@ Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desint
 'wlsaved'               => 'Esta é uma versão salva de sua lista de artigos vigiados.',
 'wlhideshowown'         => '$1 minhas edições',
 'wlhideshowbots'        => '$1 edições por robôs',
+'wldone'            => 'Concluído.',
 
 'enotif_mailer'                 => '{{SITENAME}} Correio de Notificação',
 'enotif_reset'                  => 'Marcar todas páginas como visitadas',
@@ -1256,6 +1267,12 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 'undeletecomment' => 'Comentário:',
 'undeletedarticle' => "restaurado \"[[$1]]\"",
 'undeletedrevisions' => "$1 revisões restauradas",
+'undeletedrevisions-files' => "$1 revisões e $2 ficheiro(s) restauradas",
+'undeletedfiles' => "{{PLURAL:$1|ficheiro restaurado|$1 ficheiros restaurados}}",
+'cannotundelete' => 'Restauração falhada; alguém poderá já ter restaurado a página primeiro.',
+'undeletedpage' => "<big>'''$1 foi restaurada'''</big>
+
+Consulte o [[Special:Log/delete|registo de eliminações]] para um registo das eliminações e restaurações mais recentes.",
 
 # Namespace form on various pages
 'namespace' => 'Domínio:',
@@ -1272,6 +1289,8 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 'uctop'         => ' (topo)' ,
 'newbies'       => 'novatos',
 
+'sp-newimages-showfrom' => 'Mostrar novas imagens começando de $1',
+
 'sp-contributions-newest' => 'Mais recente',
 'sp-contributions-oldest' => 'Mais antigo',
 'sp-contributions-newer'  => 'Novo $1',
@@ -1284,9 +1303,10 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 'notargettitle' => 'Sem alvo',
 'notargettext'  => 'Não especificou uma página alvo ou utilizador para executar esta função.',
 'linklistsub'   => '(Lista de ligações)',
-'linkshere'             => 'Os seguintes artigos contêm ligações para este:',
-'nolinkshere'   => 'Não há ligações para esta página.',
+'linkshere'             => "Os seguintes artigos contêm ligações para '''[[:$1]]''':",
+'nolinkshere'   => "Não existem ligações para '''[[:$1]]'''.",
 'isredirect'    => 'página de redireccionamento',
+'istemplate'    => 'inclusão',
 
 # Block/unblock IP
 #
@@ -1297,6 +1317,8 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:proje
 'ipadressorusername' => 'Endereço de IP ou nome de utilizador',
 'ipbexpiry'             => 'Prazo',
 'ipbreason'             => 'Motivo',
+'ipbanononly'   => 'Bloquear apenas utilizadores anónimos',
+'ipbcreateaccount' => 'Prevenir criação de conta de utilizador',
 'ipbsubmit'             => 'Bloquear este utilizador',
 'ipbother'              => 'Outro tempo',
 'ipboptions'            => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,infinito:infinite',
@@ -1305,13 +1327,16 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:proje
 'blockipsuccesssub' => 'Bloqueio bem sucedido',
 'blockipsuccesstext' => '[[{{ns:Special}}:Contributions/$1|$1]] foi bloqueado.<br />Consulte a [[Special:Ipblocklist|lista de IPs bloqueados]] para rever os bloqueios.',
 'unblockip'             => 'Desbloquear utilizador',
-'unblockiptext' => 'Utilize o formulário a seguir para restaurar o acesso a escrita para um endereço de IP ou nome de utilizador previamente bloqueado.',
+'unblockiptext' => 'Utilize o formulário a seguir para restaurar o acesso à escrita para um endereço de IP ou nome de utilizador previamente bloqueado.',
 'ipusubmit'             => 'Desbloquear este utilizador',
+'unblocked' => '[[User:$1|$1]] foi desbloqueado',
 'ipblocklist'   => 'Lista de IPs bloqueados',
 'blocklistline' => "$1, $2 bloqueou $3 ($4)",
 'ipblocklistempty'      => 'A lista de IPs bloqueados encontra-se vazia.',
 'infiniteblock' => 'infinito',
 'expiringblock' => 'expira em $1',
+'anononlyblock' => 'anón. apenas',
+'createaccountblock' => 'criação de conta de utilizador bloqueada',
 'blocklink'             => 'bloquear',
 'unblocklink'   => 'desbloquear',
 'contribslink'  => 'contribs',
@@ -1322,8 +1347,10 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:proje
 'unblocklogentry'       => 'desbloqueou $1',
 'range_block_disabled'  => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'    => 'Tempo de expiração inválido.',
+'ipb_already_blocked' => '"$1" já encontra-se bloqueado',
 'ip_range_invalid'      => "Gama de IPs inválida.",
 'proxyblocker'  => 'Bloqueador de proxy',
+'ipb_cant_unblock' => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
 'proxyblockreason'      => 'O seu endereço de IP foi bloqueado por ser um proxy público. Por favor contacte o seu fornecedor do serviço de Internet ou o apoio técnico e informe-os deste problema de segurança grave.',
 'proxyblocksuccess'     => "Terminado.",
 'sorbs'         => 'SORBS DNSBL',
@@ -1337,16 +1364,18 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:proje
 'lockdbtext'    => 'Trancar a base de dados suspenderá a habilidade de todos os utilizadores de editarem páginas, mudarem suas preferências, lista de artigos vigiados e outras coisas que requerem mudanças na base de dados.<br />
 Por favor confirme que realmente pretende fazer isso, e que vai destrancar a base de dados quando a manutenção estiver concluída.',
 'unlockdbtext'  => 'Desbloquear a base de dados vai restaurar a habilidade de todos os utilizadores de editar  artigos,  mudar suas preferências, editar suas listas de artigos vigiados e outras coisas que requerem mudanças na base de dados. Por favor , confirme que realmente pretende fazer isso.',
-'lockconfirm'   => 'Sim, eu realmente desejo trancar a base de dados.',
-'unlockconfirm' => 'Sim, eu realmente desejo destrancar a base de dados.',
-'lockbtn'               => 'Trancar base de dados',
-'unlockbtn'             => 'Destrancar base de dados',
-'locknoconfirm' => 'Você não marcou a caixa de confirmação.',
-'lockdbsuccesssub' => 'Tranca bem sucedida',
-'unlockdbsuccesssub' => 'Destranca bem sucedida',
-'lockdbsuccesstext' => 'A base de dados da {{SITENAME}} foi trancada.
-<br />Lembre-se de remover a tranca após a manutenção.',
-'unlockdbsuccesstext' => 'A base de dados foi destrancada.',
+'lockconfirm'   => 'Sim, eu realmente desejo bloquear a base de dados.',
+'unlockconfirm' => 'Sim, eu realmente desejo desbloquear a base de dados.',
+'lockbtn'               => 'Bloquear base de dados',
+'unlockbtn'             => 'Desbloquear base de dados',
+'locknoconfirm' => 'Não marcou a caixa de confirmação.',
+'lockdbsuccesssub' => 'Bloqueio bem sucedido',
+'unlockdbsuccesssub' => 'Desbloqueio bem sucedido',
+'lockdbsuccesstext' => 'A base de dados da {{SITENAME}} foi bloqueada.
+<br />Lembre-se de remover o bloqueio após a manutenção.',
+'unlockdbsuccesstext' => 'A base de dados foi desbloqueada.',
+'lockfilenotwritable' => 'O ficheiro de bloqueio da base de dados não pode ser escrito. Para bloquear ou desbloquear a base de dados, este precisa de poder ser escrito pelo servidor Web.',
+'databasenotlocked' => 'A base de dados não encontra-se bloqueada.',
 
 # Make sysop
 'makesysoptitle'        => 'Tornar um utilizador num administrador',
@@ -1425,6 +1454,7 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'exportcuronly' => 'Incluir apenas a revisão actual, não o histórico inteiro',
 'exportnohistory' => "----
 '''Nota:''' a exportação da história completa das páginas através deste formulário foi desactivada devido a motivos de performance.",
+'export-submit' => 'Exportar',
 
 # Namespace 8 related
 
@@ -1448,14 +1478,34 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 # Special:Import
 'import'        => 'Importar páginas',
 'importinterwiki' => 'Importação transwiki',
+'import-interwiki-text' => 'Seleccione uma wiki e um título de página a importar.
+As datas das revisões e os seus editores serão mantidos.
+Todas as acções de importação transwiki são registadas no [[Special:Log/import|Registo de importações]].',
+'import-interwiki-history' => 'Copiar todas revisões para esta página',
+'import-interwiki-submit' => 'Importar',
+'import-interwiki-namespace' => 'Transferir páginas para o domínio:',
 'importtext'    => 'Por favor exporte o ficheiro da fonte wiki utilizando o utilitário Especial:Export, salve o ficheiro para o seu disco e importe-o aqui.',
+'importstart'    => "Importando páginas...",
+'import-revision-count' => '$1 {{PLURAL:$1|revisão|revisões}}',
+'importnopages'    => "Não existem páginas a importar.",
 'importfailed'  => "Importação falhou: $1",
+'importunknownsource'    => "Tipo de fonte de importação desconhecida",
+'importcantopen'    => "Não foi possível abrir o ficheiro de importação",
+'importbadinterwiki'    => "Ligação de interwiki incorrecta",
 'importnotext'  => 'Vazio ou sem texto',
 'importsuccess' => 'Importação bem sucedida!',
 'importhistoryconflict' => 'Existem conflitos de revisões no histórico (poderá já ter importado esta página antes)',
 'importnosources' => 'Não foram definidas fontes de importação transwiki e o carregamento directo de históricos encontra-se desactivado.',
 'importnofile' => 'Nenhum ficheiro de importação foi carregado.',
 'importuploaderror' => 'O carregamento do ficheiro de importação falhou; talvez o ficheiro seja maior do que o tamanho de carregamento permitido.',
+
+# import log
+'importlogpage' => 'Registo de importações',
+'importlogpagetext' => 'Importações administrativas de páginas com revisões noutras wikis.',
+'import-logentry-upload' => 'importado $1 através de ficheiro de importação',
+'import-logentry-upload-detail' => '{{PLURAL:$1|revisão|revisões}}',
+'import-logentry-interwiki' => 'transwiki $1',
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|revisão|revisões}} de $2',
 
 # Keyboard access keys for power users
 'accesskey-search' => 'f',
@@ -1476,8 +1526,8 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 'tooltip-watch' => 'Adicionar esta página à sua lista de artigos vigiados [alt-w]',
 
 # stylesheets
-'Monobook.css' => '/* edite este ficheiro para alterar o tema monobook para o site inteiro */',
-#'Monobook.js' => '/* edite este ficheiro para alterar as configurações js no tema monobook */',
+'Common.css' => '/** o código CSS colocado aqui será aplicado a todos os temas */',
+'Monobook.css' => '/* o código CSS colocado aqui terá efeito nos utilizadores do tema Monobook */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF metadata disabled for this server.',
@@ -1609,6 +1659,12 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'variantname-zh-hk' => 'hk',
 'variantname-zh-sg' => 'sg',
 'variantname-zh' => 'zh',
+# variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr-jc' => 'sr-jc',
+'variantname-sr-jl' => 'sr-jl',
+'variantname-sr' => 'sr',
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Utilizador:',
@@ -1842,6 +1898,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 
 # E-mail address confirmation
 'confirmemail' => 'Confirmar endereço de E-mail',
+'confirmemail_noemail' => 'Não possui um endereço de e-mail válido indicado nas suas [[Special:Preferences|preferências de utilizador]].',
 'confirmemail_text' => "Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Active o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.",
 'confirmemail_send' => 'Enviar código de confirmação',
 'confirmemail_sent' => 'E-mail de confirmação enviado.',
@@ -1884,7 +1941,7 @@ $1
 : \'\'$2\'\'
 Por favor confirme que realmente deseja recriar este artigo.',
 'recreate' => 'Recriar',
-'tooltip-recreate' => '',
+'tooltip-recreate' => 'Recriar a página apesar de ter sido eliminada',
 
 'unit-pixel' => 'px',
 
@@ -1904,6 +1961,19 @@ Por favor confirme que realmente deseja recriar este artigo.',
 
 # DISPLAYTITLE
 'displaytitle' => '(Ligar a esta página como [[$1]])',
+
+'loginlanguagelabel' => 'Idioma: $1',
+
+# Table pager
+'ascending_abbrev' => 'asc',
+'descending_abbrev' => 'desc',
+'table_pager_next' => 'Próxima página',
+'table_pager_prev' => 'Página anterior',
+'table_pager_first' => 'Primeira página',
+'table_pager_last' => 'Última página',
+'table_pager_limit' => 'Mostrar $1 items por página',
+'table_pager_limit_submit' => 'Ir',
+'table_pager_empty' => 'Sem resultados',
 );
 
 
