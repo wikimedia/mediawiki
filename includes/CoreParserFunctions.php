@@ -152,7 +152,7 @@ class CoreParserFunctions {
 		$char = substr( $char, 0, 1 );
 		return ( $string && (int)$length > 0 && strlen( trim( (string)$char ) ) > 0 )
 				? str_pad( $string, $length, (string)$char, $direction )
-				: '';
+				: $string;
 	}
 	
 	function padleft( $parser, $string = '', $length = 0, $char = 0 ) {
