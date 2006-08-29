@@ -155,6 +155,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Limited to $wgMaxUploadSize (default:100MB); URL upload is limited to sysops by default
 * (bug 832) Return to user page after emailing a user
 * (bug 366) Add local-system-timezone equivalents for date/time variables
+* (bug 7109) Fix Atom feed version number in header links
 
 
 == Languages updated ==
