@@ -37,6 +37,7 @@ class RawPage {
 		$smaxage = $this->mRequest->getIntOrNull( 'smaxage', $wgSquidMaxage );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
 		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
+		$this->mUseMessageCache = $this->mRequest->getBool( 'usemsgcache' );
 		
 		$oldid = $this->mRequest->getInt( 'oldid' );
 		switch ( $wgRequest->getText( 'direction' ) ) {
@@ -152,7 +153,7 @@ class RawPage {
 		$text = '';
 		if( $this->mTitle ) {
 			// If it's a MediaWiki message we can just hit the message cache
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mOldId ) {
+			if ( $this->mUseMessageCache && $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$key = $this->mTitle->getDBkey();
 				$text = wfMsgForContentNoTrans( $key );
 				# If the message doesn't exist, return a blank

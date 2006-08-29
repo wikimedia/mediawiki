@@ -932,7 +932,7 @@ class SkinTemplate extends Skin {
 
 		# If we use the site's dynamic CSS, throw that in, too
 		if ( $wgUseSiteCss ) {
-			$query = "action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
+			$query = "usemsgcache=yes&action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
 			$sitecss .= '@import "' . $this->makeNSUrl('Common.css', $query, NS_MEDIAWIKI) . '";' . "\n";
 			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', $query, NS_MEDIAWIKI) . '";' . "\n";
 			$sitecss .= '@import "' . $this->makeUrl('-','action=raw&gen=css' . $siteargs) . '";' . "\n";
