@@ -78,7 +78,8 @@ class DisambiguationsPage extends PageQueryPage {
              .' AND pa.page_namespace = ' . NS_MAIN  # Limit to just articles in the main namespace
              .' AND pb.page_id = lb.tl_from'
              .' AND pb.page_namespace = la.pl_namespace'
-             .' AND pb.page_title = la.pl_title';
+             .' AND pb.page_title = la.pl_title'
+			 .' ORDER BY lb.tl_namespace, lb.tl_title';
 
         return $sql;
 	}
