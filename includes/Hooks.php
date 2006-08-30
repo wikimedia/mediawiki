@@ -64,7 +64,7 @@ function wfRunHooks($event, $args = null) {
 			if (count($hook) < 1) {
 				throw new MWException("Empty array in hooks for " . $event . "\n");
 			} else if (is_object($hook[0])) {
-				$object =& $wgHooks[$event][$index][0];
+				$object = $wgHooks[$event][$index][0];
 				if (count($hook) < 2) {
 					$method = "on" . $event;
 				} else {
@@ -87,7 +87,7 @@ function wfRunHooks($event, $args = null) {
 		} else if (is_string($hook)) { # functions look like strings, too
 			$func = $hook;
 		} else if (is_object($hook)) {
-			$object =& $wgHooks[$event][$index];
+			$object = $wgHooks[$event][$index];
 			$method = "on" . $event;
 		} else {
 			throw new MWException("Unknown datatype in hooks for " . $event . "\n");
@@ -109,7 +109,7 @@ function wfRunHooks($event, $args = null) {
 		/* Call the hook. */
 		wfProfileIn( $func );
 		if( isset( $object ) ) {
-			$retval = call_user_func_array(array(&$object, $method), $hook_args);
+			$retval = call_user_func_array(array($object, $method), $hook_args);
 		} else {
 			$retval = call_user_func_array($func, $hook_args);
 		}
