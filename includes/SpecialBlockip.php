@@ -165,6 +165,13 @@ class IPBlockForm {
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
+		$user = User::newFromName( $this->BlockAddress );
+		if( is_object( $user ) ) {
+			$this->showLogFragment( $wgOut, $user->getUserPage() );
+		} elseif( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $this->BlockAddress ) ) {
+			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
+		}
+	
 	}
 
 	function doSubmit() {
@@ -267,6 +274,14 @@ class IPBlockForm {
 		$text = wfMsg( 'blockipsuccesstext', $this->BlockAddress );
 		$wgOut->addWikiText( $text );
 	}
+	
+	function showLogFragment( &$out, &$title ) {
+		$out->addHtml( wfElement( 'h2', NULL, LogPage::logName( 'block' ) ) );
+		$request = new FauxRequest( array( 'page' => $title->getPrefixedText(), 'type' => 'block' ) );
+		$viewer = new LogViewer( new LogReader( $request ) );
+		$viewer->showList( $out );
+	}
+	
 }
 
 ?>
