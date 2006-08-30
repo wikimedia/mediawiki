@@ -162,6 +162,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 366) Add local-system-timezone equivalents for date/time variables
 * (bug 7109) Fix Atom feed version number in header links
 * (bug 7075) List registered parser function hooks on Special:Version
+* (bug 7059) Introduce "anchorencode" colon function
 
 == Languages updated ==
 

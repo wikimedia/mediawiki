@@ -163,6 +163,10 @@ class CoreParserFunctions {
 		return self::pad( $string, $length, $char );
 	}
 	
+	function anchorencode( $parser, $text ) {
+		return str_replace( '%', '.', urlencode( $text ) );
+	}
+	
 }
 
 ?>
