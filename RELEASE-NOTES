@@ -164,6 +164,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7075) List registered parser function hooks on Special:Version
 * (bug 7059) Introduce "anchorencode" colon function
 * Include SVN revision number in {{CURRENTVERSION}} output, where applicable
+* Fix bug in wfRunHooks which caused corruption of objects in the hook list
+
 
 == Languages updated ==
 
