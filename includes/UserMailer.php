@@ -53,7 +53,10 @@ class MailAddress {
 	 * @return string
 	 */
 	function toString() {
-		if( $this->name != '' ) {
+		# PHP's mail() implementation under Windows is somewhat shite, and
+		# can't handle "Joe Bloggs <joe@bloggs.com>" format email addresses,
+		# so don't bother generating them
+		if( $this->name != '' && !wfIsWindows() ) {
 			$quoted = wfQuotedPrintable( $this->name );
 			if( strpos( $quoted, '.' ) !== false ) {
 				$quoted = '"' . $quoted . '"';
