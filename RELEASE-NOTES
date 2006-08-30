@@ -165,7 +165,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7059) Introduce "anchorencode" colon function
 * Include SVN revision number in {{CURRENTVERSION}} output, where applicable
 * Fix bug in wfRunHooks which caused corruption of objects in the hook list
-
+* (bug 4979) Use simplified email addresses when running on Windows
 
 == Languages updated ==
 
