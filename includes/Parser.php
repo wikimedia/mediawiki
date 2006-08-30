@@ -3852,10 +3852,8 @@ class Parser
 
 		# Add to function cache
 		$mw = MagicWord::get( $id );
-		if ( !$mw ) {
-			throw new MWException( 'The calling convention to Parser::setFunctionHook() has changed, ' .
-				'it is now required to pass a MagicWord ID as the first parameter.' );
-		}
+		if( !$mw )
+			throw new MWException( 'Parser::setFunctionHook() expecting a magic word identifier.' );
 
 		$synonyms = $mw->getSynonyms();
 		$sensitive = intval( $mw->isCaseSensitive() );
@@ -3876,6 +3874,15 @@ class Parser
 			$this->mFunctionSynonyms[$sensitive][$syn] = $id;
 		}
 		return $oldVal;
+	}
+
+	/**
+	 * Get all registered function hook identifiers
+	 *
+	 * @return array
+	 */
+	function getFunctionHooks() {
+		return array_keys( $this->mFunctionHooks );
 	}
 
 	/**

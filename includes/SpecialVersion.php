@@ -129,6 +129,11 @@ class SpecialVersion {
 			$out .= "** Parser extension tags:\n";
 			$out .= '***' . $this->listToText( $tags ). "\n";
 		}
+		
+		if( $cnt = count( $fhooks = $wgParser->getFunctionHooks() ) ) {
+			$out .= "** Parser function hooks:\n";
+			$out .= '***' . $this->listToText( $fhooks ) . "\n";
+		}
 
 		if ( count( $wgSkinExtensionFunction ) ) {
 			$out .= "** Skin extension functions:\n";
