@@ -480,7 +480,7 @@ class UndeleteForm {
 		$wgOut->addHTML( "<ul>\n" );
 		while( $row = $result->fetchObject() ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
-			$link = $sk->makeKnownLinkObj( $undelete, htmlspecialchars( $title->getPrefixedText() ), 'target=' . $title->getPartialUrl() );
+			$link = $sk->makeKnownLinkObj( $undelete, htmlspecialchars( $title->getPrefixedText() ), 'target=' . $title->getPrefixedUrl() );
 			$revs = wfMsgHtml( 'undeleterevisions', $wgLang->formatNum( $row->count ) );
 			$wgOut->addHtml( "<li>{$link} ({$revs})</li>\n" );
 		}
