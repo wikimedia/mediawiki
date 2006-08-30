@@ -2475,8 +2475,6 @@ class Parser
 				return $varCache[$index] = $localTimestamp;
 			case 'currentversion':
 				return $varCache[$index] = SpecialVersion::getVersion();
-				#global $wgVersion;
-				#return $wgVersion;
 			case 'sitename':
 				return $wgSitename;
 			case 'server':
