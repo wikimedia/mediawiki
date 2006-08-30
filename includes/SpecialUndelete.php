@@ -479,14 +479,10 @@ class UndeleteForm {
 		$undelete =& Title::makeTitle( NS_SPECIAL, 'Undelete' );
 		$wgOut->addHTML( "<ul>\n" );
 		while( $row = $result->fetchObject() ) {
-			$n = ($row->ar_namespace ?
-				($wgContLang->getNsText( $row->ar_namespace ) . ":") : "").
-				$row->ar_title;
-			$link = $sk->makeKnownLinkObj( $undelete,
-				htmlspecialchars( $n ), "target=" . urlencode( $n ) );
-			$revisions = htmlspecialchars( wfMsg( "undeleterevisions",
-				$wgLang->formatNum( $row->count ) ) );
-			$wgOut->addHTML( "<li>$link ($revisions)</li>\n" );
+			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
+			$link = $sk->makeKnownLinkObj( $undelete, htmlspecialchars( $title->getPrefixedText() ), 'target=' . $title->getPartialUrl() );
+			$revs = wfMsgHtml( 'undeleterevisions', $wgLang->formatNum( $row->count ) );
+			$wgOut->addHtml( "<li>{$link} ({$revs})</li>\n" );
 		}
 		$result->free();
 		$wgOut->addHTML( "</ul>\n" );
