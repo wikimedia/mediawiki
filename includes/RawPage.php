@@ -189,14 +189,8 @@ class RawPage {
 			return '';
 		else
 			if ( $this->mExpandTemplates ) {
-				global $wgTitle;
-
-				$parser = new Parser();
-				$parser->Options( new ParserOptions() ); // We don't want this to be user-specific
-				$parser->Title( $wgTitle );
-				$parser->OutputType( OT_HTML );
-
-				return $parser->replaceVariables( $text );
+				global $wgParser;
+				return $wgParser->preprocess( $text, $this->mTitle, new ParserOptions() );
 			} else
 				return $text;
 	}
