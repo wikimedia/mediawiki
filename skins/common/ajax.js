@@ -75,17 +75,17 @@ function sajax_do_call(func_name, args, target) {
 	uri = wgServer + "/" + wgScriptPath + "/index.php?action=ajax";
 	if (sajax_request_type == "GET") {
 		if (uri.indexOf("?") == -1)
-			uri = uri + "?rs=" + escape(func_name);
+			uri = uri + "?rs=" + encodeURIComponent(func_name);
 		else
-			uri = uri + "&rs=" + escape(func_name);
+			uri = uri + "&rs=" + encodeURIComponent(func_name);
 		for (i = 0; i < args.length; i++)
-			uri = uri + "&rsargs[]=" + escape(args[i]);
+			uri = uri + "&rsargs[]=" + encodeURIComponent(args[i]);
 		//uri = uri + "&rsrnd=" + new Date().getTime();
 		post_data = null;
 	} else {
-		post_data = "rs=" + escape(func_name);
+		post_data = "rs=" + encodeURIComponent(func_name);
 		for (i = 0; i < args.length; i++)
-			post_data = post_data + "&rsargs[]=" + escape(args[i]);
+			post_data = post_data + "&rsargs[]=" + encodeURIComponent(args[i]);
 	}
 	x = sajax_init_object();
 	if (!x) {
