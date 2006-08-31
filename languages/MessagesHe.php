@@ -150,6 +150,7 @@ $magicWords = array(
 	'newsectionlink'        => array( 1,    '__יצירת_הערה__',                      '__NEWSECTIONLINK__'     ),
 	'currentversion'        => array( 1,    'גרסה נוכחית',                         'CURRENTVERSION'         ),
 	'urlencode'             => array( 0,    'נתיב מקודד:',                         'URLENCODE:'             ),
+	'anchorencode'          => array( 0,    'עוגן מקודד:',                         'ANCHORENCODE'           ),
 	'currenttimestamp'      => array( 1,    'זמן נוכחי',                           'CURRENTTIMESTAMP'       ),
 	'localtimestamp'        => array( 1,    'זמן מקומי',                           'LOCALTIMESTAMP'         ),
 	'directionmark'         => array( 1,    'סימן כיווניות',                       'DIRECTIONMARK', 'DIRMARK' ),
@@ -960,9 +961,10 @@ $messages = array(
 "destfilename"                => "שמור קובץ בשם",
 "filewasdeleted"              => "קובץ בשם זה כבר הועלה בעבר, ולאחר מכן נמחק. אנא בדקו את הדף $1 לפני שתמשיכו להעלותו שנית.",
 
-"license"           => "רישיון",
-"nolicense"         => "אין",
-"upload_source_url" => " (כתובת URL תקפה ונגישה)",
+"license"            => "רישיון",
+"nolicense"          => "אין",
+"upload_source_url"  => " (כתובת URL תקפה ונגישה)",
+"upload_source_file" => " (קובץ במחשב שלך)",
 
 # Image list
 "imagelist"                 => "רשימת תמונות",
