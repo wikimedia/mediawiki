@@ -453,7 +453,7 @@ END;
 	}
 
 	function getBodyOptions() {
-		global $wgUser, $wgTitle, $wgOut, $wgRequest;
+		global $wgUser, $wgTitle, $wgOut, $wgRequest, $wgContLang;
 
 		extract( $wgRequest->getValues( 'oldid', 'redirect', 'diff' ) );
 
@@ -476,6 +476,7 @@ END;
 			}
 			$a['onload'] .= 'setupRightClickEdit()';
 		}
+		$a['class'] = 'ns-'.$wgTitle->getNamespace().' '.($wgContLang->isRTL() ? "rtl" : "ltr");
 		return $a;
 	}
 
