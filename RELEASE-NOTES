@@ -173,6 +173,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   any of the templates listed at [[MediaWiki:Disambiguationspage]].
 * Fix formatting of titles on Special:Undelete
 * (bug 7026) Fix action=raw&templates=expand
+* (bug 6976) Add namespace and direction classes to classic skins
 
 
 == Languages updated ==
