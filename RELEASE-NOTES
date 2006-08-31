@@ -172,6 +172,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * [[Special:Disambiguations]] now shows pages in NS:0 that link to any pages that embed
   any of the templates listed at [[MediaWiki:Disambiguationspage]].
 * Fix formatting of titles on Special:Undelete
+* (bug 7026) Fix action=raw&templates=expand
+
 
 == Languages updated ==
 
