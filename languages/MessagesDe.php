@@ -809,7 +809,8 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 
 'license'		=> 'Lizenz',
 'nolicense'		=> 'keine Vorauswahl',
-'upload_source_url'	=> '(gültige, öffentlich zugängliche URL)',
+'upload_source_url'	=> ' (eine gültige, öffentlich erreichbare URL)',
+'upload_source_file'	=> ' (eine Datei auf Ihrem Computer)',
 
 # Image list
 #
@@ -937,6 +938,21 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 'data'			=> 'Daten',
 'groups'		=> 'Benutzergruppen',
 'noimages'	=> 'Keine Dateien gefunden.',
+
+# short names for language variants used for language conversion links.
+# to disable showing a particular link, set it to 'disable', e.g.
+# 'variantname-zh-sg' => 'disable',
+'variantname-zh-cn'	=> 'cn',
+'variantname-zh-tw'	=> 'tw',
+'variantname-zh-hk'	=> 'hk',
+'variantname-zh-sg'	=> 'sg',
+'variantname-zh'	=> 'zh',
+# variants for Serbian language
+'variantname-sr-ec'	=> 'sr-ec',
+'variantname-sr-el'	=> 'sr-el',
+'variantname-sr-jc'	=> 'sr-jc',
+'variantname-sr-jl'	=> 'sr-jl',
+'variantname-sr'	=> 'sr',
 
 # Special:Allpages
 'allpages'		=> 'Alle Seiten',
