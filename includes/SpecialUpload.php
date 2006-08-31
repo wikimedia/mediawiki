@@ -56,7 +56,7 @@ class UploadForm {
 		$this->mUploadCopyStatus  = $request->getText( 'wpUploadCopyStatus' );
 		$this->mUploadSource      = $request->getText( 'wpUploadSource' );
 		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
-		$this->mSourceType         = $request->getBool( 'wpSourceType' );
+		$this->mSourceType         = $request->getText( 'wpSourceType' );
 		wfDebug( "UploadForm: watchthis is: '$this->mWatchthis'\n" );
 
 		$this->mAction            = $request->getVal( 'action' );
@@ -109,7 +109,7 @@ class UploadForm {
 	 */
 	function initializeFromUrl( $request ) {
 		global $wgTmpDirectory, $wgMaxUploadSize;
-		$url = $request->getText( 'wpUploadFile' );
+		$url = $request->getText( 'wpUploadFileURL' );
 		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
 
 		$this->mUploadTempName = $local_file;
@@ -137,7 +137,7 @@ class UploadForm {
 
 		# Maybe remove some pasting blanks :-)
 		$url = strtolower( trim( $url ) );
-		if( substr( $u, 0, 7 ) != 'http://' && substr( $u, 0, 6 ) != 'ftp://' ) {
+		if( substr( $url, 0, 7 ) != 'http://' && substr( $url, 0, 6 ) != 'ftp://' ) {
 			# Only HTTP or FTP URLs
 			return true;
 		}
@@ -724,22 +724,33 @@ class UploadForm {
 			? 'checked="checked"'
 			: '';
 
-		// Fixme: this is a crappy form
-		if( $wgAllowCopyUploads && $wgRequest->getVal( 'source' ) == 'web' && $wgUser->isAllowed( 'upload_by_url' ) ) {
-			$sourcetype = 'text';
-			$source_comment = '<input type="hidden" name="wpSourceType" value="web" />' . wfMsgHtml( 'upload_source_url' );
+		// Prepare form for upload or upload/copy
+		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
+			$source_comment = wfMsgHtml( 'upload_source_url' );
+			$filename_form = 
+				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked />" . 
+				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' onfocus='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" . 
+				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . "size='40' />" .
+				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
+				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' onchange='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\")' />" .
+				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' onfocus='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" . 
+				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='40' DISABLED />" .
+				wfMsgHtml( 'upload_source_url' ) ;
 		} else {
-			$sourcetype = 'file';
-			$source_comment = '';
+			$filename_form = 
+				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " . 
+				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . 
+				"size='40' />" .
+				"<input type='hidden' name='wpSourceType' value='file' />" ;
 		}
 
 		$wgOut->addHTML( "
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
 		<table border='0'>
 		<tr>
-			<td align='right'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
+			<td align='right' valign='top'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
 			<td align='left'>
-				<input tabindex='1' type='{$sourcetype}' name='wpUploadFile' id='wpUploadFile' " . ($this->mDestFile?"":"onchange='fillDestFilename()' ") . "size='40' />{$source_comment}
+				{$filename_form}
 			</td>
 		</tr>
 		<tr>
