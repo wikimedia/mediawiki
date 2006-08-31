@@ -781,7 +781,11 @@ class OutputPage {
 		$this->addHtml( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
 		$this->addHtml( "\n<!--" . $wgTitle->getPrefixedUrl() . "-->" );
 		
-		$this->returnToMain();
+		# Don't return to the main page if the user can't read it
+		# otherwise we'll end up in a pointless loop
+		$mainPage = Title::newFromText( wfMsgForContent( 'mainpage' ) );
+		if( $mainPage->userCanRead() )
+			$this->returnToMain( true, $mainPage );
 	}
 
 	/** @obsolete */
