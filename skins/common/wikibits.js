@@ -612,10 +612,24 @@ function checkboxMouseupHandler(e) {
 	return true;
 }
 
-function fillDestFilename() {
+function toggle_element_activation(ida,idb) {
 	if (!document.getElementById)
 		return;
-	var path = document.getElementById('wpUploadFile').value;
+	document.getElementById(ida).disabled=true;
+	document.getElementById(idb).disabled=false;
+}
+
+function toggle_element_check(ida,idb) {
+	if (!document.getElementById)
+		return;
+	document.getElementById(ida).checked=true;
+	document.getElementById(idb).checked=false;
+}
+
+function fillDestFilename(id) {
+	if (!document.getElementById)
+		return;
+	var path = document.getElementById(id).value;
 	// Find trailing part
 	var slash = path.lastIndexOf('/');
 	var backslash = path.lastIndexOf('\\');
