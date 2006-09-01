@@ -781,7 +781,8 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 
 'license' => 'Jenis lisensi',
 'nolicense' => 'Belum dipilih',
-'upload_source_url' => ' (URL yang dapat diakses publik)',
+'upload_source_url' => ' (suatu URL valid yang dapat diakses publik)',
+'upload_source_file' => ' (suatu berkas di komputer Anda)',
 
 # Image list
 #
