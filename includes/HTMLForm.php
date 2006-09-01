@@ -71,7 +71,7 @@ class HTMLForm {
 				( $checked ? ' checked="checked"' : '' ) . " />" . wfMsg( $this->mName.'-'.$varname.'-'.$value ) .
 				"</label></div>\n";
 		}
-		return $this->fieldset( $this->mName.'-'.$varname, $s );
+		return $this->fieldset( $varname, $s );
 	}
 
 	/**
