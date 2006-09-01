@@ -176,6 +176,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6976) Add namespace and direction classes to classic skins
 * (bug 7144) Don't "return to main" from OutputPage::loginToUse() if the the user can't
   read the main page in the first place
+* (bug 7188) Fix minor borkage in HTMLForm
+
 
 == Languages updated ==
 
