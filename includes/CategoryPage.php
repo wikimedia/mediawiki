@@ -116,16 +116,26 @@ class CategoryViewer {
 		$this->children[] = $this->getSkin()->makeKnownLinkObj( 
 			$title, $wgContLang->convertHtml( $title->getText() ) );
 
-		// If there's a link from Category:A to Category:B, the sortkey of the resulting
-		// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
-		// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
-		// else use sortkey...
+		$this->children_start_char[] = $this->getSubcategorySortChar( $title, $sortkey );
+	}
+
+	/**
+	* Get the character to be used for sorting subcategories.
+	* If there's a link from Category:A to Category:B, the sortkey of the resulting
+	* entry in the categorylinks table is Category:A, not A, which it SHOULD be.
+	* Workaround: If sortkey == "Category:".$title, than use $title for sorting,
+	* else use sortkey...
+	*/
+	function getSubcategorySortChar( $title, $sortkey ) {
+		global $wgContLang;
+		
 		if( $title->getPrefixedText() == $sortkey ) {
 			$firstChar = $wgContLang->firstChar( $title->getDBkey() );
 		} else {
 			$firstChar = $wgContLang->firstChar( $sortkey );
 		}
-		$this->children_start_char[] = $wgContLang->convert( $firstChar );
+		
+		return $wgContLang->convert( $firstChar );
 	}
 
 	/**
