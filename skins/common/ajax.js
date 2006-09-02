@@ -9,7 +9,7 @@ var sajax_request_type = "GET";
 * it is injected.
 */
 function sajax_debug(text) {
-	if (!sajax_debug_mode) return;
+	if (!sajax_debug_mode) return false;
 	
 	var e= document.getElementById('sajax_debug');
 	
@@ -28,6 +28,8 @@ function sajax_debug(text) {
 	m.appendChild( document.createTextNode( text ) );
 	
 	e.appendChild( m );
+	
+	return true;
 }
 
 /**
@@ -49,6 +51,7 @@ function sajax_init_object() {
 		A = new XMLHttpRequest();
 	if (!A)
 		sajax_debug("Could not create connection object.");
+	
 	return A;
 }
 
@@ -126,10 +129,14 @@ function sajax_do_call(func_name, args, target) {
 		else {
 			alert("bad target for sajax_do_call: not a function or object: " + target);
 		}
+		
+		return;
 	}
 	
 	sajax_debug(func_name + " uri = " + uri + " / post = " + post_data);
 	x.send(post_data);
 	sajax_debug(func_name + " waiting..");
 	delete x;
+	
+	return true;
 }
