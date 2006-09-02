@@ -88,7 +88,7 @@ $messages = array(
 'tog-externaleditor' => 'Domyślnie używaj zewnętrznego edytora',
 'tog-externaldiff' => 'Domyślnie używaj zewnętrznego programu pokazującego zmiany',
 'tog-showjumplinks' => 'Włącz odnośniki "skocz do"',
-'tog-uselivepreview' => 'Używaj "live preview" (JavaScript) (eksperymentalna)',
+'tog-uselivepreview' => 'Używaj dynamicznego podglądu (JavaScript) (eksperymentalna)',
 'tog-autopatrol' => 'Zaznacz moje edycje jako patrolowane',
 'tog-forceeditsummary' => 'Informuj o niewypełnieniu pola opisu zmian',
 'tog-watchlisthideown' => 'Ukryj moje edycje w obserwowanych',
@@ -367,7 +367,7 @@ Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:Specia
 'yourpasswordagain' => 'Powtórz hasło',
 'remembermypassword' => 'Zapamiętaj hasło',
 'yourdomainname' => 'Twoja domena',
-'loginproblem' => '<b>Są problemy z Twoim logowaniem.</b><br />Spróbuj ponownie!',
+'loginproblem' => '<b>Wystąpił problem przy próbie zalogowania się.</b><br />Spróbuj ponownie!',
 'alreadyloggedin' => '<strong>$1, jesteś już zalogowany!</strong><br />',
 
 'login' => 'Zaloguj mnie',
@@ -422,6 +422,7 @@ Nim jakiekolwiek wiadomości zostaną wysłane na ten adres, należy wypełnić 
 'acct_creation_throttle_hit' => 'Przykro nam, założyłeś/aś już $1 kont(a). Nie możesz założyć kolejnego.',
 'emailauthenticated' => 'Twój adres email został uwierzytelniony $1.',
 'emailnotauthenticated' => 'Twój adres e-mail <strong>nie jest potwierdzony</strong>. Poniższe funkcje poczty nie będą działały.',
+'noemailprefs' => 'Musisz podać adres e-mail, aby te funkcje działały.',
 'emailconfirmlink' => 'Potwierdź swój adres e-mail',
 'invalidemailaddress' => 'E-mail nie zostanie zaakceptowany: jego format nie spełnia formalnych wymagań. Proszę wpisać poprawny adres email lub wyczyścić pole.',
 'accountcreated' => 'Utworzono konto',
@@ -458,6 +459,7 @@ Nim jakiekolwiek wiadomości zostaną wysłane na ten adres, należy wypełnić 
 'savearticle' => 'Zapisz',
 'preview' => 'Podgląd',
 'showpreview' => 'Podgląd',
+'showlivepreview' => 'Dynamiczny podgląd',
 'showdiff' => 'Podgląd zmian',
 'anoneditwarning' => 'Nie jesteś zalogowany. Twój adres IP będzie zapisany w historii edycji strony.',
 'missingsummary' => '<b>Przypomnienie:</b> Nie wprowadziłeś opisu zmian. Jeżeli nie chcesz go wprowadzać naciśnij przycisk "Zapisz" jeszcze raz.',
@@ -508,15 +510,16 @@ By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
 <b>Tylko</b> tekst z górnego pola będzie zapisany w bazie gdy wciśniesz "Zapisz".<br />',
 'yourtext' => 'Twój tekst',
 'storedversion' => 'Zapisana wersja',
-'editingold' => "<strong>OSTRZEŻENIE: Edytujesz inną niż bieżąca wersję tej strony. Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong>",
+'nonunicodebrowser' => "<strong>Uwaga! Twoja przeglądarka nie umie poprawnie rozpoznawać kodowania UTF-8 (Unicode). Z tego powodu wszystkie znaki, których Twoja przeglądarka nie jest w stanie rozpoznać, zostały zastąpione ich kodami heksadecymalnymi.</strong>",
+'editingold' => "<strong>Ostrzeżenie: Edytujesz inną niż bieżąca wersję tej strony. Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong>",
 'yourdiff' => 'Różnice',
 'copyrightwarning' => 'Proszę pamiętać o tym, że wszelki wkład do serwisu {{SITENAME}} jest udostępniany na zasadach $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach <i>public domain</i> albo kompatybilnych.
 <br /><strong>PROSZĘ NIE UŻYWAĆ BEZ POZWOLENIA MATERIAŁÓW OBJĘTYCH PRAWEM AUTORSKIM!</strong>',
-'longpagewarning' => '<strong>UWAGA: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych przeglądarek mogą wystąpić problemy w edycji stron mających więcej niż 32 kilobajty. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
-'longpageerror' => '<strong>BŁĄD: Przesłany przez Ciebie tekst ma $1 kilobajtów. Maksymalna długość tekstu nie może przekraczać $2 kilobajtów. Twój tekst nie zostanie zapisany.</strong>',
-'readonlywarning' => '<strong>UWAGA: Baza danych została chwilowo zablokowana do celów administracyjnych. Nie można więc na razie zapisać nowej wersji artykułu. Proponujemy przenieść jej tekst do prywatnego pliku (wytnij/wklej) i zachować na później.</strong>',
-'protectedpagewarning' => '<strong>UWAGA: Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z prawami administracyjnymi. Upewnij się, że postępujesz zgodnie z [[{{ns:Project}}:Blokowanie_stron|zasadami dotyczącymi zablokowanych stron]].</strong>',
+'longpagewarning' => '<strong>Uwaga: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych przeglądarek mogą wystąpić problemy w edycji stron mających więcej niż 32 kilobajty. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
+'longpageerror' => '<strong>Błąd: Przesłany przez Ciebie tekst ma $1 kilobajtów. Maksymalna długość tekstu nie może przekraczać $2 kilobajtów. Twój tekst nie zostanie zapisany.</strong>',
+'readonlywarning' => '<strong>Uwaga: Baza danych została chwilowo zablokowana do celów administracyjnych. Nie można więc na razie zapisać nowej wersji artykułu. Proponujemy przenieść jej tekst do prywatnego pliku (wytnij/wklej) i zachować na później.</strong>',
+'protectedpagewarning' => '<strong>Uwaga: Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z prawami administracyjnymi. Upewnij się, że postępujesz zgodnie z [[{{ns:Project}}:Blokowanie_stron|zasadami dotyczącymi zablokowanych stron]].</strong>',
 'semiprotectedpagewarning' => '<strong>Uwaga:</strong> Tę stronę mogą edytować tylko zarejestrowani użytkownicy.',
 'templatesused' => 'Szablony użyte na tej stronie:',
 'nocreatetitle' => 'Ograniczono tworzenie stron',
@@ -554,6 +557,10 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'history-feed-description' => 'Historia wersji tej strony wiki',
 'history-feed-item-nocomment' => '$1 o $2',
 'history-feed-empty' => 'Wybrana strona nie istnieje. Mogła ona zostać usunięta lub przeniesiona pod inną nazwę. Możesz także [[{{ns:special}}:Search|poszukać]] tej strony.',
+
+# Revision deletion
+#
+'revisiondelete' => 'Skasuj/przywróć wersje',
 
 # Diffs
 #
@@ -594,7 +601,7 @@ liczba znalezionych artykułów: $3.',
 # Preferences page
 #
 'preferences' => 'Preferencje',
-'prefsnologin' => 'Brak logowania',
+'prefsnologin' => 'Nie jesteś zalogowany',
 'prefsnologintext' => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]] przed zmianą swoich preferencji.',
 'prefsreset' => 'Preferencje domyślne zostały odtworzone.',
 'qbsettings' => 'Pasek szybkiego dostępu',
@@ -677,7 +684,7 @@ liczba znalezionych artykułów: $3.',
 'recentchangestext' => 'Ta strona przedstawia historię ostatnich zmian w serwisie.',
 'rcnote' => 'To ostatnie <strong>$1</strong> zmian dokonanych w ciągu ostatnich <strong>$2</strong> dni, poczynając od $3.',
 'rcnotefrom' => 'Poniżej pokazano zmiany dokonane po <b>$2</b> (nie więcej niż <b>$1</b> pozycji).',
-'rclistfrom' => 'Pokaż nowe zmiany począwszy od $1',
+'rclistfrom' => 'Pokaż zmiany od $1',
 'rcshowhideminor' => '$1 drobne zmiany',
 'rcshowhidebots' => '$1 boty',
 'rcshowhideliu' => '$1 zalogowanych',
@@ -745,6 +752,8 @@ liczba znalezionych artykułów: $3.',
 
 'license' => 'Licencja',
 'nolicense' => 'Nie wybrano (wpisz ręcznie!)',
+'upload_source_url' => ' (poprawny, publicznie dostępny URL)',
+'upload_source_file' => ' (plik na twoim komputerze)',
 
 # Image list
 #
@@ -770,6 +779,8 @@ liczba znalezionych artykułów: $3.',
 'linkstoimage' => 'Oto strony odwołujące się do tego pliku:',
 'nolinkstoimage' => 'Żadna strona nie odwołuje się do tego pliku.',
 'sharedupload' => 'Plik [[Commons:Image:{{PAGENAME}}|{{PAGENAME}}]] umieszczony jest we wspólnym repozytorium i może być używany w innych projektach.',
+'shareduploadwiki' => 'Zobacz $1 aby dowiedzieć się więcej.',
+'shareduploadwiki-linktext' => 'stronę opisu grafiki',
 'noimage' => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
 'noimage-linktext' => 'przesłać',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
@@ -895,6 +906,10 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 'allpagesnext' => 'Następna',
 'allpagessubmit' => 'Pokaż',
 'allpagesprefix' => 'Pokaż zaczynające się od:',
+'allpagesbadtitle' => 'Podana nazwa jest nieprawidłowa, zawiera prefiks międzyprojektowy lub międzyjęzykowy. Może ona także zawierać w sobie jeden lub więcej znaków których użycie w nazwach jest niedozwolone.',
+
+# Special:Listusers
+'listusersfrom' => 'Wyświetl użytkowników zaczynając od:',
 
 # E this user
 #
@@ -903,6 +918,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 'emailuser' => 'Wyślij e-mail do tego użytkownika',
 'emailpage' => 'Wyślij e-mail do użytkownika',
 'emailpagetext' => 'Jeśli ten użytkownik wpisał poprawny adres e-mailowy w swoich preferencjach, to poniższy formularz umożliwi Ci wysłanie jednej wiadomości. Adres e-mailowy, który został przez Ciebie wprowadzony w Twoich preferencjach pojawi się w polu "Od", dzięki temu odbiorca będzie mógł Ci odpowiedzieć.',
+'usermailererror' => 'Obiekt Mail zwrócił błąd:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle' => 'Brak adresu e-mailowego',
 'noemailtext' => 'Ten użytkownik nie podał poprawnego adresu e-mailowego, albo zadecydował, że nie chce otrzymywać e-maili od innych użytkowników.',
@@ -1098,8 +1114,8 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'notargettitle' => 'Wskazywana strona nie istnieje',
 'notargettext' => 'Nie podano strony albo użytkownika, dla których ta operacja ma być wykonana.',
 'linklistsub' => '(Lista linków)',
-'linkshere' => 'Do tej strony odwołują się następujące inne strony:',
-'nolinkshere' => 'Do tej strony nie odwołuje się żadna inna.',
+'linkshere' => "Następujące strony odwołują się do '''[[:$1]]''':",
+'nolinkshere' => "Żadna strona nie odwołuje się do '''[[:$1]]'''.",
 'isredirect' => 'strona przekierowująca',
 'istemplate' => 'dołączony szablon',
 
@@ -1303,11 +1319,14 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'Common.css' => '/* Kod CSS umieszczony tutaj zostanie zastosowany we wszystkich skórkach */',
 'Monobook.css' => '/* Kod CSS umieszczony tutaj wpłynie na wygląd skórki Monobook */',
 
+'notacceptable' => 'Serwer wiki nie jest w stanie dostarczyć danych, które Twoja przeglądarka będzie w stanie odczytać.',
+
 # Attribution
 
 'anonymous' => 'Anonimowy użytkownik/cy serwisu {{SITENAME}}',
 'lastmodifiedby' => 'Ostatnia edycja tej strony: $1 (autor zmian: $2)',
 'and' => 'oraz',
+'othercontribs' => 'Inni autorzy: $1.',
 'others' => 'inni',
 'creditspage' => 'Autorzy',
 'nocredits' => 'Nie ma informacji o autorach tej strony.',
@@ -1663,6 +1682,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Zobacz stronę kategorii\');',
 
 # E-mail address confirmation
 'confirmemail' => 'Potwierdź adres e-mail',
+'confirmemail_noemail' => 'Nie podałeś prawidłowego adresu e-mail w [[Special:Preferences|preferencjach]].',
 'confirmemail_text' => 'Wymagane jest potwierdzenie adresu e-mail przed użyciem funkcji pocztowych. Wciśnij przycisk poniżej aby wysłać na swój adres list uwierzytelniający. W liście znajdziesz link zawierający kod: załaduj go do przeglądarki aby potwierdzić swój adres.',
 'confirmemail_send' => 'Wyślij kod potwierdzenia',
 'confirmemail_sent' => 'E-mail uwierzytelniający został wysłany.',
@@ -1729,6 +1749,12 @@ $1',
 'displaytitle' => '(Link do tej strony to [[:$1|$1]])',
 
 'loginlanguagelabel' => 'Język: $1',
+
+# Multipage image navigation
+'imgmultipageprev' => '&larr; poprzednia strona',
+'imgmultipagenext' => 'następna strona &rarr;',
+'imgmultigo' => 'Przejdź',
+'imgmultigotopre' => 'Przejdź na stronę',
 
 # Table pager
 'ascending_abbrev' => 'rosn.',
