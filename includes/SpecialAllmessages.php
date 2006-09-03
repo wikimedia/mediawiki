@@ -30,13 +30,13 @@ function wfSpecialAllmessages() {
 	MessageCache::loadAllMessages();
 
 	$first = true;
-	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->mExtensionMessages );
+	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->getExtensionMessagesFor( 'en' ) );
 	ksort( $sortedArray );
 	$messages = array();
 	$wgMessageCache->disableTransform();
 
 	foreach ( $sortedArray as $key => $value ) {
-		$messages[$key]['enmsg'] = is_array( $value ) ? $value['en'] : $value;
+		$messages[$key]['enmsg'] = $value;
 		$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 		$messages[$key]['msg'] = wfMsg ( $key );
 	}
