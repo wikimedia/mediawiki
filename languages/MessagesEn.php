@@ -1159,6 +1159,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 'uploadvirus' => 'The file contains a virus! Details: $1',
 'sourcefilename' => 'Source filename',
 'destfilename' => 'Destination filename',
+'watchthisupload'	=> 'Watch this page',
 'filewasdeleted' => 'A file of this name has been previously uploaded and subsequently deleted. You should check the $1 before proceeding to upload it again.',
 
 'license' => 'Licensing',

@@ -805,6 +805,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 'uploaddisabledtext'	=> 'Das Hochladen von Dateien ist in diesem Wiki deaktiviert.',
 'sourcefilename'	=> 'Quelldatei',
 'destfilename'		=> 'Dateiname ändern in',
+'watchthisupload'	=> 'Diese Seite beobachten',
 'filewasdeleted'	=> 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfen Sie zuerst den Eintrag im $1, bevor Sie die Datei wirklich speichern.',
 
 'license'		=> 'Lizenz',

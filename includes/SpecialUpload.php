@@ -807,7 +807,7 @@ class UploadForm {
 		<td></td>
 		<td>
 			<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
-			<label for='wpWatchthis'>" . wfMsgHtml( 'watchthis' ) . "</label>
+			<label for='wpWatchthis'>" . wfMsgHtml( 'watchthisupload' ) . "</label>
 			<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' />
 			<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarnings' ) . "</label>
 		</td>
