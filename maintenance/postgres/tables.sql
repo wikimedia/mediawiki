@@ -406,9 +406,9 @@ CREATE FUNCTION ts2_page_title() RETURNS TRIGGER LANGUAGE plpgsql AS
 $mw$
 BEGIN
 IF TG_OP = 'INSERT' THEN
-  NEW.titlevector = to_tsvector(NEW.page_title);
+  NEW.titlevector = to_tsvector('default',NEW.page_title);
 ELSIF NEW.page_title != OLD.page_title THEN
-  NEW.titlevector := to_tsvector(NEW.page_title);
+  NEW.titlevector := to_tsvector('default',NEW.page_title);
 END IF;
 RETURN NEW;
 END;
@@ -424,9 +424,9 @@ CREATE FUNCTION ts2_page_text() RETURNS TRIGGER LANGUAGE plpgsql AS
 $mw$
 BEGIN
 IF TG_OP = 'INSERT' THEN
-  NEW.textvector = to_tsvector(NEW.old_text);
+  NEW.textvector = to_tsvector('default',NEW.old_text);
 ELSIF NEW.old_text != OLD.old_text THEN
-  NEW.textvector := to_tsvector(NEW.old_text);
+  NEW.textvector := to_tsvector('default',NEW.old_text);
 END IF;
 RETURN NEW;
 END;

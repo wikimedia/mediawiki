@@ -99,7 +99,7 @@ class SearchPostgres extends SearchEngine {
 
 		$query = "SELECT page_id, page_namespace, page_title, old_text AS page_text ".
 			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
-			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery('$match')";
+			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery('default','$match')";
 
 		## Redirects
 		if (! $this->showRedirects)
@@ -113,7 +113,7 @@ class SearchPostgres extends SearchEngine {
 			$query .=  " AND page_namespace IN ($namespaces)";
 		}
 
-		$query .= " ORDER BY rank($fulltext, to_tsquery('$fulltext')) DESC";
+		$query .= " ORDER BY rank($fulltext, to_tsquery('default','$fulltext')) DESC";
 
 		$query .= $this->db->limitResult( '', $this->limit, $this->offset );
 
