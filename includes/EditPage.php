@@ -845,7 +845,7 @@ class EditPage {
 					$s = wfMsg('editingcomment', $this->mTitle->getPrefixedText() );
 				} else {
 					$s = wfMsg('editingsection', $this->mTitle->getPrefixedText() );
-					if( !$this->preview && !$this->diff ) {
+					if( !$this->summary && !$this->preview && !$this->diff ) {
 						preg_match( "/^(=+)(.+)\\1/mi",
 							$this->textbox1,
 							$matches );
