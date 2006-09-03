@@ -56,7 +56,9 @@ class DumpHTML {
 
 	var $startID = 1, $endID = false;
 
-	function DumpHTML( $settings ) {
+	var $sliceNumerator = 1, $sliceDenominator = 1;
+
+	function DumpHTML( $settings = array() ) {
 		foreach ( $settings as $var => $value ) {
 			$this->$var = $value;
 		}
@@ -117,7 +119,9 @@ class DumpHTML {
 		$this->doSharedImageDescriptions();
 		$this->doCategories();
 		$this->doRedirects();
-		$this->doSpecials();
+		if ( $this->sliceNumerator == 1 ) {
+			$this->doSpecials();
+		}
 
 		$this->setCheckpoint( 'everything', 'done' );
 	}
@@ -129,30 +133,32 @@ class DumpHTML {
 	function doArticles() {
 		$fname = 'DumpHTML::doArticles';
 
+		if ( $this->endID === false ) {
+			$dbr =& wfGetDB( DB_SLAVE );
+			$this->endID = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
+		}
+		
+		# Slice the range
+		list( $start, $end ) = $this->sliceRange( $this->startID, $this->endID );
+
+		# Start from the checkpoint
 		$cp = $this->getCheckpoint( 'article' );
 		if ( $cp == 'done' ) {
 			print "Articles already done\n";
 			return;
 		} elseif ( $cp !== false ) {
-			print "Resuming article dump from checkpoint at page_id $cp of {$this->endID}\n";
 			$start = $cp;
+			print "Resuming article dump from checkpoint at page_id $start of $end\n";
 		} else {
-			print "Starting from page_id {$this->startID} of {$this->endID}\n";
-			$start = $this->startID;
+			print "Starting from page_id $start of $end\n";
 		}
 
 		$this->setupGlobals();
 
-		if ( $this->endID === false ) {
-			$dbr =& wfGetDB( DB_SLAVE );
-			$this->endID = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
-		}
-
-
 		$mainPageObj = Title::newMainPage();
 		$mainPage = $mainPageObj->getPrefixedDBkey();
 
-		for ($id = $start; $id <= $this->endID; $id++) {
+		for ($id = $start; $id <= $end; $id++) {
 			wfWaitForSlaves( 20 );
 			if ( !($id % REPORTING_INTERVAL) ) {
 				print "Processing ID: $id\r";
@@ -241,6 +247,11 @@ class DumpHTML {
 		$i = 0;
 		$num = $dbr->numRows( $res );
 		while ( $row = $dbr->fetchObject( $res ) ) {
+			// Slice the result set with a filter
+			if ( !$this->sliceFilter( $row->img_name ) ) {
+				continue;
+			}
+
 			wfWaitForSlaves( 10 );
 			if ( !( ++$i % REPORTING_INTERVAL ) ) {
 				print "Done $i of $num\r";
@@ -263,6 +274,8 @@ class DumpHTML {
 	 * Dump images which only have a real description page on commons
 	 */
 	function doSharedImageDescriptions() {
+		list( $start, $end ) = $this->sliceRange( 0, 255 );
+
 		$cp = $this->getCheckpoint( 'shared image' );
 		if ( $cp == 'done' ) {
 			print "Shared description pages already done\n";
@@ -272,12 +285,12 @@ class DumpHTML {
 			$start = $cp;
 		} else {
 			print "Writing description pages for commons images\n";
-			$start = 0;
 		}
+
 
 		$this->setupGlobals();
 		$i = 0;
-		for ( $hash = $start; $hash < 256; $hash++ ) {
+		for ( $hash = $start; $hash <= $end; $hash++ ) {
 			$this->setCheckpoint( 'shared image', $hash );
 
 			$dir = sprintf( "%01x/%02x", intval( $hash / 16 ), $hash );
@@ -320,6 +333,11 @@ class DumpHTML {
 		print "\nWriting " . $dbr->numRows( $res ).  " category pages\n";
 		$i = 0;
 		while ( $row = $dbr->fetchObject( $res ) ) {
+			// Filter pages from other slices
+			if ( !$this->sliceFilter( $row->cl_to ) ) {
+				continue;
+			}
+
 			wfWaitForSlaves( 10 );
 			if ( !(++$i % REPORTING_INTERVAL ) ) {
 				print "{$row->cl_to}\n";
@@ -337,7 +355,11 @@ class DumpHTML {
 	function doRedirects() {
 		print "Doing redirects...\n";
 		$fname = 'DumpHTML::doRedirects';
-		$conds = array( 'page_is_redirect' => 1 );
+
+		
+		$dbr =& wfGetDB( DB_SLAVE );
+		$end = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
+		list( $start, $end ) = $this->sliceRange( 1, $end );
 
 		$cp = $this->getCheckpoint( 'redirect' );
 		if ( $cp == 'done' )  {
@@ -345,11 +367,15 @@ class DumpHTML {
 			return;
 		} elseif ( $cp !== false ) {
 			print "Resuming redirect generation from page_id $cp\n";
-			$conds[] = 'page_id > ' . intval( $cp );
+			$start = intval( $cp );
 		}
+		
+		$conds = array( 
+			'page_is_redirect' => 1,
+			"page_id BETWEEN $start AND $end"
+		);
 
 		$this->setupGlobals();
-		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page', array( 'page_id', 'page_namespace', 'page_title' ),
 			$conds, $fname );
 		$num = $dbr->numRows( $res );
@@ -800,6 +826,30 @@ ENDTEXT;
 		return $dir;
 	}
 
+	/**
+	 * Calculate the start end end of a job based on the current slice
+	 * @param integer $start
+	 * @param integer $end
+	 * @return array of integers
+	 */
+	function sliceRange( $start, $end ) {
+		$count = $end - $start + 1;
+		$each = $count / $this->sliceDenominator;
+		$sliceStart = $start + intval( $each * ( $this->sliceNumerator - 1 ) );
+		if ( $this->sliceNumerator == $this->sliceDenominator ) {
+			$sliceEnd = $end;
+		} else {
+			$sliceEnd = $start + intval( $each * $this->sliceNumerator ) - 1;
+		}
+		return array( $sliceStart, $sliceEnd );
+	}
+
+	/**
+	 * Determine whether a string belongs to the current slice, based on hash
+	 */
+	function sliceFilter( $s ) {
+		return crc32( $s ) % $this->sliceDenominator == $this->sliceNumerator - 1;
+	}		
 }
 
 /** XML parser callback */
