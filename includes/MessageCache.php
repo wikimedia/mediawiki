@@ -595,6 +595,25 @@ class MessageCache {
 	}
 
 	/**
+	 * Get the extension messages for a specific language
+	 *
+	 * @param string $lang The messages language, English by default
+	 */
+	function getExtensionMessagesFor( $lang = 'en' ) {
+		wfProfileIn( __METHOD__ );
+		$messages = array();
+		foreach( $this->mExtensionMessages as $key => $message ) {
+			if ( isset( $message[$lang] ) ) {
+				$messages[$key] = $message[$lang];
+			} elseif ( isset( $message['en'] ) ) {
+				$messages[$key] = $message['en'];
+			}
+		}
+		wfProfileOut( __METHOD__ );
+		return $messages;
+	}
+
+	/**
 	 * Clear all stored messages. Mainly used after a mass rebuild.
 	 */
 	function clear() {
