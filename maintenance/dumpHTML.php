@@ -9,21 +9,22 @@
  * Usage:
  * php dumpHTML.php [options...]
  *
- * -d <dest>          destination directory
- * -s <start>         start ID
- * -e <end>           end ID
- * -k <skin>          skin to use (defaults to htmldump)
- * --images           only do image description pages
- * --categories       only do category pages
- * --redirects        only do redirects
- * --special          only do miscellaneous stuff
- * --force-copy       copy commons instead of symlink, needed for Wikimedia
- * --interlang        allow interlanguage links
- * --image-snapshot   copy all images used to the destination directory
+ * -d <dest>            destination directory
+ * -s <start>           start ID
+ * -e <end>             end ID
+ * -k <skin>            skin to use (defaults to htmldump)
+ * --checkpoint <file>  use a checkpoint file to allow restarting of interrupted dumps
+ * --images             only do image description pages
+ * --categories         only do category pages
+ * --redirects          only do redirects
+ * --special            only do miscellaneous stuff
+ * --force-copy         copy commons instead of symlink, needed for Wikimedia
+ * --interlang          allow interlanguage links
+ * --image-snapshot     copy all images used to the destination directory
  */
 
 
-$optionsWithArgs = array( 's', 'd', 'e', 'k' );
+$optionsWithArgs = array( 's', 'd', 'e', 'k', 'checkpoint' );
 
 $profiling = false;
 
@@ -59,7 +60,7 @@ if ( !empty( $options['e'] ) ) {
 if ( !empty( $options['d'] ) ) {
 	$dest = $options['d'];
 } else {
-	$dest = 'static';
+	$dest = "$IP/static";
 }
 
 $skin = isset( $options['k'] ) ? $options['k'] : 'htmldump';
@@ -71,6 +72,9 @@ $wgHTMLDump = new DumpHTML( array(
 	'interwiki' => $options['interlang'],
 	'skin' => $skin,
 	'makeSnapshot' => $options['image-snapshot'],
+	'checkpointFile' => $options['checkpoint'],
+	'startID' => $start,
+	'endID' => $end
 ));
 
 
@@ -83,43 +87,16 @@ if ( $options['special'] ) {
 } elseif ( $options['redirects'] ) {
 	$wgHTMLDump->doRedirects();
 } else {
-	print("Creating static HTML dump in directory $dest. \n".
-		"Starting from page_id $start of $end.\n");
-
+	print "Creating static HTML dump in directory $dest. \n";
 	$dbr =& wfGetDB( DB_SLAVE );
 	$server = $dbr->getProperty( 'mServer' );
 	print "Using database {$server}\n";
 
-	$wgHTMLDump->doArticles( $start, $end );
 	if ( !isset( $options['e'] ) ) {
-		$wgHTMLDump->doImageDescriptions();
-		$wgHTMLDump->doCategories();
-		$wgHTMLDump->doSpecials();
-	}
-
-	/*
-	if ( $end - $start > CHUNK_SIZE * 2 ) {
-		// Split the problem into smaller chunks, run them in different PHP instances
-		// This is a memory/resource leak workaround
-		print("Creating static HTML dump in directory $dest. \n".
-			"Starting from page_id $start of $end.\n");
-
-		chdir( "maintenance" );
-		for ( $chunkStart = $start; $chunkStart < $end; $chunkStart += CHUNK_SIZE ) {
-			$chunkEnd = $chunkStart + CHUNK_SIZE - 1;
-			if ( $chunkEnd > $end ) {
-				$chunkEnd = $end;
-			}
-			passthru( "php dumpHTML.php -d " . wfEscapeShellArg( $dest ) . " -s $chunkStart -e $chunkEnd" );
-		}
-		chdir( ".." );
-		$d->doImageDescriptions();
-		$d->doCategories();
-		$d->doMainPage( $dest );
+		$wgHTMLDump->doEverything();
 	} else {
-		$d->doArticles( $start, $end );
+		$wgHTMLDump->doArticles();
 	}
-	*/
 }
 
 if ( isset( $options['debug'] ) ) {
