@@ -14,6 +14,7 @@
  * -e <end>             end ID
  * -k <skin>            skin to use (defaults to htmldump)
  * --checkpoint <file>  use a checkpoint file to allow restarting of interrupted dumps
+ * --slice <n/m>        split the job into m segments and do the n'th one
  * --images             only do image description pages
  * --categories         only do category pages
  * --redirects          only do redirects
@@ -24,7 +25,7 @@
  */
 
 
-$optionsWithArgs = array( 's', 'd', 'e', 'k', 'checkpoint' );
+$optionsWithArgs = array( 's', 'd', 'e', 'k', 'checkpoint', 'slice' );
 
 $profiling = false;
 
@@ -42,7 +43,6 @@ require_once( "commandLine.inc" );
 require_once( "dumpHTML.inc" );
 
 error_reporting( E_ALL & (~E_NOTICE) );
-define( 'CHUNK_SIZE', 50 );
 
 if ( !empty( $options['s'] ) ) {
 	$start = $options['s'];
@@ -65,6 +65,18 @@ if ( !empty( $options['d'] ) ) {
 
 $skin = isset( $options['k'] ) ? $options['k'] : 'htmldump';
 
+if ( $options['slice'] ) {
+	$bits = explode( '/', $options['slice'] );
+	if ( count( $bits ) != 2 || $bits[0] < 1 || $bits[0] > $bits[1] ) {
+		print "Invalid slice specification";
+		exit;
+	}
+	$sliceNumerator = $bits[0];
+	$sliceDenominator = $bits[1];
+} else {
+	$sliceNumerator = $sliceDenominator = 1;
+}
+
 $wgHTMLDump = new DumpHTML( array(
 	'dest' => $dest,
 	'forceCopy' => $options['force-copy'],
@@ -74,7 +86,9 @@ $wgHTMLDump = new DumpHTML( array(
 	'makeSnapshot' => $options['image-snapshot'],
 	'checkpointFile' => $options['checkpoint'],
 	'startID' => $start,
-	'endID' => $end
+	'endID' => $end,
+	'sliceNumerator' => $sliceNumerator,
+	'sliceDenominator' => $sliceDenominator
 ));
 
 
