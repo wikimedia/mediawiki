@@ -462,6 +462,7 @@ CREATE TABLE mediawiki_version (
   pg_port      TEXT             NULL,
   mw_schema    TEXT             NULL,
   ts2_schema   TEXT             NULL,
+  ctype        TEXT             NULL,
 
   sql_version  TEXT             NULL,
   sql_date     TEXT             NULL,

@@ -94,6 +94,19 @@ class DatabasePostgres extends Database {
 				$wgDBts2schema, $wgDBts2locale;
 			print "OK</li>\n";
 
+			print "<li>Checking the version of Postgres...";
+			$version = pg_fetch_result($this->doQuery("SELECT version()"),0,0);
+			if (!preg_match("/PostgreSQL (\d+\.\d+)(\S+)/", $version, $thisver)) {
+				print "<b>FAILED</b> (could not determine the version)</li>\n";
+				dieout("</ul>");
+			}
+			$PGMINVER = "8.1";
+			if ($thisver[1] < $PGMINVER) {
+				print "<b>FAILED</b>. Required version is $PGMINVER. You have $thisver[1]$thisver[2]</li>\n";
+				dieout("</ul>");
+			}
+			print "version $thisver[1]$thisver[2] is OK.</li>\n";
+
 			$safeuser = $this->quote_ident($wgDBuser);
 			## Are we connecting as a superuser for the first time?
 			if ($wgDBsuperuser) {
@@ -775,9 +788,11 @@ class DatabasePostgres extends Database {
 		$tss = $this->addQuotes($wgDBts2schema);
 		$pgp = $this->addQuotes($wgDBport);
 		$dbn = $this->addQuotes($this->mDBname);
+		$ctype = pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0);
 
 		$SQL = "UPDATE mediawiki_version SET mw_version=$mwv, pg_version=$pgv, pg_user=$pgu, ".
 				"mw_schema = $mws, ts2_schema = $tss, pg_port=$pgp, pg_dbname=$dbn ".
+				"ctype = '$ctype' ".
 				"WHERE type = 'Creation'";
 		$this->query($SQL);
 
