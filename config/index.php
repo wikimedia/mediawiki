@@ -1224,7 +1224,7 @@ it and uploading it again will hopefully change the ownership to a user ID speci
 EOT;
 	} else {
 		echo "<p>Installation successful! Move the config/LocalSettings.php file into the parent directory, then follow
-			<a href='../index.php'>this link</a> to your wiki.</p>\n";
+			<strong><a href='../index.php'>this link</a></strong> to your wiki.</p>\n";
 	}
 }
 
