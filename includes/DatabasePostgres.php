@@ -90,7 +90,8 @@ class DatabasePostgres extends Database {
 		$this->mOpened = true;
 		## If this is the initial connection, setup the schema stuff and possibly create the user
 		if (defined('MEDIAWIKI_INSTALL')) {
-			global $wgDBname, $wgDBuser, $wgDBpass, $wgDBsuperuser, $wgDBmwschema, $wgDBts2schema;
+			global $wgDBname, $wgDBuser, $wgDBpass, $wgDBsuperuser, $wgDBmwschema,
+				$wgDBts2schema, $wgDBts2locale;
 			print "OK</li>\n";
 
 			$safeuser = $this->quote_ident($wgDBuser);
@@ -230,13 +231,52 @@ class DatabasePostgres extends Database {
 			print "OK</li>\n";
 
 			## Does this user have the rights to the tsearch2 tables?
+			$ctype = pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0);
 			print "<li>Checking tsearch2 permissions...";
-			$SQL = "SELECT 1 FROM $wgDBts2schema.pg_ts_cfg";
+			$SQL = "SELECT ts_name FROM $wgDBts2schema.pg_ts_cfg WHERE locale = '$ctype'";
+			$SQL .= " ORDER BY CASE WHEN ts_name <> 'default' THEN 1 ELSE 0 END";
 			error_reporting( 0 );
 			$res = $this->doQuery($SQL);
 			error_reporting( E_ALL );
 			if (!$res) {
 				print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" has SELECT access to the tsearch2 tables</li>\n";
+				dieout("</ul>");
+			}
+			print "OK</li>";
+
+			## Will the current locale work? Can we force it to?
+			print "<li>Verifying tsearch2 locale with $ctype...";
+			$rows = $this->numRows($res);
+			$resetlocale = 0;
+			if (!$rows) {
+				print "<b>not found</b></li>\n";
+				print "<li>Attempting to set default tsearch2 locale to \"$ctype\"...";
+				$resetlocale = 1;
+			}
+			else {
+				$tsname = pg_fetch_result($res, 0, 0);
+				if ($tsname != 'default') {
+					print "<b>not set to default ($tsname)</b>";
+					print "<li>Attempting to change tsearch2 default locale to \"$ctype\"...";
+					$resetlocale = 1;
+				}
+			}
+			if ($resetlocale) {
+				$SQL = "UPDATE $wgDBts2schema.pg_ts_cfg SET locale = '$ctype' WHERE ts_name = 'default'";
+				$res = $this->doQuery($SQL);
+				if (!$res) {
+					print "<b>FAILED</b>. ";
+					print "Please make sure that the locale in pg_ts_cfg for \"default\" is set to \"ctype\"</li>\n";
+					dieout("</ul>");
+				}
+				print "OK</li>";
+			}
+
+			## Final test: try out a simple tsearch2 query
+			$SQL = "SELECT $wgDBts2schema.to_tsvector('default','MediaWiki tsearch2 testing')";
+			$res = $this->doQuery($SQL);
+			if (!$res) {
+				print "<b>FAILED</b>. Specifically, \"$SQL\" did not work.</li>";
 				dieout("</ul>");
 			}
 			print "OK</li>";
