@@ -435,6 +435,7 @@ class DumpHTML {
 		global $wgHideInterlanguageLinks, $wgUploadDirectory, $wgThumbnailScriptPath;
 		global $wgSharedThumbnailScriptPath, $wgEnableParserCache, $wgHooks, $wgServer;
 		global $wgRightsUrl, $wgRightsText, $wgCopyrightIcon, $wgEnableSidebarCache;
+		global $wgGenerateThumbnailOnParse;
 
 		static $oldLogo = NULL;
 
@@ -493,6 +494,7 @@ class DumpHTML {
 		$wgEnableParserCache = false;
 		$wgMathPath = "$wgScriptPath/math";
 		$wgEnableSidebarCache = false;
+		$wgGenerateThumbnailOnParse = true;
 
 		if ( !empty( $wgRightsText ) ) {
 			$wgRightsUrl = "$wgScriptPath/COPYING.html";
