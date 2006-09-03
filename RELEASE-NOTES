@@ -33,7 +33,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6420) Render thumbnails for DJVU images, support multipage DJVU display
   on image pages. Added new 'page=' thumbnail option to select a page from a
   multipage djvu for thumbnail generation.
-* Full Postgres support is now enabled. It requires version 8.0 or better, and 
+* Full Postgres support is now enabled. It requires version 8.1 or better, and 
   needs to have both plpgsql and tsearch2 already installed.
 
 == Changes since 1.7 ==
