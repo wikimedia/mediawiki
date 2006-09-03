@@ -878,7 +878,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		/* Write out the config file now that all is well */
 		print "<p>Creating LocalSettings.php...</p>\n\n";
-		$localSettings = "<" . "?php$endl$local$endl?" . ">";
+		$localSettings = "<" . "?php$endl$local$endl?" . ">\r\n";
 		// Fix up a common line-ending problem (due to CVS on Windows)
 		$localSettings = str_replace( "\r\n", "\n", $localSettings );
 		$f = fopen( "LocalSettings.php", 'xt' );
