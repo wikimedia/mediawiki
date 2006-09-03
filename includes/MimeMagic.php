@@ -497,7 +497,7 @@ class MimeMagic {
 			# NOTE: this function is available since PHP 4.3.0, but only if
 			# PHP was compiled with --with-mime-magic or, before 4.3.2, with --enable-mime-magic.
 			#
-			# On Winodws, you must set mime_magic.magicfile in php.ini to point to the mime.magic file bundeled with PHP;
+			# On Windows, you must set mime_magic.magicfile in php.ini to point to the mime.magic file bundeled with PHP;
 			# sometimes, this may even be needed under linus/unix.
 			#
 			# Also note that this has been DEPRECATED in favor of the fileinfo extension by PECL, see above.
