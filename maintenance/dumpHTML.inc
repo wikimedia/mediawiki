@@ -51,34 +51,110 @@ class DumpHTML {
 	# Skin to use
 	var $skin = 'htmldump';
 
+	# Checkpoint stuff
+	var $checkpointFile = false, $checkpoints = false;
+
 	function DumpHTML( $settings ) {
 		foreach ( $settings as $var => $value ) {
 			$this->$var = $value;
 		}
 	}
 
+	function loadCheckpoints() {
+		if ( $this->checkpoints !== false ) {
+			return true;
+		} elseif ( !$this->checkpointFile ) {
+			return false;
+		} else {
+			$lines = @file( $this->checkpointFile );
+			if ( $lines === false ) {
+				print "Starting new checkpoint file \"{$this->checkpointFile}\"\n";
+				$this->checkpoints = array();
+			} else {
+				$lines = array_map( 'trim', $lines );
+				$this->checkpoints = array();
+				foreach ( $lines as $line ) {
+					list( $name, $value ) = explode( '=', $line, 2 );
+					$this->checkpoints[$name] = $value;
+				}
+			}
+			return true;
+		}
+	}
+
+	function getCheckpoint( $type, $defValue = false ) {
+		if ( !$this->loadCheckpoints() ) {
+			return false;
+		}
+		if ( !isset( $this->checkpoints[$type] ) ) {
+			return false;
+		} else {
+			return $this->checkpoints[$type];
+		}
+	}
+
+	function setCheckpoint( $type, $value ) {
+		if ( !$this->checkpointFile ) {
+			return;
+		}
+		$this->checkpoints[$type] = $value;
+		$blob = '';
+		foreach ( $this->checkpoints as $type => $value ) {
+			$blob .= "$type=$value\n";
+		}
+		file_put_contents( $this->checkpointFile, $blob );
+	}
+
+	function doEverything() {
+		if ( $this->getCheckpoint( 'everything' ) == 'done' ) {
+			print "Checkpoint says everything is already done\n";
+			return;
+		}
+		$this->doArticles();
+		$this->doLocalImageDescriptions();
+		$this->doSharedImageDescriptions();
+		$this->doCategories();
+		$this->doRedirects();
+		$this->doSpecials();
+
+		$this->setCheckpoint( 'everything', 'done' );
+	}
+
 	/**
 	 * Write a set of articles specified by start and end page_id
 	 * Skip categories and images, they will be done separately
 	 */
-	function doArticles( $start, $end = false ) {
+	function doArticles() {
 		$fname = 'DumpHTML::doArticles';
+
+		$cp = $this->getCheckpoint( 'article' );
+		if ( $cp == 'done' ) {
+			print "Articles already done\n";
+			return;
+		} elseif ( $cp !== false ) {
+			print "Resuming article dump from checkpoint at page_id $cp of {$this->endID}\n";
+			$start = $cp;
+		} else {
+			print "Starting from page_id {$this->startID} of {$this->endID}\n";
+			$start = $this->startID;
+		}
 
 		$this->setupGlobals();
 
-		if ( $end === false ) {
+		if ( $this->endID === false ) {
 			$dbr =& wfGetDB( DB_SLAVE );
-			$end = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
+			$this->endID = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
 		}
+
 
 		$mainPageObj = Title::newMainPage();
 		$mainPage = $mainPageObj->getPrefixedDBkey();
 
-
-		for ($id = $start; $id <= $end; $id++) {
+		for ($id = $start; $id <= $this->endID; $id++) {
 			wfWaitForSlaves( 20 );
 			if ( !($id % REPORTING_INTERVAL) ) {
 				print "Processing ID: $id\r";
+				$this->setCheckpoint( 'article', $id );
 			}
 			if ( !($id % (REPORTING_INTERVAL*10) ) ) {
 				print "\n";
@@ -91,6 +167,7 @@ class DumpHTML {
 				}
 			}
 		}
+		$this->setCheckpoint( 'article', 'done' );
 		print "\n";
 	}
 
@@ -129,27 +206,45 @@ class DumpHTML {
 	}
 
 	function doImageDescriptions() {
+		$this->doLocalImageDescriptions();
+		$this->doSharedImageDescriptions();
+	}
+
+	/**
+	 * Dump image description pages that don't have an associated article, but do
+	 * have a local image
+	 */
+	function doLocalImageDescriptions() {
 		global $wgSharedUploadDirectory;
 
-		$fname = 'DumpHTML::doImageDescriptions';
+		$dbr =& wfGetDB( DB_SLAVE );
+		
+		$cp = $this->getCheckpoint( 'local image' );
+		if ( $cp == 'done' ) {
+			print "Local image descriptions already done\n";
+			return;
+		} elseif ( $cp !== false ) {
+			print "Writing image description pages starting from $cp\n";
+			$conds = array(	'img_name >= ' . $dbr->addQuotes( $cp ) );
+		} else {
+			print "Writing image description pages for local images\n";		
+			$conds = false;
+		}
 
 		$this->setupGlobals();
 
-		/**
-		 * Dump image description pages that don't have an associated article, but do
-		 * have a local image
-		 */
-		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'image', 'page' ) );
-		$res = $dbr->select( 'image', array( 'img_name' ), false, $fname );
+		$res = $dbr->select( 'image', array( 'img_name' ), $conds, __METHOD__, 
+			array( 'ORDER BY' => 'img_name' ) );
 
 		$i = 0;
-		print "Writing image description pages for local images\n";
 		$num = $dbr->numRows( $res );
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			wfWaitForSlaves( 10 );
 			if ( !( ++$i % REPORTING_INTERVAL ) ) {
 				print "Done $i of $num\r";
+				if ( $row->img_name !== 'done' ) {
+					$this->setCheckpoint( 'local image', $row->img_name );
+				}
 			}
 			$title = Title::makeTitle( NS_IMAGE, $row->img_name );
 			if ( $title->getArticleID() ) {
@@ -158,14 +253,31 @@ class DumpHTML {
 			}
 			$this->doArticle( $title );
 		}
+		$this->setCheckpoint( 'local image', 'done' );
 		print "\n";
+	}
 
-		/**
-		 * Dump images which only have a real description page on commons
-		 */
-		print "Writing description pages for commons images\n";
+	/**
+	 * Dump images which only have a real description page on commons
+	 */
+	function doSharedImageDescriptions() {
+		$cp = $this->getCheckpoint( 'shared image' );
+		if ( $cp == 'done' ) {
+			print "Shared description pages already done\n";
+			return;
+		} elseif ( $cp !== false ) {
+			print "Writing description pages for commons images starting from directory $cp/255\n";
+			$start = $cp;
+		} else {
+			print "Writing description pages for commons images\n";
+			$start = 0;
+		}
+
+		$this->setupGlobals();
 		$i = 0;
-		for ( $hash = 0; $hash < 256; $hash++ ) {
+		for ( $hash = $start; $hash < 256; $hash++ ) {
+			$this->setCheckpoint( 'shared image', $hash );
+
 			$dir = sprintf( "%01x/%02x", intval( $hash / 16 ), $hash );
 			$paths = array_merge( glob( "{$this->sharedStaticDirectory}/$dir/*" ),
 				glob( "{$this->sharedStaticDirectory}/thumb/$dir/*" ) );
@@ -180,16 +292,27 @@ class DumpHTML {
 				$this->doArticle( $title );
 			}
 		}
+		$this->setCheckpoint( 'shared image', 'done' );
 		print "\n";
 	}
 
 	function doCategories() {
 		$fname = 'DumpHTML::doCategories';
 		$this->setupGlobals();
-
 		$dbr =& wfGetDB( DB_SLAVE );
-		print "Selecting categories...";
 		$sql = 'SELECT DISTINCT cl_to FROM ' . $dbr->tableName( 'categorylinks' );
+
+		$cp = $this->getCheckpoint( 'category' );
+		if ( $cp == 'done' ) {
+			print "Category pages already done\n";
+			return;
+		} elseif ( $cp !== false ) {
+			print "Resuming category page dump from $cp";
+			$sql .= ' WHERE cl_to >= ' . $dbr->addQuotes( $cp );
+		}
+
+		$sql .= ' ORDER BY cl_to';
+		print "Selecting categories...";
 		$res = $dbr->query( $sql, $fname );
 
 		print "\nWriting " . $dbr->numRows( $res ).  " category pages\n";
@@ -198,31 +321,47 @@ class DumpHTML {
 			wfWaitForSlaves( 10 );
 			if ( !(++$i % REPORTING_INTERVAL ) ) {
 				print "$i\r";
+				if ( $row->cl_to != 'done' ) {
+					$this->setCheckpoint( 'category', $row->cl_to );
+				}
 			}
 			$title = Title::makeTitle( NS_CATEGORY, $row->cl_to );
 			$this->doArticle( $title );
 		}
+		$this->setCheckpoint( 'category', 'done' );
 		print "\n";
 	}
 
 	function doRedirects() {
 		print "Doing redirects...\n";
 		$fname = 'DumpHTML::doRedirects';
+		$conds = array( 'page_is_redirect' => 1 );
+
+		$cp = $this->getCheckpoint( 'redirect' );
+		if ( $cp == 'done' )  {
+			print "Redirects already done\n";
+			return;
+		} elseif ( $cp !== false ) {
+			print "Resuming redirect generation from page_id $cp\n";
+			$conds[] = 'page_id > ' . intval( $cp );
+		}
+
 		$this->setupGlobals();
 		$dbr =& wfGetDB( DB_SLAVE );
-
-		$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ),
-			array( 'page_is_redirect' => 1 ), $fname );
+		$res = $dbr->select( 'page', array( 'page_id', 'page_namespace', 'page_title' ),
+			$conds, $fname );
 		$num = $dbr->numRows( $res );
 		print "$num redirects to do...\n";
 		$i = 0;
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-                        if ( !(++$i % (REPORTING_INTERVAL*10) ) ) {
-                                print "Done $i of $num\n";
-                        }
+			if ( !(++$i % (REPORTING_INTERVAL*10) ) ) {
+				print "Done $i of $num\n";
+				$this->setCheckpoint( 'redirect', $row->page_id );
+			}
 			$this->doArticle( $title );
 		}
+		$this->setCheckpoint( 'redirect', 'done' );
 	}
 
 	/** Write an article specified by title */
