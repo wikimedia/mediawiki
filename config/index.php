@@ -1120,11 +1120,26 @@ if( count( $errs ) ) {
 	<p class="config-desc">
 		If you only have a single user account and database available,
 		enter those here. If you have database root access (see below)
-		you can specify new accounts/databases to be created.
-	</p>
-	<p>
-		This account will not be created if it pre-exists. If this is the case, ensure that it
+		you can specify new accounts/databases to be created. This account 
+		will not be created if it pre-exists. If this is the case, ensure that it
 		has SELECT, INSERT, UPDATE and DELETE permissions on the MediaWiki database.
+	</p>
+
+	<div class="config-input">
+		<?php
+		aField( $conf, "RootUser", "Superuser account:", "superuser" );
+		?>
+	</div>
+	<div class="config-input">
+		<?php
+		aField( $conf, "RootPW", "Superuser password:", "password" );
+		?>
+	</div>
+	
+	<p class="config-desc">
+		If the database user specified above does not exist, or does not have access to create
+		the database (if needed) or tables within it, please provide details of a superuser account,
+		such as <strong>root</strong>, which does. Leave the password set to <strong>-</strong> if this is not needed.
 	</p>
 
 	<?php database_switcher('mysql'); ?>
@@ -1169,23 +1184,6 @@ if( count( $errs ) ) {
 		so it is recommended that you create a new user.</p>
 	</div>
 	</div>
-
-	<div class="config-input">
-		<?php
-		aField( $conf, "RootUser", "Superuser account:", "superuser" );
-		?>
-	</div>
-	<div class="config-input">
-		<?php
-		aField( $conf, "RootPW", "Superuser password:", "password" );
-		?>
-	</div>
-	
-	<p class="config-desc">
-		If the database user specified above does not exist, or does not have access to create
-		the database (if needed) or tables within it, please provide details of a superuser account,
-		such as <strong>root</strong>, which does. Leave the password set to <strong>-</strong> if this is not needed.
-	</p>
 
 	<div class="config-input" style="padding:2em 0 3em">
 		<label class='column'>&nbsp;</label>
