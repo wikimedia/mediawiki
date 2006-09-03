@@ -54,6 +54,8 @@ class DumpHTML {
 	# Checkpoint stuff
 	var $checkpointFile = false, $checkpoints = false;
 
+	var $startID = 1, $endID = false;
+
 	function DumpHTML( $settings ) {
 		foreach ( $settings as $var => $value ) {
 			$this->$var = $value;
@@ -307,7 +309,7 @@ class DumpHTML {
 			print "Category pages already done\n";
 			return;
 		} elseif ( $cp !== false ) {
-			print "Resuming category page dump from $cp";
+			print "Resuming category page dump from $cp\n";
 			$sql .= ' WHERE cl_to >= ' . $dbr->addQuotes( $cp );
 		}
 
@@ -320,7 +322,7 @@ class DumpHTML {
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			wfWaitForSlaves( 10 );
 			if ( !(++$i % REPORTING_INTERVAL ) ) {
-				print "$i\r";
+				print "{$row->cl_to}\n";
 				if ( $row->cl_to != 'done' ) {
 					$this->setCheckpoint( 'category', $row->cl_to );
 				}
@@ -356,7 +358,7 @@ class DumpHTML {
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			if ( !(++$i % (REPORTING_INTERVAL*10) ) ) {
-				print "Done $i of $num\n";
+				print "Done $i of $num (ID {$row->page_id})\n";
 				$this->setCheckpoint( 'redirect', $row->page_id );
 			}
 			$this->doArticle( $title );
