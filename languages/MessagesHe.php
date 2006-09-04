@@ -959,6 +959,7 @@ $messages = array(
 "uploadvirus"                 => 'הקובץ מכיל וירוס! פרטים: <div style="direction: ltr;">$1</div>',
 "sourcefilename"              => "שם הקובץ",
 "destfilename"                => "שמור קובץ בשם",
+"watchthisupload"             => "עקוב אחרי דף זה",
 "filewasdeleted"              => "קובץ בשם זה כבר הועלה בעבר, ולאחר מכן נמחק. אנא בדקו את הדף $1 לפני שתמשיכו להעלותו שנית.",
 
 "license"            => "רישיון",
