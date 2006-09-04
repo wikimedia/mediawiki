@@ -218,6 +218,18 @@ $messages = array(
 'october' 	=> '10月',
 'november' 	=> '11月',
 'december' 	=> '12月',
+'january-gen' 	=> '一月',
+'february-gen' 	=> '二月',
+'march-gen' 	=> '三月',
+'april-gen' 	=> '四月',
+'may-gen' 	=> '五月',
+'june-gen' 	=> '六月',
+'july-gen' 	=> '七月',
+'august-gen' 	=> '八月',
+'september-gen' => '九月',
+'october-gen' 	=> '十月',
+'november-gen' 	=> '十一月',
+'december-gen' 	=> '十二月',
 'jan' 		=> '1月',
 'feb' 		=> '2月',
 'mar' 		=> '3月',
@@ -237,7 +249,6 @@ $messages = array(
 'subcategories' 	=> '次分類',
 
 
-'linkprefix' 		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage' 		=> '頭版',
 'mainpagetext' 		=> "<big>'''MediaWiki 已經成功地安裝。'''</big>",
 'mainpagedocfooter' 	=> "參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英）以取得使用wiki軟件嘅資料。
@@ -323,7 +334,11 @@ $messages = array(
 'toolbox' 		=> '工具箱',
 'userpage' 		=> '去睇用戶頁',
 'projectpage' 		=> '去睇專題頁',
-'imagepage' 		=> '睇圖片頁',
+'imagepage' 		=> '去睇圖片頁',
+'mediawikipage' 	=> '去睇信息頁',
+'templatepage' 		=> '去睇模頁',
+'viewhelppage' 		=> '去睇幫手頁',
+'categorypage' 		=> '去睇分類頁',
 'viewtalkpage' 		=> '睇討論',
 'otherlanguages' 	=> '其它語言',
 'redirectedfrom' 	=> '(由 $1 重新定向)', //REDIRECT
@@ -336,7 +351,12 @@ $messages = array(
 'jumptonavigation' 	=> '定向',
 'jumptosearch' 		=> '搵嘢',
 
-'badaccess'     	=> '權限錯誤',
+'badaccess' 		=> '權限錯誤',
+'badaccess-group0' 	=> '你係唔准執行你要求嘅動作。',
+'badaccess-group1' 	=> '你所要求嘅動作只係限制畀$1組嘅用戶。',
+'badaccess-group2' 	=> '你所要求嘅動作只係限制畀$1組嘅其中一位用戶。',
+'badaccess-groups' 	=> '你所要求嘅動作只係限制畀$1組嘅其中一位用戶。',
+
 
 'versionrequired' 	=> '係需要用 $1 版嘅 MediaWiki',
 'versionrequiredtext' 	=> '要用呢一頁，係需要用MediaWiki版本 $1 。睇睇[[Special:Version]]',
@@ -903,10 +923,13 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'uploadvirus' 		=> '呢個檔案有病毒！詳情：$1',
 'sourcefilename' 	=> '來源檔名',
 'destfilename' 		=> '目標檔名',
+'watchthisupload'	=> '監視呢頁',
 'filewasdeleted' 	=> '呢個檔案所使用嘅名曾經上載後，跟住就刪除咗。你應該響重新上載佢之前檢查吓$1。',
 
 'license' 		=> '協議',
 'nolicense' 		=> '未揀',
+'upload_source_url' => ' （一個正確嘅，公眾可到嘅URL）',
+'upload_source_file' => ' （你部電腦裏面嘅一個檔案）',
 
 # Image list
 #
@@ -921,6 +944,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'bysize'		=> '以大細',
 'imgdelete'		=> '刪除',
 'imgdesc'		=> '描述',
+'imgfile' 		=> '檔案',
 'imglegend'		=> '說明：（描述）顯示／編輯檔案描述。',
 'imghistory'		=> '檔案歷史',
 'revertimg'		=> '回復',
@@ -938,6 +962,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'noimage'       	=> '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext' 	=> '上載佢',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
+'imagelist_date' => '日期',
+'imagelist_name' => '名',
+'imagelist_user' => '用戶',
+'imagelist_size' => '大細 (bytes)',
+'imagelist_description' => '描述',
+'imagelist_search_for' => '搵圖像名：',
 
 # Mime search
 #
@@ -976,7 +1006,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 平均每個頁面有'''$5'''次瀏覽，同埋'''$6'''次編輯。
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]嘅長度係'''$7'''。",
-'userstatstext' 	=> "目前有'''$1'''個註冊用戶，其中有'''$2'''人（即'''$4%'''）為管理員（睇睇$3）。",
+'userstatstext' 	=> "目前有'''$1'''個註冊用戶，其中有'''$2'''人（即'''$4%'''）係$5。",
 'statistics-mostpopular' => '最多人睇嘅頁',
 
 'disambiguations'	=> '分流(消除多重意義)頁',
@@ -1063,6 +1093,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'allpagessubmit'	=> '去搵',
 'allpagesprefix'	=> '用以下開頭嘅頁面：',
 'allpagesbadtitle' 	=> '提供嘅頁面名無效，又或者有一個跨語言或跨wiki嘅字頭。佢可能包括一個或多個字係唔可以用響標題度嘅。',
+
+# Special:Listusers
+'listusersfrom' => '顯示由呢個字開始嘅用戶：',
 
 # E this user
 #
@@ -1284,10 +1317,9 @@ wiki: $PAGEEDITOR_WIKI
 'notargettitle' => '冇目標',
 'notargettext'	=> '你冇指定到呢個功能要用喺嘅對象頁面或用戶。', //會唔會好拗口？所以我唔中意啲乜野保持原文可逆嘅原則，保持原意兼且睇得舒服先至係讀者嘅最大需要
 'linklistsub'	=> '（連結一覽）',
-'linkshere'		=> '以下頁面連結到呢度：',
-'nolinkshere'	=> '無頁面連結到呢度。',
+'linkshere'	=> "以下頁面連結到'''[[:$1]]'''：",
+'nolinkshere'	=> "無頁面連結到'''[[$1]]'''。",
 'isredirect'	=> '跳轉頁',
-# 下面點解唔用返Template？奇怪 (要睇係唔包含定係直接連結)
 'istemplate'	=> '包含',
 
 # Block/unblock IP
@@ -1981,6 +2013,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'睇吓分類頁\');',
 
 # E-mail address confirmation
 'confirmemail' => '確認電郵地址',
+'confirmemail_noemail' => '你唔需要響你嘅[[Special:Preferences|用戶喜好設定]]度設定一個有效嘅電郵地址。',
 'confirmemail_text' => "呢個wiki需要你喺使用電郵功能之前驗證吓你嘅電郵地址。
 啟用下邊個掣嚟發封確認信去你個地址度。
 封信入面會附帶一條包含代碼嘅連結；
@@ -2054,6 +2087,23 @@ $1
 'displaytitle' => '（以[[$1]]連結到呢一頁）',
 
 'loginlanguagelabel' => '語言：$1',
+
+# Multipage image navigation
+'imgmultipageprev' => '&larr; 上一版',
+'imgmultipagenext' => '下一版 &rarr;',
+'imgmultigo' => '去!',
+'imgmultigotopre' => '去到第',
+
+# Table pager
+'ascending_abbrev' => '增',
+'descending_abbrev' => '減',
+'table_pager_next' => '下一版',
+'table_pager_prev' => '上一版',
+'table_pager_first' => '第一版',
+'table_pager_last' => '最後一版',
+'table_pager_limit' => '每一版顯示$1個項目',
+'table_pager_limit_submit' => '去',
+'table_pager_empty' => '無結果',
 
 );
 
