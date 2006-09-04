@@ -10,7 +10,7 @@
  */
 function wfSpecialAllmessages() {
 	global $wgOut, $wgRequest, $wgMessageCache, $wgTitle;
-	global $wgUseDatabaseMessages;
+	global $wgUseDatabaseMessages, $wgLang, $wgContLang;
 
 	# The page isn't much use if the MediaWiki namespace is not being used
 	if( !$wgUseDatabaseMessages ) {
@@ -32,11 +32,17 @@ function wfSpecialAllmessages() {
 	$first = true;
 	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->getExtensionMessagesFor( 'en' ) );
 	ksort( $sortedArray );
+	$contentCode = $wgContLang->getCode();
+	$fallback = Language::getFallbackFor( $wgLang->getCode() );
 	$messages = array();
 	$wgMessageCache->disableTransform();
 
-	foreach ( $sortedArray as $key => $value ) {
-		$messages[$key]['enmsg'] = $value;
+	foreach ( array_keys( $sortedArray ) as $key ) {
+		if ( $contentCode == $fallback ) {
+			$messages[$key]['fallbackmsg'] = wfMsgNoDbForContent( $key );
+		} else {
+			$messages[$key]['fallbackmsg'] = wfMsgNoDb( "$key/$fallback" );
+		}
 		$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 		$messages[$key]['msg'] = wfMsg ( $key );
 	}
@@ -65,7 +71,7 @@ function makePhp($messages) {
 	global $wgLang;
 	$txt = "\n\n\$messages = array(\n";
 	foreach( $messages as $key => $m ) {
-		if($wgLang->getCode() != 'en' and $m['msg'] == $m['enmsg'] ) {
+		if($wgLang->getCode() != 'en' and $m['msg'] == $m['fallbackmsg'] ) {
 			//if (strstr($m['msg'],"\n")) {
 			//	$txt.='/* ';
 			//	$comment=' */';
