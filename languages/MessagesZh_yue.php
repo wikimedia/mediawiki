@@ -2093,6 +2093,7 @@ $1
 'imgmultipagenext' => '下一版 &rarr;',
 'imgmultigo' => '去!',
 'imgmultigotopre' => '去到第',
+'imgmultigotopost' => '版',
 
 # Table pager
 'ascending_abbrev' => '增',
