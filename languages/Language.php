@@ -1398,6 +1398,9 @@ class Language {
 		# Add dependencies to the cache entry
 		$cache['deps'] = $deps;
 
+		# Replace spaces with underscores in namespace names
+		$cache['namespaceNames'] = str_replace( ' ', '_', $cache['namespaceNames'] );
+		
 		# Save to both caches
 		self::$mLocalisationCache[$code] = $cache;
 		if ( !$disableCache ) {
