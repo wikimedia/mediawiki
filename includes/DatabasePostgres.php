@@ -791,7 +791,7 @@ class DatabasePostgres extends Database {
 		$ctype = pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0);
 
 		$SQL = "UPDATE mediawiki_version SET mw_version=$mwv, pg_version=$pgv, pg_user=$pgu, ".
-				"mw_schema = $mws, ts2_schema = $tss, pg_port=$pgp, pg_dbname=$dbn ".
+				"mw_schema = $mws, ts2_schema = $tss, pg_port=$pgp, pg_dbname=$dbn, ".
 				"ctype = '$ctype' ".
 				"WHERE type = 'Creation'";
 		$this->query($SQL);
