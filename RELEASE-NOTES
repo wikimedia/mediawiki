@@ -180,6 +180,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6675) Replaced message 'watchthis' with new message 'watchthisupload in Special:Upload
 * Add a quickie script dumpSisterSites.php for generating a page list in the
   format for WSR-1 SisterSites support
+* (bug 7223) Monobook.js is used for site content, should not be localized
 
 
 == Languages updated ==

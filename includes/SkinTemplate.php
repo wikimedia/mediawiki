@@ -1013,7 +1013,7 @@ class SkinTemplate extends Skin {
 		// avoid inclusion of non defined user JavaScript (with custom skins only)
 		// by checking for default message content
 		$msgKey = ucfirst($this->skinname).'.js';
-		$userJS = wfMsg($msgKey);
+		$userJS = wfMsgForContent($msgKey);
 		if ('&lt;'.$msgKey.'&gt;' != $userJS) {
 			$s .= $userJS;
 		}
