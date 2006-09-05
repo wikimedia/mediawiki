@@ -910,9 +910,9 @@ $messages = array(
 "rc_categories_any"                 => "הכול",
 
 # Upload
-"upload"                      => "העלו קובץ לשרת",
-"uploadbtn"                   => "העלו קובץ",
-"reupload"                    => "העלו שנית",
+"upload"                      => "העלאת קובץ לשרת",
+"uploadbtn"                   => "העלה קובץ",
+"reupload"                    => "העלה שנית",
 "reuploaddesc"                => "חזרו לטופס העלאת קבצים לשרת.",
 "uploadnologin"               => "לא נכנסתם לאתר",
 "uploadnologintext"           => "עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי להעלות קבצים.",
@@ -955,7 +955,7 @@ $messages = array(
 "uploaddisabled"              => "העלאת קבצים מנוטרלת",
 "uploaddisabledtext"          => "אפשרות העלאת הקבצים מנוטרלת באתר זה.",
 "uploadscripted"              => "הקובץ כולל קוד סקריפט או HTML שעשוי להתפרש או להתבצע בטעות על־ידי הדפדפן.",
-"uploadcorrupt"               => "קובץ זה אינו תקין או שהסיומת שלו איננה מתאימה. בבקשה בדקו את הקובץ והעלו אותו שוב.",
+"uploadcorrupt"               => "קובץ זה אינו תקין או שהסיומת שלו איננה מתאימה. אנא בדקו את הקובץ והעלו אותו שוב.",
 "uploadvirus"                 => 'הקובץ מכיל וירוס! פרטים: <div style="direction: ltr;">$1</div>',
 "sourcefilename"              => "שם הקובץ",
 "destfilename"                => "שמור קובץ בשם",
