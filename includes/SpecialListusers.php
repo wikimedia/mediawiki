@@ -127,13 +127,13 @@ class ListUsersPage extends QueryPage {
 		// non-default groups as we go down the list.
 
 		$userspace = NS_USER;
-		$sql = "SELECT 'Listusers' AS type, $userspace AS namespace, ".
-				"user_name AS title, user_name AS value, ".
-				"user_id, COUNT(ug_group) AS numgroups ".
+		$sql = "SELECT 'Listusers' as type, $userspace AS namespace, user_name AS title, " .
+			"user_name as value, user_id, COUNT(ug_group) as numgroups " .
 			"FROM $user ".
-			"LEFT JOIN $user_groups ON user_id=ug_user ".
+			"LEFT JOIN $user_groups ON user_id=ug_user " .
 			$this->userQueryWhere( $dbr ) .
-			"GROUP BY user_name, user_id";
+			" GROUP BY user_name";
+
 		return $sql;
 	}
 
