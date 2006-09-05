@@ -43,12 +43,15 @@ class languages {
 		'trackbackexcerpt',
 		'widthheight',
 	);
+	private $mCheckEXIF;
 
 	/**
 	 * Load the list of languages: all the Messages*.php
 	 * files in the languages directory.
+	 *
+	 * @param $exif Treat the EXIF messages?
 	 */
-	function __construct() {
+	function __construct( $exif = true ) {
 		global $IP;
 		$dir = opendir("$IP/languages");
 		while ( $file = readdir( $dir ) ) {
@@ -57,6 +60,7 @@ class languages {
 			}
 		}
 		sort( $this->mList );
+		$this->mCheckEXIF = $exif;
 	}
 
 	/**
@@ -74,26 +78,49 @@ class languages {
 	 * @param $code The langauge code.
 	 */
 	private function loadMessages( $code ) {
-		if ( !isset( $this->mMessages[$code] ) ) {
-			global $IP;
-			$filename = Language::getFileName( "$IP/languages/Messages", $code, '.php' );
-			if ( file_exists( $filename ) ) {
-				require( $filename );
-				if ( isset( $messages ) ) {
-					$this->mMessages[$code] = $messages;
-					if ( $code == 'en' ) {
-						$this->mTranslatableMessages = $this->mMessages['en'];
-						foreach ( array_keys( $this->mTranslatableMessages ) as $key ) {
-							if ( in_array( $key, $this->mIgnoredMessages ) ) {
-								unset( $this->mTranslatableMessages[$key] );
-							}
-						}
-					}
-				} else {
-					$this->mMessages[$code] = array();
+		if ( isset( $this->mMessages[$code] ) ) {
+			return;
+		}
+		global $IP;
+		$filename = Language::getFileName( "$IP/languages/Messages", $code, '.php' );
+		if ( file_exists( $filename ) ) {
+			require( $filename );
+			if ( isset( $messages ) ) {
+				$this->mMessages[$code] = $messages;
+				if ( !$this->mCheckEXIF ) {
+					$this->filterMessages( $code, 'exif-' );
 				}
 			} else {
 				$this->mMessages[$code] = array();
+			}
+		} else {
+			$this->mMessages[$code] = array();
+		}
+	}
+
+	/**
+	 * Load the messages in English which can be translated.
+	 */
+	private function loadTranslatableMessages() {
+		$this->loadMessages( 'en' );
+		$this->mTranslatableMessages = $this->mMessages['en'];
+		foreach ( array_keys( $this->mTranslatableMessages ) as $key ) {
+			if ( in_array( $key, $this->mIgnoredMessages ) ) {
+				unset( $this->mTranslatableMessages[$key] );
+			}
+		}
+	}
+
+	/**
+	 * Filter messages by string.
+	 *
+	 * @param $code The language code.
+	 * @param $pattern Filter messages which include this string.
+	 */
+	private function filterMessages( $code, $pattern ) {
+		foreach ( array_keys( $this->mMessages[$code] ) as $key ) {
+			if ( strpos( $key, $pattern ) !== FALSE ) {
+				unset( $this->mMessages[$code][$key] );
 			}
 		}
 	}
@@ -119,7 +146,7 @@ class languages {
 	 * @return The messages in this language.
 	 */
 	public function getTranslatableMessages() {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		return $this->mTranslatableMessages;
 	}
 
@@ -131,7 +158,7 @@ class languages {
 	 * @return The translated messages for this language.
 	 */
 	public function getTranslatedMessages( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$translatedMessages = array();
 		foreach ( $this->mTranslatableMessages as $key => $value ) {
@@ -150,7 +177,7 @@ class languages {
 	 * @return The untranslated messages for this language.
 	 */
 	public function getUntranslatedMessages( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$untranslatedMessages = array();
 		foreach ( $this->mTranslatableMessages as $key => $value ) {
@@ -169,7 +196,7 @@ class languages {
 	 * @return The duplicate messages for this language.
 	 */
 	public function getDuplicateMessages( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$duplicateMessages = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
@@ -188,7 +215,7 @@ class languages {
 	 * @return The obsolete messages for this language.
 	 */
 	public function getObsoleteMessages( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$obsoleteMessages = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
@@ -207,7 +234,7 @@ class languages {
 	 * @return The messages which do not use some variables in this language.
 	 */
 	public function getMessagesWithoutVariables( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$variables = array( '\$1', '\$2', '\$3', '\$4', '\$5', '\$6', '\$7', '\$8', '\$9' );
 		$messagesWithoutVariables = array();
@@ -236,7 +263,7 @@ class languages {
 	 * @return The empty messages for this language.
 	 */
 	public function getEmptyMessages( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$emptyMessages = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
@@ -256,7 +283,7 @@ class languages {
 	 * @return The messages with trailing whitespace in this language.
 	 */
 	public function getMessagesWithWhitespace( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$messagesWithWhitespace = array();
 		foreach ( $this->mMessages[$code] as $key => $value ) {
@@ -276,7 +303,7 @@ class languages {
 	 * @return The non-XHTML messages for this language.
 	 */
 	public function getNonXHTMLMessages( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$wrongPhrases = array(
 			'<hr *\\?>',
@@ -302,7 +329,7 @@ class languages {
 	 * @return The messages which include wrong characters in this language.
 	 */
 	public function getMessagesWithWrongChars( $code ) {
-		$this->loadMessages( 'en' );
+		$this->loadTranslatableMessages();
 		$this->loadMessages( $code );
 		$wrongChars = array(
 			'[LRM]' => "\xE2\x80\x8E",
@@ -341,7 +368,7 @@ class languages {
 	 * @param $links Show links (optional)
 	 * @param $wikilang The langauge of the wiki to display the list in, for the links (optional)
 	 */
-	public function outputMessagesList( $messages, $code, $text = '', $level = 2, $links = false, $wikilang = 'en' ) {
+	public function outputMessagesList( $messages, $code, $text = '', $level = 2, $links = false, $wikilang = null ) {
 		if ( count( $messages ) > 0 ) {
 			if ( $text ) {
 				echo "$text\n";
@@ -352,6 +379,10 @@ class languages {
 				foreach ( $messages as $key => $value ) {
 					if ( $links ) {
 						$displayKey = ucfirst( $key );
+						if ( !isset( $wikilang ) ) {
+							global $wgContLang;
+							$wikilang = $wgContLang->getCode();
+						}
 						if ( $code == $wikilang ) {
 							$displayKey = "[[MediaWiki:$displayKey|$key]]";
 						} else {
