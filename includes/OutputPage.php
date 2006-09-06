@@ -769,6 +769,12 @@ class OutputPage {
 	 */
 	function loginToUse() {
 		global $wgUser, $wgTitle, $wgContLang;
+
+		if( $wgUser->isLoggedIn() ) {
+			$this->permissionRequired( 'read' );
+			return;
+		}
+
 		$skin = $wgUser->getSkin();
 		
 		$this->setPageTitle( wfMsg( 'loginreqtitle' ) );
