@@ -207,6 +207,25 @@ class Xml {
 			'type' => 'hidden',
 			'value' => $value ) + $attribs );
 	}
+	
+	/**
+	 * Convenience function to build an HTML drop-down list item.
+	 * @param $text String: text for this item
+	 * @param $value String: form submission value; if empty, use text
+	 * @param $selected boolean: if true, will be the default selected item
+	 * @param $attribs array: optional additional HTML attributes
+	 * @return string HTML
+	 */
+	public static function option( $text, $value=null, $selected=false,
+			$attribs=array() ) {
+		if( !is_null( $value ) ) {
+			$attribs['value'] = $value;
+		}
+		if( $selected ) {
+			$attribs['selected'] = 'selected';
+		}
+		return self::element( 'option', $attribs, $text );
+	}
 
 	/**
 	 * Returns an escaped string suitable for inclusion in a string literal

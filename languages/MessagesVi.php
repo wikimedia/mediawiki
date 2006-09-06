@@ -97,7 +97,7 @@ $dateFormats = array(
     MW_DATE_ISO => '2001-01-15 16:12:34'
 );
 
-$linkTrail = "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD";
+$linkTrail = "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu";
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 

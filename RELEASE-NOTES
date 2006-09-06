@@ -181,6 +181,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add a quickie script dumpSisterSites.php for generating a page list in the
   format for WSR-1 SisterSites support
 * (bug 7223) Monobook.js is used for site content, should not be localized
+* Set default disabled values for DjVu render options
+* Added Xml::option() for generating <option>s easily
+* Localized page numbers in drop-down for DjVu page selection
+* Fixed linktrail for vi
 
 
 == Languages updated ==
