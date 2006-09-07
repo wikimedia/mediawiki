@@ -470,6 +470,8 @@ class DumpHTML {
 		if ( !$this->setupDone ) {
 			$wgHooks['GetLocalURL'][] =& $this;
 			$wgHooks['GetFullURL'][] =& $this;
+			$wgHooks['SiteNoticeBefore'][] =& $this;
+			$wgHooks['SiteNoticeAfter'][] =& $this;
 			$this->oldArticlePath = $wgServer . $wgArticlePath;
 		}
 
@@ -849,7 +851,19 @@ ENDTEXT;
 	 */
 	function sliceFilter( $s ) {
 		return crc32( $s ) % $this->sliceDenominator == $this->sliceNumerator - 1;
-	}		
+	}
+
+	/**
+	 * No site notice
+	 */
+	function onSiteNoticeBefore( &$text ) {
+		$text = '';
+		return false;
+	}
+	function onSiteNoticeAfter( &$text ) {
+		$text = '';
+		return false;
+	}
 }
 
 /** XML parser callback */
