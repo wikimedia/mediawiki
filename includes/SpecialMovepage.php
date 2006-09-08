@@ -266,7 +266,7 @@ class MovePageForm {
 			$wgOut->addWikiText( wfMsg( 'talkexists' ) );
 		} else {
 			$oldTitle = Title::newFromText( $oldText );
-			if ( !$oldTitle->isTalkPage() && $talkmoved != 'notalkpage' ) {
+			if ( isset( $oldTitle ) && !$oldTitle->isTalkPage() && $talkmoved != 'notalkpage' ) {
 				$wgOut->addWikiText( wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) ) );
 			}
 		}
