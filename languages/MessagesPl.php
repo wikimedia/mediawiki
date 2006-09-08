@@ -169,18 +169,21 @@ $messages = array(
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Ogłoszenia o wydaniach MediaWiki]',
 
 'portal' => 'Portal użytkowników',
+'portal-url' => 'Project:Portal użytkowników',
 'about' => 'O serwisie',
 'aboutsite' => 'O serwisie {{SITENAME}}',
+'aboutpage' => 'Project:O serwisie',
 'article' => 'Artykuł',
 'help' => 'Pomoc',
-'helppage' => '{{ns:Project}}:Pomoc',
+'helppage' => 'Project:Pomoc',
 'bugreports' => 'Raport o błędach',
-'bugreportspage' => '{{ns:Project}}:Błędy',
+'bugreportspage' => 'Project:Błędy',
 'sitesupport' => 'Dary pieniężne',
+'sitesupport-url' => 'Project:Dary pieniężne',
 'faq' => 'FAQ',
 'edithelp' => 'Pomoc w edycji',
 'newwindow' => '(otwiera się w nowym oknie)',
-'edithelppage' => '{{ns:Project}}:Jak_edytować_stronę',
+'edithelppage' => 'Project:Jak_edytować_stronę',
 'cancel' => 'Anuluj',
 'qbfind' => 'Znajdź',
 'qbbrowse' => 'Przeglądanie',
@@ -194,6 +197,9 @@ $messages = array(
 'mytalk' => 'Moja dyskusja',
 'anontalk' => 'Dyskusja tego IP',
 'navigation' => 'Nawigacja',
+
+# Metadata in edit box
+'metadata_help' => 'Metadane (zobacz [[{{ns:project}}:Metadane]]):',
 
 'currentevents' => 'Bieżące wydarzenia',
 'currentevents-url' => 'Bieżące wydarzenia',
@@ -257,7 +263,7 @@ $messages = array(
 'badaccess-group2' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w jednej z grup $1.',
 'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w jednej z grup $1.',
 
-'versionrequired' => 'Wymagana MediaWiki w wesji $1',
+'versionrequired' => 'Wymagana MediaWiki w wersji $1',
 'versionrequiredtext' => 'Wymagana jest MediaWiki w wersji $1 aby skorzystać z tej strony . Zobacz [[Special:Version]]',
 
 'retrievedfrom' => 'Źródło: "$1"',
@@ -342,6 +348,9 @@ administratorowi podając także powyższy adres.',
 'perfdisabled' => 'Przepraszamy! By odciążyć serwer w godzinach szczytu czasowo zablokowaliśmy wykonanie tej czynności.',
 'perfcached' => 'Poniższe dane są kopią z pamięci podręcznej i mogą nie być do końca aktualne.',
 'perfcachedts' => 'Poniższe dane są kopią z pamięci podręcznej i zostały uaktualnione $1.',
+'wrong_wfQuery_params' => 'Nieprawidłowe parametry przekazane do wfQuery()<br />
+Funkcja: $1<br />
+Zapytanie: $2',
 'viewsource' => 'Tekst źródłowy',
 'viewsourcefor' => 'dla $1',
 'protectedtext' => 'Wyłączono możliwość edycji tej strony. Istnieje kilka powodów
@@ -367,6 +376,7 @@ Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:Specia
 'yourpasswordagain' => 'Powtórz hasło',
 'remembermypassword' => 'Zapamiętaj hasło',
 'yourdomainname' => 'Twoja domena',
+'externaldberror' => 'Wystąpił błąd zewnętrznej bazy autentyfikacyjnej lub nie posiadasz uprawnień koniecznych do aktualizacji zewnętrznego konta.',
 'loginproblem' => '<b>Wystąpił problem przy próbie zalogowania się.</b><br />Spróbuj ponownie!',
 'alreadyloggedin' => '<strong>$1, jesteś już zalogowany!</strong><br />',
 
@@ -522,6 +532,7 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'protectedpagewarning' => '<strong>Uwaga: Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z prawami administracyjnymi. Upewnij się, że postępujesz zgodnie z [[{{ns:Project}}:Blokowanie_stron|zasadami dotyczącymi zablokowanych stron]].</strong>',
 'semiprotectedpagewarning' => '<strong>Uwaga:</strong> Tę stronę mogą edytować tylko zarejestrowani użytkownicy.',
 'templatesused' => 'Szablony użyte na tej stronie:',
+'edittools' => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
 'nocreatetitle' => 'Ograniczono tworzenie stron',
 'nocreatetext' => 'Ograniczono możliwość tworzenia nowych stron. Możesz edytować istniejące strony lub [[{{ns:Special}}:Userlogin|zalogować się albo utworzyć nowe konto]].',
 'cantcreateaccounttitle' => 'Nie można utworzyć konta',
@@ -561,6 +572,7 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 # Revision deletion
 #
 'revisiondelete' => 'Skasuj/przywróć wersje',
+'revdelete-selected' => 'Wybrano wersje strony [[:$1]]:',
 
 # Diffs
 #
@@ -601,6 +613,7 @@ liczba znalezionych artykułów: $3.',
 # Preferences page
 #
 'preferences' => 'Preferencje',
+'mypreferences' => 'Moje preferencje',
 'prefsnologin' => 'Nie jesteś zalogowany',
 'prefsnologintext' => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]] przed zmianą swoich preferencji.',
 'prefsreset' => 'Preferencje domyślne zostały odtworzone.',
@@ -748,6 +761,7 @@ liczba znalezionych artykułów: $3.',
 'uploadvirus' => 'W tym pliku jest wirus! Szczegóły: $1',
 'sourcefilename' => 'Nazwa oryginalna',
 'destfilename' => 'Nazwa docelowa',
+'watchthisupload' => 'Obserwuj tę stronę',
 'filewasdeleted' => 'Plik o tej nazwie istniał, ale został skasowany. Zanim załadujesz go ponownie, sprawdź $1.',
 
 'license' => 'Licencja',
@@ -795,6 +809,7 @@ liczba znalezionych artykułów: $3.',
 #
 'mimesearch' => 'Wyszukiwanie MIME',
 'mimetype' => 'Typ MIME:',
+'download' => 'pobierz',
 
 # Unwatchedpages
 #
@@ -1297,6 +1312,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'importbadinterwiki' => 'Błędny link interwiki',
 'importnotext' => 'Brak tekstu lub zawartości',
 'importsuccess' => 'Import zakończony powodzeniem!',
+'importhistoryconflict' => 'Wystąpił konflikt wersji (ta strona mogła zostać importowana już wcześniej)',
 'importnosources' => 'Możliwość bezpośredniego importu historii została wyłączona: nie zdefiniowano źródła.',
 'importnofile' => 'Importowany plik nie został załadowany.',
 'importuploaderror' => 'Przesłanie pliku nie powiodło się. Możliwe, że plik jest większy od dozwolonego limitu.',
@@ -1323,7 +1339,8 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 
 # Attribution
 
-'anonymous' => 'Anonimowy użytkownik/cy serwisu {{SITENAME}}',
+'anonymous' => 'Anonimowy użytkownicy serwisu {{SITENAME}}',
+'siteuser' => 'Użytkownik serwisu {{SITENAME}} - $1',
 'lastmodifiedby' => 'Ostatnia edycja tej strony: $1 (autor zmian: $2)',
 'and' => 'oraz',
 'othercontribs' => 'Inni autorzy: $1.',
@@ -1707,6 +1724,7 @@ Jeśli to NIE TY zarejestrowałeś/aś to konto, NIE KLIKAJ W POWYŻSZY LINK.
 Kod zawarty w linku straci ważność $4.',
 
 # Inputbox extension, may be useful in other contexts as well
+'tryexact' => 'Użyj dokładnego wyrażenia',
 'searchfulltext' => 'Szukaj w całych tekstach',
 'createarticle' => 'Utwórz artykuł',
 
@@ -1738,6 +1756,7 @@ Potwierdź chęć odtworzenia tej strony.',
 'confirm_purge' => 'Wyczyścić bufor dla tej strony?
 
 $1',
+'confirm_purge_button' => 'Wyczyść',
 
 'youhavenewmessagesmulti' => 'Masz nowe wiadomości: $1',
 'searchcontaining' => 'Szukaj artykułów zawierających <i>$1</i>.',
