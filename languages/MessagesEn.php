@@ -997,6 +997,7 @@ containing all of the search terms will appear in the result).",
 # Preferences page
 #
 'preferences'	=> 'Preferences',
+'mypreferences'	=> 'My preferences',
 'prefsnologin' => 'Not logged in',
 'prefsnologintext'	=> "You must be [[Special:Userlogin|logged in]] to set user preferences.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
