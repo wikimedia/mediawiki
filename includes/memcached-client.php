@@ -221,6 +221,16 @@ class memcached
     */
    var $_timeout_microseconds;
 
+   /**
+    * Connect timeout in seconds
+    */
+   var $_connect_timeout;
+
+   /**
+    * Number of connection attempts for each server
+    */
+   var $_connect_attempts;
+
    // }}}
    // }}}
    // {{{ methods
@@ -250,6 +260,9 @@ class memcached
 
       $this->_timeout_seconds = 1;
       $this->_timeout_microseconds = 0;
+
+      $this->_connect_timeout = 0.01;
+      $this->_connect_attempts = 3;
    }
 
    // }}}
@@ -675,22 +688,33 @@ class memcached
     *
     * @param   interger $sock    Socket to connect
     * @param   string   $host    Host:IP to connect to
-    * @param   float    $timeout (optional) Timeout value, defaults to 0.25s
     *
     * @return  boolean
     * @access  private
     */
-   function _connect_sock (&$sock, $host, $timeout = 0.25)
+   function _connect_sock (&$sock, $host)
    {
       list ($ip, $port) = explode(":", $host);
-      if ($this->_persistant == 1)
-      {
-         $sock = @pfsockopen($ip, $port, $errno, $errstr, $timeout);
-      } else
-      {
-         $sock = @fsockopen($ip, $port, $errno, $errstr, $timeout);
+      $sock = false;
+      $timeout = $this->_connect_timeout;
+      for ($i = 0; !$sock && $i < $this->_connect_attempts; $i++) {
+         if ($i > 0) {
+            # Sleep until the timeout, in case it failed fast
+            $elapsed = microtime(true) - $t;
+            if ( $elapsed < $timeout ) {
+               usleep(($timeout - $elapsed) * 1e6);
+            }
+            $timeout *= 2;
+         }
+         $t = microtime(true);
+         if ($this->_persistant == 1)
+         {
+            $sock = @pfsockopen($ip, $port, $errno, $errstr, $timeout);
+         } else
+         {
+            $sock = @fsockopen($ip, $port, $errno, $errstr, $timeout);
+         }
       }
-
       if (!$sock) {
          if ($this->_debug)
             $this->_debugprint( "Error connecting to $host: $errstr\n" );
