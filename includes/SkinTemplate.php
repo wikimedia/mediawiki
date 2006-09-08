@@ -493,7 +493,7 @@ class SkinTemplate extends Skin {
 			);
 			$href = $this->makeSpecialUrl('Preferences');
 			$personal_urls['preferences'] = array(
-				'text' => wfMsg('preferences'),
+				'text' => wfMsg('mypreferences'),
 				'href' => $this->makeSpecialUrl('Preferences'),
 				'active' => ( $href == $pageurl )
 			);

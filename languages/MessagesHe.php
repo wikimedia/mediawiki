@@ -806,6 +806,7 @@ $messages = array(
 
 # Preferences page
 "preferences"           => "העדפות",
+"mypreferences"         => "ההעדפות שלי",
 "prefsnologin"          => "לא נרשמת באתר",
 "prefsnologintext"      => "עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי לשנות העדפות משתמש.",
 "prefsreset"            => "העדפותיך שוחזרו לברירת המחדל.",
