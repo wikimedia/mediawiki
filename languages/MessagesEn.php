@@ -867,7 +867,7 @@ You can go back and edit an existing page, or [[Special:Userlogin|log in or crea
 'cantcreateaccounttitle' => 'Can\'t create account',
 'cantcreateaccounttext' => 'Account creation from this IP address (<b>$1</b>) has been blocked. 
 This is probably due to persistent vandalism from your school or Internet service 
-provider. ',
+provider.',
 
 # History pages
 #
