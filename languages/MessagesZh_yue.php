@@ -346,6 +346,7 @@ $messages = array(
 'redirectpagesub' 	=> '重新定向頁',
 'lastmodified'		=> '呢一頁嘅最後修改係響$1。',
 'viewcount'		=> '呢一頁已經有$1人次睇過。',
+'copyright'		=> '響版度嘅內容係根據$1嘅條款發佈。',
 'protectedpage' 	=> '受保護頁',
 'jumpto' 		=> '跳去:',
 'jumptonavigation' 	=> '定向',
@@ -448,7 +449,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 函數： $1<br />
 查詢： $2',
 'viewsource' 		=> '睇吓原始碼',
-'viewsourcefor' 	=> '$1嘅',
+'viewsourcefor' 	=> '$1嘅原始碼',
 'protectedtext' 	=> '呢一頁已經鎖咗唔畀改。
 
 你可以睇吓或者複製呢一頁嘅原始碼：',
@@ -768,6 +769,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Preferences page
 #
 'preferences'		=> '喜好設定',
+'mypreferences'		=> '我嘅喜好設定',
 'prefsnologin' 		=> '仲未登入',
 'prefsnologintext'	=> "你一定要去[[Special:Userlogin|登入]]設定好用戶喜好值先。",
 'prefsreset'		=> '喜好設定已經從儲存空間中重設。',
@@ -842,13 +844,16 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'group-sysop-member' 		=> '操作員',
 'group-bureaucrat-member' 	=> '事務員',
 
+'grouppage-bot' 		=> '{{ns:project}}:機械人',
+'grouppage-sysop' 		=> '{{ns:project}}:管理員',
+'grouppage-bureaucrat' 		=> '{{ns:project}}:事務員',
 
 # Recent changes
 #
 'changes' 		=> '更改',
 'recentchanges' 	=> '最近更改',
 'recentchangestext' 	=> '追蹤對哩一個 wiki 嘅最後更改。',
-'rcnote'		=> "以下係近<strong>$2</strong>日嘅最後<strong>$1</strong>次修改。",
+'rcnote'		=> "以下係響$3，近<strong>$2</strong>日嘅最後<strong>$1</strong>次修改。",
 'rcnotefrom'		=> "以下係自<b>$2</b>嘅更改（顯示到<b>$1</b>）。",
 'rclistfrom'		=> "顯示由$1嘅新更改",
 'rcshowhideminor' 	=> '$1小編輯',
@@ -864,6 +869,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'show'			=> '顯示',
 'minoreditletter' 	=> 'm',
 'newpageletter' 	=> 'N',
+'boteditletter' 	=> 'b',
 'sectionlink' 		=> '→',
 'number_of_watching_users_pageview' 	=> '[$1位用戶監視]',
 'rc_categories'		=> '限定到分類（以"|"作分隔）',
@@ -1122,7 +1128,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Watchlist
 'watchlist'		=> '我張監視清單',
-'watchlistfor'		=> "（用戶「'''$1'''」) ",
+'watchlistfor'		=> "（用戶「'''$1'''」嘅監視清單) ",
 'nowatchlist'		=> '你嘅監視清單度並冇任何項目。',
 'watchlistanontext' 	=> '請先$1去睇或者改響你監視清單度嘅項目。',
 'watchlistcount' 	=> "'''你有 $1 個項目喺你嘅監視清單度，包括埋對話頁。'''",
@@ -1296,7 +1302,7 @@ wiki: $PAGEEDITOR_WIKI
 #
 'contributions' => '用戶貢獻',
 'mycontris'     => '我嘅貢獻',
-'contribsub'    => "$1嘅",
+'contribsub'    => "$1嘅貢獻",
 'nocontribs'    => '搵唔到符合呢啲條件嘅修改。',
 'ucnote'        => "以下係呢個用戶喺最近<b>$2</b>日內嘅最後<b>$1</b>次修改。",
 'uclinks'       => "睇吓最近$2日；睇吓最近嘅$1次修改。",
@@ -2028,7 +2034,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'睇吓分類頁\');',
 'confirmemail_error' => '儲存你嘅確認資料嘅時候有小小嘢發生咗意外。',
 
 'confirmemail_subject' => '{{SITENAME}}電郵地址確認',
-'confirmemail_body' => "有人（好有可能係嚟自你嘅IP地址）已經用呢個電郵地址喺{{SITENAME}}度註冊咗帳戶\"$2\"
+'confirmemail_body' => "有人（好有可能係嚟自你嘅IP地址 $1）已經用呢個電郵地址喺{{SITENAME}}度註冊咗帳戶\"$2\"
 
 要確認呢個帳戶的而且確屬於你同埋啟用{{SITENAME}}嘅電郵功能，
 請喺你嘅瀏覽器度打開呢條連結：
