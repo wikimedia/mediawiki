@@ -919,6 +919,9 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 # Revision deletion
 #
 'revisiondelete' => 'Delete/undelete revisions',
+'revdelete-nooldid-title' => 'No target revision',
+'revdelete-nooldid-text' => 'You have not specified target revision or revisions
+to perform this function on.',
 'revdelete-selected' => 'Selected revision of [[:$1]]:',
 'revdelete-text' => "Deleted revisions will still appear in the page history,
 but their text contents will be inaccessible to the public.
