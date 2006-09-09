@@ -672,7 +672,8 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst den Artikel „[[$1]]�
 
 # Preferences page
 #
-"preferences"	=> "Einstellungen",
+'preferences'		=> 'Einstellungen',
+'mypreferences'		=> 'Einstellungen',
 "prefsnologin" => "Nicht angemeldet",
 'prefsnologintext'	=> 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
 "prefsreset"	=> "Einstellungen wurden auf Standard zurückgesetzt.",
@@ -1933,8 +1934,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; vorige Seite',
-'imgmultipagenext' => 'n&auml;chste Seite &rarr;',
+'imgmultipageprev' => '← vorige Seite',
+'imgmultipagenext' => 'nächste Seite →',
 'imgmultigo' => 'OK',
 'imgmultigotopre' => 'Gehe zu Seite',
 
