@@ -186,6 +186,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Localized page numbers in drop-down for DjVu page selection
 * Fixed linktrail for vi
 * (bug 6893) "Call to a member function exists() on a non-object" on trackback.php with bad input
+* (bug 6886) PHP undefined offset on bad input to Special:Revisiondelete
+* (bug 6887) PHP error for call to getId() on bad input to Special:Revisiondelete
+* (bug 6888) PHP error for call to getTimestamp() on bad input to Special:Revisiondelete
 
 == Languages updated ==
 

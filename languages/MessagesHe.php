@@ -754,6 +754,8 @@ $messages = array(
 
 # Revision deletion
 "revisiondelete"            => "מחיקת ושחזור גרסאות",
+"revdelete-nooldid-title"   => "אין גרסת מטרה",
+"revdelete-nooldid-text"    => "לא ציינתם גרסת או גרסאות מטרה עליהן תבוצע פעולה זו.",
 "revdelete-selected"        => "הגרסאות שנבחרו של [[:$1]]:",
 "revdelete-text"            => "גרסאות מחוקות עדיין יופיעו בהיסטוריית הדף, אך התוכן שלהן לא יהיה זמין לציבור.
 
