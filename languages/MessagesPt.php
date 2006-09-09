@@ -97,6 +97,7 @@ $magicWords = array(
 	'img_width'              => array( 1,    '$1px'                   ),
 	'img_center'             => array( 1,    'center', 'centre'       ),
 	'img_framed'             => array( 1,    'framed', 'enframed', 'frame' ),
+	'img_page'               => array( 1,    'page=$1', 'page $1'     ),
 	'int'                    => array( 0,    'INT:'                   ),
 	'sitename'               => array( 1,    'SITENAME'               ),
 	'ns'                     => array( 0,    'NS:'                    ),
@@ -138,8 +139,8 @@ $messages = array(
 'tog-watchcreations' => 'Adicionar páginas criadas por mim à minha lista de artigos vigiados',
 'tog-watchdefault' => 'Adicionar páginas editadas por mim à minha lista de artigos vigiados',
 'tog-minordefault' => 'Marcar todas as edições como secundárias, por padrão',
-'tog-previewontop' => 'Mostrar Previsão antes da caixa de edição ao invés de ser após',
-'tog-previewonfirst' => 'Mostrar Previsão na primeira edição',
+'tog-previewontop' => 'Mostrar previsão antes da caixa de edição ao invés de ser após',
+'tog-previewonfirst' => 'Mostrar previsão na primeira edição',
 'tog-nocache' => 'Desactivar caching de páginas',
 'tog-enotifwatchlistpages'      => 'Enviar-me um email quando houver mudanças nas páginas',
 'tog-enotifusertalkpages'       => 'Enviar-me um email quando a minha página de discussão for editada',
@@ -757,6 +758,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 # Preferences page
 #
 'preferences'   => 'Preferências',
+'mypreferences' => 'Minhas preferências',
 'prefsnologin' => 'Não autenticado',
 'prefsnologintext'      => "Precisa estar [[Special:Userlogin|autentificado]] para definir suas preferências.",
 'prefsreset'    => 'Preferências restauradas da base de dados.',
@@ -921,10 +923,13 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'uploadvirus' => 'O ficheiro contém vírus! Detalhes: $1',
 'sourcefilename' => 'Nome do ficheiro de origem',
 'destfilename' => 'Nome do ficheiro de destino',
+'watchthisupload'       => 'Vigiar esta página',
 'filewasdeleted' => 'Um ficheiro com este nome foi anteriormente carregado e subsequentemente eliminado. Deveria verificar o $1 antes de proceder ao carregamento novamente.',
 
 'license' => 'Licença',
 'nolicense' => 'Nenhuma seleccionada',
+'upload_source_url' => ' (válido, URL publicamente acessível)',
+'upload_source_file' => ' (um ficheiro no seu computador)',
 
 # Image list
 #
@@ -995,7 +1000,7 @@ O que nos leva a aproximadamente '''$5''' edições por página, e '''$6''' vist
 
 O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é de actualmente '''$7'''.",
 'userstatstext' => "Há actualmente '''$1''' utilizadores registados.
-Destes, '''$2''' (ou '''$4%''') são administradores (consulte $3).",
+Destes, '''$2''' (ou '''$4%''') são $5.",
 'statistics-mostpopular' => 'Páginas mais vistas',
 
 # Maintenance Page
@@ -1286,7 +1291,7 @@ Consulte o [[Special:Log/delete|registo de eliminações]] para um registo das e
 'nocontribs'    => 'Não foram encontradas mudanças com este critério.',
 'ucnote'        => "Segue as últimas <b>$1</b> mudanças nos últimos <b>$2</b> dias deste utilizador.",
 'uclinks'       => "Ver as últimas $1 mudanças; ver os últimos $2 dias.",
-'uctop'         => ' (topo)' ,
+'uctop'         => ' (revisão actual)' ,
 'newbies'       => 'novatos',
 
 'sp-newimages-showfrom' => 'Mostrar novas imagens começando de $1',
@@ -1963,6 +1968,12 @@ Por favor confirme que realmente deseja recriar este artigo.',
 'displaytitle' => '(Ligar a esta página como [[$1]])',
 
 'loginlanguagelabel' => 'Idioma: $1',
+
+# Multipage image navigation
+'imgmultipageprev' => '&larr; página anterior',
+'imgmultipagenext' => 'próxima página &rarr;',
+'imgmultigo' => 'Ir!',
+'imgmultigotopre' => 'Mostrar página',
 
 # Table pager
 'ascending_abbrev' => 'asc',
