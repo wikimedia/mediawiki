@@ -50,7 +50,7 @@ $tbname = $_POST['blog_name'];
 $tbarticle = $_REQUEST['article'];
 
 $title = Title::newFromText($tbarticle);
-if (!$title->exists())
+if (!isset($title) || !$title->exists())
 	XMLerror("Specified article does not exist.");
 
 $dbw->insert('trackbacks', array(
