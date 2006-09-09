@@ -711,6 +711,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Revision deletion
 #
 'revisiondelete' 	=> '刪除／反刪除修訂',
+'revdelete-nooldid-title' => '無目標修訂',
+'revdelete-nooldid-text' => '你仲未指定一個或多個修訂去進行呢個功能。',
 'revdelete-selected' 	=> '揀[[:$1]]嘅修訂：',
 'revdelete-text' 	=> "刪除咗嘅修訂係會仍然出現喺個頁面歷史度，
 但係佢哋嘅文字內容係唔可以供公眾瀏覽。
