@@ -9,10 +9,10 @@
  * Constructor
  */
 function wfSpecialMovepage( $par = null ) {
-	global $wgUser, $wgOut, $wgRequest, $action;
+	global $wgUser, $wgOut, $wgRequest, $action, $wgOnlySysopMayMove;
 
 	# Check rights
-	if ( !$wgUser->isAllowed( 'move' ) ) {
+	if ( !$wgUser->isAllowed( 'move' ) || ( $wgOnlySysopMayMove && $wgUser->isNewbie() ) ) {
 		$wgOut->showErrorPage( 'movenologin', 'movenologintext' );
 		return;
 	}
