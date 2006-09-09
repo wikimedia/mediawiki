@@ -568,6 +568,8 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 # Revision deletion
 #
 'revisiondelete' => 'Hapus/batal hapus revisi',
+'revdelete-nooldid-title' => 'Target revisi tak ditemukan',
+'revdelete-nooldid-text' => 'Anda belum memberikan target revisi untuk menjalankan fungsi ini.',
 'revdelete-selected' => 'Revisi terpilih dari [[:$1]]:',
 'revdelete-text' => "Revisi yang telah dihapus akan tetap muncul di halaman versi terdahulu, tapi teks isi tidak bisa diakses publik.
 
@@ -619,6 +621,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 # Preferences page
 #
 "preferences" => "Preferensi",
+'mypreferences'	=> 'Preferensi saya',
 "prefsnologin" => "Belum masuk log",
 "prefsnologintext" => "Anda harus [[{{ns:special}}:Userlogin|masuk log]] untuk menetapkan preferensi Anda.",
 
@@ -777,6 +780,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'uploadvirus' => 'Berkas tersebut mengandung virus! Detil: $1',
 'sourcefilename' => 'Nama berkas sumber',
 'destfilename' => 'Nama berkas tujuan',
+'watchthisupload'	=> 'Pantau halaman ini',
 'filewasdeleted' => 'Suatu berkas dengan nama ini pernah dimuat dan selanjutnya dihapus. Harap cek $1 sebelum memuat lagi berkas tersebut.',
 
 'license' => 'Jenis lisensi',
