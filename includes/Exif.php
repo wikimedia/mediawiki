@@ -293,7 +293,7 @@ class Exif {
 		);
 
 		$this->file = $file;
-		$this->basename = basename( $this->file );
+		$this->basename = wfBaseName( $this->file );
 
 		$this->makeFlatExifTags();
 

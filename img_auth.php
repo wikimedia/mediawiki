@@ -18,7 +18,7 @@ if( !isset( $_SERVER['PATH_INFO'] ) ) {
 # Get filenames/directories
 $filename = realpath( $wgUploadDirectory . $_SERVER['PATH_INFO'] );
 $realUploadDirectory = realpath( $wgUploadDirectory );
-$imageName = $wgContLang->getNsText( NS_IMAGE ) . ":" . basename( $_SERVER['PATH_INFO'] );
+$imageName = $wgContLang->getNsText( NS_IMAGE ) . ":" . wfBaseName( $_SERVER['PATH_INFO'] );
 
 # Check if the filename is in the correct directory
 if ( substr( $filename, 0, strlen( $realUploadDirectory ) ) != $realUploadDirectory ) {

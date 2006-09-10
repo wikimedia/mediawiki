@@ -804,7 +804,7 @@ END;
 			array_shift( $against );
 		}
 
-		array_push( $pieces, basename( $path ) );
+		array_push( $pieces, wfBaseName( $path ) );
 
 		return implode( '/', $pieces );
 	}

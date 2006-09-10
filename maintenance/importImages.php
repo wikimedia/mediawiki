@@ -32,7 +32,7 @@ if( count( $args ) > 1 ) {
 	# Batch "upload" operation
 	foreach( $files as $file ) {
 	
-		$base = basename( $file );
+		$base = wfBaseName( $file );
 		
 		# Validate a title
 		$title = Title::makeTitleSafe( NS_IMAGE, $base );
