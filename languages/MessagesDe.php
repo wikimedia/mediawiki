@@ -620,6 +620,8 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 Vielleicht wurde sie aus dem Wiki gelöscht oder verschoben.
 [[{{ns:special}}:Search|Durchsuchen]] Sie das Wiki für passende neue Seiten.',
 'revisiondelete'		=> 'Versionen löschen/wiederherstellen',
+'revdelete-nooldid-title'	=> 'Keine Version angegeben',
+'revdelete-nooldid-text'	=> 'Sie haben keine Version angegeben, auf die diese Aktion ausgeführt werden soll.',
 'revdelete-selected'		=> 'Ausgewählte Version von [[:$1]]:',
 'revdelete-text'		=> 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
 
