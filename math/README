@@ -1,7 +1,7 @@
 == About texvc ==
 
 texvc takes LaTeX-compatible equations and produces formatted output in
-HTML, MathML, and (via LaTeX/dvips/ImageMagick) rasterized PNG images.
+HTML, MathML, and (via LaTeX/dvipng) rasterized PNG images.
 Input data is parsed and scrutinized for safety, and the output includes
 an estimate of whether the code is simple enough that HTML rendering will
 look acceptable.
@@ -21,8 +21,8 @@ from http://caml.inria.fr/ if your system doesn't have it available.
 
 The makefile requires GNU make.
 
-Rasterization is done via LaTeX, dvips, and ImageMagick. These need
-to be installed and in the PATH: latex, dvips, convert
+Rasterization is done via LaTeX, dvipng. These need
+to be installed and in the PATH: latex, dvipng
 
 AMS* packages for LaTeX also need to be installed. Without AMS* some
 equations will render correctly while others won't render.
@@ -115,7 +115,6 @@ which is basically:
 2. texvc does its magic, which is basically to check for invalid latex code.
 3. texvc takes the user input if valid and creates a latex file containing it, see
    get_preface in texutil.ml
-4. latex(1) gets called to create a .dvi file, then a .ps file is created from the
-   .dvi file using dvips(1), and finally convert(1) creates a .png file from
-   the .ps file. See render.ml for this process (commenting out the removal of
+4. dvipng(1) gets called to create a .png file
+   See render.ml for this process (commenting out the removal of
    the temporary file is useful for debugging).
