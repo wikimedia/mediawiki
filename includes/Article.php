@@ -658,8 +658,10 @@ class Article {
 			// DifferenceEngine directly fetched the revision:
 			$this->mRevIdFetched = $de->mNewid;
 			$de->showDiffPage();
-
-			if( $diff == 0 ) {
+			
+			// Needed to get the page's current revision
+			$this->loadPageData();
+			if( $diff == 0 || $diff == $this->mLatest ) {
 				# Run view updates for current revision only
 				$this->viewUpdates();
 			}
