@@ -133,7 +133,7 @@ $messages = array(
 'subcategories'         => 'サブカテゴリ',
 'mainpage'              => 'メインページ',
 'mainpagetext'          => 'MediaWikiが正常にインストールされました。',
-'mainpagedocfooter'     => '[http://meta.wikimedia.org/wiki/MediaWiki_localization インターフェースの変更方法]や、そのほかの使い方・設定に関しては[http://meta.wikimedia.org/wiki/Help:Contents ユーザーズガイド]を参照してください。',
+'mainpagedocfooter'     => '[http://meta.wikimedia.org/wiki/MediaWiki_localisation インターフェースの変更方法]や、そのほかの使い方・設定に関しては[http://meta.wikimedia.org/wiki/Help:Contents ユーザーズガイド]を参照してください。',
 'portal'                => 'コミュニティ・ポータル',
 'portal-url'            => 'Project:コミュニティ・ポータル',
 'about'                 => '解説',
@@ -204,6 +204,10 @@ $messages = array(
 'userpage'              => '利用者ページを表示',
 'projectpage'           => 'プロジェクトページを表示',
 'imagepage'             => '画像のページを表示',
+'mediawikipage'         => 'インターフェースページを表示',
+'templatepage'          => 'テンプレートページを表示',
+'viewhelppage'          => 'ヘルプページを表示',
+'categorypage'          => 'カテゴリページを表示',
 'viewtalkpage'          => 'ノートを表示',
 'otherlanguages'        => '他の言語',
 'redirectedfrom'        => '（$1 から転送）',
@@ -216,9 +220,16 @@ $messages = array(
 'jumpto'                => '移動:',
 'jumptonavigation'      => 'ナビゲーション',
 'jumptosearch'          => '検索',
+
 'badaccess'             => '権限がありません',
+'badaccess-group0' => 'あなたはこの処理を行う権限を持っていません。',
+'badaccess-group1' => 'この処理は $1 の権限を持った利用者のみが実行できます。',
+'badaccess-group2' => 'この処理は $1 のうちどちらかの権限を持った利用者のみが実行できます。',
+'badaccess-groups' => 'この処理は $1 のうちいずれかの権限を持った利用者のみが実行できます。',
+
 'versionrequired'       => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext'   => 'このページの利用には MediaWiki Version $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
+
 'retrievedfrom'         => ' "$1" より作成',
 'youhavenewmessages'    => '$1が届いています。（$2）',
 'newmessageslink'       => '新しいメッセージ',
@@ -375,6 +386,8 @@ The database has been automatically locked while the slave database servers catc
 'invalidemailaddress'   => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。正しい形式で入力し直すか、メールアドレス欄を空にしてください。',
 'accountcreated'        => 'アカウントを作成しました',
 'accountcreatedtext'    => '利用者 $1 が作成されました。',
+'cantcreateaccounttitle'=> 'アカウントを作成できません', 
+'cantcreateaccounttext' => 'このIPアドレス (<b>$1</b>) からのアカウント作成はブロックされています。', 
 'bold_sample'           => '強い強調（太字）',
 'bold_tip'              => '強い強調（太字）',
 'italic_sample'         => '弱い強調（斜体）',
@@ -505,7 +518,10 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'history-feed-description'=> 'このウィキのこのページに関する変更履歴',
 'history-feed-item-nocomment'=> '$2 における $1 による編集',
 'history-feed-empty'    => '要求したページは存在しません。既に削除されたか移動された可能性があります。 [[Special:Search|このウィキの検索]]で関連する新しいページを探してみてください。',
+
+# Revision deletion
 'revisiondelete'        => '版の削除と復帰',
+'revdelete-nooldid-title' => '対象版がありません',
 'revdelete-selected'    => '[[:$1]]の、以下の選択された版に対する操作:',
 'revdelete-text'        => '版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。
 
@@ -549,7 +565,10 @@ $1<br />
 $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'searchdisabled'        => '<p>全文検索はサーバー負荷の都合から、一時的に使用停止しています。元に戻るまでGoogleでの全文検索を利用してください。検索結果は少し古い内容となります。</p>',
 'blanknamespace'        => '（標準）',
+
+# Preferences page
 'preferences'           => 'オプション',
+'mypreferences'	        => 'オプション',
 'prefsnologin'          => 'ログインしていません',
 'prefsnologintext'      => 'オプションを変更するためには、[[Special:Userlogin|ログイン]]する必要があります。',
 'prefsreset'            => 'オプションは初期化されました。',
@@ -699,9 +718,13 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uploadvirus'           => 'このファイルにはウイルスが含まれています!! &nbsp;詳細: $1',
 'sourcefilename'        => 'ファイル名',
 'destfilename'          => '掲載するファイル名',
+'watchthisupload'	    => '画像をウォッチ',
 'filewasdeleted'        => 'アップロードしようとしているファイル名のファイルが以前削除されています。再びアップロードする前に $1 を確認してください。',
 'license'               => 'ライセンス',
-'nolicense'             => 'なし',
+'upload_source_url'     => '（インターネット上のURL）',
+'upload_source_file'    => '（あなたのコンピューター上のファイル）',
+
+# Image list
 'imagelist'             => '画像リスト',
 'imagelisttext'         => '$1 枚の画像を $2 に表示しています',
 'imagelistforuser'      => '$1 によってアップロードされた画像のみ表示しています。',
@@ -713,6 +736,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'bysize'                => 'サイズ順',
 'imgdelete'             => '削除',
 'imgdesc'               => '詳細',
+'imgfile'               => 'ファイル',
 'imglegend'             => '凡例: （詳細）= 画像の詳細を表示/編集',
 'imghistory'            => '画像の履歴',
 'revertimg'             => '差戻',
@@ -729,9 +753,18 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'noimage'               => 'このファイル名の画像はありません。$1。',
 'noimage-linktext'      => 'このファイル名でアップロードする',
 'uploadnewversion-linktext'=> 'このファイルの新しいバージョンをアップロードする',
+'imagelist_date'        => '日時',
+'imagelist_name'        => '名前',
+'imagelist_user'        => '利用者',
+'imagelist_size'        => 'サイズ（バイト）',
+'imagelist_description' => '概要',
+'imagelist_search_for'  => '画像名で検索:',
+
+# Mime search
 'mimesearch'            => 'MIMEタイプ検索',
 'mimetype'              => 'MIMEタイプ:',
 'download'              => 'ダウンロード',
+
 'unwatchedpages'        => 'ウォッチされていないページ',
 'listredirects'         => 'リダイレクトの一覧',
 'unusedtemplates'       => '使われていないテンプレート',
@@ -790,6 +823,7 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'recentchangeslinked'   => 'リンク先の更新状況',
 'rclsub'                => '"$1" からリンクされているページ',
 'newpages'              => '新しいページ',
+'newpages-username'     => '利用者名:',
 'ancientpages'          => '更新されていないページ',
 'intl'                  => '言語間リンク',
 'move'                  => '移動',
@@ -806,6 +840,8 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'log'                   => 'ログ',
 'alllogstext'           => 'アップロード、削除、保護、投稿ブロック、権限変更のログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
 'logempty'              => '条件にマッチする記録はありません。',
+
+# Special:Allpages
 'nextpage'              => '次のページ（$1）',
 'allpagesfrom'          => '表示開始ページ:',
 'allarticles'           => '全ページ',
@@ -815,6 +851,11 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'allpagesnext'          => '次へ',
 'allpagessubmit'        => '表示',
 'allpagesprefix'        => '次の文字列から始まるページを表示:',
+
+# Special:Listusers
+'listusersfrom' => 'この文字から表示:',
+
+# E this user
 'mailnologin'           => '送信先のアドレスがありません。',
 'mailnologintext'       => '他の利用者宛てにメールを送信するためには、[[Special:Userlogin|ログイン]]し、あなたのメールアドレスを[[Special:Preference|オプション]]に設定する必要があります。',
 'emailuser'             => 'この利用者にメールを送信',
@@ -832,6 +873,8 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'emailsend'             => 'メール送信',
 'emailsent'             => 'メールを送りました',
 'emailsenttext'         => 'メールは無事送信されました。',
+
+# Watchlist
 'watchlist'             => 'ウォッチリスト',
 'watchlistfor'          => '\'\'\'$1\'\'\'',
 'nowatchlist'           => 'あなたのウォッチリストは空です。',
@@ -1009,6 +1052,8 @@ $NEWPAGE
 'nolinkshere'           => '指定されたページにリンクしているページはありません。',
 'isredirect'            => 'リダイレクトページ',
 'istemplate'            => 'テンプレート呼出',
+
+# Block/unblock IP
 'blockip'               => '投稿ブロック',
 'blockiptext'           => '指定した利用者やIPアドレスからの投稿をブロックすることができます。投稿ブロックは荒らしを防ぐためであり、[[Project:方針|{{SITENAME}}の方針]]に従っているべきです。明確な理由を以下に記入してください（例えば、荒らされたページを引用する）。',
 'ipaddress'             => 'IPアドレス',
@@ -1019,6 +1064,8 @@ $NEWPAGE
 'ipbother'              => '期間 (その他のとき)',
 'ipboptions'            => '15分:15 minutes,30分:30 minutes,2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1ヶ月:1 month,3ヶ月:3 months,6ヶ月:6 months,1年:1 year,無期限:infinite',
 'ipbotheroption'        => 'その他',
+'ipbanononly'           => '匿名利用者のみブロック',
+'ipbcreateaccount'      => 'アカウント作成をブロック',
 'badipaddress'          => 'IPアドレスが異常です。',
 'blockipsuccesssub'     => 'ブロックに成功しました。',
 'blockipsuccesstext'    => '利用者またはIPアドレス "$1" の投稿をブロックしました。<br />
@@ -1031,6 +1078,8 @@ $NEWPAGE
 'blocklistline'         => '$1, $2 は $3 をブロック （$4）',
 'infiniteblock'         => '無期限',
 'expiringblock'         => '$1 に解除',
+'anononlyblock'         => '匿名のみ',
+'createaccountblock'    => 'アカウント作成のブロック',
 'ipblocklistempty'      => '{{int:ipblocklist}}はありません。',
 'blocklink'             => 'ブロック',
 'unblocklink'           => 'ブロック解除',
@@ -1043,12 +1092,16 @@ $NEWPAGE
 'range_block_disabled'  => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'    => '不正な期間です。',
 'ip_range_invalid'      => '不正なIPアドレス範囲です。',
+'ipb_already_blocked'   => '"$1" は既にブロックされています。',
+'ipb_cant_unblock'      => 'エラー: ブロックされた ID $1 が見つかりません。おそらく既にブロック解除されています。',
 'proxyblockreason'      => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.
 
 :あなたの使用しているIPアドレスはオープン・プロクシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess'     => '終了しました。',
 'sorbsreason'           => 'あなたのIPアドレスはオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されています。',
 'sorbs_create_account_reason'=> 'あなたのIPアドレスがオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されているため、アカウントを作成できません。',
+
+# Developer tools
 'lockdb'                => 'データベースのロック',
 'unlockdb'              => 'データベースのロック解除',
 'lockdbtext'            => 'データベースをロックすると全ての利用者はページを編集できなくなり、オプションを変更できなくなり、ウォッチリストを編集できなくなるなど、データベースに書き込む全ての作業ができなくなります。本当にデータベースをロックして良いかどうか確認してください。メンテナンスが終了したらロックを解除してください。',
@@ -1062,6 +1115,10 @@ $NEWPAGE
 'unlockdbsuccesssub'    => 'データベースのロックは解除されました',
 'lockdbsuccesstext'     => 'データベースをロックしました。メンテナンスが終了したら忘れずにロックを解除してください。',
 'unlockdbsuccesstext'   => 'データベースのロックは解除されました。',
+'lockfilenotwritable'   => 'データベースのロックファイルに書き込めません。データベースのロック・解除をするには、サーバ上のロックファイルに書き込める必要があります。',
+'databasenotlocked'     => 'データベースはロックされていません。',
+
+# Make sysop
 'makesysoptitle'        => '{{int:Makesysop}}',
 'makesysoptext'         => 'このフォームは通常の利用者を{{int:group-sysop}}にするために使用します。{{int:group-sysop}}にする利用者名を入力し、{{int:Makesysopsubmit}}ボタンを押してください。',
 'makesysopname'         => '利用者名:',
@@ -1141,11 +1198,14 @@ $NEWPAGE
 'missingimage'          => '<b>以下の画像が見つかりません。</b><br /><i>$1</i>',
 'filemissing'           => '<i>ファイルがありません</i>',
 'thumbnail_error'       => 'サムネイルの作成中にエラーが発生しました: $1',
+
+# Special:Import
 'import'                => 'ページデータの取り込み',
 'importinterwiki'       => 'Transwikiインポート',
 'import-interwiki-text' => 'インポートするウィキとページ名を選択してください。変更履歴の日付と編集者が保存されます。すべてのtranswikiは[[Special:Log/import|インポート記録]]に記録されます。',
 'import-interwiki-history'=> 'このページの全ての版を複製する',
 'import-interwiki-submit'=> '取り込み',
+'import-interwiki-namespace' => 'Transfer pages into namespace:',
 'importtext'            => '元となるウィキから {{ns:special}}:Export を使ってXMLファイルを書き出し、ここでアップロードしてください。',
 'importstart'           => 'ページを取り込んでいます...',
 'import-revision-count' => '$1 版',
@@ -1160,12 +1220,19 @@ $NEWPAGE
 'importnosources'       => 'Transwikiの読み込み元が定義されていないため、履歴の直接アップロードは無効になっています。',
 'importnofile'          => 'ファイルがアップロードされませんでした',
 'importuploaderror'     => 'ファイルの取り込みに失敗しました。恐らく、許可されている最大ファイルサイズより大きなファイルをアップロードしようとしています。',
+
+# import log
 'importlogpage'         => 'インポート記録',
+'importlogpagetext'     => '以下は管理者による他ウィキからのページデータの取り込み記録です。',
 'import-logentry-upload'=> 'ファイルのアップロードにより $1 をインポートしました',
 'import-logentry-upload-detail'=> '$1 版',
 'import-logentry-interwiki'=> '$1 をtranswikiしました',
 'import-logentry-interwiki-detail'=> '$2 の $1 版',
+
+# Keyboard access keys for power users
 'accesskey-diff'        => 'd',
+
+# tooltip help for some actions, most are in Monobook.js
 'tooltip-search'        => 'ウィキ内を検索 [alt-f]',
 'tooltip-minoredit'     => 'この編集を細部の変更とマーク [alt-i]',
 'tooltip-save'          => '編集を保存します。 [alt-s]',
@@ -1520,6 +1587,7 @@ $NEWPAGE
 'watchlistall2'         => 'すべて',
 'namespacesall'         => 'すべて',
 'confirmemail'          => 'メールアドレスの確認',
+'confirmemail_noemail'  => '[[{{ns:special}}:Preferences|オプション設定]]で有効なメールアドレスが指定されていません。',
 'confirmemail_text'     => 'このウィキではメール通知を受け取る前にメールアドレスの確認が必要です。以下のボタンを押すと「{{int:Confirmemail_subject}}」という件名の確認メールがあなたのメールアドレスに送られます。メールには確認用コードを含むリンクが書かれています。そのリンクを開くことによってメールアドレスの正当性が確認されます。',
 'confirmemail_send'     => '確認用コードを送信する',
 'confirmemail_sent'     => '確認メールを送信しました。',
@@ -1583,5 +1651,21 @@ $1',
 'articletitles'         => '\'\'$1\'\' からはじまる項目',
 'hideresults'           => '結果を隠す',
 'loginlanguagelabel'    => '言語: $1',
+
+# Multipage image navigation
+'imgmultipageprev' => '&larr; 前ページ',
+'imgmultipagenext' => '次ページ &rarr;',
+
+# Table pager
+'ascending_abbrev' => '昇順',
+'descending_abbrev' => '降順',
+'table_pager_next' => '次のページ',
+'table_pager_prev' => '前のページ',
+'table_pager_first' => '最初のページ',
+'table_pager_last' => '最後のページ',
+'table_pager_limit' => '1ページに $1 個表示',
+'table_pager_limit_submit' => '実行',
+'table_pager_empty' => '結果なし',
+
 );
 ?>
