@@ -190,6 +190,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6887) PHP error for call to getId() on bad input to Special:Revisiondelete
 * (bug 6888) PHP error for call to getTimestamp() on bad input to Special:Revisiondelete
 * (bug 7252) Use dvipng support in texvc math rastrization. dvipng is required if texvc is rebuilt.
+* (bug 7279) Use wfBaseName in place of basename() in more places
+
 
 == Languages updated ==
 

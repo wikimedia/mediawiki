@@ -298,7 +298,7 @@ class DumpHTML {
 				glob( "{$this->sharedStaticDirectory}/thumb/$dir/*" ) );
 
 			foreach ( $paths as $path ) {
-				$file = basename( $path );
+				$file = wfBaseName( $path );
 				if ( !(++$i % REPORTING_INTERVAL ) ) {
 					print "$i\r";
 				}
