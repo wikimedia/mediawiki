@@ -1748,7 +1748,7 @@ The destination article "[[$1]]" already exists. Do you want to delete it to mak
 'delete_and_move_confirm' => 'Yes, delete the page',
 'delete_and_move_reason' => 'Deleted to make way for move',
 'selfmove' => "Source and destination titles are the same; can't move a page over itself.",
-'immobile_namespace' => "Destination title is of a special type; cannot move pages into that namespace.",
+'immobile_namespace' => "Source or destination title is of a special type; cannot move pages from and into that namespace.",
 
 # Export
 
