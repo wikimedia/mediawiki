@@ -194,6 +194,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Clear newtalk marker on diff links with explicit current revision number
 * (bug 7064) Replace hard-coded empty message checks with wfEmptyMsg calls
 * (bug 6777) Remove some PHP 4 compat cruft
+* Add --user, --comment, and --license options to importImages.php
 
 
 == Languages updated ==
