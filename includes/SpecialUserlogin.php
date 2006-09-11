@@ -686,7 +686,7 @@ class LoginForm {
 	 */
 	function makeLanguageSelector() {
 		$msg = wfMsgForContent( 'loginlanguagelinks' );
-		if( $msg != '' && $msg != '&lt;loginlanguagelinks&gt;' ) {
+		if( $msg != '' && !wfEmptyMsg( 'loginlanguagelinks', $msg ) ) {
 			$langs = explode( "\n", $msg );
 			$links = array();
 			foreach( $langs as $lang ) {

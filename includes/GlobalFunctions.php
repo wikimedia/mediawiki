@@ -430,12 +430,12 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = 
 function wfMsgWeirdKey ( $key ) {
 	$subsource = str_replace ( ' ' , '_' , $key ) ;
 	$source = wfMsgForContentNoTrans( $subsource ) ;
-	if ( $source == "&lt;{$subsource}&gt;" ) {
+	if ( wfEmptyMsg( $subsource, $source) ) {
 		# Try again with first char lower case
 		$subsource = strtolower ( substr ( $subsource , 0 , 1 ) ) . substr ( $subsource , 1 ) ;
 		$source = wfMsgForContentNoTrans( $subsource ) ;
 	}
-	if ( $source == "&lt;{$subsource}&gt;" ) {
+	if ( wfEmptyMsg( $subsource, $source ) ) {
 		# Didn't work either, return blank text
 		$source = "" ;
 	}
@@ -1423,7 +1423,7 @@ function wfGetCachedNotice( $name ) {
 	
 	$needParse = false;
 	$notice = wfMsgForContent( $name );
-	if( $notice == '&lt;'. $name . ';&gt' || $notice == '-' ) {
+	if( wfEmptyMsg( $name, $notice ) || $notice == '-' ) {
 		wfProfileOut( $fname );
 		return( false );
 	}

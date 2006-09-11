@@ -571,7 +571,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$text = wfMsg( $message );
-		if ( $text == "&lt;$message&gt;" ) {
+		if ( wfEmptyMsg( $message, $text ) ) {
 			global $wgContLang;
 			$text = $wgContLang->getFormattedNsText( Namespace::getSubject( $title->getNamespace() ) );
 		}
@@ -1014,7 +1014,7 @@ class SkinTemplate extends Skin {
 		// by checking for default message content
 		$msgKey = ucfirst($this->skinname).'.js';
 		$userJS = wfMsgForContent($msgKey);
-		if ('&lt;'.$msgKey.'&gt;' != $userJS) {
+		if ( !wfEmptyMsg( $msgKey, $userJS ) ) {
 			$s .= $userJS;
 		}
 
