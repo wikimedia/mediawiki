@@ -33,9 +33,10 @@ require_once( 'XmlFunctions.php' );
 
 /**
  * Compatibility functions
- * PHP <4.3.x is not actively supported; 4.1.x and 4.2.x might or might not work.
- * <4.1.x will not work, as we use a number of features introduced in 4.1.0
- * such as the new autoglobals.
+ *
+ * We more or less support PHP 5.0.x and up.
+ * Re-implementations of newer functions or functions in non-standard
+ * PHP extensions may be included here.
  */
 if( !function_exists('iconv') ) {
 	# iconv support is not in the default configuration and so may not be present.
@@ -46,22 +47,6 @@ if( !function_exists('iconv') ) {
 		if(strcasecmp( $from, 'utf-8' ) == 0) return utf8_decode( $string );
 		if(strcasecmp( $to, 'utf-8' ) == 0) return utf8_encode( $string );
 		return $string;
-	}
-}
-
-if( !function_exists('file_get_contents') ) {
-	# Exists in PHP 4.3.0+
-	function file_get_contents( $filename ) {
-		return implode( '', file( $filename ) );
-	}
-}
-
-if( !function_exists('is_a') ) {
-	# Exists in PHP 4.2.0+
-	function is_a( $object, $class_name ) {
-		return
-			(strcasecmp( get_class( $object ), $class_name ) == 0) ||
-			 is_subclass_of( $object, $class_name );
 	}
 }
 
@@ -76,17 +61,6 @@ if ( !function_exists( 'mb_substr' ) ) {
 		} else {
 			return join( '', array_slice( $ar[0], $start ) );
 		}
-	}
-}
-
-if( !function_exists( 'floatval' ) ) {
-	/**
-	 * First defined in PHP 4.2.0
-	 * @param mixed $var;
-	 * @return float
-	 */
-	function floatval( $var ) {
-		return (float)$var;
 	}
 }
 
@@ -109,39 +83,25 @@ if ( !function_exists( 'array_diff_key' ) ) {
 
 
 /**
- * Wrapper for clone() for PHP 4, for the moment.
+ * Wrapper for clone(), for compatibility with PHP4-friendly extensions.
  * PHP 5 won't let you declare a 'clone' function, even conditionally,
  * so it has to be a wrapper with a different name.
  */
 function wfClone( $object ) {
-	// WARNING: clone() is not a function in PHP 5, so function_exists fails.
-	if( version_compare( PHP_VERSION, '5.0' ) < 0 ) {
-		return $object;
-	} else {
-		return clone( $object );
-	}
+	return clone( $object );
 }
 
 /**
  * Where as we got a random seed
- * @var bool $wgTotalViews
  */
 $wgRandomSeeded = false;
 
 /**
  * Seed Mersenne Twister
- * Only necessary in PHP < 4.2.0
- *
- * @return bool
+ * No-op for compatibility; only necessary in PHP < 4.2.0
  */
 function wfSeedRandom() {
-	global $wgRandomSeeded;
-
-	if ( ! $wgRandomSeeded && version_compare( phpversion(), '4.2.0' ) < 0 ) {
-		$seed = hexdec(substr(md5(microtime()),-8)) & 0x7fffffff;
-		mt_srand( $seed );
-		$wgRandomSeeded = true;
-	}
+	/* No-op */
 }
 
 /**
