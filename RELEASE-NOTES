@@ -195,6 +195,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7064) Replace hard-coded empty message checks with wfEmptyMsg calls
 * (bug 6777) Remove some PHP 4 compat cruft
 * Add --user, --comment, and --license options to importImages.php
+* (bug 6216) The immobile namespace message does not mention the source page
 
 
 == Languages updated ==
