@@ -2021,7 +2021,7 @@ class User {
 	static function getGroupName( $group ) {
 		$key = "group-$group";
 		$name = wfMsg( $key );
-		if( $name == '' || $name == "&lt;$key&gt;" ) {
+		if( $name == '' || wfEmptyMsg( $key, $name ) ) {
 			return $group;
 		} else {
 			return $name;
@@ -2036,7 +2036,7 @@ class User {
 	static function getGroupMember( $group ) {
 		$key = "group-$group-member";
 		$name = wfMsg( $key );
-		if( $name == '' || $name == "&lt;$key&gt;" ) {
+		if( $name == '' || wfEmptyMsg( $key, $name ) ) {
 			return $group;
 		} else {
 			return $name;

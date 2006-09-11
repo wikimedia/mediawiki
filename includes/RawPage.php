@@ -157,7 +157,7 @@ class RawPage {
 				$key = $this->mTitle->getDBkey();
 				$text = wfMsgForContentNoTrans( $key );
 				# If the message doesn't exist, return a blank
-				if( $text == '&lt;' . $key . '&gt;' )
+				if( wfEmptyMsg( $key, $text ) )
 					$text = '';
 				$found = true;
 			} else {

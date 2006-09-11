@@ -80,7 +80,7 @@ function makePhp($messages) {
 			//	$comment = '';
 			//}
 			continue;
-		} elseif ($m['msg'] == '&lt;'.$key.'&gt;'){
+		} elseif ( wfEmptyMsg( $key, $m['msg'] ) ) {
 			$m['msg'] = '';
 			$comment = ' #empty';
 		} else {

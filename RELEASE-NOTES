@@ -192,6 +192,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7252) Use dvipng support in texvc math rastrization. dvipng is required if texvc is rebuilt.
 * (bug 7279) Use wfBaseName in place of basename() in more places
 * Clear newtalk marker on diff links with explicit current revision number
+* (bug 7064) Replace hard-coded empty message checks with wfEmptyMsg calls
 
 
 == Languages updated ==
