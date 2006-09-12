@@ -30,7 +30,12 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function makeUserWhere( &$dbo ) {
-		return $this->username ? ' AND rc_user_text = ' . $dbo->addQuotes( $this->username ) : '';
+		$title = Title::makeTitleSafe( NS_USER, $this->username );
+		if( $title ) {
+			return ' AND rc_user_text = ' . $dbo->addQuotes( $title->getText() );
+		} else {
+			return '';
+		}
 	}
 
 	function getSQL() {
