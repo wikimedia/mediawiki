@@ -92,7 +92,8 @@ class RevisionDeleteForm {
 		$special = Title::makeTitle( NS_SPECIAL, 'Revisiondelete' );
 		$wgOut->addHtml( wfElement( 'form', array(
 			'method' => 'post',
-			'action' => $special->getLocalUrl( 'action=submit' ) ) ) );
+			'action' => $special->getLocalUrl( 'action=submit' ) ),
+			null ) );
 		
 		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'revdelete-legend' ) . '</legend>' );
 		foreach( $this->checks as $item ) {
