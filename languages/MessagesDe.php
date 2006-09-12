@@ -1296,7 +1296,7 @@ Der Zielartikel "[[$1]]" besteht bereits. Möchten Sie diesen löschen, um den A
 'delete_and_move_confirm' => 'Ja, Artikel löschen.',
 'delete_and_move_reason' => 'Gelöscht um Verschiebung zu ermöglichen',
 'selfmove' => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht zu sich selbst verschoben werden.',
-'immobile_namespace' => 'Der gewünschte Seitentitel ist ein besonderer; die Seite kann nicht in diesen (anderen) Namensraum verschoben werden.',
+'immobile_namespace'	=> 'Der Quell- oder Zielnamensraum ist geschützt; Verschiebungen in diesen Namensraum hinein oder aus diesem heraus sind nicht möglich.',
 "articleexists" => "Unter diesem Namen existiert bereits ein Artikel.
 Bitte wählen Sie einen anderen Namen.",
 "talkexists"    => "Die Seite selbst wurde erfolgreich verschoben, aber die
