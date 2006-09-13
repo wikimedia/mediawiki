@@ -165,7 +165,7 @@ class ImagePage extends Article {
 	}
 
 	function openShowImage() {
-		global $wgOut, $wgUser, $wgImageLimits, $wgRequest;
+		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgLang;
 		global $wgUseImageResize, $wgGenerateThumbnailOnParse;
 
 		$full_url  = $this->img->getURL();
