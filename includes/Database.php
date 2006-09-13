@@ -516,15 +516,15 @@ class Database {
 			$success = (bool)$this->mConn;
 		}
 
-		if ( !$success ) {
+		if ( $success ) {
+			global $wgDBmysql5;
+			if( $wgDBmysql5 ) {
+				// Tell the server we're communicating with it in UTF-8.
+				// This may engage various charset conversions.
+				$this->query( 'SET NAMES utf8' );
+			}
+		} else {
 			$this->reportConnectionError();
-		}
-
-		global $wgDBmysql5;
-		if( $wgDBmysql5 ) {
-			// Tell the server we're communicating with it in UTF-8.
-			// This may engage various charset conversions.
-			$this->query( 'SET NAMES utf8' );
 		}
 
 		$this->mOpened = $success;
