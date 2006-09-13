@@ -199,6 +199,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7299) Normalize username filter on Special:Newpages
 * (bug 7306) RTL text in an LTR wiki breaks appearance of Special:Recentchanges
 * (bug 7312) Don't emit SET NAMES utf8 if connection failed
+* (bug 7305) Proper compare for bot check on RC notify, should fix overrides
+  that force edits by non-bot users to bot mode
 
 
 == Languages updated ==
