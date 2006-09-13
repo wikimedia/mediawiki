@@ -394,6 +394,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Enhanced RC group
 	 */
 	function recentChangesBlockGroup( $block ) {
+		global $wgContLang;
 		$r = '';
 
 		# Collate list of users
@@ -423,6 +424,7 @@ class EnhancedChangesList extends ChangesList {
 		$users = array();
 		foreach( $userlinks as $userlink => $count) {
 			$text = $userlink;
+			$text .= $wgContLang->getDirMark();
 			if( $count > 1 ) {
 				$text .= ' ('.$count.'&times;)';
 			}
@@ -450,6 +452,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Article link
 		$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
+		$r .= $wgContLang->getDirMark();
 
 		$curIdEq = 'curid=' . $block[0]->mAttribs['rc_cur_id'];
 		$currentRevision = $block[0]->mAttribs['rc_this_oldid'];

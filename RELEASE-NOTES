@@ -197,6 +197,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add --user, --comment, and --license options to importImages.php
 * (bug 6216) The immobile namespace message does not mention the source page
 * (bug 7299) Normalize username filter on Special:Newpages
+* (bug 7306) RTL text in an LTR wiki breaks appearance of Special:Recentchanges
 
 
 == Languages updated ==
