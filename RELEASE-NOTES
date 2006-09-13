@@ -35,6 +35,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   multipage djvu for thumbnail generation.
 * Full Postgres support is now enabled. It requires version 8.1 or better, and 
   needs to have both plpgsql and tsearch2 already installed.
+* (bug 6386) fix grammatical errors in danish naming of talk namespaces.
 
 == Changes since 1.7 ==
 

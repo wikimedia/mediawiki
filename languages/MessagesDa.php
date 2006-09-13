@@ -11,19 +11,19 @@ $namespaceNames = array(
 	NS_MAIN				=> '',
 	NS_TALK				=> 'Diskussion',
 	NS_USER				=> 'Bruger',
-	NS_USER_TALK		=> 'Bruger_diskussion',
+	NS_USER_TALK		=> 'Brugerdiskussion',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK		=> '$1_diskussion',
+	NS_PROJECT_TALK		=> '$1-diskussion',
 	NS_IMAGE			=> 'Billede',
-	NS_IMAGE_TALK		=> 'Billede_diskussion',
+	NS_IMAGE_TALK		=> 'Billeddiskussion',
 	NS_MEDIAWIKI		=> 'MediaWiki',
-	NS_MEDIAWIKI_TALK	=> 'MediaWiki_diskussion',
+	NS_MEDIAWIKI_TALK	=> 'MediaWiki-diskussion',
 	NS_TEMPLATE  		=> 'Skabelon',
-	NS_TEMPLATE_TALK	=> 'Skabelon_diskussion',
+	NS_TEMPLATE_TALK	=> 'Skabelondiskussion',
 	NS_HELP				=> 'Hjælp',
-	NS_HELP_TALK		=> 'Hjælp_diskussion',
+	NS_HELP_TALK		=> 'Hjælp-diskussion',
 	NS_CATEGORY			=> 'Kategori',
-	NS_CATEGORY_TALK	=> 'Kategori_diskussion'
+	NS_CATEGORY_TALK	=> 'Kategoridiskussion'
 
 );
 
