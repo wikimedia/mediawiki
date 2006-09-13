@@ -202,6 +202,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7312) Don't emit SET NAMES utf8 if connection failed
 * (bug 7305) Proper compare for bot check on RC notify, should fix overrides
   that force edits by non-bot users to bot mode
+* Set Vary: Cookie on action=raw generated CSS and JS, to ensure that user
+  preferences don't get stuck in proxy caches for other people
 
 
 == Languages updated ==
