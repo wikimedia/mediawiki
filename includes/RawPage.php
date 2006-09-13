@@ -134,8 +134,10 @@ class RawPage {
 	}
 
 	function getRawText() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgRequest;
 		if($this->mGen) {
+			// May contain user-specific data; vary for open sessions
+			$wgRequest->response()->header( 'Vary: Accept-Encoding, Cookie' );
 			$sk = $wgUser->getSkin();
 			$sk->initPage($wgOut);
 			if($this->mGen == 'css') {
