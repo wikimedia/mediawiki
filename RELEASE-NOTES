@@ -205,6 +205,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Set Vary: Cookie on action=raw generated CSS and JS, to ensure that user
   preferences don't get stuck in proxy caches for other people
 * (bug 7324) Fix error message for failure of Database::sourceFile()
+* (bug 7309) Plurals: use singular form for zero in French and Brazilian Portuguese
 
 
 == Languages updated ==
