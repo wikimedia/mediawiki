@@ -1902,7 +1902,7 @@ class Database {
 	function sourceFile( $filename ) {
 		$fp = fopen( $filename, 'r' );
 		if ( false === $fp ) {
-			return "Could not open \"{$fname}\".\n";
+			return "Could not open \"{$filename}\".\n";
 		}
 
 		$cmd = "";
