@@ -206,6 +206,10 @@ CREATE TABLE /*$wgDBprefix*/page (
   -- Uncompressed length in bytes of the page's current source text.
   page_len int(8) unsigned NOT NULL,
 
+	-- Set to 1 if the page contains __NOTITLECONVERT__ magic word.
+	-- Used only for languages with variants to prevent title conversion
+	page_no_title_convert bool NOT NULL default 0,
+
   PRIMARY KEY page_id (page_id),
   UNIQUE INDEX name_title (page_namespace,page_title),
   
