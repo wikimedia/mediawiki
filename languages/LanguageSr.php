@@ -169,8 +169,8 @@ class SrConverter extends LanguageConverter {
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
 	 */
-	function markNoConversion($text, $noParse=false) {
-		if($noParse || preg_match("/^https?:\/\/|ftp:\/\/|irc:\/\//",$text))
+	function markNoConversion($text) {
+		if(preg_match("/^https?:\/\/|ftp:\/\/|irc:\/\//",$text))
 			return parent::markNoConversion($text);
 		return $text;
 	}
@@ -188,51 +188,22 @@ class SrConverter extends LanguageConverter {
 		return parent::autoConvert($text,$toVariant);
 	} 
 
-	/**
-	 *  It translates text into variant, specials:
-	 *    - ommiting roman numbers
-	 */
-	function translate($text, $toVariant){
-		$breaks = '[^\w\x80-\xff]';
-
-		// regexp for roman numbers
-		$roman = 'M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})';
-
-		$reg = '/^'.$roman.'$|^'.$roman.$breaks.'|'.$breaks.$roman.'$|'.$breaks.$roman.$breaks.'/';
-
-		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
-		
-		$m = array_shift($matches);
-		$ret = strtr($m[0], $this->mTables[$toVariant]);
-		$mstart = $m[1]+strlen($m[0]);
-		foreach($matches as $m) {
-			$ret .= substr($text, $mstart, $m[1]-$mstart);
-			$ret .= parent::translate($m[0], $toVariant);
-			$mstart = $m[1] + strlen($m[0]);
-		}
-
-		return $ret;
-	}
-
 
 }
 
 class LanguageSr extends LanguageSr_ec {
 	function __construct() {
 		global $wgHooks;
-
 		parent::__construct();
 
-		// these variants are currently UNUSED:
-		// 'sr-jc', 'sr-jl' 
-		$variants = array('sr', 'sr-ec', 'sr-el');
+		$variants = array('sr', 'sr-ec', 'sr-jc', 'sr-el', 'sr-jl');
 		$variantfallbacks = array(
 			'sr'    => 'sr-ec',
-			'sr-ec' => 'sr-ec',
-			'sr-el' => 'sr-el',
-			); 
-
-
+			'sr-ec' => 'sr-jc',
+			'sr-jc' => 'sr-ec',
+			'sr-el' => 'sr-jl',
+			'sr-jl' => 'sr-el'
+		);
 		$marker = array();//don't mess with these, leave them as they are
 		$flags = array(
 			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
