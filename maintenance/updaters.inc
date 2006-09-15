@@ -57,7 +57,6 @@ $wgNewFields = array(
 	array( 'ipblocks',      'ipb_range_start',  'patch-ipb_range_start.sql' ),
 	array( 'site_stats',    'ss_images',        'patch-ss_images.sql' ),
 	array( 'ipblocks',      'ipb_anon_only',    'patch-ipb_anon_only.sql' ),
- 	array( 'page',          'page_no_title_convert','patch-page_no_title_convert.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {

@@ -77,7 +77,6 @@ class SpecialSearch {
 	function goResult( $term ) {
 		global $wgOut;
 		global $wgGoToEdit;
-		global $wgContLang;
 
 		$this->setupPage( $term );
 
@@ -95,20 +94,6 @@ class SpecialSearch {
 		if( !is_null( $t ) ) {
 			$wgOut->redirect( $t->getFullURL() );
 			return;
-		}
-
-		# if language supports variants, search in all variants
-		if($wgContLang->hasVariants()){
-			$allTermVariants = $wgContLang->convertLinkToAllVariants($term);
-
-			foreach($allTermVariants as $termVariant){
-				$t = SearchEngine::getNearMatch( $termVariant );
-				if( !is_null( $t ) ) {
-					$wgOut->redirect( $t->getFullURL() );
-					wfProfileOut( $fname );
-					return;
-				}
-			}
 		}
 
 		# No match, generate an edit URL

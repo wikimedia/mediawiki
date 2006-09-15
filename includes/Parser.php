@@ -1507,6 +1507,7 @@ class Parser
 		}
 
 		$selflink = $this->mTitle->getPrefixedText();
+		$checkVariantLink = sizeof($wgContLang->getVariants())>1;
 		$useSubpages = $this->areSubpagesAllowed();
 		wfProfileOut( $fname.'-setup' );
 
@@ -1599,6 +1600,13 @@ class Parser
 				$s .= $prefix . '[[' . $line;
 				wfProfileOut( "$fname-title" );
 				continue;
+			}
+
+			#check other language variants of the link
+			#if the article does not exist
+			if( $checkVariantLink
+			    && $nt->getArticleID() == 0 ) {
+				$wgContLang->findVariantLink($link, $nt);
 			}
 
 			$ns = $nt->getNamespace();
@@ -3889,7 +3897,6 @@ class Parser
 	function replaceLinkHolders( &$text, $options = 0 ) {
 		global $wgUser;
 		global $wgOutputReplace;
-		global $wgContLang, $wgLanguageCode;
 
 		$fname = 'Parser::replaceLinkHolders';
 		wfProfileIn( $fname );
@@ -3979,97 +3986,6 @@ class Parser
 				}
 			}
 			wfProfileOut( $fname.'-check' );
-
-			# Do a second query for different language variants of links (if needed)
-			if($wgContLang->hasVariants()){
-				$linkBatch = new LinkBatch(); 
-				$variantMap = array(); // maps $pdbkey_Variant => $pdbkey_original
-
-				// Add variants of links to link batch
-				foreach ( $this->mLinkHolders['namespaces'] as $key => $ns ) {
-					$title = $this->mLinkHolders['titles'][$key];
-					if ( is_null( $title ) )
-						continue;
-
-					$pdbk = $title->getPrefixedDBkey();
-
-					// add the original text into query to check for notitleconvert pages
-					$variantTitle = Title::makeTitle( $ns, $title->getText() );
-					$linkBatch->addObj( $variantTitle );
-					$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
-
-					// generate all variants of the link title text
-					$allTextVariants = $wgContLang->convertLinkToAllVariants($title->getText());
-
-					// if link was not found (in first query), add all variants to query
-					if ( !isset($colours[$pdbk]) ){
-						foreach($allTextVariants as $textVariant){
-							$variantTitle = Title::makeTitle( $ns, $textVariant );
-							if(is_null($variantTitle)) continue;
-							$linkBatch->addObj( $variantTitle );
-							$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
-						}
-					}
-				}
-				
-				# construct query
-				$titleClause = $linkBatch->constructSet('page', $dbr);
-				$variantQuery =  "SELECT page_id, page_namespace, page_title";
-				if ( $threshold > 0 ) {
-					$variantQuery .= ', page_len, page_is_redirect';
-				}
-				$variantQuery .= ", page_no_title_convert FROM $page WHERE $titleClause";
-				if ( $options & RLH_FOR_UPDATE ) {
-					$query .= ' FOR UPDATE';
-				}
-				
-				$varRes = $dbr->query( $variantQuery, $fname );
-						
-				# for each found variants, figure out link holders and replace
-				while ( $s = $dbr->fetchObject($varRes) ) {
-
-					$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
-					$varPdbk = $variantTitle->getPrefixedDBkey();
-					$linkCache->addGoodLinkObj( $s->page_id, $variantTitle );
-					$this->mOutput->addLink( $variantTitle, $s->page_id );
-
-					$noTitleConvert = $s->page_no_title_convert;
-
-					$holderKeys = $variantMap[$varPdbk];
-
-					// loop over link holders
-					foreach($holderKeys as $key){						
-						$title = $this->mLinkHolders['titles'][$key];
-						if ( is_null( $title ) ) continue;
-
-						$pdbk = $title->getPrefixedDBkey();
-
-						if(!isset($colours[$pdbk]) || ($noTitleConvert && $colours[$pdbk] == 1)){
-							// found link in some of the variants, replace the link holder data
-							$this->mLinkHolders['titles'][$key] = $variantTitle;
-							$this->mLinkHolders['dbkeys'][$key] = $variantTitle->getDBkey();
-							
-							// prevent link conversion if needed
-							if($noTitleConvert)
-								$this->mLinkHolders['texts'][$key] = $wgContLang->markNoConversion($variantTitle->getText(),true);
-
-							// set pdbk and colour
-							$pdbks[$key] = $varPdbk;
-							if ( $threshold >  0 ) {
-								$size = $s->page_len;
-								if ( $s->page_is_redirect || $s->page_namespace != 0 || $size >= $threshold ) {
-									$colours[$varPdbk] = 1;
-								} else {
-									$colours[$varPdbk] = 2;
-								}
-							} 
-							else {
-								$colours[$varPdbk] = 1;
-							}					
-						}
-					}
-				}
-			}
 
 			# Construct search and replace arrays
 			wfProfileIn( $fname.'-construct' );
