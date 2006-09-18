@@ -214,6 +214,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   in $wgMemc, to further reduce hits to external storage.
   Set to 0 (disabled) by default.
 * Minor changes to the installer. 
+* Remove ":" for 'youremail' and 'yourrealname' in includes/templates/Userlogin.php
+  so that ":" could be used in i18n for Special:Preferences (like 'username' and 'uid').
 
 
 == Languages updated ==
