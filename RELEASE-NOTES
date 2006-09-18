@@ -213,6 +213,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added experimental $wgRevisionCacheExpiry to cache extracted revision text
   in $wgMemc, to further reduce hits to external storage.
   Set to 0 (disabled) by default.
+* Minor changes to the installer. 
 
 
 == Languages updated ==
