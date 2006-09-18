@@ -208,6 +208,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7309) Plurals: use singular form for zero in French and Brazilian Portuguese
 * Add page_no_title_convert field to support language variant conversion
   for page titles which shouldn't be converted on display/linking
+* Lazy extraction of text chunks in Revision objects, may reduce hits to
+  external storage when actual text content is not used
 
 
 == Languages updated ==
