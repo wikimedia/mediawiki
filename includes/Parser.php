@@ -2716,7 +2716,7 @@ class Parser
 		if ( !$argsOnly ) {
 			$braceCallbacks[2] = array( &$this, 'braceSubstitution' );
 		}
-		if ( !$this->mOutputType != OT_MSG ) {
+		if ( $this->mOutputType != OT_MSG ) {
 			$braceCallbacks[3] = array( &$this, 'argSubstitution' );
 		}
 		if ( $braceCallbacks ) {
