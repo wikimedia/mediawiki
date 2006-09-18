@@ -157,7 +157,7 @@ class UsercreateTemplate extends QuickTemplate {
 		</tr>
 		<tr>
 			<?php if( $this->data['useemail'] ) { ?>
-				<td align='right'><label for='wpEmail'><?php $this->msg('youremail') ?>:</label></td>
+				<td align='right'><label for='wpEmail'><?php $this->msg('youremail') ?></label></td>
 				<td align='left'>
 					<input type='text' class='loginText' name="wpEmail" id="wpEmail"
 						tabindex="5"
@@ -167,7 +167,7 @@ class UsercreateTemplate extends QuickTemplate {
 			<?php if( $this->data['userealname'] ) { ?>
 				</tr>
 				<tr>
-					<td align='right'><label for='wpRealName'><?php $this->msg('yourrealname') ?>:</label></td>
+					<td align='right'><label for='wpRealName'><?php $this->msg('yourrealname') ?></label></td>
 					<td align='left'>
 						<input type='text' class='loginText' name="wpRealName" id="wpRealName"
 							tabindex="6"
