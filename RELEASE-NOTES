@@ -210,6 +210,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for page titles which shouldn't be converted on display/linking
 * Lazy extraction of text chunks in Revision objects, may reduce hits to
   external storage when actual text content is not used
+* Added experimental $wgRevisionCacheExpiry to cache extracted revision text
+  in $wgMemc, to further reduce hits to external storage.
+  Set to 0 (disabled) by default.
 
 
 == Languages updated ==

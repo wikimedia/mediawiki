@@ -2071,6 +2071,14 @@ $wgExternalServers = array();
 $wgDefaultExternalStore = false;
 
 /**
+ * Revision text may be cached in $wgMemc to reduce load on external storage
+ * servers and object extraction overhead for frequently-loaded revisions.
+ *
+ * Set to 0 to disable, or number of seconds before cache expiry.
+ */
+$wgRevisionCacheExpiry = 0;
+
+/**
 * list of trusted media-types and mime types.
 * Use the MEDIATYPE_xxx constants to represent media types.
 * This list is used by Image::isSafeFile

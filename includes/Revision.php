@@ -672,6 +672,17 @@ class Revision {
 		$fname = 'Revision::loadText';
 		wfProfileIn( $fname );
 		
+		// Caching may be beneficial for massive use of external storage
+		global $wgRevisionCacheExpiry, $wgMemc, $wgDBname;
+		$key = "$wgDBname:revisiontext:textid:" . $this->getTextId();
+		if( $wgRevisionCacheExpiry ) {
+			$text = $wgMemc->get( $key );
+			if( is_string( $text ) ) {
+				wfProfileOut( $fname );
+				return $text;
+			}
+		}
+		
 		// If we kept data for lazy extraction, use it now...
 		$row = $this->mTextRow;
 		$this->mTextRow = null;
@@ -695,6 +706,11 @@ class Revision {
 		}
 
 		$text = Revision::getRevisionText( $row );
+		
+		if( $wgRevisionCacheExpiry ) {
+			$wgMemc->set( $key, $text, $wgRevisionCacheExpiry );
+		}
+		
 		wfProfileOut( $fname );
 
 		return $text;
