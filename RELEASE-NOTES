@@ -216,6 +216,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Minor changes to the installer. 
 * Remove ":" for 'youremail' and 'yourrealname' in includes/templates/Userlogin.php
   so that ":" could be used in i18n for Special:Preferences (like 'username' and 'uid').
+* Fix layout for Special:Preferences->Date and Time (position for 'timezonetext').
 
 
 == Languages updated ==
