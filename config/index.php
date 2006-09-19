@@ -1225,7 +1225,7 @@ which means that anyone on the same server can read your database password! Down
 it and uploading it again will hopefully change the ownership to a user ID specific to you.</p>
 EOT;
 	} else {
-		echo "<p><span style='font-weight:bold;color:green;font-size:110%'>Installation successful!</span> Move the config/LocalSettings.php file into the parent directory, then follow
+		echo "<p><span style='font-weight:bold;color:green;font-size:110%'>Installation successful!</span> Move the <tt>config/LocalSettings.php</tt> file into the parent directory, then follow
 			<strong><a href='../index.php'>this link</a></strong> to your wiki.</p>\n";
 	}
 }
