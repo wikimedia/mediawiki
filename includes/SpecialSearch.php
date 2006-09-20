@@ -97,19 +97,6 @@ class SpecialSearch {
 			return;
 		}
 
-		# if language supports variants, search in all variants
-		if($wgContLang->hasVariants()){
-			$allTermVariants = $wgContLang->convertLinkToAllVariants($term);
-
-			foreach($allTermVariants as $termVariant){
-				$t = SearchEngine::getNearMatch( $termVariant );
-				if( !is_null( $t ) ) {
-					$wgOut->redirect( $t->getFullURL() );
-					return;
-				}
-			}
-		}
-
 		# No match, generate an edit URL
 		$t = Title::newFromText( $term );
 		if( is_null( $t ) ) {
