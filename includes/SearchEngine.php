@@ -50,62 +50,72 @@ class SearchEngine {
 	 * @return Title
 	 * @private
 	 */
-	function getNearMatch( $term ) {
+	function getNearMatch( $searchterm ) {
 		global $wgContLang;
-		# Exact match? No need to look further.
-		$title = Title::newFromText( $term );
-		if (is_null($title))
-			return NULL;
 
-		if ( $title->getNamespace() == NS_SPECIAL || $title->exists() ) {
-			return $title;
+		$allSearchTerms = array($searchterm);
+
+		if($wgContLang->hasVariants()){
+			$allSearchTerms = array_merge($allSearchTerms,$wgContLang->convertLinkToAllVariants($searchterm));
 		}
 
-		# Now try all lower case (i.e. first letter capitalized)
-		#
-		$title = Title::newFromText( $wgContLang->lc( $term ) );
-		if ( $title->exists() ) {
-			return $title;
-		}
+		foreach($allSearchTerms as $term){
 
-		# Now try capitalized string
-		#
-		$title = Title::newFromText( $wgContLang->ucwords( $term ) );
-		if ( $title->exists() ) {
-			return $title;
-		}
+			# Exact match? No need to look further.
+			$title = Title::newFromText( $term );
+			if (is_null($title))
+				return NULL;
 
-		# Now try all upper case
-		#
-		$title = Title::newFromText( $wgContLang->uc( $term ) );
-		if ( $title->exists() ) {
-			return $title;
-		}
+			if ( $title->getNamespace() == NS_SPECIAL || $title->exists() ) {
+				return $title;
+			}
 
-		# Now try Word-Caps-Breaking-At-Word-Breaks, for hyphenated names etc
-		$title = Title::newFromText( $wgContLang->ucwordbreaks($term) );
-		if ( $title->exists() ) {
-			return $title;
-		}
-
-		global $wgCapitalLinks, $wgContLang;
-		if( !$wgCapitalLinks ) {
-			// Catch differs-by-first-letter-case-only
-			$title = Title::newFromText( $wgContLang->ucfirst( $term ) );
+			# Now try all lower case (i.e. first letter capitalized)
+			#
+			$title = Title::newFromText( $wgContLang->lc( $term ) );
 			if ( $title->exists() ) {
 				return $title;
 			}
-			$title = Title::newFromText( $wgContLang->lcfirst( $term ) );
+
+			# Now try capitalized string
+			#
+			$title = Title::newFromText( $wgContLang->ucwords( $term ) );
 			if ( $title->exists() ) {
 				return $title;
 			}
+
+			# Now try all upper case
+			#
+			$title = Title::newFromText( $wgContLang->uc( $term ) );
+			if ( $title->exists() ) {
+				return $title;
+			}
+
+			# Now try Word-Caps-Breaking-At-Word-Breaks, for hyphenated names etc
+			$title = Title::newFromText( $wgContLang->ucwordbreaks($term) );
+			if ( $title->exists() ) {
+				return $title;
+			}
+
+			global $wgCapitalLinks, $wgContLang;
+			if( !$wgCapitalLinks ) {
+				// Catch differs-by-first-letter-case-only
+				$title = Title::newFromText( $wgContLang->ucfirst( $term ) );
+				if ( $title->exists() ) {
+					return $title;
+				}
+				$title = Title::newFromText( $wgContLang->lcfirst( $term ) );
+				if ( $title->exists() ) {
+					return $title;
+				}
+			}
 		}
 
-		$title = Title::newFromText( $term );
+		$title = Title::newFromText( $searchterm );
 
 		# Entering an IP address goes to the contributions page
 		if ( ( $title->getNamespace() == NS_USER && User::isIP($title->getText() ) )
-			|| User::isIP( trim( $term ) ) ) {
+			|| User::isIP( trim( $searchterm ) ) ) {
 			return Title::makeTitle( NS_SPECIAL, "Contributions/" . $title->getDbkey() );
 		}
 
@@ -116,7 +126,7 @@ class SearchEngine {
 		}
 
 		# Quoted term? Try without the quotes...
-		if( preg_match( '/^"([^"]+)"$/', $term, $matches ) ) {
+		if( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
 			return SearchEngine::getNearMatch( $matches[1] );
 		}
 
