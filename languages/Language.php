@@ -49,9 +49,10 @@ class FakeConverter {
 	function findVariantLink(&$l, &$n) {}
 	function getExtraHashOptions() {return '';}
 	function getParsedTitle() {return '';}
-	function markNoConversion($text) {return $text;}
+	function markNoConversion($text, $noParse=false) {return $text;}
 	function convertCategoryKey( $key ) {return $key; }
-
+	function convertLinkToAllVariants($text){ return array( $this->mLang->getCode() => $text); }
+	function setNoTitleConvert(){}
 }
 
 #--------------------------------------------------------------------------
@@ -712,6 +713,34 @@ class Language {
 		return iconv( $in, $out, $string );
 	}
 
+	// callback functions for uc(), lc(), ucwords(), ucwordbreaks()
+	function ucwordbreaksCallbackAscii($matches){
+		return $this->ucfirst($matches[1]);
+	}
+	
+	function ucwordbreaksCallbackMB($matches){
+		return mb_strtoupper($matches[0]);
+	}
+	
+	function ucCallback($matches){
+		global $wikiUpperChars; 
+		return strtr( $matches[1] , $wikiUpperChars );
+	}
+	
+	function lcCallback($matches){
+		global $wikiLowerChars; 
+		return strtr( $matches[1] , $wikiLowerChars );
+	}
+	
+	function ucwordsCallbackMB($matches){
+		return mb_strtoupper($matches[0]);
+	}
+	
+	function ucwordsCallbackWiki($matches){
+		global $wikiUpperChars; 
+		return strtr( $matches[0] , $wikiUpperChars );
+	}
+
 	function ucfirst( $str ) {
 		return self::uc( $str, true );
 	}
@@ -729,9 +758,9 @@ class Language {
 			if ( self::isMultibyte( $str ) ) {
 				list( $wikiUpperChars ) = $this->getCaseMaps();
 				$x = $first ? '^' : '';
-				return preg_replace(
-					"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-					"strtr( \"\$1\" , \$wikiUpperChars )",
+				return preg_replace_callback(
+					"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
+					array($this,"ucCallback"),
 					$str
 				);
 			} else
@@ -755,9 +784,9 @@ class Language {
 			if ( self::isMultibyte( $str ) ) {
 				list( , $wikiLowerChars ) = self::getCaseMaps();
 				$x = $first ? '^' : '';
-				return preg_replace(
-					"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-					"strtr( \"\$1\" , \$wikiLowerChars )",
+				return preg_replace_callback(
+					"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
+					array($this,"lcCallback"),
 					$str
 				);
 			} else
@@ -766,6 +795,66 @@ class Language {
 
 	function isMultibyte( $str ) {
 		return (bool)preg_match( '/[\x80-\xff]/', $str );
+	}
+
+	function ucwords($str) {
+		global $wikiUpperChars;
+
+		if ( self::isMultibyte( $str ) ) {
+			$str = self::lc($str);
+
+			// regexp to find first letter in each word (i.e. after each space)
+			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)| ([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
+
+			// function to use to capitalize a single char
+			if ( function_exists( 'mb_strtoupper' ) )
+				return preg_replace_callback(
+					$replaceRegexp,
+					array($this,"ucwordsCallbackMB"),
+					$str
+				);
+			else 
+				return preg_replace_callback(
+					$replaceRegexp,
+					array($this,"ucwordsCallbackWiki"),
+					$str
+				);
+		}
+		else
+			return ucwords( strtolower( $str ) );
+	}
+
+  # capitalize words at word breaks
+	function ucwordbreaks($str){
+		global $wikiUpperChars;
+
+		if (self::isMultibyte( $str ) ) {
+			$str = self::lc($str);
+
+			// since \b doesn't work for UTF-8, we explicitely define word break chars
+			$breaks= "[ \-\(\)\}\{\.,\?!]";
+
+			// find first letter after word break
+			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)|$breaks([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
+
+			if ( function_exists( 'mb_strtoupper' ) )
+				return preg_replace_callback(
+					$replaceRegexp,
+					array($this,"ucwordbreaksCallbackMB"),
+					$str
+				);
+			else 
+				return preg_replace_callback(
+					$replaceRegexp,
+					array($this,"ucwordsCallbackWiki"),
+					$str
+				);
+		}
+		else
+			return preg_replace_callback(
+			'/\b([\w\x80-\xff]+)\b/',
+			array($this,"ucwordbreaksCallbackAscii"),
+			$str );
 	}
 
 	function checkTitleEncoding( $s ) {
@@ -1169,6 +1258,17 @@ class Language {
 		return $this->mConverter->parserConvert( $text, $parser );
 	}
 
+	# Tell the converter that it shouldn't convert titles
+	function setNoTitleConvert(){
+		$this->mConverter->setNotitleConvert();
+	}
+
+	# Check if this is a language with variants
+	function hasVariants(){
+		return sizeof($this->getVariants())>1;
+	}
+
+
 	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
 	 * @param string $text
@@ -1214,6 +1314,17 @@ class Language {
 	}
 
 	/**
+	 * If a language supports multiple variants, converts text
+	 * into an array of all possible variants of the text:
+	 *  'variant' => text in that variant
+	 */
+
+	function convertLinkToAllVariants($text){
+		return $this->mConverter->convertLinkToAllVariants($text);
+	}
+
+
+	/**
 	 * returns language specific options used by User::getPageRenderHash()
 	 * for example, the preferred language variant
 	 *
@@ -1242,8 +1353,8 @@ class Language {
 	 * @param string $text text to be tagged for no conversion
 	 * @return string the tagged text
 	*/
-	function markNoConversion( $text ) {
-		return $this->mConverter->markNoConversion( $text );
+	function markNoConversion( $text, $noParse=false ) {
+		return $this->mConverter->markNoConversion( $text, $noParse );
 	}
 
 	/**
