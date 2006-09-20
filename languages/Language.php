@@ -723,13 +723,13 @@ class Language {
 	}
 	
 	function ucCallback($matches){
-		global $wikiUpperChars; 
-		return strtr( $matches[1] , $wikiUpperChars );
+		list( $wikiUpperChars ) = self::getCaseMaps();
+		return strtr( $matches[1], $wikiUpperChars );
 	}
 	
 	function lcCallback($matches){
-		global $wikiLowerChars; 
-		return strtr( $matches[1] , $wikiLowerChars );
+		list( , $wikiLowerChars ) = self::getCaseMaps();
+		return strtr( $matches[1], $wikiLowerChars );
 	}
 	
 	function ucwordsCallbackMB($matches){
@@ -737,8 +737,8 @@ class Language {
 	}
 	
 	function ucwordsCallbackWiki($matches){
-		global $wikiUpperChars; 
-		return strtr( $matches[0] , $wikiUpperChars );
+		list( $wikiUpperChars ) = self::getCaseMaps();
+		return strtr( $matches[0], $wikiUpperChars );
 	}
 
 	function ucfirst( $str ) {
@@ -798,8 +798,6 @@ class Language {
 	}
 
 	function ucwords($str) {
-		global $wikiUpperChars;
-
 		if ( self::isMultibyte( $str ) ) {
 			$str = self::lc($str);
 
@@ -826,8 +824,6 @@ class Language {
 
   # capitalize words at word breaks
 	function ucwordbreaks($str){
-		global $wikiUpperChars;
-
 		if (self::isMultibyte( $str ) ) {
 			$str = self::lc($str);
 
