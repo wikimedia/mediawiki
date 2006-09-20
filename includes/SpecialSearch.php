@@ -105,7 +105,6 @@ class SpecialSearch {
 				$t = SearchEngine::getNearMatch( $termVariant );
 				if( !is_null( $t ) ) {
 					$wgOut->redirect( $t->getFullURL() );
-					wfProfileOut( $fname );
 					return;
 				}
 			}
