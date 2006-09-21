@@ -746,7 +746,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 #
 "upload"		=> "Hochladen",
 "uploadbtn"		=> "Datei hochladen",
-"reupload"		=> "Erneut hochladen",
+'reupload'		=> 'Abbrechen',
 "reuploaddesc"	=> "Zurück zur Hochladen-Seite.",
 "uploadnologin" => "Nicht angemeldet",
 'uploadnologintext'	=> 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
@@ -760,12 +760,12 @@ Bestätigen Sie dann die Copyright-Vereinbarung und klicken anschliessend auf \'
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
 Um ein \'\'\'Bild\'\'\' in einer Seite zu verwenden, schreiben Sie an Stelle des Bildes zum Beispiel:
-* \'\'\'<nowiki>[[{{ns:image}}:Datei.jpg]]</nowiki>\'\'\'
-* \'\'\'<nowiki>[[{{ns:image}}:Datei.jpg|Link-Text]]</nowiki>\'\'\'
+* \'\'\'<tt><nowiki>[[{{ns:image}}:Datei.jpg]]</nowiki></tt>\'\'\'
+* \'\'\'<tt><nowiki>[[{{ns:image}}:Datei.jpg|Link-Text]]</nowiki></tt>\'\'\'
 
 Um \'\'\'Mediendateien\'\'\' einzubinden, verwenden Sie zum Beispiel:
-* \'\'\'<nowiki>[[{{ns:media}}:Datei.ogg]]</nowiki>\'\'\'
-* \'\'\'<nowiki>[[{{ns:media}}:Datei.ogg|Link-Text]]</nowiki>\'\'\'
+* \'\'\'<tt><nowiki>[[{{ns:media}}:Datei.ogg]]</nowiki></tt>\'\'\'
+* \'\'\'<tt><nowiki>[[{{ns:media}}:Datei.ogg|Link-Text]]</nowiki></tt>\'\'\'
 
 Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer Ihre Dateien löschen oder verändern können.',
 "uploadlog"		=> "Datei-Logbuch",
@@ -957,6 +957,11 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 'variantname-sr-jc'	=> 'sr-jc',
 'variantname-sr-jl'	=> 'sr-jl',
 'variantname-sr'	=> 'sr',
+# variants for Kazakh language
+'variantname-kk-tr'	=> 'kk-tr',
+'variantname-kk-kz'	=> 'kk-kz',
+'variantname-kk-cn'	=> 'kk-cn',
+'variantname-kk'	=> 'kk',
 
 # Special:Allpages
 'allpages'		=> 'Alle Seiten',
