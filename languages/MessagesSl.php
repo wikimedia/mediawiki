@@ -1189,7 +1189,7 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'notacceptable'         => 'V obliki, ki jo lahko bere vaš odjemalec, wikistrežnik podatkov ne more ponuditi.',
 'anonymous'             => 'Brezimni uporabnik(i) {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'siteuser'              => 'Uporabnik $1',
-'lastmodifiedby'        => 'Stran je zadnjič urejal(a) $2 (čas spremembe: $1).',
+'lastmodifiedatby'        => 'Stran je zadnjič urejal(a) $3 (čas spremembe: $2, $1).',
 'and'                   => 'in',
 'othercontribs'         => '<!--Temelji na delu $1. Ne deluje pravilno-->Prispevki uporabnika.',
 'others'                => 'drugi',

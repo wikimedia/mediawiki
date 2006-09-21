@@ -1173,7 +1173,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'notacceptable'         => 'Den här wiki-servern kan inte erbjuda data i ett format som din klient kan läsa.',
 'anonymous'             => 'Anonym användare av {{SITENAME}}',
 'siteuser'              => '{{SITENAME}} användare $1',
-'lastmodifiedby'        => 'Den här sidan ändrades senast $1 av $2.',
+'lastmodifiedatby'        => 'Den här sidan ändrades senast $2, $1 av $3.',
 'and'                   => 'och',
 'othercontribs'         => 'Baserad på arbete av $1.',
 'others'                => 'andra',

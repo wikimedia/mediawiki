@@ -1248,7 +1248,7 @@ $NEWPAGE
 'notacceptable'         => 'ウィキサーバーはあなたの使用しているクライアントが読める形式で情報を提供できません。',
 'anonymous'             => '{{SITENAME}}の匿名利用者',
 'siteuser'              => '{{SITENAME}}の利用者$1',
-'lastmodifiedby'        => '最終更新は $2 による $1 の編集です。',
+'lastmodifiedatby'        => '最終更新は $3 による $2, $1 の編集です。',
 'and'                   => 'および',
 'othercontribs'         => '$1の版に基づきます。',
 'others'                => 'その他の利用者',

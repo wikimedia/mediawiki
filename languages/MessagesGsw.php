@@ -666,7 +666,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.'
 'allmessagesmodified'   => 'numme gänderti aazeige',
 'importtext'            => 'Bitte speichere Si selli Syte vom Quellwiki met em Special:Export Wärkzüg ab un lade Si denn di Datei denn do uffe.',
 'anonymous'             => 'Anonyme Benutzer uff {{SITENAME}}',
-'lastmodifiedby'        => 'Diese Seite wurde zuletzt geändert um $1 von $2.',
+'lastmodifiedatby'        => 'Diese Seite wurde zuletzt geändert um $2, $1 von $3.',
 'and'                   => 'un',
 'othercontribs'         => 'Basiert auf der Arbeit von $1.',
 'spamprotectiontitle'   => 'Spamschutz-Filter',

@@ -1096,7 +1096,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'Monobook.css'          => '/* CSS placed here will affect users of the Monobook skin */',
 'anonymous'             => 'Anonima(j) uzanto(j) de {{SITENAME}}',
 'siteuser'              => '{{SITENAME}} uzanto $1',
-'lastmodifiedby'        => 'Ĉi paĝo estis laste ŝanĝita je $1 de $2.',
+'lastmodifiedatby'        => 'Ĉi paĝo estis laste ŝanĝita je $2, $1 de $3.',
 'and'                   => 'kaj',
 'othercontribs'         => 'Bazita sur la laboro de $1.',
 'others'                => 'aliaj',

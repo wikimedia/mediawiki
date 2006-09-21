@@ -943,7 +943,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'tooltip-watch'         => 'Sayfayı izleme listene ekle [alt-w]',
 'Monobook.css'          => '/* monobook temasının ayarlarını değiştirmek için burayı değiştirin. Tüm sitede etkili olur. */',
 'siteuser'              => '{{SITENAME}} kullanıcı $1',
-'lastmodifiedby'        => 'Sayfa en son $2 tarafından $1 tarihinde değiştirildi.',
+'lastmodifiedatby'        => 'Sayfa en son $3 tarafından $2, $1 tarihinde değiştirildi.',
 'and'                   => 've',
 'others'                => 'diğerleri',
 'siteusers'             => '{{SITENAME}} kullanıcılar $1',

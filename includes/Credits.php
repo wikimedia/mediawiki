@@ -87,11 +87,13 @@ function getAuthorCredits($article) {
 
 	$timestamp = $article->getTimestamp();
 	if ($timestamp) {
-		$d = $wgLang->timeanddate($article->getTimestamp(), true);
+		$d = $wgLang->date($article->getTimestamp(), true);
+		$t = $wgLang->time($article->getTimestamp(), true);
 	} else {
 		$d = '';
+		$t = '';
 	}
-	return wfMsg('lastmodifiedby', $d, $author_credit);
+	return wfMsg('lastmodifiedatby', $d, $t, $author_credit);
 }
 
 /**

@@ -1102,7 +1102,7 @@ En el último caso puedes usar un enlace, por ejemplo [[Special:Export/{{Mediawi
 'notacceptable'         => 'El servidor wiki no puede proveer los datos en un formato que tu cliente (navegador) pueda entender.',
 'anonymous'             => 'Usuario(s) anónimo(s) de {{SITENAME}}',
 'siteuser'              => 'Usuario $1 de {{SITENAME}}',
-'lastmodifiedby'        => 'Esta página fue modificada por última vez en $1 por $2.',
+'lastmodifiedatby'        => 'Esta página fue modificada por última vez en $2, $1 por $3.',
 'and'                   => 'y',
 'othercontribs'         => 'Basado en el trabajo de $1.',
 'others'                => 'otros',

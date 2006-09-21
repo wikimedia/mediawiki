@@ -1203,7 +1203,7 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 
 'anonymous' => "Anonym(e) bruger(e) af {{SITENAME}}",
 'siteuser' => "{{SITENAME}} bruger $1",
-'lastmodifiedby' => "Denne side blev senest ændret $1 af $2.",
+'lastmodifiedatby' => "Denne side blev senest ændret $2, $1 af $3.",
 'and' => 'og',
 'othercontribs' => "Baseret på arbejde af $1.",
 'others' => 'andre',

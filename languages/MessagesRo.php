@@ -1219,7 +1219,7 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'notacceptable'         => 'Serverul wiki nu poate oferi date într-un format pe care clientul tău să-l poată citi.',
 'anonymous'             => 'Utilizator(i) anonimi ai {{SITENAME}}',
 'siteuser'              => 'Utilizator {{SITENAME}} $1',
-'lastmodifiedby'        => 'Această pagină a fost modificată $1 de către $2.',
+'lastmodifiedatby'        => 'Această pagină a fost modificată $2, $1 de către $3.',
 'and'                   => 'şi',
 'othercontribs'         => 'Bazat pe munca lui $1.',
 'others'                => 'alţii',

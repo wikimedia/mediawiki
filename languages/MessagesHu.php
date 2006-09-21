@@ -924,7 +924,7 @@ Az utóbbi esetben közvetlen linket is használhatsz, például a [[Special:Exp
 'tooltip-diff'          => 'Nézd meg, milyen változtatásokat végeztél eddig a szövegen [alt-d]',
 'tooltip-compareselectedversions'=> 'A két kiválasztott változat közötti eltérések megjelenítése [alt-v]',
 'anonymous'             => 'Névtelen {{SITENAME}}-felhasználó(k)',
-'lastmodifiedby'        => 'Ezt a lapot utoljára $2 módosította $1 időpontban.',
+'lastmodifiedatby'        => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.',
 'and'                   => 'és',
 'spamprotectiontext'    => 'Az általad elmenteni kívánt lap fennakadt a \'\'spam\'\' szűrőn. Ezt valószínűleg egy külső weblapra hivatkozás okozta.',
 'spamprotectionmatch'   => 'A \'\'spam\'\' szűrőn az alábbi szöveg akadt fenn: $1',

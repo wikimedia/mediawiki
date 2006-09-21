@@ -1038,7 +1038,7 @@ Xin hãy hợp nhất chúng lại.',
 # Attribution
 'anonymous' => "Thành viên vô danh của {{SITENAME}}",
 'siteuser' => "Thành viên $1 của {{SITENAME}}",
-'lastmodifiedby' => "Trang này được $2 cập nhật lần cuối lúc $1.",
+'lastmodifiedatby' => "Trang này được $3 cập nhật lần cuối lúc $2, $1.",
 'and' => 'và',
 'othercontribs' => "dựa trên công trình của $1.",
 'others' => 'những người khác',

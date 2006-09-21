@@ -1274,7 +1274,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'notacceptable'         => 'Ël server dla wiki a-i la fa pa a provëdde dij dat ant na forma che sò programa local a peula lese.',
 'anonymous'             => 'Utent anònim ëd la {{SITENAME}}',
 'siteuser'              => '$1, utent ëd {{SITENAME}}',
-'lastmodifiedby'        => 'Sta pàgina-sì a l\'é staita modificà l\'ùltima vira al $1 da $2.',
+'lastmodifiedatby'        => 'Sta pàgina-sì a l\'é staita modificà l\'ùltima vira al $2, $1 da $3.',
 'and'                   => 'e',
 'othercontribs'         => 'Basà ant sëj travaj ëd $1.',
 'others'                => 'àutri',

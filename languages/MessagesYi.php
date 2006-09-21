@@ -349,7 +349,7 @@ make it easier to pick out.
 'allmessagesname'       => 'נאָמען',
 'tooltip-search'        => 'זוכן {{SITENAME}} [alt-f]',
 'tooltip-diff'          => 'Show which changes you made to the text. [alt-d]',
-'lastmodifiedby'        => 'די לעצטע ענדערונג פון די בלאט איז געווען $1 ביי $2.',
+'lastmodifiedatby'        => 'די לעצטע ענדערונג פון די בלאט איז געווען $2, $1 ביי $3.',
 'and'                   => 'און',
 'subcategorycount'      => 'ס\'איז דאָ $1 אונטערקאַטעגאָריעס צו די קאַטעגאָריע.',
 'categoryarticlecount'  => 'ס\'איז דאָ $1 אַרטיקלען אין די קאַטעגאָריע.',

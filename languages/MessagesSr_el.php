@@ -1595,7 +1595,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 
 'anonymous' => 'Anonimni korisnik sajta {{SITENAME}}',
 'siteuser' => '{{SITENAME}} korisnik $1',
-'lastmodifiedby' => 'Ovu stranicu je poslednji put promenio $2 u $1.',
+'lastmodifiedatby' => 'Ovu stranicu je poslednji put promenio $3 u $2, $1.',
 'and' => 'i',
 'othercontribs' => 'Bazirano na radu korisnika $1.',
 'others' => 'ostali',

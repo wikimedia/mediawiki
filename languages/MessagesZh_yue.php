@@ -1578,7 +1578,7 @@ wiki: $PAGEEDITOR_WIKI
 
 'anonymous' => '{{SITENAME}}嘅匿名用戶',
 'siteuser' => '{{SITENAME}}嘅用戶$1',
-'lastmodifiedby' => '呢一頁嘅最後畀 $2 響 $1 修改。',
+'lastmodifiedatby' => '呢一頁嘅最後畀 $3 響 $2, $1 修改。',
 'and' => '同埋',
 'othercontribs' => '以$1嘅作品為基礎。',
 'others' => '其他',

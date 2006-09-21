@@ -1197,7 +1197,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'notacceptable'         => 'Wiki server nuk mundet ti përgatit të dhënat për klintin tuaj.',
 'anonymous'             => 'Përdorues anonim të {{SITENAME}}',
 'siteuser'              => 'Përdoruesi $1 i {{SITENAME}}',
-'lastmodifiedby'        => 'Kjo faqe është redaktuar së fundit më $1 nga $2.',
+'lastmodifiedatby'        => 'Kjo faqe është redaktuar së fundit më $2, $1 nga $3.',
 'and'                   => 'dhe',
 'othercontribs'         => 'Bazuar mbi punën e $1',
 'others'                => 'të tjerë',

@@ -869,7 +869,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'tooltip-compareselectedversions'=> 'Varda łe diferenzse tra łe do verzsion selezsionà de sta paxèna. [alt-v]',
 'notacceptable'         => 'El server wiki non xè in grado di fornire i dati in un formato łeggibiłe dal client utilixà.',
 'anonymous'             => 'Utente(/i) anonimo(/i) de {{SITENAME}}',
-'lastmodifiedby'        => 'Sta paxèna xè stà modificà l\'ultima volta el $1 da $2.',
+'lastmodifiedatby'        => 'Sta paxèna xè stà modificà l\'ultima volta el $2, $1 da $3.',
 'creditspage'           => 'Crediti de ła paxèna',
 'subcategorycount'      => 'Sta categoria contegne {{PLURAL:$1|na sotocategoria| {{FORMATNUM|$1}} sotocategorie}}.',
 'categoryarticlecount'  => 'Ghè $1 voçi in sta categoria.',
