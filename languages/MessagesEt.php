@@ -223,7 +223,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "viewtalkpage" => "Arutelulehekülg",
 "otherlanguages" => "Teised keeled",
 "redirectedfrom" => "(Ümber suunatud artiklist $1)",
-"lastmodified"	=> "Viimane muutmine: $2, $1",
+"lastmodifiedat"	=> "Viimane muutmine: $2, $1",
 "viewcount"		=> "Seda lehekülge on külastatud $1 korda.",
 # aegunud, võib vist eemaldada, asendada järgmisega:
 "copyright" => "Kogu tekst on kasutatav litsentsi $1 tingimustel.",
