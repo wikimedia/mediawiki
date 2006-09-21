@@ -219,6 +219,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix layout for Special:Preferences->Date and Time (position for 'timezonetext').
 * Updates to language variant code for Serbian et al
 * (bug 6756) Enabling RTL direction for kk-cn
+* (bug 6701) Kazakh language variants in MessagesEn.php
 
 
 == Languages updated ==
