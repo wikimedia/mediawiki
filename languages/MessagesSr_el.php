@@ -1716,8 +1716,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pogledajte stranicu kategorije\');
 'variantname-zh-sg' => 'sg',
 'variantname-zh' => 'zh',
 # variants for Serbian language
-'variantname-sr-ec' => 'ekav',
-'variantname-sr-el' => 'ekav',
+'variantname-sr-ec' => 'ћирилица',
+'variantname-sr-el' => 'latinica',
 'variantname-sr-jc' => 'jekav',
 'variantname-sr-jl' => 'jekav',
 'variantname-sr' => 'disable',

@@ -1713,8 +1713,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Погледајте страни�
 'variantname-zh-sg' => 'sg',
 'variantname-zh' => 'zh',
 # variants for Serbian language
-'variantname-sr-ec' => 'екав',
-'variantname-sr-el' => 'ekav',
+'variantname-sr-ec' => 'ћирилица',
+'variantname-sr-el' => 'latinica',
 'variantname-sr-jc' => 'јекав',
 'variantname-sr-jl' => 'jekav',
 'variantname-sr' => 'disable',
