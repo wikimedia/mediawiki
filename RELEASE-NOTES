@@ -218,6 +218,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   so that ":" could be used in i18n for Special:Preferences (like 'username' and 'uid').
 * Fix layout for Special:Preferences->Date and Time (position for 'timezonetext').
 * Updates to language variant code for Serbian et al
+* (bug 6756) Enabling RTL direction for kk-cn
 
 
 == Languages updated ==
