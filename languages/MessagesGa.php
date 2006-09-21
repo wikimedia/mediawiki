@@ -1330,7 +1330,7 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.',
 
 'anonymous' => "Úsáideoir(í) gan ainm ar {{SITENAME}}",
 'siteuser' => "Úsáideoir $1 ag {{SITENAME}}", #FIXME - genitive needed here
-'lastmodifiedby' => "Leasaigh $2 an leathanach seo go déanaí ag $1.",
+'lastmodifiedatby' => "Leasaigh $3 an leathanach seo go déanaí ag $2, $1.",
 'and' => 'agus',
 'othercontribs' => "Bunaithe ar saothair le $1.",
 'others' => 'daoine eile',

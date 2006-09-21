@@ -1365,7 +1365,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 
 'anonymous'           => '{{GRAMMAR:genitive|{{SITENAME}}}} anonyymit käyttäjät',
 'siteuser'            => '{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $1',
-'lastmodifiedby'      => 'Tätä sivua muokkasi viimeksi $2, $1.',
+'lastmodifiedatby'      => 'Tätä sivua muokkasi viimeksi $3, $2, $1.',
 'and'                 => 'ja',
 'othercontribs'       => 'Perustuu työlle, jonka teki $1.',
 'others'              => 'muut',

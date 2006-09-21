@@ -1341,7 +1341,7 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ m
 
 # Attribution
 'anonymous' => 'Anonyme(r) Benutzer auf {{SITENAME}}',
-'lastmodifiedby' => 'Diese Seite wurde zuletzt geändert am $1 von $2.',
+'lastmodifiedatby'	=> 'Diese Seite wurde zuletzt geändert am $1 um $2 Uhr von $3.',
 'othercontribs' => 'Basiert auf der Arbeit von $1',
 'others' => 'andere',
 'creditspage' => 'Seiteninformationen',

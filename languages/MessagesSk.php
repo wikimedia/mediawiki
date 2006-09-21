@@ -1368,7 +1368,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 'notacceptable'         => 'Wiki server nedokáže poskytovať dáta vo formáte, v akom ich váš klient vie čítať.',
 'anonymous'             => 'Anonymný redaktor/i {{GRAMMAR:genitív|{{SITENAME}}}}',
 'siteuser'              => 'Redaktor {{GRAMMAR:genitív|{{SITENAME}}}} $1',
-'lastmodifiedby'        => 'Táto stránka bola naposledy upravovaná $1 redaktorom $2.',
+'lastmodifiedatby'        => 'Táto stránka bola naposledy upravovaná $2, $1 redaktorom $3.',
 'and'                   => 'a',
 'othercontribs'         => 'Založené na práci redaktora $1.',
 'others'                => 'iné',

@@ -1375,7 +1375,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 # Attribution
 'anonymous'             => 'Anonieme gebruiker(s) van {{SITENAME}}',
 'siteuser'              => '{{SITENAME}} gebruiker $1',
-'lastmodifiedby'        => 'Deze pagina is het laatst bewerkt op $1 door $2.',
+'lastmodifiedatby'        => 'Deze pagina is het laatst bewerkt op $2, $1 door $3.',
 'and'                   => 'en',
 'othercontribs'         => 'Gebaseerd op werk van $1.',
 'others'                => 'anderen',

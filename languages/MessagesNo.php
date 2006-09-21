@@ -1177,7 +1177,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'notacceptable'         => 'Tjeneren har ingen mulige måter å vise data i din nettleser.',
 'anonymous'             => 'Anonym(e) bruker(e) av {{SITENAME}}',
 'siteuser'              => '{{SITENAME}}-bruker $1',
-'lastmodifiedby'        => 'Denne siden var sist redigert $1 av $2.',
+'lastmodifiedatby'        => 'Denne siden var sist redigert $2, $1 av $3.',
 'and'                   => 'og',
 'othercontribs'         => 'Basert på arbeid av $1.',
 'others'                => 'andre',

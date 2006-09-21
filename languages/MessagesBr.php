@@ -1011,7 +1011,7 @@ Dibabit unan all mar plij.",
 # Attribution
 'anonymous'	=> 'Implijer(ez) dianv eus {{SITENAME}}',
 'siteuser'	=> 'Implijer(ez) $1 eus {{SITENAME}}',
-'lastmodifiedby' => "Kemmet eo bet ar bajenn-mañ da ziwezhañ d'an/ar $1 gant $2",
+'lastmodifiedatby' => "Kemmet eo bet ar bajenn-mañ da ziwezhañ d'an/ar $2, $1 gant $3",
 'and'	=> 'ha(g)',
 'contributions' => 'diazezet war labour $1.',
 'siteusers'	=> 'Implijer(ez) $1 eus {{SITENAME}}',

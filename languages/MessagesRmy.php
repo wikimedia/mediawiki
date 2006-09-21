@@ -267,7 +267,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 '1movedto2'             => '[[$1]] bichhaldo kai [[$2]]',
 'allmessages'           => 'Toate mesajele',
 'allmessagesname'       => 'Anav',
-'lastmodifiedby'        => 'Kadaya patrin sas paruvdi agoreste $1 katar $2.',
+'lastmodifiedatby'        => 'Kadaya patrin sas paruvdi agoreste $2, $1 katar $3.',
 'and'                   => 'thai',
 'others'                => 'aver',
 'Monobook.js'           => '/* tooltips and access keys */

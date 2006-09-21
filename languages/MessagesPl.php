@@ -1341,7 +1341,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 
 'anonymous' => 'Anonimowy użytkownicy serwisu {{SITENAME}}',
 'siteuser' => 'Użytkownik serwisu {{SITENAME}} - $1',
-'lastmodifiedby' => 'Ostatnia edycja tej strony: $1 (autor zmian: $2)',
+'lastmodifiedatby' => 'Ostatnia edycja tej strony: $2, $1 (autor zmian: $3)',
 'and' => 'oraz',
 'othercontribs' => 'Inni autorzy: $1.',
 'others' => 'inni',

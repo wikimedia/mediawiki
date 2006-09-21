@@ -1133,7 +1133,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategoriesiet ankieken\');',
 
 'anonymous'                             => 'Anonyme Bruker vun {{SITENAME}}',
 'siteuser'                              => '{{SITENAME}}-Bruker $1',
-'lastmodifiedby'                        => 'Disse Siet weer dat letzte Maal $1 vun $2 ännert.',
+'lastmodifiedatby'                        => 'Disse Siet weer dat letzte Maal $2, $1 vun $3 ännert.',
 'othercontribs'                         => 'Grünnt op Arbeid vun $1.',
 'others'                                => 'annere',
 'siteusers'                             => '{{SITENAME}}-Bruker $1',

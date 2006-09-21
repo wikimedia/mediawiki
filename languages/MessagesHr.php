@@ -1173,7 +1173,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'notacceptable'         => 'Wiki server ne može dobaviti podatke u obliku kojega vaš klijent može pročitati.',
 'anonymous'             => 'Anonimni suradnik projekta {{SITENAME}}',
 'siteuser'              => 'Suradnik $1 na projektu {{SITENAME}}',
-'lastmodifiedby'        => 'Ovu je stranicu zadnji put mijenjao dana $1 suradnik $2.',
+'lastmodifiedatby'        => 'Ovu je stranicu zadnji put mijenjao dana $2, $1 suradnik $3.',
 'and'                   => 'i',
 'othercontribs'         => 'Temelji se na doprinosu suradnika $1.',
 'others'                => 'drugih',

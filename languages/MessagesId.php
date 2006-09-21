@@ -1378,7 +1378,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 
 "anonymous" => "Pengguna(-pengguna) anonim {{SITENAME}}",
 "siteuser" => "Pengguna {{SITENAME}} $1",
-"lastmodifiedby" => "Halaman ini terakhir kali diubah $1 oleh $2.",
+"lastmodifiedatby" => "Halaman ini terakhir kali diubah $2, $1 oleh $3.",
 "and" => "dan",
 "othercontribs" => "Didasarkan pada karya $1.",
 'others' => 'lainnya',

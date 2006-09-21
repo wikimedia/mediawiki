@@ -2105,7 +2105,7 @@ wat Dinge [http://ksh.wikipedia.org/wiki/Help:Client Client] odde [http://ksh.wi
 Brauser] foshtonn künnt.',
 'anonymous'             => 'Namelose Medmaacher fun_de {{SITENAME}}',
 'siteuser'              => '{{SITENAME}}-Medmaacher $1',
-'lastmodifiedby'        => 'Hee di Sigk wood_et läz jeänndort fun $2 om $1',
+'lastmodifiedatby'        => 'Hee di Sigk wood_et läz jeänndort fun $3 om $2, $1',
 'and'                   => 'un',
 'othercontribs'         => 'Bout op de Ärbeëijdt fun „<strong>$1</strong>“ op.',
 'others'                => 'anndere',

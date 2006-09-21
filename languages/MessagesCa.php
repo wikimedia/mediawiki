@@ -1078,7 +1078,7 @@ L\'article de destí, "[[$1]]", ja existeix. Voleu esborrar-lo per fer lloc per 
 'Monobook.css'          => '/* Editeu aquest fitxer per personalitzar l\'aparença del monobook per a tot el lloc sencer */',
 'notacceptable'         => 'El servidor wiki no pot oferir dades en un format que el client no pot llegir.',
 'anonymous'             => 'Usuaris anònims del projecte {{SITENAME}}',
-'lastmodifiedby'        => 'Va modificar-se la pàgina per darrera vegada el $1 per $2.',
+'lastmodifiedatby'        => 'Va modificar-se la pàgina per darrera vegada el $2, $1 per $3.',
 'and'                   => 'i',
 'others'                => 'altres',
 'subcategorycount'      => 'Hi ha {{PLURAL:$1|una subcategoria|$1 subcategories}} dins d\'aquesta categoria.',

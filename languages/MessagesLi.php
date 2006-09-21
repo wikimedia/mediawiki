@@ -802,7 +802,7 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 'tooltip-watch'         => 'Voog dees pazjena toe aan dien volglies [alt-w]',
 'anonymous'             => 'Anoniem(e) gebroeker(s) van {{SITENAME}}',
 'siteuser'              => '{{SITENAME}} gebroeker $1',
-'lastmodifiedby'        => 'Dees pazjena is \'t litst verangert op $1 doer $2.',
+'lastmodifiedatby'        => 'Dees pazjena is \'t litst verangert op $2, $1 doer $3.',
 'and'                   => 'en',
 'siteusers'             => '{{SITENAME}} gebroekers(s) $1',
 'creditspage'           => 'Sjrievers van dees pazjena',

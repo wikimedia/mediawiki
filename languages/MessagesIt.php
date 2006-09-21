@@ -1336,7 +1336,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 # Attribution
 "anonymous"	=> "uno o più utenti anonimi di {{SITENAME}}",
 "siteuser"	=> "$1, utente di {{SITENAME}}",
-"lastmodifiedby"	=> "Questa pagina è stata modificata per l'ultima volta il $1 da $2.",
+"lastmodifiedatby"	=> "Questa pagina è stata modificata per l'ultima volta il $2, $1 da $3.",
 "and"	=> "e",
 "othercontribs"	=> "Il testo attuale è basato su contributi di $1.",
 "others"	=> "altri",

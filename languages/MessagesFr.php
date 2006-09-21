@@ -1270,7 +1270,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 
 'anonymous'	=> 'Utilisateur(s) anonyme(s) de {{SITENAME}}',
 'siteuser'	=> 'Utilisateur $1 de {{SITENAME}}',
-'lastmodifiedby' => 'Cette page a été modifiée pour la dernière fois le $1 par $2',
+'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $2, $1 par $3',
 'and'	=> 'et',
 'othercontribs' => 'Basé sur le travail de $1.',
 'others' => 'autres',

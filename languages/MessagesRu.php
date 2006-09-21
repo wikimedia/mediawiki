@@ -1637,7 +1637,7 @@ The wiki server can\'t provide data in a format your client can read.',
 
 'anonymous' => 'Анонимные пользователи {{grammar:genitive|{{SITENAME}}}}',
 'siteuser' => 'Участник {{grammar:genitive|{{SITENAME}}}} $1',
-'lastmodifiedby' => 'Эта страница последний раз была изменена $1 участником $2.',
+'lastmodifiedatby' => 'Эта страница последний раз была изменена $2, $1 участником $3.',
 'and' => 'и',
 'othercontribs' => 'Основано на работе $1.',
 'others' => 'другие',

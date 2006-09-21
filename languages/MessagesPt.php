@@ -1543,7 +1543,7 @@ Todas as acções de importação transwiki são registadas no [[Special:Log/imp
 
 'anonymous' => 'Utilizador(es) anónimo(s) da {{SITENAME}}',
 'siteuser' => '{{SITENAME}} utilizador $1',
-'lastmodifiedby' => 'Esta página foi modificada pela última vez a $1 por $2.',
+'lastmodifiedatby' => 'Esta página foi modificada pela última vez a $2, $1 por $3.',
 'and' => 'e',
 'othercontribs' => 'Baseado no trabalho de $1.',
 'others' => 'outros',

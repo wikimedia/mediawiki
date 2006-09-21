@@ -1851,7 +1851,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 
 'anonymous' => 'Anonymous user(s) of {{SITENAME}}',
 'siteuser' => '{{SITENAME}} user $1',
-'lastmodifiedby' => 'This page was last modified $1 by $2.',
+'lastmodifiedatby' => 'This page was last modified $2, $1 by $3.',	// $1 date, $2 time. $3 user
 'and' => 'and',
 'othercontribs' => 'Based on work by $1.',
 'others' => 'others',

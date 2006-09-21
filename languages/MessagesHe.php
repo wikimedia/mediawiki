@@ -1580,7 +1580,7 @@ $NEWPAGE
 # Attribution
 "anonymous"      => "משתמש(ים) אנונימי(ים) של {{SITENAME}}",
 "siteuser"       => "משתמש {{SITENAME}} $1",
-"lastmodifiedby" => "דף זה שונה לאחרונה בתאריך $1 על־ידי $2.",
+"lastmodifiedatby" => "דף זה שונה לאחרונה בתאריך $2, $1 על־ידי $3.",
 "and"            => "וגם",
 "othercontribs"  => "מבוסס על העבודה של $1.",
 "others"         => "אחרים",
