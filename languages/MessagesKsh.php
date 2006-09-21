@@ -290,7 +290,7 @@ De weßße wellß wi de Wikki_ßoffwäer jebruch un bedeendt weede moß.
 'redirectedfrom'        => '(Ömjelëijdt fun $1)',
 'autoredircomment'      => 'Lëijdt öm op „[[$1]]“',
 'redirectpagesub'       => 'Ömlëijdungß_Sigk',
-'lastmodified'          => 'Shtand fum $2, $1',
+'lastmodifiedat'          => 'Shtand fum $2, $1',
 'viewcount'             => 'Di Sigk eß beß jäz {{PLURAL:$1|ëijmol|$1 Mol}} affjeroofe woode.',
 'copyright'             => 'Dä Ennhalldt_shtëijdt unger_de $1.',
 'protectedpage'         => 'Jeshözde Sigk',

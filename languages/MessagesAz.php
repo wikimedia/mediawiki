@@ -147,7 +147,7 @@ $messages = array(
 'otherlanguages' => 'Başqa dillərdə',
 'redirectedfrom' => '($1 səhifəsindən istiqamətləndirilmişdir)',
 'redirectpagesub' => 'İstiqamətləndirmə səhifəsi',
-'lastmodified' => 'Bu səhifə sonuncu dəfə $2, $1 tarixində redaktə edilib.',
+'lastmodifiedat' => 'Bu səhifə sonuncu dəfə $2, $1 tarixində redaktə edilib.',
 'copyright' => 'Bu məzmun $1 əhatəsindədir.',
 
 'nbytes' => '$1 bayt',

@@ -213,7 +213,7 @@ in [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'redirectedfrom'        => '(Preusmerjeno z $1)',
 'autoredircomment'      => 'preusmeritev na [[$1]]',
 'redirectpagesub'       => 'Preusmeritvena stran',
-'lastmodified'          => 'Čas zadnje spremembe: $2, $1.',
+'lastmodifiedat'          => 'Čas zadnje spremembe: $2, $1.',
 'viewcount'             => 'Stran je bila naložena $1-krat.',
 'copyright'             => 'Besedilo je na razpolago pod pogoji $1.',
 'protectedpage'         => 'Zaščitena stran',

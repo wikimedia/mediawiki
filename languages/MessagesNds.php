@@ -227,7 +227,7 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'viewtalkpage'          => 'Diskuschoon',
 'otherlanguages'        => 'Annere Spraken',
 'redirectedfrom'        => '(Wiederleiden vun $1)',
-'lastmodified'           => 'Disse Siet is toletzt üm $2, $1 ännert worrn.',
+'lastmodifiedat'           => 'Disse Siet is toletzt üm $2, $1 ännert worrn.',
 'viewcount'                        => 'Disse Siet is $1 Maal opropen worrn.',
 'copyright'             => 'De Inholt is verfögbor ünner de $1.',
 'protectedpage'         => 'Schulte Sieten',

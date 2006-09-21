@@ -205,7 +205,7 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 "viewtalkpage" => "Se diskussion",
 "otherlanguages" => "Andre sprog",
 "redirectedfrom" => "(Omdirigeret fra $1)",
-"lastmodified"	=> "Denne side blev senest ændret den $2, $1.",
+"lastmodifiedat"	=> "Denne side blev senest ændret den $2, $1.",
 "viewcount"		=> "Siden er vist i alt $1 gange.",
 'copyright'	=> 'Indholdet&nbsp;er&nbsp;udgivet&nbsp;under&nbsp;$1.',
 "protectedpage" => "Beskyttet side",

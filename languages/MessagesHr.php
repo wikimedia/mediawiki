@@ -201,7 +201,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'otherlanguages'        => 'Drugi jezici',
 'redirectedfrom'        => '(Preusmjereno s $1)',
 'redirectpagesub'       => 'Preusmjeravanje',
-'lastmodified'          => 'Datum zadnje promjene na ovoj stranici: $2, $1',
+'lastmodifiedat'          => 'Datum zadnje promjene na ovoj stranici: $2, $1',
 'viewcount'             => 'Ova stranica je pogledana $1 puta.',
 'copyright'             => 'Sadržaji se koriste u skladu s $1.',
 'protectedpage'         => 'Zaštićena stranica',
