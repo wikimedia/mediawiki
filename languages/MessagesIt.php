@@ -221,7 +221,7 @@ I seguenti collegamenti sono in lingua inglese:
 "redirectedfrom" => "(Redirect da $1)",
 "autoredircomment" => "Redirect alla pagina [[$1]]",
 "redirectpagesub" => "Pagina di redirect",
-"lastmodified"	=> "Ultima modifica per la pagina: $1.",
+"lastmodified"	=> "Ultima modifica per la pagina: $2, $1.",
 "viewcount"		=> "Questa pagina è stata letta {{PLURAL:$1|una volta|$1 volte}}.",
 "copyright"	=> "Contenuti soggetti a licenza d'uso $1.",
 "protectedpage" => "Pagina bloccata",

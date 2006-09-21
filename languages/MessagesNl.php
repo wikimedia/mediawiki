@@ -247,7 +247,7 @@ parent class in order maintain consistency across languages.
 'redirectedfrom'        => '(Doorverwezen vanaf $1)',
 'autoredircomment'      => 'Verwijst door naar [[$1]]',
 'redirectpagesub'       => 'Doorverwijspagina',
-'lastmodified'          => 'Deze pagina is het laatst bewerkt op $1.',
+'lastmodified'          => 'Deze pagina is het laatst bewerkt op $2, $1.',
 'viewcount'             => 'Deze pagina is $1 maal bekeken.',
 'copyright'             => 'Inhoud is beschikbaar onder de $1.',
 'protectedpage'         => 'Beveiligde pagina',
