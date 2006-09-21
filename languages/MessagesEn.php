@@ -526,7 +526,7 @@ parent class in order maintain consistency across languages.
 'redirectedfrom' => '(Redirected from $1)',
 'autoredircomment' => 'Redirecting to [[$1]]',
 'redirectpagesub' => 'Redirect page',
-'lastmodified'	=> 'This page was last modified $1.',
+'lastmodified'		=> 'This page was last modified $2, $1.',	//$1 date, $2 time
 'viewcount'		=> 'This page has been accessed {{plural:$1|one time|$1 times}}.',
 'copyright'	=> 'Content is available under $1.',
 'protectedpage' => 'Protected page',

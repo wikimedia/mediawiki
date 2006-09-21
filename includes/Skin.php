@@ -1053,8 +1053,9 @@ END;
 
 		$timestamp = $wgArticle->getTimestamp();
 		if ( $timestamp ) {
-			$d = $wgLang->timeanddate( $timestamp, true );
-			$s = ' ' . wfMsg( 'lastmodified', $d );
+			$d = $wgLang->date( $timestamp, true );
+			$t = $wgLang->time( $timestamp, true );
+			$s = ' ' . wfMsg( 'lastmodified', $d, $t );
 		} else {
 			$s = '';
 		}

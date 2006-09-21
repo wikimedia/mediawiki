@@ -280,7 +280,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'otherlanguages'      => 'Muut kielet',
 'redirectedfrom'      => 'Uudelleenohjattu sivulta $1',
 'redirectpagesub'     => 'Uudelleenohjaussivu',
-'lastmodified'        => 'Sivua on viimeksi muutettu  $1.',
+'lastmodified'        => 'Sivua on viimeksi muutettu  $2, $1.',
 'viewcount'           => 'Tämä sivu on näytetty {{PLURAL:$1|yhden kerran|$1 kertaa}}.',
 'copyright'           => 'Sisältö on käytettävissä lisenssillä $1.',
 'protectedpage'       => 'Suojattu sivu',

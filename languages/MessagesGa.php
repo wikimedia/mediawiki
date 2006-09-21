@@ -262,7 +262,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "viewtalkpage"  => "Féach ar phlé",
 "otherlanguages"    => "I dteangacha eile",
 "redirectedfrom"    => "(Athsheolta ó $1)",
-"lastmodified"  => "Athraíodh an leathanach seo ag $1.",
+"lastmodified"  => "Athraíodh an leathanach seo ag $2, $1.",
 "viewcount"     => "Rochtainíodh an leathanach seo $1 uair.",
 'copyright'     => "Tá an t-ábhar le fáil faoin $1.",
 "protectedpage" => "Leathanach glasáilte",

@@ -221,6 +221,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6756) Enabling RTL direction for kk-cn
 * (bug 6701) Kazakh language variants in MessagesEn.php
 * (bug 7335) SVN revision check in Special:Version fails on SVN 1.4 working copy
+* (bug 6518) Seperated parameters for date and time in 'lastmodified' to allow a better
+  localisation like requested for German. Updated all other message files to display the
+  old format for compatibility.
 
 
 == Languages updated ==

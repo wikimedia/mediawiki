@@ -153,7 +153,7 @@ $messages = array(
 "viewtalkpage" => "View discussion",
 "otherlanguages" => "Other languages",
 "redirectedfrom" => "(Redirected from $1)",
-"lastmodified"	=> "This page was last modified $1.",
+"lastmodified"	=> "This page was last modified $2, $1.",
 "viewcount"		=> "This page has been accessed $1 times.",
 "protectedpage" => "Protected page",
 

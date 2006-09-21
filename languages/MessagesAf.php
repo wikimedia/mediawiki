@@ -134,7 +134,7 @@ $messages = array(
 "viewtalkpage" => "Lees bespreking",
 "otherlanguages" => "Ander tale",
 "redirectedfrom" => "(Van $1 aangestuur.)",
-"lastmodified"	=> "Laaste wysiging op $1.",
+"lastmodified"	=> "Laaste wysiging op $2, $1.",
 "viewcount"		=> "Hierdie bladsy is al $1 keer aangevra.",
 "protectedpage" => "Beskermde bladsy",
 
