@@ -1979,6 +1979,11 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 'variantname-sr-jc' => 'sr-jc',
 'variantname-sr-jl' => 'sr-jl',
 'variantname-sr' => 'sr',
+# variants for Kazakh language
+'variantname-kk-tr' => 'kk-tr',
+'variantname-kk-kz' => 'kk-kz',
+'variantname-kk-cn' => 'kk-cn',
+'variantname-kk' => 'kk',
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'User:',
