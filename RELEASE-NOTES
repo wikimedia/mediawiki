@@ -220,6 +220,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Updates to language variant code for Serbian et al
 * (bug 6756) Enabling RTL direction for kk-cn
 * (bug 6701) Kazakh language variants in MessagesEn.php
+* (bug 7335) SVN revision check in Special:Version fails on SVN 1.4 working copy
 
 
 == Languages updated ==
