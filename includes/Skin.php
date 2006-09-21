@@ -1055,7 +1055,7 @@ END;
 		if ( $timestamp ) {
 			$d = $wgLang->date( $timestamp, true );
 			$t = $wgLang->time( $timestamp, true );
-			$s = ' ' . wfMsg( 'lastmodified', $d, $t );
+			$s = ' ' . wfMsg( 'lastmodifiedat', $d, $t );
 		} else {
 			$s = '';
 		}
