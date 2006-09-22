@@ -1069,6 +1069,7 @@ $messages = array(
 "nviews"      => "{{plural:$1|צפיה אחת|$1 צפיות}}",
 
 "lonelypages"             => "דפים יתומים",
+"lonelypagestext"         => "לדפים הבאים אין קישורים מדפים אחרים באתר זה.",
 "uncategorizedpages"      => "דפים חסרי קטגוריה",
 "uncategorizedcategories" => "קטגוריות חסרות קטגוריה",
 "uncategorizedimages"     => "תמונות חסרות קטגוריה",
