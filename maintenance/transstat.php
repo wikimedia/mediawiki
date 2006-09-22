@@ -148,36 +148,39 @@ $wgOut->element( 'Problematic', true );
 $wgOut->element( '%', true );
 $wgOut->blockend();
 
-foreach ( $wgLanguages->getList() as $code ) {
+$wgGeneralMessages = $wgLanguages->getGeneralMessages();
+$wgRequiredMessagesNumber = count( $wgGeneralMessages['required'] );
+
+foreach ( $wgLanguages->getLanguages() as $code ) {
 	# Don't check English or RTL English
 	if ( $code == 'en' || $code == 'enRTL' ) {
 		continue;
 	}
 
 	# Calculate the numbers
-	$name = $wgLang->getLanguageName( $code );
-	$translatableMessagesNumber = count( $wgLanguages->getTranslatableMessages() );
-	$localMessagesNumber = count( $wgLanguages->getMessagesFor( $code ) );
-	$translatedMessagesNumber = count( $wgLanguages->getTranslatedMessages( $code ) );
-	$translatedMessagesPercent = $wgOut->formatPercent( $translatedMessagesNumber, $translatableMessagesNumber );
-	$obsoleteMessagesNumber = count( $wgLanguages->getObsoleteMessages( $code ) );
-	$obsoleteMessagesPercent = $wgOut->formatPercent( $obsoleteMessagesNumber, $translatedMessagesNumber, true );
+	$language = $wgContLang->getLanguageName( $code );
+	$messages = $wgLanguages->getMessages( $code );
+	$messagesNumber = count( $messages['translated'] );
+	$requiredMessagesNumber = count( $messages['required'] );
+	$requiredMessagesPercent = $wgOut->formatPercent( $requiredMessagesNumber, $wgRequiredMessagesNumber );
+	$obsoleteMessagesNumber = count( $messages['obsolete'] );
+	$obsoleteMessagesPercent = $wgOut->formatPercent( $obsoleteMessagesNumber, $messagesNumber, true );
 	$messagesWithoutVariables = $wgLanguages->getMessagesWithoutVariables( $code );
 	$emptyMessages = $wgLanguages->getEmptyMessages( $code );
 	$messagesWithWhitespace = $wgLanguages->getMessagesWithWhitespace( $code );
 	$nonXHTMLMessages = $wgLanguages->getNonXHTMLMessages( $code );
 	$messagesWithWrongChars = $wgLanguages->getMessagesWithWrongChars( $code );
 	$problematicMessagesNumber = count( array_unique( array_merge( $messagesWithoutVariables, $emptyMessages, $messagesWithWhitespace, $nonXHTMLMessages, $messagesWithWrongChars ) ) );
-	$problematicMessagesPercent = $wgOut->formatPercent( $problematicMessagesNumber, $translatedMessagesNumber, true );
+	$problematicMessagesPercent = $wgOut->formatPercent( $problematicMessagesNumber, $messagesNumber, true );
 
 	# Output them
 	$wgOut->blockstart();
-	$wgOut->element( "$name ($code)" );
-	$wgOut->element( "$translatedMessagesNumber/$translatableMessagesNumber" );
-	$wgOut->element( $translatedMessagesPercent );
-	$wgOut->element( "$obsoleteMessagesNumber/$translatedMessagesNumber" );
+	$wgOut->element( "$language ($code)" );
+	$wgOut->element( "$requiredMessagesNumber/$wgRequiredMessagesNumber" );
+	$wgOut->element( $requiredMessagesPercent );
+	$wgOut->element( "$obsoleteMessagesNumber/$messagesNumber" );
 	$wgOut->element( $obsoleteMessagesPercent );
-	$wgOut->element( "$problematicMessagesNumber/$translatedMessagesNumber" );
+	$wgOut->element( "$problematicMessagesNumber/$messagesNumber" );
 	$wgOut->element( $problematicMessagesPercent );
 	$wgOut->blockend();
 }
