@@ -16,6 +16,10 @@ class DeadendPagesPage extends PageQueryPage {
 		return "Deadendpages";
 	}
 
+	function getPageHeader() {
+		return '<p>' . wfMsg('deadendpagestext') . '</p>';
+	}
+
 	/**
 	 * LEFT JOIN is expensive
 	 *

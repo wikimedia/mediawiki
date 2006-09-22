@@ -1295,6 +1295,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'shortpages'	=> 'Short pages',
 'longpages'		=> 'Long pages',
 'deadendpages'  => 'Dead-end pages',
+'deadendpagestext'	=> 'The following pages do not link to other pages in this wiki.',
 'listusers'		=> 'User list',
 'specialpages'	=> 'Special pages',
 'spheading'		=> 'Special pages for all users',
