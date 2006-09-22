@@ -28,7 +28,7 @@ class SkinHTMLDump extends SkinTemplate {
 		$badMessages = array( 'recentchanges-url', 'randompage-url' );
 		$badUrls = array();
 		foreach ( $badMessages as $msg ) {
-			$badUrls[] = $this->makeInternalOrExternalUrl( wfMsgForContent( $msg ) );
+			$badUrls[] = self::makeInternalOrExternalUrl( wfMsgForContent( $msg ) );
 		}
 
 		foreach ( $sections as $heading => $section ) {

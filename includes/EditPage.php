@@ -942,7 +942,7 @@ class EditPage {
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 				wfMsgExt('cancel', array('parseinline')) );
-		$edithelpurl = $sk->makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ));
+		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ));
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
 			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
 			htmlspecialchars( wfMsg( 'newwindow' ) );

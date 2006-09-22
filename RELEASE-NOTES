@@ -224,6 +224,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6518) Replaced 'lastmodified' with 'lastmodifiedat' and 'lastmodifiedby' with 'lastmodifiedatby'
   with seperated parameters for date and time to allow better localisation. Updated all message files
   to display the old format for compatibility.
+* (bug 7357) Make supposedly static methods of Skin actually static
 
 
 == Languages updated ==
