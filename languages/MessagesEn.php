@@ -1275,6 +1275,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'nviews'		=> '$1 {{PLURAL:$1|view|views}}',
 
 'lonelypages'	=> 'Orphaned pages',
+'lonelypagestext'	=> 'The following pages are not linked from other pages in this wiki.',
 'uncategorizedpages'	=> 'Uncategorized pages',
 'uncategorizedcategories'	=> 'Uncategorized categories',
 'uncategorizedimages' => 'Uncategorized images',

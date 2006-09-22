@@ -898,6 +898,7 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 # Miscellaneous special pages
 #
 "lonelypages"	=> "Verwaiste Seiten",
+'lonelypagestext'	=> 'Auf die nachfolgenden Seiten wird innerhalb dieses Wikis nicht von anderen Seiten aus verwiesen.',
 'unusedimages'		=> 'Verwaiste Dateien',
 "popularpages"	=> "Beliebte Seiten",
 'nviews'		=> '{{PLURAL:$1|eine Abfrage|$1 Abfragen}}',
