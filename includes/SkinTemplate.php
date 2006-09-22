@@ -582,23 +582,23 @@ class SkinTemplate extends Skin {
 			'href' => $title->getLocalUrl( $query ) );
 	}
 
-	function makeTalkUrlDetails( $name, $urlaction='' ) {
+	function makeTalkUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
 		$title = $title->getTalkPage();
-		$this->checkTitle( $title, $name );
+		self::checkTitle( $title, $name );
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0?true:false
+			'exists' => $title->getArticleID() != 0 ? true : false
 		);
 	}
 
-	function makeArticleUrlDetails( $name, $urlaction='' ) {
+	function makeArticleUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
 		$title= $title->getSubjectPage();
 		self::checkTitle( $title, $name );
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0?true:false
+			'exists' => $title->getArticleID() != 0 ? true : false
 		);
 	}
 
