@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /** Georgian (ქართული)
   *
   * @package MediaWiki
@@ -84,6 +84,18 @@ $messages = array(
 'oct'		=> 'ოქტ',
 'nov'		=> 'ნოე',
 'dec'		=> 'დეკ',
+
+# Namespace 8 related
+
+'allmessages'   => 'ყველა სისტემური შეტყობინება',
+'allmessagesname' => 'დასახელება',
+'allmessagesdefault' => 'სტანდარტული ტექსტი',
+'allmessagescurrent' => 'მიმდინარე ტექსტი',
+'allmessagestext'       => 'ეს არის სახელთა სივრცე მედიავიკიში არსებული სისტემური შეტყობინებების ჩამონათვალი.',
+'allmessagesnotsupportedUI' => 'თქვენს ამჟამინდელ ინტერფეისის ენას <b>$1</b> არ აქვს სპეციალური:AllMessages-ის უზრუნველყოფა ამ საიტზე.',
+'allmessagesnotsupportedDB' => 'სპეციალური:AllMessages-ის უზრუნველყოფა არ ხდება, ვინაიდან wgUseDatabaseMessages გამორთულია.',
+#TODO: 'allmessagesfilter' => 'Message name filter:',
+'allmessagesmodified' => 'აჩვენე მხოლოდ შეცვლილი',
 
 );
 
