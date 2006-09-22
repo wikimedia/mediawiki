@@ -1088,6 +1088,7 @@ $messages = array(
 "shortpages"              => "דפים קצרים",
 "longpages"               => "דפים ארוכים",
 "deadendpages"            => "דפים ללא קישורים",
+"deadendpagestext"        => "הדפים הבאים אינם מקשרים לדפים אחרים באתר.",
 "listusers"               => "רשימת משתמשים",
 "specialpages"            => "דפים מיוחדים",
 "spheading"               => "דפים מיוחדים",
