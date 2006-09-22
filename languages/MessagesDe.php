@@ -83,7 +83,7 @@ $messages = array(
 "tog-justify"                 => "Text als Blocksatz",
 'tog-hideminor'			=> 'Kleine Änderungen ausblenden',
 'tog-extendwatchlist'		=> 'Erweiterte Beobachtungsliste',
-'tog-usenewrc'			=> 'Erweiterte Darstellung (benötigt JavaScript)',
+'tog-usenewrc'			=> 'Erweiterte Darstellung (JavaScript)',
 'tog-numberheadings'		=> 'Überschriften automatisch nummerieren',
 'tog-showtoolbar'		=> 'Bearbeiten-Werkzeugleiste anzeigen',
 "tog-editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
@@ -103,7 +103,7 @@ $messages = array(
 'tog-enotifminoredits'		=> 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden.',
 'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
 'tog-shownumberswatching'	=> 'Anzahl der beobachtenden Benutzer anzeigen',
-'tog-fancysig'			=> 'Unterschrift ohne Verlinkung zur Benutzerseite',
+'tog-fancysig'			=> 'Signatur ohne Verlinkung zur Benutzerseite',
 'tog-externaleditor'		=> 'Externen Editor als Standard benutzen',
 'tog-externaldiff'		=> 'Externes Diff-Programm als Standard benutzen',
 'tog-showjumplinks'		=> '„Wechseln-zu“-Links ermöglichen',
@@ -420,9 +420,9 @@ Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen an
 'createaccountmail'	=> 'über E-Mail',
 "badretype"		=> "Die beiden Passwörter stimmen nicht überein.",
 "userexists"	=> "Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.",
-'youremail'		=> 'Ihre E-Mail-Adresse**:',
-"yournick"		=> 'Ihr Spitzname (zum Unterschreiben):',
-'yourrealname'		=> 'Ihr echter Name*:',
+'youremail'		=> 'E-Mail-Adresse**:',
+'yournick'		=> 'Signatur:',
+'yourrealname'		=> 'Echter Name*:',
 'yourlanguage'		=> 'Sprache der Benutzeroberfläche:',
 'username'		=> 'Benutzername:',
 'uid'			=> 'Benutzer ID:',
@@ -974,7 +974,7 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 'allnotinnamespace'	=> 'Alle Seiten (nicht im $1 Namensraum)',
 'allpagesprev'	=> 'Vorherige',
 'allpagesnext'	=> 'Nächste',
-'allpagessubmit'	=> 'Zeige',
+'allpagessubmit'	=> 'Anwenden',
 'allpagesbadtitle'	=> 'Der eingegebene Seitenname ist ungültig: Er hat entweder ein vorangestelltes Sprach-, ein Interwiki-Kürzel oder enthält ein oder mehrere Zeichen, welche in Seitennamen nicht verwendet werden dürfen.',
 
 # Special:Listusers
@@ -1316,7 +1316,7 @@ Das Ergebnis kann in ein anderes Wiki mit MediaWiki-Software eingespielt, bearbe
 
 Tragen Sie einfach den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
 
-Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
+Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seitentitel]]</nowiki></tt> möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 'exportnohistory' => '----
 \'\'\'Hinweis:\'\'\' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.',
@@ -1405,7 +1405,8 @@ Alternativ ist der Export auch mit der Syntax „Spezial:Export/Seitentitel“ m
 'rcshowhidepatr' => 'Überprüfte Änderungen $1',
 'rcshowhidemine' => 'Eigene Beiträge $1',
 "uploaddisabled"	=> "Entschuldigung, das Hochladen ist deaktiviert.",
-'deadendpages'		=> 'Sackgassenseite',
+'deadendpages'		=> 'Sackgassenseiten',
+'deadendpagestext'	=> 'Die folgenden Seiten verweisen nicht auf andere Seiten in diesem Wiki.',
 'intl'			=> 'Interwiki Links',
 "version"		=> "Version",
 "log"			=> "Logbücher",
