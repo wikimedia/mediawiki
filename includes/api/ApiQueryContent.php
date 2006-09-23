@@ -74,17 +74,5 @@ class ApiQueryContent extends ApiQueryBase {
 			'http://...'
 		);
 	}
-
-	/**
-	 * Returns the description string for the given parameter.
-	 */
-	protected function GetParamDescription($paramName) {
-		switch ($paramName) {
-			case 'param' :
-				return 'description';
-			default :
-				return parent :: GetParamDescription($paramName);
-		}
-	}
 }
 ?>

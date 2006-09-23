@@ -31,29 +31,29 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiQuery extends ApiBase {
 
-	private static $apiAutoloadClasses_Query = array (
-		'ApiQueryContent' => 'includes/api/ApiQueryContent.php',
-		
-	);
-
-	private static $sQueryModules = array (
+	private $mQueryPropModules = array (
 		'content' => 'ApiQueryContent'
 	);
+	private $mQueryListModules = array (
+		'backlinks' => 'ApiQueryBacklinks'
+	);
+
+	private $mSlaveDB = null;
 
 	/**
 	* Constructor
 	*/
 	public function __construct($main, $action) {
 		parent :: __construct($main);
-		ApiInitAutoloadClasses($this->apiAutoloadClasses_Query);
-		$this->mModuleNames = array_keys($this->sQueryModules);
-		$this->mDb =& wfGetDB( DB_SLAVE );
+		$this->mPropModuleNames = array_keys($this->mQueryPropModules);
+		$this->mListModuleNames = array_keys($this->mQueryListModules);
 	}
-	
+
 	public function GetDB() {
-		return $this->mDb;
+		if (!isset ($this->mSlaveDB))
+			$this->mSlaveDB = & wfGetDB(DB_SLAVE);
+		return $this->mSlaveDB;
 	}
-	
 
 	public function Execute() {
 
@@ -64,20 +64,35 @@ class ApiQuery extends ApiBase {
 	 */
 	protected function GetAllowedParams() {
 		return array (
-			'what' => 'default',
-			'enumparam' => array (
+			'titles' => array (
+				GN_ENUM_DFLT => null,
+				GN_ENUM_ISMULTI => true
+			),
+			'pageids' => array (
+				GN_ENUM_DFLT => 0,
+				GN_ENUM_ISMULTI => true
+			),
+			'revids' => array (
+				GN_ENUM_DFLT => 0,
+				GN_ENUM_ISMULTI => true
+			),
+			'prop' => array (
 				GN_ENUM_DFLT => null,
 				GN_ENUM_ISMULTI => true,
-				GN_ENUM_CHOICES => $this->mModuleNames
+				GN_ENUM_CHOICES => array_keys($this->mPropModuleNames
 			)
-		);
+		), 'list' => array (
+			GN_ENUM_DFLT => null,
+			GN_ENUM_ISMULTI => true,
+			GN_ENUM_CHOICES => array_keys($this->mListModuleNames
+		)));
 	}
 
 	/**
 	 * Returns the description string for this module
 	 */
 	protected function GetDescription() {
-		return 'module a';
+		return 'Query Module';
 	}
 
 	/**
@@ -85,20 +100,8 @@ class ApiQuery extends ApiBase {
 	 */
 	protected function GetExamples() {
 		return array (
-			'http://...'
+			'api.php ? action=query & what=content & titles=ArticleA|ArticleB'
 		);
-	}
-
-	/**
-	 * Returns the description string for the given parameter.
-	 */
-	protected function GetParamDescription($paramName) {
-		switch ($paramName) {
-			case 'param' :
-				return 'description';
-			default :
-				return parent :: GetParamDescription($paramName);
-		}
 	}
 }
 ?>
