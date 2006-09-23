@@ -352,6 +352,11 @@ class LoginForm {
 		{	
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
+
+			# We've verified now, update the real record
+			$wgUser->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
+			$wgUser->setCookies();
+			$wgUser->saveSettings();
 			return AuthSuccess;
 		}
 	}
@@ -362,12 +367,6 @@ class LoginForm {
 		switch ($this->authenticateUserData())
 		{
 			case (AuthSuccess):
-				# We've verified now, update the real record
-				#
-				$wgUser->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
-				$wgUser->setCookies();
-				$wgUser->saveSettings();
-
 				if( $this->hasSessionCookie() ) {
 					return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
 				} else {
