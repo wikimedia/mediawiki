@@ -66,15 +66,48 @@ abstract class ApiBase {
 		// Main module has GetResult() method overriden
 		// Safety - avoid infinite loop:
 		if ($this->IsMain())
-			$this->DieDebug(__METHOD__.' base method was called on main module. ');
+			$this->DieDebug(__METHOD__ .
+			' base method was called on main module. ');
 		return $this->GetMain()->GetResult();
 	}
 
 	/**
-	 * Returns an array of allowed parameters (keys) => default value for that parameter
+	 * Generates help message for this module, or false if there is no description
 	 */
-	protected function GetAllowedParams() {
-		return false;
+	public function MakeHelpMsg() {
+
+		$msg = $this->GetDescription();
+
+		if ($msg !== false) {
+
+			if (is_array($msg))
+				$msg = implode("\n", $msg);
+			$msg .= "\n";
+
+			// Parameters
+			$params = $this->GetAllowedParams();
+			if ($params !== false) {
+				$paramsDescription = $this->GetParamDescription();
+				$msg .= "Supported Parameters:\n";
+				foreach (array_keys($params) as $paramName) {
+					$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
+					$msg .= sprintf("  %-14s - %s\n", $paramName, $desc);
+				}
+			}
+
+			// Examples
+			$examples = $this->GetExamples();
+			if ($examples !== false) {
+				if (is_array($examples)) {
+					$msg .= "Examples:\n";
+					$msg .= implode("\n  ", $examples) . "\n";
+				} else {
+					$msg .= "Example:   $examples\n";
+				}
+			}
+		}
+
+		return $msg;
 	}
 
 	/**
@@ -92,40 +125,17 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Returns the description string for the given parameter.
+	 * Returns an array of allowed parameters (keys) => default value for that parameter
 	 */
-	protected function GetParamDescription($paramName) {
-		return '';
+	protected function GetAllowedParams() {
+		return false;
 	}
 
 	/**
-	 * Generates help message for this module, or false if there is no description
+	 * Returns the description string for the given parameter.
 	 */
-	public function MakeHelpMsg() {
-
-		$msg = $this->GetDescription();
-
-		if ($msg !== false) {
-			$msg .= "\n";
-
-			// Parameters
-			$params = $this->GetAllowedParams();
-			if ($params !== false) {
-				$msg .= "Supported Parameters:\n";
-				foreach (array_keys($params) as $paramName) {
-					$msg .= sprintf("  %-14s - %s\n", $paramName, $this->GetParamDescription($paramName));
-				}
-			}
-
-			// Examples
-			$examples = $this->GetExamples();
-			if ($examples !== false) {
-				$msg .= "Examples:\n  ";
-				$msg .= implode("\n  ", $examples) . "\n";
-			}
-		}
-
-		return $msg;
+	protected function GetParamDescription() {
+		return false;
 	}
 
 	/**
@@ -153,10 +163,12 @@ abstract class ApiBase {
 					$result = $wgRequest->getCheck($param);
 					break;
 				case 'array' :
-					if (count($dflt) != 3)
-						$this->DieDebug("In '$param', the default enum must have 3 parts - default, allowmultiple, and array of values " . gettype($dflt));
-					$values = $wgRequest->getVal($param, $dflt[GN_ENUM_DFLT]);
-					$result = $this->ParseMultiValue($param, $values, $dflt[GN_ENUM_ISMULTI], $dflt[GN_ENUM_CHOICES]);
+					$enumParams = $dflt;
+					$dflt = isset ($enumParams[GN_ENUM_DFLT]) ? $enumParams[GN_ENUM_DFLT] : null;
+					$multi = isset ($enumParams[GN_ENUM_ISMULTI]) ? $enumParams[GN_ENUM_ISMULTI] : false;
+					$choices = isset ($enumParams[GN_ENUM_CHOICES]) ? $enumParams[GN_ENUM_CHOICES] : null;
+					$value = $wgRequest->getVal($param, $dflt);
+					$result = $this->ParseMultiValue($param, $value, $multi, $choices);
 					break;
 				default :
 					$this->DieDebug("In '$param', unprocessed type " . gettype($dflt));
@@ -168,15 +180,26 @@ abstract class ApiBase {
 	}
 
 	/**
-	* Return an array of values that were given in a "a|b|c" notation, after it validates them against the list allowed values.
+	* Return an array of values that were given in a "a|b|c" notation,
+	* after it optionally validates them against the list allowed values.
+	* 
+	* @param valueName - The name of the parameter (for error reporting)
+	* @param value - The value being parsed
+	* @param allowMultiple - Can $value contain more than one value separated by '|'?
+	* @param allowedValues - An array of values to check against. If null, all values are accepted.
+	* @return (allowMultiple ? an_array_of_values : a_single_value) 
 	*/
-	protected function ParseMultiValue($valueName, $values, $allowMultiple, $allowedValues) {
-		$valuesList = explode('|', $values);
-		if (!$allowMultiple && count($valuesList) != 1)
-			$this->DieUsage("Only one value is allowed: '" . implode("', '", $allowedValues) . "' for parameter '$valueName'", "multival_$valueName");
-		$unknownValues = array_diff($valuesList, $allowedValues);
-		if ($unknownValues) {
-			$this->DieUsage("Unrecognised value" . (count($unknownValues) > 1 ? "s '" : " '") . implode("', '", $unknownValues) . "' for parameter '$valueName'", "unknown_$valueName");
+	protected function ParseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
+		$valuesList = explode('|', $value);
+		if (!$allowMultiple && count($valuesList) != 1) {
+			$possibleValues = is_array($allowedValues) ? "of '" . implode("', '", $allowedValues) . "'" : '';
+			$this->DieUsage("Only one $possibleValues is allowed for parameter '$valueName'", "multival_$valueName");
+		}
+		if (is_array($allowedValues)) {
+			$unknownValues = array_diff($valuesList, $allowedValues);
+			if ($unknownValues) {
+				$this->DieUsage("Unrecognised value" . (count($unknownValues) > 1 ? "s '" : " '") . implode("', '", $unknownValues) . "' for parameter '$valueName'", "unknown_$valueName");
+			}
 		}
 
 		return $allowMultiple ? $valuesList : $valuesList[0];
