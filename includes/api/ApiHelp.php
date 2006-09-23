@@ -31,9 +31,6 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiHelp extends ApiBase {
 
-	/**
-	* Constructor
-	*/
 	public function __construct($main, $action) {
 		parent :: __construct($main);
 	}
@@ -43,6 +40,10 @@ class ApiHelp extends ApiBase {
 	 */
 	public function Execute() {
 		$this->DieUsage('', 'help');
+	}
+	
+	protected function GetDescription() {
+		return array('Display this help screen.');
 	}
 }
 ?>

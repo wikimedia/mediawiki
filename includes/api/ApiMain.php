@@ -33,11 +33,11 @@ if (!defined('MEDIAWIKI')) {
 * @desc This exception will be thrown when DieUsage is called to stop module execution.
 */
 class UsageException extends Exception {
-    var $codestr;
-    
+	var $codestr;
+
 	public function __construct($message, $codestr) {
 		parent :: __construct($message);
-        $this->codestr = $codestr;
+		$this->codestr = $codestr;
 	}
 	public function __toString() {
 		return "{$this->codestr}: {$this->message}";
@@ -119,7 +119,11 @@ class ApiMain extends ApiBase {
 	}
 
 	protected function GetDescription() {
-		return "This API allows programs to access various functions of MediaWiki software.";
+		return array (
+			'',
+			'This API allows programs to access various functions of MediaWiki software.',
+			''
+		);
 	}
 
 	public function MainDieUsage($description, $errorCode, $httpRespCode = 0) {
@@ -139,26 +143,31 @@ class ApiMain extends ApiBase {
 	 * Override the parent to generate help messages for all available modules.
 	 */
 	public function MakeHelpMsg() {
-		
+
 		// Use parent to make default message for the main module
 		$msg = parent :: MakeHelpMsg();
-		
-		$msg .= "\n\n*Modules*\n";
+
+		$astriks = str_repeat('*** ', 10);
+		$msg .= "\n\n$astriks  Modules  $astriks\n\n";
 		foreach ($this->mModules as $moduleName => $moduleClass) {
+			$msg .= "* action=$moduleName *";
 			$module = new $this->mModules[$moduleName] ($this, $moduleName);
 			$msg2 = $module->MakeHelpMsg();
 			if ($msg2 !== false)
-				$msg .= $msg2 . "\n";
+				$msg .= $msg2;
+			$msg .= "\n";
 		}
 
-		$msg .= "\n*Formats*\n";
+		$msg .= "\n$astriks  Formats  $astriks\n\n";
 		foreach ($this->mFormats as $moduleName => $moduleClass) {
+			$msg .= "* format=$moduleName *";
 			$module = new $this->mFormats[$moduleName] ($this, $moduleName);
 			$msg2 = $module->MakeHelpMsg();
 			if ($msg2 !== false)
-				$msg .= $msg2 . "\n";
+				$msg .= $msg2;
+			$msg .= "\n";
 		}
-		
+
 		return $msg;
 	}
 }

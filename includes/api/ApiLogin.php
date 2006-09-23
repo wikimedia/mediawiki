@@ -31,9 +31,6 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiLogin extends ApiBase {
 
-	/**
-	* Constructor
-	*/
 	public function __construct($main, $action) {
 		parent :: __construct($main);
 	}
@@ -86,9 +83,6 @@ class ApiLogin extends ApiBase {
 		$this->GetResult()->AddMessage('login', null, $result);
 	}
 
-	/**
-	 * Returns an array of allowed parameters (keys) => default value for that parameter
-	 */
 	protected function GetAllowedParams() {
 		return array (
 			'lgname' => '',
@@ -97,24 +91,16 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
-	/**
-	 * Returns the description string for the given parameter.
-	 */
 	protected function GetParamDescription() {
 		return array (
 			'lgname' => 'User Name',
 			'lgpassword' => 'Password',
-			'lgdomain' => 'Domain (optional)',
-			
+			'lgdomain' => 'Domain (optional)'			
 		);
 	}
 
-	/**
-	 * Returns the description string for this module
-	 */
 	protected function GetDescription() {
-		return array("*Login Module*",
-			"This module is used to login and get the authentication tokens.");
+		return array('This module is used to login and get the authentication tokens.');
 	}
 }
 ?>
