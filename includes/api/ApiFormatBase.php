@@ -81,12 +81,12 @@ abstract class ApiFormatBase extends ApiBase {
 			<title>MediaWiki API</title>
 		</head>
 		<body>
-			<br/>
 <?php
 
 
 			if (!$isError) {
 ?>
+			<br/>
 			<small>
 			This result is being shown in <?=$this->mFormat?> format,
 			which might not be suitable for your application.<br/>

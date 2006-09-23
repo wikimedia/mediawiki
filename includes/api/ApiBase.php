@@ -25,9 +25,10 @@
  */
 
 // Multi-valued enums, limit the values user can supply for the parameter
-define('GN_ENUM_DFLT', 0);
-define('GN_ENUM_ISMULTI', 1);
-define('GN_ENUM_CHOICES', 2);
+define('GN_ENUM_DFLT', 'dflt');
+define('GN_ENUM_ISMULTI', 'multi');
+define('GN_ENUM_CHOICES', 'choices');
+define('GN_ENUM_TYPE', 'type');
 
 abstract class ApiBase {
 
@@ -76,19 +77,23 @@ abstract class ApiBase {
 	 */
 	public function MakeHelpMsg() {
 
+		static $lnPrfx = "\n  ";
+
 		$msg = $this->GetDescription();
 
 		if ($msg !== false) {
 
-			if (is_array($msg))
-				$msg = implode("\n", $msg);
-			$msg .= "\n";
+			if (!is_array($msg))
+				$msg = array (
+					$msg
+				);
+			$msg = $lnPrfx . implode($lnPrfx, $msg) . "\n";
 
 			// Parameters
 			$params = $this->GetAllowedParams();
 			if ($params !== false) {
 				$paramsDescription = $this->GetParamDescription();
-				$msg .= "Supported Parameters:\n";
+				$msg .= "Parameters:\n";
 				foreach (array_keys($params) as $paramName) {
 					$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
 					$msg .= sprintf("  %-14s - %s\n", $paramName, $desc);
@@ -98,12 +103,12 @@ abstract class ApiBase {
 			// Examples
 			$examples = $this->GetExamples();
 			if ($examples !== false) {
-				if (is_array($examples)) {
-					$msg .= "Examples:\n";
-					$msg .= implode("\n  ", $examples) . "\n";
-				} else {
-					$msg .= "Example:   $examples\n";
-				}
+				if (!is_array($examples))
+					$examples = array (
+						$examples
+					);
+				$msg .= 'Example' . (count($examples) > 1 ? 's' : '') . ":\n  ";
+				$msg .= implode($lnPrfx, $examples) . "\n";
 			}
 		}
 
@@ -167,8 +172,24 @@ abstract class ApiBase {
 					$dflt = isset ($enumParams[GN_ENUM_DFLT]) ? $enumParams[GN_ENUM_DFLT] : null;
 					$multi = isset ($enumParams[GN_ENUM_ISMULTI]) ? $enumParams[GN_ENUM_ISMULTI] : false;
 					$choices = isset ($enumParams[GN_ENUM_CHOICES]) ? $enumParams[GN_ENUM_CHOICES] : null;
+					$type = isset ($enumParams[GN_ENUM_TYPE]) ? $enumParams[GN_ENUM_TYPE] : null;
+
 					$value = $wgRequest->getVal($param, $dflt);
-					$result = $this->ParseMultiValue($param, $value, $multi, $choices);
+
+					// Allow null when default is not set
+					if (isset ($dflt) || isset ($value)) {
+						$result = $this->ParseMultiValue($param, $value, $multi, $choices);
+
+						// When choices are not given, and the default is an integer, make sure all values are integers
+						if (!isset ($choices) && isset ($dflt) && $type === 'integer') {
+							if (is_array($result))
+								$result = array_map('intval', $result);
+							else
+								$result = intval($result);
+						}
+					} else {
+						$result = null;
+					}
 					break;
 				default :
 					$this->DieDebug("In '$param', unprocessed type " . gettype($dflt));
