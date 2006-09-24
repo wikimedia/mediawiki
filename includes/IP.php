@@ -88,8 +88,13 @@ class IP {
 	}
 
 	/**
-	 * Return a zero-padded hexadecimal representation of an IP address
-	 * Comes from ProxyTools.php
+	 * Return a zero-padded hexadecimal representation of an IP address.
+	 *
+	 * Hexadecimal addresses are used because they can easily be extended to
+	 * IPv6 support. To separate the ranges, the return value from this 
+	 * function for an IPv6 address will be prefixed with "v6-", a non-
+	 * hexadecimal string which sorts after the IPv4 addresses.
+	 *
 	 * @param $ip Quad dotted IP address.
 	 */
 	public static function toHex( $ip ) {
@@ -107,13 +112,100 @@ class IP {
 	 * @param $ip Quad dotted IP address.
 	 */
 	public static function toUnsigned( $ip ) {
-		$n = ip2long( $ip );
-		if ( $n == -1 || $n === false ) { # Return value on error depends on PHP version
-			$n = false;
-		} elseif ( $n < 0 ) {
+		if ( $ip == '255.255.255.255' ) {
+			$n = -1;
+		} else {
+			$n = ip2long( $ip );
+			if ( $n == -1 || $n === false ) { # Return value on error depends on PHP version
+				$n = false;
+			}
+		}
+		if ( $n < 0 ) {
 			$n += pow( 2, 32 );
 		}
 		return $n;
+	}
+
+	/**
+	 * Convert a dotted-quad IP to a signed integer
+	 * Returns false on failure
+	 */
+	public static function toSigned( $ip ) {
+		if ( $ip == '255.255.255.255' ) {
+			$n = -1;
+		} else {
+			$n = ip2long( $ip );
+			if ( $n == -1 ) {
+				$n = false;
+			}
+		}
+		return $n;
+	}
+
+	/**
+	 * Convert a network specification in CIDR notation to an integer network and a number of bits
+	 */
+	public static function parseCIDR( $range ) {
+		$parts = explode( '/', $range, 2 );
+		if ( count( $parts ) != 2 ) {
+			return array( false, false );
+		}
+		$network = IP::toSigned( $parts[0] );
+		if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 32 ) {
+			$bits = $parts[1];
+			if ( $bits == 0 ) {
+				$network = 0;
+			} else {
+				$network &= ~((1 << (32 - $bits)) - 1);
+			}
+			# Convert to unsigned
+			if ( $network < 0 ) {
+				$network += pow( 2, 32 );
+			}
+		} else {
+			$network = false;
+			$bits = false;
+		}
+		return array( $network, $bits );
+	}
+
+	/**
+	 * Given a string range in a number of formats, return the start and end of 
+	 * the range in hexadecimal.
+	 *
+	 * Formats are:
+	 *     1.2.3.4/24          CIDR
+	 *     1.2.3.4 - 1.2.3.5   Explicit range
+	 *     1.2.3.4             Single IP
+	 */
+	public static function parseRange( $range ) {
+		if ( strpos( $range, '/' ) !== false ) {
+			# CIDR
+			list( $network, $bits ) = IP::parseCIDR( $range );
+			if ( $network === false ) {
+				$start = $end = false;
+			} else {
+				$start = sprintf( '%08X', $network );
+				$end = sprintf( '%08X', $network + pow( 2, (32 - $bits) ) - 1 );
+			}
+		} elseif ( strpos( $range, '-' ) !== false ) {
+			# Explicit range
+			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
+			if ( $start > $end ) {
+				$start = $end = false;
+			} else {
+				$start = IP::toHex( $start );
+				$end = IP::toHex( $end );
+			}
+		} else {
+			# Single IP
+			$start = $end = IP::toHex( $range );
+		}
+		if ( $start === false || $end === false ) {
+			return array( false, false );
+		} else {				
+			return array( $start, $end );
+		}
 	}
 }
 ?>
