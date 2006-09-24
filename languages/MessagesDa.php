@@ -404,7 +404,7 @@ Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at be
 
 # Edit pages
 #
-"summary"		=> '<a href="{{SERVER}}/wiki/{{ns:4}}:Beskrivelse" title="Giv venligst en kort beskrivelse af din ændring">Beskrivelse</a>',
+'summary'		=> '<a href="{{fullurl:{{ns:4}}}}:Beskrivelse" title="Giv venligst en kort beskrivelse af din ændring">Beskrivelse</a>',
 "subject"		=> "Emne/overskrift",
 "minoredit"		=> "Dette er en mindre ændring.",
 "watchthis"		=> "Overvåg denne artikel",
