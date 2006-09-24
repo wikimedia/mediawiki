@@ -101,18 +101,18 @@ function wfRunHooks($event, $args = null) {
 			$hook_args = $args;
 		}
 
-
 		if ( isset( $object ) ) {
 			$func = get_class( $object ) . '::' . $method;
+			$callback = array( $object, $method );
+		} elseif ( false !== ( $pos = strpos( '::', $func ) ) ) {
+			$callback = array( substr( $func, 0, $pos ), substr( $func, $pos + 2 ) );
+		} else {
+			$callback = $func;
 		}
 
 		/* Call the hook. */
 		wfProfileIn( $func );
-		if( isset( $object ) ) {
-			$retval = call_user_func_array(array($object, $method), $hook_args);
-		} else {
-			$retval = call_user_func_array($func, $hook_args);
-		}
+		$retval = call_user_func_array( $callback, $hook_args );
 		wfProfileOut( $func );
 
 		/* String return is an error; false return means stop processing. */
