@@ -384,10 +384,10 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "createaccountmail" => "melalui surat-e",
 "badretype" => "Kata sandi yang Anda masukkan salah.",
 "userexists" => "Nama pengguna yang Anda masukkan telah dipakai. Silakan pilih nama yang lain.",
-"youremail" => "Surat elektronik *",
+"youremail" => "Surat elektronik *:",
 'username'		=> 'Nama pengguna:',
 'uid'			=> 'ID pengguna:',
-"yourrealname" => "Nama asli *",
+"yourrealname" => "Nama asli *:",
 'yourlanguage'  => 'Bahasa antarmuka:',
 'yourvariant'  => 'Varian bahasa',
 "yournick" => "Nama samaran (untuk tanda tangan):",
@@ -839,8 +839,8 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 
 # Unused templates
 'unusedtemplates' => 'Templat yang tak digunakan',
-'unusedtemplatestext' => 'Daftar berikut adalah halaman pada ruang nama templat yang tidak dipakai di halaman manapun. Cek dahulu pranala ke templat tersebut sebelum menghapusnya.',
-'unusedtemplateswlh' => 'pranala ke halaman ini',
+'unusedtemplatestext' => 'Daftar berikut adalah halaman pada ruang nama templat yang tidak dipakai di halaman manapun. Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
+'unusedtemplateswlh' => 'pranala lain',
 
 # Random redirect
 'randomredirect' => 'Pengalihan sembarang',
@@ -881,6 +881,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'nviews'      => '$1 penampilan',  # no need for plural
 
 "lonelypages" => "Halaman tak bertuan",
+'lonelypagestext'	=> 'Halaman-halaman berikut tidak memiliki pranala dari halaman manapun di wiki ini.',
 'uncategorizedpages' => 'Halaman yang tak terkategori',
 'uncategorizedcategories' => 'Kategori yang tak terkategori',
 'uncategorizedimages' => 'Berkas yang tak terkategori',
@@ -901,6 +902,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "shortpages" => "Halaman pendek",
 "longpages" => "Halaman panjang",
 "deadendpages" => "Halaman buntu",
+'deadendpagestext'	=> 'Halaman-halaman berikut tidak memiliki pranala ke halaman manapun di wiki ini.',
 "listusers" => "Daftar pengguna",
 "specialpages" => "Halaman istimewa",
 "spheading" => "Halaman istimewa untuk semua pengguna",
@@ -1282,7 +1284,7 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 'delete_and_move_confirm' => 'Ya, hapus halaman tersebut',
 'delete_and_move_reason' => 'Dihapus untuk mengantisipasikan pemindahan halaman',
 'selfmove' => "Pemindahan halaman tidak dapat dilakukan karena judul sumber dan judul tujuan sama.",
-'immobile_namespace' => "Judul tujuan termasuk tipe khusus; tidak dapat memindahkan halaman ke ruang nama tersebut.",
+'immobile_namespace' => "Judul sumber atau tujuan termasuk tipe khusus; tidak dapat memindahkan halaman ke ruang nama tersebut.",
 
 # Export
 
@@ -1505,6 +1507,11 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'variantname-sr-jc' => 'sr-jc',
 'variantname-sr-jl' => 'sr-jl',
 'variantname-sr' => 'sr',
+# variants for Kazakh language
+'variantname-kk-tr' => 'kk-tr',
+'variantname-kk-kz' => 'kk-kz',
+'variantname-kk-cn' => 'kk-cn',
+'variantname-kk' => 'kk',
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Pengguna:',
