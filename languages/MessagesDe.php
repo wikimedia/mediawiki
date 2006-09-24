@@ -1006,8 +1006,8 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 "watchlist"		=> "Beobachtungsliste",
 'watchlistfor'		=> '(für \'\'\'$1\'\'\')',
 "nowatchlist"	=> "Sie haben keine Einträge auf Ihrer Beobachtungsliste.",
-'watchlistanontext'	=> 'Sie müssen sich $1, damit Sie Einträge in Ihrer Beobachtungsliste ansehen oder bearbeiten können.',	// $1 -> 'loginreqlink'
-'watchlistcount'	=> "'''Sie haben $1 Einträge auf Ihrer Beobachtungsliste einschließlich Diskussionsseiten.'''",
+'watchlistanontext'	=> 'Sie müssen sich $1, um Ihre Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',	// $1 -> 'loginreqlink'
+'watchlistcount'	=> '\'\'\'Sie haben $1 Einträge auf Ihrer Beobachtungsliste (inkl. Diskussionsseiten).\'\'\'',
 'clearwatchlist'	=> 'Beobachtungsliste löschen',
 'watchlistcleartext'	=> 'Sind Sie sicher, dass Sie diese vollständig löschen wollen?',
 'watchlistclearbutton'	=> 'Beobachtungsliste löschen',
@@ -1017,35 +1017,34 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 sein, um Ihre Beobachtungsliste zu bearbeiten.',
 "addedwatch"	=> "Zur Beobachtungsliste hinzugefügt",
 'addedwatchtext'	=> 'Die Seite „$1“ wurde zu Ihrer [[{{ns:special}}:Watchlist|Beobachtungsliste]] hinzugefügt.
-Spätere Änderungen an dieser Seite und der zugehörigen Diskussions werden dort gelistet und die Seite wird
-in der Liste der [[{{ns:special}}:Recentchanges|letzten Änderungen]] \'\'\'fett\'\'\' angezeigt. 
 
-Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen wollen, klicken Sie auf „nicht mehr beobachten“.',
+Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
+in der Übersicht der [[{{ns:special}}:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt. 
+
+Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicken Sie auf der jeweiligen Seite auf „nicht mehr beobachten“.',
 "removedwatch"	=> "Von der Beobachtungsliste entfernt",
 'removedwatchtext'	=> 'Die Seite „$1“ wurde von Ihrer Beobachtungsliste entfernt.',
 "watchthispage"	=> "Seite beobachten",
 "unwatchthispage" => "Nicht mehr beobachten",
 "notanarticle"	=> "Keine Seite",
-"watchnochange" => "Keine Ihrer beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.",
-"watchdetails" => "* Sie beobachten zur Zeit insgesamt $1 Seiten (Diskussionsseiten wurden hier nicht mitgezählt).
-* [[{{ns:special}}:Watchlist/edit|Gesamte Beobachtungsliste]] anzeigen und bearbeiten.",
-'wlheader-enotif' 		=> "* E-Mail-Benachrichtigungsdienst ist eingeschaltet.",
-'wlheader-showupdated'   => "* Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.",
+'watchnochange'		=> 'Keine der von Ihnen beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
+'watchdetails' => 'Sie beobachten $1 Seiten | [[{{ns:special}}:Watchlist/edit|Komplette Liste zeigen und bearbeiten]] | [[{{ns:special}}:Watchlist/clear|Komplette Liste leeren]]',
+'wlheader-enotif'	=> 'Der E-Mail-Benachrichtigungsdienst ist aktiviert.<br />',
+'wlheader-showupdated'	=> 'Seiten mit noch nicht gesehenen Änderungen werden \'\'\'fett\'\'\' dargestellt.<br />',
 "watchmethod-recent" => "Überprüfen der letzten Bearbeitungen für die Beobachtungsliste",
 "watchmethod-list" => "Überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
 "removechecked" => "Markierte Einträge löschen",
 "watchlistcontains" => "Ihre Beobachtungsliste enthält $1 Seiten.",
-"watcheditlist" => "Alphabetische Liste der von Ihnen beobachteten Seiten.<br />
-Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu löschen.",
-"removingchecked" => "Wunschgemäß werden die Einträge aus der Beobachtungsliste entfernt...",
-"couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",
+'watcheditlist'		=> 'Dies ist eine alphabetische und nach Namensräumen gruppierte Liste aller von Ihnen beobachteten Seiten. Wenn Sie Einträge von der Beobachtungsliste wieder entfernen möchten, markieren Sie diese und klicken auf die Schaltfläche „Markierte Einträge löschen“ am Ende dieser Seite.',
+'removingchecked'	=> 'Die ausgewählten Einträge werden aus der Beobachtungsliste entfernt...',
+'couldntremove'		=> 'Der Eintrag „$1“ kann nicht gelöscht werden...',
 'iteminvalidname'	=> 'Problem mit dem Eintrag „$1“, ungültiger Name.',
 'wlnote' => 'Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.',
 'wlshowlast' => 'Zeige die letzen: $1 Stunden - $2 Tage - $3',
 'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
 'wlhideshowown'		=> '$1 meine Änderungen',
 'wlhideshowbots'	=> '$1 von Bot-Änderungen.',
-'wldone'		=> 'Erfolgreich ausgeführt.',
+'wldone'		=> '...erledigt.',
 
 'updatedmarker'			=> '(geändert)',
 'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
