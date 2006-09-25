@@ -474,10 +474,10 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'createaccountmail'     => 'por email',
 'badretype'             => 'As palavras-chaves que introduziu não são iguais.',
 'userexists'    => 'O nome de utilizador que introduziu já existe. Por favor, escolha um nome diferente.',
-'youremail'             => 'Endereço de email *',
+'youremail'             => 'Endereço de email *:',
 'username'              => 'Nome de utilizador:',
 'uid'                   => 'Número de identificação:',
-'yourrealname'          => 'Nome verdadeiro *',
+'yourrealname'          => 'Nome verdadeiro *:',
 'yourlanguage'  => 'Idioma:',
 'yourvariant'  => 'Variante',
 'yournick'              => 'Alcunha:',
@@ -696,6 +696,9 @@ Tente [[Especial:Search|pesquisar na wiki]] por novas páginas relevantes.',
 # Revision deletion
 #
 'revisiondelete' => 'Eliminar/restaurar revisões',
+'revdelete-nooldid-title' => 'Nenhuma revisão seleccionada',
+'revdelete-nooldid-text' => 'Não especificou nenhuma revisão, ou revisões,
+no qual aplicar esta função.',
 'revdelete-selected' => 'Revisão seleccionada para [[:$1]]:',
 'revdelete-text' => "Revisões eliminadas continuarão a aparecer na história da página,
 mas o seu conteúdo textual estará inacessível ao público.
@@ -1023,6 +1026,7 @@ Destes, '''$2''' (ou '''$4%''') são $5.",
 'nviews'		=> '$1 {{PLURAL:$1|visita|visitas}}',
 
 'lonelypages'   => 'Páginas órfãs',
+'lonelypagestext'    => 'As seguintes páginas não têm hiperligações a apontar para elas a partir de outras páginas nesta wiki.',
 'uncategorizedpages'    => 'Páginas não categorizadas',
 'uncategorizedcategories'       => 'Categorias não categorizadas',
 'uncategorizedimages' => 'Imagens não categorizadas',
@@ -1042,6 +1046,7 @@ Destes, '''$2''' (ou '''$4%''') são $5.",
 'shortpages'    => 'Páginas curtas',
 'longpages'             => 'Páginas longas',
 'deadendpages'  => 'Páginas sem saída',
+'deadendpagestext'    => 'As seguintes páginas não contêm hiperligações para outras páginas nesta wiki.',
 'listusers'             => 'Lista de utilizadores',
 'specialpages'  => 'Páginas especiais',
 'spheading'             => 'Páginas especiais para todos os utilizadores',
@@ -1165,7 +1170,7 @@ Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desint
 'enotif_lastvisited' => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
 'enotif_body' => 'Caro $WATCHINGUSERNAME,
 
-a página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR, consulte $PAGETITLE_URL para a versão actual.
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR, consulte $PAGETITLE_URL para a versão actual.
 
 $NEWPAGE
 
@@ -1175,7 +1180,7 @@ Contacte o editor:
 email: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Não haverão mais notificações no caso de futuras alterações a não ser que visite esta página. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de artigos vigiados.
+Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de artigos vigiados.
 
              O seu sistema de notificação amigável da {{SITENAME}}
 
@@ -1744,18 +1749,18 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'exif-subsectimeoriginal' =>'DateTimeOriginal subseconds',
 'exif-subsectimedigitized' =>'DateTimeDigitized subseconds',
 'exif-exposuretime' =>'Tempo de exposição',
-'exif-exposuretime-format' => '$1 sec ($2)',
+'exif-exposuretime-format' => '$1 seg ($2)',
 'exif-fnumber' =>'Número F',
 'exif-fnumber-format' =>'f/$1',
 'exif-exposureprogram' =>'Programa de exposição',
 'exif-spectralsensitivity' =>'Spectral sensitivity',
 'exif-isospeedratings' =>'Taxa de velocidade ISO',
-'exif-oecf' =>'Optoelectronic conversion factor',
-'exif-shutterspeedvalue' =>'Shutter speed',
-'exif-aperturevalue' =>'Aperture',
-'exif-brightnessvalue' =>'Brightness',
-'exif-exposurebiasvalue' =>'Exposure bias',
-'exif-maxaperturevalue' =>'Maximum land aperture',
+'exif-oecf' =>'Factor optoelectrónico de conversão.',
+'exif-shutterspeedvalue' =>'Velocidade do obturador',
+'exif-aperturevalue' =>'Abertura',
+'exif-brightnessvalue' =>'Brilho',
+'exif-exposurebiasvalue' =>'Polarização de exposição',
+'exif-maxaperturevalue' =>'Abertura máxima',
 'exif-subjectdistance' =>'Distância do sujeito',
 'exif-meteringmode' =>'Metering mode',
 'exif-lightsource' =>'Fonte de luz',
@@ -1768,31 +1773,31 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'exif-focalplanexresolution' =>'Focal plane X resolution',
 'exif-focalplaneyresolution' =>'Focal plane Y resolution',
 'exif-focalplaneresolutionunit' =>'Focal plane resolution unit',
-'exif-subjectlocation' =>'Subject location',
-'exif-exposureindex' =>'Exposure index',
-'exif-sensingmethod' =>'Sensing method',
+'exif-subjectlocation' =>'Localização de sujeito',
+'exif-exposureindex' =>'Índice de exposição',
+'exif-sensingmethod' =>'Método de sensação',
 'exif-filesource' =>'Fonte do ficheiro',
-'exif-scenetype' =>'Scene type',
+'exif-scenetype' =>'Tipo de cena',
 'exif-cfapattern' =>'CFA pattern',
 'exif-customrendered' =>'Custom image processing',
 'exif-exposuremode' =>'Modo de exposição',
 'exif-whitebalance' =>'White Balance',
 'exif-digitalzoomratio' =>'Digital zoom ratio',
 'exif-focallengthin35mmfilm' =>'Focal length in 35 mm film',
-'exif-scenecapturetype' =>'Scene capture type',
-'exif-gaincontrol' =>'Scene control',
-'exif-contrast' =>'Contrast',
-'exif-saturation' =>'Saturation',
+'exif-scenecapturetype' =>'Tipo de captura de cena',
+'exif-gaincontrol' =>'Controlo de cena',
+'exif-contrast' =>'Contraste',
+'exif-saturation' =>'Saturação',
 'exif-sharpness' =>'Sharpness',
 'exif-devicesettingdescription' =>'Descrição das configurações do dispositivo',
 'exif-subjectdistancerange' =>'Distância de alcance do sujeito',
-'exif-imageuniqueid' =>'Unique image ID',
-'exif-gpsversionid' =>'GPS tag version',
-'exif-gpslatituderef' =>'North or South Latitude',
+'exif-imageuniqueid' =>'Identificação única da imagem',
+'exif-gpsversionid' =>'Versão de GPS',
+'exif-gpslatituderef' =>'Latitude Norte ou Sul',
 'exif-gpslatitude' =>'Latitude',
-'exif-gpslongituderef' =>'East or West Longitude',
+'exif-gpslongituderef' =>'Longitude Leste ou Oeste',
 'exif-gpslongitude' =>'Longitude',
-'exif-gpsaltituderef' =>'Altitude reference',
+'exif-gpsaltituderef' =>'Referência de altitude',
 'exif-gpsaltitude' =>'Altitude',
 'exif-gpstimestamp' =>'Tempo GPS (relógio atómico)',
 'exif-gpssatellites' =>'Satélites utilizados para a medição',
@@ -1917,7 +1922,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'confirmemail_subject' => '{{SITENAME}} confirmação de endereço de e-mail',
 'confirmemail_body' => "Alguém, provavelmente você com o endereço de IP $1, registou uma conta \"$2\" com este endereço de e-mail na {{SITENAME}}.
 
-Para confirmar que esta conta realmente é sua e para activar
+Para confirmar que esta conta realmente é sua, e para activar
 as funcionalidades de e-mail na {{SITENAME}}, abra o seguinte endereço no seu navegador:
 
 $3
