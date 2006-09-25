@@ -38,6 +38,10 @@ class ApiFormatXml extends ApiFormatBase {
 	public function GetMimeType() {
 		return 'text/xml';
 	}
+	
+	public function GetNeedsRawData() {
+		return true;
+	}
 
 	public function Execute() {
 		$xmlindent = null;

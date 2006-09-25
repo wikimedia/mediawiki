@@ -49,14 +49,7 @@ class ApiResult extends ApiBase {
 		return $this->mData;
 	}
 
-	/*	function addPage($title)
-		{
-			if (!isset($this->mPages))
-				$this->mPages &= $this->mData['pages'];
-		}
-	*/
-	
-	function AddMessage($mainSection, $subSection, $value, $preserveXmlSpacing = false) {
+	function AddMessage($mainSection, $subSection, $value, $multiitem = false, $preserveXmlSpacing = false) {
 		if (!array_key_exists($mainSection, $this->mData)) {
 			$this->mData[$mainSection] = array ();
 		}
@@ -68,19 +61,24 @@ class ApiResult extends ApiBase {
 		} else {
 			$element = & $this->mData[$mainSection];
 		}
-		if (is_array($value)) {
-			$element = array_merge($element, $value);
-			if (!array_key_exists('*', $element)) {
-				$element['*'] = '';
-			}
+		if( $multiitem ) {
+			$element['_element'] = $multiitem;
+			$element[] = $value;
 		} else {
-			if (array_key_exists('*', $element)) {
-				$element['*'] .= $value;
+			if (is_array($value)) {
+				$element = array_merge($element, $value);
+				if (!array_key_exists('*', $element)) {
+					$element['*'] = '';
+				}
 			} else {
-				$element['*'] = $value;
-			}
-			if ($preserveXmlSpacing) {
-				$element['xml:space'] = 'preserve';
+				if (array_key_exists('*', $element)) {
+					$element['*'] .= $value;
+				} else {
+					$element['*'] = $value;
+				}
+				if ($preserveXmlSpacing) {
+					$element['xml:space'] = 'preserve';
+				}
 			}
 		}
 	}

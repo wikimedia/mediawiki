@@ -114,6 +114,8 @@ class ApiMain extends ApiBase {
 	 */
 	private function PrintResult($isError) {
 		$this->mPrinter->InitPrinter($isError);
+		if (!$this->mPrinter->GetNeedsRawData())
+			$this->GetResult()->SanitizeData();
 		$this->mPrinter->Execute();
 		$this->mPrinter->ClosePrinter();
 	}
@@ -148,7 +150,7 @@ class ApiMain extends ApiBase {
 		$msg = parent :: MakeHelpMsg();
 
 		$astriks = str_repeat('*** ', 10);
-		$msg .= "\n\n$astriks  Modules  $astriks\n\n";
+		$msg .= "\n\n$astriks Modules  $astriks\n\n";
 		foreach ($this->mModules as $moduleName => $moduleClass) {
 			$msg .= "* action=$moduleName *";
 			$module = new $this->mModules[$moduleName] ($this, $moduleName);
@@ -158,7 +160,7 @@ class ApiMain extends ApiBase {
 			$msg .= "\n";
 		}
 
-		$msg .= "\n$astriks  Formats  $astriks\n\n";
+		$msg .= "\n$astriks Formats  $astriks\n\n";
 		foreach ($this->mFormats as $moduleName => $moduleClass) {
 			$msg .= "* format=$moduleName *";
 			$module = new $this->mFormats[$moduleName] ($this, $moduleName);

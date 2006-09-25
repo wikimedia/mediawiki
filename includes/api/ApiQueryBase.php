@@ -33,16 +33,28 @@ abstract class ApiQueryBase extends ApiBase {
 
 	private $mQueryModule;
 	
-	/**
-	* Constructor
-	*/
 	public function __construct($main, $query) {
 		parent :: __construct($main);
 		$this->mQueryModule = $query;
 	}
 	
+	/**
+	 * Get the name of the query being executed by this instance 
+	 */
 	public function GetQuery() {
 		return $this->mQueryModule;
+	}
+	
+	/**
+	 * Derived classes return true when they can be used as title generators for other query modules.
+	 */
+	protected static abstract function GetCanGenerate();
+	
+	/**
+	 * Return true if this instance is being used as a generator.
+	 */
+	protected function GetIsGenerator() {
+		return false;
 	}
 }
 ?>

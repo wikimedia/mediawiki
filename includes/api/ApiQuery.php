@@ -34,32 +34,38 @@ class ApiQuery extends ApiBase {
 	var $mMetaModuleNames, $mPropModuleNames, $mListModuleNames;
 
 	private $mQueryMetaModules = array (
-//		'siteinfo' => 'ApiQuerySiteinfo',
-//		'userinfo' => 'ApiQueryUserinfo'
+		'siteinfo' => 'ApiQuerySiteinfo',
+			//'userinfo' => 'ApiQueryUserinfo'	
+
+	
 	);
+
 	private $mQueryPropModules = array (
-//		'info' => 'ApiQueryInfo',
-//		'categories' => 'ApiQueryCategories',
-//		'imageinfo' => 'ApiQueryImageinfo',
-//		'langlinks' => 'ApiQueryLanglinks',
-//		'links' => 'ApiQueryLinks',
-//		'templates' => 'ApiQueryTemplates',
-//		'revisions' => 'ApiQueryRevisions',
+			//		'info' => 'ApiQueryInfo',
+		//		'categories' => 'ApiQueryCategories',
+		//		'imageinfo' => 'ApiQueryImageinfo',
+		//		'langlinks' => 'ApiQueryLanglinks',
+		//		'links' => 'ApiQueryLinks',
+		//		'templates' => 'ApiQueryTemplates',
+		//		'revisions' => 'ApiQueryRevisions',
 
 		// Should be removed
-		'content' => 'ApiQueryContent'
+	'content' => 'ApiQueryContent'
 	);
+
 	private $mQueryListModules = array (
-//		'allpages' => 'ApiQueryAllpages',
-//		'backlinks' => 'ApiQueryBacklinks',
-//		'categorymembers' => 'ApiQueryCategorymembers',
-//		'embeddedin' => 'ApiQueryEmbeddedin',
-//		'imagelinks' => 'ApiQueryImagelinks',
-//		'logevents' => 'ApiQueryLogevents',
-//		'recentchanges' => 'ApiQueryRecentchanges',
-//		'usercontribs' => 'ApiQueryUsercontribs',
-//		'users' => 'ApiQueryUsers',
-//		'watchlist' => 'ApiQueryWatchlist',
+		'allpages' => 'ApiQueryAllpages',
+			//		'backlinks' => 'ApiQueryBacklinks',
+		//		'categorymembers' => 'ApiQueryCategorymembers',
+		//		'embeddedin' => 'ApiQueryEmbeddedin',
+		//		'imagelinks' => 'ApiQueryImagelinks',
+		//		'logevents' => 'ApiQueryLogevents',
+		//		'recentchanges' => 'ApiQueryRecentchanges',
+		//		'usercontribs' => 'ApiQueryUsercontribs',
+		//		'users' => 'ApiQueryUsers',
+		//		'watchlist' => 'ApiQueryWatchlist'
+
+	
 	);
 
 	private $mSlaveDB = null;
@@ -69,8 +75,8 @@ class ApiQuery extends ApiBase {
 		$this->mMetaModuleNames = array_keys($this->mQueryMetaModules);
 		$this->mPropModuleNames = array_keys($this->mQueryPropModules);
 		$this->mListModuleNames = array_keys($this->mQueryListModules);
-		
-		$this->mAllowedGenerators = array_merge( $this->mListModuleNames, $this->mPropModuleNames);
+
+		$this->mAllowedGenerators = array_merge($this->mListModuleNames, $this->mPropModuleNames);
 	}
 
 	public function GetDB() {
@@ -88,44 +94,73 @@ class ApiQuery extends ApiBase {
 		// Only one of the titles/pageids/revids is allowed at the same time
 		//
 		$dataSource = null;
-		if (isset($titles))
+		if (isset ($titles))
 			$dataSource = 'titles';
-		if (isset($pageids)) {
-			if (isset($dataSource))
+		if (isset ($pageids)) {
+			if (isset ($dataSource))
 				$this->DieUsage("Cannot use 'pageids' at the same time as '$dataSource'", 'multisource');
 			$dataSource = 'pageids';
 		}
-		if (isset($revids)) {
-			if (isset($dataSource))
+		if (isset ($revids)) {
+			if (isset ($dataSource))
 				$this->DieUsage("Cannot use 'revids' at the same time as '$dataSource'", 'multisource');
 			$dataSource = 'revids';
 		}
-		
-		//
+
+		if (isset($dataSource) && $dataSource !== 'titles')
+			$this->DieUsage('Currently only titles= parameter is supported.', 'notimplemented');
+
 		// Normalize titles
-		//
-		if ($dataSource === 'titles') {
-			$linkBatch = new LinkBatch;
-			foreach ( $titles as &$titleString ) {
-				$titleObj = &Title::newFromText( $titleString );
+		$linkBatch = $this->ProcessTitles($titles);
 
-				// Validation
-				if (!$titleObj)
-					$this->dieUsage( "bad title $titleString", 'pi_invalidtitle' );
-				if ($titleObj->getNamespace() < 0)
-					$this->dieUsage( "No support for special page $titleString has been implemented", 'pi_unsupportednamespace' );
-				if (!$titleObj->userCanRead())
-					$this->dieUsage( "No read permission for $titleString", 'pi_titleaccessdenied' );
+		// Get titles info from DB
+		$data = new ApiPageSet($this->GetDB(), $redirects);
+		$data->PopulateTitles($linkBatch);
 
-                $linkBatch->addObj( $titleObj );
-
-				// Make sure we remember the original title that was given to us
-				// This way the caller can correlate new titles with the originally requested, i.e. namespace is localized or capitalization
-				if( $titleString !== $titleObj->getPrefixedText() ) {
-					$this->GetResult()->AddMessage('query', 'normalized', array($titleString => $titleObj->getPrefixedText()));
-				}
+		// Show redirects information
+		if ($redirects) {
+			foreach ($data->GetRedirectTitles() as $titleStrFrom => $titleStrTo) {
+				$this->GetResult()->AddMessage('query', 'redirects', array (
+					'from' => $titleStrFrom,
+					'to' => $titleStrTo
+				), 'r');
 			}
 		}
+	}
+
+	/**
+	 * Given an array of title strings, convert them into Title objects.
+	 * This method validates access rights for the title, 
+	 * and appends normalization values to the output.
+	 * @return LinkBatch of title objects.
+	 */
+	protected function ProcessTitles($titles) {
+
+		$linkBatch = new LinkBatch();
+
+		foreach ($titles as $titleString) {
+			$titleObj = Title :: newFromText($titleString);
+
+			// Validation
+			if (!$titleObj)
+				$this->dieUsage("bad title $titleString", 'invalidtitle');
+			if ($titleObj->getNamespace() < 0)
+				$this->dieUsage("No support for special page $titleString has been implemented", 'unsupportednamespace');
+			if (!$titleObj->userCanRead())
+				$this->dieUsage("No read permission for $titleString", 'titleaccessdenied');
+
+			$linkBatch->addObj($titleObj);
+
+			// Make sure we remember the original title that was given to us
+			// This way the caller can correlate new titles with the originally requested, i.e. namespace is localized or capitalization
+			if ($titleString !== $titleObj->getPrefixedText()) {
+				$this->GetResult()->AddMessage('query', 'normalized', array (
+					'from' => $titleString,
+				'to' => $titleObj->getPrefixedText()), 'n');
+			}
+		}
+
+		return $linkBatch;
 	}
 
 	protected function GetAllowedParams() {
@@ -155,7 +190,8 @@ class ApiQuery extends ApiBase {
 			'revids' => array (
 				GN_ENUM_TYPE => 'integer',
 				GN_ENUM_ISMULTI => true
-			)
+			),
+			'redirects' => false
 		);
 	}
 
@@ -172,10 +208,11 @@ class ApiQuery extends ApiBase {
 	}
 
 	protected function GetDescription() {
-		return array(
-				'Query API module allows applications to get needed pieces of data from the MediaWiki databases,',
-				'and is loosely based on the Query API interface currently available on all MediaWiki servers.',
-				'All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.');
+		return array (
+			'Query API module allows applications to get needed pieces of data from the MediaWiki databases,',
+			'and is loosely based on the Query API interface currently available on all MediaWiki servers.',
+			'All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.'
+		);
 	}
 
 	protected function GetExamples() {
