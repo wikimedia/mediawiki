@@ -111,6 +111,7 @@ class ListUsersPage extends QueryPage {
 	}
 
 	function getSQL() {
+		global $wgDBtype;
 		$dbr =& wfGetDB( DB_SLAVE );
 		$user = $dbr->tableName( 'user' );
 		$user_groups = $dbr->tableName( 'user_groups' );
@@ -133,7 +134,9 @@ class ListUsersPage extends QueryPage {
 			"LEFT JOIN $user_groups ON user_id=ug_user " .
 			$this->userQueryWhere( $dbr ) .
 			" GROUP BY user_name";
-
+		if ( $wgDBtype != 'mysql' ) {
+			$sql .= ",user_id";
+		}
 		return $sql;
 	}
 
