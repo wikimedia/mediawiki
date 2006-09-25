@@ -423,10 +423,12 @@ class Language {
 	 * internationalisation, a reduced set of format characters, and a better 
 	 * escaping format.
 	 *
-	 * Supported format characters are dDjlFmMnYyHis. See the PHP manual for 
-	 * definitions. There are a number of extensions, which start with "x":
+	 * Supported format characters are dDjlNwzWFmMntLYyaAgGhHiscrU. See the 
+	 * PHP manual for definitions. There are a number of extensions, which 
+	 * start with "x":
 	 *
 	 *    xn   Do not translate digits of the next numeric format character
+	 *    xN   Toggle raw digit (xn) flag, stays set until explicitly unset
 	 *    xr   Use roman numerals for the next numeric format character
 	 *    xx   Literal x
 	 *    xg   Genitive month name
@@ -449,6 +451,8 @@ class Language {
 		$s = '';
 		$raw = false;
 		$roman = false;
+		$unix = false;
+		$rawToggle = false;
 		for ( $p = 0; $p < strlen( $format ); $p++ ) {
 			$num = false;
 			$code = $format[$p];
@@ -463,6 +467,9 @@ class Language {
 				case 'xn':
 					$raw = true;
 					break;
+				case 'xN':
+					$rawToggle = !$rawToggle;
+					break;
 				case 'xr':
 					$roman = true;
 					break;
@@ -473,14 +480,33 @@ class Language {
 					$num = substr( $ts, 6, 2 );
 					break;
 				case 'D':
-					$s .= $this->getWeekdayAbbreviation( self::calculateWeekday( $ts ) );
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$s .= $this->getWeekdayAbbreviation( date( 'w', $unix ) + 1 );
 					break;
 				case 'j':
 					$num = intval( substr( $ts, 6, 2 ) );
 					break;
 				case 'l':
-					$s .= $this->getWeekdayName( self::calculateWeekday( $ts ) );
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$s .= $this->getWeekdayName( date( 'w', $unix ) + 1 );
 					break;
+				case 'N':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$w = date( 'w', $unix );
+					$num = $w ? $w : 7;
+					break;
+				case 'w':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$num = date( 'w', $unix );
+					break;
+				case 'z':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$num = date( 'z', $unix );
+					break;
+				case 'W':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$num = date( 'W', $unix );
+					break;					
 				case 'F':
 					$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
 					break;
@@ -493,23 +519,57 @@ class Language {
 				case 'n':
 					$num = intval( substr( $ts, 4, 2 ) );
 					break;
+				case 't':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$num = date( 't', $unix );
+					break;
+				case 'L':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$num = date( 'L', $unix );
+					break;					
 				case 'Y':
 					$num = substr( $ts, 0, 4 );
 					break;
 				case 'y':
 					$num = substr( $ts, 2, 2 );
 					break;
-				case 'H':
-					$num = substr( $ts, 8, 2 );
+				case 'a':
+					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'am' : 'pm';
+					break;
+				case 'A':
+					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'AM' : 'PM';
+					break;
+				case 'g':
+					$h = substr( $ts, 8, 2 );
+					$num = $h % 12 ? $h % 12 : 12;
 					break;
 				case 'G':
 					$num = intval( substr( $ts, 8, 2 ) );
+					break;
+				case 'h':
+					$h = substr( $ts, 8, 2 );
+					$num = sprintf( '%02d', $h % 12 ? $h % 12 : 12 );
+					break;					
+				case 'H':
+					$num = substr( $ts, 8, 2 );
 					break;
 				case 'i':
 					$num = substr( $ts, 10, 2 );
 					break;
 				case 's':
 					$num = substr( $ts, 12, 2 );
+					break;
+				case 'c':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$s .= date( 'c', $unix );
+					break;
+				case 'r':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$s .= date( 'r', $unix );
+					break;
+				case 'U':
+					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+					$num = $unix;
 					break;
 				case '\\':
 					# Backslash escaping
@@ -539,11 +599,11 @@ class Language {
 					$s .= $format[$p];
 			}
 			if ( $num !== false ) {
-				if ( $raw ) {
+				if ( $rawToggle || $raw ) {
 					$s .= $num;
 					$raw = false;
 				} elseif ( $roman ) {
-					$s .= Language::romanNumeral( $num );
+					$s .= self::romanNumeral( $num );
 					$roman = false;
 				} else {
 					$s .= $this->formatNum( $num, true );
@@ -555,33 +615,29 @@ class Language {
 	}
 
 	/**
-	 * Roman number formatting up to 100
+	 * Roman number formatting up to 3000
 	 */
 	static function romanNumeral( $num ) {
-		static $units = array( 0, 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X' );
-		static $decades = array( 0, 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C' );
+		static $table = array(
+			array( '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X' ),
+			array( '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C' ),
+			array( '', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M' ),
+			array( '', 'M', 'MM', 'MMM' )
+		);
+			
 		$num = intval( $num );
-		if ( $num > 100 || $num <= 0 ) {
+		if ( $num > 3000 || $num <= 0 ) {
 			return $num;
 		}
+
 		$s = '';
-		if ( $num >= 10 ) {
-			$s .= $decades[floor( $num / 10 )];
-			$num = $num % 10;
-		}
-		if ( $num >= 1 ) {
-			$s .= $units[$num];
+		for ( $pow10 = 1000, $i = 3; $i >= 0; $pow10 /= 10, $i-- ) {
+			if ( $num >= $pow10 ) {
+				$s .= $table[$i][floor($num / $pow10)];
+			}
+			$num = $num % $pow10;
 		}
 		return $s;
-	}
-
-	/**
-	 * Calculate the day of the week for a 14-character timestamp
-	 * 1 for Sunday through to 7 for Saturday
-	 * This takes about 100us on a slow computer
-	 */
-	static function calculateWeekday( $ts ) {
-		return date( 'w', wfTimestamp( TS_UNIX, $ts ) ) + 1;
 	}
 
 	/**
