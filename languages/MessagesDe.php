@@ -1,4 +1,13 @@
 <?php
+/**
+ * German (Deutsch)
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ *
+ * @author Jimmy Collins <jimmy.collins@web.de>
+ */
+
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -298,9 +307,9 @@ $messages = array(
 'nstab-user' => 'Benutzerseite',
 'nstab-media' => 'Media',
 'nstab-special' => 'Spezial',
-'nstab-project' => 'Projektseite',
+'nstab-project'		=> 'Portalseite',
 'nstab-image'		=> 'Datei',
-'nstab-mediawiki' => 'Nachricht',
+'nstab-mediawiki'	=> 'MediaWiki-Text',
 'nstab-template' => 'Vorlage',
 'nstab-help' => 'Hilfe',
 'nstab-category' => 'Kategorie',
@@ -507,7 +516,7 @@ Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
 'newarticletext'	=> 'Hier den Text der neuen Seite eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
-'anontalkpagetext'	=> '---- \'\'Dies ist die Diskussionsseite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische IP-Adresse zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
+'anontalkpagetext'	=> '---- \'\'Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Wenn Sie mit den Kommentaren auf dieser Seite nichts anfangen können, richten sie sich vermutlich an einen früheren Inhaber Ihrer IP-Adresse und Sie können sie ignorieren. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. \'\'',
 'noarticletext'		=> '(Diese Seite enthält momentan noch keinen Text)',
 'usercsspreview'	=> '== Vorschau Ihres Benutzer-CSS ==
 \'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: \'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
@@ -651,7 +660,7 @@ Möglicherweise haben Sie auch die Anfrage falsch formuliert, z.B.
 „Lohn und und Steuern“.
 Bitte versuchen Sie eine anders formulierte Suchanfrage.',
 'matchtotals'		=> 'Die Suchanfrage „$1“ stimmt mit $2 Seitentiteln und dem Inhalt von $3 Seiten überein.',
-'noexactmatch'		=> '\'\'\'Es existiert keine Seite mit dem Namen „$1“.\'\'\'
+'noexactmatch'		=> '\'\'\'Es existiert keine Seite mit dem Titel „$1“.\'\'\'
 
 Versuchen Sie es über die Volltextsuche.
 Alternativ können Sie auch den [[{{ns:special}}:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
@@ -666,7 +675,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 "viewprevnext"	=> "Zeige ($1) ($2) ($3).",
 'showingresults'	=> 'Hier sind <b>$1</b> Ergebnisse, beginnend mit Nummer <b>$2</b>.',
 'showingresultsnum'	=> 'Hier sind <b>$3</b> Ergebnisse, beginnend mit Nummer <b>$2</b>.',
-'nonefound'		=> '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach <i>gewöhnlichen</i> Worten zu suchen; diese sind nicht indiziert.',
+'nonefound'		=> '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuchen Sie in diesem Fall die Anzahl der Suchbegriffe zu veringern.',
 "powersearch" => "Suche",
 'powersearchtext'	=> 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
 'searchdisabled'	=> 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen über Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
@@ -1912,7 +1921,7 @@ ta[\'ca-nstab-media\'] = new Array(\'c\',\'Mediendateienseite anzeigen\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Dies ist eine Spezialseite. Sie können diese nicht ändern.\');
 ta[\'ca-nstab-project\'] = new Array(\'a\',\'Portalseite anzeigen\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Bilderseite anzeigen\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Systemmeldungen anzeigen\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'MediaWiki-Text anzeigen\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vorlage anzeigen\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Hilfeseite anzeigen\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
