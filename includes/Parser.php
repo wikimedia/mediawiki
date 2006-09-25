@@ -1666,7 +1666,7 @@ class Parser
 
 				if ( $ns == NS_IMAGE ) {
 					wfProfileIn( "$fname-image" );
-					if ( !wfIsBadImage( $nt->getDBkey() ) ) {
+					if ( !wfIsBadImage( $nt->getDBkey(), $this->mTitle ) ) {
 						# recursively parse links inside the image caption
 						# actually, this will parse them in any other parameters, too,
 						# but it might be hard to fix that, and it doesn't matter ATM
