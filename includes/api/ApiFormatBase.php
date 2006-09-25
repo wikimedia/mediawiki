@@ -55,6 +55,10 @@ abstract class ApiFormatBase extends ApiBase {
 	 */
 	public abstract function GetMimeType();
 
+	public function GetNeedsRawData() {
+		return false;
+	}
+
 	/**
 	 * Returns true when an HTML filtering printer should be used.
 	 * The default implementation assumes that formats ending with 'fm' 

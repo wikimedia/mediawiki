@@ -25,34 +25,66 @@
 $apiStartTime = microtime(true);
 
 /**
+ * When no format parameter is given, this format will be used
+ */
+define('API_DEFAULT_FORMAT', 'xmlfm');
+
+$apidir = 'includes/api';
+/**
  * List of classes and containing files.
  */
 $apiAutoloadClasses = array (
-	'ApiBase' => 'includes/api/ApiBase.php',
-	'ApiMain' => 'includes/api/ApiMain.php',
-	'ApiResult' => 'includes/api/ApiResult.php',
 
-	// Available modules - should match the $apiModules list
-	'ApiHelp' => 'includes/api/ApiHelp.php',
-	'ApiLogin' => 'includes/api/ApiLogin.php',
-	'ApiQuery' => 'includes/api/ApiQuery.php'
+	'ApiMain' => "$apidir/ApiMain.php",
+
+		// Utility classes
+	'ApiBase' => "$apidir/ApiBase.php",
+	'ApiQueryBase' => "$apidir/ApiQueryBase.php",
+	'ApiResult' => "$apidir/ApiResult.php",
+
+		// Formats
+	'ApiFormatBase' => "$apidir/ApiFormatBase.php",
+	'ApiFormatYaml' => "$apidir/ApiFormatYaml.php",
+	'ApiFormatXml' => "$apidir/ApiFormatXml.php",
+	'ApiFormatJson' => "$apidir/ApiFormatJson.php",
+
+		// Modules (action=...) - should match the $apiModules list
+	'ApiHelp' => "$apidir/ApiHelp.php",
+	'ApiLogin' => "$apidir/ApiLogin.php",
+	'ApiQuery' => "$apidir/ApiQuery.php",
+
+		// Query items (what/list=...)
+	'ApiQueryContent' => "$apidir/ApiQueryContent.php",
+
+	'ApiPageSet' => "$apidir/ApiPageSet.php"
 );
 
 /**
  * List of available modules: action name => module class
  * The class must also be listed in the $apiAutoloadClasses array. 
- */ 
+ */
 $apiModules = array (
 	'help' => 'ApiHelp',
 	'login' => 'ApiLogin',
 	'query' => 'ApiQuery'
 );
 
+/**
+ * List of available formats: format name => format class
+ * The class must also be listed in the $apiAutoloadClasses array. 
+ */
+$apiFormats = array (
+	'json' => 'ApiFormatJson',
+	'jsonfm' => 'ApiFormatJson',
+	'xml' => 'ApiFormatXml',
+	'xmlfm' => 'ApiFormatXml',
+	'yaml' => 'ApiFormatYaml',
+	'yamlfm' => 'ApiFormatYaml'
+);
 
 // Initialise common code
 require_once ('./includes/WebStart.php');
 wfProfileIn('api.php');
-
 
 // Verify that the API has not been disabled
 // The next line should be 
@@ -64,15 +96,13 @@ if (!isset ($wgEnableAPI) || !$wgEnableAPI) {
 	die(-1);
 }
 
-
 ApiInitAutoloadClasses($apiAutoloadClasses);
-$processor = new ApiMain($apiStartTime, $apiModules);
+$processor = new ApiMain($apiStartTime, $apiModules, $apiFormats);
 $processor->Execute();
 
 wfProfileOut('api.php');
 wfLogProfilingData();
 exit; // Done!
-
 
 function ApiInitAutoloadClasses($apiAutoloadClasses) {
 
