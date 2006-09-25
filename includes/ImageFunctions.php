@@ -174,32 +174,65 @@ function wfGetSVGsize( $filename ) {
 /**
  * Determine if an image exists on the 'bad image list'.
  *
- * @param $name String: the image name to check
+ * The format of MediaWiki:Bad_image_list is as follows:
+ *    * Only list items (lines starting with "*") are considered
+ *    * The first link on a line must be a link to a bad image
+ *    * Any subsequent links on the same line are considered to be exceptions,
+ *      i.e. articles where the image may occur inline.
+ *
+ * @param string $name the image name to check
+ * @param Title $contextTitle The page on which the image occurs, if known
  * @return bool
  */
-function wfIsBadImage( $name ) {
-	static $titleList = false;
+function wfIsBadImage( $name, $contextTitle = false ) {
+	static $badImages = false;
 	wfProfileIn( __METHOD__ );
+
+	# Run the extension hook
 	$bad = false;
-	if( wfRunHooks( 'BadImage', array( $name, &$bad ) ) ) {
-		if( !$titleList ) {
-			# Build the list now
-			$titleList = array();
-			$lines = explode( "\n", wfMsgForContent( 'bad_image_list' ) );
-			foreach( $lines as $line ) {
-				if( preg_match( '/^\*\s*\[\[:?(.*?)\]\]/i', $line, $matches ) ) {
-					$title = Title::newFromText( $matches[1] );
-					if( is_object( $title ) && $title->getNamespace() == NS_IMAGE )
-						$titleList[ $title->getDBkey() ] = true;
-				}
-			}
-		}
-		wfProfileOut( __METHOD__ );
-		return array_key_exists( $name, $titleList );
-	} else {
+	if( !wfRunHooks( 'BadImage', array( $name, &$bad ) ) ) {
 		wfProfileOut( __METHOD__ );
 		return $bad;
 	}
+
+	if( !$badImages ) {
+		# Build the list now
+		$badImages = array();
+		$lines = explode( "\n", wfMsgForContent( 'bad_image_list' ) );
+		foreach( $lines as $line ) {
+			# List items only
+			if ( substr( $line, 0, 1 ) !== '*' ) {
+				continue;
+			}
+
+			# Find all links
+			if ( !preg_match_all( '/\[\[:?(.*?)\]\]/', $line, $m ) ) {
+				continue;
+			}
+
+			$exceptions = array();
+			$imageDBkey = false;
+			foreach ( $m[1] as $i => $titleText ) {
+				$title = Title::newFromText( $titleText );
+				if ( !is_null( $title ) ) {
+					if ( $i == 0 ) {
+						$imageDBkey = $title->getDBkey();
+					} else {
+						$exceptions[$title->getPrefixedDBkey()] = true;
+					}
+				}
+			}
+
+			if ( $imageDBkey !== false ) {
+				$badImages[$imageDBkey] = $exceptions;
+			}
+		}
+	}
+	
+	$contextKey = $contextTitle ? $contextTitle->getPrefixedDBkey() : false;
+	$bad = isset( $badImages[$name] ) && !isset( $badImages[$name][$contextKey] );
+	wfProfileOut( __METHOD__ );
+	return $bad;
 }
 
 /**
