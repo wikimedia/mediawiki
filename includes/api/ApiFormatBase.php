@@ -139,7 +139,7 @@ abstract class ApiFormatBase extends ApiBase {
 		// identify URLs
 		$text = ereg_replace("[a-zA-Z]+://[^ '()<\n]+", '<a href="\\0">\\0</a>', $text);
 		// identify requests to api.php
-		$text = ereg_replace("<api\\.php\\?[^ ()<\n]+", '<a href="\\0">\\0</a>', $text);
+		$text = ereg_replace("api\\.php\\?[^ ()<\n\t]+", '<a href="\\0">\\0</a>', $text);
 		// make strings inside * bold
 		$text = ereg_replace("\\*[^<>\n]+\\*", '<b>\\0</b>', $text);
 		

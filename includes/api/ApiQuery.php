@@ -41,8 +41,8 @@ class ApiQuery extends ApiBase {
 	);
 
 	private $mQueryPropModules = array (
-			//		'info' => 'ApiQueryInfo',
-		//		'categories' => 'ApiQueryCategories',
+		'info' => 'ApiQueryInfo',
+			//		'categories' => 'ApiQueryCategories',
 		//		'imageinfo' => 'ApiQueryImageinfo',
 		//		'langlinks' => 'ApiQueryLanglinks',
 		//		'links' => 'ApiQueryLinks',
@@ -85,14 +85,25 @@ class ApiQuery extends ApiBase {
 		return $this->mSlaveDB;
 	}
 
+	/**
+	 * Query execution happens in the following steps:
+	 * #1 Create a PageSet object with any pages requested by the user
+	 * #2 If using generator, execute it to get a new PageSet object
+	 * #3 Instantiate all requested modules. 
+	 *    This way the PageSet object will know what shared data is required,
+	 *    and minimize DB calls. 
+	 * #4 Output all normalization and redirect resolution information
+	 * #5 Execute all requested modules
+	 */
 	public function Execute() {
 		$meta = $prop = $list = $generator = $titles = $pageids = $revids = null;
 		$redirects = null;
 		extract($this->ExtractRequestParams());
 
 		//
-		// Only one of the titles/pageids/revids is allowed at the same time
+		// Create and initialize PageSet
 		//
+		// Only one of the titles/pageids/revids is allowed at the same time
 		$dataSource = null;
 		if (isset ($titles))
 			$dataSource = 'titles';
@@ -107,17 +118,52 @@ class ApiQuery extends ApiBase {
 			$dataSource = 'revids';
 		}
 
-		if (isset($dataSource) && $dataSource !== 'titles')
-			$this->DieUsage('Currently only titles= parameter is supported.', 'notimplemented');
+		$data = new ApiPageSet($this->GetMain(), $this->GetDB(), $redirects);
 
-		// Normalize titles
-		$linkBatch = $this->ProcessTitles($titles);
+		switch ($dataSource) {
+			case 'titles' :
+				$data->PopulateTitles($titles);
+				break;
+			case 'pageids' :
+				$data->PopulatePageIDs($pageids);
+				break;
+			case 'titles' :
+				$data->PopulateRevIDs($revids);
+				break;
+			default :
+				// Do nothing - some queries do not need any of the data sources.
+				break;
+		}
 
-		// Get titles info from DB
-		$data = new ApiPageSet($this->GetDB(), $redirects);
-		$data->PopulateTitles($linkBatch);
+		//
+		// If generator is provided, get a new dataset to work on
+		//
+		if (isset ($generator))
+			$data = $this->ExecuteGenerator($generator, $data, $redirects);
 
-		// Show redirects information
+		// Instantiate required modules
+		// During instantiation, modules may optimize data requests through the $data object 
+		// $data will be lazy loaded when modules begin to request data during execution
+		$modules = array ();
+		if (isset($meta))
+			foreach ($meta as $moduleName)
+				$modules[] = new $this->mQueryMetaModules[$moduleName] ($this, $moduleName, $data);
+		if (isset($prop))
+			foreach ($prop as $moduleName)
+				$modules[] = new $this->mQueryPropModules[$moduleName] ($this, $moduleName, $data);
+		if (isset($list))
+			foreach ($list as $moduleName)
+				$modules[] = new $this->mQueryListModules[$moduleName] ($this, $moduleName, $data);
+
+		// Title normalizations
+		foreach ($data->GetNormalizedTitles() as $rawTitleStr => $titleStr) {
+			$this->GetResult()->AddMessage('query', 'normalized', array (
+				'from' => $rawTitleStr,
+				'to' => $titleStr
+			), 'n');
+		}
+
+		// Show redirect information
 		if ($redirects) {
 			foreach ($data->GetRedirectTitles() as $titleStrFrom => $titleStrTo) {
 				$this->GetResult()->AddMessage('query', 'redirects', array (
@@ -126,41 +172,15 @@ class ApiQuery extends ApiBase {
 				), 'r');
 			}
 		}
+
+		// Execute all requested modules.
+		foreach ($modules as $module)
+			$module->Execute();
 	}
 
-	/**
-	 * Given an array of title strings, convert them into Title objects.
-	 * This method validates access rights for the title, 
-	 * and appends normalization values to the output.
-	 * @return LinkBatch of title objects.
-	 */
-	protected function ProcessTitles($titles) {
-
-		$linkBatch = new LinkBatch();
-
-		foreach ($titles as $titleString) {
-			$titleObj = Title :: newFromText($titleString);
-
-			// Validation
-			if (!$titleObj)
-				$this->dieUsage("bad title $titleString", 'invalidtitle');
-			if ($titleObj->getNamespace() < 0)
-				$this->dieUsage("No support for special page $titleString has been implemented", 'unsupportednamespace');
-			if (!$titleObj->userCanRead())
-				$this->dieUsage("No read permission for $titleString", 'titleaccessdenied');
-
-			$linkBatch->addObj($titleObj);
-
-			// Make sure we remember the original title that was given to us
-			// This way the caller can correlate new titles with the originally requested, i.e. namespace is localized or capitalization
-			if ($titleString !== $titleObj->getPrefixedText()) {
-				$this->GetResult()->AddMessage('query', 'normalized', array (
-					'from' => $titleString,
-				'to' => $titleObj->getPrefixedText()), 'n');
-			}
-		}
-
-		return $linkBatch;
+	protected function ExecuteGenerator($generator, $data, $redirects) {
+		// TODO: implement
+		$this->DieUsage("Generator execution has not been implemented", 'notimplemented');
 	}
 
 	protected function GetAllowedParams() {
@@ -177,20 +197,20 @@ class ApiQuery extends ApiBase {
 				GN_ENUM_ISMULTI => true,
 				GN_ENUM_CHOICES => $this->mListModuleNames
 			),
-			'generator' => array (
-				GN_ENUM_CHOICES => $this->mAllowedGenerators
-			),
+			//			'generator' => array (
+			//				GN_ENUM_CHOICES => $this->mAllowedGenerators
+			//			),
 			'titles' => array (
 				GN_ENUM_ISMULTI => true
 			),
-			'pageids' => array (
-				GN_ENUM_TYPE => 'integer',
-				GN_ENUM_ISMULTI => true
-			),
-			'revids' => array (
-				GN_ENUM_TYPE => 'integer',
-				GN_ENUM_ISMULTI => true
-			),
+			//			'pageids' => array (
+			//				GN_ENUM_TYPE => 'integer',
+			//				GN_ENUM_ISMULTI => true
+			//			),
+			//			'revids' => array (
+			//				GN_ENUM_TYPE => 'integer',
+			//				GN_ENUM_ISMULTI => true
+			//			),
 			'redirects' => false
 		);
 	}
@@ -203,7 +223,8 @@ class ApiQuery extends ApiBase {
 			'generator' => 'Use the output of a list as the input for other prop/list/meta items',
 			'titles' => 'A list of titles to work on',
 			'pageids' => 'A list of page IDs to work on',
-			'revids' => 'A list of revision IDs to work on'
+			'revids' => 'A list of revision IDs to work on',
+			'redirects' => 'Automatically resolve redirects'
 		);
 	}
 
@@ -217,7 +238,7 @@ class ApiQuery extends ApiBase {
 
 	protected function GetExamples() {
 		return array (
-			'api.php ? action=query & what=content & titles=ArticleA|ArticleB'
+			'api.php?action=query&what=content&titles=ArticleA|ArticleB'
 		);
 	}
 }

@@ -29,24 +29,22 @@ if (!defined('MEDIAWIKI')) {
 	require_once ("ApiBase.php");
 }
 
-class ApiPageSet {
+class ApiPageSet extends ApiBase {
 
 	private $allPages; // [ns][dbkey] => page_id or 0 when missing
 	private $db, $resolveRedirs;
-	private $goodTitles, $missingTitles, $redirectTitles;
+	private $goodTitles, $missingTitles, $redirectTitles, $normalizedTitles;
 
-	public function __construct($db, $resolveRedirs) {
+	public function __construct($main, $db, $resolveRedirs) {
+		parent :: __construct($main);
 		$this->db = $db;
 		$this->resolveRedirs = $resolveRedirs;
 
 		$this->allPages = array ();
 		$this->goodTitles = array ();
 		$this->missingTitles = array ();
-
-		// only when resolving redirects:
-		if ($resolveRedirs) {
-			$this->redirectTitles = array ();
-		}
+		$this->redirectTitles = array ();
+		$this->normalizedTitles = array();
 	}
 
 	/**
@@ -74,8 +72,52 @@ class ApiPageSet {
 	}
 
 	/**
+	 * Get a list of title normalizations - maps the title given 
+	 * with its normalized version.
+	 * @return array raw_prefixed_title (string) => prefixed_title (string) 
+	 */
+	public function GetNormalizedTitles() {
+		return $this->normalizedTitles;
+	}
+	
+	/**
+	 * Given an array of title strings, convert them into Title objects.
+	 * This method validates access rights for the title, 
+	 * and appends normalization values to the output.
+	 * 
+	 * @return LinkBatch of title objects.
+	 */
+	private function ProcessTitlesStrings($titles) {
+
+		$linkBatch = new LinkBatch();
+
+		foreach ($titles as $titleString) {
+			$titleObj = Title :: newFromText($titleString);
+
+			// Validation
+			if (!$titleObj)
+				$this->dieUsage("bad title $titleString", 'invalidtitle');
+			if ($titleObj->getNamespace() < 0)
+				$this->dieUsage("No support for special page $titleString has been implemented", 'unsupportednamespace');
+			if (!$titleObj->userCanRead())
+				$this->dieUsage("No read permission for $titleString", 'titleaccessdenied');
+
+			$linkBatch->addObj($titleObj);
+
+			// Make sure we remember the original title that was given to us
+			// This way the caller can correlate new titles with the originally requested,
+			// i.e. namespace is localized or capitalization is different
+			if ($titleString !== $titleObj->getPrefixedText()) {
+				$this->normalizedTitles[$titleString] = $titleObj->getPrefixedText();
+			}
+		}
+
+		return $linkBatch;
+	}
+
+	/**
 	 * This method populates internal variables with page information
-	 * based on the list of page titles given as a LinkBatch object.
+	 * based on the given array of title strings.
 	 * 
 	 * Steps:
 	 * #1 For each title, get data from `page` table
@@ -87,7 +129,7 @@ class ApiPageSet {
 	 * #5 Substitute the original LinkBatch object with the new list
 	 * #6 Repeat from step #1     
 	 */
-	public function PopulateTitles($linkBatch) {
+	public function PopulateTitles($titles) {
 		$pageFlds = array (
 			'page_id',
 			'page_namespace',
@@ -97,6 +139,9 @@ class ApiPageSet {
 			$pageFlds[] = 'page_is_redirect';
 		}
 
+		// Get validated and normalized title objects
+		$linkBatch = $this->ProcessTitlesStrings($titles);
+		
 		//
 		// Repeat until all redirects have been resolved
 		//
@@ -105,8 +150,7 @@ class ApiPageSet {
 			// Hack: Get the ns:titles stored in array(ns => array(titles)) format
 			$remaining = $linkBatch->data;
 
-			if ($this->resolveRedirs)
-				$redirectIds = array ();
+			$redirectIds = array ();
 
 			//
 			// Get data about $linkBatch from `page` table
@@ -177,6 +221,10 @@ class ApiPageSet {
 			}
 			$this->db->freeResult($res);
 		}
+	}
+
+	public function Execute() {
+		$this->DieDebug("Execute() is not supported on this object");
 	}
 }
 ?>
