@@ -2411,6 +2411,16 @@ class Parser
 				return $subjPage->getPrefixedUrl();
 			case 'revisionid':
 				return $this->mRevisionId;
+			case 'revisionday':
+				return intval( substr( $this->mTitle->getTouched(), 6, 2 ) );
+			case 'revisionday2':
+				return substr( $this->mTitle->getTouched(), 6, 2 );
+			case 'revisionmonth':
+				return intval( substr( $this->mTitle->getTouched(), 4, 2 ) );
+			case 'revisionyear':
+				return substr( $this->mTitle->getTouched(), 0, 4 );
+			case 'revisiontimestamp':
+				return $this->mTitle->getTouched();
 			case 'namespace':
 				return str_replace('_',' ',$wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 			case 'namespacee':

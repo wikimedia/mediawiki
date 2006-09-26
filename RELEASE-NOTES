@@ -231,6 +231,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6849) Block @ from usernames; interferes with multi-database tools and
   was meant to be banned years ago... For now existing accounts will not be
   prevented fromm login.
+* (bug 6092) Introduce magic words {{REVISIONDAY}}, {{REVISIONDAY2}, {{REVISIONMONTH}},
+  {{REVISIONYEAR}} and {{REVISIONTIMESTAMP}} 
 
 
 == Languages updated ==
