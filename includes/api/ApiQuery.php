@@ -54,7 +54,7 @@ class ApiQuery extends ApiBase {
 	);
 
 	private $mQueryListModules = array (
-		'allpages' => 'ApiQueryAllpages',
+		// 'allpages' => 'ApiQueryAllpages',
 			//		'backlinks' => 'ApiQueryBacklinks',
 		//		'categorymembers' => 'ApiQueryCategorymembers',
 		//		'embeddedin' => 'ApiQueryEmbeddedin',
@@ -147,13 +147,13 @@ class ApiQuery extends ApiBase {
 		$modules = array ();
 		if (isset($meta))
 			foreach ($meta as $moduleName)
-				$modules[] = new $this->mQueryMetaModules[$moduleName] ($this, $moduleName, $data);
+				$modules[] = new $this->mQueryMetaModules[$moduleName] ($this->GetMain(), $moduleName, $data);
 		if (isset($prop))
 			foreach ($prop as $moduleName)
-				$modules[] = new $this->mQueryPropModules[$moduleName] ($this, $moduleName, $data);
+				$modules[] = new $this->mQueryPropModules[$moduleName] ($this->GetMain(), $moduleName, $data);
 		if (isset($list))
 			foreach ($list as $moduleName)
-				$modules[] = new $this->mQueryListModules[$moduleName] ($this, $moduleName, $data);
+				$modules[] = new $this->mQueryListModules[$moduleName] ($this->GetMain(), $moduleName, $data);
 
 		// Title normalizations
 		foreach ($data->GetNormalizedTitles() as $rawTitleStr => $titleStr) {
@@ -213,6 +213,42 @@ class ApiQuery extends ApiBase {
 			//			),
 			'redirects' => false
 		);
+	}
+
+	/**
+	 * Override the parent to generate help messages for all available query modules.
+	 */
+	public function MakeHelpMsg() {
+
+		// Use parent to make default message for the query module
+		$msg = parent :: MakeHelpMsg();
+
+		$astriks = str_repeat('--- ', 8);
+		$msg .= "\n$astriks Query: Meta  $astriks\n\n";
+ 		$msg .= $this->MakeHelpMsgHelper($this->mQueryMetaModules, 'meta');
+		$msg .= "\n$astriks Query: Prop  $astriks\n\n";
+ 		$msg .= $this->MakeHelpMsgHelper($this->mQueryPropModules, 'prop');
+		$msg .= "\n$astriks Query: List  $astriks\n\n";
+ 		$msg .= $this->MakeHelpMsgHelper($this->mQueryListModules, 'list');
+
+		return $msg;
+	}
+	
+	private function MakeHelpMsgHelper($moduleList, $paramName) {
+		$msg = '';
+
+		foreach ($moduleList as $moduleName => $moduleClass) {
+			$msg .= "* $paramName=$moduleName *";
+			$module = new $moduleClass ($this->GetMain(), $moduleName, null);
+			$msg2 = $module->MakeHelpMsg();
+			if ($msg2 !== false)
+				$msg .= $msg2;
+			$msg .= "\n";
+			if ($module->GetCanGenerate())
+				$msg .= "  * Can be used as a generator\n";
+		}
+
+		return $msg;
 	}
 
 	protected function GetParamDescription() {

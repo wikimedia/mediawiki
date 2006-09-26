@@ -48,7 +48,9 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Derived classes return true when they can be used as title generators for other query modules.
 	 */
-	protected static abstract function GetCanGenerate();
+	public function GetCanGenerate() {
+		return false;
+	}
 	
 	/**
 	 * Return true if this instance is being used as a generator.
