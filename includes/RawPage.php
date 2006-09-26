@@ -22,6 +22,7 @@ class RawPage {
 
 	function RawPage( &$article, $request = false ) {
 		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType;
+		global $wgUser;
 
 		$allowedCTypes = array('text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit');
 		$this->mArticle =& $article;
@@ -81,6 +82,12 @@ class RawPage {
 		$this->mCharset = $wgInputEncoding;
 		$this->mSmaxage = intval( $smaxage );
 		$this->mMaxage = $maxage;
+		
+		// Output may contain user-specific data; vary for open sessions
+		$this->mPrivateCache = ( $this->mSmaxage == 0 ) ||
+			( isset( $_COOKIE[ini_get( 'session.name' )] ) ||
+			$wgUser->isLoggedIn() );
+		
 		if ( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
 			$this->mContentType = 'text/x-wiki';
 		} else {
@@ -128,7 +135,8 @@ class RawPage {
 
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
-		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
+		$mode = $this->mPrivateCache ? 'private' : 'public';
+		header( 'Cache-Control: '.$mode.', s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
 		echo $this->getRawText();
 		$wgOut->disable();
 	}
@@ -136,8 +144,6 @@ class RawPage {
 	function getRawText() {
 		global $wgUser, $wgOut, $wgRequest;
 		if($this->mGen) {
-			// May contain user-specific data; vary for open sessions
-			$wgRequest->response()->header( 'Vary: Accept-Encoding, Cookie' );
 			$sk = $wgUser->getSkin();
 			$sk->initPage($wgOut);
 			if($this->mGen == 'css') {

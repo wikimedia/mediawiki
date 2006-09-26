@@ -909,6 +909,11 @@ class SkinTemplate extends Skin {
 		$sitecss = '';
 		$usercss = '';
 		$siteargs = '&maxage=' . $wgSquidMaxage;
+		if( $this->loggedin ) {
+			// Ensure that logged-in users' generated CSS isn't clobbered
+			// by anons' publicly cacheable generated CSS.
+			$siteargs .= '&smaxage=0';
+		}
 
 		# Add user-specific code if this is a user and we allow that kind of thing
 
