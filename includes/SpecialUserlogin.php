@@ -195,7 +195,7 @@ class LoginForm {
 		global $wgUser, $wgOut;
 		global $wgEnableSorbs, $wgProxyWhitelist;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname;
-		global $wgAuth, $wgMinimalPasswordLength, $wgReservedUsernames;
+		global $wgAuth, $wgMinimalPasswordLength;
 
 		// If the user passes an invalid domain, something is fishy
 		if( !$wgAuth->validDomain( $this->mDomain ) ) {
@@ -236,7 +236,7 @@ class LoginForm {
 
 		$name = trim( $this->mName );
 		$u = User::newFromName( $name );
-		if ( is_null( $u ) || in_array( $u->getName(), $wgReservedUsernames ) ) {
+		if ( is_null( $u ) || !User::isCreatableName( $u->getName() ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
 		}
@@ -317,12 +317,12 @@ class LoginForm {
 	
 	function authenticateUserData()
 	{
-		global $wgUser, $wgAuth, $wgReservedUsernames;
+		global $wgUser, $wgAuth;
 		if ( '' == $this->mName ) {
 			return AuthNoName;
 		}
 		$u = User::newFromName( $this->mName );
-		if( is_null( $u ) || in_array( $u->getName(), $wgReservedUsernames ) ) {
+		if( is_null( $u ) || !User::isUsableName( $u->getName() ) ) {
 			return AuthIllegal;
 		}
 		if ( 0 == $u->getID() ) {
@@ -362,7 +362,7 @@ class LoginForm {
 	}
 	
 	function processLogin() {
-		global $wgUser, $wgAuth, $wgReservedUsernames;
+		global $wgUser, $wgAuth;
 
 		switch ($this->authenticateUserData())
 		{
