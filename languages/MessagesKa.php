@@ -235,6 +235,42 @@ $messages = array(
 # Upload
 
 # Image list
+'imagelist'		=> 'ფაილების სია',
+#TODO: 'imagelisttext' => "Below is a list of '''$1''' {{plural:$1|file|files}} sorted $2.",
+#TODO: 'imagelistforuser' => "This shows only images uploaded by $1.",
+#TODO: 'getimagelist'	=> 'fetching file list',
+#TODO: 'ilsubmit'		=> 'Search',
+#TODO: 'showlast'		=> 'Show last $1 files sorted $2.',
+#TODO: 'byname'		=> 'by name',
+#TODO: 'bydate'		=> 'by date',
+#TODO: 'bysize'		=> 'by size',
+'imgdelete'		=> 'წაშ.',
+'imgdesc'		=> 'აღწ.',
+#TODO: 'imgfile'       => 'file',
+#TODO: 'imglegend'		=> 'Legend: (desc) = show/edit file description.',
+'imghistory'	=> 'ფაილის ისტორია',
+#TODO: 'revertimg'		=> 'rev',
+'deleteimg'		=> 'წაშ.',
+#TODO: 'deleteimgcompletely'		=> 'Delete all revisions of this file',
+/*TODO: 'imghistlegend' => 'Legend: (cur) = this is the current file, (del) = delete
+this old version, (rev) = revert to this old version.
+<br /><i>Click on date to see the file uploaded on that date</i>.',*/
+#TODO: 'imagelinks'	=> 'Links',
+#TODO: 'linkstoimage'	=> 'The following pages link to this file:',
+#TODO: 'nolinkstoimage' => 'There are no pages that link to this file.',
+#TODO: 'sharedupload' => 'This file is a shared upload and may be used by other projects.',
+#TODO: 'shareduploadwiki' => 'Please see the $1 for further information.',
+#TODO: 'shareduploadwiki-linktext' => 'file description page',
+#TODO: 'shareddescriptionfollows' => '-',
+#TODO: 'noimage'       => 'No file by this name exists, you can $1.',
+#TODO: 'noimage-linktext'       => 'upload it',
+#TODO: 'uploadnewversion-linktext' => 'Upload a new version of this file',
+#TODO: 'imagelist_date' => 'Date',
+#TODO: 'imagelist_name' => 'Name',
+#TODO: 'imagelist_user' => 'User',
+#TODO: 'imagelist_size' => 'Size (bytes)',
+#TODO: 'imagelist_description' => 'Description',
+#TODO: 'imagelist_search_for' => 'Search for image name:',
 
 # Mime search
 
