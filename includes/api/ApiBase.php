@@ -96,6 +96,8 @@ abstract class ApiBase {
 				$msg .= "Parameters:\n";
 				foreach (array_keys($params) as $paramName) {
 					$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
+					if (is_array($desc))
+						$desc = implode("\n" . str_repeat(' ', 19), $desc);
 					$msg .= sprintf("  %-14s - %s\n", $paramName, $desc);
 				}
 			}

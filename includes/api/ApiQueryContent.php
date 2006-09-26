@@ -34,8 +34,8 @@ class ApiQueryContent extends ApiQueryBase {
 	/**
 	* Constructor
 	*/
-	public function __construct($main, $action) {
-		parent :: __construct($main);
+	public function __construct($main, $query, $data) {
+		parent :: __construct($main, $query);
 	}
 
 	public function Execute() {

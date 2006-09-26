@@ -40,9 +40,9 @@ class ApiResult extends ApiBase {
 		parent :: __construct($main);
 		$this->Reset();
 	}
-	
+
 	public function Reset() {
-		$this->mData = array();
+		$this->mData = array ();
 	}
 
 	function GetData() {
@@ -61,15 +61,12 @@ class ApiResult extends ApiBase {
 		} else {
 			$element = & $this->mData[$mainSection];
 		}
-		if( $multiitem ) {
+		if ($multiitem) {
 			$element['_element'] = $multiitem;
 			$element[] = $value;
 		} else {
 			if (is_array($value)) {
 				$element = array_merge($element, $value);
-				if (!array_key_exists('*', $element)) {
-					$element['*'] = '';
-				}
 			} else {
 				if (array_key_exists('*', $element)) {
 					$element['*'] .= $value;
@@ -105,7 +102,7 @@ class ApiResult extends ApiBase {
 			}
 		}
 	}
-	
+
 	public function Execute() {
 		$this->DieDebug("Execute() is not supported on Result object");
 	}
