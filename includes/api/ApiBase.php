@@ -27,8 +27,10 @@
 // Multi-valued enums, limit the values user can supply for the parameter
 define('GN_ENUM_DFLT', 'dflt');
 define('GN_ENUM_ISMULTI', 'multi');
-define('GN_ENUM_CHOICES', 'choices');
 define('GN_ENUM_TYPE', 'type');
+define('GN_ENUM_MAX1', 'max1');
+define('GN_ENUM_MAX2', 'max2');
+define('GN_ENUM_MIN', 'min');
 
 abstract class ApiBase {
 
@@ -156,47 +158,79 @@ abstract class ApiBase {
 		$params = $this->GetAllowedParams();
 		$results = array ();
 
-		foreach ($params as $param => $dflt) {
-			switch (gettype($dflt)) {
-				case 'NULL' :
-				case 'string' :
-					$result = $wgRequest->getVal($param, $dflt);
-					break;
-				case 'integer' :
-					$result = $wgRequest->getInt($param, $dflt);
-					break;
-				case 'boolean' :
-					// Having a default value of 'true' is pointless
-					$result = $wgRequest->getCheck($param);
-					break;
-				case 'array' :
-					$enumParams = $dflt;
-					$dflt = isset ($enumParams[GN_ENUM_DFLT]) ? $enumParams[GN_ENUM_DFLT] : null;
-					$multi = isset ($enumParams[GN_ENUM_ISMULTI]) ? $enumParams[GN_ENUM_ISMULTI] : false;
-					$choices = isset ($enumParams[GN_ENUM_CHOICES]) ? $enumParams[GN_ENUM_CHOICES] : null;
-					$type = isset ($enumParams[GN_ENUM_TYPE]) ? $enumParams[GN_ENUM_TYPE] : null;
+		foreach ($params as $param => $enumParams) {
 
-					$value = $wgRequest->getVal($param, $dflt);
+			if (!is_array($enumParams)) {
+				$default = $enumParams;
+				$multi = false;
+				$type = gettype($enumParams);
+			} else {
+				$default = isset ($enumParams[GN_ENUM_DFLT]) ? $enumParams[GN_ENUM_DFLT] : null;
+				$multi = isset ($enumParams[GN_ENUM_ISMULTI]) ? $enumParams[GN_ENUM_ISMULTI] : false;
+				$type = isset ($enumParams[GN_ENUM_TYPE]) ? $enumParams[GN_ENUM_TYPE] : null;
 
-					// Allow null when default is not set
-					if (isset ($dflt) || isset ($value)) {
-						$result = $this->ParseMultiValue($param, $value, $multi, $choices);
-
-						// When choices are not given, and the default is an integer, make sure all values are integers
-						if (!isset ($choices) && isset ($dflt) && $type === 'integer') {
-							if (is_array($result))
-								$result = array_map('intval', $result);
-							else
-								$result = intval($result);
-						}
-					} else {
-						$result = null;
-					}
-					break;
-				default :
-					$this->DieDebug("In '$param', unprocessed type " . gettype($dflt));
+				// When type is not given, and no choices, the type is the same as $default
+				if (!isset ($type)) {
+					if (isset ($default))
+						$type = gettype($default);
+					else
+						$type = 'NULL'; // allow everything
+				}
 			}
-			$results[$param] = $result;
+
+			if ($type == 'boolean') {
+				if (!isset ($default))
+					$default = false;
+
+				if ($default !== false) {
+					// Having a default value of anything other than 'false' is pointless
+					$this->DieDebug("Boolean param $param's default is set to '$default'");
+				}
+			}
+
+			$value = $wgRequest->getVal($param, $default);
+
+			if (isset ($value) && ($multi || is_array($type)))
+				$value = $this->ParseMultiValue($param, $value, $multi, is_array($type) ? $type : null);
+
+			// More validation only when choices were not given
+			// choices were validated in ParseMultiValue()
+			if (!is_array ($type) && isset ($value)) {
+
+				switch ($type) {
+					case 'NULL' : // nothing to do
+						break;
+					case 'string' : // nothing to do
+						break;
+					case 'integer' : // Force everything using intval()
+						$value = is_array($value) ? array_map('intval', $value) : intval($value);
+						break;
+					case 'limit':
+						if (!isset ($enumParams[GN_ENUM_MAX1]) || !isset($enumParams[GN_ENUM_MAX2]))
+							$this->DieDebug("MAX1 or MAX2 are not defined for the limit $param");
+						if ($multi)
+							$this->DieDebug("Multi-values not supported for $param");
+						$min = isset($enumParams[GN_ENUM_MIN]) ? $enumParams[GN_ENUM_MIN] : 0;
+						$value = intval($value);
+						$this->ValidateLimit($param, $value, $min, $enumParams[GN_ENUM_MAX1], $enumParams[GN_ENUM_MAX2]);							
+						break;
+					case 'boolean' :
+						if ($multi)
+							$this->DieDebug("Multi-values not supported for $param");
+						$value = isset ($value);
+						break;
+					case 'timestamp' :
+						if ($multi)
+							$this->DieDebug("Multi-values not supported for $param");
+						$value = $this->prepareTimestamp($value); // Adds quotes around timestamp							
+						break;
+					default :
+						$this->DieDebug("Param $param's type is unknown - $type");
+				
+				}
+			}
+
+			$results[$param] = $value;
 		}
 
 		return $results;
@@ -226,6 +260,39 @@ abstract class ApiBase {
 		}
 
 		return $allowMultiple ? $valuesList : $valuesList[0];
+	}
+
+	/**
+	* Validate the proper format of the timestamp string (14 digits), and add quotes to it.
+	*/
+	function prepareTimestamp($value) {
+		if (preg_match('/^[0-9]{14}$/', $value)) {
+			return $this->db->addQuotes($value);
+		} else {
+			$this->dieUsage('Incorrect timestamp format', 'badtimestamp');
+		}
+	}
+
+	/**
+	* Validate the value against the minimum and user/bot maximum limits. Prints usage info on failure.
+	*/
+	function ValidateLimit( $varname, $value, $min, $max, $botMax )
+	{
+		global $wgUser;
+		
+		if ( $value < $min ) {
+			$this->dieUsage( "$varname may not be less than $min (set to $value)", $varname );
+		}
+		
+		if( $this->GetMain()->IsBot() ) {
+			if ( $value > $botMax ) {
+				$this->dieUsage( "$varname may not be over $botMax (set to $value) for bots", $varname );
+			}
+		} else {
+			if( $value > $max ) {
+				$this->dieUsage( "$varname may not be over $max (set to $value) for users", $varname );
+			}
+		}
 	}
 
 	/**

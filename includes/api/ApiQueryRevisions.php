@@ -2,7 +2,7 @@
 
 
 /*
- * Created on Sep 25, 2006
+ * Created on Sep 7, 2006
  *
  * API for MediaWiki 1.8+
  *
@@ -29,32 +29,44 @@ if (!defined('MEDIAWIKI')) {
 	require_once ("ApiQueryBase.php");
 }
 
-class ApiQueryInfo extends ApiQueryBase {
+class ApiQueryRevisions extends ApiQueryBase {
 
-	public function __construct($main, $moduleName, $query, $data) {
-		parent :: __construct($main, $moduleName, $query, $data);
+	public function __construct($main, $query, $moduleName, $data, $generator=false) {
+		parent :: __construct($main, $query, $moduleName, $data, $generator);
 	}
 
 	public function Execute() {
-		
+
 	}
 
 	protected function GetAllowedParams() {
 		return array (
-			'param' => 'default',
-			'enumparam' => array (
-				GN_ENUM_DFLT => 'default',
-				GN_ENUM_ISMULTI => false,
+			'rvlimit' => 0,
+			'rvstartid' => 0,
+			'rvendid' => 0,
+			'rvstart' => array (
+				GN_ENUM_TYPE => 'timestamp'
+			),
+			'rvend' => array (
+				GN_ENUM_TYPE => 'timestamp'
+			),
+			'rvdir' => array (
+				GN_ENUM_DFLT => 'newer',
 				GN_ENUM_TYPE => array (
-					'a',
-					'b'
+					'newer',
+					'older'
+				)
+			),
+			'rvprop' => array (
+				GN_ENUM_ISMULTI => true,
+				GN_ENUM_TYPE => array (
+					'timestamp',
+					'user',
+					'comment',
+					'content'
 				)
 			)
 		);
-	}
-
-	protected function GetParamDescription() {
-		return array();
 	}
 
 	protected function GetDescription() {

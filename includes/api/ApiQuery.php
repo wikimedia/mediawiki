@@ -34,39 +34,32 @@ class ApiQuery extends ApiBase {
 	var $mMetaModuleNames, $mPropModuleNames, $mListModuleNames;
 
 	private $mQueryMetaModules = array (
-		'siteinfo' => 'ApiQuerySiteinfo',
-			//'userinfo' => 'ApiQueryUserinfo'	
-
-	
+		'siteinfo' => 'ApiQuerySiteinfo'
 	);
+	//	'userinfo' => 'ApiQueryUserinfo',
 
 	private $mQueryPropModules = array (
 		'info' => 'ApiQueryInfo',
-			//		'categories' => 'ApiQueryCategories',
-		//		'imageinfo' => 'ApiQueryImageinfo',
-		//		'langlinks' => 'ApiQueryLanglinks',
-		//		'links' => 'ApiQueryLinks',
-		//		'templates' => 'ApiQueryTemplates',
-		//		'revisions' => 'ApiQueryRevisions',
-
-		// Should be removed
-	'content' => 'ApiQueryContent'
+		'revisions' => 'ApiQueryRevisions'
 	);
+	//	'categories' => 'ApiQueryCategories',
+	//	'imageinfo' => 'ApiQueryImageinfo',
+	//	'langlinks' => 'ApiQueryLanglinks',
+	//	'links' => 'ApiQueryLinks',
+	//	'templates' => 'ApiQueryTemplates',
 
 	private $mQueryListModules = array (
-		// 'allpages' => 'ApiQueryAllpages',
-			//		'backlinks' => 'ApiQueryBacklinks',
-		//		'categorymembers' => 'ApiQueryCategorymembers',
-		//		'embeddedin' => 'ApiQueryEmbeddedin',
-		//		'imagelinks' => 'ApiQueryImagelinks',
-		//		'logevents' => 'ApiQueryLogevents',
-		//		'recentchanges' => 'ApiQueryRecentchanges',
-		//		'usercontribs' => 'ApiQueryUsercontribs',
-		//		'users' => 'ApiQueryUsers',
-		//		'watchlist' => 'ApiQueryWatchlist'
-
-	
+		'allpages' => 'ApiQueryAllpages'
 	);
+	//	'backlinks' => 'ApiQueryBacklinks',
+	//	'categorymembers' => 'ApiQueryCategorymembers',
+	//	'embeddedin' => 'ApiQueryEmbeddedin',
+	//	'imagelinks' => 'ApiQueryImagelinks',
+	//	'logevents' => 'ApiQueryLogevents',
+	//	'recentchanges' => 'ApiQueryRecentchanges',
+	//	'usercontribs' => 'ApiQueryUsercontribs',
+	//	'users' => 'ApiQueryUsers',
+	//	'watchlist' => 'ApiQueryWatchlist',
 
 	private $mSlaveDB = null;
 
@@ -76,6 +69,8 @@ class ApiQuery extends ApiBase {
 		$this->mPropModuleNames = array_keys($this->mQueryPropModules);
 		$this->mListModuleNames = array_keys($this->mQueryListModules);
 
+		// Allow the entire list of modules at first,
+		// but during module instantiation check if it can be used as a generator.
 		$this->mAllowedGenerators = array_merge($this->mListModuleNames, $this->mPropModuleNames);
 	}
 
@@ -145,15 +140,15 @@ class ApiQuery extends ApiBase {
 		// During instantiation, modules may optimize data requests through the $data object 
 		// $data will be lazy loaded when modules begin to request data during execution
 		$modules = array ();
-		if (isset($meta))
+		if (isset ($meta))
 			foreach ($meta as $moduleName)
-				$modules[] = new $this->mQueryMetaModules[$moduleName] ($this->GetMain(), $moduleName, $data);
-		if (isset($prop))
+				$modules[] = new $this->mQueryMetaModules[$moduleName] ($this->GetMain(), $this, $moduleName, $data);
+		if (isset ($prop))
 			foreach ($prop as $moduleName)
-				$modules[] = new $this->mQueryPropModules[$moduleName] ($this->GetMain(), $moduleName, $data);
-		if (isset($list))
+				$modules[] = new $this->mQueryPropModules[$moduleName] ($this->GetMain(), $this, $moduleName, $data);
+		if (isset ($list))
 			foreach ($list as $moduleName)
-				$modules[] = new $this->mQueryListModules[$moduleName] ($this->GetMain(), $moduleName, $data);
+				$modules[] = new $this->mQueryListModules[$moduleName] ($this->GetMain(), $this, $moduleName, $data);
 
 		// Title normalizations
 		foreach ($data->GetNormalizedTitles() as $rawTitleStr => $titleStr) {
@@ -179,6 +174,18 @@ class ApiQuery extends ApiBase {
 	}
 
 	protected function ExecuteGenerator($generator, $data, $redirects) {
+		
+		// Find class that implements requested generator
+		if (isset ($this->mQueryListModules[$generator]))
+			$className = $this->mQueryListModules[$generator];
+		else if (isset ($this->mQueryPropModules[$generator]))
+			$className = $this->mQueryPropModules[$generator];
+		else
+			$this->DieDebug("Unknown generator=$generator");
+			
+			
+		$module = new $className($this->GetMain(), $this, $generator, $data, true);
+
 		// TODO: implement
 		$this->DieUsage("Generator execution has not been implemented", 'notimplemented');
 	}
@@ -187,18 +194,18 @@ class ApiQuery extends ApiBase {
 		return array (
 			'meta' => array (
 				GN_ENUM_ISMULTI => true,
-				GN_ENUM_CHOICES => $this->mMetaModuleNames
+				GN_ENUM_TYPE => $this->mMetaModuleNames
 			),
 			'prop' => array (
 				GN_ENUM_ISMULTI => true,
-				GN_ENUM_CHOICES => $this->mPropModuleNames
+				GN_ENUM_TYPE => $this->mPropModuleNames
 			),
 			'list' => array (
 				GN_ENUM_ISMULTI => true,
-				GN_ENUM_CHOICES => $this->mListModuleNames
+				GN_ENUM_TYPE => $this->mListModuleNames
 			),
 			//			'generator' => array (
-			//				GN_ENUM_CHOICES => $this->mAllowedGenerators
+			//				GN_ENUM_TYPE => $this->mAllowedGenerators
 			//			),
 			'titles' => array (
 				GN_ENUM_ISMULTI => true
@@ -225,21 +232,21 @@ class ApiQuery extends ApiBase {
 
 		$astriks = str_repeat('--- ', 8);
 		$msg .= "\n$astriks Query: Meta  $astriks\n\n";
- 		$msg .= $this->MakeHelpMsgHelper($this->mQueryMetaModules, 'meta');
+		$msg .= $this->MakeHelpMsgHelper($this->mQueryMetaModules, 'meta');
 		$msg .= "\n$astriks Query: Prop  $astriks\n\n";
- 		$msg .= $this->MakeHelpMsgHelper($this->mQueryPropModules, 'prop');
+		$msg .= $this->MakeHelpMsgHelper($this->mQueryPropModules, 'prop');
 		$msg .= "\n$astriks Query: List  $astriks\n\n";
- 		$msg .= $this->MakeHelpMsgHelper($this->mQueryListModules, 'list');
+		$msg .= $this->MakeHelpMsgHelper($this->mQueryListModules, 'list');
 
 		return $msg;
 	}
-	
+
 	private function MakeHelpMsgHelper($moduleList, $paramName) {
 		$msg = '';
 
 		foreach ($moduleList as $moduleName => $moduleClass) {
 			$msg .= "* $paramName=$moduleName *";
-			$module = new $moduleClass ($this->GetMain(), $moduleName, null);
+			$module = new $moduleClass ($this->GetMain(), $this, $moduleName, null);
 			$msg2 = $module->MakeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;

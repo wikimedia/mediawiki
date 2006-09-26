@@ -31,8 +31,8 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiQuerySiteinfo extends ApiQueryBase {
 
-	public function __construct($main, $query, $data) {
-		parent :: __construct($main, $query);
+	public function __construct($main, $query, $moduleName, $data) {
+		parent :: __construct($main, $query, $moduleName, $data);
 	}
 
 	public function Execute() {
@@ -79,7 +79,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'siprop' => array (
 				GN_ENUM_DFLT => 'general',
 				GN_ENUM_ISMULTI => true,
-				GN_ENUM_CHOICES => array (
+				GN_ENUM_TYPE => array (
 					'general',
 					'namespaces'
 				)

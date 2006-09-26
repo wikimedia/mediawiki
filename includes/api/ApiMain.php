@@ -73,11 +73,11 @@ class ApiMain extends ApiBase {
 		return array (
 			'format' => array (
 				GN_ENUM_DFLT => API_DEFAULT_FORMAT,
-				GN_ENUM_CHOICES => $this->mFormatNames
+				GN_ENUM_TYPE => $this->mFormatNames
 			),
 			'action' => array (
 				GN_ENUM_DFLT => 'help',
-				GN_ENUM_CHOICES => $this->mModuleNames
+				GN_ENUM_TYPE => $this->mModuleNames
 			)
 		);
 	}
@@ -171,6 +171,15 @@ class ApiMain extends ApiBase {
 		}
 
 		return $msg;
+	}
+	
+	private $mIsBot = null;
+	public function IsBot() {
+		if (!isset($this->mIsBot)) {
+			global $wgUser;
+			$this->mIsBot = $wgUser->isAllowed( 'bot' );
+		}
+		return $this->mIsBot;
 	}
 }
 ?>
