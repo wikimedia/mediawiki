@@ -62,7 +62,7 @@ $wgApiAutoloadClasses = array (
 	'ApiQuerySiteinfo' => 'ApiQuerySiteinfo.php',
 	'ApiQueryInfo' => 'ApiQueryInfo.php',
 	'ApiQueryRevisions' => 'ApiQueryRevisions.php',
-	'ApiQueryAllpages' => 'ApiQueryAllpages.php'	
+	'ApiQueryAllpages' => 'ApiQueryAllpages.php'
 );
 
 /**
@@ -115,9 +115,9 @@ function ApiInitAutoloadClasses($apiAutoloadClasses, $apiDirectory) {
 	// Prefix each api class with the proper prefix,
 	// and append them to $wgAutoloadClasses
 	global $wgAutoloadClasses;
-	
+
 	if (!isset ($wgAutoloadClasses))
-		$wgAutoloadClasses = array();
+		$wgAutoloadClasses = array ();
 
 	foreach ($apiAutoloadClasses as $className => $classFile)
 		$wgAutoloadClasses[$className] = $apiDirectory . $classFile;

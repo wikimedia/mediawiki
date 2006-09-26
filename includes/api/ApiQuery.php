@@ -31,7 +31,8 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiQuery extends ApiBase {
 
-	var $mMetaModuleNames, $mPropModuleNames, $mListModuleNames;
+	private $mMetaModuleNames, $mPropModuleNames, $mListModuleNames;
+	private $mData;
 
 	private $mQueryMetaModules = array (
 		'siteinfo' => 'ApiQuerySiteinfo'
@@ -80,6 +81,10 @@ class ApiQuery extends ApiBase {
 		return $this->mSlaveDB;
 	}
 
+	public function GetData() {
+		return $this->mData;
+	}
+
 	/**
 	 * Query execution happens in the following steps:
 	 * #1 Create a PageSet object with any pages requested by the user
@@ -113,17 +118,17 @@ class ApiQuery extends ApiBase {
 			$dataSource = 'revids';
 		}
 
-		$data = new ApiPageSet($this->GetMain(), $this->GetDB(), $redirects);
+		$this->mData = new ApiPageSet($this, $redirects);
 
 		switch ($dataSource) {
 			case 'titles' :
-				$data->PopulateTitles($titles);
+				$this->mData->PopulateTitles($titles);
 				break;
 			case 'pageids' :
-				$data->PopulatePageIDs($pageids);
+				$this->mData->PopulatePageIDs($pageids);
 				break;
 			case 'titles' :
-				$data->PopulateRevIDs($revids);
+				$this->mData->PopulateRevIDs($revids);
 				break;
 			default :
 				// Do nothing - some queries do not need any of the data sources.
@@ -134,24 +139,24 @@ class ApiQuery extends ApiBase {
 		// If generator is provided, get a new dataset to work on
 		//
 		if (isset ($generator))
-			$data = $this->ExecuteGenerator($generator, $data, $redirects);
+			$this->ExecuteGenerator($generator, $redirects);
 
 		// Instantiate required modules
-		// During instantiation, modules may optimize data requests through the $data object 
-		// $data will be lazy loaded when modules begin to request data during execution
+		// During instantiation, modules may optimize data requests through the $this->mData object 
+		// $this->mData will be lazy loaded when modules begin to request data during execution
 		$modules = array ();
 		if (isset ($meta))
 			foreach ($meta as $moduleName)
-				$modules[] = new $this->mQueryMetaModules[$moduleName] ($this->GetMain(), $this, $moduleName, $data);
+				$modules[] = new $this->mQueryMetaModules[$moduleName] ($this, $moduleName);
 		if (isset ($prop))
 			foreach ($prop as $moduleName)
-				$modules[] = new $this->mQueryPropModules[$moduleName] ($this->GetMain(), $this, $moduleName, $data);
+				$modules[] = new $this->mQueryPropModules[$moduleName] ($this, $moduleName);
 		if (isset ($list))
 			foreach ($list as $moduleName)
-				$modules[] = new $this->mQueryListModules[$moduleName] ($this->GetMain(), $this, $moduleName, $data);
+				$modules[] = new $this->mQueryListModules[$moduleName] ($this, $moduleName);
 
 		// Title normalizations
-		foreach ($data->GetNormalizedTitles() as $rawTitleStr => $titleStr) {
+		foreach ($this->mData->GetNormalizedTitles() as $rawTitleStr => $titleStr) {
 			$this->GetResult()->AddMessage('query', 'normalized', array (
 				'from' => $rawTitleStr,
 				'to' => $titleStr
@@ -160,7 +165,7 @@ class ApiQuery extends ApiBase {
 
 		// Show redirect information
 		if ($redirects) {
-			foreach ($data->GetRedirectTitles() as $titleStrFrom => $titleStrTo) {
+			foreach ($this->mData->GetRedirectTitles() as $titleStrFrom => $titleStrTo) {
 				$this->GetResult()->AddMessage('query', 'redirects', array (
 					'from' => $titleStrFrom,
 					'to' => $titleStrTo
@@ -173,18 +178,20 @@ class ApiQuery extends ApiBase {
 			$module->Execute();
 	}
 
-	protected function ExecuteGenerator($generator, $data, $redirects) {
-		
+	protected function ExecuteGenerator($generator, $redirects) {
+
 		// Find class that implements requested generator
 		if (isset ($this->mQueryListModules[$generator]))
 			$className = $this->mQueryListModules[$generator];
-		else if (isset ($this->mQueryPropModules[$generator]))
-			$className = $this->mQueryPropModules[$generator];
 		else
-			$this->DieDebug("Unknown generator=$generator");
-			
-			
-		$module = new $className($this->GetMain(), $this, $generator, $data, true);
+			if (isset ($this->mQueryPropModules[$generator]))
+				$className = $this->mQueryPropModules[$generator];
+			else
+				$this->DieDebug("Unknown generator=$generator");
+
+		$module = new $className ($this, $generator, true);
+
+		// change $this->mData
 
 		// TODO: implement
 		$this->DieUsage("Generator execution has not been implemented", 'notimplemented');
@@ -230,6 +237,10 @@ class ApiQuery extends ApiBase {
 		// Use parent to make default message for the query module
 		$msg = parent :: MakeHelpMsg();
 
+		// Make sure the internal object is empty
+		// (just in case a sub-module decides to optimize during instantiation)
+		$this->mData = null;
+
 		$astriks = str_repeat('--- ', 8);
 		$msg .= "\n$astriks Query: Meta  $astriks\n\n";
 		$msg .= $this->MakeHelpMsgHelper($this->mQueryMetaModules, 'meta');
@@ -246,7 +257,7 @@ class ApiQuery extends ApiBase {
 
 		foreach ($moduleList as $moduleName => $moduleClass) {
 			$msg .= "* $paramName=$moduleName *";
-			$module = new $moduleClass ($this->GetMain(), $this, $moduleName, null);
+			$module = new $moduleClass ($this, $moduleName);
 			$msg2 = $module->MakeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;

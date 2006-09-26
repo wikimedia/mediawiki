@@ -33,7 +33,8 @@ if (!defined('MEDIAWIKI')) {
 * @desc This exception will be thrown when DieUsage is called to stop module execution.
 */
 class UsageException extends Exception {
-	var $codestr;
+
+	private $codestr;
 
 	public function __construct($message, $codestr) {
 		parent :: __construct($message);
@@ -172,12 +173,12 @@ class ApiMain extends ApiBase {
 
 		return $msg;
 	}
-	
+
 	private $mIsBot = null;
 	public function IsBot() {
-		if (!isset($this->mIsBot)) {
+		if (!isset ($this->mIsBot)) {
 			global $wgUser;
-			$this->mIsBot = $wgUser->isAllowed( 'bot' );
+			$this->mIsBot = $wgUser->isAllowed('bot');
 		}
 		return $this->mIsBot;
 	}

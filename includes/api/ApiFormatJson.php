@@ -42,7 +42,7 @@ class ApiFormatJson extends ApiFormatBase {
 	public function Execute() {
 		require_once ('ApiFormatJson_json.php');
 		$json = new Services_JSON();
-		$this->PrintText( $json->encode( $this->GetResult()->GetData(), true ));
+		$this->PrintText($json->encode($this->GetResult()->GetData(), true));
 	}
 
 	protected function GetDescription() {

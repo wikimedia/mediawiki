@@ -31,12 +31,12 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiQueryInfo extends ApiQueryBase {
 
-	public function __construct($main, $moduleName, $query, $data) {
-		parent :: __construct($main, $moduleName, $query, $data);
+	public function __construct($main, $moduleName, $query) {
+		parent :: __construct($main, $moduleName, $query);
 	}
 
 	public function Execute() {
-		
+
 	}
 
 	protected function GetAllowedParams() {
@@ -54,7 +54,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	protected function GetParamDescription() {
-		return array();
+		return array ();
 	}
 
 	protected function GetDescription() {
