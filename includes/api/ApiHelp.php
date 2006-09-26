@@ -41,9 +41,11 @@ class ApiHelp extends ApiBase {
 	public function Execute() {
 		$this->DieUsage('', 'help');
 	}
-	
+
 	protected function GetDescription() {
-		return array('Display this help screen.');
+		return array (
+			'Display this help screen.'
+		);
 	}
 }
 ?>

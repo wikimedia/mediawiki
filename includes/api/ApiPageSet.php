@@ -26,25 +26,24 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ("ApiQueryBase.php");
 }
 
-class ApiPageSet extends ApiBase {
+class ApiPageSet extends ApiQueryBase {
 
 	private $allPages; // [ns][dbkey] => page_id or 0 when missing
-	private $db, $resolveRedirs;
+	private $resolveRedirs;
 	private $goodTitles, $missingTitles, $redirectTitles, $normalizedTitles;
 
-	public function __construct($main, $db, $resolveRedirs) {
-		parent :: __construct($main);
-		$this->db = $db;
+	public function __construct($query, $resolveRedirs) {
+		parent :: __construct($query, __CLASS__);
 		$this->resolveRedirs = $resolveRedirs;
 
 		$this->allPages = array ();
 		$this->goodTitles = array ();
 		$this->missingTitles = array ();
 		$this->redirectTitles = array ();
-		$this->normalizedTitles = array();
+		$this->normalizedTitles = array ();
 	}
 
 	/**
@@ -79,7 +78,7 @@ class ApiPageSet extends ApiBase {
 	public function GetNormalizedTitles() {
 		return $this->normalizedTitles;
 	}
-	
+
 	/**
 	 * Given an array of title strings, convert them into Title objects.
 	 * This method validates access rights for the title, 
@@ -141,11 +140,13 @@ class ApiPageSet extends ApiBase {
 
 		// Get validated and normalized title objects
 		$linkBatch = $this->ProcessTitlesStrings($titles);
-		
+
+		$db = $this->GetDB();
+
 		//
 		// Repeat until all redirects have been resolved
 		//
-		while (false !== ($set = $linkBatch->constructSet('page', $this->db))) {
+		while (false !== ($set = $linkBatch->constructSet('page', $db))) {
 
 			// Hack: Get the ns:titles stored in array(ns => array(titles)) format
 			$remaining = $linkBatch->data;
@@ -155,8 +156,8 @@ class ApiPageSet extends ApiBase {
 			//
 			// Get data about $linkBatch from `page` table
 			//
-			$res = $this->db->select('page', $pageFlds, $set, __CLASS__ . '::' . __FUNCTION__);
-			while ($row = $this->db->fetchObject($res)) {
+			$res = $db->select('page', $pageFlds, $set, __CLASS__ . '::' . __FUNCTION__);
+			while ($row = $db->fetchObject($res)) {
 
 				unset ($remaining[$row->page_namespace][$row->page_title]);
 				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
@@ -168,7 +169,7 @@ class ApiPageSet extends ApiBase {
 					$this->goodTitles[$row->page_id] = $title;
 				}
 			}
-			$this->db->freeResult($res);
+			$db->freeResult($res);
 
 			//
 			// The remaining titles in $remaining are non-existant pages
@@ -186,12 +187,12 @@ class ApiPageSet extends ApiBase {
 			//
 			// Resolve redirects by querying the pagelinks table, and repeat the process
 			//
-			
+
 			// Create a new linkBatch object for the next pass
 			$linkBatch = new LinkBatch();
 
 			// find redirect targets for all redirect pages
-			$res = $this->db->select('pagelinks', array (
+			$res = $db->select('pagelinks', array (
 				'pl_from',
 				'pl_namespace',
 				'pl_title'
@@ -199,19 +200,19 @@ class ApiPageSet extends ApiBase {
 				'pl_from' => array_keys($redirectIds
 			)), __CLASS__ . '::' . __FUNCTION__);
 
-			while ($row = $this->db->fetchObject($res)) {
+			while ($row = $db->fetchObject($res)) {
 
 				// Bug 7304 workaround 
 				// ( http://bugzilla.wikipedia.org/show_bug.cgi?id=7304 )
 				// A redirect page may have more than one link.
 				// This code will only use the first link returned. 
-				if (isset ($redirectIds[$row->pl_from])) {	// remove line when 7304 is fixed 
+				if (isset ($redirectIds[$row->pl_from])) { // remove line when 7304 is fixed 
 
 					$titleStrFrom = $redirectIds[$row->pl_from]->getPrefixedText();
 					$titleStrTo = Title :: makeTitle($row->pl_namespace, $row->pl_title)->getPrefixedText();
 					$this->redirectTitles[$titleStrFrom] = $titleStrTo;
 
-					unset ($redirectIds[$row->pl_from]);	// remove line when 7304 is fixed
+					unset ($redirectIds[$row->pl_from]); // remove line when 7304 is fixed
 
 					// Avoid an infinite loop by checking if we have already processed this target
 					if (!isset ($this->allPages[$row->pl_namespace][$row->pl_title])) {
@@ -219,7 +220,7 @@ class ApiPageSet extends ApiBase {
 					}
 				}
 			}
-			$this->db->freeResult($res);
+			$db->freeResult($res);
 		}
 	}
 

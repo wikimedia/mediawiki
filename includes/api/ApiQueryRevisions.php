@@ -31,8 +31,8 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiQueryRevisions extends ApiQueryBase {
 
-	public function __construct($main, $query, $moduleName, $data, $generator=false) {
-		parent :: __construct($main, $query, $moduleName, $data, $generator);
+	public function __construct($query, $moduleName, $generator = false) {
+		parent :: __construct($query, $moduleName, $generator);
 	}
 
 	public function Execute() {

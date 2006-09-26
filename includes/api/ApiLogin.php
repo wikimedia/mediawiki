@@ -45,41 +45,40 @@ class ApiLogin extends ApiBase {
 			'wpDomain' => $lgdomain,
 			'wpRemember' => ''
 		));
-		
-		$result = array();
-		
+
+		$result = array ();
+
 		$loginForm = new LoginForm($params);
-		switch ($loginForm->authenticateUserData())
-		{
-			case (AuthSuccess):
+		switch ($loginForm->authenticateUserData()) {
+			case (AuthSuccess) :
 				$result['result'] = 'Success';
 				$result['lguserid'] = $_SESSION['wsUserID'];
 				$result['lgusername'] = $_SESSION['wsUserName'];
 				$result['lgtoken'] = $_SESSION['wsToken'];
 				break;
 
-			case (AuthNoName):
+			case (AuthNoName) :
 				$result['result'] = 'AuthNoName';
 				break;
-			case (AuthIllegal):
+			case (AuthIllegal) :
 				$result['result'] = 'AuthIllegal';
 				break;
-			case (AuthWrongPluginPass):
+			case (AuthWrongPluginPass) :
 				$result['result'] = 'AuthWrongPluginPass';
 				break;
-			case (AuthNotExists):
+			case (AuthNotExists) :
 				$result['result'] = 'AuthNotExists';
 				break;
-			case (AuthWrongPass):
+			case (AuthWrongPass) :
 				$result['result'] = 'AuthWrongPass';
 				break;
-			case (AuthEmptyPass):
+			case (AuthEmptyPass) :
 				$result['result'] = 'AuthEmptyPass';
 				break;
-			default:
-				$this->DieDebug( "Unhandled case value" );
+			default :
+				$this->DieDebug("Unhandled case value");
 		}
-		
+
 		$this->GetResult()->AddMessage('login', null, $result);
 	}
 
@@ -87,7 +86,7 @@ class ApiLogin extends ApiBase {
 		return array (
 			'lgname' => '',
 			'lgpassword' => '',
-			'lgdomain' => null			
+			'lgdomain' => null
 		);
 	}
 
@@ -95,12 +94,14 @@ class ApiLogin extends ApiBase {
 		return array (
 			'lgname' => 'User Name',
 			'lgpassword' => 'Password',
-			'lgdomain' => 'Domain (optional)'			
+			'lgdomain' => 'Domain (optional)'
 		);
 	}
 
 	protected function GetDescription() {
-		return array('This module is used to login and get the authentication tokens.');
+		return array (
+			'This module is used to login and get the authentication tokens.'
+		);
 	}
 }
 ?>

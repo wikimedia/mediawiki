@@ -142,7 +142,7 @@ abstract class ApiFormatBase extends ApiBase {
 		$text = ereg_replace("api\\.php\\?[^ ()<\n\t]+", '<a href="\\0">\\0</a>', $text);
 		// make strings inside * bold
 		$text = ereg_replace("\\*[^<>\n]+\\*", '<b>\\0</b>', $text);
-		
+
 		return $text;
 	}
 

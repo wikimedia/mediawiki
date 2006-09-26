@@ -195,7 +195,7 @@ abstract class ApiBase {
 
 			// More validation only when choices were not given
 			// choices were validated in ParseMultiValue()
-			if (!is_array ($type) && isset ($value)) {
+			if (!is_array($type) && isset ($value)) {
 
 				switch ($type) {
 					case 'NULL' : // nothing to do
@@ -205,14 +205,14 @@ abstract class ApiBase {
 					case 'integer' : // Force everything using intval()
 						$value = is_array($value) ? array_map('intval', $value) : intval($value);
 						break;
-					case 'limit':
-						if (!isset ($enumParams[GN_ENUM_MAX1]) || !isset($enumParams[GN_ENUM_MAX2]))
+					case 'limit' :
+						if (!isset ($enumParams[GN_ENUM_MAX1]) || !isset ($enumParams[GN_ENUM_MAX2]))
 							$this->DieDebug("MAX1 or MAX2 are not defined for the limit $param");
 						if ($multi)
 							$this->DieDebug("Multi-values not supported for $param");
-						$min = isset($enumParams[GN_ENUM_MIN]) ? $enumParams[GN_ENUM_MIN] : 0;
+						$min = isset ($enumParams[GN_ENUM_MIN]) ? $enumParams[GN_ENUM_MIN] : 0;
 						$value = intval($value);
-						$this->ValidateLimit($param, $value, $min, $enumParams[GN_ENUM_MAX1], $enumParams[GN_ENUM_MAX2]);							
+						$this->ValidateLimit($param, $value, $min, $enumParams[GN_ENUM_MAX1], $enumParams[GN_ENUM_MAX2]);
 						break;
 					case 'boolean' :
 						if ($multi)
@@ -226,7 +226,7 @@ abstract class ApiBase {
 						break;
 					default :
 						$this->DieDebug("Param $param's type is unknown - $type");
-				
+
 				}
 			}
 
@@ -276,21 +276,20 @@ abstract class ApiBase {
 	/**
 	* Validate the value against the minimum and user/bot maximum limits. Prints usage info on failure.
 	*/
-	function ValidateLimit( $varname, $value, $min, $max, $botMax )
-	{
+	function ValidateLimit($varname, $value, $min, $max, $botMax) {
 		global $wgUser;
-		
-		if ( $value < $min ) {
-			$this->dieUsage( "$varname may not be less than $min (set to $value)", $varname );
+
+		if ($value < $min) {
+			$this->dieUsage("$varname may not be less than $min (set to $value)", $varname);
 		}
-		
-		if( $this->GetMain()->IsBot() ) {
-			if ( $value > $botMax ) {
-				$this->dieUsage( "$varname may not be over $botMax (set to $value) for bots", $varname );
+
+		if ($this->GetMain()->IsBot()) {
+			if ($value > $botMax) {
+				$this->dieUsage("$varname may not be over $botMax (set to $value) for bots", $varname);
 			}
 		} else {
-			if( $value > $max ) {
-				$this->dieUsage( "$varname may not be over $max (set to $value) for users", $varname );
+			if ($value > $max) {
+				$this->dieUsage("$varname may not be over $max (set to $value) for users", $varname);
 			}
 		}
 	}

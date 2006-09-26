@@ -31,37 +31,43 @@ if (!defined('MEDIAWIKI')) {
 
 abstract class ApiQueryBase extends ApiBase {
 
-	private $mQueryModule, $mModuleName, $mData, $mGenerator;
-	
-	public function __construct($main, $query, $moduleName, $data, $generator=false) {
-		parent :: __construct($main);
+	private $mQueryModule, $mModuleName, $mGenerator;
+
+	public function __construct($query, $moduleName, $generator = false) {
+		parent :: __construct($query->GetMain());
 		$this->mQueryModule = $query;
 		$this->mModuleName = $moduleName;
-		$this->mData = $data;
 		$this->mGenerator = $generator;
 	}
-	
+
 	/**
 	 * Get the main Query module 
 	 */
 	public function GetQuery() {
 		return $this->mQueryModule;
 	}
-	
+
 	/**
 	 * Get the name of the query being executed by this instance 
-	 */ 
+	 */
 	public function GetModuleName() {
 		return $this->mModuleName;
-	}	
-	
+	}
+
+	/**
+	 * Get the Query database connection (readonly)
+	 */
+	protected function GetDB() {
+		return $this->GetQuery()->GetDB();
+	}
+
 	/**
 	 * Get the PageSet object to work on
 	 */
 	protected function GetData() {
-		return $this->mData;
+		return $this->mQueryModule->GetData();
 	}
-	
+
 	/**
 	 * Return true if this instance is being used as a generator.
 	 */
@@ -75,14 +81,12 @@ abstract class ApiQueryBase extends ApiBase {
 	public function GetCanGenerate() {
 		return false;
 	}
-	
-	public static function TitleToKey($title)
-	{
-	    return str_replace(' ', '_', $title);
+
+	public static function TitleToKey($title) {
+		return str_replace(' ', '_', $title);
 	}
-	public static function KeyToTitle($key)
-	{
-	    return str_replace('_', ' ', $key);
+	public static function KeyToTitle($key) {
+		return str_replace('_', ' ', $key);
 	}
 }
 ?>
