@@ -228,6 +228,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added info text to Special:Deadendpages and Special:Lonelypages
 * Fix regression in cachability of generated CSS and JS for MonoBook skin,
   while avoiding clobbering of different users' cached data
+* (bug 6849) Block @ from usernames; interferes with multi-database tools and
+  was meant to be banned years ago... For now existing accounts will not be
+  prevented fromm login.
 
 
 == Languages updated ==

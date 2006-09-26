@@ -335,6 +335,48 @@ class User {
 		
 		return true;
 	}
+	
+	/**
+	 * Usernames which fail to pass this function will be blocked
+	 * from user login and new account registrations, but may be used
+	 * internally by batch processes.
+	 *
+	 * If an account already exists in this form, login will be blocked
+	 * by a failure to pass this function.
+	 *
+	 * @param string $name
+	 * @return bool
+	 */
+	static function isUsableName( $name ) {
+		global $wgReservedUsernames;
+		return
+			// Must be a usable username, obviously ;)
+			self::isValidUserName( $name ) &&
+			
+			// Certain names may be reserved for batch processes.
+			!in_array( $name, $wgReservedUsernames );
+	}
+	
+	/**
+	 * Usernames which fail to pass this function will be blocked
+	 * from new account registrations, but may be used internally
+	 * either by batch processes or by user accounts which have
+	 * already been created.
+	 *
+	 * Additional character blacklisting may be added here
+	 * rather than in isValidUserName() to avoid disrupting
+	 * existing accounts.
+	 *
+	 * @param string $name
+	 * @return bool
+	 */
+	static function isCreatableName( $name ) {
+		return
+			self::isUsableName( $name ) &&
+			
+			// Registration-time character blacklisting...
+			strpos( $name, '@' ) === false;
+	}
 
 	/**
 	 * Is the input a valid password?
