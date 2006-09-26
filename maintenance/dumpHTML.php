@@ -13,6 +13,7 @@
  * -s <start>           start ID
  * -e <end>             end ID
  * -k <skin>            skin to use (defaults to htmldump)
+ * --no-overwrite       skip existing HTML files
  * --checkpoint <file>  use a checkpoint file to allow restarting of interrupted dumps
  * --slice <n/m>        split the job into m segments and do the n'th one
  * --images             only do image description pages
@@ -88,7 +89,8 @@ $wgHTMLDump = new DumpHTML( array(
 	'startID' => $start,
 	'endID' => $end,
 	'sliceNumerator' => $sliceNumerator,
-	'sliceDenominator' => $sliceDenominator
+	'sliceDenominator' => $sliceDenominator,
+	'noOverwrite' => $options['no-overwrite'],
 ));
 
 

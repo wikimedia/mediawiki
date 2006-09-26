@@ -14,6 +14,9 @@ class DumpHTML {
 	# Destination directory
 	var $dest;
 
+	# Skip existing files
+	var $noOverwrite = false;
+
 	# Show interlanguage links?
 	var $interwiki = true;
 
@@ -57,6 +60,9 @@ class DumpHTML {
 	var $startID = 1, $endID = false;
 
 	var $sliceNumerator = 1, $sliceDenominator = 1;
+
+	# Max page ID, lazy initialised
+	var $maxPageID = false;
 
 	function DumpHTML( $settings = array() ) {
 		foreach ( $settings as $var => $value ) {
@@ -131,16 +137,10 @@ class DumpHTML {
 	 * Skip categories and images, they will be done separately
 	 */
 	function doArticles() {
-		$fname = 'DumpHTML::doArticles';
-
 		if ( $this->endID === false ) {
-			$dbr =& wfGetDB( DB_SLAVE );
-			$this->endID = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
+			$this->endID = $this->getMaxPageID();
 		}
 		
-		# Slice the range
-		list( $start, $end ) = $this->sliceRange( $this->startID, $this->endID );
-
 		# Start from the checkpoint
 		$cp = $this->getCheckpoint( 'article' );
 		if ( $cp == 'done' ) {
@@ -153,18 +153,21 @@ class DumpHTML {
 			print "Starting from page_id $start of $end\n";
 		}
 
+		# Move the start point to the correct slice if it isn't there already
+		$start = $this->modSliceStart( $start );
+
 		$this->setupGlobals();
 
 		$mainPageObj = Title::newMainPage();
 		$mainPage = $mainPageObj->getPrefixedDBkey();
 
-		for ($id = $start; $id <= $end; $id++) {
+		for ( $id = $start, $i = 0; $id <= $end; $id += $this->sliceDenominator, $i++ ) {
 			wfWaitForSlaves( 20 );
-			if ( !($id % REPORTING_INTERVAL) ) {
+			if ( !( $i % REPORTING_INTERVAL) ) {
 				print "Processing ID: $id\r";
 				$this->setCheckpoint( 'article', $id );
 			}
-			if ( !($id % (REPORTING_INTERVAL*10) ) ) {
+			if ( !($i % (REPORTING_INTERVAL*10) ) ) {
 				print "\n";
 			}
 			$title = Title::newFromID( $id );
@@ -224,6 +227,7 @@ class DumpHTML {
 	 */
 	function doLocalImageDescriptions() {
 		global $wgSharedUploadDirectory;
+		$chunkSize = 1000;
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		
@@ -240,32 +244,39 @@ class DumpHTML {
 		}
 
 		$this->setupGlobals();
-
-		$res = $dbr->select( 'image', array( 'img_name' ), $conds, __METHOD__, 
-			array( 'ORDER BY' => 'img_name' ) );
-
 		$i = 0;
-		$num = $dbr->numRows( $res );
-		while ( $row = $dbr->fetchObject( $res ) ) {
-			// Slice the result set with a filter
-			if ( !$this->sliceFilter( $row->img_name ) ) {
-				continue;
-			}
 
-			wfWaitForSlaves( 10 );
-			if ( !( ++$i % REPORTING_INTERVAL ) ) {
-				print "Done $i of $num\r";
-				if ( $row->img_name !== 'done' ) {
-					$this->setCheckpoint( 'local image', $row->img_name );
+		do {
+			$res = $dbr->select( 'image', array( 'img_name' ), $conds, __METHOD__, 
+				array( 'ORDER BY' => 'img_name', 'LIMIT' => $chunkSize ) );
+			$numRows = $dbr->numRows( $res );
+
+			while ( $row = $dbr->fetchObject( $res ) ) {
+				# Update conds for the next chunk query
+				$conds = array( 'img_name > ' . $dbr->addQuotes( $row->img_name ) );
+				
+				// Slice the result set with a filter
+				if ( !$this->sliceFilter( $row->img_name ) ) {
+					continue;
 				}
+
+				wfWaitForSlaves( 10 );
+				if ( !( ++$i % REPORTING_INTERVAL ) ) {
+					print "{$row->img_name}\n";
+					if ( $row->img_name !== 'done' ) {
+						$this->setCheckpoint( 'local image', $row->img_name );
+					}
+				}
+				$title = Title::makeTitle( NS_IMAGE, $row->img_name );
+				if ( $title->getArticleID() ) {
+					// Already done by dumpHTML
+					continue;
+				}
+				$this->doArticle( $title );
 			}
-			$title = Title::makeTitle( NS_IMAGE, $row->img_name );
-			if ( $title->getArticleID() ) {
-				// Already done by dumpHTML
-				continue;
-			}
-			$this->doArticle( $title );
-		}
+			$dbr->freeResult( $res );
+		} while ( $numRows );
+		
 		$this->setCheckpoint( 'local image', 'done' );
 		print "\n";
 	}
@@ -286,7 +297,6 @@ class DumpHTML {
 		} else {
 			print "Writing description pages for commons images\n";
 		}
-
 
 		$this->setupGlobals();
 		$i = 0;
@@ -312,55 +322,60 @@ class DumpHTML {
 	}
 
 	function doCategories() {
-		$fname = 'DumpHTML::doCategories';
+		$chunkSize = 1000;
+		
 		$this->setupGlobals();
 		$dbr =& wfGetDB( DB_SLAVE );
-		$sql = 'SELECT DISTINCT cl_to FROM ' . $dbr->tableName( 'categorylinks' );
-
+		
 		$cp = $this->getCheckpoint( 'category' );
 		if ( $cp == 'done' ) {
 			print "Category pages already done\n";
 			return;
 		} elseif ( $cp !== false ) {
 			print "Resuming category page dump from $cp\n";
-			$sql .= ' WHERE cl_to >= ' . $dbr->addQuotes( $cp );
+			$conds = array( 'cl_to >= ' $dbr->addQuotes( $cp ) );
+		} else {
+			print "Starting category pages\n";
+			$conds = false;
 		}
 
-		$sql .= ' ORDER BY cl_to';
-		print "Selecting categories...";
-		$res = $dbr->query( $sql, $fname );
-
-		print "\nWriting " . $dbr->numRows( $res ).  " category pages\n";
 		$i = 0;
-		while ( $row = $dbr->fetchObject( $res ) ) {
-			// Filter pages from other slices
-			if ( !$this->sliceFilter( $row->cl_to ) ) {
-				continue;
-			}
-
-			wfWaitForSlaves( 10 );
-			if ( !(++$i % REPORTING_INTERVAL ) ) {
-				print "{$row->cl_to}\n";
-				if ( $row->cl_to != 'done' ) {
-					$this->setCheckpoint( 'category', $row->cl_to );
+		do {
+			$res = $dbr->select( 'categorylinks', 'DISTINCT cl_to', $conds, __METHOD__
+				array( 'ORDER BY' => 'cl_to', 'LIMIT' => $chunkSize ) );
+			$numRows = $dbr->numRows( $res );
+			
+			while ( $row = $dbr->fetchObject( $res ) ) {
+				// Set conditions for next chunk
+				$conds = array( 'cl_to > ' $dbr->addQuotes( $row->cl_to ) );
+				
+				// Filter pages from other slices
+				if ( !$this->sliceFilter( $row->cl_to ) ) {
+					continue;
 				}
+
+				wfWaitForSlaves( 10 );
+				if ( !(++$i % REPORTING_INTERVAL ) ) {
+					print "{$row->cl_to}\n";
+					if ( $row->cl_to != 'done' ) {
+						$this->setCheckpoint( 'category', $row->cl_to );
+					}
+				}
+				$title = Title::makeTitle( NS_CATEGORY, $row->cl_to );
+				$this->doArticle( $title );
 			}
-			$title = Title::makeTitle( NS_CATEGORY, $row->cl_to );
-			$this->doArticle( $title );
-		}
+			$dbr->freeResult( $res );
+		} while ( $numRows );
+		
 		$this->setCheckpoint( 'category', 'done' );
 		print "\n";
 	}
 
 	function doRedirects() {
 		print "Doing redirects...\n";
-		$fname = 'DumpHTML::doRedirects';
 
-		
-		$dbr =& wfGetDB( DB_SLAVE );
-		$end = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
-		list( $start, $end ) = $this->sliceRange( 1, $end );
-
+		$chunkSize = 10000;
+		$end = $this->getMaxPageID();
 		$cp = $this->getCheckpoint( 'redirect' );
 		if ( $cp == 'done' )  {
 			print "Redirects already done\n";
@@ -369,25 +384,35 @@ class DumpHTML {
 			print "Resuming redirect generation from page_id $cp\n";
 			$start = intval( $cp );
 		}
-		
-		$conds = array( 
-			'page_is_redirect' => 1,
-			"page_id BETWEEN $start AND $end"
-		);
 
 		$this->setupGlobals();
-		$res = $dbr->select( 'page', array( 'page_id', 'page_namespace', 'page_title' ),
-			$conds, $fname );
-		$num = $dbr->numRows( $res );
-		print "$num redirects to do...\n";
+		$dbr =& wfGetDB( DB_SLAVE );
 		$i = 0;
-		while ( $row = $dbr->fetchObject( $res ) ) {
-			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			if ( !(++$i % (REPORTING_INTERVAL*10) ) ) {
-				print "Done $i of $num (ID {$row->page_id})\n";
-				$this->setCheckpoint( 'redirect', $row->page_id );
+
+		for ( $chunkStart = $start; $chunkStart <= $end; $chunkStart += $chunkSize ) {
+			$chunkEnd = min( $end, $chunkStart + $chunkSize - 1 );
+			$conds = array( 
+				'page_is_redirect' => 1,
+				"page_id BETWEEN $chunkStart AND $chunkEnd"
+			);
+			# Modulo slicing in SQL
+			if ( $this->sliceDenominator != 1 ) {
+				$n = intval( $this->sliceNumerator );
+				$m = intval( $this->sliceDenominator );
+				$conds[] = "page_id % $m = $n";
 			}
-			$this->doArticle( $title );
+			$res = $dbr->select( 'page', array( 'page_id', 'page_namespace', 'page_title' ),
+				$conds, __METHOD__ );
+			
+			while ( $row = $dbr->fetchObject( $res ) ) {
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				if ( !(++$i % (REPORTING_INTERVAL*10) ) ) {
+					printf( "Done %d redirects (%2.3f%%)\n", $i, $row->page_id / $end * 100 );
+					$this->setCheckpoint( 'redirect', $row->page_id );
+				}
+				$this->doArticle( $title );
+			}
+			$dbr->freeResult( $res );
 		}
 		$this->setCheckpoint( 'redirect', 'done' );
 	}
@@ -396,6 +421,13 @@ class DumpHTML {
 	function doArticle( $title ) {
 		global $wgTitle, $wgSharedUploadPath, $wgSharedUploadDirectory;
 		global $wgUploadDirectory;
+
+		if ( $this->noOverwrite ) {
+			$fileName = $this->dest.'/'.$this->getHashedFilename( $title );
+			if ( file_exists( $fileName ) ) {
+				return;
+			}
+		}
 
 		$this->rawPages = array();
 		$text = $this->getArticleHTML( $title );
@@ -847,6 +879,15 @@ ENDTEXT;
 	}
 
 	/**
+	 * Adjust a start point so that it belongs to the current slice, where slices are defined by integer modulo
+	 * @param integer $start
+	 * @param integer $base The true start of the range; the minimum start
+	 */
+	function modSliceStart( $start, $base = 1 ) {
+		return $start - ( $start % $this->sliceDenominator ) + $this->sliceNumerator - 1 + $base;
+	}
+
+	/**
 	 * Determine whether a string belongs to the current slice, based on hash
 	 */
 	function sliceFilter( $s ) {
@@ -864,6 +905,15 @@ ENDTEXT;
 		$text = '';
 		return false;
 	}
+
+	function getMaxPageID() {
+		if ( $this->maxPageID === false ) {
+			$dbr =& wfGetDB( DB_SLAVE );
+			$this->maxPageID = $dbr->selectField( 'page', 'max(page_id)', false, __METHOD__ );
+		}
+		return $this->maxPageID;
+	}
+			
 }
 
 /** XML parser callback */
