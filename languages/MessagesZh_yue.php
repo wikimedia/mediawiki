@@ -344,7 +344,7 @@ $messages = array(
 'redirectedfrom' 	=> '(由 $1 重新定向)', //REDIRECT
 'autoredircomment' 	=> '重新定向緊到[[$1]]',
 'redirectpagesub' 	=> '重新定向頁',
-'lastmodifiedat'		=> '呢一頁嘅最後修改係響$2, $1。',
+'lastmodifiedat'		=> '呢一頁嘅最後修改係響$1 $2。',
 'viewcount'		=> '呢一頁已經有$1人次睇過。',
 'copyright'		=> '響版度嘅內容係根據$1嘅條款發佈。',
 'protectedpage' 	=> '受保護頁',
@@ -492,10 +492,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'createaccountmail'	=> '用電郵',
 'badretype'		=> '你所入嘅密碼唔一致。',
 'userexists'		=> '你入嘅用戶名已經有人用緊，唔該揀過另外一個名啦。',
-'youremail'		=> '電郵 *',
+'youremail'		=> '電郵 *：',
 'username'		=> '用戶名：',
 'uid'			=> '用戶 ID：',
-'yourrealname'		=> '真實姓名 *',
+'yourrealname'		=> '真實姓名 *：',
 'yourlanguage'		=> '語言：',
 'yourvariant'  		=> '字體變化：',
 'yournick'		=> '綽號（簽名時用）',
@@ -1038,6 +1038,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nviews'	=> '$1 次瀏覽',
 
 'lonelypages'	=> '孤立咗嘅頁面',
+'lonelypagestext' => '以下嘅面頁係響呢個wiki度未有連結到其它頁面。',
 'uncategorizedpages'	=> '未有分類嘅頁面',
 'uncategorizedcategories'	=> '未有分類嘅分類',
 'uncategorizedimages' => '未有分類嘅圖像',
@@ -1057,6 +1058,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'shortpages'	=> '短頁',
 'longpages'	=> '長頁',
 'deadendpages'  => '掘頭頁',
+'deadendpagestext' => '以下嘅面頁響呢個wiki度連結到其它頁面。',
 'listusers'	=> '用戶一覽',
 'specialpages'	=> '特別頁',
 'spheading'	=> '所有用戶嘅特別頁',
@@ -1237,7 +1239,7 @@ wiki: $PAGEEDITOR_WIKI
 上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。",
 #   only shown if there is an edit comment
 'editcomment' 		=> "編輯摘要係：\"<i>$1</i>\".",
-'revertpage'		=> "已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯，恢復到[[Uaer:$1|$1]]嘅最後版本。",
+'revertpage'		=> "已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯，恢復到[[User:$1|$1]]嘅最後版本。",
 'sessionfailure' 	=> '你嘅登入會話 (session) 好似有啲問題；
 為咗防止會話劫持，呢個操作已經取消。
 請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
@@ -1326,7 +1328,7 @@ wiki: $PAGEEDITOR_WIKI
 'notargettext'	=> '你冇指定到呢個功能要用喺嘅對象頁面或用戶。', //會唔會好拗口？所以我唔中意啲乜野保持原文可逆嘅原則，保持原意兼且睇得舒服先至係讀者嘅最大需要
 'linklistsub'	=> '（連結一覽）',
 'linkshere'	=> "以下頁面連結到'''[[:$1]]'''：",
-'nolinkshere'	=> "無頁面連結到'''[[$1]]'''。",
+'nolinkshere'	=> "無頁面連結到'''[[:$1]]'''。",
 'isredirect'	=> '跳轉頁',
 'istemplate'	=> '包含',
 
@@ -1476,7 +1478,7 @@ wiki: $PAGEEDITOR_WIKI
 'delete_and_move_confirm' => '好，刪咗嗰個頁面',
 'delete_and_move_reason' => '已經刪咗嚟畀位畀個搬文動作',
 'selfmove' => "原始標題同目的標題一樣；唔可以將個頁面搬返去自己度。",
-'immobile_namespace' => "目的標題屬於特別類型；唔可以將頁面搬去嗰個空間名。",
+'immobile_namespace' => "來源或目的標題屬於特別類型；唔可以將頁面搬自或搬去嗰個空間名。",
 
 # Export
 
@@ -1578,7 +1580,7 @@ wiki: $PAGEEDITOR_WIKI
 
 'anonymous' => '{{SITENAME}}嘅匿名用戶',
 'siteuser' => '{{SITENAME}}嘅用戶$1',
-'lastmodifiedatby' => '呢一頁嘅最後畀 $3 響 $2, $1 修改。',
+'lastmodifiedatby' => '呢一頁最後響 $1 $2 畀 $3 修改。',
 'and' => '同埋',
 'othercontribs' => '以$1嘅作品為基礎。',
 'others' => '其他',
@@ -1707,6 +1709,11 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'睇吓分類頁\');',
 'variantname-sr-jc' => 'jc',
 'variantname-sr-jl' => 'jl',
 'variantname-sr' => 'sr',
+# variants for Kazakh language
+'variantname-kk-tr' => 'kk-tr',
+'variantname-kk-kz' => 'kk-kz',
+'variantname-kk-cn' => 'kk-cn',
+'variantname-kk' => 'kk',
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => '用戶：',
