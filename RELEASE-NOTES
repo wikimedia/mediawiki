@@ -226,6 +226,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to display the old format for compatibility.
 * (bug 7357) Make supposedly static methods of Skin actually static
 * Added info text to Special:Deadendpages and Special:Lonelypages
+* Fix regression in cachability of generated CSS and JS for MonoBook skin,
+  while avoiding clobbering of different users' cached data
 
 
 == Languages updated ==
