@@ -61,7 +61,8 @@ $wgApiAutoloadClasses = array (
 		// Query items (meta/prop/list=...)
 	'ApiQuerySiteinfo' => 'ApiQuerySiteinfo.php',
 	'ApiQueryInfo' => 'ApiQueryInfo.php',
-	'ApiQueryContent' => 'ApiQueryContent.php'
+	'ApiQueryRevisions' => 'ApiQueryRevisions.php',
+	'ApiQueryAllpages' => 'ApiQueryAllpages.php'	
 );
 
 /**
