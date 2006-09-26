@@ -2412,15 +2412,15 @@ class Parser
 			case 'revisionid':
 				return $this->mRevisionId;
 			case 'revisionday':
-				return intval( substr( $this->mTitle->getTouched(), 6, 2 ) );
+				return intval( substr( wfRevisionTimestamp( $this->mRevisionId ), 6, 2 ) );
 			case 'revisionday2':
-				return substr( $this->mTitle->getTouched(), 6, 2 );
+				return substr( wfRevisionTimestamp( $this->mRevisionId ), 6, 2 );
 			case 'revisionmonth':
-				return intval( substr( $this->mTitle->getTouched(), 4, 2 ) );
+				return intval( substr( wfRevisionTimestamp( $this->mRevisionId ), 4, 2 ) );
 			case 'revisionyear':
-				return substr( $this->mTitle->getTouched(), 0, 4 );
+				return substr( wfRevisionTimestamp( $this->mRevisionId ), 0, 4 );
 			case 'revisiontimestamp':
-				return $this->mTitle->getTouched();
+				return wfRevisionTimestamp( $this->mRevisionId );
 			case 'namespace':
 				return str_replace('_',' ',$wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 			case 'namespacee':
@@ -4880,6 +4880,26 @@ function wfLoadSiteStats() {
 		$wgTotalEdits = $s->ss_total_edits;
 		$wgNumberOfArticles = $s->ss_good_articles;
 	}
+}
+
+/**
+ * Get revision timestamp from the database considering timecorrection
+ *
+ * @param $id Int: page revision id
+ * @return integer
+ */
+function wfRevisionTimestamp( $id ) {
+	global $wgContLang;
+	$fname = 'wfRevisionTimestamp';
+	
+	wfProfileIn( $fname );
+	$dbr =& wfGetDB( DB_SLAVE );
+	$timestamp = $dbr->selectField( 'revision', 'rev_timestamp',
+			array( 'rev_id' => $id ), __METHOD__ );
+	$timestamp = $wgContLang->userAdjust( $timestamp );
+	wfProfileOut( $fname );
+
+	return $timestamp;
 }
 
 /**
