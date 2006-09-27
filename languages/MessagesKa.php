@@ -229,8 +229,47 @@ $messages = array(
 # User rights
 
 # Groups
+'group'                   => 'ჯგუფი:',
+'group-bot'               => 'რობოტები',
+'group-sysop'             => 'ადმინისტრატორები',
+'group-bureaucrat'        => 'ბიუროკრატები',
+'group-all'               => '(ყველა)',
+
+'group-bot-member'        => 'რობოტი',
+'group-sysop-member'      => 'ადმინისტრატორი',
+'group-bureaucrat-member' => 'ბიუროკრატი',
+
+'grouppage-bot' => '{{ns:project}}:რობოტები',
+'grouppage-sysop' => '{{ns:project}}:ადმინისტრატორები',
+'grouppage-bureaucrat' => '{{ns:project}}:ბიუროკრატები',
 
 # Recent changes
+'changes' => 'ცვლილებები',
+'recentchanges' => 'ბოლო ცვლილებები',
+#TODO: 'recentchanges-url' => 'Special:Recentchanges',
+#TODO: 'recentchangestext' => 'Track the most recent changes to the wiki on this page.',
+#TODO: 'rcnote'		=> "Below are the last <strong>$1</strong> changes in the last <strong>$2</strong> days, as of $3.",
+#TODO: 'rcnotefrom'	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
+'rclistfrom'	=> "ახალი ცვლილებების ჩვენება დაწყებული $1-დან",
+'rcshowhideminor' => 'მცირე რედაქტირების $1',
+'rcshowhidebots' => 'რობოტების $1',
+'rcshowhideliu' => 'რეგისტრირებული მომხმარებლების $1',
+'rcshowhideanons' => 'ანონიმური მომხმარებლების $1',
+#TODO: 'rcshowhidepatr' => '$1 patrolled edits',
+'rcshowhidemine' => 'ჩემი რედაქტირების $1',
+'rclinks'		=> "ბოლო $1 ცვლილების ჩვენება უკანასკნელი $2 დღის მანძილზე<br />$3",
+'diff'			=> 'განსხ.',
+'hist'			=> 'ისტ.',
+'hide'			=> 'დამალვა',
+'show'			=> 'ჩვენება',
+'minoreditletter' => 'მ',
+'newpageletter' => 'ა',
+'boteditletter' => 'რ',
+'sectionlink' => '→',
+#TODO: 'number_of_watching_users_RCview' 	=> '[$1]',
+#TODO: 'number_of_watching_users_pageview' 	=> '[$1 watching user/s]',
+#TODO: 'rc_categories'	=> 'Limit to categories (separate with "|")',
+#TODO: 'rc_categories_any'	=> 'Any',
 
 # Upload
 
@@ -246,7 +285,7 @@ $messages = array(
 #TODO: 'bysize'		=> 'by size',
 'imgdelete'		=> 'წაშ.',
 'imgdesc'		=> 'აღწ.',
-#TODO: 'imgfile'       => 'file',
+'imgfile'       => 'ფაილი',
 #TODO: 'imglegend'		=> 'Legend: (desc) = show/edit file description.',
 'imghistory'	=> 'ფაილის ისტორია',
 #TODO: 'revertimg'		=> 'rev',
@@ -255,7 +294,7 @@ $messages = array(
 /*TODO: 'imghistlegend' => 'Legend: (cur) = this is the current file, (del) = delete
 this old version, (rev) = revert to this old version.
 <br /><i>Click on date to see the file uploaded on that date</i>.',*/
-#TODO: 'imagelinks'	=> 'Links',
+'imagelinks'	=> 'ბმულები',
 #TODO: 'linkstoimage'	=> 'The following pages link to this file:',
 #TODO: 'nolinkstoimage' => 'There are no pages that link to this file.',
 #TODO: 'sharedupload' => 'This file is a shared upload and may be used by other projects.',
@@ -265,12 +304,12 @@ this old version, (rev) = revert to this old version.
 #TODO: 'noimage'       => 'No file by this name exists, you can $1.',
 #TODO: 'noimage-linktext'       => 'upload it',
 #TODO: 'uploadnewversion-linktext' => 'Upload a new version of this file',
-#TODO: 'imagelist_date' => 'Date',
-#TODO: 'imagelist_name' => 'Name',
-#TODO: 'imagelist_user' => 'User',
-#TODO: 'imagelist_size' => 'Size (bytes)',
-#TODO: 'imagelist_description' => 'Description',
-#TODO: 'imagelist_search_for' => 'Search for image name:',
+'imagelist_date' => 'თარიღი',
+'imagelist_name' => 'სახელი',
+'imagelist_user' => 'მომხმარებელი',
+#TODO: 'imagelist_size' => 'ზომა (ბაიტები)',
+'imagelist_description' => 'აღწერილობა',
+'imagelist_search_for' => 'ძიება სურათის სახელის მიხედვით:',
 
 # Mime search
 
@@ -328,6 +367,10 @@ this old version, (rev) = revert to this old version.
 'allmessagesmodified' => 'აჩვენე მხოლოდ შეცვლილი',
 
 # Thumbnails
+'thumbnail-more'	=> 'გაზარდეთ',
+#TODO: 'missingimage'		=> '<b>Missing image</b><br /><i>$1</i>',
+'filemissing'		=> 'ფაილი ვერ მოიძებნა',
+#TODO: 'thumbnail_error'   => 'ესკიზის შექმნის შეცდომა: $1',
 
 # Special:Import
 
@@ -340,6 +383,15 @@ this old version, (rev) = revert to this old version.
 # Metadata
 
 # Attribution
+'anonymous' => '{{SITENAME}}-ის ანონიმური მომხმარებლები',
+'siteuser' => '{{SITENAME}} მომხმარებელი $1',
+#TODO: 'lastmodifiedatby' => 'This page was last modified $2, $1 by $3.',	// $1 date, $2 time. $3 user
+'and' => 'და',
+#TODO: 'othercontribs' => 'Based on work by $1.',
+'others' => 'სხვები',
+'siteusers' => '{{SITENAME}} მომხმარებლები $1',
+#TODO: 'creditspage' => 'წვლილი',
+#TODO: 'nocredits' => 'There is no credits info available for this page.',
 
 # Spam protection
 
@@ -356,8 +408,15 @@ this old version, (rev) = revert to this old version.
 # browsing diffs
 
 # labels for User: and Title: on Special:Log pages
+'specialloguserlabel' => 'მომხმარებელი:',
+'speciallogtitlelabel' => 'სათაური:',
+
+'passwordtooshort' => 'თქვენი პაროლი ძალიან მოკლეა. მასში უნდა შედიოდეს არანაკლებ $1 ასო-ნიშანი.',
 
 # Media Warning
+#TODO: 'mediawarning' => '\'\'\'Warning\'\'\': This file may contain malicious code, by executing it your system may be compromised.<hr />',
+
+'fileinfo' => '$1KB, MIME ტიპი: <code>$2</code>',
 
 # Metadata
 
@@ -400,6 +459,9 @@ this old version, (rev) = revert to this old version.
 'hideresults' => 'შედეგების დამალვა',
 
 # DISPLAYTITLE
+'displaytitle' => '(ამ გვერდის ბმული როგორც [[$1]])',
+
+'loginlanguagelabel' => 'ენა: $1',
 
 # Multipage image navigation
 
