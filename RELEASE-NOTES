@@ -233,6 +233,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   prevented fromm login.
 * (bug 6092) Introduce magic words {{REVISIONDAY}}, {{REVISIONDAY2}, {{REVISIONMONTH}},
   {{REVISIONYEAR}} and {{REVISIONTIMESTAMP}} 
+* (bug 7425) Preceeding whitespace in [[...]] breaks subpages
 
 
 == Languages updated ==
