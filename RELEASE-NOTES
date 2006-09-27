@@ -234,6 +234,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6092) Introduce magic words {{REVISIONDAY}}, {{REVISIONDAY2}, {{REVISIONMONTH}},
   {{REVISIONYEAR}} and {{REVISIONTIMESTAMP}} 
 * (bug 7425) Preceeding whitespace in [[...]] breaks subpages
+* Try to reconnect after transitory database errors in dumpTextPass.php
 
 
 == Languages updated ==
