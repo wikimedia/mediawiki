@@ -1852,6 +1852,9 @@ class Parser
 		wfProfileIn( $fname );
 		$ret = $target; # default return value is no change
 
+		# bug 7425
+		$target = trim( $target );
+
 		# Some namespaces don't allow subpages,
 		# so only perform processing if subpages are allowed
 		if( $this->areSubpagesAllowed() ) {
