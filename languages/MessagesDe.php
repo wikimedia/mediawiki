@@ -444,7 +444,7 @@ Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen ein temporäres
 'prefs-help-email-enotif' => 'An diese Adresse werden auch die Benachrichtigungsmails geschickt, sofern Sie das eingeschaltet haben.',
 'prefs-help-realname'	=> '* <strong>Echter Name</strong> (optional): Für anerkennende Nennungen Ihres Namens im Zusammenhang mit Ihren Beiträgen.',
 "loginerror"	=> "Fehler bei der Anmeldung",
-"noname"		=> "Sie müssen einen Benutzernamen angeben.",
+'noname'		=> 'Sie müssen einen gültigen Benutzernamen angeben.',
 "loginsuccesstitle" => "Anmeldung erfolgreich",
 'loginsuccess'		=> 'Sie sind jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'		=> 'Der Benutzername „$1“ existiert nicht. Überprüfen Sie die Schreibweise oder legen Sie ein neues Benutzerkonto an.',
@@ -1097,10 +1097,8 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen besuchen Sie: {{fullurl:
 'deletesub'		=> '(Lösche „$1“)',
 'historywarning'	=> 'WARNUNG: Die Seite die Sie löschen wollen hat eine Versionsgeschichte:',
 'confirmdeletetext'	=> 'Sie sind dabei, eine Seite oder eine Datei und alle zugehörigen älteren Versionen
-permanent aus der Datenbank zu löschen. Bitte bestätigen Sie dazu, dass Sie sich der Konsequenzen bewusst sind
-und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschregeln]] handeln.
-
-\'\'\'Achtung:\'\'\' Im Unterschied zu Textseiten können hochgeladene Dateien nicht wiederhergestellt werden.',
+zu löschen. Bitte bestätigen Sie dazu, dass Sie sich der Konsequenzen bewusst sind
+und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschregeln]] handeln.',
 "actioncomplete" => "Aktion beendet",
 'deletedtext'		=> '„$1“ wurde gelöscht. Im $2 finden Sie eine Liste der letzten Löschungen.',
 'deletedarticle'	=> '„$1“ gelöscht',
