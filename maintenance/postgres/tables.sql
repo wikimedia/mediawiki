@@ -142,7 +142,7 @@ CREATE TABLE pagelinks (
   pl_namespace  SMALLINT  NOT NULL,
   pl_title      TEXT      NOT NULL
 );
-CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_namespace,pl_title,pl_from);
+CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title);
 
 CREATE TABLE templatelinks (
   tl_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
