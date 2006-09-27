@@ -2202,6 +2202,12 @@ $wgContentNamespaces = array( NS_MAIN );
 $wgMaxShellMemory = 102400;
 
 /**
+ * Maximum file size created by shell processes under linux, in KB
+ * ImageMagick convert for example can be fairly hungry for scratch space
+ */
+$wgMaxShellFileSize = 102400;
+
+/**
  * DJVU settings
  * Path of the djvutoxml executable
  * Enable this and $wgDjvuRenderer to enable djvu rendering

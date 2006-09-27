@@ -1671,7 +1671,7 @@ function wfUrlProtocols() {
  * @return collected stdout as a string (trailing newlines stripped)
  */
 function wfShellExec( $cmd, &$retval=null ) {
-	global $IP, $wgMaxShellMemory;
+	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize;
 	
 	if( ini_get( 'safe_mode' ) ) {
 		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
@@ -1682,11 +1682,12 @@ function wfShellExec( $cmd, &$retval=null ) {
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = ini_get( 'max_execution_time' );
 		$mem = intval( $wgMaxShellMemory );
+		$filesize = intval( $wgMaxShellFileSize );
 
 		if ( $time > 0 && $mem > 0 ) {
-			$script = "$IP/bin/ulimit.sh";
+			$script = "$IP/bin/ulimit-tvf.sh";
 			if ( is_executable( $script ) ) {
-				$cmd = escapeshellarg( $script ) . " $time $mem $cmd";
+				$cmd = escapeshellarg( $script ) . " $time $mem $filesize $cmd";
 			}
 		}
 	} elseif ( php_uname( 's' ) == 'Windows NT' ) {
