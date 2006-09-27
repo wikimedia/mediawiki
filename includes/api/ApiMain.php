@@ -29,22 +29,6 @@ if (!defined('MEDIAWIKI')) {
 	require_once ("ApiBase.php");
 }
 
-/**
-* @desc This exception will be thrown when DieUsage is called to stop module execution.
-*/
-class UsageException extends Exception {
-
-	private $codestr;
-
-	public function __construct($message, $codestr) {
-		parent :: __construct($message);
-		$this->codestr = $codestr;
-	}
-	public function __toString() {
-		return "{$this->codestr}: {$this->message}";
-	}
-}
-
 class ApiMain extends ApiBase {
 
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames, $mApiStartTime, $mResult;
@@ -66,11 +50,11 @@ class ApiMain extends ApiBase {
 		$this->mResult = new ApiResult($this);
 	}
 
-	public function GetResult() {
+	public function getResult() {
 		return $this->mResult;
 	}
 
-	protected function GetAllowedParams() {
+	protected function getAllowedParams() {
 		return array (
 			'format' => array (
 				GN_ENUM_DFLT => API_DEFAULT_FORMAT,
@@ -83,53 +67,61 @@ class ApiMain extends ApiBase {
 		);
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array (
 			'format' => 'The format of the output',
 			'action' => 'What action you would like to perform'
 		);
 	}
 
-	public function Execute() {
+	public function execute() {
+		$this->profileIn();
 		$action = $format = null;
 		try {
-			extract($this->ExtractRequestParams());
+			extract($this->extractRequestParams());
 
 			// Create an appropriate printer
 			$this->mPrinter = new $this->mFormats[$format] ($this, $format);
 
 			// Instantiate and execute module requested by the user
 			$module = new $this->mModules[$action] ($this, $action);
-			$module->Execute();
-			$this->PrintResult(false);
+			$module->profileIn();
+			$module->execute();
+			$module->profileOut();
+			$this->printResult(false);
 		} catch (UsageException $e) {
-			// Printer may not be initialized if the ExtractRequestParams() fails for the main module
+			// Printer may not be initialized if the extractRequestParams() fails for the main module
 			if (!isset ($this->mPrinter))
 				$this->mPrinter = new $this->mFormats[API_DEFAULT_FORMAT] ($this, API_DEFAULT_FORMAT);
-			$this->PrintResult(true);
+			$this->printResult(true);
 		}
+		$this->profileOut();
 	}
 
 	/**
 	 * Internal printer
 	 */
-	private function PrintResult($isError) {
-		$this->mPrinter->InitPrinter($isError);
-		if (!$this->mPrinter->GetNeedsRawData())
-			$this->GetResult()->SanitizeData();
-		$this->mPrinter->Execute();
-		$this->mPrinter->ClosePrinter();
+	private function printResult($isError) {
+		$printer = $this->mPrinter;
+		$printer->profileIn();
+		$printer->initPrinter($isError);
+		if (!$printer->getNeedsRawData())
+			$this->getResult()->SanitizeData();
+		$printer->execute();
+		$printer->closePrinter();
+		$printer->profileOut();
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return array (
 			'',
 			'This API allows programs to access various functions of MediaWiki software.',
+			'For more details see API Home Page @ http://meta.wikimedia.org/wiki/API',
 			''
 		);
 	}
 
-	public function MainDieUsage($description, $errorCode, $httpRespCode = 0) {
+	public function mainDieUsage($description, $errorCode, $httpRespCode = 0) {
 		$this->mResult->Reset();
 		$this->mResult->addMessage('error', null, $errorCode);
 		if ($httpRespCode === 0)
@@ -137,7 +129,7 @@ class ApiMain extends ApiBase {
 		else
 			header($errorCode, true, $httpRespCode);
 
-		$this->mResult->addMessage('usage', null, $this->MakeHelpMsg());
+		$this->mResult->addMessage('usage', null, $this->makeHelpMsg());
 
 		throw new UsageException($description, $errorCode);
 	}
@@ -145,17 +137,17 @@ class ApiMain extends ApiBase {
 	/**
 	 * Override the parent to generate help messages for all available modules.
 	 */
-	public function MakeHelpMsg() {
+	public function makeHelpMsg() {
 
 		// Use parent to make default message for the main module
-		$msg = parent :: MakeHelpMsg();
+		$msg = parent :: makeHelpMsg();
 
 		$astriks = str_repeat('*** ', 10);
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
 		foreach ($this->mModules as $moduleName => $moduleClass) {
 			$msg .= "* action=$moduleName *";
 			$module = new $this->mModules[$moduleName] ($this, $moduleName);
-			$msg2 = $module->MakeHelpMsg();
+			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;
 			$msg .= "\n";
@@ -165,7 +157,7 @@ class ApiMain extends ApiBase {
 		foreach ($this->mFormats as $moduleName => $moduleClass) {
 			$msg .= "* format=$moduleName *";
 			$module = new $this->mFormats[$moduleName] ($this, $moduleName);
-			$msg2 = $module->MakeHelpMsg();
+			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;
 			$msg .= "\n";
@@ -175,7 +167,7 @@ class ApiMain extends ApiBase {
 	}
 
 	private $mIsBot = null;
-	public function IsBot() {
+	public function isBot() {
 		if (!isset ($this->mIsBot)) {
 			global $wgUser;
 			$this->mIsBot = $wgUser->isAllowed('bot');
@@ -183,4 +175,21 @@ class ApiMain extends ApiBase {
 		return $this->mIsBot;
 	}
 }
+
+/**
+* @desc This exception will be thrown when dieUsage is called to stop module execution.
+*/
+class UsageException extends Exception {
+
+	private $codestr;
+
+	public function __construct($message, $codestr) {
+		parent :: __construct($message);
+		$this->codestr = $codestr;
+	}
+	public function __toString() {
+		return "{$this->codestr}: {$this->message}";
+	}
+}
+
 ?>

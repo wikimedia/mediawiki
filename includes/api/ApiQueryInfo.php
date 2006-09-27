@@ -31,15 +31,15 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiQueryInfo extends ApiQueryBase {
 
-	public function __construct($main, $moduleName, $query) {
-		parent :: __construct($main, $moduleName, $query);
+	public function __construct($query, $moduleName, $generator = false) {
+		parent :: __construct($query, $moduleName, $generator);
 	}
 
-	public function Execute() {
+	public function execute() {
 
 	}
 
-	protected function GetAllowedParams() {
+	protected function getAllowedParams() {
 		return array (
 			'param' => 'default',
 			'enumparam' => array (
@@ -53,15 +53,15 @@ class ApiQueryInfo extends ApiQueryBase {
 		);
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array ();
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return 'module a';
 	}
 
-	protected function GetExamples() {
+	protected function getExamples() {
 		return array (
 			'http://...'
 		);

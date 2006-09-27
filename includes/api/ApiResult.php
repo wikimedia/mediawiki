@@ -45,11 +45,11 @@ class ApiResult extends ApiBase {
 		$this->mData = array ();
 	}
 
-	function GetData() {
+	function getData() {
 		return $this->mData;
 	}
 
-	function AddMessage($mainSection, $subSection, $value, $multiitem = false, $preserveXmlSpacing = false) {
+	function addMessage($mainSection, $subSection, $value, $multiitem = false, $preserveXmlSpacing = false) {
 		if (!array_key_exists($mainSection, $this->mData)) {
 			$this->mData[$mainSection] = array ();
 		}
@@ -103,8 +103,8 @@ class ApiResult extends ApiBase {
 		}
 	}
 
-	public function Execute() {
-		$this->DieDebug("Execute() is not supported on Result object");
+	public function execute() {
+		$this->dieDebug("execute() is not supported on Result object");
 	}
 }
 ?>

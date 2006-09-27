@@ -30,11 +30,6 @@ $wgApiStartTime = microtime(true);
 define('API_DEFAULT_FORMAT', 'xmlfm');
 
 /**
- * All API classes reside in this directory
- */
-$wgApiDirectory = 'includes/api/';
-
-/**
  * List of classes and containing files.
  */
 $wgApiAutoloadClasses = array (
@@ -89,7 +84,7 @@ $wgApiFormats = array (
 );
 
 // Initialise common code
-require_once ('./includes/WebStart.php');
+require (dirname(__FILE__) . "/includes/WebStart.php");
 wfProfileIn('api.php');
 
 // Verify that the API has not been disabled
@@ -102,22 +97,19 @@ if (!isset ($wgEnableAPI) || !$wgEnableAPI) {
 	die(-1);
 }
 
-ApiInitAutoloadClasses($wgApiAutoloadClasses, $wgApiDirectory);
+apiInitAutoloadClasses($wgApiAutoloadClasses, "$IP/includes/api/");
 $processor = new ApiMain($wgApiStartTime, $wgApiModules, $wgApiFormats);
-$processor->Execute();
+$processor->execute();
 
 wfProfileOut('api.php');
 wfLogProfilingData();
 exit; // Done!
 
-function ApiInitAutoloadClasses($apiAutoloadClasses, $apiDirectory) {
+function apiInitAutoloadClasses($apiAutoloadClasses, $apiDirectory) {
 
 	// Prefix each api class with the proper prefix,
 	// and append them to $wgAutoloadClasses
 	global $wgAutoloadClasses;
-
-	if (!isset ($wgAutoloadClasses))
-		$wgAutoloadClasses = array ();
 
 	foreach ($apiAutoloadClasses as $className => $classFile)
 		$wgAutoloadClasses[$className] = $apiDirectory . $classFile;

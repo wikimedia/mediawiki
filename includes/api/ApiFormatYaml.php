@@ -35,16 +35,16 @@ class ApiFormatYaml extends ApiFormatBase {
 		parent :: __construct($main, $format);
 	}
 
-	public function GetMimeType() {
+	public function getMimeType() {
 		return 'application/yaml';
 	}
 
-	public function Execute() {
-		require_once ('ApiFormatYaml_spyc.php');
-		$this->PrintText(Spyc :: YAMLDump($this->GetResult()->GetData()));
+	public function execute() {
+		require ('ApiFormatYaml_spyc.php');
+		$this->printText(Spyc :: YAMLDump($this->getResult()->getData()));
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return 'Output data in YAML format';
 	}
 }

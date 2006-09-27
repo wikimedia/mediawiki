@@ -50,12 +50,12 @@ abstract class ApiFormatBase extends ApiBase {
 
 	/**
 	 * Overriding class returns the mime type that should be sent to the client.
-	 * This method is not called if GetIsHtml() returns true.
+	 * This method is not called if getIsHtml() returns true.
 	 * @return string
 	 */
-	public abstract function GetMimeType();
+	public abstract function getMimeType();
 
-	public function GetNeedsRawData() {
+	public function getNeedsRawData() {
 		return false;
 	}
 
@@ -64,7 +64,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * The default implementation assumes that formats ending with 'fm' 
 	 * should be formatted in HTML. 
 	 */
-	public function GetIsHtml() {
+	public function getIsHtml() {
 		return $this->mIsHtml;
 	}
 
@@ -73,9 +73,9 @@ abstract class ApiFormatBase extends ApiBase {
 	 * This method must be the first outputing method during execution.
 	 * A help screen's header is printed for the HTML-based output
 	 */
-	function InitPrinter($isError) {
-		$isHtml = $this->GetIsHtml();
-		$mime = $isHtml ? 'text/html' : $this->GetMimeType();
+	function initPrinter($isError) {
+		$isHtml = $this->getIsHtml();
+		$mime = $isHtml ? 'text/html' : $this->getMimeType();
 		header("Content-Type: $mime; charset=utf-8;");
 
 		if ($isHtml) {
@@ -111,8 +111,8 @@ abstract class ApiFormatBase extends ApiBase {
 	/**
 	 * Finish printing. Closes HTML tags.
 	 */
-	public function ClosePrinter() {
-		if ($this->GetIsHtml()) {
+	public function closePrinter() {
+		if ($this->getIsHtml()) {
 ?>
 		</pre>
 		</body>
@@ -122,9 +122,9 @@ abstract class ApiFormatBase extends ApiBase {
 		}
 	}
 
-	public function PrintText($text) {
-		if ($this->GetIsHtml())
-			echo $this->FormatHTML($text);
+	public function printText($text) {
+		if ($this->getIsHtml())
+			echo $this->formatHTML($text);
 		else
 			echo $text;
 	}
@@ -133,7 +133,7 @@ abstract class ApiFormatBase extends ApiBase {
 	* Prety-print various elements in HTML format, such as xml tags and URLs.
 	* This method also replaces any "<" with &lt;
 	*/
-	protected function FormatHTML($text) {
+	protected function formatHTML($text) {
 		// encode all tags as safe blue strings
 		$text = ereg_replace('\<([^>]+)\>', '<font color=blue>&lt;\1&gt;</font>', $text);
 		// identify URLs
@@ -149,7 +149,7 @@ abstract class ApiFormatBase extends ApiBase {
 	/**
 	 * Returns usage examples for this format.
 	 */
-	protected function GetExamples() {
+	protected function getExamples() {
 		return 'api.php?action=query&meta=siteinfo&si=namespaces&format=' . $this->mOriginalFormat;
 	}
 }

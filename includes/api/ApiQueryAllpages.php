@@ -35,16 +35,16 @@ class ApiQueryAllpages extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, $generator);
 	}
 
-	public function Execute() {
+	public function execute() {
 		$aplimit = $apfrom = $apnamespace = $apfilterredir = null;
-		extract($this->ExtractRequestParams());
+		extract($this->extractRequestParams());
 
-		$db = $this->GetDB();
+		$db = $this->getDB();
 		$where = array (
 			'page_namespace' => $apnamespace
 		);
 		if (isset ($apfrom))
-			$where[] = 'page_title>=' . $db->addQuotes(ApiQueryBase :: TitleToKey($apfrom));
+			$where[] = 'page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($apfrom));
 
 		if ($apfilterredir === 'redirects')
 			$where['page_is_redirect'] = 1;
@@ -52,6 +52,7 @@ class ApiQueryAllpages extends ApiQueryBase {
 			if ($apfilterredir === 'nonredirects')
 				$where['page_is_redirect'] = 0;
 
+		$this->profileDBIn();
 		$res = $db->select('page', array (
 			'page_id',
 			'page_namespace',
@@ -61,7 +62,8 @@ class ApiQueryAllpages extends ApiQueryBase {
 			'LIMIT' => $aplimit +1,
 			'ORDER BY' => 'page_namespace, page_title'
 		));
-
+		$this->profileDBOut();
+		
 		$data = array ();
 		$data['_element'] = 'p';
 		$count = 0;
@@ -69,9 +71,9 @@ class ApiQueryAllpages extends ApiQueryBase {
 			if (++ $count > $aplimit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$msg = array (
-					'continue' => 'apfrom=' . ApiQueryBase :: KeyToTitle($row->page_title
+					'continue' => 'apfrom=' . ApiQueryBase :: keyToTitle($row->page_title
 				));
-				$this->GetResult()->AddMessage('query-status', 'allpages', $msg);
+				$this->getResult()->addMessage('query-status', 'allpages', $msg);
 				break;
 			}
 
@@ -91,10 +93,10 @@ class ApiQueryAllpages extends ApiQueryBase {
 			}
 		}
 		$db->freeResult($res);
-		$this->GetResult()->AddMessage('query', 'allpages', $data);
+		$this->getResult()->addMessage('query', 'allpages', $data);
 	}
 
-	protected function GetAllowedParams() {
+	protected function getAllowedParams() {
 
 		global $wgContLang;
 		$validNamespaces = array ();
@@ -127,21 +129,21 @@ class ApiQueryAllpages extends ApiQueryBase {
 		);
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array ();
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return 'Enumerate all pages sequentially in a given namespace';
 	}
 
-	protected function GetExamples() {
+	protected function getExamples() {
 		return array (
 			'api.php?action=query&list=allpages',
 			'api.php?action=query&list=allpages&apfrom=B&aplimit=5'
 		);
 	}
-	public function GetCanGenerate() {
+	public function getCanGenerate() {
 		return true;
 	}
 }

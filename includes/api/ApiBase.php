@@ -46,42 +46,42 @@ abstract class ApiBase {
 	/**
 	 * Executes this module
 	 */
-	abstract function Execute();
+	abstract function execute();
 
 	/**
 	 * Get main module
 	 */
-	public function GetMain() {
+	public function getMain() {
 		return $this->mMainModule;
 	}
 
 	/**
 	 * If this module's $this is the same as $this->mMainModule, its the root, otherwise no
 	 */
-	public function IsMain() {
+	public function isMain() {
 		return $this === $this->mMainModule;
 	}
 
 	/**
 	 * Get result object
 	 */
-	public function GetResult() {
-		// Main module has GetResult() method overriden
+	public function getResult() {
+		// Main module has getResult() method overriden
 		// Safety - avoid infinite loop:
-		if ($this->IsMain())
-			$this->DieDebug(__METHOD__ .
+		if ($this->isMain())
+			$this->dieDebug(__METHOD__ .
 			' base method was called on main module. ');
-		return $this->GetMain()->GetResult();
+		return $this->getMain()->getResult();
 	}
 
 	/**
 	 * Generates help message for this module, or false if there is no description
 	 */
-	public function MakeHelpMsg() {
+	public function makeHelpMsg() {
 
 		static $lnPrfx = "\n  ";
 
-		$msg = $this->GetDescription();
+		$msg = $this->getDescription();
 
 		if ($msg !== false) {
 
@@ -92,9 +92,9 @@ abstract class ApiBase {
 			$msg = $lnPrfx . implode($lnPrfx, $msg) . "\n";
 
 			// Parameters
-			$params = $this->GetAllowedParams();
+			$params = $this->getAllowedParams();
 			if ($params !== false) {
-				$paramsDescription = $this->GetParamDescription();
+				$paramsDescription = $this->getParamDescription();
 				$msg .= "Parameters:\n";
 				foreach (array_keys($params) as $paramName) {
 					$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
@@ -105,7 +105,7 @@ abstract class ApiBase {
 			}
 
 			// Examples
-			$examples = $this->GetExamples();
+			$examples = $this->getExamples();
 			if ($examples !== false) {
 				if (!is_array($examples))
 					$examples = array (
@@ -122,40 +122,40 @@ abstract class ApiBase {
 	/**
 	 * Returns the description string for this module
 	 */
-	protected function GetDescription() {
+	protected function getDescription() {
 		return false;
 	}
 
 	/**
 	 * Returns usage examples for this module. Return null if no examples are available.
 	 */
-	protected function GetExamples() {
+	protected function getExamples() {
 		return false;
 	}
 
 	/**
 	 * Returns an array of allowed parameters (keys) => default value for that parameter
 	 */
-	protected function GetAllowedParams() {
+	protected function getAllowedParams() {
 		return false;
 	}
 
 	/**
 	 * Returns the description string for the given parameter.
 	 */
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return false;
 	}
 
 	/**
-	* Using GetAllowedParams(), makes an array of the values provided by the user,
+	* Using getAllowedParams(), makes an array of the values provided by the user,
 	* with key being the name of the variable, and value - validated value from user or default.
 	* This method can be used to generate local variables using extract().
 	*/
-	public function ExtractRequestParams() {
+	public function extractRequestParams() {
 		global $wgRequest;
 
-		$params = $this->GetAllowedParams();
+		$params = $this->getAllowedParams();
 		$results = array ();
 
 		foreach ($params as $param => $enumParams) {
@@ -184,17 +184,17 @@ abstract class ApiBase {
 
 				if ($default !== false) {
 					// Having a default value of anything other than 'false' is pointless
-					$this->DieDebug("Boolean param $param's default is set to '$default'");
+					$this->dieDebug("Boolean param $param's default is set to '$default'");
 				}
 			}
 
 			$value = $wgRequest->getVal($param, $default);
 
 			if (isset ($value) && ($multi || is_array($type)))
-				$value = $this->ParseMultiValue($param, $value, $multi, is_array($type) ? $type : null);
+				$value = $this->parseMultiValue($param, $value, $multi, is_array($type) ? $type : null);
 
 			// More validation only when choices were not given
-			// choices were validated in ParseMultiValue()
+			// choices were validated in parseMultiValue()
 			if (!is_array($type) && isset ($value)) {
 
 				switch ($type) {
@@ -207,25 +207,25 @@ abstract class ApiBase {
 						break;
 					case 'limit' :
 						if (!isset ($enumParams[GN_ENUM_MAX1]) || !isset ($enumParams[GN_ENUM_MAX2]))
-							$this->DieDebug("MAX1 or MAX2 are not defined for the limit $param");
+							$this->dieDebug("MAX1 or MAX2 are not defined for the limit $param");
 						if ($multi)
-							$this->DieDebug("Multi-values not supported for $param");
+							$this->dieDebug("Multi-values not supported for $param");
 						$min = isset ($enumParams[GN_ENUM_MIN]) ? $enumParams[GN_ENUM_MIN] : 0;
 						$value = intval($value);
-						$this->ValidateLimit($param, $value, $min, $enumParams[GN_ENUM_MAX1], $enumParams[GN_ENUM_MAX2]);
+						$this->validateLimit($param, $value, $min, $enumParams[GN_ENUM_MAX1], $enumParams[GN_ENUM_MAX2]);
 						break;
 					case 'boolean' :
 						if ($multi)
-							$this->DieDebug("Multi-values not supported for $param");
+							$this->dieDebug("Multi-values not supported for $param");
 						$value = isset ($value);
 						break;
 					case 'timestamp' :
 						if ($multi)
-							$this->DieDebug("Multi-values not supported for $param");
+							$this->dieDebug("Multi-values not supported for $param");
 						$value = $this->prepareTimestamp($value); // Adds quotes around timestamp							
 						break;
 					default :
-						$this->DieDebug("Param $param's type is unknown - $type");
+						$this->dieDebug("Param $param's type is unknown - $type");
 
 				}
 			}
@@ -246,16 +246,16 @@ abstract class ApiBase {
 	* @param allowedValues - An array of values to check against. If null, all values are accepted.
 	* @return (allowMultiple ? an_array_of_values : a_single_value) 
 	*/
-	protected function ParseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
+	protected function parseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
 		$valuesList = explode('|', $value);
 		if (!$allowMultiple && count($valuesList) != 1) {
 			$possibleValues = is_array($allowedValues) ? "of '" . implode("', '", $allowedValues) . "'" : '';
-			$this->DieUsage("Only one $possibleValues is allowed for parameter '$valueName'", "multival_$valueName");
+			$this->dieUsage("Only one $possibleValues is allowed for parameter '$valueName'", "multival_$valueName");
 		}
 		if (is_array($allowedValues)) {
 			$unknownValues = array_diff($valuesList, $allowedValues);
 			if ($unknownValues) {
-				$this->DieUsage("Unrecognised value" . (count($unknownValues) > 1 ? "s '" : " '") . implode("', '", $unknownValues) . "' for parameter '$valueName'", "unknown_$valueName");
+				$this->dieUsage("Unrecognised value" . (count($unknownValues) > 1 ? "s '" : " '") . implode("', '", $unknownValues) . "' for parameter '$valueName'", "unknown_$valueName");
 			}
 		}
 
@@ -276,14 +276,14 @@ abstract class ApiBase {
 	/**
 	* Validate the value against the minimum and user/bot maximum limits. Prints usage info on failure.
 	*/
-	function ValidateLimit($varname, $value, $min, $max, $botMax) {
+	function validateLimit($varname, $value, $min, $max, $botMax) {
 		global $wgUser;
 
 		if ($value < $min) {
 			$this->dieUsage("$varname may not be less than $min (set to $value)", $varname);
 		}
 
-		if ($this->GetMain()->IsBot()) {
+		if ($this->getMain()->isBot()) {
 			if ($value > $botMax) {
 				$this->dieUsage("$varname may not be over $botMax (set to $value) for bots", $varname);
 			}
@@ -297,12 +297,98 @@ abstract class ApiBase {
 	/**
 	 * Call main module's error handler 
 	 */
-	public function DieUsage($description, $errorCode, $httpRespCode = 0) {
-		$this->GetMain()->MainDieUsage($description, $errorCode, $httpRespCode);
+	public function dieUsage($description, $errorCode, $httpRespCode = 0) {
+		$this->getMain()->mainDieUsage($description, $errorCode, $httpRespCode);
 	}
 
-	protected function DieDebug($message) {
+	/**
+	 * Internal code errors should be reported with this method
+	 */
+	protected function dieDebug($message) {
 		wfDebugDieBacktrace("Internal error in '{get_class($this)}': $message");
+	}
+	
+	/**
+	 * Profiling: total module execution time
+	 */
+	private $mTimeIn = 0, $mModuleTime = 0; 
+	
+	/**
+	 * Start module profiling
+	 */
+	public function profileIn()
+	{
+		if ($this->mTimeIn !== 0)
+			$this->dieDebug(__FUNCTION__ . ' called twice without calling profileOut()');
+		$this->mTimeIn = microtime(true);
+	}
+	
+	/**
+	 * End module profiling
+	 */
+	public function profileOut()
+	{
+		if ($this->mTimeIn === 0)
+			$this->dieDebug(__FUNCTION__ . ' called without calling profileIn() first');
+		if ($this->mDBTimeIn !== 0)
+			$this->dieDebug(__FUNCTION__ . ' must be called after database profiling is done with profileDBOut()');
+
+		$this->mModuleTime += microtime(true) - $this->mTimeIn;
+		$this->mTimeIn = 0;
+	}
+	
+	/**
+	 * Total time the module was executed
+	 */
+	public function getProfileTime()
+	{
+		if ($this->mTimeIn !== 0)
+			$this->dieDebug(__FUNCTION__ . ' called without calling profileOut() first');
+		return $this->mModuleTime;
+	}
+	
+	/**
+	 * Profiling: database execution time
+	 */
+	private $mDBTimeIn = 0, $mDBTime = 0; 
+	
+	/**
+	 * Start module profiling
+	 */
+	public function profileDBIn()
+	{
+		if ($this->mTimeIn === 0)
+			$this->dieDebug(__FUNCTION__ . ' must be called while profiling the entire module with profileIn()');
+		if ($this->mDBTimeIn !== 0)
+			$this->dieDebug(__FUNCTION__ . ' called twice without calling profileDBOut()');
+		$this->mDBTimeIn = microtime(true);
+	}
+	
+	/**
+	 * End database profiling
+	 */
+	public function profileDBOut()
+	{
+		if ($this->mTimeIn === 0)
+			$this->dieDebug(__FUNCTION__ . ' must be called while profiling the entire module with profileIn()');
+		if ($this->mDBTimeIn === 0)
+			$this->dieDebug(__FUNCTION__ . ' called without calling profileDBIn() first');
+
+		$time = microtime(true) - $this->mDBTimeIn;
+		$this->mDBTimeIn = 0;
+
+		$this->mDBTime += $time;
+		$this->getMain()->mDBTime += $time;
+	}
+	
+	/**
+	 * Total time the module used the database
+	 */
+	public function getProfileDBTime()
+	{
+		if ($this->mDBTimeIn !== 0)
+			$this->dieDebug(__FUNCTION__ . ' called without calling profileDBOut() first');
+		return $this->mDBTime;
 	}
 }
 ?>
