@@ -102,6 +102,10 @@ class TextPassDumper extends BackupDumper {
 	var $history = MW_EXPORT_FULL;
 	var $fetchCount = 0;
 	var $prefetchCount = 0;
+	
+	var $failures = 0;
+	var $maxFailures = 200;
+	var $failureTimeout = 5; // Seconds to sleep after db failure
 
 	function dump() {
 		# This shouldn't happen if on console... ;)
@@ -236,6 +240,27 @@ class TextPassDumper extends BackupDumper {
 				return $text;
 			}
 		}
+		while( true ) {
+			try {
+				return $this->doGetText( $id );
+			} catch (DBQueryError $ex) {
+				$this->failures++;
+				if( $this->failures > $this->maxFailures ) {
+					throw $ex;
+				} else {
+					$this->progress( "Database failure $this->failures " .
+						"of allowed $this->maxFailures! " .
+						"Pausing $this->failureTimeout seconds..." );
+					sleep( $this->failureTimeout );
+				}
+			}
+		}
+	}
+	
+	/**
+	 * May throw a database error if, say, the server dies during query.
+	 */
+	private function doGetText( $id ) {
 		$id = intval( $id );
 		$row = $this->db->selectRow( 'text',
 			array( 'old_text', 'old_flags' ),
