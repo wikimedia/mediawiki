@@ -164,7 +164,7 @@ class CoreParserFunctions {
 	}
 	
 	function anchorencode( $parser, $text ) {
-		return str_replace( '%', '.', urlencode( $text ) );
+		return str_replace( '%', '.', str_replace('+', '_', urlencode( $text ) ) );
 	}
 	
 }
