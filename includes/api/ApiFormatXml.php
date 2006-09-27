@@ -35,25 +35,25 @@ class ApiFormatXml extends ApiFormatBase {
 		parent :: __construct($main, $format);
 	}
 
-	public function GetMimeType() {
+	public function getMimeType() {
 		return 'text/xml';
 	}
 
-	public function GetNeedsRawData() {
+	public function getNeedsRawData() {
 		return true;
 	}
 
-	public function Execute() {
+	public function execute() {
 		$xmlindent = null;
-		extract($this->ExtractRequestParams());
+		extract($this->extractRequestParams());
 
-		if ($xmlindent || $this->GetIsHtml())
+		if ($xmlindent || $this->getIsHtml())
 			$xmlindent = -2;
 		else
 			$xmlindent = null;
 
-		$this->PrintText('<?xml version="1.0" encoding="utf-8"?>');
-		$this->recXmlPrint('api', $this->GetResult()->GetData(), $xmlindent);
+		$this->printText('<?xml version="1.0" encoding="utf-8"?>');
+		$this->recXmlPrint('api', $this->getResult()->getData(), $xmlindent);
 	}
 
 	/**
@@ -82,14 +82,14 @@ class ApiFormatXml extends ApiFormatBase {
 					$subElemContent = $elemValue['*'];
 					unset ($elemValue['*']);
 					if (gettype($subElemContent) === 'array') {
-						$this->PrintText($indstr . wfElement($elemName, $elemValue, null));
+						$this->printText($indstr . wfElement($elemName, $elemValue, null));
 						$this->recXmlPrint($elemName, $subElemContent, $indent);
-						$this->PrintText($indstr . "</$elemName>");
+						$this->printText($indstr . "</$elemName>");
 					} else {
-						$this->PrintText($indstr . wfElement($elemName, $elemValue, $subElemContent));
+						$this->printText($indstr . wfElement($elemName, $elemValue, $subElemContent));
 					}
 				} else {
-					$this->PrintText($indstr . wfElement($elemName, null, null));
+					$this->printText($indstr . wfElement($elemName, null, null));
 					if (array_key_exists('_element', $elemValue)) {
 						$subElemName = $elemValue['_element'];
 						foreach ($elemValue as $subElemId => & $subElemValue) {
@@ -102,28 +102,28 @@ class ApiFormatXml extends ApiFormatBase {
 							$this->recXmlPrint($subElemName, $subElemValue, $indent);
 						}
 					}
-					$this->PrintText($indstr . "</$elemName>");
+					$this->printText($indstr . "</$elemName>");
 				}
 				break;
 			case 'object' :
 				// ignore
 				break;
 			default :
-				$this->PrintText($indstr . wfElement($elemName, null, $elemValue));
+				$this->printText($indstr . wfElement($elemName, null, $elemValue));
 				break;
 		}
 	}
-	protected function GetDescription() {
+	protected function getDescription() {
 		return 'Output data in XML format';
 	}
 
-	protected function GetAllowedParams() {
+	protected function getAllowedParams() {
 		return array (
 			'xmlindent' => false
 		);
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array (
 			'xmlindent' => 'Enable XML indentation'
 		);

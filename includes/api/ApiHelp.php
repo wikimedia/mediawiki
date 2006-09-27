@@ -38,11 +38,11 @@ class ApiHelp extends ApiBase {
 	/**
 	 * Stub module for displaying help when no parameters are given
 	 */
-	public function Execute() {
-		$this->DieUsage('', 'help');
+	public function execute() {
+		$this->dieUsage('', 'help');
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return array (
 			'Display this help screen.'
 		);

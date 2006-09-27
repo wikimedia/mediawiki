@@ -75,13 +75,13 @@ class ApiQuery extends ApiBase {
 		$this->mAllowedGenerators = array_merge($this->mListModuleNames, $this->mPropModuleNames);
 	}
 
-	public function GetDB() {
+	public function getDB() {
 		if (!isset ($this->mSlaveDB))
 			$this->mSlaveDB = & wfGetDB(DB_SLAVE);
 		return $this->mSlaveDB;
 	}
 
-	public function GetData() {
+	public function getData() {
 		return $this->mData;
 	}
 
@@ -95,10 +95,10 @@ class ApiQuery extends ApiBase {
 	 * #4 Output all normalization and redirect resolution information
 	 * #5 Execute all requested modules
 	 */
-	public function Execute() {
+	public function execute() {
 		$meta = $prop = $list = $generator = $titles = $pageids = $revids = null;
 		$redirects = null;
-		extract($this->ExtractRequestParams());
+		extract($this->extractRequestParams());
 
 		//
 		// Create and initialize PageSet
@@ -109,12 +109,12 @@ class ApiQuery extends ApiBase {
 			$dataSource = 'titles';
 		if (isset ($pageids)) {
 			if (isset ($dataSource))
-				$this->DieUsage("Cannot use 'pageids' at the same time as '$dataSource'", 'multisource');
+				$this->dieUsage("Cannot use 'pageids' at the same time as '$dataSource'", 'multisource');
 			$dataSource = 'pageids';
 		}
 		if (isset ($revids)) {
 			if (isset ($dataSource))
-				$this->DieUsage("Cannot use 'revids' at the same time as '$dataSource'", 'multisource');
+				$this->dieUsage("Cannot use 'revids' at the same time as '$dataSource'", 'multisource');
 			$dataSource = 'revids';
 		}
 
@@ -122,13 +122,13 @@ class ApiQuery extends ApiBase {
 
 		switch ($dataSource) {
 			case 'titles' :
-				$this->mData->PopulateTitles($titles);
+				$this->mData->populateTitles($titles);
 				break;
 			case 'pageids' :
-				$this->mData->PopulatePageIDs($pageids);
+				$this->mData->populatePageIDs($pageids);
 				break;
 			case 'titles' :
-				$this->mData->PopulateRevIDs($revids);
+				$this->mData->populateRevIDs($revids);
 				break;
 			default :
 				// Do nothing - some queries do not need any of the data sources.
@@ -139,7 +139,7 @@ class ApiQuery extends ApiBase {
 		// If generator is provided, get a new dataset to work on
 		//
 		if (isset ($generator))
-			$this->ExecuteGenerator($generator, $redirects);
+			$this->executeGenerator($generator, $redirects);
 
 		// Instantiate required modules
 		// During instantiation, modules may optimize data requests through the $this->mData object 
@@ -156,8 +156,8 @@ class ApiQuery extends ApiBase {
 				$modules[] = new $this->mQueryListModules[$moduleName] ($this, $moduleName);
 
 		// Title normalizations
-		foreach ($this->mData->GetNormalizedTitles() as $rawTitleStr => $titleStr) {
-			$this->GetResult()->AddMessage('query', 'normalized', array (
+		foreach ($this->mData->getNormalizedTitles() as $rawTitleStr => $titleStr) {
+			$this->getResult()->addMessage('query', 'normalized', array (
 				'from' => $rawTitleStr,
 				'to' => $titleStr
 			), 'n');
@@ -165,8 +165,8 @@ class ApiQuery extends ApiBase {
 
 		// Show redirect information
 		if ($redirects) {
-			foreach ($this->mData->GetRedirectTitles() as $titleStrFrom => $titleStrTo) {
-				$this->GetResult()->AddMessage('query', 'redirects', array (
+			foreach ($this->mData->getRedirectTitles() as $titleStrFrom => $titleStrTo) {
+				$this->getResult()->addMessage('query', 'redirects', array (
 					'from' => $titleStrFrom,
 					'to' => $titleStrTo
 				), 'r');
@@ -174,11 +174,14 @@ class ApiQuery extends ApiBase {
 		}
 
 		// Execute all requested modules.
-		foreach ($modules as $module)
-			$module->Execute();
+		foreach ($modules as $module) {
+			$module->profileIn();
+			$module->execute();
+			$module->profileOut();
+		}
 	}
 
-	protected function ExecuteGenerator($generator, $redirects) {
+	protected function executeGenerator($generator, $redirects) {
 
 		// Find class that implements requested generator
 		if (isset ($this->mQueryListModules[$generator]))
@@ -187,17 +190,17 @@ class ApiQuery extends ApiBase {
 			if (isset ($this->mQueryPropModules[$generator]))
 				$className = $this->mQueryPropModules[$generator];
 			else
-				$this->DieDebug("Unknown generator=$generator");
+				$this->dieDebug("Unknown generator=$generator");
 
 		$module = new $className ($this, $generator, true);
 
 		// change $this->mData
 
 		// TODO: implement
-		$this->DieUsage("Generator execution has not been implemented", 'notimplemented');
+		$this->dieUsage("Generator execution has not been implemented", 'notimplemented');
 	}
 
-	protected function GetAllowedParams() {
+	protected function getAllowedParams() {
 		return array (
 			'meta' => array (
 				GN_ENUM_ISMULTI => true,
@@ -232,10 +235,10 @@ class ApiQuery extends ApiBase {
 	/**
 	 * Override the parent to generate help messages for all available query modules.
 	 */
-	public function MakeHelpMsg() {
+	public function makeHelpMsg() {
 
 		// Use parent to make default message for the query module
-		$msg = parent :: MakeHelpMsg();
+		$msg = parent :: makeHelpMsg();
 
 		// Make sure the internal object is empty
 		// (just in case a sub-module decides to optimize during instantiation)
@@ -243,33 +246,33 @@ class ApiQuery extends ApiBase {
 
 		$astriks = str_repeat('--- ', 8);
 		$msg .= "\n$astriks Query: Meta  $astriks\n\n";
-		$msg .= $this->MakeHelpMsgHelper($this->mQueryMetaModules, 'meta');
+		$msg .= $this->makeHelpMsgHelper($this->mQueryMetaModules, 'meta');
 		$msg .= "\n$astriks Query: Prop  $astriks\n\n";
-		$msg .= $this->MakeHelpMsgHelper($this->mQueryPropModules, 'prop');
+		$msg .= $this->makeHelpMsgHelper($this->mQueryPropModules, 'prop');
 		$msg .= "\n$astriks Query: List  $astriks\n\n";
-		$msg .= $this->MakeHelpMsgHelper($this->mQueryListModules, 'list');
+		$msg .= $this->makeHelpMsgHelper($this->mQueryListModules, 'list');
 
 		return $msg;
 	}
 
-	private function MakeHelpMsgHelper($moduleList, $paramName) {
+	private function makeHelpMsgHelper($moduleList, $paramName) {
 		$msg = '';
 
 		foreach ($moduleList as $moduleName => $moduleClass) {
 			$msg .= "* $paramName=$moduleName *";
-			$module = new $moduleClass ($this, $moduleName);
-			$msg2 = $module->MakeHelpMsg();
+			$module = new $moduleClass ($this, $moduleName, null);
+			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;
 			$msg .= "\n";
-			if ($module->GetCanGenerate())
+			if ($module->getCanGenerate())
 				$msg .= "  * Can be used as a generator\n";
 		}
 
 		return $msg;
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array (
 			'meta' => 'Which meta data to get about the site',
 			'prop' => 'Which properties to get for the titles/revisions/pageids',
@@ -282,7 +285,7 @@ class ApiQuery extends ApiBase {
 		);
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return array (
 			'Query API module allows applications to get needed pieces of data from the MediaWiki databases,',
 			'and is loosely based on the Query API interface currently available on all MediaWiki servers.',
@@ -290,7 +293,7 @@ class ApiQuery extends ApiBase {
 		);
 	}
 
-	protected function GetExamples() {
+	protected function getExamples() {
 		return array (
 			'api.php?action=query&what=content&titles=ArticleA|ArticleB'
 		);

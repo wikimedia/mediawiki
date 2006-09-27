@@ -35,17 +35,17 @@ class ApiFormatJson extends ApiFormatBase {
 		parent :: __construct($main, $format);
 	}
 
-	public function GetMimeType() {
+	public function getMimeType() {
 		return 'application/json';
 	}
 
-	public function Execute() {
-		require_once ('ApiFormatJson_json.php');
+	public function execute() {
+		require ('ApiFormatJson_json.php');
 		$json = new Services_JSON();
-		$this->PrintText($json->encode($this->GetResult()->GetData(), true));
+		$this->printText($json->encode($this->getResult()->getData(), true));
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return 'Output data in JSON format';
 	}
 }

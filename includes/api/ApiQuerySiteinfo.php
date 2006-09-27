@@ -35,9 +35,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		parent :: __construct($query, $moduleName);
 	}
 
-	public function Execute() {
+	public function execute() {
 		$siprop = null;
-		extract($this->ExtractRequestParams());
+		extract($this->extractRequestParams());
 
 		foreach ($siprop as $prop) {
 			switch ($prop) {
@@ -52,7 +52,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$data['sitename'] = $wgSitename;
 					$data['generator'] = "MediaWiki $wgVersion";
 					$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // "case-insensitive" option is reserved for future
-					$this->GetResult()->AddMessage('query', $prop, $data);
+					$this->getResult()->addMessage('query', $prop, $data);
 					break;
 
 				case 'namespaces' :
@@ -65,16 +65,16 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 							'id' => $ns,
 							'*' => $title
 						);
-					$this->GetResult()->AddMessage('query', $prop, $data);
+					$this->getResult()->addMessage('query', $prop, $data);
 					break;
 
 				default :
-					$this->DieDebug("Unknown siprop=$prop");
+					$this->dieDebug("Unknown siprop=$prop");
 			}
 		}
 	}
 
-	protected function GetAllowedParams() {
+	protected function getAllowedParams() {
 		return array (
 			'siprop' => array (
 				GN_ENUM_DFLT => 'general',
@@ -87,7 +87,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array (
 			'siprop' => array (
 				'Which sysinfo properties to get:',
@@ -97,11 +97,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return 'Return general information about the site.';
 	}
 
-	protected function GetExamples() {
+	protected function getExamples() {
 		return 'api.php?action=query&meta=siteinfo&siprop=general|namespaces';
 	}
 }

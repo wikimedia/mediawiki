@@ -35,9 +35,9 @@ class ApiLogin extends ApiBase {
 		parent :: __construct($main);
 	}
 
-	public function Execute() {
+	public function execute() {
 		$lgname = $lgpassword = $lgdomain = null;
-		extract($this->ExtractRequestParams());
+		extract($this->extractRequestParams());
 
 		$params = new FauxRequest(array (
 			'wpName' => $lgname,
@@ -76,13 +76,13 @@ class ApiLogin extends ApiBase {
 				$result['result'] = 'AuthEmptyPass';
 				break;
 			default :
-				$this->DieDebug("Unhandled case value");
+				$this->dieDebug("Unhandled case value");
 		}
 
-		$this->GetResult()->AddMessage('login', null, $result);
+		$this->getResult()->addMessage('login', null, $result);
 	}
 
-	protected function GetAllowedParams() {
+	protected function getAllowedParams() {
 		return array (
 			'lgname' => '',
 			'lgpassword' => '',
@@ -90,7 +90,7 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array (
 			'lgname' => 'User Name',
 			'lgpassword' => 'Password',
@@ -98,7 +98,7 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return array (
 			'This module is used to login and get the authentication tokens.'
 		);

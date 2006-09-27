@@ -34,7 +34,7 @@ abstract class ApiQueryBase extends ApiBase {
 	private $mQueryModule, $mModuleName, $mGenerator;
 
 	public function __construct($query, $moduleName, $generator = false) {
-		parent :: __construct($query->GetMain());
+		parent :: __construct($query->getMain());
 		$this->mQueryModule = $query;
 		$this->mModuleName = $moduleName;
 		$this->mGenerator = $generator;
@@ -43,49 +43,50 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Get the main Query module 
 	 */
-	public function GetQuery() {
+	public function getQuery() {
 		return $this->mQueryModule;
 	}
 
 	/**
 	 * Get the name of the query being executed by this instance 
 	 */
-	public function GetModuleName() {
+	public function getModuleName() {
 		return $this->mModuleName;
 	}
 
 	/**
 	 * Get the Query database connection (readonly)
 	 */
-	protected function GetDB() {
-		return $this->GetQuery()->GetDB();
+	protected function getDB() {
+		return $this->getQuery()->getDB();
 	}
 
 	/**
 	 * Get the PageSet object to work on
+	 * @return ApiPageSet data
 	 */
-	protected function GetData() {
-		return $this->mQueryModule->GetData();
+	protected function getData() {
+		return $this->mQueryModule->getData();
 	}
 
 	/**
 	 * Return true if this instance is being used as a generator.
 	 */
-	protected function GetIsGenerator() {
+	protected function getIsGenerator() {
 		return $this->mGenerator;
 	}
 
 	/**
 	 * Derived classes return true when they can be used as title generators for other query modules.
 	 */
-	public function GetCanGenerate() {
+	public function getCanGenerate() {
 		return false;
 	}
 
-	public static function TitleToKey($title) {
+	public static function titleToKey($title) {
 		return str_replace(' ', '_', $title);
 	}
-	public static function KeyToTitle($key) {
+	public static function keyToTitle($key) {
 		return str_replace('_', ' ', $key);
 	}
 }
