@@ -138,8 +138,11 @@ class DumpHTML {
 	 */
 	function doArticles() {
 		if ( $this->endID === false ) {
-			$this->endID = $this->getMaxPageID();
+			$end = $this->getMaxPageID();
+		} else {
+			$end = $this->endID;
 		}
+		$start = $this->startID;
 		
 		# Start from the checkpoint
 		$cp = $this->getCheckpoint( 'article' );
@@ -333,7 +336,7 @@ class DumpHTML {
 			return;
 		} elseif ( $cp !== false ) {
 			print "Resuming category page dump from $cp\n";
-			$conds = array( 'cl_to >= ' $dbr->addQuotes( $cp ) );
+			$conds = array( 'cl_to >= ' . $dbr->addQuotes( $cp ) );
 		} else {
 			print "Starting category pages\n";
 			$conds = false;
@@ -341,13 +344,13 @@ class DumpHTML {
 
 		$i = 0;
 		do {
-			$res = $dbr->select( 'categorylinks', 'DISTINCT cl_to', $conds, __METHOD__
+			$res = $dbr->select( 'categorylinks', 'DISTINCT cl_to', $conds, __METHOD__, 
 				array( 'ORDER BY' => 'cl_to', 'LIMIT' => $chunkSize ) );
 			$numRows = $dbr->numRows( $res );
 			
 			while ( $row = $dbr->fetchObject( $res ) ) {
 				// Set conditions for next chunk
-				$conds = array( 'cl_to > ' $dbr->addQuotes( $row->cl_to ) );
+				$conds = array( 'cl_to > ' . $dbr->addQuotes( $row->cl_to ) );
 				
 				// Filter pages from other slices
 				if ( !$this->sliceFilter( $row->cl_to ) ) {
@@ -383,6 +386,8 @@ class DumpHTML {
 		} elseif ( $cp !== false ) {
 			print "Resuming redirect generation from page_id $cp\n";
 			$start = intval( $cp );
+		} else {
+			$start = 1;
 		}
 
 		$this->setupGlobals();
