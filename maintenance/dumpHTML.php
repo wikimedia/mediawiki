@@ -116,7 +116,19 @@ if ( $options['special'] ) {
 }
 
 if ( isset( $options['debug'] ) ) {
-	print_r($GLOBALS);
+	#print_r($GLOBALS);
+	# Workaround for bug #36957
+	$globals = array_keys( $GLOBALS );
+	#sort( $globals );
+	$sizes = array();
+	foreach ( $globals as $name ) {
+		 $sizes[$name] = strlen( serialize( $GLOBALS[$name] ) );
+	}
+	arsort($sizes);
+	$sizes = array_slice( $sizes, 0, 20 );
+	foreach ( $sizes as $name => $size ) {
+		printf( "%9d %s\n", $size, $name );
+	}
 }
 
 if ( $profiling ) {
