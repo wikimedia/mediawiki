@@ -132,6 +132,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	# This is for the IRC scripts, which now run as the apache user
 	# The apache user doesn't have access to the wikiadmin_pass command
 	if ( $_ENV['USER'] == 'apache' ) {
+	#if ( posix_geteuid() == 48 ) {
 		$wgUseNormalUser = true;
 	}
 
@@ -200,6 +201,8 @@ if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
 }
 
 ini_set( 'memory_limit', -1 );
+
+$wgShowSQLErrors = true;
 
 require_once( 'Setup.php' );
 require_once( 'install-utils.inc' );
