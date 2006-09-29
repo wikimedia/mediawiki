@@ -96,44 +96,24 @@ class ApiQuery extends ApiBase {
 	 * #5 Execute all requested modules
 	 */
 	public function execute() {
-		$meta = $prop = $list = $generator = $titles = $pageids = $revids = null;
+		$meta = $prop = $list = $generator = $titles = $pageids = null;
 		$redirects = null;
 		extract($this->extractRequestParams());
 
 		//
 		// Create and initialize PageSet
 		//
-		// Only one of the titles/pageids/revids is allowed at the same time
 		$dataSource = null;
-		if (isset ($titles))
-			$dataSource = 'titles';
-		if (isset ($pageids)) {
-			if (isset ($dataSource))
-				$this->dieUsage("Cannot use 'pageids' at the same time as '$dataSource'", 'multisource');
-			$dataSource = 'pageids';
-		}
-		if (isset ($revids)) {
-			if (isset ($dataSource))
-				$this->dieUsage("Cannot use 'revids' at the same time as '$dataSource'", 'multisource');
-			$dataSource = 'revids';
-		}
+		if (isset ($titles) && isset($pageids))
+			$this->dieUsage("At present you may not use titles= and pageids= at the same time", 'multisource');
 
 		$this->mData = new ApiPageSet($this, $redirects);
 
-		switch ($dataSource) {
-			case 'titles' :
-				$this->mData->populateTitles($titles);
-				break;
-			case 'pageids' :
-				$this->mData->populatePageIDs($pageids);
-				break;
-			case 'titles' :
-				$this->mData->populateRevIDs($revids);
-				break;
-			default :
-				// Do nothing - some queries do not need any of the data sources.
-				break;
-		}
+		if (isset($titles))
+			$this->mData->populateTitles($titles);
+
+		if (isset($pageids))
+			$this->mData->populatePageIDs($pageids);
 
 		//
 		// If generator is provided, get a new dataset to work on
@@ -159,7 +139,8 @@ class ApiQuery extends ApiBase {
 		foreach ($this->mData->getNormalizedTitles() as $rawTitleStr => $titleStr) {
 			$this->getResult()->addMessage('query', 'normalized', array (
 				'from' => $rawTitleStr,
-				'to' => $titleStr
+				'to' => $titleStr,
+				'*' => ''
 			), 'n');
 		}
 
@@ -168,7 +149,8 @@ class ApiQuery extends ApiBase {
 			foreach ($this->mData->getRedirectTitles() as $titleStrFrom => $titleStrTo) {
 				$this->getResult()->addMessage('query', 'redirects', array (
 					'from' => $titleStrFrom,
-					'to' => $titleStrTo
+					'to' => $titleStrTo,
+					'*' => ''
 				), 'r');
 			}
 		}
@@ -224,10 +206,6 @@ class ApiQuery extends ApiBase {
 			//				GN_ENUM_TYPE => 'integer',
 			//				GN_ENUM_ISMULTI => true
 			//			),
-			//			'revids' => array (
-			//				GN_ENUM_TYPE => 'integer',
-			//				GN_ENUM_ISMULTI => true
-			//			),
 			'redirects' => false
 		);
 	}
@@ -280,7 +258,6 @@ class ApiQuery extends ApiBase {
 			'generator' => 'Use the output of a list as the input for other prop/list/meta items',
 			'titles' => 'A list of titles to work on',
 			'pageids' => 'A list of page IDs to work on',
-			'revids' => 'A list of revision IDs to work on',
 			'redirects' => 'Automatically resolve redirects'
 		);
 	}
