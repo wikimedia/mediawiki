@@ -83,7 +83,7 @@ class ApiPageSet extends ApiQueryBase {
 	 * Returns the number of unique pages (not revisions) in the set.
 	 */
 	public function getPageCount() {
-		return count($this->getGoodTitles());	
+		return count($this->getGoodTitles());
 	}
 
 	/**
@@ -176,7 +176,7 @@ class ApiPageSet extends ApiQueryBase {
 				'pl_from' => array_keys($redirectIds
 			)), __CLASS__ . '::' . __FUNCTION__);
 			$this->profileDBOut();
-			
+
 			while ($row = $db->fetchObject($res)) {
 
 				// Bug 7304 workaround 
@@ -199,9 +199,9 @@ class ApiPageSet extends ApiQueryBase {
 			}
 			$db->freeResult($res);
 		}
-		$this->profileOut();		
+		$this->profileOut();
 	}
-	
+
 	/**
 	 * Given an array of title strings, convert them into Title objects.
 	 * This method validates access rights for the title, 
@@ -235,6 +235,10 @@ class ApiPageSet extends ApiQueryBase {
 		}
 
 		return $linkBatch;
+	}
+
+	public function populatePageIDs($pageids) {
+		$this->dieUsage(__FUNCTION__ . " is not implemented", 'notimplemented');
 	}
 
 	public function execute() {
