@@ -1497,7 +1497,7 @@ class User {
 			$dbw =& wfGetDB( DB_MASTER );
 			$success = $dbw->update( 'watchlist',
 				array( /* SET */
-					'wl_notificationtimestamp' => 0
+					'wl_notificationtimestamp' => NULL
 				), array( /* WHERE */
 					'wl_user' => $currentUser
 				), 'UserMailer::clearAll'

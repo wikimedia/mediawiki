@@ -235,6 +235,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   {{REVISIONYEAR}} and {{REVISIONTIMESTAMP}} 
 * (bug 7425) Preceeding whitespace in [[...]] breaks subpages
 * Try to reconnect after transitory database errors in dumpTextPass.php
+* (bug 6023) Fixed mismatch of 0/NULL for wl_notificationtimestamp; now notification
+  mails are working after 'Mark all pages visited' button on Special:Watchlist is clicked
 
 
 == Languages updated ==
