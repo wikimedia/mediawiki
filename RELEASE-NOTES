@@ -240,6 +240,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Made {{INT:}} a core parser function instead of a special case. The syntax 
   and behaviour is largely unchanged. 
 * (bug 7448) Fixing the native name for Ewe (ee)
+* (bug 6864) Replace message 'editing' with new message 'editinguser' in Special:Userrights
+  to allow better localisation
 
 
 == Languages updated ==

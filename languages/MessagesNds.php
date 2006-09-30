@@ -421,6 +421,7 @@ dat disse Kommentaren nich an di richt sünd, denn [[Special:Userlogin|mell di d
 'previewnote'                   => 'Dit is blots en Vörschau, de Siet is noch nich spiekert!',
 'previewconflict'        => 'Disse Vörschau wiest den Inholt vun dat Textfeld baven; so warrt de Siet utseihn, wenn du nu spiekerst.',
 'editing'                       => 'Ännern vun $1',
+'editinguser'                       => 'Ännern vun $1',
 'editingsection'                => 'Ännern vun $1 (Afsatz)',
 'editingcomment'                => 'Ännern vun $1 (Kommentar)',
 'editconflict'            => 'Konflikt bi dat Bearbeiden: $1',

@@ -331,6 +331,7 @@ Type in de box hiejónger óm de pazjena te beginne (zuug de [[Help:Contents|hel
 'previewnote'           => 'Lèt op: dit is \'n controlepazjena; dien tèks is nog neet opgesjlage!',
 'previewconflict'       => 'Dees versie toent wie de tèks in \'t bôvesjte vèld oet git zeen es e zouws opsjlaon.',
 'editing'               => 'Bewirkingspazjena: $1',
+'editinguser'               => 'Bewirkingspazjena: $1',
 'editingsection'        => 'Bewirke van sectie van $1',
 'editingcomment'        => 'Bewirk $1 (commentair)',
 'editconflict'          => 'Bewirkingsconflik: $1',

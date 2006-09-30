@@ -437,6 +437,7 @@ Tu dirección IP es $3. Por favor, menciona esta dirección en cualquier consult
 de edición superior como aparecerá si eliges grabar.',
 'importing'             => 'Importando $1',
 'editing'               => 'Editando $1',
+'editinguser'               => 'Editando $1',
 'editingsection'        => 'Editando $1 (sección)',
 'editingcomment'        => 'Editando $1 (comentario)',
 'editconflict'          => 'Conflicto de edición: $1',

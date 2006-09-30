@@ -74,6 +74,7 @@ $messages = array(
 'edit' => 'Үҙгәртергә',
 'edithelp' => 'Мөхәрирләү белешмәһе',
 'editing' => 'Мөхәрирләү  $1',
+'editinguser' => 'Мөхәрирләү  $1',
 'editingcomment' => 'Мөхәрирләү $1 (комментарий)',
 'editingsection' => 'Мөхәрирләү  $1 (секция)',
 'edittools' => '<charinsert>[[|]] {{}}  Ә ә  Ө ө  Ү ү  Ғ ғ  Ҡ ҡ  Ң ң  Ҙ ҙ  Ҫ ҫ  Һ һ «» | </charinsert>',

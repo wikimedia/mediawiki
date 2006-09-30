@@ -382,6 +382,7 @@ gombját.',
 'previewconflict'       => 'Ez az előnézet a felső szerkesztőablakban levő
 szövegnek megfelelő képet mutatja, ahogy az elmentés után kinézne.',
 'editing'               => '$1 szerkesztés alatt',
+'editinguser'               => '$1 szerkesztés alatt',
 'editingsection'        => '$1 szerkesztés alatt (szakasz)',
 'editingcomment'        => '$1 szerkesztés alatt (üzenet)',
 'editconflict'          => 'Szerkesztési ütközés: $1',

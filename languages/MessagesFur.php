@@ -184,6 +184,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 <b>Dome</b> il test in alt al vignarà salvât cuant che tu frachis su "Salve pagjine".<br />',
 'editcurrent'	=> 'Cambie la version corinte di cheste pagjine',
 'editing' => "Cambiament di $1",
+'editinguser' => "Cambiament di $1",
 'edithelp'		=> "Jutori pai cambiaments",
 'edithelppage'	=> "Jutori:Cambiaments",
 'editingold'	=> "<strong>ATENZION: tu stâs cambiant une version vecje e no inzornade di cheste pagjine. Se tu la salvis, ducj i cambiaments fats di chê volte in ca a laran pierdûts.</strong>",

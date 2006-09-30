@@ -486,6 +486,7 @@ Rissayîz s\' i vs plait. Si çoula n\' va todi nén, sayîz di vs dislodjî eye
 'previewconflict' => 'Ci prévoeyaedje ci mostere kimint kel tecse del boesse di tecse do dzeu sereut håyné si vos decidez di clitchî so «schaper».',
 # obsoleted?
 'editing' => 'Candjant $1',
+'editinguser' => 'Candjant $1',
 'editingsection' => 'Candjant $1 (seccion)',
 'editingcomment' => 'Candjant $1 (comintaire)',
 'editconflict' => 'Conflit inte deus candjmints: $1',

@@ -139,6 +139,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 'noarticletext'         => 'Andi \'\'\'{{SITENAME}}\'\'\' nai ji akana ek lekh kadale anavesa.
 * Te shirdes (astares) te keres o lekh, ker klik  \'\'\'[{{fullurl:{{FULLPAGENAME}}|action=edit}} kathe]\'\'\'.',
 'editing'               => 'Editisaripen $1',
+'editinguser'               => 'Editisaripen $1',
 'yourtext'              => 'Tiro teksto',
 'storedversion'         => 'Akanutni versiya',
 'yourdiff'              => 'Ververimata',

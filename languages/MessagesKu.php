@@ -258,6 +258,7 @@ Eger tu bi şaştî hatî, bizivire rûpela berê.
 'note'                  => '<strong>Not:</strong>',
 'previewnote'           => 'Ji bîr neke ku ev bi tenê çavdêriyek e, ev rûpel hîn nehat qeyd kirin!',
 'editing'               => 'Biguherîne: "$1"',
+'editinguser'               => 'Biguherîne: "$1"',
 'editingsection'        => 'Tê guherandin: $1 (beş)',
 'editingcomment'        => '$1 (şîrove) tê guherandin.',
 'editconflict'          => 'Têkçûna guherandinan: $1',

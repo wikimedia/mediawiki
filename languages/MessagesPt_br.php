@@ -298,6 +298,7 @@ Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu nav
 "previewnote"   => "Lembre-se que isto é apenas uma previsão. O conteúdo ainda não foi salvo!",
 "previewconflict" => "Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.",
 "editing"         => "Editando $1",
+'editinguser'         => "Editando $1",
 "editingsection"  => "Editando $1 (seção)",
 "editingcomment"  => "Editando $1 (comentário)",
 "editconflict"  => "Conflito de edição: $1",

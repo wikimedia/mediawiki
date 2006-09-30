@@ -452,6 +452,7 @@ Si sou ací per error simplement cliqueu el botó "enrere" del vostre navegador.
 d\'edició superior tal i com apareixerà si escolliu gravar.',
 'importing'             => 'S\'està important $1',
 'editing'               => 'S\'està editant $1',
+'editinguser'               => 'S\'està editant $1',
 'editingsection'        => 'S\'està editant $1 (secció)',
 'editingcomment'        => 'S\'està editant $1 (comentari)',
 'editconflict'          => 'Conflicte d\'edició: $1',

@@ -529,6 +529,7 @@ Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento probl�
 'previewconflict' => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.', #FIXME
 'importing' => 'Import stránky $1',
 'editing'               => 'Editace stránky $1',
+'editinguser'               => 'Editace stránky $1',
 'editingsection'		=> 'Editace stránky $1 (část)',
 'editingcomment'		=> 'Editace stránky $1 (komentář)',
 'editconflict'  => 'Editační konflikt: $1',

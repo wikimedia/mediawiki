@@ -610,6 +610,7 @@ Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a
 <strong>Por favor tente novamente caso esta seja uma tentativa de edição legítima. Caso continue a não funcionar, por favor tente sair e voltar a entrar na sua conta.</strong>',
 'importing'		=> "Importando $1",
 'editing'               => "Editando $1",
+'editinguser'               => "Editando $1",
 'editingsection'                => "Editando $1 (secção)",
 'editingcomment'                => "Editando $1 (comentário)",
 'editconflict'  => 'Conflito de edição: $1',

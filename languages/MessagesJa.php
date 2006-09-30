@@ -461,6 +461,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 <strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度ログアウトして、もう一度ログインしてみてください。</strong>',
 'importing'             => '$1 をインポート中',
 'editing'               => '$1 を編集中',
+'editinguser'               => '$1 を編集中',
 'editingsection'        => '$1 を編集中（節単位編集）',
 'editingcomment'        => '$1 を編集中（新規コメント）',
 'editconflict'          => '編集競合: $1',

@@ -831,6 +831,7 @@ Please try again. If it still doesn\'t work, try logging out and logging back in
 <strong>If this is a legitimate edit attempt, please try again. If it still doesn\'t work, try logging out and logging back in.</strong>',
 'importing' => 'Importing $1',
 'editing' => 'Editing $1',
+'editinguser' => 'Editing user <b>$1</b>',
 'editingsection' => 'Editing $1 (section)',
 'editingcomment' => 'Editing $1 (comment)',
 'editconflict' => 'Edit conflict: $1',

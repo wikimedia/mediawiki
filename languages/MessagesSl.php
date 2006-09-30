@@ -460,6 +460,7 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 <strong>Če gre za dobronameren poskus urejanja, vas prosimo, da poskusite znova. Če bo spet prišlo do napake, se odjavite in ponovno prijavite. Za nevšečnosti se opravičujemo.</strong>',
 'importing'             => 'Uvažam $1',
 'editing'               => 'Urejanje $1',
+'editinguser'               => 'Urejanje $1',
 'editingsection'        => 'Urejanje $1 (razdelek)',
 'editingcomment'        => 'Urejanje $1 (pripomba)',
 'editconflict'          => 'Navzkrižje urejanj: $1',

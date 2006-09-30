@@ -433,6 +433,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'previewnote'  => "Chú ý, đây chỉ là thử nghiệm, chưa lưu!",
 'previewconflict' => "Trang này có vẻ như đã được lưu bởi người khác sau khi bạn bắt đầu sửa.",
 'editing'         => 'Soạn thảo $1',
+'editinguser'         => 'Soạn thảo $1',
 'editingsection'  => 'Soạn thảo $1',
 'editingcomment'  => 'Soạn thảo $1',
 'editconflict' => 'Sửa đổi mâu thuẫn : $1',

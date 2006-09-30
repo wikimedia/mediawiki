@@ -447,6 +447,7 @@ Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se odjaviti i 
 ako pritisnete "Sačuvaj stranicu".',
 'importing'             => 'Uvoz: $1',
 'editing'               => 'Uređujete $1',
+'editinguser'               => 'Uređujete $1',
 'editingsection'        => 'Uređujete $1 (odlomak)',
 'editingcomment'        => 'Uređujete $1 (komentar)',
 'editconflict'          => 'Istovremeno uređivanje: $1',

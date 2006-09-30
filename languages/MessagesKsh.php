@@ -777,6 +777,7 @@ enß met [[Special:Userlogout|Ußlogge]] un_widder_Ėnnlogge. Ävver pass_op, da
 Zo_Nuud důnn_se eetß enß bëij Dir om Räshno affshpëijshere.</strong>',
 'importing'             => '„$1“ am Impochtėere',
 'editing'               => 'Di Sigk „$1“ änndere',
+'editinguser'               => 'Di Sigk „$1“ änndere',
 'editingsection'        => 'Ne Affshnedt fun dä Sigk: „$1“ änndere',
 'editingcomment'        => '„$1“ Änndere (enne nöüje Affshnedd schriive)',
 'editconflict'          => 'Problemshe: „$1“ dubbeld beärrbëijdt.',

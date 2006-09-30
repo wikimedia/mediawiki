@@ -494,6 +494,7 @@ Before any other mail is sent to the account, you will have to follow the instru
 'previewnote'  => 'Не забравяйте, че това е само предварителен преглед и страницата все още не е съхранена!',
 'previewconflict' => 'Този предварителен преглед отразява текста в горната текстова кутия така, както би се показал, ако съхраните.',
 'editing'    => 'Редактиране на „$1“',
+'editinguser'    => 'Редактиране на „$1“',
 'editingsection'    => 'Редактиране на „$1“ (раздел)',
 'editingcomment'    => 'Редактиране на „$1“ (нов раздел)',
 'editconflict'  => 'Различна редакция: $1',
