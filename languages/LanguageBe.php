@@ -35,8 +35,8 @@ class LanguageBe extends Language {
 	function convertGrammar( $word, $case ) {
 		switch ( $case ) {
 			case 'родны': # genitive
-				if ( $word == 'Вікіпедыя' ) {
-					$word = 'Вікіпедыі';
+				if ( $word == 'Вікіпэдыя' ) {
+					$word = 'Вікіпэдыі';
 				} elseif ( $word == 'ВікіСлоўнік' ) {
 					$word = 'ВікіСлоўніка';
 				} elseif ( $word == 'ВікіКнігі' ) {
@@ -50,8 +50,8 @@ class LanguageBe extends Language {
 				}
 			break;
 			case 'вінавальны': # akusative
-				if ( $word == 'Вікіпедыя' ) {
-					$word = 'Вікіпедыю';
+				if ( $word == 'Вікіпэдыя' ) {
+					$word = 'Вікіпэдыю';
 				} elseif ( $word == 'ВікіСлоўнік' ) {
 					$word = 'ВікіСлоўнік';
 				} elseif ( $word == 'ВікіКнігі' ) {
@@ -65,8 +65,8 @@ class LanguageBe extends Language {
 				}
 			break;
 			case 'месны': # prepositional
-				if ( $word == 'Вікіпедыя' ) {
-					$word = 'Вікіпедыі';
+				if ( $word == 'Вікіпэдыя' ) {
+					$word = 'Вікіпэдыі';
 				} elseif ( $word == 'ВікіСлоўнік' ) {
 					$word = 'ВікіСлоўніку';
 				} elseif ( $word == 'ВікіКнігі' ) {
