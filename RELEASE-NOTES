@@ -242,6 +242,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7448) Fixing the native name for Ewe (ee)
 * (bug 6864) Replace message 'editing' with new message 'editinguser' in Special:Userrights
   to allow better localisation
+* Add '*-summry' for special pages to MessagesEn.php to allow customizing/translation
+  through Special:Allmessages
 
 
 == Languages updated ==
