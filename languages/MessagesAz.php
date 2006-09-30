@@ -259,6 +259,7 @@ $messages = array(
 'noarticletext' => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə [[{{ns:special}}:Search/{{PAGENAME}}|bu səhifənin adını axtara]] bilər və ya \'\'\'[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} səhifəni siz redaktə edəbilərsiniz]\'\'\'.',
 'previewnote' => '<strong>Bu yalnız sınaq göstərişidir; dəyişikliklər hal-hazırda qeyd edilmemişdir!</strong>',
 'editing' => 'Redaktə $1',
+'editinguser' => 'Redaktə $1',
 'yourtext' => 'Metniniz ',
 'yourdiff' => 'Fərqlər ',
 'templatesused' => 'Bu səhifədə istifadə edilmiş şablonlar:',

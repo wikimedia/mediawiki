@@ -539,6 +539,7 @@ Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, loggen Sie s
 <strong>Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, melden Sie sich kurz ab und wieder an.</strong>',
 'importing'		=> 'importiere $1',
 "editing"		=> "Bearbeiten von $1",
+'editinguser'		=> 'Bearbeiten von Benutzer <b>$1</b>',
 "editingsection"	=> "Bearbeiten von $1 (Absatz)",
 "editingcomment"	=> "Bearbeiten von $1 (Kommentar)",
 'editconflict'		=> 'Bearbeitungskonflikt: $1',

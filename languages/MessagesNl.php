@@ -550,6 +550,7 @@ Probeer het opnieuw. Als het dan nog niet lukt, meldt u dan af en weer aan.</str
 <strong>Als dit een legitieme bewerking is, probeer het dan opnieuw. Als het dan nog niet lukt, meldt u dan af en weer aan.</strong>',
 'importing'             => 'Bezig met importeren van $1',
 'editing'               => 'Bezig met bewerken van $1',
+'editinguser'               => 'Bezig met bewerken van $1',
 'editingsection'        => 'Bezig met bewerken van $1 (deelpagina)',
 'editingcomment'        => 'Bezig met bewerken van $1 (opmerking)',
 'editconflict'          => 'Bewerkingsconflict: $1',

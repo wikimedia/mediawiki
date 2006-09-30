@@ -524,6 +524,7 @@ Esikatselu on piilotettu varokeinona JavaScript-hyökkäyksiä vastaan – täss
 Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisään.',
 'importing'           => 'Tuodaan sivua $1',
 'editing'             => 'Muokataan sivua $1',
+'editinguser'             => 'Muokataan sivua $1',
 'editingsection'      => 'Muokataan osiota sivusta $1',
 'editingcomment'      => 'Muokataan kommenttia sivulla $1',
 'editconflict'        => 'Päällekkäinen muokkaus: $1',

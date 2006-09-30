@@ -326,6 +326,7 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'note'                  => '<strong>Achtung: </strong>',
 'previewnote'           => 'Das isch numen e Vorschau und nonig gspycheret!',
 'editing'               => 'Bearbeite vo «$1»',
+'editinguser'               => 'Bearbeite vo «$1»',
 'editingsection'        => 'Bearbeite vo «$1» (Absatz)',
 'editconflict'          => 'Bearbeitigs-Konflikt: «$1»',
 'explainconflict'       => 'Öpper anders het dä Artikel gänderet, wo du ne sälber am Ändere bisch gsy.

@@ -508,6 +508,7 @@ Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang And
 <strong>Jika ini merupakan upaya suntingan yang sahih, silakan coba lagi. Jika masih tetap tidak berhasil, cobalah keluar log dan masuk kembali.</strong>',
 'importing' => 'Sedang mengimpor $1',
 "editing" => "Menyunting $1",
+'editinguser' => "Menyunting $1",
 'editingsection' => 'Menyunting $1 (bagian)',
 'editingcomment' => 'Menyunting $1 (komentar)',
 "editconflict" => "Konflik penyuntingan: $1",

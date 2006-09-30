@@ -62,6 +62,7 @@ $messages = array(
 'edithelp' => 'Editatzeko laguntza',
 'edithelppage' => '{{ns:project}}:Editatzeko laguntza',
 'editing' => '"$1" editatzen',
+'editinguser' => '"$1" editatzen',
 'editsection' => 'editatu',
 'editold' => 'editatu',
 'editthispage' => 'Orria editatu',

@@ -332,6 +332,7 @@ iš funkcijos: "$2". Klaida: "$3: $4".',
 'edithelp' => 'Kaip Redaguoti',
 'edithelppage' => 'Pagalba:Redagavimas',
 'editing' => 'Taisomas straipsnis - $1',
+'editinguser' => 'Taisomas straipsnis - $1',
 'editingcomment' => 'Taisomas straipsnis - $1 (comment)',
 'editingold' => '<strong>ĮSPĖJIMAS: Jūs keičiate ne naujausią puslapio versiją.
 Jei išsaugosite savo keitimus, prieš tai daryti pakeitimai pradings.</strong>',

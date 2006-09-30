@@ -238,6 +238,7 @@ La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi co
 "previewnote"	=> "Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!",
 "previewconflict" => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà n questa forma se sceglierai di salvare la pagina.",
 "editing"		=> "Modifica di $1",
+'editinguser'		=> "Modifica di $1",
 "editconflict"	=> "Conflitto di edizione: $1",
 "explainconflict" => "Qualcun altro ha salvato una sua versione dell'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore.

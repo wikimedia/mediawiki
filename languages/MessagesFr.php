@@ -456,6 +456,7 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que 
 'previewconflict' => 'La prévisualisation montre le texte de cette page tel qu\'il apparaîtra une fois sauvegardé.',
 'importing' => 'Import de $1',
 'editing'         => 'modification de $1',
+'editinguser'         => 'modification de $1',
 'editingsection'  => 'modification de $1 (section)',
 'editingcomment'  => 'modification de $1 (commentaire)',
 'editconflict' => 'Conflit de modification : $1',

@@ -442,6 +442,7 @@ Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule.",
 "previewnote"	=> "Ärge unustage, et see versioon ei ole veel salvestatud!",
 "previewconflict" => "See eelvaade näitab, kuidas ülemises toimetuskastis olev tekst hakkab välja nägema, kui otsustate salvestada.", ## redaktoriboks?
 "editing"		=> "Redigeerimisel on $1",
+'editinguser'		=> "Redigeerimisel on $1",
 "editconflict"	=> "Redigeerimiskonflikt: $1",
 "explainconflict" => "Keegi teine on muutnud seda lehekülge pärast seda, kui Teie seda redigeerima hakkasite.
 Ülemine toimetuskast sisaldab teksti viimast versiooni.

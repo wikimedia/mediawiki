@@ -326,6 +326,7 @@ $messages = array(
 "previewnote"         => "Ingatan bahawa ini hanyalah paparan dan masih belum disimpan lagi!", #"Remember that this is only a preview, and has not yet been saved!",
 "previewconflict"       => "Paparan ini merupakan teks di bahagian atas dalam kotak penyuntingan teks. Teks ini akan disimpan sekiranya anda memilih berbuat demikian.",
 "editing"             => "Menyunting $1", #"Editing $1",
+'editinguser'             => "Menyunting $1", #"Editing $1",
 "editingsection"      => "Menyunting $1 (bahagian)",
 "editingcomment"      => "Menyunting $1 (komen)",
 "editconflict"        => "Konflik penyuntingan: $1", #"Edit conflict: $1",

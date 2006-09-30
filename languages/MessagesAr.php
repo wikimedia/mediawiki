@@ -271,6 +271,7 @@ $messages = array(
 'edithelp' => 'مساعدة التحرير',
 'edithelppage' => '{{ns:project}}:مساعدة التحرير',
 'editing' => 'تحرير $1',
+'editinguser' => 'تحرير $1',
 'editingold' => '<strong> تحذير: أنت تقوم الآن بتحرير نسخة قديمة من هذه الصفحة. إذا قمت بحفظها، سيتم فقدات كافة التغييرات التي حدثت بعد هذه النسخة. </strong>',
 'editsection' => 'تحرير',
 'editold' => 'تحرير',

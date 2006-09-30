@@ -340,6 +340,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'edithelp' => 'Pitulung ngédit',
 'edithelppage' => 'Pitulung:Ngédit',
 'editing' => 'Ngédit $1',
+'editinguser' => 'Ngédit $1',
 'editingcomment' => 'Ngédit $1 (pamanggih)',
 'editingold' => '<strong>PERHATOSAN: Anjeun ngédit révisi kadaluwarsa kaca ieu. Mun ku anjeun disimpen, sagala parobahan nu dijieun sanggeus révisi ieu bakal leungit.</strong>',
 'editingsection' => 'Ngédit $1 (bagian)',

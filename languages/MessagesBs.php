@@ -325,6 +325,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'edithelp' => 'Pomoć pri uređivanju stranice',
 'edithelppage' => '{{ns:4}}:Uređivanje',
 'editing' => 'Uređujete $1',
+'editinguser' => 'Uređujete $1',
 'editingold' => '<strong>PAŽNJA:  Vi mijenjate stariju
 reviziju ove stranice.
 Ako je snimite, sve promjene učinjene od ove revizije će biti izgubljene.</strong>',

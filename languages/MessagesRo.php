@@ -455,6 +455,7 @@ Pentru a afla cînd vă expiră blocarea căutaţi-vă numele de utilizator sau 
 <strong>Dacă această încercare de modificare este legitimă, te rugăm să încerci din nou. Dacă nu funcţionează nici în acest fel, închide sesiunea şi încearcă să te autentifici din nou.</strong>',
 'importing'             => 'Se importă $1',
 'editing'               => 'modificare $1',
+'editinguser'               => 'modificare $1',
 'editingsection'        => 'se modifică $1 (secţiune)',
 'editingcomment'        => 'modificare $1 (comentariu)',
 'editconflict'          => 'Conflict de modificare: $1',

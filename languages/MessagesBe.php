@@ -330,6 +330,7 @@ $messages = array(
 'edithelp' => 'Дапамога ў рэдагаваньні',
 'edithelppage' => 'Help:Рэдагаваньне',
 'editing' => 'Рэдагаваньне: $1',
+'editinguser' => 'Рэдагаваньне: $1',
 'editingcomment' => 'Рэдагаваньне: $1 (камэнтар)',
 'editingsection' => 'Рэдагаваньне: $1 (сэкцыя)',
 'editsection' => 'рэдагаваць',

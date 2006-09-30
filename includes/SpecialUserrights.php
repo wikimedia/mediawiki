@@ -165,7 +165,7 @@ class UserrightsForm extends HTMLForm {
 				'name'  => 'wpEditToken',
 				'value' => $wgUser->editToken( $username ) ) ) .
 			$this->fieldset( 'editusergroup',
-			$wgOut->parse( wfMsg('editing', $username ) ) .
+			$wgOut->parse( wfMsg('editinguser', $username ) ) .
 			'<table border="0" align="center"><tr><td>'.
 			HTMLSelectGroups('member', $this->mName.'-groupsmember', $groups,true,6).
 			'</td><td>'.

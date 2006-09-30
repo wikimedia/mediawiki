@@ -487,6 +487,7 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 "previewconflict" => "L'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere 'Salva la pagina' in questo momento.",
 "importing" => "Importazione di $1",
 "editing"		=> "Modifica di $1",
+'editinguser'		=> "Modifica di $1",
 "editingsection" => "Modifica di $1 (sezione)",
 "editingcomment" => "Modifica di $1 (commento)",
 "editconflict"	=> "Conflitto di edizione su $1",
