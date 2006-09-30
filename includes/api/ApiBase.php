@@ -92,16 +92,9 @@ abstract class ApiBase {
 			$msg = $lnPrfx . implode($lnPrfx, $msg) . "\n";
 
 			// Parameters
-			$params = $this->getAllowedParams();
-			if ($params !== false) {
-				$paramsDescription = $this->getParamDescription();
-				$msg .= "Parameters:\n";
-				foreach (array_keys($params) as $paramName) {
-					$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
-					if (is_array($desc))
-						$desc = implode("\n" . str_repeat(' ', 19), $desc);
-					$msg .= sprintf("  %-14s - %s\n", $paramName, $desc);
-				}
+			$paramsMsg = $this->makeHelpMsgParameters();
+			if ($paramsMsg !== false) {
+				$msg .= "Parameters:\n$paramsMsg";
 			}
 
 			// Examples
@@ -117,6 +110,25 @@ abstract class ApiBase {
 		}
 
 		return $msg;
+	}
+
+	public function makeHelpMsgParameters() {
+		$params = $this->getAllowedParams();
+		if ($params !== false) {
+			
+			$paramsDescription = $this->getParamDescription();
+			$msg = '';
+			foreach (array_keys($params) as $paramName) {
+				$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
+				if (is_array($desc))
+					$desc = implode("\n" . str_repeat(' ', 19), $desc);
+				$msg .= sprintf("  %-14s - %s\n", $paramName, $desc);
+			}
+			return $msg;
+		
+		}
+		else
+		 	return false; 
 	}
 
 	/**
@@ -153,89 +165,88 @@ abstract class ApiBase {
 	* This method can be used to generate local variables using extract().
 	*/
 	public function extractRequestParams() {
-		global $wgRequest;
-
 		$params = $this->getAllowedParams();
 		$results = array ();
 
-		foreach ($params as $param => $enumParams) {
-
-			if (!is_array($enumParams)) {
-				$default = $enumParams;
-				$multi = false;
-				$type = gettype($enumParams);
-			} else {
-				$default = isset ($enumParams[GN_ENUM_DFLT]) ? $enumParams[GN_ENUM_DFLT] : null;
-				$multi = isset ($enumParams[GN_ENUM_ISMULTI]) ? $enumParams[GN_ENUM_ISMULTI] : false;
-				$type = isset ($enumParams[GN_ENUM_TYPE]) ? $enumParams[GN_ENUM_TYPE] : null;
-
-				// When type is not given, and no choices, the type is the same as $default
-				if (!isset ($type)) {
-					if (isset ($default))
-						$type = gettype($default);
-					else
-						$type = 'NULL'; // allow everything
-				}
-			}
-
-			if ($type == 'boolean') {
-				if (!isset ($default))
-					$default = false;
-
-				if ($default !== false) {
-					// Having a default value of anything other than 'false' is pointless
-					$this->dieDebug("Boolean param $param's default is set to '$default'");
-				}
-			}
-
-			$value = $wgRequest->getVal($param, $default);
-
-			if (isset ($value) && ($multi || is_array($type)))
-				$value = $this->parseMultiValue($param, $value, $multi, is_array($type) ? $type : null);
-
-			// More validation only when choices were not given
-			// choices were validated in parseMultiValue()
-			if (!is_array($type) && isset ($value)) {
-
-				switch ($type) {
-					case 'NULL' : // nothing to do
-						break;
-					case 'string' : // nothing to do
-						break;
-					case 'integer' : // Force everything using intval()
-						$value = is_array($value) ? array_map('intval', $value) : intval($value);
-						break;
-					case 'limit' :
-						if (!isset ($enumParams[GN_ENUM_MAX1]) || !isset ($enumParams[GN_ENUM_MAX2]))
-							$this->dieDebug("MAX1 or MAX2 are not defined for the limit $param");
-						if ($multi)
-							$this->dieDebug("Multi-values not supported for $param");
-						$min = isset ($enumParams[GN_ENUM_MIN]) ? $enumParams[GN_ENUM_MIN] : 0;
-						$value = intval($value);
-						$this->validateLimit($param, $value, $min, $enumParams[GN_ENUM_MAX1], $enumParams[GN_ENUM_MAX2]);
-						break;
-					case 'boolean' :
-						if ($multi)
-							$this->dieDebug("Multi-values not supported for $param");
-						$value = isset ($value);
-						break;
-					case 'timestamp' :
-						if ($multi)
-							$this->dieDebug("Multi-values not supported for $param");
-						$value = $this->prepareTimestamp($value); // Adds quotes around timestamp							
-						break;
-					default :
-						$this->dieDebug("Param $param's type is unknown - $type");
-
-				}
-			}
-
-			$results[$param] = $value;
-		}
+		foreach ($params as $paramName => $paramSettings)
+			$results[$paramName] = $this->getParameter($paramName, $paramSettings);
 
 		return $results;
 	}
 
+	public function getParameter($paramName, $paramSettings){
+		global $wgRequest;
+
+		if (!is_array($paramSettings)) {
+			$default = $paramSettings;
+			$multi = false;
+			$type = gettype($paramSettings);
+		} else {
+			$default = isset ($paramSettings[GN_ENUM_DFLT]) ? $paramSettings[GN_ENUM_DFLT] : null;
+			$multi = isset ($paramSettings[GN_ENUM_ISMULTI]) ? $paramSettings[GN_ENUM_ISMULTI] : false;
+			$type = isset ($paramSettings[GN_ENUM_TYPE]) ? $paramSettings[GN_ENUM_TYPE] : null;
+
+			// When type is not given, and no choices, the type is the same as $default
+			if (!isset ($type)) {
+				if (isset ($default))
+					$type = gettype($default);
+				else
+					$type = 'NULL'; // allow everything
+			}
+		}
+
+		if ($type == 'boolean') {
+			if (isset ($default) && $default !== false) {
+				// Having a default value of anything other than 'false' is pointless
+				$this->dieDebug("Boolean param $paramName's default is set to '$default'");
+			}
+
+            $value = $wgRequest->getCheck($paramName);
+		} else
+        	$value = $wgRequest->getVal($paramName, $default);
+
+		if (isset ($value) && ($multi || is_array($type)))
+			$value = $this->parseMultiValue($paramName, $value, $multi, is_array($type) ? $type : null);
+
+		// More validation only when choices were not given
+		// choices were validated in parseMultiValue()
+		if (!is_array($type) && isset ($value)) {
+
+			switch ($type) {
+				case 'NULL' : // nothing to do
+					break;
+				case 'string' : // nothing to do
+					break;
+				case 'integer' : // Force everything using intval()
+					$value = is_array($value) ? array_map('intval', $value) : intval($value);
+					break;
+				case 'limit' :
+					if (!isset ($paramSettings[GN_ENUM_MAX1]) || !isset ($paramSettings[GN_ENUM_MAX2]))
+						$this->dieDebug("MAX1 or MAX2 are not defined for the limit $paramName");
+					if ($multi)
+						$this->dieDebug("Multi-values not supported for $paramName");
+					$min = isset ($paramSettings[GN_ENUM_MIN]) ? $paramSettings[GN_ENUM_MIN] : 0;
+					$value = intval($value);
+					$this->validateLimit($paramName, $value, $min, $paramSettings[GN_ENUM_MAX1], $paramSettings[GN_ENUM_MAX2]);
+					break;
+				case 'boolean' :
+					if ($multi)
+						$this->dieDebug("Multi-values not supported for $paramName");
+					break;
+				case 'timestamp' :
+					if ($multi)
+						$this->dieDebug("Multi-values not supported for $paramName");
+					$value = $this->prepareTimestamp($value); // Adds quotes around timestamp							
+					break;
+				default :
+					$this->dieDebug("Param $paramName's type is unknown - $type");
+
+			}
+		}
+
+		return $value;	
+	}
+	
 	/**
 	* Return an array of values that were given in a "a|b|c" notation,
 	* after it optionally validates them against the list allowed values.

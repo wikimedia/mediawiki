@@ -96,30 +96,22 @@ class ApiQuery extends ApiBase {
 	 * #5 Execute all requested modules
 	 */
 	public function execute() {
-		$meta = $prop = $list = $generator = $titles = $pageids = null;
-		$redirects = null;
+		$meta = $prop = $list = $generator = null;
 		extract($this->extractRequestParams());
 
 		//
 		// Create and initialize PageSet
 		//
-		$dataSource = null;
-		if (isset ($titles) && isset($pageids))
-			$this->dieUsage("At present you may not use titles= and pageids= at the same time", 'multisource');
-
-		$this->mData = new ApiPageSet($this, $redirects);
-
-		if (isset($titles))
-			$this->mData->populateTitles($titles);
-
-		if (isset($pageids))
-			$this->mData->populatePageIDs($pageids);
+		$this->mData = new ApiPageSet($this);
+		$this->mData->profileIn();
+		$this->mData->execute();
+		$this->mData->profileOut();
 
 		//
 		// If generator is provided, get a new dataset to work on
 		//
 		if (isset ($generator))
-			$this->executeGenerator($generator, $redirects);
+			$this->executeGenerator($generator);
 
 		// Instantiate required modules
 		// During instantiation, modules may optimize data requests through the $this->mData object 
@@ -145,14 +137,12 @@ class ApiQuery extends ApiBase {
 		}
 
 		// Show redirect information
-		if ($redirects) {
-			foreach ($this->mData->getRedirectTitles() as $titleStrFrom => $titleStrTo) {
-				$this->getResult()->addMessage('query', 'redirects', array (
-					'from' => $titleStrFrom,
-					'to' => $titleStrTo,
-					'*' => ''
-				), 'r');
-			}
+		foreach ($this->mData->getRedirectTitles() as $titleStrFrom => $titleStrTo) {
+			$this->getResult()->addMessage('query', 'redirects', array (
+				'from' => $titleStrFrom,
+				'to' => $titleStrTo,
+				'*' => ''
+			), 'r');
 		}
 
 		// Execute all requested modules.
@@ -163,7 +153,7 @@ class ApiQuery extends ApiBase {
 		}
 	}
 
-	protected function executeGenerator($generator, $redirects) {
+	protected function executeGenerator($generator) {
 
 		// Find class that implements requested generator
 		if (isset ($this->mQueryListModules[$generator]))
@@ -195,18 +185,10 @@ class ApiQuery extends ApiBase {
 			'list' => array (
 				GN_ENUM_ISMULTI => true,
 				GN_ENUM_TYPE => $this->mListModuleNames
-			),
+			)
 			//			'generator' => array (
 			//				GN_ENUM_TYPE => $this->mAllowedGenerators
 			//			),
-			'titles' => array (
-				GN_ENUM_ISMULTI => true
-			),
-			//			'pageids' => array (
-			//				GN_ENUM_TYPE => 'integer',
-			//				GN_ENUM_ISMULTI => true
-			//			),
-			'redirects' => false
 		);
 	}
 
@@ -250,15 +232,21 @@ class ApiQuery extends ApiBase {
 		return $msg;
 	}
 
+	/**
+	 * Override to add extra parameters from PageSet
+	 */	
+	public function makeHelpMsgParameters() {
+		$module = new ApiPageSet($this);
+		return $module->makeHelpMsgParameters() . parent :: makeHelpMsgParameters();
+	}
+	
+
 	protected function getParamDescription() {
 		return array (
 			'meta' => 'Which meta data to get about the site',
 			'prop' => 'Which properties to get for the titles/revisions/pageids',
 			'list' => 'Which lists to get',
 			'generator' => 'Use the output of a list as the input for other prop/list/meta items',
-			'titles' => 'A list of titles to work on',
-			'pageids' => 'A list of page IDs to work on',
-			'redirects' => 'Automatically resolve redirects'
 		);
 	}
 

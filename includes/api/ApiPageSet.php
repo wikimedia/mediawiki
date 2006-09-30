@@ -32,12 +32,10 @@ if (!defined('MEDIAWIKI')) {
 class ApiPageSet extends ApiQueryBase {
 
 	private $mAllPages; // [ns][dbkey] => page_id or 0 when missing
-	private $mResolveRedirs;
 	private $mGoodTitles, $mMissingTitles, $mRedirectTitles, $mNormalizedTitles;
 
-	public function __construct($query, $resolveRedirs) {
+	public function __construct($query) {
 		parent :: __construct($query, __CLASS__);
-		$this->mResolveRedirs = $resolveRedirs;
 
 		$this->mAllPages = array ();
 		$this->mGoodTitles = array ();
@@ -82,8 +80,22 @@ class ApiPageSet extends ApiQueryBase {
 	/**
 	 * Returns the number of unique pages (not revisions) in the set.
 	 */
-	public function getPageCount() {
+	public function getGoodTitleCount() {
 		return count($this->getGoodTitles());
+	}
+	
+	/**
+	 * Get the list of revision IDs (requested with revids= parameter)
+	 */
+	public function getRevisionIDs() {
+		$this->dieUsage(__FUNCTION__ . " is not implemented", 'notimplemented');
+	}
+	
+	/**
+	 * Returns the number of revisions (requested with revids= parameter)
+	 */
+	public function getRevisionCount() {
+		return 0; // TODO: implement
 	}
 
 	/**
@@ -100,19 +112,19 @@ class ApiPageSet extends ApiQueryBase {
 	 * #5 Substitute the original LinkBatch object with the new list
 	 * #6 Repeat from step #1     
 	 */
-	public function populateTitles($titles) {
-		$this->profileIn();
+	private function populateTitles($titles, $redirects) {
+		
 		$pageFlds = array (
 			'page_id',
 			'page_namespace',
 			'page_title'
 		);
-		if ($this->mResolveRedirs) {
+		if ($redirects) {
 			$pageFlds[] = 'page_is_redirect';
 		}
 
 		// Get validated and normalized title objects
-		$linkBatch = $this->processTitlesStrings($titles);
+		$linkBatch = $this->processTitlesStrArray($titles);
 
 		$db = $this->getDB();
 
@@ -138,7 +150,7 @@ class ApiPageSet extends ApiQueryBase {
 				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
 				$this->mAllPages[$row->page_namespace][$row->page_title] = $row->page_id;
 
-				if ($this->mResolveRedirs && $row->page_is_redirect == '1') {
+				if ($redirects && $row->page_is_redirect == '1') {
 					$redirectIds[$row->page_id] = $title;
 				} else {
 					$this->mGoodTitles[$row->page_id] = $title;
@@ -156,7 +168,7 @@ class ApiPageSet extends ApiQueryBase {
 				}
 			}
 
-			if (!$this->mResolveRedirs || empty ($redirectIds))
+			if (!$redirects || empty ($redirectIds))
 				break;
 
 			//
@@ -199,7 +211,6 @@ class ApiPageSet extends ApiQueryBase {
 			}
 			$db->freeResult($res);
 		}
-		$this->profileOut();
 	}
 
 	/**
@@ -209,7 +220,7 @@ class ApiPageSet extends ApiQueryBase {
 	 * 
 	 * @return LinkBatch of title objects.
 	 */
-	private function processTitlesStrings($titles) {
+	private function processTitlesStrArray($titles) {
 
 		$linkBatch = new LinkBatch();
 
@@ -237,12 +248,69 @@ class ApiPageSet extends ApiQueryBase {
 		return $linkBatch;
 	}
 
-	public function populatePageIDs($pageids) {
+	private function populatePageIDs($pageids) {
 		$this->dieUsage(__FUNCTION__ . " is not implemented", 'notimplemented');
 	}
 
 	public function execute() {
-		$this->dieDebug("execute() is not supported on this object");
+		$titles = $pageids = $revids = $redirects = null;
+		extract($this->extractRequestParams());
+		
+		// Only one of the titles/pageids/revids is allowed at the same time
+		$dataSource = null;
+		if (isset ($titles))
+			$dataSource = 'titles';
+		if (isset ($pageids)) {
+			if (isset ($dataSource))
+				$this->dieUsage("Cannot use 'pageids' at the same time as '$dataSource'", 'multisource');
+			$dataSource = 'pageids';
+		}
+		if (isset ($revids)) {
+			if (isset ($dataSource))
+				$this->dieUsage("Cannot use 'revids' at the same time as '$dataSource'", 'multisource');
+			$dataSource = 'revids';
+		}
+
+		switch ($dataSource) {
+			case 'titles' :
+				$this->populateTitles($titles, $redirects);
+				break;
+			case 'pageids' :
+				$this->populatePageIDs($pageids, $redirects);
+				break;
+			case 'revids' :
+				$this->populateRevIDs($revids);
+				break;
+			default :
+				// Do nothing - some queries do not need any of the data sources.
+				break;
+		}
+	}
+
+	protected function getAllowedParams() {
+		return array (
+			'titles' => array (
+				GN_ENUM_ISMULTI => true
+			),
+			'pageids' => array (
+				GN_ENUM_TYPE => 'integer',
+				GN_ENUM_ISMULTI => true
+			),
+			'revids' => array (
+				GN_ENUM_TYPE => 'integer',
+				GN_ENUM_ISMULTI => true
+			),
+			'redirects' => false
+		);
+	}
+	
+	protected function getParamDescription() {
+		return array (
+			'titles' => 'A list of titles to work on',
+			'pageids' => 'A list of page IDs to work on',
+			'revids' => 'A list of revision IDs to work on',
+			'redirects' => 'Automatically resolve redirects'
+		);
 	}
 }
 ?>
