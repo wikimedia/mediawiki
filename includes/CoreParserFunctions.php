@@ -5,6 +5,14 @@
  */
 
 class CoreParserFunctions {
+	static function intFunction( $parser, $part1 = '' /*, ... */ ) {
+		if ( strval( $part1 ) !== '' ) {
+			$args = array_slice( func_get_args(), 2 );
+			return wfMsgReal( $part1, $args, true );
+		} else {
+			return array( 'found' => false );
+		}
+	}
 
 	static function ns( $parser, $part1 = '' ) {
 		global $wgContLang;

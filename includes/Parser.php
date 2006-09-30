@@ -139,6 +139,7 @@ class Parser
 
 		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
 
+		$this->setFunctionHook( 'int', array( 'CoreParserFunctions', 'intFunction' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'ns', array( 'CoreParserFunctions', 'ns' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'urlencode', array( 'CoreParserFunctions', 'urlencode' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'lcfirst', array( 'CoreParserFunctions', 'lcfirst' ), SFH_NO_HASH );
@@ -2869,7 +2870,7 @@ class Parser
 			}
 		}
 
-		# MSG, MSGNW, INT and RAW
+		# MSG, MSGNW and RAW
 		if ( !$found ) {
 			# Check for MSGNW:
 			$mwMsgnw =& MagicWord::get( 'msgnw' );
@@ -2885,13 +2886,6 @@ class Parser
 			$mwRaw =& MagicWord::get( 'raw' );
 			if ( $mwRaw->matchStartAndRemove( $part1 ) ) {
 				$forceRawInterwiki = true;
-			}
-			
-			# Check if it is an internal message
-			$mwInt =& MagicWord::get( 'int' );
-			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
-				$text = $linestart . wfMsgReal( $part1, $args, true );
-				$found = true;
 			}
 		}
 		wfProfileOut( __METHOD__.'-modifiers' );
