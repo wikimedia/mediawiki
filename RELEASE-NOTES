@@ -239,6 +239,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   mails are working after 'Mark all pages visited' button on Special:Watchlist is clicked
 * Made {{INT:}} a core parser function instead of a special case. The syntax 
   and behaviour is largely unchanged. 
+* (bug 7448) Fixing the native name for Ewe (ee)
 
 
 == Languages updated ==
