@@ -50,7 +50,7 @@
 	'dk' => 'Dansk', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Bhutani
-	'ee' => 'Ɛʋɛ',	# Ewe
+	'ee' => 'Eʋegbe',	# Ewe
 	'el' => 'Ελληνικά',	# Greek
 	'en' => 'English',		# English
 	'eo' => 'Esperanto',	# Esperanto
