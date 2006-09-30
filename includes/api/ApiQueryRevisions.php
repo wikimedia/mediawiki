@@ -36,40 +36,33 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$rvrevids = $rvlimit = $rvstartid = $rvendid = $rvstart = $rvend = $rvdir = $rvprop = null;
+		$rvlimit = $rvstartid = $rvendid = $rvstart = $rvend = $rvdir = $rvprop = null;
 		extract($this->extractRequestParams());
-
-		//
-		// Parameter validation
-		//
 
 		// true when ordered by timestamp from older to newer, false otherwise
 		$dirNewer = ($rvdir === 'newer');
 
-		// If any of those parameters are used, we can only work with a single page
+		// If any of those parameters are used, work in "enumeration" mode.
+		// Enum mode can only be used when exactly one page is provided.
 		// Enumerating revisions on multiple pages make it extremelly 
 		// difficult to manage continuations and require additional sql indexes  
 		$enumRevMode = ($rvlimit !== 0 || $rvstartid !== 0 || $rvendid !== 0 || $dirNewer || isset ($rvstart) || isset ($rvend));
 
-		if ($rvstartid !== 0 || $rvendid !== 0)
-			$this->dieUsage('rvstartid/rvendid not implemented', 'notimplemented');
-
 		$data = $this->getData();
-		$pageCount = $data->getPageCount();
+		$pageCount = $data->getGoodTitleCount();
+		$revCount = $data->getRevisionCount();
 
-		if (!empty ($rvrevids)) {
-			if ($pageCount > 0)
-				$this->dieUsage('The rvrevids= parameter may not be used with titles, pageids, and generator options.', 'rv_rvrevids');
+		if ($revCount > 0 && $pageCount > 0)
+			$this->dieUsage('The rvrevids= parameter may not be used with titles, pageids, and generator options.', 'rv_rvrevids');
 
-			if ($enumRevMode)
-				$this->dieUsage('The rvrevids= parameter may not be used with the list options (rvlimit, rvstartid, rvendid, dirNewer, rvstart, rvend).', 'rv_rvrevids');
-		} else {
-			if ($pageCount < 1)
-				$this->dieUsage('No pages were given. Please use titles, pageids or a generator to provide page(s) to work on.', 'rv_no_pages');
+		if ($revCount > 0 && $enumRevMode)
+			$this->dieUsage('The rvrevids= parameter may not be used with the list options (rvlimit, rvstartid, rvendid, dirNewer, rvstart, rvend).', 'rv_rvrevids');
 
-			if ($enumRevMode && $pageCount > 1)
-				$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the rvlimit, rvstartid, rvendid, dirNewer, rvstart, and rvend parameters may only be used on a single page.', 'rv_multpages');
-		}
+		if ($revCount === 0 && $pageCount === 0)
+			$this->dieUsage('No pages were given. Please use titles, pageids or a generator to provide page(s) to work on.', 'rv_no_pages');
+
+		if ($revCount === 0 && $pageCount > 1 && $enumRevMode)
+			$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the rvlimit, rvstartid, rvendid, dirNewer, rvstart, and rvend parameters may only be used on a single page.', 'rv_multpages');
 
 		$tables = array (
 			'revision'
@@ -111,7 +104,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 						$fields[] = 'old_id';
 						$fields[] = 'old_text';
 						$fields[] = 'old_flags';
-                        $showContent = true;
+						$showContent = true;
 						break;
 					default :
 						$this->dieDebug("unknown rvprop $prop");
@@ -124,37 +117,60 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		if ($enumRevMode) {
 
+			// This is mostly to prevent parameter errors (and optimize sql?)
+			if ($rvstartid !== 0 && isset ($rvstart))
+				$this->dieUsage('rvstart and rvstartid cannot be used together', 'rv_badparams');
+
+			if ($rvendid !== 0 && isset ($rvend))
+				$this->dieUsage('rvend and rvend cannot be used together', 'rv_badparams');
+
+			$options['ORDER BY'] = 'rev_timestamp' . ($dirNewer ? '' : ' DESC');
+			$before = ($dirNewer ? '<=' : '>=');
+			$after = ($dirNewer ? '>=' : '<=');
+
+			if ($rvstartid !== 0)
+				$conds[] = 'rev_id' . $after . intval($rvstartid);
+			if ($rvendid !== 0)
+				$conds[] = 'rev_id' . $before . intval($rvendid);
 			if (isset ($rvstart))
-				$conds[] = 'rev_timestamp >= ' . $this->prepareTimestamp($rvstart);
+				$conds[] = 'rev_timestamp' . $after . $this->prepareTimestamp($rvstart);
 			if (isset ($rvend))
-				$conds[] = 'rev_timestamp <= ' . $this->prepareTimestamp($rvend);
+				$conds[] = 'rev_timestamp' . $before . $this->prepareTimestamp($rvend);
 
 			// must manually initialize unset rvlimit
 			if (!isset ($rvlimit))
 				$rvlimit = 10;
 
-			$options['ORDER BY'] = 'rev_timestamp' . ($dirNewer ? '' : ' DESC');
-
 			$this->validateLimit('rvlimit', $rvlimit, 1, $userMax, $botMax);
 
-			// There is only one ID
-			$conds['rev_page'] = array_keys($data->getGoodTitles());
+			// There is only one ID, use it
+			$conds['rev_page'] = array_pop(array_keys($data->getGoodTitles()));
 
-		} else {
-			// When working in multi-page non-enumeration mode,
-			// limit to the latest revision only
-			$tables[] = 'page';
-			$conds[] = 'page_id=rev_page';
-			$conds[] = 'page_latest=rev_id';
-			$this->validateLimit('page_count', $pageCount, 1, $userMax, $botMax);
+		} else
+			if ($pageCount > 0) {
+				// When working in multi-page non-enumeration mode,
+				// limit to the latest revision only
+				$tables[] = 'page';
+				$conds[] = 'page_id=rev_page';
+				$conds[] = 'page_latest=rev_id';
+				$this->validateLimit('page_count', $pageCount, 1, $userMax, $botMax);
 
-			// Get all page IDs
-			$conds['page_id'] = array_keys($data->getGoodTitles());
-            
-            $rvlimit = $pageCount; // assumption testing -- we should never get more then $pageCount rows.
-		}
+				// Get all page IDs
+				$conds['page_id'] = array_keys($data->getGoodTitles());
 
-        $options['LIMIT'] = $rvlimit +1;
+				$rvlimit = $pageCount; // assumption testing -- we should never get more then $pageCount rows.
+			} else
+				if ($revCount > 0) {
+					$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
+
+					// Get all revision IDs
+					$conds['rev_id'] = array_keys($data->getRevisionIDs());
+
+					$rvlimit = $revCount; // assumption testing -- we should never get more then $revCount rows.
+				} else
+					$this->dieDebug('param validation?');
+
+		$options['LIMIT'] = $rvlimit +1;
 
 		$db = $this->getDB();
 		$this->profileDBIn();
@@ -167,9 +183,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			if (++ $count > $rvlimit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-                if (!$enumRevMode)
-                    $this->dieDebug('Got more rows then expected'); // bug report
-                
+				if (!$enumRevMode)
+					$this->dieDebug('Got more rows then expected'); // bug report
+
 				$startStr = 'rvstartid=' . $row->rev_id;
 				$msg = array (
 					'continue' => $startStr
@@ -179,9 +195,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 
 			$vals = array (
-				'revid' => intval($row->rev_id),
-				'oldid' => intval($row->rev_text_id
-			));
+				'revid' => intval($row->rev_id
+			), 'oldid' => intval($row->rev_text_id));
 
 			if ($row->rev_minor_edit) {
 				$vals['minor'] = '';
@@ -255,7 +270,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	protected function getDescription() {
-		return 'module a';
+		return array (
+			'Get revision information.',
+			'This module may be used in several ways:',
+			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
+			' 2) Get revisions for one given page, by using titles/pageids with rvstart*/rvend*/rvlimit params.',
+			' 3) Get data about a set of revisions by setting their IDs with revids parameter.'
+		);
 	}
 
 	protected function getExamples() {
