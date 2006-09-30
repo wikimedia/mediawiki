@@ -45,6 +45,14 @@ class languages {
 	private $mOptionalMessages = array(
 		'imgmultigotopost',
 		'linkprefix',
+		'allpages-summary',
+		'booksources-summary',
+		'ipblocklist-summary',
+		'listusers-summary',
+		'longpages-summary',
+		'preferences-summary',
+		'specialpages-summary',
+		'whatlinkshere-summary',
 	); # All the messages which may be translated or not, depending on the language
 	private $mEXIFMessages = array(
 		'exif-imagewidth',
