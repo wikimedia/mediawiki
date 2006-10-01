@@ -39,6 +39,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$rvlimit = $rvstartid = $rvendid = $rvstart = $rvend = $rvdir = $rvprop = null;
 		extract($this->extractRequestParams());
 
+		$db = $this->getDB();
+
 		// true when ordered by timestamp from older to newer, false otherwise
 		$dirNewer = ($rvdir === 'newer');
 
@@ -48,9 +50,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// difficult to manage continuations and require additional sql indexes  
 		$enumRevMode = ($rvlimit !== 0 || $rvstartid !== 0 || $rvendid !== 0 || $dirNewer || isset ($rvstart) || isset ($rvend));
 
-		$data = $this->getData();
-		$pageCount = $data->getGoodTitleCount();
-		$revCount = $data->getRevisionCount();
+		$pageSet = $this->getPageSet();
+		$pageCount = $pageSet->getGoodTitleCount();
+		$revCount = $pageSet->getRevisionCount();
 
 		// Optimization -- nothing to do
 		if ($revCount === 0 && $pageCount === 0)
@@ -108,7 +110,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 						$showContent = true;
 						break;
 					default :
-						ApiBase :: dieDebug("unknown rvprop $prop");
+						ApiBase :: dieDebug(__METHOD__, "unknown rvprop $prop");
 				}
 			}
 		}
@@ -134,9 +136,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if ($rvendid !== 0)
 				$conds[] = 'rev_id' . $before . intval($rvendid);
 			if (isset ($rvstart))
-				$conds[] = 'rev_timestamp' . $after . $this->prepareTimestamp($rvstart);
+				$conds[] = 'rev_timestamp' . $after . $db->addQuotes($rvstart);
 			if (isset ($rvend))
-				$conds[] = 'rev_timestamp' . $before . $this->prepareTimestamp($rvend);
+				$conds[] = 'rev_timestamp' . $before . $db->addQuotes($rvend);
 
 			// must manually initialize unset rvlimit
 			if (!isset ($rvlimit))
@@ -145,35 +147,34 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->validateLimit('rvlimit', $rvlimit, 1, $userMax, $botMax);
 
 			// There is only one ID, use it
-			$conds['rev_page'] = array_pop(array_keys($data->getGoodTitles()));
+			$conds['rev_page'] = array_pop(array_keys($pageSet->getGoodTitles()));
 
+		}
+		elseif ($pageCount > 0) {
+			// When working in multi-page non-enumeration mode,
+			// limit to the latest revision only
+			$tables[] = 'page';
+			$conds[] = 'page_id=rev_page';
+			$conds[] = 'page_latest=rev_id';
+			$this->validateLimit('page_count', $pageCount, 1, $userMax, $botMax);
+
+			// Get all page IDs
+			$conds['page_id'] = array_keys($pageSet->getGoodTitles());
+
+			$rvlimit = $pageCount; // assumption testing -- we should never get more then $pageCount rows.
+		}
+		elseif ($revCount > 0) {
+			$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
+
+			// Get all revision IDs
+			$conds['rev_id'] = array_keys($pageSet->getRevisionIDs());
+
+			$rvlimit = $revCount; // assumption testing -- we should never get more then $revCount rows.
 		} else
-			if ($pageCount > 0) {
-				// When working in multi-page non-enumeration mode,
-				// limit to the latest revision only
-				$tables[] = 'page';
-				$conds[] = 'page_id=rev_page';
-				$conds[] = 'page_latest=rev_id';
-				$this->validateLimit('page_count', $pageCount, 1, $userMax, $botMax);
-
-				// Get all page IDs
-				$conds['page_id'] = array_keys($data->getGoodTitles());
-
-				$rvlimit = $pageCount; // assumption testing -- we should never get more then $pageCount rows.
-			} else
-				if ($revCount > 0) {
-					$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
-
-					// Get all revision IDs
-					$conds['rev_id'] = array_keys($data->getRevisionIDs());
-
-					$rvlimit = $revCount; // assumption testing -- we should never get more then $revCount rows.
-				} else
-					ApiBase :: dieDebug('param validation?');
+			ApiBase :: dieDebug(__METHOD__, 'param validation?');
 
 		$options['LIMIT'] = $rvlimit +1;
 
-		$db = $this->getDB();
 		$this->profileDBIn();
 		$res = $db->select($tables, $fields, $conds, __METHOD__, $options);
 		$this->profileDBOut();
@@ -185,7 +186,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if (++ $count > $rvlimit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if (!$enumRevMode)
-					ApiBase :: dieDebug('Got more rows then expected'); // bug report
+					ApiBase :: dieDebug(__METHOD__, 'Got more rows then expected'); // bug report
 
 				$startStr = 'rvstartid=' . $row->rev_id;
 				$msg = array (
@@ -216,7 +217,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['comment'] = $row->rev_comment;
 
 			if ($showContent) {
-				ApiResult :: addContent($vals, Revision :: getRevisionText($row));
+				ApiResult :: setContent($vals, Revision :: getRevisionText($row));
 			}
 
 			$this->getResult()->addValue(array (
@@ -230,7 +231,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// Ensure that all revisions are shown as '<r>' elements
 		$data = & $this->getResultData();
 		foreach ($data['query']['pages'] as & $page) {
-			if (isset ($page['revisions'])) {
+			if (is_array($page) && array_key_exists('revisions', $page)) {
 				ApiResult :: setIndexedTagName($page['revisions'], 'rev');
 			}
 		}
@@ -238,37 +239,49 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	protected function getAllowedParams() {
 		return array (
-			'rvlimit' => array (
-				ApiBase::PARAM_DFLT => 0,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 0,
-				ApiBase::PARAM_MAX1 => 50,
-				ApiBase::PARAM_MAX2 => 500
-			),
-			'rvstartid' => 0,
-			'rvendid' => 0,
-			'rvstart' => array (
-				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'rvend' => array (
-				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'rvdir' => array (
-				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => array (
-					'newer',
-					'older'
-				)
-			),
 			'rvprop' => array (
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
 					'timestamp',
 					'user',
 					'comment',
 					'content'
 				)
+			),
+			'rvlimit' => array (
+				ApiBase :: PARAM_DFLT => 0,
+				ApiBase :: PARAM_TYPE => 'limit',
+				ApiBase :: PARAM_MIN => 0,
+				ApiBase :: PARAM_MAX1 => 50,
+				ApiBase :: PARAM_MAX2 => 500
+			),
+			'rvstartid' => 0,
+			'rvendid' => 0,
+			'rvstart' => array (
+				ApiBase :: PARAM_TYPE => 'timestamp'
+			),
+			'rvend' => array (
+				ApiBase :: PARAM_TYPE => 'timestamp'
+			),
+			'rvdir' => array (
+				ApiBase :: PARAM_DFLT => 'older',
+				ApiBase :: PARAM_TYPE => array (
+					'newer',
+					'older'
+				)
 			)
+		);
+	}
+
+	protected function getParamDescription() {
+		return array (
+			'rvprop' => 'Which properties to get for each revision: user|timestamp|comment|content',
+			'rvlimit' => 'limit how many revisions will be returned (enum)',
+			'rvstartid' => 'from which revision id to start enumeration (enum)',
+			'rvendid' => 'stop revision enumeration on this revid (enum)',
+			'rvstart' => 'from which revision timestamp to start enumeration (enum)',
+			'rvend' => 'enumerate up to this timestamp (enum)',
+			'rvdir' => 'direction of enumeration - towards "newer" or "older" revisions (enum)'
 		);
 	}
 
@@ -278,13 +291,21 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'This module may be used in several ways:',
 			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
 			' 2) Get revisions for one given page, by using titles/pageids with rvstart/rvend/rvlimit params.',
-			' 3) Get data about a set of revisions by setting their IDs with revids parameter.'
+			' 3) Get data about a set of revisions by setting their IDs with revids parameter.',
+			'All parameters marked as (enum) may only be used with a single page (#2).'
 		);
 	}
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&prop=revisions&titles=Main%20Page&rvprop=timestamp|user|comment|content'
+			'Get data with content for the last revision of titles "API" and "Main Page":',
+			'  api.php?action=query&prop=revisions&titles=API|Main%20Page&rvprop=timestamp|user|comment|content',
+			'Get last 5 revisions of the "Main Page":',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment',
+			'Get first 5 revisions of the "Main Page":',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer',
+			'Get first 5 revisions of the "Main Page" made after 2006-05-01:',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000'
 		);
 	}
 }

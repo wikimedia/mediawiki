@@ -48,9 +48,7 @@ class ApiQueryAllpages extends ApiQueryBase {
 
 		if ($apfilterredir === 'redirects')
 			$where['page_is_redirect'] = 1;
-		else
-			if ($apfilterredir === 'nonredirects')
-				$where['page_is_redirect'] = 0;
+		elseif ($apfilterredir === 'nonredirects') $where['page_is_redirect'] = 0;
 
 		$this->profileDBIn();
 		$res = $db->select('page', array (
@@ -107,23 +105,23 @@ class ApiQueryAllpages extends ApiQueryBase {
 		return array (
 			'apfrom' => null,
 			'apnamespace' => array (
-				ApiBase::PARAM_DFLT => 0,
-				ApiBase::PARAM_TYPE => $validNamespaces
+				ApiBase :: PARAM_DFLT => 0,
+				ApiBase :: PARAM_TYPE => $validNamespaces
 			),
 			'apfilterredir' => array (
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => array (
+				ApiBase :: PARAM_DFLT => 'all',
+				ApiBase :: PARAM_TYPE => array (
 					'all',
 					'redirects',
 					'nonredirects'
 				)
 			),
 			'aplimit' => array (
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX1 => 500,
-				ApiBase::PARAM_MAX2 => 5000
+				ApiBase :: PARAM_DFLT => 10,
+				ApiBase :: PARAM_TYPE => 'limit',
+				ApiBase :: PARAM_MIN => 1,
+				ApiBase :: PARAM_MAX1 => 500,
+				ApiBase :: PARAM_MAX2 => 5000
 			)
 		);
 	}

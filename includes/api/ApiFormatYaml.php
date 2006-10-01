@@ -41,7 +41,7 @@ class ApiFormatYaml extends ApiFormatBase {
 
 	public function execute() {
 		require ('ApiFormatYaml_spyc.php');
-		$this->printText(Spyc :: YAMLDump($this->getResult()->getData()));
+		$this->printText(Spyc :: YAMLDump($this->getResultData()));
 	}
 
 	protected function getDescription() {

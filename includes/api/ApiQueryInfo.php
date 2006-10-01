@@ -31,39 +31,49 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiQueryInfo extends ApiQueryBase {
 
+	//	private $mParameters;
+
 	public function __construct($query, $moduleName, $generator = false) {
 		parent :: __construct($query, $moduleName, $generator);
 	}
 
+	public function requestExtraData() {
+		$pageSet = $this->getPageSet();
+		$pageSet->requestField('page_is_redirect');
+		$pageSet->requestField('page_touched');
+		$pageSet->requestField('page_latest');
+	}
+
 	public function execute() {
 
-	}
+		$pageSet = $this->getPageSet();
+		$titles = $pageSet->getGoodTitles();
+		$result = & $this->getResult();
 
-	protected function getAllowedParams() {
-		return array (
-			'param' => 'default',
-			'enumparam' => array (
-				ApiBase::PARAM_DFLT => 'default',
-				ApiBase::PARAM_ISMULTI => false,
-				ApiBase::PARAM_TYPE => array (
-					'a',
-					'b'
-				)
-			)
-		);
-	}
+		$pageIsRedir = $pageSet->getCustomField('page_is_redirect');
+		$pageTouched = $pageSet->getCustomField('page_touched');
+		$pageLatest = $pageSet->getCustomField('page_latest');
 
-	protected function getParamDescription() {
-		return array ();
+		foreach ($titles as $pageid => $title) {
+			$pageInfo = array ('touched' => $pageTouched[$pageid], 'lastrevid' => $pageLatest[$pageid]);
+
+			if ($pageIsRedir[$pageid])
+				$pageInfo['redirect'] = '';
+
+			$result->addValue(array (
+				'query',
+				'pages'
+			), $pageid, $pageInfo);
+		}
 	}
 
 	protected function getDescription() {
-		return 'module a';
+		return 'Get basic page information such as namespace, title, last touched date, ...';
 	}
 
 	protected function getExamples() {
 		return array (
-			'http://...'
+			'api.php?action=query&prop=info&titles=Main%20Page'
 		);
 	}
 }

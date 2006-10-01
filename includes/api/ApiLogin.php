@@ -81,7 +81,7 @@ class ApiLogin extends ApiBase {
 				$result['result'] = 'EmptyPass';
 				break;
 			default :
-				$this->dieDebug('Unhandled case value');
+				ApiBase :: dieDebug(__METHOD__, 'Unhandled case value');
 		}
 
 		$this->getResult()->addValue(null, 'login', $result);

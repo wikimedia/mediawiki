@@ -99,38 +99,36 @@ class ApiFormatXml extends ApiFormatBase {
 				foreach ($elemValue as $subElemId => & $subElemValue) {
 					if (gettype($subElemId) === 'integer') {
 						if (!is_array($subElemValue))
-							ApiBase :: dieDebug(__FUNCTION__ . "($elemName, ...) has a scalar indexed value.");
+							ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has a scalar indexed value.");
 						$indElements[] = $subElemValue;
 						unset ($elemValue[$subElemId]);
-					} else
-						if (is_array($subElemValue)) {
-							$subElements[$subElemId] = $subElemValue;
-							unset ($elemValue[$subElemId]);
-						}
+					} elseif (is_array($subElemValue)) {
+						$subElements[$subElemId] = $subElemValue;
+						unset ($elemValue[$subElemId]);
+					}
 				}
 
 				if (is_null($subElemIndName) && !empty ($indElements))
-					ApiBase :: dieDebug(__FUNCTION__ . "($elemName, ...) has integer keys without _element value");
+					ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has integer keys without _element value");
 
 				if (!empty ($subElements) && !empty ($indElements) && !is_null($subElemContent))
-					ApiBase :: dieDebug(__FUNCTION__ . "($elemName, ...) has content and subelements");
+					ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has content and subelements");
 
 				if (!is_null($subElemContent)) {
 					$this->printText($indstr . wfElement($elemName, $elemValue, $subElemContent));
-				} else
-					if (empty ($indElements) && empty ($subElements)) {
+				} elseif (empty ($indElements) && empty ($subElements)) {
 						$this->printText($indstr . wfElement($elemName, $elemValue));
-					} else {
-						$this->printText($indstr . wfElement($elemName, $elemValue, null));
+				} else {
+					$this->printText($indstr . wfElement($elemName, $elemValue, null));
 
-						foreach ($subElements as $subElemId => & $subElemValue)
-							$this->recXmlPrint($subElemId, $subElemValue, $indent);
+					foreach ($subElements as $subElemId => & $subElemValue)
+						$this->recXmlPrint($subElemId, $subElemValue, $indent);
 
-						foreach ($indElements as $subElemId => & $subElemValue)
-							$this->recXmlPrint($subElemIndName, $subElemValue, $indent);
+					foreach ($indElements as $subElemId => & $subElemValue)
+						$this->recXmlPrint($subElemIndName, $subElemValue, $indent);
 
-						$this->printText($indstr . wfCloseElement($elemName));
-					}
+					$this->printText($indstr . wfCloseElement($elemName));
+				}
 				break;
 			case 'object' :
 				// ignore

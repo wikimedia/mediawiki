@@ -53,27 +53,36 @@ class ApiResult extends ApiBase {
 	 * Add an output value to the array by name.
 	 * Verifies that value with the same name has not been added before.
 	 */
-	public static function addElement(& $arr, $name, $value) {
+	public static function setElement(& $arr, $name, $value) {
 		if ($arr === null || $name === null || $value === null || !is_array($arr) || is_array($name))
-			ApiBase :: dieDebug('Bad parameter for ' . __METHOD__);
-		if (isset ($arr[$name]))
-			ApiBase :: dieDebug("Attempting to add element $name=$value, existing value is {$arr[$name]}");
-		$arr[$name] = $value;
+			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
+
+		if (!isset ($arr[$name])) {
+			$arr[$name] = $value;
+		}
+		elseif (is_array($arr[$name]) && is_array($value)) {
+			$merged = array_intersect_key($arr[$name], $value);
+			if (empty ($merged))
+				$arr[$name] += $value;
+			else
+				ApiBase :: dieDebug(__METHOD__, "Attempting to merge element $name");
+		} else
+			ApiBase :: dieDebug(__METHOD__, "Attempting to add element $name=$value, existing value is {$arr[$name]}");
 	}
 
 	/**
 	 * Adds the content element to the array.
 	 * Use this function instead of hardcoding the '*' element.
 	 */
-	public static function addContent(& $arr, $value) {
+	public static function setContent(& $arr, $value) {
 		if (is_array($value))
-			ApiBase :: dieDebug('Bad parameter for ' . __METHOD__);
-		ApiResult :: addElement($arr, '*', $value);
+			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
+		ApiResult :: setElement($arr, '*', $value);
 	}
 
 	//	public static function makeContentElement($tag, $value) {
 	//		$result = array();
-	//		ApiResult::addContent($result, )
+	//		ApiResult::setContent($result, )
 	//	}
 	//
 	/**
@@ -81,9 +90,9 @@ class ApiResult extends ApiBase {
 	 * all indexed values will have the given tag name.
 	 */
 	public static function setIndexedTagName(& $arr, $tag) {
-		// Do not use addElement() as it is ok to call this more than once
+		// Do not use setElement() as it is ok to call this more than once
 		if ($arr === null || $tag === null || !is_array($arr) || is_array($tag))
-			ApiBase :: dieDebug('Bad parameter for ' . __METHOD__);
+			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
 		$arr['_element'] = $tag;
 	}
 
@@ -110,7 +119,7 @@ class ApiResult extends ApiBase {
 			}
 		}
 
-		ApiResult :: addElement($data, $name, $value);
+		ApiResult :: setElement($data, $name, $value);
 	}
 
 	/**
@@ -127,9 +136,6 @@ class ApiResult extends ApiBase {
 			if ($key[0] === '_') {
 				unset ($data[$key]);
 			}
-			elseif ($key === '*' && $value === '') {
-				unset ($data[$key]);
-			}
 			elseif (is_array($value)) {
 				ApiResult :: SanitizeDataInt($value);
 			}
@@ -137,7 +143,7 @@ class ApiResult extends ApiBase {
 	}
 
 	public function execute() {
-		$this->dieDebug('execute() is not supported on Result object');
+		ApiBase :: dieDebug(__METHOD__, 'execute() is not supported on Result object');
 	}
 }
 ?>
