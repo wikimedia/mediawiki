@@ -78,9 +78,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function getAllowedParams() {
 		return array (
 			'siprop' => array (
-				GN_ENUM_DFLT => 'general',
-				GN_ENUM_ISMULTI => true,
-				GN_ENUM_TYPE => array (
+				ApiBase::PARAM_DFLT => 'general',
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array (
 					'general',
 					'namespaces'
 				)

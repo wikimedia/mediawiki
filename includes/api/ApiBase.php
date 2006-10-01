@@ -24,15 +24,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-// Multi-valued enums, limit the values user can supply for the parameter
-define('GN_ENUM_DFLT', 'dflt');
-define('GN_ENUM_ISMULTI', 'multi');
-define('GN_ENUM_TYPE', 'type');
-define('GN_ENUM_MAX1', 'max1');
-define('GN_ENUM_MAX2', 'max2');
-define('GN_ENUM_MIN', 'min');
-
 abstract class ApiBase {
+
+	// These constants allow modules to specify exactly how to treat incomming parameters.
+
+	const PARAM_DFLT = 0;
+	const PARAM_ISMULTI = 1;
+	const PARAM_TYPE = 2;
+	const PARAM_MAX1 = 3;
+	const PARAM_MAX2 = 4;
+	const PARAM_MIN = 5;
 
 	private $mMainModule;
 
@@ -188,9 +189,9 @@ abstract class ApiBase {
 			$multi = false;
 			$type = gettype($paramSettings);
 		} else {
-			$default = isset ($paramSettings[GN_ENUM_DFLT]) ? $paramSettings[GN_ENUM_DFLT] : null;
-			$multi = isset ($paramSettings[GN_ENUM_ISMULTI]) ? $paramSettings[GN_ENUM_ISMULTI] : false;
-			$type = isset ($paramSettings[GN_ENUM_TYPE]) ? $paramSettings[GN_ENUM_TYPE] : null;
+			$default = isset ($paramSettings[self::PARAM_DFLT]) ? $paramSettings[self::PARAM_DFLT] : null;
+			$multi = isset ($paramSettings[self::PARAM_ISMULTI]) ? $paramSettings[self::PARAM_ISMULTI] : false;
+			$type = isset ($paramSettings[self::PARAM_TYPE]) ? $paramSettings[self::PARAM_TYPE] : null;
 
 			// When type is not given, and no choices, the type is the same as $default
 			if (!isset ($type)) {
@@ -227,13 +228,13 @@ abstract class ApiBase {
 					$value = is_array($value) ? array_map('intval', $value) : intval($value);
 					break;
 				case 'limit' :
-					if (!isset ($paramSettings[GN_ENUM_MAX1]) || !isset ($paramSettings[GN_ENUM_MAX2]))
+					if (!isset ($paramSettings[self::PARAM_MAX1]) || !isset ($paramSettings[self::PARAM_MAX2]))
 						ApiBase :: dieDebug("MAX1 or MAX2 are not defined for the limit $paramName");
 					if ($multi)
 						ApiBase :: dieDebug("Multi-values not supported for $paramName");
-					$min = isset ($paramSettings[GN_ENUM_MIN]) ? $paramSettings[GN_ENUM_MIN] : 0;
+					$min = isset ($paramSettings[self::PARAM_MIN]) ? $paramSettings[self::PARAM_MIN] : 0;
 					$value = intval($value);
-					$this->validateLimit($paramName, $value, $min, $paramSettings[GN_ENUM_MAX1], $paramSettings[GN_ENUM_MAX2]);
+					$this->validateLimit($paramName, $value, $min, $paramSettings[self::PARAM_MAX1], $paramSettings[self::PARAM_MAX2]);
 					break;
 				case 'boolean' :
 					if ($multi)
@@ -335,7 +336,7 @@ abstract class ApiBase {
 	 */
 	public function profileIn() {
 		if ($this->mTimeIn !== 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' called twice without calling profileOut()');
+			ApiBase :: dieDebug(__METHOD__ . ' called twice without calling profileOut()');
 		$this->mTimeIn = microtime(true);
 	}
 
@@ -344,9 +345,9 @@ abstract class ApiBase {
 	 */
 	public function profileOut() {
 		if ($this->mTimeIn === 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' called without calling profileIn() first');
+			ApiBase :: dieDebug(__METHOD__ . ' called without calling profileIn() first');
 		if ($this->mDBTimeIn !== 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' must be called after database profiling is done with profileDBOut()');
+			ApiBase :: dieDebug(__METHOD__ . ' must be called after database profiling is done with profileDBOut()');
 
 		$this->mModuleTime += microtime(true) - $this->mTimeIn;
 		$this->mTimeIn = 0;
@@ -357,7 +358,7 @@ abstract class ApiBase {
 	 */
 	public function getProfileTime() {
 		if ($this->mTimeIn !== 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' called without calling profileOut() first');
+			ApiBase :: dieDebug(__METHOD__ . ' called without calling profileOut() first');
 		return $this->mModuleTime;
 	}
 
@@ -371,9 +372,9 @@ abstract class ApiBase {
 	 */
 	public function profileDBIn() {
 		if ($this->mTimeIn === 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' must be called while profiling the entire module with profileIn()');
+			ApiBase :: dieDebug(__METHOD__ . ' must be called while profiling the entire module with profileIn()');
 		if ($this->mDBTimeIn !== 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' called twice without calling profileDBOut()');
+			ApiBase :: dieDebug(__METHOD__ . ' called twice without calling profileDBOut()');
 		$this->mDBTimeIn = microtime(true);
 	}
 
@@ -382,9 +383,9 @@ abstract class ApiBase {
 	 */
 	public function profileDBOut() {
 		if ($this->mTimeIn === 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' must be called while profiling the entire module with profileIn()');
+			ApiBase :: dieDebug(__METHOD__ . ' must be called while profiling the entire module with profileIn()');
 		if ($this->mDBTimeIn === 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' called without calling profileDBIn() first');
+			ApiBase :: dieDebug(__METHOD__ . ' called without calling profileDBIn() first');
 
 		$time = microtime(true) - $this->mDBTimeIn;
 		$this->mDBTimeIn = 0;
@@ -398,7 +399,7 @@ abstract class ApiBase {
 	 */
 	public function getProfileDBTime() {
 		if ($this->mDBTimeIn !== 0)
-			ApiBase :: dieDebug(__FUNCTION__ . ' called without calling profileDBOut() first');
+			ApiBase :: dieDebug(__METHOD__ . ' called without calling profileDBOut() first');
 		return $this->mDBTime;
 	}
 }

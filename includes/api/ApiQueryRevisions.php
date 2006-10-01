@@ -175,7 +175,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		$db = $this->getDB();
 		$this->profileDBIn();
-		$res = $db->select($tables, $fields, $conds, __CLASS__ . '::' . __FUNCTION__, $options);
+		$res = $db->select($tables, $fields, $conds, __METHOD__, $options);
 		$this->profileDBOut();
 
 		$data = array ();
@@ -239,30 +239,30 @@ class ApiQueryRevisions extends ApiQueryBase {
 	protected function getAllowedParams() {
 		return array (
 			'rvlimit' => array (
-				GN_ENUM_DFLT => 0,
-				GN_ENUM_TYPE => 'limit',
-				GN_ENUM_MIN => 0,
-				GN_ENUM_MAX1 => 50,
-				GN_ENUM_MAX2 => 500
+				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 0,
+				ApiBase::PARAM_MAX1 => 50,
+				ApiBase::PARAM_MAX2 => 500
 			),
 			'rvstartid' => 0,
 			'rvendid' => 0,
 			'rvstart' => array (
-				GN_ENUM_TYPE => 'timestamp'
+				ApiBase::PARAM_TYPE => 'timestamp'
 			),
 			'rvend' => array (
-				GN_ENUM_TYPE => 'timestamp'
+				ApiBase::PARAM_TYPE => 'timestamp'
 			),
 			'rvdir' => array (
-				GN_ENUM_DFLT => 'older',
-				GN_ENUM_TYPE => array (
+				ApiBase::PARAM_DFLT => 'older',
+				ApiBase::PARAM_TYPE => array (
 					'newer',
 					'older'
 				)
 			),
 			'rvprop' => array (
-				GN_ENUM_ISMULTI => true,
-				GN_ENUM_TYPE => array (
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array (
 					'timestamp',
 					'user',
 					'comment',

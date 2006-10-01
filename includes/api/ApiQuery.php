@@ -100,12 +100,9 @@ class ApiQuery extends ApiBase {
 		extract($this->extractRequestParams());
 
 		//
-		// Create and initialize PageSet
+		// Create PageSet
 		//
 		$this->mData = new ApiPageSet($this);
-		$this->mData->profileIn();
-		$this->mData->execute();
-		$this->mData->profileOut();
 
 		//
 		// If generator is provided, get a new dataset to work on
@@ -126,6 +123,13 @@ class ApiQuery extends ApiBase {
 		if (isset ($list))
 			foreach ($list as $moduleName)
 				$modules[] = new $this->mQueryListModules[$moduleName] ($this, $moduleName);
+
+		//
+		// Get page information for the given pageSet
+		//
+		$this->mData->profileIn();
+		$this->mData->execute();
+		$this->mData->profileOut();
 
 		// Title normalizations
 		$normValues = array ();
@@ -182,6 +186,11 @@ class ApiQuery extends ApiBase {
 
 		$module = new $className ($this, $generator, true);
 
+		// execute pageSet here to get the data required by the generator module
+		$this->mData->profileIn();
+		$this->mData->execute();
+		$this->mData->profileOut();
+
 		// change $this->mData
 
 		// TODO: implement
@@ -191,19 +200,19 @@ class ApiQuery extends ApiBase {
 	protected function getAllowedParams() {
 		return array (
 			'meta' => array (
-				GN_ENUM_ISMULTI => true,
-				GN_ENUM_TYPE => $this->mMetaModuleNames
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => $this->mMetaModuleNames
 			),
 			'prop' => array (
-				GN_ENUM_ISMULTI => true,
-				GN_ENUM_TYPE => $this->mPropModuleNames
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => $this->mPropModuleNames
 			),
 			'list' => array (
-				GN_ENUM_ISMULTI => true,
-				GN_ENUM_TYPE => $this->mListModuleNames
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => $this->mListModuleNames
 			)
 			//			'generator' => array (
-			//				GN_ENUM_TYPE => $this->mAllowedGenerators
+			//				ApiBase::PARAM_TYPE => $this->mAllowedGenerators
 			//			),
 
 			
@@ -279,7 +288,7 @@ class ApiQuery extends ApiBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&what=content&titles=ArticleA|ArticleB'
+			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment'
 		);
 	}
 }

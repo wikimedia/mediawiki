@@ -57,12 +57,12 @@ class ApiMain extends ApiBase {
 	protected function getAllowedParams() {
 		return array (
 			'format' => array (
-				GN_ENUM_DFLT => API_DEFAULT_FORMAT,
-				GN_ENUM_TYPE => $this->mFormatNames
+				ApiBase::PARAM_DFLT => API_DEFAULT_FORMAT,
+				ApiBase::PARAM_TYPE => $this->mFormatNames
 			),
 			'action' => array (
-				GN_ENUM_DFLT => 'help',
-				GN_ENUM_TYPE => $this->mModuleNames
+				ApiBase::PARAM_DFLT => 'help',
+				ApiBase::PARAM_TYPE => $this->mModuleNames
 			)
 		);
 	}

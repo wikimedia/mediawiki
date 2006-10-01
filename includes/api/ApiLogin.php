@@ -50,30 +50,35 @@ class ApiLogin extends ApiBase {
 
 		$loginForm = new LoginForm($params);
 		switch ($loginForm->authenticateUserData()) {
-			case (AuthSuccess) :
+			case LoginForm :: SUCCESS :
+				global $wgUser;
+
+				$wgUser->setOption('rememberpassword', 1);
+				$wgUser->setCookies();
+
 				$result['result'] = 'Success';
 				$result['lguserid'] = $_SESSION['wsUserID'];
 				$result['lgusername'] = $_SESSION['wsUserName'];
 				$result['lgtoken'] = $_SESSION['wsToken'];
 				break;
 
-			case (AuthNoName) :
-				$result['result'] = 'AuthNoName';
+			case LoginForm :: NO_NAME :
+				$result['result'] = 'NoName';
 				break;
-			case (AuthIllegal) :
-				$result['result'] = 'AuthIllegal';
+			case LoginForm :: ILLEGAL :
+				$result['result'] = 'Illegal';
 				break;
-			case (AuthWrongPluginPass) :
-				$result['result'] = 'AuthWrongPluginPass';
+			case LoginForm :: WRONG_PLUGIN_PASS :
+				$result['result'] = 'WrongPluginPass';
 				break;
-			case (AuthNotExists) :
-				$result['result'] = 'AuthNotExists';
+			case LoginForm :: NOT_EXISTS :
+				$result['result'] = 'NotExists';
 				break;
-			case (AuthWrongPass) :
-				$result['result'] = 'AuthWrongPass';
+			case LoginForm :: WRONG_PASS :
+				$result['result'] = 'WrongPass';
 				break;
-			case (AuthEmptyPass) :
-				$result['result'] = 'AuthEmptyPass';
+			case LoginForm :: EMPTY_PASS :
+				$result['result'] = 'EmptyPass';
 				break;
 			default :
 				$this->dieDebug('Unhandled case value');

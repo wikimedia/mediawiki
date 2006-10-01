@@ -55,7 +55,7 @@ class ApiResult extends ApiBase {
 	 */
 	public static function addElement(& $arr, $name, $value) {
 		if ($arr === null || $name === null || $value === null || !is_array($arr) || is_array($name))
-			ApiBase :: dieDebug('Bad parameter for ' . __FUNCTION__);
+			ApiBase :: dieDebug('Bad parameter for ' . __METHOD__);
 		if (isset ($arr[$name]))
 			ApiBase :: dieDebug("Attempting to add element $name=$value, existing value is {$arr[$name]}");
 		$arr[$name] = $value;
@@ -67,7 +67,7 @@ class ApiResult extends ApiBase {
 	 */
 	public static function addContent(& $arr, $value) {
 		if (is_array($value))
-			ApiBase :: dieDebug('Bad parameter for ' . __FUNCTION__);
+			ApiBase :: dieDebug('Bad parameter for ' . __METHOD__);
 		ApiResult :: addElement($arr, '*', $value);
 	}
 
@@ -83,7 +83,7 @@ class ApiResult extends ApiBase {
 	public static function setIndexedTagName(& $arr, $tag) {
 		// Do not use addElement() as it is ok to call this more than once
 		if ($arr === null || $tag === null || !is_array($arr) || is_array($tag))
-			ApiBase :: dieDebug('Bad parameter for ' . __FUNCTION__);
+			ApiBase :: dieDebug('Bad parameter for ' . __METHOD__);
 		$arr['_element'] = $tag;
 	}
 

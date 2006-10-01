@@ -43,9 +43,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return array (
 			'param' => 'default',
 			'enumparam' => array (
-				GN_ENUM_DFLT => 'default',
-				GN_ENUM_ISMULTI => false,
-				GN_ENUM_TYPE => array (
+				ApiBase::PARAM_DFLT => 'default',
+				ApiBase::PARAM_ISMULTI => false,
+				ApiBase::PARAM_TYPE => array (
 					'a',
 					'b'
 				)
