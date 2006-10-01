@@ -25,15 +25,16 @@ function wfSpecialUserlogin() {
  * @subpackage SpecialPage
  */
 
-define("AuthSuccess", 0);
-define("AuthNoName", 1);
-define("AuthIllegal", 2);
-define("AuthWrongPluginPass", 3);
-define("AuthNotExists", 4);
-define("AuthWrongPass", 5);
-define("AuthEmptyPass", 6);
-
 class LoginForm {
+
+	const SUCCESS = 0;
+	const NO_NAME = 1;
+	const ILLEGAL = 2;
+	const WRONG_PLUGIN_PASS = 3;
+	const NOT_EXISTS = 4;
+	const WRONG_PASS = 5;
+	const EMPTY_PASS = 6;
+
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
@@ -319,11 +320,11 @@ class LoginForm {
 	{
 		global $wgUser, $wgAuth;
 		if ( '' == $this->mName ) {
-			return AuthNoName;
+			return self::NO_NAME;
 		}
 		$u = User::newFromName( $this->mName );
 		if( is_null( $u ) || !User::isUsableName( $u->getName() ) ) {
-			return AuthIllegal;
+			return self::ILLEGAL;
 		}
 		if ( 0 == $u->getID() ) {
 			global $wgAuth;
@@ -336,28 +337,24 @@ class LoginForm {
 				if ( $wgAuth->authenticate( $u->getName(), $this->mPassword ) ) {
 					$u =& $this->initUser( $u );
 				} else {
-					return AuthPluginPass;
+					return self::WRONG_PLUGIN_PASS;
 				}
 			} else {
-				return AuthNotExists;
+				return self::NOT_EXISTS;
 			}
 		} else {
 			$u->loadFromDatabase();
 		}
 
 		if (!$u->checkPassword( $this->mPassword )) {
-			return '' == $this->mPassword ? AuthEmptyPass : AuthWrongPass;
+			return '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
 		}
 		else
 		{	
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
 
-			# We've verified now, update the real record
-			$wgUser->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
-			$wgUser->setCookies();
-			$wgUser->saveSettings();
-			return AuthSuccess;
+			return self::SUCCESS;
 		}
 	}
 	
@@ -366,7 +363,12 @@ class LoginForm {
 
 		switch ($this->authenticateUserData())
 		{
-			case (AuthSuccess):
+			case self::SUCCESS:
+				# We've verified now, update the real record
+				$wgUser->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
+				$wgUser->setCookies();
+				$wgUser->saveSettings();
+
 				if( $this->hasSessionCookie() ) {
 					return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
 				} else {
@@ -374,20 +376,20 @@ class LoginForm {
 				}
 				break;
 
-			case (AuthNoName):
-			case (AuthIllegal):
+			case self::NO_NAME:
+			case self::ILLEGAL:
 				$this->mainLoginForm( wfMsg( 'noname' ) );
 				break;
-			case (AuthWrongPluginPass):
+			case self::WRONG_PLUGIN_PASS:
 				$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
 				break;
-			case (AuthNotExists):
+			case self::NOT_EXISTS:
 				$this->mainLoginForm( wfMsg( 'nosuchuser', htmlspecialchars( $this->mName ) ) );
 				break;
-			case (AuthWrongPass):
+			case self::WRONG_PASS:
 				$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
 				break;
-			case (AuthEmptyPass):
+			case self::EMPTY_PASS:
 				$this->mainLoginForm( wfMsg( 'wrongpasswordempty' ) );
 				break;
 			default:
