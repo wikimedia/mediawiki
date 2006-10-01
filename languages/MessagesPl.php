@@ -213,6 +213,7 @@ $messages = array(
 'search' => 'Szukaj',
 'searchbutton' => 'Szukaj',
 'go' => 'Przejdź',
+'searcharticle' => 'Przejdź',
 'history' => 'Historia strony',
 'history_short' => 'Historia',
 'info_short' => 'Informacja',

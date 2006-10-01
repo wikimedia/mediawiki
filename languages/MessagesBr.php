@@ -199,6 +199,7 @@ $messages = array(
 'protectedpage' => 'Pajenn warezet',
 'nbytes'        => '$1 eizhbit',
 'go'            => 'Kas',
+'searcharticle'            => 'Kas',
 'ok'            => 'Mat eo',
 'history'	=> 'Istor ar bajenn',
 'history_short' => 'Istor',

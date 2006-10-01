@@ -135,6 +135,7 @@ $messages = array(
 'search'                => 'అన్వేషణ',
 'searchbutton'          => 'అన్వేషణ',
 'go'                    => 'వెళ్లు',
+'searcharticle'                    => 'వెళ్లు',
 'history'               => 'పేజీ చరిత్ర',
 'history_short'         => 'చరిత్ర',
 'updatedmarker'         => 'నేను కిందటిసారి వచ్చిన తరువాత జరిగిన మార్పులు',

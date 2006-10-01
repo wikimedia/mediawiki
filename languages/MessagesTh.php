@@ -137,6 +137,7 @@ $messages = array(
 "search"		=> "ค้นหา",
 "searchbutton"	=> "ค้นหา",
 "go"		=> "ไป",
+'searcharticle'		=> "ไป",
 "history"		=> "ประวัติของหน้านี้",
 "printableversion" => "Printable version",
 "editthispage"	=> "แก้ไขหน้านี้",
@@ -158,7 +159,6 @@ $messages = array(
 "protectedpage" => "Protected page",
 
 "nbytes"		=> "$1 ไบต์",
-"go"			=> "ไป",
 "ok"			=> "OK",
 "retrievedfrom" => "Retrieved from \"$1\"",
 "newmessageslink" => "ข้อความ",

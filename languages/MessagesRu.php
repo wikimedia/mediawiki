@@ -354,6 +354,7 @@ $messages = array(
 'search'                => 'Поиск',
 'searchbutton'          => 'Найти',
 'go'            => 'Перейти',
+'searcharticle'            => 'Перейти',
 'history'             => 'История',
 'history_short' => 'История',
 'updatedmarker' => 'обновлено с моего последнего посещения',

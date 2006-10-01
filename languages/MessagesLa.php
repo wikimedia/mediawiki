@@ -115,6 +115,7 @@ $messages = array(
 'search'                => 'Quaerere',
 'searchbutton'          => 'Quaerere',
 'go'                    => 'Ire',
+'searcharticle'                    => 'Ire',
 'history'               => 'Historia',
 'history_short'         => 'Historia',
 'printableversion'      => 'Forma impressibilis',

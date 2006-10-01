@@ -307,6 +307,7 @@ $messages = array(
 'search'		=> '搵嘢',
 'searchbutton' 		=> '搵嘢',
 'go'			=> '去',
+'searcharticle'			=> '去',
 'history'		=> '頁面歷史',
 'history_short' 	=> '歷史',
 'updatedmarker' 	=> '我上次到訪之後嘅修改',

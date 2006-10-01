@@ -244,6 +244,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to allow better localisation
 * Add '*-summary' for special pages to MessagesEn.php to allow customizing/translation
   directly through Special:Allmessages
+* (bug 6130, bug 5818) Replaced message 'go'  with the new message 'searcharticle' in skins
+  to allow better localisation
 
 
 == Languages updated ==

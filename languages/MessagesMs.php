@@ -151,6 +151,7 @@ $messages = array(
 "search"              => "Cari",
 "searchbutton"        => "Cari",
 "go"                  => "Paparkan",
+'searcharticle'                  => "Paparkan",
 "history"             => "Sejarah Halaman",
 "history_short"         => "Sejarah",
 "info_short"            => "Maklumat",

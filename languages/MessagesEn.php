@@ -493,6 +493,7 @@ parent class in order maintain consistency across languages.
 'search'		=> 'Search',
 'searchbutton'		=> 'Search',
 'go'		=> 'Go',
+'searcharticle'		=> 'Go',
 'history'		=> 'Page history',
 'history_short' => 'History',
 'updatedmarker' => 'updated since my last visit',

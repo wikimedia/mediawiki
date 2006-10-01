@@ -171,6 +171,7 @@ $messages = array(
 "protectedpage" => "Page protégée",
 "nbytes"        => "$1 octets",
 "go"            => "Consulter",			// Looxix "OK",
+'searcharticle'            => "Consulter",			// Looxix "OK",
 "ok"            => "OK",
 "retrievedfrom" => "Récupérée de \"$1\"",
 "newmessageslink" => "nouveaux messages",

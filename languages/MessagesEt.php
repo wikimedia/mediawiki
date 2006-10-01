@@ -195,6 +195,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "search"		=> "Otsi",
 "searchbutton"	=> "Otsi",
 "go"		=> "Mine",
+'searcharticle'		=> "Mine",
 "history"		=> "Artikli ajalugu",
 'history_short' => 'Ajalugu',
 'info_short'    => 'Info',
@@ -229,7 +230,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "copyright" => "Kogu tekst on kasutatav litsentsi $1 tingimustel.",
 "protectedpage" => "Kaitstud artikkel",
 "nbytes"		=> "$1 baiti",
-"go"			=> "Mine",
 "ok"			=> "OK",
 "retrievedfrom" => "Välja otsitud andmebaasist \"$1\"", # parandaks sõnastust?
 'editsection'=>'redigeeri',

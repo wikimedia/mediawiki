@@ -61,6 +61,7 @@ $messages = array(
 'search'                => 'Rod',
 'searchbutton'          => 'Rod',
 'go'                    => 'Ja',
+'searcharticle'                    => 'Ja',
 'history'               => 'Puraneder versiye',
 'history_short'         => 'Puranipen',
 'printableversion'      => 'Printisaripnaski versiya',

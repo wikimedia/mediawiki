@@ -135,6 +135,7 @@ $messages = array(
 'search'		=> 'Дилээр', //Search
 'searchbutton'	=> 'Дилээр', //Search
 'go'		=> 'Чоруур', //Go
+'searcharticle'		=> 'Чоруур', //Go
 'history'		=> 'Арынның Төөгүзү', //Page history
 'history_short' => 'Төөгү', //History
 'printableversion' => 'Саазынга үндүрерин көөр', //Printable version (Парлатынар арын)

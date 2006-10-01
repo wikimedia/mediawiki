@@ -423,6 +423,7 @@ Prašome nueiti šia nuoroda: $2 į failo aprašymo puslapį ir įrašyti inform
 'formerror' => 'Klaida: nepavyko apdoroti formos duomenų',
 'friday' => 'Penktadienis',
 'go' => 'Rodyk',
+'searcharticle' => 'Rodyk',
 'guesstimezone' => 'Paimti iš naršyklės',
 'headline_sample' => 'Skyriaus Pavadinimas',
 'headline_tip' => 'Skyriaus pavadinimas (2-o lygio)',

@@ -179,6 +179,7 @@ $messages = array(
 'search'                => '찾기',
 'searchbutton'          => '찾기',
 'go'                    => '가기',
+'searcharticle'                    => '가기',
 'history'               => '문서 역사',
 'history_short'         => '역사',
 'updatedmarker'         => '마지막으로 방문한 후 변경됨',

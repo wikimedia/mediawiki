@@ -82,6 +82,7 @@ $messages = array(
 'exblank' => "фарс афтид уыдис",
 'filename' => "Файлы ном",
 'go' => "Статьямæ",
+'searcharticle' => "Статьямæ",
 'headline_sample' => "Ам сæргонды текст уæд",
 'help' => "Æххуыс",
 'hide' => "бамбæхс",

@@ -192,6 +192,7 @@ $messages = array(
 'search'        => 'Rechercher',
 'searchbutton'  => 'Rechercher',
 'go'            => 'Consulter',
+'searcharticle'            => 'Consulter',
 'history'	=> 'Historique de la page',
 'history_short' => 'Historique',
 'updatedmarker' => 'modifié depuis ma dernière visite',

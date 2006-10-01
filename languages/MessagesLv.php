@@ -143,6 +143,7 @@ $messages= array(
 'search'                => 'Meklēt',
 'searchbutton'          => 'Meklēt',
 'go'                    => 'Aiziet!',
+'searcharticle'                    => 'Aiziet!',
 'history'               => 'hronoloģija',
 'history_short'         => 'Hronoloģija',
 'updatedmarker'         => 'atjaunināti kopš pēdējā apmeklējuma',

@@ -67,6 +67,7 @@ $messages = array(
 'editold' => 'editatu',
 'editthispage' => 'Orria editatu',
 'go' => 'Joan',
+'searcharticle' => 'Joan',
 'headline_sample' => 'Goiburuko',
 'headline_tip' => '2. mailako goiburukoa',
 'help' => 'Laguntza',

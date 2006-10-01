@@ -120,6 +120,7 @@ $messages = array(
 'errorpagetitle' => 'Xəta',
 'returnto' => '$1 səhifəsinə qayıt.',
 'go' => 'Gətir',
+'searcharticle' => 'Gətir',
 'search' => 'Axtar',
 'searchbutton' => 'Axtar',
 'history' => 'Səhifənin tarixçəsi',

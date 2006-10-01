@@ -88,6 +88,7 @@ $messages = array(
 'error' => 'Хата',
 'errorpagetitle' => 'Хата',
 'go' => 'Күсеү',
+'searcharticle' => 'Күсеү',
 'gotaccount' => 'Әгәр Һеҙ теркәлеү үткән булһағыҙ? $1.',
 'gotaccountlink' => 'Үҙегеҙ менән таныштырығыҙ',
 'group-all' => '(бөтә)',

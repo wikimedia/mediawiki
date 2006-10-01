@@ -188,6 +188,7 @@ I seguenti collegamenti sono in lingua inglese:
 "search"		=> "Ricerca",
 "searchbutton"	=> "Ricerca",
 "go"		=> "Vai",
+'searcharticle'		=> "Vai",
 "history"		=> "Versioni precedenti",
 "history_short" => "Cronologia",
 "updatedmarker" => "modificata dalla mia ultima visita",

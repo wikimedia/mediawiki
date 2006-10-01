@@ -147,6 +147,7 @@ $messages = array(
 'search'                => 'Ara',
 'searchbutton'          => 'Ara',
 'go'                    => 'Git',
+'searcharticle'                    => 'Git',
 'history'               => 'Sayfanın geçmişi',
 'history_short'         => 'Geçmiş',
 'updatedmarker'         => 'son ziyaretimden sonra güncellenmiş',

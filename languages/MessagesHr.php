@@ -169,6 +169,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'search'                => 'Traži',
 'searchbutton'          => 'Traži',
 'go'                    => 'Kreni',
+'searcharticle'                    => 'Kreni',
 'history'               => 'Stare izmjene',
 'history_short'         => 'Stare izmjene',
 'updatedmarker'         => 'obnovljeno od zadnjeg posjeta',

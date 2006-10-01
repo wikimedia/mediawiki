@@ -219,6 +219,7 @@ $messages = array(
 'search'    => 'Търсене',
 'searchbutton'    => 'Търсене',
 'go'    => 'Отваряне',
+'searcharticle'    => 'Отваряне',
 'history'    => 'История',
 'history_short' => 'История',
 'updatedmarker' => 'има промяна (от последното ми влизане)',

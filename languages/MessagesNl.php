@@ -233,6 +233,7 @@ parent class in order maintain consistency across languages.
 'search'                => 'Zoeken',
 'searchbutton'          => 'Zoeken',
 'go'                    => 'OK',
+'searcharticle'                    => 'OK',
 'history'               => 'Geschiedenis',
 'history_short'         => 'Geschiedenis',
 'updatedmarker'         => 'bewerkt sinds mijn laatste bezoek',

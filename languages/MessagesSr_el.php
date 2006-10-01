@@ -333,6 +333,7 @@ $messages = array(
 'search' => 'pretraga',
 'searchbutton' => 'Traži',
 'go' => 'Idi',
+'searcharticle' => 'Idi',
 'history' => 'Istorija stranice',
 'history_short' => 'istorija',
 'updatedmarker' => 'ažurirano od moje poslednje posete',

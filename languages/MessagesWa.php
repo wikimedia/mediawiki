@@ -191,6 +191,7 @@ $messages = array(
 'search' => 'Cweri',
 'searchbutton' => 'Cweri',
 'go' => 'Potchî',
+'searcharticle' => 'Potchî',
 'history' => 'Istwere del pådje',
 'history_short' => 'Istwere',
 'updatedmarker' => 'candjî dispoy mi dierinne vizite',

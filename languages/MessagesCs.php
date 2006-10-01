@@ -210,6 +210,7 @@ $messages = array(
 'search'                => 'Hledat',
 'searchbutton'          => 'Hledat',
 'go'            => 'Jít na', #FIXME
+'searcharticle'            => 'Jít na', #FIXME
 'history'               => 'Historie stránky',
 'history_short' => 'Historie',
 'updatedmarker' => 'změněno od poslední návštěvy',

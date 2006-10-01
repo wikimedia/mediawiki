@@ -165,6 +165,7 @@ $messages = array(
 'search'                => 'Buscar',
 'searchbutton'          => 'Buscar',
 'go'                    => 'Ir',
+'searcharticle'                    => 'Ir',
 'history'               => 'Historial',
 'history_short'         => 'Historial',
 'updatedmarker'         => 'actualizado desde mi última visita',

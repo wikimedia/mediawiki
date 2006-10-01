@@ -310,6 +310,7 @@ $messages = array(
 'filerenameerror' => 'لا يمكن غيير إسم الملف من  "$1" إلى "$2".',
 'filesource' => 'مصدر',
 'go' => 'إذهب',
+'searcharticle' => 'إذهب',
 'headline_sample' => 'نص عنوان رئيسي',
 'headline_tip' => 'عنوان من المستوى الثاني',
 'help' => 'مساعدة',

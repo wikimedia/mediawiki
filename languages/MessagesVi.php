@@ -245,6 +245,7 @@ $messages = array(
 'protectedpage' => 'Trang bị khóa',
 'nbytes'        => '$1 byte',
 'go'            => 'Xem',
+'searcharticle'            => 'Xem',
 'ok'            => 'OK',
 'pagetitle'	=> '$1 - {{SITENAME}}',
 'history'	=> 'Lịch sử trang',

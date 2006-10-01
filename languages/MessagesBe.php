@@ -380,6 +380,7 @@ $messages = array(
 'friday' => 'пятніца',
 'getimagelist' => 'атрыманьне сьпісу файлаў',
 'go' => 'Старонка',
+'searcharticle' => 'Старонка',
 'gotaccount' => 'Ужо маеце рахунак? $1.',
 'gotaccountlink' => 'Увайдзіце',
 'group' => 'Група:',

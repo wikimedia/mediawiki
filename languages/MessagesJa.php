@@ -176,6 +176,7 @@ $messages = array(
 'search'                => '検索',
 'searchbutton'          => '検索',
 'go'                    => '表示',
+'searcharticle'                    => '表示',
 'history'               => '履歴',
 'history_short'         => '履歴',
 'updatedmarker'         => '最後の訪問から更新されています',

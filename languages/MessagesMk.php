@@ -206,6 +206,7 @@ $messages = array(
 'search'                => 'Пребарај',
 'searchbutton'          => 'Пребарај',
 'go'                    => 'Оди',
+'searcharticle'                    => 'Оди',
 'history'               => 'Историја на страницата',
 'history_short'         => 'Историја',
 'updatedmarker'         => 'ажурирано од мојата последна посета',
