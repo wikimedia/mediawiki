@@ -34,6 +34,8 @@ class ApiPageSet extends ApiQueryBase {
 	private $mAllPages; // [ns][dbkey] => page_id or 0 when missing
 	private $mGoodTitles, $mMissingTitles, $mRedirectTitles, $mNormalizedTitles;
 
+	private $mRequestedFields;
+
 	public function __construct($query) {
 		parent :: __construct($query, __CLASS__);
 
@@ -42,6 +44,12 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mMissingTitles = array ();
 		$this->mRedirectTitles = array ();
 		$this->mNormalizedTitles = array ();
+
+		$this->mRequestedFields = array ();
+	}
+
+	public function requestField($fieldName) {
+		$this->mRequestedFields[$fieldName] = null;
 	}
 
 	/**
@@ -88,7 +96,7 @@ class ApiPageSet extends ApiQueryBase {
 	 * Get the list of revision IDs (requested with revids= parameter)
 	 */
 	public function getRevisionIDs() {
-		$this->dieUsage(__FUNCTION__ . ' is not implemented', 'notimplemented');
+		$this->dieUsage(__METHOD__ . ' is not implemented', 'notimplemented');
 	}
 
 	/**
@@ -114,14 +122,20 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	private function populateTitles($titles, $redirects) {
 
+		// Ensure we get minimum required fields
 		$pageFlds = array (
-			'page_id',
-			'page_namespace',
-			'page_title'
+			'page_id' => null,
+			'page_namespace' => null,
+			'page_title' => null
 		);
-		if ($redirects) {
-			$pageFlds[] = 'page_is_redirect';
-		}
+
+		// only store non-default fields
+		$this->mRequestedFields = array_diff_key($this->mRequestedFields, $pageFlds);
+
+		if ($redirects)
+			$pageFlds['page_is_redirect'] = null;
+
+		$pageFlds = array_keys(array_merge($this->mRequestedFields, $pageFlds));
 
 		// Get validated and normalized title objects
 		$linkBatch = $this->processTitlesStrArray($titles);
@@ -142,7 +156,7 @@ class ApiPageSet extends ApiQueryBase {
 			// Get data about $linkBatch from `page` table
 			//
 			$this->profileDBIn();
-			$res = $db->select('page', $pageFlds, $set, __CLASS__ . '::' . __FUNCTION__);
+			$res = $db->select('page', $pageFlds, $set, __METHOD__);
 			$this->profileDBOut();
 			while ($row = $db->fetchObject($res)) {
 
@@ -186,7 +200,7 @@ class ApiPageSet extends ApiQueryBase {
 				'pl_title'
 			), array (
 				'pl_from' => array_keys($redirectIds
-			)), __CLASS__ . '::' . __FUNCTION__);
+			)), __METHOD__);
 			$this->profileDBOut();
 
 			while ($row = $db->fetchObject($res)) {
@@ -249,7 +263,7 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	private function populatePageIDs($pageids) {
-		$this->dieUsage(__FUNCTION__ . ' is not implemented', 'notimplemented');
+		$this->dieUsage(__METHOD__ . ' is not implemented', 'notimplemented');
 	}
 
 	public function execute() {
@@ -290,15 +304,15 @@ class ApiPageSet extends ApiQueryBase {
 	protected function getAllowedParams() {
 		return array (
 			'titles' => array (
-				GN_ENUM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'pageids' => array (
-				GN_ENUM_TYPE => 'integer',
-				GN_ENUM_ISMULTI => true
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'revids' => array (
-				GN_ENUM_TYPE => 'integer',
-				GN_ENUM_ISMULTI => true
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'redirects' => false
 		);

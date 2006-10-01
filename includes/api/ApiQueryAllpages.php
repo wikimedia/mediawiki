@@ -107,23 +107,23 @@ class ApiQueryAllpages extends ApiQueryBase {
 		return array (
 			'apfrom' => null,
 			'apnamespace' => array (
-				GN_ENUM_DFLT => 0,
-				GN_ENUM_TYPE => $validNamespaces
+				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_TYPE => $validNamespaces
 			),
 			'apfilterredir' => array (
-				GN_ENUM_DFLT => 'all',
-				GN_ENUM_TYPE => array (
+				ApiBase::PARAM_DFLT => 'all',
+				ApiBase::PARAM_TYPE => array (
 					'all',
 					'redirects',
 					'nonredirects'
 				)
 			),
 			'aplimit' => array (
-				GN_ENUM_DFLT => 10,
-				GN_ENUM_TYPE => 'limit',
-				GN_ENUM_MIN => 1,
-				GN_ENUM_MAX1 => 500,
-				GN_ENUM_MAX2 => 5000
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX1 => 500,
+				ApiBase::PARAM_MAX2 => 5000
 			)
 		);
 	}
