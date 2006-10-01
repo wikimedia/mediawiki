@@ -575,6 +575,7 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
 #
 'preferences'       => 'Préférences',
 'prefsnologin'      => 'Non connecté',
+'mypreferences'     => 'Mes préférences',
 'prefsnologintext'  => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier vos préférences d\'utilisateur.',
 'prefsreset'        => 'Les préférences ont été rétablies à partir de la version enregistrée.',
 'qbsettings'        => 'Personnalisation de la barre outils',
