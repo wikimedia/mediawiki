@@ -9,7 +9,7 @@ if ( isset( $wgVersion ) ) {
 # Could use <base href> but then we have to worry about http[s]/port #/etc.
 $path = '';
 if( isset( $_SERVER['SCRIPT_NAME'] )) {
-	$path = preg_replace('/index.php/', '', $_SERVER['SCRIPT_NAME']);
+	$path = htmlspecialchars( preg_replace('/index.php/', '', $_SERVER['SCRIPT_NAME']) );
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -31,7 +31,7 @@ if( isset( $_SERVER['SCRIPT_NAME'] )) {
 		</style>
 	</head>
 	<body>
-		<img src='<?php echo $path ?>skins/common/images/mediawiki.png' alt='The MediaWiki logo' />
+		<img src="<?php echo $path ?>skins/common/images/mediawiki.png" alt='The MediaWiki logo' />
 
 		<h1>MediaWiki <?php echo $wgVersion ?></h1>
 		<div class='error'>
@@ -39,7 +39,7 @@ if( isset( $_SERVER['SCRIPT_NAME'] )) {
 		if ( file_exists( 'config/LocalSettings.php' ) ) {
 			echo( 'To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory.' );
 		} else {
-			echo( "Please <a href='${path}config/index.php' title='setup'> set up the wiki</a> first." );
+			echo( "Please <a href=\"${path}config/index.php\" title='setup'> set up the wiki</a> first." );
 		}
 		?>
 
