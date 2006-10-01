@@ -48,5 +48,9 @@ class ApiFormatJson extends ApiFormatBase {
 	protected function getDescription() {
 		return 'Output data in JSON format';
 	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>

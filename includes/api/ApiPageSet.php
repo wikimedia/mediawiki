@@ -399,5 +399,10 @@ class ApiPageSet extends ApiQueryBase {
 			'redirects' => 'Automatically resolve redirects'
 		);
 	}
+
+	public function getVersion() {
+		return array (
+		parent :: getVersion(), __CLASS__ . ': $Id$');
+	}
 }
 ?>

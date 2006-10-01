@@ -153,5 +153,9 @@ class ApiFormatXml extends ApiFormatBase {
 			'xmlindent' => 'Enable XML indentation'
 		);
 	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>

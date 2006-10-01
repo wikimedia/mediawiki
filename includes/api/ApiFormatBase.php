@@ -152,5 +152,9 @@ abstract class ApiFormatBase extends ApiBase {
 	protected function getExamples() {
 		return 'api.php?action=query&meta=siteinfo&si=namespaces&format=' . $this->mOriginalFormat;
 	}
+
+	public static function getBaseVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>

@@ -108,5 +108,9 @@ class ApiLogin extends ApiBase {
 			'This module is used to login and get the authentication tokens.'
 		);
 	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>

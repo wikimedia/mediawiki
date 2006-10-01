@@ -145,5 +145,9 @@ class ApiResult extends ApiBase {
 	public function execute() {
 		ApiBase :: dieDebug(__METHOD__, 'execute() is not supported on Result object');
 	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>
