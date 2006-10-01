@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ('ApiBase.php');
 }
 
 class ApiLogin extends ApiBase {
@@ -76,10 +76,10 @@ class ApiLogin extends ApiBase {
 				$result['result'] = 'AuthEmptyPass';
 				break;
 			default :
-				$this->dieDebug("Unhandled case value");
+				$this->dieDebug('Unhandled case value');
 		}
 
-		$this->getResult()->addMessage('login', null, $result);
+		$this->getResult()->addValue(null, 'login', $result);
 	}
 
 	protected function getAllowedParams() {

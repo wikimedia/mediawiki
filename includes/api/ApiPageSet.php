@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiQueryBase.php");
+	require_once ('ApiQueryBase.php');
 }
 
 class ApiPageSet extends ApiQueryBase {
@@ -83,14 +83,14 @@ class ApiPageSet extends ApiQueryBase {
 	public function getGoodTitleCount() {
 		return count($this->getGoodTitles());
 	}
-	
+
 	/**
 	 * Get the list of revision IDs (requested with revids= parameter)
 	 */
 	public function getRevisionIDs() {
-		$this->dieUsage(__FUNCTION__ . " is not implemented", 'notimplemented');
+		$this->dieUsage(__FUNCTION__ . ' is not implemented', 'notimplemented');
 	}
-	
+
 	/**
 	 * Returns the number of revisions (requested with revids= parameter)
 	 */
@@ -113,7 +113,7 @@ class ApiPageSet extends ApiQueryBase {
 	 * #6 Repeat from step #1     
 	 */
 	private function populateTitles($titles, $redirects) {
-		
+
 		$pageFlds = array (
 			'page_id',
 			'page_namespace',
@@ -249,13 +249,13 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	private function populatePageIDs($pageids) {
-		$this->dieUsage(__FUNCTION__ . " is not implemented", 'notimplemented');
+		$this->dieUsage(__FUNCTION__ . ' is not implemented', 'notimplemented');
 	}
 
 	public function execute() {
 		$titles = $pageids = $revids = $redirects = null;
 		extract($this->extractRequestParams());
-		
+
 		// Only one of the titles/pageids/revids is allowed at the same time
 		$dataSource = null;
 		if (isset ($titles))
@@ -303,7 +303,7 @@ class ApiPageSet extends ApiQueryBase {
 			'redirects' => false
 		);
 	}
-	
+
 	protected function getParamDescription() {
 		return array (
 			'titles' => 'A list of titles to work on',

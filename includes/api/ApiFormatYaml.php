@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiFormatBase.php");
+	require_once ('ApiFormatBase.php');
 }
 
 class ApiFormatYaml extends ApiFormatBase {

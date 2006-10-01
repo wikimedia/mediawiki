@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiQueryBase.php");
+	require_once ('ApiQueryBase.php');
 }
 
 class ApiQuerySiteinfo extends ApiQueryBase {
@@ -51,25 +51,26 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$data['base'] = $mainPage->getFullUrl();
 					$data['sitename'] = $wgSitename;
 					$data['generator'] = "MediaWiki $wgVersion";
-					$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // "case-insensitive" option is reserved for future
-					$this->getResult()->addMessage('query', $prop, $data);
+					$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
+					$this->getResult()->addValue('query', $prop, $data);
 					break;
 
 				case 'namespaces' :
 
 					global $wgContLang;
 					$data = array ();
-					$data['_element'] = 'ns';
-					foreach ($wgContLang->getFormattedNamespaces() as $ns => $title)
+					foreach ($wgContLang->getFormattedNamespaces() as $ns => $title) {
 						$data[$ns] = array (
-							'id' => $ns,
-							'*' => $title
+							'id' => $ns
 						);
-					$this->getResult()->addMessage('query', $prop, $data);
+						ApiResult :: addContent($data[$ns], $title);
+					}
+					ApiResult :: setIndexedTagName($data, 'ns');
+					$this->getResult()->addValue('query', $prop, $data);
 					break;
 
 				default :
-					$this->dieDebug("Unknown siprop=$prop");
+					ApiBase :: dieDebug("Unknown siprop=$prop");
 			}
 		}
 	}

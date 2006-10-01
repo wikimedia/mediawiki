@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ('ApiBase.php');
 }
 
 class ApiQuery extends ApiBase {
@@ -128,21 +128,31 @@ class ApiQuery extends ApiBase {
 				$modules[] = new $this->mQueryListModules[$moduleName] ($this, $moduleName);
 
 		// Title normalizations
+		$normValues = array ();
 		foreach ($this->mData->getNormalizedTitles() as $rawTitleStr => $titleStr) {
-			$this->getResult()->addMessage('query', 'normalized', array (
+			$normValues[] = array (
 				'from' => $rawTitleStr,
-				'to' => $titleStr,
-				'*' => ''
-			), 'n');
+				'to' => $titleStr
+			);
+		}
+
+		if (!empty ($normValues)) {
+			ApiResult :: setIndexedTagName($normValues, 'n');
+			$this->getResult()->addValue('query', 'normalized', $normValues);
 		}
 
 		// Show redirect information
+		$redirValues = array ();
 		foreach ($this->mData->getRedirectTitles() as $titleStrFrom => $titleStrTo) {
-			$this->getResult()->addMessage('query', 'redirects', array (
+			$redirValues[] = array (
 				'from' => $titleStrFrom,
-				'to' => $titleStrTo,
-				'*' => ''
-			), 'r');
+				'to' => $titleStrTo
+			);
+		}
+
+		if (!empty ($redirValues)) {
+			ApiResult :: setIndexedTagName($redirValues, 'r');
+			$this->getResult()->addValue('query', 'redirects', $redirValues);
 		}
 
 		// Execute all requested modules.
@@ -150,6 +160,12 @@ class ApiQuery extends ApiBase {
 			$module->profileIn();
 			$module->execute();
 			$module->profileOut();
+		}
+
+		// Ensure that pages are shown as '<page>' elements
+		$data = & $this->getResultData();
+		if (isset ($data['query']['pages'])) {
+			ApiResult :: setIndexedTagName($data['query']['pages'], 'page');
 		}
 	}
 
@@ -162,14 +178,14 @@ class ApiQuery extends ApiBase {
 			if (isset ($this->mQueryPropModules[$generator]))
 				$className = $this->mQueryPropModules[$generator];
 			else
-				$this->dieDebug("Unknown generator=$generator");
+				ApiBase :: dieDebug("Unknown generator=$generator");
 
 		$module = new $className ($this, $generator, true);
 
 		// change $this->mData
 
 		// TODO: implement
-		$this->dieUsage("Generator execution has not been implemented", 'notimplemented');
+		$this->dieUsage('Generator execution has not been implemented', 'notimplemented');
 	}
 
 	protected function getAllowedParams() {
@@ -189,6 +205,8 @@ class ApiQuery extends ApiBase {
 			//			'generator' => array (
 			//				GN_ENUM_TYPE => $this->mAllowedGenerators
 			//			),
+
+			
 		);
 	}
 
@@ -234,12 +252,11 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Override to add extra parameters from PageSet
-	 */	
+	 */
 	public function makeHelpMsgParameters() {
 		$module = new ApiPageSet($this);
 		return $module->makeHelpMsgParameters() . parent :: makeHelpMsgParameters();
 	}
-	
 
 	protected function getParamDescription() {
 		return array (
@@ -247,6 +264,8 @@ class ApiQuery extends ApiBase {
 			'prop' => 'Which properties to get for the titles/revisions/pageids',
 			'list' => 'Which lists to get',
 			'generator' => 'Use the output of a list as the input for other prop/list/meta items',
+
+			
 		);
 	}
 

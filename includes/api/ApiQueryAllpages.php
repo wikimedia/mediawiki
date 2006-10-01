@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiQueryBase.php");
+	require_once ('ApiQueryBase.php');
 }
 
 class ApiQueryAllpages extends ApiQueryBase {
@@ -63,9 +63,9 @@ class ApiQueryAllpages extends ApiQueryBase {
 			'ORDER BY' => 'page_namespace, page_title'
 		));
 		$this->profileDBOut();
-		
+
 		$data = array ();
-		$data['_element'] = 'p';
+		ApiResult :: setIndexedTagName($data, 'p');
 		$count = 0;
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $aplimit) {
@@ -73,7 +73,7 @@ class ApiQueryAllpages extends ApiQueryBase {
 				$msg = array (
 					'continue' => 'apfrom=' . ApiQueryBase :: keyToTitle($row->page_title
 				));
-				$this->getResult()->addMessage('query-status', 'allpages', $msg);
+				$this->getResult()->addValue('query-status', 'allpages', $msg);
 				break;
 			}
 
@@ -87,13 +87,12 @@ class ApiQueryAllpages extends ApiQueryBase {
 				if ($title->getNamespace() !== 0)
 					$pagedata['ns'] = $title->getNamespace();
 				$pagedata['title'] = $title->getPrefixedText();
-				$pagedata['*'] = '';
 
 				$data[$id] = $pagedata;
 			}
 		}
 		$db->freeResult($res);
-		$this->getResult()->addMessage('query', 'allpages', $data);
+		$this->getResult()->addValue('query', 'allpages', $data);
 	}
 
 	protected function getAllowedParams() {

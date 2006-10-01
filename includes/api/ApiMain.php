@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ('ApiBase.php');
 }
 
 class ApiMain extends ApiBase {
@@ -50,7 +50,7 @@ class ApiMain extends ApiBase {
 		$this->mResult = new ApiResult($this);
 	}
 
-	public function getResult() {
+	public function & getResult() {
 		return $this->mResult;
 	}
 
@@ -123,13 +123,16 @@ class ApiMain extends ApiBase {
 
 	public function mainDieUsage($description, $errorCode, $httpRespCode = 0) {
 		$this->mResult->Reset();
-		$this->mResult->addMessage('error', null, $errorCode);
 		if ($httpRespCode === 0)
 			header($errorCode, true);
 		else
 			header($errorCode, true, $httpRespCode);
 
-		$this->mResult->addMessage('usage', null, $this->makeHelpMsg());
+		$data = array (
+			'code' => $errorCode
+		);
+		ApiResult :: addContent($data, $this->makeHelpMsg());
+		$this->mResult->addValue(null, 'error', $data);
 
 		throw new UsageException($description, $errorCode);
 	}
@@ -191,5 +194,4 @@ class UsageException extends Exception {
 		return "{$this->codestr}: {$this->message}";
 	}
 }
-
 ?>
