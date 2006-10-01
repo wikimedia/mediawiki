@@ -41,6 +41,13 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
+	 * Override this method to request extra fields from the pageSet
+	 * using $this->getPageSet()->requestField('fieldName')
+	 */
+	public function requestExtraData() {
+	}
+
+	/**
 	 * Get the main Query module 
 	 */
 	public function getQuery() {
@@ -65,8 +72,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Get the PageSet object to work on
 	 * @return ApiPageSet data
 	 */
-	protected function getData() {
-		return $this->mQueryModule->getData();
+	protected function getPageSet() {
+		return $this->mQueryModule->getPageSet();
 	}
 
 	/**

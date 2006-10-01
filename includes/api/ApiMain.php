@@ -57,12 +57,12 @@ class ApiMain extends ApiBase {
 	protected function getAllowedParams() {
 		return array (
 			'format' => array (
-				ApiBase::PARAM_DFLT => API_DEFAULT_FORMAT,
-				ApiBase::PARAM_TYPE => $this->mFormatNames
+				ApiBase :: PARAM_DFLT => API_DEFAULT_FORMAT,
+				ApiBase :: PARAM_TYPE => $this->mFormatNames
 			),
 			'action' => array (
-				ApiBase::PARAM_DFLT => 'help',
-				ApiBase::PARAM_TYPE => $this->mModuleNames
+				ApiBase :: PARAM_DFLT => 'help',
+				ApiBase :: PARAM_TYPE => $this->mModuleNames
 			)
 		);
 	}
@@ -131,7 +131,7 @@ class ApiMain extends ApiBase {
 		$data = array (
 			'code' => $errorCode
 		);
-		ApiResult :: addContent($data, $this->makeHelpMsg());
+		ApiResult :: setContent($data, $this->makeHelpMsg());
 		$this->mResult->addValue(null, 'error', $data);
 
 		throw new UsageException($description, $errorCode);

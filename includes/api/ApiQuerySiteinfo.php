@@ -63,14 +63,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						$data[$ns] = array (
 							'id' => $ns
 						);
-						ApiResult :: addContent($data[$ns], $title);
+						ApiResult :: setContent($data[$ns], $title);
 					}
 					ApiResult :: setIndexedTagName($data, 'ns');
 					$this->getResult()->addValue('query', $prop, $data);
 					break;
 
 				default :
-					ApiBase :: dieDebug("Unknown siprop=$prop");
+					ApiBase :: dieDebug(__METHOD__, "Unknown siprop=$prop");
 			}
 		}
 	}
@@ -78,9 +78,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function getAllowedParams() {
 		return array (
 			'siprop' => array (
-				ApiBase::PARAM_DFLT => 'general',
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array (
+				ApiBase :: PARAM_DFLT => 'general',
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
 					'general',
 					'namespaces'
 				)
