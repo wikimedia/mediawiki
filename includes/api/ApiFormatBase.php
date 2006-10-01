@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once ('ApiBase.php');
 }
 
 abstract class ApiFormatBase extends ApiBase {
@@ -94,7 +94,7 @@ abstract class ApiFormatBase extends ApiBase {
 			<small>
 			This result is being shown in <?=$this->mFormat?> format,
 			which might not be suitable for your application.<br/>
-			See <a href="api.php">API help</a> for more information.<br/>
+			See <a href='api.php'>API help</a> for more information.<br/>
 			</small>
 <?php
 
@@ -131,7 +131,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 	/**
 	* Prety-print various elements in HTML format, such as xml tags and URLs.
-	* This method also replaces any "<" with &lt;
+	* This method also replaces any '<' with &lt;
 	*/
 	protected function formatHTML($text) {
 		// encode all tags as safe blue strings

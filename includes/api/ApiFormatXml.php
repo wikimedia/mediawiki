@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiFormatBase.php");
+	require_once ('ApiFormatBase.php');
 }
 
 class ApiFormatXml extends ApiFormatBase {
@@ -53,57 +53,84 @@ class ApiFormatXml extends ApiFormatBase {
 			$xmlindent = null;
 
 		$this->printText('<?xml version="1.0" encoding="utf-8"?>');
-		$this->recXmlPrint('api', $this->getResult()->getData(), $xmlindent);
+		$this->recXmlPrint('api', $this->getResultData(), $xmlindent);
 	}
 
 	/**
 	* This method takes an array and converts it into an xml.
 	* There are several noteworthy cases:
 	*
-	*  If array contains a key "_element", then the code assumes that ALL other keys are not important and replaces them with the value['_element'].
-	*	Example:	name="root",  value = array( "_element"=>"page", "x", "y", "z") creates <root>  <page>x</page>  <page>y</page>  <page>z</page> </root>
+	*  If array contains a key '_element', then the code assumes that ALL other keys are not important and replaces them with the value['_element'].
+	*	Example:	name='root',  value = array( '_element'=>'page', 'x', 'y', 'z') creates <root>  <page>x</page>  <page>y</page>  <page>z</page> </root>
 	*
-	*  If any of the array's element key is "*", then the code treats all other key->value pairs as attributes, and the value['*'] as the element's content.
-	*	Example:	name="root",  value = array( "*"=>"text", "lang"=>"en", "id"=>10)   creates  <root lang="en" id="10">text</root>
+	*  If any of the array's element key is '*', then the code treats all other key->value pairs as attributes, and the value['*'] as the element's content.
+	*	Example:	name='root',  value = array( '*'=>'text', 'lang'=>'en', 'id'=>10)   creates  <root lang='en' id='10'>text</root>
 	*
 	* If neither key is found, all keys become element names, and values become element content.
 	* The method is recursive, so the same rules apply to any sub-arrays.
 	*/
 	function recXmlPrint($elemName, $elemValue, $indent) {
-		$indstr = "";
 		if (!is_null($indent)) {
 			$indent += 2;
 			$indstr = "\n" . str_repeat(" ", $indent);
+		} else {
+			$indstr = '';
 		}
 
 		switch (gettype($elemValue)) {
 			case 'array' :
-				if (array_key_exists('*', $elemValue)) {
+
+				if (isset ($elemValue['*'])) {
 					$subElemContent = $elemValue['*'];
 					unset ($elemValue['*']);
-					if (gettype($subElemContent) === 'array') {
-						$this->printText($indstr . wfElement($elemName, $elemValue, null));
-						$this->recXmlPrint($elemName, $subElemContent, $indent);
-						$this->printText($indstr . "</$elemName>");
-					} else {
-						$this->printText($indstr . wfElement($elemName, $elemValue, $subElemContent));
-					}
 				} else {
-					$this->printText($indstr . wfElement($elemName, null, null));
-					if (array_key_exists('_element', $elemValue)) {
-						$subElemName = $elemValue['_element'];
-						foreach ($elemValue as $subElemId => & $subElemValue) {
-							if ($subElemId !== '_element') {
-								$this->recXmlPrint($subElemName, $subElemValue, $indent);
-							}
-						}
-					} else {
-						foreach ($elemValue as $subElemName => & $subElemValue) {
-							$this->recXmlPrint($subElemName, $subElemValue, $indent);
-						}
-					}
-					$this->printText($indstr . "</$elemName>");
+					$subElemContent = null;
 				}
+
+				if (isset ($elemValue['_element'])) {
+					$subElemIndName = $elemValue['_element'];
+					unset ($elemValue['_element']);
+				} else {
+					$subElemIndName = null;
+				}
+
+				$indElements = array ();
+				$subElements = array ();
+				foreach ($elemValue as $subElemId => & $subElemValue) {
+					if (gettype($subElemId) === 'integer') {
+						if (!is_array($subElemValue))
+							ApiBase :: dieDebug(__FUNCTION__ . "($elemName, ...) has a scalar indexed value.");
+						$indElements[] = $subElemValue;
+						unset ($elemValue[$subElemId]);
+					} else
+						if (is_array($subElemValue)) {
+							$subElements[$subElemId] = $subElemValue;
+							unset ($elemValue[$subElemId]);
+						}
+				}
+
+				if (is_null($subElemIndName) && !empty ($indElements))
+					ApiBase :: dieDebug(__FUNCTION__ . "($elemName, ...) has integer keys without _element value");
+
+				if (!empty ($subElements) && !empty ($indElements) && !is_null($subElemContent))
+					ApiBase :: dieDebug(__FUNCTION__ . "($elemName, ...) has content and subelements");
+
+				if (!is_null($subElemContent)) {
+					$this->printText($indstr . wfElement($elemName, $elemValue, $subElemContent));
+				} else
+					if (empty ($indElements) && empty ($subElements)) {
+						$this->printText($indstr . wfElement($elemName, $elemValue));
+					} else {
+						$this->printText($indstr . wfElement($elemName, $elemValue, null));
+
+						foreach ($subElements as $subElemId => & $subElemValue)
+							$this->recXmlPrint($subElemId, $subElemValue, $indent);
+
+						foreach ($indElements as $subElemId => & $subElemValue)
+							$this->recXmlPrint($subElemIndName, $subElemValue, $indent);
+
+						$this->printText($indstr . wfCloseElement($elemName));
+					}
 				break;
 			case 'object' :
 				// ignore

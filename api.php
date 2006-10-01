@@ -84,7 +84,7 @@ $wgApiFormats = array (
 );
 
 // Initialise common code
-require (dirname(__FILE__) . "/includes/WebStart.php");
+require (dirname(__FILE__) . '/includes/WebStart.php');
 wfProfileIn('api.php');
 
 // Verify that the API has not been disabled

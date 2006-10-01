@@ -26,7 +26,7 @@
 
 if (!defined('MEDIAWIKI')) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiQueryBase.php");
+	require_once ('ApiQueryBase.php');
 }
 
 class ApiQueryRevisions extends ApiQueryBase {
@@ -42,7 +42,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// true when ordered by timestamp from older to newer, false otherwise
 		$dirNewer = ($rvdir === 'newer');
 
-		// If any of those parameters are used, work in "enumeration" mode.
+		// If any of those parameters are used, work in 'enumeration' mode.
 		// Enum mode can only be used when exactly one page is provided.
 		// Enumerating revisions on multiple pages make it extremelly 
 		// difficult to manage continuations and require additional sql indexes  
@@ -52,14 +52,15 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$pageCount = $data->getGoodTitleCount();
 		$revCount = $data->getRevisionCount();
 
+		// Optimization -- nothing to do
+		if ($revCount === 0 && $pageCount === 0)
+			return;
+
 		if ($revCount > 0 && $pageCount > 0)
-			$this->dieUsage('The rvrevids= parameter may not be used with titles, pageids, and generator options.', 'rv_rvrevids');
+			$this->dieUsage('The revids= parameter may not be used with titles, pageids, or generator options.', 'rv_revids');
 
 		if ($revCount > 0 && $enumRevMode)
-			$this->dieUsage('The rvrevids= parameter may not be used with the list options (rvlimit, rvstartid, rvendid, dirNewer, rvstart, rvend).', 'rv_rvrevids');
-
-		if ($revCount === 0 && $pageCount === 0)
-			$this->dieUsage('No pages were given. Please use titles, pageids or a generator to provide page(s) to work on.', 'rv_no_pages');
+			$this->dieUsage('The revids= parameter may not be used with the list options (rvlimit, rvstartid, rvendid, dirNewer, rvstart, rvend).', 'rv_revids');
 
 		if ($revCount === 0 && $pageCount > 1 && $enumRevMode)
 			$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the rvlimit, rvstartid, rvendid, dirNewer, rvstart, and rvend parameters may only be used on a single page.', 'rv_multpages');
@@ -107,7 +108,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 						$showContent = true;
 						break;
 					default :
-						$this->dieDebug("unknown rvprop $prop");
+						ApiBase :: dieDebug("unknown rvprop $prop");
 				}
 			}
 		}
@@ -168,7 +169,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 					$rvlimit = $revCount; // assumption testing -- we should never get more then $revCount rows.
 				} else
-					$this->dieDebug('param validation?');
+					ApiBase :: dieDebug('param validation?');
 
 		$options['LIMIT'] = $rvlimit +1;
 
@@ -184,13 +185,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if (++ $count > $rvlimit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if (!$enumRevMode)
-					$this->dieDebug('Got more rows then expected'); // bug report
+					ApiBase :: dieDebug('Got more rows then expected'); // bug report
 
 				$startStr = 'rvstartid=' . $row->rev_id;
 				$msg = array (
 					'continue' => $startStr
 				);
-				$this->getResult()->addMessage('query-status', 'revisions', $msg);
+				$this->getResult()->addValue('query-status', 'revisions', $msg);
 				break;
 			}
 
@@ -215,26 +216,28 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['comment'] = $row->rev_comment;
 
 			if ($showContent) {
-				$vals['xml:space'] = 'preserve';
-				$vals['*'] = Revision :: getRevisionText($row);
-			} else {
-				$vals['*'] = ''; // Force all elements to be attributes
+				ApiResult :: addContent($vals, Revision :: getRevisionText($row));
 			}
 
-			$data[$row->rev_page]['revisions']['_element'] = 'rv';
-			$data[$row->rev_page]['revisions'][$row->rev_id] = $vals;
+			$this->getResult()->addValue(array (
+				'query',
+				'pages',
+				intval($row->rev_page
+			), 'revisions'), intval($row->rev_id), $vals);
 		}
 		$db->freeResult($res);
 
-		$this->getResult()->addMessage('query', 'allpages', $data);
+		// Ensure that all revisions are shown as '<r>' elements
+		$data = & $this->getResultData();
+		foreach ($data['query']['pages'] as & $page) {
+			if (isset ($page['revisions'])) {
+				ApiResult :: setIndexedTagName($page['revisions'], 'rev');
+			}
+		}
 	}
 
 	protected function getAllowedParams() {
 		return array (
-			'rvrevids' => array (
-				GN_ENUM_ISMULTI => true,
-				GN_ENUM_TYPE => 'integer'
-			),
 			'rvlimit' => array (
 				GN_ENUM_DFLT => 0,
 				GN_ENUM_TYPE => 'limit',
@@ -274,14 +277,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'Get revision information.',
 			'This module may be used in several ways:',
 			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
-			' 2) Get revisions for one given page, by using titles/pageids with rvstart*/rvend*/rvlimit params.',
+			' 2) Get revisions for one given page, by using titles/pageids with rvstart/rvend/rvlimit params.',
 			' 3) Get data about a set of revisions by setting their IDs with revids parameter.'
 		);
 	}
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&prop=revisions&titles=ArticleA&rvprop=timestamp|user|comment|content'
+			'api.php?action=query&prop=revisions&titles=Main%20Page&rvprop=timestamp|user|comment|content'
 		);
 	}
 }
