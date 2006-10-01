@@ -68,6 +68,7 @@ class LanguageCs extends Language {
   # Plural form transformations, needed for some languages.
   # Invoked by {{plural:count|wordform1|wordform2|wordform3}}
   function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+    $count = str_replace( '\xc2\xa0', '', $count );
     switch ( $count ) {
       case 1:
         return $wordform1;
