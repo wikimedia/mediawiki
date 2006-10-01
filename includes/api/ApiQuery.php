@@ -302,8 +302,8 @@ class ApiQuery extends ApiBase {
 	 * Override to add extra parameters from PageSet
 	 */
 	public function makeHelpMsgParameters() {
-		$module = new ApiPageSet($this);
-		return $module->makeHelpMsgParameters() . parent :: makeHelpMsgParameters();
+		$psModule = new ApiPageSet($this);
+		return $psModule->makeHelpMsgParameters() . parent :: makeHelpMsgParameters();
 	}
 
 	protected function getParamDescription() {
@@ -327,6 +327,13 @@ class ApiQuery extends ApiBase {
 		return array (
 			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment'
 		);
+	}
+
+	public function getVersion() {
+		$psModule = new ApiPageSet($this);
+		$vers = $psModule->getVersion();
+		$vers[] = __CLASS__ . ': $Id$';
+		return $vers;
 	}
 }
 ?>

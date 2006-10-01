@@ -47,7 +47,7 @@ abstract class ApiBase {
 	/**
 	 * Executes this module
 	 */
-	abstract function execute();
+	public abstract function execute();
 
 	/**
 	 * Get main module
@@ -113,6 +113,13 @@ abstract class ApiBase {
 					);
 				$msg .= 'Example' . (count($examples) > 1 ? 's' : '') . ":\n  ";
 				$msg .= implode($lnPrfx, $examples) . "\n";
+			}
+
+			if ($this->getMain()->getShowVersions()) {
+				$versions = $this->getVersion();
+				if (is_array($versions))
+					$versions = implode("\n  ", $versions);
+				$msg .= "Version:\n  $versions\n";
 			}
 		}
 
@@ -389,6 +396,10 @@ abstract class ApiBase {
 		if ($this->mDBTimeIn !== 0)
 			ApiBase :: dieDebug(__METHOD__, 'called without calling profileDBOut() first');
 		return $this->mDBTime;
+	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
 	}
 }
 ?>

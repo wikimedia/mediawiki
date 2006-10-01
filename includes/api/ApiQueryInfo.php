@@ -76,5 +76,9 @@ class ApiQueryInfo extends ApiQueryBase {
 			'api.php?action=query&prop=info&titles=Main%20Page'
 		);
 	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>

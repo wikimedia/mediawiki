@@ -47,5 +47,9 @@ class ApiFormatYaml extends ApiFormatBase {
 	protected function getDescription() {
 		return 'Output data in YAML format';
 	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>

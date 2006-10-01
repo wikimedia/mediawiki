@@ -93,8 +93,13 @@ abstract class ApiQueryBase extends ApiBase {
 	public static function titleToKey($title) {
 		return str_replace(' ', '_', $title);
 	}
+	
 	public static function keyToTitle($key) {
 		return str_replace('_', ' ', $key);
+	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
 	}
 }
 ?>

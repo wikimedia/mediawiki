@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiMain extends ApiBase {
 
-	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames, $mApiStartTime, $mResult;
+	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames, $mApiStartTime, $mResult, $mShowVersions;
 
 	/**
 	* Constructor
@@ -48,10 +48,15 @@ class ApiMain extends ApiBase {
 		$this->mFormatNames = array_keys($formats);
 		$this->mApiStartTime = $apiStartTime;
 		$this->mResult = new ApiResult($this);
+		$this->mShowVersions = false;
 	}
 
 	public function & getResult() {
 		return $this->mResult;
+	}
+
+	public function getShowVersions() {
+		return $this->mShowVersions;
 	}
 
 	protected function getAllowedParams() {
@@ -63,22 +68,25 @@ class ApiMain extends ApiBase {
 			'action' => array (
 				ApiBase :: PARAM_DFLT => 'help',
 				ApiBase :: PARAM_TYPE => $this->mModuleNames
-			)
+			),
+			'version' => false
 		);
 	}
 
 	protected function getParamDescription() {
 		return array (
 			'format' => 'The format of the output',
-			'action' => 'What action you would like to perform'
+			'action' => 'What action you would like to perform',
+			'version' => 'When showing help, include version for each module'
 		);
 	}
 
 	public function execute() {
 		$this->profileIn();
-		$action = $format = null;
+		$action = $format = $version = null;
 		try {
 			extract($this->extractRequestParams());
+			$this->mShowVersions = $version;
 
 			// Create an appropriate printer
 			$this->mPrinter = new $this->mFormats[$format] ($this, $format);
@@ -89,11 +97,14 @@ class ApiMain extends ApiBase {
 			$module->execute();
 			$module->profileOut();
 			$this->printResult(false);
+
 		} catch (UsageException $e) {
+
 			// Printer may not be initialized if the extractRequestParams() fails for the main module
 			if (!isset ($this->mPrinter))
 				$this->mPrinter = new $this->mFormats[API_DEFAULT_FORMAT] ($this, API_DEFAULT_FORMAT);
 			$this->printResult(true);
+
 		}
 		$this->profileOut();
 	}
@@ -176,6 +187,12 @@ class ApiMain extends ApiBase {
 			$this->mIsBot = $wgUser->isAllowed('bot');
 		}
 		return $this->mIsBot;
+	}
+
+	public function getVersion() {
+
+		return array (
+		parent :: getVersion(), __CLASS__ . ': $Id$', ApiFormatBase :: getBaseVersion());
 	}
 }
 

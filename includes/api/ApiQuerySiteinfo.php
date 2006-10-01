@@ -105,5 +105,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function getExamples() {
 		return 'api.php?action=query&meta=siteinfo&siprop=general|namespaces';
 	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>

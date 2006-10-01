@@ -47,5 +47,9 @@ class ApiHelp extends ApiBase {
 			'Display this help screen.'
 		);
 	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
+	}
 }
 ?>

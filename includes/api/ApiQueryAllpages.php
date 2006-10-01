@@ -140,8 +140,13 @@ class ApiQueryAllpages extends ApiQueryBase {
 			'api.php?action=query&list=allpages&apfrom=B&aplimit=5'
 		);
 	}
+
 	public function getCanGenerate() {
 		return true;
+	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id$';
 	}
 }
 ?>
