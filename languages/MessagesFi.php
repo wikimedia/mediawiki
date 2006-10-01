@@ -244,6 +244,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'search'              => 'Etsi',
 'searchbutton'        => 'Etsi',
 'go'                  => 'Siirry',
+'searcharticle'                  => 'Siirry',
 'history'             => 'Historia',
 'history_short'       => 'Historia',
 'updatedmarker'       => 'päivitetty viimeisimmän käyntisi jälkeen',
@@ -297,7 +298,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'versionrequired'     => 'Mediawikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
 
-'go'                  => 'Siirry',
 'ok'                  => 'OK',
 'pagetitle'           => '$1 — {{SITENAME}}',
 'retrievedfrom'       => 'Haettu osoitteesta $1',

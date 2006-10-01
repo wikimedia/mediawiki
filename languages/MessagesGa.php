@@ -233,6 +233,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "search"	=> "Cuardaigh",
 "searchbutton"	=> "Cuardaigh",
 "go"	    => "Téir",
+'searcharticle'	    => "Téir",
 "history"       => "Stair an lgh seo",
 'history_short' => 'Stair',
 'info_short'    => 'Eolas',
@@ -274,7 +275,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 
 
 "nbytes"	=> "$1 beart",
-"go"	    => "Téir",
 "ok"	    => "Déan",
 "editsection"   => "athraigh",
 "editold"   => "athraigh",

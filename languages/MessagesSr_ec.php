@@ -330,6 +330,7 @@ $messages = array(
 'search' => 'претрага',
 'searchbutton' => 'Тражи',
 'go' => 'Иди',
+'searcharticle' => 'Иди',
 'history' => 'Историја странице',
 'history_short' => 'историја',
 'updatedmarker' => 'ажурирано од моје последње посете',

@@ -116,6 +116,7 @@ $messages = array(
 'formerror' => 'Fela: ni mòże wëslac fòrmùlara',
 'getimagelist' => 'zladënk lëstë lopków',
 'go' => 'Biôj!',
+'searcharticle' => 'Biôj!',
 'guesstimezone' => 'Wezmi z przezérnika',
 'help' => 'Pòmòc',
 'hidetoc' => 'zatacë',

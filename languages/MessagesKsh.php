@@ -253,6 +253,7 @@ De weßße wellß wi de Wikki_ßoffwäer jebruch un bedeendt weede moß.
 'search'                => 'em Täxx',
 'searchbutton'          => 'Sööke',
 'go'                    => 'alß Tittel',
+'searcharticle'                    => 'alß Tittel',
 'history'               => 'Väsjohne',
 'history_short'         => 'Väsjohne',
 'updatedmarker'         => '(foänndot)',

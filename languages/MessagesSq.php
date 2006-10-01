@@ -180,6 +180,7 @@ $messages = array(
 'search'                => 'Kërko',
 'searchbutton'          => 'Kërko',
 'go'                    => 'Shko',
+'searcharticle'                    => 'Shko',
 'history'               => 'Historiku i faqes',
 'history_short'         => 'Historiku',
 'updatedmarker'         => 'ndryshuar nga vizita e fundit',

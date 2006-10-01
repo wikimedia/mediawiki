@@ -85,6 +85,7 @@ $messages = array(
 "search"		=> "खोज ",
 "searchbutton"	=> "खोज ",
 "go"		        => "जायें",
+'searcharticle'		        => "जायें",
 "editthispage"	        => "इस पृष्ठ को बदलें",
 "deletethispage"        => "इस पृष्ठ को हटायें",
 "protectthispage"       => "इस पृष्ठ को सुरक्षित करें",

@@ -145,6 +145,7 @@ $messages = array(
 'search'                => 'Zeuke',
 'searchbutton'          => 'Zeuke',
 'go'                    => 'OK',
+'searcharticle'                    => 'OK',
 'history'               => 'Historie',
 'history_short'         => 'Historie',
 'printableversion'      => 'Printer-vruntelike versie',

@@ -154,6 +154,7 @@ $messages = array(
 'search'                => 'Serĉu',
 'searchbutton'          => 'Serĉu',
 'go'                    => 'Ek!',
+'searcharticle'                    => 'Ek!',
 'history'               => 'Malnovaj versioj',
 'history_short'         => 'Historio',
 'updatedmarker'         => 'ĝisdatita de post mia lasta vizito',

@@ -225,6 +225,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'filestatus' => 'Stât dal copyright',
 'friday' => "Vinars",
 'go' => "Va",
+'searcharticle' => "Va",
 'gotaccount'	=> 'Âstu za une identitât? $1.',
 'gotaccountlink'	=> 'Jentre',
 'guesstimezone' => "Cjape impostazions dal sgarfadôr",

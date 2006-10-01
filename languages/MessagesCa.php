@@ -177,6 +177,7 @@ $messages = array(
 'search'                => 'Cerca',
 'searchbutton'          => 'Cerca',
 'go'                    => 'Vés-hi',
+'searcharticle'                    => 'Vés-hi',
 'history'               => 'Historial de canvis',
 'history_short'         => 'Historial',
 'updatedmarker'         => 'actualitzat des de la darrera visita',

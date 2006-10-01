@@ -119,6 +119,7 @@ $messages = array(
 "search"		=> "Soek",
 "searchbutton"		=> "Soek",
 "go"		=> "Wys",
+'searcharticle'		=> "Wys",
 "history"		=> "Ouer weergawes",
 "printableversion" => "Drukbare weergawe",
 "editthispage"	=> "Wysig hierdie bladsy",
@@ -139,7 +140,6 @@ $messages = array(
 "protectedpage" => "Beskermde bladsy",
 
 "nbytes"		=> "$1 grepe",
-"go"			=> "Doen",
 "ok"			=> "Aanvaar", #fixMe
 "retrievedfrom" => "Ontsluit van \"$1\"",
 "newmessageslink" => "nuwe boodskappe",

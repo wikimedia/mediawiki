@@ -189,6 +189,7 @@ $messages = array(
 'search' => 'Αναζήτηση',
 'searchbutton' => 'Αναζήτηση',
 'go' => 'Μετάβαση',
+'searcharticle' => 'Μετάβαση',
 'history_short' => 'Ιστορικό',
 'info_short' => 'Πληροφορίες',
 'printableversion' => 'Εκτυπώσιμη έκδοση',

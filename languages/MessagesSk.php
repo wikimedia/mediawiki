@@ -273,6 +273,7 @@ $messages = array(
 'search'                => 'Hľadaj',
 'searchbutton'          => 'Hľadaj',
 'go'                    => 'Choď',
+'searcharticle'                    => 'Choď',
 'history'               => 'História článku',
 'history_short'         => 'História',
 'updatedmarker'         => 'aktualizované od mojej poslednej návštevy',

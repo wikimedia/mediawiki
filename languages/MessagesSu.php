@@ -425,6 +425,7 @@ Asupan jeung bantuan salajengna:
 'fileuploadsummary' => 'Ringkesan:',
 'formerror' => 'Kasalahan: teu bisa ngirim formulir',
 'go' => 'Jung',
+'searcharticle' => 'Jung',
 'guesstimezone' => 'Eusian ti panyungsi',
 'headline_sample' => 'Téks judul',
 'headline_tip' => 'Judul tingkat 2',

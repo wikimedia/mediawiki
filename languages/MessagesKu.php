@@ -99,6 +99,7 @@ $messages = array(
 'search'                => 'Lêbigere',
 'searchbutton'          => 'Lêbigere',
 'go'                    => 'Gotar',
+'searcharticle'                    => 'Gotar',
 'history'               => 'Dîroka rûpelê',
 'history_short'         => 'Dîrok',
 'info_short'            => 'Zanyarî',

@@ -343,6 +343,7 @@ $messages = array(
 "search"            => "חיפוש",
 "searchbutton"      => "חיפוש",
 "go"                => "עבור",
+'searcharticle'                => "עבור",
 "history"           => "היסטוריית הדף",
 "history_short"     => "היסטוריה",
 "updatedmarker"     => "עודכן מאז ביקורך האחרון",

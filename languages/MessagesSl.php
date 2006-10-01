@@ -180,6 +180,7 @@ in [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'search'                => 'Iskanje',
 'searchbutton'          => 'Iskanje',
 'go'                    => 'Pojdi na',
+'searcharticle'                    => 'Pojdi na',
 'history'               => 'Zgodovina strani',
 'history_short'         => 'Zgodovina strani',
 'updatedmarker'         => 'Posodobljeno od mojega zadnjega obiska',

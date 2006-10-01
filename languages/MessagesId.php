@@ -214,6 +214,7 @@ $messages = array(
 "search" => "Cari",
 "searchbutton" => "Cari",
 "go" => "Tuju ke",
+'searcharticle' => "Tuju ke",
 "history" => "Versi terdahulu",
 'history_short' => 'Versi terdahulu',
 'updatedmarker' => 'diubah sejak kunjungan terakhir saya',

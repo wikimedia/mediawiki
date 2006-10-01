@@ -186,6 +186,7 @@ $messages = array(
 'search'                => 'Søk',
 'searchbutton'          => 'Søk',
 'go'                    => 'Gå',
+'searcharticle'                    => 'Gå',
 'history'               => 'Historikk',
 'history_short'         => 'Historikk',
 'updatedmarker'         => 'oppdatert siden mitt forrige besøk',

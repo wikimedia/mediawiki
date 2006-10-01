@@ -233,6 +233,7 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'protectedpage'         => 'Schulte Sieten',
 'nbytes'                              => '$1 Bytes',
 'go'                                     => 'Los',
+'searcharticle'                                     => 'Los',
 'ok'                                    => 'OK',
 'retrievedfrom'         => 'Vun „$1“',
 'newmessageslink'       => 'niege Norichten',

@@ -300,6 +300,7 @@ upplýsingar um skránna, svosem um uppruna hennar, höfund og aðrar
 upplýsingar um hana.",
 'friday' => "föstudagur",
 'go' => "Áfram",
+'searcharticle' => "Áfram",
 'guesstimezone' => "Fylla inn",
 'headline_sample' => "Fyrirsagnartexti",
 'headline_tip' => "Annars stigs fyrirsögn",

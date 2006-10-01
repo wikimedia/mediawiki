@@ -178,6 +178,7 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 "search"		=> "Søg",
 "searchbutton"	=> "Søg",
 "go"		=> "Gå til",
+'searcharticle'		=> "Gå til",
 "history"		=> "Historik",
 'history_short' => 'Historik',
 'info_short'	=> 'Information',
@@ -213,6 +214,7 @@ og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 
 'nbytes'		=> '$1 bytes',
 "go"			=> "Gå til",
+'searcharticle'			=> "Gå til",
 "ok"			=> "OK",
 "retrievedfrom" => "Hentet fra \"$1\"",
 "newmessageslink" => "nye beskeder",

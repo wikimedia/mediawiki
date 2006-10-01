@@ -281,6 +281,7 @@ $messages = array(
 'search'                => 'Pesquisa',
 'searchbutton'          => 'Pesquisa',
 'go'            => 'Ir',
+'searcharticle'            => 'Ir',
 "history"             => 'Histórico',
 'history_short' => 'História',
 'updatedmarker' => 'actualizado desde a minha última visita',

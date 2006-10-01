@@ -155,6 +155,7 @@ $messages = array(
 'search'                => 'Keresés',
 'searchbutton'          => 'Keresés',
 'go'                    => 'Menj',
+'searcharticle'                    => 'Menj',
 'history'               => 'laptörténet',
 'history_short'         => 'Laptörténet',
 'printableversion'      => 'Nyomtatható változat',

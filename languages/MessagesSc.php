@@ -134,6 +134,7 @@ $messages = array(
 "protectedpage" => "Pagina protetta",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Vai",
+'searcharticle'			=> "Vai",
 "ok"			=> "OK",
 "retrievedfrom" => "Ricavato da  \"$1\"",
 
