@@ -367,7 +367,7 @@ $messages = array(
 'hidetoc' => 'skrýt',
 'thisisdeleted' => 'Prohlédnout nebo obnovit $1?',
 'viewdeleted' => 'Zobrazit $1?',
-'restorelink' => '{{plural:$1|smazanou editaci|smazané editace|smazaných editací}}',
+'restorelink' => '{{plural:$1|smazanou editaci|$1 smazané editace|$1 smazaných editací}}',
 'feedlinks' => 'Kanály:',
 'feed-invalid' => 'Neplatný typ kanálu.',
 
@@ -1255,7 +1255,7 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'undeletecomment' => 'Komentář:',
 'undeletedarticle' => 'obnovuje „[[$1]]“',
 'undeletedrevisions' => '{{plural:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}}',
-'undeletedrevisions-files' => '{{plural:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $1 {{plural:$1|soubor|soubory|souborů}}',
+'undeletedrevisions-files' => '{{plural:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{plural:$2|soubor|soubory|souborů}}',
 'undeletedpage'   => '<big>Stránka $1 byla obnovena</big>
 
 Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|knize smazaných stránek]].',
