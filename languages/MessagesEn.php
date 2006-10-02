@@ -670,7 +670,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourname'		=> 'Username',
 'yourpassword'	=> 'Password',
 'yourpasswordagain' => 'Retype password',
-'remembermypassword' => 'Remember me',
+'remembermypassword'	=> 'Remember my login on this computer',
 'yourdomainname'       => 'Your domain',
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 'loginproblem'	=> '<b>There has been a problem with your login.</b><br />Try again!',
