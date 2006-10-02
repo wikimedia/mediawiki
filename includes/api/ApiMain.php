@@ -31,14 +31,15 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiMain extends ApiBase {
 
-	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames, $mApiStartTime, $mResult, $mShowVersions;
+	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
+	private $mApiStartTime, $mResult, $mShowVersions, $mEnableWrite;
 
 	/**
 	* Constructor
 	* $apiStartTime - time of the originating call for profiling purposes
 	* $modules - an array of actions (keys) and classes that handle them (values) 
 	*/
-	public function __construct($apiStartTime, $modules, $formats) {
+	public function __construct($apiStartTime, $modules, $formats, $enableWrite) {
 		// Special handling for the main module: $parent === $this
 		parent :: __construct($this);
 
@@ -49,6 +50,7 @@ class ApiMain extends ApiBase {
 		$this->mApiStartTime = $apiStartTime;
 		$this->mResult = new ApiResult($this);
 		$this->mShowVersions = false;
+		$this->mEnableWrite = $enableWrite;
 	}
 
 	public function & getResult() {
@@ -57,6 +59,12 @@ class ApiMain extends ApiBase {
 
 	public function getShowVersions() {
 		return $this->mShowVersions;
+	}
+
+	public function requestWriteMode() {
+		if (!$this->mEnableWrite)
+			$this->dieUsage('Editing of this site is disabled. Make sure the $wgEnableWriteAPI=true; ' .
+			'statement is included in the site\'s LocalSettings.php file', 'readonly');
 	}
 
 	protected function getAllowedParams() {
@@ -190,9 +198,12 @@ class ApiMain extends ApiBase {
 	}
 
 	public function getVersion() {
-
-		return array (
-		parent :: getVersion(), __CLASS__ . ': $Id$', ApiFormatBase :: getBaseVersion());
+		$vers = array ();
+		$vers[] = __CLASS__ . ': $Id$';
+		$vers[] = ApiBase :: getBaseVersion();
+		$vers[] = ApiFormatBase :: getBaseVersion();
+		$vers[] = ApiQueryBase :: getBaseVersion();
+		return $vers;
 	}
 }
 

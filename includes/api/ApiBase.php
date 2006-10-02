@@ -398,7 +398,9 @@ abstract class ApiBase {
 		return $this->mDBTime;
 	}
 
-	public function getVersion() {
+	public abstract function getVersion();
+	
+	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
 }

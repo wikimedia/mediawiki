@@ -103,7 +103,11 @@ if (!isset ($wgEnableAPI) || !$wgEnableAPI) {
 }
 
 $wgAutoloadClasses = array_merge($wgAutoloadClasses, $wgApiAutoloadClasses);
-$processor = new ApiMain($wgApiStartTime, $wgApiModules, $wgApiFormats);
+
+if (!isset($wgEnableWriteAPI))
+	$wgEnableWriteAPI = false;	// This should be 'true' later, once the api is stable. 
+	
+$processor = new ApiMain($wgApiStartTime, $wgApiModules, $wgApiFormats, $wgEnableWriteAPI);
 $processor->execute();
 
 wfProfileOut('api.php');
