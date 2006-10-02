@@ -22,16 +22,13 @@ class Revision {
 	 * Returns null if no such revision can be found.
 	 *
 	 * @param int $id
-	 * @param Database $db
 	 * @access public
 	 * @static
 	 */
-	public static function newFromId( $id, $db = null ) {
-		$conditions = array( 'page_id=rev_page', 'rev_id' => intval( $id ));
-		if (is_null($db))
-			return Revision::newFromConds( $conditions );
-		else
-			return Revision::loadFromConds( $db, $conditions );
+	public static function newFromId( $id ) {
+		return Revision::newFromConds(
+			array( 'page_id=rev_page',
+			       'rev_id' => intval( $id ) ) );
 	}
 
 	/**
@@ -56,6 +53,21 @@ class Revision {
 			       'page_id=rev_page',
 			       'page_namespace' => $title->getNamespace(),
 			       'page_title'     => $title->getDbkey() ) );
+	}
+
+	/**
+	 * Load a page revision from a given revision ID number.
+	 * Returns null if no such revision can be found.
+	 *
+	 * @param Database $db
+	 * @param int $id
+	 * @access public
+	 * @static
+	 */
+	public static function loadFromId( &$db, $id ) {
+		return Revision::loadFromConds( $db,
+			array( 'page_id=rev_page',
+			       'rev_id' => intval( $id ) ) );
 	}
 
 	/**
