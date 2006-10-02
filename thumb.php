@@ -17,30 +17,17 @@ require_once( 'Image.php' );
 require_once( 'StreamFile.php' );
 
 // Get input parameters
-$p=null;
+$fileName = isset( $_REQUEST['f'] ) ? $_REQUEST['f'] : '';
+$width = isset( $_REQUEST['w'] ) ? intval( $_REQUEST['w'] ) : 0;
+$page = isset( $_REQUEST['p'] ) ? intval( $_REQUEST['p'] ) : null;
 
 if ( get_magic_quotes_gpc() ) {
-	$fileName = stripslashes( $_REQUEST['f'] );
-	$width = stripslashes( $_REQUEST['w'] );
-	if ( isset( $_REQUEST['p'] ) ) { // optional page number
-		$page = stripslashes( $_REQUEST['p'] );
-	}
-} else {
-	$fileName = $_REQUEST['f'];
-	$width = $_REQUEST['w'];
-	if ( isset( $_REQUEST['p'] ) ) { // optional page number
-		$page =  $_REQUEST['p'] ;
-	}
+	$fileName = stripslashes( $fileName );
 }
 
 $pre_render= isset($_REQUEST['r']) && $_REQUEST['r']!="0";
 
 // Some basic input validation
-
-$width = intval( $width );
-if ( ! is_null( $page ) ) {
-	$page = intval( $page );
-}
 $fileName = strtr( $fileName, '\\/', '__' );
 
 // Work out paths, carefully avoiding constructing an Image object because that won't work yet
@@ -76,12 +63,7 @@ if ( $img ) {
 	$thumb = false;
 }
 
-if ( $img->lastError && $img->lastError !== true ) {
-	header( 'HTTP/1.0 500 Internal Server Error' );
-	echo "<html><body><h1>Thumbnail generation error</h1><p>" . 
-		htmlspecialchars( $img->lastError ) . "<br>" . wfHostname() .
-		"</p></body></html>";
-} elseif ( $thumb && $thumb->path ) {
+if ( $thumb && $thumb->path ) {
 	wfStreamFile( $thumb->path );
 } else {
 	$badtitle = wfMsg( 'badtitle' );
