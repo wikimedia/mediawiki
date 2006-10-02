@@ -165,7 +165,7 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  * Problematic punctuation:
  *  []{}|#    Are needed for link syntax, never enable these
  *  %         Enabled by default, minor problems with path to query rewrite rules, see below
- *  +         Doesn't work with path to query rewrite rules, corrupted by apache
+ *  +         Enabled by default, but doesn't work with path to query rewrite rules, corrupted by apache
  *  ?         Enabled by default, but doesn't work with path to PATH_INFO rewrites
  *
  * All three of these punctuation problems can be avoided by using an alias, instead of a
@@ -178,10 +178,12 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  * passed in the query string rather than the path. This is a minor security issue
  * because articles can be created such that they are hard to view or edit.
  *
+ * In some rare cases you may wish to remove + for compatibility with old links.
+ *
  * Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
  * this breaks interlanguage links
  */
-$wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF";
+$wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
 
 
 /**

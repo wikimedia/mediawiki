@@ -246,6 +246,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   directly through Special:Allmessages
 * (bug 6130, bug 5818) Replaced message 'go'  with the new message 'searcharticle' in skins
   to allow better localisation
+* Add + to $wgLegalTitleChars by default. Some sites may have occasional
+  problems with hard-to-reach pages, but it should be less trouble than
+  "I can't import dumps from Wikipedia" complaints
 
 
 == Languages updated ==
