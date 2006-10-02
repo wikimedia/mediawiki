@@ -240,7 +240,7 @@ class WikiRevision {
 		if( is_object( $title ) ) {
 			$this->title = $title;
 		} elseif( is_null( $title ) ) {
-			throw new MWException( "WikiRevision given a null title in import." );
+			throw new MWException( "WikiRevision given a null title in import. You may need to adjust \$wgLegalTitleChars." );
 		} else {
 			throw new MWException( "WikiRevision given non-object title in import." );
 		}
