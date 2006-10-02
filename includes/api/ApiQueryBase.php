@@ -98,7 +98,7 @@ abstract class ApiQueryBase extends ApiBase {
 		return str_replace('_', ' ', $key);
 	}
 
-	public function getVersion() {
+	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
 }

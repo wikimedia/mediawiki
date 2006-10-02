@@ -401,8 +401,7 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	public function getVersion() {
-		return array (
-		parent :: getVersion(), __CLASS__ . ': $Id$');
+		return __CLASS__ . ': $Id$';
 	}
 }
 ?>

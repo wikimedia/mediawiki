@@ -99,9 +99,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 						$showComment = true;
 						break;
 					case 'content' :
-						// todo: check the page count/limit when requesting content
-						//$this->validateLimit( 'content: (rvlimit*pages)+revids',
-						//$rvlimit * count($this->existingPageIds) + count($this->revIdsArray), 50, 200 );
 						$tables[] = 'text';
 						$conds[] = 'rev_text_id=old_id';
 						$fields[] = 'old_id';
@@ -127,7 +124,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if ($rvendid !== 0 && isset ($rvend))
 				$this->dieUsage('rvend and rvend cannot be used together', 'rv_badparams');
 
-			$options['ORDER BY'] = 'rev_timestamp' . ($dirNewer ? '' : ' DESC');
+			// This code makes an assumption that sorting by rev_id and rev_timestamp produces
+			// the same result. This way users may request revisions starting at a given time,
+			// but to page through results use the rev_id returned after each page.
+			// Switching to rev_id removes the potential problem of having more than 
+			// one row with the same timestamp for the same page. 
+			// The order needs to be the same as start parameter to avoid SQL filesort.
+			$options['ORDER BY'] = ($rvstartid !== 0 ? 'rev_id' : 'rev_timestamp') . ($dirNewer ? '' : ' DESC');
+
 			$before = ($dirNewer ? '<=' : '>=');
 			$after = ($dirNewer ? '>=' : '<=');
 

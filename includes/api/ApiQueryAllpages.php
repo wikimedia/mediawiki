@@ -127,7 +127,12 @@ class ApiQueryAllpages extends ApiQueryBase {
 	}
 
 	protected function getParamDescription() {
-		return array ();
+		return array (
+			'apfrom' => 'The page title to start enumerating from.',
+			'apnamespace' => 'The namespace to enumerate. Default 0 (Main).',
+			'apfilterredir' => 'Which pages to list: "all" (default), "redirects", or "nonredirects"',
+			'aplimit' => 'How many total pages to return'
+		);
 	}
 
 	protected function getDescription() {
