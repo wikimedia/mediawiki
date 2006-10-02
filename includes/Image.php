@@ -2282,7 +2282,9 @@ class Image
 				__METHOD__
 			);
 		}
+		wfSuppressWarnings();
 		$this->multiPageXML = new SimpleXMLElement( $this->metadata );
+		wfRestoreWarnings();
 	}
 
 	/**

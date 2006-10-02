@@ -253,6 +253,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Allmessages by a factor of 16
 * Committed a bunch of live hacks from Wikimedia servers
 * (bug 6889) PHP notices in thumb.php with missing params
+* Cleaner error behavior on thumb.php with invalid page selection
 
 
 == Languages updated ==
