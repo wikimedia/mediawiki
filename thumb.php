@@ -54,12 +54,17 @@ require_once( 'Setup.php' );
 wfProfileIn( 'thumb.php-render' );
 
 $img = Image::newFromName( $fileName );
-if ( $img ) {
-	if ( ! is_null( $page ) ) {
-		$img->selectPage( $page );
+try {
+	if ( $img ) {
+		if ( ! is_null( $page ) ) {
+			$img->selectPage( $page );
+		}
+		$thumb = $img->renderThumb( $width, false );
+	} else {
+		$thumb = false;
 	}
-	$thumb = $img->renderThumb( $width, false );
-} else {
+} catch( Exception $ex ) {
+	// Tried to select a page on a non-paged file?
 	$thumb = false;
 }
 
