@@ -233,7 +233,7 @@ class ApiPageSet extends ApiQueryBase {
 			// Resolve redirects by querying the pagelinks table, and repeat the process
 			// Create a new linkBatch object for the next pass
 			//
-			$linkBatch = $this->ResolveRedirectList($redirectIds);
+			$linkBatch = $this->resolveRedirectList($redirectIds);
 
 			// Redirects are always titles
 			$processTitles = true;
@@ -241,7 +241,7 @@ class ApiPageSet extends ApiQueryBase {
 		while (false !== ($set = $linkBatch->constructSet('page', $db)));
 	}
 
-	private function ResolveRedirectList($redirectIds) {
+	private function resolveRedirectList($redirectIds) {
 
 		$linkBatch = new LinkBatch();
 		$db = $this->getDB();
@@ -342,6 +342,7 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	public function execute() {
+		$this->profileIn();
 		$titles = $pageids = $revids = $redirects = null;
 		extract($this->extractRequestParams());
 
@@ -372,8 +373,19 @@ class ApiPageSet extends ApiQueryBase {
 				// Do nothing - some queries do not need any of the data sources.
 				break;
 		}
+		$this->profileOut();
 	}
 
+	/**
+	 * This method is used by generators to pass the list of pageIDs internaly
+	 */
+	public function executeForPageIDs($pageIDs) {
+		$this->profileIn();
+		$pageIDs = array_map( 'intval', $pageIDs );	// paranoia
+		$this->populatePages(null, $pageIDs, $this->getParameter('redirects'));
+		$this->profileOut();
+	}
+	
 	protected function getAllowedParams() {
 		return array (
 			'titles' => array (

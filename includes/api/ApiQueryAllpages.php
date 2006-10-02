@@ -63,13 +63,15 @@ class ApiQueryAllpages extends ApiQueryBase {
 		$this->profileDBOut();
 
 		$data = array ();
-		ApiResult :: setIndexedTagName($data, 'p');
+		if(!$this->isGenerator())
+			ApiResult :: setIndexedTagName($data, 'p');
+			
 		$count = 0;
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $aplimit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$msg = array (
-					'continue' => 'apfrom=' . ApiQueryBase :: keyToTitle($row->page_title
+					'continue' => ($this->isGenerator() ? 'g' : '') . 'apfrom=' . ApiQueryBase :: keyToTitle($row->page_title
 				));
 				$this->getResult()->addValue('query-status', 'allpages', $msg);
 				break;
@@ -78,19 +80,30 @@ class ApiQueryAllpages extends ApiQueryBase {
 			$title = Title :: makeTitle($row->page_namespace, $row->page_title);
 			// skip any pages that user has no rights to read
 			if ($title->userCanRead()) {
-
 				$id = intval($row->page_id);
-				$pagedata = array ();
-				$pagedata['id'] = $id;
-				if ($title->getNamespace() !== 0)
-					$pagedata['ns'] = $title->getNamespace();
-				$pagedata['title'] = $title->getPrefixedText();
 
-				$data[$id] = $pagedata;
+				if ($this->isGenerator()) {
+					$data[] = $id;	// in generator mode, just assemble a list of page IDs.
+				} else {
+					$pagedata = array ();
+					$pagedata['id'] = $id;
+					if ($title->getNamespace() !== 0)
+						$pagedata['ns'] = $title->getNamespace();
+					$pagedata['title'] = $title->getPrefixedText();
+	
+					$data[$id] = $pagedata;
+				}
 			}
 		}
 		$db->freeResult($res);
-		$this->getResult()->addValue('query', 'allpages', $data);
+
+		if ($this->isGenerator()) {
+			$pageSet = new ApiPageSet($this->getQuery());
+			$pageSet->executeForPageIDs($data);
+			return $pageSet;
+		} else {
+			$this->getResult()->addValue('query', 'allpages', $data);
+		}
 	}
 
 	protected function getAllowedParams() {
@@ -142,7 +155,8 @@ class ApiQueryAllpages extends ApiQueryBase {
 	protected function getExamples() {
 		return array (
 			'api.php?action=query&list=allpages',
-			'api.php?action=query&list=allpages&apfrom=B&aplimit=5'
+			'api.php?action=query&list=allpages&apfrom=B&aplimit=5',
+			'api.php?action=query&generator=allpages&gaplimit=4&prop=info (generator)'
 		);
 	}
 

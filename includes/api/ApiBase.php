@@ -176,18 +176,26 @@ abstract class ApiBase {
 	* Using getAllowedParams(), makes an array of the values provided by the user,
 	* with key being the name of the variable, and value - validated value from user or default.
 	* This method can be used to generate local variables using extract().
+	* 
+	* @param $prefix String: prepend this prefix to all parameter names. 
 	*/
-	public function extractRequestParams() {
+	public function extractRequestParams($prefix = '') {
 		$params = $this->getAllowedParams();
 		$results = array ();
 
 		foreach ($params as $paramName => $paramSettings)
-			$results[$paramName] = $this->getParameter($paramName, $paramSettings);
+			$results[$paramName] = $this->getParameterFromSettings($prefix . $paramName, $paramSettings);
 
 		return $results;
 	}
 
-	public function getParameter($paramName, $paramSettings) {
+	protected function getParameter($paramName, $prefix = '') {
+		$params = $this->getAllowedParams();
+		$paramSettings = $params[$paramName];
+		return $this->getParameterFromSettings($prefix . $paramName, $paramSettings);
+	}
+	
+	protected function getParameterFromSettings($paramName, $paramSettings) {
 		global $wgRequest;
 
 		if (!is_array($paramSettings)) {
