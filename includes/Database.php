@@ -490,7 +490,7 @@ class Database {
 
 		$success = false;
 
-                wfProfileIn("dbconnect-$server");
+		wfProfileIn("dbconnect-$server");
 		
 		# LIVE PATCH by Tim, ask Domas for why: retry loop
 		$this->mConn = false;
@@ -504,12 +504,12 @@ class Database {
 				# Create a new connection...
 				@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
 			}
-                        if ($this->mConn === false) {
-                            wfLogDBError("Connect loop error ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
-                        }
+			if ($this->mConn === false) {
+			wfLogDBError("Connect loop error ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
+			}
 		}
 		
-                wfProfileOut("dbconnect-$server");
+		wfProfileOut("dbconnect-$server");
 
 		if ( $dbName != '' ) {
 			if ( $this->mConn !== false ) {
@@ -517,7 +517,7 @@ class Database {
 				if ( !$success ) {
 					$error = "Error selecting database $dbName on server {$this->mServer} " .
 						"from client host {$wguname['nodename']}\n";
-                                        wfLogDBError(" Error selecting database $dbname on server {$this->mServer} \n");
+					wfLogDBError(" Error selecting database $dbname on server {$this->mServer} \n");
 					wfDebug( $error );
 				}
 			} else {
