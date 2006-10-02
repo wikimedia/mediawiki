@@ -494,7 +494,8 @@ class Database {
 		
 		# LIVE PATCH by Tim, ask Domas for why: retry loop
 		$this->mConn = false;
-		for ( $i = 0; $i < 3 && !$this->mConn; $i++ ) {
+		$max = 3;
+		for ( $i = 0; $i < $max && !$this->mConn; $i++ ) {
 			if ( $i > 1 ) {
 				usleep( 1000 );
 			}
@@ -505,7 +506,8 @@ class Database {
 				@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
 			}
 			if ($this->mConn === false) {
-			wfLogDBError("Connect loop error ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
+				$iplus = $i + 1;
+				wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
 			}
 		}
 		
