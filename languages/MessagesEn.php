@@ -581,7 +581,7 @@ parent class in order maintain consistency across languages.
 'nstab-image' => 'File',
 'nstab-mediawiki' => 'Message',
 'nstab-template' => 'Template',
-'nstab-help' => 'Help',
+'nstab-help' => 'Help page',
 'nstab-category' => 'Category',
 
 # Main script and global functions
