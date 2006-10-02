@@ -22,13 +22,16 @@ class Revision {
 	 * Returns null if no such revision can be found.
 	 *
 	 * @param int $id
-	 * @static
+	 * @param Database $db
 	 * @access public
+	 * @static
 	 */
-	public static function newFromId( $id ) {
-		return Revision::newFromConds(
-			array( 'page_id=rev_page',
-			       'rev_id' => intval( $id ) ) );
+	public static function newFromId( $id, $db = null ) {
+		$conditions = array( 'page_id=rev_page', 'rev_id' => intval( $id ));
+		if (is_null($db))
+			return Revision::newFromConds( $conditions );
+		else
+			return Revision::loadFromConds( $db, $conditions );
 	}
 
 	/**
@@ -65,6 +68,7 @@ class Revision {
 	 * @param int $id
 	 * @return Revision
 	 * @access public
+	 * @static
 	 */
 	public static function loadFromPageId( &$db, $pageid, $id = 0 ) {
 		$conds=array('page_id=rev_page','rev_page'=>intval( $pageid ), 'page_id'=>intval( $pageid ));
@@ -86,8 +90,9 @@ class Revision {
 	 * @param int $id
 	 * @return Revision
 	 * @access public
+	 * @static
 	 */
-	function loadFromTitle( &$db, $title, $id = 0 ) {
+	public static function loadFromTitle( &$db, $title, $id = 0 ) {
 		if( $id ) {
 			$matchId = intval( $id );
 		} else {
@@ -113,7 +118,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	function loadFromTimestamp( &$db, &$title, $timestamp ) {
+	public static function loadFromTimestamp( &$db, &$title, $timestamp ) {
 		return Revision::loadFromConds(
 			$db,
 			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
@@ -127,8 +132,8 @@ class Revision {
 	 *
 	 * @param array $conditions
 	 * @return Revision
-	 * @static
 	 * @access private
+	 * @static
 	 */
 	private static function newFromConds( $conditions ) {
 		$db =& wfGetDB( DB_SLAVE );
@@ -147,8 +152,8 @@ class Revision {
 	 * @param Database $db
 	 * @param array $conditions
 	 * @return Revision
-	 * @static
 	 * @access private
+	 * @static
 	 */
 	private static function loadFromConds( &$db, $conditions ) {
 		$res = Revision::fetchFromConds( $db, $conditions );
@@ -171,10 +176,10 @@ class Revision {
 	 *
 	 * @param Title $title
 	 * @return ResultWrapper
-	 * @static
 	 * @access public
+	 * @static
 	 */
-	function fetchAllRevisions( &$title ) {
+	public static function fetchAllRevisions( &$title ) {
 		return Revision::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
 			array( 'page_namespace' => $title->getNamespace(),
@@ -189,8 +194,8 @@ class Revision {
 	 *
 	 * @param Title $title
 	 * @return ResultWrapper
-	 * @static
 	 * @access public
+	 * @static
 	 */
 	public static function fetchRevision( &$title ) {
 		return Revision::fetchFromConds(
@@ -209,8 +214,8 @@ class Revision {
 	 * @param Database $db
 	 * @param array $conditions
 	 * @return ResultWrapper
-	 * @static
 	 * @access private
+	 * @static
 	 */
 	private static function fetchFromConds( &$db, $conditions ) {
 		$res = $db->select(
