@@ -490,12 +490,26 @@ class Database {
 
 		$success = false;
 
-		if ( $this->mFlags & DBO_PERSISTENT ) {
-			@/**/$this->mConn = mysql_pconnect( $server, $user, $password );
-		} else {
-			# Create a new connection...
-			@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
+                wfProfileIn("dbconnect-$server");
+		
+		# LIVE PATCH by Tim, ask Domas for why: retry loop
+		$this->mConn = false;
+		for ( $i = 0; $i < 3 && !$this->mConn; $i++ ) {
+			if ( $i > 1 ) {
+				usleep( 1000 );
+			}
+			if ( $this->mFlags & DBO_PERSISTENT ) {
+				@/**/$this->mConn = mysql_pconnect( $server, $user, $password );
+			} else {
+				# Create a new connection...
+				@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
+			}
+                        if ($this->mConn === false) {
+                            wfLogDBError("Connect loop error ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
+                        }
 		}
+		
+                wfProfileOut("dbconnect-$server");
 
 		if ( $dbName != '' ) {
 			if ( $this->mConn !== false ) {
@@ -503,6 +517,7 @@ class Database {
 				if ( !$success ) {
 					$error = "Error selecting database $dbName on server {$this->mServer} " .
 						"from client host {$wguname['nodename']}\n";
+                                        wfLogDBError(" Error selecting database $dbname on server {$this->mServer} \n");
 					wfDebug( $error );
 				}
 			} else {

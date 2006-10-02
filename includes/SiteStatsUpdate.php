@@ -75,8 +75,18 @@ class SiteStatsUpdate {
 		if ( $updates ) {
 			$site_stats = $dbw->tableName( 'site_stats' );
 			$sql = $dbw->limitResultForUpdate("UPDATE $site_stats SET $updates", 1);
+			$dbw->begin();
 			$dbw->query( $sql, $fname );
+			$dbw->commit();
 		}
+
+		/*
+		global $wgDBname, $wgTitle;
+		if ( $this->mGood && $wgDBname == 'enwiki' ) {
+			$good = $dbw->selectField( 'site_stats', 'ss_good_articles', '', $fname );
+			error_log( $good . ' ' . $wgTitle->getPrefixedDBkey() . "\n", 3, '/home/wikipedia/logs/million.log' );
+		}
+		*/
 	}
 }
 ?>

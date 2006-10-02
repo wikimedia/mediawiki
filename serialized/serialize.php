@@ -1,6 +1,7 @@
 <?php
 
 if ( !defined( 'MEDIAWIKI' ) ) {
+	$wgNoDBParam = true;
 	$optionsWithArgs = array( 'o' );
 	require_once( dirname(__FILE__).'/../maintenance/commandLine.inc' );
 

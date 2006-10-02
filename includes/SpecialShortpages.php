@@ -65,6 +65,9 @@ class ShortPagesPage extends QueryPage {
 		$dm = $wgContLang->getDirMark();
 		
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
+		if ( !$title ) {
+			return '<!-- Invalid title ' .  htmlspecialchars( "{$result->namespace}:{$result->title}" ). '-->';
+		}
 		$hlink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
 		$plink = $this->isCached()
 					? $skin->makeLinkObj( $title )

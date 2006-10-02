@@ -251,6 +251,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "I can't import dumps from Wikipedia" complaints
 * (bug 7460) Revert broken patch for bug 7226 which slows down
   Special:Allmessages by a factor of 16
+* Committed a bunch of live hacks from Wikimedia servers
 
 
 == Languages updated ==

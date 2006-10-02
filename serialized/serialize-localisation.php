@@ -1,5 +1,6 @@
 <?php
 
+$wgNoDBParam = true;
 $optionsWithArgs = array( 'o' );
 require_once( dirname(__FILE__).'/../maintenance/commandLine.inc' );
 require_once( dirname(__FILE__).'/serialize.php' );

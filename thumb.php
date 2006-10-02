@@ -76,7 +76,12 @@ if ( $img ) {
 	$thumb = false;
 }
 
-if ( $thumb && $thumb->path ) {
+if ( $img->lastError && $img->lastError !== true ) {
+	header( 'HTTP/1.0 500 Internal Server Error' );
+	echo "<html><body><h1>Thumbnail generation error</h1><p>" . 
+		htmlspecialchars( $img->lastError ) . "<br>" . wfHostname() .
+		"</p></body></html>";
+} elseif ( $thumb && $thumb->path ) {
 	wfStreamFile( $thumb->path );
 } else {
 	$badtitle = wfMsg( 'badtitle' );
