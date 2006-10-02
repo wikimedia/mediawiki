@@ -31,13 +31,13 @@ if (!defined('MEDIAWIKI')) {
 
 abstract class ApiQueryBase extends ApiBase {
 
-	private $mQueryModule, $mModuleName, $mGenerator;
+	private $mQueryModule, $mModuleName, $mIsGenerator;
 
-	public function __construct($query, $moduleName, $generator = false) {
+	public function __construct($query, $moduleName, $isGenerator = false) {
 		parent :: __construct($query->getMain());
 		$this->mQueryModule = $query;
 		$this->mModuleName = $moduleName;
-		$this->mGenerator = $generator;
+		$this->mIsGenerator = $isGenerator;
 	}
 
 	/**
@@ -62,6 +62,16 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
+	 * Overrides base class to prepend 'g' to every generator parameter
+	 */
+	public function extractRequestParams() {
+		$prefix = '';
+		if($this->isGenerator())
+			$prefix = 'g';
+		return parent :: extractRequestParams($prefix);
+	}
+	
+	/**
 	 * Get the Query database connection (readonly)
 	 */
 	protected function getDB() {
@@ -79,8 +89,8 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Return true if this instance is being used as a generator.
 	 */
-	protected function getIsGenerator() {
-		return $this->mGenerator;
+	protected function isGenerator() {
+		return $this->mIsGenerator;
 	}
 
 	/**

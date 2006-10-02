@@ -131,9 +131,7 @@ class ApiQuery extends ApiBase {
 		//
 		// Get page information for the given pageSet
 		//
-		$this->mPageSet->profileIn();
 		$this->mPageSet->execute();
-		$this->mPageSet->profileOut();
 
 		//
 		// Record page information
@@ -212,27 +210,27 @@ class ApiQuery extends ApiBase {
 		}
 	}
 
-	protected function executeGenerator($generator) {
+	protected function executeGenerator($generatorName) {
 
 		// Find class that implements requested generator
-		if (isset ($this->mQueryListModules[$generator]))
-			$className = $this->mQueryListModules[$generator];
-		elseif (isset ($this->mQueryPropModules[$generator])) $className = $this->mQueryPropModules[$generator];
+		if (isset ($this->mQueryListModules[$generatorName]))
+			$className = $this->mQueryListModules[$generatorName];
+		elseif (isset ($this->mQueryPropModules[$generatorName])) $className = $this->mQueryPropModules[$generatorName];
 		else
-			ApiBase :: dieDebug(__METHOD__, "Unknown generator=$generator");
+			ApiBase :: dieDebug(__METHOD__, "Unknown generator=$generatorName");
 
-		$module = new $className ($this, $generator, true);
-		$module->requestExtraData();
+		$generator = new $className ($this, $generatorName, true);
+		if (!$generator->getCanGenerate())
+			$this->dieUsage("Module $generatorName cannot be used as a generator", "badgenerator");
+			
+		$generator->requestExtraData();
 
 		// execute pageSet here to get the data required by the generator module
-		$this->mPageSet->profileIn();
 		$this->mPageSet->execute();
-		$this->mPageSet->profileOut();
 
-		// change $this->mPageSet
-
-		// TODO: implement
-		$this->dieUsage('Generator execution has not been implemented', 'notimplemented');
+		$generator->profileIn();
+		$this->mPageSet = $generator->execute();
+		$generator->profileOut();
 	}
 
 	protected function getAllowedParams() {
@@ -248,12 +246,10 @@ class ApiQuery extends ApiBase {
 			'meta' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => $this->mMetaModuleNames
-			)
-			//			'generator' => array (
-			//				ApiBase::PARAM_TYPE => $this->mAllowedGenerators
-			//			),
-
-			
+			),
+			'generator' => array (
+			    ApiBase::PARAM_TYPE => $this->mAllowedGenerators
+			)			
 		);
 	}
 
