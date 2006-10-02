@@ -310,9 +310,9 @@ $messages = array(
 'nstab-special' => 'Spezial',
 'nstab-project'		=> 'Portalseite',
 'nstab-image'		=> 'Datei',
-'nstab-mediawiki'	=> 'MediaWiki-Text',
+'nstab-mediawiki'	=> 'MediaWiki-Systemtext',
 'nstab-template' => 'Vorlage',
-'nstab-help' => 'Hilfe',
+'nstab-help' => 'Hilfeseite',
 'nstab-category' => 'Kategorie',
 
 # Editier-Werkzeugleiste
@@ -408,7 +408,7 @@ Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen an
 "yourname"		=> "Benutzername",
 "yourpassword"	=> "Passwort",
 "yourpasswordagain" => "Passwort wiederholen",
-'remembermypassword'	=> 'dauerhaft anmelden',
+'remembermypassword'	=> 'Benutzer auf diesem Computer dauerhaft anmelden',
 'yourdomainname' => 'Ihre Domain',
 'externaldberror'	=> 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
 'loginproblem' => '\'\'\'Es gab ein Problem mit Ihrer Anmeldung.\'\'\'<br />Bitte versuchen Sie es nochmal!',
@@ -1396,7 +1396,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 '1movedto2_redir'	=> 'hat [[$1]] nach [[$2]] verschoben und dabei eine Weiterleitung überschrieben.',
 'movelogpage'		=> 'Verschiebungs-Logbuch',
 'movelogpagetext'	=> 'Dies ist eine Liste aller verschobenen Seiten.',
-'allmessages'		=> 'MediaWiki-Texte',
+'allmessages'		=> 'MediaWiki-Systemtexte',
 'allmessagesname'	=> 'Name',
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Texte im MediaWiki-Namensraum.",
 'allmessagesnotsupportedUI' => 'Die aktuelle Sprache Ihrer Benutzeroberfläche <b>$1</b> wird auf dieser Seite nicht von {{ns:special}}:Allmessages unterstützt.',
@@ -1496,9 +1496,9 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 # import log
 'importlogpage'		=> 'Import-Logbuch',
 'importlogpagetext'	=> 'Administrativer Import von Seiten mit Versionsgeschichte von anderen Wikis.',
-'import-logentry-upload'	=> '$1 wurde importiert',
+'import-logentry-upload'	=> '[[$1]] wurde importiert',
 'import-logentry-upload-detail'	=> '{{PLURAL:$1|eine Version|$1 Versionen}}',
-'import-logentry-interwiki'	=> '$1 wurde importiert (Transwiki)',
+'import-logentry-interwiki'	=> '[[$1]] wurde importiert (Transwiki)',
 'import-logentry-interwiki-detail'	=> '{{PLURAL:$1|eine Version|$1 Versionen}} von $2',
 
 "isbn"			=> "ISBN",
@@ -1560,7 +1560,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'metadata_help'		=> 'Metadaten:',
 'metadata-expand' => 'Erweiterte Details einblenden',
 'metadata-collapse'	=> 'Erweiterte Details ausblenden',
-'metadata-fields'	=> 'Die folgenden EXIF-Metadaten in dieser MediaWiki-Nachricht werden auf Bildbeschreibungsseiten angezeigt. Weitere EXIF-Metadaten werden standardmäßig ausgeblendet.
+'metadata-fields'	=> 'Die folgenden EXIF-Metadaten in diesem MediaWiki-Systemtext werden auf Bildbeschreibungsseiten angezeigt. Weitere EXIF-Metadaten werden standardmäßig ausgeblendet.
 * make
 * model
 * datetimeoriginal
@@ -1921,7 +1921,7 @@ ta[\'ca-nstab-media\'] = new Array(\'c\',\'Mediendateienseite anzeigen\');
 ta[\'ca-nstab-special\'] = new Array(\'\',\'Dies ist eine Spezialseite. Sie können diese nicht ändern.\');
 ta[\'ca-nstab-project\'] = new Array(\'a\',\'Portalseite anzeigen\');
 ta[\'ca-nstab-image\'] = new Array(\'c\',\'Bilderseite anzeigen\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'MediaWiki-Text anzeigen\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'MediaWiki-Systemtext anzeigen\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vorlage anzeigen\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Hilfeseite anzeigen\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
