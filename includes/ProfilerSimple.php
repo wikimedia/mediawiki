@@ -11,6 +11,8 @@
 require_once(dirname(__FILE__).'/Profiler.php');
 
 class ProfilerSimple extends Profiler {
+	var $mMinimumTime = 0;
+
 	function ProfilerSimple() {
 		global $wgRequestTime,$wgRUstart;
 		if (!empty($wgRequestTime) && !empty($wgRUstart)) {
@@ -31,6 +33,10 @@ class ProfilerSimple extends Profiler {
 			$entry['real_sq'] += $elapsedreal*$elapsedreal;
 			$entry['count']++;
 		}
+	}
+
+	function setMinimum( $min ) {
+		$this->mMinimumTime = $min;
 	}
 
 	function profileIn($functionname) {

@@ -264,8 +264,14 @@ class MediaWiki {
 	 */
 	function doUpdates ( &$updates ) {
 		wfProfileIn( 'MediaWiki::doUpdates' );
+		$dbw =& wfGetDB( DB_MASTER );
 		foreach( $updates as $up ) {
 			$up->doUpdate();
+
+			# Commit after every update to prevent lock contention
+			if ( $dbw->trxLevel() ) {
+				$dbw->commit();
+			}
 		}
 		wfProfileOut( 'MediaWiki::doUpdates' );
 	}

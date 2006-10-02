@@ -71,9 +71,13 @@ for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 	} else {
 		$art = new Article( $page );
 	}
-	$art->doDelete( $reason );
+	$success = $art->doDeleteArticle( $reason );
 	$dbw->immediateCommit();
-	print "\n";
+	if ( $success ) {
+		print "\n";
+	} else {
+		print " FAILED\n";
+	}
 
 	if ( $interval ) {
 		sleep( $interval );

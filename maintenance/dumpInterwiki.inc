@@ -43,6 +43,7 @@ function getRebuildInterwikiDump() {
 		'wikinews' => new Site( 'wikinews', 'n', 'wikinews.org' ),
 		'wikisource' => new Site( 'wikisource', 's', 'wikisource.org' ),
 		'wikimedia' => new Site( 'wikimedia', 'chapter', 'wikimedia.org' ),
+		'wikiversity' => new Site( 'wikiversity', 'v', 'wikiversity.org' ),
 	);
 
 	# List of language prefixes likely to be found in multi-language sites

@@ -623,6 +623,9 @@ class LoadBalancer {
 				wfProfileOut( __METHOD__ );
 				return $times;
 			}
+			wfIncrStats( 'lag_cache_miss_expired' );
+		} else {
+			wfIncrStats( 'lag_cache_miss_absent' );
 		}
 
 		# Cache key missing or expired
@@ -642,7 +645,6 @@ class LoadBalancer {
 
 		# But don't give the timestamp to the caller
 		unset($times['timestamp']);
-		wfIncrStats( 'lag_cache_miss' );
 		wfProfileOut( __METHOD__ );
 		return $times;
 	}

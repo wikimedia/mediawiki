@@ -12,6 +12,12 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 		global $wgUDPProfilerPort;
 		global $wgDBname;
 
+		if ( $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
+			# Less than minimum, ignore
+			return;
+		}
+			
+		
 		$sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
 		$plength=0;
 		$packet="";

@@ -155,6 +155,17 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		$titleObj = Title::makeTitle( $pageRow->page_namespace, $pageRow->page_title );
 		print "$pageId\t" . $titleObj->getPrefixedDBkey() . " ";
 
+		print_r(
+			array( 
+				'rev_page' => $pageRow->page_id, 
+				# Don't operate on the current revision
+				# Use < instead of <> in case the current revision has changed 
+				# since the page select, which wasn't locking
+				'rev_id < ' . $pageRow->page_latest
+			) + $conds
+		);
+		exit;
+
 		# Load revisions
 		$revRes = $dbw->select( $tables, $fields,
 			array( 

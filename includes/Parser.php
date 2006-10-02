@@ -272,7 +272,7 @@ class Parser
 		 */
 
 		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang;
-		$fname = 'Parser::parse';
+		$fname = 'Parser::parse-' . wfGetCaller();
 		wfProfileIn( $fname );
 
 		if ( $clearState ) {
@@ -3787,7 +3787,11 @@ class Parser
 
 		wfProfileIn($fname);
 
-		$this->mTitle = $wgTitle;
+		if ( $wgTitle ) {
+			$this->mTitle = $wgTitle;
+		} else {
+			$this->mTitle = Title::newFromText('msg');
+		}
 		$this->mOptions = $options;
 		$this->setOutputType( OT_MSG );
 		$this->clearState();
