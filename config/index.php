@@ -789,14 +789,12 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					dbsource( "../maintenance/users.sql", $wgDatabase );
 				}
 			}
-			if ( $conf->DBtype == 'mysql') {
-				print "<pre>\n";
-				chdir( ".." );
-				flush();
-				do_all_updates();
-				chdir( "config" );
-				print "</pre>\n";
-			}
+			print "<pre>\n";
+			chdir( ".." );
+			flush();
+			do_all_updates();
+			chdir( "config" );
+			print "</pre>\n";
 			print "<li>Finished update checks.</li>\n";
 		} else {
 			# FIXME: Check for errors

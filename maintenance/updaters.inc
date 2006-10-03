@@ -780,9 +780,14 @@ function do_rc_indices_update() {
 }
 
 function do_all_updates( $doShared = false ) {
-	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase;
+	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype;
 
 	$doUser = !$wgSharedDB || $doShared;
+
+	if ($wgDBtype === 'postgres') {
+		do_postgres_updates();
+		return;
+	}
 
 	# Rename tables
 	foreach ( $wgRenamedTables as $tableRecord ) {
@@ -852,4 +857,114 @@ function archive($name) {
 		return "$IP/maintenance/archives/$name";
 	}
 }
+
+function do_postgres_updates() {
+	global $wgDatabase, $wgVersion;
+
+	$version = "1.7.1";
+
+	if ($wgDatabase->tableExists("mediawiki_version")) {
+		$version = "1.8";
+	}
+
+	if ($version == '1.7.1') {
+		$upgrade = <<<PGEND
+
+BEGIN;
+
+-- Type tweaking:
+ALTER TABLE oldimage ALTER oi_size TYPE INTEGER;
+ALTER TABLE oldimage ALTER oi_width TYPE INTEGER;
+ALTER TABLE oldimage ALTER oi_height TYPE INTEGER;
+
+ALTER TABLE image ALTER img_size TYPE INTEGER;
+ALTER TABLE image ALTER img_width TYPE INTEGER;
+ALTER TABLE image ALTER img_height TYPE INTEGER;
+
+-- New columns:
+ALTER TABLE ipblocks ADD ipb_anon_only CHAR NOT NULL DEFAULT '0';
+ALTER TABLE ipblocks ADD ipb_create_account CHAR NOT NULL DEFAULT '1';
+
+-- Index order rearrangements:
+DROP INDEX pagelink_unique;
+CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title);
+
+-- Rename tables
+ALTER TABLE "user" RENAME TO mwuser;
+ALTER TABLE "text" RENAME to pagecontent;
+
+-- New tables:
+CREATE TABLE profiling (
+  pf_count   INTEGER         NOT NULL DEFAULT 0,
+  pf_time    NUMERIC(18,10)  NOT NULL DEFAULT 0,
+  pf_name    TEXT            NOT NULL,
+  pf_server  TEXT            NULL
+);
+CREATE UNIQUE INDEX pf_name_server ON profiling (pf_name, pf_server);
+
+CREATE TABLE mediawiki_version (
+  type         TEXT         NOT NULL,
+  mw_version   TEXT         NOT NULL,
+  notes        TEXT             NULL,
+
+  pg_version   TEXT             NULL,
+  pg_dbname    TEXT             NULL,
+  pg_user      TEXT             NULL,
+  pg_port      TEXT             NULL,
+  mw_schema    TEXT             NULL,
+  ts2_schema   TEXT             NULL,
+  ctype        TEXT             NULL,
+
+  sql_version  TEXT             NULL,
+  sql_date     TEXT             NULL,
+  cdate        TIMESTAMPTZ  NOT NULL DEFAULT now()
+);
+
+INSERT INTO mediawiki_version (type,mw_version,notes)
+VALUES ('Upgrade','MWVERSION','Upgrade from older version 1.7.1');
+
+-- Special modifications
+ALTER TABLE archive RENAME to archive2;
+CREATE VIEW archive AS 
+SELECT 
+  ar_namespace, ar_title, ar_text, ar_comment, ar_user, ar_user_text, 
+  ar_minor_edit, ar_flags, ar_rev_id, ar_text_id,
+       TO_CHAR(ar_timestamp, 'YYYYMMDDHH24MISS') AS ar_timestamp
+FROM archive2;
+
+CREATE RULE archive_insert AS ON INSERT TO archive
+DO INSTEAD INSERT INTO archive2 VALUES (
+  NEW.ar_namespace, NEW.ar_title, NEW.ar_text, NEW.ar_comment, NEW.ar_user, NEW.ar_user_text, 
+  TO_DATE(NEW.ar_timestamp, 'YYYYMMDDHH24MISS'),
+  NEW.ar_minor_edit, NEW.ar_flags, NEW.ar_rev_id, NEW.ar_text_id
+);
+
+CREATE FUNCTION page_deleted() RETURNS TRIGGER LANGUAGE plpgsql AS
+\$mw\$
+BEGIN
+DELETE FROM recentchanges WHERE rc_namespace = OLD.page_namespace AND rc_title = OLD.page_title;
+RETURN NULL;
+END;
+\$mw\$;
+
+CREATE TRIGGER page_deleted AFTER DELETE ON page
+  FOR EACH ROW EXECUTE PROCEDURE page_deleted();
+
+COMMIT;
+
+PGEND;
+
+		$upgrade = str_replace( 'MWVERSION', $wgVersion, $upgrade );
+
+		$res = $wgDatabase->query($upgrade);
+
+	} ## end version 1.7.1 upgrade
+
+	else {
+		print "No updates needed";
+	}
+
+	return;
+}
+
 ?>
