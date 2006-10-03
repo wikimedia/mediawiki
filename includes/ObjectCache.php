@@ -69,13 +69,10 @@ function &wfGetCache( $inputType ) {
 	} elseif ( $type == CACHE_ACCEL ) {
 		if ( !array_key_exists( CACHE_ACCEL, $wgCaches ) ) {
 			if ( function_exists( 'eaccelerator_get' ) ) {
-				require_once( 'BagOStuff.php' );
 				$wgCaches[CACHE_ACCEL] = new eAccelBagOStuff;
 			} elseif ( function_exists( 'apc_fetch') ) {
-				require_once( 'BagOStuff.php' );
 				$wgCaches[CACHE_ACCEL] = new APCBagOStuff;
 			} elseif ( function_exists( 'mmcache_get' ) ) {
-				require_once( 'BagOStuff.php' );
 				$wgCaches[CACHE_ACCEL] = new TurckBagOStuff;
 			} else {
 				$wgCaches[CACHE_ACCEL] = false;
@@ -86,7 +83,6 @@ function &wfGetCache( $inputType ) {
 		}
 	} elseif ( $type == CACHE_DBA ) {
 		if ( !array_key_exists( CACHE_DBA, $wgCaches ) ) {
-			require_once( 'BagOStuff.php' );
 			$wgCaches[CACHE_DBA] = new DBABagOStuff;
 		}
 		$cache =& $wgCaches[CACHE_DBA];
@@ -94,7 +90,6 @@ function &wfGetCache( $inputType ) {
 	
 	if ( $type == CACHE_DB || ( $inputType == CACHE_ANYTHING && $cache === false ) ) {
 		if ( !array_key_exists( CACHE_DB, $wgCaches ) ) {
-			require_once( 'BagOStuff.php' );
 			$wgCaches[CACHE_DB] = new MediaWikiBagOStuff('objectcache');
 		}
 		$cache =& $wgCaches[CACHE_DB];

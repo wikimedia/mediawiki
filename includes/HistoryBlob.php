@@ -231,7 +231,6 @@ class HistoryBlobStub {
 					wfProfileOut( $fname );
 					return false;
 				}
-				require_once('ExternalStore.php');
 				$row->old_text=ExternalStore::fetchFromUrl($url);
 
 			}

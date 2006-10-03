@@ -16,50 +16,43 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
+
 /**
  *
  * @package MediaWiki
  * @subpackage SpecialPage
  */
 
-/** */
-
-define( 'MW_EXPORT_FULL',     0 );
-define( 'MW_EXPORT_CURRENT',  1 );
-
-define( 'MW_EXPORT_BUFFER',   0 );
-define( 'MW_EXPORT_STREAM',   1 );
-
-define( 'MW_EXPORT_TEXT',     0 );
-define( 'MW_EXPORT_STUB',     1 );
-
-
-/**
- * @package MediaWiki
- * @subpackage SpecialPage
- */
 class WikiExporter {
-	
 	var $list_authors = false ; # Return distinct author list (when not returning full history)
 	var $author_list = "" ;
 	
+	const FULL = 0;
+	const CURRENT = 1;
+
+	const BUFFER = 0;
+	const STREAM = 1;
+
+	const TEXT = 0;
+	const STUB = 1;
+
 	/**
-	 * If using MW_EXPORT_STREAM to stream a large amount of data,
+	 * If using WikiExporter::STREAM to stream a large amount of data,
 	 * provide a database connection which is not managed by
 	 * LoadBalancer to read from: some history blob types will
 	 * make additional queries to pull source data while the
 	 * main query is still running.
 	 *
 	 * @param Database $db
-	 * @param mixed $history one of MW_EXPORT_FULL or MW_EXPORT_CURRENT, or an 
+	 * @param mixed $history one of WikiExporter::FULL or WikiExporter::CURRENT, or an 
 	 *                       associative array:
 	 *                         offset: non-inclusive offset at which to start the query
 	 *                         limit: maximum number of rows to return
 	 *                         dir: "asc" or "desc" timestamp order
-	 * @param int $buffer one of MW_EXPORT_BUFFER or MW_EXPORT_STREAM
+	 * @param int $buffer one of WikiExporter::BUFFER or WikiExporter::STREAM
 	 */
-	function WikiExporter( &$db, $history = MW_EXPORT_CURRENT,
-			$buffer = MW_EXPORT_BUFFER, $text = MW_EXPORT_TEXT ) {
+	function WikiExporter( &$db, $history = WikiExporter::CURRENT,
+			$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
 		$this->db =& $db;
 		$this->history = $history;
 		$this->buffer  = $buffer;
@@ -175,9 +168,9 @@ class WikiExporter {
 		$order = 'ORDER BY page_id';
 		$limit = '';
 		
-		if( $this->history == MW_EXPORT_FULL ) {
+		if( $this->history == WikiExporter::FULL ) {
 			$join = 'page_id=rev_page';
-		} elseif( $this->history == MW_EXPORT_CURRENT ) {
+		} elseif( $this->history == WikiExporter::CURRENT ) {
 			if ( $this->list_authors && $cond != '' )  { // List authors, if so desired
 				$this->do_list_authors ( $page , $revision , $cond );
 			}
@@ -207,7 +200,7 @@ class WikiExporter {
 		}
 		$where = ( $cond == '' ) ? '' : "$cond AND";
 
-		if( $this->buffer == MW_EXPORT_STREAM ) {
+		if( $this->buffer == WikiExporter::STREAM ) {
 			$prev = $this->db->bufferResults( false );
 		}
 		if( $cond == '' ) {
@@ -219,7 +212,7 @@ class WikiExporter {
 			$revindex = '';
 			$straight = '';
 		}
-		if( $this->text == MW_EXPORT_STUB ) {
+		if( $this->text == WikiExporter::STUB ) {
 			$sql = "SELECT $straight * FROM
 					$page $pageindex,
 					$revision $revindex
@@ -241,7 +234,7 @@ class WikiExporter {
 			$this->outputStream( $wrapper );
 		}
 
-		if( $this->buffer == MW_EXPORT_STREAM ) {
+		if( $this->buffer == WikiExporter::STREAM ) {
 			$this->db->bufferResults( $prev );
 		}
 

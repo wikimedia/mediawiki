@@ -99,7 +99,7 @@ stream_wrapper_register( 'mediawiki.compress.7z', 'SevenZipStream' );
 class TextPassDumper extends BackupDumper {
 	var $prefetch = null;
 	var $input = "php://stdin";
-	var $history = MW_EXPORT_FULL;
+	var $history = WikiExporter::FULL;
 	var $fetchCount = 0;
 	var $prefetchCount = 0;
 	
@@ -143,10 +143,10 @@ class TextPassDumper extends BackupDumper {
 			$this->input = $url;
 			break;
 		case 'current':
-			$this->history = MW_EXPORT_CURRENT;
+			$this->history = WikiExporter::CURRENT;
 			break;
 		case 'full':
-			$this->history = MW_EXPORT_FULL;
+			$this->history = WikiExporter::FULL;
 			break;
 		}
 	}

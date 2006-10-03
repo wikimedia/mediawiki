@@ -57,12 +57,12 @@ if( isset( $options['end'] ) ) {
 $dumper->skipHeader = isset( $options['skip-header'] );
 $dumper->skipFooter = isset( $options['skip-footer'] );
 
-$textMode = isset( $options['stub'] ) ? MW_EXPORT_STUB : MW_EXPORT_TEXT;
+$textMode = isset( $options['stub'] ) ? WikiExporter::STUB : WikiExporter::TEXT;
 
 if( isset( $options['full'] ) ) {
-	$dumper->dump( MW_EXPORT_FULL, $textMode );
+	$dumper->dump( WikiExporter::FULL, $textMode );
 } elseif( isset( $options['current'] ) ) {
-	$dumper->dump( MW_EXPORT_CURRENT, $textMode );
+	$dumper->dump( WikiExporter::CURRENT, $textMode );
 } else {
 	$dumper->progress( <<<END
 This script dumps the wiki page database into an XML interchange wrapper

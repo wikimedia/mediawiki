@@ -77,7 +77,6 @@ class PageArchive {
 	 * @fixme Does this belong in Image for fuller encapsulation?
 	 */
 	function listFiles() {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
 		if( $this->title->getNamespace() == NS_IMAGE ) {
 			$dbr =& wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'filearchive',
@@ -93,7 +92,7 @@ class PageArchive {
 					'fa_user_text',
 					'fa_timestamp' ),
 				array( 'fa_name' => $this->title->getDbKey() ),
-				$fname,
+				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
 			$ret = $dbr->resultObject( $res );
 			return $ret;
@@ -108,14 +107,13 @@ class PageArchive {
 	 * @return string
 	 */
 	function getRevisionText( $timestamp ) {
-		$fname = 'PageArchive::getRevisionText';
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'archive',
 			array( 'ar_text', 'ar_flags', 'ar_text_id' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDbkey(),
 			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
-			$fname );
+			__METHOD__ );
 		if( $row ) {
 			return $this->getTextFromRow( $row );
 		} else {
@@ -127,8 +125,6 @@ class PageArchive {
 	 * Get the text from an archive row containing ar_text, ar_flags and ar_text_id
 	 */
 	function getTextFromRow( $row ) {
-		$fname = 'PageArchive::getTextFromRow';
-
 		if( is_null( $row->ar_text_id ) ) {
 			// An old row from MediaWiki 1.4 or previous.
 			// Text is embedded in this row in classic compression format.
@@ -139,7 +135,7 @@ class PageArchive {
 			$text = $dbr->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $row->ar_text_id ),
-				$fname );
+				__METHOD__ );
 			return Revision::getRevisionText( $text );
 		}
 	}
@@ -252,7 +248,6 @@ class PageArchive {
 	private function undeleteRevisions( $timestamps ) {
 		global $wgParser, $wgDBtype;
 
-		$fname = __CLASS__ . '::' . __FUNCTION__;
 		$restoreAll = empty( $timestamps );
 		
 		$dbw =& wfGetDB( DB_MASTER );
@@ -267,7 +262,7 @@ class PageArchive {
 			array( 'page_id', 'page_latest' ),
 			array( 'page_namespace' => $this->title->getNamespace(),
 			       'page_title'     => $this->title->getDBkey() ),
-			$fname,
+			__METHOD__,
 			$options );
 		if( $page ) {
 			# Page already exists. Import the history, and if necessary
@@ -311,12 +306,12 @@ class PageArchive {
 				'ar_namespace' => $this->title->getNamespace(),
 				'ar_title'     => $this->title->getDBkey(),
 				$oldones ),
-			$fname,
+			__METHOD__,
 			/* options */ array(
 				'ORDER BY' => 'ar_timestamp' )
 			);
 		if( $dbw->numRows( $result ) < count( $timestamps ) ) {
-			wfDebug( "$fname: couldn't find all requested rows\n" );
+			wfDebug( __METHOD__.": couldn't find all requested rows\n" );
 			return false;
 		}
 		
@@ -383,7 +378,7 @@ class PageArchive {
 				'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey(),
 				$oldones ),
-			$fname );
+			__METHOD__ );
 
 		return $restored;
 	}
@@ -463,7 +458,6 @@ class UndeleteForm {
 
 	/* private */ function showList() {
 		global $wgLang, $wgContLang, $wgUser, $wgOut;
-		$fname = "UndeleteForm::showList";
 
 		# List undeletable articles
 		$result = PageArchive::listAllPages();
@@ -492,7 +486,6 @@ class UndeleteForm {
 
 	/* private */ function showRevision( $timestamp ) {
 		global $wgLang, $wgUser, $wgOut;
-		$fname = "UndeleteForm::showRevision";
 
 		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
 
@@ -615,7 +608,6 @@ class UndeleteForm {
 
 		# Show relevant lines from the deletion log:
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		require_once( 'SpecialLog.php' );
 		$logViewer = new LogViewer(
 			new LogReader(
 				new FauxRequest(

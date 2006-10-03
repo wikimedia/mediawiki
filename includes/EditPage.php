@@ -1199,7 +1199,6 @@ END
 		$wgOut->addHtml( wfHidden( 'wpAutoSummary', $autosumm ) );
 
 		if ( $this->isConflict ) {
-			require_once( "DifferenceEngine.php" );
 			$wgOut->addWikiText( '==' . wfMsg( "yourdiff" ) . '==' );
 
 			$de = new DifferenceEngine( $this->mTitle );
@@ -1721,7 +1720,6 @@ END
 	 * @return string HTML
 	 */
 	function getDiff() {
-		require_once( 'DifferenceEngine.php' );
 		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );

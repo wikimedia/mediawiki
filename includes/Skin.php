@@ -1087,7 +1087,6 @@ END;
 	 */
 	function specialPagesList() {
 		global $wgUser, $wgContLang, $wgServer, $wgRedirectScript;
-		require_once('SpecialPage.php');
 		$a = array();
 		$pages = array_merge( SpecialPage::getRegularPages(), SpecialPage::getRestrictedPages() );
 		foreach ( $pages as $name => $page ) {

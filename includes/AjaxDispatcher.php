@@ -8,7 +8,6 @@ if ( ! $wgUseAjax ) {
 }
 
 require_once( 'AjaxFunctions.php' );
-require_once( 'AjaxResponse.php' );
 
 class AjaxDispatcher {
 	var $mode;

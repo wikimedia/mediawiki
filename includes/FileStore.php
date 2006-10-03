@@ -36,18 +36,16 @@ class FileStore {
 	 * @fixme Probably only works on MySQL. Abstract to the Database class?
 	 */
 	static function lock() {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
-		
 		$dbw = wfGetDB( DB_MASTER );
 		$lockname = $dbw->addQuotes( FileStore::lockName() );
-		$result = $dbw->query( "SELECT GET_LOCK($lockname, 5) AS lockstatus", $fname );
+		$result = $dbw->query( "SELECT GET_LOCK($lockname, 5) AS lockstatus", __METHOD__ );
 		$row = $dbw->fetchObject( $result );
 		$dbw->freeResult( $result );
 		
 		if( $row->lockstatus == 1 ) {
 			return true;
 		} else {
-			wfDebug( "$fname failed to acquire lock\n" );
+			wfDebug( __METHOD__." failed to acquire lock\n" );
 			return false;
 		}
 	}
@@ -56,11 +54,9 @@ class FileStore {
 	 * Release the global file store lock.
 	 */
 	static function unlock() {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
-		
 		$dbw = wfGetDB( DB_MASTER );
 		$lockname = $dbw->addQuotes( FileStore::lockName() );
-		$result = $dbw->query( "SELECT RELEASE_LOCK($lockname)", $fname );
+		$result = $dbw->query( "SELECT RELEASE_LOCK($lockname)", __METHOD__ );
 		$row = $dbw->fetchObject( $result );
 		$dbw->freeResult( $result );
 	}
@@ -103,8 +99,6 @@ class FileStore {
 	}
 	
 	private function copyFile( $sourcePath, $destPath, $flags=0 ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
-		
 		if( !file_exists( $sourcePath ) ) {
 			// Abort! Abort!
 			throw new FSException( "missing source file '$sourcePath'\n" );
@@ -135,11 +129,11 @@ class FileStore {
 			wfRestoreWarnings();
 			
 			if( $ok ) {
-				wfDebug( "$fname copied '$sourcePath' to '$destPath'\n" );
+				wfDebug( __METHOD__." copied '$sourcePath' to '$destPath'\n" );
 				$transaction->addRollback( FSTransaction::DELETE_FILE, $destPath );
 			} else {
 				throw new FSException(
-					"$fname failed to copy '$sourcePath' to '$destPath'\n" );
+					__METHOD__." failed to copy '$sourcePath' to '$destPath'\n" );
 			}
 		}
 		
@@ -239,13 +233,11 @@ class FileStore {
 	 * @return string or false if could not open file or bad extension
 	 */
 	static function calculateKey( $path, $extension ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
-		
 		wfSuppressWarnings();
 		$hash = sha1_file( $path );
 		wfRestoreWarnings();
 		if( $hash === false ) {
-			wfDebug( "$fname: couldn't hash file '$path'\n" );
+			wfDebug( __METHOD__.": couldn't hash file '$path'\n" );
 			return false;
 		}
 		
@@ -260,7 +252,7 @@ class FileStore {
 		if( self::validKey( $key ) ) {
 			return $key;
 		} else {
-			wfDebug( "$fname: generated bad key '$key'\n" );
+			wfDebug( __METHOD__.": generated bad key '$key'\n" );
 			return false;
 		}
 	}
@@ -353,7 +345,6 @@ class FSTransaction {
 	}
 	
 	private function apply( $actions ) {
-		$fname = __CLASS__ . '::' . __FUNCTION__;
 		$result = true;
 		foreach( $actions as $item ) {
 			list( $action, $path ) = $item;
@@ -362,9 +353,9 @@ class FSTransaction {
 				$ok = unlink( $path );
 				wfRestoreWarnings();
 				if( $ok )
-					wfDebug( "$fname: deleting file '$path'\n" );
+					wfDebug( __METHOD__.": deleting file '$path'\n" );
 				else
-					wfDebug( "$fname: failed to delete file '$path'\n" );
+					wfDebug( __METHOD__.": failed to delete file '$path'\n" );
 				$result = $result && $ok;
 			}
 		}

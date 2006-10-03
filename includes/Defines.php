@@ -195,4 +195,15 @@ define( 'EDIT_FORCE_BOT', 16 );
 define( 'EDIT_DEFER_UPDATES', 32 );
 /**#@-*/
 
+/** 
+ * Flags for Database::makeList() 
+ * These are also available as Database class constants
+ */
+define( 'LIST_COMMA', 0 );
+define( 'LIST_AND', 1 );
+define( 'LIST_SET', 2 );
+define( 'LIST_NAMES', 3);
+define( 'LIST_OR', 4);
+
+
 ?>

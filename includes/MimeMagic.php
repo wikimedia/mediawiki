@@ -74,7 +74,7 @@ if ($wgLoadFileinfoExtension) {
 * file extension,
 *
 * Instances of this class are stateles, there only needs to be one global instance
-* of MimeMagic. Please use wfGetMimeMagic to get that instance.
+* of MimeMagic. Please use MimeMagic::singleton() to get that instance.
 * @package MediaWiki
 */
 class MimeMagic {
@@ -97,8 +97,11 @@ class MimeMagic {
 	*/
 	var $mExtToMime= NULL;
 
-	/** Initializes the MimeMagic object. This is called by wfGetMimeMagic when instantiation
-	* the global MimeMagic singleton object.
+	/** The singleton instance
+	 */
+	private static $instance;
+
+	/** Initializes the MimeMagic object. This is called by MimeMagic::singleton().
 	*
 	* This constructor parses the mime.types and mime.info files and build internal mappings.
 	*/
@@ -225,6 +228,16 @@ class MimeMagic {
 			}
 		}
 
+	}
+
+	/**
+	 * Get an instance of this class
+	 */
+	static function &singleton() {
+		if ( !isset( self::$instance ) ) {
+			self::$instance = new MimeMagic;
+		}
+		return self::$instance;
 	}
 
 	/** returns a list of file extensions for a given mime type

@@ -1462,36 +1462,13 @@ function wfGetSiteNotice() {
 	return $siteNotice;
 }
 
-/** Global singleton instance of MimeMagic. This is initialized on demand,
-* please always use the wfGetMimeMagic() function to get the instance.
-*
-* @private
-*/
-$wgMimeMagic= NULL;
-
-/** Factory functions for the global MimeMagic object.
-* This function always returns the same singleton instance of MimeMagic.
-* That objects will be instantiated on the first call to this function.
-* If needed, the MimeMagic.php file is automatically included by this function.
-* @return MimeMagic the global MimeMagic objects.
-*/
+/** 
+ * BC wrapper for MimeMagic::singleton()
+ * @deprecated
+ */
 function &wfGetMimeMagic() {
-	global $wgMimeMagic;
-
-	if (!is_null($wgMimeMagic)) {
-		return $wgMimeMagic;
-	}
-
-	if (!class_exists("MimeMagic")) {
-		#include on demand
-		require_once("MimeMagic.php");
-	}
-
-	$wgMimeMagic= new MimeMagic();
-
-	return $wgMimeMagic;
+	return MimeMagic::singleton();
 }
-
 
 /**
  * Tries to get the system directory for temporary files.

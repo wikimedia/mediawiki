@@ -6,7 +6,6 @@
  * DB accessable external objects
  *
  */
-require_once( 'LoadBalancer.php' );
 
 
 /** @package MediaWiki */

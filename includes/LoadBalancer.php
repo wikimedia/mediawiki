@@ -4,16 +4,6 @@
  * @package MediaWiki
  */
 
-/**
- * Depends on the database object
- */
-require_once( 'Database.php' );
-
-
-# Scale polling time so that under overload conditions, the database server
-# receives a SHOW STATUS query at an average interval of this many microseconds
-define( 'AVG_STATUS_POLL', 2000 );
-
 
 /**
  * Database load balancing object
@@ -27,6 +17,12 @@ class LoadBalancer {
 	/* private */ var $mForce, $mReadIndex, $mLastIndex, $mAllowLagged;
 	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
+
+	/**
+	 * Scale polling time so that under overload conditions, the database server
+	 * receives a SHOW STATUS query at an average interval of this many microseconds
+	 */
+	const AVG_STATUS_POLL = 2000;
 
 	function LoadBalancer( $servers, $failFunction = false, $waitTimeout = 10, $waitForMasterNow = false )
 	{
@@ -182,7 +178,7 @@ class LoadBalancer {
 								# Too much load, back off and wait for a while.
 								# The sleep time is scaled by the number of threads connected,
 								# to produce a roughly constant global poll rate.
-								$sleepTime = AVG_STATUS_POLL * $status['Threads_connected'];
+								$sleepTime = self::AVG_STATUS_POLL * $status['Threads_connected'];
 
 								# If we reach the timeout and exit the loop, don't use it
 								$i = false;
@@ -423,9 +419,6 @@ class LoadBalancer {
 		extract( $server );
 		# Get class for this database type
 		$class = 'Database' . ucfirst( $type );
-		if ( !class_exists( $class ) ) {
-			require_once( "$class.php" );
-		}
 
 		# Create object
 		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
