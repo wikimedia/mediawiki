@@ -347,7 +347,7 @@ parent class in order maintain consistency across languages.
 'tog-editsection'		=> 'Enable section editing via [edit] links',
 'tog-editsectiononrightclick'	=> 'Enable section editing by right clicking<br /> on section titles (JavaScript)',
 'tog-showtoc'			=> 'Show table of contents (for pages with more than 3 headings)',
-'tog-rememberpassword' => 'Remember across sessions',
+'tog-rememberpassword' => 'Remember my login on this computer',
 'tog-editwidth' => 'Edit box has full width',
 'tog-watchcreations' => 'Add pages I create to my watchlist',
 'tog-watchdefault' => 'Add pages I edit to my watchlist',
