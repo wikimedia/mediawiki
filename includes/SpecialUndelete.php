@@ -396,9 +396,10 @@ class UndeleteForm {
 
 	function UndeleteForm( &$request, $par = "" ) {
 		global $wgUser;
-		$this->mAction = $request->getText( 'action' );
-		$this->mTarget = $request->getText( 'target' );
-		$this->mTimestamp = $request->getText( 'timestamp' );
+		$this->mAction = $request->getVal( 'action' );
+		$this->mTarget = $request->getVal( 'target' );
+		$time = $request->getVal( 'timestamp' );
+		$this->mTimestamp = $time ? wfTimestamp( TS_MW, $time ) : '';
 		$this->mFile = $request->getVal( 'file' );
 		
 		$posted = $request->wasPosted() &&

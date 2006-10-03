@@ -254,6 +254,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Committed a bunch of live hacks from Wikimedia servers
 * (bug 6889) PHP notices in thumb.php with missing params
 * Cleaner error behavior on thumb.php with invalid page selection
+* (bug 6617) Validate timestamps on Special:Undelete
 
 
 == Languages updated ==
