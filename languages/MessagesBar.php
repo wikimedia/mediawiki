@@ -8,4 +8,10 @@
 
 $fallback = 'de';
 
+$messages = array(
+
+'mainpage'	=> 'Hauptsaitn',
+
+);
+
 ?>
