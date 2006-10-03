@@ -33,7 +33,7 @@
  */
 
 /** */
-require_once 'UtfNormalUtil.php';
+require_once dirname(__FILE__).'/UtfNormalUtil.php';
 
 global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp;
 $utfCombiningClass = NULL;
@@ -215,9 +215,10 @@ class UtfNormal {
 
 	/**
 	 * Load the basic composition data if necessary
-	 * @access private
+	 * @private
 	 */
 	function loadData() {
+		# fixme : are $utfCanonicalComp, $utfCanonicalDecomp really used?
 		global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp;
 		if( !isset( $utfCombiningClass ) ) {
 			require_once( 'UtfNormalData.inc' );
@@ -486,7 +487,7 @@ class UtfNormal {
 	/**
 	 * @param string $string
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function NFC( $string ) {
 		return UtfNormal::fastCompose( UtfNormal::NFD( $string ) );
@@ -495,7 +496,7 @@ class UtfNormal {
 	/**
 	 * @param string $string
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function NFD( $string ) {
 		UtfNormal::loadData();
@@ -507,7 +508,7 @@ class UtfNormal {
 	/**
 	 * @param string $string
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function NFKC( $string ) {
 		return UtfNormal::fastCompose( UtfNormal::NFKD( $string ) );
@@ -516,7 +517,7 @@ class UtfNormal {
 	/**
 	 * @param string $string
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	function NFKD( $string ) {
 		global $utfCompatibilityDecomp;
@@ -532,7 +533,7 @@ class UtfNormal {
 	 * Perform decomposition of a UTF-8 string into either D or KD form
 	 * (depending on which decomposition map is passed to us).
 	 * Input is assumed to be *valid* UTF-8. Invalid code will break.
-	 * @access private
+	 * @private
 	 * @param string $string Valid UTF-8 string
 	 * @param array $map hash of expanded decomposition map
 	 * @return string a UTF-8 string decomposed, not yet normalized (needs sorting)
@@ -593,7 +594,7 @@ class UtfNormal {
 	/**
 	 * Sorts combining characters into canonical order. This is the
 	 * final step in creating decomposed normal forms D and KD.
-	 * @access private
+	 * @private
 	 * @param string $string a valid, decomposed UTF-8 string. Input is not validated.
 	 * @return string a UTF-8 string with combining characters sorted in canonical order
 	 */
@@ -642,7 +643,7 @@ class UtfNormal {
 	/**
 	 * Produces canonically composed sequences, i.e. normal form C or KC.
 	 *
-	 * @access private
+	 * @private
 	 * @param string $string a valid UTF-8 string in sorted normal form D or KD. Input is not validated.
 	 * @return string a UTF-8 string with canonical precomposed characters used where possible
 	 */
