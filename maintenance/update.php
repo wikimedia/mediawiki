@@ -15,7 +15,6 @@ require_once( "commandLine.inc" );
 require_once( "updaters.inc" );
 $wgTitle = Title::newFromText( "MediaWiki database updater" );
 $dbclass = 'Database' . ucfirst( $wgDBtype ) ;
-require_once("$dbclass.php");
 $dbc = new $dbclass;
 
 echo( "MediaWiki {$wgVersion} Updater\n\n" );
