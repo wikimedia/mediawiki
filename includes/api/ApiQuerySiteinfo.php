@@ -32,15 +32,15 @@ if (!defined('MEDIAWIKI')) {
 class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName);
+		parent :: __construct($query, $moduleName, 'si');
 	}
 
 	public function execute() {
-		$siprop = null;
+		$prop = null;
 		extract($this->extractRequestParams());
 
-		foreach ($siprop as $prop) {
-			switch ($prop) {
+		foreach ($prop as $p) {
+			switch ($p) {
 
 				case 'general' :
 
@@ -52,7 +52,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$data['sitename'] = $wgSitename;
 					$data['generator'] = "MediaWiki $wgVersion";
 					$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
-					$this->getResult()->addValue('query', $prop, $data);
+					$this->getResult()->addValue('query', $p, $data);
 					break;
 
 				case 'namespaces' :
@@ -66,18 +66,18 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						ApiResult :: setContent($data[$ns], $title);
 					}
 					ApiResult :: setIndexedTagName($data, 'ns');
-					$this->getResult()->addValue('query', $prop, $data);
+					$this->getResult()->addValue('query', $p, $data);
 					break;
 
 				default :
-					ApiBase :: dieDebug(__METHOD__, "Unknown siprop=$prop");
+					ApiBase :: dieDebug(__METHOD__, "Unknown prop=$p");
 			}
 		}
 	}
 
 	protected function getAllowedParams() {
 		return array (
-			'siprop' => array (
+			'prop' => array (
 				ApiBase :: PARAM_DFLT => 'general',
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
@@ -90,7 +90,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function getParamDescription() {
 		return array (
-			'siprop' => array (
+			'prop' => array (
 				'Which sysinfo properties to get:',
 				' "general"    - Overall system information',
 				' "namespaces" - List of registered namespaces (localized)'

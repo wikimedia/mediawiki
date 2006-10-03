@@ -37,7 +37,7 @@ class ApiResult extends ApiBase {
 	* Constructor
 	*/
 	public function __construct($main) {
-		parent :: __construct($main);
+		parent :: __construct($main, 'result');
 		$this->Reset();
 	}
 

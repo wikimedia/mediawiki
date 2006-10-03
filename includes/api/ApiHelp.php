@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
 class ApiHelp extends ApiBase {
 
 	public function __construct($main, $action) {
-		parent :: __construct($main);
+		parent :: __construct($main, $action);
 	}
 
 	/**
