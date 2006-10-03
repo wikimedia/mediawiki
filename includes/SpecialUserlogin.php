@@ -365,9 +365,13 @@ class LoginForm {
 		{
 			case self::SUCCESS:
 				# We've verified now, update the real record
-				$wgUser->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
+				if( (bool)$this->mRemember != (bool)$wgUser->getOption( 'rememberpassword' ) ) {
+					$wgUser->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
+					$wgUser->saveSettings();
+				} else {
+					$wgUser->invalidateCache();
+				}
 				$wgUser->setCookies();
-				$wgUser->saveSettings();
 
 				if( $this->hasSessionCookie() ) {
 					return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
