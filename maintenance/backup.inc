@@ -168,9 +168,6 @@ class BackupDumper {
 	}
 
 	function dump( $history, $text = MW_EXPORT_TEXT ) {
-		# This shouldn't happen if on console... ;)
-		header( 'Content-type: text/html; charset=UTF-8' );
-
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.
 		ini_set( 'display_errors', false );
