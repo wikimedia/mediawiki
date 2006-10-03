@@ -19,6 +19,7 @@ function __autoload($className) {
 		'TurckBagOStuff' => 'includes/BagOStuff.php',
 		'APCBagOStuff' => 'includes/BagOStuff.php',
 		'eAccelBagOStuff' => 'includes/BagOStuff.php',
+		'DBABagOStuff' => 'includes/BagOStuff.php',
 		'Block' => 'includes/Block.php',
 		'CacheManager' => 'includes/CacheManager.php',
 		'CategoryPage' => 'includes/CategoryPage.php',

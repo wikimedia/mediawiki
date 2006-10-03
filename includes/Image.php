@@ -260,7 +260,7 @@ class Image
 
 
 		if ( $this->fileExists ) {
-			$magic=& wfGetMimeMagic();
+			$magic=& MimeMagic::singleton();
 
 			$this->mime = $magic->guessMimeType($this->imagePath,true);
 			$this->type = $magic->getMediaType($this->imagePath,$this->mime);
@@ -268,7 +268,7 @@ class Image
 			# Get size in bytes
 			$this->size = filesize( $this->imagePath );
 
-			$magic=& wfGetMimeMagic();
+			$magic=& MimeMagic::singleton();
 
 			# Height and width
 			wfSuppressWarnings();
@@ -2134,7 +2134,7 @@ class Image
 						$tempFile = $store->filePath( $row->fa_storage_key );
 						$metadata = serialize( $this->retrieveExifData( $tempFile ) );
 						
-						$magic = wfGetMimeMagic();
+						$magic = MimeMagic::singleton();
 						$mime = $magic->guessMimeType( $tempFile, true );
 						$media_type = $magic->getMediaType( $tempFile, $mime );
 						list( $major_mime, $minor_mime ) = self::splitMime( $mime );

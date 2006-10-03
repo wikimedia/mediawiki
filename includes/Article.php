@@ -5,11 +5,6 @@
  */
 
 /**
- * Need the CacheManager to be loaded
- */
-require_once( 'CacheManager.php' );
-
-/**
  * Class representing a MediaWiki article and history.
  *
  * See design.txt for an overview.
@@ -651,7 +646,6 @@ class Article {
 		# diff page instead of the article.
 
 		if ( !is_null( $diff ) ) {
-			require_once( 'DifferenceEngine.php' );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
 			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid );
@@ -1530,7 +1524,6 @@ class Article {
 	 * action=protect handler
 	 */
 	function protect() {
-		require_once 'ProtectionForm.php';
 		$form = new ProtectionForm( $this );
 		$form->show();
 	}

@@ -8,7 +8,6 @@
 /**
  *
  */
-require_once( 'SpecialUpload.php' );
 require_once( 'MogileFS.php' );
 
 /**

@@ -7,11 +7,6 @@
 
 /**
  *
- */
-require_once( 'SpecialShortpages.php' );
-
-/**
- *
  * @package MediaWiki
  * @subpackage SpecialPage
  */

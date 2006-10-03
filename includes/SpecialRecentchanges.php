@@ -624,7 +624,6 @@ function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment ) {
 	$fname = 'rcFormatDiff';
 	wfProfileIn( $fname );
 
-	require_once( 'DifferenceEngine.php' );
 	$skin = $wgUser->getSkin();
 	$completeText = '<p>' . $skin->formatComment( $comment ) . "</p>\n";
 

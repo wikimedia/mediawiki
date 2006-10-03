@@ -10,11 +10,6 @@
  * @package MediaWiki
  */
 
-/**
- * Depends on database
- */
-require_once( 'Database.php' );
-
 class DatabasePostgres extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;

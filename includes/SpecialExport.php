@@ -22,9 +22,6 @@
  * @subpackage SpecialPage
  */
 
-/** */
-require_once( 'Export.php' );
-
 /**
  *
  */
@@ -56,7 +53,7 @@ function wfSpecialExport( $page = '' ) {
 		);
 		$historyCheck = $wgRequest->getCheck( 'history' );
 		if ( $curonly ) {
-			$history = MW_EXPORT_CURRENT;
+			$history = WikiExporter::CURRENT;
 		} elseif ( !$historyCheck ) {
 			if ( $limit > 0 && $limit < $wgExportMaxHistory ) {
 				$history['limit'] = $limit;
@@ -73,14 +70,14 @@ function wfSpecialExport( $page = '' ) {
 		$page = $wgRequest->getText( 'pages', $page );
 		$historyCheck = $wgRequest->getCheck( 'history' );
 		if( $historyCheck ) {
-			$history = MW_EXPORT_FULL;
+			$history = WikiExporter::FULL;
 		} else {
-			$history = MW_EXPORT_CURRENT;
+			$history = WikiExporter::CURRENT;
 		}
 	}
 	if( !$wgExportAllowHistory ) {
 		// Override
-		$history = MW_EXPORT_CURRENT;
+		$history = WikiExporter::CURRENT;
 	}
 	
 	$list_authors = $wgRequest->getCheck( 'listauthors' );

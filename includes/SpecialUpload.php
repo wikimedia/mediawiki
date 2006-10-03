@@ -5,10 +5,7 @@
  * @subpackage SpecialPage
  */
 
-/**
- *
- */
-require_once 'Image.php';
+
 /**
  * Entry point
  */
@@ -887,7 +884,7 @@ class UploadForm {
 	 */
 	function verify( $tmpfile, $extension ) {
 		#magically determine mime type
-		$magic=& wfGetMimeMagic();
+		$magic=& MimeMagic::singleton();
 		$mime= $magic->guessMimeType($tmpfile,false);
 
 		$fname= "SpecialUpload::verify";
@@ -936,7 +933,7 @@ class UploadForm {
 	function verifyExtension( $mime, $extension ) {
 		$fname = 'SpecialUpload::verifyExtension';
 
-		$magic =& wfGetMimeMagic();
+		$magic =& MimeMagic::singleton();
 
 		if ( ! $mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
 			if ( ! $magic->isRecognizableExtension( $extension ) ) {

@@ -5,13 +5,6 @@
  * @package MediaWiki
  */
 
-/** See Database::makeList() */
-define( 'LIST_COMMA', 0 );
-define( 'LIST_AND', 1 );
-define( 'LIST_SET', 2 );
-define( 'LIST_NAMES', 3);
-define( 'LIST_OR', 4);
-
 /** Number of times to re-try an operation in case of deadlock */
 define( 'DEADLOCK_TRIES', 4 );
 /** Minimum time to wait before retry, in microseconds */
