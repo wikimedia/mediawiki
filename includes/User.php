@@ -1094,16 +1094,49 @@ class User {
 				}
 			}
 			$this->invalidateCache();
-			$this->saveSettings();
+		}
+	}
+	
+	/**
+	 * Generate a current or new-future timestamp to be stored in the
+	 * user_touched field when we update things.
+	 */
+	private static function newTouchedTimestamp() {
+		global $wgClockSkewFudge;
+		return wfTimestamp( TS_MW, time() + $wgClockSkewFudge );
+	}
+	
+	/**
+	 * Clear user data from memcached.
+	 * Use after applying fun updates to the database; caller's
+	 * responsibility to update user_touched if appropriate.
+	 *
+	 * Called implicitly from invalidateCache() and saveSettings().
+	 */
+	private function clearUserCache() {
+		if( $this->mId ) {
+			global $wgMemc, $wgDBname;
+			$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 		}
 	}
 
+	/**
+	 * Immediately touch the user data cache for this account.
+	 * Updates user_touched field, and removes account data from memcached
+	 * for reload on the next hit.
+	 */
 	function invalidateCache() {
-		global $wgClockSkewFudge;
-		$this->loadFromDatabase();
-		$this->mTouched = wfTimestamp(TS_MW, time() + $wgClockSkewFudge );
-		# Don't forget to save the options after this or
-		# it won't take effect!
+		if( $this->mId ) {
+			$this->mTouched = self::newTouchedTimestamp();
+			
+			$dbw =& wfGetDB( DB_MASTER );
+			$dbw->update( 'user',
+				array( 'user_touched' => $dbw->timestamp( $this->mTouched ) ),
+				array( 'user_id' => $this->mId ),
+				__METHOD__ );
+			
+			$this->clearUserCache();
+		}
 	}
 
 	function validateCache( $timestamp ) {
@@ -1252,7 +1285,6 @@ class User {
 		$val = str_replace( "\r", "\n", $val );
 		$val = str_replace( "\n", " ", $val );
 		$this->mOptions[$oname] = $val;
-		$this->invalidateCache();
 	}
 
 	function getRights() {
@@ -1303,7 +1335,6 @@ class User {
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups() );
 
 		$this->invalidateCache();
-		$this->saveSettings();
 	}
 
 	/**
@@ -1324,7 +1355,6 @@ class User {
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups() );
 
 		$this->invalidateCache();
-		$this->saveSettings();
 	}
 
 
@@ -1579,13 +1609,15 @@ class User {
 
 	/**
 	 * Save object settings into database
+	 * @fixme Only rarely do all these fields need to be set!
 	 */
 	function saveSettings() {
-		global $wgMemc, $wgDBname;
 		$fname = 'User::saveSettings';
 
 		if ( wfReadOnly() ) { return; }
 		if ( 0 == $this->mId ) { return; }
+		
+		$this->mTouched = self::newTouchedTimestamp();
 
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
@@ -1603,7 +1635,7 @@ class User {
 				'user_id' => $this->mId
 			), $fname
 		);
-		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
+		$this->clearUserCache();
 	}
 
 

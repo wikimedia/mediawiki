@@ -255,6 +255,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6889) PHP notices in thumb.php with missing params
 * Cleaner error behavior on thumb.php with invalid page selection
 * (bug 6617) Validate timestamps on Special:Undelete
+* Do fewer unnecessary full writes of user rows; only update user_touched
+  for watch/unwatch, group membership change, and login operations
 
 
 == Languages updated ==

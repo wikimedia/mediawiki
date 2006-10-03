@@ -1464,7 +1464,6 @@ class Article {
 		
 		if (wfRunHooks('WatchArticle', array(&$wgUser, &$this))) {
 			$wgUser->addWatch( $this->mTitle );
-			$wgUser->saveSettings();
 
 			return wfRunHooks('WatchArticleComplete', array(&$wgUser, &$this));
 		}
@@ -1512,7 +1511,6 @@ class Article {
 
 		if (wfRunHooks('UnwatchArticle', array(&$wgUser, &$this))) {
 			$wgUser->removeWatch( $this->mTitle );
-			$wgUser->saveSettings();
 
 			return wfRunHooks('UnwatchArticleComplete', array(&$wgUser, &$this));
 		}
