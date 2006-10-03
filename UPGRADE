@@ -28,9 +28,9 @@ you take a complete backup of your wiki database and files and verify it. While
 the upgrade scripts are somewhat robust, there is no guarantee that things will
 not fail, leaving the database in an inconsistent state.
 
-Refer to the MySQL documentation for information on backing up a database. For
-information on making copies of files, consult the documentation for your
-operating system.
+Refer to the MySQL or Postgres documentation for information on backing up a 
+database. For information on making copies of files, consult the documentation 
+for your operating system.
 
 === Perform the file upgrade ===
 
@@ -175,7 +175,7 @@ LocalSettings.php are not accidentally made public, as this contains
 a database password.)
 
 To back up the database, use the tools provided by your service provider
-(if applicable) or the standard mysqldump program.
+(if applicable) or the standard mysqldump or pg_dump programs.
 
 For general help on mysqldump:
 http://dev.mysql.com/doc/mysql/en/mysqldump.html
@@ -185,8 +185,18 @@ some cases damage data in your wiki. If necessary, set the charset
 option to 'latin1' to avoid the conversion. Fore more info see:
 http://mail.wikipedia.org/pipermail/wikitech-l/2004-November/026359.html
 
+For general help on pg_dump:
+http://www.postgresql.org/docs/current/static/app-pgdump.html
+
 
 == Caveats ==
+
+=== Postgres ===
+
+Postgres support is new, and much of the upgrade instructions may 
+not apply. The schema was changed significantly from 1.7 to 1.8, 
+so you will need to at least use the update.php or web installer, 
+as described above.
 
 
 === Upgrading from 1.4.2 or earlier ===
