@@ -31,13 +31,11 @@ if (!defined('MEDIAWIKI')) {
 
 abstract class ApiQueryBase extends ApiBase {
 
-	private $mQueryModule, $mModuleName, $mIsGenerator;
-
-	public function __construct($query, $moduleName, $isGenerator = false) {
-		parent :: __construct($query->getMain());
+	private $mQueryModule;
+    
+	public function __construct($query, $moduleName, $paramPrefix = '') {
+		parent :: __construct($query->getMain(), $moduleName, $paramPrefix);
 		$this->mQueryModule = $query;
-		$this->mModuleName = $moduleName;
-		$this->mIsGenerator = $isGenerator;
 	}
 
 	/**
@@ -55,23 +53,6 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Get the name of the query being executed by this instance 
-	 */
-	public function getModuleName() {
-		return $this->mModuleName;
-	}
-
-	/**
-	 * Overrides base class to prepend 'g' to every generator parameter
-	 */
-	public function extractRequestParams() {
-		$prefix = '';
-		if($this->isGenerator())
-			$prefix = 'g';
-		return parent :: extractRequestParams($prefix);
-	}
-	
-	/**
 	 * Get the Query database connection (readonly)
 	 */
 	protected function getDB() {
@@ -86,24 +67,10 @@ abstract class ApiQueryBase extends ApiBase {
 		return $this->mQueryModule->getPageSet();
 	}
 
-	/**
-	 * Return true if this instance is being used as a generator.
-	 */
-	protected function isGenerator() {
-		return $this->mIsGenerator;
-	}
-
-	/**
-	 * Derived classes return true when they can be used as title generators for other query modules.
-	 */
-	public function getCanGenerate() {
-		return false;
-	}
-
 	public static function titleToKey($title) {
 		return str_replace(' ', '_', $title);
 	}
-	
+
 	public static function keyToTitle($key) {
 		return str_replace('_', ' ', $key);
 	}
@@ -111,5 +78,35 @@ abstract class ApiQueryBase extends ApiBase {
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
+}
+
+abstract class ApiQueryGeneratorBase extends ApiQueryBase {
+
+	private $mIsGenerator;
+
+	public function __construct($query, $moduleName, $paramPrefix = '') {
+		parent :: __construct($query, $moduleName, $paramPrefix);
+		$mIsGenerator = false;
+	}
+
+	public function setGeneratorMode() {
+		$this->mIsGenerator = true;
+	}
+
+	/**
+	 * Overrides base class to prepend 'g' to every generator parameter
+	 */
+	public function encodeParamName($paramName) {
+		if ($this->mIsGenerator)
+			return 'g' . parent :: encodeParamName($paramName);
+		else
+			return parent :: encodeParamName($paramName);
+	}
+
+	/**
+	 * Execute this module as a generator
+	 * @param $resultPageSet PageSet: All output should be appended to this object
+	 */
+	public abstract function executeGenerator($resultPageSet);
 }
 ?>

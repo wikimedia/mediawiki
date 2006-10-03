@@ -31,15 +31,14 @@ if (!defined('MEDIAWIKI')) {
 
 abstract class ApiFormatBase extends ApiBase {
 
-	private $mIsHtml, $mFormat, $mOriginalFormat;
+	private $mIsHtml, $mFormat;
 
 	/**
 	* Constructor
 	*/
 	public function __construct($main, $format) {
-		parent :: __construct($main);
+		parent :: __construct($main, $format);
 
-		$this->mOriginalFormat = $format;
 		$this->mIsHtml = (substr($format, -2, 2) === 'fm'); // ends with 'fm'
 		if ($this->mIsHtml)
 			$this->mFormat = substr($format, 0, -2); // remove ending 'fm'
@@ -152,7 +151,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * Returns usage examples for this format.
 	 */
 	protected function getExamples() {
-		return 'api.php?action=query&meta=siteinfo&si=namespaces&format=' . $this->mOriginalFormat;
+		return 'api.php?action=query&meta=siteinfo&si=namespaces&format=' . $this->getModuleName();
 	}
 
 	public static function getBaseVersion() {

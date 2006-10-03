@@ -32,17 +32,17 @@ if (!defined('MEDIAWIKI')) {
 class ApiLogin extends ApiBase {
 
 	public function __construct($main, $action) {
-		parent :: __construct($main);
+		parent :: __construct($main, $action, 'lg');
 	}
 
 	public function execute() {
-		$lgname = $lgpassword = $lgdomain = null;
+		$name = $password = $domain = null;
 		extract($this->extractRequestParams());
 
 		$params = new FauxRequest(array (
-			'wpName' => $lgname,
-			'wpPassword' => $lgpassword,
-			'wpDomain' => $lgdomain,
+			'wpName' => $name,
+			'wpPassword' => $password,
+			'wpDomain' => $domain,
 			'wpRemember' => ''
 		));
 
@@ -89,23 +89,29 @@ class ApiLogin extends ApiBase {
 
 	protected function getAllowedParams() {
 		return array (
-			'lgname' => '',
-			'lgpassword' => '',
-			'lgdomain' => null
+			'name' => '',
+			'password' => '',
+			'domain' => null
 		);
 	}
 
 	protected function getParamDescription() {
 		return array (
-			'lgname' => 'User Name',
-			'lgpassword' => 'Password',
-			'lgdomain' => 'Domain (optional)'
+			'name' => 'User Name',
+			'password' => 'Password',
+			'domain' => 'Domain (optional)'
 		);
 	}
 
 	protected function getDescription() {
 		return array (
 			'This module is used to login and get the authentication tokens.'
+		);
+	}
+	
+	protected function getExamples() {
+		return array(
+			'api.php?action=login&lgname=user&lgpassword=password'
 		);
 	}
 

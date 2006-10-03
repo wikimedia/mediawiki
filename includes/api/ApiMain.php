@@ -41,7 +41,7 @@ class ApiMain extends ApiBase {
 	*/
 	public function __construct($apiStartTime, $modules, $formats, $enableWrite) {
 		// Special handling for the main module: $parent === $this
-		parent :: __construct($this);
+		parent :: __construct($this, 'main');
 
 		$this->mModules = $modules;
 		$this->mModuleNames = array_keys($modules);

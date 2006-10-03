@@ -65,7 +65,7 @@ class ApiQuery extends ApiBase {
 	private $mSlaveDB = null;
 
 	public function __construct($main, $action) {
-		parent :: __construct($main);
+		parent :: __construct($main, $action);
 		$this->mPropModuleNames = array_keys($this->mQueryPropModules);
 		$this->mListModuleNames = array_keys($this->mQueryListModules);
 		$this->mMetaModuleNames = array_keys($this->mQueryMetaModules);
@@ -104,12 +104,6 @@ class ApiQuery extends ApiBase {
 		//
 		$this->mPageSet = new ApiPageSet($this);
 
-		//
-		// If generator is provided, get a new dataset to work on
-		//
-		if (isset ($generator))
-			$this->executeGenerator($generator);
-
 		// Instantiate required modules
 		$modules = array ();
 		if (isset ($prop))
@@ -129,16 +123,24 @@ class ApiQuery extends ApiBase {
 		}
 
 		//
-		// Get page information for the given pageSet
+		// If given, execute generator to substitute user supplied data with generated data.  
+		//
+		if (isset ($generator))
+			$this->executeGenerator($generator);
+
+		//
+		// Populate page information for the given pageSet
 		//
 		$this->mPageSet->execute();
 
 		//
-		// Record page information
+		// Record page information (title, namespace, if exists, etc)
 		//
 		$this->outputGeneralPageInfo();
 
+		//
 		// Execute all requested modules.
+		//
 		foreach ($modules as $module) {
 			$module->profileIn();
 			$module->execute();
@@ -213,24 +215,37 @@ class ApiQuery extends ApiBase {
 	protected function executeGenerator($generatorName) {
 
 		// Find class that implements requested generator
-		if (isset ($this->mQueryListModules[$generatorName]))
+		if (isset ($this->mQueryListModules[$generatorName])) {
 			$className = $this->mQueryListModules[$generatorName];
-		elseif (isset ($this->mQueryPropModules[$generatorName])) $className = $this->mQueryPropModules[$generatorName];
-		else
+		}
+		elseif (isset ($this->mQueryPropModules[$generatorName])) {
+			$className = $this->mQueryPropModules[$generatorName];
+		} else {
 			ApiBase :: dieDebug(__METHOD__, "Unknown generator=$generatorName");
+		}
 
-		$generator = new $className ($this, $generatorName, true);
-		if (!$generator->getCanGenerate())
+		// Use current pageset as the result, and create a new one just for the generator 
+		$resultPageSet = $this->mPageSet;
+		$this->mPageSet = new ApiPageSet($this);
+
+		// Create and execute the generator
+		$generator = new $className ($this, $generatorName);
+		if (!$generator instanceof ApiQueryGeneratorBase)
 			$this->dieUsage("Module $generatorName cannot be used as a generator", "badgenerator");
-			
+
+		$generator->setGeneratorMode();
 		$generator->requestExtraData();
 
-		// execute pageSet here to get the data required by the generator module
+		// execute current pageSet to get the data for the generator module
 		$this->mPageSet->execute();
-
+		
+		// populate resultPageSet with the generator output
 		$generator->profileIn();
-		$this->mPageSet = $generator->execute();
+		$generator->executeGenerator($resultPageSet);
 		$generator->profileOut();
+		
+		// Swap the resulting pageset back in
+		$this->mPageSet = $resultPageSet;
 	}
 
 	protected function getAllowedParams() {
@@ -248,8 +263,8 @@ class ApiQuery extends ApiBase {
 				ApiBase :: PARAM_TYPE => $this->mMetaModuleNames
 			),
 			'generator' => array (
-			    ApiBase::PARAM_TYPE => $this->mAllowedGenerators
-			)			
+				ApiBase :: PARAM_TYPE => $this->mAllowedGenerators
+			)
 		);
 	}
 
@@ -286,7 +301,7 @@ class ApiQuery extends ApiBase {
 			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;
-			if ($module->getCanGenerate())
+			if ($module instanceof ApiQueryGeneratorBase)
 				$msg .= "Generator:\n  This module may be used as a generator\n";
 			$moduleDscriptions[] = $msg;
 		}
@@ -327,7 +342,7 @@ class ApiQuery extends ApiBase {
 
 	public function getVersion() {
 		$psModule = new ApiPageSet($this);
-		$vers = array();
+		$vers = array ();
 		$vers[] = __CLASS__ . ': $Id$';
 		$vers[] = $psModule->getVersion();
 		return $vers;
