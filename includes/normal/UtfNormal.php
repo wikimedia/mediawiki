@@ -33,7 +33,7 @@
  */
 
 /** */
-require_once 'UtfNormalUtil.php';
+require_once dirname(__FILE__).'/UtfNormalUtil.php';
 
 global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp;
 $utfCombiningClass = NULL;
