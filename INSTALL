@@ -8,7 +8,7 @@ the necessary prerequesites available.
 
 Required software:
 * Web server with PHP 5.x or higher.
-* A MySQL server, 4.0.14 or higher.
+* A MySQL server, 4.0.14 or higher OR a Postgres server, 8.1 or higher
 
 MediaWiki is developed and tested mainly on Unix/Linux
 platforms, but should work on Windows as well.
