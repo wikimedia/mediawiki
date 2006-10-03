@@ -157,7 +157,7 @@ class LoadBalancer {
 						$i = $this->getRandomNonLagged( $loads );
 						if ( $i === false && count( $loads ) != 0 )  {
 							# All slaves lagged. Switch to read-only mode
-							$wgReadOnly = wfMsgNoDB( 'readonly_lag' );
+							$wgReadOnly = wfMsgNoDBForContent( 'readonly_lag' );
 							$i = $this->pickRandom( $loads );
 						}
 					}
