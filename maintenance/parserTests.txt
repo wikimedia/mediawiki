@@ -2694,6 +2694,94 @@ pst title=[[Somearticle (context)]]
 [[Article (context)|Article]]
 !! end
 
+!! test
+pre-save transform: context links ("pipe trick") with comma in title
+!! options
+pst title=[[Someplace, Somewhere]]
+!! input
+[[|Otherplace]]
+[[Otherplace, Elsewhere|]]
+[[Otherplace, Elsewhere, Anywhere|]]
+!! result
+[[Otherplace, Somewhere|Otherplace]]
+[[Otherplace, Elsewhere|Otherplace]]
+[[Otherplace, Elsewhere, Anywhere|Otherplace]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with parens and comma
+!! options
+pst title=[[Someplace (IGNORED), Somewhere]]
+!! input
+[[|Otherplace]]
+[[Otherplace (place), Elsewhere|]]
+!! result
+[[Otherplace, Somewhere|Otherplace]]
+[[Otherplace (place), Elsewhere|Otherplace]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with comma and parens
+!! options
+pst title=[[Who, me? (context)]]
+!! input
+[[|Yes, you.]]
+[[Me, Myself, and I (1937 song)|]]
+!! result
+[[Yes, you. (context)|Yes, you.]]
+[[Me, Myself, and I (1937 song)|Me, Myself, and I]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace
+!! options
+pst title=[[Ns:Somearticle]]
+!! input
+[[|Article]]
+!! result
+[[Ns:Article|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace and parens
+!! options
+pst title=[[Ns:Somearticle (context)]]
+!! input
+[[|Article]]
+!! result
+[[Ns:Article (context)|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace and comma
+!! options
+pst title=[[Ns:Somearticle, Context, Whatever]]
+!! input
+[[|Article]]
+!! result
+[[Ns:Article, Context, Whatever|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace, comma and parens
+!! options
+pst title=[[Ns:Somearticle, Context (context)]]
+!! input
+[[|Article]]
+!! result
+[[Ns:Article (context)|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace, parens and comma
+!! options
+pst title=[[Ns:Somearticle (IGNORED), Context]]
+!! input
+[[|Article]]
+!! result
+[[Ns:Article, Context|Article]]
+!! end
+
 
 ###
 ### Message transform tests
