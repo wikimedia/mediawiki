@@ -297,7 +297,7 @@ CONTROL;
 	 * Returns false on error
 	 */
 	function getDiffBody() {
-		global $wgMemc, $wgDBname;
+		global $wgMemc;
 		$fname = 'DifferenceEngine::getDiffBody';
 		wfProfileIn( $fname );
 		
@@ -305,7 +305,7 @@ CONTROL;
 		$key = false;
 		if ( $this->mOldid && $this->mNewid ) {
 			// Try cache
-			$key = "$wgDBname:diff:oldid:{$this->mOldid}:newid:{$this->mNewid}";
+			$key = wfMemcKey( 'diff', 'oldid', $this->mOldid, 'newid', $this->mNewid );
 			$difftext = $wgMemc->get( $key );
 			if ( $difftext ) {
 				wfIncrStats( 'diff_cache_hit' );

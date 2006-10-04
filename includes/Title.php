@@ -392,13 +392,13 @@ class Title {
 	 * @access public
 	 */
 	function getInterwikiLink( $key )  {
-		global $wgMemc, $wgDBname, $wgInterwikiExpiry;
+		global $wgMemc, $wgInterwikiExpiry;
 		global $wgInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
 
 		$key = strtolower( $key );
 
-		$k = $wgDBname.':interwiki:'.$key;
+		$k = wfMemcKey( 'interwiki', $key );
 		if( array_key_exists( $k, Title::$interwikiCache ) ) {
 			return Title::$interwikiCache[$k]->iw_url;
 		}
@@ -445,18 +445,18 @@ class Title {
 	 * @access public
 	 */
 	function getInterwikiCached( $key ) {
-		global $wgDBname, $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
+		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
 		static $db, $site;
 
 		if (!$db)
 			$db=dba_open($wgInterwikiCache,'r','cdb');
 		/* Resolve site name */
 		if ($wgInterwikiScopes>=3 and !$site) {
-			$site = dba_fetch("__sites:{$wgDBname}", $db);
+			$site = dba_fetch('__sites:' . wfWikiID(), $db);
 			if ($site=="")
 				$site = $wgInterwikiFallbackSite;
 		}
-		$value = dba_fetch("{$wgDBname}:{$key}", $db);
+		$value = dba_fetch( wfMemcKey( $key ), $db);
 		if ($value=='' and $wgInterwikiScopes>=3) {
 			/* try site-level */
 			$value = dba_fetch("_{$site}:{$key}", $db);
@@ -476,7 +476,7 @@ class Title {
 			$s->iw_url=$url;
 			$s->iw_local=(int)$local;
 		}
-		Title::$interwikiCache[$wgDBname.':interwiki:'.$key] = $s;
+		Title::$interwikiCache[wfMemcKey( 'interwiki', $key )] = $s;
 		return $s->iw_url;
 	}
 	/**
@@ -488,12 +488,10 @@ class Title {
 	 * @access public
 	 */
 	function isLocal() {
-		global $wgDBname;
-
 		if ( $this->mInterwiki != '' ) {
 			# Make sure key is loaded into cache
 			$this->getInterwikiLink( $this->mInterwiki );
-			$k = $wgDBname.':interwiki:' . $this->mInterwiki;
+			$k = wfMemcKey( 'interwiki', $this->mInterwiki );
 			return (bool)(Title::$interwikiCache[$k]->iw_local);
 		} else {
 			return true;
@@ -508,13 +506,11 @@ class Title {
 	 * @access public
 	 */
 	function isTrans() {
-		global $wgDBname;
-
 		if ($this->mInterwiki == '')
 			return false;
 		# Make sure key is loaded into cache
 		$this->getInterwikiLink( $this->mInterwiki );
-		$k = $wgDBname.':interwiki:' . $this->mInterwiki;
+		$k = wfMemcKey( 'interwiki', $this->mInterwiki );
 		return (bool)(Title::$interwikiCache[$k]->iw_trans);
 	}
 

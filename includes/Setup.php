@@ -145,7 +145,7 @@ $wgLang = new StubUserLang;
 $wgOut = new StubObject( 'wgOut', 'OutputPage' );
 $wgParser = new StubObject( 'wgParser', 'Parser' );
 $wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache', 
-	array( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname) );
+	array( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, wfWikiID() ) );
 
 wfProfileOut( $fname.'-globals' );
 wfProfileIn( $fname.'-User' );

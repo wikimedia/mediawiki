@@ -13,8 +13,7 @@
  * @todo document
  */
 function memsess_key( $id ) {
-	global $wgDBname;
-	return "$wgDBname:session:$id";
+	return wfMemcKey( 'session', $id );
 }
 
 /**

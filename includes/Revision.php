@@ -685,8 +685,8 @@ class Revision {
 		wfProfileIn( $fname );
 		
 		// Caching may be beneficial for massive use of external storage
-		global $wgRevisionCacheExpiry, $wgMemc, $wgDBname;
-		$key = "$wgDBname:revisiontext:textid:" . $this->getTextId();
+		global $wgRevisionCacheExpiry, $wgMemc;
+		$key = wfMemcKey( 'revisiontext', 'textid', $this->getTextId() );
 		if( $wgRevisionCacheExpiry ) {
 			$text = $wgMemc->get( $key );
 			if( is_string( $text ) ) {

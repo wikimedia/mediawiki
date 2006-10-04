@@ -37,8 +37,7 @@ class LinkCache {
 	}
 
 	/* private */ function getKey( $title ) {
-		global $wgDBname;
-		return $wgDBname.':lc:title:'.$title;
+		return wfMemcKey( 'lc', 'title', $title );
 	}
 
 	/**

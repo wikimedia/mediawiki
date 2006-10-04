@@ -47,17 +47,17 @@ while( $row = $dbw->fetchObject( $result ) ) {
 		array( 'rev_page' => $pageId ),
 		$fname );
 	if( !$latestTime ) {
-		echo "$wgDBname $pageId [[$name]] can't find latest rev time?!\n";
+		echo wfWikiID()." $pageId [[$name]] can't find latest rev time?!\n";
 		continue;
 	}
 
 	$revision = Revision::loadFromTimestamp( $dbw, $title, $latestTime );
 	if( is_null( $revision ) ) {
-		echo "$wgDBname $pageId [[$name]] latest time $latestTime, can't find revision id\n";
+		echo wfWikiID()." $pageId [[$name]] latest time $latestTime, can't find revision id\n";
 		continue;
 	}
 	$id = $revision->getId();
-	echo "$wgDBname $pageId [[$name]] latest time $latestTime, rev id $id\n";
+	echo wfWikiID()." $pageId [[$name]] latest time $latestTime, rev id $id\n";
 	if( $fixit ) {
 		$article = new Article( $title );
 		$article->updateRevisionOn( $dbw, $revision );

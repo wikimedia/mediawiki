@@ -1509,14 +1509,14 @@ END;
 	 * @private
 	 */
 	function buildSidebar() {
-		global $wgDBname, $parserMemc, $wgEnableSidebarCache;
+		global $parserMemc, $wgEnableSidebarCache;
 		global $wgLang, $wgContLang;
 
 		$fname = 'SkinTemplate::buildSidebar';
 
 		wfProfileIn( $fname );
 
-		$key = "{$wgDBname}:sidebar";
+		$key = wfMemcKey( 'sidebar' );
 		$cacheSidebar = $wgEnableSidebarCache &&
 			($wgLang->getCode() == $wgContLang->getCode());
 		

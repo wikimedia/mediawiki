@@ -35,8 +35,7 @@ class WatchedItem {
 	 * Returns the memcached key for this item
 	 */
 	function watchKey() {
-		global $wgDBname;
-		return "$wgDBname:watchlist:user:$this->id:page:$this->ns:$this->ti";
+		return wfMemcKey( 'watchlist', 'user', $this->id, 'page', $this->ns, $this->ti );
 	}
 
 	/**

@@ -10,7 +10,6 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 	function getFunctionReport() {
 		global $wgUDPProfilerHost;
 		global $wgUDPProfilerPort;
-		global $wgDBname;
 
 		if ( $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
 			# Less than minimum, ignore
@@ -22,7 +21,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 		$plength=0;
 		$packet="";
 		foreach ($this->mCollated as $entry=>$pfdata) {
-			$pfline=sprintf ("%s %s %d %f %f %f %f %s\n", $wgDBname,"-",$pfdata['count'],
+			$pfline=sprintf ("%s %s %d %f %f %f %f %s\n", wfWikiID(),"-",$pfdata['count'],
 				$pfdata['cpu'],$pfdata['cpu_sq'],$pfdata['real'],$pfdata['real_sq'],$entry);
 			$length=strlen($pfline);
 			/* printf("<!-- $pfline -->"); */

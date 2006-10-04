@@ -195,7 +195,7 @@ class LoginForm {
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
 		global $wgEnableSorbs, $wgProxyWhitelist;
-		global $wgMemc, $wgAccountCreationThrottle, $wgDBname;
+		global $wgMemc, $wgAccountCreationThrottle;
 		global $wgAuth, $wgMinimalPasswordLength;
 
 		// If the user passes an invalid domain, something is fishy
@@ -258,7 +258,7 @@ class LoginForm {
 		}
 
 		if ( $wgAccountCreationThrottle ) {
-			$key = $wgDBname.':acctcreate:ip:'.$ip;
+			$key = wfMemcKey( 'acctcreate', 'ip', $ip );
 			$value = $wgMemc->incr( $key );
 			if ( !$value ) {
 				$wgMemc->set( $key, 1, 86400 );

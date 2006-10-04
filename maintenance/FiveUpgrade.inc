@@ -159,8 +159,7 @@ class FiveUpgrade {
 	 * @access private
 	 */
 	function log( $message ) {
-		global $wgDBname;
-		echo $wgDBname . ' ' . wfTimestamp( TS_DB ) . ': ' . $message . "\n";
+		echo wfWikiID() . ' ' . wfTimestamp( TS_DB ) . ': ' . $message . "\n";
 		flush();
 	}
 

@@ -121,12 +121,12 @@ class Image
 	 * Returns an array, first element is the local cache key, second is the shared cache key, if there is one
 	 */
 	function getCacheKeys( ) {
-		global $wgDBname, $wgUseSharedUploads, $wgSharedUploadDBname, $wgCacheSharedUploads;
+		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgCacheSharedUploads;
 
 		$hashedName = md5($this->name);
-		$keys = array( "$wgDBname:Image:$hashedName" );
+		$keys = array( wfMemcKey( 'Image', $hashedName ) );
 		if ( $wgUseSharedUploads && $wgSharedUploadDBname && $wgCacheSharedUploads ) {
-			$keys[] = "$wgSharedUploadDBname:Image:$hashedName";
+			$keys[] = wfForeignMemcKey( $wgSharedUploadDBname, false, 'Image', $hashedName );
 		}
 		return $keys;
 	}

@@ -8,7 +8,7 @@ if ( count( $args ) == 0 ) {
 	exit(1);
 }
 
-echo "Deleting revision(s) " . implode( ',', $args ) . " from $wgDBname...\n";
+echo "Deleting revision(s) " . implode( ',', $args ) . " from ".wfWikiID()."...\n";
 
 $affected = 0;
 foreach ( $args as $revID ) {

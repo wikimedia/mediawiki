@@ -26,7 +26,6 @@ global $wgLanguageNames;
 require_once( 'Names.php' );
 
 global $wgInputEncoding, $wgOutputEncoding;
-global $wgDBname, $wgMemc;
 
 /**
  * These are always UTF-8, they exist only for backwards compatibility
@@ -1462,7 +1461,7 @@ class Language {
 	 */
 	static function loadLocalisation( $code, $disableCache = false ) {
 		static $recursionGuard = array();
-		global $wgMemc, $wgDBname;
+		global $wgMemc;
 
 		if ( !$code ) {
 			throw new MWException( "Invalid language code requested" );
@@ -1486,7 +1485,7 @@ class Language {
 			}
 
 			# Try the global cache
-			$memcKey = "$wgDBname:localisation:$code";
+			$memcKey = wfMemcKey('localisation', $code );
 			$cache = $wgMemc->get( $memcKey );
 			if ( $cache ) {
 				$expired = false;

@@ -319,7 +319,7 @@ function rcFilterByCategories ( &$rows , $categories , $any ) {
 }
 
 function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
-	global $messageMemc, $wgDBname, $wgFeedCacheTimeout;
+	global $messageMemc, $wgFeedCacheTimeout;
 	global $wgFeedClasses, $wgTitle, $wgSitename, $wgContLanguageCode;
 
 	if( !isset( $wgFeedClasses[$feedFormat] ) ) {
@@ -327,8 +327,8 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 		return false;
 	}
 
-	$timekey = "$wgDBname:rcfeed:$feedFormat:timestamp";
-	$key = "$wgDBname:rcfeed:$feedFormat:limit:$limit:minor:$hideminor";
+	$timekey = wfMemcKey( 'rcfeed', $feedFormat, 'timestamp' );
+	$key = wfMemcKey( 'rcfeed', $feedFormat, 'limit', $limit, 'minor', $hideminor );
 
 	$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchanges' ) .
 		' [' . $wgContLanguageCode . ']';

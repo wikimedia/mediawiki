@@ -33,7 +33,7 @@ class ParserCache {
 	}
 
 	function getKey( &$article, &$user ) {
-		global $wgDBname, $action;
+		global $action;
 		$hash = $user->getPageRenderingHash();
 		if( !$article->mTitle->userCanEdit() ) {
 			// section edit links are suppressed even if the user has them on
@@ -43,7 +43,7 @@ class ParserCache {
 		}
 		$pageid = intval( $article->getID() );
 		$renderkey = (int)($action == 'render');
-		$key = "$wgDBname:pcache:idhash:$pageid-$renderkey!$hash$edit";
+		$key = wfMemcKey( 'pcache', 'idhash', "$pageid-$renderkey!$hash$edit" );
 		return $key;
 	}
 

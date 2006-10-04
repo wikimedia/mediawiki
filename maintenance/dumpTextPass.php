@@ -190,9 +190,8 @@ class TextPassDumper extends BackupDumper {
 				$etats = '-';
 				$fetchrate = '-';
 			}
-			global $wgDBname;
 			$this->progress( sprintf( "%s: %s %d pages (%0.3f/sec), %d revs (%0.3f/sec), %0.1f%% prefetched, ETA %s [max %d]",
-				$now, $wgDBname, $this->pageCount, $rate, $this->revCount, $revrate, $fetchrate, $etats, $this->maxCount ) );
+				$now, wfWikiID(), $this->pageCount, $rate, $this->revCount, $revrate, $fetchrate, $etats, $this->maxCount ) );
 		}
 	}
 

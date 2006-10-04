@@ -189,11 +189,12 @@ function wfDebug( $text, $logonly = false ) {
  *                     log file is specified, (default true)
  */
 function wfDebugLog( $logGroup, $text, $public = true ) {
-	global $wgDebugLogGroups, $wgDBname;
+	global $wgDebugLogGroups;
 	if( $text{strlen( $text ) - 1} != "\n" ) $text .= "\n";
 	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
 		$time = wfTimestamp( TS_DB );
-		@error_log( "$time $wgDBname: $text", 3, $wgDebugLogGroups[$logGroup] );
+		$wiki = wfWikiID();
+		@error_log( "$time $wiki: $text", 3, $wgDebugLogGroups[$logGroup] );
 	} else if ( $public === true ) {
 		wfDebug( $text, true );
 	}
@@ -1377,7 +1378,7 @@ function swap( &$x, &$y ) {
 }
 
 function wfGetCachedNotice( $name ) {
-	global $wgOut, $parserMemc, $wgDBname;
+	global $wgOut, $parserMemc;
 	$fname = 'wfGetCachedNotice';
 	wfProfileIn( $fname );
 	
@@ -1388,7 +1389,7 @@ function wfGetCachedNotice( $name ) {
 		return( false );
 	}
 	
-	$cachedNotice = $parserMemc->get( $wgDBname . ':' . $name );
+	$cachedNotice = $parserMemc->get( wfMemcKey( $name ) );
 	if( is_array( $cachedNotice ) ) {
 		if( md5( $notice ) == $cachedNotice['hash'] ) {
 			$notice = $cachedNotice['html'];
@@ -1402,7 +1403,7 @@ function wfGetCachedNotice( $name ) {
 	if( $needParse ) {
 		if( is_object( $wgOut ) ) {
 			$parsed = $wgOut->parse( $notice );
-			$parserMemc->set( $wgDBname . ':' . $name, array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
+			$parserMemc->set( wfMemcKey( $name ), array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
 			$notice = $parsed;
 		} else {
 			wfDebug( 'wfGetCachedNotice called for ' . $name . ' with no $wgOut available' );
@@ -1541,8 +1542,8 @@ function wfMkdirParents( $fullDir, $mode = 0777 ) {
  * Increment a statistics counter
  */
  function wfIncrStats( $key ) {
-	 global $wgDBname, $wgMemc;
-	 $key = "$wgDBname:stats:$key";
+	 global $wgMemc;
+	 $key = wfMemcKey( 'stats', $key );
 	 if ( is_null( $wgMemc->incr( $key ) ) ) {
 		 $wgMemc->add( $key, 1 );
 	 }
@@ -2020,6 +2021,46 @@ function wfGetAllCallers() {
 				$frame["function"]; 
 			'),
 		array_reverse(debug_backtrace())));
+}
+
+/**
+ * Get a cache key
+ */
+function wfMemcKey( /*... */ ) {
+	global $wgDBprefix, $wgDBname;
+	$args = func_get_args();
+	if ( $wgDBprefix ) {
+		$key = "$wgDBname-$wgDBprefix:" . implode( ':', $args );
+	} else {
+		$key = $wgDBname . ':' . implode( ':', $args );
+	}
+	return $key;
+}
+
+/**
+ * Get a cache key for a foreign DB
+ */
+function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
+	$args = array_slice( func_get_args(), 2 );
+	if ( $prefix ) {
+		$key = "$db-$prefix:" . implode( ':', $args );
+	} else {
+		$key = $db . ':' . implode( ':', $args );
+	}
+	return $key;
+}
+
+/**
+ * Get an ASCII string identifying this wiki
+ * This is used as a prefix in memcached keys
+ */
+function wfWikiID() {
+	global $wgDBprefix, $wgDBname;
+	if ( $wgDBprefix ) {
+		return "$wgDBname-$wgDBprefix";
+	} else {
+		return $wgDBname;
+	}
 }
 
 ?>

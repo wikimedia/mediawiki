@@ -58,14 +58,14 @@ class MessageCache {
 	 * Try to load the cache from a local file
 	 */
 	function loadFromLocal( $hash ) {
-		global $wgLocalMessageCache, $wgDBname;
+		global $wgLocalMessageCache;
 
 		$this->mCache = false;
 		if ( $wgLocalMessageCache === false ) {
 			return;
 		}
 
-		$filename = "$wgLocalMessageCache/messages-$wgDBname";
+		$filename = "$wgLocalMessageCache/messages-" . wfWikiID();
 
 		wfSuppressWarnings();
 		$file = fopen( $filename, 'r' );
@@ -88,13 +88,13 @@ class MessageCache {
 	 * Save the cache to a local file
 	 */
 	function saveToLocal( $serialized, $hash ) {
-		global $wgLocalMessageCache, $wgDBname;
+		global $wgLocalMessageCache;
 
 		if ( $wgLocalMessageCache === false ) {
 			return;
 		}
 
-		$filename = "$wgLocalMessageCache/messages-$wgDBname";
+		$filename = "$wgLocalMessageCache/messages-" . wfWikiID();
 		$oldUmask = umask( 0 );
 		wfMkdirParents( $wgLocalMessageCache, 0777 );
 		umask( $oldUmask );
@@ -111,12 +111,12 @@ class MessageCache {
 	}
 
 	function loadFromScript( $hash ) {
-		global $wgLocalMessageCache, $wgDBname;
+		global $wgLocalMessageCache;
 		if ( $wgLocalMessageCache === false ) {
 			return;
 		}
 		
-		$filename = "$wgLocalMessageCache/messages-$wgDBname";
+		$filename = "$wgLocalMessageCache/messages-" . wfWikiID();
 		
 		wfSuppressWarnings();
 		$file = fopen( $filename, 'r' );
@@ -129,16 +129,16 @@ class MessageCache {
 		if ($hash!=$localHash) {
 			return;
 		}
-		require("$wgLocalMessageCache/messages-$wgDBname");
+		require("$wgLocalMessageCache/messages-" . wfWikiID());
 	}
 	
 	function saveToScript($array, $hash) {
-		global $wgLocalMessageCache, $wgDBname;
+		global $wgLocalMessageCache;
 		if ( $wgLocalMessageCache === false ) {
 			return;
 		}
 
-		$filename = "$wgLocalMessageCache/messages-$wgDBname";
+		$filename = "$wgLocalMessageCache/messages-" . wfWikiID();
 		$oldUmask = umask( 0 );
 		wfMkdirParents( $wgLocalMessageCache, 0777 );
 		umask( $oldUmask );
@@ -361,11 +361,11 @@ class MessageCache {
 	}
 
 	function replace( $title, $text ) {
-		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized, $parserMemc, $wgDBname;
+		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized, $parserMemc;
 
 		$this->lock();
 		$this->load();
-		$parserMemc->delete("$wgDBname:sidebar");
+		$parserMemc->delete(wfMemcKey('sidebar'));
 		if ( is_array( $this->mCache ) ) {
 			$this->mCache[$title] = $text;
 			$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
@@ -617,7 +617,7 @@ class MessageCache {
 	 * Clear all stored messages. Mainly used after a mass rebuild.
 	 */
 	function clear() {
-		global $wgLocalMessageCache, $wgDBname;
+		global $wgLocalMessageCache;
 		if( $this->mUseCache ) {
 			# Global cache
 			$this->mMemc->delete( $this->mMemcKey );

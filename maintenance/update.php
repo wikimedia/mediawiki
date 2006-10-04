@@ -15,7 +15,6 @@ require_once( "commandLine.inc" );
 require_once( "updaters.inc" );
 $wgTitle = Title::newFromText( "MediaWiki database updater" );
 $dbclass = 'Database' . ucfirst( $wgDBtype ) ;
-$dbc = new $dbclass;
 
 echo( "MediaWiki {$wgVersion} Updater\n\n" );
 
@@ -31,7 +30,7 @@ if( !isset( $wgDBadminuser ) || !isset( $wgDBadminpassword ) ) {
 
 # Attempt to connect to the database as a privileged user
 # This will vomit up an error if there are permissions problems
-$wgDatabase = $dbc->newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname, 1 );
+$wgDatabase = new $dbclass( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname, 1 );
 
 if( !$wgDatabase->isOpen() ) {
 	# Appears to have failed
@@ -40,7 +39,7 @@ if( !$wgDatabase->isOpen() ) {
 	exit();
 }
 
-print "Going to run database updates for $wgDBname\n";
+print "Going to run database updates for ".wfWikiID()."\n";
 print "Depending on the size of your database this may take a while!\n";
 
 if( !isset( $options['quick'] ) ) {
