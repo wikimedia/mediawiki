@@ -11,7 +11,7 @@
 	dictionaries: one for Cyrillics and Latin, and one for ekavian and
 	iyekavian.
 */
-require_once( dirname(__FILE__).'/LanguageConverter.php' );
+require_once( dirname(__FILE__).'/../LanguageConverter.php' );
 require_once( dirname(__FILE__).'/LanguageSr_ec.php' );
 require_once( dirname(__FILE__).'/LanguageSr_el.php' );
 

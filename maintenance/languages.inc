@@ -300,13 +300,7 @@ class languages {
 	 * @param $exif Treat the EXIF messages?
 	 */
 	function __construct( $exif = true ) {
-		global $IP;
-		$dir = opendir( "$IP/languages" );
-		while ( $file = readdir( $dir ) ) {
-			if ( preg_match( "/Messages([^.]*?)\.php$/", $file, $matches ) ) {
-				$this->mLanguages[] = str_replace( '_', '-', strtolower( substr( $matches[1], 0, 1 ) ) . substr( $matches[1], 1 ) );
-			}
-		}
+		$this->mLanguages = array_keys( Language::getLanguageNames( true ) );
 		sort( $this->mLanguages );
 		if ( !$exif ) {
 			$this->mOptionalMessages = array_merge( $this->mOptionalMessages, $this->mEXIFMessages );
@@ -331,8 +325,7 @@ class languages {
 		if ( isset( $this->mRawMessages[$code] ) ) {
 			return;
 		}
-		global $IP;
-		$filename = Language::getFileName( "$IP/languages/Messages", $code, '.php' );
+		$filename = Language::getMessagesFileName( $code );
 		if ( file_exists( $filename ) ) {
 			require( $filename );
 			if ( isset( $messages ) ) {

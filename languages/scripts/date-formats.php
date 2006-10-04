@@ -6,7 +6,7 @@ $ts = '20010115123456';
 $IP = dirname( __FILE__ ) . '/../..';
 require_once( "$IP/maintenance/commandLine.inc" );
 
-foreach ( glob( "$IP/languages/Messages*.php" ) as $filename ) {
+foreach ( glob( "$IP/languages/messages/Messages*.php" ) as $filename ) {
 	$base = basename( $filename );
 	if ( !preg_match( '/Messages(.*)\.php$/', $base, $m ) ) {
 		continue;

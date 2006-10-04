@@ -19,7 +19,7 @@ if ( $code == 'en' ) {
 	exit();
 }
 
-$filename = Language::getFileName( "$IP/languages/Messages", $code, '.php' );
+$filename = Language::getMessagesFileName( $code );
 if ( file_exists( $filename ) ) {
 	require( $filename );
 } else {
