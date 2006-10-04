@@ -259,6 +259,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for watch/unwatch, group membership change, and login operations
 * Restructured the languages directory, to avoid problems when people 
   untar MW 1.8 over the top of a 1.7 installation.  
+* (bug 6890) SQL query error on bad input to Pager lists 
+  due to negative LIMIT clause, caused by integer wraparound.
 
 == Languages updated ==
 

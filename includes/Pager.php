@@ -77,7 +77,7 @@ abstract class IndexPager implements Pager {
 		# HTML!
 		$this->mOffset = $this->mRequest->getText( 'offset' );
 		$this->mLimit = $this->mRequest->getInt( 'limit', $this->mDefaultLimit );
-		if ( $this->mLimit <= 0 ) {
+		if ( $this->mLimit <= 0 || $this->mLimit > 50000 ) {
 			$this->mLimit = $this->mDefaultLimit;
 		}
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
