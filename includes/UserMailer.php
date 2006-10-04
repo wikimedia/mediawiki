@@ -104,6 +104,11 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 
 		// Create the mail object using the Mail::factory method
 		$mail_object =& Mail::factory('smtp', $wgSMTP);
+		if( PEAR::isError( $mail_object ) ) {
+			wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
+			return $mail_object->getMessage();
+		}
+
 		wfDebug( "Sending mail via PEAR::Mail to $dest\n" );
 		$mailResult =& $mail_object->send($dest, $headers, $body);
 
