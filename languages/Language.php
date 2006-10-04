@@ -105,6 +105,7 @@ class Language {
 	 * Create a language object for a given language code
 	 */
 	static function factory( $code ) {
+		global $IP;
 		static $recursionLevel = 0;
 
 		if ( $code == 'en' ) {
@@ -1491,7 +1492,7 @@ class Language {
 				$expired = false;
 				# Check file modification times
 				foreach ( $cache['deps'] as $file => $mtime ) {
-					if ( filemtime( $file ) > $mtime ) {
+					if ( !file_exists( $file ) || filemtime( $file ) > $mtime ) {
 						$expired = true;
 						break;
 					}
@@ -1597,7 +1598,7 @@ class Language {
 		}
 		$expired = false;
 		foreach ( $cache['deps'] as $file => $mtime ) {
-			if ( filemtime( $file ) > $mtime ) {
+			if ( !file_exists( $file ) || filemtime( $file ) > $mtime ) {
 				$expired = true;
 				break;
 			}
