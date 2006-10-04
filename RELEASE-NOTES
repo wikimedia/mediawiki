@@ -264,6 +264,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed various bugs related to table prefixes, especially the interaction
   between table prefixes and memcached, which was formerly completely broken.
 * (bug 7004) PHP iconv() notice on bad password input to Special:Userlogin.
+* (bug 6826) Extend pre-save transform context link ("pipe trick")
+  syntax to pages with commas in title
 
 
 == Languages updated ==
