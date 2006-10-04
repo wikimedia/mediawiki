@@ -105,7 +105,6 @@ class Language {
 	 * Create a language object for a given language code
 	 */
 	static function factory( $code ) {
-		global $IP;
 		static $recursionLevel = 0;
 
 		if ( $code == 'en' ) {
@@ -113,11 +112,11 @@ class Language {
 		} else {
 			$class = 'Language' . str_replace( '-', '_', ucfirst( $code ) );
 			// Preload base classes to work around APC/PHP5 bug
-			if ( file_exists( "$IP/languages/$class.deps.php" ) ) {
-				include_once("$IP/languages/$class.deps.php");
+			if ( file_exists( "$IP/languages/classes/$class.deps.php" ) ) {
+				include_once("$IP/languages/classes/$class.deps.php");
 			}
-			if ( file_exists( "$IP/languages/$class.php" ) ) {
-				include_once("$IP/languages/$class.php");
+			if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
+				include_once("$IP/languages/classes/$class.php");
 			}
 		}
 
@@ -312,7 +311,7 @@ class Language {
 		}
 		
 		global $IP;
-		$messageFiles = glob( "$IP/languages/Messages*.php" );
+		$messageFiles = glob( "$IP/languages/messages/Messages*.php" );
 		$names = array();
 		foreach ( $messageFiles as $file ) {
 			if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $file, $m ) ) {
@@ -1440,6 +1439,16 @@ class Language {
 		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
 	}
 
+	static function getMessagesFileName( $code ) {
+		global $IP;
+		return self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
+	}
+
+	static function getClassFileName( $code ) {
+		global $IP;
+		return self::getFileName( "$IP/languages/classes/Language", $code, '.php' );
+	}
+	
 	static function getLocalisationArray( $code, $disableCache = false ) {
 		self::loadLocalisation( $code, $disableCache );
 		return self::$mLocalisationCache[$code];
@@ -1452,7 +1461,7 @@ class Language {
 	 */
 	static function loadLocalisation( $code, $disableCache = false ) {
 		static $recursionGuard = array();
-		global $wgMemc, $wgDBname, $IP;
+		global $wgMemc, $wgDBname;
 
 		if ( !$code ) {
 			throw new MWException( "Invalid language code requested" );
@@ -1509,8 +1518,7 @@ class Language {
 		}
 		
 		# Load the primary localisation from the source file
-		global $IP;
-		$filename = self::getFileName( "$IP/languages/Messages", $code, '.php' );
+		$filename = self::getMessagesFileName( $code );
 		if ( !file_exists( $filename ) ) {
 			wfDebug( "No localisation file for $code, using implicit fallback to en\n" );
 			$cache = array();
@@ -1700,7 +1708,6 @@ class Language {
 
 	static function getCaseMaps() {
 		static $wikiUpperChars, $wikiLowerChars;
-		global $IP;
 		if ( isset( $wikiUpperChars ) ) {
 			return array( $wikiUpperChars, $wikiLowerChars );
 		}

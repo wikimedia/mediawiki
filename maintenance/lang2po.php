@@ -137,7 +137,7 @@ $langTool = new languages();
 // Do all languages
 foreach ( $langTool->getMessages() as $langcode) {
 	echo "Loading messages for $langcode:\t";
-	require_once( Language::getFileName( "$IP/languages/Language", $langcode, ".php" ) );
+	require_once( Language::getClassFileName( $langcode ) );
 	$arr = 'wgAllMessages'.$langcode;
 	if(!@is_array($$arr)) {
 		echo "NONE FOUND\n";

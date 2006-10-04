@@ -80,7 +80,7 @@ function getMediawikiMessages($languageCode = 'En') {
 	// it might already be loaded in LocalSettings.php
 	if(!isset($$foo)) {
 		global $IP;
-		$langFile = $IP.'/languages/Language'.$languageCode.'.php';
+		$langFile = $IP.'/languages/classes/Language'.$languageCode.'.php';
 		if (file_exists( $langFile ) ) {
 			print "Including $langFile\n";
 			global $wgNamespaceNamesEn;

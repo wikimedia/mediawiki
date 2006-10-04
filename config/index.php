@@ -1528,10 +1528,10 @@ function getLanguageList() {
 
 	$codes = array();
 
-	$d = opendir( "../languages" );
+	$d = opendir( "../languages/messages" );
 	/* In case we are called from the root directory */
 	if (!$d)
-		$d = opendir( "languages");
+		$d = opendir( "languages/messages");
 	while( false !== ($f = readdir( $d ) ) ) {
 		$m = array();
 		if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $f, $m ) ) {
