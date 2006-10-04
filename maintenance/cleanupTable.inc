@@ -44,9 +44,8 @@ abstract class TableCleanup extends FiveUpgrade {
 		$estimatedTotalTime = $delta / $portion;
 		$eta = $this->startTime + $estimatedTotalTime;
 
-		global $wgDBname;
 		printf( "%s %s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
-			$wgDBname,
+			wfWikiID(),
 			wfTimestamp( TS_DB, intval( $now ) ),
 			$portion * 100.0,
 			$this->table,

@@ -138,7 +138,6 @@ class SkinTemplate extends Skin {
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgUseTrackbacks;
-		global $wgDBname;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgLang, $wgCanonicalNamespaceNames;
 
 		$fname = 'SkinTemplate::outputPage';
@@ -284,7 +283,7 @@ class SkinTemplate extends Skin {
 		}
 		$newtalks = $wgUser->getNewMessageLinks();
 
-		if (count($newtalks) == 1 && $newtalks[0]["wiki"] === $wgDBname) {
+		if (count($newtalks) == 1 && $newtalks[0]["wiki"] === wfWikiID() ) {
 			$usertitle = $this->mUser->getUserPage();
 			$usertalktitle = $usertitle->getTalkPage();
 			if( !$usertalktitle->equals( $this->mTitle ) ) {

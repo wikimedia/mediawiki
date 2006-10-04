@@ -553,11 +553,7 @@ class DBABagOStuff extends BagOStuff {
 			global $wgTmpDirectory;
 			$dir = $wgTmpDirectory;
 		}
-		global $wgDBname, $wgDBprefix;
-		$this->mFile = "$dir/mw-cache-$wgDBname";
-		if ( $wgDBprefix ) {
-			$this->mFile .= '-' . $wgDBprefix;
-		}
+		$this->mFile = "$dir/mw-cache-" . wfWikiID();
 		$this->mFile .= '.db';
 		$this->mHandler = $handler;
 	}

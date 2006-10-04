@@ -113,15 +113,14 @@ END
 }
 
 function checkDupes( $fixthem = false, $indexonly = false ) {
-	global $wgDBname;
 	$dbw =& wfGetDB( DB_MASTER );
 	if( $dbw->indexExists( 'cur', 'name_title' ) &&
 	    $dbw->indexUnique( 'cur', 'name_title' ) ) {
-		echo "$wgDBname: cur table has the current unique index; no duplicate entries.\n";
+		echo wfWikiID().": cur table has the current unique index; no duplicate entries.\n";
 	} elseif( $dbw->indexExists( 'cur', 'name_title_dup_prevention' ) ) {
-		echo "$wgDBname: cur table has a temporary name_title_dup_prevention unique index; no duplicate entries.\n";
+		echo wfWikiID().": cur table has a temporary name_title_dup_prevention unique index; no duplicate entries.\n";
 	} else {
-		echo "$wgDBname: cur table has the old non-unique index and may have duplicate entries.\n";
+		echo wfWikiID().": cur table has the old non-unique index and may have duplicate entries.\n";
 		if( !$indexonly ) {
 			fixDupes( $fixthem );
 		}

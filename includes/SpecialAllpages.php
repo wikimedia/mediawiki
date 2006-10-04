@@ -94,8 +94,8 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	$out = "";
 	$where = array( 'page_namespace' => $namespace );
 
-	global $wgMemc, $wgDBname;
-	$key = "$wgDBname:allpages:ns:$namespace";
+	global $wgMemc;
+	$key = wfMemcKey( 'allpages', 'ns', $namespace );
 	$lines = $wgMemc->get( $key );
 
 	if( !is_array( $lines ) ) {

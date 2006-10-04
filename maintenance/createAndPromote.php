@@ -18,8 +18,7 @@ if( !count( $args ) == 2 ) {
 $username = $args[0];
 $password = $args[1];
 
-global $wgDBname;
-echo( "{$wgDBname}: Creating and promoting User:{$username}..." );
+echo( wfWikiID() . ": Creating and promoting User:{$username}..." );
 
 # Validate username and check it doesn't exist
 $user = User::newFromName( $username );

@@ -145,7 +145,7 @@ class GenerateSitemap {
 	 * @param bool $compress Whether to compress the sitemap files
 	 */
 	function GenerateSitemap( $fspath, $path, $compress ) {
-		global $wgDBname, $wgScriptPath;
+		global $wgScriptPath;
 
 		$this->url_limit = 50000;
 		$this->size_limit = pow( 2, 20 ) * 10;
@@ -157,7 +157,7 @@ class GenerateSitemap {
 		$this->dbr =& wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
-		$this->findex = fopen( "{$this->fspath}sitemap-index-$wgDBname.xml", 'wb' );
+		$this->findex = fopen( "{$this->fspath}sitemap-index-" . wfWikiID() . ".xml", 'wb' );
 	}
 
 	/**
@@ -232,7 +232,7 @@ class GenerateSitemap {
 	 * @access public
 	 */
 	function main() {
-		global $wgDBname, $wgContLang;
+		global $wgContLang;
 
 		fwrite( $this->findex, $this->openIndex() );
 
@@ -314,11 +314,8 @@ class GenerateSitemap {
 	 * @return string
 	 */
 	function sitemapFilename( $namespace, $count ) {
-		global $wgDBname;
-
 		$ext = $this->compress ? '.gz' : '';
-
-		return "sitemap-$wgDBname-NS_$namespace-$count.xml$ext";
+		return "sitemap-".wfWikiID()."-NS_$namespace-$count.xml$ext";
 	}
 
 	/**

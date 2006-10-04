@@ -79,10 +79,8 @@ class UserDupes {
 	 * @return bool
 	 */
 	function checkDupes( $doDelete = false ) {
-		global $wgDBname;
-
 		if( $this->hasUniqueIndex() ) {
-			echo "$wgDBname already has a unique index on its user table.\n";
+			echo wfWikiID()." already has a unique index on its user table.\n";
 			return true;
 		}
 
@@ -92,7 +90,7 @@ class UserDupes {
 		$dupes = $this->getDupes();
 		$count = count( $dupes );
 
-		echo "Found $count accounts with duplicate records on $wgDBname.\n";
+		echo "Found $count accounts with duplicate records on ".wfWikiID().".\n";
 		$this->trimmed    = 0;
 		$this->reassigned = 0;
 		$this->failed     = 0;
@@ -114,9 +112,9 @@ class UserDupes {
 
 		if( $this->trimmed > 0 ) {
 			if( $doDelete ) {
-				echo "$this->trimmed duplicate user records were deleted from $wgDBname.\n";
+				echo "$this->trimmed duplicate user records were deleted from ".wfWikiID().".\n";
 			} else {
-				echo "$this->trimmed duplicate user accounts were found on $wgDBname which can be removed safely.\n";
+				echo "$this->trimmed duplicate user accounts were found on ".wfWikiID()." which can be removed safely.\n";
 			}
 		}
 

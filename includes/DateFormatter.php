@@ -105,13 +105,13 @@ class DateFormatter
 	 * @static
 	 */
 	function &getInstance() {
-		global $wgDBname, $wgMemc;
+		global $wgMemc;
 		static $dateFormatter = false;
 		if ( !$dateFormatter ) {
-			$dateFormatter = $wgMemc->get( "$wgDBname:dateformatter" );
+			$dateFormatter = $wgMemc->get( wfMemcKey( 'dateformatter' ) );
 			if ( !$dateFormatter ) {
 				$dateFormatter = new DateFormatter;
-				$wgMemc->set( "$wgDBname:dateformatter", $dateFormatter, 3600 );
+				$wgMemc->set( wfMemcKey( 'dateformatter' ), $dateFormatter, 3600 );
 			}
 		}
 		return $dateFormatter;

@@ -31,7 +31,7 @@ class Site {
 }
 
 function getRebuildInterwikiDump() {
-	global $langlist, $languageAliases, $prefixRewrites, $wgDBname;
+	global $langlist, $languageAliases, $prefixRewrites;
 
 	# Multi-language sites
 	# db suffix => db suffix, iw prefix, hostname

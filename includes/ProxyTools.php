@@ -75,7 +75,7 @@ function wfGetIP() {
  */
 function wfProxyCheck() {
 	global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
-	global $wgUseMemCached, $wgMemc, $wgDBname, $wgProxyMemcExpiry;
+	global $wgUseMemCached, $wgMemc, $wgProxyMemcExpiry;
 	global $wgProxyKey;
 
 	if ( !$wgBlockOpenProxies ) {
@@ -87,7 +87,7 @@ function wfProxyCheck() {
 	# Get MemCached key
 	$skip = false;
 	if ( $wgUseMemCached ) {
-		$mcKey = "$wgDBname:proxy:ip:$ip";
+		$mcKey = wfMemcKey( 'proxy', 'ip', $ip );
 		$mcValue = $wgMemc->get( $mcKey );
 		if ( $mcValue ) {
 			$skip = true;

@@ -125,8 +125,8 @@ class ImageBuilder extends FiveUpgrade {
 		// Fill in the new image info fields
 		$info = $this->imageInfo( $row->img_name );
 
-		global $wgMemc, $wgDBname;
-		$key = $wgDBname . ":Image:" . md5( $row->img_name );
+		global $wgMemc;
+		$key = wfMemcKey( "Image", md5( $row->img_name ) );
 		$wgMemc->delete( $key );
 
 		return array(

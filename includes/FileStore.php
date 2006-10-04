@@ -62,8 +62,7 @@ class FileStore {
 	}
 	
 	private static function lockName() {
-		global $wgDBname, $wgDBprefix;
-		return "MediaWiki.{$wgDBname}.{$wgDBprefix}FileStore";
+		return 'MediaWiki.' . wfWikiID() . '.FileStore';
 	}
 	
 	/**

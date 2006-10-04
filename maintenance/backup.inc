@@ -262,9 +262,8 @@ class BackupDumper {
 				$revrate = '-';
 				$etats = '-';
 			}
-			global $wgDBname;
 			$this->progress( sprintf( "%s: %s %d pages (%0.3f/sec), %d revs (%0.3f/sec), ETA %s [max %d]",
-				$now, $wgDBname, $this->pageCount, $rate, $this->revCount, $revrate, $etats, $this->maxCount ) );
+				$now, wfWikiID(), $this->pageCount, $rate, $this->revCount, $revrate, $etats, $this->maxCount ) );
 		}
 	}
 

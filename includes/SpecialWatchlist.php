@@ -17,7 +17,7 @@ require_once( 'SpecialRecentchanges.php' );
  */
 function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgMemc, $wgRequest, $wgContLang;
-	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
+	global $wgUseWatchlistCache, $wgWLCacheTimeout;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 	global $wgEnotifWatchlist;
 	$fname = 'wfSpecialWatchlist';
@@ -103,7 +103,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	if ( $wgUseWatchlistCache ) {
-		$memckey = "$wgDBname:watchlist:id:" . $wgUser->getId();
+		$memckey = wfMemcKey( 'watchlist', 'id', $wgUser->getId() );
 		$cache_s = @$wgMemc->get( $memckey );
 		if( $cache_s ){
 			$wgOut->addWikiText( wfMsg('wlsaved') );
