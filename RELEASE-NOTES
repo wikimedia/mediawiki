@@ -261,6 +261,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   untar MW 1.8 over the top of a 1.7 installation.  
 * (bug 6890) SQL query error on bad input to Pager lists 
   due to negative LIMIT clause, caused by integer wraparound.
+* Fixed various bugs related to table prefixes, especially the interaction
+  between table prefixes and memcached, which was formerly completely broken.
+
 
 == Languages updated ==
 
