@@ -264,7 +264,7 @@ $messages = array(
 "redirectedfrom" => "(Weitergeleitet von $1)",
 'autoredircomment'	=> 'Weiterleitung nach [[$1]]',
 'redirectpagesub' => 'Weiterleitung',
-'lastmodifiedat'		=> 'Diese Seite wurde zuletzt geändert am $1 um $2 Uhr.',
+'lastmodifiedat'	=> 'Diese Seite wurde zuletzt am $1 um $2 Uhr geändert.',
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
 "copyright"	=> "Inhalt ist verfügbar unter der $1.",
 "protectedpage" => "Geschützte Seite",
@@ -1350,7 +1350,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 
 # Attribution
 'anonymous' => 'Anonyme(r) Benutzer auf {{SITENAME}}',
-'lastmodifiedatby'	=> 'Diese Seite wurde zuletzt geändert am $1 um $2 Uhr von $3.',
+'lastmodifiedatby'	=> 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.',
 'othercontribs' => 'Basiert auf der Arbeit von $1',
 'others' => 'andere',
 'creditspage' => 'Seiteninformationen',
