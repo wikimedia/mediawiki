@@ -8,8 +8,8 @@
  */
 
 /** This is a command line script */
-require_once('commandLine.inc');
-require_once('languages.inc');
+require_once(dirname(__FILE__).'/../commandLine.inc');
+require_once(dirname(__FILE__).'/languages.inc');
 
 define('ALL_LANGUAGES',    true);
 define('XGETTEXT_BIN',     'xgettext');

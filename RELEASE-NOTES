@@ -257,7 +257,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6617) Validate timestamps on Special:Undelete
 * Do fewer unnecessary full writes of user rows; only update user_touched
   for watch/unwatch, group membership change, and login operations
-
+* Restructured the languages directory, to avoid problems when people 
+  untar MW 1.8 over the top of a 1.7 installation.  
 
 == Languages updated ==
 
