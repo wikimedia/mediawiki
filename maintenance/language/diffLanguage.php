@@ -40,8 +40,8 @@
  */
 
 /** This script run from the commandline */
-require_once( 'parserTests.inc' );
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__).'/../parserTests.inc' );
+require_once( dirname(__FILE__).'/../commandLine.inc' );
 
 if( isset($options['help']) ) { usage(); wfDie(); }
 

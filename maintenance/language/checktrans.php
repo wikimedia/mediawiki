@@ -8,7 +8,7 @@
  */
 
 /** */
-require_once('commandLine.inc');
+require_once(dirname(__FILE__).'/../commandLine.inc');
 
 if ( isset( $args[0] ) ) {
 	$code = $args[0];

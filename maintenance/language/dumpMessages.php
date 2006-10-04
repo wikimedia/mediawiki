@@ -6,7 +6,7 @@
  */
 
 /** */
-require_once( "commandLine.inc" );
+require_once( dirname(__FILE__).'/../commandLine.inc' );
 $wgMessageCache->disableTransform();
 $messages = array();
 $wgEnglishMessages = array_keys( Language::getMessagesFor( 'en' ) );
