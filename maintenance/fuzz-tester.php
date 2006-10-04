@@ -160,7 +160,7 @@ include('commandLine.inc');
 
 // if the user asked for an explanation of command line options.
 if ( isset( $options["help"] ) ) {
-    print <<<END
+    print <<<ENDS
 MediaWiki $wgVersion fuzz tester
 Usage: php {$_SERVER["SCRIPT_NAME"]} [--quiet] [--base-url=<url-to-test-wiki>]
                            [--directory=<failed-test-path>] [--include-binary]
@@ -199,7 +199,7 @@ Example:
   php {$_SERVER["SCRIPT_NAME"]} --quiet --max-errors=100 --max-runtime=60
 
 
-END;
+ENDS;
 
     exit( 0 );
 }
@@ -224,7 +224,7 @@ if (!empty($options)) {
 if (!empty($options["base-url"])) {
     define("WIKI_BASE_URL", $options["base-url"]);
 } else {
-    define("WIKI_BASE_URL", $wgServerName . $wgScriptPath . '/');
+    define("WIKI_BASE_URL", $wgServer . $wgScriptPath . '/');
 }
 
 // The directory name where we store the output.
