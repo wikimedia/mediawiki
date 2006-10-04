@@ -263,6 +263,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   due to negative LIMIT clause, caused by integer wraparound.
 * Fixed various bugs related to table prefixes, especially the interaction
   between table prefixes and memcached, which was formerly completely broken.
+* (bug 7004) PHP iconv() notice on bad password input to Special:Userlogin.
 
 
 == Languages updated ==
