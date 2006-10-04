@@ -2561,9 +2561,14 @@ class Parser
 					$found = 'pipe';
 				} elseif ( $text[$i] == $currentClosing ) {
 					$found = 'close';
-				} else {
+				} elseif ( isset( $callbacks[$text[$i]] ) ) {
 					$found = 'open';
 					$rule = $callbacks[$text[$i]];
+				} else {
+					# Some versions of PHP have a strcspn which stops on null characters
+					# Ignore and continue
+					++$i;
+					continue;
 				}
 			} else {
 				# All done
