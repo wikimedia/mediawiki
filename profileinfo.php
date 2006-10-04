@@ -51,12 +51,16 @@ require_once( './includes/WebStart.php' );
 require_once("./AdminSettings.php");
 
 if (!$wgEnableProfileInfo) {
-	wfDie("disabled");
+	echo "disabled\n";
+	exit( 1 );
 }
 
 foreach (array("wgDBadminuser", "wgDBadminpassword", "wgDBserver", "wgDBname") as $var)
-	if ($$var === false)
-		wfDie("AdminSettings.php not correct");
+	if ($$var === false) {
+		echo "AdminSettings.php not correct\n";
+		exit( 1 );
+	}
+
 
 $expand = array();
 if (isset($_REQUEST['expand']))
@@ -150,13 +154,13 @@ if (isset($_REQUEST['sort']) && in_array($_REQUEST['sort'], $sorts))
 	$sort = $_REQUEST['sort'];
 
 $dbh = mysql_connect($wgDBserver, $wgDBadminuser, $wgDBadminpassword)
-	or wfDie("mysql server failed: " . mysql_error());
-mysql_select_db($wgDBname, $dbh) or wfDie(mysql_error($dbh));
+	or die("mysql server failed: " . mysql_error());
+mysql_select_db($wgDBname, $dbh) or die(mysql_error($dbh));
 $res = mysql_query("
 	SELECT pf_count, pf_time, pf_name
 	FROM profiling
 	ORDER BY pf_name ASC
-", $dbh) or wfDie("query failed: " . mysql_error());
+", $dbh) or die("query failed: " . mysql_error());
 
 if (isset($_REQUEST['filter']))
 	$filter = $_REQUEST['filter'];
