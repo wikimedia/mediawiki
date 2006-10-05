@@ -10,6 +10,7 @@ function __autoload($className) {
 	static $localClasses = array(
 		'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 		'AjaxCachePolicy' => 'includes/AjaxFunctions.php',
+		'AjaxResponse' => 'includes/AjaxResponse.php',
 		'Article' => 'includes/Article.php',
 		'AuthPlugin' => 'includes/AuthPlugin.php',
 		'BagOStuff' => 'includes/BagOStuff.php',
