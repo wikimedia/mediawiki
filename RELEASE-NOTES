@@ -267,7 +267,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6826) Extend pre-save transform context link ("pipe trick")
   syntax to pages with commas in title
 * Use ImageMagick -thumbnail option instead of -resize to avoid including
-  excessive metadata in thumbs (requires ImageMagick 5.5.8 or newer).
+  excessive metadata in thumbs (requires ImageMagick 6.0.0 or newer).
 
 
 == Languages updated ==
