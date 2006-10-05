@@ -30,13 +30,19 @@ $namespaceNames = array(
 	NS_IMAGE            => 'Bild',
 	NS_IMAGE_TALK       => 'Bilddiskussion',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskussion',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-diskussion',
 	NS_TEMPLATE         => 'Mall',
 	NS_TEMPLATE_TALK    => 'Malldiskussion',
 	NS_HELP             => 'Hjälp',
-	NS_HELP_TALK        => 'Hjälp_diskussion',
+	NS_HELP_TALK        => 'Hjälpdiskussion',
 	NS_CATEGORY         => 'Kategori',
 	NS_CATEGORY_TALK    => 'Kategoridiskussion'
+);
+
+$namespaceAliases = array(
+	// For compatibility with 1.7 and older
+	'MediaWiki_diskussion' => NS_MEDIAWIKI_TALK,
+	'Hjälp_diskussion'     => NS_HELP_TALK
 );
 
 $linkTrail = '/^([a-zåäöéÅÄÖÉ]+)(.*)$/sDu';
