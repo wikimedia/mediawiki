@@ -1594,6 +1594,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 #
 'whatlinkshere'	=> 'What links here',
 'whatlinkshere-summary'	=> '',
+'whatlinkshere-barrow' => '&lt;',
 'notargettitle' => 'No target',
 'notargettext'	=> 'You have not specified a target page or user
 to perform this function on.',

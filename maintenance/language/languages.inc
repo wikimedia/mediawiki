@@ -53,6 +53,7 @@ class languages {
 		'preferences-summary',
 		'specialpages-summary',
 		'whatlinkshere-summary',
+		'whatlinkshere-barrow',
 		'variantname-zh-cn',
 		'variantname-zh-tw',
 		'variantname-zh-hk',
