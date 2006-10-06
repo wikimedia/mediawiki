@@ -96,13 +96,13 @@ class ApiQuery extends ApiBase {
 	 * #5 Execute all requested modules
 	 */
 	public function execute() {
-		$prop = $list = $meta = $generator = null;
+		$prop = $list = $meta = $generator = $redirects = null;
 		extract($this->extractRequestParams());
 
 		//
 		// Create PageSet
 		//
-		$this->mPageSet = new ApiPageSet($this);
+		$this->mPageSet = new ApiPageSet($this, $redirects);
 
 		// Instantiate required modules
 		$modules = array ();
@@ -126,7 +126,7 @@ class ApiQuery extends ApiBase {
 		// If given, execute generator to substitute user supplied data with generated data.  
 		//
 		if (isset ($generator))
-			$this->executeGenerator($generator);
+			$this->executeGeneratorModule($generator, $redirects);
 
 		//
 		// Populate page information for the given pageSet
@@ -212,7 +212,7 @@ class ApiQuery extends ApiBase {
 		}
 	}
 
-	protected function executeGenerator($generatorName) {
+	protected function executeGeneratorModule($generatorName, $redirects) {
 
 		// Find class that implements requested generator
 		if (isset ($this->mQueryListModules[$generatorName])) {
@@ -226,7 +226,7 @@ class ApiQuery extends ApiBase {
 
 		// Use current pageset as the result, and create a new one just for the generator 
 		$resultPageSet = $this->mPageSet;
-		$this->mPageSet = new ApiPageSet($this);
+		$this->mPageSet = new ApiPageSet($this, $redirects);
 
 		// Create and execute the generator
 		$generator = new $className ($this, $generatorName);
@@ -242,6 +242,7 @@ class ApiQuery extends ApiBase {
 		// populate resultPageSet with the generator output
 		$generator->profileIn();
 		$generator->executeGenerator($resultPageSet);
+		$resultPageSet->finishPageSetGeneration();
 		$generator->profileOut();
 		
 		// Swap the resulting pageset back in
@@ -264,7 +265,8 @@ class ApiQuery extends ApiBase {
 			),
 			'generator' => array (
 				ApiBase :: PARAM_TYPE => $this->mAllowedGenerators
-			)
+			),
+			'redirects' => false
 		);
 	}
 
@@ -322,7 +324,8 @@ class ApiQuery extends ApiBase {
 			'prop' => 'Which properties to get for the titles/revisions/pageids',
 			'list' => 'Which lists to get',
 			'meta' => 'Which meta data to get about the site',
-			'generator' => 'Use the output of a list as the input for other prop/list/meta items'
+			'generator' => 'Use the output of a list as the input for other prop/list/meta items',
+			'redirects' => 'Automatically resolve redirects'
 		);
 	}
 
