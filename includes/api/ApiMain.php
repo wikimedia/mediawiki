@@ -148,7 +148,8 @@ class ApiMain extends ApiBase {
 			header($errorCode, true, $httpRespCode);
 
 		$data = array (
-			'code' => $errorCode
+			'code' => $errorCode,
+			'info' => $description
 		);
 		ApiResult :: setContent($data, $this->makeHelpMsg());
 		$this->mResult->addValue(null, 'error', $data);

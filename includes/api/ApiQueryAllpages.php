@@ -40,6 +40,9 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	public function executeGenerator($resultPageSet) {
+		if ($resultPageSet->isResolvingRedirects())
+			$this->dieUsage('Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator', 'params');
+			
 		$this->run($resultPageSet);
 	}
 
@@ -52,9 +55,11 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$where = array (
 			'page_namespace' => $namespace
 		);
+		
 		if (isset ($from)) {
 			$where[] = 'page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($from));
 		}
+		
 		if ($filterredir === 'redirects') {
 			$where['page_is_redirect'] = 1;
 		}
@@ -62,12 +67,18 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$where['page_is_redirect'] = 0;
 		}
 
+		if (is_null($resultPageSet)) {
+			$fields = array (
+				'page_id',
+				'page_namespace',
+				'page_title'
+			);
+		} else {
+			$fields = $resultPageSet->getPageTableFields();
+		}
+
 		$this->profileDBIn();
-		$res = $db->select('page', array (
-			'page_id',
-			'page_namespace',
-			'page_title'
-		), $where, __CLASS__ . '::' . __METHOD__, array (
+		$res = $db->select('page', $fields, $where, __CLASS__ . '::' . __METHOD__, array (
 			'USE INDEX' => 'name_title',
 			'LIMIT' => $limit +1,
 			'ORDER BY' => 'page_namespace, page_title'
@@ -80,7 +91,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$msg = array (
-				'continue' => $this->encodeParamName('from') . '='. ApiQueryBase :: keyToTitle($row->page_title));
+					'continue' => $this->encodeParamName('from'
+				) . '=' . ApiQueryBase :: keyToTitle($row->page_title));
 				$this->getResult()->addValue('query-status', 'allpages', $msg);
 				break;
 			}
@@ -88,18 +100,12 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$title = Title :: makeTitle($row->page_namespace, $row->page_title);
 			// skip any pages that user has no rights to read
 			if ($title->userCanRead()) {
-				$id = intval($row->page_id);
 
 				if (is_null($resultPageSet)) {
-					$pagedata = array ();
-					$pagedata['id'] = $id;
-					if ($title->getNamespace() !== 0)
-						$pagedata['ns'] = $title->getNamespace();
-					$pagedata['title'] = $title->getPrefixedText();
-
-					$data[$id] = $pagedata;
-				} else {
+					$id = intval($row->page_id);
 					$data[] = $id; // in generator mode, just assemble a list of page IDs.
+				} else {
+					$resultPageSet->processDbRow($row);
 				}
 			}
 		}
@@ -108,8 +114,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		if (is_null($resultPageSet)) {
 			ApiResult :: setIndexedTagName($data, 'p');
 			$this->getResult()->addValue('query', 'allpages', $data);
-		} else {
-			$resultPageSet->executeForPageIDs($data);
 		}
 	}
 
@@ -161,9 +165,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&list=allpages',
-			'api.php?action=query&list=allpages&apfrom=B&aplimit=5',
-			'api.php?action=query&generator=allpages&gaplimit=4&prop=info (generator)'
+			'Simple Use',
+			'  api.php?action=query&list=allpages',
+			'  api.php?action=query&list=allpages&apfrom=B&aplimit=5',
+			'Using as Generator',
+			' Show info about 4 pages starting at the letter "T"',
+			'  api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info',
+			' Show content of first 2 non-redirect pages begining at "Re"',
+			'  api.php?action=query&generator=allpages&gaplimit=2&gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content'
 		);
 	}
 
