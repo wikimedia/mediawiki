@@ -39,6 +39,10 @@ $dateFormats = array(
 	'16:12, 15. jan. 2001',
 	'ISO 8601' => '2001-01-15 16:12:34'*/
 
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. F Y',
+	'dmy both' => 'H:i, j. F Y',
+
 	'dmyt time' => 'H:i',
 	'dmyt date' => 'j. F Y',
 	'dmyt both' => 'j. F Y H:i',
