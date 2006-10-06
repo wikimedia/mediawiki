@@ -66,8 +66,8 @@ $dateFormats = array(
 	'mdy both' => 'H:i, M j. Y',
 
 	'dmy time' => 'H:i',
-	'dmy date' => 'j. M Y',
-	'dmy both' => 'H:i, j. M Y',
+	'dmy date' => 'j. F Y',
+	'dmy both' => 'H:i, j. M. Y',
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y M j',
