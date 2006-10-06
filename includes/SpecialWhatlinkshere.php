@@ -59,7 +59,7 @@ class WhatLinksHerePage {
 
 		$isredir = ' (' . wfMsg( 'isredirect' ) . ")\n";
 
-		$wgOut->addHTML('&lt; '.$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
+		$wgOut->addHTML( wfMsg( 'whatlinkshere-barrow' ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
 
 		$this->showIndirectLinks( 0, $this->target, $this->limit, $this->from, $this->dir );
 	}
