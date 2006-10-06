@@ -269,6 +269,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use ImageMagick -thumbnail option instead of -resize to avoid including
   excessive metadata in thumbs (requires ImageMagick 6.0.0 or newer).
 * (bug 7499) Corrections to Swedish talk namespace names
+* (bug 7508) Added option to compress HTML pages by dumpHTML.php
 
 
 == Languages updated ==

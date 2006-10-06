@@ -23,6 +23,7 @@
  * --force-copy         copy commons instead of symlink, needed for Wikimedia
  * --interlang          allow interlanguage links
  * --image-snapshot     copy all images used to the destination directory
+ * --compress           generate compressed version of the html pages
  */
 
 
@@ -91,6 +92,7 @@ $wgHTMLDump = new DumpHTML( array(
 	'sliceNumerator' => $sliceNumerator,
 	'sliceDenominator' => $sliceDenominator,
 	'noOverwrite' => $options['no-overwrite'],
+	'compress' => $options['compress'],
 ));
 
 

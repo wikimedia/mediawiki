@@ -48,6 +48,9 @@ class DumpHTML {
 	# Has setupGlobals been called?
 	var $setupDone = false;
 
+	# Has to compress html pages
+	var $compress = false;
+
 	# List of raw pages used in the current article
 	var $rawPages;
 
@@ -478,6 +481,11 @@ class DumpHTML {
 		$fullName = "{$this->dest}/$filename";
 		$fullDir = dirname( $fullName );
 
+		if ( $this->compress ) {
+			$fullName .= ".gz";
+			$text = gzencode( $text, 9 );				
+		}
+
 		wfMkdirParents( $fullDir, 0755 );
 
 		wfSuppressWarnings();
@@ -619,6 +627,7 @@ class DumpHTML {
 			}
 		}
 
+	
 		$sk =& $wgUser->getSkin();
 		ob_start();
 		$sk->outputPage( $wgOut );
@@ -739,6 +748,7 @@ ENDTEXT;
 				$url = str_replace( '$1', "../$iw/" . wfUrlencode( $this->getHashedFilename( $title ) ),
 					$wgArticlePath );
 			}
+			$url .= $this->compress ? ".gz" : "";
 			return false;
 		} else {
 			return true;
@@ -773,7 +783,7 @@ ENDTEXT;
 		if ( $url === false ) {
 			$url = str_replace( '$1', wfUrlencode( $this->getHashedFilename( $title ) ), $wgArticlePath );
 		}
-
+		$url .= $this->compress ? ".gz" : "";
 		return false;
 	}
 
