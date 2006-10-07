@@ -1230,6 +1230,7 @@ this old version, (rev) = revert to this old version.
 # Unwatchedpages
 #
 'unwatchedpages' => 'Unwatched pages',
+'unwatchedpages-summary' => '',
 
 # List redirects
 'listredirects' => 'List redirects',
@@ -1349,6 +1350,7 @@ in active use.</p>',
 'categoriespagetext' => 'The following categories exist in the wiki.',
 'data'	=> 'Data',
 'userrights' => 'User rights management',
+'userrights-summary' => '',
 'groups' => 'User groups',
 
 'booksourcetext' => "Below is a list of links to other sites that

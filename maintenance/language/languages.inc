@@ -73,6 +73,8 @@ class languages {
 		'newpages-summary',
 		'ancientpages-summary',
 		'newimages-summary',
+		'unwatchedpages-summary',
+		'userrights-summary',
 		'variantname-zh-cn',
 		'variantname-zh-tw',
 		'variantname-zh-hk',
