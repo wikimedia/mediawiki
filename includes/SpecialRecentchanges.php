@@ -481,7 +481,7 @@ function makeOptionsLink( $title, $override, $options ) {
 	global $wgUser, $wgContLang;
 	$sk = $wgUser->getSkin();
 	return $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
-		$title, wfArrayToCGI( $override, $options ) );
+		htmlspecialchars( $title ), wfArrayToCGI( $override, $options ) );
 }
 
 /**
