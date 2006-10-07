@@ -1183,6 +1183,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 # Image list
 #
 'imagelist'		=> 'File list',
+'imagelist-summary' => '',
 'imagelisttext' => "Below is a list of '''$1''' {{plural:$1|file|files}} sorted $2.",
 'imagelistforuser' => "This shows only images uploaded by $1.",
 'getimagelist'	=> 'fetching file list',
@@ -1222,6 +1223,7 @@ this old version, (rev) = revert to this old version.
 # Mime search
 #
 'mimesearch' => 'MIME search',
+'mimesearch-summary' => '',
 'mimetype' => 'MIME type:',
 'download' => 'download',
 
@@ -1231,6 +1233,7 @@ this old version, (rev) = revert to this old version.
 
 # List redirects
 'listredirects' => 'List redirects',
+'listredirects-summary' => '',
 
 # Unused templates
 'unusedtemplates' => 'Unused templates',
@@ -1285,24 +1288,37 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'lonelypages'	=> 'Orphaned pages',
 'lonelypagestext'	=> 'The following pages are not linked from other pages in this wiki.',
 'uncategorizedpages'	=> 'Uncategorized pages',
+'uncategorizedpages-summary' => '',
 'uncategorizedcategories'	=> 'Uncategorized categories',
+'uncategorizedcategories-summary' => '',
 'uncategorizedimages' => 'Uncategorized images',
+'uncategorizedimages-summary' => '',
 'unusedcategories' => 'Unused categories',
 'unusedimages'	=> 'Unused files',
 'popularpages'	=> 'Popular pages',
+'popularpages-summary' => '',
 'wantedcategories' => 'Wanted categories',
+'wantedcategories-summary' => '',
 'wantedpages'	=> 'Wanted pages',
+'wantedpages-summary' => '',
 'mostlinked'	=> 'Most linked to pages',
+'mostlinked-summary' => '',
 'mostlinkedcategories' => 'Most linked to categories',
+'mostlinkedcategories-summary' => '',
 'mostcategories' => 'Articles with the most categories',
+'mostcategories-summary' => '',
 'mostimages'	=> 'Most linked to images',
+'mostimages-summary' => '',
 'mostrevisions' => 'Articles with the most revisions',
+'mostrevisions-summary' => '',
 'allpages'		=> 'All pages',
 'allpages-summary'	=> '',
 'prefixindex'   => 'Prefix index',
+'prefixindex-summary' => '',
 'randompage'	=> 'Random page',
 'randompage-url'=> 'Special:Random',
 'shortpages'	=> 'Short pages',
+'shortpages-summary'     => '',
 'longpages'		=> 'Long pages',
 'longpages-summary'	=> '',
 'deadendpages'  => 'Dead-end pages',
@@ -1316,8 +1332,10 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'recentchangeslinked' => 'Related changes',
 'rclsub'		=> "(to pages linked from \"$1\")",
 'newpages'		=> 'New pages',
+'newpages-summary'	=> '',
 'newpages-username' => 'Username:',
 'ancientpages'		=> 'Oldest pages',
+'ancientpages-summary'	=> '',
 'intl'		=> 'Interlanguage links',
 'move' => 'Move',
 'movethispage'	=> 'Move this page',
@@ -1980,6 +1998,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'Gallery of new files',
+'newimages-summary' => '',
 'showhidebots' => '($1 bots)',
 'noimages'  => 'Nothing to see.',
 
