@@ -1183,8 +1183,8 @@ $messages = array(
 "notanarticle"         => "זהו אינו דף תוכן",
 "watchnochange"        => "אף אחד מהדפים ברשימת המעקב לא עודכן בפרק הזמן המצוין למעלה.",
 "watchdetails"         => "* יש לכם $1 דפים (לא כולל דפי שיחה) ברשימת המעקב.
-* [[{{ns:special}}:Watchlist/edit|הציגו וערכו את רשימת המעקב במלואה]].
-* [[{{ns:special}}:Watchlist/clear|הסירו את כל הדפים]].",
+* [[{{ns:special}}:Watchlist/edit|הצגה ועריכה של רשימת המעקב במלואה]].
+* [[{{ns:special}}:Watchlist/clear|הסרת כל הדפים]].",
 "wlheader-enotif"      => '* הודעות דוא"ל מאופשרות.',
 "wlheader-showupdated" => "* דפים שהשתנו מאז ביקורכם האחרון בהם מוצגים ב'''הדגשה'''.",
 "watchmethod-recent"   => "בודק את הדפים שברשימת המעקב לשינויים אחרונים.",
