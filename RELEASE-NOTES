@@ -271,7 +271,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7499) Corrections to Swedish talk namespace names
 * (bug 7508) Added option to compress HTML pages by dumpHTML.php
 
-
 == Languages updated ==
 
 * Albanian (sq)
@@ -306,6 +305,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Tajic (tg)
 * Tatar (tt)
 * Telugu (te)
+* Uzbek (uz)
 
 == Compatibility ==
 
