@@ -35,8 +35,8 @@ $defaultDateFormat = 'dmy';
 
 $dateFormats = array(
 	'dmy time' => 'H:i',
-	'dmy date' => 'j.F.Y',
-	'dmy both' => 'H:i, j.F.Y',
+	'dmy date' => 'j xg Y',
+	'dmy both' => 'H:i, j xg Y',
 );
 
 $magicWords = array(
