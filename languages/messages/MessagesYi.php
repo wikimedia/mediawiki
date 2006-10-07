@@ -35,6 +35,8 @@ $namespaceAliases = array(
 	'מעדיעוויקי_רעדן' => NS_MEDIAWIKI_TALK,
 	'קאטעגאריע' => NS_CATEGORY,
 	'קאטעגאריע_רעדן' => NS_CATEGORY_TALK,
+	'באניצער' => NS_USER,
+	'באניצער_רעדן' => NS_USER_TALK,
 );
 
 $rtl = true;
