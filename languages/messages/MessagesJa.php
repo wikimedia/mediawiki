@@ -381,7 +381,7 @@ The database has been automatically locked while the slave database servers catc
 'mailerror'             => 'メールの送信中にエラーが発生しました: $1',
 'acct_creation_throttle_hit'=> 'あなたは既に $1 アカウントを作成しています。これ以上作成できません。',
 'emailauthenticated'    => 'あなたのメールアドレスは $1 に確認されています。',
-'emailnotauthenticated' => 'あなたのメールアドレスは<strong>確認されていません</strong>。確認されるまで以下のいかなるメールも送られません。',
+'emailnotauthenticated' => 'あなたのメールアドレスは確認されていません。確認されるまで以下のいかなるメールも送られません。',
 'noemailprefs'          => '<strong>これらの機能を有効にするにはメールアドレスを登録してください。</strong>',
 'emailconfirmlink'      => 'メールアドレスを確認する',
 'invalidemailaddress'   => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。正しい形式で入力し直すか、メールアドレス欄を空にしてください。',

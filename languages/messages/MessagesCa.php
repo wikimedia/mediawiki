@@ -377,7 +377,7 @@ Inicieu una sessió després que la rebeu.',
 'mailerror'             => 'S\'ha produït un error en enviar el missatge: $1',
 'acct_creation_throttle_hit'=> 'Ho sentim, no és permés de tenir-hi més de $1 comptes d\'usuari per persona.',
 'emailauthenticated'    => 'S\'ha autenticat la vostra adreça electrònica a $1.',
-'emailnotauthenticated' => 'La vostra adreça de correu electrònic <strong>encara no està autentificada</strong>. No rebrà correu electrònic provinent de cap les següents funcionalitats.',
+'emailnotauthenticated' => 'La vostra adreça de correu electrònic encara no està autentificada. No rebrà correu electrònic provinent de cap les següents funcionalitats.',
 'noemailprefs'          => 'Especifiqueu una adreça electrònica per a activar aquestes característiques.',
 'emailconfirmlink'      => 'Confirmeu la vostra adreça electrònica',
 'invalidemailaddress'   => 'No es pot acceptar l\'adreça electrònica perquè sembla que té un format no vàlid.

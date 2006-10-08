@@ -359,7 +359,7 @@ Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt 
 'mailerror'             => 'Fel vid skickande av e-post: $1',
 'acct_creation_throttle_hit'=> 'Du har redan skapat $1 användare och kan inte göra fler.',
 'emailauthenticated'    => 'Din e-postadress bekräftades den $1.',
-'emailnotauthenticated' => 'Din e-postadress är <strong>ännu inte bekräftad.</strong> Ingen e-post kommer att skickas vad gäller det följande:',
+'emailnotauthenticated' => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
 'noemailprefs'          => 'Det krävs att en e-postadress uppgivits för att dessa funktioner skall gå att använda.',
 'emailconfirmlink'      => 'Bekräfta din e-postadress',
 'invalidemailaddress'   => 'Denna e-postadressen kan inte godtas då formatet verkar vara felaktigt. Skriv in en adress på korrekt format, eller töm fältet.',

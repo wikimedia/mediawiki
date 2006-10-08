@@ -345,7 +345,7 @@ Jei išsaugosite savo keitimus, prieš tai daryti pakeitimai pradings.</strong>'
 'emailconfirmlink' => 'Patvirtinkite savo el.pašto adresą',
 'emailfrom' => 'Nuo',
 'emailmessage' => 'Tekstas',
-'emailnotauthenticated' => 'Jūsų el.pašto adresas <strong>nėra patvirtintas</strong>. El.laiškas
+'emailnotauthenticated' => 'Jūsų el.pašto adresas nėra patvirtintas. El.laiškas
 nebus siunčiamas nei vienu žemiau išvardintų būdų.',
 'emailpage' => 'Siųsti el.laišką',
 'emailsend' => 'Siųsti',

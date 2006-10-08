@@ -369,7 +369,7 @@ Dersom noen andre gjorde denne forespørselen eller om du kom på passordet og i
 'mailerror'             => 'Feil under sending av e-post: $1',
 'acct_creation_throttle_hit'=> 'Beklager, du har allerede opprettet $1 kontoer. Du kan ikke opprette flere.',
 'emailauthenticated'    => 'Epostadressa di ble bekreftet $1.',
-'emailnotauthenticated' => 'Epostadressa di er <strong>ikke bekreftet</strong>. Ingen eposter vil bli sendt for følgende tjenester.',
+'emailnotauthenticated' => 'Epostadressa di er ikke bekreftet. Ingen eposter vil bli sendt for følgende tjenester.',
 'noemailprefs'          => '<strong>Ingen e-postadresse er oppgitt</strong>, så følgende funksjoner vil ikke fungere.',
 'emailconfirmlink'      => 'Bekreft epostadressa di.',
 'invalidemailaddress'   => 'E-postadressa kan ikke aksepteres, fordi den er ugyldig formatert. Skriv inn en fungerende e-postadresse eller tøm feltet.',

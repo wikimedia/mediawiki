@@ -532,7 +532,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'mailerror' 		=> '傳送電郵錯誤： $1',
 'acct_creation_throttle_hit' => '對唔住，你已經開咗 $1 個戶口，唔可以再開多個戶口。',
 'emailauthenticated' 	=> '你嘅電郵地址已經喺 $1 確認。',
-'emailnotauthenticated' => '你嘅電郵地址<strong>重未確認</strong>。 任何傳送電郵嘅功能都唔會運作。',
+'emailnotauthenticated' => '你嘅電郵地址重未確認。 任何傳送電郵嘅功能都唔會運作。',
 'noemailprefs' 		=> '設置一個電郵地址令到呢啲功能開始運作。',
 'emailconfirmlink' 	=> '確認你嘅電郵地址',
 'invalidemailaddress' 	=> '呢個電郵地址嘅格式唔啱，所以接受唔到。

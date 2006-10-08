@@ -400,7 +400,7 @@ Divant d\' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instr
 'mailerror' => 'Åk n\' a nén stî tot-z evoyant l\' emile: $1',
 'acct_creation_throttle_hit' => 'Mande escuzes, mins vos avoz ddja ahivé $1 contes. Vos n\' endè ploz nén fé des ôtes.',
 'emailauthenticated' =>  'Voste adresse emile a stî acertinêye li $1.',
-'emailnotauthenticated' =>  'Voste adresse emile <strong>n\' a nén co stî acertinêye</strong>. Nol emile ni serè-st evoyî po les fonccions shuvantes.',
+'emailnotauthenticated' =>  'Voste adresse emile n\' a nén co stî acertinêye. Nol emile ni serè-st evoyî po les fonccions shuvantes.',
 'noemailprefs' =>  '<strong>Dinez ene adresse emile po ces fonccions si mete en alaedje.</strong>',
 'emailconfirmlink' => 'Acertinaedje di voste adresse emile',
 'invalidemailaddress' =>  'L\' adresse emile ni pout nén esse acceptêye la k\' i shonnreut k\' ele soeye dins ene cogne nén valide. Tapez ene adresse emile sicrîte comifåt oudobén vudîz l\' tchamp, s\' i vs plait.',

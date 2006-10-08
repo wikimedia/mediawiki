@@ -378,7 +378,7 @@ Në qoftë se nuk e përdorni këtë fjalëkalim të ri, atëherë do të vazhdo
 'mailerror'             => 'Gabim duke dërguar postën: $1',
 'acct_creation_throttle_hit'=> 'Më vjen keq, por brenda 24 orëve të fundit është hapur një llogari $1 me IP-adresën tuaj dhe në moment nuk mundeni të hapni më. Provoni 24 orë më vonë prap.',
 'emailauthenticated'    => 'Adresa juaj është vërtetuar më $1.',
-'emailnotauthenticated' => 'Adresa juaj <strong>nuk është vërtetuar</strong> akoma prandaj nuk mund të merrni e-mail.',
+'emailnotauthenticated' => 'Adresa juaj nuk është vërtetuar akoma prandaj nuk mund të merrni e-mail.',
 'noemailprefs'          => '<strong>Detyrohet një adresë email-i për të përdorur këtë mjet.</strong>',
 'emailconfirmlink'      => 'Vërtetoni adresën tuaj',
 'invalidemailaddress'   => 'Adresa email e dhënë nuk mund të pranohet sepse nuk duket e rregullt. Ju lutem fusni një adresë të rregullt ose boshatisni kutinë e shtypit.',

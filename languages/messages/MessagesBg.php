@@ -415,7 +415,7 @@ Before any other mail is sent to the account, you will have to follow the instru
 'acct_creation_throttle_hit' => 'Съжаляваме, създали сте вече $1 сметки и нямате право на повече.',
 # TODO
 'emailauthenticated'    => 'Your email address was authenticated on $1.',
-'emailnotauthenticated' => 'Your email address is <strong>not yet authenticated</strong>. No email will be sent for any of the following features.',
+'emailnotauthenticated' => 'Your email address is not yet authenticated. No email will be sent for any of the following features.',
 'noemailprefs'          => '<strong>No email address has been specified</strong>, the following features will not work.',
 'emailconfirmlink' => 'Confirm your e-mail address',
 'invalidemailaddress'   => 'The email address cannot be accepted as it appears to have an invalid format. Please enter a well-formatted address or empty that field.',

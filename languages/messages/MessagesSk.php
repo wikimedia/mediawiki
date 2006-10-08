@@ -506,7 +506,7 @@ Predtým ako sa na účet pošle akákoľvek ďalšia pošta, musíte splniť in
 'mailerror'             => 'Chyba pri posielaní e-mailu: $1',
 'acct_creation_throttle_hit'=> 'Prepáčte, už máte vytvorených $1 účtov. Nemôžete ich z tejto IP adresy vytvoriť za 24 hodín viac. Toto je opatrenie proti vandalizmu.',
 'emailauthenticated'    => 'Vaša e-mailová adresa bola overená na $1.',
-'emailnotauthenticated' => 'Vaša e-mailová adresa <strong>ešte nebola overená</strong> a pokročilé funkcie e-mailu sú "deaktivované až do overenia"<strong>(d.a.d.o)</strong>.',
+'emailnotauthenticated' => 'Vaša e-mailová adresa ešte nebola overená a pokročilé funkcie e-mailu sú "deaktivované až do overenia"(d.a.d.o).',
 'noemailprefs'          => '<strong>Nezadali ste žiadnu e-mailovú adresu</strong>, nasledujúce
 nástroje nebudú prístupné.',
 'emailconfirmlink'      => 'Potvrďte vašu e-mailovú adresu',

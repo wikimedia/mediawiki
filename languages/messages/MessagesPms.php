@@ -358,7 +358,7 @@ Anans che qualsëssìa àutr messagi ëd pòsta a ven-a mandà a \'s cont-sì, a
 'mailerror'             => 'Eror ën mandand via un messagi ëd pòsta eletrònica: $1',
 'acct_creation_throttle_hit'=> 'Darmagi, ma chiel (chila) a l\'ha già creasse $1 cont. A peul pa pì deurb-ne dj\'àutri.',
 'emailauthenticated'    => 'Soa adrëssa ëd pòsta eletrònica a l\'é staita autenticà ël $1.',
-'emailnotauthenticated' => 'Soa adrëssa ëd pòsta eletrònica <strong>a l\'é ancó pa staita autenticà</strong>.
+'emailnotauthenticated' => 'Soa adrëssa ëd pòsta eletrònica a l\'é ancó pa staita autenticà.
 Da qualsëssìa ëd coste funsion a sarà mandà gnun messagi fin che chiel (chila) a s\'auténtica nen.',
 'noemailprefs'          => '<strong>Che a specìfica n\'adrëssa ëd pòsta eletrònica se a veul dovré coste funsion-sì.</strong>',
 'emailconfirmlink'      => 'Che an conferma sa adrëssa ëd pòsta eletrònica',

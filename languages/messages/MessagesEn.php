@@ -735,7 +735,7 @@ to confirm that the account is actually yours.',
 'mailerror'                 => 'Error sending mail: $1',
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
 'emailauthenticated'        => 'Your e-mail address was authenticated on $1.',
-'emailnotauthenticated'     => 'Your e-mail address is <strong>not yet authenticated</strong>. No e-mail
+'emailnotauthenticated'     => 'Your e-mail address is not yet authenticated. No e-mail
 will be sent for any of the following features.',
 'noemailprefs'              => 'Specify an e-mail address for these features to work.',
 'emailconfirmlink' => 'Confirm your e-mail address',

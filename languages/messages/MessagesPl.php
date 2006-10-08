@@ -432,7 +432,7 @@ Nim jakiekolwiek wiadomości zostaną wysłane na ten adres, należy wypełnić 
 'mailerror' => 'Przy wysyłaniu e-maila nastąpił błąd: $1',
 'acct_creation_throttle_hit' => 'Przykro nam, założyłeś/aś już $1 kont(a). Nie możesz założyć kolejnego.',
 'emailauthenticated' => 'Twój adres email został uwierzytelniony $1.',
-'emailnotauthenticated' => 'Twój adres e-mail <strong>nie jest potwierdzony</strong>. Poniższe funkcje poczty nie będą działały.',
+'emailnotauthenticated' => 'Twój adres e-mail nie jest potwierdzony. Poniższe funkcje poczty nie będą działały.',
 'noemailprefs' => 'Musisz podać adres e-mail, aby te funkcje działały.',
 'emailconfirmlink' => 'Potwierdź swój adres e-mail',
 'invalidemailaddress' => 'E-mail nie zostanie zaakceptowany: jego format nie spełnia formalnych wymagań. Proszę wpisać poprawny adres email lub wyczyścić pole.',

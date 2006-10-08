@@ -380,7 +380,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'eauthentsent' => 'Thư xác nhận đã được gửi. Trước khi dùng chức năng nhận thư, bạn cần thực hiện hướng dẫn trong thư xác nhận, để đảm bảo tài khoản thuộc về bạn.',
 'emailauthenticated' => 'Địa chỉ thư điện tử của bạn được xác nhận tại $1.',
 'emailconfirmlink' => 'Xác nhận địa chỉ thư điện tử',
-'emailnotauthenticated' => 'Địa chỉ thư điện tử của bạn <strong>chưa được xác nhận</strong>. Chức năng thư điện tử chưa bật.',
+'emailnotauthenticated' => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Chức năng thư điện tử chưa bật.',
 
 # Edit page toolbar
 'bold_sample'   => 'Chữ đậm',
