@@ -25,6 +25,27 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );
 
+# Aliases to cyrillic namespaces 
+$namespaceAliases = array(
+	"Медија"                  => NS_MEDIA,
+	"Посебно"                 => NS_SPECIAL,
+	"Разговор"                => NS_TALK,
+	"Корисник"                => NS_USER,
+	"Разговор_са_корисником"  => NS_USER_TALK,
+	"Разговор_о_$1"           => NS_PROJECT_TALK,
+	"Слика"                   => NS_IMAGE,
+	"Разговор_о_слици"        => NS_IMAGE_TALK,
+	"МедијаВики"              => NS_MEDIAWIKI,
+	"Разговор_о_МедијаВикију" => NS_MEDIAWIKI_TALK,
+	'Шаблон'                  => NS_TEMPLATE,
+	'Разговор_о_шаблону'      => NS_TEMPLATE_TALK,
+	'Помоћ'                   => NS_HELP,
+	'Разговор_о_помоћи'       => NS_HELP_TALK,
+	'Категорија'              => NS_CATEGORY,
+	'Разговор_о_категорији'   => NS_CATEGORY_TALK,
+);
+
+
 $quickbarSettings = array(
  "Nikakva", "Pričvršćena levo", "Pričvršćena desno", "Plutajuća levo"
 );
