@@ -1165,7 +1165,7 @@ $messages = array(
 "clearwatchlist"       => "ניקוי רשימת המעקב",
 "watchlistcleartext"   => "האם אתם בטוחים שברצונכם להסירם?",
 "watchlistclearbutton" => "נקה את רשימת המעקב",
-"watchlistcleardone"   => "רשימת המעקב רוקנה. $1 פריטים הוסרו ממנה.",
+"watchlistcleardone"   => "רשימת המעקב רוקנה. {{plural:$1|פריט אחד הוסר|$1 פריטים הוסרו}} ממנה.",
 "watchnologin"         => "לא נכנסתם לאתר",
 "watchnologintext"     => "עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי לערוך את רשימת המעקב.",
 "addedwatch"           => "הדף נוסף לרשימת המעקב",
@@ -1182,7 +1182,7 @@ $messages = array(
 "unwatchthispage"      => "הפסיקו לעקוב אחר דף זה",
 "notanarticle"         => "זהו אינו דף תוכן",
 "watchnochange"        => "אף אחד מהדפים ברשימת המעקב לא עודכן בפרק הזמן המצוין למעלה.",
-"watchdetails"         => "* ברשימת המעקב יש $1 דפים (לא כולל דפי שיחה).
+"watchdetails"         => "* ברשימת המעקב יש {{plural:$1|דף אחד|$1 דפים}} (לא כולל דפי שיחה).
 * [[{{ns:special}}:Watchlist/edit|הצגה ועריכה של רשימת המעקב במלואה]].
 * [[{{ns:special}}:Watchlist/clear|הסרת כל הדפים]].",
 "wlheader-enotif"      => '* הודעות דוא"ל מאופשרות.',
