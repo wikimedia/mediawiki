@@ -78,7 +78,7 @@ class MessageCache {
 		$localHash = fread( $file, 32 );
 		if ( $hash == $localHash ) {
 			// All good, get the rest of it
-			$serialized = fread( $file, 1000000 );
+			$serialized = fread( $file, 10000000 );
 			$this->mCache = unserialize( $serialized );
 		}
 		fclose( $file );
