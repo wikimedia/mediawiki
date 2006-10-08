@@ -1413,11 +1413,11 @@ or has chosen not to receive e-mail from other users.',
 'watchlistfor' => "(for '''$1''')",
 'nowatchlist'		=> 'You have no items on your watchlist.',
 'watchlistanontext' => 'Please $1 to view or edit items on your watchlist.',
-'watchlistcount' 	=> "'''You have $1 items on your watchlist, including talk pages.'''",
+'watchlistcount' 	=> "'''You have {{PLURAL:$1|$1 item|$1 items}} on your watchlist, including talk pages.'''",
 'clearwatchlist' 	=> 'Clear watchlist',
 'watchlistcleartext' => 'Are you sure you wish to remove them?',
 'watchlistclearbutton' => 'Clear watchlist',
-'watchlistcleardone' => 'Your watchlist has been cleared. $1 items were removed.',
+'watchlistcleardone' => 'Your watchlist has been cleared. {{PLURAL:$1|$1 item was|$1 items were}} removed.',
 'watchnologin'		=> 'Not logged in',
 'watchnologintext'	=> 'You must be [[Special:Userlogin|logged in]] to modify your watchlist.',
 'addedwatch'		=> 'Added to watchlist',
@@ -1435,7 +1435,7 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'unwatchthispage' 	=> 'Stop watching',
 'notanarticle'		=> 'Not a content page',
 'watchnochange' 	=> 'None of your watched items was edited in the time period displayed.',
-'watchdetails'		=> '* $1 pages watched not counting talk pages
+'watchdetails'		=> '* {{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages
 * [[Special:Watchlist/edit|Show and edit complete watchlist]]
 * [[Special:Watchlist/clear|Remove all pages]]',
 'wlheader-enotif' 		=> "* E-mail notification is enabled.",
