@@ -859,9 +859,13 @@ function archive($name) {
 }
 
 function do_postgres_updates() {
-	global $wgDatabase, $wgVersion;
+	global $wgDatabase, $wgVersion, $wgDBmwschema;
 
 	$version = "1.7.1";
+
+	# Just in case their LocalSetings.php does not have this:
+	if ( !isset( $wgDBmwschema ))
+		$wgDBmwschema = 'mediawiki';
 
 	if ($wgDatabase->tableExists("mediawiki_version")) {
 		$version = "1.8";
@@ -961,7 +965,7 @@ PGEND;
 	} ## end version 1.7.1 upgrade
 
 	else {
-		print "No updates needed";
+		print "No updates needed\n";
 	}
 
 	return;
