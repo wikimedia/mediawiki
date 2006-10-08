@@ -219,7 +219,7 @@ $messages = array(
 'noemail' => '"$1" adlı istifadəçi e-məktub ünvanı qeyd edmemişdir.',
 'acct_creation_throttle_hit' => 'Siz artıq $1 hesab açmısınız. Daha çox hesab açabilmərsiniz.',
 'emailauthenticated' => 'E-məktub ünvanınız $1 tarixində təsdiq edilib.',
-'emailnotauthenticated' => 'Your e-mail address is <strong>not yet authenticated</strong>. No e-mail will be sent for any of the following features.',
+'emailnotauthenticated' => 'Your e-mail address is not yet authenticated. No e-mail will be sent for any of the following features.',
 'emailconfirmlink' => 'E-məktubunu təsdiq et',
 'invalidemailaddress' => 'E-məktub ünvanını qeyri düzgün formatda olduğu üçün qəbul edə bilmirik. Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.',
 

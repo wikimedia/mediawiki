@@ -353,7 +353,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'emailconfirmlink' => 'Konfirmasi alamat surélék anjeun',
 'emailfrom' => 'Ti',
 'emailmessage' => 'Pesen',
-'emailnotauthenticated' => 'Alamat surélék anjeun <strong>can dioténtikasi</strong>. Moal aya surélék nu bakal dikirim pikeun fitur-fitur di handap ieu.',
+'emailnotauthenticated' => 'Alamat surélék anjeun can dioténtikasi. Moal aya surélék nu bakal dikirim pikeun fitur-fitur di handap ieu.',
 'emailpage' => 'Surélékan pamaké',
 'emailpagetext' => 'Mun pamaké ieu ngasupkeun alamat surélék nu sah na préferénsi pamakéna, formulir di handap bakal ngirimkeun hiji pesen. Alamat surélék nu ku anjeun diasupkeun kana préferénsi pamaké anjeun bakal katémbong salaku alamat "Ti" surélékna, sahingga nu dituju bisa ngabales.',
 'emailsend' => 'Kirim',

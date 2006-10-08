@@ -287,7 +287,7 @@ Iedat anger mail nao dat account versjik kan weure, mós te de insjtructies in d
 'mailerror'             => 'Fout bie \'t versjture van mail: $1',
 'acct_creation_throttle_hit'=> 'Sorry, de höbs al $1 accounts aangemak. De kins d\'r gein mië aanmake.',
 'emailauthenticated'    => 'Dien e-mailadres is op $1 geauthentiserd.',
-'emailnotauthenticated' => 'Dien e-mailadres is <strong>nog neet geauthentiseerd</strong>. De zals gein
+'emailnotauthenticated' => 'Dien e-mailadres is nog neet geauthentiseerd. De zals gein
 e-mail óntvange veur alle volgende toepassinge.',
 'emailconfirmlink'      => 'Bevèstig dien e-mailadres',
 'bold_sample'           => 'Vetten teks',

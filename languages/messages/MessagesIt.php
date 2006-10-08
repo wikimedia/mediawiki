@@ -403,7 +403,7 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 "mailerror"                 => "Errore nell'invio del messaggio: $1",
 "acct_creation_throttle_hit" => "Siamo spiacenti, ma hai già creato $1 account. Non puoi crearne altri.",
 "emailauthenticated"        => "L'indirizzo e-mail è stato confermato il $1.",
-"emailnotauthenticated"     => "L'indirizzo e-mail <strong>non è stato ancora confermato</strong>. Non verranno inviati messaggi e-mail attraverso le funzioni elencate di seguito.",
+"emailnotauthenticated"     => "L'indirizzo e-mail non è stato ancora confermato. Non verranno inviati messaggi e-mail attraverso le funzioni elencate di seguito.",
 "noemailprefs"              => "Indicare un indirizzo e-mail per attivare queste funzioni.",
 "emailconfirmlink" => "Confermare il proprio indirizzo e-mail",
 "invalidemailaddress"	=> "L'indirizzo e-mail indicato ha un formato non valido. Inserire un indirizzo valido o svuotare la casella.",

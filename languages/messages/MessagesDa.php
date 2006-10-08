@@ -378,7 +378,7 @@ Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mail'
 'mailerror' => "Fejl ved afsendelse af e-mail: $1",
 'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 kontoer. Du kan ikke oprette flere.',
 'emailauthenticated' 	=> 'Din e-mail-adresse blev bekræftet på $1.',
-'emailnotauthenticated'	=> 'Din e-mail-adresse er <strong>endnu ikke bekræftet</strong> og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted <strong>(d.u.a.)</strong>.<br />
+'emailnotauthenticated'	=> 'Din e-mail-adresse er endnu ikke bekræftet og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted (d.u.a.).
 Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at bekræfte, eller bestil et nyt på loginsiden.',
 'invalidemailaddress'	=> 'E-mail-adressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mail-adresse med et korrekt format eller tøm feltet.',
 

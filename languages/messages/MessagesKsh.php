@@ -563,7 +563,7 @@ Allso luer do_erinn, un donn_et.',
 
 senn nit mööshlėsh.',
 'emailauthenticated'    => 'Ding e-mail Addrëßß wood beshtäätisj_om: <strong>$1</strong>.',
-'emailnotauthenticated' => 'Ding e-mail Addrëßß ėß <strong>nit</strong> beshtäätish.
+'emailnotauthenticated' => 'Ding e-mail Addrëßß ėß nit beshtäätish.
 Dröm kann këijn e-mail aan Dėsh jeschekk wääde för:',
 'noemailprefs'          => 'Důnn_en e-mail Adräßß enndraare, domet dadd_all fluppe kann.',
 'emailconfirmlink'      => 'Donn Ding e-mail Addrëßß beshtäätije loohße',

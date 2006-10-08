@@ -375,7 +375,7 @@ Z njim se lahko prijavite in ga spremenite.
 
 Če urejate prek AOL ali iz Bližnjega vzhoda, Afrike, Avstralije, Nove Zelandije ali iz šole, knjižnice ali podjetja, si IP-naslov morda delite z drugimi uporabniki. Če je tako, ste to sporočilo morda prejeli, čeprav niste ustvarili še nobenega računa. Znova se lahko poskusite registrirati po nekaj urah.',
 'emailauthenticated'    => 'Čas potrditve vašega e-poštnega naslova: $1',
-'emailnotauthenticated' => 'Vaš e-poštni naslov <strong>še ni potrjen</strong>. Za navedene
+'emailnotauthenticated' => 'Vaš e-poštni naslov še ni potrjen. Za navedene
 možnosti se e-pošte ne bo pošiljalo.',
 'noemailprefs'          => '<strong>E-poštnega naslova niste vnesli</strong>, zato naslednje možnosti ne bodo delovale.',
 'emailconfirmlink'      => 'Potrdite svoj e-poštni naslov',

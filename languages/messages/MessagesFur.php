@@ -196,7 +196,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'emailauthenticated'  => 'La tô direzion email e je stade autenticade su $1.',
 'emailconfirmlink' => 'Conferme la tô direzion email',
 'emailmessage' => "Messaç",
-'emailnotauthenticated'  => 'La tô direzion email <strong>no je ancjemò autenticade</strong>. No vignaran mandâts messaçs pes funzions ca sot.',
+'emailnotauthenticated'  => 'La tô direzion email no je ancjemò autenticade. No vignaran mandâts messaçs pes funzions ca sot.',
 'emailuser' => "Messaç di pueste a chest utent",
 'error' => "Erôr",
 'errorpagetitle' => "Erôr",

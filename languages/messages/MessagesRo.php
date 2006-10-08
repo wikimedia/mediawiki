@@ -370,7 +370,7 @@ Este recomandat să intri pe {{SITENAME}} şi să-ţi schimbi parola cât mai cu
 'mailerror'             => 'Eroare la trimitere e-mail: $1',
 'acct_creation_throttle_hit'=> 'Ne pare rău, aţi creat deja $1 conturi de utilizator. Nu mai puteţi crea altul.',
 'emailauthenticated'    => 'Adresa de email a fost autentificată la $1.',
-'emailnotauthenticated' => 'Adresa de email <strong>nu este autentificată încă</strong>. Nici un email nu va fi trimis pentru nici una din întrebuinţările următoare.',
+'emailnotauthenticated' => 'Adresa de email nu este autentificată încă. Nici un email nu va fi trimis pentru nici una din întrebuinţările următoare.',
 'noemailprefs'          => '<strong>Nu a fost specificată o adresă email</strong>, următoarele nu vor funcţiona.',
 'emailconfirmlink'      => 'Confirmaţi adresa dvs. de email',
 'invalidemailaddress'   => 'Adresa de email nu a putut fi acceptată pentru că pare a avea un format invalid. Vă rugăm să reintroduceţi o adresă bine formatată sau să goliţi acel câmp.',

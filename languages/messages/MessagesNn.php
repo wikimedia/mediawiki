@@ -454,7 +454,7 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'mailerror'               => 'Ein feil oppstod ved sending av e-post: $1',
 'acct_creation_throttle_hit' => 'Beklagar, du har allereie laga $1 brukarkontoar. Du har ikkje høve til å laga fleire.',
 'emailauthenticated'      => 'E-postadressa di vart stadfest $1.',
-'emailnotauthenticated'   => 'E-postadressa di er <strong>enno ikkje stadfest</strong>. Dei følgjande funksjonane kan ikkje bruke ho.',
+'emailnotauthenticated'   => 'E-postadressa di er enno ikkje stadfest. Dei følgjande funksjonane kan ikkje bruke ho.',
 'noemailprefs'            => '<strong>Du har ikkje oppgjeve noko e-postadresse</strong>, dei følgjande funksjonane vil ikkje verke.',
 'emailconfirmlink'        => 'Stadfest e-post-adressa di',
 'invalidemailaddress'     => 'E-postadressa kan ikkje brukast sidan ho er feil oppbygd. Skriv ei rett oppbygd adresse eller tøm feltet.',

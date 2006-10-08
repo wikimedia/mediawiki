@@ -272,7 +272,7 @@ Bevor das wyteri Mails yber d {{SITENAME}}-Mailfunktion a die Adrässe gschickt 
 'mailerror'             => 'Fähler bim Sende vun de Mail: $1',
 'acct_creation_throttle_hit'=> 'Duet mr leid, so hän scho $1 Benutzer. Si chönne cheini meh aalege.',
 'emailauthenticated'    => 'Di E-Bost-Adräss isch am $1 bschtätigt worde.',
-'emailnotauthenticated' => 'Dyni e-Mail-Adrässen isch <strong>no nid bestätiget</strong>. Drum göh di erwytereten e-Mail-Funktione <strong>no nid</strong>.<br />
+'emailnotauthenticated' => 'Dyni e-Mail-Adrässen isch no nid bestätiget. Drum göh di erwytereten e-Mail-Funktione no nid.
 Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasch ou e nöie söttige Link aafordere:',
 'noemailprefs'          => '<strong>Du hesch kei E-Mail-Adrässen aaggä</strong>, drum sy di folgende Funktione nid müglech.',
 'emailconfirmlink'      => 'E-Bost-Adräss bschtätige',

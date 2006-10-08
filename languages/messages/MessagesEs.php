@@ -364,7 +364,7 @@ sigue por favor las instrucciones enviadas en el mensaje, para confirmar que la 
 'mailerror'             => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit'=> 'Lo sentimos, ya has creado $1 cuentas. No puedes crear otra.',
 'emailauthenticated'    => 'Tu dirección electrónica fue autentificada en $1.',
-'emailnotauthenticated' => '<strong>Aún no has confirmado tu durección de correo</strong>.
+'emailnotauthenticated' => 'Aún no has confirmado tu durección de correo.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'noemailprefs'          => '<strong>Especifica una dirección electrónica para que funcionen estas características.</strong>',
 'emailconfirmlink'      => 'Confirma tu dirección de correo electrónico',

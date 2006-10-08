@@ -385,7 +385,7 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que 
 'mailerror'	=> 'Erreur en envoyant le courriel : $1',
 'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé $1 comptes. Vous ne pouvez pas en créer de nouveaux.',
 'emailauthenticated'        => 'Votre adresse de courriel a été authentifiée le $1.',
-'emailnotauthenticated'     => 'Votre adresse de courriel n’est <strong>pas encore authentifiée</strong>. Aucun courriel ne sera envoyé pour aucune des fonctions suivantes.',
+'emailnotauthenticated'     => 'Votre adresse de courriel n’est pas encore authentifiée. Aucun courriel ne sera envoyé pour aucune des fonctions suivantes.',
 'noemailprefs'              => '<strong>Veuillez fournir une adresse de courriel pour le bon fonctionnement de ces fonctionnalités.</strong>',
 'emailconfirmlink' => 'Confirmez votre adresse de courriel',
 'invalidemailaddress'	=> 'Cette adresse de courriel ne peut pas être acceptée parce qu’elle semble avoir un format invalide. Veuillez entrer une adresse valide ou vider ce champ.',

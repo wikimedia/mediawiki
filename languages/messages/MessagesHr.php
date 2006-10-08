@@ -362,7 +362,7 @@ molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva.',
 'mailerror'             => 'Greška pri slanju e-maila: $1',
 'acct_creation_throttle_hit'=> 'Nažalost, ne možete otvoriti nove suradničke račune. Već ste otvorili $1.',
 'emailauthenticated'    => 'Vaša e-mail adresa je ovjerena $1.',
-'emailnotauthenticated' => 'Vaša e-mail adresa <strong>još nije ovjerena</strong>.
+'emailnotauthenticated' => 'Vaša e-mail adresa još nije ovjerena.
 Ne možemo poslati e-mail ni u jednoj od sljedećih naredbi.',
 'noemailprefs'          => '<strong>Nije navedena e-mail adresa</strong>, stoga sljedeće naredbe neće raditi.',
 'emailconfirmlink'      => 'Potvrdite svoju e-mail adresu',

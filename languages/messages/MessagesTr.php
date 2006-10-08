@@ -299,7 +299,7 @@ E-postadaki yönerge uygulanıp adresin size ait olduğu onaylanmadıkça başka
 'mailerror'             => 'E-posta gönderim hatası: $1',
 'acct_creation_throttle_hit'=> '$1 tane kullanıcı hesabı açtırmış durumdasınız. Daha fazla açtıramazsınız.',
 'emailauthenticated'    => 'E-posta adresiniz $1 tarihinde doğrulanmıştı.',
-'emailnotauthenticated' => 'E-posta adresiniz <strong>henüz onaylanmadı</strong>.
+'emailnotauthenticated' => 'E-posta adresiniz henüz onaylanmadı.
 Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'emailconfirmlink'      => 'E-posta adresinizi doğrulayın',
 'invalidemailaddress'   => 'E-posta adresi geçersizdir. Lütfen geçerli bir adres yazın ya da metin kutusunun içeriğini silin.',

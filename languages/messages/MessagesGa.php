@@ -442,7 +442,7 @@ chun fíordheimhniú a dhéanamh. Chun fíordheimhniú a dhéanamh gur leatsa an
 'acct_creation_throttle_hit' => 'Tá brón orainn, ach tá tú i ndiadh $1 cuntas á chruthú. Ní féidir leat níos mó a dhéanamh.',
 
 'emailauthenticated'    => 'D\'fhíordheimhníodh do sheoladh ríomhphoist ar $1.',
-'emailnotauthenticated' => '<strong>Ní dhearna fíordheimhniú</strong> ar do sheoladh ríomhphoist fós, agu díchumasaítear na hardtréithe ríomhphoist go dtí go fíordheimhneofaí é <strong>(d.c.f.)</strong>.<br />
+'emailnotauthenticated' => 'Ní dhearna fíordheimhniú ar do sheoladh ríomhphoist fós, agu díchumasaítear na hardtréithe ríomhphoist go dtí go fíordheimhneofaí é (d.c.f.).
 Chun fíordheimhniú a dhéanamh, logáil isteach leis an focal faire neamhbhuan atá seolta chugat, nó iarr ar ceann nua ar an leathanach logála istigh.',
 'invalidemailaddress'   => 'Ní féidir an seoladh ríomhphoist a ghlacadh leis mar is dócha go bhfuil formáid neamhbhailí aige.
 
