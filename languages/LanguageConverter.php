@@ -96,6 +96,14 @@ class LanguageConverter {
 			return $req;
 		}
 
+		// check the syntax /code/ArticleTitle
+		$script = $_SERVER['SCRIPT_NAME'];
+		$variants = implode('|',$this->mVariants);
+		if(preg_match("/($variants)$/",$script,$matches)){
+			$this->mPreferredVariant = $matches[1];
+			return $this->mPreferredVariant;
+		}
+
 		// get language variant preference from logged in users
 		// Don't call this on stub objects because that causes infinite 
 		// recursion during initialisation
