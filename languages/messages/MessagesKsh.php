@@ -124,8 +124,7 @@ dren shtëijdt',
 'underline-always'      => 'jo, ėmmer',
 'underline-never'       => 'nä',
 'underline-default'     => 'nemm dem Brauser sing Ėnshtällung',
-'skinpreview'           => '<!-- --> 
-(Aanluere)',
+'skinpreview'           => '(Aanluere)',
 
 # dates
 'sunday'                => 'Sunndaach',
@@ -1057,9 +1056,7 @@ Wikki_Köbes, ennem ßööver_Minsch, odder luer_enß en de
 'servertime'            => 'De Ur_Zigg_öm ßööver eß jäz:',
 'guesstimezone'         => 'Fingk ed_eruß övver dä Brauser',
 'allowemail'            => 'e-mail fun anndere Medmaacher zo_loohße',
-'defaultns'             => 'Donn shtandad_mäßėsh en hee dä 
-
-[[{{ns:project}}:Appachtemeng_%E2%80%94_Wadd_%C4%97%C3%9F%C3%9F_datt_tann%3F|Appachtemengß]] sööke:',
+'defaultns'             => 'Donn shtandad_mäßėsh en hee dä Appachtemengß sööke:',
 'default'               => 'Shtanndat',
 'files'                 => 'Dateije',
 'userrights-lookup-user'=> 'Medmaacher Jroppe fowallde',
