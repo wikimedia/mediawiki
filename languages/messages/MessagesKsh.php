@@ -317,7 +317,7 @@ De weßße wellß wi de Wikki_ßoffwäer jebruch un bedeendt weede moß.
 'nstab-help'            => 'Hülp',
 'nstab-category'        => 'Saachjropp',
 'nosuchaction'          => 'Di Oppjav (action=) känne mer nit',
-'nosuchactiontext'      => '<strong>Na su_jëtt:</strong> Di Oppjaaf us dä [http://ksh.wikipedia.org/wiki/URL URL], 
+'nosuchactiontext'      => '<strong>Na su_jëtt:</strong> Di Oppjaaf us dä URL, 
 
 di_do hėnger „<code>action=</code>“ dren shtëijdt, jo_di kännt hee dat Wikki jaa_nit.',
 'nosuchspecialpage'     => 'Esu en Söndersigk ham_mer nit',
@@ -340,7 +340,7 @@ MySQL mälldt dä Fääler: „<code>$3: $4</code>“.',
 'noconnect'             => 'Schadt!
 Mer kunnte këijn Fobinndung med_däm Daate_Bank_ßöövo op „$1“ krijje.',
 'nodb'                  => 'Kunnt de Daate_Bangk „$1“ nit ußßwääle',
-'cachederror'           => 'Dät hee ėss_en Kopii fun_dä Sigk uss_em [http://ksh.wikipedia.org/wiki/Cache Cache]. 
+'cachederror'           => 'Dät hee ėss_en Kopii fun_dä Sigk uss_em Cache. 
 
 Mööshlish, se iß nit aktowäll.',
 'laggedslavemode'       => '<strong>Opjepaßß:</strong> Künnt sinn, dat hee nit dä nöüßte Shtanndt fun dä Sigk 
@@ -383,12 +383,8 @@ Moßß_De reparėere.',
 
 zo_fill Laßß — do sim_mer jät fürseshtesh.',
 'perfdisabledsub'       => 'Hee kütt en jeshpëijshote Koppii fun $1:',
-'perfcached'            => 'De Daate he_noh kumme ussem Zwesheshpëijshor ([http://ksh.wikipedia.org/wiki/Help:Cache 
-
-cache]) un künnte nit_mieh_janz de allonöüßte sinn.',
-'perfcachedts'          => 'De Daate he_noh kumme ussem Zwesheshpëijshor ([http://ksh.wikipedia.org/wiki/Help:Cache 
-
-cache]) un woodte $1 opjenumme. Se künnte nit_janz de allonöüßte sinn.',
+'perfcached'            => 'De Daate he_noh kumme ussem Zwesheshpëijshor (cache) un künnte nit_mieh_janz de allonöüßte sinn.',
+'perfcachedts'          => 'De Daate he_noh kumme ussem Zwesheshpëijshor (cache) un woodte $1 opjenumme. Se künnte nit_janz de allonöüßte sinn.',
 'wrong_wfQuery_params'  => 'Fokiehrte Parrammeter för: <strong><code>wfQuery()</code></strong><br />
 De Funkßjohn eß: „<code>$1</code>“<br />
 De Aanfrooch eß: „<code>$2</code>“<br />',
@@ -427,7 +423,7 @@ aanmällde]</span>.
 
 Eß mööshlish, dat_Te de ëijn_oddo_anndere Sigk ėmmo wiggo aanjezëijsh krißß, wi wänn de noch ėnnjelogg_wööhß. Donn 
 
-Dingem [http://ksh.wikipedia.org/wiki/Help:Brauser Brauser] singe [http://ksh.wikipedia.org/wiki/Help:Cache Cache] 
+Dingem Brauser singe Cache 
 
 fottschmiiße oddo leddish_maache, öm uß dä Nummo_erruß_ze_kumme!<br />',
 'welcomecreation'       => '== Tach, $1! ==
@@ -456,9 +452,7 @@ dat_Te Sigge änndere dëijß! Dat moß_De och donn, wänn_De Desh don_noh medd_
 „<strong>$1</strong>“ widde ennlogge wellß.<br />',
 'login'                 => 'Ėnnlogge',
 'loginprompt'           => 'Öm op de {{SITENAME}} [[Special:Userlogin|ennlogge]] ze künne,
-moßß_De [http://ksh.wikipedia.org/wiki/Help:Cookie%C3%9F de Cookieß] en Dingem [http://ksh.wikipedia.org/wiki/Brauser 
-
-Brause] ennjeschalldt hann.',
+moßß_De de Cookieß]en Dingem Brause]ennjeschalldt hann.',
 'userlogin'             => 'Ėnnlogge / Medmaacher wääde',
 'logout'                => 'Ußß_Logge',
 'userlogout'            => 'Ußlogge',
@@ -483,7 +477,7 @@ Der_enne anndere Naame ußdängke.',
 'yourlanguage'          => 'Shprooch:',
 'yourvariant'           => 'Ding Varijant',
 'yournick'              => 'Name fö_en_Dinge Ungerschreff:',
-'badsig'                => 'Di Ungeschreff jëijd_esu nit — luer noh dem [http://ksh.wikipedia.org/wiki/HTML HTML] 
+'badsig'                => 'Di Ungeschreff jëijd_esu nit — luer noh dem HTML 
 
 do_dren un maach et rėshtėsh.',
 'email'                 => 'E-Mail',
@@ -499,14 +493,14 @@ dat ußßjevääldt häßß, en Dinge Ëijnshtellunge.',
 dat mer met Dier en Kontak_kumme kann, oohne dat mer Dinge Name odder Ding e-mail Adräß känne däät.',
 'nocookiesnew'          => 'Dinge nöüje Medmaacher_Name eß ėnnjerėshdt, ävver dat outomaatish Ėnnlogge woo dan_nix. 
 
-Schaadt. De {{SITENAME}} bruch [http://ksh.wikipedia.org/wiki/Help:Cookie%C3%9F Cookieß], öm ze merrəke, wä 
+Schaadt. De {{SITENAME}} bruch Cookieß, öm ze merrəke, wä 
 
-ėnjelogg_eß. Wänn_De Cookieß affjeschaldt häß, en Dingem [http://ksh.wikipedia.org/wiki/Brauser Brauser], dann kann 
+ėnjelogg_eß. Wänn_De Cookieß affjeschaldt häß, en Dingem Brauser, dann kann 
 
 dat nit loufe. Söök_Der_enne Brauser, dä et kann, donn_se ennschallde, un dann log Dėsh norr_enß nöü ėnn, met Dingem 
 
 nöüje Medmaacher_Name un Paßßwoodt.',
-'nocookieslogin'        => 'De {{SITENAME}} bruch [http://ksh.wikipedia.org/wiki/Help:Cookie%C3%9F Cookieß] förr_et 
+'nocookieslogin'        => 'De {{SITENAME}} bruch Cookieß förr_et 
 
 Ėnlogge. Et süüht esu uß, alß hättß_de Cookieß affjeschalldt. Důnn_se aanschallde un_dann fosöhg_et norr_enß.',
 'noname'                => 'Dat jëijdt nidd_alls_enne Medmaacher_Naame. Jäz moßß_De_et norr_enß fosööke.',
@@ -613,7 +607,7 @@ sull',
 'showdiff'              => 'De Ungerscheed zëije',
 'anoneditwarning'       => 'Wëijl De net [[Special:Userlogin|ennjelogg]] beß, weedt Ding 
 
-[http://ksh.wikipedia.org/wiki/IP_Addr%C3%A4%C3%9F%C3%9F IP_Addräßß] opjezëijshnet wääde, bëij_de Lėßß fun de <span 
+IP_Addräßß opjezëijshnet wääde, bëij_de Lėßß fun de <span 
 
 class="plainlinks">[{{FULLURL:{{PAGENAME}}|action=history}} Donn DingVäsjohne]</span> fun_de Ännderonge fö_di_Sigk.
 
@@ -695,7 +689,7 @@ class="plainlinks">[{{FULLURL:{{FULLPAGENAME}}|action=edit}} fang di Sigk aan]</
 /><small>Oddo_jangk zerök wo de heer koohmß. Dinge Brauser hädd_enne Knopp do_füer.</small>',
 'clearyourcache'        => '<br clear="all" style="clear:both">
 \'\'\'Opjepaßß:\'\'\'
-Noh_rem Shpëijshere, künnd_et sinn, dat_Te Dingem Brauser singe [http://ksh.wikipedia.org/wiki/Cache Cache]_Spëijsher 
+Noh_rem Shpëijshere, künnd_et sinn, dat_Te Dingem Brauser singe Cache_Spëijsher 
 
 övverlißßte moß, ih_dat_Te di Ännderonge och ze sinn krißß.
 Bëijm \'\'\'Mozilla\'\'\' un  \'\'\'Firefox\'\'\' un \'\'\'Safari\'\'\', dröck de \'\'Jruß_Schreff_Knopp\'\' un 
@@ -709,22 +703,20 @@ Bëijm \'\'\'Internet Explorer\'\'\' drögg_op \'\'Ctrl\'\' / \'\'Strg\'\' un Kl
 
 \'\'Ctrl-F5\'\' / \'\'Strg+F5\'\'.
 Bëijm \'\'\'Konqueror:\'\'\' kligk dä \'\'Reload\'\'-Knopp oddo dröck dä \'\'F5\'\'-Knopp.
-Bëijm  \'\'\'Opera\'\'\' kannß_De övver_et [http://ksh.wikipedia.org/wiki/Menn%C3%BCh_%28Kompjutor%29 Mennüh] jonn un 
+Bëijm  \'\'\'Opera\'\'\' kannß_De övver_et Mennüh jonn un 
 
 däm jannze Cache singe Ėnnhalld_övver \'\'Tools→Preferences\'\' fott_schmiiße.',
 'usercssjsyoucanpreview'=> '<b>Tipp:</b> Donn met dämm <b style="padding:2px; background-color:#ddd; 
 
 color:black">Füür_Aansėsh Zëije</b>-Knobb_ußßprobėere, wat Ding nöü 
 
-Medmaacher_[http://ksh.wikipedia.org/wiki/Help:Cascading_Style_Sheets 
-
-CSS]/[http://ksh.wikipedia.org/wiki/Help:Java_Skripp Java_Skripp] määd,_iih_dat_et affshpëijshore dëijß!',
+Medmaacher_CSS/Java_Skripp määd,_iih_dat_et affshpëijshore dëijß!',
 'usercsspreview'        => '<b>Opjepaßß: Do beß hee nur am Ußßprobėere, wat Ding 
 
-Medmaacher_[http://ksh.wikipedia.org/wiki/Help:Cascading_Style_Sheets CSS] määd,_ed_eß non_nit jeseshot!</b>',
+Medmaacher_CSS määd,_ed_eß non_nit jeseshot!</b>',
 'userjspreview'         => '<b>Opjepaßß: Do beß hee nur am Ußßprobėere, wat Ding 
 
-Medmaacher_[http://ksh.wikipedia.org/wiki/Help:Java_Skripp Java_Skripp] määd_ed_eß non_nit jeseshot!</b>',
+Medmaacher_Java_Skripp määd_ed_eß non_nit jeseshot!</b>',
 'userinvalidcssjstitle' => '<strong>Opjepaßß:</strong> Et jitt këijn Uß_sinn med_däm Name: „<strong>$1</strong>“ — 
 
 dängk draan, dat enne Medmaacher ëijenne Datëije förr_et Uß_sinn hann kann, un dat_di met klëijne Boochashtave 
@@ -793,9 +785,9 @@ joodß jemaat häß.
 Alleß Klooh?<br /><br />',
 'yourtext'              => 'Dinge Täxx',
 'storedversion'         => 'De jeshpëijshote Väsjohn',
-'nonunicodebrowser'     => '<strong>Opjepaßß:</strong> Dinge [http://ksh.wikipedia.org/wiki/Brauser Brauser] kann nit 
+'nonunicodebrowser'     => '<strong>Opjepaßß:</strong> Dinge Brauser kann nit 
 
-ööndlėsh met däm [http://ksh.wikipedia.org/wiki/Unicode Unicode] un singe Boochstaave ömjonn. Bess_esu_joot un 
+ööndlėsh met däm Unicode un singe Boochstaave ömjonn. Bess_esu_joot un 
 
 nėmmbs_enne anndere Brauser fö hee di Sigk!',
 'editingold'            => '<strong>Opjepaßß!<br />
@@ -825,14 +817,12 @@ dat Do dat Rääsh häß, et hee öffentlish wigger ze jävve. Süsh $1. Wenn_t 
 künnt Dish dad_en_do Bou brenge!',
 'longpagewarning'       => '<strong>Oppjepaßß:</strong> Dä Täxx, dä De hee jeschekk häß, dä eß <strong>$1</strong> 
 
-[http://ksh.wikipedia.org/wiki/Help:Kilobyte Kilobyte] jruuß. Mansh [http://ksh.wikipedia.org/wiki/Help:Brauser 
-
-Brauser] kütt nėt domet klooh, wänn_et mieh wi <strong>32</strong> Kilobyte sinn. Do künntß De drövver nohdängke, dat 
+Kilobyte jruuß. Mansh Brauser kütt nėt domet klooh, wänn_et mieh wi <strong>32</strong> Kilobyte sinn. Do künntß De drövver nohdängke, dat 
 
 Dinge en klëijner Shtökshe ze_zerklope.',
 'longpageerror'         => '<big><strong>Jannz Schlemme Fääler:</strong></big>
 
-Dä Täxx, dä De hee jeschekk häß, dä eß <strong>$1</strong> [http://ksh.wikipedia.org/wiki/Kilobyte Kilobyte] jruuß. 
+Dä Täxx, dä De hee jeschekk häß, dä eß <strong>$1</strong> Kilobyte jruuß. 
 
 Dat sinn mieh wi <strong>$2</strong> Kilobyte. Dat künne mer nit Shpëijshere!
 
@@ -861,11 +851,9 @@ Täxx_Fälldt fum „Huhlade“. -->',
 
 kannß_De ävver Sigge änndere, di ald_doo sinn.',
 'cantcreateaccounttitle'=> 'Kann këijne Zojang ėnnreshde',
-'cantcreateaccounttext' => 'Aanmälldunge fun Dinge [http://ksh.wikipedia.org/wiki/IP_Addr%C3%A4%C3%9F%C3%9F 
+'cantcreateaccounttext' => 'Aanmälldunge fun Dinge IP_Addräßß [<strong>$1</strong>] senn jeshpächt. Dat hät fö_jewöönlijj_enne Jrundt. Zom Bëijshpill künnt sinn, dat 
 
-IP_Addräßß] [<strong>$1</strong>] senn jeshpächt. Dat hät fö_jewöönlijj_enne Jrundt. Zom Bëijshpill künnt sinn, dat 
-
-fill_ze_fill [http://ksh.wikipedia.org/wiki/SPAM SPAM] fun däm Berëijsh fun dä Adräßße jekumme eß.',
+fill_ze_fill SPAM fun däm Berëijsh fun dä Adräßße jekumme eß.',
 'revhistory'            => 'De Väsjohne',
 'viewpagelogs'          => 'De LogBöösher fö hee di Sigk',
 'nohistory'             => 'Et jitt këijn Väsjohne fun dä Sigk.',
@@ -1068,9 +1056,7 @@ Wikki_Köbes, ennem ßööver_Minsch, odder luer_enß en de
 'userrights-groupsavailable'=> 'Eß nit en de Medmaacher_Jroppe:<br />',
 'userrights-groupshelp' => 'Söök de Jroppe uß, wo dä Medmaacher bëij kumme sull oddo druss_eruß sull. Jroppe, di De 
 
-hee nid_ußsöökß, bliive, wi_se_sėnn. Dat Ußsööke kannß_De bëij de miihßte [http://ksh.wikipedia.org/wikki/Brauser 
-
-Brausere] met \'\'\'Ctrl + Lenkß_Klikke\'\'\' / \'\'\'Strg + Lenkß_Klikke\'\'\' maache.',
+hee nid_ußsöökß, bliive, wi_se_sėnn. Dat Ußsööke kannß_De bëij de miihßte Brausere met \'\'\'Ctrl + Lenkß_Klikke\'\'\' / \'\'\'Strg + Lenkß_Klikke\'\'\' maache.',
 'group'                 => 'Jropp:',
 'group-bot'             => 'Botß',
 'group-sysop'           => 'Wikki_Köbeßße',
@@ -1139,7 +1125,7 @@ list-style-position:outside; list-style-image:none;
 list-style-type:none"><code>\'\'\'[[{{NS:Media}}:\'\'\'\'\'Su_hüert_sesh_dat_aan\'\'\'\'\'.ogg]]\'\'\'</code></li></u
 
 l>
-Ußßfüerlish met alle Möshlishkëijte finkß_de dat bëij de [http://ksh.wikipedia.org/wiki/Help:Daate_huhlaade Hülp].
+Ußßfüerlish met alle Möshlishkëijte finkß_de dat bëij de Hülp.
 
 Wänn De jäz entschloßße beß, dat De et hee huh_laade wellß:
 * Aanluere, wat mer he en de {{SITENAME}} ald hann, kannß De en unß [[Special:Imagelist|Bellder_Leßß]].
@@ -1206,8 +1192,8 @@ e Breefmarreke_Belldsche op dä Sigk moole lohße.',
 'uploadedimage'         => 'hät huhjelade: „[[$1]]“',
 'uploaddisabled'        => 'Huh_Lade jeshpächt',
 'uploaddisabledtext'    => 'Et Huh_Lade eß jeshpächt he en dämm Wikki.',
-'uploadscripted'        => 'En dä Datëij eß [http://ksh.wikipedia.org/wiki/HTML HTML] dren oddo Kood fun_ennem 
-[http://ksh.wikipedia.org/wiki/Skripp Skripp], dä künnt Dinge Brauser en do fallsche Hallß krijje un ußföere.',
+'uploadscripted'        => 'En dä Datëij eß HTML dren oddo Kood fun_ennem 
+Skripp, dä künnt Dinge Brauser en do fallsche Hallß krijje un ußföere.',
 'uploadcorrupt'         => 'Schaad.
 <br />
 Di Dattëij iß kapott, hädd_en fokiehjəte File_Name Ëxtensjen, odder ööhnds_enne anndere Drißß eß paßßėet.
@@ -1377,7 +1363,7 @@ di sullt mer behallde.</small>',
 'movethispage'          => 'Di Sigk Ömnänne',
 'unusedimagestext'      => '<p><strong>Opjepaßß:</strong> Annder Websigge künnte emmer noch di Dattëije hee tirrägk 
 
-për <a class="plainlinks" href="http://ksh.wikipedia.org/wiki/URL">URL</a> aanshpräshe. Su künnd_et sinn, dadd_en 
+për URL aanshpräshe. Su künnd_et sinn, dadd_en 
 
 Dattëij hee en de Lėßß shtëijdt, ävver doch jebruch weedt. Ußßerdämm, vinnishßtens bëij nöüe Dattëije, künnd sinn, 
 
@@ -1452,7 +1438,7 @@ Adräßß, di De en Dinge ëijene Ëijnshtellunge aanjejovve häß, di weed all�
 ennjedraare. Domet kann, wä di E-mail kritt, drop antwoote, un di Antwoot jëij_tirägg_aan Dish.
 
 Alleßß klooh?',
-'usermailererror'       => 'Dat e-mail-<a href="http://ksh.wikipedia.org/wiki/Obj%C3%A4k_%28OOP%29">Objägk</a> 
+'usermailererror'       => 'Dat e-mail-Objägk 
 
 joov_ennen_Fääler uß:',
 'defemailsubject'       => 'E-mail övver de {{SITENAME}}.',
@@ -1723,11 +1709,11 @@ Dare.',
 'blockip'               => 'Medmaacher spärre',
 'blockiptext'           => 'He kannz De beshtemmpte Medmaacher odder 
 
-[http://ksh.wikipedia.org/wiki/IP_Addr%C3%A4%C3%9F%C3%9F IP_Addräßße] shpärre, su dat_se he em Wikki nit mieh 
+IP_Addräßße]shpärre, su dat_se he em Wikki nit mieh 
 
 schriive und Sigge Änndere künne. Dat sullt nuur jedonn wääde om su jenannte 
 
-[http://ksh.wikipedia.org/wiki/Project:Fandaale Fandaale] ze brämmse. Un mer mößße unß do_bëij natöörlish aan uns 
+Fandaale ze brämmse. Un mer mößße unß do_bëij natöörlish aan uns 
 
 [[{{ns:project}}:Policy|Rääjelle]] fö_su_n Fäll hallde.
 
@@ -1754,7 +1740,7 @@ months,6 Moohnde:6 months,9 Moohnde:9 months,1 Joohr:1 year,2 Joohre:2 years,3 J
 'ipbotheroption'        => 'Sönß_wi lang',
 'badipaddress'          => 'Wat De do jeschrevve häß, dat eß këijn ööndlijje 
 
-[http://ksh.wikipedia.org/wiki/IP_Addr%C3%A4%C3%9F%C3%9F IP_Addräßß].',
+IP_Addräßß.',
 'blockipsuccesssub'     => 'De IP-Addräß eß jeshpächt',
 'blockipsuccesstext'    => '[[Special:Contributions/$1|$1]] eß jëz jeshpächt.
 
@@ -1788,7 +1774,7 @@ jebruch. Dä eß jeshpächt woode wääje: „<i>$2</i>“',
 'blocklogentry'         => '„[[$1]]“ jeshpächt, för $2',
 'blocklogtext'          => 'Hee ėß dat LogBooch för et Medmaacher Shpärre un Frëijävve. Automaatėsh jeshpächte 
 
-[http://ksh.wikipedia.org/wiki/IP_Addr%C3%A4%C3%9F%C3%9F IP-Addräßße] sin nit hee, ävver em 
+IP-Addräßße sin nit hee, ävver em 
 
 [[Special:Ipblocklist|Logbooch med jeshpächte IP-Adräße]] ze finge.',
 'unblocklogentry'       => 'Medmaacher „[[User:$1|$1]]“ frëijejovve',
@@ -1800,33 +1786,31 @@ jebruch. Dä eß jeshpächt woode wääje: „<i>$2</i>“',
 'ipb_cant_unblock'      => 'Enne Fääler: De Shpärr Nommer $1 eß nit ze finge. Se künndt ald widdo frëij_jejovve woode 
 
 sinn.',
-'proxyblockreason'      => 'Unger Dinge [http://ksh.wikipedia.org/wiki/IP_Addr%C3%A4%C3%9F%C3%9F IP_Addräßß] 
+'proxyblockreason'      => 'Unger Dinge IP_Addräßß 
 
-leuv_enne offene [http://ksh.wikipedia.org/wiki/Proxy Proxy]. Dröm kannß_De hee em Wikki nix maache. Schwadt med 
+leuv_enne offene Proxy. Dröm kannß_De hee em Wikki nix maache. Schwadt med 
 
-Dimgem Süßteem_Minsch oddo Näzwärrək_Täshnikko [http://ksh.wikipedia.org/wiki/ISP Internet Service Provider] un 
+Dimgem Süßteem_Minsch oddo Näzwärrək_Täshnikko Internet Service Provider un 
 
 fozäll dänne fun däm Rissikko för Ühr Sesherhëijdt!',
 'proxyblocksuccess'     => 'Fähdėsh',
 'sorbs'                 => 'SORBS DNSbl',
-'sorbsreason'           => 'Ding [http://ksh.wikipedia.org/wiki/IP_Addr%C3%A4%C3%9F%C3%9F IP_Addräßß] weed en de 
+'sorbsreason'           => 'Ding IP_Addräßß weed en de 
 
-[http://www.sorbs.net SORBS] [http://ksh.wikipedia.org/wiki/DNSbl DNSbl] als_enne offene 
+[http://www.sorbs.net SORBS] DNSbl als_enne offene 
 
-[http://ksh.wikipedia.org/wiki/Proxy Proxy] jelėßß. Schwadt med Dimgem Süßteem_Minsch oddo Näzwärrək_Täshnikko 
+Proxy jelėßß. Schwadt med Dimgem Süßteem_Minsch oddo Näzwärrək_Täshnikko 
 
-[http://ksh.wikipedia.org/wiki/ISP Internet Service Provider] drövver, un fozäll dänne fun däm Rissikko för Ühr 
+Internet Service Provider drövver, un fozäll dänne fun däm Rissikko för Ühr 
 
 Sesherhëijdt!',
-'sorbs_create_account_reason'=> 'Ding [http://ksh.wikipedia.org/wiki/IP_Addr%C3%A4%C3%9F%C3%9F IP_Addräßß] weed en 
+'sorbs_create_account_reason'=> 'Ding IP_Addräßß weed en 
 
-[http://www.sorbs.net SORBS] [http://ksh.wikipedia.org/wiki/DNSbl DNSbl] als_enne offene 
+[http://www.sorbs.net SORBS] DNSbl als_enne offene 
 
-[http://ksh.wikipedia.org/wiki/Proxy Proxy] jelėßß. Dröm kannß_De Desch hee em Wikki nit allse_enne nöüje Medmaacher 
+Proxy jelėßß. Dröm kannß_De Desch hee em Wikki nit allse_enne nöüje Medmaacher 
 
-aanmällde. Schwadt med Dimgem Süßteem_Minsch oddo Näzwärrək_Täshnikko oddo [http://ksh.wikipedia.org/wiki/ISP 
-
-Internet Service Provider] drövver, un fozäll dänne fun däm Rissikko för Ühr Sesherhëijdt!',
+aanmällde. Schwadt med Dimgem Süßteem_Minsch oddo Näzwärrək_Täshnikko oddo Internet Service Provider drövver, un fozäll dänne fun däm Rissikko för Ühr Sesherhëijdt!',
 'lockdb'                => 'Daate_Bangk Spärre',
 'unlockdb'              => 'Daate_Bangk frëij_jäve',
 'lockdbtext'            => 'Noh_m Shpärre kann Këijne mieh Ännderonge maache an singe Op_paßß_Lėßß, aan 
@@ -1885,7 +1869,7 @@ Naame fellëijsh fokiijet jeshrevve?</strong>',
 
 alle fürherijje Väsjohne fun dä Sigk och. Unger däm ahle Name weed_otomatijj_en 
 
-[http://ksh.wikipedia.org/wiki/Help:Wat_dejd_en_Ömlejdung%3F Ömlëijdung] op dä nöüe Name enjedraare. Lėngkß op dä 
+Ömlëijdung op dä nöüe Name enjedraare. Lėngkß op dä 
 
 aahle Name blieve ävver wi se woohre. Dat hëijß, Do moßß sellver nohluere, ov do jäz 
 
@@ -2080,9 +2064,7 @@ dëijß! [alt-p]',
 'nocreativecommons'     => 'De RDF_Metta_Daate fun de „Creative Commons“ Aat senn affjeschalldt.',
 'notacceptable'         => '<strong>Blööd:</strong> Dä Wikki_ßööver kann de Daate nit en_ennem Fomaat erövverjävve, 
 
-wat Dinge [http://ksh.wikipedia.org/wiki/Help:Client Client] odde [http://ksh.wikipedia.org/wiki/Help:Brauser 
-
-Brauser] foshtonn künnt.',
+wat Dinge Client odde Brauser foshtonn künnt.',
 'anonymous'             => 'Namelose Medmaacher fun_de {{SITENAME}}',
 'siteuser'              => '{{SITENAME}}-Medmaacher $1',
 'lastmodifiedatby'        => 'Hee di Sigk wood_et läz jeänndort fun $3 om $2, $1',
@@ -2214,9 +2196,7 @@ fott_jeschmeßße wood.\');
 Zėffere, un Boochshtaave do_dren sinn.',
 'mediawarning'          => '<strong>Opjepaßß</strong>: En dä Dattëij küünd_en <b>jefääerlish Projramm_Shtögk</b> dren 
 
-shtäke. Wäm_mer_et joufe loohße däät, do künndt dä ßööver met fö de [http://ksh.wikipedia.org/wiki/Help:Kräkkor 
-
-Kräkkor] opjemaat wääde.
+shtäke. Wäm_mer_et joufe loohße däät, do künndt dä ßööver met fö de Kräkkor opjemaat wääde.
 <hr />',
 'fileinfo'              => '<strong>$1</strong> Killo_Byte, MIME-Tüp: <code>$2</code>',
 
