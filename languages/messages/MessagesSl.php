@@ -339,7 +339,7 @@ Ustvarili ste račun. Če želite, si lahko prilagodite [[Special:Preferences|na
 'yourrealname'          => 'Vaše pravo ime*',
 'yourlanguage'          => 'Jezik vmesnika:',
 'yourvariant'           => 'Jezikovna različica',
-'yournick'              => 'Podpis (uporabite <nowiki>~~~~</nowiki>):',
+'yournick'              => 'Podpis (uporabite ~~~~):',
 'badsig'                => 'Neveljaven surovi podpis; preverite oznake HTML.',
 'email'                 => 'E-pošta',
 'prefs-help-email-enotif'=> 'Če ste tako izbrali, se naslov uporablja tudi za pošiljanje sporočil o spremembah.',
