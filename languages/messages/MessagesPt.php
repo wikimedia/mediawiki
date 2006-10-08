@@ -1188,10 +1188,10 @@ Não haverá mais notificações no caso de futuras alterações a não ser que 
 
 --
 Para alterar as suas preferências da lista de artigos vigiados, visite
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Contacto e assistência
-{{SERVER}}{{localurl:Ajuda:Conteúdos}}',
+{{fullurl:Ajuda:Conteúdos}}',
 
 # Delete/protect/revert
 #

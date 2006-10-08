@@ -516,7 +516,7 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.',
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på \'\'\'attende\'\'\'-knappen i nettlesaren din.',
 'anontalkpagetext'        => '---- \'\'Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[{{ns:-1}}:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.\'\'',
 'noarticletext'           => '\'\'\'Sida «{{PAGENAME}}» finst ikkje på {{SITENAME}} enno.\'\'\'
-* Klikk på \'\'\'[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} endre]\'\'\' for å opprette sida.',
+* Klikk på \'\'\'[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} endre]\'\'\' for å opprette sida.',
 'clearyourcache'          => '\'\'\'Merk:\'\'\' Etter lagring vil det kanskje vera naudsynt at nettlesaren omgår mellomlageret sitt for at endringane skal tre i kraft. \'\'\'Mozilla og Firefox:\'\'\' trykk \'\'Ctrl-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Ctrl-F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview'  => '<strong>Tip:</strong> Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din føre du lagrar.',
 'usercsspreview'          => '\'\'\'Hugs at du berre testar ditt eige CSS, det har ikkje vorte lagra enno!\'\'\'',
@@ -921,10 +921,10 @@ Du får ikkje fleire endringsmeldingar om denne sida før du har vitja henne på
 
 --
 For å endre innstillingane for overvakingslista di, gå til
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 For hjelp og meir informasjon:
-{{SERVER}}{{localurl:Hjelp:Overvaking}}',
+{{fullurl:Hjelp:Overvaking}}',
 
 # Delete/protect/revert
 #

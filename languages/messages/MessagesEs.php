@@ -834,15 +834,15 @@ pulsa el botón \'Eliminar artículos seleccionados\' al final de la página.',
 
 La página de {{SITENAME}} «$PAGETITLE»
 ha sido $CHANGEDORCREATED por el usuario $PAGEEDITOR el $PAGEEDITDATE.
-La versión actual se encuentra en {{SERVER}}{{localurl:$PAGETITLE_RAWURL}}
+La versión actual se encuentra en {{fullurl:$PAGETITLE_RAWURL}}
 
 $NEWPAGE
 
 El resumen de edición es: $PAGESUMMARY $PAGEMINOREDIT
 
 Para comunicarse con el usuario:
-por correo: {{SERVER}}{{localurl:Especial:Emailuser|target=$PAGEEDITOR_RAWURL}}
-en el wiki: {{SERVER}}{{localurl:Usuaro:$PAGEEDITOR_RAWURL}}
+por correo: {{fullurl:Especial:Emailuser|target=$PAGEEDITOR_RAWURL}}
+en el wiki: {{fullurl:Usuaro:$PAGEEDITOR_RAWURL}}
 
 Para recibir nuevas notificaciones de cambios de esta página, deberá vistarla nuevamente.
 También puede, en su lista de seguimiento, modificar las opciones de notificación de sus
@@ -852,7 +852,7 @@ páginas vigiladas.
 
 --
 Cambie las opciones de su lista de seguimiento en:
-{{SERVER}}{{localurl:Especial:Watchlist|edit=yes}}',
+{{fullurl:Especial:Watchlist|edit=yes}}',
 'deletepage'            => 'Borrar esta página',
 'confirm'               => 'Confirmar',
 'excontent'             => 'El contenido era: \'$1\'',
