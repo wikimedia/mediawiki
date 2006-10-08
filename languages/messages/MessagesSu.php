@@ -365,26 +365,26 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'emptyfile' => 'Koropak nu dimuatkeun ku anjeun jigana kosong. Hal ieu bisa jadi alatan sarupaning \'\'typo\'\' na ngaran koropakna. Mangga parios deui yén anjeun leres-leres hoyong ngamuat koropak éta.',
 'enotif_body' => 'Sadérék $WATCHINGUSERNAME,
 
-Kaca $PAGETITLE na {{SITENAME}} geus $CHANGEDORCREATED tanggal $PAGEEDITDATE ku $PAGEEDITOR. Mangga tingal {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} pikeun vérsi kiwari.
+Kaca $PAGETITLE na {{SITENAME}} geus $CHANGEDORCREATED tanggal $PAGEEDITDATE ku $PAGEEDITOR. Mangga tingal {{fullurl:$PAGETITLE_RAWURL}} pikeun vérsi kiwari.
 
 $NEWPAGE
 
 Ringkesan éditor: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontak éditor:
-surat {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+surat {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
+wiki {{fullurl:User:$PAGEEDITOR_RAWURL}}
 
 Mun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun. Anjeun bisa ogé nyetél deui umbul-umbul pikeun sadaya kaca nu aya na daptar awaseun anjeun.
 
              Sistim émbaran {{SITENAME}} pikeun anjeun
 
 --
-Pikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:Special:Watchlist|edit=yes}}
+Pikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{fullurl:Special:Watchlist|edit=yes}}
 
 Asupan jeung bantuan salajengna:
-{{SERVER}}{{localurl:{{ns:project}}:Pitulung}}',
-'enotif_lastvisited' => 'Tempo {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} pikeun sadaya parobahan ti saprak anjeun ninggalkeun ieu kaca.',
+{{fullurl:{{ns:project}}:Pitulung}}',
+'enotif_lastvisited' => 'Tempo {{fullurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} pikeun sadaya parobahan ti saprak anjeun ninggalkeun ieu kaca.',
 'enotif_mailer' => 'Surat Émbaran {{SITENAME}}',
 'enotif_newpagetext' => 'Kaca ieu anyar.',
 'enotif_reset' => 'Tandaan sadaya kaca nu geus dilongok',
@@ -623,7 +623,7 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol \'\'\'back\'\'\' na panyungsi a
 'nextpage' => 'Kaca salajengna ($1)',
 'nextrevision' => 'Révisi nu leuwih anyar&rarr;',
 'nlinks' => '$1 tumbu',
-'noarticletext' => '(Kiwari can aya téks na kaca ieu. Mun anjeun geus kungsi nyieun kaca ieu, mangga klik [{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=purge}} di dieu].)',
+'noarticletext' => '(Kiwari can aya téks na kaca ieu. Mun anjeun geus kungsi nyieun kaca ieu, mangga klik [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=purge}} di dieu].)',
 'noconnect' => 'Punten! Wiki ngalaman sababaraha kasusah téhnis sarta teu bisa ngontak server database.',
 'nocontribs' => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
 'nocookieslogin' => '{{SITENAME}} migunakeun \'\'cookies\'\' pikeun ngasupkeun pamaké kana log. Anjeun boga \'\'cookies\'\' nu ditumpurkeun. Mangga pungsikeun sarta cobian deui.',

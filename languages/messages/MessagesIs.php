@@ -435,10 +435,9 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'nextdiff' => "Næsta breyting →",
 'nextn' => "næstu $1",
 'nextrevision' => "Næsta útgáfa→",
-'noarticletext' => "<div style=\"border: 1px solid #ccc; padding: 7px; background: white;\">'''Það er ekki enn grein undir þessu nafni á {{SITENAME}}.'''
-* '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Skrifa grein undir nafninu „{{PAGENAME}}“]'''
-* [[{{ns:special}}:Search/{{PAGENAME}}|Leita að „{{PAGENAME}}“]] í öðrum greinum og síðum.
-</div>",
+'noarticletext' => "'''Það er ekki enn grein undir þessu nafni á {{SITENAME}}.'''
+* '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Skrifa grein undir nafninu „{{PAGENAME}}“]'''
+* [[{{ns:special}}:Search/{{PAGENAME}}|Leita að „{{PAGENAME}}“]] í öðrum greinum og síðum.",
 'noemailtext' => "Notandi þessi hefur kosið að fá ekki tölvupóst frá öðrum notendum eða hefur ekki fyllt út netfang sitt í stillingum.",
 'noemailtitle' => "Ekkert póstfang",
 'nolinkshere' => "Engar síður tengjast hingað.",

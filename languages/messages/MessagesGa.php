@@ -1007,10 +1007,10 @@ I gcás athruithe eile, ní bheidh aon fhógra eile muna dtéann tú go dtí an 
 
 --
 Chun do chuid socruithe a athrú maidir leis an liosta faire, teir go dtí
-{{SERVER}}{{localurl:Speisialta:Watchlist/edit}}
+{{fullurl:Speisialta:Watchlist/edit}}
 
 Aiseolas agus a thuilleadh cabhrach:
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:Help:Contents}}',
 
 # Delete/protect/revert
 #

@@ -373,10 +373,10 @@ Daugiau pranešimų apie vėlesnius pakeitimus nebus siunčiama, jei neapsilanky
 
 --
 Norėdami pakeisti stebimų puslapių nustatymus, užeikite į
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Atsiliepimai ir pagalba:
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:Help:Contents}}',
 'enotif_lastvisited' => 'Užeikite į $1, jei norite matyti pakeitimus nuo paskutiniojo apsilankymo.',
 'enotif_mailer' => '{{SITENAME}} Pranešimų sistema',
 'enotif_newpagetext' => 'Tai naujas puslapis.',
@@ -593,7 +593,7 @@ Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką
 'nextrevision' => 'Sekanti versija→',
 'nlinks' => '$1 k.',
 'noarticletext' => '<div style="border: 1px solid #ccc; padding: 7px; background-color: #fff; color: #000">\'\'\'Projekte nėra straipsnio norimu pavadinimu.\'\'\'
-* \'\'\'[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Sukurti straipsnį \'{{PAGENAME}}\']\'\'\'.
+* \'\'\'[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Sukurti straipsnį \'{{PAGENAME}}\']\'\'\'.
 * [[{{ns:special}}:Search/{{PAGENAME}}|Ieškoti teksto {{PAGENAME}}]] kituose straipsniuose.
 * [[wikt:{{NAMESPACE}}:{{PAGENAME}}|Tikrinti straipsnį {{PAGENAME}}]] Wikižodyne, susijusiame projekte.
 * [[Commons:{{NAMESPACE}}:{{PAGENAME}}|Tikrinti straipsnį {{PAGENAME}}]] Commons projekte, kur saugomi nemokami paveiksėliai ir kita media informacija.

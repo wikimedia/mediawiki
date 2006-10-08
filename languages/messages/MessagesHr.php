@@ -900,10 +900,10 @@ Postavke za izvješćivanje možete resetirati na svom popisu praćenja.
 
 --
 Za promjene svog popisa praćenja posjetite
-{{SERVER}}{{localurl:Special:Watchlist|edit=yes}}
+{{fullurl:Special:Watchlist|edit=yes}}
 
 Za pomoć posjetite:
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:Help:Contents}}',
 'deletepage'            => 'Izbriši stranicu',
 'confirm'               => 'Potvrdi',
 'excontent'             => 'sadržaj je bio: \'$1\'',

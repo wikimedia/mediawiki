@@ -1042,10 +1042,10 @@ Uusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla. Voit myös n
 
 --
 Tarkkailulistan asetuksia voit muuttaa osoitteessa:
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Palaute ja lisäapu osoitteessa:
-{{SERVER}}{{localurl:Help:Sähköposti-ilmoitus}}',
+{{fullurl:Help:Sähköposti-ilmoitus}}',
 
 
 # Delete/protect/revert

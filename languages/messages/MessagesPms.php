@@ -961,10 +961,10 @@ Che as visa che a peul cangeje ij setagi dle notìfiche a le pàgine che as ten 
 
 --
 Për cangé ij setagi ëd lòn che as ten sot euj che a vada ansima a
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Për fé dle comunicassion ëd servissi e avej pì d\'agiut:
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:Help:Contents}}',
 'deletepage'            => 'Scancela pàgina',
 'confirm'               => 'Conferma',
 'excontent'             => 'Ël contnù a l\'era: \'$1\'',

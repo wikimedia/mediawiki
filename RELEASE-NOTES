@@ -273,6 +273,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7519) Add plural in SpecialWatchlist
 * (bug 7459) Magic word variables are always case sensitive
 * Made messages used in Special:Preferences either plain text or wikitext (toggles)
+* Replaced {{SERVER}}{{localurl:xxx}} with {{fullurl:xxx}} in localisation files
+
 
 == Languages updated ==
 

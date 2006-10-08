@@ -947,10 +947,10 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 
 --
 Για να αλλάξετε τις προτιμήσεις της λίστας παρακολούθησής σας, ακολουθήστε το σύνδεσμο:
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Ερωτήσεις και περισσότερες πληροφορίες:
-{{SERVER}}{{localurl:{{ns:12}}:Περιεχόμενα}}',
+{{fullurl:{{ns:12}}:Περιεχόμενα}}',
 
 
 # Delete/protect/revert

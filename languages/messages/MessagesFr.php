@@ -956,10 +956,10 @@ Il n’y aura pas de nouvelles notifications en cas d’autres modifications à 
 
 --
 Pour modifier les paramètres de votre liste de suivi, visitez
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Retour et assistance :
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:Help:Contents}}',
 
 # Delete/protect/revert
 #

@@ -916,10 +916,10 @@ Nu vor mai fi alte notificări în cazul unor viitoare modificări în afara caz
 
 --
 Pentru a modifica preferinţele listei de urmărire, vizitaţi
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Asistenţă şi suport:
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:Help:Contents}}',
 'deletepage'            => 'Şterge pagina',
 'confirm'               => 'Confirmă',
 'excontent'             => 'conţinutul era: \'$1\'',

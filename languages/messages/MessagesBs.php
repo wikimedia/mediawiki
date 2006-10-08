@@ -349,15 +349,15 @@ kao "Od" adresa poruke, tako da će primalac moći da odgovori.',
 'enotif_body' => 'Dragi $WATCHINGUSERNAME,
 
 {{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATE od strane $PAGEEDITOR,
-pogledajte {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} za trenutnu verziju.
+pogledajte {{fullurl:$PAGETITLE_RAWURL}} za trenutnu verziju.
 
 $NEWPAGE
 
 Rezime editora: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontaktirajte editora:
-pošta {{SERVER}}{{localurl:{{ns:-1}}:Emailuser|target=$PAGEEDITOR_RAWURL}}
-viki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+pošta {{fullurl:{{ns:-1}}:Emailuser|target=$PAGEEDITOR_RAWURL}}
+viki {{fullurl:User:$PAGEEDITOR_RAWURL}}
 
 Neće biti drugih obaviještenja u slučaju daljih izmjena ukoliko ne posjetite ovu stranu.
 Takođe možete da resetujete zastavice za obaviještenja za sve Vaše praćene stranice na vašem spisku praćenenih članaka.
@@ -366,11 +366,11 @@ Takođe možete da resetujete zastavice za obaviještenja za sve Vaše praćene 
 
 --
 Da promjenite podešavanja vezana za spisak praćenenih članaka posjetite
-{{SERVER}}{{localurl:{{ns:-1}}:Watchlist|edit=yes}}
+{{fullurl:{{ns:-1}}:Watchlist|edit=yes}}
 
 Fidbek i dalja pomoć:
-{{SERVER}}{{localurl:{{ns:12}}:Sadržaj}}',
-'enotif_lastvisited' => 'Pogledajte {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} za sve izmjene od vaše poslednje posjete.',
+{{fullurl:{{ns:12}}:Sadržaj}}',
+'enotif_lastvisited' => 'Pogledajte {{fullurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} za sve izmjene od vaše poslednje posjete.',
 'enotif_mailer' => '{{SITENAME}} obaviještenje o pošti',
 'enotif_newpagetext' => 'Ovo je novi članak.',
 'enotif_reset' => 'Označi sve strane kao posjećene',
@@ -629,11 +629,11 @@ nastavite.',
 'nextn' => 'sledećih $1',
 'nlinks' => '$1 veza',
 'noarticletext' => '<div style="border: 1px solid #ccc; padding: 7px;">\'\'\'{{SITENAME}} još nema ovaj članak.\'\'\'
-* Da započnete članak, kliknite \'\'\'[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} uredite ovu stranicu]\'\'\'.
+* Da započnete članak, kliknite \'\'\'[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} uredite ovu stranicu]\'\'\'.
 * [[{{ns:-1}}:Search/{{PAGENAME}}|Pretraži {{PAGENAME}}]] u ostalim člancima
 * [[{{ns:-1}}:Whatlinkshere/{{NAMESPACE}}:{{PAGENAME}}|Stranice koje su povezane za]] {{PAGENAME}} članak
 ----
-* \'\'\'Ukoliko ste napravili ovaj članak u poslednjih nekoliko minuta i još se nije pojavio, postoji mogućnost da je server u zastoju zbog osvježavanja baze podataka.\'\'\' Molimo Vas da probate sa <span class="plainlinks">[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=purge}} osvježavanjem]<span> ili sačekajte i provjerite kasnije ponovo prije ponovnog pravljenja članka.
+* \'\'\'Ukoliko ste napravili ovaj članak u poslednjih nekoliko minuta i još se nije pojavio, postoji mogućnost da je server u zastoju zbog osvježavanja baze podataka.\'\'\' Molimo Vas da probate sa <span class="plainlinks">[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=purge}} osvježavanjem]<span> ili sačekajte i provjerite kasnije ponovo prije ponovnog pravljenja članka.
 * Ako ste napravili članak pod ovim imenom ranije, moguće je da je bio izbrisan.  Potražite \'\'\'{{FULLPAGENAME}}\'\'\' [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} u spisku brisanja].  Alternativno, provjerite [[{{ns:4}}:Zahtjevi za brisanje#{{PAGENAME}}|ovdje]].
 </div>',
 'noconnect' => 'Žao nam je! Viki ima neke tehničke poteškoće, i ne može da se poveže sa serverom baze. <br />',

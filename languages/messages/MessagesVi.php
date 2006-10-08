@@ -1222,8 +1222,8 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'edit-externally-help' => '* Xem thêm [http://meta.wikimedia.org/wiki/Help:External_editors hướng dẫn bằng tiếng Anh]',
 
 'emptyfile' => 'Tệp tin tải lên là rỗng. Xin kiểm tra lại tên tệp tin.',
-'enotif_body' => 'Gửi $WATCHINGUSERNAME,  trang $PAGETITLE tại {{SITENAME}} đã được $CHANGEDORCREATED vào $PAGEEDITDATE bởi $PAGEEDITOR, xem {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} để biết phiên bản hiện nay. Tóm tắt của $NEWPAGE: $PAGESUMMARY $PAGEMINOREDIT Liên hệ người sửa: thư {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}  {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}} Sẽ không có thông báo mới nếu bạn không xem trang này. Bạn có thể thay đổi các cài đặt về các trang theo dõi. Hệ thống thông báo {{SITENAME}} -- Để thay đổi cài đặt, mời vào {{SERVER}}{{localurl:Special:Watchlist|edit=yes}} Góp ý của bạn: {{SERVER}}{{localurl:Help:Contents}}',
-'enotif_lastvisited' => 'Xem {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} để biết các thay đổi từ khi bạn xem lần cuối.',
+'enotif_body' => 'Gửi $WATCHINGUSERNAME,  trang $PAGETITLE tại {{SITENAME}} đã được $CHANGEDORCREATED vào $PAGEEDITDATE bởi $PAGEEDITOR, xem {{fullurl:$PAGETITLE_RAWURL}} để biết phiên bản hiện nay. Tóm tắt của $NEWPAGE: $PAGESUMMARY $PAGEMINOREDIT Liên hệ người sửa: thư {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}  {{fullurl:User:$PAGEEDITOR_RAWURL}} Sẽ không có thông báo mới nếu bạn không xem trang này. Bạn có thể thay đổi các cài đặt về các trang theo dõi. Hệ thống thông báo {{SITENAME}} -- Để thay đổi cài đặt, mời vào {{fullurl:Special:Watchlist|edit=yes}} Góp ý của bạn: {{fullurl:Help:Contents}}',
+'enotif_lastvisited' => 'Xem {{fullurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} để biết các thay đổi từ khi bạn xem lần cuối.',
 'enotif_mailer' => 'Thông báo của {{SITENAME}}',
 'enotif_newpagetext' => 'Trang này mới',
 'enotif_reset' => 'Đánh dấu đã xem mọi trang',

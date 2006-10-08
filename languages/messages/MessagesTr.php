@@ -761,10 +761,10 @@ Bahsi geçen sayfayı ziyaret etmediğiniz sürece sayfayla ilgili başka deği�
 
 --
 Ayarları değiştirmek için:
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Yardım ve öneriler için:
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:Help:Contents}}',
 'deletepage'            => 'Sayfayı sil',
 'confirm'               => 'Onayla',
 'excontent'             => 'eski içerik: \'$1\'',

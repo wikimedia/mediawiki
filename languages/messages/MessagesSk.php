@@ -1116,10 +1116,10 @@ Nedostanete ďalšie upozornenia, aj ak bude článok znovu upravovaný, kým ne
 
 --
 Pre zmenu nastavenia vašich sledovaných článkov navštívte
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Návrhy a ďalšia pomoc:
-{{SERVER}}{{localurl:Pomoc:Obsah}}',
+{{fullurl:Pomoc:Obsah}}',
 'deletepage'            => 'Zmazať stránku',
 'confirm'               => 'Potvrdiť',
 'excontent'             => 'obsah bol: \'$1\'',
