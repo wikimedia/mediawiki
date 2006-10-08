@@ -20,6 +20,7 @@ $datePreferences = array(
 	'fi normal',
 	'fi seconds',
 	'fi numeric',
+	'ISO 8601',
 );
 
 $defaultDateFormat = 'fi normal';
