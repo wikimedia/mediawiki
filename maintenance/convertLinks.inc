@@ -8,8 +8,8 @@
 /** */
 function convertLinks() {
 	global $wgDBtype;
-	if( $wgDBtype == 'PostgreSQL' ) {
-		print "Links table already ok on PostgreSQL.\n";
+	if( $wgDBtype == 'postgres' ) {
+		print "Links table already ok on Postgres.\n";
 		return;
 	}
 
