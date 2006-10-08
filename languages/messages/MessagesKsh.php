@@ -562,7 +562,7 @@ Allso luer do_erinn, un donn_et.',
 'acct_creation_throttle_hit'=> '<b>Schaadt.</b> Do häß alld {{PLURAL:$1|ëijne|$1}} Medmaacher_Naame aanjelaat. Mieh 
 
 senn nit mööshlėsh.',
-'emailauthenticated'    => 'Ding e-mail Addrëßß wood beshtäätisj_om: <strong>$1</strong>.',
+'emailauthenticated'    => 'Ding e-mail Addrëßß wood beshtäätisj_om: $1.',
 'emailnotauthenticated' => 'Ding e-mail Addrëßß ėß nit beshtäätish.
 Dröm kann këijn e-mail aan Dėsh jeschekk wääde för:',
 'noemailprefs'          => 'Důnn_en e-mail Adräßß enndraare, domet dadd_all fluppe kann.',

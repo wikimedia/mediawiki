@@ -310,7 +310,7 @@ Na zisoñjit ket da bersonelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penn
 'badretype'     => 'N\'eo ket peurheñvel an eil ouzh egile an daou c\'her-tremen bet lakaet ganeoc\'h.',
 'userexists'    => "Implijet eo dija an anv implijer lakaet ganeoc'h. Dibabit unan all mar plij.",
 'youremail'     => 'Ma chomlec\'h elektronek',
-'yournick'      => 'Sinadur evit ar c\'haozeadennoù (gant <tt><nowiki>~~~</nowiki></tt>)&nbsp;',
+'yournick'      => 'Sinadur evit ar c\'haozeadennoù (gant ~~~)',
 'yourrealname'	=> 'Hoc\'h anv gwir*',
 'prefs-help-realname' => '* <strong>Hoc\'h anv</strong> (diret): ma vez spisaet ganeoc\'h e vo implijet evit merkañ ho tegasadennoù.',
 'prefs-help-email' => '* <strong>Chomlec\'h postel</strong> (diret): gantañ e vo aes mont e darempred ganeoc\'h adal al lec\'hienn o terc\'hel kuzh ho chomlec\'h, hag adkas ur ger-tremen deoc\'h ma tichañsfe deoc\'h koll ho hini.',

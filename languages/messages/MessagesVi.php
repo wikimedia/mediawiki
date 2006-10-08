@@ -355,7 +355,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'badretype'     => '2 mật khẩu không khớp.',
 'userexists'    => "Tên thành viên đã có người lấy. Xin chọn tên khác.",
 'youremail'     => 'Thư điện tử *',
-'yournick'      => 'Chữ ký trong thảo luận (dùng <tt><nowiki>~~~</nowiki></tt>)&nbsp;',
+'yournick'      => 'Chữ ký trong thảo luận (dùng ~~~)',
 'yourrealname'	=> 'Tên thật *',
 'prefs-help-realname' => '* <strong>Tên thật</strong> (tùy): tên này (nếu được nhập) sẽ được dùng trong các đóng góp của bạn.',
 'prefs-help-email' => '* <strong>Thư điện tử</strong> (tùy): người khác có thể gửi thư từ trang này cho bạn mà họ vẫn không biết địa chỉ thư của bạn; địa chỉ thư còn giúp gửi bạn mật khẩu nếu bạn quên.',

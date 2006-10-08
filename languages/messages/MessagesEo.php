@@ -541,7 +541,7 @@ loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertempo.',
 'localtime'             => 'Loka horzono',
 'timezoneoffset'        => 'Malsamo',
-'servertime'            => 'Loka horzono (<a href="{{localurl:UTC}}">UTC</a>)',
+'servertime'            => 'Loka horzono (UTC)',
 'guesstimezone'         => 'Plenigita el la foliumilo',
 'allowemail'            => 'Ricevu retmesaĝojn de aliaj uzantoj.',
 'defaultns'             => 'Serĉu la jenajn sekciojn:',

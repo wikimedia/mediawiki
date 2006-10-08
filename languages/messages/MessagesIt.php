@@ -658,7 +658,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "timezoneoffset"	=> "Differenza¹",
 "servertime"	=> "Ora del server",
 "guesstimezone"	=> "Usa l'ora del tuo browser",
-"allowemail"	=> "Consenti la ricezione di e-mail da altri utenti<sup>1</sup>",
+"allowemail"	=> "Consenti la ricezione di e-mail da altri utenti (1)",
 "defaultns"	=> "Namespace predefiniti per la ricerca:",
 "default"	=> "predefinito",
 "files"	=> "File",

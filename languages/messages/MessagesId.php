@@ -1488,7 +1488,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'nextdiff' => 'Perbedaan selanjutnya →',
 
 'imagemaxsize' => 'Batasi ukuran gambar dalam halaman deskripsi berkas sampai:',
-'thumbsize'	=> 'Ukuran gambar kecil (<em>thumbnail</em>):',
+'thumbsize'	=> 'Ukuran gambar kecil (thumbnail):',
 'showbigimage' => 'Unduhkan versi resolusi tinggi ($1x$2, $3 KB)',
 
 'newimages'		=> 'Galeri berkas baru',

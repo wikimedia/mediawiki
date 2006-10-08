@@ -925,7 +925,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'previousdiff'          => '← Salīdzināt ar iepriekšējo versiju',
 'nextdiff'              => 'Salīdzināt ar nākamo versiju →',
 'imagemaxsize'          => 'Attēlu apraksta lappusēs parādāmo attēlu maksimālais izmērs:',
-'thumbsize'             => 'Sīkbildes (<i>thumbnail</i>) izmērs:',
+'thumbsize'             => 'Sīkbildes (thumbnail) izmērs:',
 'showbigimage'          => 'Lejuplādē augstas izšķirtspējas attēlu ($1x$2, $3 KB)',
 'newimages'             => 'Jauno attēlu galerija',
 'showhidebots'          => '($1 botus)',
