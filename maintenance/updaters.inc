@@ -885,6 +885,9 @@ ALTER TABLE image ALTER img_size TYPE INTEGER;
 ALTER TABLE image ALTER img_width TYPE INTEGER;
 ALTER TABLE image ALTER img_height TYPE INTEGER;
 
+-- Constraint tweaking:
+ALTER TABLE recentchanges ALTER rc_cur_id DROP NOT NULL;
+
 -- New columns:
 ALTER TABLE ipblocks ADD ipb_anon_only CHAR NOT NULL DEFAULT '0';
 ALTER TABLE ipblocks ADD ipb_create_account CHAR NOT NULL DEFAULT '1';
