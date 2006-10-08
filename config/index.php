@@ -1380,13 +1380,17 @@ if ( \$wgCommandLineMode ) {
 \$wgEnotifWatchlist = $enotifwatchlist; # UPO
 \$wgEmailAuthentication = $eauthent;
 
+\$wgDBtype           = \"{$slconf['DBtype']}\";
 \$wgDBserver         = \"{$slconf['DBserver']}\";
 \$wgDBname           = \"{$slconf['DBname']}\";
 \$wgDBuser           = \"{$slconf['DBuser']}\";
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
-\$wgDBprefix         = \"{$slconf['DBprefix']}\";
-\$wgDBtype           = \"{$slconf['DBtype']}\";
 \$wgDBport           = \"{$slconf['DBport']}\";
+\$wgDBprefix         = \"{$slconf['DBprefix']}\";
+
+# Schemas for Postgres
+\$wgDBmwschema       = \"{$slconf['DBmwschema']}\";
+\$wgDBts2schema      = \"{$slconf['DBts2schema']}\";
 
 # Experimental charset support for MySQL 4.1/5.0.
 \$wgDBmysql5 = {$conf->DBmysql5};
