@@ -2758,8 +2758,9 @@ class Parser
 	 * @private
 	 */
 	function variableSubstitution( $matches ) {
+		global $wgContLang;
 		$fname = 'Parser::variableSubstitution';
-		$varname = $matches[1];
+		$varname = $wgContLang->lc($matches[1]);
 		wfProfileIn( $fname );
 		$skip = false;
 		if ( $this->mOutputType == OT_WIKI ) {
@@ -2773,8 +2774,14 @@ class Parser
 		}
 		if ( !$skip && array_key_exists( $varname, $this->mVariables ) ) {
 			$id = $this->mVariables[$varname];
-			$text = $this->getVariableValue( $id );
-			$this->mOutput->mContainsOldMagic = true;
+			# Now check if we did really match, case sensitive or not
+			$mw =& MagicWord::get( $id );
+			if ($mw->match($matches[1])) {
+				$text = $this->getVariableValue( $id );
+				$this->mOutput->mContainsOldMagic = true;
+			} else {
+				$text = $matches[0];
+			}
 		} else {
 			$text = $matches[0];
 		}

@@ -178,7 +178,7 @@ class MagicWord {
 			$escSyn[] = preg_quote( $synonym, '/' );
 		$this->mBaseRegex = implode( '|', $escSyn );
 		
-		$case = $this->mCaseSensitive ? '' : 'i';
+		$case = $this->mCaseSensitive ? '' : 'iu';
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
 		$this->mVariableRegex = str_replace( "\\$1", "(.*?)", $this->mRegex );
@@ -205,7 +205,7 @@ class MagicWord {
 		if ( $this->mRegex === '' )
 			$this->initRegex();
 
-		return $this->mCaseSensitive ? '' : 'i';
+		return $this->mCaseSensitive ? '' : 'iu';
 	}
 
 	/**
@@ -378,8 +378,9 @@ class MagicWord {
 	 * lookup in a list of magic words
 	 */
 	function addToArray( &$array, $value ) {
+		global $wgContLang;
 		foreach ( $this->mSynonyms as $syn ) {
-			$array[$syn] = $value;
+			$array[$wgContLang->lc($syn)] = $value;
 		}
 	}
 

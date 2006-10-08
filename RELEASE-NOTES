@@ -271,6 +271,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7499) Corrections to Swedish talk namespace names
 * (bug 7508) Added option to compress HTML pages by dumpHTML.php
 * (bug 7519) Add plural in SpecialWatchlist
+* (bug 7459) Magic word variables are always case sensitive
 
 == Languages updated ==
 
