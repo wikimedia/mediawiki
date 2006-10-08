@@ -82,26 +82,17 @@ $messages = array(
 class="new">Lämma</a>“ aan.<br />Wännß_De dat nit wellß, weed et esu: „Lämma<a href="" class="internal">?</a>“ 
 
 jezëijsh.',
-'tog-justify'           => 'Donn de Affschnedde em <a href="http://ksh.wikipedia.org/wiki/Help:Bloksaz">Bloksaz</a> 
+'tog-justify'           => 'Donn de Affschnedde em Bloksaz aanzëije',
+'tog-hideminor'         => 'Donn de klëijn minni_Ännderonge (\'\'\'M\'\'\') en_de Lėßß_met „Nöüßte_Ännderonge“ 
 
-aanzëije',
-'tog-hideminor'         => 'Donn de klëijn minni_Ännderonge (<strong>M</strong>) en_de Lėßß_met „Nöüßte_Ännderonge“ 
-
-shtanndad_määßish <strong>nit</strong> aanzëije',
+shtanndad_määßish \'\'\'nit\'\'\' aanzëije',
 'tog-extendwatchlist'   => 'Forjrüüßo de Oppaßß_Lėßß för jeede Aat fun mööshlėshe Ännderonge ze_zëije',
-'tog-usenewrc'          => 'Donn_de Oppjemozzde Lėßß_met „Nöüßte_Ännderonge“ aanzëije (bruch <a 
-
-href="http://ksh.wikipedia.org/wiki/Help:Java_Skripp">Java_Skripp</a>)',
+'tog-usenewrc'          => 'Donn_de Oppjemozzde Lėßß_met „Nöüßte_Ännderonge“ aanzëije (bruch Java_Skripp)',
 'tog-numberheadings'    => 'Donn de Övverschreffte automatish nummerėere',
-'tog-showtoolbar'       => 'Zëijsh de Wërrkzöüsh_Lëßß zom Änndere aan (bruch <a 
-
-href="http://ksh.wikipedia.org/wiki/Help:Java_Skripp">Java_Skripp</a>)',
-'tog-editondblclick'    => 'Sigge med Dubbel-Klikke Änndere (bruch <a 
-
-href="http://ksh.wikipedia.org/wiki/Help:Java_Skripp">Java_Skripp</a>)',
+'tog-showtoolbar'       => 'Zëijsh de Wërrkzöüsh_Lëßß zom Änndere aan (bruch Java_Skripp)',
+'tog-editondblclick'    => 'Sigge med Dubbel-Klikke Änndere (bruch Java_Skripp)',
 'tog-editsection'       => 'Maach [Änndere]-Lėngkß aan de Affschnedde raan',
-'tog-editsectiononrightclick'=> 'Affschnedde med Räähß-Klikke op de Övverschrevv_Änndere
-(bruch [http://ksh.wikipedia.org/wiki/Help:Java_Skripp Java_Skripp])',
+'tog-editsectiononrightclick'=> 'Affschnedde med Räähß-Klikke op de Övverschrevv_Änndere (bruch Java_Skripp)',
 'tog-showtoc'           => 'Zëijsj_en Ėnnhallds_Övverseesh bëij Sigge met_mieh_vi drëij Övverschreffte dren',
 'tog-rememberpassword'  => 'Op_Dauer Aanmällde',
 'tog-editwidth'         => 'Maach dat Felld zom Täxx_Ėnnjävve_su_brëijdt, vi_t jëijdt',
@@ -110,25 +101,17 @@ href="http://ksh.wikipedia.org/wiki/Help:Java_Skripp">Java_Skripp</a>)',
 'tog-minordefault'      => 'Donn all ming Ännderonge shtandad_mäßėj_allß klëijn Minni_Ännderonge fürschlaare',
 'tog-previewontop'      => 'Zëijsh de Füür_Aansėsh övver dämm Felld för_dä Täxx ėnn_ze_jävve aan.',
 'tog-previewonfirst'    => 'Zëijsh de Füür_Aansėsh tirräg füür_em eetzte Mool bëijm Beärrbëijde aan',
-'tog-nocache'           => 'Donn et Sigge_Zweshe_Shpëijshere — et <a 
-
-href="http://ksh.wikipedia.org/wiki/Help:Cache">Caching</a> — affschallde',
+'tog-nocache'           => 'Donn et Sigge_Zweshe_Shpëijshere — et Caching — affschallde',
 'tog-enotifwatchlistpages'=> 'Schegg_en e-mail, wänn_en Sigg_uß minge Oppaßß_Lėßß jeänndot wood',
 'tog-enotifusertalkpages'=> 'Scheck mer e-mail, wänn ming Klaaf_Sigk jeänndot weed',
 'tog-enotifminoredits'  => 'Scheck mer och en e-mail för klëijn Minni_Ännderonge',
 'tog-enotifrevealaddr'  => 'Zëijsh ming e-mail Addräßß aan, en de Benohreshtėjonge pä e-mail',
 'tog-shownumberswatching'=> 'Zëijsh de Aanzal Medmaacher di op di Sigk op_am_paßße sinn',
 'tog-fancysig'          => 'Ungerschreff oohne outomatėshe Lėngk',
-'tog-externaleditor'    => 'Nemm shtandad_mäßėsh en ëxtärrn „<a 
-
-href="http://ksh.wikipedia.org/wiki/Help:Editor">editor</a>“-Projramm',
-'tog-externaldiff'      => 'Nemm shtandad_mäßėsh en ëxtärrn „<a 
-
-href="http://ksh.wikipedia.org/wiki/Help:Diff">diff</a>“-Projramm',
+'tog-externaleditor'    => 'Nemm shtandad_mäßėsh en ëxtärrn „editor“-Projramm',
+'tog-externaldiff'      => 'Nemm shtandad_mäßėsh en ëxtärrn „diff“-Projramm',
 'tog-showjumplinks'     => 'Lėngkß ußjävve, di dem „bajjeerefrëije Zoojang“ hellfe důnn',
-'tog-uselivepreview'    => 'Zëijsh_de „Lebänndijje Füür_Aansėsh Zëije“ (bruch <a 
-
-href="http://ksh.wikipedia.org/wiki/Help:Java_Skripp">Java_Skripp</a>) (em Ußprobier_Shtadijum)',
+'tog-uselivepreview'    => 'Zëijsh_de „Lebänndijje Füür_Aansėsh Zëije“ (bruch Java_Skripp) (em Ußprobier_Shtadijum)',
 'tog-autopatrol'        => 'Wänn esh jät ännder, dann jėlld di Sigk alß kontrollėet.',
 'tog-forceeditsummary'  => 'Frooch nooh, wänn_en_dämm Felldt „Koot Zosammejefaßß, Kwälle“ bëijem Affshpëijshere nix 
 
@@ -498,7 +481,7 @@ Der_enne anndere Naame ußdängke.',
 'username'              => 'Medmaacher_Name:',
 'uid'                   => 'Medmaacher ID:',
 'yourrealname'          => 'Dinge rishtijje Name *',
-'yourlanguage'          => '<span title="Söök de Shprooch uß, di_t Wikki kalle sůll!">Shprooch:<span>',
+'yourlanguage'          => 'Shprooch:',
 'yourvariant'           => 'Ding Varijant',
 'yournick'              => 'Name fö_en_Dinge Ungerschreff:',
 'badsig'                => 'Di Ungeschreff jëijd_esu nit — luer noh dem [http://ksh.wikipedia.org/wiki/HTML HTML] 
@@ -1068,9 +1051,7 @@ Wikki_Köbes, ennem ßööver_Minsch, odder luer_enß en de
 'recentchangescount'    => 'Enndrääsh en de Lėßß_met_de „Nöüßte_Ännderonge“:',
 'savedprefs'            => 'Ding Ėnnshtellunge sinn jäz jeseshot.',
 'timezonelegend'        => 'Zigk_Zoone Ungerscheed',
-'timezonetext'          => '<!-- ¹ -->Dat sin_de Shtunnde un Menutte zwesche de Zigk op de Uure bëij Dir am Oot un 
-
-däm ßööver, dä med <a href="http://ksh.wikipedia.org/wiki/UTC">UTC</a> leuf.',
+'timezonetext'          => 'Dat sin_de Shtunnde un Menutte zwesche de Zigk op de Uure bëij Dir am Oot un däm ßööver, dä med UTC leuf.',
 'localtime'             => 'De Zigg_op Dingem Kompjutor:',
 'timezoneoffset'        => 'Dä Ungerscheed ¹ eß:',
 'servertime'            => 'De Ur_Zigg_öm ßööver eß jäz:',
