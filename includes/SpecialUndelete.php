@@ -350,17 +350,11 @@ class PageArchive {
 		if( $revision ) {
 			# FIXME: Update latest if newer as well...
 			if( $newid ) {
-				# FIXME: update article count if changed...
+				// Attach the latest revision to the page...
 				$article->updateRevisionOn( $dbw, $revision, $previousRevId );
-
-				# Finally, clean up the link tables
-				$options = new ParserOptions;
-				$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options,
-					true, true, $newRevId );
-				$u = new LinksUpdate( $this->title, $parserOutput );
-				$u->doUpdate();
-
-				#TODO: SearchUpdate, etc.
+				
+				// Update site stats, link tables, etc
+				$article->createUpdates( $revision );
 			}
 
 			if( $newid ) {
