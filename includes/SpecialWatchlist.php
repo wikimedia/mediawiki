@@ -273,7 +273,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	# TODO: Consider removing the third parameter
-	$header .= wfMsgExt( 'watchdetails', array( 'parsemag', 'escape'), $wgLang->formatNum( $nitems ),
+	$header .= wfMsgExt( 'watchdetails', array( 'parsemag' ), $wgLang->formatNum( $nitems ),
 		$wgLang->formatNum( $npages ), '',
 		$specialTitle->getFullUrl( 'edit=yes' ) );
 	$wgOut->addWikiText( $header );
