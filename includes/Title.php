@@ -812,35 +812,6 @@ class Title {
 	}
 
 	/**
-	 * Get a real URL referring to this title in some of the variant
-	 *
-	 * @param string $variant variant name
-	 * @return string the URL
-	 * @access public
-	 */
-	function getFullVariantURL( $variant = '' ) {
-		global $wgServer, $wgRequest;
-
-		$url=''; // this function should not be called for interwiki
-
-		if ( '' == $this->mInterwiki ) {
-			$url = $this->getLocalVariantURL( $variant );
-
-			if ($wgRequest->getVal('action') != 'render') {
-				$url = $wgServer . $url;
-			}
-		}
-
-		# Finally, add the fragment.
-		if ( '' != $this->mFragment ) {
-			$url .= '#' . $this->mFragment;
-		}	 
-
-		return $url;
-	}
-
-
-	/**
 	 * Get a URL with no fragment or server name.  If this page is generated
 	 * with action=render, $wgServer is prepended.
 	 * @param string $query an optional query string; if not specified,
@@ -894,30 +865,6 @@ class Title {
 		}
 		wfRunHooks( 'GetLocalURL', array( &$this, &$url, $query ) );
 		return $url;
-	}
-
-	/**
-	 * Similar to getLocalURL, except it uses $wgVariantArticlePath
-	 * and gets the URL with no fragment or server name, but in a 
-   * certain language variant (relevant only to languages with variants)
-	 * @param string $variant caption of variant
-	 * @return string the URL
-	 * @access public
-	 */
-	function getLocalVariantURL( $variant='' ) {
-		global $wgVariantArticlePath,$wgScript;
-		if($variant=='') return $this->getLocalURL();
-
-		if($wgVariantArticlePath==false)
-			$wgVariantArticlePath = "$wgScript?title=$1&variant=$2";
-
-		$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
-		$url = str_replace( '$1', $dbkey, $wgVariantArticlePath );
-		$code = urlencode( $variant );
-		$url = str_replace( '$2', $code, $url );
-
-		return $url;
-		
 	}
 
 	/**
