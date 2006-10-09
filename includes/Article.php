@@ -2161,6 +2161,22 @@ class Article {
 
 		wfProfileOut( __METHOD__ );
 	}
+	
+	/**
+	 * Perform article updates on a special page creation.
+	 *
+	 * @param Revision $rev
+	 *
+	 * @fixme This is a shitty interface function. Kill it and replace the
+	 * other shitty functions like editUpdates and such so it's not needed
+	 * anymore.
+	 */
+	function createUpdates( $rev ) {
+		$this->mGoodAdjustment = $this->isCountable( $rev->getText() );
+		$this->mTotalAdjustment = 1;
+		$this->editUpdates( $rev->getText(), $rev->getComment(),
+			$rev->isMinor(), wfTimestamp(), $rev->getId(), true );
+	}
 
 	/**
 	 * Generate the navigation links when browsing through an article revisions

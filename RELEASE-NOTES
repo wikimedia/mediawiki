@@ -275,6 +275,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Made messages used in Special:Preferences either plain text or wikitext (toggles)
 * Replaced {{SERVER}}{{localurl:xxx}} with {{fullurl:xxx}} in localisation files
 * Fix regression in Special:Watchlist text header
+* (bug 7510) Update article counts etc on undelete
 
 
 == Languages updated ==
