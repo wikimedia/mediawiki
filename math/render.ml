@@ -19,7 +19,8 @@ let render tmppath finalpath outtex md5 =
 	Sys.remove (tmpprefix ^ ".aux");
 	Sys.remove (tmpprefix ^ ".log");
         Sys.remove (tmpprefix ^ ".tex");
-	Sys.remove (tmpprefix ^ ".ps");
+	if Sys.file_exists (tmpprefix ^ ".ps")
+	then Sys.remove (tmpprefix ^ ".ps");
       end in
     let f = (Util.open_out_unless_exists (tmpprefix ^ ".tex")) in
       begin
