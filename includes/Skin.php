@@ -157,7 +157,7 @@ class Skin extends Linker {
 	}
 
 	function initPage( &$out ) {
-		global $wgFavicon, $wgScriptPath;
+		global $wgFavicon, $wgScriptPath, $wgSitename, $wgLanguageCode, $wgLanguageNames;
 
 		$fname = 'Skin::initPage';
 		wfProfileIn( $fname );
@@ -170,7 +170,8 @@ class Skin extends Linker {
 		$out->addLink( array( 
 			'rel' => 'search', 
 			'type' => 'application/opensearchdescription+xml',
-			'href' => "$wgScriptPath/opensearch_desc.php"
+			'href' => "$wgScriptPath/opensearch_desc.php",
+			'title' => "$wgSitename ({$wgLanguageNames[$wgLanguageCode]})",
 		));
 
 		$this->addMetadataLinks($out);
