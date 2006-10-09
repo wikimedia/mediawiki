@@ -276,6 +276,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Replaced {{SERVER}}{{localurl:xxx}} with {{fullurl:xxx}} in localisation files
 * Fix regression in Special:Watchlist text header
 * (bug 7510) Update article counts etc on undelete
+* (bug 6600) Update article counts on XML import
 
 
 == Languages updated ==

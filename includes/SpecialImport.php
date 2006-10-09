@@ -363,13 +363,14 @@ class WikiRevision {
 		if( $created ) {
 			wfDebug( __METHOD__ . ": running onArticleCreate\n" );
 			Article::onArticleCreate( $this->title );
-		} else {
-			if( $changed ) {
-				wfDebug( __METHOD__ . ": running onArticleEdit\n" );
-				Article::onArticleEdit( $this->title );
-			}
-		}
-		if( $created || $changed ) {
+			
+			wfDebug( __METHOD__ . ": running create updates\n" );
+			$article->createUpdates( $revision );
+			
+		} elseif( $changed ) {
+			wfDebug( __METHOD__ . ": running onArticleEdit\n" );
+			Article::onArticleEdit( $this->title );
+			
 			wfDebug( __METHOD__ . ": running edit updates\n" );
 			$article->editUpdates(
 				$this->getText(),
