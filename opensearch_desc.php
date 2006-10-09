@@ -5,8 +5,10 @@
  */
 
 require_once( dirname(__FILE__) . '/includes/WebStart.php' );
-$shortName = htmlspecialchars( mb_substr( $wgSitename, 0, 16 ) );
-$siteName = htmlspecialchars( $wgSitename );
+require_once( dirname(__FILE__) . '/languages/Names.php' );
+$fullName = "$wgSitename ({$wgLanguageNames[$wgLanguageCode]})";
+$shortName = htmlspecialchars( mb_substr( $fullName, 0, 24 ) );
+$siteName = htmlspecialchars( $fullName );
 
 if ( !preg_match( '/^https?:/', $wgFavicon ) ) {
 	$favicon = htmlspecialchars( $wgServer . $wgFavicon );
@@ -34,5 +36,6 @@ echo <<<EOT
 <Url type="text/html" method="get" template="$template"/>
 </OpenSearchDescription>
 EOT;
+
 
 ?>
