@@ -276,6 +276,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression in Special:Watchlist text header
 * (bug 7510) Update article counts etc on undelete
 * (bug 7520) Update article counts on XML import
+* (bug 7526) Make $wgDefaultUserOptions work again
 
 
 == Languages updated ==
