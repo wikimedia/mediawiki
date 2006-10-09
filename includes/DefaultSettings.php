@@ -1564,6 +1564,51 @@ $wgTidyInternal = function_exists( 'tidy_load_config' );
 /** See list of skins and their symbolic names in languages/Language.php */
 $wgDefaultSkin = 'monobook';
 
+/**
+ * Settings added to this array will override the default globals for the user
+ * preferences used by anonymous visitors and newly created accounts.
+ * For instance, to disable section editing links:
+ *  $wgDefaultUserOptions ['editsection'] = 0;
+ *
+ */
+$wgDefaultUserOptions = array( 
+	'quickbar' 		=> 1,
+	'underline' 		=> 2,
+	'cols'			=> 80,
+	'rows' 			=> 25,
+	'searchlimit' 		=> 20,
+	'contextlines' 		=> 5,
+	'contextchars' 		=> 50,
+	'skin' 			=> false,
+	'math' 			=> 1,
+	'rcdays' 		=> 7,
+	'rclimit' 		=> 50,
+	'wllimit' 		=> 250,
+	'highlightbroken'	=> 1,
+	'stubthreshold' 	=> 0,
+	'previewontop' 		=> 1,
+	'editsection'		=> 1,
+	'editsectiononrightclick'=> 0,
+	'showtoc'		=> 1,
+	'showtoolbar' 		=> 1,
+	'date' 			=> 'default',
+	'imagesize' 		=> 2,
+	'thumbsize'		=> 2,
+	'rememberpassword' 	=> 0,
+	'enotifwatchlistpages' 	=> 0,
+	'enotifusertalkpages' 	=> 1,
+	'enotifminoredits' 	=> 0,
+	'enotifrevealaddr' 	=> 0,
+	'shownumberswatching' 	=> 1,
+	'fancysig' 		=> 0,
+	'externaleditor' 	=> 0,
+	'externaldiff' 		=> 0,
+	'showjumplinks'		=> 1,
+	'numberheadings'	=> 0,
+	'uselivepreview'	=> 0,
+	'watchlistdays' 	=> 3.0,
+);
+
 /** Whether or not to allow and use real name fields. Defaults to true. */
 $wgAllowRealName = true;
 

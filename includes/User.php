@@ -46,48 +46,6 @@ class User {
 	var $mVersion;		//!< serialized version
 	/**@}} */
 
-	/**
-	 * Default user options
-	 * To change this array at runtime, use a UserDefaultOptions hook
-	 */
-	static public $mDefaultOptions = array( 
-		'quickbar' 		=> 1,
-		'underline' 		=> 2,
-		'cols'			=> 80,
-		'rows' 			=> 25,
-		'searchlimit' 		=> 20,
-		'contextlines' 		=> 5,
-		'contextchars' 		=> 50,
-		'skin' 			=> false,
-		'math' 			=> 1,
-		'rcdays' 		=> 7,
-		'rclimit' 		=> 50,
-		'wllimit' 		=> 250,
-		'highlightbroken'	=> 1,
-		'stubthreshold' 	=> 0,
-		'previewontop' 		=> 1,
-		'editsection'		=> 1,
-		'editsectiononrightclick'=> 0,
-		'showtoc'		=> 1,
-		'showtoolbar' 		=> 1,
-		'date' 			=> 'default',
-		'imagesize' 		=> 2,
-		'thumbsize'		=> 2,
-		'rememberpassword' 	=> 0,
-		'enotifwatchlistpages' 	=> 0,
-		'enotifusertalkpages' 	=> 1,
-		'enotifminoredits' 	=> 0,
-		'enotifrevealaddr' 	=> 0,
-		'shownumberswatching' 	=> 1,
-		'fancysig' 		=> 0,
-		'externaleditor' 	=> 0,
-		'externaldiff' 		=> 0,
-		'showjumplinks'		=> 1,
-		'numberheadings'	=> 0,
-		'uselivepreview'	=> 0,
-		'watchlistdays' 	=> 3.0,
-	);
-
 	static public $mToggles = array(
 		'highlightbroken',
 		'justify',
@@ -502,8 +460,8 @@ class User {
 		/**
 		 * Site defaults will override the global/language defaults
 		 */
-		global $wgContLang;
-		$defOpt = self::$mDefaultOptions + $wgContLang->getDefaultUserOptionOverrides();
+		global $wgDefaultUserOptions, $wgContLang;
+		$defOpt = $wgDefaultUserOptions + $wgContLang->getDefaultUserOptionOverrides();
 
 		/**
 		 * default language setting
