@@ -32,6 +32,8 @@ $namespaceNames = array(
 	NS_MEDIAWIKI_TALK => 'MediaWiki_eztabaida',
 	NS_TEMPLATE       => 'Txantiloi',
 	NS_TEMPLATE_TALK  => 'Txantiloi_eztabaida',
+	NS_HELP           => 'Laguntza',
+	NS_HELP_TALK      => 'Laguntza_eztabaida',
 	NS_CATEGORY       => 'Kategoria',
 	NS_CATEGORY_TALK  => 'Kategoria_eztabaida',
 );
