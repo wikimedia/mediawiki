@@ -791,7 +791,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'uploadwarning'       => 'Tallennusvaroitus',
 'savefile'            => 'Tallenna',
 'uploadedimage'       => 'tallensi tiedoston [[$1]]',
-'uploaddisabled'      => '{{GRAMMAR:genitive||{{SITENAME}}}} ei voi tallentaa tiedostoja.',
+'uploaddisabled'      => '{{GRAMMAR:genitive|{{SITENAME}}}} ei voi tallentaa tiedostoja.',
 'uploaddisabledtext'  => 'Tiedostojen tallennus on poistetu käytöstä.',
 'uploadscripted'      => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'       => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
