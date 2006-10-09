@@ -3014,7 +3014,7 @@ class Parser
 
 					# If the title is valid but undisplayable, make a link to it
 					if ( !$found && ( $this->ot['html'] || $this->ot['pre'] ) ) {
-						$text = "[[$titleText]]";
+						$text = "[[:$titleText]]";
 						$found = true;
 					}
 				} elseif ( $title->isTrans() ) {

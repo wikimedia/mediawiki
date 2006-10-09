@@ -278,6 +278,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7520) Update article counts on XML import
 * (bug 7526) Make $wgDefaultUserOptions work again
 * (bug 7472) Localize Help namespace for Basque
+* (bug 7529) Including a non-existent category in an article places that article in the category
 
 
 == Languages updated ==
