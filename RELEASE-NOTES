@@ -279,7 +279,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7526) Make $wgDefaultUserOptions work again
 * (bug 7472) Localize Help namespace for Basque
 * (bug 7529) Including a non-existent category in an article places that article in the category
-
+* (bug 4528) Lack of important LaTeX functions stackrel, rightleftharpoon
+* (bug 6721) missing symbols ulcorner, urcorner, llcorner, lrcorner, twoheadrightarrow, twoheadleftarrow
+* (bug 7367) Hyphens sometimes erroneously appended to equations when not converted to PNG
 
 == Languages updated ==
 

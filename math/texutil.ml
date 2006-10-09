@@ -152,6 +152,13 @@ let find = function
     | "\\Downarrow"        -> DELIMITER (HTMLABLE  (FONT_UF,  "\\Downarrow ", "&dArr;"))
     | "\\updownarrow"      -> DELIMITER (TEX_ONLY "\\updownarrow ")
     | "\\Updownarrow"      -> DELIMITER (TEX_ONLY "\\Updownarrow ")
+    | "\\ulcorner"         -> (tex_use_ams (); DELIMITER (TEX_ONLY "\\ulcorner "))
+    | "\\urcorner"         -> (tex_use_ams (); DELIMITER (TEX_ONLY "\\urcorner "))
+    | "\\llcorner"         -> (tex_use_ams (); DELIMITER (TEX_ONLY "\\llcorner "))
+    | "\\lrcorner"         -> (tex_use_ams (); DELIMITER (TEX_ONLY "\\lrcorner "))
+    | "\\twoheadleftarrow" -> (tex_use_ams (); DELIMITER (TEX_ONLY "\\twoheadleftarrow "))
+    | "\\twoheadrightarrow" -> (tex_use_ams (); DELIMITER (TEX_ONLY "\\twoheadrightarrow "))
+    | "\\rightleftharpoons" -> DELIMITER (TEX_ONLY "\\rightleftharpoons ")
     | "\\leftrightarrow"   -> LITERAL (HTMLABLE  (FONT_UF,  "\\leftrightarrow ", "&harr;"))
     | "\\lrarr"            -> LITERAL (HTMLABLE  (FONT_UF,  "\\leftrightarrow ", "&harr;"))
     | "\\harr"             -> LITERAL (HTMLABLE  (FONT_UF,  "\\leftrightarrow ", "&harr;"))
@@ -169,7 +176,6 @@ let find = function
     | "\\nearrow"          -> LITERAL (TEX_ONLY "\\nearrow ")
     | "\\swarrow"          -> LITERAL (TEX_ONLY "\\swarrow ")
     | "\\nwarrow"          -> LITERAL (TEX_ONLY "\\nwarrow ")
-    | "\\sim"              -> LITERAL (TEX_ONLY "\\sim ")
     | "\\simeq"            -> LITERAL (TEX_ONLY "\\simeq ")
     | "\\star"             -> LITERAL (TEX_ONLY "\\star ")
     | "\\ell"              -> LITERAL (TEX_ONLY "\\ell ")
@@ -440,6 +446,7 @@ let find = function
     | "\\choose"           -> FUN_INFIX "\\choose "
     | "\\atop"             -> FUN_INFIX "\\atop "
     | "\\binom"            -> FUN_AR2 "\\binom "
+    | "\\stackrel"         -> FUN_AR2 "\\stackrel "
     | "\\frac"             -> FUN_AR2h ("\\frac ", fun num den -> Html.html_render [num], "<hr style=\"{background: black}\"/>", Html.html_render [den])
     | "\\cfrac"            -> (tex_use_ams (); FUN_AR2h ("\\cfrac ", fun num den -> Html.html_render [num], "<hr style=\"{background: black}\">", Html.html_render [den]))
     | "\\over"             -> FUN_INFIXh ("\\over ", fun num den -> Html.html_render num, "<hr style=\"{background: black}\"/>", Html.html_render den)
