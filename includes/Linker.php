@@ -911,7 +911,7 @@ class Linker {
 				$section = str_replace( ']]', '', $section );
 				$sectionTitle = wfClone( $title );
 				$sectionTitle->mFragment = $section;
-				$link = $this->makeKnownLinkObj( $sectionTitle, wfMsgHtml( 'sectionlink' ) );
+				$link = $this->makeKnownLinkObj( $sectionTitle, wfMsg( 'sectionlink' ) );
 			}
 			$sep='-';
 			$auto=$link.$auto;
