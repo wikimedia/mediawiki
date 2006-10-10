@@ -3,7 +3,7 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.8 ==
+== MediaWiki 1.9 ==
 
 THIS IS NOT A RELEASE YET.
 
@@ -332,7 +332,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Compatibility ==
 
-MediaWiki 1.8 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
+MediaWiki 1.9 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
 
 MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
 At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
