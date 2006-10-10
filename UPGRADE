@@ -73,6 +73,13 @@ procedure, and especially after upgrading; check that page views and edits work
 normally and that special pages continue to function, etc. and correct errors
 and quirks which reveal themselves.
 
+== Upgrading from 1.7 wikis ==
+
+$wgDefaultUserOptions now contains all the defaults, not only overrides.
+If you're setting this as a complete array(), you may need to change it
+to set only specific items as recommended in DefaultSettings.php.
+
+
 == Upgrading from 1.6 wikis ==
 
 $wgLocalTZoffset was in hours, it is now using minutes.
