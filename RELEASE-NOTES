@@ -284,6 +284,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7367) Hyphens sometimes erroneously appended to equations when not converted to PNG
 * Add "title" to the opensearch link to allow automatic adding of the search engine in Firefox 2
 * (bug 7537) Add php5 to $wgFileBlacklist
+* (bug 6929) Restore AutoAuthenticate hook
 
 
 == Languages updated ==
