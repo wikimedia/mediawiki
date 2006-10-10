@@ -512,7 +512,7 @@ class Database {
 				if ( !$success ) {
 					$error = "Error selecting database $dbName on server {$this->mServer} " .
 						"from client host {$wguname['nodename']}\n";
-					wfLogDBError(" Error selecting database $dbname on server {$this->mServer} \n");
+					wfLogDBError(" Error selecting database $dbName on server {$this->mServer} \n");
 					wfDebug( $error );
 				}
 			} else {
