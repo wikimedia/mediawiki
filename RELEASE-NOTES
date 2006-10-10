@@ -22,6 +22,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * $wgUseETag, to enable/disable sending of HTTP ETag headers
   (default: disabled)
+* $wgLegalTitleChars now includes '+' by default for better compatibility
+  with importing data dumps from Wikipedia
+* $wgDefaultUserOptions now includes all default option settings instead
+  of only overrides.
 
 
 == Major new features ==
@@ -336,12 +340,11 @@ At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 
 == Upgrading ==
 
-Several changes to the database have been made from 1.6:
+Some minor database changes have been made since 1.7:
+* new fields and indexes on ipblocks
+* index change on recentchanges
 
-* A new "langlinks" table tracks interlanguage links
-* A new "filearchive" table stores information on deleted files
-* A new "querycache_info" table stores information on query page updates
-
+Several changes from 1.5 and 1.6 do require updates to be run on upgrade.
 To ensure that these tables are filled with data, run refreshLinks.php after
 the upgrade.
 
