@@ -103,11 +103,11 @@ class wikiStatsOutput extends statsOutput {
 	}
 }
 
-/** Outputs WikiText and appends category only used for Meta-Wiki */
+/** Outputs WikiText and appends category and text only used for Meta-Wiki */
 class metawikiStatsOutput extends wikiStatsOutput {
-	function header() {
-		echo "See [[MediaWiki localisation]] to learn how you can help translating MediaWiki.\n";
-		parent::header();
+	function heading() {
+		echo "See [[MediaWiki localisation]] to learn how you can help translating MediaWiki.\n\n";
+		parent::heading();
 	}
 	function footer() {
 		parent::footer();
