@@ -1039,7 +1039,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is \'
 'clearwatchlist'        => 'Wis volglijst',
 'watchlistcleartext'    => 'Weet u zeker dat u ze wilt verwijderen?',
 'watchlistclearbutton'  => 'Wis volglijst',
-'watchlistcleardone'    => "Uw volglijst is gewist. Er {{PLURAL:$1|is één pagina|zijn $1 pagina's}} verwijderd).',
+'watchlistcleardone'    => "Uw volglijst is gewist. Er {{PLURAL:$1|is één pagina|zijn $1 pagina's}} verwijderd).",
 'watchnologin'          => 'U bent niet aangemeld',
 'watchnologintext'      => 'U dient [[Special:Userlogin|aangemeld]] te zijn om uw volglijst te bewerken.',
 'addedwatch'            => 'Toegevoegd aan volglijst',
@@ -1055,7 +1055,7 @@ Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op "N
 'unwatchthispage'       => 'Niet meer volgen',
 'notanarticle'          => 'Is geen pagina',
 'watchnochange'         => 'Geen van de pagina\'s op uw volglijst is in deze periode bewerkt.',
-'watchdetails'          => '* Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst, exclusief overlegpagina\'s
+'watchdetails'          => '* Er {{PLURAL:$1|staat één pagina|staan $1 pagina\'s}} op uw volglijst, exclusief overlegpagina\'s
 * [[Special:Watchlist/edit|Toon en bewerk de volledige volglijst]]
 * [[Special:Watchlist/clear|Verwijder alle pagina\'s van de volglijst]]',
 'wlheader-enotif'       => '* U wordt per e-mail gewaarschuwd',
