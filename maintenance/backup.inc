@@ -203,11 +203,11 @@ class BackupDumper {
 	 * Initialise starting time and maximum revision count.
 	 * We'll make ETA calculations based an progress, assuming relatively
 	 * constant per-revision rate.
-	 * @param int $history MW_EXPORT_CURRENT or MW_EXPORT_FULL
+	 * @param int $history WikiExporter::CURRENT or WikiExporter::FULL
 	 */
-	function initProgress( $history = MW_EXPORT_FULL ) {
-		$table = ($history == MW_EXPORT_CURRENT) ? 'page' : 'revision';
-		$field = ($history == MW_EXPORT_CURRENT) ? 'page_id' : 'rev_id';
+	function initProgress( $history = WikiExporter::FULL ) {
+		$table = ($history == WikiExporter::CURRENT) ? 'page' : 'revision';
+		$field = ($history == WikiExporter::CURRENT) ? 'page_id' : 'rev_id';
 		
 		$dbr =& wfGetDB( DB_SLAVE );
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', 'BackupDumper::dump' );
