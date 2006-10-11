@@ -22,7 +22,8 @@
 * http://www.gnu.org/copyleft/gpl.html
 */
 
-$wgApiStartTime = microtime(true);
+// Initialise common code
+require (dirname(__FILE__) . '/includes/WebStart.php');
 
 /**
  * When no format parameter is given, this format will be used
@@ -88,15 +89,10 @@ $wgApiFormats = array (
 	'yamlfm' => 'ApiFormatYaml'
 );
 
-// Initialise common code
-require (dirname(__FILE__) . '/includes/WebStart.php');
 wfProfileIn('api.php');
 
 // Verify that the API has not been disabled
-// The next line should be 
-//      if (isset ($wgEnableAPI) && !$wgEnableAPI) {
-// but will be in a safe mode until api is stabler
-if (!isset ($wgEnableAPI) || !$wgEnableAPI) {
+if (!$wgEnableAPI) {
 	echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php';
 	echo '<pre><b>$wgEnableAPI=true;</b></pre>';
 	die(-1);
@@ -104,13 +100,9 @@ if (!isset ($wgEnableAPI) || !$wgEnableAPI) {
 
 $wgAutoloadClasses = array_merge($wgAutoloadClasses, $wgApiAutoloadClasses);
 
-if (!isset($wgEnableWriteAPI))
-	$wgEnableWriteAPI = false;	// This should be 'true' later, once the api is stable. 
-	
-$processor = new ApiMain($wgApiStartTime, $wgApiModules, $wgApiFormats, $wgEnableWriteAPI);
+$processor = new ApiMain($wgRequestTime, $wgApiModules, $wgApiFormats, $wgEnableWriteAPI);
 $processor->execute();
 
 wfProfileOut('api.php');
 wfLogProfilingData();
-exit; // Done!
 ?>
