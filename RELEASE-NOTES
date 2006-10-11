@@ -5,6 +5,10 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.8.1 ==
 
+October 11, 2006
+
+MediaWiki 1.8.1 fixes several issues in the Fall 2006 snapshot release:
+
 * Fix PHP notice and estimates for dumpBackup.php and friends
 * Improved register_globals paranoia checks
 * (bug 7545) Fix PHP version check on install
