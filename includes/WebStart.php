@@ -4,6 +4,40 @@
 # starts the profiler and loads the configuration, and optionally loads 
 # Setup.php depending on whether MW_NO_SETUP is defined.
 
+# Protect against register_globals
+# This must be done before any globals are set by the code
+if ( ini_get( 'register_globals' ) ) {
+	if ( isset( $_REQUEST['GLOBALS'] ) ) {
+		die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+	}
+	$verboten = array(
+		'GLOBALS',
+		'_SERVER',
+		'HTTP_SERVER_VARS',
+		'_GET',
+		'HTTP_GET_VARS',
+		'_POST',
+		'HTTP_POST_VARS',
+		'_COOKIE',
+		'HTTP_COOKIE_VARS',
+		'_FILES',
+		'HTTP_POST_FILES',
+		'_ENV',
+		'HTTP_ENV_VARS',
+		'_REQUEST',
+		'_SESSION',
+		'HTTP_SESSION_VARS'
+	);
+	foreach ( $_REQUEST as $name => $value ) {
+		if( in_array( $name, $verboten ) ) {
+			header( "HTTP/1.x 500 Internal Server Error" );
+			echo "register_globals security paranoia: trying to overwrite superglobals, aborting.";
+			die( -1 );
+		}
+		unset( $GLOBALS[$name] );
+	}
+}
+
 $wgRequestTime = microtime(true);
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
 if ( function_exists ( 'getrusage' ) ) {
@@ -13,10 +47,6 @@ if ( function_exists ( 'getrusage' ) ) {
 }
 unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security
-
-if ( isset( $_REQUEST['GLOBALS'] ) ) {
-	die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
-}
 
 # Valid web server entry point, enable includes.
 # Please don't move this line to includes/Defines.php. This line essentially

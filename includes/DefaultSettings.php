@@ -2276,4 +2276,11 @@ $wgDjvuRenderer = null;
  */
 $wgDjvuPostProcessor = 'ppmtojpeg';
 
+/**
+* Enable direct access to the data API
+* through api.php
+*/
+$wgEnableAPI = false;
+$wgEnableWriteAPI = false;
+
 ?>

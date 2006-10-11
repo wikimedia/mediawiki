@@ -6,7 +6,9 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 == MediaWiki 1.8.1 ==
 
 * Fix PHP notice and estimates for dumpBackup.php and friends
+* Improved register_globals paranoia checks
 * (bug 7545) Fix PHP version check on install
+* Experimental web API disabled by default
 
 
 == MediaWiki 1.8.0 ==
