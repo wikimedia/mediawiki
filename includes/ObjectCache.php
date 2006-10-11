@@ -60,9 +60,9 @@ function &wfGetCache( $inputType ) {
 				}
 			}
 
-			$wgCaches[CACHE_MEMCACHED] = new MemCachedClientforWiki(
+			$wgCaches[CACHE_DB] = new MemCachedClientforWiki(
 				array('persistant' => $wgMemCachedPersistent, 'compress_threshold' => 1500 ) );
-			$cache =& $wgCaches[CACHE_MEMCACHED];
+			$cache =& $wgCaches[CACHE_DB];
 			$cache->set_servers( $wgMemCachedServers );
 			$cache->set_debug( $wgMemCachedDebug );
 		}
