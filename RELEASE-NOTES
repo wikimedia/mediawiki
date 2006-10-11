@@ -32,6 +32,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   screen sizes, for the default monobook skin.
 * Fix PHP notice and estimates for dumpBackup.php and friends
 * Improved register_globals paranoia checks
+* (bug 7545) Fix PHP version check on install
 
 
 == Languages updated ==
