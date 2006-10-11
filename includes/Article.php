@@ -9,7 +9,7 @@
  *
  * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been
- * moved to separate EditPage and CacheManager classes.
+ * moved to separate EditPage and HTMLFileCache classes.
  *
  * @package MediaWiki
  */
@@ -2250,7 +2250,7 @@ class Article {
 		$called = true;
 		if($this->isFileCacheable()) {
 			$touched = $this->mTouched;
-			$cache = new CacheManager( $this->mTitle );
+			$cache = new HTMLFileCache( $this->mTitle );
 			if($cache->isFileCacheGood( $touched )) {
 				wfDebug( "Article::tryFileCache(): about to load file\n" );
 				$cache->loadFromFileCache();
@@ -2438,7 +2438,7 @@ class Article {
 		
 		# File cache
 		if ( $wgUseFileCache ) {
-			$cm = new CacheManager( $title );
+			$cm = new HTMLFileCache( $title );
 			@unlink( $cm->fileCacheName() );
 		}
 
@@ -2464,7 +2464,7 @@ class Article {
 
 		# Clear file cache
 		if ( $wgUseFileCache ) {
-			$cm = new CacheManager( $title );
+			$cm = new HTMLFileCache( $title );
 			@unlink( $cm->fileCacheName() );
 		}
 	}

@@ -540,7 +540,7 @@ class Title {
 
 		foreach ( $titles as $title ) {
 			if ( $wgUseFileCache ) {
-				$cm = new CacheManager($title);
+				$cm = new HTMLFileCache($title);
 				@unlink($cm->fileCacheName());
 			}
 
@@ -1366,7 +1366,7 @@ class Title {
 		);
 
 		if ($wgUseFileCache) {
-			$cache = new CacheManager($this);
+			$cache = new HTMLFileCache($this);
 			@unlink($cache->fileCacheName());
 		}
 

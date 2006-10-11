@@ -22,7 +22,7 @@ function __autoload($className) {
 		'eAccelBagOStuff' => 'includes/BagOStuff.php',
 		'DBABagOStuff' => 'includes/BagOStuff.php',
 		'Block' => 'includes/Block.php',
-		'CacheManager' => 'includes/CacheManager.php',
+		'HTMLFileCache' => 'includes/HTMLFileCache.php',
 		'CategoryPage' => 'includes/CategoryPage.php',
 		'CategoryViewer' => 'includes/CategoryPage.php',
 		'Categoryfinder' => 'includes/Categoryfinder.php',
