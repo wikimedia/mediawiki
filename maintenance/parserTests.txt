@@ -2284,7 +2284,7 @@ Template infinite loop
 !! input
 {{loop1}}
 !! result
-<p>{{loop1}}<!-- WARNING: template loop detected -->
+<p><a href="/index.php?title=Loop1&amp;action=edit" class="new" title="Loop1">loop1</a><!-- WARNING: template loop detected -->
 </p>
 !! end
 
