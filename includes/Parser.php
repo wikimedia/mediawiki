@@ -2789,31 +2789,6 @@ class Parser
 		return $text;
 	}
 
-	# Split template arguments
-	function getTemplateArgs( $argsString ) {
-		if ( $argsString === '' ) {
-			return array();
-		}
-
-		$args = explode( '|', substr( $argsString, 1 ) );
-
-		# If any of the arguments contains a '[[' but no ']]', it needs to be
-		# merged with the next arg because the '|' character between belongs
-		# to the link syntax and not the template parameter syntax.
-		$argc = count($args);
-
-		for ( $i = 0; $i < $argc-1; $i++ ) {
-			if ( substr_count ( $args[$i], '[[' ) != substr_count ( $args[$i], ']]' ) ) {
-				$args[$i] .= '|'.$args[$i+1];
-				array_splice($args, $i+1, 1);
-				$i--;
-				$argc--;
-			}
-		}
-
-		return $args;
-	}
-
 	/**
 	 * Return the text of a template, after recursively
 	 * replacing any variables or templates within the template.
