@@ -1350,6 +1350,10 @@ ul#filetoc {
 	padding-right: 2em;
 }
 
+input#wpSummary {
+	width: 80%;
+}
+
 /* @bug 1714 */
 input#wpSave, input#wpDiff {
 	margin-right: 0.33em;
