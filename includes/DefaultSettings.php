@@ -2281,5 +2281,6 @@ $wgDjvuPostProcessor = 'ppmtojpeg';
 * through api.php
 */
 $wgEnableAPI = true;
+$wgEnableWriteAPI = false;
 
 ?>
