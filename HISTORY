@@ -5,6 +5,258 @@ Change notes from older releases. For current info see RELEASE-NOTES.
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== Changes since 1.7 ==
+
+* Introduced AjaxResponse object, superceding AjaxCachePolicy
+* Changes to sajax_do_call: optionally accept an element to fill instead of a
+  callback function; take the target function or element as a third parameter;
+  pass the full XMLHttpRequest object to the handler function, instead of just
+  the resultText value; use HTTP response codes to report errors.
+* (bug 6562) Removed unmaintained ParserXml.php for now
+* History paging overlap bug fixed
+* (bug 6586) Regression in "unblocked" subtitle
+* Don't put empty-page message into view-source when page text is blank
+* (bug 6587) Remove redundant "allnonarticles" message
+* Block improvements: Allow blocks on anonymous users only. Optionally allow 
+  or disallow account creation from blocked IP addresses. Prevent duplicate
+  blocks. Fixed the problem of expiry and unblocking erroneously affecting
+  multiple blocks. Fixed confusing lack of error message when a blocked user
+  attempts to create an account. Fixed inefficiency of Special:Ipblocklist in 
+  the presence of large numbers of blocks; added indexes and implemented an 
+  indexed pager.
+* (bug 6448) Allow filtering of Special:Newpages according to username
+* (bug 6618) Improve permissions/error detection in Special:Lockdb
+* Quick hack for extension testing: parser test doesn't create new message
+  cache object.
+* (bug 6299) Maintain parser's revision ID across recursive calls to fix
+  {{REVISIONID}} when Cite extension is used
+* (bug 6622) Removed deprecated function Image::newFromTitle
+* (bug 6627) Fix regression in Special:Ipblocklist with table prefix
+* Removed forced dereferencements (new() returns a reference in PHP5)
+* Note about $wgUploadSizeWarning using byte
+* (bug 6592) Add most viewed pages summary to Special:Statistics
+* Pre-strip characters ignored in IDNs from URLs so they can't be used
+  to break the blacklists for regular URLs
+* Fix regression in blocking of user accounts
+* (bug 6635) Fix regression searching for range blocks on Ipblocklist
+* Fix regression searching Ipblocklist with ugly URLs
+* (bug 6639) Use a consistent default for upload directories
+* Preserve entered reason when reporting unconfirmed lock on Special:Lockdb
+* (bug 6642) Don't offer to unlock the database when it isn't locked
+* cleanupTitles.php changed from --dry-run option to --fix, so default
+  behavior is now a non-invasive check as with namespaceDupes.php
+* (bug 6660) Fix behaviour of EditPage::blockedPage() when the article does
+  not exist; now doesn't show the source box if the user hasn't provided it
+  (blocked mid-edit) and the page doesn't exist
+* Improve default value of "blockedtext"
+* (bug 6680) Added localisation for Dutch bookstore list (nl)
+* Renamed maintainace script redundanttrans.php to unusedMessages.php - clearer usage
+* Fix regression which allowed some blocked users to create additional accounts
+* (bug 6657) Fix Hungarian linktrail
+* (bug 6751) Fix preview of blanked section with edit on first preview option
+* (bug 5456) Separate MediaWiki:Search into messages for both noun and verb,
+  introduced 'MediaWiki:Searchbutton'
+* Made lines from initialiseMessages() appear as list items during installation
+* Moved the bulk of the localisation data from the Language*.php files to the
+  Messages*.php files. Deleted most of the Languages*.php files.
+* Introduced "stub global" framework to provide deferred initialisation of core
+  modules. 
+* Removed placeholder values for $wgTitle and $wgArticle, these variables will
+  now be null during the initialisation process, until they are set by index.php
+  or another entry point.
+* Added DBA cache type, for BDB-style caches. 
+* Removed custom date format functions, replacing them with a format string in
+  the style of PHP's date(). Used string identifiers instead of integer
+  identifiers, in both the language files and user preferences. Migration should
+  be transparent in most cases.
+* Simplified the initialisation API for LoadBalancer objects.
+* Removed the broken altencoding feature.
+* Moved default user options and toggles from Language to User. Language objects
+  are still able to define default preference overrides and extra user toggles, 
+  via a slightly different interface.
+* Don't include the date option in the parser cache rendering hash unless
+  $wgUseDynamicDates is enabled.
+* Merged LanguageUtf8 with Language. Removed LanguageUtf8.php. 
+* Removed inclusion of language files from the bottom of Language.php. This is
+  now consistently done from Language::factory(). 
+* Add the name of the executing maintenance script to the debug log. Start the
+  profiler during maintenance scripts.
+* Added "serialized" directory, for storing precompiled data in serialized form.
+* Fix regression in auto-set NS_PROJECT_TALK namespace
+* Fix regression in ordering of namespaces
+* (bug 6806, 6030) Added several global JS variables for article path, user name,
+  page title, etc. 
+* hooks registered with addOnloadHook are now called at the one of the html body
+  by all skins.
+* Split ajax aided search from core ajax framework. Use wgUseAjax to enable the
+  framework and wgAjaxSearch to enable the suggest feature for the search box.
+* Added experimental installer for extensions. 
+  See maintenance/installExtension.php
+* Added Tajic (tg) language file.
+* (bug 6903) Added Cantonese localisation (zh-yue)
+* Fix regression in Korean and Japanese date formatting (day of week)
+* (bug 6919) Add English alias magic words for Tatar (tt) language file.
+* (bug 6753) Fixed broken Kazakh linktrail (kk)
+* (bug 6700) Added Kazakh language variants to Names.php
+* (bug 6827) some i18n specific maintenance scripts fails after merge of localisation-work branch
+* Throwed an exception for the deprecated functions OutputPage::sysopRequired and
+  OutputPage::developerRequired - use OutputPage::permissionRequired instead.
+* Removed the deprecated functions User::isSysop, User::isBureaucrat and User::isDeveloper -
+  use User::isAllowed instead.
+* (bug 769) OutputPage::permissionRequired() should suggest groups with the needed permission
+* (bug 6971) Fix regression in Special:Export history view
+* Revamped Special:Imagelist
+* (bug 7000) updated MessagesPl.php
+* (bug 6946) Fix unexpected behavior change with GET hits to Special:Export
+* (bug 1866) Improve navigation on Special:Listusers; user now a starting
+  point as with Special:Allpages, rather than a pure limit.
+* Clean up tab order on Special:Blockip
+* (bug 5969) Clean up tab order on Special:Userlogin forms
+* (bug 3512) namespaceDupes now handles spaces and initial caps properly
+* (bug 7037) Fix regression in login tab order
+* (bug 7031) Report missing email on 'email password' instead of false success
+* (bug 7010) Don't send email notifications for watched talk pages when user
+  has selected to receive only updates for their own talk page
+* Added {{CURRENTHOUR}}
+* Added [[:Image:Foo.png]] style links to the pagelinks table
+* Avoid duplicate revision imports with Special:Import
+* (bug 7054) Validate email address before sending email confirmation message
+* (bug 7061) Format title on "from (page)" links on Special:Allpages
+* (bug 7044) Introduce "padleft" and "padright" colon functions
+* Pass page title as parameters to "linkshere" and "nolinkshere" and update
+  default message text
+* Allows to upload from publicy accessible URL. Set $wgAllowCopyUploads = true ; in LocalSettings.php
+  Limited to $wgMaxUploadSize (default:100MB); URL upload is limited to sysops by default, and displayed as a second line if appropriate
+* (bug 832) Return to user page after emailing a user
+* (bug 366) Add local-system-timezone equivalents for date/time variables
+* (bug 7109) Fix Atom feed version number in header links
+* (bug 7075) List registered parser function hooks on Special:Version
+* (bug 7059) Introduce "anchorencode" colon function
+* Include SVN revision number in {{CURRENTVERSION}} output, where applicable
+* Fix bug in wfRunHooks which caused corruption of objects in the hook list
+* (bug 4979) Use simplified email addresses when running on Windows
+* (bug 4434) Show block log fragment on Special:Blockip
+* [[MediaWiki:Disambiguationspage]] may optionally contain wiki links to any number 
+  of disambiguation templates.
+* [[Special:Disambiguations]] now shows pages in NS:0 that link to any pages that embed
+  any of the templates listed at [[MediaWiki:Disambiguationspage]].
+* Fix formatting of titles on Special:Undelete
+* (bug 7026) Fix action=raw&templates=expand
+* (bug 6976) Add namespace and direction classes to classic skins
+* (bug 7144) Don't "return to main" from OutputPage::loginToUse() if the the user can't
+  read the main page in the first place
+* (bug 7188) Fix minor borkage in HTMLForm
+* (bug 6675) Replaced message 'watchthis' with new message 'watchthisupload in Special:Upload
+* Add a quickie script dumpSisterSites.php for generating a page list in the
+  format for WSR-1 SisterSites support
+* (bug 7223) Monobook.js is used for site content, should not be localized
+* Set default disabled values for DjVu render options
+* Added Xml::option() for generating <option>s easily
+* Localized page numbers in drop-down for DjVu page selection
+* Fixed linktrail for vi
+* (bug 6893) "Call to a member function exists() on a non-object" on trackback.php with bad input
+* (bug 6886) PHP undefined offset on bad input to Special:Revisiondelete
+* (bug 6887) PHP error for call to getId() on bad input to Special:Revisiondelete
+* (bug 6888) PHP error for call to getTimestamp() on bad input to Special:Revisiondelete
+* (bug 7252) Use dvipng support in texvc math rastrization. dvipng is required if texvc is rebuilt.
+* (bug 7279) Use wfBaseName in place of basename() in more places
+* Clear newtalk marker on diff links with explicit current revision number
+* (bug 7064) Replace hard-coded empty message checks with wfEmptyMsg calls
+* (bug 6777) Remove some PHP 4 compat cruft
+* Add --user, --comment, and --license options to importImages.php
+* (bug 6216) The immobile namespace message does not mention the source page
+* (bug 7299) Normalize username filter on Special:Newpages
+* (bug 7306) RTL text in an LTR wiki breaks appearance of Special:Recentchanges
+* (bug 7312) Don't emit SET NAMES utf8 if connection failed
+* (bug 7305) Proper compare for bot check on RC notify, should fix overrides
+  that force edits by non-bot users to bot mode
+* Set Vary: Cookie on action=raw generated CSS and JS, to ensure that user
+  preferences don't get stuck in proxy caches for other people
+* (bug 7324) Fix error message for failure of Database::sourceFile()
+* (bug 7309) Plurals: use singular form for zero in French and Brazilian Portuguese
+* Add page_no_title_convert field to support language variant conversion
+  for page titles which shouldn't be converted on display/linking
+* Lazy extraction of text chunks in Revision objects, may reduce hits to
+  external storage when actual text content is not used
+* Added experimental $wgRevisionCacheExpiry to cache extracted revision text
+  in $wgMemc, to further reduce hits to external storage.
+  Set to 0 (disabled) by default.
+* Minor changes to the installer. 
+* Remove ":" for 'youremail' and 'yourrealname' in includes/templates/Userlogin.php
+  so that ":" could be used in i18n for Special:Preferences (like 'username' and 'uid').
+* Fix layout for Special:Preferences->Date and Time (position for 'timezonetext').
+* Updates to language variant code for Serbian et al
+* (bug 6756) Enabling RTL direction for kk-cn
+* (bug 6701) Kazakh language variants in MessagesEn.php
+* (bug 7335) SVN revision check in Special:Version fails on SVN 1.4 working copy
+* (bug 6518) Replaced 'lastmodified' with 'lastmodifiedat' and 'lastmodifiedby' with 'lastmodifiedatby'
+  with seperated parameters for date and time to allow better localisation. Updated all message files
+  to display the old format for compatibility.
+* (bug 7357) Make supposedly static methods of Skin actually static
+* Added info text to Special:Deadendpages and Special:Lonelypages
+* Fix regression in cachability of generated CSS and JS for MonoBook skin,
+  while avoiding clobbering of different users' cached data
+* (bug 6849) Block @ from usernames; interferes with multi-database tools and
+  was meant to be banned years ago... For now existing accounts will not be
+  prevented fromm login.
+* (bug 6092) Introduce magic words {{REVISIONDAY}}, {{REVISIONDAY2}, {{REVISIONMONTH}},
+  {{REVISIONYEAR}} and {{REVISIONTIMESTAMP}} 
+* (bug 7425) Preceeding whitespace in [[...]] breaks subpages
+* Try to reconnect after transitory database errors in dumpTextPass.php
+* (bug 6023) Fixed mismatch of 0/NULL for wl_notificationtimestamp; now notification
+  mails are working after 'Mark all pages visited' button on Special:Watchlist is clicked
+* Made {{INT:}} a core parser function instead of a special case. The syntax 
+  and behaviour is largely unchanged. 
+* (bug 7448) Fixing the native name for Ewe (ee)
+* (bug 6864) Replace message 'editing' with new message 'editinguser' in Special:Userrights
+  to allow better localisation
+* Add '*-summary' for special pages to MessagesEn.php to allow customizing/translation
+  directly through Special:Allmessages
+* (bug 6130, bug 5818) Replaced message 'go'  with the new message 'searcharticle' in skins
+  to allow better localisation
+* Add + to $wgLegalTitleChars by default. Some sites may have occasional
+  problems with hard-to-reach pages, but it should be less trouble than
+  "I can't import dumps from Wikipedia" complaints
+* (bug 7460) Revert broken patch for bug 7226 which slows down
+  Special:Allmessages by a factor of 16
+* Committed a bunch of live hacks from Wikimedia servers
+* (bug 6889) PHP notices in thumb.php with missing params
+* Cleaner error behavior on thumb.php with invalid page selection
+* (bug 6617) Validate timestamps on Special:Undelete
+* Do fewer unnecessary full writes of user rows; only update user_touched
+  for watch/unwatch, group membership change, and login operations
+* Restructured the languages directory, to avoid problems when people 
+  untar MW 1.8 over the top of a 1.7 installation.  
+* (bug 6890) SQL query error on bad input to Pager lists 
+  due to negative LIMIT clause, caused by integer wraparound.
+* Fixed various bugs related to table prefixes, especially the interaction
+  between table prefixes and memcached, which was formerly completely broken.
+* (bug 7004) PHP iconv() notice on bad password input to Special:Userlogin.
+* (bug 6826) Extend pre-save transform context link ("pipe trick")
+  syntax to pages with commas in title
+* Use ImageMagick -thumbnail option instead of -resize to avoid including
+  excessive metadata in thumbs (requires ImageMagick 6.0.0 or newer).
+* (bug 7499) Corrections to Swedish talk namespace names
+* (bug 7508) Added option to compress HTML pages by dumpHTML.php
+* (bug 7519) Add plural in SpecialWatchlist
+* (bug 7459) Magic word variables are always case sensitive
+* Replaced {{SERVER}}{{localurl:xxx}} with {{fullurl:xxx}} in localisation files
+* Fix regression in Special:Watchlist text header
+* (bug 7510) Update article counts etc on undelete
+* (bug 7520) Update article counts on XML import
+* (bug 7526) Make $wgDefaultUserOptions work again
+* (bug 7472) Localize Help namespace for Basque
+* (bug 7529) Including a non-existent category in an article places that article in the category
+* (bug 4528) Lack of important LaTeX functions stackrel, rightleftharpoon
+* (bug 6721) missing symbols ulcorner, urcorner, llcorner, lrcorner, twoheadrightarrow, twoheadleftarrow
+* (bug 7367) Hyphens sometimes erroneously appended to equations when not converted to PNG
+* Add "title" to the opensearch link to allow automatic adding of the search engine in Firefox 2
+* (bug 7537) Add php5 to $wgFileBlacklist
+* (bug 6929) Restore AutoAuthenticate hook
+* (bug 6835) Removing the includes/Parser.php::getTemplateArgs() function, 
+  because it seems to be unused.
+
+
 == Changes since 1.6 ==
 
 * (bug 5458) Fix double-URL encoding in block log link in contribs and contribs
