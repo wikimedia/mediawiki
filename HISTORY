@@ -253,8 +253,6 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Add "title" to the opensearch link to allow automatic adding of the search engine in Firefox 2
 * (bug 7537) Add php5 to $wgFileBlacklist
 * (bug 6929) Restore AutoAuthenticate hook
-* (bug 6835) Removing the includes/Parser.php::getTemplateArgs() function, 
-  because it seems to be unused.
 
 
 == Changes since 1.6 ==
