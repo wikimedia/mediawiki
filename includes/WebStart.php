@@ -4,6 +4,17 @@
 # starts the profiler and loads the configuration, and optionally loads 
 # Setup.php depending on whether MW_NO_SETUP is defined.
 
+# Protect against register_globals
+# This must be done before any globals are set by the code
+if ( ini_get( 'register_globals' ) ) {
+	if ( isset( $_REQUEST['GLOBALS'] ) ) {
+		die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+	}
+	foreach ( $_REQUEST as $name => $value ) {
+		unset( $GLOBALS[$name] );
+	}
+}
+
 $wgRequestTime = microtime(true);
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
 if ( function_exists ( 'getrusage' ) ) {
@@ -13,10 +24,6 @@ if ( function_exists ( 'getrusage' ) ) {
 }
 unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security
-
-if ( isset( $_REQUEST['GLOBALS'] ) ) {
-	die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
-}
 
 # Valid web server entry point, enable includes.
 # Please don't move this line to includes/Defines.php. This line essentially
