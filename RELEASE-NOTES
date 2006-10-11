@@ -31,6 +31,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7139) Increasing the visual width of the edit summary field on larger
   screen sizes, for the default monobook skin.
 * Fix PHP notice and estimates for dumpBackup.php and friends
+* Improved register_globals paranoia checks
 
 
 == Languages updated ==
