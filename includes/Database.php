@@ -152,7 +152,7 @@ border=\"0\" ALT=\"Google\"></A>
 				}
 			}
 
-			$cache = new CacheManager( $t );
+			$cache = new HTMLFileCache( $t );
 			if( $cache->isFileCached() ) {
 				$msg = '<p style="color: red"><b>'.$msg."<br />\n" .
 					$cachederror . "</b></p>\n";

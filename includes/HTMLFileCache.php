@@ -1,6 +1,6 @@
 <?php
 /**
- * Contain the CacheManager class
+ * Contain the HTMLFileCache class
  * @package MediaWiki
  * @subpackage Cache
  */
@@ -18,10 +18,10 @@
  * $wgUseGzip
  * @package MediaWiki
  */
-class CacheManager {
+class HTMLFileCache {
 	var $mTitle, $mFileCache;
 
-	function CacheManager( &$title ) {
+	function HTMLFileCache( &$title ) {
 		$this->mTitle =& $title;
 		$this->mFileCache = '';
 	}
