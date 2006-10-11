@@ -33,6 +33,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix PHP notice and estimates for dumpBackup.php and friends
 * Improved register_globals paranoia checks
 * (bug 7545) Fix PHP version check on install
+* Disable PHP exception backtrace printing unless $wgShowExceptionDetails
+  is set. Backtraces may contain sensitive information in function call
+  parameters.
 
 
 == Languages updated ==
