@@ -20,16 +20,28 @@ class MWException extends Exception
 			return wfMsgReplaceArgs( $fallback, $args );
 		}
 	}
-			
+
 	function getHTML() {
-		return '<p>' . htmlspecialchars( $this->getMessage() ) . 
-			'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
-			"</p>\n";
+		global $wgShowExceptionDetails;
+		if( $wgShowExceptionDetails ) {
+			return '<p>' . htmlspecialchars( $this->getMessage() ) . 
+				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
+				"</p>\n";
+		} else {
+			return "<p>Set <b><tt>\$wgShowExceptionDetails = true;</tt></b> " .
+				"in LocalSettings.php to show detailed debugging information.</p>";
+		}
 	}
 
 	function getText() {
-		return $this->getMessage() .
-			"\nBacktrace:\n" . $this->getTraceAsString() . "\n";
+		global $wgShowExceptionDetails;
+		if( $wgShowExceptionDetails ) {
+			return $this->getMessage() .
+				"\nBacktrace:\n" . $this->getTraceAsString() . "\n";
+		} else {
+			return "<p>Set <tt>\$wgShowExceptionDetails = true;</tt> " .
+				"in LocalSettings.php to show detailed debugging information.</p>";
+		}
 	}
 	
 	function getPageTitle() {
