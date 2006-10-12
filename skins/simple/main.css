@@ -402,3 +402,8 @@ div.prefsectiontip {
 table.collapsed tr.collapsable {
 	display: none;
 }
+
+.editsection {
+	float: right;
+	margin-left: 5px;
+}
