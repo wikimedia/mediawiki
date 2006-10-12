@@ -304,8 +304,8 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Help:FAQ Најчешће постављена питања]
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Мејлинг листа о издањима МедијаВикија]",
 
-'portal' => 'Трг',
-'portal-url' => 'Project:Трг',
+'portal' => 'Радионица',
+'portal-url' => 'Project:Радионица',
 'about' => 'О...',
 'aboutsite' => 'О пројекту {{SITENAME}}',
 'aboutpage' => 'Project:О',
