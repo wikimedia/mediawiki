@@ -765,7 +765,7 @@ class SkinTemplate extends Skin {
 				$content_actions['varlang-' . $vcount] = array(
 						'class' => $selected,
 						'text' => $varname,
-						'href' => $this->mTitle->getLocalUrl( $actstr . 'variant=' . urlencode( $code ) )
+						'href' => $this->mTitle->getLocalURL('',$code)
 					);
 				$vcount ++;
 			}
