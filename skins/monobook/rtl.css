@@ -41,7 +41,7 @@ html>body .portlet {
 	float: right;
 	clear: right;
 }
-div.editsection {
+.editsection {
 	float: left;
 	margin-right: 5px;
 }
