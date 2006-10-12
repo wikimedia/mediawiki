@@ -42,8 +42,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6918) Stopped borders and backgrounds from showing through floated
   tables in Monobook
 * (bug 6868) Un-hardcode section edit link style
-* (bug 4525) Move section links down to same level as headings (editsection
-  links are now inside the h# elements)
 
 == Languages updated ==
 

@@ -3501,9 +3501,6 @@ class Parser
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
 			}
-			# give headline the correct <h#> tag
-			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount];
-
 			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
 				if ( empty( $head[$headlineCount] ) ) {
 					$head[$headlineCount] = '';
@@ -3513,7 +3510,9 @@ class Parser
 				else
 					$head[$headlineCount] .= $sk->editSectionLink($this->mTitle, $sectionCount+1, $headline_hint);
 			}
-                        $head[$headlineCount] .= $headline.'</h'.$level.'>';
+
+			# give headline the correct <h#> tag
+			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount] .$headline.'</h'.$level.'>';
 
 			$headlineCount++;
 			if( !$istemplate )
