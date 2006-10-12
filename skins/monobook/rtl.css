@@ -41,6 +41,10 @@ html>body .portlet {
 	float: right;
 	clear: right;
 }
+div.editsection {
+	float: left;
+	margin-right: 5px;
+}
 /* recover IEMac (might be fine with the float, but usually it's close to IE */
 *>body .portlet {
 	float: none;

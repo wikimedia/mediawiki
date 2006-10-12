@@ -129,6 +129,11 @@ h4 { font-size: 116%; }
 h5 { font-size: 100%; }
 h6 { font-size: 80%;  }
 
+div.editsection {
+	float: right;
+	margin-left: 5px;
+}
+
 ul {
 	line-height: 1.5em;
 	list-style-type: square;
