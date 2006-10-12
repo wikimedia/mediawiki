@@ -932,7 +932,7 @@ class SkinTemplate extends Skin {
 			$siteargs .= '&ts=' . $wgUser->mTouched;
 		}
 
-		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
+		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css?1";' . "\n";
 
 		# If we use the site's dynamic CSS, throw that in, too
 		if ( $wgUseSiteCss ) {
