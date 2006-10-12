@@ -1046,11 +1046,11 @@ class Linker {
 		$editurl = '&section='.$section;
 		$url = $this->makeKnownLinkObj( $title, wfMsg('editsection'), 'action=edit'.$editurl );
 
-		return "<div class=\"editsection\">[".$url."]</div>";
+		return "<span class=\"editsection\">[".$url."]</span>";
 
 	}
 
-	/** 
+	/**
 	 * @param $title Title object.
 	 * @param $section Integer: section number.
 	 * @param $hint Link String: title, or default if omitted or empty
@@ -1062,7 +1062,7 @@ class Linker {
 		$hint = ( $hint=='' ) ? '' : ' title="' . wfMsgHtml( 'editsectionhint', htmlspecialchars( $hint ) ) . '"';
 		$url = $this->makeKnownLinkObj( $nt, wfMsg('editsection'), 'action=edit'.$editurl, '', '', '',  $hint );
 
-		return "<div class=\"editsection\">[".$url."]</div>";
+		return "<span class=\"editsection\">[".$url."]</span>";
 	}
 
 	/**

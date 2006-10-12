@@ -78,8 +78,9 @@ td.bottom {
 h1 {
  color: #666666;
  font-family: Verdana, Arial, sans-serif;
- font-size: 18pt; font-weight: bold; line-height: 21pt;
+ font-size: 180%; line-height: 21pt;
 }
+h1 .editsection { font-size: 55.6%; }
 h1.pagetitle { padding-bottom: 0; margin-bottom: 0; }
 #article p.subtitle {
  color: #666666; font-size: 11pt; font-weight: bold;
