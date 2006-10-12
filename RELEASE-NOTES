@@ -39,7 +39,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6164) Avoid smashing Cite state if message transformation triggers
   during bad image list check, by skipping message transformation.
   This isn't a good permanent fix.
-  
+* (bug 6918) Stopped borders and backgrounds from showing through floated
+  tables in Monobook
 
 == Languages updated ==
 
