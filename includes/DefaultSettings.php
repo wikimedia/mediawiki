@@ -124,6 +124,7 @@ $wgStylePath   = "{$wgScriptPath}/skins";
 $wgStyleDirectory = "{$IP}/skins";
 $wgStyleSheetPath = &$wgStylePath;
 $wgArticlePath      = "{$wgScript}?title=$1";
+$wgVariantArticlePath = false;
 $wgUploadPath       = "{$wgScriptPath}/images";
 $wgUploadDirectory	= "{$IP}/images";
 $wgHashedUploadDirectory	= true;

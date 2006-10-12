@@ -769,14 +769,15 @@ class Title {
 	 *
 	 * @param string $query an optional query string, not used
 	 * 	for interwiki links
+	 * @param string $variant language variant of url (for sr, zh..)
 	 * @return string the URL
 	 * @access public
 	 */
-	function getFullURL( $query = '' ) {
+	function getFullURL( $query = '', $variant = false ) {
 		global $wgContLang, $wgServer, $wgRequest;
 
 		if ( '' == $this->mInterwiki ) {
-			$url = $this->getLocalUrl( $query );
+			$url = $this->getLocalUrl( $query, $variant );
 
 			// Ugly quick hack to avoid duplicate prefixes (bug 4571 etc)
 			// Correct fix would be to move the prepending elsewhere.
@@ -816,11 +817,20 @@ class Title {
 	 * with action=render, $wgServer is prepended.
 	 * @param string $query an optional query string; if not specified,
 	 * 	$wgArticlePath will be used.
+	 * @param string $variant language variant of url (for sr, zh..)
 	 * @return string the URL
 	 * @access public
 	 */
-	function getLocalURL( $query = '' ) {
+	function getLocalURL( $query = '', $variant = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
+		global $wgVariantArticlePath, $wgContLang, $wgUser;
+
+		// internal links should point to same variant as current page (only anonymous users)
+		if($variant == false && $wgContLang->hasVariants() && !$wgUser->isLoggedIn()){
+			$pref = $wgContLang->getPreferredVariant(false);
+			if($pref != $wgContLang->getCode())
+				$variant = $pref;
+		}
 
 		if ( $this->isExternal() ) {
 			$url = $this->getFullURL();
@@ -834,7 +844,17 @@ class Title {
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
-				$url = str_replace( '$1', $dbkey, $wgArticlePath );
+				if($variant!=false && $wgContLang->hasVariants()){
+					if($wgVariantArticlePath==false)
+						$variantArticlePath =  "$wgScript?title=$1&variant=$2"; // default
+					else 
+						$variantArticlePath = $wgVariantArticlePath;
+					
+					$url = str_replace( '$1', $dbkey, $variantArticlePath );
+					$url = str_replace( '$2', urlencode( $variant ), $url );					
+				}
+				else 
+					$url = str_replace( '$1', $dbkey, $wgArticlePath );
 			} else {
 				global $wgActionPaths;
 				$url = false;
@@ -896,12 +916,13 @@ class Title {
 	 * internal hostname for the server from the exposed one.
 	 *
 	 * @param string $query an optional query string
+	 * @param string $variant language variant of url (for sr, zh..)
 	 * @return string the URL
 	 * @access public
 	 */
-	function getInternalURL( $query = '' ) {
+	function getInternalURL( $query = '', $variant = false ) {
 		global $wgInternalServer;
-		$url = $wgInternalServer . $this->getLocalURL( $query );
+		$url = $wgInternalServer . $this->getLocalURL( $query, $variant );
 		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
@@ -1698,10 +1719,23 @@ class Title {
 	 * @access public
 	 */
 	function getSquidURLs() {
-		return array(
+		global $wgContLang;
+
+		$urls = array(
 			$this->getInternalURL(),
 			$this->getInternalURL( 'action=history' )
 		);
+
+		// purge variant urls as well
+		if($wgContLang->hasVariants()){
+			$variants = $wgContLang->getVariants();
+			foreach($variants as $vCode){
+				if($vCode==$wgContLang->getCode()) continue; // we don't want default variant
+				$urls[] = $this->getInternalURL('',$vCode);
+			}
+		}
+
+		return $urls;
 	}
 
 	function purgeSquid() {
