@@ -198,7 +198,7 @@ function wfIsBadImage( $name, $contextTitle = false ) {
 	if( !$badImages ) {
 		# Build the list now
 		$badImages = array();
-		$lines = explode( "\n", wfMsgForContent( 'bad_image_list' ) );
+		$lines = explode( "\n", wfMsgForContentNoTrans( 'bad_image_list' ) );
 		foreach( $lines as $line ) {
 			# List items only
 			if ( substr( $line, 0, 1 ) !== '*' ) {
