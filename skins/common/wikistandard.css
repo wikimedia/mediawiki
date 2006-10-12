@@ -35,6 +35,10 @@ h3 { font-size: 106.25%; }
 h4 { font-size: 103.125%; }
 h5 { font-size: 100%; }
 h6 { font-size: 95%; }
+.editsection {
+	float: right;
+	margin-left: 5px;
+}
 hr.sep { color:gray;height:1px;background-color:gray;}
 p.subpages { font-size:small;}
 p.subtitle { padding-top: 0; margin-top: 0;}
