@@ -36,7 +36,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Disable PHP exception backtrace printing unless $wgShowExceptionDetails
   is set. Backtraces may contain sensitive information in function call
   parameters.
-
+* (bug 6164) Avoid smashing Cite state if message transformation triggers
+  during bad image list check, by skipping message transformation.
+  This isn't a good permanent fix.
+  
 
 == Languages updated ==
 
