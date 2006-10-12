@@ -1,9 +1,13 @@
-Change notes from older releases. For current info see RELEASE-NOTES.
+﻿Change notes from older releases. For current info see RELEASE-NOTES.
 
 = MediaWiki release notes =
 
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
+
+== Changes since 1.8 ==
+* (bug 6918) Stopped borders and backgrounds from showing through floated
+  tables in Monobook
 
 == Changes since 1.7 ==
 
