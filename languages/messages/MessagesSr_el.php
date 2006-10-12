@@ -307,8 +307,8 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Help:FAQ Najčešće postavljena pitanja]
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]",
 
-'portal' => 'Trg',
-'portal-url' => 'Project:Trg',
+'portal' => 'Radionica',
+'portal-url' => 'Project:Radionica',
 'about' => 'O...',
 'aboutsite' => 'O projektu {{SITENAME}}',
 'aboutpage' => 'Project:O',
