@@ -1046,14 +1046,7 @@ class Linker {
 		$editurl = '&section='.$section;
 		$url = $this->makeKnownLinkObj( $title, wfMsg('editsection'), 'action=edit'.$editurl );
 
-		if( $wgContLang->isRTL() ) {
-			$farside = 'left';
-			$nearside = 'right';
-		} else {
-			$farside = 'right';
-			$nearside = 'left';
-		}
-		return "<div class=\"editsection\" style=\"float:$farside;margin-$nearside:5px;\">[".$url."]</div>";
+		return "<div class=\"editsection\">[".$url."]</div>";
 
 	}
 
@@ -1069,14 +1062,7 @@ class Linker {
 		$hint = ( $hint=='' ) ? '' : ' title="' . wfMsgHtml( 'editsectionhint', htmlspecialchars( $hint ) ) . '"';
 		$url = $this->makeKnownLinkObj( $nt, wfMsg('editsection'), 'action=edit'.$editurl, '', '', '',  $hint );
 
-		if( $wgContLang->isRTL() ) {
-			$farside = 'left';
-			$nearside = 'right';
-		} else {
-			$farside = 'right';
-			$nearside = 'left';
-		}
-		return "<div class=\"editsection\" style=\"float:$farside;margin-$nearside:5px;\">[".$url."]</div>";
+		return "<div class=\"editsection\">[".$url."]</div>";
 	}
 
 	/**
