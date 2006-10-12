@@ -42,7 +42,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	public function executeGenerator($resultPageSet) {
 		if ($resultPageSet->isResolvingRedirects())
 			$this->dieUsage('Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator', 'params');
-			
+
 		$this->run($resultPageSet);
 	}
 
@@ -55,11 +55,11 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$where = array (
 			'page_namespace' => $namespace
 		);
-		
+
 		if (isset ($from)) {
 			$where[] = 'page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($from));
 		}
-		
+
 		if ($filterredir === 'redirects') {
 			$where['page_is_redirect'] = 1;
 		}
@@ -77,12 +77,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$fields = $resultPageSet->getPageTableFields();
 		}
 
-		$this->profileDBIn();
-		$res = $db->select('page', $fields, $where, __CLASS__ . '::' . __METHOD__, array (
+		$options = array (
 			'USE INDEX' => 'name_title',
 			'LIMIT' => $limit +1,
 			'ORDER BY' => 'page_namespace, page_title'
-		));
+		);
+
+		$this->profileDBIn();
+		$res = $db->select('page', $fields, $where, __METHOD__, $options);
 		$this->profileDBOut();
 
 		$data = array ();
@@ -103,7 +105,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 				if (is_null($resultPageSet)) {
 					$id = intval($row->page_id);
-					$data[] = $id; // in generator mode, just assemble a list of page IDs.
+					$data[$id] = array (
+						'id' => $id,
+						'ns' => $title->getNamespace(),
+						'title' => $title->getPrefixedText());
 				} else {
 					$resultPageSet->processDbRow($row);
 				}
@@ -119,35 +124,25 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 	protected function getAllowedParams() {
 
-		global $wgContLang;
-		$validNamespaces = array ();
-		foreach (array_keys($wgContLang->getNamespaces()) as $ns) {
-			if ($ns >= 0)
-				$validNamespaces[] = $ns; // strval($ns);		
-		}
-
 		return array (
 			'from' => null,
 			'namespace' => array (
 				ApiBase :: PARAM_DFLT => 0,
-				ApiBase :: PARAM_TYPE => $validNamespaces
-			),
+				ApiBase :: PARAM_TYPE => $this->getQuery()->getValidNamespaces()),
 			'filterredir' => array (
 				ApiBase :: PARAM_DFLT => 'all',
 				ApiBase :: PARAM_TYPE => array (
 					'all',
 					'redirects',
 					'nonredirects'
-				)
-			),
+				)),
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
 				ApiBase :: PARAM_MIN => 1,
 				ApiBase :: PARAM_MAX1 => 500,
 				ApiBase :: PARAM_MAX2 => 5000
-			)
-		);
+		));
 	}
 
 	protected function getParamDescription() {

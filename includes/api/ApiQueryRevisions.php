@@ -76,7 +76,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'rev_text_id',
 			'rev_minor_edit'
 		);
-		$conds = array (
+		$where = array (
 			'rev_deleted' => 0
 		);
 		$options = array ();
@@ -100,7 +100,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 						break;
 					case 'content' :
 						$tables[] = 'text';
-						$conds[] = 'rev_text_id=old_id';
+						$where[] = 'rev_text_id=old_id';
 						$fields[] = 'old_id';
 						$fields[] = 'old_text';
 						$fields[] = 'old_flags';
@@ -136,13 +136,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$after = ($dirNewer ? '>=' : '<=');
 
 			if ($startid !== 0)
-				$conds[] = 'rev_id' . $after . intval($startid);
+				$where[] = 'rev_id' . $after . intval($startid);
 			if ($endid !== 0)
-				$conds[] = 'rev_id' . $before . intval($endid);
+				$where[] = 'rev_id' . $before . intval($endid);
 			if (isset ($start))
-				$conds[] = 'rev_timestamp' . $after . $db->addQuotes($start);
+				$where[] = 'rev_timestamp' . $after . $db->addQuotes($start);
 			if (isset ($end))
-				$conds[] = 'rev_timestamp' . $before . $db->addQuotes($end);
+				$where[] = 'rev_timestamp' . $before . $db->addQuotes($end);
 
 			// must manually initialize unset limit
 			if (!isset ($limit))
@@ -151,19 +151,19 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->validateLimit($this->encodeParamName('limit'), $limit, 1, $userMax, $botMax);
 
 			// There is only one ID, use it
-			$conds['rev_page'] = array_pop(array_keys($pageSet->getGoodTitles()));
+			$where['rev_page'] = array_pop(array_keys($pageSet->getGoodTitles()));
 
 		}
 		elseif ($pageCount > 0) {
 			// When working in multi-page non-enumeration mode,
 			// limit to the latest revision only
 			$tables[] = 'page';
-			$conds[] = 'page_id=rev_page';
-			$conds[] = 'page_latest=rev_id';
+			$where[] = 'page_id=rev_page';
+			$where[] = 'page_latest=rev_id';
 			$this->validateLimit('page_count', $pageCount, 1, $userMax, $botMax);
 
 			// Get all page IDs
-			$conds['page_id'] = array_keys($pageSet->getGoodTitles());
+			$where['page_id'] = array_keys($pageSet->getGoodTitles());
 
 			$limit = $pageCount; // assumption testing -- we should never get more then $pageCount rows.
 		}
@@ -171,7 +171,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
 
 			// Get all revision IDs
-			$conds['rev_id'] = array_keys($pageSet->getRevisionIDs());
+			$where['rev_id'] = array_keys($pageSet->getRevisionIDs());
 
 			$limit = $revCount; // assumption testing -- we should never get more then $revCount rows.
 		} else
@@ -180,7 +180,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$options['LIMIT'] = $limit +1;
 
 		$this->profileDBIn();
-		$res = $db->select($tables, $fields, $conds, __METHOD__, $options);
+		$res = $db->select($tables, $fields, $where, __METHOD__, $options);
 		$this->profileDBOut();
 
 		$data = array ();
