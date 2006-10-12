@@ -850,8 +850,9 @@ class Title {
 					else 
 						$variantArticlePath = $wgVariantArticlePath;
 					
-					$url = str_replace( '$1', $dbkey, $variantArticlePath );
-					$url = str_replace( '$2', urlencode( $variant ), $url );					
+					$url = str_replace( '$2', urlencode( $variant ), $variantArticlePath );
+					$url = str_replace( '$1', $dbkey, $url  );
+					
 				}
 				else 
 					$url = str_replace( '$1', $dbkey, $wgArticlePath );
