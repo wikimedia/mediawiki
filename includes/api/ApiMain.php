@@ -51,6 +51,9 @@ class ApiMain extends ApiBase {
 		$this->mResult = new ApiResult($this);
 		$this->mShowVersions = false;
 		$this->mEnableWrite = $enableWrite;
+		
+		// Initialize Error handler
+		set_exception_handler( array($this, 'exceptionHandler') );
 	}
 
 	public function & getResult() {
@@ -107,12 +110,7 @@ class ApiMain extends ApiBase {
 			$this->printResult(false);
 
 		} catch (UsageException $e) {
-
-			// Printer may not be initialized if the extractRequestParams() fails for the main module
-			if (!isset ($this->mPrinter))
-				$this->mPrinter = new $this->mFormats[API_DEFAULT_FORMAT] ($this, API_DEFAULT_FORMAT);
-			$this->printResult(true);
-
+			$this->printError();
 		}
 		$this->profileOut();
 	}
@@ -130,6 +128,13 @@ class ApiMain extends ApiBase {
 		$printer->closePrinter();
 		$printer->profileOut();
 	}
+	
+	private function printError() {
+		// Printer may not be initialized if the extractRequestParams() fails for the main module
+		if (!isset ($this->mPrinter))
+			$this->mPrinter = new $this->mFormats[API_DEFAULT_FORMAT] ($this, API_DEFAULT_FORMAT);
+		$this->printResult(true);
+	}
 
 	protected function getDescription() {
 		return array (
@@ -141,22 +146,29 @@ class ApiMain extends ApiBase {
 	}
 
 	public function mainDieUsage($description, $errorCode, $httpRespCode = 0) {
-		$this->mResult->Reset();
 		if ($httpRespCode === 0)
 			header($errorCode, true);
 		else
 			header($errorCode, true, $httpRespCode);
 
-		$data = array (
-			'code' => $errorCode,
-			'info' => $description
-		);
-		ApiResult :: setContent($data, $this->makeHelpMsg());
-		$this->mResult->addValue(null, 'error', $data);
+		$this->makeErrorMessage($description, $errorCode);
 
 		throw new UsageException($description, $errorCode);
 	}
 
+	public function makeErrorMessage($description, $errorCode, $customContent = null) {
+		$this->mResult->Reset();
+		$data = array (
+			'code' => $errorCode,
+			'info' => $description
+		);
+		
+		ApiResult :: setContent($data, 
+			is_null($customContent) ? $this->makeHelpMsg() : $customContent);
+			
+		$this->mResult->addValue(null, 'error', $data);
+	}
+	
 	/**
 	 * Override the parent to generate help messages for all available modules.
 	 */
@@ -188,6 +200,53 @@ class ApiMain extends ApiBase {
 
 		return $msg;
 	}
+	
+	/**
+	 * Exception handler which simulates the appropriate catch() handling:
+	 *
+	 *   try {
+	 *       ...
+	 *   } catch ( MWException $e ) {
+	 *       dieUsage()
+	 *   } catch ( Exception $e ) {
+	 *       echo $e->__toString();
+	 *   }
+	 * 
+	 * 
+	 * 
+	 * 
+	 *          !!!!!!!!!!!!! REVIEW needed !!!!!!!!!!!!!!!!!!
+	 * 
+	 * 			  this method needs to be reviewed/cleaned up
+	 * 
+	 * 
+	 * 
+	 */
+	public function exceptionHandler( $e ) {
+		global $wgFullyInitialised;
+		 if ( is_a( $e, 'MWException' ) ) {
+			 try {
+			 	$msg = "Exception Caught: {$e->getMessage()}";
+				$this->makeErrorMessage($msg, 'internal_error', "\n\n{$e->getTraceAsString()}\n\n");
+				$this->printError();
+			 } catch (Exception $e2) {
+                 echo $e->__toString();
+             }
+		 } else {
+			 echo $e->__toString();
+		 }
+
+		// Final cleanup, similar to wfErrorExit()
+		if ( $wgFullyInitialised ) {
+			try {
+				wfLogProfilingData(); // uses $wgRequest, hence the $wgFullyInitialised condition
+			} catch ( Exception $e ) {}
+		}
+
+		// Exit value should be nonzero for the benefit of shell jobs
+		exit( 1 );
+	}
+
 
 	private $mIsBot = null;
 	public function isBot() {
