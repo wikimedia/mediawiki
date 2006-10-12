@@ -61,6 +61,9 @@ body {
 table {
 	font-size: 100%;
 	color: black;
+	/* we don't want the bottom borders of <h2>s to be visible through
+	   floated tables */
+	background-color: white;
 }
 a {
 	text-decoration: none;
