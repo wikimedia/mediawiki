@@ -503,9 +503,9 @@ function akeytt() {
 
 function setupRightClickEdit() {
 	if (document.getElementsByTagName) {
-		var divs = document.getElementsByTagName('div');
-		for (var i = 0; i < divs.length; i++) {
-			var el = divs[i];
+		var spans = document.getElementsByTagName('span');
+		for (var i = 0; i < spans.length; i++) {
+			var el = spans[i];
 			if(el.className == 'editsection') {
 				addRightClickEditHandler(el);
 			}
