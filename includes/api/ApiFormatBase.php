@@ -76,7 +76,8 @@ abstract class ApiFormatBase extends ApiBase {
 		$isHtml = $this->getIsHtml();
 		$mime = $isHtml ? 'text/html' : $this->getMimeType();
 		header("Content-Type: $mime; charset=utf-8;");
-
+		header("Cache-Control: private, s-maxage=0, max-age=0");
+		
 		if ($isHtml) {
 ?>
 		<html>
