@@ -81,6 +81,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 "categories" => "頁面分類",
+"pagecategories" => "頁面分類",
 "category_header" => "類別”$1“中的條目",
 "subcategories" => "子分類",
 "mainpage"		=> "首頁",

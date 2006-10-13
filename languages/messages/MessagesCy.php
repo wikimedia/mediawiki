@@ -134,6 +134,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 "categories" => "Categorïau tudalen",
+"pagecategories" => "Categorïau tudalen",
 "category_header" => "Erthyglau mewn categori \"$1\"",
 "subcategories" => "Is-categorïau",
 "mainpage" => "Prif tudalen",

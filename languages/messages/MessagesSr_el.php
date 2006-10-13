@@ -294,7 +294,8 @@ $messages = array(
 'dec' => 'dec',
 # Bits of text used by many pages:
 #
-'categories' => '{{PLURAL:$1|Kategorija|Kategorije|Kategorije}} stranica',
+'categories' => 'Kategorije stranica',
+'pagecategories' => '{{PLURAL:$1|Kategorija|Kategorije|Kategorije}} stranica',
 'category_header' => 'Članaka u kategoriji "$1"',
 'subcategories' => 'Potkategorije',
 

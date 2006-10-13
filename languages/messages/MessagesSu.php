@@ -691,6 +691,7 @@ Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel 
 'othercontribs' => 'Dumasar karya $1.',
 'otherlanguages' => 'Basa séjén',
 'others' => 'Séjénna',
+'pagecategories' => 'Kategori',
 'pagemovedsub' => 'Mindahkeun geus hasil!',
 'pagemovedtext' => 'Kaca "[[$1]]" dipindahkeun ka "[[$2]]".',
 'pagetitle' => '$1 - {{SITENAME}}',

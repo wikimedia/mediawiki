@@ -291,7 +291,8 @@ $messages = array(
 'dec' => 'дец',
 # Bits of text used by many pages:
 #
-'categories' => '{{PLURAL:$1|Категорија|Категорије|Категорије}} страница',
+'categories' => 'Категорије страница',
+'pagecategories' => '{{PLURAL:$1|Категорија|Категорије|Категорије}} страница',
 'category_header' => 'Чланака у категорији "$1"',
 'subcategories' => 'Поткатегорије',
 

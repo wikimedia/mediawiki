@@ -170,6 +170,7 @@ $messages = array(
 
 # Bits of text used by many pages:
 'categories'	=> 'Thể loại',
+'pagecategories'	=> 'Thể loại',
 'category_header' => 'Các bài trong Thể loại "$1"',
 'subcategories'	=> 'Tiểu thể loại',
 'subcategorycount' => 'Thể loại này có $1 tiểu thể loại.',

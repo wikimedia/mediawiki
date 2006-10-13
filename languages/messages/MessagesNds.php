@@ -157,6 +157,7 @@ $messages = array(
 # Textdelen, de vun vele Sieten bruukt warrn:
 #
 'categories'            => 'Sietenkategorien',
+'pagecategories'        => 'Sietenkategorien',
 'category_header'       => 'Sieten in de Kategorie $1',
 'subcategories'         => 'Ünnerkategorien',
 'mainpage'                      => 'Hööftsiet',

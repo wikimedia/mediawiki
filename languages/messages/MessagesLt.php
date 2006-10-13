@@ -633,6 +633,7 @@ Galite \'\'\'[[:<nowiki>$1</nowiki>|sukurti straipsnį šiuo pavadinimu]]\'\'\'.
 'october' => 'Spalio',
 'oldpassword' => 'Senas slaptažodis',
 'otherlanguages' => 'Kitomis kalbomis',
+'pagecategories' => 'Kategorijos',
 'pagemovedsub' => 'Pervadinta sėkmingai',
 'pagemovedtext' => 'Straipsnis "[[$1]]" pervadintas. Naujas vardas - "[[$2]]".
 

@@ -434,6 +434,7 @@ $messages = array(
 'oldpassword' => 'كلمة السر القديمة',
 'orig' => 'الأصلي',
 'otherlanguages' => ' لغات أخرى',
+'pagecategories' => 'تصنيفات الصفحة',
 'pagemovedsub' => 'تم النقل بنجاح',
 'pagemovedtext' => 'تم نقل الصفحة "[[$1]]" إلى "[[$2]]".',
 'passwordremindertitle' => 'تذكير بكلمة السر من {{SITENAME}}',

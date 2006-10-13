@@ -86,7 +86,8 @@ $messages = array(
 'dec'		=> 'დეკ',
 
 # Bits of text used by many pages:
-'categories' => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'categories' => 'კატეგორიები',
+'pagecategories' => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
 'category_header' => 'სტატიები კატეგორიაში "$1"',
 'subcategories' => 'ქვეკატეგორიები',
 

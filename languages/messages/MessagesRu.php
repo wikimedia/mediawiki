@@ -296,7 +296,8 @@ $messages = array(
 'dec' => 'дек',
 # Bits of text used by many pages:
 #
-'categories' => '{{PLURAL:$1|Категория|Категории|Категории}}',
+'categories' => 'Категории',
+'pagecategories' => '{{PLURAL:$1|Категория|Категории|Категории}}',
 'category_header' => 'Статьи в категории «$1»',
 'subcategories' => 'Подкатегории',
 

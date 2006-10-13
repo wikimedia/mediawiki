@@ -464,6 +464,7 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'october' => "október",
 'oldpassword' => "Gamla lykilorðið",
 'otherlanguages' => "Á öðrum tungumálum",
+'pagecategories' => "Flokkar",
 'pagemovedsub' => "Færsla tókst",
 'pagemovedtext' => "Síðan „[[$1]]“ var færð yfir á „[[$2]]“.",
 'pagetitle' => "$1 - {{SITENAME}}",

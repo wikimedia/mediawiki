@@ -429,7 +429,8 @@ parent class in order maintain consistency across languages.
 'dec' => 'Dec',
 # Bits of text used by many pages:
 #
-'categories' => '{{PLURAL:$1|Category|Categories}}',
+'categories' => 'Categories',
+'pagecategories' => '{{PLURAL:$1|Category|Categories}}',
 'category_header' => 'Articles in category "$1"',
 'subcategories' => 'Subcategories',
 

@@ -129,6 +129,7 @@ $messages = array(
 # Bits of text used by many pages:
 #----------------------------------------------------#
 'categories' => 'Κατηγορίες',
+'pagecategories' => 'Κατηγορίες',
 'category_header' => 'Άρθρα στην κατηγορία "$1"',
 'subcategories' => 'Υποκατηγορίες',
 

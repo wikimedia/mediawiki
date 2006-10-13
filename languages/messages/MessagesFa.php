@@ -118,6 +118,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => "رده‌های صفحات",
+'pagecategories' => "رده‌های صفحات",
 'category_header' => "مقاله‌های رده‌ی «$1»",
 'subcategories' => "زیررده‌ها",
 

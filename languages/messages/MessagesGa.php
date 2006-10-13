@@ -178,6 +178,7 @@ $messages = array(
 # FIXME
 #
 'categories' => 'Catagóirí',
+'pagecategories' => 'Catagóirí',
 'category_header' => 'Ailt sa chatagóir "$1"',
 "subcategories" => "Fo-chatagóirí",
 

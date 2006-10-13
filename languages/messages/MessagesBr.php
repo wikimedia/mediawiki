@@ -121,6 +121,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories'	=> 'Rummadoù ar bajenn',
+'pagecategories'	=> 'Rummadoù ar bajenn',
 'category_header' => 'Niver a bennadoù er rummad "$1"',
 'subcategories'	=> 'Isrummad',
 'uncategorizedcategories' => 'Rummadoù hep rummadoù',

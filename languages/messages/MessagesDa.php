@@ -124,6 +124,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 "categories" => "Kategorier",
+"pagecategories" => "Kategorier",
 "category_header" => 'Artikler i kategorien "$1"',
 "subcategories" => "Underkategorier",
 
