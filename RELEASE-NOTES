@@ -6,6 +6,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 == MediaWiki 1.8.2 ==
 
 * (bug 7565) Fixed typos in German localisation
+* (bug 7562) Fix non-ASCII namespaces on Windows/XAMPP servers
 
 
 == MediaWiki 1.8.1 ==
