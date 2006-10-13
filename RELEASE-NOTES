@@ -44,6 +44,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6868) Un-hardcode section edit link style
 * (bug 3205) Stop right floats from stacking horizontally in non-Monobook skins
 * (bug 2013) Inherit ratios and not computed values for line-height
+* (bug 2241) Hide watch tab on edit in favor of checkbox to avoid confusing
+  behavior and accesskey conflict
 
 == Languages updated ==
 
