@@ -21,12 +21,12 @@ class SkinStandard extends Skin {
 	 *
 	 */
 	function getHeadScripts() {
-		global $wgStylePath, $wgJsMimeType;
+		global $wgStylePath, $wgJsMimeType, $wgStyleVersion;
 
 		$s = parent::getHeadScripts();
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$s .= "<script language='javascript' type='$wgJsMimeType' " .
-			  "src='{$wgStylePath}/common/sticky.js'></script>\n";
+			  "src='{$wgStylePath}/common/sticky.js?$wgStyleVersion'></script>\n";
 		}
 		return $s;
 	}
@@ -35,14 +35,14 @@ class SkinStandard extends Skin {
 	 *
 	 */
 	function getUserStyles() {
-		global $wgStylePath;
+		global $wgStylePath, $wgStyleVersion;
 		$s = '';
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$s .= "<style type='text/css'>\n" .
-			  "@import '{$wgStylePath}/common/quickbar.css';\n</style>\n";
+			  "@import '{$wgStylePath}/common/quickbar.css?$wgStyleVersion';\n</style>\n";
 		} else if ( 4 == $this->qbSetting() ) { # Floating right
 			$s .= "<style type='text/css'>\n" .
-			  "@import '{$wgStylePath}/common/quickbar-right.css';\n</style>\n";
+			  "@import '{$wgStylePath}/common/quickbar-right.css?$wgStyleVersion';\n</style>\n";
 		}
 		$s .= parent::getUserStyles();
 		return $s;

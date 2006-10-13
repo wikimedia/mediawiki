@@ -212,9 +212,9 @@ class ProtectionForm {
 	}
 
 	function buildScript() {
-		global $wgStylePath;
+		global $wgStylePath, $wgStyleVersion;
 		return '<script type="text/javascript" src="' .
-			htmlspecialchars( $wgStylePath . "/common/protect.js" ) .
+			htmlspecialchars( $wgStylePath . "/common/protect.js?$wgStyleVersion" ) .
 			'"></script>';
 	}
 

@@ -71,13 +71,13 @@ class ImagePage extends Article {
 			$this->imageHistory();
 			$this->imageLinks();
 			if( $exif ) {
-				global $wgStylePath;
+				global $wgStylePath, $wgStyleVersion;
 				$expand = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-expand' ) ) );
 				$collapse = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-collapse' ) ) );
 				$wgOut->addHTML( "<h2 id=\"metadata\">" . wfMsgHtml( 'metadata' ) . "</h2>\n" );
 				$wgOut->addWikiText( $this->makeMetadataTable( $exif ) );
 				$wgOut->addHTML(
-					"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js\"></script>\n" .
+					"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js?wgStyleVersion\"></script>\n" .
 					"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
 			}
 		} else {

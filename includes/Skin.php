@@ -139,7 +139,7 @@ class Skin extends Linker {
 
 	/** @return string path to the skin stylesheet */
 	function getStylesheet() {
-		return 'common/wikistandard.css?2';
+		return 'common/wikistandard.css';
 	}
 
 	/** @return string skin name */
@@ -296,7 +296,7 @@ class Skin extends Linker {
 	}
 
 	function getHeadScripts() {
-		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType;
+		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType, $wgStyleVersion;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
 		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut;
 
@@ -323,7 +323,7 @@ class Skin extends Linker {
 
 		$r = self::makeGlobalVariablesScript( $vars );
 
-		$r .= "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
+		$r .= "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>\n";
 		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
 			$userjs = htmlspecialchars( self::makeUrl(
@@ -360,10 +360,10 @@ class Skin extends Linker {
 
 	# get the user/site-specific stylesheet, SkinTemplate loads via RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
-		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage;
+		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage, $wgStyleVersion;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
-		$s = "@import \"$wgStylePath/$sheet\";\n";
+		$s = "@import \"$wgStylePath/$sheet?$wgStyleVersion\";\n";
 		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css?1\";\n";
 
 		$query = "usemsgcache=yes&action=raw&ctype=text/css&smaxage=$wgSquidMaxage";

@@ -481,6 +481,7 @@ class OutputPage {
 		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgAjaxSearch, $wgScriptPath, $wgServer;
+		global $wgStyleVersion;
 
 		if( $this->mDoNothing ){
 			return;
@@ -490,11 +491,11 @@ class OutputPage {
 		$sk = $wgUser->getSkin();
 
 		if ( $wgUseAjax ) {
-			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajax.js\"></script>\n" );
+			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajax.js?$wgStyleVersion\"></script>\n" );
 		}
 
 		if ( $wgUseAjax && $wgAjaxSearch ) {
-			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajaxsearch.js\"></script>\n" );
+			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajaxsearch.js?$wgStyleVersion\"></script>\n" );
 			$this->addScript( "<script type=\"{$wgJsMimeType}\">hookEvent(\"load\", sajax_onload);</script>\n" );
 		}
 
@@ -969,7 +970,7 @@ class OutputPage {
 	 */
 	function headElement() {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
-		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle;
+		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle, $wgStyleVersion;
 
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
 			$ret = "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
@@ -995,7 +996,7 @@ class OutputPage {
 		} else {
 			$media = "media='print'";
 		}
-		$printsheet = htmlspecialchars( "$wgStylePath/common/wikiprintable.css" );
+		$printsheet = htmlspecialchars( "$wgStylePath/common/wikiprintable.css?$wgStyleVersion" );
 		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet' />\n";
 
 		$sk = $wgUser->getSkin();
