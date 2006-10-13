@@ -292,6 +292,10 @@ abstract class ApiBase {
 			}
 		}
 
+		// There should never be any duplicate values in a list
+		if (is_array($value))
+			$value = array_unique($value);
+			
 		return $value;
 	}
 
