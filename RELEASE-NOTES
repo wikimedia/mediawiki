@@ -46,6 +46,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 2013) Inherit ratios and not computed values for line-height
 * Added global $wgStyleVersion to centralize bumping CSS and JS file versions
   for cache-friendly style and script updating
+* (bug 7562) Fix non-ASCII namespaces on Windows/XAMPP servers
 
 
 == Languages updated ==
