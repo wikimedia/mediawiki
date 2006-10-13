@@ -227,7 +227,7 @@ class ApiMain extends ApiBase {
 		 if ( is_a( $e, 'MWException' ) ) {
 			 try {
 			 	$msg = "Exception Caught: {$e->getMessage()}";
-				$this->makeErrorMessage($msg, 'internal_error', "\n\n{$e->getTraceAsString()}\n\n");
+				$this->makeErrorMessage($msg, 'internal_api_error', "\n\n{$e->getTraceAsString()}\n\n");
 				$this->printError();
 			 } catch (Exception $e2) {
                  echo $e->__toString();

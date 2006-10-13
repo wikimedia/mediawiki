@@ -58,13 +58,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ($revCount === 0 && $pageCount === 0)
 			return;
 
-		if ($revCount > 0 && $pageCount > 0)
-			$this->dieUsage('The revids= parameter may not be used with titles, pageids, or generator options.', 'revids');
-
 		if ($revCount > 0 && $enumRevMode)
 			$this->dieUsage('The revids= parameter may not be used with the list options (limit, startid, endid, dirNewer, start, end).', 'revids');
 
-		if ($revCount === 0 && $pageCount > 1 && $enumRevMode)
+		if ($pageCount > 1 && $enumRevMode)
 			$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, start, and end parameters may only be used on a single page.', 'multpages');
 
 		$tables = array (

@@ -195,6 +195,22 @@ class ApiQuery extends ApiBase {
 			$this->getResult()->addValue('query', 'redirects', $redirValues);
 		}
 
+
+		//
+		// Missing revision elements
+		//
+		$missingRevIDs = $pageSet->getMissingRevisionIDs();
+		if (!empty($missingRevIDs)) {
+			$revids = array();
+			foreach ($missingRevIDs as $revid) {
+				$revids[$revid] = array (
+					'revid' => $revid
+				);
+			}
+			ApiResult :: setIndexedTagName($revids, 'rev');
+			$this->getResult()->addValue('query', 'badrevids', $revids);
+		}
+		
 		//
 		// Page elements
 		//
