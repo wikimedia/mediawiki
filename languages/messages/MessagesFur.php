@@ -580,7 +580,7 @@ Chest al vûl dî une medie di '''$5''' cambiaments par pagjine, e '''$6''' viod
 'skinpreview' => '(Anteprime)',
 'sourcefilename' => 'Non dal file origjinâl',
 'specialloguserlabel' => "Utent:",
-'speciallogtitlelabel' => "Titul: ",
+'speciallogtitlelabel' => "Titul:",
 'specialpage' => "Pagjine speciâl",
 'specialpages' => "Pagjinis speciâls",
 'spheading'		=> 'Pagjinis speciâls par ducj i utents',

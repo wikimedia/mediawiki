@@ -271,8 +271,6 @@ NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!
 'createarticle' => 'Kurti straipsnį',
 'created' => 'sukurta',
 'cur' => 'dab',
-'currentevents' => '-',
-'currentevents-url' => '-',
 'currentrev' => 'Dabartinė versija',
 'currentrevisionlink' => 'žiūrėti esamą versiją',
 'data' => 'Duomenys',

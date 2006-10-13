@@ -81,16 +81,15 @@ $messages = array(
 "mypage"		=> "मेरा पृष्ठ",
 "mytalk"		=> "मेरी बातें",
 "returnto"		=> "लौटें $1.",
-"help"			=> "सहायता ",
-"search"		=> "खोज ",
-"searchbutton"	=> "खोज ",
+"search"		=> "खोज",
+"searchbutton"	=> "खोज",
 "go"		        => "जायें",
 'searcharticle'		        => "जायें",
 "editthispage"	        => "इस पृष्ठ को बदलें",
 "deletethispage"        => "इस पृष्ठ को हटायें",
 "protectthispage"       => "इस पृष्ठ को सुरक्षित करें",
 "unprotectthispage"     => "इस पृष्ठ को असुरक्षित करें",
-"newpage"               => "नया पृष्ठ ",
+"newpage"               => "नया पृष्ठ",
 "talkpage"		=> "इस पृष्ठ के बारे में बात करें",
 "articlepage"	        => "लेख देखें",
 "userpage"              => "सदस्य पृष्ठ देखें",
@@ -118,7 +117,7 @@ $messages = array(
 Don't forget to personalize your {{SITENAME}} preferences.",
 
 "yourname"		=> "आपका नाम",
-"yourpassword"	=> "आपका पासवर्ड ",
+"yourpassword"	=> "आपका पासवर्ड",
 "yourpasswordagain" => "पासवर्ड दुबारा लिखें",
 
 ## ....... more messages .....

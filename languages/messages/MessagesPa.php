@@ -127,7 +127,6 @@ $messages = array(
 'anontalk'		=> 'ਇੱਸ ਆਈ-ਪੀ (IP) ਦੀ ਚਰਚਾ',
 'navigation'		=> 'ਨੈਵੀਗੇਸ਼ੱਨ',
 
-'currentevents'	=> '-',
 
 
 'disclaimers'		=> 'ਡਿਸਕਲੇਮਰ',

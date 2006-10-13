@@ -483,7 +483,6 @@ a-j ven-a còmod copiesse via sò test e butesslo da na part për salvelo peuj.<
 'protectedpagewarning'  => '<strong>AVIS: costa pàgina-sì a l\'é staita blocà an manera che mach dj\'utent con la qualìfica da aministrator a peulo modifichelo. Che a varda le [[Project:Pàgina proteta|polìtiche për la protession dle pàgine]] për savejne dë pì.</strong>',
 'semiprotectedpagewarning'=> '\'\'\'Nòta:\'\'\'costa pàgina-sì a l\'é staita protegiùa an manera che mach j\'utent registrà a peulo modifichela.',
 'templatesused'         => 'Stamp dovrà dzora a sta pàgina-sì:',
-'edittools'             => '',
 'nocreatetitle'         => 'Creassion ëd pàgine limità',
 'nocreatetext'          => 'Cost sit-sì a l\'ha limità la possibilità ëd creé dle pàgine neuve.
 A peul torné andaré e modifiché na pàgine che a-i é già, ò pura [[Special:Userlogin|rintré ant ël sistema ò deurb-se un cont]].',
