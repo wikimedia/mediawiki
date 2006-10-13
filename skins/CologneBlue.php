@@ -18,7 +18,7 @@ if( !defined( 'MEDIAWIKI' ) )
 class SkinCologneBlue extends Skin {
 
 	function getStylesheet() {
-		return "common/cologneblue.css?3";
+		return "common/cologneblue.css?4";
 	}
 	function getSkinName() {
 		return "cologneblue";

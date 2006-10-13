@@ -67,6 +67,7 @@ div.thumb div div.thumbcaption {
 div.magnify { display: none; }
 div.tright {
     float: right;
+    clear: right;
     border-width: 0.5em 0 0.8em 1.4em;
 }
 div.tleft {

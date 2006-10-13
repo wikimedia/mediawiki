@@ -139,7 +139,7 @@ class Skin extends Linker {
 
 	/** @return string path to the skin stylesheet */
 	function getStylesheet() {
-		return 'common/wikistandard.css?1';
+		return 'common/wikistandard.css?2';
 	}
 
 	/** @return string skin name */
@@ -364,7 +364,7 @@ class Skin extends Linker {
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
-		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
+		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css?1\";\n";
 
 		$query = "usemsgcache=yes&action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
 		$s .= '@import "' . self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) . "\";\n" .

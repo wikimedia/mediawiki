@@ -58,6 +58,7 @@ div.thumbcaption {
 }
 div.tright {
     float: right;
+    clear: right;
     margin-left:0.5em;
 }
 div.tleft {
