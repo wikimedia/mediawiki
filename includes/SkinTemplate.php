@@ -719,12 +719,7 @@ class SkinTemplate extends Skin {
 			}
 			wfProfileOut( "$fname-live" );
 
-			/* If the user edits the article, then loads "watch this article" in background, and then
-			   saves the article with "Watch this article" checkbox disabled, the article is transparently
-			   unwatched. Therefore we do not show the "Watch this page" link in edit mode. Also avoids
-			   accesskey conflict. */
-
-			if( $this->loggedin && $action != 'edit' && $action != 'submit' ) {
+			if( $this->loggedin ) {
 				if( !$this->mTitle->userIsWatching()) {
 					$content_actions['watch'] = array(
 						'class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : false,
