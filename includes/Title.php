@@ -356,7 +356,7 @@ class Title {
 		$lc = SearchEngine::legalSearchChars() . '&#;';
 		$t = $wgContLang->stripForSearch( $title );
 		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
-		$t = strtolower( $t );
+		$t = $wgContLang->lc( $t );
 
 		# Handle 's, s'
 		$t = preg_replace( "/([{$lc}]+)'s( |$)/", "\\1 \\1's ", $t );
@@ -393,10 +393,10 @@ class Title {
 	 */
 	function getInterwikiLink( $key )  {
 		global $wgMemc, $wgInterwikiExpiry;
-		global $wgInterwikiCache;
+		global $wgInterwikiCache, $wgContLang;
 		$fname = 'Title::getInterwikiLink';
 
-		$key = strtolower( $key );
+		$key = $wgContLang->lc( $key );
 
 		$k = wfMemcKey( 'interwiki', $key );
 		if( array_key_exists( $k, Title::$interwikiCache ) ) {
@@ -1469,7 +1469,7 @@ class Title {
 		do {
 			if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
 				$p = $m[1];
-				$lowerNs = strtolower( $p );
+				$lowerNs = $wgContLang->lc( $p );
 				if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
 					# Canonical namespace
 					$t = $m[2];
@@ -1487,7 +1487,7 @@ class Title {
 
 					# Interwiki link
 					$t = $m[2];
-					$this->mInterwiki = strtolower( $p );
+					$this->mInterwiki = $wgContLang->lc( $p );
 
 					# Redundant interwiki prefix to the local wiki
 					if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
@@ -2344,6 +2344,7 @@ class Title {
 	 * @return string
 	 */
 	function getNamespaceKey() {
+		global $wgContLang;
 		switch ($this->getNamespace()) {
 			case NS_MAIN:
 			case NS_TALK:
@@ -2374,7 +2375,7 @@ class Title {
 			case NS_CATEGORY_TALK:
 				return 'nstab-category';
 			default:
-				return 'nstab-' . strtolower( $this->getSubjectNsText() );
+				return 'nstab-' . $wgContLang->lc( $this->getSubjectNsText() );
 		}
 	}
 }
