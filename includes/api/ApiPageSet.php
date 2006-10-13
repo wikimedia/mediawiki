@@ -274,6 +274,9 @@ class ApiPageSet extends ApiQueryBase {
 
 		// Get validated and normalized title objects
 		$linkBatch = $this->processTitlesStrArray($titles);
+		if($linkBatch->isEmpty())
+			return;
+			
 		$set = $linkBatch->constructSet('page', $db);
 
 		// Get pageIDs data from the `page` table
@@ -289,8 +292,10 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	private function initFromPageIds($pageids) {
+		if(empty($pageids))
+			return;
+			
 		$db = $this->getDB();
-
 		$set = array (
 			'page_id' => $pageids
 		);
@@ -363,6 +368,9 @@ class ApiPageSet extends ApiQueryBase {
 
 	private function initFromRevIDs($revids) {
 
+		if(empty($revids))
+			return;
+			
 		$db = $this->getDB();
 		$pageids = array();
 		$remaining = array_flip($revids);
@@ -389,9 +397,7 @@ class ApiPageSet extends ApiQueryBase {
 		// Populate all the page information
 		if($this->mResolveRedirects)
 			$this->dieDebug('revids may not be used with redirect resolution');
-		$pageids = array_keys($pageids);
-		if(!empty($pageids))
-			$this->initFromPageIds($pageids);
+		$this->initFromPageIds(array_keys($pageids));
 	}
 
 	private function resolvePendingRedirects() {

@@ -63,7 +63,8 @@ $wgApiAutoloadClasses = array (
 	'ApiQuerySiteinfo' => API_DIR . 'ApiQuerySiteinfo.php',
 	'ApiQueryInfo' => API_DIR . 'ApiQueryInfo.php',
 	'ApiQueryRevisions' => API_DIR . 'ApiQueryRevisions.php',
-	'ApiQueryAllpages' => API_DIR . 'ApiQueryAllpages.php'
+	'ApiQueryAllpages' => API_DIR . 'ApiQueryAllpages.php',
+	'ApiQueryWatchlist' => API_DIR . 'ApiQueryWatchlist.php'
 );
 
 /**
