@@ -94,8 +94,13 @@ class ApiMain extends ApiBase {
 
 	public function execute() {
 		$this->profileIn();
-		$action = $format = $version = null;
+
+		// Experimental -- in case an error occurs during data output,
+		// this clear the output buffer and print just the error information
+		ob_start();
+
 		try {
+			$action = $format = $version = null;
 			extract($this->extractRequestParams());
 			$this->mShowVersions = $version;
 
@@ -112,6 +117,8 @@ class ApiMain extends ApiBase {
 		} catch (UsageException $e) {
 			$this->printError();
 		}
+		
+		ob_end_flush();
 		$this->profileOut();
 	}
 
@@ -133,6 +140,10 @@ class ApiMain extends ApiBase {
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
 		if (!isset ($this->mPrinter))
 			$this->mPrinter = new $this->mFormats[API_DEFAULT_FORMAT] ($this, API_DEFAULT_FORMAT);
+		
+		// In case of an error, reset anythnig that was printed before
+		ob_clean();
+		
 		$this->printResult(true);
 	}
 
