@@ -107,7 +107,7 @@ $messages = array(
 'tog-previewontop'		=> 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
 'tog-previewonfirst'		=> 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
 "tog-nocache"                 => "Seitencache deaktivieren",
-'tog-enotifwatchlistpages'	=> 'Bei Änderungen an beobachtetene Seiten E-Mails senden.',
+'tog-enotifwatchlistpages'	=> 'Bei Änderungen an beobachteten Seiten E-Mails senden.',
 'tog-enotifusertalkpages'	=> 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden.',
 'tog-enotifminoredits'		=> 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden.',
 'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
@@ -627,7 +627,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'history-feed-title'		=> 'Versionsgeschichte',
 'history-feed-description'	=> 'Versionsgeschichte für diese Seite im Wiki',
 'history-feed-item-nocomment'	=> '$1 um $2', # user at time
-'history-feed-empty'		=> 'Die angeforderte Seite exisitiert nicht.
+'history-feed-empty'		=> 'Die angeforderte Seite existiert nicht.
 Vielleicht wurde sie aus dem Wiki gelöscht oder verschoben.
 [[{{ns:special}}:Search|Durchsuchen]] Sie das Wiki für passende neue Seiten.',
 'revisiondelete'		=> 'Versionen löschen/wiederherstellen',
@@ -677,7 +677,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 "viewprevnext"	=> "Zeige ($1) ($2) ($3).",
 'showingresults'	=> 'Hier sind <b>$1</b> Ergebnisse, beginnend mit Nummer <b>$2</b>.',
 'showingresultsnum'	=> 'Hier sind <b>$3</b> Ergebnisse, beginnend mit Nummer <b>$2</b>.',
-'nonefound'		=> '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuchen Sie in diesem Fall die Anzahl der Suchbegriffe zu veringern.',
+'nonefound'		=> '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuchen Sie in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
 "powersearch" => "Suche",
 'powersearchtext'	=> 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
 'searchdisabled'	=> 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen über Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
@@ -767,7 +767,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 
 Benutzen Sie dieses Formular, um neue Dateien hochzuladen. Klicken Sie auf \'\'\'„Durchsuchen...“\'\'\', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld \'\'\'„Quelldatei“\'\'\' angezeigt.
-Bestätigen Sie dann die Copyright-Vereinbarung und klicken anschliessend auf \'\'\'„Datei hochladen“\'\'\'.
+Bestätigen Sie dann die Copyright-Vereinbarung und klicken anschließend auf \'\'\'„Datei hochladen“\'\'\'.
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
 Um ein \'\'\'Bild\'\'\' in einer Seite zu verwenden, schreiben Sie an Stelle des Bildes zum Beispiel:
@@ -1439,7 +1439,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 'blocklogtext'		=> 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch geblockte IP-Adressen werden nicht erfasst. Siehe [[{{ns:special}}:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
 'unblocklogentry'	=> 'Blockade von [[{{ns:user}}:$1]] aufgehoben',
 "range_block_disabled"	=> "Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.",
-"ipb_expiry_invalid"	=> "Die angegebeben Ablaufzeit ist ungültig.",
+"ipb_expiry_invalid"	=> "Die angegebene Ablaufzeit ist ungültig.",
 'ipb_already_blocked'	=> '„$1“ ist bereits gesperrt',
 "ip_range_invalid"	=> "Ungültiger IP-Addressbereich.",
 "confirmprotect" 	=> "Sperrung bestätigen",

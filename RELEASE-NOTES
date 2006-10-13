@@ -3,6 +3,11 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.8.2 ==
+
+* (bug 7565) Fixed typos in German localisation
+
+
 == MediaWiki 1.8.1 ==
 
 October 11, 2006
