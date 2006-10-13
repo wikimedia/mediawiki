@@ -34,6 +34,7 @@ class ApiPageSet extends ApiQueryBase {
 	private $mAllPages; // [ns][dbkey] => page_id or 0 when missing
 	private $mGoodTitles, $mMissingTitles, $mMissingPageIDs, $mRedirectTitles, $mNormalizedTitles;
 	private $mResolveRedirects, $mPendingRedirectIDs;
+	private $mGoodRevIDs, $mMissingRevIDs;
 
 	private $mRequestedPageFields;
 
@@ -46,6 +47,8 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mMissingPageIDs = array ();
 		$this->mRedirectTitles = array ();
 		$this->mNormalizedTitles = array ();
+		$this->mGoodRevIDs = array();
+		$this->mMissingRevIDs = array();
 
 		$this->mRequestedPageFields = array ();
 		$this->mResolveRedirects = $resolveRedirects;
@@ -135,16 +138,25 @@ class ApiPageSet extends ApiQueryBase {
 
 	/**
 	 * Get the list of revision IDs (requested with revids= parameter)
+	 * @return array revID (int) => pageID (int)
 	 */
 	public function getRevisionIDs() {
-		$this->dieUsage(__METHOD__ . ' is not implemented', 'notimplemented');
+		return $this->mGoodRevIDs;
+	}
+
+	/**
+	 * Revision IDs that were not found in the database
+	 * @return array of revision IDs
+	 */
+	public function getMissingRevisionIDs() {
+		return $this->mMissingRevIDs;
 	}
 
 	/**
 	 * Returns the number of revisions (requested with revids= parameter)
 	 */
 	public function getRevisionCount() {
-		return 0; // TODO: implement
+		return count($this->getRevisionIDs());
 	}
 
 	/**
@@ -178,6 +190,8 @@ class ApiPageSet extends ApiQueryBase {
 				$this->initFromPageIds($pageids);
 				break;
 			case 'revids' :
+				if($this->mResolveRedirects)
+					$this->dieUsage('revids may not be used with redirect resolution', 'params');
 				$this->initFromRevIDs($revids);
 				break;
 			default :
@@ -348,7 +362,36 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	private function initFromRevIDs($revids) {
-		$this->dieUsage(__METHOD__ . ' is not implemented', 'notimplemented');
+
+		$db = $this->getDB();
+		$pageids = array();
+		$remaining = array_flip($revids);
+		
+		$tables = array('page', 'revision');
+		$fields = array('rev_id','rev_page');
+		$where = array( 'rev_deleted' => 0, 'rev_id' => $revids );
+		
+		// Get pageIDs data from the `page` table
+		$this->profileDBIn();
+		$res = $db->select( $tables, $fields, $where,  __METHOD__ );
+		while ( $row = $db->fetchObject( $res ) ) {
+			$revid = intval($row->rev_id);
+			$pageid = intval($row->rev_page);
+			$this->mGoodRevIDs[$revid] = $pageid;
+			$pageids[$pageid] = '';
+			unset($remaining[$revid]);
+		}
+		$db->freeResult( $res );
+		$this->profileDBOut();
+
+		$this->mMissingRevIDs = array_keys($remaining);
+
+		// Populate all the page information
+		if($this->mResolveRedirects)
+			$this->dieDebug('revids may not be used with redirect resolution');
+		$pageids = array_keys($pageids);
+		if(!empty($pageids))
+			$this->initFromPageIds($pageids);
 	}
 
 	private function resolvePendingRedirects() {
