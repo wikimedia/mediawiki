@@ -18,7 +18,7 @@ if( !defined( 'MEDIAWIKI' ) )
 class SkinNostalgia extends Skin {
 
 	function getStylesheet() {
-		return 'common/nostalgia.css?2';
+		return 'common/nostalgia.css';
 	}
 	function getSkinName() {
 		return "nostalgia";

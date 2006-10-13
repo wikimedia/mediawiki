@@ -149,12 +149,12 @@ class ChannelFeed extends FeedItem {
 	 * @private
 	 */
 	function outXmlHeader() {
-		global $wgServer, $wgStylePath;
+		global $wgServer, $wgStylePath, $wgStyleVersion;
 
 		$this->httpHeaders();
 		echo '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 		echo '<?xml-stylesheet type="text/css" href="' .
-			htmlspecialchars( "$wgServer$wgStylePath/common/feed.css" ) . '"?' . ">\n";
+			htmlspecialchars( "$wgServer$wgStylePath/common/feed.css?$wgStyleVersion" ) . '"?' . ">\n";
 	}
 }
 

@@ -1024,6 +1024,13 @@ $wgCachePages       = true;
  */
 $wgCacheEpoch = '20030516000000';
 
+/**
+ * Bump this number when changing the global style sheets and JavaScript.
+ * It should be appended in the query string of static CSS and JS includes,
+ * to ensure that client-side caches don't keep obsolete copies of global
+ * styles.
+ */
+$wgStyleVersion = '11';
 
 # Server-side caching:
 
