@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6
 
 p, .documentDescription {
     margin: 1em 0 ! important;
-    line-height: 1.2em;    
+    line-height: 1.2;    
 }
 
 .tocindent p {
