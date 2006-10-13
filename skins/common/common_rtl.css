@@ -17,3 +17,9 @@ div.editsection {
 	float: left;
 	margin-right: 5px;
 }
+div.tright {
+	clear: none;
+}
+div.tleft {
+	clear: left;
+}
