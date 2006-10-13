@@ -349,10 +349,10 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 I creuo'r tudalen, dechreuwch teipio yn y bocs isaf
 (gwelwch y [[{{ns:project}}:Help|tudalen help]] am mwy o hysbys).
 Os ydych yma trwy camgymeriad, cliciwch eich botwm '''nol'''.",
-"anontalkpagetext" => "---- ''Dyma tudalen sgwrsio am defnyddwr sydd ddim eto wedi creu accownt, neu ddim yn eu defnyddio. Rhaid i ni defnyddio'r [[cyfeiriad IP]] rhifiadol i adnabod fe neu hi. Mae'n posib i llawer o bobl siario'r un cyfeiriad IP. Os ydych chi'n defnyddwr anhysbys ac yn teimlo mae esboniadau amherthynol wedi cael eu gwneud arnach chi, creuwch accownt neu mewngofnodwch i osgoi anhrefn gyda defnyddwyr anhysbys yn y dyfodol.'' ",
+"anontalkpagetext" => "---- ''Dyma tudalen sgwrsio am defnyddwr sydd ddim eto wedi creu accownt, neu ddim yn eu defnyddio. Rhaid i ni defnyddio'r [[cyfeiriad IP]] rhifiadol i adnabod fe neu hi. Mae'n posib i llawer o bobl siario'r un cyfeiriad IP. Os ydych chi'n defnyddwr anhysbys ac yn teimlo mae esboniadau amherthynol wedi cael eu gwneud arnach chi, creuwch accownt neu mewngofnodwch i osgoi anhrefn gyda defnyddwyr anhysbys yn y dyfodol.''",
 "noarticletext" => "(Does dim testun yn y tudalen hon eto)",
 "updated" => "(Diweddariad)",
-"note"	=> "<strong>Sylwch:</strong> ",
+"note"	=> "<strong>Sylwch:</strong>",
 "previewnote" => "Cofiwch blaenwelediad ydi hwn, a dydi e ddim wedi cael eu chadw!",
 "previewconflict" => "Mae blaenwelediad hwn yn dangos y testun yn yr ardal golygu uchaf, fel y fydd hi'n edrych os dewyswch chi arbed.",
 "editing" => "Yn golygu $1",
@@ -445,7 +445,7 @@ i setio ffafraethau defnyddwr.",
 "math"	=> "Rendro mathemateg",
 "math_failure"	=> "wedi methu dosbarthu",
 "math_unknown_error" => "gwall anhysbys",
-"math_unknown_function"	=> "ffwythiant anhysbys ",
+"math_unknown_function"	=> "ffwythiant anhysbys",
 "math_lexing_error" => "gwall lecsio",
 "math_syntax_error" => "gwall cystrawen",
 "saveprefs" => "Cadw ffafraethau",
@@ -564,8 +564,8 @@ Dilynwch y cyswllt hon: ($2) i'r tudalen disgrifiad a llenwch gwybodaeth amdano'
 "imghistlegend" => "Eglurhad: (cyf) = hon yw'r delwedd cyfoes, (dil) = dilewch yr hen fersiwn hon, (dych) = dychwelio i hen fersiwn hon.
 <br /><i>Cliciwch ar dyddiad i weld y delwedd ag oedd llwythiad ar y dyddiad hon</i>.",
 "imagelinks" => "Cysylltiadau delwedd",
-"linkstoimage" => "Mae'r tudalennau isod yn cysylltu i'r delwedd hon: ",
-"nolinkstoimage" => "Does dim tudalen yn cysylltu i'r  delwedd hon. ",
+"linkstoimage" => "Mae'r tudalennau isod yn cysylltu i'r delwedd hon:",
+"nolinkstoimage" => "Does dim tudalen yn cysylltu i'r  delwedd hon.",
 
 # Statistics
 #
@@ -675,7 +675,7 @@ y botwm 'dileu' ar gwaelod y sgrîn.",
 "exblank" => "y tudalen oedd yn wâg",
 "confirmdelete" => "Cadarnhaewch y dileuad",
 "deletesub" => "(Yn dileuo \"$1\")",
-"historywarning" => "Rhubydd: Mae hanes gan y tudalen yr ydych yn mynd i dileuo: ",
+"historywarning" => "Rhubydd: Mae hanes gan y tudalen yr ydych yn mynd i dileuo:",
 "confirmdeletetext" => "Rydych chi'n mynd i dileu erthygl neu llun yn parhaol, hefyd gyda'u hanes, oddiwrth y databas.
 Cadarnhaewch yr ydych yn bwriadu gwneud hwn, ac yr ydych yn ddeallt y canlyniad, ac yr ydych yn gwneud hwn yn ôl [[{{ns:project}}:Polisi]].",
 "actioncomplete" => "Gweithred llwyr",
@@ -696,7 +696,7 @@ Gwelwch $2 am cofnod o dileuon diweddar.",
 "alreadyrolled"	=> "Amhosib rolio nôl golygiad olaf [[$1]]
 gan [[Defnyddwr:$2|$2]] ([[Sgwrs defnyddwr:$2|Sgwrs]]); mae rhywun arall yn barod wedi olygu neu rolio nôl yr erthygl.
 
-[[Defnyddwr:$3|$3]] ([[Sgwrs defnyddwr:$3|Sgwrs]] gwneuthoedd yr olygiad olaf). ",
+[[Defnyddwr:$3|$3]] ([[Sgwrs defnyddwr:$3|Sgwrs]] gwneuthoedd yr olygiad olaf).",
 #   only shown if there is an edit comment
 "editcomment" => "Crynodeb y golygiad oedd: \"<i>$1</i>\".",
 "revertpage" => "Wedi gwrthdroi i golygiad olaf gan $1",
@@ -826,7 +826,7 @@ amusement.",
 # Namespace 8 related
 
 "allmessages" => "Holl_negeseuon",
-"allmessagestext" => "Dyma rhestr holl y negeseuon ar gael yn y lle-enw MediaWiki: ",
+"allmessagestext" => "Dyma rhestr holl y negeseuon ar gael yn y lle-enw MediaWiki:",
 
 # Thumbnails
 

@@ -292,10 +292,10 @@ Para criá-lo, começe escrevendo na caixa abaixo
 (veja [[{{ns:4}}:Ajuda|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
 
-"anontalkpagetext" => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo. Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros usuários anônimos.'' ",
+"anontalkpagetext" => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo. Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros usuários anônimos.''",
 "noarticletext" => "(Não há atualmente nenhum texto nesta página)",
 "updated"       => "(Atualizado)",
-"note"          => "<strong>Nota:</strong> ",
+"note"          => "<strong>Nota:</strong>",
 "previewnote"   => "Lembre-se que isto é apenas uma previsão. O conteúdo ainda não foi salvo!",
 "previewconflict" => "Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.",
 "editing"         => "Editando $1",
@@ -394,7 +394,7 @@ para definir suas preferências.",
 "dateformat"    => "Formato da Data",
 "math_failure"      => "Falhou ao checar gramática(parse)",
 "math_unknown_error"    => "erro desconhecido",
-"math_unknown_function" => "função desconhecida ",
+"math_unknown_function" => "função desconhecida",
 "math_lexing_error" => "erro léxico",
 "math_syntax_error" => "erro de síntaxe",
 "saveprefs"     => "Salvar preferências",
@@ -642,7 +642,7 @@ $3...
 "exblank" => "página estava vazia",
 "confirmdelete" => "Confirmar deleção",
 "deletesub"     => "(Apagando \"$1\")",
-"historywarning" => "Atenção: A página que você quer deletar tem um histórico: ",
+"historywarning" => "Atenção: A página que você quer deletar tem um histórico:",
 "confirmdeletetext" => "Você está  prestes a deletar permanentemente uma página ou imagem junto com todo seu histórico do banco de dados.
 Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{{ns:4}}:Policy| Política da {{SITENAME}}]].",
 "actioncomplete" => "Ação efetuada com sucesso",
@@ -665,7 +665,7 @@ Todos os horários mostrados estão no horário do servidor (UTC).
 "alreadyrolled" => "Não foi possível reverter as edições de  [[$1]]
 por [[User:$2|$2]] ([[User talk:$2|discussão]]); alguém o editou ou já o reverteu.
 
-A última edição foi de  [[User:$3|$3]] ([[User talk:$3|Conversar com ele]]). ",
+A última edição foi de  [[User:$3|$3]] ([[User talk:$3|Conversar com ele]]).",
 #   only shown if there is an edit comment
 "editcomment" => "O comentário de edição era: \"<i>$1</i>\".",
 "revertpage"    => "Revertido para a última edição por  $1",

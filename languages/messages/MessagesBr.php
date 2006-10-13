@@ -790,7 +790,7 @@ Eur ar servijer (UTC) eo an eur merket.
 'alreadyrolled'	=> "Dibosupl eo disteuler ar c'hemm diwezhañ graet e [[$1]]
 gant [[User:$2|$2]] ([[User talk:$2|Talk]]); kemmet pe distaolet eo bet c'hoazh gant unan bennak all.
 
-Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix
+Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]).", //Looxix
 #   only shown if there is an edit comment
 'editcomment' => "Diverradenn ar c'hemm a oa: \"<i>$1</i>\".", //Looxix
 'revertpage'	=> 'Adlakaat kemm diwezhañ $1',

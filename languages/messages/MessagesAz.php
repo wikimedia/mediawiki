@@ -262,8 +262,8 @@ $messages = array(
 'previewnote' => '<strong>Bu yalnız sınaq göstərişidir; dəyişikliklər hal-hazırda qeyd edilmemişdir!</strong>',
 'editing' => 'Redaktə $1',
 'editinguser' => 'Redaktə $1',
-'yourtext' => 'Metniniz ',
-'yourdiff' => 'Fərqlər ',
+'yourtext' => 'Metniniz',
+'yourdiff' => 'Fərqlər',
 'templatesused' => 'Bu səhifədə istifadə edilmiş şablonlar:',
 
 
@@ -535,7 +535,7 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 'ipbreason' => 'Səbəb',
 'ipbsubmit' => 'Bu istifadəçiyi əngəllə',
 'badipaddress' => 'Yanlış IP',
-'blockipsuccesssub' => 'bloklandi ',
+'blockipsuccesssub' => 'bloklandi',
 'blockipsuccesstext' => '[[{{ns:Special}}:Contributions/$1| $1]]bloklanıb. <br />See[[{{ns:Special}}:Ipblocklist|IP blok siyahisi]] bloklanmış IP lər.',
 'ipblocklist' => 'Əngəllənmiş istifadəçilər siyahı',
 'blocklink' => 'blokla',

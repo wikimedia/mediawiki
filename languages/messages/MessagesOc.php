@@ -203,7 +203,7 @@ MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
 "nodb"		=> "Sélection impossible de la base de données $1",
 "cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour", // Looxix
 "readonly"	=> "Mises à jour bloquées sur la base de données",
-"enterlockreason" => "Indiquez la raison du blocage, ainsi qu'une estimation de la durée de blocage ",
+"enterlockreason" => "Indiquez la raison du blocage, ainsi qu'une estimation de la durée de blocage",
 "readonlytext"	=> "Les ajouts et mises à jour sur la base de données {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
 <p>$1",
 "missingarticle" => "La base de données n'a pas pu trouver le texte d'une page existante, dont le titre est \"$1\".
@@ -296,7 +296,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "anontalkpagetext" => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.",
 "noarticletext" => "(Il n'y a pour l'instant aucun texte sur cette page)",
 "updated"      => "(Mis à jour)",
-"note"         => "<strong>Note :</strong> ",
+"note"         => "<strong>Note :</strong>",
 "previewnote"  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé !",
 "previewconflict" => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
 "editing"      => "modification de $1",
@@ -429,7 +429,7 @@ Jetez un coup d'\x{0153}il sur ces pages : [[{{ns:project}}:FAQ|foire aux questi
 [[{{ns:project}}:La neutralité de point de vue|la neutralité de point de vue]]),
 et [[{{ns:project}}:Les faux-pas les plus courants|les faux-pas les plus courants]].
 
-Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[{{ns:project}}:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
+Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[{{ns:project}}:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet.",
 "rcnote"  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
 "rcnotefrom"	=> "Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
 "rclistfrom"	=> "Afficher les nouvelles modifications depuis le $1.",
@@ -640,7 +640,7 @@ Les prochaines modifications de cette page et de la page discussion associée se
 "exblank"	=> "page vide",
 "confirmdelete" => "Confirmer la suppression",
 "deletesub"	=> "(Suppression de \"$1\")",
-"historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ",
+"historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique:",
 "confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
 ou une image, ainsi que toutes ses versions antérieures.
 Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{ns:project}}:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
@@ -664,7 +664,7 @@ L'heure indiquée est celle du serveur (UTC).
 "alreadyrolled"	=> "Impossible de révoquer la dernière modification de [[$1]]
 par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer ou révoquer l'article.
 
-La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix
+La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]).", //Looxix
 
 #   only shown if there is an edit comment
 "editcomment" => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix

@@ -297,7 +297,7 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'media_tip'             => 'Mediedateivoweis',
 'hr_tip'                => 'Horizontal Linie (sparsom vowende)',
 'summary'               => 'Zämefassig',
-'minoredit'             => 'Numen es birebitzeli gänderet ',
+'minoredit'             => 'Numen es birebitzeli gänderet',
 'watchthis'             => 'Dä Artikel beobachte',
 'savearticle'           => 'Syte spychere',
 'showpreview'           => 'Vorschau aaluege',

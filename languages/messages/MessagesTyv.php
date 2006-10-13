@@ -301,7 +301,7 @@ $1', //Sorry! The wiki is experiencing some technical difficulties, and cannot c
 'allmessagescurrent' => 'Амгы сөзүглел', //Current text
 
 # labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Ажыглакчы: ', //User:
+'specialloguserlabel' => 'Ажыглакчы:', //User:
 
 );
 ?>
