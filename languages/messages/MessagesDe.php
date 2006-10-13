@@ -107,7 +107,7 @@ $messages = array(
 'tog-previewontop'		=> 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
 'tog-previewonfirst'		=> 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
 "tog-nocache"                 => "Seitencache deaktivieren",
-'tog-enotifwatchlistpages'	=> 'Bei Änderungen an beobachtetene Seiten E-Mails senden.',
+'tog-enotifwatchlistpages'	=> 'Bei Änderungen an beobachteten Seiten E-Mails senden.',
 'tog-enotifusertalkpages'	=> 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden.',
 'tog-enotifminoredits'		=> 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden.',
 'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
@@ -628,7 +628,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'history-feed-title'		=> 'Versionsgeschichte',
 'history-feed-description'	=> 'Versionsgeschichte für diese Seite im Wiki',
 'history-feed-item-nocomment'	=> '$1 um $2', # user at time
-'history-feed-empty'		=> 'Die angeforderte Seite exisitiert nicht.
+'history-feed-empty'		=> 'Die angeforderte Seite existiert nicht.
 Vielleicht wurde sie aus dem Wiki gelöscht oder verschoben.
 [[{{ns:special}}:Search|Durchsuchen]] Sie das Wiki für passende neue Seiten.',
 'revisiondelete'		=> 'Versionen löschen/wiederherstellen',
@@ -678,7 +678,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 "viewprevnext"	=> "Zeige ($1) ($2) ($3).",
 'showingresults'	=> 'Hier sind <b>$1</b> Ergebnisse, beginnend mit Nummer <b>$2</b>.',
 'showingresultsnum'	=> 'Hier sind <b>$3</b> Ergebnisse, beginnend mit Nummer <b>$2</b>.',
-'nonefound'		=> '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuchen Sie in diesem Fall die Anzahl der Suchbegriffe zu veringern.',
+'nonefound'		=> '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuchen Sie in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
 "powersearch" => "Suche",
 'powersearchtext'	=> 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
 'searchdisabled'	=> 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen über Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
@@ -768,7 +768,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 
 Benutzen Sie dieses Formular, um neue Dateien hochzuladen. Klicken Sie auf \'\'\'„Durchsuchen...“\'\'\', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld \'\'\'„Quelldatei“\'\'\' angezeigt.
-Bestätigen Sie dann die Copyright-Vereinbarung und klicken anschliessend auf \'\'\'„Datei hochladen“\'\'\'.
+Bestätigen Sie dann die Copyright-Vereinbarung und klicken anschließend auf \'\'\'„Datei hochladen“\'\'\'.
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
 Um ein \'\'\'Bild\'\'\' in einer Seite zu verwenden, schreiben Sie an Stelle des Bildes zum Beispiel:
@@ -831,6 +831,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 # Image list
 #
 'imagelist'		=> 'Dateiliste',
+'imagelist-summary'	=> 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
 'imagelisttext'		=> 'Hier ist eine Liste von \'\'\'$1\'\'\' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.',
 'imagelistforuser'	=> 'Diese Seite zeigt nur Dateien, die von $1 hochgeladen wurden.',
 'getimagelist'		=> 'Lade Dateiliste',
@@ -867,6 +868,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 
 # List redirects
 'listredirects' => 'Weiterleitungsliste',
+'listredirects-summary'	=> 'Diese Spezialseite listet Weiterleitungen auf.',
 
 # Unused templates
 'unusedtemplates'	=> 'Nicht benutzte Vorlagen',
@@ -915,11 +917,17 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 "popularpages"	=> "Beliebte Seiten",
 'nviews'		=> '{{PLURAL:$1|eine Abfrage|$1 Abfragen}}',
 'wantedcategories'	=> 'Gewünschte Kategorieseiten',
+'wantedcategories-summary'	=> 'Diese Spezialseite listet Kategorien auf, die zwar in Seiten verwendet werden, welche aber nicht als Kategorie angelegt worden sind.',
 'wantedpages'		=> 'Gewünschte Seiten',
+'wantedpages-summary'	=> 'Diese Spezialseite listet alle Seiten auf, die noch nicht existieren, auf die aber von bestehenden Seiten bereits verlinkt wird.',
 'mostlinkedcategories'	=> 'Meist benutzte Kategorien',
+'mostlinkedcategories-summary'	=> 'Diese Spezialseite zeigt eine Liste der meistbenutzten Kategorien.',
 'mostcategories'	=> 'Meist kategorisierte Seiten',
+'mostcategories-summary'	=> 'Diese Spezialseite zeigt besonders häufig kategorisierte Seiten an.',
 'mostimages'		=> 'Meist benutzte Dateien',
+'mostimages-summary'	=> 'Diese Spezialseite zeigt eine Liste der meistbenutzten Dateien.',
 'mostrevisions'		=> 'Seiten mit den meisten Versionen',
+'mostrevisions-summary'	=> 'Diese Spezialseite zeigt eine Liste von Seiten mit den meisten Bearbeitungen.',
 'nlinks'		=> '{{PLURAL:$1|ein Verweis|$1 Verweise}}',
 'nmembers'		=> '{{PLURAL:$1|ein Eintrag|$1 Einträge}}',
 'randompage'		=> 'Zufällige Seite',
@@ -931,26 +939,33 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 'restrictedpheading'	=> 'Spezialseiten für Administratoren',
 'recentchangeslinked'	=> 'Änderungen an verlinkten Seiten',
 'rclsub'		=> '(auf Seiten von „$1“)',
-"newpages"		=> "Neue Seiten",
+'newpages'		=> 'Neue Seiten',
+'newpages-summary'	=> 'Diese Spezialseite listet alle neu erstellten Seiten der letzten 30 Tage auf. Die Ausgabe kann auf einen Namensraum und/oder Benutzernamen eingeschränkt werden.',
 'newpages-username'	=> 'Benutzername:',
 'ancientpages'		=> 'Lange unbearbeitete Seiten',
+'ancientpages-summary'	=> 'Diese Spezialseite zeigt eine Liste von Seiten, die am längsten nicht mehr geändert worden sind.',
 "movethispage"	=> "Seite verschieben",
 'unusedimagestext'	=> '<p>Bitte beachten Sie, dass andere Wikis möglicherweise einige dieser Dateien verwenden.',
-'unusedcategoriestext'	=> 'Die folgenden Kategorieseiten bestehen, obwohl sie momentan nicht in Verwendung sind.',
+'unusedcategoriestext'	=> 'Diese Spezialseite zeigt alle Kategorien, die selber keiner Kategorie zugewiesen wurden.',
 'booksources'		=> 'ISBN-Suche',
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
 'newimages'	=> 'Neue Dateien',
+'newimages-summary'	=> 'Diese Spezialseite zeigt die zuletzt hochgeladenen Bilder und Dateien an.',
 'showhidebots'	=> '(Bots $1)',
 'mimesearch'	=> 'Suche nach MIME-Typ',
 'mimetype'	=> 'MIME-Typ:',
 'download'	=> 'Herunterladen',
 'mostlinked'	=> 'Häufig verlinkte Seiten',
+'mostlinked-summary'	=> 'Diese Spezialseite zeigt, unabhängig vom Namensraum, alle besonders häufig verlinkten Seiten an.',
 'uncategorizedpages'	=> 'Nicht kategorisierte Seiten',
+'uncategorizedpages-summary'	=> 'Diese Spezialseite zeigt alle Seiten, die noch keiner Kategorie zugewiesen wurden.',
 'uncategorizedcategories'	=> 'Nicht kategorisierte Kategorien',
 'uncategorizedimages'	=> 'Nicht kategorisierte Dateien',
+'uncategorizedimages-summary'	=> 'Diese Spezialseite zeigt alle Bilder, die keiner Kategorie zugewiesen wurden.',
 'unusedcategories' => 'Verwaiste Kategorien',
 'unwatchedpages'	=> 'Nicht beobachtete Seiten',
+'unwatchedpages-summary'	=> 'Diese Spezialseite zeigt alle Seiten, die von keinem Benutzer auf einer Beobachtungsliste stehen.',
 'categoriespagetext'	=> 'Die folgenden Kategorien existieren in diesem Wiki.',
 'data'			=> 'Daten',
 'groups'		=> 'Benutzergruppen',
@@ -979,6 +994,7 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 # Special:Allpages
 'allpages'		=> 'Alle Seiten',
 'prefixindex'		=> 'Alle Seiten (mit Präfix)',
+'prefixindex-summary'	=> 'Diese Spezialseite zeigt alle Seiten, die mit der eingegebenen Zeichenfolge („Präfix“) beginnen. Die Ausgabe kann auf einen Namensraum eingeschränkt werden.',
 'nextpage'	=> "Nächste Seite ($1)",
 'allpagesfrom'	=> 'Seiten anzeigen ab:',
 'allpagesprefix'	=> 'Seiten anzeigen mit Präfix:',
@@ -1054,8 +1070,8 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'wlnote' => 'Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.',
 'wlshowlast' => 'Zeige die letzen: $1 Stunden - $2 Tage - $3',
 'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
-'wlhideshowown'		=> '$1 meine Änderungen',
-'wlhideshowbots'	=> '$1 von Bot-Änderungen.',
+'wlhideshowown'		=> 'eigene Änderungen $1',
+'wlhideshowbots'	=> 'Bot-Änderungen $1',
 'wldone'		=> '...erledigt.',
 
 'updatedmarker'			=> '(geändert)',
@@ -1440,7 +1456,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 'blocklogtext'		=> 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch geblockte IP-Adressen werden nicht erfasst. Siehe [[{{ns:special}}:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
 'unblocklogentry'	=> 'Blockade von [[{{ns:user}}:$1]] aufgehoben',
 "range_block_disabled"	=> "Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.",
-"ipb_expiry_invalid"	=> "Die angegebeben Ablaufzeit ist ungültig.",
+'ipb_expiry_invalid'	=> 'Die angegebebe Ablaufzeit ist ungültig.',
 'ipb_already_blocked'	=> '„$1“ ist bereits gesperrt',
 "ip_range_invalid"	=> "Ungültiger IP-Addressbereich.",
 "confirmprotect" 	=> "Sperrung bestätigen",
