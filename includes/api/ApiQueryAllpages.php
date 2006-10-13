@@ -161,8 +161,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	protected function getExamples() {
 		return array (
 			'Simple Use',
-			'  api.php?action=query&list=allpages',
-			'  api.php?action=query&list=allpages&apfrom=B&aplimit=5',
+			' Show a list of pages starting at the letter "B"',
+			'  api.php?action=query&list=allpages&apfrom=B',
 			'Using as Generator',
 			' Show info about 4 pages starting at the letter "T"',
 			'  api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info',
