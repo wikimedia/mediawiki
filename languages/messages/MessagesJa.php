@@ -129,6 +129,7 @@ $messages = array(
 'nov'                   => '11月',
 'dec'                   => '12月',
 'categories'            => 'カテゴリ',
+'pagecategories'        => 'カテゴリ',
 'category_header'       => 'カテゴリ: “$1”',
 'subcategories'         => 'サブカテゴリ',
 'mainpage'              => 'メインページ',

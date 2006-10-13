@@ -141,7 +141,8 @@ $messages = array(
 
 # Bits of text used by many pages:
 #
-'categories' => '{{PLURAL:$1|Categoreye|Categoreyes}}',
+'categories' => 'Categoreyes',
+'pagecategories' => '{{PLURAL:$1|Categoreye|Categoreyes}}',
 'category_header' => 'Årtikes el categoreye «$1»',
 'subcategories' => 'Dizo-categoreyes',
 #'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',

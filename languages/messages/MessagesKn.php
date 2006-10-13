@@ -290,6 +290,7 @@ $2",
 'otherlanguages' => "ಇತರ ಭಾಷೆಗಳು",
 
 
+'pagecategories' => "ವರ್ಗಗಳು",
 'pagemovedsub' => "ಸ್ಥಳಾ೦ತರಿಸುವಿಕೆ ಯಶಸ್ವಿಯಾಯಿತು",
 'popularpages' => "ಜನಪ್ರಿಯ ಪುಟಗಳು",
 'portal' => "ಸಮುದಾಯ ಪುಟ",

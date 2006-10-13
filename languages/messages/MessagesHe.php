@@ -282,7 +282,8 @@ $messages = array(
 "dec"           => "דצמ'",
 
 # Bits of text used by many pages
-"categories"      => "{{plural:$1|קטגוריה|קטגוריות}}",
+"categories"      => "קטגוריות",
+"pagecategories"  => "{{plural:$1|קטגוריה|קטגוריות}}",
 "category_header" => 'דפים בקטגוריה "$1"',
 "subcategories"   => "קטגוריות משנה",
 

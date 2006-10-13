@@ -114,7 +114,8 @@ $messages = array(
 
 # Bits of text used by many pages:
 #
-"categories"	=> "Catégories de la page", // Looxix "Page categories",
+"categories"	=> "Catégories de la page", // Looxix "Categories",
+"pagecategories"	=> "Catégories de la page", // Looxix "{{PLURAL:$1|Category|Categories}}",
 "category_header" => "Articles dans la catégorie \"$1\"", // Looxix "Articles in category \"$1\"",
 "subcategories"	=> "Sous-catégories", // Looxix "Subcategories",
 

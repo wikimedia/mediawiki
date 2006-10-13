@@ -144,6 +144,7 @@ $messages = array(
 'nstab-user' => "Архайæджы фарс",
 'otherlanguages' => "Æндæр æвзæгтыл",
 'others' => "æндæртæ",
+'pagecategories' => "Категоритæ",
 'portal' => "Архайджыты æхсæнад",
 'prevn' => "$1 фæстæмæ",
 'printableversion' => "Мыхурмæ верси",

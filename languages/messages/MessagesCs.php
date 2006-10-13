@@ -179,6 +179,7 @@ $messages = array(
 
 # Části textu používané různými stránkami:
 'categories' => 'Kategorie',
+'pagecategories' => 'Kategorie',
 'category_header' => 'Články v kategorii „$1“',
 'subcategories' => 'Podkategorie',
 

@@ -109,6 +109,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 "categories" => "பக்க வகைகள்",
+"pagecategories" => "பக்க வகைகள்",
 "category_header" => "பகுப்புகளிலுள்ள கட்டுரைகள் \"$1\"",
 "subcategories" => "துணை வகைகள்",
 

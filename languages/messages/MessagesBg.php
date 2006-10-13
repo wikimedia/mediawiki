@@ -165,6 +165,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => 'Категории',
+'pagecategories' => 'Категории',
 'category_header' => 'Страници в категория „$1“',
 'subcategories' => 'Подкатегории',
 'linkprefix'  => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',

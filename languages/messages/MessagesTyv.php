@@ -98,6 +98,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => 'Бөлүктер', //Categories
+'pagecategories' => 'Бөлүктер', //{{PLURAL:$1|Category|Categories}}
 'category_header' => '"$1" бөлүкте чүүлдер', //Articles in category $1
 'subcategories' => 'Бичии бөлүктер', //Subcategories
 

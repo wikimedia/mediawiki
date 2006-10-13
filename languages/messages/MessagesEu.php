@@ -52,6 +52,7 @@ $messages = array(
 'bold_tip' => 'Lodia',
 'cancel' => 'Bertan behera utzi',
 'categories' => 'Kategoriak',
+'pagecategories' => 'Kategoriak',
 'category_header' => '"$1" kategoriako artikuluak',
 'categoryarticlecount' => 'Kategoria honetan $1 artikulu daude.',
 'contributions' => 'Lankidearen ekarpenak',

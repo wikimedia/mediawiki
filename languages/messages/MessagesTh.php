@@ -100,6 +100,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 "categories" => "ประเภทของหน้า",
+"pagecategories" => "ประเภทของหน้า",
 "category_header" => "บทความในประเภท \"$1\"",
 "subcategories" => "ประเภทย่อย",
 
