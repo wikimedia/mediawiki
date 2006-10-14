@@ -118,9 +118,8 @@ class StubUser extends StubObject {
 		global $wgCommandLineMode;
 		if( $wgCommandLineMode ) {
 			$user = new User;
-			$user->setLoaded( true );
 		} else {
-			$user = User::loadFromSession();
+			$user = User::newFromSession();
 			wfRunHooks('AutoAuthenticate',array($user));
 		}
 		return $user;
