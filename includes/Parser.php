@@ -4733,7 +4733,6 @@ class ParserOptions
 				$user = $wgUser;
 			} else {
 				$user = new User;
-				$user->setLoaded( true );
 			}
 		} else {
 			$user =& $userInput;

@@ -30,7 +30,9 @@ if( count( $args ) > 1 ) {
 		$wgUser = User::newFromName( $options['user'] );
 	} else {
 		$wgUser = User::newFromName( 'Image import script' );
-		$wgUser->setLoaded( true );
+	}
+	if ( $wgUser->isAnon() ) {
+		$wgUser->addToDatabase();
 	}
 	
 	# Get the upload comment

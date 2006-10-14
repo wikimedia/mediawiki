@@ -236,8 +236,8 @@ class LoginForm {
 		}
 
 		$name = trim( $this->mName );
-		$u = User::newFromName( $name );
-		if ( is_null( $u ) || !User::isCreatableName( $u->getName() ) ) {
+		$u = User::newFromName( $name, 'creatable' );
+		if ( is_null( $u ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
 		}
