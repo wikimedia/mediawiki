@@ -81,7 +81,7 @@ class DependencyWrapper {
 		$callbackParams = array(), $deps = array() ) 
 	{
 		$obj = $cache->get( $key );
-		if ( $obj && !$obj->isExpired() ) {
+		if ( is_object( $obj ) && $obj instanceof DependencyWrapper && !$obj->isExpired() ) {
 			$value = $obj->value;
 		} elseif ( $callback ) {
 			$value = call_user_func_array( $callback, $callbackParams );
