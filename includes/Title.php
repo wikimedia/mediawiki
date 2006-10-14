@@ -2293,26 +2293,12 @@ class Title {
 	 * Get a cached value from a global cache that is invalidated when this page changes
 	 * @param string $key the key
 	 * @param callback $callback A callback function which generates the value on cache miss
+	 *
+	 * @deprecated use DependencyWrapper
 	 */
 	function getRelatedCache( $memc, $key, $expiry, $callback, $params = array() ) {
-		$touched = $this->getTouched();
-		$cacheEntry = $memc->get( $key );
-		if ( $cacheEntry ) {
-			if ( $cacheEntry['touched'] >= $touched ) {
-				return $cacheEntry['value'];
-			} else {
-				wfDebug( __METHOD__.": $key expired\n" );
-			}
-		} else {
-			wfDebug( __METHOD__.": $key not found\n" );
-		}
-		$value = call_user_func_array( $callback, $params );
-		$cacheEntry = array(
-			'value' => $value,
-			'touched' => $touched
-		);
-		$memc->set( $key, $cacheEntry, $expiry );
-		return $value;
+		return DependencyWrapper::getValueFromCache( $memc, $key, $expiry, $callback, 
+			$params, new TitleDependency( $this ) );
 	}
 
 	function trackbackURL() {
