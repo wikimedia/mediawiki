@@ -1015,7 +1015,7 @@ $messages = array(
 "download"   => "הורדה",
 
 # Unwatched pages
-"unwatchedpages" => "דפים שאינם נצפים",
+"unwatchedpages" => "דפים שאינם במעקב",
 
 # List redirects
 "listredirects" => "רשימת הפניות",
