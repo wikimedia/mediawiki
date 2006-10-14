@@ -141,6 +141,9 @@ class LoadBalancer {
 		$i = false;
 		if ( $this->mForce >= 0 ) {
 			$i = $this->mForce;
+		} elseif ( count( $this->mServers ) == 1 )  {
+			# Skip the load balancing if there's only one server
+			$i = 0;
 		} else {
 			if ( $this->mReadIndex >= 0 ) {
 				$i = $this->mReadIndex;
