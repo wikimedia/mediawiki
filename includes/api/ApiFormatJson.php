@@ -39,8 +39,7 @@ class ApiFormatJson extends ApiFormatBase {
 		return 'application/json';
 	}
 
-	public function execute() {
-		require ('ApiFormatJson_json.php');
+	public function executePrinter() {
 		$json = new Services_JSON();
 		$this->printText($json->encode($this->getResultData(), true));
 	}

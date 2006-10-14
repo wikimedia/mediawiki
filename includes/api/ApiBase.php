@@ -219,7 +219,6 @@ abstract class ApiBase {
 	 * @param $paramSettings Mixed: default value or an array of settings using PARAM_* constants.
 	 */	
 	protected function getParameterFromSettings($paramName, $paramSettings) {
-		global $wgRequest;
 
 		// Some classes may decide to change parameter names
 		$paramName = $this->encodeParamName($paramName);
@@ -248,10 +247,11 @@ abstract class ApiBase {
 				ApiBase :: dieDebug(__METHOD__, "Boolean param $paramName's default is set to '$default'");
 			}
 
-			$value = $wgRequest->getCheck($paramName);
-		} else
-			$value = $wgRequest->getVal($paramName, $default);
-
+			$value = $this->getMain()->getRequest()->getCheck($paramName);
+		} else {
+			$value = $this->getMain()->getRequest()->getVal($paramName, $default);
+		}
+		
 		if (isset ($value) && ($multi || is_array($type)))
 			$value = $this->parseMultiValue($paramName, $value, $multi, is_array($type) ? $type : null);
 
@@ -349,7 +349,7 @@ abstract class ApiBase {
 	 * Call main module's error handler 
 	 */
 	public function dieUsage($description, $errorCode, $httpRespCode = 0) {
-		$this->getMain()->mainDieUsage($description, $this->encodeParamName($errorCode), $httpRespCode);
+		throw new UsageException($description, $this->encodeParamName($errorCode), $httpRespCode);
 	}
 
 	/**

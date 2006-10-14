@@ -25,71 +25,6 @@
 // Initialise common code
 require (dirname(__FILE__) . '/includes/WebStart.php');
 
-/**
- * When no format parameter is given, this format will be used
- */
-define('API_DEFAULT_FORMAT', 'xmlfm');
-
-/**
- * Location of all api-related files (must end with a slash '/')
- */
-define('API_DIR', 'includes/api/');
-
-/**
- * List of classes and containing files.
- */
-$wgApiAutoloadClasses = array (
-
-	'ApiMain' => API_DIR . 'ApiMain.php',
-
-		// Utility classes
-	'ApiBase' => API_DIR . 'ApiBase.php',
-	'ApiQueryBase' => API_DIR . 'ApiQueryBase.php',
-	'ApiResult' => API_DIR . 'ApiResult.php',
-	'ApiPageSet' => API_DIR . 'ApiPageSet.php',
-
-		// Formats
-	'ApiFormatBase' => API_DIR . 'ApiFormatBase.php',
-	'ApiFormatYaml' => API_DIR . 'ApiFormatYaml.php',
-	'ApiFormatXml' => API_DIR . 'ApiFormatXml.php',
-	'ApiFormatJson' => API_DIR . 'ApiFormatJson.php',
-
-		// Modules (action=...) - should match the $apiModules list
-	'ApiHelp' => API_DIR . 'ApiHelp.php',
-	'ApiLogin' => API_DIR . 'ApiLogin.php',
-	'ApiQuery' => API_DIR . 'ApiQuery.php',
-
-		// Query items (meta/prop/list=...)
-	'ApiQuerySiteinfo' => API_DIR . 'ApiQuerySiteinfo.php',
-	'ApiQueryInfo' => API_DIR . 'ApiQueryInfo.php',
-	'ApiQueryRevisions' => API_DIR . 'ApiQueryRevisions.php',
-	'ApiQueryAllpages' => API_DIR . 'ApiQueryAllpages.php',
-	'ApiQueryWatchlist' => API_DIR . 'ApiQueryWatchlist.php'
-);
-
-/**
- * List of available modules: action name => module class
- * The class must also be listed in the $wgApiAutoloadClasses array. 
- */
-$wgApiModules = array (
-	'help' => 'ApiHelp',
-	'login' => 'ApiLogin',
-	'query' => 'ApiQuery'
-);
-
-/**
- * List of available formats: format name => format class
- * The class must also be listed in the $wgApiAutoloadClasses array. 
- */
-$wgApiFormats = array (
-	'json' => 'ApiFormatJson',
-	'jsonfm' => 'ApiFormatJson',
-	'xml' => 'ApiFormatXml',
-	'xmlfm' => 'ApiFormatXml',
-	'yaml' => 'ApiFormatYaml',
-	'yamlfm' => 'ApiFormatYaml'
-);
-
 wfProfileIn('api.php');
 
 // Verify that the API has not been disabled
@@ -99,9 +34,7 @@ if (!$wgEnableAPI) {
 	die(-1);
 }
 
-$wgAutoloadClasses = array_merge($wgAutoloadClasses, $wgApiAutoloadClasses);
-
-$processor = new ApiMain($wgRequestTime, $wgApiModules, $wgApiFormats, $wgEnableWriteAPI);
+$processor = new ApiMain($wgRequest, $wgEnableWriteAPI);
 $processor->execute();
 
 wfProfileOut('api.php');

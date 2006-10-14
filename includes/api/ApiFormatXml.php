@@ -43,7 +43,7 @@ class ApiFormatXml extends ApiFormatBase {
 		return true;
 	}
 
-	public function execute() {
+	public function executePrinter() {
 		$xmlindent = null;
 		extract($this->extractRequestParams());
 
