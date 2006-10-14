@@ -39,8 +39,7 @@ class ApiFormatYaml extends ApiFormatBase {
 		return 'application/yaml';
 	}
 
-	public function execute() {
-		require ('ApiFormatYaml_spyc.php');
+	public function executePrinter() {
 		$this->printText(Spyc :: YAMLDump($this->getResultData()));
 	}
 

@@ -29,39 +29,71 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiBase.php');
 }
 
+
+/**
+ * This is the main API class, used for both external and internal processing. 
+ */
 class ApiMain extends ApiBase {
 
+	/**
+	 * When no format parameter is given, this format will be used
+	 */
+	const API_DEFAULT_FORMAT = 'xmlfm';
+
+	/**
+	 * List of available modules: action name => module class
+	 */
+	private static $Modules = array (
+		'help' => 'ApiHelp',
+		'login' => 'ApiLogin',
+		'query' => 'ApiQuery',
+		'opensearch' => 'ApiOpenSearch'
+	);
+
+	/**
+	 * List of available formats: format name => format class
+	 */
+	private static $Formats = array (
+		'json' => 'ApiFormatJson',
+		'jsonfm' => 'ApiFormatJson',
+		'xml' => 'ApiFormatXml',
+		'xmlfm' => 'ApiFormatXml',
+		'yaml' => 'ApiFormatYaml',
+		'yamlfm' => 'ApiFormatYaml'
+	);
+
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
-	private $mApiStartTime, $mResult, $mShowVersions, $mEnableWrite;
+	private $mResult, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode;
 
 	/**
 	* Constructor
-	* $apiStartTime - time of the originating call for profiling purposes
-	* $modules - an array of actions (keys) and classes that handle them (values) 
+	* @param $request object - if this is an instance of FauxRequest, errors are thrown and no printing occurs
+	* @param $enableWrite bool should be set to true if the api may modify data
 	*/
-	public function __construct($apiStartTime, $modules, $formats, $enableWrite) {
+	public function __construct($request, $enableWrite = false) {
 		// Special handling for the main module: $parent === $this
 		parent :: __construct($this, 'main');
 
-		$this->mModules = $modules;
-		$this->mModuleNames = array_keys($modules);
-		$this->mFormats = $formats;
-		$this->mFormatNames = array_keys($formats);
-		$this->mApiStartTime = $apiStartTime;
+		$this->mModules =& self::$Modules;
+		$this->mModuleNames = array_keys($this->mModules);	// todo: optimize
+		$this->mFormats =& self::$Formats;
+		$this->mFormatNames = array_keys($this->mFormats);	// todo: optimize
+		
 		$this->mResult = new ApiResult($this);
 		$this->mShowVersions = false;
 		$this->mEnableWrite = $enableWrite;
 		
-		// Initialize Error handler
-		set_exception_handler( array($this, 'exceptionHandler') );
+		$this->mRequest =& $request;
+
+		$this->mInternalMode = ($request instanceof FauxRequest);
+	}
+
+	public function & getRequest() {
+		return $this->mRequest;
 	}
 
 	public function & getResult() {
 		return $this->mResult;
-	}
-
-	public function getShowVersions() {
-		return $this->mShowVersions;
 	}
 
 	public function requestWriteMode() {
@@ -70,10 +102,125 @@ class ApiMain extends ApiBase {
 			'statement is included in the site\'s LocalSettings.php file', 'readonly');
 	}
 
+	public function execute() {
+		$this->profileIn();
+		if($this->mInternalMode)
+			$this->executeAction();
+		else
+			$this->executeActionWithErrorHandling();
+		$this->profileOut();
+	}
+	
+	protected function executeActionWithErrorHandling() {
+
+		// In case an error occurs during data output,
+		// this clear the output buffer and print just the error information
+		ob_start();
+
+		try {
+			$this->executeAction();
+		} catch (Exception $e) {
+			//
+			// Handle any kind of exception by outputing properly formatted error message.
+			// If this fails, an unhandled exception should be thrown so that global error
+			// handler will process and log it.
+			//
+			
+			// Printer may not be initialized if the extractRequestParams() fails for the main module
+			if (!isset ($this->mPrinter)) {
+				$format = self :: API_DEFAULT_FORMAT;
+				$this->mPrinter = new $this->mFormats[$format] ($this, $format);
+			}
+			
+			if ($e instanceof UsageException) {
+				//
+				// User entered incorrect parameters - print usage screen
+				//
+				$httpRespCode = $e->getCode();
+				$errMessage = array (
+					'code' => $e->getCodeString(),
+					'info' => $e->getMessage()
+				);
+				ApiResult :: setContent($errMessage, $this->makeHelpMsg());
+		
+			} else {
+				//
+				// Something is seriously wrong
+				//
+				$httpRespCode = 0;
+				$errMessage = array (
+					'code' => 'internal_api_error',
+					'info' => "Exception Caught: {$e->getMessage()}"
+				);
+				ApiResult :: setContent($errMessage, "\n\n{$e->getTraceAsString()}\n\n");
+			}
+			
+			$headerStr = 'MediaWiki-API-Error: ' . $errMessage['code'];
+			if ($e->getCode() === 0)
+				header($headerStr, true);
+			else
+				header($headerStr, true, $e->getCode());
+
+			// Reset and print just the error message
+			ob_clean();
+			$this->mResult->Reset();
+			$this->mResult->addValue(null, 'error', $errMessage);
+			$this->printResult(true);
+		}
+		
+		ob_end_flush();
+	}
+
+	/**
+	 * Execute the actual module, without any error handling
+	 */
+	protected function executeAction() {
+		$action = $format = $version = null;
+		extract($this->extractRequestParams());
+		$this->mShowVersions = $version;
+
+		// Instantiate the module requested by the user
+		$module = new $this->mModules[$action] ($this, $action);
+
+		if (!$this->mInternalMode) {
+			if ($module instanceof ApiFormatBase) {
+				// The requested module will print data in its own format
+				$this->mPrinter = $module;				
+			} else {
+				// Create an appropriate printer
+				$this->mPrinter = new $this->mFormats[$format] ($this, $format);
+			}
+		}
+		
+		// Execute
+		$module->profileIn();
+		$module->execute();
+		$module->profileOut();
+		
+		if (!$this->mInternalMode) {
+			// Print result data
+			$this->printResult(false);
+		}
+	}
+	
+	/**
+	 * Internal printer
+	 */
+	protected function printResult($isError) {
+		$printer = $this->mPrinter;
+		$printer->profileIn();
+		$printer->initPrinter($isError);
+		if (!$printer->getNeedsRawData())
+			$this->getResult()->SanitizeData();
+		$printer->executePrinter();
+		$printer->closePrinter();
+		$printer->profileOut();
+	}
+
 	protected function getAllowedParams() {
 		return array (
 			'format' => array (
-				ApiBase :: PARAM_DFLT => API_DEFAULT_FORMAT,
+				ApiBase :: PARAM_DFLT => ApiMain :: API_DEFAULT_FORMAT,
 				ApiBase :: PARAM_TYPE => $this->mFormatNames
 			),
 			'action' => array (
@@ -92,61 +239,6 @@ class ApiMain extends ApiBase {
 		);
 	}
 
-	public function execute() {
-		$this->profileIn();
-
-		// Experimental -- in case an error occurs during data output,
-		// this clear the output buffer and print just the error information
-		ob_start();
-
-		try {
-			$action = $format = $version = null;
-			extract($this->extractRequestParams());
-			$this->mShowVersions = $version;
-
-			// Create an appropriate printer
-			$this->mPrinter = new $this->mFormats[$format] ($this, $format);
-
-			// Instantiate and execute module requested by the user
-			$module = new $this->mModules[$action] ($this, $action);
-			$module->profileIn();
-			$module->execute();
-			$module->profileOut();
-			$this->printResult(false);
-
-		} catch (UsageException $e) {
-			$this->printError();
-		}
-		
-		ob_end_flush();
-		$this->profileOut();
-	}
-
-	/**
-	 * Internal printer
-	 */
-	private function printResult($isError) {
-		$printer = $this->mPrinter;
-		$printer->profileIn();
-		$printer->initPrinter($isError);
-		if (!$printer->getNeedsRawData())
-			$this->getResult()->SanitizeData();
-		$printer->execute();
-		$printer->closePrinter();
-		$printer->profileOut();
-	}
-	
-	private function printError() {
-		// Printer may not be initialized if the extractRequestParams() fails for the main module
-		if (!isset ($this->mPrinter))
-			$this->mPrinter = new $this->mFormats[API_DEFAULT_FORMAT] ($this, API_DEFAULT_FORMAT);
-		
-		// In case of an error, reset anythnig that was printed before
-		ob_clean();
-		
-		$this->printResult(true);
-	}
-
 	protected function getDescription() {
 		return array (
 			'',
@@ -156,30 +248,6 @@ class ApiMain extends ApiBase {
 		);
 	}
 
-	public function mainDieUsage($description, $errorCode, $httpRespCode = 0) {
-		if ($httpRespCode === 0)
-			header($errorCode, true);
-		else
-			header($errorCode, true, $httpRespCode);
-
-		$this->makeErrorMessage($description, $errorCode);
-
-		throw new UsageException($description, $errorCode);
-	}
-
-	public function makeErrorMessage($description, $errorCode, $customContent = null) {
-		$this->mResult->Reset();
-		$data = array (
-			'code' => $errorCode,
-			'info' => $description
-		);
-		
-		ApiResult :: setContent($data, 
-			is_null($customContent) ? $this->makeHelpMsg() : $customContent);
-			
-		$this->mResult->addValue(null, 'error', $data);
-	}
-	
 	/**
 	 * Override the parent to generate help messages for all available modules.
 	 */
@@ -211,53 +279,6 @@ class ApiMain extends ApiBase {
 
 		return $msg;
 	}
-	
-	/**
-	 * Exception handler which simulates the appropriate catch() handling:
-	 *
-	 *   try {
-	 *       ...
-	 *   } catch ( MWException $e ) {
-	 *       dieUsage()
-	 *   } catch ( Exception $e ) {
-	 *       echo $e->__toString();
-	 *   }
-	 * 
-	 * 
-	 * 
-	 * 
-	 *          !!!!!!!!!!!!! REVIEW needed !!!!!!!!!!!!!!!!!!
-	 * 
-	 * 			  this method needs to be reviewed/cleaned up
-	 * 
-	 * 
-	 * 
-	 */
-	public function exceptionHandler( $e ) {
-		global $wgFullyInitialised;
-		 if ( is_a( $e, 'MWException' ) ) {
-			 try {
-			 	$msg = "Exception Caught: {$e->getMessage()}";
-				$this->makeErrorMessage($msg, 'internal_api_error', "\n\n{$e->getTraceAsString()}\n\n");
-				$this->printError();
-			 } catch (Exception $e2) {
-                 echo $e->__toString();
-             }
-		 } else {
-			 echo $e->__toString();
-		 }
-
-		// Final cleanup, similar to wfErrorExit()
-		if ( $wgFullyInitialised ) {
-			try {
-				wfLogProfilingData(); // uses $wgRequest, hence the $wgFullyInitialised condition
-			} catch ( Exception $e ) {}
-		}
-
-		// Exit value should be nonzero for the benefit of shell jobs
-		exit( 1 );
-	}
-
 
 	private $mIsBot = null;
 	public function isBot() {
@@ -266,6 +287,10 @@ class ApiMain extends ApiBase {
 			$this->mIsBot = $wgUser->isAllowed('bot');
 		}
 		return $this->mIsBot;
+	}
+
+	public function getShowVersions() {
+		return $this->mShowVersions;
 	}
 
 	public function getVersion() {
@@ -283,14 +308,17 @@ class ApiMain extends ApiBase {
 */
 class UsageException extends Exception {
 
-	private $codestr;
+	private $mCodestr;
 
-	public function __construct($message, $codestr) {
-		parent :: __construct($message);
-		$this->codestr = $codestr;
+	public function __construct($message, $codestr, $code = 0) {
+		parent :: __construct($message, $code);
+		$this->mCodestr = $codestr;
+	}
+	public function getCodeString() {
+		return $this->mCodestr;
 	}
 	public function __toString() {
-		return "{$this->codestr}: {$this->message}";
+		return "{$this->getCodeString()}: {$this->getMessage()}";
 	}
 }
 ?>

@@ -59,6 +59,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		if (isset ($from)) {
 			$where[] = 'page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($from));
 		}
+		
+		if (isset ($prefix)) {
+			$where[] = "page_title LIKE '{$db->strencode(ApiQueryBase :: titleToKey($prefix))}%'";
+		}
 
 		if ($filterredir === 'redirects') {
 			$where['page_is_redirect'] = 1;
@@ -126,6 +130,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 		return array (
 			'from' => null,
+			'prefix' => null,
 			'namespace' => array (
 				ApiBase :: PARAM_DFLT => 0,
 				ApiBase :: PARAM_TYPE => $this->getQuery()->getValidNamespaces()),
@@ -148,6 +153,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	protected function getParamDescription() {
 		return array (
 			'from' => 'The page title to start enumerating from.',
+			'prefix' => 'Search for all page titles that begin with this value.',
 			'namespace' => 'The namespace to enumerate. Default 0 (Main).',
 			'filterredir' => 'Which pages to list: "all" (default), "redirects", or "nonredirects"',
 			'limit' => 'How many total pages to return'
