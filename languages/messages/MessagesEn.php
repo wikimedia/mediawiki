@@ -558,7 +558,7 @@ parent class in order maintain consistency across languages.
 'retrievedfrom' => 'Retrieved from "$1"',
 'youhavenewmessages' => 'You have $1 ($2).',
 'newmessageslink' => 'new messages',
-'newmessagesdifflink' => 'diff to penultimate revision',
+'newmessagesdifflink' => 'last change',
 'editsection'=>'edit',
 'editold'=>'edit',
 'editsectionhint' => 'Edit section: $1',
