@@ -34,7 +34,7 @@ class ApiOpenSearch extends ApiFormatBase {
 	private $mResult = array();
 	
 	public function __construct($main, $action) {
-		parent :: __construct($main, 'opensearch');
+		parent :: __construct($main, $action);
 	}
 
 	public function getMimeType() {

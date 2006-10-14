@@ -230,6 +230,16 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
+	 * Initialize PageSet from a list of Revision IDs
+	 */
+	public function populateFromRevisionIDs($revIDs) {
+		$this->profileIn();
+		$pageIDs = array_map('intval', $revIDs); // paranoia
+		$this->initFromRevIDs($revIDs);
+		$this->profileOut();
+	}
+
+	/**
 	 * Extract all requested fields from the row received from the database
 	 */
 	public function processDbRow($row) {

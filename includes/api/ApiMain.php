@@ -46,8 +46,8 @@ class ApiMain extends ApiBase {
 	private static $Modules = array (
 		'help' => 'ApiHelp',
 		'login' => 'ApiLogin',
-		'query' => 'ApiQuery',
-		'opensearch' => 'ApiOpenSearch'
+		'opensearch' => 'ApiOpenSearch',
+		'query' => 'ApiQuery'
 	);
 
 	/**

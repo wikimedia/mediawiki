@@ -54,30 +54,52 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$db = $this->getDB();
 
-		$tables = array (
-			'watchlist',
-			'recentchanges',
-			'page'
-		);
-		$fields = array (
-			'rc_namespace AS page_namespace',
-			'rc_title AS page_title',
-			'rc_comment AS rev_comment',
-			'rc_cur_id AS page_id',
-			'rc_user AS rev_user',
-			'rc_user_text AS rev_user_text',
-			'rc_timestamp AS rev_timestamp',
-			'rc_minor AS rev_minor_edit',
-			'rc_this_oldid AS rev_id',
-			'rc_last_oldid',
-			'rc_id',
-//			'rc_patrolled',
-			'rc_new AS page_is_new'
-		);
-
 		$dirNewer = ($dir === 'newer');
 		$before = ($dirNewer ? '<=' : '>=');
 		$after = ($dirNewer ? '>=' : '<=');
+
+		$tables = array (
+			'watchlist',
+			'page',
+			'recentchanges'
+		);
+
+		$options = array (
+			'LIMIT' => $limit +1,
+			'ORDER BY' => 'rc_timestamp' . ($dirNewer ? '' : ' DESC'),
+			'USE INDEX' => 'rc_timestamp');
+
+		if (is_null($resultPageSet)) {
+			$fields = array (
+				'rc_namespace AS page_namespace',
+				'rc_title AS page_title',
+				'rc_comment AS rev_comment',
+				'rc_cur_id AS page_id',
+				'rc_user AS rev_user',
+				'rc_user_text AS rev_user_text',
+				'rc_timestamp AS rev_timestamp',
+				'rc_minor AS rev_minor_edit',
+				'rc_this_oldid AS rev_id',
+				'rc_last_oldid',
+				'rc_id',
+	//			'rc_patrolled',
+				'rc_new AS page_is_new'
+			);
+		} elseif ($allrev) {
+			$fields = array (
+				'rc_this_oldid AS rev_id',
+				'rc_namespace AS page_namespace',
+				'rc_title AS page_title',
+				'rc_timestamp AS rev_timestamp'
+			);
+		} else {
+			$fields = array (
+				'rc_cur_id AS page_id',
+				'rc_namespace AS page_namespace',
+				'rc_title AS page_title',
+				'rc_timestamp AS rev_timestamp'
+			);
+		}
 
 		$where = array (
 			'wl_namespace = rc_namespace',
@@ -93,21 +115,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$where[] = 'rev_timestamp' . $after . $db->addQuotes($start);
 		if (isset ($end))
 			$where[] = 'rev_timestamp' . $before . $db->addQuotes($end);
-
-		//		if (is_null($resultPageSet)) {
-		//			$fields = array (
-		//				'page_id',
-		//				'page_namespace',
-		//				'page_title'
-		//			);
-		//		} else {
-		//			$fields = $resultPageSet->getPageTableFields();
-		//		}
-
-		$options = array (
-			'LIMIT' => $limit +1,
-			'ORDER BY' => 'rc_timestamp' . ($dirNewer ? '' : ' DESC'
-		));
 
 		$this->profileDBIn();
 		$res = $db->select($tables, $fields, $where, __METHOD__, $options);
@@ -147,9 +154,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 //						'rc_patrolled' => $row->rc_patrolled,
 						'isnew' => $row->page_is_new
 					);
+				} elseif ($allrev) {
+					$data[] = intval($row->rev_id);
 				} else {
-//					$resultPageSet->processDbRow($row);
-				}
+					$data[] = intval($row->page_id);
+				}				
 			}
 		}
 		$db->freeResult($res);
@@ -157,7 +166,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (is_null($resultPageSet)) {
 			ApiResult :: setIndexedTagName($data, 'p');
 			$this->getResult()->addValue('query', 'watchlist', $data);
-		}
+		} elseif ($allrev) {
+			$resultPageSet->populateFromRevisionIDs($data);
+		} else {
+			$resultPageSet->populateFromPageIDs($data);
+		}				
 	}
 
 	protected function getAllowedParams() {
@@ -209,7 +222,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	protected function getExamples() {
 		return array (
 			'api.php?action=query&list=watchlist',
-			'api.php?action=query&list=watchlist&wlallrev'
+			'api.php?action=query&list=watchlist&wlallrev',
+			'api.php?action=query&generator=watchlist&prop=info',
+			'api.php?action=query&generator=watchlist&gwlallrev&prop=revisions&rvprop=timestamp|user'
 		);
 	}
 
