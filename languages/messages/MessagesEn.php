@@ -2351,7 +2351,10 @@ mail to your address. The mail will include a link containing a code; load the
 link in your browser to confirm that your e-mail address is valid.",
 'confirmemail_send' => 'Mail a confirmation code',
 'confirmemail_sent' => 'Confirmation e-mail sent.',
-'confirmemail_sendfailed' => 'Could not send confirmation mail. Check address for invalid characters.',
+'confirmemail_sendfailed' => 'Could not send confirmation mail. Check address for invalid characters.
+
+Mailer returned: $1
+',
 'confirmemail_invalid' => 'Invalid confirmation code. The code may have expired.',
 'confirmemail_needlogin' => 'You need to $1 to confirm your email address.',
 'confirmemail_success' => 'Your e-mail address has been confirmed. You may now log in and enjoy the wiki.',
