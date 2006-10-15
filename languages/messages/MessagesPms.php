@@ -1251,7 +1251,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'importuploaderror'     => 'L\'archivi da amporté a l\'é pa podusse carié; miraco a fussa mai pì gròss che ël màssim consentì?',
 'importlogpage'         => 'Registr dj\'amportassion',
 'importlogpagetext'     => 'Amportassion aministrative ëd pàgine e ëd soa stòria da dj\'àutre wiki.',
-'import-logentry-upload'=> 'amportà $1 con un càrich d\'archivi',
+'import-logentry-upload'=> 'amportà [[$1]] con un càrich d\'archivi',
 'import-logentry-upload-detail'=> '$1 revision',
 'import-logentry-interwiki'=> 'Amportà da n\'àutra wiki $1',
 'import-logentry-interwiki-detail'=> '$1 revision da $2',

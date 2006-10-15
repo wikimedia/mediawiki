@@ -1521,7 +1521,7 @@ Las fechas de revisiones y los nombres de editores se preservarán.
 Todas las importaciones transwiki se registran en el [[Special:Log/import|registro de importaciones]].',
 'import-logentry-interwiki'	=> 'transwikificada $1',
 'import-logentry-interwiki-detail'	=> '$1 revisión/ones desde $2',
-'import-logentry-upload'	=> 'importada $1 por subida de archivo',
+'import-logentry-upload'	=> 'importada [[$1]] por subida de archivo',
 'import-logentry-upload-detail'	=> '$1 revisión/ones',
 'importlogpage'	=> 'Registro de importaciones',
 'importlogpagetext'	=> 'Importaciones administrativas de páginas con historial desde otros wikis.',

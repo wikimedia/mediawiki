@@ -1480,7 +1480,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 # import log
 'importlogpage' => 'Kniha importů',
 'importlogpagetext' => 'Na této stránce se zobrazují správcovské importy stránek včetně historie editací z jiných wiki.',
-'import-logentry-upload' => 'naimportoval $1 načtením souboru',
+'import-logentry-upload' => 'naimportoval [[$1]] načtením souboru',
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|revizi|revize|revizí}}',
 'import-logentry-interwiki' => 'přenesl $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizi|revize|revizí}} z $2',

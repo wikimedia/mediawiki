@@ -1545,7 +1545,7 @@ wiki: $PAGEEDITOR_WIKI
 # import log
 'importlogpage' => '倒入日誌',
 'importlogpagetext' => '管理員由其它嘅 wiki 倒入頁面同埋佢哋嘅編輯歷史記錄。',
-'import-logentry-upload' => '由檔案上載倒入咗 $1',
+'import-logentry-upload' => '由檔案上載倒入咗 [[$1]]',
 'import-logentry-upload-detail' => '$1個修訂',
 'import-logentry-interwiki' => 'transwiki咗 $1',
 'import-logentry-interwiki-detail' => '由$2嘅$1個修訂',

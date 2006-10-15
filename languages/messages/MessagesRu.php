@@ -1600,7 +1600,7 @@ IP-адреса.',
 # import log
 'importlogpage' => 'Журнал импорта',
 'importlogpagetext' => 'Импортирование администраторами страниц с историей изменений из других вики.',
-'import-logentry-upload' => '«$1» — импорт из файла',
+'import-logentry-upload' => '«[[$1]]» — импорт из файла',
 'import-logentry-upload-detail' => '$1 версий',
 'import-logentry-interwiki' => '«$1» — межвики импорт',
 'import-logentry-interwiki-detail' => '$1 версий из $2',

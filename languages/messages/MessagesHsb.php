@@ -719,7 +719,7 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'import-interwiki-text' => 'Wuběrće wiki a stronu k importowanju. Daty wersijow a mjena awtorow so wobchowaju. Wšě transwiki-importy so w [[Special:Log/import|protokolu importow]] jewja.',
 'import-logentry-interwiki'=> 'z druheho wiki importowany $1',
 'import-logentry-interwiki-detail'=> '$1 wersijow z $2',
-'import-logentry-upload'=> 'strona „$1” bu přez nahrawanje importowana',
+'import-logentry-upload'=> 'strona „[[$1]]” bu přez nahrawanje importowana',
 'import-logentry-upload-detail'=> '$1 wersijow',
 'import-revision-count' => '$1 wersijow',
 'importbadinterwiki'    => 'Wopačny interwiki-wotkaz',

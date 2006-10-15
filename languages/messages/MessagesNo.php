@@ -1155,7 +1155,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'importuploaderror'     => 'Opplasting av importfil feilet; kanskje fila er større en den tillatte opplastingsstørrelsen.',
 'importlogpage'         => 'Importlogg',
 'importlogpagetext'     => 'Administrativ import av sider med redigeringshistorikk fra andre wikier.',
-'import-logentry-upload'=> 'importerte $1 ved opplasting',
+'import-logentry-upload'=> 'importerte [[$1]] ved opplasting',
 'import-logentry-upload-detail'=> '{{PLURAL:$1|Én revisjon|$1 revisjoner}}',
 'import-logentry-interwiki'=> 'transwikiimporterte $1',
 'import-logentry-interwiki-detail'=> '{{PLURAL:$1|Én revisjon|$1 revisjoner}} fra $2',

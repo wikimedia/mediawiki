@@ -1197,7 +1197,7 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'importuploaderror'     => 'Încărcarea fişierului de import nu a avut succes; probabil mărimea fişierului este mai mare decât mărimea maximă acceptată pentru fişiere.',
 'importlogpage'         => 'Log import',
 'importlogpagetext'     => 'Imoprturi administrative de pagini de la alte wiki, cu istoricul editărilor.',
-'import-logentry-upload'=> '$1 importate prin upload',
+'import-logentry-upload'=> '[[$1]] importate prin upload',
 'import-logentry-upload-detail'=> '$1 revizie(i)',
 'import-logentry-interwiki'=> 'transwikificat $1',
 'import-logentry-interwiki-detail'=> '$1 revizie(i) de la $2',

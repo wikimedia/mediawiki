@@ -857,7 +857,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'importuploaderror'     => 'El caricamento de le imamgini xè falío, forse parché el file l\'è pì grosso del quel che xè permesso.',
 'importlogpage'         => 'Importazsion',
 'importlogpagetext'     => 'Registro de łe importazsion d\'uffiçio de paxène provenienti da altre wiki, complete de cronołogia.',
-'import-logentry-upload'=> 'gà importà $1 tramite upload',
+'import-logentry-upload'=> 'gà importà [[$1]] tramite upload',
 'import-logentry-upload-detail'=> '{{PLURAL:$1|una revixion importà|$1 revixion importae}}',
 'import-logentry-interwiki'=> 'gà trasferio da altra wiki ła paxèna $1',
 'import-logentry-interwiki-detail'=> '{{PLURAL:$1|una revixion importà|$1 revixion importae}} da $2',

@@ -1346,7 +1346,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 # import log
 'importlogpage' => 'Log impor',
 'importlogpagetext' => 'Di bawah ini adalah log import administratif dari halaman-halaman berikut riwayat suntingannya dari wiki lain.',
-'import-logentry-upload' => 'mengimpor $1 melalui pemuatan berkas',
+'import-logentry-upload' => 'mengimpor [[$1]] melalui pemuatan berkas',
 'import-logentry-upload-detail' => '$1 versi terdahulu',
 'import-logentry-interwiki' => 'men-transwiki $1',
 'import-logentry-interwiki-detail' => '$1 versi terdahulu dari $2',

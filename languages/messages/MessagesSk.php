@@ -1426,7 +1426,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'importuploaderror'     => 'Nahrávanie importovaného súboru sa nepodarilo; možno súbor presahuje najväčšiu povolenú veľkosť.',
 'importlogpage'         => 'Záznam importov',
 'importlogpagetext'     => 'Administratívny import stránok vrátane histórie úprav z iných wiki.',
-'import-logentry-upload'=> 'importovaný $1 pomocou nahrania súboru',
+'import-logentry-upload'=> 'importovaný [[$1]] pomocou nahrania súboru',
 'import-logentry-upload-detail'=> '$1 {{PLURAL:$1|revízia|revízie|revízií}}',
 'import-logentry-interwiki'=> 'Transwiki import $1 úspešný',
 'import-logentry-interwiki-detail'=> '$1 revízií z $2',
