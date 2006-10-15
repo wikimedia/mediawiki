@@ -177,7 +177,7 @@
 	'os' => 'Иронау', # Ossetic
 	'pa' => 'ਪੰਜਾਬੀ', # Punjabi
 	'pag' => 'Pangasinan',	# Pangasinan
-	'pam' => 'Pampangan',   # Pampanga
+	'pam' => 'Kapampangan',   # Pampanga
 	'pap' => 'Papiamentu',	# Papiamentu
 	'pdc' => 'Deitsch', 	# Pennsylvania German
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
@@ -255,7 +255,7 @@
 	'vls' => 'West-Vlaoms', # West Flemish
 	'vo' => 'Volapük',	# Volapük
 	'wa' => 'Walon',		# Walloon
-	'war' => 'Samar-Leyte Visayan', # Waray-Waray
+	'war' => 'Winaray', # Waray-Waray
 	'wo' => 'Wollof',		# Wolof
 	'wuu' => '吴语',		# Wu
 	'xal' => 'Хальмг',		# Kalmyk
