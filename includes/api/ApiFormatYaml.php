@@ -39,7 +39,7 @@ class ApiFormatYaml extends ApiFormatBase {
 		return 'application/yaml';
 	}
 
-	public function executePrinter() {
+	public function execute() {
 		$this->printText(Spyc :: YAMLDump($this->getResultData()));
 	}
 

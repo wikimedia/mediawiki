@@ -66,8 +66,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$options = array (
 			'LIMIT' => $limit +1,
-			'ORDER BY' => 'rc_timestamp' . ($dirNewer ? '' : ' DESC'),
-			'USE INDEX' => 'rc_timestamp');
+			'ORDER BY' => 'rc_timestamp' . ($dirNewer ? '' : ' DESC'));
 
 		if (is_null($resultPageSet)) {
 			$fields = array (
@@ -111,10 +110,15 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$where[] = 'rc_this_oldid=page_latest';
 		if (isset ($namespace))
 			$where['wl_namespace'] = $namespace;
+
 		if (isset ($start))
-			$where[] = 'rev_timestamp' . $after . $db->addQuotes($start);
+			$where[] = 'rc_timestamp' . $after . $db->addQuotes($start);
+			
 		if (isset ($end))
-			$where[] = 'rev_timestamp' . $before . $db->addQuotes($end);
+			$where[] = 'rc_timestamp' . $before . $db->addQuotes($end);
+		
+		if (!isset ($start) && !isset ($end))
+			$where[] = "rc_timestamp > ''";
 
 		$this->profileDBIn();
 		$res = $db->select($tables, $fields, $where, __METHOD__, $options);

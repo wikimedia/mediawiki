@@ -105,7 +105,7 @@ class ApiResult extends ApiBase {
 
 		$data = & $this->getData();
 
-		if (isset ($path)) {
+		if (!is_null($path)) {
 			if (is_array($path)) {
 				foreach ($path as $p) {
 					if (!isset ($data[$p]))

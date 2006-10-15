@@ -29,16 +29,14 @@ if (!defined('MEDIAWIKI')) {
 	require_once ("ApiFormatBase.php");
 }
 
-class ApiOpenSearch extends ApiFormatBase {
+class ApiOpenSearch extends ApiBase {
 
-	private $mResult = array();
-	
 	public function __construct($main, $action) {
 		parent :: __construct($main, $action);
 	}
 
-	public function getMimeType() {
-		return 'application/json';
+	public function getCustomFormatModule() {
+		return $this->getMain()->createPrinterByName('json');
 	}
 
 	public function execute() {
@@ -63,20 +61,18 @@ class ApiOpenSearch extends ApiFormatBase {
 		$result->SanitizeData();
 		$data = $result->GetData();
 		
-		// Reformat useful data for future printing
-		$result = array();
+		// Reformat useful data for future printing by JSON engine
+		$srchres = array();
 		foreach ($data['query']['allpages'] as $pageid => &$pageinfo) {
-			$result[] = $pageinfo['title'];
+			$srchres[] = $pageinfo['title'];
 		}
 		
-		$this->mResult = array($command, $result);
+		// Set top level elements
+		$result = $this->getResult();
+		$result->addValue(null, 0, $command);
+		$result->addValue(null, 1, $srchres);
 	}
 	
-	public function executePrinter() {
-		$json = new Services_JSON();
-		$this->printText($json->encode($this->mResult, true));
-	}
-
 	protected function GetAllowedParams() {
 		return array (
 			'command' => null
