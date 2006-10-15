@@ -1304,7 +1304,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 # import log
 "importlogpage" => "Importazioni",
 "importlogpagetext" => "Registro delle importazioni d'ufficio di pagine provenienti da altre wiki, complete di cronologia.",
-"import-logentry-upload" => "ha importato $1 tramite upload",
+"import-logentry-upload" => "ha importato [[$1]] tramite upload",
 "import-logentry-upload-detail" => "{{PLURAL:$1|una revisione importata|$1 revisioni importate}}",
 "import-logentry-interwiki" => "ha trasferito da altra wiki la pagina $1",
 "import-logentry-interwiki-detail" => "{{PLURAL:$1|una revisione importata|$1 revisioni importate}} da $2",

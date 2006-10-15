@@ -1287,7 +1287,7 @@ $NEWPAGE
 'importuploaderror'     => 'Подигнувањето на увозната датотека не успеа; можеби датотеката е поголема од максималната дозволена големина.',
 'importlogpage'         => 'Дневник на внесувања',
 'importlogpagetext'     => 'Административно внесување на страници со историја од други викија.',
-'import-logentry-upload'=> 'внесена $1 со подигнување',
+'import-logentry-upload'=> 'внесена [[$1]] со подигнување',
 'import-logentry-upload-detail'=> '$1 ревизија(и)',
 'import-logentry-interwiki'=> 'трансвикифиран $1',
 'import-logentry-interwiki-detail'=> '$1 ревизија(и) од $2',

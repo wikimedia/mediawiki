@@ -1580,7 +1580,7 @@ $NEWPAGE
 # import log
 'importlogpage' => 'историја увоза',
 'importlogpagetext' => 'Административни увози страница са историјама измена са других викија.',
-'import-logentry-upload' => 'увезао $1 путем слања фајла',
+'import-logentry-upload' => 'увезао [[$1]] путем слања фајла',
 'import-logentry-upload-detail' => '$1 ревизија/е',
 'import-logentry-interwiki' => 'преместио са другог викија: $1',
 'import-logentry-interwiki-detail' => '$1 ревизија/е од $2',

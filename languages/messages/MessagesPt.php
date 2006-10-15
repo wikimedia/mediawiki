@@ -1515,7 +1515,7 @@ Todas as acções de importação transwiki são registadas no [[Special:Log/imp
 # import log
 'importlogpage' => 'Registo de importações',
 'importlogpagetext' => 'Importações administrativas de páginas com revisões noutras wikis.',
-'import-logentry-upload' => 'importado $1 através de ficheiro de importação',
+'import-logentry-upload' => 'importado [[$1]] através de ficheiro de importação',
 'import-logentry-upload-detail' => '{{PLURAL:$1|revisão|revisões}}',
 'import-logentry-interwiki' => 'transwiki $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|revisão|revisões}} de $2',

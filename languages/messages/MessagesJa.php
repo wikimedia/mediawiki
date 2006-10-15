@@ -1227,7 +1227,7 @@ $NEWPAGE
 # import log
 'importlogpage'         => 'インポート記録',
 'importlogpagetext'     => '以下は管理者による他ウィキからのページデータの取り込み記録です。',
-'import-logentry-upload'=> 'ファイルのアップロードにより $1 をインポートしました',
+'import-logentry-upload'=> 'ファイルのアップロードにより [[$1]] をインポートしました',
 'import-logentry-upload-detail'=> '$1 版',
 'import-logentry-interwiki'=> '$1 をtranswikiしました',
 'import-logentry-interwiki-detail'=> '$2 の $1 版',

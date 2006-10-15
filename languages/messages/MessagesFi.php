@@ -1339,7 +1339,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 # import log
 'importlogpage'                    => 'Tuontiloki',
 'importlogpagetext'                => 'Loki toisista wikeistä tuoduista sivuista.',
-'import-logentry-upload'           => 'toi sivun ”$1” lähettämällä tiedoston',
+'import-logentry-upload'           => 'toi sivun ”[[$1]]” lähettämällä tiedoston',
 'import-logentry-upload-detail'    => '$1 versio(ta)',
 'import-logentry-interwiki'        => 'toi toisesta wikistä sivun ”$1”',
 'import-logentry-interwiki-detail' => '$1 versio(ta) sivusta $2',

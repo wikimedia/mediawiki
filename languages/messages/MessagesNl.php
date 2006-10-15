@@ -1407,7 +1407,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 # import log
 'importlogpage'         => 'Importlogboek',
 'importlogpagetext'     => 'Administratieve import van pagina\'s met geschiedenis van andere wiki\'s.',
-'import-logentry-upload'=> '$1 geïmporteerd via een bestandsupload',
+'import-logentry-upload'=> '[[$1]] geïmporteerd via een bestandsupload',
 'import-logentry-upload-detail'=> '$1 versie(s)',
 'import-logentry-interwiki'=> 'transwiki voor $1 geslaagd',
 'import-logentry-interwiki-detail'=> '$1 versie(s) van $2',

@@ -1157,7 +1157,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'importuploaderror'     => 'Importfilen kunde inte laddas upp; kanske är den större än vad filer som skall laddas upp får vara.',
 'importlogpage'         => 'Importlogg',
 'importlogpagetext'     => 'Administrativa sidimporter med versionshistorik från andra wikier.',
-'import-logentry-upload'=> '$1  har importerats genom uppladdning av fil',
+'import-logentry-upload'=> '[[$1]]  har importerats genom uppladdning av fil',
 'import-logentry-upload-detail'=> '$1 {{plural:$1|version|versioner}}',
 'import-logentry-interwiki'=> 'överförde $1 mellan wikier',
 'import-logentry-interwiki-detail'=> '$1 {{plural:$1|version|versioner}} från $2',

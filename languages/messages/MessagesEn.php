@@ -1853,7 +1853,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 # import log
 'importlogpage' => 'Import log',
 'importlogpagetext' => 'Administrative imports of pages with edit history from other wikis.',
-'import-logentry-upload' => 'imported $1 by file upload',
+'import-logentry-upload' => 'imported [[$1]] by file upload',
 'import-logentry-upload-detail' => '$1 revision(s)',
 'import-logentry-interwiki' => 'transwikied $1',
 'import-logentry-interwiki-detail' => '$1 revision(s) from $2',

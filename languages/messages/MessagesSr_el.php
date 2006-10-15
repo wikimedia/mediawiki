@@ -1583,7 +1583,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 # import log
 'importlogpage' => 'istorija uvoza',
 'importlogpagetext' => 'Administrativni uvozi stranica sa istorijama izmena sa drugih vikija.',
-'import-logentry-upload' => 'uvezao $1 putem slanja fajla',
+'import-logentry-upload' => 'uvezao [[$1]] putem slanja fajla',
 'import-logentry-upload-detail' => '$1 revizija/e',
 'import-logentry-interwiki' => 'premestio sa drugog vikija: $1',
 'import-logentry-interwiki-detail' => '$1 revizija/e od $2',
