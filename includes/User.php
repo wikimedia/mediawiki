@@ -1447,22 +1447,22 @@ class User {
 			$this->mEffectiveGroups[] = '*';
 			if( $this->mId ) {
 				$this->mEffectiveGroups[] = 'user';
-			}
-			
-			global $wgAutoConfirmAge;
-			$accountAge = time() - wfTimestampOrNull( TS_UNIX, $this->mRegistration );
-			if( $accountAge >= $wgAutoConfirmAge ) {
-				$this->mEffectiveGroups[] = 'autoconfirmed';
-			}
-			
-			# Implicit group for users whose email addresses are confirmed
-			global $wgEmailAuthentication;
-			if( self::isValidEmailAddr( $this->mEmail ) ) {
-				if( $wgEmailAuthentication ) {
-					if( $this->mEmailAuthenticated )
+				
+				global $wgAutoConfirmAge;
+				$accountAge = time() - wfTimestampOrNull( TS_UNIX, $this->mRegistration );
+				if( $accountAge >= $wgAutoConfirmAge ) {
+					$this->mEffectiveGroups[] = 'autoconfirmed';
+				}
+				
+				# Implicit group for users whose email addresses are confirmed
+				global $wgEmailAuthentication;
+				if( self::isValidEmailAddr( $this->mEmail ) ) {
+					if( $wgEmailAuthentication ) {
+						if( $this->mEmailAuthenticated )
+							$this->mEffectiveGroups[] = 'emailconfirmed';
+					} else {
 						$this->mEffectiveGroups[] = 'emailconfirmed';
-				} else {
-					$this->mEffectiveGroups[] = 'emailconfirmed';
+					}
 				}
 			}
 		}
