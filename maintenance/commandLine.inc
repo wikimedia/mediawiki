@@ -14,6 +14,15 @@ if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 	exit();
 }
 
+if( version_compare( PHP_VERSION, '5.0.0' ) < 0 ) {
+	print "Sorry! This version of MediaWiki requires PHP 5; you are running " .
+		PHP_VERSION . ".\n\n" .
+		"If you are sure you already have PHP 5 installed, it may be " .
+		"installed\n" .
+		"in a different path from PHP 4. Check with your system administrator.\n";
+	die( -1 );
+}
+
 define('MEDIAWIKI',true);
 
 # Process command line arguments

@@ -47,6 +47,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added global $wgStyleVersion to centralize bumping CSS and JS file versions
   for cache-friendly style and script updating
 * (bug 7562) Fix non-ASCII namespaces on Windows/XAMPP servers
+* Friendlier check for PHP 5 in command-line scripts; it's common for parallel
+  PHP 4 and 5 installations to interfere on the command-line.
 
 
 == Languages updated ==
