@@ -54,15 +54,6 @@ abstract class ApiFormatBase extends ApiBase {
 	 */
 	public abstract function getMimeType();
 
-	public function execute() {
-		ApiBase :: dieDebug(__METHOD__, 'This is not an executable module');
-	}
-
-	/**
-	 * Format modules must override this method to implement actual printing 
-	 */
-	public abstract function executePrinter();
-
 	public function getNeedsRawData() {
 		return false;
 	}

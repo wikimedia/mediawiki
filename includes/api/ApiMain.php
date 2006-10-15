@@ -101,6 +101,10 @@ class ApiMain extends ApiBase {
 			$this->dieUsage('Editing of this site is disabled. Make sure the $wgEnableWriteAPI=true; ' .
 			'statement is included in the site\'s LocalSettings.php file', 'readonly');
 	}
+	
+	public function createPrinterByName($format) {
+		return new $this->mFormats[$format] ($this, $format);
+	}
 
 	public function execute() {
 		$this->profileIn();
@@ -128,8 +132,7 @@ class ApiMain extends ApiBase {
 			
 			// Printer may not be initialized if the extractRequestParams() fails for the main module
 			if (!isset ($this->mPrinter)) {
-				$format = self :: API_DEFAULT_FORMAT;
-				$this->mPrinter = new $this->mFormats[$format] ($this, $format);
+				$this->mPrinter = $this->createPrinterByName(self :: API_DEFAULT_FORMAT);
 			}
 			
 			if ($e instanceof UsageException) {
@@ -183,12 +186,13 @@ class ApiMain extends ApiBase {
 		$module = new $this->mModules[$action] ($this, $action);
 
 		if (!$this->mInternalMode) {
-			if ($module instanceof ApiFormatBase) {
-				// The requested module will print data in its own format
-				$this->mPrinter = $module;				
-			} else {
+			
+			// See if custom printer is used
+			$this->mPrinter = $module->getCustomFormatModule();				
+			
+			if (is_null($this->mPrinter)) {
 				// Create an appropriate printer
-				$this->mPrinter = new $this->mFormats[$format] ($this, $format);
+				$this->mPrinter = $this->createPrinterByName($format);
 			}
 		}
 		
@@ -212,7 +216,7 @@ class ApiMain extends ApiBase {
 		$printer->initPrinter($isError);
 		if (!$printer->getNeedsRawData())
 			$this->getResult()->SanitizeData();
-		$printer->executePrinter();
+		$printer->execute();
 		$printer->closePrinter();
 		$printer->profileOut();
 	}
@@ -268,9 +272,9 @@ class ApiMain extends ApiBase {
 		}
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";
-		foreach ($this->mFormats as $moduleName => $moduleClass) {
-			$msg .= "* format=$moduleName *";
-			$module = new $this->mFormats[$moduleName] ($this, $moduleName);
+		foreach ($this->mFormats as $formatName => $moduleClass) {
+			$msg .= "* format=$formatName *";
+			$module = $this->createPrinterByName($formatName);
 			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;

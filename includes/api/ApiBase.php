@@ -91,6 +91,15 @@ abstract class ApiBase {
 	}
 
 	/**
+	 * If the module may only be used with a certain format module,
+	 * it should override this method to return an instance of that formatter.
+	 * A value of null means the default format will be used.  
+	 */
+	public function getCustomFormatModule() {
+		return null;
+	}
+
+	/**
 	 * Generates help message for this module, or false if there is no description
 	 */
 	public function makeHelpMsg() {

@@ -385,9 +385,9 @@ class ApiPageSet extends ApiQueryBase {
 		$pageids = array();
 		$remaining = array_flip($revids);
 		
-		$tables = array('page', 'revision');
+		$tables = array('revision');
 		$fields = array('rev_id','rev_page');
-		$where = array( 'rev_deleted' => 0, 'rev_id' => $revids );
+		$where = array('rev_deleted' => 0, 'rev_id' => $revids);
 		
 		// Get pageIDs data from the `page` table
 		$this->profileDBIn();
