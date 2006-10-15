@@ -1160,10 +1160,11 @@ class Title {
 		} else {
 			global $wgWhitelistRead;
 
-			/** If anon users can create an account,
-			    they need to reach the login page first! */
-			if( $wgUser->isAllowed( 'createaccount' )
-			    && $this->getNamespace() == NS_SPECIAL
+			/** 
+			 * Always grant access to the login page.
+			 * Even anons need to be able to log in.
+			*/
+			if( $this->getNamespace() == NS_SPECIAL
 			    && $this->getText() == 'Userlogin' ) {
 				return true;
 			}
