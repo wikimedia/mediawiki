@@ -75,6 +75,12 @@ abstract class ApiFormatBase extends ApiBase {
 	function initPrinter($isError) {
 		$isHtml = $this->getIsHtml();
 		$mime = $isHtml ? 'text/html' : $this->getMimeType();
+		
+		// Some printers (ex. Feed) do their own header settings,
+		// in which case $mime will be set to null
+		if (is_null($mime))
+			return;	// skip any initialization
+			
 		header("Content-Type: $mime; charset=utf-8;");
 		header("Cache-Control: private, s-maxage=0, max-age=0");
 		
@@ -157,6 +163,62 @@ abstract class ApiFormatBase extends ApiBase {
 
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
+	}
+}
+
+/**
+ * This printer is used to wrap an instance of the Feed class 
+ */
+class ApiFormatFeedWrapper extends ApiFormatBase {
+
+	public function __construct($main) {
+		parent :: __construct($main, 'feed');
+	}
+
+	/**
+	 * Call this method to initialize output data
+	 */
+	public static function setResult($result, $feed, $feedItems) {
+		// Store output in the Result data.
+		// This way we can check during execution if any error has occured
+		$data =& $result->getData();
+		$data['_feed'] = $feed;
+		$data['_feeditems'] = $feedItems;
+	}
+
+	/**
+	 * Feed does its own headers
+	 */
+	public function getMimeType() {
+		return null;
+	}
+
+	/**
+	 * Optimization - no need to sanitize data that will not be needed
+	 */
+	public function getNeedsRawData() {
+		return true;
+	}
+	
+	public function execute() {
+		$data =& $this->getResultData();
+		if (isset($data['_feed']) && isset($data['_feeditems'])) {
+			$feed =& $data['_feed'];
+			$items =& $data['_feeditems'];
+
+			$feed->outHeader();
+			foreach($items as &$item)
+				$feed->outItem($item);
+			$feed->outFooter();
+		} else {
+			// Error has occured, print something usefull
+			// TODO: make this error more informative using $this->dieDebug() or similar
+			wfHttpError(500, 'Internal Server Error', '');
+		}
+	}
+
+	public function getVersion() {
+		return __CLASS__ . ': $Id:$';
 	}
 }
 ?>

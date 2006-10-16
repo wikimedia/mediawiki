@@ -47,6 +47,7 @@ class ApiMain extends ApiBase {
 		'help' => 'ApiHelp',
 		'login' => 'ApiLogin',
 		'opensearch' => 'ApiOpenSearch',
+		'feedwatchlist' => 'ApiFeedWatchlist',
 		'query' => 'ApiQuery'
 	);
 
@@ -188,7 +189,7 @@ class ApiMain extends ApiBase {
 		if (!$this->mInternalMode) {
 			
 			// See if custom printer is used
-			$this->mPrinter = $module->getCustomFormatModule();				
+			$this->mPrinter = $module->getCustomPrinter();				
 			
 			if (is_null($this->mPrinter)) {
 				// Create an appropriate printer
@@ -303,6 +304,7 @@ class ApiMain extends ApiBase {
 		$vers[] = ApiBase :: getBaseVersion();
 		$vers[] = ApiFormatBase :: getBaseVersion();
 		$vers[] = ApiQueryBase :: getBaseVersion();
+		$vers[] = ApiFormatFeedWrapper :: getVersion();	// not accessible with format=xxx
 		return $vers;
 	}
 }

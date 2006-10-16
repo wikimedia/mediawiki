@@ -29,76 +29,83 @@ if (!defined('MEDIAWIKI')) {
 	require_once ("ApiBase.php");
 }
 
-class ApiOpenSearch extends ApiBase {
+class ApiFeedWatchlist extends ApiBase {
 
 	public function __construct($main, $action) {
 		parent :: __construct($main, $action);
 	}
 
 	public function getCustomPrinter() {
-		return $this->getMain()->createPrinterByName('json');
+		return new ApiFormatFeedWrapper($this->getMain());
 	}
 
 	public function execute() {
-		$search = null;
-		extract($this->ExtractRequestParams());
-		
+		$feedformat = null;
+		extract($this->extractRequestParams());
+
 		// Prepare nested request
 		$params = new FauxRequest(array (
 			'action' => 'query',
-			'list' => 'allpages',
-			'apnamespace' => 0,
-			'aplimit' => 10,
-			'apprefix' => $search
+			'meta' => 'siteinfo',
+			'siprop' => 'general',
+			'list' => 'watchlist',
+			'wlstart' => wfTimestamp(TS_MW, time() - intval( 3 * 86400 )), // limit to 3 days
+			'wllimit' => 50
 		));
-		
+
 		// Execute
 		$module = new ApiMain($params);
 		$module->execute();
-		
+
 		// Get clean data
-		$result =& $module->getResult();
+		$result = & $module->getResult();
 		$result->SanitizeData();
-		$data =& $result->GetData();
-		
-		// Reformat useful data for future printing by JSON engine
-		$srchres = array();
-		foreach ($data['query']['allpages'] as $pageid => &$pageinfo) {
-			// Note: this data will no be printable by the xml engine
-			// because it does not support lists of unnamed items
-			$srchres[] = $pageinfo['title'];
+		$data = & $result->GetData();
+
+		$feedItems = array ();
+		foreach ($data['query']['watchlist'] as $index => & $info) {
+			$title = $info['title'];
+			$titleUrl = Title :: newFromText($title)->getFullUrl();
+			$feedItems[] = new FeedItem($title, '', $titleUrl, $info['timestamp'], $info['user']);
 		}
-		
-		// Set top level elements
-		$result = $this->getResult();
-		$result->addValue(null, 0, $search);
-		$result->addValue(null, 1, $srchres);
+
+		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
+		$feedTitle = $wgSitename . ' - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
+		$feedUrl = Title :: makeTitle(NS_SPECIAL, 'Watchlist')->getFullUrl();
+		$feed = new $wgFeedClasses[$feedformat] ($feedTitle, '!Watchlist!', $feedUrl);
+
+		ApiFormatFeedWrapper :: setResult($this->getResult(), $feed, $feedItems);
 	}
-	
+
 	protected function GetAllowedParams() {
+		global $wgFeedClasses;
+		$feedFormatNames = array_keys($wgFeedClasses);
 		return array (
-			'search' => null
+			'feedformat' => array (
+				ApiBase :: PARAM_DFLT => 'rss',
+				ApiBase :: PARAM_TYPE => $feedFormatNames
+			)
 		);
 	}
 
 	protected function GetParamDescription() {
 		return array (
-			'search' => 'Search string'
+			'feedformat' => 'The format of the feed'
 		);
 	}
 
 	protected function GetDescription() {
-		return 'This module implements OpenSearch protocol';
+		return 'This module returns a watchlist feed';
 	}
 
 	protected function GetExamples() {
 		return array (
-			'api.php?action=opensearch&search=Te'
+			'api.php?action=feedwatchlist'
 		);
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+		return __CLASS__ . ': $Id:$';
 	}
 }
 ?>

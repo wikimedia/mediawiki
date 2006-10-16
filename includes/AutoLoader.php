@@ -237,6 +237,8 @@ function __autoload($className) {
 
 		// API classes
 		'ApiBase' => 'includes/api/ApiBase.php',
+		'ApiFormatFeedWrapper' => 'includes/api/ApiFormatBase.php',
+		'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',
 		'ApiFormatBase' => 'includes/api/ApiFormatBase.php',
 		'Services_JSON' => 'includes/api/ApiFormatJson_json.php',
 		'ApiFormatJson' => 'includes/api/ApiFormatJson.php',

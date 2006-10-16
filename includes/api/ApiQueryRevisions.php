@@ -48,7 +48,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// Enum mode can only be used when exactly one page is provided.
 		// Enumerating revisions on multiple pages make it extremelly 
 		// difficult to manage continuations and require additional sql indexes  
-		$enumRevMode = ($limit !== 0 || $startid !== 0 || $endid !== 0 || $dirNewer || isset ($start) || isset ($end));
+		$enumRevMode = (!is_null($limit) || !is_null($startid) || !is_null($endid) || $dirNewer || !is_null($start) || !is_null($end));
 
 		$pageSet = $this->getPageSet();
 		$pageCount = $pageSet->getGoodTitleCount();
@@ -79,7 +79,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$options = array ();
 
 		$showTimestamp = $showUser = $showComment = $showContent = false;
-		if (isset ($prop)) {
+		if (!is_null($prop)) {
 			foreach ($prop as $p) {
 				switch ($p) {
 					case 'timestamp' :
@@ -115,10 +115,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ($enumRevMode) {
 
 			// This is mostly to prevent parameter errors (and optimize sql?)
-			if ($startid !== 0 && isset ($start))
+			if (!is_null($startid) && !is_null($start))
 				$this->dieUsage('start and startid cannot be used together', 'badparams');
 
-			if ($endid !== 0 && isset ($end))
+			if (!is_null($endid) && !is_null($end))
 				$this->dieUsage('end and endid cannot be used together', 'badparams');
 
 			// This code makes an assumption that sorting by rev_id and rev_timestamp produces
@@ -127,22 +127,22 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// Switching to rev_id removes the potential problem of having more than 
 			// one row with the same timestamp for the same page. 
 			// The order needs to be the same as start parameter to avoid SQL filesort.
-			$options['ORDER BY'] = ($startid !== 0 ? 'rev_id' : 'rev_timestamp') . ($dirNewer ? '' : ' DESC');
+			$options['ORDER BY'] = (!is_null($startid) ? 'rev_id' : 'rev_timestamp') . ($dirNewer ? '' : ' DESC');
 
 			$before = ($dirNewer ? '<=' : '>=');
 			$after = ($dirNewer ? '>=' : '<=');
 
-			if ($startid !== 0)
+			if (!is_null($startid))
 				$where[] = 'rev_id' . $after . intval($startid);
-			if ($endid !== 0)
+			if (!is_null($endid))
 				$where[] = 'rev_id' . $before . intval($endid);
-			if (isset ($start))
+			if (!is_null($start))
 				$where[] = 'rev_timestamp' . $after . $db->addQuotes($start);
-			if (isset ($end))
+			if (!is_null($end))
 				$where[] = 'rev_timestamp' . $before . $db->addQuotes($end);
 
 			// must manually initialize unset limit
-			if (!isset ($limit))
+			if (!!is_null($limit))
 				$limit = 10;
 
 			$this->validateLimit($this->encodeParamName('limit'), $limit, 1, $userMax, $botMax);
@@ -188,12 +188,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if (!$enumRevMode)
 					ApiBase :: dieDebug(__METHOD__, 'Got more rows then expected'); // bug report
-
-				$startStr = 'startid=' . $row->rev_id;
-				$msg = array (
-					'continue' => $startStr
-				);
-				$this->getResult()->addValue('query-status', 'revisions', $msg);
+				$this->setContinueEnumParameter('startid', $row->rev_id);
 				break;
 			}
 
@@ -250,14 +245,18 @@ class ApiQueryRevisions extends ApiQueryBase {
 				)
 			),
 			'limit' => array (
-				ApiBase :: PARAM_DFLT => 0,
+				ApiBase :: PARAM_DFLT => null,
 				ApiBase :: PARAM_TYPE => 'limit',
 				ApiBase :: PARAM_MIN => 0,
 				ApiBase :: PARAM_MAX1 => 50,
 				ApiBase :: PARAM_MAX2 => 500
 			),
-			'startid' => 0,
-			'endid' => 0,
+			'startid' => array (
+				ApiBase :: PARAM_TYPE => 'integer'
+			),
+			'endid' => array (
+				ApiBase :: PARAM_TYPE => 'integer'
+			),
 			'start' => array (
 				ApiBase :: PARAM_TYPE => 'timestamp'
 			),
@@ -276,7 +275,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	protected function getParamDescription() {
 		return array (
-			'prop' => 'Which properties to get for each revision: user|timestamp|comment|content',
+			'prop' => 'Which properties to get for each revision.',
 			'limit' => 'limit how many revisions will be returned (enum)',
 			'startid' => 'from which revision id to start enumeration (enum)',
 			'endid' => 'stop revision enumeration on this revid (enum)',
