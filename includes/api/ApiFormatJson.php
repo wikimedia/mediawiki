@@ -46,7 +46,6 @@ class ApiFormatJson extends ApiFormatBase {
 		} else {
 			$this->printText(json_encode($this->getResultData()));
 		}
-
 	}
 
 	protected function getDescription() {

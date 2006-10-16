@@ -49,7 +49,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (!$wgUser->isLoggedIn())
 			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
 
-		$allrev = $start = $end = $namespace = $dir = $limit = null;
+		$allrev = $start = $end = $namespace = $dir = $limit = $prop = null;
 		extract($this->extractRequestParams());
 
 		$db = $this->getDB();
@@ -69,23 +69,42 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'ORDER BY' => 'rc_timestamp' . ($dirNewer ? '' : ' DESC'
 		));
 
+		$patrol = $timestamp = $user = $comment = false;
+		if (!is_null($prop)) {
+			if (!is_null($resultPageSet))
+				$this->dieUsage('prop parameter may not be used in a generator', 'params');
+
+			$user = (false !== array_search('user', $prop));
+			$comment = (false !== array_search('comment', $prop));
+			$timestamp = (false !== array_search('timestamp', $prop));
+			$patrol = (false !== array_search('patrol', $prop));
+
+			if ($patrol) {
+				global $wgUseRCPatrol, $wgUser;
+				if (!$wgUseRCPatrol || !$wgUser->isAllowed('patrol'))
+					$this->dieUsage('patrol property is not available', 'patrol');
+			}
+		}
+
 		if (is_null($resultPageSet)) {
 			$fields = array (
+				'rc_cur_id AS page_id',
+				'rc_this_oldid AS rev_id',
 				'rc_namespace AS page_namespace',
 				'rc_title AS page_title',
-				'rc_comment AS rev_comment',
-				'rc_cur_id AS page_id',
-				'rc_user AS rev_user',
-				'rc_user_text AS rev_user_text',
-				'rc_timestamp AS rev_timestamp',
-				'rc_minor AS rev_minor_edit',
-				'rc_this_oldid AS rev_id',
-				'rc_last_oldid',
-				'rc_id',
-				'rc_new AS page_is_new'
-					//			'rc_patrolled'	
-	
+				'rc_new AS page_is_new',
+				'rc_minor AS rev_minor_edit'
 			);
+			if ($user) {
+				$fields[] = 'rc_user AS rev_user';
+				$fields[] = 'rc_user_text AS rev_user_text';
+			}
+			if ($comment)
+				$fields[] = 'rc_comment AS rev_comment';
+			if ($timestamp)
+				$fields[] = 'rc_timestamp AS rev_timestamp';
+			if ($patrol)
+				$fields[] = 'rc_patrolled';
 		}
 		elseif ($allrev) {
 			$fields = array (
@@ -143,10 +162,30 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				if (is_null($resultPageSet)) {
 					$id = intval($row->page_id);
 
-					$data[] = array (
-					'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText(), 'id' => intval($row->page_id), 'comment' => $row->rev_comment, 'isuser' => $row->rev_user, 'user' => $row->rev_user_text, 'timestamp' => $row->rev_timestamp, 'minor' => $row->rev_minor_edit, 'rev_id' => $row->rev_id, 'rc_last_oldid' => $row->rc_last_oldid, 'rc_id' => $row->rc_id,
-						//						'rc_patrolled' => $row->rc_patrolled,
-	'isnew' => $row->page_is_new);
+					$vals = array ();
+					$vals['pageid'] = intval($row->page_id);
+					$vals['revid'] = intval($row->rev_id);
+					$vals['ns'] = $title->getNamespace();
+					$vals['title'] = $title->getPrefixedText();
+
+					if ($row->page_is_new)
+						$vals['new'] = '';
+					if ($row->rev_minor_edit)
+						$vals['minor'] = '';
+
+					if ($user) {
+						if (!$row->rev_user)
+							$vals['anon'] = '';
+						$vals['user'] = $row->rev_user_text;
+					}
+					if ($comment)
+						$vals['comment'] = $row->rev_comment;
+					if ($timestamp)
+						$vals['timestamp'] = $row->rev_timestamp;
+					if ($patrol && $row->rc_patrolled)
+						$vals['patrolled'] = '';
+
+					$data[] = $vals;
 				}
 				elseif ($allrev) {
 					$data[] = intval($row->rev_id);
@@ -158,7 +197,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 
 		if (is_null($resultPageSet)) {
-			ApiResult :: setIndexedTagName($data, 'p');
+			ApiResult :: setIndexedTagName($data, 'item');
 			$this->getResult()->addValue('query', 'watchlist', $data);
 		}
 		elseif ($allrev) {
@@ -195,6 +234,15 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_MIN => 1,
 				ApiBase :: PARAM_MAX1 => 500,
 				ApiBase :: PARAM_MAX2 => 5000
+			),
+			'prop' => array (
+				APIBase :: PARAM_ISMULTI => true,
+				APIBase :: PARAM_TYPE => array (
+					'user',
+					'comment',
+					'timestamp',
+					'patrol'
+				)
 			)
 		);
 	}
@@ -206,7 +254,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'end' => 'The timestamp to end enumerating.',
 			'namespace' => 'Filter changes to only the given namespace(s).',
 			'dir' => 'In which direction to enumerate pages.',
-			'limit' => 'How many total pages to return per request.'
+			'limit' => 'How many total pages to return per request.',
+			'prop' => 'Which additional items to get (non-generator mode only).'
 		);
 	}
 

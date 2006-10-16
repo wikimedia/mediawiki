@@ -105,7 +105,7 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id:$';
+		return __CLASS__ . ': $Id$';
 	}
 }
 ?>
