@@ -47,13 +47,13 @@ class ApiQuery extends ApiBase {
 
 	private $mQueryListModules = array (
 		'allpages' => 'ApiQueryAllpages',
+		'logevents' => 'ApiQueryLogEvents',
 		'watchlist' => 'ApiQueryWatchlist'
 	);
 	//	'backlinks' => 'ApiQueryBacklinks',
 	//	'categorymembers' => 'ApiQueryCategorymembers',
 	//	'embeddedin' => 'ApiQueryEmbeddedin',
 	//	'imagelinks' => 'ApiQueryImagelinks',
-	//	'logevents' => 'ApiQueryLogevents',
 	//	'recentchanges' => 'ApiQueryRecentchanges',
 	//	'usercontribs' => 'ApiQueryUsercontribs',
 	//	'users' => 'ApiQueryUsers',

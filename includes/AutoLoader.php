@@ -254,6 +254,7 @@ function __autoload($className) {
 		'ApiQueryAllpages' => 'includes/api/ApiQueryAllpages.php',
 		'ApiQueryBase' => 'includes/api/ApiQueryBase.php',
 		'ApiQueryInfo' => 'includes/api/ApiQueryInfo.php',
+		'ApiQueryLogEvents' => 'includes/api/ApiQueryLogEvents.php',
 		'ApiQueryRevisions' => 'includes/api/ApiQueryRevisions.php',
 		'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
 		'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
