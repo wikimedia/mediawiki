@@ -197,9 +197,15 @@ class LanguageConverter {
 		if( !$this->mTablesLoaded )
 			$this->loadTables();
 		if ( $this->mUseFss ) {
-			return fss_exec_replace( $this->mFssObjects[$variant], $text );
+			wfProfileIn( __METHOD__.'-fss' );
+			$text = fss_exec_replace( $this->mFssObjects[$variant], $text );
+			wfProfileOut( __METHOD__.'-fss' );
+			return $text;
 		} else {
-			return strtr( $text, $this->mTables[$variant] );
+			wfProfileIn( __METHOD__.'-strtr' );
+			$text = strtr( $text, $this->mTables[$variant] );
+			wfProfileOut( __METHOD__.'-strtr' );
+			return $text;
 		}
 	}
 
@@ -543,12 +549,16 @@ class LanguageConverter {
 		global $wgMemc;
 		if( $this->mTablesLoaded )
 			return;
+		wfProfileIn( __METHOD__ );
 		$this->mTablesLoaded = true;
 		$this->mTables = false;
 		if($fromcache) {
+			wfProfileIn( __METHOD__.'-cache' );
 			$this->mTables = $wgMemc->get( $this->mCacheKey );
+			wfProfileOut( __METHOD__.'-cache' );
 		}
 		if ( !$this->mTables ) {
+			wfProfileOut( __METHOD__.'-recache' );
 			// not in cache, or we need a fresh reload.
 			// we will first load the default tables
 			// then update them using things in MediaWiki:Zhconversiontable/*
@@ -565,10 +575,14 @@ class LanguageConverter {
 				$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
 				$this->unlockCache();
 			}
+			wfProfileOut( __METHOD__.'-recache' );
 		}
 		if ( $this->mUseFss ) {
+			wfProfileIn( __METHOD__.'-fss' );
 			$this->generateFssObjects();
+			wfProfileOut( __METHOD__.'-fss' );
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
