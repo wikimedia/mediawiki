@@ -19,7 +19,7 @@ if ( !preg_match( '/^https?:/', $wgFavicon ) ) {
 $title = Title::makeTitle( NS_SPECIAL, 'Search' );
 $template = $title->escapeFullURL( 'search={searchTerms}' );
 
-$suggest = $wgScriptPath . '/api.php?action=opensearch&amp;search={searchTerms}';
+$suggest = htmlspecialchars($wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}');
 
 
 $response = $wgRequest->response();
