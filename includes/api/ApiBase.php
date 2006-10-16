@@ -394,6 +394,7 @@ abstract class ApiBase {
 		if ($this->mTimeIn !== 0)
 			ApiBase :: dieDebug(__METHOD__, 'called twice without calling profileOut()');
 		$this->mTimeIn = microtime(true);
+		wfProfileIn($this->getModuleName()); 
 	}
 
 	/**
@@ -407,6 +408,7 @@ abstract class ApiBase {
 
 		$this->mModuleTime += microtime(true) - $this->mTimeIn;
 		$this->mTimeIn = 0;
+		wfProfileOut($this->getModuleName()); 
 	}
 
 	/**
@@ -432,6 +434,7 @@ abstract class ApiBase {
 		if ($this->mDBTimeIn !== 0)
 			ApiBase :: dieDebug(__METHOD__, 'called twice without calling profileDBOut()');
 		$this->mDBTimeIn = microtime(true);
+		wfProfileIn($this->getModuleName() . '_db');
 	}
 
 	/**
@@ -448,6 +451,7 @@ abstract class ApiBase {
 
 		$this->mDBTime += $time;
 		$this->getMain()->mDBTime += $time;
+		wfProfileOut($this->getModuleName() . '_db');
 	}
 
 	/**
