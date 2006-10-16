@@ -236,7 +236,7 @@ class CategoryViewer {
 		$r = '';
 		if( count( $this->children ) > 0 ) {
 			# Showing subcategories
-			$r .= "<div id=\"subcategories\">\n";
+			$r .= "<div id=\"mw-subcategories\">\n";
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
 			$r .= wfMsgExt( 'subcategorycount', array( 'parse' ), count( $this->children) );
 			$r .= $this->formatList( $this->children, $this->children_start_char );
@@ -247,7 +247,7 @@ class CategoryViewer {
 
 	function getPagesSection() {
 		$ti = htmlspecialchars( $this->title->getText() );
-		$r = "<div id=\"pages\">\n";
+		$r = "<div id=\"mw-pages\">\n";
 		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
 		$r .= wfMsgExt( 'categoryarticlecount', array( 'parse' ), count( $this->articles) );
 		$r .= $this->formatList( $this->articles, $this->articles_start_char );
