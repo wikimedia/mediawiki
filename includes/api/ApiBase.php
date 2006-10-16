@@ -52,10 +52,20 @@ abstract class ApiBase {
 	public abstract function execute();
 
     /**
-     * Get the name of the query being executed by this instance 
+     * Get the name of the module being executed by this instance 
      */
     public function getModuleName() {
         return $this->mModuleName;
+    }
+
+    /**
+     * Get the name of the module as shown in the profiler log 
+     */
+    public function getModuleProfileName($db = false) {
+        if ($db)
+            return 'API:' . $this->mModuleName . '-DB';
+        else
+        	return 'API:' . $this->mModuleName;
     }
 
 	/**
@@ -394,7 +404,7 @@ abstract class ApiBase {
 		if ($this->mTimeIn !== 0)
 			ApiBase :: dieDebug(__METHOD__, 'called twice without calling profileOut()');
 		$this->mTimeIn = microtime(true);
-		wfProfileIn($this->getModuleName()); 
+		wfProfileIn($this->getModuleProfileName());
 	}
 
 	/**
@@ -408,7 +418,7 @@ abstract class ApiBase {
 
 		$this->mModuleTime += microtime(true) - $this->mTimeIn;
 		$this->mTimeIn = 0;
-		wfProfileOut($this->getModuleName()); 
+		wfProfileOut($this->getModuleProfileName()); 
 	}
 
 	/**
@@ -434,7 +444,7 @@ abstract class ApiBase {
 		if ($this->mDBTimeIn !== 0)
 			ApiBase :: dieDebug(__METHOD__, 'called twice without calling profileDBOut()');
 		$this->mDBTimeIn = microtime(true);
-		wfProfileIn($this->getModuleName() . '_db');
+		wfProfileIn($this->getModuleProfileName(true));
 	}
 
 	/**
@@ -451,7 +461,7 @@ abstract class ApiBase {
 
 		$this->mDBTime += $time;
 		$this->getMain()->mDBTime += $time;
-		wfProfileOut($this->getModuleName() . '_db');
+		wfProfileOut($this->getModuleProfileName(true));
 	}
 
 	/**
