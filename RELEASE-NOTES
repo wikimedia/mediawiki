@@ -53,6 +53,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7587) Fix erroneous id for specialpage tab, enabling informative popup
 * (bug 7599) Fix thumbnail purging, PHP notices on HTCP image page purge
 * (bug 7581) Update language name for cbk-zam
+* (bug 7444) Update namespace translations for Telugu (te), kept old values as
+  alias for compatibility
 
 
 == Languages updated ==

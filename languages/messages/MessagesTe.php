@@ -13,7 +13,7 @@ $namespaceNames = array(
 	NS_MAIN             => '',
 	NS_TALK             => 'చర్చ',
 	NS_USER             => 'సభ్యుడు',
-	NS_USER_TALK        => 'సభ్యునిపై_చర్చ',
+	NS_USER_TALK        => 'సభ్యులపై_చర్చ',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_చర్చ',
 	NS_IMAGE            => 'బొమ్మ',
@@ -27,6 +27,13 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'వర్గం',
 	NS_CATEGORY_TALK    => 'వర్గం_చర్చ'
 );
+
+$namespaceAliases = array(
+	'సభ్యునిపై_చర్చ'         => NS_USER_TALK,
+	'బొమ్మపై_చర్చ'          => NS_IMAGE_TALK
+);
+
+
 $linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
 
 // nobody seems to use these anymore
