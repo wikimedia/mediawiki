@@ -118,16 +118,31 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: .17em;
 	border-bottom: 1px solid #aaa;
 }
-h1 { font-size: 188%; }
-h2 { font-size: 150%; }
+h1 {
+	font-size: 188%;
+	line-height: 0.8;
+}
+h2 {
+	font-size: 150%;
+	line-height: 1;
+}
 h3, h4, h5, h6 {
 	border-bottom: none;
 	font-weight: bold;
 }
-h3 { font-size: 132%; }
-h4 { font-size: 116%; }
+h3 {
+	font-size: 132%;
+	line-height: 1.14;
+}
+h4 {
+	font-size: 116%;
+	line-height: 1.30;
+}
 h5 { font-size: 100%; }
-h6 { font-size: 80%;  }
+h6 {
+	font-size: 80%;
+	line-height: 1.89;
+}
 
 div.editsection {
 	float: right;
