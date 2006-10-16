@@ -28,7 +28,7 @@ img {
 }
 p {
     margin: 0.4em 0em 0.5em 0em;
-    line-height: 1.5;
+    line-height: 1.5em;
 }
 
 p img { margin: 0; }
@@ -66,12 +66,12 @@ h6 { font-size: 80%;  }
 }
 
 ul {
-    line-height: 1.5;
+    line-height: 1.5em;
     margin: 0.3em 0 0 1.5em;
     padding:0;
 }
 ol {
-    line-height: 1.5;
+    line-height: 1.5em;
     margin: 0.3em 0 0 3.2em;
     padding:0;
     list-style-image: none;
@@ -86,7 +86,7 @@ dl{
     margin-bottom: 0.5em;
 }
 dd {
-    line-height: 1.5;
+    line-height: 1.5em;
     margin-left: 2em;
     margin-bottom: 0.1em;
 }
@@ -95,7 +95,7 @@ fieldset {
     border: 1px solid #2f6fab;
     margin: 1em 0em 1em 0em;
     padding: 0em 1em 1em 1em;
-    line-height: 1.5;
+    line-height: 1.5em;
 }
 legend {
     background: White;
@@ -156,7 +156,7 @@ pre {
     border: 1px dashed #2f6fab;
     color: Black;
     background-color: #f9f9f9;
-    line-height: 1.1;
+    line-height: 1.1em;
 }
 
 /*
@@ -211,7 +211,7 @@ in the bottom-right corner of the content area */
     font-weight: bold;
     display: block;
     margin: 1em 0em;
-    line-height: 1.5;
+    line-height: 1.5em;
 }
 .documentByLine {
     text-align: right;
@@ -290,7 +290,7 @@ div.thumb div a img {
 div.thumb div div.thumbcaption {
     border: none;
     text-align: left;
-    line-height: 1.4;
+    line-height: 1.4em;
     padding: 0.3em 0 0.1em 0;
 }
 div.magnify {
@@ -371,7 +371,7 @@ div.townBox dl dd {
 ** edit views etc
 */
 .special li {
-    line-height: 1.4;
+    line-height: 1.4em;
     margin: 0;
     padding: 0;
 }
