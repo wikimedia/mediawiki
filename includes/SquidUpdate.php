@@ -222,8 +222,8 @@ class SquidUpdate {
 				// Opcode 'CLR', no response desired, no auth
 				$htcpTransID = rand();
 
-				$htcpSpecifier = pack( 'na3na*na8n',
-					3, 'GET', strlen( $url ), $url,
+				$htcpSpecifier = pack( 'na4na*na8n',
+					4, 'HEAD', strlen( $url ), $url,
 					8, 'HTTP/1.0', 0 );
 
 				$htcpDataLen = 8 + 2 + strlen( $htcpSpecifier );
