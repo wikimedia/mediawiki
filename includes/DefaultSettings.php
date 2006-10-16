@@ -1132,6 +1132,7 @@ $wgMaxSquidPurgeTitles = 400;
 $wgHTCPPort = 4827;
 $wgHTCPMulticastTTL = 1;
 # $wgHTCPMulticastAddress = "224.0.0.85";
+$wgHTCPMulticastAddress = false;
 
 # Cookie settings:
 #
