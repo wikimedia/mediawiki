@@ -19,6 +19,9 @@ if ( !preg_match( '/^https?:/', $wgFavicon ) ) {
 $title = Title::makeTitle( NS_SPECIAL, 'Search' );
 $template = $title->escapeFullURL( 'search={searchTerms}' );
 
+$suggest = $wgScriptPath . '/api.php?action=opensearch&amp;search={searchTerms}';
+
+
 $response = $wgRequest->response();
 $response->header( 'Content-type: application/opensearchdescription+xml' );
 
@@ -34,6 +37,7 @@ echo <<<EOT
 <Description>$siteName</Description>
 <Image height="16" width="16" type="image/x-icon">$favicon</Image>
 <Url type="text/html" method="get" template="$template"/>
+<Url type="application/x-suggestions+json" method="GET" template="$suggest"/>
 </OpenSearchDescription>
 EOT;
 
