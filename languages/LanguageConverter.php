@@ -544,26 +544,27 @@ class LanguageConverter {
 		if( $this->mTablesLoaded )
 			return;
 		$this->mTablesLoaded = true;
+		$this->mTables = false;
 		if($fromcache) {
 			$this->mTables = $wgMemc->get( $this->mCacheKey );
-			if( !empty( $this->mTables ) ) //all done
-				return;
 		}
-		// not in cache, or we need a fresh reload.
-		// we will first load the default tables
-		// then update them using things in MediaWiki:Zhconversiontable/*
-		global $wgMessageCache;
-		$this->loadDefaultTables();
-		foreach($this->mVariants as $var) {
-			$cached = $this->parseCachedTable($var);
-			$this->mTables[$var] = array_merge($this->mTables[$var], $cached);
-		}
+		if ( !$this->mTables ) {
+			// not in cache, or we need a fresh reload.
+			// we will first load the default tables
+			// then update them using things in MediaWiki:Zhconversiontable/*
+			global $wgMessageCache;
+			$this->loadDefaultTables();
+			foreach($this->mVariants as $var) {
+				$cached = $this->parseCachedTable($var);
+				$this->mTables[$var] = array_merge($this->mTables[$var], $cached);
+			}
 
-		$this->postLoadTables();
+			$this->postLoadTables();
 
-		if($this->lockCache()) {
-			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
-			$this->unlockCache();
+			if($this->lockCache()) {
+				$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
+				$this->unlockCache();
+			}
 		}
 		if ( $this->mUseFss ) {
 			$this->generateFssObjects();
