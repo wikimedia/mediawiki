@@ -51,6 +51,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   PHP 4 and 5 installations to interfere on the command-line.
 * Fix regression in autoconfirm permission check
 * (bug 3015) Add CSS ids to subcategory and page sections on category pages
+* (bug 7587) Fix erroneous id for specialpage tab, enabling informative popup
 
 
 == Languages updated ==

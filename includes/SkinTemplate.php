@@ -739,7 +739,7 @@ class SkinTemplate extends Skin {
 		} else {
 			/* show special page tab */
 
-			$content_actions['article'] = array(
+			$content_actions[$this->mTitle->getNamespaceKey()] = array(
 				'class' => 'selected',
 				'text' => wfMsg('specialpage'),
 				'href' => $wgRequest->getRequestURL(), // @bug 2457, 2510
