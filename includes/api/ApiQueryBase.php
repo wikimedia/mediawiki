@@ -74,7 +74,15 @@ abstract class ApiQueryBase extends ApiBase {
 		return $this->mQueryModule->getPageSet();
 	}
 
+	/**
+	 * This is a very simplistic utility function
+	 * to convert a title string to a db key.
+	 * It will replace all ' ' with '_', and make first letter uppercase
+	 */
 	public static function titleToKey($title) {
+		global $wgContLang, $wgCapitalLinks;
+		if ($wgCapitalLinks)
+			$title = $wgContLang->ucfirst( $title );
 		return str_replace(' ', '_', $title);
 	}
 
