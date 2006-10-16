@@ -1361,7 +1361,8 @@ class Image
 		$urls = array();
 		foreach ( $files as $file ) {
 			if ( preg_match( '/^(\d+)px/', $file, $m ) ) {
-				$urls[] = $this->thumbUrl( $m[1], $this->fromSharedDirectory );
+				list( $isScriptUrl, $url ) = $this->thumbUrl( $m[1] );
+				$urls[] = $url;
 				@unlink( "$dir/$file" );
 			}
 		}
