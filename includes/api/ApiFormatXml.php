@@ -31,6 +31,8 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiFormatXml extends ApiFormatBase {
 
+	private $mRootElemName = 'api';
+
 	public function __construct($main, $format) {
 		parent :: __construct($main, $format);
 	}
@@ -41,6 +43,10 @@ class ApiFormatXml extends ApiFormatBase {
 
 	public function getNeedsRawData() {
 		return true;
+	}
+	
+	public function setRootElement($rootElemName) {
+		$this->mRootElemName = $rootElemName;
 	}
 
 	public function execute() {
@@ -53,7 +59,7 @@ class ApiFormatXml extends ApiFormatBase {
 			$xmlindent = null;
 
 		$this->printText('<?xml version="1.0" encoding="utf-8"?>');
-		$this->recXmlPrint('api', $this->getResultData(), $xmlindent);
+		$this->recXmlPrint($this->mRootElemName, $this->getResultData(), $xmlindent);
 	}
 
 	/**

@@ -73,11 +73,19 @@ class ApiResult extends ApiBase {
 	/**
 	 * Adds the content element to the array.
 	 * Use this function instead of hardcoding the '*' element.
+	 * @param string $subElemName when present, content element is created as a sub item of the arr.
+	 *  Use this parameter to create elements in format <elem>text</elem> without attributes
 	 */
-	public static function setContent(& $arr, $value) {
+	public static function setContent(& $arr, $value, $subElemName = null) {
 		if (is_array($value))
 			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
-		ApiResult :: setElement($arr, '*', $value);
+		if (is_null($subElemName)) {
+			ApiResult :: setElement($arr, '*', $value);
+		} else {
+			if (!isset ($arr[$subElemName]))
+				$arr[$subElemName] = array ();
+			ApiResult :: setElement($arr[$subElemName], '*', $value);
+		}
 	}
 
 	//	public static function makeContentElement($tag, $value) {

@@ -66,7 +66,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$options = array (
 			'LIMIT' => $limit +1,
-			'ORDER BY' => 'rc_timestamp' . ($dirNewer ? '' : ' DESC'));
+			'ORDER BY' => 'rc_timestamp' . ($dirNewer ? '' : ' DESC'
+		));
 
 		if (is_null($resultPageSet)) {
 			$fields = array (
@@ -81,10 +82,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				'rc_this_oldid AS rev_id',
 				'rc_last_oldid',
 				'rc_id',
-	//			'rc_patrolled',
 				'rc_new AS page_is_new'
+					//			'rc_patrolled'	
+	
 			);
-		} elseif ($allrev) {
+		}
+		elseif ($allrev) {
 			$fields = array (
 				'rc_this_oldid AS rev_id',
 				'rc_namespace AS page_namespace',
@@ -113,10 +116,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if (isset ($start))
 			$where[] = 'rc_timestamp' . $after . $db->addQuotes($start);
-			
+
 		if (isset ($end))
 			$where[] = 'rc_timestamp' . $before . $db->addQuotes($end);
-		
+
 		if (!isset ($start) && !isset ($end))
 			$where[] = "rc_timestamp > ''";
 
@@ -129,10 +132,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$msg = array (
-					'continue' => $this->encodeParamName('from'
-				) . '=' . $row->rev_timestamp);
-				$this->getResult()->addValue('query-status', 'watchlist', $msg);
+				$this->setContinueEnumParameter('from', $row->rev_timestamp);
 				break;
 			}
 
@@ -144,25 +144,15 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					$id = intval($row->page_id);
 
 					$data[] = array (
-						'ns' => $title->getNamespace(),
-						'title' => $title->getPrefixedText(),
-						'id' => intval($row->page_id),
-						'comment' => $row->rev_comment,
-						'isuser' => $row->rev_user,
-						'user' => $row->rev_user_text,
-						'timestamp' => $row->rev_timestamp,
-						'minor' => $row->rev_minor_edit,
-						'rev_id' => $row->rev_id,
-						'rc_last_oldid' => $row->rc_last_oldid,
-						'rc_id' => $row->rc_id,
-//						'rc_patrolled' => $row->rc_patrolled,
-						'isnew' => $row->page_is_new
-					);
-				} elseif ($allrev) {
+					'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText(), 'id' => intval($row->page_id), 'comment' => $row->rev_comment, 'isuser' => $row->rev_user, 'user' => $row->rev_user_text, 'timestamp' => $row->rev_timestamp, 'minor' => $row->rev_minor_edit, 'rev_id' => $row->rev_id, 'rc_last_oldid' => $row->rc_last_oldid, 'rc_id' => $row->rc_id,
+						//						'rc_patrolled' => $row->rc_patrolled,
+	'isnew' => $row->page_is_new);
+				}
+				elseif ($allrev) {
 					$data[] = intval($row->rev_id);
 				} else {
 					$data[] = intval($row->page_id);
-				}				
+				}
 			}
 		}
 		$db->freeResult($res);
@@ -170,11 +160,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (is_null($resultPageSet)) {
 			ApiResult :: setIndexedTagName($data, 'p');
 			$this->getResult()->addValue('query', 'watchlist', $data);
-		} elseif ($allrev) {
+		}
+		elseif ($allrev) {
 			$resultPageSet->populateFromRevisionIDs($data);
 		} else {
 			$resultPageSet->populateFromPageIDs($data);
-		}				
+		}
 	}
 
 	protected function getAllowedParams() {
@@ -210,12 +201,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	protected function getParamDescription() {
 		return array (
-			'allrev' => 'Include multiple revisions of the same page within given timeframe',
+			'allrev' => 'Include multiple revisions of the same page within given timeframe.',
 			'start' => 'The timestamp to start enumerating from.',
 			'end' => 'The timestamp to end enumerating.',
 			'namespace' => 'Filter changes to only the given namespace(s).',
-			'dir' => 'In which direction to enumerate pages "older" (default), or "newer")',
-			'limit' => 'How many total pages to return per request'
+			'dir' => 'In which direction to enumerate pages.',
+			'limit' => 'How many total pages to return per request.'
 		);
 	}
 

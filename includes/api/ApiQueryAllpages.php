@@ -96,10 +96,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$msg = array (
-					'continue' => $this->encodeParamName('from'
-				) . '=' . ApiQueryBase :: keyToTitle($row->page_title));
-				$this->getResult()->addValue('query-status', 'allpages', $msg);
+				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->page_title));
 				break;
 			}
 
@@ -154,9 +151,9 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		return array (
 			'from' => 'The page title to start enumerating from.',
 			'prefix' => 'Search for all page titles that begin with this value.',
-			'namespace' => 'The namespace to enumerate. Default 0 (Main).',
-			'filterredir' => 'Which pages to list: "all" (default), "redirects", or "nonredirects"',
-			'limit' => 'How many total pages to return'
+			'namespace' => 'The namespace to enumerate.',
+			'filterredir' => 'Which pages to list.',
+			'limit' => 'How many total pages to return.'
 		);
 	}
 

@@ -95,7 +95,7 @@ abstract class ApiBase {
 	 * it should override this method to return an instance of that formatter.
 	 * A value of null means the default format will be used.  
 	 */
-	public function getCustomFormatModule() {
+	public function getCustomPrinter() {
 		return null;
 	}
 
@@ -150,10 +150,24 @@ abstract class ApiBase {
 
 			$paramsDescription = $this->getParamDescription();
 			$msg = '';
-			foreach (array_keys($params) as $paramName) {
+			$paramPrefix = "\n" . str_repeat(' ', 19);
+			foreach ($params as $paramName => &$paramSettings) {
 				$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
 				if (is_array($desc))
-					$desc = implode("\n" . str_repeat(' ', 19), $desc);
+					$desc = implode($paramPrefix, $desc);
+				if (isset ($paramSettings[self :: PARAM_TYPE])) {
+					$type = $paramSettings[self :: PARAM_TYPE];
+					if (is_array($type)) {
+						$desc .= $paramPrefix . 'Allowed values: '. implode(', ', $type);
+					}
+				}
+				
+				$default = is_array($paramSettings) 
+					? (isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null)
+					: $paramSettings;
+				if (!is_null($default) && $default !== false)
+					$desc .= $paramPrefix . "Default: $default";
+					
 				$msg .= sprintf("  %-14s - %s\n", $this->encodeParamName($paramName), $desc);
 			}
 			return $msg;

@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
 abstract class ApiQueryBase extends ApiBase {
 
 	private $mQueryModule;
-    
+
 	public function __construct($query, $moduleName, $paramPrefix = '') {
 		parent :: __construct($query->getMain(), $moduleName, $paramPrefix);
 		$this->mQueryModule = $query;
@@ -50,6 +50,13 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function getQuery() {
 		return $this->mQueryModule;
+	}
+
+	protected function setContinueEnumParameter($paramName, $paramValue) {
+		$msg = array (
+			$this->encodeParamName($paramName
+		) => $paramValue);
+		$this->getResult()->addValue('query-continue', $this->getModuleName(), $msg);
 	}
 
 	/**
