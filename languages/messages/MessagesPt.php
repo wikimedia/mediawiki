@@ -452,7 +452,7 @@ a cache do seu navegador.',
 
 A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Preferences|preferências]] na {{SITENAME}}.",
 
-'loginpagetitle' => 'Autentificação de utilizador',
+'loginpagetitle' => 'Autenticação de utilizador',
 'yourname'              => 'Seu nome de utilizador',
 'yourpassword'  => 'Palavra-chave',
 'yourpasswordagain' => 'Reintroduza a sua palavra-chave',
@@ -460,16 +460,16 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'yourdomainname'       => 'Seu domínio',
 'externaldberror'      => 'Ocorreu um erro externo à base de dados durante a autenticação, ou não lhe é permitido actualizar a sua conta externa.',
 'loginproblem'  => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
-'alreadyloggedin' => "<strong>Utilizador $1, você já está autentificado!</strong><br />",
+'alreadyloggedin' => "<strong>Utilizador $1, você já está autenticado!</strong><br />",
 'login'                 => 'Entrar',
-'loginprompt'           => "Você necessita de ter os <i>cookies</i> ligados para poder autentificar-se na {{SITENAME}}.",
+'loginprompt'           => "Você necessita de ter os <i>cookies</i> ligados para poder autenticar-se na {{SITENAME}}.",
 'userlogin'             => 'Criar uma conta ou entrar',
 'logout'                => 'Sair',
 'userlogout'    => 'Sair',
-'notloggedin'   => 'Não autentificado',
+'notloggedin'   => 'Não autenticado',
 'nologin'       => 'Não possui uma conta? $1.',
 'nologinlink'   => 'Criar uma conta',
-'createaccount' => 'Create account',
+'createaccount' => 'Criar conta de utilizador',
 'gotaccount'    => 'Já possui uma conta? $1.',
 'gotaccountlink'        => 'Entrar',
 'createaccount' => 'Criar nova conta',
@@ -487,9 +487,9 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Prefe
 'email'                 => 'Correio electrónico',
 'prefs-help-email-enotif' => 'Este endereço é também utilizado para enviar-lhe notificações caso as active nas preferências.',
 'prefs-help-realname'   => '* Nome verdadeiro (opcional): caso decida indicar, este será utilizado para lhe dar crédito pelo seu trabalho.',
-'loginerror'    => 'Erro de autentificação',
+'loginerror'    => 'Erro de autenticação',
 'prefs-help-email'      => '* Email (opcional): Permite os utilizadores entrem em contacto consigo sem que tenha de lhes revelar o seu endereço de e-mail.',
-'nocookiesnew'  => "A conta de utilizador foi criada, mas você não foi ligado à conta. Tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active, depois autentifique-se com o seu nome de utilizador e a sua palavra-chave.",
+'nocookiesnew'  => "A conta de utilizador foi criada, mas você não foi ligado à conta. Tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active, depois autentique-se com o seu nome de utilizador e a sua palavra-chave.",
 'nocookieslogin'        => "Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active e tente novamente.",
 'noname'                => 'Não colocou um nome de utilizador válido.',
 'loginsuccesstitle' => 'Login bem sucedido',
@@ -508,7 +508,7 @@ A palavra para o utilizador \"$2\" é a partir de agora \"$3\". Pode agora entra
 Caso tenha sido outra pessoa a fazer este pedido ou caso você já se tenha lembrado da sua palavra-chave e se não a desejar alterar, pode ignorar esta mensagem e continuar a utilizar a palavra-chave antiga.",
 'noemail'                           => "Não existe um endereço de correio electrónico associado ao utilizador \"$1\".",
 'passwordsent'  => "Uma nova palavra-chave encontra-se a ser enviada para o endereço de correio electrónico associado ao utilizador \"$1\".
-Por favor, volte a efectuar a autentificação ao recebê-la.",
+Por favor, volte a efectuar a autenticação ao recebê-la.",
 'eauthentsent'             =>  "Um email de confirmação foi enviado para o endereço de correio electrónico nomeado.
 Antes de qualquer outro email seja enviado para a conta, terá seguir as instruções no email,
 de modo a confirmar que a conta é mesmo sua.",
@@ -575,13 +575,13 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 'whitelistedittitle' => 'Autentificação necessária para visualizar',
 'whitelistedittext' => 'Precisa de se $1 para poder visualizar páginas.',
 'whitelistreadtitle' => 'Autentificação necessária para visualizar',
-'whitelistreadtext' => 'Precisa de se [[Special:Userlogin|autentificar]] para poder visualizar páginas.',
+'whitelistreadtext' => 'Precisa de se [[Special:Userlogin|autenticar]] para puder visualizar páginas.',
 'whitelistacctitle' => 'Não lhe é permitido criar uma conta',
-'whitelistacctext' => 'De modo a poder criar contas de utilizador nesta Wiki terá que se [[Special:Userlogin|autentificar]] e possuir as devidas permissões.',
+'whitelistacctext' => 'De modo a poder criar contas de utilizador nesta Wiki terá que se [[Special:Userlogin|autenticar]] e possuir as devidas permissões.',
 'confirmedittitle' => 'Confirmação por correio electrónico necessária para editar',
 'confirmedittext' => 'Precisa de confirmar o seu endereço de correio electrónico antes de começar a editar páginas. Por favor introduza e valide o seu endereço de correio electrónico através das suas [[Especial:Preferences|preferências de utilizador]].',
-'loginreqtitle' => 'Autentificação Requesitada',
-'loginreqlink' => 'autentificar-se',
+'loginreqtitle' => 'Autenticação Requesitada',
+'loginreqlink' => 'autenticar-se',
 'loginreqpagetext'  => 'Precisa de $1 para visualizar outras páginas.',
 'accmailtitle' => 'Palavra-chave enviada.',
 'accmailtext' => "A palavra-chave para '$1' foi enviada para $2.",
@@ -591,7 +591,7 @@ Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não
 
 (Consulte [[{{ns:project}}:Ajuda|a página de ajuda]] para mais informações)",
 'anontalkpagetext' => "----
-''Esta é a página de discussão para um utilizador anónimo que ainda não criou uma conta ou que não a utiliza. De modo a que temos que utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser partilhado por vários utilizadores. Se é um utilizador anónimo e acha relevante que os comentários sejam direccionados a si, por favor [[{{ns:special}}:Userlogin|crie uma conta ou autentifique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
+''Esta é a página de discussão para um utilizador anónimo que ainda não criou uma conta ou que não a utiliza. De modo a que temos que utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser partilhado por vários utilizadores. Se é um utilizador anónimo e acha relevante que os comentários sejam direccionados a si, por favor [[{{ns:special}}:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
 'noarticletext' => 'Não existe actualmente texto nesta página, pode [[{{ns:special}}:Search/{{PAGENAME}}|pesquisar pelo título desta página noutras páginas]] ou [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} editar esta página].',
 'clearyourcache' => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-Shift-R'' (''Cmd-Shift-R'' no Apple Mac); '''IE:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5''; '''Konqueror:''': simplesmente clique no botão ''Recarregar'', ou pressione ''F5''; utilizadores do navegador '''Opera''' podem limpar completamente a sua cache em ''Ferramentas→Preferências''.",
@@ -647,7 +647,7 @@ em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode salv
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'nocreatetitle' => 'Limitada a criação de páginas',
 'nocreatetext' => 'Este website tem restringida a habilidade de criar novas páginas.
-Pode voltar atrás e editar uma página já existente, ou [[Special:Userlogin|autentificar-se ou criar uma conta]].',
+Pode voltar atrás e editar uma página já existente, ou [[Special:Userlogin|autenticar-se ou criar uma conta]].',
 'cantcreateaccounttitle' => 'Não é possível criar uma conta',
 'cantcreateaccounttext' => 'A criação de contas a partir deste endereço IP (<b>$1</b>) foi bloqueada. 
 Isto é provavelmente devido a vandalismo persistente efectuada a partir da sua escola ou ISP.',
@@ -766,7 +766,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'preferences'   => 'Preferências',
 'mypreferences' => 'Minhas preferências',
 'prefsnologin' => 'Não autenticado',
-'prefsnologintext'      => "Precisa estar [[Special:Userlogin|autentificado]] para definir suas preferências.",
+'prefsnologintext'      => "Precisa estar [[Special:Userlogin|autenticado]] para definir suas preferências.",
 'prefsreset'    => 'Preferências restauradas da base de dados.',
 'qbsettings'    => 'Barra Rápida',
 'changepassword' => 'Alterar palavra-chave',
@@ -877,8 +877,8 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'uploadbtn'             => 'Carregar ficheiro',
 'reupload'              => 'Recarregar',
 'reuploaddesc'  => 'Voltar ao formulário de carregamento.',
-'uploadnologin' => 'Não autentificado',
-'uploadnologintext'     => "Deve estar <a href=\"{{localurle:Special:Userlogin}}\">autentificado</a>
+'uploadnologin' => 'Não autenticado',
+'uploadnologintext'     => "Deve estar <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
 para carregar ficheiros.",
 'upload_directory_read_only' => 'A directoria de envio ($1) não tem permissões de escrita pelo servidor Web.',
 'uploaderror'   => 'Erro ao carregar',
@@ -1097,7 +1097,7 @@ Pode diminuir a lista escolhendo um tipo de registo, um nome de utilizar, ou uma
 # E this user
 #
 'mailnologin'   => 'Nenhum endereço de envio',
-'mailnologintext' => "Necessita de estar [[Special:Userlogin|autentificado]]
+'mailnologintext' => "Necessita de estar [[Special:Userlogin|autenticado]]
 e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]]
 para enviar um e-mail a outros utilizadores.",
 'emailuser'             => 'Contactar este utilizador',
@@ -1124,13 +1124,13 @@ para que o destinatário lhe possa responder.',
 'watchlistfor' => "(para '''$1''')",
 'nowatchlist'           => 'Não existem itens na sua lista de artigos vigiados.',
 'watchlistanontext' => 'Por favor $1 para ver ou editar os itens na sua lista de artigos vigiados.',
-'watchlistcount'     => "'''Tem $1 items na sua lista de artigos vigiados, incluindo páginas de discussão.'''",
+'watchlistcount'     => "'''Tem {{PLURAL:$1|$1 item|$1 items}} na sua lista de artigos vigiados, incluindo páginas de discussão.'''",
 'clearwatchlist'     => 'Limpar lista de artigos vigiados',
 'watchlistcleartext' => 'Tem a certeza que deseja removê-los?',
 'watchlistclearbutton' => 'Limpar',
-'watchlistcleardone' => 'A sua lista de artigos vigiados foi limpa. $1 items foram removidos.',
-'watchnologin'          => 'Não está autentificado',
-'watchnologintext'      => 'Deve estar [[Special:Userlogin|autentificado]] para modificar a sua lista de artigos vigiados.',
+'watchlistcleardone' => 'A sua lista de artigos vigiados foi limpa. {{PLURAL:$1|$1 item foi removido|$1 items foram removidos}}.',
+'watchnologin'          => 'Não está autenticado',
+'watchnologintext'      => 'Deve estar [[Special:Userlogin|autenticado]] para modificar a sua lista de artigos vigiados.',
 'addedwatch'            => 'Adicionado à lista',
 'addedwatchtext'        => "A página \"$1\" foi adicionada à sua [[Special:Watchlist|lista de artigos vigiados]].
 Modificações futuras neste artigo e páginas de discussão associadas serão listadas lá e a página aparecerá a '''negrito''' na [[Especial:Recentchanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.
@@ -1144,7 +1144,7 @@ Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desint
 'unwatchthispage'       => 'Parar de vigiar esta página',
 'notanarticle'          => 'Não é um artigo',
 'watchnochange'         => 'Nenhum dos itens vigiados foram editados no período exibido.',
-'watchdetails'          => '* $1 páginas vigiadas, excluindo páginas de discussão
+'watchdetails'          => '* {{PLURAL:$1|$1 página vigiada|$1 páginas vigiadas}}, excluindo páginas de discussão
 * [[Especial:Watchlist/edit|Mostrar e editar a lista completa]]
 * [[Especial:Watchlist/clear|Remover todas as páginas]]',
 'wlheader-enotif'               => "* Notificação por email encontra-se activada.",
@@ -1199,7 +1199,7 @@ Contacto e assistência
 'deletepage'    => 'Eliminar página',
 'confirm'               => 'Confirmar',
 'excontent' => "conteúdo era: '$1'",
-'excontentauthor' => "conteúdo era: '$1' (e o único editor era '$2')",
+'excontentauthor' => "conteúdo era: '$1' (e o único editor era '[[Especial:Contributions/$2|$2]]')",
 'exbeforeblank' => "conteúdo antes de esvaziar era: '$1'",
 'exblank' => 'página esvaziada',
 'confirmdelete' => 'Confirmar eliminação',
@@ -1427,8 +1427,8 @@ Isto pode ser uma mudança drástica e inesperada para uma página popular; por 
 
 Nestes casos, você terá que mover ou mesclar a página manualmente, se desejar.',
 'movearticle'   => 'Mover página',
-'movenologin'   => 'Não autentificado',
-'movenologintext' => "Você deve ser um utilizador registado e [[Special:Userlogin|autentificado]]</a>
+'movenologin'   => 'Não autenticado',
+'movenologintext' => "Deve ser um utilizador registado e [[Special:Userlogin|autenticado]]</a>
 para mover uma página.",
 'newtitle'              => 'Para novo título',
 'movepagebtn'   => 'Mover página',
@@ -1915,7 +1915,10 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'confirmemail_text' => "Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Active o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.",
 'confirmemail_send' => 'Enviar código de confirmação',
 'confirmemail_sent' => 'E-mail de confirmação enviado.',
-'confirmemail_sendfailed' => 'Não foi possível enviar o email de confirmação. Por favor verifique o seu endereço de e-mail.',
+'confirmemail_sendfailed' => 'Não foi possível enviar o email de confirmação. Por favor verifique o seu endereço de e-mail.
+
+Mailer retornou: $1
+',
 'confirmemail_invalid' => 'Código de confirmação inválido. O código poderá ter expirado.',
 'confirmemail_needlogin' => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
 'confirmemail_success' => 'O seu endereço de e-mail foi confirmado. Pode agora se ligar.',
