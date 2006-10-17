@@ -120,7 +120,7 @@ class StubUser extends StubObject {
 			$user = new User;
 		} else {
 			$user = User::newFromSession();
-			wfRunHooks('AutoAuthenticate',array($user));
+			wfRunHooks('AutoAuthenticate',array(&$user));
 		}
 		return $user;
 	}
