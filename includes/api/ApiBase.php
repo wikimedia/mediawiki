@@ -35,6 +35,11 @@ abstract class ApiBase {
 	const PARAM_MAX2 = 4;
 	const PARAM_MIN = 5;
 
+	const LIMIT_BIG1 = 500; // Fast query, user's limit
+	const LIMIT_BIG2 = 5000; // Fast query, bot's limit
+	const LIMIT_SML1 = 50; // Slow query, user's limit
+	const LIMIT_SML2 = 500; // Slow query, bot's limit
+
 	private $mMainModule, $mModuleName, $mParamPrefix;
 
 	/**
@@ -42,7 +47,7 @@ abstract class ApiBase {
 	*/
 	public function __construct($mainModule, $moduleName, $paramPrefix = '') {
 		$this->mMainModule = $mainModule;
-        $this->mModuleName = $moduleName;
+		$this->mModuleName = $moduleName;
 		$this->mParamPrefix = $paramPrefix;
 	}
 
@@ -51,22 +56,22 @@ abstract class ApiBase {
 	 */
 	public abstract function execute();
 
-    /**
-     * Get the name of the module being executed by this instance 
-     */
-    public function getModuleName() {
-        return $this->mModuleName;
-    }
+	/**
+	 * Get the name of the module being executed by this instance 
+	 */
+	public function getModuleName() {
+		return $this->mModuleName;
+	}
 
-    /**
-     * Get the name of the module as shown in the profiler log 
-     */
-    public function getModuleProfileName($db = false) {
-        if ($db)
-            return 'API:' . $this->mModuleName . '-DB';
-        else
-        	return 'API:' . $this->mModuleName;
-    }
+	/**
+	 * Get the name of the module as shown in the profiler log 
+	 */
+	public function getModuleProfileName($db = false) {
+		if ($db)
+			return 'API:' . $this->mModuleName . '-DB';
+		else
+			return 'API:' . $this->mModuleName;
+	}
 
 	/**
 	 * Get main module
@@ -161,23 +166,21 @@ abstract class ApiBase {
 			$paramsDescription = $this->getParamDescription();
 			$msg = '';
 			$paramPrefix = "\n" . str_repeat(' ', 19);
-			foreach ($params as $paramName => &$paramSettings) {
+			foreach ($params as $paramName => & $paramSettings) {
 				$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
 				if (is_array($desc))
 					$desc = implode($paramPrefix, $desc);
 				if (isset ($paramSettings[self :: PARAM_TYPE])) {
 					$type = $paramSettings[self :: PARAM_TYPE];
 					if (is_array($type)) {
-						$desc .= $paramPrefix . 'Allowed values: '. implode(', ', $type);
+						$desc .= $paramPrefix . 'Allowed values: ' . implode(', ', $type);
 					}
 				}
-				
-				$default = is_array($paramSettings) 
-					? (isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null)
-					: $paramSettings;
+
+				$default = is_array($paramSettings) ? (isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null) : $paramSettings;
 				if (!is_null($default) && $default !== false)
 					$desc .= $paramPrefix . "Default: $default";
-					
+
 				$msg .= sprintf("  %-14s - %s\n", $this->encodeParamName($paramName), $desc);
 			}
 			return $msg;
@@ -213,7 +216,7 @@ abstract class ApiBase {
 	protected function getParamDescription() {
 		return false;
 	}
-	
+
 	/**
 	 * This method mangles parameter name based on the prefix supplied to the constructor.
 	 * Override this method to change parameter name during runtime 
@@ -250,7 +253,7 @@ abstract class ApiBase {
 	 * Using the settings determine the value for the given parameter
 	 * @param $paramName String: parameter name
 	 * @param $paramSettings Mixed: default value or an array of settings using PARAM_* constants.
-	 */	
+	 */
 	protected function getParameterFromSettings($paramName, $paramSettings) {
 
 		// Some classes may decide to change parameter names
@@ -284,7 +287,7 @@ abstract class ApiBase {
 		} else {
 			$value = $this->getMain()->getRequest()->getVal($paramName, $default);
 		}
-		
+
 		if (isset ($value) && ($multi || is_array($type)))
 			$value = $this->parseMultiValue($paramName, $value, $multi, is_array($type) ? $type : null);
 
@@ -328,7 +331,7 @@ abstract class ApiBase {
 		// There should never be any duplicate values in a list
 		if (is_array($value))
 			$value = array_unique($value);
-			
+
 		return $value;
 	}
 
@@ -418,9 +421,21 @@ abstract class ApiBase {
 
 		$this->mModuleTime += microtime(true) - $this->mTimeIn;
 		$this->mTimeIn = 0;
-		wfProfileOut($this->getModuleProfileName()); 
+		wfProfileOut($this->getModuleProfileName());
 	}
 
+	/**
+	 * When modules crash, sometimes it is needed to do a profileOut() regardless
+	 * of the profiling state the module was in. This method does such cleanup. 
+	 */
+	public function safeProfileOut() {
+		if ($this->mTimeIn !== 0) {
+			if ($this->mDBTimeIn !== 0)
+				$this->profileDBOut();
+			$this->profileOut();
+		}
+	}
+	
 	/**
 	 * Total time the module was executed
 	 */
@@ -474,7 +489,7 @@ abstract class ApiBase {
 	}
 
 	public abstract function getVersion();
-	
+
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}

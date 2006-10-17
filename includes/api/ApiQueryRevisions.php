@@ -245,11 +245,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 				)
 			),
 			'limit' => array (
-				ApiBase :: PARAM_DFLT => null,
 				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 0,
-				ApiBase :: PARAM_MAX1 => 50,
-				ApiBase :: PARAM_MAX2 => 500
+				ApiBase :: PARAM_MIN => 1,
+				ApiBase :: PARAM_MAX1 => ApiBase :: LIMIT_SML1,
+				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_SML2
 			),
 			'startid' => array (
 				ApiBase :: PARAM_TYPE => 'integer'
