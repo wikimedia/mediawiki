@@ -234,7 +234,7 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function populateFromRevisionIDs($revIDs) {
 		$this->profileIn();
-		$pageIDs = array_map('intval', $revIDs); // paranoia
+		$revIDs = array_map('intval', $revIDs); // paranoia
 		$this->initFromRevIDs($revIDs);
 		$this->profileOut();
 	}

@@ -63,7 +63,7 @@ class ApiFeedWatchlist extends ApiBase {
 		$data = & $result->GetData();
 
 		$feedItems = array ();
-		foreach ($data['query']['watchlist'] as $index => & $info) {
+		foreach ($data['query']['watchlist'] as $index => $info) {
 			$title = $info['title'];
 			$titleUrl = Title :: newFromText($title)->getFullUrl();
 			$feedItems[] = new FeedItem($title, '', $titleUrl, $info['timestamp'], $info['user']);

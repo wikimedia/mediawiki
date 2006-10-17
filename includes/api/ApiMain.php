@@ -142,7 +142,6 @@ class ApiMain extends ApiBase {
 				//
 				// User entered incorrect parameters - print usage screen
 				//
-				$httpRespCode = $e->getCode();
 				$errMessage = array (
 					'code' => $e->getCodeString(),
 					'info' => $e->getMessage()
@@ -153,7 +152,6 @@ class ApiMain extends ApiBase {
 				//
 				// Something is seriously wrong
 				//
-				$httpRespCode = 0;
 				$errMessage = array (
 					'code' => 'internal_api_error',
 					'info' => "Exception Caught: {$e->getMessage()}"

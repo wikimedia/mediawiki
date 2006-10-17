@@ -160,8 +160,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			if ($title->userCanRead()) {
 
 				if (is_null($resultPageSet)) {
-					$id = intval($row->page_id);
-
 					$vals = array ();
 					$vals['pageid'] = intval($row->page_id);
 					$vals['revid'] = intval($row->rev_id);
