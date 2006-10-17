@@ -57,6 +57,8 @@ class ApiMain extends ApiBase {
 	private static $Formats = array (
 		'json' => 'ApiFormatJson',
 		'jsonfm' => 'ApiFormatJson',
+		'raw' => 'ApiFormatJson',
+		'rawfm' => 'ApiFormatJson',
 		'xml' => 'ApiFormatXml',
 		'xmlfm' => 'ApiFormatXml',
 		'yaml' => 'ApiFormatYaml',
@@ -169,6 +171,9 @@ class ApiMain extends ApiBase {
 			ob_clean();
 			$this->mResult->Reset();
 			$this->mResult->addValue(null, 'error', $errMessage);
+
+			// If the error occured during printing, do a printer->profileOut()
+			$this->mPrinter->safeProfileOut();
 			$this->printResult(true);
 		}
 		

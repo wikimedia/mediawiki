@@ -232,8 +232,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
 				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX1 => 500,
-				ApiBase :: PARAM_MAX2 => 5000
+				ApiBase :: PARAM_MAX1 => ApiBase :: LIMIT_BIG1,
+				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
 			),
 			'prop' => array (
 				APIBase :: PARAM_ISMULTI => true,

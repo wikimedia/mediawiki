@@ -104,8 +104,6 @@ class ApiFormatXml extends ApiFormatBase {
 				$subElements = array ();
 				foreach ($elemValue as $subElemId => & $subElemValue) {
 					if (gettype($subElemId) === 'integer') {
-						if (!is_array($subElemValue))
-							ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has a scalar indexed value.");
 						$indElements[] = $subElemValue;
 						unset ($elemValue[$subElemId]);
 					} elseif (is_array($subElemValue)) {
@@ -115,7 +113,7 @@ class ApiFormatXml extends ApiFormatBase {
 				}
 
 				if (is_null($subElemIndName) && !empty ($indElements))
-					ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has integer keys without _element value");
+					ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has integer keys without _element value. Use ApiResult::setIndexedTagName().");
 
 				if (!empty ($subElements) && !empty ($indElements) && !is_null($subElemContent))
 					ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has content and subelements");

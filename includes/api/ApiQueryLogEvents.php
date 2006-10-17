@@ -36,14 +36,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$limit = $type = $from = $to = $dir = $user = $title = $namespace = null;
+		$limit = $type = $start = $end = $dir = $user = $title = null;
 		extract($this->extractRequestParams());
 
 		$db = $this->getDB();
 
 		extract($db->tableNames('logging', 'page', 'user'), EXTR_PREFIX_ALL, 'tbl');
-
-		$tables = "$tbl_logging LEFT OUTER JOIN $tbl_page ON log_namespace=page_namespace AND log_title=page_title " .
+		$tables = "$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
+		"log_namespace=page_namespace AND log_title=page_title " .
 		"INNER JOIN $tbl_user ON user_id=log_user";
 
 		$fields = array (
@@ -80,11 +80,19 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$where['log_title'] = $titleObj->getDBkey();
 		}
 
-		//		$where[] = "log_timestamp $direction '$safetime'";
+		$dirNewer = ($dir === 'newer');
+		$before = ($dirNewer ? '<=' : '>=');
+		$after = ($dirNewer ? '>=' : '<=');
+
+		if (!is_null($start))
+			$where[] = 'log_timestamp' . $after . $db->addQuotes($start);
+		if (!is_null($end))
+			$where[] = 'log_timestamp' . $before . $db->addQuotes($end);
 
 		$options = array (
-			'LIMIT' => $limit +1
-		);
+			'LIMIT' => $limit +1,
+			'ORDER BY' => 'log_timestamp' . ($dirNewer ? '' : ' DESC'
+		));
 
 		$this->profileDBIn();
 		$res = $db->select($tables, $fields, $where, __METHOD__, $options);
@@ -95,27 +103,42 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->page_title));
+				$this->setContinueEnumParameter('start', ApiQueryBase :: keyToTitle($row->log_timestamp));
 				break;
 			}
 
 			$vals = array (
-				'type' => $row->log_type,
-				'action' => $row->log_action,
+				'action' => "$row->log_type/$row->log_action",
 				'timestamp' => $row->log_timestamp,
 				'comment' => $row->log_comment,
-				'params' => $row->log_params,
-				'pageid' => intval($row->page_id)
-			);
-			
+				'pageid' => intval($row->page_id
+			));
+
 			$title = Title :: makeTitle($row->log_namespace, $row->log_title);
 			$vals['ns'] = $title->getNamespace();
 			$vals['title'] = $title->getPrefixedText();
 
+			if ($row->log_params !== '') {
+				$params = explode("\n", $row->log_params);
+				if ($row->log_type == 'move' && isset ($params[0])) {
+					$destTitle = Title :: newFromText($params[0]);
+					if ($destTitle) {
+						$vals['tons'] = $destTitle->getNamespace();
+						$vals['totitle'] = $destTitle->getPrefixedText();
+						$params = null;
+					}
+				}
+				
+				if(!empty($params)) {
+					ApiResult :: setIndexedTagName($params, 'param');
+					$vals = array_merge($vals, $params);
+				}
+			}
+
 			if (!$row->log_user)
 				$vals['anon'] = '';
 			$vals['user'] = $row->user_name;
-			
+
 			$data[] = $vals;
 		}
 		$db->freeResult($res);
@@ -125,21 +148,56 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	protected function getAllowedParams() {
-
 		return array (
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
 				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX1 => 500,
-				ApiBase :: PARAM_MAX2 => 5000
-			)
+				ApiBase :: PARAM_MAX1 => ApiBase :: LIMIT_BIG1,
+				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+			),
+			'type' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
+					'block',
+					'protect',
+					'rights',
+					'delete',
+					'upload',
+					'move',
+					'import',
+					'renameuser',
+					'newusers',
+					'makebot'
+				)
+			),
+			'start' => array (
+				ApiBase :: PARAM_TYPE => 'timestamp'
+			),
+			'end' => array (
+				ApiBase :: PARAM_TYPE => 'timestamp'
+			),
+			'dir' => array (
+				ApiBase :: PARAM_DFLT => 'older',
+				ApiBase :: PARAM_TYPE => array (
+					'newer',
+					'older'
+				)
+			),
+			'user' => null,
+			'title' => null
 		);
 	}
 
 	protected function getParamDescription() {
 		return array (
-			'limit' => 'How many total items to return.'
+			'limit' => '',
+			'type' => '',
+			'start' => '',
+			'end' => '',
+			'dir' => '',
+			'user' => '',
+			'title' => ''
 		);
 	}
 
@@ -154,7 +212,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id:$';
+		return __CLASS__ . ': $Id$';
 	}
 }
 ?>
