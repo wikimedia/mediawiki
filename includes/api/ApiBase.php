@@ -319,8 +319,10 @@ abstract class ApiBase {
 				case 'timestamp' :
 					if ($multi)
 						ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $paramName");
-					if (!preg_match('/^[0-9]{14}$/', $value))
+					if (!preg_match('/^[0-9]{14}$/', $value)) {
+						$valueName = ""; // TODO: initialization
 						$this->dieUsage("Invalid value '$value' for timestamp parameter $paramName", "badtimestamp_{$valueName}");
+					}
 					break;
 				default :
 					ApiBase :: dieDebug(__METHOD__, "Param $paramName's type is unknown - $type");
@@ -365,8 +367,6 @@ abstract class ApiBase {
 	* Validate the value against the minimum and user/bot maximum limits. Prints usage info on failure.
 	*/
 	function validateLimit($varname, $value, $min, $max, $botMax) {
-		global $wgUser;
-
 		if ($value < $min) {
 			$this->dieUsage("$varname may not be less than $min (set to $value)", $varname);
 		}

@@ -46,7 +46,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Get the main Query module 
+	 * Get the main Query module
 	 */
 	public function getQuery() {
 		return $this->mQueryModule;
@@ -101,7 +101,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	public function __construct($query, $moduleName, $paramPrefix = '') {
 		parent :: __construct($query, $moduleName, $paramPrefix);
-		$mIsGenerator = false;
+		$this->mIsGenerator = false;
 	}
 
 	public function setGeneratorMode() {
