@@ -89,8 +89,8 @@ class ApiLogin extends ApiBase {
 
 	protected function getAllowedParams() {
 		return array (
-			'name' => '',
-			'password' => '',
+			'name' => null,
+			'password' => null,
 			'domain' => null
 		);
 	}
