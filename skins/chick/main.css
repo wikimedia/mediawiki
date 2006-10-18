@@ -50,20 +50,26 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 0.17em;
     border-bottom: 1px solid #aaaaaa;
 }
+.editsection {
+	font-weight: normal;
+	float: right;
+	margin-left: 5px;
+}
 h1 { font-size: 188%; }
+h1 .editsection { font-size: 53.2%; }
 h2 { font-size: 150%; }
+h2 .editsection { font-size: 66.7%; }
 h3, h4, h5, h6 {
     border-bottom: none;
     font-weight: bold;
 }
 h3 { font-size: 132%; }
+h3 .editsection { font-size: 75.8%; }
 h4 { font-size: 116%; }
+h4 .editsection { font-size: 86.2%; }
 h5 { font-size: 100%; }
 h6 { font-size: 80%;  }
-.editsection {
-	float: right;
-	margin-left: 5px;
-}
+h6 .editsection { font-size: 125%; }
 
 ul {
     line-height: 1.5em;

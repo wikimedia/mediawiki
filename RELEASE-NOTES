@@ -55,6 +55,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7581) Update language name for cbk-zam
 * (bug 7444) Update namespace translations for Telugu (te), kept old values as
   alias for compatibility
+* (bug 4525) Move section links down visually to same level as headings 
+  editsection links are now inside the heading elements)
 
 
 == Languages updated ==
