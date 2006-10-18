@@ -1917,8 +1917,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 'confirmemail_sent' => 'E-mail de confirmação enviado.',
 'confirmemail_sendfailed' => 'Não foi possível enviar o email de confirmação. Por favor verifique o seu endereço de e-mail.
 
-Mailer retornou: $1
-',
+Mailer retornou: $1',
 'confirmemail_invalid' => 'Código de confirmação inválido. O código poderá ter expirado.',
 'confirmemail_needlogin' => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
 'confirmemail_success' => 'O seu endereço de e-mail foi confirmado. Pode agora se ligar.',
