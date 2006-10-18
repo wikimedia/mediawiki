@@ -3155,8 +3155,8 @@ Blah blah
 <p>More
 </p>
 <a name="Smaller_headline"></a><h3><span class="editsection">[<a href="/phase3/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Edit section: Smaller headline">edit</a>]</span> <span class="mw-headline">Smaller headline</span></h3>
-
 <p>Blah blah
+
 </p>
 !! end
 
