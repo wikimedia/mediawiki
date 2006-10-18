@@ -55,8 +55,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 
 		$dirNewer = ($dir === 'newer');
-		$before = ($dirNewer ? '<=' : '>=');
-		$after = ($dirNewer ? '>=' : '<=');
+		$after = ($dirNewer ? '<=' : '>=');
+		$before = ($dirNewer ? '>=' : '<=');
 
 		$tables = array (
 			'watchlist',
