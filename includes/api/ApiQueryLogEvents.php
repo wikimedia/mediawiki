@@ -130,7 +130,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				}
 				
 				if(!empty($params)) {
-					ApiResult :: setIndexedTagName($params, 'param');
+					$this->getResult()->setIndexedTagName($params, 'param');
 					$vals = array_merge($vals, $params);
 				}
 			}
@@ -143,7 +143,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 		$db->freeResult($res);
 
-		ApiResult :: setIndexedTagName($data, 'item');
+		$this->getResult()->setIndexedTagName($data, 'item');
 		$this->getResult()->addValue('query', $this->getModuleName(), $data);
 	}
 

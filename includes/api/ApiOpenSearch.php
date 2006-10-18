@@ -57,9 +57,7 @@ class ApiOpenSearch extends ApiBase {
 		$module->execute();
 		
 		// Get clean data
-		$result =& $module->getResult();
-		$result->SanitizeData();
-		$data =& $result->GetData();
+		$data =& $module->getResultData();
 		
 		// Reformat useful data for future printing by JSON engine
 		$srchres = array();

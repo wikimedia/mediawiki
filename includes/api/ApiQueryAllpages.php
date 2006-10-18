@@ -118,8 +118,9 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 
 		if (is_null($resultPageSet)) {
-			ApiResult :: setIndexedTagName($data, 'p');
-			$this->getResult()->addValue('query', $this->getModuleName(), $data);
+			$result = $this->getResult();
+			$result->setIndexedTagName($data, 'p');
+			$result->addValue('query', $this->getModuleName(), $data);
 		}
 	}
 

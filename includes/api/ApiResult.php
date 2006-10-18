@@ -31,18 +31,27 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiResult extends ApiBase {
 
-	private $mData;
+	private $mData, $mNeedsRaw;
 
 	/**
 	* Constructor
 	*/
 	public function __construct($main) {
 		parent :: __construct($main, 'result');
-		$this->Reset();
+		$this->mNeedsRaw = false;
+		$this->reset();
 	}
 
-	public function Reset() {
+	public function reset() {
 		$this->mData = array ();
+	}
+	
+	/**
+	 * Call this function when special elements such as '_element' 
+	 * are needed by the formatter, for example in XML printing. 
+	 */
+	public function setRawMode() {
+		$this->mNeedsRaw = true;
 	}
 
 	function & getData() {
@@ -97,10 +106,13 @@ class ApiResult extends ApiBase {
 	 * In case the array contains indexed values (in addition to named),
 	 * all indexed values will have the given tag name.
 	 */
-	public static function setIndexedTagName(& $arr, $tag) {
-		// Do not use setElement() as it is ok to call this more than once
+	public function setIndexedTagName(& $arr, $tag) {
+		// In raw mode, add the '_element', otherwise just ignore
+		if (!$this->mNeedsRaw)
+			return;
 		if ($arr === null || $tag === null || !is_array($arr) || is_array($tag))
 			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
+		// Do not use setElement() as it is ok to call this more than once
 		$arr['_element'] = $tag;
 	}
 
@@ -128,26 +140,6 @@ class ApiResult extends ApiBase {
 		}
 
 		ApiResult :: setElement($data, $name, $value);
-	}
-
-	/**
-	* Recursivelly removes any elements from the array that begin with an '_'.
-	* The content element '*' is the only special element that is left.
-	* Use this method when the entire data object gets sent to the user.
-	*/
-	public function SanitizeData() {
-		ApiResult :: SanitizeDataInt($this->mData);
-	}
-
-	private static function SanitizeDataInt(& $data) {
-		foreach ($data as $key => & $value) {
-			if ($key[0] === '_') {
-				unset ($data[$key]);
-			}
-			elseif (is_array($value)) {
-				ApiResult :: SanitizeDataInt($value);
-			}
-		}
 	}
 
 	public function execute() {

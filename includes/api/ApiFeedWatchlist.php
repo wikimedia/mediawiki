@@ -49,7 +49,8 @@ class ApiFeedWatchlist extends ApiBase {
 			'meta' => 'siteinfo',
 			'siprop' => 'general',
 			'list' => 'watchlist',
-			'wlstart' => wfTimestamp(TS_MW, time() - intval( 3 * 86400 )), // limit to 3 days
+			'wlprop' => 'user|comment|timestamp',
+			'wlstart' => wfTimestamp(TS_MW, time() - intval( 1 * 86400 )), // limit to 1 day
 			'wllimit' => 50
 		));
 
@@ -57,22 +58,20 @@ class ApiFeedWatchlist extends ApiBase {
 		$module = new ApiMain($params);
 		$module->execute();
 
-		// Get clean data
-		$result = & $module->getResult();
-		$result->SanitizeData();
-		$data = & $result->GetData();
+		// Get data array
+		$data = & $module->getResultData();
 
 		$feedItems = array ();
 		foreach ($data['query']['watchlist'] as $index => $info) {
 			$title = $info['title'];
 			$titleUrl = Title :: newFromText($title)->getFullUrl();
-			$feedItems[] = new FeedItem($title, '', $titleUrl, $info['timestamp'], $info['user']);
+			$feedItems[] = new FeedItem($title, $info['comment'], $titleUrl, $info['timestamp'], $info['user']);
 		}
 
 		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
 		$feedTitle = $wgSitename . ' - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
 		$feedUrl = Title :: makeTitle(NS_SPECIAL, 'Watchlist')->getFullUrl();
-		$feed = new $wgFeedClasses[$feedformat] ($feedTitle, '!Watchlist!', $feedUrl);
+		$feed = new $wgFeedClasses[$feedformat] ($feedTitle, '!Watchlist (TODO)!', $feedUrl);
 
 		ApiFormatFeedWrapper :: setResult($this->getResult(), $feed, $feedItems);
 	}

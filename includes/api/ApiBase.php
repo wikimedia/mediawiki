@@ -166,7 +166,7 @@ abstract class ApiBase {
 			$paramsDescription = $this->getParamDescription();
 			$msg = '';
 			$paramPrefix = "\n" . str_repeat(' ', 19);
-			foreach ($params as $paramName => & $paramSettings) {
+			foreach ($params as $paramName => $paramSettings) {
 				$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
 				if (is_array($desc))
 					$desc = implode($paramPrefix, $desc);

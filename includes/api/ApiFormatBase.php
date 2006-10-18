@@ -98,9 +98,10 @@ abstract class ApiFormatBase extends ApiBase {
 ?>
 			<br/>
 			<small>
-			This result is being shown in <?=$this->mFormat?> format,
-			which might not be suitable for your application.<br/>
-			See <a href='api.php'>API help</a> for more information.<br/>
+			You are looking at the HTML representation of the <?=$this->mFormat?> format.<br/>
+			HTML is good for debugging, but probably not suitable for your application.<br/>
+			Please see "format" parameter documentation at the <a href='api.php'>API help</a>
+			for more information.<br/>
 			</small>
 <?php
 
@@ -143,7 +144,7 @@ abstract class ApiFormatBase extends ApiBase {
 		// encode all tags as safe blue strings
 		$text = ereg_replace('\<([^>]+)\>', '<font color=blue>&lt;\1&gt;</font>', $text);
 		// identify URLs
-		$text = ereg_replace("[a-zA-Z]+://[^ '()<\n]+", '<a href="\\0">\\0</a>', $text);
+		$text = ereg_replace("[a-zA-Z]+://[^ '\"()<\n]+", '<a href="\\0">\\0</a>', $text);
 		// identify requests to api.php
 		$text = ereg_replace("api\\.php\\?[^ ()<\n\t]+", '<a href="\\0">\\0</a>', $text);
 		// make strings inside * bold
