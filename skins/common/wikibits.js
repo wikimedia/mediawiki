@@ -503,9 +503,9 @@ function akeytt() {
 
 function setupRightClickEdit() {
 	if (document.getElementsByTagName) {
-		var divs = document.getElementsByTagName('div');
-		for (var i = 0; i < divs.length; i++) {
-			var el = divs[i];
+		var spans = document.getElementsByTagName('span');
+		for (var i = 0; i < spans.length; i++) {
+			var el = spans[i];
 			if(el.className == 'editsection') {
 				addRightClickEditHandler(el);
 			}
@@ -518,27 +518,56 @@ function addRightClickEditHandler(el) {
 		var link = el.childNodes[i];
 		if (link.nodeType == 1 && link.nodeName.toLowerCase() == 'a') {
 			var editHref = link.getAttribute('href');
+			// find the enclosing (parent) header
+			var prev = el.parentNode;
+			if (prev && prev.nodeType == 1 &&
+			prev.nodeName.match(/^[Hh][1-6]$/)) {
+				prev.oncontextmenu = function(e) {
+					if (!e) var e = window.event;
+					// e is now the event in all browsers
+					if (e.target) var targ = e.target;
+					else if (e.srcElement) var targ = e.srcElement;
+					if (targ.nodeType == 3) // defeat Safari bug
+						targ = targ.parentNode;
+					// targ is now the target element
 
-			// find the following a
-			var next = el.nextSibling;
-			while (next.nodeType != 1)
-				next = next.nextSibling;
-
-			// find the following header
-			next = next.nextSibling;
-			while (next.nodeType != 1)
-				next = next.nextSibling;
-
-			if (next && next.nodeType == 1 &&
-				next.nodeName.match(/^[Hh][1-6]$/)) {
-				next.oncontextmenu = function() {
-					document.location = editHref;
-					return false;
+					// We don't want to deprive the noble reader of a context menu
+					// for the section edit link, do we?  (Might want to extend this
+					// to all <a>'s?)
+					if (targ.nodeName.toLowerCase() != 'a'
+					|| targ.parentNode.className != 'editsection') {
+						document.location = editHref;
+						return false;
+					}
 				}
 			}
 		}
 	}
 }
+/*
+function addRightClickEditHandler(el) {
+	// find the enclosing (parent) header
+	var par = el.parentNode;
+	if (par && par.nodeType == 1 && par.nodeName.match(/^[Hh][1-6]$/)) {
+		par.oncontextmenu = function(e) {
+			if (!e) var e = window.event;
+			// e is now the event in all browsers
+			if (e.target) targ = e.target;
+			else if (e.srcElement) targ = e.srcElement;
+			if (targ.nodeType == 3) // defeat Safari bug
+				targ = targ.parentNode;
+			// targ is now the target element
+			// We don't want to deprive the noble reader of a context menu
+			// for the section edit link, do we?  (Might want to extend this
+			// to all <a>'s.)links
+			if (targ.className != 'editsection') {
+				document.location = editHref;
+				return false;
+			}
+		}
+	}
+}
+*/
 
 function setupCheckboxShiftClick() {
 	if (document.getElementsByTagName) {

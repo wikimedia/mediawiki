@@ -29,16 +29,18 @@ textarea { overflow: auto; }
 
 h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
 font-size:150%; }
+h1.pagetitle .editsection { font-size: 66.7%; }
 h2 { font-size: 120%; }
+h2 .editsection { font-size: 83.3%; }
 h2, h3, h4, h5, h6 { margin-bottom: 0;}
 h3 { font-size: 106.25%; }
+h3 .editsection { font-size: 94.1%; }
 h4 { font-size: 103.125%; }
+h4 .editsection { font-size: 97.0%; }
 h5 { font-size: 100%; }
+h5 .editsection { font-size: 100%; }
 h6 { font-size: 95%; }
-.editsection {
-	float: right;
-	margin-left: 5px;
-}
+h6 .editsection { font-size: 105.3%; }
 hr.sep { color:gray;height:1px;background-color:gray;}
 p.subpages { font-size:small;}
 p.subtitle { padding-top: 0; margin-top: 0;}
