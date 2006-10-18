@@ -136,6 +136,8 @@ class ApiMain extends ApiBase {
 			// Printer may not be initialized if the extractRequestParams() fails for the main module
 			if (!isset ($this->mPrinter)) {
 				$this->mPrinter = $this->createPrinterByName(self :: API_DEFAULT_FORMAT);
+				if ($this->mPrinter->getNeedsRawData())
+					$this->getResult()->setRawMode();
 			}
 			
 			if ($e instanceof UsageException) {
@@ -167,8 +169,8 @@ class ApiMain extends ApiBase {
 
 			// Reset and print just the error message
 			ob_clean();
-			$this->mResult->Reset();
-			$this->mResult->addValue(null, 'error', $errMessage);
+			$this->getResult()->reset();
+			$this->getResult()->addValue(null, 'error', $errMessage);
 
 			// If the error occured during printing, do a printer->profileOut()
 			$this->mPrinter->safeProfileOut();
@@ -193,11 +195,13 @@ class ApiMain extends ApiBase {
 			
 			// See if custom printer is used
 			$this->mPrinter = $module->getCustomPrinter();				
-			
 			if (is_null($this->mPrinter)) {
 				// Create an appropriate printer
 				$this->mPrinter = $this->createPrinterByName($format);
 			}
+			
+			if ($this->mPrinter->getNeedsRawData())
+				$this->getResult()->setRawMode();
 		}
 		
 		// Execute
@@ -218,8 +222,6 @@ class ApiMain extends ApiBase {
 		$printer = $this->mPrinter;
 		$printer->profileIn();
 		$printer->initPrinter($isError);
-		if (!$printer->getNeedsRawData())
-			$this->getResult()->SanitizeData();
 		$printer->execute();
 		$printer->closePrinter();
 		$printer->profileOut();

@@ -167,6 +167,7 @@ class ApiQuery extends ApiBase {
 	private function outputGeneralPageInfo() {
 
 		$pageSet = $this->getPageSet();
+		$result = $this->getResult();
 
 		// Title normalizations
 		$normValues = array ();
@@ -178,8 +179,8 @@ class ApiQuery extends ApiBase {
 		}
 
 		if (!empty ($normValues)) {
-			ApiResult :: setIndexedTagName($normValues, 'n');
-			$this->getResult()->addValue('query', 'normalized', $normValues);
+			$result->setIndexedTagName($normValues, 'n');
+			$result->addValue('query', 'normalized', $normValues);
 		}
 
 		// Show redirect information
@@ -192,8 +193,8 @@ class ApiQuery extends ApiBase {
 		}
 
 		if (!empty ($redirValues)) {
-			ApiResult :: setIndexedTagName($redirValues, 'r');
-			$this->getResult()->addValue('query', 'redirects', $redirValues);
+			$result->setIndexedTagName($redirValues, 'r');
+			$result->addValue('query', 'redirects', $redirValues);
 		}
 
 
@@ -208,8 +209,8 @@ class ApiQuery extends ApiBase {
 					'revid' => $revid
 				);
 			}
-			ApiResult :: setIndexedTagName($revids, 'rev');
-			$this->getResult()->addValue('query', 'badrevids', $revids);
+			$result->setIndexedTagName($revids, 'rev');
+			$result->addValue('query', 'badrevids', $revids);
 		}
 		
 		//
@@ -239,8 +240,8 @@ class ApiQuery extends ApiBase {
 		}
 
 		if (!empty ($pages)) {
-			ApiResult :: setIndexedTagName($pages, 'page');
-			$this->getResult()->addValue('query', 'pages', $pages);
+			$result->setIndexedTagName($pages, 'page');
+			$result->addValue('query', 'pages', $pages);
 		}
 	}
 

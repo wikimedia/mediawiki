@@ -65,7 +65,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						);
 						ApiResult :: setContent($data[$ns], $title);
 					}
-					ApiResult :: setIndexedTagName($data, 'ns');
+					$this->getResult()->setIndexedTagName($data, 'ns');
 					$this->getResult()->addValue('query', $p, $data);
 					break;
 
