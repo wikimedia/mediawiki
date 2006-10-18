@@ -62,13 +62,15 @@ define( 'MW_COLON_STATE_COMMENTDASHDASH', 7 );
  * Processes wiki markup
  *
  * <pre>
- * There are three main entry points into the Parser class:
+ * There are four main entry points into the Parser class:
  * parse()
  *   produces HTML output
  * preSaveTransform().
  *   produces altered wiki markup.
  * transformMsg()
  *   performs brace substitution on MediaWiki messages
+ * preprocess()
+ *   removes HTML comments and expands templates
  *
  * Globals used:
  *    objects:   $wgLang, $wgContLang
