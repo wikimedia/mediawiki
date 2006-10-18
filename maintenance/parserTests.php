@@ -26,22 +26,24 @@
 require('parserTests.inc');
 
 if( isset( $options['help'] ) ) {
-    echo <<<END
+    echo <<<ENDS
 MediaWiki $wgVersion parser test suite
-Usage: php parserTests.php [--quick] [--quiet] [--color[=(yes|no|light)]]
+Usage: php parserTests.php [--quick] [--quiet] [--show-output]
+                           [--color[=(yes|no|light)]]
                            [--regex=<expression>] [--file=<testfile>]
                            [--help]
 Options:
-  --quick  Suppress diff output of failed tests
-  --quiet  Suppress notification of passed tests (shows only failed tests)
-  --color  Override terminal detection and force color output on or off
-           'light' option is similar to 'yes' but with color for dark backgrounds
-  --regex  Only run tests whose descriptions which match given regex
-  --file   Run test cases from a custom file instead of parserTests.txt
-  --help   Show this help message
+  --quick          Suppress diff output of failed tests
+  --quiet          Suppress notification of passed tests (shows only failed tests)
+  --show-output    Show expected and actual output
+  --color          Override terminal detection and force color output on or off
+                   'light' option is similar to 'yes' but with color for dark backgrounds
+  --regex          Only run tests whose descriptions which match given regex
+  --file           Run test cases from a custom file instead of parserTests.txt
+  --help           Show this help message
 
 
-END;
+ENDS;
     exit( 0 );
 }
 

@@ -25,7 +25,7 @@
  */
 
 /** */
-$options = array( 'quick', 'color', 'quiet', 'help' );
+$options = array( 'quick', 'color', 'quiet', 'help', 'show-output' );
 $optionsWithArgs = array( 'regex' );
 
 require_once( 'commandLine.inc' );
@@ -52,6 +52,11 @@ class ParserTest {
 	 * @private
 	 */
 	var $lightcolor;
+
+	/**
+	 * boolean $showOutput Show test output
+	 */
+	var $showOutput;
 
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
@@ -82,8 +87,9 @@ class ParserTest {
 		}
 
 		$this->showDiffs = !isset( $options['quick'] );
-
 		$this->quiet = isset( $options['quiet'] );
+		$this->showOutput = isset( $options['show-output'] );
+
 
 		if (isset($options['regex'])) {
 			$this->regex = $options['regex'];
@@ -586,6 +592,9 @@ class ParserTest {
 			$this->showTesting( $desc );
 		}
 		print $this->termColor( '1;31' ) . 'FAILED!' . $this->termReset() . "\n";
+		if ( $this->showOutput ) {
+			print "--- Expected ---\n$result\n--- Actual ---\n$html\n";
+		}
 		if( $this->showDiffs ) {
 			print $this->quickDiff( $result, $html );
 			if( !$this->wellFormed( $html ) ) {
