@@ -31,14 +31,14 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiResult extends ApiBase {
 
-	private $mData, $mNeedsRaw;
+	private $mData, $mIsRawMode;
 
 	/**
 	* Constructor
 	*/
 	public function __construct($main) {
 		parent :: __construct($main, 'result');
-		$this->mNeedsRaw = false;
+		$this->mIsRawMode = false;
 		$this->reset();
 	}
 
@@ -51,10 +51,14 @@ class ApiResult extends ApiBase {
 	 * are needed by the formatter, for example in XML printing. 
 	 */
 	public function setRawMode() {
-		$this->mNeedsRaw = true;
+		$this->mIsRawMode = true;
+	}
+	
+	public function getIsRawMode() {
+		return $this->mIsRawMode;
 	}
 
-	function & getData() {
+	public function & getData() {
 		return $this->mData;
 	}
 
@@ -108,7 +112,7 @@ class ApiResult extends ApiBase {
 	 */
 	public function setIndexedTagName(& $arr, $tag) {
 		// In raw mode, add the '_element', otherwise just ignore
-		if (!$this->mNeedsRaw)
+		if (!$this->getIsRawMode())
 			return;
 		if ($arr === null || $tag === null || !is_array($arr) || is_array($tag))
 			ApiBase :: dieDebug(__METHOD__, 'Bad parameter');
