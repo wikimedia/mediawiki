@@ -43,6 +43,9 @@ class ApiFeedWatchlist extends ApiBase {
 		$feedformat = null;
 		extract($this->extractRequestParams());
 
+		// limit to 1 day
+		$startTime = wfTimestamp(TS_MW, time() - intval(1 * 86400));
+
 		// Prepare nested request
 		$params = new FauxRequest(array (
 			'action' => 'query',
@@ -50,10 +53,10 @@ class ApiFeedWatchlist extends ApiBase {
 			'siprop' => 'general',
 			'list' => 'watchlist',
 			'wlprop' => 'user|comment|timestamp',
-			'wlstart' => wfTimestamp(TS_MW, time() - intval( 1 * 86400 )), // limit to 1 day
+			'wlstart' => $startTime,
 			'wllimit' => 50
 		));
-		
+
 		// Execute
 		$module = new ApiMain($params);
 		$module->execute();
@@ -63,20 +66,34 @@ class ApiFeedWatchlist extends ApiBase {
 
 		$feedItems = array ();
 		foreach ($data['query']['watchlist'] as $index => $info) {
-			$title = $info['title'];
-			$titleUrl = Title :: newFromText($title)->getFullUrl();
-			$feedItems[] = new FeedItem($title, $info['comment'], $titleUrl, $info['timestamp'], $info['user']);
+			$feedItems[] = $this->createFeedItem($info);
 		}
 
 		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
 		$feedTitle = $wgSitename . ' - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
 		$feedUrl = Title :: makeTitle(NS_SPECIAL, 'Watchlist')->getFullUrl();
-		$feed = new $wgFeedClasses[$feedformat] ($feedTitle, '!Watchlist (TODO)!', $feedUrl);
+
+		$feed = new $wgFeedClasses[$feedformat] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
 
 		ApiFormatFeedWrapper :: setResult($this->getResult(), $feed, $feedItems);
 	}
 
-	protected function GetAllowedParams() {
+	private function createFeedItem($info) {
+		global $wgUser;
+
+		$titleStr = $info['title'];
+		$title = Title :: newFromText($titleStr);
+		$titleUrl = $title->getFullUrl();
+		$comment = $info['comment'];
+		$timestamp = $info['timestamp'];
+		$user = $info['user'];
+
+		$completeText = "$comment ($user)";
+
+		return new FeedItem($titleStr, $completeText, $titleUrl, $timestamp, $user);
+	}
+
+	protected function getAllowedParams() {
 		global $wgFeedClasses;
 		$feedFormatNames = array_keys($wgFeedClasses);
 		return array (
@@ -87,17 +104,17 @@ class ApiFeedWatchlist extends ApiBase {
 		);
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array (
 			'feedformat' => 'The format of the feed'
 		);
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return 'This module returns a watchlist feed';
 	}
 
-	protected function GetExamples() {
+	protected function getExamples() {
 		return array (
 			'api.php?action=feedwatchlist'
 		);

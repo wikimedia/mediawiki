@@ -76,13 +76,10 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * This is a very simplistic utility function
-	 * to convert a title string to a db key.
-	 * It will replace all ' ' with '_', and make first letter uppercase
+	 * to convert a non-namespaced title string to a db key.
+	 * It will replace all ' ' with '_'
 	 */
 	public static function titleToKey($title) {
-		global $wgContLang, $wgCapitalLinks;
-		if ($wgCapitalLinks)
-			$title = $wgContLang->ucfirst( $title );
 		return str_replace(' ', '_', $title);
 	}
 

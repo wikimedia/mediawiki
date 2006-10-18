@@ -142,7 +142,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$where[] = 'rev_timestamp' . $before . $db->addQuotes($end);
 
 			// must manually initialize unset limit
-			if (!!is_null($limit))
+			if (is_null($limit))
 				$limit = 10;
 
 			$this->validateLimit($this->encodeParamName('limit'), $limit, 1, $userMax, $botMax);

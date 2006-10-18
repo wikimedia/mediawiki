@@ -59,7 +59,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		if (isset ($from)) {
 			$where[] = 'page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($from));
 		}
-		
+
 		if (isset ($prefix)) {
 			$where[] = "page_title LIKE '{$db->strencode(ApiQueryBase :: titleToKey($prefix))}%'";
 		}
@@ -108,8 +108,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 					$id = intval($row->page_id);
 					$data[$id] = array (
 						'id' => $id,
-						'ns' => $title->getNamespace(),
-						'title' => $title->getPrefixedText());
+					'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText());
 				} else {
 					$resultPageSet->processDbRow($row);
 				}
@@ -125,27 +124,30 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	protected function getAllowedParams() {
-
+		$namespaces = $this->getQuery()->getValidNamespaces();
 		return array (
 			'from' => null,
 			'prefix' => null,
 			'namespace' => array (
 				ApiBase :: PARAM_DFLT => 0,
-				ApiBase :: PARAM_TYPE => $this->getQuery()->getValidNamespaces()),
+				ApiBase :: PARAM_TYPE => $namespaces
+			),
 			'filterredir' => array (
 				ApiBase :: PARAM_DFLT => 'all',
 				ApiBase :: PARAM_TYPE => array (
 					'all',
 					'redirects',
 					'nonredirects'
-				)),
+				)
+			),
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
 				ApiBase :: PARAM_MIN => 1,
 				ApiBase :: PARAM_MAX1 => ApiBase :: LIMIT_BIG1,
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
-		));
+			)
+		);
 	}
 
 	protected function getParamDescription() {
