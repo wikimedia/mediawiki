@@ -28,7 +28,8 @@ a.new{ color:#ba0000; text-decoration:none; }
 
 /* images */
 div.floatright { 
-    float: right; 
+    float: right;
+    clear: right;
     margin: 0;
     position:relative;
     border: 0.5em solid White;
@@ -136,7 +137,7 @@ h1, h2, h3, h4, h5, h6
 
 p, .documentDescription {
     margin: 1em 0 ! important;
-    line-height: 1.2em;    
+    line-height: 1.2em;
 }
 
 .tocindent p {

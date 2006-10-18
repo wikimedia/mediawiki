@@ -4,7 +4,7 @@
  */
 #footer { clear: both }
 /* images */
-div.floatright { float: right; margin: 0 0 1em 1em; }
+div.floatright { float: right; clear: right; margin: 0 0 1em 1em; }
 div.floatright p { font-style: italic; }
 div.floatleft { float: left; margin: 0.3em 0.5em 0.5em 0; }
 div.floatleft p { font-style: italic; }
