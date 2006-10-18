@@ -42,54 +42,58 @@ class ApiOpenSearch extends ApiBase {
 	public function execute() {
 		$search = null;
 		extract($this->ExtractRequestParams());
-		
+
+		$title = Title :: newFromText($search);
+		if(!$title)
+			return; // Return empty result
+			
 		// Prepare nested request
 		$params = new FauxRequest(array (
 			'action' => 'query',
 			'list' => 'allpages',
-			'apnamespace' => 0,
+			'apnamespace' => $title->getNamespace(),
 			'aplimit' => 10,
-			'apprefix' => $search
+			'apprefix' => $title->getDBkey()
 		));
-		
+
 		// Execute
 		$module = new ApiMain($params);
 		$module->execute();
-		
+
 		// Get clean data
-		$data =& $module->getResultData();
-		
+		$data = & $module->getResultData();
+
 		// Reformat useful data for future printing by JSON engine
-		$srchres = array();
-		foreach ($data['query']['allpages'] as $pageid => &$pageinfo) {
+		$srchres = array ();
+		foreach ($data['query']['allpages'] as $pageid => & $pageinfo) {
 			// Note: this data will no be printable by the xml engine
 			// because it does not support lists of unnamed items
 			$srchres[] = $pageinfo['title'];
 		}
-		
+
 		// Set top level elements
 		$result = $this->getResult();
 		$result->addValue(null, 0, $search);
 		$result->addValue(null, 1, $srchres);
 	}
-	
-	protected function GetAllowedParams() {
+
+	protected function getAllowedParams() {
 		return array (
 			'search' => null
 		);
 	}
 
-	protected function GetParamDescription() {
+	protected function getParamDescription() {
 		return array (
 			'search' => 'Search string'
 		);
 	}
 
-	protected function GetDescription() {
+	protected function getDescription() {
 		return 'This module implements OpenSearch protocol';
 	}
 
-	protected function GetExamples() {
+	protected function getExamples() {
 		return array (
 			'api.php?action=opensearch&search=Te'
 		);
