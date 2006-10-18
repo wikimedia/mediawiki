@@ -4668,23 +4668,23 @@ class ParserOutput
  */
 class ParserOptions
 {
-	# All variables are private
-	private $mUseTeX;                    # Use texvc to expand <math> tags
-	private $mUseDynamicDates;           # Use DateFormatter to format dates
-	private $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
-	private $mAllowExternalImages;       # Allow external images inline
-	private $mAllowExternalImagesFrom;   # If not, any exception?
-	private $mSkin;                      # Reference to the preferred skin
-	private $mDateFormat;                # Date format index
-	private $mEditSection;               # Create "edit section" links
-	private $mNumberHeadings;            # Automatically number headings
-	private $mAllowSpecialInclusion;     # Allow inclusion of special pages
-	private $mTidy;                      # Ask for tidy cleanup
-	private $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
-	private $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
-	private $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
+	# All variables are supposed to be private in theory, although in practise this is not the case.
+	var $mUseTeX;                    # Use texvc to expand <math> tags
+	var $mUseDynamicDates;           # Use DateFormatter to format dates
+	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
+	var $mAllowExternalImages;       # Allow external images inline
+	var $mAllowExternalImagesFrom;   # If not, any exception?
+	var $mSkin;                      # Reference to the preferred skin
+	var $mDateFormat;                # Date format index
+	var $mEditSection;               # Create "edit section" links
+	var $mNumberHeadings;            # Automatically number headings
+	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
+	var $mTidy;                      # Ask for tidy cleanup
+	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
+	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
+	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
 
-	private $mUser;                      # Stored user object, just used to initialise the skin
+	var $mUser;                      # Stored user object, just used to initialise the skin
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
