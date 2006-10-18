@@ -160,7 +160,7 @@ $messages = array(
 'subcategories' => 'Podkategorie',
 
 'mainpage' => 'Strona główna',
-'mainpagetext' => '<big><b>Instalacja oprogramowania powiodła się.</b></big>',
+'mainpagetext' => "<big>'''Instalacja oprogramowania powiodła się.'''</big>",
 'mainpagedocfooter' => 'Zobacz [http://meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] w celu uzyskania informacji o działaniu oprogramowania wiki.
 
 == Na początek ==
@@ -293,7 +293,7 @@ $messages = array(
 'nstab-image' => 'Plik',
 'nstab-mediawiki' => 'Komunikat',
 'nstab-template' => 'Szablon',
-'nstab-help' => 'Pomoc',
+'nstab-help' => 'Strona pomocy',
 'nstab-category' => 'Kategoria',
 
 # Main script and global functions
@@ -360,7 +360,7 @@ dla których jest to robione - zobacz [[{{ns:Project}}:Strona_zabezpieczona]].
 
 Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.',
 'protectedinterface' => 'Ta strona dostarcza tekst interfejsu do oprogramowania i została zablokowana możliwość jej edycji.',
-'editinginterface' => '<b>Ostrzeżenie:</b> Edytujesz stronę, która jest użyta w celu dostarczenia tekstu interfejsu do oprogramowania. Zmiany na tej stronie zmienią wygląd interfejsu użytkownika dla innych użytkowników.',
+'editinginterface' => "'''Ostrzeżenie:''' Edytujesz stronę, która jest użyta w celu dostarczenia tekstu interfejsu do oprogramowania. Zmiany na tej stronie zmienią wygląd interfejsu użytkownika dla innych użytkowników.",
 'sqlhidden' => '(ukryto zapytanie SQL)',
 
 # Login and logout pages
@@ -376,7 +376,7 @@ Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:Specia
 'yourname' => 'Login',
 'yourpassword' => 'Hasło',
 'yourpasswordagain' => 'Powtórz hasło',
-'remembermypassword' => 'Zapamiętaj hasło',
+'remembermypassword' => 'Zapamiętaj moje hasło na tym komputerze',
 'yourdomainname' => 'Twoja domena',
 'externaldberror' => 'Wystąpił błąd zewnętrznej bazy autentyfikacyjnej lub nie posiadasz uprawnień koniecznych do aktualizacji zewnętrznego konta.',
 'loginproblem' => '<b>Wystąpił problem przy próbie zalogowania się.</b><br />Spróbuj ponownie!',
@@ -474,15 +474,16 @@ Nim jakiekolwiek wiadomości zostaną wysłane na ten adres, należy wypełnić 
 'showlivepreview' => 'Dynamiczny podgląd',
 'showdiff' => 'Podgląd zmian',
 'anoneditwarning' => 'Nie jesteś zalogowany. Twój adres IP będzie zapisany w historii edycji strony.',
-'missingsummary' => '<b>Przypomnienie:</b> Nie wprowadziłeś opisu zmian. Jeżeli nie chcesz go wprowadzać naciśnij przycisk "Zapisz" jeszcze raz.',
+'missingsummary' => "'''Przypomnienie:''' Nie wprowadziłeś opisu zmian. Jeżeli nie chcesz go wprowadzać naciśnij przycisk \"Zapisz\" jeszcze raz.",
 'missingcommenttext' => 'Wprowadź komentarz poniżej.',
 'blockedtitle' => 'Użytkownik jest zablokowany',
-'blockedtext' => 'Twoje konto lub adres IP zostały zablokowane przez $1.
-Podany powód to:<br /><i>$2</i>
+'blockedtext' => "'''Twoje konto lub adres IP zostały zablokowane.'''
+
+Blokada została nałożona przez $1. Podany powód to: ''$2''.
 
 W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym [[{{ns:Project}}:Administratorzy|administratorem]].
 
-Twój adres IP to $3.',
+Twój adres IP to $3.",
 'whitelistedittitle' => 'Przed edycją musisz się zalogować',
 'whitelistedittext' => 'Musisz $1 żeby móc edytować artykuły.',
 'whitelistreadtitle' => 'Przed przeczytaniem musisz się zalogować',
@@ -497,14 +498,14 @@ Twój adres IP to $3.',
 'accmailtitle' => 'Hasło wysłane.',
 'accmailtext' => 'Hasło dla użytkownika "$1" zostało wysłane pod adres $2.',
 'newarticle' => '(Nowy)',
-'newarticletext' => 'Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu <i>Wstecz</i>.',
-'anontalkpagetext' => '---- <i>To jest strona dyskusyjna dla użytkowników anonimowych - takich, którzy nie mają jeszcze swojego konta lub nie chcą go w tej chwili używać. By ich identyfikować używamy numerów IP. Jeśli jesteś anonimowym użytkownikiem i wydaje Ci się, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[{{ns:Special}}:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.</i>',
+'newarticletext' => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
+'anontalkpagetext' => "---- ''To jest strona dyskusyjna dla użytkowników anonimowych - takich, którzy nie mają jeszcze swojego konta lub nie chcą go w tej chwili używać. By ich identyfikować używamy numerów IP. Jeśli jesteś anonimowym użytkownikiem i wydaje Ci się, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[{{ns:Special}}:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
 'noarticletext' => 'Nie ma jeszcze artykułu o tym tytule. Możesz [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} utworzyć artykuł {{FULLPAGENAME}}] lub [[{{ns:Special}}:Search/{{FULLPAGENAME}}|poszukać {{FULLPAGENAME}} w innych artykułach]].',
-'clearyourcache' => '<b>Uwaga:</b> po zapisaniu zmian musisz zaktualizować pamięć podręczną (cache) przeglądarki: <b>Mozilla / Firefox:</b> kliknij <i>Reload</i> (lub <i>Ctrl-R</i>), <b>IE / Opera:</b> <i>Ctrl-F5</i>, <b>Safari:</b> <i>Cmd-R</i>, <b>Konqueror</b> <i>Ctrl-R</i>.',
+'clearyourcache' => "'''Uwaga:''' po zapisaniu zmian musisz zaktualizować pamięć podręczną (cache) przeglądarki: '''Mozilla / Firefox:''' kliknij ''Reload'' (lub ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssjsyoucanpreview' => '<strong>Wskazówka:</strong> Użyj przycisku "Podgląd", aby przetestować Twój nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
-'usercsspreview' => '<b>Pamiętaj, że to na razie tylko podgląd Twojego arkusza stylów - nic jeszcze nie zostało zapisane!</b>',
-'userjspreview' => '<b>Pamiętaj, że to na razie tylko podgląd Twojego JavaScriptu - nic jeszcze nie zostało zapisane!</b>',
-'userinvalidcssjstitle' => '<b>Uwaga:</b> Nie ma skórki o nazwie "$1". Pamiętaj, że strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą literą, np. User:Foo/monobook.css.',
+'usercsspreview' => "'''Pamiętaj, że to na razie tylko podgląd Twojego arkusza stylów - nic jeszcze nie zostało zapisane!'''",
+'userjspreview' => "'''Pamiętaj, że to na razie tylko podgląd Twojego JavaScriptu - nic jeszcze nie zostało zapisane!'''",
+'userinvalidcssjstitle' => "'''Uwaga:''' Nie ma skórki o nazwie \"$1\". Pamiętaj, że strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą literą, np. User:Foo/monobook.css.",
 'updated' => '(Zmodyfikowano)',
 'note' => '<strong>Uwaga:</strong>',
 'previewnote' => '<strong>To jest tylko podgląd - artykuł nie został jeszcze zapisany!</strong>',
@@ -526,9 +527,9 @@ By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
 'nonunicodebrowser' => "<strong>Uwaga! Twoja przeglądarka nie umie poprawnie rozpoznawać kodowania UTF-8 (Unicode). Z tego powodu wszystkie znaki, których Twoja przeglądarka nie jest w stanie rozpoznać, zostały zastąpione ich kodami heksadecymalnymi.</strong>",
 'editingold' => "<strong>Ostrzeżenie: Edytujesz inną niż bieżąca wersję tej strony. Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong>",
 'yourdiff' => 'Różnice',
-'copyrightwarning' => 'Proszę pamiętać o tym, że wszelki wkład do serwisu {{SITENAME}} jest udostępniany na zasadach $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
-Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach <i>public domain</i> albo kompatybilnych.
-<br /><strong>PROSZĘ NIE UŻYWAĆ BEZ POZWOLENIA MATERIAŁÓW OBJĘTYCH PRAWEM AUTORSKIM!</strong>',
+'copyrightwarning' => "Proszę pamiętać o tym, że wszelki wkład do serwisu {{SITENAME}} jest udostępniany na zasadach $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
+Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych.
+<br /><strong>PROSZĘ NIE UŻYWAĆ BEZ POZWOLENIA MATERIAŁÓW OBJĘTYCH PRAWEM AUTORSKIM!</strong>",
 'longpagewarning' => '<strong>Uwaga: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych przeglądarek mogą wystąpić problemy w edycji stron mających więcej niż 32 kilobajty. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
 'longpageerror' => '<strong>Błąd: Przesłany przez Ciebie tekst ma $1 kilobajtów. Maksymalna długość tekstu nie może przekraczać $2 kilobajtów. Twój tekst nie zostanie zapisany.</strong>',
 'readonlywarning' => '<strong>Uwaga: Baza danych została chwilowo zablokowana do celów administracyjnych. Nie można więc na razie zapisać nowej wersji artykułu. Proponujemy przenieść jej tekst do prywatnego pliku (wytnij/wklej) i zachować na później.</strong>',
@@ -607,11 +608,11 @@ liczba znalezionych artykułów: $3.',
 'viewprevnext' => 'Zobacz ($1) ($2) ($3).',
 'showingresults' => 'Oto lista <b>$1</b> pozycji, poczynając od numeru <b>$2</b>.',
 'showingresultsnum' => 'Oto lista <b>$3</b> pozycji, poczynając od numeru <b>$2</b>.',
-'nonefound' => '<b>Uwaga</b>: brak rezultatów wyszukiwania spowodowany jest bardzo często szukaniem najpopularniejszych słów, takich jak "jest" czy "nie", które nie są indeksowane, albo z powodu podania w zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą się tylko te, które zawierają wszystkie podane słowa).',
+'nonefound' => "'''Uwaga''': brak rezultatów wyszukiwania spowodowany jest bardzo często szukaniem najpopularniejszych słów, takich jak \"jest\" czy \"nie\", które nie są indeksowane, albo z powodu podania w zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą się tylko te, które zawierają wszystkie podane słowa).",
 'powersearch' => 'Szukaj',
 'powersearchtext' => "Szukaj w przestrzeniach nazw:<br />$1<br />$2 Pokaż przekierowania<br />Szukany tekst $3 $9",
 'searchdisabled' => 'Wyszukiwanie w serwisie {{SITENAME}} zostało wyłączone. W międzyczasie możesz skorzystać z wyszukiwania Google.',
-'blanknamespace' => '(Główna)',
+'blanknamespace' => '(główna)',
 
 # Preferences page
 #
@@ -775,7 +776,7 @@ liczba znalezionych artykułów: $3.',
 # Image list
 #
 'imagelist' => 'Lista plików',
-'imagelisttext' => 'To jest lista <b>$1</b> plików posortowanych $2.',
+'imagelisttext' => "To jest lista '''$1''' plików posortowanych $2.",
 'imagelistforuser' => 'Lista grafik załadowanych przez $1.',
 'getimagelist' => 'pobieranie listy plików',
 'ilsubmit' => 'Szukaj',
@@ -834,16 +835,16 @@ liczba znalezionych artykułów: $3.',
 'statistics' => 'Statystyka',
 'sitestats' => 'Statystyka artykułów',
 'userstats' => 'Statystyka użytkowników',
-'sitestatstext' => 'W bazie danych jest w sumie <b>$1</b> stron.
+'sitestatstext' => "W bazie danych jest w sumie '''$1''' stron.
 
-Ta liczba uwzględnia strony dyskusji, strony na temat serwisu {{SITENAME}}, strony prowizorycznych ("stub"), strony przekierowujące, oraz inne, które trudno uznać za artykuły. Wyłączając powyższe, jest prawdopodobnie <b>$2</b> stron, które można uznać za artykuły.
+Ta liczba uwzględnia strony dyskusji, strony na temat serwisu {{SITENAME}}, strony prowizorycznych (\"stub\"), strony przekierowujące oraz inne, które trudno uznać za artykuły. Wyłączając powyższe, jest prawdopodobnie '''$2''' stron, które można uznać za artykuły.
 
-Ilość przesłanych plików: <b>$8</b>
+Ilość przesłanych plików: '''$8'''.
 
-Użytkownicy od startu serwisu wykonali <b>$4</b> edycji, średnio <b>$5</b> edycji na stronę. W sumie było <b>$3</b> odwiedzin, średnio <b>$6</b> odwiedzin na edycję.
+Użytkownicy od startu serwisu wykonali '''$4''' edycji, średnio '''$5''' edycji na stronę. W sumie było '''$3''' odwiedzin, średnio '''$6''' odwiedzin na edycję.
 
-Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi <b>$7</b>.',
-'userstatstext' => 'Jest <b>$1</b> zarejestrowanych użytkowników. Spośród nich <b>$2</b> (czyli <b>$4%</b>) ma status $5.',
+Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi '''$7'''.",
+'userstatstext' => "Jest '''$1''' zarejestrowanych użytkowników. Spośród nich '''$2''' (czyli '''$4%''') ma status $5.",
 'statistics-mostpopular' => 'Najczęściej odwiedzane strony',
 
 'disambiguations' => 'Strony ujednoznaczniające',
@@ -886,6 +887,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 'shortpages' => 'Najkrótsze strony',
 'longpages' => 'Najdłuższe strony',
 'deadendpages' => 'Strony bez linków',
+'deadendpagestext' => 'Poniższe strony nie posiadają odnośników do innych stron znajdujących się w tej wiki.',
 'listusers' => 'Lista użytkowników',
 'specialpages' => 'Strony specjalne',
 'spheading' => 'Strony specjalne dla wszystkich użytkowników',
@@ -951,20 +953,20 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 # Watchlist
 #
 'watchlist' => 'Obserwowane',
-'watchlistfor' => '(dla użytkownika <b>$1</b>)',
+'watchlistfor' => "(dla użytkownika '''$1''')",
 'nowatchlist' => 'Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.',
 'watchlistanontext' => '$1 aby obejrzeć lub edytować elementy listy obserwowanych.',
-'watchlistcount' => '<b>Masz $1 stron na liście obserwowanych, włączając strony dyskusji.</b>',
-'clearwatchlist' => 'Wyczyść obserwowane',
+'watchlistcount' => "'''Masz $1 {{PLURAL:$1|$1 pozycję|$1 pozycji}} na liście obserwowanych stron, włączając strony dyskusji.'''",
+'clearwatchlist' => 'Wyczyść listę obserwowanych',
 'watchlistcleartext' => 'Czy jesteś pewien, że chcesz je usunąć?',
 'watchlistclearbutton' => 'Wyczyść obserwowane',
 'watchlistcleardone' => 'Twoja lista stron obserwowanych została wyczyszczona. Liczba usuniętych obiektów: $1.',
 'watchnologin' => 'Brak logowania',
 'watchnologintext' => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
 'addedwatch' => 'Dodana do listy obserwowanych',
-'addedwatchtext' => 'Strona "<b>[[:$1|$1]]</b>" została dodana do Twojej [[{{ns:Special}}:Watchlist|listy obserwowanych]]. Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony Dyskusji, a nazwa samej strony zostanie <b>wytłuszczona</b> na [[{{ns:Special}}:Recentchanges|liście ostatnich zmian]], aby łatwiej było Ci sam fakt zmiany zauważyć.
+'addedwatchtext' => "Strona \"[[:$1|$1]]\" została dodana do Twojej [[{{ns:Special}}:Watchlist|listy obserwowanych]]. Na tej liście znajdzie się rejestr przyszłych zmian tej strony i związanej z nią strony dyskusji, a nazwa samej strony zostanie '''wytłuszczona''' na [[{{ns:Special}}:Recentchanges|liście ostatnich zmian]], aby łatwiej było Ci sam fakt zmiany zauważyć.
 
-Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na "Przestań obserwować".',
+Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na \"Przestań obserwować\".",
 'removedwatch' => 'Usunięto z listy obserwowanych',
 'removedwatchtext' => 'Strona "[[:$1]]" została usunięta z Twojej listy obserwowanych.',
 'watch' => 'Obserwuj',
@@ -973,16 +975,16 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na "Przest
 'unwatchthispage' => 'Przestań obserwować',
 'notanarticle' => 'To nie artykuł',
 'watchnochange' => 'Żadna z obserwowanych stron nie była edytowana w podanym okresie.',
-'watchdetails' => '* liczba obserwowanych przez Ciebie stron: $1, nie licząc stron dyskusji;
+'watchdetails' => '* Liczba obserwowanych przez Ciebie stron: $1, nie licząc stron dyskusji.
 * [[{{ns:Special}}:Watchlist/edit|Pokaż i edytuj pełną listę]]
-* [[{{ns:Special}}:Watchlist/clear|Usuń wszystkie strony]]',
+* [[{{ns:Special}}:Watchlist/clear|Wyczyść listę obserwowanych]]',
 'wlheader-enotif' => '* Wysyłanie powiadomień na adres e-mail jest włączone.',
-'wlheader-showupdated' => '* Strony które zostały zmienione od twojej ostatniej wizyty na nich zostały <b>pogrubione</b>',
+'wlheader-showupdated' => "* Strony które zostały zmienione od twojej ostatniej wizyty na nich zostały '''pogrubione'''",
 'watchmethod-recent'=> 'poszukiwanie ostatnich zmian wśród obserwowanych stron',
 'watchmethod-list' => 'poszukiwanie obserwowanych stron wśród ostatnich zmian',
 'removechecked' => 'Usuń zaznaczone pozycje z listy obserwowanych',
 'watchlistcontains' => 'Lista obserwowanych przez Ciebie stron zawiera $1 pozycji.',
-'watcheditlist' => 'Oto alfabetyczna lista obserwowanych stron. Zaznacz, które z nich chcesz usunąć z listy i kliknij przycisk <i>Usuń...</i> znajdujący się na dole strony.',
+'watcheditlist' => "Oto alfabetyczna lista obserwowanych stron. Zaznacz, które z nich chcesz usunąć z listy i kliknij przycisk ''Usuń zaznaczone pozycje z listy obserwowanych'' znajdujący się na dole strony.",
 'removingchecked' => 'Usuwamy zaznaczone pozycje z listy obserwowanych...',
 'couldntremove' => 'Nie można było usunąć pozycji "$1"...',
 'iteminvalidname' => 'Problem z pozycją "$1", niepoprawna nazwa...',
@@ -1084,8 +1086,8 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'undelete' => 'Odtwórz skasowaną stronę',
 'undeletepage' => 'Odtwarzanie skasowanych stron',
 'viewdeletedpage' => 'Zobacz skasowane wersje',
-'undeletepagetext' => 'Poniższe strony zostały skasowane, ale ich kopia wciąż znajduje się w archiwum.<br /><b>Uwaga:</b> archiwum co jakiś czas także jest kasowane!',
-'undeleteextrahelp' => 'Aby odtworzyć całą stronę, pozostaw wszystkie pola niezaznaczone i kliknij <b>Odtwórz</b>. Aby wybrać częściowe odtworzenie należy zaznaczyć odpowiednie pole. Naciśnięcie <b>Wyczyść</b> wyczyści wszystkie pola, łącznie z opisem komentarza.',
+'undeletepagetext' => 'Poniższe strony zostały skasowane, ale ich kopia wciąż znajduje się w archiwum. Archiwum co jakiś czas także jest kasowane.',
+'undeleteextrahelp' => "Aby odtworzyć całą stronę, pozostaw wszystkie pola niezaznaczone i kliknij '''Odtwórz'''. Aby wybrać częściowe odtworzenie należy zaznaczyć odpowiednie pole. Naciśnięcie '''Wyczyść''' wyczyści wszystkie pola, łącznie z opisem komentarza.",
 'undeletearticle' => 'Odtwórz skasowaną stronę',
 'undeleterevisions' => 'Liczba zarchiwizowanych wersji: $1',
 'undeletehistory' => 'Odtworzenie strony spowoduje przywrócenie także jej wszystkich poprzednich wersji. Jeśli od czasu skasowania ktoś utworzył nową stronę o tej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.',
@@ -1168,7 +1170,7 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'blocklink' => 'zablokuj',
 'unblocklink' => 'odblokuj',
 'contribslink' => 'wkład',
-'autoblocker' => 'Zablokowano Cię automatycznie ponieważ używasz tego samego adresu IP co użytkownik "[[{{ns:user}}:$1|$1]]". Powód: "<b>$2</b>".',
+'autoblocker' => 'Zablokowano Cię automatycznie ponieważ używasz tego samego adresu IP co użytkownik "[[{{ns:user}}:$1|$1]]". Powód: "\'\'\'$2\'\'\'".',
 'blocklogpage' => 'Zablokowani',
 'blocklogentry' => 'zablokowano "[[$1]]", czas blokady: $2',
 'blocklogtext' => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP. Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny. By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[{{ns:Special}}:Ipblocklist|Zablokowane adresy IP]].',
@@ -1223,21 +1225,21 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 # Move page
 #
 'movepage' => 'Przenieś stronę',
-'movepagetext' => 'Za pomocą poniższego formularza zmienisz nazwę strony, przenosząc jednocześnie jej historię.
+'movepagetext' => "Za pomocą poniższego formularza zmienisz nazwę strony, przenosząc jednocześnie jej historię.
 Pod starym tytułem zostanie umieszczona strona przekierowująca. Linki do starego tytułu pozostaną niezmienione.
 Upewnij się, że uwzględniasz podwójne lub zerwane przekierowania. Odpowiadasz za to, żeby linki odnosiły się do właściwych artykułów!
 
-Strona <b>nie</b> będzie przeniesiona jeśli:
+Strona '''nie''' będzie przeniesiona jeśli:
 *jest pusta i nigdy nie była edytowana
 *jest stroną przekierowującą
 *strona o nowej nazwie już istnieje
 
-<b>UWAGA!</b>
-Może to być drastyczna lub nieprzewidywalna zmiana w przypadku popularnych stron; upewnij się co do konsekwencji tej operacji zanim się na nią zdecydujesz.',
-'movepagetalktext' => 'Odpowiednia strona dyskusji, jeśli istnieje, będzie przeniesiona automatycznie, pod warunkiem, że:
+'''UWAGA!'''
+Może to być drastyczna lub nieprzewidywalna zmiana w przypadku popularnych stron; upewnij się co do konsekwencji tej operacji zanim się na nią zdecydujesz.",
+'movepagetalktext' => "Odpowiednia strona dyskusji, jeśli istnieje, będzie przeniesiona automatycznie, pod warunkiem, że:
 *nie przenosisz strony do innej przestrzeni nazw
 *nie istnieje strona dyskusji o nowej nazwie
-W takich przypadkach tekst dyskusji trzeba przenieść, i ewentualnie połączyć z istniejącym, ręcznie. Możesz też zrezygnować z przeniesienia dyskusji (poniższy <i>checkbox</i>).',
+W takich przypadkach tekst dyskusji trzeba przenieść, i ewentualnie połączyć z istniejącym, ręcznie. Możesz też zrezygnować z przeniesienia dyskusji (poniższy ''checkbox'').",
 'movearticle' => 'Przenieś stronę',
 'movenologin' => 'Brak logowania',
 'movenologintext' => 'Musisz być zarejestrowanym i [[{{ns:Special}}:Userlogin|zalogowanym]] użytkownikiem aby móc przenieść stronę.',
@@ -1249,8 +1251,8 @@ W takich przypadkach tekst dyskusji trzeba przenieść, i ewentualnie połączy�
 'talkexists' => 'Strona artykułu została przeniesiona, natomiast strona dyskusji nie - strona dyskusji o nowym tytule już istnieje. Połącz, proszę, teksty obu dyskusji ręcznie.',
 'movedto' => 'przeniesiono do',
 'movetalk' => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
-'talkpagemoved' => 'Odpowiednia strona z <i>Dyskusją</i> także została przeniesiona.',
-'talkpagenotmoved' => 'Odpowiednia strona z <i>Dyskusją</i> <strong>nie</strong> została przeniesiona.',
+'talkpagemoved' => 'Odpowiednia strona dyskusji także została przeniesiona.',
+'talkpagenotmoved' => 'Odpowiednia strona dyskusji <strong>nie</strong> została przeniesiona.',
 '1movedto2' => '[[$1]] przeniesiono do [[$2]]',
 '1movedto2_redir' => '[[$1]] przeniesiono do [[$2]] nad przekierowaniem',
 'movelogpage' => 'Przeniesione',
@@ -1275,8 +1277,8 @@ Artykuł docelowy "[[:$1|$1]]" już istnieje. Czy chcesz go usunąć, by zrobić
 
 Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] dla strony {{Mediawiki:mainpage}}.',
 'exportcuronly' => 'Tylko bieżąca wersja, bez historii',
-'exportnohistory' => '----
-<b>Uwaga:</b> możliwość eksportowania pełnej historii stron została wyłączona.',
+'exportnohistory' => "----
+'''Uwaga:''' możliwość eksportowania pełnej historii stron została wyłączona.",
 'export-submit' => 'Eksportuj',
 
 # Namespace 8 related
@@ -1287,7 +1289,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'allmessagescurrent' => 'Tekst obecny',
 'allmessagestext' => 'Oto lista wszystkich komunikatów dostępnych w przestrzeni nazw MediaWiki:',
 'allmessagesnotsupportedUI' => 'Wybrany przez Ciebie język interfejsu <b>$1</b> nie jest wspierany przez stronę Special:Allmessages.',
-'allmessagesnotsupportedDB' => 'Strona <b>Special:Allmessages</b> nie może być użyta, ponieważ <b>$wgUseDatabaseMessages</b> jest wyłączone.',
+'allmessagesnotsupportedDB' => "Strona '''Special:Allmessages''' nie może być użyta, ponieważ '''$wgUseDatabaseMessages''' jest wyłączone.",
 'allmessagesfilter' => 'Filtr nazw komunikatów:',
 'allmessagesmodified' => 'Pokaż tylko zmodyfikowane',
 
@@ -1463,7 +1465,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Zobacz stronę kategorii\');',
 'passwordtooshort' => 'Twoje hasło jest za krótkie. Musi mieć co najmniej $1 znaków.',
 
 # Media Warning
-'mediawarning' => '<b>Uwaga:</b> Ten plik może zawierać złośliwy kod, otwierając go możesz zarazić swój system.<hr />',
+'mediawarning' => "'''Uwaga:''' Ten plik może zawierać złośliwy kod, otwierając go możesz zarazić swój system.<hr />",
 
 'fileinfo' => '$1KB, typ MIME: <code>$2</code>',
 
@@ -1706,7 +1708,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Zobacz stronę kategorii\');',
 'confirmemail_text' => 'Wymagane jest potwierdzenie adresu e-mail przed użyciem funkcji pocztowych. Wciśnij przycisk poniżej aby wysłać na swój adres list uwierzytelniający. W liście znajdziesz link zawierający kod: załaduj go do przeglądarki aby potwierdzić swój adres.',
 'confirmemail_send' => 'Wyślij kod potwierdzenia',
 'confirmemail_sent' => 'E-mail uwierzytelniający został wysłany.',
-'confirmemail_sendfailed' => 'Nie udało się wsłać maila potwierdzającego. Proszę sprawdzić adres.',
+'confirmemail_sendfailed' => 'Nie udało się wsłać maila potwierdzającego. Proszę sprawdzić adres.
+
+Program zwrócił komunikat: $1',
 'confirmemail_invalid' => 'Błędny kod potwierdzenia. Kod może być przedawniony.',
 'confirmemail_needlogin' => 'Musisz $1 aby potwierdzić adres email.',
 'confirmemail_success' => 'Adres e-mail został zatwierdzony. Możesz się zalogować i cieszyć możliwościami wiki.',
@@ -1746,9 +1750,9 @@ $1
 # delete conflict
 
 'deletedwhileediting' => 'Uwaga: Ta strona została usunięta po tym, jak rozpoczęłeś jej edycję!',
-'confirmrecreate' => 'Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|dyskusja]]) usunął tę stronę po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
-: <b>$2</b>
-Potwierdź chęć odtworzenia tej strony.',
+'confirmrecreate' => "Użytkownik [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|dyskusja]]) usunął tę stronę po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
+: '''$2'''
+Potwierdź chęć odtworzenia tej strony.",
 'recreate' => 'Odtwórz',
 'tooltip-recreate' => 'Odtworzono stronę pomimo jej wcześniejszego usunięcia.',
 
@@ -1762,9 +1766,9 @@ $1',
 'confirm_purge_button' => 'Wyczyść',
 
 'youhavenewmessagesmulti' => 'Masz nowe wiadomości: $1',
-'searchcontaining' => 'Szukaj artykułów zawierających <i>$1</i>.',
-'searchnamed' => 'Szukaj artykułów nazywających się <i>$1</i>.',
-'articletitles' => 'Artykuły zaczynające się od <i>$1</i>',
+'searchcontaining' => "Szukaj artykułów zawierających ''$1''.",
+'searchnamed' => "Szukaj artykułów nazywających się ''$1''.",
+'articletitles' => "Artykuły zaczynające się od ''$1''.",
 'hideresults' => 'Ukryj wyniki',
 
 # DISPLAYTITLE
