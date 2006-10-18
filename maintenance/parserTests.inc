@@ -351,6 +351,7 @@ class ParserTest {
 			'wgUseTeX' => false,
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => true,
+			'wgUseTidy' => false,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
