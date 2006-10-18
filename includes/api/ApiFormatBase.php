@@ -75,40 +75,41 @@ abstract class ApiFormatBase extends ApiBase {
 	function initPrinter($isError) {
 		$isHtml = $this->getIsHtml();
 		$mime = $isHtml ? 'text/html' : $this->getMimeType();
-		
+
 		// Some printers (ex. Feed) do their own header settings,
 		// in which case $mime will be set to null
 		if (is_null($mime))
-			return;	// skip any initialization
-			
+			return; // skip any initialization
+
 		header("Content-Type: $mime; charset=utf-8;");
 		header("Cache-Control: private, s-maxage=0, max-age=0");
-		
+
 		if ($isHtml) {
 ?>
-		<html>
-		<head>
-			<title>MediaWiki API</title>
-		</head>
-		<body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>MediaWiki API</title>
+</head>
+<body>
 <?php
 
 
 			if (!$isError) {
 ?>
-			<br/>
-			<small>
-			You are looking at the HTML representation of the <?=$this->mFormat?> format.<br/>
-			HTML is good for debugging, but probably not suitable for your application.<br/>
-			Please see "format" parameter documentation at the <a href='api.php'>API help</a>
-			for more information.<br/>
-			</small>
+<br/>
+<small>
+You are looking at the HTML representation of the <?=$this->mFormat?> format.<br/>
+HTML is good for debugging, but probably not suitable for your application.<br/>
+Please see "format" parameter documentation at the <a href='api.php'>API help</a>
+for more information.
+</small>
 <?php
 
 
 			}
 ?>
-		<pre>
+<pre>
 <?php
 
 
@@ -121,8 +122,10 @@ abstract class ApiFormatBase extends ApiBase {
 	public function closePrinter() {
 		if ($this->getIsHtml()) {
 ?>
-		</pre>
-		</body>
+
+</pre>
+</body>
+</html>
 <?php
 
 
@@ -142,7 +145,7 @@ abstract class ApiFormatBase extends ApiBase {
 	*/
 	protected function formatHTML($text) {
 		// encode all tags as safe blue strings
-		$text = ereg_replace('\<([^>]+)\>', '<font color=blue>&lt;\1&gt;</font>', $text);
+		$text = ereg_replace('\<([^>]+)\>', '<span style="color:blue;">&lt;\1&gt;</span>', $text);
 		// identify URLs
 		$text = ereg_replace("[a-zA-Z]+://[^ '\"()<\n]+", '<a href="\\0">\\0</a>', $text);
 		// identify requests to api.php
@@ -182,7 +185,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	public static function setResult($result, $feed, $feedItems) {
 		// Store output in the Result data.
 		// This way we can check during execution if any error has occured
-		$data =& $result->getData();
+		$data = & $result->getData();
 		$data['_feed'] = $feed;
 		$data['_feeditems'] = $feedItems;
 	}
@@ -200,15 +203,15 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	public function getNeedsRawData() {
 		return true;
 	}
-	
+
 	public function execute() {
-		$data =& $this->getResultData();
-		if (isset($data['_feed']) && isset($data['_feeditems'])) {
-			$feed =& $data['_feed'];
-			$items =& $data['_feeditems'];
+		$data = & $this->getResultData();
+		if (isset ($data['_feed']) && isset ($data['_feeditems'])) {
+			$feed = & $data['_feed'];
+			$items = & $data['_feeditems'];
 
 			$feed->outHeader();
-			foreach($items as &$item)
+			foreach ($items as & $item)
 				$feed->outItem($item);
 			$feed->outFooter();
 		} else {

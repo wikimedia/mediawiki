@@ -53,7 +53,7 @@ class ApiFeedWatchlist extends ApiBase {
 			'wlstart' => wfTimestamp(TS_MW, time() - intval( 1 * 86400 )), // limit to 1 day
 			'wllimit' => 50
 		));
-
+		
 		// Execute
 		$module = new ApiMain($params);
 		$module->execute();
