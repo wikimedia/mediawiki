@@ -1402,7 +1402,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'pagemovedsub'  => 'Úspěšně přesunuto',
 'pagemovedtext' => "Stránka „[[$1]]“ přesunuta na „[[$2]]“.
 
-'''Nyní''' následujte odkaz [[{{ns-1}}:Whatlinkshere/$1]]: pokud se v seznamu vyskytnou nějaké přesměrovače, je třeba je upravit tak, aby ukazovaly na nový název ($2), jinak nebudou fungovat.",
+'''Nyní''' následujte odkaz [[{{ns:-1}}:Whatlinkshere/$1]]: pokud se v seznamu vyskytnou nějaké přesměrovače, je třeba je upravit tak, aby ukazovaly na nový název ($2), jinak nebudou fungovat.",
 'articleexists' => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
 'talkexists'	=> 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
 'movedto'               => 'přesunuto na',
