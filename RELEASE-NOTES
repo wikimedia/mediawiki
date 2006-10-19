@@ -57,7 +57,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   alias for compatibility
 * (bug 4525) Move section links down visually to same level as headings 
   editsection links are now inside the heading elements)
-
+* (bug 7623) Validate custom HTML id's correctly in Monobook interface
 
 == Languages updated ==
 

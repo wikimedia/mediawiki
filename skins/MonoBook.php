@@ -115,7 +115,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<h5><?php $this->msg('views') ?></h5>
 		<ul>
 <?php			foreach($this->data['content_actions'] as $key => $tab) { ?>
-				 <li id="ca-<?php echo htmlspecialchars($key) ?>"<?php
+				 <li id="ca-<?php echo Sanitizer::escapeId($key) ?>"<?php
 				 	if($tab['class']) { ?> class="<?php echo htmlspecialchars($tab['class']) ?>"<?php }
 				 ?>><a href="<?php echo htmlspecialchars($tab['href']) ?>"><?php
 				 echo htmlspecialchars($tab['text']) ?></a></li>
@@ -127,7 +127,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<div class="pBody">
 			<ul>
 <?php 			foreach($this->data['personal_urls'] as $key => $item) { ?>
-				<li id="pt-<?php echo htmlspecialchars($key) ?>"<?php
+				<li id="pt-<?php echo Sanitizer::escapeId($key) ?>"<?php
 					if ($item['active']) { ?> class="active"<?php } ?>><a href="<?php
 				echo htmlspecialchars($item['href']) ?>"<?php
 				if(!empty($item['class'])) { ?> class="<?php
@@ -144,12 +144,12 @@ class MonoBookTemplate extends QuickTemplate {
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 	<?php foreach ($this->data['sidebar'] as $bar => $cont) { ?>
-	<div class='portlet' id='p-<?php echo htmlspecialchars($bar) ?>'>
+	<div class='portlet' id='p-<?php echo Sanitizer::escapeId($bar) ?>'>
 		<h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></h5>
 		<div class='pBody'>
 			<ul>
 <?php 			foreach($cont as $key => $val) { ?>
-				<li id="<?php echo htmlspecialchars($val['id']) ?>"<?php
+				<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
 					if ( $val['active'] ) { ?> class="active" <?php }
 				?>><a href="<?php echo htmlspecialchars($val['href']) ?>"><?php echo htmlspecialchars($val['text']) ?></a></li>
 <?php			} ?>
@@ -194,7 +194,7 @@ class MonoBookTemplate extends QuickTemplate {
 <?php 	}
 		if($this->data['feeds']) { ?>
 			<li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
-					?><span id="feed-<?php echo htmlspecialchars($key) ?>"><a href="<?php
+					?><span id="feed-<?php echo Sanitizer::escapeId($key) ?>"><a href="<?php
 					echo htmlspecialchars($feed['href']) ?>"><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
 					<?php } ?></li><?php
 		}
