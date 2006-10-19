@@ -47,10 +47,15 @@ class WebRequest {
 	function WebRequest() {
 		$this->checkMagicQuotes();
 		global $wgUsePathInfo;
-		if( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') && $wgUsePathInfo ) {
-			# Stuff it!
-			$_GET['title'] = $_REQUEST['title'] =
-				substr( $_SERVER['PATH_INFO'], 1 );
+		if ( $wgUsePathInfo ) {
+			if ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
+				# Mangled PATH_INFO
+				# http://bugs.php.net/bug.php?id=31892
+				# Also reported when ini_get('cgi.fix_pathinfo')==false
+				$_GET['title'] = $_REQUEST['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
+			} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') && $wgUsePathInfo ) {
+				$_GET['title'] = $_REQUEST['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+			}
 		}
 	}
 	
