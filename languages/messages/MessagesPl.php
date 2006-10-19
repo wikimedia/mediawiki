@@ -1289,7 +1289,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'allmessagescurrent' => 'Tekst obecny',
 'allmessagestext' => 'Oto lista wszystkich komunikatów dostępnych w przestrzeni nazw MediaWiki:',
 'allmessagesnotsupportedUI' => 'Wybrany przez Ciebie język interfejsu <b>$1</b> nie jest wspierany przez stronę Special:Allmessages.',
-'allmessagesnotsupportedDB' => "Strona '''Special:Allmessages''' nie może być użyta, ponieważ '''$wgUseDatabaseMessages''' jest wyłączone.",
+'allmessagesnotsupportedDB' => 'Strona \'\'\'Special:Allmessages\'\'\' nie może być użyta, ponieważ \'\'\'$wgUseDatabaseMessages\'\'\' jest wyłączone.',
 'allmessagesfilter' => 'Filtr nazw komunikatów:',
 'allmessagesmodified' => 'Pokaż tylko zmodyfikowane',
 
