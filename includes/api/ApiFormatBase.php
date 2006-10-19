@@ -147,7 +147,8 @@ for more information.
 		// encode all tags as safe blue strings
 		$text = ereg_replace('\<([^>]+)\>', '<span style="color:blue;">&lt;\1&gt;</span>', $text);
 		// identify URLs
-		$text = ereg_replace("[a-zA-Z]+://[^ '\"()<\n]+", '<a href="\\0">\\0</a>', $text);
+		$protos = "http|https|ftp|gopher";
+		$text = ereg_replace("($protos)://[^ '\"()<\n]+", '<a href="\\0">\\0</a>', $text);
 		// identify requests to api.php
 		$text = ereg_replace("api\\.php\\?[^ ()<\n\t]+", '<a href="\\0">\\0</a>', $text);
 		// make strings inside * bold

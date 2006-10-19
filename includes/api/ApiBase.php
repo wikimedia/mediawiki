@@ -356,7 +356,7 @@ abstract class ApiBase {
 		if (is_array($allowedValues)) {
 			$unknownValues = array_diff($valuesList, $allowedValues);
 			if ($unknownValues) {
-				$this->dieUsage('Unrecognised value' . (count($unknownValues) > 1 ? "s '" : " '") . implode("', '", $unknownValues) . "' for parameter '$valueName'", "unknown_$valueName");
+				$this->dieUsage('Unrecognised value' . (count($unknownValues) > 1 ? "s" : "") . " for parameter '$valueName'", "unknown_$valueName");
 			}
 		}
 
