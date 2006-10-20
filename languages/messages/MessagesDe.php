@@ -1386,7 +1386,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
-'accesskey-diff' => 'd',
+'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
 'accesskey-watch' => 'w',
 

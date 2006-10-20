@@ -1171,7 +1171,7 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 'accesskey-minoredit'   => 'i',
 'accesskey-save'        => 's',
 'accesskey-preview'     => 'p',
-'accesskey-diff'        => 'd',
+'accesskey-diff'        => 'v',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js

@@ -1434,7 +1434,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'accesskey-minoredit'   => 'i',
 'accesskey-save'        => 's',
 'accesskey-preview'     => 'p',
-'accesskey-diff'        => 'd',
+'accesskey-diff'        => 'v',
 'accesskey-compareselectedversions'=> 'v',
 'accesskey-watch'       => 'w',
 'tooltip-search'        => 'Hľadaj v tomto wiki [alt-f]',

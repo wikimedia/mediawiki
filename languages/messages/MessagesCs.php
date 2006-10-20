@@ -1492,7 +1492,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'accesskey-watch' => 'w',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
-'accesskey-diff' => 'd',
+'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js

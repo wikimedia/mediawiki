@@ -483,8 +483,10 @@ function akeytt() {
 				} else {
 					a = n.childNodes[0];
 				}
-
-				if (a) {
+			 	// Don't add an accesskey for the watch tab if the watch
+			 	// checkbox is also available.
+				if (a && ((id != 'ca-watch' && id != 'ca-unwatch') ||
+				!(window.location.search.match(/[\?&](action=edit|action=submit)/i)))) {
 					a.accessKey = ta[id][0];
 					ak = ' ['+pref+ta[id][0]+']';
 				}

@@ -1182,7 +1182,7 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
-'accesskey-diff' => 'd',
+'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
