@@ -1305,7 +1305,7 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.',
 'accesskey-minoredit' => 'm', # Mionathrú
 'accesskey-save' => 's', # Sábháil
 'accesskey-preview' => 'r', # Reamhamharc
-'accesskey-diff' => 'd', # Difríocht
+'accesskey-diff' => 'v', # Difríocht
 'accesskey-compareselectedversions' => 'l', # Leagain
 
 # tooltip help for some actions, most are in Monobook.js

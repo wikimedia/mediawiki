@@ -1233,7 +1233,7 @@ $NEWPAGE
 'import-logentry-interwiki-detail'=> '$2 の $1 版',
 
 # Keyboard access keys for power users
-'accesskey-diff'        => 'd',
+'accesskey-diff'        => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
 'tooltip-search'        => 'ウィキ内を検索 [alt-f]',

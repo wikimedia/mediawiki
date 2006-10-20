@@ -1291,7 +1291,7 @@ $NEWPAGE
 'import-logentry-upload-detail'=> '$1 ревизија(и)',
 'import-logentry-interwiki'=> 'трансвикифиран $1',
 'import-logentry-interwiki-detail'=> '$1 ревизија(и) од $2',
-'accesskey-diff'        => 'd',
+'accesskey-diff'        => 'v',
 'tooltip-search'        => 'Пребарајте на {{SITENAME}} [alt-f]',
 'tooltip-minoredit'     => 'Обележете ја промената како ситна [alt-i]',
 'tooltip-save'          => 'Зачувајте ги вашите промени [alt-s]',

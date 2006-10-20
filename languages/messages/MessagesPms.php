@@ -1259,7 +1259,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'accesskey-minoredit'   => 'c',
 'accesskey-save'        => 's',
 'accesskey-preview'     => 'p',
-'accesskey-diff'        => 'd',
+'accesskey-diff'        => 'v',
 'accesskey-compareselectedversions'=> 'v',
 'accesskey-watch'       => 'w',
 'tooltip-search'        => 'Sërca an {{SITENAME}} [alt-f]',

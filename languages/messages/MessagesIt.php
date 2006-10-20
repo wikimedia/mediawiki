@@ -1314,7 +1314,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "accesskey-minoredit"	=> "i",
 "accesskey-save"	=> "s",
 "accesskey-preview"	=> "p",
-"accesskey-diff"	=> "d",
+"accesskey-diff"	=> "v",
 "accesskey-compareselectedversions"	=> "v",
 "accesskey-watch"	=> "w",
 
