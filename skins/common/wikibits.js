@@ -523,7 +523,7 @@ function addRightClickEditHandler(el) {
 			if (prev && prev.nodeType == 1 &&
 			prev.nodeName.match(/^[Hh][1-6]$/)) {
 				prev.oncontextmenu = function(e) {
-					if (!e) var e = window.event;
+					if (!e) e = window.event;
 					// e is now the event in all browsers
 					if (e.target) var targ = e.target;
 					else if (e.srcElement) var targ = e.srcElement;
