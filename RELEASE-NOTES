@@ -55,10 +55,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7581) Update language name for cbk-zam
 * (bug 7444) Update namespace translations for Telugu (te), kept old values as
   alias for compatibility
-* (bug 4525) Move section links down visually to same level as headings 
+* (bug 4525) Move section links down visually to same level as headings
   editsection links are now inside the heading elements)
 * (bug 7623) Validate custom HTML id's correctly in Monobook interface
 * (bug 2241) Fix collision of 'w' and 'd' accesskeys
+* (bug 5795) CSS class added to body based on page name for page-specific
+  styling
 
 == Languages updated ==
 
