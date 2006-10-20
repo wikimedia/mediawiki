@@ -190,7 +190,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'title', $wgOut->getPageTitle() );
 		$tpl->set( 'pagetitle', $wgOut->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $wgOut->mPageLinkTitle );
-		$tpl->set( 'pageclass', 'page-'.Sanitizer::escapeId( $wgTitle->getPrefixedText() ) );
+		$tpl->set( 'pageclass', Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() ) );
 
 		$nsname = @$wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ];
 		if ( $nsname === NULL ) $nsname = $this->mTitle->getNsText();

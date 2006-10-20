@@ -737,6 +737,25 @@ class Sanitizer {
 	}
 
 	/**
+	 * Given a value, escape it so that it can be used as a CSS class and
+	 * return it.
+	 *
+	 * TODO: For extra validity, input should be validated UTF-8.
+	 *
+	 * @link http://www.w3.org/TR/CSS21/syndata.html Valid characters/format
+	 *
+	 * @param string $class
+	 * @return string
+	 */
+	static function escapeClass( $class ) {
+		// Convert ugly stuff to underscores and kill underscores in ugly places
+		return rtrim(preg_replace(
+			array('/(^[0-9\\-])|[\\x00-\\x20!"#$%&\'()*+,.\\/:;<=>?@[\\]^`{|}~]|\\xC2\\xA0/','/_+/'),
+			'_',
+			$class ), '_');
+	}
+
+	/**
 	 * Regex replace callback for armoring links against further processing.
 	 * @param array $matches
 	 * @return string
