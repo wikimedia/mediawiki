@@ -52,23 +52,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$allrev = $start = $end = $namespace = $dir = $limit = $prop = null;
 		extract($this->extractRequestParams());
 
-		$db = $this->getDB();
-
-		$dirNewer = ($dir === 'newer');
-		$after = ($dirNewer ? '<=' : '>=');
-		$before = ($dirNewer ? '>=' : '<=');
-
-		$tables = array (
-			'watchlist',
-			'page',
-			'recentchanges'
-		);
-
-		$options = array (
-			'LIMIT' => $limit +1,
-			'ORDER BY' => 'rc_timestamp' . ($dirNewer ? '' : ' DESC'
-		));
-
 		$patrol = $timestamp = $user = $comment = false;
 		if (!is_null($prop)) {
 			if (!is_null($resultPageSet))
@@ -87,67 +70,62 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if (is_null($resultPageSet)) {
-			$fields = array (
+			$this->addFields(array (
 				'rc_cur_id AS page_id',
 				'rc_this_oldid AS rev_id',
 				'rc_namespace AS page_namespace',
 				'rc_title AS page_title',
 				'rc_new AS page_is_new',
-				'rc_minor AS rev_minor_edit'
-			);
-			if ($user) {
-				$fields[] = 'rc_user AS rev_user';
-				$fields[] = 'rc_user_text AS rev_user_text';
-			}
-			if ($comment)
-				$fields[] = 'rc_comment AS rev_comment';
-			if ($timestamp)
-				$fields[] = 'rc_timestamp AS rev_timestamp';
-			if ($patrol)
-				$fields[] = 'rc_patrolled';
+				'rc_minor AS rev_minor_edit',
+				'rc_timestamp AS rev_timestamp'
+			));
+
+			$this->addFieldsIf('rc_user AS rev_user', $user);
+			$this->addFieldsIf('rc_user_text AS rev_user_text', $user);
+			$this->addFieldsIf('rc_comment AS rev_comment', $comment);
+			$this->addFieldsIf('rc_patrolled', $patrol);
 		}
 		elseif ($allrev) {
-			$fields = array (
+			$this->addFields(array (
 				'rc_this_oldid AS rev_id',
 				'rc_namespace AS page_namespace',
 				'rc_title AS page_title',
 				'rc_timestamp AS rev_timestamp'
-			);
+			));
 		} else {
-			$fields = array (
+			$this->addFields(array (
 				'rc_cur_id AS page_id',
 				'rc_namespace AS page_namespace',
 				'rc_title AS page_title',
 				'rc_timestamp AS rev_timestamp'
-			);
+			));
 		}
 
-		$where = array (
+		$this->addTables(array (
+			'watchlist',
+			'page',
+			'recentchanges'
+		));
+
+		$userId = $wgUser->getID();
+		$this->addWhere(array (
 			'wl_namespace = rc_namespace',
 			'wl_title = rc_title',
 			'rc_cur_id = page_id',
-		'wl_user' => $wgUser->getID());
-
-		if (!$allrev)
-			$where[] = 'rc_this_oldid=page_latest';
-		if (isset ($namespace))
-			$where['wl_namespace'] = $namespace;
-
-		if (isset ($start))
-			$where[] = 'rc_timestamp' . $after . $db->addQuotes($start);
-
-		if (isset ($end))
-			$where[] = 'rc_timestamp' . $before . $db->addQuotes($end);
-
-		if (!isset ($start) && !isset ($end))
-			$where[] = "rc_timestamp > ''";
-
-		$this->profileDBIn();
-		$res = $db->select($tables, $fields, $where, __METHOD__, $options);
-		$this->profileDBOut();
+			'wl_user' => $userId
+		));
+		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
+		$this->addWhereFld('wl_namespace', $namespace);
+		$this->addWhereIf('rc_this_oldid=page_latest', !$allrev);
+		$this->addWhereIf("rc_timestamp > ''", !isset ($start) && !isset ($end));
+		
+		$this->addOption('LIMIT', $limit +1);
 
 		$data = array ();
 		$count = 0;
+		$res = $this->select(__METHOD__);
+
+		$db = $this->getDB();
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...

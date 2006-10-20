@@ -53,7 +53,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageLatest = $pageSet->getCustomField('page_latest');
 
 		foreach ($titles as $pageid => $title) {
-			$pageInfo = array ('touched' => $pageTouched[$pageid], 'lastrevid' => $pageLatest[$pageid]);
+			$pageInfo = array (
+				'touched' => $pageTouched[$pageid],
+				'lastrevid' => $pageLatest[$pageid]
+			);
 
 			if ($pageIsRedir[$pageid])
 				$pageInfo['redirect'] = '';

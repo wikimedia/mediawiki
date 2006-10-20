@@ -31,13 +31,88 @@ if (!defined('MEDIAWIKI')) {
 
 abstract class ApiQueryBase extends ApiBase {
 
-	private $mQueryModule;
+	private $mQueryModule, $tables, $where, $fields, $options;
 
 	public function __construct($query, $moduleName, $paramPrefix = '') {
 		parent :: __construct($query->getMain(), $moduleName, $paramPrefix);
 		$this->mQueryModule = $query;
+
+		$this->tables = array ();
+		$this->where = array ();
+		$this->fields = array();
+		$this->options = array ();
 	}
 
+	protected function addTables($value) {
+		if(!is_array($this->tables))
+			$this->dieDebug(__METHOD__, 'Must not call setTablesAsExpression() before this method');
+		if(is_array($value))
+			$this->tables = array_merge($this->tables, $value);
+		else
+			$this->tables[] = $value;
+	}
+	
+	protected function setTablesAsExpression($value) {
+		if(!empty($this->tables))
+			$this->dieDebug(__METHOD__, 'Must not call addTables() before this method');
+		$this->tables = $value;
+	}
+
+	protected function addFields($value) {	
+		if(is_array($value))
+			$this->fields = array_merge($this->fields, $value);
+		else
+			$this->fields[] = $value;
+	}
+
+	protected function addFieldsIf($value, $condition) {
+		if ($condition)
+			$this->addFields($value);
+	}
+	
+	protected function addWhere($value) {
+		if(is_array($value))
+			$this->where = array_merge($this->where, $value);
+		else
+			$this->where[] = $value;
+	}
+	
+	protected function addWhereIf($value, $condition) {
+		if ($condition)
+			$this->addWhere($value);
+	}
+
+	protected function addWhereFld($field, $value) {
+		if(!is_null($value))
+			$this->where[$field] = $value;
+	}
+
+	protected function addWhereRange($field, $dir, $start, $end) {
+		$isDirNewer = ($dir === 'newer');
+		$after = ($isDirNewer ? '<=' : '>=');
+		$before = ($isDirNewer ? '>=' : '<=');
+		$db = $this->getDB();
+
+		if (!is_null($start))
+			$this->addWhere($field . $after . $db->addQuotes($start));
+
+		if (!is_null($end))
+			$this->addWhere($field . $before . $db->addQuotes($end));
+			
+		$this->addOption('ORDER BY', $field . ($isDirNewer ? '' : ' DESC'));
+	}
+	
+	protected function select($method) {
+		$this->profileDBIn();
+		$res = $this->getDB()->select($this->tables, $this->fields, $this->where, $method, $this->options);
+		$this->profileDBOut();
+		return $res;
+	}
+
+	protected function addOption($name, $value) {
+		$this->options[$name] = $value;
+	}
+	
 	/**
 	 * Override this method to request extra fields from the pageSet
 	 * using $this->getPageSet()->requestField('fieldName')

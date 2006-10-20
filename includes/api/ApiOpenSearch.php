@@ -60,7 +60,7 @@ class ApiOpenSearch extends ApiBase {
 		$module = new ApiMain($params);
 		$module->execute();
 
-		// Get clean data
+		// Get resulting data
 		$data = & $module->getResultData();
 
 		// Reformat useful data for future printing by JSON engine
