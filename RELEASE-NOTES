@@ -65,6 +65,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed duplicate name/id value of "search" in Cologne Blue
 * (bug 7644) User creations that are aborted by hooks shouldn't be counted
   against account creations per day limit
+* (bug 7636) Show Firefox 2 users "shift-alt" as accesskey prefix
 
 == Languages updated ==
 

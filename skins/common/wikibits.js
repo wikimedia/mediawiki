@@ -5,6 +5,7 @@ var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')=
                 && (clientPC.indexOf('khtml') == -1) && (clientPC.indexOf('netscape/7.0')==-1));
 var is_safari = ((clientPC.indexOf('applewebkit')!=-1) && (clientPC.indexOf('spoofer')==-1));
 var is_khtml = (navigator.vendor == 'KDE' || ( document.childNodes && !document.all && !navigator.taintEnabled ));
+var is_ff2 = (clientPC.indexOf('Firefox/2')!=-1 || clientPC.indexOf('Minefield/3')!=-1); // For accesskeys
 if (clientPC.indexOf('opera') != -1) {
 	var is_opera = true;
 	var is_opera_preseven = (window.opera && !document.childNodes);
@@ -462,12 +463,15 @@ function insertTags(tagOpen, tagClose, sampleText) {
 function akeytt() {
 	if (typeof ta == "undefined" || !ta)
 		return;
-	var pref = 'alt-';
 	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
 		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 )
 		pref = 'control-';
-	if (is_opera)
+	else if (is_opera)
 		pref = 'shift-esc-';
+	else if (is_ff2)
+		pref = 'shift-alt-';
+	else
+		pref = 'alt-';
 
 	for (var id in ta) {
 		var n = document.getElementById(id);
