@@ -52,47 +52,32 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 		$db = $this->getDB();
 
-		$where = array (
-			'page_namespace' => $namespace
-		);
-
-		if (isset ($from)) {
-			$where[] = 'page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($from));
-		}
-
-		if (isset ($prefix)) {
-			$where[] = "page_title LIKE '{$db->strencode(ApiQueryBase :: titleToKey($prefix))}%'";
-		}
-
-		if ($filterredir === 'redirects') {
-			$where['page_is_redirect'] = 1;
-		}
-		elseif ($filterredir === 'nonredirects') {
-			$where['page_is_redirect'] = 0;
-		}
+		$this->addTables('page');
+		$this->addWhereIf('page_is_redirect = 1', $filterredir === 'redirects');
+		$this->addWhereIf('page_is_redirect = 0', $filterredir === 'nonredirects');
+		$this->addWhereFld('page_namespace', $namespace);
+		if (isset ($from))
+			$this->addWhere('page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($from)));
+		if (isset ($prefix))
+			$this->addWhere("page_title LIKE '{$db->strencode(ApiQueryBase :: titleToKey($prefix))}%'");
 
 		if (is_null($resultPageSet)) {
-			$fields = array (
+			$this->addFields( array (
 				'page_id',
 				'page_namespace',
 				'page_title'
-			);
+			));
 		} else {
-			$fields = $resultPageSet->getPageTableFields();
+			$this->addFields( $resultPageSet->getPageTableFields());
 		}
 
-		$options = array (
-			'USE INDEX' => 'name_title',
-			'LIMIT' => $limit +1,
-			'ORDER BY' => 'page_namespace, page_title'
-		);
-
-		$this->profileDBIn();
-		$res = $db->select('page', $fields, $where, __METHOD__, $options);
-		$this->profileDBOut();
+		$this->addOption( 'USE INDEX', 'name_title');
+		$this->addOption( 'LIMIT', $limit +1);
+		$this->addOption( 'ORDER BY', 'page_namespace, page_title');
 
 		$data = array ();
 		$count = 0;
+		$res = $this->select(__METHOD__);
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...

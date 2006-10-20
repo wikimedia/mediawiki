@@ -42,11 +42,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$db = $this->getDB();
 
 		extract($db->tableNames('logging', 'page', 'user'), EXTR_PREFIX_ALL, 'tbl');
-		$tables = "$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
+		$this->setTablesAsExpression("$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
 		"log_namespace=page_namespace AND log_title=page_title " .
-		"INNER JOIN $tbl_user ON user_id=log_user";
+		"INNER JOIN $tbl_user ON user_id=log_user");
 
-		$fields = array (
+		$this->addFields(array (
 			'log_type',
 			'log_action',
 			'log_timestamp',
@@ -57,11 +57,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'page_id',
 			'log_comment',
 			'log_params'
-		);
+		));
 
-		$where = array ();
-		if (!is_null($type))
-			$where['log_type'] = $type;
+		$this->addWhereFld('log_type', $type);
+		$this->addWhereRange('log_timestamp', $dir, $start, $end);
+		$this->addOption('LIMIT', $limit +1);
 
 		if (!is_null($user)) {
 			$userid = $db->selectField('user', 'user_id', array (
@@ -69,37 +69,20 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			));
 			if (!$userid)
 				$this->dieUsage("User name $user not found", 'param_user');
-			$where['log_user'] = $userid;
+			$this->addWhereFld('log_user', $userid);
 		}
 
 		if (!is_null($title)) {
 			$titleObj = Title :: newFromText($title);
 			if (is_null($titleObj))
 				$this->dieUsage("Bad title value '$title'", 'param_title');
-			$where['log_namespace'] = $titleObj->getNamespace();
-			$where['log_title'] = $titleObj->getDBkey();
+			$this->addWhereFld('log_namespace', $titleObj->getNamespace());
+			$this->addWhereFld('log_title', $titleObj->getDBkey());
 		}
-
-		$dirNewer = ($dir === 'newer');
-		$before = ($dirNewer ? '<=' : '>=');
-		$after = ($dirNewer ? '>=' : '<=');
-
-		if (!is_null($start))
-			$where[] = 'log_timestamp' . $after . $db->addQuotes($start);
-		if (!is_null($end))
-			$where[] = 'log_timestamp' . $before . $db->addQuotes($end);
-
-		$options = array (
-			'LIMIT' => $limit +1,
-			'ORDER BY' => 'log_timestamp' . ($dirNewer ? '' : ' DESC'
-		));
-
-		$this->profileDBIn();
-		$res = $db->select($tables, $fields, $where, __METHOD__, $options);
-		$this->profileDBOut();
 
 		$data = array ();
 		$count = 0;
+		$res = $this->select(__METHOD__);
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -128,8 +111,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 						$params = null;
 					}
 				}
-				
-				if(!empty($params)) {
+
+				if (!empty ($params)) {
 					$this->getResult()->setIndexedTagName($params, 'param');
 					$vals = array_merge($vals, $params);
 				}
