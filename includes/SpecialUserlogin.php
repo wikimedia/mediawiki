@@ -157,12 +157,12 @@ class LoginForm {
 		global $wgLoginLanguageSelector;
 		if( $wgLoginLanguageSelector && $this->mLanguage )
 			$u->setOption( 'language', $this->mLanguage );
-		
+
 		# Save user settings and send out an email authentication message if needed
 		$u->saveSettings();
 		if( $wgEmailAuthentication && User::isValidEmailAddr( $u->getEmail() ) )
 			$u->sendConfirmationMail();
-			
+
 		# If not logged in, assume the new account as the current one and set session cookies
 		# then show a "welcome" message or a "need cookies" message as needed
 		if( $wgUser->isAnon() ) {
@@ -257,6 +257,14 @@ class LoginForm {
 			return false;
 		}
 
+		$abortError = '';
+		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
+			// Hook point to add extra creation throttles and blocks
+			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
+			$this->mainLoginForm( $abortError );
+			return false;
+		}
+
 		if ( $wgAccountCreationThrottle ) {
 			$key = wfMemcKey( 'acctcreate', 'ip', $ip );
 			$value = $wgMemc->incr( $key );
@@ -267,14 +275,6 @@ class LoginForm {
 				$this->throttleHit( $wgAccountCreationThrottle );
 				return false;
 			}
-		}
-
-		$abortError = '';
-		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
-			// Hook point to add extra creation throttles and blocks
-			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
-			$this->mainLoginForm( $abortError );
-			return false;
 		}
 
 		if( !$wgAuth->addUser( $u, $this->mPassword ) ) {
