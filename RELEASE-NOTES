@@ -63,6 +63,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   styling
 * (bug 6276) Stopped search field from getting too large in Cologne Blue
 * Fixed duplicate name/id value of "search" in Cologne Blue
+* (bug 7644) User creations that are aborted by hooks shouldn't be counted
+  against account creations per day limit
 
 == Languages updated ==
 
