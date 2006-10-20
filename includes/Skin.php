@@ -478,7 +478,7 @@ END;
 			$a['onload'] .= 'setupRightClickEdit()';
 		}
 		$a['class'] = 'ns-'.$wgTitle->getNamespace().' '.($wgContLang->isRTL() ? "rtl" : "ltr").
-		' page-'.Sanitizer::escapeId( $wgTitle->getPrefixedText() );
+		' '.Sanitizer::escapeId( 'page-'.$wgTitle->getPrefixedText() );
 		return $a;
 	}
 
