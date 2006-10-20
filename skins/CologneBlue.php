@@ -304,9 +304,9 @@ class SkinCologneBlue extends Skin {
 		$s = "<form id=\"search\" method=\"get\" class=\"inline\" action=\"$action\">";
 		if ( "" != $label ) { $s .= "{$label}: "; }
 
-		$s .= "<input type='text' name=\"search\" size='14' value=\""
+		$s .= "<input type='text' id=\"searchtext\" name=\"searchtext\" size=\"14\" value=\""
 		  . htmlspecialchars(substr($search,0,256)) . "\" />"
-		  . "<br /><input type='submit' name=\"go\" value=\"" . htmlspecialchars( wfMsg( "searcharticle" ) ) . "\" /> <input type='submit' name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( "search" ) ) . "\" /></form>";
+		  . "<br /><input type='submit' id=\"go\" name=\"go\" value=\"" . htmlspecialchars( wfMsg( "searcharticle" ) ) . "\" /> <input type='submit' id=\"fulltext\" name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( "search" ) ) . "\" /></form>";
 
 		return $s;
 	}
