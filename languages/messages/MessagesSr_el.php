@@ -1602,7 +1602,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'tooltip-minoredit' => 'Naznačite da se radi o maloj izmeni [alt-i]',
 'tooltip-save' => 'Snimite Vaše izmene [alt-s]',
 'tooltip-preview' => 'Pretpregled Vaših izmena, molimo koristite ovo pre snimanja! [alt-p]',
-'tooltip-diff' => 'Prikaži koje promene ste napravili na tekstu. [alt-d]',
+'tooltip-diff' => 'Prikaži koje promene ste napravili na tekstu. [alt-v]',
 'tooltip-compareselectedversions' => 'Pogledaj razlike između dve odabrane verzije ove stranice. [alt-v]',
 'tooltip-watch' => 'Dodajte ovu stranicu na Vaš spisak nadgledanja [alt-w]',
 

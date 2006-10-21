@@ -1172,7 +1172,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-minoredit'     => 'Markera som mindre ändring [alt-i]',
 'tooltip-save'          => 'Spara dina ändringar [alt-s]',
 'tooltip-preview'       => 'Det är bra om du förhandsgranskar dina ändringar innan du sparar! [alt-p]',
-'tooltip-diff'          => 'Visa vilka förändringar du har gjort av texten. [alt-d]',
+'tooltip-diff'          => 'Visa vilka förändringar du har gjort av texten. [alt-v]',
 'tooltip-compareselectedversions'=> 'Visa skillnaden mellan de två markerade versionerna av den här sidan. [alt-v]',
 'tooltip-watch'         => 'Lägg till den här sidan i din bevakningslista [alt-w]',
 'Common.css'            => '/** CSS som skrivs här nedan påverkar alla skal **/',

@@ -1191,7 +1191,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'tooltip-minoredit'     => 'Shënoje këtë redaktim të vogël [alt-i]',
 'tooltip-save'          => 'Kryej ndryshimet [alt-s]',
 'tooltip-preview'       => 'Shiko parapamjen e ndryshimeve, përdoreni këtë para se të kryeni ndryshimet! [alt-p]',
-'tooltip-diff'          => 'Show which changes you made to the text. [alt-d]',
+'tooltip-diff'          => 'Show which changes you made to the text. [alt-v]',
 'tooltip-compareselectedversions'=> 'Shikoni krahasimin midis dy versioneve të zgjedhura të kësaj faqeje. [alt-v]',
 'tooltip-watch'         => 'Mbikqyre këtë faqe [alt-w]',
 'Monobook.css'          => '/* redaktoni këtë faqe për të përshtatur pamjen Monobook për tëra faqet tuaja */',

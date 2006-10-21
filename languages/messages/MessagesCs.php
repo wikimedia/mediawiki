@@ -1500,7 +1500,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'tooltip-minoredit' => 'Označit jako malou editaci [alt-i]',
 'tooltip-save' => 'Uložit vaše úpravy [alt-s]',
 'tooltip-preview' => 'Prohlédnout vaše úpravy, prosíme použijte tuto funkci před uložením! [alt-p]',
-'tooltip-diff' => 'Zobrazit, jaké změny jste v textu provedli. [alt-d]',
+'tooltip-diff' => 'Zobrazit, jaké změny jste v textu provedli. [alt-v]',
 'tooltip-compareselectedversions' => 'Porovnat rozdíly mezi zvolenými verzemi této stránky. [alt-v]',
 'tooltip-watch' => 'Přidat stránku do seznamu sledovaných [alt-w]',
 

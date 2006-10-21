@@ -1190,7 +1190,7 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 'tooltip-minoredit' => 'Marker dette som en mindre ændring [alt-i]',
 'tooltip-save' => 'Gem dine ændringer [alt-s]',
 'tooltip-preview' => 'Forhåndsvis dine ændringer, brug venligst denne funktion inden du gemmer! [alt-p]',
-'tooltip-diff' => 'Vis hvilke ændringer du har lavet i teksten. [alt-d]',
+'tooltip-diff' => 'Vis hvilke ændringer du har lavet i teksten. [alt-v]',
 'tooltip-compareselectedversions' => 'Se forskellene imellem de to valgte versioner af denne side. [alt-v]',
 'tooltip-watch' => 'Tilføj denne side til din overvågningsliste [alt-w]',
 

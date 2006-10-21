@@ -1266,7 +1266,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'tooltip-minoredit'     => 'Marca sossì coma modìfica cita [alt-i]',
 'tooltip-save'          => 'Salva le modìfiche [alt-s]',
 'tooltip-preview'       => 'Preuva dle modìfiche (mej sempe fela, prima che fé che salvé!) [alt-p]',
-'tooltip-diff'          => 'Fame vëdde che modìfiche che i l\'hai faje al test. [alt-d]',
+'tooltip-diff'          => 'Fame vëdde che modìfiche che i l\'hai faje al test. [alt-v]',
 'tooltip-compareselectedversions'=> 'Fame ël paragon dle diferense antra le version selessionà. [alt-v]',
 'tooltip-watch'         => 'Gionta sta pàgina-sì a la lista dle ròbe che im ten-o sot euj [alt-w]',
 'Common.css'            => '/** Ël còdes CSS che as buta ambelessì a resta dovrà ant tute le "facie" */',

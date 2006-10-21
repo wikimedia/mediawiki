@@ -1441,7 +1441,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-minoredit'     => 'Označ toto ako drobnú úpravu [alt-i]',
 'tooltip-save'          => 'Uloží vaše úpravy [alt-s]',
 'tooltip-preview'       => 'Náhľad úprav, prosím použite pred uložením! [alt-p]',
-'tooltip-diff'          => 'Ukáž, aké zmeny ste urobili v texte. [alt-d]',
+'tooltip-diff'          => 'Ukáž, aké zmeny ste urobili v texte. [alt-v]',
 'tooltip-compareselectedversions'=> 'Zobraz rozdiely medzi dvoma vybranými verziami tohto článku. [alt-v]',
 'tooltip-watch'         => 'Pridaj túto stránku k sledovaným. [alt-w]',
 'Monobook.css'          => '/* úpravou tohto súboru si prispôsobíte skin monobook pre celú wiki */',

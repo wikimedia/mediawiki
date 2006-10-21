@@ -1096,7 +1096,7 @@ En el último caso puedes usar un enlace, por ejemplo [[Special:Export/{{Mediawi
 'tooltip-minoredit'     => 'Marcar este cambio como menor [alt-i]',
 'tooltip-save'          => 'Guardar tus cambios [alt-s]',
 'tooltip-preview'       => 'Previsualiza tus cambios, ¡por favor, usa esto antes de grabar! [alt-p]',
-'tooltip-diff'          => 'Muestra los cambios que has introducido en el texto. [alt-d]',
+'tooltip-diff'          => 'Muestra los cambios que has introducido en el texto. [alt-v]',
 'tooltip-compareselectedversions'=> 'Ver las diferencias entre las dos versiones seleccionadas de esta página. [alt-v]',
 'tooltip-watch'         => 'Añadir esta página a tu lista de seguimiento [alt-w]',
 'Monobook.css'          => '/* cambia este archivo para personalizar la piel monobook para el sitio entero */',

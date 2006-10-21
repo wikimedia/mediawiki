@@ -2036,7 +2036,7 @@ huh_laade darrəf.',
 'tooltip-preview'       => 'Lißß de Füür_Aansėsh fun dä Sigk un_fun_Dinge Ännderonge ih_dat_De_n Affsphëijshere 
 
 dëijß! [alt-p]',
-'tooltip-diff'          => 'Zëijsh Ding Ännderone am Täxx aan. [alt-d]',
+'tooltip-diff'          => 'Zëijsh Ding Ännderone am Täxx aan. [alt-v]',
 'tooltip-compareselectedversions'=> 'Donn de Ungescheed zweshe dä bëijde ußjewäälte Väsjohne zëije. [alt-v]',
 'tooltip-watch'         => 'Op di Sigk hee oppaßße. [alt-w]',
 'Common.css'            => '.allpagesredirect, .titleNamespace {font-style:italic}',

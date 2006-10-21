@@ -1240,7 +1240,7 @@ $NEWPAGE
 'tooltip-minoredit'     => 'この編集を細部の変更とマーク [alt-i]',
 'tooltip-save'          => '編集を保存します。 [alt-s]',
 'tooltip-preview'       => '編集結果を確認します。保存前に是非使用してください。 [alt-p]',
-'tooltip-diff'          => 'あなたが編集した版の変更点を表示します。[alt-d]',
+'tooltip-diff'          => 'あなたが編集した版の変更点を表示します。[alt-v]',
 'tooltip-compareselectedversions'=> '選択された二つの版の差分を表示します。 [alt-v]',
 'tooltip-watch'         => 'このページをウォッチリストへ追加します。 [alt-w]',
 'Common.css'            => '/* ここに書いた CSS は全ての外装に反映されます */',

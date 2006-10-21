@@ -1170,7 +1170,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-minoredit'     => 'Merk dette som en mindre endring [alt-i]',
 'tooltip-save'          => 'Lagre endringer [alt-s]',
 'tooltip-preview'       => 'Forhåndsvis endringene, vennligst bruk denne funksjonen før du lagrer! [alt-p]',
-'tooltip-diff'          => 'Vis hvilke endringer du har gjort på teksten. [alt-d]',
+'tooltip-diff'          => 'Vis hvilke endringer du har gjort på teksten. [alt-v]',
 'tooltip-compareselectedversions'=> 'Se forskjellene mellom de to valgte versjonene av denne siden. [alt-v]',
 'tooltip-watch'         => 'Legg denne siden til overvåkningslista di [alt-w]',
 'Common.css'            => '/* CSS plassert i denne fila vil gjelde for alle utseender. */',

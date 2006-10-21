@@ -1179,7 +1179,7 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 'tooltip-minoredit'     => 'Merk dette som ei uviktig endring [alt-i]',
 'tooltip-save'          => 'Lagre endringane dine [alt-s]',
 'tooltip-preview'       => 'Førehandsvis endringane dine, bruk denne funksjonen før du lagrar! [alt-p]',
-'tooltip-diff'          => 'Vis skilnaden mellom din versjon og lagra versjon, utan å lagre. [alt-d]',
+'tooltip-diff'          => 'Vis skilnaden mellom din versjon og lagra versjon, utan å lagre. [alt-v]',
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida. [alt-v]',
 'tooltip-watch'         => 'Legg denne sida til i overvakingslista di [alt-w]',
 

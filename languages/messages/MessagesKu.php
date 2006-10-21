@@ -596,7 +596,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'allmessagesnotsupportedDB'=> '\'\'\'Special:Allmessages\'\'\' cannot be used because \'\'\'$wgUseDatabaseMessages\'\'\' is switched off.',
 'thumbnail-more'        => 'Mezin bike',
 'importnotext'          => 'Vala an nivîs tune',
-'tooltip-diff'          => 'Show which changes you made to the text. [alt-d]',
+'tooltip-diff'          => 'Show which changes you made to the text. [alt-v]',
 'tooltip-compareselectedversions'=> 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne. [alt-v]',
 'Monobook.css'          => '*.rtl 
  {

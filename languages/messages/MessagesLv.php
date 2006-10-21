@@ -858,7 +858,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'tooltip-minoredit'     => 'Atzīmēt šo par maznozīmīgu labojumu [alt-i]',
 'tooltip-save'          => 'Saglabāt veiktās izmaiņas [alt-s]',
 'tooltip-preview'       => 'Parādīt izmaiņu priekšskatījumu. Lūdzam izmantot šo iespēju pirms saglabāšanas. [alt-p]',
-'tooltip-diff'          => 'Parādīt, kā esi izmainījis tekstu. [alt-d]',
+'tooltip-diff'          => 'Parādīt, kā esi izmainījis tekstu. [alt-v]',
 'tooltip-compareselectedversions'=> 'Aplūkot atšķirības starp divām izvēlētajām lapas versijām. [alt-v]',
 'tooltip-watch'         => 'Pievienot šo lapu uzraugāmo lapu sarakstam [alt-w]',
 'siteuser'              => '{{grammar:ģenitīvs|{{SITENAME}}}} lietotājs $1',

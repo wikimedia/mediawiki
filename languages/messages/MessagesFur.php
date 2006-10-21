@@ -635,7 +635,7 @@ Chest al vûl dî une medie di '''$5''' cambiaments par pagjine, e '''$6''' viod
 'tog-watchdefault' => 'Zonte in automatic lis pagjinis che o cambii inte liste di chês tignudis di voli',
 'toolbox' => "imprescj",
 'tooltip-compareselectedversions' => 'Viôt lis difarencis framieç lis dôs versions di cheste pagjine selezionadis. [alt-v]',
-'tooltip-diff' => 'Mostre i cambiaments che tu âs fat al test. [alt-d]',
+'tooltip-diff' => 'Mostre i cambiaments che tu âs fat al test. [alt-v]',
 'tooltip-minoredit' => "Segne cheste come une piçul cambiament [alt-i]",
 'tooltip-preview' => "Anteprime dai tiei cambiaments, doprile par plasê prime di salvâ! [alt-p]",
 'tooltip-save' => "Salve i tiei cambiaments [alt-s]",

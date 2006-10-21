@@ -1315,7 +1315,7 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.',
 'tooltip-preview' => 'Réamhamharc ar do chuid athruithe; úsáid an gné seo roimh a shábhálaíonn tú! [alt-r]',
 'tooltip-compareselectedversions' => 'Féach na difríochtaí idir an dhá leagain roghnaithe den leathanach seo. [alt-l]',
 'tooltip-watch' => 'Cuir an leathanach seo ar do liosta faire [alt-f]',
-'tooltip-diff' => 'Taispeáin na difríochtaí áirithe a rinne tú don téacs [alt-d]',
+'tooltip-diff' => 'Taispeáin na difríochtaí áirithe a rinne tú don téacs [alt-v]',
 
 
 # stylesheets
