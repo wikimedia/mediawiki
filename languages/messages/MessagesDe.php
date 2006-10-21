@@ -466,7 +466,8 @@ Bitte ignoriesen Sie diese E-Mail, falls Sie diese nicht selbst angefordert habe
 'passwordsent'		=> 'Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.
 Das alte Passwort bleibt weiterhin gültig.',
-'eauthentsent'		=>  'Eine Bestätigungsmail wurde an die angegebene E-Mail-Adresse verschickt.
+'blocked-mailpassword'	=> 'Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit ein neues Passwort anzufordern ebenfalls gesperrt.',
+'eauthentsent'		=> 'Eine Bestätigungsmail wurde an die angegebene E-Mail-Adresse verschickt.
 
 Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolgen Sie die Hinweise in der Bestätigungsmail.',
 'mailerror'		=> 'Fehler beim Senden der E-Mail: $1',
