@@ -407,6 +407,13 @@ class LoginForm {
 	function mailPassword() {
 		global $wgUser, $wgOut;
 		
+		# Check against blocked IPs
+		# fixme -- should we not?
+		if( $wgUser->isBlocked() ) {
+			$this->mainLoginForm( wfMsg( 'blocked-mailpassword' ) );
+			return;
+		}
+		
 		# Check against the rate limiter
 		if( $wgUser->pingLimiter( 'mailpassword' ) ) {
 			$wgOut->rateLimited();
