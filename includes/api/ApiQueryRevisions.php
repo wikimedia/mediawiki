@@ -39,16 +39,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$limit = $startid = $endid = $start = $end = $dir = $prop = null;
 		extract($this->extractRequestParams());
 
-		$db = $this->getDB();
-
-		// true when ordered by timestamp from older to newer, false otherwise
-		$dirNewer = ($dir === 'newer');
-
 		// If any of those parameters are used, work in 'enumeration' mode.
 		// Enum mode can only be used when exactly one page is provided.
 		// Enumerating revisions on multiple pages make it extremelly 
 		// difficult to manage continuations and require additional sql indexes  
-		$enumRevMode = (!is_null($limit) || !is_null($startid) || !is_null($endid) || $dirNewer || !is_null($start) || !is_null($end));
+		$enumRevMode = (!is_null($limit) || !is_null($startid) || !is_null($endid) || $dir === 'newer' || !is_null($start) || !is_null($end));
 
 		$pageSet = $this->getPageSet();
 		$pageCount = $pageSet->getGoodTitleCount();
@@ -64,48 +59,32 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ($pageCount > 1 && $enumRevMode)
 			$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, start, and end parameters may only be used on a single page.', 'multpages');
 
-		$tables = array (
-			'revision'
-		);
-		$fields = array (
+		$this->addTables('revision');
+		$this->addFields(array (
 			'rev_id',
 			'rev_page',
 			'rev_text_id',
 			'rev_minor_edit'
-		);
-		$where = array (
-			'rev_deleted' => 0
-		);
-		$options = array ();
+		));
+		$this->addWhere('rev_deleted=0');
 
-		$showTimestamp = $showUser = $showComment = $showContent = false;
+		$showContent = false;
+
 		if (!is_null($prop)) {
-			foreach ($prop as $p) {
-				switch ($p) {
-					case 'timestamp' :
-						$fields[] = 'rev_timestamp';
-						$showTimestamp = true;
-						break;
-					case 'user' :
-						$fields[] = 'rev_user';
-						$fields[] = 'rev_user_text';
-						$showUser = true;
-						break;
-					case 'comment' :
-						$fields[] = 'rev_comment';
-						$showComment = true;
-						break;
-					case 'content' :
-						$tables[] = 'text';
-						$where[] = 'rev_text_id=old_id';
-						$fields[] = 'old_id';
-						$fields[] = 'old_text';
-						$fields[] = 'old_flags';
-						$showContent = true;
-						break;
-					default :
-						ApiBase :: dieDebug(__METHOD__, "unknown prop $p");
-				}
+			$prop = array_flip($prop);
+			$this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
+			$this->addFieldsIf('rev_comment', isset ($prop['comment']));
+			if (isset ($prop['user'])) {
+				$this->addFields('rev_user');
+				$this->addFields('rev_user_text');
+			}
+			if (isset ($prop['content'])) {
+				$this->addTables('text');
+				$this->addWhere('rev_text_id=old_id');
+				$this->addFields('old_id');
+				$this->addFields('old_text');
+				$this->addFields('old_flags');
+				$showContent = true;
 			}
 		}
 
@@ -127,40 +106,30 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// Switching to rev_id removes the potential problem of having more than 
 			// one row with the same timestamp for the same page. 
 			// The order needs to be the same as start parameter to avoid SQL filesort.
-			$options['ORDER BY'] = (!is_null($startid) ? 'rev_id' : 'rev_timestamp') . ($dirNewer ? '' : ' DESC');
 
-			$before = ($dirNewer ? '<=' : '>=');
-			$after = ($dirNewer ? '>=' : '<=');
-
-			if (!is_null($startid))
-				$where[] = 'rev_id' . $after . intval($startid);
-			if (!is_null($endid))
-				$where[] = 'rev_id' . $before . intval($endid);
-			if (!is_null($start))
-				$where[] = 'rev_timestamp' . $after . $db->addQuotes($start);
-			if (!is_null($end))
-				$where[] = 'rev_timestamp' . $before . $db->addQuotes($end);
+			if (is_null($startid))
+				$this->addWhereRange('rev_id', $dir, $startid, $endid);
+			else
+				$this->addWhereRange('rev_timestamp', $dir, $start, $end);
 
 			// must manually initialize unset limit
 			if (is_null($limit))
 				$limit = 10;
-
 			$this->validateLimit($this->encodeParamName('limit'), $limit, 1, $userMax, $botMax);
 
 			// There is only one ID, use it
-			$where['rev_page'] = array_pop(array_keys($pageSet->getGoodTitles()));
-
+			$this->addWhereFld('rev_page', array_pop(array_keys($pageSet->getGoodTitles())));
 		}
 		elseif ($pageCount > 0) {
 			// When working in multi-page non-enumeration mode,
 			// limit to the latest revision only
-			$tables[] = 'page';
-			$where[] = 'page_id=rev_page';
-			$where[] = 'page_latest=rev_id';
+			$this->addTables('page');
+			$this->addWhere('page_id=rev_page');
+			$this->addWhere('page_latest=rev_id');
 			$this->validateLimit('page_count', $pageCount, 1, $userMax, $botMax);
 
 			// Get all page IDs
-			$where['page_id'] = array_keys($pageSet->getGoodTitles());
+			$this->addWhereFld('page_id', array_keys($pageSet->getGoodTitles()));
 
 			$limit = $pageCount; // assumption testing -- we should never get more then $pageCount rows.
 		}
@@ -168,20 +137,18 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
 
 			// Get all revision IDs
-			$where['rev_id'] = array_keys($pageSet->getRevisionIDs());
+			$this->addWhereFld('rev_id', array_keys($pageSet->getRevisionIDs()));
 
 			$limit = $revCount; // assumption testing -- we should never get more then $revCount rows.
 		} else
 			ApiBase :: dieDebug(__METHOD__, 'param validation?');
 
-		$options['LIMIT'] = $limit +1;
-
-		$this->profileDBIn();
-		$res = $db->select($tables, $fields, $where, __METHOD__, $options);
-		$this->profileDBOut();
+		$this->addOption('LIMIT', $limit +1);
 
 		$data = array ();
 		$count = 0;
+		$db = $this->getDB();
+		$res = $this->select(__METHOD__);
 		while ($row = $db->fetchObject($res)) {
 
 			if (++ $count > $limit) {
@@ -192,41 +159,23 @@ class ApiQueryRevisions extends ApiQueryBase {
 				break;
 			}
 
-			$vals = array (
-				'revid' => intval($row->rev_id
-			), 'oldid' => intval($row->rev_text_id));
+			$vals = $this->addRowInfo('rev', $row);
+			if ($vals) {
+				if ($showContent)
+					ApiResult :: setContent($vals, Revision :: getRevisionText($row));
 
-			if ($row->rev_minor_edit) {
-				$vals['minor'] = '';
+				$this->getResult()->addValue(array (
+					'query',
+					'pages',
+					intval($row->rev_page
+				), 'revisions'), intval($row->rev_id), $vals);
 			}
-
-			if ($showTimestamp)
-				$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
-
-			if ($showUser) {
-				$vals['user'] = $row->rev_user_text;
-				if (!$row->rev_user)
-					$vals['anon'] = '';
-			}
-
-			if ($showComment)
-				$vals['comment'] = $row->rev_comment;
-
-			if ($showContent) {
-				ApiResult :: setContent($vals, Revision :: getRevisionText($row));
-			}
-
-			$this->getResult()->addValue(array (
-				'query',
-				'pages',
-				intval($row->rev_page
-			), 'revisions'), intval($row->rev_id), $vals);
 		}
 		$db->freeResult($res);
 
 		// Ensure that all revisions are shown as '<rev>' elements
 		$result = $this->getResult();
-		if( $result->getIsRawMode()) {
+		if ($result->getIsRawMode()) {
 			$data = & $result->getData();
 			foreach ($data['query']['pages'] as & $page) {
 				if (is_array($page) && array_key_exists('revisions', $page)) {

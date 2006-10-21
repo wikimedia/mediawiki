@@ -71,33 +71,33 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
-				'rc_cur_id AS page_id',
-				'rc_this_oldid AS rev_id',
-				'rc_namespace AS page_namespace',
-				'rc_title AS page_title',
-				'rc_new AS page_is_new',
-				'rc_minor AS rev_minor_edit',
-				'rc_timestamp AS rev_timestamp'
+				'rc_cur_id',
+				'rc_this_oldid',
+				'rc_namespace',
+				'rc_title',
+				'rc_new',
+				'rc_minor',
+				'rc_timestamp'
 			));
 
-			$this->addFieldsIf('rc_user AS rev_user', $user);
-			$this->addFieldsIf('rc_user_text AS rev_user_text', $user);
-			$this->addFieldsIf('rc_comment AS rev_comment', $comment);
+			$this->addFieldsIf('rc_user', $user);
+			$this->addFieldsIf('rc_user_text', $user);
+			$this->addFieldsIf('rc_comment', $comment);
 			$this->addFieldsIf('rc_patrolled', $patrol);
 		}
 		elseif ($allrev) {
 			$this->addFields(array (
-				'rc_this_oldid AS rev_id',
-				'rc_namespace AS page_namespace',
-				'rc_title AS page_title',
-				'rc_timestamp AS rev_timestamp'
+				'rc_this_oldid',
+				'rc_namespace',
+				'rc_title',
+				'rc_timestamp'
 			));
 		} else {
 			$this->addFields(array (
-				'rc_cur_id AS page_id',
-				'rc_namespace AS page_namespace',
-				'rc_title AS page_title',
-				'rc_timestamp AS rev_timestamp'
+				'rc_cur_id',
+				'rc_namespace',
+				'rc_title',
+				'rc_timestamp'
 			));
 		}
 
@@ -118,7 +118,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->addWhereFld('wl_namespace', $namespace);
 		$this->addWhereIf('rc_this_oldid=page_latest', !$allrev);
 		$this->addWhereIf("rc_timestamp > ''", !isset ($start) && !isset ($end));
-		
+
 		$this->addOption('LIMIT', $limit +1);
 
 		$data = array ();
@@ -129,47 +129,27 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter('from', $row->rev_timestamp);
+				$this->setContinueEnumParameter('from', $row->rc_timestamp);
 				break;
 			}
 
-			$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-			// skip any pages that user has no rights to read
-			if ($title->userCanRead()) {
-
-				if (is_null($resultPageSet)) {
-					$vals = array ();
-					$vals['pageid'] = intval($row->page_id);
-					$vals['revid'] = intval($row->rev_id);
-					$vals['ns'] = $title->getNamespace();
-					$vals['title'] = $title->getPrefixedText();
-
-					if ($row->page_is_new)
-						$vals['new'] = '';
-					if ($row->rev_minor_edit)
-						$vals['minor'] = '';
-
-					if ($user) {
-						if (!$row->rev_user)
-							$vals['anon'] = '';
-						$vals['user'] = $row->rev_user_text;
-					}
-					if ($comment)
-						$vals['comment'] = $row->rev_comment;
-					if ($timestamp)
-						$vals['timestamp'] = $row->rev_timestamp;
-					if ($patrol && $row->rc_patrolled)
-						$vals['patrolled'] = '';
-
+			if (is_null($resultPageSet)) {
+				$vals = $this->addRowInfo('rc', $row);
+				if($vals)
 					$data[] = $vals;
-				}
-				elseif ($allrev) {
-					$data[] = intval($row->rev_id);
-				} else {
-					$data[] = intval($row->page_id);
+			} else {
+				$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
+				// skip any pages that user has no rights to read
+				if ($title->userCanRead()) {
+					if ($allrev) {
+						$data[] = intval($row->rc_this_oldid);
+					} else {
+						$data[] = intval($row->rc_cur_id);
+					}
 				}
 			}
 		}
+
 		$db->freeResult($res);
 
 		if (is_null($resultPageSet)) {

@@ -36,7 +36,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$limit = $from = $namespace = $hide = $dir = $start = $end = null;
+		$limit = $prop = $from = $namespace = $hide = $dir = $start = $end = null;
 		extract($this->extractRequestParams());
 
 		$this->addTables('recentchanges');
@@ -45,6 +45,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		if (!is_null($hide)) {
 			$hide = array_flip($hide);
+			if(isset ($hide['anons']) && isset ($hide['liu'])) 
+				$this->dieUsage( "Both 'anons' and 'liu' cannot be set at the same time", 'hide' );
 			$this->addWhereIf('rc_minor = 0', isset ($hide['minor']));
 			$this->addWhereIf('rc_bot = 0', isset ($hide['bots']));
 			$this->addWhereIf('rc_user != 0', isset ($hide['anons']));
@@ -53,14 +55,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		$this->addFields(array (
 			'rc_timestamp',
-			'rc_user',
-			'rc_user_text',
 			'rc_namespace',
 			'rc_title',
-			'rc_comment',
-			'rc_minor',
-			'rc_bot',
-			'rc_new',
 			'rc_cur_id',
 			'rc_this_oldid',
 			'rc_last_oldid',
@@ -68,6 +64,20 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'rc_moved_to_ns',
 			'rc_moved_to_title'
 		));
+
+		if (!is_null($prop)) {
+			$prop = array_flip($prop);
+			$this->addFieldsIf('rc_comment', isset ($prop['comment']));
+			if (isset ($prop['user'])) {
+				$this->addFields('rc_user');
+				$this->addFields('rc_user_text');
+			}
+			if (isset ($prop['flags'])) {
+				$this->addFields('rc_minor');
+				$this->addFields('rc_bot');
+				$this->addFields('rc_new');
+			}
+		}
 
 		$this->addOption('LIMIT', $limit +1);
 
@@ -82,32 +92,9 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				break;
 			}
 
-			$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
-			// skip any pages that user has no rights to read
-			if ($title->userCanRead()) {
-
-				$id = intval($row->rc_cur_id);
-				$data[] = array (
-					'id' => $id,
-					'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText(),
-					'timestamp' => $row->rc_timestamp,
-					'user' => $row->rc_user_text,
-					'comment' => $row->rc_comment,
-					'this_oldid' => $row->rc_this_oldid,
-					'last_oldid' => $row->rc_last_oldid,
-					'type' => $row->rc_type,
-					'moved_to_ns' => $row->rc_moved_to_ns,
-					'moved_to_title' => $row->rc_moved_to_title);
-				
-				if (!$row->rc_user)
-					$vals['anon'] = '';
-				if ($row->rc_new)
-					$vals['new'] = '';
-				if ($row->rc_bot)
-					$vals['bot'] = '';
-				if ($row->rc_minor)
-					$vals['minor'] = '';
-			}
+			$vals = $this->addRowInfo('rc', $row);
+			if($vals)
+				$data[] = $vals;
 		}
 		$db->freeResult($res);
 
@@ -135,6 +122,14 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'namespace' => array (
 				ApiBase :: PARAM_DFLT => 0,
 				ApiBase :: PARAM_TYPE => $namespaces
+			),
+			'prop' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
+					'user',
+					'comment',
+					'flags'
+				)
 			),
 			'hide' => array (
 				ApiBase :: PARAM_ISMULTI => true,

@@ -229,7 +229,7 @@ class ApiQuery extends ApiBase {
 		// Report any missing page ids
 		foreach ($pageSet->getMissingPageIDs() as $pageid) {
 			$pages[$pageid] = array (
-				'id' => $pageid,
+				'pageid' => $pageid,
 				'missing' => ''
 			);
 		}
@@ -237,7 +237,7 @@ class ApiQuery extends ApiBase {
 		// Output general page information for found titles
 		foreach ($pageSet->getGoodTitles() as $pageid => $title) {
 			$pages[$pageid] = array (
-			'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText(), 'id' => $pageid);
+			'pageid' => $pageid, 'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText());
 		}
 
 		if (!empty ($pages)) {
