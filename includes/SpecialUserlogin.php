@@ -313,7 +313,7 @@ class LoginForm {
 	}
 
 	/**
-	 * @private
+	 * @public
 	 */
 	
 	function authenticateUserData()
