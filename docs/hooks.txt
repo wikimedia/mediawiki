@@ -488,9 +488,10 @@ $article: article object that was watched
 $catpage: CategoryPage instance
 
 'SkinTemplateContentActions': after building the $content_action array right
-                              before returning it, see content_action.php in
-			      the extension module for a demonstration of how
-			      to use this hook.
+                              before returning it, see Content_action.php in
+                              the extensions/examples/ directory
+                              ( http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/examples/ )
+                              for a demonstration of how to use this hook.
 $content_actions: The array of content actions
 
 'BeforePageDisplay': Called just before outputting a page (all kinds of,
