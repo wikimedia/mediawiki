@@ -363,6 +363,8 @@ class Skin extends Linker {
 		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage, $wgStyleVersion;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
+		// fixme: the common.css import might be doubled now...
+		$s = "@import \"$wgStylePath/common.css?$wgStyleVersion\";\n";
 		$s = "@import \"$wgStylePath/$sheet?$wgStyleVersion\";\n";
 		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css?$wgStyleVersion\";\n";
 
