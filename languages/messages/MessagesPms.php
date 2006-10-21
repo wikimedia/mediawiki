@@ -112,7 +112,7 @@ dj\'artìcol ancó pa scrit',
 'subcategories'         => 'Sotacategorìe',
 'mainpage'              => 'Intrada',
 'mainpagetext'          => '<big>\'\'\'MediaWiki a l\'é staita anstalà a la perfession.\'\'\'</big>',
-'mainpagedocfooter'     => 'Che a varda la [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide] ([[belavans]] për adess a-i é mach n\'anglèis) për avej dj\'anformassion suplementar ant sël coma dovré ël programa dla wiki.
+'mainpagedocfooter'     => 'Che a varda la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide] ([[belavans]] për adess a-i é mach n\'anglèis) për avej dj\'anformassion suplementar ant sël coma dovré ël programa dla wiki.
 
 == Për anandiesse a travajé ==
 

@@ -106,7 +106,7 @@ $messages = array(
 'subcategories'         => 'Subkategorioj',
 'mainpage'              => 'Ĉefpaĝo',
 'mainpagetext'          => 'Vikisoftvaro sukcese instaliĝis.',
-'mainpagedocfooter'     => 'Consult the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide] for information on using the wiki software.
+'mainpagedocfooter'     => 'Consult the [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide] for information on using the wiki software.
 
 == Getting started ==
 

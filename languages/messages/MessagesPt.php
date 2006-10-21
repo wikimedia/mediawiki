@@ -226,7 +226,7 @@ $messages = array(
 #'linkprefix'            => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # ignore list
 'mainpage'              => 'Página principal',
 'mainpagetext'    => "<big>'''MediaWiki instalado com sucesso.'''</big>",
-'mainpagedocfooter' => "Consultar o [http://meta.wikipedia.org/wiki/Help:Contents Guia de Utilizadores] para informação acerca de como utilizador o software wiki.
+'mainpagedocfooter' => "Consultar o [http://meta.wikimedia.org/wiki/Help:Contents Guia de Utilizadores] para informação acerca de como utilizador o software wiki.
 
 == Começando ==
 

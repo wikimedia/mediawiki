@@ -136,8 +136,8 @@ $messages = array(
 'subcategories'         => 'Podkategorije',
 'mainpage'              => 'Glavna stran',
 'mainpagetext'          => 'Wikiprogramje ste uspešno naložili!',
-'mainpagedocfooter'     => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentacijo za prilagajanje vmesnika]
-in [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
+'mainpagedocfooter'     => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentacijo za prilagajanje vmesnika]
+in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
 'portal'                => 'Portal občestva',
 'portal-url'            => 'Project:Portal občestva',
 'about'                 => 'O projektu',

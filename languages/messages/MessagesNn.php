@@ -237,7 +237,7 @@ $messages = array(
 
 'mainpage'		  => 'Hovudside',
 'mainpagetext'	          => 'MediaWiki er no installert.',
-'mainpagedocfooter'       => 'Sjå [http://meta.wikipedia.org/wiki/MediaWiki_localization dokumentasjon for å tilpasse brukargrensesnittet] og [http://meta.wikipedia.org/wiki/Help:Contents brukarmanualen] for bruk og konfigurasjonshjelp.',
+'mainpagedocfooter'       => 'Sjå [http://meta.wikimedia.org/wiki/MediaWiki_localization dokumentasjon for å tilpasse brukargrensesnittet] og [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for bruk og konfigurasjonshjelp.',
 
 'portal'		  => 'Brukarportal',
 'portal-url'		  => 'Project:Brukarportal',
