@@ -728,6 +728,8 @@ your old password.',
 'passwordsent'	=> 'A new password has been sent to the e-mail address
 registered for "$1".
 Please log in again after you receive it.',
+'blocked-mailpassword' => 'Your IP address is blocked from editing, and so
+is not allowed to use the password recovery function to prevent abuse.',
 'eauthentsent' =>  'A confirmation e-mail has been sent to the nominated e-mail address.
 Before any other mail is sent to the account, you will have to follow the instructions in the e-mail,
 to confirm that the account is actually yours.',

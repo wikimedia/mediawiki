@@ -66,6 +66,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7644) User creations that are aborted by hooks shouldn't be counted
   against account creations per day limit
 * (bug 7636) Show Firefox 2 users "shift-alt" as accesskey prefix
+* (bug 6427) Block blocked IPs from using the mail password function
+  to allow blocking of flooders
+
 
 == Languages updated ==
 
