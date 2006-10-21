@@ -174,12 +174,6 @@ abstract class ApiQueryBase extends ApiBase {
 					$vals = array_merge($vals, $params);
 				}
 			}
-
-		} elseif ($prefix === 'rev') {
-
-			// PageId
-			@$tmp = $row->rev_page;
-			if(!is_null($tmp)) $vals['pageid'] = intval($tmp);
 		}
 
 		// Type

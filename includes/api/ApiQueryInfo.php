@@ -54,7 +54,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		foreach ($titles as $pageid => $title) {
 			$pageInfo = array (
-				'touched' => $pageTouched[$pageid],
+				'touched' => wfTimestamp(TS_ISO_8601, $pageTouched[$pageid]),
 				'lastrevid' => intval($pageLatest[$pageid])
 			);
 
