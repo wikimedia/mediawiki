@@ -42,7 +42,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$db = $this->getDB();
 
 		extract($db->tableNames('logging', 'page', 'user'), EXTR_PREFIX_ALL, 'tbl');
-		$this->setTablesAsExpression("$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
+		$this->addTables("$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
 		"log_namespace=page_namespace AND log_title=page_title " .
 		"INNER JOIN $tbl_user ON user_id=log_user");
 
@@ -90,39 +90,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				break;
 			}
 
-			$vals = array (
-				'action' => "$row->log_type/$row->log_action",
-				'timestamp' => $row->log_timestamp,
-				'comment' => $row->log_comment,
-				'pageid' => intval($row->page_id
-			));
-
-			$title = Title :: makeTitle($row->log_namespace, $row->log_title);
-			$vals['ns'] = $title->getNamespace();
-			$vals['title'] = $title->getPrefixedText();
-
-			if ($row->log_params !== '') {
-				$params = explode("\n", $row->log_params);
-				if ($row->log_type == 'move' && isset ($params[0])) {
-					$destTitle = Title :: newFromText($params[0]);
-					if ($destTitle) {
-						$vals['tons'] = $destTitle->getNamespace();
-						$vals['totitle'] = $destTitle->getPrefixedText();
-						$params = null;
-					}
-				}
-
-				if (!empty ($params)) {
-					$this->getResult()->setIndexedTagName($params, 'param');
-					$vals = array_merge($vals, $params);
-				}
-			}
-
-			if (!$row->log_user)
-				$vals['anon'] = '';
-			$vals['user'] = $row->user_name;
-
-			$data[] = $vals;
+			$vals = $this->addRowInfo('log', $row);
+			if($vals)
+				$data[] = $vals;
 		}
 		$db->freeResult($res);
 

@@ -293,46 +293,47 @@ abstract class ApiBase {
 
 		// More validation only when choices were not given
 		// choices were validated in parseMultiValue()
-		if (!is_array($type) && isset ($value)) {
-
-			switch ($type) {
-				case 'NULL' : // nothing to do
-					break;
-				case 'string' : // nothing to do
-					break;
-				case 'integer' : // Force everything using intval()
-					$value = is_array($value) ? array_map('intval', $value) : intval($value);
-					break;
-				case 'limit' :
-					if (!isset ($paramSettings[self :: PARAM_MAX1]) || !isset ($paramSettings[self :: PARAM_MAX2]))
-						ApiBase :: dieDebug(__METHOD__, "MAX1 or MAX2 are not defined for the limit $paramName");
-					if ($multi)
-						ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $paramName");
-					$min = isset ($paramSettings[self :: PARAM_MIN]) ? $paramSettings[self :: PARAM_MIN] : 0;
-					$value = intval($value);
-					$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX1], $paramSettings[self :: PARAM_MAX2]);
-					break;
-				case 'boolean' :
-					if ($multi)
-						ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $paramName");
-					break;
-				case 'timestamp' :
-					if ($multi)
-						ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $paramName");
-					if (!preg_match('/^[0-9]{14}$/', $value)) {
-						$valueName = ""; // TODO: initialization
-						$this->dieUsage("Invalid value '$value' for timestamp parameter $paramName", "badtimestamp_{$valueName}");
-					}
-					break;
-				default :
-					ApiBase :: dieDebug(__METHOD__, "Param $paramName's type is unknown - $type");
-
+		if (isset ($value)) {
+			if (!is_array($type)) {
+				switch ($type) {
+					case 'NULL' : // nothing to do
+						break;
+					case 'string' : // nothing to do
+						break;
+					case 'integer' : // Force everything using intval()
+						$value = is_array($value) ? array_map('intval', $value) : intval($value);
+						break;
+					case 'limit' :
+						if (!isset ($paramSettings[self :: PARAM_MAX1]) || !isset ($paramSettings[self :: PARAM_MAX2]))
+							ApiBase :: dieDebug(__METHOD__, "MAX1 or MAX2 are not defined for the limit $paramName");
+						if ($multi)
+							ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $paramName");
+						$min = isset ($paramSettings[self :: PARAM_MIN]) ? $paramSettings[self :: PARAM_MIN] : 0;
+						$value = intval($value);
+						$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX1], $paramSettings[self :: PARAM_MAX2]);
+						break;
+					case 'boolean' :
+						if ($multi)
+							ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $paramName");
+						break;
+					case 'timestamp' :
+						if ($multi)
+							ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $paramName");
+						$value = wfTimestamp(TS_UNIX, $value);
+						if ($value === 0)
+							$this->dieUsage("Invalid value '$value' for timestamp parameter $paramName", "badtimestamp_{$paramName}");
+						$value = wfTimestamp(TS_MW, $value);
+						break;
+					default :
+						ApiBase :: dieDebug(__METHOD__, "Param $paramName's type is unknown - $type");
+	
+				}
 			}
-		}
 
-		// There should never be any duplicate values in a list
-		if (is_array($value))
-			$value = array_unique($value);
+			// There should never be any duplicate values in a list
+			if (is_array($value))
+				$value = array_unique($value);
+		}
 
 		return $value;
 	}

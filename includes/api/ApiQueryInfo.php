@@ -55,7 +55,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		foreach ($titles as $pageid => $title) {
 			$pageInfo = array (
 				'touched' => $pageTouched[$pageid],
-				'lastrevid' => $pageLatest[$pageid]
+				'lastrevid' => intval($pageLatest[$pageid])
 			);
 
 			if ($pageIsRedir[$pageid])

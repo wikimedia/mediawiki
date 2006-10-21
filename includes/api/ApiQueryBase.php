@@ -44,20 +44,12 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	protected function addTables($value) {
-		if(!is_array($this->tables))
-			$this->dieDebug(__METHOD__, 'Must not call setTablesAsExpression() before this method');
 		if(is_array($value))
 			$this->tables = array_merge($this->tables, $value);
 		else
 			$this->tables[] = $value;
 	}
 	
-	protected function setTablesAsExpression($value) {
-		if(!empty($this->tables))
-			$this->dieDebug(__METHOD__, 'Must not call addTables() before this method');
-		$this->tables = $value;
-	}
-
 	protected function addFields($value) {	
 		if(is_array($value))
 			$this->fields = array_merge($this->fields, $value);
@@ -66,8 +58,11 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	protected function addFieldsIf($value, $condition) {
-		if ($condition)
+		if ($condition) {
 			$this->addFields($value);
+			return true;
+		}
+		return false;
 	}
 	
 	protected function addWhere($value) {
@@ -78,8 +73,11 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 	
 	protected function addWhereIf($value, $condition) {
-		if ($condition)
+		if ($condition) {
 			$this->addWhere($value);
+			return true;
+		}
+		return false;
 	}
 
 	protected function addWhereFld($field, $value) {
@@ -102,6 +100,10 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->addOption('ORDER BY', $field . ($isDirNewer ? '' : ' DESC'));
 	}
 	
+	protected function addOption($name, $value) {
+		$this->options[$name] = $value;
+	}
+	
 	protected function select($method) {
 		$this->profileDBIn();
 		$res = $this->getDB()->select($this->tables, $this->fields, $this->where, $method, $this->options);
@@ -109,10 +111,136 @@ abstract class ApiQueryBase extends ApiBase {
 		return $res;
 	}
 
-	protected function addOption($name, $value) {
-		$this->options[$name] = $value;
+
+	protected function addRowInfo($prefix, $row) {
+
+		$vals = array();
+		
+		// ID
+		@$tmp = $row->{$prefix . '_id'};
+		if(!is_null($tmp)) $vals[$prefix . 'id'] = intval($tmp);
+
+		// Title
+		$title = ApiQueryBase::addRowInfo_title($row, $prefix . '_namespace', $prefix . '_title');
+		if ($title) {
+			if (!$title->userCanRead())
+				return false;
+			$vals['ns'] = $title->getNamespace();
+			$vals['title'] = $title->getPrefixedText();
+		}	
+
+		if ($prefix === 'rc') {
+
+			// PageId
+			@$tmp = $row->rc_cur_id;
+			if(!is_null($tmp)) $vals['pageid'] = intval($tmp);
+
+			@$tmp = $row->rc_this_oldid;
+			if(!is_null($tmp)) $vals['revid'] = intval($tmp);
+
+			@$tmp = $row->rc_last_oldid;
+			if(!is_null($tmp)) $vals['old_revid'] = intval($tmp);
+
+			$title = ApiQueryBase::addRowInfo_title($row, 'rc_moved_to_ns', 'rc_moved_to_title');
+			if ($title) {
+				if (!$title->userCanRead())
+					return false;
+				$vals['new_ns'] = $title->getNamespace();
+				$vals['new_title'] = $title->getPrefixedText();
+			}	
+
+			@$tmp = $row->rc_patrolled;
+			if(!is_null($tmp)) $vals['patrolled'] = '';
+
+		} elseif ($prefix === 'log') {
+
+			// PageId
+			@$tmp = $row->page_id;
+			if(!is_null($tmp)) $vals['pageid'] = intval($tmp);
+
+			if ($row->log_params !== '') {
+				$params = explode("\n", $row->log_params);
+				if ($row->log_type == 'move' && isset ($params[0])) {
+					$newTitle = Title :: newFromText($params[0]);
+					if ($newTitle) {
+						$vals['new_ns'] = $newTitle->getNamespace();
+						$vals['new_title'] = $newTitle->getPrefixedText();
+						$params = null;
+					}
+				}
+
+				if (!empty ($params)) {
+					$this->getResult()->setIndexedTagName($params, 'param');
+					$vals = array_merge($vals, $params);
+				}
+			}
+
+		} elseif ($prefix === 'rev') {
+
+			// PageId
+			@$tmp = $row->rev_page;
+			if(!is_null($tmp)) $vals['pageid'] = intval($tmp);
+		}
+
+		// Type
+		@$tmp = $row->{$prefix . '_type'};
+		if(!is_null($tmp)) $vals['type'] = $tmp;
+
+		// Action
+		@$tmp = $row->{$prefix . '_action'};
+		if(!is_null($tmp)) $vals['action'] = $tmp;
+		
+		// Old ID
+		@$tmp = $row->{$prefix . '_text_id'};
+		if(!is_null($tmp)) $vals['oldid'] = intval($tmp);
+
+		// User Name / Anon IP
+		@$tmp = $row->{$prefix . '_user_text'};
+		if(is_null($tmp)) @$tmp = $row->user_name;
+		if(!is_null($tmp)) {
+			$vals['user'] = $tmp;
+			@$tmp = !$row->{$prefix . '_user'};
+			if(!is_null($tmp) && $tmp)
+				$vals['anon'] = '';
+		}
+		
+		// Bot Edit
+		@$tmp = $row->{$prefix . '_bot'};
+		if(!is_null($tmp) && $tmp) $vals['bot'] = '';
+		
+		// New Edit
+		@$tmp = $row->{$prefix . '_new'};
+		if(is_null($tmp)) @$tmp = $row->{$prefix . '_is_new'};
+		if(!is_null($tmp) && $tmp) $vals['new'] = '';
+		
+		// Minor Edit
+		@$tmp = $row->{$prefix . '_minor_edit'};
+		if(is_null($tmp)) @$tmp = $row->{$prefix . '_minor'};
+		if(!is_null($tmp) && $tmp) $vals['minor'] = '';
+		
+		// Timestamp
+		@$tmp = $row->{$prefix . '_timestamp'};
+		if(!is_null($tmp))
+			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $tmp);
+
+		// Comment
+		@$tmp = $row->{$prefix . '_comment'};
+		if(!empty($tmp))	// optimize bandwidth
+			$vals['comment'] = $tmp;
+			
+		return $vals;
+	}  
+
+	private static function addRowInfo_title($row, $nsfld, $titlefld) {
+		@$ns = $row->$nsfld;
+		if(!is_null($ns)) {
+			@$title = $row->$titlefld;
+			if(!empty($title))
+				return Title :: makeTitle($ns, $title);
+		}
+		return false;
 	}
-	
+
 	/**
 	 * Override this method to request extra fields from the pageSet
 	 * using $this->getPageSet()->requestField('fieldName')

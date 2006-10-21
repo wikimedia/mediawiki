@@ -335,7 +335,7 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	private function initFromQueryResult($db, $res, &$remaining = null, $processTitles = null) {
 		if (!is_null($remaining) && is_null($processTitles))
-			$this->dieDebug('Missing $processTitles parameter when $remaining is provided');
+			ApiBase :: dieDebug('Missing $processTitles parameter when $remaining is provided');
 			
 		while ($row = $db->fetchObject($res)) {
 

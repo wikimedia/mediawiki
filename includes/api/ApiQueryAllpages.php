@@ -53,8 +53,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 
 		$this->addTables('page');
-		$this->addWhereIf('page_is_redirect = 1', $filterredir === 'redirects');
-		$this->addWhereIf('page_is_redirect = 0', $filterredir === 'nonredirects');
+		if( !$this->addWhereIf('page_is_redirect = 1', $filterredir === 'redirects'))
+			$this->addWhereIf('page_is_redirect = 0', $filterredir === 'nonredirects');
 		$this->addWhereFld('page_namespace', $namespace);
 		if (isset ($from))
 			$this->addWhere('page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($from)));
@@ -85,16 +85,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 				break;
 			}
 
-			$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-			// skip any pages that user has no rights to read
-			if ($title->userCanRead()) {
-
-				if (is_null($resultPageSet)) {
-					$id = intval($row->page_id);
-					$data[$id] = array (
-						'id' => $id,
-					'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText());
-				} else {
+			if (is_null($resultPageSet)) {
+				$vals = $this->addRowInfo('page', $row);
+				if($vals)
+					$data[intval($row->page_id)] = $vals;
+			} else {
+				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
+				// skip any pages that user has no rights to read
+				if ($title->userCanRead()) {
 					$resultPageSet->processDbRow($row);
 				}
 			}

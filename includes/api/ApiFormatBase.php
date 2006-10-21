@@ -100,7 +100,7 @@ abstract class ApiFormatBase extends ApiBase {
 <br/>
 <small>
 You are looking at the HTML representation of the <?=$this->mFormat?> format.<br/>
-HTML is good for debugging, but probably not suitable for your application.<br/>
+HTML is good for debugging, but probably is not suitable for your application.<br/>
 Please see "format" parameter documentation at the <a href='api.php'>API help</a>
 for more information.
 </small>
@@ -217,7 +217,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 			$feed->outFooter();
 		} else {
 			// Error has occured, print something usefull
-			// TODO: make this error more informative using $this->dieDebug() or similar
+			// TODO: make this error more informative using ApiBase :: dieDebug() or similar
 			wfHttpError(500, 'Internal Server Error', '');
 		}
 	}
