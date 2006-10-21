@@ -162,8 +162,8 @@ $messages = array(
 'subcategories'         => 'Ünnerkategorien',
 'mainpage'                      => 'Hööftsiet',
 'mainpagetext'          => 'De Wiki-Software is mit Spood installeert worrn.',
-'mainpagedocfooter'     => 'Kiek de [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
-un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.',
+'mainpagedocfooter'     => 'Kiek de [http://meta.wikimedia.org/wiki/MediaWiki_i18n Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
+un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.',
 'portal'                        => '{{SITENAME}}-Portal',
 'portal-url'                      => '{{ns:4}}:Portal',
 'about'                               => 'Över',
