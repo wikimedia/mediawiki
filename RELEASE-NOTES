@@ -68,6 +68,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7636) Show Firefox 2 users "shift-alt" as accesskey prefix
 * (bug 6427) Block blocked IPs from using the mail password function
   to allow blocking of flooders
+* Include common.css from classic-style skins in main HTML with the bump URL
+  FIXME: this may leave doubled rules which won't stand up to certain changes.
+  Will want to adjust these more to eliminate the dupe @includes.
 
 
 == Languages updated ==
