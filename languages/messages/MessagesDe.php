@@ -1358,7 +1358,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 'tooltip-minoredit' => 'Diese Änderung als klein markieren. [alt-i]',
 'tooltip-save' => 'Änderungen speichern [alt-s]',
 'tooltip-preview' => 'Vorschau der Änderungen an dieser Seite. Benutzen Sie dies vor dem Speichern! [alt-p]',
-'tooltip-diff' => 'Zeigt Ihre Änderungen am Text tabellarisch an [alt-d]',
+'tooltip-diff' => 'Zeigt Ihre Änderungen am Text tabellarisch an [alt-v]',
 'tooltip-compareselectedversions' => 'Unterschiede zwischen zwei ausgewählten Versionen dieser Seite vergleichen. [alt-v]',
 
 # Metadata

@@ -1093,7 +1093,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'tooltip-minoredit'     => 'Marku tiun ŝanĝon kiel malgrava [alt-i]',
 'tooltip-save'          => 'Konservu viajn ŝanĝojn [alt-s]',
 'tooltip-preview'       => 'Antaŭrigardu viajn ŝanĝojn. Bonvolu uzi tion antaŭ ol konservi ilin! [alt-p]',
-'tooltip-diff'          => 'Show which changes you made to the text. [alt-d]',
+'tooltip-diff'          => 'Show which changes you made to the text. [alt-v]',
 'tooltip-compareselectedversions'=> 'Vidu la malsamojn inter ambaŭ selektitaj versioj de ĉi paĝo. [alt-v]',
 'tooltip-watch'         => 'Aldonu ĉi paĝon al via atentaro [alt-w]',
 'Monobook.css'          => '/* CSS placed here will affect users of the Monobook skin */',

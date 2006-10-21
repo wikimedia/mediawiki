@@ -800,7 +800,7 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 'tooltip-minoredit'     => 'Markeer dit as \'n kleine verangering [alt-i]',
 'tooltip-save'          => 'Bewaar dien verangeringe [alt-s]',
 'tooltip-preview'       => 'Bekiek dien verangeringe veurdets te ze definitief opsjleis! [alt-p]',
-'tooltip-diff'          => 'Bekiek dien verangeringe in de teks. [alt-d]',
+'tooltip-diff'          => 'Bekiek dien verangeringe in de teks. [alt-v]',
 'tooltip-compareselectedversions'=> 'Bekiek de versjille tusje de twie geselectierde versies van dees pazjena. [alt-v]',
 'tooltip-watch'         => 'Voog dees pazjena toe aan dien volglies [alt-w]',
 'anonymous'             => 'Anoniem(e) gebroeker(s) van {{SITENAME}}',

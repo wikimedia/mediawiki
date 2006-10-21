@@ -353,7 +353,7 @@ make it easier to pick out.
 'revertmove'            => 'צוריקדרייען',
 'allmessagesname'       => 'נאָמען',
 'tooltip-search'        => 'זוכן {{SITENAME}} [alt-f]',
-'tooltip-diff'          => 'Show which changes you made to the text. [alt-d]',
+'tooltip-diff'          => 'Show which changes you made to the text. [alt-v]',
 'lastmodifiedatby'        => 'די לעצטע ענדערונג פון די בלאט איז געווען $2, $1 ביי $3.',
 'and'                   => 'און',
 'subcategorycount'      => 'ס\'איז דאָ $1 אונטערקאַטעגאָריעס צו די קאַטעגאָריע.',

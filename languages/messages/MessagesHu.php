@@ -924,7 +924,7 @@ Az utóbbi esetben közvetlen linket is használhatsz, például a [[Special:Exp
 'tooltip-minoredit'     => 'Szerkesztés megjelölése apróként [alt-i]',
 'tooltip-save'          => 'A változtatásaid elmentése [alt-s]',
 'tooltip-preview'       => 'Mielőtt elmentenéd a lapot, ellenőrizd, biztosan úgy néz-e ki, ahogy szeretnéd! [alt-p]',
-'tooltip-diff'          => 'Nézd meg, milyen változtatásokat végeztél eddig a szövegen [alt-d]',
+'tooltip-diff'          => 'Nézd meg, milyen változtatásokat végeztél eddig a szövegen [alt-v]',
 'tooltip-compareselectedversions'=> 'A két kiválasztott változat közötti eltérések megjelenítése [alt-v]',
 'anonymous'             => 'Névtelen {{SITENAME}}-felhasználó(k)',
 'lastmodifiedatby'        => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.',

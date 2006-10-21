@@ -1275,7 +1275,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 
 'templatesused' => 'Các tiêu bản dùng trong trang này',
 'thumbsize' => 'Kích thước thu nhỏ:&nbsp;',
-'tooltip-diff' => 'Xem thay đổi bạn đã thực hiện [alt-d]',
+'tooltip-diff' => 'Xem thay đổi bạn đã thực hiện [alt-v]',
 'tryexact' => 'Thử tìm đoạn văn khớp chính xác với từ khóa',
 'upload_directory_read_only' => 'Thư mục tải lên không ghi vào được',
 'uploadvirus' => 'Tệp tin có virút: $1',

@@ -1167,7 +1167,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'tooltip-minoredit'     => 'Označi kao manju promjenu [alt-i]',
 'tooltip-save'          => 'Sačuvaj promjene [alt-s]',
 'tooltip-preview'       => 'Prikaži kako će izgledati, molimo koristite prije snimanja! [alt-p]',
-'tooltip-diff'          => 'Prikaži promjene učinjene u tekstu. [alt-d]',
+'tooltip-diff'          => 'Prikaži promjene učinjene u tekstu. [alt-v]',
 'tooltip-compareselectedversions'=> 'Prikaži usporedbu izabranih inačica ove stranice. [alt-v]',
 'tooltip-watch'         => 'Dodaj na popis praćenja [alt-w]',
 'Monobook.css'          => '/** Ovdje idu izmjene monobook stylesheeta */',

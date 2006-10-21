@@ -1212,7 +1212,7 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'tooltip-minoredit'     => 'Marcaţi această modificare ca fiind minoră [alt-i]',
 'tooltip-save'          => 'Salvează modificările tale [alt-s]',
 'tooltip-preview'       => 'Previzualizarea modificărilor tale, foloseşte-o te rog înainte de a salva! [alt-p]',
-'tooltip-diff'          => 'Arată ce modificări ai făcut textului. [alt-d]',
+'tooltip-diff'          => 'Arată ce modificări ai făcut textului. [alt-v]',
 'tooltip-compareselectedversions'=> 'Vezi diferenţele între cele două versiuni selectate de pe această pagină. [alt-v]',
 'tooltip-watch'         => 'Adaugă această pagină la lista mea de pagini urmărite [alt-w]',
 'Common.css'            => '/** CSS plasate aici vor fi aplicate tuturor apariţiilor */',

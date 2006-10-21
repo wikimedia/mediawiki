@@ -866,7 +866,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'tooltip-minoredit'     => 'Segnała come modifega minore [alt-i]',
 'tooltip-save'          => 'Salva łe modifeghe [alt-s]',
 'tooltip-preview'       => 'Anteprima de łe modifeghe (consilià, prima de salvare!) [alt-p]',
-'tooltip-diff'          => 'Varda łe modifeghe apportae al testo. [alt-d]',
+'tooltip-diff'          => 'Varda łe modifeghe apportae al testo. [alt-v]',
 'tooltip-compareselectedversions'=> 'Varda łe diferenzse tra łe do verzsion selezsionà de sta paxèna. [alt-v]',
 'notacceptable'         => 'El server wiki non xè in grado di fornire i dati in un formato łeggibiłe dal client utilixà.',
 'anonymous'             => 'Utente(/i) anonimo(/i) de {{SITENAME}}',

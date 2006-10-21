@@ -887,7 +887,7 @@ jumlah-jamléh geus aya \'\'\'$3\'\'\' kaca ulasan sarta \'\'\'$4\'\'\' éditan 
 'tog-watchdefault' => 'Tambahkeun kaca nu diédit ku anjeun kana awaskeuneun anjeun',
 'toolbox' => 'Kotak parabot',
 'tooltip-compareselectedversions' => 'Tempo béda antara dua vérsi kaca ieu nu dipilih [alt-v].',
-'tooltip-diff' => 'Témbongkeun parobahan mana nu geus dijieun. [alt-d]',
+'tooltip-diff' => 'Témbongkeun parobahan mana nu geus dijieun. [alt-v]',
 'tooltip-minoredit' => 'Tandaan ieu salaku éditan minor [alt-i]',
 'tooltip-preview' => 'Sawang heula robahan anjeun, pami tos leres mangga simpen! [alt-p]',
 'tooltip-save' => 'Simpen parobahan anjeun [alt-s]',

@@ -1419,7 +1419,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'tooltip-minoredit'     => 'Markeer dit als een kleine wijziging [alt-i]',
 'tooltip-save'          => 'Sla uw wijzigingen op [alt-s]',
 'tooltip-preview'       => 'Maak een voorvertoning. Gebruik dit! [alt-p]',
-'tooltip-diff'          => 'Toon de gemaakte wijzigingen. [alt-d]',
+'tooltip-diff'          => 'Toon de gemaakte wijzigingen. [alt-v]',
 'tooltip-compareselectedversions'=> 'Toon de verschillen tussen de geselecteerde versies. [alt-v]',
 'tooltip-watch'         => 'Voeg deze pagina toe aan uw volglijst [alt-w]',
 

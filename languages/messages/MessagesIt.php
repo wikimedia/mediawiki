@@ -1323,7 +1323,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "tooltip-minoredit"	=> "Segnala come modifica minore [alt-i]",
 "tooltip-save"	=> "Salva le modifiche [alt-s]",
 "tooltip-preview"	=> "Anteprima delle modifiche (consigliata, prima di salvare!) [alt-p]",
-"tooltip-diff"	=> "Guarda le modifiche apportate al testo. [alt-d]",
+"tooltip-diff"	=> "Guarda le modifiche apportate al testo. [alt-v]",
 "tooltip-compareselectedversions"	=> "Guarda le differenze tra le due versioni selezionate di questa pagina. [alt-v]",
 "tooltip-watch"	=> "Aggiungi questa pagina alla lista degli osservati speciali [alt-w]",
 
