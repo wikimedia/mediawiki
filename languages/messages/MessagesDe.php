@@ -118,7 +118,7 @@ $messages = array(
 'tog-showjumplinks'		=> '„Wechseln-zu“-Links ermöglichen',
 'tog-uselivepreview'		=> 'Live-Vorschau nutzen (JavaScript) (experimentell)',
 'tog-autopatrol'		=> 'Alle eigenen Bearbeitungen als „kontrolliert“ markieren',
-'tog-forceeditsummary'		=> 'Warne mich, wenn ich beim Ändern eine Zusammenfassung vergesse',
+'tog-forceeditsummary'		=> 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown'		=> 'Eigene Änderungen auf der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots'		=> 'Bot-Änderungen auf der Beobachtungsliste ausblenden',
 
@@ -1273,7 +1273,7 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 'userrights'			=> 'Benutzerrechteverwaltung',
 'userrights-lookup-user'	=> 'Gruppenzugehörigkeiten verwalten',
 'userrights-user-editname' => 'Benutzername:',
-'editusergroup' => 'Bearbeite Benutzerrechte',
+'editusergroup'		=> 'Benutzerrechte bearbeiten',
 
 # user groups editing
 #
@@ -1456,7 +1456,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 'blocklogtext'		=> 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch geblockte IP-Adressen werden nicht erfasst. Siehe [[{{ns:special}}:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
 'unblocklogentry'	=> 'Blockade von [[{{ns:user}}:$1]] aufgehoben',
 "range_block_disabled"	=> "Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.",
-'ipb_expiry_invalid'	=> 'Die angegebebe Ablaufzeit ist ungültig.',
+'ipb_expiry_invalid'	=> 'Die angegebene Dauer ist ungültig.',
 'ipb_already_blocked'	=> '„$1“ ist bereits gesperrt',
 "ip_range_invalid"	=> "Ungültiger IP-Addressbereich.",
 "confirmprotect" 	=> "Sperrung bestätigen",
