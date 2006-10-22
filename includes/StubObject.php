@@ -92,6 +92,15 @@ class StubUserLang extends StubObject {
 		$code = $wgRequest->getVal('uselang', '');
 		if ($code == '')
 			$code = $wgUser->getOption('language');
+
+		// if variant is explicitely selected, use it instead the one from wgUser
+		// see bug #7605
+		if($wgContLang->hasVariants()){
+			$variant = $wgContLang->getPreferredVariant(false);
+			if($variant != $wgContLanguageCode)
+				$code = $variant;
+		}	 
+
 		# Validate $code
 		if( empty( $code ) || !preg_match( '/^[a-z]+(-[a-z]+)?$/', $code ) ) {
 			$code = $wgContLanguageCode;
