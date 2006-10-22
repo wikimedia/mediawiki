@@ -47,10 +47,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	private function run($resultPageSet = null) {
+
+		wfProfileIn($this->getModuleProfileName() . '-getDB');
+		$db = $this->getDB();
+		wfProfileOut($this->getModuleProfileName() . '-getDB');
+
+		wfProfileIn($this->getModuleProfileName() . '-parseParams');
 		$limit = $from = $namespace = $filterredir = null;
 		extract($this->extractRequestParams());
-
-		$db = $this->getDB();
 
 		$this->addTables('page');
 		if( !$this->addWhereIf('page_is_redirect = 1', $filterredir === 'redirects'))
@@ -77,7 +81,13 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 		$data = array ();
 		$count = 0;
+
+		wfProfileOut($this->getModuleProfileName() . '-parseParams');
+
 		$res = $this->select(__METHOD__);
+
+		wfProfileIn($this->getModuleProfileName() . '-saveResults');
+
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -104,6 +114,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$result->setIndexedTagName($data, 'p');
 			$result->addValue('query', $this->getModuleName(), $data);
 		}
+		
+		wfProfileOut($this->getModuleProfileName() . '-saveResults');
 	}
 
 	protected function getAllowedParams() {
