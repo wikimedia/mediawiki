@@ -222,6 +222,7 @@ $messages = array(
 "tog-forceeditsummary"        => "הזהר אותי כשאני מכניס תקציר עריכה ריק",
 "tog-watchlisthideown"        => "הסתר עריכות שלי ברשימת המעקב",
 "tog-watchlisthidebots"       => "הסתר בוטים ברשימת המעקב",
+"tog-nolangconversion"        => "בטל המרת גרסאות שפה",
 
 "underline-always"  => "תמיד",
 "underline-never"   => "אף פעם",
@@ -418,6 +419,8 @@ $messages = array(
 "restorelink"         => "{{plural:$1|גרסה מחוקה אחת|$1 גרסאות מחוקות}}",
 "feedlinks"           => "הזנה:",
 "feed-invalid"        => "סוג הזנת המנוי שגוי.",
+"feed-atom"           => "Atom",
+"feed-rss"            => "RSS",
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 "nstab-main"      => "דף תוכן",
@@ -581,6 +584,7 @@ $messages = array(
 "noemail"                    => 'לא רשומה כתובת דואר אלקטרוני עבור משתמש  "$1".',
 "passwordsent"               => 'סיסמה חדשה נשלחה לכתובת הדואר האלקטרוני הרשומה עבור "$1".
 אנא הכנסו חזרה לאתר אחרי שתקבלו אותה.',
+"blocked-mailpassword"       => "כתובת ה־IP שלכם חסומה מעריכה, ולפיכך אינכם מורשים להשתמש באפשרות שיחזור הסיסמה כדי למנוע ניצול לרעה של התכונה.",
 "eauthentsent"               => 'דוא"ל אישור נשלח לכתובת הדוא"ל שקבעת.
 
 לפני שדברי דוא"ל אחרים נשלחים לחשבון הזה, תצטרך לפעול לפי ההוראות בדוא"ל כדי לוודא שהדוא"ל הוא אכן שלך.',
