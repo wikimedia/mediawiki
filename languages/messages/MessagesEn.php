@@ -571,6 +571,8 @@ parent class in order maintain consistency across languages.
 'restorelink' => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
 'feedlinks' => 'Feed:',
 'feed-invalid' => 'Invalid subscription feed type.',
+'feed-atom' => 'Atom',
+'feed-rss' => 'RSS',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 'anonnotice' => '-',
 
