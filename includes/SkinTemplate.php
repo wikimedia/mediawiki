@@ -220,8 +220,14 @@ class SkinTemplate extends Skin {
 		if( $wgOut->isSyndicated() ) {
 			$feeds = array();
 			foreach( $wgFeedClasses as $format => $class ) {
+				$linktext = $format;
+				if ( $format == "atom" ) {
+					$linktext = wfMsg( 'feed-atom' );
+				} else if ( $format == "rss" ) {
+					$linktext = wfMsg( 'feed-rss' );
+				}
 				$feeds[$format] = array(
-					'text' => $format,
+					'text' => $linktext,
 					'href' => $wgRequest->appendQuery( "feed=$format" )
 				);
 			}

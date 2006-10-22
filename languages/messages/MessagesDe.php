@@ -302,6 +302,8 @@ $messages = array(
 'restorelink'		=> '{{PLURAL:$1|einer gelöschten Version|$1 gelöschten Versionen}}',
 "feedlinks" => "Feed:",
 'feed-invalid'		=> 'Ungültiger Abonnement-Typ.',
+'feed-atom'		=> 'Atom',
+'feed-rss'		=> 'RSS',
 'permalink'     => 'Permanentlink',
 "listingcontinuesabbrev" => "(Forts.)",
 
