@@ -172,11 +172,12 @@ abstract class ApiBase {
 					$desc = implode($paramPrefix, $desc);
 				if (isset ($paramSettings[self :: PARAM_TYPE])) {
 					$type = $paramSettings[self :: PARAM_TYPE];
-					if (is_array($type)) {
+					if (is_array($type))
 						$desc .= $paramPrefix . 'Allowed values: ' . implode(', ', $type);
-					}
 				}
-
+				if (isset ($paramSettings[self :: PARAM_ISMULTI]))
+					$desc .= $paramPrefix . 'Allows multiple values separated with "|"';
+				
 				$default = is_array($paramSettings) ? (isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null) : $paramSettings;
 				if (!is_null($default) && $default !== false)
 					$desc .= $paramPrefix . "Default: $default";
