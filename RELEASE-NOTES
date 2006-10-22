@@ -74,6 +74,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   FIXME: this may leave doubled rules which won't stand up to certain changes.
   Will want to adjust these more to eliminate the dupe @includes.
 * (bug 7607) Add Karakalpak (kaa) to Names.php and stub message file for linktrail
+* (bug 7582) Add 'tog-nolangconversion' to MessagesEn.php.
+  This key is need for languages with variants (zh, sr, kk)
 
 
 == Languages updated ==

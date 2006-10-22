@@ -121,6 +121,7 @@ $messages = array(
 'tog-forceeditsummary'		=> 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown'		=> 'Eigene Änderungen auf der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots'		=> 'Bot-Änderungen auf der Beobachtungsliste ausblenden',
+'tog-nolangconversion'		=> 'Konvertierung von Sprachvarianten deaktivieren',
 
 'underline-always' => 'Immer',
 'underline-never' => 'Niemals',
