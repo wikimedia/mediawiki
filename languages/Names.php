@@ -109,6 +109,7 @@
 	'jbo' => 'Lojban',		# Lojban
 	'jv' => 'Basa Jawa',	# Javanese
 	'ka' => 'ქართული',	# Georgian
+	'kaa' => 'Qaraqalpaqsha',	# Karakalpak
 	'kg' => 'Kongo',		# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 	'ki' => 'Gĩkũyũ',	# Kikuyu, correctness not guaranteed
 	'kj' => 'Kuanyama',		# Kuanyama (FIXME!)
