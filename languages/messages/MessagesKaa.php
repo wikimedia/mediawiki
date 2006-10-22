@@ -6,6 +6,6 @@
  * @subpackage Language
  */
 
-$linkTrail = '/^([a-zʻ`]+)(.*)$/sD';
+$linkTrail = '/^([a-zʻ`]+)(.*)$/sDu';
 
 ?>
