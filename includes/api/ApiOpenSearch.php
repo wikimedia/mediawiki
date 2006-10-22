@@ -43,6 +43,9 @@ class ApiOpenSearch extends ApiBase {
 		$search = null;
 		extract($this->ExtractRequestParams());
 
+		// Open search results may be stored for a very long time
+		$this->getMain()->setCacheMaxAge(1200);
+
 		$title = Title :: newFromText($search);
 		if(!$title)
 			return; // Return empty result
