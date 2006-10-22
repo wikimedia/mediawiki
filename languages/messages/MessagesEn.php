@@ -369,6 +369,7 @@ parent class in order maintain consistency across languages.
 'tog-forceeditsummary' => 'Prompt me when entering a blank edit summary',
 'tog-watchlisthideown' => 'Hide my edits from the watchlist',
 'tog-watchlisthidebots' => 'Hide bot edits from the watchlist',
+'tog-nolangconversion'		=> 'Disable variants conversion',
 
 'underline-always' => 'Always',
 'underline-never' => 'Never',
