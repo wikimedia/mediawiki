@@ -57,6 +57,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   alias for compatibility
 * (bug 4525) Move section links down visually to same level as headings
   editsection links are now inside the heading elements)
+* Workaround for http://bugs.php.net/bug.php?id=31892 , PATH_INFO and hence 
+  URLs of the style /index.php/Main_Page were broken on some CGI installations.
 * (bug 7623) Validate custom HTML id's correctly in Monobook interface
 * (bug 2241) Fix collision of 'w' and 'd' accesskeys
 * (bug 5795) CSS class added to body based on page name for page-specific
