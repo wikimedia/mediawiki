@@ -51,12 +51,9 @@ function copydirectory( $source, $dest ) {
 }
 
 function readconsole( $prompt = '' ) {
-	static $isatty = null, $fp = null;
-	if ( is_null( $fp ) ) {
-		$fp = fopen( 'php://stdin', 'r' );
-	}
+	static $isatty = null;
 	if ( is_null( $isatty ) ) {
-		if ( !function_exists( 'posix_isatty' ) || posix_isatty( $fp ) ) {
+		if ( !function_exists( 'posix_isatty' ) || posix_isatty( STDIN ) ) {
 			$isatty = true;
 		} else {
 			$isatty = false;
@@ -69,10 +66,10 @@ function readconsole( $prompt = '' ) {
 		if ( $isatty ) {
 			print $prompt;
 		}
-		if ( feof( $fp ) ) {
+		if ( feof( STDIN ) ) {
 			return false;
 		}
-		$st = fgets($fp, 1024);
+		$st = fgets(STDIN, 1024);
 		if ($st === false) return false;
 		$resp = trim( $st );
 		return $resp;
