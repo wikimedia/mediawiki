@@ -17,6 +17,9 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinCologneBlue extends Skin {
 
+	private $searchboxes = '';
+	// How many search boxes have we made?  Avoid duplicate id's.
+
 	function getStylesheet() {
 		return 'common/cologneblue.css';
 	}
@@ -301,12 +304,15 @@ class SkinCologneBlue extends Skin {
 
 		$search = $wgRequest->getText( 'search' );
 		$action = $this->escapeSearchLink();
-		$s = "<form id=\"searchform\" method=\"get\" class=\"inline\" action=\"$action\">";
+		$s = "<form id=\"searchform{$this->searchboxes}\" method=\"get\" class=\"inline\" action=\"$action\">";
 		if ( "" != $label ) { $s .= "{$label}: "; }
 
-		$s .= "<input type='text' id=\"searchInput\" name=\"search\" size=\"14\" value=\""
+		$s .= "<input type='text' id=\"searchInput{$this->searchboxes}\" name=\"search\" size=\"14\" value=\""
 		  . htmlspecialchars(substr($search,0,256)) . "\" />"
-		  . "<br /><input type='submit' id=\"searchGoButton\" name=\"go\" value=\"" . htmlspecialchars( wfMsg( "searcharticle" ) ) . "\" /> <input type='submit' id=\"mw-searchButton\" name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( "search" ) ) . "\" /></form>";
+		  . "<br /><input type='submit' id=\"searchGoButton{$this->searchboxes}\" name=\"go\" value=\"" . htmlspecialchars( wfMsg( "searcharticle" ) ) . "\" /> <input type='submit' id=\"mw-searchButton{$this->searchboxes}\" name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( "search" ) ) . "\" /></form>";
+
+		// Ensure unique id's for search boxes made after the first
+		$this->searchboxes = $this->searchboxes == '' ? 2 : $this->searchboxes + 1;
 
 		return $s;
 	}
