@@ -425,6 +425,12 @@ $wgEnableEmail = true;
 $wgEnableUserEmail = true;
 
 /**
+ * Minimum time, in hours, which must elapse between password reminder
+ * emails for a given account. This is to prevent abuse by mail flooding.
+ */
+$wgPasswordReminderResendTime = 24;
+
+/**
  * SMTP Mode
  * For using a direct (authenticated) SMTP server connection.
  * Default to false or fill an array :
