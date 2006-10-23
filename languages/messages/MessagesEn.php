@@ -144,8 +144,18 @@ $datePreferences = array(
 	'ISO 8601',
 );
 
+/**
+ * The date format to use for generated dates in the user interface.
+ * This may be one of the above date preferences, or the special value 
+ * "dmy or mdy", which uses mdy if $wgAmericanDates is true, and dmy 
+ * if $wgAmericanDates is false.
+ */
 $defaultDateFormat = 'dmy or mdy';
 
+/**
+ * Associative array mapping old numeric date formats, which may still be 
+ * stored in user preferences, to the new string formats.
+ */
 $datePreferenceMigrationMap = array(
 	'default',
 	'mdy',
@@ -179,6 +189,9 @@ $dateFormats = array(
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
+/**
+ * Default list of book sources
+ */
 $bookstoreList = array(
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
@@ -186,10 +199,14 @@ $bookstoreList = array(
 	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
 );
 
-# Note to translators:
-#   Please include the English words as synonyms.  This allows people
-#   from other wikis to contribute more easily.
-#
+/**
+ * Magic words
+ * Customisable syntax for wikitext and elsewhere
+ *
+ * Note to translators:
+ *   Please include the English words as synonyms.  This allows people
+ *   from other wikis to contribute more easily.
+ */
 $magicWords = array(
 #   ID                                 CASE  SYNONYMS
 	'redirect'               => array( 0,    '#REDIRECT'              ),
@@ -299,9 +316,12 @@ $magicWords = array(
 	'formatnum'              => array( 0,    'FORMATNUM'              ),
 	'padleft'                => array( 0,    'PADLEFT'                ),
 	'padright'               => array( 0,    'PADRIGHT'               ),
-
 );
 
+/**
+ * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as 
+ * the first group, and the remainder of the string as the second group.
+ */
 $linkTrail = '/^([a-z]+)(.*)$/sD';
 
 #-------------------------------------------------------------------
@@ -736,6 +756,9 @@ is not allowed to use the password recovery function to prevent abuse.',
 'eauthentsent' =>  'A confirmation e-mail has been sent to the nominated e-mail address.
 Before any other mail is sent to the account, you will have to follow the instructions in the e-mail,
 to confirm that the account is actually yours.',
+'throttled-mailpassword' => 'A password reminder has already been sent, within the
+last $1 hours. To prevent abuse, only one password reminder will be sent per
+$1 hours.',
 'loginend'		            => '',
 'signupend'		            => '{{int:loginend}}',
 'mailerror'                 => 'Error sending mail: $1',

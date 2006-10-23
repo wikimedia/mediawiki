@@ -123,7 +123,7 @@ class LoginForm {
 		}
 
 		$u->saveSettings();
-		$result = $this->mailPasswordInternal($u);
+		$result = $this->mailPasswordInternal( $u, false );
 
 		wfRunHooks( 'AddNewAccount', array( $u ) );
 
@@ -343,7 +343,7 @@ class LoginForm {
 				return self::NOT_EXISTS;
 			}
 		} else {
-			$u->loadFromDatabase();
+			$u->load();
 		}
 
 		if (!$u->checkPassword( $this->mPassword )) {
@@ -419,7 +419,7 @@ class LoginForm {
 			$wgOut->rateLimited();
 			return;
 		}
-	
+
 		if ( '' == $this->mName ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
@@ -434,9 +434,16 @@ class LoginForm {
 			return;
 		}
 
-		$u->loadFromDatabase();
+		# Check against password throttle
+		if ( $u->isPasswordReminderThrottled() ) {
+			global $wgPasswordReminderResendTime;
+			# Round the time in hours to 3 d.p., in case someone is specifying minutes or seconds.
+			$this->mainLoginForm( wfMsg( 'throttled-mailpassword', 
+				round( $wgPasswordReminderResendTime, 3 ) ) );
+			return;
+		}
 
-		$result = $this->mailPasswordInternal( $u );
+		$result = $this->mailPasswordInternal( $u, true );
 		if( WikiError::isError( $result ) ) {
 			$this->mainLoginForm( wfMsg( 'mailerror', $result->getMessage() ) );
 		} else {
@@ -449,7 +456,7 @@ class LoginForm {
 	 * @return mixed true on success, WikiError on failure
 	 * @private
 	 */
-	function mailPasswordInternal( $u ) {
+	function mailPasswordInternal( $u, $throttle = true ) {
 		global $wgCookiePath, $wgCookieDomain, $wgCookiePrefix, $wgCookieSecure;
 		global $wgServer, $wgScript;
 
@@ -458,7 +465,7 @@ class LoginForm {
 		}
 
 		$np = $u->randomPassword();
-		$u->setNewpassword( $np );
+		$u->setNewpassword( $np, $throttle );
 
 		setcookie( "{$wgCookiePrefix}Token", '', time() - 3600, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 

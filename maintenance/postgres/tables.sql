@@ -17,6 +17,7 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_real_name            TEXT,
   user_password             TEXT,
   user_newpassword          TEXT,
+  user_newpass_time         TIMESTAMPTZ,
   user_token                CHAR(32),
   user_email                TEXT,
   user_email_token          CHAR(32),

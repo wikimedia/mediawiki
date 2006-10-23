@@ -70,6 +70,7 @@ class User {
 		'mRealName',
 		'mPassword',
 		'mNewpassword',
+		'mNewpassTime',
 		'mEmail',
 		'mOptions',
 		'mTouched',
@@ -86,9 +87,9 @@ class User {
 	/**
 	 * The cache variable declarations
 	 */
-	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mEmail, $mOptions, 
-		$mTouched, $mToken, $mEmailAuthenticated, $mEmailToken, $mEmailTokenExpires,
-		$mRegistration, $mGroups;
+	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime, 
+		$mEmail, $mOptions, $mTouched, $mToken, $mEmailAuthenticated, 
+		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups;
 
 	/**
 	 * Whether the cache variables have been loaded
@@ -574,6 +575,7 @@ class User {
 		$this->mName = $name;
 		$this->mRealName = '';
 		$this->mPassword = $this->mNewpassword = '';
+		$this->mNewpassTime = null;
 		$this->mEmail = '';
 		$this->mOptions = null; # Defer init
 
@@ -691,6 +693,7 @@ class User {
 			$this->mRealName = $s->user_real_name;
 			$this->mPassword = $s->user_password;
 			$this->mNewpassword = $s->user_newpassword;
+			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $s->user_newpass_time );
 			$this->mEmail = $s->user_email;
 			$this->decodeOptions( $s->user_options );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
@@ -1285,6 +1288,7 @@ class User {
 		$this->setToken();
 		$this->mPassword = $this->encryptPassword( $str );
 		$this->mNewpassword = '';
+		$this->mNewpassTime = NULL;
 	}
 
 	/**
@@ -1314,11 +1318,32 @@ class User {
 		$this->mCookiePassword = md5( $str );
 	}
 
-	function setNewpassword( $str ) {
+	/**
+	 * Set the password for a password reminder or new account email
+	 * Sets the user_newpass_time field if $throttle is true
+	 */
+	function setNewpassword( $str, $throttle = true ) {
 		$this->load();
 		$this->mNewpassword = $this->encryptPassword( $str );
+		if ( $throttle ) {
+			$this->mNewpassTime = wfTimestampNow();
+		}
 	}
 
+	/**
+	 * Returns true if a password reminder email has already been sent within
+	 * the last $wgPasswordReminderResendTime hours
+	 */
+	function isPasswordReminderThrottled() {
+		global $wgPasswordReminderResendTime;
+		$this->load();
+		if ( !$this->mNewpassTime || !$wgPasswordReminderResendTime ) {
+			return false;
+		}
+		$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgPasswordReminderResendTime * 3600;
+		return time() < $expiry;
+	}
+	
 	function getEmail() {
 		$this->load();
 		return $this->mEmail;
@@ -1774,6 +1799,7 @@ class User {
 				'user_name' => $this->mName,
 				'user_password' => $this->mPassword,
 				'user_newpassword' => $this->mNewpassword,
+				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_real_name' => $this->mRealName,
 		 		'user_email' => $this->mEmail,
 		 		'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
@@ -1834,6 +1860,7 @@ class User {
 			'user_name' => $name,
 			'user_password' => $user->mPassword,
 			'user_newpassword' => $user->mNewpassword,
+			'user_newpass_time' => $dbw->timestamp( $user->mNewpassTime ),
 			'user_email' => $user->mEmail,
 			'user_email_authenticated' => $dbw->timestampOrNull( $user->mEmailAuthenticated ),
 			'user_real_name' => $user->mRealName,
@@ -1866,6 +1893,7 @@ class User {
 				'user_name' => $this->mName,
 				'user_password' => $this->mPassword,
 				'user_newpassword' => $this->mNewpassword,
+				'user_newpass_time' => $dbw->timestamp( $this->mNewpassTime ),
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_real_name' => $this->mRealName,

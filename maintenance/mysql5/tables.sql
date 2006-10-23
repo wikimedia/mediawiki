@@ -86,6 +86,10 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- at which point the hash is moved to user_password
   -- and the old password is invalidated.
   user_newpassword tinyblob NOT NULL default '',
+
+  -- Timestamp of the last time when a new password was
+  -- sent, for throttling purposes
+  user_newpass_time char(14) binary,
   
   -- Note: email should be restricted, not public info.
   -- Same with passwords.
