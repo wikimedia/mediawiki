@@ -1267,6 +1267,7 @@ this old version, (rev) = revert to this old version.
 
 # Unused templates
 'unusedtemplates' => 'Unused templates',
+'unusedtemplates-summary' => '',
 'unusedtemplatestext' => 'This page lists all pages in the template namespace which are not included in another page. Remember to check for other links to the templates before deleting them.',
 'unusedtemplateswlh' => 'other links',
 
@@ -1296,13 +1297,16 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'statistics-mostpopular' => 'Most viewed pages',
 
 'disambiguations'	=> 'Disambiguation pages',
+'disambiguations-summary'	=> '',
 'disambiguationspage'	=> 'Template:disambig',
 'disambiguationstext'	=> "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as disambiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 
 'doubleredirects'	=> 'Double redirects',
+'doubleredirects-summary'	=> '',
 'doubleredirectstext'	=> "Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" target page, which the first redirect should point to.",
 
 'brokenredirects'	=> 'Broken redirects',
+'brokenredirects-summary'	=> '',
 'brokenredirectstext'	=> 'The following redirects link to non-existent pages:',
 
 
@@ -1316,6 +1320,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'nviews'		=> '$1 {{PLURAL:$1|view|views}}',
 
 'lonelypages'	=> 'Orphaned pages',
+'lonelypages-summary'	=> '',
 'lonelypagestext'	=> 'The following pages are not linked from other pages in this wiki.',
 'uncategorizedpages'	=> 'Uncategorized pages',
 'uncategorizedpages-summary' => '',
@@ -1352,6 +1357,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'longpages'		=> 'Long pages',
 'longpages-summary'	=> '',
 'deadendpages'  => 'Dead-end pages',
+'deadendpages-summary'	=> '',
 'deadendpagestext'	=> 'The following pages do not link to other pages in this wiki.',
 'listusers'		=> 'User list',
 'listusers-summary'	=> '',

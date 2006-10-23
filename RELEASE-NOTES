@@ -77,6 +77,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7582) Add 'tog-nolangconversion' to MessagesEn.php.
   This key is need for languages with variants (zh, sr, kk)
 * (bug 7606) MediaWiki messages for "rss" and "atom" missing
+* (bug 7609) Add some more '*-summary' messages to MessagesEn.php with empty
+  strings to allow better localisation via Special:Allmessages. Mark this new
+  messages as optional for localisation.
 
 
 == Languages updated ==
