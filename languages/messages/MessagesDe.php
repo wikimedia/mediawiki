@@ -469,10 +469,11 @@ Bitte ignoriesen Sie diese E-Mail, falls Sie diese nicht selbst angefordert habe
 'passwordsent'		=> 'Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesendet.
 Bitte melden Sie sich damit an, sobald Sie es erhalten.
 Das alte Passwort bleibt weiterhin gültig.',
-'blocked-mailpassword'	=> 'Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit ein neues Passwort anzufordern ebenfalls gesperrt.',
+'blocked-mailpassword'	=> 'Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes ebenfalls gesperrt.',
 'eauthentsent'		=> 'Eine Bestätigungsmail wurde an die angegebene E-Mail-Adresse verschickt.
 
 Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolgen Sie die Hinweise in der Bestätigungsmail.',
+'throttled-mailpassword' => 'Es wurde innerhalb der letzten $1 Stunden bereits ein neues Passwort angefordert. Um einen Missbrauch der Funktion zu verhindern, kann nur alle $1 Stunden ein neues Passwort angefordert werden.',
 'mailerror'		=> 'Fehler beim Senden der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
 'emailconfirmlink' 	=> 'E-Mail-Adresse bestätigen (authentifizieren).',
