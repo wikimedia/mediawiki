@@ -68,6 +68,10 @@ class SkinNostalgia extends Skin {
 		} else {
 			$s .= $sep . $this->specialLink( "userlogout" );
 		}
+		
+		/* show links to different language variants */
+		$s .= $this->variantLinks();
+		
 		$s .= $sep . $this->specialPagesList();
 
 		return $s;

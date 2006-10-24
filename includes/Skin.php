@@ -894,7 +894,18 @@ END;
 		}
 		# Many people don't like this dropdown box
 		#$s .= $sep . $this->specialPagesList();
+		
+		$s .= $this->variantLinks();
 
+		return $s;
+	}
+	
+	/**
+	 * Language/charset variant links for classic-style skins
+	 * @return string
+	 */
+	function variantLinks() {
+		$s = '';
 		/* show links to different language variants */
 		global $wgDisableLangConversion, $wgContLang, $wgTitle;
 		$variants = $wgContLang->getVariants();
@@ -903,10 +914,9 @@ END;
 				$varname = $wgContLang->getVariantname( $code );
 				if( $varname == 'disable' )
 					continue;
-				$s .= ' | <a href="' . $wgTitle->getLocalUrl( 'variant=' . $code ) . '">' . $varname . '</a>';
+				$s .= ' | <a href="' . $wgTitle->escapeLocalUrl( 'variant=' . $code ) . '">' . htmlspecialchars( $varname ) . '</a>';
 			}
 		}
-
 		return $s;
 	}
 
