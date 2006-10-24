@@ -155,17 +155,7 @@ class SkinCologneBlue extends Skin {
 		}
 
 		/* show links to different language variants */
-		global $wgDisableLangConversion;
-		$variants = $wgContLang->getVariants();
-		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
-			$actstr = '';
-			foreach( $variants as $code ) {
-				$varname = $wgContLang->getVariantname( $code );
-				if( $varname == 'disable' )
-					continue;
-				$s .= ' | <a href="' . $wgTitle->getLocalUrl( 'variant=' . $code ) . '">' . $varname . '</a>';
-			}
-		}
+		$s .= $this->variantLinks();
 
 		return $s;
 	}

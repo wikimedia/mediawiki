@@ -82,6 +82,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   messages as optional for localisation.
 * Fix user_newpass upgrade for prefixed tables (reported by Fyren)
 * (bug 7636) Fix typo in Firefox 2 check (tested by Werdna)
+* (bug 7663) Include language variant switcher links on Nostalgia skin
 
 
 == Languages updated ==
