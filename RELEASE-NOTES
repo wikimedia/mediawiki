@@ -80,6 +80,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7609) Add some more '*-summary' messages to MessagesEn.php with empty
   strings to allow better localisation via Special:Allmessages. Mark this new
   messages as optional for localisation.
+* Fix user_newpass upgrade for prefixed tables (reported by Fyren)
+* (bug 7636) Fix typo in Firefox 2 check (tested by Werdna)
 
 
 == Languages updated ==
