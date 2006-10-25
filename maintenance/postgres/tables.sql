@@ -138,6 +138,14 @@ DO INSTEAD INSERT INTO archive2 VALUES (
 );
 
 
+CREATE TABLE redirect (
+  rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
+  rd_namespace  SMALLINT NOT NULL,
+  rd_title      TEXT     NOT NULL
+);
+CREATE INDEX redirect_ns_title ON redirect (rd_namespace,rd_title,rd_from);
+
+
 CREATE TABLE pagelinks (
   pl_from       INTEGER   NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
   pl_namespace  SMALLINT  NOT NULL,
@@ -348,6 +356,20 @@ CREATE TABLE querycache_info (
   qci_type       TEXT              UNIQUE,
   qci_timestamp  TIMESTAMPTZ NULL
 );
+
+CREATE TABLE querycachetwo (
+  qcc_type          TEXT     NOT NULL,
+  qcc_value         SMALLINT NOT NULL  DEFAULT 0,
+  qcc_namespace     INTEGER  NOT NULL  DEFAULT 0,
+  qcc_title         TEXT     NOT NULL  DEFAULT '',
+  qcc_title         TEXT     NOT NULL  DEFAULT '',
+  qcc_namespacetwo  INTEGER  NOT NULL  DEFAULT 0,
+  qcc_titletwo      TEXT     NOT NULL  DEFAULT ''
+);
+CREATE INDEX querycachetwo_type_value ON querycachetwo (qcc_type, qcc_value);
+CREATE INDEX querycachetwo_title      ON querycachetwo (qcc_type,qcc_namespace,qcc_title);
+CREATE INDEX querycachetwo_titletwo   ON querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
+
 
 CREATE TABLE objectcache (
   keyname  CHAR(255)              UNIQUE,
