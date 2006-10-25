@@ -56,7 +56,11 @@ class MovePageForm {
 		$this->oldTitle = $wgRequest->getText( 'wpOldTitle', $target );
 		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
 		$this->reason = $wgRequest->getText( 'wpReason' );
-		$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
+		if ( $wgRequest->wasPosted() ) {
+			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', false );
+		} else {
+			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
+		}
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
 	}
 
@@ -221,7 +225,7 @@ class MovePageForm {
 		# Move the talk page if relevant, if it exists, and if we've been told to
 		$ott = $ot->getTalkPage();
 		if( $ott->exists() ) {
-			if( $wgRequest->getVal( 'wpMovetalk' ) == 1 && !$ot->isTalkPage() && !$nt->isTalkPage() ) {
+			if( $this->moveTalk && !$ot->isTalkPage() && !$nt->isTalkPage() ) {
 				$ntt = $nt->getTalkPage();
 	
 				# Attempt the move
