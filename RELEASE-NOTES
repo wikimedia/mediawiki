@@ -90,7 +90,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7684) Obey watchcreated preference for Special:Upload watch checkbox
 * (bug 7686) Include id attribute on delete form confirmation button
 * Allow compound interwiki prefixes in $wgImportSources
-
+* Added redirect table to store redirect targets.
+* Added querycachetwo table (similar to querycache but has two titles)
 
 == Languages updated ==
 
