@@ -89,7 +89,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$isDirNewer = ($dir === 'newer');
 		$after = ($isDirNewer ? '<=' : '>=');
 		$before = ($isDirNewer ? '>=' : '<=');
-		$db = $this->getDB();
+		$db = & $this->getDB();
 
 		if (!is_null($start))
 			$this->addWhere($field . $after . $db->addQuotes($start));
@@ -105,9 +105,14 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 	
 	protected function select($method) {
+		
+		// getDB has its own profileDBIn/Out calls
+		$db = & $this->getDB();		
+		
 		$this->profileDBIn();
-		$res = $this->getDB()->select($this->tables, $this->fields, $this->where, $method, $this->options);
+		$res = $db->select($this->tables, $this->fields, $this->where, $method, $this->options);
 		$this->profileDBOut();
+		
 		return $res;
 	}
 
@@ -129,51 +134,62 @@ abstract class ApiQueryBase extends ApiBase {
 			$vals['title'] = $title->getPrefixedText();
 		}	
 
-		if ($prefix === 'rc') {
+		switch($prefix) {
 
-			// PageId
-			@$tmp = $row->rc_cur_id;
-			if(!is_null($tmp)) $vals['pageid'] = intval($tmp);
+			case 'page':
+				// page_is_redirect
+				@$tmp = $row->page_is_redirect;
+				if($tmp) $vals['redirect'] = '';
 
-			@$tmp = $row->rc_this_oldid;
-			if(!is_null($tmp)) $vals['revid'] = intval($tmp);
+				break;
 
-			@$tmp = $row->rc_last_oldid;
-			if(!is_null($tmp)) $vals['old_revid'] = intval($tmp);
+			case 'rc':
+				// PageId
+				@$tmp = $row->rc_cur_id;
+				if(!is_null($tmp)) $vals['pageid'] = intval($tmp);
+	
+				@$tmp = $row->rc_this_oldid;
+				if(!is_null($tmp)) $vals['revid'] = intval($tmp);
+	
+				@$tmp = $row->rc_last_oldid;
+				if(!is_null($tmp)) $vals['old_revid'] = intval($tmp);
+	
+				$title = ApiQueryBase::addRowInfo_title($row, 'rc_moved_to_ns', 'rc_moved_to_title');
+				if ($title) {
+					if (!$title->userCanRead())
+						return false;
+					$vals['new_ns'] = $title->getNamespace();
+					$vals['new_title'] = $title->getPrefixedText();
+				}	
+	
+				@$tmp = $row->rc_patrolled;
+				if(!is_null($tmp)) $vals['patrolled'] = '';
 
-			$title = ApiQueryBase::addRowInfo_title($row, 'rc_moved_to_ns', 'rc_moved_to_title');
-			if ($title) {
-				if (!$title->userCanRead())
-					return false;
-				$vals['new_ns'] = $title->getNamespace();
-				$vals['new_title'] = $title->getPrefixedText();
-			}	
+				break;
 
-			@$tmp = $row->rc_patrolled;
-			if(!is_null($tmp)) $vals['patrolled'] = '';
-
-		} elseif ($prefix === 'log') {
-
-			// PageId
-			@$tmp = $row->page_id;
-			if(!is_null($tmp)) $vals['pageid'] = intval($tmp);
-
-			if ($row->log_params !== '') {
-				$params = explode("\n", $row->log_params);
-				if ($row->log_type == 'move' && isset ($params[0])) {
-					$newTitle = Title :: newFromText($params[0]);
-					if ($newTitle) {
-						$vals['new_ns'] = $newTitle->getNamespace();
-						$vals['new_title'] = $newTitle->getPrefixedText();
-						$params = null;
+			case 'log':
+				// PageId
+				@$tmp = $row->page_id;
+				if(!is_null($tmp)) $vals['pageid'] = intval($tmp);
+	
+				if ($row->log_params !== '') {
+					$params = explode("\n", $row->log_params);
+					if ($row->log_type == 'move' && isset ($params[0])) {
+						$newTitle = Title :: newFromText($params[0]);
+						if ($newTitle) {
+							$vals['new_ns'] = $newTitle->getNamespace();
+							$vals['new_title'] = $newTitle->getPrefixedText();
+							$params = null;
+						}
+					}
+	
+					if (!empty ($params)) {
+						$this->getResult()->setIndexedTagName($params, 'param');
+						$vals = array_merge($vals, $params);
 					}
 				}
 
-				if (!empty ($params)) {
-					$this->getResult()->setIndexedTagName($params, 'param');
-					$vals = array_merge($vals, $params);
-				}
-			}
+				break;
 		}
 
 		// Type

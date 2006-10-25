@@ -49,7 +49,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	private function run($resultPageSet = null) {
 
 		wfProfileIn($this->getModuleProfileName() . '-getDB');
-		$db = $this->getDB();
+		$db = & $this->getDB();
 		wfProfileOut($this->getModuleProfileName() . '-getDB');
 
 		wfProfileIn($this->getModuleProfileName() . '-parseParams');
@@ -79,15 +79,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $limit +1);
 		$this->addOption( 'ORDER BY', 'page_namespace, page_title');
 
-		$data = array ();
-		$count = 0;
-
 		wfProfileOut($this->getModuleProfileName() . '-parseParams');
 
 		$res = $this->select(__METHOD__);
 
 		wfProfileIn($this->getModuleProfileName() . '-saveResults');
 
+		$data = array ();
+		$count = 0;
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -100,11 +99,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 				if($vals)
 					$data[intval($row->page_id)] = $vals;
 			} else {
-				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-				// skip any pages that user has no rights to read
-				if ($title->userCanRead()) {
-					$resultPageSet->processDbRow($row);
-				}
+				$resultPageSet->processDbRow($row);
 			}
 		}
 		$db->freeResult($res);

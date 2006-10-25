@@ -125,7 +125,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$count = 0;
 		$res = $this->select(__METHOD__);
 
-		$db = $this->getDB();
+		$db = & $this->getDB();
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...

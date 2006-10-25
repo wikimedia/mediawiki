@@ -46,7 +46,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodTitles();
-		$result = & $this->getResult();
+		$result = $this->getResult();
 
 		$pageIsRedir = $pageSet->getCustomField('page_is_redirect');
 		$pageTouched = $pageSet->getCustomField('page_touched');

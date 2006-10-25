@@ -39,7 +39,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$limit = $type = $start = $end = $dir = $user = $title = null;
 		extract($this->extractRequestParams());
 
-		$db = $this->getDB();
+		$db = & $this->getDB();
 
 		extract($db->tableNames('logging', 'page', 'user'), EXTR_PREFIX_ALL, 'tbl');
 		$this->addTables("$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
