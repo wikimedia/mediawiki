@@ -439,6 +439,9 @@ class EditPage {
 					# The unmarked state will be assumed to be a save,
 					# if the form seems otherwise complete.
 					wfDebug( "$fname: Passed token check.\n" );
+				} else if ( $this->diff ) {
+					# Failed token check, but only requested "Show Changes".
+					wfDebug( "$fname: Failed token check; Show Changes requested.\n" );
 				} else {
 					# Page might be a hack attempt posted from
 					# an external site. Preview instead of saving.
