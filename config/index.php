@@ -584,9 +584,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		/* Load up the settings and get installin' */
 		$local = writeLocalSettings( $conf );
+		echo "<li style=\"list-style: none\">\n";
 		echo "<p><b>Generating configuration file...</b></p>\n";
 		// for debugging: // echo "<pre>" . htmlspecialchars( $local ) . "</pre>\n";
-		
+		echo "</li>\n";		
+
 		$wgCommandLineMode = false;
 		chdir( ".." );
 		eval($local);
@@ -824,7 +826,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 			print " done.</li>\n";
 
-			print "<li>Initializing data...";
+			print "<li>Initializing data...</li>\n";
 			$wgDatabase->insert( 'site_stats',
 				array ( 'ss_row_id'        => 1,
 						'ss_total_views'   => 0,
@@ -838,18 +840,21 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				if( $wgDatabase2->isOpen() ) {
 					# Nope, just close the test connection and continue
 					$wgDatabase2->close();
-					echo( "<li>User $wgDBuser exists. Skipping grants.</li>" );
+					echo( "<li>User $wgDBuser exists. Skipping grants.</li>\n" );
 				} else {
 					# Yes, so run the grants
 					echo( "<li>Granting user permissions to $wgDBuser on $wgDBname..." );
 					dbsource( "../maintenance/users.sql", $wgDatabase );
-					echo( "success.</li>" );
+					echo( "success.</li>\n" );
 				}
 			}
 
 			if( $conf->SysopName ) {
 				$u = User::newFromName( $conf->getSysopName() );
-				if ( 0 == $u->idForName() ) {
+				if ( !$u ) {
+					print "<li><strong class=\"error\">Warning:</strong> Skipped sysop account creation - invalid username!</li>\n";
+				}
+				else if ( 0 == $u->idForName() ) {
 					$u->addToDatabase();
 					$u->setPassword( $conf->getSysopPass() );
 					$u->saveSettings();
@@ -883,6 +888,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 
 		/* Write out the config file now that all is well */
+		print "<li style=\"list-style: none\">\n";
 		print "<p>Creating LocalSettings.php...</p>\n\n";
 		$localSettings = "<" . "?php$endl$local$endl?" . ">\r\n";
 		// Fix up a common line-ending problem (due to CVS on Windows)
@@ -902,6 +908,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			die("<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p>\n");
 
 		}
+		print "</li>\n";
 
 	} while( false );
 }
