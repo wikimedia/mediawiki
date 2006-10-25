@@ -49,9 +49,9 @@ class ApiQuery extends ApiBase {
 		'allpages' => 'ApiQueryAllpages',
 		'logevents' => 'ApiQueryLogEvents',
 		'watchlist' => 'ApiQueryWatchlist',
-		'recentchanges' => 'ApiQueryRecentChanges'
+		'recentchanges' => 'ApiQueryRecentChanges',
+		'backlinks' => 'ApiQueryBacklinks'
 	);
-	//	'backlinks' => 'ApiQueryBacklinks',
 	//	'categorymembers' => 'ApiQueryCategorymembers',
 	//	'embeddedin' => 'ApiQueryEmbeddedin',
 	//	'imagelinks' => 'ApiQueryImagelinks',
@@ -79,9 +79,12 @@ class ApiQuery extends ApiBase {
 		$this->mAllowedGenerators = array_merge($this->mListModuleNames, $this->mPropModuleNames);
 	}
 
-	public function getDB() {
-		if (!isset ($this->mSlaveDB))
+	public function & getDB() {
+		if (!isset ($this->mSlaveDB)) {
+			$this->profileDBIn();
 			$this->mSlaveDB = & wfGetDB(DB_SLAVE);
+			$this->profileDBOut();
+		}
 		return $this->mSlaveDB;
 	}
 
@@ -198,13 +201,12 @@ class ApiQuery extends ApiBase {
 			$result->addValue('query', 'redirects', $redirValues);
 		}
 
-
 		//
 		// Missing revision elements
 		//
 		$missingRevIDs = $pageSet->getMissingRevisionIDs();
-		if (!empty($missingRevIDs)) {
-			$revids = array();
+		if (!empty ($missingRevIDs)) {
+			$revids = array ();
 			foreach ($missingRevIDs as $revid) {
 				$revids[$revid] = array (
 					'revid' => $revid
@@ -213,7 +215,7 @@ class ApiQuery extends ApiBase {
 			$result->setIndexedTagName($revids, 'rev');
 			$result->addValue('query', 'badrevids', $revids);
 		}
-		
+
 		//
 		// Page elements
 		//
@@ -237,7 +239,8 @@ class ApiQuery extends ApiBase {
 		// Output general page information for found titles
 		foreach ($pageSet->getGoodTitles() as $pageid => $title) {
 			$pages[$pageid] = array (
-			'pageid' => $pageid, 'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText());
+				'pageid' => $pageid,
+			'ns' => $title->getNamespace(), 'title' => $title->getPrefixedText());
 		}
 
 		if (!empty ($pages)) {
@@ -272,13 +275,13 @@ class ApiQuery extends ApiBase {
 
 		// execute current pageSet to get the data for the generator module
 		$this->mPageSet->execute();
-		
+
 		// populate resultPageSet with the generator output
 		$generator->profileIn();
 		$generator->executeGenerator($resultPageSet);
 		$resultPageSet->finishPageSetGeneration();
 		$generator->profileOut();
-		
+
 		// Swap the resulting pageset back in
 		$this->mPageSet = $resultPageSet;
 	}

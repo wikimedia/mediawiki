@@ -77,12 +77,15 @@ class ApiMain extends ApiBase {
 	* @param $enableWrite bool should be set to true if the api may modify data
 	*/
 	public function __construct($request, $enableWrite = false) {
-		// Special handling for the main module: $parent === $this
-		parent :: __construct($this, 'main');
 
-		$this->mModules = & self :: $Modules;
+		$this->mInternalMode = ($request instanceof FauxRequest);
+
+		// Special handling for the main module: $parent === $this
+		parent :: __construct($this, $this->mInternalMode ? 'main_int' : 'main');
+
+		$this->mModules = self :: $Modules;
 		$this->mModuleNames = array_keys($this->mModules); // todo: optimize
-		$this->mFormats = & self :: $Formats;
+		$this->mFormats = self :: $Formats;
 		$this->mFormatNames = array_keys($this->mFormats); // todo: optimize
 
 		$this->mResult = new ApiResult($this);
@@ -90,8 +93,6 @@ class ApiMain extends ApiBase {
 		$this->mEnableWrite = $enableWrite;
 
 		$this->mRequest = & $request;
-
-		$this->mInternalMode = ($request instanceof FauxRequest);
 
 		$this->mSquidMaxage = 0;
 	}

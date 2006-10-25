@@ -243,20 +243,25 @@ class ApiPageSet extends ApiQueryBase {
 	 * Extract all requested fields from the row received from the database
 	 */
 	public function processDbRow($row) {
-		$pageId = intval($row->page_id);
-
+	
 		// Store Title object in various data structures
 		$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-		$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
+	
+		// skip any pages that user has no rights to read
+		if ($title->userCanRead()) {
 
-		if ($this->mResolveRedirects && $row->page_is_redirect == '1') {
-			$this->mPendingRedirectIDs[$pageId] = $title;
-		} else {
-			$this->mGoodTitles[$pageId] = $title;
+			$pageId = intval($row->page_id);	
+			$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
+	
+			if ($this->mResolveRedirects && $row->page_is_redirect == '1') {
+				$this->mPendingRedirectIDs[$pageId] = $title;
+			} else {
+				$this->mGoodTitles[$pageId] = $title;
+			}
+	
+			foreach ($this->mRequestedPageFields as $fieldName => & $fieldValues)
+				$fieldValues[$pageId] = $row-> $fieldName;
 		}
-
-		foreach ($this->mRequestedPageFields as $fieldName => & $fieldValues)
-			$fieldValues[$pageId] = $row-> $fieldName;
 	}
 	
 	public function finishPageSetGeneration() {
@@ -280,13 +285,13 @@ class ApiPageSet extends ApiQueryBase {
 	 * #6 Repeat from step #1     
 	 */
 	private function initFromTitles($titles) {
-		$db = $this->getDB();
 
 		// Get validated and normalized title objects
 		$linkBatch = $this->processTitlesStrArray($titles);
 		if($linkBatch->isEmpty())
 			return;
 			
+		$db = & $this->getDB();
 		$set = $linkBatch->constructSet('page', $db);
 
 		// Get pageIDs data from the `page` table
@@ -305,10 +310,11 @@ class ApiPageSet extends ApiQueryBase {
 		if(empty($pageids))
 			return;
 			
-		$db = $this->getDB();
 		$set = array (
 			'page_id' => $pageids
 		);
+
+		$db = & $this->getDB();
 
 		// Get pageIDs data from the `page` table
 		$this->profileDBIn();
@@ -381,7 +387,7 @@ class ApiPageSet extends ApiQueryBase {
 		if(empty($revids))
 			return;
 			
-		$db = $this->getDB();
+		$db = & $this->getDB();
 		$pageids = array();
 		$remaining = array_flip($revids);
 		
@@ -413,7 +419,7 @@ class ApiPageSet extends ApiQueryBase {
 	private function resolvePendingRedirects() {
 
 		if($this->mResolveRedirects) {
-			$db = $this->getDB();
+			$db = & $this->getDB();
 			$pageFlds = $this->getPageTableFields();
 	
 			// Repeat until all redirects have been resolved
@@ -445,7 +451,7 @@ class ApiPageSet extends ApiQueryBase {
 	private function getRedirectTargets() {
 
 		$linkBatch = new LinkBatch();
-		$db = $this->getDB();
+		$db = & $this->getDB();
 
 		// find redirect targets for all redirect pages
 		$this->profileDBIn();

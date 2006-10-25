@@ -205,10 +205,10 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$data = & $this->getResultData();
+		$data = $this->getResultData();
 		if (isset ($data['_feed']) && isset ($data['_feeditems'])) {
-			$feed = & $data['_feed'];
-			$items = & $data['_feeditems'];
+			$feed = $data['_feed'];
+			$items = $data['_feeditems'];
 
 			$feed->outHeader();
 			foreach ($items as & $item)
