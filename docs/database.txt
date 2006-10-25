@@ -2,13 +2,18 @@ Some information about database access in MediaWiki.
 By Tim Starling, January 2006.
 
 ------------------------------------------------------------------------
-    API
+    Database layout
 ------------------------------------------------------------------------
 
-For a database API reference, please see the auto-generated
-documentation:
+For information about the MediaWiki database layout, such as a 
+description of the tables and their contents, please see:
+  http://meta.wikimedia.org/wiki/Help:Database_layout
+  http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/maintenance/tables.sql?view=markup
 
-http://wikipedia.sourceforge.net/doc/MediaWiki/Database.html
+
+------------------------------------------------------------------------
+    API
+------------------------------------------------------------------------
 
 To make a read query, something like this usually suffices:
 
