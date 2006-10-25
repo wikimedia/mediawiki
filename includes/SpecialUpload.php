@@ -717,7 +717,9 @@ class UploadForm {
 
 		$encDestFile = htmlspecialchars( $this->mDestFile );
 
-		$watchChecked = $wgUser->getOption( 'watchdefault' )
+		$watchChecked =
+			( $wgUser->getOption( 'watchdefault' ) ||
+				( $wgUser->getOption( 'watchcreations' ) && $this->mDestFile == '' ) )
 			? 'checked="checked"'
 			: '';
 
