@@ -1816,7 +1816,7 @@ class Article {
 		<tr>
 			<td>&nbsp;</td>
 			<td>
-				<input type='submit' name='wpConfirmB' value=\"{$confirm}\" />
+				<input type='submit' name='wpConfirmB' id='wpConfirmB' value=\"{$confirm}\" />
 			</td>
 		</tr>
 	</table>
