@@ -90,6 +90,7 @@ $messages = array(
 'tog-forceeditsummary' => 'Ingatkan saya bila kotak ringkasan suntingan masih kosong',
 'tog-watchlisthideown' => 'Sembunyikan suntingan saya di daftar pantauan',
 'tog-watchlisthidebots' => 'Sembunyikan suntingan bot di daftar pantauan',
+'tog-nolangconversion'		=> 'Matikan konversi varian',
 
 'underline-always' => 'Selalu',
 'underline-never' => 'Tidak',
@@ -289,6 +290,8 @@ $messages = array(
 'restorelink' => '$1 suntingan yang telah dihapus', # no need for plural
 'feedlinks' => 'Asupan:',
 'feed-invalid' => 'Tipe permintaan asupan tidak tepat.',
+'feed-atom' => 'Atom',
+'feed-rss' => 'RSS',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Artikel',
@@ -415,7 +418,9 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 
 "noemail" => "Tidak ada alamat surat-e yang tercatat untuk pengguna \"$1\".",
 "passwordsent" => "Kata sandi baru telah dikirimkan ke surat-e yang didaftarkan untuk \"$1\". Silakan masuk log kembali setelah menerima surat-e tersebut.",
+'blocked-mailpassword' => 'Alamat IP Anda diblokir dari penyuntingan dan karenanya tidak diizinkan menggunakan fungsi pengingat kata sandi untuk mencegah penyalahgunaan.',
 'eauthentsent' =>  'Sebuah surat elektronik untuk konfirmasi telah dikirim ke alamat surat elektronik Anda. Anda harus mengikuti instruksi di dalam surat elektronik tersebut untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda. {{SITENAME}} tidak akan mengaktifkan fitur surat elektronik jika langkah ini belum dilakukan.',
+'throttled-mailpassword' => 'Suatu pengingat kata sandi telah dikirimkan dalam $1 jam terakhir. Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap $1 jam.',
 "mailerror" => "Kesalahan dalam mengirimkan surat-e: $1",
 'acct_creation_throttle_hit' => 'Maaf, Anda telah membuat $1 akun. Anda tidak dapat membuat akun lagi.',
 'emailauthenticated'        => 'Alamat surat-e Anda telah dikonfirmasi pada $1.',
