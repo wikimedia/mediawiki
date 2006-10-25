@@ -83,6 +83,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix user_newpass upgrade for prefixed tables (reported by Fyren)
 * (bug 7636) Fix typo in Firefox 2 check (tested by Werdna)
 * (bug 7663) Include language variant switcher links on Nostalgia skin
+* (bug 6531) Fix PHP fatal error on installation page with bad username input.
 
 
 == Languages updated ==
