@@ -845,9 +845,8 @@ class ImportStreamSource {
 	}
 
 	function newFromInterwiki( $interwiki, $page, $history=false ) {
-		$base = Title::getInterwikiLink( $interwiki );
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
-		if( empty( $base ) || empty( $link ) ) {
+		if( is_null( $link ) || $link->getInterwiki() == '' ) {
 			return new WikiErrorMsg( 'importbadinterwiki' );
 		} else {
 			$params = $history ? 'history=1' : '';
