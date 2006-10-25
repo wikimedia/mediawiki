@@ -89,6 +89,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7687) Fix movetalk box checks itself when confirming a delete and move.
 * (bug 7684) Obey watchcreated preference for Special:Upload watch checkbox
 * (bug 7686) Include id attribute on delete form confirmation button
+* Allow compound interwiki prefixes in $wgImportSources
 
 
 == Languages updated ==
