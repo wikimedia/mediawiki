@@ -119,8 +119,8 @@ $messages = array(
 'tog-uselivepreview'		=> 'Live-Vorschau nutzen (JavaScript) (experimentell)',
 'tog-autopatrol'		=> 'Alle eigenen Bearbeitungen als „kontrolliert“ markieren',
 'tog-forceeditsummary'		=> 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
-'tog-watchlisthideown'		=> 'Eigene Änderungen auf der Beobachtungsliste ausblenden',
-'tog-watchlisthidebots'		=> 'Bot-Änderungen auf der Beobachtungsliste ausblenden',
+'tog-watchlisthideown'		=> 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
+'tog-watchlisthidebots'		=> 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
 'tog-nolangconversion'		=> 'Konvertierung von Sprachvarianten deaktivieren',
 
 'underline-always' => 'Immer',
@@ -1170,6 +1170,7 @@ dieser Seite erscheinen.",
 genauso wie Details zum letzten Benutzer der diese Seite vor der Löschung bearbeitet hat.
 Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 "undeleterevision" => "Gelöschte Version vom $1",
+'undeleterevision-missing'	=> 'Ungültige oder fehlende Version. Entweder ist der Link falsch oder die Version wurde aus dem Archiv wiederhergestellt oder entfernt.',
 "undeletebtn" => "Wiederherstellen",
 'undeletereset'		=> 'Zurücksetzen',
 'undeletecomment' => 'Begründung:',
