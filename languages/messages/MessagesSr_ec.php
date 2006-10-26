@@ -39,7 +39,7 @@ $namespaceAliases = array(
 	'Šablon'                  => NS_TEMPLATE,
 	'Razgovor_o_šablonu'      => NS_TEMPLATE_TALK,
 	'Pomoć'                   => NS_HELP,
-	'Razgovor_o_pomoći '      => NS_HELP_TALK,
+	'Razgovor_o_pomoći'      => NS_HELP_TALK,
 	'Kategorija'              => NS_CATEGORY,
 	'Razgovor_o_kategoriji'   => NS_CATEGORY_TALK,
 );
