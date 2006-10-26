@@ -92,6 +92,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow compound interwiki prefixes in $wgImportSources
 * Added redirect table to store redirect targets.
 * Added querycachetwo table (similar to querycache but has two titles)
+* PageArchive can now return a Revision object for more convenient processing
+  of deleted revision data
+* Added 'UndeleteShowRevision' hook in Special:Undelete
+* Error message on attempt to view invalid or missing deleted revisions
+
 
 == Languages updated ==
 
