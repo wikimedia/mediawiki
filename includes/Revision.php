@@ -297,6 +297,7 @@ class Revision {
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
+			$this->mTextRow   = null;
 
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;

@@ -105,17 +105,47 @@ class PageArchive {
 	 * revision of the page with the given timestamp.
 	 *
 	 * @return string
+	 * @deprecated Use getRevision() for more flexible information
 	 */
 	function getRevisionText( $timestamp ) {
+		$rev = $this->getRevision( $timestamp );
+		return $rev ? $rev->getText() : null;
+	}
+
+	/**
+	 * Return a Revision object containing data for the deleted revision.
+	 * Note that the result *may* or *may not* have a null page ID.
+	 * @param string $timestamp
+	 * @return Revision
+	 */
+	function getRevision( $timestamp ) {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'archive',
-			array( 'ar_text', 'ar_flags', 'ar_text_id' ),
+			array(
+				'ar_rev_id',
+				'ar_text',
+				'ar_comment',
+				'ar_user',
+				'ar_user_text',
+				'ar_timestamp',
+				'ar_minor_edit',
+				'ar_flags',
+				'ar_text_id' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDbkey(),
 			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			__METHOD__ );
 		if( $row ) {
-			return $this->getTextFromRow( $row );
+			return new Revision( array(
+				'page'       => $this->title->getArticleId(),
+				'id'         => $row->ar_rev_id,
+				'text'       => ($row->ar_text_id ? null : $row->ar_text),
+				'comment'    => $row->ar_comment,
+				'user'       => $row->ar_user,
+				'user_text'  => $row->ar_user_text,
+				'timestamp'  => $row->ar_timestamp,
+				'minor_edit' => $row->ar_minor_edit,
+				'text_id'    => $row->ar_text_id ) );
 		} else {
 			return null;
 		}
@@ -485,15 +515,22 @@ class UndeleteForm {
 		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
 
 		$archive = new PageArchive( $this->mTargetObj );
-		$text = $archive->getRevisionText( $timestamp );
-
+		$rev = $archive->getRevision( $timestamp );
+		
 		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 		$wgOut->addWikiText( "(" . wfMsg( "undeleterevision",
 			$wgLang->date( $timestamp ) ) . ")\n" );
 		
+		if( !$rev ) {
+			$wgOut->addWikiText( wfMsg( 'undeleterevision-missing' ) );
+			return;
+		}
+		
+		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
+		
 		if( $this->mPreview ) {
 			$wgOut->addHtml( "<hr />\n" );
-			$wgOut->addWikiText( $text );
+			$wgOut->addWikiText( $rev->getText() );
 		}
 		
 		$self = Title::makeTitle( NS_SPECIAL, "Undelete" );
@@ -503,7 +540,7 @@ class UndeleteForm {
 					'readonly' => true,
 					'cols' => intval( $wgUser->getOption( 'cols' ) ),
 					'rows' => intval( $wgUser->getOption( 'rows' ) ) ),
-				$text . "\n" ) .
+				$rev->getText() . "\n" ) .
 			wfOpenElement( 'div' ) .
 			wfOpenElement( 'form', array(
 				'method' => 'post',

@@ -1609,6 +1609,8 @@ will not be automatically replaced.',
 shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
 'undeleterevision' => "Deleted revision as of $1",
+'undeleterevision-missing' => "Invalid or missing revision. You may have a bad link, or the
+revision may have been restored or removed from the archive.",
 'undeletebtn' => 'Restore',
 'undeletereset' => 'Reset',
 'undeletecomment' => 'Comment:',
