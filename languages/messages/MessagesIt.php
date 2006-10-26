@@ -613,6 +613,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 # Preferences page
 #
 "preferences"	=> "Preferenze",
+'mypreferences' => 'le mie preferenze',
 "prefsnologin" => "Accesso non effettuato",
 "prefsnologintext"	=> "Per poter personalizzare le preferenze è necessario effettuare l'[[Special:Userlogin|accesso]].",
 "prefsreset"	=> "Le preferenze sono state ripristinate ai valori predefiniti.",
