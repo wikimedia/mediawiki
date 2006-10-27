@@ -96,6 +96,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of deleted revision data
 * Added 'UndeleteShowRevision' hook in Special:Undelete
 * Error message on attempt to view invalid or missing deleted revisions
+* Remove unsightly "_" from namespace in Special:Allpages, Special:Prefixindex
 
 
 == Languages updated ==
