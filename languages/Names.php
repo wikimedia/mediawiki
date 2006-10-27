@@ -87,6 +87,7 @@
 	'haw' => 'Hawai`i',		# Hawaiian
 	'he' => 'עברית',	# Hebrew
 	'hi' => 'हिन्दी',	# Hindi
+	'hil' => 'Ilonggo',	# Hiligaynon
 	'ho' => 'Hiri Motu',	# Hiri Motu
 	'hr' => 'Hrvatski',		# Croatian
 	'hsb' => 'Hornjoserbsce',	# Upper Sorbian
@@ -110,6 +111,7 @@
 	'jv' => 'Basa Jawa',	# Javanese
 	'ka' => 'ქართული',	# Georgian
 	'kaa' => 'Qaraqalpaqsha',	# Karakalpak
+	'kab' => 'ثاقبايليث',	# Kabyle
 	'kg' => 'Kongo',		# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 	'ki' => 'Gĩkũyũ',	# Kikuyu, correctness not guaranteed
 	'kj' => 'Kuanyama',		# Kuanyama (FIXME!)
@@ -135,11 +137,13 @@
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
 	'lij' => 'Líguru',	# Ligurian
+	'lld' => 'Ladin',	# Ladin
 	'lmo' => 'Lumbaart',	# Lombard
 	'ln' => 'Lingala',		# Lingala
 	'lo' => 'ລາວ',# Laotian
 	'lt' => 'Lietuvių',	# Lithuanian
 	'lv' => 'Latviešu',	# Latvian
+	'lzz' => 'Lazuri Nena',	#Laz
 	'map-bms' => 'Basa Banyumasan', # Banyumasan 
 	'mg' => 'Malagasy',		# Malagasy
 	'mh' => 'Ebon',			# Marshallese
