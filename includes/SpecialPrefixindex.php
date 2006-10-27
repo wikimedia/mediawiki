@@ -27,7 +27,7 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 		$namespace = 0;
 
 	$wgOut->setPagetitle( $namespace > 0 ?
-		wfMsg( 'allinnamespace', $namespaces[$namespace] ) :
+		wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 		wfMsg( 'allarticles' )
 		);
 
