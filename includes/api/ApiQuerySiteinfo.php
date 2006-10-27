@@ -44,7 +44,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 				case 'general' :
 
-					global $wgSitename, $wgVersion, $wgCapitalLinks;
+					global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText;
 					$data = array ();
 					$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
 					$data['mainpage'] = $mainPage->getText();
@@ -52,6 +52,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$data['sitename'] = $wgSitename;
 					$data['generator'] = "MediaWiki $wgVersion";
 					$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
+					if (isset($wgRightsCode))
+						$data['rightscode'] = $wgRightsCode;
+					$data['rights'] = $wgRightsText;
 					$this->getResult()->addValue('query', $p, $data);
 					break;
 
@@ -68,7 +71,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$this->getResult()->setIndexedTagName($data, 'ns');
 					$this->getResult()->addValue('query', $p, $data);
 					break;
-
+					
 				default :
 					ApiBase :: dieDebug(__METHOD__, "Unknown prop=$p");
 			}
