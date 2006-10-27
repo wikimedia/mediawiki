@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 
 class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
-	private $rootTitle;
+	private $rootTitle, $contRedirs, $contLevel, $contTitle, $contID;
 
 	public function __construct($query, $moduleName) {
 		parent :: __construct($query, $moduleName, 'bl');
@@ -55,13 +55,20 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->processContinue($continue, $redirect);
 
 		if (is_null($resultPageSet)) {
-			$this->addFields( array (
-				'page_id',
+			$this->addFields(array (
+				'pl_from as page_id', // is this more efficient than getting page_id?
+				'pl_namespace',
+				'pl_title',
 				'page_namespace',
 				'page_title'
 			));
 		} else {
-			$this->addFields( $resultPageSet->getPageTableFields());
+			$this->addFields($resultPageSet->getPageTableFields());
+			$this->addFields(array (
+				'pl_namespace',
+				'pl_title',
+				
+			));
 		}
 
 		$this->addTables(array (
@@ -74,18 +81,24 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addWhereFld('pl_title', $this->rootTitle->getDBkey());
 		$this->addWhereFld('page_namespace', $namespace);
 		$this->addOption('LIMIT', $limit +1);
-		$this->addOption('ORDER BY', 'page_namespace, page_title');
+		$this->addOption('ORDER BY', 'pl_namespace, pl_title, pl_from');
 
 		if ($redirect)
 			$this->addWhereFld('page_is_redirect', 0);
 
 		$db = & $this->getDB();
-		if(!is_null($this->fromTitle)) {
-			$ns = $this->fromTitle->getNamespace();
-			$t = $db->addQuotes($this->fromTitle->getDBkey());
-			$this->addWhere("(page_namespace>$ns OR (page_namespace=$ns AND page_title>=$t))");
+		if (!is_null($continue)) {
+			$plfrm = intval($this->contID);
+			if ($this->contLevel == 0) {
+				// For the first level, there is only one target title, so no need for complex filtering
+				$this->addWhere("pl_from>=$plfrm");
+			} else {
+				$ns = $this->contTitle->getNamespace();
+				$t = $db->addQuotes($this->contTitle->getDBkey());
+				$this->addWhere("(pl_namespace>$ns OR (pl_namespace=$ns AND (pl_title>$t OR (pl_title=$t AND pl_from>=$plfrm))))");
+			}
 		}
-		
+
 		$res = $this->select(__METHOD__);
 
 		$count = 0;
@@ -93,7 +106,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$continue = $this->rootTitle->getNamespace() . '|' . $this->rootTitle->getDBkey() . '|1|0|' . $row->page_namespace . '|' . $row->page_title;
+				$continue = $this->rootTitle->getNamespace() . '|' . $this->rootTitle->getDBkey() . '|1|0|' . $row->pl_namespace . '|' . $row->pl_title . '|' . $row->page_id;
 				$this->setContinueEnumParameter('continue', $continue);
 				break;
 			}
@@ -130,10 +143,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			if ($count !== 1)
 				$this->dieUsage('Backlinks requires one title to start the query', 'bad_title_count');
 			$this->rootTitle = array_pop($pageSet->getGoodTitles()); // only one title there			
-			$this->contFromRedirs = false;
-			$this->contFromLevel = 0;
-			// $this->contFromPageId = 0;
-			$this->fromTitle = null;
 		}
 	}
 
@@ -147,7 +156,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		// ns+title to continue from 
 		//
 		$continueList = explode('|', $continue);
-		if (count($continueList) === 6) {
+		if (count($continueList) === 7) {
 			$rootNs = intval($continueList[0]);
 			if (($rootNs !== 0 || $continueList[0] === '0') && !empty ($continueList[1])) {
 				$this->rootTitle = Title :: makeTitleSafe($rootNs, $continueList[1]);
@@ -155,25 +164,24 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 					$step = intval($continueList[2]);
 					if ($step === 1 || $step === 2) {
-						$this->continueRedirs = ($step === 2);
+						$this->contRedirs = ($step === 2);
 
 						$level = intval($continueList[3]);
 						if ($level !== 0 || $continueList[3] === '0') {
-							$this->continueLevel = $level;
+							$this->contLevel = $level;
 
-//							$pageid = intval($continueList[4]);
-//							if ($pageid !== 0 || $continueList[4] === '0') {
-//								$this->continuePageId = $pageid;
+							$contNs = intval($continueList[4]);
+							if (($contNs !== 0 || $continueList[4] === '0') && !empty ($continueList[5])) {
+								$this->contTitle = Title :: makeTitleSafe($contNs, $continueList[5]);
 
-							$fromNs = intval($continueList[4]);
-							if (($fromNs !== 0 || $continueList[4] === '0') && !empty ($continueList[5])) {
-								$this->fromTitle = Title :: makeTitleSafe($fromNs, $continueList[5]);
+								$contID = intval($continueList[6]);
+								if ($contID !== 0 || $continueList[6] === '0') {
+									$this->contID = $contID;
 
-								// When not processing redirects, only page through the non-redirects 
-								// if ($redirect || ($step === 1 && $level === 0 && $pageid > 0)) {
-
-								if ($redirect || ($step === 1 && $level === 0 && $this->fromTitle && $this->fromTitle->userCanRead())) {
-									return; // done
+									// When not processing redirects, only page through the non-redirects 
+									if ($redirect || ($step === 1 && $level === 0 && $this->contTitle && $this->contTitle->userCanRead() && $this->contID > 0)) {
+										return; // done
+									}
 								}
 							}
 						}
@@ -222,6 +230,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		return array (
 			'api.php?action=query&list=backlinks&titles=Main%20Page',
 			'api.php?action=query&generator=backlinks&titles=Main%20Page&prop=info',
+
 			
 		);
 	}
