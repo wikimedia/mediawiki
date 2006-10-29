@@ -1369,7 +1369,7 @@ class Image
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
-			$urls[] = $this->getViewURL();
+			$urls[] = $this->getURL();
 			foreach ( $archiveFiles as $file ) {
 				$urls[] = wfImageArchiveUrl( $file );
 			}
