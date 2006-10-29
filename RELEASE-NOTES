@@ -89,7 +89,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7684) Obey watchcreated preference for Special:Upload watch checkbox
 * (bug 7686) Include id attribute on delete form confirmation button
 * Allow compound interwiki prefixes in $wgImportSources
-* Added redirect table to store redirect targets.
+* (bug 7304) Added redirect table to store redirect targets.
 * Added querycachetwo table (similar to querycache but has two titles)
 * PageArchive can now return a Revision object for more convenient processing
   of deleted revision data
@@ -103,7 +103,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix purging for updated SVG files
 * (bug 7745) Add id attribute to search button in Monobook
 * (bug 7749) MATH: added some more LaTeX symbols, e.g. parallel, diamond, ast, ...
-
+* (bug 7304) Added code in Article.php to keep redirect table up to date.
 
 == Languages updated ==
 
