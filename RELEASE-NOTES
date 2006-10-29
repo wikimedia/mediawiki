@@ -56,7 +56,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7444) Update namespace translations for Telugu (te), kept old values as
   alias for compatibility
 * (bug 4525) Move section links down visually to same level as headings
-  editsection links are now inside the heading elements)
+  (editsection links are now inside the heading elements)
 * Workaround for http://bugs.php.net/bug.php?id=31892 , PATH_INFO and hence 
   URLs of the style /index.php/Main_Page were broken on some CGI installations.
 * (bug 7623) Validate custom HTML id's correctly in Monobook interface
@@ -64,7 +64,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5795) CSS class added to body based on page name for page-specific
   styling
 * (bug 6276) Stopped search field from getting too large in Cologne Blue
-* Fixed duplicate name/id value of "search" in Cologne Blue
 * (bug 7644) User creations that are aborted by hooks shouldn't be counted
   against account creations per day limit
 * (bug 7636) Show Firefox 2 users "shift-alt" as accesskey prefix
@@ -102,6 +101,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   permission. Patch by Werdna.
 * (bug 7741) MATH: fixed broken syntax of underbrace etc. Fixed arrays
 * Fix purging for updated SVG files
+* (bug 7745) Add id attribute to search button in Monobook
 
 
 == Languages updated ==
