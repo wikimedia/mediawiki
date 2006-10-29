@@ -77,6 +77,8 @@ rule token = parse
   | "\\end{vmatrix}"		{ END_VMATRIX }
   | "\\begin{Vmatrix}"		{ Texutil.tex_use_ams(); BEGIN_VVMATRIX }
   | "\\end{Vmatrix}"		{ END_VVMATRIX }
+  | "\\begin{array}"		{ Texutil.tex_use_ams(); BEGIN_ARRAY }
+  | "\\end{array}"  		{ END_ARRAY }
   | "\\begin{cases}"		{ Texutil.tex_use_ams(); BEGIN_CASES }
   | "\\end{cases}"		{ END_CASES }
   | '>'				{ LITERAL (HTMLABLEC(FONT_UFH,">"," &gt; ")) }

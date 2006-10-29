@@ -100,6 +100,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3224) Allow minor edits by bots to skip new message notification on
   user talk pages. This can be disabled by adjusting the 'nominornewtalk'
   permission. Patch by Werdna.
+* (bug 7741) MATH: fixed broken syntax of underbrace etc. Fixed arrays
 
 
 == Languages updated ==

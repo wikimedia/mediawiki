@@ -425,14 +425,14 @@ let find = function
     | "\\left"             -> LEFT
     | "\\right"            -> RIGHT
     | "\\hat"              -> FUN_AR1 "\\hat "
-    | "\\widehat"          -> FUN_AR1 "\\widehat "
-    | "\\overline"         -> FUN_AR1 "\\overline "
-    | "\\overbrace"        -> FUN_AR1 "\\overbrace "
-    | "\\underline"        -> FUN_AR1 "\\underline "
-    | "\\underbrace"       -> FUN_AR1 "\\underbrace "
-    | "\\overleftarrow"    -> FUN_AR1 "\\overleftarrow "
-    | "\\overrightarrow"   -> FUN_AR1 "\\overrightarrow "
-    | "\\overleftrightarrow"->FUN_AR1 "\\overleftrightarrow "
+    | "\\widehat"          -> LITERAL (TEX_ONLY "\\widehat ")
+    | "\\overline"         -> LITERAL (TEX_ONLY "\\overline ")
+    | "\\overbrace"        -> LITERAL (TEX_ONLY "\\overbrace ")
+    | "\\underline"        -> LITERAL (TEX_ONLY "\\underline ")
+    | "\\underbrace"       -> LITERAL (TEX_ONLY "\\underbrace ")
+    | "\\overleftarrow"    -> LITERAL (TEX_ONLY "\\overleftarrow ")
+    | "\\overrightarrow"   -> LITERAL (TEX_ONLY "\\overrightarrow ")
+    | "\\overleftrightarrow"->LITERAL (TEX_ONLY "\\overleftrightarrow ")
     | "\\check"            -> FUN_AR1 "\\check "
     | "\\acute"            -> FUN_AR1 "\\acute "
     | "\\grave"            -> FUN_AR1 "\\grave "
