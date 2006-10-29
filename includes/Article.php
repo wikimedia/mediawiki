@@ -997,11 +997,18 @@ class Article {
 	 *                          when different from the currently set value.
 	 *                          Giving 0 indicates the new page flag should
 	 *                          be set on.
+	 * @param bool $lastRevIsRedirect If given, will optimize adding and 
+	 * 							removing rows in redirect table.
 	 * @return bool true on success, false on failure
 	 * @private
 	 */
-	function updateRevisionOn( &$dbw, $revision, $lastRevision = null ) {
+	function updateRevisionOn( &$dbw, $revision, $lastRevision = null, $lastRevIsRedirect = null ) {
 		wfProfileIn( __METHOD__ );
+
+		$text = $revision->getText();
+		$rt = Title::newFromRedirect( $text );
+		
+		$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect ); 
 
 		$conditions = array( 'page_id' => $this->getId() );
 		if( !is_null( $lastRevision ) ) {
@@ -1009,13 +1016,12 @@ class Article {
 			$conditions['page_latest'] = $lastRevision;
 		}
 
-		$text = $revision->getText();
 		$dbw->update( 'page',
 			array( /* SET */
 				'page_latest'      => $revision->getId(),
 				'page_touched'     => $dbw->timestamp(),
 				'page_is_new'      => ($lastRevision === 0) ? 1 : 0,
-				'page_is_redirect' => Article::isRedirect( $text ) ? 1 : 0,
+				'page_is_redirect' => $rt !== NULL ? 1 : 0,
 				'page_len'         => strlen( $text ),
 			),
 			$conditions,
@@ -1023,6 +1029,56 @@ class Article {
 
 		wfProfileOut( __METHOD__ );
 		return ( $dbw->affectedRows() != 0 );
+	}
+
+	/**
+	 * Add row to the redirect table if this is a redirect, remove otherwise. 
+	 *
+	 * @param Database $dbw
+	 * @param $redirectTitle a title object pointing to the redirect target,
+	 * 							or NULL if this is not a redirect  
+	 * @param bool $lastRevIsRedirect If given, will optimize adding and 
+	 * 							removing rows in redirect table.
+	 * @return bool true on success, false on failure
+	 * @private
+	 */
+	function updateRedirectOn( &$dbw, $redirectTitle, $lastRevIsRedirect = null ) {
+
+		// Always update redirects (target link might have changed)
+		// Update/Insert if we don't know if the last revision was a redirect or not
+		// Delete if changing from redirect to non-redirect
+		$isRedirect = !is_null($redirectTitle);
+		if ($isRedirect || is_null($lastRevIsRedirect) || $lastRevIsRedirect !== $isRedirect) {
+
+			wfProfileIn( __METHOD__ );
+
+			$where = array('rd_from' => $this->getId());
+
+			if ($isRedirect) {
+
+				// This title is a redirect, Add/Update row in the redirect table
+				$set = array( /* SET */
+					'rd_namespace' => $redirectTitle->getNamespace(),
+					'rd_title'     => $redirectTitle->getDBkey()
+				);
+
+				$dbw->update( 'redirect', $set, $where, __METHOD__ );
+
+				if ( $dbw->affectedRows() == 0 ) {
+					// Update failed, need to insert the row instead
+					$dbw->insert( 'redirect', array_merge($set, $where), __METHOD__ );
+				}
+			} else {
+
+				// This is not a redirect, remove row from redirect table 
+				$dbw->delete( 'redirect', $where, __METHOD__);
+			}
+
+			wfProfileOut( __METHOD__ );
+			return ( $dbw->affectedRows() != 0 );
+		}
+		
+		return true;
 	}
 
 	/**
@@ -1037,7 +1093,7 @@ class Article {
 
 		$row = $dbw->selectRow(
 			array( 'revision', 'page' ),
-			array( 'rev_id', 'rev_timestamp' ),
+			array( 'rev_id', 'rev_timestamp', 'page_is_redirect' ),
 			array(
 				'page_id' => $this->getId(),
 				'page_latest=rev_id' ),
@@ -1048,12 +1104,14 @@ class Article {
 				return false;
 			}
 			$prev = $row->rev_id;
+			$lastRevIsRedirect = $row->page_is_redirect === '1';
 		} else {
 			# No or missing previous revision; mark the page as new
 			$prev = 0;
+			$lastRevIsRedirect = null;
 		}
 
-		$ret = $this->updateRevisionOn( $dbw, $revision, $prev );
+		$ret = $this->updateRevisionOn( $dbw, $revision, $prev, $lastRevIsRedirect );
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
