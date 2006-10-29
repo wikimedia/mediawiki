@@ -102,6 +102,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7741) MATH: fixed broken syntax of underbrace etc. Fixed arrays
 * Fix purging for updated SVG files
 * (bug 7745) Add id attribute to search button in Monobook
+* (bug 7749) MATH: added some more LaTeX symbols, e.g. parallel, diamond, ast, ...
 
 
 == Languages updated ==
