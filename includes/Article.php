@@ -2140,8 +2140,10 @@ class Article {
 
 		# If this is another user's talk page, update newtalk
 		# Don't do this if $changed = false otherwise some idiot can null-edit a
-		# load of user talk pages and piss people off
-		if( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getTitleKey() && $changed ) {
+		# load of user talk pages and piss people off, nor if it's a minor edit
+		# by a properly-flagged bot.
+		if( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getTitleKey() && $changed
+			&& !($minoredit && $wgUser->isAllowed('nominornewtalk') ) ) {
 			if (wfRunHooks('ArticleEditUpdateNewTalk', array(&$this)) ) {
 				$other = User::newFromName( $shortTitle );
 				if( is_null( $other ) && User::isIP( $shortTitle ) ) {

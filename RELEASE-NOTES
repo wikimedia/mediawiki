@@ -97,6 +97,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added 'UndeleteShowRevision' hook in Special:Undelete
 * Error message on attempt to view invalid or missing deleted revisions
 * Remove unsightly "_" from namespace in Special:Allpages, Special:Prefixindex
+* (bug 3224) Allow minor edits by bots to skip new message notification on
+  user talk pages. This can be disabled by adjusting the 'nominornewtalk'
+  permission. Patch by Werdna.
 
 
 == Languages updated ==
