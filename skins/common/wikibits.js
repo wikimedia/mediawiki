@@ -5,7 +5,9 @@ var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')=
                 && (clientPC.indexOf('khtml') == -1) && (clientPC.indexOf('netscape/7.0')==-1));
 var is_safari = ((clientPC.indexOf('applewebkit')!=-1) && (clientPC.indexOf('spoofer')==-1));
 var is_khtml = (navigator.vendor == 'KDE' || ( document.childNodes && !document.all && !navigator.taintEnabled ));
-var is_ff2 = (clientPC.indexOf('firefox/2')!=-1 || clientPC.indexOf('minefield/3')!=-1); // For accesskeys
+// For accesskeys
+var is_ff2_win = (clientPC.indexOf('firefox/2')!=-1 || clientPC.indexOf('minefield/3')!=-1) && clientPC.indexOf('windows')!=-1;
+var is_ff2_x11 = (clientPC.indexOf('firefox/2')!=-1 || clientPC.indexOf('minefield/3')!=-1) && clientPC.indexOf('x11')!=-1;
 if (clientPC.indexOf('opera') != -1) {
 	var is_opera = true;
 	var is_opera_preseven = (window.opera && !document.childNodes);
@@ -468,8 +470,10 @@ function akeytt() {
 		pref = 'control-';
 	else if (is_opera)
 		pref = 'shift-esc-';
-	else if (is_ff2)
-		pref = 'shift-alt-';
+	else if (is_ff2_x11)
+		pref = 'ctrl-shift-';
+	else if (is_ff2_win)
+		pref = 'alt-shift-';
 	else
 		pref = 'alt-';
 
