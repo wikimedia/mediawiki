@@ -252,8 +252,8 @@ class SkinCologneBlue extends Skin {
 				wfMsg( "mypage" ) )
 			  . $sep . $tl
 			  . $sep . $this->specialLink( "watchlist" )
-			  . $sep . $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions" ),
-			  	wfMsg( "mycontris" ), "target=" . wfUrlencode($wgUser->getName() ) )
+			  . $sep . $this->makeKnownLinkObj( SpecialPage::getSafeTitleFor( "Contributions", $wgUser->getName() ),
+			  	wfMsg( "mycontris" ) )
 		  	  . $sep . $this->specialLink( "preferences" )
 		  	  . $sep . $this->specialLink( "userlogout" );
 		} else {
@@ -275,7 +275,7 @@ class SkinCologneBlue extends Skin {
 		}
 
 		$s .= $sep . $this->makeKnownLinkObj(
-			Title::makeTitle( NS_SPECIAL, 'Specialpages' ),
+			SpecialPage::getTitleFor( 'Specialpages' ),
 			wfMsg( 'moredotdotdot' ) );
 
 		$s .= $sep . "\n</div>\n";

@@ -85,7 +85,7 @@ class Article {
 					//
 					// This can be hard to reverse, so they may be disabled.
 					
-					if( $rt->getNamespace() == NS_SPECIAL && $rt->getText() == 'Userlogout' ) {
+					if( $rt->isSpecial( 'Userlogout' ) ) {
 						// rolleyes
 					} else {
 						return $rt->getFullURL();
@@ -1473,7 +1473,7 @@ class Article {
 				$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
 				$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
 			}
-			$rcTitle = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
+			$rcTitle = SpecialPage::getTitleFor( 'Recentchanges' );
 			$wgOut->returnToMain( false, $rcTitle->getPrefixedText() );
 		}
 		else {

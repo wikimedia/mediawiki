@@ -107,6 +107,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   required.
 * (bug 5051) Accesskeys no longer require JavaScript.
 * Correctly detect browser accesskey prefix for all buttons, not just most.
+* Made special page names case-insensitive and localisable. Care has been taken 
+  to maintain backwards compatibility.
+* Used special page subpages in a few more places, instead of query parameters.
 
 == Languages updated ==
 

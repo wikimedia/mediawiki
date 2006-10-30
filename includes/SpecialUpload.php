@@ -398,7 +398,7 @@ class UploadForm {
 				$image = new Image( $nt );
 				if( $image->wasDeleted() ) {
 					$skin = $wgUser->getSkin();
-					$ltitle = Title::makeTitle( NS_SPECIAL, 'Log' );
+					$ltitle = SpecialPage::getTitleFor( 'Log' );
 					$llink = $skin->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 'type=delete&page=' . $nt->getPrefixedUrl() );
 					$warning .= wfOpenElement( 'li' ) . wfMsgWikiHtml( 'filewasdeleted', $llink ) . wfCloseElement( 'li' );
 				}
@@ -632,7 +632,7 @@ class UploadForm {
 		$reupload = wfMsgHtml( 'reupload' );
 		$iw = wfMsgWikiHtml( 'ignorewarning' );
 		$reup = wfMsgWikiHtml( 'reuploaddesc' );
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Upload' );
+		$titleObj = SpecialPage::getTitleFor( 'Upload' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
 
 		if ( $wgUseCopyrightUpload )
@@ -712,7 +712,7 @@ class UploadForm {
 		$ulb = wfMsgHtml( 'uploadbtn' );
 
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Upload' );
+		$titleObj = SpecialPage::getTitleFor( 'Upload' );
 		$action = $titleObj->escapeLocalURL();
 
 		$encDestFile = htmlspecialchars( $this->mDestFile );

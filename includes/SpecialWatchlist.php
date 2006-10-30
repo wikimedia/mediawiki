@@ -23,13 +23,13 @@ function wfSpecialWatchlist( $par ) {
 	$fname = 'wfSpecialWatchlist';
 
 	$skin =& $wgUser->getSkin();
-	$specialTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
+	$specialTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 	# Anons don't get a watchlist
 	if( $wgUser->isAnon() ) {
 		$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
-		$llink = $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Userlogin' ), wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
+		$llink = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogin' ), wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
 		$wgOut->addHtml( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
 		return;
 	} else {
@@ -325,7 +325,7 @@ function wfSpecialWatchlist( $par ) {
 	$wgOut->addHTML( "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n" );
 
 	# Spit out some control panel links
-	$thisTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
+	$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$skin = $wgUser->getSkin();
 	$linkElements = array( 'hideOwn' => 'wlhideshowown', 'hideBots' => 'wlhideshowbots' );
 	
@@ -493,7 +493,7 @@ function wlHandleClear( &$out, &$request, $par ) {
 				$out->returnToMain();
 			} else {
 				# Confirming, so show a form
-				$wlTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
+				$wlTitle = SpecialPage::getTitleFor( 'Watchlist' );
 				$out->addHTML( wfElement( 'form', array( 'method' => 'post', 'action' => $wlTitle->getLocalUrl( 'action=clear' ) ), NULL ) );
 				$out->addWikiText( wfMsgExt( 'watchlistcount', array( 'parsemag', 'escape'), $wgLang->formatNum( $count ) ) );
 				$out->addWikiText( wfMsg( 'watchlistcleartext' ) );

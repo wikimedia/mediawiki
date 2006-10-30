@@ -299,7 +299,7 @@ class Title {
 
 				$rt = Title::newFromText( $m[1] );
 				# Disallow redirects to Special:Userlogout
-				if ( !is_null($rt) && $rt->getNamespace() == NS_SPECIAL && preg_match( '/^Userlogout/i', $rt->getText() ) ) {
+				if ( !is_null($rt) && $rt->isSpecial( 'Userlogout' ) ) {
 					$rt = NULL;
 				}
 			}
@@ -2364,6 +2364,38 @@ class Title {
 			default:
 				return 'nstab-' . $wgContLang->lc( $this->getSubjectNsText() );
 		}
+	}
+
+	/**
+	 * Returns true if this title resolves to the named special page
+	 * @param string $name The special page name
+	 * @access public
+	 */
+	function isSpecial( $name ) {
+		if ( $this->getNamespace() == NS_SPECIAL ) {
+			list( $thisName, $subpage ) = SpecialPage::resolveAliasWithSubpage( $this->getDBkey() );
+			if ( $name == $thisName ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * If the Title refers to a special page alias which is not the local default, 
+	 * returns a new Title which points to the local default. Otherwise, returns $this.
+	 */
+	function fixSpecialName() {
+		if ( $this->getNamespace() == NS_SPECIAL ) {
+			$canonicalName = SpecialPage::resolveAlias( $this->mDbkeyform );
+			if ( $canonicalName ) {
+				$localName = SpecialPage::getLocalNameFor( $canonicalName );
+				if ( $localName != $this->mDbkeyform ) {
+					return Title::makeTitle( NS_SPECIAL, $localName );
+				}
+			}
+		}
+		return $this;
 	}
 }
 ?>

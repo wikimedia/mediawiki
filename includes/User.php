@@ -2234,7 +2234,7 @@ class User {
 	 */
 	function confirmationTokenUrl( &$expiration ) {
 		$token = $this->confirmationToken( $expiration );
-		$title = Title::makeTitle( NS_SPECIAL, 'Confirmemail/' . $token );
+		$title = SpecialPage::getTitleFor( 'Confirmemail', $token );
 		return $title->getFullUrl();
 	}
 

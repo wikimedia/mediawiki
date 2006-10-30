@@ -71,7 +71,7 @@ class ApiFeedWatchlist extends ApiBase {
 
 		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
 		$feedTitle = $wgSitename . ' - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
-		$feedUrl = Title :: makeTitle(NS_SPECIAL, 'Watchlist')->getFullUrl();
+		$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullUrl();
 
 		$feed = new $wgFeedClasses[$feedformat] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
 

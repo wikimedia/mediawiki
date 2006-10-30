@@ -206,6 +206,8 @@ $bookstoreList = array(
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
  *   from other wikis to contribute more easily.
+ *
+ * This array can be modified at runtime with the LanguageGetMagic hook
  */
 $magicWords = array(
 #   ID                                 CASE  SYNONYMS
@@ -316,6 +318,81 @@ $magicWords = array(
 	'formatnum'              => array( 0,    'FORMATNUM'              ),
 	'padleft'                => array( 0,    'PADLEFT'                ),
 	'padright'               => array( 0,    'PADRIGHT'               ),
+);
+
+/**
+ * Alternate names of special pages. All names are case-insensitive. The first
+ * listed alias will be used as the default. Aliases from the fallback 
+ * localisation (usually English) will be included by default. 
+ * 
+ * This array may be altered at runtime using the LangugeGetSpecialPageAliases 
+ * hook. 
+ */
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'DoubleRedirects' ),
+	'BrokenRedirects'           => array( 'BrokenRedirects' ),
+	'Disambiguations'           => array( 'Disambiguations' ),
+	'Userlogin'                 => array( 'Userlogin' ),
+	'Userlogout'                => array( 'Userlogout' ),
+	'Preferences'               => array( 'Preferences' ),
+	'Watchlist'                 => array( 'Watchlist' ),
+	'Recentchanges'             => array( 'Recentchanges' ),
+	'Upload'                    => array( 'Upload' ),
+	'Imagelist'                 => array( 'Imagelist' ),
+	'Newimages'                 => array( 'Newimages' ),
+	'Listusers'                 => array( 'Listusers', 'Userlist' ),
+	'Statistics'                => array( 'Statistics' ),
+	'Randompage'                => array( 'Random', 'Randompage' ),
+	'Lonelypages'               => array( 'Lonelypages' ),
+	'Uncategorizedpages'        => array( 'Uncategorizedpages' ),
+	'Uncategorizedcategories'   => array( 'Uncategorizedcategories' ),
+	'Uncategorizedimages'       => array( 'Uncategorizedimages' ),
+	'Unusedcategories'          => array( 'Unusedcategories' ),
+	'Unusedimages'              => array( 'Unusedimages' ),
+	'Wantedpages'               => array( 'Wantedpages' ),
+	'Wantedcategories'          => array( 'Wantedcategories' ),
+	'Mostlinked'                => array( 'Mostlinked' ),
+	'Mostlinkedcategories'      => array( 'Mostlinkedcategories' ),
+	'Mostcategories'            => array( 'Mostcategories' ),
+	'Mostimages'                => array( 'Mostimages' ),
+	'Mostrevisions'             => array( 'Mostrevisions' ),
+	'Shortpages'                => array( 'Shortpages' ),
+	'Longpages'                 => array( 'Longpages' ),
+	'Newpages'                  => array( 'Newpages' ),
+	'Ancientpages'              => array( 'Ancientpages' ),
+	'Deadendpages'              => array( 'Deadendpages' ),
+	'Allpages'                  => array( 'Allpages' ),
+	'Prefixindex'               => array( 'Prefixindex' ) ,
+	'Ipblocklist'               => array( 'Ipblocklist' ),
+	'Specialpages'              => array( 'Specialpages' ),
+	'Contributions'             => array( 'Contributions' ),
+	'Emailuser'                 => array( 'Emailuser' ),
+	'Whatlinkshere'             => array( 'Whatlinkshere' ),
+	'Recentchangeslinked'       => array( 'Recentchangeslinked' ),
+	'Movepage'                  => array( 'Movepage' ),
+	'Blockme'                   => array( 'Blockme' ),
+	'Booksources'               => array( 'Booksources' ),
+	'Categories'                => array( 'Categories' ),
+	'Export'                    => array( 'Export' ),
+	'Version'                   => array( 'Version' ),
+	'Allmessages'               => array( 'Allmessages' ),
+	'Log'                       => array( 'Log', 'Logs' ),
+	'Blockip'                   => array( 'Blockip' ),
+	'Undelete'                  => array( 'Undelete' ),
+	'Import'                    => array( 'Import' ),
+	'Lockdb'                    => array( 'Lockdb' ),
+	'Unlockdb'                  => array( 'Unlockdb' ),
+	'Userrights'                => array( 'Userrights' ),
+	'MIMEsearch'                => array( 'MIMEsearch' ),
+	'Unwatchedpages'            => array( 'Unwatchedpages' ),
+	'Listredirects'             => array( 'Listredirects' ),
+	'Revisiondelete'            => array( 'Revisiondelete' ),
+	'Unusedtemplates'           => array( 'Unusedtemplates' ),
+	'Randomredirect'            => array( 'Randomredirect' ),
+	'Mypage'                    => array( 'Mypage' ),
+	'Mytalk'                    => array( 'Mytalk' ),
+	'Mycontributions'           => array( 'Mycontributions' ),
+	'Listadmins'                => array( 'Listadmins' ),
 );
 
 /**

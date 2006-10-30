@@ -178,7 +178,7 @@ class LoginForm {
 			# Confirm that the account was created
 			global $wgOut;
 			$skin = $wgUser->getSkin();
-			$self = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+			$self = SpecialPage::getTitleFor( 'Userlogin' );
 			$wgOut->setPageTitle( wfMsgHtml( 'accountcreated' ) );
 			$wgOut->setArticleRelated( false );
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -564,7 +564,7 @@ class LoginForm {
 			}
 		}
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 
 		if ( $this->mType == 'signup' ) {
 			$template = new UsercreateTemplate();
@@ -662,7 +662,7 @@ class LoginForm {
 	function cookieRedirectCheck( $type ) {
 		global $wgOut;
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 		$check = $titleObj->getFullURL( 'wpCookieCheck='.$type );
 
 		return $wgOut->redirect( $check );
@@ -728,7 +728,7 @@ class LoginForm {
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
 		global $wgUser;
-		$self = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$self = SpecialPage::getTitleFor( 'Userlogin' );
 		$attr[] = 'uselang=' . $lang;
 		if( $this->mType == 'signup' )
 			$attr[] = 'type=signup';

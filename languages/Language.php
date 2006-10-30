@@ -67,12 +67,14 @@ class Language {
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
 		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases', 
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap', 
-		'defaultDateFormat', 'extraUserToggles' );
+		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases' );
 
 	static public $mMergeableMapKeys = array( 'messages', 'namespaceNames', 'mathNames', 
 		'dateFormats', 'defaultUserOptionOverrides', 'magicWords' );
 
 	static public $mMergeableListKeys = array( 'extraUserToggles' );
+
+	static public $mMergeableAliasListKeys = array( 'specialPageAliases' );
 
 	static public $mLocalisationCache = array();
 
@@ -248,6 +250,10 @@ class Language {
 	}
 
 	function specialPage( $name ) {
+		$aliases = $this->getSpecialPageAliases();
+		if ( isset( $aliases[$name][0] ) ) {
+			$name = $aliases[$name][0];
+		}
 		return $this->getNsText(NS_SPECIAL) . ':' . $name;
 	}
 
@@ -908,6 +914,21 @@ class Language {
 			$str );
 	}
 
+	/**
+	 * Return a case-folded representation of $s
+	 *
+	 * This is a representation such that caseFold($s1)==caseFold($s2) if $s1 
+	 * and $s2 are the same except for the case of their characters. It is not
+	 * necessary for the value returned to make sense when displayed.
+	 *
+	 * Do *not* perform any other normalisation in this function. If a caller
+	 * uses this function when it should be using a more general normalisation
+	 * function, then fix the caller.
+	 */
+	function caseFold( $s ) {
+		return $this->uc( $s );
+	}
+
 	function checkTitleEncoding( $s ) {
 		if( is_array( $s ) ) {
 			wfDebugDieBacktrace( 'Given array to checkTitleEncoding.' );
@@ -1081,6 +1102,20 @@ class Language {
 		}
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
+	}
+
+	/**
+	 * Get special page names, as an associative array
+	 *   case folded alias => real name
+	 */
+	function getSpecialPageAliases() {
+		$this->load();
+		if ( !isset( $this->mExtendedSpecialPageAliases ) ) {
+			$this->mExtendedSpecialPageAliases = $this->specialPageAliases;
+			wfRunHooks( 'LangugeGetSpecialPageAliases', 
+				array( &$this->mExtendedSpecialPageAliases, $this->getCode() ) );
+		}
+		return $this->mExtendedSpecialPageAliases;
 	}
 
 	/**
@@ -1550,6 +1585,8 @@ class Language {
 							$cache[$key] = $cache[$key] + $secondary[$key];
 						} elseif ( in_array( $key, self::$mMergeableListKeys ) ) {
 							$cache[$key] = array_merge( $secondary[$key], $cache[$key] );
+						} elseif ( in_array( $key, self::$mMergeableAliasListKeys ) ) {
+							$cache[$key] = array_merge_recursive( $cache[$key], $secondary[$key] );
 						}
 					}
 				} else {

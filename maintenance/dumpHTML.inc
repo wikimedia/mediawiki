@@ -193,7 +193,7 @@ class DumpHTML {
 
 		$this->setupGlobals();
 		print "Special:Categories...";
-		$this->doArticle( Title::makeTitle( NS_SPECIAL, 'Categories' ) );
+		$this->doArticle( SpecialPage::getTitleFor( 'Categories' ) );
 		print "\n";
 	}
 

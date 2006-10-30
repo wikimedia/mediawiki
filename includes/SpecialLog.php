@@ -321,7 +321,7 @@ class LogViewer {
 		$paramArray = LogPage::extractParams( $s->log_params );
 		$revert = '';
 		if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
-			$specialTitle = Title::makeTitle( NS_SPECIAL, 'Movepage' );
+			$specialTitle = SpecialPage::getTitleFor( 'Movepage' );
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if ( $destTitle ) {
 				$revert = '(' . $this->skin->makeKnownLinkObj( $specialTitle, wfMsg( 'revertmove' ),
@@ -356,7 +356,7 @@ class LogViewer {
 	function showOptions( &$out ) {
 		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
-		$title = Title::makeTitle( NS_SPECIAL, 'Log' );
+		$title = SpecialPage::getTitleFor( 'Log' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 		$out->addHTML( "<form action=\"$action\" method=\"get\">\n" .
 			"<input type='hidden' name='title' value=\"$special\" />\n" .

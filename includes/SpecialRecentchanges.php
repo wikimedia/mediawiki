@@ -571,7 +571,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
  */
 function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
 	global $wgScript, $wgAllowCategorizedRecentChanges, $wgRequest;
-	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
+	$t = SpecialPage::getTitleFor( 'Recentchanges' );
 
 	$namespaceselect = HTMLnamespaceselector($namespace, '');
 	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . "\" />\n";

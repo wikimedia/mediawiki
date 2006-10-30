@@ -54,7 +54,7 @@ class DBUnlockForm {
 		}
 		$lc = htmlspecialchars( wfMsg( "unlockconfirm" ) );
 		$lb = htmlspecialchars( wfMsg( "unlockbtn" ) );
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
+		$titleObj = SpecialPage::getTitleFor( "Unlockdb" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
@@ -94,7 +94,7 @@ END
 			$wgOut->showFileDeleteError( $wgReadOnlyFile );
 			return;
 		}
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
+		$titleObj = SpecialPage::getTitleFor( "Unlockdb" );
 		$success = $titleObj->getFullURL( "action=success" );
 		$wgOut->redirect( $success );
 	}
