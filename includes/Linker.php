@@ -673,7 +673,7 @@ class Linker {
 		if ( '' != $query ) {
 			$q .= "&$query";
 		}
-		$uploadTitle = Title::makeTitle( NS_SPECIAL, 'Upload' );
+		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 		$url = $uploadTitle->escapeLocalURL( $q );
 
 		if ( '' == $text ) {
@@ -716,7 +716,7 @@ class Linker {
 				$url  = $img->getURL();
 				$class = 'internal';
 			} else {
-				$upload = Title::makeTitle( NS_SPECIAL, 'Upload' );
+				$upload = SpecialPage::getTitleFor( 'Upload' );
 				$url = $upload->getLocalUrl( 'wpDestFile=' . urlencode( $img->getName() ) );
 				$class = 'new';
 			}
@@ -763,7 +763,7 @@ class Linker {
 	function userLink( $userId, $userText ) {
 		$encName = htmlspecialchars( $userText );
 		if( $userId == 0 ) {
-			$contribsPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
+			$contribsPage = SpecialPage::getTitleFor( 'Contributions' );
 			return $this->makeKnownLinkObj( $contribsPage,
 				$encName, 'target=' . urlencode( $userText ) );
 		} else {
@@ -788,7 +788,7 @@ class Linker {
 			$items[] = $this->userTalkLink( $userId, $userText );
 		}
 		if( $userId ) {
-			$contribsPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
+			$contribsPage = SpecialPage::getTitleFor( 'Contributions' );
 			$items[] = $this->makeKnownLinkObj( $contribsPage,
 				wfMsgHtml( 'contribslink' ), 'target=' . urlencode( $userText ) );
 		}
@@ -825,7 +825,7 @@ class Linker {
 	 * @private
 	 */
 	function blockLink( $userId, $userText ) {
-		$blockPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
+		$blockPage = SpecialPage::getTitleFor( 'Blockip' );
 		$blockLink = $this->makeKnownLinkObj( $blockPage,
 			wfMsgHtml( 'blocklink' ), 'ip=' . urlencode( $userText ) );
 		return $blockLink;

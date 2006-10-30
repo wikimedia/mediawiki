@@ -62,8 +62,8 @@ class MostlinkedPage extends QueryPage {
 	 * @return string
 	 */
 	function makeWlhLink( &$title, $caption, &$skin ) {
-		$wlh = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
-		return $skin->makeKnownLinkObj( $wlh, $caption, 'target=' . $title->getPrefixedUrl() );
+		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
+		return $skin->makeKnownLinkObj( $wlh, $caption );
 	}
 
 	/**

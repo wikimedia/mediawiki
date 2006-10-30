@@ -96,7 +96,7 @@ function wfProxyCheck() {
 
 	# Fork the processes
 	if ( !$skip ) {
-		$title = Title::makeTitle( NS_SPECIAL, 'Blockme' );
+		$title = SpecialPage::getTitleFor( 'Blockme' );
 		$iphash = md5( $ip . $wgProxyKey );
 		$url = $title->getFullURL( 'ip='.$iphash );
 

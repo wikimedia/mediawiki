@@ -89,7 +89,7 @@ class RevisionDeleteForm {
 			$hidden[] = wfHidden( 'oldid[]', $revid );
 		}
 		
-		$special = Title::makeTitle( NS_SPECIAL, 'Revisiondelete' );
+		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHtml( wfElement( 'form', array(
 			'method' => 'post',
 			'action' => $special->getLocalUrl( 'action=submit' ) ),

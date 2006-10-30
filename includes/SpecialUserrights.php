@@ -34,7 +34,7 @@ class UserrightsForm extends HTMLForm {
 		$this->mRequest =& $request;
 		$this->mName = 'userrights';
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userrights' );
+		$titleObj = SpecialPage::getTitleFor( 'Userrights' );
 		$this->action = $titleObj->escapeLocalURL();
 	}
 

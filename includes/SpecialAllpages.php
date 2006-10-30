@@ -51,7 +51,7 @@ class SpecialAllpages {
  */
 function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	global $wgScript;
-	$t = Title::makeTitle( NS_SPECIAL, $this->name );
+	$t = SpecialPage::getTitleFor( $this->name );
 
 	$namespaceselect = HTMLnamespaceselector($namespace, null);
 
@@ -192,7 +192,7 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
 	$queryparams = ($namespace ? "namespace=$namespace" : '');
-	$special = Title::makeTitle( NS_SPECIAL, $this->name . '/' . $inpoint );
+	$special = SpecialPage::getTitleFor( $this->name, $inpoint );
 	$link = $special->escapeLocalUrl( $queryparams );
 
 	$out = wfMsgHtml(
@@ -276,7 +276,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
 					wfMsgHtml ( 'allpages' ) );
 		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
-			$self = Title::makeTitle( NS_SPECIAL, 'Allpages' );
+			$self = SpecialPage::getTitleFor( 'Allpages' );
 			$q = 'from=' . $t->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
 			$out2 .= ' | ' . $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
 		}

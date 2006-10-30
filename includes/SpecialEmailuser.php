@@ -97,7 +97,7 @@ class EmailUserForm {
 		$ems = wfMsg( "emailsend" );
 		$encSubject = htmlspecialchars( $this->subject );
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
+		$titleObj = SpecialPage::getTitleFor( "Emailuser" );
 		$action = $titleObj->escapeLocalURL( "target=" .
 			urlencode( $this->target->getName() ) . "&action=submit" );
 		$token = $wgUser->editToken();
@@ -140,7 +140,7 @@ class EmailUserForm {
 			if( WikiError::isError( $mailResult ) ) {
 				$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
 			} else {
-				$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
+				$titleObj = SpecialPage::getTitleFor( "Emailuser" );
 				$encTarget = wfUrlencode( $this->target->getName() );
 				$wgOut->redirect( $titleObj->getFullURL( "target={$encTarget}&action=success" ) );
 				wfRunHooks( 'EmailUserComplete', array( $to, $from, $subject, $this->text ) );

@@ -132,7 +132,7 @@ class NewPagesPage extends QueryPage {
 	 * @return string
 	 */	
 	function getPageHeader() {
-		$self = Title::makeTitle( NS_SPECIAL, $this->getName() );
+		$self = SpecialPage::getTitleFor( $this->getName() );
 		$form = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
 		$form .= '<table><tr><td align="right">' . wfMsgHtml( 'namespace' ) . '</td>';
 		$form .= '<td>' . HtmlNamespaceSelector( $this->namespace ) . '</td><tr>';

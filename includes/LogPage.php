@@ -74,7 +74,7 @@ class LogPage {
 
 		# And update recentchanges
 		if ( $this->updateRecentChanges ) {
-			$titleObj = Title::makeTitle( NS_SPECIAL, 'Log/' . $this->type );
+			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
 			$rcComment = $this->actionText;
 			if( '' != $this->comment ) {
 				if ($rcComment == '')
@@ -150,7 +150,7 @@ class LogPage {
 								$titleLink = $title->getText();
 							} else {
 								$titleLink = $skin->makeLinkObj( $title, $title->getText() );
-								$titleLink .= ' (' . $skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions/' . $title->getDBkey() ), wfMsg( 'contribslink' ) ) . ')';
+								$titleLink .= ' (' . $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() ), wfMsg( 'contribslink' ) ) . ')';
 							}
 							break;
 						case 'rights':

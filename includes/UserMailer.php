@@ -382,7 +382,7 @@ class EmailNotification {
 		} else {
 			$subject = str_replace('$PAGEEDITOR', $name, $subject);
 			$keys['$PAGEEDITOR']          = $name;
-			$emailPage = Title::makeTitle( NS_SPECIAL, 'Emailuser/' . $name );
+			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $name );
 			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getFullUrl();
 		}
 		$userPage = $wgUser->getUserPage();

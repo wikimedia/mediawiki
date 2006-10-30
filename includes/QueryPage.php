@@ -92,7 +92,7 @@ class QueryPage {
 	 * @return Title
 	 */
 	function getTitle() {
-		return Title::makeTitle( NS_SPECIAL, $this->getName() );
+		return SpecialPage::getTitleFor( $this->getName() );
 	}
 
 	/**
@@ -459,7 +459,7 @@ class QueryPage {
 	}
 
 	function feedUrl() {
-		$title = Title::MakeTitle( NS_SPECIAL, $this->getName() );
+		$title = SpecialPage::getTitleFor( $this->getName() );
 		return $title->getFullURL();
 	}
 }

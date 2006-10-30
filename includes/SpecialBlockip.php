@@ -73,7 +73,7 @@ class IPBlockForm {
 		$mIpbothertime = wfMsgHtml( 'ipbotheroption' );
 		$mIpbreason = wfMsgHtml( 'ipbreason' );
 		$mIpbsubmit = wfMsgHtml( 'ipbsubmit' );
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
+		$titleObj = SpecialPage::getTitleFor( 'Blockip' );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		if ( "" != $err ) {
@@ -260,7 +260,7 @@ class IPBlockForm {
 			  $this->BlockReason, $expirestr );
 
 			# Report to the user
-			$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
+			$titleObj = SpecialPage::getTitleFor( 'Blockip' );
 			$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip=' .
 				urlencode( $this->BlockAddress ) ) );
 		}

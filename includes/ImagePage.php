@@ -333,7 +333,7 @@ END
 		} else {
 			# Image does not exist
 
-			$title = Title::makeTitle( NS_SPECIAL, 'Upload' );
+			$title = SpecialPage::getTitleFor( 'Upload' );
 			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('noimage-linktext'),
 				'wpDestFile=' . urlencode( $this->img->getName() ) );
 			$wgOut->addHTML( wfMsgWikiHtml( 'noimage', $link ) );
@@ -348,7 +348,7 @@ END
 		if ($wgRepositoryBaseUrl && !$wgFetchCommonsDescriptions) {
 
 			$sk = $wgUser->getSkin();
-			$title = Title::makeTitle( NS_SPECIAL, 'Upload' );
+			$title = SpecialPage::getTitleFor( 'Upload' );
 			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('shareduploadwiki-linktext'),
 			array( 'wpDestFile' => urlencode( $this->img->getName() )));
 			$sharedtext .= " " . wfMsgWikiHtml('shareduploadwiki', $link);
@@ -365,7 +365,7 @@ END
 
 	function getUploadUrl() {
 		global $wgServer;
-		$uploadTitle = Title::makeTitle( NS_SPECIAL, 'Upload' );
+		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 		return $wgServer . $uploadTitle->getLocalUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) );
 	}
 

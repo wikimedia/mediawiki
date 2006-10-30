@@ -130,7 +130,7 @@ class MovePageForm {
 		$movetalk = wfMsgHtml( 'movetalk' );
 		$movereason = wfMsgHtml( 'movereason' );
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
+		$titleObj = SpecialPage::getTitleFor( 'Movepage' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
@@ -245,7 +245,7 @@ class MovePageForm {
 		}
 
 		# Give back result to user.
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
+		$titleObj = SpecialPage::getTitleFor( 'Movepage' );
 		$success = $titleObj->getFullURL(
 		  'action=success&oldtitle=' . wfUrlencode( $ot->getPrefixedText() ) .
 		  '&newtitle=' . wfUrlencode( $nt->getPrefixedText() ) .

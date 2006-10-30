@@ -1436,7 +1436,7 @@ END
 		global $wgUser, $wgOut;
 		$skin = $wgUser->getSkin();
 		
-		$loginTitle = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
+		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
 	
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );

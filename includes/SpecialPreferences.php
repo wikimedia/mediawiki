@@ -328,7 +328,7 @@ class PreferencesForm {
 		}
 
 		if( $needRedirect && $error === false ) {
-			$title =& Title::makeTitle( NS_SPECIAL, "Preferences" );
+			$title =& SpecialPage::getTitleFor( "Preferences" );
 			$wgOut->redirect($title->getFullURL('success'));
 			return;
 		}
@@ -478,7 +478,7 @@ class PreferencesForm {
 		$dateopts = $wgLang->getDatePreferences();
 		$togs = User::getToggles();
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Preferences' );
+		$titleObj = SpecialPage::getTitleFor( 'Preferences' );
 		$action = $titleObj->escapeLocalURL();
 
 		# Pre-expire some toggles so they won't show if disabled
@@ -508,7 +508,7 @@ class PreferencesForm {
 				$disableEmailPrefs = true;
 				$skin = $wgUser->getSkin();
 				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
-					$skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Confirmemail' ),
+					$skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Confirmemail' ),
 						wfMsg( 'emailconfirmlink' ) );
 			}
 		} else {

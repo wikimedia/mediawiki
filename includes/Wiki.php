@@ -99,7 +99,7 @@ class MediaWiki {
 		if( !is_null( $search ) && $search !== '' ) {
 			// Compatibility with old search URLs which didn't use Special:Search
 			// Do this above the read whitelist check for security...
-			$title = Title::makeTitle( NS_SPECIAL, 'Search' );
+			$title = SpecialPage::getTitleFor( 'Search' );
 		}
 		$this->setVal( 'Search', $search );
 
@@ -125,10 +125,10 @@ class MediaWiki {
 		$action = $this->getVal('Action');
 		if( !$this->getVal('DisableInternalSearch') && !is_null( $search ) && $search !== '' ) {
 			require_once( 'includes/SpecialSearch.php' );
-			$title = Title::makeTitle( NS_SPECIAL, 'Search' );
+			$title = SpecialPage::getTitleFor( 'Search' );
 			wfSpecialSearch();
 		} else if( !$title or $title->getDBkey() == '' ) {
-			$title = Title::makeTitle( NS_SPECIAL, 'Badtitle' );
+			$title = SpecialPage::getTitleFor( 'Badtitle' );
 			# Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 		} else if ( $title->getInterwiki() != '' ) {
@@ -141,7 +141,7 @@ class MediaWiki {
 			if ( !preg_match( '/^' . preg_quote( $this->getVal('Server'), '/' ) . '/', $url ) && $title->isLocal() ) {
 				$output->redirect( $url );
 			} else {
-				$title = Title::makeTitle( NS_SPECIAL, 'Badtitle' );
+				$title = SpecialPage::getTitleFor( 'Badtitle' );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
 		} else if ( ( $action == 'view' ) &&

@@ -177,7 +177,7 @@ class SpecialSearch {
 
 		if( $num || $this->offset ) {
 			$prevnext = wfViewPrevNext( $this->offset, $this->limit,
-				'Special:Search',
+				SpecialPage::getTitleFor( 'Search' ),
 				wfArrayToCGI(
 					$this->powerSearchOptions(),
 					array( 'search' => $term ) ) );
@@ -404,7 +404,7 @@ class SpecialSearch {
 			'', '', '', '', '', # Dummy placeholders
 			$searchButton );
 
-		$title = Title::makeTitle( NS_SPECIAL, 'Search' );
+		$title = SpecialPage::getTitleFor( 'Search' );
 		$action = $title->escapeLocalURL();
 		return "<br /><br />\n<form id=\"powersearch\" method=\"get\" " .
 		  "action=\"$action\">\n{$ret}\n</form>\n";

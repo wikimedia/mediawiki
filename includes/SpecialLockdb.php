@@ -62,7 +62,7 @@ class DBLockForm {
 		$lc = htmlspecialchars( wfMsg( 'lockconfirm' ) );
 		$lb = htmlspecialchars( wfMsg( 'lockbtn' ) );
 		$elr = htmlspecialchars( wfMsg( 'enterlockreason' ) );
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Lockdb' );
+		$titleObj = SpecialPage::getTitleFor( 'Lockdb' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
 		$reason = htmlspecialchars( $this->reason );
 		$token = htmlspecialchars( $wgUser->editToken() );
@@ -114,7 +114,7 @@ END
 		  $wgLang->timeanddate( wfTimestampNow() ) . ")\n" );
 		fclose( $fp );
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Lockdb' );
+		$titleObj = SpecialPage::getTitleFor( 'Lockdb' );
 		$wgOut->redirect( $titleObj->getFullURL( 'action=success' ) );
 	}
 

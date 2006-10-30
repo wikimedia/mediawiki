@@ -246,8 +246,13 @@ class OldChangesList extends ChangesList {
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$this->insertMove( $s, $rc );
 		// log entries
-		} elseif( $rc_namespace == NS_SPECIAL && preg_match( '!^Log/(.*)$!', $rc_title, $matches ) ) {
-			$this->insertLog($s, $rc->getTitle(), $matches[1]);
+		} elseif ( $rc_namespace == NS_SPECIAL ) {
+			list( $specialName, $specialSubpage ) = SpecialPage::resolveAliasWithSubpage( $rc_title );
+			if ( $specialName == 'Log' ) {
+				$this->insertLog( $s, $rc->getTitle(), $specialSubpage );
+			} else {
+				wfDebug( "Unexpected special page in recentchanges\n" );
+			}
 		// all other stuff
 		} else {
 			wfProfileIn($fname.'-page');
@@ -321,11 +326,16 @@ class EnhancedChangesList extends ChangesList {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
 			$clink = wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 			  $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
-		} elseif( $rc_namespace == NS_SPECIAL && preg_match( '!^Log/(.*)$!', $rc_title, $matches ) ) {
-			# Log updates, etc
-			$logtype = $matches[1];
-			$logname = LogPage::logName( $logtype );
-			$clink = '(' . $this->skin->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
+		} elseif( $rc_namespace == NS_SPECIAL ) {
+			list( $specialName, $logtype ) = SpecialPage::resolveAliasWithSubpage( $rc_title );
+			if ( $specialName == 'Log' ) {
+				# Log updates, etc
+				$logname = LogPage::logName( $logtype );
+				$clink = '(' . $this->skin->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
+			} else {
+				wfDebug( "Unexpected special page in recentchanges\n" );
+				$clink = '';
+			}
 		} elseif( $rc->unpatrolled && $rc_type == RC_NEW ) {
 			# Unpatrolled new page, give rc_id in query
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );

@@ -1018,7 +1018,7 @@ class Parser
 				' ' => '',
 				'x' => 'X',
 			));
-			$titleObj = Title::makeTitle( NS_SPECIAL, 'Booksources' );
+			$titleObj = SpecialPage::getTitleFor( 'Booksources' );
 			$text = '<a href="' .
 				$titleObj->escapeLocalUrl( "isbn=$num" ) .
 				"\" class=\"internal\">ISBN $isbn</a>";

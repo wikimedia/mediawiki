@@ -518,7 +518,7 @@ class SkinTemplate extends Skin {
 			$personal_urls['logout'] = array(
 				'text' => wfMsg( 'userlogout' ),
 				'href' => self::makeSpecialUrl( 'Userlogout',
-					$wgTitle->getNamespace() === NS_SPECIAL && $wgTitle->getText() === 'Preferences' ? '' : "returnto={$this->thisurl}"
+					$wgTitle->isSpecial( 'Preferences' ) ? '' : "returnto={$this->thisurl}"
 				)
 			);
 		} else {
@@ -541,14 +541,14 @@ class SkinTemplate extends Skin {
 				$personal_urls['anonlogin'] = array(
 					'text' => wfMsg('userlogin'),
 					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
-					'active' => ( NS_SPECIAL == $wgTitle->getNamespace() && 'Userlogin' == $wgTitle->getDBkey() )
+					'active' => $wgTitle->isSpecial( 'Userlogin' ) 
 				);
 			} else {
 
 				$personal_urls['login'] = array(
 					'text' => wfMsg('userlogin'),
 					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
-					'active' => ( NS_SPECIAL == $wgTitle->getNamespace() && 'Userlogin' == $wgTitle->getDBkey() )
+					'active' => $wgTitle->isSpecial( 'Userlogin' )
 				);
 			}
 		}
@@ -703,18 +703,18 @@ class SkinTemplate extends Skin {
 					);
 				}
 				if ( $this->mTitle->userCanMove()) {
-					$moveTitle = Title::makeTitle( NS_SPECIAL, 'Movepage' );
+					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $this->thispage );
 					$content_actions['move'] = array(
-						'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
+						'class' => $this->mTitle->isSpecial( 'Movepage' ) ? 'selected' : false,
 						'text' => wfMsg('move'),
-						'href' => $moveTitle->getLocalUrl( 'target=' . urlencode( $this->thispage ) )
+						'href' => $moveTitle->getLocalUrl()
 					);
 				}
 			} else {
 				//article doesn't exist or is deleted
 				if( $wgUser->isAllowed( 'delete' ) ) {
 					if( $n = $this->mTitle->isDeleted() ) {
-						$undelTitle = Title::makeTitle( NS_SPECIAL, 'Undelete' );
+						$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
 						$content_actions['undelete'] = array(
 							'class' => false,
 							'text' => wfMsgExt( 'undelete_short', array( 'parsemag' ), $n ),
@@ -849,14 +849,14 @@ class SkinTemplate extends Skin {
 		}
 
 		if( $this->mTitle->getNamespace() != NS_SPECIAL ) {
-			$wlhTitle = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
+			$wlhTitle = SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage );
 			$nav_urls['whatlinkshere'] = array(
-				'href' => $wlhTitle->getLocalUrl( 'target=' . urlencode( $this->thispage ) )
+				'href' => $wlhTitle->getLocalUrl()
 			);
 			if( $this->mTitle->getArticleId() ) {
-				$rclTitle = Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' );
+				$rclTitle = SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage );
 				$nav_urls['recentchangeslinked'] = array(
-					'href' => $rclTitle->getLocalUrl( 'target=' . urlencode( $this->thispage ) )
+					'href' => $rclTitle->getLocalUrl()
 				);
 			}
 			if ($wgUseTrackbacks)

@@ -70,7 +70,7 @@ class PageHistory {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setSyndicated( true );
 
-		$logPage = Title::makeTitle( NS_SPECIAL, 'Log' );
+		$logPage = SpecialPage::getTitleFor( 'Log' );
 		$logLink = $this->mSkin->makeKnownLinkObj( $logPage, wfMsgHtml( 'viewpagelogs' ), 'page=' . $this->mTitle->getPrefixedUrl() );
 
 		$subtitle = wfMsgHtml( 'revhistory' ) . '<br />' . $logLink;
@@ -184,7 +184,7 @@ class PageHistory {
 		$s .= "($curlink) ($lastlink) $arbitrary";
 		
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			$revdel = Title::makeTitle( NS_SPECIAL, 'Revisiondelete' );
+			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( $firstInList ) {
 				// We don't currently handle well changing the top revision's settings
 				$del = wfMsgHtml( 'rev-delundel' );

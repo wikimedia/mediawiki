@@ -103,7 +103,7 @@ class WantedPagesPage extends QueryPage {
 	 * @return string
 	 */
 	function makeWlhLink( &$title, &$skin, $text ) {
-		$wlhTitle = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
+		$wlhTitle = SpecialPage::getTitleFor( 'Whatlinkshere' );
 		return $skin->makeKnownLinkObj( $wlhTitle, $text, 'target=' . $title->getPrefixedUrl() );
 	}
 	

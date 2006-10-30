@@ -495,7 +495,7 @@ class UndeleteForm {
 		$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
 
 		$sk = $wgUser->getSkin();
-		$undelete =& Title::makeTitle( NS_SPECIAL, 'Undelete' );
+		$undelete =& SpecialPage::getTitleFor( 'Undelete' );
 		$wgOut->addHTML( "<ul>\n" );
 		while( $row = $result->fetchObject() ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
@@ -533,7 +533,7 @@ class UndeleteForm {
 			$wgOut->addWikiText( $rev->getText() );
 		}
 		
-		$self = Title::makeTitle( NS_SPECIAL, "Undelete" );
+		$self = SpecialPage::getTitleFor( "Undelete" );
 		
 		$wgOut->addHtml(
 			wfElement( 'textarea', array(
@@ -631,7 +631,7 @@ class UndeleteForm {
 		}
 
 		if ( $this->mAllowed ) {
-			$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
+			$titleObj = SpecialPage::getTitleFor( "Undelete" );
 			$action = $titleObj->getLocalURL( "action=submit" );
 			# Start the form here
 			$top = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'undelete' ) );

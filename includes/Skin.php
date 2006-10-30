@@ -579,7 +579,7 @@ END;
 		$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $wgOut->mCategoryLinks ) . $pop;
 
 		$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escape' ), count( $wgOut->mCategoryLinks ) );
-		$s = $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Categories' ),
+		$s = $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Categories' ),
 			$msg, 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ': ' . $t;
 
@@ -836,7 +836,7 @@ END;
 			} else { $q = "returnto={$rt}"; }
 
 			$s .= "\n<br />" . $this->makeKnownLinkObj(
-				Title::makeTitle( NS_SPECIAL, 'Userlogin' ),
+				SpecialPage::getTitleFor( 'Userlogin' ),
 				wfMsg( 'login' ), $q );
 		} else {
 			$n = $wgUser->getName();
@@ -848,7 +848,7 @@ END;
 
 			$s .= $this->makeKnownLinkObj( $wgUser->getUserPage(),
 			  $n ) . "{$tl}<br />" .
-			  $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Userlogout' ), wfMsg( 'logout' ),
+			  $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
 			  "returnto={$rt}" ) . ' | ' .
 			  $this->specialLink( 'preferences' );
 		}
@@ -859,7 +859,7 @@ END;
 	}
 
 	function getSearchLink() {
-		$searchPage =& Title::makeTitle( NS_SPECIAL, 'Search' );
+		$searchPage =& SpecialPage::getTitleFor( 'Search' );
 		return $searchPage->getLocalURL();
 	}
 
@@ -1253,7 +1253,7 @@ END;
 		global $wgTitle;
 
 		if ( $wgTitle->userCanMove() ) {
-			return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Movepage' ),
+			return $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
 			  wfMsg( 'movethispage' ), 'target=' . $wgTitle->getPrefixedURL() );
 		} else {
 			// no message if page is protected - would be redundant
@@ -1271,15 +1271,17 @@ END;
 	function whatLinksHere() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' ),
-		  wfMsg( 'whatlinkshere' ), 'target=' . $wgTitle->getPrefixedURL() );
+		return $this->makeKnownLinkObj( 
+			SpecialPage::getTitleFor( 'Whatlinkshere', $wgTitle->getPrefixedDBkey() ), 
+			wfMsg( 'whatlinkshere' ) );
 	}
 
 	function userContribsLink() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ),
-		  wfMsg( 'contributions' ), 'target=' . $wgTitle->getPartialURL() );
+		return $this->makeKnownLinkObj( 
+			SpecialPage::getTitleFor( 'Contributions', $wgTitle->getDBkey() ),
+			wfMsg( 'contributions' ) );
 	}
 
 	function showEmailUser( $id ) {
@@ -1296,8 +1298,9 @@ END;
 	function emailUserLink() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Emailuser' ),
-		  wfMsg( 'emailuser' ), 'target=' . $wgTitle->getPartialURL() );
+		return $this->makeKnownLinkObj( 
+			SpecialPage::getTitleFor( 'Emailuser', $wgTitle->getDBkey() ),
+			wfMsg( 'emailuser' ) );
 	}
 
 	function watchPageLinksLink() {
@@ -1306,9 +1309,9 @@ END;
 		if ( ! $wgOut->isArticleRelated() ) {
 			return '(' . wfMsg( 'notanarticle' ) . ')';
 		} else {
-			return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL,
-			  'Recentchangeslinked' ), wfMsg( 'recentchangeslinked' ),
-			  'target=' . $wgTitle->getPrefixedURL() );
+			return $this->makeKnownLinkObj( 
+				SpecialPage::getTitleFor( 'Recentchangeslinked', $wgTitle->getPrefixedDBkey() ), 
+				wfMsg( 'recentchangeslinked' ) );
 		}
 	}
 
@@ -1450,7 +1453,7 @@ END;
 
 	/* these are used extensively in SkinTemplate, but also some other places */
 	static function makeSpecialUrl( $name, $urlaction = '' ) {
-		$title = Title::makeTitle( NS_SPECIAL, $name );
+		$title = SpecialPage::getTitleFor( $name );
 		return $title->getLocalURL( $urlaction );
 	}
 
@@ -1559,7 +1562,15 @@ END;
 						$text = $line[1];
 					if (wfEmptyMsg($line[0], $link))
 						$link = $line[0];
-					$href = self::makeInternalOrExternalUrl( $link );
+
+					if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $link ) ) {
+						$href = $link;
+					} else {
+						$title = Title::newFromText( $link );
+						$title = $title->fixSpecialName();
+						$href = $title->getLocalURL();
+					}
+
 					$bar[$heading][] = array(
 						'text' => $text,
 						'href' => $href,

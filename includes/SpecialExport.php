@@ -123,7 +123,7 @@ function wfSpecialExport( $page = '' ) {
 	}
 
 	$wgOut->addWikiText( wfMsg( "exporttext" ) );
-	$titleObj = Title::makeTitle( NS_SPECIAL, "Export" );
+	$titleObj = SpecialPage::getTitleFor( "Export" );
 	
 	$form = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalUrl() ) );
 	$form .= wfOpenElement( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ) ) . '</textarea><br />';
