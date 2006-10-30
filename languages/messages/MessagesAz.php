@@ -583,9 +583,65 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 'categoryarticlecount' => 'Bu kategoriyada $1 məqalə var.',
 'listingcontinuesabbrev' => '(davam)',
 
-# Monobook.js
-'Monobook.js' => '',
+# Monobook.js: tooltips and access keys for monobook
+'Monobook.js' => '/*
+<pre>
+*/
 
+/* qisa yol tuşlari və kömək balunları */
+var ta = new Object();
+ta[\'pt-userpage\'] = new Array(\'.\',\'Öz Səhifəm\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Danişiq Səhifəm\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Bu IP ünvanindan redaktə olunmuş danışıqlar\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Mənim Tərcihlərim\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'İzləməyə aldığım məqalələr.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'Mən redakə etdiğim məqalələr siyahəsi\');
+ta[\'pt-login\'] = new Array(\'o\',\'Hesab açmaniz tövsiə olur, ama icbar yoxdu .\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'Hesab açib girişiniz tövsiyə olur, ama məndatlı dəyil.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Çixiş\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Məqalə həqqində müzakirə edib, nəzərivi bildir\');
+ta[\'ca-edit\'] = new Array(\'e\',\'Bu səhifani redaktə edə bilərsiz. Lütfən avvəl sinaq gostəriş edin.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Bu müzakirə səhifəsində iştirak edin.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Bu səhifə qorun altindadir. Mənbəsinə baxabilərsiz.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Bu səhifənin geçmiş nüsxələri.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Bu səhifəni qoru\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Bu səhifəni sil\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Bu səhifəni silinmədən oncəki halına qaytarın\');
+ta[\'ca-move\'] = new Array(\'m\',\'Bu məqalənin adını dəyışin\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Bu səhifəni izlə\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Bu səhifənin izlənmasini bitir\');
+ta[\'search\'] = new Array(\'f\',\'Bu vikini axtarin\');
+ta[\'p-logo\'] = new Array(\'\',\'Ana Səhifə\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Ana səhifəni görüş edin\');
+ta[\'n-portal\'] = new Array(\'\',\'Projə həqqində, nələr edəbilərsiz, harda şeyləri tapa bilərsiz\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Gündəki xəbərlər ilə əlaqəli bilgilər\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Bu Wikidə Son dəyişikliklər siyahəsi.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Bir təsadufi, necə gəldi, məqaləyə baxin\');
+ta[\'n-help\'] = new Array(\'\',\'Yardım almaq üçün.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Maddi kömək\'); 
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Wikidə bu məqaləyə bağlantilar\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Bu məqaləyə ayid başqa səhifələrdə yeni dəyişikliklər \');
+ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\');
+ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\');
+ta[\'t-contributions\'] = new Array(\'\',\'Bu üzvin redaktə etmiş məqalələr siyahəsi\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Bu istifadəçiyə bir e-məktub yolla\');
+ta[\'t-upload\'] = new Array(\'u\',\'Yeni FILE lar Wikiyə yüklə.\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'Xüsusi səhifələrin siyahəsi\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'View the user page\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\'t edit the page itself.\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'View the project page\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Kömək səhifəsi \');
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
+
+/*
+</pre>
+*/',
 # image deletion
 
 # browsing diffs
@@ -614,106 +670,6 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 
 # Inputbox extension, may be useful in other contexts as well
 'createarticle' => 'Məqalə yarat',
-
-# Accesskeys
-'userpage' => '.',
-'anonuserpage' => '.',
-'mytalk' => 'n',
-'anontalk' => 'n',
-'preferences' => '',
-'watchlist' => 'l',
-'mycontris' => 'y',
-'login' => 'o',
-'anonlogin' => 'o',
-'logout' => 'o',
-'talk' => 't',
-'edit' => 'e',
-'addsection' => '+',
-'viewsource' => 'e',
-'history' => 'h',
-'protect' => '=',
-'delete' => 'd',
-'undelete' => 'd',
-'move' => 'm',
-'watch' => 'w',
-'unwatch' => 'w',
-'search' => 'f',
-'logo' => '',
-'mainpage' => 'z',
-'portal' => '',
-'currentevents' => '',
-'recentchanges' => 'r',
-'randompage' => 'x',
-'help' => '',
-'sitesupport' => '',
-'whatlinkshere' => 'j',
-'recentchangeslinked' => 'k',
-'feed-rss' => '',
-'feed-atom' => '',
-'contributions' => '',
-'emailuser' => '',
-'upload' => 'u',
-'specialpages' => 'q',
-'nstab-main' => 'c',
-'nstab-user' => 'c',
-'nstab-media' => 'c',
-'nstab-special' => '',
-'nstab-project' => 'a',
-'nstab-image' => 'c',
-'nstab-mediawiki' => 'c',
-'nstab-template' => 'c',
-'nstab-help' => 'c',
-'nstab-category' => 'c',
-
-# Tooltips
-'userpage' => 'Öz Səhifəm',
-'anonuserpage' => 'The user page for the ip you\'re editing as',
-'mytalk' => 'Danişiq Səhifəm',
-'anontalk' => 'Bu IP ünvanindan redaktə olunmuş danışıqlar',
-'preferences' => 'Mənim Tərcihlərim',
-'watchlist' => 'İzləməyə aldığım məqalələr.',
-'mycontris' => 'Mən redakə etdiğim məqalələr siyahəsi',
-'login' => 'Hesab açmaniz tövsiə olur, ama icbar yoxdu .',
-'anonlogin' => 'Hesab açib girişiniz tövsiyə olur, ama məndatlı dəyil.',
-'logout' => 'Çixiş',
-'talk' => 'Məqalə həqqində müzakirə edib, nəzərivi bildir',
-'edit' => 'Bu səhifani redaktə edə bilərsiz. Lütfən avvəl sinaq gostəriş edin.',
-'addsection' => 'Bu müzakirə səhifəsində iştirak edin.',
-'viewsource' => 'Bu səhifə qorun altindadir. Mənbəsinə baxabilərsiz.',
-'history' => 'Bu səhifənin geçmiş nüsxələri.',
-'protect' => 'Bu səhifəni qoru',
-'delete' => 'Bu səhifəni sil',
-'undelete' => 'Bu səhifəni silinmədən oncəki halına qaytarın',
-'move' => 'Bu məqalənin adını dəyışin',
-'watch' => 'Bu səhifəni izlə',
-'unwatch' => 'Bu səhifənin izlənmasini bitir',
-'search' => 'Bu vikini axtarin',
-'logo' => 'Ana Səhifə',
-'mainpage' => 'Ana səhifəni görüş edin',
-'portal' => 'Projə həqqində, nələr edəbilərsiz, harda şeyləri tapa bilərsiz',
-'currentevents' => 'Gündəki xəbərlər ilə əlaqəli bilgilər',
-'recentchanges' => 'Bu Wikidə Son dəyişikliklər siyahəsi.',
-'randompage' => 'Bir təsadufi, necə gəldi, məqaləyə baxin',
-'help' => 'Yardım almaq üçün.',
-'sitesupport' => 'Maddi kömək',
-'whatlinkshere' => 'Wikidə bu məqaləyə bağlantilar',
-'recentchangeslinked' => 'Bu məqaləyə ayid başqa səhifələrdə yeni dəyişikliklər ',
-'feed-rss' => 'RSS feed for this page',
-'feed-atom' => 'Atom feed for this page',
-'contributions' => 'Bu üzvin redaktə etmiş məqalələr siyahəsi',
-'emailuser' => 'Bu istifadəçiyə bir e-məktub yolla',
-'upload' => 'Yeni FILE lar Wikiyə yüklə.',
-'specialpages' => 'Xüsusi səhifələrin siyahəsi',
-'nstab-main' => 'View the content page',
-'nstab-user' => 'View the user page',
-'nstab-media' => 'View the media page',
-'nstab-special' => 'This is a special page, you can\'t edit the page itself.',
-'nstab-project' => 'View the project page',
-'nstab-image' => 'View the image page',
-'nstab-mediawiki' => 'View the system message',
-'nstab-template' => 'View the template',
-'nstab-help' => 'Kömək səhifəsi ',
-'nstab-category' => 'View the category page',
 
 );
 ?>

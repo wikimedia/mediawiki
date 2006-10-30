@@ -986,7 +986,7 @@ class EditPage {
 			$minoredithtml =
 				"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
 				" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />\n".
-				"<label for='wpMinoredit'".Skin::tooltipAndAccesskey('minoredit').">{$minor}</label>\n";
+				"<label for='wpMinoredit' title='".wfMsg('tooltip-minoredit')."'>{$minor}</label>\n";
 		}
 
 		$watchhtml = '';
@@ -995,7 +995,8 @@ class EditPage {
 			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".
 				($this->watchthis?" checked='checked'":"").
 				" accesskey=\"".htmlspecialchars(wfMsg('accesskey-watch'))."\" id='wpWatchthis'  />\n".
-				"<label for='wpWatchthis'".Skin::tooltipAndAccesskey('watch').">{$watchthis}</label>\n";
+				"<label for='wpWatchthis' title=\"" .
+					htmlspecialchars(wfMsg('tooltip-watch'))."\">{$watchthis}</label>\n";
 		}
 
 		$checkboxhtml = $minoredithtml . $watchhtml;
@@ -1064,7 +1065,7 @@ class EditPage {
 			'tabindex'  => '5',
 			'value'     => wfMsg('savearticle'),
 			'accesskey' => wfMsg('accesskey-save'),
-			'title'     => wfMsg( 'tooltip-save' ).' ['.wfMsg( 'accesskey-save' ).']',
+			'title'     => wfMsg('tooltip-save'),
 		);
 		$buttons['save'] = wfElement('input', $temp, '');
 		$temp = array(
@@ -1074,7 +1075,7 @@ class EditPage {
 			'tabindex'  => '7',
 			'value'     => wfMsg('showdiff'),
 			'accesskey' => wfMsg('accesskey-diff'),
-			'title'     => wfMsg( 'tooltip-diff' ).' ['.wfMsg( 'accesskey-diff' ).']',
+			'title'     => wfMsg('tooltip-diff'),
 		);
 		$buttons['diff'] = wfElement('input', $temp, '');
 
@@ -1087,7 +1088,7 @@ class EditPage {
 				'tabindex'  => '6',
 				'value'     => wfMsg('showpreview'),
 				'accesskey' => '',
-				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
+				'title'     => wfMsg('tooltip-preview'),
 				'style'     => 'display: none;',
 			);
 			$buttons['preview'] = wfElement('input', $temp, '');
@@ -1110,7 +1111,7 @@ class EditPage {
 				'tabindex'  => '6',
 				'value'     => wfMsg('showpreview'),
 				'accesskey' => wfMsg('accesskey-preview'),
-				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
+				'title'     => wfMsg('tooltip-preview'),
 			);
 			$buttons['preview'] = wfElement('input', $temp, '');
 			$buttons['live'] = '';

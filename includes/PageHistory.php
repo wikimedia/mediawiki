@@ -160,7 +160,7 @@ class PageHistory {
 					'class'     => 'historysubmit',
 					'type'      => 'submit',
 					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-					'title'     => wfMsg( 'tooltip-compareselectedversions' ).' ['.wfMsg( 'accesskey-compareselectedversions' ).']',
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 					'value'     => wfMsg( 'compareselectedversions' ),
 				) ) )
 			: '';
