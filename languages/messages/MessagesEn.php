@@ -1980,98 +1980,15 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
 'accesskey-watch' => 'w',
-'accesskey-userpage' => '.',
-'accesskey-anonuserpage' => '.',
-'accesskey-mytalk' => 'n',
-'accesskey-anontalk' => 'n',
-'accesskey-watchlist' => 'l',
-'accesskey-mycontris' => 'y',
-'accesskey-login' => 'o',
-'accesskey-anonlogin' => 'o',
-'accesskey-logout' => 'o',
-'accesskey-talk' => 't',
-'accesskey-edit' => 'e',
-'accesskey-addsection' => '+',
-'accesskey-viewsource' => 'e',
-'accesskey-history' => 'h',
-'accesskey-protect' => '=',
-'accesskey-delete' => 'd',
-'accesskey-undelete' => 'd',
-'accesskey-move' => 'm',
-'accesskey-watch' => 'w',
-'accesskey-unwatch' => 'w',
-'accesskey-search' => 'f',
-'accesskey-mainpage' => 'z',
-'accesskey-recentchanges' => 'r',
-'accesskey-randompage' => 'x',
-'accesskey-whatlinkshere' => 'j',
-'accesskey-recentchangeslinked' => 'k',
-'accesskey-upload' => 'u',
-'accesskey-specialpages' => 'q',
-'accesskey-nstab-main' => 'c',
-'accesskey-nstab-user' => 'c',
-'accesskey-nstab-media' => 'c',
-'accesskey-nstab-project' => 'a',
-'accesskey-nstab-image' => 'c',
-'accesskey-nstab-mediawiki' => 'c',
-'accesskey-nstab-template' => 'c',
-'accesskey-nstab-help' => 'c',
-'accesskey-nstab-category' => 'c',
 
-# tooltip help
-'tooltip-addsection' => 'Add a comment to this discussion.',
-'tooltip-anonlogin' => 'You are encouraged to log in, but it is not mandatory.',
-'tooltip-anontalk' => 'Discussion about edits from this IP address',
-'tooltip-anonuserpage' => 'The user page for the IP address you\'re editing as',
-'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page.',
-'tooltip-contributions' => 'View the list of contributions of this user',
-'tooltip-currentevents' => 'Find background information on current events',
-'tooltip-delete' => 'Delete this page',
-'tooltip-diff' => 'Show what changes you made to the text.',
-'tooltip-edit' => 'You can edit this page. Please use the preview button before saving.',
-'tooltip-emailuser' => 'Send an e-mail to this user',
-'tooltip-feed-atom' => 'Atom feed for this page',
-'tooltip-feed-rss' => 'RSS feed for this page',
-'tooltip-help' => 'The place to find out.',
-'tooltip-history' => 'Past versions of this page.',
-'tooltip-login' => 'You are encouraged to log in, but it is not mandatory.',
-'tooltip-logo' => 'Main Page',
-'tooltip-logout' => 'Log out',
-'tooltip-mainpage' => 'Visit the Main Page',
-'tooltip-minoredit' => 'Mark this as a minor edit',
-'tooltip-move' => 'Move this page',
-'tooltip-mycontris' => 'List of my contributions',
-'tooltip-mytalk' => 'My talk page',
-'tooltip-nstab-category' => 'View the category page',
-'tooltip-nstab-help' => 'View the help page',
-'tooltip-nstab-image' => 'View the image page',
-'tooltip-nstab-main' => 'View the content page',
-'tooltip-nstab-media' => 'View the media page',
-'tooltip-nstab-mediawiki' => 'View the system message',
-'tooltip-nstab-project' => 'View the project page',
-'tooltip-nstab-special' => 'This is a special page, you can\'t edit the page itself.',
-'tooltip-nstab-template' => 'View the template',
-'tooltip-nstab-user' => 'View the user page',
-'tooltip-portal' => 'About the project, what you can do, where to find things',
-'tooltip-preferences' => 'My preferences',
-'tooltip-preview' => 'Preview your changes, please use this before saving!',
-'tooltip-protect' => 'Protect this page',
-'tooltip-randompage' => 'Load a random page',
-'tooltip-recentchanges' => 'The list of recent changes in the wiki.',
-'tooltip-recentchangeslinked' => 'Recent changes in pages linked from this page',
-'tooltip-save' => 'Save your changes',
-'tooltip-search' => 'Search this wiki',
-'tooltip-sitesupport' => 'Support us',
-'tooltip-specialpages' => 'List of all special pages',
-'tooltip-talk' => 'Discussion about the content page',
-'tooltip-undelete' => 'Restore the edits done to this page before it was deleted',
-'tooltip-unwatch' => 'Remove this page from your watchlist',
-'tooltip-upload' => 'Upload images or media files',
-'tooltip-userpage' => 'My user page',
-'tooltip-viewsource' => 'This page is protected. You can view its source.',
-'tooltip-watch' => 'Add this page to your watchlist',
-'tooltip-watchlist' => 'The list of pages you\'re monitoring for changes.',
-'tooltip-whatlinkshere' => 'List of all wiki pages that link here',
+# tooltip help for some actions, most are in Monobook.js
+'tooltip-search' => 'Search {{SITENAME}} [alt-f]',
+'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
+'tooltip-save' => 'Save your changes [alt-s]',
+'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
+'tooltip-diff' => 'Show which changes you made to the text. [alt-v]',
+'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
+'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
 
 # stylesheets
 'Common.css' => '/** CSS placed here will be applied to all skins */',
@@ -2133,8 +2050,57 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'markedaspatrollederror'  => "Cannot mark as patrolled",
 'markedaspatrollederrortext' => "You need to specify a revision to mark as patrolled.",
 
-# Monobook.js
-'Monobook.js' => '// This JavaScript will be loaded for all users.',
+# Monobook.js: tooltips and access keys for monobook
+'Monobook.js' => '/* tooltips and access keys */
+var ta = new Object();
+ta[\'pt-userpage\'] = new Array(\'.\',\'My user page\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\\\'re editing as\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'My talk page\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Discussion about edits from this ip address\');
+ta[\'pt-preferences\'] = new Array(\'\',\'My preferences\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'The list of pages you\\\'re monitoring for changes.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'List of my contributions\');
+ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Log out\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Discussion about the content page\');
+ta[\'ca-edit\'] = new Array(\'e\',\'You can edit this page. Please use the preview button before saving.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Add a comment to this discussion.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'This page is protected. You can view its source.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Past versions of this page.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Protect this page\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Delete this page\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Restore the edits done to this page before it was deleted\');
+ta[\'ca-move\'] = new Array(\'m\',\'Move this page\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Add this page to your watchlist\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Remove this page from your watchlist\');
+ta[\'search\'] = new Array(\'f\',\'Search this wiki\');
+ta[\'p-logo\'] = new Array(\'\',\'Main Page\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Visit the Main Page\');
+ta[\'n-portal\'] = new Array(\'\',\'About the project, what you can do, where to find things\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Find background information on current events\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'The list of recent changes in the wiki.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Load a random page\');
+ta[\'n-help\'] = new Array(\'\',\'The place to find out.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Support us\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'List of all wiki pages that link here\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Recent changes in pages linked from this page\');
+ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\');
+ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\');
+ta[\'t-contributions\'] = new Array(\'\',\'View the list of contributions of this user\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Send a mail to this user\');
+ta[\'t-upload\'] = new Array(\'u\',\'Upload images or media files\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'List of all special pages\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'View the user page\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'View the project page\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\');
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 
 # image deletion
 'deletedrevision' => 'Deleted old revision $1.',
@@ -2548,7 +2514,7 @@ $1
 : \'\'$2\'\'
 Please confirm that really want to recreate this page.',
 'recreate' => 'Recreate',
-'tooltip-recreate' => 'Recreate the page despite its deletion',
+'tooltip-recreate' => 'Recreate the page despite it has been deleted',
 
 'unit-pixel' => 'px',
 

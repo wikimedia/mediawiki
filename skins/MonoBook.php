@@ -115,7 +115,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<h5><?php $this->msg('views') ?></h5>
 		<ul>
 <?php			foreach($this->data['content_actions'] as $key => $tab) { ?>
-				 <li id="ca-<?php echo Sanitizer::escapeId($key) ?>"<?php echo Skin::tooltipAndAccesskey($key) ?><?php
+				 <li id="ca-<?php echo Sanitizer::escapeId($key) ?>"<?php
 				 	if($tab['class']) { ?> class="<?php echo htmlspecialchars($tab['class']) ?>"<?php }
 				 ?>><a href="<?php echo htmlspecialchars($tab['href']) ?>"><?php
 				 echo htmlspecialchars($tab['text']) ?></a></li>
@@ -127,7 +127,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<div class="pBody">
 			<ul>
 <?php 			foreach($this->data['personal_urls'] as $key => $item) { ?>
-				<li id="pt-<?php echo Sanitizer::escapeId($key) ?>"<?php echo Skin::tooltipAndAccesskey($key) ?><?php
+				<li id="pt-<?php echo Sanitizer::escapeId($key) ?>"<?php
 					if ($item['active']) { ?> class="active"<?php } ?>><a href="<?php
 				echo htmlspecialchars($item['href']) ?>"<?php
 				if(!empty($item['class'])) { ?> class="<?php
@@ -140,16 +140,16 @@ class MonoBookTemplate extends QuickTemplate {
 	<div class="portlet" id="p-logo">
 		<a style="background-image: url(<?php $this->text('logopath') ?>);" <?php
 			?>href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href'])?>" <?php
-			echo Skin::tooltipAndAccesskey('mainpage') ?>></a>
+			?>title="<?php $this->msg('mainpage') ?>"></a>
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 	<?php foreach ($this->data['sidebar'] as $bar => $cont) { ?>
-	<div class='portlet' id='p-<?php echo Sanitizer::escapeId($bar) ?>'<?php echo Skin::tooltipAndAccesskey($bar) ?>>
+	<div class='portlet' id='p-<?php echo Sanitizer::escapeId($bar) ?>'>
 		<h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></h5>
 		<div class='pBody'>
 			<ul>
 <?php 			foreach($cont as $key => $val) { ?>
-				<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php echo Skin::tooltipAndAccesskey(substr($val['id'],2)) ?><?php
+				<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
 					if ( $val['active'] ) { ?> class="active" <?php }
 				?>><a href="<?php echo htmlspecialchars($val['href']) ?>"><?php echo htmlspecialchars($val['text']) ?></a></li>
 <?php			} ?>
@@ -177,24 +177,24 @@ class MonoBookTemplate extends QuickTemplate {
 			<ul>
 <?php
 		if($this->data['notspecialpage']) { ?>
-				<li id="t-whatlinkshere"<?php echo Skin::tooltipAndAccesskey('whatlinkshere') ?>><a href="<?php
+				<li id="t-whatlinkshere"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['whatlinkshere']['href'])
 				?>"><?php $this->msg('whatlinkshere') ?></a></li>
 <?php
 			if( $this->data['nav_urls']['recentchangeslinked'] ) { ?>
-				<li id="t-recentchangeslinked"<?php echo Skin::tooltipAndAccesskey('whatlinkshere') ?>><a href="<?php
+				<li id="t-recentchangeslinked"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['recentchangeslinked']['href'])
 				?>"><?php $this->msg('recentchangeslinked') ?></a></li>
 <?php 		}
 		}
 		if(isset($this->data['nav_urls']['trackbacklink'])) { ?>
-			<li id="t-trackbacklink"<?php echo Skin::tooltipAndAccesskey('trackbacklink') ?>><a href="<?php
+			<li id="t-trackbacklink"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['trackbacklink']['href'])
 				?>"><?php $this->msg('trackbacklink') ?></a></li>
 <?php 	}
 		if($this->data['feeds']) { ?>
 			<li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
-					?><span id="feed-<?php echo Sanitizer::escapeId($key) ?>"<?php echo Skin::tooltipAndAccesskey('feed-'.$key) ?>><a href="<?php
+					?><span id="feed-<?php echo Sanitizer::escapeId($key) ?>"><a href="<?php
 					echo htmlspecialchars($feed['href']) ?>"><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
 					<?php } ?></li><?php
 		}
@@ -202,21 +202,21 @@ class MonoBookTemplate extends QuickTemplate {
 		foreach( array('contributions', 'blockip', 'emailuser', 'upload', 'specialpages') as $special ) {
 
 			if($this->data['nav_urls'][$special]) {
-				?><li id="t-<?php echo $special ?>"<?php echo Skin::tooltipAndAccesskey($special) ?>><a href="<?php echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
+				?><li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
 				?>"><?php $this->msg($special) ?></a></li>
 <?php		}
 		}
 
 		if(!empty($this->data['nav_urls']['print']['href'])) { ?>
-				<li id="t-print"<?php echo Skin::tooltipAndAccesskey('print') ?>><a href="<?php echo htmlspecialchars($this->data['nav_urls']['print']['href'])
+				<li id="t-print"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['print']['href'])
 				?>"><?php $this->msg('printableversion') ?></a></li><?php
 		}
 
 		if(!empty($this->data['nav_urls']['permalink']['href'])) { ?>
-				<li id="t-permalink"<?php echo Skin::tooltipAndAccesskey('permalink') ?>><a href="<?php echo htmlspecialchars($this->data['nav_urls']['permalink']['href'])
+				<li id="t-permalink"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['permalink']['href'])
 				?>"><?php $this->msg('permalink') ?></a></li><?php
 		} elseif ($this->data['nav_urls']['permalink']['href'] === '') { ?>
-				<li id="t-ispermalink"<?php echo Skin::tooltipAndAccesskey('is-permalink') ?>><?php $this->msg('permalink') ?></li><?php
+				<li id="t-ispermalink"><?php $this->msg('permalink') ?></li><?php
 		}
 
 		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
