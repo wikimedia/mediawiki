@@ -1462,7 +1462,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'accesskey-emailuser' => '',
 'accesskey-upload' => 'u',
 'accesskey-specialpages' => 'q',
-'accesskey-permalink' => '', 'Ikuisesti toimiva linkki sivun tähän versioon, paitsi jos sivu poistetaan.');
+'accesskey-permalink' => 'Ikuisesti toimiva linkki sivun tähän versioon, paitsi jos sivu poistetaan.',
 'accesskey-nstab-main' => 'c',
 'accesskey-nstab-user' => 'c',
 'accesskey-nstab-media' => 'c',
