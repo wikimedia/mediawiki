@@ -50,7 +50,9 @@ class ApiQuery extends ApiBase {
 		'logevents' => 'ApiQueryLogEvents',
 		'watchlist' => 'ApiQueryWatchlist',
 		'recentchanges' => 'ApiQueryRecentChanges',
-		'backlinks' => 'ApiQueryBacklinks'
+		'backlinks' => 'ApiQueryBacklinks',
+		'embeddedin' => 'ApiQueryBacklinks',
+		'imagelinks' => 'ApiQueryBacklinks'
 	);
 	//	'categorymembers' => 'ApiQueryCategorymembers',
 	//	'embeddedin' => 'ApiQueryEmbeddedin',

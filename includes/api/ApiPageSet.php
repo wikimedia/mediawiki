@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
 class ApiPageSet extends ApiQueryBase {
 
 	private $mAllPages; // [ns][dbkey] => page_id or 0 when missing
-	private $mGoodTitles, $mMissingTitles, $mMissingPageIDs, $mRedirectTitles, $mNormalizedTitles;
+	private $mTitles, $mGoodTitles, $mMissingTitles, $mMissingPageIDs, $mRedirectTitles, $mNormalizedTitles;
 	private $mResolveRedirects, $mPendingRedirectIDs;
 	private $mGoodRevIDs, $mMissingRevIDs;
 
@@ -42,6 +42,7 @@ class ApiPageSet extends ApiQueryBase {
 		parent :: __construct($query, __CLASS__);
 
 		$this->mAllPages = array ();
+		$this->mTitles = array();
 		$this->mGoodTitles = array ();
 		$this->mMissingTitles = array ();
 		$this->mMissingPageIDs = array ();
@@ -89,6 +90,21 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
+	 * All Title objects provided.
+	 * @return array of Title objects
+	 */
+	public function getTitles() {
+		return $this->mTitles;
+	}
+
+	/**
+	 * Returns the number of unique pages (not revisions) in the set.
+	 */
+	public function getTitleCount() {
+		return count($this->mTitles);
+	}
+
+	/**
 	 * Title objects that were found in the database.
 	 * @return array page_id (int) => Title (obj)
 	 */
@@ -97,10 +113,10 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
-	 * Returns the number of unique pages (not revisions) in the set.
+	 * Returns the number of found unique pages (not revisions) in the set.
 	 */
 	public function getGoodTitleCount() {
-		return count($this->getGoodTitles());
+		return count($this->mGoodTitles);
 	}
 
 	/**
@@ -252,6 +268,7 @@ class ApiPageSet extends ApiQueryBase {
 
 			$pageId = intval($row->page_id);	
 			$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
+			$this->mTitles[] = $title;
 	
 			if ($this->mResolveRedirects && $row->page_is_redirect == '1') {
 				$this->mPendingRedirectIDs[$pageId] = $title;
@@ -366,8 +383,10 @@ class ApiPageSet extends ApiQueryBase {
 				// The remaining titles in $remaining are non-existant pages
 				foreach ($remaining as $ns => $dbkeys) {
 					foreach ($dbkeys as $dbkey => $nothing) {
-						$this->mMissingTitles[] = Title :: makeTitle($ns, $dbkey);
+						$title = Title :: makeTitle($ns, $dbkey);
+						$this->mMissingTitles[] = $title;
 						$this->mAllPages[$ns][$dbkey] = 0;
+						$this->mTitles[] = $title;
 					}
 				}
 			}

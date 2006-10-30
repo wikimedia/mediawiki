@@ -36,7 +36,10 @@ abstract class ApiQueryBase extends ApiBase {
 	public function __construct($query, $moduleName, $paramPrefix = '') {
 		parent :: __construct($query->getMain(), $moduleName, $paramPrefix);
 		$this->mQueryModule = $query;
-
+		$this->resetQueryParams();
+	}
+	
+	protected function resetQueryParams() {
 		$this->tables = array ();
 		$this->where = array ();
 		$this->fields = array();

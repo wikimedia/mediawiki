@@ -170,14 +170,17 @@ abstract class ApiBase {
 				$desc = isset ($paramsDescription[$paramName]) ? $paramsDescription[$paramName] : '';
 				if (is_array($desc))
 					$desc = implode($paramPrefix, $desc);
+
 				if (isset ($paramSettings[self :: PARAM_TYPE])) {
+					if (isset ($paramSettings[self :: PARAM_ISMULTI]))
+						$prompt = 'Multiple "|"-separated values: ';
+					else
+						$prompt = 'Any one of these values: ';
 					$type = $paramSettings[self :: PARAM_TYPE];
 					if (is_array($type))
-						$desc .= $paramPrefix . 'Allowed values: ' . implode(', ', $type);
+						$desc .= $paramPrefix . $prompt . implode(', ', $type);
 				}
-				if (isset ($paramSettings[self :: PARAM_ISMULTI]))
-					$desc .= $paramPrefix . 'Allows multiple values separated with "|"';
-				
+
 				$default = is_array($paramSettings) ? (isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null) : $paramSettings;
 				if (!is_null($default) && $default !== false)
 					$desc .= $paramPrefix . "Default: $default";
@@ -327,7 +330,6 @@ abstract class ApiBase {
 						break;
 					default :
 						ApiBase :: dieDebug(__METHOD__, "Param $paramName's type is unknown - $type");
-	
 				}
 			}
 
@@ -437,7 +439,7 @@ abstract class ApiBase {
 			$this->profileOut();
 		}
 	}
-	
+
 	/**
 	 * Total time the module was executed
 	 */
