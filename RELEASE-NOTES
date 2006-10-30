@@ -103,6 +103,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7745) Add id attribute to search button in Monobook
 * (bug 7749) MATH: added some more LaTeX symbols, e.g. parallel, diamond, ast, ...
 * (bug 7304) Added code in Article.php to keep redirect table up to date.
+* (bug 5376) All tooltips moved to system messages, JavaScript no longer
+  required.
+* (bug 5051) Accesskeys no longer require JavaScript.
+* Correctly detect browser accesskey prefix for all buttons, not just most.
 
 == Languages updated ==
 

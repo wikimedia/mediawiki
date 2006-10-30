@@ -1486,24 +1486,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizi|revize|revizí}} z $2',
 
 
-# Keyboard access keys for power users
-'accesskey-search' => 'f',
-'accesskey-minoredit' => 'i',
-'accesskey-watch' => 'w',
-'accesskey-save' => 's',
-'accesskey-preview' => 'p',
-'accesskey-diff' => 'v',
-'accesskey-compareselectedversions' => 'v',
-
-# tooltip help for some actions, most are in Monobook.js
-'tooltip-search' => 'Hledat na této wiki [alt-f]',
-'tooltip-minoredit' => 'Označit jako malou editaci [alt-i]',
-'tooltip-save' => 'Uložit vaše úpravy [alt-s]',
-'tooltip-preview' => 'Prohlédnout vaše úpravy, prosíme použijte tuto funkci před uložením! [alt-p]',
-'tooltip-diff' => 'Zobrazit, jaké změny jste v textu provedli. [alt-v]',
-'tooltip-compareselectedversions' => 'Porovnat rozdíly mezi zvolenými verzemi této stránky. [alt-v]',
-'tooltip-watch' => 'Přidat stránku do seznamu sledovaných [alt-w]',
-
 # stylesheets
 'Common.css' => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
 'Monobook.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „monobook“ */',
@@ -1566,57 +1548,105 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'markedaspatrollederror'  => 'Nelze označit za prověřené',
 'markedaspatrollederrortext' => 'Musíte zvolit revizi, která má být označena jako prověřená.',
 
-# Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
-var ta = new Object();
-ta['pt-userpage'] = new Array('.','Moje uživatelská stránka');
-ta['pt-anonuserpage'] = new Array('.','Uživatelská stránka pro IP adresu, ze které editujete');
-ta['pt-mytalk'] = new Array('n','Moje diskusní stránka');
-ta['pt-anontalk'] = new Array('n','Diskuse o editacích provedených z této IP adresy');
-ta['pt-preferences'] = new Array('','Moje preference');
-ta['pt-watchlist'] = new Array('l','Seznam stránek, jejichž změny sleduji');
-ta['pt-mycontris'] = new Array('y','Seznam mých příspěvků');
-ta['pt-login'] = new Array('o','Doporučujeme vám přihlásit se, ovšem není to povinné.');
-ta['pt-anonlogin'] = new Array('o','Doporučujeme vám přihlásit se, ovšem není to povinné.');
-ta['pt-logout'] = new Array('o','Odhlásit se');
-ta['ca-talk'] = new Array('t','Diskuse ke stránce');
-ta['ca-edit'] = new Array('e','Tuto stránku můžete editovat. Prosíme použijte tlačítko Ukázat náhled před uložením.');
-ta['ca-addsection'] = new Array('+','Přidat k této diskusi svůj komentář.');
-ta['ca-viewsource'] = new Array('e','Tato stránka je zamčena. Můžete si prohlédnout její zdrojový kód.');
-ta['ca-history'] = new Array('h','Starší verze této stránky.');
-ta['ca-protect'] = new Array('=','Zamknout tuto stránku.');
-ta['ca-delete'] = new Array('d','Smazat tuto stránku.');
-ta['ca-undelete'] = new Array('d','Obnovit editace této stránky provedené před jejím smazáním.');
-ta['ca-move'] = new Array('m','Přesunout tuto stránku');
-ta['ca-watch'] = new Array('w','Přidat tuto stránku mezi sledované');
-ta['ca-unwatch'] = new Array('w','Vyjmout tuto stránku ze sledovaných');
-ta['search'] = new Array('f','Hledat na této wiki');
-ta['p-logo'] = new Array('','Hlavní strana');
-ta['n-mainpage'] = new Array('z','Navštívit Hlavní stranu');
-ta['n-portal'] = new Array('','O projektu, jak můžete pomoci, kde hledat');
-ta['n-currentevents'] = new Array('','Informace o aktuálních událostech');
-ta['n-recentchanges'] = new Array('r','Seznam posledních změn na této wiki');
-ta['n-randompage'] = new Array('x','Přejít na náhodně vybranou stránku');
-ta['n-help'] = new Array('','Místo, kde najdete pomoc');
-ta['n-sitesupport'] = new Array('','Podpořte nás');
-ta['t-whatlinkshere'] = new Array('j','Seznam všech wikistránek, které sem odkazují');
-ta['t-recentchangeslinked'] = new Array('k','Nedávné změny stránek, které sem odkazují');
-ta['feed-rss'] = new Array('','RSS kanál pro tuto stránku');
-ta['feed-atom'] = new Array('','Atom kanál pro tuto stránku');
-ta['t-contributions'] = new Array('','Prohlédnout si seznam příspěvků tohoto uživatele');
-ta['t-emailuser'] = new Array('','Poslat e-mail tomuto uživateli');
-ta['t-upload'] = new Array('u','Nahrát obrázky či jiná multimédia');
-ta['t-specialpages'] = new Array('q','Seznam všech speciálních stránek');
-ta['ca-nstab-main'] = new Array('c','Zobrazit článek');
-ta['ca-nstab-user'] = new Array('c','Zobrazit uživatelovu stránku');
-ta['ca-nstab-media'] = new Array('c','Zobrazit stránku souboru');
-ta['ca-nstab-special'] = new Array('','Toto je speciální stránka, kterou nelze editovat.');
-ta['ca-nstab-project'] = new Array('a','Zobrazit stránku o wiki.');
-ta['ca-nstab-image'] = new Array('c','Zobrazit stránku obrázku.');
-ta['ca-nstab-mediawiki'] = new Array('c','Zobrazit systémovou zprávu.');
-ta['ca-nstab-template'] = new Array('c','Zobrazit šablonu.');
-ta['ca-nstab-help'] = new Array('c','Zobrazit stránku nápovědy.');
-ta['ca-nstab-category'] = new Array('c','Zobrazit kategorii.');",
+# accesskeys
+'accesskey-userpage' => '.',
+'accesskey-anonuserpage' => '.',
+'accesskey-mytalk' => 'n',
+'accesskey-anontalk' => 'n',
+'accesskey-preferences' => '',
+'accesskey-watchlist' => 'l',
+'accesskey-mycontris' => 'y',
+'accesskey-login' => 'o',
+'accesskey-anonlogin' => 'o',
+'accesskey-logout' => 'o',
+'accesskey-talk' => 't',
+'accesskey-edit' => 'e',
+'accesskey-addsection' => '+',
+'accesskey-viewsource' => 'e',
+'accesskey-history' => 'h',
+'accesskey-protect' => '=',
+'accesskey-delete' => 'd',
+'accesskey-undelete' => 'd',
+'accesskey-move' => 'm',
+'accesskey-watch' => 'w',
+'accesskey-unwatch' => 'w',
+'accesskey-search' => 'f',
+'accesskey-logo' => '',
+'accesskey-mainpage' => 'z',
+'accesskey-portal' => '',
+'accesskey-currentevents' => '',
+'accesskey-recentchanges' => 'r',
+'accesskey-randompage' => 'x',
+'accesskey-help' => '',
+'accesskey-sitesupport' => '',
+'accesskey-whatlinkshere' => 'j',
+'accesskey-recentchangeslinked' => 'k',
+'accesskey-feed-rss' => '',
+'accesskey-feed-atom' => '',
+'accesskey-contributions' => '',
+'accesskey-emailuser' => '',
+'accesskey-upload' => 'u',
+'accesskey-specialpages' => 'q',
+'accesskey-nstab-main' => 'c',
+'accesskey-nstab-user' => 'c',
+'accesskey-nstab-media' => 'c',
+'accesskey-nstab-special' => '',
+'accesskey-nstab-project' => 'a',
+'accesskey-nstab-image' => 'c',
+'accesskey-nstab-mediawiki' => 'c',
+'accesskey-nstab-template' => 'c',
+'accesskey-nstab-help' => 'c',
+'accesskey-nstab-category' => 'c',
+
+# tooltips
+'tooltip-userpage' => 'Moje uživatelská stránka',
+'tooltip-anonuserpage' => 'Uživatelská stránka pro IP adresu, ze které editujete',
+'tooltip-mytalk' => 'Moje diskusní stránka',
+'tooltip-anontalk' => 'Diskuse o editacích provedených z této IP adresy',
+'tooltip-preferences' => 'Moje preference',
+'tooltip-watchlist' => 'Seznam stránek, jejichž změny sleduji',
+'tooltip-mycontris' => 'Seznam mých příspěvků',
+'tooltip-login' => 'Doporučujeme vám přihlásit se, ovšem není to povinné.',
+'tooltip-anonlogin' => 'Doporučujeme vám přihlásit se, ovšem není to povinné.',
+'tooltip-logout' => 'Odhlásit se',
+'tooltip-talk' => 'Diskuse ke stránce',
+'tooltip-edit' => 'Tuto stránku můžete editovat. Prosíme použijte tlačítko Ukázat náhled před uložením.',
+'tooltip-addsection' => 'Přidat k této diskusi svůj komentář.',
+'tooltip-viewsource' => 'Tato stránka je zamčena. Můžete si prohlédnout její zdrojový kód.',
+'tooltip-history' => 'Starší verze této stránky.',
+'tooltip-protect' => 'Zamknout tuto stránku.',
+'tooltip-delete' => 'Smazat tuto stránku.',
+'tooltip-undelete' => 'Obnovit editace této stránky provedené před jejím smazáním.',
+'tooltip-move' => 'Přesunout tuto stránku',
+'tooltip-watch' => 'Přidat tuto stránku mezi sledované',
+'tooltip-unwatch' => 'Vyjmout tuto stránku ze sledovaných',
+'tooltip-search' => 'Hledat na této wiki',
+'tooltip-logo' => 'Hlavní strana',
+'tooltip-mainpage' => 'Navštívit Hlavní stranu',
+'tooltip-portal' => 'O projektu, jak můžete pomoci, kde hledat',
+'tooltip-currentevents' => 'Informace o aktuálních událostech',
+'tooltip-recentchanges' => 'Seznam posledních změn na této wiki',
+'tooltip-randompage' => 'Přejít na náhodně vybranou stránku',
+'tooltip-help' => 'Místo, kde najdete pomoc',
+'tooltip-sitesupport' => 'Podpořte nás',
+'tooltip-whatlinkshere' => 'Seznam všech wikistránek, které sem odkazují',
+'tooltip-recentchangeslinked' => 'Nedávné změny stránek, které sem odkazují',
+'tooltip-feed-rss' => 'RSS kanál pro tuto stránku',
+'tooltip-feed-atom' => 'Atom kanál pro tuto stránku',
+'tooltip-contributions' => 'Prohlédnout si seznam příspěvků tohoto uživatele',
+'tooltip-emailuser' => 'Poslat e-mail tomuto uživateli',
+'tooltip-upload' => 'Nahrát obrázky či jiná multimédia',
+'tooltip-specialpages' => 'Seznam všech speciálních stránek',
+'tooltip-nstab-main' => 'Zobrazit článek',
+'tooltip-nstab-user' => 'Zobrazit uživatelovu stránku',
+'tooltip-nstab-media' => 'Zobrazit stránku souboru',
+'tooltip-nstab-special' => 'Toto je speciální stránka, kterou nelze editovat.',
+'tooltip-nstab-project' => 'Zobrazit stránku o wiki.',
+'tooltip-nstab-image' => 'Zobrazit stránku obrázku.',
+'tooltip-nstab-mediawiki' => 'Zobrazit systémovou zprávu.',
+'tooltip-nstab-template' => 'Zobrazit šablonu.',
+'tooltip-nstab-help' => 'Zobrazit stránku nápovědy.',
+'tooltip-nstab-category' => 'Zobrazit kategorii.',
 
 # preferences
 'tog-underline'                 => 'Podtrhnout odkazy',

@@ -1532,7 +1532,7 @@ END;
 		$key = wfMemcKey( 'sidebar' );
 		$cacheSidebar = $wgEnableSidebarCache &&
 			($wgLang->getCode() == $wgContLang->getCode());
-		
+
 		if ($cacheSidebar) {
 			$cachedsidebar = $parserMemc->get( $key );
 			if ($cachedsidebar!="") {
@@ -1573,6 +1573,32 @@ END;
 			$cachednotice = $parserMemc->set( $key, $bar, 86400 );
 		wfProfileOut( $fname );
 		return $bar;
+	}
+
+	/**
+	 * Given the id of an interface element (minus any prefixes such as 'n-'),
+	 * constructs the appropriate title and accesskey attributes from the
+	 * system messages.
+	 *
+	 * @param string $name Id of the element, minus prefixes.
+	 * @return string title and accesskey attributes, ready to drop in an
+	 * element.
+	 */
+	public static function tooltipAndAccesskey($name) {
+		$out = '';
+
+		$tooltip = wfMsg('tooltip-'.$name);
+		if (!wfEmptyMsg('tooltip-'.$name, $tooltip)) {
+			$out .= ' title="'.htmlspecialchars($tooltip);
+		}
+		$accesskey = wfMsg('accesskey-'.$name);
+		if ($accesskey && !wfEmptyMsg('accesskey-'.$name, $accesskey)) {
+			if ($out) $out .= " [$accesskey]\" accesskey=\"$accesskey\"";
+			else $out .= " title=\"[$accesskey]\" accesskey=\"$accesskey\"";
+		} elseif ($out) {
+			$out .= '"';
+		}
+		return $out;
 	}
 }
 ?>
