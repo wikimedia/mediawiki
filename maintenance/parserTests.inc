@@ -381,7 +381,8 @@ class ParserTest {
 			'recentchanges',
 			'watchlist', 'math', 'searchindex',
 			'interwiki', 'querycache',
-			'objectcache', 'job'
+			'objectcache', 'job', 'redirect',
+			'querycachetwo'
 		);
 
 		// FIXME manually adding additional table for the tasks extension
