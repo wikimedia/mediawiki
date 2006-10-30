@@ -106,6 +106,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Made special page names case-insensitive and localisable. Care has been taken 
   to maintain backwards compatibility.
 * Used special page subpages in a few more places, instead of query parameters.
+* (bug 7758) Added wrapper span to "templates used" explanation to allow CSS
+  styling (class="mw-templatesUsedExplanation").
 
 == Languages updated ==
 
