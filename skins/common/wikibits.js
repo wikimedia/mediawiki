@@ -463,8 +463,6 @@ function insertTags(tagOpen, tagClose, sampleText) {
 }
 
 function akeytt() {
-	if (typeof ta == "undefined" || !ta)
-		return;
 	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
 		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 )
 		pref = 'control-';
@@ -477,36 +475,11 @@ function akeytt() {
 	else
 		pref = 'alt-';
 
-	for (var id in ta) {
-		var n = document.getElementById(id);
-		if (n) {
-			var a = null;
-			var ak = '';
-			// Are we putting accesskey in it
-			if (ta[id][0].length > 0) {
-				// Is this object a object? If not assume it's the next child.
-
-				if (n.nodeName.toLowerCase() == "a") {
-					a = n;
-				} else {
-					a = n.childNodes[0];
-				}
-			 	// Don't add an accesskey for the watch tab if the watch
-			 	// checkbox is also available.
-				if (a && ((id != 'ca-watch' && id != 'ca-unwatch') ||
-				!(window.location.search.match(/[\?&](action=edit|action=submit)/i)))) {
-					a.accessKey = ta[id][0];
-					ak = ' ['+pref+ta[id][0]+']';
-				}
-			} else {
-				// We don't care what type the object is when assigning tooltip
-				a = n;
-				ak = '';
-			}
-
-			if (a) {
-				a.title = ta[id][1]+ak;
-			}
+	elements = document.getElementsByTagName("*");
+	for (var i = elements.length - 1; i >= 0; i--) {
+		var element = elements[i];
+		if ( element.getAttribute("title") && element.getAttribute("accesskey") && element.getAttribute("title").search(/\[.\]$/) != -1 ) {
+			element.setAttribute("title", element.getAttribute("title").replace(/\[(.)\]$/,"["+pref+element.getAttribute("accesskey")+"]"));
 		}
 	}
 }
@@ -554,30 +527,6 @@ function addRightClickEditHandler(el) {
 		}
 	}
 }
-/*
-function addRightClickEditHandler(el) {
-	// find the enclosing (parent) header
-	var par = el.parentNode;
-	if (par && par.nodeType == 1 && par.nodeName.match(/^[Hh][1-6]$/)) {
-		par.oncontextmenu = function(e) {
-			if (!e) var e = window.event;
-			// e is now the event in all browsers
-			if (e.target) targ = e.target;
-			else if (e.srcElement) targ = e.srcElement;
-			if (targ.nodeType == 3) // defeat Safari bug
-				targ = targ.parentNode;
-			// targ is now the target element
-			// We don't want to deprive the noble reader of a context menu
-			// for the section edit link, do we?  (Might want to extend this
-			// to all <a>'s.)links
-			if (targ.className != 'editsection') {
-				document.location = editHref;
-				return false;
-			}
-		}
-	}
-}
-*/
 
 function setupCheckboxShiftClick() {
 	if (document.getElementsByTagName) {

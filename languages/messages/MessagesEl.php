@@ -1249,18 +1249,114 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'accesskey-preview' => 'p',
 'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
-
+'accesskey-userpage' => '.',
+'accesskey-anonuserpage' => '.',
+'accesskey-mytalk' => 'n',
+'accesskey-anontalk' => 'n',
+'accesskey-preferences' => '',
+'accesskey-watchlist' => 'l',
+'accesskey-mycontris' => 'y',
+'accesskey-login' => 'o',
+'accesskey-anonlogin' => 'o',
+'accesskey-logout' => 'o',
+'accesskey-talk' => 't',
+'accesskey-edit' => 'e',
+'accesskey-addsection' => '+',
+'accesskey-viewsource' => 'e',
+'accesskey-history' => 'h',
+'accesskey-protect' => '=',
+'accesskey-delete' => 'd',
+'accesskey-undelete' => 'd',
+'accesskey-move' => 'm',
+'accesskey-nomove' => '',
+'accesskey-watch' => 'w',
+'accesskey-unwatch' => 'w',
+'accesskey-search' => 'f',
+'accesskey-logo' => '',
+'accesskey-mainpage' => 'z',
+'accesskey-portal' => '',
+'accesskey-currentevents' => '',
+'accesskey-recentchanges' => 'r',
+'accesskey-randompage' => 'x',
+'accesskey-help' => '',
+'accesskey-sitesupport' => '',
+'accesskey-whatlinkshere' => 'j',
+'accesskey-recentchangeslinked' => 'k',
+'accesskey-feed-rss' => '',
+'accesskey-feed-atom' => '',
+'accesskey-contributions' => '',
+'accesskey-emailuser' => '',
+'accesskey-upload' => 'u',
+'accesskey-specialpages' => 'q',
+'accesskey-nstab-main' => 'c',
+'accesskey-nstab-user' => 'c',
+'accesskey-nstab-media' => 'c',
+'accesskey-nstab-special' => '',
+'accesskey-nstab-project' => 'a',
+'accesskey-nstab-image' => 'c',
+'accesskey-nstab-mediawiki' => 'c',
+'accesskey-nstab-template' => 'c',
+'accesskey-nstab-help' => 'c',
+'accesskey-nstab-category' => 'c',
 
 # Tooltip help for some actions, most are in Monobook.js
 #--------------------------------------------------------------------------------------#
-'tooltip-search' => 'Αναζήτηση στο Wiki [alt-f]',
-'tooltip-minoredit' => 'Χαρακτηρήστε τις αλλαγές "μικρής κλίμακας" [alt-i]',
-'tooltip-save' => 'Αποθήκευση αλλαγών [alt-s]',
-'tooltip-preview' => 'Προεπισκόπηση - Παρακαλούμε να χρησιμοποιήτε αυτή την επιλογή πριν αποθηκεύσετε τις αλλαγές σας! [alt-p]',
-'tooltip-diff' => 'Προβολή των αλλαγών που κάνατε στο κείμενο. [alt-v]',
-'tooltip-compareselectedversions' => 'Εμφάνιση των διαφορών ανάμεσα στις δύο αναθεωρήσεις της σελίδας που έχετε επιλέξει. [alt-v]',
-'tooltip-watch' => 'Προσθήκη της σελίδας στη λίστα παρακολούθησης [alt-w]',
-
+'tooltip-search' => 'Αναζήτηση στο Wiki',
+'tooltip-minoredit' => 'Χαρακτηρήστε τις αλλαγές "μικρής κλίμακας"',
+'tooltip-save' => 'Αποθήκευση αλλαγών',
+'tooltip-preview' => 'Προεπισκόπηση - Παρακαλούμε να χρησιμοποιήτε αυτή την επιλογή πριν αποθηκεύσετε τις αλλαγές σας!',
+'tooltip-diff' => 'Προβολή των αλλαγών που κάνατε στο κείμενο.',
+'tooltip-compareselectedversions' => 'Εμφάνιση των διαφορών ανάμεσα στις δύο αναθεωρήσεις της σελίδας που έχετε επιλέξει.',
+'tooltip-watch' => 'Προσθήκη της σελίδας στη λίστα παρακολούθησης',
+'tooltip-userpage' => 'Η προσωπική μου σελίδα στο Wiκi',
+'tooltip-anonuserpage' => 'Η σελίδα χρήστη στον οποίο αντιστοιχεί η διεύθυνση IP που έχετε',
+'tooltip-mytalk' => 'Η σελίδα συζητήσεών μου',
+'tooltip-anontalk' => 'Συζήτηση σχετικά με τις αλλαγές που έγιναν από αυτή τη διεύθυνση IP',
+'tooltip-preferences' => 'Οι προτιμήσεις μου',
+'tooltip-watchlist' => 'Η λίστα με τις σελίδες που παρακολουθείτε για αλλαγές',
+'tooltip-mycontris' => 'Κατάλογος των συνεισφορών μου',
+'tooltip-login' => 'Σας προτείνουμε να συνδεθείτε παρόλο που δεν είναι αναγκαίο.',
+'tooltip-anonlogin' => 'Σας προτείνουμε να συνδεθείτε παρόλο που δεν είναι αναγκαίο.',
+'tooltip-logout' => 'Αποσύνδεση',
+'tooltip-talk' => 'Συζήτηση για το παρόν άρθρο',
+'tooltip-edit' => 'Μπορείτε να επεξεργαστείτε αυτό το άρθρο. Χρησιμοποιείστε την "Προεπισκόπηση" πριν αποθηκεύσετε.',
+'tooltip-addsection' => 'Προσθέστε σχόλιο στη συζήτηση.',
+'tooltip-viewsource' => 'Αυτό το άρθρο είναι κλειδωμένο. Μπορείτε να δείτε τον πηγαίο κώδικά του.',
+'tooltip-history' => 'Παλιές αναθεωρήσεις του άρθρου.',
+'tooltip-protect' => 'Κλείδωμα αυτού του άρθρου',
+'tooltip-delete' => 'Διαγραφή αυτής της σελίδας',
+'tooltip-undelete' => 'Αποκαταστήστε τις αλλαγές που έγιναν σε αυτή τη σελίδα πριν διαγραφεί.',
+'tooltip-move' => 'Μετακινήστε αυτή τη σελίδα',
+'tooltip-nomove' => 'Δεν έχετε εξουσιοδότηση να μετακινήσετε αυτή τη σελίδα.',
+'tooltip-watch' => 'Προσθήκη της σελίδας στη λίστα παρακολούθησης',
+'tooltip-unwatch' => 'Αφαίρεση της σελίδας από τη λίστα παρακολούθησης',
+'tooltip-search' => 'Αναζήτηση στο WiKi',
+'tooltip-logo' => 'Αρχική σελίδα',
+'tooltip-mainpage' => 'Δείτε την Αρχική σελίδα',
+'tooltip-portal' => 'Σχετικά με το Wiκi - πώς μπορείτε να βοηθήσετε, πού μπορείτε να απευθυνθείτε',
+'tooltip-currentevents' => 'Πληροφορίες για πρόσφατα γεγονότα',
+'tooltip-recentchanges' => 'Η λίστα με τις πρόσφατες αλλαγές στο WiKi',
+'tooltip-randompage' => 'Επισκεφθείτε μια τυχαία σελίδα του Wiκi',
+'tooltip-help' => 'Το μέρος για να βρείτε τις απαντήσεις που ψάχνετε.',
+'tooltip-sitesupport' => 'Βοηθήστε το έργο.',
+'tooltip-whatlinkshere' => 'Λίστα από άρθρα που αναφέρουν το παρόν άρθρο',
+'tooltip-recentchangeslinked' => 'Πρόσφατες αλλαγές σε άρθρα που συνδέονται με το παρόν',
+'tooltip-feed-rss' => 'RSS feed για',
+'tooltip-feed-atom' => 'Atom feed για',
+'tooltip-contributions' => 'Δείτε τη λίστα με τις συνεισφορές αυτού του χρήστη στο Wiκi',
+'tooltip-emailuser' => 'Αποστολή μηνύματος σε αυτό το χρήστη',
+'tooltip-upload' => 'Φόρτωση εικόνας ή αρχείου πολυμέσων',
+'tooltip-specialpages' => 'Η λίστα με όλες τις σελίδες λειτουργιών',
+'tooltip-nstab-main' => 'Άρθρο',
+'tooltip-nstab-user' => 'Δείτε τη σελίδα του χρήστη',
+'tooltip-nstab-media' => 'Δείτε τη σελίδα πολυμέσων',
+'tooltip-nstab-special' => 'Αυτή είναι ειδική σελίδα και δεν μπορείτε να την επεξεργαστείτε.',
+'tooltip-nstab-project' => 'Δείτε τη σελίδα του συστήματος',
+'tooltip-nstab-image' => 'Δείτε την εικόνα',
+'tooltip-nstab-mediawiki' => 'Δείτε το μήνυμα του συστήματος',
+'tooltip-nstab-template' => 'Δείτε το πρότυπο',
+'tooltip-nstab-help' => 'Δείτε τη σελίδα βοήθειας',
+'tooltip-nstab-category' => 'Δείτε τη σελίδα κατηγοριών',
 
 # stylesheets
 #-------------------#
@@ -1329,60 +1425,6 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'rcpatroldisabled' => 'Η λειτουργία \'Παρακολούθηση Πρόσφατων Αλλαγών\' έχει απενεργοποιηθεί.',
 'rcpatroldisabledtext' => 'Η λειτουργία \'Παρακολούθηση Πρόσφατων Αλλαγών\' είναι αυτή τη στιγμή απενεργοποιημένη.',
 
-
-# Monobook.js: tooltips and access keys for monobook
-#------------------------------------------------------------------------------------#
-'Monobook.js' => '/* tooltips and access keys */
-var ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'Η προσωπική μου σελίδα στο Wiκi\');
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Η σελίδα χρήστη στον οποίο αντιστοιχεί η διεύθυνση IP που έχετε\');
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Η σελίδα συζητήσεών μου\');
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Συζήτηση σχετικά με τις αλλαγές που έγιναν από αυτή τη διεύθυνση IP\');
-ta[\'pt-preferences\'] = new Array(\'\',\'Οι προτιμήσεις μου\');
-ta[\'pt-watchlist\'] = new Array(\'l\',\'Η λίστα με τις σελίδες που παρακολουθείτε για αλλαγές\');
-ta[\'pt-mycontris\'] = new Array(\'y\',\'Κατάλογος των συνεισφορών μου\');
-ta[\'pt-login\'] = new Array(\'o\',\'Σας προτείνουμε να συνδεθείτε παρόλο που δεν είναι αναγκαίο.\');
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'Σας προτείνουμε να συνδεθείτε παρόλο που δεν είναι αναγκαίο.\');
-ta[\'pt-logout\'] = new Array(\'o\',\'Αποσύνδεση\');
-ta[\'ca-talk\'] = new Array(\'t\',\'Συζήτηση για το παρόν άρθρο\');
-ta[\'ca-edit\'] = new Array(\'e\',\'Μπορείτε να επεξεργαστείτε αυτό το άρθρο. Χρησιμοποιείστε την "Προεπισκόπηση" πριν αποθηκεύσετε.\');
-ta[\'ca-addsection\'] = new Array(\'+\',\'Προσθέστε σχόλιο στη συζήτηση.\');
-ta[\'ca-viewsource\'] = new Array(\'e\',\'Αυτό το άρθρο είναι κλειδωμένο. Μπορείτε να δείτε τον πηγαίο κώδικά του.\');
-ta[\'ca-history\'] = new Array(\'h\',\'Παλιές αναθεωρήσεις του άρθρου.\');
-ta[\'ca-protect\'] = new Array(\'=\',\'Κλείδωμα αυτού του άρθρου\');
-ta[\'ca-delete\'] = new Array(\'d\',\'Διαγραφή αυτής της σελίδας\');
-ta[\'ca-undelete\'] = new Array(\'d\',\'Αποκαταστήστε τις αλλαγές που έγιναν σε αυτή τη σελίδα πριν διαγραφεί.\');
-ta[\'ca-move\'] = new Array(\'m\',\'Μετακινήστε αυτή τη σελίδα\');
-ta[\'ca-nomove\'] = new Array(\'\',\'Δεν έχετε εξουσιοδότηση να μετακινήσετε αυτή τη σελίδα.\');
-ta[\'ca-watch\'] = new Array(\'w\',\'Προσθήκη της σελίδας στη λίστα παρακολούθησης\');
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Αφαίρεση της σελίδας από τη λίστα παρακολούθησης\');
-ta[\'search\'] = new Array(\'f\',\'Αναζήτηση στο WiKi\');
-ta[\'p-logo\'] = new Array(\'\',\'Αρχική σελίδα\');
-ta[\'n-mainpage\'] = new Array(\'z\',\'Δείτε την Αρχική σελίδα\');
-ta[\'n-portal\'] = new Array(\'\',\'Σχετικά με το Wiκi - πώς μπορείτε να βοηθήσετε, πού μπορείτε να απευθυνθείτε\');
-ta[\'n-currentevents\'] = new Array(\'\',\'Πληροφορίες για πρόσφατα γεγονότα\');
-ta[\'n-recentchanges\'] = new Array(\'r\',\'Η λίστα με τις πρόσφατες αλλαγές στο WiKi\');
-ta[\'n-randompage\'] = new Array(\'x\',\'Επισκεφθείτε μια τυχαία σελίδα του Wiκi\');
-ta[\'n-help\'] = new Array(\'\',\'Το μέρος για να βρείτε τις απαντήσεις που ψάχνετε.\');
-ta[\'n-sitesupport\'] = new Array(\'\',\'Βοηθήστε το έργο.\');
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Λίστα από άρθρα που αναφέρουν το παρόν άρθρο\');
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Πρόσφατες αλλαγές σε άρθρα που συνδέονται με το παρόν\');
-ta[\'feed-rss\'] = new Array(\'\',\'RSS feed για\' αυτή την σελίδα\');
-ta[\'feed-atom\'] = new Array(\'\',\'Atom feed για\' αυτή την σελίδα\');
-ta[\'t-contributions\'] = new Array(\'\',\'Δείτε τη λίστα με τις συνεισφορές αυτού του χρήστη στο Wiκi\');
-ta[\'t-emailuser\'] = new Array(\'\',\'Αποστολή μηνύματος σε αυτό το χρήστη\');
-ta[\'t-upload\'] = new Array(\'u\',\'Φόρτωση εικόνας ή αρχείου πολυμέσων\');
-ta[\'t-specialpages\'] = new Array(\'q\',\'Η λίστα με όλες τις σελίδες λειτουργιών\');
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'Άρθρο\');
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'Δείτε τη σελίδα του χρήστη\');
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'Δείτε τη σελίδα πολυμέσων\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'Αυτή είναι ειδική σελίδα και δεν μπορείτε να την επεξεργαστείτε.\');
-ta[\'ca-nstab-project\'] = new Array(\'a\',\'Δείτε τη σελίδα του συστήματος\');
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'Δείτε την εικόνα\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Δείτε το μήνυμα του συστήματος\');
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'Δείτε το πρότυπο\');
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'Δείτε τη σελίδα βοήθειας\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Δείτε τη σελίδα κατηγοριών\');',
 
 
 # image deletion
