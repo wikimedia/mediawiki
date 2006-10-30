@@ -33,8 +33,53 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	private $rootTitle, $contRedirs, $contLevel, $contTitle, $contID;
 
+	// output element name, database column field prefix, database table 
+	private $backlinksSettings = array (
+		'backlinks' => array (
+			'code' => 'bl',
+			'prefix' => 'pl',
+			'linktbl' => 'pagelinks'
+		),
+		'embeddedin' => array (
+			'code' => 'ei',
+			'prefix' => 'tl',
+			'linktbl' => 'templatelinks'
+		),
+		'imagelinks' => array (
+			'code' => 'il',
+			'prefix' => 'il',
+			'linktbl' => 'imagelinks'
+		)
+	);
+
 	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'bl');
+		$code = $prefix = $linktbl = null;
+		extract($this->backlinksSettings[$moduleName]);
+
+		parent :: __construct($query, $moduleName, $code);
+		$this->bl_ns = $prefix . '_namespace';
+		$this->bl_from = $prefix . '_from';
+		$this->bl_tables = array (
+			$linktbl,
+			'page'
+		);
+		$this->bl_code = $code;
+
+		$this->hasNS = $moduleName !== 'imagelinks';
+		if ($this->hasNS) {
+			$this->bl_title = $prefix . '_title';
+			$this->bl_sort = "{$this->bl_ns}, {$this->bl_title}, {$this->bl_from}";
+			$this->bl_fields = array (
+				$this->bl_ns,
+				$this->bl_title
+			);
+		} else {
+			$this->bl_title = $prefix . '_to';
+			$this->bl_sort = "{$this->bl_title}, {$this->bl_from}";
+			$this->bl_fields = array (
+				$this->bl_title
+			);
+		}
 	}
 
 	public function execute() {
@@ -54,34 +99,25 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		$this->processContinue($continue, $redirect);
 
-		if (is_null($resultPageSet)) {
+		$this->addFields($this->bl_fields);
+		if (is_null($resultPageSet))
 			$this->addFields(array (
-				'pl_from as page_id', // is this more efficient than getting page_id?
-				'pl_namespace',
-				'pl_title',
+				'page_id',
 				'page_namespace',
 				'page_title'
 			));
-		} else {
-			$this->addFields($resultPageSet->getPageTableFields());
-			$this->addFields(array (
-				'pl_namespace',
-				'pl_title',
-				
-			));
-		}
+		else
+			$this->addFields($resultPageSet->getPageTableFields()); // will include page_id
 
-		$this->addTables(array (
-			'pagelinks',
-			'page'
-		));
-		$this->addWhere('pl_from=page_id');
+		$this->addTables($this->bl_tables);
+		$this->addWhere($this->bl_from . '=page_id');
 
-		$this->addWhereFld('pl_namespace', $this->rootTitle->getNamespace());
-		$this->addWhereFld('pl_title', $this->rootTitle->getDBkey());
+		if ($this->hasNS)
+			$this->addWhereFld($this->bl_ns, $this->rootTitle->getNamespace());
+		$this->addWhereFld($this->bl_title, $this->rootTitle->getDBkey());
 		$this->addWhereFld('page_namespace', $namespace);
 		$this->addOption('LIMIT', $limit +1);
-		$this->addOption('ORDER BY', 'pl_namespace, pl_title, pl_from');
+		$this->addOption('ORDER BY', $this->bl_sort);
 
 		if ($redirect)
 			$this->addWhereFld('page_is_redirect', 0);
@@ -91,11 +127,16 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$plfrm = intval($this->contID);
 			if ($this->contLevel == 0) {
 				// For the first level, there is only one target title, so no need for complex filtering
-				$this->addWhere("pl_from>=$plfrm");
+				$this->addWhere($this->bl_from . '>=' . $plfrm);
 			} else {
 				$ns = $this->contTitle->getNamespace();
 				$t = $db->addQuotes($this->contTitle->getDBkey());
-				$this->addWhere("(pl_namespace>$ns OR (pl_namespace=$ns AND (pl_title>$t OR (pl_title=$t AND pl_from>=$plfrm))))");
+				$whereWithoutNS = "{$this->bl_title}>$t OR ({$this->bl_title}=$t AND {$this->bl_from}>=$plfrm))";
+
+				if ($this->hasNS)
+					$this->addWhere("{$this->bl_ns}>$ns OR ({$this->bl_ns}=$ns AND ($whereWithoutNS)");
+				else
+					$this->addWhere($whereWithoutNS);
 			}
 		}
 
@@ -106,7 +147,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$continue = $this->rootTitle->getNamespace() . '|' . $this->rootTitle->getDBkey() . '|1|0|' . $row->pl_namespace . '|' . $row->pl_title . '|' . $row->page_id;
+				if ($redirect) {
+					$ns = $row-> {
+						$this->bl_ns };
+					$t = $row-> {
+						$this->bl_title };
+					$continue = $this->getContinueRedirStr(false, 0, $ns, $t, $row->page_id);
+				} else
+					$continue = $this->getContinueStr($row->page_id);
 				$this->setContinueEnumParameter('continue', $continue);
 				break;
 			}
@@ -123,17 +171,17 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		if (is_null($resultPageSet)) {
 			$result = $this->getResult();
-			$result->setIndexedTagName($data, 'bl');
+			$result->setIndexedTagName($data, $this->bl_code);
 			$result->addValue('query', $this->getModuleName(), $data);
 		}
 	}
 
 	protected function processContinue($continue, $redirect) {
 		$pageSet = $this->getPageSet();
-		$count = $pageSet->getGoodTitleCount();
+		$count = $pageSet->getTitleCount();
 		if (!is_null($continue)) {
 			if ($count !== 0)
-				$this->dieUsage('When continuing the backlink query, no other titles may be provided', 'titles_on_continue');
+				$this->dieUsage("When continuing the {$this->getModuleName()} query, no other titles may be provided", 'titles_on_continue');
 			$this->parseContinueParam($continue, $redirect);
 
 			// Skip all completed links
@@ -141,46 +189,61 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		} else {
 			if ($count !== 1)
-				$this->dieUsage('Backlinks requires one title to start the query', 'bad_title_count');
-			$this->rootTitle = array_pop($pageSet->getGoodTitles()); // only one title there			
+				$this->dieUsage("The {$this->getModuleName()} query requires one title to start", 'bad_title_count');
+			$this->rootTitle = current($pageSet->getTitles()); // only one title there
 		}
+
+		// only image titles are allowed for the root 
+		if (!$this->hasNS && $this->rootTitle->getNamespace() !== NS_IMAGE)
+			$this->dieUsage("The title for {$this->getModuleName()} query must be an image", 'bad_image_title');
 	}
 
 	protected function parseContinueParam($continue, $redirect) {
-		//
-		// the parameter will be in the format:
-		// ns|db_key|step|level|ns|db_key
-		// ns+db_key -- the root title
-		// step = 1 or 2 - which step to continue from - 1-titles, 2-redirects
-		// level -- how many levels to follow before starting enumerating.
-		// ns+title to continue from 
-		//
 		$continueList = explode('|', $continue);
-		if (count($continueList) === 7) {
-			$rootNs = intval($continueList[0]);
-			if (($rootNs !== 0 || $continueList[0] === '0') && !empty ($continueList[1])) {
-				$this->rootTitle = Title :: makeTitleSafe($rootNs, $continueList[1]);
-				if ($this->rootTitle && $this->rootTitle->userCanRead()) {
+		if ($redirect) {
+			//
+			// expected redirect-mode parameter:
+			// ns|db_key|step|level|ns|db_key|id
+			// ns+db_key -- the root title
+			// step = 1 or 2 - which step to continue from - 1-titles, 2-redirects
+			// level -- how many levels to follow before starting enumerating.
+			// if level > 0 -- ns+title to continue from, otherwise skip these 
+			// id = last page_id to continue from
+			//
+			if (count($continueList) > 4) {
+				$rootNs = intval($continueList[0]);
+				if (($rootNs !== 0 || $continueList[0] === '0') && !empty ($continueList[1])) {
+					$this->rootTitle = Title :: makeTitleSafe($rootNs, $continueList[1]);
+					if ($this->rootTitle && $this->rootTitle->userCanRead()) {
 
-					$step = intval($continueList[2]);
-					if ($step === 1 || $step === 2) {
-						$this->contRedirs = ($step === 2);
+						$step = intval($continueList[2]);
+						if ($step === 1 || $step === 2) {
+							$this->contRedirs = ($step === 2);
 
-						$level = intval($continueList[3]);
-						if ($level !== 0 || $continueList[3] === '0') {
-							$this->contLevel = $level;
+							$level = intval($continueList[3]);
+							if ($level !== 0 || $continueList[3] === '0') {
+								$this->contLevel = $level;
 
-							$contNs = intval($continueList[4]);
-							if (($contNs !== 0 || $continueList[4] === '0') && !empty ($continueList[5])) {
-								$this->contTitle = Title :: makeTitleSafe($contNs, $continueList[5]);
+								if ($level === 0) {
+									if (count($continueList) === 5) {
+										$contID = intval($continueList[4]);
+										if ($contID !== 0 || $continueList[4] === '0') {
+											$this->contID = $contID;
+											return; // done
+										}
+									}
+								} else {
+									if (count($continueList) === 7) {
+										$contNs = intval($continueList[4]);
+										if (($contNs !== 0 || $continueList[4] === '0') && !empty ($continueList[5])) {
+											$this->contTitle = Title :: makeTitleSafe($contNs, $continueList[5]);
 
-								$contID = intval($continueList[6]);
-								if ($contID !== 0 || $continueList[6] === '0') {
-									$this->contID = $contID;
-
-									// When not processing redirects, only page through the non-redirects 
-									if ($redirect || ($step === 1 && $level === 0 && $this->contTitle && $this->contTitle->userCanRead() && $this->contID > 0)) {
-										return; // done
+											$contID = intval($continueList[6]);
+											if ($contID !== 0 || $continueList[6] === '0') {
+												$this->contID = $contID;
+												return; // done
+											}
+										}
 									}
 								}
 							}
@@ -188,9 +251,45 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					}
 				}
 			}
+		} else {
+			//
+			// expected non-redirect-mode parameter:
+			// ns|db_key|id
+			// ns+db_key -- the root title
+			// id = last page_id to continue from
+			//
+			if (count($continueList) === 3) {
+				$rootNs = intval($continueList[0]);
+				if (($rootNs !== 0 || $continueList[0] === '0') && !empty ($continueList[1])) {
+					$this->rootTitle = Title :: makeTitleSafe($rootNs, $continueList[1]);
+					if ($this->rootTitle && $this->rootTitle->userCanRead()) {
+
+						$contID = intval($continueList[2]);
+						if ($contID !== 0) {
+							$this->contID = $contID;
+							return; // done
+						}
+					}
+				}
+			}
 		}
 
 		$this->dieUsage("Invalid continue param. You should pass the original value returned by the previous query", "_badcontinue");
+	}
+
+	protected function getContinueStr($lastPageID) {
+		return $this->rootTitle->getNamespace() .
+		'|' . $this->rootTitle->getDBkey() .
+		'|' . $lastPageID;
+	}
+
+	protected function getContinueRedirStr($isRedirPhase, $level, $ns, $title, $lastPageID) {
+		return $this->rootTitle->getNamespace() .
+		'|' . $this->rootTitle->getDBkey() .
+		'|' . ($isRedirPhase ? 1 : 2) .
+		'|' . $level .
+		 ($level > 0 ? ('|' . $ns . '|' . $title) : '') .
+		'|' . $lastPageID;
 	}
 
 	protected function getAllowedParams() {
@@ -227,12 +326,22 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamples() {
-		return array (
-			'api.php?action=query&list=backlinks&titles=Main%20Page',
-			'api.php?action=query&generator=backlinks&titles=Main%20Page&prop=info',
-
-			
+		static $examples = array (
+			'backlinks' => array (
+				"api.php?action=query&list=backlinks&titles=Main%20Page",
+				"api.php?action=query&generator=backlinks&titles=Main%20Page&prop=info"
+			),
+			'embeddedin' => array (
+				"api.php?action=query&list=embeddedin&titles=Template:Stub",
+				"api.php?action=query&generator=embeddedin&titles=Template:Stub&prop=info"
+			),
+			'imagelinks' => array (
+				"api.php?action=query&list=imagelinks&titles=Image:Albert%20Einstein%20Head.jpg",
+				"api.php?action=query&generator=imagelinks&titles=Image:Albert%20Einstein%20Head.jpg&prop=info"
+			)
 		);
+
+		return $examples[$this->getModuleName()];
 	}
 
 	public function getVersion() {

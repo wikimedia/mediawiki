@@ -271,7 +271,19 @@ class ApiMain extends ApiBase {
 			'',
 			'This API allows programs to access various functions of MediaWiki software.',
 			'For more details see API Home Page @ http://meta.wikimedia.org/wiki/API',
+			'',
+			'Status: ALPHA -- all features shown on this page should be working,',
+			'                 but the API is still in active development, and  may change at any time.',
+			'                 Make sure you monitor changes to this page, wikitech-l mailing list,',
+			'                 or the source code in the includes/api directory for any changes.',
 			''
+		);
+	}
+	
+	protected function getCredits() {
+		return array(
+			'This API is being implemented by Yuri Astrakhan [[User:Yurik]] / FirstnameLastname@gmail.com',
+			'Please leave your comments and suggestions at http://meta.wikimedia.org/wiki/API'
 		);
 	}
 
@@ -303,6 +315,9 @@ class ApiMain extends ApiBase {
 				$msg .= $msg2;
 			$msg .= "\n";
 		}
+		
+		$msg .= "\n*** Credits: ***\n   " . implode("\n   ", $this->getCredits()) . "\n";
+		
 
 		return $msg;
 	}
