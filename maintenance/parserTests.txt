@@ -2826,6 +2826,25 @@ msg
 Foo
 !! end
 
+!! test
+{{#special:}} page name, known
+!! options
+msg
+!! input
+{{#special:Recentchanges}}
+!! result
+Special:Recentchanges
+!! end
+
+!! test
+{{#special:}} page name, unknown
+!! options
+msg
+!! input
+{{#special:foobarnonexistent}}
+!! result
+No such special page
+!! end
 
 ###
 ### Images
