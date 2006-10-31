@@ -42,6 +42,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$db = & $this->getDB();
 
 		extract($db->tableNames('logging', 'page', 'user'), EXTR_PREFIX_ALL, 'tbl');
+
+		$this->addOption('STRAIGHT_JOIN');
 		$this->addTables("$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
 		"log_namespace=page_namespace AND log_title=page_title " .
 		"INNER JOIN $tbl_user ON user_id=log_user");
