@@ -116,6 +116,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   skin hooks, such as Oversight
 * Moved variant language links on Cologne Blue and Nostalgia to before the
   login/logout link
+* Fix for parser tests with MySQL 5 in strict mode
 
 
 == Languages updated ==
