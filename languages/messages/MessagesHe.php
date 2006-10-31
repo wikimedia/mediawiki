@@ -161,6 +161,7 @@ $magicWords = array(
 	'formatnum'             => array( 0,    'עיצוב מספר',                        'FORMATNUM'              ),
 	'padleft'               => array( 0,    'ריפוד משמאל',                       'PADLEFT'                ),
 	'padright'              => array( 0,    'ריפוד מימין',                       'PADRIGHT'               ),
+	'special'               => array( 0,    'מיוחד',                             'special'                ),
 );
 
 $namespaceNames = array(
