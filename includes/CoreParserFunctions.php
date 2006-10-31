@@ -174,7 +174,15 @@ class CoreParserFunctions {
 	function anchorencode( $parser, $text ) {
 		return str_replace( '%', '.', str_replace('+', '_', urlencode( $text ) ) );
 	}
-	
+
+	function special( $parser, $text ) {
+		$title = SpecialPage::getTitleForAlias( $text );
+		if ( $title ) {
+			return $title->getPrefixedText();
+		} else {
+			return wfMsgForContent( 'nosuchspecialpage' );
+		}
+	}
 }
 
 ?>

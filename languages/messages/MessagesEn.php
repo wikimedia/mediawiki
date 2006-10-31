@@ -318,6 +318,7 @@ $magicWords = array(
 	'formatnum'              => array( 0,    'FORMATNUM'              ),
 	'padleft'                => array( 0,    'PADLEFT'                ),
 	'padright'               => array( 0,    'PADRIGHT'               ),
+	'special'                => array( 0,    'special',               ),
 );
 
 /**
