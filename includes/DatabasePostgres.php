@@ -85,7 +85,7 @@ class DatabasePostgres extends Database {
 		$this->mOpened = true;
 		## If this is the initial connection, setup the schema stuff and possibly create the user
 		if (defined('MEDIAWIKI_INSTALL')) {
-			global $wgDBname, $wgDBuser, $wgDBpass, $wgDBsuperuser, $wgDBmwschema,
+			global $wgDBname, $wgDBuser, $wgDBpassword, $wgDBsuperuser, $wgDBmwschema,
 				$wgDBts2schema, $wgDBts2locale;
 			print "OK</li>\n";
 
@@ -131,7 +131,7 @@ class DatabasePostgres extends Database {
 						dieout('</ul>');
 					}
 					print "<li>Creating user <b>$wgDBuser</b>...";
-					$safepass = $this->addQuotes($wgDBpass);
+					$safepass = $this->addQuotes($wgDBpassword);
 					$SQL = "CREATE USER $safeuser NOCREATEDB PASSWORD $safepass";
 					$this->doQuery($SQL);
 					print "OK</li>\n";
