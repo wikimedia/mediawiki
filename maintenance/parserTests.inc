@@ -485,6 +485,7 @@ class ParserTest {
 				'img_media_type'  => MEDIATYPE_BITMAP,
 				'img_major_mime'  => "image",
 				'img_minor_mime'  => "jpeg",
+				'img_metadata'    => serialize( array() ),
 				) );
 				
 			# Update certain things in site_stats
