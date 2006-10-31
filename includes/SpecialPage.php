@@ -475,7 +475,11 @@ class SpecialPage
 	 */
 	static function getTitleFor( $name, $subpage = false ) {
 		$name = self::getLocalNameFor( $name, $subpage );
-		return Title::makeTitle( NS_SPECIAL, $name );
+		if ( $name ) {
+			return Title::makeTitle( NS_SPECIAL, $name );
+		} else {
+			throw new MWException( "Invalid special page name \"$name\"" );
+		}
 	}
 
 	/**
@@ -483,15 +487,24 @@ class SpecialPage
 	 */
 	static function getSafeTitleFor( $name, $subpage = false ) {
 		$name = self::getLocalNameFor( $name, $subpage );
-		return Title::makeTitleSafe( NS_SPECIAL, $name );
+		if ( $name ) {
+			return Title::makeTitleSafe( NS_SPECIAL, $name );
+		} else {
+			return null;
+		}
 	}
 
 	/**
 	 * Get a title for a given alias
+	 * @return Title or null if there is no such alias
 	 */
 	static function getTitleForAlias( $alias ) {
 		$name = self::resolveAlias( $alias );
-		return self::getTitleFor( $name );
+		if ( $name ) {
+			return self::getTitleFor( $name );
+		} else {
+			return null;
+		}
 	}
 
 	/**
