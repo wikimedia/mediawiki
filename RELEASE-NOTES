@@ -110,6 +110,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   styling (class="mw-templatesUsedExplanation").
 * Added {{#special:}} parser function, to give the local default title for 
   special pages
+* (bug 7766) Remove redundant / from AJAX requests, can break some servers
+
 
 == Languages updated ==
 
