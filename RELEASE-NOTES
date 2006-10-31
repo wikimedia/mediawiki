@@ -111,6 +111,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added {{#special:}} parser function, to give the local default title for 
   special pages
 * (bug 7766) Remove redundant / from AJAX requests, can break some servers
+* Add tab links from extensions to classic-based skins (SkinTemplateTab hook)
+  Provides better cross-skin compatibility for extensions using the modern
+  skin hooks, such as Oversight
+* Moved variant language links on Cologne Blue and Nostalgia to before the
+  login/logout link
 
 
 == Languages updated ==

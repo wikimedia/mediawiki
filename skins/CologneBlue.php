@@ -146,16 +146,18 @@ class SkinCologneBlue extends Skin {
 		  . " | " .
 		  $this->makeKnownLink( wfMsgForContent( "faqpage" ), wfMsg("faq") )
 		  . " | " .
-		  $this->specialLink( "specialpages" ) . " | ";
+		  $this->specialLink( "specialpages" );
 
+		/* show links to different language variants */
+		$s .= $this->variantLinks();
+		$s .= $this->extensionTabLinks();
+		
+		$s .= " | ";
 		if ( $wgUser->isLoggedIn() ) {
 			$s .=  $this->makeKnownLink( $lo, wfMsg( "logout" ), $q );
 		} else {
 			$s .=  $this->makeKnownLink( $li, wfMsg( "login" ), $q );
 		}
-
-		/* show links to different language variants */
-		$s .= $this->variantLinks();
 
 		return $s;
 	}
