@@ -1008,8 +1008,6 @@ class Article {
 		$text = $revision->getText();
 		$rt = Title::newFromRedirect( $text );
 		
-		$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect ); 
-
 		$conditions = array( 'page_id' => $this->getId() );
 		if( !is_null( $lastRevision ) ) {
 			# An extra check against threads stepping on each other
@@ -1027,8 +1025,15 @@ class Article {
 			$conditions,
 			__METHOD__ );
 
+		$result = $dbw->affectedRows() != 0;
+
+		if ($result) {
+			// FIXME: Should the result from updateRedirectOn() be returned instead?
+			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect ); 
+		}
+		
 		wfProfileOut( __METHOD__ );
-		return ( $dbw->affectedRows() != 0 );
+		return $result;
 	}
 
 	/**
@@ -1104,7 +1109,7 @@ class Article {
 				return false;
 			}
 			$prev = $row->rev_id;
-			$lastRevIsRedirect = $row->page_is_redirect === '1';
+			$lastRevIsRedirect = (bool)$row->page_is_redirect;
 		} else {
 			# No or missing previous revision; mark the page as new
 			$prev = 0;
