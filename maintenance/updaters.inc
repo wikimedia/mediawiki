@@ -964,15 +964,58 @@ COMMIT;
 
 PGEND;
 
-		$upgrade = str_replace( 'MWVERSION', $wgVersion, $upgrade );
-
-		$res = $wgDatabase->query($upgrade);
-
 	} ## end version 1.7.1 upgrade
+	else if ($version == '1.8') {
+		$upgrade = <<<PGEND
+
+BEGIN;
+
+-- Tighten up restrictions on the revisio table so we don't lose data:
+ALTER TABLE revision DROP CONSTRAINT revision_rev_user_fkey;
+ALTER TABLE revision ADD CONSTRAINT revision_rev_user_fkey
+  FOREIGN KEY (rev_user) REFERENCES mwuser(user_id) ON DELETE RESTRICT;
+
+-- New column for better password tracking:
+ALTER TABLE mwuser ADD user_newpass_time TIMESTAMPTZ;
+
+-- New tables:
+CREATE TABLE redirect (
+  rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
+  rd_namespace  SMALLINT NOT NULL,
+  rd_title      TEXT     NOT NULL
+);
+CREATE INDEX redirect_ns_title ON redirect (rd_namespace,rd_title,rd_from);
+
+CREATE TABLE querycachetwo (
+  qcc_type          TEXT     NOT NULL,
+  qcc_value         SMALLINT NOT NULL  DEFAULT 0,
+  qcc_namespace     INTEGER  NOT NULL  DEFAULT 0,
+  qcc_title         TEXT     NOT NULL  DEFAULT '',
+  qcc_namespacetwo  INTEGER  NOT NULL  DEFAULT 0,
+  qcc_titletwo      TEXT     NOT NULL  DEFAULT ''
+);
+CREATE INDEX querycachetwo_type_value ON querycachetwo (qcc_type, qcc_value);
+CREATE INDEX querycachetwo_title      ON querycachetwo (qcc_type,qcc_namespace,qcc_title);
+CREATE INDEX querycachetwo_titletwo   ON querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
+
+-- Note this upgrade
+INSERT INTO mediawiki_version (type,mw_version,notes)
+VALUES ('Upgrade','MWVERSION','Upgrade from older version 1.8');
+
+COMMIT;
+
+PGEND;
+
+	}
 
 	else {
-		print "No updates needed\n";
+		print "No updates needed for version $version\n";
+		return;
 	}
+
+	$upgrade = str_replace( 'MWVERSION', $wgVersion, $upgrade );
+	$res = $wgDatabase->query($upgrade);
+
 
 	return;
 }
