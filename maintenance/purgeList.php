@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Send purge requests for listed pages to squid
+ */
+
 require_once( "commandLine.inc" );
 
 $stdin = fopen( "php://stdin", "rt" );
