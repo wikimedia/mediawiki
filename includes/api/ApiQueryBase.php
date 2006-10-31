@@ -103,8 +103,11 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->addOption('ORDER BY', $field . ($isDirNewer ? '' : ' DESC'));
 	}
 	
-	protected function addOption($name, $value) {
-		$this->options[$name] = $value;
+	protected function addOption($name, $value = null) {
+		if (is_null($value))
+			$this->options[] = $name;
+		else
+			$this->options[$name] = $value;
 	}
 	
 	protected function select($method) {
