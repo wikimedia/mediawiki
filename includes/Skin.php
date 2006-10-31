@@ -896,7 +896,27 @@ END;
 		#$s .= $sep . $this->specialPagesList();
 		
 		$s .= $this->variantLinks();
+		
+		$s .= $this->extensionTabLinks();
 
+		return $s;
+	}
+	
+	/**
+	 * Compatibility for extensions adding functionality through tabs.
+	 * Eventually these old skins should be replaced with SkinTemplate-based
+	 * versions, sigh...
+	 * @return string
+	 */
+	function extensionTabLinks() {
+		$tabs = array();
+		$s = '';
+		wfRunHooks( 'SkinTemplateTabs', array( $this, &$tabs ) );
+		foreach( $tabs as $tab ) {
+			$s .= ' | ' . Xml::element( 'a',
+				array( 'href' => $tab['href'] ),
+				$tab['text'] );
+		}
 		return $s;
 	}
 	

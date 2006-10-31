@@ -63,14 +63,16 @@ class SkinNostalgia extends Skin {
 			$s .=  $sep . $this->editThisPage()
 			  . $sep . $this->historyLink();
 		}
+		
+		/* show links to different language variants */
+		$s .= $this->variantLinks();
+		$s .= $this->extensionTabLinks();
+		
 		if ( $wgUser->isAnon() ) {
 			$s .= $sep . $this->specialLink( "userlogin" );
 		} else {
 			$s .= $sep . $this->specialLink( "userlogout" );
 		}
-		
-		/* show links to different language variants */
-		$s .= $this->variantLinks();
 		
 		$s .= $sep . $this->specialPagesList();
 
