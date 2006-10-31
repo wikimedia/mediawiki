@@ -362,7 +362,6 @@ CREATE TABLE querycachetwo (
   qcc_value         SMALLINT NOT NULL  DEFAULT 0,
   qcc_namespace     INTEGER  NOT NULL  DEFAULT 0,
   qcc_title         TEXT     NOT NULL  DEFAULT '',
-  qcc_title         TEXT     NOT NULL  DEFAULT '',
   qcc_namespacetwo  INTEGER  NOT NULL  DEFAULT 0,
   qcc_titletwo      TEXT     NOT NULL  DEFAULT ''
 );
