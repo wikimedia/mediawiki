@@ -594,9 +594,6 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
 
   -- Block prevents account creation from matching IP addresses
   ipb_create_account bool NOT NULL default 1,
-
-  -- Block triggers autoblocks
-  ipb_enable_autoblock bool NOT NULL default '1',
     
   -- Time at which the block will expire.
   ipb_expiry char(14) binary NOT NULL default '',
