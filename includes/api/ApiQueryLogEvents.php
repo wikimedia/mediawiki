@@ -88,7 +88,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter('start', ApiQueryBase :: keyToTitle($row->log_timestamp));
+				$this->setContinueEnumParameter('start', $row->log_timestamp);
 				break;
 			}
 
