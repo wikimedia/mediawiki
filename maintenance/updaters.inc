@@ -972,13 +972,16 @@ PGEND;
 
 BEGIN;
 
--- Tighten up restrictions on the revisio table so we don't lose data:
+-- Tighten up restrictions on the revision table so we don't lose data:
 ALTER TABLE revision DROP CONSTRAINT revision_rev_user_fkey;
 ALTER TABLE revision ADD CONSTRAINT revision_rev_user_fkey
   FOREIGN KEY (rev_user) REFERENCES mwuser(user_id) ON DELETE RESTRICT;
 
 -- New column for better password tracking:
 ALTER TABLE mwuser ADD user_newpass_time TIMESTAMPTZ;
+
+-- New column for autoblocking problem users
+ALTER TABLE ipblocks ADD ipb_enable_autoblock CHAR NOT NULL DEFAULT '1';
 
 -- New tables:
 CREATE TABLE redirect (
