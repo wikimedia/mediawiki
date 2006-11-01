@@ -118,7 +118,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   login/logout link
 * Fix for parser tests with MySQL 5 in strict mode
 * Added block option "enable autoblocks"
-
+* Amend Special:Ipblocklist to note when a block has autoblock DISABLED.
 
 == Languages updated ==
 
