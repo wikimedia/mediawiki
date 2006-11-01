@@ -1924,10 +1924,6 @@ class User {
 			return;
 		}
 
-		if ( !$userblock->mEnableAutoblock ) {
-			return;
-		}
-
 		# Check if this IP address is already blocked
 		$ipblock = Block::newFromDB( wfGetIP() );
 		if ( $ipblock ) {
