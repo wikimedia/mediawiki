@@ -138,7 +138,7 @@ abstract class ApiQueryBase extends ApiBase {
 				return false;
 			$vals['ns'] = $title->getNamespace();
 			$vals['title'] = $title->getPrefixedText();
-		}	
+		}
 
 		switch($prefix) {
 
@@ -196,6 +196,11 @@ abstract class ApiQueryBase extends ApiBase {
 				}
 
 				break;
+
+			case 'rev':
+				// PageID
+				@$tmp = $row->rev_page;
+				if (!is_null($tmp)) $vals['pageid'] = intval($tmp);
 		}
 
 		// Type
