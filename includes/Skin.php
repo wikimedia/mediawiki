@@ -1587,8 +1587,12 @@ END;
 						$href = $link;
 					} else {
 						$title = Title::newFromText( $link );
-						$title = $title->fixSpecialName();
-						$href = $title->getLocalURL();
+						if ( $title ) {
+							$title = $title->fixSpecialName();
+							$href = $title->getLocalURL();
+						} else {
+							$href = 'INVALID-TITLE';
+						}
 					}
 
 					$bar[$heading][] = array(
