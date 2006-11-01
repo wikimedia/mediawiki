@@ -38,7 +38,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	public function execute() {
 
 		//Blank all our variables
-		$limit = $user = $start = $end = $user = null;
+		$limit = $user = $start = $end = $dir = null;
 
 		//Get our parameters out
 		extract($this->extractRequestParams());
@@ -54,9 +54,6 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		//Extract the table names, in case we have a prefix
 		extract($db->tableNames( 'page', 'revision'), EXTR_PREFIX_ALL, 'tbl');
-
-		//STRAIGHT_JOIN option
-		$this->addOption('STRAIGHT_JOIN');
 
 		//We're after the revision table, and the corresponding page row for
 		//anything we retrieve.
@@ -77,8 +74,6 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		$this->addOption('LIMIT', $limit + 1);
 
-		$this->addOption('ORDER BY', 'rev_timestamp DESC');
-
 		//Initialise some variables
 		$data = array ();
 		$count = 0;
@@ -90,7 +85,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		while ( $row = $db->fetchObject( $res ) ) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter('start', ApiQueryBase :: keyToTitle($row->rev_timestamp));
+				$this->setContinueEnumParameter('start', $row->rev_timestamp);
 				break;
 			}
 
@@ -125,7 +120,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	protected function getAllowedParams() {
 		return array (
 			'limit' => array (
-				ApiBase :: PARAM_DFLT => 50,
+				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
 				ApiBase :: PARAM_MIN => 1,
 				ApiBase :: PARAM_MAX1 => ApiBase :: LIMIT_BIG1,
