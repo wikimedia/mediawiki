@@ -55,16 +55,24 @@ class ApiQueryContributions extends ApiQueryBase {
 		//Extract the table names, in case we have a prefix
 		extract($db->tableNames( 'page', 'revision'), EXTR_PREFIX_ALL, 'tbl');
 
+		//STRAIGHT_JOIN option
 		$this->addOption('STRAIGHT_JOIN');
 
+		//We're after the revision table, and the corresponding page row for
+		//anything we retrieve.
 		$this->addTables("$tbl_revision LEFT OUTER JOIN $tbl_page ON " .
 			"page_id=rev_page");
 
+		//We want to know the namespace, title, new-ness, and ID of a page,
+		// and the id, text-id, timestamp, minor-status, summary and page
+		// of a revision.
 		$this->addFields(array('page_namespace', 'page_title', 'page_is_new',
 			'rev_id', 'rev_text_id', 'rev_timestamp', 'rev_minor_edit',
 				'rev_comment', 'rev_page'));
 
+		// We only want pages by the specified user.
 		$this->addWhereFld('rev_user_text', $user);
+		// ... and in the specified timeframe.
 		$this->addWhereRange('rev_timestamp', $dir, $start, $end );
 
 		$this->addOption('LIMIT', $limit + 1);
@@ -86,14 +94,22 @@ class ApiQueryContributions extends ApiQueryBase {
 				break;
 			}
 
-			//Add it to the $vals structure. I don't really understand this yet.
+			//There's a fancy function in ApiQueryBase that does
+			// most of the work for us. Use that for the page
+			// and revision.
 			$revvals = $this->addRowInfo('rev', $row);
 			$pagevals = $this->addRowInfo('page', $row);
 
+			//If we got data on the revision only, use only
+			// that data.
 			if($revvals && !$pagevals)
 				$data[] = $revvals;
+			//If we got data on the page only, use only
+			// that data.
 			else if($pagevals && !$revvals)
 				$data[] = $pagevals;
+			//... and if we got data on both the revision and
+			// the page, merge the data and send it out.
 			else if($pagevals && $revvals)
 				$data[] = array_merge($revvals, $pagevals);
 		}
@@ -101,6 +117,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		//Free the database record so the connection can get on with other stuff
 		$db->freeResult($res);
 
+		//And send the whole shebang out as output.
 		$this->getResult()->setIndexedTagName($data, 'item');
 		$this->getResult()->addValue('query', $this->getModuleName(), $data);
 	}
