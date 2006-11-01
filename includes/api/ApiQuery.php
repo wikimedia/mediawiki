@@ -52,13 +52,13 @@ class ApiQuery extends ApiBase {
 		'recentchanges' => 'ApiQueryRecentChanges',
 		'backlinks' => 'ApiQueryBacklinks',
 		'embeddedin' => 'ApiQueryBacklinks',
-		'imagelinks' => 'ApiQueryBacklinks'
+		'imagelinks' => 'ApiQueryBacklinks',
+		'usercontribs' => 'ApiQueryContributions'
 	);
 	//	'categorymembers' => 'ApiQueryCategorymembers',
 	//	'embeddedin' => 'ApiQueryEmbeddedin',
 	//	'imagelinks' => 'ApiQueryImagelinks',
 	//	'recentchanges' => 'ApiQueryRecentchanges',
-	//	'usercontribs' => 'ApiQueryUsercontribs',
 	//	'users' => 'ApiQueryUsers',
 	//	'watchlist' => 'ApiQueryWatchlist',
 
