@@ -895,7 +895,6 @@ ALTER TABLE recentchanges ALTER rc_cur_id DROP NOT NULL;
 -- New columns:
 ALTER TABLE ipblocks ADD ipb_anon_only CHAR NOT NULL DEFAULT '0';
 ALTER TABLE ipblocks ADD ipb_create_account CHAR NOT NULL DEFAULT '1';
-ALTER TABLE ipblocks ADD ipb_enable_autoblock CHAR NOT NULL default '1';
 
 -- Index order rearrangements:
 DROP INDEX pagelink_unique;
