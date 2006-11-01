@@ -200,7 +200,8 @@ $wgUrlProtocols = array(
 	'nntp://', // @bug 3808 RFC 1738
 	'worldwind://',
 	'mailto:',
-	'news:'
+	'news:',
+	'callto://', // Skype
 );
 
 /** internal name of virus scanner. This servers as a key to the $wgAntivirusSetup array.
