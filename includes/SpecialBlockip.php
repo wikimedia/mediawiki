@@ -55,6 +55,13 @@ class IPBlockForm {
 		} else {
 			$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', true );
 		}
+
+		if ( $wgRequest->wasPosted() ) {
+			$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', false );
+		} else {
+			$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', true );
+		}
+
 	}
 
 	function showForm( $err ) {
@@ -155,10 +162,18 @@ class IPBlockForm {
 					array( 'tabindex' => 5 ) ) . "
 			</td>
 		</tr>
+                <tr>
+                        <td>&nbsp;</td>
+                        <td align=\"left\">
+                                " . wfCheckLabel( wfMsg( 'ipbenableautoblock' ),
+                                        'wpEnableAutoblock', 'wpEnableAutoblock', $this->BlockEnableAutoblock,
+                                        array( 'tabindex' => 6 ) ) . "
+                        </td>
+                </tr>
 		<tr>
 			<td style='padding-top: 1em'>&nbsp;</td>
 			<td style='padding-top: 1em' align=\"left\">
-				<input tabindex='5' type='submit' name=\"wpBlock\" value=\"{$mIpbsubmit}\" />
+				<input tabindex='7' type='submit' name=\"wpBlock\" value=\"{$mIpbsubmit}\" />
 			</td>
 		</tr>
 	</table>
@@ -242,7 +257,7 @@ class IPBlockForm {
 
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getID(),
 			$this->BlockReason, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly, 
-			$this->BlockCreateAccount );
+			$this->BlockCreateAccount, $this->BlockEnableAutoblock );
 
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 

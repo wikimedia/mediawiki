@@ -38,6 +38,7 @@ $wgNewFields = array(
 #           table            field             patch file (in maintenance/archives)
 	array( 'ipblocks',      'ipb_id',           'patch-ipblocks.sql' ),
 	array( 'ipblocks',      'ipb_expiry',       'patch-ipb_expiry.sql' ),
+	array( 'ipblocks',	'ipb_enable_autoblock', 'patch-ipb_optional_autoblock.sql' ),
 	array( 'recentchanges', 'rc_type',          'patch-rc_type.sql' ),
 	array( 'recentchanges', 'rc_ip',            'patch-rc_ip.sql' ),
 	array( 'recentchanges', 'rc_id',            'patch-rc_id.sql' ),
@@ -894,6 +895,7 @@ ALTER TABLE recentchanges ALTER rc_cur_id DROP NOT NULL;
 -- New columns:
 ALTER TABLE ipblocks ADD ipb_anon_only CHAR NOT NULL DEFAULT '0';
 ALTER TABLE ipblocks ADD ipb_create_account CHAR NOT NULL DEFAULT '1';
+ALTER TABLE ipblocks ADD ipb_enable_autoblock CHAR NOT NULL default '1';
 
 -- Index order rearrangements:
 DROP INDEX pagelink_unique;

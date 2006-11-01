@@ -117,6 +117,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Moved variant language links on Cologne Blue and Nostalgia to before the
   login/logout link
 * Fix for parser tests with MySQL 5 in strict mode
+* Added block option "enable autoblocks"
 
 
 == Languages updated ==
