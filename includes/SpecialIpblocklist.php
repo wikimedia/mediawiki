@@ -241,7 +241,7 @@ class IPUnblockForm {
 		if( is_null( $msg ) ) {
 			$msg = array();
 			$keys = array( 'infiniteblock', 'expiringblock', 'contribslink', 'unblocklink', 
-				'anononlyblock', 'createaccountblock' );
+				'anononlyblock', 'createaccountblock', 'noautoblockblock' );
 			foreach( $keys as $key ) {
 				$msg[$key] = wfMsgHtml( $key );
 			}
@@ -277,6 +277,10 @@ class IPUnblockForm {
 		if ( $block->mCreateAccount ) {
 			$properties[] = $msg['createaccountblock'];
 		}
+		if (!$block->mEnableAutoblock ) {
+			$properties[] = $msg['noautoblockblock'];
+		}
+
 		$properties = implode( ', ', $properties );
 
 		$line = wfMsgReplaceArgs( $msg['blocklistline'], array( $formattedTime, $blocker, $target, $properties ) );
