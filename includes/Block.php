@@ -17,7 +17,7 @@
 class Block
 {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
-		            $mRangeStart, $mRangeEnd, $mAnonOnly;
+		            $mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock;
 	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster, $mByName;
 	
 	const EB_KEEP_EXPIRED = 1;
@@ -25,7 +25,7 @@ class Block
 	const EB_RANGE_ONLY = 4;
 
 	function Block( $address = '', $user = 0, $by = 0, $reason = '',
-		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0 )
+		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0 )
 	{
 		$this->mId = 0;
 		$this->mAddress = $address;
@@ -37,6 +37,7 @@ class Block
 		$this->mAnonOnly = $anonOnly;
 		$this->mCreateAccount = $createAccount;
 		$this->mExpiry = self::decodeExpiry( $expiry );
+		$this->mEnableAutoblock = $enableAutoblock;
 
 		$this->mForUpdate = false;
 		$this->mFromMaster = false;
@@ -72,7 +73,8 @@ class Block
 	{
 		$this->mAddress = $this->mReason = $this->mTimestamp = '';
 		$this->mId = $this->mAnonOnly = $this->mCreateAccount = 
-			$this->mAuto = $this->mUser = $this->mBy = 0;
+			$this->mEnableAutoblock = $this->mAuto = $this->mUser = 
+			$this->mBy = 0;
 		$this->mByName = false;
 	}
 
@@ -259,6 +261,7 @@ class Block
 		$this->mAuto = $row->ipb_auto;
 		$this->mAnonOnly = $row->ipb_anon_only;
 		$this->mCreateAccount = $row->ipb_create_account;
+		$this->mEnableAutoblock = $row->ipb_enable_autoblock;
 		$this->mId = $row->ipb_id;
 		$this->mExpiry = self::decodeExpiry( $row->ipb_expiry );
 		if ( isset( $row->user_name ) ) {
@@ -379,6 +382,7 @@ class Block
 				'ipb_auto' => $this->mAuto,
 				'ipb_anon_only' => $this->mAnonOnly,
 				'ipb_create_account' => $this->mCreateAccount,
+				'ipb_enable_autoblock' => $this->mEnableAutoblock,
 				'ipb_expiry' => self::encodeExpiry( $this->mExpiry, $dbw ),
 				'ipb_range_start' => $this->mRangeStart,
 				'ipb_range_end' => $this->mRangeEnd,
