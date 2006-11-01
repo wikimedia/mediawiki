@@ -119,6 +119,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix for parser tests with MySQL 5 in strict mode
 * Added block option "enable autoblocks"
 * Amend Special:Ipblocklist to note when a block has autoblock DISABLED.
+* (bug 7780) Fix regression in editing redirects
+
 
 == Languages updated ==
 

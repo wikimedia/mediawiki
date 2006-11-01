@@ -1057,25 +1057,19 @@ class Article {
 
 			wfProfileIn( __METHOD__ );
 
-			$where = array('rd_from' => $this->getId());
-
 			if ($isRedirect) {
 
 				// This title is a redirect, Add/Update row in the redirect table
 				$set = array( /* SET */
 					'rd_namespace' => $redirectTitle->getNamespace(),
-					'rd_title'     => $redirectTitle->getDBkey()
+					'rd_title'     => $redirectTitle->getDBkey(),
+					'rd_from'      => $this->getId(),
 				);
 
-				$dbw->update( 'redirect', $set, $where, __METHOD__ );
-
-				if ( $dbw->affectedRows() == 0 ) {
-					// Update failed, need to insert the row instead
-					$dbw->insert( 'redirect', array_merge($set, $where), __METHOD__ );
-				}
+				$dbw->replace( 'redirect', array( 'rd_from' ), $set, __METHOD__ );
 			} else {
-
 				// This is not a redirect, remove row from redirect table 
+				$where = array( 'rd_from' => $this->getId() );
 				$dbw->delete( 'redirect', $where, __METHOD__);
 			}
 
