@@ -1272,7 +1272,9 @@ END
 			$batch->execute();
 
 			# Construct the HTML
-			$outText = '<span class="mw-templatesUsedExplanation">'. wfMsgExt( 'templatesused', array( 'parseinline' ) ) . '</span><ul>';
+			$outText = '<div class="mw-templatesUsedExplanation">' .
+				wfMsgExt( 'templatesused', array( 'parse' ) ) .
+				'</div><ul>';
 			foreach ( $templates as $titleObj ) {
 				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
 			}
