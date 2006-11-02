@@ -162,7 +162,7 @@ for more information.
 	 * Returns usage examples for this format.
 	 */
 	protected function getExamples() {
-		return 'api.php?action=query&meta=siteinfo&si=namespaces&format=' . $this->getModuleName();
+		return 'api.php?action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName();
 	}
 
 	public static function getBaseVersion() {
