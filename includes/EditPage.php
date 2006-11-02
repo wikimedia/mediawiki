@@ -748,6 +748,14 @@ class EditPage {
 			}
 		}
 
+                if( $this->section == 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
+			if (trim($this->summary) == '') {
+				$this->missingSummary = true;
+				wfProfileOut( $fname );
+				return( true );
+			}
+		}
+
 		# All's well
 		wfProfileIn( "$fname-sectionanchor" );
 		$sectionanchor = '';

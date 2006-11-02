@@ -123,7 +123,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add whitespace above "templates included on this page" using CSS, not
   hardcoded line break.
 * Remove entries from redirect table on article deletion
-
+* (bug 7788) Force section headers in new section links for users who have
+  'prompt for blank edit summaries' on.
 
 == Languages updated ==
 
