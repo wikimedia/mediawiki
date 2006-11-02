@@ -122,6 +122,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7780) Fix regression in editing redirects
 * Add whitespace above "templates included on this page" using CSS, not
   hardcoded line break.
+* Remove entries from redirect table on article deletion
+
 
 == Languages updated ==
 
