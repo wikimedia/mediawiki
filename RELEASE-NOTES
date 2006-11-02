@@ -120,7 +120,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added block option "enable autoblocks"
 * Amend Special:Ipblocklist to note when a block has autoblock DISABLED.
 * (bug 7780) Fix regression in editing redirects
-
+* Add whitespace above "templates included on this page" using CSS, not
+  hardcoded line break.
 
 == Languages updated ==
 

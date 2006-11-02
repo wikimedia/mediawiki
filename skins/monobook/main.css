@@ -1506,3 +1506,5 @@ table.multipageimage td {
 .imagelist .TablePager_col_links { background-color: #eeeeff }
 .imagelist .TablePager_col_img_description { white-space: normal }
 .imagelist th.TablePager_sort { background-color: #ccccff }
+
+.templatesUsed { margin-top: 1.5em; }
