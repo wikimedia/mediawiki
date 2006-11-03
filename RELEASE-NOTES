@@ -130,6 +130,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   pagecategorieslink message.
 * Sort the list of skins in "My Preferences" -> Skins by alphabetical order.
 * (bug 7785) Postgres compatibility for timestamps in RC feeds
+* (bug 7550) Normalize user parameter normally on Special:Log
 
 
 == Languages updated ==
