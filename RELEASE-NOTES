@@ -127,6 +127,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   'prompt for blank edit summaries' on.
 * (bug 7723) Add ic: parser function, with alias tc:, which capitalises the first
    letter of each word.
+* (bug 1133) Special:Emailuser: add an option to send yourself a copy your mail.
 
 == Languages updated ==
 
