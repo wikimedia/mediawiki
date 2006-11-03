@@ -165,6 +165,10 @@ for more information.
 		return 'api.php?action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName();
 	}
 
+	protected function getDescription() {
+		return $this->getIsHtml() ? ' (pretty-print in HTML)' : '';
+	}
+
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
@@ -220,7 +224,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 			wfHttpError(500, 'Internal Server Error', '');
 		}
 	}
-
+	
 	public function getVersion() {
 		return __CLASS__ . ': $Id$';
 	}

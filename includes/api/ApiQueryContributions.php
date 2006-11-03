@@ -46,6 +46,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		//Get a database instance
 		$db = & $this->getDB();
 
+		if (is_null($user))
+			$this->dieUsage("User parameter may not be empty", 'param_user');
 		$userid = $db->selectField('user', 'user_id', array (
 			'user_name' => $user
 		));
@@ -159,7 +161,7 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&list=usercontribs&ucuser=Werdna'
+			'api.php?action=query&list=usercontribs&ucuser=YurikBot'
 		);
 	}
 

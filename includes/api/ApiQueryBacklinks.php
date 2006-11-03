@@ -294,12 +294,11 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	protected function getAllowedParams() {
 
-		$namespaces = $this->getQuery()->getValidNamespaces();
 		return array (
 			'continue' => null,
 			'namespace' => array (
 				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => $namespaces
+				ApiBase :: PARAM_TYPE => 'namespace'
 			),
 			'redirect' => false,
 			'limit' => array (
@@ -322,7 +321,16 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	protected function getDescription() {
-		return 'Find all pages that link to the given page';
+		switch ($this->getModuleName()) {
+			case 'backlinks' :
+				return 'Find all pages that link to the given page';
+			case 'embeddedin' :
+				return 'Find all pages that embed (transclude) the given title';
+			case 'imagelinks' :
+				return 'Find all pages that use the given image title.';
+			default :
+				ApiBase :: dieDebug(__METHOD__, 'Unknown module name');
+		}
 	}
 
 	protected function getExamples() {

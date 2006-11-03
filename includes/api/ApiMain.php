@@ -64,7 +64,6 @@ class ApiMain extends ApiBase {
 		'xmlfm' => 'ApiFormatXml',
 		'yaml' => 'ApiFormatYaml',
 		'yamlfm' => 'ApiFormatYaml',
-		'raw' => 'ApiFormatJson',
 		'rawfm' => 'ApiFormatJson'
 	);
 

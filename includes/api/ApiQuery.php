@@ -33,7 +33,6 @@ class ApiQuery extends ApiBase {
 
 	private $mPropModuleNames, $mListModuleNames, $mMetaModuleNames;
 	private $mPageSet;
-	private $mValidNamespaces;
 
 	private $mQueryPropModules = array (
 		'info' => 'ApiQueryInfo',
@@ -74,7 +73,6 @@ class ApiQuery extends ApiBase {
 		$this->mPropModuleNames = array_keys($this->mQueryPropModules);
 		$this->mListModuleNames = array_keys($this->mQueryListModules);
 		$this->mMetaModuleNames = array_keys($this->mQueryMetaModules);
-		$this->mValidNamespaces = null;
 
 		// Allow the entire list of modules at first,
 		// but during module instantiation check if it can be used as a generator.
@@ -92,19 +90,6 @@ class ApiQuery extends ApiBase {
 
 	public function getPageSet() {
 		return $this->mPageSet;
-	}
-
-	public function getValidNamespaces() {
-		global $wgContLang;
-
-		if (is_null($this->mValidNamespaces)) {
-			$this->mValidNamespaces = array ();
-			foreach (array_keys($wgContLang->getNamespaces()) as $ns) {
-				if ($ns >= 0)
-					$this->mValidNamespaces[] = $ns; // strval($ns);		
-			}
-		}
-		return $this->mValidNamespaces;
 	}
 
 	/**

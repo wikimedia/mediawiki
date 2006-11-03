@@ -129,7 +129,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter('from', $row->rc_timestamp);
+				$this->setContinueEnumParameter('start', $row->rc_timestamp);
 				break;
 			}
 
@@ -164,7 +164,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	protected function getAllowedParams() {
-		$namespaces = $this->getQuery()->getValidNamespaces();
 		return array (
 			'allrev' => false,
 			'start' => array (
@@ -175,7 +174,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			),
 			'namespace' => array (
 				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => $namespaces
+				ApiBase :: PARAM_TYPE => 'namespace'
 			),
 			'dir' => array (
 				ApiBase :: PARAM_DFLT => 'older',

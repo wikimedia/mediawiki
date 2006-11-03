@@ -57,7 +57,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		extract($this->extractRequestParams());
 
 		$this->addTables('page');
-		if( !$this->addWhereIf('page_is_redirect = 1', $filterredir === 'redirects'))
+		if (!$this->addWhereIf('page_is_redirect = 1', $filterredir === 'redirects'))
 			$this->addWhereIf('page_is_redirect = 0', $filterredir === 'nonredirects');
 		$this->addWhereFld('page_namespace', $namespace);
 		if (isset ($from))
@@ -66,18 +66,18 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->addWhere("page_title LIKE '{$db->strencode(ApiQueryBase :: titleToKey($prefix))}%'");
 
 		if (is_null($resultPageSet)) {
-			$this->addFields( array (
+			$this->addFields(array (
 				'page_id',
 				'page_namespace',
 				'page_title'
 			));
 		} else {
-			$this->addFields( $resultPageSet->getPageTableFields());
+			$this->addFields($resultPageSet->getPageTableFields());
 		}
 
-		$this->addOption( 'USE INDEX', 'name_title');
-		$this->addOption( 'LIMIT', $limit +1);
-		$this->addOption( 'ORDER BY', 'page_namespace, page_title');
+		$this->addOption('USE INDEX', 'name_title');
+		$this->addOption('LIMIT', $limit +1);
+		$this->addOption('ORDER BY', 'page_namespace, page_title');
 
 		wfProfileOut($this->getModuleProfileName() . '-parseParams');
 
@@ -96,7 +96,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 			if (is_null($resultPageSet)) {
 				$vals = $this->addRowInfo('page', $row);
-				if($vals)
+				if ($vals)
 					$data[intval($row->page_id)] = $vals;
 			} else {
 				$resultPageSet->processDbRow($row);
@@ -109,18 +109,17 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$result->setIndexedTagName($data, 'p');
 			$result->addValue('query', $this->getModuleName(), $data);
 		}
-		
+
 		wfProfileOut($this->getModuleProfileName() . '-saveResults');
 	}
 
 	protected function getAllowedParams() {
-		$namespaces = $this->getQuery()->getValidNamespaces();
 		return array (
 			'from' => null,
 			'prefix' => null,
 			'namespace' => array (
 				ApiBase :: PARAM_DFLT => 0,
-				ApiBase :: PARAM_TYPE => $namespaces
+				ApiBase :: PARAM_TYPE => 'namespace'
 			),
 			'filterredir' => array (
 				ApiBase :: PARAM_DFLT => 'all',

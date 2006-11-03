@@ -105,8 +105,13 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	}
 
 	protected function getAllowedParams() {
-		$namespaces = $this->getQuery()->getValidNamespaces();
 		return array (
+			'start' => array (
+				ApiBase :: PARAM_TYPE => 'timestamp'
+			),
+			'end' => array (
+				ApiBase :: PARAM_TYPE => 'timestamp'
+			),
 			'dir' => array (
 				ApiBase :: PARAM_DFLT => 'older',
 				ApiBase :: PARAM_TYPE => array (
@@ -114,15 +119,9 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					'older'
 				)
 			),
-			'start' => array (
-				ApiBase :: PARAM_TYPE => 'timestamp'
-			),
-			'end' => array (
-				ApiBase :: PARAM_TYPE => 'timestamp'
-			),
 			'namespace' => array (
-				ApiBase :: PARAM_DFLT => 0,
-				ApiBase :: PARAM_TYPE => $namespaces
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => 'namespace'
 			),
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
@@ -155,6 +154,10 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		return array (
 			'start' => 'The timestamp to start enumerating from.',
 			'end' => 'The timestamp to end enumerating.',
+			'dir' => 'In which direction to enumerate.',
+			'namespace' => 'Filter log entries to only this namespace(s)',
+			'prop' => 'Include additional pieces of information',
+			'hide' => 'Hide certain changes (minor edits, bots, anonymous, logged-in-users)',
 			'limit' => 'How many total pages to return.'
 		);
 	}

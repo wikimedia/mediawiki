@@ -50,16 +50,8 @@ class ApiFormatXml extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$xmlindent = null;
-		extract($this->extractRequestParams());
-
-		if ($xmlindent || $this->getIsHtml())
-			$xmlindent = -2;
-		else
-			$xmlindent = null;
-
 		$this->printText('<?xml version="1.0" encoding="utf-8"?>');
-		$this->recXmlPrint($this->mRootElemName, $this->getResultData(), $xmlindent);
+		$this->recXmlPrint($this->mRootElemName, $this->getResultData(), $this->getIsHtml() ? -2 : null);
 	}
 
 	/**
@@ -143,19 +135,7 @@ class ApiFormatXml extends ApiFormatBase {
 		}
 	}
 	protected function getDescription() {
-		return 'Output data in XML format';
-	}
-
-	protected function getAllowedParams() {
-		return array (
-			'xmlindent' => false
-		);
-	}
-
-	protected function getParamDescription() {
-		return array (
-			'xmlindent' => 'Enable XML indentation'
-		);
+		return 'Output data in XML format' . parent :: getDescription();
 	}
 
 	public function getVersion() {

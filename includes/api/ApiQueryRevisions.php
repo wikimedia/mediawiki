@@ -108,9 +108,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// The order needs to be the same as start parameter to avoid SQL filesort.
 
 			if (is_null($startid))
-				$this->addWhereRange('rev_id', $dir, $startid, $endid);
-			else
 				$this->addWhereRange('rev_timestamp', $dir, $start, $end);
+			else
+				$this->addWhereRange('rev_id', $dir, $startid, $endid);
 
 			// must manually initialize unset limit
 			if (is_null($limit))
