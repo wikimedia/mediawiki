@@ -1497,7 +1497,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 # Special:Listusers
 'listusersfrom' => 'Display users starting at:',
 
-# E this user
+# Email this user
 #
 'mailnologin'	=> 'No send address',
 'mailnologintext' => "You must be [[Special:Userlogin|logged in]]
@@ -1520,6 +1520,8 @@ or has chosen not to receive e-mail from other users.',
 'emailsubject'	=> 'Subject',
 'emailmessage'	=> 'Message',
 'emailsend'		=> 'Send',
+'emailccme'     => 'E-mail me a copy of my message.',
+'emailccsubject'=> 'Copy of your message to $1: $2',
 'emailsent'		=> 'E-mail sent',
 'emailsenttext' => 'Your e-mail message has been sent.',
 
