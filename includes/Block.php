@@ -367,6 +367,11 @@ class Block
 			$this->mAnonOnly = 0;
 		}
 
+		# Unset ipb_enable_autoblock for IP blocks, makes no sense
+		if ( !$this->mUser ) {
+			$this->mEnableAutoblock = 0;
+		}
+
 		# Don't collide with expired blocks
 		Block::purgeExpired();
 		
