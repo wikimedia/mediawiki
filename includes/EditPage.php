@@ -748,6 +748,7 @@ class EditPage {
 			}
 		}
 
+		#And a similar thing for new sections
                 if( $this->section == 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
 			if (trim($this->summary) == '') {
 				$this->missingSummary = true;
@@ -874,9 +875,13 @@ class EditPage {
 				$wgOut->addWikiText( wfMsg( 'missingcommenttext' ) );
 			}
 			
-			if( $this->missingSummary ) {
+			if( $this->missingSummary && $this->section != 'new' ) {
 				$wgOut->addWikiText( wfMsg( 'missingsummary' ) );
 			}
+
+                        if( $this->missingSummary && $this->section == 'new' ) {
+                                $wgOut->addWikiText( wfMsg( 'missingcommentheader' ) );
+                        }
 			
 			if( !$this->hookError == '' ) {
 				$wgOut->addWikiText( $this->hookError );
