@@ -44,7 +44,7 @@ class ApiFormatPhp extends ApiFormatBase {
 	}
 
 	protected function getDescription() {
-		return 'Output data in serialized PHP format';
+		return 'Output data in serialized PHP format' . parent :: getDescription();
 	}
 
 	public function getVersion() {

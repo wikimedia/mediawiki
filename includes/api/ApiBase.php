@@ -171,14 +171,20 @@ abstract class ApiBase {
 				if (is_array($desc))
 					$desc = implode($paramPrefix, $desc);
 
-				if (isset ($paramSettings[self :: PARAM_TYPE])) {
+				@ $type = $paramSettings[self :: PARAM_TYPE];
+				if (isset ($type)) {
 					if (isset ($paramSettings[self :: PARAM_ISMULTI]))
-						$prompt = 'Multiple "|"-separated values: ';
+						$prompt = 'Values (separate with \'|\'): ';
 					else
-						$prompt = 'Any one of these values: ';
-					$type = $paramSettings[self :: PARAM_TYPE];
-					if (is_array($type))
+						$prompt = 'One value: ';
+
+					if (is_array($type)) {
 						$desc .= $paramPrefix . $prompt . implode(', ', $type);
+					}
+					elseif ($type == 'namespace') {
+						// Special handling because namespaces are type-limited, yet they are not given
+						$desc .= $paramPrefix . $prompt . implode(', ', ApiBase :: getValidNamespaces());
+					}
 				}
 
 				$default = is_array($paramSettings) ? (isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null) : $paramSettings;
@@ -253,6 +259,20 @@ abstract class ApiBase {
 		return $this->getParameterFromSettings($paramName, $paramSettings);
 	}
 
+	public static function getValidNamespaces() {
+		static $mValidNamespaces = null;
+		if (is_null($mValidNamespaces)) {
+
+			global $wgContLang;
+			$mValidNamespaces = array ();
+			foreach (array_keys($wgContLang->getNamespaces()) as $ns) {
+				if ($ns >= 0)
+					$mValidNamespaces[] = $ns;
+			}
+		}
+		return $mValidNamespaces;
+	}
+
 	/**
 	 * Using the settings determine the value for the given parameter
 	 * @param $paramName String: parameter name
@@ -290,6 +310,9 @@ abstract class ApiBase {
 			$value = $this->getMain()->getRequest()->getCheck($paramName);
 		} else {
 			$value = $this->getMain()->getRequest()->getVal($paramName, $default);
+
+			if (isset ($value) && $type == 'namespace')
+				$type = ApiBase :: getValidNamespaces();
 		}
 
 		if (isset ($value) && ($multi || is_array($type)))

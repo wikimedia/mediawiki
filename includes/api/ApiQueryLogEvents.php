@@ -104,13 +104,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	protected function getAllowedParams() {
 		return array (
-			'limit' => array (
-				ApiBase :: PARAM_DFLT => 10,
-				ApiBase :: PARAM_TYPE => 'limit',
-				ApiBase :: PARAM_MIN => 1,
-				ApiBase :: PARAM_MAX1 => ApiBase :: LIMIT_BIG1,
-				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
-			),
 			'type' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
@@ -140,19 +133,26 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				)
 			),
 			'user' => null,
-			'title' => null
+			'title' => null,
+			'limit' => array (
+				ApiBase :: PARAM_DFLT => 10,
+				ApiBase :: PARAM_TYPE => 'limit',
+				ApiBase :: PARAM_MIN => 1,
+				ApiBase :: PARAM_MAX1 => ApiBase :: LIMIT_BIG1,
+				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+			)
 		);
 	}
 
 	protected function getParamDescription() {
 		return array (
-			'limit' => '',
-			'type' => '',
-			'start' => '',
-			'end' => '',
-			'dir' => '',
-			'user' => '',
-			'title' => ''
+			'type' => 'Filter log entries to only this type(s)',
+			'start' => 'The timestamp to start enumerating from.',
+			'end' => 'The timestamp to end enumerating.',
+			'dir' => 'In which direction to enumerate.',
+			'user' => 'Filter entries to those made by the given user.',
+			'title' => 'Filter entries to those related to a page.',
+			'limit' => 'How many total event entries to return.'
 		);
 	}
 

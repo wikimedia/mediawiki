@@ -32,20 +32,20 @@ if (!defined('MEDIAWIKI')) {
 class ApiFormatJson extends ApiFormatBase {
 
 	private $mIsRaw;
-	
+
 	public function __construct($main, $format) {
 		parent :: __construct($main, $format);
-		$this->mIsRaw = ($format === 'raw' || $format === 'rawfm');
+		$this->mIsRaw = ($format === 'rawfm');
 	}
 
 	public function getMimeType() {
 		return 'application/json';
 	}
-	
+
 	public function getNeedsRawData() {
 		return $this->mIsRaw;
 	}
-	
+
 	public function execute() {
 		if (!function_exists('json_encode') || $this->getIsHtml()) {
 			$json = new Services_JSON();
@@ -56,7 +56,10 @@ class ApiFormatJson extends ApiFormatBase {
 	}
 
 	protected function getDescription() {
-		return 'Output data in JSON format';
+		if ($this->mIsRaw)
+			return 'Output data with the debuging elements in JSON format' . parent :: getDescription();
+		else
+			return 'Output data in JSON format' . parent :: getDescription();
 	}
 
 	public function getVersion() {
