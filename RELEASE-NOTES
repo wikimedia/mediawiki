@@ -131,7 +131,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Sort the list of skins in "My Preferences" -> Skins by alphabetical order.
 * (bug 7785) Postgres compatibility for timestamps in RC feeds
 * (bug 7550) Normalize user parameter normally on Special:Log
-
+* (bug 7294) Fix PATH search for diff3 on install
 
 == Languages updated ==
 
