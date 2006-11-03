@@ -5,17 +5,16 @@
     let sq_close_ri = HTMLABLEC(FONT_UFH,"]", "]")
 %}
 %token <Render_info.t> LITERAL DELIMITER
-%token <string> FUN_AR2 FUN_INFIX FUN_AR1 DECL FUN_AR1opt BIG
+%token <string> FUN_AR2 FUN_INFIX FUN_AR1 DECL FUN_AR1opt BIG FUN_AR2nb
 %token <string*string> BOX
 %token <string*(string*string)> FUN_AR1hl
 %token <string*Render_info.font_force> FUN_AR1hf DECLh
 %token <string*(Tex.t->Tex.t->string*string*string)> FUN_AR2h
 %token <string*(Tex.t list->Tex.t list->string*string*string)> FUN_INFIXh
 %token EOF CURLY_OPEN CURLY_CLOSE SUB SUP SQ_CLOSE NEXT_CELL NEXT_ROW
-%token BEGIN__MATRIX BEGIN_PMATRIX BEGIN_BMATRIX BEGIN_BBMATRIX BEGIN_VMATRIX BEGIN_VVMATRIX BEGIN_CASES BEGIN_ARRAY 
-%token END__MATRIX END_PMATRIX END_BMATRIX END_BBMATRIX END_VMATRIX END_VVMATRIX END_CASES END_ARRAY 
-%token LEFT RIGHT
-
+%token BEGIN__MATRIX BEGIN_PMATRIX BEGIN_BMATRIX BEGIN_BBMATRIX BEGIN_VMATRIX BEGIN_VVMATRIX BEGIN_CASES BEGIN_ARRAY BEGIN_ALIGN BEGIN_ALIGNAT BEGIN_SMALLMATRIX
+%token END__MATRIX END_PMATRIX END_BMATRIX END_BBMATRIX END_VMATRIX END_VVMATRIX END_CASES END_ARRAY END_ALIGN END_ALIGNAT END_SMALLMATRIX
+%token LEFT RIGHT 
 %type <Tex.t list> tex_expr
 %start tex_expr
 
@@ -54,14 +53,25 @@ lit_aq:
     lit				{ $1 }
   | lit_dq			{ let base,downi = $1 in TEX_DQ(base,downi) }
   | lit_uq			{ let base,upi = $1   in TEX_UQ(base,upi)}
+  | lit_dqn			{ TEX_DQN($1) }
+  | lit_uqn			{ TEX_UQN($1) }
   | lit_fq			{ $1 }
+
 lit_fq:
     lit_dq SUP lit		{ let base,downi = $1 in TEX_FQ(base,downi,$3) }
   | lit_uq SUB lit		{ let base,upi = $1   in TEX_FQ(base,$3,upi) }
+  | lit_dqn SUP lit     { TEX_FQN($1, $3) }
+
 lit_uq:
     lit SUP lit			{ $1,$3 }
 lit_dq:
     lit SUB lit			{ $1,$3 }
+lit_uqn:
+    SUP lit             { $2 }
+lit_dqn:
+    SUB lit             { $2 }
+
+
 left:
     LEFT DELIMITER		{ $2 }
   | LEFT SQ_CLOSE		{ sq_close_ri }
@@ -79,6 +89,7 @@ lit:
   | FUN_AR1hf lit		{ let t,h=$1 in TEX_FUN1hf(t,h,$2) }
   | FUN_AR1opt expr_nosqc SQ_CLOSE lit { TEX_FUN2sq($1,TEX_CURLY $2,$4) }
   | FUN_AR2 lit lit		{ TEX_FUN2($1,$2,$3) }
+  | FUN_AR2nb lit lit		{ TEX_FUN2nb($1,$2,$3) }
   | FUN_AR2h lit lit		{ let t,h=$1 in TEX_FUN2h(t,h,$2,$3) }
   | BOX				{ let bt,s = $1 in TEX_BOX (bt,s) }
   | CURLY_OPEN expr CURLY_CLOSE
@@ -94,6 +105,9 @@ lit:
   | BEGIN_VMATRIX  matrix END_VMATRIX	{ TEX_MATRIX ("vmatrix", $2) }
   | BEGIN_VVMATRIX matrix END_VVMATRIX	{ TEX_MATRIX ("Vmatrix", $2) }
   | BEGIN_ARRAY    matrix END_ARRAY	    { TEX_MATRIX ("array", $2) }
+  | BEGIN_ALIGN    matrix END_ALIGN	    { TEX_MATRIX ("aligned", $2) }
+  | BEGIN_ALIGNAT  matrix END_ALIGNAT	{ TEX_MATRIX ("alignedat", $2) }
+  | BEGIN_SMALLMATRIX  matrix END_SMALLMATRIX { TEX_MATRIX ("smallmatrix", $2) }
   | BEGIN_CASES    matrix END_CASES	{ TEX_MATRIX ("cases", $2) }
 matrix:
     line			{ [$1] }
