@@ -137,6 +137,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   because it doesn't make any sense for an IP. Additionally, IP blocks
   without the ipb_enable_autoblock option no longer show up as "autoblock
   disabled" on Special:Ipblocklist.
+* (bug 7774) MATH: aded more amstex functions
+* (bug 1182) MATH: fixed inconsistent rendering of upper case Greek letters in TeX
 
 == Languages updated ==
 

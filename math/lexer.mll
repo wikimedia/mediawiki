@@ -16,6 +16,10 @@ let aboxchars = ['0'-'9' 'a'-'z' 'A'-'Z' '+' '-' '*' ',' '=' '(' ')' ':' '/' ';'
 
 rule token = parse
     space +			{ token lexbuf }
+  | "\\text" space * '{' boxchars + '}'
+				{ Texutil.tex_use_ams (); let str = Lexing.lexeme lexbuf in
+				  let n = String.index str '{' + 1 in
+				  BOX ("\\text", String.sub str n (String.length str - n - 1)) }
   | "\\mbox" space * '{' aboxchars + '}'
 				{ let str = Lexing.lexeme lexbuf in
 				  let n = String.index str '{' + 1 in
@@ -52,6 +56,8 @@ rule token = parse
   | delimiter_uf_op		{ let str = Lexing.lexeme lexbuf in DELIMITER (MHTMLABLEC (FONT_UFH, str," "^str^" ",MO,str)) }
   | "\\" alpha + 		{ Texutil.find (Lexing.lexeme lexbuf) }
   | "\\sqrt" space * "["	{ FUN_AR1opt "\\sqrt" }
+  | "\\xleftarrow" space * "["	{ Texutil.tex_use_ams(); FUN_AR1opt "\\xleftarrow" }
+  | "\\xrightarrow" space * "["	{ Texutil.tex_use_ams(); FUN_AR1opt "\\xrightarrow" }
   | "\\," 			{ LITERAL (HTMLABLE (FONT_UF, "\\,","&nbsp;")) }
   | "\\ " 			{ LITERAL (HTMLABLE (FONT_UF, "\\ ","&nbsp;")) }
   | "\\;" 			{ LITERAL (HTMLABLE (FONT_UF, "\\;","&nbsp;")) }
@@ -79,6 +85,12 @@ rule token = parse
   | "\\end{Vmatrix}"		{ END_VVMATRIX }
   | "\\begin{array}"		{ Texutil.tex_use_ams(); BEGIN_ARRAY }
   | "\\end{array}"  		{ END_ARRAY }
+  | "\\begin{align}"		{ Texutil.tex_use_ams(); BEGIN_ALIGN }
+  | "\\end{align}"  		{ END_ALIGN }
+  | "\\begin{alignat}"		{ Texutil.tex_use_ams(); BEGIN_ALIGNAT }
+  | "\\end{alignat}"  		{ END_ALIGNAT }
+  | "\\begin{smallmatrix}"	{ Texutil.tex_use_ams(); BEGIN_SMALLMATRIX }
+  | "\\end{smallmatrix}"  	{ END_SMALLMATRIX }
   | "\\begin{cases}"		{ Texutil.tex_use_ams(); BEGIN_CASES }
   | "\\end{cases}"		{ END_CASES }
   | '>'				{ LITERAL (HTMLABLEC(FONT_UFH,">"," &gt; ")) }

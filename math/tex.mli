@@ -4,11 +4,15 @@ type t =
     | TEX_FQ of t * t * t
     | TEX_DQ of t * t
     | TEX_UQ of t * t
+    | TEX_FQN of t * t
+    | TEX_DQN of t
+    | TEX_UQN of t
     | TEX_LR of Render_info.t * Render_info.t * t list
     | TEX_BOX of string * string
     | TEX_BIG of string * Render_info.t
     | TEX_FUN1 of string * t
     | TEX_FUN2 of string * t * t
+    | TEX_FUN2nb of string * t * t
     | TEX_INFIX of string * t list * t list
     | TEX_FUN2sq of string * t * t
     | TEX_FUN1hl  of string * (string * string) * t
