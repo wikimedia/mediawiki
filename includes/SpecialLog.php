@@ -97,7 +97,7 @@ class LogReader {
 	function limitUser( $name ) {
 		if ( $name == '' )
 			return false;
-		$usertitle = Title::makeTitle( NS_USER, $name );
+		$usertitle = Title::makeTitleSafe( NS_USER, $name );
 		if ( is_null( $usertitle ) )
 			return false;
 		$this->user = $usertitle->getText();
