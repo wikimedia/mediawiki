@@ -129,6 +129,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 461) Allow "Categories:" link at bottom of pages to be customized via
   pagecategorieslink message.
 * Sort the list of skins in "My Preferences" -> Skins by alphabetical order.
+* (bug 7785) Postgres compatibility for timestamps in RC feeds
+
 
 == Languages updated ==
 
