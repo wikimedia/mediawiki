@@ -307,7 +307,7 @@ $magicWords = array(
 	'newsectionlink'         => array( 1,    '__NEWSECTIONLINK__'     ),
 	'currentversion'         => array( 1,    'CURRENTVERSION'         ),
 	'urlencode'              => array( 0,    'URLENCODE:'             ),
-	'anchorencode'		 => array( 0,	 'ANCHORENCODE'			  ),
+	'anchorencode'			 => array( 0,	 'ANCHORENCODE'			  ),
 	'currenttimestamp'       => array( 1,    'CURRENTTIMESTAMP'       ),
 	'localtimestamp'         => array( 1,    'LOCALTIMESTAMP'         ),
 	'directionmark'          => array( 1,    'DIRECTIONMARK', 'DIRMARK' ),
@@ -319,7 +319,6 @@ $magicWords = array(
 	'padleft'                => array( 0,    'PADLEFT'                ),
 	'padright'               => array( 0,    'PADRIGHT'               ),
 	'special'                => array( 0,    'special',               ),
-	'ic'			 => array( 0,	 'ic:', 'tc:'		  ),
 );
 
 /**

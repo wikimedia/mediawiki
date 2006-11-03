@@ -165,7 +165,6 @@ class Parser
 		$this->setFunctionHook( 'padright', array( 'CoreParserFunctions', 'padright' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'anchorencode', array( 'CoreParserFunctions', 'anchorencode' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'special', array( 'CoreParserFunctions', 'special' ) );
-		$this->setFunctionHook( 'ic', array( 'CoreParserFunctions', 'ic' ), SFH_NO_HASH );
 
 		if ( $wgAllowDisplayTitle ) {
 			$this->setFunctionHook( 'displaytitle', array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
