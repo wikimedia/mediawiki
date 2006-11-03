@@ -579,8 +579,7 @@ END;
 		$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $wgOut->mCategoryLinks ) . $pop;
 
 		$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escape' ), count( $wgOut->mCategoryLinks ) );
-		$s = $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Categories' ),
-			$msg, 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
+		$s = $this->makeLinkObj( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
 			. ': ' . $t;
 
 		# optional 'dmoz-like' category browser. Will be shown under the list

@@ -531,6 +531,7 @@ parent class in order maintain consistency across languages.
 #
 'categories' => 'Categories',
 'pagecategories' => '{{PLURAL:$1|Category|Categories}}',
+'pagecategorieslink' => 'Special:Categories',
 'category_header' => 'Articles in category "$1"',
 'subcategories' => 'Subcategories',
 
