@@ -45,8 +45,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		if (!is_null($hide)) {
 			$hide = array_flip($hide);
-			if(isset ($hide['anons']) && isset ($hide['liu'])) 
-				$this->dieUsage( "Both 'anons' and 'liu' cannot be set at the same time", 'hide' );
+			if (isset ($hide['anons']) && isset ($hide['liu']))
+				$this->dieUsage("Both 'anons' and 'liu' cannot be set at the same time", 'hide');
 			$this->addWhereIf('rc_minor = 0', isset ($hide['minor']));
 			$this->addWhereIf('rc_bot = 0', isset ($hide['bots']));
 			$this->addWhereIf('rc_user != 0', isset ($hide['anons']));
@@ -80,6 +80,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		}
 
 		$this->addOption('LIMIT', $limit +1);
+		$this->addOption('USE INDEX', 'rc_timestamp');
 
 		$data = array ();
 		$count = 0;
@@ -93,7 +94,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			}
 
 			$vals = $this->addRowInfo('rc', $row);
-			if($vals)
+			if ($vals)
 				$data[] = $vals;
 		}
 		$db->freeResult($res);
@@ -164,7 +165,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&list=recentchanges',
+			'api.php?action=query&list=recentchanges'
 		);
 	}
 
