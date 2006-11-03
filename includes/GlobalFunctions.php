@@ -375,9 +375,11 @@ function wfMsgNoDBForContent( $key ) {
 
 /**
  * Really get a message
- * @return $key String: key to get.
- * @return $args
- * @return $useDB Boolean
+ * @param $key String: key to get.
+ * @param $args
+ * @param $useDB Boolean
+ * @param $transform Boolean: Whether or not to transform the message.
+ * @param $forContent Boolean
  * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = true ) {
