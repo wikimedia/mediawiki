@@ -180,12 +180,14 @@ class Linker {
 	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
 	 * call to this will result in a DB query.
 	 * 
-	 * @param $title String: the text of the title
+	 * @param $nt     Title: the title object to make the link from, e.g. from
+	 *                      Title::newFromText.
 	 * @param $text  String: link text
 	 * @param $query String: optional query part
 	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
+	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
 	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
