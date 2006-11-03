@@ -282,6 +282,10 @@ function wfReadOnly() {
  *
  * @param $key String: lookup key for the message, usually
  *    defined in languages/Language.php
+ * 
+ * This function also takes extra optional parameters (not 
+ * shown in the function definition), which can by used to 
+ * insert variable text into the predefined message.
  */
 function wfMsg( $key ) {
 	$args = func_get_args();
@@ -522,6 +526,7 @@ function wfMsgWikiHtml( $key ) {
  *  <i>parseinline<i>: parses wikitext to html and removes the surrounding p's added by parser or tidy
  *  <i>escape<i>: filters message trough htmlspecialchars
  *  <i>replaceafter<i>: parameters are substituted after parsing or escaping
+ *  <i>parsemag<i>: ??
  */
 function wfMsgExt( $key, $options ) {
 	global $wgOut, $wgMsgParserOptions, $wgParser;
