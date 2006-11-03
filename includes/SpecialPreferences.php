@@ -732,12 +732,19 @@ class PreferencesForm {
 		# Only show members of Skin::getSkinNames() rather than
 		# $skinNames (skins is all skin names from Language.php)
 		$validSkinNames = Skin::getSkinNames();
-		foreach ($validSkinNames as $skinkey => $skinname ) {
+		# Sort by UI skin name. First though need to update validSkinNames as sometimes
+		# the skinkey & UI skinname differ (e.g. "standard" skinkey is "Classic" in the UI).
+		foreach ($validSkinNames as $skinkey => & $skinname ) {
+			if ( isset( $skinNames[$skinkey] ) )  {
+				$skinname = $skinNames[$skinkey];
+			}
+		}
+		asort($validSkinNames);
+		foreach ($validSkinNames as $skinkey => $sn ) {
 			if ( in_array( $skinkey, $wgSkipSkins ) ) {
 				continue;
 			}
 			$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
-			$sn = isset( $skinNames[$skinkey] ) ? $skinNames[$skinkey] : $skinname;
 
 			$mplink = htmlspecialchars($mptitle->getLocalURL("useskin=$skinkey"));
 			$previewlink = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
