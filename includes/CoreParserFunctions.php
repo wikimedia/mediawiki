@@ -59,6 +59,13 @@ class CoreParserFunctions {
 		return $wgContLang->uc( $s );
 	}
 
+	static function ic( $parser, $s = '' ) {
+		/*Testing showed that ucwords does NOT convert the rest of the words to lowercase
+		 * Converting it all to lowercase first fixes this. */
+		$s = strtolower($s);
+		return ucwords($s);
+	}
+
 	static function localurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getLocalURL', $s, $arg ); }
 	static function localurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeLocalURL', $s, $arg ); }
 	static function fullurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getFullURL', $s, $arg ); }
