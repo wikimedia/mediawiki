@@ -613,9 +613,10 @@ function rcNamespaceForm( $namespace, $invert, $nondefaults, $categories_any ) {
  */
 function rcFormatDiff( $row ) {
 	$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
+	$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
 	return rcFormatDiffRow( $titleObj,
 		$row->rc_last_oldid, $row->rc_this_oldid,
-		$row->rc_timestamp,
+		$timestamp,
 		$row->rc_comment );
 }
 
