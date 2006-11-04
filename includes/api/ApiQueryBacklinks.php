@@ -95,7 +95,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		extract($this->extractRequestParams());
 
 		if ($redirect)
-			$this->dieDebug('Redirect is not yet been implemented', 'notimplemented');
+			ApiBase :: dieDebug(__METHOD__, 'Redirect is not yet been implemented', 'notimplemented');
 
 		$this->processContinue($continue, $redirect);
 

@@ -166,7 +166,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiQueryContributions.php 17335 2006-11-01 09:36:00Z Werdna $';
+		return __CLASS__ . ': $Id$';
 	}
 }
 ?>
