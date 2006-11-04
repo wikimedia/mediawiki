@@ -1441,7 +1441,7 @@ if( !isset( $wgCommandLineMode ) ) {
 # Recent changes settings
 #
 
-/** Log IP addresses in the recentchanges table */
+/** Log IP addresses in the recentchanges table; can be accessed only by extensions (e.g. CheckUser) or a DB admin */
 $wgPutIPinRC = true;
 
 /**
