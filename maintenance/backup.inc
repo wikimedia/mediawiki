@@ -175,7 +175,7 @@ class BackupDumper {
 		$this->initProgress( $history );
 
 		$db =& $this->backupDb();
-		$exporter = new WikiExporter( $db, $history, MW_EXPORT_STREAM, $text );
+		$exporter = new WikiExporter( $db, $history, WikiExporter::STREAM, $text );
 
 		$wrapper = new ExportProgressFilter( $this->sink, $this );
 		$exporter->setOutputSink( $wrapper );
