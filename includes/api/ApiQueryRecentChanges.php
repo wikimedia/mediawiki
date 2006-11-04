@@ -36,21 +36,24 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$limit = $prop = $from = $namespace = $hide = $dir = $start = $end = null;
+		$limit = $prop = $from = $namespace = $show = $dir = $start = $end = null;
 		extract($this->extractRequestParams());
 
 		$this->addTables('recentchanges');
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('rc_namespace', $namespace);
 
-		if (!is_null($hide)) {
-			$hide = array_flip($hide);
-			if (isset ($hide['anons']) && isset ($hide['liu']))
-				$this->dieUsage("Both 'anons' and 'liu' cannot be set at the same time", 'hide');
-			$this->addWhereIf('rc_minor = 0', isset ($hide['minor']));
-			$this->addWhereIf('rc_bot = 0', isset ($hide['bots']));
-			$this->addWhereIf('rc_user != 0', isset ($hide['anons']));
-			$this->addWhereIf('rc_user = 0', isset ($hide['liu']));
+		if (!is_null($show)) {
+			$show = array_flip($show);
+			if ((isset ($show['minor']) && isset ($show['!minor'])) || (isset ($show['bot']) && isset ($show['!bot'])) || (isset ($show['anon']) && isset ($show['!anon'])))
+				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
+
+			$this->addWhereIf('rc_minor = 0', isset ($show['!minor']));
+			$this->addWhereIf('rc_minor != 0', isset ($show['minor']));
+			$this->addWhereIf('rc_bot = 0', isset ($show['!bot']));
+			$this->addWhereIf('rc_bot != 0', isset ($show['bot']));
+			$this->addWhereIf('rc_user = 0', isset ($show['anon']));
+			$this->addWhereIf('rc_user != 0', isset ($show['!anon']));
 		}
 
 		$this->addFields(array (
@@ -131,13 +134,15 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					'flags'
 				)
 			),
-			'hide' => array (
+			'show' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
 					'minor',
-					'bots',
-					'anons',
-					'liu'
+					'!minor',
+					'bot',
+					'!bot',
+					'anon',
+					'!anon'
 				)
 			),
 			'limit' => array (
@@ -157,7 +162,10 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'dir' => 'In which direction to enumerate.',
 			'namespace' => 'Filter log entries to only this namespace(s)',
 			'prop' => 'Include additional pieces of information',
-			'hide' => 'Hide certain changes (minor edits, bots, anonymous, logged-in-users)',
+			'show' => array (
+				'Show only items that meet this criteria.',
+				'For example, to see only minor edits done by logged-in users, set show=minor|!anon'
+			),
 			'limit' => 'How many total pages to return.'
 		);
 	}
