@@ -140,6 +140,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7774) MATH: aded more amstex functions
 * (bug 1182) MATH: fixed inconsistent rendering of upper case Greek letters in TeX
 * Fix regression in streaming page dump generation
+* (bug 7801) Add support for parser function hooks in parser tests
 
 
 == Languages updated ==
