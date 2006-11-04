@@ -358,7 +358,7 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	private function initFromQueryResult($db, $res, &$remaining = null, $processTitles = null) {
 		if (!is_null($remaining) && is_null($processTitles))
-			ApiBase :: dieDebug('Missing $processTitles parameter when $remaining is provided');
+			ApiBase :: dieDebug(__METHOD__, 'Missing $processTitles parameter when $remaining is provided');
 			
 		while ($row = $db->fetchObject($res)) {
 
@@ -431,7 +431,7 @@ class ApiPageSet extends ApiQueryBase {
 
 		// Populate all the page information
 		if($this->mResolveRedirects)
-			$this->dieDebug('revids may not be used with redirect resolution');
+			ApiBase :: dieDebug(__METHOD__, 'revids may not be used with redirect resolution');
 		$this->initFromPageIds(array_keys($pageids));
 	}
 
@@ -527,7 +527,7 @@ class ApiPageSet extends ApiQueryBase {
 
 		// All IDs must exist in the page table
 		if (!empty($this->mPendingRedirectIDs[$plfrom]))
-			$this->dieDebug('Invalid redirect IDs were found');
+			ApiBase :: dieDebug(__METHOD__, 'Invalid redirect IDs were found');
 
 		return $linkBatch;
 	}

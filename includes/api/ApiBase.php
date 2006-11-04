@@ -150,8 +150,18 @@ abstract class ApiBase {
 
 			if ($this->getMain()->getShowVersions()) {
 				$versions = $this->getVersion();
-				if (is_array($versions))
+				$pattern = '(\$.*) ([0-9a-z_]+\.php) (.*\$)';
+				$replacement = '\\0' . "\n    " . 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/api/\\2';
+				
+				if (is_array($versions)) {
+					$ver2 = array();
+					foreach ($versions as &$v)
+						$v = eregi_replace($pattern, $replacement, $v);
 					$versions = implode("\n  ", $versions);
+				}
+				else
+					$versions = eregi_replace($pattern, $replacement, $versions);
+
 				$msg .= "Version:\n  $versions\n";
 			}
 		}
