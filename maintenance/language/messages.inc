@@ -1949,12 +1949,12 @@ Variants for Chinese language",
 
 /** Short comments for standalone messages */
 $wgMessageComments = array(
-	'lastmodifieddat'             => '$1 date, $2 time',
+	'lastmodifiedat'              => '$1 date, $2 time',
 	'sitenotice'                  => 'the equivalent to wgSiteNotice',
 	'perfdisabledsub'             => 'obsolete?',
 	'history-feed-item-nocomment' => 'user at time',
 	'editcomment'                 => 'only shown if there is an edit comment',
-	'lastmodifieddatby'           => '$1 date, $2 time, $3 user',
+	'lastmodifiedatby'            => '$1 date, $2 time, $3 user',
 	'exif-orientation-1'          => '0th row: top; 0th column: left',
 	'exif-orientation-2'          => '0th row: top; 0th column: right',
 	'exif-orientation-3'          => '0th row: bottom; 0th column: right',
