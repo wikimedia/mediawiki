@@ -44,6 +44,8 @@ $wgIgnoredMessages = array(
 $wgOptionalMessages = array(
 	'imgmultigotopost',
 	'linkprefix',
+	'feed-atom',
+	'feed-rss',
 	'allpages-summary',
 	'booksources-summary',
 	'ipblocklist-summary',
