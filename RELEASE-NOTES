@@ -144,6 +144,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * checkUsernames.php now uses wfDebugLog instead of hardcoded path to log
 * (bug 7810) Update talk namespaces for Occitan
 * Allow case-sensitive URLs to be used for uploading from URLs.
+* (bug 1109) Correct fix for compressed 304 responses when additional output
+  buffers have been installed within the compression handler
 
 
 == Languages updated ==

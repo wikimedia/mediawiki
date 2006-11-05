@@ -127,7 +127,10 @@ class OutputPage {
 				$this->sendCacheControl();
 				wfDebug( "$fname: CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
 				$this->disable();
-				@ob_end_clean(); // Don't output compressed blob
+				// Don't output compressed blob
+				while( $status = ob_get_status() ) {
+					ob_end_clean();
+				}
 				return true;
 			} else {
 				wfDebug( "$fname: READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
