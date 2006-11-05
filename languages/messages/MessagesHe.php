@@ -420,8 +420,6 @@ $messages = array(
 "restorelink"         => "{{plural:$1|גרסה מחוקה אחת|$1 גרסאות מחוקות}}",
 "feedlinks"           => "הזנה:",
 "feed-invalid"        => "סוג הזנת המנוי שגוי.",
-"feed-atom"           => "Atom",
-"feed-rss"            => "RSS",
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 "nstab-main"      => "דף תוכן",
