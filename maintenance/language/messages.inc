@@ -449,6 +449,7 @@ $wgMessageStrucutre = array(
 		'updated',
 		'note',
 		'previewnote',
+		'previewconflict',
 		'session_fail_preview',
 		'session_fail_preview_html',
 		'importing',
@@ -1209,6 +1210,7 @@ $wgMessageStrucutre = array(
 		'exporttext',
 		'exportcuronly',
 		'exportnohistory',
+		'export-submit',
 	),
 	'allmessages' => array(
 		'allmessages',
@@ -1382,7 +1384,7 @@ $wgMessageStrucutre = array(
 		'passwordtooshort',
 	),
 	'mediawarning' => array(
-		'mediawaring',
+		'mediawarning',
 	),
 	'fileinfo' => array(
 		'fileinfo',
