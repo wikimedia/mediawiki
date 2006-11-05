@@ -23,19 +23,28 @@ $namespaceNames = array(
 	NS_MAIN           => '',
 	NS_TALK           => 'Discutir',
 	NS_USER           => 'Utilisator',
-	NS_USER_TALK      => 'Discutida_Utilisator',
+	NS_USER_TALK      => 'Discussion_Utilisator',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Discutida_$1',
+	NS_PROJECT_TALK   => 'Discussion_$1',
 	NS_IMAGE          => 'Imatge',
-	NS_IMAGE_TALK     => 'Discutida_Imatge',
+	NS_IMAGE_TALK     => 'Discussion_Imatge',
 	NS_MEDIAWIKI      => 'Mediaòiqui',
-	NS_MEDIAWIKI_TALK => 'Discutida_Mediaòiqui',
+	NS_MEDIAWIKI_TALK => 'Discussion_Mediaòiqui',
 	NS_TEMPLATE       => 'Modèl',
-	NS_TEMPLATE_TALK  => 'Discutida_Modèl',
+	NS_TEMPLATE_TALK  => 'Discussion_Modèl',
 	NS_HELP           => 'Ajuda',
-	NS_HELP_TALK      => 'Discutida_Ajuda',
+	NS_HELP_TALK      => 'Discussion_Ajuda',
 	NS_CATEGORY       => 'Categoria',
-	NS_CATEGORY_TALK  => 'Discutida_Categoria',
+	NS_CATEGORY_TALK  => 'Discussion_Categoria',
+);
+$namespaceAliases = array(
+	'Discutida_Utilisator' => NS_USER_TALK,
+	//'Discutida_$1'         => NS_PROJECT_TALK, /// @fixme
+	'Discutida_Imatge'     => NS_IMAGE_TALK,
+	'Discutida_Mediaòiqui' => NS_MEDIAWIKI_TALK,
+	'Discutida_Modèl'      => NS_TEMPLATE_TALK,
+	'Discutida_Ajuda'      => NS_HELP_TALK,
+	'Discutida_Categoria'  => NS_CATEGORY_TALK,
 );
 $linkTrail = "/^([a-zàâçéèêîôû]+)(.*)\$/sDu";
 
