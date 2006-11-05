@@ -133,7 +133,7 @@ class UploadForm {
 		}
 
 		# Maybe remove some pasting blanks :-)
-		$url = strtolower( trim( $url ) );
+		$url =  trim( $url );
 		if( substr( $url, 0, 7 ) != 'http://' && substr( $url, 0, 6 ) != 'ftp://' ) {
 			# Only HTTP or FTP URLs
 			return true;
