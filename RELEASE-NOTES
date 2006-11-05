@@ -143,6 +143,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7801) Add support for parser function hooks in parser tests
 * checkUsernames.php now uses wfDebugLog instead of hardcoded path to log
 * (bug 7810) Update talk namespaces for Occitan
+* Allow case-sensitive URLs to be used for uploading from URLs.
 
 
 == Languages updated ==
