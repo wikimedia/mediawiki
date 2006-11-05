@@ -141,6 +141,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 1182) MATH: fixed inconsistent rendering of upper case Greek letters in TeX
 * Fix regression in streaming page dump generation
 * (bug 7801) Add support for parser function hooks in parser tests
+* checkUsernames.php now uses wfDebugLog instead of hardcoded path to log
 
 
 == Languages updated ==
