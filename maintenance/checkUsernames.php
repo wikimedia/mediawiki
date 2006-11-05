@@ -7,7 +7,6 @@ class checkUsernames {
 
 	function checkUsernames() {
 		$this->stderr = fopen( 'php://stderr', 'wt' );
-		$this->log = fopen( '/home/wikipedia/logs/checkUsernames.log', 'at' );
 	}
 	function main() {
 		$fname = 'checkUsernames::main';
@@ -24,7 +23,7 @@ class checkUsernames {
 			if ( ! User::isValidUserName( $row->user_name ) ) {
 				$out = sprintf( "%s: %6d: '%s'\n", wfWikiID(), $row->user_id, $row->user_name );
 				fwrite( $this->stderr, $out );
-				fwrite( $this->log, $out );
+				wfDebugLog( 'checkUsernames', $out );
 			}
 		}
 	}
