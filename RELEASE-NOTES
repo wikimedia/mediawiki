@@ -146,6 +146,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow case-sensitive URLs to be used for uploading from URLs.
 * (bug 1109) Correct fix for compressed 304 responses when additional output
   buffers have been installed within the compression handler
+* (bug 98) Prohibit corner-case where it might be possible to create a page
+  beginning with a forward slash.
 
 
 == Languages updated ==

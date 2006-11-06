@@ -1551,6 +1551,16 @@ class Title {
 			return false;
 		}
 
+		/**
+		 * Pages whose titles start with / can confuse webservers
+		 * and proxies. They can be unreachable with the pretty
+		 * URLs. Forbid them explicitly.
+		*/
+		if ( strpos( $r, '/') === 0 )
+		{
+			return false;
+		}
+
 		# We shouldn't need to query the DB for the size.
 		#$maxSize = $dbr->textFieldSize( 'page', 'page_title' );
 		if ( strlen( $r ) > 255 ) {
@@ -2298,7 +2308,7 @@ class Title {
 	 * @deprecated use DependencyWrapper
 	 */
 	function getRelatedCache( $memc, $key, $expiry, $callback, $params = array() ) {
-		return DependencyWrapper::getValueFromCache( $memc, $key, $expiry, $callback, 
+		return DependencyWrapper::getValueFromCache( $memc, $key, $expiry, $callback,
 			$params, new TitleDependency( $this ) );
 	}
 
