@@ -1,10 +1,13 @@
 <?php
-/** Kazakh (Қазақша)
+/**
+  * Kazakh (Қазақша)
   *
   * @package MediaWiki
   * @subpackage Language
   */
 
-$linkTrail = '/^([a-zа-яäçéğıïñöşüʺʹёәіңғүұқөһ“»]+)(.*)$/sDu';
+$fallback = 'kk-kz';
+
+$linkTrail = '/^([a-zäçéğıïñöşüýа-яёәғіқңөұүһʺʹ“»]+)(.*)$/sDu';
 
 ?>
