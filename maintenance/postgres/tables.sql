@@ -211,7 +211,7 @@ CREATE TABLE hitcounter (
 CREATE SEQUENCE ipblocks_ipb_id_val;
 CREATE TABLE ipblocks (
   ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_val'),
-  ipb_address           CIDR             NULL,
+  ipb_address           TEXT             NULL,
   ipb_user              INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   ipb_by                INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
   ipb_reason            TEXT         NOT NULL,
