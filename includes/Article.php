@@ -1272,6 +1272,14 @@ class Article {
 		$isminor = ( $flags & EDIT_MINOR ) && $wgUser->isAllowed('minoredit');
 		$bot = $wgUser->isAllowed( 'bot' ) || ( $flags & EDIT_FORCE_BOT );
 
+		# If no edit comment was given when creating a new page, and what's being
+		# created is a redirect, be smart and fill in a neat auto-comment
+		if( $summary == '' ) {
+			$rt = Title::newFromRedirect( $text );
+			if( is_object( $rt ) )
+				$summary = wfMsgForContent( 'autoredircomment', $rt->getPrefixedText() );
+		}
+
 		$text = $this->preSaveTransform( $text );
 
 		$dbw =& wfGetDB( DB_MASTER );
