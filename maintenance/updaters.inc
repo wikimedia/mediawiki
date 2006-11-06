@@ -982,6 +982,9 @@ ALTER TABLE mwuser ADD user_newpass_time TIMESTAMPTZ;
 -- New column for autoblocking problem users
 ALTER TABLE ipblocks ADD ipb_enable_autoblock CHAR NOT NULL DEFAULT '1';
 
+-- Despite it's name, ipb_address does not necessarily contain IP addresses :)
+ALTER TABLE ipblocks ALTER ipb_address TYPE TEXT USING ipb_address::TEXT;
+
 -- New tables:
 CREATE TABLE redirect (
   rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
