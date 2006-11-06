@@ -146,6 +146,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow case-sensitive URLs to be used for uploading from URLs.
 * (bug 1109) Correct fix for compressed 304 responses when additional output
   buffers have been installed within the compression handler
+* (bug 7819) Move automatic redirect edit summary after pre-save transform
+  to work properly with subst: fun
 
 
 == Languages updated ==
