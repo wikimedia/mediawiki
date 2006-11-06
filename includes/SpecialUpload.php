@@ -28,6 +28,7 @@ class UploadForm {
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
 	var $mOname, $mSessionKey, $mStashed, $mDestFile, $mRemoveTempFile, $mSourceType;
+	var $mUploadTempFileSize = 0;
 	/**#@-*/
 
 	/**
@@ -134,13 +135,12 @@ class UploadForm {
 
 		# Maybe remove some pasting blanks :-)
 		$url =  trim( $url );
-		if( substr( $url, 0, 7 ) != 'http://' && substr( $url, 0, 6 ) != 'ftp://' ) {
+		if( stripos($url, 'http://') !== 0 && stripos($url, 'ftp://') !== 0 ) {
 			# Only HTTP or FTP URLs
 			return true;
 		}
 
 		# Open temporary file
-		$this->mUploadTempFileSize = 0;
 		$this->mUploadTempFile = @fopen( $this->mUploadTempName, "wb" );
 		if( $this->mUploadTempFile === false ) {
 			# Could not open temporary file to write in
