@@ -149,7 +149,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7819) Move automatic redirect edit summary after pre-save transform
   to work properly with subst: fun
 * (bug 7826) Fix typos in two English messages.
-
+* (bug 5365) Stop users being prompted to enter an edit summary for null edits,
+  if they have selected that option in preferences.
 
 == Languages updated ==
 
