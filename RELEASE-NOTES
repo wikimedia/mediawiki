@@ -151,6 +151,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7826) Fix typos in two English messages.
 * (bug 5365) Stop users being prompted to enter an edit summary for null edits,
   if they have selected that option in preferences.
+* (bug 5936) Show an 'm' to the left of the edit summary on diff pages for minor edits.
 
 == Languages updated ==
 

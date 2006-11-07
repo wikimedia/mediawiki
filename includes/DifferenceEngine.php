@@ -171,13 +171,26 @@ CONTROL;
 				'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
 		}
 
+		$oldminor = '';
+		$newminor = '';
+
+		if ($this->mOldRev->mMinorEdit == 1) {
+			$oldminor = wfElement( 'span', array( 'class' => 'minor' ),
+				wfMsg( 'minoreditletter') ) . ' ';
+		}
+
+                if ($this->mNewRev->mMinorEdit == 1) {
+                        $newminor = wfElement( 'span', array( 'class' => 'minor' ),
+				wfMsg( 'minoreditletter') ) . ' ';
+                }
+
 		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />" .
 			$sk->revUserTools( $this->mOldRev ) . "<br />" .
-			$sk->revComment( $this->mOldRev ) . "<br />" .
+			$oldminor . $sk->revComment( $this->mOldRev ) . "<br />" .
 			$prevlink;
 		$newHeader = "<strong>{$this->mNewtitle}</strong><br />" .
 			$sk->revUserTools( $this->mNewRev ) . " $rollback<br />" .
-			$sk->revComment( $this->mNewRev ) . "<br />" .
+			$newminor . $sk->revComment( $this->mNewRev ) . "<br />" .
 			$nextlink . $patrol;
 
 		$this->showDiff( $oldHeader, $newHeader );
