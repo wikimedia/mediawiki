@@ -739,7 +739,7 @@ Please report this to an administrator, making note of the URL.',
 'badarticleerror' => 'This action cannot be performed on this page.',
 'cannotdelete'	=> 'Could not delete the page or file specified. (It may have already been deleted by someone else.)',
 'badtitle'		=> 'Bad title',
-'badtitletext' => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title. It may contain one more characters which cannot be used in titles.',
+'badtitletext' => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title. It may contain one or more characters which cannot be used in titles.',
 'perfdisabled' => 'Sorry! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
 'perfdisabledsub' => 'Here is a saved copy from $1:', # obsolete?
 'perfcached' => 'The following data is cached and may not be up to date.',
