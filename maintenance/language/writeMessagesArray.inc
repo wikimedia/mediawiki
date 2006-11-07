@@ -7,15 +7,17 @@
  */
 
 require_once( 'messages.inc' );
+require_once( 'messageTypes.inc' );
 
 /**
  * Write a messages array as a PHP text.
  *
  * @param $messages The messages array.
+ * @param $ignoredComments Show comments about ignored and optional messages? (For English.)
  *
  * @return The PHP text.
  */
-function writeMessagesArray( $messages ) {
+function writeMessagesArray( $messages, $ignoredComments = false ) {
 	global $wgMessageStrucutre, $wgBlockComments, $wgMessageComments;
 
 	# Sort messages to blocks
@@ -39,9 +41,9 @@ function writeMessagesArray( $messages ) {
 		}
 
 		# Write the block
-		$messagesText .= writeMessagesBlock( $block, $wgBlockComments[$block], $messages );
+		$messagesText .= writeMessagesBlock( $block, $wgBlockComments[$block], $messages, $ignoredComments );
 	}
-	$messagesText .= writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'] );
+	$messagesText .= writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'], $ignoredComments );
 	$messagesText .= ");\n";
 
 	return $messagesText;
@@ -53,11 +55,13 @@ function writeMessagesArray( $messages ) {
  * @param $name The block name.
  * @param $comment The block comment.
  * @param $messages The block messages.
+ * @param $ignoredComments Show comments about ignored and optional messages? (For English.)
  *
  * @return The block, formatted in PHP.
  */
-function writeMessagesBlock( $name, $comment, $messages ) {
+function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 	global $wgMessageComments;
+	global $wgIgnoredMessages, $wgOptionalMessages;
 	$blockText = '';
 
 	# Skip the block if it includes no messages
@@ -107,7 +111,24 @@ function writeMessagesBlock( $name, $comment, $messages ) {
 		# Comma
 		$blockText .= ',';
 
-		if ( array_key_exists( $key, $wgMessageComments ) ) {
+		$ignoredComment = "don't translate or duplicate this message to other languages";
+		$optionalComment = "only translate this message to other languages if you have to change it";
+		$showIgnoredOrOptionalComment = in_array( $key, $wgIgnoredMessages ) || in_array( $key, $wgOptionalMessages );
+		if ( $ignoredComments ) {
+			if ( array_key_exists( $key, $wgMessageComments ) ) {
+				$blockText .= ' # ' . $wgMessageComments[$key];
+				if ( $showIgnoredOrOptionalComment ) {
+					$blockText .= '; ';
+				}
+			} elseif ( $showIgnoredOrOptionalComment ) {
+				$blockText .= ' # ';
+			}
+			if ( in_array( $key, $wgIgnoredMessages ) ) {
+				$blockText .= $ignoredComment;
+			} elseif ( in_array( $key, $wgOptionalMessages ) ) {
+				$blockText .= $optionalComment;
+			}
+		} elseif ( array_key_exists( $key, $wgMessageComments ) ) {
 			$blockText .= ' # ' . $wgMessageComments[$key];
 		}
 

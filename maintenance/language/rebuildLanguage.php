@@ -24,7 +24,7 @@ function rebuildLanguage( $code, $write ) {
 	$messages = $messages['all'];
 
 	# Rewrite messages array
-	$messagesText = writeMessagesArray( $messages );
+	$messagesText = writeMessagesArray( $messages, $code == 'en' );
 
 	# Write to the file
 	if ( $write ) {
