@@ -171,8 +171,9 @@ function getContributorCredits($article, $cnt, $showIfMax) {
  *
  */
 function creditLink($user_name, $link_text = '') {
-	global $wgContLang;
-	return Linker::makeLink($wgContLang->getNsText(NS_USER) . ':' . $user_name,
+	global $wgUser, $wgContLang;
+	$skin = $wgUser->getSkin();
+	return $skin->makeLink($wgContLang->getNsText(NS_USER) . ':' . $user_name,
 			       htmlspecialchars( (empty($link_text)) ? $user_name : $link_text ));
 }
 
@@ -180,7 +181,9 @@ function creditLink($user_name, $link_text = '') {
  *
  */
 function creditOthersLink($article) {
-	return Linker::makeKnownLink($article->mTitle->getPrefixedText(), wfMsg('others'), 'action=credits');
+	global $wgUser;
+	$skin = $wgUser->getSkin();
+	return $skin->makeKnownLink($article->mTitle->getPrefixedText(), wfMsg('others'), 'action=credits');
 }
 
 ?>

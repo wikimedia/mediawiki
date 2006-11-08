@@ -59,19 +59,19 @@ class MIMEsearchPage extends QueryPage {
 			";
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgContLang, $wgLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
-		$plink = Linker::makeLink( $nt->getPrefixedText(), $text );
+		$plink = $skin->makeLink( $nt->getPrefixedText(), $text );
 
-		$download = Linker::makeMediaLink( $nt->getText(), 'fuck me!', wfMsgHtml( 'download' ) );
+		$download = $skin->makeMediaLink( $nt->getText(), 'fuck me!', wfMsgHtml( 'download' ) );
 		$bytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->img_size ) );
 		$dimensions = wfMsg( 'widthheight', $wgLang->formatNum( $result->img_width ),
 			$wgLang->formatNum( $result->img_height ) );
-		$user = Linker::makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
+		$user = $skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
 		$time = $wgLang->timeanddate( $result->img_timestamp );
 
 		return "($download) $plink . . $dimensions . . $bytes . . $user . . $time";

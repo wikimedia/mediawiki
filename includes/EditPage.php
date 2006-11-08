@@ -820,6 +820,8 @@ class EditPage {
 		$fname = 'EditPage::showEditForm';
 		wfProfileIn( $fname );
 
+		$sk =& $wgUser->getSkin();
+
 		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) ) ;
 
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -941,7 +943,7 @@ class EditPage {
 		$minor   = wfMsgExt('minoredit', array('parseinline'));
 		$watchthis = wfMsgExt('watchthis', array('parseinline'));
 
-		$cancel = Linker::makeKnownLink( $this->mTitle->getPrefixedText(),
+		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 				wfMsgExt('cancel', array('parseinline')) );
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ));
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
@@ -1252,8 +1254,12 @@ END
 	 * Prepare a list of templates used by this page. Returns HTML.
 	 */
 	function formatTemplates() {
+		global $wgUser;
+
 		$fname = 'EditPage::formatTemplates';
 		wfProfileIn( $fname );
+
+		$sk =& $wgUser->getSkin();
 
 		$outText = '';
 		$templates = $this->mArticle->getUsedTemplates();
@@ -1270,7 +1276,7 @@ END
 				wfMsgExt( 'templatesused', array( 'parse' ) ) .
 				'</div><ul>';
 			foreach ( $templates as $titleObj ) {
-				$outText .= '<li>' . Linker::makeLinkObj( $titleObj ) . '</li>';
+				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
 			}
 			$outText .= '</ul>';
 		}
@@ -1430,10 +1436,11 @@ END
 	 * Produce the stock "please login to edit pages" page
 	 */
 	function userNotLoggedInPage() {
-		global $wgOut;
+		global $wgUser, $wgOut;
+		$skin = $wgUser->getSkin();
 		
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = Linker::makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
+		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
 	
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );

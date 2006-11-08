@@ -295,12 +295,12 @@ class SkinTemplate extends Skin {
 			$usertalktitle = $usertitle->getTalkPage();
 			if( !$usertalktitle->equals( $this->mTitle ) ) {
 				$ntl = wfMsg( 'youhavenewmessages',
-					self::makeKnownLinkObj(
+					$this->makeKnownLinkObj(
 						$usertalktitle,
 						wfMsgHtml( 'newmessageslink' ),
 						'redirect=no'
 					),
-					self::makeKnownLinkObj(
+					$this->makeKnownLinkObj(
 						$usertalktitle,
 						wfMsgHtml( 'newmessagesdifflink' ),
 						'diff=cur'

@@ -34,7 +34,8 @@ class ChangesList {
 	#
 
 	/** @todo document */
-	function ChangesList() {
+	function ChangesList( &$skin ) {
+		$this->skin =& $skin;
 		$this->preCacheMessages();
 	}
 
@@ -46,9 +47,10 @@ class ChangesList {
 	 * @return ChangesList derivative
 	 */
 	function newFromUser( &$user ) {
+		$sk =& $user->getSkin();
 		$list = NULL;
-		if( wfRunHooks( 'FetchChangesList', array( &$user, &$list ) ) ) {
-			return $user->getOption( 'usenewrc' ) ? new EnhancedChangesList() : new OldChangesList();
+		if( wfRunHooks( 'FetchChangesList', array( &$user, &$skin, &$list ) ) ) {
+			return $user->getOption( 'usenewrc' ) ? new EnhancedChangesList( $sk ) : new OldChangesList( $sk );
 		} else {
 			return $list;
 		}
@@ -110,13 +112,13 @@ class ChangesList {
 		# Diff
 		$s .= '(' . $this->message['diff'] . ') (';
 		# Hist
-		$s .= Linker::makeKnownLinkObj( $rc->getMovedToTitle(), $this->message['hist'], 'action=history' ) .
+		$s .= $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), $this->message['hist'], 'action=history' ) .
 			') . . ';
 
 		# "[[x]] moved to [[y]]"
 		$msg = ( $rc->mAttribs['rc_type'] == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
-		$s .= wfMsg( $msg, Linker::makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
-			Linker::makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+		$s .= wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
+			$this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 	}
 
 	function insertDateHeader(&$s, $rc_timestamp) {
@@ -137,7 +139,7 @@ class ChangesList {
 
 	function insertLog(&$s, $title, $logtype) {
 		$logname = LogPage::logName( $logtype );
-		$s .= '(' . Linker::makeKnownLinkObj($title, $logname ) . ')';
+		$s .= '(' . $this->skin->makeKnownLinkObj($title, $logname ) . ')';
 	}
 
 
@@ -149,7 +151,7 @@ class ChangesList {
 			$rcidparam = $unpatrolled
 				? array( 'rcid' => $rc->mAttribs['rc_id'] )
 				: array();
-			$diffLink = Linker::makeKnownLinkObj( $rc->getTitle(), $this->message['diff'],
+			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'],
 				wfArrayToCGI( array(
 					'curid' => $rc->mAttribs['rc_cur_id'],
 					'diff'  => $rc->mAttribs['rc_this_oldid'],
@@ -160,7 +162,7 @@ class ChangesList {
 		$s .= '('.$diffLink.') (';
 
 		# History link
-		$s .= Linker::makeKnownLinkObj( $rc->getTitle(), $this->message['hist'],
+		$s .= $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['hist'],
 			wfArrayToCGI( array(
 				'curid' => $rc->mAttribs['rc_cur_id'],
 				'action' => 'history' ) ) );
@@ -174,7 +176,7 @@ class ChangesList {
 		$params = ( $unpatrolled && $rc->mAttribs['rc_type'] == RC_NEW )
 			? 'rcid='.$rc->mAttribs['rc_id']
 			: '';
-		$articlelink = ' '. Linker::makeKnownLinkObj( $rc->getTitle(), '', $params );
+		$articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 		if($watched) $articlelink = '<strong>'.$articlelink.'</strong>';
 		global $wgContLang;
 		$articlelink .= $wgContLang->getDirMark();
@@ -190,15 +192,15 @@ class ChangesList {
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
 	function insertUserRelatedLinks(&$s, &$rc) {
-		$s .= Linker::userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
-		$s .= Linker::userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+		$s .= $this->skin->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+		$s .= $this->skin->userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 	}
 
 	/** insert a formatted comment */
 	function insertComment(&$s, &$rc) {
 		# Add comment
 		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
-			$s .= Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
+			$s .= $this->skin->commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
 		}
 	}
 
@@ -322,23 +324,23 @@ class EnhancedChangesList extends ChangesList {
 		# Make article link
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
-			$clink = wfMsg( $msg, Linker::makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
-			  Linker::makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+			$clink = wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
+			  $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 		} elseif( $rc_namespace == NS_SPECIAL ) {
 			list( $specialName, $logtype ) = SpecialPage::resolveAliasWithSubpage( $rc_title );
 			if ( $specialName == 'Log' ) {
 				# Log updates, etc
 				$logname = LogPage::logName( $logtype );
-				$clink = '(' . Linker::makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
+				$clink = '(' . $this->skin->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
 			} else {
 				wfDebug( "Unexpected special page in recentchanges\n" );
 				$clink = '';
 			}
 		} elseif( $rc->unpatrolled && $rc_type == RC_NEW ) {
 			# Unpatrolled new page, give rc_id in query
-			$clink = Linker::makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
+			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
 		} else {
-			$clink = Linker::makeKnownLinkObj( $rc->getTitle(), '' );
+			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
 		}
 
 		$time = $wgContLang->time( $rc_timestamp, true, true );
@@ -356,31 +358,31 @@ class EnhancedChangesList extends ChangesList {
 		$querycur = $curIdEq."&diff=0&oldid=$rc_this_oldid";
 		$querydiff = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid$rcIdQuery";
 		$aprops = ' tabindex="'.$baseRC->counter.'"';
-		$curLink = Linker::makeKnownLinkObj( $rc->getTitle(), $this->message['cur'], $querycur, '' ,'', $aprops );
+		$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['cur'], $querycur, '' ,'', $aprops );
 		if( $rc_type == RC_NEW || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			if( $rc_type != RC_NEW ) {
 				$curLink = $this->message['cur'];
 			}
 			$diffLink = $this->message['diff'];
 		} else {
-			$diffLink = Linker::makeKnownLinkObj( $rc->getTitle(), $this->message['diff'], $querydiff, '' ,'', $aprops );
+			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'], $querydiff, '' ,'', $aprops );
 		}
 
 		# Make "last" link
 		if( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$lastLink = $this->message['last'];
 		} else {
-			$lastLink = Linker::makeKnownLinkObj( $rc->getTitle(), $this->message['last'],
+			$lastLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['last'],
 			  $curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid . $rcIdQuery );
 		}
 
-		$rc->userlink = Linker::userLink( $rc_user, $rc_user_text );
+		$rc->userlink = $this->skin->userLink( $rc_user, $rc_user_text );
 
 		$rc->lastlink = $lastLink;
 		$rc->curlink  = $curLink;
 		$rc->difflink = $diffLink;
 
-		$rc->usertalklink = Linker::userToolLinks( $rc_user, $rc_user_text );
+		$rc->usertalklink = $this->skin->userToolLinks( $rc_user, $rc_user_text );
 
 		# Put accumulated information into the cache, for later display
 		# Page moves go on their own line
@@ -470,13 +472,13 @@ class EnhancedChangesList extends ChangesList {
 			if( $isnew ) {
 				$r .= $this->message['changes'];
 			} else {
-				$r .= Linker::makeKnownLinkObj( $block[0]->getTitle(),
+				$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
 					$this->message['changes'], $curIdEq."&diff=$currentRevision&oldid=$oldid" );
 			}
 			$r .= '; ';
 
 			# History
-			$r .= Linker::makeKnownLinkObj( $block[0]->getTitle(),
+			$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
 				$this->message['history'], $curIdEq.'&action=history' );
 			$r .= ')';
 		}
@@ -507,7 +509,7 @@ class EnhancedChangesList extends ChangesList {
 			if( $rc_type == RC_LOG ) {
 				$link = $rcObj->timestamp;
 			} else {
-				$link = Linker::makeKnownLinkObj( $rcObj->getTitle(), $rcObj->timestamp, $curIdEq.'&'.$o );
+				$link = $this->skin->makeKnownLinkObj( $rcObj->getTitle(), $rcObj->timestamp, $curIdEq.'&'.$o );
 			}
 			$link = '<tt>'.$link.'</tt>';
 
@@ -518,7 +520,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $rcObj->lastlink;
 			$r .= ') . . '.$rcObj->userlink;
 			$r .= $rcObj->usertalklink;
-			$r .= Linker::commentBlock( $rc_comment, $rcObj->getTitle() );
+			$r .= $this->skin->commentBlock( $rc_comment, $rcObj->getTitle() );
 			$r .= "<br />\n";
 		}
 		$r .= "</div>\n";
@@ -614,14 +616,14 @@ class EnhancedChangesList extends ChangesList {
 		$r .= ' ('. $rcObj->difflink .'; ';
 
 		# Hist
-		$r .= Linker::makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' );
+		$r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' );
 
 		# User/talk
 		$r .= ') . . '.$rcObj->userlink . $rcObj->usertalklink;
 
 		# Comment
 		if( $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			$r .= Linker::commentBlock( $rc_comment, $rcObj->getTitle() );
+			$r .= $this->skin->commentBlock( $rc_comment, $rcObj->getTitle() );
 		}
 
 		if( $rcObj->numberofWatchingusers > 0 ) {

@@ -177,6 +177,7 @@ class LoginForm {
 		} else {
 			# Confirm that the account was created
 			global $wgOut;
+			$skin = $wgUser->getSkin();
 			$self = SpecialPage::getTitleFor( 'Userlogin' );
 			$wgOut->setPageTitle( wfMsgHtml( 'accountcreated' ) );
 			$wgOut->setArticleRelated( false );
@@ -726,13 +727,15 @@ class LoginForm {
 	 * @param $lang Language code
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
+		global $wgUser;
 		$self = SpecialPage::getTitleFor( 'Userlogin' );
 		$attr[] = 'uselang=' . $lang;
 		if( $this->mType == 'signup' )
 			$attr[] = 'type=signup';
 		if( $this->mReturnTo )
 			$attr[] = 'returnto=' . $this->mReturnTo;
-		return Linker::makeKnownLinkObj( $self, htmlspecialchars( $text ), implode( '&', $attr ) );
+		$skin =& $wgUser->getSkin();
+		return $skin->makeKnownLinkObj( $self, htmlspecialchars( $text ), implode( '&', $attr ) );
 	}
 	
 }

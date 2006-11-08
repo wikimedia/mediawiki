@@ -38,17 +38,17 @@ class MostrevisionsPage extends QueryPage {
 			";
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
-		$plink = Linker::makeKnownLinkObj( $nt, $text );
+		$plink = $skin->makeKnownLinkObj( $nt, $text );
 
 		$nl = wfMsgExt( 'nrevisions', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->value ) );
-		$nlink = Linker::makeKnownLinkObj( $nt, $nl, 'action=history' );
+		$nlink = $skin->makeKnownLinkObj( $nt, $nl, 'action=history' );
 
 		return wfSpecialList($plink, $nlink);
 	}

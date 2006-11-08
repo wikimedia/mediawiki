@@ -55,15 +55,15 @@ class WantedCategoriesPage extends QueryPage {
 			$db->dataSeek( $res, 0 );
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
 
 		$plink = $this->isCached() ?
-			Linker::makeLinkObj( $nt, htmlspecialchars( $text ) ) :
-			Linker::makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
+			$skin->makeLinkObj( $nt, htmlspecialchars( $text ) ) :
+			$skin->makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
 
 		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->value ) );

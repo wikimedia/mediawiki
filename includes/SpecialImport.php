@@ -176,14 +176,16 @@ class ImportReporter {
 	}
 	
 	function reportPage( $title, $origTitle, $revisionCount, $successCount ) {
-		global $wgOut, $wgLang, $wgContLang;
-
+		global $wgOut, $wgUser, $wgLang, $wgContLang;
+		
+		$skin = $wgUser->getSkin();
+		
 		$this->mPageCount++;
 		
 		$localCount = $wgLang->formatNum( $successCount );
 		$contentCount = $wgContLang->formatNum( $successCount );
 		
-		$wgOut->addHtml( "<li>" . Linker::makeKnownLinkObj( $title ) .
+		$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) .
 			" " .
 			wfMsgExt( 'import-revision-count', array( 'parsemag', 'escape' ), $localCount ) .
 			"</li>\n" );

@@ -482,7 +482,7 @@ class UndeleteForm {
 	}
 
 	/* private */ function showList() {
-		global $wgLang, $wgContLang, $wgOut;
+		global $wgLang, $wgContLang, $wgUser, $wgOut;
 
 		# List undeletable articles
 		$result = PageArchive::listAllPages();
@@ -494,11 +494,12 @@ class UndeleteForm {
 		}
 		$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
 
+		$sk = $wgUser->getSkin();
 		$undelete =& SpecialPage::getTitleFor( 'Undelete' );
 		$wgOut->addHTML( "<ul>\n" );
 		while( $row = $result->fetchObject() ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
-			$link = Linker::makeKnownLinkObj( $undelete, htmlspecialchars( $title->getPrefixedText() ), 'target=' . $title->getPrefixedUrl() );
+			$link = $sk->makeKnownLinkObj( $undelete, htmlspecialchars( $title->getPrefixedText() ), 'target=' . $title->getPrefixedUrl() );
 			$revs = wfMsgHtml( 'undeleterevisions', $wgLang->formatNum( $row->count ) );
 			$wgOut->addHtml( "<li>{$link} ({$revs})</li>\n" );
 		}
@@ -581,6 +582,7 @@ class UndeleteForm {
 	/* private */ function showHistory() {
 		global $wgLang, $wgUser, $wgOut;
 
+		$sk = $wgUser->getSkin();
 		if ( $this->mAllowed ) {
 			$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 		} else {
@@ -669,15 +671,15 @@ class UndeleteForm {
 				$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 				if ( $this->mAllowed ) {
 					$checkBox = wfCheck( "ts$ts" );
-					$pageLink = Linker::makeKnownLinkObj( $titleObj,
+					$pageLink = $sk->makeKnownLinkObj( $titleObj,
 						$wgLang->timeanddate( $ts, true ),
 						"target=$target&timestamp=$ts" );
 				} else {
 					$checkBox = '';
 					$pageLink = $wgLang->timeanddate( $ts, true );
 				}
-				$userLink = Linker::userLink( $row->ar_user, $row->ar_user_text ) . Linker::userToolLinks( $row->ar_user, $row->ar_user_text );
-				$comment = Linker::commentBlock( $row->ar_comment );
+				$userLink = $sk->userLink( $row->ar_user, $row->ar_user_text ) . $sk->userToolLinks( $row->ar_user, $row->ar_user_text );
+				$comment = $sk->commentBlock( $row->ar_comment );
 				$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $comment</li>\n" );
 	
 			}
@@ -697,14 +699,14 @@ class UndeleteForm {
 					$checkBox = wfCheck( "fileid" . $row->fa_id );
 					$key = urlencode( $row->fa_storage_key );
 					$target = urlencode( $this->mTarget );
-					$pageLink = Linker::makeKnownLinkObj( $titleObj,
+					$pageLink = $sk->makeKnownLinkObj( $titleObj,
 						$wgLang->timeanddate( $ts, true ),
 						"target=$target&file=$key" );
 				} else {
 					$checkBox = '';
 					$pageLink = $wgLang->timeanddate( $ts, true );
 				}
- 				$userLink = Linker::userLink( $row->fa_user, $row->fa_user_text ) . Linker::userToolLinks( $row->fa_user, $row->fa_user_text );
+ 				$userLink = $sk->userLink( $row->fa_user, $row->fa_user_text ) . $sk->userToolLinks( $row->fa_user, $row->fa_user_text );
 				$data =
 					wfMsgHtml( 'widthheight',
 						$wgLang->formatNum( $row->fa_width ),
@@ -712,7 +714,7 @@ class UndeleteForm {
 					' (' .
 					wfMsgHtml( 'nbytes', $wgLang->formatNum( $row->fa_size ) ) .
 					')';
-				$comment = Linker::commentBlock( $row->fa_description );
+				$comment = $sk->commentBlock( $row->fa_description );
 				$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $data $comment</li>\n" );
 			}
 			$files->free();
@@ -730,7 +732,7 @@ class UndeleteForm {
 	}
 
 	function undelete() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		if( !is_null( $this->mTargetObj ) ) {
 			$archive = new PageArchive( $this->mTargetObj );
 			$ok = true;
@@ -741,7 +743,8 @@ class UndeleteForm {
 				$this->mFileVersions );
 			
 			if( $ok ) {
-				$link = Linker::makeKnownLinkObj( $this->mTargetObj );
+				$skin =& $wgUser->getSkin();
+				$link = $skin->makeKnownLinkObj( $this->mTargetObj );
 				$wgOut->addHtml( wfMsgWikiHtml( 'undeletedpage', $link ) );
 				return true;
 			}

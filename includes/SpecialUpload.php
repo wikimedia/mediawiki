@@ -254,7 +254,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function processUpload() {
-		global $wgOut;
+		global $wgUser, $wgOut;
 
 		/* Check for PHP error if any, requires php 4.2 or newer */
 		if( $this->mUploadError == 1/*UPLOAD_ERR_INI_SIZE*/ ) {
@@ -395,15 +395,18 @@ class UploadForm {
 			}
 
 			if( $nt->getArticleID() ) {
-				$dlink = Linker::makeKnownLinkObj( $nt );
+				global $wgUser;
+				$sk = $wgUser->getSkin();
+				$dlink = $sk->makeKnownLinkObj( $nt );
 				$warning .= '<li>'.wfMsgHtml( 'fileexists', $dlink ).'</li>';
 			} else {
 				# If the file existed before and was deleted, warn the user of this
 				# Don't bother doing so if the image exists now, however
 				$image = new Image( $nt );
 				if( $image->wasDeleted() ) {
+					$skin = $wgUser->getSkin();
 					$ltitle = SpecialPage::getTitleFor( 'Log' );
-					$llink = Linker::makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 'type=delete&page=' . $nt->getPrefixedUrl() );
+					$llink = $skin->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 'type=delete&page=' . $nt->getPrefixedUrl() );
 					$warning .= wfOpenElement( 'li' ) . wfMsgWikiHtml( 'filewasdeleted', $llink ) . wfCloseElement( 'li' );
 				}
 			}
@@ -588,11 +591,12 @@ class UploadForm {
 	 * @access private
 	 */
 	function showSuccess() {
-		global $wgOut, $wgContLang;
+		global $wgUser, $wgOut, $wgContLang;
 
-		$ilink = Linker::makeMediaLink( $this->mUploadSaveName, Image::imageUrl( $this->mUploadSaveName ) );
+		$sk = $wgUser->getSkin();
+		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, Image::imageUrl( $this->mUploadSaveName ) );
 		$dname = $wgContLang->getNsText( NS_IMAGE ) . ':'.$this->mUploadSaveName;
-		$dlink = Linker::makeKnownLink( $dname, $dname );
+		$dlink = $sk->makeKnownLink( $dname, $dname );
 
 		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'successfulupload' ) . "</h2>\n" );
 		$text = wfMsgWikiHtml( 'fileuploaded', $ilink, $dlink );
@@ -700,6 +704,7 @@ class UploadForm {
 		$wgOut->addHTML( '<div id="uploadtext">' );
 		$wgOut->addWikiText( wfMsg( 'uploadtext' ) );
 		$wgOut->addHTML( '</div>' );
+		$sk = $wgUser->getSkin();
 
 
 		$sourcefilename = wfMsgHtml( 'sourcefilename' );

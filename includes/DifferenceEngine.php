@@ -143,12 +143,13 @@ CONTROL;
 			exit;
 		}
 
+		$sk = $wgUser->getSkin();
 		$talk = $wgContLang->getNsText( NS_TALK );
 		$contribs = wfMsg( 'contribslink' );
 
 		if ( $this->mNewRev->isCurrent() && $wgUser->isAllowed('rollback') ) {
 			$username = $this->mNewRev->getUserText();
-			$rollback = '&nbsp;&nbsp;&nbsp;<strong>[' . Linker::makeKnownLinkObj( $this->mTitle, wfMsg( 'rollbacklink' ),
+			$rollback = '&nbsp;&nbsp;&nbsp;<strong>[' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'rollbacklink' ),
 				'action=rollback&from=' . urlencode( $username ) .
 				'&token=' . urlencode( $wgUser->editToken( array( $this->mTitle->getPrefixedText(), $username ) ) ) ) .
 				']</strong>';
@@ -156,17 +157,17 @@ CONTROL;
 			$rollback = '';
 		}
 		if( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->isAllowed( 'patrol' ) ) {
-			$patrol = ' [' . Linker::makeKnownLinkObj( $this->mTitle, wfMsg( 'markaspatrolleddiff' ), "action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']';
+			$patrol = ' [' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'markaspatrolleddiff' ), "action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']';
 		} else {
 			$patrol = '';
 		}
 
-		$prevlink = Linker::makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'previousdiff' ),
+		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'previousdiff' ),
 			'diff=prev&oldid='.$this->mOldid, '', '', 'id="differences-prevlink"' );
 		if ( $this->mNewRev->isCurrent() ) {
 			$nextlink = '&nbsp;';
 		} else {
-			$nextlink = Linker::makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ),
+			$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ),
 				'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
 		}
 
@@ -184,12 +185,12 @@ CONTROL;
                 }
 
 		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />" .
-			Linker::revUserTools( $this->mOldRev ) . "<br />" .
-			$oldminor . Linker::revComment( $this->mOldRev ) . "<br />" .
+			$sk->revUserTools( $this->mOldRev ) . "<br />" .
+			$oldminor . $sk->revComment( $this->mOldRev ) . "<br />" .
 			$prevlink;
 		$newHeader = "<strong>{$this->mNewtitle}</strong><br />" .
-			Linker::revUserTools( $this->mNewRev ) . " $rollback<br />" .
-			$newminor . Linker::revComment( $this->mNewRev ) . "<br />" .
+			$sk->revUserTools( $this->mNewRev ) . " $rollback<br />" .
+			$newminor . $sk->revComment( $this->mNewRev ) . "<br />" .
 			$nextlink . $patrol;
 
 		$this->showDiff( $oldHeader, $newHeader );
@@ -217,7 +218,7 @@ CONTROL;
 	 * contrast to normal "old revision" display style.
 	 */
 	function showFirstRevision() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		$fname = 'DifferenceEngine::showFirstRevision';
 		wfProfileIn( $fname );
@@ -248,10 +249,12 @@ CONTROL;
 
 		# Prepare the header box
 		#
-		$nextlink = Linker::makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
+		$sk = $wgUser->getSkin();
+
+		$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
 		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />" .
-			Linker::revUserTools( $this->mNewRev ) . "<br />" .
-			Linker::revComment( $this->mNewRev ) . "<br />" .
+			$sk->revUserTools( $this->mNewRev ) . "<br />" .
+			$sk->revComment( $this->mNewRev ) . "<br />" .
 			$nextlink . "</div>\n";
 
 		$wgOut->addHTML( $header );

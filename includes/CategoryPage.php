@@ -49,7 +49,8 @@ class CategoryViewer {
 	var $title, $limit, $from, $until,
 		$articles, $articles_start_char, 
 		$children, $children_start_char,
-		$showGallery, $gallery;
+		$showGallery, $gallery,
+		$skin;
 
 	function __construct( $title, $from = '', $until = '' ) {
 		global $wgCategoryPagingLimit;
@@ -98,13 +99,21 @@ class CategoryViewer {
 		}
 	}
 
+	function getSkin() {
+		if ( !$this->skin ) {
+			global $wgUser;
+			$this->skin = $wgUser->getSkin();
+		}
+		return $this->skin;
+	}
+
 	/**
 	 * Add a subcategory to the internal lists
 	 */
 	function addSubcategory( $title, $sortkey, $pageLength ) {
 		global $wgContLang;
 		// Subcategory; strip the 'Category' namespace from the link text.
-		$this->children[] = Linker::makeKnownLinkObj( 
+		$this->children[] = $this->getSkin()->makeKnownLinkObj( 
 			$title, $wgContLang->convertHtml( $title->getText() ) );
 
 		$this->children_start_char[] = $this->getSubcategorySortChar( $title, $sortkey );
@@ -150,7 +159,7 @@ class CategoryViewer {
 	 */
 	function addPage( $title, $sortkey, $pageLength ) {
 		global $wgContLang;
-		$this->articles[] = Linker::makeSizeLinkObj( 
+		$this->articles[] = $this->getSkin()->makeSizeLinkObj( 
 			$pageLength, $title, $wgContLang->convert( $title->getPrefixedText() ) 
 		);
 		$this->articles_start_char[] = $wgContLang->convert( $wgContLang->firstChar( $sortkey ) );
@@ -379,16 +388,17 @@ class CategoryViewer {
 	 */
 	function pagingLinks( $title, $first, $last, $limit, $query = array() ) {
 		global $wgUser, $wgLang;
+		$sk =& $this->getSkin();
 		$limitText = $wgLang->formatNum( $limit );
 
 		$prevLink = htmlspecialchars( wfMsg( 'prevn', $limitText ) );
 		if( $first != '' ) {
-			$prevLink = Linker::makeLinkObj( $title, $prevLink,
+			$prevLink = $sk->makeLinkObj( $title, $prevLink,
 				wfArrayToCGI( $query + array( 'until' => $first ) ) );
 		}
 		$nextLink = htmlspecialchars( wfMsg( 'nextn', $limitText ) );
 		if( $last != '' ) {
-			$nextLink = Linker::makeLinkObj( $title, $nextLink,
+			$nextLink = $sk->makeLinkObj( $title, $nextLink,
 				wfArrayToCGI( $query + array( 'from' => $last ) ) );
 		}
 

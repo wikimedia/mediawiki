@@ -82,16 +82,17 @@ function wfSpecialStatistics() {
 
 		$wgOut->addWikiText( $text );
 
-		global $wgDisableCounters, $wgMiserMode, $wgLang, $wgContLang;
+		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
 		if( !$wgDisableCounters && !$wgMiserMode ) {
 			$sql = "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 AND page_counter > 0 ORDER BY page_counter DESC";
 			$sql = $dbr->limitResult($sql, 10, 0);
 			$res = $dbr->query( $sql, $fname );
 			if( $res ) {
 				$wgOut->addHtml( '<h2>' . wfMsgHtml( 'statistics-mostpopular' ) . '</h2>' );
+				$skin =& $wgUser->getSkin();
 				$wgOut->addHtml( '<ol>' );
 				while( $row = $dbr->fetchObject( $res ) ) {
-					$link = Linker::makeKnownLinkObj( Title::makeTitleSafe( $row->page_namespace, $row->page_title ) );
+					$link = $skin->makeKnownLinkObj( Title::makeTitleSafe( $row->page_namespace, $row->page_title ) );
 					$dirmark = $wgContLang->getDirMark();
 					$wgOut->addHtml( '<li>' . $link . $dirmark . ' [' . $wgLang->formatNum( $row->page_counter ) . ']</li>' );
 				}

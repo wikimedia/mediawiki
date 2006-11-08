@@ -506,8 +506,9 @@ class PreferencesForm {
 				$disableEmailPrefs = false;
 			} else {
 				$disableEmailPrefs = true;
+				$skin = $wgUser->getSkin();
 				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
-					Linker::makeKnownLinkObj( SpecialPage::getTitleFor( 'Confirmemail' ),
+					$skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Confirmemail' ),
 						wfMsg( 'emailconfirmlink' ) );
 			}
 		} else {
