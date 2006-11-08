@@ -118,7 +118,7 @@ class SkinStandard extends Skin {
 		$s .= $this->bottomLinks();
 		$s .= "\n<br />" . $this->mainPageLink()
 		  . ' | ' . $this->aboutLink()
-		  . ' | ' . $this->specialLink( 'recentchanges' )
+		  . ' | ' . self::specialLink( 'recentchanges' )
 		  . ' | ' . $this->searchForm()
 		  . '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
@@ -164,8 +164,8 @@ class SkinStandard extends Skin {
 		}
 
 		if( $wgUser->isLoggedIn() ) {
-			$s.= $this->specialLink( 'watchlist' ) ;
-			$s .= $sep . $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
+			$s.= self::specialLink( 'watchlist' ) ;
+			$s .= $sep . self::makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 				wfMsg( 'mycontris' ), 'target=' . wfUrlencode($wgUser->getName() ) );
 		}
 		// only show watchlist link if logged in
@@ -220,7 +220,7 @@ class SkinStandard extends Skin {
 						$link = $nstext . ':' . $link ;
 					}
 
-					$s .= $this->makeLink( $link, $text );
+					$s .= self::makeLink( $link, $text );
 				} elseif( $wgTitle->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
@@ -231,10 +231,10 @@ class SkinStandard extends Skin {
 
 			# "Post a comment" link
 			if( ( $wgTitle->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
-				$s .= '<br />' . $this->makeKnownLinkObj( $wgTitle, wfMsg( 'postcomment' ), 'action=edit&section=new' );
+				$s .= '<br />' . self::makeKnownLinkObj( $wgTitle, wfMsg( 'postcomment' ), 'action=edit&section=new' );
 			
 			#if( $tns%2 && $action!='edit' && !$wpPreview) {
-				#$s.= '<br />'.$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('postcomment'),'action=edit&section=new');
+				#$s.= '<br />'.self::makeKnownLink($wgTitle->getPrefixedText(),wfMsg('postcomment'),'action=edit&section=new');
 			#}
 
 			/*
@@ -282,9 +282,9 @@ class SkinStandard extends Skin {
 		}
 
 		if ( $wgUser->isLoggedIn() && ( $wgEnableUploads || $wgRemoteUploads ) ) {
-			$s .= $this->specialLink( 'upload' ) . $sep;
+			$s .= self::specialLink( 'upload' ) . $sep;
 		}
-		$s .= $this->specialLink( 'specialpages' )
+		$s .= self::specialLink( 'specialpages' )
 		  . $sep . $this->bugReportsLink();
 
 		global $wgSiteSupportPage;

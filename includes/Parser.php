@@ -1037,10 +1037,8 @@ class Parser
 					substr($m[0], 0, 20 ) . '"' );
 			}
 
-			$url = wfMsg( $urlmsg, $id);
-			$sk =& $this->mOptions->getSkin();
-			$la = $sk->getExternalLinkAttributes( $url, $keyword.$id );
-			$text = "<a href=\"{$url}\"{$la}>{$keyword} {$id}</a>";
+			$url = wfMsg( $urlmsg, $id );
+			$text = Linker::makeExternalLink( $url, "$keyword $id" );
 		}
 		return $text;
 	}
@@ -1258,8 +1256,6 @@ class Parser
 		$fname = 'Parser::replaceExternalLinks';
 		wfProfileIn( $fname );
 
-		$sk =& $this->mOptions->getSkin();
-
 		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
 		$s = $this->replaceFreeExternalLinks( array_shift( $bits ) );
@@ -1321,7 +1317,7 @@ class Parser
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
-			$s .= $sk->makeExternalLink( $url, $text, false, $linktype, $this->mTitle->getNamespace() ) . $dtrail . $trail;
+			$s .= Linker::makeExternalLink( $url, $text, false, $linktype, $this->mTitle->getNamespace() ) . $dtrail . $trail;
 
 			# Register link in the output object.
 			# Replace unnecessary URL escape codes with the referenced character
@@ -1346,8 +1342,6 @@ class Parser
 		$bits = preg_split( '/(\b(?:' . wfUrlProtocols() . '))/S', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$s = array_shift( $bits );
 		$i = 0;
-
-		$sk =& $this->mOptions->getSkin();
 
 		while ( $i < count( $bits ) ){
 			$protocol = $bits[$i++];
@@ -1400,7 +1394,7 @@ class Parser
 				$text = $this->maybeMakeExternalImage( $url );
 				if ( $text === false ) {
 					# Not an image, make a link
-					$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free', $this->mTitle->getNamespace() );
+					$text = Linker::makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free', $this->mTitle->getNamespace() );
 					# Register it in the output object...
 					# Replace unnecessary URL escape codes with their equivalent characters
 					$pasteurized = Parser::replaceUnusualEscapes( $url );
@@ -1455,7 +1449,6 @@ class Parser
 	 * @private
 	 */
 	function maybeMakeExternalImage( $url ) {
-		$sk =& $this->mOptions->getSkin();
 		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
 		$imagesexception = !empty($imagesfrom);
 		$text = false;
@@ -1463,7 +1456,7 @@ class Parser
 		     || ( $imagesexception && strpos( $url, $imagesfrom ) === 0 ) ) {
 			if ( preg_match( EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
-				$text = $sk->makeExternalImage( htmlspecialchars( $url ) );
+				$text = Linker::makeExternalImage( htmlspecialchars( $url ) );
 			}
 		}
 		return $text;
@@ -1484,8 +1477,6 @@ class Parser
 		static $tc = FALSE;
 		# the % is needed to support urlencoded titles as well
 		if ( !$tc ) { $tc = Title::legalChars() . '#%'; }
-
-		$sk =& $this->mOptions->getSkin();
 
 		#split the entire text string on occurences of [[
 		$a = explode( '[[', ' ' . $s );
@@ -1734,13 +1725,13 @@ class Parser
 			if( ( $nt->getPrefixedText() === $selflink ) &&
 			    ( $nt->getFragment() === '' ) ) {
 				# Self-links are handled specially; generally de-link and change to bold.
-				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
+				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
 
 			# Special and Media are pseudo-namespaces; no pages actually exist in them
 			if( $ns == NS_MEDIA ) {
-				$link = $sk->makeMediaLinkObj( $nt, $text );
+				$link = Linker::makeMediaLinkObj( $nt, $text );
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
 				$s .= $prefix . $this->armorLinks( $link ) . $trail;
 				$this->mOutput->addImage( $nt->getDBkey() );
@@ -1815,8 +1806,7 @@ class Parser
 	 */
 	function makeKnownLinkHolder( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		$sk =& $this->mOptions->getSkin();
-		$link = $sk->makeKnownLinkObj( $nt, $text, $query, $inside, $prefix );
+		$link = Linker::makeKnownLinkObj( $nt, $text, $query, $inside, $prefix );
 		return $this->armorLinks( $link ) . $trail;
 	}
 
@@ -3381,9 +3371,6 @@ class Parser
 			$enoughToc = false;
 		}
 
-		# We need this to perform operations on the HTML
-		$sk =& $this->mOptions->getSkin();
-
 		# headline counter
 		$headlineCount = 0;
 		$sectionCount = 0; # headlineCount excluding template sections
@@ -3427,7 +3414,7 @@ class Parser
 					$toclevel++;
 					$sublevelCount[$toclevel] = 0;
 					if( $toclevel<$wgMaxTocLevel ) {
-						$toc .= $sk->tocIndent();
+						$toc .= Linker::tocIndent();
 					}
 				}
 				elseif ( $level < $prevlevel && $toclevel > 1 ) {
@@ -3451,13 +3438,13 @@ class Parser
 						}
 					}
 					if( $toclevel<$wgMaxTocLevel ) {
-						$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
+						$toc .= Linker::tocUnindent( $prevtoclevel - $toclevel );
 					}
 				}
 				else {
 					# No change in level, end TOC line
 					if( $toclevel<$wgMaxTocLevel ) {
-						$toc .= $sk->tocLineEnd();
+						$toc .= Linker::tocLineEnd();
 					}
 				}
 
@@ -3517,7 +3504,7 @@ class Parser
 				$anchor .= '_' . $refcount[$headlineCount];
 			}
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
-				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
+				$toc .= Linker::tocLine($anchor, $tocline, $numbering, $toclevel);
 			}
 			# give headline the correct <h#> tag
 			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount];
@@ -3527,9 +3514,9 @@ class Parser
 					$head[$headlineCount] = '';
 				}
 				if( $istemplate )
-					$head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
+					$head[$headlineCount] .= Linker::editSectionLinkForOther($templatetitle, $templatesection);
 				else
-					$head[$headlineCount] .= $sk->editSectionLink($this->mTitle, $sectionCount+1, $headline_hint);
+					$head[$headlineCount] .= Linker::editSectionLink($this->mTitle, $sectionCount+1, $headline_hint);
 			}
 			// Yes, the headline logically goes before the edit section.  Why isn't it there
 			// in source?  Ask the CSS people.  The float gets screwed up if you do that.
@@ -3544,9 +3531,9 @@ class Parser
 
 		if( $enoughToc ) {
 			if( $toclevel<$wgMaxTocLevel ) {
-				$toc .= $sk->tocUnindent( $toclevel - 1 );
+				$toc .= Linker::tocUnindent( $toclevel - 1 );
 			}
-			$toc = $sk->tocList( $toc );
+			$toc = Linker::tocList( $toc );
 		}
 
 		# split up and insert constructed headlines
@@ -3561,7 +3548,7 @@ class Parser
 
 				# Disabled because it broke block formatting
 				# For example, a bullet point in the top line
-				# $full .= $sk->editSectionLink(0);
+				# $full .= Linker::editSectionLink(0);
 			}
 			$full .= $block;
 			if( $enoughToc && !$i && $isMain && !$this->mForceTocPosition ) {
@@ -3904,7 +3891,7 @@ class Parser
 
 	/**
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
-	 * Placeholders created in Skin::makeLinkObj()
+	 * Placeholders created in Linker::makeLinkObj()
 	 * Returns an array of links found, indexed by PDBK:
 	 *  0 - broken
 	 *  1 - normal link
@@ -3921,7 +3908,6 @@ class Parser
 
 		$pdbks = array();
 		$colours = array();
-		$sk =& $this->mOptions->getSkin();
 		$linkCache =& LinkCache::singleton();
 
 		if ( !empty( $this->mLinkHolders['namespaces'] ) ) {
@@ -4102,15 +4088,15 @@ class Parser
 					$linkCache->addBadLinkObj( $title );
 					$colours[$pdbk] = 0;
 					$this->mOutput->addLink( $title, 0 );
-					$wgOutputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
+					$wgOutputReplace[$searchkey] = Linker::makeBrokenLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
 				} elseif ( $colours[$pdbk] == 1 ) {
-					$wgOutputReplace[$searchkey] = $sk->makeKnownLinkObj( $title,
+					$wgOutputReplace[$searchkey] = Linker::makeKnownLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
 				} elseif ( $colours[$pdbk] == 2 ) {
-					$wgOutputReplace[$searchkey] = $sk->makeStubLinkObj( $title,
+					$wgOutputReplace[$searchkey] = Linker::makeStubLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],
 									$this->mLinkHolders['queries'][$key] );
 				}
@@ -4136,7 +4122,7 @@ class Parser
 			$wgOutputReplace = array();
 			foreach( $this->mInterwikiLinkHolders['texts'] as $key => $link ) {
 				$title = $this->mInterwikiLinkHolders['titles'][$key];
-				$wgOutputReplace[$key] = $sk->makeLinkObj( $title, $link );
+				$wgOutputReplace[$key] = Linker::makeLinkObj( $title, $link );
 			}
 
 			$text = preg_replace_callback(
@@ -4216,7 +4202,6 @@ class Parser
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
 		$ig->setParsing();
-		$ig->useSkin( $this->mOptions->getSkin() );
 
 		if( isset( $params['caption'] ) )
 			$ig->setCaption( $params['caption'] );
@@ -4345,8 +4330,7 @@ class Parser
 		$alt = Sanitizer::stripAllTags( $alt );
 
 		# Linker does the rest
-		$sk =& $this->mOptions->getSkin();
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb, $page );
+		return Linker::makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb, $page );
 	}
 
 	/**
@@ -4682,7 +4666,6 @@ class ParserOptions
 	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
 	var $mAllowExternalImages;       # Allow external images inline
 	var $mAllowExternalImagesFrom;   # If not, any exception?
-	var $mSkin;                      # Reference to the preferred skin
 	var $mDateFormat;                # Date format index
 	var $mEditSection;               # Create "edit section" links
 	var $mNumberHeadings;            # Automatically number headings
@@ -4692,7 +4675,7 @@ class ParserOptions
 	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
 	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
 
-	var $mUser;                      # Stored user object, just used to initialise the skin
+	var $mUser;                      # Stored user object, just used to initialise the date format
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -4706,13 +4689,6 @@ class ParserOptions
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
 	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
 	function getRemoveComments()                { return $this->mRemoveComments; }
-
-	function &getSkin() {
-		if ( !isset( $this->mSkin ) ) {
-			$this->mSkin = $this->mUser->getSkin();
-		}
-		return $this->mSkin;
-	}
 
 	function getDateFormat() {
 		if ( !isset( $this->mDateFormat ) ) {
@@ -4731,7 +4707,6 @@ class ParserOptions
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
 	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
 	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x); }
-	function setSkin( $x )                      { $this->mSkin = $x; }
 	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x); }
 	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
 	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
@@ -4772,7 +4747,6 @@ class ParserOptions
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
-		$this->mSkin = null; # Deferred
 		$this->mDateFormat = null; # Deferred
 		$this->mEditSection = true;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );

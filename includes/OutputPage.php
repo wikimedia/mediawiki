@@ -231,7 +231,7 @@ class OutputPage {
 	 * Add an array of categories, with names in the keys
 	 */
 	public function addCategoryLinks($categories) {
-		global $wgUser, $wgContLang;
+		global $wgContLang;
 
 		if ( !is_array( $categories ) ) {
 			return;
@@ -242,11 +242,10 @@ class OutputPage {
 		$lb->setArray( $arr );
 		$lb->execute();
 
-		$sk =& $wgUser->getSkin();
 		foreach ( $categories as $category => $arbitrary ) {
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$text = $wgContLang->convertHtml( $title->getText() );
-			$this->mCategoryLinks[] = $sk->makeLinkObj( $title, $text );
+			$this->mCategoryLinks[] = Linker::makeLinkObj( $title, $text );
 		}
 	}
 
@@ -615,9 +614,6 @@ class OutputPage {
 		# Buffer output; final headers may depend on later processing
 		ob_start();
 
-		# Disable temporary placeholders, so that the skin produces HTML
-		$sk->postParseLinkColour( false );
-
 		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		$wgRequest->response()->header( 'Content-language: '.$wgContLanguageCode );
 
@@ -760,7 +756,7 @@ class OutputPage {
 	 * @param string $permission key required
 	 */
 	public function permissionRequired( $permission ) {
-		global $wgGroupPermissions, $wgUser;
+		global $wgGroupPermissions;
 
 		$this->setPageTitle( wfMsg( 'badaccess' ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
@@ -774,8 +770,7 @@ class OutputPage {
 				$groupName = User::getGroupName( $key );
 				$groupPage = User::getGroupPage( $key );
 				if( $groupPage ) {
-					$skin =& $wgUser->getSkin();
-					$groups[] = '"'.$skin->makeLinkObj( $groupPage, $groupName ).'"';
+					$groups[] = '"'.Linker::makeLinkObj( $groupPage, $groupName ).'"';
 				} else {
 					$groups[] = '"'.$groupName.'"';
 				}
@@ -823,15 +818,13 @@ class OutputPage {
 			return;
 		}
 
-		$skin = $wgUser->getSkin();
-		
 		$this->setPageTitle( wfMsg( 'loginreqtitle' ) );
 		$this->setHtmlTitle( wfMsg( 'errorpagetitle' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleFlag( false );
 		
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
+		$loginLink = Linker::makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
 		$this->addHtml( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
 		$this->addHtml( "\n<!--" . $wgTitle->getPrefixedUrl() . "-->" );
 		
@@ -859,9 +852,8 @@ class OutputPage {
 		$this->setArticleRelated( false );
 
 		if( $protected ) {
-			$skin = $wgUser->getSkin();
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
-			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
+			$this->setSubtitle( wfMsg( 'viewsourcefor', Linker::makeKnownLinkObj( $wgTitle ) ) );
 
 			# Determine if protection is due to the page being a system message
 			# and show an appropriate explanation
@@ -965,7 +957,7 @@ class OutputPage {
 	 * @param $returnto page title to return to. Default is Main Page.
 	 */
 	public function returnToMain( $auto = true, $returnto = NULL ) {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgOut, $wgRequest;
 		
 		if ( $returnto == NULL ) {
 			$returnto = $wgRequest->getText( 'returnto' );
@@ -984,8 +976,7 @@ class OutputPage {
 			$titleObj = Title::newMainPage();
 		}
 
-		$sk = $wgUser->getSkin();
-		$link = $sk->makeLinkObj( $titleObj, '' );
+		$link = Linker::makeLinkObj( $titleObj, '' );
 
 		$r = wfMsg( 'returnto', $link );
 		if ( $auto ) {

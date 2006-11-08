@@ -70,7 +70,7 @@ class Skin extends Linker {
 	 */
 	static function normalizeKey( $key ) {
 		global $wgDefaultSkin;
-		$skinNames = Skin::getSkinNames();
+		$skinNames = self::getSkinNames();
 
 		if( $key == '' ) {
 			// Don't return the default immediately;
@@ -110,9 +110,9 @@ class Skin extends Linker {
 	static function &newFromKey( $key ) {
 		global $wgStyleDirectory;
 		
-		$key = Skin::normalizeKey( $key );
+		$key = self::normalizeKey( $key );
 
-		$skinNames = Skin::getSkinNames();
+		$skinNames = self::getSkinNames();
 		$skinName = $skinNames[$key];
 
 		# Grab the skin class and initialise it.
@@ -579,7 +579,7 @@ END;
 		$t = $embed . implode ( "{$pop} {$sep} {$embed}" , $wgOut->mCategoryLinks ) . $pop;
 
 		$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escape' ), count( $wgOut->mCategoryLinks ) );
-		$s = $this->makeLinkObj( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
+		$s = self::makeLinkObj( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
 			. ': ' . $t;
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
@@ -591,7 +591,7 @@ END;
 			$parenttree = $wgTitle->getParentCategoryTree();
 			# Skin object passed by reference cause it can not be
 			# accessed under the method subfunction drawCategoryBrowser
-			$tempout = explode("\n", Skin::drawCategoryBrowser($parenttree, $this) );
+			$tempout = explode("\n", self::drawCategoryBrowser($parenttree, $this) );
 			# Clean out bogus first entry and sort them
 			unset($tempout[0]);
 			asort($tempout);
@@ -602,12 +602,14 @@ END;
 		return $s;
 	}
 
-	/** Render the array as a serie of links.
-	 * @param $tree Array: categories tree returned by Title::getParentCategoryTree
-	 * @param &skin Object: skin passed by reference
+	/**
+	 * Render the array as a series of links.
+	 * @param $tree Array categories tree returned by Title::getParentCategoryTree
+	 * @param &skin Object skin passed by reference
 	 * @return String separated by &gt;, terminate with "\n"
+	 * @static
 	 */
-	function drawCategoryBrowser($tree, &$skin) {
+	static function drawCategoryBrowser($tree, &$skin) {
 		$return = '';
 		foreach ($tree as $element => $parent) {
 			if (empty($parent)) {
@@ -615,11 +617,11 @@ END;
 				$return .= "\n";
 			} else {
 				# grab the others elements
-				$return .= Skin::drawCategoryBrowser($parent, $skin) . ' &gt; ';
+				$return .= self::drawCategoryBrowser($parent, $skin) . ' &gt; ';
 			}
 			# add our current element to the list
 			$eltitle = Title::NewFromText($element);
-			$return .=  $skin->makeLinkObj( $eltitle, $eltitle->getText() ) ;
+			$return .= self::makeLinkObj( $eltitle, $eltitle->getText() ) ;
 		}
 		return $return;
 	}
@@ -690,13 +692,13 @@ END;
 				$image = new Image( $wgTitle );
 				if( $image->exists() ) {
 					$link = htmlspecialchars( $image->getURL() );
-					$style = $this->getInternalLinkAttributes( $link, $name );
+					$style = self::getInternalLinkAttributes( $link, $name );
 					$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
 				}
 			}
 		}
 		if ( 'history' == $action || isset( $diff ) || isset( $oldid ) ) {
-			$s .= ' | ' . $this->makeKnownLinkObj( $wgTitle,
+			$s .= ' | ' . self::makeKnownLinkObj( $wgTitle,
 					wfMsg( 'currentrev' ) );
 		}
 
@@ -704,8 +706,8 @@ END;
 			# do not show "You have new messages" text when we are viewing our
 			# own talk page
 			if( !$wgTitle->equals( $wgUser->getTalkPage() ) ) {
-				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessageslink' ), 'redirect=no' );
-				$dl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessagesdifflink' ), 'diff=cur' );
+				$tl = self::makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessageslink' ), 'redirect=no' );
+				$dl = self::makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessagesdifflink' ), 'diff=cur' );
 				$s.= ' | <strong>'. wfMsg( 'youhavenewmessages', $tl, $dl ) . '</strong>';
 				# disable caching
 				$wgOut->setSquidMaxage(0);
@@ -732,7 +734,7 @@ END;
 				$msg = 'viewdeleted';
 			}
 			return wfMsg( $msg,
-				$this->makeKnownLink(
+				self::makeKnownLink(
 					$wgContLang->SpecialPage( 'Undelete/' . $wgTitle->getPrefixedDBkey() ),
 					wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $n ) ) );
 		}
@@ -794,7 +796,7 @@ END;
 					$c++;
 					if ($c<count($links)) {
 						$growinglink .= $link;
-						$getlink = $this->makeLink( $growinglink, htmlspecialchars( $link ) );
+						$getlink = self::makeLink( $growinglink, htmlspecialchars( $link ) );
 						if(preg_match('/class="new"/i',$getlink)) { break; } # this is a hack, but it saves time
 						if ($c>1) {
 							$subpages .= ' | ';
@@ -821,7 +823,7 @@ END;
 			if( $wgShowIPinHeader && isset( $_COOKIE[ini_get('session.name')] ) ) {
 				$n = wfGetIP();
 
-				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
+				$tl = self::makeKnownLinkObj( $wgUser->getTalkPage(),
 				  $wgLang->getNsText( NS_TALK ) );
 
 				$s .= $n . ' ('.$tl.')';
@@ -834,24 +836,24 @@ END;
 				$q = '';
 			} else { $q = "returnto={$rt}"; }
 
-			$s .= "\n<br />" . $this->makeKnownLinkObj(
+			$s .= "\n<br />" . self::makeKnownLinkObj(
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				wfMsg( 'login' ), $q );
 		} else {
 			$n = $wgUser->getName();
 			$rt = $wgTitle->getPrefixedURL();
-			$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
+			$tl = self::makeKnownLinkObj( $wgUser->getTalkPage(),
 			  $wgLang->getNsText( NS_TALK ) );
 
 			$tl = " ({$tl})";
 
-			$s .= $this->makeKnownLinkObj( $wgUser->getUserPage(),
+			$s .= self::makeKnownLinkObj( $wgUser->getUserPage(),
 			  $n ) . "{$tl}<br />" .
-			  $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
+			  self::makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
 			  "returnto={$rt}" ) . ' | ' .
-			  $this->specialLink( 'preferences' );
+			  self::specialLink( 'preferences' );
 		}
-		$s .= ' | ' . $this->makeKnownLink( wfMsgForContent( 'helppage' ),
+		$s .= ' | ' . self::makeKnownLink( wfMsgForContent( 'helppage' ),
 		  wfMsg( 'help' ) );
 
 		return $s;
@@ -885,7 +887,7 @@ END;
 		$sep = " |\n";
 
 		$s = $this->mainPageLink() . $sep
-		  . $this->specialLink( 'recentchanges' );
+		  . self::specialLink( 'recentchanges' );
 
 		if ( $wgOut->isArticleRelated() ) {
 			$s .=  $sep . $this->editThisPage()
@@ -1042,9 +1044,9 @@ END;
 
 		$out = '';
 		if( $wgRightsPage ) {
-			$link = $this->makeKnownLink( $wgRightsPage, $wgRightsText );
+			$link = self::makeKnownLink( $wgRightsPage, $wgRightsText );
 		} elseif( $wgRightsUrl ) {
-			$link = $this->makeExternalLink( $wgRightsUrl, $wgRightsText );
+			$link = self::makeExternalLink( $wgRightsUrl, $wgRightsText );
 		} else {
 			# Give up now
 			return $out;
@@ -1148,12 +1150,12 @@ END;
 	function mainPageLink() {
 		$mp = wfMsgForContent( 'mainpage' );
 		$mptxt = wfMsg( 'mainpage');
-		$s = $this->makeKnownLink( $mp, $mptxt );
+		$s = self::makeKnownLink( $mp, $mptxt );
 		return $s;
 	}
 
 	function copyrightLink() {
-		$s = $this->makeKnownLink( wfMsgForContent( 'copyrightpage' ),
+		$s = self::makeKnownLink( wfMsgForContent( 'copyrightpage' ),
 		  wfMsg( 'copyrightpagename' ) );
 		return $s;
 	}
@@ -1163,12 +1165,12 @@ END;
 		if ($privacy == '-') {
 			return '';
 		} else {
-			return $this->makeKnownLink( wfMsgForContent( 'privacypage' ), $privacy);
+			return self::makeKnownLink( wfMsgForContent( 'privacypage' ), $privacy);
 		}
 	}
 
 	function aboutLink() {
-		$s = $this->makeKnownLink( wfMsgForContent( 'aboutpage' ),
+		$s = self::makeKnownLink( wfMsgForContent( 'aboutpage' ),
 		  wfMsg( 'aboutsite' ) );
 		return $s;
 	}
@@ -1178,7 +1180,7 @@ END;
 		if ($disclaimers == '-') {
 			return '';
 		} else {
-			return $this->makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
+			return self::makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
 			                             $disclaimers );
 		}
 	}
@@ -1195,7 +1197,7 @@ END;
 				$t = wfMsg( 'viewsource' );
 			}
 
-			$s = $this->makeKnownLinkObj( $wgTitle, $t, $this->editUrlOptions() );
+			$s = self::makeKnownLinkObj( $wgTitle, $t, $this->editUrlOptions() );
 		}
 		return $s;
 	}
@@ -1224,7 +1226,7 @@ END;
 		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isAllowed('delete') ) {
 			$t = wfMsg( 'deletethispage' );
 
-			$s = $this->makeKnownLinkObj( $wgTitle, $t, 'action=delete' );
+			$s = self::makeKnownLinkObj( $wgTitle, $t, 'action=delete' );
 		} else {
 			$s = '';
 		}
@@ -1243,7 +1245,7 @@ END;
 				$t = wfMsg( 'protectthispage' );
 				$q = 'action=protect';
 			}
-			$s = $this->makeKnownLinkObj( $wgTitle, $t, $q );
+			$s = self::makeKnownLinkObj( $wgTitle, $t, $q );
 		} else {
 			$s = '';
 		}
@@ -1261,7 +1263,7 @@ END;
 				$t = wfMsg( 'watchthispage' );
 				$q = 'action=watch';
 			}
-			$s = $this->makeKnownLinkObj( $wgTitle, $t, $q );
+			$s = self::makeKnownLinkObj( $wgTitle, $t, $q );
 		} else {
 			$s = wfMsg( 'notanarticle' );
 		}
@@ -1272,7 +1274,7 @@ END;
 		global $wgTitle;
 
 		if ( $wgTitle->userCanMove() ) {
-			return $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
+			return self::makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
 			  wfMsg( 'movethispage' ), 'target=' . $wgTitle->getPrefixedURL() );
 		} else {
 			// no message if page is protected - would be redundant
@@ -1283,14 +1285,14 @@ END;
 	function historyLink() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( $wgTitle,
+		return self::makeKnownLinkObj( $wgTitle,
 		  wfMsg( 'history' ), 'action=history' );
 	}
 
 	function whatLinksHere() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( 
+		return self::makeKnownLinkObj( 
 			SpecialPage::getTitleFor( 'Whatlinkshere', $wgTitle->getPrefixedDBkey() ), 
 			wfMsg( 'whatlinkshere' ) );
 	}
@@ -1298,7 +1300,7 @@ END;
 	function userContribsLink() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( 
+		return self::makeKnownLinkObj( 
 			SpecialPage::getTitleFor( 'Contributions', $wgTitle->getDBkey() ),
 			wfMsg( 'contributions' ) );
 	}
@@ -1317,7 +1319,7 @@ END;
 	function emailUserLink() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( 
+		return self::makeKnownLinkObj( 
 			SpecialPage::getTitleFor( 'Emailuser', $wgTitle->getDBkey() ),
 			wfMsg( 'emailuser' ) );
 	}
@@ -1328,7 +1330,7 @@ END;
 		if ( ! $wgOut->isArticleRelated() ) {
 			return '(' . wfMsg( 'notanarticle' ) . ')';
 		} else {
-			return $this->makeKnownLinkObj( 
+			return self::makeKnownLinkObj( 
 				SpecialPage::getTitleFor( 'Recentchangeslinked', $wgTitle->getPrefixedDBkey() ), 
 				wfMsg( 'recentchangeslinked' ) );
 		}
@@ -1365,7 +1367,7 @@ END;
 			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
 
 			if ( '' == $text ) { $text = $l; }
-			$style = $this->getExternalLinkAttributes( $l, $text );
+			$style = self::getExternalLinkAttributes( $l, $text );
 			$s .= "<a href=\"{$url}\"{$style}>{$text}</a>";
 		}
 		if($wgContLang->isRTL()) $s .= '</span>';
@@ -1373,7 +1375,7 @@ END;
 	}
 
 	function bugReportsLink() {
-		$s = $this->makeKnownLink( wfMsgForContent( 'bugreportspage' ),
+		$s = self::makeKnownLink( wfMsgForContent( 'bugreportspage' ),
 		  wfMsg( 'bugreports' ) );
 		return $s;
 	}
@@ -1385,18 +1387,18 @@ END;
 		$id = $t1->getArticleID();
 
 		if ( 0 == $id ) {
-			$s = $this->makeBrokenLink( $t1->getText() );
+			$s = self::makeBrokenLink( $t1->getText() );
 		} else {
-			$s = $this->makeKnownLink( $t1->getText() );
+			$s = self::makeKnownLink( $t1->getText() );
 		}
 		$s .= ', ';
 
 		$id = $t2->getArticleID();
 
 		if ( 0 == $id ) {
-			$s .= $this->makeBrokenLink( $t2->getText() );
+			$s .= self::makeBrokenLink( $t2->getText() );
 		} else {
-			$s .= $this->makeKnownLink( $t2->getText() );
+			$s .= self::makeKnownLink( $t2->getText() );
 		}
 		return $s;
 	}
@@ -1444,7 +1446,7 @@ END;
 			$text = wfMsg( 'talkpage' );
 		}
 
-		$s = $this->makeLinkObj( $link, $text );
+		$s = self::makeLinkObj( $link, $text );
 
 		return $s;
 	}
@@ -1467,7 +1469,7 @@ END;
 			$title =& $wgTitle->getTalkPage();
 		}
 		
-		return $this->makeKnownLinkObj( $title, wfMsg( 'postcomment' ), 'action=edit&section=new' );
+		return self::makeKnownLinkObj( $title, wfMsg( 'postcomment' ), 'action=edit&section=new' );
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */

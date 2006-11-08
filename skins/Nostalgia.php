@@ -57,7 +57,7 @@ class SkinNostalgia extends Skin {
 		$sep = " |\n";
 
 		$s = $this->mainPageLink() . $sep
-		  . $this->specialLink( "recentchanges" );
+		  . self::specialLink( "recentchanges" );
 
 		if ( $wgOut->isArticle() ) {
 			$s .=  $sep . $this->editThisPage()
@@ -69,9 +69,9 @@ class SkinNostalgia extends Skin {
 		$s .= $this->extensionTabLinks();
 		
 		if ( $wgUser->isAnon() ) {
-			$s .= $sep . $this->specialLink( "userlogin" );
+			$s .= $sep . self::specialLink( "userlogin" );
 		} else {
-			$s .= $sep . $this->specialLink( "userlogout" );
+			$s .= $sep . self::specialLink( "userlogout" );
 		}
 		
 		$s .= $sep . $this->specialPagesList();

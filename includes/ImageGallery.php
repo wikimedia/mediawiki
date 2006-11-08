@@ -17,7 +17,6 @@ class ImageGallery
 {
 	var $mImages, $mShowBytes, $mShowFilename;
 	var $mCaption = false;
-	var $mSkin = false;
 	
 	/**
 	 * Is the gallery on a wiki page (i.e. not a special page)
@@ -48,30 +47,6 @@ class ImageGallery
 	 */
 	function setCaption( $caption ) {
 		$this->mCaption = $caption;
-	}
-
-	/**
-	 * Instruct the class to use a specific skin for rendering
-	 *
-	 * @param $skin Skin object
-	 */
-	function useSkin( $skin ) {
-		$this->mSkin =& $skin;
-	}
-	
-	/**
-	 * Return the skin that should be used
-	 *
-	 * @return Skin object
-	 */
-	function getSkin() {
-		if( !$this->mSkin ) {
-			global $wgUser;
-			$skin =& $wgUser->getSkin();
-		} else {
-			$skin =& $this->mSkin;
-		}
-		return $skin;
 	}
 
 	/**
@@ -136,8 +111,6 @@ class ImageGallery
 	function toHTML() {
 		global $wgLang, $wgIgnoreImageErrors, $wgGenerateThumbnailOnParse;
 
-		$sk = $this->getSkin();
-
 		$s = '<table class="gallery" cellspacing="0" cellpadding="0">';
 		if( $this->mCaption )
 			$s .= '<td class="galleryheader" colspan="4"><big>' . htmlspecialchars( $this->mCaption ) . '</big></td>';
@@ -157,7 +130,7 @@ class ImageGallery
 			else if( $this->mParsing && wfIsBadImage( $nt->getDBkey() ) ) {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = '<div style="height: 152px;">'
-					. $sk->makeKnownLinkObj( $nt, htmlspecialchars( $nt->getText() ) ) . '</div>';
+					. Linker::makeKnownLinkObj( $nt, htmlspecialchars( $nt->getText() ) ) . '</div>';
 			} else if( !( $thumb = $img->getThumbnail( 120, 120, $wgGenerateThumbnailOnParse ) ) ) {
 				# Error generating thumbnail.
 				$thumbhtml = '<div style="height: 152px;">'
@@ -166,11 +139,11 @@ class ImageGallery
 			else {
 				$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
 				$thumbhtml = '<div class="thumb" style="padding: ' . $vpad . 'px 0;">'
-					. $sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div>';
+					. Linker::makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div>';
 			}
 
 			//TODO
-			//$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
+			//$ul = Linker::makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
 			if( $this->mShowBytes ) {
 				if( $img->exists() ) {
@@ -185,7 +158,7 @@ class ImageGallery
 			}
 
 			$textlink = $this->mShowFilename ?
-				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . "<br />\n" :
+				Linker::makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . "<br />\n" :
 				'' ;
 
 			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which

@@ -60,7 +60,7 @@ class ShortPagesPage extends QueryPage {
 		return false;
 	}
 
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		global $wgLang, $wgContLang;
 		$dm = $wgContLang->getDirMark();
 		
@@ -68,10 +68,10 @@ class ShortPagesPage extends QueryPage {
 		if ( !$title ) {
 			return '<!-- Invalid title ' .  htmlspecialchars( "{$result->namespace}:{$result->title}" ). '-->';
 		}
-		$hlink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
+		$hlink = Linker::makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
 		$plink = $this->isCached()
-					? $skin->makeLinkObj( $title )
-					: $skin->makeKnownLinkObj( $title );
+					? Linker::makeLinkObj( $title )
+					: Linker::makeKnownLinkObj( $title );
 		$size = wfMsgHtml( 'nbytes', $wgLang->formatNum( htmlspecialchars( $result->value ) ) );
 		
 		return $title->exists()

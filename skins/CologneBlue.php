@@ -84,7 +84,7 @@ class SkinCologneBlue extends Skin {
 		$s .= "<td class='bottom' align='center' valign='top'>";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br />" . $this->makeKnownLink( wfMsgForContent( "mainpage" ) ) . " | "
+		$s .= "\n<br />" . self::makeKnownLink( wfMsgForContent( "mainpage" ) ) . " | "
 		  . $this->aboutLink() . " | "
 		  . $this->searchForm( wfMsg( "qbfind" ) );
 
@@ -138,15 +138,15 @@ class SkinCologneBlue extends Skin {
 		}
 
 		$s = "" .
-		  $this->makeKnownLink( wfMsgForContent( "mainpage" ), wfMsg( "mainpage" ) )
+		  self::makeKnownLink( wfMsgForContent( "mainpage" ), wfMsg( "mainpage" ) )
 		  . " | " .
-		  $this->makeKnownLink( wfMsgForContent( "aboutpage" ), wfMsg( "about" ) )
+		  self::makeKnownLink( wfMsgForContent( "aboutpage" ), wfMsg( "about" ) )
 		  . " | " .
-		  $this->makeKnownLink( wfMsgForContent( "helppage" ), wfMsg( "help" ) )
+		  self::makeKnownLink( wfMsgForContent( "helppage" ), wfMsg( "help" ) )
 		  . " | " .
-		  $this->makeKnownLink( wfMsgForContent( "faqpage" ), wfMsg("faq") )
+		  self::makeKnownLink( wfMsgForContent( "faqpage" ), wfMsg("faq") )
 		  . " | " .
-		  $this->specialLink( "specialpages" );
+		  self::specialLink( "specialpages" );
 
 		/* show links to different language variants */
 		$s .= $this->variantLinks();
@@ -154,9 +154,9 @@ class SkinCologneBlue extends Skin {
 		
 		$s .= " | ";
 		if ( $wgUser->isLoggedIn() ) {
-			$s .=  $this->makeKnownLink( $lo, wfMsg( "logout" ), $q );
+			$s .=  self::makeKnownLink( $lo, wfMsg( "logout" ), $q );
 		} else {
-			$s .=  $this->makeKnownLink( $li, wfMsg( "login" ), $q );
+			$s .=  self::makeKnownLink( $li, wfMsg( "login" ), $q );
 		}
 
 		return $s;
@@ -195,7 +195,7 @@ class SkinCologneBlue extends Skin {
 			$s .= $this->menuHead( "qbedit" );
 			$s .= "<strong>" . $this->editThisPage() . "</strong>";
 
-			$s .= $sep . $this->makeKnownLink( wfMsgForContent( "edithelppage" ), wfMsg( "edithelp" ) );
+			$s .= $sep . self::makeKnownLink( wfMsgForContent( "edithelppage" ), wfMsg( "edithelp" ) );
 
 			if( $wgUser->isLoggedIn() ) {
 				$s .= $sep . $this->moveThisPage();
@@ -244,31 +244,31 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->menuHead( "qbmyoptions" );
 		if ( $wgUser->isLoggedIn() ) {
 			$name = $wgUser->getName();
-			$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
+			$tl = self::makeKnownLinkObj( $wgUser->getTalkPage(),
 				wfMsg( 'mytalk' ) );
 			if ( $wgUser->getNewtalk() ) {
 				$tl .= " *";
 			}
 
-			$s .= $this->makeKnownLinkObj( $wgUser->getUserPage(),
+			$s .= self::makeKnownLinkObj( $wgUser->getUserPage(),
 				wfMsg( "mypage" ) )
 			  . $sep . $tl
-			  . $sep . $this->specialLink( "watchlist" )
-			  . $sep . $this->makeKnownLinkObj( SpecialPage::getSafeTitleFor( "Contributions", $wgUser->getName() ),
+			  . $sep . self::specialLink( "watchlist" )
+			  . $sep . self::makeKnownLinkObj( SpecialPage::getSafeTitleFor( "Contributions", $wgUser->getName() ),
 			  	wfMsg( "mycontris" ) )
-		  	  . $sep . $this->specialLink( "preferences" )
-		  	  . $sep . $this->specialLink( "userlogout" );
+		  	  . $sep . self::specialLink( "preferences" )
+		  	  . $sep . self::specialLink( "userlogout" );
 		} else {
-			$s .= $this->specialLink( "userlogin" );
+			$s .= self::specialLink( "userlogin" );
 		}
 
 		$s .= $this->menuHead( "qbspecialpages" )
-		  . $this->specialLink( "newpages" )
-		  . $sep . $this->specialLink( "imagelist" )
-		  . $sep . $this->specialLink( "statistics" )
+		  . self::specialLink( "newpages" )
+		  . $sep . self::specialLink( "imagelist" )
+		  . $sep . self::specialLink( "statistics" )
 		  . $sep . $this->bugReportsLink();
 		if ( $wgUser->isLoggedIn() && $wgEnableUploads ) {
-			$s .= $sep . $this->specialLink( "upload" );
+			$s .= $sep . self::specialLink( "upload" );
 		}
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage) {
@@ -276,7 +276,7 @@ class SkinCologneBlue extends Skin {
 			      .wfMsg( "sitesupport" )."</a>";
 		}
 
-		$s .= $sep . $this->makeKnownLinkObj(
+		$s .= $sep . self::makeKnownLinkObj(
 			SpecialPage::getTitleFor( 'Specialpages' ),
 			wfMsg( 'moredotdotdot' ) );
 

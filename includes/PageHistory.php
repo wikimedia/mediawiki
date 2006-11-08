@@ -21,7 +21,7 @@ class PageHistory {
 	const DIR_PREV = 0;
 	const DIR_NEXT = 1;
 	
-	var $mArticle, $mTitle, $mSkin;
+	var $mArticle, $mTitle;
 	var $lastdate;
 	var $linesonpage;
 	var $mNotificationTimestamp;
@@ -34,12 +34,9 @@ class PageHistory {
 	 * @returns nothing
 	 */
 	function PageHistory($article) {
-		global $wgUser;
-
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
 		$this->mNotificationTimestamp = NULL;
-		$this->mSkin = $wgUser->getSkin();
 	}
 
 	/**
@@ -71,7 +68,7 @@ class PageHistory {
 		$wgOut->setSyndicated( true );
 
 		$logPage = SpecialPage::getTitleFor( 'Log' );
-		$logLink = $this->mSkin->makeKnownLinkObj( $logPage, wfMsgHtml( 'viewpagelogs' ), 'page=' . $this->mTitle->getPrefixedUrl() );
+		$logLink = Linker::makeKnownLinkObj( $logPage, wfMsgHtml( 'viewpagelogs' ), 'page=' . $this->mTitle->getPrefixedUrl() );
 
 		$subtitle = wfMsgHtml( 'revhistory' ) . '<br />' . $logLink;
 		$wgOut->setSubtitle( $subtitle );
@@ -178,8 +175,8 @@ class PageHistory {
 		$arbitrary = $this->diffButtons( $rev, $firstInList, $counter );
 		$link = $this->revLink( $rev );
 		
-		$user = $this->mSkin->userLink( $rev->getUser(), $rev->getUserText() )
-				. $this->mSkin->userToolLinks( $rev->getUser(), $rev->getUserText() );
+		$user = Linker::userLink( $rev->getUser(), $rev->getUserText() )
+				. Linker::userToolLinks( $rev->getUser(), $rev->getUserText() );
 		
 		$s .= "($curlink) ($lastlink) $arbitrary";
 		
@@ -189,7 +186,7 @@ class PageHistory {
 				// We don't currently handle well changing the top revision's settings
 				$del = wfMsgHtml( 'rev-delundel' );
 			} else {
-				$del = $this->mSkin->makeKnownLinkObj( $revdel,
+				$del = Linker::makeKnownLinkObj( $revdel,
 					wfMsg( 'rev-delundel' ),
 					'target=' . urlencode( $this->mTitle->getPrefixedDbkey() ) .
 					'&oldid=' . urlencode( $rev->getId() ) );
@@ -203,7 +200,7 @@ class PageHistory {
 			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
 		}
 
-		$s .= $this->mSkin->revComment( $rev );
+		$s .= Linker::revComment( $rev );
 		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
 			$s .= ' <span class="updatedmarker">' .  wfMsgHtml( 'updatedmarker' ) . '</span>';
 		}
@@ -220,7 +217,7 @@ class PageHistory {
 		global $wgLang;
 		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $rev->getTimestamp()), true );
 		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
-			$link = $this->mSkin->makeKnownLinkObj(
+			$link = Linker::makeKnownLinkObj(
 				$this->mTitle, $date, "oldid=" . $rev->getId() );
 		} else {
 			$link = $date;
@@ -237,7 +234,7 @@ class PageHistory {
 		if( $latest || !$rev->userCan( Revision::DELETED_TEXT ) ) {
 			return $cur;
 		} else {
-			return $this->mSkin->makeKnownLinkObj(
+			return Linker::makeKnownLinkObj(
 				$this->mTitle, $cur,
 				'diff=' . $this->getLatestID() .
 				"&oldid=" . $rev->getId() );
@@ -252,14 +249,14 @@ class PageHistory {
 			return $last;
 		} elseif ( $next === 'unknown' ) {
 			# Next row probably exists but is unknown, use an oldid=prev link
-			return $this->mSkin->makeKnownLinkObj(
+			return Linker::makeKnownLinkObj(
 				$this->mTitle,
 				$last,
 				"diff=" . $rev->getId() . "&oldid=prev" );
 		} elseif( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 			return $last;
 		} else {
-			return $this->mSkin->makeKnownLinkObj(
+			return Linker::makeKnownLinkObj(
 				$this->mTitle,
 				$last,
 				"diff=" . $rev->getId() . "&oldid={$next->rev_id}"

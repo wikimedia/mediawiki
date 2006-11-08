@@ -44,10 +44,10 @@ class CategoriesPage extends QueryPage {
 		return false;
 	}
 
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		global $wgLang;
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
-		$plink = $skin->makeLinkObj( $title, $title->getText() );
+		$plink = Linker::makeLinkObj( $title, $title->getText() );
 		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->count ) );
 		return wfSpecialList($plink, $nlinks);

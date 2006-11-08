@@ -22,14 +22,13 @@ function wfSpecialWatchlist( $par ) {
 	global $wgEnotifWatchlist;
 	$fname = 'wfSpecialWatchlist';
 
-	$skin =& $wgUser->getSkin();
 	$specialTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 	# Anons don't get a watchlist
 	if( $wgUser->isAnon() ) {
 		$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
-		$llink = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogin' ), wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
+		$llink = Linker::makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogin' ), wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
 		$wgOut->addHtml( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
 		return;
 	} else {
@@ -190,8 +189,6 @@ function wfSpecialWatchlist( $par ) {
 		$linkBatch->execute();
 		if( $dbr->numRows( $res ) > 0 )
 			$dbr->dataSeek( $res, 0 ); # Let's do the time warp again!
-		
-		$sk = $wgUser->getSkin();
 
 		$list = array();
 		while( $s = $dbr->fetchObject( $res ) ) {
@@ -216,10 +213,10 @@ function wfSpecialWatchlist( $par ) {
 					global $wgContLang;
 					$toolLinks = array();
 					$titleText = $titleObj->getPrefixedText();
-					$pageLink = $sk->makeLinkObj( $titleObj );
-					$toolLinks[] = $sk->makeLinkObj( $titleObj->getTalkPage(), $wgLang->getNsText( NS_TALK ) );
+					$pageLink = Linker::makeLinkObj( $titleObj );
+					$toolLinks[] = Linker::makeLinkObj( $titleObj->getTalkPage(), $wgLang->getNsText( NS_TALK ) );
 					if( $titleObj->exists() )
-						$toolLinks[] = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml( 'history_short' ), 'action=history' );
+						$toolLinks[] = Linker::makeKnownLinkObj( $titleObj, wfMsgHtml( 'history_short' ), 'action=history' );
 					$toolLinks = '(' . implode( ' | ', $toolLinks ) . ')';
 					$checkbox = '<input type="checkbox" name="id[]" value="' . htmlspecialchars( $titleObj->getPrefixedText() ) . '" /> ' . ( $wgContLang->isRTL() ? '&rlm;' : '&lrm;' );
 					if( $redir ) {
@@ -326,18 +323,17 @@ function wfSpecialWatchlist( $par ) {
 
 	# Spit out some control panel links
 	$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
-	$skin = $wgUser->getSkin();
 	$linkElements = array( 'hideOwn' => 'wlhideshowown', 'hideBots' => 'wlhideshowbots' );
 	
 	# Problems encountered using the fancier method
 	$label = $hideBots ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' );
 	$linkBits = wfArrayToCGI( array( 'hideBots' => 1 - (int)$hideBots ), $nondefaults );
-	$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	$link = Linker::makeKnownLinkObj( $thisTitle, $label, $linkBits );
 	$links[] = wfMsgHtml( 'wlhideshowbots', $link );
 
 	$label = $hideOwn ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' );
 	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
-	$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	$link = Linker::makeKnownLinkObj( $thisTitle, $label, $linkBits );
 	$links[] = wfMsgHtml( 'wlhideshowown', $link );
 
 	$wgOut->addHTML( implode( ' | ', $links ) );
@@ -403,9 +399,8 @@ function wfSpecialWatchlist( $par ) {
 }
 
 function wlHoursLink( $h, $page, $options = array() ) {
-	global $wgUser, $wgLang, $wgContLang;
-	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink(
+	global $wgLang, $wgContLang;
+	$s = Linker::makeKnownLink(
 	  $wgContLang->specialPage( $page ),
 	  $wgLang->formatNum( $h ),
 	  wfArrayToCGI( array('days' => ($h / 24.0)), $options ) );
@@ -413,9 +408,8 @@ function wlHoursLink( $h, $page, $options = array() ) {
 }
 
 function wlDaysLink( $d, $page, $options = array() ) {
-	global $wgUser, $wgLang, $wgContLang;
-	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink(
+	global $wgLang, $wgContLang;
+	$s = Linker::makeKnownLink(
 	  $wgContLang->specialPage( $page ),
 	  ($d ? $wgLang->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) ),
 	  wfArrayToCGI( array('days' => $d), $options ) );

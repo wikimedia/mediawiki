@@ -27,13 +27,13 @@ class ListredirectsPage extends QueryPage {
 		return( $sql );
 	}
 
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		global $wgContLang;
 	
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );
 		$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();
-		$rd_link = $skin->makeKnownLinkObj( $rd_title, '', 'redirect=no' );
+		$rd_link = Linker::makeKnownLinkObj( $rd_title, '', 'redirect=no' );
 
 		# Find out where the redirect leads
 		$revision = Revision::newFromTitle( $rd_title );
@@ -41,7 +41,7 @@ class ListredirectsPage extends QueryPage {
 			# Make a link to the destination page
 			$target = Title::newFromRedirect( $revision->getText() );
 			if( $target ) {
-				$targetLink = $skin->makeLinkObj( $target );
+				$targetLink = Linker::makeLinkObj( $target );
 			} else {
 				/** @todo Put in some decent error display here */
 				$targetLink = '*';

@@ -44,12 +44,12 @@ class AncientPagesPage extends QueryPage {
 		return false;
 	}
 
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		global $wgLang, $wgContLang;
 
 		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $result->value ), true );
 		$title = Title::makeTitle( $result->namespace, $result->title );
-		$link = $skin->makeKnownLinkObj( $title, htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
+		$link = Linker::makeKnownLinkObj( $title, htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
 		return wfSpecialList($link, $d);
 	}
 }

@@ -35,10 +35,10 @@ class PopularPagesPage extends QueryPage {
 			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0";
 	}
 
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		global $wgLang, $wgContLang;
 		$title = Title::makeTitle( $result->namespace, $result->title );
-		$link = $skin->makeKnownLinkObj( $title, htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
+		$link = Linker::makeKnownLinkObj( $title, htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
 		$nv = wfMsgExt( 'nviews', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->value ) );
 		return wfSpecialList($link, $nv);

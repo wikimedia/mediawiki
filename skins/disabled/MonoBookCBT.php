@@ -428,12 +428,12 @@ class SkinMonoBookCBT extends SkinTemplate {
 			$usertalktitle = $usertitle->getTalkPage();
 			if( !$usertalktitle->equals( $this->mTitle ) ) {
 				$ntl = wfMsg( 'youhavenewmessages',
-					$this->makeKnownLinkObj(
+					self::makeKnownLinkObj(
 						$usertalktitle,
 						wfMsgHtml( 'newmessageslink' ),
 						'redirect=no'
 					),
-					$this->makeKnownLinkObj(
+					self::makeKnownLinkObj(
 						$usertalktitle,
 						wfMsgHtml( 'newmessagesdifflink' ),
 						'diff=cur'

@@ -234,10 +234,8 @@ class IPUnblockForm {
 
 		wfProfileIn( __METHOD__ );
 
-		static $sk=null, $msg=null;
+		static $msg=null;
 
-		if( is_null( $sk ) )
-			$sk = $wgUser->getSkin();
 		if( is_null( $msg ) ) {
 			$msg = array();
 			$keys = array( 'infiniteblock', 'expiringblock', 'contribslink', 'unblocklink', 
@@ -251,15 +249,15 @@ class IPUnblockForm {
 
 		# Prepare links to the blocker's user and talk pages
 		$blocker_name = $block->getByName();
-		$blocker = $sk->MakeLinkObj( Title::makeTitle( NS_USER, $blocker_name ), $blocker_name );
-		$blocker .= ' (' . $sk->makeLinkObj( Title::makeTitle( NS_USER_TALK, $blocker_name ), $wgLang->getNsText( NS_TALK ) ) . ')';
+		$blocker = Linker::makeLinkObj( Title::makeTitle( NS_USER, $blocker_name ), $blocker_name );
+		$blocker .= ' (' . Linker::makeLinkObj( Title::makeTitle( NS_USER_TALK, $blocker_name ), $wgLang->getNsText( NS_TALK ) ) . ')';
 
 		# Prepare links to the block target's user and contribs. pages (as applicable, don't do it for autoblocks)
 		if( $block->mAuto ) {
 			$target = $block->getRedactedName(); # Hide the IP addresses of auto-blocks; privacy
 		} else {
-			$target = $sk->makeLinkObj( Title::makeTitle( NS_USER, $block->mAddress ), $block->mAddress );
-			$target .= ' (' . $sk->makeKnownLinkObj( SpecialPage::getSafeTitleFor( 'Contributions', $block->mAddress ), $msg['contribslink'] ) . ')';
+			$target = Linker::makeLinkObj( Title::makeTitle( NS_USER, $block->mAddress ), $block->mAddress );
+			$target .= ' (' . Linker::makeKnownLinkObj( SpecialPage::getSafeTitleFor( 'Contributions', $block->mAddress ), $msg['contribslink'] ) . ')';
 		}
 		
 		$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
@@ -289,9 +287,9 @@ class IPUnblockForm {
 
 		if ( $wgUser->isAllowed('block') ) {
 			$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
-			$s .= ' (' . $sk->makeKnownLinkObj($titleObj, $msg['unblocklink'], 'action=unblock&id=' . urlencode( $block->mId ) ) . ')';
+			$s .= ' (' . Linker::makeKnownLinkObj($titleObj, $msg['unblocklink'], 'action=unblock&id=' . urlencode( $block->mId ) ) . ')';
 		}
-		$s .= $sk->commentBlock( $block->mReason );
+		$s .= Linker::commentBlock( $block->mReason );
 		$s .= "</li>\n";
 		wfProfileOut( __METHOD__ );
 		return $s;

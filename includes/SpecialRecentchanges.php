@@ -222,7 +222,6 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		}
 
 		// And now for the content
-		$sk = $wgUser->getSkin();
 		$wgOut->setSyndicated( true );
 
 		$list = ChangesList::newFromUser( $wgUser );
@@ -421,9 +420,8 @@ function rcDoOutputFeed( $rows, &$feed ) {
  *
  */
 function rcCountLink( $lim, $d, $page='Recentchanges', $more='' ) {
-	global $wgUser, $wgLang, $wgContLang;
-	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgContLang->specialPage( $page ),
+	global $wgLang, $wgContLang;
+	$s = Linker::makeKnownLink( $wgContLang->specialPage( $page ),
 	  ($lim ? $wgLang->formatNum( "{$lim}" ) : wfMsg( 'recentchangesall' ) ), "{$more}" .
 	  ($d ? "days={$d}&" : '') . 'limit='.$lim );
 	return $s;
@@ -433,9 +431,8 @@ function rcCountLink( $lim, $d, $page='Recentchanges', $more='' ) {
  *
  */
 function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
-	global $wgUser, $wgLang, $wgContLang;
-	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgContLang->specialPage( $page ),
+	global $wgLang, $wgContLang;
+	$s = Linker::makeKnownLink( $wgContLang->specialPage( $page ),
 	  ($d ? $wgLang->formatNum( "{$d}" ) : wfMsg( 'recentchangesall' ) ), $more.'days='.$d .
 	  ($lim ? '&limit='.$lim : '') );
 	return $s;
@@ -478,9 +475,8 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
  * @param $options
  */
 function makeOptionsLink( $title, $override, $options ) {
-	global $wgUser, $wgContLang;
-	$sk = $wgUser->getSkin();
-	return $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
+	global $wgContLang;
+	return Linker::makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 		htmlspecialchars( $title ), wfArrayToCGI( $override, $options ) );
 }
 
@@ -621,12 +617,11 @@ function rcFormatDiff( $row ) {
 }
 
 function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment ) {
-	global $wgFeedDiffCutoff, $wgContLang, $wgUser;
+	global $wgFeedDiffCutoff, $wgContLang;
 	$fname = 'rcFormatDiff';
 	wfProfileIn( $fname );
 
-	$skin = $wgUser->getSkin();
-	$completeText = '<p>' . $skin->formatComment( $comment ) . "</p>\n";
+	$completeText = '<p>' . Linker::formatComment( $comment ) . "</p>\n";
 
 	if( $title->getNamespace() >= 0 ) {
 		if( $oldid ) {

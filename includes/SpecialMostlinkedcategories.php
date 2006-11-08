@@ -53,13 +53,13 @@ class MostlinkedCategoriesPage extends QueryPage {
 			$db->dataSeek( $res, 0 );
 	}
 
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		global $wgLang, $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
 
-		$plink = $skin->makeLinkObj( $nt, htmlspecialchars( $text ) );
+		$plink = Linker::makeLinkObj( $nt, htmlspecialchars( $text ) );
 
 		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->value ) );
