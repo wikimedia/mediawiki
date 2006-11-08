@@ -1369,7 +1369,7 @@ $NEWPAGE
 'ipbreason'                   => 'סיבה',
 'ipbanononly'                 => 'חסום משתמשים אנונימיים בלבד',
 'ipbcreateaccount'            => 'חסום יצירת חשבונות',
-'ipbenableautoblock'          => 'חסום אוטומטית את כתובת ה־IP האחרונה בה השתמש משתמש זה, ואת כל הכתובות בהן ינסה לערוך בעת חסימתו',
+'ipbenableautoblock'          => 'עבור חסימת משתמש רשום: חסום גם את כתובת ה־IP האחרונה בה השתמש, וכן את כל כתובותיו הבאות',
 'ipbsubmit'                   => 'חסום משתמש זה',
 'ipbother'                    => 'זמן אחר',
 'ipboptions'                  => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite',
