@@ -967,6 +967,19 @@ $messages = array(
 'watchthisupload'             => 'עקוב אחרי דף זה',
 'filewasdeleted'              => 'קובץ בשם זה כבר הועלה בעבר, ולאחר מכן נמחק. אנא בדקו את הדף $1 לפני שתמשיכו להעלותו שנית.',
 
+'upload-proto-error'      => 'פרוטוקול שגוי',
+'upload-proto-error-text' => 'בהעלאה מרוחקת, יש להשתמש בכתובות URL המתחילות עם <code>http://</code> או <code>ftp://</code>.',
+'upload-file-error'       => 'שגיאה פנימית',
+'upload-file-error-text'  => 'שגיאה פנימית התרחשה בעת הניסיון ליצור קובץ זמני על השרת. אנא צרו קשר עם מנהל מערכת.',
+'upload-misc-error'       => 'שגיאת העלאה בלתי ידועה',
+'upload-misc-error-text'  => 'שגיאת העלאה בלתי ידועה התרחשה במהלך ההעלאה. אנא ודאו שכתובת ה־URL תקינה וזמינה ונסו שנית. אם הבעיה חוזרת על עצמה, אנא צרו קשר עם מנהל המערכת.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'לא ניתן להגיע ל־URL',
+'upload-curl-error6-text'  => 'לא ניתן לכתובת ה־URL שנכתבה. אנא בדקו אם כתובת זו נכונה ואם האתר זמין.',
+'upload-curl-error28'      => 'הסתיים זמן ההמתנה להעלאה',
+'upload-curl-error28-text' => 'לאתר לקח זמן רב מדי לענות. אנא בדקו שהאתר זמין, המתינו מעט ונסו שנית. ייתכן שתרצו לנסות בזמן פחות עמוס.',
+
 'license'            => 'רישיון',
 'nolicense'          => 'אין',
 'upload_source_url'  => ' (כתובת URL תקפה ונגישה)',
@@ -1356,7 +1369,7 @@ $NEWPAGE
 'ipbreason'                   => 'סיבה',
 'ipbanononly'                 => 'חסום משתמשים אנונימיים בלבד',
 'ipbcreateaccount'            => 'חסום יצירת חשבונות',
-'ipbenableautoblock'          => 'חסום אוטומטית כתובות IP שמשתמש זה השתמש בהן',
+'ipbenableautoblock'          => 'חסום אוטומטית את כתובת ה־IP האחרונה בה השתמש משתמש זה, ואת כל הכתובות בהן ינסה לערוך בעת חסימתו',
 'ipbsubmit'                   => 'חסום משתמש זה',
 'ipbother'                    => 'זמן אחר',
 'ipboptions'                  => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite',
