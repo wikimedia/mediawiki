@@ -159,6 +159,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   make CheckUser.php and the new retroactive autoblock functionality faster.
 * Fix regression in Special:Undelete for revisions deleted under MediaWiki 1.4
   with compression or legacy encoding
+* (bug 6737) Fixes for MySQL 5 schema in strict mode
 
 
 == Languages updated ==
