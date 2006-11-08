@@ -126,7 +126,7 @@ class UploadForm {
 	 * Returns true if there was an error, false otherwise
 	 */
 	private function curlCopy( $url, $dest ) {
-		global $wgMaxUploadSize, $wgUser;
+		global $wgMaxUploadSize, $wgUser, $wgOut;
 
 		if( !$wgUser->isAllowed( 'upload_by_url' ) ) {
 			$wgOut->permissionRequired( 'upload_by_url' );
@@ -137,6 +137,7 @@ class UploadForm {
 		$url =  trim( $url );
 		if( stripos($url, 'http://') !== 0 && stripos($url, 'ftp://') !== 0 ) {
 			# Only HTTP or FTP URLs
+			$wgOut->errorPage( 'upload-proto-error', 'upload-proto-error-text' );
 			return true;
 		}
 
@@ -144,6 +145,7 @@ class UploadForm {
 		$this->mUploadTempFile = @fopen( $this->mUploadTempName, "wb" );
 		if( $this->mUploadTempFile === false ) {
 			# Could not open temporary file to write in
+			$wgOut->errorPage( 'upload-file-error', 'upload-file-error-text');
 			return true;
 		}
 		
@@ -155,13 +157,18 @@ class UploadForm {
 		curl_setopt( $ch, CURLOPT_WRITEFUNCTION, array( $this, 'uploadCurlCallback' ) );
 		curl_exec( $ch );
 		$error = curl_errno( $ch ) ? true : false;
-#		if ( $error ) print curl_error ( $ch ) ; # Debugging output
+		$errornum =  curl_errno( $ch );
+		// if ( $error ) print curl_error ( $ch ) ; # Debugging output
 		curl_close( $ch );
 		
 		fclose( $this->mUploadTempFile );
 		unset( $this->mUploadTempFile );
 		if( $error ) {
 			unlink( $dest );
+			if( wfEmptyMsg( "upload-curl-error$errornum", wfMsg("upload-curl-error$errornum") ) )
+				$wgOut->errorPage( 'upload-misc-error', 'upload-misc-error-text' );
+			else
+				$wgOut->errorPage( "upload-curl-error$errornum", "upload-curl-error$errornum-text" );
 		}
 		
 		return $error;
