@@ -153,6 +153,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   if they have selected that option in preferences.
 * (bug 5936) Show an 'm' to the left of the edit summary on diff pages for minor edits.
 * (bug 7820) Improve error reporting for uploads via URL.
+* (bug 7405) Make Linker methods static.
 
 
 == Languages updated ==

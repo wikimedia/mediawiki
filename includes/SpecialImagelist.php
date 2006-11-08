@@ -112,7 +112,7 @@ class ImageListPager extends TablePager {
 				$name = $this->mCurrentRow->img_name;
 				$ilink = "<a href=\"" . htmlspecialchars( Image::imageUrl( $name ) ) .
 				  "\">" . $this->mMessages['imgfile'] . "</a>";
-				$desc = $this->getSkin()->makeKnownLinkObj( Title::makeTitle( NS_IMAGE, $name ),
+				$desc = Linker::makeKnownLinkObj( Title::makeTitle( NS_IMAGE, $name ),
 					$this->mMessages['imgdesc'] );
 				return "$desc | $ilink";
 			case 'img_timestamp':
@@ -121,7 +121,7 @@ class ImageListPager extends TablePager {
 				return htmlspecialchars( $value );
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
-					$link = $this->getSkin()->makeLinkObj( Title::makeTitle( NS_USER, $value ), 
+					$link = Linker::makeLinkObj( Title::makeTitle( NS_USER, $value ), 
 						htmlspecialchars( $value ) );
 				} else {
 					$link = htmlspecialchars( $value );
@@ -130,7 +130,7 @@ class ImageListPager extends TablePager {
 			case 'img_size':
 				return $wgLang->formatNum( $value );
 			case 'img_description':
-				return $this->getSkin()->commentBlock( $value );
+				return Linker::commentBlock( $value );
 		}
 	}
 

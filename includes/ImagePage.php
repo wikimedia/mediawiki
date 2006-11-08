@@ -181,7 +181,6 @@ class ImagePage extends Article {
 		$max = $wgImageLimits[$sizeSel];
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
-		$sk = $wgUser->getSkin();
 
 		if ( $this->img->exists() ) {
 			# image
@@ -254,9 +253,9 @@ class ImagePage extends Article {
 
 					if ( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
-						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
+						$link = Linker::makeLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
 						$this->img->selectPage( $page - 1 );
-						$thumb1 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
+						$thumb1 = Linker::makeThumbLinkObj( $this->img, $link, $label, 'none' );
 					} else {
 						$thumb1 = '';
 					}
@@ -264,8 +263,8 @@ class ImagePage extends Article {
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
 						$this->img->selectPage( $page + 1 );
-						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
-						$thumb2 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
+						$link = Linker::makeLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
+						$thumb2 = Linker::makeThumbLinkObj( $this->img, $link, $label, 'none' );
 					} else {
 						$thumb2 = '';
 					}
@@ -334,22 +333,20 @@ END
 			# Image does not exist
 
 			$title = SpecialPage::getTitleFor( 'Upload' );
-			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('noimage-linktext'),
+			$link = Linker::makeKnownLinkObj($title, wfMsgHtml('noimage-linktext'),
 				'wpDestFile=' . urlencode( $this->img->getName() ) );
 			$wgOut->addHTML( wfMsgWikiHtml( 'noimage', $link ) );
 		}
 	}
 
 	function printSharedImageText() {
-		global $wgRepositoryBaseUrl, $wgFetchCommonsDescriptions, $wgOut, $wgUser;
+		global $wgRepositoryBaseUrl, $wgFetchCommonsDescriptions, $wgOut;
 
 		$url = $wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey());
 		$sharedtext = "<div class='sharedUploadNotice'>" . wfMsgWikiHtml("sharedupload");
 		if ($wgRepositoryBaseUrl && !$wgFetchCommonsDescriptions) {
-
-			$sk = $wgUser->getSkin();
 			$title = SpecialPage::getTitleFor( 'Upload' );
-			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('shareduploadwiki-linktext'),
+			$link = Linker::makeKnownLinkObj($title, wfMsgHtml('shareduploadwiki-linktext'),
 			array( 'wpDestFile' => urlencode( $this->img->getName() )));
 			$sharedtext .= " " . wfMsgWikiHtml('shareduploadwiki', $link);
 		}
@@ -379,18 +376,16 @@ END
 		if( $this->img->fromSharedDirectory )
 			return;
 
-		$sk = $wgUser->getSkin();
-		
 		$wgOut->addHtml( '<br /><ul>' );
 		
 		# "Upload a new version of this file" link
 		if( $wgUser->isAllowed( 'reupload' ) ) {
-			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
+			$ulink = Linker::makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
 			$wgOut->addHtml( "<li><div>{$ulink}</div></li>" );
 		}
 		
 		# External editing link
-		$elink = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
+		$elink = Linker::makeKnownLinkObj( $this->mTitle, wfMsg( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
 		$wgOut->addHtml( '<li>' . $elink . '<div>' . wfMsgWikiHtml( 'edit-externally-help' ) . '</div></li>' );
 		
 		$wgOut->addHtml( '</ul>' );
@@ -406,16 +401,13 @@ END
 	 * If the page we've just displayed is in the "Image" namespace,
 	 * we follow it with an upload history of the image and its usage.
 	 */
-	function imageHistory()
-	{
-		global $wgUser, $wgOut, $wgUseExternalEditor;
-
-		$sk = $wgUser->getSkin();
+	function imageHistory() {
+		global $wgOut, $wgUseExternalEditor;
 
 		$line = $this->img->nextHistoryLine();
 
 		if ( $line ) {
-			$list = new ImageHistoryList( $sk );
+			$list = new ImageHistoryList();
 			$s = $list->beginImageHistoryList() .
 				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $line->img_timestamp),
 					$this->mTitle->getDBkey(),  $line->img_user,
@@ -442,9 +434,8 @@ END
 
 	}
 
-	function imageLinks()
-	{
-		global $wgUser, $wgOut;
+	function imageLinks() {
+		global $wgOut;
 
 		$wgOut->addHTML( '<h2 id="filelinks">' . wfMsg( 'imagelinks' ) . "</h2>\n" );
 
@@ -463,10 +454,9 @@ END
 		}
 		$wgOut->addHTML( '<p>' . wfMsg( 'linkstoimage' ) .  "</p>\n<ul>" );
 
-		$sk = $wgUser->getSkin();
 		while ( $s = $dbr->fetchObject( $res ) ) {
 			$name = Title::MakeTitle( $s->page_namespace, $s->page_title );
-			$link = $sk->makeKnownLinkObj( $name, "" );
+			$link = Linker::makeKnownLinkObj( $name, "" );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
 		$wgOut->addHTML( "</ul>\n" );
@@ -699,8 +689,7 @@ END
  * @package MediaWiki
  */
 class ImageHistoryList {
-	function ImageHistoryList( &$skin ) {
-		$this->skin =& $skin;
+	function ImageHistoryList() {
 	}
 
 	function beginImageHistoryList() {
@@ -726,11 +715,8 @@ class ImageHistoryList {
 			$url = Image::imageUrl( $img );
 			$rlink = $cur;
 			if ( $wgUser->isAllowed('delete') ) {
-				$link = $wgTitle->escapeLocalURL( 'image=' . $wgTitle->getPartialURL() .
-				  '&action=delete' );
-				$style = $this->skin->getInternalLinkAttributes( $link, $delall );
-
-				$dlink = '<a href="'.$link.'"'.$style.'>'.$delall.'</a>';
+				$dlink = Linker::makeKnownLinkObj( $wgTitle, $delall,
+					'image=' . $wgTitle->getPartialURL() . '&action=delete');
 			} else {
 				$dlink = $del;
 			}
@@ -738,10 +724,10 @@ class ImageHistoryList {
 			$url = htmlspecialchars( wfImageArchiveUrl( $img ) );
 			if( $wgUser->getID() != 0 && $wgTitle->userCanEdit() ) {
 				$token = urlencode( $wgUser->editToken( $img ) );
-				$rlink = $this->skin->makeKnownLinkObj( $wgTitle,
+				$rlink = Linker::makeKnownLinkObj( $wgTitle,
 				           wfMsg( 'revertimg' ), 'action=revert&oldimage=' .
 				           urlencode( $img ) . "&wpEditToken=$token" );
-				$dlink = $this->skin->makeKnownLinkObj( $wgTitle,
+				$dlink = Linker::makeKnownLinkObj( $wgTitle,
 				           $del, 'action=delete&oldimage=' . urlencode( $img ) .
 				           "&wpEditToken=$token" );
 			} else {
@@ -753,15 +739,15 @@ class ImageHistoryList {
 			}
 		}
 		
-		$userlink = $this->skin->userLink( $user, $usertext ) . $this->skin->userToolLinks( $user, $usertext );
+		$userlink = Linker::userLink( $user, $usertext ) . Linker::userToolLinks( $user, $usertext );
 		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $size ) );
 		$widthheight = wfMsg( 'widthheight', $width, $height );
-		$style = $this->skin->getInternalLinkAttributes( $url, $datetime );
+		$style = Linker::getInternalLinkAttributes( $url, $datetime );
 
 		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$datetime}</a> . . {$userlink} . . {$widthheight} ({$nbytes})";
 
-		$s .= $this->skin->commentBlock( $description, $wgTitle );
+		$s .= Linker::commentBlock( $description, $wgTitle );
 		$s .= "</li>\n";
 		return $s;
 	}

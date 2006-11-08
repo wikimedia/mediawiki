@@ -33,10 +33,10 @@ class UnusedtemplatesPage extends QueryPage {
 		return $sql;
 	}
 
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		$title = Title::makeTitle( NS_TEMPLATE, $result->title );
-		$pageLink = $skin->makeKnownLinkObj( $title, '', 'redirect=no' );
-		$wlhLink = $skin->makeKnownLinkObj(
+		$pageLink = Linker::makeKnownLinkObj( $title, '', 'redirect=no' );
+		$wlhLink = Linker::makeKnownLinkObj(
 			SpecialPage::getTitleFor( 'Whatlinkshere' ),
 			wfMsgHtml( 'unusedtemplateswlh' ),
 			'target=' . $title->getPrefixedUrl() );

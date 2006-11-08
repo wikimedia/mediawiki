@@ -126,8 +126,7 @@ class SpecialSearch {
 
 		$this->setupPage( $term );
 
-		global $wgUser, $wgOut;
-		$sk = $wgUser->getSkin();
+		global $wgOut;
 		$wgOut->addWikiText( wfMsg( 'searchresulttext' ) );
 
 		#if ( !$this->parseQuery() ) {
@@ -321,14 +320,13 @@ class SpecialSearch {
 			wfProfileOut( $fname );
 			return "<!-- Broken link in search result -->\n";
 		}
-		$sk =& $wgUser->getSkin();
 
 		$contextlines = $wgUser->getOption( 'contextlines' );
 		if ( '' == $contextlines ) { $contextlines = 5; }
 		$contextchars = $wgUser->getOption( 'contextchars' );
 		if ( '' == $contextchars ) { $contextchars = 50; }
 
-		$link = $sk->makeKnownLinkObj( $t );
+		$link = Linker::makeKnownLinkObj( $t );
 		$revision = Revision::newFromTitle( $t );
 		$text = $revision->getText();
 		$size = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),

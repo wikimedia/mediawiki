@@ -291,9 +291,8 @@ function wfSpecialContributions( $par = null ) {
 
 	$wgOut->addHTML( "<ul>\n" );
 
-	$sk = $wgUser->getSkin();
 	foreach ( $contribs as $contrib )
-		$wgOut->addHTML( ucListEdit( $sk, $contrib ) );
+		$wgOut->addHTML( ucListEdit( $contrib ) );
 
 	$wgOut->addHTML( "</ul>\n" );
 	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n" );
@@ -306,27 +305,26 @@ function wfSpecialContributions( $par = null ) {
 function contributionsSub( $nt ) {
 	global $wgSysopUserBans, $wgLang, $wgUser;
 
-	$sk = $wgUser->getSkin();
 	$id = User::idFromName( $nt->getText() );
 
 	if ( 0 == $id ) {
 		$ul = $nt->getText();
 	} else {
-		$ul = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
+		$ul = Linker::makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
 		# Talk page link	
-		$tools[] = $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
+		$tools[] = Linker::makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
 		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
 			# Block link
 			if( $wgUser->isAllowed( 'block' ) )
-				$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ), wfMsgHtml( 'blocklink' ) );
+				$tools[] = Linker::makeKnownLinkObj( SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ), wfMsgHtml( 'blocklink' ) );
 			# Block log link
-			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), htmlspecialchars( LogPage::logName( 'block' ) ), 'type=block&page=' . $nt->getPrefixedUrl() );
+			$tools[] = Linker::makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), htmlspecialchars( LogPage::logName( 'block' ) ), 'type=block&page=' . $nt->getPrefixedUrl() );
 		}
 		# Other logs link
-		$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
+		$tools[] = Linker::makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
 		$ul .= ' (' . implode( ' | ', $tools ) . ')';
 	}
 	return $ul;
@@ -377,7 +375,7 @@ function contributionsForm( $options ) {
  *
  * @todo This would probably look a lot nicer in a table.
  */
-function ucListEdit( $sk, $row ) {
+function ucListEdit( $row ) {
 	$fname = 'ucListEdit';
 	wfProfileIn( $fname );
 
@@ -392,12 +390,12 @@ function ucListEdit( $sk, $row ) {
 	$rev = new Revision( $row );
 	
 	$page = Title::makeTitle( $row->page_namespace, $row->page_title );
-	$link = $sk->makeKnownLinkObj( $page );
+	$link = Linker::makeKnownLinkObj( $page );
 	$difftext = $topmarktext = '';
 	if( $row->rev_id == $row->page_latest ) {
 		$topmarktext .= '<strong>' . $messages['uctop'] . '</strong>';
 		if( !$row->page_is_new ) {
-			$difftext .= '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=0' ) . ')';
+			$difftext .= '(' . Linker::makeKnownLinkObj( $page, $messages['diff'], 'diff=0' ) . ')';
 		} else {
 			$difftext .= $messages['newarticle'];
 		}
@@ -406,20 +404,20 @@ function ucListEdit( $sk, $row ) {
 			$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
 			$extraRollback .= '&token=' . urlencode(
 				$wgUser->editToken( array( $page->getPrefixedText(), $row->rev_user_text ) ) );
-			$topmarktext .= ' ['. $sk->makeKnownLinkObj( $page,
+			$topmarktext .= ' ['. Linker::makeKnownLinkObj( $page,
 			  	$messages['rollbacklink'],
 			  	'action=rollback&from=' . urlencode( $row->rev_user_text ) . $extraRollback ) .']';
 		}
 
 	}
 	if( $rev->userCan( Revision::DELETED_TEXT ) ) {
-		$difftext = '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
+		$difftext = '(' . Linker::makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
 	} else {
 		$difftext = '(' . $messages['diff'] . ')';
 	}
-	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
+	$histlink = '(' . Linker::makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
-	$comment = $sk->revComment( $rev );
+	$comment = Linker::revComment( $rev );
 	$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
 	
 	if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {

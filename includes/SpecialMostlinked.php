@@ -58,28 +58,26 @@ class MostlinkedPage extends QueryPage {
 	 * Make a link to "what links here" for the specified title
 	 *
 	 * @param $title Title being queried
-	 * @param $skin Skin to use
 	 * @return string
 	 */
-	function makeWlhLink( &$title, $caption, &$skin ) {
+	function makeWlhLink( &$title, $caption ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
-		return $skin->makeKnownLinkObj( $wlh, $caption );
+		return Linker::makeKnownLinkObj( $wlh, $caption );
 	}
 
 	/**
 	 * Make links to the page corresponding to the item, and the "what links here" page for it
 	 *
-	 * @param $skin Skin to be used
 	 * @param $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		global $wgLang;
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
-		$link = $skin->makeLinkObj( $title );
+		$link = Linker::makeLinkObj( $title );
 		$wlh = $this->makeWlhLink( $title,
 			wfMsgExt( 'nlinks', array( 'parsemag', 'escape'),
-				$wgLang->formatNum( $result->value ) ), $skin );
+				$wgLang->formatNum( $result->value ) ) );
 		return wfSpecialList( $link, $wlh );
 	}
 }

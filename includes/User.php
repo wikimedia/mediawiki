@@ -2388,9 +2388,7 @@ class User {
 		}
 		$title = self::getGroupPage( $group );
 		if( $title ) {
-			global $wgUser;
-			$sk = $wgUser->getSkin();
-			return $sk->makeLinkObj( $title, $text );
+			return Linker::makeLinkObj( $title, $text );
 		} else {
 			return $text;
 		}

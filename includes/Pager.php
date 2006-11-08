@@ -225,7 +225,7 @@ abstract class IndexPager implements Pager {
 		if ( $query === null ) {
 			return $text;
 		} else {
-			return $this->getSkin()->makeKnownLinkObj( $this->getTitle(), $text,
+			return Linker::makeKnownLinkObj( $this->getTitle(), $text,
 				wfArrayToCGI( $query, $this->getDefaultQuery() ) );
 		}
 	}
@@ -259,17 +259,6 @@ abstract class IndexPager implements Pager {
 	 */
 	function getTitle() {
 		return $GLOBALS['wgTitle'];
-	}
-
-	/**
-	 * Get the current skin. This can be overridden if necessary.
-	 */
-	function getSkin() {
-		if ( !isset( $this->mSkin ) ) {
-			global $wgUser;
-			$this->mSkin = $wgUser->getSkin();
-		}
-		return $this->mSkin;
 	}
 
 	/**

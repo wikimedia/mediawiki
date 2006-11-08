@@ -130,7 +130,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
+	static function actionText( $type, $action, $title = NULL, $forContent = true, $params = array(), $filterWikilinks=false, $translate=false ) {
 		global $wgLang, $wgContLang, $wgLogActions;
 
 		$key = "$type/$action";
@@ -138,37 +138,35 @@ class LogPage {
 			if( is_null( $title ) ) {
 				$rv=wfMsg( $wgLogActions[$key] );
 			} else {
-				if( $skin ) {
-
+				if( $forContent ) {
+					$titleLink = $title->getPrefixedText();
+				} else {
 					switch( $type ) {
 						case 'move':
-							$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
-							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), $params[0] );
+							$titleLink = Linker::makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
+							$params[0] = Linker::makeLinkObj( Title::newFromText( $params[0] ), $params[0] );
 							break;
 						case 'block':
 							if( substr( $title->getText(), 0, 1 ) == '#' ) {
 								$titleLink = $title->getText();
 							} else {
-								$titleLink = $skin->makeLinkObj( $title, $title->getText() );
-								$titleLink .= ' (' . $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() ), wfMsg( 'contribslink' ) ) . ')';
+								$titleLink = Linker::makeLinkObj( $title, $title->getText() );
+								$titleLink .= ' (' . Linker::makeKnownLinkObj( SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() ), wfMsg( 'contribslink' ) ) . ')';
 							}
 							break;
 						case 'rights':
 							$text = $wgContLang->ucfirst( $title->getText() );
-							$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
+							$titleLink = Linker::makeLinkObj( Title::makeTitle( NS_USER, $text ) );
 							break;
 						default:
-							$titleLink = $skin->makeLinkObj( $title );
+							$titleLink = Linker::makeLinkObj( $title );
 					}
-
-				} else {
-					$titleLink = $title->getPrefixedText();
 				}
 				if( $key == 'rights/rights' ) {
-					if ($skin) {
-						$rightsnone = wfMsg( 'rightsnone' );
-					} else {
+					if( $forContent ) {
 						$rightsnone = wfMsgForContent( 'rightsnone' );
+					} else {
+						$rightsnone = wfMsg( 'rightsnone' );
 					}
 					if( !isset( $params[0] ) || trim( $params[0] ) == '' )
 						$params[0] = $rightsnone;
@@ -176,17 +174,17 @@ class LogPage {
 						$params[1] = $rightsnone;
 				}
 				if( count( $params ) == 0 ) {
-					if ( $skin ) {
-						$rv = wfMsg( $wgLogActions[$key], $titleLink );
-					} else {
+					if ( $forContent ) {
 						$rv = wfMsgForContent( $wgLogActions[$key], $titleLink );
+					} else {
+						$rv = wfMsg( $wgLogActions[$key], $titleLink );
 					}
 				} else {
 					array_unshift( $params, $titleLink );
 					if ( $translate && $key == 'block/block' ) {
 						$params[1] = $wgLang->translateBlockExpiry($params[1]);
 					}
-					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin );
+					$rv = wfMsgReal( $wgLogActions[$key], $params, true, $forContent );
 				}
 			}
 		} else {
@@ -194,8 +192,8 @@ class LogPage {
 			$rv = "$action";
 		}
 		if( $filterWikilinks ) {
-			$rv = str_replace( "[[", "", $rv );
-			$rv = str_replace( "]]", "", $rv );
+			$rv = str_replace( '[[', '', $rv );
+			$rv = str_replace( ']]', '', $rv );
 		}
 		return $rv;
 	}
@@ -215,9 +213,9 @@ class LogPage {
 		$this->action = $action;
 		$this->target = $target;
 		$this->comment = $comment;
-		$this->params = LogPage::makeParamBlob( $params );
+		$this->params = self::makeParamBlob( $params );
 
-		$this->actionText = LogPage::actionText( $this->type, $action, $target, NULL, $params );
+		$this->actionText = self::actionText( $this->type, $action, $target, true, $params );
 
 		return $this->saveContent();
 	}
@@ -226,7 +224,7 @@ class LogPage {
 	 * Create a blob from a parameter array
 	 * @static
 	 */
-	function makeParamBlob( $params ) {
+	static function makeParamBlob( $params ) {
 		return implode( "\n", $params );
 	}
 
@@ -234,7 +232,7 @@ class LogPage {
 	 * Extract a parameter array from a blob
 	 * @static
 	 */
-	function extractParams( $blob ) {
+	static function extractParams( $blob ) {
 		if ( $blob === '' ) {
 			return array();
 		} else {

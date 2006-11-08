@@ -39,14 +39,14 @@ class UnwatchedpagesPage extends QueryPage {
 
 	function sortDescending() { return false; }
 
-	function formatResult( $skin, $result ) {
+	function formatResult( $result ) {
 		global $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
-		$plink = $skin->makeKnownLinkObj( $nt, htmlspecialchars( $text ) );
-		$wlink = $skin->makeKnownLinkObj( $nt, wfMsgHtml( 'watch' ), 'action=watch' );
+		$plink = Linker::makeKnownLinkObj( $nt, htmlspecialchars( $text ) );
+		$wlink = Linker::makeKnownLinkObj( $nt, wfMsgHtml( 'watch' ), 'action=watch' );
 
 		return wfSpecialList( $plink, $wlink );
 	}

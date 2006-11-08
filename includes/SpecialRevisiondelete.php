@@ -10,12 +10,11 @@
  */
 
 function wfSpecialRevisiondelete( $par = null ) {
-	global $wgOut, $wgRequest, $wgUser;
+	global $wgOut, $wgRequest;
 	
 	$target = $wgRequest->getVal( 'target' );
 	$oldid = $wgRequest->getIntArray( 'oldid' );
 	
-	$sk = $wgUser->getSkin();
 	$page = Title::newFromUrl( $target );
 	
 	if( is_null( $page ) ) {
@@ -49,7 +48,6 @@ class RevisionDeleteForm {
 		
 		$this->revisions = $request->getIntArray( 'oldid', array() );
 		
-		$this->skin = $wgUser->getSkin();
 		$this->checks = array(
 			array( 'revdelete-hide-text', 'wpHideText', Revision::DELETED_TEXT ),
 			array( 'revdelete-hide-comment', 'wpHideComment', Revision::DELETED_COMMENT ),
@@ -122,11 +120,11 @@ class RevisionDeleteForm {
 		$date = $wgContLang->timeanddate( $rev->getTimestamp() );
 		return
 			"<li>" .
-			$this->skin->makeLinkObj( $this->page, $date, 'oldid=' . $rev->getId() ) .
+			Linker::makeLinkObj( $this->page, $date, 'oldid=' . $rev->getId() ) .
 			" " .
-			$this->skin->revUserLink( $rev ) .
+			Linker::revUserLink( $rev ) .
 			" " .
-			$this->skin->revComment( $rev ) .
+			Linker::revComment( $rev ) .
 			"</li>";
 	}
 	
