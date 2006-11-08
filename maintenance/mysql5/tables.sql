@@ -36,7 +36,7 @@
 -- in early 2002 after a lot of trouble with the fields
 -- auto-updating.
 --
--- The PostgreSQL backend uses DATETIME fields for timestamps,
+-- The Postgres backend uses DATETIME fields for timestamps,
 -- and we will migrate the MySQL definitions at some point as
 -- well.
 --
@@ -114,18 +114,18 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- Initially NULL; when a user's e-mail address has been
   -- validated by returning with a mailed token, this is
   -- set to the current timestamp.
-  user_email_authenticated CHAR(14) BINARY,
+  user_email_authenticated char(14) binary,
   
   -- Randomly generated token created when the e-mail address
   -- is set and a confirmation test mail sent.
-  user_email_token CHAR(32) BINARY,
+  user_email_token char(32) binary,
   
   -- Expiration date for the user_email_token
-  user_email_token_expires CHAR(14) BINARY,
+  user_email_token_expires char(14) binary,
 
   -- Timestamp of account registration.
   -- Accounts predating this schema addition may contain NULL.
-  user_registration CHAR(14) BINARY,
+  user_registration char(14) binary,
 
   PRIMARY KEY user_id (user_id),
   UNIQUE INDEX user_name (user_name),
@@ -382,7 +382,7 @@ CREATE TABLE /*$wgDBprefix*/pagelinks (
   pl_namespace int NOT NULL default '0',
   pl_title varchar(255) binary NOT NULL default '',
   
-  UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
+  UNIQUE KEY pl_from (pl_from,pl_namespace,pl_title),
   KEY (pl_namespace,pl_title)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
@@ -402,7 +402,7 @@ CREATE TABLE /*$wgDBprefix*/templatelinks (
   tl_namespace int NOT NULL default '0',
   tl_title varchar(255) binary NOT NULL default '',
   
-  UNIQUE KEY tl_from(tl_from,tl_namespace,tl_title),
+  UNIQUE KEY tl_from (tl_from,tl_namespace,tl_title),
   KEY (tl_namespace,tl_title)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
@@ -422,7 +422,7 @@ CREATE TABLE /*$wgDBprefix*/imagelinks (
   -- all such pages are in namespace 6 (NS_IMAGE).
   il_to varchar(255) binary NOT NULL default '',
   
-  UNIQUE KEY il_from(il_from,il_to),
+  UNIQUE KEY il_from (il_from,il_to),
   KEY (il_to)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
@@ -456,13 +456,13 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- sorting method by approximate addition time.
   cl_timestamp timestamp NOT NULL,
   
-  UNIQUE KEY cl_from(cl_from,cl_to),
+  UNIQUE KEY cl_from (cl_from,cl_to),
   
   -- We always sort within a given category...
-  KEY cl_sortkey(cl_to,cl_sortkey),
+  KEY cl_sortkey (cl_to,cl_sortkey),
   
   -- Not really used?
-  KEY cl_timestamp(cl_to,cl_timestamp)
+  KEY cl_timestamp (cl_to,cl_timestamp)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
@@ -556,7 +556,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 -- that have been visited.)
 --
 CREATE TABLE /*$wgDBprefix*/hitcounter (
-  hc_id INTEGER UNSIGNED NOT NULL
+  hc_id int unsigned NOT NULL
 ) ENGINE=HEAP MAX_ROWS=25000;
 
 
@@ -633,14 +633,14 @@ CREATE TABLE /*$wgDBprefix*/image (
   img_size int(8) unsigned NOT NULL default '0',
   
   -- For images, size in pixels.
-  img_width int(5)  NOT NULL default '0',
-  img_height int(5)  NOT NULL default '0',
+  img_width int(5) NOT NULL default '0',
+  img_height int(5) NOT NULL default '0',
   
   -- Extracted EXIF metadata stored as a serialized PHP array.
   img_metadata mediumblob NOT NULL,
   
   -- For images, bits per pixel if known.
-  img_bits int(3)  NOT NULL default '0',
+  img_bits int(3) NOT NULL default '0',
   
   -- Media type as defined by the MEDIATYPE_xxx constants
   img_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
@@ -709,7 +709,7 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
 --
 CREATE TABLE /*$wgDBprefix*/filearchive (
   -- Unique row id
-  fa_id int not null auto_increment,
+  fa_id int NOT NULL auto_increment,
   
   -- Original base filename; key to image.img_name, page.page_title, etc
   fa_name varchar(255) binary NOT NULL default '',
@@ -736,10 +736,10 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   
   -- Duped fields from image
   fa_size int(8) unsigned default '0',
-  fa_width int(5)  default '0',
-  fa_height int(5)  default '0',
+  fa_width int(5) default '0',
+  fa_height int(5) default '0',
   fa_metadata mediumblob,
-  fa_bits int(3)  default '0',
+  fa_bits int(3) default '0',
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") default "unknown",
   fa_minor_mime varchar(32) default "unknown",
@@ -815,7 +815,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   INDEX rc_timestamp (rc_timestamp),
   INDEX rc_namespace_title (rc_namespace, rc_title),
   INDEX rc_cur_id (rc_cur_id),
-  INDEX new_name_timestamp(rc_new,rc_namespace,rc_timestamp),
+  INDEX new_name_timestamp (rc_new,rc_namespace,rc_timestamp),
   INDEX rc_ip (rc_ip),
   INDEX rc_ns_usertext ( rc_namespace, rc_user_text )
 
@@ -904,10 +904,10 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
   
   -- A boolean value indicating whether the wiki is in this project
   -- (used, for example, to detect redirect loops)
-  iw_local BOOL NOT NULL,
+  iw_local bool NOT NULL,
   
   -- Boolean value indicating whether interwiki transclusions are allowed.
-  iw_trans TINYINT(1) NOT NULL DEFAULT 0,
+  iw_trans tinyint(1) NOT NULL default 0,
   
   UNIQUE KEY iw_prefix (iw_prefix)
 
@@ -935,11 +935,11 @@ CREATE TABLE /*$wgDBprefix*/querycache (
 -- For a few generic cache operations if not using Memcached
 --
 CREATE TABLE /*$wgDBprefix*/objectcache (
-  keyname char(255) binary not null default '',
+  keyname char(255) binary NOT NULL default '',
   value mediumblob,
   exptime datetime,
-  unique key (keyname),
-  key (exptime)
+  UNIQUE KEY (keyname),
+  KEY (exptime)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
@@ -947,10 +947,10 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
 -- Cache of interwiki transclusion
 --
 CREATE TABLE /*$wgDBprefix*/transcache (
-	tc_url		VARCHAR(255) NOT NULL,
-	tc_contents	TEXT,
-	tc_time		INT NOT NULL,
-	UNIQUE INDEX tc_url_idx(tc_url)
+  tc_url varchar(255) NOT NULL,
+  tc_contents text,
+  tc_time int NOT NULL,
+  UNIQUE INDEX tc_url_idx (tc_url)
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 CREATE TABLE /*$wgDBprefix*/logging (
@@ -984,14 +984,15 @@ CREATE TABLE /*$wgDBprefix*/logging (
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 CREATE TABLE /*$wgDBprefix*/trackbacks (
-	tb_id integer AUTO_INCREMENT PRIMARY KEY,
-	tb_page	integer REFERENCES page(page_id) ON DELETE CASCADE,
-	tb_title varchar(255) NOT NULL,
-	tb_url	varchar(255) NOT NULL,
-	tb_ex text,
-	tb_name varchar(255),
+  tb_id int auto_increment,
+  tb_page int REFERENCES page(page_id) ON DELETE CASCADE,
+  tb_title varchar(255) NOT NULL,
+  tb_url varchar(255) NOT NULL,
+  tb_ex text,
+  tb_name varchar(255),
 
-	INDEX (tb_page)
+  PRIMARY KEY (tb_id),
+  INDEX (tb_page)
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 -- Jobs performed by parallel apache threads or a command-line daemon
@@ -1017,14 +1018,14 @@ CREATE TABLE /*$wgDBprefix*/job (
 -- Details of updates to cached special pages
 CREATE TABLE /*$wgDBprefix*/querycache_info (
 
-	-- Special page name
-	-- Corresponds to a qc_type value
-	qci_type varchar(32) NOT NULL default '',
+  -- Special page name
+  -- Corresponds to a qc_type value
+  qci_type varchar(32) NOT NULL default '',
 
-	-- Timestamp of last update
-	qci_timestamp char(14) NOT NULL default '19700101000000',
+  -- Timestamp of last update
+  qci_timestamp char(14) NOT NULL default '19700101000000',
 
-	UNIQUE KEY ( qci_type )
+  UNIQUE KEY ( qci_type )
 
 ) ENGINE=InnoDB;
 
