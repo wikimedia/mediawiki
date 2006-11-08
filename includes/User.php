@@ -1932,7 +1932,7 @@ class User {
 		$ipblock = Block::newFromDB( wfGetIP() );
 		if ( $ipblock ) {
 			# If the user is already blocked. Then check if the autoblock would
-			# excede the user block. If it would excede, then do nothing, else
+			# exceed the user block. If it would exceed, then do nothing, else
 			# prolong block time
 			if ($userblock->mExpiry &&
 				($userblock->mExpiry < Block::getAutoblockExpiry($ipblock->mTimestamp))) {
