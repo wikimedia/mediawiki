@@ -125,7 +125,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Remove entries from redirect table on article deletion
 * (bug 7788) Force section headers in new section links for users who have
   'prompt for blank edit summaries' on.
-* (bug 1133) Special:Emailuser: add an option to send yourself a copy your mail.
+* (bug 1133) Special:Emailuser: add an option to send yourself a copy of your mail.
 * (bug 461) Allow "Categories:" link at bottom of pages to be customized via
   pagecategorieslink message.
 * Sort the list of skins in "My Preferences" -> Skins by alphabetical order.
@@ -152,6 +152,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5365) Stop users being prompted to enter an edit summary for null edits,
   if they have selected that option in preferences.
 * (bug 5936) Show an 'm' to the left of the edit summary on diff pages for minor edits.
+* (bug 7820) Improve error reporting for uploads via URL.
+
 
 == Languages updated ==
 

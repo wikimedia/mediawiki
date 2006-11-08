@@ -1283,6 +1283,18 @@ created and by whom, and anything else you may know about it. If this is an imag
 'watchthisupload'	=> 'Watch this page',
 'filewasdeleted' => 'A file of this name has been previously uploaded and subsequently deleted. You should check the $1 before proceeding to upload it again.',
 
+'upload-proto-error' => 'Incorrect protocol',
+'upload-proto-error-text' => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
+'upload-file-error' => 'Internal error',
+'upload-file-error-text' => 'An internal error occurred when attempting to create a temporary file on the server.  Please contact a system administrator.',
+'upload-misc-error' => 'Unknown upload error',
+'upload-misc-error-text' => 'An unknown error occurred during the upload.  Please verify that the URL is valid and accessible and try again.  If the problem persists, contact a system administrator.',
+# Some likely curl errors.  More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => "Couldn't reach URL",
+'upload-curl-error6-text' => 'The URL provided could not be reached.  Please double-check that the URL is correct and the site is up.',
+'upload-curl-error28' => 'Upload timeout',
+'upload-curl-error28-text' => 'The site took too long to respond. Please check the site is up, wait a short while and try again. You may want to try at a less busy time.',
+
 'license' => 'Licensing',
 'nolicense' => 'None selected',
 'licenses' => '-', # Don't duplicate this in translations
