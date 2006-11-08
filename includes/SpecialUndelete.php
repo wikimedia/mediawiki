@@ -139,7 +139,9 @@ class PageArchive {
 			return new Revision( array(
 				'page'       => $this->title->getArticleId(),
 				'id'         => $row->ar_rev_id,
-				'text'       => ($row->ar_text_id ? null : $row->ar_text),
+				'text'       => ($row->ar_text_id
+					? null
+					: Revision::getRevisionText( $row, 'ar_' ) ),
 				'comment'    => $row->ar_comment,
 				'user'       => $row->ar_user,
 				'user_text'  => $row->ar_user_text,

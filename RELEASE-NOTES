@@ -157,6 +157,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   recently used IP of a user when they are blocked.
 * Add an index on (rc_user_text,rc_timestamp) on the recentchanges table. This will 
   make CheckUser.php and the new retroactive autoblock functionality faster.
+* Fix regression in Special:Undelete for revisions deleted under MediaWiki 1.4
+  with compression or legacy encoding
+
 
 == Languages updated ==
 
