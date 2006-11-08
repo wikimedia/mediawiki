@@ -779,7 +779,19 @@ function do_rc_indices_update() {
 		dbsource( archive( 'patch-recentchanges-utindex.sql' ) );
 	} else {
 		# Index seems to exist
-		echo( "...seems to be ok\n" );
+		echo( "...index on ( rc_namespace, rc_user_text ) seems to be ok\n" );
+	}
+
+	#Add (rc_user_text, rc_timestamp) index [A. Garrett], November 2006
+	# See if we can find the index we want
+	$info = $wgDatabase->indexInfo( 'recentchanges', 'rc_user_text', __METHOD__ );
+	if( !$info ) {
+		# None, so create
+		echo( "...index on ( rc_user_text, rc_timestamp ) not found; creating\n" );
+		dbsource( archive( 'patch-rc_user_text-index.sql' ) );
+	} else {
+		# Index seems to exist
+		echo( "...index on ( rc_user_text, rc_timestamp ) seems to be ok\n" );
 	}
 }
 

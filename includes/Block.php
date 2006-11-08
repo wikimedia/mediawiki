@@ -356,6 +356,10 @@ class Block
 		return $dbw->affectedRows() > 0;
 	}
 
+	/**
+	* Insert a block into the block table.
+	*@return Whether or not the insertion was successful.
+	*/
 	function insert()
 	{
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
@@ -395,7 +399,87 @@ class Block
 		);
 		$affected = $dbw->affectedRows();
 		$dbw->commit();
+
+		$this->doRetroactiveAutoblock();
+
 		return $affected;
+	}
+
+	/**
+	* Retroactively autoblocks the last IP used by the user (if it is a user)
+	* blocked by this Block.
+	*@return Whether or not a retroactive autoblock was made.
+	*/
+	function doRetroactiveAutoblock() {
+		$dbr = wfGetDb( DB_SLAVE );
+		#If autoblock is enabled, autoblock the LAST IP used
+		# - stolen shamelessly from CheckUser_body.php
+
+		if ($this->mEnableAutoblock && $this->mUser) {
+			wfDebug("Doing retroactive autoblocks for " . $this->mAddress . "\n");
+
+			$row = $dbr->selectRow( 'recentchanges', array( 'rc_ip' ), array( 'rc_user_text' => $this->mAddress ),
+				$fname, array( 'ORDER BY' => 'rc_timestamp DESC' ) );
+
+			if ( !$row || !$row->rc_ip ) {
+				#No results, don't autoblock anything
+				wfDebug("No IP found to retroactively autoblock\n");
+			} else {
+				#Limit is 1, so no loop needed.
+				$retroblockip = $row->rc_ip;
+				return $this->doAutoblock($retroblockip);
+			}
+		}
+	}
+
+	/**
+	* Autoblocks the given IP, referring to this Block.
+	*@param $autoblockip The IP to autoblock.
+	*@return Whether or not an autoblock was inserted.
+	*/
+	function doAutoblock( $autoblockip ) {
+		# Check if this IP address is already blocked
+		$dbw =& wfGetDb( DB_MASTER );
+		$dbw->begin();
+
+		if ( !$this->mEnableAutoblock ) {
+			return;
+		}
+
+		$ipblock = Block::newFromDB( $autoblockip );
+		if ( $ipblock ) {
+			# If the user is already blocked. Then check if the autoblock would
+			# exceed the user block. If it would exceed, then do nothing, else
+			# prolong block time
+			if ($this->mExpiry &&
+			($this->mExpiry < Block::getAutoblockExpiry($ipblock->mTimestamp))) {
+				return;
+			}
+			# Just update the timestamp
+			$ipblock->updateTimestamp();
+			return;
+		} else {
+			$ipblock = new Block;
+		}
+
+		# Make a new block object with the desired properties
+		wfDebug( "Autoblocking {$this->mAddress}@" . $autoblockip . "\n" );
+		$ipblock->mAddress = $autoblockip;
+		$ipblock->mUser = 0;
+		$ipblock->mBy = $this->mBy;
+		$ipblock->mReason = wfMsgForContent( 'autoblocker', $this->mAddress, $this->mReason );
+		$ipblock->mTimestamp = wfTimestampNow();
+		$ipblock->mAuto = 1;
+
+		# If the user is already blocked with an expiry date, we don't
+		# want to pile on top of that!
+		if($this->mExpiry) {
+			$ipblock->mExpiry = min ( $this->mExpiry, Block::getAutoblockExpiry( $this->mTimestamp ));
+		} else {
+			$ipblock->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
+		}
+		# Insert it
+		return $ipblock->insert();
 	}
 
 	function deleteIfExpired()
