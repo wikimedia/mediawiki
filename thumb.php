@@ -73,6 +73,7 @@ if ( $thumb && $thumb->path ) {
 } else {
 	$badtitle = wfMsg( 'badtitle' );
 	$badtitletext = wfMsg( 'badtitletext' );
+	header( 'Cache-Control: no-cache' );
 	echo "<html><head>
 	<title>$badtitle</title>
 	<body>
