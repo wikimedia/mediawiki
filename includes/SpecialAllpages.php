@@ -83,7 +83,8 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
  * @param integer $namespace (default NS_MAIN)
  */
 function showToplevel ( $namespace = NS_MAIN, $including = false ) {
-	global $wgOut;
+	global $wgOut, $wgUser;
+	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
 
 	# TODO: Either make this *much* faster or cache the title index points
@@ -184,6 +185,8 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
  * @param integer $namespace (Default NS_MAIN)
  */
 function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
+	global $wgUser;
+	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
 
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
@@ -205,9 +208,11 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
  * @param string $from list all pages from this name (default FALSE)
  */
 function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
-	global $wgOut, $wgContLang;
+	global $wgOut, $wgUser, $wgContLang;
 
 	$fname = 'indexShowChunk';
+
+	$sk = $wgUser->getSkin();
 
 	$fromList = $this->getNamespaceKeyAndText($namespace, $from);
 
@@ -241,7 +246,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 			$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 			if( $t ) {
 				$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
-					Linker::makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
+					$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
 					($s->page_is_redirect ? '</div>' : '' );
 			} else {
 				$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
@@ -268,12 +273,12 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
-				Linker::makeKnownLink( $wgContLang->specialPage( "Allpages" ),
+				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
 					wfMsgHtml ( 'allpages' ) );
 		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$self = SpecialPage::getTitleFor( 'Allpages' );
 			$q = 'from=' . $t->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
-			$out2 .= ' | ' . Linker::makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
+			$out2 .= ' | ' . $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
 		}
 		$out2 .= "</td></tr></table><hr />";
 	}

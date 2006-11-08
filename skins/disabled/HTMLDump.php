@@ -80,7 +80,7 @@ class SkinHTMLDump extends SkinTemplate {
 			$hasMembers = $dbr->selectField( 'categorylinks', '1', 
 				array( 'cl_to' => $nt->getDBkey() ), __METHOD__ );
 			if ( $hasMembers ) {
-				return self::makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+				return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 			}
 		}
 

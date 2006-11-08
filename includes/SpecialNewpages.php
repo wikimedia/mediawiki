@@ -84,20 +84,21 @@ class NewPagesPage extends QueryPage {
 	/**
 	 * Format a row, providing the timestamp, links to the page/history, size, user links, and a comment
 	 *
+	 * @param $skin Skin to use
 	 * @param $result Result row
 	 * @return string
 	 */
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 		$dm = $wgContLang->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		$time = $wgLang->timeAndDate( $result->timestamp, true );
-		$plink = Linker::makeKnownLinkObj( $title, '', $this->patrollable( $result ) ? 'rcid=' . $result->rcid : '' );
-		$hist = Linker::makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
+		$plink = $skin->makeKnownLinkObj( $title, '', $this->patrollable( $result ) ? 'rcid=' . $result->rcid : '' );
+		$hist = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
 		$length = wfMsgHtml( 'nbytes', $wgLang->formatNum( htmlspecialchars( $result->length ) ) );
-		$ulink = Linker::userLink( $result->user, $result->user_text ) . Linker::userToolLinks( $result->user, $result->user_text );
-		$comment = Linker::commentBlock( $result->comment );
+		$ulink = $skin->userLink( $result->user, $result->user_text ) . $skin->userToolLinks( $result->user, $result->user_text );
+		$comment = $skin->commentBlock( $result->comment );
 
 		return "{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}";
 	}

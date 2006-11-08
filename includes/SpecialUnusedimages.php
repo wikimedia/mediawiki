@@ -40,7 +40,7 @@ class UnusedimagesPage extends QueryPage {
 		}
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 		$title = Title::makeTitle( NS_IMAGE, $result->title );
 
@@ -49,7 +49,7 @@ class UnusedimagesPage extends QueryPage {
 
 		$return =
 		# The 'desc' linking to the image page
-		'('.Linker::makeKnownLinkObj( $title, wfMsg('imgdesc') ).') ' . $dirmark .
+		'('.$skin->makeKnownLinkObj( $title, wfMsg('imgdesc') ).') ' . $dirmark .
 
 		# Link to the image itself
 		'<a href="' . $imageUrl . '">' . htmlspecialchars( $title->getText() ) .
@@ -59,11 +59,11 @@ class UnusedimagesPage extends QueryPage {
 		$wgLang->timeanddate($result->value) . ' . . ' . $dirmark .
 
 		# Link to username
-		Linker::makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ),
+		$skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ),
 			$result->img_user_text) . $dirmark .
 
 		# If there is a description, show it
-		Linker::commentBlock( $wgContLang->convert( $result->img_description ) );
+		$skin->commentBlock( $wgContLang->convert( $result->img_description ) );
 
 		return $return;
 	}

@@ -56,9 +56,11 @@ class SpecialPrefixindex extends SpecialAllpages {
  * @param string $from list all pages from this name (default FALSE)
  */
 function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = null ) {
-	global $wgOut, $wgContLang;
+	global $wgOut, $wgUser, $wgContLang;
 
 	$fname = 'indexShowChunk';
+
+	$sk = $wgUser->getSkin();
 
 	if (!isset($from)) $from = $prefix;
 
@@ -100,7 +102,7 @@ function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = n
 			$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 			if( $t ) {
 				$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
-					Linker::makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
+					$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
 					($s->page_is_redirect ? '</div>' : '' );
 			} else {
 				$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
@@ -127,11 +129,11 @@ function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = n
 		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
-				Linker::makeKnownLink( $wgContLang->specialPage( $this->name ),
+				$sk->makeKnownLink( $wgContLang->specialPage( $this->name ),
 					wfMsg ( 'allpages' ) );
 		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$namespaceparam = $namespace ? "&namespace=$namespace" : "";
-			$out2 .= " | " . Linker::makeKnownLink(
+			$out2 .= " | " . $sk->makeKnownLink(
 				$wgContLang->specialPage( $this->name ),
 				wfMsg ( 'nextpage', $s->page_title ),
 				"from=" . wfUrlEncode ( $s->page_title ) .

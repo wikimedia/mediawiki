@@ -218,6 +218,8 @@ class LogViewer {
 	 * @param LogReader &$reader where to get our data from
 	 */
 	function LogViewer( &$reader ) {
+		global $wgUser;
+		$this->skin =& $wgUser->getSkin();
 		$this->reader =& $reader;
 	}
 
@@ -314,15 +316,15 @@ class LogViewer {
 			$linkCache->addBadLinkObj( $title );
 		}
 
-		$userLink = Linker::userLink( $s->log_user, $s->user_name ) . Linker::userToolLinks( $s->log_user, $s->user_name );
-		$comment = Linker::commentBlock( $s->log_comment );
+		$userLink = $this->skin->userLink( $s->log_user, $s->user_name ) . $this->skin->userToolLinks( $s->log_user, $s->user_name );
+		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
 		$revert = '';
 		if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
 			$specialTitle = SpecialPage::getTitleFor( 'Movepage' );
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if ( $destTitle ) {
-				$revert = '(' . Linker::makeKnownLinkObj( $specialTitle, wfMsg( 'revertmove' ),
+				$revert = '(' . $this->skin->makeKnownLinkObj( $specialTitle, wfMsg( 'revertmove' ),
 					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
 					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
 					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
@@ -330,7 +332,7 @@ class LogViewer {
 			}
 		}
 
-		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, false, $paramArray, true, true );
+		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true, true );
 		$out = "<li>$time $userLink $action $comment $revert</li>\n";
 		return $out;
 	}

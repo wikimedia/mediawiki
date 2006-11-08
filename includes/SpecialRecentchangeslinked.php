@@ -23,6 +23,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
 
 	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
+	$sk = $wgUser->getSkin();
 
 	# Validate the title
 	$nt = Title::newFromURL( $target );
@@ -54,11 +55,11 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 
 	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
-		$mlink = Linker::makeKnownLink( $wgContLang->specialPage( 'Recentchangeslinked' ),
+		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchangeslinked' ),
 	  	  wfMsg( 'show' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&days={$days}&limit={$limit}&hideminor=0" );
 	} else {
-		$mlink = Linker::makeKnownLink( $wgContLang->specialPage( "Recentchangeslinked" ),
+		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Recentchangeslinked" ),
 	  	  wfMsg( "hide" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&days={$days}&limit={$limit}&hideminor=1" );
 	}
@@ -137,7 +138,7 @@ $GROUPBY
 	}
 	$res = $dbr->query( $sql, $fname );
 
-	$wgOut->addHTML("&lt; ".Linker::makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");
+	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");
 	$note = wfMsg( "rcnote", $limit, $days, $wgLang->timeAndDate( wfTimestampNow(), true ) );
 	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
 

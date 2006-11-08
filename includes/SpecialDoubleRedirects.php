@@ -61,7 +61,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 		return '';
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgContLang;
 	
 		$fname = 'DoubleRedirectsPage::formatResult';
@@ -83,10 +83,10 @@ class DoubleRedirectsPage extends PageQueryPage {
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
 		$titleC = Title::makeTitle( $result->nsc, $result->tc );
 
-		$linkA = Linker::makeKnownLinkObj( $titleA,'', 'redirect=no' );
-		$edit = Linker::makeBrokenLinkObj( $titleA, "(".wfMsg("qbedit").")" , 'redirect=no');
-		$linkB = Linker::makeKnownLinkObj( $titleB, '', 'redirect=no' );
-		$linkC = Linker::makeKnownLinkObj( $titleC );
+		$linkA = $skin->makeKnownLinkObj( $titleA,'', 'redirect=no' );
+		$edit = $skin->makeBrokenLinkObj( $titleA, "(".wfMsg("qbedit").")" , 'redirect=no');
+		$linkB = $skin->makeKnownLinkObj( $titleB, '', 'redirect=no' );
+		$linkC = $skin->makeKnownLinkObj( $titleC );
 		$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();
 
 		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );

@@ -156,11 +156,12 @@ class QueryPage {
 	}
 
 	/**
-	 * Formats the results of the query for display. The result is a single
-	 * row of result data. You should be able to grab SQL results off of it.
+	 * Formats the results of the query for display. The skin is the current
+	 * skin; you can use it for making links. The result is a single row of
+	 * result data. You should be able to grab SQL results off of it.
 	 * If the function return "false", the line output will be skipped.
 	 */
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		return '';
 	}
 
@@ -274,7 +275,7 @@ class QueryPage {
 	 * @param $shownavigation show navigation like "next 200"?
 	 */
 	function doQuery( $offset, $limit, $shownavigation=true ) {
-		global $wgOut, $wgLang, $wgContLang;
+		global $wgUser, $wgOut, $wgLang, $wgContLang;
 
 		$this->offset = $offset;
 		$this->limit = $limit;
@@ -320,6 +321,8 @@ class QueryPage {
 
 		$this->preprocessResults( $dbr, $res );
 
+		$sk = $wgUser->getSkin( );
+
 		if($shownavigation) {
 			$wgOut->addHTML( $this->getPageHeader() );
 			$top = wfShowingResults( $offset, $num);
@@ -340,7 +343,7 @@ class QueryPage {
 
 			# Only read at most $num rows, because $res may contain the whole 1000
 			for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
-				$format = $this->formatResult( $obj );
+				$format = $this->formatResult( $sk, $obj );
 				if ( $format ) {
 					$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
 										$obj->patrolled == 0 ) ? ' class="not-patrolled"' : '';
@@ -351,7 +354,7 @@ class QueryPage {
 			if($this->tryLastResult()) {
 				// flush the very last result
 				$obj = null;
-				$format = $this->formatResult( $obj );
+				$format = $this->formatResult( $sk, $obj );
 				if( $format ) {
 					$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
 										$obj->patrolled == 0 ) ? ' class="not-patrolled"' : '';
@@ -470,10 +473,10 @@ class QueryPage {
  */
 class PageQueryPage extends QueryPage {
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgContLang;
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		return Linker::makeKnownLinkObj( $nt, htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) ) );
+		return $skin->makeKnownLinkObj( $nt, htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) ) );
 	}
 }
 

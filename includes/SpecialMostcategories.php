@@ -36,18 +36,18 @@ class MostcategoriesPage extends QueryPage {
 			";
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgContLang, $wgLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
-		$plink = Linker::makeKnownLink( $nt->getPrefixedText(), $text );
+		$plink = $skin->makeKnownLink( $nt->getPrefixedText(), $text );
 
 		$nl = wfMsgExt( 'ncategories', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $result->value ) );
 
-		$nlink = Linker::makeKnownLink( $wgContLang->specialPage( 'Categories' ),
+		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Categories' ),
 			$nl, 'article=' . $nt->getPrefixedURL() );
 
 		return wfSpecialList($plink, $nlink);

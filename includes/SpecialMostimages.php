@@ -34,17 +34,17 @@ class MostimagesPage extends QueryPage {
 			";
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
-		$plink = Linker::makeKnownLink( $nt->getPrefixedText(), $text );
+		$plink = $skin->makeKnownLink( $nt->getPrefixedText(), $text );
 
 		$nl = wfMsgExt( 'nlinks', array( 'parsemag', 'escape'),
 			$wgLang->formatNum ( $result->value ) );
-		$nlink = Linker::makeKnownLink( $nt->getPrefixedText() . '#filelinks', $nl );
+		$nlink = $skin->makeKnownLink( $nt->getPrefixedText() . '#filelinks', $nl );
 
 		return wfSpecialList($plink, $nlink);
 	}

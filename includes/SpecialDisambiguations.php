@@ -23,8 +23,11 @@ class DisambiguationsPage extends PageQueryPage {
         return Title::makeTitleSafe( NS_MEDIAWIKI, 'disambiguationspage');
     }
     
-	function getPageHeader() {
-		return '<p>'.wfMsg('disambiguationstext', Linker::makeKnownLinkObj($this->getDisambiguationPageObj()))."</p><br />\n";
+	function getPageHeader( ) {
+		global $wgUser;
+		$sk = $wgUser->getSkin();
+
+		return '<p>'.wfMsg('disambiguationstext', $sk->makeKnownLinkObj($this->getDisambiguationPageObj()))."</p><br />\n";
 	}
 
 	function getSQL() {
@@ -85,15 +88,15 @@ class DisambiguationsPage extends PageQueryPage {
 		return '';
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		global $wgContLang;
 		$title = Title::newFromId( $result->value );
 		$dp = Title::makeTitle( $result->namespace, $result->title );
 
-		$from = Linker::makeKnownLinkObj( $title,'');
-		$edit = Linker::makeBrokenLinkObj( $title, "(".wfMsg("qbedit").")" , 'redirect=no');
+		$from = $skin->makeKnownLinkObj( $title,'');
+		$edit = $skin->makeBrokenLinkObj( $title, "(".wfMsg("qbedit").")" , 'redirect=no');
 		$arr  = $wgContLang->getArrow();
-		$to   = Linker::makeKnownLinkObj( $dp,'');
+		$to   = $skin->makeKnownLinkObj( $dp,'');
 
 		return "$from $edit $arr $to";
 	}

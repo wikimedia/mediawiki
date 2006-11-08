@@ -173,9 +173,9 @@ class ListUsersPage extends QueryPage {
 		return false;
 	}
 
-	function formatResult( $result ) {
+	function formatResult( $skin, $result ) {
 		$userPage = Title::makeTitle( $result->namespace, $result->title );
-		$name = Linker::makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
+		$name = $skin->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
 		$groups = null;
 
 		if( !isset( $result->numgroups ) || $result->numgroups > 0 ) {

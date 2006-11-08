@@ -18,10 +18,12 @@ function wfSpecialWhatlinkshere($par = NULL) {
 class WhatLinksHerePage {
 	var $request, $par;
 	var $limit, $from, $dir, $target;
-	var $selfTitle;
+	var $selfTitle, $skin;
 
 	function WhatLinksHerePage( &$request, $par = null ) {
+		global $wgUser;
 		$this->request =& $request;
+		$this->skin =& $wgUser->getSkin();
 		$this->par = $par;
 	}
 
@@ -57,7 +59,7 @@ class WhatLinksHerePage {
 
 		$isredir = ' (' . wfMsg( 'isredirect' ) . ")\n";
 
-		$wgOut->addHTML( wfMsg( 'whatlinkshere-barrow' ) .' '.Linker::makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
+		$wgOut->addHTML( wfMsg( 'whatlinkshere-barrow' ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
 
 		$this->showIndirectLinks( 0, $this->target, $this->limit, $this->from, $this->dir );
 	}
@@ -205,7 +207,7 @@ class WhatLinksHerePage {
 				$extra = '';
 			}
 
-			$link = Linker::makeKnownLinkObj( $nt, '', $extra );
+			$link = $this->skin->makeKnownLinkObj( $nt, '', $extra );
 			$wgOut->addHTML( '<li>'.$link );
 
 			// Display properties (redirect or template)
@@ -236,7 +238,7 @@ class WhatLinksHerePage {
 	}
 
 	function makeSelfLink( $text, $query ) {
-		return Linker::makeKnownLinkObj( $this->selfTitle, $text, $query );
+		return $this->skin->makeKnownLinkObj( $this->selfTitle, $text, $query );
 	}
 
 	function getPrevNext( $limit, $prevId, $nextId ) {

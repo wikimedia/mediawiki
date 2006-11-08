@@ -71,6 +71,8 @@ function code2utf($num){
 function wfSajaxSearch( $term ) {
 	global $wgContLang, $wgOut;
 	$limit = 16;
+	
+	$l = new Linker;
 
 	$term = str_replace( ' ', '_', $wgContLang->ucfirst( 
 			$wgContLang->checkTitleEncoding( $wgContLang->recodeInput( js_unescape( $term ) ) )
@@ -92,10 +94,10 @@ function wfSajaxSearch( $term ) {
 	$i=0;
 	while ( ( $row = $db->fetchObject( $res ) ) && ( ++$i <= $limit ) ) {
 		$nt = Title::newFromDBkey( $row->page_title );
-		$r .= '<li>' . Linker::makeKnownLinkObj( $nt ) . "</li>\n";
+		$r .= '<li>' . $l->makeKnownLinkObj( $nt ) . "</li>\n";
 	}
 	if ( $i > $limit ) {
-		$more = '<i>' .  Linker::makeKnownLink( $wgContLang->specialPage( "Allpages" ),
+		$more = '<i>' .  $l->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
 		                                wfMsg('moredotdotdot'),
 		                                "namespace=0&from=" . wfUrlEncode ( $term ) ) .
 			'</i>';
@@ -111,10 +113,10 @@ function wfSajaxSearch( $term ) {
 		. wfMsg( 'hideresults' ) . '</a></div>'
 		. '<h1 class="firstHeading">'.wfMsg('search')
 		. '</h1><div id="contentSub">'. $subtitle . '</div><ul><li>'
-		. Linker::makeKnownLink( $wgContLang->specialPage( 'Search' ),
+		. $l->makeKnownLink( $wgContLang->specialPage( 'Search' ),
 					wfMsg( 'searchcontaining', $term ),
 					"search=$term&fulltext=Search" )
-		. '</li><li>' . Linker::makeKnownLink( $wgContLang->specialPage( 'Search' ),
+		. '</li><li>' . $l->makeKnownLink( $wgContLang->specialPage( 'Search' ),
 					wfMsg( 'searchnamed', $term ) ,
 					"search=$term&go=Go" )
 		. "</li></ul><h2>" . wfMsg( 'articletitles', $term ) . "</h2>"

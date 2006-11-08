@@ -613,6 +613,7 @@ class Article {
 		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol, $wgParser;
 		global $wgUseTrackbacks, $wgNamespaceRobotPolicies;
+		$sk = $wgUser->getSkin();
 
 		wfProfileIn( __METHOD__ );
 
@@ -692,7 +693,8 @@ class Article {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
 			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
-				$redir = Linker::makeKnownLinkObj( $this->mRedirectedFrom, '', 'redirect=no' );
+				$sk = $wgUser->getSkin();
+				$redir = $sk->makeKnownLinkObj( $this->mRedirectedFrom, '', 'redirect=no' );
 				$s = wfMsg( 'redirectedfrom', $redir );
 				$wgOut->setSubtitle( $s );
 				$wasRedirected = true;
@@ -702,7 +704,8 @@ class Article {
 			// If it was reported from a trusted site, supply a backlink.
 			global $wgRedirectSources;
 			if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
-				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
+				$sk = $wgUser->getSkin();
+				$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
 				$s = wfMsg( 'redirectedfrom', $redir );
 				$wgOut->setSubtitle( $s );
 				$wasRedirected = true;
@@ -784,7 +787,7 @@ class Article {
 				$targetUrl = $rt->escapeLocalURL();
 				# fixme unused $titleText :
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
-				$link = Linker::makeLinkObj( $rt );
+				$link = $sk->makeLinkObj( $rt );
 
 				$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT" />' .
 				  '<span class="redirectText">'.$link.'</span>' );
@@ -826,7 +829,7 @@ class Article {
 			$wgOut->addHTML(
 				"<div class='patrollink'>" .
 					wfMsg ( 'markaspatrolledlink',
-					Linker::makeKnownLinkObj( $this->mTitle, wfMsg('markaspatrolledtext'), "action=markpatrolled&rcid=$rcid" )
+					$sk->makeKnownLinkObj( $this->mTitle, wfMsg('markaspatrolledtext'), "action=markpatrolled&rcid=$rcid" )
 			 		) .
 				'</div>'
 			 );
@@ -2253,7 +2256,7 @@ class Article {
 	 * @param string $oldid		Revision ID of this article revision
 	 */
 	function setOldSubtitle( $oldid=0 ) {
-		global $wgLang, $wgOut;
+		global $wgLang, $wgOut, $wgUser;
 
 		if ( !wfRunHooks( 'DisplayOldSubtitle', array(&$this, &$oldid) ) ) {
 				return; 
@@ -2263,25 +2266,26 @@ class Article {
 
 		$current = ( $oldid == $this->mLatest );
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
+		$sk = $wgUser->getSkin();
 		$lnk = $current
 			? wfMsg( 'currentrevisionlink' )
-			: $lnk = Linker::makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
+			: $lnk = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
 		$prev = $this->mTitle->getPreviousRevisionID( $oldid ) ;
 		$prevlink = $prev
-			? Linker::makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid )
+			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid )
 			: wfMsg( 'previousrevision' );
 		$prevdiff = $prev
-			? Linker::makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=prev&oldid='.$oldid )
+			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=prev&oldid='.$oldid )
 			: wfMsg( 'diff' );
 		$nextlink = $current
 			? wfMsg( 'nextrevision' )
-			: Linker::makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
 		$nextdiff = $current
 			? wfMsg( 'diff' )
-			: Linker::makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=next&oldid='.$oldid );
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=next&oldid='.$oldid );
 		
-		$userlinks = Linker::userLink( $revision->getUser(), $revision->getUserText() )
-						. Linker::userToolLinks( $revision->getUser(), $revision->getUserText() );
+		$userlinks = $sk->userLink( $revision->getUser(), $revision->getUserText() )
+						. $sk->userToolLinks( $revision->getUser(), $revision->getUserText() );
 		
 		$r = wfMsg( 'old-revision-navigation', $td, $lnk, $prevlink, $nextlink, $userlinks, $prevdiff, $nextdiff );
 		$wgOut->setSubtitle( $r );
