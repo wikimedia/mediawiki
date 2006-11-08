@@ -1154,7 +1154,7 @@ class Article {
 	 * @deprecated use Article::doEdit()
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
-		$flags = EDIT_NEW | EDIT_DEFER_UPDATES |
+		$flags = EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $isminor ? EDIT_MINOR : 0 ) |
 			( $suppressRC ? EDIT_SUPPRESS_RC : 0 );
 
@@ -1186,7 +1186,7 @@ class Article {
 	 * @deprecated use Article::doEdit()
 	 */
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
-		$flags = EDIT_UPDATE | EDIT_DEFER_UPDATES |
+		$flags = EDIT_UPDATE | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $minor ? EDIT_MINOR : 0 ) |
 			( $forceBot ? EDIT_FORCE_BOT : 0 );
 
@@ -1235,6 +1235,8 @@ class Article {
 	 *          Mark the edit a "bot" edit regardless of user rights
 	 *      EDIT_DEFER_UPDATES
 	 *          Defer some of the updates until the end of index.php
+	 *      EDIT_AUTOSUMMARY
+	 *          Fill in blank summaries with generated text where possible
 	 * 
 	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected. 
 	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will return false. If 
@@ -1274,7 +1276,7 @@ class Article {
 
 		# If no edit comment was given when creating a new page, and what's being
 		# created is a redirect, be smart and fill in a neat auto-comment
-		if( $summary == '' ) {
+		if ( $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
 			$rt = Title::newFromRedirect( $text );
 			if( is_object( $rt ) )
 				$summary = wfMsgForContent( 'autoredircomment', $rt->getPrefixedText() );
