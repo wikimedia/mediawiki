@@ -804,7 +804,8 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   INDEX rc_cur_id (rc_cur_id),
   INDEX new_name_timestamp (rc_new,rc_namespace,rc_timestamp),
   INDEX rc_ip (rc_ip),
-  INDEX rc_ns_usertext (rc_namespace, rc_user_text)
+  INDEX rc_ns_usertext (rc_namespace, rc_user_text),
+  INDEX rc_user_text (rc_user_text, rc_timestamp)
 
 ) TYPE=InnoDB;
 
