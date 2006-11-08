@@ -1038,7 +1038,8 @@ class Parser
 			}
 
 			$url = wfMsg( $urlmsg, $id );
-			$text = Linker::makeExternalLink( $url, "$keyword $id" );
+			$la = Linker::getExternalLinkAttributes( $url, "$keyword $id" );
+			$text = "<a href=\"{$url}\"{$la}>{$keyword} {$id}</a>";
 		}
 		return $text;
 	}

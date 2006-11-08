@@ -29,7 +29,7 @@ class Linker {
 	 * @todo document
 	 * @static
 	 */
-	protected static function getExternalLinkAttributes( $link, $text, $class='' ) {
+	public static function getExternalLinkAttributes( $link, $text, $class='' ) {
 		$link = htmlspecialchars( $link );
 
 		$r = ($class != '') ? " class=\"$class\"" : " class=\"external\"";
