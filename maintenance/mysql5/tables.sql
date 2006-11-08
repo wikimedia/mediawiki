@@ -77,7 +77,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- Password hashes, normally hashed like so:
   -- MD5(CONCAT(user_id,'-',MD5(plaintext_password))), see
   -- wfEncryptPassword() in GlobalFunctions.php
-  user_password tinyblob NOT NULL default '',
+  user_password tinyblob NOT NULL,
   
   -- When using 'mail me a new password', a random
   -- password is generated and the hash stored here.
@@ -85,7 +85,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- someone actually logs in with the new password,
   -- at which point the hash is moved to user_password
   -- and the old password is invalidated.
-  user_newpassword tinyblob NOT NULL default '',
+  user_newpassword tinyblob NOT NULL,
 
   -- Timestamp of the last time when a new password was
   -- sent, for throttling purposes
@@ -93,11 +93,11 @@ CREATE TABLE /*$wgDBprefix*/user (
   
   -- Note: email should be restricted, not public info.
   -- Same with passwords.
-  user_email tinytext NOT NULL default '',
+  user_email tinytext NOT NULL,
   
   -- Newline-separated list of name=value defining the user
   -- preferences
-  user_options blob NOT NULL default '',
+  user_options blob NOT NULL,
   
   -- This is a timestamp which is updated when a user
   -- logs in, logs out, changes preferences, or performs
@@ -131,7 +131,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   UNIQUE INDEX user_name (user_name),
   INDEX (user_email_token)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- User permissions have been broken out to a separate table;
@@ -157,7 +157,7 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
   
   PRIMARY KEY (ug_user,ug_group),
   KEY (ug_group)
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 -- Stores notifications of user talk page changes, for the display
 -- of the "you have new messages" box
@@ -169,7 +169,7 @@ CREATE TABLE /*$wgDBprefix*/user_newtalk (
   user_ip varchar(40) NOT NULL default '',
   INDEX user_id (user_id),
   INDEX user_ip (user_ip)
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
 --
@@ -192,7 +192,7 @@ CREATE TABLE /*$wgDBprefix*/page (
   
   -- Comma-separated set of permission keys indicating who
   -- can move or edit the page.
-  page_restrictions tinyblob NOT NULL default '',
+  page_restrictions tinyblob NOT NULL,
   
   -- Number of times this page has been viewed.
   page_counter bigint(20) unsigned NOT NULL default '0',
@@ -229,7 +229,7 @@ CREATE TABLE /*$wgDBprefix*/page (
   INDEX (page_random),
   INDEX (page_len)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- Every edit of a page creates also a revision row.
@@ -251,7 +251,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
   -- Text comment summarizing the change.
   -- This text is shown in the history and other changes lists,
   -- rendered in a subset of wiki markup by Linker::formatComment()
-  rev_comment tinyblob NOT NULL default '',
+  rev_comment tinyblob NOT NULL,
   
   -- Key to user.user_id of the user who made this edit.
   -- Stores 0 for anonymous edits and for some mass imports.
@@ -277,7 +277,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
   INDEX user_timestamp (rev_user,rev_timestamp),
   INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
 --
@@ -298,7 +298,7 @@ CREATE TABLE /*$wgDBprefix*/text (
   
   -- Depending on the contents of the old_flags field, the text
   -- may be convenient plain text, or it may be funkily encoded.
-  old_text mediumblob NOT NULL default '',
+  old_text mediumblob NOT NULL,
   
   -- Comma-separated list of flags:
   -- gzip: text is compressed with PHP's gzdeflate() function.
@@ -309,11 +309,11 @@ CREATE TABLE /*$wgDBprefix*/text (
   --         The object either contains multiple versions compressed
   --         together to achieve a better compression ratio, or it refers
   --         to another row where the text can be found.
-  old_flags tinyblob NOT NULL default '',
+  old_flags tinyblob NOT NULL,
   
   PRIMARY KEY old_id (old_id)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- Holding area for deleted articles, which may be viewed
@@ -331,17 +331,17 @@ CREATE TABLE /*$wgDBprefix*/archive (
   -- so old archived pages will remain accessible after
   -- upgrading from 1.4 to 1.5.
   -- Text may be gzipped or otherwise funky.
-  ar_text mediumblob NOT NULL default '',
+  ar_text mediumblob NOT NULL,
   
   -- Basic revision stuff...
-  ar_comment tinyblob NOT NULL default '',
+  ar_comment tinyblob NOT NULL,
   ar_user int(5) unsigned NOT NULL default '0',
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp char(14) binary NOT NULL default '',
   ar_minor_edit tinyint(1) NOT NULL default '0',
   
   -- See ar_text note.
-  ar_flags tinyblob NOT NULL default '',
+  ar_flags tinyblob NOT NULL,
   
   -- When revisions are deleted, their unique rev_id is stored
   -- here so it can be retained after undeletion. This is necessary
@@ -365,7 +365,7 @@ CREATE TABLE /*$wgDBprefix*/archive (
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
 --
@@ -385,7 +385,7 @@ CREATE TABLE /*$wgDBprefix*/pagelinks (
   UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
   KEY (pl_namespace,pl_title)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
 --
@@ -405,7 +405,7 @@ CREATE TABLE /*$wgDBprefix*/templatelinks (
   UNIQUE KEY tl_from(tl_from,tl_namespace,tl_title),
   KEY (tl_namespace,tl_title)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
 --
@@ -425,7 +425,7 @@ CREATE TABLE /*$wgDBprefix*/imagelinks (
   UNIQUE KEY il_from(il_from,il_to),
   KEY (il_to)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- Track category inclusions *used inline*
@@ -464,7 +464,7 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- Not really used?
   KEY cl_timestamp(cl_to,cl_timestamp)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- Track links to external URLs
@@ -474,7 +474,7 @@ CREATE TABLE /*$wgDBprefix*/externallinks (
   el_from int(8) unsigned NOT NULL default '0',
 
   -- The URL
-  el_to blob NOT NULL default '',
+  el_to blob NOT NULL,
 
   -- In the case of HTTP URLs, this is the URL with any username or password
   -- removed, and with the labels in the hostname reversed and converted to 
@@ -487,12 +487,12 @@ CREATE TABLE /*$wgDBprefix*/externallinks (
   -- which allows for fast searching for all pages under example.com with the
   -- clause: 
   --      WHERE el_index LIKE 'http://com.example.%'
-  el_index blob NOT NULL default '',
+  el_index blob NOT NULL,
   
   KEY (el_from, el_to(40)),
   KEY (el_to(60), el_from),
   KEY (el_index(60))
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 -- 
 -- Track interlanguage links
@@ -546,7 +546,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 
   UNIQUE KEY ss_row_id (ss_row_id)
 
-) TYPE=InnoDB;
+) ENGINE=InnoDB;
 
 --
 -- Stores an ID for every time any article is visited;
@@ -557,7 +557,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 --
 CREATE TABLE /*$wgDBprefix*/hitcounter (
   hc_id INTEGER UNSIGNED NOT NULL
-) TYPE=HEAP MAX_ROWS=25000;
+) ENGINE=HEAP MAX_ROWS=25000;
 
 
 --
@@ -569,7 +569,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_id int(8) NOT NULL auto_increment,
   
   -- Blocked IP address in dotted-quad form or user name.
-  ipb_address varchar(40) binary NOT NULL default '',
+  ipb_address tinyblob NOT NULL,
   
   -- Blocked user ID or 0 for IP blocks.
   ipb_user int(8) unsigned NOT NULL default '0',
@@ -578,7 +578,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_by int(8) unsigned NOT NULL default '0',
   
   -- Text comment made by blocker.
-  ipb_reason tinyblob NOT NULL default '',
+  ipb_reason tinyblob NOT NULL,
   
   -- Creation (or refresh) date in standard YMDHMS form.
   -- IP blocks expire automatically.
@@ -617,7 +617,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   INDEX ipb_timestamp (ipb_timestamp),
   INDEX ipb_expiry (ipb_expiry)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
 --
@@ -657,7 +657,7 @@ CREATE TABLE /*$wgDBprefix*/image (
   
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
-  img_description tinyblob NOT NULL default '',
+  img_description tinyblob NOT NULL,
   
   -- user_id and user_name of uploader.
   img_user int(5) unsigned NOT NULL default '0',
@@ -674,7 +674,7 @@ CREATE TABLE /*$wgDBprefix*/image (
   -- Used by Special:Newimages and Special:Imagelist
   INDEX img_timestamp (img_timestamp)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- Previous revisions of uploaded files.
@@ -694,14 +694,14 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_width int(5) NOT NULL default 0,
   oi_height int(5) NOT NULL default 0,
   oi_bits int(3) NOT NULL default 0,
-  oi_description tinyblob NOT NULL default '',
+  oi_description tinyblob NOT NULL,
   oi_user int(5) unsigned NOT NULL default '0',
   oi_user_text varchar(255) binary NOT NULL default '',
   oi_timestamp char(14) binary NOT NULL default '',
 
   INDEX oi_name (oi_name(10))
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
 --
@@ -743,7 +743,7 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") default "unknown",
   fa_minor_mime varchar(32) default "unknown",
-  fa_description tinyblob default '',
+  fa_description tinyblob,
   fa_user int(5) unsigned default '0',
   fa_user_text varchar(255) binary default '',
   fa_timestamp char(14) binary default '',
@@ -754,7 +754,7 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   INDEX (fa_deleted_timestamp),              -- sort by deletion time
   INDEX (fa_deleted_user)                    -- sort by deleter
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- Primarily a summary table for Special:Recentchanges,
@@ -819,7 +819,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   INDEX rc_ip (rc_ip),
   INDEX rc_ns_usertext ( rc_namespace, rc_user_text )
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 CREATE TABLE /*$wgDBprefix*/watchlist (
   -- Key to user.user_id
@@ -838,7 +838,7 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
   UNIQUE KEY (wl_user, wl_namespace, wl_title),
   KEY namespace_title (wl_namespace,wl_title)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
 --
@@ -864,7 +864,7 @@ CREATE TABLE /*$wgDBprefix*/math (
   
   UNIQUE KEY math_inputhash (math_inputhash)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- When using the default MySQL search backend, page titles
@@ -882,13 +882,13 @@ CREATE TABLE /*$wgDBprefix*/searchindex (
   si_title varchar(255) NOT NULL default '',
   
   -- Munged version of body text
-  si_text mediumtext NOT NULL default '',
+  si_text mediumtext NOT NULL,
   
   UNIQUE KEY (si_page),
   FULLTEXT si_title (si_title),
   FULLTEXT si_text (si_text)
 
-) TYPE=MyISAM, DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM, DEFAULT CHARSET=utf8;
 
 --
 -- Recognized interwiki link prefixes
@@ -911,7 +911,7 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
   
   UNIQUE KEY iw_prefix (iw_prefix)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- Used for caching expensive grouped queries
@@ -929,7 +929,7 @@ CREATE TABLE /*$wgDBprefix*/querycache (
   
   KEY (qc_type,qc_value)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- For a few generic cache operations if not using Memcached
@@ -941,7 +941,7 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
   unique key (keyname),
   key (exptime)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 --
 -- Cache of interwiki transclusion
@@ -951,7 +951,7 @@ CREATE TABLE /*$wgDBprefix*/transcache (
 	tc_contents	TEXT,
 	tc_time		INT NOT NULL,
 	UNIQUE INDEX tc_url_idx(tc_url)
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 CREATE TABLE /*$wgDBprefix*/logging (
   -- Symbolic keys for the general log type and the action type
@@ -975,13 +975,13 @@ CREATE TABLE /*$wgDBprefix*/logging (
   log_comment varchar(255) NOT NULL default '',
   
   -- LF separated list of miscellaneous parameters
-  log_params blob NOT NULL default '',
+  log_params blob NOT NULL,
 
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 CREATE TABLE /*$wgDBprefix*/trackbacks (
 	tb_id integer AUTO_INCREMENT PRIMARY KEY,
@@ -992,7 +992,7 @@ CREATE TABLE /*$wgDBprefix*/trackbacks (
 	tb_name varchar(255),
 
 	INDEX (tb_page)
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 -- Jobs performed by parallel apache threads or a command-line daemon
 CREATE TABLE /*$wgDBprefix*/job (
@@ -1008,11 +1008,11 @@ CREATE TABLE /*$wgDBprefix*/job (
 
   -- Any other parameters to the command
   -- Presently unused, format undefined
-  job_params blob NOT NULL default '',
+  job_params blob NOT NULL,
 
   PRIMARY KEY job_id (job_id),
   KEY (job_cmd, job_namespace, job_title)
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 -- Details of updates to cached special pages
 CREATE TABLE /*$wgDBprefix*/querycache_info (
@@ -1026,7 +1026,7 @@ CREATE TABLE /*$wgDBprefix*/querycache_info (
 
 	UNIQUE KEY ( qci_type )
 
-) TYPE=InnoDB;
+) ENGINE=InnoDB;
 
 -- For each redirect, this table contains exactly one row defining its target
 CREATE TABLE /*$wgDBprefix*/redirect (
@@ -1042,7 +1042,7 @@ CREATE TABLE /*$wgDBprefix*/redirect (
 
   PRIMARY KEY rd_from (rd_from),
   KEY rd_ns_title (rd_namespace,rd_title,rd_from)
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 -- Used for caching expensive grouped queries that need two links (for example double-redirects)
 
@@ -1065,4 +1065,4 @@ CREATE TABLE /*$wgDBprefix*/querycachetwo (
   KEY qcc_title (qcc_type,qcc_namespace,qcc_title),
   KEY qcc_titletwo (qcc_type,qcc_namespacetwo,qcc_titletwo)
 
-) TYPE=InnoDB, DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
