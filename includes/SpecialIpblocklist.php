@@ -277,7 +277,7 @@ class IPUnblockForm {
 		if ( $block->mCreateAccount ) {
 			$properties[] = $msg['createaccountblock'];
 		}
-		if (!$block->mEnableAutoblock && !$block->mAddress ) {
+		if (!$block->mEnableAutoblock && $block->mUser ) {
 			$properties[] = $msg['noautoblockblock'];
 		}
 
