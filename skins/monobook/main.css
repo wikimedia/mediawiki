@@ -110,30 +110,29 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
+	display: inline;
 	color: black;
 	background: none;
-	font-weight: normal;
 	margin: 0;
-	padding-top: .5em;
-	padding-bottom: .17em;
-	border-bottom: 1px solid #aaa;
+	padding: 0;
+}
+h1, h2 {
+	font-weight: normal;
 }
 h1 { font-size: 188%; }
-h1 .editsection { font-size: 53%; }
 h2 { font-size: 150%; }
-h2 .editsection { font-size: 67%; }
-h3, h4, h5, h6 {
-	border-bottom: none;
-	font-weight: bold;
-}
 h3 { font-size: 132%; }
-h3 .editsection { font-size: 76%; font-weight: normal; }
 h4 { font-size: 116%; }
-h4 .editsection { font-size: 86%; font-weight: normal; }
 h5 { font-size: 100%; }
-h5 .editsection { font-weight: normal; }
 h6 { font-size: 80%;  }
-h6 .editsection { font-size: 125%; font-weight: normal; }
+.mw-h1 { padding-top: .94em; padding-bottom: .32em; }
+.mw-h2 { padding-top: .75em; padding-bottom: .26em; }
+.mw-h3 { padding-top: .66em; padding-bottom: .22em; }
+.mw-h4 { padding-top: .58em; padding-bottom: .20em; }
+.mw-h5 { padding-top: .50em; padding-bottom: .17em; }
+.mw-h6 { padding-top: .40em; padding-bottom: .14em; }
+.mw-h1, .mw-h2 { border-bottom: 1px solid #aaa; }
+.mw-first-heading { margin-bottom: .1em; }
 
 .editsection {
 	float: right;
@@ -255,9 +254,6 @@ span.subpages {
 }
 #bodyContent h3, #bodyContent h4, #bodyContent h5 {
 	margin-bottom: .3em;
-}
-.firstHeading {
-	margin-bottom: .1em;
 }
 
 /* user notification thing */
