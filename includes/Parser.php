@@ -3520,7 +3520,7 @@ class Parser
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
 			}
 			# give headline the correct <h#> tag
-			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount];
+			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><div class=\"mw-h$level\">";
 
 			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
 				if ( empty( $head[$headlineCount] ) ) {
@@ -3531,11 +3531,10 @@ class Parser
 				else
 					$head[$headlineCount] .= $sk->editSectionLink($this->mTitle, $sectionCount+1, $headline_hint);
 			}
-			// Yes, the headline logically goes before the edit section.  Why isn't it there
-			// in source?  Ask the CSS people.  The float gets screwed up if you do that.
-			// This might be moved to before the editsection at some point so that it will
-			// display a bit more prettily without CSS, so please don't rely on the order.
-   			$head[$headlineCount] .= ' <span class="mw-headline">'.$headline.'</span></h'.$level.'>';
+			// Yes, the headline logically goes before the edit section.  It can't
+			// be put there, however, because of bugs in IE's and Firefox's float
+			// rendering. See <https://bugzilla.mozilla.org/show_bug.cgi?id=50630>.
+   			$head[$headlineCount] .= " <h$level{$matches[2][$headlineCount]}$headline</h$level></div>";
 
 			$headlineCount++;
 			if( !$istemplate )

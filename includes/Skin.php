@@ -763,7 +763,7 @@ END;
 
 	function pageTitle() {
 		global $wgOut;
-		$s = '<h1 class="pagetitle">' . htmlspecialchars( $wgOut->getPageTitle() ) . '</h1>';
+		$s = '<div class="mw-h1 mw-first-heading"><h1 class="pagetitle">' . htmlspecialchars( $wgOut->getPageTitle() ) . '</h1></div>';
 		return $s;
 	}
 
