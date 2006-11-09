@@ -3,6 +3,14 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.8.3 ==
+
+XX X, 2006
+
+MediaWiki 1.8.3 fixes several issues in the Fall 2006 snapshot release:
+* (bug 7831) Regression in AutoAuthenticate hook
+
+
 == MediaWiki 1.8.2 ==
 
 October 13, 2006

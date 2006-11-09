@@ -121,7 +121,7 @@ class StubUser extends StubObject {
 			$user->setLoaded( true );
 		} else {
 			$user = User::loadFromSession();
-			wfRunHooks('AutoAuthenticate',array($user));
+			wfRunHooks('AutoAuthenticate',array(&$user));
 		}
 		return $user;
 	}
