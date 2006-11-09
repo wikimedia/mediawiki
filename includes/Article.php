@@ -2458,7 +2458,7 @@ class Article {
 			if ($wgDBtype == 'mysql')
 				$dbw->query("LOCK TABLES $hitcounterTable WRITE");
 			$tabletype = $wgDBtype == 'mysql' ? "ENGINE=HEAP " : '';
-			$dbw->query("CREATE TEMPORARY TABLE $acchitsTable $tabletype".
+			$dbw->query("CREATE TEMPORARY TABLE $acchitsTable $tabletype AS".
 				"SELECT hc_id,COUNT(*) AS hc_n FROM $hitcounterTable ".
 				'GROUP BY hc_id');
 			$dbw->query("DELETE FROM $hitcounterTable");
