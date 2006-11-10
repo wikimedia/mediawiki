@@ -100,4 +100,18 @@ class LanguageHsb extends Language {
 		
 		return $word; # this will return the original value for 'nominatiw' (nominativ) and all undefined case values
 	}
+
+	function convertPlural( $count, $singular, $dual, $plural, $pluralgen ) {
+		switch ( abs( $count ) % 100 ) {
+			case 1:
+				return $singular;
+			case 2:
+				return $dual;
+			case 3:
+			case 4:
+				return $plural;
+			default:
+				return $pluralgen;
+		}
+	}
 }
