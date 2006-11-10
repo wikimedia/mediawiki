@@ -942,6 +942,32 @@ $1',
 'watchthisupload'             => 'وسى بەتتٴى باقىلاۋ',
 'filewasdeleted'              => 'وسى اتاۋى بار فايل بۇرىن قوتارىلعان, سوسىن جويىلدىرىلعان. قايتا قوتارۋ الدىنان $1 دەگەندٴى تەكسەرٴىڭٴىز.',
 
+'upload-proto-error'      => 'جارامسىز حاتتامالىق',
+'upload-proto-error-text' => 'سىرتتان قوتارۋ ٴۇشٴىن URL جايلارى <code>http://</code> نەمەسە <code>ftp://</code> دەگەندەردەن باستالۋ قاجەت.',
+'upload-file-error'       => 'ٴىشكٴى قاتە',
+'upload-file-error-text'  => 'سەرۆەردە ۋاقىتشا فايل جاساۋى ٴىشكٴى قاتەگە ۇشىراستى. بۇل جٴۇيەنٴىڭ ٴاكٴىمشٴىمەن قاتىناسىڭىز.',
+'upload-misc-error'       => 'بەلگٴىسٴىز قوتارۋ قاتەسٴى',
+'upload-misc-error-text'  => 'قوتارۋ كەزٴىندە بەلگٴىسٴىز قاتە ۇشىراستى. قايسى URL جايى جارامدى جٴانە قاتىناۋلى ەكەنٴىن تەكسەرٴىپ شىعىڭىز دا قايتالاپ كٴورٴىڭٴىز. ەگەر بۇل مٴاسەلە ٴالدە دە قالسا, جٴۇيە ٴاكٴىمشٴىمەن قاتىناسىڭىز.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'URL جايى جەتٴىلمەدٴى',
+'upload-curl-error6-text'  => 'بەرٴىلگەن URL جايى جەتٴىلمەدٴى. قايسى URL جايى دۇرىس ەكەنٴىن جٴانە توراپ ٴىستە ەكەنٴىن قايتالاپ قاتاڭ تەكسەرٴىڭٴىز.',
+'upload-curl-error28'      => 'قوتارۋعا بەرٴىلگەن ۋاقىت بٴىتتٴى',
+'upload-curl-error28-text' => 'توراپتىڭ جاۋاپ بەرۋٴى تىم ۇزاق ۋاقىتقا سوزىلدى. بۇل توراپ ٴىستە ەكەنٴىن تەكسەرٴىپ شىعىڭىز, از ۋاقىت كٴىدٴىرە تۇرىڭىز دا تاعى قايتالاپ كٴورٴىڭٴىز. تالابىڭىزدى جٴۇكتەلۋٴى ازداۋ كەزٴىندە قايتالاۋعا بولمىس.',
+
+'upload-proto-error'      => 'جارامسىز حاتتامالىق',
+'upload-proto-error-text' => 'سىرتتان قوتارۋ ٴۇشٴىن URL جايلارى <code>http://</code> نەمەسە <code>ftp://</code> دەگەندەردەن باستالۋ قاجەت.',
+'upload-file-error'       => 'ٴىشكٴى قاتە',
+'upload-file-error-text'  => 'سەرۆەردە ۋاقىتشا فايل جاساۋى ٴىشكٴى قاتەگە ۇشىراستى. بۇل جٴۇيەنٴىڭ ٴاكٴىمشٴىمەن قاتىناسىڭىز.',
+'upload-misc-error'       => 'بەلگٴىسٴىز قوتارۋ قاتەسٴى',
+'upload-misc-error-text'  => 'قوتارۋ كەزٴىندە بەلگٴىسٴىز قاتە ۇشىراستى. قايسى URL جايى جارامدى جٴانە قاتىناۋلى ەكەنٴىن تەكسەرٴىپ شىعىڭىز دا قايتالاپ كٴورٴىڭٴىز. ەگەر بۇل مٴاسەلە ٴالدە دە قالسا, جٴۇيە ٴاكٴىمشٴىمەن قاتىناسىڭىز.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'URL جايى جەتٴىلمەدٴى',
+'upload-curl-error6-text'  => 'بەرٴىلگەن URL جايى جەتٴىلمەدٴى. قايسى URL جايى دۇرىس ەكەنٴىن جٴانە توراپ ٴىستە ەكەنٴىن قايتالاپ قاتاڭ تەكسەرٴىڭٴىز.',
+'upload-curl-error28'      => 'قوتارۋعا بەرٴىلگەن ۋاقىت بٴىتتٴى',
+'upload-curl-error28-text' => 'توراپتىڭ جاۋاپ بەرۋٴى تىم ۇزاق ۋاقىتقا سوزىلدى. بۇل توراپ ٴىستە ەكەنٴىن تەكسەرٴىپ شىعىڭىز, از ۋاقىت كٴىدٴىرە تۇرىڭىز دا تاعى قايتالاپ كٴورٴىڭٴىز. تالابىڭىزدى جٴۇكتەلۋٴى ازداۋ كەزٴىندە قايتالاۋعا بولمىس.',
+
 'license'            => 'ليتسەنزيياسى',
 'nolicense'          => 'ەشتەڭە تالعانباعان',
 'upload_source_url'  => ' (جارامدى, بارشاعا قاتىناۋلى URL جاي)',
@@ -1571,6 +1597,24 @@ $NEWPAGE
 'import-logentry-upload-detail'    => '$1 نۇسقا',
 'import-logentry-interwiki'        => 'ۋيكي-تاسىمالدانعان $1',
 'import-logentry-interwiki-detail' => '$2 دەگەننەن $1 نۇسقا',
+
+# Keyboard access keys for power users
+'accesskey-search'                  => 'f',
+'accesskey-minoredit'               => 'i',
+'accesskey-save'                    => 's',
+'accesskey-preview'                 => 'p',
+'accesskey-diff'                    => 'v',
+'accesskey-compareselectedversions' => 'v',
+'accesskey-watch'                   => 'w',
+
+# Keyboard access keys for power users
+'accesskey-search'                  => 'f',
+'accesskey-minoredit'               => 'i',
+'accesskey-save'                    => 's',
+'accesskey-preview'                 => 'p',
+'accesskey-diff'                    => 'v',
+'accesskey-compareselectedversions' => 'v',
+'accesskey-watch'                   => 'w',
 
 # Tooltip help for some actions, most are in Monobook.js
 'tooltip-search'                  => '{{SITENAME}} جوباسىنان ٴىزدەستٴىرۋ [alt-f]',
