@@ -918,6 +918,19 @@ $1',
 'watchthisupload'             => 'Осы бетті бақылау',
 'filewasdeleted'              => 'Осы атауы бар файл бұрын қотарылған, сосын жойылдырылған. Қайта қотару алдынан $1 дегенді тексеріңіз.',
 
+'upload-proto-error'      => 'Жарамсыз хаттамалық',
+'upload-proto-error-text' => 'Сырттан қотару үшін URL жайлары <code>http://</code> немесе <code>ftp://</code> дегендерден басталу қажет.',
+'upload-file-error'       => 'Ішкі қате',
+'upload-file-error-text'  => 'Серверде уақытша файл жасауы ішкі қатеге ұшырасты. Бұл жүйенің әкімшімен қатынасыңыз.',
+'upload-misc-error'       => 'Белгісіз қотару қатесі',
+'upload-misc-error-text'  => 'Қотару кезінде белгісіз қате ұшырасты. Қайсы URL жайы жарамды және қатынаулы екенін тексеріп шығыңыз да қайталап көріңіз. Егер бұл мәселе әлде де қалса, жүйе әкімшімен қатынасыңыз.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'URL жайы жетілмеді',
+'upload-curl-error6-text'  => 'Берілген URL жайы жетілмеді. Қайсы URL жайы дұрыс екенін және торап істе екенін қайталап қатаң тексеріңіз.',
+'upload-curl-error28'      => 'Қотаруға берілген уақыт бітті',
+'upload-curl-error28-text' => 'Тораптың жауап беруі тым ұзақ уақытқа созылды. Бұл торап істе екенін тексеріп шығыңыз, аз уақыт кідіре тұрыңыз да тағы қайталап көріңіз. Талабыңызды жүктелуі аздау кезінде қайталауға болмыс.',
+
 'license'            => 'Лицензиясы',
 'nolicense'          => 'Ештеңе талғанбаған',
 'upload_source_url'  => ' (жарамды, баршаға қатынаулы URL жай)',
@@ -1337,7 +1350,7 @@ $NEWPAGE
 'ipbreason'                   => 'Себебі',
 'ipbanononly'                 => 'Тек тіркелгісізді бұғаттау',
 'ipbcreateaccount'            => 'Тіркелгі жасауын кедергілеу',
-'ipbenableautoblock'          => 'Бұл қатысушының қолданған IP жайларын өздік түрде бұғаттау',
+'ipbenableautoblock'          => 'Бұл қатысушының қолданған соңғы IP жайын, және әрқайсы кейін түзету істеуге үмітеліген жайларын өздік түрде бұғаттау',
 'ipbsubmit'                   => 'Пайдаланушыны бұғаттау',
 'ipbother'                    => 'Басқа мерзім',
 'ipboptions'                  => '2 сағат:2 hours,1 күн:1 day,3 күн:3 days,1 апта:1 week,2 апта:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мәнгі:infinite',
@@ -1548,6 +1561,15 @@ $NEWPAGE
 'import-logentry-interwiki'        => 'уики-тасымалданған $1',
 'import-logentry-interwiki-detail' => '$2 дегеннен $1 нұсқа',
 
+# Keyboard access keys for power users
+'accesskey-search'                  => 'f',
+'accesskey-minoredit'               => 'i',
+'accesskey-save'                    => 's',
+'accesskey-preview'                 => 'p',
+'accesskey-diff'                    => 'v',
+'accesskey-compareselectedversions' => 'v',
+'accesskey-watch'                   => 'w',
+
 # Tooltip help for some actions, most are in Monobook.js
 'tooltip-search'                  => '{{SITENAME}} жобасынан іздестіру [alt-f]',
 'tooltip-minoredit'               => 'Осыны шағын түзету деп белгілеу [alt-i]',
@@ -1670,7 +1692,17 @@ ta['ca-nstab-image'] = new Array('c','Сурет бетін қарау');
 ta['ca-nstab-mediawiki'] = new Array('c','Жүйе хабарын қарау');
 ta['ca-nstab-template'] = new Array('c','Үлгіні қарау');
 ta['ca-nstab-help'] = new Array('c','Анықтыма бетін қарау');
-ta['ca-nstab-category'] = new Array('c','Санат бетін қарау');",
+ta['ca-nstab-category'] = new Array('c','Санат бетін қарау');
+
+// BEGIN workaround for RTL
+if (wgUserLanguage == \"kk-cn\")
+{
+  document.direction=\"rtl\";
+  document.write('<style type=\"text/css\">html {direction: rtl;}</style>');
+  document.write('<link rel=\"stylesheet\" type=\"text/css\" href=\"'+stylepath+'/common/common_rtl.css\">');
+  document.write('<link rel=\"stylesheet\" type=\"text/css\" href=\"'+stylepath+'/monobook/rtl.css\">');
+}
+// END workaround for RTL",
 
 # Image deletion
 'deletedrevision' => 'Мына ескі нұсқасын жойды: $1.',

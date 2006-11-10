@@ -919,6 +919,19 @@ tağı basqa biletiñizdi. Bul swret bolsa, mınadaý pişimimen kiristirwge bol
 'watchthisupload'             => 'Osı betti baqılaw',
 'filewasdeleted'              => 'Osı atawı bar faýl burın qotarılğan, sosın joýıldırılğan. Qaýta qotarw aldınan $1 degendi tekseriñiz.',
 
+'upload-proto-error'      => 'Jaramsız xattamalıq',
+'upload-proto-error-text' => 'Sırttan qotarw üşin URL jaýları <code>http://</code> nemese <code>ftp://</code> degenderden bastalw qajet.',
+'upload-file-error'       => 'İşki qate',
+'upload-file-error-text'  => 'Serverde waqıtşa faýl jasawı işki qatege uşırastı. Bul jüýeniñ äkimşimen qatınasıñız.',
+'upload-misc-error'       => 'Belgisiz qotarw qatesi',
+'upload-misc-error-text'  => 'Qotarw kezinde belgisiz qate uşırastı. Qaýsı URL jaýı jaramdı jäne qatınawlı ekenin tekserip şığıñız da qaýtalap köriñiz. Eger bul mäsele älde de qalsa, jüýe äkimşimen qatınasıñız.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'URL jaýı jetilmedi',
+'upload-curl-error6-text'  => 'Berilgen URL jaýı jetilmedi. Qaýsı URL jaýı durıs ekenin jäne torap iste ekenin qaýtalap qatañ tekseriñiz.',
+'upload-curl-error28'      => 'Qotarwğa berilgen waqıt bitti',
+'upload-curl-error28-text' => 'Toraptıñ jawap berwi tım uzaq waqıtqa sozıldı. Bul torap iste ekenin tekserip şığıñız, az waqıt kidire turıñız da tağı qaýtalap köriñiz. Talabıñızdı jüktelwi azdaw kezinde qaýtalawğa bolmıs.',
+
 'license'            => 'Lïcenzïyası',
 'nolicense'          => 'Eşteñe talğanbağan',
 'upload_source_url'  => ' (jaramdı, barşağa qatınawlı URL jaý)',
@@ -1548,6 +1561,15 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'import-logentry-upload-detail'    => '$1 nusqa',
 'import-logentry-interwiki'        => 'wïkï-tasımaldanğan $1',
 'import-logentry-interwiki-detail' => '$2 degennen $1 nusqa',
+
+# Keyboard access keys for power users
+'accesskey-search'                  => 'f',
+'accesskey-minoredit'               => 'i',
+'accesskey-save'                    => 's',
+'accesskey-preview'                 => 'p',
+'accesskey-diff'                    => 'v',
+'accesskey-compareselectedversions' => 'v',
+'accesskey-watch'                   => 'w',
 
 # Tooltip help for some actions, most are in Monobook.js
 'tooltip-search'                  => '{{SITENAME}} jobasınan izdestirw [alt-f]',
