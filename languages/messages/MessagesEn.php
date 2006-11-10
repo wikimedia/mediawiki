@@ -1811,9 +1811,9 @@ the list of currently operational bans and blocks.',
 'ipb_cant_unblock' => 'Error: Block ID $1 not found. It may have been unblocked already.',
 'proxyblockreason'	=> 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.',
 'proxyblocksuccess'	=> 'Done.',
-'sorbs'         => 'SORBS DNSBL',
-'sorbsreason'   => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL. You cannot create an account',
+'sorbs'         => 'DNSBL',
+'sorbsreason'   => 'Your IP address is listed as an open proxy in the DNSBL used by this site.',
+'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the DNSBL used by this site. You cannot create an account',
 
 
 # Developer tools

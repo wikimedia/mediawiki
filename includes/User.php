@@ -861,9 +861,10 @@ class User {
 	}
 
 	function inSorbsBlacklist( $ip ) {
-		global $wgEnableSorbs;
+		global $wgEnableSorbs, $wgSorbsUrl;
+
 		return $wgEnableSorbs &&
-			$this->inDnsBlacklist( $ip, 'http.dnsbl.sorbs.net.' );
+			$this->inDnsBlacklist( $ip, $wgSorbsUrl );
 	}
 
 	function inDnsBlacklist( $ip, $base ) {
