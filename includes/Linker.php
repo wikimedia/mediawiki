@@ -537,6 +537,8 @@ class Linker {
 					$url = $thumb->getUrl();
 				} else {
 					$error = htmlspecialchars( $img->getLastError() );
+					// Do client-side scaling...
+					$height = intval( $img->getHeight() * $width / $img->getWidth() );
 				}
 			}
 		} else {
@@ -633,6 +635,10 @@ class Linker {
 		if( $thumbUrl == '' ) {
 			// Couldn't generate thumbnail? Scale the image client-side.
 			$thumbUrl = $img->getViewURL();
+			if( $boxheight == -1 ) {
+				// Approximate...
+				$boxheight = intval( $height * $boxwidth / $width );
+			}
 		}
 		if ( $error ) {
 			$s .= htmlspecialchars( $error );

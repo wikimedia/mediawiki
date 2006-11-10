@@ -160,6 +160,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression in Special:Undelete for revisions deleted under MediaWiki 1.4
   with compression or legacy encoding
 * (bug 6737) Fixes for MySQL 5 schema in strict mode
+* Approximate height for client-side scaling fallback instead of passing -1
+  into the HTML output.
 
 
 == Languages updated ==
