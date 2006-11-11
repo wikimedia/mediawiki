@@ -163,6 +163,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Approximate height for client-side scaling fallback instead of passing -1
   into the HTML output.
 * Make the DNSBL to check for proxy blocking configurable via $wgSorbsUrl
+* Add experimental recording/reporting mode to parser tests runner, to
+  compare changes against the previous run.
+  Additional tables 'testrun' and 'testitem' are in maintenance/testRunner.sql,
+  source this and pass --record option to parserTests.php
+
 
 == Languages updated ==
 

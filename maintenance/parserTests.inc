@@ -25,7 +25,7 @@
  */
 
 /** */
-$options = array( 'quick', 'color', 'quiet', 'help', 'show-output' );
+$options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record' );
 $optionsWithArgs = array( 'regex' );
 
 require_once( 'commandLine.inc' );
@@ -98,6 +98,12 @@ class ParserTest {
 			$this->regex = '';
 		}
 		
+		if( isset( $options['record'] ) ) {
+			$this->recorder = new TestRecorder();
+		} else {
+			$this->recorder = new DummyTestRecorder();
+		}
+		
 		$this->hooks = array();
 		$this->functionHooks = array();
 	}
@@ -138,6 +144,7 @@ class ParserTest {
 		$success = 0;
 		$total = 0;
 		$n = 0;
+		$this->recorder->start();
 		while( false !== ($line = fgets( $infile ) ) ) {
 			$n++;
 			if( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
@@ -205,14 +212,16 @@ class ParserTest {
 						$section = null;
 						continue;
 					}
-					if( $this->runTest(
+					$result = $this->runTest(
 						$this->chomp( $data['test'] ),
 						$this->chomp( $data['input'] ),
 						$this->chomp( $data['result'] ),
-						$this->chomp( $data['options'] ) ) ) {
+						$this->chomp( $data['options'] ) );
+					if( $result ) {
 						$success++;
 					}
 					$total++;
+					$this->recorder->record( $this->chomp( $data['test'] ), $result );
 					$data = array();
 					$section = null;
 					continue;
@@ -227,9 +236,13 @@ class ParserTest {
 				$data[$section] .= $line;
 			}
 		}
+		$this->recorder->end();
+		
+		print "\n";
+		$this->recorder->report();
 		if( $total > 0 ) {
 			$ratio = wfPercent( 100 * $success / $total );
-			print $this->termColor( 1 ) . "\nPassed $success of $total tests ($ratio) ";
+			print $this->termColor( 1 ) . "Passed $success of $total tests ($ratio) ";
 			if( $success == $total ) {
 				print $this->termColor( 32 ) . "PASSED!";
 			} else {
@@ -826,6 +839,144 @@ class ParserTest {
 			'^' .
 			$this->termColor( 0 );
 		return "$display\n$caret";
+	}
+	
+}
+
+class DummyTestRecorder {
+	function start() {
+		// dummy
+	}
+	
+	function record( $test, $result ) {
+		// dummy
+	}
+	
+	function end() {
+		// dummy
+	}
+	
+	function report() {
+		// dummy
+	}
+}
+
+class TestRecorder {
+	var $db; ///< Database connection to the main DB
+	var $curRun; ///< run ID number for the current run
+	var $prevRun; ///< run ID number for the previous run, if any
+	
+	function __construct() {
+		$this->db = wfGetDB( DB_MASTER );
+	}
+	
+	/**
+	 * Set up result recording; insert a record for the run with the date
+	 * and all that fun stuff
+	 */
+	function start() {
+		$this->db->begin();
+		
+		// We'll make comparisons against the previous run later...
+		$this->prevRun = $this->db->selectField( 'testrun', 'MAX(tr_id)' );
+		
+		$this->db->insert( 'testrun',
+			array(
+				'tr_date'        => $this->db->timestamp(),
+				'tr_mw_version'  => SpecialVersion::getVersion(),
+				'tr_php_version' => phpversion(),
+				'tr_db_version'  => $this->db->getServerVersion(),
+				'tr_uname'       => php_uname()
+			),
+			__METHOD__ );
+		$this->curRun = $this->db->insertId();
+	}
+	
+	/**
+	 * Record an individual test item's success or failure to the db
+	 * @param string $test
+	 * @param bool $result
+	 */
+	function record( $test, $result ) {
+		$this->db->insert( 'testitem',
+			array(
+				'ti_run'     => $this->curRun,
+				'ti_name'    => $test,
+				'ti_success' => $result ? 1 : 0,
+			),
+			__METHOD__ );
+	}
+	
+	/**
+	 * Commit transaction and clean up for result recording
+	 */
+	function end() {
+		$this->db->commit();
+	}
+	
+	function report() {
+		if( $this->prevRun ) {
+			$table = array(
+				array( 'previously failing test(s) now PASSING! :)', 0, 1 ),
+				array( 'previously PASSING test(s) removed o_O', 1, null ),
+				array( 'new PASSING test(s) :)', null, 1 ),
+				
+				array( 'previously passing test(s) now FAILING! :(', 1, 0 ),
+				array( 'previously FAILING test(s) removed O_o', 0, null ),
+				array( 'new FAILING test(s) :(', null, 0 ),
+			);
+			foreach( $table as $blah ) {
+				list( $label, $before, $after ) = $blah;
+				$count = $this->comparisonCount( $before, $after );
+				if( $count ) {
+					printf( "%4d %s\n", $count, $label );
+				}
+			}
+		} else {
+			print "No previous test runs to compare against.\n";
+		}
+	}
+	
+	/**
+	 * :P
+	 */
+	private function comparisonCount( $before, $after ) {
+		$testitem = $this->db->tableName( 'testitem' );
+		$prevRun = intval( $this->prevRun );
+		$curRun = intval( $this->curRun );
+		$prevStatus = $this->condition( $before );
+		$curStatus = $this->condition( $after );
+		
+		// note: requires a current mysql for subselects
+		if( is_null( $after ) ) {
+			$sql = "
+				select count(*) as c from $testitem as prev
+					where prev.ti_run=$prevRun and
+						prev.ti_success $prevStatus and
+						(select current.ti_success from testitem as current
+							where current.ti_run=$curRun
+								and prev.ti_name=current.ti_name) $curStatus";
+		} else {
+			$sql = "
+				select count(*) as c from $testitem as current 
+					where current.ti_run=$curRun and
+						current.ti_success $curStatus and
+						(select prev.ti_success from testitem as prev
+							where prev.ti_run=$prevRun
+								and prev.ti_name=current.ti_name) $prevStatus";
+		}
+		$result = $this->db->query( $sql, __METHOD__ );
+		$row = $this->db->fetchObject( $result );
+		$this->db->freeResult( $result );
+		return $row->c;
+	}
+	
+	private function condition( $value ) {
+		if( is_null( $value ) ) {
+			return 'IS NULL';
+		} else {
+			return '=' . intval( $value );
+		}
 	}
 
 }
