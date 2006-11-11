@@ -460,6 +460,9 @@ class DatabasePostgres extends Database {
 		while ( $row = $this->fetchObject( $res ) ) {
 			if ( $row->indexname == $index ) {
 				return $row;
+				
+				// BUG: !!!! This code needs to be synced up with database.php
+				
 			}
 		}
 		return false;
