@@ -2308,4 +2308,17 @@ $wgDjvuPostProcessor = 'ppmtojpeg';
 $wgEnableAPI = true;
 $wgEnableWriteAPI = false;
 
+/**
+ * Parser test suite files to be run by parserTests.php when no specific
+ * filename is passed to it.
+ *
+ * Extensions may add their own tests to this array, or site-local tests
+ * may be added via LocalSettings.php
+ *
+ * Use full paths.
+ */
+$wgParserTestFiles = array(
+	"$IP/maintenance/parserTests.txt",
+);
+
 ?>

@@ -85,6 +85,9 @@ class ParserTest {
 				break;
 			}
 		}
+		$this->term = $this->color
+			? new AnsiTermColorer( $this->lightcolor )
+			: new DummyTermColorer();
 
 		$this->showDiffs = !isset( $options['quick'] );
 		$this->quiet = isset( $options['quiet'] );
@@ -99,9 +102,9 @@ class ParserTest {
 		}
 		
 		if( isset( $options['record'] ) ) {
-			$this->recorder = new TestRecorder();
+			$this->recorder = new DbTestRecorder( $this->term );
 		} else {
-			$this->recorder = new DummyTestRecorder();
+			$this->recorder = new TestRecorder( $this->term );
 		}
 		
 		$this->hooks = array();
@@ -122,39 +125,53 @@ class ParserTest {
 	}
 
 	/**
-	 * Run a series of tests listed in the given text file.
+	 * Run a series of tests listed in the given text files.
 	 * Each test consists of a brief description, wikitext input,
 	 * and the expected HTML output.
 	 *
 	 * Prints status updates on stdout and counts up the total
 	 * number and percentage of passed tests.
 	 *
-	 * @param string $filename
+	 * @param array of strings $filenames
 	 * @return bool True if passed all tests, false if any tests failed.
 	 * @public
 	 */
-	function runTestsFromFile( $filename ) {
+	function runTestsFromFiles( $filenames ) {
+		$this->recorder->start();
+		$ok = true;
+		foreach( $filenames as $filename ) {
+			$ok = $this->runFile( $filename ) && $ok;
+		}
+		$this->recorder->end();
+		$this->recorder->report();
+		return $ok;
+	}
+	
+	private function runFile( $filename ) {
 		$infile = fopen( $filename, 'rt' );
 		if( !$infile ) {
 			wfDie( "Couldn't open $filename\n" );
+		} else {
+			print $this->term->color( 1 ) .
+				"Reading tests from \"$filename\"..." .
+				$this->term->reset() .
+				"\n";
 		}
 
 		$data = array();
 		$section = null;
-		$success = 0;
-		$total = 0;
 		$n = 0;
-		$this->recorder->start();
+		$ok = true;
 		while( false !== ($line = fgets( $infile ) ) ) {
 			$n++;
 			if( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
 				$section = strtolower( $matches[1] );
 				if( $section == 'endarticle') {
 					if( !isset( $data['text'] ) ) {
-						wfDie( "'endarticle' without 'text' at line $n\n" );
+						wfDie( "'endarticle' without 'text' at line $n of $filename\n" );
 					}
 					if( !isset( $data['article'] ) ) {
-						wfDie( "'endarticle' without 'article' at line $n\n" );
+						wfDie( "'endarticle' without 'article' at line $n of $filename\n" );
 					}
 					$this->addArticle($this->chomp($data['article']), $this->chomp($data['text']), $n);
 					$data = array();
@@ -163,7 +180,7 @@ class ParserTest {
 				}
 				if( $section == 'endhooks' ) {
 					if( !isset( $data['hooks'] ) ) {
-						wfDie( "'endhooks' without 'hooks' at line $n\n" );
+						wfDie( "'endhooks' without 'hooks' at line $n of $filename\n" );
 					}
 					foreach( explode( "\n", $data['hooks'] ) as $line ) {
 						$line = trim( $line );
@@ -177,7 +194,7 @@ class ParserTest {
 				}
 				if( $section == 'endfunctionhooks' ) {
 					if( !isset( $data['functionhooks'] ) ) {
-						wfDie( "'endfunctionhooks' without 'functionhooks' at line $n\n" );
+						wfDie( "'endfunctionhooks' without 'functionhooks' at line $n of $filename\n" );
 					}
 					foreach( explode( "\n", $data['functionhooks'] ) as $line ) {
 						$line = trim( $line );
@@ -191,13 +208,13 @@ class ParserTest {
 				}
 				if( $section == 'end' ) {
 					if( !isset( $data['test'] ) ) {
-						wfDie( "'end' without 'test' at line $n\n" );
+						wfDie( "'end' without 'test' at line $n of $filename\n" );
 					}
 					if( !isset( $data['input'] ) ) {
-						wfDie( "'end' without 'input' at line $n\n" );
+						wfDie( "'end' without 'input' at line $n of $filename\n" );
 					}
 					if( !isset( $data['result'] ) ) {
-						wfDie( "'end' without 'result' at line $n\n" );
+						wfDie( "'end' without 'result' at line $n of $filename\n" );
 					}
 					if( !isset( $data['options'] ) ) {
 						$data['options'] = '';
@@ -217,17 +234,14 @@ class ParserTest {
 						$this->chomp( $data['input'] ),
 						$this->chomp( $data['result'] ),
 						$this->chomp( $data['options'] ) );
-					if( $result ) {
-						$success++;
-					}
-					$total++;
+					$ok = $ok && $result;
 					$this->recorder->record( $this->chomp( $data['test'] ), $result );
 					$data = array();
 					$section = null;
 					continue;
 				}
 				if ( isset ($data[$section] ) ) {
-					wfDie( "duplicate section '$section' at line $n\n" );
+					wfDie( "duplicate section '$section' at line $n of $filename\n" );
 				}
 				$data[$section] = '';
 				continue;
@@ -236,23 +250,8 @@ class ParserTest {
 				$data[$section] .= $line;
 			}
 		}
-		$this->recorder->end();
-		
 		print "\n";
-		$this->recorder->report();
-		if( $total > 0 ) {
-			$ratio = wfPercent( 100 * $success / $total );
-			print $this->termColor( 1 ) . "Passed $success of $total tests ($ratio) ";
-			if( $success == $total ) {
-				print $this->termColor( 32 ) . "PASSED!";
-			} else {
-				print $this->termColor( 31 ) . "FAILED!";
-			}
-			print $this->termReset() . "\n";
-			return ($success == $total);
-		} else {
-			wfDie( "No tests found.\n" );
-		}
+		return $ok;
 	}
 
 	/**
@@ -604,7 +603,7 @@ class ParserTest {
 	 */
 	function showSuccess( $desc ) {
 		if( !$this->quiet ) {
-			print $this->termColor( '1;32' ) . 'PASSED' . $this->termReset() . "\n";
+			print $this->term->color( '1;32' ) . 'PASSED' . $this->term->reset() . "\n";
 		}
 		return true;
 	}
@@ -625,7 +624,7 @@ class ParserTest {
 			# test, in case it succeeded. Show it now:
 			$this->showTesting( $desc );
 		}
-		print $this->termColor( '1;31' ) . 'FAILED!' . $this->termReset() . "\n";
+		print $this->term->color( '1;31' ) . 'FAILED!' . $this->term->reset() . "\n";
 		if ( $this->showOutput ) {
 			print "--- Expected ---\n$result\n--- Actual ---\n$html\n";
 		}
@@ -679,33 +678,6 @@ class ParserTest {
 	}
 
 	/**
-	 * Return ANSI terminal escape code for changing text attribs/color,
-	 * or empty string if color output is disabled.
-	 *
-	 * @param string $color Semicolon-separated list of attribute/color codes
-	 * @return string
-	 * @private
-	 */
-	function termColor( $color ) {
-		if($this->lightcolor) {
-			return $this->color ? "\x1b[1;{$color}m" : '';
-		} else {
-			return $this->color ? "\x1b[{$color}m" : '';
-		}
-	}
-
-	/**
-	 * Return ANSI terminal escape code for restoring default text attributes,
-	 * or empty string if color output is disabled.
-	 *
-	 * @return string
-	 * @private
-	 */
-	function termReset() {
-		return $this->color ? "\x1b[0m" : '';
-	}
-
-	/**
 	 * Colorize unified diff output if set for ANSI color output.
 	 * Subtractions are colored blue, additions red.
 	 *
@@ -716,8 +688,8 @@ class ParserTest {
 	function colorDiff( $text ) {
 		return preg_replace(
 			array( '/^(-.*)$/m', '/^(\+.*)$/m' ),
-			array( $this->termColor( 34 ) . '$1' . $this->termReset(),
-			       $this->termColor( 31 ) . '$1' . $this->termReset() ),
+			array( $this->term->color( 34 ) . '$1' . $this->term->reset(),
+			       $this->term->color( 31 ) . '$1' . $this->term->reset() ),
 			$text );
 	}
 
@@ -821,35 +793,79 @@ class ParserTest {
 		$start = max( 0, $position - 10 );
 		$before = $position - $start;
 		$fragment = '...' .
-			$this->termColor( 34 ) .
+			$this->term->color( 34 ) .
 			substr( $text, $start, $before ) .
-			$this->termColor( 0 ) .
-			$this->termColor( 31 ) .
-			$this->termColor( 1 ) .
+			$this->term->color( 0 ) .
+			$this->term->color( 31 ) .
+			$this->term->color( 1 ) .
 			substr( $text, $position, 1 ) .
-			$this->termColor( 0 ) .
-			$this->termColor( 34 ) .
+			$this->term->color( 0 ) .
+			$this->term->color( 34 ) .
 			substr( $text, $position + 1, 9 ) .
-			$this->termColor( 0 ) .
+			$this->term->color( 0 ) .
 			'...';
 		$display = str_replace( "\n", ' ', $fragment );
 		$caret = '   ' .
 			str_repeat( ' ', $before ) .
-			$this->termColor( 31 ) .
+			$this->term->color( 31 ) .
 			'^' .
-			$this->termColor( 0 );
+			$this->term->color( 0 );
 		return "$display\n$caret";
 	}
 	
 }
 
-class DummyTestRecorder {
+class AnsiTermColorer {
+	function __construct( $light ) {
+		$this->light = $light;
+	}
+	
+	/**
+	 * Return ANSI terminal escape code for changing text attribs/color
+	 *
+	 * @param string $color Semicolon-separated list of attribute/color codes
+	 * @return string
+	 * @private
+	 */
+	function color( $color ) {
+		$light = $this->light ? "1;" : "";
+		return "\x1b[{$light}{$color}m";
+	}
+
+	/**
+	 * Return ANSI terminal escape code for restoring default text attributes
+	 *
+	 * @return string
+	 * @private
+	 */
+	function reset() {
+		return "\x1b[0m";
+	}
+}
+
+class DummyTermColorer {
+	function color( $color ) {
+		return '';
+	}
+	
+	function reset() {
+		return '';
+	}
+}
+
+class TestRecorder {
+	function __construct( $term ) {
+		$this->term = $term;
+	}
+	
 	function start() {
-		// dummy
+		$this->total = 0;
+		$this->success = 0;
 	}
 	
 	function record( $test, $result ) {
-		// dummy
+		$this->total++;
+		$this->success += ($result ? 1 : 0);
 	}
 	
 	function end() {
@@ -857,16 +873,33 @@ class DummyTestRecorder {
 	}
 	
 	function report() {
-		// dummy
+		if( $this->total > 0 ) {
+			$this->reportPercentage( $this->success, $this->total );
+		} else {
+			wfDie( "No tests found.\n" );
+		}
+	}
+	
+	function reportPercentage( $success, $total ) {
+		$ratio = wfPercent( 100 * $success / $total );
+		print $this->term->color( 1 ) . "Passed $success of $total tests ($ratio) ";
+		if( $success == $total ) {
+			print $this->term->color( 32 ) . "PASSED!";
+		} else {
+			print $this->term->color( 31 ) . "FAILED!";
+		}
+		print $this->term->reset() . "\n";
+		return ($success == $total);
 	}
 }
 
-class TestRecorder {
+class DbTestRecorder extends TestRecorder  {
 	var $db; ///< Database connection to the main DB
 	var $curRun; ///< run ID number for the current run
 	var $prevRun; ///< run ID number for the previous run, if any
 	
-	function __construct() {
+	function __construct( $term ) {
+		parent::__construct( $term );
 		$this->db = wfGetDB( DB_MASTER );
 	}
 	
@@ -875,6 +908,8 @@ class TestRecorder {
 	 * and all that fun stuff
 	 */
 	function start() {
+		parent::start();
+		
 		$this->db->begin();
 		
 		// We'll make comparisons against the previous run later...
@@ -898,6 +933,7 @@ class TestRecorder {
 	 * @param bool $result
 	 */
 	function record( $test, $result ) {
+		parent::record( $test, $result );
 		$this->db->insert( 'testitem',
 			array(
 				'ti_run'     => $this->curRun,
@@ -912,6 +948,7 @@ class TestRecorder {
 	 */
 	function end() {
 		$this->db->commit();
+		parent::end();
 	}
 	
 	function report() {
@@ -935,6 +972,7 @@ class TestRecorder {
 		} else {
 			print "No previous test runs to compare against.\n";
 		}
+		parent::report();
 	}
 	
 	/**
