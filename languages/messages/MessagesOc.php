@@ -22,8 +22,8 @@ $namespaceNames = array(
 	NS_SPECIAL        => 'Especial',
 	NS_MAIN           => '',
 	NS_TALK           => 'Discutir',
-	NS_USER           => 'Utilisator',
-	NS_USER_TALK      => 'Discussion_Utilisator',
+	NS_USER           => 'Utilizaire',
+	NS_USER_TALK      => 'Discussion_Utilizaire',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => 'Discussion_$1',
 	NS_IMAGE          => 'Imatge',
@@ -38,6 +38,8 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Discussion_Categoria',
 );
 $namespaceAliases = array(
+	'Utilisator'            => NS_USER,
+	'Discussion_Utilisator' => NS_USER_TALK,
 	'Discutida_Utilisator' => NS_USER_TALK,
 	//'Discutida_$1'         => NS_PROJECT_TALK, /// @fixme
 	'Discutida_Imatge'     => NS_IMAGE_TALK,
