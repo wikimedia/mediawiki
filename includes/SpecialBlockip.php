@@ -46,22 +46,13 @@ class IPBlockForm {
 		$this->BlockReason = $wgRequest->getText( 'wpBlockReason' );
 		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry', wfMsg('ipbotheroption') );
 		$this->BlockOther = $wgRequest->getVal( 'wpBlockOther', '' );
-		$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly' );
 
 		# Unchecked checkboxes are not included in the form data at all, so having one 
 		# that is true by default is a bit tricky
-		if ( $wgRequest->wasPosted() ) {
-			$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', false );
-		} else {
-			$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', true );
-		}
-
-		if ( $wgRequest->wasPosted() ) {
-			$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', false );
-		} else {
-			$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', true );
-		}
-
+		$byDefault = !$wgRequest->wasPosted();
+		$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly', $byDefault );
+		$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', $byDefault );
+		$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', $byDefault );
 	}
 
 	function showForm( $err ) {
