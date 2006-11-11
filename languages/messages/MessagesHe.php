@@ -1409,9 +1409,9 @@ $NEWPAGE
 'proxyblocker'                => 'חוסם פרוקסי',
 'proxyblockreason'            => 'כתובת ה־IP שלכם נחסמה משום שהיא כתובת פרוקסי פתוחה. אנא צרו קשר עם ספק האינטרנט שלכם והודיעו לו על בעיית האבטחה החמורה הזו.',
 'proxyblocksuccess'           => 'בוצע.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'כתובת ה־IP שלכם רשומה ככתובת פרוקסי פתוחה ב[http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'כתובת ה־IP שלכם רשומה ככתובת פרוקסי פתוחה ב[http://www.sorbs.net SORBS] DNSBL. אינכם יכולים ליצור חשבון.',
+'sorbs'                       => 'SORBS',
+'sorbsreason'                 => 'כתובת ה־IP שלכם רשומה ככתובת פרוקסי פתוחה ב־DNSBL שאתר זה משתמש בו.',
+'sorbs_create_account_reason' => 'כתובת ה־IP שלכם רשומה ככתובת פרוקסי פתוחה ב־DNSBL שאתר זה משתמש בו. אינכם יכולים ליצור חשבון.',
 
 # Developer tools
 'lockdb'              => 'נעל בסיס־נתונים',
