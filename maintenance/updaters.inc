@@ -795,6 +795,32 @@ function do_rc_indices_update() {
 	}
 }
 
+function index_has_field($table, $index, $field) {
+	global $wgDatabase;
+	echo( "Checking if $table index $index includes field $field...\n" );
+	$info = $wgDatabase->indexInfo( $table, $index, __METHOD__ );
+	if( $info ) {
+		foreach($info as $row) {
+			if($row->Column_name == $field) {
+				echo( "...index $index on table $table seems to be ok\n" );
+				return true;
+			}
+		}
+	}
+	echo( "...index $index on table $table has no field $field; adding\n" );
+	return false;
+}
+
+function do_backlinking_indices_update() {
+	echo( "Checking for backlinking indices...\n" );
+	if (!index_has_field('pagelinks', 'pl_namespace', 'pl_from') ||
+		!index_has_field('templatelinks', 'tl_namespace', 'tl_from') ||
+		!index_has_field('imagelinks', 'il_to', 'il_from'))
+	{	
+		dbsource( archive( 'patch-backlinkindexes.sql' ) );
+	}
+}
+
 function do_all_updates( $doShared = false ) {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype;
 
@@ -860,6 +886,8 @@ function do_all_updates( $doShared = false ) {
 	do_page_random_update(); flush();
 	
 	do_rc_indices_update(); flush();
+	
+	do_backlinking_indices_update(); flush();
 
 	initialiseMessages(); flush();
 }

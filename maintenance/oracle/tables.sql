@@ -109,14 +109,14 @@ CREATE TABLE pagelinks (
 	pl_title	VARCHAR2(255) NOT NULL
 );
 CREATE UNIQUE INDEX pl_from ON pagelinks(pl_from, pl_namespace, pl_title);
-CREATE INDEX pl_namespace ON pagelinks(pl_namespace, pl_title);
+CREATE INDEX pl_namespace ON pagelinks(pl_namespace, pl_title, pl_from);
 
 CREATE TABLE imagelinks (
 	il_from	 NUMBER(8) NOT NULL REFERENCES page(page_id) ON DELETE CASCADE,
 	il_to	 VARCHAR2(255) NOT NULL
 );
 CREATE UNIQUE INDEX il_from ON imagelinks(il_from, il_to);
-CREATE INDEX il_to ON imagelinks(il_to);
+CREATE INDEX il_to ON imagelinks(il_to, il_from);
 
 CREATE TABLE categorylinks (
   cl_from	NUMBER(8) NOT NULL REFERENCES page(page_id) ON DELETE CASCADE,

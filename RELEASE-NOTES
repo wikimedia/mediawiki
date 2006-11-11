@@ -176,7 +176,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Do a check for the PHP 5.0.x 64-bit bug, since this is much more disruptive
   as of MW 1.8 than it used to be. Install or upgrade now aborts with a
   warning and a request to upgrade.
-
+* (bug 6440) Updated indexes to improve backlinking queries (links, templates, images)
 
 == Languages updated ==
 

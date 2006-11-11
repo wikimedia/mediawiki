@@ -383,7 +383,7 @@ CREATE TABLE /*$wgDBprefix*/pagelinks (
   pl_title varchar(255) binary NOT NULL default '',
   
   UNIQUE KEY pl_from (pl_from,pl_namespace,pl_title),
-  KEY (pl_namespace,pl_title)
+  KEY (pl_namespace,pl_title,pl_from)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
@@ -403,7 +403,7 @@ CREATE TABLE /*$wgDBprefix*/templatelinks (
   tl_title varchar(255) binary NOT NULL default '',
   
   UNIQUE KEY tl_from (tl_from,tl_namespace,tl_title),
-  KEY (tl_namespace,tl_title)
+  KEY (tl_namespace,tl_title,tl_from)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
@@ -423,7 +423,7 @@ CREATE TABLE /*$wgDBprefix*/imagelinks (
   il_to varchar(255) binary NOT NULL default '',
   
   UNIQUE KEY il_from (il_from,il_to),
-  KEY (il_to)
+  KEY (il_to,il_from)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
