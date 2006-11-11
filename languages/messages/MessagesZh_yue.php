@@ -161,7 +161,7 @@ $messages = array(
 'tog-editsection'		=> '可以用 [修改] 掣更改個別段落',
 'tog-editsectiononrightclick'	=> '可以撳右掣更改個別段落（JavaScript）',
 'tog-showtoc'			=> '喺多過三個段落嘅時候顯示目錄',
-'tog-rememberpassword' 		=> '記住密碼',
+'tog-rememberpassword' 		=> '響呢部電腦度記住我嘅密碼',
 'tog-editwidth' 		=> '全螢幕咁闊嘅修改欄',
 'tog-watchcreations' 		=> '將我開嘅頁面加入監視清單',
 'tog-watchdefault' 		=> '將我修改嘅頁面加入監視清單',
@@ -183,6 +183,7 @@ $messages = array(
 'tog-forceeditsummary' 		=> '我冇入修改註解時通知我',
 'tog-watchlisthideown' 		=> '響監視清單度隱藏我嘅編輯',
 'tog-watchlisthidebots' 	=> '響監視清單度隱藏機械人嘅編輯',
+'tog-nolangconversion' 		=> '唔要用字轉換',
 
 'underline-always' 		=> '全部',
 'underline-never' 		=> '永不',
@@ -244,10 +245,9 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' 		=> '分類',
-'pagecategories' 		=> '分類',
+'pagecategories' 	=> '分類',
 'category_header' 	=> '"$1" 分類中嘅文章',
 'subcategories' 	=> '次分類',
-
 
 'mainpage' 		=> '頭版',
 'mainpagetext' 		=> "<big>'''MediaWiki 已經成功地安裝。'''</big>",
@@ -307,7 +307,7 @@ $messages = array(
 'search'		=> '搵嘢',
 'searchbutton' 		=> '搵嘢',
 'go'			=> '去',
-'searcharticle'			=> '去',
+'searcharticle'		=> '去',
 'history'		=> '頁面歷史',
 'history_short' 	=> '歷史',
 'updatedmarker' 	=> '我上次到訪之後嘅修改',
@@ -368,7 +368,7 @@ $messages = array(
 'retrievedfrom' 	=> '由 "$1" 接收',
 'youhavenewmessages' 	=> '你有$1（$2）。',
 'newmessageslink' 	=> '新信息',
-'newmessagesdifflink' 	=> '同前次修訂嘅差異',
+'newmessagesdifflink' 	=> '上次更改',
 'editsection' 		=> '編輯',
 'editold' 		=> '編輯',
 'editsectionhint' 	=> '編輯小節: $1',
@@ -390,7 +390,7 @@ $messages = array(
 'nstab-image' 		=> '檔案',
 'nstab-mediawiki' 	=> '信息',
 'nstab-template' 	=> '模',
-'nstab-help' 		=> '幫助',
+'nstab-help' 		=> '幫助頁',
 'nstab-category' 	=> '分類',
 
 # Main script and global functions
@@ -473,7 +473,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'yourname'		=> '用戶名',
 'yourpassword'		=> '密碼',
 'yourpasswordagain' 	=> '再輸入密碼',
-'remembermypassword' 	=> '記住我個密碼',
+'remembermypassword' 	=> '響呢部電腦度記住我嘅密碼',
 'yourdomainname' 	=> '你嘅網域',
 'externaldberror' 	=> '外部驗證資料庫出錯，或者唔允許你更新你嘅外部帳戶。',
 'loginproblem' 		=> '<b>你嘅登入手續出咗問題。</b><br />唔該再試吓登入。',
@@ -528,8 +528,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'noemail' 		=> '呢度冇用戶 "$1" 嘅電郵地址記錄。',
 'passwordsent'		=> '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。
 收到之後請重新登入。',
+'blocked-mailpassword' 	=> '你嘅IP地址而家被封鎖緊，唔可以用密碼復原功能以防止濫用。',
 'eauthentsent' 		=>  '確認電郵已經傳送到指定嘅電郵地址。
 喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
+'throttled-mailpassword' => '一個密碼提醒已經響$1個鐘頭之前發送咗。
+為咗防止濫用，響$1個鐘頭之內只可以發送一個密碼提醒。',
 'mailerror' 		=> '傳送電郵錯誤： $1',
 'acct_creation_throttle_hit' => '對唔住，你已經開咗 $1 個戶口，唔可以再開多個戶口。',
 'emailauthenticated' 	=> '你嘅電郵地址已經喺 $1 確認。',
@@ -573,10 +576,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'preview'		=> '預覽',
 'showpreview'		=> '顯示預覽',
 'showlivepreview'	=> '實時預覽',
-'showdiff'		=> '顥示差異',
+'showdiff'		=> '顯示差異',
 'anoneditwarning' 	=> "'''警告：'''你仲未登入。你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。",
 'missingsummary' 	=> "'''提醒：''' 你未有提供一個編輯摘要。如果你再噤多一下儲存嘅話，咁你嘅編輯就會喺唔包括編輯摘要下儲存。",
 'missingcommenttext' 	=> '請輸入一個註解。',
+'missingcommentheader' => "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就唔會留有任何摘要。",
 'blockedtitle'		=> '用戶已經封鎖',
 'blockedtext'		=> "<big>你嘅用戶名或者 IP 位址已經被 $1 封咗。</big>
 
@@ -607,7 +611,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 要起版新嘅，請您喺下面嗰格度輸入。
 (睇睇[[{{ns:help}}:目錄|自助版]]拎多啲資料。)
 如果你係唔覺意嚟到呢度，撳一次你個瀏覽器'''返轉頭'''個掣。",
-'anontalkpagetext' 	=> "----''呢度係匿名用戶嘅討論頁，佢可能係仲未開戶口，或者佢仲唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Apecial:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
+'anontalkpagetext' 	=> "----''呢度係匿名用戶嘅討論頁，佢可能係仲未開戶口，或者佢仲唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
 'noarticletext' 	=> '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[{{ns:special}}:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
 'clearyourcache' 	=> "'''注意：'''喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-Shift-R''（喺蘋果Mac中㩒''Cmd-Shift-R''掣）； '''IE:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣； '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''； '''Opera'''嘅用戶可能需要先喺''工具→喜好設定''之中清佢哋嘅快取。",
 'usercssjsyoucanpreview' => '<strong>提示：</strong>響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。',
@@ -627,7 +631,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 <strong>如果呢個係正當嘅編輯嘗試，請再試過。如果仲係唔得嘅話，請先登出然後再登入。</strong>',
 'importing' 		=> '而家喺度滙入$1',
 'editing' 		=> '而家喺度編輯$1',
-'editinguser' 		=> '而家喺度編輯$1',
+'editinguser' 		=> '而家喺度編輯用戶<b>$1</b>',
 'editingsection' 	=> '而家喺度編輯$1 （小節）',
 'editingcomment' 	=> '而家喺度編輯$1 （評論）',
 'editconflict' 		=> '編輯衝突：$1',
@@ -935,6 +939,16 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'destfilename' 		=> '目標檔名',
 'watchthisupload'	=> '監視呢頁',
 'filewasdeleted' 	=> '呢個檔案所使用嘅名曾經上載後，跟住就刪除咗。你應該響重新上載佢之前檢查吓$1。',
+'upload-proto-error' => '唔正確嘅協議',
+'upload-proto-error-text' => '遙遠上載需要一個以 <code>http://</code> 或者 <code>ftp://</code> 作為開頭嘅URL。',
+'upload-file-error' => '內部錯誤',
+'upload-file-error-text' => '當響伺服器度建立一個暫存檔時發生咗一個內部錯誤。請聯絡一位系統管理員。',
+'upload-misc-error' => '未知嘅上載錯誤',
+'upload-misc-error-text' => '響上載時發生咗未知嘅錯誤。請確認輸入咗嘅URL係可以訪問嘅，之後再試多一次。如果仲有問題嘅話，請聯絡一位系統管理員。',
+'upload-curl-error6' => "唔可以到嗰個URL",
+'upload-curl-error6-text' => '輸入嘅URL唔能夠去到。請重新檢查個URL係正確嘅同埋個網站係已經上綫。',
+'upload-curl-error28' => '上載遇時',
+'upload-curl-error28-text' => '個網站用咗太多時間回應。請檢查個網站已經係上咗綫，等多一陣然後再試過。你可以響冇咁繁忙嘅時間再試。',
 
 'license' 		=> '協議',
 'nolicense' 		=> '未揀',
@@ -1109,7 +1123,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Special:Listusers
 'listusersfrom' => '顯示由呢個字開始嘅用戶：',
 
-# E this user
+# Email this user
 #
 'mailnologin'		=> '冇傳送地址',
 'mailnologintext' 	=> "你一定要[[Special:Userlogin|登入咗]]
@@ -1129,6 +1143,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'emailsubject'		=> '主題',
 'emailmessage'		=> '信息',
 'emailsend'		=> '傳送',
+'emailccme' 		=> '傳送一個我嘅信息電郵畀我。',
+'emailccsubject' 	=> '複製你嘅信息到 $1: $2',
 'emailsent'		=> '電郵已傳送',
 'emailsenttext' 	=> '你嘅電郵訊息已傳送。',
 
@@ -1212,7 +1228,7 @@ wiki: $PAGEEDITOR_WIKI
 'deletepage'		=> '刪除頁面',
 'confirm'		=> '確認',
 'excontent' 		=> "內容係：'$1'",
-'excontentauthor' 	=> "內容係：'$1' (而且唯一嘅貢獻者係'$2')",
+'excontentauthor' 	=> "內容係：'$1' (而且唯一嘅貢獻者係'[[Special:Contributions/$2|$2]]')",
 'exbeforeblank' 	=> "喺清空之前嘅內容係：'$1'",
 'exblank' 		=> '頁面之前係空嘅',
 'confirmdelete' 	=> '確認刪除',
@@ -1281,6 +1297,8 @@ wiki: $PAGEEDITOR_WIKI
 要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
 'undeletearticle' 	=> '恢復刪除咗嘅頁面',
 'undeleterevisions' 	=> "$1嘅修改都已經存檔",
+'undeleterevision-missing' => "唔正確或者遺失咗修訂。你可能有一個壞連結，
+或者嗰個修訂已經響存檔度恢復咗或者刪除咗。",
 'undeletehistory' 	=> '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。
 如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度，
 新頁面而家嘅修改唔會自動覆蓋咗去。',
@@ -1346,6 +1364,7 @@ wiki: $PAGEEDITOR_WIKI
 'ipbreason'		=> '原因',
 'ipbanononly' 		=> '只係封匿名用戶',
 'ipbcreateaccount' 	=> '防止開新戶口',
+'ipbenableautoblock' 	=> '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅地址',
 'ipbsubmit'		=> '封鎖呢位用戶',
 'ipbother'		=> '其它時間',
 'ipboptions'		=> '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite',
@@ -1363,6 +1382,7 @@ wiki: $PAGEEDITOR_WIKI
 'infiniteblock' => '不設期限',
 'expiringblock' => '$1 期滿',
 'anononlyblock' => '只限匿名',
+'noautoblockblock' => '自動封鎖已經停用',
 'createaccountblock' => '封咗開新戶口',
 'ipblocklistempty'	=> '封鎖名單係空嘅。',
 'blocklink'		=> '封',
@@ -1381,9 +1401,9 @@ wiki: $PAGEEDITOR_WIKI
 'ipb_cant_unblock' 	=> '錯誤：搵唔到封鎖ID$1。可能已經解封咗。',
 'proxyblockreason'	=> '你嘅IP係一個公開（指任何人都可以用，無須身份認證？）嘅代理地址，因此被封鎖。請聯絡你嘅Internet服務提供商或技術支援，向佢哋報告呢個嚴重嘅安全問題。',
 'proxyblocksuccess'	=> '完成。',
-'sorbs'         => 'SORBS DNSBL',
-'sorbsreason'   => '你嘅IP地址已經畀[http://www.sorbs.net SORBS] DNSBL列咗做公開代理。',
-'sorbs_create_account_reason' => '你嘅IP地址已經畀[http://www.sorbs.net SORBS] DNSBL列咗做公開代理。你唔可以開新戶口。',
+'sorbs'         => 'DNSBL',
+'sorbsreason'   => '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。',
+'sorbs_create_account_reason' => '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
 
 
 # Developer tools
@@ -2037,7 +2057,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'睇吓分類頁\');',
 喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。",
 'confirmemail_send' => '寄出確認碼。',
 'confirmemail_sent' => '確認電郵已經寄出。',
-'confirmemail_sendfailed' => '發唔到確認信。請檢查吓個地址有冇無效嘅字。',
+'confirmemail_sendfailed' => '發唔到確認信。請檢查吓個地址有冇無效嘅字。
+
+郵件遞送員回應咗：$1',
 'confirmemail_invalid' => '無效嘅確認碼。個代碼可能已經過咗期。',
 'confirmemail_needlogin' => '你需要先$1去確認你嘅電郵地址。',
 'confirmemail_success' => '你嘅電郵地址已經得到確認。你而家可以登入同盡情享受wiki啦。',
