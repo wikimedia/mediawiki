@@ -562,7 +562,9 @@ $1',
 'math_tip'        => 'ماتەماتيكا فورمۋلاسى (LaTeX)',
 'nowiki_sample'   => 'پٴىشٴىمدەلمەيتٴىن مٴاتٴىندٴى وسىندا ەنگٴىزٴىڭٴىز',
 'nowiki_tip'      => 'ۋيكي پٴىشٴىمٴىن ەلەمەۋ',
+'image_sample'    => 'Example.jpg',
 'image_tip'       => 'كٴىرٴىكتٴىرٴىلگەن سۋرەت',
+'media_sample'    => 'Example.ogg',
 'media_tip'       => 'تاسپا فايلىنىڭ سٴىلتەمەسٴى',
 'sig_tip'         => 'قولتاڭباڭىز جٴانە ۋاقىت بەلگٴىسٴى',
 'hr_tip'          => 'دەرەلەي سىزىق (ٴۇنەمدٴى قولدانىڭىز)',
@@ -665,6 +667,7 @@ $1',
 'protectedpagewarning'      => '<strong>نازار سالىڭىز: بۇل بەت قورعالعان. تەك ٴاكٴىمشٴى رۇقساتى بار قاتىسۋشىلار ٴوڭدەۋ جاساي الادى.</strong>',
 'semiprotectedpagewarning'  => "'''اڭعارتپا:''' بەت [[{{ns:project}}:جارتىلاي قورعاۋ ساياساتى|قورعالعان]], سوندىقتان وسىنى تەك رۇقساتى بار قاتىسۋشىلار ٴوڭدەي الادى.",
 'templatesused'             => 'بۇل بەتتە قولدانىلعان ٴۇلگٴىلەر:',
+'edittools'                 => '<!-- مىنداعى ماعلۇمات ٴوڭدەۋ جٴانە قوتارۋ ٴۇلگٴىتترٴىڭٴىڭ استىندا كٴورسەتٴىلەدٴى. -->',
 'nocreatetitle'             => 'بەتتٴى باستاۋ شەكتەلگەن',
 'nocreatetext'              => 'بۇل توراپتا جاڭا بەت باستاۋى شەكتەلگەن.
 كەرٴى قايتىپ بار بەتتٴى ٴوڭدەۋٴىڭٴىزگە بولادى, نەمەسە [[{{ns:special}}:Userlogin|كٴىرۋٴىڭٴىزگە نە تٴىركەلگٴى جاساۋعا]] بولادى.',
@@ -881,6 +884,7 @@ $1',
 'minoreditletter'                   => 'ش',
 'newpageletter'                     => 'ج',
 'boteditletter'                     => 'ب',
+'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[باقىلاعان $1 قاتىسۋشى]',
 'rc_categories'                     => 'ساناتتارعا شەكتەۋ ("|" بەلگٴىسٴىمەن بٴولٴىكتەڭٴىز)',
 'rc_categories_any'                 => 'قايسىبٴىر',
@@ -941,19 +945,6 @@ $1',
 'destfilename'                => 'اقىرعى فايل اتى',
 'watchthisupload'             => 'وسى بەتتٴى باقىلاۋ',
 'filewasdeleted'              => 'وسى اتاۋى بار فايل بۇرىن قوتارىلعان, سوسىن جويىلدىرىلعان. قايتا قوتارۋ الدىنان $1 دەگەندٴى تەكسەرٴىڭٴىز.',
-
-'upload-proto-error'      => 'جارامسىز حاتتامالىق',
-'upload-proto-error-text' => 'سىرتتان قوتارۋ ٴۇشٴىن URL جايلارى <code>http://</code> نەمەسە <code>ftp://</code> دەگەندەردەن باستالۋ قاجەت.',
-'upload-file-error'       => 'ٴىشكٴى قاتە',
-'upload-file-error-text'  => 'سەرۆەردە ۋاقىتشا فايل جاساۋى ٴىشكٴى قاتەگە ۇشىراستى. بۇل جٴۇيەنٴىڭ ٴاكٴىمشٴىمەن قاتىناسىڭىز.',
-'upload-misc-error'       => 'بەلگٴىسٴىز قوتارۋ قاتەسٴى',
-'upload-misc-error-text'  => 'قوتارۋ كەزٴىندە بەلگٴىسٴىز قاتە ۇشىراستى. قايسى URL جايى جارامدى جٴانە قاتىناۋلى ەكەنٴىن تەكسەرٴىپ شىعىڭىز دا قايتالاپ كٴورٴىڭٴىز. ەگەر بۇل مٴاسەلە ٴالدە دە قالسا, جٴۇيە ٴاكٴىمشٴىمەن قاتىناسىڭىز.',
-
-# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'       => 'URL جايى جەتٴىلمەدٴى',
-'upload-curl-error6-text'  => 'بەرٴىلگەن URL جايى جەتٴىلمەدٴى. قايسى URL جايى دۇرىس ەكەنٴىن جٴانە توراپ ٴىستە ەكەنٴىن قايتالاپ قاتاڭ تەكسەرٴىڭٴىز.',
-'upload-curl-error28'      => 'قوتارۋعا بەرٴىلگەن ۋاقىت بٴىتتٴى',
-'upload-curl-error28-text' => 'توراپتىڭ جاۋاپ بەرۋٴى تىم ۇزاق ۋاقىتقا سوزىلدى. بۇل توراپ ٴىستە ەكەنٴىن تەكسەرٴىپ شىعىڭىز, از ۋاقىت كٴىدٴىرە تۇرىڭىز دا تاعى قايتالاپ كٴورٴىڭٴىز. تالابىڭىزدى جٴۇكتەلۋٴى ازداۋ كەزٴىندە قايتالاۋعا بولمىس.',
 
 'upload-proto-error'      => 'جارامسىز حاتتامالىق',
 'upload-proto-error-text' => 'سىرتتان قوتارۋ ٴۇشٴىن URL جايلارى <code>http://</code> نەمەسە <code>ftp://</code> دەگەندەردەن باستالۋ قاجەت.',
@@ -1387,7 +1378,7 @@ $NEWPAGE
 'ipbreason'                   => 'سەبەبٴى',
 'ipbanononly'                 => 'تەك تٴىركەلگٴىسٴىزدٴى بۇعاتتاۋ',
 'ipbcreateaccount'            => 'تٴىركەلگٴى جاساۋىن كەدەرگٴىلەۋ',
-'ipbenableautoblock'          => 'بۇل قاتىسۋشىنىڭ قولدانعان IP جايلارىن ٴوزدٴىك تٴۇردە بۇعاتتاۋ',
+'ipbenableautoblock'          => 'بۇل قاتىسۋشىنىڭ قولدانعان سوڭعى IP جايىن, جٴانە ٴارقايسى كەيٴىن تٴۇزەتۋ ٴىستەۋگە ٴۇمٴىتەلٴىگەن جايلارىن ٴوزدٴىك تٴۇردە بۇعاتتاۋ',
 'ipbsubmit'                   => 'پايدالانۋشىنى بۇعاتتاۋ',
 'ipbother'                    => 'باسقا مەرزٴىم',
 'ipboptions'                  => '2 ساعات:2 hours,1 كٴۇن:1 day,3 كٴۇن:3 days,1 اپتا:1 week,2 اپتا:2 weeks,1 اي:1 month,3 اي:3 months,6 اي:6 months,1 جىل:1 year,مٴانگٴى:infinite',
@@ -1556,6 +1547,7 @@ $NEWPAGE
 'allmessagesdefault'        => 'ٴادەپكٴى مٴاتٴىنٴى',
 'allmessagescurrent'        => 'اعىمدىق مٴاتٴىنٴى',
 'allmessagestext'           => 'مىندا «MediaWiki:» ەسٴىم اياسىنداعى بارلىق قاتىناۋلى جٴۇيە حابار تٴىزٴىمٴى بەرٴىلٴىپ تۇر.',
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.',
 'allmessagesnotsupportedDB' => "'''wgUseDatabaseMessages''' بابى ٴوشٴىرٴىلگەن سەبەبٴىنەن '''{{ns:special}}:AllMessages''' سيپاتى سٴۇەمەلدەنبەيدٴى.",
 'allmessagesfilter'         => 'حاباردى اتاۋى بويىنشا سٴۇزگٴىلەۋ:',
 'allmessagesmodified'       => 'تەك ٴوزگەرتٴىلگەندٴى كٴورسەت',
@@ -1607,15 +1599,6 @@ $NEWPAGE
 'accesskey-compareselectedversions' => 'v',
 'accesskey-watch'                   => 'w',
 
-# Keyboard access keys for power users
-'accesskey-search'                  => 'f',
-'accesskey-minoredit'               => 'i',
-'accesskey-save'                    => 's',
-'accesskey-preview'                 => 'p',
-'accesskey-diff'                    => 'v',
-'accesskey-compareselectedversions' => 'v',
-'accesskey-watch'                   => 'w',
-
 # Tooltip help for some actions, most are in Monobook.js
 'tooltip-search'                  => '{{SITENAME}} جوباسىنان ٴىزدەستٴىرۋ [alt-f]',
 'tooltip-minoredit'               => 'وسىنى شاعىن تٴۇزەتۋ دەپ بەلگٴىلەۋ [alt-i]',
@@ -1652,6 +1635,7 @@ $NEWPAGE
 'subcategorycount'       => 'بۇل ساناتتا {{PLURAL:$1|بٴىر|$1}} تٴومەنگٴى سانات بار.',
 'categoryarticlecount'   => 'بۇل ساناتتا {{PLURAL:$1|بٴىر|$1}} بەت بار.',
 'listingcontinuesabbrev' => ' (جالع.)',
+'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => '$1 دەگەنگە سٴىلتەمەسٴى جوق سوڭعى نۇسقاسىنا قايتارىلدى',
 'spam_blanking'          => '$1 دەگەنگە سٴىلتەمەسٴى بار بارلىق نۇسقالار تازارتىلدى',
 
@@ -1682,63 +1666,72 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'كٴۇزەتتە دەپ بەلگٴىلەۋ ٴۇشٴىن نۇسقاسىن ەنگٴىزٴىڭٴىز.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
+'Monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
-ta['pt-userpage'] = new Array('.','جەكە بەتٴىم');
-ta['pt-anonuserpage'] = new Array('.','وسى IP جايدىڭ جەكە بەتٴى');
-ta['pt-mytalk'] = new Array('n','تالقىلاۋ بەتٴىم');
-ta['pt-anontalk'] = new Array('n','وسى IP جاي تٴۇزەتۋلەرٴىن تالقىلاۋ');
-ta['pt-preferences'] = new Array('','باپتاۋىم');
-ta['pt-watchlist'] = new Array('l','ٴوزگەرٴىستەرٴىن باقىلاپ تۇرعان بەتتەر تٴىزٴىمٴىم.');
-ta['pt-mycontris'] = new Array('y','ٴۇلەستەرٴىمدٴىڭ تٴىزٴىمٴى');
-ta['pt-login'] = new Array('o','كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, ول مٴىندەتتٴى ەمەس.');
-ta['pt-anonlogin'] = new Array('o','كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, بٴىراق, ول مٴىندەتتٴى ەمەس.');
-ta['pt-logout'] = new Array('o','شىعۋ');
-ta['ca-talk'] = new Array('t','ماعلۇمات بەتتٴى تالقىلاۋ');
-ta['ca-edit'] = new Array('e','بۇل بەتتٴى ٴوڭدەي الاسىز. ساقتاۋدىڭ الدىندا «قاراپ شىعۋ» تٴۇيمەسٴىن نۇقىڭىز.');
-ta['ca-addsection'] = new Array('+','بۇل تالقىلاۋ بەتٴىندە جاڭا تاراۋ باستاۋ.');
-ta['ca-viewsource'] = new Array('e','بۇل بەت قورعالعان, بٴىراق, قاينارىن قاراۋعا بولادى.');
-ta['ca-history'] = new Array('h','بۇل بەتتٴىن جۋىقتاعى نۇسقالارى.');
-ta['ca-protect'] = new Array('=','بۇل بەتتٴى قورعاۋ');
-ta['ca-unprotect'] = new Array('=','بۇل بەتتٴى قورعاماۋ');
-ta['ca-delete'] = new Array('d','بۇل بەتتٴى جويۋ');
-ta['ca-undelete'] = new Array('d','بۇل بەتتٴىڭ جويۋدىڭ الدىنداعى بولعان تٴۇزەتۋلەرٴىن قايتارۋ');
-ta['ca-move'] = new Array('m','بۇل بەتتٴى جىلجىتۋ');
-ta['ca-nomove'] = new Array('m','بۇل بەتتٴى جىلجىتۋعا رۇقساتىڭىز جوق');
-ta['ca-watch'] = new Array('w','بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ');
-ta['ca-unwatch'] = new Array('w','بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزدەن الاستاتۋ');
-ta['ca-varlang-0'] = new Array('','كيريلل جازۋى');
-ta['ca-varlang-1'] = new Array('','لاتىن جازۋى');
-ta['ca-varlang-2'] = new Array('','اراب جازۋى');
-ta['search'] = new Array('f','وسى ۋيكيدەن ٴىزدەۋ');
-ta['p-logo'] = new Array('','باستى بەتكە');
-ta['n-mainpage'] = new Array('z','باستى بەتكە بارىپ كەتٴىڭٴىز');
-ta['n-portal'] = new Array('','جوبا تۋرالى, نە ٴىستەۋٴىڭٴىزگە بولاتىن, قايدان تابۋعا بولاتىن تۋرالى');
-ta['n-currentevents'] = new Array('','اعىمداعى وقيعالارعا قاتىستى اقپارات');
-ta['n-recentchanges'] = new Array('r','وسى ۋيكيدەگٴى جۋىقتاعى ٴوزگەرٴىستەر تٴىزٴىمٴى.');
-ta['n-randompage'] = new Array('x','كەزدەيسوق بەتتٴى جٴۇكتەۋ');
-ta['n-help'] = new Array('','انىقتاما تابۋ ورنى.');
-ta['n-sitesupport'] = new Array('','بٴىزگە جٴاردەم ەتٴىڭٴىز');
-ta['t-whatlinkshere'] = new Array('j','مىندا سٴىلتەگەن بارلىق بەتتەردٴىڭ تٴىزٴىمٴى');
-ta['t-recentchangeslinked'] = new Array('k','مىننان سٴىلتەنگەن بەتتەردٴىڭ جۋىقتاعى ٴوزگەرٴىستەرٴى');
-ta['feed-rss'] = new Array('','بۇل بەتتٴىڭ RSS ارناسى');
-ta['feed-atom'] = new Array('','بۇل بەتتٴىڭ Atom ارناسى');
-ta['t-contributions'] = new Array('','وسى قاتىسۋشىنىڭ ٴۇلەس تٴىزٴىمٴىن قاراۋ');
-ta['t-emailuser'] = new Array('','وسى قاتىسۋشىعا email جٴىبەرۋ');
-ta['t-upload'] = new Array('u','سۋرەت نە مەديا فايلدارىن قوتارۋ');
-ta['t-specialpages'] = new Array('q','بارلىق ارنايى بەتتەر تٴىزٴىمٴى');
-ta['t-print'] = new Array('','وسى بەتتٴىڭ باسىپ شىعارۋ نۇسقاسى');
-ta['t-permalink'] = new Array('','بەتتٴىڭ وسى نۇسقاسىنىڭ تۇراقتى سٴىلتەمەسٴى');
-ta['ca-nstab-main'] = new Array('c','ماعلۇمات بەتٴىن قاراۋ');
-ta['ca-nstab-user'] = new Array('c','قاتىسۋشى بەتٴىن قاراۋ');
-ta['ca-nstab-media'] = new Array('c','تاسپا بەتٴىن قاراۋ');
-ta['ca-nstab-special'] = new Array('','بۇل ارنايى بەت, بەتتٴىڭ ٴوزٴى ٴوڭدەلٴىنبەيدٴى.');
-ta['ca-nstab-project'] = new Array('a','جوبا بەتٴىن قاراۋ');
-ta['ca-nstab-image'] = new Array('c','سۋرەت بەتٴىن قاراۋ');
-ta['ca-nstab-mediawiki'] = new Array('c','جٴۇيە حابارىن قاراۋ');
-ta['ca-nstab-template'] = new Array('c','ٴۇلگٴىنٴى قاراۋ');
-ta['ca-nstab-help'] = new Array('c','انىقتىما بەتٴىن قاراۋ');
-ta['ca-nstab-category'] = new Array('c','سانات بەتٴىن قاراۋ');",
+ta[\'pt-userpage\'] = new Array(\'.\',\'جەكە بەتٴىم\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'وسى IP جايدىڭ جەكە بەتٴى\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'تالقىلاۋ بەتٴىم\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'وسى IP جاي تٴۇزەتۋلەرٴىن تالقىلاۋ\');
+ta[\'pt-preferences\'] = new Array(\'\',\'باپتاۋىم\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'ٴوزگەرٴىستەرٴىن باقىلاپ تۇرعان بەتتەر تٴىزٴىمٴىم.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'ٴۇلەستەرٴىمدٴىڭ تٴىزٴىمٴى\');
+ta[\'pt-login\'] = new Array(\'o\',\'كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, ول مٴىندەتتٴى ەمەس.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, بٴىراق, ول مٴىندەتتٴى ەمەس.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'شىعۋ\');
+ta[\'ca-talk\'] = new Array(\'t\',\'ماعلۇمات بەتتٴى تالقىلاۋ\');
+ta[\'ca-edit\'] = new Array(\'e\',\'بۇل بەتتٴى ٴوڭدەي الاسىز. ساقتاۋدىڭ الدىندا «قاراپ شىعۋ» تٴۇيمەسٴىن نۇقىڭىز.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'بۇل تالقىلاۋ بەتٴىندە جاڭا تاراۋ باستاۋ.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'بۇل بەت قورعالعان, بٴىراق, قاينارىن قاراۋعا بولادى.\');
+ta[\'ca-history\'] = new Array(\'h\',\'بۇل بەتتٴىن جۋىقتاعى نۇسقالارى.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'بۇل بەتتٴى قورعاۋ\');
+ta[\'ca-unprotect\'] = new Array(\'=\',\'بۇل بەتتٴى قورعاماۋ\');
+ta[\'ca-delete\'] = new Array(\'d\',\'بۇل بەتتٴى جويۋ\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'بۇل بەتتٴىڭ جويۋدىڭ الدىنداعى بولعان تٴۇزەتۋلەرٴىن قايتارۋ\');
+ta[\'ca-move\'] = new Array(\'m\',\'بۇل بەتتٴى جىلجىتۋ\');
+ta[\'ca-nomove\'] = new Array(\'m\',\'بۇل بەتتٴى جىلجىتۋعا رۇقساتىڭىز جوق\');
+ta[\'ca-watch\'] = new Array(\'w\',\'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزدەن الاستاتۋ\');
+ta[\'ca-varlang-0\'] = new Array(\'\',\'كيريلل جازۋى\');
+ta[\'ca-varlang-1\'] = new Array(\'\',\'لاتىن جازۋى\');
+ta[\'ca-varlang-2\'] = new Array(\'\',\'اراب جازۋى\');
+ta[\'search\'] = new Array(\'f\',\'وسى ۋيكيدەن ٴىزدەۋ\');
+ta[\'p-logo\'] = new Array(\'\',\'باستى بەتكە\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'باستى بەتكە بارىپ كەتٴىڭٴىز\');
+ta[\'n-portal\'] = new Array(\'\',\'جوبا تۋرالى, نە ٴىستەۋٴىڭٴىزگە بولاتىن, قايدان تابۋعا بولاتىن تۋرالى\');
+ta[\'n-currentevents\'] = new Array(\'\',\'اعىمداعى وقيعالارعا قاتىستى اقپارات\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'وسى ۋيكيدەگٴى جۋىقتاعى ٴوزگەرٴىستەر تٴىزٴىمٴى.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'كەزدەيسوق بەتتٴى جٴۇكتەۋ\');
+ta[\'n-help\'] = new Array(\'\',\'انىقتاما تابۋ ورنى.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'بٴىزگە جٴاردەم ەتٴىڭٴىز\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'مىندا سٴىلتەگەن بارلىق بەتتەردٴىڭ تٴىزٴىمٴى\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'مىننان سٴىلتەنگەن بەتتەردٴىڭ جۋىقتاعى ٴوزگەرٴىستەرٴى\');
+ta[\'feed-rss\'] = new Array(\'\',\'بۇل بەتتٴىڭ RSS ارناسى\');
+ta[\'feed-atom\'] = new Array(\'\',\'بۇل بەتتٴىڭ Atom ارناسى\');
+ta[\'t-contributions\'] = new Array(\'\',\'وسى قاتىسۋشىنىڭ ٴۇلەس تٴىزٴىمٴىن قاراۋ\');
+ta[\'t-emailuser\'] = new Array(\'\',\'وسى قاتىسۋشىعا email جٴىبەرۋ\');
+ta[\'t-upload\'] = new Array(\'u\',\'سۋرەت نە مەديا فايلدارىن قوتارۋ\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'بارلىق ارنايى بەتتەر تٴىزٴىمٴى\');
+ta[\'t-print\'] = new Array(\'\',\'وسى بەتتٴىڭ باسىپ شىعارۋ نۇسقاسى\');
+ta[\'t-permalink\'] = new Array(\'\',\'بەتتٴىڭ وسى نۇسقاسىنىڭ تۇراقتى سٴىلتەمەسٴى\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'ماعلۇمات بەتٴىن قاراۋ\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'قاتىسۋشى بەتٴىن قاراۋ\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'تاسپا بەتٴىن قاراۋ\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'بۇل ارنايى بەت, بەتتٴىڭ ٴوزٴى ٴوڭدەلٴىنبەيدٴى.\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'جوبا بەتٴىن قاراۋ\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'سۋرەت بەتٴىن قاراۋ\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'جٴۇيە حابارىن قاراۋ\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'ٴۇلگٴىنٴى قاراۋ\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'انىقتىما بەتٴىن قاراۋ\');
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'سانات بەتٴىن قاراۋ\');
+
+// BEGIN workaround for RTL
+if (wgUserLanguage == "kk-cn"){
+  document.direction="rtl";
+  document.write(\'<style type="text/css">html {direction: rtl;}</style>\');
+  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
+  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+}
+// END workaround for RTL',
 
 # Image deletion
 'deletedrevision' => 'مىنا ەسكٴى نۇسقاسىن جويدى: $1.',
@@ -1860,10 +1853,11 @@ $1
 'redirectingto' => '[[$1]] بەتٴىنە ايداتۋدا…',
 
 # action=purge
-'confirm_purge'        => 'قوسالقى قالتاداعى وسى بەتٴىن تازالايمىز با?\n\n$1',
+'confirm_purge'        => 'قوسالقى قالتاداعى وسى بەتٴىن تازالايمىز با?<br /><br />$1',
 'confirm_purge_button' => 'جارايدى',
 
 'youhavenewmessagesmulti' => '$1 دەگەنگە جاڭا حابارلار تٴۇستٴى',
+'newtalkseperator'        => ',_',
 
 'searchcontaining' => "مىنا سٴوزٴى بار بەت اراسىنان ٴىزدەۋ: ''$1''.",
 'searchnamed'      => "مىنا اتاۋلى بەت اراسىنان ٴىزدەۋ: ''$1''.",

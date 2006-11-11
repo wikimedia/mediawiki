@@ -351,8 +351,6 @@ $messages = array(
 'restorelink'         => 'жойылған {{PLURAL:$1|бір|$1}} түзету',
 'feedlinks'           => 'Арна:',
 'feed-invalid'        => 'Жарамсыз жазылым арна түрі.',
-'feed-atom'           => 'Atom',
-'feed-rss'            => 'RSS',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Мағлұмат',
@@ -538,7 +536,9 @@ $1',
 'math_tip'        => 'Математика формуласы (LaTeX)',
 'nowiki_sample'   => 'Пішімделмейтін мәтінді осында енгізіңіз',
 'nowiki_tip'      => 'Уики пішімін елемеу',
+'image_sample'    => 'Example.jpg',
 'image_tip'       => 'Кіріктірілген сурет',
+'media_sample'    => 'Example.ogg',
 'media_tip'       => 'Таспа файлының сілтемесі',
 'sig_tip'         => 'Қолтаңбаңыз және уақыт белгісі',
 'hr_tip'          => 'Дерелей сызық (үнемді қолданыңыз)',
@@ -641,6 +641,7 @@ $1',
 'protectedpagewarning'      => '<strong>НАЗАР САЛЫҢЫЗ: Бұл бет қорғалған. Тек әкімші рұқсаты бар қатысушылар өңдеу жасай алады.</strong>',
 'semiprotectedpagewarning'  => "'''Аңғартпа:''' Бет [[{{ns:project}}:Жартылай қорғау саясаты|қорғалған]], сондықтан осыны тек рұқсаты бар қатысушылар өңдей алады.",
 'templatesused'             => 'Бұл бетте қолданылған үлгілер:',
+'edittools'                 => '<!-- Мындағы мағлұмат өңдеу және қотару үлгіттріңің астында көрсетіледі. -->',
 'nocreatetitle'             => 'Бетті бастау шектелген',
 'nocreatetext'              => 'Бұл торапта жаңа бет бастауы шектелген.
 Кері қайтып бар бетті өңдеуіңізге болады, немесе [[{{ns:special}}:Userlogin|кіруіңізге не тіркелгі жасауға]] болады.',
@@ -857,6 +858,7 @@ $1',
 'minoreditletter'                   => 'ш',
 'newpageletter'                     => 'Ж',
 'boteditletter'                     => 'б',
+'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[бақылаған $1 қатысушы]',
 'rc_categories'                     => 'Санаттарға шектеу ("|" белгісімен бөліктеңіз)',
 'rc_categories_any'                 => 'Қайсыбір',
@@ -1390,9 +1392,9 @@ $NEWPAGE
 'ipb_cant_unblock'            => 'Қате: IP $1 бұғаттауы табылмады. Оның бұғаттауы өшірлген сияқты.',
 'proxyblockreason'            => 'IP жайыңыз ашық прокси серверге жататындықтан бұғатталған. Интернет қызметін жабдықтаушыңызбен, не техникалық медеу қызметімен қатынасыңыз, және оларға осы оте күрделі қауыпсіздік шатақ туралы ақпарат беріңіз.',
 'proxyblocksuccess'           => 'Бітті.',
-'sorbs'                       => 'SORBS DNSBL қара тізімі',
-'sorbsreason'                 => 'Сіздің IP жайыңыз [http://www.sorbs.net SORBS] DNSBL ашық прокси серверлер қара тізімінде бар.',
-'sorbs_create_account_reason' => 'Сіздің IP жайыңыз [http://www.sorbs.net SORBS] DNSBL ашық прокси серверлер қара тізімінде бар. Тіркелгі жасай алмайсыз.',
+'sorbs'                       => 'DNSBL қара тізімі',
+'sorbsreason'                 => 'Сіздің IP жайыңыз осы торапта қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады.',
+'sorbs_create_account_reason' => 'Сіздің IP жайыңыз осы торапта қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады. Тіркелгі жасай алмайсыз.',
 
 # Developer tools
 'lockdb'              => 'Дерекқорды құлыптау',
@@ -1519,6 +1521,7 @@ $NEWPAGE
 'allmessagesdefault'        => 'Әдепкі мәтіні',
 'allmessagescurrent'        => 'Ағымдық мәтіні',
 'allmessagestext'           => 'Мында «MediaWiki:» есім аясындағы барлық қатынаулы жүйе хабар тізімі беріліп тұр.',
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.',
 'allmessagesnotsupportedDB' => "'''wgUseDatabaseMessages''' бабы өшірілген себебінен '''{{ns:special}}:AllMessages''' сипаты сүемелденбейді.",
 'allmessagesfilter'         => 'Хабарды атауы бойынша сүзгілеу:',
 'allmessagesmodified'       => 'Тек өзгертілгенді көрсет',
@@ -1606,6 +1609,7 @@ $NEWPAGE
 'subcategorycount'       => 'Бұл санатта {{PLURAL:$1|бір|$1}} төменгі санат бар.',
 'categoryarticlecount'   => 'Бұл санатта {{PLURAL:$1|бір|$1}} бет бар.',
 'listingcontinuesabbrev' => ' (жалғ.)',
+'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => '$1 дегенге сілтемесі жоқ соңғы нұсқасына қайтарылды',
 'spam_blanking'          => '$1 дегенге сілтемесі бар барлық нұсқалар тазартылды',
 
@@ -1636,73 +1640,72 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'Күзетте деп белгілеу үшін нұсқасын енгізіңіз.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
+'Monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
-ta['pt-userpage'] = new Array('.','Жеке бетім');
-ta['pt-anonuserpage'] = new Array('.','Осы IP жайдың жеке беті');
-ta['pt-mytalk'] = new Array('n','Талқылау бетім');
-ta['pt-anontalk'] = new Array('n','Осы IP жай түзетулерін талқылау');
-ta['pt-preferences'] = new Array('','Баптауым');
-ta['pt-watchlist'] = new Array('l','Өзгерістерін бақылап тұрған беттер тізімім.');
-ta['pt-mycontris'] = new Array('y','Үлестерімдің тізімі');
-ta['pt-login'] = new Array('o','Кіруіңізді ұсынамыз, ол міндетті емес.');
-ta['pt-anonlogin'] = new Array('o','Кіруіңізді ұсынамыз, бірақ, ол міндетті емес.');
-ta['pt-logout'] = new Array('o','Шығу');
-ta['ca-talk'] = new Array('t','Мағлұмат бетті талқылау');
-ta['ca-edit'] = new Array('e','Бұл бетті өңдей аласыз. Сақтаудың алдында «Қарап шығу» түймесін нұқыңыз.');
-ta['ca-addsection'] = new Array('+','Бұл талқылау бетінде жаңа тарау бастау.');
-ta['ca-viewsource'] = new Array('e','Бұл бет қорғалған, бірақ, қайнарын қарауға болады.');
-ta['ca-history'] = new Array('h','Бұл беттін жуықтағы нұсқалары.');
-ta['ca-protect'] = new Array('=','Бұл бетті қорғау');
-ta['ca-unprotect'] = new Array('=','Бұл бетті қорғамау');
-ta['ca-delete'] = new Array('d','Бұл бетті жою');
-ta['ca-undelete'] = new Array('d','Бұл беттің жоюдың алдындағы болған түзетулерін қайтару');
-ta['ca-move'] = new Array('m','Бұл бетті жылжыту');
-ta['ca-nomove'] = new Array('m','Бұл бетті жылжытуға рұқсатыңыз жоқ');
-ta['ca-watch'] = new Array('w','Бұл бетті бақылау тізіміңізге үстеу');
-ta['ca-unwatch'] = new Array('w','Бұл бетті бақылау тізіміңізден аластату');
-ta['ca-varlang-0'] = new Array('','Кирилл жазуы');
-ta['ca-varlang-1'] = new Array('','Латын жазуы');
-ta['ca-varlang-2'] = new Array('','Араб жазуы');
-ta['search'] = new Array('f','Осы уикиден іздеу');
-ta['p-logo'] = new Array('','Басты бетке');
-ta['n-mainpage'] = new Array('z','Басты бетке барып кетіңіз');
-ta['n-portal'] = new Array('','Жоба туралы, не істеуіңізге болатын, қайдан табуға болатын туралы');
-ta['n-currentevents'] = new Array('','Ағымдағы оқиғаларға қатысты ақпарат');
-ta['n-recentchanges'] = new Array('r','Осы уикидегі жуықтағы өзгерістер тізімі.');
-ta['n-randompage'] = new Array('x','Кездейсоқ бетті жүктеу');
-ta['n-help'] = new Array('','Анықтама табу орны.');
-ta['n-sitesupport'] = new Array('','Бізге жәрдем етіңіз');
-ta['t-whatlinkshere'] = new Array('j','Мында сілтеген барлық беттердің тізімі');
-ta['t-recentchangeslinked'] = new Array('k','Мыннан сілтенген беттердің жуықтағы өзгерістері');
-ta['feed-rss'] = new Array('','Бұл беттің RSS арнасы');
-ta['feed-atom'] = new Array('','Бұл беттің Atom арнасы');
-ta['t-contributions'] = new Array('','Осы қатысушының үлес тізімін қарау');
-ta['t-emailuser'] = new Array('','Осы қатысушыға email жіберу');
-ta['t-upload'] = new Array('u','Сурет не медиа файлдарын қотару');
-ta['t-specialpages'] = new Array('q','Барлық арнайы беттер тізімі');
-ta['t-print'] = new Array('','Осы беттің басып шығару нұсқасы');
-ta['t-permalink'] = new Array('','Беттің осы нұсқасының тұрақты сілтемесі');
-ta['ca-nstab-main'] = new Array('c','Мағлұмат бетін қарау');
-ta['ca-nstab-user'] = new Array('c','Қатысушы бетін қарау');
-ta['ca-nstab-media'] = new Array('c','Таспа бетін қарау');
-ta['ca-nstab-special'] = new Array('','Бұл арнайы бет, беттің өзі өңделінбейді.');
-ta['ca-nstab-project'] = new Array('a','Жоба бетін қарау');
-ta['ca-nstab-image'] = new Array('c','Сурет бетін қарау');
-ta['ca-nstab-mediawiki'] = new Array('c','Жүйе хабарын қарау');
-ta['ca-nstab-template'] = new Array('c','Үлгіні қарау');
-ta['ca-nstab-help'] = new Array('c','Анықтыма бетін қарау');
-ta['ca-nstab-category'] = new Array('c','Санат бетін қарау');
+ta[\'pt-userpage\'] = new Array(\'.\',\'Жеке бетім\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Осы IP жайдың жеке беті\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Талқылау бетім\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Осы IP жай түзетулерін талқылау\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Баптауым\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'Өзгерістерін бақылап тұрған беттер тізімім.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'Үлестерімдің тізімі\');
+ta[\'pt-login\'] = new Array(\'o\',\'Кіруіңізді ұсынамыз, ол міндетті емес.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'Кіруіңізді ұсынамыз, бірақ, ол міндетті емес.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Шығу\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Мағлұмат бетті талқылау\');
+ta[\'ca-edit\'] = new Array(\'e\',\'Бұл бетті өңдей аласыз. Сақтаудың алдында «Қарап шығу» түймесін нұқыңыз.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Бұл талқылау бетінде жаңа тарау бастау.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Бұл бет қорғалған, бірақ, қайнарын қарауға болады.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Бұл беттін жуықтағы нұсқалары.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Бұл бетті қорғау\');
+ta[\'ca-unprotect\'] = new Array(\'=\',\'Бұл бетті қорғамау\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Бұл бетті жою\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Бұл беттің жоюдың алдындағы болған түзетулерін қайтару\');
+ta[\'ca-move\'] = new Array(\'m\',\'Бұл бетті жылжыту\');
+ta[\'ca-nomove\'] = new Array(\'m\',\'Бұл бетті жылжытуға рұқсатыңыз жоқ\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Бұл бетті бақылау тізіміңізге үстеу\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Бұл бетті бақылау тізіміңізден аластату\');
+ta[\'ca-varlang-0\'] = new Array(\'\',\'Кирилл жазуы\');
+ta[\'ca-varlang-1\'] = new Array(\'\',\'Латын жазуы\');
+ta[\'ca-varlang-2\'] = new Array(\'\',\'Араб жазуы\');
+ta[\'search\'] = new Array(\'f\',\'Осы уикиден іздеу\');
+ta[\'p-logo\'] = new Array(\'\',\'Басты бетке\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Басты бетке барып кетіңіз\');
+ta[\'n-portal\'] = new Array(\'\',\'Жоба туралы, не істеуіңізге болатын, қайдан табуға болатын туралы\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Ағымдағы оқиғаларға қатысты ақпарат\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Осы уикидегі жуықтағы өзгерістер тізімі.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Кездейсоқ бетті жүктеу\');
+ta[\'n-help\'] = new Array(\'\',\'Анықтама табу орны.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Бізге жәрдем етіңіз\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Мында сілтеген барлық беттердің тізімі\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Мыннан сілтенген беттердің жуықтағы өзгерістері\');
+ta[\'feed-rss\'] = new Array(\'\',\'Бұл беттің RSS арнасы\');
+ta[\'feed-atom\'] = new Array(\'\',\'Бұл беттің Atom арнасы\');
+ta[\'t-contributions\'] = new Array(\'\',\'Осы қатысушының үлес тізімін қарау\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Осы қатысушыға email жіберу\');
+ta[\'t-upload\'] = new Array(\'u\',\'Сурет не медиа файлдарын қотару\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'Барлық арнайы беттер тізімі\');
+ta[\'t-print\'] = new Array(\'\',\'Осы беттің басып шығару нұсқасы\');
+ta[\'t-permalink\'] = new Array(\'\',\'Беттің осы нұсқасының тұрақты сілтемесі\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'Мағлұмат бетін қарау\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'Қатысушы бетін қарау\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'Таспа бетін қарау\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'Бұл арнайы бет, беттің өзі өңделінбейді.\');
+ta[\'ca-nstab-project\'] = new Array(\'a\',\'Жоба бетін қарау\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'Сурет бетін қарау\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Жүйе хабарын қарау\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'Үлгіні қарау\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Анықтыма бетін қарау\');
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Санат бетін қарау\');
 
 // BEGIN workaround for RTL
-if (wgUserLanguage == \"kk-cn\")
-{
-  document.direction=\"rtl\";
-  document.write('<style type=\"text/css\">html {direction: rtl;}</style>');
-  document.write('<link rel=\"stylesheet\" type=\"text/css\" href=\"'+stylepath+'/common/common_rtl.css\">');
-  document.write('<link rel=\"stylesheet\" type=\"text/css\" href=\"'+stylepath+'/monobook/rtl.css\">');
+if (wgUserLanguage == "kk-cn"){
+  document.direction="rtl";
+  document.write(\'<style type="text/css">html {direction: rtl;}</style>\');
+  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
+  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
 }
-// END workaround for RTL",
+// END workaround for RTL',
 
 # Image deletion
 'deletedrevision' => 'Мына ескі нұсқасын жойды: $1.',
@@ -1824,10 +1827,11 @@ $1
 'redirectingto' => '[[$1]] бетіне айдатуда…',
 
 # action=purge
-'confirm_purge'        => 'Қосалқы қалтадағы осы бетін тазалаймыз ба?\n\n$1',
+'confirm_purge'        => 'Қосалқы қалтадағы осы бетін тазалаймыз ба?<br /><br />$1',
 'confirm_purge_button' => 'Жарайды',
 
 'youhavenewmessagesmulti' => '$1 дегенге жаңа хабарлар түсті',
+'newtalkseperator'        => ',_',
 
 'searchcontaining' => "Мына сөзі бар бет арасынан іздеу: ''$1''.",
 'searchnamed'      => "Мына атаулы бет арасынан іздеу: ''$1''.",
