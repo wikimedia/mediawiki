@@ -54,13 +54,12 @@ $wgTitle = Title::newFromText( 'Parser test script do not use' );
 $tester = new ParserTest();
 
 if( isset( $options['file'] ) ) {
-	$file = $options['file'];
+	$files = array( $options['file'] );
 } else {
-	# Note: the command line setup changes the current working directory
-	# to the parent, which is why we have to put the subdir here:
-	$file = $IP.'/maintenance/parserTests.txt';
+	// Default parser tests and any set from extensions or local config
+	$files = $wgParserTestFiles;
 }
-$ok = $tester->runTestsFromFile( $file );
+$ok = $tester->runTestsFromFiles( $files );
 
 exit ($ok ? 0 : -1);
 ?>

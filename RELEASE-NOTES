@@ -167,7 +167,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   compare changes against the previous run.
   Additional tables 'testrun' and 'testitem' are in maintenance/testRunner.sql,
   source this and pass --record option to parserTests.php
-
+* Make the set of default parser test input files extensible via
+  $wgParserTestFiles. This can now be appended to by extensions or local
+  configuration files so that extension or custom tests can be automatically
+  run along with the main batch.
 
 == Languages updated ==
 
