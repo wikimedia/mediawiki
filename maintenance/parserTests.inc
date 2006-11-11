@@ -953,7 +953,7 @@ class TestRecorder {
 				select count(*) as c from $testitem as prev
 					where prev.ti_run=$prevRun and
 						prev.ti_success $prevStatus and
-						(select current.ti_success from testitem as current
+						(select current.ti_success from $testitem as current
 							where current.ti_run=$curRun
 								and prev.ti_name=current.ti_name) $curStatus";
 		} else {
@@ -961,7 +961,7 @@ class TestRecorder {
 				select count(*) as c from $testitem as current 
 					where current.ti_run=$curRun and
 						current.ti_success $curStatus and
-						(select prev.ti_success from testitem as prev
+						(select prev.ti_success from $testitem as prev
 							where prev.ti_run=$prevRun
 								and prev.ti_name=current.ti_name) $prevStatus";
 		}
