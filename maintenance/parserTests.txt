@@ -377,7 +377,7 @@ Simple definition
 !! end
 
 !! test
-Simple definition
+Definition list for indentation only
 !! input
 : Indented text
 !! result
@@ -428,7 +428,7 @@ Definition list with wikilink containing colon
 
 # At Brion's and JeLuF's insistence... :)
 !! test
-Definition list with wikilink containing colon
+Definition list with news link containing colon
 !! input
 ;  news:alt.wikipedia.rox: This isn't even a real newsgroup!
 !! result
@@ -3918,7 +3918,7 @@ Expansion of multi-line templates in attribute values (bug 6255 sanity check)
 !! end
 
 !! test
-Expansion of multi-line templates in attribute values (bug 6255 sanity check)
+Expansion of multi-line templates in attribute values (bug 6255 sanity check 2)
 !! input
 <div style="background: &#10;#00FF00">-</div>
 !! result
