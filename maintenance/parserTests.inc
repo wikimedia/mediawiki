@@ -882,7 +882,7 @@ class TestRecorder {
 	
 	function reportPercentage( $success, $total ) {
 		$ratio = wfPercent( 100 * $success / $total );
-		print $this->term->color( 1 ) . "Passed $success of $total tests ($ratio) ";
+		print $this->term->color( 1 ) . "Passed $success of $total tests ($ratio)... ";
 		if( $success == $total ) {
 			print $this->term->color( 32 ) . "PASSED!";
 		} else {
