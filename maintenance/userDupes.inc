@@ -46,7 +46,7 @@ class UserDupes {
 		# Confusingly, 'Non_unique' is 0 for *unique* indexes,
 		# and 1 for *non-unique* indexes. Pass the crack, MySQL,
 		# it's obviously some good stuff!
-		return ( $info->Non_unique == 0 );
+		return ( $info[0]->Non_unique == 0 );
 	}
 
 	/**
