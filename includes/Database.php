@@ -1144,12 +1144,15 @@ class Database {
 			return NULL;
 		}
 
+		$result = array();
 		while ( $row = $this->fetchObject( $res ) ) {
 			if ( $row->Key_name == $index ) {
-				return $row;
+				$result[] = $row;
 			}
 		}
-		return false;
+		$this->freeResult($res);
+		
+		return empty($result) ? false : $result;
 	}
 
 	/**
@@ -1203,7 +1206,7 @@ class Database {
 		if ( !$indexInfo ) {
 			return NULL;
 		}
-		return !$indexInfo->Non_unique;
+		return !$indexInfo[0]->Non_unique;
 	}
 
 	/**

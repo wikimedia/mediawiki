@@ -239,6 +239,9 @@ class DatabaseOracle extends Database {
 		$this->freeResult($res);
 		$row->Non_unique = !$row->uniqueness;
 		return $row;
+		
+		// BUG: !!!! This code needs to be synced up with database.php
+		
 	}
 
 	function indexUnique ($table, $index, $fname = 'indexUnique') {
