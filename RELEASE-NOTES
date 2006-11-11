@@ -162,7 +162,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6737) Fixes for MySQL 5 schema in strict mode
 * Approximate height for client-side scaling fallback instead of passing -1
   into the HTML output.
-
+* Make the DNSBL to check for proxy blocking configurable via $wgSorbsUrl
 
 == Languages updated ==
 
