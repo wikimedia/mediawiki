@@ -18,6 +18,8 @@ $dbclass = 'Database' . ucfirst( $wgDBtype ) ;
 
 echo( "MediaWiki {$wgVersion} Updater\n\n" );
 
+install_version_checks();
+
 # Do a pre-emptive check to ensure we've got credentials supplied
 # We can't, at this stage, check them, but we can detect their absence,
 # which seems to cause most of the problems people whinge about

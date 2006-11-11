@@ -9,6 +9,11 @@ XX X, 2006
 
 MediaWiki 1.8.3 fixes several issues in the Fall 2006 snapshot release:
 * (bug 7831) Regression in AutoAuthenticate hook
+* Run PHP install version checks on update.php so command-line updaters see
+  new version requirements
+* Do a check for the PHP 5.0.x 64-bit bug, since this is much more disruptive
+  as of MW 1.8 than it used to be. Install or upgrade now aborts with a
+  warning and a request to upgrade.
 
 
 == MediaWiki 1.8.2 ==
@@ -373,6 +378,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 == Compatibility ==
 
 MediaWiki 1.8 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
+
+PHP 5.0.x fails on 64-bit systems due to serious bugs with array processing:
+http://bugs.php.net/bug.php?id=34879
+Upgrade affected systems to PHP 5.1 or higher.
 
 MySQL 3.23.x is no longer supported; some older hosts may need to upgrade.
 At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
