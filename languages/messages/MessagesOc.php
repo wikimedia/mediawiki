@@ -51,15 +51,15 @@ $linkTrail = "/^([a-zàâçéèêîôû]+)(.*)\$/sDu";
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'M j, Y',
-	'mdy both' => 'M j, Y a H:i',
+	'mdy both' => 'M j, Y "a" H:i',
 
 	'dmy time' => 'H:i',
 	'dmy date' => 'j M Y',
-	'dmy both' => 'j M Y a H:i',
+	'dmy both' => 'j M Y "a" H:i',
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y M j',
-	'ymd both' => 'Y M j a H:i',
+	'ymd both' => 'Y M j "a" H:i',
 );
 
 
