@@ -276,6 +276,7 @@ class Parser
 
 		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang;
 		$fname = 'Parser::parse-' . wfGetCaller();
+		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
 
 		if ( $clearState ) {
@@ -374,6 +375,7 @@ class Parser
 		$this->mOutput->setText( $text );
 		$this->mRevisionId = $oldRevisionId;
 		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 
 		return $this->mOutput;
 	}
