@@ -11,7 +11,9 @@ $urls = array();
 
 while( !feof( $stdin ) ) {
 	$page = trim( fgets( $stdin ) );
-	if( $page !== '' ) {
+	if ( substr( $page, 0, 7 ) == 'http://' ) {
+		$urls[] = $page;
+	} elseif( $page !== '' ) {
 		$title = Title::newFromText( $page );
 		if( $title ) {
 			$url = $title->getFullUrl();
