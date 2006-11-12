@@ -59,28 +59,6 @@ foreach( $hosts as $host ) {
 		print "GRANT SELECT, INSERT, UPDATE, DELETE ON `$db`.* TO 'wikiuser'@'$host' IDENTIFIED BY '$wikiuser_pass';\n";
 	}
 
-/*
-	print "\n-- wikisql\n\n";
-	foreach ( $databases as $db ) {
-print <<<EOS
-GRANT SELECT ON `$db`.`old` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`imagelinks` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`image` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`watchlist` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`site_stats` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`archive` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`links` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`ipblocks` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`cur` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT (user_rights, user_id, user_name, user_options) ON `$db`.`user` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`oldimage` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`recentchanges` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`math` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-GRANT SELECT ON `$db`.`brokenlinks` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-
-EOS;
-	}*/
-
 	print "\n-- wikiadmin\n\n";
 	print "GRANT PROCESS, REPLICATION CLIENT ON *.* TO 'wikiadmin'@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";
 	print "GRANT ALL PRIVILEGES ON `boardvote%`.* TO wikiadmin@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";
