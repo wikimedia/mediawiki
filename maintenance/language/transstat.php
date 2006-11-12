@@ -12,7 +12,7 @@
  * http://meta.wikimedia.org/wiki/Localization_statistics
  */
 
-require_once( 'maintenance/commandLine.inc' );
+require_once( dirname(__FILE__).'/../commandLine.inc' );
 require_once( 'languages.inc' );
 
 if ( isset( $options['help'] ) ) {
