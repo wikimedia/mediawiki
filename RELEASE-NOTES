@@ -179,6 +179,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6440) Updated indexes to improve backlinking queries (links, templates, images)
 * Switched 'anon-only' block mode to default for IP blocks
 * (bug 3687) Add distinct heading for media files in category display.
+* (bug 1578) Add different icons for external links to audio, video, or PDF in
+  Monobook.
 
 
 == Languages updated ==
