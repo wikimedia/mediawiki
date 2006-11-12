@@ -15,22 +15,22 @@ $defaultUserOptionOverrides = array(
 	'quickbar' => 2,
 );
 $linkTrail = '/^([a-zא-ת]+)(.*)$/sDu';
-$fallback8bitEncoding = "windows-1255";
+$fallback8bitEncoding = 'windows-1255';
 
 $skinNames = array(
-	"standard"    => "רגיל",
-	"nostalgia"   => "נוסטלגי",
-	"cologneblue" => "מים כחולים",
-	"davinci"     => "דה־וינצ'י",
-	"simple"      => "פשוט",
-	"mono"        => "מונו",
-	"monobook"    => "מונובוק",
-	"myskin"      => "הרקע שלי",
-	"chick"       => "צ'יק"
+	'standard'    => "רגיל",
+	'nostalgia'   => 'נוסטלגי',
+	'cologneblue' => 'מים כחולים',
+	'davinci'     => "דה־וינצ'י",
+	'simple'      => 'פשוט',
+	'mono'        => 'מונו',
+	'monobook'    => 'מונובוק',
+	'myskin'      => 'הרקע שלי',
+	'chick'       => "צ'יק"
 );
 
 $quickbarSettings = array(
-	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל", "צף מימין"
+	'ללא', 'קבוע משמאל', 'קבוע מימין', 'צף משמאל', 'צף מימין'
 );
 
 $dateFormats = array(
@@ -52,10 +52,10 @@ $dateFormats = array(
 );
 
 $bookstoreList = array(
-	"מיתוס"          => "http://www.mitos.co.il/",
-	"iBooks"         => "http://www.ibooks.co.il/",
-	"Barnes & Noble" => "http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=\$1",
-	"Amazon.com"     => "http://www.amazon.com/exec/obidos/ISBN=\$1"
+	'מיתוס'          => 'http://www.mitos.co.il/',
+	'iBooks'         => 'http://www.ibooks.co.il/',
+	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
+	'Amazon.com'     => 'http://www.amazon.com/exec/obidos/ISBN=$1'
 );
 
 $magicWords = array(
@@ -165,26 +165,25 @@ $magicWords = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => "מדיה",
-	NS_SPECIAL        => "מיוחד",
-	NS_MAIN           => "",
-	NS_TALK           => "שיחה",
-	NS_USER           => "משתמש",
-	NS_USER_TALK      => "שיחת_משתמש",
+	NS_MEDIA          => 'מדיה',
+	NS_SPECIAL        => 'מיוחד',
+	NS_MAIN           => '',
+	NS_TALK           => 'שיחה',
+	NS_USER           => 'משתמש',
+	NS_USER_TALK      => 'שיחת_משתמש',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => "שיחת_$1",
-	NS_IMAGE          => "תמונה",
-	NS_IMAGE_TALK     => "שיחת_תמונה",
-	NS_MEDIAWIKI      => "מדיה_ויקי",
-	NS_MEDIAWIKI_TALK => "שיחת_מדיה_ויקי",
-	NS_TEMPLATE       => "תבנית",
-	NS_TEMPLATE_TALK  => "שיחת_תבנית",
-	NS_HELP           => "עזרה",
-	NS_HELP_TALK      => "שיחת_עזרה",
-	NS_CATEGORY       => "קטגוריה",
-	NS_CATEGORY_TALK  => "שיחת_קטגוריה",
+	NS_PROJECT_TALK   => 'שיחת_$1',
+	NS_IMAGE          => 'תמונה',
+	NS_IMAGE_TALK     => 'שיחת_תמונה',
+	NS_MEDIAWIKI      => 'מדיה_ויקי',
+	NS_MEDIAWIKI_TALK => 'שיחת_מדיה_ויקי',
+	NS_TEMPLATE       => 'תבנית',
+	NS_TEMPLATE_TALK  => 'שיחת_תבנית',
+	NS_HELP           => 'עזרה',
+	NS_HELP_TALK      => 'שיחת_עזרה',
+	NS_CATEGORY       => 'קטגוריה',
+	NS_CATEGORY_TALK  => 'שיחת_קטגוריה',
 );
-
 
 $messages = array(
 # User preference toggles
@@ -1370,7 +1369,7 @@ $NEWPAGE
 'ipbreason'                   => 'סיבה',
 'ipbanononly'                 => 'חסום משתמשים אנונימיים בלבד',
 'ipbcreateaccount'            => 'חסום יצירת חשבונות',
-'ipbenableautoblock'          => 'עבור חסימת משתמש רשום: חסום גם את כתובת ה־IP האחרונה בה השתמש, וכן את כל כתובותיו הבאות',
+'ipbenableautoblock'          => 'עבור חסימת משתמש רשום: חסום גם את כתובת ה־IP שלו',
 'ipbsubmit'                   => 'חסום משתמש זה',
 'ipbother'                    => 'זמן אחר',
 'ipboptions'                  => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite',
