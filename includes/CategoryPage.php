@@ -257,7 +257,9 @@ class CategoryViewer {
 
 	function getImageSection() {
 		if( $this->showGallery && ! $this->gallery->isEmpty() ) {
-			return $this->gallery->toHTML();
+			return "<div id=\"mw-category-media\">\n" .
+			'<h2>' . wfMsg( 'category-media-header', htmlspecialchars($this->title->getText()) ) . "</h2>\n" .
+			$this->gallery->toHTML() . "\n</div>";
 		} else {
 			return '';
 		}

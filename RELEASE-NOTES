@@ -178,6 +178,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   warning and a request to upgrade.
 * (bug 6440) Updated indexes to improve backlinking queries (links, templates, images)
 * Switched 'anon-only' block mode to default for IP blocks
+* (bug 3687) Add distinct heading for media files in category display.
 
 
 == Languages updated ==

@@ -533,6 +533,7 @@ parent class in order maintain consistency across languages.
 'pagecategorieslink' => 'Special:Categories',
 'category_header' => 'Articles in category "$1"',
 'subcategories' => 'Subcategories',
+'category-media-header' => 'Media in category "$1"',
 
 
 'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
