@@ -74,12 +74,14 @@ if ( $thumb && $thumb->path ) {
 	$badtitle = wfMsg( 'badtitle' );
 	$badtitletext = wfMsg( 'badtitletext' );
 	header( 'Cache-Control: no-cache' );
+	header( 'Content-Type: text/html' );
 	echo "<html><head>
 	<title>$badtitle</title>
 	<body>
 <h1>$badtitle</h1>
 <p>$badtitletext</p>
-</body></html>";
+</body></html>
+";
 }
 
 wfProfileOut( 'thumb.php-render' );
