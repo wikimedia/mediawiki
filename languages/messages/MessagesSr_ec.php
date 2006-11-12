@@ -313,7 +313,7 @@ $messages = array(
 #
 'categories' => 'Категорије страница',
 'pagecategories' => '{{PLURAL:$1|Категорија|Категорије|Категорије}} страница',
-'pagecategorieslink' => 'Посебно:Категорије',
+'pagecategorieslink' => 'Посебно:Categories',
 'category_header' => 'Чланака у категорији "$1"',
 'subcategories' => 'Поткатегорије',
 
@@ -1140,7 +1140,7 @@ MySQL је вратио грешку "$3: $4".',
 'allpages' => 'Све странице',
 'prefixindex' => 'Списак префикса',
 'randompage' => 'Случајна страница',
-'randompage-url' => 'Посебно:Случајна страница',
+'randompage-url' => 'Посебно:Random',
 'shortpages' => 'Кратке странице',
 'longpages' => 'Дугачке странице',
 'deadendpages' => 'Странице без интерних веза',
