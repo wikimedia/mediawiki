@@ -3,21 +3,29 @@
  * This file contains CSS settings common to Wikistandard, Nostalgia and CologneBlue
  */
 
-/* Header margin values from <http://www.w3.org/TR/CSS21/sample.html>.
-   Frankly they're quite stupid and I have no idea if they're actually used,
-   but that's life. */
-.mw-h1 { margin: 1.33em 0 }
-.mw-h2 { margin: 1.25em 0 }
-.mw-h3 { margin: 0.97em 0 }
-.mw-h4 { margin: 1.12em 0 }
-.mw-h5 { margin: 1.25em 0 }
-.mw-h6 { margin: 1.25em 0 }
-h1, h2, h3, h4, h5, h6 { display: inline; padding: 0; margin: 0; }
+/* For clarity, explicitly state some recommendations from <http://www.w3.org/
+   TR/CSS21/sample.html> to make sure the editsection links scale right */
 
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h5 { font-size: .83em; }
+h6 { font-size: .75em; }
+h1, h2, h3, h4, h5, h6 { font-weight: bolder }
+
+/* Now the custom parts */
+
+/* Make edit sections (which are inside h# tags) normal-sized */
 .editsection {
+	font-weight: normal;
 	float: right;
 	margin-left: 5px;
 }
+h1 .editsection { font-size: 50% }
+h2 .editsection { font-size: 66.7% }
+h3 .editsection { font-size: 85.5% }
+h5 .editsection { font-size: 120% }
+h6 .editsection { font-size: 133% }
 
 #footer { clear: both }
 /* images */
