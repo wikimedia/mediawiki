@@ -283,10 +283,11 @@ $messages = array(
 'dec'           => "דצמ'",
 
 # Bits of text used by many pages
-'categories'      => 'קטגוריות',
-'pagecategories'  => '{{plural:$1|קטגוריה|קטגוריות}}',
-'category_header' => 'דפים בקטגוריה "$1"',
-'subcategories'   => 'קטגוריות משנה',
+'categories'            => 'קטגוריות',
+'pagecategories'        => '{{plural:$1|קטגוריה|קטגוריות}}',
+'category_header'       => 'דפים בקטגוריה "$1"',
+'subcategories'         => 'קטגוריות משנה',
+'category-media-header' => 'קבצי מדיה בקטגוריה "$1"',
 
 'mainpage'          => 'עמוד ראשי',
 'mainpagetext'      => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
