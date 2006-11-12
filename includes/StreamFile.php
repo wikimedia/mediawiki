@@ -7,13 +7,15 @@ function wfStreamFile( $fname ) {
 	if ( !$stat ) {
 		header( 'HTTP/1.0 404 Not Found' );
 		header( 'Cache-Control: no-cache' );
+		header( 'Content-Type: text/html' );
 		$encFile = htmlspecialchars( $fname );
 		$encScript = htmlspecialchars( $_SERVER['SCRIPT_NAME'] );
 		echo "<html><body>
 <h1>File not found</h1>
 <p>Although this PHP script ($encScript) exists, the file requested for output 
 ($encFile) does not.</p>
-</body></html>";
+</body></html>
+";
 		return;
 	}
 
