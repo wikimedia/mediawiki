@@ -470,6 +470,7 @@ class Block
 		$ipblock->mReason = wfMsgForContent( 'autoblocker', $this->mAddress, $this->mReason );
 		$ipblock->mTimestamp = wfTimestampNow();
 		$ipblock->mAuto = 1;
+		$ipblock->mCreateAccount = $this->mCreateAccount;
 
 		# If the user is already blocked with an expiry date, we don't
 		# want to pile on top of that!
