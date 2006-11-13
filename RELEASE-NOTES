@@ -181,6 +181,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3687) Add distinct heading for media files in category display.
 * (bug 1578) Add different icons for external links to audio, video, or PDF in
   Monobook.
+* Made autoblocks block account creation if the user block has that bit set.
 
 
 == Languages updated ==
