@@ -632,7 +632,6 @@ parent class in order maintain consistency across languages.
 'viewtalkpage' => 'View discussion',
 'otherlanguages' => 'In other languages',
 'redirectedfrom' => '(Redirected from $1)',
-'autoredircomment' => 'Redirecting to [[$1]]',
 'redirectpagesub' => 'Redirect page',
 'lastmodifiedat'		=> 'This page was last modified $2, $1.',	//$1 date, $2 time
 'viewcount'		=> 'This page has been accessed {{plural:$1|one time|$1 times}}.',
@@ -2588,6 +2587,10 @@ Please confirm that really want to recreate this page.',
 'table_pager_limit_submit' => 'Go',
 'table_pager_empty' => 'No results',
 
+#Auto-summaries
+'autosumm-blank' => 'Blanking page',
+'autosumm-replace' => 'Replacing page with \'$1\'',
+'autoredircomment' => 'Redirecting to [[$1]]', #This should be changed to the new naming convention, but existed beforehand.
 );
 
 ?>
