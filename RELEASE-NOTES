@@ -182,7 +182,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 1578) Add different icons for external links to audio, video, or PDF in
   Monobook.
 * Made autoblocks block account creation if the user block has that bit set.
-
+* Add auto-summaries to blankings and large removals without summaries.
 
 == Languages updated ==
 
