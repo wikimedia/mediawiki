@@ -210,7 +210,6 @@ $wgMessageStrucutre = array(
 		'viewtalkpage',
 		'otherlanguages',
 		'redirectedfrom',
-		'autoredircomment',
 		'redirectpagesub',
 		'lastmodifiedat',
 		'viewcount',
@@ -1812,6 +1811,11 @@ $wgMessageStrucutre = array(
 		'table_pager_limit_submit',
 		'table_pager_empty',
 	),
+	'autosumm' => array(
+		'autosumm-blank',
+		'autosumm-replace',
+		'autoredircomment',
+	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
@@ -1962,6 +1966,7 @@ Variants for Chinese language",
 	'loginlanguage'      => '',
 	'imgmulti'           => 'Multipage image navigation',
 	'tablepager'         => 'Table pager',
+	'autosumm'           => 'Auto-summaries',
 );
 
 /** Short comments for standalone messages */
@@ -1980,6 +1985,7 @@ $wgMessageComments = array(
 	'exif-orientation-6'          => '0th row: right; 0th column: top',
 	'exif-orientation-7'          => '0th row: right; 0th column: bottom',
 	'exif-orientation-8'          => '0th row: left; 0th column: bottom',
+	'autoredircomment'            => 'This should be changed to the new naming convention, but existed beforehand',
 );
 
 ?>

@@ -380,7 +380,6 @@ $messages = array(
 'viewtalkpage'      => 'צפו בדף השיחה',
 'otherlanguages'    => 'שפות אחרות',
 'redirectedfrom'    => '(הופנה מהדף $1)',
-'autoredircomment'  => 'הפניה לדף [[$1]]',
 'redirectpagesub'   => 'דף הפניה',
 'lastmodifiedat'    => 'שונה לאחרונה ב־$2, $1.', # $1 date, $2 time
 'viewcount'         => 'דף זה נצפה {{plural:$1|פעם אחת|$1 פעמים|פעמיים}}.',
@@ -2132,6 +2131,11 @@ $1',
 'table_pager_limit'        => 'הצג $1 פריטים בדף',
 'table_pager_limit_submit' => 'עבור',
 'table_pager_empty'        => 'ללא תוצאות',
+
+# Auto-summaries
+'autosumm-blank'   => 'מרוקן את הדף',
+'autosumm-replace' => "מחליף את הדף עם '$1'",
+'autoredircomment' => 'הפניה לדף [[$1]]', # This should be changed to the new naming convention, but existed beforehand
 
 );
 
