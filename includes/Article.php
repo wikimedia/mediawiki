@@ -1315,6 +1315,20 @@ class Article {
 					wfProfileOut( __METHOD__ );
 					return false;
 				}
+
+				if (!$summary) {
+					#If they're blanking an article, note it in the summary.
+					if (/*$flags & EDIT_AUTOSUMMARY && */$oldtext!='' && $text=='') {
+						$summary = wfMsgForContent('autosumm-blank');
+					}
+	
+					#Blanking and replacing with something short
+					if (strlen($oldtext) / strlen($text) > 10 && strlen($text) < 500) { #Removing more than 90% of the article
+						global $wgContLang;
+						$truncatedtext = $wgContLang->truncate($text, 200 - strlen(wfMsg('autosumm-replace')), '...');
+						$summary = wfMsgForContent('autosumm-replace', $truncatedtext);
+					}
+				}
 				
 				$revision = new Revision( array(
 					'page'       => $this->getId(),
