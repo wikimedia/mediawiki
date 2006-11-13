@@ -4621,7 +4621,7 @@ Fuzz testing: image with bogus manual thumbnail
 !!input
 [[Image:foobar.jpg|thumbnail= ]]
 !!result
-<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title=""><img src="http://example.com/images/3/3a/Foobar.jpg" alt="" width="180" height="-1" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div></div></div></div>
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title=""><img src="http://example.com/images/3/3a/Foobar.jpg" alt="" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div></div></div></div>
 
 !!end
 
@@ -5732,11 +5732,11 @@ image4    |300px| centre
 !! end
 
 !! test
-TODO: HTML Hex character encoding.
+HTML Hex character encoding (spells the word "JavaScript")
 !! input
 &#x4A;&#x061;&#x0076;&#x00061;&#x000053;&#x0000063;&#114;&#x0000069;&#00000112;&#x0000000074;
 !! result
-<p>JavaScript
+<p>&#x4a;&#x61;&#x76;&#x61;&#x53;&#x63;&#114;&#x69;&#112;&#x74;
 </p>
 !! end
 
@@ -5859,6 +5859,18 @@ TODO: dt/dd/dl test
 </dd></dl>
 
 !!end
+
+
+# Images with the "|" character in external URLs in comment tags; Eats half the comment, leaves unmatched "</a>" tag.
+!! test
+TODO: Images with the "|" character in the comment
+!! input
+[[image:Foobar.jpg|thumb|An [http://test/?param1=|left|&param2=|x external] URL]]
+!! result
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="An external URL"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="An external URL" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div>An <a href="http://test/?param1=|left|&amp;param2=|x" class="external text" title="http://test/?param1=|left|&amp;param2=|x" rel="nofollow">external</a> URL</div></div></div>
+
+!!end
+
 
 #
 #
