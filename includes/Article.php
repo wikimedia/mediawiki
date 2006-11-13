@@ -1316,16 +1316,13 @@ class Article {
 					return false;
 				}
 
-				if (!$summary) {
+				if ($flags & EDIT_AUTOSUMMARY && $summary == '') {
 					#If they're blanking an article, note it in the summary.
-					if (/*$flags & EDIT_AUTOSUMMARY && */$oldtext!='' && $text=='') {
+					if ($oldtext!='' && $text=='') {
 						$summary = wfMsgForContent('autosumm-blank');
-					}
-	
-					#Blanking and replacing with something short
-					if (strlen($oldtext) / strlen($text) > 10 && strlen($text) < 500) { #Removing more than 90% of the article
+					} elseif (strlen($oldtext) > 10 * strlen($text) && strlen($text) < 500) { #Removing more than 90% of the article
 						global $wgContLang;
-						$truncatedtext = $wgContLang->truncate($text, 200 - strlen(wfMsg('autosumm-replace')), '...');
+						$truncatedtext = $wgContLang->truncate($text, max(0, 200 - strlen(wfMsg('autosumm-replace'))), '...');
 						$summary = wfMsgForContent('autosumm-replace', $truncatedtext);
 					}
 				}
