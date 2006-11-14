@@ -554,30 +554,6 @@ function addRightClickEditHandler(el) {
 		}
 	}
 }
-/*
-function addRightClickEditHandler(el) {
-	// find the enclosing (parent) header
-	var par = el.parentNode;
-	if (par && par.nodeType == 1 && par.nodeName.match(/^[Hh][1-6]$/)) {
-		par.oncontextmenu = function(e) {
-			if (!e) var e = window.event;
-			// e is now the event in all browsers
-			if (e.target) targ = e.target;
-			else if (e.srcElement) targ = e.srcElement;
-			if (targ.nodeType == 3) // defeat Safari bug
-				targ = targ.parentNode;
-			// targ is now the target element
-			// We don't want to deprive the noble reader of a context menu
-			// for the section edit link, do we?  (Might want to extend this
-			// to all <a>'s.)links
-			if (targ.className != 'editsection') {
-				document.location = editHref;
-				return false;
-			}
-		}
-	}
-}
-*/
 
 function setupCheckboxShiftClick() {
 	if (document.getElementsByTagName) {
