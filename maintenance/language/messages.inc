@@ -417,6 +417,8 @@ $wgMessageStrucutre = array(
 		'missingsummary',
 		'missingcommenttext',
 		'missingcommentheader',
+		'summary-preview',
+		'subject-preview',
 		'blockedtitle',
 		'blockedtext',
 		'blockedoriginalsource',
