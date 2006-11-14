@@ -889,6 +889,8 @@ format. Please enter a well-formatted address or empty that field.',
 'missingsummary' => "'''Reminder:''' You have not provided an edit summary. If you click Save again, your edit will be saved without one.",
 'missingcommenttext' => 'Please enter a comment below.',
 'missingcommentheader' => "'''Reminder:''' You have not provided a subject/headline for this comment. If you click Save again, your edit will be saved without one.",
+'summary-preview' => 'Summary preview',
+'subject-preview' => 'Subject/headline preview',
 'blockedtitle'	=> 'User is blocked',
 'blockedtext' => "<big>'''Your user name or IP address has been blocked.'''</big>
 
