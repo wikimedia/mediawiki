@@ -951,7 +951,7 @@ class Linker {
 					$trail = "";
 				}
 				$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
-				if ($match[1][0] == ':')
+				if (isset($match[1][0]) && $match[1][0] == ':')
 					$match[1] = substr($match[1], 1);
 				$thelink = $this->makeLink( $match[1], $text, "", $trail );
 			}
