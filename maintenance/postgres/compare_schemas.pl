@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use Data::Dumper;
 
-my @old = ("../tables.sql", "../mysql5/tables.sql");
+my @old = ("../tables.sql", "../mysql5/tables.sql", "../mysql5/tables-binary.sql");
 my $new = "tables.sql";
 my @xfile;
 
@@ -53,8 +53,7 @@ my $engine = qr{TYPE|ENGINE};
 
 my $tabletype = qr{InnoDB|MyISAM|HEAP|HEAP MAX_ROWS=\d+};
 
-my $charset = qr{utf8};
-
+my $charset = qr{utf8|binary};
 
 open my $newfh, "<", $new or die qq{Could not open $new: $!\n};
 
@@ -136,6 +135,10 @@ for my $table (sort keys %{$old{$oldfile}}) {
 		or
 		($oldfile !~ /5/ and $t->{engine} ne 'TYPE')) {
 		die "Invalid engine for $oldfile: $t->{engine}\n" unless $t->{name} eq 'profiling';
+	}
+	my $charset = $t->{charset} || '';
+	if ($oldfile !~ /binary/ and $charset eq 'binary') {
+		die "Invalid charset for $oldfile: $charset\n";
 	}
 }
 
