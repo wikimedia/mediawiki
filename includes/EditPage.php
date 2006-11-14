@@ -1021,9 +1021,11 @@ class EditPage {
 		if( $this->section == 'new' ) {
 			$commentsubject="<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}:</label></span>\n<div class='editOptions'>\n<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
 			$editsummary = '';
+			$subjectpreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">".wfMsg('subject-preview').':'.$sk->commentBlock( $this->summary, $this->mTitle )."</div>\n" : '';
 		} else {
 			$commentsubject = '';
 			$editsummary="<span id='wpSummaryLabel'><label for='wpSummary'>{$summary}:</label></span>\n<div class='editOptions'>\n<input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
+			$summarypreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">".wfMsg('summary-preview').':'.$sk->commentBlock( $this->summary, $this->mTitle )."</div>\n" : '';
 		}
 
 		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
@@ -1141,6 +1143,7 @@ END
 		$wgOut->addHTML( <<<END
 $recreate
 {$commentsubject}
+{$subjectpreview}
 <textarea tabindex='1' accesskey="," name="wpTextbox1" id="wpTextbox1" rows='{$rows}'
 cols='{$cols}'{$ew} $hidden>
 END
@@ -1153,6 +1156,7 @@ END
 		$wgOut->addHTML( "
 {$metadata}
 {$editsummary}
+{$summarypreview}
 {$checkboxhtml}
 {$safemodehtml}
 ");
@@ -1237,6 +1241,7 @@ END
 	 */
 	function showPreview() {
 		global $wgOut;
+
 		$wgOut->addHTML( '<div id="wikiPreview">' );
 		if($this->mTitle->getNamespace() == NS_CATEGORY) {
 			$this->mArticle->openShowCategory();
@@ -1246,7 +1251,6 @@ END
 		if($this->mTitle->getNamespace() == NS_CATEGORY) {
 			$this->mArticle->closeShowCategory();
 		}
-		$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 		$wgOut->addHTML( '</div>' );
 	}
 
