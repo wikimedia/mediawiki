@@ -14,8 +14,10 @@ if (clientPC.indexOf('opera') != -1) {
 	var is_opera_seven = (window.opera && document.childNodes);
 }
 
-// add any onload functions in this hook (please don't hard-code any events in the xhtml source)
+// Global external objects used by this script.
+/*extern ta, stylepath, skin */
 
+// add any onload functions in this hook (please don't hard-code any events in the xhtml source)
 var doneOnloadHook;
 
 if (!window.onloadFuncts) {
