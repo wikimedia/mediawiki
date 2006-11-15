@@ -1322,7 +1322,7 @@ class Article {
 						$summary = wfMsgForContent('autosumm-blank');
 					} elseif (strlen($oldtext) > 10 * strlen($text) && strlen($text) < 500) { #Removing more than 90% of the article
 						global $wgContLang;
-						$truncatedtext = $wgContLang->truncate($text, max(0, 200 - strlen(wfMsg('autosumm-replace'))), '...');
+						$truncatedtext = $wgContLang->truncate($text, max(0, 200 - strlen(wfMsgForContent('autosumm-replace'))), '...');
 						$summary = wfMsgForContent('autosumm-replace', $truncatedtext);
 					}
 				}
