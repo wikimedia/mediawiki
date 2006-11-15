@@ -18,43 +18,22 @@ if (clientPC.indexOf('opera') != -1) {
 
 var doneOnloadHook;
 
-if (!window.onloadFuncts)
+if (!window.onloadFuncts) {
 	var onloadFuncts = [];
+}
 
 function addOnloadHook(hookFunct) {
 	// Allows add-on scripts to add onload functions
 	onloadFuncts[onloadFuncts.length] = hookFunct;
 }
 
-function runOnloadHook() {
-	// don't run anything below this for non-dom browsers
-	if (doneOnloadHook || !(document.getElementById && document.getElementsByTagName))
-		return;
-
-	histrowinit();
-	unhidetzbutton();
-	tabbedprefs();
-	akeytt();
-	scrollEditBox();
-	setupCheckboxShiftClick();
-
-	// Run any added-on functions
-	for (var i = 0; i < onloadFuncts.length; i++)
-		onloadFuncts[i]();
-
-	doneOnloadHook = true;
-}
-
 function hookEvent(hookName, hookFunct) {
-	if (window.addEventListener)
-		addEventListener(hookName, hookFunct, false);
-	else if (window.attachEvent)
-		attachEvent("on" + hookName, hookFunct);
+	if (window.addEventListener) {
+		window.addEventListener(hookName, hookFunct, false);
+	} else if (window.attachEvent) {
+		window.attachEvent("on" + hookName, hookFunct);
+	}
 }
-
-//note: all skins shoud call runOnloadHook() at the end of html output,
-//      so the below should be redundant. It's there just in case.
-hookEvent("load", runOnloadHook);
 
 // document.write special stylesheet links
 if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
@@ -67,8 +46,9 @@ if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
 	}
 }
 // Un-trap us from framesets
-if (window.top != window)
+if (window.top != window) {
 	window.top.location = window.location;
+}
 
 // for enhanced RecentChanges
 function toggleVisibility(_levelId, _otherId, _linkId) {
@@ -86,12 +66,77 @@ function toggleVisibility(_levelId, _otherId, _linkId) {
 	}
 }
 
+function historyRadios(parent) {
+	var inputs = parent.getElementsByTagName('input');
+	var radios = [];
+	for (var i = 0; i < inputs.length; i++) {
+		if (inputs[i].name == "diff" || inputs[i].name == "oldid") {
+			radios[radios.length] = inputs[i];
+		}
+	}
+	return radios;
+}
+
+// check selection and tweak visibility/class onclick
+function diffcheck() {
+	var dli = false; // the li where the diff radio is checked
+	var oli = false; // the li where the oldid radio is checked
+	var hf = document.getElementById('pagehistory');
+	if (!hf) {
+		return true;
+	}
+	var lis = hf.getElementsByTagName('li');
+	for (var i=0;i<lis.length;i++) {
+		var inputs = historyRadios(lis[i]);
+		if (inputs[1] && inputs[0]) {
+			if (inputs[1].checked || inputs[0].checked) { // this row has a checked radio button
+				if (inputs[1].checked && inputs[0].checked && inputs[0].value == inputs[1].value) {
+					return false;
+				}
+				if (oli) { // it's the second checked radio
+					if (inputs[1].checked) {
+						oli.className = "selected";
+						return false;
+					}
+				} else if (inputs[0].checked) {
+					return false;
+				}
+				if (inputs[0].checked) {
+					dli = lis[i];
+				}
+				if (!oli) {
+					inputs[0].style.visibility = 'hidden';
+				}
+				if (dli) {
+					inputs[1].style.visibility = 'hidden';
+				}
+				lis[i].className = "selected";
+				oli = lis[i];
+			}  else { // no radio is checked in this row
+				if (!oli) {
+					inputs[0].style.visibility = 'hidden';
+				} else {
+					inputs[0].style.visibility = 'visible';
+				}
+				if (dli) {
+					inputs[1].style.visibility = 'hidden';
+				} else {
+					inputs[1].style.visibility = 'visible';
+				}
+				lis[i].className = "";
+			}
+		}
+	}
+	return true;
+}
+
 // page history stuff
 // attach event handlers to the input elements on history page
 function histrowinit() {
 	var hf = document.getElementById('pagehistory');
-	if (!hf)
+	if (!hf) {
 		return;
+	}
 	var lis = hf.getElementsByTagName('li');
 	for (var i = 0; i < lis.length; i++) {
 		var inputs = historyRadios(lis[i]);
@@ -103,94 +148,43 @@ function histrowinit() {
 	diffcheck();
 }
 
-function historyRadios(parent) {
-	var inputs = parent.getElementsByTagName('input');
-	var radios = [];
-	for (var i = 0; i < inputs.length; i++) {
-		if (inputs[i].name == "diff" || inputs[i].name == "oldid")
-			radios[radios.length] = inputs[i];
-	}
-	return radios;
-}
-
-// check selection and tweak visibility/class onclick
-function diffcheck() {
-	var dli = false; // the li where the diff radio is checked
-	var oli = false; // the li where the oldid radio is checked
-	var hf = document.getElementById('pagehistory');
-	if (!hf)
-		return true;
-	var lis = hf.getElementsByTagName('li');
-	for (i=0;i<lis.length;i++) {
-		var inputs = historyRadios(lis[i]);
-		if (inputs[1] && inputs[0]) {
-			if (inputs[1].checked || inputs[0].checked) { // this row has a checked radio button
-				if (inputs[1].checked && inputs[0].checked && inputs[0].value == inputs[1].value)
-					return false;
-				if (oli) { // it's the second checked radio
-					if (inputs[1].checked) {
-						oli.className = "selected";
-						return false;
-					}
-				} else if (inputs[0].checked) {
-					return false;
-				}
-				if (inputs[0].checked)
-					dli = lis[i];
-				if (!oli)
-					inputs[0].style.visibility = 'hidden';
-				if (dli)
-					inputs[1].style.visibility = 'hidden';
-				lis[i].className = "selected";
-				oli = lis[i];
-			}  else { // no radio is checked in this row
-				if (!oli)
-					inputs[0].style.visibility = 'hidden';
-				else
-					inputs[0].style.visibility = 'visible';
-				if (dli)
-					inputs[1].style.visibility = 'hidden';
-				else
-					inputs[1].style.visibility = 'visible';
-				lis[i].className = "";
-			}
-		}
-	}
-	return true;
-}
-
 // generate toc from prefs form, fold sections
 // XXX: needs testing on IE/Mac and safari
 // more comments to follow
 function tabbedprefs() {
 	var prefform = document.getElementById('preferences');
-	if (!prefform || !document.createElement)
+	if (!prefform || !document.createElement) {
 		return;
-	if (prefform.nodeName.toLowerCase() == 'a')
+	}
+	if (prefform.nodeName.toLowerCase() == 'a') {
 		return; // Occasional IE problem
+	}
 	prefform.className = prefform.className + 'jsprefs';
-	var sections = new Array();
+	var sections = [];
 	var children = prefform.childNodes;
 	var seci = 0;
 	for (var i = 0; i < children.length; i++) {
 		if (children[i].nodeName.toLowerCase() == 'fieldset') {
 			children[i].id = 'prefsection-' + seci;
 			children[i].className = 'prefsection';
-			if (is_opera || is_khtml)
+			if (is_opera || is_khtml) {
 				children[i].className = 'prefsection operaprefsection';
+			}
 			var legends = children[i].getElementsByTagName('legend');
-			sections[seci] = new Object();
+			sections[seci] = {};
 			legends[0].className = 'mainLegend';
-			if (legends[0] && legends[0].firstChild.nodeValue)
+			if (legends[0] && legends[0].firstChild.nodeValue) {
 				sections[seci].text = legends[0].firstChild.nodeValue;
-			else
+			} else {
 				sections[seci].text = '# ' + seci;
+			}
 			sections[seci].secid = children[i].id;
 			seci++;
-			if (sections.length != 1)
+			if (sections.length != 1) {
 				children[i].style.display = 'none';
-			else
+			} else {
 				var selectedid = children[i].id;
+			}
 		}
 	}
 	var toc = document.createElement('ul');
@@ -198,8 +192,9 @@ function tabbedprefs() {
 	toc.selectedid = selectedid;
 	for (i = 0; i < sections.length; i++) {
 		var li = document.createElement('li');
-		if (i == 0)
+		if (i === 0) {
 			li.className = 'selected';
+		}
 		var a = document.createElement('a');
 		a.href = '#' + sections[i].secid;
 		a.onmousedown = a.onclick = uncoversection;
@@ -246,8 +241,9 @@ function checkTimezone(tz, msg) {
 
 function unhidetzbutton() {
 	var tzb = document.getElementById('guesstimezonebutton');
-	if (tzb)
+	if (tzb) {
 		tzb.style.display = 'inline';
+	}
 }
 
 // in [-]HH:MM format...
@@ -272,9 +268,10 @@ function showTocToggle() {
 	if (document.createTextNode) {
 		// Uses DOM calls to avoid document.write + XHTML issues
 
-		var linkHolder = document.getElementById('toctitle')
-		if (!linkHolder)
+		var linkHolder = document.getElementById('toctitle');
+		if (!linkHolder) {
 			return;
+		}
 
 		var outerSpan = document.createElement('span');
 		outerSpan.className = 'toctoggle';
@@ -293,22 +290,24 @@ function showTocToggle() {
 		linkHolder.appendChild(outerSpan);
 
 		var cookiePos = document.cookie.indexOf("hidetoc=");
-		if (cookiePos > -1 && document.cookie.charAt(cookiePos + 8) == 1)
+		if (cookiePos > -1 && document.cookie.charAt(cookiePos + 8) == 1) {
 			toggleToc();
+		}
 	}
 }
 
 function changeText(el, newText) {
 	// Safari work around
-	if (el.innerText)
+	if (el.innerText) {
 		el.innerText = newText;
-	else if (el.firstChild && el.firstChild.nodeValue)
+	} else if (el.firstChild && el.firstChild.nodeValue) {
 		el.firstChild.nodeValue = newText;
+	}
 }
 
 function toggleToc() {
 	var toc = document.getElementById('toc').getElementsByTagName('ul')[0];
-	var toggleLink = document.getElementById('togglelink')
+	var toggleLink = document.getElementById('togglelink');
 
 	if (toc && toggleLink && toc.style.display == 'none') {
 		changeText(toggleLink, tocHideText);
@@ -351,7 +350,7 @@ function mwInsertEditButton(parent, item) {
 	image.onclick = function() {
 		insertTags(item.tagOpen, item.tagClose, item.sampleText);
 		return false;
-	}
+	};
 	
 	parent.appendChild(image);
 	return true;
@@ -359,20 +358,21 @@ function mwInsertEditButton(parent, item) {
 
 function mwSetupToolbar() {
 	var toolbar = document.getElementById('toolbar');
-	if (!toolbar) return false;
+	if (!toolbar) { return false; }
 
 	var textbox = document.getElementById('wpTextbox1');
-	if (!textbox) return false;
+	if (!textbox) { return false; }
 	
 	// Don't generate buttons for browsers which don't fully
 	// support it.
-	if (!document.selection && textbox.selectionStart == null)
+	if (!document.selection && textbox.selectionStart === null) {
 		return false;
+	}
 	
 	for (var i in mwEditButtons) {
 		mwInsertEditButton(toolbar, mwEditButtons[i]);
 	}
-	for (var i in mwCustomEditButtons) {
+	for (i in mwCustomEditButtons) {
 		mwInsertEditButton(toolbar, mwCustomEditButtons[i]);
 	}
 	return true;
@@ -389,11 +389,11 @@ function escapeQuotes(text) {
 function escapeQuotesHTML(text) {
 	var re = new RegExp('&',"g");
 	text = text.replace(re,"&amp;");
-	var re = new RegExp('"',"g");
+	re = new RegExp('"',"g");
 	text = text.replace(re,"&quot;");
-	var re = new RegExp('<',"g");
+	re = new RegExp('<',"g");
 	text = text.replace(re,"&lt;");
-	var re = new RegExp('>',"g");
+	re = new RegExp('>',"g");
 	text = text.replace(re,"&gt;");
 	return text;
 }
@@ -402,19 +402,21 @@ function escapeQuotesHTML(text) {
 // use sampleText instead of selection if there is none
 // copied and adapted from phpBB
 function insertTags(tagOpen, tagClose, sampleText) {
-	if (document.editform)
-		var txtarea = document.editform.wpTextbox1;
-	else {
+	var txtarea;
+	if (document.editform) {
+		txtarea = document.editform.wpTextbox1;
+	} else {
 		// some alternate form? take the first one we can find
 		var areas = document.getElementsByTagName('textarea');
-		var txtarea = areas[0];
+		txtarea = areas[0];
 	}
 
 	// IE
 	if (document.selection  && !is_gecko) {
 		var theSelection = document.selection.createRange().text;
-		if (!theSelection)
+		if (!theSelection) {
 			theSelection=sampleText;
+		}
 		txtarea.focus();
 		if (theSelection.charAt(theSelection.length - 1) == " ") { // exclude ending space char, if any
 			theSelection = theSelection.substring(0, theSelection.length - 1);
@@ -428,12 +430,15 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		var replaced = false;
 		var startPos = txtarea.selectionStart;
 		var endPos = txtarea.selectionEnd;
-		if (endPos-startPos)
+		if (endPos-startPos) {
 			replaced = true;
+		}
 		var scrollTop = txtarea.scrollTop;
 		var myText = (txtarea.value).substring(startPos, endPos);
-		if (!myText)
+		if (!myText) {
 			myText=sampleText;
+		}
+		var subst;
 		if (myText.charAt(myText.length - 1) == " ") { // exclude ending space char, if any
 			subst = tagOpen + myText.substring(0, (myText.length - 1)) + tagClose + " ";
 		} else {
@@ -458,24 +463,29 @@ function insertTags(tagOpen, tagClose, sampleText) {
 	// bar, but that caused more problems than it solved.
 	}
 	// reposition cursor if possible
-	if (txtarea.createTextRange)
+	if (txtarea.createTextRange) {
 		txtarea.caretPos = document.selection.createRange().duplicate();
+	}
 }
 
 function akeytt() {
-	if (typeof ta == "undefined" || !ta)
+	if (typeof ta == "undefined" || !ta) {
 		return;
+	}
+	
+	var pref;
 	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
-		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 )
+		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 ) {
 		pref = 'control-';
-	else if (is_opera)
+	} else if (is_opera) {
 		pref = 'shift-esc-';
-	else if (is_ff2_x11)
+	} else if (is_ff2_x11) {
 		pref = 'ctrl-shift-';
-	else if (is_ff2_win)
+	} else if (is_ff2_win) {
 		pref = 'alt-shift-';
-	else
+	} else {
 		pref = 'alt-';
+	}
 
 	for (var id in ta) {
 		var n = document.getElementById(id);
@@ -533,12 +543,14 @@ function addRightClickEditHandler(el) {
 			if (prev && prev.nodeType == 1 &&
 			prev.nodeName.match(/^[Hh][1-6]$/)) {
 				prev.oncontextmenu = function(e) {
-					if (!e) e = window.event;
+					if (!e) { e = window.event; }
 					// e is now the event in all browsers
-					if (e.target) var targ = e.target;
-					else if (e.srcElement) var targ = e.srcElement;
-					if (targ.nodeType == 3) // defeat Safari bug
+					var targ;
+					if (e.target) { targ = e.target; }
+					else if (e.srcElement) { targ = e.srcElement; }
+					if (targ.nodeType == 3) { // defeat Safari bug
 						targ = targ.parentNode;
+					}
 					// targ is now the target element
 
 					// We don't want to deprive the noble reader of a context menu
@@ -549,7 +561,8 @@ function addRightClickEditHandler(el) {
 						document.location = editHref;
 						return false;
 					}
-				}
+					return true;
+				};
 			}
 		}
 	}
@@ -628,22 +641,25 @@ function checkboxMouseupHandler(e) {
 }
 
 function toggle_element_activation(ida,idb) {
-	if (!document.getElementById)
+	if (!document.getElementById) {
 		return;
+	}
 	document.getElementById(ida).disabled=true;
 	document.getElementById(idb).disabled=false;
 }
 
 function toggle_element_check(ida,idb) {
-	if (!document.getElementById)
+	if (!document.getElementById) {
 		return;
+	}
 	document.getElementById(ida).checked=true;
 	document.getElementById(idb).checked=false;
 }
 
 function fillDestFilename(id) {
-	if (!document.getElementById)
+	if (!document.getElementById) {
 		return;
+	}
 	var path = document.getElementById(id).value;
 	// Find trailing part
 	var slash = path.lastIndexOf('/');
@@ -662,25 +678,30 @@ function fillDestFilename(id) {
 
 	// Output result
 	var destFile = document.getElementById('wpDestFile');
-	if (destFile)
+	if (destFile) {
 		destFile.value = fname;
+	}
 }
 
 
 function considerChangingExpiryFocus() {
-	if (!document.getElementById)
+	if (!document.getElementById) {
 		return;
+	}
 	var drop = document.getElementById('wpBlockExpiry');
-	if (!drop)
+	if (!drop) {
 		return;
+	}
 	var field = document.getElementById('wpBlockOther');
-	if (!field)
+	if (!field) {
 		return;
+	}
 	var opt = drop.value;
-	if (opt == 'other')
+	if (opt == 'other') {
 		field.style.display = '';
-	else
+	} else {
 		field.style.display = 'none';
+	}
 }
 
 function scrollEditBox() {
@@ -689,50 +710,52 @@ function scrollEditBox() {
 	var editFormEl = document.getElementById("editform");
 
 	if (editBoxEl && scrollTopEl) {
-		if (scrollTopEl.value) editBoxEl.scrollTop = scrollTopEl.value;
+		if (scrollTopEl.value) { editBoxEl.scrollTop = scrollTopEl.value; }
 		editFormEl.onsubmit = function() {
 			document.getElementById("wpScrolltop").value = document.getElementById("wpTextbox1").scrollTop;
-		}
+		};
 	}
 }
 
 hookEvent("load", scrollEditBox);
 
 function allmessagesfilter() {
-	text = document.getElementById('allmessagesinput').value;
-	k = document.getElementById('allmessagestable');
-	if (!k) { return;}
+	var text = document.getElementById('allmessagesinput').value;
+	var k = document.getElementById('allmessagestable');
+	if (!k) { return; }
 
 	var items = k.getElementsByTagName('span');
 
+	var i, j;
 	if ( text.length > allmessages_prev.length ) {
-		for (var i = items.length-1, j = 0; i >= 0; i--) {
-			j = allmessagesforeach(items, i, j);
+		for (i = items.length-1, j = 0; i >= 0; i--) {
+			j = allmessagesforeach(items, i, j, text);
 		}
 	} else {
-		for (var i = 0, j = 0; i < items.length; i++) {
-			j = allmessagesforeach(items, i, j);
+		for (i = 0, j = 0; i < items.length; i++) {
+			j = allmessagesforeach(items, i, j, text);
 		}
 	}
 	allmessages_prev = text;
 }
 
-function allmessagesforeach(items, i, j) {
+function allmessagesforeach(items, i, j, text) {
 	var hItem = items[i].getAttribute('id');
 	if (hItem.substring(0,17) == 'sp-allmessages-i-') {
+		var itemA, itemB, s, k;
 		if (items[i].firstChild && items[i].firstChild.nodeName == '#text' && items[i].firstChild.nodeValue.indexOf(text) != -1) {
-			var itemA = document.getElementById( hItem.replace('i', 'r1') );
-			var itemB = document.getElementById( hItem.replace('i', 'r2') );
-			if ( itemA.style.display != '' ) {
-				var s = "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", \"" + hItem.replace('i', 'r2') + "\", '')";
-				var k = window.setTimeout(s,j++*5);
+			itemA = document.getElementById( hItem.replace('i', 'r1') );
+			itemB = document.getElementById( hItem.replace('i', 'r2') );
+			if ( itemA.style.display !== '' ) {
+				s = "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", \"" + hItem.replace('i', 'r2') + "\", '')";
+				k = window.setTimeout(s,j++*5);
 			}
 		} else {
-			var itemA = document.getElementById( hItem.replace('i', 'r1') );
-			var itemB = document.getElementById( hItem.replace('i', 'r2') );
+			itemA = document.getElementById( hItem.replace('i', 'r1') );
+			itemB = document.getElementById( hItem.replace('i', 'r2') );
 			if ( itemA.style.display != 'none' ) {
-				var s = "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", \"" + hItem.replace('i', 'r2') + "\", 'none')";
-				var k = window.setTimeout(s,j++*5);
+				s = "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", \"" + hItem.replace('i', 'r2') + "\", 'none')";
+				k = window.setTimeout(s,j++*5);
 			}
 		}
 	}
@@ -749,31 +772,57 @@ function allmessageshider(idA, idB, cstyle) {
 
 function allmessagesmodified() {
 	allmessages_modified = !allmessages_modified;
-	k = document.getElementById('allmessagestable');
-	if (!k) { return;}
+	var k = document.getElementById('allmessagestable');
+	if (!k) { return; }
 	var items = k.getElementsByTagName('tr');
 	for (var i = 0, j = 0; i< items.length; i++) {
+		var s;
 		if (!allmessages_modified ) {
-			if ( items[i].style.display != '' ) {
-				var s = "allmessageshider(\"" + items[i].getAttribute('id') + "\", null, '')";
-				var k = window.setTimeout(s,j++*5);
+			if ( items[i].style.display !== '' ) {
+				s = "allmessageshider(\"" + items[i].getAttribute('id') + "\", null, '')";
+				k = window.setTimeout(s,j++*5);
 			}
 		} else if (items[i].getAttribute('class') == 'def' && allmessages_modified) {
 			if ( items[i].style.display != 'none' ) {
-				var s = "allmessageshider(\"" + items[i].getAttribute('id') + "\", null, 'none')";
-				var k = window.setTimeout(s,j++*5);
+				s = "allmessageshider(\"" + items[i].getAttribute('id') + "\", null, 'none')";
+				k = window.setTimeout(s,j++*5);
 			}
 		}
 	}
 }
 
 function allmessagesshow() {
-	k = document.getElementById('allmessagesfilter');
+	var k = document.getElementById('allmessagesfilter');
 	if (k) { k.style.display = ''; }
 
 	allmessages_prev = '';
 	allmessages_modified = false;
 }
+
+function runOnloadHook() {
+	// don't run anything below this for non-dom browsers
+	if (doneOnloadHook || !(document.getElementById && document.getElementsByTagName)) {
+		return;
+	}
+
+	histrowinit();
+	unhidetzbutton();
+	tabbedprefs();
+	akeytt();
+	scrollEditBox();
+	setupCheckboxShiftClick();
+
+	// Run any added-on functions
+	for (var i = 0; i < onloadFuncts.length; i++) {
+		onloadFuncts[i]();
+	}
+
+	doneOnloadHook = true;
+}
+
+//note: all skins should call runOnloadHook() at the end of html output,
+//      so the below should be redundant. It's there just in case.
+hookEvent("load", runOnloadHook);
 
 hookEvent("load", allmessagesshow);
 hookEvent("load", mwSetupToolbar);

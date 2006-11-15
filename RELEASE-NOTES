@@ -184,6 +184,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Made autoblocks block account creation if the user block has that option enabled.
 * Add auto-summaries to blankings and large removals without summaries.
 * (bug 7811) Allow preview of edit summaries.
+* (bug 6839) Wikibits.js minor changes to make JS-lint happier.
+
 
 == Languages updated ==
 
