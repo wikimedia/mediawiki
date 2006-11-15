@@ -124,13 +124,13 @@ class DumpHTML {
 			return;
 		}
 		$this->doArticles();
-		$this->doLocalImageDescriptions();
-		$this->doSharedImageDescriptions();
 		$this->doCategories();
 		$this->doRedirects();
 		if ( $this->sliceNumerator == 1 ) {
 			$this->doSpecials();
 		}
+		$this->doLocalImageDescriptions();
+		$this->doSharedImageDescriptions();
 
 		$this->setCheckpoint( 'everything', 'done' );
 	}
@@ -309,18 +309,22 @@ class DumpHTML {
 		for ( $hash = $start; $hash <= $end; $hash++ ) {
 			$this->setCheckpoint( 'shared image', $hash );
 
-			$dir = sprintf( "%01x/%02x", intval( $hash / 16 ), $hash );
-			$paths = array_merge( glob( "{$this->sharedStaticDirectory}/$dir/*" ),
-				glob( "{$this->sharedStaticDirectory}/thumb/$dir/*" ) );
-
-			foreach ( $paths as $path ) {
-				$file = wfBaseName( $path );
+			$dir = sprintf( "%s/%01x/%02x", $this->sharedStaticDirectory,
+		       		intval( $hash / 16 ), $hash );
+			$handle = @opendir( $dir );
+			while ( $handle && $file = readdir( $handle ) ) {
+				if ( $file[0] == '.' ) {
+					continue;
+				}
 				if ( !(++$i % REPORTING_INTERVAL ) ) {
 					print "$i\r";
 				}
 
-				$title = Title::makeTitle( NS_IMAGE, $file );
+				$title = Title::makeTitleSafe( NS_IMAGE, $file );
 				$this->doArticle( $title );
+			}
+			if ( $handle ) {
+				closedir( $handle );
 			}
 		}
 		$this->setCheckpoint( 'shared image', 'done' );
