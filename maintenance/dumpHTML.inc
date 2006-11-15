@@ -38,6 +38,9 @@ class DumpHTML {
 	# Make a copy of all images encountered
 	var $makeSnapshot = false;
 
+	# Don't image description pages in doEverything()
+	var $noSharedDesc = false;
+
 	# Make links assuming the script path is in the same directory as
 	# the destination
 	var $alternateScriptPath = false;
@@ -130,7 +133,10 @@ class DumpHTML {
 			$this->doSpecials();
 		}
 		$this->doLocalImageDescriptions();
-		$this->doSharedImageDescriptions();
+
+		if ( !$this->noSharedDesc ) {
+			$this->doSharedImageDescriptions();
+		}
 
 		$this->setCheckpoint( 'everything', 'done' );
 	}
@@ -224,7 +230,9 @@ class DumpHTML {
 
 	function doImageDescriptions() {
 		$this->doLocalImageDescriptions();
-		$this->doSharedImageDescriptions();
+		if ( !$this->noSharedDesc ) {
+			$this->doSharedImageDescriptions();
+		}
 	}
 
 	/**
