@@ -17,6 +17,8 @@
  * --checkpoint <file>  use a checkpoint file to allow restarting of interrupted dumps
  * --slice <n/m>        split the job into m segments and do the n'th one
  * --images             only do image description pages
+ * --shared-desc        only do shared (commons) image description pages
+ * --no-shared-desc     don't do shared image description pages
  * --categories         only do category pages
  * --redirects          only do redirects
  * --special            only do miscellaneous stuff
@@ -93,6 +95,7 @@ $wgHTMLDump = new DumpHTML( array(
 	'sliceDenominator' => $sliceDenominator,
 	'noOverwrite' => $options['no-overwrite'],
 	'compress' => $options['compress'],
+	'noSharedDesc' => $options['no-shared-desc'],
 ));
 
 
@@ -104,6 +107,8 @@ if ( $options['special'] ) {
 	$wgHTMLDump->doCategories();
 } elseif ( $options['redirects'] ) {
 	$wgHTMLDump->doRedirects();
+} elseif ( $options['shared-desc'] ) {
+	$wgHTMLDump->doSharedImageDescriptions();
 } else {
 	print "Creating static HTML dump in directory $dest. \n";
 	$dbr =& wfGetDB( DB_SLAVE );
