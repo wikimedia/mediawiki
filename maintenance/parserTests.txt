@@ -5871,6 +5871,221 @@ TODO: Images with the "|" character in the comment
 
 !!end
 
+!! test
+[Before] HTML without raw HTML enabled ($wgRawHtml==false)
+!! input
+<html><script>alert(1);</script></html>
+!! result
+<p>&lt;html&gt;&lt;script&gt;alert(1);&lt;/script&gt;&lt;/html&gt;
+</p>
+!! end
+
+!! test
+HTML with raw HTML ($wgRawHtml==true)
+!! options
+rawhtml
+!! input
+<html><script>alert(1);</script></html>
+!! result
+<p><script>alert(1);</script>
+</p>
+!! end
+
+!! test
+Parents of subpages, one level up
+!! options
+subpage title=[[Subpage test/L1/L2/L3]]
+!! input
+[[../|L2]]
+!! result
+<p><a href="/index.php?title=Subpage_test/L1/L2&amp;action=edit" class="new" title="Subpage test/L1/L2">L2</a>
+</p>
+!! end
+
+
+!! test
+Parents of subpages, one level up, not named
+!! options
+subpage title=[[Subpage test/L1/L2/L3]]
+!! input
+[[../]]
+!! result
+<p><a href="/index.php?title=Subpage_test/L1/L2&amp;action=edit" class="new" title="Subpage test/L1/L2">Subpage test/L1/L2</a>
+</p>
+!! end
+
+
+
+!! test
+Parents of subpages, two levels up
+!! options
+disabled
+subpage title=[[Subpage test/L1/L2/L3]]
+!! input
+[[../../|L1]]2
+!! result
+<p><a href="/index.php?title=Subpage_test/L1&amp;action=edit" class="new" title="Subpage test/L1">L1</a>
+</p>
+!! end
+
+
+# Question: should result be "/index.php?title=Subpage_test/L1&amp;action=edit" instead?
+!! test
+TODO: Parents of subpages, two levels up, without trailing slash or name.
+!! options
+subpage title=[[Subpage test/L1/L2/L3]]
+!! input
+[[../..]]
+!! result
+<p><a href="/index.php?title=Subpage_test/L1/L2/..&amp;action=edit" class="new" title="Subpage test/L1">../..</a>
+</p>
+!! end
+
+# Question: Why should the link text in the above test be "../..", yet in this test the "../.." part is silently dropped?
+# Current result: <p><a href="/index.php?title=Subpage_test/L1////&amp;action=edit" class="new" title="Subpage test/L1////">///
+!! test
+TODO: Parents of subpages, two levels up, with lots of extra trailing slashes.
+!! options
+subpage title=[[Subpage test/L1/L2/L3]]
+!! input
+[[../../////]]
+!! result
+<p><a href="/index.php?title=Subpage_test/L1&amp;action=edit" class="new" title="Subpage test/L1">Subpage test/L1</a>
+</p>
+!! end
+
+!! test
+Definition list code coverage
+!! input
+; title   : def
+; title : def
+;title: def
+!! result
+<dl><dt> title  &nbsp;</dt><dd> def
+</dd><dt> title&nbsp;</dt><dd> def
+</dd><dt>title</dt><dd> def
+</dd></dl>
+
+!! end
+
+!! test
+TODO: Don't fall for the self-closing div
+!! input
+<div>hello world</div/>
+!! result
+<div>hello world</div>
+
+!! end
+
+!! test
+MSGNW magic word
+!! input
+{{MSGNW:msg}}
+!! result
+<p>&#91;&#91;:Template:Msg]]
+</p>
+!! end
+
+!! test
+RAW magic word
+!! input
+{{RAW:QUERTY}}
+!! result
+<p><a href="/index.php?title=Template:QUERTY&amp;action=edit" class="new" title="Template:QUERTY">Template:QUERTY</a>
+</p>
+!! end
+
+!! test
+TODO: Always escape literal '>' in output, not just after '<'
+!! input
+><>
+!! result
+<p>&gt;&lt;&gt;
+</p>
+!! end
+
+!! test
+Template caching
+!! input
+{{Test}}
+{{Test}}
+!! result
+<p>This is a test template
+This is a test template
+</p>
+!! end
+
+
+!! article
+MediaWiki:Fake
+!! text
+==header==
+!! endarticle
+
+!! test
+Inclusion of !userCanEdit() content
+!! input
+{{MediaWiki:Fake}}
+!! result
+<a name="header"></a><h2><span class="editsection">[<a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=1" title="MediaWiki:Fake">edit</a>]</span> <span class="mw-headline">header</span></h2>
+
+!! end
+
+
+!! test
+Out-of-order TOC heading levels
+!! input
+==2==
+======6======
+===3===
+=1=
+=====5=====
+==2==
+!! result
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#2"><span class="tocnumber">1</span> <span class="toctext">2</span></a>
+<ul>
+<li class="toclevel-2"><a href="#6"><span class="tocnumber">1.1</span> <span class="toctext">6</span></a></li>
+<li class="toclevel-2"><a href="#3"><span class="tocnumber">1.2</span> <span class="toctext">3</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#1_7"><span class="tocnumber">2</span> <span class="toctext">1</span></a>
+<ul>
+<li class="toclevel-2"><a href="#5"><span class="tocnumber">2.1</span> <span class="toctext">5</span></a></li>
+<li class="toclevel-2"><a href="#2_4"><span class="tocnumber">2.2</span> <span class="toctext">2</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: 2">edit</a>]</span> <span class="mw-headline">2</span></h2>
+<a name="6"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: 6">edit</a>]</span> <span class="mw-headline">6</span></h6>
+<a name="3"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: 3">edit</a>]</span> <span class="mw-headline">3</span></h3>
+<a name="1_7"></a><h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: 1">edit</a>]</span> <span class="mw-headline">1</span></h1>
+<a name="5"></a><h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: 5">edit</a>]</span> <span class="mw-headline">5</span></h5>
+<a name="2_4"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: 2">edit</a>]</span> <span class="mw-headline">2</span></h2>
+
+!! end
+
+
+!! test
+ISBN with a dummy number
+!! input
+ISBN ---
+!! result
+<p><a href="/index.php?title=Special:Booksources&amp;isbn=" class="internal">ISBN ---</a>
+</p>
+!! end
+
+
+!! test
+Pages in namespace (Magic word disabled currently)
+!! input
+{{PAGESINNAMESPACE:}}
+!! result
+
+!! end
+
 
 #
 #

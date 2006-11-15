@@ -370,7 +370,7 @@ class ParserTest {
 			'wgLanguageCode' => $lang,
 			'wgContLanguageCode' => $lang,
 			'wgDBprefix' => 'parsertest_',
-
+			'wgRawHtml' => preg_match('/\\brawhtml\\b/i', $opts),
 			'wgLang' => null,
 			'wgContLang' => null,
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
@@ -843,6 +843,7 @@ class AnsiTermColorer {
 	}
 }
 
+/* A colour-less terminal */
 class DummyTermColorer {
 	function color( $color ) {
 		return '';
@@ -894,9 +895,9 @@ class TestRecorder {
 }
 
 class DbTestRecorder extends TestRecorder  {
-	var $db; ///< Database connection to the main DB
-	var $curRun; ///< run ID number for the current run
-	var $prevRun; ///< run ID number for the previous run, if any
+	private $db;      ///< Database connection to the main DB
+	private $curRun;  ///< run ID number for the current run
+	private $prevRun; ///< run ID number for the previous run, if any
 	
 	function __construct( $term ) {
 		parent::__construct( $term );
@@ -962,11 +963,15 @@ class DbTestRecorder extends TestRecorder  {
 				array( 'previously FAILING test(s) removed O_o', 0, null ),
 				array( 'new FAILING test(s) :(', null, 0 ),
 			);
-			foreach( $table as $blah ) {
-				list( $label, $before, $after ) = $blah;
-				$count = $this->comparisonCount( $before, $after );
-				if( $count ) {
+			foreach( $table as $criteria ) {
+				list( $label, $before, $after ) = $criteria;
+				$differences = $this->compareResult( $before, $after );
+				if( $differences ) {
+					$count = count($differences);
 					printf( "%4d %s\n", $count, $label );
+					foreach ($differences as $differing_test_name) {
+						print "      * $differing_test_name\n";
+					}
 				}
 			}
 		} else {
@@ -976,19 +981,20 @@ class DbTestRecorder extends TestRecorder  {
 	}
 	
 	/**
-	 * :P
+	 ** @desc: Returns an array of the test names with changed results, based on the specified
+	 **        before/after criteria.
 	 */
-	private function comparisonCount( $before, $after ) {
+	private function compareResult( $before, $after ) {
 		$testitem = $this->db->tableName( 'testitem' );
 		$prevRun = intval( $this->prevRun );
 		$curRun = intval( $this->curRun );
 		$prevStatus = $this->condition( $before );
 		$curStatus = $this->condition( $after );
 		
-		// note: requires a current mysql for subselects
+		// note: requires mysql >= ver 4.1 for subselects
 		if( is_null( $after ) ) {
 			$sql = "
-				select count(*) as c from $testitem as prev
+				select prev.ti_name as t from $testitem as prev
 					where prev.ti_run=$prevRun and
 						prev.ti_success $prevStatus and
 						(select current.ti_success from $testitem as current
@@ -996,7 +1002,7 @@ class DbTestRecorder extends TestRecorder  {
 								and prev.ti_name=current.ti_name) $curStatus";
 		} else {
 			$sql = "
-				select count(*) as c from $testitem as current 
+				select current.ti_name as t from $testitem as current 
 					where current.ti_run=$curRun and
 						current.ti_success $curStatus and
 						(select prev.ti_success from $testitem as prev
@@ -1004,11 +1010,17 @@ class DbTestRecorder extends TestRecorder  {
 								and prev.ti_name=current.ti_name) $prevStatus";
 		}
 		$result = $this->db->query( $sql, __METHOD__ );
-		$row = $this->db->fetchObject( $result );
+		$retval = array();
+		while ($row = $this->db->fetchObject( $result )) {
+			$retval[] = $row->t;
+		}
 		$this->db->freeResult( $result );
-		return $row->c;
+		return $retval;
 	}
 	
+	/**
+	 ** @desc: Helper function for compareResult() database querying.
+	 */
 	private function condition( $value ) {
 		if( is_null( $value ) ) {
 			return 'IS NULL';
