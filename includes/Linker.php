@@ -1095,5 +1095,29 @@ class Linker {
 		return array( $inside, $trail );
 	}
 
+	/**
+	 * Generate a rollback link for a given revision.  Currently it's the
+	 * caller's responsibility to ensure that the revision is the top one. If
+	 * it's not, of course, the user will get an error message.
+	 *
+	 * If the calling page is called with the parameter &bot=1, all rollback
+	 * links also get that parameter. It causes the edit itself and the rollback
+	 * to be marked as "bot" edits. Bot edits are hidden by default from recent
+	 * changes, so this allows sysops to combat a busy vandal without bothering
+	 * other users.
+	 *
+	 * @param Revision $rev
+	 */
+	function generateRollback( $rev ) {
+		global $wgUser, $wgRequest;
+		$title = $rev->getTitle();
+
+		$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
+		$extraRollback .= '&token=' . urlencode(
+			$wgUser->editToken( array( $title->getPrefixedText(), $rev->getUserText() ) ) );
+		return '<span class="mw-rollback-link">['. $this->makeKnownLinkObj( $title,
+		  	wfMsg('rollbacklink'),
+		  	'action=rollback&from=' . urlencode( $rev->getUserText() ) . $extraRollback ) .']</span>';
+	}
 }
 ?>

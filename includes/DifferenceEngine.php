@@ -148,11 +148,7 @@ CONTROL;
 		$contribs = wfMsg( 'contribslink' );
 
 		if ( $this->mNewRev->isCurrent() && $wgUser->isAllowed('rollback') ) {
-			$username = $this->mNewRev->getUserText();
-			$rollback = '&nbsp;&nbsp;&nbsp;<strong>[' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'rollbacklink' ),
-				'action=rollback&from=' . urlencode( $username ) .
-				'&token=' . urlencode( $wgUser->editToken( array( $this->mTitle->getPrefixedText(), $username ) ) ) ) .
-				']</strong>';
+			$rollback = '&nbsp;&nbsp;&nbsp;' . $sk->generateRollback( $this->mNewRev );
 		} else {
 			$rollback = '';
 		}
