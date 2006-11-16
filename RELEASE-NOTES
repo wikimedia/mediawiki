@@ -70,8 +70,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6427) Block blocked IPs from using the mail password function
   to allow blocking of flooders
 * Include common.css from classic-style skins in main HTML with the bump URL
-  FIXME: this may leave doubled rules which won't stand up to certain changes.
-  Will want to adjust these more to eliminate the dupe @includes.
 * (bug 7607) Add Karakalpak (kaa) to Names.php and stub message file for linktrail
 * (bug 7582) Add 'tog-nolangconversion' to MessagesEn.php.
   This key is need for languages with variants (zh, sr, kk)
@@ -185,6 +183,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add auto-summaries to blankings and large removals without summaries.
 * (bug 7811) Allow preview of edit summaries.
 * (bug 6839) Wikibits.js minor changes to make JS-lint happier.
+* (bug 7932) Make sure that edit toolbar clears floats so it appears correctly.
 
 
 == Languages updated ==

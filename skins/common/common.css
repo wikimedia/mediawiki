@@ -456,3 +456,5 @@ table.multipageimage td {
 .imagelist th.TablePager_sort { background-color: #ccccff }
 
 .templatesUsed { margin-top: 1em; }
+
+#toolbar { clear: both; }
