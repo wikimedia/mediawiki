@@ -346,7 +346,7 @@ $messages = array(
 "nosuchaction"	=> "Diese Aktion gibt es nicht",
 'nosuchactiontext'	=> 'Die in der URL angegebene Aktion wird von der MediaWiki-Software nicht unterstützt.',
 "nosuchspecialpage" => "Diese Spezialseite gibt es nicht",
-'nospecialpagetext'	=> 'Sie haben eine nicht vorhandene Spezialseite aufgerufen. Eine Liste aller verfügabren Spezialseiten finden Sie unter [[{{ns:special}}:Specialpages]].',
+'nospecialpagetext'	=> 'Sie haben eine nicht vorhandene Spezialseite aufgerufen. Eine Liste aller verfügbaren Spezialseiten finden Sie unter [[{{ns:special}}:Specialpages]].',
 
 # General errors
 #
