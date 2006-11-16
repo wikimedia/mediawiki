@@ -725,7 +725,7 @@ $messages = array(
 'loadhist'                    => 'טוען את היסטוריית השינויים של הדף',
 'currentrev'                  => 'גרסה נוכחית',
 'revisionasof'                => 'גרסה מתאריך $1',
-'old-revision-navigation'     => 'גרסה מתאריך $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'old-revision-navigation'     => 'גרסה מתאריך $1; $5<br />($6) $3 | $2 ($8) | $4 ($7)',
 'previousrevision'            => '→ הגרסה הקודמת',
 'nextrevision'                => 'הגרסה הבאה ←',
 'currentrevisionlink'         => 'הגרסה הנוכחית',
@@ -2135,7 +2135,7 @@ $1',
 'table_pager_empty'        => 'ללא תוצאות',
 
 # Auto-summaries
-'autosumm-blank'   => 'מרוקן את הדף',
+'autosumm-blank'   => 'מסיר את כל התוכן מדף זה',
 'autosumm-replace' => "מחליף את הדף עם '$1'",
 'autoredircomment' => 'הפניה לדף [[$1]]', # This should be changed to the new naming convention, but existed beforehand
 
