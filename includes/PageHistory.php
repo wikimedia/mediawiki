@@ -168,7 +168,7 @@ class PageHistory {
 
 	/** @todo document */
 	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false, $latest = false, $firstInList = false ) {
-		global $wgUser;
+		global $wgUser, $wgRequest, $wgTitle;
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->mTitle );
 
@@ -209,6 +209,14 @@ class PageHistory {
 		}
 		if( $row->rev_deleted & Revision::DELETED_TEXT ) {
 			$s .= ' ' . wfMsgHtml( 'deletedrev' );
+		}
+		if( $wgUser->isAllowed( 'rollback' ) && $firstInList ) {
+			$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
+			$extraRollback .= '&token=' . urlencode(
+				$wgUser->editToken( array( $wgTitle->getPrefixedText(), $rev->getUserText() ) ) );
+			$s .= ' ['. $this->mSkin->makeKnownLinkObj( $wgTitle,
+			  	wfMsg('rollbacklink'),
+			  	'action=rollback&from=' . $rev->getUserText() . $extraRollback ) .']';
 		}
 		$s .= "</li>\n";
 
