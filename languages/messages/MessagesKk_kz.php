@@ -126,12 +126,12 @@ $messages = array(
 'tog-justify'                 => 'Ежелерді ені бойынша туралау',
 'tog-hideminor'               => 'Жуықтағы өзгерістерде шағын түзетуді жасыр',
 'tog-extendwatchlist'         => 'Бақылау тізімді ұлғайт (барлық жарамды өзгерістерді көрсет)',
-'tog-usenewrc'                => 'Кеңейтілген Жуықтағы өзгерістер (JavaScript)',
+'tog-usenewrc'                => 'Кеңейтілген Жуықтағы өзгерістер (-{JavaScript}-)',
 'tog-numberheadings'          => 'Бөлім тақырыптарын өздік түрде номірле',
-'tog-showtoolbar'             => 'Өңдеу қуралдар жолағын көрсет (JavaScript)',
-'tog-editondblclick'          => 'Қос нұқымдап өңдеу (JavaScript)',
+'tog-showtoolbar'             => 'Өңдеу қуралдар жолағын көрсет (-{JavaScript}-)',
+'tog-editondblclick'          => 'Қос нұқымдап өңдеу (-{JavaScript}-)',
 'tog-editsection'             => 'Бөлімдерді [өңдеу] сілтемесімен өңдеуін ендір',
-'tog-editsectiononrightclick' => 'Бөлім атауын оң жақ нұқумен<br />өңдеуін ендір (JavaScript)',
+'tog-editsectiononrightclick' => 'Бөлім атауын оң жақ нұқумен<br />өңдеуін ендір (-{JavaScript}-)',
 'tog-showtoc'                 => 'Мазмұнын көрсет (3-тен артық бөлімі барыларға)',
 'tog-rememberpassword'        => 'Кіргенімді бұл компьютерде ұмытпа',
 'tog-editwidth'               => 'Өңдеу аумағы толық енімен',
@@ -149,8 +149,8 @@ $messages = array(
 'tog-fancysig'                => 'Қам қолтаңба (өздік сілтемесіз;)',
 'tog-externaleditor'          => 'Сыртқы өңдеуішті әдепкіден қолдан',
 'tog-externaldiff'            => 'Сыртқы айырмағышты әдепкіден қолдан',
-'tog-showjumplinks'           => '"Өтіп кету" қатынау сілтемелерін ендір',
-'tog-uselivepreview'          => 'Тура қарап шығуды қолдану (JavaScript) (Сынақ түрінде)',
+'tog-showjumplinks'           => '«Өтіп кету» қатынау сілтемелерін ендір',
+'tog-uselivepreview'          => 'Тура қарап шығуды қолдану (-{JavaScript}-) (Сынақ түрінде)',
 'tog-autopatrol'              => 'Түзетуімді күзетке белгіле',
 'tog-forceeditsummary'        => 'Өңдеу сипаттамасы бос қалғанда маған ескерт',
 'tog-watchlisthideown'        => 'Түзетуімді бақылау тізімнен жасыр',
@@ -216,21 +216,22 @@ $messages = array(
 'dec'           => 'жел',
 
 # Bits of text used by many pages
-'categories'      => 'Барлық санат тізімі',
-'pagecategories'  => '{{PLURAL:$1|Санат|Санаттар}}',
-'category_header' => '«$1» санатындағы беттер',
-'subcategories'   => 'Төменгі санаттар',
+'categories'            => 'Барлық санат тізімі',
+'pagecategories'        => '{{PLURAL:$1|Санат|Санаттар}}',
+'category_header'       => '«$1» санатындағы беттер',
+'subcategories'         => 'Төменгі санаттар',
+'category-media-header' => '«$1» санатындағы таспалар',
 
 'linkprefix'        => '/^(.*?)([a-zäçéğıïñöşüýа-яёәіңғүұқөһA-ZÄÇÉĞİÏÑÖŞÜÝА-ЯЁӘІҢҒҮҰҚӨҺʺʹ«„]+)$/sD',
 'mainpage'          => 'Басты бет',
-'mainpagetext'      => "<big>'''MediaWiki бағдарламасы сәтті орнатылды.'''</big>",
+'mainpagetext'      => "<big>'''-{MediaWiki}- бағдарламасы сәтті орнатылды.'''</big>",
 'mainpagedocfooter' => 'Уики бағдарламасын пайдалану ақпараты үшін [http://meta.wikimedia.org/wiki/Help:Contents Пайдаланушы нұсқауларымен] танысыңыз.
 
 == Бастау ==
 
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Баптау қалаулары тізімі]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki ЖСЖ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki хат тарату тізімі]',
+* [http://www.mediawiki.org/wiki/Help:FAQ -{MediaWiki}- ЖСЖ]
+* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce -{MediaWiki}- хат тарату тізімі]',
 
 'portal'          => 'Қауым порталы',
 'portal-url'      => '{{ns:project}}:Қауым_порталы',
@@ -260,7 +261,7 @@ $messages = array(
 'moredotdotdot'   => 'Көбірек…',
 'mypage'          => 'Жеке бетім',
 'mytalk'          => 'Талқылауым',
-'anontalk'        => 'IP талқылауы',
+'anontalk'        => '-{IP}- талқылауы',
 'navigation'      => 'Бағыттау',
 
 # Metadata in edit box
@@ -315,7 +316,6 @@ $messages = array(
 'viewtalkpage'      => 'Талқылау бетін қарау',
 'otherlanguages'    => 'Басқа тілдерде',
 'redirectedfrom'    => '($1 бетінен айдатылған)',
-'autoredircomment'  => '[[$1]] бетіне айдады',
 'redirectpagesub'   => 'Айдату беті',
 'lastmodifiedat'    => 'Бұл беттің өзгертілген соңғы кезі: $2, $1.', # $1 date, $2 time
 'viewcount'         => 'Бұл бет {{plural:$1|бір|$1}} рет қаралған.',
@@ -366,7 +366,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Мұндай әрекет жоқ',
-'nosuchactiontext'  => 'Осы URL жайымен енгізілген әрекетті
+'nosuchactiontext'  => 'Осы -{URL}- жайымен енгізілген әрекетті
 осы уики жорамалдап білмеді.',
 'nosuchspecialpage' => 'Бұл арнайы бет емес',
 'nospecialpagetext' => 'Сіз сұранысқан арнайы бет жарамсыз. Барлық жарамды арнайы беттер тізімін [[{{ns:special}}:Specialpages]] бетінде таба аласыз.',
@@ -402,7 +402,7 @@ $1',
 ергеннен болуы мүмкін.
 
 Егер бұл болжам дұрыс себеп болмаса, бағдарламамыздағы қатеге тап болуыңыз мүмкін.
-Бұл туралы нақты URL жайын көрсетіп әкімшіге есептеме жіберіңіз.',
+Бұл туралы нақты -{URL}- жайын көрсетіп әкімшіге есептеме жіберіңіз.',
 'readonly_lag'         => 'Жетек дерекқор серверлер бастауышпен қадамланғанда осы дерекқор өздік түрінде құлыпталынған',
 'internalerror'        => 'Ішкі қате',
 'filecopyerror'        => '«$1» файлы «$2» файлына көшірілмеді.',
@@ -489,7 +489,7 @@ $1',
 'wrongpasswordempty'         => 'Құпия сөз босты бопты. Қайталап көріңіз.',
 'mailmypassword'             => 'Құпия сөзімді хатпен жібер',
 'passwordremindertitle'      => 'Құпия сөз туралы {{SITENAME}} жобасының ескертуі',
-'passwordremindertext'       => 'Кейбіреу (IP жайы: $1, бәлкім, өзіңіз боларсыз)
+'passwordremindertext'       => 'Кейбіреу (-{IP}- жайы: $1, бәлкім, өзіңіз боларсыз)
 {{SITENAME}} үшін бізден жаңа құпия сөзін жіберуін сұранысқан ($4).
 «$2» қатысушының құпия сөзі «$3» болды енді.
 Қазір кіруіңіз және құпия сөзіңізді ауыструыңыз қажет.
@@ -501,7 +501,7 @@ $1',
 'passwordsent'               => 'Жаңа құпия сөз «$1» үшін
 тіркелген е-пошта жайына жіберілді.
 Қабылдағаннан кейін кіргенде соны енгізіңіз.',
-'blocked-mailpassword'       => 'IP жайыңыздан өңдеу бұғатталған, сондықтан
+'blocked-mailpassword'       => '-{IP}- жайыңыздан өңдеу бұғатталған, сондықтан
 қиянатшылықтан сақтану үшін құпия сөз жіберу қызметінің әрекеті рұқсат етілмейді.',
 'eauthentsent'               => 'Куәландыру хаты аталған е-пошта жайына жіберілді.
 Басқа е-пошта хатын жіберудің алдынан, тіркелгі шынынан сіздікі екенін
@@ -528,12 +528,12 @@ $1',
 'italic_tip'      => 'Қиғаш мәтін',
 'link_sample'     => 'Сілтеме атауы',
 'link_tip'        => 'Ішкі сілтеме',
-'extlink_sample'  => 'http://www.example.com сілтеме атауы',
+'extlink_sample'  => '-{http://www.example.com}- сілтеме атауы',
 'extlink_tip'     => 'Сыртқы сілтеме (алдынан http:// енгізуін ұмытпаңыз)',
 'headline_sample' => 'Тақырып мәтіні',
 'headline_tip'    => '1-ші деңгейлі тақырып',
 'math_sample'     => 'Формуланы мында енгізіңіз',
-'math_tip'        => 'Математика формуласы (LaTeX)',
+'math_tip'        => 'Математика формуласы (-{LaTeX}-)',
 'nowiki_sample'   => 'Пішімделмейтін мәтінді осында енгізіңіз',
 'nowiki_tip'      => 'Уики пішімін елемеу',
 'image_sample'    => 'Example.jpg',
@@ -553,18 +553,20 @@ $1',
 'showpreview'               => 'Қарап шығу',
 'showlivepreview'           => 'Тура қарап шығу',
 'showdiff'                  => 'Өзгерістерді көрсет',
-'anoneditwarning'           => "'''Назар салыңыз:''' Сіз жүйеге кірмегенсіз. IP жайыңыз бұл беттің өңдеу тарихында жазылып алынады.",
+'anoneditwarning'           => "'''Назар салыңыз:''' Сіз жүйеге кірмегенсіз. -{IP}- жайыңыз бұл беттің өңдеу тарихында жазылып алынады.",
 'missingsummary'            => "'''Ескерту:''' Түзету сипаттамасын енгізбепсіз. «Сақтау» түймесін тағы бассаңыз, түзетуіңіз мәндемесіз сақталады.",
 'missingcommenttext'        => 'Төменде мәндемеңізді енгізіңіз.',
 'missingcommentheader'      => "'''Ескерту:''' Бұл мәндемеге тақырып/басжол жетістірмепсіз. Егер тағы да Сақтау түймесін нұқысаңыз, түзетуіңіз солсыз сақталады.",
+'summary-preview'           => 'Сипаттамасын қарап шығу',
+'subject-preview'           => 'Тақырыбын/басын қарап шығу',
 'blockedtitle'              => 'Пайдаланушы бұғатталған',
-'blockedtext'               => "<big>'''Қатысушы атыңыз не IP жайыңыз бұғатталған.'''</big>
+'blockedtext'               => "<big>'''Қатысушы атыңыз не -{IP}- жайыңыз бұғатталған.'''</big>
 
 бұғаттауды $1 істеген. Белгіленген себебі: ''$2''.
 
 Осы бұғаттауды талқылау үшін $1 дегенмен не басқа [[{{ns:project}}:Әкімшілер|әкімшімен]] қатынасуыңызға болады.
 [[{{ns:special:Preferences|Тіркелгі баптауларын]] қолданып жарамды е-пошта жайын енгізгенше дейін
-«Қатысушыға хат жазу» қасиетін пайдаланылмайсыз. Ағымдық IP жайыңыз $3 болған. Бұны әрбір сұранысыңызға қосыңыз.",
+«Қатысушыға хат жазу» қасиетін пайдаланылмайсыз. Ағымдық -{IP}- жайыңыз $3 болған. Бұны әрбір сұранысыңызға қосыңыз.",
 'blockedoriginalsource'     => "Төменде '''$1''' дегеннің қайнары көрсетіледі:",
 'blockededitsource'         => "Төменде '''$1''' дегенге жасалған '''түзетуңіздің''' мәтіні көрсетіледі:",
 'whitelistedittitle'        => 'Өңдеу үшін кіруіңіз жөн.',
@@ -586,13 +588,13 @@ $1',
 теріңіз (көбірек ақпарат үшін [[{{ns:help}}:Мазмұны|көмек бетін]]
 қараңыз).Егер жаңылғаннан осында келген болсаңыз, шолғышыңыз
 «Артқа» деген түймесін нұқыңыз.',
-'anontalkpagetext'          => "----''Бұл тіркелгісіз (немесе тіркелгісін қолданбаған) пайдаланушының талқылау беті. Осы пайдаланушыны біз тек сандық IP жайымен теңдестіреміз. Осындай IP жайлар бірнеше пайдаланушыға ортақ болуы мүмкін. Егер сіз тіркелгісіз пайдаланушы болсаңыз және сізге қатыссыз мәндемелер жіберілгенін сезсеңіз, басқа тіркелгісіз пайдаланушылармен араластырмауы үшін [[{{ns:special}}:Userlogin|тіркелгі жасаңыз не кіріңіз]].''",
+'anontalkpagetext'          => "----''Бұл тіркелгісіз (немесе тіркелгісін қолданбаған) пайдаланушының талқылау беті. Осы пайдаланушыны біз тек сандық -{IP}- жайымен теңдестіреміз. Осындай -{IP}- жайлар бірнеше пайдаланушыға ортақ болуы мүмкін. Егер сіз тіркелгісіз пайдаланушы болсаңыз және сізге қатыссыз мәндемелер жіберілгенін сезсеңіз, басқа тіркелгісіз пайдаланушылармен араластырмауы үшін [[{{ns:special}}:Userlogin|тіркелгі жасаңыз не кіріңіз]].''",
 'noarticletext'             => 'Бұл бетте ағымда еш мәтін жоқ, басқа беттерден осы бет атауын [[{{ns:special}}:Search/{{PAGENAME}}|іздеп көруіңізге]] немесе осы бетті [{{fullurl:{{FULLPAGENAME}}|action=edit}} түзетуіңізге] болады.',
 'clearyourcache'            => "'''Аңғартпа:''' Сақтағаннан кейін өзгерістерді көру үшін шолғыш қосалқы қалтасын босату керегі мүмкін. '''Mozilla  / Safari:''' ''Shift'' пернесін басып тұрып ''Reload'' (''Қайта жүктеу'') түймесін нұқыңыз (не ''Ctrl-Shift-R'' басыңыз); ''IE:'' ''Ctrl-F5'' басыңыз; '''Opera / Konqueror''' ''F5'' пернесін басыңыз.",
 'usercssjsyoucanpreview'    => '<strong>Басалқы:</strong> Сақтау алдында жаңа CSS/JS файлын тексеру үшін «Қарап шығу» түймесін қолданыңыз.',
 'usercsspreview'            => "'''Мынау CSS мәтінін тек қарап шығу екенін ұмытпаңыз, ол әлі сақталған жоқ!'''",
 'userjspreview'             => "'''Мынау JavaScript қатысушы бағдарламасын тексеру/қарап шығу екенін ұмытпаңыз, ол әлі сақталған жоқ!'''",
-'userinvalidcssjstitle'     => "'''Назар салыңыз:''' Мында «$1» атаулы безендіру мәнері жоқ. Пайдаланушының .css және .js файл атауы кіші әріпппен жазылатынын ұмытпаңыз, мысалы, {{ns:user}}:Foo/monobook.css атауын {{ns:user}}:Foo/Monobook.css атауымен салыстырғанда.",
+'userinvalidcssjstitle'     => "'''Назар салыңыз:''' Мында «$1» атаулы безендіру мәнері жоқ. Пайдаланушының .css және .js файл атауы кіші әріпппен жазылатынын ұмытпаңыз, мысалға {{ns:user}}:Foo/monobook.css дегенді {{ns:user}}:Foo/Monobook.css дегенмен салыстырыңыз.",
 'updated'                   => '(Жаңартылған)',
 'note'                      => '<strong>Аңғартпа:</strong>',
 'previewnote'               => '<strong>Мынау тек қарап шығу екенін ұмытпаңыз; түзетулер әлі сақталған жоқ!</strong>',
@@ -646,7 +648,7 @@ $1',
 'nocreatetext'              => 'Бұл торапта жаңа бет бастауы шектелген.
 Кері қайтып бар бетті өңдеуіңізге болады, немесе [[{{ns:special}}:Userlogin|кіруіңізге не тіркелгі жасауға]] болады.',
 'cantcreateaccounttitle'    => 'Тіркелгі жасалмады',
-'cantcreateaccounttext'     => 'Осы IP-жайдан (<b>$1</b>) тіркелгі жасауы бұғатталған.
+'cantcreateaccounttext'     => 'Осы -{IP}--жайдан (<b>$1</b>) тіркелгі жасауы бұғатталған.
 Бәлкім себебі, оқу орныңыздан, немесе Интернет жеткізушіден
 үзбей бұзақылық болғаны.',
 
@@ -656,7 +658,7 @@ $1',
 'nohistory'                   => 'Осы беттінің нұсқалар тарихы жоқ.',
 'revnotfound'                 => 'Нұсқа табылмады',
 'revnotfoundtext'             => 'Осы сұранысқан беттің ескі нұсқасы табылған жоқ.
-Осы бетті ашуға пайдаланған URL жайын қайта тексеріп шығыңыз.',
+Осы бетті ашуға пайдаланған -{URL}- жайын қайта тексеріп шығыңыз.',
 'loadhist'                    => 'Бет тарихын жүктеуі',
 'currentrev'                  => 'Ағымдық нұсқасы',
 'revisionasof'                => '$1 кезіндегі нұсқасы',
@@ -709,7 +711,7 @@ $1',
 'revdelete-legend'          => 'Нұсқанының шектеулері:',
 'revdelete-hide-text'       => 'Нұсқа мәтінін жасыр',
 'revdelete-hide-comment'    => 'Түзету мәндемесін жасыр',
-'revdelete-hide-user'       => 'Өңдеуші атын (IP-жайын) жасыр',
+'revdelete-hide-user'       => 'Өңдеуші атын (-{IP}--жайын) жасыр',
 'revdelete-hide-restricted' => 'Осы шектеулерді баршаға сияқты әкімшілерге де қолдану',
 'revdelete-log'             => 'Журнал мәндемесі:',
 'revdelete-submit'          => 'Талғанған нұсқаға қолдану',
@@ -921,21 +923,21 @@ $1',
 'filewasdeleted'              => 'Осы атауы бар файл бұрын қотарылған, сосын жойылдырылған. Қайта қотару алдынан $1 дегенді тексеріңіз.',
 
 'upload-proto-error'      => 'Жарамсыз хаттамалық',
-'upload-proto-error-text' => 'Сырттан қотару үшін URL жайлары <code>http://</code> немесе <code>ftp://</code> дегендерден басталу қажет.',
+'upload-proto-error-text' => 'Сырттан қотару үшін -{URL}- жайлары <code>http://</code> немесе <code>ftp://</code> дегендерден басталу қажет.',
 'upload-file-error'       => 'Ішкі қате',
 'upload-file-error-text'  => 'Серверде уақытша файл жасауы ішкі қатеге ұшырасты. Бұл жүйенің әкімшімен қатынасыңыз.',
 'upload-misc-error'       => 'Белгісіз қотару қатесі',
-'upload-misc-error-text'  => 'Қотару кезінде белгісіз қате ұшырасты. Қайсы URL жайы жарамды және қатынаулы екенін тексеріп шығыңыз да қайталап көріңіз. Егер бұл мәселе әлде де қалса, жүйе әкімшімен қатынасыңыз.',
+'upload-misc-error-text'  => 'Қотару кезінде белгісіз қате ұшырасты. Қайсы -{URL}- жайы жарамды және қатынаулы екенін тексеріп шығыңыз да қайталап көріңіз. Егер бұл мәселе әлде де қалса, жүйе әкімшімен қатынасыңыз.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'       => 'URL жайы жетілмеді',
-'upload-curl-error6-text'  => 'Берілген URL жайы жетілмеді. Қайсы URL жайы дұрыс екенін және торап істе екенін қайталап қатаң тексеріңіз.',
+'upload-curl-error6'       => '-{URL}- жайы жетілмеді',
+'upload-curl-error6-text'  => 'Берілген -{URL}- жайы жетілмеді. Қайсы -{URL}- жайы дұрыс екенін және торап істе екенін қайталап қатаң тексеріңіз.',
 'upload-curl-error28'      => 'Қотаруға берілген уақыт бітті',
 'upload-curl-error28-text' => 'Тораптың жауап беруі тым ұзақ уақытқа созылды. Бұл торап істе екенін тексеріп шығыңыз, аз уақыт кідіре тұрыңыз да тағы қайталап көріңіз. Талабыңызды жүктелуі аздау кезінде қайталауға болмыс.',
 
 'license'            => 'Лицензиясы',
 'nolicense'          => 'Ештеңе талғанбаған',
-'upload_source_url'  => ' (жарамды, баршаға қатынаулы URL жай)',
+'upload_source_url'  => ' (жарамды, баршаға қатынаулы -{URL}- жай)',
 'upload_source_file' => ' (компьютеріңіздегі файл)',
 
 # Image list
@@ -976,8 +978,8 @@ $1',
 'imagelist_search_for'      => 'Суретті атымен іздеу:',
 
 # MIME search
-'mimesearch' => 'Файлды MIME түрімен іздеу',
-'mimetype'   => 'MIME түрі:',
+'mimesearch' => 'Файлды -{MIME}- түрімен іздеу',
+'mimetype'   => '-{MIME}- түрі:',
 'download'   => 'жүктеу',
 
 # Unwatched pages
@@ -1067,7 +1069,7 @@ $1',
 'move'                    => 'Жылжыту',
 'movethispage'            => 'Бетті жылжыту',
 'unusedimagestext'        => '<p>Ескерту: Басқа веб тораптар файлдың
-URL жайына тікелей сілтеуі мүмкін. Сондықтан, белсенді пайдалануына аңғармай,
+-{URL}- жайына тікелей сілтеуі мүмкін. Сондықтан, белсенді пайдалануына аңғармай,
 осы тізімде қалуы мүмкін.</p>',
 'unusedcategoriestext'    => 'Келесі санат беттер бар болып тұр, бірақ оған ешқандай бет, не санат кірмейді.',
 'booksources'             => 'Кітап қайнарлары',
@@ -1078,7 +1080,7 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 'booksourcetext'          => 'Төменде жаңа және қолданған кітаптар сататын
 тораптарының сілтемелері тізімделген. Бұл тораптарда ізделген кітаптар
 туралы былайғы ақпарат болуға мүмкін.',
-'isbn'                    => 'ISBN белгісі',
+'isbn'                    => '-{ISBN}- белгісі',
 'alphaindexline'          => '$1 — $2',
 'version'                 => 'Жүйе нұсқасы',
 'log'                     => 'Журналдар',
@@ -1113,7 +1115,7 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 Қатысушы баптауыңызда енгізген е-пошта жайыңыз
 «Кімнен» деген бас жолағында көрінеді, сондықтан
 хат алушысы тура жауап бере алады.',
-'usermailererror' => 'Mail нысаны қате қайтарды:',
+'usermailererror' => '-{Mail}- нысаны қате қайтарды:',
 'defemailsubject' => '{{SITENAME}} е-поштасының хаты',
 'noemailtitle'    => 'Бұл е-пошта жайы емес',
 'noemailtext'     => 'Осы қатысушы жарамды Е-пошта жайын енгізбеген,
@@ -1237,10 +1239,10 @@ $NEWPAGE
 'rollbacklink'                => 'қайтару',
 'rollbackfailed'              => 'Қайтару сәтсіз аяқталды',
 'cantrollback'                => 'Түзету қайтарылмайды. Бұл беттің соңғы үлескері тек бастауыш ауторы.',
-'alreadyrolled'               => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) жасаған [[$1]]
+'alreadyrolled'               => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) дегенді жасаған [[$1]]
 бетінің соңғы өңдеуінен қайтару өтпеді; кейбіреу осы қазір бетті өңдеп не қайтарып жатыр түге.
 
-Соңғы өңдеуді [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|талқылауы]]) жасаған.',
+Соңғы өңдеуді [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|талқылауы]]) дегенді жасаған.',
 'editcomment'                 => 'Түзетудің болған мәндемесі: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => '[[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) түзетуінен [[{{ns:user}}:$1|$1]] соңғы нұсқасына қайтарды',
 'sessionfailure'              => 'Кіру сессиясында шатақ болған сияқты;
@@ -1333,40 +1335,40 @@ $NEWPAGE
 'notargettext'  => 'Осы әрекет орындалатын нысана бет,
 не қатысушы көрсетілмеген.',
 'linklistsub'   => '(Сілтемелер тізімі)',
-'linkshere'     => "Мынаған '''[[:$1]]''' келесі беттер сілтейді:",
-'nolinkshere'   => "Мынаған '''[[:$1]]''' еш бет сілтемейді.",
+'linkshere'     => "'''[[:$1]]''' дегенге мына беттер сілтейді:",
+'nolinkshere'   => "'''[[:$1]]''' дегенге еш бет сілтемейді.",
 'isredirect'    => 'айдату беті',
 'istemplate'    => 'кіріктіру',
 
 # Block/unblock
 'blockip'                     => 'Пайдаланушыны бұғаттау',
 'blockiptext'                 => 'Төмендегі үлгіт пайдаланушының жазу рұқсатын
-белгілі IP жайымен не атауымен бұғаттау үшін қолданылады.
+белгілі -{IP}- жайымен не атауымен бұғаттау үшін қолданылады.
 Бұны тек бұзақылыққа кедергі істеу үшін және де
 [[{{ns:project}}:Саясат|саясат]] бойынша атқаруыңыз жөн.
 Төменде тиісті себебін толтырып көрсетіңіз (мысалы, дәйекке бұзақылықпен
 өзгерткен беттерді келтіріп).',
-'ipaddress'                   => 'IP-жай',
-'ipadressorusername'          => 'IP жай не қатысушы аты',
+'ipaddress'                   => '-{IP}--жай',
+'ipadressorusername'          => '-{IP}- жай не қатысушы аты',
 'ipbexpiry'                   => 'Бітетін мерзімі',
 'ipbreason'                   => 'Себебі',
 'ipbanononly'                 => 'Тек тіркелгісізді бұғаттау',
 'ipbcreateaccount'            => 'Тіркелгі жасауын кедергілеу',
-'ipbenableautoblock'          => 'Бұл қатысушының қолданған соңғы IP жайын, және әрқайсы кейін түзету істеуге үмітеліген жайларын өздік түрде бұғаттау',
+'ipbenableautoblock'          => 'Бұл қатысушының қолданған соңғы -{IP}- жайын, және әрқайсы кейін түзету істеуге үмітеліген жайларын өздік түрде бұғаттау',
 'ipbsubmit'                   => 'Пайдаланушыны бұғаттау',
 'ipbother'                    => 'Басқа мерзім',
 'ipboptions'                  => '2 сағат:2 hours,1 күн:1 day,3 күн:3 days,1 апта:1 week,2 апта:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мәнгі:infinite',
 'ipbotheroption'              => 'басқа',
-'badipaddress'                => 'Жарамсыз IP жай',
+'badipaddress'                => 'Жарамсыз -{IP}- жай',
 'blockipsuccesssub'           => 'Бұғаттау сәтті өтті',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] деген бұғатталған.
-<br />Бұғаттауларды [[{{ns:special}}:Ipblocklist|IP бұғаттау тізімінде]] қарап шығыңыз.',
+<br />Бұғаттауларды [[{{ns:special}}:Ipblocklist|-{IP}- бұғаттау тізімінде]] қарап шығыңыз.',
 'unblockip'                   => 'Пайдаланушыны бұғаттамау',
-'unblockiptext'               => 'Төмендегі үлгіт белгілі IP жайымен не атауымен
+'unblockiptext'               => 'Төмендегі үлгіт белгілі -{IP}- жайымен не атауымен
 бұрын бұғатталған пайдаланушының жазу рұқсатын қайтару үшін қолданылады.',
 'ipusubmit'                   => 'Осы жайды бұғаттамау',
 'unblocked'                   => '[[{{ns:user}}:$1|$1]] бұғаттауы өшірілді',
-'ipblocklist'                 => 'Бұғатталған пайдаланушы / IP жай тізімі',
+'ipblocklist'                 => 'Бұғатталған пайдаланушы / -{IP}- жай тізімі',
 'blocklistline'               => '$1, $2 «$3» дегенді бұғаттады ($4)',
 'infiniteblock'               => 'мәнгі',
 'expiringblock'               => 'бітуі: $1',
@@ -1377,24 +1379,24 @@ $NEWPAGE
 'blocklink'                   => 'бұғаттау',
 'unblocklink'                 => 'бұғаттамау',
 'contribslink'                => 'үлесі',
-'autoblocker'                 => "IP жайыңызды жуықта «[[{{ns:user}}:1|$1]]» пайдаланған, сондықтан өздік түрде бұғатталған. $1 бұғаттау себебі: «'''$2'''».",
+'autoblocker'                 => "-{IP}- жайыңызды жуықта «[[{{ns:user}}:1|$1]]» пайдаланған, сондықтан өздік түрде бұғатталған. $1 бұғаттау себебі: «'''$2'''».",
 'blocklogpage'                => 'Бұғаттау_журналы',
 'blocklogentry'               => '«[[$1]]» бұғаттады, бітетін мерзімі: $2',
 'blocklogtext'                => 'Бұл пайдаланушыларды бұғаттау/бұғаттамау әрекеттерінің журналы. Өздік түрде
-бұғатталған IP жайлар осында тізімделгемеген. Ағымдағы белсенді бұғаттауларын
-[[{{ns:special}}:Ipblocklist|IP бұғаттау тізімінен]] қарауға болады.',
+бұғатталған -{IP}- жайлар осында тізімделгемеген. Ағымдағы белсенді бұғаттауларын
+[[{{ns:special}}:Ipblocklist|-{IP}- бұғаттау тізімінен]] қарауға болады.',
 'unblocklogentry'             => '«$1» бұғаттауын өшірді',
 'range_block_disabled'        => 'Ауқым бұғаттауын жасау әкімшілік мүмкіндігі өшірілген.',
 'ipb_expiry_invalid'          => 'Бітетін уақыты жарамсыз.',
 'ipb_already_blocked'         => '«$1» бұғатталған түге',
-'ip_range_invalid'            => 'IP жай ауқымы жарамсыз.',
+'ip_range_invalid'            => '-{IP}- жай ауқымы жарамсыз.',
 'proxyblocker'                => 'Прокси серверлерді бұғаттауыш',
-'ipb_cant_unblock'            => 'Қате: IP $1 бұғаттауы табылмады. Оның бұғаттауы өшірлген сияқты.',
-'proxyblockreason'            => 'IP жайыңыз ашық прокси серверге жататындықтан бұғатталған. Интернет қызметін жабдықтаушыңызбен, не техникалық медеу қызметімен қатынасыңыз, және оларға осы оте күрделі қауыпсіздік шатақ туралы ақпарат беріңіз.',
+'ipb_cant_unblock'            => 'Қате: -{IP}- $1 бұғаттауы табылмады. Оның бұғаттауы өшірлген сияқты.',
+'proxyblockreason'            => '-{IP}- жайыңыз ашық прокси серверге жататындықтан бұғатталған. Интернет қызметін жабдықтаушыңызбен, не техникалық медеу қызметімен қатынасыңыз, және оларға осы оте күрделі қауыпсіздік шатақ туралы ақпарат беріңіз.',
 'proxyblocksuccess'           => 'Бітті.',
-'sorbs'                       => 'DNSBL қара тізімі',
-'sorbsreason'                 => 'Сіздің IP жайыңыз осы торапта қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады.',
-'sorbs_create_account_reason' => 'Сіздің IP жайыңыз осы торапта қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады. Тіркелгі жасай алмайсыз.',
+'sorbs'                       => '-{DNSBL}- қара тізімі',
+'sorbsreason'                 => 'Сіздің -{IP}- жайыңыз осы торапта қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады.',
+'sorbs_create_account_reason' => 'Сіздің -{IP}- жайыңыз осы торапта қолданылған DNSBL қара тізіміндегі ашық прокси-сервер деп табылады. Тіркелгі жасай алмайсыз.',
 
 # Developer tools
 'lockdb'              => 'Дерекқорды құлыптау',
@@ -1521,8 +1523,8 @@ $NEWPAGE
 'allmessagesdefault'        => 'Әдепкі мәтіні',
 'allmessagescurrent'        => 'Ағымдық мәтіні',
 'allmessagestext'           => 'Мында «MediaWiki:» есім аясындағы барлық қатынаулы жүйе хабар тізімі беріліп тұр.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.',
-'allmessagesnotsupportedDB' => "'''wgUseDatabaseMessages''' бабы өшірілген себебінен '''{{ns:special}}:AllMessages''' сипаты сүемелденбейді.",
+'allmessagesnotsupportedUI' => '-{Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.}-',
+'allmessagesnotsupportedDB' => "'''-{wgUseDatabaseMessages}-''' бабы өшірілген себебінен '''{{ns:special}}:AllMessages''' сипаты сүемелденбейді.",
 'allmessagesfilter'         => 'Хабарды атауы бойынша сүзгілеу:',
 'allmessagesmodified'       => 'Тек өзгертілгенді көрсет',
 
@@ -1587,8 +1589,8 @@ $NEWPAGE
 'Monobook.css' => '/* Мындағы CSS әмірлері «Дара кітап» безендіру мәнерін пайдаланушыларға әсер етеді */',
 
 # Metadata
-'nodublincore'      => 'Осы серверге «Dublin Core RDF» мета-деректері өшірілген.',
-'nocreativecommons' => 'Осы серверге «Creative Commons RDF» мета-деректері өшірілген.',
+'nodublincore'      => 'Осы серверге «-{Dublin Core RDF}-» мета-деректері өшірілген.',
+'nocreativecommons' => 'Осы серверге «-{Creative Commons RDF}-» мета-деректері өшірілген.',
 'notacceptable'     => 'Осы уики сервері сіздің «user client» оқи алатын пішімі бар деректерді жібере алмайды.',
 
 # Attribution
@@ -1622,12 +1624,12 @@ $NEWPAGE
 'numtalkauthors' => 'Әртүрлі аутор саны (талқылау беті): $1',
 
 # Math options
-'mw_math_png'    => 'Әрқашан PNG түрімен көрсет',
-'mw_math_simple' => 'Кәдімгі болса HTML пішімімен, басқаша PNG түрімен',
-'mw_math_html'   => 'Ықтимал болса HTML пішімімен, басқаша PNG түрімен',
+'mw_math_png'    => 'Әрқашан -{PNG}- түрімен көрсет',
+'mw_math_simple' => 'Кәдімгі болса -{HTML}- пішімімен, басқаша -{PNG}- түрімен',
+'mw_math_html'   => 'Ықтимал болса -{HTML}- пішімімен, басқаша -{PNG}- түрімен',
 'mw_math_source' => 'TeX пішімінде қалдыру (мәтіндік шолғыштарына)',
 'mw_math_modern' => 'Осы заманның шолғыштарына ұсынылған',
-'mw_math_mathml' => 'Ықтимал болса MathML пшімімен (сынақ түрінде)',
+'mw_math_mathml' => 'Ықтимал болса -{MathML}- пшімімен (сынақ түрінде)',
 
 # Patrolling
 'markaspatrolleddiff'        => 'Күзетте деп белгілеу',
@@ -1716,7 +1718,7 @@ if (wgUserLanguage == "kk-cn"){
 
 'imagemaxsize' => 'Сурет түйіндеме бетіндегі суреттің мөлшерін шектеуі:',
 'thumbsize'    => 'Нобай мөлшері:',
-'showbigimage' => 'Жоғары айқынды ($1×$2, $3 кБ) нұсқасын жүктеу',
+'showbigimage' => 'Жоғары ажыратылымды ($1×$2, $3 кБ) нұсқасын жүктеу',
 
 'newimages'    => 'Ең жаңа файлдар қоймасы',
 'showhidebots' => '(боттарды $1)',
@@ -1737,10 +1739,10 @@ if (wgUserLanguage == "kk-cn"){
 # Media Warning
 'mediawarning' => "'''Назар салыңыз''': Бұл файл түрінде қаскүнемді әмірдің бар болуы ықтимал; файлды жегіп жүйеңізге зиян келтіруіңіз мүмкін.<hr />",
 
-'fileinfo' => '$1 кБ, MIME түрі: <code>$2</code>',
+'fileinfo' => '$1 кБ, -{MIME}- түрі: <code>$2</code>',
 
 # Metadata
-'metadata'          => 'Мета-деректер',
+'metadata'          => 'Мета-деректері',
 'metadata-help'     => 'Осы файлда қосымша ақпарат бар. Бәлкім, осы ақпарат файлды жасап шығару, не сандылау үшін пайдаланған сандық камера, не мәтіналғырдан алынған. Егер осы файл негізгі күйінен өзгертілген болса, кейбір ежелелері өзгертілген фотосуретке лайық болмас.',
 'metadata-expand'   => 'Егжей-тегжейін көрсет',
 'metadata-collapse' => 'Егжей-тегжейін жасыр',
@@ -1753,6 +1755,279 @@ if (wgUserLanguage == "kk-cn"){
 * exposuretime
 * fnumber
 * focallength',
+
+# EXIF tags
+'exif-imagewidth'                  => 'Ені',
+'exif-imagelength'                 => 'Биіктігі',
+'exif-bitspersample'               => 'Құраш сайын бит саны',
+'exif-compression'                 => 'Қысым сұлбасы',
+'exif-photometricinterpretation'   => 'Пиксел қиысуы',
+'exif-orientation'                 => 'Мегзеуі',
+'exif-samplesperpixel'             => 'Құраш саны',
+'exif-planarconfiguration'         => 'Дерек реттеуі',
+'exif-ycbcrsubsampling'            => '-{Y}- құрашының -{C}- құрашына жарнақтауы',
+'exif-ycbcrpositioning'            => '-{Y}- құрашы және -{C}- құрашы мекендеуі',
+'exif-xresolution'                 => 'Дерелей ажыратылымдығы',
+'exif-yresolution'                 => 'Тірелей ажыратылымдығы',
+'exif-resolutionunit'              => '-{X}- және -{Y}- ажыратылымдықтарығының өлшемі',
+'exif-stripoffsets'                => 'Сурет дереректерінің жайғасуы',
+'exif-rowsperstrip'                => 'Белдік сайын жол саны',
+'exif-stripbytecounts'             => 'Қысымдалған белдік сайын байт саны',
+'exif-jpeginterchangeformat'       => '-{JPEG SOI}- дегеннен ығысуы',
+'exif-jpeginterchangeformatlength' => '-{JPEG}- деректерінің байт саны',
+'exif-transferfunction'            => 'Тасымалдау функциясы',
+'exif-whitepoint'                  => 'Ақ нүкте түстілігі',
+'exif-primarychromaticities'       => 'Алғы шептегі түстіліктері',
+'exif-ycbcrcoefficients'           => 'Түс аясын тасымалдау матрицалық еселіктері',
+'exif-referenceblackwhite'         => 'Қара және ақ анықтауыш қос колемдері',
+'exif-datetime'                    => 'Файлдың өзгертілген күн-айы',
+'exif-imagedescription'            => 'Сурет атауы',
+'exif-make'                        => 'Камера өндірушісі',
+'exif-model'                       => 'Камера үлгісі',
+'exif-software'                    => 'Қолданылған бағдарлама',
+'exif-artist'                      => 'Жығармашысы',
+'exif-copyright'                   => 'Жығармашылық құқықтар иесі',
+'exif-exifversion'                 => '-{Exif}- нұсқасы',
+'exif-flashpixversion'             => 'Сүйемделінген -{Flashpix}- нұсқасы',
+'exif-colorspace'                  => 'Түс аясы',
+'exif-componentsconfiguration'     => 'Әрқайсы құраш мәні',
+'exif-compressedbitsperpixel'      => 'Сурет қысымдау тәртібі',
+'exif-pixelydimension'             => 'Суреттің жарамды ені',
+'exif-pixelxdimension'             => 'Суреттің жарамды биіктігі',
+'exif-makernote'                   => 'Өндіруші ескертпелері',
+'exif-usercomment'                 => 'Пайдаланушы мәндемелері',
+'exif-relatedsoundfile'            => 'Қатысты дыбыс файлы',
+'exif-datetimeoriginal'            => 'Жасалған кезі',
+'exif-datetimedigitized'           => 'Сандықтау кезі',
+'exif-subsectime'                  => 'Жасалған кезінің секунд бөлшектері',
+'exif-subsectimeoriginal'          => 'Түпнұсқа кезінің секунд бөлшектері',
+'exif-subsectimedigitized'         => 'Сандықтау кезінің секунд бөлшектері',
+'exif-exposuretime'                => 'Ұсталым уақыты',
+'exif-exposuretime-format'         => '$1 с ($2)',
+'exif-fnumber'                     => 'Саңылау мөлшері',
+'exif-fnumber-format'              => '-{f/$1}-',
+'exif-exposureprogram'             => 'Ұсталым бағдарламасы',
+'exif-spectralsensitivity'         => 'Спектр бойынша сезгіштігі',
+'exif-isospeedratings'             => '-{ISO}- жылдамдық жарнақтауы (жарық сезгіштігі)',
+'exif-oecf'                        => 'Оптоелектронды түрлету ықпалы',
+'exif-shutterspeedvalue'           => 'Жапқыш жылдамдылығы',
+'exif-aperturevalue'               => 'Саңылаулық',
+'exif-brightnessvalue'             => 'Ашықтық',
+'exif-exposurebiasvalue'           => 'Ұсталым өтемі',
+'exif-maxaperturevalue'            => 'Барынша саңылау ашуы',
+'exif-subjectdistance'             => 'Нысана қашықтығы',
+'exif-meteringmode'                => 'Өлшеу тәртібі',
+'exif-lightsource'                 => 'Жарық көзі',
+'exif-flash'                       => 'Жарқылдағыш',
+'exif-focallength'                 => 'Шоғырлау алшақтығы',
+'exif-focallength-format'          => '$1 -{mm}-',
+'exif-subjectarea'                 => 'Нысана ауқымы',
+'exif-flashenergy'                 => 'Жарқылдағыш қарқыны',
+'exif-spatialfrequencyresponse'    => 'Кеңістік-жиілік әсершілігі',
+'exif-focalplanexresolution'       => '-{Х}- бойынша шоғырлау жайпақтықтың ажыратылымдығы',
+'exif-focalplaneyresolution'       => '-{Y}- бойынша шоғырлау жайпақтықтың ажыратылымдығы',
+'exif-focalplaneresolutionunit'    => 'Шоғырлау жайпақтықтың ажыратылымдық өлшемі',
+'exif-subjectlocation'             => 'Нысана мекендеуі',
+'exif-exposureindex'               => 'Ұсталым айқындауы',
+'exif-sensingmethod'               => 'Сенсордің өлшеу әдісі',
+'exif-filesource'                  => 'Файл қайнары',
+'exif-scenetype'                   => 'Сахна түрі',
+'exif-cfapattern'                  => '-{CFA}- сүзгі кейіпі',
+'exif-customrendered'              => 'Қосымша сурет өңдетуі',
+'exif-exposuremode'                => 'Ұсталым тәртібі',
+'exif-whitebalance'                => 'Ақ түсінің тендестігі',
+'exif-digitalzoomratio'            => 'Сандық ауқымдау жарнақтауы',
+'exif-focallengthin35mmfilm'       => '-{35 mm}- таспасының шоғырлау алшақтығы',
+'exif-scenecapturetype'            => 'Түсірген сахна түрі',
+'exif-gaincontrol'                 => 'Сахнаны меңгеру',
+'exif-contrast'                    => 'Қарама-қарсылық',
+'exif-saturation'                  => 'Қанықтық',
+'exif-sharpness'                   => 'Айқындық',
+'exif-devicesettingdescription'    => 'Жабдық баптау сипаттары',
+'exif-subjectdistancerange'        => 'Сахна қашықтығының көлемі',
+'exif-imageuniqueid'               => 'Суреттің бірегей нөмірі (ID)',
+'exif-gpsversionid'                => '-{GPS}- белгішесінің нұсқасы',
+'exif-gpslatituderef'              => 'Солтүстік немесе Оңтүстік бойлығы',
+'exif-gpslatitude'                 => 'Бойлығы',
+'exif-gpslongituderef'             => 'Шығыс немесе Батыс ендігі',
+'exif-gpslongitude'                => 'Ендігі',
+'exif-gpsaltituderef'              => 'Биіктік көрсетуі',
+'exif-gpsaltitude'                 => 'Биіктік',
+'exif-gpstimestamp'                => '-{GPS}- уақыты (атом сағаты)',
+'exif-gpssatellites'               => 'Өлшеуге пйдаланылған Жер серіктері',
+'exif-gpsstatus'                   => 'Қабылдағыш күйі',
+'exif-gpsmeasuremode'              => 'Өлшеу тәртібі',
+'exif-gpsdop'                      => 'Өлшеу дәлдігі',
+'exif-gpsspeedref'                 => 'Жылдамдылық өлшемі',
+'exif-gpsspeed'                    => '-{GPS}- қабылдағыштың жылдамдылығы',
+'exif-gpstrackref'                 => 'Қозғалыс бағытын көрсетуі',
+'exif-gpstrack'                    => 'Қозғалыс бағыты',
+'exif-gpsimgdirectionref'          => 'Сурет бағытын көрсетуі',
+'exif-gpsimgdirection'             => 'Сурет бағыты',
+'exif-gpsmapdatum'                 => 'Пайдаланылған геодезиялық түсірме деректері',
+'exif-gpsdestlatituderef'          => 'Нысана бойлығын көрсетуі',
+'exif-gpsdestlatitude'             => 'Нысана бойлығы',
+'exif-gpsdestlongituderef'         => 'Нысана ендігін көрсетуі',
+'exif-gpsdestlongitude'            => 'Нысана ендігі',
+'exif-gpsdestbearingref'           => 'Нысана азимутын көрсетуі',
+'exif-gpsdestbearing'              => 'Нысана азимуты',
+'exif-gpsdestdistanceref'          => 'Нысана қашықтығын көрсетуі',
+'exif-gpsdestdistance'             => 'Нысана қашықтығы',
+'exif-gpsprocessingmethod'         => '-{GPS}- өңдету әдісінің атауы',
+'exif-gpsareainformation'          => '-{GPS}- аумағының атауы',
+'exif-gpsdatestamp'                => '-{GPS}- күн-айы',
+'exif-gpsdifferential'             => '-{GPS}- сараланған түзету',
+
+# EXIF attributes
+'exif-compression-1' => 'Ұлғайтылған',
+'exif-compression-6' => '-{JPEG}-',
+
+'exif-photometricinterpretation-2' => '-{RGB}-',
+'exif-photometricinterpretation-6' => '-{YCbCr}-',
+
+'exif-orientation-1' => 'Қалыпты', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Дерелей шағылысқан', # 0th row: top; 0th column: right
+'exif-orientation-3' => '180° бұрышқа айналған', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Тірелей шағылысқан', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Сағат тілшесіне қарсы 90° бұрышқа айналған және тірелей шағылысқан', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Сағат тілше бойынша 90° бұрышқа айналған', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Сағат тілше бойынша 90° бұрышқа айналған және тірелей шағылысқан', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Сағат тілшесіне қарсы 90° бұрышқа айналған', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'талпақ пішім',
+'exif-planarconfiguration-2' => 'тайпақ пішім',
+
+'exif-xyresolution-i' => '$1 -{dpi}-',
+'exif-xyresolution-c' => '$1 -{dpc}-',
+
+'exif-colorspace-1'      => '-{sRGB}-',
+'exif-colorspace-ffff.h' => '-{FFFF.H}-',
+
+'exif-componentsconfiguration-0' => 'бар болмады',
+'exif-componentsconfiguration-1' => '-{Y}-',
+'exif-componentsconfiguration-2' => '-{Cb}-',
+'exif-componentsconfiguration-3' => '-{Cr}-',
+'exif-componentsconfiguration-4' => '-{R}-',
+'exif-componentsconfiguration-5' => '-{G}-',
+'exif-componentsconfiguration-6' => '-{B}-',
+
+'exif-exposureprogram-0' => 'Анықталмаған',
+'exif-exposureprogram-1' => 'Қолмен',
+'exif-exposureprogram-2' => 'Бағдарламалы әдіс (қалыпты)',
+'exif-exposureprogram-3' => 'Саңылау басыңқылығы',
+'exif-exposureprogram-4' => 'Ысырма басыңқылығы',
+'exif-exposureprogram-5' => 'Өнер бағдарламасы (анықтық терендігіне санасқан)',
+'exif-exposureprogram-6' => 'Қимыл бағдарламасы (жапқыш шапшандылығына санасқан)',
+'exif-exposureprogram-7' => 'Тірелей әдісі (арты шоғырлаусыз таяу түсірмелер)',
+'exif-exposureprogram-8' => 'Дерелей әдісі (арты шоғырланған дерелей түсірмелер)',
+
+'exif-subjectdistance-value' => '$1 -{m}-',
+
+'exif-meteringmode-0'   => 'Белгісіз',
+'exif-meteringmode-1'   => 'Біркелкі',
+'exif-meteringmode-2'   => 'Бұлдыр дақ',
+'exif-meteringmode-3'   => 'БірДақты',
+'exif-meteringmode-4'   => 'КөпДақты',
+'exif-meteringmode-5'   => 'Өрнекті',
+'exif-meteringmode-6'   => 'Жыртынды',
+'exif-meteringmode-255' => 'Басқа',
+
+'exif-lightsource-0'   => 'Белгісіз',
+'exif-lightsource-1'   => 'Күн жарығы',
+'exif-lightsource-2'   => 'Күнжарықты шам',
+'exif-lightsource-3'   => 'Қыздырғышты шам',
+'exif-lightsource-4'   => 'Жарқылдағыш',
+'exif-lightsource-9'   => 'Ашық күн',
+'exif-lightsource-10'  => 'Бұлынғыр күн',
+'exif-lightsource-11'  => 'Көленкелі',
+'exif-lightsource-12'  => 'Күнжарықты шам -{(D 5700–7100 K)}-',
+'exif-lightsource-13'  => 'Күнжарықты шам -{(N 4600–5400 K)}-',
+'exif-lightsource-14'  => 'Күнжарықты шам -{(W 3900–4500 K)}-',
+'exif-lightsource-15'  => 'Күнжарықты шам -{(WW 3200–3700 K)}-',
+'exif-lightsource-17'  => 'Қалыпты жарық қайнары -{A}-',
+'exif-lightsource-18'  => 'Қалыпты жарық қайнары -{B}-',
+'exif-lightsource-19'  => 'Қалыпты жарық қайнары -{C}-',
+'exif-lightsource-20'  => '-{D55}-',
+'exif-lightsource-21'  => '-{D65}-',
+'exif-lightsource-22'  => '-{D75}-',
+'exif-lightsource-23'  => '-{D50}-',
+'exif-lightsource-24'  => 'Студиялық -{ISO}- күнжарықты шам',
+'exif-lightsource-255' => 'Басқа жарық қайнары',
+
+'exif-focalplaneresolutionunit-2' => 'дюйм',
+
+'exif-sensingmethod-1' => 'Анықталмаған',
+'exif-sensingmethod-2' => '1-чипті аумақты түссезгіш',
+'exif-sensingmethod-3' => '2-чипті аумақты түссезгіш',
+'exif-sensingmethod-4' => '3-чипті аумақты түссезгіш',
+'exif-sensingmethod-5' => 'Кезекті аумақты түссезгіш',
+'exif-sensingmethod-7' => '3-сызықты түссезгіш',
+'exif-sensingmethod-8' => 'Кезекті сызықты түссезгіш',
+
+'exif-filesource-3' => '-{DSC}-',
+
+'exif-scenetype-1' => 'Тікелей түсірілген фотосурет',
+
+'exif-customrendered-0' => 'Қалыпты өңдету',
+'exif-customrendered-1' => 'Қосымша өңдету',
+
+'exif-exposuremode-0' => 'Өздік ұсталымдау',
+'exif-exposuremode-1' => 'Қолмен ұсталымдау',
+'exif-exposuremode-2' => 'Өздік жарқылдау',
+
+'exif-whitebalance-0' => 'Ақ түсінің өздік тендестіру',
+'exif-whitebalance-1' => 'Ақ түсінің қолмен тендестіру',
+
+'exif-scenecapturetype-0' => 'Қалыпты',
+'exif-scenecapturetype-1' => 'Дерелей',
+'exif-scenecapturetype-2' => 'Тірелей',
+'exif-scenecapturetype-3' => 'Түнгі сахна',
+
+'exif-gaincontrol-0' => 'Жоқ',
+'exif-gaincontrol-1' => 'Төмен зораю',
+'exif-gaincontrol-2' => 'Жоғары зораю',
+'exif-gaincontrol-3' => 'Төмен баяулау',
+'exif-gaincontrol-4' => 'Жоғары баяулау',
+
+'exif-contrast-0' => 'Қалыпты',
+'exif-contrast-1' => 'Ұян',
+'exif-contrast-2' => 'Тұрпайы',
+
+'exif-saturation-0' => 'Қалыпты',
+'exif-saturation-1' => 'Төмен қанықты',
+'exif-saturation-2' => 'Жоғары қанықты',
+
+'exif-sharpness-0' => 'Қалыпты',
+'exif-sharpness-1' => 'Ұян',
+'exif-sharpness-2' => 'Тұрпайы',
+
+'exif-subjectdistancerange-0' => 'Белгісіз',
+'exif-subjectdistancerange-1' => 'Таяу түсірілген',
+'exif-subjectdistancerange-2' => 'Жақын түсірілген',
+'exif-subjectdistancerange-3' => 'Алыс түсірілген',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Солтүстік бойлығы',
+'exif-gpslatitude-s' => 'Оңтүстік бойлығы',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Шығыс ендігі',
+'exif-gpslongitude-w' => 'Батыс ендігі',
+
+'exif-gpsstatus-a' => 'Өлшеу ұласуда',
+'exif-gpsstatus-v' => 'Өлшеу өзара әрекетте',
+
+'exif-gpsmeasuremode-2' => '2-бағыттық өлшем',
+'exif-gpsmeasuremode-3' => '3-бағыттық өлшем',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => '-{km/h}-',
+'exif-gpsspeed-m' => '-{mil/h}-',
+'exif-gpsspeed-n' => 'Ж. түйін',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Шын бағыт',
+'exif-gpsdirection-m' => 'Магнитты бағыт',
 
 # External editor support
 'edit-externally'      => 'Бұл файлды сыртқы құрал/бағдарлама арқылы өңдеу',
@@ -1783,7 +2058,7 @@ if (wgUserLanguage == "kk-cn"){
 'confirmemail_loggedin'   => 'Е-пошта жайыңыз куәландырылды.',
 'confirmemail_error'      => 'Куәландыруыңызды сақтағанда белгісіз қате болды.',
 'confirmemail_subject'    => '{{SITENAME}} торабынан е-пошта жайыңызды куәландыру хаты',
-'confirmemail_body'       => "Кейбіреу, мына $1 IP жайынан, өзіңіз болуы мүмкін,
+'confirmemail_body'       => "Кейбіреу, мына $1 -{IP}- жайынан, өзіңіз болуы мүмкін,
 {{SITENAME}} жобасындағы Е-пошта жайын қолданып «$2» тіркелгі жасапты.
 
 Осы тіркелгі растан сіздікі екенін куәландыру үшін, және {{SITENAME}} жобасының
@@ -1802,7 +2077,7 @@ $3
 # Scary transclusion
 'scarytranscludedisabled' => '[Уики-ара кірегу өшірілген]',
 'scarytranscludefailed'   => '[$1 бетіне үлгі өңдету сәтсіз бітті; кешіріңіз]',
-'scarytranscludetoolong'  => '[URL жайы тым ұзын; кешіріңіз]',
+'scarytranscludetoolong'  => '[-{URL}- жайы тым ұзын; кешіріңіз]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -1859,6 +2134,11 @@ $1
 'table_pager_limit'        => 'Бет сайын $1 дана көрсет',
 'table_pager_limit_submit' => 'Өту',
 'table_pager_empty'        => 'Еш нәтиже жоқ',
+
+# Auto-summaries
+'autosumm-blank'   => 'Бетті тазартты',
+'autosumm-replace' => "Бетті '$1' дегенмен алмастырды",
+'autoredircomment' => '[[$1]] дегенге айдады', # This should be changed to the new naming convention, but existed beforehand
 
 );
 
