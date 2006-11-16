@@ -369,12 +369,6 @@ function contributionsForm( $options ) {
  * privileges. The rollback link restores the most recent version that was not
  * written by the target user.
  *
- * If the contributions page is called with the parameter &bot=1, all rollback
- * links also get that parameter. It causes the edit itself and the rollback
- * to be marked as "bot" edits. Bot edits are hidden by default from recent
- * changes, so this allows sysops to combat a busy vandal without bothering
- * other users.
- *
  * @todo This would probably look a lot nicer in a table.
  */
 function ucListEdit( $sk, $row ) {
@@ -390,7 +384,7 @@ function ucListEdit( $sk, $row ) {
 	}
 
 	$rev = new Revision( $row );
-	
+
 	$page = Title::makeTitle( $row->page_namespace, $row->page_title );
 	$link = $sk->makeKnownLinkObj( $page );
 	$difftext = $topmarktext = '';
@@ -403,12 +397,7 @@ function ucListEdit( $sk, $row ) {
 		}
 
 		if( $wgUser->isAllowed( 'rollback' ) ) {
-			$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
-			$extraRollback .= '&token=' . urlencode(
-				$wgUser->editToken( array( $page->getPrefixedText(), $row->rev_user_text ) ) );
-			$topmarktext .= ' ['. $sk->makeKnownLinkObj( $page,
-			  	$messages['rollbacklink'],
-			  	'action=rollback&from=' . urlencode( $row->rev_user_text ) . $extraRollback ) .']';
+			$topmarktext .= ' '.$sk->generateRollback( $rev );
 		}
 
 	}
