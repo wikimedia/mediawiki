@@ -350,15 +350,29 @@ case "apache":
 case "apache2handler":
 	print "ok, using pretty URLs (<tt>index.php/Page_Title</tt>)";
 	break;
-default:
-	print "unknown; ";
 case "cgi":
 case "cgi-fcgi":
+	// For some reason cgi.fix_pathinfo isn't retrievable via ini_get()
+	if( isset( $_SERVER['ORIG_PATH_INFO'] ) ) {
+		echo "cgi.fix_pathinfo is set, good; ";
+	} else {
+		echo "cgi.fix_pathinfo is not set, assuming PATH_INFO broken; ";
+		$conf->prettyURLs = false;
+	}
+	break;
 case "apache2filter":
 case "isapi":
-	print "using ugly URLs (<tt>index.php?title=Page_Title</tt>)";
+	// Pretty sure these two break from past tests
 	$conf->prettyURLs = false;
 	break;
+default:
+	print "unknown, assuming PATH_INFO broken for safety; ";
+	$conf->prettyURLs = false;
+}
+if( $conf->prettyURLs ) {
+	print "ok, using pretty URLs (<tt>index.php/Page_Title</tt>)";
+} else {
+	print "using ugly URLs (<tt>index.php?title=Page_Title</tt>)";
 }
 print "</li>\n";
 
@@ -484,7 +498,14 @@ $conf->UseImageResize = $conf->HaveGD || $conf->ImageMagick;
 $conf->IP = dirname( dirname( __FILE__ ) );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
-$conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["PHP_SELF"] ); # was SCRIPT_NAME
+
+// PHP_SELF isn't available sometimes, such as when PHP is CGI but
+// cgi.fix_pathinfo is disabled. In that case, fall back to SCRIPT_NAME
+// to get the path to the current script... hopefully it's reliable. SIGH
+$path = ($_SERVER["PHP_SELF"] === '')
+	? $_SERVER["SCRIPT_NAME"]
+	: $_SERVER["PHP_SELF"];
+$conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $path );
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
 print "<li style='font-weight:bold;color:green;font-size:110%'>Environment checked. You can install MediaWiki.</li>\n";
@@ -1374,8 +1395,14 @@ if ( \$wgCommandLineMode ) {
 
 ## For more information on customizing the URLs please see:
 ## http://meta.wikimedia.org/wiki/Eliminating_index.php_from_the_url
-## If using PHP as a CGI module, the ?title= style usually must be used.
+
+## 'Pretty' URLs using PATH_INFO work on most configurations with
+## PHP configured as an Apache module.
 {$pretty}\$wgArticlePath      = \"\$wgScript/\$1\";
+
+## If using PHP as a CGI module, the ?title= style might have to be used
+## depending on the configuration. If it fails, try enabling the option
+## cgi.fix_pathinfo in php.ini, then switch to pretty URLs.
 {$ugly}\$wgArticlePath      = \"\$wgScript?title=\$1\";
 
 \$wgStylePath        = \"\$wgScriptPath/skins\";
