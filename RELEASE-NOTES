@@ -184,6 +184,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7811) Allow preview of edit summaries.
 * (bug 6839) Wikibits.js minor changes to make JS-lint happier.
 * (bug 7932) Make sure that edit toolbar clears floats so it appears correctly.
+* (bug 6873) When viewing old revisions, add link to diff to current version.
 
 
 == Languages updated ==
