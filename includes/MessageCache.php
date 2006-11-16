@@ -458,16 +458,6 @@ class MessageCache {
 			}
 		}
 
-		# Try the English array
-		if( $message === false && $langcode != 'en' ) {
-			wfSuppressWarnings();
-			$message = Language::getMessage( $key );
-			wfRestoreWarnings();
-			if ( is_null( $message ) ) {
-				$message = false;
-			}
-		}
-
 		# Try the array of another language
 		if( $message === false && strpos( $key, '/' ) ) {
 			$message = explode( '/', $key );
