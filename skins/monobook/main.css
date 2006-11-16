@@ -1538,3 +1538,4 @@ table.multipageimage td {
 .mw-summary-preview {
 	margin: 0.1em 0;
 }
+#toolbar { clear: both; }

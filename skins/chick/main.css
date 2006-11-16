@@ -491,3 +491,5 @@ div.gallerytext {
 }
 
 .templatesUsed { margin-top: 1.5em; }
+
+#toolbar { clear: both; }
