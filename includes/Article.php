@@ -2283,6 +2283,9 @@ class Article {
 		$lnk = $current
 			? wfMsg( 'currentrevisionlink' )
 			: $lnk = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
+		$curdiff = $current
+			? wfMsg( 'diff' )
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=cur&oldid='.$oldid );
 		$prev = $this->mTitle->getPreviousRevisionID( $oldid ) ;
 		$prevlink = $prev
 			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid )
@@ -2300,7 +2303,7 @@ class Article {
 		$userlinks = $sk->userLink( $revision->getUser(), $revision->getUserText() )
 						. $sk->userToolLinks( $revision->getUser(), $revision->getUserText() );
 		
-		$r = wfMsg( 'old-revision-navigation', $td, $lnk, $prevlink, $nextlink, $userlinks, $prevdiff, $nextdiff );
+		$r = wfMsg( 'old-revision-navigation', $td, $lnk, $prevlink, $nextlink, $userlinks, $prevdiff, $nextdiff, $curdiff );
 		$wgOut->setSubtitle( $r );
 	}
 
