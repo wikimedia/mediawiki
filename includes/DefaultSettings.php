@@ -87,10 +87,21 @@ $wgScriptPath	    = '/wiki';
 
 /**
  * Whether to support URLs like index.php/Page_title
+ * These often break when PHP is set up in CGI mode, so
+ * ignore PATH_INFO for CGI unless cgi.fix_pathinfo is
+ * set.
+ *
+ * Override this to false if $_SERVER['PATH_INFO']
+ * contains unexpectedly incorrect garbage.
+ *
+ * Note that having this incorrectly set to true can
+ * cause redirect loops when "pretty URLs" are used.
+ *
  * @global bool $wgUsePathInfo
  */
-$wgUsePathInfo		= ( strpos( php_sapi_name(), 'cgi' ) === false );
-
+$wgUsePathInfo		=
+	( strpos( php_sapi_name(), 'cgi' ) === false ) ||
+	isset( $_SERVER['ORIG_PATH_INFO'] );
 
 /**#@+
  * Script users will request to get articles
