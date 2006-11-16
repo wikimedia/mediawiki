@@ -2590,7 +2590,7 @@ Please confirm that really want to recreate this page.',
 'table_pager_empty' => 'No results',
 
 #Auto-summaries
-'autosumm-blank' => 'Blanking page',
+'autosumm-blank' => 'Removing all content from page',
 'autosumm-replace' => 'Replacing page with \'$1\'',
 'autoredircomment' => 'Redirecting to [[$1]]', #This should be changed to the new naming convention, but existed beforehand.
 );
