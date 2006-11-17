@@ -474,6 +474,7 @@ $wgMessageStrucutre = array(
 		'protectedpagewarning',
 		'semiprotectedpagewarning',
 		'templatesused',
+		'templatesusedpreview',
 		'edittools',
 		'nocreatetitle',
 		'nocreatetext',
