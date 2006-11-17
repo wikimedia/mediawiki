@@ -32,6 +32,7 @@ class EditPage {
 	var $allowBlankSummary = false;
 	var $autoSumm = '';
 	var $hookError = '';
+	var $mPreviewTemplates;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -1268,7 +1269,7 @@ END
 		$sk =& $wgUser->getSkin();
 
 		$outText = '';
-		$templates = $this->mArticle->getUsedTemplates();
+		$templates = ( $this->preview ? $this->mPreviewTemplates : $this->mArticle->getUsedTemplates() );
 		if ( count( $templates ) > 0 ) {
 			# Do a batch existence check
 			$batch = new LinkBatch;
@@ -1279,7 +1280,7 @@ END
 
 			# Construct the HTML
 			$outText = '<div class="mw-templatesUsedExplanation">' .
-				wfMsgExt( 'templatesused', array( 'parse' ) ) .
+				wfMsgExt( ( $this->preview ? 'templatesusedpreview' : 'templatesused' ), array( 'parse' ) ) .
 				'</div><ul>';
 			foreach ( $templates as $titleObj ) {
 				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
@@ -1405,6 +1406,10 @@ END
 
 			$previewHTML = $parserOutput->getText();
 			$wgOut->addParserOutputNoText( $parserOutput );
+
+			foreach ( $parserOutput->getTemplates() as $ns => $template)
+				foreach ( array_keys( $template ) as $dbk)
+					$this->mPreviewTemplates[] = Title::makeTitle($ns, $dbk);
 
 			wfProfileOut( $fname );
 			return $previewhead . $previewHTML;
