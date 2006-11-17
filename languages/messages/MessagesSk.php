@@ -655,7 +655,7 @@ Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránk
 'loadhist'              => 'Sťahovanie histórie stránky',
 'currentrev'            => 'Aktuálna verzia',
 'revisionasof'          => 'Verzia zo dňa a času $1',
-'old-revision-navigation'=> 'Revízia z $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Revízia z $1; $2',
 'previousrevision'      => '← Staršia verzia',
 'nextrevision'          => 'Novšia verzia →',
 'currentrevisionlink'   => 'Zobrazenie aktuálnej úpravy',

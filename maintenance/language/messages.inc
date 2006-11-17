@@ -490,7 +490,6 @@ $wgMessageStrucutre = array(
 		'loadhist',
 		'currentrev',
 		'revisionasof',
-		'old-revision-navigation',
 		'revision-info',
 		'revision-nav',
 		'previousrevision',

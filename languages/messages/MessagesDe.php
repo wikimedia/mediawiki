@@ -598,7 +598,7 @@ Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Ihrer Bildung
 "loadhist"		=> "Lade Liste mit früheren Versionen",
 "currentrev"	=> "Aktuelle Version",
 "revisionasof"	=> "Version vom $1",
-'old-revision-navigation'	=> 'Version vom $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Version vom $1; $2',
 'nextrevision'		=> 'Nächstjüngere Version →',
 'previousrevision'	=> '← Nächstältere Version',
 'currentrevisionlink'	=> 'Aktuelle Version',

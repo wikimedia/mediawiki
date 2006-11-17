@@ -663,7 +663,7 @@ Osı betti aşwğa paýdalanğan -{URL}- jaýın qaýta tekserip şığıñız.'
 'loadhist'                    => 'Bet tarïxın jüktewi',
 'currentrev'                  => 'Ağımdıq nusqası',
 'revisionasof'                => '$1 kezindegi nusqası',
-'old-revision-navigation'     => '$1 kezindegi nusqası; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => '$1 kezindegi nusqası; $2',
 'previousrevision'            => '← Eskilew nusqası',
 'nextrevision'                => 'Jañalaw nusqası →',
 'currentrevisionlink'         => 'Ağımdıq nusqası',

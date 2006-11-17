@@ -550,7 +550,7 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 "loadhist" => "Memuat halaman sejarah",
 "currentrev" => "Revisi sekarang",
 "revisionasof" => "Revisi per $1",
-'old-revision-navigation'  => 'Revisi per $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Revisi per $1; $2',
 'previousrevision'      => '← Revisi sebelumnya',
 'nextrevision'          => 'Revisi selanjutnya →',
 'currentrevisionlink'   => 'Revisi sekarang',

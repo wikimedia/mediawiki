@@ -498,7 +498,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'loadhist'              => '変更履歴の読み込み中',
 'currentrev'            => '最新版',
 'revisionasof'          => '$1の版',
-'old-revision-navigation'=> '$1; $5 による版<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => '$1; $2 による版',
 'previousrevision'      => '←前の版',
 'nextrevision'          => '次の版→',
 'currentrevisionlink'   => '最新版を表示',
