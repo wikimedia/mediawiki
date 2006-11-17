@@ -998,7 +998,10 @@ Please check the URL you used to access this page.",
 'loadhist'		=> 'Loading page history',
 'currentrev'	=> 'Current revision',
 'revisionasof'          => 'Revision as of $1',
-'old-revision-navigation' => 'Revision as of $1; $5<br />($6) $3 | $2 ($8) | $4 ($7)',
+# 'old-revision-navigation' has been superseded by revision-info/nav. There's no need to translate it.
+'old-revision-navigation' => 'Revision as of $1 by $5<br />($6) $3 | $2 ($8) | $4 ($7)',
+'revision-info' => 'Revision as of $1 by $2',
+'revision-nav' => '($1) $2 | $3 ($4) | $5 ($6)',
 'previousrevision'	=> '←Older revision',
 'nextrevision'		=> 'Newer revision→',
 'currentrevisionlink'   => 'Current revision',
@@ -1026,6 +1029,7 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} d
 </div>',
 #'rev-delundel' => 'del/undel',
 'rev-delundel' => 'show/hide',
+
 
 'history-feed-title' => 'Revision history',
 'history-feed-description'	=> 'Revision history for this page on the wiki',
