@@ -979,6 +979,7 @@ the text into a text file and save it for later.</strong>',
 'semiprotectedpagewarning' => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'templatesused'	=> 'Templates used on this page:',
 'templatesusedpreview'	=> 'Templates used in this preview:',
+'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'nocreatetitle' => 'Page creation limited',
 'nocreatetext' => 'This site has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
@@ -2596,10 +2597,10 @@ Please confirm that really want to recreate this page.',
 'table_pager_limit_submit' => 'Go',
 'table_pager_empty' => 'No results',
 
-#Auto-summaries
+# Auto-summaries
 'autosumm-blank' => 'Removing all content from page',
 'autosumm-replace' => 'Replacing page with \'$1\'',
-'autoredircomment' => 'Redirecting to [[$1]]', #This should be changed to the new naming convention, but existed beforehand.
+'autoredircomment' => 'Redirecting to [[$1]]', # This should be changed to the new naming convention, but existed beforehand.
 );
 
 ?>
