@@ -327,9 +327,9 @@ class Skin extends Linker {
 		global $wgUseSiteJs;
 		if ($wgUseSiteJs) {
 			if ($wgUser->isLoggedIn()) {
-				$r .= "<script type=\"$wgJsMimeType\" src=\"".urlencode(self::makeUrl('-','action=raw&smaxage=0&gen=js'))."\"><!-- site js --></script>\n";
+				$r .= "<script type=\"$wgJsMimeType\" src=\"".htmlspecialchars(self::makeUrl('-','action=raw&smaxage=0&gen=js'))."\"><!-- site js --></script>\n";
 			} else {
-				$r .= "<script type=\"$wgJsMimeType\" src=\"".urlencode(self::makeUrl('-','action=raw&gen=js'))."\"><!-- site js --></script>\n";
+				$r .= "<script type=\"$wgJsMimeType\" src=\"".htmlspecialchars(self::makeUrl('-','action=raw&gen=js'))."\"><!-- site js --></script>\n";
 			}
 		}
 		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
