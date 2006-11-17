@@ -710,6 +710,7 @@ $messages = array(
 'protectedpagewarning'      => "'''אזהרה: דף זה הוא דף מוגן וניתן לעריכה על־ידי מפעילי מערכת בלבד. אנא ודאו שאתם פועלים על־פי העקרונות לעריכת דפים אלו.'''",
 'semiprotectedpagewarning'  => "'''הערה:''' דף זה ננעל כך שרק משתמשים רשומים יכולים לערוך אותו.",
 'templatesused'             => 'תבניות המופיעות בדף זה:',
+'templatesusedpreview'      => 'תבניות המופיעות בתצוגה המקדימה הזו:',
 'edittools'                 => '<!-- הטקסט הנכתב כאן יוצג מתחת לטפסי עריכת דפים והעלאת קבצים, ולפיכך ניתן לכתוב להציג בו תווים קשים לכתיבה, קטעים מוכנים של טקסט ועוד. -->',
 'nocreatetitle'             => 'יצירת הדפים הוגבלה',
 'nocreatetext'              => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[{{ns:special}}:Userlogin|להיכנס לחשבון]].',
@@ -725,7 +726,7 @@ $messages = array(
 'loadhist'                    => 'טוען את היסטוריית השינויים של הדף',
 'currentrev'                  => 'גרסה נוכחית',
 'revisionasof'                => 'גרסה מתאריך $1',
-'old-revision-navigation'     => 'גרסה מתאריך $1; $5<br />($6) $3 | $2 ($8) | $4 ($7)',
+'revision-info'               => 'גרסה מתאריך $1 מאת $2',
 'previousrevision'            => '→ הגרסה הקודמת',
 'nextrevision'                => 'הגרסה הבאה ←',
 'currentrevisionlink'         => 'הגרסה הנוכחית',
@@ -1694,6 +1695,9 @@ ta["ca-nstab-mediawiki"]    = ["c", "צפו בהודעת המערכת"];
 ta["ca-nstab-template"]     = ["c", "צפו בתבנית"];
 ta["ca-nstab-help"]         = ["c", "צפו בדף העזרה"];
 ta["ca-nstab-category"]     = ["c", "צפו בדף הקטגוריה"];',
+
+# Common.js: contains nothing but a placeholder comment
+'Common.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור כל המשתמשים בכל טעינת עמוד */',
 
 # Image deletion
 'deletedrevision' => 'מחק גרסה ישנה $1.',
