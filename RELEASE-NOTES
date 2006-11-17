@@ -199,7 +199,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   any added or removed templates.
 * (bug 7918) "Templates used on this page" is now shown for read-only pages.
 * (bug 7688) When viewing diff, section anchors in autosummary jump to section
-  on current page.
+  on current page instead of loading the latest version.
 
 
 == Languages updated ==
