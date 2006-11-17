@@ -881,17 +881,18 @@ class Linker {
 	 * comments. It escapes any HTML in the comment, but adds some CSS to format
 	 * auto-generated comments (from section editing) and formats [[wikilinks]].
 	 *
-	 * The $title parameter must be a title OBJECT. It is used to generate a
-	 * direct link to the section in the autocomment.
 	 * @author Erik Moeller <moeller@scireview.de>
 	 *
 	 * Note: there's not always a title to pass to this function.
 	 * Since you can't set a default parameter for a reference, I've turned it
 	 * temporarily to a value pass. Should be adjusted further. --brion
+	 *
+	 * $param string $comment
+	 * @param Title $title (to generate link to the section in autocomment)
+	 * @param bool $local Whether section links should refer to local page
 	 */
-	function formatComment($comment, $title = NULL) {
-		$fname = 'Linker::formatComment';
-		wfProfileIn( $fname );
+	function formatComment($comment, Title $title = NULL, $local = false) {
+		wfProfileIn( __METHOD__ );
 
 		global $wgContLang;
 		$comment = str_replace( "\n", " ", $comment );
@@ -917,8 +918,12 @@ class Linker {
 				$section = str_replace( '[[:', '', $section );
 				$section = str_replace( '[[', '', $section );
 				$section = str_replace( ']]', '', $section );
-				$sectionTitle = wfClone( $title );
-				$sectionTitle->mFragment = $section;
+				if ( $local ) {
+					$sectionTitle = Title::newFromText( '#' . $section);
+				} else {
+					$sectionTitle = wfClone( $title );
+					$sectionTitle->mFragment = $section;
+				}
 				$link = $this->makeKnownLinkObj( $sectionTitle, wfMsg( 'sectionlink' ) );
 			}
 			$sep='-';
@@ -957,7 +962,7 @@ class Linker {
 			}
 			$comment = preg_replace( $linkRegexp, wfRegexReplacement( $thelink ), $comment, 1 );
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $comment;
 	}
 
@@ -965,19 +970,20 @@ class Linker {
 	 * Wrap a comment in standard punctuation and formatting if
 	 * it's non-empty, otherwise return empty string.
 	 *
-	 * @param $comment String: the comment.
-	 * @param $title Title object.
+	 * @param string $comment
+	 * @param Title $title
+	 * @param bool $local Whether section links should refer to local page
 	 *
 	 * @return string
 	 */
-	function commentBlock( $comment, $title = NULL ) {
+	function commentBlock( $comment, Title $title = NULL, $local = false ) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
 		// compatability, acc. to brion -ævar
 		if( $comment == '' || $comment == '*' ) {
 			return '';
 		} else {
-			$formatted = $this->formatComment( $comment, $title );
+			$formatted = $this->formatComment( $comment, $title, $local );
 			return " <span class=\"comment\">($formatted)</span>";
 		}
 	}
@@ -985,12 +991,14 @@ class Linker {
 	/**
 	 * Wrap and format the given revision's comment block, if the current
 	 * user is allowed to view it.
-	 * @param $rev Revision object.
+	 *
+	 * @param Revision $rev
+	 * @param bool $local Whether section links should refer to local page
 	 * @return string HTML
 	 */
-	function revComment( $rev ) {
+	function revComment( Revision $rev, $local = false ) {
 		if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
-			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle() );
+			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle(), $local );
 		} else {
 			$block = " <span class=\"comment\">" .
 				wfMsgHtml( 'rev-deleted-comment' ) . "</span>";

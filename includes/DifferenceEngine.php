@@ -186,7 +186,7 @@ CONTROL;
 			$prevlink;
 		$newHeader = "<strong>{$this->mNewtitle}</strong><br />" .
 			$sk->revUserTools( $this->mNewRev ) . " $rollback<br />" .
-			$newminor . $sk->revComment( $this->mNewRev ) . "<br />" .
+			$newminor . $sk->revComment( $this->mNewRev, true ) . "<br />" .
 			$nextlink . $patrol;
 
 		$this->showDiff( $oldHeader, $newHeader );
