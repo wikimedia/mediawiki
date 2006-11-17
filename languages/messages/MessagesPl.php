@@ -552,7 +552,7 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'loadhist' => 'Pobieranie historii tej strony',
 'currentrev' => 'Aktualna wersja',
 'revisionasof' => 'Wersja z dnia $1',
-'old-revision-navigation' => 'Wersja z dnia $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Wersja z dnia $1; $2',
 'previousrevision' => '← Poprzednia wersja',
 'nextrevision' => 'Następna wersja →',
 'currentrevisionlink' => 'Aktualna wersja',

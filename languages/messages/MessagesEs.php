@@ -1587,7 +1587,7 @@ Ten en cuenta que {{SITENAME}} es un wiki en desarrollo que va siendo construido
 'november-gen'	=> 'noviembre',
 'october-gen'	=> 'octubre',
 'ok'	=> 'OK',
-'old-revision-navigation'	=> 'Revisión a fecha de $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Revisión a fecha de $1; $2',
 'orig'	=> 'orig',
 'pagetitle'	=> '$1 - {{SITENAME}}',
 'prefs-watchlist'	=> 'Seguimiento',

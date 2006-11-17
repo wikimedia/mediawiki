@@ -662,7 +662,7 @@ Isto é provavelmente devido a vandalismo persistente efectuada a partir da sua 
 'loadhist'              => 'Carregando histórico',
 'currentrev'    => 'Revisão actual',
 'revisionasof'          => 'Revisão de $1',
-'old-revision-navigation' => 'Revisão de $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Revisão de $1; $2',
 'previousrevision'      => '← Versão anterior',
 'nextrevision'          => 'Versão posterior →',
 'currentrevisionlink'   => 'ver versão actual',

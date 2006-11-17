@@ -480,7 +480,7 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'loadhist'              => 'Läser sidans versioner',
 'currentrev'            => 'Nuvarande version',
 'revisionasof'          => 'Versionen från $1',
-'old-revision-navigation'=> 'Version från den $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Version från den $1; $2',
 'previousrevision'      => '← Äldre version',
 'nextrevision'          => 'Nyare version →',
 'currentrevisionlink'   => 'Nuvarande version',

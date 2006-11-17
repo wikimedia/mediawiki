@@ -596,7 +596,7 @@ U kunt reeds bestaande pagina\'s wijzigen, of u kunt [[Special:Userlogin|zich aa
 'loadhist'              => 'Bezig met het laden van de paginageschiedenis',
 'currentrev'            => 'Huidige versie',
 'revisionasof'          => 'Versie op $1',
-'old-revision-navigation'=> 'Versie per $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Versie per $1; $2',
 'previousrevision'      => '←Oudere versie',
 'nextrevision'          => 'Nieuwere versie→',
 'currentrevisionlink'   => 'Huidige versie',

@@ -747,7 +747,7 @@ Molimo vas da proverite URL koji ste upotrebili da biste pristupili ovoj stranic
 'loadhist' => 'Učitavam istoriju stranice',
 'currentrev' => 'Trenutna revizija',
 'revisionasof' => 'Revizija od $1',
-'old-revision-navigation' => 'Revizija od $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Revizija od $1; $2',
 'previousrevision' => '← Prethodna revizija',
 'nextrevision' => 'Sledeća revizija →',
 'currentrevisionlink' => 'Trenutna revizija',

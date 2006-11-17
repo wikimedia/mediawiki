@@ -654,7 +654,7 @@ Můžete se vrátit a editovat již existující stránku, nebo [[Special:Userlo
 'loadhist'              => 'Načítá se stránka historie editací', #FIXME Apparently not used
 'currentrev'    => 'Aktuální verze',
 'revisionasof'          => 'Verze z $1',
-'old-revision-navigation' => 'Verze z $1; $5<br />($6) $3 | $2 | $4 ($7)',
+'revision-info' => 'Verze z $1; $2',
 'previousrevision' => '← Starší verze',
 'nextrevision'		=> 'Novější verze →',
 'currentrevisionlink'   => 'zobrazit aktuální verzi',

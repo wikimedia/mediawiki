@@ -24,7 +24,6 @@ $wgIgnoredMessages = array(
 	'newarticletextanon',
 	'noarticletextanon',
 	'number_of_watching_users_RCview',
-	'old-revision-navigation',
 	'pagecategorieslink',
 	'pubmedurl',
 	'randompage-url',
