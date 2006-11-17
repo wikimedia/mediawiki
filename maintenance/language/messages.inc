@@ -490,6 +490,8 @@ $wgMessageStrucutre = array(
 		'currentrev',
 		'revisionasof',
 		'old-revision-navigation',
+		'revision-info',
+		'revision-nav',
 		'previousrevision',
 		'nextrevision',
 		'currentrevisionlink',
@@ -1354,6 +1356,9 @@ $wgMessageStrucutre = array(
 	'monobook.js' => array(
 		'Monobook.js',
 	),
+	'common.js' => array(
+		'Common.js',
+	),
 	'imagedeletion' => array(
 		'deletedrevision',
 	),
@@ -1904,6 +1909,7 @@ XHTML id names.",
 	'math'               => 'Math options',
 	'patrolling'         => 'Patrolling',
 	'monobook.js'        => 'Monobook.js: tooltips and access keys for monobook',
+	'common.js'          => 'Common.js: contains nothing but a placeholder comment',
 	'imagedeletion'      => 'Image deletion',
 	'browsediffs'        => 'Browsing diffs',
 	'imagesize'          => '',
