@@ -1317,6 +1317,10 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		# TS_POSTGRES
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 		(int)$da[2],(int)$da[3],(int)$da[1]);
+	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d) GMT$/",$ts,$da)) {
+		# TS_POSTGRES
+		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
+		(int)$da[2],(int)$da[3],(int)$da[1]);
 	} else {
 		# Bogus value; fall back to the epoch...
 		wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
