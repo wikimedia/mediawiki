@@ -5996,15 +5996,6 @@ RAW magic word
 !! end
 
 !! test
-TODO: Always escape literal '>' in output, not just after '<'
-!! input
-><>
-!! result
-<p>&gt;&lt;&gt;
-</p>
-!! end
-
-!! test
 Template caching
 !! input
 {{Test}}
