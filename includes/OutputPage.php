@@ -854,12 +854,12 @@ class OutputPage {
 	 */
 	public function readOnlyPage( $source = null, $protected = false ) {
 		global $wgUser, $wgReadOnlyFile, $wgReadOnly, $wgTitle;
+		$skin = $wgUser->getSkin();
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
 		if( $protected ) {
-			$skin = $wgUser->getSkin();
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
 
@@ -896,7 +896,8 @@ class OutputPage {
 				htmlspecialchars( $source ) . "\n</textarea>";
 			$this->addHTML( $text );
 		}
-		$this->formatTemplates();
+		$article = new Article($wgTitle);
+		$this->addHTML( $skin->formatTemplates($article->getUsedTemplates()) );
 
 		$this->returnToMain( false );
 	}
@@ -1134,45 +1135,6 @@ class OutputPage {
 	 */
 	public function showNewSectionLink() {
 		return $this->mNewSectionLink;
-	}
-
-	/**
-	 * Outputs the "templates used on this page" list.
-	 *
-	 * Stolen from EditPage::formatTemplates.  Should be merged, but there are
-	 * slightly fiddly bits involving previews and so on that will have to be
-	 * dealt with, so I'll just copy it for now because I'm lazy.
-	 *
-	 * @return nothing
-	 */
-	function formatTemplates() {
-		global $wgUser, $wgTitle;
-		wfProfileIn( __METHOD__ );
-
-		$sk =& $wgUser->getSkin();
-
-		$outText = '';
-		$article = new Article($wgTitle);
-		$templates = $article->getUsedTemplates();
-		if ( count( $templates ) > 0 ) {
-			# Do a batch existence check
-			$batch = new LinkBatch;
-			foreach( $templates as $title ) {
-				$batch->addObj( $title );
-			}
-			$batch->execute();
-
-			# Construct the HTML
-			$outText = '<div class="mw-templatesUsedExplanation">' .
-				wfMsgExt( 'templatesused', array( 'parse' ) ) .
-				'</div><ul>';
-			foreach ( $templates as $titleObj ) {
-				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
-			}
-			$outText .= '</ul>';
-		}
-		wfProfileOut( __METHOD__  );
-		$this->addHTML($outText);
 	}
 }
 ?>
