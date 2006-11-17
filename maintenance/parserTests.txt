@@ -5995,6 +5995,16 @@ RAW magic word
 </p>
 !! end
 
+# This isn't needed for XHTML conformance, but would be handy as a fallback security measure
+!! test
+TODO: Always escape literal '>' in output, not just after '<'
+!! input
+><>
+!! result
+<p>&gt;&lt;&gt;
+</p>
+!! end
+
 !! test
 Template caching
 !! input
