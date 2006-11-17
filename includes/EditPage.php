@@ -1258,13 +1258,14 @@ END
 	}
 
 	/**
-	 * Prepare a list of templates used by this page. Returns HTML.
+	 * Prepare a list of templates used by this page.
+	 *
+	 * @return string HTML
+	 * @todo Merge with OutputPage::formatTemplates()
 	 */
 	function formatTemplates() {
 		global $wgUser;
-
-		$fname = 'EditPage::formatTemplates';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__  );
 
 		$sk =& $wgUser->getSkin();
 
@@ -1287,7 +1288,7 @@ END
 			}
 			$outText .= '</ul>';
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__  );
 		return $outText;
 	}
 

@@ -891,11 +891,12 @@ class OutputPage {
 			}
 			$rows = $wgUser->getIntOption( 'rows' );
 			$cols = $wgUser->getIntOption( 'cols' );
-			
+
 			$text = "\n<textarea name='wpTextbox1' id='wpTextbox1' cols='$cols' rows='$rows' readonly='readonly'>" .
 				htmlspecialchars( $source ) . "\n</textarea>";
 			$this->addHTML( $text );
 		}
+		$this->formatTemplates();
 
 		$this->returnToMain( false );
 	}
@@ -1135,5 +1136,43 @@ class OutputPage {
 		return $this->mNewSectionLink;
 	}
 
+	/**
+	 * Outputs the "templates used on this page" list.
+	 *
+	 * Stolen from EditPage::formatTemplates.  Should be merged, but there are
+	 * slightly fiddly bits involving previews and so on that will have to be
+	 * dealt with, so I'll just copy it for now because I'm lazy.
+	 *
+	 * @return nothing
+	 */
+	function formatTemplates() {
+		global $wgUser, $wgTitle;
+		wfProfileIn( __METHOD__ );
+
+		$sk =& $wgUser->getSkin();
+
+		$outText = '';
+		$article = new Article($wgTitle);
+		$templates = $article->getUsedTemplates();
+		if ( count( $templates ) > 0 ) {
+			# Do a batch existence check
+			$batch = new LinkBatch;
+			foreach( $templates as $title ) {
+				$batch->addObj( $title );
+			}
+			$batch->execute();
+
+			# Construct the HTML
+			$outText = '<div class="mw-templatesUsedExplanation">' .
+				wfMsgExt( 'templatesused', array( 'parse' ) ) .
+				'</div><ul>';
+			foreach ( $templates as $titleObj ) {
+				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
+			}
+			$outText .= '</ul>';
+		}
+		wfProfileOut( __METHOD__  );
+		$this->addHTML($outText);
+	}
 }
 ?>

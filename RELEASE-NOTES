@@ -197,6 +197,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and user JS subpages.
 * (bug 7918) "Templates used on this page" changes during preview to reflect
   any added or removed templates.
+* (bug 7918) "Templates used on this page" is now shown for read-only pages.
 
 
 == Languages updated ==
