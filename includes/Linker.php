@@ -1119,5 +1119,40 @@ class Linker {
 		  	wfMsg('rollbacklink'),
 		  	'action=rollback&from=' . urlencode( $rev->getUserText() ) . $extraRollback ) .']</span>';
 	}
+
+	/**
+	 * Returns HTML for the "templates used on this page" list.
+	 *
+	 * @param array $templates Array of templates from Article::getUsedTemplate
+	 * or similar
+	 * @return string HTML output
+	 */
+	public function formatTemplates($templates) {
+		global $wgUser;
+		wfProfileIn( __METHOD__ );
+
+		$sk =& $wgUser->getSkin();
+
+		$outText = '';
+		if ( count( $templates ) > 0 ) {
+			# Do a batch existence check
+			$batch = new LinkBatch;
+			foreach( $templates as $title ) {
+				$batch->addObj( $title );
+			}
+			$batch->execute();
+
+			# Construct the HTML
+			$outText = '<div class="mw-templatesUsedExplanation">' .
+				wfMsgExt( 'templatesused', array( 'parse' ) ) .
+				'</div><ul>';
+			foreach ( $templates as $titleObj ) {
+				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
+			}
+			$outText .= '</ul>';
+		}
+		wfProfileOut( __METHOD__  );
+		return $outText;
+	}
 }
 ?>

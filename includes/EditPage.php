@@ -1035,7 +1035,7 @@ class EditPage {
 		if( !$this->preview && !$this->diff ) {
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
-		$templates = $this->formatTemplates();
+		$templates = $sk->formatTemplates( $this->preview ? $this->mPreviewTemplates : $this->mArticle->getUsedTemplates() );
 
 		global $wgUseMetadataEdit ;
 		if ( $wgUseMetadataEdit ) {
@@ -1255,41 +1255,6 @@ END
 			$this->mArticle->closeShowCategory();
 		}
 		$wgOut->addHTML( '</div>' );
-	}
-
-	/**
-	 * Prepare a list of templates used by this page.
-	 *
-	 * @return string HTML
-	 * @todo Merge with OutputPage::formatTemplates()
-	 */
-	function formatTemplates() {
-		global $wgUser;
-		wfProfileIn( __METHOD__  );
-
-		$sk =& $wgUser->getSkin();
-
-		$outText = '';
-		$templates = ( $this->preview ? $this->mPreviewTemplates : $this->mArticle->getUsedTemplates() );
-		if ( count( $templates ) > 0 ) {
-			# Do a batch existence check
-			$batch = new LinkBatch;
-			foreach( $templates as $title ) {
-				$batch->addObj( $title );
-			}
-			$batch->execute();
-
-			# Construct the HTML
-			$outText = '<div class="mw-templatesUsedExplanation">' .
-				wfMsgExt( ( $this->preview ? 'templatesusedpreview' : 'templatesused' ), array( 'parse' ) ) .
-				'</div><ul>';
-			foreach ( $templates as $titleObj ) {
-				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
-			}
-			$outText .= '</ul>';
-		}
-		wfProfileOut( __METHOD__  );
-		return $outText;
 	}
 
 	/**
