@@ -192,6 +192,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   right on Apache too!
 * Replace 'old-revision-navigation' message with 'revision-info' and
   'revision-nav' messages, wrapped in divs with appropriate id's.
+* (bug 4178) MediaWiki:Common.js will now be included for all users if
+  $wgUseSiteJs is enabled, in addition to (if applicable) MediaWiki:Monobook.js
+  and user JS subpages.
 
 
 == Languages updated ==

@@ -324,6 +324,14 @@ class Skin extends Linker {
 		$r = self::makeGlobalVariablesScript( $vars );
 
 		$r .= "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>\n";
+		global $wgUseSiteJs;
+		if ($wgUseSiteJs) {
+			if ($wgUser->isLoggedIn()) {
+				$r .= "<script type=\"$wgJsMimeType\" src=\"".urlencode(self::makeUrl('-','action=raw&smaxage=0&gen=js'))."\"><!-- site js --></script>\n";
+			} else {
+				$r .= "<script type=\"$wgJsMimeType\" src=\"".urlencode(self::makeUrl('-','action=raw&gen=js'))."\"><!-- site js --></script>\n";
+			}
+		}
 		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
 			$userjs = htmlspecialchars( self::makeUrl(
@@ -376,9 +384,27 @@ class Skin extends Linker {
 	}
 
 	/**
-	 * placeholder, returns generated js in monobook
+	 * This returns MediaWiki:Common.js.  For some bizarre reason, it does
+	 * *not* return any custom user JS from user subpages.  Huh?
+	 *
+	 * @return string
 	 */
-	function getUserJs() { return; }
+	function getUserJs() {
+		$fname = 'Skin::getUserJs';
+		wfProfileIn( $fname );
+
+		global $wgStylePath;
+		$s = "/* generated javascript */\n";
+		$s .= "var skin = '{$this->skinname}';\nvar stylepath = '{$wgStylePath}';";
+		$s .= "\n\n/* MediaWiki:Common.js */\n";
+		$commonJs = wfMsgForContent('Common.js');
+		if ( !wfEmptyMsg ( 'Common.js', $commonJs ) ) {
+			$s .= $commonJs;
+		}
+
+		wfProfileOut( $fname );
+		return $s;
+    }
 
 	/**
 	 * Return html code that include User stylesheets

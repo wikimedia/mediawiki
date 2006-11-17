@@ -2127,6 +2127,9 @@ ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 
+# Common.js: contains nothing but a placeholder comment
+'Common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
+
 # image deletion
 'deletedrevision' => 'Deleted old revision $1.',
 
