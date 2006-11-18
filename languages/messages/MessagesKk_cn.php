@@ -285,7 +285,7 @@ $messages = array(
 'moredotdotdot'   => 'كٴوبٴىرەك…',
 'mypage'          => 'جەكە بەتٴىم',
 'mytalk'          => 'تالقىلاۋىم',
-'anontalk'        => '-{IP}- تالقىلاۋى',
+'anontalk'        => 'IP تالقىلاۋى',
 'navigation'      => 'باعىتتاۋ',
 
 # Metadata in edit box
@@ -513,7 +513,7 @@ $1',
 'wrongpasswordempty'         => 'قۇپييا سٴوز بوستى بوپتى. قايتالاپ كٴورٴىڭٴىز.',
 'mailmypassword'             => 'قۇپييا سٴوزٴىمدٴى حاتپەن جٴىبەر',
 'passwordremindertitle'      => 'قۇپييا سٴوز تۋرالى {{SITENAME}} جوباسىنىڭ ەسكەرتۋٴى',
-'passwordremindertext'       => 'كەيبٴىرەۋ (-{IP}- جايى: $1, بٴالكٴىم, ٴوزٴىڭٴىز بولارسىز)
+'passwordremindertext'       => 'كەيبٴىرەۋ (IP جايى: $1, بٴالكٴىم, ٴوزٴىڭٴىز بولارسىز)
 {{SITENAME}} ٴۇشٴىن بٴىزدەن جاڭا قۇپييا سٴوزٴىن جٴىبەرۋٴىن سۇرانىسقان ($4).
 «$2» قاتىسۋشىنىڭ قۇپييا سٴوزٴى «$3» بولدى ەندٴى.
 قازٴىر كٴىرۋٴىڭٴىز جٴانە قۇپييا سٴوزٴىڭٴىزدٴى اۋىسترۋىڭىز قاجەت.
@@ -525,7 +525,7 @@ $1',
 'passwordsent'               => 'جاڭا قۇپييا سٴوز «$1» ٴۇشٴىن
 تٴىركەلگەن ە-پوشتا جايىنا جٴىبەرٴىلدٴى.
 قابىلداعاننان كەيٴىن كٴىرگەندە سونى ەنگٴىزٴىڭٴىز.',
-'blocked-mailpassword'       => '-{IP}- جايىڭىزدان ٴوڭدەۋ بۇعاتتالعان, سوندىقتان
+'blocked-mailpassword'       => 'IP جايىڭىزدان ٴوڭدەۋ بۇعاتتالعان, سوندىقتان
 قيياناتشىلىقتان ساقتانۋ ٴۇشٴىن قۇپييا سٴوز جٴىبەرۋ قىزمەتٴىنٴىڭ ٴارەكەتٴى رۇقسات ەتٴىلمەيدٴى.',
 'eauthentsent'               => 'كۋٴالاندىرۋ حاتى اتالعان ە-پوشتا جايىنا جٴىبەرٴىلدٴى.
 باسقا ە-پوشتا حاتىن جٴىبەرۋدٴىڭ الدىنان, تٴىركەلگٴى شىنىنان سٴىزدٴىكٴى ەكەنٴىن
@@ -667,6 +667,7 @@ $1',
 'protectedpagewarning'      => '<strong>نازار سالىڭىز: بۇل بەت قورعالعان. تەك ٴاكٴىمشٴى رۇقساتى بار قاتىسۋشىلار ٴوڭدەۋ جاساي الادى.</strong>',
 'semiprotectedpagewarning'  => "'''اڭعارتپا:''' بەت [[{{ns:project}}:جارتىلاي قورعاۋ ساياساتى|قورعالعان]], سوندىقتان وسىنى تەك رۇقساتى بار قاتىسۋشىلار ٴوڭدەي الادى.",
 'templatesused'             => 'بۇل بەتتە قولدانىلعان ٴۇلگٴىلەر:',
+'templatesusedpreview'      => 'بۇنى قاراپ شىعۋعا پيدالانىلعان ٴۇلگٴىلەر:',
 'edittools'                 => '<!-- مىنداعى ماعلۇمات ٴوڭدەۋ جٴانە قوتارۋ ٴۇلگٴىتترٴىڭٴىڭ استىندا كٴورسەتٴىلەدٴى. -->',
 'nocreatetitle'             => 'بەتتٴى باستاۋ شەكتەلگەن',
 'nocreatetext'              => 'بۇل توراپتا جاڭا بەت باستاۋى شەكتەلگەن.
@@ -686,7 +687,7 @@ $1',
 'loadhist'                    => 'بەت تاريحىن جٴۇكتەۋٴى',
 'currentrev'                  => 'اعىمدىق نۇسقاسى',
 'revisionasof'                => '$1 كەزٴىندەگٴى نۇسقاسى',
-'revision-info' => '$1 كەزٴىندەگٴى نۇسقاسى; $2',
+'revision-info'               => '$1 كەزٴىندەگٴى $2 جاساعان نۇسقاسى',
 'previousrevision'            => '← ەسكٴىلەۋ نۇسقاسى',
 'nextrevision'                => 'جاڭالاۋ نۇسقاسى →',
 'currentrevisionlink'         => 'اعىمدىق نۇسقاسى',
@@ -1666,70 +1667,73 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'كٴۇزەتتە دەپ بەلگٴىلەۋ ٴۇشٴىن نۇسقاسىن ەنگٴىزٴىڭٴىز.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'Monobook.js' => "/* tooltips and access keys */
 var ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'جەكە بەتٴىم\');
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'وسى IP جايدىڭ جەكە بەتٴى\');
-ta[\'pt-mytalk\'] = new Array(\'n\',\'تالقىلاۋ بەتٴىم\');
-ta[\'pt-anontalk\'] = new Array(\'n\',\'وسى IP جاي تٴۇزەتۋلەرٴىن تالقىلاۋ\');
-ta[\'pt-preferences\'] = new Array(\'\',\'باپتاۋىم\');
-ta[\'pt-watchlist\'] = new Array(\'l\',\'ٴوزگەرٴىستەرٴىن باقىلاپ تۇرعان بەتتەر تٴىزٴىمٴىم.\');
-ta[\'pt-mycontris\'] = new Array(\'y\',\'ٴۇلەستەرٴىمدٴىڭ تٴىزٴىمٴى\');
-ta[\'pt-login\'] = new Array(\'o\',\'كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, ول مٴىندەتتٴى ەمەس.\');
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, بٴىراق, ول مٴىندەتتٴى ەمەس.\');
-ta[\'pt-logout\'] = new Array(\'o\',\'شىعۋ\');
-ta[\'ca-talk\'] = new Array(\'t\',\'ماعلۇمات بەتتٴى تالقىلاۋ\');
-ta[\'ca-edit\'] = new Array(\'e\',\'بۇل بەتتٴى ٴوڭدەي الاسىز. ساقتاۋدىڭ الدىندا «قاراپ شىعۋ» تٴۇيمەسٴىن نۇقىڭىز.\');
-ta[\'ca-addsection\'] = new Array(\'+\',\'بۇل تالقىلاۋ بەتٴىندە جاڭا تاراۋ باستاۋ.\');
-ta[\'ca-viewsource\'] = new Array(\'e\',\'بۇل بەت قورعالعان, بٴىراق, قاينارىن قاراۋعا بولادى.\');
-ta[\'ca-history\'] = new Array(\'h\',\'بۇل بەتتٴىن جۋىقتاعى نۇسقالارى.\');
-ta[\'ca-protect\'] = new Array(\'=\',\'بۇل بەتتٴى قورعاۋ\');
-ta[\'ca-unprotect\'] = new Array(\'=\',\'بۇل بەتتٴى قورعاماۋ\');
-ta[\'ca-delete\'] = new Array(\'d\',\'بۇل بەتتٴى جويۋ\');
-ta[\'ca-undelete\'] = new Array(\'d\',\'بۇل بەتتٴىڭ جويۋدىڭ الدىنداعى بولعان تٴۇزەتۋلەرٴىن قايتارۋ\');
-ta[\'ca-move\'] = new Array(\'m\',\'بۇل بەتتٴى جىلجىتۋ\');
-ta[\'ca-nomove\'] = new Array(\'m\',\'بۇل بەتتٴى جىلجىتۋعا رۇقساتىڭىز جوق\');
-ta[\'ca-watch\'] = new Array(\'w\',\'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ\');
-ta[\'ca-unwatch\'] = new Array(\'w\',\'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزدەن الاستاتۋ\');
-ta[\'ca-varlang-0\'] = new Array(\'\',\'كيريلل جازۋى\');
-ta[\'ca-varlang-1\'] = new Array(\'\',\'لاتىن جازۋى\');
-ta[\'ca-varlang-2\'] = new Array(\'\',\'اراب جازۋى\');
-ta[\'search\'] = new Array(\'f\',\'وسى ۋيكيدەن ٴىزدەۋ\');
-ta[\'p-logo\'] = new Array(\'\',\'باستى بەتكە\');
-ta[\'n-mainpage\'] = new Array(\'z\',\'باستى بەتكە بارىپ كەتٴىڭٴىز\');
-ta[\'n-portal\'] = new Array(\'\',\'جوبا تۋرالى, نە ٴىستەۋٴىڭٴىزگە بولاتىن, قايدان تابۋعا بولاتىن تۋرالى\');
-ta[\'n-currentevents\'] = new Array(\'\',\'اعىمداعى وقيعالارعا قاتىستى اقپارات\');
-ta[\'n-recentchanges\'] = new Array(\'r\',\'وسى ۋيكيدەگٴى جۋىقتاعى ٴوزگەرٴىستەر تٴىزٴىمٴى.\');
-ta[\'n-randompage\'] = new Array(\'x\',\'كەزدەيسوق بەتتٴى جٴۇكتەۋ\');
-ta[\'n-help\'] = new Array(\'\',\'انىقتاما تابۋ ورنى.\');
-ta[\'n-sitesupport\'] = new Array(\'\',\'بٴىزگە جٴاردەم ەتٴىڭٴىز\');
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'مىندا سٴىلتەگەن بارلىق بەتتەردٴىڭ تٴىزٴىمٴى\');
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'مىننان سٴىلتەنگەن بەتتەردٴىڭ جۋىقتاعى ٴوزگەرٴىستەرٴى\');
-ta[\'feed-rss\'] = new Array(\'\',\'بۇل بەتتٴىڭ RSS ارناسى\');
-ta[\'feed-atom\'] = new Array(\'\',\'بۇل بەتتٴىڭ Atom ارناسى\');
-ta[\'t-contributions\'] = new Array(\'\',\'وسى قاتىسۋشىنىڭ ٴۇلەس تٴىزٴىمٴىن قاراۋ\');
-ta[\'t-emailuser\'] = new Array(\'\',\'وسى قاتىسۋشىعا email جٴىبەرۋ\');
-ta[\'t-upload\'] = new Array(\'u\',\'سۋرەت نە مەديا فايلدارىن قوتارۋ\');
-ta[\'t-specialpages\'] = new Array(\'q\',\'بارلىق ارنايى بەتتەر تٴىزٴىمٴى\');
-ta[\'t-print\'] = new Array(\'\',\'وسى بەتتٴىڭ باسىپ شىعارۋ نۇسقاسى\');
-ta[\'t-permalink\'] = new Array(\'\',\'بەتتٴىڭ وسى نۇسقاسىنىڭ تۇراقتى سٴىلتەمەسٴى\');
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'ماعلۇمات بەتٴىن قاراۋ\');
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'قاتىسۋشى بەتٴىن قاراۋ\');
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'تاسپا بەتٴىن قاراۋ\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'بۇل ارنايى بەت, بەتتٴىڭ ٴوزٴى ٴوڭدەلٴىنبەيدٴى.\');
-ta[\'ca-nstab-project\'] = new Array(\'a\',\'جوبا بەتٴىن قاراۋ\');
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'سۋرەت بەتٴىن قاراۋ\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'جٴۇيە حابارىن قاراۋ\');
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'ٴۇلگٴىنٴى قاراۋ\');
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'انىقتىما بەتٴىن قاراۋ\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'سانات بەتٴىن قاراۋ\');
+ta['pt-userpage'] = new Array('.','جەكە بەتٴىم');
+ta['pt-anonuserpage'] = new Array('.','وسى IP جايدىڭ جەكە بەتٴى');
+ta['pt-mytalk'] = new Array('n','تالقىلاۋ بەتٴىم');
+ta['pt-anontalk'] = new Array('n','وسى IP جاي تٴۇزەتۋلەرٴىن تالقىلاۋ');
+ta['pt-preferences'] = new Array('','باپتاۋىم');
+ta['pt-watchlist'] = new Array('l','ٴوزگەرٴىستەرٴىن باقىلاپ تۇرعان بەتتەر تٴىزٴىمٴىم.');
+ta['pt-mycontris'] = new Array('y','ٴۇلەستەرٴىمدٴىڭ تٴىزٴىمٴى');
+ta['pt-login'] = new Array('o','كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, ول مٴىندەتتٴى ەمەس.');
+ta['pt-anonlogin'] = new Array('o','كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, بٴىراق, ول مٴىندەتتٴى ەمەس.');
+ta['pt-logout'] = new Array('o','شىعۋ');
+ta['ca-talk'] = new Array('t','ماعلۇمات بەتتٴى تالقىلاۋ');
+ta['ca-edit'] = new Array('e','بۇل بەتتٴى ٴوڭدەي الاسىز. ساقتاۋدىڭ الدىندا «قاراپ شىعۋ» تٴۇيمەسٴىن نۇقىڭىز.');
+ta['ca-addsection'] = new Array('+','بۇل تالقىلاۋ بەتٴىندە جاڭا تاراۋ باستاۋ.');
+ta['ca-viewsource'] = new Array('e','بۇل بەت قورعالعان, بٴىراق, قاينارىن قاراۋعا بولادى.');
+ta['ca-history'] = new Array('h','بۇل بەتتٴىن جۋىقتاعى نۇسقالارى.');
+ta['ca-protect'] = new Array('=','بۇل بەتتٴى قورعاۋ');
+ta['ca-unprotect'] = new Array('=','بۇل بەتتٴى قورعاماۋ');
+ta['ca-delete'] = new Array('d','بۇل بەتتٴى جويۋ');
+ta['ca-undelete'] = new Array('d','بۇل بەتتٴىڭ جويۋدىڭ الدىنداعى بولعان تٴۇزەتۋلەرٴىن قايتارۋ');
+ta['ca-move'] = new Array('m','بۇل بەتتٴى جىلجىتۋ');
+ta['ca-nomove'] = new Array('m','بۇل بەتتٴى جىلجىتۋعا رۇقساتىڭىز جوق');
+ta['ca-watch'] = new Array('w','بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ');
+ta['ca-unwatch'] = new Array('w','بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزدەن الاستاتۋ');
+ta['ca-varlang-0'] = new Array('','كيريلل جازۋى');
+ta['ca-varlang-1'] = new Array('','لاتىن جازۋى');
+ta['ca-varlang-2'] = new Array('','اراب جازۋى');
+ta['search'] = new Array('f','وسى ۋيكيدەن ٴىزدەۋ');
+ta['p-logo'] = new Array('','باستى بەتكە');
+ta['n-mainpage'] = new Array('z','باستى بەتكە بارىپ كەتٴىڭٴىز');
+ta['n-portal'] = new Array('','جوبا تۋرالى, نە ٴىستەۋٴىڭٴىزگە بولاتىن, قايدان تابۋعا بولاتىن تۋرالى');
+ta['n-currentevents'] = new Array('','اعىمداعى وقيعالارعا قاتىستى اقپارات');
+ta['n-recentchanges'] = new Array('r','وسى ۋيكيدەگٴى جۋىقتاعى ٴوزگەرٴىستەر تٴىزٴىمٴى.');
+ta['n-randompage'] = new Array('x','كەزدەيسوق بەتتٴى جٴۇكتەۋ');
+ta['n-help'] = new Array('','انىقتاما تابۋ ورنى.');
+ta['n-sitesupport'] = new Array('','بٴىزگە جٴاردەم ەتٴىڭٴىز');
+ta['t-whatlinkshere'] = new Array('j','مىندا سٴىلتەگەن بارلىق بەتتەردٴىڭ تٴىزٴىمٴى');
+ta['t-recentchangeslinked'] = new Array('k','مىننان سٴىلتەنگەن بەتتەردٴىڭ جۋىقتاعى ٴوزگەرٴىستەرٴى');
+ta['feed-rss'] = new Array('','بۇل بەتتٴىڭ RSS ارناسى');
+ta['feed-atom'] = new Array('','بۇل بەتتٴىڭ Atom ارناسى');
+ta['t-contributions'] = new Array('','وسى قاتىسۋشىنىڭ ٴۇلەس تٴىزٴىمٴىن قاراۋ');
+ta['t-emailuser'] = new Array('','وسى قاتىسۋشىعا email جٴىبەرۋ');
+ta['t-upload'] = new Array('u','سۋرەت نە مەديا فايلدارىن قوتارۋ');
+ta['t-specialpages'] = new Array('q','بارلىق ارنايى بەتتەر تٴىزٴىمٴى');
+ta['t-print'] = new Array('','وسى بەتتٴىڭ باسىپ شىعارۋ نۇسقاسى');
+ta['t-permalink'] = new Array('','بەتتٴىڭ وسى نۇسقاسىنىڭ تۇراقتى سٴىلتەمەسٴى');
+ta['ca-nstab-main'] = new Array('c','ماعلۇمات بەتٴىن قاراۋ');
+ta['ca-nstab-user'] = new Array('c','قاتىسۋشى بەتٴىن قاراۋ');
+ta['ca-nstab-media'] = new Array('c','تاسپا بەتٴىن قاراۋ');
+ta['ca-nstab-special'] = new Array('','بۇل ارنايى بەت, بەتتٴىڭ ٴوزٴى ٴوڭدەلٴىنبەيدٴى.');
+ta['ca-nstab-project'] = new Array('a','جوبا بەتٴىن قاراۋ');
+ta['ca-nstab-image'] = new Array('c','سۋرەت بەتٴىن قاراۋ');
+ta['ca-nstab-mediawiki'] = new Array('c','جٴۇيە حابارىن قاراۋ');
+ta['ca-nstab-template'] = new Array('c','ٴۇلگٴىنٴى قاراۋ');
+ta['ca-nstab-help'] = new Array('c','انىقتىما بەتٴىن قاراۋ');
+ta['ca-nstab-category'] = new Array('c','سانات بەتٴىن قاراۋ');",
+
+# Common.js: contains nothing but a placeholder comment
+'Common.js' => '/* مىنداعى كەز كەلگەن JavaScript ٴامٴىرلەرٴى ٴارقايسى بەت جٴۇكتەلگەندە بارلىق پايدالانۋشىلارعا جٴۇكتەلەدٴى. */
 
 // BEGIN workaround for RTL
 if (wgUserLanguage == "kk-cn"){
   document.direction="rtl";
   document.write(\'<style type="text/css">html {direction: rtl;}</style>\');
   document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/\'+skin+\'/rtl.css">\');
 }
 // END workaround for RTL',
 
@@ -2160,7 +2164,7 @@ $1
 'table_pager_empty'        => 'ەش نٴاتيجە جوق',
 
 # Auto-summaries
-'autosumm-blank'   => 'بەتتٴى تازارتتى',
+'autosumm-blank'   => 'بەتتٴىڭ بارلىق ماعلۇماتىن الاستاتتى',
 'autosumm-replace' => "بەتتٴى '$1' دەگەنمەن الماستىردى",
 'autoredircomment' => '[[$1]] دەگەنگە ايدادى', # This should be changed to the new naming convention, but existed beforehand
 

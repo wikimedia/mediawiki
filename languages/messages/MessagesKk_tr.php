@@ -262,7 +262,7 @@ $messages = array(
 'moredotdotdot'   => 'Köbirek…',
 'mypage'          => 'Jeke betim',
 'mytalk'          => 'Talqılawım',
-'anontalk'        => '-{IP}- talqılawı',
+'anontalk'        => 'IP talqılawı',
 'navigation'      => 'Bağıttaw',
 
 # Metadata in edit box
@@ -490,7 +490,7 @@ Tirkelgiñiz jasaldı. {{SITENAME}} baptawıñızdı qalawıñızben özgertwdi 
 'wrongpasswordempty'         => 'Qupïya söz bostı boptı. Qaýtalap köriñiz.',
 'mailmypassword'             => 'Qupïya sözimdi xatpen jiber',
 'passwordremindertitle'      => 'Qupïya söz twralı {{SITENAME}} jobasınıñ eskertwi',
-'passwordremindertext'       => 'Keýbirew (-{IP}- jaýı: $1, bälkim, öziñiz bolarsız)
+'passwordremindertext'       => 'Keýbirew (IP jaýı: $1, bälkim, öziñiz bolarsız)
 {{SITENAME}} üşin bizden jaña qupïya sözin jiberwin suranısqan ($4).
 «$2» qatıswşınıñ qupïya sözi «$3» boldı endi.
 Qazir kirwiñiz jäne qupïya söziñizdi awıstrwıñız qajet.
@@ -502,7 +502,7 @@ eski qupïya söziñizdi äriğaraý qoldanıp.',
 'passwordsent'               => 'Jaña qupïya söz «$1» üşin
 tirkelgen e-poşta jaýına jiberildi.
 Qabıldağannan keýin kirgende sonı engiziñiz.',
-'blocked-mailpassword'       => '-{IP}- jaýıñızdan öñdew buğattalğan, sondıqtan
+'blocked-mailpassword'       => 'IP jaýıñızdan öñdew buğattalğan, sondıqtan
 qïyanatşılıqtan saqtanw üşin qupïya söz jiberw qızmetiniñ äreketi ruqsat etilmeýdi.',
 'eauthentsent'               => 'Kwälandırw xatı atalğan e-poşta jaýına jiberildi.
 Basqa e-poşta xatın jiberwdiñ aldınan, tirkelgi şınınan sizdiki ekenin
@@ -554,20 +554,20 @@ Durıs pişimdelgen jaýdı engiziñiz, ne awmaqtı bos qaldırıñız.',
 'showpreview'               => 'Qarap şığw',
 'showlivepreview'           => 'Twra qarap şığw',
 'showdiff'                  => 'Özgeristerdi körset',
-'anoneditwarning'           => "'''Nazar salıñız:''' Siz jüýege kirmegensiz. -{IP}- jaýıñız bul bettiñ öñdew tarïxında jazılıp alınadı.",
+'anoneditwarning'           => "'''Nazar salıñız:''' Siz jüýege kirmegensiz. IP jaýıñız bul bettiñ öñdew tarïxında jazılıp alınadı.",
 'missingsummary'            => "'''Eskertw:''' Tüzetw sïpattamasın engizbepsiz. «Saqtaw» tüýmesin tağı bassañız, tüzetwiñiz mändemesiz saqtaladı.",
 'missingcommenttext'        => 'Tömende mändemeñizdi engiziñiz.',
 'missingcommentheader'      => "'''Eskertw:''' Bul mändemege taqırıp/basjol jetistirmepsiz. Eger tağı da Saqtaw tüýmesin nuqısañız, tüzetwiñiz solsız saqtaladı.",
 'summary-preview'           => 'Sïpattamasın qarap şığw',
 'subject-preview'           => 'Taqırıbın/basın qarap şığw',
 'blockedtitle'              => 'Paýdalanwşı buğattalğan',
-'blockedtext'               => "<big>'''Qatıswşı atıñız ne -{IP}- jaýıñız buğattalğan.'''</big>
+'blockedtext'               => "<big>'''Qatıswşı atıñız ne IP jaýıñız buğattalğan.'''</big>
 
 buğattawdı $1 istegen. Belgilengen sebebi: ''$2''.
 
 Osı buğattawdı talqılaw üşin $1 degenmen ne basqa [[{{ns:project}}:Äkimşiler|äkimşimen]] qatınaswıñızğa boladı.
 [[{{ns:special:Preferences|Tirkelgi baptawların]] qoldanıp jaramdı e-poşta jaýın engizgenşe deýin
-«Qatıswşığa xat jazw» qasïetin paýdalanılmaýsız. Ağımdıq -{IP}- jaýıñız $3 bolğan. Bunı ärbir suranısıñızğa qosıñız.",
+«Qatıswşığa xat jazw» qasïetin paýdalanılmaýsız. Ağımdıq IP jaýıñız $3 bolğan. Bunı ärbir suranısıñızğa qosıñız.",
 'blockedoriginalsource'     => "Tömende '''$1''' degenniñ qaýnarı körsetiledi:",
 'blockededitsource'         => "Tömende '''$1''' degenge jasalğan '''tüzetwñizdiñ''' mätini körsetiledi:",
 'whitelistedittitle'        => 'Öñdew üşin kirwiñiz jön.',
@@ -589,7 +589,7 @@ kelipsiz. Betti bastaw üşin, tömendegi awmaqta mätiniñizdi
 teriñiz (köbirek aqparat üşin [[{{ns:help}}:Mazmunı|kömek betin]]
 qarañız).Eger jañılğannan osında kelgen bolsañız, şolğışıñız
 «Artqa» degen tüýmesin nuqıñız.',
-'anontalkpagetext'          => "----''Bul tirkelgisiz (nemese tirkelgisin qoldanbağan) paýdalanwşınıñ talqılaw beti. Osı paýdalanwşını biz tek sandıq -{IP}- jaýımen teñdestiremiz. Osındaý -{IP}- jaýlar birneşe paýdalanwşığa ortaq bolwı mümkin. Eger siz tirkelgisiz paýdalanwşı bolsañız jäne sizge qatıssız mändemeler jiberilgenin sezseñiz, basqa tirkelgisiz paýdalanwşılarmen aralastırmawı üşin [[{{ns:special}}:Userlogin|tirkelgi jasañız ne kiriñiz]].''",
+'anontalkpagetext'          => "----''Bul tirkelgisiz (nemese tirkelgisin qoldanbağan) paýdalanwşınıñ talqılaw beti. Osı paýdalanwşını biz tek sandıq IP jaýımen teñdestiremiz. Osındaý IP jaýlar birneşe paýdalanwşığa ortaq bolwı mümkin. Eger siz tirkelgisiz paýdalanwşı bolsañız jäne sizge qatıssız mändemeler jiberilgenin sezseñiz, basqa tirkelgisiz paýdalanwşılarmen aralastırmawı üşin [[{{ns:special}}:Userlogin|tirkelgi jasañız ne kiriñiz]].''",
 'noarticletext'             => 'Bul bette ağımda eş mätin joq, basqa betterden osı bet atawın [[{{ns:special}}:Search/{{PAGENAME}}|izdep körwiñizge]] nemese osı betti [{{fullurl:{{FULLPAGENAME}}|action=edit}} tüzetwiñizge] boladı.',
 'clearyourcache'            => "'''Añğartpa:''' Saqtağannan keýin özgeristerdi körw üşin şolğış qosalqı qaltasın bosatw keregi mümkin. '''Mozilla  / Safari:''' ''Shift'' pernesin basıp turıp ''Reload'' (''Qaýta jüktew'') tüýmesin nuqıñız (ne ''Ctrl-Shift-R'' basıñız); ''IE:'' ''Ctrl-F5'' basıñız; '''Opera / Konqueror''' ''F5'' pernesin basıñız.",
 'usercssjsyoucanpreview'    => '<strong>Basalqı:</strong> Saqtaw aldında jaña CSS/JS faýlın tekserw üşin «Qarap şığw» tüýmesin qoldanıñız.',
@@ -644,12 +644,13 @@ sondıqtan däl qazir tüzetwiñizdi saqtaý almaýsız. Sosın qoldanwğa üşi
 'protectedpagewarning'      => '<strong>NAZAR SALIÑIZ: Bul bet qorğalğan. Tek äkimşi ruqsatı bar qatıswşılar öñdew jasaý aladı.</strong>',
 'semiprotectedpagewarning'  => "'''Añğartpa:''' Bet [[{{ns:project}}:Jartılaý qorğaw sayasatı|qorğalğan]], sondıqtan osını tek ruqsatı bar qatıswşılar öñdeý aladı.",
 'templatesused'             => 'Bul bette qoldanılğan ülgiler:',
+'templatesusedpreview'      => 'Bunı qarap şığwğa pýdalanılğan ülgiler:',
 'edittools'                 => '<!-- Mındağı mağlumat öñdew jäne qotarw ülgittriñiñ astında körsetiledi. -->',
 'nocreatetitle'             => 'Betti bastaw şektelgen',
 'nocreatetext'              => 'Bul torapta jaña bet bastawı şektelgen.
 Keri qaýtıp bar betti öñdewiñizge boladı, nemese [[{{ns:special}}:Userlogin|kirwiñizge ne tirkelgi jasawğa]] boladı.',
 'cantcreateaccounttitle'    => 'Tirkelgi jasalmadı',
-'cantcreateaccounttext'     => 'Osı -{IP}--jaýdan (<b>$1</b>) tirkelgi jasawı buğattalğan.
+'cantcreateaccounttext'     => 'Osı IP-jaýdan (<b>$1</b>) tirkelgi jasawı buğattalğan.
 Bälkim sebebi, oqw ornıñızdan, nemese Ïnternet jetkizwşiden
 üzbeý buzaqılıq bolğanı.',
 
@@ -663,7 +664,7 @@ Osı betti aşwğa paýdalanğan -{URL}- jaýın qaýta tekserip şığıñız.'
 'loadhist'                    => 'Bet tarïxın jüktewi',
 'currentrev'                  => 'Ağımdıq nusqası',
 'revisionasof'                => '$1 kezindegi nusqası',
-'revision-info' => '$1 kezindegi nusqası; $2',
+'revision-info'               => '$1 kezindegi $2 jasağan nusqası',
 'previousrevision'            => '← Eskilew nusqası',
 'nextrevision'                => 'Jañalaw nusqası →',
 'currentrevisionlink'         => 'Ağımdıq nusqası',
@@ -712,7 +713,7 @@ osı tildesw arqılı joýılğandı keri qaýtara aladı.',
 'revdelete-legend'          => 'Nusqanınıñ şektewleri:',
 'revdelete-hide-text'       => 'Nusqa mätinin jasır',
 'revdelete-hide-comment'    => 'Tüzetw mändemesin jasır',
-'revdelete-hide-user'       => 'Öñdewşi atın (-{IP}--jaýın) jasır',
+'revdelete-hide-user'       => 'Öñdewşi atın (IP-jaýın) jasır',
 'revdelete-hide-restricted' => 'Osı şektewlerdi barşağa sïyaqtı äkimşilerge de qoldanw',
 'revdelete-log'             => 'Jwrnal mändemesi:',
 'revdelete-submit'          => 'Talğanğan nusqağa qoldanw',
@@ -1643,70 +1644,73 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'markedaspatrollederrortext' => 'Küzette dep belgilew üşin nusqasın engiziñiz.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'Monobook.js' => "/* tooltips and access keys */
 var ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'Jeke betim\');
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Osı IP jaýdıñ jeke beti\');
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Talqılaw betim\');
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Osı IP jaý tüzetwlerin talqılaw\');
-ta[\'pt-preferences\'] = new Array(\'\',\'Baptawım\');
-ta[\'pt-watchlist\'] = new Array(\'l\',\'Özgeristerin baqılap turğan better tizimim.\');
-ta[\'pt-mycontris\'] = new Array(\'y\',\'Ülesterimdiñ tizimi\');
-ta[\'pt-login\'] = new Array(\'o\',\'Kirwiñizdi usınamız, ol mindetti emes.\');
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'Kirwiñizdi usınamız, biraq, ol mindetti emes.\');
-ta[\'pt-logout\'] = new Array(\'o\',\'Şığw\');
-ta[\'ca-talk\'] = new Array(\'t\',\'Mağlumat betti talqılaw\');
-ta[\'ca-edit\'] = new Array(\'e\',\'Bul betti öñdeý alasız. Saqtawdıñ aldında «Qarap şığw» tüýmesin nuqıñız.\');
-ta[\'ca-addsection\'] = new Array(\'+\',\'Bul talqılaw betinde jaña taraw bastaw.\');
-ta[\'ca-viewsource\'] = new Array(\'e\',\'Bul bet qorğalğan, biraq, qaýnarın qarawğa boladı.\');
-ta[\'ca-history\'] = new Array(\'h\',\'Bul bettin jwıqtağı nusqaları.\');
-ta[\'ca-protect\'] = new Array(\'=\',\'Bul betti qorğaw\');
-ta[\'ca-unprotect\'] = new Array(\'=\',\'Bul betti qorğamaw\');
-ta[\'ca-delete\'] = new Array(\'d\',\'Bul betti joyw\');
-ta[\'ca-undelete\'] = new Array(\'d\',\'Bul bettiñ joywdıñ aldındağı bolğan tüzetwlerin qaýtarw\');
-ta[\'ca-move\'] = new Array(\'m\',\'Bul betti jıljıtw\');
-ta[\'ca-nomove\'] = new Array(\'m\',\'Bul betti jıljıtwğa ruqsatıñız joq\');
-ta[\'ca-watch\'] = new Array(\'w\',\'Bul betti baqılaw tizimiñizge üstew\');
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Bul betti baqılaw tizimiñizden alastatw\');
-ta[\'ca-varlang-0\'] = new Array(\'\',\'Kïrïll jazwı\');
-ta[\'ca-varlang-1\'] = new Array(\'\',\'Latın jazwı\');
-ta[\'ca-varlang-2\'] = new Array(\'\',\'Arab jazwı\');
-ta[\'search\'] = new Array(\'f\',\'Osı wïkïden izdew\');
-ta[\'p-logo\'] = new Array(\'\',\'Bastı betke\');
-ta[\'n-mainpage\'] = new Array(\'z\',\'Bastı betke barıp ketiñiz\');
-ta[\'n-portal\'] = new Array(\'\',\'Joba twralı, ne istewiñizge bolatın, qaýdan tabwğa bolatın twralı\');
-ta[\'n-currentevents\'] = new Array(\'\',\'Ağımdağı oqïğalarğa qatıstı aqparat\');
-ta[\'n-recentchanges\'] = new Array(\'r\',\'Osı wïkïdegi jwıqtağı özgerister tizimi.\');
-ta[\'n-randompage\'] = new Array(\'x\',\'Kezdeýsoq betti jüktew\');
-ta[\'n-help\'] = new Array(\'\',\'Anıqtama tabw ornı.\');
-ta[\'n-sitesupport\'] = new Array(\'\',\'Bizge järdem etiñiz\');
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Mında siltegen barlıq betterdiñ tizimi\');
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Mınnan siltengen betterdiñ jwıqtağı özgeristeri\');
-ta[\'feed-rss\'] = new Array(\'\',\'Bul bettiñ RSS arnası\');
-ta[\'feed-atom\'] = new Array(\'\',\'Bul bettiñ Atom arnası\');
-ta[\'t-contributions\'] = new Array(\'\',\'Osı qatıswşınıñ üles tizimin qaraw\');
-ta[\'t-emailuser\'] = new Array(\'\',\'Osı qatıswşığa email jiberw\');
-ta[\'t-upload\'] = new Array(\'u\',\'Swret ne medïa faýldarın qotarw\');
-ta[\'t-specialpages\'] = new Array(\'q\',\'Barlıq arnaýı better tizimi\');
-ta[\'t-print\'] = new Array(\'\',\'Osı bettiñ basıp şığarw nusqası\');
-ta[\'t-permalink\'] = new Array(\'\',\'Bettiñ osı nusqasınıñ turaqtı siltemesi\');
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'Mağlumat betin qaraw\');
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'Qatıswşı betin qaraw\');
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'Taspa betin qaraw\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'Bul arnaýı bet, bettiñ özi öñdelinbeýdi.\');
-ta[\'ca-nstab-project\'] = new Array(\'a\',\'Joba betin qaraw\');
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'Swret betin qaraw\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Jüýe xabarın qaraw\');
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'Ülgini qaraw\');
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'Anıqtıma betin qaraw\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Sanat betin qaraw\');
+ta['pt-userpage'] = new Array('.','Jeke betim');
+ta['pt-anonuserpage'] = new Array('.','Osı IP jaýdıñ jeke beti');
+ta['pt-mytalk'] = new Array('n','Talqılaw betim');
+ta['pt-anontalk'] = new Array('n','Osı IP jaý tüzetwlerin talqılaw');
+ta['pt-preferences'] = new Array('','Baptawım');
+ta['pt-watchlist'] = new Array('l','Özgeristerin baqılap turğan better tizimim.');
+ta['pt-mycontris'] = new Array('y','Ülesterimdiñ tizimi');
+ta['pt-login'] = new Array('o','Kirwiñizdi usınamız, ol mindetti emes.');
+ta['pt-anonlogin'] = new Array('o','Kirwiñizdi usınamız, biraq, ol mindetti emes.');
+ta['pt-logout'] = new Array('o','Şığw');
+ta['ca-talk'] = new Array('t','Mağlumat betti talqılaw');
+ta['ca-edit'] = new Array('e','Bul betti öñdeý alasız. Saqtawdıñ aldında «Qarap şığw» tüýmesin nuqıñız.');
+ta['ca-addsection'] = new Array('+','Bul talqılaw betinde jaña taraw bastaw.');
+ta['ca-viewsource'] = new Array('e','Bul bet qorğalğan, biraq, qaýnarın qarawğa boladı.');
+ta['ca-history'] = new Array('h','Bul bettin jwıqtağı nusqaları.');
+ta['ca-protect'] = new Array('=','Bul betti qorğaw');
+ta['ca-unprotect'] = new Array('=','Bul betti qorğamaw');
+ta['ca-delete'] = new Array('d','Bul betti joyw');
+ta['ca-undelete'] = new Array('d','Bul bettiñ joywdıñ aldındağı bolğan tüzetwlerin qaýtarw');
+ta['ca-move'] = new Array('m','Bul betti jıljıtw');
+ta['ca-nomove'] = new Array('m','Bul betti jıljıtwğa ruqsatıñız joq');
+ta['ca-watch'] = new Array('w','Bul betti baqılaw tizimiñizge üstew');
+ta['ca-unwatch'] = new Array('w','Bul betti baqılaw tizimiñizden alastatw');
+ta['ca-varlang-0'] = new Array('','Kïrïll jazwı');
+ta['ca-varlang-1'] = new Array('','Latın jazwı');
+ta['ca-varlang-2'] = new Array('','Arab jazwı');
+ta['search'] = new Array('f','Osı wïkïden izdew');
+ta['p-logo'] = new Array('','Bastı betke');
+ta['n-mainpage'] = new Array('z','Bastı betke barıp ketiñiz');
+ta['n-portal'] = new Array('','Joba twralı, ne istewiñizge bolatın, qaýdan tabwğa bolatın twralı');
+ta['n-currentevents'] = new Array('','Ağımdağı oqïğalarğa qatıstı aqparat');
+ta['n-recentchanges'] = new Array('r','Osı wïkïdegi jwıqtağı özgerister tizimi.');
+ta['n-randompage'] = new Array('x','Kezdeýsoq betti jüktew');
+ta['n-help'] = new Array('','Anıqtama tabw ornı.');
+ta['n-sitesupport'] = new Array('','Bizge järdem etiñiz');
+ta['t-whatlinkshere'] = new Array('j','Mında siltegen barlıq betterdiñ tizimi');
+ta['t-recentchangeslinked'] = new Array('k','Mınnan siltengen betterdiñ jwıqtağı özgeristeri');
+ta['feed-rss'] = new Array('','Bul bettiñ RSS arnası');
+ta['feed-atom'] = new Array('','Bul bettiñ Atom arnası');
+ta['t-contributions'] = new Array('','Osı qatıswşınıñ üles tizimin qaraw');
+ta['t-emailuser'] = new Array('','Osı qatıswşığa email jiberw');
+ta['t-upload'] = new Array('u','Swret ne medïa faýldarın qotarw');
+ta['t-specialpages'] = new Array('q','Barlıq arnaýı better tizimi');
+ta['t-print'] = new Array('','Osı bettiñ basıp şığarw nusqası');
+ta['t-permalink'] = new Array('','Bettiñ osı nusqasınıñ turaqtı siltemesi');
+ta['ca-nstab-main'] = new Array('c','Mağlumat betin qaraw');
+ta['ca-nstab-user'] = new Array('c','Qatıswşı betin qaraw');
+ta['ca-nstab-media'] = new Array('c','Taspa betin qaraw');
+ta['ca-nstab-special'] = new Array('','Bul arnaýı bet, bettiñ özi öñdelinbeýdi.');
+ta['ca-nstab-project'] = new Array('a','Joba betin qaraw');
+ta['ca-nstab-image'] = new Array('c','Swret betin qaraw');
+ta['ca-nstab-mediawiki'] = new Array('c','Jüýe xabarın qaraw');
+ta['ca-nstab-template'] = new Array('c','Ülgini qaraw');
+ta['ca-nstab-help'] = new Array('c','Anıqtıma betin qaraw');
+ta['ca-nstab-category'] = new Array('c','Sanat betin qaraw');",
+
+# Common.js: contains nothing but a placeholder comment
+'Common.js' => '/* Mındağı kez kelgen JavaScript ämirleri ärqaýsı bet jüktelgende barlıq paýdalanwşılarğa jükteledi. */
 
 // BEGIN workaround for RTL
 if (wgUserLanguage == "kk-cn"){
   document.direction="rtl";
   document.write(\'<style type="text/css">html {direction: rtl;}</style>\');
   document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/\'+skin+\'/rtl.css">\');
 }
 // END workaround for RTL',
 
@@ -2059,7 +2063,7 @@ E-poşta qızmeti qaýtarğanı: $1',
 'confirmemail_loggedin'   => 'E-poşta jaýıñız kwälandırıldı.',
 'confirmemail_error'      => 'Kwälandırwıñızdı saqtağanda belgisiz qate boldı.',
 'confirmemail_subject'    => '{{SITENAME}} torabınan e-poşta jaýıñızdı kwälandırw xatı',
-'confirmemail_body'       => "Keýbirew, mına $1 -{IP}- jaýınan, öziñiz bolwı mümkin,
+'confirmemail_body'       => "Keýbirew, mına $1 IP jaýınan, öziñiz bolwı mümkin,
 {{SITENAME}} jobasındağı E-poşta jaýın qoldanıp «$2» tirkelgi jasaptı.
 
 Osı tirkelgi rastan sizdiki ekenin kwälandırw üşin, jäne {{SITENAME}} jobasınıñ
@@ -2137,7 +2141,7 @@ Osı betti şınınan qaýta jasawın rastañız.",
 'table_pager_empty'        => 'Eş nätïje joq',
 
 # Auto-summaries
-'autosumm-blank'   => 'Betti tazarttı',
+'autosumm-blank'   => 'Bettiñ barlıq mağlumatın alastattı',
 'autosumm-replace' => "Betti '$1' degenmen almastırdı",
 'autoredircomment' => '[[$1]] degenge aýdadı', # This should be changed to the new naming convention, but existed beforehand
 
