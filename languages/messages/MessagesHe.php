@@ -354,12 +354,12 @@ $messages = array(
 'print'             => 'גרסה להדפסה',
 'edit'              => 'עריכה',
 'editthispage'      => 'ערכו דף זה',
-'delete'            => 'מחק',
+'delete'            => 'מחיקה',
 'deletethispage'    => 'מחקו דף זה',
 'undelete_short'    => 'שחזר {{plural:$1|עריכה אחת|$1 עריכות}}',
-'protect'           => 'הגן',
+'protect'           => 'הגנה',
 'protectthispage'   => 'הגנו על דף זה',
-'unprotect'         => 'הסר הגנה',
+'unprotect'         => 'הסרת הגנה',
 'unprotectthispage' => 'הסירו הגנה מדף זה',
 'newpage'           => 'דף חדש',
 'talkpage'          => 'שוחחו על דף זה',
@@ -511,7 +511,7 @@ $messages = array(
 'wrong_wfQuery_params' => 'הפרמטרים שהוזנו ל־wfQuery() אינם נכונים:<br />
 פונקציה: $1<br />
 שאילתה: $2',
-'viewsource'           => 'הצג מקור',
+'viewsource'           => 'הצגת מקור',
 'viewsourcefor'        => 'לדף $1',
 'protectedtext'        => "דף זה הינו '''דף מוגן''' ולא ניתן לערוך אותו. ישנן מספר סיבות אפשריות להגנה כזו.
 
@@ -1113,7 +1113,7 @@ $messages = array(
 'newpages-username'       => 'שם משתמש:',
 'ancientpages'            => 'דפים מוזנחים',
 'intl'                    => 'קישורים בינלשוניים',
-'move'                    => 'העבר',
+'move'                    => 'העברה',
 'movethispage'            => 'העבר דף זה',
 'unusedimagestext'        => 'רשימת הקבצים שאינם בשימוש באתר. יש למצוא מקום עבור הקבצים או לסמן אותם למחיקה.',
 'unusedcategoriestext'    => 'למרות שהקטגוריות הבאות קיימות, אין שום דף בו נעשה בהן שימוש.',
