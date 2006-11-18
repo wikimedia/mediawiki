@@ -12,6 +12,7 @@ require_once(dirname(__FILE__).'/Profiler.php');
 
 class ProfilerSimple extends Profiler {
 	var $mMinimumTime = 0;
+	var $mProfileID = false;
 
 	function ProfilerSimple() {
 		global $wgRequestTime,$wgRUstart;
@@ -37,6 +38,18 @@ class ProfilerSimple extends Profiler {
 
 	function setMinimum( $min ) {
 		$this->mMinimumTime = $min;
+	}
+
+	function setProfileID( $id ) {
+		$this->mProfileID = $id;
+	}
+
+	function getProfileID() {
+		if ( $this->mProfileID === false ) {
+			return wfWikiID();
+		} else {
+			return $this->mProfileID;
+		}
 	}
 
 	function profileIn($functionname) {
