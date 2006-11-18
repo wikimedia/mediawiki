@@ -1833,7 +1833,7 @@ class Database {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		return mysql_get_server_info();
+		return mysql_get_server_info( $this->mConn );
 	}
 
 	/**
