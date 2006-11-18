@@ -1546,12 +1546,13 @@ class Language {
 			wfProfileIn( __METHOD__ );
 		}
 
+		# Default fallback, may be overridden when the messages file is included
 		if ( $code != 'en' ) {
 			$fallback = 'en';
 		} else {
 			$fallback = false;
 		}
-		
+
 		# Load the primary localisation from the source file
 		$filename = self::getMessagesFileName( $code );
 		if ( !file_exists( $filename ) ) {
@@ -1564,7 +1565,7 @@ class Language {
 			$cache = compact( self::$mLocalisationKeys );	
 			wfDebug( "Got localisation for $code from source\n" );
 		}
-		
+
 		if ( !empty( $fallback ) ) {
 			# Load the fallback localisation, with a circular reference guard
 			if ( isset( $recursionGuard[$code] ) ) {
