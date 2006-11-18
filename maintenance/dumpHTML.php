@@ -26,10 +26,11 @@
  * --interlang          allow interlanguage links
  * --image-snapshot     copy all images used to the destination directory
  * --compress           generate compressed version of the html pages
+ * --udp-profile <N>    profile 1/N rendering operations using ProfilerSimpleUDP
  */
 
 
-$optionsWithArgs = array( 's', 'd', 'e', 'k', 'checkpoint', 'slice' );
+$optionsWithArgs = array( 's', 'd', 'e', 'k', 'checkpoint', 'slice', 'udp-profile' );
 
 $profiling = false;
 
@@ -41,6 +42,10 @@ if ( $profiling ) {
 		$wgProfileToDatabase = false;
 		$wgProfileSampleRate = 1;
 	}
+}
+
+if ( in_array( '--udp-profile', $argv ) ) {
+	define( 'MW_FORCE_PROFILE', 1 );
 }
 
 require_once( "commandLine.inc" );
@@ -96,6 +101,7 @@ $wgHTMLDump = new DumpHTML( array(
 	'noOverwrite' => $options['no-overwrite'],
 	'compress' => $options['compress'],
 	'noSharedDesc' => $options['no-shared-desc'],
+	'udpProfile' => $options['udp-profile'],
 ));
 
 
