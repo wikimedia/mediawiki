@@ -185,7 +185,8 @@ class DumpHTML {
 			$title = Title::newFromID( $id );
 			if ( $title ) {
 				$ns = $title->getNamespace() ;
-				if ( $ns != NS_CATEGORY && $title->getPrefixedDBkey() != $mainPage ) {
+				if ( $ns != NS_CATEGORY && $ns != NS_MEDIAWIKI && 
+				  $title->getPrefixedDBkey() != $mainPage ) {
 					$this->doArticle( $title );
 				}
 			}
@@ -485,11 +486,26 @@ class DumpHTML {
 				fclose( $file );
 			}
 		}
+
+		wfIncrStats( 'dumphtml_article' );
 	}
 
 	/** Write the given text to the file identified by the given title object */
 	function writeArticle( &$title, $text ) {
 		$filename = $this->getHashedFilename( $title );
+
+		# Temporary hack for current dump, this should be moved to 
+		# getFriendlyName() at the earliest opportunity.
+		#
+		# Limit filename length to 255 characters, so it works on ext3.
+		# Titles are in fact limited to 255 characters, but dumpHTML 
+		# adds a suffix which may put them over the limit.
+		$length = strlen( $filename );
+		if ( $length > 255 ) {
+			print "Warning: Filename too long ($length bytes). Skipping.\n";
+			return;
+		}
+			
 		$fullName = "{$this->dest}/$filename";
 		$fullDir = dirname( $fullName );
 
@@ -591,13 +607,11 @@ class DumpHTML {
 		$wgUser->setOption( 'skin', $this->skin );
 		$wgUser->setOption( 'editsection', 0 );
 
-		if ( $this->makeSnapshot ) {
-			$this->destUploadDirectory = "{$this->dest}/{$this->imageRel}";
-			if ( realpath( $this->destUploadDirectory == $wgUploadDirectory ) ) {
-				$this->makeSnapshot = false;
-			}
+		$this->destUploadDirectory = "{$this->dest}/{$this->imageRel}";
+		if ( realpath( $this->destUploadDirectory ) == realpath( $wgUploadDirectory ) ) {
+			print "Disabling image snapshot because the destination is the same as the source\n";
+			$this->makeSnapshot = false;
 		}
-
 		$this->sharedStaticDirectory = "{$this->destUploadDirectory}/shared";
 
 		$this->setupDone = true;
@@ -695,9 +709,13 @@ ENDTEXT;
 		if ( !file_exists( $destLoc ) ) {
 			wfMkdirParents( dirname( $destLoc ), 0755 );
 			if ( function_exists( 'symlink' ) && !$this->forceCopy ) {
-				symlink( $sourceLoc, $destLoc );
+				if ( !symlink( $sourceLoc, $destLoc ) ) {
+					print "Warning: unable to create symlink at $destLoc\n";
+				}
 			} else {
-				copy( $sourceLoc, $destLoc );
+				if ( !copy( $sourceLoc, $destLoc ) ) {
+					print "Warning: unable to copy $sourceLoc to $destLoc\n";
+				}
 			}
 		}
 	}
