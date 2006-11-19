@@ -70,6 +70,9 @@ class DumpHTML {
 	# Max page ID, lazy initialised
 	var $maxPageID = false;
 
+	# UDP profiling
+	var $udpProfile, $udpProfileCounter = 0, $udpProfileInit = false;
+
 	function DumpHTML( $settings = array() ) {
 		foreach ( $settings as $var => $value ) {
 			$this->$var = $value;
@@ -449,6 +452,8 @@ class DumpHTML {
 				return;
 			}
 		}
+
+		$this->profile();
 
 		$this->rawPages = array();
 		$text = $this->getArticleHTML( $title );
@@ -958,7 +963,33 @@ ENDTEXT;
 		}
 		return $this->maxPageID;
 	}
-			
+
+	function profile() {
+		global $wgProfiler;
+
+		if ( !$this->udpProfile ) {
+			return;
+		}
+		if ( !$this->udpProfileInit ) {
+			$this->udpProfileInit = true;
+		} elseif ( $this->udpProfileCounter == 1 % $this->udpProfile ) {
+			$wgProfiler->getFunctionReport();
+			$wgProfiler = new DumpHTML_ProfilerStub;
+		}
+		if ( $this->udpProfileCounter == 0 ) {
+			$wgProfiler = new ProfilerSimpleUDP;
+			$wgProfiler->setProfileID( 'dumpHTML' );
+		}
+		$this->udpProfileCounter = ( $this->udpProfileCounter + 1 ) % $this->udpProfile;
+	}
+}
+
+class DumpHTML_ProfilerStub {
+	function profileIn() {}
+	function profileOut() {}
+	function getOutput() {}
+	function close() {}
+	function getFunctionReport() {}
 }
 
 /** XML parser callback */
