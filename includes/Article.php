@@ -48,7 +48,7 @@ class Article {
 		$this->mOldId = $oldId;
 		$this->clear();
 	}
-	
+
 	/**
 	 * Tell the page view functions that this view was redirected
 	 * from another page on the wiki.
@@ -1277,9 +1277,7 @@ class Article {
 		# If no edit comment was given when creating a new page, and what's being
 		# created is a redirect, be smart and fill in a neat auto-comment
 		if ( $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
-			$rt = Title::newFromRedirect( $text );
-			if( is_object( $rt ) )
-				$summary = wfMsgForContent( 'autoredircomment', $rt->getPrefixedText() );
+			$summary = self::getRedirectAutosummary( $text );
 		}
 
 		$text = $this->preSaveTransform( $text );
@@ -1318,13 +1316,7 @@ class Article {
 
 				if ($flags & EDIT_AUTOSUMMARY && $summary == '') {
 					#If they're blanking an article, note it in the summary.
-					if ($oldtext!='' && $text=='') {
-						$summary = wfMsgForContent('autosumm-blank');
-					} elseif (strlen($oldtext) > 10 * strlen($text) && strlen($text) < 500) { #Removing more than 90% of the article
-						global $wgContLang;
-						$truncatedtext = $wgContLang->truncate($text, max(0, 200 - strlen(wfMsgForContent('autosumm-replace'))), '...');
-						$summary = wfMsgForContent('autosumm-replace', $truncatedtext);
-					}
+					$summary = self::getBlankingAutosummary( $oldtext, $text );
 				}
 				
 				$revision = new Revision( array(
@@ -2674,6 +2666,41 @@ class Article {
 		}
 		$dbr->freeResult( $res );
 		return $result;
+	}
+	
+	/**
+	 * Return an auto-generated summary if the text provided is a redirect.
+	 *
+	 * @param  string $text The wikitext to check
+	 * @return string '' or an appropriate summary
+	 */
+	public static function getRedirectAutosummary( $text ) {
+		$rt = Title::newFromRedirect( $text );
+		if( is_object( $rt ) )
+			return wfMsgForContent( 'autoredircomment', $rt->getPrefixedText() );
+		else
+			return '';
+	}
+
+	/**
+	 * Return an auto-generated summary if the new text is much shorter than
+	 * the old text.
+	 *
+	 * @param  string $oldtext The previous text of the page
+	 * @param  string $text    The submitted text of the page
+	 * @return string '' or an appropriate summary
+	 */
+	public static function getBlankingAutosummary( $oldtext, $text ) {
+		if ($oldtext!='' && $text=='') {
+			return wfMsgForContent('autosumm-blank');
+		} elseif (strlen($oldtext) > 10 * strlen($text) && strlen($text) < 500) {
+			#Removing more than 90% of the article
+			global $wgContLang;
+			$truncatedtext = $wgContLang->truncate($text, max(0, 200 - strlen(wfMsgForContent('autosumm-replace'))), '...');
+			return wfMsgForContent('autosumm-replace', $truncatedtext);
+		} else {
+			return '';
+		}
 	}
 }
 
