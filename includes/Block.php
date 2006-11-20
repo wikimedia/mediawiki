@@ -400,7 +400,8 @@ class Block
 		$affected = $dbw->affectedRows();
 		$dbw->commit();
 
-		$this->doRetroactiveAutoblock();
+		if ($affected)
+			$this->doRetroactiveAutoblock();
 
 		return $affected;
 	}
