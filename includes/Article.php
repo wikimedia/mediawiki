@@ -1274,11 +1274,13 @@ class Article {
 		$isminor = ( $flags & EDIT_MINOR ) && $wgUser->isAllowed('minoredit');
 		$bot = $wgUser->isAllowed( 'bot' ) || ( $flags & EDIT_FORCE_BOT );
 
-		# If no edit comment was given when creating a new page, and what's being
-		# created is a redirect, be smart and fill in a neat auto-comment
-		if ( $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
-			$summary = self::getRedirectAutosummary( $text );
-		}
+		$oldtext = $this->getContent();
+		$oldsize = strlen( $oldtext );
+		$newsize = strlen( $text );
+
+		# Provide autosummaries if one is not provided.
+		if ($flags & EDIT_AUTOSUMMARY && $summary == '')
+			$summary = $this->getAutosummary( $oldtext, $text, $flags );
 
 		$text = $this->preSaveTransform( $text );
 
@@ -1293,9 +1295,6 @@ class Article {
 				$userAbort = ignore_user_abort( true );
 			}
 
-			$oldtext = $this->getContent();
-			$oldsize = strlen( $oldtext );
-			$newsize = strlen( $text );
 			$lastRevision = 0;
 			$revisionId = 0;
 
@@ -1312,11 +1311,6 @@ class Article {
 					wfDebug( __METHOD__.": EDIT_UPDATE specified but article doesn't exist\n" );
 					wfProfileOut( __METHOD__ );
 					return false;
-				}
-
-				if ($flags & EDIT_AUTOSUMMARY && $summary == '') {
-					#If they're blanking an article, note it in the summary.
-					$summary = self::getBlankingAutosummary( $oldtext, $text );
 				}
 				
 				$revision = new Revision( array(
@@ -1358,7 +1352,7 @@ class Article {
 				$this->mTitle->invalidateCache();
 			}
 
-			if( !$wgDBtransactions ) {
+			if( !$wgDBransactions ) {
 				ignore_user_abort( $userAbort );
 			}
 
@@ -2688,7 +2682,7 @@ class Article {
 	 *
 	 * @param  string $oldtext The previous text of the page
 	 * @param  string $text    The submitted text of the page
-	 * @return string '' or an appropriate summary
+	 * @return string An appropriate autosummary, or an empty string.
 	 */
 	public static function getBlankingAutosummary( $oldtext, $text ) {
 		if ($oldtext!='' && $text=='') {
@@ -2701,6 +2695,50 @@ class Article {
 		} else {
 			return '';
 		}
+	}
+
+	/**
+	* Return an applicable autosummary if one exists for the given edit.
+	* @param string $oldtext The previous text of the page.
+	* @param string $newtext The submitted text of the page.
+	* @param bitmask $flags A bitmask of flags submitted for the edit.
+	* @return string An appropriate autosummary, or an empty string.
+	*/
+	public static function getAutosummary( $oldtext, $newtext, $flags ) {
+
+		# This code is UGLY UGLY UGLY.
+		# Somebody PLEASE come up with a more elegant way to do it.
+
+		$summary = '';
+
+		#Blanking autosummaries
+		if (!($flags & EDIT_NEW))
+			$summary = self::getBlankingAutosummary( $oldtext, $newtext );
+
+		if ($summary)
+			return $summary;
+
+		#New redirect autosummaries.
+		if ( $flags & EDIT_NEW ) {
+			$summary = self::getRedirectAutosummary( $newtext );
+		}
+
+		if ($summary)
+			return $summary;
+
+		#New page autosummaries
+		if ($flags & EDIT_NEW && strlen($newtext) <= 500) {
+			#If they're making a new short article, give its text in the summary.
+			global $wgContLang;
+			$truncatedtext = $wgContLang->truncate( $newtext, max( 0, 200 - 
+				strlen( wfMsgForContent( 'autosumm-shortnew') ) ), '...' );
+			$summary = wfMsgForContent( 'autosumm-shortnew', $truncatedtext );
+		}
+
+		if ($summary)
+			return $summary;
+
+		return $summary;
 	}
 }
 
