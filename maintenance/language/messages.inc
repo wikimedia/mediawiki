@@ -475,6 +475,7 @@ $wgMessageStrucutre = array(
 		'semiprotectedpagewarning',
 		'templatesused',
 		'templatesusedpreview',
+		'templatesusedsection',
 		'edittools',
 		'nocreatetitle',
 		'nocreatetext',
@@ -1822,6 +1823,7 @@ $wgMessageStrucutre = array(
 		'autosumm-blank',
 		'autosumm-replace',
 		'autoredircomment',
+		'autosumm-shortnew',
 	),
 );
 /** Comments for each block */
