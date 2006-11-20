@@ -201,6 +201,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7688) When viewing diff, section anchors in autosummary jump to section
   on current page instead of loading the latest version.
 * (bug 7970) Use current connection explicitly on Database::getServerVersion
+* (bug 2001) Tables with class="sortable" can now be dynamically sorted via
+  JavaScript.
 
 
 == Languages updated ==
