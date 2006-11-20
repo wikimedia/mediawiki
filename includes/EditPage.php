@@ -928,6 +928,10 @@ class EditPage {
 			$wgOut->addWikiText( wfMsg( 'longpagewarning', $wgLang->formatNum( $this->kblength ) ) );
 		}
 
+		#need to parse the preview early so that we know which templates are used,
+		#otherwise users with "show preview after edit box" will get a blank list
+		$previewOutput = $this->getPreviewText();
+
 		$rows = $wgUser->getIntOption( 'rows' );
 		$cols = $wgUser->getIntOption( 'cols' );
 
@@ -1005,7 +1009,7 @@ class EditPage {
 		if ( $wgUser->getOption( 'previewontop' ) ) {
 
 			if ( 'preview' == $this->formtype ) {
-				$this->showPreview();
+				$this->showPreview( $previewOutput );
 			} else {
 				$wgOut->addHTML( '<div id="wikiPreview"></div>' );
 			}
@@ -1035,7 +1039,8 @@ class EditPage {
 		if( !$this->preview && !$this->diff ) {
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
-		$templates = $sk->formatTemplates( $this->preview ? $this->mPreviewTemplates : $this->mArticle->getUsedTemplates() );
+		$templates = ($this->preview || $this->section) ? $this->mPreviewTemplates : $this->mArticle->getUsedTemplates();
+		$templates = $sk->formatTemplates( $templates, $this->preview, $this->section != '');
 
 		global $wgUseMetadataEdit ;
 		if ( $wgUseMetadataEdit ) {
@@ -1223,7 +1228,7 @@ END
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
 
 			if ( $this->formtype == 'preview') {
-				$this->showPreview();
+				$this->showPreview( $previewOutput );
 			} else {
 				$wgOut->addHTML( '<div id="wikiPreview"></div>' );
 			}
@@ -1240,17 +1245,17 @@ END
 	/**
 	 * Append preview output to $wgOut.
 	 * Includes category rendering if this is a category page.
-	 * @private
+	 *
+	 * @param string $text The HTML to be output for the preview.
 	 */
-	function showPreview() {
+	private function showPreview( $text ) {
 		global $wgOut;
 
 		$wgOut->addHTML( '<div id="wikiPreview">' );
 		if($this->mTitle->getNamespace() == NS_CATEGORY) {
 			$this->mArticle->openShowCategory();
 		}
-		$previewOutput = $this->getPreviewText();
-		$wgOut->addHTML( $previewOutput );
+		$wgOut->addHTML( $text );
 		if($this->mTitle->getNamespace() == NS_CATEGORY) {
 			$this->mArticle->closeShowCategory();
 		}
