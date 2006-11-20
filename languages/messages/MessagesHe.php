@@ -711,6 +711,7 @@ $messages = array(
 'semiprotectedpagewarning'  => "'''הערה:''' דף זה ננעל כך שרק משתמשים רשומים יכולים לערוך אותו.",
 'templatesused'             => 'תבניות המופיעות בדף זה:',
 'templatesusedpreview'      => 'תבניות המופיעות בתצוגה המקדימה הזו:',
+'templatesusedsection'      => 'תבניות המופיעות בפיסקה זו:',
 'edittools'                 => '<!-- הטקסט הנכתב כאן יוצג מתחת לטפסי עריכת דפים והעלאת קבצים, ולפיכך ניתן לכתוב להציג בו תווים קשים לכתיבה, קטעים מוכנים של טקסט ועוד. -->',
 'nocreatetitle'             => 'יצירת הדפים הוגבלה',
 'nocreatetext'              => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[{{ns:special}}:Userlogin|להיכנס לחשבון]].',
@@ -2139,9 +2140,10 @@ $1',
 'table_pager_empty'        => 'ללא תוצאות',
 
 # Auto-summaries
-'autosumm-blank'   => 'מסיר את כל התוכן מדף זה',
-'autosumm-replace' => "מחליף את הדף עם '$1'",
-'autoredircomment' => 'הפניה לדף [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autosumm-blank'    => 'מסיר את כל התוכן מדף זה',
+'autosumm-replace'  => "מחליף את הדף עם '$1'",
+'autoredircomment'  => 'הפניה לדף [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autosumm-shortnew' => 'דף חדש: $1',
 
 );
 
