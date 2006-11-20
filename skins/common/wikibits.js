@@ -801,6 +801,49 @@ function allmessagesshow() {
 	allmessages_modified = false;
 }
 
+/*
+	Written by Jonathan Snook, http://www.snook.ca/jonathan
+	Add-ons by Robert Nyman, http://www.robertnyman.com
+	Author says "The credit comment is all it takes, no license. Go crazy with it!:-)"
+	From http://www.robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/
+*/
+function getElementsByClassName(oElm, strTagName, oClassNames){
+	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
+	var arrReturnElements = new Array();
+	var arrRegExpClassNames = new Array();
+	if(typeof oClassNames == "object"){
+		for(var i=0; i<oClassNames.length; i++){
+			arrRegExpClassNames.push(new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)"));
+		}
+	}
+	else{
+		arrRegExpClassNames.push(new RegExp("(^|\\s)" + oClassNames.replace(/\-/g, "\\-") + "(\\s|$)"));
+	}
+	var oElement;
+	var bMatchesAll;
+	for(var j=0; j<arrElements.length; j++){
+		oElement = arrElements[j];
+		bMatchesAll = true;
+		for(var k=0; k<arrRegExpClassNames.length; k++){
+			if(!arrRegExpClassNames[k].test(oElement.className)){
+				bMatchesAll = false;
+				break;
+			}
+		}
+		if(bMatchesAll){
+			arrReturnElements.push(oElement);
+		}
+	}
+	return (arrReturnElements)
+}
+
+function sortableTables() {
+	if (getElementsByClassName(document, "table", "sortable").length != 0) {
+		document.write('<script type="text/javascript" src="'+stylepath+'/common/sorttable.js"></script>');
+	}
+}
+
+
 function runOnloadHook() {
 	// don't run anything below this for non-dom browsers
 	if (doneOnloadHook || !(document.getElementById && document.getElementsByTagName)) {
@@ -813,6 +856,7 @@ function runOnloadHook() {
 	akeytt();
 	scrollEditBox();
 	setupCheckboxShiftClick();
+	sortableTables();
 
 	// Run any added-on functions
 	for (var i = 0; i < onloadFuncts.length; i++) {
