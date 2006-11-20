@@ -16,7 +16,6 @@
  * @package MediaWiki
  */
 class Linker {
-
 	function Linker() {}
 
 	/**
@@ -1133,9 +1132,11 @@ class Linker {
 	 *
 	 * @param array $templates Array of templates from Article::getUsedTemplate
 	 * or similar
+	 * @param bool $preview Whether this is for a preview
+	 * @param bool $section Whether this is for a section edit
 	 * @return string HTML output
 	 */
-	public function formatTemplates($templates) {
+	public function formatTemplates( $templates, $preview = false, $section = false) {
 		global $wgUser;
 		wfProfileIn( __METHOD__ );
 
@@ -1152,7 +1153,7 @@ class Linker {
 
 			# Construct the HTML
 			$outText = '<div class="mw-templatesUsedExplanation">' .
-				wfMsgExt( 'templatesused', array( 'parse' ) ) .
+				wfMsgExt( 'templatesused' . ( $preview ? 'preview' : ( $section ? 'section' : '' ) ), array( 'parse' ) ) .
 				'</div><ul>';
 			foreach ( $templates as $titleObj ) {
 				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
