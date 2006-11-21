@@ -603,7 +603,8 @@ class Sanitizer {
 		$stripped = Sanitizer::decodeCharReferences( $value );
 
 		// Remove any comments; IE gets token splitting wrong
-		$stripped = preg_replace( '!/\\*.*?\\*/!S', ' ', $stripped );
+		$stripped = StringUtils::delimiterReplace( '/\*', '\*/', ' ', $stripped );
+		
 		$value = $stripped;
 
 		// ... and continue checks
@@ -1178,7 +1179,7 @@ class Sanitizer {
 	 */
 	static function stripAllTags( $text ) {
 		# Actual <tags>
-		$text = preg_replace( '/ < .*? > /x', '', $text );
+		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
 
 		# Normalize &entities and whitespace
 		$text = Sanitizer::normalizeAttributeValue( $text );

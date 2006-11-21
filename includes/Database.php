@@ -295,7 +295,7 @@ class Database {
 	 * Turns on (false) or off (true) the automatic generation and sending
 	 * of a "we're sorry, but there has been a database error" page on
 	 * database errors. Default is on (false). When turned off, the
-	 * code should use wfLastErrno() and wfLastError() to handle the
+	 * code should use lastErrno() and lastError() to handle the
 	 * situation as appropriate.
 	 */
 	function ignoreErrors( $ignoreErrors = NULL ) {
@@ -1296,7 +1296,7 @@ class Database {
 	}
 
 	/**
-	 * Makes a wfStrencoded list from an array
+	 * Makes an encoded list of strings from an array
 	 * $mode:
 	 *        LIST_COMMA         - comma separated, no field names
 	 *        LIST_AND           - ANDed WHERE clause (without the WHERE)

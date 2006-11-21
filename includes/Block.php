@@ -338,7 +338,7 @@ class Block
 				call_user_func( $callback, $block, $tag );
 			}
 		}
-		wfFreeResult( $res );
+		$db->freeResult( $res );
 		return $num_rows;
 	}
 

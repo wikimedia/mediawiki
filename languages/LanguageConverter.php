@@ -12,9 +12,7 @@ class LanguageConverter {
 	var $mMainLanguageCode;
 	var $mVariants, $mVariantFallbacks;
 	var $mTablesLoaded = false;
-	var $mUseFss = false;
 	var $mTables;
-	var $mFssObjects;
 	var $mTitleDisplay='';
 	var $mDoTitleConvert=true, $mDoContentConvert=true;
 	var $mCacheKey;
@@ -49,9 +47,6 @@ class LanguageConverter {
 		$this->mMarkup = array_merge($m, $markup);
 		$f = array('A'=>'A', 'T'=>'T');
 		$this->mFlags = array_merge($f, $flags);
-		if ( function_exists( 'fss_prep_replace' ) ) {
-			$this->mUseFss = true;
-		}
 	}
 
 	/**
@@ -194,19 +189,12 @@ class LanguageConverter {
 	 * @return string Translated text
 	 */
 	function translate( $text, $variant ) {
+		wfProfileIn( __METHOD__ );
 		if( !$this->mTablesLoaded )
 			$this->loadTables();
-		if ( $this->mUseFss ) {
-			wfProfileIn( __METHOD__.'-fss' );
-			$text = fss_exec_replace( $this->mFssObjects[$variant], $text );
-			wfProfileOut( __METHOD__.'-fss' );
-			return $text;
-		} else {
-			wfProfileIn( __METHOD__.'-strtr' );
-			$text = strtr( $text, $this->mTables[$variant] );
-			wfProfileOut( __METHOD__.'-strtr' );
-			return $text;
-		}
+		$text = $this->mTables[$variant]->replace( $text );
+		wfProfileOut( __METHOD__ );
+		return $text;
 	}
 
 	/**
@@ -407,12 +395,8 @@ class LanguageConverter {
 								continue;
 							if(!array_key_exists($vto, $carray))
 								continue;
-							$this->mTables[$vto][$carray[$vfrom]] = $carray[$vto];
-
+							$this->mTables[$vto]->setPair($carray[$vfrom], $carray[$vto]);
 						}
-					}
-					if ( $this->mUseFss ) {
-						$this->generateFssObjects();
 					}
 				}
 			}
@@ -557,8 +541,8 @@ class LanguageConverter {
 			$this->mTables = $wgMemc->get( $this->mCacheKey );
 			wfProfileOut( __METHOD__.'-cache' );
 		}
-		if ( !$this->mTables ) {
-			wfProfileOut( __METHOD__.'-recache' );
+		if ( !$this->mTables || !isset( $this->mTables['VERSION 2'] ) ) {
+			wfProfileIn( __METHOD__.'-recache' );
 			// not in cache, or we need a fresh reload.
 			// we will first load the default tables
 			// then update them using things in MediaWiki:Zhconversiontable/*
@@ -566,10 +550,11 @@ class LanguageConverter {
 			$this->loadDefaultTables();
 			foreach($this->mVariants as $var) {
 				$cached = $this->parseCachedTable($var);
-				$this->mTables[$var] = array_merge($this->mTables[$var], $cached);
+				$this->mTables[$var]->mergeArray($cached);
 			}
 
 			$this->postLoadTables();
+			$this->mTables['VERSION 2'] = true;
 
 			if($this->lockCache()) {
 				$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
@@ -577,21 +562,7 @@ class LanguageConverter {
 			}
 			wfProfileOut( __METHOD__.'-recache' );
 		}
-		if ( $this->mUseFss ) {
-			wfProfileIn( __METHOD__.'-fss' );
-			$this->generateFssObjects();
-			wfProfileOut( __METHOD__.'-fss' );
-		}
 		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Generate FSS objects. The FSS extension must be available.
-	 */
-	function generateFssObjects() {
-		foreach ( $this->mTables as $variant => $table ) {
-			$this->mFssObjects[$variant] = fss_prep_replace( $table );
-		}
 	}
 
     /**

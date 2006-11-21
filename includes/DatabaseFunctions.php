@@ -1,8 +1,7 @@
 <?php
 /**
- * Backwards compatibility wrapper for Database.php
- *
- * Note: $wgDatabase has ceased to exist. Destroy all references.
+ * Legacy database functions, for compatibility with pre-1.3 code
+ * NOTE: this file is no longer loaded by default.
  *
  * @package MediaWiki
  */
@@ -41,15 +40,6 @@ function wfSingleQuery( $sql, $dbi, $fname = '' ) {
 	$row = $db->fetchRow( $res );
 	$ret = $row[0];
 	$db->freeResult( $res );
-	return $ret;
-}
-
-/*
- * @todo document function
- */
-function &wfGetDB( $db = DB_LAST, $groups = array() ) {
-	global $wgLoadBalancer;
-	$ret =& $wgLoadBalancer->getConnection( $db, true, $groups );
 	return $ret;
 }
 

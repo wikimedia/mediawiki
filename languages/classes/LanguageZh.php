@@ -9,17 +9,18 @@ require_once( dirname(__FILE__).'/LanguageZh_cn.php' );
 class ZhConverter extends LanguageConverter {
 	function loadDefaultTables() {
 		require( "includes/ZhConversion.php" );
-		$this->mTables = array();
-		$this->mTables['zh-cn'] = $zh2CN;
-		$this->mTables['zh-tw'] = $zh2TW;
-		$this->mTables['zh-sg'] = array_merge($zh2CN, $zh2SG);
-		$this->mTables['zh-hk'] = array_merge($zh2TW, $zh2HK);
-		$this->mTables['zh'] = array();
+		$this->mTables = array(
+			'zh-cn' => new ReplacementArray( $zh2CN ),
+			'zh-tw' => new ReplacementArray( $zh2TW ),
+			'zh-sg' => new ReplacementArray( array_merge($zh2CN, $zh2SG) ),
+			'zh-hk' => new ReplacementArray( array_merge($zh2TW, $zh2HK) ),
+			'zh' => new ReplacementArray
+		);
 	}
 
 	function postLoadTables() {
-		$this->mTables['zh-sg'] = array_merge($this->mTables['zh-cn'], $this->mTables['zh-sg']);
-		$this->mTables['zh-hk'] = array_merge($this->mTables['zh-tw'], $this->mTables['zh-hk']);
+		$this->mTables['zh-sg']->merge( $this->mTables['zh-cn'] );
+		$this->mTables['zh-hk']->merge( $this->mTables['zh-tw'] );
     }
 
 	/* there shouldn't be any latin text in Chinese conversion, so no need

@@ -126,21 +126,21 @@ class CoreParserFunctions {
 
 	function statisticsFunction( $func, $raw = null ) {
 		if ( self::isRaw( $raw ) ) {
-			return call_user_func( $func );
+			return call_user_func( array( 'SiteStats', $func ) );
 		} else {
 			global $wgContLang;
-			return $wgContLang->formatNum( call_user_func( $func ) );
+			return $wgContLang->formatNum( call_user_func( array( 'SiteStats', $func ) ) );
 		}
 	}
 
-	function numberofpages( $parser, $raw = null ) { return self::statisticsFunction( 'wfNumberOfPages', $raw ); }
-	function numberofusers( $parser, $raw = null ) { return self::statisticsFunction( 'wfNumberOfUsers', $raw ); }
-	function numberofarticles( $parser, $raw = null ) { return self::statisticsFunction( 'wfNumberOfArticles', $raw ); }
-	function numberoffiles( $parser, $raw = null ) { return self::statisticsFunction( 'wfNumberOfFiles', $raw ); }
-	function numberofadmins( $parser, $raw = null ) { return self::statisticsFunction( 'wfNumberOfAdmins', $raw ); }
+	function numberofpages( $parser, $raw = null ) { return self::statisticsFunction( 'pages', $raw ); }
+	function numberofusers( $parser, $raw = null ) { return self::statisticsFunction( 'users', $raw ); }
+	function numberofarticles( $parser, $raw = null ) { return self::statisticsFunction( 'articles', $raw ); }
+	function numberoffiles( $parser, $raw = null ) { return self::statisticsFunction( 'images', $raw ); }
+	function numberofadmins( $parser, $raw = null ) { return self::statisticsFunction( 'admins', $raw ); }
 
 	function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
-		$count = wfPagesInNs( intval( $namespace ) );
+		$count = SiteStats::pagesInNs( intval( $namespace ) );
 		if ( self::isRaw( $raw ) ) {
 			global $wgContLang;
 			return $wgContLang->formatNum( $count );
