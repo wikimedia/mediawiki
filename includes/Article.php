@@ -1352,7 +1352,7 @@ class Article {
 				$this->mTitle->invalidateCache();
 			}
 
-			if( !$wgDBransactions ) {
+			if( !$wgDBtransactions ) {
 				ignore_user_abort( $userAbort );
 			}
 
