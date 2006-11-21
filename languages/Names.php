@@ -47,7 +47,7 @@
 	'cr' => 'Nēhiyaw / ᓀᐦᐃᔭᐤ',		# Cree
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
-	'cu' => 'словѣньскъ', 	# Old Church Slavonic (ancient language)
+	'cu' => 'Словѣньскъ', 	# Old Church Slavonic (ancient language)
 	'cv' => 'Чăвашла',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
