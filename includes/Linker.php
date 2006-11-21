@@ -890,7 +890,7 @@ class Linker {
 	 * @param Title $title (to generate link to the section in autocomment)
 	 * @param bool $local Whether section links should refer to local page
 	 */
-	function formatComment($comment, Title $title = NULL, $local = false) {
+	function formatComment($comment, $title = NULL, $local = false) {
 		wfProfileIn( __METHOD__ );
 
 		global $wgContLang;
@@ -975,7 +975,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	function commentBlock( $comment, Title $title = NULL, $local = false ) {
+	function commentBlock( $comment, $title = NULL, $local = false ) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
 		// compatability, acc. to brion -ævar
@@ -995,7 +995,7 @@ class Linker {
 	 * @param bool $local Whether section links should refer to local page
 	 * @return string HTML
 	 */
-	function revComment( Revision $rev, $local = false ) {
+	function revComment( $rev, $local = false ) {
 		if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle(), $local );
 		} else {
