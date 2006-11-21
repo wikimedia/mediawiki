@@ -154,8 +154,10 @@ $messages = array(
 #
 'categories' => 'Kategori',
 'pagecategories' => '{{PLURAL:$1|Kategori|Kategori}}',
+'pagecategorieslink' => '{{ns:special}}:Categories',
 "category_header" => "Artikel dalam kategori \"$1\"",
 "subcategories" => "Subkategori",
+'category-media-header' => 'Media di kategori "$1"',
 
 "mainpage" => "Halaman Utama",
 "mainpagetext" => "Perangkat lunak wiki berhasil dipasang.",
@@ -456,7 +458,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 # Edit pages
 #
 "summary" => "Ringkasan",
-"subject" => "Subyek/judul",
+"subject" => "Subjek/judul",
 "minoredit" => "Ini adalah suntingan kecil.",
 "watchthis" => "Pantau artikel ini",
 "savearticle" => "Simpan halaman",
@@ -467,6 +469,9 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'anoneditwarning' => 'Anda tidak terdaftar masuk. Alamat IP Anda akan tercatat dalam sejarah (versi terdahulu) halaman ini.',
 'missingsummary' => "'''Peringatan:''' Anda tidak memasukkan ringkasan penyuntingan. Jika Anda kembali menekan tombol Simpan, suntingan Anda akan disimpan tanpa ringkasan penyuntingan.",
 'missingcommenttext' => 'Harap masukkan komentar di bawah ini.',
+'missingcommentheader' => "'''Peringatan:''' Anda belum memberikan subjek atau judul untuk komentar Anda. Jika Anda kembali menekan Simpan, suntingan Anda akan disimpan tanpa komentar tersebut.",
+'summary-preview' => 'Pratayang ringkasan',
+'subject-preview' => 'Pratayang subyek/tajuk',
 "blockedtitle" => "Pengguna diblokir",
 'blockedtext' => "<big>'''Nama pengguna atau alamat IP Anda telah diblokir.'''</big>
 
@@ -533,6 +538,7 @@ Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang And
 "protectedpagewarning" => "<strong>PERINGATAN:  Halaman ini telah dikunci sehingga hanya pemakai dengan hak akses pengurus saja yang dapat menyuntingnya.</strong>",
 'semiprotectedpagewarning' => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.",
 'templatesused' => 'Templat yang digunakan di halaman ini:',
+'templatesusedpreview'	=> 'Templat yang digunakan di pratayang ini:',
 'edittools' => '<!-- Teks di sini akan dimunculkan dibawah isian suntingan dan pemuatan.-->',
 'nocreatetitle' => 'Pembuatan halaman baru dibatasi',
 'nocreatetext' => 'Situs ini membatasi kemampuan membuat halaman baru. Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[{{ns:special}}:Userlogin|masuk log atau mendaftar]]',
@@ -551,6 +557,7 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 "currentrev" => "Revisi sekarang",
 "revisionasof" => "Revisi per $1",
 'revision-info' => 'Revisi per $1; $2',
+'revision-nav' => '($1) $2 | $3 ($4) | $5 ($6)',
 'previousrevision'      => '← Revisi sebelumnya',
 'nextrevision'          => 'Revisi selanjutnya →',
 'currentrevisionlink'   => 'Revisi sekarang',
@@ -791,6 +798,17 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'watchthisupload'	=> 'Pantau halaman ini',
 'filewasdeleted' => 'Suatu berkas dengan nama ini pernah dimuat dan selanjutnya dihapus. Harap cek $1 sebelum memuat lagi berkas tersebut.',
 
+'upload-proto-error' => 'Protokol tak tepat',
+'upload-proto-error-text' => 'Pemuatan jarak jauh membutuhkan URL yang diawali dengan <code>http://</code> atau <code>ftp://</code>.',
+'upload-file-error' => 'Kesalahan internal',
+'upload-file-error-text' => 'Suatu kesalahan internal terjadi sewaktu mencoba membuat berkas temporer di server. Silakan kontak administrator sistem.',
+'upload-misc-error' => 'Kesalahan pemuatan yang tak dikenal',
+'upload-misc-error-text' => 'Suatu kesalahan yang tak dikenal terjadi sewaktu pemuatan. Harap pastikan bahwa URL tersebut valid dan dapat diakses dan silakan coba lagi. Jika masalah ini tetap terjadi, kontak administrator sistem.',
+'upload-curl-error6' => "URL tidak dapat dihubungi",
+'upload-curl-error6-text' => 'URL yang diberikan tak dapat dihubungi. Harap periksa ulang bahwa URL tersebut tepat dan situs itu sedang aktif.',
+'upload-curl-error28' => 'Pemuatan lewat waktu',
+'upload-curl-error28-text' => 'Situs yang dituju terlalu lambat merespon. Tolong cek apakah situs tersebut aktif, tunggu sebentar, dan coba lagi. Mungkin Anda perlu mencobanya di saat yang lebih longgar.',
+
 'license' => 'Jenis lisensi',
 'nolicense' => 'Belum dipilih',
 'upload_source_url' => ' (suatu URL valid yang dapat diakses publik)',
@@ -966,7 +984,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "emailpage" => "Kirimi pengguna ini surat-e",
 "emailpagetext" => "Jika pengguna ini memasukkan alamat surat-e yang sah dalam preferensinya, formulir dibawah ini akan mengirimkan sebuah surat-e. Alamat surat-e yg terdapat pada preferensi Anda akan muncul sebagai alamat \"Dari\" dalam surat-e tersebut, sehingga penerima dapat membalas surat-e tersebut.",
 
-"usermailererror" => "Kesalahan obyek surat:",
+"usermailererror" => "Kesalahan objek surat:",
 "defemailsubject" => "Surat-e {{SITENAME}}",
 "noemailtitle" => "Tidak ada alamat surat-e",
 
@@ -977,6 +995,8 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "emailsubject" => "Perihal",
 "emailmessage" => "Pesan",
 "emailsend" => "Kirim",
+'emailccme'     => 'Kirimi saya salinan pesan saya.',
+'emailccsubject'=> 'Salinan pesan Anda untuk $1: $2',
 "emailsent" => "Surat-e terkirim",
 "emailsenttext" => "Surat-e Anda telah dikirimkan.",
 
@@ -1114,9 +1134,10 @@ Masukan dan bantuan lanjutan:
 "undeletepagetext" => "Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.",
 'undeleteextrahelp' => "Untuk mengembalikan keseruhan halaman, biarkan seluruh ''check box'' tidak terpilih dan klik '''''Restore'''''. Untuk melakukan pengembalian seletif, cek kotak revisi yang diinginkan dan klik '''''Restore'''''. Menekan tombol '''''Reset''''' akan mengosongkan isian komentar dan semua ''cek box''",
 "undeletearticle" => "Kembalikan halaman yang telah dihapus",
-"undeleterevisions" => "$1 revisi diarsipkan",
 "undeletehistory" => "Jika Anda mengembalikan halaman tersebut, semua revisi akan dikembalikan ke dalam sejarah. Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi yang telah dikembalikan akan kelihatan dalam sejarah dahulu, dan revisi terkini halaman tersebut tidak akan ditimpa secara otomatis.",
 'undeletehistorynoadmin' => 'Artikel ini telah dihapus. Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut detil pengguna yang telah melakukan penyuntingan pada halaman ini sebelum dihapus. Isi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.',
+"undeleterevisions" => "$1 revisi diarsipkan",
+'undeleterevision-missing' => "Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.",
 "undeleterevision" => "Revisi yang telah dihapus per $1",
 'undeletebtn' => "Kembalikan!",
 'undeletereset' => 'Reset',
@@ -1156,6 +1177,8 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 # What links here
 #
 "whatlinkshere" => "Pranala ke halaman ini",
+'whatlinkshere-summary'	=> '',
+'whatlinkshere-barrow' => '&lt;',
 "notargettitle" => "Tidak ada sasaran",
 "notargettext" => "Anda tidak menentukan halaman atau pengguna tujuan fungsi ini.",
 "linklistsub" => "(Daftar pranala)",
@@ -1174,6 +1197,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "ipbreason" => "Alasan",
 'ipbanononly'   => 'Hanya blokir pengguna anonim',
 'ipbcreateaccount' => 'Cegah pembuatan akun',
+'ipbenableautoblock' => 'Blokir alamat IP terakhir yang digunakan pengguna ini secara otomatis, dan semua alamat berikutnya yang mereka coba gunakan untuk menyunting.',
 "ipbsubmit" => "Kirimkan",
 'ipbother'		=> 'Waktu lain',
 'ipboptions'		=> '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite',
@@ -1190,6 +1214,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'infiniteblock' => 'tak terbatas',
 'expiringblock' => 'kadaluwarsa $1',
 'anononlyblock' => 'hanya anon',
+'noautoblockblock' => 'pemblokiran otomatis dimatikan',
 'createaccountblock' => 'pembuatan akun diblokir',
 'ipblocklistempty'	=> 'Daftar pemblokiran kosong.',
 "blocklink" => "blokir",
@@ -1486,6 +1511,9 @@ ta[\'ca-nstab-template\'] = new Array(\'c\',\'Lihat templat\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Lihat halaman bantuan\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 
+# Common.js: contains nothing but a placeholder comment
+'Common.js' => '/* Semua JavaScript yang ada di sini akan dimuat untuk semua pengguna pada semua halaman. */',
+
 # image deletion
 'deletedrevision' => 'Revisi lama yang dihapus $1.',
 
@@ -1603,19 +1631,19 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'exif-brightnessvalue' =>'Brightness',
 'exif-exposurebiasvalue' =>'Bias pajanan',
 'exif-maxaperturevalue' =>'Maximum land aperture',
-'exif-subjectdistance' =>'Jarak subyek',
+'exif-subjectdistance' =>'Jarak subjek',
 'exif-meteringmode' =>'Metering mode',
 'exif-lightsource' =>'Sumber cahaya',
 'exif-flash' =>'Flash',
 'exif-focallength' =>'Lens focal length',
 'exif-focallength-format' =>'$1 mm',
-'exif-subjectarea' =>'Wilayah subyek',
+'exif-subjectarea' =>'Wilayah subjek',
 'exif-flashenergy' =>'Flash energy',
 'exif-spatialfrequencyresponse' =>'Respons frekuensi spasial',
 'exif-focalplanexresolution' =>'Resolusi focal plane X',
 'exif-focalplaneyresolution' =>'Resolusi focal plane Y',
 'exif-focalplaneresolutionunit' =>'Unit resolusi focal plane',
-'exif-subjectlocation' =>'Lokasi subyek',
+'exif-subjectlocation' =>'Lokasi subjek',
 'exif-exposureindex' =>'Indeks pajanan',
 'exif-sensingmethod' =>'Metode sensing',
 'exif-filesource' =>'Sumber berkas',
@@ -1632,7 +1660,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'exif-saturation' =>'Saturasi',
 'exif-sharpness' =>'Ketajaman',
 'exif-devicesettingdescription' =>'Deskripsi pengaturan alat',
-'exif-subjectdistancerange' =>'Jarak subyek',
+'exif-subjectdistancerange' =>'Jarak subjek',
 'exif-imageuniqueid' =>'ID unik gambar',
 'exif-gpsversionid' =>'Versi tag GPS',
 'exif-gpslatituderef' =>'Lintang Utara atau Selatan',
@@ -1919,6 +1947,10 @@ $1",
 'table_pager_limit' => 'Tampilkan $1 entri per halaman',
 'table_pager_limit_submit' => 'Cari',
 'table_pager_empty' => 'Tidak ditemukan',
+
+# Auto-summaries
+'autosumm-blank' => 'Menghapus semua isi dari halaman',
+'autosumm-replace' => 'Mengganti halaman dengan \'$1\'',
 
 );
 
