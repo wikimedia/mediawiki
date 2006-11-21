@@ -887,7 +887,7 @@ class Linker {
 	 * temporarily to a value pass. Should be adjusted further. --brion
 	 *
 	 * $param string $comment
-	 * @param Title $title (to generate link to the section in autocomment)
+	 * @param mixed $title Title object (to generate link to the section in autocomment) or null
 	 * @param bool $local Whether section links should refer to local page
 	 */
 	function formatComment($comment, $title = NULL, $local = false) {
@@ -970,7 +970,7 @@ class Linker {
 	 * it's non-empty, otherwise return empty string.
 	 *
 	 * @param string $comment
-	 * @param Title $title
+	 * @param mixed $title Title object (to generate link to section in autocomment) or null
 	 * @param bool $local Whether section links should refer to local page
 	 *
 	 * @return string
@@ -995,7 +995,7 @@ class Linker {
 	 * @param bool $local Whether section links should refer to local page
 	 * @return string HTML
 	 */
-	function revComment( $rev, $local = false ) {
+	function revComment( Revision $rev, $local = false ) {
 		if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle(), $local );
 		} else {
