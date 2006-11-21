@@ -297,5 +297,19 @@ class Xml {
 			'</html>';
 		return Xml::isWellFormed( $html );
 	}
+
+	/**
+	 * Escape html tags
+	 * Basically replacing " > and < with HTML entities ( &quot;, &gt;, &lt;)
+	 *
+	 * @param $in String: text that might contain HTML tags.
+	 * @return string Escaped string
+	 */
+	function escapeTagsOnly( $in ) {
+		return str_replace(
+			array( '"', '>', '<' ),
+			array( '&quot;', '&gt;', '&lt;' ),
+			$in );
+	}
 }
 ?>

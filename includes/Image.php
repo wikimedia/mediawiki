@@ -1462,7 +1462,7 @@ class Image
 				array( 'img_name' => $this->title->getDBkey() ),
 				__METHOD__
 			);
-			if ( 0 == wfNumRows( $this->historyRes ) ) {
+			if ( 0 == $dbr->numRows( $this->historyRes ) ) {
 				return FALSE;
 			}
 		} else if ( $this->historyLine == 1 ) {

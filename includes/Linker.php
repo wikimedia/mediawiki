@@ -959,7 +959,7 @@ class Linker {
 					$match[1] = substr($match[1], 1);
 				$thelink = $this->makeLink( $match[1], $text, "", $trail );
 			}
-			$comment = preg_replace( $linkRegexp, wfRegexReplacement( $thelink ), $comment, 1 );
+			$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
 		}
 		wfProfileOut( __METHOD__ );
 		return $comment;

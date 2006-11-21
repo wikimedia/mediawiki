@@ -89,11 +89,12 @@ class KkConverter extends LanguageConverter {
     );
 
     function loadDefaultTables() {
-        $this->mTables = array();
-        $this->mTables['kk-kz'] = $this->mLatinToCyrillic;
-        $this->mTables['kk-tr'] = $this->mCyrillicToLatin;
-        $this->mTables['kk-cn'] = $this->mCyrillicToArabic;
-        $this->mTables['kk'] = array();
+		$this->mTables = array(
+			'kk-kz' => new ReplacementArray( $this->mLatinToCyrillic ),
+			'kk-tr' => new ReplacementArray( $this->mCyrillicToLatin ),
+			'kk-cn' => new ReplacementArray( $this->mCyrillicToArabic ),
+			'kk' => new ReplacementArray()
+		);
     }
 
     /*

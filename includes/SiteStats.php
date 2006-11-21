@@ -1,9 +1,85 @@
 <?php
+
 /**
- * See deferred.txt
- *
+ * Static accessor class for site_stats and related things
  * @package MediaWiki
  */
+class SiteStats {
+	static $row, $loaded = false;
+	static $admins;
+	static $pageCount = array();
+
+	static function recache() {
+		self::load( true );
+	}
+
+	static function load( $recache = false ) {
+		if ( self::$loaded && !$recache ) {
+			return;
+		}
+
+		$dbr =& wfGetDB( DB_SLAVE );
+		self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
+
+		# This code is somewhat schema-agnostic, because I'm changing it in a minor release -- TS
+		if ( !isset( self::$row->ss_total_pages ) && self::$row->ss_total_pages == -1 ) {
+			# Update schema
+			$u = new SiteStatsUpdate( 0, 0, 0 );
+			$u->doUpdate();
+			self::$row = $dbr->selectRow( 'site_stats', '*', false, $fname );
+		}
+	}
+
+	static function views() {
+		self::load();
+		return self::$row->ss_total_views;
+	}
+
+	static function edits() {
+		self::load();
+		return self::$row->ss_total_edits;
+	}
+
+	static function articles() {
+		self::load();
+		return self::$row->ss_good_articles;
+	}
+
+	static function pages() {
+		self::load();
+		return self::$row->ss_total_pages;
+	}
+
+	static function users() {
+		self::load();
+		return self::$row->ss_users;
+	}
+	
+	static function images() {
+		self::load();
+		return self::$row->ss_images;
+	}
+
+	static function admins() {
+		if ( !isset( self::$admins ) ) {
+			$dbr =& wfGetDB( DB_SLAVE );
+			self::$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), __METHOD__ );
+		}
+		return self::$admins;
+	}
+
+	static function pagesInNs( $ns ) {
+		wfProfileIn( __METHOD__ );
+		if( !isset( self::$pageCount[$ns] ) ) {
+			$dbr =& wfGetDB( DB_SLAVE );
+			$pageCount[$ns] = (int)$dbr->selectField( 'page', 'COUNT(*)', array( 'page_namespace' => $ns ), __METHOD__ );
+		}
+		wfProfileOut( __METHOD__ );
+		return $pageCount[$ns];
+	}
+
+}
+
 
 /**
  *

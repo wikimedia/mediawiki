@@ -26,7 +26,6 @@ $wgTotalViews = -1;
 $wgTotalEdits = -1;
 
 
-require_once( 'DatabaseFunctions.php' );
 require_once( 'LogPage.php' );
 require_once( 'normal/UtfNormalUtil.php' );
 require_once( 'XmlFunctions.php' );
@@ -1736,16 +1735,10 @@ function wfUseMW( $req_ver ) {
 }
 
 /**
- * Escape a string to make it suitable for inclusion in a preg_replace()
- * replacement parameter.
- *
- * @param string $string
- * @return string
+ * @deprecated use StringUtils::escapeRegexReplacement
  */
 function wfRegexReplacement( $string ) {
-	$string = str_replace( '\\', '\\\\', $string );
-	$string = str_replace( '$', '\\$', $string );
-	return $string;
+	return StringUtils::escapeRegexReplacement( $string );
 }
 
 /**
@@ -1815,41 +1808,11 @@ function wfDoUpdates()
 }
 
 /**
- * More or less "markup-safe" explode()
- * Ignores any instances of the separator inside <...>
- * @param string $separator
- * @param string $text
- * @return array
+ * @deprecated use StringUtils::explodeMarkup
  */
 function wfExplodeMarkup( $separator, $text ) {
-	$placeholder = "\x00";
-	
-	// Just in case...
-	$text = str_replace( $placeholder, '', $text );
-	
-	// Trim stuff
-	$replacer = new ReplacerCallback( $separator, $placeholder );
-	$cleaned = preg_replace_callback( '/(<.*?>)/', array( $replacer, 'go' ), $text );
-	
-	$items = explode( $separator, $cleaned );
-	foreach( $items as $i => $str ) {
-		$items[$i] = str_replace( $placeholder, $separator, $str );
-	}
-	
-	return $items;
+	return StringUtils::explodeMarkup( $separator, $text );
 }
-
-class ReplacerCallback {
-	function ReplacerCallback( $from, $to ) {
-		$this->from = $from;
-		$this->to = $to;
-	}
-	
-	function go( $matches ) {
-		return str_replace( $this->from, $this->to, $matches[1] );
-	}
-}
-
 
 /**
  * Convert an arbitrarily-long digit string from one numeric base
@@ -2073,5 +2036,21 @@ function wfWikiID() {
 		return $wgDBname;
 	}
 }
+
+/*
+ * Get a Database object
+ * @param integer $db Index of the connection to get. May be DB_MASTER for the 
+ *                master (for write queries), DB_SLAVE for potentially lagged 
+ *                read queries, or an integer >= 0 for a particular server.
+ *
+ * @param array $groups Query groups. A list of group names that this query 
+ *              belongs to.
+ */
+function &wfGetDB( $db = DB_LAST, $groups = array() ) {
+	global $wgLoadBalancer;
+	$ret =& $wgLoadBalancer->getConnection( $db, true, $groups );
+	return $ret;
+}
+
 
 ?>
