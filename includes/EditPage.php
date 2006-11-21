@@ -1040,7 +1040,7 @@ class EditPage {
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
 		$templates = ($this->preview || $this->section) ? $this->mPreviewTemplates : $this->mArticle->getUsedTemplates();
-		$templates = $sk->formatTemplates( $templates, $this->preview, $this->section != '');
+		$formattedtemplates = $sk->formatTemplates( $templates, $this->preview, $this->section != '');
 
 		global $wgUseMetadataEdit ;
 		if ( $wgUseMetadataEdit ) {
@@ -1183,7 +1183,7 @@ END
 
 		$wgOut->addHTML( "
 <div class='templatesUsed'>
-{$templates}
+{$formattedtemplates}
 </div>
 " );
 
