@@ -22,12 +22,11 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
 
 	# Sort messages to blocks
 	$sortedMessages['unknown'] = $messages;
-	foreach ( $messages as $key => $value ) {
-		foreach ( $wgMessageStrucutre as $blockName => $block ) {
-			if ( in_array( $key, $block ) ) {
-				$sortedMessages[$blockName][$key] = $value;
+	foreach ( $wgMessageStrucutre as $blockName => $block ) {
+		foreach ( $block as $key ) {
+			if ( array_key_exists( $key, $sortedMessages['unknown'] ) ) {
+				$sortedMessages[$blockName][$key] = $sortedMessages['unknown'][$key];
 				unset( $sortedMessages['unknown'][$key] );
-				break;
 			}
 		}
 	}
@@ -43,7 +42,8 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
 		# Write the block
 		$messagesText .= writeMessagesBlock( $block, $wgBlockComments[$block], $messages, $ignoredComments );
 	}
-	$messagesText .= writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'], $ignoredComments );
+	ksort( $sortedMessages['unknown'] );
+	$messagesText .= writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'], $ignoredComments ); # Write the unknown messages, alphabetically sorted
 	$messagesText .= ");\n";
 
 	return $messagesText;
@@ -60,7 +60,7 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
  * @return The block, formatted in PHP.
  */
 function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
-	global $wgMessageComments;
+	global $wgMessageComments, $wgMessagseWithDollarSigns;
 	global $wgIgnoredMessages, $wgOptionalMessages;
 	$blockText = '';
 
@@ -102,7 +102,7 @@ function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 		# Check for the appropriate apostrophe and add the value
 		if ( strpos( $value, "'" ) === false ) {
 			$blockText .= "'$value'";
-		} elseif ( strpos( $value, '"' ) === false ) {
+		} elseif ( strpos( $value, '"' ) === false && !in_array( $key, $wgMessagseWithDollarSigns ) ) {
 			$blockText .= "\"$value\"";
 		} else {
 			$blockText .= "'" . str_replace( "'", "\'", $value ) . "'";

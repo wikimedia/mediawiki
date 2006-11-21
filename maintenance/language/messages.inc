@@ -1998,4 +1998,12 @@ $wgMessageComments = array(
 	'autoredircomment'            => 'This should be changed to the new naming convention, but existed beforehand',
 );
 
+/** Messages which contain dollar signs (which are not followed by numbers), and therefore should use a single apostrophe */
+$wgMessagseWithDollarSigns = array(
+	'linkprefix',
+	'enotif_subject',
+	'enotif_body',
+	'allmessagesnotsupportedDB',
+);
+
 ?>
