@@ -250,13 +250,18 @@ class ReplacementArray {
 
 	function replace( $subject ) {
 		if ( function_exists( 'fss_prep_replace' ) ) {
+			wfProfileIn( __METHOD__.'-fss' );
 			if ( $this->fss === false ) {
 				$this->fss = fss_prep_replace( $this->data );
 			}
-			return fss_exec_replace( $this->fss, $subject );
+			$result = fss_exec_replace( $this->fss, $subject );
+			wfProfileOut( __METHOD__.'-fss' );
 		} else {
-			return strtr( $subject, $this->data );
+			wfProfileIn( __METHOD__.'-strtr' );
+			$result = strtr( $subject, $this->data );
+			wfProfileOut( __METHOD__.'-strtr' );
 		}
+		return $result;
 	}
 }
 
