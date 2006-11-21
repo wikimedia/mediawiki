@@ -1152,9 +1152,14 @@ class Linker {
 			$batch->execute();
 
 			# Construct the HTML
-			$outText = '<div class="mw-templatesUsedExplanation">' .
-				wfMsgExt( 'templatesused' . ( $preview ? 'preview' : ( $section ? 'section' : '' ) ), array( 'parse' ) ) .
-				'</div><ul>';
+			$outText = '<div class="mw-templatesUsedExplanation">';
+			if ($preview)
+				$outText .= wfMsgExt( 'templatesusedpreview', array( 'parse' ) );
+			elseif ($section)
+				$outText .= wfMsgExt( 'templatesusedsection', array( 'parse' ) );
+			else
+				$outText .= wfMsgExt( 'templatesused', array( 'parse' ) );
+			$outText .= '</div><ul>';
 			foreach ( $templates as $titleObj ) {
 				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
 			}
