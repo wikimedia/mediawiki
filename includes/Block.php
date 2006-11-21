@@ -544,6 +544,16 @@ class Block
 		return $this->mNetworkBits;
 	}*/
 
+	/**
+	 * @return The blocker user ID.
+	 */
+	public function getBy() {
+		return $this->mBy;
+	}
+
+	/**
+	 * @return The blocker user name.
+	 */
 	function getByName()
 	{
 		if ( $this->mByName === false ) {

@@ -250,9 +250,10 @@ class IPUnblockForm {
 		}
 
 		# Prepare links to the blocker's user and talk pages
+		$blocker_id = $block->getBy();
 		$blocker_name = $block->getByName();
-		$blocker = $sk->MakeLinkObj( Title::makeTitle( NS_USER, $blocker_name ), $blocker_name );
-		$blocker .= ' (' . $sk->makeLinkObj( Title::makeTitle( NS_USER_TALK, $blocker_name ), $wgLang->getNsText( NS_TALK ) ) . ')';
+		$blocker = $sk->userLink( $blocker_id, $blocker_name );
+		$blocker .= $sk->userToolLinks( $blocker_id, $blocker_name );
 
 		# Prepare links to the block target's user and contribs. pages (as applicable, don't do it for autoblocks)
 		if( $block->mAuto ) {
