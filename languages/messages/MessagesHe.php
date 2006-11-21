@@ -188,7 +188,7 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'סמן קישורים בקו תחתי',
-'tog-highlightbroken'         => 'סמן קישורים לדפים שלא נכתבו <a href="" class="new">כך</a> (או: כך<a href="" class="new">?</a>))',
+'tog-highlightbroken'         => 'סמן קישורים לדפים שלא נכתבו <a href="" class="new">כך</a> (או: כך<a href="" class="internal">?</a>))',
 'tog-justify'                 => 'ישר פסקאות',
 'tog-hideminor'               => 'הסתר שינויים משניים ברשימת השינויים האחרונים',
 'tog-extendwatchlist'         => 'הרחב את רשימת המעקב כך שתציג את כל השינויים המתאימים (אחרת: את השינוי האחרון בכל דף בלבד)',
