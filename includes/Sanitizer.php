@@ -603,7 +603,7 @@ class Sanitizer {
 		$stripped = Sanitizer::decodeCharReferences( $value );
 
 		// Remove any comments; IE gets token splitting wrong
-		$stripped = StringUtils::delimiterReplace( '/\*', '\*/', ' ', $stripped );
+		$stripped = StringUtils::delimiterReplace( '/*', '*/', ' ', $stripped );
 		
 		$value = $stripped;
 

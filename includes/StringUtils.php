@@ -31,41 +31,73 @@ class StringUtils {
 	 *
 	 *   preg_replace_callback( "!$startDelim(.*)$endDelim!s$flags", $callback, $subject )
 	 *
-	 * This implementation is slower than staticDelimiterReplace but uses far less
-	 * memory and allows regular expression delimiters.
+	 * This implementation is slower than hungryDelimiterReplace but uses far less
+	 * memory. The delimiters are literal strings, not regular expressions.
 	 *
 	 * @param string $flags Regular expression flags
 	 */
+	# If the start delimiter ends with an initial substring of the end delimiter,
+	# e.g. in the case of C-style comments, the behaviour differs from the model
+	# regex. In this implementation, the end must share no characters with the 
+	# start, so e.g. /*/ is not considered to be both the start and end of a 
+	# comment. /*/xy/*/ is considered to be a single comment with contents /xy/. 
 	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback, $subject, $flags = '' ) {
 		$inputPos = 0;
 		$outputPos = 0;
 		$output = '';
 		$foundStart = false;
+		$encStart = preg_quote( $startDelim, '!' );
+		$encEnd = preg_quote( $endDelim, '!' );
+		$strcmp = strpos( $flags, 'i' ) === false ? 'strcmp' : 'strcasecmp';
+		$endLength = strlen( $endDelim );
 
 		while ( $inputPos < strlen( $subject ) && 
-		  preg_match( "!($startDelim)|($endDelim)!$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos ) ) 
+		  preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos ) ) 
 		{
+			$tokenOffset = $m[0][1];
 			if ( $m[1][0] != '' ) {
-				# Found start
-				# Write out the non-matching section
-				$output .= substr( $subject, $outputPos, $m[1][1] - $outputPos );
-				$foundStart = true;
-				$inputPos = $contentPos = $m[1][1] + strlen( $m[1][0] );
-				$outputPos = $m[1][1];
+				if ( $foundStart && 
+				  $strcmp( $endDelim, substr( $subject, $tokenOffset, $endLength ) ) == 0 )
+				{
+					# An end match is present at the same location
+					$tokenType = 'end';
+					$tokenLength = $endLength;
+				} else {
+					$tokenType = 'start';
+					$tokenLength = strlen( $m[0][0] );
+				}
 			} elseif ( $m[2][0] != '' ) {
-				# Found end
+				$tokenType = 'end';
+				$tokenLength = strlen( $m[0][0] );
+			} else {
+				throw new MWException( 'Invalid delimiter given to ' . __METHOD__ );
+			}
+
+			if ( $tokenType == 'start' ) {
+				$inputPos = $tokenOffset + $tokenLength;
+				# Only move the start position if we haven't already found a start
+				# This means that START START END matches outer pair
+				if ( !$foundStart ) {
+					# Found start
+					# Write out the non-matching section
+					$output .= substr( $subject, $outputPos, $tokenOffset - $outputPos );
+					$outputPos = $tokenOffset;
+					$contentPos = $inputPos;
+					$foundStart = true;
+				}
+			} elseif ( $tokenType == 'end' ) {
 				if ( $foundStart ) {
 					# Found match
 					$output .= call_user_func( $callback, array(
-						substr( $subject, $outputPos, $m[2][1] + strlen( $m[2][0] ) - $outputPos ),
-						substr( $subject, $contentPos, $m[2][1] - $contentPos )
+						substr( $subject, $outputPos, $tokenOffset + $tokenLength - $outputPos ),
+						substr( $subject, $contentPos, $tokenOffset - $contentPos )
 					));
 					$foundStart = false;
 				} else {
 					# Non-matching end, write it out
-					$output .= substr( $subject, $inputPos, $m[2][1] + strlen( $m[2][0] ) - $outputPos );
+					$output .= substr( $subject, $inputPos, $tokenOffset + $tokenLength - $outputPos );
 				}
-				$inputPos = $outputPos = $m[2][1] + strlen( $m[2][0] );
+				$inputPos = $outputPos = $tokenOffset + $tokenLength;
 			} else {
 				throw new MWException( 'Invalid delimiter given to ' . __METHOD__ );
 			}
