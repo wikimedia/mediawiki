@@ -20,6 +20,7 @@ class IP {
 
 	/**
 	 * Validate an IP address.
+	 * @param string $ipblock Dotted quad
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValid( $ip ) {
@@ -28,6 +29,7 @@ class IP {
 
 	/**
 	 * Validate an IP Block.
+	 * @param string $ipblock Dotted quad
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValidBlock( $ipblock ) {
@@ -38,6 +40,9 @@ class IP {
 	 * Determine if an IP address really is an IP address, and if it is public,
 	 * i.e. not RFC 1918 or similar
 	 * Comes from ProxyTools.php
+	 *
+	 * @param string $ip Dotted quad
+	 * @return bool
 	 */
 	public static function isPublic( $ip ) {
 		$n = IP::toUnsigned( $ip );
@@ -74,10 +79,10 @@ class IP {
 
 	/**
 	 * Split out an IP block as an array of 4 bytes and a mask,
-	 * return false if it cant be determined
+	 * return false if it can't be determined
 	 *
-	 * @parameter $ip string A quad dotted IP address
-	 * @return array
+	 * @param string $ipblock A quad dotted IP address
+	 * @return mixed Array or false
 	 */
 	public static function toArray( $ipblock ) {
 		if(! preg_match( '/^' . RE_IP_ADD . '(?:\/(?:'.RE_IP_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
@@ -95,7 +100,8 @@ class IP {
 	 * function for an IPv6 address will be prefixed with "v6-", a non-
 	 * hexadecimal string which sorts after the IPv4 addresses.
 	 *
-	 * @param $ip Quad dotted IP address.
+	 * @param string $ip Quad dotted IP address.
+	 * @return mixed String or false
 	 */
 	public static function toHex( $ip ) {
 		$n = self::toUnsigned( $ip );
@@ -110,6 +116,7 @@ class IP {
 	 * Like ip2long() except that it actually works and has a consistent error return value.
 	 * Comes from ProxyTools.php
 	 * @param $ip Quad dotted IP address.
+	 * @return mixed Int or false
 	 */
 	public static function toUnsigned( $ip ) {
 		if ( $ip == '255.255.255.255' ) {
@@ -177,6 +184,8 @@ class IP {
 	 *     1.2.3.4/24          CIDR
 	 *     1.2.3.4 - 1.2.3.5   Explicit range
 	 *     1.2.3.4             Single IP
+	 * @param string $range
+	 * @return array (hex string start, hex string end), or (false, false) if an error occurred
 	 */
 	public static function parseRange( $range ) {
 		if ( strpos( $range, '/' ) !== false ) {
@@ -206,6 +215,22 @@ class IP {
 		} else {				
 			return array( $start, $end );
 		}
+	}
+
+	/**
+	 * Determine if a given integer IPv4 address is in a given range
+	 * @param int    $addr
+	 * @param string $range (CIDR, hyphenated dotted-quad, or single dotted-quad)
+	 * @return bool Whether or not the given address is in the given range. Returns false on error.
+	 */
+	public static function isAddressInRange( $addr, $range ) {
+		$unsignedIP = IP::toUnsigned($addr);
+		list($start, $end) = IP::parseRange($range);
+
+		if ($start == false || $end == false)
+			return false;
+		else
+			return (($unsignedIP >= $start) && ($unsignedip <= $end)); // string comparison
 	}
 }
 ?>
