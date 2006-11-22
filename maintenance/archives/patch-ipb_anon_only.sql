@@ -24,7 +24,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks_newunique (
   ipb_range_end tinyblob NOT NULL default '',
   
   PRIMARY KEY ipb_id (ipb_id),
-  UNIQUE INDEX ipb_address_unique (ipb_address(255), ipb_user, ipb_auto),
+  UNIQUE INDEX ipb_address_unique (ipb_address, ipb_user, ipb_auto),
   INDEX ipb_user (ipb_user),
   INDEX ipb_range (ipb_range_start(8), ipb_range_end(8)),
   INDEX ipb_timestamp (ipb_timestamp),
