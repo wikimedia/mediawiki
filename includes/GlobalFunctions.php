@@ -2037,6 +2037,37 @@ function wfWikiID() {
 	}
 }
 
+/**
+ * Get the start and end of a range.
+ * @param $range The range to get the start and end for.
+ * @return array An array with the first element as the start of the range, as a long, and the second element as the end of the range, also as a long.
+ * 
+ */
+function wfRangeStartEnd( $range ) {
+	list( $network, $bits ) = wfParseCIDR( $range );
+	if ( $network !== false ) {
+		$start = sprintf( '%08X', $network );
+		$end = sprintf( '%08X', $network + (1 << (32 - $bits)) - 1 );
+		return array($start, $end);
+	}
+	return false;
+}
+
+/**
+ * Determine if a given integer IPv4 address is in a given CIDR network
+ * @param $addr The address to check against the given range.
+ * @param $range The range to check the given address against.
+ * @return bool Whether or not the given address is in the given range.
+ */
+function wfIsAddressInRange( $addr, $range ) {
+	$unsignedIP = IP::toUnsigned($addr);
+	$startend = wfRangeStartEnd($range);
+	$start = $startend[0];
+	$end   = $startend[1];
+
+	return (($unsignedIP >= $start) && ($unsignedip <= $end));
+}
+
 /*
  * Get a Database object
  * @param integer $db Index of the connection to get. May be DB_MASTER for the 
