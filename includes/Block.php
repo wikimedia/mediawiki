@@ -275,7 +275,7 @@ class Block
 		$this->mRangeEnd = '';
 
 		if ( $this->mUser == 0 ) {
-			list($this->mRangeStart, $this->mRangeEnd) = IP::parseRange$this->mAddress);
+			list($this->mRangeStart, $this->mRangeEnd) = IP::parseRange($this->mAddress);
 		}
 	}
 
