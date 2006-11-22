@@ -300,9 +300,15 @@ class ImagePage extends Article {
 
 			if ($showLink) {
 				$filename = wfEscapeWikiText( $this->img->getName() );
+				// Hacky workaround: for some reason we use the incorrect MIME type
+				// image/svg for SVG.  This should be fixed internally, but at least
+				// make the displayed type right.
+				$mime = $this->img->getMimeType();
+				if ($mime == 'image/svg') $mime = 'image/svg+xml';
+
 				$info = wfMsg( 'fileinfo',
 					ceil($this->img->getSize()/1024.0),
-					$this->img->getMimeType() );
+					$mime );
 
 				global $wgContLang;
 				$dirmark = $wgContLang->getDirMark();
