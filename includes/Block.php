@@ -241,10 +241,10 @@ class Block
 
 	/**
 	 * Determine if a given integer IPv4 address is in a given CIDR network
-	 * @deprecated Use IP::isAddressInRange
+	 * @deprecated Use wfIsAddressInRange
 	 */
 	function isAddressInRange( $addr, $range ) {
-		return IP::isAddressInRange( $addr, $range );
+		return wfIsAddressInRange( $addr, $range );
 	}
 
 	function initFromRow( $row )
@@ -275,7 +275,9 @@ class Block
 		$this->mRangeEnd = '';
 
 		if ( $this->mUser == 0 ) {
-			list($this->mRangeStart, $this->mRangeEnd) = IP::parseRange($this->mAddress);
+			$startend = wfRangeStartEnd($this->mAddress);
+			$this->mRangeStart = $startend[0];
+			$this->mRangeEnd = $startend[1];
 		}
 	}
 
@@ -428,17 +430,45 @@ class Block
 
 	/**
 	* Autoblocks the given IP, referring to this Block.
-	* @param string $autoblockip The IP to autoblock, dotted-quad.
-	* @return bool True if an autoblock was inserted OR redundant to preexisting block.
+	* @param $autoblockip The IP to autoblock.
+	* @return bool Whether or not an autoblock was inserted.
 	*/
-	public function doAutoblock( $autoblockip ) {
+	function doAutoblock( $autoblockip ) {
 		# Check if this IP address is already blocked
 		$dbw =& wfGetDb( DB_MASTER );
 		$dbw->begin();
 
-		# If autoblocks are disabled, or if this IP is whitelisted, go away.
-		if ( !$this->mEnableAutoblock || self::isWhitelistedIp( $autoblockip ) ) {
-			return false;
+		# If autoblocks are disabled, go away.
+		if ( !$this->mEnableAutoblock ) {
+			return;
+		}
+
+		# Check for presence on the autoblock whitelist
+		# TODO cache this?
+		$lines = explode( "\n", wfMsgForContentNoTrans( 'autoblock_whitelist' ) );
+
+		$ip = wfGetIp();
+
+		wfDebug("Checking the autoblock whitelist..\n");
+
+		foreach( $lines as $line ) {
+			# List items only
+			if ( substr( $line, 0, 1 ) !== '*' ) {
+				continue;
+			}
+
+			$wlEntry = substr($line, 1);
+			$wlEntry = trim($wlEntry);
+
+			wfDebug("Checking $wlEntry\n");
+
+			# Is the IP in this range?
+			if (wfIsAddressInRange( $ip, $wlEntry )) {
+				wfDebug("IP $ip matches $wlEntry, not autoblocking\n");
+				#$autoblockip = null; # Don't autoblock a whitelisted IP.
+				return; #This /SHOULD/ introduce a dummy block - but
+					# I don't know a safe way to do so. -werdna
+			}
 		}
 
 		# It's okay to autoblock. Go ahead and create/insert the block.
@@ -450,11 +480,11 @@ class Block
 			# prolong block time
 			if ($this->mExpiry &&
 			($this->mExpiry < Block::getAutoblockExpiry($ipblock->mTimestamp))) {
-				return true;
+				return;
 			}
 			# Just update the timestamp
 			$ipblock->updateTimestamp();
-			return true;
+			return;
 		} else {
 			$ipblock = new Block;
 		}
@@ -480,38 +510,6 @@ class Block
 		return $ipblock->insert();
 	}
 
-	/**
-	 * Checks whether an IP is whitelisted in the autoblock_whitelist message.
-	 * @todo Cache this?
-	 *
-	 * @param string $ip Dotted quad
-	 * @return bool
-	 */
-	private static function isWhitelistedIp( $ip ) {
-		$lines = explode( "\n", wfMsgForContentNoTrans( 'autoblock_whitelist' ) );
-
-		wfDebug("Checking the autoblock whitelist..\n");
-
-		foreach( $lines as $line ) {
-			# Parse list items only
-			if ( substr( $line, 0, 1 ) !== '*' ) {
-				continue;
-			}
-
-			$wlEntry = substr($line, 1);
-			$wlEntry = trim($wlEntry);
-
-			wfDebug("Checking $wlEntry\n");
-
-			# Is the IP in this range?
-			if (IP::isAddressInRange( $ip, $wlEntry )) {
-				wfDebug("IP $ip matches $wlEntry, not autoblocking\n");
-				return true; #This /SHOULD/ introduce a dummy block - but
-					# I don't know a safe way to do so. -werdna
-			}
-		}
-		return false;
-	}
 	function deleteIfExpired()
 	{
 		$fname = 'Block::deleteIfExpired';
