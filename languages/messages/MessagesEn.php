@@ -2601,6 +2601,10 @@ Please confirm that really want to recreate this page.',
 'autosumm-replace' => 'Replacing page with \'$1\'',
 'autoredircomment' => 'Redirecting to [[$1]]', # This should be changed to the new naming convention, but existed beforehand.
 'autosumm-shortnew' => 'New page: $1',
+
+# Autoblock whitelist
+'autoblock_whitelist' => '',
+
 );
 
 ?>
