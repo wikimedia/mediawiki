@@ -41,6 +41,13 @@ class EditPage {
 	var $edittime = '', $section = '', $starttime = '';
 	var $oldid = 0, $editintro = '', $scrolltop = null;
 
+	# Placeholders for text injection by hooks (must be HTML)
+	# extensions should take care to _append_ to the present value
+	var $editFormTextTop;
+	var $editFormTextAfterWarn;
+	var $editFormTextAfterTools;
+	var $editFormTextBottom;
+
 	/**
 	 * @todo document
 	 * @param $article
@@ -49,6 +56,12 @@ class EditPage {
 		$this->mArticle =& $article;
 		global $wgTitle;
 		$this->mTitle =& $wgTitle;
+
+		# Placeholders for text injection by hooks (empty per default)
+		$this->editFormTextTop = "";
+		$this->editFormTextAfterWarn = "";
+		$this->editFormTextAfterTools = "";
+		$this->editFormTextBottom = "";
 	}
 	
 	/**
@@ -1020,6 +1033,8 @@ class EditPage {
 		}
 
 
+		$wgOut->addHTML( $this->editFormTextTop );
+
 		# if this is a comment, show a subject line at the top, which is also the edit summary.
 		# Otherwise, show a summary field at the bottom
 		$summarytext = htmlspecialchars( $wgContLang->recodeForEdit( $this->summary ) ); # FIXME
@@ -1161,6 +1176,7 @@ END
 		" );
 
 		$wgOut->addWikiText( $copywarn );
+		$wgOut->addHTML( $this->editFormTextAfterWarn );
 		$wgOut->addHTML( "
 {$metadata}
 {$editsummary}
@@ -1180,6 +1196,7 @@ END
 </div><!-- editOptions -->");
 
 		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
+		$wgOut->addHTML( $this->editFormTextAfterTools );
 
 		$wgOut->addHTML( "
 <div class='templatesUsed'>
@@ -1224,6 +1241,7 @@ END
 			$wgOut->addHTML( "<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
 				. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox2 ) ) . "\n</textarea>" );
 		}
+		$wgOut->addHTML( $this->editFormTextBottom );
 		$wgOut->addHTML( "</form>\n" );
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
 

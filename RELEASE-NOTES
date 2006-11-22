@@ -211,6 +211,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7883) Added autoblock whitelisting feature, using which specific ranges
    can be protected from autoblocking. These ranges are specified, in list format,
    in the autoblock_whitelist system message. 
+* Added placeholders for text injection by hooks to EditPage.php
 
 == Languages updated ==
 
