@@ -254,7 +254,6 @@ $messages = array(
 "viewtalkpage" => "Lihat diskusi",
 "otherlanguages" => "Bahasa lain",
 "redirectedfrom" => "(Dialihkan dari $1)",
-'autoredircomment' => 'Alihkan ke [[$1]]',
 'redirectpagesub' => 'Halaman peralihan',
 "lastmodifiedat" => "Halaman ini terakhir diubah pada $2, $1.",
 "viewcount" => "Halaman ini telah diakses sebanyak $1 kali.<br />",
@@ -539,6 +538,7 @@ Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang And
 'semiprotectedpagewarning' => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.",
 'templatesused' => 'Templat yang digunakan di halaman ini:',
 'templatesusedpreview'	=> 'Templat yang digunakan di pratayang ini:',
+'templatesusedsection'	=> 'Templat yang digunakan di bagian ini:',
 'edittools' => '<!-- Teks di sini akan dimunculkan dibawah isian suntingan dan pemuatan.-->',
 'nocreatetitle' => 'Pembuatan halaman baru dibatasi',
 'nocreatetext' => 'Situs ini membatasi kemampuan membuat halaman baru. Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[{{ns:special}}:Userlogin|masuk log atau mendaftar]]',
@@ -1951,6 +1951,8 @@ $1",
 # Auto-summaries
 'autosumm-blank' => 'Menghapus semua isi dari halaman',
 'autosumm-replace' => 'Mengganti halaman dengan \'$1\'',
+'autoredircomment' => 'Alihkan ke [[$1]]',
+'autosumm-shortnew' => 'Halaman baru: $1',
 
 );
 
