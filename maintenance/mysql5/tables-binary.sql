@@ -619,7 +619,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
 
   -- Unique index to support "user already blocked" messages
   -- Any new options which prevent collisions should be included
-  UNIQUE INDEX ipb_address (ipb_address, ipb_user, ipb_auto, ipb_anon_only),
+  UNIQUE INDEX ipb_address (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only),
 
   INDEX ipb_user (ipb_user),
   INDEX ipb_range (ipb_range_start(8), ipb_range_end(8)),
