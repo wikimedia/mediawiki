@@ -11,6 +11,7 @@ $wgIgnoredMessages = array(
 	'sidebar',
 	'addsection',
 	'anonnotice',
+	'autoblock_whitelist',
 	'catseparator',
 	'googlesearch',
 	'exif-make-value',
