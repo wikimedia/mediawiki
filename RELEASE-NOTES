@@ -203,9 +203,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7970) Use current connection explicitly on Database::getServerVersion
 * (bug 2001) Tables with class="sortable" can now be dynamically sorted via
   JavaScript.
-* Added autosummary for new pages with 500 or less characters, and refactor 
-   the autosummary code so it's all done in one function. doEdit is getting too 
+* Added autosummary for new pages with 500 or less characters, and refactor
+   the autosummary code so it's all done in one function. doEdit is getting too
    big!
+* (bug 7554) The correct MIME type for SVG images is now displayed on the
+  image page (image/svg+xml, not image/svg).
 
 
 == Languages updated ==
