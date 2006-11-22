@@ -504,8 +504,8 @@ class Block
 			wfDebug("Checking $wlEntry\n");
 
 			# Is the IP in this range?
-			if (IP::isAddressInRange( $autoblockip, $wlEntry )) {
-				wfDebug("IP $autoblockip matches $wlEntry, not autoblocking\n");
+			if (IP::isAddressInRange( $ip, $wlEntry )) {
+				wfDebug("IP $ip matches $wlEntry, not autoblocking\n");
 				return true; #This /SHOULD/ introduce a dummy block - but
 					# I don't know a safe way to do so. -werdna
 			}

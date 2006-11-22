@@ -218,8 +218,8 @@ class IP {
 	}
 
 	/**
-	 * Determine if a given integer IPv4 address is in a given range
-	 * @param int    $addr
+	 * Determine if a given IPv4 address is in a given range
+	 * @param string $addr  Dotted quad
 	 * @param string $range (CIDR, hyphenated dotted-quad, or single dotted-quad)
 	 * @return bool Whether or not the given address is in the given range. Returns false on error.
 	 */
