@@ -88,61 +88,61 @@ class KkConverter extends LanguageConverter {
         'Ы' => 'ى',  'Ь' => 'ي',  'І' => 'ٴى',  'Э' => 'ە',  'Ю' => 'يۋ', 'Я' => 'يا',
     );
 
-    function loadDefaultTables() {
+	function loadDefaultTables() {
 		$this->mTables = array(
 			'kk-kz' => new ReplacementArray( $this->mLatinToCyrillic ),
 			'kk-tr' => new ReplacementArray( $this->mCyrillicToLatin ),
 			'kk-cn' => new ReplacementArray( $this->mCyrillicToArabic ),
 			'kk' => new ReplacementArray()
 		);
-    }
+	}
 
-    /*
-     * Override function from LanguageConvertor
-     */
-    function getPreferredVariant(){
-		    global $wgUser, $wgRequest, $wgTitle;;
-        // Additional checks:
-        //  - There should be no conversion for Talk pages
-        if($wgTitle!=NULL && $wgTitle->isTalkPage()){
-            return $this->mMainLanguageCode;
-        }
-		    return parent::getPreferredVariant();
-	   }
+	/*
+	 * Override function from LanguageConvertor
+	 * Additional checks: 
+	 *  - There should be no conversion for Talk pages
+	 */
+	function getPreferredVariant(){
+		global $wgTitle;
+		if( is_object( $wgTitle ) && $wgTitle->isTalkPage()) {
+			return $this->mMainLanguageCode;
+		}
+		return parent::getPreferredVariant();
+	}
 
-    /*
-     * A function wrapper, if there is no selected variant,
-     * leave the link names as they were
-     */
-    function findVariantLink( &$link, &$nt ) {
-        $oldlink=$link;
-        parent::findVariantLink($link,$nt);
-        if($this->getPreferredVariant()==$this->mMainLanguageCode)
-            $link=$oldlink;
-    }
+	/*
+	 * A function wrapper, if there is no selected variant,
+	 * leave the link names as they were
+	 */
+	function findVariantLink( &$link, &$nt ) {
+		$oldlink=$link;
+		parent::findVariantLink($link,$nt);
+		if($this->getPreferredVariant()==$this->mMainLanguageCode)
+			$link=$oldlink;
+	}
 
-    /*
-     * We want our external link captions to be converted in variants,
-     * so we return the original text instead -{$text}-, except for URLs
-     */
-    function markNoConversion($text) {
-        if(preg_match("/^https?:\/\/|ftp:\/\/|irc:\/\//",$text))
-            return parent::markNoConversion($text);
-        return $text;
-    }
+	/*
+	 * We want our external link captions to be converted in variants,
+	 * so we return the original text instead -{$text}-, except for URLs
+	 */
+	function markNoConversion($text, $noParse=false) {
+		if($noParse || preg_match("/^https?:\/\/|ftp:\/\/|irc:\/\//",$text))
+			return parent::markNoConversion($text);
+		return $text;
+	}
 
-    /*
-     * An ugly function wrapper for parsing Image titles
-     * (to prevent image name conversion)
-     */
-    function autoConvert($text, $toVariant=false) {
-        global $wgTitle;
-        if($wgTitle->getNameSpace()==NS_IMAGE){
-            $imagename = $wgTitle->getNsText();
-            if(preg_match("/^$imagename:/",$text)) return $text;
-        }
-        return parent::autoConvert($text,$toVariant);
-    }
+	/*
+	 * An ugly function wrapper for parsing Image titles
+	 * (to prevent image name conversion)
+	 */
+	function autoConvert($text, $toVariant=false) {
+		global $wgTitle;
+		if($wgTitle->getNameSpace()==NS_IMAGE){
+			$imagename = $wgTitle->getNsText();
+			if(preg_match("/^$imagename:/",$text)) return $text;
+		}
+		return parent::autoConvert($text,$toVariant);
+	}
 
 	/**
 	 *  It translates text into variant, specials:
@@ -159,7 +159,7 @@ class KkConverter extends LanguageConverter {
 		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
 		$m = array_shift($matches);
-		$ret = strtr($m[0], $this->mTables[$toVariant]);
+		$ret = $this->mTables[$toVariant]->replace( $m[0] );
 		$mstart = $m[1]+strlen($m[0]);
 		foreach($matches as $m) {
 			$ret .= substr($text, $mstart, $m[1]-$mstart);
@@ -174,39 +174,38 @@ class KkConverter extends LanguageConverter {
 
 class LanguageKk extends LanguageKk_kz {
 
-  function __construct() {
-    global $wgHooks;
+	function __construct() {
+		global $wgHooks;
 		parent::__construct();
 
-   $variants = array('kk', 'kk-kz', 'kk-tr', 'kk-cn');
-   $variantfallbacks = array(
-      'kk'    => 'kk-kz',
-      'kk-kz' => 'kk-kz',
+		$variants = array('kk', 'kk-kz', 'kk-tr', 'kk-cn');
+		$variantfallbacks = array(
+			'kk'    => 'kk-kz',
+			'kk-kz' => 'kk-kz',
 			'kk-tr' => 'kk-tr',
 			'kk-cn' => 'kk-cn'
-    );
+		);
 
-    $this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );
-    $wgHooks['ArticleSaveComplete'][] = $this->mConverter;
-  }
+		$this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );
+		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+	}
 
 	function convertGrammar( $word, $case ) {
 		$fname="LanguageKk::convertGrammar";
 		wfProfileIn( $fname );
 
-    //always convert to kk-kz before convertGrammar
-    $w1 = $word;
+		//always convert to kk-kz before convertGrammar
+		$w1 = $word;
 		$word = $this->mConverter->autoConvert($word, 'kk-kz');
-    $w2 = $word;
+		$w2 = $word;
 		$word = parent::convertGrammar( $word, $case );
-    //restore encoding
-    if( $w1 != $w2 ) {
-       $word = $this->mConverter->translate($word, 'kk-tr');
-    }
+		//restore encoding
+		if( $w1 != $w2 ) {
+			$word = $this->mConverter->translate($word, 'kk-tr');
+		}
 		wfProfileOut( $fname );
 		return $word;
 	}
-
 }
 
 ?>
