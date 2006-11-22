@@ -208,7 +208,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
    big!
 * (bug 7554) The correct MIME type for SVG images is now displayed on the
   image page (image/svg+xml, not image/svg).
-
+* (bug 7883) Added autoblock whitelisting feature, using which specific ranges
+   can be protected from autoblocking. These ranges are specified, in list format,
+   in the autoblock_whitelist system message. 
 
 == Languages updated ==
 

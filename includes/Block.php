@@ -241,14 +241,10 @@ class Block
 
 	/**
 	 * Determine if a given integer IPv4 address is in a given CIDR network
+	 * @deprecated Use wfIsAddressInRange
 	 */
 	function isAddressInRange( $addr, $range ) {
-		list( $network, $bits ) = wfParseCIDR( $range );
-		if ( $network !== false && $addr >> ( 32 - $bits ) == $network >> ( 32 - $bits ) ) {
-			return true;
-		} else {
-			return false;
-		}
+		return wfIsAddressInRange( $addr, $range );
 	}
 
 	function initFromRow( $row )
@@ -277,12 +273,11 @@ class Block
 	{
 		$this->mRangeStart = '';
 		$this->mRangeEnd = '';
+
 		if ( $this->mUser == 0 ) {
-			list( $network, $bits ) = wfParseCIDR( $this->mAddress );
-			if ( $network !== false ) {
-				$this->mRangeStart = sprintf( '%08X', $network );
-				$this->mRangeEnd = sprintf( '%08X', $network + (1 << (32 - $bits)) - 1 );
-			}
+			$startend = wfRangeStartEnd($this->mAddress);
+			$this->mRangeStart = $startend[0];
+			$this->mRangeEnd = $startend[1];
 		}
 	}
 
@@ -378,7 +373,7 @@ class Block
 
 		# Don't collide with expired blocks
 		Block::purgeExpired();
-		
+
 		$ipb_id = $dbw->nextSequenceValue('ipblocks_ipb_id_val');
 		$dbw->insert( 'ipblocks',
 			array(
@@ -435,17 +430,48 @@ class Block
 
 	/**
 	* Autoblocks the given IP, referring to this Block.
-	*@param $autoblockip The IP to autoblock.
-	*@return Whether or not an autoblock was inserted.
+	* @param $autoblockip The IP to autoblock.
+	* @return bool Whether or not an autoblock was inserted.
 	*/
 	function doAutoblock( $autoblockip ) {
 		# Check if this IP address is already blocked
 		$dbw =& wfGetDb( DB_MASTER );
 		$dbw->begin();
 
+		# If autoblocks are disabled, go away.
 		if ( !$this->mEnableAutoblock ) {
 			return;
 		}
+
+		# Check for presence on the autoblock whitelist
+		# TODO cache this?
+		$lines = explode( "\n", wfMsgForContentNoTrans( 'autoblock_whitelist' ) );
+
+		$ip = wfGetIp();
+
+		wfDebug("Checking the autoblock whitelist..\n");
+
+		foreach( $lines as $line ) {
+			# List items only
+			if ( substr( $line, 0, 1 ) !== '*' ) {
+				continue;
+			}
+
+			$wlEntry = substr($line, 1);
+			$wlEntry = trim($wlEntry);
+
+			wfDebug("Checking $wlEntry\n");
+
+			# Is the IP in this range?
+			if (wfIsAddressInRange( $ip, $wlEntry )) {
+				wfDebug("IP $ip matches $wlEntry, not autoblocking\n");
+				#$autoblockip = null; # Don't autoblock a whitelisted IP.
+				return; #This /SHOULD/ introduce a dummy block - but
+					# I don't know a safe way to do so. -werdna
+			}
+		}
+
+		# It's okay to autoblock. Go ahead and create/insert the block.
 
 		$ipblock = Block::newFromDB( $autoblockip );
 		if ( $ipblock ) {
