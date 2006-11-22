@@ -154,7 +154,6 @@ $messages = array(
 #
 'categories' => 'Kategori',
 'pagecategories' => '{{PLURAL:$1|Kategori|Kategori}}',
-'pagecategorieslink' => '{{ns:special}}:Categories',
 "category_header" => "Artikel dalam kategori \"$1\"",
 "subcategories" => "Subkategori",
 'category-media-header' => 'Media di kategori "$1"',
@@ -557,7 +556,6 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 "currentrev" => "Revisi sekarang",
 "revisionasof" => "Revisi per $1",
 'revision-info' => 'Revisi per $1; $2',
-'revision-nav' => '($1) $2 | $3 ($4) | $5 ($6)',
 'previousrevision'      => '← Revisi sebelumnya',
 'nextrevision'          => 'Revisi selanjutnya →',
 'currentrevisionlink'   => 'Revisi sekarang',
@@ -1177,7 +1175,6 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 # What links here
 #
 "whatlinkshere" => "Pranala ke halaman ini",
-'whatlinkshere-summary'	=> '',
 'whatlinkshere-barrow' => '&lt;',
 "notargettitle" => "Tidak ada sasaran",
 "notargettext" => "Anda tidak menentukan halaman atau pengguna tujuan fungsi ini.",
