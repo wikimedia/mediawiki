@@ -1164,8 +1164,7 @@ class Title {
 			 * Always grant access to the login page.
 			 * Even anons need to be able to log in.
 			*/
-			if( $this->getNamespace() == NS_SPECIAL
-			    && $this->getText() == 'Userlogin' ) {
+			if( $this->isSpecial( 'Userlogin' ) ) {
 				return true;
 			}
 
