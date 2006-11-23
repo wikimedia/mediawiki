@@ -1823,7 +1823,7 @@ $wgMessageStrucutre = array(
 		'autosumm-blank',
 		'autosumm-replace',
 		'autoredircomment',
-		'autosumm-shortnew',
+		'autosumm-new',
 	),
 	'autoblock_whitelist' => array(
 		'autoblock_whitelist',
