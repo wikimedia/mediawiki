@@ -2143,7 +2143,7 @@ $1',
 'autosumm-blank'    => 'מסיר את כל התוכן מדף זה',
 'autosumm-replace'  => "מחליף את הדף עם '$1'",
 'autoredircomment'  => 'הפניה לדף [[$1]]', # This should be changed to the new naming convention, but existed beforehand
-'autosumm-shortnew' => 'דף חדש: $1',
+'autosumm-new'      => 'דף חדש: $1',
 
 );
 
