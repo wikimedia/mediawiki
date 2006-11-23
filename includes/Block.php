@@ -447,7 +447,7 @@ class Block
 		# TODO cache this?
 		$lines = explode( "\n", wfMsgForContentNoTrans( 'autoblock_whitelist' ) );
 
-		$ip = wfGetIp();
+		$ip = $autoblockip;
 
 		wfDebug("Checking the autoblock whitelist..\n");
 
