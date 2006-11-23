@@ -77,7 +77,7 @@ class ImagePage extends Article {
 				$wgOut->addHTML( "<h2 id=\"metadata\">" . wfMsgHtml( 'metadata' ) . "</h2>\n" );
 				$wgOut->addWikiText( $this->makeMetadataTable( $exif ) );
 				$wgOut->addHTML(
-					"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js?wgStyleVersion\"></script>\n" .
+					"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js?$wgStyleVersion\"></script>\n" .
 					"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
 			}
 		} else {
