@@ -53,7 +53,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		wfProfileOut($this->getModuleProfileName() . '-getDB');
 
 		wfProfileIn($this->getModuleProfileName() . '-parseParams');
-		$limit = $from = $namespace = $filterredir = null;
+		$limit = $from = $namespace = $filterredir = $prefix = null;
 		extract($this->extractRequestParams());
 
 		$this->addTables('page');

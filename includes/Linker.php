@@ -38,7 +38,6 @@ class Linker {
 	function getInterwikiLinkAttributes( $link, $text, $class='' ) {
 		global $wgContLang;
 
-		$same = ($link == $text);
 		$link = urldecode( $link );
 		$link = $wgContLang->checkTitleEncoding( $link );
 		$link = preg_replace( '/[\\x00-\\x1f]/', ' ', $link );
@@ -200,8 +199,6 @@ class Linker {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 
-		$ns = $nt->getNamespace();
-		$dbkey = $nt->getDBkey();
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
 			$link = $nt->getPrefixedURL();
@@ -210,6 +207,7 @@ class Linker {
 
 			$inside = '';
 			if ( '' != $trail ) {
+				$m = array();
 				if ( preg_match( '/^([a-z]+)(.*)$$/sD', $trail, $m ) ) {
 					$inside = $m[1];
 					$trail = $m[2];
@@ -381,8 +379,6 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		$link = $nt->getPrefixedURL();
-
 		$u = $nt->escapeLocalURL( $query );
 
 		if ( '' == $text ) {
@@ -717,7 +713,6 @@ class Linker {
 			### HOTFIX. Instead of breaking, return empty string.
 			return $text;
 		} else {
-			$name = $title->getDBKey();
 			$img  = new Image( $title );
 			if( $img->exists() ) {
 				$url  = $img->getURL();
@@ -901,6 +896,7 @@ class Linker {
 		# some nasty regex.
 		# We look for all comments, match any text before and after the comment,
 		# add a separator where needed and format the comment itself with CSS
+		$match = array();
 		while (preg_match('/(.*)\/\*\s*(.*?)\s*\*\/(.*)/', $comment,$match)) {
 			$pre=$match[1];
 			$auto=$match[2];
@@ -943,6 +939,7 @@ class Linker {
 			} else {
 				$text = $match[1];
 			}
+			$submatch = array();
 			if( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
 				# Media link; trail not supported.
 				$linkRegexp = '/\[\[(.*?)\]\]/';
@@ -1094,6 +1091,7 @@ class Linker {
 		}
 		$inside = '';
 		if ( '' != $trail ) {
+			$m = array();
 			if ( preg_match( $regex, $trail, $m ) ) {
 				$inside = $m[1];
 				$trail = $m[2];

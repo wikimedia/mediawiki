@@ -243,7 +243,7 @@ class OutputPage {
 		$lb->execute();
 
 		$sk =& $wgUser->getSkin();
-		foreach ( $categories as $category => $arbitrary ) {
+		foreach ( array_keys($categories) as $category ) {
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$text = $wgContLang->convertHtml( $title->getText() );
 			$this->mCategoryLinks[] = $sk->makeLinkObj( $title, $text );
@@ -512,7 +512,7 @@ class OutputPage {
 	public function output() {
 		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
-		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgAjaxSearch, $wgScriptPath, $wgServer;
+		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgAjaxSearch, $wgServer;
 		global $wgStyleVersion;
 
 		if( $this->mDoNothing ){
@@ -1010,8 +1010,8 @@ class OutputPage {
 		if ( !is_array( $links2d ) ) {
 			return;
 		}
-		foreach ( $links2d as $ns => $dbkeys ) {
-			foreach( $dbkeys as $dbkey => $id ) {
+		foreach ( $links2d as $dbkeys ) {
+			foreach( array_keys($dbkeys) as $dbkey ) {
 				$this->addKeyword( $dbkey );
 				if ( ++$count > 10 ) {
 					break 2;

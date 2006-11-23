@@ -57,8 +57,6 @@ class WhatLinksHerePage {
 		$wgOut->setPagetitle( $this->target->getPrefixedText() );
 		$wgOut->setSubtitle( wfMsg( 'linklistsub' ) );
 
-		$isredir = ' (' . wfMsg( 'isredirect' ) . ")\n";
-
 		$wgOut->addHTML( wfMsg( 'whatlinkshere-barrow' ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
 
 		$this->showIndirectLinks( 0, $this->target, $this->limit, $this->from, $this->dir );

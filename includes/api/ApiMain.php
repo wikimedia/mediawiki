@@ -296,7 +296,7 @@ class ApiMain extends ApiBase {
 
 		$astriks = str_repeat('*** ', 10);
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
-		foreach ($this->mModules as $moduleName => $moduleClass) {
+		foreach( array_keys($this->mModules) as $moduleName ) {
 			$msg .= "* action=$moduleName *";
 			$module = new $this->mModules[$moduleName] ($this, $moduleName);
 			$msg2 = $module->makeHelpMsg();
@@ -306,7 +306,7 @@ class ApiMain extends ApiBase {
 		}
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";
-		foreach ($this->mFormats as $formatName => $moduleClass) {
+		foreach( array_keys($this->mFormats) as $formatName ) {
 			$msg .= "* format=$formatName *";
 			$module = $this->createPrinterByName($formatName);
 			$msg2 = $module->makeHelpMsg();

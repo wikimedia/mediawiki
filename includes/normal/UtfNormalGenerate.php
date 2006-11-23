@@ -43,6 +43,7 @@ if( !$in ) {
 print "Initializing normalization quick check tables...\n";
 $checkNFC = array();
 while( false !== ($line = fgets( $in ) ) ) {
+	$matches = array();
 	if( preg_match( '/^([0-9A-F]+)(?:..([0-9A-F]+))?\s*;\s*(NFC_QC)\s*;\s*([MN])/', $line, $matches ) ) {
 		list( $junk, $first, $last, $prop, $value ) = $matches;
 		#print "$first $last $prop $value\n";

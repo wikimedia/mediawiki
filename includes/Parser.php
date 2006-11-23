@@ -383,10 +383,9 @@ class Parser
 	 */
 	function recursiveTagParse( $text ) {
 		wfProfileIn( __METHOD__ );
-		$x =& $this->mStripState;
-		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$x ) );
-		$text = $this->strip( $text, $x );
-		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$x ) );
+		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
+		$text = $this->strip( $text, $this->mStripState );
+		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->internalParse( $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -931,8 +930,7 @@ class Parser
 		wfProfileIn( $fname );
 
 		# Hook to suspend the parser in this state
-		$x =& $this->mStripState; // FIXME: Please check that this initialization is correct.
-		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$x ) ) ) {
+		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$this->mStripState ) ) ) {
 			wfProfileOut( $fname );
 			return $text ;
 		}
@@ -1820,7 +1818,7 @@ class Parser
 	 * @return string less-or-more HTML with NOPARSE bits
 	 */
 	function armorLinks( $text ) {
-		return preg_replace( "/\b(" . wfUrlProtocols() . ')/',
+		return preg_replace( '/\b(' . wfUrlProtocols() . ')/',
 			"{$this->mUniqPrefix}NOPARSE$1", $text );
 	}
 

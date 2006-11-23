@@ -99,7 +99,7 @@ class HTMLForm {
 		if ( $this->mRequest->wasPosted() ) {
 			$arr = $this->mRequest->getArray( $varname );
 			if ( is_array( $arr ) ) {
-				foreach ( $_POST[$varname] as $index => $element ) {
+				foreach ( $_POST[$varname] as $element ) {
 					$s .= htmlspecialchars( $element )."\n";
 				}
 			}

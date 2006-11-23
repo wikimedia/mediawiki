@@ -99,16 +99,19 @@ class ApiQueryContributions extends ApiQueryBase {
 
 			//If we got data on the revision only, use only
 			// that data.
-			if($revvals && !$pagevals)
+			if($revvals && !$pagevals) {
 				$data[] = $revvals;
+			}
 			//If we got data on the page only, use only
 			// that data.
-			else if($pagevals && !$revvals)
+			else if($pagevals && !$revvals) {
 				$data[] = $pagevals;
+			}
 			//... and if we got data on both the revision and
 			// the page, merge the data and send it out.
-			else if($pagevals && $revvals)
+			else if($pagevals && $revvals) {
 				$data[] = array_merge($revvals, $pagevals);
+			}
 		}
 
 		//Free the database record so the connection can get on with other stuff

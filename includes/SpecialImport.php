@@ -208,7 +208,7 @@ class ImportReporter {
 			$dbw = wfGetDB( DB_MASTER );
 			$nullRevision = Revision::newNullRevision(
 				$dbw, $title->getArticleId(), $comment, true );
-			$nullRevId = $nullRevision->insertOn( $dbw );
+			$nullRevision->insertOn( $dbw );
 		}
 	}
 	
@@ -304,7 +304,6 @@ class WikiRevision {
 	}
 
 	function importOldRevision() {
-		$fname = "WikiImporter::importOldRevision";
 		$dbw =& wfGetDB( DB_MASTER );
 
 		# Sneak a single revision into place

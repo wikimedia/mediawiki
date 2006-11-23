@@ -403,8 +403,6 @@ class MimeMagic {
 					elseif ($tag==="svg") $mime= "image/svg";
 					elseif (strpos($doctype,"-//W3C//DTD XHTML")===0) $mime= "text/html";
 					elseif ($tag==="html") $mime= "text/html";
-
-					$test_more= false;
 				}
 			}
 

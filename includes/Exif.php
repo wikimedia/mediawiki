@@ -439,7 +439,7 @@ class Exif {
 			return false;
 		}
 
-		if ( preg_match( "/^\s*$/", $in ) ) {
+		if ( preg_match( '/^\s*$/', $in ) ) {
 			$this->debug( $in, __FUNCTION__, 'input consisted solely of whitespace' );
 			return false;
 		}
@@ -468,7 +468,8 @@ class Exif {
 	}
 
 	function isRational( $in ) {
-		if ( !is_array( $in ) && @preg_match( "/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/", $in, $m ) ) { # Avoid division by zero
+		$m = array();
+		if ( !is_array( $in ) && @preg_match( '/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m ) ) { # Avoid division by zero
 			return $this->isLong( $m[1] ) && $this->isLong( $m[2] );
 		} else {
 			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
@@ -477,7 +478,7 @@ class Exif {
 	}
 
 	function isUndefined( $in ) {
-		if ( !is_array( $in ) && preg_match( "/^\d{4}$/", $in ) ) { // Allow ExifVersion and FlashpixVersion
+		if ( !is_array( $in ) && preg_match( '/^\d{4}$/', $in ) ) { // Allow ExifVersion and FlashpixVersion
 			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
@@ -497,7 +498,8 @@ class Exif {
 	}
 
 	function isSrational( $in ) {
-		if ( !is_array( $in ) && preg_match( "/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/", $in, $m ) ) { # Avoid division by zero
+		$m = array();
+		if ( !is_array( $in ) && preg_match( '/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m ) ) { # Avoid division by zero
 			return $this->isSlong( $m[0] ) && $this->isSlong( $m[1] );
 		} else {
 			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
@@ -729,7 +731,7 @@ class FormatExif {
 			case 'DateTime':
 			case 'DateTimeOriginal':
 			case 'DateTimeDigitized':
-				if( preg_match( "/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/", $val ) ) {
+				if( preg_match( '/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/', $val ) ) {
 					$tags[$tag] = $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
 				}
 				break;
@@ -1054,6 +1056,7 @@ class FormatExif {
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	function formatNum( $num ) {
+		$m = array();
 		if ( preg_match( '/^(\d+)\/(\d+)$/', $num, $m ) )
 			return $m[2] != 0 ? $m[1] / $m[2] : $num;
 		else
@@ -1069,6 +1072,7 @@ class FormatExif {
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	function formatFraction( $num ) {
+		$m = array();
 		if ( preg_match( '/^(\d+)\/(\d+)$/', $num, $m ) ) {
 			$numerator = intval( $m[1] );
 			$denominator = intval( $m[2] );

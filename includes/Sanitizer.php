@@ -391,8 +391,9 @@ class Sanitizer {
 			$tagstack = $tablestack = array();
 			foreach ( $bits as $x ) {
 				$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
+				$regs = array();
 				preg_match( '!^(/?)(\\w+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs );
-				list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
+				list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 				error_reporting( $prev );
 
 				$badtag = 0 ;
@@ -487,7 +488,7 @@ class Sanitizer {
 			foreach ( $bits as $x ) {
 				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
-				@list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
+				@list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
 					if( is_callable( $processCallback ) ) {
 						call_user_func_array( $processCallback, array( &$params, $args ) );
@@ -1223,8 +1224,9 @@ class Sanitizer {
 		$url = preg_replace( '/[\][<>"\\x00-\\x20\\x7F]/e', "urlencode('\\0')", $url );
 		
 		# Validate hostname portion
+		$matches = array();
 		if( preg_match( '!^([^:]+:)(//[^/]+)?(.*)$!iD', $url, $matches ) ) {
-			list( $whole, $protocol, $host, $rest ) = $matches;
+			list( /* $whole */, $protocol, $host, $rest ) = $matches;
 			
 			// Characters that will be ignored in IDNs.
 			// http://tools.ietf.org/html/3454#section-3.1

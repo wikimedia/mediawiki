@@ -344,7 +344,7 @@ class User {
 	 * @return bool
 	 */
 	static function isIP( $name ) {
-		return preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/",$name);
+		return preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/',$name);
 		/*return preg_match("/^
 			(?:[01]?\d{1,2}|2(:?[0-4]\d|5[0-5]))\.
 			(?:[01]?\d{1,2}|2(:?[0-4]\d|5[0-5]))\.
@@ -873,6 +873,7 @@ class User {
 		$found = false;
 		$host = '';
 
+		$m = array();
 		if ( preg_match( '/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m ) ) {
 			# Make hostname
 			for ( $i=4; $i>=1; $i-- ) {
@@ -939,6 +940,7 @@ class User {
 			if( isset( $limits['ip'] ) ) {
 				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
 			}
+			$matches = array();
 			if( isset( $limits['subnet'] ) && preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
 				$subnet = $matches[1];
 				$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
@@ -1585,7 +1587,7 @@ class User {
 	 * @todo FIXME : need to check the old failback system [AV]
 	 */
 	function &getSkin() {
-		global $IP, $wgRequest;
+		global $wgRequest;
 		if ( ! isset( $this->mSkin ) ) {
 			wfProfileIn( __METHOD__ );
 
@@ -1672,7 +1674,7 @@ class User {
 		// any matching rows
 		if ( $watched ) {
 			$dbw =& wfGetDB( DB_MASTER );
-			$success = $dbw->update( 'watchlist',
+			$dbw->update( 'watchlist',
 					array( /* SET */
 						'wl_notificationtimestamp' => NULL
 					), array( /* WHERE */
@@ -1703,7 +1705,7 @@ class User {
 		if( $currentUser != 0 )  {
 
 			$dbw =& wfGetDB( DB_MASTER );
-			$success = $dbw->update( 'watchlist',
+			$dbw->update( 'watchlist',
 				array( /* SET */
 					'wl_notificationtimestamp' => NULL
 				), array( /* WHERE */
@@ -1740,6 +1742,7 @@ class User {
 		$this->mOptions = array();
 		$a = explode( "\n", $str );
 		foreach ( $a as $s ) {
+			$m = array();
 			if ( preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
 				$this->mOptions[$m[1]] = $m[2];
 			}
@@ -1819,7 +1822,6 @@ class User {
 	 * Checks if a user with the given name exists, returns the ID
 	 */
 	function idForName() {
-		$gotid = 0;
 		$s = trim( $this->getName() );
 		if ( 0 == strcmp( '', $s ) ) return 0;
 

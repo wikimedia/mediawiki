@@ -70,7 +70,7 @@ class SpecialSearch {
 	}
 
 	/**
-	 * If an exact title match can be found, jump straight ahead to
+	 * If an exact title match can be found, jump straight ahead to it.
 	 * @param string $term
 	 * @public
 	 */
@@ -82,7 +82,6 @@ class SpecialSearch {
 		$this->setupPage( $term );
 
 		# Try to go to page as entered.
-		#
 		$t = Title::newFromText( $term );
 
 		# If the string cannot be used to create a title

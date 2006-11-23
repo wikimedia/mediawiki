@@ -68,7 +68,7 @@ class ApiOpenSearch extends ApiBase {
 
 		// Reformat useful data for future printing by JSON engine
 		$srchres = array ();
-		foreach ($data['query']['allpages'] as $pageid => & $pageinfo) {
+		foreach ($data['query']['allpages'] as & $pageinfo) {
 			// Note: this data will no be printable by the xml engine
 			// because it does not support lists of unnamed items
 			$srchres[] = $pageinfo['title'];

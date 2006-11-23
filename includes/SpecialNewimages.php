@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialNewimages( $par, $specialPage ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgGroupPermissions;
+	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgGroupPermissions;
 
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -67,9 +67,11 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	/** Hardcode this for now. */
 	$limit = 48;
 
-	if ( $parval = intval( $par ) )
-		if ( $parval <= $limit && $parval > 0 )
+	if ( $parval = intval( $par ) ) {
+		if ( $parval <= $limit && $parval > 0 ) {
 			$limit = $parval;
+		}
+	}
 
 	$where = array();
 	$searchpar = '';
@@ -163,7 +165,6 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 		  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	}
-	$here = $wgContLang->specialPage( 'Newimages' );
 
 	/**
 	 * Paging controls...

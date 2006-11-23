@@ -73,6 +73,7 @@ $testedChars = array();
 while( false !== ( $line = fgets( $in ) ) ) {
 	list( $data, $comment ) = explode( '#', $line );
 	if( $data === '' ) continue;
+	$matches = array();
 	if( preg_match( '/@Part([\d])/', $data, $matches ) ) {
 		if( $matches[1] > 0 ) {
 			$ok = reportResults( $total, $success, $failure ) && $ok;
@@ -236,7 +237,6 @@ function testInvariant( &$u, $char, $desc, $reportFailure = false ) {
 	$result = verbosify( $char, $u->toNFD( $char ), 1, 'NFD', $reportFailure ) && $result;
 	$result = verbosify( $char, $u->toNFKC( $char ), 1, 'NFKC', $reportFailure ) && $result;
 	$result = verbosify( $char, $u->toNFKD( $char ), 1, 'NFKD', $reportFailure ) && $result;
-	$c = $char;
 	$result = verbosify( $char, $u->cleanUp( $char ), 1, 'cleanUp', $reportFailure ) && $result;
 	global $verbose;
 	if( $verbose && !$result && !$reportFailure ) {
