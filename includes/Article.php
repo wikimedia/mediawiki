@@ -2712,22 +2712,13 @@ class Article {
 		if ($summary)
 			return $summary;
 
-		#Long new page autosummaries
-		if ($flags & EDIT_NEW && strlen($newtext) > 500) {
+		#New page autosummaries
+		if ($flags & EDIT_NEW && strlen($newtext)) {
 			#If they're making a new article, give its text, truncated, in the summary.
 			global $wgContLang;
 			$truncatedtext = $wgContLang->truncate( $newtext, max( 0, 200 - 
 				strlen( wfMsgForContent( 'autosumm-new') ) ), '...' );
 			$summary = wfMsgForContent( 'autosumm-new', $truncatedtext );
-		}
-
-		#Short new page autosummaries
-		if ($flags & EDIT_NEW && strlen($newtext) <= 500) {
-			#If they're making a new short article, give its text in the summary.
-			global $wgContLang;
-			$truncatedtext = $wgContLang->truncate( $newtext, max( 0, 200 - 
-				strlen( wfMsgForContent( 'autosumm-shortnew') ) ), '...' );
-			$summary = wfMsgForContent( 'autosumm-shortnew', $truncatedtext );
 		}
 
 		if ($summary)
