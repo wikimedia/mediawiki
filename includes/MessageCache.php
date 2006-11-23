@@ -298,8 +298,6 @@ class MessageCache {
 		if ( !$dbr ) {
 			throw new MWException( 'Invalid database object' );
 		}
-		$conditions = array( 'page_is_redirect' => 0,
-					'page_namespace' => NS_MEDIAWIKI);
 		$res = $dbr->select( array( 'page', 'revision', 'text' ),
 			array( 'page_title', 'old_text', 'old_flags' ),
 			'page_is_redirect=0 AND page_namespace='.NS_MEDIAWIKI.' AND page_latest=rev_id AND rev_text_id=old_id',
@@ -315,7 +313,7 @@ class MessageCache {
 		# Go through the language array and the extension array and make a note of
 		# any keys missing from the cache
 		$allMessages = Language::getMessagesFor( 'en' );
-		foreach ( $allMessages as $key => $value ) {
+		foreach ( array_keys($allMessages) as $key ) {
 			$uckey = $wgLang->ucfirst( $key );
 			if ( !array_key_exists( $uckey, $this->mCache ) ) {
 				$this->mCache[$uckey] = false;
@@ -326,7 +324,7 @@ class MessageCache {
 		MessageCache::loadAllMessages();
 
 		# Add them to the cache
-		foreach ( $this->mExtensionMessages as $key => $value ) {
+		foreach ( array_keys($this->mExtensionMessages) as $key ) {
 			$uckey = $wgLang->ucfirst( $key );
 			if ( !array_key_exists( $uckey, $this->mCache ) &&
 			 ( isset( $this->mExtensionMessages[$key][$wgLang->getCode()] ) || isset( $this->mExtensionMessages[$key]['en'] ) )  ) {
@@ -345,7 +343,7 @@ class MessageCache {
 		if ( !$this->mKeys ) {
 			$this->mKeys = array();
 			$allMessages = Language::getMessagesFor( 'en' );
-			foreach ( $allMessages as $key => $value ) {
+			foreach ( array_keys($allMessages) as $key ) {
 				$title = $wgContLang->ucfirst( $key );
 				array_push( $this->mKeys, $title );
 			}

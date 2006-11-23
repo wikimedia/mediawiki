@@ -10,12 +10,11 @@
  */
 
 function wfSpecialRevisiondelete( $par = null ) {
-	global $wgOut, $wgRequest, $wgUser;
+	global $wgOut, $wgRequest;
 	
 	$target = $wgRequest->getVal( 'target' );
 	$oldid = $wgRequest->getIntArray( 'oldid' );
 	
-	$sk = $wgUser->getSkin();
 	$page = Title::newFromUrl( $target );
 	
 	if( is_null( $page ) ) {
@@ -156,7 +155,7 @@ class RevisionDeleteForm {
 	function extractBitfield( $request ) {
 		$bitfield = 0;
 		foreach( $this->checks as $item ) {
-			list( $message, $name, $field ) = $item;
+			list( /* message */ , $name, $field ) = $item;
 			if( $request->getCheck( $name ) ) {
 				$bitfield |= $field;
 			}
@@ -167,7 +166,7 @@ class RevisionDeleteForm {
 	function save( $bitfield, $reason ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$deleter = new RevisionDeleter( $dbw );
-		$ok = $deleter->setVisibility( $this->revisions, $bitfield, $reason );
+		$deleter->setVisibility( $this->revisions, $bitfield, $reason );
 	}
 }
 

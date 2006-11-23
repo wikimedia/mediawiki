@@ -9,7 +9,7 @@
  * Constructor
  */
 function wfSpecialMovepage( $par = null ) {
-	global $wgUser, $wgOut, $wgRequest, $action, $wgOnlySysopMayMove;
+	global $wgUser, $wgOut, $wgRequest, $action;
 
 	# Check rights
 	if ( !$wgUser->isAllowed( 'move' ) ) {
@@ -189,7 +189,6 @@ class MovePageForm {
 
 	function doSubmit() {
 		global $wgOut, $wgUser, $wgRequest;
-		$fname = "MovePageForm::doSubmit";
 
 		if ( $wgUser->pingLimiter( 'move' ) ) {
 			$wgOut->rateLimited();

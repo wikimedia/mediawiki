@@ -164,7 +164,7 @@ class Profiler {
 	}
 
 	function getCallTreeLine($entry) {
-		list ($fname, $level, $start, $x, $end) = $entry;
+		list ($fname, $level, $start, /* $x */, $end) = $entry;
 		$delta = $end - $start;
 		$space = str_repeat(' ', $level);
 
@@ -208,7 +208,6 @@ class Profiler {
 		# First, subtract the overhead!
 		foreach ($this->mStack as $entry) {
 			$fname = $entry[0];
-			$thislevel = $entry[1];
 			$start = $entry[2];
 			$end = $entry[4];
 			$elapsed = $end - $start;
@@ -229,7 +228,6 @@ class Profiler {
 		# Collate
 		foreach ($this->mStack as $index => $entry) {
 			$fname = $entry[0];
-			$thislevel = $entry[1];
 			$start = $entry[2];
 			$end = $entry[4];
 			$elapsed = $end - $start;

@@ -382,7 +382,7 @@ class ApiPageSet extends ApiQueryBase {
 			if($processTitles) {
 				// The remaining titles in $remaining are non-existant pages
 				foreach ($remaining as $ns => $dbkeys) {
-					foreach ($dbkeys as $dbkey => $nothing) {
+					foreach ( array_keys($dbkeys) as $dbkey ) {
 						$title = Title :: makeTitle($ns, $dbkey);
 						$this->mMissingTitles[] = $title;
 						$this->mAllPages[$ns][$dbkey] = 0;

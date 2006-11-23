@@ -79,7 +79,7 @@ class Article {
 				}
 			} else {
 				if( $rt->getNamespace() == NS_SPECIAL ) {
-					// Gotta hand redirects to special pages differently:
+					// Gotta handle redirects to special pages differently:
 					// Fill the HTTP response "Location" header and ignore
 					// the rest of the page we're on.
 					//
@@ -139,7 +139,7 @@ class Article {
 	 * @return Return the text of this revision
 	*/
 	function getContent() {
-		global $wgRequest, $wgUser, $wgOut;
+		global $wgUser, $wgOut;
 
 		wfProfileIn( __METHOD__ );
 
@@ -236,9 +236,6 @@ class Article {
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
-
-		$t = $this->mTitle->getPrefixedText();
-
 		$this->mOldId = $oldid;
 		$this->fetchContent( $oldid );
 	}
@@ -575,13 +572,10 @@ class Article {
 	function getContributors($limit = 0, $offset = 0) {
 		# XXX: this is expensive; cache this info somewhere.
 
-		$title = $this->mTitle;
 		$contribs = array();
 		$dbr =& wfGetDB( DB_SLAVE );
 		$revTable = $dbr->tableName( 'revision' );
 		$userTable = $dbr->tableName( 'user' );
-		$encDBkey = $dbr->addQuotes( $title->getDBkey() );
-		$ns = $title->getNamespace();
 		$user = $this->getUser();
 		$pageId = $this->getId();
 
@@ -784,9 +778,6 @@ class Article {
 				if( !$wasRedirected && $this->isCurrent() ) {
 					$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 				}
-				$targetUrl = $rt->escapeLocalURL();
-				# fixme unused $titleText :
-				$titleText = htmlspecialchars( $rt->getPrefixedText() );
 				$link = $sk->makeLinkObj( $rt );
 
 				$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT" />' .
@@ -1924,7 +1915,7 @@ class Article {
 	 */
 	function doDeleteArticle( $reason ) {
 		global $wgUseSquid, $wgDeferredUpdateList;
-		global $wgPostCommitUpdateList, $wgUseTrackbacks;
+		global $wgUseTrackbacks;
 
 		wfDebug( __METHOD__."\n" );
 
@@ -2041,8 +2032,6 @@ class Article {
 		$bot = $wgRequest->getBool( 'bot' );
 
 		# Replace all this user's current edits with the next one down
-		$tt = $this->mTitle->getDBKey();
-		$n = $this->mTitle->getNamespace();
 
 		# Get the last editor
 		$current = Revision::newFromTitle( $this->mTitle );
@@ -2409,8 +2398,7 @@ class Article {
 			'comment'    => $comment,
 			'minor_edit' => $minor ? 1 : 0,
 			) );
-		# fixme : $revisionId never used
-		$revisionId = $revision->insertOn( $dbw );
+		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
 		$dbw->commit();
 
@@ -2523,8 +2511,6 @@ class Article {
 	 */
 	static function onArticleEdit( $title ) {
 		global $wgDeferredUpdateList, $wgUseFileCache;
-
-		$urls = array();
 
 		// Invalidate caches of articles which include this page
 		$update = new HTMLCacheUpdate( $title, 'templatelinks' );

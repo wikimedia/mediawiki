@@ -83,8 +83,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
  * @param integer $namespace (default NS_MAIN)
  */
 function showToplevel ( $namespace = NS_MAIN, $including = false ) {
-	global $wgOut, $wgUser;
-	$sk = $wgUser->getSkin();
+	global $wgOut;
 	$fname = "indexShowToplevel";
 
 	# TODO: Either make this *much* faster or cache the title index points
@@ -186,8 +185,6 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
  */
 function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	global $wgUser;
-	$sk = $wgUser->getSkin();
-	$dbr =& wfGetDB( DB_SLAVE );
 
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
@@ -241,7 +238,6 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		$n = 0;
 		$out = '<table style="background: inherit;" border="0" width="100%">';
 
-		$namespaces = $wgContLang->getFormattedNamespaces();
 		while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 			if( $t ) {
@@ -298,18 +294,20 @@ function getNamespaceKeyAndText ($ns, $text) {
 		return array( $ns, '', '' ); # shortcut for common case
 
 	$t = Title::makeTitleSafe($ns, $text);
-	if ( $t && $t->isLocal() )
+	if ( $t && $t->isLocal() ) {
 		return array( $t->getNamespace(), $t->getDBkey(), $t->getText() );
-	else if ( $t )
+	} else if ( $t ) {
 		return NULL;
+	}
 
 	# try again, in case the problem was an empty pagename
 	$text = preg_replace('/(#|$)/', 'X$1', $text);
 	$t = Title::makeTitleSafe($ns, $text);
-	if ( $t && $t->isLocal() )
+	if ( $t && $t->isLocal() ) {
 		return array( $t->getNamespace(), '', '' );
-	else
+	} else {
 		return NULL;
+	}
 }
 }
 

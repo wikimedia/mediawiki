@@ -126,6 +126,7 @@ class SearchEngine {
 		}
 
 		# Quoted term? Try without the quotes...
+		$matches = array();
 		if( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
 			return SearchEngine::getNearMatch( $matches[1] );
 		}

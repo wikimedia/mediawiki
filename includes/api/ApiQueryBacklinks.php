@@ -185,7 +185,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->parseContinueParam($continue, $redirect);
 
 			// Skip all completed links
-			$db = & $this->getDB();
 
 		} else {
 			if ($count !== 1)

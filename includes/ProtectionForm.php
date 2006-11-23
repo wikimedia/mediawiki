@@ -130,7 +130,7 @@ class ProtectionForm {
 		$out .= "<table id='mwProtectSet'>";
 		$out .= "<tbody>";
 		$out .= "<tr>\n";
-		foreach( $this->mRestrictions as $action => $required ) {
+		foreach( array_keys($this->mRestrictions) as $action ) {
 			/* Not all languages have V_x <-> N_x relation */
 			$out .= "<th>" . wfMsgHtml( 'restriction-' . $action ) . "</th>\n";
 		}

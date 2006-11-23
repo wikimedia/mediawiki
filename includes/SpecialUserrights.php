@@ -89,7 +89,6 @@ class UserrightsForm extends HTMLForm {
 
 		$oldGroups = $u->getGroups();
 		$newGroups = $oldGroups;
-		$logcomment = ' ';
 		// remove then add groups
 		if(isset($removegroup)) {
 			$newGroups = array_diff($newGroups, $removegroup);

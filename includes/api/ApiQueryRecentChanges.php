@@ -36,7 +36,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$limit = $prop = $from = $namespace = $show = $dir = $start = $end = null;
+		$limit = $prop = $namespace = $show = $dir = $start = $end = null;
 		extract($this->extractRequestParams());
 
 		$this->addTables('recentchanges');

@@ -14,7 +14,6 @@
  * @param $fname String: name of the php function calling
  */
 function wfQuery( $sql, $db, $fname = '' ) {
-	global $wgOut;
 	if ( !is_numeric( $db ) ) {
 		# Someone has tried to call this the old way
 		throw new FatalError( wfMsgNoDB( 'wrong_wfQuery_params', $db, $sql ) );

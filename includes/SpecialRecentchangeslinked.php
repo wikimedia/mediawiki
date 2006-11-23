@@ -48,7 +48,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		if ( ! $days ) { $days = 7; }
 	}
 	$days = (int)$days;
-	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
+	list( $limit, /* offset */ ) = wfCheckLimits( 100, 'rclimit' );
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	$cutoff = $dbr->timestamp( time() - ( $days * 86400 ) );

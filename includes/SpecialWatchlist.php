@@ -150,21 +150,17 @@ function wfSpecialWatchlist( $par ) {
 	wfAppendToArrayIfNotDefault( 'namespace', $nameSpace, $defaults, $nondefaults );
 
 	if ( $days <= 0 ) {
-		$docutoff = '';
 		$cutoff = false;
 		$npages = wfMsg( 'watchlistall1' );
 	} else {
-	        $docutoff = "AND rev_timestamp > '" .
-		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
-		  . "'";
-	          /*
-	          $sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
-	          $res = $dbr->query( $sql, $fname );
-	          $s = $dbr->fetchObject( $res );
-	          $npages = $s->n;
-	          */
-	          $npages = 40000 * $days;
-
+		$cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) );
+		/*
+		$sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
+		$res = $dbr->query( $sql, $fname );
+		$s = $dbr->fetchObject( $res );
+		$npages = $s->n;
+		*/
+		$npages = 40000 * $days;
 	}
 
 	/* Edit watchlist form */
@@ -215,7 +211,6 @@ function wfSpecialWatchlist( $par ) {
 				} else {
 					global $wgContLang;
 					$toolLinks = array();
-					$titleText = $titleObj->getPrefixedText();
 					$pageLink = $sk->makeLinkObj( $titleObj );
 					$toolLinks[] = $sk->makeLinkObj( $titleObj->getTalkPage(), $wgLang->getNsText( NS_TALK ) );
 					if( $titleObj->exists() )
@@ -327,7 +322,6 @@ function wfSpecialWatchlist( $par ) {
 	# Spit out some control panel links
 	$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$skin = $wgUser->getSkin();
-	$linkElements = array( 'hideOwn' => 'wlhideshowown', 'hideBots' => 'wlhideshowbots' );
 	
 	# Problems encountered using the fancier method
 	$label = $hideBots ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' );
@@ -428,7 +422,6 @@ function wlDaysLink( $d, $page, $options = array() ) {
 function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
 	$hours = array( 1, 2, 6, 12 );
 	$days = array( 1, 3, 7 );
-	$cl = '';
 	$i = 0;
 	foreach( $hours as $h ) {
 		$hours[$i++] = wlHoursLink( $h, $page, $options );

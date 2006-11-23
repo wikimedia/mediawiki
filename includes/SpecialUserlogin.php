@@ -177,7 +177,6 @@ class LoginForm {
 		} else {
 			# Confirm that the account was created
 			global $wgOut;
-			$skin = $wgUser->getSkin();
 			$self = SpecialPage::getTitleFor( 'Userlogin' );
 			$wgOut->setPageTitle( wfMsgHtml( 'accountcreated' ) );
 			$wgOut->setArticleRelated( false );

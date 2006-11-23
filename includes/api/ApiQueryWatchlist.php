@@ -59,7 +59,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			$user = (false !== array_search('user', $prop));
 			$comment = (false !== array_search('comment', $prop));
-			$timestamp = (false !== array_search('timestamp', $prop));
+			$timestamp = (false !== array_search('timestamp', $prop)); // TODO: $timestamp not currently being used.
 			$patrol = (false !== array_search('patrol', $prop));
 
 			if ($patrol) {

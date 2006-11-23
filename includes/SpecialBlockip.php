@@ -80,7 +80,6 @@ class IPBlockForm {
 		}
 
 		$scBlockAddress = htmlspecialchars( $this->BlockAddress );
-		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
 		$scBlockOtherTime = htmlspecialchars( $this->BlockOther );
 		$scBlockExpiryOptions = htmlspecialchars( wfMsgForContent( 'ipboptions' ) );
@@ -189,6 +188,7 @@ class IPBlockForm {
 
 		# Check for invalid specifications
 		if ( ! preg_match( "/^$rxIP$/", $this->BlockAddress ) ) {
+			$matches = array();
 		  	if ( preg_match( "/^($rxIP)\\/(\\d{1,2})$/", $this->BlockAddress, $matches ) ) {
 				if ( $wgSysopRangeBans ) {
 					if ( $matches[2] > 31 || $matches[2] < 16 ) {

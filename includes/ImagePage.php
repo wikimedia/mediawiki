@@ -142,6 +142,7 @@ class ImagePage extends Article {
 		$fields = array();
 		$lines = explode( "\n", wfMsgForContent( 'metadata-fields' ) );
 		foreach( $lines as $line ) {
+			$matches = array();
 			if( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
 				$fields[] = $matches[1];
 			}
@@ -536,14 +537,9 @@ END
 	 * @param $reason User provided reason for deletion.
 	 */
 	function doDelete( $reason ) {
-		global $wgOut, $wgRequest, $wgUseSquid;
-		global $wgPostCommitUpdateList;
-
-		$fname = 'ImagePage::doDelete';
+		global $wgOut, $wgRequest;
 
 		$oldimage = $wgRequest->getVal( 'oldimage' );
-
-		$dbw =& wfGetDB( DB_MASTER );
 
 		if ( !is_null( $oldimage ) ) {
 			if ( strlen( $oldimage ) < 16 ) {

@@ -75,7 +75,6 @@ class CBTCompiler {
 	 * Returns true on success, error message on failure
 	 */
 	function compile() {
-		$fname = 'CBTProcessor::compile';
 		$this->mLastError = false;
 		$this->mOps = array();
 
@@ -222,7 +221,6 @@ class CBTCompiler {
 			if ( $char == '{' ) {
 				// Switch to text mode
 				++$p;
-				$tokenStart = $p;
 				$this->doOpenText( $p, $end );
 				++$argCount;
 			} elseif ( $char == '}' ) {
@@ -292,7 +290,7 @@ class CBTCompiler {
 		wfProfileIn( $fname );
 		$stack = array();
 
-		foreach( $this->mOps as $index => $op ) {
+		foreach( $this->mOps as $op ) {
 			switch( $op->opcode ) {
 				case CBT_PUSH:
 					$stack[] = $this->phpQuote( $op->arg1 );

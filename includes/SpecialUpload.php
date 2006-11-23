@@ -106,7 +106,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function initializeFromUrl( $request ) {
-		global $wgTmpDirectory, $wgMaxUploadSize;
+		global $wgTmpDirectory;
 		$url = $request->getText( 'wpUploadFileURL' );
 		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
 
@@ -126,7 +126,7 @@ class UploadForm {
 	 * Returns true if there was an error, false otherwise
 	 */
 	private function curlCopy( $url, $dest ) {
-		global $wgMaxUploadSize, $wgUser, $wgOut;
+		global $wgUser, $wgOut;
 
 		if( !$wgUser->isAllowed( 'upload_by_url' ) ) {
 			$wgOut->permissionRequired( 'upload_by_url' );
@@ -704,8 +704,6 @@ class UploadForm {
 		$wgOut->addHTML( '<div id="uploadtext">' );
 		$wgOut->addWikiText( wfMsg( 'uploadtext' ) );
 		$wgOut->addHTML( '</div>' );
-		$sk = $wgUser->getSkin();
-
 
 		$sourcefilename = wfMsgHtml( 'sourcefilename' );
 		$destfilename = wfMsgHtml( 'destfilename' );
@@ -732,7 +730,6 @@ class UploadForm {
 
 		// Prepare form for upload or upload/copy
 		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
-			$source_comment = wfMsgHtml( 'upload_source_url' );
 			$filename_form = 
 				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked />" . 
 				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' onfocus='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" . 
@@ -1055,13 +1052,13 @@ class UploadForm {
 		$chunk = Sanitizer::decodeCharReferences( $chunk );
 
 		#look for script-types
-		if (preg_match("!type\s*=\s*['\"]?\s*(\w*/)?(ecma|java)!sim",$chunk)) return true;
+		if (preg_match('!type\s*=\s*[\'"]?\s*(\w*/)?(ecma|java)!sim',$chunk)) return true;
 
 		#look for html-style script-urls
-		if (preg_match("!(href|src|data)\s*=\s*['\"]?\s*(ecma|java)script:!sim",$chunk)) return true;
+		if (preg_match('!(href|src|data)\s*=\s*[\'"]?\s*(ecma|java)script:!sim',$chunk)) return true;
 
 		#look for css-style script-urls
-		if (preg_match("!url\s*\(\s*['\"]?\s*(ecma|java)script:!sim",$chunk)) return true;
+		if (preg_match('!url\s*\(\s*[\'"]?\s*(ecma|java)script:!sim',$chunk)) return true;
 
 		wfDebug("SpecialUpload::detectScript: no scripts found\n");
 		return false;
@@ -1113,21 +1110,25 @@ class UploadForm {
 		#NOTE: there's a 50 line workaround to make stderr redirection work on windows, too.
 		#      that does not seem to be worth the pain.
 		#      Ask me (Duesentrieb) about it if it's ever needed.
+		$output = array();
 		if (wfIsWindows()) exec("$scanner",$output,$code);
 		else exec("$scanner 2>&1",$output,$code);
 
-		$exit_code= $code; #remeber for user feedback
+		$exit_code= $code; #remember for user feedback
 
 		if ($virus_scanner_codes) { #map exit code to AV_xxx constants.
-			if (isset($virus_scanner_codes[$code])) $code= $virus_scanner_codes[$code]; #explicite mapping
-			else if (isset($virus_scanner_codes["*"])) $code= $virus_scanner_codes["*"]; #fallback mapping
+			if (isset($virus_scanner_codes[$code])) {
+				$code= $virus_scanner_codes[$code]; # explicit mapping
+			} else if (isset($virus_scanner_codes["*"])) {
+				$code= $virus_scanner_codes["*"];   # fallback mapping
+			}
 		}
 
 		if ($code===AV_SCAN_FAILED) { #scan failed (code was mapped to false by $virus_scanner_codes)
 			wfDebug("$fname: failed to scan $file (code $exit_code).\n");
 
-			if ($wgAntivirusRequired) return "scan failed (code $exit_code)";
-			else return NULL;
+			if ($wgAntivirusRequired) { return "scan failed (code $exit_code)"; }
+			else { return NULL; }
 		}
 		else if ($code===AV_SCAN_ABORTED) { #scan failed because filetype is unknown (probably imune)
 			wfDebug("$fname: unsupported file type $file (code $exit_code).\n");
@@ -1141,7 +1142,7 @@ class UploadForm {
 			$output= join("\n",$output);
 			$output= trim($output);
 
-			if (!$output) $output= true; #if ther's no output, return true
+			if (!$output) $output= true; #if there's no output, return true
 			else if ($msg_pattern) {
 				$groups= array();
 				if (preg_match($msg_pattern,$output,$groups)) {

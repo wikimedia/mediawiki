@@ -168,7 +168,6 @@ class ContribsFinder {
  */
 function wfSpecialContributions( $par = null ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
-	$fname = 'wfSpecialContributions';
 
 	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
 	if ( !strlen( $target ) ) {

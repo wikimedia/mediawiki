@@ -224,8 +224,7 @@ class UtfNormal {
 	 * @static
 	 */
 	static function loadData() {
-		# fixme : are $utfCanonicalComp, $utfCanonicalDecomp really used?
-		global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp;
+		global $utfCombiningClass;
 		if( !isset( $utfCombiningClass ) ) {
 			require_once( 'UtfNormalData.inc' );
 		}
@@ -329,6 +328,7 @@ class UtfNormal {
 		# large ASCII parts can be handled much more quickly.
 		# Don't chop up Unicode areas for punctuation, though,
 		# that wastes energy.
+		$matches = array();
 		preg_match_all(
 			'/([\x00-\x7f]+|[\x80-\xff][\x00-\x40\x5b-\x5f\x7b-\xff]*)/',
 			$string, $matches );
@@ -551,7 +551,7 @@ class UtfNormal {
 	 * @return string a UTF-8 string decomposed, not yet normalized (needs sorting)
 	 * @static
 	 */
-	static function fastDecompose( $string, &$map ) {
+	static function fastDecompose( $string, $map ) {
 		UtfNormal::loadData();
 		$len = strlen( $string );
 		$out = '';

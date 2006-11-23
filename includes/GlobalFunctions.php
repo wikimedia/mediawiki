@@ -52,6 +52,7 @@ if( !function_exists('iconv') ) {
 # UTF-8 substr function based on a PHP manual comment
 if ( !function_exists( 'mb_substr' ) ) {
 	function mb_substr( $str, $start ) {
+		$ar = array();
 		preg_match_all( '/./us', $str, $ar );
 
 		if( func_num_args() >= 3 ) {
@@ -71,7 +72,7 @@ if ( !function_exists( 'array_diff_key' ) ) {
 	 */
 	function array_diff_key( $left, $right ) {
 		$result = $left;
-		foreach ( $left as $key => $value ) {
+		foreach ( array_keys($left) as $key ) {
 			if ( isset( $right[$key] ) ) {
 				unset( $result[$key] );
 			}
@@ -382,8 +383,6 @@ function wfMsgNoDBForContent( $key ) {
  * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = true ) {
-	$fname = 'wfMsgReal';
-
 	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
 	return $message;
@@ -530,7 +529,7 @@ function wfMsgWikiHtml( $key ) {
  *  <i>parsemag<i>: ??
  */
 function wfMsgExt( $key, $options ) {
-	global $wgOut, $wgMsgParserOptions, $wgParser;
+	global $wgOut, $wgParser;
 
 	$args = func_get_args();
 	array_shift( $args );
@@ -807,6 +806,7 @@ function wfClientAcceptsGzip() {
 	global $wgUseGzip;
 	if( $wgUseGzip ) {
 		# FIXME: we may want to blacklist some broken browsers
+		$m = array();
 		if( preg_match(
 			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
 			$_SERVER['HTTP_ACCEPT_ENCODING'],
@@ -972,6 +972,7 @@ function wfEscapeShellArg( ) {
 			}
 			// Double the backslashes before the end of the string, because
 			// we will soon add a quote
+			$m = array();
 			if ( preg_match( '/^(.*?)(\\\\+)$/', $arg, $m ) ) {
 				$arg = $m[1] . str_replace( '\\', '\\\\', $m[2] );
 			}
@@ -1095,6 +1096,7 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	foreach( $parts as $part ) {
 		# FIXME: doesn't deal with params like 'text/html; level=1'
 		@list( $value, $qpart ) = explode( ';', $part );
+		$match = array();
 		if( !isset( $qpart ) ) {
 			$prefs[$value] = 1;
 		} elseif( preg_match( '/q\s*=\s*(\d*\.\d+)/', $qpart, $match ) ) {
@@ -1289,19 +1291,19 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	$da = array();
 	if ($ts==0) {
 		$uts=time();
-	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/D",$ts,$da)) {
+	} elseif (preg_match('/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/D',$ts,$da)) {
 		# TS_DB
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 			    (int)$da[2],(int)$da[3],(int)$da[1]);
-	} elseif (preg_match("/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/D",$ts,$da)) {
+	} elseif (preg_match('/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/D',$ts,$da)) {
 		# TS_EXIF
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 			(int)$da[2],(int)$da[3],(int)$da[1]);
-	} elseif (preg_match("/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D",$ts,$da)) {
+	} elseif (preg_match('/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D',$ts,$da)) {
 		# TS_MW
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 			    (int)$da[2],(int)$da[3],(int)$da[1]);
-	} elseif (preg_match("/^(\d{1,13})$/D",$ts,$datearray)) {
+	} elseif (preg_match('/^(\d{1,13})$/D',$ts,$da)) {
 		# TS_UNIX
 		$uts = $ts;
 	} elseif (preg_match('/^(\d{1,2})-(...)-(\d\d(\d\d)?) (\d\d)\.(\d\d)\.(\d\d)/', $ts, $da)) {
@@ -1312,11 +1314,11 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		# TS_ISO_8601
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 			(int)$da[2],(int)$da[3],(int)$da[1]);
-	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)[\+\- ](\d\d)$/",$ts,$da)) {
+	} elseif (preg_match('/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)[\+\- ](\d\d)$/',$ts,$da)) {
 		# TS_POSTGRES
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 		(int)$da[2],(int)$da[3],(int)$da[1]);
-	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d) GMT$/",$ts,$da)) {
+	} elseif (preg_match('/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d) GMT$/',$ts,$da)) {
 		# TS_POSTGRES
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 		(int)$da[2],(int)$da[3],(int)$da[1]);
@@ -1687,7 +1689,7 @@ function wfShellExec( $cmd, &$retval=null ) {
 	
 	$output = array();
 	$retval = 1; // error by default?
-	$lastline = exec( $cmd, $output, $retval );
+	exec( $cmd, $output, $retval ); // returns the last line of output.
 	return implode( "\n", $output );
 	
 }
@@ -1753,6 +1755,7 @@ function wfRegexReplacement( $string ) {
  * @return string
  */
 function wfBaseName( $path ) {
+	$matches = array();
 	if( preg_match( '#([^/\\\\]*)[/\\\\]*$#', $path, $matches ) ) {
 		return $matches[1];
 	} else {

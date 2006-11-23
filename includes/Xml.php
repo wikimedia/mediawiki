@@ -270,8 +270,8 @@ class Xml {
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
 
 		if( !xml_parse( $parser, $text, true ) ) {
-			$err = xml_error_string( xml_get_error_code( $parser ) );
-			$position = xml_get_current_byte_index( $parser );
+			//$err = xml_error_string( xml_get_error_code( $parser ) );
+			//$position = xml_get_current_byte_index( $parser );
 			//$fragment = $this->extractFragment( $html, $position );
 			//$this->mXmlError = "$err at byte $position:\n$fragment";
 			xml_parser_free( $parser );

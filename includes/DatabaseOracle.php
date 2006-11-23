@@ -55,9 +55,6 @@ class DatabaseOracle extends Database {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 
-		$success = false;
-
-		$hstring="";
 		$this->mConn = oci_new_connect($user, $password, $dbName, "AL32UTF8");
 		if ( $this->mConn === false ) {
 			wfDebug( "DB connection error\n" );
@@ -147,7 +144,6 @@ class DatabaseOracle extends Database {
 
 		for ($i = 1; $i <= $this->mNcols[$res]; $i++) {
 			$name = $this->mFieldNames[$res][$i];
-			$type = $this->mFieldTypes[$res][$i];
 			if (isset($this->mFetchCache[$res][$this->mFetchID[$res]][$name]))
 				$value = $this->mFetchCache[$res][$this->mFetchID[$res]][$name];
 			else	$value = NULL;
@@ -165,7 +161,7 @@ class DatabaseOracle extends Database {
 			return false;
 		$i = 0;
 		$ret = array();
-		foreach ($r as $key => $value) {
+		foreach ($r as $value) {
 			wfdebug("ret[$i]=[$value]\n");
 			$ret[$i++] = $value;
 		}
@@ -201,14 +197,19 @@ class DatabaseOracle extends Database {
 
 	function lastError() {
 		if ($this->mErr === false) {
-			if ($this->mLastResult !== false) $what = $this->mLastResult;
-			else if ($this->mConn !== false) $what = $this->mConn;
-			else $what = false;
+			if ($this->mLastResult !== false) { 
+				$what = $this->mLastResult;
+			} else if ($this->mConn !== false) {
+				$what = $this->mConn;
+			} else {
+				$what = false;
+			}
 			$err = ($what !== false) ? oci_error($what) : oci_error();
-			if ($err === false)
+			if ($err === false) {
 				$this->mErr = 'no error';
-			else
+			} else {
 				$this->mErr = $err['message'];
+			}
 		}
 		return str_replace("\n", '<br />', $this->mErr);
 	}

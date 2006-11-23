@@ -14,7 +14,7 @@ require_once( 'ChangesList.php' );
  * Constructor
  */
 function wfSpecialRecentchanges( $par, $specialPage ) {
-	global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol, $wgDBtype;
+	global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
 	global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
 	global $wgAllowCategorizedRecentChanges ;
 	$fname = 'wfSpecialRecentchanges';
@@ -90,7 +90,8 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 				if ( is_numeric( $bit ) ) {
 					$limit = $bit;
 				}
-
+				
+				$m = array();
 				if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
 					$limit = $m[1];
 				}
@@ -222,7 +223,6 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		}
 
 		// And now for the content
-		$sk = $wgUser->getSkin();
 		$wgOut->setSyndicated( true );
 
 		$list = ChangesList::newFromUser( $wgUser );
@@ -397,7 +397,6 @@ function rcDoOutputFeed( $rows, &$feed ) {
 			$sorted[$n] = $obj;
 			$n++;
 		}
-		$first = false;
 	}
 
 	foreach( $sorted as $obj ) {

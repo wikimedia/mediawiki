@@ -154,7 +154,6 @@ abstract class ApiBase {
 				$replacement = '\\0' . "\n    " . 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/api/\\2';
 				
 				if (is_array($versions)) {
-					$ver2 = array();
 					foreach ($versions as &$v)
 						$v = eregi_replace($pattern, $replacement, $v);
 					$versions = implode("\n  ", $versions);

@@ -571,6 +571,7 @@ class EditPage {
 		$this->mMetaData = '' ;
 
 		# Check for spam
+		$matches = array();
 		if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
 			$this->spamPage ( $matches[0] );
 			wfProfileOut( "$fname-checks" );
@@ -858,6 +859,7 @@ class EditPage {
 					$s = wfMsg('editingcomment', $this->mTitle->getPrefixedText() );
 				} else {
 					$s = wfMsg('editingsection', $this->mTitle->getPrefixedText() );
+					$matches = array();
 					if( !$this->summary && !$this->preview && !$this->diff ) {
 						preg_match( "/^(=+)(.+)\\1/mi",
 							$this->textbox1,
@@ -1513,6 +1515,7 @@ END
 		}
 		$currentText = $currentRevision->getText();
 
+		$result = '';
 		if( wfMerge( $baseText, $editText, $currentText, $result ) ){
 			$editText = $result;
 			wfProfileOut( $fname );

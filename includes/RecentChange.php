@@ -95,7 +95,7 @@ class RecentChange
 	# Writes the data in this object to the database
 	function save()
 	{
-		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix, $wgUseRCPatrol;
+		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix;
 		$fname = 'RecentChange::save';
 
 		$dbw =& wfGetDB( DB_MASTER );

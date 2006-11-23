@@ -63,12 +63,14 @@ class Licenses {
 					$obj = new License( $line );
 					$this->stackItem( $this->licenses, $levels, $obj );
 				} else {
-					if ( $level < count( $levels ) )
+					if ( $level < count( $levels ) ) {
 						$levels = array_slice( $levels, 0, $level );
-					if ( $level == count( $levels ) )
+					}
+					if ( $level == count( $levels ) ) {
 						$levels[$level - 1] = $line;
-					else if ( $level > count( $levels ) )
+					} else if ( $level > count( $levels ) ) {
 						$levels[] = $line;
+					}
 				}
 			}
 		}

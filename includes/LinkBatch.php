@@ -97,7 +97,7 @@ class LinkBatch {
 
 		// The remaining links in $data are bad links, register them as such
 		foreach ( $remaining as $ns => $dbkeys ) {
-			foreach ( $dbkeys as $dbkey => $nothing ) {
+			foreach ( array_keys($dbkeys) as $dbkey ) {
 				$title = Title::makeTitle( $ns, $dbkey );
 				$cache->addBadLinkObj( $title );
 				$ids[$title->getPrefixedDBkey()] = 0;
@@ -112,7 +112,6 @@ class LinkBatch {
 	 */
 	function doQuery() {
 		$fname = 'LinkBatch::doQuery';
-		$namespaces = array();
 
 		if ( $this->isEmpty() ) {
 			return false;
@@ -161,7 +160,7 @@ class LinkBatch {
 			$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title IN (";
 
 			$firstTitle = true;
-			foreach( $dbkeys as $dbkey => $nothing ) {
+			foreach( array_keys($dbkeys) as $dbkey ) {
 				if ( $firstTitle ) {
 					$firstTitle = false;
 				} else {

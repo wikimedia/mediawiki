@@ -65,7 +65,7 @@ class ApiFeedWatchlist extends ApiBase {
 		$data = $module->getResultData();
 
 		$feedItems = array ();
-		foreach ($data['query']['watchlist'] as $index => $info) {
+		foreach ($data['query']['watchlist'] as $info) {
 			$feedItems[] = $this->createFeedItem($info);
 		}
 
@@ -79,8 +79,6 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	private function createFeedItem($info) {
-		global $wgUser;
-
 		$titleStr = $info['title'];
 		$title = Title :: newFromText($titleStr);
 		$titleUrl = $title->getFullUrl();
