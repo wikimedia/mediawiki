@@ -2068,7 +2068,7 @@ function wfIsAddressInRange( $addr, $range ) {
 	$start = $startend[0];
 	$end   = $startend[1];
 
-	return (($unsignedIP >= $start) && ($unsignedip <= $end));
+	return (($unsignedIP >= $start) && ($unsignedIP <= $end));
 }
 
 /*
