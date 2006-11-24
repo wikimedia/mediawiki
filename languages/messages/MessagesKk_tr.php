@@ -2145,7 +2145,7 @@ Osı betti şınınan qaýta jasawın rastañız.",
 'autosumm-blank'   => 'Bettiñ barlıq mağlumatın alastattı',
 'autosumm-replace' => "Betti '$1' degenmen almastırdı",
 'autoredircomment' => '[[$1]] degenge aýdadı', # This should be changed to the new naming convention, but existed beforehand
-'autosumm-tnew' => 'Jaña bet: $1',
+'autosumm-new'     => 'Jaña bet: $1',
 );
 
 ?>
