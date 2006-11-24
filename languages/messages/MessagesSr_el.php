@@ -316,7 +316,6 @@ $messages = array(
 #
 'categories' => 'Kategorije stranica',
 'pagecategories' => '{{PLURAL:$1|Kategorija|Kategorije|Kategorije}} stranica',
-'pagecategorieslink' => 'Posebno:Categories',
 'category_header' => 'Članaka u kategoriji "$1"',
 'subcategories' => 'Potkategorije',
 
@@ -1143,7 +1142,6 @@ Dužina reda za poslove iznosi \'\'\'$7\'\'\'',
 'allpages' => 'Sve stranice',
 'prefixindex' => 'Spisak prefiksa',
 'randompage' => 'Slučajna stranica',
-'randompage-url' => 'Posebno:Random',
 'shortpages' => 'Kratke stranice',
 'longpages' => 'Dugačke stranice',
 'deadendpages' => 'Stranice bez internih veza',
