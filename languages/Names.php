@@ -45,6 +45,9 @@
 	'chy' => 'Tsetsêhestâhese',	# Cheyenne
 	'co' => 'Corsu',		# Corsican
 	'cr' => 'Nēhiyaw / ᓀᐦᐃᔭᐤ',		# Cree
+	'crh' => 'Qırımtatarca',   # Crimean Tatar
+	'crh-latn' => 'Qırımtatarca (Latin)',       # Crimean Tatar (Latin)
+	'crh-cyrl' => 'Qırımtatarca (Kiril)',       # Crimean Tatar (Cyrillic)
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
 	'cu' => 'Словѣньскъ', 	# Old Church Slavonic (ancient language)
@@ -116,9 +119,9 @@
 	'ki' => 'Gĩkũyũ',	# Kikuyu, correctness not guaranteed
 	'kj' => 'Kuanyama',		# Kuanyama (FIXME!)
 	'kk' => 'Қазақша',	# Kazakh
-	'kk-cn' => 'قازاق',	# Kazakh Arabic
-	'kk-kz' => 'Қазақ',	# Kazakh Cyrillic
-	'kk-tr' => 'Qazaq',	# Kazakh Latin
+	'kk-cn' => 'قازاقشا (تٴوتە)',	# Kazakh Arabic
+	'kk-kz' => 'Қазақша (кирил)',	# Kazakh Cyrillic
+	'kk-tr' => 'Qazaqşa (latın)',	# Kazakh Latin
 	'kl' => 'Kalaallisut',	# Greenlandic
 	'km' => 'ភាសាខ្មែរ',	# Cambodian
 	'kn' => 'ಕನ್ನಡ',	# Kannada

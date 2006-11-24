@@ -15,7 +15,7 @@ $separatorTransformTable = array(
 );
 
 $extraUserToggles = array(
-    'nolangconversion'
+	'nolangconversion'
 );
 
 $fallback8bitEncoding = 'windows-1254';
@@ -81,19 +81,19 @@ $namespaceAliases = array(
 );
 
 $quickbarSettings = array(
-  'Eşqandaý', 'Solğa bekitilgen', 'Oñğa bekitilgen', 'Solğa qalqığan', 'Oñğa qalqığan'
+	'Eşqandaý', 'Solğa bekitilgen', 'Oñğa bekitilgen', 'Solğa qalqığan', 'Oñğa qalqığan'
 );
 
 $skinNames = array(
-	'standard' => 'Dağdılı',
-	'nostalgia' => 'Añsaw',
+	'standard'    => 'Dağdılı',
+	'nostalgia'   => 'Añsaw',
 	'cologneblue' => 'Köln zeñgirligi',
-	'davinci' => 'Da Vïnçï',
-	'mono' => 'Dara',
-	'monobook' => 'Dara kitap',
-	'myskin' => 'Öz mänerim',
-	'chick' => 'Balapan',
-	'simple' => 'Kädimgi'
+	'davinci'     => 'Da Vïnçï',
+	'mono'        => 'Dara',
+	'monobook'    => 'Dara kitap',
+	'myskin'      => 'Öz mänerim',
+	'chick'       => 'Balapan',
+	'simple'      => 'Kädimgi'
 );
 
 $defaultDateFormat = 'ymd';
@@ -127,12 +127,12 @@ $messages = array(
 'tog-justify'                 => 'Ejelerdi eni boýınşa twralaw',
 'tog-hideminor'               => 'Jwıqtağı özgeristerde şağın tüzetwdi jasır',
 'tog-extendwatchlist'         => 'Baqılaw tizimdi ulğaýt (barlıq jaramdı özgeristerdi körset)',
-'tog-usenewrc'                => 'Keñeýtilgen Jwıqtağı özgerister (-{JavaScript}-)',
+'tog-usenewrc'                => 'Keñeýtilgen Jwıqtağı özgerister (JavaScript)',
 'tog-numberheadings'          => 'Bölim taqırıptarın özdik türde nomirle',
-'tog-showtoolbar'             => 'Öñdew qwraldar jolağın körset (-{JavaScript}-)',
-'tog-editondblclick'          => 'Qos nuqımdap öñdew (-{JavaScript}-)',
+'tog-showtoolbar'             => 'Öñdew qwraldar jolağın körset (JavaScript)',
+'tog-editondblclick'          => 'Qos nuqımdap öñdew (JavaScript)',
 'tog-editsection'             => 'Bölimderdi [öñdew] siltemesimen öñdewin endir',
-'tog-editsectiononrightclick' => 'Bölim atawın oñ jaq nuqwmen<br />öñdewin endir (-{JavaScript}-)',
+'tog-editsectiononrightclick' => 'Bölim atawın oñ jaq nuqwmen<br />öñdewin endir (JavaScript)',
 'tog-showtoc'                 => 'Mazmunın körset (3-ten artıq bölimi barılarğa)',
 'tog-rememberpassword'        => 'Kirgenimdi bul komp′ywterde umıtpa',
 'tog-editwidth'               => 'Öñdew awmağı tolıq enimen',
@@ -151,7 +151,7 @@ $messages = array(
 'tog-externaleditor'          => 'Sırtqı öñdewişti ädepkiden qoldan',
 'tog-externaldiff'            => 'Sırtqı aýırmağıştı ädepkiden qoldan',
 'tog-showjumplinks'           => '«Ötip ketw» qatınaw siltemelerin endir',
-'tog-uselivepreview'          => 'Twra qarap şığwdı qoldanw (-{JavaScript}-) (Sınaq türinde)',
+'tog-uselivepreview'          => 'Twra qarap şığwdı qoldanw (JavaScript) (Sınaq türinde)',
 'tog-autopatrol'              => 'Tüzetwimdi küzetke belgile',
 'tog-forceeditsummary'        => 'Öñdew sïpattaması bos qalğanda mağan eskert',
 'tog-watchlisthideown'        => 'Tüzetwimdi baqılaw tizimnen jasır',
@@ -223,16 +223,16 @@ $messages = array(
 'subcategories'         => 'Tömengi sanattar',
 'category-media-header' => '«$1» sanatındağı taspalar',
 
-'linkprefix'        => '/^(.*?)([a-zäçéğıïñöşüýа-яёәіңғүұқөһA-ZÄÇÉĞİÏÑÖŞÜÝА-ЯЁӘІҢҒҮҰҚӨҺʺʹ«„]+)$/sD',
+'linkprefix'        => '/^(.*?)([a-zäçéğıïñöşüýа-яёәіңғүұқөһA-ZÄÇÉĞİÏÑÖŞÜÝА-ЯЁӘІҢҒҮҰҚӨҺʺʹ«„]+)$/sDu',
 'mainpage'          => 'Bastı bet',
-'mainpagetext'      => "<big>'''-{MediaWiki}- bağdarlaması sätti ornatıldı.'''</big>",
+'mainpagetext'      => "<big>'''MedïaWïkï bağdarlaması sätti ornatıldı.'''</big>",
 'mainpagedocfooter' => 'Wïkï bağdarlamasın paýdalanw aqparatı üşin [http://meta.wikimedia.org/wiki/Help:Contents Paýdalanwşı nusqawlarımen] tanısıñız.
 
 == Bastaw ==
 
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Baptaw qalawları tizimi]
-* [http://www.mediawiki.org/wiki/Help:FAQ -{MediaWiki}- JSJ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce -{MediaWiki}- xat taratw tizimi]',
+* [http://www.mediawiki.org/wiki/Help:FAQ MedïaWïkï JSJ]
+* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï xat taratw tizimi]',
 
 'portal'          => 'Qawım portalı',
 'portal-url'      => '{{ns:project}}:Qawım_portalı',
@@ -367,7 +367,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Mundaý äreket joq',
-'nosuchactiontext'  => 'Osı -{URL}- jaýımen engizilgen äreketti
+'nosuchactiontext'  => 'Osı URL jaýımen engizilgen äreketti
 osı wïkï joramaldap bilmedi.',
 'nosuchspecialpage' => 'Bul arnaýı bet emes',
 'nospecialpagetext' => 'Siz suranısqan arnaýı bet jaramsız. Barlıq jaramdı arnaýı better tizimin [[{{ns:special}}:Specialpages]] betinde taba alasız.',
@@ -403,7 +403,7 @@ Bul dağdıda eskirgen aýırma siltemesine nemese joýılğan bet tarïxınıñ
 ergennen bolwı mümkin.
 
 Eger bul boljam durıs sebep bolmasa, bağdarlamamızdağı qatege tap bolwıñız mümkin.
-Bul twralı naqtı -{URL}- jaýın körsetip äkimşige esepteme jiberiñiz.',
+Bul twralı naqtı URL jaýın körsetip äkimşige esepteme jiberiñiz.',
 'readonly_lag'         => 'Jetek derekqor serverler bastawışpen qadamlanğanda osı derekqor özdik türinde qulıptalınğan',
 'internalerror'        => 'İşki qate',
 'filecopyerror'        => '«$1» faýlı «$2» faýlına köşirilmedi.',
@@ -529,12 +529,12 @@ Durıs pişimdelgen jaýdı engiziñiz, ne awmaqtı bos qaldırıñız.',
 'italic_tip'      => 'Qïğaş mätin',
 'link_sample'     => 'Silteme atawı',
 'link_tip'        => 'İşki silteme',
-'extlink_sample'  => '-{http://www.example.com}- silteme atawı',
+'extlink_sample'  => 'http://www.example.com silteme atawı',
 'extlink_tip'     => 'Sırtqı silteme (aldınan http:// engizwin umıtpañız)',
 'headline_sample' => 'Taqırıp mätini',
 'headline_tip'    => '1-şi deñgeýli taqırıp',
 'math_sample'     => 'Formwlanı mında engiziñiz',
-'math_tip'        => 'Matematïka formwlası (-{LaTeX}-)',
+'math_tip'        => 'Matematïka formwlası (LaTeX)',
 'nowiki_sample'   => 'Pişimdelmeýtin mätindi osında engiziñiz',
 'nowiki_tip'      => 'Wïkï pişimin elemew',
 'image_sample'    => 'Example.jpg',
@@ -644,13 +644,14 @@ sondıqtan däl qazir tüzetwiñizdi saqtaý almaýsız. Sosın qoldanwğa üşi
 'protectedpagewarning'      => '<strong>NAZAR SALIÑIZ: Bul bet qorğalğan. Tek äkimşi ruqsatı bar qatıswşılar öñdew jasaý aladı.</strong>',
 'semiprotectedpagewarning'  => "'''Añğartpa:''' Bet [[{{ns:project}}:Jartılaý qorğaw sayasatı|qorğalğan]], sondıqtan osını tek ruqsatı bar qatıswşılar öñdeý aladı.",
 'templatesused'             => 'Bul bette qoldanılğan ülgiler:',
-'templatesusedpreview'      => 'Bunı qarap şığwğa pýdalanılğan ülgiler:',
+'templatesusedpreview'      => 'Bunı qarap şığwğa qoldanılğan ülgiler:',
+'templatesusedsection'      => 'Bul bölimde qoldanılğan ülgiler:',
 'edittools'                 => '<!-- Mındağı mağlumat öñdew jäne qotarw ülgittriñiñ astında körsetiledi. -->',
 'nocreatetitle'             => 'Betti bastaw şektelgen',
 'nocreatetext'              => 'Bul torapta jaña bet bastawı şektelgen.
 Keri qaýtıp bar betti öñdewiñizge boladı, nemese [[{{ns:special}}:Userlogin|kirwiñizge ne tirkelgi jasawğa]] boladı.',
 'cantcreateaccounttitle'    => 'Tirkelgi jasalmadı',
-'cantcreateaccounttext'     => 'Osı IP-jaýdan (<b>$1</b>) tirkelgi jasawı buğattalğan.
+'cantcreateaccounttext'     => 'Osı IP jaýdan (<b>$1</b>) tirkelgi jasawı buğattalğan.
 Bälkim sebebi, oqw ornıñızdan, nemese Ïnternet jetkizwşiden
 üzbeý buzaqılıq bolğanı.',
 
@@ -660,7 +661,7 @@ Bälkim sebebi, oqw ornıñızdan, nemese Ïnternet jetkizwşiden
 'nohistory'                   => 'Osı bettiniñ nusqalar tarïxı joq.',
 'revnotfound'                 => 'Nusqa tabılmadı',
 'revnotfoundtext'             => 'Osı suranısqan bettiñ eski nusqası tabılğan joq.
-Osı betti aşwğa paýdalanğan -{URL}- jaýın qaýta tekserip şığıñız.',
+Osı betti aşwğa paýdalanğan URL jaýın qaýta tekserip şığıñız.',
 'loadhist'                    => 'Bet tarïxın jüktewi',
 'currentrev'                  => 'Ağımdıq nusqası',
 'revisionasof'                => '$1 kezindegi nusqası',
@@ -713,7 +714,7 @@ osı tildesw arqılı joýılğandı keri qaýtara aladı.',
 'revdelete-legend'          => 'Nusqanınıñ şektewleri:',
 'revdelete-hide-text'       => 'Nusqa mätinin jasır',
 'revdelete-hide-comment'    => 'Tüzetw mändemesin jasır',
-'revdelete-hide-user'       => 'Öñdewşi atın (IP-jaýın) jasır',
+'revdelete-hide-user'       => 'Öñdewşi atın (IP jaýın) jasır',
 'revdelete-hide-restricted' => 'Osı şektewlerdi barşağa sïyaqtı äkimşilerge de qoldanw',
 'revdelete-log'             => 'Jwrnal mändemesi:',
 'revdelete-submit'          => 'Talğanğan nusqağa qoldanw',
@@ -925,21 +926,21 @@ tağı basqa biletiñizdi. Bul swret bolsa, mınadaý pişimimen kiristirwge bol
 'filewasdeleted'              => 'Osı atawı bar faýl burın qotarılğan, sosın joýıldırılğan. Qaýta qotarw aldınan $1 degendi tekseriñiz.',
 
 'upload-proto-error'      => 'Jaramsız xattamalıq',
-'upload-proto-error-text' => 'Sırttan qotarw üşin -{URL}- jaýları <code>http://</code> nemese <code>ftp://</code> degenderden bastalw qajet.',
+'upload-proto-error-text' => 'Sırttan qotarw üşin URL jaýları <code>http://</code> nemese <code>ftp://</code> degenderden bastalw qajet.',
 'upload-file-error'       => 'İşki qate',
 'upload-file-error-text'  => 'Serverde waqıtşa faýl jasawı işki qatege uşırastı. Bul jüýeniñ äkimşimen qatınasıñız.',
 'upload-misc-error'       => 'Belgisiz qotarw qatesi',
-'upload-misc-error-text'  => 'Qotarw kezinde belgisiz qate uşırastı. Qaýsı -{URL}- jaýı jaramdı jäne qatınawlı ekenin tekserip şığıñız da qaýtalap köriñiz. Eger bul mäsele älde de qalsa, jüýe äkimşimen qatınasıñız.',
+'upload-misc-error-text'  => 'Qotarw kezinde belgisiz qate uşırastı. Qaýsı URL jaýı jaramdı jäne qatınawlı ekenin tekserip şığıñız da qaýtalap köriñiz. Eger bul mäsele älde de qalsa, jüýe äkimşimen qatınasıñız.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'       => '-{URL}- jaýı jetilmedi',
-'upload-curl-error6-text'  => 'Berilgen -{URL}- jaýı jetilmedi. Qaýsı -{URL}- jaýı durıs ekenin jäne torap iste ekenin qaýtalap qatañ tekseriñiz.',
+'upload-curl-error6'       => 'URL jaýı jetilmedi',
+'upload-curl-error6-text'  => 'Berilgen URL jaýı jetilmedi. Qaýsı URL jaýı durıs ekenin jäne torap iste ekenin qaýtalap qatañ tekseriñiz.',
 'upload-curl-error28'      => 'Qotarwğa berilgen waqıt bitti',
 'upload-curl-error28-text' => 'Toraptıñ jawap berwi tım uzaq waqıtqa sozıldı. Bul torap iste ekenin tekserip şığıñız, az waqıt kidire turıñız da tağı qaýtalap köriñiz. Talabıñızdı jüktelwi azdaw kezinde qaýtalawğa bolmıs.',
 
 'license'            => 'Lïcenzïyası',
 'nolicense'          => 'Eşteñe talğanbağan',
-'upload_source_url'  => ' (jaramdı, barşağa qatınawlı -{URL}- jaý)',
+'upload_source_url'  => ' (jaramdı, barşağa qatınawlı URL jaý)',
 'upload_source_file' => ' (komp′ywteriñizdegi faýl)',
 
 # Image list
@@ -980,8 +981,8 @@ joyw, (qaý.) = eski nusqasına qaýtarw.
 'imagelist_search_for'      => 'Swretti atımen izdew:',
 
 # MIME search
-'mimesearch' => 'Faýldı -{MIME}- türimen izdew',
-'mimetype'   => '-{MIME}- türi:',
+'mimesearch' => 'Faýldı MIME türimen izdew',
+'mimetype'   => 'MIME türi:',
 'download'   => 'jüktew',
 
 # Unwatched pages
@@ -1071,7 +1072,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'move'                    => 'Jıljıtw',
 'movethispage'            => 'Betti jıljıtw',
 'unusedimagestext'        => '<p>Eskertw: Basqa veb toraptar faýldıñ
--{URL}- jaýına tikeleý siltewi mümkin. Sondıqtan, belsendi paýdalanwına añğarmaý,
+URL jaýına tikeleý siltewi mümkin. Sondıqtan, belsendi paýdalanwına añğarmaý,
 osı tizimde qalwı mümkin.</p>',
 'unusedcategoriestext'    => 'Kelesi sanat better bar bolıp tur, biraq oğan eşqandaý bet, ne sanat kirmeýdi.',
 'booksources'             => 'Kitap qaýnarları',
@@ -1082,7 +1083,7 @@ osı tizimde qalwı mümkin.</p>',
 'booksourcetext'          => 'Tömende jaña jäne qoldanğan kitaptar satatın
 toraptarınıñ siltemeleri tizimdelgen. Bul toraptarda izdelgen kitaptar
 twralı bılaýğı aqparat bolwğa mümkin.',
-'isbn'                    => '-{ISBN}- belgisi',
+'isbn'                    => 'ISBN belgisi',
 'alphaindexline'          => '$1 — $2',
 'version'                 => 'Jüýe nusqası',
 'log'                     => 'Jwrnaldar',
@@ -1117,7 +1118,7 @@ jaýın engizse, tömendegi ülgit arqılı buğan jalğız e-poşta xatın jibe
 Qatıswşı baptawıñızda engizgen e-poşta jaýıñız
 «Kimnen» degen bas jolağında körinedi, sondıqtan
 xat alwşısı twra jawap bere aladı.',
-'usermailererror' => '-{Mail}- nısanı qate qaýtardı:',
+'usermailererror' => 'Mail nısanı qate qaýtardı:',
 'defemailsubject' => '{{SITENAME}} e-poştasınıñ xatı',
 'noemailtitle'    => 'Bul e-poşta jaýı emes',
 'noemailtext'     => 'Osı qatıswşı jaramdı E-poşta jaýın engizbegen,
@@ -1345,32 +1346,32 @@ ne qatıswşı körsetilmegen.',
 # Block/unblock
 'blockip'                     => 'Paýdalanwşını buğattaw',
 'blockiptext'                 => 'Tömendegi ülgit paýdalanwşınıñ jazw ruqsatın
-belgili -{IP}- jaýımen ne atawımen buğattaw üşin qoldanıladı.
+belgili IP jaýımen ne atawımen buğattaw üşin qoldanıladı.
 Bunı tek buzaqılıqqa kedergi istew üşin jäne de
 [[{{ns:project}}:Sayasat|sayasat]] boýınşa atqarwıñız jön.
 Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılıqpen
 özgertken betterdi keltirip).',
-'ipaddress'                   => '-{IP}--jaý',
-'ipadressorusername'          => '-{IP}- jaý ne qatıswşı atı',
+'ipaddress'                   => 'IP jaý',
+'ipadressorusername'          => 'IP jaý ne qatıswşı atı',
 'ipbexpiry'                   => 'Bitetin merzimi',
 'ipbreason'                   => 'Sebebi',
 'ipbanononly'                 => 'Tek tirkelgisizdi buğattaw',
 'ipbcreateaccount'            => 'Tirkelgi jasawın kedergilew',
-'ipbenableautoblock'          => 'Bul qatıswşınıñ qoldanğan soñğı -{IP}- jaýın, jäne ärqaýsı keýin tüzetw istewge ümiteligen jaýların özdik türde buğattaw',
+'ipbenableautoblock'          => 'Bul qatıswşınıñ qoldanğan soñğı IP jaýın, jäne ärqaýsı keýin tüzetw istewge ümiteligen jaýların özdik türde buğattaw',
 'ipbsubmit'                   => 'Paýdalanwşını buğattaw',
 'ipbother'                    => 'Basqa merzim',
 'ipboptions'                  => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite',
 'ipbotheroption'              => 'basqa',
-'badipaddress'                => 'Jaramsız -{IP}- jaý',
+'badipaddress'                => 'Jaramsız IP jaý',
 'blockipsuccesssub'           => 'Buğattaw sätti ötti',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] degen buğattalğan.
-<br />Buğattawlardı [[{{ns:special}}:Ipblocklist|-{IP}- buğattaw tiziminde]] qarap şığıñız.',
+<br />Buğattawlardı [[{{ns:special}}:Ipblocklist|IP buğattaw tiziminde]] qarap şığıñız.',
 'unblockip'                   => 'Paýdalanwşını buğattamaw',
-'unblockiptext'               => 'Tömendegi ülgit belgili -{IP}- jaýımen ne atawımen
+'unblockiptext'               => 'Tömendegi ülgit belgili IP jaýımen ne atawımen
 burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanıladı.',
 'ipusubmit'                   => 'Osı jaýdı buğattamaw',
 'unblocked'                   => '[[{{ns:user}}:$1|$1]] buğattawı öşirildi',
-'ipblocklist'                 => 'Buğattalğan paýdalanwşı / -{IP}- jaý tizimi',
+'ipblocklist'                 => 'Buğattalğan paýdalanwşı / IP- jaý tizimi',
 'blocklistline'               => '$1, $2 «$3» degendi buğattadı ($4)',
 'infiniteblock'               => 'mängi',
 'expiringblock'               => 'bitwi: $1',
@@ -1381,24 +1382,24 @@ burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanı
 'blocklink'                   => 'buğattaw',
 'unblocklink'                 => 'buğattamaw',
 'contribslink'                => 'ülesi',
-'autoblocker'                 => "-{IP}- jaýıñızdı jwıqta «[[{{ns:user}}:1|$1]]» paýdalanğan, sondıqtan özdik türde buğattalğan. $1 buğattaw sebebi: «'''$2'''».",
+'autoblocker'                 => "IP jaýıñızdı jwıqta «[[{{ns:user}}:1|$1]]» paýdalanğan, sondıqtan özdik türde buğattalğan. $1 buğattaw sebebi: «'''$2'''».",
 'blocklogpage'                => 'Buğattaw_jwrnalı',
 'blocklogentry'               => '«[[$1]]» buğattadı, bitetin merzimi: $2',
 'blocklogtext'                => 'Bul paýdalanwşılardı buğattaw/buğattamaw äreketteriniñ jwrnalı. Özdik türde
-buğattalğan -{IP}- jaýlar osında tizimdelgemegen. Ağımdağı belsendi buğattawların
-[[{{ns:special}}:Ipblocklist|-{IP}- buğattaw tiziminen]] qarawğa boladı.',
+buğattalğan IP jaýlar osında tizimdelgemegen. Ağımdağı belsendi buğattawların
+[[{{ns:special}}:Ipblocklist|IP buğattaw tiziminen]] qarawğa boladı.',
 'unblocklogentry'             => '«$1» buğattawın öşirdi',
 'range_block_disabled'        => 'Awqım buğattawın jasaw äkimşilik mümkindigi öşirilgen.',
 'ipb_expiry_invalid'          => 'Bitetin waqıtı jaramsız.',
 'ipb_already_blocked'         => '«$1» buğattalğan tüge',
-'ip_range_invalid'            => '-{IP}- jaý awqımı jaramsız.',
+'ip_range_invalid'            => 'IP jaý awqımı jaramsız.',
 'proxyblocker'                => 'Proksï serverlerdi buğattawış',
-'ipb_cant_unblock'            => 'Qate: -{IP}- $1 buğattawı tabılmadı. Onıñ buğattawı öşirlgen sïyaqtı.',
-'proxyblockreason'            => '-{IP}- jaýıñız aşıq proksï serverge jatatındıqtan buğattalğan. Ïnternet qızmetin jabdıqtawşıñızben, ne texnïkalıq medew qızmetimen qatınasıñız, jäne olarğa osı ote kürdeli qawıpsizdik şataq twralı aqparat beriñiz.',
+'ipb_cant_unblock'            => 'Qate: IP $1 buğattawı tabılmadı. Onıñ buğattawı öşirlgen sïyaqtı.',
+'proxyblockreason'            => 'IP jaýıñız aşıq proksï serverge jatatındıqtan buğattalğan. Ïnternet qızmetin jabdıqtawşıñızben, ne texnïkalıq medew qızmetimen qatınasıñız, jäne olarğa osı ote kürdeli qawıpsizdik şataq twralı aqparat beriñiz.',
 'proxyblocksuccess'           => 'Bitti.',
-'sorbs'                       => '-{DNSBL}- qara tizimi',
-'sorbsreason'                 => 'Sizdiñ -{IP}- jaýıñız osı torapta qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı.',
-'sorbs_create_account_reason' => 'Sizdiñ -{IP}- jaýıñız osı torapta qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı. Tirkelgi jasaý almaýsız.',
+'sorbs'                       => 'DNSBL qara tizimi',
+'sorbsreason'                 => 'Sizdiñ IP jaýıñız osı torapta qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı.',
+'sorbs_create_account_reason' => 'Sizdiñ IP jaýıñız osı torapta qoldanılğan DNSBL qara tizimindegi aşıq proksï-server dep tabıladı. Tirkelgi jasaý almaýsız.',
 
 # Developer tools
 'lockdb'              => 'Derekqordı qulıptaw',
@@ -1525,8 +1526,8 @@ Soñğı jağdaýda siltemeni de qoldanwğa boladı, mısalı {{int:mainpage}} b
 'allmessagesdefault'        => 'Ädepki mätini',
 'allmessagescurrent'        => 'Ağımdıq mätini',
 'allmessagestext'           => 'Mında «MediaWiki:» esim ayasındağı barlıq qatınawlı jüýe xabar tizimi berilip tur.',
-'allmessagesnotsupportedUI' => '-{Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.}-',
-'allmessagesnotsupportedDB' => "'''-{wgUseDatabaseMessages}-''' babı öşirilgen sebebinen '''{{ns:special}}:AllMessages''' sïpatı süemeldenbeýdi.",
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.',
+'allmessagesnotsupportedDB' => "'''wgUseDatabaseMessages''' babı öşirilgen sebebinen '''{{ns:special}}:AllMessages''' sïpatı süemeldenbeýdi.",
 'allmessagesfilter'         => 'Xabardı atawı boýınşa süzgilew:',
 'allmessagesmodified'       => 'Tek özgertilgendi körset',
 
@@ -1591,9 +1592,9 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'Monobook.css' => '/* Mındağı CSS ämirleri «Dara kitap» bezendirw mänerin paýdalanwşılarğa äser etedi */',
 
 # Metadata
-'nodublincore'      => 'Osı serverge «-{Dublin Core RDF}-» meta-derekteri öşirilgen.',
-'nocreativecommons' => 'Osı serverge «-{Creative Commons RDF}-» meta-derekteri öşirilgen.',
-'notacceptable'     => 'Osı wïkï serveri sizdiñ «user client» oqï alatın pişimi bar derekterdi jibere almaýdı.',
+'nodublincore'      => 'Osı serverge «Dublin Core RDF» meta-derekteri öşirilgen.',
+'nocreativecommons' => 'Osı serverge «Creative Commons RDF» meta-derekteri öşirilgen.',
+'notacceptable'     => 'Osı wïkï serveri sizdiñ «paýdalanwşı äreketkişi» oqï alatın pişimi bar derekterdi jibere almaýdı.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} tirkelgisiz paýdalanwşı(lar)',
@@ -1626,12 +1627,12 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'numtalkauthors' => 'Ärtürli awtor sanı (talqılaw beti): $1',
 
 # Math options
-'mw_math_png'    => 'Ärqaşan -{PNG}- türimen körset',
-'mw_math_simple' => 'Kädimgi bolsa -{HTML}- pişimimen, basqaşa -{PNG}- türimen',
-'mw_math_html'   => 'Iqtïmal bolsa -{HTML}- pişimimen, basqaşa -{PNG}- türimen',
+'mw_math_png'    => 'Ärqaşan PNG türimen körset',
+'mw_math_simple' => 'Kädimgi bolsa HTML pişimimen, basqaşa PNG türimen',
+'mw_math_html'   => 'Iqtïmal bolsa HTML pişimimen, basqaşa PNG türimen',
 'mw_math_source' => 'TeX pişiminde qaldırw (mätindik şolğıştarına)',
 'mw_math_modern' => 'Osı zamannıñ şolğıştarına usınılğan',
-'mw_math_mathml' => 'Iqtïmal bolsa -{MathML}- pşimimen (sınaq türinde)',
+'mw_math_mathml' => 'Iqtïmal bolsa MathML pşimimen (sınaq türinde)',
 
 # Patrolling
 'markaspatrolleddiff'        => 'Küzette dep belgilew',
@@ -1744,7 +1745,7 @@ if (wgUserLanguage == "kk-cn"){
 # Media Warning
 'mediawarning' => "'''Nazar salıñız''': Bul faýl türinde qaskünemdi ämirdiñ bar bolwı ıqtïmal; faýldı jegip jüýeñizge zïyan keltirwiñiz mümkin.<hr />",
 
-'fileinfo' => '$1 kB, -{MIME}- türi: <code>$2</code>',
+'fileinfo' => '$1 kB, MIME türi: <code>$2</code>',
 
 # Metadata
 'metadata'          => 'Meta-derekteri',
@@ -1770,16 +1771,16 @@ Basqası ädepkiden jasırıladı.
 'exif-orientation'                 => 'Megzewi',
 'exif-samplesperpixel'             => 'Quraş sanı',
 'exif-planarconfiguration'         => 'Derek rettewi',
-'exif-ycbcrsubsampling'            => '-{Y}- quraşınıñ -{C}- quraşına jarnaqtawı',
-'exif-ycbcrpositioning'            => '-{Y}- quraşı jäne -{C}- quraşı mekendewi',
+'exif-ycbcrsubsampling'            => 'Y quraşınıñ C quraşına jarnaqtawı',
+'exif-ycbcrpositioning'            => 'Y quraşı jäne C quraşı mekendewi',
 'exif-xresolution'                 => 'Dereleý ajıratılımdığı',
 'exif-yresolution'                 => 'Tireleý ajıratılımdığı',
-'exif-resolutionunit'              => '-{X}- jäne -{Y}- ajıratılımdıqtarığınıñ ölşemi',
+'exif-resolutionunit'              => 'X jäne Y ajıratılımdıqtarığınıñ ölşemi',
 'exif-stripoffsets'                => 'Swret dererekteriniñ jaýğaswı',
 'exif-rowsperstrip'                => 'Beldik saýın jol sanı',
 'exif-stripbytecounts'             => 'Qısımdalğan beldik saýın baýt sanı',
-'exif-jpeginterchangeformat'       => '-{JPEG SOI}- degennen ığıswı',
-'exif-jpeginterchangeformatlength' => '-{JPEG}- derekteriniñ baýt sanı',
+'exif-jpeginterchangeformat'       => 'JPEG SOI degennen ığıswı',
+'exif-jpeginterchangeformatlength' => 'JPEG derekteriniñ baýt sanı',
 'exif-transferfunction'            => 'Tasımaldaw fwnkcïyası',
 'exif-whitepoint'                  => 'Aq nükte tüstiligi',
 'exif-primarychromaticities'       => 'Alğı şeptegi tüstilikteri',
@@ -1792,8 +1793,8 @@ Basqası ädepkiden jasırıladı.
 'exif-software'                    => 'Qoldanılğan bağdarlama',
 'exif-artist'                      => 'Jığarmaşısı',
 'exif-copyright'                   => 'Jığarmaşılıq quqıqtar ïesi',
-'exif-exifversion'                 => '-{Exif}- nusqası',
-'exif-flashpixversion'             => 'Süýemdelingen -{Flashpix}- nusqası',
+'exif-exifversion'                 => 'Exif nusqası',
+'exif-flashpixversion'             => 'Süýemdelingen Flashpix nusqası',
 'exif-colorspace'                  => 'Tüs ayası',
 'exif-componentsconfiguration'     => 'Ärqaýsı quraş mäni',
 'exif-compressedbitsperpixel'      => 'Swret qısımdaw tärtibi',
@@ -1810,10 +1811,10 @@ Basqası ädepkiden jasırıladı.
 'exif-exposuretime'                => 'Ustalım waqıtı',
 'exif-exposuretime-format'         => '$1 s ($2)',
 'exif-fnumber'                     => 'Sañılaw mölşeri',
-'exif-fnumber-format'              => '-{f/$1}-',
+'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Ustalım bağdarlaması',
 'exif-spectralsensitivity'         => 'Spektr boýınşa sezgiştigi',
-'exif-isospeedratings'             => '-{ISO}- jıldamdıq jarnaqtawı (jarıq sezgiştigi)',
+'exif-isospeedratings'             => 'ISO jıldamdıq jarnaqtawı (jarıq sezgiştigi)',
 'exif-oecf'                        => 'Optoelektrondı türletw ıqpalı',
 'exif-shutterspeedvalue'           => 'Japqış jıldamdılığı',
 'exif-aperturevalue'               => 'Sañılawlıq',
@@ -1825,24 +1826,24 @@ Basqası ädepkiden jasırıladı.
 'exif-lightsource'                 => 'Jarıq közi',
 'exif-flash'                       => 'Jarqıldağış',
 'exif-focallength'                 => 'Şoğırlaw alşaqtığı',
-'exif-focallength-format'          => '$1 -{mm}-',
+'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Nısana awqımı',
 'exif-flashenergy'                 => 'Jarqıldağış qarqını',
 'exif-spatialfrequencyresponse'    => 'Keñistik-jïilik äserşiligi',
-'exif-focalplanexresolution'       => '-{X}- boýınşa şoğırlaw jaýpaqtıqtıñ ajıratılımdığı',
-'exif-focalplaneyresolution'       => '-{Y}- boýınşa şoğırlaw jaýpaqtıqtıñ ajıratılımdığı',
+'exif-focalplanexresolution'       => 'X boýınşa şoğırlaw jaýpaqtıqtıñ ajıratılımdığı',
+'exif-focalplaneyresolution'       => 'Y boýınşa şoğırlaw jaýpaqtıqtıñ ajıratılımdığı',
 'exif-focalplaneresolutionunit'    => 'Şoğırlaw jaýpaqtıqtıñ ajıratılımdıq ölşemi',
 'exif-subjectlocation'             => 'Nısana mekendewi',
 'exif-exposureindex'               => 'Ustalım aýqındawı',
 'exif-sensingmethod'               => 'Sensordiñ ölşew ädisi',
 'exif-filesource'                  => 'Faýl qaýnarı',
 'exif-scenetype'                   => 'Saxna türi',
-'exif-cfapattern'                  => '-{CFA}- süzgi keýipi',
+'exif-cfapattern'                  => 'CFA süzgi keýipi',
 'exif-customrendered'              => 'Qosımşa swret öñdetwi',
 'exif-exposuremode'                => 'Ustalım tärtibi',
 'exif-whitebalance'                => 'Aq tüsiniñ tendestigi',
 'exif-digitalzoomratio'            => 'Sandıq awqımdaw jarnaqtawı',
-'exif-focallengthin35mmfilm'       => '-{35 mm}- taspasınıñ şoğırlaw alşaqtığı',
+'exif-focallengthin35mmfilm'       => '35 mm taspasınıñ şoğırlaw alşaqtığı',
 'exif-scenecapturetype'            => 'Tüsirgen saxna türi',
 'exif-gaincontrol'                 => 'Saxnanı meñgerw',
 'exif-contrast'                    => 'Qarama-qarsılıq',
@@ -1851,20 +1852,20 @@ Basqası ädepkiden jasırıladı.
 'exif-devicesettingdescription'    => 'Jabdıq baptaw sïpattarı',
 'exif-subjectdistancerange'        => 'Saxna qaşıqtığınıñ kölemi',
 'exif-imageuniqueid'               => 'Swrettiñ biregeý nömiri (ID)',
-'exif-gpsversionid'                => '-{GPS}- belgişesiniñ nusqası',
+'exif-gpsversionid'                => 'GPS belgişesiniñ nusqası',
 'exif-gpslatituderef'              => 'Soltüstik nemese Oñtüstik boýlığı',
 'exif-gpslatitude'                 => 'Boýlığı',
 'exif-gpslongituderef'             => 'Şığıs nemese Batıs endigi',
 'exif-gpslongitude'                => 'Endigi',
 'exif-gpsaltituderef'              => 'Bïiktik körsetwi',
 'exif-gpsaltitude'                 => 'Bïiktik',
-'exif-gpstimestamp'                => '-{GPS}- waqıtı (atom sağatı)',
+'exif-gpstimestamp'                => 'GPS waqıtı (atom sağatı)',
 'exif-gpssatellites'               => 'Ölşewge pýdalanılğan Jer serikteri',
 'exif-gpsstatus'                   => 'Qabıldağış küýi',
 'exif-gpsmeasuremode'              => 'Ölşew tärtibi',
 'exif-gpsdop'                      => 'Ölşew däldigi',
 'exif-gpsspeedref'                 => 'Jıldamdılıq ölşemi',
-'exif-gpsspeed'                    => '-{GPS}- qabıldağıştıñ jıldamdılığı',
+'exif-gpsspeed'                    => 'GPS qabıldağıştıñ jıldamdılığı',
 'exif-gpstrackref'                 => 'Qozğalıs bağıtın körsetwi',
 'exif-gpstrack'                    => 'Qozğalıs bağıtı',
 'exif-gpsimgdirectionref'          => 'Swret bağıtın körsetwi',
@@ -1878,17 +1879,17 @@ Basqası ädepkiden jasırıladı.
 'exif-gpsdestbearing'              => 'Nısana azïmwtı',
 'exif-gpsdestdistanceref'          => 'Nısana qaşıqtığın körsetwi',
 'exif-gpsdestdistance'             => 'Nısana qaşıqtığı',
-'exif-gpsprocessingmethod'         => '-{GPS}- öñdetw ädisiniñ atawı',
-'exif-gpsareainformation'          => '-{GPS}- awmağınıñ atawı',
-'exif-gpsdatestamp'                => '-{GPS}- kün-aýı',
-'exif-gpsdifferential'             => '-{GPS}- saralanğan tüzetw',
+'exif-gpsprocessingmethod'         => 'GPS öñdetw ädisiniñ atawı',
+'exif-gpsareainformation'          => 'GPS awmağınıñ atawı',
+'exif-gpsdatestamp'                => 'GPS kün-aýı',
+'exif-gpsdifferential'             => 'GPS saralanğan tüzetw',
 
 # EXIF attributes
 'exif-compression-1' => 'Ulğaýtılğan',
-'exif-compression-6' => '-{JPEG}-',
+'exif-compression-6' => 'JPEG',
 
-'exif-photometricinterpretation-2' => '-{RGB}-',
-'exif-photometricinterpretation-6' => '-{YCbCr}-',
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-orientation-1' => 'Qalıptı', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Dereleý şağılısqan', # 0th row: top; 0th column: right
@@ -1902,19 +1903,19 @@ Basqası ädepkiden jasırıladı.
 'exif-planarconfiguration-1' => 'talpaq pişim',
 'exif-planarconfiguration-2' => 'taýpaq pişim',
 
-'exif-xyresolution-i' => '$1 -{dpi}-',
-'exif-xyresolution-c' => '$1 -{dpc}-',
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
 
-'exif-colorspace-1'      => '-{sRGB}-',
-'exif-colorspace-ffff.h' => '-{FFFF.H}-',
+'exif-colorspace-1'      => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
 
 'exif-componentsconfiguration-0' => 'bar bolmadı',
-'exif-componentsconfiguration-1' => '-{Y}-',
-'exif-componentsconfiguration-2' => '-{Cb}-',
-'exif-componentsconfiguration-3' => '-{Cr}-',
-'exif-componentsconfiguration-4' => '-{R}-',
-'exif-componentsconfiguration-5' => '-{G}-',
-'exif-componentsconfiguration-6' => '-{B}-',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Anıqtalmağan',
 'exif-exposureprogram-1' => 'Qolmen',
@@ -1926,7 +1927,7 @@ Basqası ädepkiden jasırıladı.
 'exif-exposureprogram-7' => 'Tireleý ädisi (artı şoğırlawsız tayaw tüsirmeler)',
 'exif-exposureprogram-8' => 'Dereleý ädisi (artı şoğırlanğan dereleý tüsirmeler)',
 
-'exif-subjectdistance-value' => '$1 -{m}-',
+'exif-subjectdistance-value' => '$1 m',
 
 'exif-meteringmode-0'   => 'Belgisiz',
 'exif-meteringmode-1'   => 'Birkelki',
@@ -1945,18 +1946,18 @@ Basqası ädepkiden jasırıladı.
 'exif-lightsource-9'   => 'Aşıq kün',
 'exif-lightsource-10'  => 'Bulınğır kün',
 'exif-lightsource-11'  => 'Kölenkeli',
-'exif-lightsource-12'  => 'Künjarıqtı şam -{(D 5700–7100 K)}-',
-'exif-lightsource-13'  => 'Künjarıqtı şam -{(N 4600–5400 K)}-',
-'exif-lightsource-14'  => 'Künjarıqtı şam -{(W 3900–4500 K)}-',
-'exif-lightsource-15'  => 'Künjarıqtı şam -{(WW 3200–3700 K)}-',
-'exif-lightsource-17'  => 'Qalıptı jarıq qaýnarı -{A}-',
-'exif-lightsource-18'  => 'Qalıptı jarıq qaýnarı -{B}-',
-'exif-lightsource-19'  => 'Qalıptı jarıq qaýnarı -{C}-',
-'exif-lightsource-20'  => '-{D55}-',
-'exif-lightsource-21'  => '-{D65}-',
-'exif-lightsource-22'  => '-{D75}-',
-'exif-lightsource-23'  => '-{D50}-',
-'exif-lightsource-24'  => 'Stwdïyalıq -{ISO}- künjarıqtı şam',
+'exif-lightsource-12'  => 'Künjarıqtı şam (D 5700–7100 K)',
+'exif-lightsource-13'  => 'Künjarıqtı şam (N 4600–5400 K)',
+'exif-lightsource-14'  => 'Künjarıqtı şam (W 3900–4500 K)',
+'exif-lightsource-15'  => 'Künjarıqtı şam (WW 3200–3700 K)',
+'exif-lightsource-17'  => 'Qalıptı jarıq qaýnarı A',
+'exif-lightsource-18'  => 'Qalıptı jarıq qaýnarı B',
+'exif-lightsource-19'  => 'Qalıptı jarıq qaýnarı C',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-21'  => 'D65',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
+'exif-lightsource-24'  => 'Stwdïyalıq ISO künjarıqtı şam',
 'exif-lightsource-255' => 'Basqa jarıq qaýnarı',
 
 'exif-focalplaneresolutionunit-2' => 'dywým',
@@ -1969,7 +1970,7 @@ Basqası ädepkiden jasırıladı.
 'exif-sensingmethod-7' => '3-sızıqtı tüssezgiş',
 'exif-sensingmethod-8' => 'Kezekti sızıqtı tüssezgiş',
 
-'exif-filesource-3' => '-{DSC}-',
+'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Tikeleý tüsirilgen fotoswret',
 
@@ -2026,8 +2027,8 @@ Basqası ädepkiden jasırıladı.
 'exif-gpsmeasuremode-3' => '3-bağıttıq ölşem',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
-'exif-gpsspeed-k' => '-{km/h}-',
-'exif-gpsspeed-m' => '-{mil/h}-',
+'exif-gpsspeed-k' => 'km/h',
+'exif-gpsspeed-m' => 'mil/h',
 'exif-gpsspeed-n' => 'J. tüýin',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
@@ -2082,7 +2083,7 @@ merzimi $4 kezinde bitedi.",
 # Scary transclusion
 'scarytranscludedisabled' => '[Wïkï-ara kiregw öşirilgen]',
 'scarytranscludefailed'   => '[$1 betine ülgi öñdetw sätsiz bitti; keşiriñiz]',
-'scarytranscludetoolong'  => '[-{URL}- jaýı tım uzın; keşiriñiz]',
+'scarytranscludetoolong'  => '[URL jaýı tım uzın; keşiriñiz]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2144,7 +2145,7 @@ Osı betti şınınan qaýta jasawın rastañız.",
 'autosumm-blank'   => 'Bettiñ barlıq mağlumatın alastattı',
 'autosumm-replace' => "Betti '$1' degenmen almastırdı",
 'autoredircomment' => '[[$1]] degenge aýdadı', # This should be changed to the new naming convention, but existed beforehand
-
+'autosumm-tnew' => 'Jaña bet: $1',
 );
 
 ?>
