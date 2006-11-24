@@ -956,7 +956,6 @@ Wobkedźbujće, zo strona so <b>nje</b> přesunje, jeli je hižo strona pod nowy
 'newpageletter'         => 'N',
 'newpages'              => 'Nowe nastawki',
 'newpassword'           => 'Nowe hesło:',
-'newtalkseperator'      => ',_',
 'newtitle'              => 'Pod nowy titul',
 'newwindow'             => '(wočinja so w nowym woknješku)',
 'next'                  => 'přich',

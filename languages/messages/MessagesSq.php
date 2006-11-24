@@ -1486,7 +1486,6 @@ Ju lutem konfirmoni nëse dëshironi me të vertetë ta ri-krijoni këtë artiku
 $1',
 'confirm_purge_button'  => 'Shko',
 'youhavenewmessagesmulti'=> 'Ju keni mesazh të ri në $1',
-'newtalkseperator'      => ',_',
 'searchcontaining'      => 'Kërko për artikuj që përmbajnë \'\'$1\'\'.',
 'searchnamed'           => 'Kërko për artikuj të quajtur \'\'$1\'\'.',
 'articletitles'         => 'Artikuj që fillojnë me \'\'$1\'\'',

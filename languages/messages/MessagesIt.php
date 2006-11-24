@@ -1931,7 +1931,7 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 "confirm_purge_button"	=> "Conferma",
 
 "youhavenewmessagesmulti"	=> "Hai nuovi messaggi su $1",
-"newtalkseperator" => ",_",
+
 "searchcontaining"	=> "Ricerca delle voci che contengono ''$1''.",
 "searchnamed"	=> "Ricerca delle voci con titolo ''$1''.",
 "articletitles"	=> "Ricerca delle voci che iniziano con ''$1''",

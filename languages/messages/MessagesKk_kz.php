@@ -2111,7 +2111,6 @@ $1
 'confirm_purge_button' => 'Жарайды',
 
 'youhavenewmessagesmulti' => '$1 дегенге жаңа хабарлар түсті',
-'newtalkseperator'        => ',_',
 
 'searchcontaining' => "Мына сөзі бар бет арасынан іздеу: ''$1''.",
 'searchnamed'      => "Мына атаулы бет арасынан іздеу: ''$1''.",

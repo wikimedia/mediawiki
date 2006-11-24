@@ -2112,7 +2112,6 @@ Osı betti şınınan qaýta jasawın rastañız.",
 'confirm_purge_button' => 'Jaraýdı',
 
 'youhavenewmessagesmulti' => '$1 degenge jaña xabarlar tüsti',
-'newtalkseperator'        => ',_',
 
 'searchcontaining' => "Mına sözi bar bet arasınan izdew: ''$1''.",
 'searchnamed'      => "Mına atawlı bet arasınan izdew: ''$1''.",

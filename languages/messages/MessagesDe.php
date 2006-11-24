@@ -1965,14 +1965,12 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 'confirm_purge' => "Den Cache dieser Seite leeren? $1",
 'confirm_purge_button' => 'OK',
 
-'newtalkseperator'	=> ',_',
 'youhavenewmessagesmulti' => "Sie haben neue Nachrichten: $1",
 
 # DISPLAYTITLE
 'displaytitle' => '(Link zu dieser Seite als [[$1]])',
 
 'loginlanguagelabel'	=> 'Sprache: $1',
-
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige Seite',

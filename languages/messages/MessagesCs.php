@@ -2047,7 +2047,7 @@ Opravdu si přejete znovu tuto stránku založit?',
 'confirm_purge_button' => 'OK',
 
 'youhavenewmessagesmulti' => 'Na $1 máte nové zprávy',
-'newtalkseperator' => ',_',
+
 'searchcontaining' => "Hledat články obsahující ''$1''.",
 'searchnamed' => "Hledat články pojmenované ''$1''.",
 'articletitles' => "Články začínající ''$1''",

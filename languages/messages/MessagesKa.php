@@ -545,7 +545,7 @@ this old version, (rev) = revert to this old version.
 #TODO: 'confirm_purge_button' => 'OK',
 
 'youhavenewmessagesmulti' => "თქვენ გაქვთ ახალი შეტყობინება $1-ზე",
-#'newtalkseperator' => ',_',
+
 #TODO: 'searchcontaining' => "Search for articles containing ''$1''.",
 #TODO: 'searchnamed' => "Search for articles named ''$1''.",
 #TODO: 'articletitles' => "Articles starting with ''$1''",
