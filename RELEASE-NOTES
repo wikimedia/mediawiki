@@ -217,7 +217,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Installer support for experimental MySQL 4.1/5.0 binary-safe schema
 * Use INSERT IGNORE for db-based BagOStuff add/insert, for more memcache-like
   behavior when keys already exist on add (instead of dying with an error...)
-
+* Add a hook 'UploadForm:initial' before the upload form is generated, and two
+  member variable for text injection into the form, which can be filled by the hooks.
 
 == Languages updated ==
 
