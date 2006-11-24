@@ -128,10 +128,13 @@ $messages = array(
 'oct'                   => '10月',
 'nov'                   => '11月',
 'dec'                   => '12月',
+
 'categories'            => 'カテゴリ',
 'pagecategories'        => 'カテゴリ',
-'category_header'       => 'カテゴリ: “$1”',
+'category_header'       => 'カテゴリ “$1” にあるページ',
 'subcategories'         => 'サブカテゴリ',
+'category-media-header' => 'カテゴリ “$1” にあるメディア',
+
 'mainpage'              => 'メインページ',
 'mainpagetext'          => 'MediaWikiが正常にインストールされました。',
 'mainpagedocfooter'     => '[http://meta.wikimedia.org/wiki/MediaWiki_localisation インターフェースの変更方法]や、そのほかの使い方・設定に関しては[http://meta.wikimedia.org/wiki/Help:Contents ユーザーズガイド]を参照してください。',
@@ -213,7 +216,6 @@ $messages = array(
 'viewtalkpage'          => 'ノートを表示',
 'otherlanguages'        => '他の言語',
 'redirectedfrom'        => '（$1 から転送）',
-'autoredircomment'      => '[[$1]]へのリダイレクト',
 'redirectpagesub'       => 'リダイレクトページ',
 'lastmodifiedat'          => '最終更新 $2, $1。',
 'viewcount'             => 'このページは $1 回アクセスされました。',
@@ -422,6 +424,8 @@ The database has been automatically locked while the slave database servers catc
 'missingsummary'        => '\'\'\'注意:\'\'\' 要約欄が空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。',
 'missingcommenttext'    => '以下にコメントを入力してください。',
 'missingcommentheader'  => '\'\'\'注意:\'\'\' 題名・見出しが空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。',
+'summary-preview'       => '要約のプレビュー',
+'subject-preview'       => '題名・見出しのプレビュー',
 'blockedtitle'          => '投稿ブロック',
 'blockedtext'           => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
 :$2
@@ -487,6 +491,8 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'protectedpagewarning'  => '\'\'\'警告:\'\'\' このページは保護されています。{{int:group-sysop}}しか編集できません。詳しくは[[Project:保護の方針|保護の方針]]を参照してください。',
 'semiprotectedpagewarning'=> '\'\'\'お知らせ:\'\'\' このページは登録利用者のみが編集できるよう保護されています。',
 'templatesused'         => 'このページで使われているテンプレート:',
+'templatesusedpreview'	=> 'このプレビューで使われているテンプレート:',
+'templatesusedsection'	=> 'この節で使われているテンプレート:',
 'edittools'             => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'         => 'ページを作成できません',
 'nocreatetext'          => 'このサイトではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログイン]]してください。',
@@ -1269,7 +1275,7 @@ $NEWPAGE
 'spamprotectiontext'    => 'あなたが保存しようとしたページはスパム・フィルターによって保存をブロックされました。これは主に外部サイトへのリンクが原因です。',
 'spamprotectionmatch'   => '以下はスパム・フィルターによって検出されたテキストです: $1',
 'subcategorycount'      => 'このカテゴリには $1 のサブカテゴリがあります。',
-'categoryarticlecount'  => 'このカテゴリには $1 の項目があります。',
+'categoryarticlecount'  => 'このカテゴリには $1 のページがあります。',
 'listingcontinuesabbrev'=> ' の続き',
 'spambot_username'      => 'MediaWiki スパム除去',
 'spam_reverting'        => '$1 へのリンクを含まない以前の版に差し戻し',
@@ -1663,19 +1669,25 @@ $1',
 'loginlanguagelabel'    => '言語: $1',
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; 前ページ',
-'imgmultipagenext' => '次ページ &rarr;',
+'imgmultipageprev'      => '&larr; 前ページ',
+'imgmultipagenext'      => '次ページ &rarr;',
 
 # Table pager
-'ascending_abbrev' => '昇順',
-'descending_abbrev' => '降順',
-'table_pager_next' => '次のページ',
-'table_pager_prev' => '前のページ',
-'table_pager_first' => '最初のページ',
-'table_pager_last' => '最後のページ',
-'table_pager_limit' => '1ページに $1 個表示',
+'ascending_abbrev'      => '昇順',
+'descending_abbrev'     => '降順',
+'table_pager_next'      => '次のページ',
+'table_pager_prev'      => '前のページ',
+'table_pager_first'     => '最初のページ',
+'table_pager_last'      => '最後のページ',
+'table_pager_limit'     => '1ページに $1 個表示',
 'table_pager_limit_submit' => '実行',
-'table_pager_empty' => '結果なし',
+'table_pager_empty'     => '結果なし',
+
+# Auto-summaries
+'autosumm-blank'        => 'ページの白紙化',
+'autosumm-replace'      => 'ページの置換: \'$1\'',
+'autoredircomment'      => '[[$1]]へのリダイレクト',
+'autosumm-new'          => '新しいページ: \'$1\'',
 
 );
 ?>
