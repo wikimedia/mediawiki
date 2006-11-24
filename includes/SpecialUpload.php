@@ -29,6 +29,12 @@ class UploadForm {
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
 	var $mOname, $mSessionKey, $mStashed, $mDestFile, $mRemoveTempFile, $mSourceType;
 	var $mUploadTempFileSize = 0;
+
+	# Placeholders for text injection by hooks (must be HTML)
+	# extensions should take care to _append_ to the present value
+	var $uploadFormTextTop;
+	var $uploadFormTextAfterSummary;
+
 	/**#@-*/
 
 	/**
@@ -44,6 +50,10 @@ class UploadForm {
 			# GET requests just give the main form; no data except wpDestfile.
 			return;
 		}
+
+	 # Placeholders for text injection by hooks (empty per default)
+	 $this->uploadFormTextTop = "";
+	 $this->uploadFormTextAfterSummary = "";
 
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
@@ -691,6 +701,12 @@ class UploadForm {
 		global $wgUseCopyrightUpload;
 		global $wgRequest, $wgAllowCopyUploads;
 
+	 if( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) )
+	 {
+	  wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
+	  return false;
+	 }
+
 		$cols = intval($wgUser->getOption( 'cols' ));
 		$ew = $wgUser->getOption( 'editwidth' );
 		if ( $ew ) $ew = " style=\"width:100%\"";
@@ -751,6 +767,7 @@ class UploadForm {
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
 		<table border='0'>
 		<tr>
+	  {$this->uploadFormTextTop}
 			<td align='right' valign='top'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
 			<td align='left'>
 				{$filename_form}
@@ -766,6 +783,7 @@ class UploadForm {
 			<td align='right'><label for='wpUploadDescription'>{$summary}</label></td>
 			<td align='left'>
 				<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>" . htmlspecialchars( $this->mUploadDescription ) . "</textarea>
+	   {$this->uploadFormTextAfterSummary}
 			</td>
 		</tr>
 		<tr>" );
