@@ -23,6 +23,7 @@ $wgIgnoredMessages = array(
 	'loginlanguagelinks',
 	'markaspatrolledlink',
 	'newarticletextanon',
+	'newtalkseperator',
 	'noarticletextanon',
 	'number_of_watching_users_RCview',
 	'pagecategorieslink',
