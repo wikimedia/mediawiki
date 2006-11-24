@@ -1322,6 +1322,7 @@ $wgMessageStrucutre = array(
 		'spamprotectionmatch',
 		'subcategorycount',
 		'categoryarticlecount',
+		'categorymediacount',
 		'listingcontinuesabbrev',
 		'spambot_username',
 		'spam_reverting',
