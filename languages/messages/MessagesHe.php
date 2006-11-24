@@ -18,7 +18,7 @@ $linkTrail = '/^([a-zא-ת]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1255';
 
 $skinNames = array(
-	'standard'    => "רגיל",
+	'standard'    => 'רגיל',
 	'nostalgia'   => 'נוסטלגי',
 	'cologneblue' => 'מים כחולים',
 	'davinci'     => "דה־וינצ'י",
@@ -2111,7 +2111,6 @@ $1',
 'confirm_purge_button' => 'אישור',
 
 'youhavenewmessagesmulti' => 'יש לך הודעות חדשות ב־$1',
-'newtalkseperator'        => ',_',
 
 'searchcontaining' => "חפש דפים המכילים את הטקסט '''$1'''.",
 'searchnamed'      => "חפש דפים בשם '''$1'''.",
