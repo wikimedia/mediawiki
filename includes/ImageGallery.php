@@ -206,6 +206,13 @@ class ImageGallery
 
 		return $s;
 	}
+	
+	/**
+	 * @return int Number of images in the gallery
+	 */
+	public function count() {
+		return count( $this->mImages );
+	}
 
 } //class
 ?>

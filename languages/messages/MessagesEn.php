@@ -2056,6 +2056,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'spamprotectionmatch' => 'The following text is what triggered our spam filter: $1',
 'subcategorycount' => "There {{PLURAL:$1|is one subcategory|are $1 subcategories}} to this category.",
 'categoryarticlecount' => "There {{PLURAL:$1|is one article|are $1 articles}} in this category.",
+'category-media-count' => "There {{PLURAL:$1|is one file|are $1 files}} in this category.",
 'listingcontinuesabbrev' => " cont.",
 'spambot_username' => 'MediaWiki spam cleanup',
 'spam_reverting' => 'Reverting to last version not containing links to $1',

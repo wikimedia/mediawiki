@@ -176,7 +176,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   warning and a request to upgrade.
 * (bug 6440) Updated indexes to improve backlinking queries (links, templates, images)
 * Switched 'anon-only' block mode to default for IP blocks
-* (bug 3687) Add distinct heading for media files in category display.
+* (bug 3687, 7892) Add distinct heading for media files in category display,
+  with count.
 * (bug 1578) Add different icons for external links to audio, video, or PDF in
   Monobook.
 * Made autoblocks block account creation if the user block has that option enabled.
@@ -210,7 +211,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   image page (image/svg+xml, not image/svg).
 * (bug 7883) Added autoblock whitelisting feature, using which specific ranges
    can be protected from autoblocking. These ranges are specified, in list format,
-   in the autoblock_whitelist system message. 
+   in the autoblock_whitelist system message.
 * Added placeholders for text injection by hooks to EditPage.php
 
 == Languages updated ==
