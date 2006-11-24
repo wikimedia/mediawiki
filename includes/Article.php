@@ -2697,17 +2697,15 @@ class Article {
 
 		$summary = '';
 
-		#Blanking autosummaries
-		if (!($flags & EDIT_NEW))
-			$summary = self::getBlankingAutosummary( $oldtext, $newtext );
+		#Redirect autosummaries
+		$summary = self::getRedirectAutosummary( $newtext );
 
 		if ($summary)
 			return $summary;
 
-		#New redirect autosummaries.
-		if ( $flags & EDIT_NEW ) {
-			$summary = self::getRedirectAutosummary( $newtext );
-		}
+		#Blanking autosummaries
+		if (!($flags & EDIT_NEW))
+			$summary = self::getBlankingAutosummary( $oldtext, $newtext );
 
 		if ($summary)
 			return $summary;
