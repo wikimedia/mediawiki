@@ -1613,6 +1613,7 @@ $NEWPAGE
 'spamprotectionmatch'    => 'הטקסט הבא הוא שגרם להפעלת סינון הספאם: $1',
 'subcategorycount'       => '{{plural:$1|ישנה קטגוריית משנה אחת|ישנן $1 קטגוריות משנה}} בקטגוריה זו.',
 'categoryarticlecount'   => '{{plural:$1|ישנו דף אחד|ישנם $1 דפים}} בקטגוריה זו.',
+'category-media-count'   => '{{plural:$1|ישנו קובץ אחד|ישנם $1 קבצים}} בקטגוריה זו',
 'listingcontinuesabbrev' => ' (המשך)',
 'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => 'שיחזור לגרסה אחרונה שלא כוללת קישורים ל־$1',
