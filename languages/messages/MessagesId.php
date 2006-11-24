@@ -1917,7 +1917,7 @@ $1",
 'confirm_purge_button' => 'OK',
 
 'youhavenewmessagesmulti' => "Anda mendapat pesan-pesan baru $1",
-'newtalkseperator' => ',_',
+
 'searchcontaining' => "Mencari artikel yang mengandung ''$1''.",
 'searchnamed' => "Mencari artikel yang berjudul ''$1''.",
 'articletitles' => "Artikel yang diawali ''$1''",

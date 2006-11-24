@@ -1739,7 +1739,6 @@ $1',
 'confirm_purge_button' => '\'l est bon',
 
 'youhavenewmessagesmulti' => 'Vos avoz des noveas messaedjes so $1',
-#'newtalkseperator' => ',_',
 'searchcontaining' => 'Cweri après des årtikes k\' ont «\'\'$1\'\'» å dvins.',
 'searchnamed' =>  'Cweri après des årtikes lomés «\'\'$1\'\'».',
 'articletitles' =>  'Årtikes ki cmincèt avou «\'\'$1\'\'»',

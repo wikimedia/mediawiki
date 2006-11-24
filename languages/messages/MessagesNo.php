@@ -1357,7 +1357,6 @@ $1
 'confirm_purge'         => 'Vil du slette tjenerens mellomlagrede versjon (\'\'cache\'\') av denne siden? $1',
 'confirm_purge_button'  => 'OK',
 'youhavenewmessagesmulti'=> 'Du har nye beskjeder på $1',
-'newtalkseperator'      => ',_',
 'searchcontaining'      => 'Søk etter artikler som inneholder \'\'$1\'\'.',
 'searchnamed'           => 'Søk for artikler ved navn \'\'$1\'\'.',
 'articletitles'         => 'Artikler som begynner med \'\'$1\'\'',

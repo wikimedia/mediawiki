@@ -1968,7 +1968,7 @@ Por favor confirme que realmente deseja recriar este artigo.',
 'confirm_purge_button' => 'OK',
 
 'youhavenewmessagesmulti' => "Tem novas mensagens em $1",
-'newtalkseperator' => ',_',
+
 'searchcontaining' => "Pesquisar por artigos contendo ''$1''.",
 'searchnamed' => "Pesquisar por artigos intitulados de ''$1''.",
 'articletitles' => "Artigos começandor com ''$1''",

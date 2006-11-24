@@ -1562,7 +1562,6 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'mon'	=> 'lun',
 'newpageletter'	=> 'N',
 'newpages-username'	=> 'Nombre de usuario',
-'newtalkseperator'	=> ',_',
 'noexactmatch'	=> '<div style="border: 1px solid #ccc; padding: 7px;"><div style="background: #F9F9F9; padding: 7px">
 <div style="font-size:115%"><b>No existe ningún artículo con el título que has escrito.</b></div>
 <hr />

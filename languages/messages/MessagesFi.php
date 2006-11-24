@@ -1860,7 +1860,6 @@ Ole hyvä ja varmista, että haluat luoda sivun uudelleen.',
 'confirm_purge_button'=> 'Poista',
 
 'youhavenewmessagesmulti' => 'Sinulla on uusia viestejä sivuilla $1',
-'newtalkseperator'        => ',_',
 
 'searchcontaining'    => 'Etsi artikkeleita, jotka sisältävät ”$1”.',
 'searchnamed'         => 'Etsi artikkeleita, joiden nimi on ”$1”.',

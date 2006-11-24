@@ -2147,7 +2147,7 @@ $1
 'confirm_purge_button' => 'OK',
 
 'youhavenewmessagesmulti' => "Вы получили новые сообщения на $1",
-'newtalkseperator' => ',_',
+
 'searchcontaining' => "Поиск статей, содержащих «$1».",
 'searchnamed' => "Поиск статей называющихся «$1».",
 'articletitles' => "Статьи, начинающиеся с «$1»",

@@ -2136,7 +2136,6 @@ $1
 'confirm_purge_button' => 'جارايدى',
 
 'youhavenewmessagesmulti' => '$1 دەگەنگە جاڭا حابارلار تٴۇستٴى',
-'newtalkseperator'        => ',_',
 
 'searchcontaining' => "مىنا سٴوزٴى بار بەت اراسىنان ٴىزدەۋ: ''$1''.",
 'searchnamed'      => "مىنا اتاۋلى بەت اراسىنان ٴىزدەۋ: ''$1''.",

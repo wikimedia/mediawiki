@@ -1615,7 +1615,6 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'confirm_purge'         => 'Doriţi să reîncărcaţi pagina? $1',
 'confirm_purge_button'  => 'Da',
 'youhavenewmessagesmulti'=> 'Aveţi mesaje noi la $1',
-'newtalkseperator'      => ',_',
 'searchcontaining'      => 'Caută articolele care conţin \'\'$1\'\'.',
 'searchnamed'           => 'Caută articole cu numele \'\'$1\'\'.',
 'articletitles'         => 'Articole începând cu \'\'$1\'\'',
