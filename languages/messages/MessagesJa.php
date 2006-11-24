@@ -86,6 +86,8 @@ $messages = array(
 'tog-forceeditsummary'  => '要約欄が空欄の場合に警告する',
 'tog-watchlisthideown'  => '自分の編集を表示しない',
 'tog-watchlisthidebots' => 'ボットによる編集を表示しない',
+//'tog-nolangconversion'  => '未訳',
+
 'underline-always'      => '常に付ける',
 'underline-never'       => '常に付けない',
 'underline-default'     => 'WWWブラウザに従う',
@@ -104,6 +106,8 @@ $messages = array(
 'thu'                   => '木',
 'fri'                   => '金',
 'sat'                   => '土',
+
+#long
 'january'               => '1月',
 'february'              => '2月',
 'march'                 => '3月',
@@ -116,6 +120,22 @@ $messages = array(
 'october'               => '10月',
 'november'              => '11月',
 'december'              => '12月',
+
+#genitive
+'january-gen'           => '1月',
+'february-gen'          => '2月',
+'march-gen'             => '3月',
+'april-gen'             => '4月',
+'may-gen'               => '5月',
+'june-gen'              => '6月',
+'july-gen'              => '7月',
+'august-gen'            => '8月',
+'september-gen'         => '9月',
+'october-gen'           => '10月',
+'november-gen'          => '11月',
+'december-gen'          => '12月',
+
+#short
 'jan'                   => '1月',
 'feb'                   => '2月',
 'mar'                   => '3月',
@@ -150,6 +170,7 @@ $messages = array(
 'bugreportspage'        => 'Project:バグの報告',
 'sitesupport'           => '寄付',
 'sitesupport-url'       => 'Project:Site support',
+'faq'                   => 'FAQ',
 'faqpage'               => 'Project:FAQ',
 'edithelp'              => '編集の仕方',
 'newwindow'             => '（新しいウィンドウが開きます）',
@@ -234,6 +255,9 @@ $messages = array(
 'versionrequired'       => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext'   => 'このページの利用には MediaWiki Version $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
 
+'ok'                    => 'OK',
+'pagetitle'             => '$1 - {{SITENAME}}',
+
 'retrievedfrom'         => ' "$1" より作成',
 'youhavenewmessages'    => 'あなた宛の$1が届いています。（$2）',
 'newmessageslink'       => '新しいメッセージ',
@@ -247,6 +271,7 @@ $messages = array(
 'thisisdeleted'         => '$1 を参照または復帰する。',
 'viewdeleted'           => '$1の削除記録と履歴を確認する',
 'restorelink'           => '削除された $1 編集',
+'feedlinks'             => 'フィード:',
 'feed-invalid'          => 'フィード形式の指定が間違っています。',
 'nstab-main'            => '本文',
 'nstab-user'            => '利用者ページ',
@@ -277,13 +302,14 @@ The last attempted database query was:
 "$1"
 from within function "$2".
 MySQL returned error "$3: $4"',
+'sqlhidden'             => '（SQLクエリー非表示）',
 'noconnect'             => '申し訳ありません。何らかの問題によりデータベースに接続できません。<br />$1',
 'nodb'                  => 'データベース $1 を選択できません。',
 'cachederror'           => 'あなたがアクセスしたページのコピーを保存したものを表示しています。また、コピーは更新されません。',
 'laggedslavemode'       => '警告: ページに最新の編集が反映されていない可能性があります。反映されるまでしばらくお待ちください。',
 'readonly'              => 'データベースはロックされています',
 'enterlockreason'       => 'ロックする理由を入力してください。ロックが解除されるのがいつになるかの見積もりについても述べてください。',
-'readonlytext'          => 'データベースは現在、新しいページの追加や編集を受け付けない「ロック状態」になっています。これはおそらく定期的なメンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。データベースをロックしたサーバ管理者は次のような説明をしています:
+'readonlytext'          => 'データベースは現在、新しいページの追加や編集を受け付けない「ロック状態」になっています。これはおそらく定期的なメンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。データベースをロックしたサーバー管理者は次のような説明をしています:
 
 $1
 
@@ -291,9 +317,9 @@ $1
 The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal. The administrator who locked it offered this explanation:
 
 $1',
-'missingarticle'        => '<p>"$1" という題のページは見つかりませんでした。すでに削除された版を参照しようとしている可能性があります。これがソフトウェアのバグだと思われる場合は、URIと共にサーバ管理者に報告して下い。</p>
+'missingarticle'        => '<p>"$1" という題のページは見つかりませんでした。すでに削除された版を参照しようとしている可能性があります。これがソフトウェアのバグだと思われる場合は、URIと共にサーバー管理者に報告して下い。</p>
 <p>The database did not find the text of a page that it should have found, named "$1". This is usually caused by following an outdated diff or history link to a page that has been deleted. If this is not the case, you may have found a bug in the software. Please report this to an administrator, making note of the URL.</p>',
-'readonly_lag'          => 'データベースはスレーブ・サーバがマスタ・サーバに同期するまで自動的にロックされています。しばらくお待ちください。
+'readonly_lag'          => 'データベースはスレーブ・サーバーがマスタ・サーバーに同期するまで自動的にロックされています。しばらくお待ちください。
 
 The database has been automatically locked while the slave database servers catch up to the master.',
 'internalerror'         => '内部処理エラー',
@@ -380,7 +406,9 @@ The database has been automatically locked while the slave database servers catc
 ログインして別のパスワードに変更してください。',
 'noemail'               => '利用者 "$1" のメールアドレスは登録されていません。',
 'passwordsent'          => '新しいパスワードを "$1" さんの登録済みメールアドレスに送信しました。メールを受け取ったら、再度ログインしてください。',
+'blocked-mailpassword'  => 'あなたの使用しているIPアドレスからの編集はブロックされています。悪用防止のため、パスワードの再発行は無効化されています。',
 'eauthentsent'          => '指定されたメールアドレスにアドレス確認のためのメールを送信しました。このアカウントが本当にあなたのものであるか確認するため、あなたがメールの内容に従わない限り、その他のメールはこのアカウント宛には送信されません。',
+'throttled-mailpassword'=> '新しいパスワードは $1 時間以内に送信済みです。悪用防止のため、パスワードは $1 時間間隔で再発行可能となります。',
 'mailerror'             => 'メールの送信中にエラーが発生しました: $1',
 'acct_creation_throttle_hit'=> 'あなたは既に $1 アカウントを作成しています。これ以上作成できません。',
 'emailauthenticated'    => 'あなたのメールアドレスは $1 に確認されています。',
@@ -406,6 +434,7 @@ The database has been automatically locked while the slave database servers catc
 'math_tip'              => '数式 (LaTeX)',
 'nowiki_sample'         => 'そのまま表示させたい文字を入力',
 'nowiki_tip'            => '入力文字をそのまま表示',
+'image_sample'          => 'Example.jpg',
 'image_tip'             => '埋め込み画像（[[{{ns:image}}:～]]に直してください）',
 'media_sample'          => 'Example.mp3',
 'media_tip'             => 'メディアファイル（音声）へのリンク',
@@ -532,10 +561,11 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 # Revision deletion
 'revisiondelete'        => '版の削除と復帰',
 'revdelete-nooldid-title' => '対象版がありません',
+'revdelete-nooldid-text'=> '操作の完了に必要な版が指定されていません。',
 'revdelete-selected'    => '[[:$1]]の、以下の選択された版に対する操作:',
 'revdelete-text'        => '版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。
 
-サーバ管理者にこれ以上の制限をかけられない限り、他の{{int:group-sysop}}は隠れた版を読んだり、元に戻したりできます。',
+サーバー管理者にこれ以上の制限をかけられない限り、他の{{int:group-sysop}}は隠れた版を読んだり、元に戻したりできます。',
 'revdelete-legend'      => '版の削除の適用',
 'revdelete-hide-text'   => '版のテキストを隠す',
 'revdelete-hide-comment'=> '編集の要約を隠す',
@@ -623,7 +653,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'timezonetext'          => 'UTCとあなたの地域の標準時間との差を入力してください（日本国内は9:00）。',
 'localtime'             => 'あなたの現在時刻',
 'timezoneoffset'        => '時差¹',
-'servertime'            => 'サーバの現在時刻',
+'servertime'            => 'サーバーの現在時刻',
 'guesstimezone'         => '自動設定',
 'allowemail'            => '他の利用者からのメールの受け取りを許可する',
 'defaultns'             => '標準で検索する名前空間:',
@@ -666,6 +696,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'hide'                  => '隠す',
 'show'                  => '表示',
 'minoreditletter'       => 'M',
+'newpageletter'         => 'N',
+'boteditletter'         => 'b',
+'sectionlink'           => '→',
 'number_of_watching_users_pageview'=> '[$1人がウォッチしています]',
 'rc_categories'         => 'カテゴリを制限（"|" で区切る）',
 'rc_categories_any'     => 'すべて',
@@ -675,7 +708,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'reuploaddesc'          => 'アップロードのフォームへ戻る',
 'uploadnologin'         => 'ログインしていません',
 'uploadnologintext'     => 'ファイルをアップロードするには[[Special:Userlogin|ログイン]]する必要があります。',
-'upload_directory_read_only'=> 'アップロード先のディレクトリ ($1) にウェブサーバが書き込めません。',
+'upload_directory_read_only'=> 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'           => 'アップロード エラー',
 'uploadtext'            => 'ファイルを新しくアップロードする場合には、以下のフォームを利用してください。
 * 過去にアップロードされた画像は[[Special:Imagelist|{{int:imagelist}}]]で閲覧したり探したりできます。
@@ -730,6 +763,19 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'destfilename'          => '掲載するファイル名',
 'watchthisupload'	    => '画像をウォッチ',
 'filewasdeleted'        => 'アップロードしようとしているファイル名のファイルが以前削除されています。再びアップロードする前に $1 を確認してください。',
+
+'upload-proto-error'    => '不正なプロトコル',
+'upload-proto-error-text' => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
+'upload-file-error'     => '内部エラー',
+'upload-file-error-text'=> 'サーバーの内部エラーのため、一時ファイルの作成に失敗しました。システムの管理者に連絡してください。',
+'upload-misc-error'     => '不明なエラー',
+'upload-misc-error-text'=> 'アップロード時に不明なエラーが検出されました。指定したURLがアクセス可能で有効なものであるかを再度確認してください。それでもこのエラーが発生する場合は、システムの管理者に連絡してください。',
+# Some likely curl errors.  More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'    => 'URLに到達不能',
+'upload-curl-error6-text' => '指定したURLに到達できませんでした。URLが正しいものであるか、指定したサイトが現在使用可能かを再度確認してください。',
+'upload-curl-error28'   => 'タイムアウト',
+'upload-curl-error28-text' => '相手サイトからの応答がありませんでした。指定したサイトが現在使用可能かを確認した上で、しばらく待ってもう一度お試しください。また、インターネットが混雑していない時間帯に実行することを推奨します。',
+
 'license'               => 'ライセンス',
 'nolicense'             => 'ライセンス情報を選択してください:',
 'upload_source_url'     => '（インターネット上のURL）',
@@ -792,6 +838,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 ページの総閲覧回数は\'\'\'$3\'\'\'回です。また、\'\'\'$4\'\'\'回の編集が行われました。平均すると、1ページあたり\'\'\'$5\'\'\'回の編集が行われ、1編集あたり\'\'\'$6\'\'\'回閲覧されています。
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] の長さは \'\'\'$7\'\'\' です。',
+'statistics-mostpopular'=> '最も閲覧されているページ',
 'userstatstext'         => '登録済みの利用者は\'\'\'$1\'\'\'人で、内\'\'\'$2\'\'\'人 (\'\'\'$4%\'\'\') が{{int:group-sysop}}権限を持っています。($3を参照)',
 'disambiguations'       => '曖昧さ回避ページ',
 'disambiguationspage'   => 'Template:aimai',
@@ -808,7 +855,7 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'nrevisions'            => '$1 の版',
 'nviews'                => '$1 回表示',
 'lonelypages'           => '孤立しているページ',
-'lonelypagestext'       => 'これらのページはどこからもリンクされていない孤立したページです。',
+'lonelypagestext'       => '以下のページは、どこからもリンクされていない孤立したページです。',
 'uncategorizedpages'    => 'カテゴリ未導入のページ',
 'uncategorizedcategories'=> 'カテゴリ未導入のカテゴリ',
 'uncategorizedimages'   => 'カテゴリ未導入の画像',
@@ -828,6 +875,7 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'shortpages'            => '短いページ',
 'longpages'             => '長いページ',
 'deadendpages'          => '有効なページへのリンクがないページ',
+'deadendpagestext'      => '以下のページは、このウィキの他のページにリンクしていないページです。',
 'listusers'             => '登録利用者の一覧',
 'specialpages'          => '特別ページ',
 'spheading'             => '特別ページ',
@@ -844,8 +892,10 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'unusedcategoriestext'  => '以下のカテゴリページはどの項目・カテゴリからも使われていません。',
 'booksources'           => '文献資料',
 'categoriespagetext'    => '{{SITENAME}}には以下のカテゴリが存在します。',
+'data'                  => 'データ',
 'userrights'            => '利用者権限の管理',
 'groups'                => 'ユーザーグループ',
+'isbn'                  => 'ISBN',
 'booksourcetext'        => '以下のリストは、新本、古本などを販売している外部サイトへのリンクです。あなたがお探しの本について、更に詳しい情報が提供されている場合もあります。',
 'alphaindexline'        => '$1―$2',
 'version'               => 'バージョン情報',
@@ -863,6 +913,7 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'allpagesnext'          => '次へ',
 'allpagessubmit'        => '表示',
 'allpagesprefix'        => '次の文字列から始まるページを表示:',
+'allpagesbadtitle'      => '指定したタイトルは無効か、正しくない inter-language または inter-wiki のタイトルです。ページタイトルに使用できない文字が含まれている可能性があります。',
 
 # Special:Listusers
 'listusersfrom' => 'この文字から表示:',
@@ -935,6 +986,7 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'wlhideshowown'         => '自分の編集を$1',
 'wlhideshowbots'        => 'ボットの編集を$1',
 'wldone'                => '終了しました。',
+'enotif_mailer'         => '{{SITENAME}} 通知メール',
 'enotif_reset'          => 'すべてのページを訪問済みにする',
 'enotif_newpagetext'    => '(新規ページ)',
 'changed'               => '変更',
@@ -1031,6 +1083,7 @@ $NEWPAGE
 'undeletehistory'       => 'ページの復帰を行うと、通常は履歴にある全ての編集が復帰します。特定版の復帰を行う場合は、{{int:undeletebtn}}ボタンを押す前に復帰対象版のチェックボックスを選択してください。',
 'undeletehistorynoadmin'=> '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
 'undeleterevision'      => '削除された $1 の版',
+'undeleterevision-missing' => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
 'undeletebtn'           => '復帰',
 'undeletereset'         => 'リセット',
 'undeletecomment'       => 'コメント:',
@@ -1108,14 +1161,16 @@ $NEWPAGE
 'range_block_disabled'  => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'    => '不正な期間です。',
 'ip_range_invalid'      => '不正なIPアドレス範囲です。',
+'proxyblocker'	        => 'プロクシブロッカー',
 'ipb_already_blocked'   => '"$1" は既にブロックされています。',
 'ipb_cant_unblock'      => 'エラー: ブロックされた ID $1 が見つかりません。おそらく既にブロック解除されています。',
 'proxyblockreason'      => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.
 
 :あなたの使用しているIPアドレスはオープン・プロクシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess'     => '終了しました。',
+'sorbs'                 => 'DNSBL',
 'sorbsreason'           => 'あなたのIPアドレスはオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されています。',
-'sorbs_create_account_reason'=> 'あなたのIPアドレスがオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されているため、アカウントを作成できません。',
+'sorbs_create_account_reason' => 'あなたのIPアドレスがオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されているため、アカウントを作成できません。',
 
 # Developer tools
 'lockdb'                => 'データベースのロック',
@@ -1131,7 +1186,7 @@ $NEWPAGE
 'unlockdbsuccesssub'    => 'データベースのロックは解除されました',
 'lockdbsuccesstext'     => 'データベースをロックしました。メンテナンスが終了したら忘れずにロックを解除してください。',
 'unlockdbsuccesstext'   => 'データベースのロックは解除されました。',
-'lockfilenotwritable'   => 'データベースのロックファイルに書き込めません。データベースのロック・解除をするには、サーバ上のロックファイルに書き込める必要があります。',
+'lockfilenotwritable'   => 'データベースのロックファイルに書き込めません。データベースのロック・解除をするには、サーバー上のロックファイルに書き込める必要があります。',
 'databasenotlocked'     => 'データベースはロックされていません。',
 
 # Make sysop
@@ -1152,6 +1207,10 @@ $NEWPAGE
 'makesysop'             => '利用者を{{int:group-sysop}}にする',
 'already_sysop'         => '利用者は既に{{int:group-sysop}}です。',
 'already_bureaucrat'    => '利用者は既に{{int:group-bureaucrat}}です。',
+'rightsnone'            => '（権限なし）',
+
+# Move page
+#
 'movepage'              => 'ページの移動',
 'movepagetext'          => '下のフォームを利用すると、ページ名を変更し、その履歴も変更先へ移動することができます。古いページは変更先へのリダイレクトページとなります。ページの中身と変更前のページに張られたリンクは変わりません。ですから、二重になったり壊れてしまったリダイレクトをチェックする必要があります。
 
@@ -1246,7 +1305,13 @@ $NEWPAGE
 'import-logentry-interwiki-detail'=> '$2 の $1 版',
 
 # Keyboard access keys for power users
+'accesskey-search'      => 'f',
+'accesskey-minoredit'   => 'i',
+'accesskey-save'        => 's',
+'accesskey-preview'     => 'p',
 'accesskey-diff'        => 'v',
+'accesskey-compareselectedversions' => 'v',
+'accesskey-watch'       => 'w',
 
 # tooltip help for some actions, most are in Monobook.js
 'tooltip-search'        => 'ウィキ内を検索 [alt-f]',
@@ -1259,8 +1324,8 @@ $NEWPAGE
 'Common.css'            => '/* ここに書いた CSS は全ての外装に反映されます */',
 'Monobook.css'          => '/* このページを編集するとサイト全体での外装 monobook のカスタマイズになります */
 #bodyContent { font-size:118% }',
-'nodublincore'          => 'このサーバでは Dublin Core RDF メタデータが許可されていません。',
-'nocreativecommons'     => 'このサーバではクリエイティブ・コモンズの RDF メタデータが許可されていません。',
+'nodublincore'          => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',
+'nocreativecommons'     => 'このサーバーではクリエイティブ・コモンズの RDF メタデータが許可されていません。',
 'notacceptable'         => 'ウィキサーバーはあなたの使用しているクライアントが読める形式で情報を提供できません。',
 'anonymous'             => '{{SITENAME}}の匿名利用者',
 'siteuser'              => '{{SITENAME}}の利用者$1',
@@ -1276,6 +1341,7 @@ $NEWPAGE
 'spamprotectionmatch'   => '以下はスパム・フィルターによって検出されたテキストです: $1',
 'subcategorycount'      => 'このカテゴリには $1 のサブカテゴリがあります。',
 'categoryarticlecount'  => 'このカテゴリには $1 のページがあります。',
+'category-media-count'  => 'このカテゴリには $1 のファイルがあります。',
 'listingcontinuesabbrev'=> ' の続き',
 'spambot_username'      => 'MediaWiki スパム除去',
 'spam_reverting'        => '$1 へのリンクを含まない以前の版に差し戻し',
@@ -1352,6 +1418,9 @@ $NEWPAGE
  ta[\'ca-nstab-template\'] = new Array(\'c\',\'テンプレートを表示\');
  ta[\'ca-nstab-help\'] = new Array(\'c\',\'ヘルプページを表示\');
  ta[\'ca-nstab-category\'] = new Array(\'c\',\'カテゴリページを表示\');',
+
+'Common.js'            => '/* ここに書いたスクリプトは全ての外装に反映されます */',
+
 'deletedrevision'       => '古い版 $1 を削除しました。',
 'previousdiff'          => '←前の差分',
 'nextdiff'              => '次の差分→',
@@ -1376,6 +1445,13 @@ $NEWPAGE
 'metadata-help'         => 'このファイルはデジタルカメラ・スキャナなどが付加した追加情報を含んでいます。このファイルがオリジナルの状態から変更されている場合、いくつかの項目は変更を完全に反映していないかもしれません。',
 'metadata-expand'       => '拡張項目を表示',
 'metadata-collapse'     => '拡張項目を隠す',
+'metadata-fields'       => 'ここに挙げたEXIF情報のフィールドのみが標準で表示されます。
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 'exif-imagewidth'       => '画像の幅',
 'exif-imagelength'      => '画像の高さ',
 'exif-bitspersample'    => 'ビット深度',
@@ -1424,6 +1500,7 @@ $NEWPAGE
 'exif-exposuretime'     => '露出時間',
 'exif-exposuretime-format'=> '$1秒 ($2)',
 'exif-fnumber'          => 'F値',
+'exif-fnumber-format'   =>'f/$1',
 'exif-exposureprogram'  => '露出プログラム',
 'exif-spectralsensitivity'=> 'スペクトル感度',
 'exif-isospeedratings'  => 'ISOスピードレート',
@@ -1438,6 +1515,7 @@ $NEWPAGE
 'exif-lightsource'      => '光源',
 'exif-flash'            => 'フラッシュ',
 'exif-focallength'      => 'レンズの焦点距離',
+'exif-focallength-format' => '$1 mm',
 'exif-subjectarea'      => '主要被写体の位置',
 'exif-flashenergy'      => 'フラッシュ強度',
 'exif-spatialfrequencyresponse'=> '空間周波数応答',
@@ -1494,8 +1572,13 @@ $NEWPAGE
 'exif-gpsareainformation'=> 'GPSエリア名',
 'exif-gpsdatestamp'     => 'GPS測位日時',
 'exif-gpsdifferential'  => 'ディファレンシャル補正',
+
 'exif-compression-1'    => '非圧縮',
 'exif-compression-6'    => 'JPEG圧縮',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
+
 'exif-orientation-1'    => '通常',
 'exif-orientation-2'    => '左右反転',
 'exif-orientation-3'    => '180°回転',
@@ -1504,10 +1587,24 @@ $NEWPAGE
 'exif-orientation-6'    => '時計回りに90°回転',
 'exif-orientation-7'    => '時計回りに90°回転 上下反転',
 'exif-orientation-8'    => '反時計回りに90°回転',
+
 'exif-planarconfiguration-1'=> '点順次フォーマット',
 'exif-planarconfiguration-2'=> '面順次フォーマット',
+
+'exif-xyresolution-i'   => '$1 dpi',
+'exif-xyresolution-c'   => '$1 dpc',
+
+'exif-colorspace-1'     => 'sRGB',
 'exif-colorspace-ffff.h'=> 'その他',
-'exif-componentsconfiguration-0'=> 'なし',
+
+'exif-componentsconfiguration-0' => 'なし',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
+
 'exif-exposureprogram-0'=> '未定義',
 'exif-exposureprogram-1'=> 'マニュアル',
 'exif-exposureprogram-2'=> 'ノーマルプログラム',
@@ -1517,7 +1614,9 @@ $NEWPAGE
 'exif-exposureprogram-6'=> 'アクション・プログラム',
 'exif-exposureprogram-7'=> 'ポートレイトモード（近景）',
 'exif-exposureprogram-8'=> 'ランドスケープモード（遠景）',
+
 'exif-subjectdistance-value'=> '$1 メートル',
+
 'exif-meteringmode-0'   => '不明',
 'exif-meteringmode-1'   => '平均',
 'exif-meteringmode-2'   => '中央重点',
@@ -1541,9 +1640,15 @@ $NEWPAGE
 'exif-lightsource-17'   => '標準光A',
 'exif-lightsource-18'   => '標準光B',
 'exif-lightsource-19'   => '標準光C',
+'exif-lightsource-20'   => 'D55',
+'exif-lightsource-21'   => 'D65',
+'exif-lightsource-22'   => 'D75',
+'exif-lightsource-23'   => 'D50',
 'exif-lightsource-24'   => 'ISOスタジオタングステン',
 'exif-lightsource-255'  => 'その他',
+
 'exif-focalplaneresolutionunit-2'=> 'インチ',
+
 'exif-sensingmethod-1'  => '未定義',
 'exif-sensingmethod-2'  => '単板カラーセンサー',
 'exif-sensingmethod-3'  => '2板カラーセンサー',
@@ -1607,12 +1712,15 @@ $NEWPAGE
 'confirmemail_text'     => 'このウィキではメール通知を受け取る前にメールアドレスの確認が必要です。以下のボタンを押すと「{{int:Confirmemail_subject}}」という件名の確認メールがあなたのメールアドレスに送られます。メールには確認用コードを含むリンクが書かれています。そのリンクを開くことによってメールアドレスの正当性が確認されます。',
 'confirmemail_send'     => '確認用コードを送信する',
 'confirmemail_sent'     => '確認メールを送信しました。',
-'confirmemail_sendfailed'=> '確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。',
+'confirmemail_sendfailed'=> '確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。
+
+メールサーバーからの返答: $1',
 'confirmemail_invalid'  => '確認用コードが正しくありません。このコードは期限切れです。',
 'confirmemail_needlogin'=> 'メールアドレスを確認するために$1が必要です。',
 'confirmemail_success'  => 'あなたのメールアドレスは確認されました。ログインしてウィキを楽しんでください。',
 'confirmemail_loggedin' => 'あなたのメールアドレスは確認されました。',
 'confirmemail_error'    => 'あなたの確認を保存する際に内部エラーが発生しました。',
+'confirmemail_subject'  => '{{SITENAME}} メールアドレスの確認',
 'confirmemail_body'     => 'This is a E-mail confirmation of *{{SITENAME}}*.
 If you can not read this message below,
 you can not read wikimail either.
@@ -1656,6 +1764,9 @@ $1
 このままこのページを新規作成して良いか確認してください。',
 'recreate'              => '新規作成する',
 'tooltip-recreate'      => 'このままこのページを新規作成する',
+
+'unit-pixel'            => 'px',
+
 'redirectingto'         => '[[$1]]へ転送しています...',
 'confirm_purge'         => 'ページのキャッシュを破棄します。よろしいですか?
 
@@ -1668,9 +1779,15 @@ $1',
 'hideresults'           => '結果を隠す',
 'loginlanguagelabel'    => '言語: $1',
 
+'displaytitle'          => '（このページへリンクするには [[$1]] を使用）',
+
 # Multipage image navigation
+# 使用ページ例: http://commons.wikimedia.org/wiki/Image:Drei_Register_Arithmetischer_ahnfeng_zur_Practic.djvu
 'imgmultipageprev'      => '&larr; 前ページ',
 'imgmultipagenext'      => '次ページ &rarr;',
+'imgmultigo'            => '表示',
+'imgmultigotopre'       => '',
+'imgmultigotopost'      => 'ページ目を',
 
 # Table pager
 'ascending_abbrev'      => '昇順',
