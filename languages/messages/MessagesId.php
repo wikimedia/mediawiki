@@ -1949,7 +1949,6 @@ $1",
 'autosumm-blank' => 'Menghapus semua isi dari halaman',
 'autosumm-replace' => 'Mengganti halaman dengan \'$1\'',
 'autoredircomment' => 'Alihkan ke [[$1]]',
-'autosumm-shortnew' => 'Halaman baru: $1',
 
 );
 
