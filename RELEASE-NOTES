@@ -214,6 +214,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
    in the autoblock_whitelist system message.
 * Added placeholders for text injection by hooks to EditPage.php
 * (bug 8009) Automatic edit summary for redirects is not filled for edits in existing pages
+* Installer support for experimental MySQL 4.1/5.0 binary-safe schema
+
 
 == Languages updated ==
 
