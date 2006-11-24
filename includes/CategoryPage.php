@@ -259,6 +259,7 @@ class CategoryViewer {
 		if( $this->showGallery && ! $this->gallery->isEmpty() ) {
 			return "<div id=\"mw-category-media\">\n" .
 			'<h2>' . wfMsg( 'category-media-header', htmlspecialchars($this->title->getText()) ) . "</h2>\n" .
+			wfMsgExt( 'category-media-count', array( 'parse' ), $this->gallery->count() ) .
 			$this->gallery->toHTML() . "\n</div>";
 		} else {
 			return '';
