@@ -390,7 +390,8 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	}
 	function _doinsert($t, $v) {
 		$dbw =& wfGetDB( DB_MASTER );
-		return $dbw->insert($t, $v, 'MediaWikiBagOStuff::_doinsert');
+		return $dbw->insert($t, $v, 'MediaWikiBagOStuff::_doinsert',
+			array( 'IGNORE' ) );
 	}
 	function _fetchobject($result) {
 		$dbw =& wfGetDB( DB_MASTER );
