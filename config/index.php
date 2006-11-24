@@ -532,9 +532,10 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->RootPW = importPost( "RootPW", "-" );
 
 	## MySQL specific:
-	$conf->DBprefix     =  importPost( "DBprefix" );
-	$conf->DBmysql5     = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
-	$conf->LanguageCode =  importPost( "LanguageCode", "en" );
+	$conf->DBprefix     = importPost( "DBprefix" );
+	$conf->DBschema     = importPost( "DBschema", "mysql4" );
+	$conf->DBmysql5     = ($conf->DBschema == "mysql5" || $conf->DBschema == "mysql5-binary");
+	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 
 	## Postgres specific:
 	$conf->DBport      = importPost( "DBport",      "5432" );
@@ -836,12 +837,21 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			# FIXME: Check for errors
 			print "<li>Creating tables...";
 			if ($conf->DBtype == 'mysql') {
-				if( $wgDBmysql5 ) {
-					print " using MySQL 5 table defs...";
-					dbsource( "../maintenance/mysql5/tables.sql", $wgDatabase );
-				} else {
+				switch( $conf->DBschema ) {
+				case "mysql4":
 					print " using MySQL 4 table defs...";
 					dbsource( "../maintenance/tables.sql", $wgDatabase );
+					break;
+				case "mysql5":
+					print " using MySQL 5 UTF-8 table defs...";
+					dbsource( "../maintenance/mysql5/tables.sql", $wgDatabase );
+					break;
+				case "mysql5-binary":
+					print " using MySQL 5 binary table defs...";
+					dbsource( "../maintenance/mysql5/tables-binary.sql", $wgDatabase );
+					break;
+				default:
+					dieout( " <b>invalid schema selection!</b></li>" );
 				}
 				dbsource( "../maintenance/interwiki.sql", $wgDatabase );
 			} else if ($conf->DBtype == 'postgres') {
@@ -1198,8 +1208,9 @@ if( count( $errs ) ) {
 	<div class="config-input"><label class="column">Database charset</label>
 		<div>Select one:</div>
 		<ul class="plain">
-		<li><?php aField( $conf, "DBmysql5", "Backwards-compatible UTF-8", "radio", "false" ); ?></li>
-		<li><?php aField( $conf, "DBmysql5", "Experimental MySQL 4.1/5.0 UTF-8", "radio", "true" ); ?></li>
+		<li><?php aField( $conf, "DBschema", "Backwards-compatible UTF-8", "radio", "mysql4" ); ?></li>
+		<li><?php aField( $conf, "DBschema", "Experimental MySQL 4.1/5.0 UTF-8", "radio", "mysql5" ); ?></li>
+		<li><?php aField( $conf, "DBschema", "Experimental MySQL 4.1/5.0 binary", "radio", "mysql5-binary" ); ?></li>
 		</ul>
 	</div>
 	<p class="config-desc">
