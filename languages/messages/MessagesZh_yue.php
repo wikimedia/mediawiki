@@ -248,6 +248,7 @@ $messages = array(
 'pagecategories' 	=> '分類',
 'category_header' 	=> '"$1" 分類中嘅文章',
 'subcategories' 	=> '次分類',
+'category-media-header' => '響 "$1" 分類嘅媒體',
 
 'mainpage' 		=> '頭版',
 'mainpagetext' 		=> "<big>'''MediaWiki 已經成功地安裝。'''</big>",
@@ -343,7 +344,6 @@ $messages = array(
 'viewtalkpage' 		=> '睇討論',
 'otherlanguages' 	=> '其它語言',
 'redirectedfrom' 	=> '(由 $1 重新定向)', //REDIRECT
-'autoredircomment' 	=> '重新定向緊到[[$1]]',
 'redirectpagesub' 	=> '重新定向頁',
 'lastmodifiedat'		=> '呢一頁嘅最後修改係響$1 $2。',
 'viewcount'		=> '呢一頁已經有$1人次睇過。',
@@ -580,7 +580,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'anoneditwarning' 	=> "'''警告：'''你仲未登入。你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。",
 'missingsummary' 	=> "'''提醒：''' 你未有提供一個編輯摘要。如果你再噤多一下儲存嘅話，咁你嘅編輯就會喺唔包括編輯摘要下儲存。",
 'missingcommenttext' 	=> '請輸入一個註解。',
-'missingcommentheader' => "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就唔會留有任何摘要。",
+'missingcommentheader' 	=> "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就唔會留有任何摘要。",
+'summary-preview' 	=> '摘要預覽',
+'subject-preview' 	=> '標題／頭條預覽',
 'blockedtitle'		=> '用戶已經封鎖',
 'blockedtext'		=> "<big>你嘅用戶名或者 IP 位址已經被 $1 封咗。</big>
 
@@ -661,6 +663,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'protectedpagewarning' 	=> "<strong>警告：呢版已經受到保護，有管理員權限嘅用戶先至可以改。</strong>",
 'semiprotectedpagewarning' => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
 'templatesused'		=> '喺呢一頁所用嘅模：',
+'templatesusedpreview' 	=> '喺呢一次預覽所用嘅模：',
+'templatesusedsection' 	=> '喺呢一小節所用嘅模：',
 'edittools' 		=> '<!-- 喺呢度嘅文字會喺編輯框下面同埋上載表格中顯示。 -->',
 'nocreatetitle' 	=> '頁面建立被限制',
 'nocreatetext' 		=> '呢個網站已經限制咗起新版嘅能力。
@@ -680,7 +684,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'loadhist'		=> '攞緊版嘅歷史',
 'currentrev'		=> '家下嘅版本',
 'revisionasof'  => '喺$1嘅修訂',
-'revision-info' => '喺$1嘅修訂； $2',
+'revision-info' => '喺$1嘅修訂；修訂自$2',
 'previousrevision'	=> '←之前嘅修訂',
 'nextrevision'		=> '新啲嘅修訂→',
 'currentrevisionlink'   => '家下嘅修訂版本',
@@ -1702,6 +1706,9 @@ ta[\'ca-nstab-template\'] = new Array(\'c\',\'睇吓個模\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'睇吓幫助頁\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'睇吓分類頁\');',
 
+# Common.js: contains nothing but a placeholder comment
+'Common.js' => '/* 響每一次個頁面載入時，所有用戶都會載入呢度所有嘅JavaScript。 */',
+
 # image deletion
 'deletedrevision' => '刪除咗$1嘅舊有修訂。',
 
@@ -2116,7 +2123,7 @@ $1
 'confirm_purge_button' => '肯定',
 
 'youhavenewmessagesmulti' => "你響 $1 有一個新信息",
-'newtalkseperator' => ',_',
+
 'searchcontaining' => "搵含有''$1''嘅文章。",
 'searchnamed' => "搵個名係''$1''嘅文章。",
 'articletitles' => "以''$1''開頭嘅文章",
@@ -2144,6 +2151,12 @@ $1
 'table_pager_limit' => '每一版顯示$1個項目',
 'table_pager_limit_submit' => '去',
 'table_pager_empty' => '無結果',
+
+# Auto-summaries
+'autosumm-blank' => '移除緊響嗰一版嘅全部內容',
+'autosumm-replace' => '用 \'$1\' 取代緊嗰一版',
+'autoredircomment' 	=> '重新定向緊到[[$1]]', # This should be changed to the new naming convention, but existed beforehand.
+'autosumm-new' => '新頁： $1',
 
 );
 
