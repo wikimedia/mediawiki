@@ -206,6 +206,19 @@ class IP {
 		} else {				
 			return array( $start, $end );
 		}
-	}
+    }
+
+    /**
+     * Determine if a given integer IPv4 address is in a given CIDR network
+     * @param $addr The address to check against the given range.
+     * @param $range The range to check the given address against.
+     * @return bool Whether or not the given address is in the given range.
+     */
+    function isInRange( $addr, $range ) {
+        $unsignedIP = IP::toUnsigned($addr);
+        list( $start, $end ) = IP::parseRange($range);
+
+        return (($unsignedIP >= $start) && ($unsignedIP <= $end));
+    }
 }
 ?>

@@ -241,10 +241,10 @@ class Block
 
 	/**
 	 * Determine if a given integer IPv4 address is in a given CIDR network
-	 * @deprecated Use wfIsAddressInRange
+	 * @deprecated Use IP::isAddressInRange
 	 */
 	function isAddressInRange( $addr, $range ) {
-		return wfIsAddressInRange( $addr, $range );
+		return IP::isAddressInRange( $addr, $range );
 	}
 
 	function initFromRow( $row )
@@ -275,9 +275,7 @@ class Block
 		$this->mRangeEnd = '';
 
 		if ( $this->mUser == 0 ) {
-			$startend = wfRangeStartEnd($this->mAddress);
-			$this->mRangeStart = $startend[0];
-			$this->mRangeEnd = $startend[1];
+			list( $this->mRangeStart, $this->mRangeEnd ) = IP::parseCIDR( $this->mAddress );
 		}
 	}
 
@@ -407,7 +405,7 @@ class Block
 	*@return Whether or not a retroactive autoblock was made.
 	*/
 	function doRetroactiveAutoblock() {
-		$dbr = wfGetDb( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		#If autoblock is enabled, autoblock the LAST IP used
 		# - stolen shamelessly from CheckUser_body.php
 
@@ -435,7 +433,7 @@ class Block
 	*/
 	function doAutoblock( $autoblockip ) {
 		# Check if this IP address is already blocked
-		$dbw =& wfGetDb( DB_MASTER );
+		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->begin();
 
 		# If autoblocks are disabled, go away.
@@ -463,7 +461,7 @@ class Block
 			wfDebug("Checking $wlEntry\n");
 
 			# Is the IP in this range?
-			if (wfIsAddressInRange( $ip, $wlEntry )) {
+			if (IP::isInRange( $ip, $wlEntry )) {
 				wfDebug("IP $ip matches $wlEntry, not autoblocking\n");
 				#$autoblockip = null; # Don't autoblock a whitelisted IP.
 				return; #This /SHOULD/ introduce a dummy block - but

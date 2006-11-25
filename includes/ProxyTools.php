@@ -23,7 +23,7 @@ function wfGetForwardedFor() {
 
 /** Work out the IP address based on various globals */
 function wfGetIP() {
-	global $wgSquidServers, $wgSquidServersNoPurge, $wgIP;
+	global $wgIP;
 
 	# Return cached result
 	if ( !empty( $wgIP ) ) {
@@ -40,33 +40,43 @@ function wfGetIP() {
 	}
 	$ip = $ipchain[0];
 
-	# Get list of trusted proxies
-	# Flipped for quicker access
-	$trustedProxies = array_flip( array_merge( $wgSquidServers, $wgSquidServersNoPurge ) );
-	if ( count( $trustedProxies ) ) {
-		# Append XFF on to $ipchain
-		$forwardedFor = wfGetForwardedFor();
-		if ( isset( $forwardedFor ) ) {
-			$xff = array_map( 'trim', explode( ',', $forwardedFor ) );
-			$xff = array_reverse( $xff );
-			$ipchain = array_merge( $ipchain, $xff );
-		}
-		# Step through XFF list and find the last address in the list which is a trusted server
-		# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
-		foreach ( $ipchain as $i => $curIP ) {
-			if ( array_key_exists( $curIP, $trustedProxies ) ) {
-				if ( isset( $ipchain[$i + 1] ) && IP::isPublic( $ipchain[$i + 1] ) ) {
-					$ip = $ipchain[$i + 1];
-				}
-			} else {
-				break;
+	# Append XFF on to $ipchain
+	$forwardedFor = wfGetForwardedFor();
+	if ( isset( $forwardedFor ) ) {
+		$xff = array_map( 'trim', explode( ',', $forwardedFor ) );
+		$xff = array_reverse( $xff );
+		$ipchain = array_merge( $ipchain, $xff );
+	}
+	# Step through XFF list and find the last address in the list which is a trusted server
+	# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
+	foreach ( $ipchain as $i => $curIP ) {
+		if ( wfIsTrustedProxy( $curIP ) ) {
+			if ( isset( $ipchain[$i + 1] ) && IP::isPublic( $ipchain[$i + 1] ) ) {
+				$ip = $ipchain[$i + 1];
 			}
+		} else {
+			break;
 		}
 	}
 
 	wfDebug( "IP: $ip\n" );
 	$wgIP = $ip;
 	return $ip;
+}
+
+function wfIsTrustedProxy( $ip ) {
+	global $wgSquidServers, $wgSquidServersNoPurge;
+
+	if ( in_array( $ip, $wgSquidServers ) || 
+		in_array( $ip, $wgSquidServersNoPurge ) || 
+		wfIsAOLProxy( $ip ) 
+	) {
+		$trusted = true;
+	} else {
+		$trusted = false;
+	}
+	wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
+	return $trusted;
 }
 
 /**
@@ -154,6 +164,51 @@ function wfIsLocallyBlockedProxy( $ip ) {
 	return $ret;
 }
 
+/**
+ * TODO: move this list to the database in a global IP info table incorporating
+ * trusted ISP proxies, blocked IP addresses and open proxies.
+ */
+function wfIsAOLProxy( $ip ) {
+	$ranges = array(
+		'64.12.96.0/19',
+		'149.174.160.0/20',
+		'152.163.240.0/21',
+		'152.163.248.0/22',
+		'152.163.252.0/23',
+		'152.163.96.0/22',
+		'152.163.100.0/23',
+		'195.93.32.0/22',
+		'195.93.48.0/22',
+		'195.93.64.0/19',
+		'195.93.96.0/19',
+		'195.93.16.0/20',
+		'198.81.0.0/22',
+		'198.81.16.0/20',
+		'198.81.8.0/23',
+		'202.67.64.128/25',
+		'205.188.192.0/20',
+		'205.188.208.0/23',
+		'205.188.112.0/20',
+		'205.188.146.144/30',
+		'207.200.112.0/21',
+	);
+
+	static $parsedRanges;
+	if ( is_null( $parsedRanges ) ) {
+		$parsedRanges = array();
+		foreach ( $ranges as $range ) {
+			$parsedRanges[] =  IP::parseRange( $range );
+		}
+	}
+
+	$hex = IP::toHex( $ip );
+	foreach ( $parsedRanges as $range ) {
+		if ( $hex >= $range[0] && $hex <= $range[1] ) {
+			return true;
+		}
+	}
+	return false;
+}
 
 
 
