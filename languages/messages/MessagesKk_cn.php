@@ -1634,9 +1634,10 @@ $NEWPAGE
 # Spam protection
 'spamprotectiontitle'    => '«سپام»-نان قورعايتىن سٴۇزگٴى',
 'spamprotectiontext'     => 'بۇل بەتتٴىڭ ساقتاۋىن «سپام» سٴۇزگٴىسٴى بۇعاتتادى. بۇنىڭ سەبەبٴى سىرتقى توراپ سٴىلتەمەسٴىنەن بولۋى مٴۇمكٴىن.',
-'spamprotectionmatch'    => 'كەلەسٴى «سپام» مٴاتٴىنٴى سٴۇزگٴىلٴىنگەن: $1',
+'spamprotectionmatch'    => 'كەلەسٴى «سپام» مٴاتٴىنٴى سٴۇزگٴىلەنگەن: $1',
 'subcategorycount'       => 'بۇل ساناتتا {{PLURAL:$1|بٴىر|$1}} تٴومەنگٴى سانات بار.',
 'categoryarticlecount'   => 'بۇل ساناتتا {{PLURAL:$1|بٴىر|$1}} بەت بار.',
+'category-media-count'   => 'بۇل ساناتتا {{PLURAL:$1|بٴىر|$1}} فايل بار.',
 'listingcontinuesabbrev' => ' (جالع.)',
 'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => '$1 دەگەنگە سٴىلتەمەسٴى جوق سوڭعى نۇسقاسىنا قايتارىلدى',
@@ -1755,9 +1756,9 @@ if (wgUserLanguage == "kk-cn"){
 'noimages'     => 'كٴورەتٴىن ەشتەڭە جوق.',
 
 # Variants for Kazakh language
-'variantname-kk-tr' => 'Qazaq',
-'variantname-kk-kz' => 'Қазақ',
-'variantname-kk-cn' => 'قازاق',
+'variantname-kk-tr' => 'Latın',
+'variantname-kk-kz' => 'Кирил',
+'variantname-kk-cn' => 'توتە',
 'variantname-kk'    => 'disable',
 
 # Labels for User: and Title: on Special:Log pages
@@ -2168,7 +2169,7 @@ $1
 'autosumm-blank'   => 'بەتتٴىڭ بارلىق ماعلۇماتىن الاستاتتى',
 'autosumm-replace' => "بەتتٴى '$1' دەگەنمەن الماستىردى",
 'autoredircomment' => '[[$1]] دەگەنگە ايدادى', # This should be changed to the new naming convention, but existed beforehand
-'autosumm-new' => 'جاڭا بەت: $1',
+'autosumm-new' => 'جاڭا بەت ماعلۇماتى: $1',
 );
 
 ?>
