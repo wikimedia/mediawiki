@@ -1612,6 +1612,7 @@ $NEWPAGE
 'spamprotectionmatch'    => 'Келесі «спам» мәтіні сүзгілінген: $1',
 'subcategorycount'       => 'Бұл санатта {{PLURAL:$1|бір|$1}} төменгі санат бар.',
 'categoryarticlecount'   => 'Бұл санатта {{PLURAL:$1|бір|$1}} бет бар.',
+'category-media-count'   => 'Бұл санатта {{PLURAL:$1|бір|$1}} файл бар.',
 'listingcontinuesabbrev' => ' (жалғ.)',
 'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => '$1 дегенге сілтемесі жоқ соңғы нұсқасына қайтарылды',
@@ -1730,9 +1731,9 @@ if (wgUserLanguage == "kk-cn"){
 'noimages'     => 'Көретін ештеңе жоқ.',
 
 # Variants for Kazakh language
-'variantname-kk-tr' => 'Qazaq',
-'variantname-kk-kz' => 'Қазақ',
-'variantname-kk-cn' => 'قازاق',
+'variantname-kk-tr' => 'Latın',
+'variantname-kk-kz' => 'Кирил',
+'variantname-kk-cn' => 'توتە',
 'variantname-kk'    => 'disable',
 
 # Labels for User: and Title: on Special:Log pages
@@ -2143,7 +2144,7 @@ $1
 'autosumm-blank'   => 'Беттің барлық мағлұматын аластатты',
 'autosumm-replace' => "Бетті '$1' дегенмен алмастырды",
 'autoredircomment' => '[[$1]] дегенге айдады', # This should be changed to the new naming convention, but existed beforehand
-'autosumm-new' => 'Жаңа бет: $1',
+'autosumm-new' => 'Жаңа бет мағлұматы: $1',
 );
 
 ?>
