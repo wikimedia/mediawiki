@@ -86,7 +86,7 @@ $messages = array(
 'tog-forceeditsummary'  => '要約欄が空欄の場合に警告する',
 'tog-watchlisthideown'  => '自分の編集を表示しない',
 'tog-watchlisthidebots' => 'ボットによる編集を表示しない',
-//'tog-nolangconversion'  => '未訳',
+'tog-nolangconversion'  => '字形変換を無効にする',
 
 'underline-always'      => '常に付ける',
 'underline-never'       => '常に付けない',
@@ -839,7 +839,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] の長さは \'\'\'$7\'\'\' です。',
 'statistics-mostpopular'=> '最も閲覧されているページ',
-'userstatstext'         => '登録済みの利用者は\'\'\'$1\'\'\'人で、内\'\'\'$2\'\'\'人 (\'\'\'$4%\'\'\') が{{int:group-sysop}}権限を持っています。($3を参照)',
+'userstatstext'         => '登録済みの利用者は\'\'\'$1\'\'\'人で、内\'\'\'$2\'\'\'人 (\'\'\'$4%\'\'\') が$5権限を持っています。($3を参照)',
 'disambiguations'       => '曖昧さ回避ページ',
 'disambiguationspage'   => 'Template:aimai',
 'disambiguationstext'   => '以下のページは<b>曖昧さ回避ページ</b>へリンクしています。これらのページはより適した主題のページへリンクされるべきです。<br />
@@ -1115,8 +1115,8 @@ $NEWPAGE
 'notargettitle'         => '対象となるページが存在しません',
 'notargettext'          => '対象となるページ又は利用者が指定されていません',
 'linklistsub'           => 'リンクの一覧',
-'linkshere'             => '指定したページは以下のページからリンクされています',
-'nolinkshere'           => '指定されたページにリンクしているページはありません。',
+'linkshere'             => '[[$1]] は以下のページからリンクされています',
+'nolinkshere'           => '[[$1]] にリンクしているページはありません。',
 'isredirect'            => 'リダイレクトページ',
 'istemplate'            => 'テンプレート呼出',
 
