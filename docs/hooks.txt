@@ -437,6 +437,12 @@ $article: article object to be removed
 $user: user that was watching
 $article: article object removed
 
+'UploadForm:initial': before the upload form is generated
+$form: UploadForm object
+You might set the member-variables $uploadFormTextTop and 
+$uploadFormTextAfterSummary to inject text (HTML) either before
+or after the editform.
+
 'UploadVerification': additional chances to reject an uploaded file
 string $saveName: destination file name
 string $tempName: filesystem path to the temporary file for checks
