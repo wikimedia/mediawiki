@@ -313,7 +313,7 @@ class MessageCache {
 		# Go through the language array and the extension array and make a note of
 		# any keys missing from the cache
 		$allMessages = Language::getMessagesFor( 'en' );
-		foreach ( array_keys($allMessages) as $key ) {
+		foreach ( $allMessages as $key => $unused ) {
 			$uckey = $wgLang->ucfirst( $key );
 			if ( !array_key_exists( $uckey, $this->mCache ) ) {
 				$this->mCache[$uckey] = false;
@@ -324,7 +324,7 @@ class MessageCache {
 		MessageCache::loadAllMessages();
 
 		# Add them to the cache
-		foreach ( array_keys($this->mExtensionMessages) as $key ) {
+		foreach ( $this->mExtensionMessages as $key => $unused ) {
 			$uckey = $wgLang->ucfirst( $key );
 			if ( !array_key_exists( $uckey, $this->mCache ) &&
 			 ( isset( $this->mExtensionMessages[$key][$wgLang->getCode()] ) || isset( $this->mExtensionMessages[$key]['en'] ) )  ) {
@@ -343,7 +343,7 @@ class MessageCache {
 		if ( !$this->mKeys ) {
 			$this->mKeys = array();
 			$allMessages = Language::getMessagesFor( 'en' );
-			foreach ( array_keys($allMessages) as $key ) {
+			foreach ( $allMessages as $key => $unused ) {
 				$title = $wgContLang->ucfirst( $key );
 				array_push( $this->mKeys, $title );
 			}

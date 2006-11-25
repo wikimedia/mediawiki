@@ -72,7 +72,7 @@ if ( !function_exists( 'array_diff_key' ) ) {
 	 */
 	function array_diff_key( $left, $right ) {
 		$result = $left;
-		foreach ( array_keys($left) as $key ) {
+		foreach ( $left as $key => $unused ) {
 			if ( isset( $right[$key] ) ) {
 				unset( $result[$key] );
 			}

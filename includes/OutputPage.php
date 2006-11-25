@@ -243,7 +243,7 @@ class OutputPage {
 		$lb->execute();
 
 		$sk =& $wgUser->getSkin();
-		foreach ( array_keys($categories) as $category ) {
+		foreach ( $categories as $category => $unused ) {
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$text = $wgContLang->convertHtml( $title->getText() );
 			$this->mCategoryLinks[] = $sk->makeLinkObj( $title, $text );
@@ -1011,7 +1011,7 @@ class OutputPage {
 			return;
 		}
 		foreach ( $links2d as $dbkeys ) {
-			foreach( array_keys($dbkeys) as $dbkey ) {
+			foreach( $dbkeys as $dbkey => $unused ) {
 				$this->addKeyword( $dbkey );
 				if ( ++$count > 10 ) {
 					break 2;
