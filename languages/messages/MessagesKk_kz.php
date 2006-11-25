@@ -1609,7 +1609,7 @@ $NEWPAGE
 # Spam protection
 'spamprotectiontitle'    => '«Спам»-нан қорғайтын сүзгі',
 'spamprotectiontext'     => 'Бұл беттің сақтауын «спам» сүзгісі бұғаттады. Бұның себебі сыртқы торап сілтемесінен болуы мүмкін.',
-'spamprotectionmatch'    => 'Келесі «спам» мәтіні сүзгілінген: $1',
+'spamprotectionmatch'    => 'Келесі «спам» мәтіні сүзгіленген: $1',
 'subcategorycount'       => 'Бұл санатта {{PLURAL:$1|бір|$1}} төменгі санат бар.',
 'categoryarticlecount'   => 'Бұл санатта {{PLURAL:$1|бір|$1}} бет бар.',
 'category-media-count'   => 'Бұл санатта {{PLURAL:$1|бір|$1}} файл бар.',

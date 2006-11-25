@@ -1610,9 +1610,10 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 # Spam protection
 'spamprotectiontitle'    => '«Spam»-nan qorğaýtın süzgi',
 'spamprotectiontext'     => 'Bul bettiñ saqtawın «spam» süzgisi buğattadı. Bunıñ sebebi sırtqı torap siltemesinen bolwı mümkin.',
-'spamprotectionmatch'    => 'Kelesi «spam» mätini süzgilingen: $1',
+'spamprotectionmatch'    => 'Kelesi «spam» mätini süzgilengen: $1',
 'subcategorycount'       => 'Bul sanatta {{PLURAL:$1|bir|$1}} tömengi sanat bar.',
 'categoryarticlecount'   => 'Bul sanatta {{PLURAL:$1|bir|$1}} bet bar.',
+'category-media-count'   => 'Bul sanatta {{PLURAL:$1|bir|$1}} faýl bar.',
 'listingcontinuesabbrev' => ' (jalğ.)',
 'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => '$1 degenge siltemesi joq soñğı nusqasına qaýtarıldı',
@@ -1731,9 +1732,9 @@ if (wgUserLanguage == "kk-cn"){
 'noimages'     => 'Köretin eşteñe joq.',
 
 # Variants for Kazakh language
-'variantname-kk-tr' => 'Qazaq',
-'variantname-kk-kz' => 'Қазақ',
-'variantname-kk-cn' => 'قازاق',
+'variantname-kk-tr' => 'Latın',
+'variantname-kk-kz' => 'Кирил',
+'variantname-kk-cn' => 'توتە',
 'variantname-kk'    => 'disable',
 
 # Labels for User: and Title: on Special:Log pages
