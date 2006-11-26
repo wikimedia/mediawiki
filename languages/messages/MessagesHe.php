@@ -715,8 +715,12 @@ $messages = array(
 'edittools'                 => '<!-- הטקסט הנכתב כאן יוצג מתחת לטפסי עריכת דפים והעלאת קבצים, ולפיכך ניתן לכתוב להציג בו תווים קשים לכתיבה, קטעים מוכנים של טקסט ועוד. -->',
 'nocreatetitle'             => 'יצירת הדפים הוגבלה',
 'nocreatetext'              => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[{{ns:special}}:Userlogin|להיכנס לחשבון]].',
-'cantcreateaccounttitle'    => 'לא ניתן ליצור את החשבון',
-'cantcreateaccounttext'     => 'אפשרות יצירת החשבונות מכתובת ה־IP הזו (<b>$1</b>) נחסמה, כנראה עקב השחתות מתמשכות מבית־הספר או ספק האינטרנט שלך.',
+'undofailed'                => 'הביטול נכשל',
+'explainundofailed'         => 'לא ניתן היה לבטל את העריכה עקב התנגשות עם עריכות מאוחרות יותר. אנא בטלו את העריכות ידנית.',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'לא ניתן ליצור את החשבון',
+'cantcreateaccounttext'  => 'אפשרות יצירת החשבונות מכתובת ה־IP הזו (<b>$1</b>) נחסמה, כנראה עקב השחתות מתמשכות מבית־הספר או ספק האינטרנט שלך.',
 
 # History pages
 'revhistory'                  => 'היסטוריית שינויים',
@@ -782,6 +786,7 @@ $messages = array(
 'selectnewerversionfordiff' => 'בחר גרסה חדשה יותר להשוואה',
 'selectolderversionfordiff' => 'בחר גרסה ישנה יותר להשוואה',
 'compareselectedversions'   => 'השווה את הגרסאות שנבחרו',
+'editundo'                  => 'ביטול',
 
 # Search results
 'searchresults'         => 'תוצאות החיפוש',
