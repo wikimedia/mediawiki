@@ -997,6 +997,10 @@ the text into a text file and save it for later.</strong>',
 'nocreatetitle' => 'Page creation limited',
 'nocreatetext' => 'This site has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
+'undofailed' => 'Undo Failed',
+'explainundofailed' => 'The edit could not be undone because of conflicting intermediate edits. Please manually undo the edits',
+
+# Account creation failure
 'cantcreateaccounttitle' => 'Can\'t create account',
 'cantcreateaccounttext' => 'Account creation from this IP address (<b>$1</b>) has been blocked. 
 This is probably due to persistent vandalism from your school or Internet service 
