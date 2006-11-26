@@ -153,10 +153,10 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => 'Kategori',
-'pagecategories' => '{{PLURAL:$1|Kategori|Kategori}}',
+'pagecategories' => 'Kategori', # no need for plural
 "category_header" => "Artikel dalam kategori \"$1\"",
 "subcategories" => "Subkategori",
-'category-media-header' => 'Media di kategori "$1"',
+'category-media-header' => 'Media dalam kategori "$1"',
 
 "mainpage" => "Halaman Utama",
 "mainpagetext" => "Perangkat lunak wiki berhasil dipasang.",
@@ -229,7 +229,7 @@ $messages = array(
 "editthispage" => "Sunting halaman ini",
 'delete' => 'Hapus',
 "deletethispage" => "Hapus halaman ini",
-'undelete_short' => 'Batal hapus {{PLURAL:$1|satu suntingan|$1 suntingan}}',
+'undelete_short' => 'Batal hapus $1 suntingan', # no need for plural
 'protect' => 'Lindungi',
 "protectthispage" => "Lindungi halaman ini",
 'unprotect' => 'Ubah perlindungan',
@@ -815,7 +815,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 # Image list
 #
 "imagelist"		=> "Daftar berkas",
-'imagelisttext' => "Di bawah ini adalah daftar '''$1''' {{plural:$1|berkas|berkas}} diurutkan $2.",
+'imagelisttext' => "Di bawah ini adalah daftar '''$1''' berkas diurutkan $2.", # no need for plural
 'imagelistforuser'	=> "Hanya berkas yang dimuat oleh $1.",
 "getimagelist"	=> "mengambil daftar berkas",
 "ilsubmit"		=> "Cari",
@@ -1423,8 +1423,9 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'spamprotectiontitle' => 'Filter pencegah spam',
 'spamprotectiontext' => 'Halaman yang ingin Anda simpan diblokir oleh filter spam. Ini mungkin disebabkan oleh pranala ke situs luar.',
 'spamprotectionmatch' => 'Teks berikut ini memancing filter spam kami: $1',
-'subcategorycount' => "Ada $1 subkategori dalam kategori ini.",  # no need for plural
-'categoryarticlecount' => "Ada $1 artikel dalam kategori ini.",  # no need for plural
+'subcategorycount' => "Ada $1 subkategori dalam kategori ini.",
+'categoryarticlecount' => "Ada $1 artikel dalam kategori ini.",
+'category-media-count' => "Ada $1 berkas dalam kategori ini.",
 'listingcontinuesabbrev' => " samb.",
 'spambot_username' => 'Pembersihan span MediaWiki',
 'spam_reverting' => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
@@ -1949,6 +1950,7 @@ $1",
 'autosumm-blank' => 'Menghapus semua isi dari halaman',
 'autosumm-replace' => 'Mengganti halaman dengan \'$1\'',
 'autoredircomment' => 'Alihkan ke [[$1]]',
+'autosumm-new' => 'Halaman baru: $1',
 
 );
 
