@@ -115,8 +115,8 @@ class EditPage {
 						$text = $currev_text;
 
 						#Give a warning
-						$this->editFormTextTop = "<h2>" . wfMsg('undofailed') . "</h2><br/>\n" .
-									wfMsg('explainundofailed');
+						$this->editFormTextTop = "<h2>" . wfMsg('undofailed') . "</h2>\n" .
+									'<p>'.wfMsg('explainundofailed').'</p>';
 					}
 				}
 			}
