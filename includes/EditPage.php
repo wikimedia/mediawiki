@@ -73,6 +73,7 @@ class EditPage {
 		# Get variables from query string :P
 		$section = $wgRequest->getVal( 'section' );
 		$preload = $wgRequest->getVal( 'preload' );
+		$undo = $wgRequest->getVal( 'undo' );
 
 		wfProfileIn( __METHOD__ );
 
@@ -93,8 +94,29 @@ class EditPage {
 			// information.
 			
 			$text = $this->mArticle->getContent();
-			
-			if( $section != '' ) {
+
+			if ( $undo > 0 ) {
+				#Undoing a specific edit overrides section editing; section-editing
+				# doesn't work with undoing.
+				$undorev = Revision::newFromId($undo);
+				$oldrev = $undorev->getPrevious();
+
+				#Sanity check, make sure it's the right page.
+				# Otherwise, $text will be left as-is.
+				if ($undorev->getPage() == $this->mArticle->getID()) {
+					$undorev_text = $undorev->getText();
+					$oldrev_text = $oldrev->getText();
+					$currev_text = $text;
+	
+					$result = wfMerge($undorev_text, $oldrev_text, $currev_text, &$text);
+	
+					if (!$result) {
+						#Undoing failed. Bailing out with regular revision text.
+						$text = $currev_text;
+					}
+				}
+			}
+			else if( $section != '' ) {
 				if( $section == 'new' ) {
 					$text = $this->getPreloadedText( $preload );
 				} else {

@@ -219,6 +219,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   behavior when keys already exist on add (instead of dying with an error...)
 * Add a hook 'UploadForm:initial' before the upload form is generated, and two
   member variable for text injection into the form, which can be filled by the hooks.
+* (bug 6295) Add a "revision patching" functionality, where an edit can be undone
+  (with a functionality similar to diff rev1 rev2 | patch -R rev3 -o rev3).
+  This is triggered by including &undo=revid in an edit URL. A link to a URL
+  that will undo a given edit is shown on NEW NON-CURRENT revision headers on diff pages.
 
 == Languages updated ==
 
