@@ -1082,6 +1082,7 @@ is placed by the site operators.",
 'selectnewerversionfordiff' => 'Select a newer version for comparison',
 'selectolderversionfordiff' => 'Select an older version for comparison',
 'compareselectedversions' => 'Compare selected versions',
+'editundo' => 'undo',
 
 # Search results
 #
