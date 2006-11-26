@@ -559,11 +559,7 @@ Eğer bu bir resim ise <tt><nowiki>[[{{ns:Image}}:$1|thumb|açıklama]]</nowiki>
 'uploadwarning'         => 'Yükleme uyarısı',
 'savefile'              => 'Dosyayı kaydet',
 'uploadedimage'         => 'Yüklenen: "[[$1]]"',
-'uploaddisabled'        => '{|
-|-
-| valign="top" | [[Image:Padlock.svg|45px|Şu anda dosya yüklenmez]]
-|Geçici olarak şu anda herhangi bir dosya yüklenmez. Biraz sonra bir daha deneyiniz.
-|}',
+'uploaddisabled'        => 'Geçici olarak şu anda herhangi bir dosya yüklenmez. Biraz sonra bir daha deneyiniz.',
 'uploaddisabledtext'    => 'Bu wikide dosya yükleme özelliği iptal edilmiştir.',
 'uploadvirus'           => 'Bu dosya virüslüdür! Detayları: $1',
 'sourcefilename'        => 'Yüklemek istediğiniz dosya',
