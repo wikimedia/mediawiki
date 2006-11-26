@@ -43,10 +43,11 @@ class EditPage {
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
-	var $editFormTextTop;
-	var $editFormTextAfterWarn;
-	var $editFormTextAfterTools;
-	var $editFormTextBottom;
+	public $editFormPageTop; // Before even the preview
+	public $editFormTextTop;
+	public $editFormTextAfterWarn;
+	public $editFormTextAfterTools;
+	public $editFormTextBottom;
 
 	/**
 	 * @todo document
@@ -58,9 +59,10 @@ class EditPage {
 		$this->mTitle =& $wgTitle;
 
 		# Placeholders for text injection by hooks (empty per default)
-		$this->editFormTextTop = "";
-		$this->editFormTextAfterWarn = "";
-		$this->editFormTextAfterTools = "";
+		$this->editFormPageTop =
+		$this->editFormTextTop =
+		$this->editFormTextAfterWarn =
+		$this->editFormTextAfterTools =
 		$this->editFormTextBottom = "";
 	}
 	
@@ -115,8 +117,8 @@ class EditPage {
 						$text = $currev_text;
 
 						#Give a warning
-						$this->editFormTextTop = "<h2>" . wfMsg('undofailed') . "</h2>\n" .
-									'<p>'.wfMsg('explainundofailed').'</p>';
+						$this->editFormPageTop .= "<h2>" . wfMsg('undofailed') . "</h2>\n" .
+									'<p><strong class="error">'.wfMsg('explainundofailed').'</strong></p>';
 					}
 				}
 			}
@@ -1046,6 +1048,8 @@ class EditPage {
 		}
 
 		$checkboxhtml = $minoredithtml . $watchhtml;
+
+		$wgOut->addHTML( $this->editFormPageTop );
 
 		if ( $wgUser->getOption( 'previewontop' ) ) {
 
