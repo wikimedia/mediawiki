@@ -984,7 +984,7 @@ class Title {
 	 */
 	function isProtected( $action = '' ) {
 		global $wgRestrictionLevels;
-		if ( -1 == $this->mNamespace ) { return true; }
+		if ( NS_SPECIAL == $this->mNamespace ) { return true; }
 				
 		if( $action == 'edit' || $action == '' ) {
 			$r = $this->getRestrictions( 'edit' );
@@ -1016,7 +1016,7 @@ class Title {
 		global $wgUser;
 
 		if ( is_null( $this->mWatched ) ) {
-			if ( -1 == $this->mNamespace || 0 == $wgUser->getID()) {
+			if ( NS_SPECIAL == $this->mNamespace || !$wgUser->isLoggedIn()) {
 				$this->mWatched = false;
 			} else {
 				$this->mWatched = $wgUser->isWatched( $this );
@@ -1517,7 +1517,7 @@ class Title {
 
 		# We already know that some pages won't be in the database!
 		#
-		if ( '' != $this->mInterwiki || -1 == $this->mNamespace ) {
+		if ( '' != $this->mInterwiki || NS_SPECIAL == $this->mNamespace ) {
 			$this->mArticleID = 0;
 		}
 		$f = strstr( $r, '#' );
