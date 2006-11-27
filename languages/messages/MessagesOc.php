@@ -672,7 +672,7 @@ L'heure indiquée est celle du serveur (UTC).
 "rollbacklink"	=> "révoquer",
 "rollbackfailed" => "La révocation a échoué",
 "cantrollback"	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
-"alreadyrolled"	=> "Impossible de révoquer la dernière modification de [[$1]]
+"alreadyrolled"	=> "Impossible de révoquer la dernière modification de [[:$1]]
 par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer ou révoquer l'article.
 
 La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]).", //Looxix

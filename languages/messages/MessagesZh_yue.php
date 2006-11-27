@@ -1255,7 +1255,7 @@ wiki: $PAGEEDITOR_WIKI
 'rollbacklink'		=> '還原',
 'rollbackfailed' 	=> '還原失敗',
 'cantrollback'		=> '還原唔到；上一位貢獻者係唯一修改過呢版嘅人。',
-'alreadyrolled'		=> "無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]）對[[$1]]嘅最後編輯；
+'alreadyrolled'		=> "無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]）對[[:$1]]嘅最後編輯；
 有人已經修改過或者反轉咗呢個頁面。
 
 上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。",

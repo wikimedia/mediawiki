@@ -801,7 +801,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'rollbacklink'  => 'quay lại',
 'rollbackfailed' => 'Không quay lại được',
 'cantrollback'  => 'Không quay lại được; trang này có 1 tác giả.',
-'alreadyrolled' => "Không thể quay lại phiên bản của [[$1]] bởi [[Thành_viên:$2|$2]] ([[Thảo_luận_thành_viên:$2|Thảo luận]]). Đã có sửa đổi lần cuối bởi [[Thành_viên:$3|$3]] ([[Thảo_luận_thành_viên:$3|Thảo luận]]).",
+'alreadyrolled' => "Không thể quay lại phiên bản của [[:$1]] bởi [[Thành_viên:$2|$2]] ([[Thảo_luận_thành_viên:$2|Thảo luận]]). Đã có sửa đổi lần cuối bởi [[Thành_viên:$3|$3]] ([[Thảo_luận_thành_viên:$3|Thảo luận]]).",
 #   only shown if there is an edit comment
 'editcomment' => "Tóm lược sửa đổi: \"<i>$1</i>\".",
 'revertpage'    => "đã hủy sửa đổi của $2, quay về phiên bản của $1",

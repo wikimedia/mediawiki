@@ -1139,7 +1139,7 @@ und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschreg
 'rollbacklink'		=> 'Zurücksetzen',
 'rollbackfailed'	=> 'Zurücksetzen gescheitert',
 'cantrollback'		=> 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'	=> 'Die Zurücknahme der Seite [[$1]] von [[{{ns:user}}:$2|$2]]
+'alreadyrolled'	=> 'Die Zurücknahme der Seite [[:$1]] von [[{{ns:user}}:$2|$2]]
 ([[{{ns:user_talk}}:$2|Diskussion]]) ist nicht möglich, da eine andere Änderung oder Rücknahme erfolgt ist.
 
 Die letzte Änderung ist von [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Diskussion]])',

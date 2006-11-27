@@ -948,7 +948,7 @@ succes.",
 "rollbackfailed" => "Kunne ikke fjerne redigeringen",
 "cantrollback"	=> "Kan ikke fjerne redigering;
 den sidste bruger er den eneste forfatter.",
-"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[$1]] foretaget af [[Bruger:$2|$2]] ([[Bruger diskussion:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|diskussion]]).",
+"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[Bruger:$2|$2]] ([[Bruger diskussion:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|diskussion]]).",
 #   only shown if there is an edit comment
 "editcomment" => "Kommentaren til redigeringen var: \"<i>$1</i>\".",
 "revertpage"	=> "Gendannelse til seneste version ved $1, fjerner ændringer fra $2",

@@ -787,7 +787,7 @@ Eur ar servijer (UTC) eo an eur merket.
 'rollbacklink'	=> 'disteuler',
 'rollbackfailed' => 'C\'hwitet eo bet an distaoladenn',
 'cantrollback'	=> "Dibosupl da zisteuler: an aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ",
-'alreadyrolled'	=> "Dibosupl eo disteuler ar c'hemm diwezhañ graet e [[$1]]
+'alreadyrolled'	=> "Dibosupl eo disteuler ar c'hemm diwezhañ graet e [[:$1]]
 gant [[User:$2|$2]] ([[User talk:$2|Talk]]); kemmet pe distaolet eo bet c'hoazh gant unan bennak all.
 
 Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]).", //Looxix

@@ -662,7 +662,7 @@ Todos os horários mostrados estão no horário do servidor (UTC).
 "rollbacklink"  => "voltar",
 "rollbackfailed" => "Rollback falhou",
 "cantrollback"  => "Não foi possível reverter a edição; o último contribuidor é o único autor deste artigo.",
-"alreadyrolled" => "Não foi possível reverter as edições de  [[$1]]
+"alreadyrolled" => "Não foi possível reverter as edições de  [[:$1]]
 por [[User:$2|$2]] ([[User talk:$2|discussão]]); alguém o editou ou já o reverteu.
 
 A última edição foi de  [[User:$3|$3]] ([[User talk:$3|Conversar com ele]]).",

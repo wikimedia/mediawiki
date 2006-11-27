@@ -151,7 +151,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   if they have selected that option in preferences.
 * (bug 5936) Show an 'm' to the left of the edit summary on diff pages for minor edits.
 * (bug 7820) Improve error reporting for uploads via URL.
-* (bug 5149) When autoblocks are enabled, retroactively apply an autoblock to the most 
+* (bug 5149) When autoblocks are enabled, retroactively apply an autoblock to the most
   recently used IP of a user when they are blocked.
 * Add an index on (rc_user_text,rc_timestamp) on the recentchanges table. This will 
   make CheckUser.php and the new retroactive autoblock functionality faster.
@@ -223,6 +223,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   (with a functionality similar to diff rev1 rev2 | patch -R rev3 -o rev3).
   This is triggered by including &undo=revid in an edit URL. A link to a URL
   that will undo a given edit is shown on NEW NON-CURRENT revision headers on diff pages.
+* Fix display of link in "already rolled back" message for image/category pages
 
 == Languages updated ==
 

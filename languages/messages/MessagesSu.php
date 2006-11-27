@@ -154,7 +154,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'already_bureaucrat' => 'Pamaké ieu geus boga kalungguhan birokrat',
 'already_sysop' => 'Pamaké ieu geus boga kalungguhan kuncén',
 'alreadyloggedin' => '<strong>Pamaké $1, anjeun geus asup log!</strong><br />',
-'alreadyrolled' => 'Teu bisa mulangkeun édit ahir [[$1]] ku [[User:$2|$2]] ([[User talk:$2|Obrolan]]); geus aya nu ngédit atawa mulangkeun kacana. 
+'alreadyrolled' => 'Teu bisa mulangkeun édit ahir [[:$1]] ku [[User:$2|$2]] ([[User talk:$2|Obrolan]]); geus aya nu ngédit atawa mulangkeun kacana. 
 
 Édit ahir ku [[User:$3|$3]] ([[User talk:$3|Obrolan]]).',
 'ancientpages' => 'Kaca pangheubeulna',

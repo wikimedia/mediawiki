@@ -718,7 +718,7 @@ Sjoch \"$2\" foar in list fan wat resint wiske is.",
 "rollbacklink"	=> "feroaring tebeksette",
 "rollbackfailed"	=> "Feroaring tebeksette net slagge",
 "cantrollback"	=> "Disse feroaringt kin net tebek set, om't der mar ien skriuwer is.",
-"alreadyrolled"	=> "Kin de feroaring fan [[$1]]
+"alreadyrolled"	=> "Kin de feroaring fan [[:$1]]
 troch [[Brûker:$2|$2]] ([[Brûker oerlis:$2|Oerlis]]) net tebeksette;
 inoar hat de feroaring tebekset, of oars wat oan de side feroare.
 

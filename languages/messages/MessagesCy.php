@@ -693,7 +693,7 @@ Gwelwch $2 am cofnod o dileuon diweddar.",
 "rollback" => "Roliwch golygon yn ôl",
 "rollbacklink" => "rolio nôl",
 "cantrollback" => "Ddim yn gallu gwrthdroi golygiad; y cyfrannwr olaf oedd yr unrhyw awdur yr erthygl hon.",
-"alreadyrolled"	=> "Amhosib rolio nôl golygiad olaf [[$1]]
+"alreadyrolled"	=> "Amhosib rolio nôl golygiad olaf [[:$1]]
 gan [[Defnyddwr:$2|$2]] ([[Sgwrs defnyddwr:$2|Sgwrs]]); mae rhywun arall yn barod wedi olygu neu rolio nôl yr erthygl.
 
 [[Defnyddwr:$3|$3]] ([[Sgwrs defnyddwr:$3|Sgwrs]] gwneuthoedd yr olygiad olaf).",

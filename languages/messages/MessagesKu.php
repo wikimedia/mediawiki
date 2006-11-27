@@ -514,7 +514,7 @@ Li rûpela [[Special:Recentchanges|Guherandinên dawî]] jî ji bo hasan dîtina
 'rollback_short'        => 'Bizivirîne pêş',
 'rollbacklink'          => 'bizivirîne pêş',
 'cantrollback'          => 'Guharto naye vegerandin; bikarhêrê dawî, \'\'\'tenya\'\'\' nivîskarê wê rûpelê ye.',
-'alreadyrolled'         => 'Guherandina dawiya [[$1]]
+'alreadyrolled'         => 'Guherandina dawiya [[:$1]]
 bi [[User:$2|$2]] ([[User talk:$2|guftûgo]]) venizivre; keseke din wê rûpelê zivrandiye an guherandiye.
 
 Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',

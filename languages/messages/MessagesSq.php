@@ -960,7 +960,7 @@ Të gjitha kohët janë sipas orës së shërbyesit (UTC).
 'rollbacklink'          => 'riktheje',
 'rollbackfailed'        => 'Rikthimi dështoi',
 'cantrollback'          => 'Nuk munda ta kthejë redaktimin; redaktori i fundit është i vetmi autor i këtij artikulli.',
-'alreadyrolled'         => 'Nuk munda ta rikthej redaktimin e fundit e [[$1]] nga [[User:$2|$2]] ([[User talk:$2|diskutim]]); dikush tjetër e ka redaktuar ose rikthyer këtë faqe.
+'alreadyrolled'         => 'Nuk munda ta rikthej redaktimin e fundit e [[:$1]] nga [[User:$2|$2]] ([[User talk:$2|diskutim]]); dikush tjetër e ka redaktuar ose rikthyer këtë faqe.
 
 Redaktimi i fundit është bërë nga [[User:$3|$3]] ([[User talk:$3|diskutim]]).',
 'editcomment'           => 'Komenti i redaktimit ishte: "<i>$1</i>".',

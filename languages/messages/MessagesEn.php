@@ -1671,7 +1671,7 @@ See $2 for a record of recent deletions.",
 'rollbacklink'	=> 'rollback',
 'rollbackfailed' => 'Rollback failed',
 'cantrollback'	=> 'Cannot revert edit; last contributor is only author of this page.',
-'alreadyrolled'	=> "Cannot rollback last edit of [[$1]]
+'alreadyrolled'	=> "Cannot rollback last edit of [[:$1]]
 by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).",

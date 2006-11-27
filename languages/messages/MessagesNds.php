@@ -820,7 +820,7 @@ In $2 kannst du en List vun de letzten Löschen finnen.',
 'rollbacklink'          => 'Trüchnehmen',
 'rollbackfailed'        => 'Trüchnahm hett kenen Spood',
 'cantrollback'          => 'De Ännern kann nich trüchnahmen warrn; de letzte Autor is de eenzige.',
-'alreadyrolled'         => 'Dat Trüchnehmen vun de Ännern an de Siet [[$1]] vun [[User:$2|$2]]
+'alreadyrolled'         => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]]
 ([[User_talk:$2|Diskuschoonssiet]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm ween is.
 
 De letzte Ännern is vun [[User:$3|$3]]

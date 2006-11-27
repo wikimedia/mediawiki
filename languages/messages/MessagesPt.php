@@ -1222,7 +1222,7 @@ Consulte $2 para um registo de eliminações recentes.",
 'rollbacklink'  => 'voltar',
 'rollbackfailed' => 'Reversão falhou',
 'cantrollback'  => 'Não foi possível reverter a edição; o último contribuidor é o único autor deste artigo',
-'alreadyrolled' => "Não foi possível reverter as edições de [[$1]]
+'alreadyrolled' => "Não foi possível reverter as edições de [[:$1]]
 por [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Discussão]]); alguém editou ou já reverteu o artigo.
 
 A última edição foi de [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Discussão]]).",

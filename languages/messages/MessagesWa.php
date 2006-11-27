@@ -1100,7 +1100,7 @@ djivêye des dierins disfaçaedjes.',
 'deletecomment' => 'Råjhon do disfaçaedje',
 'imagereverted' => 'Li rmetaedje del modêye di dvant a stî comifåt.',
 'cantrollback' => 'Dji n\' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.',
-'alreadyrolled' => 'Dji n\' sai disfé li dierin candjmint di [[$1]]
+'alreadyrolled' => 'Dji n\' sai disfé li dierin candjmint di [[:$1]]
 fwait pa [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Copene]]); 
 ene sakî d\' ôte a ddja candjî l\' årtike ou ddja rmetou l\' modêye di dvant. 
 

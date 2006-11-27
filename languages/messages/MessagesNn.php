@@ -953,7 +953,7 @@ For hjelp og meir informasjon:
 'rollbacklink'	        => 'rull attende',
 'rollbackfailed'        => 'Kunne ikkje rulle attende',
 'cantrollback'	        => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
-'alreadyrolled'	        => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[{{ns:2}}:$2|$2]] ([[{{ns:3}}:$2|brukardiskusjon]]) fordi nokon andre allereie har endra sida att eller fjerna endringa.
+'alreadyrolled'	        => 'Kan ikkje rulle attende den siste endringa av [[:$1]] gjort av [[{{ns:2}}:$2|$2]] ([[{{ns:3}}:$2|brukardiskusjon]]) fordi nokon andre allereie har endra sida att eller fjerna endringa.
 
 Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusjon]]).',
 # only shown if there is an edit comment

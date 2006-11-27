@@ -952,7 +952,7 @@ Za zapise nedavnih brisanj glej $2.',
 'rollbacklink'          => 'vrni',
 'rollbackfailed'        => 'Vrnitev ni uspela.',
 'cantrollback'          => 'Urejanja ne morem vrniti; zadnji urejevalec je hkrati edini.',
-'alreadyrolled'         => 'Ne morem vrniti zadnje spremembe [[$1]]
+'alreadyrolled'         => 'Ne morem vrniti zadnje spremembe [[:$1]]
 od uporabnika [[Uporabnik:$2|$2]] ([[Pogovor z uporabnikom:$2|Pogovor]]); nekdo drug je že spremenil ali vrnil članek.
 
 Zadnja sprememba od uporabnika [[Uporabnik:$3|$3]] ([[Pogovor z uporabnikom:$3|Pogovor]]).',

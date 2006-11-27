@@ -671,7 +671,7 @@ Commentaar en wiejer assistentie:
 'rollback'              => 'Wijzigingen ongedaan maken',
 'rollbacklink'          => 'Trukdrieje',
 'cantrollback'          => 'Trökdrejje van verangeringe neet meugelik: Dit artikel haet mer einen auteur.',
-'alreadyrolled'         => '\'t Is neet meugelik óm de lèste verangering van [[$1]]
+'alreadyrolled'         => '\'t Is neet meugelik óm de lèste verangering van [[:$1]]
 door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make. Emes angers haet de pazjena al hersjtèld of haet \'n anger bewèrking gedaon. 
 
 De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]).',

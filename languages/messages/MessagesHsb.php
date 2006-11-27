@@ -124,7 +124,7 @@ Jelizo chceće stronu ze swojich wobkedźbowankow lisćiny pozdźišo wotstroni�
 'already_bureaucrat'    => 'Tutón wužiwar je hižo běrokrat.',
 'already_sysop'         => 'Tutón wužiwar je hižo administrator.',
 'alreadyloggedin'       => '<strong>Wužiwar $1, sće hižo přizjewjeny!</strong><br />',
-'alreadyrolled'         => 'Njemóžno poslednu změnu [[$1]] wužiwarja [[User:$2|$2]] ([[User talk:$2|diskusija]]) cofnyć; něchtó druhi je tutu stronu hižo změnił abo změnu cofnył.
+'alreadyrolled'         => 'Njemóžno poslednu změnu [[:$1]] wužiwarja [[User:$2|$2]] ([[User talk:$2|diskusija]]) cofnyć; něchtó druhi je tutu stronu hižo změnił abo změnu cofnył.
 
 Poslednja změna běše wot wužiwarja [[User:$3|$3]] ([[User talk:$3|diskusija]]).',
 'ancientpages'          => 'Najstarše nastawki',
