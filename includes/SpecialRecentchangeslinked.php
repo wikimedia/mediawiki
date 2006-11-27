@@ -67,7 +67,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$cmq = 'AND rc_minor=0';
 	} else { $cmq = ''; }
 
-	extract( $dbr->tableNames( 'recentchanges', 'categorylinks', 'pagelinks', 'revision', 'page' , "watchlist" ) );
+	list($recentchanges, $categorylinks, $pagelinks, $watchlist) = 
+	    $dbr->tableNamesN( 'recentchanges', 'categorylinks', 'pagelinks', "watchlist" );
 
 	$uid = $wgUser->getID();
 

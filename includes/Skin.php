@@ -1034,7 +1034,7 @@ END;
 
 		if ($wgPageShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
 			$dbr =& wfGetDB( DB_SLAVE );
-			extract( $dbr->tableNames( 'watchlist' ) );
+			$watchlist = $dbr->tableName( 'watchlist' );
 			$sql = "SELECT COUNT(*) AS n FROM $watchlist
 				WHERE wl_title='" . $dbr->strencode($wgTitle->getDBKey()) .
 				"' AND  wl_namespace=" . $wgTitle->getNamespace() ;

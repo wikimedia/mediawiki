@@ -1383,11 +1383,29 @@ class Database {
 	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 */
-	function tableNames() {
+	public function tableNames() {
 		$inArray = func_get_args();
 		$retVal = array();
 		foreach ( $inArray as $name ) {
 			$retVal[$name] = $this->tableName( $name );
+		}
+		return $retVal;
+	}
+	
+	/**
+	 * @desc: Fetch a number of table names into an zero-indexed numerical array
+	 * This is handy when you need to construct SQL for joins
+	 *
+	 * Example:
+	 * list( $user, $watchlist ) = $dbr->tableNames('user','watchlist');
+	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
+	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
+	 */
+	public function tableNamesN() {
+		$inArray = func_get_args();
+		$retVal = array();
+		foreach ( $inArray as $name ) {
+			$retVal[] = $this->tableName( $name );
 		}
 		return $retVal;
 	}

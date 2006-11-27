@@ -42,7 +42,7 @@ class NewPagesPage extends QueryPage {
 		global $wgUser, $wgUseRCPatrol;
 		$usepatrol = ( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) ) ? 1 : 0;
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'recentchanges', 'page', 'text' ) );
+		list( $recentchanges, $page ) = $dbr->tableNamesN( 'recentchanges', 'page' );
 
 		$uwhere = $this->makeUserWhere( $dbr );
 
@@ -172,6 +172,7 @@ function wfSpecialNewpages($par, $specialPage) {
 			if ( is_numeric( $bit ) )
 				$limit = $bit;
 
+			$m = array();
 			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) )
 				$limit = intval($m[1]);
 			if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) )

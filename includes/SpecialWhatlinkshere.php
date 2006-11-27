@@ -76,8 +76,6 @@ class WhatLinksHerePage {
 
 		$dbr =& wfGetDB( DB_READ );
 
-		extract( $dbr->tableNames( 'pagelinks', 'templatelinks', 'page' ) );
-
 		// Some extra validation
 		$from = intval( $from );
 		if ( !$from && $dir == 'prev' ) {

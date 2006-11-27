@@ -20,7 +20,7 @@ class MostcategoriesPage extends QueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'categorylinks', 'page' ) );
+		list( $categorylinks, $page) = $dbr->tableNamesN( 'categorylinks', 'page' );
 		return
 			"
 			SELECT

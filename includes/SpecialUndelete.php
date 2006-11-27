@@ -278,12 +278,12 @@ class PageArchive {
 	 * @return int number of revisions restored
 	 */
 	private function undeleteRevisions( $timestamps ) {
-		global $wgParser, $wgDBtype;
+		global $wgDBtype;
 
 		$restoreAll = empty( $timestamps );
 		
 		$dbw =& wfGetDB( DB_MASTER );
-		extract( $dbw->tableNames( 'page', 'archive' ) );
+		$page = $dbw->tableName( 'archive' );
 
 		# Does this page already exist? We'll have to update it...
 		$article = new Article( $this->title );
@@ -453,6 +453,7 @@ class UndeleteForm {
 			$timestamps = array();
 			$this->mFileVersions = array();
 			foreach( $_REQUEST as $key => $val ) {
+				$matches = array();
 				if( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
 					array_push( $timestamps, $matches[1] );
 				}

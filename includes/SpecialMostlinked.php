@@ -28,7 +28,7 @@ class MostlinkedPage extends QueryPage {
 	 */
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'pagelinks', 'page' ) );
+		list( $pagelinks, $page ) = $dbr->tableNamesN( 'pagelinks', 'page' );
 		return
 			"SELECT 'Mostlinked' AS type,
 				pl_namespace AS namespace,

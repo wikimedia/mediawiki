@@ -113,7 +113,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'page', 'revision', 'watchlist', 'recentchanges' ) );
+	list( $page, $watchlist, $recentchanges ) = $dbr->tableNamesN( 'page', 'watchlist', 'recentchanges' );
 
 	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
 	$res = $dbr->query( $sql, $fname );

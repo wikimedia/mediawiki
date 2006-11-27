@@ -248,7 +248,6 @@ class EmailNotification {
 			}
 			if( $userCondition ) {
 				$dbr =& wfGetDB( DB_MASTER );
-				extract( $dbr->tableNames( 'watchlist' ) );
 
 				$res = $dbr->select( 'watchlist', array( 'wl_user' ),
 					array(

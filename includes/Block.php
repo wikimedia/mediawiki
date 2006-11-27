@@ -308,7 +308,7 @@ class Block
 
 		$now = wfTimestampNow();
 
-		extract( $db->tableNames( 'ipblocks', 'user' ) );
+		list( $ipblocks, $user ) = $db->tableNamesN( 'ipblocks', 'user' );
 
 		$sql = "SELECT $ipblocks.*,user_name FROM $ipblocks,$user " .
 			"WHERE user_id=ipb_by $cond ORDER BY ipb_timestamp DESC $options";

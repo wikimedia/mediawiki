@@ -127,7 +127,7 @@ class SiteStatsUpdate {
 			# Update schema if required
 			if ( $row->ss_total_pages == -1 && !$this->mViews ) {
 				$dbr =& wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow') );
-				extract( $dbr->tableNames( 'page', 'user' ) );
+				list( $page, $user ) = $dbr->tableNamesN( 'page', 'user' );
 
 				$sql = "SELECT COUNT(page_namespace) AS total FROM $page";
 				$res = $dbr->query( $sql, $fname );
