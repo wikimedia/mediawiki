@@ -534,7 +534,9 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
 	$conf->DBschema     = importPost( "DBschema", "mysql4" );
-	$conf->DBmysql5     = ($conf->DBschema == "mysql5" || $conf->DBschema == "mysql5-binary");
+	$conf->DBmysql5     = ($conf->DBschema == "mysql5" ||
+	                       $conf->DBschema == "mysql5-binary")
+	                       ? "true" : "false";
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 
 	## Postgres specific:
@@ -615,12 +617,20 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$local = writeLocalSettings( $conf );
 		echo "<li style=\"list-style: none\">\n";
 		echo "<p><b>Generating configuration file...</b></p>\n";
-		// for debugging: // echo "<pre>" . htmlspecialchars( $local ) . "</pre>\n";
 		echo "</li>\n";		
 
 		$wgCommandLineMode = false;
 		chdir( ".." );
-		eval($local);
+		$ok = eval( $local );
+		if( $ok === false ) {
+			dieout( "Errors in generated configuration; " .
+				"most likely due to a bug in the installer... " .
+				"Config file was: " .
+				"<pre>" .
+				htmlspecialchars( $local ) .
+				"</pre>" .
+				"</ul>" );
+		}
 		$conf->DBtypename = '';
 		foreach (array_keys($ourdb) as $db) {
 			if ($conf->DBtype === $db)
