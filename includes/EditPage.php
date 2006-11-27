@@ -101,11 +101,11 @@ class EditPage {
 				#Undoing a specific edit overrides section editing; section-editing
 				# doesn't work with undoing.
 				$undorev = Revision::newFromId($undo);
-				$oldrev = $undorev->getPrevious();
 
 				#Sanity check, make sure it's the right page.
 				# Otherwise, $text will be left as-is.
-				if ($undorev->getPage() == $this->mArticle->getID()) {
+				if (!is_null($undorev) && $undorev->getPage() == $this->mArticle->getID()) {
+					$oldrev = $undorev->getPrevious();
 					$undorev_text = $undorev->getText();
 					$oldrev_text = $oldrev->getText();
 					$currev_text = $text;
