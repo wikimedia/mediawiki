@@ -1013,7 +1013,7 @@ if( count( $errs ) ) {
 		</select>
 	</div>
 	<p class="config-desc">
-		Select the language for your wiki's interface. Some localizations aren't fully complete. Unicode (UTF-8) used for all localizations.
+		Select the language for your wiki's interface. Some localizations aren't fully complete. Unicode (UTF-8) is used for all localizations.
 	</p>
 
 	<div class="config-input">
