@@ -1044,7 +1044,7 @@ $NEWPAGE
 'rollbacklink'          => '差し戻し',
 'rollbackfailed'        => '差し戻しに失敗しました',
 'cantrollback'          => '投稿者がただ一人であるため、編集を差し戻せません。',
-'alreadyrolled'         => 'ページ [[$1]] の [[User:$2|$2]] ([[User_talk:$2|会話]] | [[Special:Contributions/$2|履歴]]) による編集の差し戻しに失敗しました。誰か他の利用者が編集を行ったか差し戻しされたのかもしれません。
+'alreadyrolled'         => 'ページ [[:$1]] の [[User:$2|$2]] ([[User_talk:$2|会話]] | [[Special:Contributions/$2|履歴]]) による編集の差し戻しに失敗しました。誰か他の利用者が編集を行ったか差し戻しされたのかもしれません。
 
 このページの最後の編集は [[User:$3|$3]] ([[User_talk:$3|会話]] | [[Special:Contributions/$3|履歴]]) によるものです。',
 'editcomment'           => '編集内容の要約: <i>$1</i>',

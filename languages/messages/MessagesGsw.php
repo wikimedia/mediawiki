@@ -599,7 +599,7 @@ Bitte bis dir über d Konsequänze bewusst, u bis sicher, das du di a üsi [[Pro
 Im $2 het’s e Lischte vo de letschte Löschige.',
 'deletionlog'           => 'Lösch-Logbuech',
 'deletecomment'         => 'Löschigsgrund',
-'alreadyrolled'         => 'Cha d Änderig uf [[$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
+'alreadyrolled'         => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
 'revertpage'            => 'Rückgängig gmacht zuer letschte Änderig vo $1',

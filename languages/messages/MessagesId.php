@@ -1097,7 +1097,7 @@ Masukan dan bantuan lanjutan:
 "rollbacklink" => "kembalikan",
 "rollbackfailed" => "Pengembalian gagal dilakukan",
 "cantrollback" => "Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.",
-"alreadyrolled" => "Tidak dapat melakukan pengembalian ke suntingan terakhir [[$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Bicara]]).",
+"alreadyrolled" => "Tidak dapat melakukan pengembalian ke suntingan terakhir [[:$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Bicara]]).",
 "editcomment" => "Komentar penyuntingan adalah: \"<em>$1</em>\".",
 'revertpage'	=> "Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]",
 'sessionfailure' => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',

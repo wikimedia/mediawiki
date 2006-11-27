@@ -1121,7 +1121,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 "rollbacklink"		=> "rollback",
 "rollbackfailed"	=> "Rollback non riuscito",
 "cantrollback"	=> "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
-"alreadyrolled"	=> "Non è possibile annullare le modifiche apportate alla pagina [[$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback. 
+"alreadyrolled"	=> "Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback. 
 
 La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]).",
 "editcomment"	=> "Il commento alla modifica era: \"<i>$1</i>\".",

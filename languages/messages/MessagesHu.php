@@ -777,7 +777,7 @@ Minden időpont a server órája ([[UTC]]) szerinti.
 'deletionlog'           => 'törlési napló',
 'deletecomment'         => 'A törlés oka',
 'cantrollback'          => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
-'alreadyrolled'         => '[[$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]]) általi szerkesztését nem lehet visszavonni: időközben valakimár visszavonta, vagy szerkesztette a lapot.
+'alreadyrolled'         => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]]) általi szerkesztését nem lehet visszavonni: időközben valakimár visszavonta, vagy szerkesztette a lapot.
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]) végezte.',
 'editcomment'           => 'A változtatás összefoglalója "<i>$1</i>" volt.',

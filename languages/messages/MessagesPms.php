@@ -994,7 +994,7 @@ Ij temp a son conforma a l\'ora dël server (UTC).
 'rollbacklink'          => 'ripristiné j\'archivi',
 'rollbackfailed'        => 'A l\'é pa podusse ripristiné',
 'cantrollback'          => 'As peul pa tornesse a na version pì veja: l\'ùltima modìfica a l\'ha fala l\'ùnich utent che a l\'abia travajà a cost artìcol-sì.',
-'alreadyrolled'         => 'As peulo pa anulé j\'Ultime modìfiche ëd [[$1]]
+'alreadyrolled'         => 'As peulo pa anulé j\'Ultime modìfiche ëd [[:$1]]
 faite da [[User:$2|$2]] ([[User talk:$2|Talk]]); Cheidun d\'àutr a l\'ha già modificà ò pura anulà le modìfiche a sta pàgina-sì.
 
 L\'ùltima modìfica a l\'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]).',

@@ -643,7 +643,7 @@ Totae horae in cingulo horis moderatri sunt (UTC).
 'rollbacklink'          => 'reverti',
 'rollbackfailed'        => 'Reversum defecit',
 'cantrollback'          => 'Mutatio reverti non posse; conlator proximus solus auctor huius rei est.',
-'alreadyrolled'         => 'Ad mutationem proxima paginae "[[$1]]" ab usore "[[{{ns:user}}:$2|$2]]" ([[{{ns:user_talk}}:$2|disputatio]]) reverti non potest; alius paginam iam recensuit vel revertit. Mutatio proxima ab usore "[[{{ns:user}}:$3|$3]]" ([[{{ns:user_talk}}:$3|disputatio]]) effecta est.',
+'alreadyrolled'         => 'Ad mutationem proxima paginae "[[:$1]]" ab usore "[[{{ns:user}}:$2|$2]]" ([[{{ns:user_talk}}:$2|disputatio]]) reverti non potest; alius paginam iam recensuit vel revertit. Mutatio proxima ab usore "[[{{ns:user}}:$3|$3]]" ([[{{ns:user_talk}}:$3|disputatio]]) effecta est.',
 'editcomment'           => 'Dictum recensiti erat: "<i>$1</i>".',
 'revertpage'            => 'Reverti ad mutationem proximam ab $1',
 'protectlogpage'        => 'Index praesidii',

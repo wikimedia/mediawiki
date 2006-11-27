@@ -1044,7 +1044,7 @@ Is in am an freastalaí (UTC) iad na hamanna anseo thíos.
 "rollbacklink"  => "athúsáid",
 "rollbackfailed" => "Theip an athúsáid",
 "cantrollback"  => "Ní féidir an athrú a athúsáid; ba é údar an ailt an t-aon duine a rinne athrú dó.",
-"alreadyrolled" => "Ní féidir eagrán níos luaí an leathanaigh [[$1]]
+"alreadyrolled" => "Ní féidir eagrán níos luaí an leathanaigh [[:$1]]
 le [[Úsáideoir:$2|$2]] ([[Plé úsáideora:$2|Plé]]) a athúsáid; d'athraigh duine eile é cheana fein, nó
 d'athúsáid duine eile eagrán níos luaí cheana féin.
 

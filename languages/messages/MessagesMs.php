@@ -664,7 +664,7 @@ $messages = array(
 "rollbacklink"                  => "Kembalikan ke asal",
 "rollbackfailed"          => "Pengembalian ke asal tergagal.",
 "cantrollback"                  => "Tidak dapat mengembalikan suntingan terakhir; penyumbang akhir adalah pengarang tunggal untuk rencana ini.", #"Cannot revert edit; last contributor is only author of this article.",
-"alreadyrolled"                 => "Tidak dapat mengembalikan suntingan terakhir dari [[$1]] oleh [[Pengguna:$2|$2]] ([[Perbualan Pengguna:$2|Perbualan]]); terdapat pengguna yang telah berbuat demikian ataupun telah menyuntingnya. Suntingan terakhir telah dibuat oleh [[Pengguna:$3|$3]] ([[Perbualan Pengguna:$3|Perbualan]]).", #"Cannot rollback last edit of [[$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).",
+"alreadyrolled"                 => "Tidak dapat mengembalikan suntingan terakhir dari [[$1]] oleh [[Pengguna:$2|$2]] ([[Perbualan Pengguna:$2|Perbualan]]); terdapat pengguna yang telah berbuat demikian ataupun telah menyuntingnya. Suntingan terakhir telah dibuat oleh [[Pengguna:$3|$3]] ([[Perbualan Pengguna:$3|Perbualan]]).", #"Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 #   only shown if there is an edit comment
 "editcomment"             => "Komen penyuntingan: \"<i>$1</i>\".", #"The edit comment was: \"<i>$1</i>\".",
 "revertpage"            => "Suntingan $1 dikembalikan ke versi terakhir oleh $1",

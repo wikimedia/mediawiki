@@ -934,7 +934,7 @@ Sva vremena su prema poslužiteljevom vremenu (UTC).
 'rollbacklink'          => 'ukloni',
 'rollbackfailed'        => 'Uklanjanje neuspješno',
 'cantrollback'          => 'Ne mogu ukloniti posljednju promjenu, postoji samo jedna promjena.',
-'alreadyrolled'         => 'Ne mogu ukloniti posljednju promjenu članka [[$1]] koju je napravio suradnik [[User:$2|$2]]
+'alreadyrolled'         => 'Ne mogu ukloniti posljednju promjenu članka [[:$1]] koju je napravio suradnik [[User:$2|$2]]
 ([[User talk:$2|Talk]]); netko je već promijenio stranicu ili uklonio promjenu.
 
 Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Talk]]).',

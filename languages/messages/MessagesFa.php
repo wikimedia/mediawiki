@@ -765,7 +765,7 @@ $3...
 'deletecomment'	=> "دلیل حذف",
 'imagereverted' => "برگرداندن به نسخه‌ی قدیمی‌تر با موفقیت انجام شد.",
 'cantrollback'	=> "نمی‌توان ویرایش را برگرداند؛ آخرین مشارکت‌کننده تنها مؤلف این مقاله است.",
-'alreadyrolled'	=> "Cannot rollback last edit of [[$1]]
+'alreadyrolled'	=> "Cannot rollback last edit of [[:$1]]
 by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already.
 
 آخرین ویرایش توسط [[کاربر:$3|$3]] ([[بحث کاربر:$3|بحث]]).",

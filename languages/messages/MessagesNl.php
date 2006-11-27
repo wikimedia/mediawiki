@@ -1132,7 +1132,7 @@ Feedback en andere assistentie:
 'rollbacklink'          => 'terugdraaien',
 'rollbackfailed'        => 'Ongedaan maken van wijzigingen mislukt.',
 'cantrollback'          => 'Ongedaan maken van wijzigingen onmogelijk: deze pagina heeft slechts 1 auteur.',
-'alreadyrolled'         => 'Het is niet mogelijk om de bewerking van de pagina [[$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]]) ongedaan te maken. Iemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie. 
+'alreadyrolled'         => 'Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]]) ongedaan te maken. Iemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie. 
 
 De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]).',
 'editcomment'           => 'Bewerkingssamenvatting: "<i>$1</i>".',

@@ -683,7 +683,7 @@ Par cortesia, conferma che l\'è to intenzsion proçedere a tałe scancełazsion
 'rollback'              => 'Usa una revisione precedente',
 'rollbackfailed'        => 'Rollback non riuzsio',
 'cantrollback'          => 'No xè mia possibiłe tornar a na verzsión precedente: l\'ultima modifica xè stà apportà da l\'unico utente che gà laorà a stò arthicoło.',
-'alreadyrolled'         => 'Non xè mia possibile effettuare el rollback de [[$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]]); qualcun altro gà xà modificà o effetuà el rollback de sta voçe. L\'ultima modefega l\'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]).',
+'alreadyrolled'         => 'Non xè mia possibile effettuare el rollback de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]]); qualcun altro gà xà modificà o effetuà el rollback de sta voçe. L\'ultima modefega l\'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]).',
 'editcomment'           => 'El commento a la modifica xera: "<i>$1</i>".',
 'revertpage'            => 'Anułate łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła verzsion preçedente de [[User:$1|$1]]',
 'protectlogpage'        => 'Log de protezsión',

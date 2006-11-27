@@ -1242,7 +1242,7 @@ Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
 'rollbacklink'                => 'qaýtarw',
 'rollbackfailed'              => 'Qaýtarw sätsiz ayaqtaldı',
 'cantrollback'                => 'Tüzetw qaýtarılmaýdı. Bul bettiñ soñğı üleskeri tek bastawış awtorı.',
-'alreadyrolled'               => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) degendi jasağan [[$1]]
+'alreadyrolled'               => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) degendi jasağan [[:$1]]
 betiniñ soñğı öñdewinen qaýtarw ötpedi; keýbirew osı qazir betti öñdep ne qaýtarıp jatır tüge.
 
 Soñğı öñdewdi [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) degendi jasağan.',

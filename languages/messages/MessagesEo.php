@@ -869,7 +869,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'rollbacklink'          => 'restarigu antaŭan',
 'rollbackfailed'        => 'Restarigo malsukcesis',
 'cantrollback'          => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
-'alreadyrolled'         => 'Ne eblas restarigi la lastan redakton de [[$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]) pro tio, ke oni intertempe redaktis la paĝon. La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]]).',
+'alreadyrolled'         => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]) pro tio, ke oni intertempe redaktis la paĝon. La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]]).',
 'editcomment'           => 'La komento estis: \'<i>$1</i>\'.',
 'revertpage'            => 'Restarigis redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]); restarigis al la lasta versio de [[User:$1|$1]]',
 'sessionfailure'        => 'Ŝajnas ke estas problemo kun via ensalutado;

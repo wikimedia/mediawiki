@@ -151,7 +151,7 @@ Galima sumažinti rezultatų patikslinant veiksmo rūšį, naudotoją ar susijus
 'already_bureaucrat' => 'Naudotojas jau yra biurokratas',
 'already_sysop' => 'Naudotojas jau yra administratorius',
 'alreadyloggedin' => '<strong>Jūs jau esate prisijungęs kaip naudotojas $1!</strong><br />',
-'alreadyrolled' => 'Nepavyko atmesti paskutinio [[{{ns:user}}:$2|$2]] ([[{{user_talk}}:$2|Aptarimas]]) daryto straipsnio [[$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą.
+'alreadyrolled' => 'Nepavyko atmesti paskutinio [[{{ns:user}}:$2|$2]] ([[{{user_talk}}:$2|Aptarimas]]) daryto straipsnio [[:$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas naudotojo [[{{ns:user}}:$3|$3]] ([[{{user_talk}}:$3|Aptarimas]]).',
 'ancientpages' => 'Seniausi straipsniai',

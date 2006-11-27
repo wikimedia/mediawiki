@@ -946,7 +946,7 @@ Asistenţă şi suport:
 'rollbacklink'          => 'revenire',
 'rollbackfailed'        => 'Revenirea nu s-a putut face',
 'cantrollback'          => 'Nu se poate reveni; ultimul contribuitor este autorul acestui articol.',
-'alreadyrolled'         => 'Nu se poate reveni peste ultima modificare a articolului [[$1]]
+'alreadyrolled'         => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]]
 făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]]); altcineva a modificat articolul sau a revenit deja.
 
 Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţie]]).',

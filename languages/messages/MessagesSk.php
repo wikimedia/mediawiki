@@ -1153,7 +1153,7 @@ Všetky zobrazené časy sú časy na serveri (UTC).
 'rollbacklink'          => 'rollback',
 'rollbackfailed'        => 'Rollback neúspešný',
 'cantrollback'          => 'Nemôžem úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
-'alreadyrolled'         => 'Nemôžem vrátiť späť poslednú úpravu [[$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]); niekto iný buď upravoval stránku, alebo už vrátil späť.
+'alreadyrolled'         => 'Nemôžem vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]); niekto iný buď upravoval stránku, alebo už vrátil späť.
 
 Autorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]]).',
 'editcomment'           => 'Komentár k úprave bol: "<i>$1</i>".',

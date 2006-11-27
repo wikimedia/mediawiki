@@ -913,7 +913,7 @@ Tilbakemeldinger og videre assistanse:
 'rollbacklink'          => 'tilbakestill',
 'rollbackfailed'        => 'Kunne ikke tilbakestille',
 'cantrollback'          => 'Kan ikke fjerne redigering; den siste brukeren er den eneste forfatteren.',
-'alreadyrolled'         => 'Kan ikke fjerne den siste redigeringen på [[$1]] av [[User:$2|$2]] ([[User talk:$2|diskusjon]]); en annen har allerede redigert siden eller fjernet redigeringen. Den siste redigeringen er foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]]).',
+'alreadyrolled'         => 'Kan ikke fjerne den siste redigeringen på [[:$1]] av [[User:$2|$2]] ([[User talk:$2|diskusjon]]); en annen har allerede redigert siden eller fjernet redigeringen. Den siste redigeringen er foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]]).',
 'editcomment'           => 'Redigeringskommentaren var: «\'\'$1\'\'»',
 'revertpage'            => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]] · [[Special:Blockip/$2|blokker]]) til siste versjon av $1',
 'sessionfailure'        => 'Det ser ut til å være et problem med innloggingen din, og den har blitt avbrutt av sikkerhetshensyn. Trykk \'\'Tilbake\'\' i nettleseren din, oppdater siden og prøv igjen.',

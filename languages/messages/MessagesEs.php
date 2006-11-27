@@ -886,7 +886,7 @@ Todos los tiempos se muestran en hora del servidor (UTC).
 'rollbacklink'          => 'Revertir',
 'rollbackfailed'        => 'Reversión fallida',
 'cantrollback'          => 'No se pueden revertir las ediciones; el último colaborador es el único autor de este artículo.',
-'alreadyrolled'         => 'No se puede revertir la última edición de [[$1]] por [[User:$2|$2]] ([[User talk:$2|discusión]]); alguien más ya ha editado o revertido esa página. La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
+'alreadyrolled'         => 'No se puede revertir la última edición de [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discusión]]); alguien más ya ha editado o revertido esa página. La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
 'editcomment'           => 'El resumen de la edición fue: "<i>$1</i>".',
 'revertpage'            => 'Revertidas las ediciones realizadas por [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); hacia la última versión por [[User:$1|$1]]',
 'sessionfailure'        => 'Parece que hay un problema con tu sesión;

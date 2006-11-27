@@ -1333,7 +1333,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'rollbacklink' => 'vrati',
 'rollbackfailed' => 'Vraćanje nije uspelo',
 'cantrollback' => 'Ne mogu da vratim izmenu; poslednji autor je ujedno i jedini.',
-'alreadyrolled' => 'Ne mogu da vratim poslednju izmenu [[$1]]
+'alreadyrolled' => 'Ne mogu da vratim poslednju izmenu [[:$1]]
 od korisnika [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|razgovor]]); neko drugi je već izmenio ili vratio članak.
 
 Poslednju izmenu je napravio korisnik [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|razgovor]]).',
