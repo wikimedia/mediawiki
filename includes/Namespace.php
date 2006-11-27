@@ -11,7 +11,7 @@
 $wgCanonicalNamespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
-	NS_TALK	            => 'Talk',
+	NS_TALK             => 'Talk',
 	NS_USER             => 'User',
 	NS_USER_TALK        => 'User_talk',
 	NS_PROJECT          => 'Project',
@@ -24,7 +24,7 @@ $wgCanonicalNamespaceNames = array(
 	NS_TEMPLATE_TALK    => 'Template_talk',
 	NS_HELP             => 'Help',
 	NS_HELP_TALK        => 'Help_talk',
-	NS_CATEGORY	        => 'Category',
+	NS_CATEGORY         => 'Category',
 	NS_CATEGORY_TALK    => 'Category_talk',
 );
 
