@@ -15,7 +15,6 @@ function wfSpecialStatistics() {
 	$action = $wgRequest->getVal( 'action' );
 
 	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'site_stats', 'user', 'user_groups' ) );
 
 	$views = SiteStats::views();
 	$edits = SiteStats::edits();
@@ -59,6 +58,7 @@ function wfSpecialStatistics() {
 
 		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
 		if( !$wgDisableCounters && !$wgMiserMode ) {
+			$page = $dbr->tableName( 'page' );
 			$sql = "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 AND page_counter > 0 ORDER BY page_counter DESC";
 			$sql = $dbr->limitResult($sql, 10, 0);
 			$res = $dbr->query( $sql, $fname );

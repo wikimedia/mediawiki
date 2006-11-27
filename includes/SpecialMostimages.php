@@ -20,7 +20,7 @@ class MostimagesPage extends QueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'imagelinks' ) );
+		$imagelinks = $dbr->tableName( 'imagelinks' );
 		return
 			"
 			SELECT

@@ -31,7 +31,7 @@ class ContribsFinder {
 		list( $index, $usercond ) = $this->getUserCond();
 		$nscond = $this->getNamespaceCond();
 		$use_index = $this->dbr->useIndexClause( $index );
-		extract( $this->dbr->tableNames( 'revision', 'page' ) );
+		list( $revision, $page) = $this->dbr->tableNamesN( 'revision', 'page' );
 		$sql =	"SELECT rev_timestamp " .
 			" FROM $page,$revision $use_index " .
 			" WHERE rev_page=page_id AND $usercond $nscond" .
@@ -82,7 +82,7 @@ class ContribsFinder {
 		$nscond = $this->getNamespaceCond();
 
 		$use_index = $this->dbr->useIndexClause( $index );
-		extract( $this->dbr->tableNames( 'page', 'revision' ) );
+		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
@@ -106,7 +106,7 @@ class ContribsFinder {
 	function getFirstOffsetForPaging() {
 		list( $index, $usercond ) = $this->getUserCond();
 		$use_index = $this->dbr->useIndexClause( $index );
-		extract( $this->dbr->tableNames( 'page', 'revision' ) );
+		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 		$nscond = $this->getNamespaceCond();
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND " .
@@ -128,9 +128,9 @@ class ContribsFinder {
 	}
 
 	/* private */ function makeSql() {
-		$userCond = $condition = $index = $offsetQuery = '';
+		$offsetQuery = '';
 
-		extract( $this->dbr->tableNames( 'page', 'revision' ) );
+		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 		list( $index, $userCond ) = $this->getUserCond();
 
 		if ( $this->offset )

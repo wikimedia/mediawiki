@@ -54,6 +54,7 @@ class MediaWiki_I18N {
 
 		$value = wfMsg( $value );
 		// interpolate variables
+		$m = array();
 		while (preg_match('/\$([0-9]*?)/sm', $value, $m)) {
 			list($src, $var) = $m;
 			wfSuppressWarnings();
@@ -344,7 +345,7 @@ class SkinTemplate extends Skin {
 
 			if ($wgPageShowWatchingUsers) {
 				$dbr =& wfGetDB( DB_SLAVE );
-				extract( $dbr->tableNames( 'watchlist' ) );
+				$watchlist = $dbr->tableName( 'watchlist' );
 				$sql = "SELECT COUNT(*) AS n FROM $watchlist
 					WHERE wl_title='" . $dbr->strencode($this->mTitle->getDBKey()) .
 					"' AND  wl_namespace=" . $this->mTitle->getNamespace() ;

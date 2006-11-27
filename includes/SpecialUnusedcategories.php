@@ -23,7 +23,7 @@ class UnusedCategoriesPage extends QueryPage {
 	function getSQL() {
 		$NScat = NS_CATEGORY;
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'categorylinks','page' ));
+		list( $categorylinks, $page ) = $dbr->tableNamesN( 'categorylinks', 'page' );
 		return "SELECT 'Unusedcategories' as type,
 				{$NScat} as namespace, page_title as title, 1 as value
 				FROM $page

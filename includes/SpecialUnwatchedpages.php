@@ -22,7 +22,7 @@ class UnwatchedpagesPage extends QueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'page', 'watchlist' ) );
+		list( $page, $watchlist ) = $dbr->tableNamesN( 'page', 'watchlist' );
 		$mwns = NS_MEDIAWIKI;
 		return
 			"

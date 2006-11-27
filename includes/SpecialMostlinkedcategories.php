@@ -22,7 +22,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'categorylinks', 'page' ) );
+		$categorylinks = $dbr->tableName( 'categorylinks' );
 		$name = $dbr->addQuotes( $this->getName() );
 		return
 			"

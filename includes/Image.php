@@ -1702,7 +1702,7 @@ class Image
 		}
 		$linkCache =& LinkCache::singleton();
 
-		extract( $db->tableNames( 'page', 'imagelinks' ) );
+		list( $page, $imagelinks ) = $db->tableNamesN( 'page', 'imagelinks' );
 		$encName = $db->addQuotes( $this->name );
 		$sql = "SELECT page_namespace,page_title,page_id FROM $page,$imagelinks WHERE page_id=il_from AND il_to=$encName $options";
 		$res = $db->query( $sql, __METHOD__ );

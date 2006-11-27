@@ -22,7 +22,7 @@ class MostrevisionsPage extends QueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'revision', 'page' ) );
+		list( $revision, $page ) = $dbr->tableNamesN( 'revision', 'page' );
 		return
 			"
 			SELECT

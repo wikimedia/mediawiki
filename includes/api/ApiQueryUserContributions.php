@@ -54,8 +54,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		if (!$userid)
 			$this->dieUsage("User name $user not found", 'param_user');
 
-		//Extract the table names, in case we have a prefix
-		extract($db->tableNames( 'page', 'revision'), EXTR_PREFIX_ALL, 'tbl');
+		//Get the table names
+		list ($tbl_page, $tbl_revision) = $db->tableNamesN('page', 'revision');
 
 		//We're after the revision table, and the corresponding page row for
 		//anything we retrieve.

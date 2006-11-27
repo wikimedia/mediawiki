@@ -30,7 +30,7 @@ class LonelyPagesPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'page', 'pagelinks' ) );
+		list( $page, $pagelinks ) = $dbr->tableNamesN( 'page', 'pagelinks' );
 
 		return
 		  "SELECT 'Lonelypages'  AS type,

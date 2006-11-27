@@ -108,7 +108,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 	# Database connection and caching
 	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'recentchanges', 'watchlist' ) );
+	list( $recentchanges, $watchlist ) = $dbr->tableNamesN( 'recentchanges', 'watchlist' );
 
 
 	$cutoff_unixtime = time() - ( $days * 86400 );
