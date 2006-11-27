@@ -4536,7 +4536,7 @@ class Parser
 			global $wgContLang;
 			$dbr =& wfGetDB( DB_SLAVE );
 			$timestamp = $dbr->selectField( 'revision', 'rev_timestamp',
-					array( 'rev_id' => $id ), __METHOD__ );
+					array( 'rev_id' => $this->mRevisionId ), __METHOD__ );
 			$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp );
 		
 			wfProfileOut( __METHOD__ );
