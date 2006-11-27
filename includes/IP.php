@@ -214,7 +214,7 @@ class IP {
      * @param $range The range to check the given address against.
      * @return bool Whether or not the given address is in the given range.
      */
-    function isInRange( $addr, $range ) {
+    public static function isInRange( $addr, $range ) {
         $unsignedIP = IP::toUnsigned($addr);
         list( $start, $end ) = IP::parseRange($range);
 
