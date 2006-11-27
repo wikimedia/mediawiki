@@ -157,7 +157,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('webseitzwiki','http://webseitz.fluxent.com/wiki/$1',0),
 ('why','http://clublet.com/c/c/why?$1',0),
 ('wiki','http://c2.com/cgi/wiki?$1',0),
-('wikia','http://www.wikia.com/wiki/index.php/$1',0),
+('wikia','http://www.wikia.com/wiki/$1',0),
 ('wikibooks','http://en.wikibooks.org/wiki/$1',1),
 ('wikicities','http://www.wikicities.com/index.php/$1',0),
 ('wikif1','http://www.wikif1.org/$1',0),
