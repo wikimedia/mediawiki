@@ -241,10 +241,10 @@ class Block
 
 	/**
 	 * Determine if a given integer IPv4 address is in a given CIDR network
-	 * @deprecated Use IP::isAddressInRange
+	 * @deprecated Use IP::isInRange
 	 */
 	function isAddressInRange( $addr, $range ) {
-		return IP::isAddressInRange( $addr, $range );
+		return IP::isInRange( $addr, $range );
 	}
 
 	function initFromRow( $row )
