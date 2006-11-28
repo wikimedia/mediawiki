@@ -400,13 +400,10 @@ function ucListEdit( $sk, $row ) {
 		}
 
 	}
-
-	if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-		if ( $rev->userCan( Revision::DELETED_TEXT ) ) {
-			$difftext .= '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
-		} else {
-			$difftext .= '(' . $messages['diff'] . ')';
-		}
+	if( $rev->userCan( Revision::DELETED_TEXT ) ) {
+		$difftext = '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
+	} else {
+		$difftext = '(' . $messages['diff'] . ')';
 	}
 	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
