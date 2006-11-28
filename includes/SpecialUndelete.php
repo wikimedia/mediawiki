@@ -533,7 +533,8 @@ class UndeleteForm {
 		
 		if( $this->mPreview ) {
 			$wgOut->addHtml( "<hr />\n" );
-			$wgOut->addWikiText( $rev->getText() );
+			$article = new Article ( $archive->title );  # OutputPage wants an Article obj
+			$wgOut->addPrimaryWikiText( $rev->getText(), $article, false );
 		}
 		
 		$self = SpecialPage::getTitleFor( "Undelete" );
