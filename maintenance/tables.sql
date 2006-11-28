@@ -351,7 +351,8 @@ CREATE TABLE /*$wgDBprefix*/archive (
   -- row upon undeletion.
   ar_text_id int(8) unsigned,
   
-  KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
+  KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp),
+  KEY usertext_timestamp (ar_user_text,ar_timestamp)
 
 ) TYPE=InnoDB;
 

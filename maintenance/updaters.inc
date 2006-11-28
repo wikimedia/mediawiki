@@ -821,6 +821,19 @@ function do_backlinking_indices_update() {
 	}
 }
 
+function do_archive_indices_update() {
+	global $wgDatabase;
+	echo( "Checking for additional archive indices...\n" );
+
+	$info = $wgDatabase->indexInfo( 'archive', 'usertext_timestamp', __METHOD__ );
+	if( !$info ) {
+		echo( "...index on ( ar_user_text, ar_timestamp ) not found; creating\n" );
+		dbsource( archive( 'patch-archive-utindex.sql' ) );
+	} else {
+		echo( "...index on ( ar_user_text, ar_timestamp ) seems to be ok\n" );
+	}
+}
+
 function do_all_updates( $doShared = false ) {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype;
 
@@ -888,6 +901,8 @@ function do_all_updates( $doShared = false ) {
 	do_rc_indices_update(); flush();
 	
 	do_backlinking_indices_update(); flush();
+
+	do_archive_indices_update(); flush();
 
 	initialiseMessages(); flush();
 }
