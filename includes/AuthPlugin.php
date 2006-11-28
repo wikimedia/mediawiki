@@ -148,11 +148,12 @@ class AuthPlugin {
 	 * Set the given password in the authentication database.
 	 * Return true if successful.
 	 *
+	 * @param $user User object.
 	 * @param $password String: password.
 	 * @return bool
 	 * @public
 	 */
-	function setPassword( $password ) {
+	function setPassword( $user, $password ) {
 		return true;
 	}
 
