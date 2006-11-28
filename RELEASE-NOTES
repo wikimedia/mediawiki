@@ -224,6 +224,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   This is triggered by including &undo=revid in an edit URL. A link to a URL
   that will undo a given edit is shown on NEW NON-CURRENT revision headers on diff pages.
 * Fix display of link in "already rolled back" message for image/category pages
+* New special page Special:Deletedcontribs for browsing deleted edits made by a user.
 
 == Languages updated ==
 

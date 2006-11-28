@@ -1741,6 +1741,10 @@ revision may have been restored or removed from the archive.",
 
 Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
 
+# Deleted contributions
+'deletedcontribs' => 'Deleted contributions',
+'undel' => 'undelete',
+
 # Namespace form on various pages
 'namespace' => 'Namespace:',
 'invert' => 'Invert selection',
