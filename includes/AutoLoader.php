@@ -164,7 +164,6 @@ function __autoload($className) {
 		'EmailConfirmation' => 'includes/SpecialConfirmemail.php',
 		'ContribsFinder' => 'includes/SpecialContributions.php',
 		'DeadendPagesPage' => 'includes/SpecialDeadendpages.php',
-		'DeletedContribsFinder' => 'includes/SpecialDeletedcontribs.php',
 		'DisambiguationsPage' => 'includes/SpecialDisambiguations.php',
 		'DoubleRedirectsPage' => 'includes/SpecialDoubleRedirects.php',
 		'EmailUserForm' => 'includes/SpecialEmailuser.php',
