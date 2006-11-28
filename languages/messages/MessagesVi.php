@@ -88,14 +88,42 @@ $magicWords = array(
 	'revisionid'             => array( 1,    'REVISIONID'  , 'SỐBẢN'           ),
  );
 
-$dateFormats = array(
-    MW_DATE_DEFAULT => 'Không lựa chọn',
-    1 => '16:12, tháng 1 ngày 15 năm 2001',
-    2 => '16:12, ngày 15 tháng 1 năm 2001',
-    3 => '16:12, năm 2001 tháng 1 ngày 15',
-    4 => '',
-    MW_DATE_ISO => '2001-01-15 16:12:34'
+$datePreferences = array(
+	'default',
+	'vi normal',
+	'vi longmonth',
+	'vi shortcolon',
+	'vi short',
+	'ISO 8601',
 );
+
+$defaultDateFormat = 'vi normal';
+
+$dateFormats = array(
+	'vi normal time' => 'H:i',
+	'vi normal date' => '"ngày" j M "năm" Y',
+	'vi normal both' => 'H:i, "ngày" j M "năm" Y',
+
+	'vi longmonth time' => 'H:i',
+	'vi longmonth date' => '"ngày" j F "năm" Y',
+	'vi longmonth both' => 'H:i, "ngày" j F "năm" Y',
+
+	'vi shortcolon time' => 'H:i',
+	'vi shortcolon date' => 'j/n/Y',
+	'vi shortcolon both' => 'H:i, j/n/Y',
+
+	'vi short time' => 'H"h"i',
+	'vi short date' => 'j/n/Y',
+	'vi short both' => 'H"h"i, j/n/Y',
+);
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'vi normal',
+	'vi normal',
+	'vi normal',
+);
+
 
 $linkTrail = "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu";
 $separatorTransformTable = array(',' => '.', '.' => ',' );
@@ -143,18 +171,18 @@ $messages = array(
 'thursday' => 'thứ năm',
 'friday' => 'thứ sáu',
 'saturday' => 'thứ bảy',
-'january' => 'tháng 1',
-'february' => 'tháng 2',
-'march' => 'tháng 3',
-'april' => 'tháng 4',
-'may_long' => 'tháng 5',
-'june' => 'tháng 6',
-'july' => 'tháng 7',
-'august' => 'tháng 8',
-'september' => 'tháng 9',
-'october' => 'tháng 10',
-'november' => 'tháng 11',
-'december' => 'tháng 12',
+'january'   => 'tháng Một',
+'february'  => 'tháng Hai',
+'march'     => 'tháng Ba',
+'april'     => 'tháng Tư',
+'may_long'  => 'tháng Năm',
+'june'      => 'tháng Sáu',
+'july'      => 'tháng Bảy',
+'august'    => 'tháng Tám',
+'september' => 'tháng Chín',
+'october'   => 'tháng Mười',
+'november'  => 'tháng Mười một',
+'december'  => 'tháng Mười hai',
 'jan' => 'tháng 1',
 'feb' => 'tháng 2',
 'mar' => 'tháng 3',
