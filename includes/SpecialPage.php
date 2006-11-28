@@ -127,7 +127,6 @@ class SpecialPage
 		'Log'                       => array( 'SpecialPage', 'Log' ),
 		'Blockip'                   => array( 'SpecialPage', 'Blockip', 'block' ),
 		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
-		'Deletedcontribs'           => array( 'SpecialPage', 'Deletedcontribs', 'deletedhistory' ),
 		'Import'                    => array( 'SpecialPage', "Import", 'import' ),
 		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
 		'Unlockdb'                  => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
