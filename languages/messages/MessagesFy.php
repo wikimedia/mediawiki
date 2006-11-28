@@ -15,18 +15,25 @@ $skinNames = array(
 	'nostalgia' => 'Nostalgy',
 );
 
+$datePreferences = array(
+	'default',
+	'fy normal',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'fy normal';
+
 $dateFormats = array(
-	'mdy time' => 'H.i',
-	'mdy date' => 'M j, Y',
-	'mdy both' => 'H.i, M j, Y',
+	'fy normal time' => 'H.i',
+	'fy normal date' => 'j M Y',
+	'fy normal both' => 'j M Y, H.i',
+);
 
-	'dmy time' => 'H.i',
-	'dmy date' => 'j M Y',
-	'dmy both' => 'H.i, j M Y',
-
-	'ymd time' => 'H.i',
-	'ymd date' => 'Y M j',
-	'ymd both' => 'H.i, Y M j',	
+$datePreferenceMigrationMap = array(
+	'default',
+	'fy normal',
+	'fy normal',
+	'fy normal',
 );
 
 $namespaceNames = array(
