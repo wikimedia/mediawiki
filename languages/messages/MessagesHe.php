@@ -717,6 +717,9 @@ $messages = array(
 'nocreatetext'              => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[{{ns:special}}:Userlogin|להיכנס לחשבון]].',
 'undofailed'                => 'הביטול נכשל',
 'explainundofailed'         => 'לא ניתן היה לבטל את העריכה עקב התנגשות עם עריכות מאוחרות יותר. אנא בטלו את העריכות ידנית.',
+'undosucceeded'             => 'הביטול הושלם בהצלחה',
+'explainundosucceeded'      => 'ההודעה בוטלה בהצלחה בטקסט המצוי בתיבת העריכה. אנא לחצו על "שמור" כדי להחיל את הביטול.',
+'undo-summary'              => 'ביטול גרסה $1 על־ידי [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|שיחה]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'לא ניתן ליצור את החשבון',
