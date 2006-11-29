@@ -410,7 +410,7 @@ class Block
 			wfDebug("Doing retroactive autoblocks for " . $this->mAddress . "\n");
 
 			$row = $dbr->selectRow( 'recentchanges', array( 'rc_ip' ), array( 'rc_user_text' => $this->mAddress ),
-				$fname, array( 'ORDER BY' => 'rc_timestamp DESC' ) );
+				__METHOD__ , array( 'ORDER BY' => 'rc_timestamp DESC' ) );
 
 			if ( !$row || !$row->rc_ip ) {
 				#No results, don't autoblock anything
