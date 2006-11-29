@@ -134,7 +134,7 @@ class ImageGallery
 	 *
 	 */
 	function toHTML() {
-		global $wgLang, $wgIgnoreImageErrors, $wgGenerateThumbnailOnParse;
+		global $wgLang, $wgGenerateThumbnailOnParse;
 
 		$sk = $this->getSkin();
 
@@ -147,7 +147,6 @@ class ImageGallery
 			$img =& $pair[0];
 			$text = $pair[1];
 
-			$name = $img->getName();
 			$nt = $img->getTitle();
 
 			if( $nt->getNamespace() != NS_IMAGE ) {

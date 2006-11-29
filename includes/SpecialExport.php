@@ -30,11 +30,6 @@ function wfSpecialExport( $page = '' ) {
 	global $wgExportAllowHistory, $wgExportMaxHistory;
 
 	$curonly = true;
-	$fullHistory = array(
-		'dir' => 'asc',
-		'offset' => false,
-		'limit' => $wgExportMaxHistory,
-	);
 	if( $wgRequest->wasPosted() ) {
 		$page = $wgRequest->getText( 'pages' );
 		$curonly = $wgRequest->getCheck( 'curonly' );

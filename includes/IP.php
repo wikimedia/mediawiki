@@ -27,7 +27,7 @@ class IP {
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValid( $ip ) {
-		return preg_match( '/^' . RE_IP_ADD . '$/', $ip, $matches) ;
+		return preg_match( '/^' . RE_IP_ADD . '$/', $ip) ;
 	}
 
 	/**
@@ -84,6 +84,7 @@ class IP {
 	 * @return array
 	 */
 	public static function toArray( $ipblock ) {
+		$matches = array();
 		if(! preg_match( '/^' . RE_IP_ADD . '(?:\/(?:'.RE_IP_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
 			return false;
 		} else {

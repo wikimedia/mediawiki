@@ -18,7 +18,7 @@ class DatabasePostgres extends Database {
 		$failFunction = false, $flags = 0 )
 	{
 
-		global $wgOut, $wgDBprefix, $wgCommandLineMode;
+		global $wgOut;
 		# Can't get a reference if it hasn't been set yet
 		if ( !isset( $wgOut ) ) {
 			$wgOut = NULL;
@@ -60,7 +60,6 @@ class DatabasePostgres extends Database {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 
-		$success = false;
 		$hstring="";
 		if ($server!=false && $server!="") {
 			$hstring="host=$server ";
@@ -87,12 +86,13 @@ class DatabasePostgres extends Database {
 		## If this is the initial connection, setup the schema stuff and possibly create the user
 		if (defined('MEDIAWIKI_INSTALL')) {
 			global $wgDBname, $wgDBuser, $wgDBpassword, $wgDBsuperuser, $wgDBmwschema,
-				$wgDBts2schema, $wgDBts2locale;
+				$wgDBts2schema;
 			print "OK</li>\n";
 
 			print "<li>Checking the version of Postgres...";
 			$version = pg_fetch_result($this->doQuery("SELECT version()"),0,0);
-			if (!preg_match("/PostgreSQL (\d+\.\d+)(\S+)/", $version, $thisver)) {
+			$thisver = array();
+			if (!preg_match('/PostgreSQL (\d+\.\d+)(\S+)/', $version, $thisver)) {
 				print "<b>FAILED</b> (could not determine the version)</li>\n";
 				dieout("</ul>");
 			}
@@ -804,10 +804,10 @@ class DatabasePostgres extends Database {
 		$SQL = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
 		while ( ! feof( $f ) ) {
 			$line = fgets($f,1024);
-			if (!preg_match("/^\s*(\(.+?),(\d)\)/", $line, $matches)) {
+			$matches = array();
+			if (!preg_match('/^\s*(\(.+?),(\d)\)/', $line, $matches)) {
 				continue;
 			}
-			$yesno = $matches[2]; ## ? "'true'" : "'false'";
 			$this->query("$SQL $matches[1],$matches[2])");
 		}
 		print " (table interwiki successfully populated)...\n";
@@ -831,7 +831,7 @@ class DatabasePostgres extends Database {
 			return "E'$s[1]'";
 		}
 		return "'" . pg_escape_string($s) . "'";
-		return "E'" . pg_escape_string($s) . "'";
+		// Unreachable: return "E'" . pg_escape_string($s) . "'";
 	}
 
 	function quote_ident( $s ) {

@@ -148,7 +148,8 @@ class SkinTemplate extends Skin {
 		// adding of CSS or Javascript by extensions.
 		wfRunHooks( 'BeforePageDisplay', array( &$out ) );
 
-		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$diff = $wgRequest->getVal( 'diff' );
 
 		wfProfileIn( "$fname-init" );
 		$this->initPage( $out );
@@ -768,9 +769,6 @@ class SkinTemplate extends Skin {
 		$variants = $wgContLang->getVariants();
 		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
 			$preferred = $wgContLang->getPreferredVariant();
-			$actstr = '';
-			if( $action )
-				$actstr = 'action=' . $action . '&';
 			$vcount=0;
 			foreach( $variants as $code ) {
 				$varname = $wgContLang->getVariantname( $code );
@@ -810,7 +808,6 @@ class SkinTemplate extends Skin {
 
 		$action = $wgRequest->getText( 'action' );
 		$oldid = $wgRequest->getVal( 'oldid' );
-		$diff = $wgRequest->getVal( 'diff' );
 
 		$nav_urls = array();
 		$nav_urls['mainpage'] = array( 'href' => self::makeI18nUrl( 'mainpage') );

@@ -217,7 +217,7 @@ class DjVuImage {
 		global $wgDjvuToXML;
 		if ( isset( $wgDjvuToXML ) ) {
 			$cmd = $wgDjvuToXML . ' --without-anno --without-text ' . $this->mFilename;
-			$xml = wfShellExec( $cmd, $retval );
+			$xml = wfShellExec( $cmd );
 		} else {
 			$xml = null;
 		}

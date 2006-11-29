@@ -289,7 +289,7 @@ class MagicWord {
 	 * Used in matchAndRemove()
 	 * @private
 	 **/
-	function pregRemoveAndRecord( $match ) {
+	function pregRemoveAndRecord( ) {
 		$this->mFound = true;
 		return '';
 	}

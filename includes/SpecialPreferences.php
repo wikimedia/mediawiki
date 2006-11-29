@@ -34,7 +34,7 @@ class PreferencesForm {
 	 * Load some values
 	 */
 	function PreferencesForm( &$request ) {
-		global $wgLang, $wgContLang, $wgUser, $wgAllowRealName;
+		global $wgContLang, $wgUser, $wgAllowRealName;
 
 		$this->mQuickbar = $request->getVal( 'wpQuickbar' );
 		$this->mOldpass = $request->getVal( 'wpOldpass' );
@@ -378,7 +378,6 @@ class PreferencesForm {
 
 		$togs = User::getToggles();
 		foreach ( $togs as $tname ) {
-			$ttext = wfMsg('tog-'.$tname);
 			$this->mToggles[$tname] = $wgUser->getOption( $tname );
 		}
 
@@ -526,8 +525,6 @@ class PreferencesForm {
 		$enotifusertalkpages = ($wgEnotifUserTalk) ? $this->getToggle( 'enotifusertalkpages', false, $disableEmailPrefs ) : '';
 		$enotifminoredits = ($wgEnotifWatchlist && $wgEnotifMinorEdits) ? $this->getToggle( 'enotifminoredits', false, $disableEmailPrefs ) : '';
 		$enotifrevealaddr = (($wgEnotifWatchlist || $wgEnotifUserTalk) && $wgEnotifRevealEditorAddress) ? $this->getToggle( 'enotifrevealaddr', false, $disableEmailPrefs ) : '';
-		$prefs_help_email_enotif = ( $wgEnotifWatchlist || $wgEnotifUserTalk) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
-		$prefs_help_realname = '';
 
 		# </FIXME>
 

@@ -106,7 +106,6 @@ class PageHistory {
 		 * Do the list
 		 */
 		$pager = new PageHistoryPager( $this );
-		$navbar = $pager->getNavigationBar();
 		$this->linesonpage = $pager->getNumRows();
 		$wgOut->addHTML(
 			$pager->getNavigationBar() . 

@@ -11,7 +11,7 @@
  *               used as e.g. Special:Randompage/Category
  */
 function wfSpecialRandompage( $par = NS_MAIN ) {
-	global $wgOut, $wgExtraRandompageSQL, $wgContLang, $wgLang;
+	global $wgOut, $wgExtraRandompageSQL;
 	$fname = 'wfSpecialRandompage';
 
 	# Determine namespace

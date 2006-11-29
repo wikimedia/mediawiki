@@ -144,8 +144,6 @@ CONTROL;
 		}
 
 		$sk = $wgUser->getSkin();
-		$talk = $wgContLang->getNsText( NS_TALK );
-		$contribs = wfMsg( 'contribslink' );
 
 		if ( $this->mNewRev->isCurrent() && $wgUser->isAllowed('rollback') ) {
 			$rollback = '&nbsp;&nbsp;&nbsp;' . $sk->generateRollback( $this->mNewRev );
@@ -901,7 +899,7 @@ class _DiffEngine
 						$ymids[$k] = $ymids[$k-1];
 						break;
 					}
-				while (list ($junk, $y) = each($matches)) {
+				while (list ( /* $junk */, $y) = each($matches)) {
 					if ($y > $this->seq[$k-1]) {
 						USE_ASSERTS && assert($y < $this->seq[$k]);
 						// Optimization: this is a common case:
@@ -1619,6 +1617,7 @@ class WordLevelDiff extends MappedDiff
 				$words[] = $line;
 				$stripped[] = $line;
 			} else {
+				$m = array();
 				if (preg_match_all('/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
 					$line, $m))
 				{

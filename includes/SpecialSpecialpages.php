@@ -37,7 +37,7 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 
 	/** Put them into a sortable array */
 	$sortedPages = array();
-	foreach ( $pages as $name => $page ) {
+	foreach ( $pages as $page ) {
 		if ( $page->isListed() ) {
 			$sortedPages[$page->getDescription()] = $page->getTitle();
 		}

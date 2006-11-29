@@ -28,7 +28,6 @@ function wfSpecialAllmessages() {
 	# Make sure all extension messages are available
 	MessageCache::loadAllMessages();
 
-	$first = true;
 	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->getExtensionMessagesFor( 'en' ) );
 	ksort( $sortedArray );
 	$messages = array();
@@ -75,7 +74,7 @@ function makePhp( $messages ) {
 		} else {
 			$comment = '';
 		}
-		$txt .= "'$key' => '" . preg_replace( "/(?<!\\\\)'/", "\'", $m['msg']) . "',$comment\n";
+		$txt .= "'$key' => '" . preg_replace( '/(?<!\\\\)\'/', "\'", $m['msg']) . "',$comment\n";
 	}
 	$txt .= ');';
 	return $txt;
@@ -92,8 +91,6 @@ function makeHTMLText( $messages ) {
 
 	$sk =& $wgUser->getSkin();
 	$talk = $wgLang->getNsText( NS_TALK );
-	$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
-	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 
 	$input = wfElement( 'input', array(
 		'type'    => 'text',

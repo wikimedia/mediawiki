@@ -2133,6 +2133,7 @@ class User {
 	 */
 	function sendConfirmationMail() {
 		global $wgContLang;
+		$expiration = null; // gets passed-by-ref and defined in next line.
 		$url = $this->confirmationTokenUrl( $expiration );
 		return $this->sendMail( wfMsg( 'confirmemail_subject' ),
 			wfMsg( 'confirmemail_body',

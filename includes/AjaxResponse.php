@@ -61,7 +61,7 @@ class AjaxResponse {
 	}
 	
 	function sendHeaders() {
-		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
+		global $wgUseSquid, $wgUseESI;
 		
 		if ( $this->mResponseCode ) {
 			$n = preg_replace( '/^ *(\d+)/', '\1', $this->mResponseCode );
@@ -122,7 +122,7 @@ class AjaxResponse {
 	 * returns true iff the response code was set to 304 Not Modified.
 	 */
 	function checkLastModified ( $timestamp ) {
-		global $wgCachePages, $wgCacheEpoch, $wgUser, $wgRequest;
+		global $wgCachePages, $wgCacheEpoch, $wgUser;
 		$fname = 'AjaxResponse::checkLastModified';
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {

@@ -77,7 +77,6 @@ class SpecialSearch {
 	function goResult( $term ) {
 		global $wgOut;
 		global $wgGoToEdit;
-		global $wgContLang;
 
 		$this->setupPage( $term );
 
@@ -98,17 +97,13 @@ class SpecialSearch {
 
 		# No match, generate an edit URL
 		$t = Title::newFromText( $term );
-		if( is_null( $t ) ) {
-			$editurl = ''; # hrm...
-		} else {
+		if( ! is_null( $t ) ) {
 			wfRunHooks( 'SpecialSearchNogomatch', array( &$t ) );
 			# If the feature is enabled, go straight to the edit page
 			if ( $wgGoToEdit ) {
 				$wgOut->redirect( $t->getFullURL( 'action=edit' ) );
 				return;
-			} else {
-				$editurl = $t->escapeLocalURL( 'action=edit' );
-			}
+			} 
 		}
 		$wgOut->addWikiText( wfMsg( 'noexactmatch', wfEscapeWikiText( $term ) ) );
 
@@ -125,8 +120,7 @@ class SpecialSearch {
 
 		$this->setupPage( $term );
 
-		global $wgUser, $wgOut;
-		$sk = $wgUser->getSkin();
+		global $wgOut;
 		$wgOut->addWikiText( wfMsg( 'searchresulttext' ) );
 
 		#if ( !$this->parseQuery() ) {
@@ -347,6 +341,7 @@ class SpecialSearch {
 				break;
 			}
 			++$lineno;
+			$m = array();
 			if ( ! preg_match( $pat1, $line, $m ) ) {
 				continue;
 			}

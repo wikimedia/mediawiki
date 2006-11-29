@@ -61,15 +61,13 @@ class ProfilerSimple extends Profiler {
 	}
 
 	function profileOut($functionname) {
-		$memory = memory_get_usage();
-
 		global $wgDebugFunctionEntry;
 
 		if ($wgDebugFunctionEntry) {
 			$this->debug(str_repeat(' ', count($this->mWorkStack) - 1).'Exiting '.$functionname."\n");
 		}
 
-		list($ofname,$ocount,$ortime,$octime) = array_pop($this->mWorkStack);
+		list($ofname, /* $ocount */ ,$ortime,$octime) = array_pop($this->mWorkStack);
 
 		if (!$ofname) {
 			$this->debug("Profiling error: $functionname\n");
