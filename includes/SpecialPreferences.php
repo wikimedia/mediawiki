@@ -334,7 +334,6 @@ class PreferencesForm {
 		}
 
 		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
-		$po = ParserOptions::newFromUser( $wgUser );
 		$this->mainPrefsForm( $error === false ? 'success' : 'error', $error);
 	}
 
