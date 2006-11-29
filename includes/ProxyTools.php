@@ -33,7 +33,7 @@ function wfGetIP() {
 	/* collect the originating ips */
 	# Client connecting to this webserver
 	if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
-		$ipchain = array( $_SERVER['REMOTE_ADDR'] );
+		$ipchain = array( IP::canonicalize( $_SERVER['REMOTE_ADDR'] ) );
 	} else {
 		# Running on CLI?
 		$ipchain = array( '127.0.0.1' );
@@ -47,9 +47,11 @@ function wfGetIP() {
 		$xff = array_reverse( $xff );
 		$ipchain = array_merge( $ipchain, $xff );
 	}
+	
 	# Step through XFF list and find the last address in the list which is a trusted server
 	# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
 	foreach ( $ipchain as $i => $curIP ) {
+		$curIP = IP::canonicalize( $curIP );
 		if ( wfIsTrustedProxy( $curIP ) ) {
 			if ( isset( $ipchain[$i + 1] ) && IP::isPublic( $ipchain[$i + 1] ) ) {
 				$ip = $ipchain[$i + 1];
