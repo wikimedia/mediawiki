@@ -25,7 +25,7 @@ class ProfilerSimple extends Profiler {
 			$entry =& $this->mCollated["-setup"];
 			if (!is_array($entry)) {
 				$entry = array('cpu'=> 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0);
-				$this->mCollated[$functionname] =& $entry;
+				$this->mCollated["-setup"] =& $entry;
 				
 			}
 			$entry['cpu'] += $elapsedcpu;
