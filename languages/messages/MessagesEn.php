@@ -999,6 +999,9 @@ the text into a text file and save it for later.</strong>',
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
 'undofailed' => 'Undo Failed',
 'explainundofailed' => 'The edit could not be undone because of conflicting intermediate edits. Please manually undo the edits.',
+'undosucceeded' => 'Undo Succeeded',
+'explainundosucceeded' => 'The edit was successfully undone. Please click save to apply this change.',
+'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2]] ([[User talk:$2]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Can\'t create account',
