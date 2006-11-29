@@ -302,6 +302,7 @@ div.floatright, table.floatright {
 div.floatright p { font-style: italic; }
 div.floatleft, table.floatleft {
     float: left;
+    clear: left;
     margin: 0.3em 0.5em 0.5em 0;
     position: relative;
     border-width: 0.5em 1.4em 0.8em 0;
@@ -341,6 +342,7 @@ div.tright {
 }
 div.tleft {
     float: left;
+    clear: left;
     margin-right:0.5em;
     border-width: 0.5em 1.4em 0.8em 0;
 }
