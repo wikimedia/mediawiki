@@ -532,7 +532,7 @@ class Revision {
 		# Use external methods for external objects, text in table is URL-only then
 		if ( in_array( 'external', $flags ) ) {
 			$url=$text;
-			@list($proto,$path)=explode('://',$url,2);
+			@list(/* $proto */,$path)=explode('://',$url,2);
 			if ($path=="") {
 				wfProfileOut( $fname );
 				return false;

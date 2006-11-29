@@ -48,6 +48,7 @@ class Skin extends Linker {
 			# while code from www.php.net
 			while (false !== ($file = $skinDir->read())) {
 				// Skip non-PHP files, hidden files, and '.dep' includes
+				$matches = array();
 				if(preg_match('/^([^.]*)\.php$/',$file, $matches)) {
 					$aSkin = $matches[1];
 					$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
@@ -369,7 +370,6 @@ class Skin extends Linker {
 	function getUserStylesheet() {
 		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage, $wgStyleVersion;
 		$sheet = $this->getStylesheet();
-		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/common/common.css?$wgStyleVersion\";\n";
 		$s .= "@import \"$wgStylePath/$sheet?$wgStyleVersion\";\n";
 		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css?$wgStyleVersion\";\n";
@@ -490,7 +490,6 @@ END;
 		else $a = array( 'bgcolor' => '#FFFFFF' );
 		if($wgOut->isArticle() && $wgUser->getOption('editondblclick') &&
 		  $wgTitle->userCanEdit() ) {
-			$t = wfMsg( 'editthispage' );
 			$s = $wgTitle->getFullURL( $this->editUrlOptions() );
 			$s = 'document.location = "' .wfEscapeJSString( $s ) .'";';
 			$a += array ('ondblclick' => $s);
@@ -696,7 +695,8 @@ END;
 	function pageTitleLinks() {
 		global $wgOut, $wgTitle, $wgUser, $wgRequest;
 
-		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$diff = $wgRequest->getVal( 'diff' );
 		$action = $wgRequest->getText( 'action' );
 
 		$s = $this->printableLink();
@@ -838,7 +838,6 @@ END;
 	function nameAndLogin() {
 		global $wgUser, $wgTitle, $wgLang, $wgContLang, $wgShowIPinHeader;
 
-		$li = $wgContLang->specialPage( 'Userlogin' );
 		$lo = $wgContLang->specialPage( 'Userlogout' );
 
 		$s = '';
@@ -1011,7 +1010,8 @@ END;
 		global $wgOut, $wgLang, $wgArticle, $wgRequest, $wgUser;
 		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax, $wgTitle, $wgPageShowWatchingUsers;
 
-		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$diff = $wgRequest->getVal( 'diff' );
 		if ( ! $wgOut->isArticle() ) { return ''; }
 		if ( isset( $oldid ) || isset( $diff ) ) { return ''; }
 		if ( 0 == $wgArticle->getID() ) { return ''; }
@@ -1144,7 +1144,6 @@ END;
 	 */
 	function specialPagesList() {
 		global $wgUser, $wgContLang, $wgServer, $wgRedirectScript;
-		$a = array();
 		$pages = array_merge( SpecialPage::getRegularPages(), SpecialPage::getRestrictedPages() );
 		foreach ( $pages as $name => $page ) {
 			$pages[$name] = $page->getDescription();
@@ -1629,7 +1628,7 @@ END;
 			}
 		}
 		if ($cacheSidebar)
-			$cachednotice = $parserMemc->set( $key, $bar, 86400 );
+			$parserMemc->set( $key, $bar, 86400 );
 		wfProfileOut( $fname );
 		return $bar;
 	}

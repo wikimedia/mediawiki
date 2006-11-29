@@ -1625,15 +1625,15 @@ END
 		 */
 		$toolarray=array(
 			array(	'image'=>'button_bold.png',
-					'open'	=>	"\'\'\'",
-					'close'	=>	"\'\'\'",
+					'open'	=>	'\\\'\\\'\\\'',
+					'close'	=>	'\\\'\\\'\\\'',
 					'sample'=>	wfMsg('bold_sample'),
 					'tip'	=>	wfMsg('bold_tip'),
 					'key'	=>	'B'
 				),
 			array(	'image'=>'button_italic.png',
-					'open'	=>	"\'\'",
-					'close'	=>	"\'\'",
+					'open'	=>	'\\\'\\\'',
+					'close'	=>	'\\\'\\\'',
 					'sample'=>	wfMsg('italic_sample'),
 					'tip'	=>	wfMsg('italic_tip'),
 					'key'	=>	'I'

@@ -113,9 +113,6 @@ class Block
 		$options = array();
 		$db =& $this->getDBOptions( $options );
 
-		$ret = false;
-		$killed = false;
-
 		if ( 0 == $user && $address == '' ) {
 			# Invalid user specification, not blocked
 			$this->clear();

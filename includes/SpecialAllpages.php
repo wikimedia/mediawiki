@@ -184,8 +184,6 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
  * @param integer $namespace (Default NS_MAIN)
  */
 function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
-	global $wgUser;
-
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
 	$queryparams = ($namespace ? "namespace=$namespace" : '');

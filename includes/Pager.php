@@ -323,7 +323,7 @@ abstract class IndexPager implements Pager {
 			$next = array( 'offset' => $this->mLastShown, 'limit' => $urlLimit );
 			$last = array( 'dir' => 'prev', 'limit' => $urlLimit );
 		}
-		return compact( 'prev', 'next', 'first', 'last' );
+		return array( 'prev' => $prev, 'next' => $next, 'first' => $first, 'last' => $last );
 	}
 
 	/**

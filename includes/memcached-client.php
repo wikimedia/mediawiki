@@ -451,7 +451,8 @@ class memcached
          return false;
 
       $this->stats['get_multi']++;
-
+      $sock_keys = array();
+      
       foreach ($keys as $key)
       {
          $sock = $this->get_sock($key);
@@ -697,6 +698,7 @@ class memcached
       list ($ip, $port) = explode(":", $host);
       $sock = false;
       $timeout = $this->_connect_timeout;
+      $errno = $errstr = null;
       for ($i = 0; !$sock && $i < $this->_connect_attempts; $i++) {
          if ($i > 0) {
             # Sleep until the timeout, in case it failed fast
@@ -740,7 +742,7 @@ class memcached
    function _dead_sock ($sock)
    {
       $host = array_search($sock, $this->_cache_sock);
-      @list ($ip, $port) = explode(":", $host);
+      @list ($ip, /* $port */) = explode(":", $host);
       $this->_host_dead[$ip] = time() + 30 + intval(rand(0, 10));
       $this->_host_dead[$host] = $this->_host_dead[$ip];
       unset($this->_cache_sock[$host]);
@@ -849,6 +851,7 @@ class memcached
 
       stream_set_timeout($sock, 1, 0);
       $line = fgets($sock);
+      $match = array();
       if (!preg_match('/^(\d+)/', $line, $match))
          return null;
       return $match[1];
@@ -1001,8 +1004,9 @@ class memcached
       if (isset($this->_cache_sock[$host]))
          return $this->_cache_sock[$host];
 
+      $sock = null;
       $now = time();
-      list ($ip, $port) = explode (":", $host);
+      list ($ip, /* $port */) = explode (":", $host);
       if (isset($this->_host_dead[$host]) && $this->_host_dead[$host] > $now ||
           isset($this->_host_dead[$ip]) && $this->_host_dead[$ip] > $now)
          return null;

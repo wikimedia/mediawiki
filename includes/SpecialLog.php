@@ -151,7 +151,6 @@ class LogReader {
 	 */
 	function getQuery() {
 		$logging = $this->db->tableName( "logging" );
-		$user = $this->db->tableName( 'user' );
 		$sql = "SELECT /*! STRAIGHT_JOIN */ log_type, log_action, log_timestamp,
 			log_user, user_name,
 			log_namespace, log_title, page_id,
@@ -304,7 +303,6 @@ class LogViewer {
 	function logLine( $s ) {
 		global $wgLang;
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
-		$user = Title::makeTitleSafe( NS_USER, $s->user_name );
 		$time = $wgLang->timeanddate( wfTimestamp(TS_MW, $s->log_timestamp), true );
 
 		// Enter the existence or non-existence of this page into the link cache,

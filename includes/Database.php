@@ -90,8 +90,8 @@ class DBConnectionError extends DBError {
 	}
 
 	function getHTML() {
-		global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgOutputEncoding;
-		global $wgSitename, $wgServer, $wgMessageCache, $wgLogo;
+		global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding;
+		global $wgSitename, $wgServer, $wgMessageCache;
 
 		# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
 		# Hard coding strings instead.
@@ -621,7 +621,7 @@ class Database {
 
 		# Add a comment for easy SHOW PROCESSLIST interpretation
 		if ( $fname ) {
-			$commentedSql = preg_replace("/\s/", " /* $fname */ ", $sql, 1);
+			$commentedSql = preg_replace('/\s/', " /* $fname */ ", $sql, 1);
 		} else {
 			$commentedSql = $sql;
 		}
@@ -687,7 +687,7 @@ class Database {
 	 * @param bool $tempIgnore
 	 */
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		global $wgCommandLineMode, $wgFullyInitialised, $wgColorErrors;
+		global $wgCommandLineMode;
 		# Ignore errors during error handling to avoid infinite recursion
 		$ignore = $this->ignoreErrors( true );
 		++$this->mErrorCount;
@@ -786,7 +786,7 @@ class Database {
 			case '\\!': return '!';
 			case '\\&': return '&';
 		}
-		list( $n, $arg ) = each( $this->preparedArgs );
+		list( /* $n */ , $arg ) = each( $this->preparedArgs );
 		switch( $matches[1] ) {
 			case '?': return $this->addQuotes( $arg );
 			case '!': return $arg;
@@ -1091,7 +1091,7 @@ class Database {
 		$sql = preg_replace ('/".*"/s', "'X'", $sql);
 
 		# All newlines, tabs, etc replaced by single space
-		$sql = preg_replace ( "/\s+/", ' ', $sql);
+		$sql = preg_replace ( '/\s+/', ' ', $sql);
 
 		# All numbers => N
 		$sql = preg_replace ('/-?[0-9]+/s', 'N', $sql);
@@ -1558,7 +1558,8 @@ class Database {
 		$row = $this->fetchObject( $res );
 		$this->freeResult( $res );
 
-		if ( preg_match( "/\((.*)\)/", $row->Type, $m ) ) {
+		$m = array();
+		if ( preg_match( '/\((.*)\)/', $row->Type, $m ) ) {
 			$size = $m[1];
 		} else {
 			$size = -1;
@@ -1882,7 +1883,6 @@ class Database {
 		$res = $this->query( 'SHOW PROCESSLIST' );
 		# Find slave SQL thread. Assumed to be the second one running, which is a bit
 		# dubious, but unfortunately there's no easy rigorous way
-		$slaveThreads = 0;
 		while ( $row = $this->fetchObject( $res ) ) {
 			/* This should work for most situations - when default db 
 			 * for thread is not specified, it had no events executed, 

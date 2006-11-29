@@ -109,8 +109,6 @@ class Title {
 	 * @access public
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
-		$fname = 'Title::newFromText';
-
 		if( is_object( $text ) ) {
 			throw new MWException( 'Title::newFromText given an object' );
 		}
@@ -289,6 +287,7 @@ class Title {
 		$mwRedir = MagicWord::get( 'redirect' );
 		$rt = NULL;
 		if ( $mwRedir->matchStart( $text ) ) {
+			$m = array();
 			if ( preg_match( '/\[{2}(.*?)(?:\||\]{2})/', $text, $m ) ) {
 				# categories are escaped using : for example one can enter:
 				# #REDIRECT [[:Category:Music]]. Need to remove it.
@@ -859,6 +858,7 @@ class Title {
 			} else {
 				global $wgActionPaths;
 				$url = false;
+				$matches = array();
 				if( !empty( $wgActionPaths ) &&
 					preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) )
 				{
@@ -1429,7 +1429,6 @@ class Title {
 	 */
 	/* private */ function secureAndSplit() {
 		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
-		$fname = 'Title::secureAndSplit';
 
 		# Initialisation
 		static $rxTc = false;
@@ -1467,6 +1466,7 @@ class Title {
 		# Namespace or interwiki prefix
 		$firstPass = true;
 		do {
+			$m = array();
 			if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
 				$p = $m[1];
 				$lowerNs = $wgContLang->lc( $p );
@@ -1628,7 +1628,6 @@ class Title {
 	 */
 	function getLinksTo( $options = '', $table = 'pagelinks', $prefix = 'pl' ) {
 		$linkCache =& LinkCache::singleton();
-		$id = $this->getArticleID();
 
 		if ( $options ) {
 			$db =& wfGetDB( DB_MASTER );
@@ -1899,7 +1898,6 @@ class Title {
 		}
 
 		$now = wfTimestampNow();
-		$rand = wfRandom();
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
@@ -1937,7 +1935,7 @@ class Title {
 			'page'    => $newid,
 			'comment' => $comment,
 			'text'    => $redirectText ) );
-		$revid = $redirectRevision->insertOn( $dbw );
+		$redirectRevision->insertOn( $dbw );
 		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 		$linkCache->clearLink( $this->getPrefixedDBkey() );
 
@@ -1980,7 +1978,6 @@ class Title {
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
 		$now = $dbw->timestamp();
-		$rand = wfRandom();
 		$linkCache =& LinkCache::singleton();
 
 		# Save a null revision in the page's history notifying of the move
@@ -2010,7 +2007,7 @@ class Title {
 			'page'    => $newid,
 			'comment' => $comment,
 			'text'    => $redirectText ) );
-		$revid = $redirectRevision->insertOn( $dbw );
+		$redirectRevision->insertOn( $dbw );
 		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 		$linkCache->clearLink( $this->getPrefixedDBkey() );
 
@@ -2062,6 +2059,7 @@ class Title {
 
 		# Does the redirect point to the source?
 		# Or is it a broken self-redirect, usually caused by namespace collisions?
+		$m = array();
 		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $text, $m ) ) {
 			$redirTitle = Title::newFromText( $m[1] );
 			if( !is_object( $redirTitle ) ||
@@ -2113,7 +2111,7 @@ class Title {
 			'comment'   => $comment,
 			'text'      => "#REDIRECT [[" . $dest->getPrefixedText() . "]]\n",
 			) );
-		$revisionId = $revision->insertOn( $dbw );
+		$revision->insertOn( $dbw );
 		$article->updateRevisionOn( $dbw, $revision, 0 );
 
 		# Link table
@@ -2372,7 +2370,7 @@ class Title {
 	 */
 	function isSpecial( $name ) {
 		if ( $this->getNamespace() == NS_SPECIAL ) {
-			list( $thisName, $subpage ) = SpecialPage::resolveAliasWithSubpage( $this->getDBkey() );
+			list( $thisName, /* $subpage */ ) = SpecialPage::resolveAliasWithSubpage( $this->getDBkey() );
 			if ( $name == $thisName ) {
 				return true;
 			}

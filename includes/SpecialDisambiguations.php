@@ -32,7 +32,7 @@ class DisambiguationsPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'page', 'pagelinks', 'templatelinks' ) );
+		list( $page, $pagelinks, $templatelinks) =  $dbr->tableNamesN( 'page', 'pagelinks', 'templatelinks' );
 
         $dMsgText = wfMsgForContent('disambiguationspage');
 		

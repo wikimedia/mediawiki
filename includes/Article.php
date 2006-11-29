@@ -2330,7 +2330,11 @@ class Article {
 	 */
 	function isFileCacheable() {
 		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest;
-		extract( $wgRequest->getValues( 'action', 'oldid', 'diff', 'redirect', 'printable' ) );
+		$action    = $wgRequest->getVal( 'action'    );
+		$oldid     = $wgRequest->getVal( 'oldid'     );
+		$diff      = $wgRequest->getVal( 'diff'      );
+		$redirect  = $wgRequest->getVal( 'redirect'  );
+		$printable = $wgRequest->getVal( 'printable' );
 
 		return $wgUseFileCache
 			and (!$wgShowIPinHeader)
@@ -2699,8 +2703,6 @@ class Article {
 
 		# This code is UGLY UGLY UGLY.
 		# Somebody PLEASE come up with a more elegant way to do it.
-
-		$summary = '';
 
 		#Redirect autosummaries
 		$summary = self::getRedirectAutosummary( $newtext );

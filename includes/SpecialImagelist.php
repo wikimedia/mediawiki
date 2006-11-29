@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialImagelist() {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgMiserMode;
+	global $wgOut;
 
 	$pager = new ImageListPager;
 

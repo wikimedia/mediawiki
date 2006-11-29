@@ -29,8 +29,6 @@ class SquidUpdate {
 		wfProfileIn( $fname );
 
 		# Get a list of URLs linking to this page
-		$id = $title->getArticleID();
-
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'links', 'page' ),
 			array( 'page_namespace', 'page_title' ),

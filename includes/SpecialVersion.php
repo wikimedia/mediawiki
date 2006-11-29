@@ -281,8 +281,6 @@ class SpecialVersion {
 			// subversion is release 1.4
 			return intval( $content[3] );
 		}
-
-		return false;
 	}
 
 	/**#@-*/

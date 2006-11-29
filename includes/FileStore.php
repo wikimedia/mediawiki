@@ -57,7 +57,7 @@ class FileStore {
 		$dbw = wfGetDB( DB_MASTER );
 		$lockname = $dbw->addQuotes( FileStore::lockName() );
 		$result = $dbw->query( "SELECT RELEASE_LOCK($lockname)", __METHOD__ );
-		$row = $dbw->fetchObject( $result );
+		$dbw->fetchObject( $result );
 		$dbw->freeResult( $result );
 	}
 	

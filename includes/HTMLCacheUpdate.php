@@ -55,7 +55,6 @@ class HTMLCacheUpdate
 		$numRows = $res->numRows();
 		$numBatches = ceil( $numRows / $this->mRowsPerJob );
 		$realBatchSize = $numRows / $numBatches;
-		$boundaries = array();
 		$start = false;
 		$jobs = array();
 		do {

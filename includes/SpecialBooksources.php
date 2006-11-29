@@ -48,7 +48,6 @@ class BookSourceList {
 
 	function showList() {
 		global $wgOut, $wgContLang;
-		$fname = "BookSourceList::showList()";
 
 		# First, see if we have a custom list setup in
 		# [[Wikipedia:Book sources]] or equivalent.
@@ -93,7 +92,6 @@ class BookSourceList {
 
 	function askForm() {
 		global $wgOut, $wgTitle;
-		$fname = "BookSourceList::askForm()";
 
 		$action = $wgTitle->escapeLocalUrl();
 		$isbn = htmlspecialchars( wfMsg( "isbn" ) );

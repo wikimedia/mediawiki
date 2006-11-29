@@ -22,7 +22,8 @@
  */
 
 /**
- *
+ * TODO: Perhaps make this file into a Metadata class, with static methods (declared 
+ * as private where indicated), to move these functions out of the global namespace?
  */
 define('RDF_TYPE_PREFS', "application/rdf+xml,text/xml;q=0.7,application/xml;q=0.5,text/rdf;q=0.1");
 
@@ -142,7 +143,7 @@ function dcBasics($article) {
 		dcPerson('contributor', $user_parts[0], $user_parts[1], $user_parts[2]);
 	}
 
-	dcRights($article);
+	dcRights();
 }
 
 /**
@@ -291,7 +292,7 @@ function dcPerson($name, $id, $user_name='', $user_real_name='') {
  * different pages.
  * @private
  */
-function dcRights($article) {
+function dcRights() {
 
 	global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 

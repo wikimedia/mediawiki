@@ -235,7 +235,7 @@ class Image
 	 * Load metadata from the file itself
 	 */
 	function loadFromFile() {
-		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgContLang, $wgShowEXIF;
+		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgContLang;
 		wfProfileIn( __METHOD__ );
 		$this->imagePath = $this->getFullPath();
 		$this->fileExists = file_exists( $this->imagePath );
@@ -925,7 +925,7 @@ class Image
 					if ( !$this->mustRender() && $width == $this->width && $height == $this->height ) {
 						$url = $this->getURL();
 					} else {
-						list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
+						list( /* $isScriptUrl */, $url ) = $this->thumbUrl( $width );
 					}
 					$thumb = new ThumbnailImage( $url, $width, $height );
 				} else {
@@ -1360,8 +1360,9 @@ class Image
 		$dir = wfImageThumbDir( $this->name, $shared );
 		$urls = array();
 		foreach ( $files as $file ) {
+			$m = array();
 			if ( preg_match( '/^(\d+)px/', $file, $m ) ) {
-				list( $isScriptUrl, $url ) = $this->thumbUrl( $m[1] );
+				list( /* $isScriptUrl */, $url ) = $this->thumbUrl( $m[1] );
 				$urls[] = $url;
 				@unlink( "$dir/$file" );
 			}

@@ -226,7 +226,7 @@ class HistoryBlobStub {
 			$flags = explode( ',', $row->old_flags );
 			if( in_array( 'external', $flags ) ) {
 				$url=$row->old_text;
-				@list($proto,$path)=explode('://',$url,2);
+				@list( /* $proto */ ,$path)=explode('://',$url,2);
 				if ($path=="") {
 					wfProfileOut( $fname );
 					return false;

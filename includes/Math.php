@@ -75,12 +75,13 @@ class MathRenderer {
 			$retval = substr ($contents, 0, 1);
 			$errmsg = '';
 			if (($retval == 'C') || ($retval == 'M') || ($retval == 'L')) {
-				if ($retval == 'C')
+				if ($retval == 'C') {
 					$this->conservativeness = 2;
-				else if ($retval == 'M')
+				} else if ($retval == 'M') {
 					$this->conservativeness = 1;
-				else
+				} else {
 					$this->conservativeness = 0;
+				}
 				$outdata = substr ($contents, 33);
 
 				$i = strpos($outdata, "\000");
@@ -89,12 +90,13 @@ class MathRenderer {
 				$this->mathml = substr($outdata, $i+1);
 			} else if (($retval == 'c') || ($retval == 'm') || ($retval == 'l'))  {
 				$this->html = substr ($contents, 33);
-				if ($retval == 'c')
+				if ($retval == 'c') {
 					$this->conservativeness = 2;
-				else if ($retval == 'm')
+				} else if ($retval == 'm') {
 					$this->conservativeness = 1;
-				else
+				} else {
 					$this->conservativeness = 0;
+				}
 				$this->mathml = NULL;
 			} else if ($retval == 'X') {
 				$this->html = NULL;
@@ -118,7 +120,7 @@ class MathRenderer {
 				 $this->hash = substr ($contents, 1, 32);
 			}
 
-			$res = wfRunHooks( 'MathAfterTexvc', array( &$this, &$errmsg ) );
+			wfRunHooks( 'MathAfterTexvc', array( &$this, &$errmsg ) );
 
 			if ( $errmsg ) {
 				 return $errmsg;

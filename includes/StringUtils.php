@@ -50,7 +50,8 @@ class StringUtils {
 		$encEnd = preg_quote( $endDelim, '!' );
 		$strcmp = strpos( $flags, 'i' ) === false ? 'strcmp' : 'strcasecmp';
 		$endLength = strlen( $endDelim );
-
+		$m = array();
+		
 		while ( $inputPos < strlen( $subject ) && 
 		  preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos ) ) 
 		{

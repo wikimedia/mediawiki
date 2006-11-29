@@ -56,8 +56,6 @@ class ParserCache {
 		$fname = 'ParserCache::get';
 		wfProfileIn( $fname );
 
-		$hash = $user->getPageRenderingHash();
-		$pageid = intval( $article->getID() );
 		$key = $this->getKey( $article, $user );
 
 		wfDebug( "Trying parser cache $key\n" );

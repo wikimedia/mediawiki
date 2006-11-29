@@ -31,7 +31,6 @@
 function wfRunHooks($event, $args = null) {
 
 	global $wgHooks;
-	$fname = 'wfRunHooks';
 
 	if (!is_array($wgHooks)) {
 		throw new MWException("Global hooks array is not an array!\n");
