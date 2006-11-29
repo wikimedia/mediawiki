@@ -54,7 +54,7 @@ class RecentChange
 		return $rc;
 	}
 
-	/* static */ function newFromCurRow( $row, $rc_this_oldid = 0 )
+	public static function newFromCurRow( $row, $rc_this_oldid = 0 )
 	{
 		$rc = new RecentChange;
 		$rc->loadFromCurRow( $row, $rc_this_oldid );

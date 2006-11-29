@@ -597,7 +597,7 @@ class DumpFilter {
 	 * Override for page-based filter types.
 	 * @return bool
 	 */
-	function pass( $page, $string ) {
+	function pass( $page ) {
 		return true;
 	}
 }

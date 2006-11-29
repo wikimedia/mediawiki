@@ -652,7 +652,7 @@ class OutputPage {
 	/**
 	 * @todo document
 	 */
-	public function setEncodings() {
+	public static function setEncodings() {
 		global $wgInputEncoding, $wgOutputEncoding;
 		global $wgUser, $wgContLang;
 

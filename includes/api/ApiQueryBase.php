@@ -92,7 +92,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$isDirNewer = ($dir === 'newer');
 		$after = ($isDirNewer ? '>=' : '<=');
 		$before = ($isDirNewer ? '<=' : '>=');
-		$db = & $this->getDB();
+		$db = $this->getDB();
 
 		if (!is_null($start))
 			$this->addWhere($field . $after . $db->addQuotes($start));
@@ -113,7 +113,7 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function select($method) {
 
 		// getDB has its own profileDBIn/Out calls
-		$db = & $this->getDB();
+		$db = $this->getDB();
 
 		$this->profileDBIn();
 		$res = $db->select($this->tables, $this->fields, $this->where, $method, $this->options);
@@ -127,10 +127,8 @@ abstract class ApiQueryBase extends ApiBase {
 		$vals = array ();
 
 		// ID
-		@ $tmp = $row-> {
-			$prefix . '_id' };
-		if (!is_null($tmp))
-			$vals[$prefix . 'id'] = intval($tmp);
+		if ( isset( $row-> { $prefix . '_id' } ) )
+			$vals[$prefix . 'id'] = intval( $row-> { $prefix . '_id' } );
 
 		// Title
 		$title = ApiQueryBase :: addRowInfo_title($row, $prefix . '_namespace', $prefix . '_title');
@@ -161,9 +159,8 @@ abstract class ApiQueryBase extends ApiBase {
 				if (!is_null($tmp))
 					$vals['revid'] = intval($tmp);
 
-				@ $tmp = $row->rc_last_oldid;
-				if (!is_null($tmp))
-					$vals['old_revid'] = intval($tmp);
+				if ( isset( $row->rc_last_oldid ) )
+					$vals['old_revid'] = intval( $row->rc_last_oldid );
 
 				$title = ApiQueryBase :: addRowInfo_title($row, 'rc_moved_to_ns', 'rc_moved_to_title');
 				if ($title) {
@@ -173,8 +170,7 @@ abstract class ApiQueryBase extends ApiBase {
 					$vals['new_title'] = $title->getPrefixedText();
 				}
 
-				@ $tmp = $row->rc_patrolled;
-				if (!is_null($tmp))
+				if ( isset( $row->rc_patrolled ) )
 					$vals['patrolled'] = '';
 
 				break;
@@ -282,8 +278,8 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	private static function addRowInfo_title($row, $nsfld, $titlefld) {
-		@ $ns = $row-> $nsfld;
-		if (!is_null($ns)) {
+		if ( isset( $row-> $nsfld ) ) {
+			$ns = $row-> $nsfld;
 			@ $title = $row-> $titlefld;
 			if (!empty ($title))
 				return Title :: makeTitle($ns, $title);

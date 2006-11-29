@@ -817,7 +817,7 @@ class ImportStreamSource {
 		return new ImportStreamSource( $file );
 	}
 
-	function newFromUpload( $fieldname = "xmlimport" ) {
+	static function newFromUpload( $fieldname = "xmlimport" ) {
 		$upload =& $_FILES[$fieldname];
 
 		if( !isset( $upload ) || !$upload['name'] ) {
@@ -843,7 +843,7 @@ class ImportStreamSource {
 		return $ret;
 	}
 
-	function newFromInterwiki( $interwiki, $page, $history=false ) {
+	public static function newFromInterwiki( $interwiki, $page, $history=false ) {
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
 		if( is_null( $link ) || $link->getInterwiki() == '' ) {
 			return new WikiErrorMsg( 'importbadinterwiki' );

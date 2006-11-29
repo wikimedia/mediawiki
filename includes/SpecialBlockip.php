@@ -172,7 +172,8 @@ class IPBlockForm {
 
 		$user = User::newFromName( $this->BlockAddress );
 		if( is_object( $user ) ) {
-			$this->showLogFragment( $wgOut, $user->getUserPage() );
+			$page = $user->getUserPage();
+			$this->showLogFragment( $wgOut, $page );
 		} elseif( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $this->BlockAddress ) ) {
 			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
 		}

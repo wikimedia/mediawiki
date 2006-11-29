@@ -231,12 +231,8 @@ class Language {
 	 */
 	function getNsIndex( $text ) {
 		$this->load();
-		$index = @$this->mNamespaceIds[$this->lc($text)];
-		if ( is_null( $index ) ) {
-			return false;
-		} else {
-			return $index;
-		}
+		$lctext = $this->lc($text);
+		return isset( $this->mNamespaceIds[$lctext] ) ? $this->mNamespaceIds[$lctext] : false;
 	}
 
 	/**
@@ -761,7 +757,7 @@ class Language {
 
 	function getMessage( $key ) {
 		$this->load();
-		return @$this->messages[$key];
+		return isset( $this->messages[$key] ) ? $this->messages[$key] : null;
 	}
 
 	function getAllMessages() {
@@ -1664,7 +1660,7 @@ class Language {
 	 */
 	static function getMessageFor( $key, $code ) {
 		self::loadLocalisation( $code );
-		return @self::$mLocalisationCache[$code]['messages'][$key];
+		return isset( self::$mLocalisationCache[$code]['messages'][$key] ) ? self::$mLocalisationCache[$code]['messages'][$key] : null;
 	}
 
 	/**

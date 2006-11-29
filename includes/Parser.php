@@ -3485,7 +3485,7 @@ class Parser
 			$refers[$headlineCount] = $canonized_headline;
 
 			# count how many in assoc. array so we can track dupes in anchors
-			@$refers[$canonized_headline]++;
+			isset( $refers[$canonized_headline] ) ? $refers[$canonized_headline]++ : $refers[$canonized_headline] = 1;
 			$refcount[$headlineCount]=$refers[$canonized_headline];
 
 			# Don't number the heading if it is the only one (looks silly)
@@ -3503,7 +3503,7 @@ class Parser
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
 			}
 			# give headline the correct <h#> tag
-			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount];
+			$head[$headlineCount] = "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount];
 
 			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
 				if ( empty( $head[$headlineCount] ) ) {
@@ -3815,7 +3815,7 @@ class Parser
 	 */
 	function setHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
-		$oldVal = @$this->mTagHooks[$tag];
+		$oldVal = isset( $this->mTagHooks[$tag] ) ? $this->mTagHooks[$tag] : null;
 		$this->mTagHooks[$tag] = $callback;
 
 		return $oldVal;
@@ -3846,7 +3846,7 @@ class Parser
 	 * @return The old callback function for this name, if any
 	 */
 	function setFunctionHook( $id, $callback, $flags = 0 ) {
-		$oldVal = @$this->mFunctionHooks[$id];
+		$oldVal = isset( $this->mFunctionHooks[$id] ) ? $this->mFunctionHooks[$id] : null;
 		$this->mFunctionHooks[$id] = $callback;
 
 		# Add to function cache

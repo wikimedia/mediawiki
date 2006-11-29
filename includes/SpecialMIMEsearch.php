@@ -126,9 +126,12 @@ function wfSpecialMIMEsearch( $par = null ) {
 }
 
 function wfSpecialMIMEsearchParse( $str ) {
-	wfSuppressWarnings();
+	// searched for an invalid MIME type.
+	if( strpos( $str, '/' ) === false) {
+		return array ('', '');
+	}
+	
 	list( $major, $minor ) = explode( '/', $str, 2 );
-	wfRestoreWarnings();
 
 	return array(
 		ltrim( $major, ' ' ),

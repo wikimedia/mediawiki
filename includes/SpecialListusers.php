@@ -210,7 +210,7 @@ class ListUsersPage extends QueryPage {
  * $par string (optional) A group to list users from
  */
 function wfSpecialListusers( $par = null ) {
-	global $wgRequest, $wgContLang;
+	global $wgRequest;
 
 	list( $limit, $offset ) = wfCheckLimits();
 

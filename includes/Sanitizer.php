@@ -390,12 +390,13 @@ class Sanitizer {
 		if(!$wgUseTidy) {
 			$tagstack = $tablestack = array();
 			foreach ( $bits as $x ) {
-				$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
 				$regs = array();
-				preg_match( '!^(/?)(\\w+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs );
-				list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
-				error_reporting( $prev );
-
+				if( preg_match( '!^(/?)(\\w+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
+					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
+				} else {
+					$slash = $t = $params = $brace = $rest = null;
+				}
+				
 				$badtag = 0 ;
 				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
 					# Check our stack

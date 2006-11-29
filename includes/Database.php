@@ -1019,7 +1019,7 @@ class Database {
 			$options = array( $options );
 		}
 		if( is_array( $table ) ) {
-			if ( @is_array( $options['USE INDEX'] ) )
+			if ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
 				$from = ' FROM ' . $this->tableNamesWithUseIndex( $table, $options['USE INDEX'] );
 			else
 				$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );

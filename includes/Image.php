@@ -58,7 +58,7 @@ class Image
 	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
 	 * @public
 	 */
-	function newFromName( $name ) {
+	public static function newFromName( $name ) {
 		$title = Title::makeTitleSafe( NS_IMAGE, $name );
 		if ( is_object( $title ) ) {
 			return new Image( $title );

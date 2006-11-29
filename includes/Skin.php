@@ -116,10 +116,9 @@ class Skin extends Linker {
 		$skinName = $skinNames[$key];
 
 		# Grab the skin class and initialise it.
-		wfSuppressWarnings();
 		// Preload base classes to work around APC/PHP5 bug
-		include_once( "{$wgStyleDirectory}/{$skinName}.deps.php" );
-		wfRestoreWarnings();
+		$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
+		if( file_exists( $deps ) ) include_once( $deps );
 		require_once( "{$wgStyleDirectory}/{$skinName}.php" );
 
 		# Check if we got if not failback to default skin
@@ -300,9 +299,9 @@ class Skin extends Linker {
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
 		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut;
 
-		$nsname = @$wgCanonicalNamespaceNames[ $wgTitle->getNamespace() ];
-		if ( $nsname === NULL ) $nsname = $wgTitle->getNsText();
-
+		$ns = $wgTitle->getNamespace();
+		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
+		
 		$vars = array( 
 			'jsmimetype' => $wgJsMimeType,
 			'skinname' => $this->getSkinName(),
@@ -884,7 +883,7 @@ END;
 	}
 
 	function getSearchLink() {
-		$searchPage =& SpecialPage::getTitleFor( 'Search' );
+		$searchPage = SpecialPage::getTitleFor( 'Search' );
 		return $searchPage->getLocalURL();
 	}
 

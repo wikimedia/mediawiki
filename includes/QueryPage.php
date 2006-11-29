@@ -376,9 +376,9 @@ class QueryPage {
 
 	/**
 	 * Do any necessary preprocessing of the result object.
-	 * You should pass this by reference: &$db , &$res
+	 * You should pass this by reference: &$db , &$res  [although probably no longer necessary in PHP5]
 	 */
-	function preprocessResults( $db, $res ) {}
+	function preprocessResults( &$db, &$res ) {}
 
 	/**
 	 * Similar to above, but packaging in a syndicated feed instead of a web page

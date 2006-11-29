@@ -571,21 +571,56 @@ class ParserTest {
 	 * @private
 	 */
 	function teardownUploadDir( $dir ) {
-		unlink( "$dir/3/3a/Foobar.jpg" );
-		rmdir( "$dir/3/3a" );
-		rmdir( "$dir/3" );
-		@rmdir( "$dir/thumb/6/65" );
-		@rmdir( "$dir/thumb/6" );
-
-		@unlink( "$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" );
-		@rmdir( "$dir/thumb/3/3a/Foobar.jpg" );
-		@rmdir( "$dir/thumb/3/3a" );
-		@rmdir( "$dir/thumb/3/39" ); # wtf?
-		@rmdir( "$dir/thumb/3" );
-		@rmdir( "$dir/thumb" );
-		@rmdir( "$dir" );
+		// delete the files first, then the dirs.
+		self::deleteFiles( 
+			array (
+				"$dir/3/3a/Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
+			)
+		);
+		    
+		self::deleteDirs(
+			array ( 
+				"$dir/3/3a",
+				"$dir/3",
+				"$dir/thumb/6/65",
+				"$dir/thumb/6",
+				"$dir/thumb/3/3a/Foobar.jpg",
+				"$dir/thumb/3/3a",
+				"$dir/thumb/3",
+				"$dir/thumb",
+				"$dir",
+			)
+		);
 	}
 
+	/**
+	 * @desc delete the specified files, if they exist.
+	 * @param array $files full paths to files to delete.
+	 */
+	private static function deleteFiles( $files ) {
+		foreach( $files as $file ) {
+			if( file_exists( $file ) ) {
+				unlink( $file );
+			}
+		}
+	}
+	
+	/**
+	 * @desc delete the specified directories, if they exist. Must be empty.
+	 * @param array $dirs full paths to directories to delete.
+	 */
+	private static function deleteDirs( $dirs ) {
+		foreach( $dirs as $dir ) {
+			if( is_dir( $dir ) ) {
+				rmdir( $dir );
+			}
+		}
+	}
+	
 	/**
 	 * "Running test $desc..."
 	 * @private
