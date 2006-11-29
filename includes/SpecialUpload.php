@@ -51,9 +51,9 @@ class UploadForm {
 			return;
 		}
 
-	 # Placeholders for text injection by hooks (empty per default)
-	 $this->uploadFormTextTop = "";
-	 $this->uploadFormTextAfterSummary = "";
+		# Placeholders for text injection by hooks (empty per default)
+		$this->uploadFormTextTop = "";
+		$this->uploadFormTextAfterSummary = "";
 
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
@@ -265,6 +265,12 @@ class UploadForm {
 	 */
 	function processUpload() {
 		global $wgUser, $wgOut;
+
+		if( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ) ) )
+		{
+			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file." );
+			return false;
+		}
 
 		/* Check for PHP error if any, requires php 4.2 or newer */
 		if( $this->mUploadError == 1/*UPLOAD_ERR_INI_SIZE*/ ) {
@@ -701,11 +707,11 @@ class UploadForm {
 		global $wgUseCopyrightUpload;
 		global $wgRequest, $wgAllowCopyUploads;
 
-	 if( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) )
-	 {
-	  wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
-	  return false;
-	 }
+		if( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) )
+		{
+			wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
+			return false;
+		}
 
 		$cols = intval($wgUser->getOption( 'cols' ));
 		$ew = $wgUser->getOption( 'editwidth' );

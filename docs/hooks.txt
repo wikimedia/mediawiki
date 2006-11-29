@@ -443,6 +443,11 @@ You might set the member-variables $uploadFormTextTop and
 $uploadFormTextAfterSummary to inject text (HTML) either before
 or after the editform.
 
+'UploadForm:BeforeProcessing': at the beginning of processUpload()
+$form: UploadForm object
+Lets you poke at member variables like $mUploadDescription before the
+file is saved.
+
 'UploadVerification': additional chances to reject an uploaded file
 string $saveName: destination file name
 string $tempName: filesystem path to the temporary file for checks
