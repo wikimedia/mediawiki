@@ -481,6 +481,9 @@ $wgMessageStrucutre = array(
 		'nocreatetext',
 		'undofailed',
 		'explainundofailed',
+		'undosucceeded',
+		'explainundosucceeded',
+		'undo-summary',
 	),
 	'cantcreateaccount' => array(
 		'cantcreateaccounttitle',
