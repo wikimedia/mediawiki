@@ -172,8 +172,7 @@ class IPBlockForm {
 
 		$user = User::newFromName( $this->BlockAddress );
 		if( is_object( $user ) ) {
-			$page = $user->getUserPage();
-			$this->showLogFragment( $wgOut, $page );
+			$this->showLogFragment( $wgOut, $user->getUserPage() );
 		} elseif( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $this->BlockAddress ) ) {
 			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
 		}
@@ -282,7 +281,7 @@ class IPBlockForm {
 		$wgOut->addWikiText( $text );
 	}
 	
-	function showLogFragment( &$out, &$title ) {
+	function showLogFragment( $out, $title ) {
 		$out->addHtml( wfElement( 'h2', NULL, LogPage::logName( 'block' ) ) );
 		$request = new FauxRequest( array( 'page' => $title->getPrefixedText(), 'type' => 'block' ) );
 		$viewer = new LogViewer( new LogReader( $request ) );
