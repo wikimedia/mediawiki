@@ -226,6 +226,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix display of link in "already rolled back" message for image/category pages
 * (bug 6016) Left-aligned images should stack vertically, like right-aligned
   images, not horizontally.
+* Patch from LeonWP: added UploadForm:BeforeProcessing hook in SpecialUpload.php
 
 == Languages updated ==
 
