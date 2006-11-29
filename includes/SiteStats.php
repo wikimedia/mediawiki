@@ -26,7 +26,7 @@ class SiteStats {
 			# Update schema
 			$u = new SiteStatsUpdate( 0, 0, 0 );
 			$u->doUpdate();
-			self::$row = $dbr->selectRow( 'site_stats', '*', false, $fname );
+			self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
 		}
 	}
 
