@@ -802,6 +802,7 @@ class Revision {
 	 * @param integer $id
 	 */
 	static function getTimestampFromID( $id ) {
+		$dbr =& wfGetDB( DB_SLAVE );
 		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', 
 			array( 'rev_id' => $id ), __METHOD__ );
 		if ( $timestamp === false ) {
