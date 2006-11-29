@@ -88,19 +88,19 @@ class CoreParserFunctions {
 		}
 	}
 
-	function formatNum( $parser, $num = '' ) {
+	static function formatNum( $parser, $num = '' ) {
 		return $parser->getFunctionLang()->formatNum( $num );
 	}
 	
-	function grammar( $parser, $case = '', $word = '' ) {
+	static function grammar( $parser, $case = '', $word = '' ) {
 		return $parser->getFunctionLang()->convertGrammar( $word, $case );
 	}
 
-	function plural( $parser, $text = '', $arg0 = null, $arg1 = null, $arg2 = null, $arg3 = null, $arg4 = null ) {
+	static function plural( $parser, $text = '', $arg0 = null, $arg1 = null, $arg2 = null, $arg3 = null, $arg4 = null ) {
 		return $parser->getFunctionLang()->convertPlural( $text, $arg0, $arg1, $arg2, $arg3, $arg4 );
 	}
 
-	function displaytitle( $parser, $param = '' ) {
+	static function displaytitle( $parser, $param = '' ) {
 		$parserOptions = new ParserOptions;
 		$local_parser = clone $parser;
 		$t2 = $local_parser->parse ( $param, $parser->mTitle, $parserOptions, false );
@@ -112,7 +112,7 @@ class CoreParserFunctions {
 		return '';
 	}
 
-	function isRaw( $param ) {
+	static function isRaw( $param ) {
 		static $mwRaw;
 		if ( !$mwRaw ) {
 			$mwRaw =& MagicWord::get( 'rawsuffix' );
@@ -124,7 +124,7 @@ class CoreParserFunctions {
 		}
 	}
 
-	function statisticsFunction( $func, $raw = null ) {
+	static function statisticsFunction( $func, $raw = null ) {
 		if ( self::isRaw( $raw ) ) {
 			return call_user_func( array( 'SiteStats', $func ) );
 		} else {
@@ -133,13 +133,13 @@ class CoreParserFunctions {
 		}
 	}
 
-	function numberofpages( $parser, $raw = null ) { return self::statisticsFunction( 'pages', $raw ); }
-	function numberofusers( $parser, $raw = null ) { return self::statisticsFunction( 'users', $raw ); }
-	function numberofarticles( $parser, $raw = null ) { return self::statisticsFunction( 'articles', $raw ); }
-	function numberoffiles( $parser, $raw = null ) { return self::statisticsFunction( 'images', $raw ); }
-	function numberofadmins( $parser, $raw = null ) { return self::statisticsFunction( 'admins', $raw ); }
+	static function numberofpages( $parser, $raw = null ) { return self::statisticsFunction( 'pages', $raw ); }
+	static function numberofusers( $parser, $raw = null ) { return self::statisticsFunction( 'users', $raw ); }
+	static function numberofarticles( $parser, $raw = null ) { return self::statisticsFunction( 'articles', $raw ); }
+	static function numberoffiles( $parser, $raw = null ) { return self::statisticsFunction( 'images', $raw ); }
+	static function numberofadmins( $parser, $raw = null ) { return self::statisticsFunction( 'admins', $raw ); }
 
-	function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
+	static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		$count = SiteStats::pagesInNs( intval( $namespace ) );
 		if ( self::isRaw( $raw ) ) {
 			global $wgContLang;
@@ -149,13 +149,13 @@ class CoreParserFunctions {
 		}
 	}
 
-	function language( $parser, $arg = '' ) {
+	static function language( $parser, $arg = '' ) {
 		global $wgContLang;
 		$lang = $wgContLang->getLanguageName( strtolower( $arg ) );
 		return $lang != '' ? $lang : $arg;
 	}
 	
-	function pad( $string = '', $length = 0, $char = 0, $direction = STR_PAD_RIGHT ) {
+	static function pad( $string = '', $length = 0, $char = 0, $direction = STR_PAD_RIGHT ) {
 		$length = min( max( $length, 0 ), 500 );
 		$char = substr( $char, 0, 1 );
 		return ( $string && (int)$length > 0 && strlen( trim( (string)$char ) ) > 0 )
@@ -163,19 +163,19 @@ class CoreParserFunctions {
 				: $string;
 	}
 	
-	function padleft( $parser, $string = '', $length = 0, $char = 0 ) {
+	static function padleft( $parser, $string = '', $length = 0, $char = 0 ) {
 		return self::pad( $string, $length, $char, STR_PAD_LEFT );
 	}
 	
-	function padright( $parser, $string = '', $length = 0, $char = 0 ) {
+	static function padright( $parser, $string = '', $length = 0, $char = 0 ) {
 		return self::pad( $string, $length, $char );
 	}
 	
-	function anchorencode( $parser, $text ) {
+	static function anchorencode( $parser, $text ) {
 		return str_replace( '%', '.', str_replace('+', '_', urlencode( $text ) ) );
 	}
 
-	function special( $parser, $text ) {
+	static function special( $parser, $text ) {
 		$title = SpecialPage::getTitleForAlias( $text );
 		if ( $title ) {
 			return $title->getPrefixedText();

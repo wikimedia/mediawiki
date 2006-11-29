@@ -100,7 +100,7 @@ class ApiMain extends ApiBase {
 		return $this->mRequest;
 	}
 
-	public function & getResult() {
+	public function getResult() {
 		return $this->mResult;
 	}
 

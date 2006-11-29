@@ -107,7 +107,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function logName( $type ) {
+	public static function logName( $type ) {
 		global $wgLogNames;
 
 		if( isset( $wgLogNames[$type] ) ) {

@@ -165,7 +165,7 @@ function wfInstallExceptionHandler() {
  * Report an exception to the user
  */
 function wfReportException( Exception $e ) {
-	 if ( is_a( $e, 'MWException' ) ) {
+	 if ( $e instanceof MWException ) {
 		 try {
 			 $e->report();
 		 } catch ( Exception $e2 ) {

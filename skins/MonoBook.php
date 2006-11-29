@@ -258,7 +258,7 @@ class MonoBookTemplate extends QuickTemplate {
 			'privacy', 'about', 'disclaimer', 'tagline',
 		);
 		foreach( $footerlinks as $aLink ) {
-			if( $this->data[$aLink] ) {
+			if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
 ?>				<li id="<?php echo$aLink?>"><?php $this->html($aLink) ?></li>
 <?php 		}
 		}

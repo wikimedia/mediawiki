@@ -59,8 +59,8 @@ class WikiError {
 	 * @return bool
 	 * @static
 	 */
-	function isError( &$object ) {
-		return is_a( $object, 'WikiError' );
+	public static function isError( &$object ) {
+		return $object instanceof WikiError;
 	}
 }
 

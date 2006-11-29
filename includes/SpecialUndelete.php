@@ -498,7 +498,7 @@ class UndeleteForm {
 		$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
 
 		$sk = $wgUser->getSkin();
-		$undelete =& SpecialPage::getTitleFor( 'Undelete' );
+		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 		$wgOut->addHTML( "<ul>\n" );
 		while( $row = $result->fetchObject() ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );

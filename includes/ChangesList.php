@@ -46,7 +46,7 @@ class ChangesList {
 	 * @param $user User to fetch the list class for
 	 * @return ChangesList derivative
 	 */
-	function newFromUser( &$user ) {
+	public static function newFromUser( &$user ) {
 		$sk =& $user->getSkin();
 		$list = NULL;
 		if( wfRunHooks( 'FetchChangesList', array( &$user, &$skin, &$list ) ) ) {

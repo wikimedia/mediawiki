@@ -82,7 +82,7 @@ class ApiFeedWatchlist extends ApiBase {
 		$titleStr = $info['title'];
 		$title = Title :: newFromText($titleStr);
 		$titleUrl = $title->getFullUrl();
-		$comment = $info['comment'];
+		$comment = isset( $info['comment'] ) ? $info['comment'] : null;
 		$timestamp = $info['timestamp'];
 		$user = $info['user'];
 

@@ -2051,7 +2051,7 @@ function wfWikiID() {
  */
 function &wfGetDB( $db = DB_LAST, $groups = array() ) {
 	global $wgLoadBalancer;
-	$ret =& $wgLoadBalancer->getConnection( $db, true, $groups );
+	$ret = $wgLoadBalancer->getConnection( $db, true, $groups );
 	return $ret;
 }
 ?>

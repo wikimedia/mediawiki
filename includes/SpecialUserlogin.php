@@ -12,7 +12,7 @@ function wfSpecialUserlogin() {
 	global $wgCommandLineMode;
 	global $wgRequest;
 	if( !$wgCommandLineMode && !isset( $_COOKIE[session_name()] )  ) {
-		User::SetupSession();
+		wfSetupSession();
 	}
 
 	$form = new LoginForm( $wgRequest );
@@ -559,7 +559,7 @@ class LoginForm {
 			if ( $wgUser->isLoggedIn() ) {
 				$this->mName = $wgUser->getName();
 			} else {
-				$this->mName = @$_COOKIE[$wgCookiePrefix.'UserName'];
+				$this->mName = isset( $_COOKIE[$wgCookiePrefix.'UserName'] ) ? $_COOKIE[$wgCookiePrefix.'UserName'] : null;
 			}
 		}
 

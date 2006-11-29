@@ -162,7 +162,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function newFromURL( $url ) {
+	public static function newFromURL( $url ) {
 		global $wgLegalTitleChars;
 		$t = new Title();
 
