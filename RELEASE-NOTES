@@ -228,6 +228,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   images, not horizontally.
 * Patch from LeonWP: added UploadForm:BeforeProcessing hook in SpecialUpload.php
 * Add AuthPluginSetup hook to override $wgAuth after configuration
+* (bug 1331) Add "next page" link to bottom of Special:Allpages in chunk mode
 
 
 == Languages updated ==
