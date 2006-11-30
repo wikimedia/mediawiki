@@ -286,6 +286,10 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
+'AuthPluginSetup': update or replace authentication plugin object ($wgAuth)
+Gives a chance for an extension to set it programattically to a variable class.
+&$auth: the $wgAuth object, probably a stub
+
 'AutoAuthenticate': called to authenticate users on external/environmental means
 $user: writes user object to this parameter
 

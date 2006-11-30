@@ -160,7 +160,9 @@ foreach ( $wgSkinExtensionFunctions as $func ) {
 
 if( !is_object( $wgAuth ) ) {
 	$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
+	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 }
+
 wfProfileOut( $fname.'-User' );
 
 wfProfileIn( $fname.'-misc2' );
