@@ -673,11 +673,21 @@ class DatabasePostgres extends Database {
 
 
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		$message = "A database error has occurred\n" .
-			"Query: $sql\n" .
-			"Function: $fname\n" .
-			"Error: $errno $error\n";
-		throw new DBUnexpectedError($this, $message);
+		# Ignore errors during error handling to avoid infinite recursion
+		$ignore = $this->ignoreErrors( true );
+		++$this->mErrorCount;
+
+		if ($ignore || $tempIgnore) {
+			wfDebug("SQL ERROR (ignored): $error\n");
+			$this->ignoreErrors( $ignore );
+		}
+		else {
+			$message = "A database error has occurred\n" .
+				"Query: $sql\n" .
+				"Function: $fname\n" .
+				"Error: $errno $error\n";
+			throw new DBUnexpectedError($this, $message);
+		}
 	}
 
 	/**
