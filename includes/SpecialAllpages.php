@@ -272,12 +272,16 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$self = SpecialPage::getTitleFor( 'Allpages' );
 			$q = 'from=' . $t->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
-			$out2 .= ' | ' . $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
+			$nextLink = $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
+			$out2 .= ' | ' . $nextLink;
 		}
 		$out2 .= "</td></tr></table><hr />";
 	}
 
 	$wgOut->addHtml( $out2 . $out );
+	if( isset( $nextLink ) )
+		$wgOut->addHtml( '<p style="font-size: smaller; float: right;">' . $nextLink . '</p>' );
+	
 }
 	
 /**
