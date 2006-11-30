@@ -296,7 +296,7 @@ class LoginForm {
 	 * @return User object.
 	 * @private
 	 */
-	function &initUser( &$u ) {
+	function initUser( $u ) {
 		$u->addToDatabase();
 		$u->setPassword( $this->mPassword );
 		$u->setEmail( $this->mEmail );
@@ -307,16 +307,21 @@ class LoginForm {
 		$wgAuth->initUser( $u );
 
 		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
+		$u->saveSettings();
 
 		return $u;
 	}
 
 	/**
+	 * Internally authenticate the login request.
+	 *
+	 * This may create a local account as a side effect if the
+	 * authentication plugin allows transparent local account
+	 * creation.
+	 *
 	 * @public
 	 */
-	
-	function authenticateUserData()
-	{
+	function authenticateUserData() {
 		global $wgUser, $wgAuth;
 		if ( '' == $this->mName ) {
 			return self::NO_NAME;
@@ -334,7 +339,7 @@ class LoginForm {
 			 */
 			if ( $wgAuth->autoCreate() && $wgAuth->userExists( $u->getName() ) ) {
 				if ( $wgAuth->authenticate( $u->getName(), $this->mPassword ) ) {
-					$u =& $this->initUser( $u );
+					$u = $this->initUser( $u );
 				} else {
 					return self::WRONG_PLUGIN_PASS;
 				}
@@ -347,9 +352,7 @@ class LoginForm {
 
 		if (!$u->checkPassword( $this->mPassword )) {
 			return '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
-		}
-		else
-		{	
+		} else {	
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
 
