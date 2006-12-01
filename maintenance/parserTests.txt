@@ -6074,7 +6074,27 @@ ISBN with a dummy number
 !! input
 ISBN ---
 !! result
-<p><a href="/index.php?title=Special:Booksources&amp;isbn=" class="internal">ISBN ---</a>
+<p>ISBN ---
+</p>
+!! end
+
+
+!! test
+ISBN with space-delimited number
+!! input
+ISBN 92 9017 032 8
+!! result
+<p><a href="/index.php?title=Special:Booksources&amp;isbn=9290170328" class="internal">ISBN 92 9017 032 8</a>
+</p>
+!! end
+
+
+!! test
+ISBN with multiple spaces, no number
+!! input
+ISBN  foo
+!! result
+<p>ISBN  foo
 </p>
 !! end
 
