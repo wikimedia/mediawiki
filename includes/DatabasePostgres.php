@@ -28,10 +28,13 @@ class DatabasePostgres extends Database {
 		$this->mCascadingDeletes = true;
 		$this->mCleanupTriggers = true;
 		$this->mStrictIPs = true;
-		$this->mRealTimestamps = true;
 		$this->mFlags = $flags;
 		$this->open( $server, $user, $password, $dbName);
 
+	}
+
+	function realTimestamps() {
+		return true;
 	}
 
 	static function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
