@@ -987,7 +987,7 @@ class Parser
 			    <a.*?</a> |                 # Skip link text
 			    <.*?> |                     # Skip stuff inside HTML elements
 			    (?:RFC|PMID)\s+([0-9]+) |   # RFC or PMID, capture number as m[1]
-			    ISBN\s+([0-9Xx\ \-]+)       # ISBN, capture number as m[2]
+			    ISBN\s+(\b[0-9Xx\s\-]+)     # ISBN, capture number as m[2]
 			)!x', array( &$this, 'magicLinkCallback' ), $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
