@@ -229,8 +229,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Patch from LeonWP: added UploadForm:BeforeProcessing hook in SpecialUpload.php
 * Add AuthPluginSetup hook to override $wgAuth after configuration
 * Fix regression in authentication hook auto-creation on login
-* (bug 8110) Allow spaces in ISBNs.
-
+* (bug 8110) Allow spaces in ISBNs
+* (bug 8024) Introduce "send me copies of emails I send to others" preference
 
 == Languages updated ==
 

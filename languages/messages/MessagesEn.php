@@ -481,6 +481,7 @@ parent class in order maintain consistency across languages.
 'tog-watchlisthideown' => 'Hide my edits from the watchlist',
 'tog-watchlisthidebots' => 'Hide bot edits from the watchlist',
 'tog-nolangconversion'		=> 'Disable variants conversion',
+'tog-ccmeonemails' => 'Send me copies of emails I send to other users',
 
 'underline-always' => 'Always',
 'underline-never' => 'Never',
