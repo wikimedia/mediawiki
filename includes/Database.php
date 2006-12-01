@@ -250,7 +250,6 @@ class Database {
 	protected $mCascadingDeletes = false;
 	protected $mCleanupTriggers = false;
 	protected $mStrictIPs = false;
-	protected $mRealTimestamps = false;
 
 #------------------------------------------------------------------------------
 # Accessors
@@ -367,7 +366,7 @@ class Database {
 	 * Returns true if this database uses timestamps rather than integers
 	*/
 	function realTimestamps() {
-		return $this->mRealTimestamps;
+		return false;
 	}
 
 	/**#@+
