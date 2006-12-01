@@ -598,6 +598,12 @@ class EditPage {
 		wfProfileIn( $fname );
 		wfProfileIn( "$fname-checks" );
 
+		if( !wfRunHooks( 'EditPage::attemptSave', array( &$this ) ) )
+		{
+			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
+			return false;
+		}
+
 		# Reintegrate metadata
 		if ( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
 		$this->mMetaData = '' ;
@@ -684,6 +690,7 @@ class EditPage {
 		# If article is new, insert it.
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 		if ( 0 == $aid ) {
+
 			// Late check for create permission, just in case *PARANOIA*
 			if ( !$this->mTitle->userCanCreate() ) {
 				wfDebug( "$fname: no create permission\n" );

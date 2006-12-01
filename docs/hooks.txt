@@ -313,6 +313,10 @@ $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
 $newRev: Revision object of the "new" revision
 
+'EditPage::attemptSave': called before an article is
+saved, that is before insertNewArticle() is called
+&$editpage_Obj: the current EditPage object
+
 'EditFormPreloadText': Allows population of the edit form when creating new pages
 &$text: Text to preload with
 &$title: Title object representing the page being created
