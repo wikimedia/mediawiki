@@ -232,6 +232,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8110) Allow spaces in ISBNs
 * (bug 8024) Introduce "send me copies of emails I send to others" preference
 * Added 'EditPage::attemptSave' hook before an article is saved.
+* (bug 8083) Applied patch for sk localisation
 
 == Languages updated ==
 
