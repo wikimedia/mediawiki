@@ -56,6 +56,7 @@ class User {
 		'forceeditsummary',
 		'watchlisthideown',
 		'watchlisthidebots',
+		'ccmeonemails',
 	);
 
 	/**

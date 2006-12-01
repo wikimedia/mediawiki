@@ -486,6 +486,7 @@ class PreferencesForm {
 		$this->mUsedToggles[ 'enotifusertalkpages' ] = true;
 		$this->mUsedToggles[ 'enotifminoredits' ] = true;
 		$this->mUsedToggles[ 'enotifrevealaddr' ] = true;
+		$this->mUsedToggles[ 'ccmeonemails' ] = true;
 		$this->mUsedToggles[ 'uselivepreview' ] = true;
 
 		# Enotif
@@ -688,6 +689,7 @@ class PreferencesForm {
 				$wgOut->addHTML(
 				"<div><input type='checkbox' $emfc $disabled value='1' name='wpEmailFlag' id='wpEmailFlag' /> <label for='wpEmailFlag'>$emf</label></div>" );
 			}
+			$wgOut->addHtml( $this->getToggle( 'ccmeonemails' ) );
 
 			$wgOut->addHTML( '</fieldset>' );
 		}
