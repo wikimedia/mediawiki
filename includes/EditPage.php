@@ -556,8 +556,8 @@ class EditPage {
 		global $wgUser;
 		if( $wgUser->isAnon() ) {
 			# Anonymous users may not have a session
-			# open. Don't tokenize.
-			$this->mTokenOk = true;
+			# open. Check for suffix anyway.
+			$this->mTokenOk = ( EDIT_TOKEN_SUFFIX == $request->getVal( 'wpEditToken' ) );
 		} else {
 			$this->mTokenOk = $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		}
@@ -1247,18 +1247,24 @@ END
 </div>
 " );
 
-		if ( $wgUser->isLoggedIn() ) {
-			/**
-			 * To make it harder for someone to slip a user a page
-			 * which submits an edit form to the wiki without their
-			 * knowledge, a random token is associated with the login
-			 * session. If it's not passed back with the submission,
-			 * we won't save the page, or render user JavaScript and
-			 * CSS previews.
-			 */
+		/**
+		 * To make it harder for someone to slip a user a page
+		 * which submits an edit form to the wiki without their
+		 * knowledge, a random token is associated with the login
+		 * session. If it's not passed back with the submission,
+		 * we won't save the page, or render user JavaScript and
+		 * CSS previews.
+		 *
+		 * For anon editors, who may not have a session, we just
+		 * include the constant suffix to prevent editing from
+		 * broken text-mangling proxies.
+		 */
+		if ( $wgUser->isLoggedIn() )
 			$token = htmlspecialchars( $wgUser->editToken() );
-			$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
-		}
+		else
+			$token = EDIT_TOKEN_SUFFIX;
+		$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
+
 
 		# If a blank edit summary was previously provided, and the appropriate
 		# user preference is active, pass a hidden tag here. This will stop the
