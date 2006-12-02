@@ -237,6 +237,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   broken proxies that mangle such characters in form submissions
 * (bug 7461) Allow overwriting pages using importTextFile.php
 * (bug 7946) importTextFile.php doesn't perform pre-save transform
+* (bug 8117) {{REVISIONTIMESTAMP}} showed weird default if $wgLocalTZoffset set;
+  now uses current time for previews and if timestamp can't be loaded from DB
+* {{REVISIONTIMESTAMP}} now uses site local timezone instead of user timezone
+  to ensure consistent behavior
+* {{REVISIONTIMESTAMP}} and friends should now work on non-MySQL backends
+
 
 == Languages updated ==
 
