@@ -4528,7 +4528,7 @@ class Parser
 
 	/**
 	 * Get the timestamp associated with the current revision, adjusted for 
-	 * the user's current timestamp
+	 * the default server-local timestamp
 	 */
 	function getRevisionTimestamp() {
 		if ( is_null( $this->mRevisionTimestamp ) ) {
@@ -4537,8 +4537,21 @@ class Parser
 			$dbr =& wfGetDB( DB_SLAVE );
 			$timestamp = $dbr->selectField( 'revision', 'rev_timestamp',
 					array( 'rev_id' => $this->mRevisionId ), __METHOD__ );
-			$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp );
-		
+			
+			// Normalize timestamp to internal MW format for timezone processing.
+			// This has the added side-effect of replacing a null value with
+			// the current time, which gives us more sensible behavior for
+			// previews.
+			$timestamp = wfTimestamp( TS_MW, $timestamp );
+			
+			// The cryptic '' timezone parameter tells to use the site-default
+			// timezone offset instead of the user settings.
+			//
+			// Since this value will be saved into the parser cache, served
+			// to other users, and potentially even used inside links and such,
+			// it needs to be consistent for all visitors.
+			$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp, '' );
+			
 			wfProfileOut( __METHOD__ );
 		}
 		return $this->mRevisionTimestamp;
