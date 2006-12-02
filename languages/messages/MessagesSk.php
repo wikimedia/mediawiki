@@ -196,7 +196,7 @@ $messages = array(
 'tog-watchlisthideown'  => 'Skry moje úpravy zo zoznamu sledovaných',
 'tog-watchlisthidebots' => 'Skry úpravy botov zo zoznamu sledovaných',
 'tog-nolangconversion'  => 'Vypni konverziu variantov',
-'tog-ccmeonemails'      => 'Pošli mi kópie mojich emailov, ktoré pošlem ostatným používateľom'
+'tog-ccmeonemails'      => 'Pošli mi kópie mojich emailov, ktoré pošlem ostatným používateľom',
 
 'underline-always'      => 'Vždy',
 'underline-never'       => 'Nikdy',
