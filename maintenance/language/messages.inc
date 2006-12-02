@@ -47,6 +47,7 @@ $wgMessageStrucutre = array(
 		'tog-watchlisthideown',
 		'tog-watchlisthidebots',
 		'tog-nolangconversion',
+		'tog-ccmeonemails',
 	),
 	'underline' => array(
 		'underline-always',

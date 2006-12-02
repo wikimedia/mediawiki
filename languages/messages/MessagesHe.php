@@ -222,6 +222,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'הסתר עריכות שלי ברשימת המעקב',
 'tog-watchlisthidebots'       => 'הסתר בוטים ברשימת המעקב',
 'tog-nolangconversion'        => 'בטל המרת גרסאות שפה',
+'tog-ccmeonemails'            => 'שלח אלי העתקים של הודעות דואר אלקטרוני שאני שולח למשתמשים אחרים',
 
 'underline-always'  => 'תמיד',
 'underline-never'   => 'אף פעם',
