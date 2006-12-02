@@ -234,7 +234,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added 'EditPage::attemptSave' hook before an article is saved.
 * (bug 8083) Applied patch for sk localisation
 * Add a backslash character to the edit token, to prevent edits via certain
-  broken proxies that mangle such characters in form submissions.
+  broken proxies that mangle such characters in form submissions
+* (bug 7461) Allow overwriting pages using importTextFile.php
+* (bug 7946) importTextFile.php doesn't perform pre-save transform
 
 == Languages updated ==
 
