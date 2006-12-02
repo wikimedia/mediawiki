@@ -11,6 +11,11 @@ define( 'USER_TOKEN_LENGTH', 32 );
 # Serialized record version
 define( 'MW_USER_VERSION', 4 );
 
+# Some punctuation to prevent editing from broken text-mangling proxies.
+# FIXME: this is embedded unescaped into HTML attributes in various
+# places, so we can't safely include ' or " even though we really should.
+define( 'EDIT_TOKEN_SUFFIX', '\\' );
+
 /**
  *
  * @package MediaWiki
@@ -2093,7 +2098,7 @@ class User {
 		if( is_array( $salt ) ) {
 			$salt = implode( '|', $salt );
 		}
-		return md5( $token . $salt );
+		return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
 	}
 
 	/**
