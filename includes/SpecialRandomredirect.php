@@ -45,7 +45,7 @@ function wfSpecialRandomredirect( $par = NULL ) {
 
 	# Catch dud titles and return to the main page
 	if( is_null( $title ) )
-		$title = Title::newFromText( wfMsg( 'mainpage' ) );
+		$title = Title::newMainPage();
 		
 	$wgOut->reportTime();
 	$wgOut->redirect( $title->getFullUrl( 'redirect=no' ) );

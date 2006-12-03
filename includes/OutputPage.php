@@ -837,7 +837,7 @@ class OutputPage {
 		
 		# Don't return to the main page if the user can't read it
 		# otherwise we'll end up in a pointless loop
-		$mainPage = Title::newFromText( wfMsgForContent( 'mainpage' ) );
+		$mainPage = Title::newMainPage();
 		if( $mainPage->userCanRead() )
 			$this->returnToMain( true, $mainPage );
 	}
@@ -974,7 +974,7 @@ class OutputPage {
 		}
 		
 		if ( '' === $returnto ) {
-			$returnto = wfMsgForContent( 'mainpage' );
+			$returnto = Title::newMainPage();
 		}
 
 		if ( is_object( $returnto ) ) {

@@ -810,7 +810,7 @@ class SkinTemplate extends Skin {
 		$oldid = $wgRequest->getVal( 'oldid' );
 
 		$nav_urls = array();
-		$nav_urls['mainpage'] = array( 'href' => self::makeI18nUrl( 'mainpage') );
+		$nav_urls['mainpage'] = array( 'href' => self::makeMainPageUrl() );
 		if( $wgEnableUploads ) {
 			if ($wgUploadNavigationUrl) {
 				$nav_urls['upload'] = array( 'href' => $wgUploadNavigationUrl );
