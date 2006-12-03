@@ -1127,12 +1127,8 @@ END;
 		else { $a = ''; }
 
 		$mp = wfMsg( 'mainpage' );
-		$titleObj = Title::newFromText( $mp );
-		if ( is_object( $titleObj ) ) {
-			$url = $titleObj->escapeLocalURL();
-		} else {
-			$url = '';
-		}
+		$mptitle = Title::newMainPage();
+		$url = ( is_object($mptitle) ? $mptitle->escapeLocalURL() : '' );
 
 		$logourl = $this->getLogo();
 		$s = "<a href='{$url}'><img{$a} src='{$logourl}' alt='[{$mp}]' /></a>";
@@ -1170,9 +1166,7 @@ END;
 	}
 
 	function mainPageLink() {
-		$mp = wfMsgForContent( 'mainpage' );
-		$mptxt = wfMsg( 'mainpage');
-		$s = $this->makeKnownLink( $mp, $mptxt );
+		$s = $this->makeKnownLinkObj( Title::newMainPage(), wfMsg( 'mainpage' ) );
 		return $s;
 	}
 
@@ -1495,6 +1489,12 @@ END;
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */
+	static function makeMainPageUrl( $urlaction = '' ) {
+		$title = Title::newMainPage();
+		self::checkTitle( $title, $name );
+		return $title->getLocalURL( $urlaction );
+	}
+
 	static function makeSpecialUrl( $name, $urlaction = '' ) {
 		$title = SpecialPage::getTitleFor( $name );
 		return $title->getLocalURL( $urlaction );

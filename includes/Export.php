@@ -337,8 +337,7 @@ class XmlDumpWriter {
 	}
 
 	function homelink() {
-		$page = Title::newFromText( wfMsgForContent( 'mainpage' ) );
-		return wfElement( 'base', array(), $page->getFullUrl() );
+		return wfElement( 'base', array(), Title::newMainPage()->getFullUrl() );
 	}
 
 	function caseSetting() {

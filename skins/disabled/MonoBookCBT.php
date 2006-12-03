@@ -764,7 +764,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 	}
 	
 	function logopath() { return $GLOBALS['wgLogo']; }
-	function mainpage() { return self::makeI18nUrl( 'mainpage' ); }
+	function mainpage() { return self::makeMainPageUrl(); }
 	
 	function sidebar( $startSection, $endSection, $innerTpl ) {
 		$s = '';

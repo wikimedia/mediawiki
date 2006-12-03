@@ -84,7 +84,7 @@ class SkinCologneBlue extends Skin {
 		$s .= "<td class='bottom' align='center' valign='top'>";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br />" . $this->makeKnownLink( wfMsgForContent( "mainpage" ) ) . " | "
+		$s .= "\n<br />" . $this->makeKnownLinkObj( Title::newMainPage() ) . " | "
 		  . $this->aboutLink() . " | "
 		  . $this->searchForm( wfMsg( "qbfind" ) );
 
@@ -138,7 +138,7 @@ class SkinCologneBlue extends Skin {
 		}
 
 		$s = "" .
-		  $this->makeKnownLink( wfMsgForContent( "mainpage" ), wfMsg( "mainpage" ) )
+		  $this->mainPageLink()
 		  . " | " .
 		  $this->makeKnownLink( wfMsgForContent( "aboutpage" ), wfMsg( "about" ) )
 		  . " | " .
