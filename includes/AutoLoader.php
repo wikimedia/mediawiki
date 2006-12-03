@@ -162,7 +162,7 @@ function __autoload($className) {
 		'BrokenRedirectsPage' => 'includes/SpecialBrokenRedirects.php',
 		'CategoriesPage' => 'includes/SpecialCategories.php',
 		'EmailConfirmation' => 'includes/SpecialConfirmemail.php',
-		'ContribsFinder' => 'includes/SpecialContributions.php',
+		'ContributionsPage' => 'includes/SpecialContributions.php',
 		'DeadendPagesPage' => 'includes/SpecialDeadendpages.php',
 		'DisambiguationsPage' => 'includes/SpecialDisambiguations.php',
 		'DoubleRedirectsPage' => 'includes/SpecialDoubleRedirects.php',
