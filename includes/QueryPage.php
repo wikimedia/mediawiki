@@ -28,6 +28,7 @@ $wgQueryPages = array(
 	array( 'MostlinkedPage',		'Mostlinked'			),
 	array( 'MostrevisionsPage',		'Mostrevisions'			),
 	array( 'NewPagesPage',			'Newpages'			),
+	array( 'NewbieContributionsPage',	'NewbieContributions'		),
 	array( 'ShortPagesPage',		'Shortpages'			),
 	array( 'UncategorizedCategoriesPage',	'Uncategorizedcategories'	),
 	array( 'UncategorizedPagesPage',	'Uncategorizedpages'		),

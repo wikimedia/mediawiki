@@ -10,7 +10,6 @@
 class ContributionsPage extends QueryPage {
 	var $user = null;
 	var $namespace = null;
-	var $newbies = false;
 	var $botmode = false;
 
 	/**
@@ -18,11 +17,7 @@ class ContributionsPage extends QueryPage {
 	 * @param $username username to list contribs for (or "newbies" for extra magic)
 	 */
 	function __construct( $username ) {
-		// This is an ugly hack.  I don't know who came up with it.
-		if ( $username == 'newbies' && $this->newbiesModeEnabled() )
-			$this->newbies = true;
-		else
-			$this->user = User::newFromName( $username, false );
+		$this->user = User::newFromName( $username, false );
 	}
 
 	/**
@@ -43,15 +38,18 @@ class ContributionsPage extends QueryPage {
 	function isSyndicated() { return false; }
 
 	/**
-	 * Special handling of "newbies" username.  May be disabled in subclasses.
+	 * Get target user name.  May be overridden in subclasses.
+	 * @return string username
 	 */
-	function newbiesModeEnabled() { return true; }
+	function getUsername() {
+		return $this->user->getName();
+	}
 
 	/**
 	 * @return array Extra URL params for self-links.
 	 */
 	function linkParameters() {
-		$params['target'] = ( $this->newbies ? "newbies" : $this->user->getName() );
+		$params['target'] = $this->getUsername();
 
 		if ( isset($this->namespace) )
 			$params['namespace'] = $this->namespace;
@@ -71,7 +69,7 @@ class ContributionsPage extends QueryPage {
 
 		$skin = $wgUser->getSkin();
 
-		$username = $this->user->getName();
+		$username = $this->getUsername();
 		$userpage = $this->user->getUserPage();
 		$userlink = $skin->makeLinkObj( $userpage, $username );
 
@@ -104,10 +102,7 @@ class ContributionsPage extends QueryPage {
 	 * @return string 
 	 */
 	function getSubtitleForTarget() {
-		if ( $this->newbies )
-			return wfMsgHtml( 'sp-contributions-newbies-sub' );
-		else
-			return wfMsgHtml( 'contribsub', $this->getTargetUserLinks() );
+		return wfMsgHtml( 'contribsub', $this->getTargetUserLinks() );
 	}
 
 	/**
@@ -118,18 +113,18 @@ class ContributionsPage extends QueryPage {
 	function getDeletedContributionsLink() {
 		global $wgUser;
 
-		if( $this->newbies || !$wgUser->isAllowed( 'deletedhistory' ) )
+		if( !$wgUser->isAllowed( 'deletedhistory' ) )
 			return '';
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$n = $dbr->selectField( 'archive', 'count(*)', array( 'ar_user_text' => $this->user->getName() ), __METHOD__ );
+		$n = $dbr->selectField( 'archive', 'count(*)', array( 'ar_user_text' => $this->getUsername() ), __METHOD__ );
 
 		if ( $n == 0 )
 			return '';
 
 		$msg = wfMsg( ( $wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted' ),
 			      $wgUser->getSkin()->makeKnownLinkObj(
-				      SpecialPage::getTitleFor( 'DeletedContributions', $this->user->getName() ),
+				      SpecialPage::getTitleFor( 'DeletedContributions', $this->getUsername() ),
 				      wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $n ) ) );
 
 		return "<p>$msg</p>";
@@ -162,7 +157,7 @@ class ContributionsPage extends QueryPage {
 		$form .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
 		$form .= Xml::hidden( 'offset', $this->offset );
 		$form .= Xml::hidden( 'limit',  $this->limit );
-		$form .= Xml::hidden( 'target', ( $this->newbies ? "newbies" : $this->user->getName() ) );
+		$form .= Xml::hidden( 'target', $this->getUsername() );
 		if ( $this->botmode )
 			$form .= Xml::hidden( 'bot', 1 );
 		$form .= '</form>';
@@ -186,14 +181,11 @@ class ContributionsPage extends QueryPage {
 	 */
 	function makeSQLCond( $dbr ) {
 		$cond = ' page_id = rev_page';
-		if ( $this->newbies ) {
-			$max = $dbr->selectField( 'user', 'max(user_id)', false, 'make_sql' );
-			$cond .= ' AND rev_user > ' . (int)($max - $max / 100);
-		} else {
-			$cond .= ' AND rev_user_text = ' . $dbr->addQuotes( $this->user->getName() );
-		}
+		$cond .= ' AND rev_user_text = ' . $dbr->addQuotes( $this->getUsername() );
+
 		if ( isset($this->namespace) )
 			$cond .= ' AND page_namespace = ' . (int)$this->namespace;
+
 		return $cond;
 	}
 
@@ -205,6 +197,9 @@ class ContributionsPage extends QueryPage {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		list( $page, $revision ) = $dbr->tableNamesN( 'page', 'revision' );
+
+		// XXX: the username and userid fields aren't used for much here,
+		// but some subclasses rely on them more than we do.
 
 		return "SELECT 'Contributions' as type,
 				page_namespace AS namespace,
@@ -222,25 +217,14 @@ class ContributionsPage extends QueryPage {
 	}
 
 	/**
-	 * If in newbies mode, do a batch existence check for any user
-	 * and user talk pages that will be shown in the list.
+	 * Get user links for output row, for subclasses that may want
+	 * such functionality.
+	 *
+	 * @param $skin Skin to use
+	 * @param $row Result row
+	 * @return string
 	 */
-	function preprocessResults( $dbr, $res ) {
-		if ( !$this->newbies )
-			return;
-
-		// Do a batch existence check for user and talk pages
-		$linkBatch = new LinkBatch();
-		while( $row = $dbr->fetchObject( $res ) ) {
-			$linkBatch->add( NS_USER, $row->username );
-			$linkBatch->add( NS_USER_TALK, $row->username );
-		}
-		$linkBatch->execute();
-
-		// Seek to start
-		if( $dbr->numRows( $res ) > 0 )
-			$dbr->dataSeek( $res, 0 );
-	}
+	function getRowUserLinks( $skin, $row ) { return ''; }
 
 	/**
 	 * Format a row, providing the timestamp, links to the
@@ -297,12 +281,7 @@ class ContributionsPage extends QueryPage {
 		$link    = $skin->makeKnownLinkObj( $page );
 		$comment = $skin->revComment( $rev );
 
-		if ( $this->newbies ) {
-			$user = ' . . ' . $skin->userLink( $row->userid, $row->username )
-				. $skin->userToolLinks( $row->userid, $row->username );
-		} else {
-			$user = '';
-		}
+		$user = $this->getRowUserLinks( $skin, $row );  // for subclasses
 
 		$notes = '';
 
@@ -320,37 +299,28 @@ class ContributionsPage extends QueryPage {
 		
 		return "{$time} ({$hist}) ({$diff}) {$mflag} {$dm}{$link}{$user} {$comment}{$notes}";
 	}
-
-	/**
-	 * Called to actually output the page.  Override to do a basic
-	 * input validity check before proceeding.
-	 *
-	 * @param $offset database query offset
-	 * @param $limit database query limit
-	 * @param $shownavigation show navigation like "next 200"?
-	 */
-	function doQuery( $limit, $offset, $shownavigation = true ) {
-
-		// this needs to be checked before doing anything
-		if( !$this->user && !$this->newbies ) {
-			global $wgOut;
-			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
-			return;
-		}
-
-		return parent::doQuery( $limit, $offset, $shownavigation );
-	}
 }
 
 /**
  * Show the special page.
  */
 function wfSpecialContributions( $par = null ) {
-	global $wgRequest, $wgUser;
+	global $wgRequest, $wgUser, $wgOut;
 
 	$username = ( isset($par) ? $par : $wgRequest->getVal( 'target' ) );
 
+	// compatibility hack
+	if ( $username == 'newbies' ) {
+		$wgOut->redirect( SpecialPage::getTitleFor( 'NewbieContributions' )->getFullURL() );
+		return;
+	}
+
 	$page = new ContributionsPage( $username );
+
+	if( !$page->user ) {
+		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+		return;
+	}
 
 	// hook for Contributionseditcount extension
 	if ( $page->user && $page->user->isLoggedIn() )

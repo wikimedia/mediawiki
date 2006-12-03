@@ -243,7 +243,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to ensure consistent behavior
 * {{REVISIONTIMESTAMP}} and friends should now work on non-MySQL backends
 * Special:Contributions has been rewritten to inherit from QueryPage
-* Special:Contributions/newbies now lists the user who made each edit
+* New special page Special:NewbieContributions, with a (deprecated)
+  redirect from Special:Contributions/newbies for backwards compatibility
 
 == Languages updated ==
 
