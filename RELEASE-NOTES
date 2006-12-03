@@ -245,6 +245,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Contributions has been rewritten to inherit from QueryPage
 * New special page Special:NewbieContributions, with a (deprecated)
   redirect from Special:Contributions/newbies for backwards compatibility
+* (bug 7671) Observe canonical media namespace prefix in Linker::formatComment
 
 == Languages updated ==
 
