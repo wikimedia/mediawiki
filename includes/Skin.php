@@ -285,6 +285,7 @@ class Skin extends Linker {
 			var wgTitle = "' . Xml::escapeJsString( $data['titletext'] ) . '";
 			var wgArticleId = ' . (int)$data['articleid'] . ';
 			var wgCurRevisionId = ' . ( int ) $data['currevisionid'] . ';
+			var wgOldid = ' . ( int ) $data['oldid'] . ';
 			var wgIsArticle = ' . ( $data['isarticle'] ? 'true' : 'false' ) . ';
 		
 			var wgUserName = ' . ( $data['username'] == NULL ? 'null' : ( '"' . Xml::escapeJsString( $data['username'] ) . '"' ) ) . ';

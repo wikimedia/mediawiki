@@ -204,6 +204,14 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'titletext', $this->mTitle->getText() );
 		$tpl->set( 'articleid', $this->mTitle->getArticleId() );
 		$tpl->set( 'currevisionid', $wgArticle->getLatest() );
+
+		if( $oldid ) {
+			$tpl->set( 'oldid', $oldid );
+		} else
+		{
+			$tpl->set( 'oldid', 0 );
+		}
+
 		$tpl->set( 'isarticle', $wgOut->isArticle() );
 
 		$tpl->setRef( "thispage", $this->thispage );
