@@ -203,7 +203,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'titleprefixeddbkey', $this->mTitle->getPrefixedDBKey() );
 		$tpl->set( 'titletext', $this->mTitle->getText() );
 		$tpl->set( 'articleid', $this->mTitle->getArticleId() );
-//		$tpl->set( 'currevisionid', $wgArticle->getLatest() );
+		$tpl->set( 'currevisionid', isset( $wgArticle ) ? $wgArticle->getLatest() : 0 );
 
 		if( $oldid ) {
 			$tpl->set( 'oldid', $oldid );
