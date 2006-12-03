@@ -931,8 +931,8 @@ class Linker {
 
 		# format regular and media links - all other wiki formatting
 		# is ignored
-		$medians = '(?:' . Namespace::getCanonicalName( NS_MEDIA ) . '|';
-		$medians .= $wgContLang->getNsText( NS_MEDIA ) . '):';
+		$medians = '(?:' . preg_quote( Namespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
+		$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
 		while(preg_match('/\[\[(.*?)(\|(.*?))*\]\](.*)$/',$comment,$match)) {
 			# Handle link renaming [[foo|text]] will show link as "text"
 			if( "" != $match[3] ) {
