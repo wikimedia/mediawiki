@@ -246,6 +246,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New special page Special:NewbieContributions, with a (deprecated)
   redirect from Special:Contributions/newbies for backwards compatibility
 * (bug 7671) Observe canonical media namespace prefix in Linker::formatComment
+* Added js variable wgCurRevisionId to the output
 
 == Languages updated ==
 

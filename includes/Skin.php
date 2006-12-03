@@ -278,20 +278,21 @@ class Skin extends Linker {
 			var wgArticlePath = "' . Xml::escapeJsString( $data['articlepath'] ) . '";
 			var wgScriptPath = "' . Xml::escapeJsString( $data['scriptpath'] ) . '";
 			var wgServer = "' . Xml::escapeJsString( $data['serverurl'] ) . '";
-                        
+
 			var wgCanonicalNamespace = "' . Xml::escapeJsString( $data['nscanonical'] ) . '";
 			var wgNamespaceNumber = ' . (int)$data['nsnumber'] . ';
 			var wgPageName = "' . Xml::escapeJsString( $data['titleprefixeddbkey'] ) . '";
 			var wgTitle = "' . Xml::escapeJsString( $data['titletext'] ) . '";
 			var wgArticleId = ' . (int)$data['articleid'] . ';
+			var wgCurRevisionId = ' . ( int ) $data['currevisionid'] . ';
 			var wgIsArticle = ' . ( $data['isarticle'] ? 'true' : 'false' ) . ';
-                        
+		
 			var wgUserName = ' . ( $data['username'] == NULL ? 'null' : ( '"' . Xml::escapeJsString( $data['username'] ) . '"' ) ) . ';
 			var wgUserLanguage = "' . Xml::escapeJsString( $data['userlang'] ) . '";
 			var wgContentLanguage = "' . Xml::escapeJsString( $data['lang'] ) . '";
 		</script>
 		';
-		
+
 		return $r;
 	}
 
