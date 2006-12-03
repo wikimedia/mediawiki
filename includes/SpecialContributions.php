@@ -213,7 +213,6 @@ class ContributionsPage extends QueryPage {
 				rev_user       AS userid,
 				rev_user_text  AS username,
 				rev_minor_edit AS is_minor,
-				page_is_new    AS is_new,
 				page_latest    AS cur_id,
 				rev_id         AS rev_id,
 				rev_comment    AS comment,
@@ -227,7 +226,7 @@ class ContributionsPage extends QueryPage {
 	 * and user talk pages that will be shown in the list.
 	 */
 	function preprocessResults( $dbr, $res ) {
-		if ( !$self->newbies )
+		if ( !$this->newbies )
 			return;
 
 		// Do a batch existence check for user and talk pages
@@ -290,7 +289,7 @@ class ContributionsPage extends QueryPage {
 		else
 			$diff = $messages['diff'];
 
-		if( $row->minor )
+		if( $row->is_minor )
 			$mflag = '<span class="minor">' . $messages['minoreditletter'] . '</span> ';
 		else
 			$mflag = '';
