@@ -1137,17 +1137,11 @@ Palaute ja lisäapu osoitteessa:
 'contributions'       => 'Käyttäjän muokkaukset',
 'mycontris'           => 'Muokkaukset',
 'contribsub'          => 'Käyttäjän $1 muokkaukset',
-'nocontribs'          => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.',
-'ucnote'              => 'Alla on \'\'\'$1\'\'\' viimeisintä tämän käyttäjän tekemää muokkausta viimeisten \'\'\'$2\'\'\' päivän aikana.',
-'uclinks'             => 'Katso $1 viimeisintä muokkausta; katso $2 viimeisintä päivää.',
 'uctop'               => ' (uusin)' ,
-'newbies'             => 'tulokkaat',
 
-'sp-contributions-newest' => 'Uusimmat',
-'sp-contributions-oldest' => 'Vanhimmat',
-'sp-contributions-newer'  => '← $1 uudempaa',
-'sp-contributions-older'  => '$1 vanhempaa →',
-'sp-contributions-newbies-sub' => 'Uusien tulokkaiden muokkaukset',
+# Newbie contributions
+#
+'newbiecontributions' => 'Uusien tulokkaiden muokkaukset',
 
 # What links here
 #
