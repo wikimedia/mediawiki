@@ -204,7 +204,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'titletext', $this->mTitle->getText() );
 		$tpl->set( 'articleid', $this->mTitle->getArticleId() );
 		$tpl->set( 'currevisionid', isset( $wgArticle ) ? $wgArticle->getLatest() : 0 );
-		$tpl->set( 'oldid', $oldid ? $oldid : 0 );
 
 		$tpl->set( 'isarticle', $wgOut->isArticle() );
 
