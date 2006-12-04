@@ -16,7 +16,7 @@ class ContributionsPage extends QueryPage {
 	 * Constructor.
 	 * @param $username username to list contribs for (or "newbies" for extra magic)
 	 */
-	function __construct( $username ) {
+	function __construct( $username='' ) {
 		$this->user = User::newFromName( $username, false );
 	}
 

@@ -1182,6 +1182,8 @@ $wgAllowExternalImagesFrom = '';
 $wgMiserMode = false;
 /** Disable all query pages if miser mode is on, not just some */
 $wgDisableQueryPages = false;
+/** Number of rows to cache in 'querycache' table when miser mode is on */
+$wgQueryCacheLimit = 1000;
 /** Generate a watchlist once every hour or so */
 $wgUseWatchlistCache = false;
 /** The hour or so mentioned above */
