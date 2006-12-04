@@ -45,7 +45,7 @@ foreach ( $wgQueryPages as $page ) {
 	if ( $queryPage->isExpensive() ) {
 		$t1 = explode( ' ', microtime() );
 		# Do the query
-		$num = $queryPage->recache( $limit === null ? 1000 : $limit );
+		$num = $queryPage->recache( $limit === null ? $wgQueryCacheLimit : $limit );
 		$t2 = explode( ' ', microtime() );
 
 		if ( $num === false ) {
