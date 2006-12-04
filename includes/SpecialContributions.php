@@ -20,6 +20,14 @@ class ContributionsPage extends QueryPage {
 		$this->user = User::newFromName( $username, false );
 	}
 
+	function openList( $offset ) {
+		return "<ul class='special'>";
+	}
+	
+	function closeList() {
+		return '</ul>';
+	}
+	
 	/**
 	 * @return string Name of this special page.
 	 */
