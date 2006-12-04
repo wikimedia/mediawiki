@@ -285,7 +285,6 @@ class Skin extends Linker {
 			var wgTitle = "' . Xml::escapeJsString( $data['titletext'] ) . '";
 			var wgArticleId = ' . (int)$data['articleid'] . ';
 			var wgCurRevisionId = ' . ( int ) $data['currevisionid'] . ';
-			var wgOldid = ' . ( int ) $data['oldid'] . ';
 			var wgIsArticle = ' . ( $data['isarticle'] ? 'true' : 'false' ) . ';
 		
 			var wgUserName = ' . ( $data['username'] == NULL ? 'null' : ( '"' . Xml::escapeJsString( $data['username'] ) . '"' ) ) . ';
@@ -300,7 +299,7 @@ class Skin extends Linker {
 	function getHeadScripts() {
 		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType, $wgStyleVersion;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
-		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut, $wgArticle, $wgRequest;
+		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
@@ -318,7 +317,6 @@ class Skin extends Linker {
 			'titletext' => $wgTitle->getText(),
 			'articleid' => $wgTitle->getArticleId(),
 			'currevisionid' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
-			'oldid' => $wgRequest->getVal( 'oldid' ),
 			'isarticle' => $wgOut->isArticle(),
 			'username' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
 			'userlang' => $wgLang->getCode(),

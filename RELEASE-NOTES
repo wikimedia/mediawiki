@@ -247,7 +247,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   redirect from Special:Contributions/newbies for backwards compatibility
 * (bug 7671) Observe canonical media namespace prefix in Linker::formatComment
 * Added js variable wgCurRevisionId to the output
-* Added js variable wgOldId which shows the oldid when viewing an old revision
 * (bug 8141) Cleanup of Parser::doTableStuff, patch by AzaTht
 * (bug 8042) Make miser mode caching limits settable via $wgQueryCacheLimit
   instead of hardcoding to 1000
