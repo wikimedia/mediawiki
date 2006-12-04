@@ -300,7 +300,7 @@ class Skin extends Linker {
 	function getHeadScripts() {
 		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType, $wgStyleVersion;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
-		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut;
+		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut, $wgArticle, $wgRequest;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
@@ -317,6 +317,8 @@ class Skin extends Linker {
 			'titleprefixeddbkey' => $wgTitle->getPrefixedDBKey(),
 			'titletext' => $wgTitle->getText(),
 			'articleid' => $wgTitle->getArticleId(),
+			'currevisionid' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
+			'oldid' => $wgRequest->getVal( 'oldid' ),
 			'isarticle' => $wgOut->isArticle(),
 			'username' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
 			'userlang' => $wgLang->getCode(),
