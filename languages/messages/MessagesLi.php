@@ -32,8 +32,13 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK  => 'Euverlik_sjabloon',
 	NS_HELP           => 'Help',
 	NS_HELP_TALK      => 'Euverlik_help',
-	NS_CATEGORY       => 'Kategorie',
-	NS_CATEGORY_TALK  => 'Euverlik_kategorie'
+	NS_CATEGORY       => 'Categorie',
+	NS_CATEGORY_TALK  => 'Euverlik_categorie'
+);
+
+$namespaceAliases = array(
+	'Kategorie'          => NS_CATEGORY,
+	'Euverlik_kategorie' => NS_CATEGORY_TALK,
 );
 
 $dateFormats = array(	
