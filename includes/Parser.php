@@ -780,141 +780,191 @@ class Parser
 	 *
 	 * @private
 	 */
-	function doTableStuff ( $t ) {
+	function doTableStuff ( $text ) {
 		$fname = 'Parser::doTableStuff';
 		wfProfileIn( $fname );
 
-		$t = explode ( "\n" , $t ) ;
-		$td = array () ; # Is currently a td tag open?
-		$ltd = array () ; # Was it TD or TH?
-		$tr = array () ; # Is currently a tr tag open?
-		$ltr = array () ; # tr attributes
-		$has_opened_tr = array(); # Did this table open a <tr> element?
-		$indent_level = 0; # indent level of the table
-		foreach ( $t AS $k => $x )
+		$lines = explode ( "\n" , $text );
+		$td_history = array (); // Is currently a td tag open?
+		$last_tag_history = array (); // Save history of last lag activated (td, th or caption)
+		$tr_history = array (); // Is currently a tr tag open?
+		$tr_attributes = array (); // history of tr attributes
+		$has_opened_tr = array(); // Did this table open a <tr> element?
+		$indent_level = 0; // indent level of the table
+		foreach ( $lines as $key => $line )
 		{
-			$x = trim ( $x ) ;
-			$fc = substr ( $x , 0 , 1 ) ;
+			$line = trim ( $line );
+
+			if( $line == '' ) { // empty line, go to next line
+				continue;
+			}
+			$first_character = $line{0};
 			$matches = array();
-			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) ) {
+
+			if ( preg_match( '/^(:*)\{\|(.*)$/' , $line , $matches ) ) {
+				// First check if we are starting a new table
 				$indent_level = strlen( $matches[1] );
 
 				$attributes = $this->mStripState->unstripBoth( $matches[2] );
+				$attributes = Sanitizer::fixTagAttributes ( $attributes , 'table' );
 
-				$t[$k] = str_repeat( '<dl><dd>', $indent_level ) .
-					'<table' . Sanitizer::fixTagAttributes ( $attributes, 'table' ) . '>' ;
-				array_push ( $td , false ) ;
-				array_push ( $ltd , '' ) ;
-				array_push ( $tr , false ) ;
-				array_push ( $ltr , '' ) ;
-				array_push ( $has_opened_tr, false );
-			}
-			else if ( count ( $td ) == 0 ) { } # Don't do any of the following
-			else if ( '|}' == substr ( $x , 0 , 2 ) ) {
-				$z = "</table>" . substr ( $x , 2);
-				$l = array_pop ( $ltd ) ;
-				if ( !array_pop ( $has_opened_tr ) ) $z = "<tr><td></td></tr>" . $z ;
-				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
-				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
-				array_pop ( $ltr ) ;
-				$t[$k] = $z . str_repeat( '</dd></dl>', $indent_level );
-			}
-			else if ( '|-' == substr ( $x , 0 , 2 ) ) { # Allows for |---------------
-				$x = substr ( $x , 1 ) ;
-				while ( $x != '' && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
-				$z = '' ;
-				$l = array_pop ( $ltd ) ;
-				array_pop ( $has_opened_tr );
-				array_push ( $has_opened_tr , true ) ;
-				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
-				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
-				array_pop ( $ltr ) ;
-				$t[$k] = $z ;
-				array_push ( $tr , false ) ;
-				array_push ( $td , false ) ;
-				array_push ( $ltd , '' ) ;
-				$attributes = $this->mStripState->unstripBoth( $x );
-				array_push ( $ltr , Sanitizer::fixTagAttributes ( $attributes, 'tr' ) ) ;
-			}
-			else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) { # Caption
-				# $x is a table row
-				if ( '|+' == substr ( $x , 0 , 2 ) ) {
-					$fc = '+' ;
-					$x = substr ( $x , 1 ) ;
+				$lines[$key] = str_repeat( '<dl><dd>' , $indent_level ) . "<table{$attributes}>";
+				array_push ( $td_history , false );
+				array_push ( $last_tag_history , '' );
+				array_push ( $tr_history , false );
+				array_push ( $tr_attributes , '' );
+				array_push ( $has_opened_tr , false );
+			} else if ( count ( $td_history ) == 0 ) {
+				// Don't do any of the following
+				continue;
+			} else if ( substr ( $line , 0 , 2 ) == '|}' ) { 
+				// We are ending a table
+				$line = '</table>' . substr ( $line , 2 );
+				$last_tag = array_pop ( $last_tag_history );
+
+				if ( !array_pop ( $has_opened_tr ) ) {
+					$line = "<tr><td></td></tr>{$line}";
 				}
-				$after = substr ( $x , 1 ) ;
-				if ( $fc == '!' ) $after = str_replace ( '!!' , '||' , $after ) ;
+
+				if ( array_pop ( $tr_history ) ) {
+					$line = "</tr>{$line}";
+				}
+
+				if ( array_pop ( $td_history ) ) {
+					$line = "</{$last_tag}>{$line}";
+				}
+				array_pop ( $tr_attributes );
+				$lines[$key] = $line . str_repeat( '</dd></dl>' , $indent_level );
+			} else if ( substr ( $line , 0 , 2 ) == '|-' ) {
+				// Now we have a table row
+				$line = preg_replace( '#^\|-+#', '', $line );
+
+				// Whats after the tag is now only attributes
+				$attributes = $this->mStripState->unstripBoth( $line );
+				$attributes = Sanitizer::fixTagAttributes ( $attributes , 'tr' );
+				array_pop ( $tr_attributes );
+				array_push ( $tr_attributes , $attributes );
+
+				$line = '';
+				$last_tag = array_pop ( $last_tag_history );
+				array_pop ( $has_opened_tr );
+				array_push ( $has_opened_tr , true );
+
+				if ( array_pop ( $tr_history ) ) {
+					$line = '</tr>';
+				}
+
+				if ( array_pop ( $td_history ) ) {
+					$line = "</{$last_tag}>{$line}";
+				}
+
+				$lines[$key] = $line;
+				array_push ( $tr_history , false );
+				array_push ( $td_history , false );
+				array_push ( $last_tag_history , '' );
+			}
+			else if ( $first_character == '|' || $first_character == '!' || substr ( $line , 0 , 2 )  == '|+' ) { 
+				// This might be cell elements, td, th or captions
+				if ( substr ( $line , 0 , 2 ) == '|+' ) {
+					$first_character = '+';
+					$line = substr ( $line , 1 );
+				}
+
+				$line = substr ( $line , 1 );
+
+				if ( $first_character == '!' ) {
+					$line = str_replace ( '!!' , '||' , $line );
+				}
 
 				// Split up multiple cells on the same line.
-				// FIXME: This can result in improper nesting of tags processed
+				// FIXME : This can result in improper nesting of tags processed
 				// by earlier parser steps, but should avoid splitting up eg
 				// attribute values containing literal "||".
-				$after = StringUtils::explodeMarkup( '||', $after );
+				$cells = StringUtils::explodeMarkup( '||' , $line );
 
-				$t[$k] = '' ;
+				$lines[$key] = '';
 
-				# Loop through each table cell
-				foreach ( $after AS $theline )
+				// Loop through each table cell
+				foreach ( $cells as $cell )
 				{
-					$z = '' ;
-					if ( $fc != '+' )
+					$previous = '';
+					if ( $first_character != '+' )
 					{
-						$tra = array_pop ( $ltr ) ;
-						if ( !array_pop ( $tr ) ) $z = '<tr'.$tra.">\n" ;
-						array_push ( $tr , true ) ;
-						array_push ( $ltr , '' ) ;
+						$tr_after = array_pop ( $tr_attributes );
+						if ( !array_pop ( $tr_history ) ) {
+							$previous = "<tr{$tr_after}>\n";
+						}
+						array_push ( $tr_history , true );
+						array_push ( $tr_attributes , '' );
 						array_pop ( $has_opened_tr );
-						array_push ( $has_opened_tr , true ) ;
+						array_push ( $has_opened_tr , true );
 					}
 
-					$l = array_pop ( $ltd ) ;
-					if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
-					if ( $fc == '|' ) {
-					    $l = 'td' ;
-					} else if ( $fc == '!' ) {
-					    $l = 'th' ;
-					} else if ( $fc == '+' ) {
-					    $l = 'caption' ;
+					$last_tag = array_pop ( $last_tag_history );
+
+					if ( array_pop ( $td_history ) ) {
+						$previous = "</{$last_tag}>{$previous}";
+					}
+
+					if ( $first_character == '|' ) {
+						$last_tag = 'td';
+					} else if ( $first_character == '!' ) {
+						$last_tag = 'th';
+					} else if ( $first_character == '+' ) {
+						$last_tag = 'caption';
 					} else {
-					    $l = '' ;
+						$last_tag = '';
 					}
-					array_push ( $ltd , $l ) ;
 
-					# Cell parameters
-					$y = explode ( '|' , $theline , 2 ) ;
-					# Note that a '|' inside an invalid link should not
-					# be mistaken as delimiting cell parameters
-					if ( strpos( $y[0], '[[' ) !== false ) {
-						$y = array ($theline);
-					}
-					if ( count ( $y ) == 1 )
-						$y = "{$z}<{$l}>{$y[0]}" ;
+					array_push ( $last_tag_history , $last_tag );
+
+					// A cell could contain both parameters and data
+					$cell_data = explode ( '|' , $cell , 2 );
+
+					// Bug 553: Note that a '|' inside an invalid link should not
+					// be mistaken as delimiting cell parameters
+					if ( strpos( $cell_data[0], '[[' ) !== false ) {
+						$cell = "{$previous}<{$last_tag}>{$cell}";
+					} else if ( count ( $cell_data ) == 1 )
+						$cell = "{$previous}<{$last_tag}>{$cell_data[0]}";
 					else {
-						$attributes = $this->mStripState->unstripBoth( $y[0] );
-						$y = "{$z}<{$l}".Sanitizer::fixTagAttributes($attributes, $l).">{$y[1]}" ;
+						$attributes = $this->mStripState->unstripBoth( $cell_data[0] );
+						$attributes = Sanitizer::fixTagAttributes( $attributes , $last_tag );
+						$cell = "{$previous}<{$last_tag}{$attributes}>{$cell_data[1]}";
 					}
-					$t[$k] .= $y ;
-					array_push ( $td , true ) ;
+
+					$lines[$key] .= $cell;
+					array_push ( $td_history , true );
 				}
 			}
 		}
 
-		# Closing open td, tr && table
-		while ( count ( $td ) > 0 )
+		// Closing open td, tr && table
+		while ( count ( $td_history ) > 0 )
 		{
-			$l = array_pop ( $ltd ) ;
-			if ( array_pop ( $td ) ) $t[] = '</td>' ;
-			if ( array_pop ( $tr ) ) $t[] = '</tr>' ;
-			if ( !array_pop ( $has_opened_tr ) ) $t[] = "<tr><td></td></tr>" ;
-			$t[] = '</table>' ;
+			if ( array_pop ( $td_history ) ) {
+				$lines[] = '</td>' ;
+			}
+			if ( array_pop ( $tr_history ) ) {
+				$lines[] = '</tr>' ;
+			}
+			if ( !array_pop ( $has_opened_tr ) ) {
+				$lines[] = "<tr><td></td></tr>" ;
+			}
+
+			$lines[] = '</table>' ;
 		}
 
-		$t = implode ( "\n" , $t ) ;
-		# special case: don't return empty table
-		if($t == "<table>\n<tr><td></td></tr>\n</table>")
-			$t = '';
+		$output = implode ( "\n" , $lines ) ;
+
+		// special case: don't return empty table
+		if( $output == "<table>\n<tr><td></td></tr>\n</table>" ) {
+			$output = '';
+		}
+
 		wfProfileOut( $fname );
-		return $t ;
+
+		return $output;
 	}
 
 	/**
