@@ -39,7 +39,7 @@ class MailAddress {
 	 * @param string $name Human-readable name if a string address is given
 	 */
 	function MailAddress( $address, $name=null ) {
-		if( is_object( $address ) && is_a( $address, 'User' ) ) {
+		if( is_object( $address ) && $address instanceof User ) {
 			$this->address = $address->getEmail();
 			$this->name = $address->getName();
 		} else {
