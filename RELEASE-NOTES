@@ -242,9 +242,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * {{REVISIONTIMESTAMP}} now uses site local timezone instead of user timezone
   to ensure consistent behavior
 * {{REVISIONTIMESTAMP}} and friends should now work on non-MySQL backends
-* Special:Contributions has been rewritten to inherit from QueryPage
-* New special page Special:NewbieContributions, with a (deprecated)
-  redirect from Special:Contributions/newbies for backwards compatibility
 * (bug 7671) Observe canonical media namespace prefix in Linker::formatComment
 * Added js variable wgCurRevisionId to the output
 * (bug 8141) Cleanup of Parser::doTableStuff, patch by AzaTht

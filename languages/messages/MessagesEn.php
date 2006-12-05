@@ -380,7 +380,6 @@ $specialPageAliases = array(
 	'Ipblocklist'               => array( 'Ipblocklist' ),
 	'Specialpages'              => array( 'Specialpages' ),
 	'Contributions'             => array( 'Contributions' ),
-	'NewbieContributions'       => array( 'NewbieContributions' ),
 	'Emailuser'                 => array( 'Emailuser' ),
 	'Whatlinkshere'             => array( 'Whatlinkshere' ),
 	'Recentchangeslinked'       => array( 'Recentchangeslinked' ),
@@ -1755,11 +1754,19 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'contributions' => 'User contributions',
 'mycontris'     => 'My contributions',
 'contribsub'    => "For $1",
+'nocontribs'    => 'No changes were found matching these criteria.',
+'ucnote'        => "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
+'uclinks'       => "View the last $1 changes; view the last $2 days.",
 'uctop'         => ' (top)' ,
+'newbies'       => 'newbies',
 
-# Newbie contributions
-#
-'newbiecontributions' => 'Newbie contributions',
+'sp-newimages-showfrom' => 'Show new images starting from $1',
+
+'sp-contributions-newest' => 'Newest',
+'sp-contributions-oldest' => 'Oldest',
+'sp-contributions-newer'  => 'Newer $1',
+'sp-contributions-older'  => 'Older $1',
+'sp-contributions-newbies-sub' => 'For newbies',
 
 
 # What links here
@@ -2161,7 +2168,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 'newimages-summary' => '',
 'showhidebots' => '($1 bots)',
 'noimages'  => 'Nothing to see.',
-'sp-newimages-showfrom' => 'Show new images starting from $1',
 
 # short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.

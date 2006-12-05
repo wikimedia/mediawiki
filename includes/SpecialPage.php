@@ -114,7 +114,6 @@ class SpecialPage
 		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
 		'Specialpages'              => array( 'UnlistedSpecialPage', 'Specialpages' ),
 		'Contributions'             => array( 'UnlistedSpecialPage', 'Contributions' ),
-		'NewbieContributions'       => array( 'SpecialPage', 'NewbieContributions' ),
 		'Emailuser'                 => array( 'UnlistedSpecialPage', 'Emailuser' ),
 		'Whatlinkshere'             => array( 'UnlistedSpecialPage', 'Whatlinkshere' ),
 		'Recentchangeslinked'       => array( 'UnlistedSpecialPage', 'Recentchangeslinked' ),
