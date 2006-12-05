@@ -1344,10 +1344,19 @@ $NEWPAGE
 'contributions' => 'תרומות המשתמש',
 'mycontris'     => 'התרומות שלי',
 'contribsub'    => 'עבור $1',
+'nocontribs'    => 'לא נמצאו שינויים המתאימים לקריטריונים אלו.',
+'ucnote'        => "להלן '''$1''' השינויים האחרונים שביצע משתמש זה ב־'''$2''' הימים האחרונים:",
+'uclinks'       => 'צפה ב־$1 השינויים האחרונים; צפה ב־$2 הימים האחרונים',
 'uctop'         => '(אחרון)',
+'newbies'       => 'משתמשים חדשים',
 
-# Newbie contributions
-'newbiecontributions' => 'תרומות משתמשים חדשים',
+'sp-newimages-showfrom' => 'הצג תמונות חדשות החל מ־$1',
+
+'sp-contributions-newest'      => 'חדשות ביותר',
+'sp-contributions-oldest'      => 'ישנות ביותר',
+'sp-contributions-newer'       => '$1 החדשות',
+'sp-contributions-older'       => '$1 הישנות',
+'sp-contributions-newbies-sub' => 'עבור משתמשים חדשים',
 
 # What links here
 'whatlinkshere' => 'דפים המקושרים לכאן',
@@ -1712,10 +1721,9 @@ ta["ca-nstab-category"]     = ["c", "צפו בדף הקטגוריה"];',
 'thumbsize'    => 'הקטן לגודל של:',
 'showbigimage' => 'הורד גרסת רזולוציה גבוהה ($1x$2, גודל: $3 קילובייטים)',
 
-'newimages'             => 'גלריית תמונות חדשות',
-'showhidebots'          => '($1 בוטים)',
-'noimages'              => 'אין תמונות.',
-'sp-newimages-showfrom' => 'הצג תמונות חדשות החל מ־$1',
+'newimages'    => 'גלריית תמונות חדשות',
+'showhidebots' => '($1 בוטים)',
+'noimages'     => 'אין תמונות.',
 
 /*
 Short names for language variants used for language conversion links.
