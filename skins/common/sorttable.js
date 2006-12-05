@@ -6,6 +6,9 @@
 addEvent(window, "load", sortables_init);
 
 var SORT_COLUMN_INDEX;
+var NO_ARROW = stylepath+'/common/sort_none.gif';
+var UP_ARROW = stylepath+'/common/sort_up.gif';
+var DOWN_ARROW = stylepath+'/common/sort_down.gif';
 
 function sortables_init() {
 	var idnum = 0;
@@ -30,12 +33,12 @@ function ts_makeSortable(table) {
         var firstRow = table.rows[0];
     }
     if (!firstRow) return;
-    
+
     // We have a first row: assume it's the header, and make its contents clickable links
     for (var i=0;i<firstRow.cells.length;i++) {
         var cell = firstRow.cells[i];
         var txt = ts_getInnerText(cell);
-        cell.innerHTML = txt+'<a href="#" class="sortheader" onclick="ts_resortTable(this);return false;"><span class="sortarrow">&#x2195;</span></a>';
+        cell.innerHTML = txt+'<a href="#" class="sortheader" onclick="ts_resortTable(this);return false;"><img class="sortarrow" src="'+NO_ARROW+'" alt="&#x2195;" /></a>';
     }
 }
 
@@ -61,16 +64,15 @@ function ts_getInnerText(el) {
 }
 
 function ts_resortTable(lnk) {
-    // get the span
-    var span;
+    // get the arrow image
+    var img;
     for (var ci=0;ci<lnk.childNodes.length;ci++) {
-        if (lnk.childNodes[ci].tagName && lnk.childNodes[ci].tagName.toLowerCase() == 'span') span = lnk.childNodes[ci];
+        if (lnk.childNodes[ci].tagName && lnk.childNodes[ci].tagName.toLowerCase() == 'img') img = lnk.childNodes[ci];
     }
-    var spantext = ts_getInnerText(span);
     var td = lnk.parentNode;
     var column = td.cellIndex;
     var table = getParent(td,'TABLE');
-    
+
     // Work out a type for the column
     if (table.rows.length <= 1) return;
     var itm = ts_getInnerText(table.rows[1].cells[column]);
@@ -88,32 +90,33 @@ function ts_resortTable(lnk) {
 
     newRows.sort(sortfn);
 
-    if (span.getAttribute("sortdir") == 'down') {
-        ARROW = '&uarr;';
+    if (img.getAttribute("sortdir") == 'down') {
+		ARROW = UP_ARROW;
         newRows.reverse();
-        span.setAttribute('sortdir','up');
+        img.setAttribute('sortdir','up');
     } else {
-        ARROW = '&darr;';
-        span.setAttribute('sortdir','down');
+		ARROW = DOWN_ARROW;
+        img.setAttribute('sortdir','down');
     }
-    
+
     // We appendChild rows that already exist to the tbody, so it moves them rather than creating new ones
     // don't do sortbottom rows
     for (i=0;i<newRows.length;i++) { if (!newRows[i].className || (newRows[i].className && (newRows[i].className.indexOf('sortbottom') == -1))) table.tBodies[0].appendChild(newRows[i]);}
     // do sortbottom rows only
     for (i=0;i<newRows.length;i++) { if (newRows[i].className && (newRows[i].className.indexOf('sortbottom') != -1)) table.tBodies[0].appendChild(newRows[i]);}
-    
+
     // Delete any other arrows there may be showing
-    var allspans = document.getElementsByTagName("span");
-    for (var ci=0;ci<allspans.length;ci++) {
-        if (allspans[ci].className == 'sortarrow') {
-            if (getParent(allspans[ci],"table") == getParent(lnk,"table")) { // in the same table as us?
-                allspans[ci].innerHTML = '&#x2195;';
+    var allimgs = document.getElementsByTagName("img");
+    for (var ci=0;ci<allimgs.length;ci++) {
+        if (allimgs[ci].className == 'sortarrow') {
+            if (getParent(allimgs[ci],"table") == getParent(lnk,"table")) { // in the same table as us?
+                allimgs[ci].setAttribute('src',NO_ARROW);
             }
         }
     }
-        
-    span.innerHTML = ARROW;
+
+    img.setAttribute('src',ARROW);
+    img.setAttribute('alt',img.getAttribute("sortdir") == 'down' ? '&darr;' : '&uarr;');
 }
 
 function getParent(el, pTagName) {
