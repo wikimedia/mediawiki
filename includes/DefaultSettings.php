@@ -1015,7 +1015,7 @@ $wgBlockOpenProxies = false;
 /** Port we want to scan for a proxy */
 $wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
 /** Script used to scan */
-$wgProxyScriptPath = "$IP/proxy_check.php";
+$wgProxyScriptPath = "$IP/includes/proxy_check.php";
 /** */
 $wgProxyMemcExpiry = 86400;
 /** This should always be customised in LocalSettings.php */
