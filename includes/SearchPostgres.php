@@ -98,7 +98,7 @@ class SearchPostgres extends SearchEngine {
 
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 
-		$query = "SELECT page_id, page_namespace, page_title, old_text AS page_text ".
+		$query = "SELECT page_id, page_namespace, page_title, old_text AS page_text, ".
 			"rank(titlevector, to_tsquery('default','$match')) AS rnk ".
 			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
 			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery('default','$match')";
