@@ -450,11 +450,7 @@ CONTROL;
 		if ( !$n )
 			return '';
 
-		if ( $n == 1 )
-			$msg = wfMsg( 'diff-multi-rev' );
-		else
-			$msg = wfMsg( 'diff-multi-revs', $n );
-
+		$msg = wfMsgExt( 'diff-multi-revs', array( 'parseinline' ), $n );
 		return wfMsgExt( 'diff-multi', array('parseinline'), $msg );
 	}
 
