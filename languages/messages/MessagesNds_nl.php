@@ -4,8 +4,6 @@
   * @package MediaWiki
   * @subpackage Language
   *
-  * @bug 4497
-  *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
   * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -23,7 +21,7 @@ $skinNames = array(
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Speciaol',
+	NS_SPECIAL          => 'Speciaal',
 	NS_MAIN             => '',
 	NS_TALK             => 'Overleg',
 	NS_USER             => 'Gebruker',
@@ -38,8 +36,14 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK    => 'Overleg_sjabloon',
 	NS_HELP             => 'Help',
 	NS_HELP_TALK        => 'Overleg_help',
-	NS_CATEGORY         => 'Categorie',
-	NS_CATEGORY_TALK    => 'Overleg_categorie'
+	NS_CATEGORY         => 'Kattegerie',
+	NS_CATEGORY_TALK    => 'Overleg_kattegerie'
+);
+
+$namespaceAliases = array(
+	'Speciaol'          => NS_SPECIAL,
+	'Categorie'         => NS_CATEGORY,
+	'Overleg_categorie' => NS_CATEGORY_TALK,
 );
 
 $dateFormats = array(
@@ -55,6 +59,5 @@ $dateFormats = array(
 	'ymd date' => 'Y M j',
 	'ymd both' => 'H:i, Y M j',
 );
-
 
 ?>
