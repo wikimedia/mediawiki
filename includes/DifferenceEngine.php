@@ -99,10 +99,10 @@ CONTROL;
 
 		$t = $this->mTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 		  "{$this->mNewid})";
-		$mtext = wfMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 
 		$wgOut->setArticleFlag( false );
 		if ( ! $this->loadRevisionData() ) {
+			$mtext = wfMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
 			$wgOut->addWikitext( $mtext );
 			wfProfileOut( $fname );
