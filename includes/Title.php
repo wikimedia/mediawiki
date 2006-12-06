@@ -2204,7 +2204,7 @@ class Title {
 	 * Get the revision ID of the previous revision
 	 *
 	 * @param integer $revision  Revision ID. Get the revision that was before this one.
-	 * @return interger $oldrevision|false
+	 * @return integer $oldrevision|false
 	 */
 	function getPreviousRevisionID( $revision ) {
 		$dbr =& wfGetDB( DB_SLAVE );
@@ -2217,13 +2217,28 @@ class Title {
 	 * Get the revision ID of the next revision
 	 *
 	 * @param integer $revision  Revision ID. Get the revision that was after this one.
-	 * @return interger $oldrevision|false
+	 * @return integer $oldrevision|false
 	 */
 	function getNextRevisionID( $revision ) {
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'revision', 'rev_id',
 			'rev_page=' . intval( $this->getArticleId() ) .
 			' AND rev_id>' . intval( $revision ) . ' ORDER BY rev_id' );
+	}
+
+	/**
+	 * Get the number of revisions between the given revision IDs.
+	 *
+	 * @param integer $old  Revision ID.
+	 * @param integer $new  Revision ID.
+	 * @return integer  Number of revisions between these IDs.
+	 */
+	function countRevisionsBetween( $old, $new ) {
+		$dbr =& wfGetDB( DB_SLAVE );
+		return $dbr->selectField( 'revision', 'count(*)',
+			'rev_page = ' . intval( $this->getArticleId() ) .
+			' AND rev_id > ' . intval( $old ) .
+			' AND rev_id < ' . intval( $new ) );
 	}
 
 	/**

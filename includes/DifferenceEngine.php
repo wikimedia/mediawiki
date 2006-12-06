@@ -292,7 +292,8 @@ CONTROL;
 		if ( $body === false ) {
 			return false;
 		} else {
-			return $this->addHeader( $body, $otitle, $ntitle );
+			$multi = $this->getMultiNotice();
+			return $this->addHeader( $body, $otitle, $ntitle, $multi );
 		}
 	}
 
@@ -431,20 +432,46 @@ CONTROL;
 		return wfMsgExt( 'lineno', array('parseinline'), $wgLang->formatNum( $matches[1] ) );
 	}
 
+	
+	/**
+	 * If there are revisions between the ones being compared, return a note saying so.
+	 */
+	function getMultiNotice() {
+		$oldid = $this->mOldRev->getId();
+		$newid = $this->mNewRev->getId();
+		if ( $oldid > $newid ) {
+			$tmp = $oldid; $oldid = $newid; $newid = $tmp;
+		}
+
+		$n = $this->mTitle->countRevisionsBetween( $oldid, $newid );
+		if ( !$n )
+			return '';
+
+		if ( $n == 1 )
+			$msg = wfMsg( 'diff-multi-rev' );
+		else
+			$msg = wfMsg( 'diff-multi-revs', $n );
+
+		return wfMsgExt( 'diff-multi', array('parseinline'), $msg );
+	}
+
+
 	/**
 	 * Add the header to a diff body
 	 */
-	function addHeader( $diff, $otitle, $ntitle ) {
-		$out = "
+	function addHeader( $diff, $otitle, $ntitle, $multi = '' ) {
+		$header = "
 			<table border='0' width='98%' cellpadding='0' cellspacing='4' class='diff'>
 			<tr>
 				<td colspan='2' width='50%' align='center' class='diff-otitle'>{$otitle}</td>
 				<td colspan='2' width='50%' align='center' class='diff-ntitle'>{$ntitle}</td>
 			</tr>
-			$diff
-			</table>
 		";
-		return $out;
+
+		if ( $multi != '' )
+			$header .= "<tr><td colspan='4' align='center' class='diff-multi'>{$multi}</td></tr>";
+
+		return $header . $diff . "</table>";
 	}
 
 	/**
