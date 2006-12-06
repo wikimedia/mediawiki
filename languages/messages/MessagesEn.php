@@ -1091,8 +1091,7 @@ is placed by the site operators.",
 'selectolderversionfordiff' => 'Select an older version for comparison',
 'compareselectedversions' => 'Compare selected versions',
 'editundo'	=> 'undo',
-'diff-multi'	=> "($1 not shown.)",
-'diff-multi-revs' => "{{plural:$1|One intermediate revision|$1 intermediate revisions}}",
+'diff-multi'	=> "({{plural:$1|One intermediate revision|$1 intermediate revisions}} not shown.)",
 
 # Search results
 #

@@ -450,8 +450,7 @@ CONTROL;
 		if ( !$n )
 			return '';
 
-		$msg = wfMsgExt( 'diff-multi-revs', array( 'parseinline' ), $n );
-		return wfMsgExt( 'diff-multi', array('parseinline'), $msg );
+		return wfMsgExt( 'diff-multi', array( 'parseinline' ), $n );
 	}
 
 
