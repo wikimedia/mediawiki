@@ -437,6 +437,9 @@ CONTROL;
 	 * If there are revisions between the ones being compared, return a note saying so.
 	 */
 	function getMultiNotice() {
+		if ( !is_object($this->mOldRev) || !is_object($this->mNewRev) )
+			return '';
+
 		$oldid = $this->mOldRev->getId();
 		$newid = $this->mNewRev->getId();
 		if ( $oldid > $newid ) {
