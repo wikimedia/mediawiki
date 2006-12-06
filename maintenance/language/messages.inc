@@ -549,6 +549,7 @@ $wgMessageStrucutre = array(
 		'selectolderversionfordiff',
 		'compareselectedversions',
 		'editundo',
+		'diff-multi',
 	),
 	'search' => array(
 		'searchresults',
