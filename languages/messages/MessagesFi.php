@@ -606,6 +606,9 @@ Syynä tähän on luultavasti jatkuva häiriköinti yhteiskäyttökoneelta.',
 'selectnewerversionfordiff' => 'Valitse uudempi versio vertailuun',
 'selectolderversionfordiff' => 'Valitse vanhempi versio vertailuun',
 'compareselectedversions'   => 'Vertaile valittuja versioita',
+'diff-multi'		=> "(Versioiden välissä $1.)",
+'diff-multi-rev'	=> "yksi muu muokkaus",
+'diff-multi-revs'	=> "$1 muuta muokkausta",
 
 # Search results
 #

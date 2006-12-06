@@ -1085,12 +1085,15 @@ is placed by the site operators.",
 #
 'difference'	=> '(Difference between revisions)',
 'loadingrev'	=> 'loading revision for diff',
-'lineno'		=> "Line $1:",
+'lineno'	=> "Line $1:",
 'editcurrent'	=> 'Edit the current version of this page',
 'selectnewerversionfordiff' => 'Select a newer version for comparison',
 'selectolderversionfordiff' => 'Select an older version for comparison',
 'compareselectedversions' => 'Compare selected versions',
-'editundo' => 'undo',
+'editundo'	=> 'undo',
+'diff-multi'	=> "($1 not shown.)",
+'diff-multi-rev' => "One intermediate revision",
+'diff-multi-revs' => "$1 intermediate revisions",
 
 # Search results
 #

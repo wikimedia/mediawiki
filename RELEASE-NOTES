@@ -247,10 +247,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8141) Cleanup of Parser::doTableStuff, patch by AzaTht
 * (bug 8042) Make miser mode caching limits settable via $wgQueryCacheLimit
   instead of hardcoding to 1000
-* Avoid notice when contribs query page class is instantiated in batch mode
-* Enable QueryPage classes to override list formatting; return Contribs
-  to unordered list display to improve readability
-
+* Enable QueryPage classes to override list formatting
+* (bug 5485) Show number of intervening revisions in diff view
 
 == Languages updated ==
 
