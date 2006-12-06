@@ -439,7 +439,12 @@ CONTROL;
 	function getMultiNotice() {
 		if ( !is_object($this->mOldRev) || !is_object($this->mNewRev) )
 			return '';
-
+		
+		if( !$this->mOldPage->equals( $this->mNewPage ) ) {
+			// Comparing two different pages? Count would be meaningless.
+			return '';
+		}
+		
 		$oldid = $this->mOldRev->getId();
 		$newid = $this->mNewRev->getId();
 		if ( $oldid > $newid ) {
