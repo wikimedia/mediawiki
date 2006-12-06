@@ -99,6 +99,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Slėpti mano keitimus stebimų sąraše',
 'tog-watchlisthidebots'       => 'Slėpti robotų keitimus stebimų sąraše',
 'tog-nolangconversion'        => 'Išjungti variantų keitimą',
+'tog-ccmeonemails'            => 'Siųsti man laiškų kopijas, kuriuos siunčiu kitiems naudotojams',
 
 'underline-always'  => 'Visada',
 'underline-never'   => 'Niekada',
@@ -500,17 +501,17 @@ Užblokavo $1. Nurodyta priežastis yra ''$2''.
 
 Jūs galite susisiekti su $1 arba kitu
 [[{{ns:project}}:Administrators|administratoriumi]] aptarti apie užblokavimą.
-Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Nustatymai|naudotojo nustatymuose]]. Jūsų IP adresas yra $3. Prašome nurodyti šį adresą visais atvejais kai kreipiatės dėl blokavimo.",
+Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|naudotojo nustatymuose]]. Jūsų IP adresas yra $3. Prašome nurodyti šį adresą visais atvejais kai kreipiatės dėl blokavimo.",
 'blockedoriginalsource'     => "Žemiau yra rodomas '''$1''' turinys:",
 'blockededitsource'         => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'        => 'Norint redaguoti reikia prisijungti',
 'whitelistedittext'         => 'Jūs turite $1, kad redaguotumėte puslapius.',
 'whitelistreadtitle'        => 'Norint skaityti reikia prisijungti',
-'whitelistreadtext'         => 'Jums reikia [[{{ns:special}}:Prisijungimas|prisijungti]], kad skaitytumėte puslapius.',
+'whitelistreadtext'         => 'Jums reikia [[{{ns:special}}:Userlogin|prisijungti]], kad skaitytumėte puslapius.',
 'whitelistacctitle'         => 'Jums neleidžiama kurti naudotojo',
-'whitelistacctext'          => 'Norėdami leisti kurti naudotojus šiame projekte, jums reikia [[{{ns:special}}:Prisijungimas|prisijungti]] ir turėti atitinkamas teises.',
+'whitelistacctext'          => 'Norėdami leisti kurti naudotojus šiame projekte, jums reikia [[{{ns:special}}:Userlogin|prisijungti]] ir turėti atitinkamas teises.',
 'confirmedittitle'          => 'Reikalingas el. pašto patvirtinimas, kad redaguotumėte',
-'confirmedittext'           => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius. Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[{{ns:special}}:Nustatymai|naudotojo nustatymus]].',
+'confirmedittext'           => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius. Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[{{ns:special}}:Preferences|naudotojo nustatymus]].',
 'loginreqtitle'             => 'Reikalingas prisijungimas',
 'loginreqlink'              => 'prisijungti',
 'loginreqpagetext'          => 'Jums reikia $1, kad matytumėte kitus puslapius.',
@@ -521,8 +522,8 @@ Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate p
 Norėdami sukurti puslapį, pradėkite rašyti žemiau esančiame įvedimo lauke
 (plačiau [[{{ns:help}}:Kaip pradėti puslapį|apie puslapių kūrimą]]).
 Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką '''atgal'''.",
-'anontalkpagetext'          => "----''Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio naudotojo vardo, aptarimų puslapis. Dėl to naudojamas IP adresas jo identifikavimui. Šis IP adresas gali būti dalinamas keliems naudotojams. Jeigu Jūs esate anoniminis naudotojas ir atrodo, kad komentarai nėra skirti Jums, [[{{ns:special}}:Prisijungimas|užsiregistruokite]], ir nebūsite tapatinamas su kitais anoniminiais naudotojais.''",
-'noarticletext'             => 'Šiuo metu šiame puslapyje nėra jokio teksto, jūs galite [[{{ns:special}}:Paieška/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose arba [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaguoti šį puslapį].',
+'anontalkpagetext'          => "----''Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio naudotojo vardo, aptarimų puslapis. Dėl to naudojamas IP adresas jo identifikavimui. Šis IP adresas gali būti dalinamas keliems naudotojams. Jeigu Jūs esate anoniminis naudotojas ir atrodo, kad komentarai nėra skirti Jums, [[{{ns:special}}:Userlogin|užsiregistruokite arba prisijunkite]], ir nebūsite tapatinamas su kitais anoniminiais naudotojais.''",
+'noarticletext'             => 'Šiuo metu šiame puslapyje nėra jokio teksto, jūs galite [[{{ns:special}}:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose arba [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaguoti šį puslapį].',
 'clearyourcache'            => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
 'usercssjsyoucanpreview'    => "<strong>Patarimas:</strong> Naudokite 'Rodyti peržiūrą' mygtuką, kad išmėgintumėte savo naująjį CSS/JS prieš išsaugant.",
 'usercsspreview'            => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
@@ -580,9 +581,12 @@ ir vėliau įkelti jį čia.</strong>',
 'edittools'                 => '<!-- Šis tekstas bus rodomas po redagavimo ir įkėlimo formomis. -->',
 'nocreatetitle'             => 'Puslapių kūrimas apribotas',
 'nocreatetext'              => 'Šioje svetainėje yra apribota galimybė kurti naujus puslapius.
-Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[{{ns:special}}:Prisijungimas|prisijungti arba sukurti naudotoją]].',
+Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[{{ns:special}}:Userlogin|prisijungti arba sukurti naudotoją]].',
 'undofailed'                => 'Atšaukimas nepavyko',
 'explainundofailed'         => 'Keitimas negali būti atšauktas dėl konfliktuojančių tarpinių keitimų. Prašome rankiniu būdu atšaukti keitimus.',
+'undosucceeded'             => 'Atšaukimas pavyko',
+'explainundosucceeded'      => 'Keitimas buvo sėkmingai atšauktas. Prašome paspausti Saugoti, kad pritaikytumėte šį keitimą.',
+'undo-summary'              => 'Atšaukti [[{{ns:special}}:Contributions/$2]] ([[{{ns:user_talk}}:$2]]) versiją $1',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Naudotojų kūrimas negalimas',
@@ -629,7 +633,7 @@ Kaip šios svetainės administratorius, jūs galite jį pamatyti;
 'history-feed-item-nocomment' => '$1 $2', # user at time
 'history-feed-empty'          => 'Prašomas puslapis neegzistuoja.
 Jis galėjo būti ištrintas iš projekto, arba pervardintas.
-Pamėginkite [[{{ns:special}}:Paieška|ieškoti projekte]] susijusių naujų puslapių.',
+Pamėginkite [[{{ns:special}}:Search|ieškoti projekte]] susijusių naujų puslapių.',
 
 # Revision deletion
 'revisiondelete'            => 'Trinti/atkurti versijas',
@@ -657,6 +661,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'selectolderversionfordiff' => 'Pasirinkite senesnę versiją palyginimui',
 'compareselectedversions'   => 'Palyginti pasirinktas versijas',
 'editundo'                  => 'atšaukti',
+'diff-multi'                => '($1 ({{plural:$1|tarpinis keitimas|tarpiniai keitimai|tarpinių keitimų}} nėra rodoma.)',
 
 # Search results
 'searchresults'         => 'Paieškos rezultatai',
@@ -692,7 +697,7 @@ bus tik tie straipsniai, kuriuose bus visi paieškos žodžiai).',
 'preferences'           => 'Nustatymai',
 'mypreferences'         => 'Mano nustatymai',
 'prefsnologin'          => 'Neprisijungęs',
-'prefsnologintext'      => 'Jums reikia būti [[{{ns:special}}:Prisijungimas|prisijungti]], kad galėtumėte keisti savo nustatymus.',
+'prefsnologintext'      => 'Jums reikia būti [[{{ns:special}}:Userlogin|prisijungti]], kad galėtumėte keisti savo nustatymus.',
 'prefsreset'            => 'Nustatymai buvo atstatyti iš saugyklos.',
 'qbsettings'            => 'Greitasis pasirinkimas',
 'changepassword'        => 'Pakeisti slaptažodį',
@@ -800,7 +805,7 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'reupload'                    => 'Pakartoti įkėlimą',
 'reuploaddesc'                => 'Grįžti į įkėlimo formą.',
 'uploadnologin'               => 'Neprisijungęs',
-'uploadnologintext'           => 'Norėdami įkelti failą, turite būti [[{{ns:special}}:Prisijungimas|prisijungęs]].',
+'uploadnologintext'           => 'Norėdami įkelti failą, turite būti [[{{ns:special}}:Userlogin|prisijungęs]].',
 'upload_directory_read_only'  => 'Tinklapio serveris negali rašyti į įkėlimo aplanką ($1).',
 'uploaderror'                 => 'Įkėlimo klaida',
 'uploadtext'                  => "Naudokitės žemiau pateikta forma failų įkėlimui, norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių,
@@ -1030,8 +1035,8 @@ Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją 
 
 # E-mail user
 'mailnologin'     => 'Nėra adreso',
-'mailnologintext' => 'Jums reikia būti [[{{ns:special}}:Prisijungimas|prisijungusiam]]
-ir turi būti įvestas teisingas el. pašto adresas jūsų [[{{ns:special}}:Nustatymai|nustatymuose]],
+'mailnologintext' => 'Jums reikia būti [[{{ns:special}}:Userlogin|prisijungusiam]]
+ir turi būti įvestas teisingas el. pašto adresas jūsų [[{{ns:special}}:Preferences|nustatymuose]],
 kad siųstumėte el. laiškus kitiems nautotojams.',
 'emailuser'       => 'Rašyti laišką šiam naudotojui',
 'emailpage'       => 'Siųsti el. laišką naudotojui',
@@ -1064,7 +1069,7 @@ kaip laiško adresas "Nuo", kad gavėjas galėtų jums atsakyti.',
 'watchlistclearbutton' => 'Išvalyti stebimų sąrašą',
 'watchlistcleardone'   => 'Jūsų stebimųjų sąrašas išvalytas. Pašalinta $1 {{PLURAL:$1|elementas|elementai|elementų}}.',
 'watchnologin'         => 'Neprisijungęs',
-'watchnologintext'     => 'Jums reikia būti [[{{ns:special}}:Prisijungimas|prisijungusiam]], kad pakeistumėte savo stebimųjų sąrašą.',
+'watchnologintext'     => 'Jums reikia būti [[{{ns:special}}:Userlogin|prisijungusiam]], kad pakeistumėte savo stebimųjų sąrašą.',
 'addedwatch'           => 'Pridėta prie Stebimų',
 'addedwatchtext'       => 'Puslapis "[[:$1]]" pridėtas į [[{{ns:special}}:Watchlist|stebimųjų sąrašą]].
 Būsimi puslapio bei atitinkamo aptarimo puslapio pakeitimai bus rodomi stebimųjų puslapių sąraše,
@@ -1381,7 +1386,7 @@ kad suprantate visas pasekmes.",
 Šiais atvejais jūs savo nuožiūra turite perkelti arba apjungti aptarimo puslapį.",
 'movearticle'             => 'Puslapio pervadinimas',
 'movenologin'             => 'Neprisijungęs',
-'movenologintext'         => 'Norėdami pervadinti puslapį, turite būti užsiregistravęs naudotojas ir būti  [[{{ns:special}}:Prisijungimas|prisijungęs]].',
+'movenologintext'         => 'Norėdami pervadinti puslapį, turite būti užsiregistravęs naudotojas ir būti  [[{{ns:special}}:Userlogin|prisijungęs]].',
 'newtitle'                => 'Naujas pavadinimas',
 'movepagebtn'             => 'Pervadinti puslapį',
 'pagemovedsub'            => 'Pervadinta sėkmingai',
@@ -1932,7 +1937,7 @@ ta['ca-nstab-category'] = new Array('c','Rodyti kategorijos puslapį');",
 
 # E-mail address confirmation
 'confirmemail'            => 'Patvirtinkite el. pašto adresą',
-'confirmemail_noemail'    => 'Jūs neturite nurodę teisingo el. pašto adreso [[{{ns:special}}:Nustatymai|savo nustatymuose]].',
+'confirmemail_noemail'    => 'Jūs neturite nurodę teisingo el. pašto adreso [[{{ns:special}}:Preferences|savo nustatymuose]].',
 'confirmemail_text'       => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,
 kad jūsų el. pašto adresu būtų išsiųstas patvirtinimo kodas.
 Laiške bus atsiųsta nuoroda su kodu, kuria nuėjus, el. pašto adresas bus patvirtintas.',
