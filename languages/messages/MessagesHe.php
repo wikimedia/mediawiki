@@ -791,6 +791,7 @@ $messages = array(
 'selectolderversionfordiff' => 'בחר גרסה ישנה יותר להשוואה',
 'compareselectedversions'   => 'השווה את הגרסאות שנבחרו',
 'editundo'                  => 'ביטול',
+'diff-multi'                => '({{plural:$1|גרסה אמצעית אחת לא מוצגת|$1 גרסאות אמצעיות לא מוצגות}}.)',
 
 # Search results
 'searchresults'         => 'תוצאות החיפוש',
