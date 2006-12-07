@@ -249,6 +249,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   instead of hardcoding to 1000
 * Enable QueryPage classes to override list formatting
 * (bug 5485) Show number of intervening revisions in diff view
+* (bug 8100) Fix XHTML validity in Taiwanese localization
 
 == Languages updated ==
 
