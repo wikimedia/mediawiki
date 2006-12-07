@@ -260,7 +260,7 @@
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'Vèneto',	# Venetian
 	'vi' => 'Tiếng Việt',	# Vietnamese
-	'vls' => 'West-Vlaoms', # West Flemish
+	'vls' => 'West-Vlams', # West Flemish
 	'vo' => 'Volapük',	# Volapük
 	'wa' => 'Walon',		# Walloon
 	'war' => 'Winaray', # Waray-Waray
