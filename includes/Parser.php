@@ -2863,6 +2863,7 @@ class Parser
 		$noparse = false;           # Unsafe HTML tags should not be stripped, etc.
 		$noargs = false;            # Don't replace triple-brace arguments in $text
 		$replaceHeadings = false;   # Make the edit section links go to the template not the article
+                $headingOffset = 0;         # Skip headings when number, to account for those that weren't transcluded.
 		$isHTML = false;            # $text is HTML, armour it against wikitext transformation
 		$forceRawInterwiki = false; # Force interwiki transclusion to be done in raw mode not rendered
 
@@ -3176,7 +3177,7 @@ class Parser
 					$m = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
 						PREG_SPLIT_DELIM_CAPTURE);
 					$text = '';
-					$nsec = 0;
+					$nsec = $headingOffset;
 					for( $i = 0; $i < count($m); $i += 2 ) {
 						$text .= $m[$i];
 						if (!isset($m[$i + 1]) || $m[$i + 1] == "") continue;
