@@ -255,6 +255,33 @@ class Xml {
 	}
 
 	/**
+	 * Encode a variable of unknown type to JavaScript.
+	 * Doesn't support hashtables just yet.
+	 */
+	public static function encodeJsVar( $value ) {
+		if ( is_bool( $value ) ) {
+			$s = $value ? 'true' : 'false';
+		} elseif ( is_null( $value ) ) {
+			$s = 'null';
+		} elseif ( is_int( $value ) ) {
+			$s = $value;
+		} elseif ( is_array( $value ) ) {
+			$s = '[';
+			foreach ( $value as $name => $elt ) {
+				if ( $s != '[' ) {
+					$s .= ', ';
+				}
+				$s .= self::encodeJsVar( $elt );
+			}
+			$s .= ']';
+		} else {
+			$s = '"' . self::escapeJsString( $value ) . '"';
+		}
+		return $s;
+	}
+	
+
+	/**
 	 * Check if a string is well-formed XML.
 	 * Must include the surrounding tag.
 	 *

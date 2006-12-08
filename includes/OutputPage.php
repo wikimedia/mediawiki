@@ -72,6 +72,16 @@ class OutputPage {
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
 	function addScript( $script ) { $this->mScripts .= $script; }
+
+	/**
+	 * Add a self-contained script tag with the given contents
+	 * @param string $script JavaScript text, no <script> tags
+	 */
+	function addInlineScript( $script ) {
+		global $wgJsMimeType;
+		$this->mScripts .= "<script type=\"$wgJsMimeType\"><!--\n$script\n--></script>";
+	}
+
 	function getScript() { return $this->mScripts; }
 
 	function setETag($tag) { $this->mETag = $tag; }

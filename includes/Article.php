@@ -691,6 +691,12 @@ class Article {
 				$redir = $sk->makeKnownLinkObj( $this->mRedirectedFrom, '', 'redirect=no' );
 				$s = wfMsg( 'redirectedfrom', $redir );
 				$wgOut->setSubtitle( $s );
+
+				// Set the fragment if one was specified in the redirect
+				if ( strval( $this->mTitle->getFragment() ) != '' ) {
+					$fragment = Xml::escapeJsString( $this->mTitle->getFragmentForURL() );
+					$wgOut->addInlineScript( "redirectToFragment(\"$fragment\");" );
+				}
 				$wasRedirected = true;
 			}
 		} elseif ( !empty( $rdfrom ) ) {
@@ -778,7 +784,7 @@ class Article {
 				if( !$wasRedirected && $this->isCurrent() ) {
 					$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 				}
-				$link = $sk->makeLinkObj( $rt );
+				$link = $sk->makeLinkObj( $rt, $rt->getFullText() );
 
 				$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT" />' .
 				  '<span class="redirectText">'.$link.'</span>' );
@@ -2666,7 +2672,7 @@ class Article {
 	public static function getRedirectAutosummary( $text ) {
 		$rt = Title::newFromRedirect( $text );
 		if( is_object( $rt ) )
-			return wfMsgForContent( 'autoredircomment', $rt->getPrefixedText() );
+			return wfMsgForContent( 'autoredircomment', $rt->getFullText() );
 		else
 			return '';
 	}

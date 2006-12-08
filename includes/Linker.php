@@ -213,22 +213,6 @@ class Linker {
 					$trail = $m[2];
 				}
 			}
-
-			# Check for anchors, normalize the anchor
-
-			$parts = explode( '#', $u, 2 );
-			if ( count( $parts ) == 2 ) {
-				$anchor = urlencode( Sanitizer::decodeCharReferences( str_replace(' ', '_', $parts[1] ) ) );
-				$replacearray = array(
-					'%3A' => ':',
-					'%' => '.'
-				);
-				$u = $parts[0] . '#' .
-				     str_replace( array_keys( $replacearray ),
-				    		 array_values( $replacearray ),
-						 $anchor );
-			}
-
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
 
 			wfProfileOut( $fname );
@@ -307,12 +291,7 @@ class Linker {
 					$text = htmlspecialchars( $nt->getFragment() );
 				}
 			}
-			$anchor = urlencode( Sanitizer::decodeCharReferences( str_replace( ' ', '_', $nt->getFragment() ) ) );
-			$replacearray = array(
-				'%3A' => ':',
-				'%' => '.'
-			);
-			$u .= '#' . str_replace(array_keys($replacearray),array_values($replacearray),$anchor);
+			$u .= $nt->getFragmentForURL();
 		}
 		if ( $text == '' ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );

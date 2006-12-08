@@ -47,9 +47,12 @@ if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
 		document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/KHTMLFixes.css">');
 	}
 }
-// Un-trap us from framesets
-if (window.top != window) {
-	window.top.location = window.location;
+
+if (wgBreakFrames) {
+	// Un-trap us from framesets
+	if (window.top != window && wgBreakFramesExceptions.indexOf(window.top.location.hostname) == -1) {
+		window.top.location = window.location;
+	}
 }
 
 // for enhanced RecentChanges
@@ -843,6 +846,18 @@ function sortableTables() {
 	}
 }
 
+function redirectToFragment(fragment) {
+	if (is_gecko) {
+		// Mozilla needs to wait until after load, otherwise the window doesn't scroll
+		addOnloadHook(function () {
+			if (window.location.hash == "")
+				window.location.hash = fragment;
+		});
+	} else {
+		if (window.location.hash == "")
+			window.location.hash = fragment;
+	}
+}
 
 function runOnloadHook() {
 	// don't run anything below this for non-dom browsers
