@@ -223,6 +223,9 @@ class IP {
         $unsignedIP = IP::toUnsigned($addr);
         list( $start, $end ) = IP::parseRange($range);
 
+	$start = hexdec($start);
+	$end   = hexdec($end);
+
         return (($unsignedIP >= $start) && ($unsignedIP <= $end));
     }
 

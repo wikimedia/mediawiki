@@ -455,14 +455,16 @@ class Block
 			$wlEntry = substr($line, 1);
 			$wlEntry = trim($wlEntry);
 
-			wfDebug("Checking $wlEntry\n");
+			wfDebug("Checking $ip against $wlEntry...");
 
 			# Is the IP in this range?
 			if (IP::isInRange( $ip, $wlEntry )) {
-				wfDebug("IP $ip matches $wlEntry, not autoblocking\n");
+				wfDebug(" IP $ip matches $wlEntry, not autoblocking\n");
 				#$autoblockip = null; # Don't autoblock a whitelisted IP.
 				return; #This /SHOULD/ introduce a dummy block - but
 					# I don't know a safe way to do so. -werdna
+			} else {
+				wfDebug( " No match\n" );
 			}
 		}
 
