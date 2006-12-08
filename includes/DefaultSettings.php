@@ -2334,4 +2334,18 @@ $wgParserTestFiles = array(
 	"$IP/maintenance/parserTests.txt",
 );
 
+/**
+ * Break out of framesets. This can be used to prevent external sites from
+ * framing your site with ads.  
+ */
+$wgBreakFrames = false;
+
+/**
+ * Break frameset exception list
+ */
+$wgBreakFramesExceptions = array(
+	'babelfish.altavista.com',
+	'translate.google.com',
+);
+
 ?>

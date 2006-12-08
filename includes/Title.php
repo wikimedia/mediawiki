@@ -567,6 +567,19 @@ class Title {
 		}
 	}
 
+	/**
+	 * Escape a text fragment, say from a link, for a URL
+	 */
+	static function escapeFragmentForURL( $fragment ) {
+		$fragment = trim( str_replace( ' ', '_', $fragment ), '_' );
+		$fragment = urlencode( Sanitizer::decodeCharReferences( $fragment ) );
+		$replaceArray = array(
+			'%3A' => ':',
+			'%' => '.'
+		);
+		return strtr( $fragment, $replaceArray );
+	}
+
 #----------------------------------------------------------------------------
 #	Other stuff
 #----------------------------------------------------------------------------
@@ -639,11 +652,24 @@ class Title {
 	 */
 	function getInterwiki() { return $this->mInterwiki; }
 	/**
-	 * Get the Title fragment (i.e. the bit after the #)
+	 * Get the Title fragment (i.e. the bit after the #) in text form
 	 * @return string
 	 * @access public
 	 */
 	function getFragment() { return $this->mFragment; }
+	/**
+	 * Get the fragment in URL form, including the "#" character if there is one
+	 *
+	 * @return string
+	 * @access public
+	 */
+	function getFragmentForURL() {
+		if ( $this->mFragment == '' ) {
+			return '';
+		} else {
+			return '#' . Title::escapeFragmentForURL( $this->mFragment );
+		}
+	}
 	/**
 	 * Get the default namespace index, for when there is no namespace
 	 * @return int
@@ -803,9 +829,7 @@ class Title {
 		}
 
 		# Finally, add the fragment.
-		if ( '' != $this->mFragment ) {
-			$url .= '#' . $this->mFragment;
-		}
+		$url .= $this->getFragmentForURL();
 
 		wfRunHooks( 'GetFullURL', array( &$this, &$url, $query ) );
 		return $url;
@@ -1442,41 +1466,41 @@ class Title {
 
 		# Clean up whitespace
 		#
-		$t = preg_replace( '/[ _]+/', '_', $this->mDbkeyform );
-		$t = trim( $t, '_' );
+		$dbkey = preg_replace( '/[ _]+/', '_', $this->mDbkeyform );
+		$dbkey = trim( $dbkey, '_' );
 
-		if ( '' == $t ) {
+		if ( '' == $dbkey ) {
 			return false;
 		}
 
-		if( false !== strpos( $t, UTF8_REPLACEMENT ) ) {
+		if( false !== strpos( $dbkey, UTF8_REPLACEMENT ) ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			return false;
 		}
 
-		$this->mDbkeyform = $t;
+		$this->mDbkeyform = $dbkey;
 
 		# Initial colon indicates main namespace rather than specified default
 		# but should not create invalid {ns,title} pairs such as {0,Project:Foo}
-		if ( ':' == $t{0} ) {
+		if ( ':' == $dbkey{0} ) {
 			$this->mNamespace = NS_MAIN;
-			$t = substr( $t, 1 ); # remove the colon but continue processing
+			$dbkey = substr( $dbkey, 1 ); # remove the colon but continue processing
 		}
 
 		# Namespace or interwiki prefix
 		$firstPass = true;
 		do {
 			$m = array();
-			if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
+			if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $dbkey, $m ) ) {
 				$p = $m[1];
 				$lowerNs = $wgContLang->lc( $p );
 				if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
 					# Canonical namespace
-					$t = $m[2];
+					$dbkey = $m[2];
 					$this->mNamespace = $ns;
 				} elseif ( $ns = $wgContLang->getNsIndex( $lowerNs )) {
 					# Ordinary namespace
-					$t = $m[2];
+					$dbkey = $m[2];
 					$this->mNamespace = $ns;
 				} elseif( $this->getInterwikiLink( $p ) ) {
 					if( !$firstPass ) {
@@ -1486,12 +1510,12 @@ class Title {
 					}
 
 					# Interwiki link
-					$t = $m[2];
+					$dbkey = $m[2];
 					$this->mInterwiki = $wgContLang->lc( $p );
 
 					# Redundant interwiki prefix to the local wiki
 					if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
-						if( $t == '' ) {
+						if( $dbkey == '' ) {
 							# Can't have an empty self-link
 							return false;
 						}
@@ -1503,9 +1527,9 @@ class Title {
 
 					# If there's an initial colon after the interwiki, that also
 					# resets the default namespace
-					if ( $t !== '' && $t[0] == ':' ) {
+					if ( $dbkey !== '' && $dbkey[0] == ':' ) {
 						$this->mNamespace = NS_MAIN;
-						$t = substr( $t, 1 );
+						$dbkey = substr( $dbkey, 1 );
 					}
 				}
 				# If there's no recognized interwiki or namespace,
@@ -1513,25 +1537,24 @@ class Title {
 			}
 			break;
 		} while( true );
-		$r = $t;
 
 		# We already know that some pages won't be in the database!
 		#
 		if ( '' != $this->mInterwiki || NS_SPECIAL == $this->mNamespace ) {
 			$this->mArticleID = 0;
 		}
-		$f = strstr( $r, '#' );
-		if ( false !== $f ) {
-			$this->mFragment = substr( $f, 1 );
-			$r = substr( $r, 0, strlen( $r ) - strlen( $f ) );
+		$fragment = strstr( $dbkey, '#' );
+		if ( false !== $fragment ) {
+			$this->setFragment( $fragment );
+			$dbkey = substr( $dbkey, 0, strlen( $dbkey ) - strlen( $fragment ) );
 			# remove whitespace again: prevents "Foo_bar_#"
 			# becoming "Foo_bar_"
-			$r = preg_replace( '/_*$/', '', $r );
+			$dbkey = preg_replace( '/_*$/', '', $dbkey );
 		}
 
 		# Reject illegal characters.
 		#
-		if( preg_match( $rxTc, $r ) ) {
+		if( preg_match( $rxTc, $dbkey ) ) {
 			return false;
 		}
 
@@ -1540,19 +1563,26 @@ class Title {
 		 * often be unreachable due to the way web browsers deal
 		 * with 'relative' URLs. Forbid them explicitly.
 		 */
-		if ( strpos( $r, '.' ) !== false &&
-		     ( $r === '.' || $r === '..' ||
-		       strpos( $r, './' ) === 0  ||
-		       strpos( $r, '../' ) === 0 ||
-		       strpos( $r, '/./' ) !== false ||
-		       strpos( $r, '/../' ) !== false ) )
+		if ( strpos( $dbkey, '.' ) !== false &&
+		     ( $dbkey === '.' || $dbkey === '..' ||
+		       strpos( $dbkey, './' ) === 0  ||
+		       strpos( $dbkey, '../' ) === 0 ||
+		       strpos( $dbkey, '/./' ) !== false ||
+		       strpos( $dbkey, '/../' ) !== false ) )
 		{
 			return false;
 		}
 
-		# We shouldn't need to query the DB for the size.
-		#$maxSize = $dbr->textFieldSize( 'page', 'page_title' );
-		if ( strlen( $r ) > 255 ) {
+		/**
+		 * Limit the size of titles to 255 bytes.
+		 * This is typically the size of the underlying database field.
+		 * We make an exception for special pages, which don't need to be stored
+		 * in the database, and may edge over 255 bytes due to subpage syntax 
+		 * for long titles, e.g. [[Special:Block/Long name]]
+		 */
+		if ( ( $this->mNamespace != NS_SPECIAL && strlen( $dbkey ) > 255 ) ||
+		  strlen( $dbkey ) > 512 ) 
+		{
 			return false;
 		}
 
@@ -1565,9 +1595,7 @@ class Title {
 		 * site might be case-sensitive.
 		 */
 		if( $wgCapitalLinks && $this->mInterwiki == '') {
-			$t = $wgContLang->ucfirst( $r );
-		} else {
-			$t = $r;
+			$dbkey = $wgContLang->ucfirst( $dbkey );
 		}
 
 		/**
@@ -1575,24 +1603,37 @@ class Title {
 		 * "empty" local links can only be self-links
 		 * with a fragment identifier.
 		 */
-		if( $t == '' &&
+		if( $dbkey == '' &&
 			$this->mInterwiki == '' &&
 			$this->mNamespace != NS_MAIN ) {
 			return false;
 		}
 
 		// Any remaining initial :s are illegal.
-		if ( $t !== '' && ':' == $t{0} ) {
+		if ( $dbkey !== '' && ':' == $dbkey{0} ) {
 			return false;
 		}
 		
 		# Fill fields
-		$this->mDbkeyform = $t;
-		$this->mUrlform = wfUrlencode( $t );
+		$this->mDbkeyform = $dbkey;
+		$this->mUrlform = wfUrlencode( $dbkey );
 
-		$this->mTextform = str_replace( '_', ' ', $t );
+		$this->mTextform = str_replace( '_', ' ', $dbkey );
 
 		return true;
+	}
+
+	/**
+	 * Set the fragment for this title
+	 * This is kind of bad, since except for this rarely-used function, Title objects
+	 * are immutable. The reason this is here is because it's better than setting the 
+	 * members directly, which is what Linker::formatComment was doing previously.
+	 *
+	 * @param string $fragment text
+	 * @access kind of public
+	 */
+	function setFragment( $fragment ) {
+		$this->mFragment = trim( str_replace( '_', ' ', substr( $fragment, 1 ) ), ' ' );
 	}
 
 	/**

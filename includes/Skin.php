@@ -270,60 +270,61 @@ class Skin extends Linker {
 		$out->out( "\n</body></html>" );
 	}
 
-	static function makeGlobalVariablesScript( $data ) {
-		$r = '<script type= "' . $data['jsmimetype'] . '">
-			var skin = "' . Xml::escapeJsString( $data['skinname'] ) . '";
-			var stylepath = "' . Xml::escapeJsString( $data['stylepath'] ) . '";
+	static function makeVariablesScript( $data ) {
+		global $wgJsMimeType;
 
-			var wgArticlePath = "' . Xml::escapeJsString( $data['articlepath'] ) . '";
-			var wgScriptPath = "' . Xml::escapeJsString( $data['scriptpath'] ) . '";
-			var wgServer = "' . Xml::escapeJsString( $data['serverurl'] ) . '";
-
-			var wgCanonicalNamespace = "' . Xml::escapeJsString( $data['nscanonical'] ) . '";
-			var wgNamespaceNumber = ' . (int)$data['nsnumber'] . ';
-			var wgPageName = "' . Xml::escapeJsString( $data['titleprefixeddbkey'] ) . '";
-			var wgTitle = "' . Xml::escapeJsString( $data['titletext'] ) . '";
-			var wgArticleId = ' . (int)$data['articleid'] . ';
-			var wgCurRevisionId = ' . ( int ) $data['currevisionid'] . ';
-			var wgIsArticle = ' . ( $data['isarticle'] ? 'true' : 'false' ) . ';
-		
-			var wgUserName = ' . ( $data['username'] == NULL ? 'null' : ( '"' . Xml::escapeJsString( $data['username'] ) . '"' ) ) . ';
-			var wgUserLanguage = "' . Xml::escapeJsString( $data['userlang'] ) . '";
-			var wgContentLanguage = "' . Xml::escapeJsString( $data['lang'] ) . '";
-		</script>
-		';
+		$r = "<script type= \"$wgJsMimeType\"><!--\n";
+		foreach ( $data as $name => $value ) {
+			$encValue = Xml::encodeJsVar( $value );
+			$r .= "var $name = $encValue;\n";
+		}
+		$r .= "--></script>\n";
 
 		return $r;
 	}
 
-	function getHeadScripts() {
-		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType, $wgStyleVersion;
+	/**
+	 * Make a <script> tag containing global variables
+	 * @param array $data Associative array containing one element:
+	 *     skinname => the skin name
+	 * The odd calling convention is for backwards compatibility
+	 */
+	static function makeGlobalVariablesScript( $data ) {
+		global $wgStylePath, $wgUser;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
 		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
+		global $wgBreakFrames, $wgBreakFramesExceptions;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
 		
 		$vars = array( 
-			'jsmimetype' => $wgJsMimeType,
-			'skinname' => $this->getSkinName(),
+			'skin' => $data['skinname'],
 			'stylepath' => $wgStylePath,
-			'articlepath' => $wgArticlePath,
-			'scriptpath' => $wgScriptPath,
-			'serverurl' => $wgServer,
-			'nscanonical' => $nsname,
-			'nsnumber' => $wgTitle->getNamespace(),
-			'titleprefixeddbkey' => $wgTitle->getPrefixedDBKey(),
-			'titletext' => $wgTitle->getText(),
-			'articleid' => $wgTitle->getArticleId(),
-			'currevisionid' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
-			'isarticle' => $wgOut->isArticle(),
-			'username' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
-			'userlang' => $wgLang->getCode(),
-			'lang' => $wgContLang->getCode(),
+			'wgArticlePath' => $wgArticlePath,
+			'wgScriptPath' => $wgScriptPath,
+			'wgServer' => $wgServer,
+			'wgCanonicalNamespace' => $nsname,
+			'wgNamespaceNumber' => $wgTitle->getNamespace(),
+			'wgPageName' => $wgTitle->getPrefixedDBKey(),
+			'wgTitle' => $wgTitle->getText(),
+			'wgArticleId' => $wgTitle->getArticleId(),
+			'wgIsArticle' => $wgOut->isArticle(),
+			'wgUserName' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
+			'wgUserLanguage' => $wgLang->getCode(),
+			'wgContentLanguage' => $wgContLang->getCode(),
+			'wgBreakFrames' => $wgBreakFrames,
+			'wgBreakFramesExceptions' => $wgBreakFramesExceptions,
+			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
 		);
 
-		$r = self::makeGlobalVariablesScript( $vars );
+		return self::makeVariablesScript( $vars );
+	}
+
+	function getHeadScripts() {
+		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType, $wgStyleVersion;
+
+		$r = self::makeGlobalVariablesScript( array( 'skinname' => $this->getSkinName() ) );
 
 		$r .= "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>\n";
 		global $wgUseSiteJs;
