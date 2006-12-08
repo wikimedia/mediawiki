@@ -14,7 +14,7 @@ $namespaceNames = array(
 	NS_USER           => 'Gebruker',
 	NS_USER_TALK      => 'Discuusje_gebruker',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT        => 'Discuusje_$1',
+	NS_PROJECT_TALK   => 'Discuusje_$1',
 	NS_IMAGE          => 'Ofbeeldienge',
 	NS_IMAGE_TALK     => 'Discuusje_ofbeeldienge',
 	NS_MEDIAWIKI      => 'MediaWiki',
