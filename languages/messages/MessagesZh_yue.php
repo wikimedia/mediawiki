@@ -184,6 +184,7 @@ $messages = array(
 'tog-watchlisthideown' 		=> '響監視清單度隱藏我嘅編輯',
 'tog-watchlisthidebots' 	=> '響監視清單度隱藏機械人嘅編輯',
 'tog-nolangconversion' 		=> '唔要用字轉換',
+'tog-ccmeonemails' 		=> '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 
 'underline-always' 		=> '全部',
 'underline-never' 		=> '永不',
@@ -669,6 +670,13 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nocreatetitle' 	=> '頁面建立被限制',
 'nocreatetext' 		=> '呢個網站已經限制咗起新版嘅能力。
 你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:Userlogin|登入或開個新戶口]]。',
+'undofailed' => '復原失敗',
+'explainundofailed' => '呢個編輯唔能夠取消，因為同依家嘅編輯有衝突。請手動咁樣去取消呢個編輯。',
+'undosucceeded' => '復原成功',
+'explainundosucceeded' => '呢個編輯已經成功取消。請撳一下儲存去應用呢個更改。',
+'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])所做嘅修訂 $1',
+
+# Account creation failure
 'cantcreateaccounttitle' => '唔可以開新戶口',
 'cantcreateaccounttext' => '由呢個IP地址 (<b>$1</b>) 嘅新戶口已經被封鎖。
 咁可能係你嘅學校或者網絡供應商 (ISP) 所用嘅 IP地址持續咁進行破壞。',
@@ -747,6 +755,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'selectnewerversionfordiff' => '選擇一個新啲嘅版本做個比較',
 'selectolderversionfordiff' => '選擇一個舊啲嘅版本做個比較',
 'compareselectedversions' => '比較被選嘅版本',
+'editundo' 		=> '復原',
+'diff-multi' 		=> "(當中有$1次嘅修訂唔會顯示。)",
 
 # Search results
 #
@@ -1481,7 +1491,7 @@ wiki: $PAGEEDITOR_WIKI
 'newtitle'		=> '到新標題',
 'movepagebtn'	=> '搬頁',
 'pagemovedsub'	=> '搬頁成功',
-'pagemovedtext' => "頁面\"[[$1]]\"已經般到去\"[[$2]]\"。",
+'pagemovedtext' => "頁面\"[[$1]]\"已經搬到去\"[[$2]]\"。",
 'articleexists' => '已經有頁面叫嗰個名，或者你揀嘅名唔合法。
 請揀過第二個名。',
 'talkexists'	=> "'''頁面本身已經成功搬咗，但係個討論頁搬唔到，因為已經有一個同名嘅討論頁。請手工合併佢哋。'''",
@@ -1621,6 +1631,7 @@ wiki: $PAGEEDITOR_WIKI
 'spamprotectionmatch' => '以下係觸發我哋嘅反垃圾過濾器嘅文字：$1',
 'subcategorycount' => "呢個類別入邊有$1個細類別。",
 'categoryarticlecount' => "呢個類別入邊有$1篇文章。",
+'category-media-count' => "呢個類別入邊有$1個檔案。",
 'listingcontinuesabbrev' => " 續",
 'spambot_username' => 'MediaWiki垃圾清除',
 'spam_reverting' => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個版本。',
