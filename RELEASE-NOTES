@@ -253,6 +253,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added redirect to section feature. Use it wisely.
 * Added a configuration variable allowing the "break out of framesets" feature 
   to be switched on and off ($wgBreakFrames). Off by default.
+* Allow Xml::check() $attribs parameter to override 'value' attribute
 
 
 == Languages updated ==

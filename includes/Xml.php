@@ -128,10 +128,13 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function check( $name, $checked=false, $attribs=array() ) {
-		return self::element( 'input', array(
-			'name' => $name,
-			'type' => 'checkbox',
-			'value' => 1 ) + self::attrib( 'checked', $checked ) +  $attribs );
+		return self::element( 'input', array_merge(
+			array(
+				'name' => $name,
+				'type' => 'checkbox',
+				'value' => 1 ),
+			self::attrib( 'checked', $checked ),
+			$attribs ) );
 	}
 
 	/**
