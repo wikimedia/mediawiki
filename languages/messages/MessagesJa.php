@@ -87,6 +87,7 @@ $messages = array(
 'tog-watchlisthideown'  => '自分の編集を表示しない',
 'tog-watchlisthidebots' => 'ボットによる編集を表示しない',
 'tog-nolangconversion'  => '字形変換を無効にする',
+'tog-ccmeonemails'      => '他ユーザーに送信したメールの控えを自分にも送る',
 
 'underline-always'      => '常に付ける',
 'underline-never'       => '常に付けない',
@@ -317,11 +318,8 @@ $1
 The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal. The administrator who locked it offered this explanation:
 
 $1',
-'missingarticle'        => '<p>"$1" という題のページは見つかりませんでした。すでに削除された版を参照しようとしている可能性があります。これがソフトウェアのバグだと思われる場合は、URIと共にサーバー管理者に報告して下い。</p>
-<p>The database did not find the text of a page that it should have found, named "$1". This is usually caused by following an outdated diff or history link to a page that has been deleted. If this is not the case, you may have found a bug in the software. Please report this to an administrator, making note of the URL.</p>',
-'readonly_lag'          => 'データベースはスレーブ・サーバーがマスタ・サーバーに同期するまで自動的にロックされています。しばらくお待ちください。
-
-The database has been automatically locked while the slave database servers catch up to the master.',
+'missingarticle'        => '<p>"$1" という題のページは見つかりませんでした。すでに削除された版を参照しようとしている可能性があります。これがソフトウェアのバグだと思われる場合は、URIと共にサーバー管理者に報告して下い。</p>',
+'readonly_lag'          => 'データベースはスレーブ・サーバーがマスタ・サーバーに同期するまで自動的にロックされています。しばらくお待ちください。',
 'internalerror'         => '内部処理エラー',
 'filecopyerror'         => 'ファイル "$1" から "$2" へのコピーに失敗しました。',
 'filerenameerror'       => 'ファイル名を "$1" から "$2" へ変更できませんでした。',
@@ -525,6 +523,13 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'edittools'             => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'         => 'ページを作成できません',
 'nocreatetext'          => 'このサイトではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログイン]]してください。',
+'undofailed'            => '編集の取り消しに失敗しました',
+'explainundofailed'     => '版間の編集と競合したため、自動取り消しできませんでした。',
+'undosucceeded'         => '編集取り消しが成功しました',
+'explainundosucceeded'  => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
+'undo-summary'          => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) の編集 ( $1 版 ) を取り消し',
+
+# History pages
 'revhistory'            => '変更履歴',
 'viewpagelogs'          => 'このページに関するログを見る',
 'nohistory'             => 'このページには変更履歴がありません。',
@@ -574,6 +579,8 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'revdelete-log'         => '要約:',
 'revdelete-submit'      => '隠蔽の設定を適用',
 'revdelete-logentry'    => '[[$1]]の版の削除情報を操作しました',
+
+# Diffs
 'difference'            => '版間での差分',
 'loadingrev'            => '差分をとるために古い版を読み込んでいます',
 'lineno'                => '$1 行',
@@ -581,6 +588,9 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'selectnewerversionfordiff'=> '比較する新しい版を選択',
 'selectolderversionfordiff'=> '比較する古い版を選択',
 'compareselectedversions'=> '選択した版同士を比較',
+'editundo'              => '取り消し',
+'diff-multi'            => '（間の $1 版分が非表示です）',
+
 'searchresults'         => '検索結果',
 'searchresulttext'      => '{{SITENAME}}の検索に関する詳しい情報は、[[{{ns:project}}:検索]]をご覧ください。',
 'searchsubtitle'        => '問い合わせ: "[[$1]]"',
