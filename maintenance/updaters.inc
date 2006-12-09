@@ -907,20 +907,28 @@ function archive($name) {
 function do_postgres_updates() {
 	global $wgDatabase, $wgVersion, $wgDBmwschema;
 
-	$version = "1.7.1";
-
 	# Just in case their LocalSetings.php does not have this:
 	if ( !isset( $wgDBmwschema ))
 		$wgDBmwschema = 'mediawiki';
 
+	## Default to the oldest supported version
+	$version = 1.7;
+
 	if ($wgDatabase->tableExists("mediawiki_version")) {
 		$version = "1.8";
+		$sql = "SELECT mw_version FROM mediawiki_version ORDER BY cdate DESC LIMIT 1";
+		$tempversion = pg_fetch_result($wgDatabase->doQuery($sql),0,0);
+		$thisver = array();
+		if (preg_match('/(\d+\.\d+)/', $tempversion, $thisver)) {
+			$version = $thisver[1];
+		}
 	}
 
-	if ($version == '1.7.1') {
-		$upgrade = <<<PGEND
+	print " Detected version: $version ";
+	$upgrade = '';
 
-BEGIN;
+	if ($version <= 1.7) {
+		$upgrade = <<<PGEND
 
 -- Type tweaking:
 ALTER TABLE oldimage ALTER oi_size TYPE INTEGER;
@@ -973,9 +981,6 @@ CREATE TABLE mediawiki_version (
   cdate        TIMESTAMPTZ  NOT NULL DEFAULT now()
 );
 
-INSERT INTO mediawiki_version (type,mw_version,notes)
-VALUES ('Upgrade','MWVERSION','Upgrade from older version 1.7.1');
-
 -- Special modifications
 ALTER TABLE archive RENAME to archive2;
 CREATE VIEW archive AS 
@@ -1003,15 +1008,12 @@ END;
 CREATE TRIGGER page_deleted AFTER DELETE ON page
   FOR EACH ROW EXECUTE PROCEDURE page_deleted();
 
-COMMIT;
-
 PGEND;
 
-	} ## end version 1.7.1 upgrade
-	else if ($version == '1.8') {
-		$upgrade = <<<PGEND
+	} ## end version 1.7
 
-BEGIN;
+	else if ($version <= 1.8) {
+		$upgrade = <<<PGEND
 
 -- Tighten up restrictions on the revision table so we don't lose data:
 ALTER TABLE revision DROP CONSTRAINT revision_rev_user_fkey;
@@ -1053,22 +1055,20 @@ ALTER TABLE recentchanges ADD rc_new_len INT DEFAULT 0;
 
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
-VALUES ('Upgrade','MWVERSION','Upgrade from older version 1.8');
-
-COMMIT;
+VALUES ('Upgrade','MWVERSION','Upgrade from older version THISVERSION');
 
 PGEND;
 
 	}
 
-	else {
+	if ( !strlen($upgrade)) {
 		print "No updates needed for version $version\n";
 		return;
 	}
 
 	$upgrade = str_replace( 'MWVERSION', $wgVersion, $upgrade );
-	$res = $wgDatabase->query($upgrade);
-
+	$upgrade = str_replace( 'THISVERSION', $version, $upgrade );
+	$res = $wgDatabase->query("BEGIN;\n\n $upgrade\n\nCOMMIT;\n");
 
 	return;
 }
