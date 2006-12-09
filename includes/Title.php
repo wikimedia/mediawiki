@@ -571,7 +571,7 @@ class Title {
 	 * Escape a text fragment, say from a link, for a URL
 	 */
 	static function escapeFragmentForURL( $fragment ) {
-		$fragment = trim( str_replace( ' ', '_', $fragment ), '_' );
+		$fragment = str_replace( ' ', '_', $fragment );
 		$fragment = urlencode( Sanitizer::decodeCharReferences( $fragment ) );
 		$replaceArray = array(
 			'%3A' => ':',
@@ -1633,7 +1633,7 @@ class Title {
 	 * @access kind of public
 	 */
 	function setFragment( $fragment ) {
-		$this->mFragment = trim( str_replace( '_', ' ', substr( $fragment, 1 ) ), ' ' );
+		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );
 	}
 
 	/**
