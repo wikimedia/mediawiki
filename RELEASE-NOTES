@@ -27,6 +27,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 == Changes since 1.8 ==
 
 * (bug 8200) Make category lists sorted by name when using Postgres.
+* (bug 7841) Support 'IGNORE' inserts for Postgres, fixes watchlist 
+  adding problem.
 * (bug 6835) Removing the includes/Parser.php::getTemplateArgs() function, 
   because it seems to be unused.
 * (bug 7139) Increasing the visual width of the edit summary field on larger
