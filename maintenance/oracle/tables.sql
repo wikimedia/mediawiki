@@ -229,6 +229,8 @@ CREATE TABLE recentchanges (
 	rc_moved_to_title	VARCHAR2(255),
 	rc_patrolled	NUMBER(3) DEFAULT 0 NOT NULL,
 	rc_ip		VARCHAR2(40),
+	rc_old_len	NUMBER(10) DEFAULT 0,
+	rc_new_len	NUMBER(10) DEFAULT 0,
 	CONSTRAINT rc_pk PRIMARY KEY (rc_id)
 );
 CREATE INDEX rc_timestamp ON recentchanges (rc_timestamp);

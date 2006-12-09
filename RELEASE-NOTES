@@ -254,6 +254,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added a configuration variable allowing the "break out of framesets" feature 
   to be switched on and off ($wgBreakFrames). Off by default.
 * Allow Xml::check() $attribs parameter to override 'value' attribute
+* DB schema change: added two columns (rc_old_len and rc_new_len) to the recentchanges table to store
+  the text lengths before and after the edit
+* (bug 1085) Made Special:Recentchanges show the character difference between the changed revisions
+
 
 
 == Languages updated ==

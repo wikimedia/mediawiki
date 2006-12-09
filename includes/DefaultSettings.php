@@ -1048,7 +1048,8 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '32';
+$wgStyleVersion = '33';
+
 
 # Server-side caching:
 
@@ -1095,11 +1096,20 @@ $wgEnotifRevealEditorAddress	= false;	# UPO; reply-to address may be filled with
 $wgEnotifMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
 #							# Attention: _every_ change on a user_talk page trigger a notification mail (if the user is not yet notified)
 
-
 /** Show watching users in recent changes, watchlist and page history views */
 $wgRCShowWatchingUsers 				= false; # UPO
 /** Show watching users in Page views */
 $wgPageShowWatchingUsers 			= false;
+/** Show the amount of changed characters in recent changes */
+$wgRCShowChangedSize				= true;
+
+/**
+ * If the difference between the character counts of the text
+ * before and after the edit is below that value, the value will be 
+ * highlighted on the RC page.
+ */
+$wgRCChangedSizeThreshold			= -500;
+
 /**
  * Show "Updated (since my last visit)" marker in RC view, watchlist and history
  * view for watched pages with new changes */

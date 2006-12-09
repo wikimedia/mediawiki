@@ -212,8 +212,6 @@ class ChangesList {
 		global $wgUseRCPatrol, $wgUser;
 		return( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) );
 	}
-
-
 }
 
 
@@ -225,11 +223,10 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 */
 	function recentChangesLine( &$rc, $watched = false ) {
-		global $wgContLang;
+		global $wgContLang, $wgRCShowChangedSize;
 
 		$fname = 'ChangesList::recentChangesLineOld';
 		wfProfileIn( $fname );
-
 
 		# Extract DB fields into local scope
 		extract( $rc->mAttribs );
@@ -257,6 +254,10 @@ class OldChangesList extends ChangesList {
 			wfProfileIn($fname.'-page');
 
 			$this->insertDiffHist($s, $rc, $unpatrolled);
+
+			if( $wgRCShowChangedSize ) {
+				$s .= $rc->getCharacterDifference() . ' . . ';
+			}
 
 			# M, N, b and ! (minor, new, bot and unpatrolled)
 			$s .= ' ' . $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot );
@@ -293,7 +294,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
 	function recentChangesLine( &$baseRC, $watched = false ) {
-		global $wgLang, $wgContLang;
+		global $wgLang, $wgContLang, $wgRCShowChangedSize;
 
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC );
@@ -343,6 +344,11 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$time = $wgContLang->time( $rc_timestamp, true, true );
+		# Character diff
+		if( $wgRCShowChangedSize ) {
+			$time .= '&nbsp;' . $rc->getCharacterDifference();
+		}
+		$time .= '</tt> ';
 		$rc->watched = $watched;
 		$rc->link = $clink;
 		$rc->timestamp = $time;
@@ -403,7 +409,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Enhanced RC group
 	 */
 	function recentChangesBlockGroup( $block ) {
-		global $wgContLang;
+		global $wgContLang, $wgRCShowChangedSize;
 		$r = '';
 
 		# Collate list of users
@@ -456,7 +462,6 @@ class EnhancedChangesList extends ChangesList {
 
 		# Timestamp
 		$r .= ' '.$block[0]->timestamp.' ';
-		$r .= '</tt>';
 
 		# Article link
 		$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );

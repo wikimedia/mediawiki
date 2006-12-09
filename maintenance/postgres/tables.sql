@@ -310,7 +310,9 @@ CREATE TABLE recentchanges (
   rc_moved_to_ns     SMALLINT,
   rc_moved_to_title  TEXT,
   rc_patrolled       CHAR         NOT NULL  DEFAULT '0',
-  rc_ip              CIDR
+  rc_ip              CIDR,
+  rc_old_len         INTEGER                DEFAULT '0',
+  rc_new_len         INTEGER                DEFAULT '0',
 );
 CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
 CREATE INDEX rc_namespace_title ON recentchanges (rc_namespace, rc_title);

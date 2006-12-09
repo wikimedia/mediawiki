@@ -43,6 +43,8 @@ $wgNewFields = array(
 	array( 'recentchanges', 'rc_ip',            'patch-rc_ip.sql' ),
 	array( 'recentchanges', 'rc_id',            'patch-rc_id.sql' ),
 	array( 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
+	array( 'recentchanges', 'rc_old_len',       'patch-rc_old_len.sql' ),
+	array( 'recentchanges', 'rc_new_len',       'patch-rc_new_len.sql' ),
 	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
 	array( 'user',          'user_email_token', 'patch-user_email_token.sql' ),
