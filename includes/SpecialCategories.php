@@ -33,7 +33,7 @@ class CategoriesPage extends QueryPage {
 		$s= "SELECT 'Categories' as type,
 				{$NScat} as namespace,
 				cl_to as title,
-				1 as value,
+				cl_to as value,
 				COUNT(*) as count
 			   FROM $categorylinks
 			   GROUP BY 1,2,3,4";
