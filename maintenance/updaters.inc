@@ -1047,6 +1047,10 @@ CREATE INDEX querycachetwo_type_value ON querycachetwo (qcc_type, qcc_value);
 CREATE INDEX querycachetwo_title      ON querycachetwo (qcc_type,qcc_namespace,qcc_title);
 CREATE INDEX querycachetwo_titletwo   ON querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
+-- New columns for fancy recentchanges display
+ALTER TABLE recentchanges ADD rc_old_len INT DEFAULT 0;
+ALTER TABLE recentchanges ADD rc_new_len INT DEFAULT 0;
+
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
 VALUES ('Upgrade','MWVERSION','Upgrade from older version 1.8');
