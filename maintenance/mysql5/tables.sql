@@ -811,6 +811,11 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   -- $wgPutIPinRC option is enabled.
   rc_ip char(15) NOT NULL default '',
   
+  -- Text length in characters before
+  -- and after the edit
+  rc_old_len int(10) default '0',
+  rc_new_len int(10) default '0',
+  
   PRIMARY KEY rc_id (rc_id),
   INDEX rc_timestamp (rc_timestamp),
   INDEX rc_namespace_title (rc_namespace, rc_title),

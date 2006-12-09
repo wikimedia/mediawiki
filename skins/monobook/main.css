@@ -1541,3 +1541,8 @@ table.multipageimage td {
 	margin: 0.1em 0;
 }
 #toolbar { clear: both; }
+
+.mw-plusminus-bold { font-weight: bold; }
+.mw-plusminus-pos { font-weight: normal; }
+.mw-plusminus-null { color: #aaa; }
+.mw-plusminus-neg { font-weight: normal; }

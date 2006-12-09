@@ -24,6 +24,8 @@
  * 	rc_ip           IP address of the user in dotted quad notation
  * 	rc_new          obsolete, use rc_type==RC_NEW
  * 	rc_patrolled    boolean whether or not someone has marked this edit as patrolled
+ * 	rc_old_len	integer character count of the text before the edit
+ * 	rc_new_len	the same after the edit
  *
  * mExtra:
  * 	prefixedDBkey   prefixed db key, used by external app via msg queue
@@ -212,6 +214,7 @@ class RecentChange
 		$oldId, $lastTimestamp, $bot = "default", $ip = '', $oldSize = 0, $newSize = 0,
 		$newId = 0)
 	{
+
 		if ( $bot === 'default' ) {
 			$bot = $user->isAllowed( 'bot' );
 		}
@@ -240,9 +243,11 @@ class RecentChange
 			'rc_bot'	=> $bot ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
-			'rc_ip'	=> $ip,
-			'rc_patrolled' => 0,
-			'rc_new'	=> 0 # obsolete
+			'rc_ip'		=> $ip,
+			'rc_patrolled'	=> 0,
+			'rc_new'	=> 0,  # obsolete
+			'rc_old_len'	=> $oldSize,
+			'rc_new_len'	=> $newSize
 		);
 
 		$rc->mExtra =  array(
@@ -522,5 +527,19 @@ class RecentChange
 		return $fullString;
 	}
 
+	function getCharacterDifference() {
+		global $wgRCChangedSizeThreshold;
+		$szdiff = $this->mAttribs['rc_new_len'] - $this->mAttribs['rc_old_len'];
+
+		if( $szdiff < $wgRCChangedSizeThreshold ) {
+			return "<span class='mw-plusminus-big'>($szdiff)</span>";
+		} elseif( $szdiff === 0 ) {
+			return "<span class='mw-plusminus-null'>($szdiff)</span>";
+		} elseif( $szdiff > 0 ) {
+			return "<span class='mw-plusminus-pos'>(+$szdiff)</span>";
+		} else {
+			return "<span class='mw-pluminus-neg'>($szdiff)</span>";
+		}
+	}
 }
 ?>
