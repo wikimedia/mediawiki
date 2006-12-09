@@ -341,7 +341,9 @@ class RecentChange
 			'rc_moved_to_title'	=> $newTitle->getDBkey(),
 			'rc_ip'		=> $ip,
 			'rc_new'	=> 0, # obsolete
-			'rc_patrolled' => 1
+			'rc_patrolled'	=> 1,
+			'rc_old_len'	=> 0,
+			'rc_new_len'	=> 0,
 		);
 
 		$rc->mExtra = array(
@@ -391,7 +393,9 @@ class RecentChange
 			'rc_moved_to_title'	=> '',
 			'rc_ip'	=> $ip,
 			'rc_patrolled' => 1,
-			'rc_new'	=> 0 # obsolete
+			'rc_new'	=> 0, # obsolete
+			'rc_old_len'	=> 0,
+			'rc_new_len'	=> 0,
 		);
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
@@ -435,7 +439,9 @@ class RecentChange
 			'rc_ip' => '',
 			'rc_id' => $row->rc_id,
 			'rc_patrolled' => $row->rc_patrolled,
-			'rc_new' => $row->page_is_new # obsolete
+			'rc_new' => $row->page_is_new, # obsolete
+			'rc_old_len' => 0, # we can't get the text lengts from a cur row
+			'rc_new_len' => 0,
 		);
 
 		$this->mExtra = array();
