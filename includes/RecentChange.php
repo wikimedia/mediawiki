@@ -538,7 +538,7 @@ class RecentChange
 		$szdiff = $this->mAttribs['rc_new_len'] - $this->mAttribs['rc_old_len'];
 
 		if( $szdiff < $wgRCChangedSizeThreshold ) {
-			return "<span class='mw-plusminus-big'>($szdiff)</span>";
+			return "<span class='mw-plusminus-bold'>($szdiff)</span>";
 		} elseif( $szdiff === 0 ) {
 			return "<span class='mw-plusminus-null'>($szdiff)</span>";
 		} elseif( $szdiff > 0 ) {
