@@ -171,10 +171,10 @@ CONTROL;
 				wfMsg( 'minoreditletter') ) . ' ';
 		}
 
-                if ($this->mNewRev->mMinorEdit == 1) {
-                        $newminor = wfElement( 'span', array( 'class' => 'minor' ),
-				wfMsg( 'minoreditletter') ) . ' ';
-                }
+		if ($this->mNewRev->mMinorEdit == 1) {
+			$newminor = wfElement( 'span', array( 'class' => 'minor' ),
+			wfMsg( 'minoreditletter') ) . ' ';
+		}
 
 		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />" .
 			$sk->revUserTools( $this->mOldRev ) . "<br />" .
@@ -523,8 +523,8 @@ CONTROL;
 			$newLink = $this->mNewPage->escapeLocalUrl();
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
-			
-			$this->mNewtitle = "<strong><a href='$newLink'>{$this->mPagetitle}</a> ($timestamp)</strong>"
+
+			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a> ($timestamp)"
 				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
 
 		} else {
@@ -532,8 +532,8 @@ CONTROL;
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mNewid );
 			$newUndo = $this->mNewPage->escapeLocalUrl( 'action=edit&undo=' . $this->mNewid );
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $timestamp ) );
-			
-			$this->mNewtitle = "<strong><a href='$newLink'>{$this->mPagetitle}</a></strong>"
+
+			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>"
 				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)"
 				. " (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)";
 		}

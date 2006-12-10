@@ -260,6 +260,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * DB schema change: added two columns (rc_old_len and rc_new_len) to the recentchanges table to store
   the text lengths before and after the edit
 * (bug 1085) Made Special:Recentchanges show the character difference between the changed revisions
+* Removed a redundant <strong> tag from diff pages that was causing display issues for some users
 
 
 
