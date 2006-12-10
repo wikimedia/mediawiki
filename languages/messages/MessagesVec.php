@@ -903,7 +903,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
  ta[\'pt-mycontris\'] = new Array(\'y\',\'La lista de i me contributi\');
  ta[\'pt-login\'] = new Array(\'o\',\'Te consigliemo de registrarte, ma non l\'è obbligatorio.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Te consigliemo de registrarte, ma non l\'è obbligatorio.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Log out (esci)\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Log out (esci)\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Varda łe discussion rełative a la voçe\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Te podi modificar sta paxèna. Per favor usa el botton de anteprima prima de salvare.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Xonta un commento a sta discussion.\');

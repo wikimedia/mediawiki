@@ -1311,7 +1311,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Lista över mina bidrag\');
  ta[\'pt-login\'] = new Array(\'o\',\'Du får gärna logga in, men det är inte nödvändigt\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Du får gärna logga in, men det är inte nödvändigt\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Logga ut\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Logga ut\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Diskussion om sidans innehåll\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Du kan redigera den här sidan. Var vänlig och förhandsgranska innan du sparar.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Lägg till en kommentar i den här diskussionen\');

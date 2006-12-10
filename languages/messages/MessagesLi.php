@@ -833,7 +833,7 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Liest van mien biedraag\');
  ta[\'pt-login\'] = new Array(\'o\',\'De weurs aangemodigd om in te logge, meh t is neet verplich.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'De weurs aangemodigd om in te logge, meh t is neet verplich.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Aafmèlde\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Aafmèlde\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Euverlik euver dit artikel\');
  ta[\'ca-edit\'] = new Array(\'e\',\'De kins dees pazjena verangere.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Opmèrking toevoge aan dees discussie.\');

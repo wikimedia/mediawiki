@@ -690,7 +690,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.'
  ta[\'pt-watchlist\'] = new Array(\'l\',\'Lischte vo de beobachtete Syte.\');
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Lischte vo myne Byträg\');
  ta[\'pt-login\'] = new Array(\'o\',\'Ylogge\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Uslogge\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Uslogge\');
  ta[\'ca-article\'] = new Array(\'a\',\'Artikel aaluege\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Diskussion zum Artikelinhalt\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Syte bearbeite. Bitte vor em Spychere d Vorschou aaluege.\');

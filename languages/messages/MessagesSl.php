@@ -1243,7 +1243,7 @@ Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navede
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Seznam vaših prispevkov\');
  ta[\'pt-login\'] = new Array(\'o\',\'Prijava ni obvezna, vendar je zaželena\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Prijava ni obvezna, vendar je zaželena\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Odjavite se\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Odjavite se\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Pogovor o strani\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Stran lahko uredite. Preden jo shranite, uporabite gumb za predogled.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Začnite novo razpravo\');

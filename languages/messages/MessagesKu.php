@@ -671,7 +671,7 @@ da bikarî navê wê rûpelê biguherînî.',
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Lîsteya tevkariyên min\');
  ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Derkeve (Log out)\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Derkeve (Log out)\');
  ta[\'ca-talk\'] = new Array(\'t\',\'guftûgo û şîrove ser vê rûpelê\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Vê rûpelê biguherîne! Berê qeydkirinê bişkoka "Pêşdîtin" bi kar bîne.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Beşekê zêde bike.\');

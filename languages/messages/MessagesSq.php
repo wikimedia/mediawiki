@@ -1247,7 +1247,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Lista e kontributeve tuaja\'); 
  ta[\'pt-login\'] = new Array(\'o\',\'Të hysh brenda nuk është e detyrueshme, por ka shumë përparësi.\'); 
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Të hysh brenda nuk është e detyrueshme, por ka shumë përparësi.\'); 
- ta[\'pt-logout\'] = new Array(\'o\',\'Dalje\'); 
+ ta[\'pt-logout\'] = new Array(\'\',\'Dalje\'); 
  ta[\'ca-talk\'] = new Array(\'t\',\'Diskuto për përmbajtjen e faqes\'); 
  ta[\'ca-edit\'] = new Array(\'e\',\'Ju mund ta redaktoni këtë faqe. Përdorni butonin >>Trego parapamjen<< para se t\'i kryeni ndryshimet.\'); 
  ta[\'ca-addsection\'] = new Array(\'+\',\'Fillo një temë të re diskutimi.\'); 

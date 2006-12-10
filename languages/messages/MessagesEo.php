@@ -1137,7 +1137,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Listo de miaj kontribuoj\');
  ta[\'pt-login\'] = new Array(\'o\',\'Vi estas invitita ensaluti, tamen ne estas devige.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Vi estas invitita ensaluti, tamen ne estas devige.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Elsalutu\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Elsalutu\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Diskuto pri la artikolo\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Vi povas redakti tiun ĉi paĝon. Bv uzi la antaŭvidbutonon antaŭ ol konservi.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Aldonu komenton al tiu diskuto.\');

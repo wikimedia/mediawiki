@@ -1535,7 +1535,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Zoznam mojich príspevkov\');
  ta[\'pt-login\'] = new Array(\'o\',\'Odporúčame Vám prihlásiť sa, nie je to však povinné.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Odporúčame Vám prihlásiť sa, nie je to však povinné.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Odhlásenie\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Odhlásenie\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Diskusia o obsahu stránky\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Môžete upravovať túto stránku. Prosíme, pred uložením použite tlačidlo náhľad.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Pridaj komentár k tejto diskusii.\');

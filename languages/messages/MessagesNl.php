@@ -1491,7 +1491,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Mijn bijdragen\');
  ta[\'pt-login\'] = new Array(\'o\',\'U wordt van harte uitgenodigd om u aan te melden als gebruiker, maar dit is niet verplicht\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'U wordt van harte uitgenodigd om u aan te melden als gebruiker, maar dit is niet verplicht\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Afmelden\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Afmelden\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Toon de overlegtekst bij deze pagina\');
  ta[\'ca-edit\'] = new Array(\'e\',\'U kunt deze pagina bewerken. Gebruik a.u.b. de voorbeeldweergaveknop alvorens te bewaren\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Voeg uw opmerking toe aan de overlegpagina\');

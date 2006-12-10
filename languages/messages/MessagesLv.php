@@ -883,7 +883,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Mani ieguldījumi\');
  ta[\'pt-login\'] = new Array(\'o\',\'Aicinām tevi ieiet {{grammar:lokatīvs|{{SITENAME}}}}, tomēr tas nav obligāti.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Aicinām tevi ieiet {{grammar:lokatīvs|{{SITENAME}}}}, tomēr tas nav obligāti.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Iziet\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Iziet\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Diskusija par šī raksta lapu\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Izmainīt šo lapu. Lūdzam izmantot pirmskatu pirms lapas saglabāšanas.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Pievienot komentāru šai diskusijai.\');

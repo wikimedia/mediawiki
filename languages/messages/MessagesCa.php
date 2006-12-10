@@ -1108,7 +1108,7 @@ L\'article de destí, "[[$1]]", ja existeix. Voleu esborrar-lo per fer lloc per 
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Llista de les vostres contribucions.\'); 
  ta[\'pt-login\'] = new Array(\'o\',\'Us animem a registrar-vos, però no és obligatori.\'); 
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Us animem a registrar-vos, però no és obligatori.\'); 
- ta[\'pt-logout\'] = new Array(\'o\',\'Finalitza la sessió d\'usuari\'); 
+ ta[\'pt-logout\'] = new Array(\'\',\'Finalitza la sessió d\'usuari\'); 
  ta[\'ca-talk\'] = new Array(\'t\',\'Discussió sobre el contingut d\'aquesta pàgina.\'); 
  ta[\'ca-edit\'] = new Array(\'e\',\'Podeu editar aquesta pàgina. Si us plau, previsualitzeu abans de desar.\'); 
  ta[\'ca-addsection\'] = new Array(\'+\',\'Afegeix un comentari a aquesta discussió.\'); 
