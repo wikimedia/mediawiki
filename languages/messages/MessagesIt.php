@@ -1493,7 +1493,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
  ta[\'pt-mycontris\'] = new Array(\'y\',\'L\\\'elenco dei tuoi contributi\'); 
  ta[\'pt-login\'] = new Array(\'o\',\'La registrazione è consigliata, anche se non obbligatoria\'); 
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'La registrazione è consigliata, anche se non obbligatoria\'); 
- ta[\'pt-logout\'] = new Array(\'o\',\'Uscita (logout)\'); 
+ ta[\'pt-logout\'] = new Array(\'\',\'Uscita (logout)\'); 
  ta[\'ca-talk\'] = new Array(\'t\',\'Vedi le discussioni relative a questa pagina\'); 
  ta[\'ca-edit\'] = new Array(\'e\',\'Puoi modificare questa pagina. Per favore usa il pulsante di anteprima prima di salvare\'); 
  ta[\'ca-addsection\'] = new Array(\'+\',\'Aggiungi un commento a questa discussione\'); 

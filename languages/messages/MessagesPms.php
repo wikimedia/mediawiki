@@ -1323,7 +1323,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Sòn i l\'hai falo mi! \');
  ta[\'pt-login\'] = new Array(\'o\',\'Un a l\'é nen obligà a rintré ant al sistema, ma se a lo fa a l\'é mej.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Un a l\'é nen obligà a rintré ant al sistema, ma se a lo fa a l\'é mej.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Seurte da \'nt ël sistema.\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Seurte da \'nt ël sistema.\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Discussion ansima a sta pàgina ëd contnù.\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Modifiché sta pàgina-sì. Për piasì, che as fasa na preuva anans che salvé .\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Gionteje un coment a sta discussion-sì.\');

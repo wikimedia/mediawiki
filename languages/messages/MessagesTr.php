@@ -969,7 +969,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Yaptığım katkıların listesi\');
  ta[\'pt-login\'] = new Array(\'o\',\'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Sistemden çık\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Sistemden çık\');
  ta[\'ca-talk\'] = new Array(\'t\',\'İçerik ile ilgili görüş belirt\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Bu sayfayı değiştirebilirsiniz. Kaydetmeden önce önizleme yapmayı unutmayın.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Bu tartışmaya yorum ekleyin.\');

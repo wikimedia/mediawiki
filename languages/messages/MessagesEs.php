@@ -1148,7 +1148,7 @@ La siguiente expresión regular define los enlaces que se encuentran bloqueados 
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Lista de mis contribuciones\');
  ta[\'pt-login\'] = new Array(\'o\',\'Te animamos a registrarte, aunque no es obligatorio\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Te animamos a registrarte, aunque no es obligatorio\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Salir de la sesión\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Salir de la sesión\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Discusión acerca del artículo\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Puedes editar esta página. Por favor, usa el botón de previsualización antes de grabar.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Añade un comentario a esta discusión\');

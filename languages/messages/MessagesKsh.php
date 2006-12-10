@@ -2121,7 +2121,7 @@ mieh op de füürije un nähkßte Sigge jëvve)</small>',
  ta[\'pt-mycontris\'] = new Array(\'y\',\'De Leßß met Dinge eijene Bëijdräsh.\');
  ta[\'pt-login\'] = new Array(\'o\',\'Do küünz Desh widdo ennlogge, ed_eß ävver nit nüüdish.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Do küünz Desh hee als_enne Medmaacher aanmëllde, moss_ävvor nit.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Ußlogge, domet De zem nameloose Medmaacher weeß.\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Ußlogge, domet De zem nameloose Medmaacher weeß.\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Klaaf övver de Sigk med Enhalld.\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Do kannß di Sigk fo_änndere. Luer Der de Füür_Aansesh aan, ih dat_De_se 
 

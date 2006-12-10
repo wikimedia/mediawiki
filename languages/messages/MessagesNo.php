@@ -1227,7 +1227,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
  ta[\'pt-mycontris\'] = new Array(\'y\',\'Liste over mine bidrag\');
  ta[\'pt-login\'] = new Array(\'o\',\'Du oppfordres til å logge inn, men det er ikke obligatorisk.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Du oppfordres til å logge inn, men det er ikke obligatorisk.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Logg ut\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Logg ut\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Diskusjon om innholdssiden\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Du kan redigere denne siden. Vennligst bruk Forhåndsvis-knappen før du lagrer.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Legg til et diskusjonsinnlegg.\');

@@ -957,7 +957,7 @@ Az utóbbi esetben közvetlen linket is használhatsz, például a [[Special:Exp
  ta[\'pt-mycontris\'] = new Array(\'y\',\'A közreműködéseid listája\');
  ta[\'pt-login\'] = new Array(\'o\',\'Bejelentkezni javasolt, de nem kötelező.\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Bejelentkezni javasolt, de nem kötelező.\');
- ta[\'pt-logout\'] = new Array(\'o\',\'Kijelentkezés\');
+ ta[\'pt-logout\'] = new Array(\'\',\'Kijelentkezés\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Az oldal tartalmának megvitatása\');
  ta[\'ca-edit\'] = new Array(\'e\',\'Te is szerkesztheted ezt az oldalt. Mielőtt elmentenéd, használd az előnézetet.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Újabb fejezet nyitása a vitában.\');

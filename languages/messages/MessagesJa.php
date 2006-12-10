@@ -1387,7 +1387,7 @@ $NEWPAGE
  ta[\'pt-mycontris\'] = new Array(\'y\',\'自分の投稿記録\');
  ta[\'pt-login\'] = new Array(\'o\',\'ログインすることが推奨されますが、しなくても構いません。\');
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'ログインすることが推奨されますが、しなくても構いません。\');
- ta[\'pt-logout\'] = new Array(\'o\',\'ログアウト\');
+ ta[\'pt-logout\'] = new Array(\'\',\'ログアウト\');
  ta[\'ca-talk\'] = new Array(\'t\',\'項目のノート\');
  ta[\'ca-edit\'] = new Array(\'e\',\'このページを編集できます。投稿の前に「{{int:showpreview}}」ボタンを使ってください。\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'このページにコメントを加える\');
