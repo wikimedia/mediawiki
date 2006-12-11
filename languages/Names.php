@@ -278,6 +278,7 @@
 	'zh-classical' => '古文 / 文言文',	# Classical Chinese/Literary Chinese
 	'zh-cn' => '中文(简体)',	# Simplified
 	'zh-hk' => '中文(繁體)',	# Traditional (Hong Kong)
+	'zh-min-nan' => 'Bân-lâm-gú', # Min-nan -- (see bug 8217)
 	'zh-sg' => '中文(简体)', # Simplified (Singapore)
 	'zh-tw' => '中文(繁體)',	# Traditional
 	'zh-yue' => '粵語',	# Cantonese
