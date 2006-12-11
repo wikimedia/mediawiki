@@ -2841,6 +2841,30 @@ class Parser
 		return $text;
 	}
 
+		
+	/// Clean up argument array - refactored in 1.9 so parserfunctions can use it, too.
+	static function createAssocArgs( $args ) {
+		$assocArgs = array();
+		$index = 1;
+		foreach( $args as $arg ) {
+			$eqpos = strpos( $arg, '=' );
+			if ( $eqpos === false ) {
+				$assocArgs[$index++] = $arg;
+			} else {
+				$name = trim( substr( $arg, 0, $eqpos ) );
+				$value = trim( substr( $arg, $eqpos+1 ) );
+				if ( $value === false ) {
+					$value = '';
+				}
+				if ( $name !== false ) {
+					$assocArgs[$name] = $value;
+				}
+			}
+		}
+		
+		return $assocArgs;
+	}
+	
 	/**
 	 * Return the text of a template, after recursively
 	 * replacing any variables or templates within the template.
@@ -3088,24 +3112,7 @@ class Parser
 				$assocArgs = array();
 			} else {
 				# Clean up argument array
-				$assocArgs = array();
-				$index = 1;
-				foreach( $args as $arg ) {
-					$eqpos = strpos( $arg, '=' );
-					if ( $eqpos === false ) {
-						$assocArgs[$index++] = $arg;
-					} else {
-						$name = trim( substr( $arg, 0, $eqpos ) );
-						$value = trim( substr( $arg, $eqpos+1 ) );
-						if ( $value === false ) {
-							$value = '';
-						}
-						if ( $name !== false ) {
-							$assocArgs[$name] = $value;
-						}
-					}
-				}
-
+				$assocArgs = $this->createAssocArgs($args);
 				# Add a new element to the templace recursion path
 				$this->mTemplatePath[$part1] = 1;
 			}
