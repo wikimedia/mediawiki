@@ -32,7 +32,7 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $messages = array(
 'tog-underline'         => 'Bağlatıların altını çiz',
-'tog-highlightbroken'   => 'Boş bağlantıları <a href="http://www.example.com/" class="new">bu şekilde</a> (alternatif: bu şekilde<a href="" class="internal">?</a>) göster.',
+'tog-highlightbroken'   => 'Boş bağlantıları <a href="" class="new">bu şekilde</a> (alternatif: bu şekilde<a href="" class="internal">?</a>) göster.',
 'tog-justify'           => 'Paragraf iki yana yaslayarak ayarla',
 'tog-hideminor'         => 'Küçük değişiklikleri "Son değişiklikler" sayfasında gizle',
 'tog-extendwatchlist'   => 'Gelişmiş izleme listesi',

@@ -55,7 +55,7 @@ $dateFormats = array(
 
 $messages = array(
 'tog-underline'         => 'Nexus cum linea subscribere',
-'tog-highlightbroken'   => 'Formare nexos fractos <a href="http://www.example.com/" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Formare nexos fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Saepire capites',
 'tog-hideminor'         => 'Celare mutationes recentes minores',
 'tog-usenewrc'          => 'Mutationes recentes amplificatae (Javascript)',

@@ -56,7 +56,7 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $messages = array(
 'tog-underline'         => 'Nënvizo lidhjet',
-'tog-highlightbroken'   => 'Trego lidhjet e faqeve bosh <a href="http://www.example.com/" class="new">kështu </a> (ndryshe: kështu<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Trego lidhjet e faqeve bosh <a href="" class="new">kështu </a> (ndryshe: kështu<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Rregullim i kryeradhës',
 'tog-hideminor'         => 'Mos trego redaktimet e vogla',
 'tog-extendwatchlist'   => 'Zgjero listën mbikqyrëse të tregojë të tëra ndryshimet përkatëse',

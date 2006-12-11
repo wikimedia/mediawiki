@@ -52,7 +52,7 @@ $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
 
 $messages = array(
 'tog-underline'         => 'Subrayar enlaces',
-'tog-highlightbroken'   => 'Destacar enlaces a artículos vacíos <a href="http://www.example.com/" class="new">como este</a> (alternativa: como éste<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Destacar enlaces a artículos vacíos <a href="" class="new">como este</a> (alternativa: como éste<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Ajustar párrafos',
 'tog-hideminor'         => 'Esconder ediciones menores en «cambios recientes»',
 'tog-extendwatchlist'   => 'Expandir la lista de seguimiento a todos los cambios aplicables',

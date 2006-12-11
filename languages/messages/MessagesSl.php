@@ -50,7 +50,7 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $messages = array(
 'tog-underline'         => 'Podčrtavanje povezav:',
-'tog-highlightbroken'   => 'Oblikuj pretrgane povezave <a href="http://www.example.com/" class="new">kot</a> (druga možnost: kot<a href="" class="internal">?</a>)',
+'tog-highlightbroken'   => 'Oblikuj pretrgane povezave <a href="" class="new">kot</a> (druga možnost: kot<a href="" class="internal">?</a>)',
 'tog-justify'           => 'Poravnavaj odstavke',
 'tog-hideminor'         => 'Skrij manjše popravke v zadnjih spremembah',
 'tog-extendwatchlist'   => 'Izboljšan spisek nadzorov',

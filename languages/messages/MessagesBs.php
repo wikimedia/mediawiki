@@ -922,7 +922,7 @@ stranica za razgovor nije mogla biti premještena jer takva već postoji na novo
 'tog-enotifusertalkpages' => 'Pošalji mi e-poštu kad se promijeni moja korisnička stranica za razgovor',
 'tog-enotifwatchlistpages' => 'Pošalji mi e-poštu kad se promijene stranice',
 'tog-hideminor' => 'Sakrij male izmjene u spisku nedavnih izmjena',
-'tog-highlightbroken' => 'Formatiraj pokvarene veze <a href="http://www.example.com/" class="new">ovako</a> (alternativa: ovako<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Formatiraj pokvarene veze <a href="" class="new">ovako</a> (alternativa: ovako<a href="" class="internal">?</a>).',
 'tog-justify' => 'Uravnjaj pasuse',
 'tog-minordefault' => 'Označi sve izmjene malim isprva',
 'tog-nocache' => 'Onemogući keširanje stranica',

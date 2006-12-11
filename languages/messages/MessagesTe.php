@@ -52,7 +52,7 @@ $linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
 
 $messages = array(
 'tog-underline'         => 'లింకుల కింద గీతగీయి:',
-'tog-highlightbroken'   => 'తెగిపోయిన లింకులను <a href="http://www.example.com/" class="new">ఇలా చూపించు</a> (ఇంకో పధ్ధతి: <a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'తెగిపోయిన లింకులను <a href="" class="new">ఇలా చూపించు</a> (ఇంకో పధ్ధతి: <a href="" class="internal">?</a>).',
 'tog-justify'           => 'పేరాలను ఇరు పక్కలా సమానంగా సర్దు',
 'tog-hideminor'         => 'ఇటీవలి మార్పులలో చిన్న మార్పులను దాచిపెట్టు',
 'tog-usenewrc'          => 'మెరుగైన ఇటీవలి మార్పులు (జావాస్క్రిప్టు)',

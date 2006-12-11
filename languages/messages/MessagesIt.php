@@ -49,7 +49,7 @@ $messages = array(
 
 # User preference toggles
 "tog-underline" => "Sottolinea i collegamenti",
-"tog-highlightbroken" => 'Formatta <a href="http://www.example.com/" class="new">così</a> i collegamenti a pagine inesistenti (se disattivato: così<a href="" class="internal">?</a>).',
+"tog-highlightbroken" => 'Formatta <a href="" class="new">così</a> i collegamenti a pagine inesistenti (se disattivato: così<a href="" class="internal">?</a>).',
 "tog-justify"	=> "Allineamento dei paragrafi giustificato",
 "tog-hideminor" => "Nascondi le modifiche minori nelle ultime modifiche",
 "tog-extendwatchlist" => "Espandi la funzione osservati speciali mostrando tutte le modifiche applicabili",

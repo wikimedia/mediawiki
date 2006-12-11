@@ -56,7 +56,7 @@ $messages = array(
 # User preference toggles
 #----------------------------------------#
 'tog-underline' => 'Υπογράμμιση συνδέσμων',
-'tog-highlightbroken' => 'Κατεστραμένοι σύνδεσμοι μορφοποίησης <a href="http://www.example.com/" class="new">όπως αυτός</a> (εναλλακτικά: όπως αυτός<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Κατεστραμένοι σύνδεσμοι μορφοποίησης <a href="" class="new">όπως αυτός</a> (εναλλακτικά: όπως αυτός<a href="" class="internal">?</a>).',
 'tog-justify' => 'Στοίχιση παραγράφων',
 'tog-hideminor' => 'Απόκρυψη αλλαγών μικρής κλίμακας',
 'tog-usenewrc' => 'Ανάδειξη πρόσφατων αλλαγών (δεν λειτουργεί σε όλους τους browser)',

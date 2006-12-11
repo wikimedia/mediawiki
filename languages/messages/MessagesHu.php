@@ -55,7 +55,7 @@ $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
 
 $messages = array(
 'tog-underline'         => 'Linkek aláhúzása:',
-'tog-highlightbroken'   => 'Törött linkek <a href="http://www.example.com/" class="new">így</a> (alternatíva: így<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Törött linkek <a href="" class="new">így</a> (alternatíva: így<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Bekezdések teljes szélességű tördelése („sorkizárás”)',
 'tog-hideminor'         => 'Apró változtatások elrejtése a Friss változtatások lapon',
 'tog-extendwatchlist'   => 'A figyelőlista kiterjesztése minden változtatásra (ne csak az utolsót mutassa)',

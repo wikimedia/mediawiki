@@ -54,7 +54,7 @@ $linkTrail = '/^([a-zàèéíòóúç·ïü\']+)(.*)$/sDu';
 
 $messages = array(
 'tog-underline'         => 'Subratlla els enllaços:',
-'tog-highlightbroken'   => 'Formata els enllaços trencats  <a href="http://www.example.com/" class="new">d\'aquesta manera</a> (altrament, es faria d\'aquesta altra manera<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Formata els enllaços trencats  <a href="" class="new">d\'aquesta manera</a> (altrament, es faria d\'aquesta altra manera<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Alineació justificada dels paràgrafs',
 'tog-hideminor'         => 'Amaga les edicions menors en la pàgina de canvis recents',
 'tog-extendwatchlist'   => 'Desplega la llista de seguiment per a mostrar tots els canvis afectats',

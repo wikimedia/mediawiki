@@ -60,7 +60,7 @@ $messages = array(
 
 # User preference toggles
 'tog-underline' => 'Podkreślenie linków:',
-'tog-highlightbroken' => '<a href="http://www.example.com/" class="new">Podświetl</a> linki pustych stron (alternatywa: znak zapytania<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => '<a href="" class="new">Podświetl</a> linki pustych stron (alternatywa: znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify' => 'Wyrównuj tekst w akapitach do obu stron',
 'tog-hideminor' => 'Ukryj drobne zmiany w "Ostatnich zmianach"',
 'tog-extendwatchlist' => 'Rozszerzona lista obserwowanych',
