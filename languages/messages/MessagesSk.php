@@ -1524,7 +1524,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'rcpatroldisabledtext'  => 'Funkcia stráženia posledných zmien je momentálne vypnutá.',
 'markedaspatrollederror'=> 'Nie je možné označiť ako strážený',
 'markedaspatrollederrortext'=> 'Pre označenie ako strážený je potrebné uviesť revíziu, ktorá sa má označiť ako strážená.',
-'Monobook.js'           => '/* tooltips and access keys */
+'Monobook.js'           => '/* bublinové tipy a prístupové klávesy */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Moja redaktorská stránka\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Stránka redaktora pre ip adresu, ktorú upravujete ako\');
@@ -1537,9 +1537,9 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
  ta[\'pt-anonlogin\'] = new Array(\'o\',\'Odporúčame Vám prihlásiť sa, nie je to však povinné.\');
  ta[\'pt-logout\'] = new Array(\'\',\'Odhlásenie\');
  ta[\'ca-talk\'] = new Array(\'t\',\'Diskusia o obsahu stránky\');
- ta[\'ca-edit\'] = new Array(\'e\',\'Môžete upravovať túto stránku. Prosíme, pred uložením použite tlačidlo náhľad.\');
+ ta[\'ca-edit\'] = new Array(\'e\',\'Môžete upravovať túto stránku. Prosíme, pred uložením použite tlačidlo Zobraziť náhľad.\');
  ta[\'ca-addsection\'] = new Array(\'+\',\'Pridaj komentár k tejto diskusii.\');
- ta[\'ca-viewsource\'] = new Array(\'e\',\'Táto stránka je zamknutá. Môžete však vidieť jeho zdrojový text.\');
+ ta[\'ca-viewsource\'] = new Array(\'e\',\'Táto stránka je zamknutá. Môžete však vidieť jej zdrojový text.\');
  ta[\'ca-history\'] = new Array(\'h\',\'Minulé verzie tejto stránky.\');
  ta[\'ca-protect\'] = new Array(\'=\',\'Zamkni túto stránku\');
  ta[\'ca-delete\'] = new Array(\'d\',\'Vymaž túto stránku\');
@@ -1562,17 +1562,17 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
  ta[\'feed-atom\'] = new Array(\'\',\'Atom feed pre túto stránku\');
  ta[\'t-contributions\'] = new Array(\'\',\'Pozrieť si zoznam príspevkov od tohto redaktora\');
  ta[\'t-emailuser\'] = new Array(\'\',\'Poslať e-mail tomuto redaktorovi\');
- ta[\'t-upload\'] = new Array(\'u\',\'Nahranie obrázkových alebo mediálnych súborov\');
+ ta[\'t-upload\'] = new Array(\'u\',\'Nahranie obrázkových alebo multimediálnych súborov\');
  ta[\'t-specialpages\'] = new Array(\'q\',\'Zoznam všetkých špeciálnych stránok\');
  ta[\'ca-nstab-main\'] = new Array(\'c\',\'Pozrieť si obsah stránky\');
  ta[\'ca-nstab-user\'] = new Array(\'c\',\'Pozrieť si stránku redaktora\');
- ta[\'ca-nstab-media\'] = new Array(\'c\',\'Pozrieť si stránku médii\');
+ ta[\'ca-nstab-media\'] = new Array(\'c\',\'Pozrieť si stránku médií\');
  ta[\'ca-nstab-special\'] = new Array(\'\',\'Toto je špeciálna stránka, nemôžete ju upravovať.\');
  ta[\'ca-nstab-project\'] = new Array(\'c\',\'Pozrieť si stránku projektu\');
  ta[\'ca-nstab-image\'] = new Array(\'c\',\'Pozrieť si stránku obrázku\');
  ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Pozrieť si systémovú stránku\');
  ta[\'ca-nstab-template\'] = new Array(\'c\',\'Pozrieť si šablónu\');
- ta[\'ca-nstab-help\'] = new Array(\'c\',\'Pozrieť si stránku s Pomocou\');
+ ta[\'ca-nstab-help\'] = new Array(\'c\',\'Pozrieť si stránku Pomocníka\');
  ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriami\');',
 'deletedrevision'       => 'Zmazať staré verzie $1.',
 'previousdiff'          => '← Choď na predchádzajúcu verziu',
@@ -1590,7 +1590,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 <hr />',
 'fileinfo'              => '$1KB, MIME : <code>$2</code>',
 'metadata'              => 'Metadáta',
-'metadata-help'         => 'Tento súbor obsahuje ďalšie informácie, pravdepodobne pochádzajúce z digitálneho fotoaparátu či scannera ktorý ho vytvoril alebo digitalizoval. Ak bol súbor zmenený, niektoré podrobnosti sa nemusia plne zhodovať so zmeneným obrázkom.',
+'metadata-help'         => 'Tento súbor obsahuje ďalšie informácie, pravdepodobne pochádzajúce z digitálneho fotoaparátu či skenera ktorý ho vytvoril alebo digitalizoval. Ak bol súbor zmenený, niektoré podrobnosti sa nemusia plne zhodovať so zmeneným obrázkom.',
 'metadata-expand'       => 'Zobraz detaily EXIF',
 'metadata-collapse'     => 'Skry detaily EXIF',
 'metadata-fields'       => 'Polia EXIF metadát uvedených v tejto správe sa zobrazia na stránke obrázka vtedy, keď je tabuľka metadát zbalená. Ostatné sa štandardne nezobrazia.
