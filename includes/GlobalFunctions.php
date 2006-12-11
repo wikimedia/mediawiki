@@ -1087,7 +1087,7 @@ function wfHttpError( $code, $label, $desc ) {
  * output image files without ob_gzhandler's compression.
  *
  * The optional $resetGzipEncoding parameter controls suppression of
- * the Content-Handler header sent by ob_gzhandler; by default it
+ * the Content-Encoding header sent by ob_gzhandler; by default it
  * is left. See comments for wfClearOutputBuffers() for why it would
  * be used.
  *
