@@ -57,10 +57,10 @@ function wfSpecialWatchlist( $par ) {
 	$prefs['hidebots'] = $wgUser->getBoolOption( 'watchlisthidebots' );
 
 	# Get query variables
-	$days = $wgRequest->getVal( 'days', $prefs['days'] );
-	$hideOwn = $wgRequest->getBool( 'hideOwn', $prefs['hideown'] );
+	$days     = $wgRequest->getVal(  'days', $prefs['days'] );
+	$hideOwn  = $wgRequest->getBool( 'hideOwn', $prefs['hideown'] );
 	$hideBots = $wgRequest->getBool( 'hideBots', $prefs['hidebots'] );
-	
+
 	# Get namespace value, if supplied, and prepare a WHERE fragment
 	$nameSpace = $wgRequest->getIntOrNull( 'namespace' );
 	if( !is_null( $nameSpace ) ) {
@@ -74,14 +74,14 @@ function wfSpecialWatchlist( $par ) {
 	# Watchlist editing
 	$action = $wgRequest->getVal( 'action' );
 	$remove = $wgRequest->getVal( 'remove' );
-	$id = $wgRequest->getArray( 'id' );
+	$id     = $wgRequest->getArray( 'id' );
 
 	$uid = $wgUser->getID();
 	if( $wgEnotifWatchlist && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
 		$wgUser->clearAllNotifications( $uid );
 	}
 
-  # Deleting items from watchlist
+	 # Deleting items from watchlist
 	if(($action == 'submit') && isset($remove) && is_array($id)) {
 		$wgOut->addWikiText( wfMsg( 'removingchecked' ) );
 		$wgOut->addHTML( '<p>' );
@@ -118,7 +118,7 @@ function wfSpecialWatchlist( $par ) {
 	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
 	$res = $dbr->query( $sql, $fname );
 	$s = $dbr->fetchObject( $res );
-	
+
 #	Patch *** A1 *** (see A2 below)
 #	adjust for page X, talk:page X, which are both stored separately, but treated together
 	$nitems = floor($s->n / 2);
@@ -144,10 +144,10 @@ function wfSpecialWatchlist( $par ) {
 	// Dump everything here
 	$nondefaults = array();
 
-	wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
-	wfAppendToArrayIfNotDefault( 'hideOwn', (int)$hideOwn, $defaults, $nondefaults);
-	wfAppendToArrayIfNotDefault( 'hideBots', (int)$hideBots, $defaults, $nondefaults);
-	wfAppendToArrayIfNotDefault( 'namespace', $nameSpace, $defaults, $nondefaults );
+	wfAppendToArrayIfNotDefault('days'     , $days         , $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault('hideOwn'  , (int)$hideOwn , $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault('hideBots' , (int)$hideBots, $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault('namespace', $nameSpace    , $defaults, $nondefaults);
 
 	if ( $days <= 0 ) {
 		$cutoff = false;
@@ -178,15 +178,16 @@ function wfSpecialWatchlist( $par ) {
 		$sql = "SELECT wl_namespace, wl_title, page_is_redirect FROM $watchlist LEFT JOIN $page ON wl_namespace = page_namespace AND wl_title = page_title WHERE wl_user=$uid";
 
 		$res = $dbr->query( $sql, $fname );
-		
+
 		# Batch existence check
 		$linkBatch = new LinkBatch();
 		while( $row = $dbr->fetchObject( $res ) )
 			$linkBatch->addObj( Title::makeTitleSafe( $row->wl_namespace, $row->wl_title ) );
 		$linkBatch->execute();
+
 		if( $dbr->numRows( $res ) > 0 )
 			$dbr->dataSeek( $res, 0 ); # Let's do the time warp again!
-		
+
 		$sk = $wgUser->getSkin();
 
 		$list = array();
@@ -223,7 +224,7 @@ function wfSpecialWatchlist( $par ) {
 					} else {
 						$spanopen = $spanclosed = '';
 					}
-					
+
 					$wgOut->addHTML( "<li>{$checkbox}{$spanopen}{$pageLink}{$spanclosed} {$toolLinks}</li>\n" );
 				}
 			}
@@ -260,7 +261,7 @@ function wfSpecialWatchlist( $par ) {
 
   # Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
-		$andLatest=''; 
+		$andLatest='';
  		$limitWatchlist = 'LIMIT ' . intval( $wgUser->getOption( 'wllimit' ) );
 	} else {
 		$andLatest= 'AND rc_this_oldid=page_latest';
@@ -322,7 +323,7 @@ function wfSpecialWatchlist( $par ) {
 	# Spit out some control panel links
 	$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$skin = $wgUser->getSkin();
-	
+
 	# Problems encountered using the fancier method
 	$label = $hideBots ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' );
 	$linkBits = wfArrayToCGI( array( 'hideBots' => 1 - (int)$hideBots ), $nondefaults );
@@ -445,18 +446,18 @@ function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
  */
 function wlCountItems( &$user, $talk = true ) {
 	$dbr =& wfGetDB( DB_SLAVE );
-	
+
 	# Fetch the raw count
 	$res = $dbr->select( 'watchlist', 'COUNT(*) AS count', array( 'wl_user' => $user->mId ), 'wlCountItems' );
 	$row = $dbr->fetchObject( $res );
 	$count = $row->count;
 	$dbr->freeResult( $res );
-	
+
 	# Halve to remove talk pages if needed
 	if( !$talk )
 		$count = floor( $count / 2 );
-		
-	return( $count );	
+
+	return( $count );
 }
 
 /**
