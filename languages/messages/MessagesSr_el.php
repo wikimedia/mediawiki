@@ -220,7 +220,7 @@ $messages = array(
 
 # User preference toggles
 'tog-underline' => 'Podvuci veze',
-'tog-highlightbroken' => 'Formatiraj pokvarene veze <a href="" class="new">ovako</a> (alternativa: ovako<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Formatiraj pokvarene veze <a href="http://www.example.com/" class="new">ovako</a> (alternativa: ovako<a href="" class="internal">?</a>).',
 'tog-justify' => 'Uravnaj pasuse',
 'tog-hideminor' => 'Sakrij male izmene u spisku skorašnjih izmena',
 'tog-extendwatchlist' => 'Poboljšan spisak nadgledanja',

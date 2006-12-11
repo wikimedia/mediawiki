@@ -217,7 +217,7 @@ $messages = array(
 
 # User preference toggles
 'tog-underline' => 'Подвуци везе',
-'tog-highlightbroken' => 'Форматирај покварене везе <a href="" class="new">овако</a> (алтернатива: овако<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Форматирај покварене везе <a href="http://www.example.com/" class="new">овако</a> (алтернатива: овако<a href="" class="internal">?</a>).',
 'tog-justify' => 'Уравнај пасусе',
 'tog-hideminor' => 'Сакриј мале измене у списку скорашњих измена',
 'tog-extendwatchlist' => 'Побољшан списак надгледања',

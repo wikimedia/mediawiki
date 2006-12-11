@@ -1348,7 +1348,7 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue”]je <b>$
 'tog-fancysig'          => 'Hrube signatury (bjez awtomatiskeho wotkaza)',
 'tog-forceeditsummary'  => 'Mje warnować, zabudu-li zjeće',
 'tog-hideminor'         => 'Drobne změny w poslednich změnach schować',
-'tog-highlightbroken'   => 'Wotkazy na prózdne nastawki <a href="" class="new">tak</a> (alternative: like this<a href="" class="internal">?</a>)zběhnyć',
+'tog-highlightbroken'   => 'Wotkazy na prózdne nastawki <a href="http://www.example.com/" class="new">tak</a> (alternative: like this<a href="" class="internal">?</a>)zběhnyć',
 'tog-justify'           => 'Wotstawki w blokowej sadźbje',
 'tog-minordefault'      => 'Wšě změny jako drobne woznamjenić',
 'tog-nocache'           => 'Pufrowanje strony znjemóžnić',

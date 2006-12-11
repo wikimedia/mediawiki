@@ -210,7 +210,7 @@ $messages = array(
 
 # User preference toggles
 'tog-underline' => 'Подчёркивать ссылки:',
-'tog-highlightbroken' => 'Показывать несуществующие ссылки <a href="" class="new">вот так</a> (иначе вот так<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Показывать несуществующие ссылки <a href="http://www.example.com/" class="new">вот так</a> (иначе вот так<a href="" class="internal">?</a>).',
 'tog-justify'   => 'Выравнивать текст по ширине страницы',
 'tog-hideminor' => 'Скрывать малозначимые правки в списке свежих изменений',
 'tog-extendwatchlist' => 'Улучшенный список наблюдения',

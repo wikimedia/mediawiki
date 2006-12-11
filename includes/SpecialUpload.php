@@ -840,9 +840,6 @@ class UploadForm {
 		</td>
 	</tr>
 	<tr>
-
-	</tr>
-	<tr>
 		<td></td>
 		<td align='left'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
 	</tr>

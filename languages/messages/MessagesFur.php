@@ -607,7 +607,7 @@ Chest al vûl dî une medie di '''$5''' cambiaments par pagjine, e '''$6''' viod
 'timezonetext'	=> 'Il numar di oris di diference rispiet ae ore dal servidôr (UTC).',
 'titlematches'	=> 'Corispondencis tai titui des pagjinis',
 'toc' => "Indis",
-'tog-highlightbroken' => 'Mostre leams sbaliâts <a href="" class="new">cussì</a> (invezit di cussì<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Mostre leams sbaliâts <a href="http://www.example.com/" class="new">cussì</a> (invezit di cussì<a href="" class="internal">?</a>).',
 'tog-justify'	=> 'Justifiche paragraf',
 'tog-hideminor' => 'Plate lis piçulis modifichis tai ultins cambiaments',
 'tog-usenewrc' => 'Ultins cambiaments avanzâts (JavaScript)',

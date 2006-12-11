@@ -150,7 +150,7 @@ $messages = array(
 
 # User preference toggles
 'tog-underline' 		=> '連結加底線',
-'tog-highlightbroken' 		=> '格式化連結 <a href="" class="new">好似咁</a>（又或者: 好似咁<a href="" class="internal">?</a>）.',
+'tog-highlightbroken' 		=> '格式化連結 <a href="http://www.example.com/" class="new">好似咁</a>（又或者: 好似咁<a href="" class="internal">?</a>）.',
 'tog-justify' 			=> '拍齊段落',
 'tog-hideminor' 		=> '最新更改唔顯示小修改',
 'tog-extendwatchlist' 		=> '展開監視清單去顯示合適嘅更改',

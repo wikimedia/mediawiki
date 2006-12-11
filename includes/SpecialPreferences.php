@@ -534,7 +534,7 @@ class PreferencesForm {
 		# User data
 		#
 
-		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('prefs-personal') . "</legend>\n<table>\n");
+		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('prefs-personal') . "</legend>\n<table summary=\"". wfMsg('prefs-personal') . "\">\n");
 
 		$wgOut->addHTML(
 			$this->addRow(
@@ -655,7 +655,7 @@ class PreferencesForm {
 			$this->mNewpass = htmlspecialchars( $this->mNewpass );
 			$this->mRetypePass = htmlspecialchars( $this->mRetypePass );
 	
-			$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'changepassword' ) . '</legend><table>');
+			$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'changepassword' ) . '</legend><table summary="'. wfMsg( 'changepassword' ) .'">');
 			$wgOut->addHTML(
 				$this->addRow(
 					'<label for="wpOldpass">' . wfMsg( 'oldpassword' ) . '</label>',
@@ -830,7 +830,7 @@ class PreferencesForm {
 		$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
 		$nowserver = $wgLang->time( $now, false );
 
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'timezonelegend' ). '</legend><table>' .
+		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'timezonelegend' ). '</legend><table summary="'. wfMsg( 'timezonelegend' ) .'">' .
 		 	$this->addRow( wfMsg( 'servertime' ), $nowserver ) .
 			$this->addRow( wfMsg( 'localtime' ), $nowlocal ) .
 			$this->addRow(
@@ -894,7 +894,7 @@ class PreferencesForm {
 		$wgOut->addHTML( '</fieldset>' );
 
 		# Search
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table>' .
+		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table summary="'. wfMsg( 'searchresultshead' ) .'">' .
 			$this->addRow(
 				wfLabel( wfMsg( 'resultsperpage' ), 'wpSearch' ),
 				wfInput( 'wpSearch', 4, $this->mSearch, array( 'id' => 'wpSearch' ) )
