@@ -164,6 +164,7 @@
 	'mzn' => 'مَزِروني',		# Mazandarin
 	'na' => 'Ekakairũ Naoero',		# Nauruan
 	'nah' => 'Nahuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
+	'nan' => 'Bân-lâm-gú', # Min-nan -- (bug 8217) nan instead of zh-min-nan, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=n
 	'nap' => 'Nnapulitano',	# Neapolitan
 	'nb' => 'Norsk (bokmål)',		# Norwegian (Bokmal)
 	'nds' => 'Plattdüütsch',	# Low German ''or'' Low Saxon
@@ -277,7 +278,6 @@
 	'zh-classical' => '古文 / 文言文',	# Classical Chinese/Literary Chinese
 	'zh-cn' => '中文(简体)',	# Simplified
 	'zh-hk' => '中文(繁體)',	# Traditional (Hong Kong)
-	'zh-min-nan' => 'Bân-lâm-gú', # Min-nan
 	'zh-sg' => '中文(简体)', # Simplified (Singapore)
 	'zh-tw' => '中文(繁體)',	# Traditional
 	'zh-yue' => '粵語',	# Cantonese
