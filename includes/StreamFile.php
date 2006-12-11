@@ -22,12 +22,7 @@ function wfStreamFile( $fname ) {
 	header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', $stat['mtime'] ) . ' GMT' );
 
 	// Cancel output buffering and gzipping if set
-	while( $status = ob_get_status() ) {
-		ob_end_clean();
-		if( $status['name'] == 'ob_gzhandler' ) {
-			header( 'Content-Encoding:' );
-		}
-	}
+	wfResetOutputBuffers();
 	
 	$type = wfGetType( $fname );
 	if ( $type and $type!="unknown/unknown") {

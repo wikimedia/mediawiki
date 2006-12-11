@@ -83,12 +83,7 @@ function wfSpecialExport( $page = '' ) {
 		
 		// Cancel output buffering and gzipping if set
 		// This should provide safer streaming for pages with history
-		while( $status = ob_get_status() ) {
-			ob_end_clean();
-			if( $status['name'] == 'ob_gzhandler' ) {
-				header( 'Content-Encoding:' );
-			}
-		}
+		wfResetOutputBuffers();
 		header( "Content-type: application/xml; charset=utf-8" );
 		$pages = explode( "\n", $page );
 

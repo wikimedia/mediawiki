@@ -1080,6 +1080,64 @@ function wfHttpError( $code, $label, $desc ) {
 }
 
 /**
+ * Clear away any user-level output buffers, discarding contents.
+ *
+ * Suitable for 'starting afresh', for instance when streaming
+ * relatively large amounts of data without buffering, or wanting to
+ * output image files without ob_gzhandler's compression.
+ *
+ * The optional $resetGzipEncoding parameter controls suppression of
+ * the Content-Handler header sent by ob_gzhandler; by default it
+ * is left. See comments for wfClearOutputBuffers() for why it would
+ * be used.
+ *
+ * Note that some PHP configuration options may add output buffer
+ * layers which cannot be removed; these are left in place.
+ *
+ * @parameter bool $resetGzipEncoding
+ */
+function wfResetOutputBuffers( $resetGzipEncoding=true ) {
+	while( $status = ob_get_status() ) {
+		if( $status['type'] == 0 /* PHP_OUTPUT_HANDLER_INTERNAL */ ) {
+			// Probably from zlib.output_compression or other
+			// PHP-internal setting which can't be removed.
+			//
+			// Give up, and hope the result doesn't break
+			// output behavior.
+			break;
+		}
+		if( !ob_end_clean() ) {
+			// Could not remove output buffer handler; abort now
+			// to avoid getting in some kind of infinite loop.
+			break;
+		}
+		if( $resetGzipEncoding ) {
+			if( $status['name'] == 'ob_gzhandler' ) {
+				// Reset the 'Content-Encoding' field set by this handler
+				// so we can start fresh.
+				header( 'Content-Encoding:' );
+			}
+		}
+	}
+}
+
+/**
+ * More legible than passing a 'false' parameter to wfResetOutputBuffers():
+ *
+ * Clear away output buffers, but keep the Content-Encoding header
+ * produced by ob_gzhandler, if any.
+ *
+ * This should be used for HTTP 304 responses, where you need to
+ * preserve the Content-Encoding header of the real result, but
+ * also need to suppress the output of ob_gzhandler to keep to spec
+ * and avoid breaking Firefox in rare cases where the headers and
+ * body are broken over two packets.
+ */
+function wfClearOutputBuffers() {
+	wfResetOutputBuffers( false );
+}
+
+/**
  * Converts an Accept-* header into an array mapping string values to quality
  * factors
  */
