@@ -270,6 +270,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
 					wfMsgHtml ( 'allpages' ) );
 		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
+			$t = Title::MakeTitle( $s->page_namespace, $s->page_title );
 			$self = SpecialPage::getTitleFor( 'Allpages' );
 			$q = 'from=' . $t->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
 			$nextLink = $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
