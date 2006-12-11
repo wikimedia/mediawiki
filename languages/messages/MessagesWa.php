@@ -69,7 +69,7 @@ $linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Sorlignî les loyéns',
-'tog-highlightbroken' => 'Håyner les vudes loyéns <a href="" class="new">come çouchal</a><br /> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Håyner les vudes loyéns <a href="http://www.example.com/" class="new">come çouchal</a><br /> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href="" class="internal">?</a>).',
 'tog-justify' => 'Djustifyî les hagnons',
 'tog-hideminor' => 'Èn nén moster les <i>dierins candjmints</i> mineurs',
 'tog-extendwatchlist' => 'Ragrandi l\' djivêye po mostrer tos les candjmints',

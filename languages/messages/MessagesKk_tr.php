@@ -123,7 +123,7 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Siltemeni astınan sız:',
-'tog-highlightbroken'         => 'Joqtalğan siltemelerdi <a href="" class="new">bılaý</a> pişimde (basqaşa: bılaý <a href="" class="internal">?</a> sïyaqtı).',
+'tog-highlightbroken'         => 'Joqtalğan siltemelerdi <a href="http://www.example.com/" class="new">bılaý</a> pişimde (basqaşa: bılaý <a href="" class="internal">?</a> sïyaqtı).',
 'tog-justify'                 => 'Ejelerdi eni boýınşa twralaw',
 'tog-hideminor'               => 'Jwıqtağı özgeristerde şağın tüzetwdi jasır',
 'tog-extendwatchlist'         => 'Baqılaw tizimdi ulğaýt (barlıq jaramdı özgeristerdi körset)',

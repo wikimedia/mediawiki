@@ -147,7 +147,7 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'سٴىلتەمەنٴى استىنان سىز:',
-'tog-highlightbroken'         => 'جوقتالعان سٴىلتەمەلەردٴى <a href="" class="new">بىلاي</a> پٴىشٴىمدە (باسقاشا: بىلاي <a href="" class="internal">?</a> سيياقتى).',
+'tog-highlightbroken'         => 'جوقتالعان سٴىلتەمەلەردٴى <a href="http://www.example.com/" class="new">بىلاي</a> پٴىشٴىمدە (باسقاشا: بىلاي <a href="" class="internal">?</a> سيياقتى).',
 'tog-justify'                 => 'ەجەلەردٴى ەنٴى بويىنشا تۋرالاۋ',
 'tog-hideminor'               => 'جۋىقتاعى ٴوزگەرٴىستەردە شاعىن تٴۇزەتۋدٴى جاسىر',
 'tog-extendwatchlist'         => 'باقىلاۋ تٴىزٴىمدٴى ۇلعايت (بارلىق جارامدى ٴوزگەرٴىستەردٴى كٴورسەت)',

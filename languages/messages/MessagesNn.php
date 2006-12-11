@@ -164,7 +164,7 @@ $linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'           => 'Strek under lenkjer:',
-'tog-highlightbroken'     => 'Vis lenkjer til tomme sider <a href="" class="new">slik</a> (alternativt slik<a href="" class="internal">?</a>)',
+'tog-highlightbroken'     => 'Vis lenkjer til tomme sider <a href="http://www.example.com/" class="new">slik</a> (alternativt slik<a href="" class="internal">?</a>)',
 'tog-justify'	          => 'Blokkjusterte avsnitt',
 'tog-hideminor'           => 'Skjul uviktige endringar på «siste endringar»',
 'tog-usenewrc'            => 'Utvida funksjonalitet på «siste endringar» (JavaScript)',

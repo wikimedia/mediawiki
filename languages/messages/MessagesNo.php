@@ -64,7 +64,7 @@ $dateFormats = array(
 
 $messages = array(
 'tog-underline'         => 'Strek under lenker:',
-'tog-highlightbroken'   => 'Formater ødelagte lenker <a href="" class="new">slik</a> (alternativt: slik<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Formater ødelagte lenker <a href="http://www.example.com/" class="new">slik</a> (alternativt: slik<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Blokkjusterte avsnitt',
 'tog-hideminor'         => 'Skjul mindre endringer i siste endringer',
 'tog-extendwatchlist'   => 'Utvid overvåkningslista til å vise alle endringer i valgt tidsrom',

@@ -74,7 +74,7 @@ $fallback8bitEncoding = 'iso8859-2';
 
 $messages = array(
 'tog-underline'         => 'Subliniază legăturile',
-'tog-highlightbroken'   => 'Formatează legăturile necreate <a href="" class="new">aşa</a> (alternativă: aşa<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Formatează legăturile necreate <a href="http://www.example.com/" class="new">aşa</a> (alternativă: aşa<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Aranjează justificat paragrafele',
 'tog-hideminor'         => 'Ascunde modificările minore în schimbări recente',
 'tog-extendwatchlist'   => 'Extinde lista de articole urmărite pentru a arăta toate schimbările făcute',

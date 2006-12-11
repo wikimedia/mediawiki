@@ -52,7 +52,7 @@ $dateFormats = array(
 
 $messages = array(
 'tog-underline'         => '고리에 밑줄치기:',
-'tog-highlightbroken'   => '없는 문서로 가는 고리를 <a href="" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
+'tog-highlightbroken'   => '없는 문서로 가는 고리를 <a href="http://www.example.com/" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
 'tog-justify'           => '문단 정렬',
 'tog-hideminor'         => '사소한 편집을 최근 바뀜에서 숨기기',
 'tog-extendwatchlist'   => '주시 문서를 모든 변경 목록에 적용하기',

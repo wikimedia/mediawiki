@@ -57,7 +57,7 @@ $messages = array(
 
 # User preference toggles
 'tog-underline' => 'Garis bawahi pranala',
-'tog-highlightbroken' => 'Format pranala patah <a href="" class="new">seperti ini</a> (pilihan: seperti ini<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Format pranala patah <a href="http://www.example.com/" class="new">seperti ini</a> (pilihan: seperti ini<a href="" class="internal">?</a>).',
 'tog-justify'   => 'Ratakan paragraf',
 'tog-hideminor' => 'Sembunyikan suntingan kecil dalam perubahan terbaru',
 'tog-extendwatchlist' => 'Tampilkan daftar pantauan yang menunjukkan semua perubahan',
