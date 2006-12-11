@@ -263,6 +263,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed a redundant <strong> tag from diff pages that was causing display issues for some users
 * (bug 8203) The keyboard shortcut for "log out" was removed, because users were pressing it
   when they intended to press the shortcut for "preview".
+* (bug 8148) Handle non-removable output buffers gracefully when cleaning
+  buffers for HTTP 304 responses, StreamFile, and Special:Export.
+  Duplicated code merged into wfResetOutputBuffers() and wfClearOutputBuffers()
 
 
 == Languages updated ==

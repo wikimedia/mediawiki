@@ -144,10 +144,12 @@ class OutputPage {
 				$this->sendCacheControl();
 				wfDebug( "$fname: CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
 				$this->disable();
-				// Don't output compressed blob
-				while( $status = ob_get_status() ) {
-					ob_end_clean();
-				}
+				
+				// Don't output a compressed blob when using ob_gzhandler;
+				// it's technically against HTTP spec and seems to confuse
+				// Firefox when the response gets split over two packets.
+				wfClearOutputBuffers();
+				
 				return true;
 			} else {
 				wfDebug( "$fname: READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
