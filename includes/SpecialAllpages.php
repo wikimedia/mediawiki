@@ -231,8 +231,6 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 			)
 		);
 
-		### FIXME: side link to previous
-
 		$n = 0;
 		$out = '<table style="background: inherit;" border="0" width="100%">';
 
@@ -263,15 +261,52 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	if ( $including ) {
 		$out2 = '';
 	} else {
+
+		# Get the last title from previous chunk
+		$res_prev = $dbr->select(
+			'page',
+			'page_title',
+			array( 'page_namespace' => $namespace, 'page_title < '.$dbr->addQuotes($from) ),
+			$fname,
+			array( 'ORDER BY' => 'page_title DESC', 'LIMIT' => $this->maxPerPage, 'OFFSET' => ($this->maxPerPage - 1 ) )
+		);
+
+		# Get first title of previous complete chunk
+		if( $dbr->numrows( $res_prev ) >= $this->maxPerPage ) {
+			$pt = $dbr->fetchObject( $res_prev );
+			$prevTitle = Title::makeTitle( $namespace, $pt->page_title );
+		} else {
+			# The previous chunk is not complete, need to link to the very first title
+			# available in the database
+			$reallyFirstPage_title = $dbr->selectField( 'page', 'page_title', array( 'page_namespace' => $namespace ), $fname, array( 'LIMIT' => 1) );
+
+			# Show the previous link if it s not the current requested chunk
+			if( $from != $reallyFirstPage_title ) {
+				$prevTitle =  Title::makeTitle( $namespace, $reallyFirstPage_title );
+			} else {
+				$prevTitle = null;
+			}
+		}
+
 		$nsForm = $this->namespaceForm ( $namespace, $from );
 		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
 				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
 					wfMsgHtml ( 'allpages' ) );
-		if ( isset($dbr) && $dbr && ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
-			$t = Title::MakeTitle( $s->page_namespace, $s->page_title );
-			$self = SpecialPage::getTitleFor( 'Allpages' );
+
+		$self = SpecialPage::getTitleFor( 'Allpages' );
+
+		# Do we put a previous link ?
+		if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
+			$q = 'from=' . $prevTitle->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
+			$prevLink = $sk->makeKnownLinkObj( $self, wfMsgHTML( 'prevpage', $pt ), $q );
+			$out2 .= ' | ' . $prevLink;
+		}
+
+		if( $n == $this->maxPerPage && $s = $dbr->fetchObject($res) ) {
+			# $s is the first link of the next chunk
+			$t = Title::MakeTitle($namespace, $s->page_title);
 			$q = 'from=' . $t->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
 			$nextLink = $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
 			$out2 .= ' | ' . $nextLink;
@@ -280,8 +315,15 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	}
 
 	$wgOut->addHtml( $out2 . $out );
-	if( isset( $nextLink ) )
-		$wgOut->addHtml( '<p style="font-size: smaller; float: right;">' . $nextLink . '</p>' );
+	if( isset($prevLink) or isset($nextLink) ) {
+		$wgOut->addHtml( '<hr/><p style="font-size: smaller; float: right;">' );
+		if( isset( $prevLink ) )
+			$wgOut->addHTML( $prevLink . ' | ');
+		if( isset( $nextLink ) )
+			$wgOut->addHTML( $nextLink );
+		$wgOut->addHTML( '</p>' );
+
+	}
 	
 }
 	

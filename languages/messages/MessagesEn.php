@@ -1525,6 +1525,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
+'prevpage'          => 'Previous page ($1)',
 'allpagesfrom'		=> 'Display pages starting at:',
 'allarticles'		=> 'All articles',
 'allinnamespace'	=> 'All pages ($1 namespace)',
