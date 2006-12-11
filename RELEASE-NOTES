@@ -266,6 +266,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8148) Handle non-removable output buffers gracefully when cleaning
   buffers for HTTP 304 responses, StreamFile, and Special:Export.
   Duplicated code merged into wfResetOutputBuffers() and wfClearOutputBuffers()
+* Special:AllPages : 'next page' link now point to the first title of the next
+  chunk instead of pointing to the last title of current chunk.
 
 
 == Languages updated ==
