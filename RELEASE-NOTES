@@ -268,7 +268,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Duplicated code merged into wfResetOutputBuffers() and wfClearOutputBuffers()
 * Special:AllPages : 'next page' link now point to the first title of the next
   chunk instead of pointing to the last title of current chunk.
-
+* (bug 4673) Special:AllPages : add a 'previous' link (new message 'prevpage')
 
 == Languages updated ==
 
