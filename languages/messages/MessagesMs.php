@@ -41,7 +41,7 @@ $messages = array(
 # User Toggles
 
 "tog-underline" => "Gariskan pautan", #"Underline links",
-"tog-highlightbroken" => 'Formatkan pautan rosak <a href="http://www.example.com/" class="new">seperti ini</a> (ataupun seperti ini<a href="" class="internal">?</a>)', #'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
+"tog-highlightbroken" => 'Formatkan pautan rosak <a href="" class="new">seperti ini</a> (ataupun seperti ini<a href="" class="internal">?</a>)', #'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 "tog-justify" => "Selaraskan perenggan", #"Justify paragraphs",
 "tog-hideminor" => "Sembunyikan suntingan kecil untuk perubahan terkini", #"Hide minor edits in recent changes",
 "tog-usenewrc" => "Pertingkatkan perubahan terkini (Javaskrip)",

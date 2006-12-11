@@ -150,7 +150,7 @@ $messages = array(
 'tog-usenewrc' => 'Thay đổi gần đây nhiều chức năng (JavaScript)',
 'tog-underline' => 'Gạch chân liên kết',
 'tog-watchdefault' => 'Tự động theo dõi bài tôi viết hoặc sửa',
-'tog-highlightbroken' => 'Liên kết đến trang chưa có <a href="http://www.example.com/" class="new">như này</a> (nếu không thì <a href="" class="internal">như này</a>).',
+'tog-highlightbroken' => 'Liên kết đến trang chưa có <a href="" class="new">như này</a> (nếu không thì <a href="" class="internal">như này</a>).',
 'tog-enotifminoredits' => 'Gửi thông báo cho tôi về cả sửa đổi nhỏ',
 'tog-enotifrevealaddr' => 'Thể hiện địa chỉ thư của tôi trong thư thông báo',
 'tog-enotifusertalkpages' => 'Gửi tôi thông báo khi trang thảo luận với tôi thay đổi',

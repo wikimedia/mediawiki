@@ -79,7 +79,7 @@ parent class in order maintain consistency across languages.
 */
 # User preference toggles
 'tog-underline'         => 'Links onderstrepen:',
-'tog-highlightbroken'   => 'Links naar lege pagina\'s <a href="http://www.example.com/" class="new">zo weergeven</a> (alternatief: zo weergeven<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Links naar lege pagina\'s <a href="" class="new">zo weergeven</a> (alternatief: zo weergeven<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Paragrafen uitvullen',
 'tog-hideminor'         => 'Kleine wijzigingen verbergen in recente wijzigingen',
 'tog-extendwatchlist'   => 'Toon alle wijzigingen in mijn volglijst',

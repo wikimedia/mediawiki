@@ -123,7 +123,7 @@ $messages = array(
 
 # User preference toggles
 'tog-underline' => 'Sublinhar hiperligações',
-'tog-highlightbroken' => 'Formatar links quebrados <a href="http://www.example.com/" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'   => 'Justificar parágrafos',
 'tog-hideminor' => 'Esconder edições secundárias nas mudanças recentes',
 'tog-extendwatchlist' => 'Expandir a lista de artigos vigiados para mostrar todas as alterações aplicáveis',

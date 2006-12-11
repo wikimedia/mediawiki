@@ -77,9 +77,9 @@ $skinNames = array(
 
 $messages = array(
 'tog-underline'         => 'Donn de Lėngkß ungershtriishe:',
-'tog-highlightbroken'   => 'Zëijsh de Lėngkß op Sigge, di_jet_non_nit_jitt, esu met: „<a href="http://www.example.com/" 
+'tog-highlightbroken'   => 'Zëijsh de Lėngkß op Sigge, di_jet_non_nit_jitt, esu met: „<a href="" 
 
-class="new">Lämma</a>“ aan.<br />Wännß_De dat nit wellß, weed et esu: „Lämma<a href="http://www.example.com/" class="internal">?</a>“ 
+class="new">Lämma</a>“ aan.<br />Wännß_De dat nit wellß, weed et esu: „Lämma<a href="" class="internal">?</a>“ 
 
 jezëijsh.',
 'tog-justify'           => 'Donn de Affschnedde em Bloksaz aanzëije',

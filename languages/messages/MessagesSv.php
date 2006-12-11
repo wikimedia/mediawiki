@@ -67,7 +67,7 @@ $dateFormats = array(
 
 $messages = array(
 'tog-underline'         => 'Stryk under länkar',
-'tog-highlightbroken'   => 'Formatera trasiga länkar <a href="http://www.example.com/" class="new">så här</a> (alternativt: <a href="" class="internal">så här</a>).',
+'tog-highlightbroken'   => 'Formatera trasiga länkar <a href="" class="new">så här</a> (alternativt: <a href="" class="internal">så här</a>).',
 'tog-justify'           => 'Justera indrag',
 'tog-hideminor'         => 'Visa inte mindre redigeringar i Senaste ändringar',
 'tog-extendwatchlist'   => 'Utöka övervakningslistan till att visa alla ändringar',

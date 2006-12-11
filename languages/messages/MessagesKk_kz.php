@@ -122,7 +122,7 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Сілтемені астынан сыз:',
-'tog-highlightbroken'         => 'Жоқталған сілтемелерді <a href="http://www.example.com/" class="new">былай</a> пішімде (басқаша: былай <a href="" class="internal">?</a> сияқты).',
+'tog-highlightbroken'         => 'Жоқталған сілтемелерді <a href="" class="new">былай</a> пішімде (басқаша: былай <a href="" class="internal">?</a> сияқты).',
 'tog-justify'                 => 'Ежелерді ені бойынша туралау',
 'tog-hideminor'               => 'Жуықтағы өзгерістерде шағын түзетуді жасыр',
 'tog-extendwatchlist'         => 'Бақылау тізімді ұлғайт (барлық жарамды өзгерістерді көрсет)',

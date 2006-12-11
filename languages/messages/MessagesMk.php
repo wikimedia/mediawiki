@@ -89,7 +89,7 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $messages = array(
 'tog-underline'         => 'Потцртај ги врските',
-'tog-highlightbroken'   => 'Покажи ги неправилните врски <a href="http://www.example.com/" class="new">вака</a> (алтернативно: вака<a href="" class="internal">?</a>).',
+'tog-highlightbroken'   => 'Покажи ги неправилните врски <a href="" class="new">вака</a> (алтернативно: вака<a href="" class="internal">?</a>).',
 'tog-justify'           => 'Двостранично порамнување на параграфите',
 'tog-hideminor'         => 'Сокриј ги ситните уредувања во скорешните промени',
 'tog-extendwatchlist'   => 'Прошири ја листа на набљудувања за да ги прикаже сите можни промени',
