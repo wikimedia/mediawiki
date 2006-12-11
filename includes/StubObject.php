@@ -96,7 +96,7 @@ class StubUserLang extends StubObject {
 		// if variant is explicitely selected, use it instead the one from wgUser
 		// see bug #7605
 		if($wgContLang->hasVariants()){
-			$variant = $wgContLang->getPreferredVariant(false);
+			$variant = $wgContLang->getPreferredVariant();
 			if($variant != $wgContLanguageCode)
 				$code = $variant;
 		}	 

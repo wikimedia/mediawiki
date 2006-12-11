@@ -51,7 +51,7 @@ class FakeConverter {
 	function markNoConversion($text, $noParse=false) {return $text;}
 	function convertCategoryKey( $key ) {return $key; }
 	function convertLinkToAllVariants($text){ return array( $this->mLang->getCode() => $text); }
-	function setNoTitleConvert(){}
+	function armourMath($text){ return $text; }
 }
 
 #--------------------------------------------------------------------------
@@ -1340,14 +1340,14 @@ class Language {
 		return $this->mConverter->parserConvert( $text, $parser );
 	}
 
-	# Tell the converter that it shouldn't convert titles
-	function setNoTitleConvert(){
-		$this->mConverter->setNotitleConvert();
-	}
-
 	# Check if this is a language with variants
 	function hasVariants(){
 		return sizeof($this->getVariants())>1;
+	}
+
+	# Put custom tags (e.g. -{ }-) around math to prevent conversion
+	function armourMath($text){ 
+		return $this->mConverter->armourMath($text);
 	}
 
 

@@ -529,6 +529,7 @@ class Parser
 	 * @private
 	 */
 	function strip( $text, $state, $stripcomments = false , $dontstrip = array () ) {
+		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 		$render = ($this->mOutputType == OT_HTML);
 
@@ -581,7 +582,7 @@ class Parser
 					$output = Xml::escapeTagsOnly( $content );
 					break;
 				case 'math':
-					$output = MathRenderer::renderMath( $content );
+					$output = $wgContLang->armourMath( MathRenderer::renderMath( $content ) );
 					break;
 				case 'gallery':
 					$output = $this->renderImageGallery( $content, $params );
@@ -3013,9 +3014,8 @@ class Parser
 
 			if ( !is_null( $title ) ) {
 				$titleText = $title->getPrefixedText();
-				$checkVariantLink = sizeof($wgContLang->getVariants())>1;
 				# Check for language variants if the template is not found
-				if($checkVariantLink && $title->getArticleID() == 0){
+				if($wgContLang->hasVariants() && $title->getArticleID() == 0){
 					$wgContLang->findVariantLink($part1, $title);
 				}
 
@@ -4038,10 +4038,14 @@ class Parser
 			}
 			wfProfileOut( $fname.'-check' );
 
-			# Do a second query for different language variants of links (if needed)
+			# Do a second query for different language variants of links and categories
 			if($wgContLang->hasVariants()){
 				$linkBatch = new LinkBatch();
-				$variantMap = array(); // maps $pdbkey_Variant => $pdbkey_original
+				$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
+				$categoryMap = array(); // maps $category_variant => $category (dbkeys)
+				$varCategories = array(); // category replacements oldDBkey => newDBkey
+
+				$categories = $this->mOutput->getCategoryLinks();
 
 				// Add variants of links to link batch
 				foreach ( $this->mLinkHolders['namespaces'] as $key => $ns ) {
@@ -4050,18 +4054,32 @@ class Parser
 						continue;
 
 					$pdbk = $title->getPrefixedDBkey();
+					$titleText = $title->getText();
 
 					// generate all variants of the link title text
-					$allTextVariants = $wgContLang->convertLinkToAllVariants($title->getText());
+					$allTextVariants = $wgContLang->convertLinkToAllVariants($titleText);
 
 					// if link was not found (in first query), add all variants to query
 					if ( !isset($colours[$pdbk]) ){
 						foreach($allTextVariants as $textVariant){
-							$variantTitle = Title::makeTitle( $ns, $textVariant );
-							if(is_null($variantTitle)) continue;
-							$linkBatch->addObj( $variantTitle );
-							$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
+							if($textVariant != $titleText){
+								$variantTitle = Title::makeTitle( $ns, $textVariant );
+								if(is_null($variantTitle)) continue;
+								$linkBatch->addObj( $variantTitle );
+								$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
+							}
 						}
+					}
+				}
+
+				// process categories, check if a category exists in some variant
+				foreach( $categories as $category){
+					$variants = $wgContLang->convertLinkToAllVariants($category);
+					foreach($variants as $variant){
+						$variantTitle = Title::newFromDBkey( Title::makeName(NS_CATEGORY,$variant) );
+						if(is_null($variantTitle)) continue;
+						$linkBatch->addObj( $variantTitle );
+						$categoryMap[$variant] = $category;
 					}
 				}
 
@@ -4087,10 +4105,13 @@ class Parser
 
 						$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
 						$varPdbk = $variantTitle->getPrefixedDBkey();
+						$vardbk = $variantTitle->getDBkey();
 						$linkCache->addGoodLinkObj( $s->page_id, $variantTitle );
 						$this->mOutput->addLink( $variantTitle, $s->page_id );
 
-						$holderKeys = $variantMap[$varPdbk];
+						$holderKeys = array();
+						if(isset($variantMap[$varPdbk]))
+							$holderKeys = $variantMap[$varPdbk];
 
 						// loop over link holders
 						foreach($holderKeys as $key){
@@ -4119,6 +4140,26 @@ class Parser
 								}
 							}
 						}
+
+						// check if the object is a variant of a category
+						if(isset($categoryMap[$vardbk])){
+							$oldkey = $categoryMap[$vardbk];
+							if($oldkey != $vardbk)
+								$varCategories[$oldkey]=$vardbk;							
+						}						
+					}
+
+					// rebuild the categories in original order (if there are replacements)
+					if(count($varCategories)>0){
+						$newCats = array();
+						$originalCats = $this->mOutput->getCategories();
+						foreach($originalCats as $cat => $sortkey){
+							// make the replacement
+							if( array_key_exists($cat,$varCategories) )
+								$newCats[$varCategories[$cat]] = $sortkey;
+							else $newCats[$cat] = $sortkey;
+						}
+						$this->mOutput->setCategoryLinks($newCats);
 					}
 				}
 			}
