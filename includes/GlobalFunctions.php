@@ -114,7 +114,7 @@ function wfSeedRandom() {
 function wfRandom() {
 	# The maximum random value is "only" 2^31-1, so get two random
 	# values to reduce the chance of dupes
-	$max = mt_getrandmax();
+	$max = mt_getrandmax() + 1;
 	$rand = number_format( (mt_rand() * $max + mt_rand())
 		/ $max / $max, 12, '.', '' );
 	return $rand;
