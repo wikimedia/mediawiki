@@ -292,6 +292,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Russian (ru)
 * Slovak (sk)
 * Swedish (sv)
+* Taiwanese/Holo: (bug 8217) changed language code to nan (from zh-min-nan)
+  due to http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=n
 * Upper Sorbian (hsb)
 * Vietnamese (vi)
 
