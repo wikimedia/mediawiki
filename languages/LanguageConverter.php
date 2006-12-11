@@ -20,7 +20,6 @@ class LanguageConverter {
 	var $mMarkup;
 	var $mFlags;
 	var $mUcfirst = false;
-	var $mNoTitleConvert = false;
 	/**
      * Constructor
 	 *
@@ -303,11 +302,6 @@ class LanguageConverter {
 			return $text;
 
 		if( $isTitle ) {
-			if($this->mNoTitleConvert){
-				$this->mTitleDisplay = $text;			
-				return $text;
-			}
-
 			if( !$this->mDoTitleConvert ) {
 				$this->mTitleDisplay = $text;
 				return $text;
@@ -449,17 +443,34 @@ class LanguageConverter {
 	 */
 	function findVariantLink( &$link, &$nt ) {
 		global $wgDisableLangConversion;
-		$pref = $this->getPreferredVariant();
-		$ns=0;
+		$linkBatch = new LinkBatch();
+
+		$ns=NS_MAIN;
+
 		if(is_object($nt))
 			$ns = $nt->getNamespace();
 
 		$variants = $this->autoConvertToAllVariants($link);
 		if($variants == false) //give up
 			return;
+
+		$titles = array();
+
 		foreach( $variants as $v ) {
-			$varnt = Title::newFromText( $v, $ns );
-			if( $varnt && $varnt->getArticleID() > 0 ) {
+			if($v != $link){
+				$varnt = Title::newFromText( $v, $ns );
+				if(!is_null($varnt)){
+					$linkBatch->addObj($varnt);
+					$titles[]=$varnt;
+				}
+			}
+		}
+
+		// fetch all variants in single query
+		$linkBatch->execute();
+
+		foreach( $titles as $varnt ) {
+			if( $varnt->getArticleID() > 0 ) {
 				$nt = $varnt;
 				if( !$wgDisableLangConversion )
 					$link = $v;
@@ -724,9 +735,15 @@ class LanguageConverter {
 		return true;
 	}
 
-	function setNoTitleConvert(){
-		$this->mNoTitleConvert = true;
+	/** 
+	 * Armour rendered math against conversion
+	 * Default is do nothing, since the process can interfere with 
+	 * parseManualRule() if format -{ alter1 ; alter2 }- is enabled
+	 */
+ 	function armourMath($text){ 
+		return $text;
 	}
+
 
 }
 

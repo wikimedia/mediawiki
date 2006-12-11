@@ -52,6 +52,8 @@ class SrConverter extends LanguageConverter {
 		'Nj' => 'Њ', 'n!j' => 'нј', 'N!j'=> 'Нј', 'N!J'=> 'НЈ'
 	);
 
+	var $mParsingContent=false;
+
 	function loadDefaultTables() {
 		$this->mTables = array(
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
@@ -76,17 +78,27 @@ class SrConverter extends LanguageConverter {
 		return $carray;
 	}
 
+	// Set a flag when parsing content, this is used to prevent 
+	// conversion of content within talk pages
+	function parserConvert( $text, &$parser ){
+		$this->mParsingContent = true;
+		$output = parent::parserConvert($text, $parser );
+		$this->mParsingContent = false;
+		return $output;
+		
+	}
+
 	/*
 	 * Override function from LanguageConvertor
 	 * Additional checks: 
 	 *  - There should be no conversion for Talk pages
 	 */
-	function getPreferredVariant(){
+	function getPreferredVariant( $fromUser=true ){
 		global $wgTitle;
-		if($wgTitle!=NULL && $wgTitle->isTalkPage()){
+		if(is_object($wgTitle) && $wgTitle->isTalkPage() && $this->mParsingContent){
 			return $this->mMainLanguageCode;
 		}
-		return parent::getPreferredVariant();
+		return parent::getPreferredVariant($fromUser);
 	}
 
 
@@ -100,7 +112,6 @@ class SrConverter extends LanguageConverter {
 		if($this->getPreferredVariant()==$this->mMainLanguageCode)
 			$link=$oldlink;
 	}
-
 
 	/*
 	 * We want our external link captions to be converted in variants,
@@ -118,7 +129,7 @@ class SrConverter extends LanguageConverter {
 	 */
 	function autoConvert($text, $toVariant=false) {
 		global $wgTitle;
-		if($wgTitle->getNameSpace()==NS_IMAGE){ 
+		if(is_object($wgTitle) && $wgTitle->getNameSpace()==NS_IMAGE){ 
 			$imagename = $wgTitle->getNsText();
 			if(preg_match("/^$imagename:/",$text)) return $text;
 		}
@@ -150,6 +161,11 @@ class SrConverter extends LanguageConverter {
 
 		return $ret;
 	}
+
+	function armourMath($text){ 
+		return parent::markNoConversion($text);
+	}
+
 }
 
 class LanguageSr extends LanguageSr_ec {
